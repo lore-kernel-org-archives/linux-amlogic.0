@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36D59C3DA7F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Jul 2024 12:51:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F2EC3DA49
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Jul 2024 12:51:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4KhKb25F6SlmzQyevPx8WrZq52bwxanNsm+ZxHDTqRs=; b=v646rYnUXtTw0K
-	MH3QCgUTqi3TiW5AQb482vDLJ3TbruvaZ3bm1mScj9CYV227NmLxWKGK50PJypuBgTqwZenREp1rC
-	NA2J/U+uM51nfTfhsg2TxgDAvGjt8j/dchwtYCXtuzqQ9YU2L1yqgql3ffoswiwUeuWmnzg6Xgw78
-	FZyEEJOexhyqqyDFjJyyhLlLBQhzeh+ITuCYOfwPhMYWjasuKHi2DJQaN1n/Tjpzett3EOHKJYqab
-	VaOELYT/o7CIJpIkt2gY1x+jHbY1kok5UoJrS0VWcJzSu/8RhMZUqT0PIB0Qpo/7UOsukivqNqNG6
-	MWo1XWCWNOVQm4XvTd6A==;
+	List-Owner; bh=vVYGNRJkwIPbBRXEKtSJTM51FGlddWY4DcYxQy2C/YI=; b=D7eZfLHrotGZGE
+	/AJ8FFO74a3D6lFGqEW+smrEo2Kf++4brGOB1fDfRhytbVHaaxgIip4CCO3PAoDXJzhzPPTn9KP+7
+	+LA526E0gAFZhB+KBWV3feDCBLvUfvu1cKYIUFbtqsbX3Q7ExT+PfLnTz/vuPmzWv4q9z8fQnvE+F
+	NnIbe2THOcTg+qSfRwqEx2QlfeQcP1AvEiHcYV+/jaDgy0o00rNvBXLOkSV/iJqZpjFpvxWE4Ndk4
+	g8EuE5TuNVQpISRFdd3tJzlpUZR/n527MkG3c52TsBC944ql6RT7y1pA9rhT9y2g/xlSSn3c3K3XF
+	46wN9tj8DY3k9Bb4CHag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sYmJc-0000000FAA8-1r9W;
-	Tue, 30 Jul 2024 12:50:56 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1sYmJd-0000000FABI-3Q4X;
+	Tue, 30 Jul 2024 12:50:58 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sYmJQ-0000000F9xW-2uQH
+	id 1sYmJN-0000000F9vV-2w97
 	for linux-amlogic@lists.infradead.org;
-	Tue, 30 Jul 2024 12:50:47 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4281f00e70cso15242655e9.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 30 Jul 2024 05:50:43 -0700 (PDT)
+	Tue, 30 Jul 2024 12:50:48 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-368313809a4so1789060f8f.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 30 Jul 2024 05:50:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722343842; x=1722948642; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722343840; x=1722948640; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=v0bww741v4ESlaOBOd/IxNqqLNy/KYkDWPizVqdvx9s=;
-        b=v3TgAPwogLbsTdaaS2Z4FdaudJLXVaTG0GdkwAPJPPw+dNNhWdu09JkEYCmLaZ2/DM
-         dFEaEAmDLCly9JG97zRmZGzSxjrZ0avZWEQH+CTcDqD5h4hz3iUtTKvqki9eaq1BljaF
-         4wcCg1vFOFIPfoGCBZ0zOHkMcR8ZHYJEYykOItJUAxS8StwbaJ+S+YpRjEINQAXgnM7O
-         37E9tPZKFRO9y2ZtyXwtd1rRhaZThMTNwaatqMFeNb6QlzD87c3lpZqqwugE53J/dU8g
-         TlD1bsebKv7KWyImQ8SNTE+s18uxTv9PcXHZR76sqDf5FKOpPRNuO9yKjdVmQCH323rn
-         BXlQ==
+        bh=/f+lVqd8UY0SGhoCgvWNiHTKQlQIyc0ZQNcrf7jQ2Mk=;
+        b=OTQBBeBpivsEvasNpXSWz7+9mwLxHW4R1fHxd+3SpUYcKWEyjkaZa01VcNImkYxGPB
+         qHeZE6soOMz/ImvWs2YJ4j5UcZoE9aua0a4zVrnLUV0RlZaHQP45gWGkNvXpBEQBbrZm
+         QJq7ywXH/Uk+QHsB/LxxjZfgPKTdunu0zAMSDEID/Xqx0OPmy85KClKiSLx8YRK/on3W
+         xfy7K/3l3KXIFBLeBYJHwx7AYJmQzE7p084sPr0qnBfeTNVgWsq3VFrXNeYYC/AwUnh9
+         EKbUxGzri3mhwOmuo53Q2dujy8KTOTbhkgNV32eArYW8+lomn1tMsGlBN5hxILJCXhfg
+         sQMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722343842; x=1722948642;
+        d=1e100.net; s=20230601; t=1722343840; x=1722948640;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=v0bww741v4ESlaOBOd/IxNqqLNy/KYkDWPizVqdvx9s=;
-        b=iuCEfy2BJSHDeW2JaIOAio13aMstc9hexGef+JnXd0gXoG15GtyyRzbFuPpaEWhQ6R
-         qoyzpxnzNErAajDN+UCV1J/30hH+eUwDtl6exbYHsM8ENHrEyb+uWn7jLWbUu/b6VUuJ
-         WejMezYWWy009ke7EAWcXq+Pm5rqyCNiVVaZpfkImjMejYXSrXnQjwKqVyiEr2eggexi
-         LC3gTrNquTJH5e5TULsuNbupT0PlwPqZAKMNLYlbBNyFAyXpF+jcsvDlO75bd8A6Z8Hu
-         7xUrK2ipEVSBmFtcXwcJO46i60HKw4lZXAx0PYwLhFhdxR7Gle7zR+JmJINXIpI3w+0b
-         ck4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWZU8/zwCmwavwbMbcdujB3e+mbj7AZ0r2e/2BaHH+IEJiBoTSqUHV1aaX00pMX9sd66IGV3n76T8Ul8Rd7fInZ2tE/jRqSYpTqBLwaEnMD5gI=
-X-Gm-Message-State: AOJu0YyYt8GfqLZ8a+mDJ0d+S4l4P+x5h12DlV3qrm+1T8dscdRspfdW
-	eVKi/ZTSOzm/KfSS4dmGJSTXgS7m5mH4tVaZJ6aOK2WhFaYv+QMJO54Ljd+7asg=
-X-Google-Smtp-Source: AGHT+IFLDFq9LHqnUG6FBRbdJiqK71bxJQkIPCuJCS1JXepzU3MHqB97SQW7gMPpjbviNnFl2fKRWg==
-X-Received: by 2002:a05:600c:1c93:b0:426:64a2:5362 with SMTP id 5b1f17b1804b1-42811d71586mr72986835e9.8.1722343842261;
-        Tue, 30 Jul 2024 05:50:42 -0700 (PDT)
+        bh=/f+lVqd8UY0SGhoCgvWNiHTKQlQIyc0ZQNcrf7jQ2Mk=;
+        b=YN4+CfSRGRzs5GYdMnrrxvixPVkh1Ff4DIs+atTI6l6JjMPJ9uFAdtEHuIDQeCrHpZ
+         qUNj2xysAVHdW8O6HT4o93M24eLeWNXrArR98/3Jj/zJn73sB+DudA08TnIXdzBd2ngX
+         W3dp0YHjXmGPTB2+tmypYzy0tJja0RHnL6ut6L92+NR53br2kOjqRFEU4ipxgISYeMMh
+         HlroTM9HZOZVoZYCOQ4RraKBoTTlPxMi6JfyiQWG4egcm++cjJKbHq/MewHTm0M0/qUw
+         lSoYTSRalUyGm1HDMPULsRvxxi/XFVQEd2uPcvLZR2AO1UJ08JyIAdw9VHrzj5xOc2b+
+         jYCg==
+X-Forwarded-Encrypted: i=1; AJvYcCXNQm4xMahRuzypWgZ/+CIZpS7hBxkq6OSluZjaa83r4cBjyIFex8f/2cSXb109Fs7geCFmoUzUVQq2hzdIOnD9rhLnKSa+/VXigMBWv7Dt6fc=
+X-Gm-Message-State: AOJu0YyPrIMZBmjBIIgSr8kQaXzZU678RR69s8ooKQQoUS0itQOwOgDn
+	VSyXeavj4G2I+pO+yLynbLIawoMcvs3u6HoYFzZmRb9h7OCJSy6VpZHFtt9VnYo=
+X-Google-Smtp-Source: AGHT+IF6vxjbgkclg5ZC9QnQ6REhjd6SUK21vpt51Ce1pEcuTWZe/cRJ6ofyHge18ELoIAEYRXo8Fw==
+X-Received: by 2002:adf:f7c8:0:b0:368:4488:66f8 with SMTP id ffacd0b85a97d-36b8c8fdc35mr1223161f8f.23.1722343839681;
+        Tue, 30 Jul 2024 05:50:39 -0700 (PDT)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:291e:4a48:358e:6f49])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42805730e68sm216521405e9.9.2024.07.30.05.50.41
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42805730e68sm216521405e9.9.2024.07.30.05.50.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jul 2024 05:50:41 -0700 (PDT)
+        Tue, 30 Jul 2024 05:50:39 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -76,17 +76,17 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	dri-devel@lists.freedesktop.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH LATER 9/9] drm/meson: dw-hdmi: drop hdmi system clock setup
-Date: Tue, 30 Jul 2024 14:50:19 +0200
-Message-ID: <20240730125023.710237-10-jbrunet@baylibre.com>
+Subject: [PATCH 6/9] drm/meson: dw-hdmi: convert to regmap
+Date: Tue, 30 Jul 2024 14:50:16 +0200
+Message-ID: <20240730125023.710237-7-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240730125023.710237-1-jbrunet@baylibre.com>
 References: <20240730125023.710237-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240730_055044_924237_E6572443 
-X-CRM114-Status: GOOD (  12.53  )
+X-CRM114-CacheID: sfid-20240730_055042_009405_8877087F 
+X-CRM114-Status: GOOD (  24.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,50 +103,807 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Poking the HHI syscon is a way to setup clocks behind CCF's back.
-Drop these poke and let CCF handle this using DT assigned-clocks.
+The Amlogic mixes direct register access and regmap ones, with several
+custom helpers. Using a single API makes rework and maintenance easier.
 
-HHI is a collection of Amlogic devices, such as clocks, reset,
-power domains and phys.
-
-This is another step to get rid of HHI access in Amlogic display drivers
-and possibly stop using the component API.
+Convert the Amlogic phy driver to regmap and use it to have more consistent
+access to the registers in the driver, with less custom helpers. Add
+register bit definitions when missing.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
-
- This change depends on:
- * 0602ba0dcd0e ("arm64: dts: amlogic: gx: correct hdmi clocks")
- * 1443b6ea806d ("arm64: dts: amlogic: setup hdmi system clock")
-
-Time is needed for these changes to sink in u-boot and distros,
-making this change safe to apply.
-
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 475 ++++++++++++--------------
+ drivers/gpu/drm/meson/meson_dw_hdmi.h |  49 +--
+ 2 files changed, 239 insertions(+), 285 deletions(-)
 
 diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 6c18d97b8b16..b54c1e3093e9 100644
+index 47aa3e184e98..7c39e5c99043 100644
 --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
 +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -111,7 +111,6 @@
- #define HDMITX_TOP_G12A_OFFSET	0x8000
+@@ -90,16 +90,25 @@
+  * - CEC Management
+  */
+ 
+-/* TOP Block Communication Channel */
+-#define HDMITX_TOP_ADDR_REG	0x0
+-#define HDMITX_TOP_DATA_REG	0x4
+-#define HDMITX_TOP_CTRL_REG	0x8
+-#define HDMITX_TOP_G12A_OFFSET	0x8000
++/* Indirect channel definition for GX */
++#define HDMITX_TOP_REGS		0x0
++#define HDMITX_DWC_REGS		0x10
++
++#define GX_ADDR_OFFSET		0x0
++#define GX_DATA_OFFSET		0x4
++#define GX_CTRL_OFFSET		0x8
++#define  GX_CTRL_APB3_ERRFAIL	BIT(15)
+ 
+-/* Controller Communication Channel */
+-#define HDMITX_DWC_ADDR_REG	0x10
+-#define HDMITX_DWC_DATA_REG	0x14
+-#define HDMITX_DWC_CTRL_REG	0x18
++/*
++ * NOTE: G12 use direct addressing:
++ * Ideally it should receive one memory region for each of the top
++ * and dwc register regions but fixing this would require to change
++ * the DT bindings. Doing so is a pain. Keep the region as it and work
++ * around the problem, at least for now.
++ * Future supported SoCs should properly describe the regions in the
++ * DT bindings instead of using this trick.
++ */
++#define HDMITX_TOP_G12A_OFFSET	0x8000
  
  /* HHI Registers */
--#define HHI_HDMI_CLK_CNTL	0x1cc /* 0x73 */
- #define HHI_HDMI_PHY_CNTL0	0x3a0 /* 0xe8 */
+ #define HHI_MEM_PD_REG0		0x100 /* 0x40 */
+@@ -108,28 +117,59 @@
  #define HHI_HDMI_PHY_CNTL1	0x3a4 /* 0xe9 */
  #define  PHY_CNTL1_INIT		0x03900000
-@@ -419,9 +418,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
- {
- 	struct meson_drm *priv = meson_dw_hdmi->priv;
+ #define  PHY_INVERT		BIT(17)
++#define  PHY_FIFOS		GENMASK(3, 2)
++#define  PHY_CLOCK_EN		BIT(1)
++#define  PHY_SOFT_RST		BIT(0)
+ #define HHI_HDMI_PHY_CNTL2	0x3a8 /* 0xea */
+ #define HHI_HDMI_PHY_CNTL3	0x3ac /* 0xeb */
+ #define HHI_HDMI_PHY_CNTL4	0x3b0 /* 0xec */
+ #define HHI_HDMI_PHY_CNTL5	0x3b4 /* 0xed */
  
--	/* Enable clocks */
--	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
+-static DEFINE_SPINLOCK(reg_lock);
+-
+-struct meson_dw_hdmi;
+-
+ struct meson_dw_hdmi_data {
+-	unsigned int	(*top_read)(struct meson_dw_hdmi *dw_hdmi,
+-				    unsigned int addr);
+-	void		(*top_write)(struct meson_dw_hdmi *dw_hdmi,
+-				     unsigned int addr, unsigned int data);
+-	unsigned int	(*dwc_read)(struct meson_dw_hdmi *dw_hdmi,
+-				    unsigned int addr);
+-	void		(*dwc_write)(struct meson_dw_hdmi *dw_hdmi,
+-				     unsigned int addr, unsigned int data);
++	int (*reg_init)(struct device *dev);
+ 	u32 cntl0_init;
+ 	u32 cntl1_init;
+ };
+ 
++static int hdmi_tx_indirect_reg_read(void *context,
++					 unsigned int reg,
++					 unsigned int *result)
++{
++	void __iomem *base = context;
++
++	/* Must write the read address twice ... */
++	writel(reg, base + GX_ADDR_OFFSET);
++	writel(reg, base + GX_ADDR_OFFSET);
++
++	/* ... and read the data twice as well */
++	*result = readl(base + GX_DATA_OFFSET);
++	*result = readl(base + GX_DATA_OFFSET);
++
++	return 0;
++}
++
++static int hdmi_tx_indirect_reg_write(void *context,
++				      unsigned int reg,
++				      unsigned int val)
++{
++	void __iomem *base = context;
++
++	/* Must write the read address twice ... */
++	writel(reg, base + GX_ADDR_OFFSET);
++	writel(reg, base + GX_ADDR_OFFSET);
++
++	/* ... but write the data only once */
++	writel(val, base + GX_DATA_OFFSET);
++
++	return 0;
++}
++
++static const struct regmap_bus hdmi_tx_indirect_mmio = {
++	.fast_io = true,
++	.reg_read = hdmi_tx_indirect_reg_read,
++	.reg_write = hdmi_tx_indirect_reg_write,
++};
++
+ struct meson_dw_hdmi {
+ 	struct dw_hdmi_plat_data dw_plat_data;
+ 	struct meson_drm *priv;
+@@ -139,9 +179,10 @@ struct meson_dw_hdmi {
+ 	struct reset_control *hdmitx_apb;
+ 	struct reset_control *hdmitx_ctrl;
+ 	struct reset_control *hdmitx_phy;
+-	u32 irq_stat;
++	unsigned int irq_stat;
+ 	struct dw_hdmi *hdmi;
+ 	struct drm_bridge *bridge;
++	struct regmap *top;
+ };
+ 
+ static inline int dw_hdmi_is_compatible(struct meson_dw_hdmi *dw_hdmi,
+@@ -150,136 +191,6 @@ static inline int dw_hdmi_is_compatible(struct meson_dw_hdmi *dw_hdmi,
+ 	return of_device_is_compatible(dw_hdmi->dev->of_node, compat);
+ }
+ 
+-/* PHY (via TOP bridge) and Controller dedicated register interface */
+-
+-static unsigned int dw_hdmi_top_read(struct meson_dw_hdmi *dw_hdmi,
+-				     unsigned int addr)
+-{
+-	unsigned long flags;
+-	unsigned int data;
+-
+-	spin_lock_irqsave(&reg_lock, flags);
+-
+-	/* ADDR must be written twice */
+-	writel(addr & 0xffff, dw_hdmi->hdmitx + HDMITX_TOP_ADDR_REG);
+-	writel(addr & 0xffff, dw_hdmi->hdmitx + HDMITX_TOP_ADDR_REG);
+-
+-	/* Read needs a second DATA read */
+-	data = readl(dw_hdmi->hdmitx + HDMITX_TOP_DATA_REG);
+-	data = readl(dw_hdmi->hdmitx + HDMITX_TOP_DATA_REG);
+-
+-	spin_unlock_irqrestore(&reg_lock, flags);
+-
+-	return data;
+-}
+-
+-static unsigned int dw_hdmi_g12a_top_read(struct meson_dw_hdmi *dw_hdmi,
+-					  unsigned int addr)
+-{
+-	return readl(dw_hdmi->hdmitx + HDMITX_TOP_G12A_OFFSET + (addr << 2));
+-}
+-
+-static inline void dw_hdmi_top_write(struct meson_dw_hdmi *dw_hdmi,
+-				     unsigned int addr, unsigned int data)
+-{
+-	unsigned long flags;
+-
+-	spin_lock_irqsave(&reg_lock, flags);
+-
+-	/* ADDR must be written twice */
+-	writel(addr & 0xffff, dw_hdmi->hdmitx + HDMITX_TOP_ADDR_REG);
+-	writel(addr & 0xffff, dw_hdmi->hdmitx + HDMITX_TOP_ADDR_REG);
+-
+-	/* Write needs single DATA write */
+-	writel(data, dw_hdmi->hdmitx + HDMITX_TOP_DATA_REG);
+-
+-	spin_unlock_irqrestore(&reg_lock, flags);
+-}
+-
+-static inline void dw_hdmi_g12a_top_write(struct meson_dw_hdmi *dw_hdmi,
+-					  unsigned int addr, unsigned int data)
+-{
+-	writel(data, dw_hdmi->hdmitx + HDMITX_TOP_G12A_OFFSET + (addr << 2));
+-}
+-
+-/* Helper to change specific bits in PHY registers */
+-static inline void dw_hdmi_top_write_bits(struct meson_dw_hdmi *dw_hdmi,
+-					  unsigned int addr,
+-					  unsigned int mask,
+-					  unsigned int val)
+-{
+-	unsigned int data = dw_hdmi->data->top_read(dw_hdmi, addr);
+-
+-	data &= ~mask;
+-	data |= val;
+-
+-	dw_hdmi->data->top_write(dw_hdmi, addr, data);
+-}
+-
+-static unsigned int dw_hdmi_dwc_read(struct meson_dw_hdmi *dw_hdmi,
+-				     unsigned int addr)
+-{
+-	unsigned long flags;
+-	unsigned int data;
+-
+-	spin_lock_irqsave(&reg_lock, flags);
+-
+-	/* ADDR must be written twice */
+-	writel(addr & 0xffff, dw_hdmi->hdmitx + HDMITX_DWC_ADDR_REG);
+-	writel(addr & 0xffff, dw_hdmi->hdmitx + HDMITX_DWC_ADDR_REG);
+-
+-	/* Read needs a second DATA read */
+-	data = readl(dw_hdmi->hdmitx + HDMITX_DWC_DATA_REG);
+-	data = readl(dw_hdmi->hdmitx + HDMITX_DWC_DATA_REG);
+-
+-	spin_unlock_irqrestore(&reg_lock, flags);
+-
+-	return data;
+-}
+-
+-static unsigned int dw_hdmi_g12a_dwc_read(struct meson_dw_hdmi *dw_hdmi,
+-					  unsigned int addr)
+-{
+-	return readb(dw_hdmi->hdmitx + addr);
+-}
+-
+-static inline void dw_hdmi_dwc_write(struct meson_dw_hdmi *dw_hdmi,
+-				     unsigned int addr, unsigned int data)
+-{
+-	unsigned long flags;
+-
+-	spin_lock_irqsave(&reg_lock, flags);
+-
+-	/* ADDR must be written twice */
+-	writel(addr & 0xffff, dw_hdmi->hdmitx + HDMITX_DWC_ADDR_REG);
+-	writel(addr & 0xffff, dw_hdmi->hdmitx + HDMITX_DWC_ADDR_REG);
+-
+-	/* Write needs single DATA write */
+-	writel(data, dw_hdmi->hdmitx + HDMITX_DWC_DATA_REG);
+-
+-	spin_unlock_irqrestore(&reg_lock, flags);
+-}
+-
+-static inline void dw_hdmi_g12a_dwc_write(struct meson_dw_hdmi *dw_hdmi,
+-					  unsigned int addr, unsigned int data)
+-{
+-	writeb(data, dw_hdmi->hdmitx + addr);
+-}
+-
+-/* Helper to change specific bits in controller registers */
+-static inline void dw_hdmi_dwc_write_bits(struct meson_dw_hdmi *dw_hdmi,
+-					  unsigned int addr,
+-					  unsigned int mask,
+-					  unsigned int val)
+-{
+-	unsigned int data = dw_hdmi->data->dwc_read(dw_hdmi, addr);
+-
+-	data &= ~mask;
+-	data |= val;
+-
+-	dw_hdmi->data->dwc_write(dw_hdmi, addr, data);
+-}
+-
+ /* Bridge */
+ 
+ /* Setup PHY bandwidth modes */
+@@ -353,13 +264,15 @@ static inline void meson_dw_hdmi_phy_reset(struct meson_dw_hdmi *dw_hdmi)
+ 	struct meson_drm *priv = dw_hdmi->priv;
+ 
+ 	/* Enable and software reset */
+-	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0xf);
+-
++	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1,
++			   PHY_FIFOS | PHY_CLOCK_EN | PHY_SOFT_RST,
++			   PHY_FIFOS | PHY_CLOCK_EN | PHY_SOFT_RST);
+ 	mdelay(2);
+ 
+ 	/* Enable and unreset */
+-	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0xe);
+-
++	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1,
++			   PHY_FIFOS | PHY_CLOCK_EN | PHY_SOFT_RST,
++			   PHY_FIFOS | PHY_CLOCK_EN);
+ 	mdelay(2);
+ }
+ 
+@@ -382,27 +295,30 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+ 
+ 	/* TMDS pattern setup */
+ 	if (mode->clock > 340000 && !mode_is_420) {
+-		dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01,
+-				  0);
+-		dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23,
+-				  0x03ff03ff);
++		regmap_write(dw_hdmi->top, HDMITX_TOP_TMDS_CLK_PTTN_01,
++			     0);
++		regmap_write(dw_hdmi->top, HDMITX_TOP_TMDS_CLK_PTTN_23,
++			     0x03ff03ff);
+ 	} else {
+-		dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01,
+-				  0x001f001f);
+-		dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23,
+-				  0x001f001f);
++		regmap_write(dw_hdmi->top, HDMITX_TOP_TMDS_CLK_PTTN_01,
++			     0x001f001f);
++		regmap_write(dw_hdmi->top, HDMITX_TOP_TMDS_CLK_PTTN_23,
++			     0x001f001f);
+ 	}
+ 
+ 	/* Load TMDS pattern */
+-	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_CNTL, 0x1);
++	regmap_write(dw_hdmi->top, HDMITX_TOP_TMDS_CLK_PTTN_CNTL,
++		     TOP_TDMS_CLK_PTTN_LOAD);
+ 	msleep(20);
+-	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_CNTL, 0x2);
++	regmap_write(dw_hdmi->top, HDMITX_TOP_TMDS_CLK_PTTN_CNTL,
++		     TOP_TDMS_CLK_PTTN_SHFT);
+ 
+ 	/* Setup PHY parameters */
+ 	meson_hdmi_phy_setup_mode(dw_hdmi, mode, mode_is_420);
+ 
+ 	/* Disable clock, fifo, fifo_wr */
+-	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0);
++	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1,
++			   PHY_FIFOS | PHY_CLOCK_EN | PHY_SOFT_RST, 0);
+ 
+ 	dw_hdmi_set_high_tmds_clock_ratio(hdmi, display);
+ 
+@@ -433,8 +349,11 @@ static enum drm_connector_status dw_hdmi_read_hpd(struct dw_hdmi *hdmi,
+ 			     void *data)
+ {
+ 	struct meson_dw_hdmi *dw_hdmi = (struct meson_dw_hdmi *)data;
++	unsigned int stat;
+ 
+-	return !!dw_hdmi->data->top_read(dw_hdmi, HDMITX_TOP_STAT0) ?
++	regmap_read(dw_hdmi->top, HDMITX_TOP_STAT0, &stat);
++
++	return !!stat ?
+ 		connector_status_connected : connector_status_disconnected;
+ }
+ 
+@@ -444,17 +363,18 @@ static void dw_hdmi_setup_hpd(struct dw_hdmi *hdmi,
+ 	struct meson_dw_hdmi *dw_hdmi = (struct meson_dw_hdmi *)data;
+ 
+ 	/* Setup HPD Filter */
+-	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_HPD_FILTER,
+-			  (0xa << 12) | 0xa0);
++	regmap_write(dw_hdmi->top, HDMITX_TOP_HPD_FILTER,
++		     FIELD_PREP(TOP_HPD_GLITCH_WIDTH, 10) |
++		     FIELD_PREP(TOP_HPD_VALID_WIDTH, 160));
+ 
+ 	/* Clear interrupts */
+-	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_INTR_STAT_CLR,
+-			  HDMITX_TOP_INTR_HPD_RISE | HDMITX_TOP_INTR_HPD_FALL);
++	regmap_write(dw_hdmi->top, HDMITX_TOP_INTR_STAT_CLR,
++		     TOP_INTR_HPD_RISE | TOP_INTR_HPD_FALL);
+ 
+ 	/* Unmask interrupts */
+-	dw_hdmi_top_write_bits(dw_hdmi, HDMITX_TOP_INTR_MASKN,
+-			HDMITX_TOP_INTR_HPD_RISE | HDMITX_TOP_INTR_HPD_FALL,
+-			HDMITX_TOP_INTR_HPD_RISE | HDMITX_TOP_INTR_HPD_FALL);
++	regmap_update_bits(dw_hdmi->top, HDMITX_TOP_INTR_MASKN,
++			   TOP_INTR_HPD_RISE | TOP_INTR_HPD_FALL,
++			   TOP_INTR_HPD_RISE | TOP_INTR_HPD_FALL);
+ }
+ 
+ static const struct dw_hdmi_phy_ops meson_dw_hdmi_phy_ops = {
+@@ -467,23 +387,22 @@ static const struct dw_hdmi_phy_ops meson_dw_hdmi_phy_ops = {
+ static irqreturn_t dw_hdmi_top_irq(int irq, void *dev_id)
+ {
+ 	struct meson_dw_hdmi *dw_hdmi = dev_id;
+-	u32 stat;
++	unsigned int stat;
+ 
+-	stat = dw_hdmi->data->top_read(dw_hdmi, HDMITX_TOP_INTR_STAT);
+-	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_INTR_STAT_CLR, stat);
++	regmap_read(dw_hdmi->top, HDMITX_TOP_INTR_STAT, &stat);
++	regmap_write(dw_hdmi->top, HDMITX_TOP_INTR_STAT_CLR, stat);
+ 
+ 	/* HPD Events, handle in the threaded interrupt handler */
+-	if (stat & (HDMITX_TOP_INTR_HPD_RISE | HDMITX_TOP_INTR_HPD_FALL)) {
++	if (stat & (TOP_INTR_HPD_RISE | TOP_INTR_HPD_FALL)) {
+ 		dw_hdmi->irq_stat = stat;
+ 		return IRQ_WAKE_THREAD;
+ 	}
+ 
+ 	/* HDMI Controller Interrupt */
+-	if (stat & 1)
++	if (stat & TOP_INTR_CORE)
+ 		return IRQ_NONE;
+ 
+ 	/* TOFIX Handle HDCP Interrupts */
+-
+ 	return IRQ_HANDLED;
+ }
+ 
+@@ -494,10 +413,10 @@ static irqreturn_t dw_hdmi_top_thread_irq(int irq, void *dev_id)
+ 	u32 stat = dw_hdmi->irq_stat;
+ 
+ 	/* HPD Events */
+-	if (stat & (HDMITX_TOP_INTR_HPD_RISE | HDMITX_TOP_INTR_HPD_FALL)) {
++	if (stat & (TOP_INTR_HPD_RISE | TOP_INTR_HPD_FALL)) {
+ 		bool hpd_connected = false;
+ 
+-		if (stat & HDMITX_TOP_INTR_HPD_RISE)
++		if (stat & TOP_INTR_HPD_RISE)
+ 			hpd_connected = true;
+ 
+ 		dw_hdmi_setup_rx_sense(dw_hdmi->hdmi, hpd_connected,
+@@ -512,63 +431,25 @@ static irqreturn_t dw_hdmi_top_thread_irq(int irq, void *dev_id)
+ 	return IRQ_HANDLED;
+ }
+ 
+-/* DW HDMI Regmap */
+-
+-static int meson_dw_hdmi_reg_read(void *context, unsigned int reg,
+-				  unsigned int *result)
+-{
+-	struct meson_dw_hdmi *dw_hdmi = context;
+-
+-	*result = dw_hdmi->data->dwc_read(dw_hdmi, reg);
+-
+-	return 0;
+-
+-}
+-
+-static int meson_dw_hdmi_reg_write(void *context, unsigned int reg,
+-				   unsigned int val)
+-{
+-	struct meson_dw_hdmi *dw_hdmi = context;
+-
+-	dw_hdmi->data->dwc_write(dw_hdmi, reg, val);
+-
+-	return 0;
+-}
+-
+-static const struct regmap_config meson_dw_hdmi_regmap_config = {
+-	.reg_bits = 32,
+-	.val_bits = 8,
+-	.reg_read = meson_dw_hdmi_reg_read,
+-	.reg_write = meson_dw_hdmi_reg_write,
+-	.max_register = 0x10000,
+-	.fast_io = true,
+-};
+-
+-static const struct meson_dw_hdmi_data meson_dw_hdmi_gxbb_data = {
+-	.top_read = dw_hdmi_top_read,
+-	.top_write = dw_hdmi_top_write,
+-	.dwc_read = dw_hdmi_dwc_read,
+-	.dwc_write = dw_hdmi_dwc_write,
+-	.cntl0_init = 0x0,
+-	.cntl1_init = PHY_CNTL1_INIT | PHY_INVERT,
++static const struct regmap_config top_gx_regmap_cfg = {
++	.reg_bits	= 32,
++	.reg_stride	= 4,
++	.reg_shift	= -2,
++	.val_bits	= 32,
++	.max_register	= 0x40,
+ };
+ 
+-static const struct meson_dw_hdmi_data meson_dw_hdmi_gxl_data = {
+-	.top_read = dw_hdmi_top_read,
+-	.top_write = dw_hdmi_top_write,
+-	.dwc_read = dw_hdmi_dwc_read,
+-	.dwc_write = dw_hdmi_dwc_write,
+-	.cntl0_init = 0x0,
+-	.cntl1_init = PHY_CNTL1_INIT,
++static const struct regmap_config top_g12_regmap_cfg = {
++	.reg_bits	= 32,
++	.reg_stride	= 4,
++	.val_bits	= 32,
++	.max_register	= 0x40,
+ };
+ 
+-static const struct meson_dw_hdmi_data meson_dw_hdmi_g12a_data = {
+-	.top_read = dw_hdmi_g12a_top_read,
+-	.top_write = dw_hdmi_g12a_top_write,
+-	.dwc_read = dw_hdmi_g12a_dwc_read,
+-	.dwc_write = dw_hdmi_g12a_dwc_write,
+-	.cntl0_init = 0x000b4242, /* Bandgap */
+-	.cntl1_init = PHY_CNTL1_INIT,
++static const struct regmap_config dwc_regmap_cfg = {
++	.reg_bits = 32,
++	.val_bits = 8,
++	.max_register = 0x8000,
+ };
+ 
+ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
+@@ -581,41 +462,107 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
+ 	/* Bring HDMITX MEM output of power down */
+ 	regmap_update_bits(priv->hhi, HHI_MEM_PD_REG0, 0xff << 8, 0);
+ 
+-	/* Enable APB3 fail on error */
+-	if (!meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+-		writel_bits_relaxed(BIT(15), BIT(15),
+-				    meson_dw_hdmi->hdmitx + HDMITX_TOP_CTRL_REG);
+-		writel_bits_relaxed(BIT(15), BIT(15),
+-				    meson_dw_hdmi->hdmitx + HDMITX_DWC_CTRL_REG);
+-	}
 -
  	/* Bring out of reset */
- 	regmap_write(meson_dw_hdmi->top, HDMITX_TOP_SW_RESET, 0);
+-	meson_dw_hdmi->data->top_write(meson_dw_hdmi,
+-				       HDMITX_TOP_SW_RESET,  0);
+-
++	regmap_write(meson_dw_hdmi->top, HDMITX_TOP_SW_RESET, 0);
  	msleep(20);
+ 
+-	meson_dw_hdmi->data->top_write(meson_dw_hdmi,
+-				       HDMITX_TOP_CLK_CNTL, 0xff);
++	/* Enable clocks */
++	regmap_write(meson_dw_hdmi->top, HDMITX_TOP_CLK_CNTL,
++		     TOP_CLK_EN);
+ 
+ 	/* Enable normal output to PHY */
+-	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
++	regmap_write(meson_dw_hdmi->top, HDMITX_TOP_BIST_CNTL,
++		     TOP_BIST_TMDS_EN);
+ 
+ 	/* Setup PHY */
+-	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1, meson_dw_hdmi->data->cntl1_init);
+-	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, meson_dw_hdmi->data->cntl0_init);
++	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1,
++		     meson_dw_hdmi->data->cntl1_init);
++	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0,
++		     meson_dw_hdmi->data->cntl0_init);
+ 
+ 	/* Enable HDMI-TX Interrupt */
+-	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_INTR_STAT_CLR,
+-				       HDMITX_TOP_INTR_CORE);
++	regmap_write(meson_dw_hdmi->top, HDMITX_TOP_INTR_STAT_CLR,
++		     GENMASK(31, 0));
++	regmap_write(meson_dw_hdmi->top, HDMITX_TOP_INTR_MASKN,
++		     TOP_INTR_CORE);
++}
++
++static int meson_dw_init_regmap_gx(struct device *dev)
++{
++	struct meson_dw_hdmi *meson_dw_hdmi = dev_get_drvdata(dev);
++	struct regmap *map;
+ 
+-	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_INTR_MASKN,
+-				       HDMITX_TOP_INTR_CORE);
++	/* Register TOP glue zone */
++	writel_bits_relaxed(GX_CTRL_APB3_ERRFAIL, GX_CTRL_APB3_ERRFAIL,
++			    meson_dw_hdmi->hdmitx + HDMITX_TOP_REGS + GX_CTRL_OFFSET);
+ 
++	map = devm_regmap_init(dev, &hdmi_tx_indirect_mmio,
++			       meson_dw_hdmi->hdmitx + HDMITX_TOP_REGS,
++			       &top_gx_regmap_cfg);
++	if (IS_ERR(map))
++		return dev_err_probe(dev, PTR_ERR(map), "failed to init top regmap\n");
++
++	meson_dw_hdmi->top = map;
++
++	/* Register DWC zone */
++	writel_bits_relaxed(GX_CTRL_APB3_ERRFAIL, GX_CTRL_APB3_ERRFAIL,
++			    meson_dw_hdmi->hdmitx + HDMITX_DWC_REGS + GX_CTRL_OFFSET);
++
++	map = devm_regmap_init(dev, &hdmi_tx_indirect_mmio,
++			       meson_dw_hdmi->hdmitx + HDMITX_DWC_REGS,
++			       &dwc_regmap_cfg);
++	if (IS_ERR(map))
++		return dev_err_probe(dev, PTR_ERR(map), "failed to init dwc regmap\n");
++
++	meson_dw_hdmi->dw_plat_data.regm = map;
++
++	return 0;
++}
++
++static int meson_dw_init_regmap_g12(struct device *dev)
++{
++	struct meson_dw_hdmi *meson_dw_hdmi = dev_get_drvdata(dev);
++	struct regmap *map;
++
++	/* Register TOP glue zone with the offset */
++	map = devm_regmap_init_mmio(dev, meson_dw_hdmi->hdmitx + HDMITX_TOP_G12A_OFFSET,
++				    &top_g12_regmap_cfg);
++	if (IS_ERR(map))
++		dev_err_probe(dev, PTR_ERR(map), "failed to init top regmap\n");
++
++	meson_dw_hdmi->top = map;
++
++	/* Register DWC zone */
++	map = devm_regmap_init_mmio(dev, meson_dw_hdmi->hdmitx,
++				    &dwc_regmap_cfg);
++	if (IS_ERR(map))
++		dev_err_probe(dev, PTR_ERR(map), "failed to init dwc regmap\n");
++
++	meson_dw_hdmi->dw_plat_data.regm = map;
++
++	return 0;
+ }
+ 
++static const struct meson_dw_hdmi_data meson_dw_hdmi_gxbb_data = {
++	.reg_init = meson_dw_init_regmap_gx,
++	.cntl0_init = 0x0,
++	.cntl1_init = PHY_CNTL1_INIT | PHY_INVERT,
++};
++
++static const struct meson_dw_hdmi_data meson_dw_hdmi_gxl_data = {
++	.reg_init = meson_dw_init_regmap_gx,
++	.cntl0_init = 0x0,
++	.cntl1_init = PHY_CNTL1_INIT,
++};
++
++static const struct meson_dw_hdmi_data meson_dw_hdmi_g12a_data = {
++	.reg_init = meson_dw_init_regmap_g12,
++	.cntl0_init = 0x000b4242, /* Bandgap */
++	.cntl1_init = PHY_CNTL1_INIT,
++};
++
+ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+-				void *data)
++			      void *data)
+ {
+ 	struct platform_device *pdev = to_platform_device(dev);
+ 	const struct meson_dw_hdmi_data *match;
+@@ -640,6 +587,8 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+ 	if (!meson_dw_hdmi)
+ 		return -ENOMEM;
+ 
++	platform_set_drvdata(pdev, meson_dw_hdmi);
++
+ 	meson_dw_hdmi->priv = priv;
+ 	meson_dw_hdmi->dev = dev;
+ 	meson_dw_hdmi->data = match;
+@@ -682,10 +631,9 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "Failed to enable all clocks\n");
+ 
+-	dw_plat_data->regm = devm_regmap_init(dev, NULL, meson_dw_hdmi,
+-					      &meson_dw_hdmi_regmap_config);
+-	if (IS_ERR(dw_plat_data->regm))
+-		return PTR_ERR(dw_plat_data->regm);
++	ret = meson_dw_hdmi->data->reg_init(dev);
++	if (ret)
++		return ret;
+ 
+ 	irq = platform_get_irq(pdev, 0);
+ 	if (irq < 0)
+@@ -717,8 +665,6 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+ 	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-g12a-dw-hdmi"))
+ 		dw_plat_data->use_drm_infoframe = true;
+ 
+-	platform_set_drvdata(pdev, meson_dw_hdmi);
+-
+ 	meson_dw_hdmi->hdmi = dw_hdmi_probe(pdev, &meson_dw_hdmi->dw_plat_data);
+ 	if (IS_ERR(meson_dw_hdmi->hdmi))
+ 		return PTR_ERR(meson_dw_hdmi->hdmi);
+@@ -751,8 +697,7 @@ static int __maybe_unused meson_dw_hdmi_pm_suspend(struct device *dev)
+ 		return 0;
+ 
+ 	/* FIXME: This actually bring top out reset on suspend, why ? */
+-	meson_dw_hdmi->data->top_write(meson_dw_hdmi,
+-				       HDMITX_TOP_SW_RESET, 0);
++	regmap_write(meson_dw_hdmi->top, HDMITX_TOP_SW_RESET, 0);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.h b/drivers/gpu/drm/meson/meson_dw_hdmi.h
+index 08e1c14e4ea0..3ab8c56d5fe1 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.h
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.h
+@@ -28,6 +28,7 @@
+  *     0=Release from reset. Default 1.
+  */
+ #define HDMITX_TOP_SW_RESET                     (0x000)
++#define  TOP_RST_EN				GENMASK(4, 0)
+ 
+ /*
+  * Bit 31 RW free_clk_en: 0=Enable clock gating for power saving; 1= Disable
+@@ -45,7 +46,8 @@
+  * Bit 1 RW tmds_clk_en: 1=enable tmds_clk;  0=disable. Default 0.
+  * Bit 0 RW pixel_clk_en: 1=enable pixel_clk; 0=disable. Default 0.
+  */
+-#define HDMITX_TOP_CLK_CNTL                     (0x001)
++#define HDMITX_TOP_CLK_CNTL                     (0x004)
++#define  TOP_CLK_EN				GENMASK(7, 0)
+ 
+ /*
+  * Bit 31:28 RW rxsense_glitch_width: starting from G12A
+@@ -53,7 +55,9 @@
+  * Bit 11: 0 RW hpd_valid_width: filter out width <= M*1024.    Default 0.
+  * Bit 15:12 RW hpd_glitch_width: filter out glitch <= N.       Default 0.
+  */
+-#define HDMITX_TOP_HPD_FILTER                   (0x002)
++#define HDMITX_TOP_HPD_FILTER                   (0x008)
++#define  TOP_HPD_GLITCH_WIDTH			GENMASK(15, 12)
++#define  TOP_HPD_VALID_WIDTH			GENMASK(11, 0)
+ 
+ /*
+  * intr_maskn: MASK_N, one bit per interrupt source.
+@@ -67,7 +71,7 @@
+  * [  1] hpd_rise_intr
+  * [  0] core_intr
+  */
+-#define HDMITX_TOP_INTR_MASKN                   (0x003)
++#define HDMITX_TOP_INTR_MASKN                   (0x00c)
+ 
+ /*
+  * Bit 30: 0 RW intr_stat: For each bit, write 1 to manually set the interrupt
+@@ -80,7 +84,7 @@
+  * Bit     1 RW hpd_rise
+  * Bit     0 RW IP interrupt
+  */
+-#define HDMITX_TOP_INTR_STAT                    (0x004)
++#define HDMITX_TOP_INTR_STAT                    (0x010)
+ 
+ /*
+  * [7]    rxsense_fall starting from G12A
+@@ -92,13 +96,12 @@
+  * [1]	  hpd_rise
+  * [0]	  core_intr_rise
+  */
+-#define HDMITX_TOP_INTR_STAT_CLR                (0x005)
+-
+-#define HDMITX_TOP_INTR_CORE		BIT(0)
+-#define HDMITX_TOP_INTR_HPD_RISE	BIT(1)
+-#define HDMITX_TOP_INTR_HPD_FALL	BIT(2)
+-#define HDMITX_TOP_INTR_RXSENSE_RISE	BIT(6)
+-#define HDMITX_TOP_INTR_RXSENSE_FALL	BIT(7)
++#define HDMITX_TOP_INTR_STAT_CLR                (0x014)
++#define  TOP_INTR_CORE				BIT(0)
++#define  TOP_INTR_HPD_RISE			BIT(1)
++#define  TOP_INTR_HPD_FALL			BIT(2)
++#define  TOP_INTR_RXSENSE_RISE			BIT(6)
++#define  TOP_INTR_RXSENSE_FALL			BIT(7)
+ 
+ /*
+  * Bit 14:12 RW tmds_sel: 3'b000=Output zero; 3'b001=Output normal TMDS data;
+@@ -112,29 +115,31 @@
+  *     2=Output 1-bit pattern; 3=output 10-bit pattern. Default 0.
+  * Bit 0 RW prbs_pttn_en: 1=Enable PRBS generator; 0=Disable. Default 0.
+  */
+-#define HDMITX_TOP_BIST_CNTL                    (0x006)
++#define HDMITX_TOP_BIST_CNTL                    (0x018)
++#define  TOP_BIST_OUT_MASK			GENMASK(14, 12)
++#define  TOP_BIST_TMDS_EN			BIT(12)
+ 
+ /* Bit 29:20 RW shift_pttn_data[59:50]. Default 0. */
+ /* Bit 19:10 RW shift_pttn_data[69:60]. Default 0. */
+ /* Bit  9: 0 RW shift_pttn_data[79:70]. Default 0. */
+-#define HDMITX_TOP_SHIFT_PTTN_012               (0x007)
++#define HDMITX_TOP_SHIFT_PTTN_012               (0x01c)
+ 
+ /* Bit 29:20 RW shift_pttn_data[29:20]. Default 0. */
+ /* Bit 19:10 RW shift_pttn_data[39:30]. Default 0. */
+ /* Bit  9: 0 RW shift_pttn_data[49:40]. Default 0. */
+-#define HDMITX_TOP_SHIFT_PTTN_345               (0x008)
++#define HDMITX_TOP_SHIFT_PTTN_345               (0x020)
+ 
+ /* Bit 19:10 RW shift_pttn_data[ 9: 0]. Default 0. */
+ /* Bit  9: 0 RW shift_pttn_data[19:10]. Default 0. */
+-#define HDMITX_TOP_SHIFT_PTTN_67                (0x009)
++#define HDMITX_TOP_SHIFT_PTTN_67                (0x024)
+ 
+ /* Bit 25:16 RW tmds_clk_pttn[19:10]. Default 0. */
+ /* Bit  9: 0 RW tmds_clk_pttn[ 9: 0]. Default 0. */
+-#define HDMITX_TOP_TMDS_CLK_PTTN_01             (0x00A)
++#define HDMITX_TOP_TMDS_CLK_PTTN_01             (0x028)
+ 
+ /* Bit 25:16 RW tmds_clk_pttn[39:30]. Default 0. */
+ /* Bit  9: 0 RW tmds_clk_pttn[29:20]. Default 0. */
+-#define HDMITX_TOP_TMDS_CLK_PTTN_23             (0x00B)
++#define HDMITX_TOP_TMDS_CLK_PTTN_23             (0x02c)
+ 
+ /*
+  * Bit 1 RW shift_tmds_clk_pttn:1=Enable shifting clk pattern,
+@@ -143,18 +148,22 @@
+  * [	1] shift_tmds_clk_pttn
+  * [	0] load_tmds_clk_pttn
+  */
+-#define HDMITX_TOP_TMDS_CLK_PTTN_CNTL           (0x00C)
++#define HDMITX_TOP_TMDS_CLK_PTTN_CNTL           (0x030)
++#define  TOP_TDMS_CLK_PTTN_LOAD			BIT(0)
++#define  TOP_TDMS_CLK_PTTN_SHFT			BIT(1)
+ 
+ /*
+  * Bit 0 RW revocmem_wr_fail: Read back 1 to indicate Host write REVOC MEM
+  * failure, write 1 to clear the failure flag.  Default 0.
+  */
+-#define HDMITX_TOP_REVOCMEM_STAT                (0x00D)
++#define HDMITX_TOP_REVOCMEM_STAT                (0x034)
+ 
+ /*
+  * Bit	   1 R	filtered RxSense status
+  * Bit     0 R  filtered HPD status.
+  */
+-#define HDMITX_TOP_STAT0                        (0x00E)
++#define HDMITX_TOP_STAT0                        (0x038)
++#define  TOP_STAT0_HPD				BIT(0)
++#define  TOP_STAT0_RXSENSE			BIT(1)
+ 
+ #endif /* __MESON_DW_HDMI_H */
 -- 
 2.43.0
 
