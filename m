@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36FE5C52D70
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Aug 2024 07:31:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 792ABC3DA7F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Aug 2024 07:51:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
 	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
 	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=l+oxpvVPN7+h+pJO6Dk0tGnXSFp4ak9iIv0hb7wFEFo=; b=csHQEo1PF28EED
-	LHws7Lqi3xhSPERnyM2LZ1Mo2ApfPgrQAjaJunq6CoKCTKdeHT4X1m5u161pRF8pZDAiU4yNVIl8i
-	QAs8wS+EoQbpgvwRGFQDMslaoFQDezChHdhjph1uwm3m29unobrXseUm+AT1PmHHlwt6mzr4BPoSn
-	jeow0iFwPYWF0QaBNJov+VWendJRNjMDBq30gQvKXavMkFKLP3W0xXX9BtxEaCNQKEFZDETO3vMIk
-	qiHdjmORY4a6bAuguZZ5wQGGYgDNAnX2r/caPPHMeUdcofKbolvkZmuyxj3DdCGjxpWCGAgWZsRZ8
-	cot3Ij9K7k9yGh+hGEsg==;
+	List-Owner; bh=MVwYOu6Z9FPl+gslMf7Mb4becNN9AUiB22PR8DMhiWM=; b=vnVoH9O4rvEVl7
+	noELokNGE7YCQf1nnS1fAcxLGD1LlSGHZjp2NqOh52oj8DKNL0d1t/KvZR37vy3BfDYOEepv48J34
+	Bzj0M8bT7o7uwtmlxRdwuE0h4GZhJhgtksqgeu73I8iG9SUgY0eJhkWCXu3i04xXwrHHPewofwIIF
+	cudAHQwJRqlcUxSXKA2Ga+SSVqiQgfxcPDAloH/dNa9GOmbAwgaVnlNORnpf+aiyx1oh1jtXkkP9o
+	cTUGox8DJvvuA4hTqUV/sFcs3+2T6/nK8eXIGSdi6UC8pmC66lyflnZ7e5klk7MWoPTTaHVMdRUXG
+	cXbceVqjM9m11DGJf4gQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sZmlS-00000007xVo-0S5r;
-	Fri, 02 Aug 2024 07:31:50 +0000
-Received: from mail.synergyflux.pl ([51.38.99.212])
+	id 1sasUv-0000000F0Gr-02xC;
+	Mon, 05 Aug 2024 07:51:17 +0000
+Received: from mail.originateinc.pl ([217.61.97.94])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sZmlP-00000007xUB-3IbD
+	id 1sasUs-0000000F0Fe-0IGM
 	for linux-amlogic@lists.infradead.org;
-	Fri, 02 Aug 2024 07:31:49 +0000
-Received: by mail.synergyflux.pl (Postfix, from userid 1002)
-	id 5B664259AA; Fri,  2 Aug 2024 09:31:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synergyflux.pl;
-	s=mail; t=1722583906;
-	bh=n9RRp8MlabRDJBtJNro49Rmci90RtotaZYZ8+xo6WI4=;
+	Mon, 05 Aug 2024 07:51:15 +0000
+Received: by mail.OriginateInc.pl (Postfix, from userid 1001)
+	id 7903D83A90; Mon,  5 Aug 2024 08:50:46 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=OriginateInc.pl;
+	s=mail; t=1722844272;
+	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=;
 	h=Date:From:To:Subject:From;
-	b=Uk9FUG2ZhHogxQ5ZDtVo6T1+e+DU1uOfcMQM63WV54opNHieaN4dlLaL5YAiPbGIW
-	 usA0NkdMAEogStqBwteWYF9c9YURp+niIPmSYW5ukzgkMTrfhURzJv1GrKgekca3G9
-	 B+wrM+2whhC0GJZmU6E+ZNEj4OOmy1m+S+31Hle6994AkSjCsLOV6sJIKLj+Q0B8T3
-	 5WNKZEP8+JnFzvYPNLuNxSgBn/+uLp8iT3xLx5cA22FEfeTMVpNRmOuLyJa8uGjl7p
-	 RhwH9hhIiuRAhS/RZARpxkR7Ho+TwMTDSJbMIA3mS5Yz5eE3DlbfXlRA5FjanTxyhc
-	 DfUo1H8VjpX0g==
-Received: by mail.synergyflux.pl for <linux-amlogic@lists.infradead.org>; Fri,  2 Aug 2024 07:30:58 GMT
-Message-ID: <20240802084500-0.1.d4.39h4j.0.mcl2a25606@synergyflux.pl>
-Date: Fri,  2 Aug 2024 07:30:58 GMT
-From: =?UTF-8?Q?"Konrad_Zieli=C5=84ski_"?= <konrad.zielinski@synergyflux.pl>
+	b=a/JiSR9B5mmn2fBNbn5BaamaNxTdn1kVl93lFwhQEre/6C1/Fqp8844a+VsOP2Kno
+	 Ucs4CKmGR/4uNzoCM80bkjfiKKEoy8uoQr0XbTRRi1WokQgVcEvQnQO+lop0fQwduq
+	 BLybe+Ep3yI68cdmRF8LZPevJIyax4Jv3dfaEqThDNrulYj5UOIHVSImHfpafbvueJ
+	 H2tlRIdsiH+jPKttbCk9BxS6QlASuNuysUaMsVe4G9SYwUQuGn/hCgRc4FslkQhC+a
+	 EB23kpvKqfAyPcaj/+Gom8CvhGs2gB4u5rQBEj45t5k3oEBsySWyb9c4fnGV/+CWmo
+	 KQOfUCV5tZpMA==
+Received: by mail.OriginateInc.pl for <linux-amlogic@lists.infradead.org>; Mon,  5 Aug 2024 07:50:08 GMT
+Message-ID: <20240805074500-0.1.ed.1he2s.0.nmb4nkn9ep@OriginateInc.pl>
+Date: Mon,  5 Aug 2024 07:50:08 GMT
+From: "Kamil Tralewski" <kamil.tralewski@originateinc.pl>
 To: <linux-amlogic@lists.infradead.org>
-Subject: Instalacja pv
-X-Mailer: mail.synergyflux.pl
+Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
+X-Mailer: mail.OriginateInc.pl
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240802_003147_989676_9D787639 
-X-CRM114-Status: UNSURE (   0.19  )
+X-CRM114-CacheID: sfid-20240805_005114_256363_A3D5898D 
+X-CRM114-Status: UNSURE (   1.72  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -67,14 +67,14 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RHppZcWEIGRvYnJ5LAoKY3p5IHPEhSBQYcWEc3R3byBvdHdhcmNpIG5hIG5pZXpvYm93acSFenVq
-xIVjxIUgcm96bW93xJkgbmEgdGVtYXQgZm90b3dvbHRhaWtpPwoKSmFrbyBmaXJtYSBzcGVjamFs
-aXp1asSFY2Egc2nEmSB3IGluc3RhbGFjamkgaSBzZXJ3aXNpZSBuYWpsZXBzenljaCBqYWtvxZtj
-aW93byBwYW5lbGkgc8WCb25lY3pueWNoIG5hIHJ5bmt1IGNoY2lhxYJieW0gcHJ6ZWRzdGF3acSH
-IHByb3BvenljasSZLCBqYWvEhSB3c3DDs2xuaWUgeiB6ZXNwb8WCZW0gcHJ6eWdvdG93YWxpxZtt
-eSBkbGEgUGHFhHN0d2Egb2JpZWt0dS4KCkLEmWTEmSB3ZHppxJljem55IHphIHdpYWRvbW/Fm8SH
-IG9kIFBhxYRzdHdhIGN6eSBtb8W8ZW15IHBvcm96bWF3aWHEhy4KCgpQb3pkcmF3aWFtCktvbnJh
-ZCBaaWVsacWEc2tpIAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
-YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
-dXgtYW1sb2dpYwo=
+RHppZcWEIGRvYnJ5LAoKemFwb3puYcWCZW0gc2nEmSB6IFBhxYRzdHdhIG9mZXJ0xIUgaSB6IHBy
+enlqZW1ub8WbY2nEhSBwcnp5em5hasSZLCDFvGUgcHJ6eWNpxIVnYSB1d2FnxJkgaSB6YWNoxJlj
+YSBkbyBkYWxzenljaCByb3ptw7N3LiAKClBvbXnFm2xhxYJlbSwgxbxlIG1vxbxlIG3Ds2fFgmJ5
+bSBtaWXEhyBzd8OzaiB3a8WCYWQgdyBQYcWEc3R3YSByb3p3w7NqIGkgcG9tw7NjIGRvdHJ6ZcSH
+IHogdMSFIG9mZXJ0xIUgZG8gd2nEmWtzemVnbyBncm9uYSBvZGJpb3Jjw7N3LiBQb3p5Y2pvbnVq
+xJkgc3Ryb255IHd3dywgZHppxJlraSBjemVtdSBnZW5lcnVqxIUgxZt3aWV0bnkgcnVjaCB3IHNp
+ZWNpLgoKTW/FvGVteSBwb3Jvem1hd2lhxIcgdyBuYWpibGnFvHN6eW0gY3phc2llPwoKClBvemRy
+YXdpYW0KS2FtaWwgVHJhbGV3c2tpCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC1hbWxvZ2ljCg==
