@@ -4,80 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 635B0C3DA64
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2024 10:27:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1350AC52D6F
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2024 10:27:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DKQPDKdu2s2sAz4thtKbY5Kdi78xcagZQQ5V0h/iHTw=; b=1pBQG3QenbZUh+
-	yV6oMmeTkBjvbD6H7SdUrMagONt4lxf1ZxeANwRMvVnV9UjdeMOW5DM3AJNl+eWy9EzvbGh7Ntdee
-	htXLhahcNy3ypkG1QrrD8QEM9GWRVsDy2epDakSnljuu/exdllWM+aZUbQ0ilnzXqHsmHrah65XnB
-	sJxYw4ZB1Wj5Q8FrcRig3gI9Z3qzViUG8IvQLJ2WAzHw1EZ+5PDhzh/udMWcA5lnyOTgZo8io+nEp
-	Y0LkvkApjXWcwUiMHVZZkT+PDvRZWMI4LpM2XZmlz+TAwCiib6H2YKZJbRgNhdxjQi4kTngg9RNjd
-	TqvDh9lLW+EuBjHWApgA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=GbAUEVKA1jcXS5ZBd43qZl9thx+iDqpBHROhJfzReys=; b=2/7OVl/9t/LSPZ
+	m+Mn53NcbjKawRDsI1w6r5c+aWLd3IgMmuNTCWe/JuFBW1uVj6c1XtWWVYMp9cOC8jxayjAg1+Y/Y
+	jBohEmWqF9JYzvC340YxF5r8ktRCgvFYmn107gzslzY0p2GRjDgGUzioUXT/otYnUeTT/osLmJ26w
+	PDyym/6kflHKoZ3A9cpvE6IPONYlpLcd8YpmybrDygkFviJqNJf8CChQxZAdPxx0V/VlZAgQH4rJL
+	Dt9e6buXvdz1j0S53URum2RFe0/vXhNdJiBZhu31sL3eGAMUHjEAAC5vcqEJbXS5KLEY8XOlr2Ivh
+	gB3r0sMiFrBijEDT7igg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbHPV-00000001D7R-2OqY;
+	id 1sbHPV-00000001D7E-07aJ;
 	Tue, 06 Aug 2024 10:27:21 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbHPS-00000001D62-4An2;
-	Tue, 06 Aug 2024 10:27:20 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id B217060F96;
-	Tue,  6 Aug 2024 10:27:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C692FC4AF13;
-	Tue,  6 Aug 2024 10:27:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722940036;
-	bh=lagugMs0C+A4uWQtyG8Q7ynHrCUInmXYs52ILDY+VC0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=iHiXzkHE5p/o1ifDpM0Fn+aT/tcTA4ZsUzUQ41voQpesaGsBbFK7eyMmzlKGc/nno
-	 whcSHdRzBaFmJxa/yv4mt6kvmjGiiJmemaY6C2vXnjU9KNuPuf02IXqTo/hnpXZVrJ
-	 sJzlptvdDMSG1LDPqmzxFEfvskqpN1KDfZcNZkOi28Clr0XJXGYD1Noog4BrJKW0F9
-	 x5+xF5V7497fhT/L6wLFdLW+tYHWoXkCv06yheSC9HPt/rEgCgJjfldi1yv4JZ8ATa
-	 G0qQb5aYHVOSfdMH7GKczkkdifaQfVGtRdlhzTHDYY2gp75xph8sjy6Q2wDbg53/P9
-	 eHVE0wewgrsgQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B0BB7C52D6F;
-	Tue,  6 Aug 2024 10:27:16 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 06 Aug 2024 18:27:16 +0800
-Subject: [PATCH 3/3] arm64: dts: amlogic: add C3 AW419 board
+	id 1sbHPQ-00000001D5k-3gQz
+	for linux-amlogic@lists.infradead.org;
+	Tue, 06 Aug 2024 10:27:19 +0000
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2f032cb782dso3762861fa.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 06 Aug 2024 03:27:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722940035; x=1723544835; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PWPNsrWX2yOQoNoUJ3eWdP1AwzsknTGOk+n/VwMy71Y=;
+        b=AuOZBRI/+2ZPE/snHrYOUOetgO+Bo3FNYaJarkOaUKhFQsJwqgrCddhzE82oOAxkuQ
+         uxOHGJsx/cSwoir0Rk/IOX+m5j981YdV9fLnq7gN/iClBvgsHQnAJ5fYtfS0yna08Zc9
+         rMIXGK6SSQw1wfg8V+3CRlc2V9qka4CpdWGvEOXxxOmXoP83nEZe14H9Xx5A5bkiCm7l
+         FCVuWVA6e53WJFphLKUF+ri9lZ/VENkfPmQ6Ypeuh1e9mvUd/BOfxhCGtkTGGv0SOves
+         MGxmwLIAF0ALy5shbwLBj+kAlb1sZxmVjnGFSZmW24cqdHe3Nim7JdDM80kVFmqt2cPM
+         3i7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722940035; x=1723544835;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PWPNsrWX2yOQoNoUJ3eWdP1AwzsknTGOk+n/VwMy71Y=;
+        b=EqIgUTfBKM22sr2KcZguEHXuaSEaZ+9cotGtjUAgZihxHzwYzPmjjG0e6fgmYgZGhp
+         4K/SPlU+TD/x+LC3AK1atwJi+D2m68o2Ti6NlJJ7+7spYwJoqPQXvrIieUfyhn39BanC
+         AnwU2QaxN53cAhWea5rDUkUeqnejQoRA2N7NA9B+60YJFufJ6lk9YfpMVkUb5Dm539/F
+         vxec8QofDiyBMCszxEAOaJtwlgCEoCvXySKwUtpqXoOqxOb9oLTr1D+FSed8HHBKk+1J
+         hVmyLq1bJS+mhW5Ck9b3hyxMWSwJPpGJzDHgTt+HEQmIApMJITKwOkN8w+0V00lP9Bod
+         NQHA==
+X-Forwarded-Encrypted: i=1; AJvYcCVgSbCJhkf55BREsVXZAJBpdxqU4ddIYFutOJdwlj/jb0ROS1DrVxmkh25PvqYbR0jb4ewyFRzvfP+IZqV5@lists.infradead.org
+X-Gm-Message-State: AOJu0YzosHb1g5uUvUauxpMTLaG7j8fmckt82OJnVyRf+IMOL+9Y+R2E
+	3wHKfmp6zw/wxJX0XSfIG2PHkUJMqHsfen2Rp64p+1Ck1ZNO93jl50SxesdU1pI=
+X-Google-Smtp-Source: AGHT+IFLNq6D7zUmhFznmLMT/7z1PKPJ2cAodH71RSFK2iNObFZv9SHqiiRmAW23aOKp+qbcYsfsJQ==
+X-Received: by 2002:a2e:8696:0:b0:2ef:246e:d04c with SMTP id 38308e7fff4ca-2f15aab265dmr99425811fa.26.1722940034418;
+        Tue, 06 Aug 2024 03:27:14 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:c541:c0a5:2f43:ca78])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-428e4073f7bsm195890475e9.18.2024.08.06.03.27.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Aug 2024 03:27:14 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-amlogic@lists.infradead.org,
+	alsa-devel@alsa-project.org,
+	linux-kernel@vger.kernel.org,
+	Arseniy Krasnov <avkrasnov@salutedevices.com>,
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Subject: [PATCH] ASoC: meson: axg-fifo: fix irq scheduling issue with PREEMPT_RT
+Date: Tue,  6 Aug 2024 12:27:03 +0200
+Message-ID: <20240806102707.3825703-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Message-Id: <20240806-c3_add_node-v1-3-c0de41341632@amlogic.com>
-References: <20240806-c3_add_node-v1-0-c0de41341632@amlogic.com>
-In-Reply-To: <20240806-c3_add_node-v1-0-c0de41341632@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1722940034; l=7409;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=opg5PPHDeLOgtuNT0JGt5kB+eNQwIkO7qZsZHJHFfvw=;
- b=oUXu5nF8A0gwBF3IuIQbnH878QEkeSE7YmAEahZP5ktUwQMzuXBxjWNoVWrcdr9uOIJkpUKpG
- +c1I4f3Do7yDBcpUscBONScymrrQyE+v8ThIBh1zFtycG5NN50HejqF
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240806_032719_173350_CCA5E1F1 
-X-CRM114-Status: GOOD (  12.39  )
+X-CRM114-CacheID: sfid-20240806_032717_197210_5B226875 
+X-CRM114-Status: GOOD (  13.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,322 +92,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+With PREEMPT_RT enabled, spinlocks become preemptible.
+This is usually not a problem with spinlocks used in IRQ context since
+IRQ handlers get threaded. However, if IRQF_ONESHOT is set, the upper half
+of a threaded irq handler won't be threaded and this causes scheduling
+problems if spinlocks are used in the upper half, like with regmap when
+'.fast_io' is set.
 
-Add Amlogic C3 C308L AW419 board.
+In this particular instance, it is actually better to do everything in
+the bottom half and it solves the problem with PREEMPT_RT.
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reported-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+Closes: https://lore.kernel.org/linux-amlogic/20240729131652.3012327-1-avkrasnov@salutedevices.com
+Suggested-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Fixes: b11d26660dff ("ASoC: meson: axg-fifo: use threaded irq to check periods")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../boot/dts/amlogic/amlogic-c3-c308l-aw419.dts    | 278 +++++++++++++++++++++
- 2 files changed, 279 insertions(+)
+ sound/soc/meson/axg-fifo.c | 26 ++++++++++----------------
+ 1 file changed, 10 insertions(+), 16 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 29417f04f886..2fbda8419c65 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -2,6 +2,7 @@
- dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
-+dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c308l-aw419.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-new file mode 100644
-index 000000000000..d28fd2a1acf0
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-@@ -0,0 +1,278 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "amlogic-c3.dtsi"
-+
-+/ {
-+	model = "Amlogic C308l aw419 Development Board";
-+	compatible = "amlogic,aw419", "amlogic,c3";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart_b;
-+		spi0 = &spifc;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* 9 MiB reserved for ARM Trusted Firmware */
-+		secmon_reserved: secmon@7f00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x07f00000 0x0 0x900000>;
-+			no-map;
-+		};
-+	};
-+
-+	main_12v: regulator-main-12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vcc_5v: regulator-vcc-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&main_12v>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddq: regulator-vddq {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDQ";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&main_12v>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&main_12v>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddao_1v8: regulator-vddao-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	ddr4_2v5: regulator-ddr4-2v5 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DDR4_2V5";
-+		regulator-min-microvolt = <2500000>;
-+		regulator-max-microvolt = <2500000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vcc_3v3: regulator-vcc-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vcc_1v8: regulator-vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vdd_1v8: regulator-vdd-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD1V8_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddio_b: regulator-vddio-3v3-b {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_B";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	sdcard: regulator-sdcard {
-+		compatible = "regulator-fixed";
-+		regulator-name = "SDCARD_POWER";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		gpio = <&gpio GPIOA_4 GPIO_ACTIVE_LOW>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+};
-+
-+&uart_b {
-+	status = "okay";
-+};
-+
-+&nand {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	pinctrl-0 = <&nand_pins>;
-+	pinctrl-names = "default";
-+
-+	nand@0 {
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		nand-on-flash-bbt;
-+
-+		partition@0 {
-+			label = "boot";
-+			reg = <0x0 0x00200000>;
-+		};
-+		partition@200000 {
-+			label = "env";
-+			reg = <0x00200000 0x00400000>;
-+		};
-+		partition@600000 {
-+			label = "system";
-+			reg = <0x00600000 0x00a00000>;
-+		};
-+		partition@1000000 {
-+			label = "rootfs";
-+			reg = <0x01000000 0x03000000>;
-+		};
-+		partition@4000000 {
-+			label = "media";
-+			reg = <0x04000000 0x8000000>;
-+		};
-+	};
-+};
-+
-+&ethmac {
-+	status = "okay";
-+	phy-handle = <&internal_ephy>;
-+	phy-mode = "rmii";
-+};
-+
-+&spifc {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	pinctrl-0 = <&spifc_pins>;
-+	pinctrl-names = "default";
-+
-+	nand@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		spi-max-frequency = <83000000>;
-+		spi-tx-bus-width = <4>;
-+		spi-rx-bus-width = <4>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		status = "disabled";
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "boot";
-+				reg = <0 0x200000>;
-+			};
-+
-+			partition@200000 {
-+				label = "env";
-+				reg = <0x200000 0x400000>;
-+			};
-+
-+			partition@600000 {
-+				label = "system";
-+				reg = <0x600000 0xa00000>;
-+			};
-+
-+			partition@1000000 {
-+				label = "rootfs";
-+				reg = <0x1000000 0x3000000>;
-+			};
-+
-+			partition@4000000 {
-+				label = "data";
-+				reg = <0x4000000 0x8000000>;
-+			};
-+		};
-+	};
-+};
-+
-+&sd {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default","clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <50000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&sdcard>;
-+	vqmmc-supply = <&sdcard>;
-+};
-+
-+&sdio {
-+	pinctrl-0 = <&sdio_m_pins>;
-+	pinctrl-1 = <&sdio_m_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	non-removable;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+	cap-sdio-irq;
-+	keep-power-in-suspend;
-+
-+	vmmc-supply = <&sdcard>;
-+	vqmmc-supply = <&sdcard>;
-+};
-
+diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
+index 7e6090af720b..d0d05fa44d66 100644
+--- a/sound/soc/meson/axg-fifo.c
++++ b/sound/soc/meson/axg-fifo.c
+@@ -207,25 +207,18 @@ static irqreturn_t axg_fifo_pcm_irq_block(int irq, void *dev_id)
+ 	status = FIELD_GET(STATUS1_INT_STS, status);
+ 	axg_fifo_ack_irq(fifo, status);
+ 
+-	/* Use the thread to call period elapsed on nonatomic links */
+-	if (status & FIFO_INT_COUNT_REPEAT)
+-		return IRQ_WAKE_THREAD;
++	if (status & ~FIFO_INT_COUNT_REPEAT)
++		dev_dbg(axg_fifo_dev(ss), "unexpected irq - STS 0x%02x\n",
++			status);
+ 
+-	dev_dbg(axg_fifo_dev(ss), "unexpected irq - STS 0x%02x\n",
+-		status);
++	if (status & FIFO_INT_COUNT_REPEAT) {
++		snd_pcm_period_elapsed(ss);
++		return IRQ_HANDLED;
++	}
+ 
+ 	return IRQ_NONE;
+ }
+ 
+-static irqreturn_t axg_fifo_pcm_irq_block_thread(int irq, void *dev_id)
+-{
+-	struct snd_pcm_substream *ss = dev_id;
+-
+-	snd_pcm_period_elapsed(ss);
+-
+-	return IRQ_HANDLED;
+-}
+-
+ int axg_fifo_pcm_open(struct snd_soc_component *component,
+ 		      struct snd_pcm_substream *ss)
+ {
+@@ -251,8 +244,9 @@ int axg_fifo_pcm_open(struct snd_soc_component *component,
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = request_threaded_irq(fifo->irq, axg_fifo_pcm_irq_block,
+-				   axg_fifo_pcm_irq_block_thread,
++	/* Use the bottom half of a threaded irq with non-atomic links */
++	ret = request_threaded_irq(fifo->irq, NULL,
++				   axg_fifo_pcm_irq_block,
+ 				   IRQF_ONESHOT, dev_name(dev), ss);
+ 	if (ret)
+ 		return ret;
 -- 
-2.37.1
-
+2.43.0
 
 
 _______________________________________________
