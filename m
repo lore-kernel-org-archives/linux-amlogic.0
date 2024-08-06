@@ -4,79 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF920C52D70
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2024 21:03:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 022DBC49EA1
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2024 23:46:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xN+CFOzrLAU02hrTk8ITZnz6HNrJyzDiQ6ES983S7iI=; b=X8NGGAizyT7kkZ
-	6U4cz1IalMCQReJs4AsvvEwokw2932z0GveQURoDR4QLU/LMUWbEqi3+8hk38Q6ehQ1SmZNpz32bx
-	wGDu2jLNaxjnI/mLM7eelonMAoc7fuDEWfbJJuuoV9RK74jcEBRmml47ohCNCR6Gmjt0oEuJQZTNc
-	MkvmYZJynIfYmStcG95sPceVBJI9GAE6cXXuX9rRy7w5nKZ/4idADGpK5lU10OhyjMJEVdFGGH8We
-	PJjNKyioM3VzLhHsOZ4cE6UssnYNVdXPPZTgsDPKJpO4w7+hBArQogilx0sCpO3bsFej6Qaq43PNZ
-	3Mv4DhN8Afgk5VP0z/3Q==;
+	List-Owner; bh=n2YVud4Mghujhs04O4BODFx/nGlrasV9nVIK218N7po=; b=tM2yQ8p3F1c+oM
+	akKQxY3Wmpa8J7lsuxU/UdJ0sJc8HhOtODEJLMRDvgIm8cduz6A8zr05uSoFJjTlxmyQ1bDsNEubv
+	b+ScKDqpV/8ocFONCz/rma7ZjZN6lscbRtHHMB+Va97kDjfmo0cGhhu1+MIlBlPkN6SHj8+4q05LR
+	QDnuktQ5DyFfTpzT+cmyJTnv2a1EY+5KRV2kdEwRTzKd0VD2VdphLIsYWW1R734yhaq0IeAI3JoyN
+	tyCK994vOcXdSgDvPpYNMhfuZmU60T3xo3kBPH9U38fwYKH9nWs1O/cNgXtD7ytwmr1dk3sQC+qYv
+	rLryHfV4gn4dq3BdoPiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbRLJ-00000002uPT-1fQZ;
-	Tue, 06 Aug 2024 21:03:41 +0000
-Received: from mail-pl1-x630.google.com ([2607:f8b0:4864:20::630])
+	id 1sbTsa-00000003Mge-2dqp;
+	Tue, 06 Aug 2024 23:46:12 +0000
+Received: from sender4-op-o14.zoho.com ([136.143.188.14])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbRLG-00000002uOk-1icV
-	for linux-amlogic@lists.infradead.org;
-	Tue, 06 Aug 2024 21:03:40 +0000
-Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1fd69e44596so1976735ad.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 06 Aug 2024 14:03:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1722978217; x=1723583017; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m2q6pHf2d+29PL7ARSSmco2Uda2QTne6ymuc4cRUvxc=;
-        b=hQUD4b8DOgf6kqf/PyaeDpQ7fJpsZ0oqEGarGbCUcWTN5tHxTNvgjUuh+rcud1jUmr
-         bNeT3uQwqKMuy0XFFLhEdO6Kx9ifIQt42q3uzCzm2GxshLVoGAY7hPfHN7YtssT7RJgG
-         C4gCwkQhMZbVzEonxhMVmSSLkMCzKuKk9OkTUcKwjiYhbACxT+FX60D14mJP9WTutGQC
-         fe+2c13neExAOJpkVFfun8ILJisT/YFNJIwYgC70VCF2vV27W8FweveixIKL1SfqA5P5
-         en5FFMSTLD1lBXlvUcePemCc6TJvHHH3wB9DqGm+uuC/orDuOn51Tol2z9zwY1aICanh
-         /43g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722978217; x=1723583017;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m2q6pHf2d+29PL7ARSSmco2Uda2QTne6ymuc4cRUvxc=;
-        b=ilXAcBII6fPN9P57i43ikn15qCJxLRyNRs/yt8mJuJK7yEsgXkStqOwNHp063Rdmic
-         g+vLYz6RjubRWZwWO8JSe5jAz1JMdj1WRwcKVoaugTC4dbMR0xISbTz+0z4/P/wAn34E
-         Q0z7YlIJzd6L8yJ9bLLFnTGW9iMxY7HhB0+KIl59z2vtqpp2B9zHq7gyjQvFHd59FrS5
-         gIqOOgRTufTx7st/FHtjOIr0PLN7teDp2DJIZbiQTYJ/sZVC44qg6trq6GS6Rk3C4Ylc
-         CfKWGEk3VvBIp8FoHuRb/OGctCMOdBGkkRqRwgvUuI8F+GxvuDf00cHKno1qjbVP6PVx
-         ug1g==
-X-Forwarded-Encrypted: i=1; AJvYcCXuXa2JdTvcZ2lst5QRqxrGqdhEbQ2hrQnYBZQIbehMRMTrKpDiIg0oFsxxwZ5D6sllK8Py/OTK+OqqOKf4@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw8AdJGSDj/B6T0VIFyb3fE58MaZh9JCzgooG/4JHvSAT748Suv
-	L9z26CNtq7RAC/wovhcH9hHW8RQJRkb07bIpMRYv6Gr3t6tc81eT2/wMWnqL8vOEsigY6wvdRZ2
-	sE8t1jUmCB8A5rsVRV3B8WeWkWoQ=
-X-Google-Smtp-Source: AGHT+IHnTsomZEJTNgTr0RHgWmTYrb/mu0Mk5eZcXXey+C/tHk5gZ8CXDzozzaLkZe8gUGsqKmfnGvzIxRoRWUKUOxg=
-X-Received: by 2002:a17:902:f64f:b0:1fb:7654:4a40 with SMTP id
- d9443c01a7336-20085492a0cmr824815ad.14.1722978217049; Tue, 06 Aug 2024
- 14:03:37 -0700 (PDT)
+	id 1sbONk-00000002YAC-06N8;
+	Tue, 06 Aug 2024 17:54:01 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1722966823; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=RW/feBkNoOFbYSnx+5hvtNPGlVfQQvtVDl9tFw0Fah6EvYgz511EHhEHscHvnaLTtz+zbWIWVt9iNmsGZPMcAn93rgyyDP232uyZNMaa/Bg1IfkOMVe3ytRN+QYjiePZzJo8mWdJMOzqSmvGKC2ngJPbz+nmH1mWK0ps10XTrzI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1722966823; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=vm9Xz4ftCLuaGhJmR6WJfQfgd+gvJMEYvlVmMqFEz7Y=; 
+	b=Y57yztyrpnHEgaiI957zxWEVItfIBo3uSQwmXJIlaOCupjy2tykJOAqXy1udOmAIQrO3jg2k4J8K4+y4IPG2ndz994vm7xgyN23ORAJRNksUQQ8fCY3rqI613njLvZ3oySPkg9HjyFw1xNCSSr/7yavdTdYOiM5B4EStqWj0Ydo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=helen.koike@collabora.com;
+	dmarc=pass header.from=<helen.koike@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722966823;
+	s=zohomail; d=collabora.com; i=helen.koike@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=vm9Xz4ftCLuaGhJmR6WJfQfgd+gvJMEYvlVmMqFEz7Y=;
+	b=Et73oSQCEDClSg3IU+CRumgmoyIfQI+37BPGnN7QIpXl61qVPOCKlmSpq1bxFUhz
+	jXy+QcAU87MjJosY+veiMd0aOmKN/ApQrSGt83IkpJx6jyrbiMdK0CZU27V/BVv6IiO
+	OAz03sv/087ek79F/0DHc4WEjP9oTIIAXw/4tg2s=
+Received: by mx.zohomail.com with SMTPS id 1722966822122477.7651221308056;
+	Tue, 6 Aug 2024 10:53:42 -0700 (PDT)
+Message-ID: <83921779-808f-487d-a6fc-5a853024791a@collabora.com>
+Date: Tue, 6 Aug 2024 14:53:33 -0300
 MIME-Version: 1.0
-References: <20240730125023.710237-1-jbrunet@baylibre.com> <20240730125023.710237-8-jbrunet@baylibre.com>
-In-Reply-To: <20240730125023.710237-8-jbrunet@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 6 Aug 2024 23:03:25 +0200
-Message-ID: <CAFBinCAaZumGU6dOq0RrHRTQV=MejTJ=RW0P_6tQFOG9vybY6g@mail.gmail.com>
-Subject: Re: [PATCH 7/9] drm/meson: dw-hdmi: use matched data
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Kevin Hilman <khilman@baylibre.com>, dri-devel@lists.freedesktop.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 0/6] drm/ci: Add support for GPU and display testing
+To: Daniel Stone <daniel@fooishbar.org>,
+ Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
+ airlied@gmail.com, daniel@ffwll.ch, robdclark@gmail.com,
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ deborah.brouwer@collabora.com, dmitry.baryshkov@linaro.org,
+ mcanal@igalia.com, melissa.srw@gmail.com,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20240730021545.912271-1-vignesh.raman@collabora.com>
+ <CAPj87rOYVCG2A10ruyYan9y6NmMY0fUM6Z5-9ht7dEp_THYmNw@mail.gmail.com>
+Content-Language: en-US
+From: Helen Koike <helen.koike@collabora.com>
+In-Reply-To: <CAPj87rOYVCG2A10ruyYan9y6NmMY0fUM6Z5-9ht7dEp_THYmNw@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240806_140338_504434_0D6A1AE4 
-X-CRM114-Status: GOOD (  10.90  )
+X-CRM114-CacheID: sfid-20240806_105400_166580_0EC02858 
+X-CRM114-Status: GOOD (  12.02  )
+X-Mailman-Approved-At: Tue, 06 Aug 2024 16:42:05 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,33 +82,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgSmVyb21lLAoKT24gVHVlLCBKdWwgMzAsIDIwMjQgYXQgMjo1MOKAr1BNIEplcm9tZSBCcnVu
-ZXQgPGpicnVuZXRAYmF5bGlicmUuY29tPiB3cm90ZToKWy4uLl0KPiArICAgICAgIH0sIHsKPiAr
-ICAgICAgICAgICAgICAgLmxpbWl0ID0gMjk3MDAwLAo+ICsgICAgICAgICAgICAgICAucmVncyA9
-IGd4YmJfM2dfcmVncywKPiArICAgICAgICAgICAgICAgLnJlZ19udW0gPSBBUlJBWV9TSVpFKGd4
-YmJfM2dfcmVncykKSnVzdCBhcyBhIHNpZGUtbm90ZTogdGhpcyBsb29rZWQgb2RkIHdoZW4gcmVh
-ZGluZyBmb3IgdGhlIGZpcnN0IHRpbWUKYXMgSSB0aG91Z2h0IHRoYXQgaXQncyBhIHR5cG8gKGFu
-ZCBpdCBzaG91bGQgYmUgZ3hiYl8yZzk3X3JlZ3MgLSBidXQKdGhhdCBuYW1lIGlzIG5vdCB1c2Vk
-KS4KClsuLi5dCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgbWVzb25fZHdfaGRtaV9zcGVlZCBneGxf
-c3BlZWRzW10gPSB7Cj4gKyAgICAgICB7Cj4gKyAgICAgICAgICAgICAgIC5saW1pdCA9IDM3MTI1
-MCwKPiArICAgICAgICAgICAgICAgLnJlZ3MgPSBneGxfM2c3X3JlZ3MsCj4gKyAgICAgICAgICAg
-ICAgIC5yZWdfbnVtID0gQVJSQVlfU0laRShneGxfM2c3X3JlZ3MpCj4gKyAgICAgICB9LCB7Cj4g
-KyAgICAgICAgICAgICAgIC5saW1pdCA9IDI5NzAwMCwKPiArICAgICAgICAgICAgICAgLnJlZ3Mg
-PSBneGxfM2dfcmVncywKPiArICAgICAgICAgICAgICAgLnJlZ19udW0gPSBBUlJBWV9TSVpFKGd4
-bF8zZ19yZWdzKQo+ICsgICAgICAgfSwgewo+ICsgICAgICAgICAgICAgICAubGltaXQgPSAxNDg1
-MDAsCj4gKyAgICAgICAgICAgICAgIC5yZWdzID0gZ3hsX2RlZl9yZWdzLAo+ICsgICAgICAgICAg
-ICAgICAucmVnX251bSA9IEFSUkFZX1NJWkUoZ3hsX2RlZl9yZWdzKQp0aGlzIGlzIG5vdCBjb25z
-aXN0ZW50IHdpdGggd2hhdCB3ZSBoYXZlIGFib3ZlIG9yIGJlbG93IHNvIGl0IGVpdGhlcgpuZWVk
-cyB0byBiZSB1cGRhdGVkIG9yIGEgY29tbWVudC4KSSB0aGluayB0aGlzIHNob3VsZCBiZSBjYWxs
-ZWQgZ3hsXzFnNDhfcmVncwoKPiArICAgICAgIH0sIHsKPiArICAgICAgICAgICAgICAgLnJlZ3Mg
-PSBneGxfMjcwbV9yZWdzLAo+ICsgICAgICAgICAgICAgICAucmVnX251bSA9IEFSUkFZX1NJWkUo
-Z3hsXzI3MG1fcmVncykKYW5kIHRoaXMgc2hvdWxkIGJlIGNhbGxlZCBneGxfZGVmX3JlZ3MKCgoK
-QmVzdCByZWdhcmRzLApNYXJ0aW4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
-dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2xpbnV4LWFtbG9naWMK
+
+
+On 05/08/2024 10:11, Daniel Stone wrote:
+> Hi Vignesh,
+> 
+> On Tue, 30 Jul 2024 at 03:16, Vignesh Raman <vignesh.raman@collabora.com> wrote:
+>> Some ARM SOCs have a separate display controller and GPU, each with
+>> different drivers. For mediatek mt8173, the GPU driver is powervr,
+>> and the display driver is mediatek. In the case of mediatek mt8183,
+>> the GPU driver is panfrost, and the display driver is mediatek.
+>> With rockchip rk3288/rk3399, the GPU driver is panfrost, while the
+>> display driver is rockchip. For amlogic meson G12B (A311D) SOC, the
+>> GPU driver is panfrost, and the display driver is meson.
+>>
+>> IGT tests run various tests with different xfails and can test both
+>> GPU devices and KMS/display devices. Currently, in drm-ci for MediaTek,
+>> Rockchip, and Amlogic Meson platforms, only the GPU driver is tested.
+>> This leads to incomplete coverage since the display is never tested on
+>> these platforms. This commit series adds support in drm-ci to run tests
+>> for both GPU and display drivers for MediaTek mt8173/mt8183, Rockchip
+>> rk3288/rk3399, and Amlogic Meson G12B (A311D) platforms.
+>>
+>> Update the expectations file, and skip driver-specific tests and
+>> tools_test on non-intel platforms.
+> 
+> Thanks, series looks sensible and is:
+> Reviewed-by: Daniel Stone <daniels@collabora.com>
+> 
+> Cheers,
+> Daniel
+
+
+Applied to drm-misc-next
+
+Thanks
+Helen
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
