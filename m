@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C156EC3DA64
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2024 13:15:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3D49C3DA64
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2024 13:16:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+q4ZQg61vTKfx7K13902fbQ1DHIeTwSAg5m8X/5HGmU=; b=wBumXx0p+5rgYq
-	/b0clgX4NhtSrbPwbSHXVflXUzQxnlJmCS5nYOC119RZLtYPqqiPObUPDzcV/neWQcda6guuvFaqV
-	Y9cR4v7fQ778MpV5AJimClXbCu4j4GnNRwVLKUxpBxXcW5kmfNM2IhIGNLHPBO/R4akXto13ySPdR
-	TDcrzyKw7OGIJagV2blegiizb+nwnlaF0iIMlvPp7dF467h93sN7192Ew/q0BswXcThdDZZUT37zr
-	8vMEte+gSu2kNgXWudjiWz+ejPF1t2eJc4/aJP3snugfevtOEwNMIuq5b3Gv1NDbtCFHTjqg+dO9E
-	HCMhJI4nHA8oE2sw6ioQ==;
+	List-Owner; bh=Fplp4QCwG5iNwz2DIJPxFTmSCB1+jmCkuoAA7+p1Bx0=; b=dCAttmC9TGIGjs
+	x3U3BfuN9j+Oz6mApIhT17R5XUeu71GT3VS5GTkxBvDLyh/n28nlUUKjgzj1VcokJlMfA83DWvhcW
+	RkScQE6H6hOKCjp5nWmv35ZPgGmPsFxhIP9GJx3y9WlsUnIXmj5W96TxFYtyGMnkQiIyapl4lIwtK
+	coXJ4ezPA/+YxY2rERZGCfhmO3s1YPpHvv3lQsRIOEXveFrZnX1utmihxbydIuMJ88Avon3dazkw8
+	wDA/K0s+WiwbmkAmt+rDkGO1e+3SqkBYJiOuP4+9VhczPKELeKyla/+e0vU62jXNLDlkObMRWUOG9
+	bGOKqfFxABfby8ff3r2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbK1f-00000001gNx-3r0S;
-	Tue, 06 Aug 2024 13:14:55 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1sbK2l-00000001guF-2eos;
+	Tue, 06 Aug 2024 13:16:03 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbK0T-00000001fs1-01gZ;
-	Tue, 06 Aug 2024 13:13:42 +0000
+	id 1sbK1X-00000001gIM-1idy;
+	Tue, 06 Aug 2024 13:14:49 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 726D060FAB;
-	Tue,  6 Aug 2024 13:13:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EAECC4AF09;
-	Tue,  6 Aug 2024 13:13:36 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTP id 77167CE0E66;
+	Tue,  6 Aug 2024 13:14:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 334A0C32786;
+	Tue,  6 Aug 2024 13:14:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722950020;
-	bh=8lhShelUKHDloCGPL9SSjLVR+sled6alu0kI64HG5j4=;
+	s=k20201202; t=1722950084;
+	bh=2rlJ7K/TJMn5UcyvjCwi6A03r0fDQPfDCt7la8eS7+Q=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HkJG1DhJCR0c6U/orjOk+rnykoBk3408dmECuRDDZpt1uqHyWgA+A+kg2/sEoUzjw
-	 RitNecxCGmNi0oEi7z/QnTpUXw1JCwtUPFj+HabFMh1/JuWrWQLzhq9Cg6NwfDp/dK
-	 ZtvFVjdK5JFRz2HazIC0y/yQ9k8p/X8wH6FL7hh7lSTvpJyiG6Xizq7ywUm17Xs+3M
-	 Wi/irJyR/yV/NaTEgm/jlB2QdOcAvHTlMyH0NSRHz1mx/w8QX/aNbbNaO6QPBkeifn
-	 DniLy+zpyTQFLf9ZcjYcdzVd4BWDPfrsOdNX+m0GJCs594Ee3ptX1SRuTz3GOBop1/
-	 /BmdfJJpS1cqg==
-Message-ID: <a1aa292d-6d61-4cb9-8343-6f38258c176f@kernel.org>
-Date: Tue, 6 Aug 2024 15:13:34 +0200
+	b=M7KnUh6v1Or3ZR+I3Geqe5lTtDRhP7rB6T+9Vr9BS5N0lYPkT62xf7tGflsNaNJpf
+	 B9/x5yd+lxr07QSccQU3S0ki9qJ/5G/QVx7lheUh0i3xvuWYMqxGuyjTBU7GaXTYXN
+	 0+zmnBgEKq2pnpRdPAFzJoWIk3qrJbBTtfaEtLRPjHe0SgXTzS0S3Ky+d/yUypb8Ja
+	 k9+7L3FglLgH0t6pjBwoiYsTLVjHlATwA4WaIPKCrqYMuAIre5ZUTGsGC92Fu8/bn4
+	 jW9AGqRU5WjaDo4GDQ+FW/QeUsyfHYq9xr34XXBMhJLPZqvmuAAfQm3tL1R8c2h8UB
+	 Nh88eytrVtA7w==
+Message-ID: <c82b6e70-8f2f-4b37-9186-7c49aea019bd@kernel.org>
+Date: Tue, 6 Aug 2024 15:14:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: amlogic: add some device nodes for C3
+Subject: Re: [PATCH 3/3] arm64: dts: amlogic: add C3 AW419 board
 To: xianwei.zhao@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
@@ -59,7 +59,7 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20240806-c3_add_node-v1-0-c0de41341632@amlogic.com>
- <20240806-c3_add_node-v1-2-c0de41341632@amlogic.com>
+ <20240806-c3_add_node-v1-3-c0de41341632@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,11 +105,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240806-c3_add_node-v1-2-c0de41341632@amlogic.com>
+In-Reply-To: <20240806-c3_add_node-v1-3-c0de41341632@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240806_061341_177165_10A39437 
-X-CRM114-Status: UNSURE (   9.94  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240806_061447_877218_D2765B1B 
+X-CRM114-Status: GOOD (  13.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,36 +128,47 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 06/08/2024 12:27, Xianwei Zhao via B4 Relay wrote:
 > From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> Add some device nodes for SoC C3, including periphs clock controller
-> node, PLL clock controller node, SPICC node, regulator node, NAND
-> controller node, sdcard node, Ethernet MAC and PHY node.
+> Add Amlogic C3 C308L AW419 board.
 > 
 > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  .../boot/dts/amlogic/amlogic-c3-c302x-aw409.dts    | 249 +++++++++++
->  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        | 487 ++++++++++++++++++++-
->  2 files changed, 735 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+>  .../boot/dts/amlogic/amlogic-c3-c308l-aw419.dts    | 278 +++++++++++++++++++++
+>  2 files changed, 279 insertions(+)
 > 
-
-
-...
-
-
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index 29417f04f886..2fbda8419c65 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -2,6 +2,7 @@
+>  dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c308l-aw419.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
+> new file mode 100644
+> index 000000000000..d28fd2a1acf0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
+> @@ -0,0 +1,278 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + */
 > +
-> +			sd: mmc@8a000 {
-> +				compatible = "amlogic,meson-axg-mmc";
-> +				reg = <0x0 0x8a000 0x0 0x800>;
-> +				interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
-> +				power-domains = <&pwrc PWRC_C3_SDCARD_ID>;
-> +				clocks = <&clkc_periphs CLKID_SYS_SD_EMMC_B>,
-> +					<&clkc_periphs CLKID_SD_EMMC_B>,
-> +					<&clkc_pll CLKID_FCLK_DIV2>;
-> +				clock-names = "core", "clkin0", "clkin1";
-> +				no-mmc;
-> +				no-sdio;
+> +/dts-v1/;
+> +
+> +#include "amlogic-c3.dtsi"
+> +
+> +/ {
+> +	model = "Amlogic C308l aw419 Development Board";
+> +	compatible = "amlogic,aw419", "amlogic,c3";
 
-Hm? Why are these blocks incomplete that they do not handle SDIO? Aren't
-you putting board properties into SoC?
+Where are the bindings? Why do you add bindings without boards? Or
+boards without bindings?
 
 Best regards,
 Krzysztof
