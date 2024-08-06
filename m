@@ -4,81 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57A22C52D6F
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2024 10:03:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 635B0C3DA64
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2024 10:27:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fH+8mOMrIqewMEO02OidV3+NEixuw6s3Sy67We12xME=; b=uJSKo61QHDBym9
-	8xw0AmQ++XrOsy9UTOH73rEz/Ck5BX9uUaFYpi8csOYQOtqeQsbBY8cExd8TWQX8PBklQ+dz5Sl8I
-	nzkkeqqJ3sHIMx+FxIm0M9uNMK98RKDQaWQf2CFA8Po65lefew9YuizMOC60fW/AyEiBLn8Pk4mDJ
-	cljxmOLKlvMcZlAHrEujU7Vbw17WFTYqeEysR1hejxG5mEibzV8Sm2SV6nP5hAxuh3598+AscqfNA
-	Aumrb1uhZvlQptdZmaJHtjRwf9MK1LiKzOGvL+Qyh1a0o7u2SlCNK61e1aaskScHFPK+Q+0nL9SHW
-	s8euOLjtuxoKOwaFY53A==;
+	List-Owner; bh=DKQPDKdu2s2sAz4thtKbY5Kdi78xcagZQQ5V0h/iHTw=; b=1pBQG3QenbZUh+
+	yV6oMmeTkBjvbD6H7SdUrMagONt4lxf1ZxeANwRMvVnV9UjdeMOW5DM3AJNl+eWy9EzvbGh7Ntdee
+	htXLhahcNy3ypkG1QrrD8QEM9GWRVsDy2epDakSnljuu/exdllWM+aZUbQ0ilnzXqHsmHrah65XnB
+	sJxYw4ZB1Wj5Q8FrcRig3gI9Z3qzViUG8IvQLJ2WAzHw1EZ+5PDhzh/udMWcA5lnyOTgZo8io+nEp
+	Y0LkvkApjXWcwUiMHVZZkT+PDvRZWMI4LpM2XZmlz+TAwCiib6H2YKZJbRgNhdxjQi4kTngg9RNjd
+	TqvDh9lLW+EuBjHWApgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbH27-00000001AU6-0tl1;
-	Tue, 06 Aug 2024 10:03:11 +0000
-Received: from galois.linutronix.de ([193.142.43.55])
+	id 1sbHPV-00000001D7R-2OqY;
+	Tue, 06 Aug 2024 10:27:21 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbH22-00000001ASS-0Nki;
-	Tue, 06 Aug 2024 10:03:09 +0000
-Date: Tue, 6 Aug 2024 12:03:02 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1722938583;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CJrVNiSI/EhQvj7Rlw5xd+RbUJSrKucNzsEUSMrER3w=;
-	b=Ye9wDXLyEG1YGrxeXzdM4wDn35Pm8HgIT2GMjREevsmZpjkH9w7d0u3V2FvVo29k9nE0l5
-	mBQQKQMBDDGsevQuOX+zeBCn0aQ9pKkmagioEcsKOziMw9k76+KUqFULSrDNZO7qZ6IOER
-	+4mQ9+erau+G6RKuqLIkL8EeWmjvujTIPD3pkgqIDxri0LRpIHpo8sQEE9GjhTBS+ZdthC
-	dTYoD90oZ3U9CO5KJQVJNuCYtzDi9S93VK3Zaa26CTHPNNxZehk8y32JOQphwLvsz1Q+OT
-	7ZaVF7gguZFRf8/q4MXbXGb6xMGKh34kVBx9T0gL2xynnrmmEYWiRtMXXsbvWQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1722938583;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CJrVNiSI/EhQvj7Rlw5xd+RbUJSrKucNzsEUSMrER3w=;
-	b=YwVtx5h/onLbQ9kVaqP9fZ3ZiVEu5dYoPqDOBbRZWdoM5gDipsTsy0vAfbKrxprnSE32lz
-	U0tbrXT2FbsBrgBQ==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, linux-rt-users@vger.kernel.org,
-	Arseniy Krasnov <avkrasnov@salutedevices.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	kernel@sberdevices.ru, oxffffaa@gmail.com,
-	Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v1] ASoC: meson: axg-fifo: set option to use raw spinlock
-Message-ID: <20240806100302.Up0MShrZ@linutronix.de>
-References: <20240729131652.3012327-1-avkrasnov@salutedevices.com>
- <1ja5i0wags.fsf@starbuckisacylon.baylibre.com>
- <2b16b95e-196e-4d8a-98c3-3be568cdd18a@sirena.org.uk>
- <1j5xsow839.fsf@starbuckisacylon.baylibre.com>
- <7dfdade5-3a57-4883-bfac-067c50ec0ffb@sirena.org.uk>
- <1j1q3cw5ri.fsf@starbuckisacylon.baylibre.com>
- <20240805153309.k_SfHw62@linutronix.de>
- <1jplqnuf5r.fsf@starbuckisacylon.baylibre.com>
- <20240806065021.PINvpze_@linutronix.de>
- <1jle1auhu9.fsf@starbuckisacylon.baylibre.com>
+	id 1sbHPS-00000001D62-4An2;
+	Tue, 06 Aug 2024 10:27:20 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id B217060F96;
+	Tue,  6 Aug 2024 10:27:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C692FC4AF13;
+	Tue,  6 Aug 2024 10:27:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722940036;
+	bh=lagugMs0C+A4uWQtyG8Q7ynHrCUInmXYs52ILDY+VC0=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=iHiXzkHE5p/o1ifDpM0Fn+aT/tcTA4ZsUzUQ41voQpesaGsBbFK7eyMmzlKGc/nno
+	 whcSHdRzBaFmJxa/yv4mt6kvmjGiiJmemaY6C2vXnjU9KNuPuf02IXqTo/hnpXZVrJ
+	 sJzlptvdDMSG1LDPqmzxFEfvskqpN1KDfZcNZkOi28Clr0XJXGYD1Noog4BrJKW0F9
+	 x5+xF5V7497fhT/L6wLFdLW+tYHWoXkCv06yheSC9HPt/rEgCgJjfldi1yv4JZ8ATa
+	 G0qQb5aYHVOSfdMH7GKczkkdifaQfVGtRdlhzTHDYY2gp75xph8sjy6Q2wDbg53/P9
+	 eHVE0wewgrsgQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B0BB7C52D6F;
+	Tue,  6 Aug 2024 10:27:16 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Tue, 06 Aug 2024 18:27:16 +0800
+Subject: [PATCH 3/3] arm64: dts: amlogic: add C3 AW419 board
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1jle1auhu9.fsf@starbuckisacylon.baylibre.com>
+Message-Id: <20240806-c3_add_node-v1-3-c0de41341632@amlogic.com>
+References: <20240806-c3_add_node-v1-0-c0de41341632@amlogic.com>
+In-Reply-To: <20240806-c3_add_node-v1-0-c0de41341632@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1722940034; l=7409;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=opg5PPHDeLOgtuNT0JGt5kB+eNQwIkO7qZsZHJHFfvw=;
+ b=oUXu5nF8A0gwBF3IuIQbnH878QEkeSE7YmAEahZP5ktUwQMzuXBxjWNoVWrcdr9uOIJkpUKpG
+ +c1I4f3Do7yDBcpUscBONScymrrQyE+v8ThIBh1zFtycG5NN50HejqF
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240806_030306_293008_59AF7093 
-X-CRM114-Status: UNSURE (   7.39  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240806_032719_173350_CCA5E1F1 
+X-CRM114-Status: GOOD (  12.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,21 +89,323 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2024-08-06 11:21:50 [+0200], Jerome Brunet wrote:
-> I have tweaked #1 and added a few tags but the gist remains the same.
-> I was going to add you under 'Suggested-by' but maybe putting you as the
-> actual Author would be more appropriate. 
-> 
-> What do you prefer ?
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Suggested-by is fine.
+Add Amlogic C3 C308L AW419 board.
 
-Sebastian
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../boot/dts/amlogic/amlogic-c3-c308l-aw419.dts    | 278 +++++++++++++++++++++
+ 2 files changed, 279 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 29417f04f886..2fbda8419c65 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -2,6 +2,7 @@
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
++dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c308l-aw419.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
+new file mode 100644
+index 000000000000..d28fd2a1acf0
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
+@@ -0,0 +1,278 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
++ */
++
++/dts-v1/;
++
++#include "amlogic-c3.dtsi"
++
++/ {
++	model = "Amlogic C308l aw419 Development Board";
++	compatible = "amlogic,aw419", "amlogic,c3";
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		serial0 = &uart_b;
++		spi0 = &spifc;
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		/* 9 MiB reserved for ARM Trusted Firmware */
++		secmon_reserved: secmon@7f00000 {
++			compatible = "shared-dma-pool";
++			reg = <0x0 0x07f00000 0x0 0x900000>;
++			no-map;
++		};
++	};
++
++	main_12v: regulator-main-12v {
++		compatible = "regulator-fixed";
++		regulator-name = "12V";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vcc_5v: regulator-vcc-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&main_12v>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vddq: regulator-vddq {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDQ";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		vin-supply = <&main_12v>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vddao_3v3: regulator-vddao-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&main_12v>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vddao_1v8: regulator-vddao-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	ddr4_2v5: regulator-ddr4-2v5 {
++		compatible = "regulator-fixed";
++		regulator-name = "DDR4_2V5";
++		regulator-min-microvolt = <2500000>;
++		regulator-max-microvolt = <2500000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vcc_3v3: regulator-vcc-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vcc_1v8: regulator-vcc-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vcc_3v3>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vdd_1v8: regulator-vdd-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDD1V8_BOOT";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vcc_3v3>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vddio_b: regulator-vddio-3v3-b {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_B";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc_3v3>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	sdcard: regulator-sdcard {
++		compatible = "regulator-fixed";
++		regulator-name = "SDCARD_POWER";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vddao_3v3>;
++		gpio = <&gpio GPIOA_4 GPIO_ACTIVE_LOW>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++};
++
++&uart_b {
++	status = "okay";
++};
++
++&nand {
++	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	pinctrl-0 = <&nand_pins>;
++	pinctrl-names = "default";
++
++	nand@0 {
++		reg = <0>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		nand-on-flash-bbt;
++
++		partition@0 {
++			label = "boot";
++			reg = <0x0 0x00200000>;
++		};
++		partition@200000 {
++			label = "env";
++			reg = <0x00200000 0x00400000>;
++		};
++		partition@600000 {
++			label = "system";
++			reg = <0x00600000 0x00a00000>;
++		};
++		partition@1000000 {
++			label = "rootfs";
++			reg = <0x01000000 0x03000000>;
++		};
++		partition@4000000 {
++			label = "media";
++			reg = <0x04000000 0x8000000>;
++		};
++	};
++};
++
++&ethmac {
++	status = "okay";
++	phy-handle = <&internal_ephy>;
++	phy-mode = "rmii";
++};
++
++&spifc {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	pinctrl-0 = <&spifc_pins>;
++	pinctrl-names = "default";
++
++	nand@0 {
++		compatible = "spi-nand";
++		reg = <0>;
++		spi-max-frequency = <83000000>;
++		spi-tx-bus-width = <4>;
++		spi-rx-bus-width = <4>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		status = "disabled";
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "boot";
++				reg = <0 0x200000>;
++			};
++
++			partition@200000 {
++				label = "env";
++				reg = <0x200000 0x400000>;
++			};
++
++			partition@600000 {
++				label = "system";
++				reg = <0x600000 0xa00000>;
++			};
++
++			partition@1000000 {
++				label = "rootfs";
++				reg = <0x1000000 0x3000000>;
++			};
++
++			partition@4000000 {
++				label = "data";
++				reg = <0x4000000 0x8000000>;
++			};
++		};
++	};
++};
++
++&sd {
++	status = "okay";
++	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-1 = <&sdcard_clk_gate_pins>;
++	pinctrl-names = "default","clk-gate";
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <50000000>;
++	disable-wp;
++
++	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
++	vmmc-supply = <&sdcard>;
++	vqmmc-supply = <&sdcard>;
++};
++
++&sdio {
++	pinctrl-0 = <&sdio_m_pins>;
++	pinctrl-1 = <&sdio_m_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++	bus-width = <4>;
++	cap-sd-highspeed;
++	non-removable;
++	max-frequency = <200000000>;
++	disable-wp;
++	cap-sdio-irq;
++	keep-power-in-suspend;
++
++	vmmc-supply = <&sdcard>;
++	vqmmc-supply = <&sdcard>;
++};
+
+-- 
+2.37.1
+
+
 
 _______________________________________________
 linux-amlogic mailing list
