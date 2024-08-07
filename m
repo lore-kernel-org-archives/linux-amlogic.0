@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B594C3DA7F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Aug 2024 05:45:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ADD7C52D6F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Aug 2024 05:45:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dyaLUOXQgxq/04XQCtaUiK+r6jyOUW+g883iKjfz+EQ=; b=s5/1nOXgx9MvaY
-	U6E8WGw/clHunIht2ZPaZiLvviuKQ+NslmLc3f5wssBYARHA8pI0VR3ADCqsW7c9IGwo21g93FMMN
-	7VQLCxOtPNyCsCwJmKHA8S+YrRki4qRjmfGYWCnJ7UMVaZXAvEejF8R9cgDJ5KuI6jI4L6umXk/pi
-	Y9LR5DHjEflFjRkwpx3WTBXl1Kno8cFJS7VgimtjAQhDF2/7gxhjeur+gtecvb37pBJioTzYB9adE
-	HFO+rVqDaAG1VSWQXCLQONnQ8CMVSbLcbRkOFt/iMrlkycSrVfT4K4L43rqPiFxWgsHyzb+hfkyqW
-	v+nw24SjyfugpPMOTWwA==;
+	List-Owner; bh=1BTW+SK8CnIiPpkinLjaosBFTgEhw+tdbG7vQjnA7xE=; b=a6/r2oCAT8CZgJ
+	ddc/weCqqyjoedbKV3MDaLHO8napVxLypuJfyS0cfwN3A9bR/lxuhOewz5fIJZvh/cM8X+EComGAv
+	VCrKMuVkQr0XN10Z2I1BNiNwZfdRaOI9x9S8FkXP6luZZwcdXeBQ3uHpsCfEZ9BXG5K9gVsuO1XvO
+	QC1UmAMesGWMRUfACnnTnp58Bevp7v9WOIduHXzP3WXyLTy2M9Ckt9B8sZN2dOFuLgUpAJvqpQ1+s
+	8FTnK11ICbqPfTPpqr/J/eNbWmj1KB6qCwqPyQnZ4ISr6so77Q80yLvY5AwIVFeaG65R9GshXP7+v
+	s8GMpD9mAqYICPIpv9gw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbZTl-00000003tyO-2oaG;
-	Wed, 07 Aug 2024 05:44:57 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1sbZUK-00000003uFV-1J4H;
+	Wed, 07 Aug 2024 05:45:32 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbZTC-00000003try-25Yd
+	id 1sbZTg-00000003twt-03cI
 	for linux-amlogic@lists.infradead.org;
-	Wed, 07 Aug 2024 05:44:24 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4281d812d3eso13234915e9.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 06 Aug 2024 22:44:22 -0700 (PDT)
+	Wed, 07 Aug 2024 05:44:56 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3685a564bafso753615f8f.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 06 Aug 2024 22:44:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723009461; x=1723614261; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1723009490; x=1723614290; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=YYvtAZV3TwwDs8P6LWcM/NhmCgmBu7Q/FCcb43o0uvc=;
-        b=TBlJKaEClCFcP4WzbAhgKVQ2HptPZlxvTMvAIAuSqK4TrQ6Ly3MeizAnxWOUzRxyVD
-         lMkzZ8dU+2HmPJPf+gcy2w8DH8HhXCsjna2lP9bMWpq6Soci4D6tSG5ZzPKwlX3E4CGn
-         bZA1JoAIGDQodVqPKtxla6ceJ0B9zQqCMU37Z7333olOdHKUgcadTpgQaxqbia9nT7mU
-         o3u6/fAH6oxtqT/OHssJ3QMjp0Y8wrgHTYvzgZKrB6FAKX/qf3S7o8d8OPvky6JOgHXv
-         SxBnYBJFgyJrbBOmxAMDt2YFAo0Em4Wmrg/wF1jrbCIYZKwNBSgWRigtEXBwIxZ5szCl
-         tIKw==
+        bh=G0OWf6ez8Gxgf5JPBmv/oBu1hvtNwPXnbUW+1HDzI78=;
+        b=bAHagZnQT3Rwm1Qm/vbwx1XC6Ondu/iB9kGCnrSPde7u6Pz7FTeZnehvVru/JaM6qD
+         L7boJ1lWaTDj7md4zF07KVIMy53SPRjabznbsh0iuWCbASS6FCL61q5CnLFaStxMt72Z
+         KYhqNd9KtC8BwIJsi1IFgJifoNSK1BfoI5OQlqteHqszfTu+rSW+277nGDjvmasxHjs3
+         UCt4vDvYM1yNaGdpOu5dXgYnrYuHCHUDzT+8e+Wz9lQv9Dko2UAYhbGAHZU1PNW0Xt75
+         rxPI3TD615XgEp5ZW1I9WRnqW7aw8Wpb6dN3MJTbQKuBgaPcQluEDHysri3YRUKPt17b
+         ft/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723009461; x=1723614261;
+        d=1e100.net; s=20230601; t=1723009490; x=1723614290;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YYvtAZV3TwwDs8P6LWcM/NhmCgmBu7Q/FCcb43o0uvc=;
-        b=cpd0QFU2MQDQh2qsmstH8kOuJxE7gs7/cJF9Y9f/Yh20F8Xf37+WbHWaN+XWobcoM8
-         uUOFk0sL2l2Y1oCM0jVMNp+cMrFaf+PEVLbJsaAYvRpNE4si2TErmsCYdRE8pzfLN4KI
-         R/QXorKYYKzL2XHoyuVA0IsUp2xG2NGdRt6lnjU43kMuRkz8MCTdAu8Fr2T5TPlObYL4
-         SdbkN5VRtGvCFibIgn/kVeyAPmqAcoUDd8HkXqRRmHPU2qlkYjgwJB0IYB/68hX+P4sJ
-         IdLeXCIzqW13CYXwTi31x4qRhubBtUz40qh2VmEZIV/RPocfIPMEhtNtecFMGekLOGMz
-         7/IQ==
-X-Gm-Message-State: AOJu0YxeKN2sz+2UWZaNWk2fpIwmn34m/S2EcJuza52JjTIy1tcLcBlW
-	sdsjM+te8dTPR/The2hm4aC6ZhWm3fLOhWR/v3Grteg2sKFW70pgsvxWNkZE4/U=
-X-Google-Smtp-Source: AGHT+IHnxbGaADuzPzhsRwpihnt7TlQp4Jv+4CgR5BaN9LOP9hfqFhkfMtk5yaw27R7dHOFcHll7Rw==
-X-Received: by 2002:a05:600c:a4c:b0:426:6e9a:7a1e with SMTP id 5b1f17b1804b1-428e6b95ac9mr124815655e9.35.1723009460544;
-        Tue, 06 Aug 2024 22:44:20 -0700 (PDT)
+        bh=G0OWf6ez8Gxgf5JPBmv/oBu1hvtNwPXnbUW+1HDzI78=;
+        b=LMfN3E/FUIurzEv4u3AoTMzTNHKcjfyNfPoN+8xa/0JEtdc4kBYOnYKPHnSAYcKjUA
+         +2O7gdlwER3kiJkW+A5Q/JfLJuOe9ia3hM005bWE+nXtask2rC4cZ2qY0XkGcBuqQgJg
+         vY7GEjU3bT4Lza4JBpbkPYYaPKy5oFHPTM/I5e2ZqGHVWiXTMHMHnKYhf5i/hnm35aUO
+         Z9GvQHTxQX1Q+IPUiELE6ZlNO0CUBDBU2zkR9NDgYNkYgVF/pp+B7T2TGItGVtQyTdrs
+         QFL23IARHm0KbdXiASdcVNBN34DJCA02NaEPR2kZYt3oE+tloCwSyAs5/n8AFypl4qqs
+         m5xw==
+X-Gm-Message-State: AOJu0YwMCYC6lIWnPy+TDf6ZW31DHRLNctVXrPCnV0VQ14BD/eVnHgYx
+	QArGunIT1WeuLyK0TZhIh0xD7JqkwrhGHkIdfCXzmPDoDz/P+re/iNSla+40OZE=
+X-Google-Smtp-Source: AGHT+IHc5vuzTBW4h6d1QGoBakXdzthyZ6QBCEOqs6EeG+t7ZawahJ0UefaucaaNo9LxA4PEzcg4DA==
+X-Received: by 2002:a5d:64a1:0:b0:367:43ce:9c91 with SMTP id ffacd0b85a97d-36bbc0f9fb6mr13352499f8f.27.1723009490152;
+        Tue, 06 Aug 2024 22:44:50 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429057aa0bbsm11225755e9.26.2024.08.06.22.44.19
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36bbd06d7dasm14685983f8f.97.2024.08.06.22.44.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Aug 2024 22:44:20 -0700 (PDT)
-Message-ID: <2da06dac-7a1a-461c-956d-13b74320723e@linaro.org>
-Date: Wed, 7 Aug 2024 07:44:18 +0200
+        Tue, 06 Aug 2024 22:44:49 -0700 (PDT)
+Message-ID: <6ff63eb7-81f4-4d3e-b96f-890432ec184a@linaro.org>
+Date: Wed, 7 Aug 2024 07:44:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clock: fix C3 PLL input parameter
+Subject: Re: [PATCH 3/3] arm64: dts: amlogic: add C3 AW419 board
 To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
  Krzysztof Kozlowski <krzk@kernel.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
@@ -82,9 +82,9 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20240806-c3_add_node-v1-0-c0de41341632@amlogic.com>
- <20240806-c3_add_node-v1-1-c0de41341632@amlogic.com>
- <b63fe216-ee29-489e-a175-e1525ac12722@kernel.org>
- <86b01ecb-6ca8-496e-b3a8-0b21bb951a60@amlogic.com>
+ <20240806-c3_add_node-v1-3-c0de41341632@amlogic.com>
+ <c82b6e70-8f2f-4b37-9186-7c49aea019bd@kernel.org>
+ <59f37c77-d57b-4568-ad9e-6d50791ae5f7@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,10 +131,11 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <86b01ecb-6ca8-496e-b3a8-0b21bb951a60@amlogic.com>
+In-Reply-To: <59f37c77-d57b-4568-ad9e-6d50791ae5f7@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240806_224422_585653_0A001FE0 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20240806_224452_093566_2EE4E1E4 
+X-CRM114-Status: UNSURE (   6.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,63 +152,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 07/08/2024 03:55, Xianwei Zhao wrote:
-> Hi Krzysztof,
->      Thanks for your review.
-> 
-> On 2024/8/6 21:10, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
+On 07/08/2024 04:37, Xianwei Zhao wrote:
+>>> +#include "amlogic-c3.dtsi"
+>>> +
+>>> +/ {
+>>> +     model = "Amlogic C308l aw419 Development Board";
+>>> +     compatible = "amlogic,aw419", "amlogic,c3";
 >>
->> On 06/08/2024 12:27, Xianwei Zhao via B4 Relay wrote:
->>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>
->>> Add C3 PLL controller input clock parameters "fix".
+>> Where are the bindings? Why do you add bindings without boards? Or
+>> boards without bindings?
 >>
->> What is "parameters" here? Why you are adding it? Is it missing?
->> Something is not working?
->>
-> Yes. The previous submission was lost.
+> The bindings of board aw419 was submitted with board aw409.
+> The commit number is cb3f4e8cacfa7b32ed8b9dff1282c0d4aaf42e88.
 
-What submission is lost?
-
-> 
->>>
->>> Fixes: 0e6be855a96d ("dt-bindings: clock: add Amlogic C3 PLL clock controller")
->>
->> Why? What bug are you fixing?
-> 
-> The input clock of PLL clock controller need the clock whose fw_name is 
-> called "fix".
-
-Then explain this in commit msg.
-
->>
->>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> ---
->>>   Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml | 7 +++++--
->>>   1 file changed, 5 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
->>> index 43de3c6fc1cf..700865cc9792 100644
->>> --- a/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
->>> +++ b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
->>> @@ -24,11 +24,13 @@ properties:
->>>       items:
->>>         - description: input top pll
->>>         - description: input mclk pll
->>> +      - description: input fix pll
->>>
->>>     clock-names:
->>>       items:
->>>         - const: top
->>>         - const: mclk
->>> +      - const: fix
->>
->> and that's not an ABI break because?
-> This is "fixed" clock.
-> I will modify "fix" to "fixed",in next version.
-
-With "fixed" it is still ABI break, right?
+Why are you adding bindings separate from DTS?
 
 Best regards,
 Krzysztof
