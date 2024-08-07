@@ -4,85 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F17AC3DA7F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Aug 2024 09:16:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29943C52D6F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Aug 2024 09:32:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RxoiCKb9ghTvNUTJTcKHYkVYnYivk1aoPswFyNk3zdU=; b=Ar8rr07iHQYvyQ
-	HlWtuj4gAxqGJvB2BE1qNZq1wGEGEtsk27CPjWQ3VGGoKJalwUVDi/zzrI3va1fpbH8IT20BXGPP4
-	8ybgFyD2Mwd2r6FtDRmrkQBGr7VD9oJuVP5FwQNZITTsm7HAaoRfebwq3Cj2ScYLMk6+Dpp9xOzVX
-	ImtVcHKWh4cv7ZHsjFozfKPaMIpFaNn/fA5Wrg4m9gUV3ow5MsZ+/RPSPP9AHCZP/GC9fAEw8gt7l
-	sMVV3adkiLf31dxzQEn5zsPK2hSf8dbIBkxalB+nwrJVguETRxUexaX9/hCeaPpP4qxxHjkFzAZxV
-	PfxKvV319n0UmF0nIefg==;
+	List-Owner; bh=Xu5KgtBoTwMS8jsOAP3NKXS9efaBn2Yn8XyWDH5VmRI=; b=RXN+K67VjaGzkF
+	MFDU6Rzg4Hrh6LZE8auJv5OMO6KUMRhD+zSGRHe83GhrhU/No7FRZk51yH/jdYB1SXW7OE7e0OLCw
+	UEVLLGnitrQs8DwWWm6784hfT42svvvOzds1Tm3z0UrfDpZf/+4fIinkjUS1jTmJ6EBEt9YHU5wvt
+	c5lngh5rvsxlco3IYVOEQKyVWAEpqHfvbgXTozt6ue6FM1A5cXCgbdfdoMisOEzM+NrbQioRhOAWM
+	0d2kt1GoQjTZDrJFN9Fv27WGoObBek+ywGwZ7UPdObskoCJo5b8o5WeE2FqXZXjDyDzzDB62EioUm
+	YnJt3dIT0BurHxQBXXVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbcmC-00000004VPm-3Hde;
-	Wed, 07 Aug 2024 09:16:12 +0000
-Received: from mail-lj1-x22a.google.com ([2a00:1450:4864:20::22a])
+	id 1sbd1M-00000004YmO-1xco;
+	Wed, 07 Aug 2024 09:31:52 +0000
+Received: from smtp-18.smtpout.orange.fr ([80.12.242.18] helo=smtp.smtpout.orange.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbcj1-00000004UTP-1bcQ
+	id 1sbd0k-00000004Ybu-2vmw
 	for linux-amlogic@lists.infradead.org;
-	Wed, 07 Aug 2024 09:12:58 +0000
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2ef27bfd15bso15898121fa.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 07 Aug 2024 02:12:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723021973; x=1723626773; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AXJcefWBGwCjqo+n8nUM/WZjz4KUu6Dr7gpS34TWtOM=;
-        b=qxb/v0/oJ9FJkrJ0Y8qyW+9fUwHHqaToxTnGj3n+PdZpePXF+L3IRVP54IFZ/GLIWO
-         UDwpib4uisZEMzK8vtvfG2RXN2MA6Fzs8jp07DmVgSzqLitPAUaYGWjI0R4P7JV34/Wt
-         K8hBwXG8Kha6wuwMwj+wdy+un4I/QbjRc2Isr8l6YWK4sRxKDU5HVQZ8tePTiUBcqkl/
-         QqPKUYkTBHw7FOqkmeWZDZ5B0Id8YYwZQTldQoaC8YrNpUvw8UC0vEIWga0rbw/Y98Tf
-         SicS0z3RKLmJujDeRHj78a9GjOpfUYHMej/r+7iWbSkr6zKI8MEazxPVAeo8qMWNh9sR
-         xerw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723021973; x=1723626773;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AXJcefWBGwCjqo+n8nUM/WZjz4KUu6Dr7gpS34TWtOM=;
-        b=Q7awCKz3bmKGHhcfIz72mJZ1XfiY6X8+JoxwMZfCVKkG0Qh61C3fEvsbv71lpofIyq
-         D7RiiNnOSCVIeOCpu0NsC21cwW6FOGryAqs08O25l74Pvp41tsBMDAnU04Nt4MWNesy8
-         EiB6s9+9C2K9fsZXHSBJfMhUj3Tlm2qtVUqEAsv/FWuZC7oamZ+oJwLjqt+UDZoPO5qJ
-         HXnGqBzrW7eKHFgIEbZRFwhl7v4GAEqFy+7H4IsDES9vhYyE54QSN4RyWhK9uG6DP4XD
-         o9XoK23z+ciUO77IuZKwB7/jOZ6RmkTEBl0/iXsKDS9q+BEgFosh5d+Jn3ZG+5/6FbXK
-         hgww==
-X-Forwarded-Encrypted: i=1; AJvYcCUpSvIP7ZOXpu7g2I2GOUAV+wCVffGFtiCxmey4RnaH7WVAPG4pcrTGQ/f7B5/+xoVuL/QYz3UzMjN4OlUHfk9HpGV8Me23TgFAeL50CqOFyQg=
-X-Gm-Message-State: AOJu0YzCY4pRK55UK5eKaqUE5KPXJYTF3ByOLso5VdpHosNcm28ICi0W
-	KCEmblehNLisJjPHM3N9QQW4sXOTvD+ISVWtq628u/teRa1tCMzDml1U58tMGxs=
-X-Google-Smtp-Source: AGHT+IFQOHCltwKQCBXQPLStP2Dg6b510B5NipglQzmC2gXIAhpoliwnnvlnRgikWAIyVrNs5a43UQ==
-X-Received: by 2002:a2e:91d0:0:b0:2ef:1c0f:d490 with SMTP id 38308e7fff4ca-2f15ab0c2a1mr126633751fa.39.1723021973213;
-        Wed, 07 Aug 2024 02:12:53 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:90f1:3c4c:261c:b0f5])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429059cbfaesm17923005e9.42.2024.08.07.02.12.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Aug 2024 02:12:52 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
-  Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
- <airlied@gmail.com>,  Daniel Vetter <daniel@ffwll.ch>,  Kevin Hilman
- <khilman@baylibre.com>,  dri-devel@lists.freedesktop.org,
-  linux-amlogic@lists.infradead.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/9] drm/meson: dw-hdmi: use matched data
-In-Reply-To: <CAFBinCAaZumGU6dOq0RrHRTQV=MejTJ=RW0P_6tQFOG9vybY6g@mail.gmail.com>
-	(Martin Blumenstingl's message of "Tue, 6 Aug 2024 23:03:25 +0200")
-References: <20240730125023.710237-1-jbrunet@baylibre.com>
-	<20240730125023.710237-8-jbrunet@baylibre.com>
-	<CAFBinCAaZumGU6dOq0RrHRTQV=MejTJ=RW0P_6tQFOG9vybY6g@mail.gmail.com>
-Date: Wed, 07 Aug 2024 11:12:52 +0200
-Message-ID: <1j5xsczoff.fsf@starbuckisacylon.baylibre.com>
+	Wed, 07 Aug 2024 09:31:19 +0000
+Received: from fedora.home ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id bd0dsp4BgEfqMbd0gsKOn2; Wed, 07 Aug 2024 11:31:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1723023070;
+	bh=564hBimGk2DDlvujlmab4Dw5OpWEdelZ/sCpuI9a0Gc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=mMuB8wFAKvFx5syV9wGy9kKdAfKqcHJ1X0j5Jbl4UP8YjbF374MpGMkwlP+GHzwQ3
+	 LFuN1zvabOdePyYNA9JH8udA6foPlTabN0DuwtOtsDEny61Tv2zoRs+ssezWQv4TBS
+	 Oabun2ZlyLQhOtlyIOKFqfeFHXKGTqhgpOpEDQvA7uOk0C0nm9cwsFCjZhfnDpGMdR
+	 0D9zyLO36m8WBvgXTHPcJ9wdbfZ/sjw4v1v9+Mkenpoj1vQu0xg5ZjqPK9BDW06oqP
+	 DBgfi6A4tuWyerM3UaGookV5SNp7E4xpiqg+FIbv6Oec2vv/60WcmIRLxHCdB9ejjJ
+	 zNUbAd0NGMpgQ==
+X-ME-Helo: fedora.home
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Wed, 07 Aug 2024 11:31:10 +0200
+X-ME-IP: 90.11.132.44
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: linus.walleij@linaro.org,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com
+Cc: linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	kernel-janitors@vger.kernel.org,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Subject: [PATCH 1/3] pinctrl: meson: Constify struct meson_pmx_group and meson_pmx_func
+Date: Wed,  7 Aug 2024 11:30:55 +0200
+Message-ID: <18676f51c891782c9c13bd469ec57041e9a6e0ff.1723022467.git.christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <cover.1723022467.git.christophe.jaillet@wanadoo.fr>
+References: <cover.1723022467.git.christophe.jaillet@wanadoo.fr>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240807_021255_468519_86DCC5E2 
-X-CRM114-Status: GOOD (  20.84  )
+X-CRM114-CacheID: sfid-20240807_023115_082862_0B76BFDE 
+X-CRM114-Status: GOOD (  12.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,57 +77,473 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlIDA2IEF1ZyAyMDI0IGF0IDIzOjAzLCBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4u
-Ymx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPiB3cm90ZToKCj4gSGkgSmVyb21lLAo+Cj4gT24g
-VHVlLCBKdWwgMzAsIDIwMjQgYXQgMjo1MOKAr1BNIEplcm9tZSBCcnVuZXQgPGpicnVuZXRAYmF5
-bGlicmUuY29tPiB3cm90ZToKPiBbLi4uXQo+PiArICAgICAgIH0sIHsKPj4gKyAgICAgICAgICAg
-ICAgIC5saW1pdCA9IDI5NzAwMCwKPj4gKyAgICAgICAgICAgICAgIC5yZWdzID0gZ3hiYl8zZ19y
-ZWdzLAo+PiArICAgICAgICAgICAgICAgLnJlZ19udW0gPSBBUlJBWV9TSVpFKGd4YmJfM2dfcmVn
-cykKPiBKdXN0IGFzIGEgc2lkZS1ub3RlOiB0aGlzIGxvb2tlZCBvZGQgd2hlbiByZWFkaW5nIGZv
-ciB0aGUgZmlyc3QgdGltZQo+IGFzIEkgdGhvdWdodCB0aGF0IGl0J3MgYSB0eXBvIChhbmQgaXQg
-c2hvdWxkIGJlIGd4YmJfMmc5N19yZWdzIC0gYnV0Cj4gdGhhdCBuYW1lIGlzIG5vdCB1c2VkKS4K
-Ckkga25vdyBpdCBsb29rcyBvZGQgYnV0IHRoZXJlIGlzIGEgKHBlcmhhcHMgc2lsbHkpIHJlYXNv
-biBmb3IgaXQuCgpUaGUgbmFtZXMgYXJlIGRlcml2ZWQgZnJvbSBQSFkgbW9kZXMgdXNlZCBpbiB0
-aGUgQW1sb2dpYyB2ZW5kb3IgdHJlZS4KVGhvc2UgYXJlIG1hZ2ljIHBva2VzIGFuZCB3ZSBkb24n
-dCByZWFsbHkga25vdyBhbnl0aGluZyBhYm91dCBpdC4gVGhlCnZlbmRvciB0cmVlIG9mdGVuIHVw
-ZGF0ZSBhbmQgbWFpbmxpbmUgZG9lcyBub3QgYWx3YXlzIGZvbGxvdy4gSSBrbm93CnRoYXQgd2Ug
-YXJlIG5vdCAxMDAlIGFsaWduZWQgcmlnaHQgbm93LiBObyBvbmUga25vd3Mgd2hhdCBicmFuY2gg
-aXMgdGhlCnJlZmVyZW5jZSB0byBmb2xsb3cgYW55d2F5LgoKVXNpbmcgdGhlIHNhbWUgbmFtZXMg
-aXMgd2F5IHRvIGxlYXZlIGJyZWFkY3J1bWJzIHRoYXQgbWF5IGhlbHAgcGVvcGxlCmxpbmtpbmcg
-dGhpcyB0byB2ZW5kb3IgY29kZSBsYXRlciBvbiAoaWYgbmVjZXNzYXJ5KQoKSSB0aGluayB0aGUg
-bW9kZXMgYXJlIG5hbWVkIGFmdGVyIHRoZSAocm91bmRlZCkgYmFuZHdpZHRoIHRoZXkgcHJvdmlk
-ZSwKbm90IG5lY2Vzc2FyaWx5IHRoZSBsaW1pdCB3ZSBhcmUgdXNpbmcgdG8gcGljayBpdCAuLi4g
-ZXhjZXB0IGZvciBkZWYsCndoaWNoIG1pZ2h0IGp1c3QgbWVhbiAnZGVmYXVsdCcgSSBndWVzcy4K
-Cmh0dHBzOi8vZ2l0aHViLmNvbS9raGFkYXMvbGludXgvYmxvYi9raGFkYXMtdmltcy01LjQueS9k
-cml2ZXJzL2FtbG9naWMvbWVkaWEvdm91dC9oZG1pdHgvaGRtaV90eF8yMC9ody9od19nMTJhLmMj
-TDU4OQoKSSBmb2N1c2VkIG9uIGtlZXBpbmcgbWFpbmxpbmUgYXMgaXQgd2FzIGZvciB0aGUgdmFs
-dWUgcG9rZWQsIHJldGFpbmluZwphcyBtdWNoIGluZm9ybWF0aW9uIGFzIHBvc3NpYmxlIHRvIGZp
-bmQgb3VyIHdheSBiYWNrLgoKWW91ciBwcm9wb3NlZCBuYW1pbmcgY29udmVudGlvbiBpcyBmaW5l
-IGJ5IG1lIGFzIHdlbGwuCgo+Cj4gWy4uLl0KPj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgbWVzb25f
-ZHdfaGRtaV9zcGVlZCBneGxfc3BlZWRzW10gPSB7Cj4+ICsgICAgICAgewo+PiArICAgICAgICAg
-ICAgICAgLmxpbWl0ID0gMzcxMjUwLAo+PiArICAgICAgICAgICAgICAgLnJlZ3MgPSBneGxfM2c3
-X3JlZ3MsCj4+ICsgICAgICAgICAgICAgICAucmVnX251bSA9IEFSUkFZX1NJWkUoZ3hsXzNnN19y
-ZWdzKQo+PiArICAgICAgIH0sIHsKPj4gKyAgICAgICAgICAgICAgIC5saW1pdCA9IDI5NzAwMCwK
-Pj4gKyAgICAgICAgICAgICAgIC5yZWdzID0gZ3hsXzNnX3JlZ3MsCj4+ICsgICAgICAgICAgICAg
-ICAucmVnX251bSA9IEFSUkFZX1NJWkUoZ3hsXzNnX3JlZ3MpCj4+ICsgICAgICAgfSwgewo+PiAr
-ICAgICAgICAgICAgICAgLmxpbWl0ID0gMTQ4NTAwLAo+PiArICAgICAgICAgICAgICAgLnJlZ3Mg
-PSBneGxfZGVmX3JlZ3MsCj4+ICsgICAgICAgICAgICAgICAucmVnX251bSA9IEFSUkFZX1NJWkUo
-Z3hsX2RlZl9yZWdzKQo+IHRoaXMgaXMgbm90IGNvbnNpc3RlbnQgd2l0aCB3aGF0IHdlIGhhdmUg
-YWJvdmUgb3IgYmVsb3cgc28gaXQgZWl0aGVyCj4gbmVlZHMgdG8gYmUgdXBkYXRlZCBvciBhIGNv
-bW1lbnQuCj4gSSB0aGluayB0aGlzIHNob3VsZCBiZSBjYWxsZWQgZ3hsXzFnNDhfcmVncwo+Cj4+
-ICsgICAgICAgfSwgewo+PiArICAgICAgICAgICAgICAgLnJlZ3MgPSBneGxfMjcwbV9yZWdzLAo+
-PiArICAgICAgICAgICAgICAgLnJlZ19udW0gPSBBUlJBWV9TSVpFKGd4bF8yNzBtX3JlZ3MpCj4g
-YW5kIHRoaXMgc2hvdWxkIGJlIGNhbGxlZCBneGxfZGVmX3JlZ3MKCmRlZiBpbiBub3QgdGhlIGxh
-c3Qgb25lLCBpdCBpcyBhbm90aGVyIG5hbWUgdXNlZCBieSBBTUwKCkl0IHNvIGhhcHBlbnMgdGhh
-dCBvbiBtYWlubGluZSB3aXRoIHdlIGhhdmUgb25seSBwdXQgdGhlIFNELzI3ME0gZm9yCmd4bC4g
-SW4gdGhlIEFNTCB0cmVlLCBpdCBkb2VzIGV4aXN0IGZvciBHMTIgdG9vLiBNYXliZSBpdCB3aWxs
-IGJlIG5lZWRlZCBzb21lZGF5LgoKPgo+Cj4KPiBCZXN0IHJlZ2FyZHMsCj4gTWFydGluCgotLSAK
-SmVyb21lCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwps
-aW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5v
-cmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxv
-Z2ljCg==
+'struct meson_pmx_group' and 'struct meson_pmx_func' are not modified in
+these drivers.
+
+Constifying these structures moves some data to a read-only section, so
+increase overall security.
+
+
+On a x86_64, with allmodconfig:
+Before:
+======
+   text	   data	    bss	    dec	    hex	filename
+  10818	  11696	      0	  22514	   57f2	drivers/pinctrl/meson/pinctrl-amlogic-c3.o
+  17198	  17680	      0	  34878	   883e	drivers/pinctrl/meson/pinctrl-amlogic-t7.o
+  14161	  11200	      0	  25361	   6311	drivers/pinctrl/meson/pinctrl-meson8b.o
+  17348	  12512	      0	  29860	   74a4	drivers/pinctrl/meson/pinctrl-meson8.o
+   3070	    324	      0	   3394	    d42	drivers/pinctrl/meson/pinctrl-meson8-pmx.o
+   9317	   9648	      0	  18965	   4a15	drivers/pinctrl/meson/pinctrl-meson-a1.o
+  12115	  11664	      0	  23779	   5ce3	drivers/pinctrl/meson/pinctrl-meson-axg.o
+   2470	    120	      0	   2590	    a1e	drivers/pinctrl/meson/pinctrl-meson-axg-pmx.o
+  15125	  15224	      0	  30349	   768d	drivers/pinctrl/meson/pinctrl-meson-g12a.o
+  13800	  10160	      0	  23960	   5d98	drivers/pinctrl/meson/pinctrl-meson-gxbb.o
+  13040	   9648	      0	  22688	   58a0	drivers/pinctrl/meson/pinctrl-meson-gxl.o
+  20507	   1132	     48	  21687	   54b7	drivers/pinctrl/meson/pinctrl-meson.o
+  12212	  12880	      0	  25092	   6204	drivers/pinctrl/meson/pinctrl-meson-s4.o
+
+After:
+=====
+   text	   data	    bss	    dec	    hex	filename
+  21410	   1096	      0	  22506	   57ea	drivers/pinctrl/meson/pinctrl-amlogic-c3.o
+  33358	   1552	      0	  34910	   885e	drivers/pinctrl/meson/pinctrl-amlogic-t7.o
+  24049	   1336	      0	  25385	   6329	drivers/pinctrl/meson/pinctrl-meson8b.o
+  28804	   1048	      0	  29852	   749c	drivers/pinctrl/meson/pinctrl-meson8.o
+   3070	    324	      0	   3394	    d42	drivers/pinctrl/meson/pinctrl-meson8-pmx.o
+  18085	    888	      0	  18973	   4a1d	drivers/pinctrl/meson/pinctrl-meson-a1.o
+  22675	   1112	      0	  23787	   5ceb	drivers/pinctrl/meson/pinctrl-meson-axg.o
+   2470	    120	      0	   2590	    a1e	drivers/pinctrl/meson/pinctrl-meson-axg-pmx.o
+  29045	   1320	      0	  30365	   769d	drivers/pinctrl/meson/pinctrl-meson-g12a.o
+  22824	   1136	      0	  23960	   5d98	drivers/pinctrl/meson/pinctrl-meson-gxbb.o
+  21616	   1064	      0	  22680	   5898	drivers/pinctrl/meson/pinctrl-meson-gxl.o
+  20507	   1132	     48	  21687	   54b7	drivers/pinctrl/meson/pinctrl-meson.o
+  23924	   1168	      0	  25092	   6204	drivers/pinctrl/meson/pinctrl-meson-s4.o
+
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+Compile tested-only.
+---
+ drivers/pinctrl/meson/pinctrl-amlogic-c3.c    | 4 ++--
+ drivers/pinctrl/meson/pinctrl-amlogic-t7.c    | 4 ++--
+ drivers/pinctrl/meson/pinctrl-meson-a1.c      | 4 ++--
+ drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c | 4 ++--
+ drivers/pinctrl/meson/pinctrl-meson-axg.c     | 8 ++++----
+ drivers/pinctrl/meson/pinctrl-meson-g12a.c    | 8 ++++----
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c    | 8 ++++----
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c     | 8 ++++----
+ drivers/pinctrl/meson/pinctrl-meson-s4.c      | 4 ++--
+ drivers/pinctrl/meson/pinctrl-meson.c         | 2 +-
+ drivers/pinctrl/meson/pinctrl-meson.h         | 4 ++--
+ drivers/pinctrl/meson/pinctrl-meson8-pmx.c    | 6 +++---
+ drivers/pinctrl/meson/pinctrl-meson8.c        | 8 ++++----
+ drivers/pinctrl/meson/pinctrl-meson8b.c       | 8 ++++----
+ 14 files changed, 40 insertions(+), 40 deletions(-)
+
+diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-c3.c b/drivers/pinctrl/meson/pinctrl-amlogic-c3.c
+index 04f1e87bae99..9c14a8781680 100644
+--- a/drivers/pinctrl/meson/pinctrl-amlogic-c3.c
++++ b/drivers/pinctrl/meson/pinctrl-amlogic-c3.c
+@@ -375,7 +375,7 @@ static const unsigned int spi_a_mosi_a_pins[]		= { GPIOA_3 };
+ static const unsigned int gen_clk_a4_pins[]		= { GPIOA_4 };
+ static const unsigned int clk12_24_a_pins[]		= { GPIOA_5 };
+ 
+-static struct meson_pmx_group c3_periphs_groups[] = {
++static const struct meson_pmx_group c3_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOE_0),
+ 	GPIO_GROUP(GPIOE_1),
+ 	GPIO_GROUP(GPIOE_2),
+@@ -987,7 +987,7 @@ static const char * const lcd_groups[] = {
+ 	"lcd_clk_a", "lcd_clk_x", "lcd_hs", "lcd_vs",
+ };
+ 
+-static struct meson_pmx_func c3_periphs_functions[] = {
++static const struct meson_pmx_func c3_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(uart_a),
+ 	FUNCTION(uart_b),
+diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-t7.c b/drivers/pinctrl/meson/pinctrl-amlogic-t7.c
+index 0aed5de3f068..121158cce4f7 100644
+--- a/drivers/pinctrl/meson/pinctrl-amlogic-t7.c
++++ b/drivers/pinctrl/meson/pinctrl-amlogic-t7.c
+@@ -535,7 +535,7 @@ static const unsigned int i2c0_sck_h_pins[]		= { GPIOH_7 };
+ /* Bank H func3 */
+ static const unsigned int pcieck_reqn_h_pins[]		= { GPIOH_2 };
+ 
+-static struct meson_pmx_group t7_periphs_groups[] = {
++static const struct meson_pmx_group t7_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOB_0),
+ 	GPIO_GROUP(GPIOB_1),
+ 	GPIO_GROUP(GPIOB_2),
+@@ -1443,7 +1443,7 @@ static const char * const mic_mute_groups[] = {
+ 	"mic_mute_key", "mic_mute_led",
+ };
+ 
+-static struct meson_pmx_func t7_periphs_functions[] = {
++static const struct meson_pmx_func t7_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(emmc),
+ 	FUNCTION(nor),
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-a1.c b/drivers/pinctrl/meson/pinctrl-meson-a1.c
+index d2ac9ca72a3e..11368ee01452 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-a1.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-a1.c
+@@ -339,7 +339,7 @@ static const unsigned int tst_out11_pins[]		= { GPIOA_11 };
+ static const unsigned int mute_key_pins[]		= { GPIOA_4 };
+ static const unsigned int mute_en_pins[]		= { GPIOA_5 };
+ 
+-static struct meson_pmx_group meson_a1_periphs_groups[] = {
++static const struct meson_pmx_group meson_a1_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOP_0),
+ 	GPIO_GROUP(GPIOP_1),
+ 	GPIO_GROUP(GPIOP_2),
+@@ -832,7 +832,7 @@ static const char * const mute_groups[] = {
+ 	"mute_key", "mute_en",
+ };
+ 
+-static struct meson_pmx_func meson_a1_periphs_functions[] = {
++static const struct meson_pmx_func meson_a1_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(psram),
+ 	FUNCTION(pwm_a),
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c b/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
+index cad411d90727..2ae802ee8241 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
+@@ -82,8 +82,8 @@ static int meson_axg_pmx_set_mux(struct pinctrl_dev *pcdev,
+ 	int i;
+ 	int ret;
+ 	struct meson_pinctrl *pc = pinctrl_dev_get_drvdata(pcdev);
+-	struct meson_pmx_func *func = &pc->data->funcs[func_num];
+-	struct meson_pmx_group *group = &pc->data->groups[group_num];
++	const struct meson_pmx_func *func = &pc->data->funcs[func_num];
++	const struct meson_pmx_group *group = &pc->data->groups[group_num];
+ 	struct meson_pmx_axg_data *pmx_data =
+ 		(struct meson_pmx_axg_data *)group->data;
+ 
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+index 8f4e7154b73f..9fb99af8a348 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+@@ -352,7 +352,7 @@ static const unsigned int tdmb_dout2_pins[] = {GPIOA_12};
+ static const unsigned int tdmb_din3_pins[] = {GPIOA_13};
+ static const unsigned int tdmb_dout3_pins[] = {GPIOA_13};
+ 
+-static struct meson_pmx_group meson_axg_periphs_groups[] = {
++static const struct meson_pmx_group meson_axg_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOZ_0),
+ 	GPIO_GROUP(GPIOZ_1),
+ 	GPIO_GROUP(GPIOZ_2),
+@@ -675,7 +675,7 @@ static const unsigned int jtag_ao_tms_pins[] = {GPIOAO_7};
+ /* gen_clk */
+ static const unsigned int gen_clk_ee_pins[] = {GPIOAO_13};
+ 
+-static struct meson_pmx_group meson_axg_aobus_groups[] = {
++static const struct meson_pmx_group meson_axg_aobus_groups[] = {
+ 	GPIO_GROUP(GPIOAO_0),
+ 	GPIO_GROUP(GPIOAO_1),
+ 	GPIO_GROUP(GPIOAO_2),
+@@ -955,7 +955,7 @@ static const char * const gen_clk_ee_groups[] = {
+ 	"gen_clk_ee",
+ };
+ 
+-static struct meson_pmx_func meson_axg_periphs_functions[] = {
++static const struct meson_pmx_func meson_axg_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(emmc),
+ 	FUNCTION(nor),
+@@ -987,7 +987,7 @@ static struct meson_pmx_func meson_axg_periphs_functions[] = {
+ 	FUNCTION(tdmc),
+ };
+ 
+-static struct meson_pmx_func meson_axg_aobus_functions[] = {
++static const struct meson_pmx_func meson_axg_aobus_functions[] = {
+ 	FUNCTION(gpio_aobus),
+ 	FUNCTION(uart_ao_a),
+ 	FUNCTION(uart_ao_b),
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-g12a.c b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
+index 32830269a5b4..28a3a06e40e3 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-g12a.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
+@@ -436,7 +436,7 @@ static const unsigned int tdm_c_dout1_z_pins[]		= { GPIOZ_3 };
+ static const unsigned int tdm_c_dout2_z_pins[]		= { GPIOZ_4 };
+ static const unsigned int tdm_c_dout3_z_pins[]		= { GPIOZ_5 };
+ 
+-static struct meson_pmx_group meson_g12a_periphs_groups[] = {
++static const struct meson_pmx_group meson_g12a_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOZ_0),
+ 	GPIO_GROUP(GPIOZ_1),
+ 	GPIO_GROUP(GPIOZ_2),
+@@ -860,7 +860,7 @@ static const unsigned int tdm_ao_b_dout2_pins[]		= { GPIOAO_6 };
+ /* mclk0_ao */
+ static const unsigned int mclk0_ao_pins[]		= { GPIOAO_9 };
+ 
+-static struct meson_pmx_group meson_g12a_aobus_groups[] = {
++static const struct meson_pmx_group meson_g12a_aobus_groups[] = {
+ 	GPIO_GROUP(GPIOAO_0),
+ 	GPIO_GROUP(GPIOAO_1),
+ 	GPIO_GROUP(GPIOAO_2),
+@@ -1253,7 +1253,7 @@ static const char * const mclk0_ao_groups[] = {
+ 	"mclk0_ao",
+ };
+ 
+-static struct meson_pmx_func meson_g12a_periphs_functions[] = {
++static const struct meson_pmx_func meson_g12a_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(emmc),
+ 	FUNCTION(nor),
+@@ -1295,7 +1295,7 @@ static struct meson_pmx_func meson_g12a_periphs_functions[] = {
+ 	FUNCTION(tdm_c),
+ };
+ 
+-static struct meson_pmx_func meson_g12a_aobus_functions[] = {
++static const struct meson_pmx_func meson_g12a_aobus_functions[] = {
+ 	FUNCTION(gpio_aobus),
+ 	FUNCTION(uart_ao_a),
+ 	FUNCTION(uart_ao_b),
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+index 2867f397fec6..64f43f4bddb2 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+@@ -307,7 +307,7 @@ static const unsigned int spdif_out_ao_13_pins[] = { GPIOAO_13 };
+ static const unsigned int ao_cec_pins[]		= { GPIOAO_12 };
+ static const unsigned int ee_cec_pins[]		= { GPIOAO_12 };
+ 
+-static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
++static const struct meson_pmx_group meson_gxbb_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOZ_0),
+ 	GPIO_GROUP(GPIOZ_1),
+ 	GPIO_GROUP(GPIOZ_2),
+@@ -541,7 +541,7 @@ static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
+ 	GROUP(sdcard_clk,	2,	11),
+ };
+ 
+-static struct meson_pmx_group meson_gxbb_aobus_groups[] = {
++static const struct meson_pmx_group meson_gxbb_aobus_groups[] = {
+ 	GPIO_GROUP(GPIOAO_0),
+ 	GPIO_GROUP(GPIOAO_1),
+ 	GPIO_GROUP(GPIOAO_2),
+@@ -798,7 +798,7 @@ static const char * const cec_ao_groups[] = {
+ 	"ao_cec", "ee_cec",
+ };
+ 
+-static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
++static const struct meson_pmx_func meson_gxbb_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(emmc),
+ 	FUNCTION(nor),
+@@ -829,7 +829,7 @@ static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
+ 	FUNCTION(tsin_b),
+ };
+ 
+-static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
++static const struct meson_pmx_func meson_gxbb_aobus_functions[] = {
+ 	FUNCTION(gpio_aobus),
+ 	FUNCTION(uart_ao),
+ 	FUNCTION(uart_ao_b),
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+index a2f25fa02852..f812393e5b2c 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+@@ -301,7 +301,7 @@ static const unsigned int spdif_out_ao_9_pins[] = { GPIOAO_9 };
+ static const unsigned int ao_cec_pins[]		= { GPIOAO_8 };
+ static const unsigned int ee_cec_pins[]		= { GPIOAO_8 };
+ 
+-static struct meson_pmx_group meson_gxl_periphs_groups[] = {
++static const struct meson_pmx_group meson_gxl_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOZ_0),
+ 	GPIO_GROUP(GPIOZ_1),
+ 	GPIO_GROUP(GPIOZ_2),
+@@ -527,7 +527,7 @@ static struct meson_pmx_group meson_gxl_periphs_groups[] = {
+ 	GROUP(pwm_f_clk,	8,	30),
+ };
+ 
+-static struct meson_pmx_group meson_gxl_aobus_groups[] = {
++static const struct meson_pmx_group meson_gxl_aobus_groups[] = {
+ 	GPIO_GROUP(GPIOAO_0),
+ 	GPIO_GROUP(GPIOAO_1),
+ 	GPIO_GROUP(GPIOAO_2),
+@@ -763,7 +763,7 @@ static const char * const cec_ao_groups[] = {
+ 	"ao_cec", "ee_cec",
+ };
+ 
+-static struct meson_pmx_func meson_gxl_periphs_functions[] = {
++static const struct meson_pmx_func meson_gxl_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(emmc),
+ 	FUNCTION(nor),
+@@ -793,7 +793,7 @@ static struct meson_pmx_func meson_gxl_periphs_functions[] = {
+ 	FUNCTION(tsin_b),
+ };
+ 
+-static struct meson_pmx_func meson_gxl_aobus_functions[] = {
++static const struct meson_pmx_func meson_gxl_aobus_functions[] = {
+ 	FUNCTION(gpio_aobus),
+ 	FUNCTION(uart_ao),
+ 	FUNCTION(uart_ao_b),
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-s4.c b/drivers/pinctrl/meson/pinctrl-meson-s4.c
+index 60c7d5003e8a..6a6bd767ae0a 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-s4.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-s4.c
+@@ -411,7 +411,7 @@ static const unsigned int s2_demod_gpio0_pins[]		= { GPIOZ_12 };
+ static const unsigned int gen_clk_z9_pins[]		= { GPIOZ_9 };
+ static const unsigned int gen_clk_z12_pins[]		= { GPIOZ_12 };
+ 
+-static struct meson_pmx_group meson_s4_periphs_groups[] = {
++static const struct meson_pmx_group meson_s4_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOE_0),
+ 	GPIO_GROUP(GPIOE_1),
+ 
+@@ -1100,7 +1100,7 @@ static const char * const s2_demod_groups[] = {
+ 	"s2_demod_gpio3", "s2_demod_gpio2", "s2_demod_gpio1", "s2_demod_gpio0",
+ };
+ 
+-static struct meson_pmx_func meson_s4_periphs_functions[] = {
++static const struct meson_pmx_func meson_s4_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(i2c0),
+ 	FUNCTION(i2c1),
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index ef002b9dd464..1a58f135aca9 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -528,7 +528,7 @@ static int meson_pinconf_group_set(struct pinctrl_dev *pcdev,
+ 				   unsigned long *configs, unsigned num_configs)
+ {
+ 	struct meson_pinctrl *pc = pinctrl_dev_get_drvdata(pcdev);
+-	struct meson_pmx_group *group = &pc->data->groups[num_group];
++	const struct meson_pmx_group *group = &pc->data->groups[num_group];
+ 	int i;
+ 
+ 	dev_dbg(pc->dev, "set pinconf for group %s\n", group->name);
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
+index 34fc4e8612e4..395362c33d59 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.h
++++ b/drivers/pinctrl/meson/pinctrl-meson.h
+@@ -110,8 +110,8 @@ struct meson_bank {
+ struct meson_pinctrl_data {
+ 	const char *name;
+ 	const struct pinctrl_pin_desc *pins;
+-	struct meson_pmx_group *groups;
+-	struct meson_pmx_func *funcs;
++	const struct meson_pmx_group *groups;
++	const struct meson_pmx_func *funcs;
+ 	unsigned int num_pins;
+ 	unsigned int num_groups;
+ 	unsigned int num_funcs;
+diff --git a/drivers/pinctrl/meson/pinctrl-meson8-pmx.c b/drivers/pinctrl/meson/pinctrl-meson8-pmx.c
+index 7f22aa0f8e36..10adf52edda6 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson8-pmx.c
++++ b/drivers/pinctrl/meson/pinctrl-meson8-pmx.c
+@@ -32,7 +32,7 @@
+ static void meson8_pmx_disable_other_groups(struct meson_pinctrl *pc,
+ 					    unsigned int pin, int sel_group)
+ {
+-	struct meson_pmx_group *group;
++	const struct meson_pmx_group *group;
+ 	struct meson8_pmx_data *pmx_data;
+ 	int i, j;
+ 
+@@ -57,8 +57,8 @@ static int meson8_pmx_set_mux(struct pinctrl_dev *pcdev, unsigned func_num,
+ 			      unsigned group_num)
+ {
+ 	struct meson_pinctrl *pc = pinctrl_dev_get_drvdata(pcdev);
+-	struct meson_pmx_func *func = &pc->data->funcs[func_num];
+-	struct meson_pmx_group *group = &pc->data->groups[group_num];
++	const struct meson_pmx_func *func = &pc->data->funcs[func_num];
++	const struct meson_pmx_group *group = &pc->data->groups[group_num];
+ 	struct meson8_pmx_data *pmx_data =
+ 		(struct meson8_pmx_data *)group->data;
+ 	int i, ret = 0;
+diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
+index dd17100efdcf..af479d4b3e2a 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson8.c
++++ b/drivers/pinctrl/meson/pinctrl-meson8.c
+@@ -405,7 +405,7 @@ static const unsigned int i2s_out_ch01_ao_pins[] = { GPIOAO_11 };
+ 
+ static const unsigned int hdmi_cec_ao_pins[]	= { GPIOAO_12 };
+ 
+-static struct meson_pmx_group meson8_cbus_groups[] = {
++static const struct meson_pmx_group meson8_cbus_groups[] = {
+ 	GPIO_GROUP(GPIOX_0),
+ 	GPIO_GROUP(GPIOX_1),
+ 	GPIO_GROUP(GPIOX_2),
+@@ -745,7 +745,7 @@ static struct meson_pmx_group meson8_cbus_groups[] = {
+ 	GROUP(sdxc_cmd_b,	2,	4),
+ };
+ 
+-static struct meson_pmx_group meson8_aobus_groups[] = {
++static const struct meson_pmx_group meson8_aobus_groups[] = {
+ 	GPIO_GROUP(GPIOAO_0),
+ 	GPIO_GROUP(GPIOAO_1),
+ 	GPIO_GROUP(GPIOAO_2),
+@@ -1015,7 +1015,7 @@ static const char * const hdmi_cec_ao_groups[] = {
+ 	"hdmi_cec_ao"
+ };
+ 
+-static struct meson_pmx_func meson8_cbus_functions[] = {
++static const struct meson_pmx_func meson8_cbus_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(sd_a),
+ 	FUNCTION(sdxc_a),
+@@ -1051,7 +1051,7 @@ static struct meson_pmx_func meson8_cbus_functions[] = {
+ 	FUNCTION(spdif),
+ };
+ 
+-static struct meson_pmx_func meson8_aobus_functions[] = {
++static const struct meson_pmx_func meson8_aobus_functions[] = {
+ 	FUNCTION(gpio_aobus),
+ 	FUNCTION(uart_ao),
+ 	FUNCTION(remote),
+diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
+index 6cd4b3ec1b40..f1a8950d0bde 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson8b.c
++++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
+@@ -349,7 +349,7 @@ static const unsigned int eth_ref_clk_pins[]	= { DIF_3_N };
+ static const unsigned int eth_mdc_pins[]	= { DIF_4_P };
+ static const unsigned int eth_mdio_en_pins[]	= { DIF_4_N };
+ 
+-static struct meson_pmx_group meson8b_cbus_groups[] = {
++static const struct meson_pmx_group meson8b_cbus_groups[] = {
+ 	GPIO_GROUP(GPIOX_0),
+ 	GPIO_GROUP(GPIOX_1),
+ 	GPIO_GROUP(GPIOX_2),
+@@ -603,7 +603,7 @@ static struct meson_pmx_group meson8b_cbus_groups[] = {
+ 	GROUP(eth_rxd2,		7,	23),
+ };
+ 
+-static struct meson_pmx_group meson8b_aobus_groups[] = {
++static const struct meson_pmx_group meson8b_aobus_groups[] = {
+ 	GPIO_GROUP(GPIOAO_0),
+ 	GPIO_GROUP(GPIOAO_1),
+ 	GPIO_GROUP(GPIOAO_2),
+@@ -869,7 +869,7 @@ static const char * const tsin_b_groups[] = {
+ 	"tsin_d0_b", "tsin_clk_b", "tsin_sop_b", "tsin_d_valid_b"
+ };
+ 
+-static struct meson_pmx_func meson8b_cbus_functions[] = {
++static const struct meson_pmx_func meson8b_cbus_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(sd_a),
+ 	FUNCTION(sdxc_a),
+@@ -903,7 +903,7 @@ static struct meson_pmx_func meson8b_cbus_functions[] = {
+ 	FUNCTION(clk_24m),
+ };
+ 
+-static struct meson_pmx_func meson8b_aobus_functions[] = {
++static const struct meson_pmx_func meson8b_aobus_functions[] = {
+ 	FUNCTION(gpio_aobus),
+ 	FUNCTION(uart_ao),
+ 	FUNCTION(uart_ao_b),
+-- 
+2.45.2
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
