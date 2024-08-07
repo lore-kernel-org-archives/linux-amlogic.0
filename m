@@ -4,80 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5338FC52D71
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Aug 2024 14:15:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9168C52D71
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Aug 2024 15:09:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vgqTY38ed+lQCBzVIs5qTp+4zB970OnwKeAtKGhLY4k=; b=SLfjwP/4aOPmGg
-	GMLzx7d0CFnkkLjuHltF+0LZtwKs1fl+u3gvRRntOB9ZTHwV9UOTY9Zzveviy+E5rbx+kDmXI2g+k
-	kYhGtwsTUVuXJenStJnPg5xsuFrwoVpTmrDxhzcGl/y5HHBULTlaKfBLe/Rhl9kDY5bXuKp443fK2
-	U9mbv5llgn78U/1P2HvTuklLh9nyHF+4sWnzaOB4vohjYPj8A+VmqQKvd6OXIgSiLl6xSORhljrs1
-	oHnvWuLq3NQjV77uTnKLYwqZ4MmjbTc8sZAosbwmraNZ21zjUUMtlGJZjZ6oSBgoUQ2dZOQWeNFto
-	dmdUyvSqJnSYbydkH+sQ==;
+	List-Owner; bh=bJkqMofFDPJhWtTmFTDDM3lCBKMwqbmxCqHMvwngksU=; b=uRXyDZRoCNW6At
+	aXgbYZFcLwP/+vYmE8GgdwcibsjM8bxFZr4TVD5BTk+oi5BUEeOVwovqqsPHM2pubs7f811j5eX+k
+	x1/PAf4uCKtK9ZptA5Yfq9uFbpKE1OkllipoMzf3YIgGxDrW9WnhA5nx6TVBRXVJ41YCJj1UxVoHU
+	5IaG9LmUk4nTk+UuBncFnacmP1z/qj6YuUrky59QwKDUhvFxH9S1iMTU6i+pOOm6+pRTWHX+D6EhJ
+	8WFiHrUyYIljlj29LECzwu7X0C1AOE6iiFauyvQ8AFDB5+WGR3kUfJuTWRY+9qyzYnQnTbZyli4Iw
+	VdHjXyrqNm00TeJEzvUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbhRH-00000005Hyl-0HT5;
-	Wed, 07 Aug 2024 14:14:55 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1sbiHp-00000005SXv-0jiJ;
+	Wed, 07 Aug 2024 15:09:13 +0000
+Received: from smtp-30.smtpout.orange.fr ([80.12.242.30] helo=smtp.smtpout.orange.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbhQV-00000005HjM-2VAJ
-	for linux-amlogic@lists.infradead.org;
-	Wed, 07 Aug 2024 14:14:09 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4281d812d3eso17730305e9.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 07 Aug 2024 07:14:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723040045; x=1723644845; darn=lists.infradead.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8U6pF6oteZB3sbXc3seOXknJplxg/i1fuxIfbblSw1M=;
-        b=i8E0GZkgTM71fE9hLOqUxCUeYZW3Hm/RxhTcOwtp3Q8I1lgn0/by/1JsodkPwSb9lk
-         OHN0YHiknJjMj7KCqVv+kL1AW619X8OJ3vzH0aaY620ph5HwvmJKhsm9C9PNMsdzW/Pd
-         tcHwZA1UNC+hIQBT6+QYpaqxyEGspXGAV7ruJT1cuySthduQVEWfL6jInnPRTEMxmAcP
-         0lBPvWicnaa9tln9JlW4zLhQ+hEF1gdh4cBX5GeTJeUQl24+fWf0Ne0n4r+ssTixhW6Y
-         o5dWhVSWjYNt6VbZzxR8BYBqIMaPZS/pU5oq+vUGqKrsuU7YKrYg9sP/guVR9yIytynE
-         fYEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723040045; x=1723644845;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8U6pF6oteZB3sbXc3seOXknJplxg/i1fuxIfbblSw1M=;
-        b=B9WfnxaeC5DswdTa+045lAYFDJp/l98ZseoV8oMWD+E6nPExCDnHIjCOwmyAQMukoD
-         Tl/HdCTqmR/K4obuQ0lYaYX7Garx3vji6mDYw+ulcjLhqTua6Cn0JXtUwF+9AeKE9wwI
-         bHLu/y8mpFnIBFafRXiFnoVkZcMup+r1JXADthN5K009ANo+6Uki+dRzGngKAtQI18Le
-         Mkvw8gT0Z85Act9Yvp6s7rA55WGkrBsqJGQ6bSuT9UDAWJs+zrf1/q20QnOjo8EhW//M
-         9blc8mqx8PW5/+nFPVcmmK2BCOmB6ZjoSA6crp6KJ/goYT/CeES7r/9jwcr+ehQXwZRX
-         RHJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXQWjgbw7UBBWlK4u4r1u5bOpWJU0xFWti+FUtj0zznAjv5o6TVKVy+9sjaVXGSJEJ62Vqm/W0BF8oSgg2WZfVZPrQOhxmK4xBddf3B0QO1GaA=
-X-Gm-Message-State: AOJu0YzbYz+pqIWUxaUXime7wTe1DkVgYKi02amBFUPpaFAOG/TsJJl5
-	clt3zvdWqFm3FTrSbzXCDpZLuy5gNj8mSRic424ih7+9LibpecAULBdQHFyI9l4=
-X-Google-Smtp-Source: AGHT+IHFS+8FxIsgPDMxXI2119/zXQ32Pp05XpEgQOQyCV3S6/MHUfyYDHMpWs/M91Kr6YsvZoGl1g==
-X-Received: by 2002:a05:600c:4853:b0:428:fcb:962 with SMTP id 5b1f17b1804b1-428f06c44cemr111691625e9.36.1723040045344;
-        Wed, 07 Aug 2024 07:14:05 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:90f1:3c4c:261c:b0f5])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4290579fb34sm32100245e9.14.2024.08.07.07.14.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Aug 2024 07:14:04 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: linus.walleij@linaro.org,  neil.armstrong@linaro.org,
-  khilman@baylibre.com,  martin.blumenstingl@googlemail.com,
-  linux-gpio@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  linux-amlogic@lists.infradead.org,  linux-kernel@vger.kernel.org,
-  kernel-janitors@vger.kernel.org
-Subject: Re: [PATCH 0/3] pinctrl: meson: Constify some structure
-In-Reply-To: <cover.1723022467.git.christophe.jaillet@wanadoo.fr> (Christophe
-	JAILLET's message of "Wed, 7 Aug 2024 11:30:54 +0200")
-References: <cover.1723022467.git.christophe.jaillet@wanadoo.fr>
-Date: Wed, 07 Aug 2024 16:14:04 +0200
-Message-ID: <1jy158xvwz.fsf@starbuckisacylon.baylibre.com>
+	id 1sbiHA-00000005SP2-03C1;
+	Wed, 07 Aug 2024 15:08:34 +0000
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id biH6s4lsUPZ0ybiH6sRgL8; Wed, 07 Aug 2024 17:08:29 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1723043309;
+	bh=f2G0n1RxaM2sBQWtRjrv2LjX8lvuJMLC31IYVtjWuo0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=HctJdtwHnDfiOI7/DtMXVlTSdhHGuRwTANIJGmqOY1dmE88fBpXQxRX+PCl65ZNq+
+	 5Op86fklz9UfhsfOp29scmA03+5OqbWBixe1XY4Mm9wiwClroctC1RJ/BCYCKj4NbG
+	 gTK4Xml/THYuMAYiG7WDtuGdBoM60DBejsv9jrodHHqIouDdsyIKobSA6vEO4ybK/j
+	 7eQc2928aBSqUSVWjufe6Nw5dAfrMTlYd3fWx0ZkPlzVM7N4S+LFGekT2Mq96rZWai
+	 DxI9AuWggkU8nQZMec9K1SikT49R/+Q4R7j8Onuuppore++1IUZviqkNhxGCaSCoz+
+	 +l8UNe0VBSYgA==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Wed, 07 Aug 2024 17:08:29 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <c8eca123-8ca8-4dfc-acc6-3e196ff0c844@wanadoo.fr>
+Date: Wed, 7 Aug 2024 17:08:27 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] pinctrl: meson: Constify some structure
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: linus.walleij@linaro.org, neil.armstrong@linaro.org,
+ khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ kernel-janitors@vger.kernel.org
+References: <cover.1723022467.git.christophe.jaillet@wanadoo.fr>
+ <1jy158xvwz.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <1jy158xvwz.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240807_071407_664215_280BE4F9 
-X-CRM114-Status: GOOD (  10.87  )
+X-CRM114-CacheID: sfid-20240807_080832_479831_22662A0E 
+X-CRM114-Status: GOOD (  13.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,39 +73,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed 07 Aug 2024 at 11:30, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
-
-> These 3 patches constify some structures in order to move some data to a
-> read-only section, so increase overall security.
->
-> It is splitted in 3 to ease review.
-
-I'm not entirely sure it eases review in this case.
-If a v2 is necessary, I think a single patch would be better.
-
-> Patch 1: struct meson_pmx_group and meson_pmx_func
-> patch 2: struct meson_bank
-> patch 3: struct meson_pmx_bank
-
-Is there any reason for leaving out 'struct meson_pinctrl_data' and
-'struct meson_axg_pmx_data' ? I don't think they get modified but maybe
-I missed it.
-
->
-> All patches are only compile tested.
-
-Looks good anyway
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-
-On the vim3l:
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+TGUgMDcvMDgvMjAyNCDDoCAxNjoxNCwgSmVyb21lIEJydW5ldCBhIMOpY3JpdMKgOgo+IE9uIFdl
+ZCAwNyBBdWcgMjAyNCBhdCAxMTozMCwgQ2hyaXN0b3BoZSBKQUlMTEVUIDxjaHJpc3RvcGhlLmph
+aWxsZXRAd2FuYWRvby5mcj4gd3JvdGU6Cj4gCj4+IFRoZXNlIDMgcGF0Y2hlcyBjb25zdGlmeSBz
+b21lIHN0cnVjdHVyZXMgaW4gb3JkZXIgdG8gbW92ZSBzb21lIGRhdGEgdG8gYQo+PiByZWFkLW9u
+bHkgc2VjdGlvbiwgc28gaW5jcmVhc2Ugb3ZlcmFsbCBzZWN1cml0eS4KPj4KPj4gSXQgaXMgc3Bs
+aXR0ZWQgaW4gMyB0byBlYXNlIHJldmlldy4KPiAKPiBJJ20gbm90IGVudGlyZWx5IHN1cmUgaXQg
+ZWFzZXMgcmV2aWV3IGluIHRoaXMgY2FzZS4KPiBJZiBhIHYyIGlzIG5lY2Vzc2FyeSwgSSB0aGlu
+ayBhIHNpbmdsZSBwYXRjaCB3b3VsZCBiZSBiZXR0ZXIuCj4gCj4+IFBhdGNoIDE6IHN0cnVjdCBt
+ZXNvbl9wbXhfZ3JvdXAgYW5kIG1lc29uX3BteF9mdW5jCj4+IHBhdGNoIDI6IHN0cnVjdCBtZXNv
+bl9iYW5rCj4+IHBhdGNoIDM6IHN0cnVjdCBtZXNvbl9wbXhfYmFuawo+IAo+IElzIHRoZXJlIGFu
+eSByZWFzb24gZm9yIGxlYXZpbmcgb3V0ICdzdHJ1Y3QgbWVzb25fcGluY3RybF9kYXRhJyBhbmQK
+PiAnc3RydWN0IG1lc29uX2F4Z19wbXhfZGF0YScgPyBJIGRvbid0IHRoaW5rIHRoZXkgZ2V0IG1v
+ZGlmaWVkIGJ1dCBtYXliZQo+IEkgbWlzc2VkIGl0LgoKTm8gZ29vZCByZWFzb25zLgoKSSdsbCBz
+ZW5kIGEgdjIgd2l0aCBldmVyeXRoaW5nIGNvbnN0aWZpZWQgYWxsIGF0IG9uY2UuCgpTaG91bGQg
+SSB0YWtlIHRoZSBSLWIgYW5kIFQtYiBiZWxvdywgZm9yIHRoZSB2Mj8KCgpUaGFua3MgZm9yIHRo
+ZSByZXZpZXcgYW5kIGNvbW1lbnQuCgpDSgoKPiAKPj4KPj4gQWxsIHBhdGNoZXMgYXJlIG9ubHkg
+Y29tcGlsZSB0ZXN0ZWQuCj4gCj4gTG9va3MgZ29vZCBhbnl3YXkKPiBSZXZpZXdlZC1ieTogSmVy
+b21lIEJydW5ldCA8amJydW5ldEBiYXlsaWJyZS5jb20+Cj4gCj4gT24gdGhlIHZpbTNsOgo+IFRl
+c3RlZC1ieTogSmVyb21lIEJydW5ldCA8amJydW5ldEBiYXlsaWJyZS5jb20+Cj4gCj4gCgoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dp
+YyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
+aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
