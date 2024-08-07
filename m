@@ -4,68 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77525C3DA7F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Aug 2024 09:33:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5338FC52D71
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Aug 2024 14:15:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DUCaNVdWw472QRZFDWwTdTR6novMZFN/BBMQzNQIZMQ=; b=0SoXoE82w6SJgZ
-	hDIUfaA6FGqNU1TpzJcI4cz5x9K3tE4cKu1hJdPxyR7LZhDiwrcnB2XeO+xeIDLjiKjx7X7GbXF79
-	Ijb1ncCyBYVwLhQuiRhUV3s9Of9lOEmdQ5u2ERME9sq1g6Hr2P6cGSzyyaLjiIJYS1EmYlLzqtB5M
-	jgRCbN0zO8hBlAVWfSAqkRreeRQrEipxKgyal/cGWhOMDJ8sF8yAO3CiecG6I5egjsogf0GntZeZf
-	4AqbkaWeQDukZCNfHu5+r5HitL5ZetY1gQmL47LUFT4SmUKZKz1PUjlsk5hSoW3mddNJiJ10gvCXo
-	NzgIOE75nKIoK8l+u6ug==;
+	List-Owner; bh=vgqTY38ed+lQCBzVIs5qTp+4zB970OnwKeAtKGhLY4k=; b=SLfjwP/4aOPmGg
+	GMLzx7d0CFnkkLjuHltF+0LZtwKs1fl+u3gvRRntOB9ZTHwV9UOTY9Zzveviy+E5rbx+kDmXI2g+k
+	kYhGtwsTUVuXJenStJnPg5xsuFrwoVpTmrDxhzcGl/y5HHBULTlaKfBLe/Rhl9kDY5bXuKp443fK2
+	U9mbv5llgn78U/1P2HvTuklLh9nyHF+4sWnzaOB4vohjYPj8A+VmqQKvd6OXIgSiLl6xSORhljrs1
+	oHnvWuLq3NQjV77uTnKLYwqZ4MmjbTc8sZAosbwmraNZ21zjUUMtlGJZjZ6oSBgoUQ2dZOQWeNFto
+	dmdUyvSqJnSYbydkH+sQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbd2v-00000004ZMZ-2YNU;
-	Wed, 07 Aug 2024 09:33:29 +0000
-Received: from smtp-17.smtpout.orange.fr ([80.12.242.17] helo=smtp.smtpout.orange.fr)
+	id 1sbhRH-00000005Hyl-0HT5;
+	Wed, 07 Aug 2024 14:14:55 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sbd0y-00000004Ybh-2rgA
+	id 1sbhQV-00000005HjM-2VAJ
 	for linux-amlogic@lists.infradead.org;
-	Wed, 07 Aug 2024 09:31:31 +0000
-Received: from fedora.home ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id bd0dsp4BgEfqMbd0ysKP2t; Wed, 07 Aug 2024 11:31:28 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1723023088;
-	bh=2C3jei8qGjaeHHaxcoYOstyMZe51q3BSOSUGHICZ6Ic=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=ORqQCsj5j62YmMnNQTBT4+g5iYIL1m3+/DdnRUiBsNPVYnLvQWfOMQy0cSCmaSpwI
-	 xktdcZ1irO/OZvg2TdiCRXtVPlDNP8KRVnICtGQtU7/ugN9jMqH7cc+hMPh8nekpxw
-	 tNBHNJntuIBkcXI9+CprHaK8p6IkLSi9zWtSXxfPJdgbHSOc7BdJXwy5TWvWs0fWkY
-	 vq3TVinDFNsJowcn1rdkYf5vszxqZGpkop6QLHnKsQY/YRLOHeeEva3ceFWoc392ox
-	 Q2LjlrqnIvtQsH+MvtQw856bx1yDLPFZ50zLpzGDXRLpaxgv69SyuDlZDj39LxKJOg
-	 Iw8SI9QzmRuwA==
-X-ME-Helo: fedora.home
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Wed, 07 Aug 2024 11:31:28 +0200
-X-ME-IP: 90.11.132.44
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: linus.walleij@linaro.org,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com
-Cc: linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kernel-janitors@vger.kernel.org,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Subject: [PATCH 3/3] pinctrl: meson: Constify struct meson_pmx_bank
-Date: Wed,  7 Aug 2024 11:30:57 +0200
-Message-ID: <00e8dec399bd188a241eff694b334e27da096aed.1723022467.git.christophe.jaillet@wanadoo.fr>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <cover.1723022467.git.christophe.jaillet@wanadoo.fr>
+	Wed, 07 Aug 2024 14:14:09 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4281d812d3eso17730305e9.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 07 Aug 2024 07:14:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723040045; x=1723644845; darn=lists.infradead.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8U6pF6oteZB3sbXc3seOXknJplxg/i1fuxIfbblSw1M=;
+        b=i8E0GZkgTM71fE9hLOqUxCUeYZW3Hm/RxhTcOwtp3Q8I1lgn0/by/1JsodkPwSb9lk
+         OHN0YHiknJjMj7KCqVv+kL1AW619X8OJ3vzH0aaY620ph5HwvmJKhsm9C9PNMsdzW/Pd
+         tcHwZA1UNC+hIQBT6+QYpaqxyEGspXGAV7ruJT1cuySthduQVEWfL6jInnPRTEMxmAcP
+         0lBPvWicnaa9tln9JlW4zLhQ+hEF1gdh4cBX5GeTJeUQl24+fWf0Ne0n4r+ssTixhW6Y
+         o5dWhVSWjYNt6VbZzxR8BYBqIMaPZS/pU5oq+vUGqKrsuU7YKrYg9sP/guVR9yIytynE
+         fYEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723040045; x=1723644845;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8U6pF6oteZB3sbXc3seOXknJplxg/i1fuxIfbblSw1M=;
+        b=B9WfnxaeC5DswdTa+045lAYFDJp/l98ZseoV8oMWD+E6nPExCDnHIjCOwmyAQMukoD
+         Tl/HdCTqmR/K4obuQ0lYaYX7Garx3vji6mDYw+ulcjLhqTua6Cn0JXtUwF+9AeKE9wwI
+         bHLu/y8mpFnIBFafRXiFnoVkZcMup+r1JXADthN5K009ANo+6Uki+dRzGngKAtQI18Le
+         Mkvw8gT0Z85Act9Yvp6s7rA55WGkrBsqJGQ6bSuT9UDAWJs+zrf1/q20QnOjo8EhW//M
+         9blc8mqx8PW5/+nFPVcmmK2BCOmB6ZjoSA6crp6KJ/goYT/CeES7r/9jwcr+ehQXwZRX
+         RHJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXQWjgbw7UBBWlK4u4r1u5bOpWJU0xFWti+FUtj0zznAjv5o6TVKVy+9sjaVXGSJEJ62Vqm/W0BF8oSgg2WZfVZPrQOhxmK4xBddf3B0QO1GaA=
+X-Gm-Message-State: AOJu0YzbYz+pqIWUxaUXime7wTe1DkVgYKi02amBFUPpaFAOG/TsJJl5
+	clt3zvdWqFm3FTrSbzXCDpZLuy5gNj8mSRic424ih7+9LibpecAULBdQHFyI9l4=
+X-Google-Smtp-Source: AGHT+IHFS+8FxIsgPDMxXI2119/zXQ32Pp05XpEgQOQyCV3S6/MHUfyYDHMpWs/M91Kr6YsvZoGl1g==
+X-Received: by 2002:a05:600c:4853:b0:428:fcb:962 with SMTP id 5b1f17b1804b1-428f06c44cemr111691625e9.36.1723040045344;
+        Wed, 07 Aug 2024 07:14:05 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:90f1:3c4c:261c:b0f5])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4290579fb34sm32100245e9.14.2024.08.07.07.14.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Aug 2024 07:14:04 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: linus.walleij@linaro.org,  neil.armstrong@linaro.org,
+  khilman@baylibre.com,  martin.blumenstingl@googlemail.com,
+  linux-gpio@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-amlogic@lists.infradead.org,  linux-kernel@vger.kernel.org,
+  kernel-janitors@vger.kernel.org
+Subject: Re: [PATCH 0/3] pinctrl: meson: Constify some structure
+In-Reply-To: <cover.1723022467.git.christophe.jaillet@wanadoo.fr> (Christophe
+	JAILLET's message of "Wed, 7 Aug 2024 11:30:54 +0200")
 References: <cover.1723022467.git.christophe.jaillet@wanadoo.fr>
+Date: Wed, 07 Aug 2024 16:14:04 +0200
+Message-ID: <1jy158xvwz.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240807_023129_053749_23A9DBC4 
-X-CRM114-Status: GOOD (  14.29  )
+X-CRM114-CacheID: sfid-20240807_071407_664215_280BE4F9 
+X-CRM114-Status: GOOD (  10.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,211 +94,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-'struct meson_pmx_bank' are not modified in these drivers.
+On Wed 07 Aug 2024 at 11:30, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
 
-Constifying these structures moves some data to a read-only section, so
-increase overall security.
+> These 3 patches constify some structures in order to move some data to a
+> read-only section, so increase overall security.
+>
+> It is splitted in 3 to ease review.
 
+I'm not entirely sure it eases review in this case.
+If a v2 is necessary, I think a single patch would be better.
 
-On a x86_64, with allmodconfig:
-Before:
-======
-   text	   data	    bss	    dec	    hex	filename
-  21922	    568	      0	  22490	   57da	drivers/pinctrl/meson/pinctrl-amlogic-c3.o
-  34222	    688	      0	  34910	   885e	drivers/pinctrl/meson/pinctrl-amlogic-t7.o
-  24945	    440	      0	  25385	   6329	drivers/pinctrl/meson/pinctrl-meson8b.o
-  29412	    440	      0	  29852	   749c	drivers/pinctrl/meson/pinctrl-meson8.o
-   3070	    324	      0	   3394	    d42	drivers/pinctrl/meson/pinctrl-meson8-pmx.o
-  18469	    520	      0	  18989	   4a2d	drivers/pinctrl/meson/pinctrl-meson-a1.o
-  23155	    648	      0	  23803	   5cfb	drivers/pinctrl/meson/pinctrl-meson-axg.o
-   2470	    120	      0	   2590	    a1e	drivers/pinctrl/meson/pinctrl-meson-axg-pmx.o
-  29653	    712	      0	  30365	   769d	drivers/pinctrl/meson/pinctrl-meson-g12a.o
-  23496	    456	      0	  23952	   5d90	drivers/pinctrl/meson/pinctrl-meson-gxbb.o
-  22224	    456	      0	  22680	   5898	drivers/pinctrl/meson/pinctrl-meson-gxl.o
-  20507	   1132	     48	  21687	   54b7	drivers/pinctrl/meson/pinctrl-meson.o
-  24500	    592	      0	  25092	   6204	drivers/pinctrl/meson/pinctrl-meson-s4.o
+> Patch 1: struct meson_pmx_group and meson_pmx_func
+> patch 2: struct meson_bank
+> patch 3: struct meson_pmx_bank
 
-After:
-=====
-   text	   data	    bss	    dec	    hex	filename
-  22114	    384	      0	  22498	   57e2	drivers/pinctrl/meson/pinctrl-amlogic-c3.o
-  34510	    384	      0	  34894	   884e	drivers/pinctrl/meson/pinctrl-amlogic-t7.o
-  24945	    440	      0	  25385	   6329	drivers/pinctrl/meson/pinctrl-meson8b.o
-  29412	    440	      0	  29852	   749c	drivers/pinctrl/meson/pinctrl-meson8.o
-   3070	    324	      0	   3394	    d42	drivers/pinctrl/meson/pinctrl-meson8-pmx.o
-  18597	    384	      0	  18981	   4a25	drivers/pinctrl/meson/pinctrl-meson-a1.o
-  23315	    496	      0	  23811	   5d03	drivers/pinctrl/meson/pinctrl-meson-axg.o
-   2470	    120	      0	   2590	    a1e	drivers/pinctrl/meson/pinctrl-meson-axg-pmx.o
-  29877	    504	      0	  30381	   76ad	drivers/pinctrl/meson/pinctrl-meson-g12a.o
-  23496	    456	      0	  23952	   5d90	drivers/pinctrl/meson/pinctrl-meson-gxbb.o
-  22224	    456	      0	  22680	   5898	drivers/pinctrl/meson/pinctrl-meson-gxl.o
-  20507	   1132	     48	  21687	   54b7	drivers/pinctrl/meson/pinctrl-meson.o
-  24692	    384	      0	  25076	   61f4	drivers/pinctrl/meson/pinctrl-meson-s4.o
+Is there any reason for leaving out 'struct meson_pinctrl_data' and
+'struct meson_axg_pmx_data' ? I don't think they get modified but maybe
+I missed it.
 
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
----
-Compile tested-only.
----
- drivers/pinctrl/meson/pinctrl-amlogic-c3.c    | 2 +-
- drivers/pinctrl/meson/pinctrl-amlogic-t7.c    | 2 +-
- drivers/pinctrl/meson/pinctrl-meson-a1.c      | 2 +-
- drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c | 8 ++++----
- drivers/pinctrl/meson/pinctrl-meson-axg-pmx.h | 2 +-
- drivers/pinctrl/meson/pinctrl-meson-axg.c     | 4 ++--
- drivers/pinctrl/meson/pinctrl-meson-g12a.c    | 4 ++--
- drivers/pinctrl/meson/pinctrl-meson-s4.c      | 2 +-
- 8 files changed, 13 insertions(+), 13 deletions(-)
+>
+> All patches are only compile tested.
 
-diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-c3.c b/drivers/pinctrl/meson/pinctrl-amlogic-c3.c
-index aeaa810e855b..b94c494249e9 100644
---- a/drivers/pinctrl/meson/pinctrl-amlogic-c3.c
-+++ b/drivers/pinctrl/meson/pinctrl-amlogic-c3.c
-@@ -1054,7 +1054,7 @@ static const struct meson_bank c3_periphs_banks[] = {
- 		0x73, 0,  0x74, 0,  0x72, 0,  0x71, 0, 0x70, 0, 0x77, 0),
- };
- 
--static struct meson_pmx_bank c3_periphs_pmx_banks[] = {
-+static const struct meson_pmx_bank c3_periphs_pmx_banks[] = {
- 	/* name	            first	 last        reg offset */
- 	BANK_PMX("B",      GPIOB_0,     GPIOB_14,    0x00, 0),
- 	BANK_PMX("X",      GPIOX_0,     GPIOX_13,    0x03, 0),
-diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-t7.c b/drivers/pinctrl/meson/pinctrl-amlogic-t7.c
-index f880b36c3b54..51128ade05c6 100644
---- a/drivers/pinctrl/meson/pinctrl-amlogic-t7.c
-+++ b/drivers/pinctrl/meson/pinctrl-amlogic-t7.c
-@@ -1552,7 +1552,7 @@ static const struct meson_bank t7_periphs_banks[] = {
- 		0x83, 0,  0x84,  0,  0x82, 0,  0x81,  0, 0x80, 0, 0x87, 0),
- };
- 
--static struct meson_pmx_bank t7_periphs_pmx_banks[] = {
-+static const struct meson_pmx_bank t7_periphs_pmx_banks[] = {
- 	/*      name	    first	 last        reg  offset */
- 	BANK_PMX("D",      GPIOD_0,     GPIOD_12,    0x0a,  0),
- 	BANK_PMX("E",      GPIOE_0,     GPIOE_6,     0x0c,  0),
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-a1.c b/drivers/pinctrl/meson/pinctrl-meson-a1.c
-index e0589ce8dd2e..ff42301e4c0c 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-a1.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-a1.c
-@@ -889,7 +889,7 @@ static const struct meson_bank meson_a1_periphs_banks[] = {
- 		0x42,  0,  0x41,  0,  0x40,  0,  0x45,  0),
- };
- 
--static struct meson_pmx_bank meson_a1_periphs_pmx_banks[] = {
-+static const struct meson_pmx_bank meson_a1_periphs_pmx_banks[] = {
- 	/*  name	 first	    lask    reg	offset  */
- 	BANK_PMX("P",    GPIOP_0, GPIOP_12, 0x0, 0),
- 	BANK_PMX("B",    GPIOB_0, GPIOB_6,  0x2, 0),
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c b/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
-index 2ae802ee8241..00c3829216d6 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
-@@ -27,10 +27,10 @@
- 
- static int meson_axg_pmx_get_bank(struct meson_pinctrl *pc,
- 			unsigned int pin,
--			struct meson_pmx_bank **bank)
-+			const struct meson_pmx_bank **bank)
- {
- 	int i;
--	struct meson_axg_pmx_data *pmx = pc->data->pmx_data;
-+	const struct meson_axg_pmx_data *pmx = pc->data->pmx_data;
- 
- 	for (i = 0; i < pmx->num_pmx_banks; i++)
- 		if (pin >= pmx->pmx_banks[i].first &&
-@@ -42,7 +42,7 @@ static int meson_axg_pmx_get_bank(struct meson_pinctrl *pc,
- 	return -EINVAL;
- }
- 
--static int meson_pmx_calc_reg_and_offset(struct meson_pmx_bank *bank,
-+static int meson_pmx_calc_reg_and_offset(const struct meson_pmx_bank *bank,
- 			unsigned int pin, unsigned int *reg,
- 			unsigned int *offset)
- {
-@@ -59,10 +59,10 @@ static int meson_pmx_calc_reg_and_offset(struct meson_pmx_bank *bank,
- static int meson_axg_pmx_update_function(struct meson_pinctrl *pc,
- 			unsigned int pin, unsigned int func)
- {
-+	const struct meson_pmx_bank *bank;
- 	int ret;
- 	int reg;
- 	int offset;
--	struct meson_pmx_bank *bank;
- 
- 	ret = meson_axg_pmx_get_bank(pc, pin, &bank);
- 	if (ret)
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.h b/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.h
-index 67147ebaef1b..63b9d471e980 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.h
-+++ b/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.h
-@@ -17,7 +17,7 @@ struct meson_pmx_bank {
- };
- 
- struct meson_axg_pmx_data {
--	struct meson_pmx_bank *pmx_banks;
-+	const struct meson_pmx_bank *pmx_banks;
- 	unsigned int num_pmx_banks;
- };
- 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-index 9968bd68f129..3b27dec7d858 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-@@ -1017,7 +1017,7 @@ static const struct meson_bank meson_axg_aobus_banks[] = {
- 	BANK("AO",   GPIOAO_0,  GPIOAO_13, 0, 13, 0,  16,  0, 0,  0,  0,  0, 16,  1,  0),
- };
- 
--static struct meson_pmx_bank meson_axg_periphs_pmx_banks[] = {
-+static const struct meson_pmx_bank meson_axg_periphs_pmx_banks[] = {
- 	/*	 name	 first		lask	   reg	offset  */
- 	BANK_PMX("Z",	 GPIOZ_0, GPIOZ_10, 0x2, 0),
- 	BANK_PMX("BOOT", BOOT_0,  BOOT_14,  0x0, 0),
-@@ -1031,7 +1031,7 @@ static struct meson_axg_pmx_data meson_axg_periphs_pmx_banks_data = {
- 	.num_pmx_banks = ARRAY_SIZE(meson_axg_periphs_pmx_banks),
- };
- 
--static struct meson_pmx_bank meson_axg_aobus_pmx_banks[] = {
-+static const struct meson_pmx_bank meson_axg_aobus_pmx_banks[] = {
- 	BANK_PMX("AO", GPIOAO_0, GPIOAO_13, 0x0, 0),
- };
- 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-g12a.c b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
-index 0d901b2d1193..272f713f8787 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-g12a.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
-@@ -1342,7 +1342,7 @@ static const struct meson_bank meson_g12a_aobus_banks[] = {
- 		3, 16,  2, 16,   0, 16,  4, 16,   1, 16,  1, 0),
- };
- 
--static struct meson_pmx_bank meson_g12a_periphs_pmx_banks[] = {
-+static const struct meson_pmx_bank meson_g12a_periphs_pmx_banks[] = {
- 	/*	 name	 first	  last	    reg	 offset  */
- 	BANK_PMX("Z",    GPIOZ_0, GPIOZ_15, 0x6, 0),
- 	BANK_PMX("H",    GPIOH_0, GPIOH_8,  0xb, 0),
-@@ -1357,7 +1357,7 @@ static struct meson_axg_pmx_data meson_g12a_periphs_pmx_banks_data = {
- 	.num_pmx_banks	= ARRAY_SIZE(meson_g12a_periphs_pmx_banks),
- };
- 
--static struct meson_pmx_bank meson_g12a_aobus_pmx_banks[] = {
-+static const struct meson_pmx_bank meson_g12a_aobus_pmx_banks[] = {
- 	BANK_PMX("AO",  GPIOAO_0, GPIOAO_11, 0x0, 0),
- 	BANK_PMX("E",   GPIOE_0,  GPIOE_2,   0x1, 16),
- };
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-s4.c b/drivers/pinctrl/meson/pinctrl-meson-s4.c
-index 6641bef76e58..61d459c46c13 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-s4.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-s4.c
-@@ -1180,7 +1180,7 @@ static const struct meson_bank meson_s4_periphs_banks[] = {
- 		0x83,  0,  0x84,  0,  0x82, 0,  0x81,  0, 0x80, 0, 0x87, 0),
- };
- 
--static struct meson_pmx_bank meson_s4_periphs_pmx_banks[] = {
-+static const struct meson_pmx_bank meson_s4_periphs_pmx_banks[] = {
- 	/*name	            first	 lask        reg offset*/
- 	BANK_PMX("B",      GPIOB_0,     GPIOB_13,    0x00, 0),
- 	BANK_PMX("C",      GPIOC_0,     GPIOC_7,     0x9,  0),
--- 
-2.45.2
+Looks good anyway
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
+On the vim3l:
+Tested-by: Jerome Brunet <jbrunet@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
