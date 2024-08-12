@@ -4,64 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F948C3DA7F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2024 09:32:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7812C52D7C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2024 11:56:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AoLHc0uJsujl0mXbyxga6N+ri1ncyfiAAjOpQNcWU/4=; b=4W+YrV6czg5PQG
-	V7m/ddeXY+3/735BnCffHpsKnP1oVWUQmB3w6QpGupoI1Vq5ZEs4yX+W4GeZB4ngg9Zw8JyZr10bm
-	y8HxTLmcrwcHREBw0uqQ2i26XIQmB5yDNh0y+1gl+o0HnILO6oG5Ohes7h1ykZYvQw8W7YYeMJuov
-	itb3N2UIfBEEvvmN/LNLU3/+f+MTjUJdcoERQI+ZWbZffoqPZfOa7xNfKnpwvo1xcOazE3fALJ1Z/
-	dGwaz6f4SXbFvgUShXSY4zLuD7O+CW5yQcRkBw/fIaivGd53xEyNSysi7rzpkUU8NMOUux521ED5A
-	tjOjkyGis+byF4OUZU0Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=hRfmGOuaYtGrqW8rLfcWwMS8iFI8R8puXomXl3XYnHc=; b=W1f/2oJy9hGiBC
+	iwqsNK7lEiZ9jQta2aTU962/nG38wXOdBC/L7OZjL8iWsZinczop3DVlLCr4cvoo2LuG3+BZ9bTxq
+	BnMagOnY44gt8f9qtYGJMP3Grj2sEJoq1+5rRzCWSKjBHYPuJA/ypiSDgb7IGsdBq0sEt5h/qjT3s
+	ix+z2vIEtPbHEwBNx08DOqJ+/y4OZDq7pEdOvpxkaEamEgQibzDAgXOIKQsN3OmmrKk32PfanhGA3
+	wZHiB5/0MyckFObQpEF3fjSqgG+BJ2LZmAoCITaNA1rZaTkjE4gCte+Xx5RDX/aS7qR5xETqe6Rrt
+	I/wmaGYmSLzQHoxznPag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdRPu-0000000HT0w-1d2A;
-	Mon, 12 Aug 2024 09:32:42 +0000
-Received: from mx.astralinux.ru ([89.232.161.68])
+	id 1sdTee-00000000BNH-0QW8;
+	Mon, 12 Aug 2024 11:56:04 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdRPl-0000000HSpb-2jFC;
-	Mon, 12 Aug 2024 09:32:40 +0000
-Received: from [10.177.185.108] (helo=new-mail.astralinux.ru)
-	by mx.astralinux.ru with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <abelova@astralinux.ru>)
-	id 1sdROV-005gCi-Cp; Mon, 12 Aug 2024 12:31:15 +0300
-Received: from [10.177.20.58] (unknown [10.177.20.58])
-	by new-mail.astralinux.ru (Postfix) with ESMTPA id 4Wj8RZ4dDkz1gwbf;
-	Mon, 12 Aug 2024 12:31:54 +0300 (MSK)
-Message-ID: <bb45ed80-7871-47ba-a1fd-ee71dc21a409@astralinux.ru>
-Date: Mon, 12 Aug 2024 12:30:57 +0300
+	id 1sdTe2-00000000BGn-04oZ;
+	Mon, 12 Aug 2024 11:55:27 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-42817bee9e8so31683425e9.3;
+        Mon, 12 Aug 2024 04:55:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723463724; x=1724068524; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nGqwTPLmyEyMz26JbF1oTN1ZIomEQ9CX54wEGKF1mH0=;
+        b=eiLYYGEMqoSF5loGLVV8cXmoeEaLd2NxQnSS3fCAY/6V7faKCry4hYYGeo/5fLuRIF
+         jBYrMAvH6NaCpCvBEpBJSGE5XbB6Zu6j4L/nnVeQKN2mSBZOWMzVdrGk1dBUAS+zqv6W
+         s8o35+uuTvN+S6QYZzkDt9YEATHDgCBJ5FJzIaHHRFAU/YcMEs0ZjsNctipv5GoG5JjT
+         FuI2WWYoT3kUdHoRk/d+Uw6ZmHnFlEC5JT5VOozqdujtwZDhH76IYBPQYvMewjBL0/L3
+         UjUxTw7ntvs9KB2s3QeOXsU1Gharr1zAa1cMCHA4hyQ7FajKpwEurOb+LHTLziKxTB8b
+         alGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723463724; x=1724068524;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nGqwTPLmyEyMz26JbF1oTN1ZIomEQ9CX54wEGKF1mH0=;
+        b=WsG/vMKijkpukOYxYc1H1x68fu51zh7l9l1wqldRUPPyen1f8EHbwWu4sEN5rMoqxI
+         twE4SBgzcv6VSz2G/rEoaGKDLhs3Bal/LuBYJ24MOv8glQx/EzJ1fQ5cqTISp9WWie+G
+         gWVgjsHCqtitJJe4gS4x1/eG4P8gUcsfyGA2Ep6GFnIZcbQeX6uy4O9hYYuJ0TR1uJ7p
+         rIzBC2vdF+GbRDVic4PSLdcPiR7PLtSTbutSGVPCzi5IvUfMYDD/qvMN4/ic9tYWbWcZ
+         VLQVFEEZp4zhaW7Z4ojqu2baz9rb3f52n6t2r6NiCQQgsv+HdLfZqH5uGP6NyZE9xlXE
+         fgAA==
+X-Forwarded-Encrypted: i=1; AJvYcCUprQS7O3aq0Y+Nl2YdSQFRGwg8CpEyPrbwwdC0OGyrf0ftknlb+GXUwbibcfD5JA+/ZowdFuQPHtpKc1Xca4pf5B463F4jyo7TbsB9MDk/nvxk3CBU7qIswwqfA6p4iqRo99wu1bI89uCv2gHRfhKhPZY+97qwZw==
+X-Gm-Message-State: AOJu0YylF1GX96j+I5kn7CY1orvW7TEiohMO9DXDIQmupN5oNH+Cvh+e
+	MMGIYRSjolv3aomsPUzgfeivE4Ak7kKAzcFsT9d1Ve0LZ7djQ80m
+X-Google-Smtp-Source: AGHT+IEzjMxUddGepYwSs+gi2qqbMIT/TW4uXG/465a39anmmtS9nzyhnaPu4fhSF0pZShiTU2DVEw==
+X-Received: by 2002:a05:600c:1d21:b0:428:3b5:816b with SMTP id 5b1f17b1804b1-429d47f19ffmr1249145e9.3.1723463723486;
+        Mon, 12 Aug 2024 04:55:23 -0700 (PDT)
+Received: from localhost.localdomain (host-79-52-250-20.retail.telecomitalia.it. [79.52.250.20])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-36e4c937b23sm7261602f8f.35.2024.08.12.04.55.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Aug 2024 04:55:23 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mmc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Christian Marangi <ansuelsmth@gmail.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] mmc: meson-gx: fix wrong conversion of __bf_shf to __ffs
+Date: Mon, 12 Aug 2024 13:55:10 +0200
+Message-ID: <20240812115515.20158-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-User-Agent: RuPost Desktop
-Subject: Re: [PATCH] drm/meson: add check to prevent dereference of NULL
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org
-References: <20240809124725.17956-1-abelova@astralinux.ru>
- <CAFBinCATiUnR=P9VRBxWeQhf49k6PVxK+nU95G7w94f-mR2HWQ@mail.gmail.com>
-Content-Language: ru
-From: Anastasia Belova <abelova@astralinux.ru>
-In-Reply-To: <CAFBinCATiUnR=P9VRBxWeQhf49k6PVxK+nU95G7w94f-mR2HWQ@mail.gmail.com>
-X-DrWeb-SpamScore: 0
-X-DrWeb-SpamState: legit
-X-DrWeb-SpamDetail: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehuddgtddvucetufdoteggodetrfcurfhrohhfihhlvgemucfftfghgfeunecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttderjeenucfhrhhomheptehnrghsthgrshhirgcuuegvlhhovhgruceorggsvghlohhvrgesrghsthhrrghlihhnuhigrdhruheqnecuggftrfgrthhtvghrnhepvdegleehkeejueehledvhffhuefhieejudevvdejtdeukefghffgveegteeikeeunecukfhppedutddrudejjedrvddtrdehkeenucfrrghrrghmpehhvghloheplgdutddrudejjedrvddtrdehkegnpdhinhgvthepuddtrddujeejrddvtddrheekmeegudeftdeipdhmrghilhhfrhhomheprggsvghlohhvrgesrghsthhrrghlihhnuhigrdhruhdpnhgspghrtghpthhtohepudegpdhrtghpthhtohepmhgrrhhtihhnrdgslhhumhgvnhhsthhinhhglhesghhoohhglhgvmhgrihhlrdgtohhmpdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphhtthhope
- grihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepuggrnhhivghlsehffhiflhhlrdgthhdprhgtphhtthhopehkhhhilhhmrghnsegsrgihlhhisghrvgdrtghomhdprhgtphhtthhopehjsghruhhnvghtsegsrgihlhhisghrvgdrtghomhdprhgtphhtthhopegurhhiqdguvghvvghlsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtoheplhhinhhugidqrghmlhhoghhitgeslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlvhgtqdhprhhojhgvtghtsehlihhnuhigthgvshhtihhnghdrohhrghenucffrhdrhggvsgcutehnthhishhprghmmecunecuvfgrghhsme
-X-DrWeb-SpamVersion: Dr.Web Antispam 1.0.7.202406240#1723449779#02
-X-AntiVirus: Checked by Dr.Web [MailD: 11.1.19.2307031128, SE: 11.1.12.2210241838, Core engine: 7.00.65.05230, Virus records: 12102994, Updated: 2024-Aug-12 08:00:48 UTC]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240812_023233_751368_9AA6FA78 
-X-CRM114-Status: GOOD (  17.15  )
+X-CRM114-CacheID: sfid-20240812_045526_081269_89AEB960 
+X-CRM114-Status: GOOD (  16.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,38 +92,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8gTWFydGluLAoKCjEwLzA4LzI0IDEyOjA5LCBNYXJ0aW4gQmx1bWVuc3RpbmdsINC/0LjR
-iNC10YI6Cj4gSGVsbG8gQW5hc3Rhc2lhLAo+Cj4gVGhhbmsgeW91IGZvciB3b3JraW5nIG9uIHRo
-aXMhCj4KPiBPbiBGcmksIEF1ZyA5LCAyMDI0IGF0IDI6NDjigK9QTSBBbmFzdGFzaWEgQmVsb3Zh
-IDxhYmVsb3ZhQGFzdHJhbGludXgucnU+IHdyb3RlOgo+IFsuLi5dCj4+IEBAIC0zNzMsOSArMzcz
-LDExIEBAIHN0YXRpYyBpbnQgbWVzb25fZHJ2X2JpbmRfbWFzdGVyKHN0cnVjdCBkZXZpY2UgKmRl
-diwgYm9vbCBoYXNfY29tcG9uZW50cykKPj4gICBmcmVlX2RybToKPj4gICAgICAgICAgZHJtX2Rl
-dl9wdXQoZHJtKTsKPj4KPj4gLSAgICAgICBtZXNvbl9lbmNvZGVyX2RzaV9yZW1vdmUocHJpdik7
-Cj4+IC0gICAgICAgbWVzb25fZW5jb2Rlcl9oZG1pX3JlbW92ZShwcml2KTsKPj4gLSAgICAgICBt
-ZXNvbl9lbmNvZGVyX2N2YnNfcmVtb3ZlKHByaXYpOwo+PiArICAgICAgIGlmIChwcml2KSB7Cj4+
-ICsgICAgICAgICAgICAgICBtZXNvbl9lbmNvZGVyX2RzaV9yZW1vdmUocHJpdik7Cj4+ICsgICAg
-ICAgICAgICAgICBtZXNvbl9lbmNvZGVyX2hkbWlfcmVtb3ZlKHByaXYpOwo+PiArICAgICAgICAg
-ICAgICAgbWVzb25fZW5jb2Rlcl9jdmJzX3JlbW92ZShwcml2KTsKPj4gKyAgICAgICB9Cj4gVGhp
-cyBpcyB0aGUgc3RyYWlnaHQtZm9yd2FyZCBhcHByb2FjaC4KPgo+IFRoZXJlJ3MgYmVlbiBjb252
-ZXJzaW9ucyBmcm9tIG5vbi1kZXZtXyBmdW5jdGlvbnMgdG8gdGhlaXIgZGV2bV8qCj4gY291bnRl
-cnBhcnRzIGluIHRoZSBwYXN0IGluIHZhcmlvdXMgc3Vic3lzdGVtcy4KPiBJIGp1c3QgZm91bmQg
-dGhhdCB0aGVyZSdzIGEgZGV2bV9kcm1fZGV2X2FsbG9jKCkgd2hpY2ggc2VlbXMgdG8gYmUKPiBj
-YWxsaW5nIGRybV9kZXZfcHV0KCkgYXV0b21hdGljYWxseSAtIGJ1dCBJIGhhdmUgbmV2ZXIgdXNl
-ZCBpdCBteXNlbGYKPiBiZWZvcmUuCj4gQXMgYW4gYWx0ZXJuYXRpdmUgdG8geW91ciBzdWdnZXN0
-ZWQgYXBwcm9hY2g6IGNvdWxkIHlvdSBwbGVhc2UgbG9vawo+IGludG8gd2hldGhlciBkZXZtX2Ry
-bV9kZXZfYWxsb2MoKSBpcyBhIHN1aXRhYmxlIHJlcGxhY2VtZW50IChpZiBub3Q6Cj4ganVzdCBl
-eHBsYWluIHdoeSAtIHRoZW4gdGhpcyBwYXRjaCBpcyBnb29kIHRvIGJlIG1lcmdlZCk/CgpJZiBJ
-IHVuZGVyc3Rvb2QgY29ycmVjdGx5LCBkZXZtX2RybV9kZXZfYWxsb2MgYWxsb3dzIHRvIGRlbGV0
-ZSBkcm1fZGV2X3B1dApmcm9tIGVycm9yIHBhdGggaW4gbWVzb25fZHJ2X2JpbmRfbWFzdGVyIGFu
-ZCBpbiBtZXNvbl9kcnZfdW5iaW5kLgoKVGhlbiB0aGUgcHJvcG9zZWQgY2hlY2sgbWF5IGJlIG9t
-bWl0ZWQgYW5kIGZ1bmN0aW9uIG1heSBqdXN0IHJldHVybgppbnN0ZWFkIG9mIGp1bXBpbmcgdG8g
-ZnJlZV9kcm0uCgpBbmQgd291bGQgaXQgYmUgYmV0dGVyIHRvIHJlbmFtZSBmcmVlX2RybSB0byBy
-ZW1vdmVfZW5jb2RlcnM/CgpUaGFuayB5b3UsCkFuYXN0YXNpYSBCZWxvdmEKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
-ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Commit 795c633f6093 ("mmc: meson-gx: fix __ffsdi2 undefined on arm32")
+changed __bf_shf to __ffs to fix a compile error on 32bit arch that have
+problems with __ffsdi2. This comes from the fact that __bf_shf use
+__builtin_ffsll and on 32bit __ffsdi2 is missing.
+
+Problem is that __bf_shf is defined as
+
+  #define __bf_shf(x) (__builtin_ffsll(x) - 1)
+
+but the patch doesn't account for the - 1.
+
+Fix this by using the __builtin_ffs and add the - 1 to reflect the
+original implementation.
+
+The commit also converted other entry of __bf_shf in the code but those
+got dropped in later patches.
+
+Fixes: 795c633f6093 ("mmc: meson-gx: fix __ffsdi2 undefined on arm32")
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Cc: stable@vger.kernel.org # see patch description, needs adjustements for < 5.2
+---
+ drivers/mmc/host/meson-gx-mmc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index c7c067b9415a..8f64083a08fa 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -464,7 +464,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	init.num_parents = MUX_CLK_NUM_PARENTS;
+ 
+ 	mux->reg = host->regs + SD_EMMC_CLOCK;
+-	mux->shift = __ffs(CLK_SRC_MASK);
++	mux->shift = __builtin_ffs(CLK_SRC_MASK) - 1;
+ 	mux->mask = CLK_SRC_MASK >> mux->shift;
+ 	mux->hw.init = &init;
+ 
+@@ -486,7 +486,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	init.num_parents = 1;
+ 
+ 	div->reg = host->regs + SD_EMMC_CLOCK;
+-	div->shift = __ffs(CLK_DIV_MASK);
++	div->shift = __builtin_ffs(CLK_DIV_MASK) - 1;
+ 	div->width = __builtin_popcountl(CLK_DIV_MASK);
+ 	div->hw.init = &init;
+ 	div->flags = CLK_DIVIDER_ONE_BASED;
+-- 
+2.45.2
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
