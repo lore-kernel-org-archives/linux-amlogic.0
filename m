@@ -4,69 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6559AC52D7B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Aug 2024 12:14:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06D78C52D7C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Aug 2024 12:14:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=9KY/x/7JsJRPsE4RGbjRm12Uv6WQIup6z0K+aKMi5So=; b=Eq1xp/bLhQnYUp
-	F6d1ly7NDarumjeh4V+jfoi2VL3scDuWjaUTSbjBS0FIxiv4bBPsRxZaN5Ffo6waHiMl0tVTX0nOh
-	pBU1TdiZxZQ/+ZuqjCBTDYl1UpZdUXsZpdaukLymLkmGKmWxR+uq2vlJ/Fy1y5J5aMhSTlpx3INVh
-	rHgH9JBFl9sk+wOsUOsdxTbSbFY8IHB+TRHgwFn+FxEoLriz2w2cNxhKl04jzbZ9cAgRQfJiGXj5K
-	0KNdEH5HdIITVPcOH3QwIzlmzqJRKZNc4481ZXry9NfdHQKp427tPRdDTmtLN0rwSR96F+narJXpO
-	DycGsBr0+oa92EB5NGPQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=iRiad1OMoS3DfQi3CGHoSnQG0K1+y53dd8Mu3rNDfDw=; b=F7oHCUqlrjNLKb
+	+QkC1wafhyyAsapYpeSvgw5LWDwyWDoXyIGTE9Ylt/OVvvNTcYSqFwFEFRCdSXtKnSLhTAf7Kvy0Y
+	SkiuO5YwZGdFEwShXsDw6CJjjs9UX2Ng9aw/2QFI91Fni6nAS5GT5mxz2NxKwb5w/9R7+UNUIvvpg
+	5UMoq4/49SGKgQyz6Bjd0kla4eOr/kA6m6vn9f/YExrlKEk0Ekf0105Wk/kEKJA8VjbyPtEo0ma42
+	kTX7Yo0Z5nztu/zzT+744VMO+gcJ2Be8CabqAK5A0ZczSJGlj07jUy5vNpCsVSbWOeFf5bJF6PsVf
+	D2rQ4gCl5tTmjhxAo2NQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdqPS-00000003dzZ-33yc;
-	Tue, 13 Aug 2024 12:13:54 +0000
-Received: from mail-qk1-x72b.google.com ([2607:f8b0:4864:20::72b])
+	id 1sdqQ5-00000003eE4-03ln;
+	Tue, 13 Aug 2024 12:14:33 +0000
+Received: from mail-qk1-x731.google.com ([2607:f8b0:4864:20::731])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sdqPP-00000003dx7-2TTE
+	id 1sdqPP-00000003dxN-3Rzh
 	for linux-amlogic@lists.infradead.org;
-	Tue, 13 Aug 2024 12:13:52 +0000
-Received: by mail-qk1-x72b.google.com with SMTP id af79cd13be357-7a1d7a544e7so365187585a.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 13 Aug 2024 05:13:50 -0700 (PDT)
+	Tue, 13 Aug 2024 12:13:53 +0000
+Received: by mail-qk1-x731.google.com with SMTP id af79cd13be357-7a1df0a9281so342099085a.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 13 Aug 2024 05:13:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1723551230; x=1724156030; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=exEVIAJZd/rYdUXslfft3lBWpWIRwR1McJc3b9INl9w=;
-        b=F9yOLmdJFW2qcKWUC3GwAcaZAqbUcTAVM+kjZb+mfCA3C5ecos0DV4WCG9IWjOpn3x
-         TeT9OULArAmEUsWUDPGt2/BGc2lItKcEhmBDuBs7ydTb9P3hH1EFftXgCoqlRVdPiqfB
-         HUI8GjVOjj+N7q7GCYN7f5rsDU+9Nwyb0tKGM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723551230; x=1724156030;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=chromium.org; s=google; t=1723551231; x=1724156031; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=exEVIAJZd/rYdUXslfft3lBWpWIRwR1McJc3b9INl9w=;
-        b=fkl72+qLOKk+zHuuwELiBwnkQ0XFeHQVKyDPU7ZsIuWxuzUvTvGJSZ6W6tVVbBOXx2
-         fPeHTVRiV32zCBgkbXVesIkaRGr4C/TdiOcnz7hhAvhiXBVICCikXakbRDbI7OGNVM2X
-         KeIYEU9Pe78nqq4a2BUI+ZC4gDxAbp3w1xhpyPsKJWbmwRyTjGhImAnsi8pxLk8KxrsW
-         jtM5uGdWashcqL6Ryv79u4Y0riyMh1X17KtUV93ddu71wg8cTzdRryHLjFGjiGK++WPz
-         tnuIafWIzu4WMprbV7dZVKB06lfekKI0QdzTOTjdPP+7E+wIZAJuuu7PYcqstVTXUVqb
-         MgJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV4iqkd6GZpZFVdZGvkKzHuBHCM5ct+EfW9JnXgsdztptXn+4nldgFJ3BYhH/ZNoWu0sokQW1my9+RV8D+0Xrmrt2zmgh4YvA8bhHAkTFAK4t4=
-X-Gm-Message-State: AOJu0Yzus6UwaR3Tw+jqS9q6o+wDN5HIvCY8JacX/O5Vgw3lVkFM/XIk
-	RnJFmfcC332OpfzCvdFrmlmkbhzQ1wV7FKEJyk6YJENKJrO51tl8sYjQOSOW4A==
-X-Google-Smtp-Source: AGHT+IHEAC5qNhYBF14RuyiMsQL8IDhPP6lbNZuwJIZWarWyGBLPSFdo+w5w+ficdZzhLBjRgODR3A==
-X-Received: by 2002:a05:620a:460a:b0:7a2:db1:573d with SMTP id af79cd13be357-7a4e153e4femr367590785a.36.1723551229916;
-        Tue, 13 Aug 2024 05:13:49 -0700 (PDT)
+        bh=Q2YaJNxhLs5F8lLYTx7H4r6rahb3C2THbGnEdQxh/xA=;
+        b=NdGNnMmYjXTiQhIqrhDTUQt/Y2RwP3Y1mR+FmneTV/+GR7aXSuWcuUure5XspjwV8i
+         ibhhVipNdFf//zW4+CncsBIZ0UjYDkLN1G5ulAVDw02FT1J2VChInCgzHFnXZWu+uqOu
+         1JR1hJArFyK6tDuq7Fu1usL+H4IyWcuV9f1/0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723551231; x=1724156031;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Q2YaJNxhLs5F8lLYTx7H4r6rahb3C2THbGnEdQxh/xA=;
+        b=AQLu1cyFEuLJuEUPrq92ao9kp3BVZlpMqItS4HbzDrM+y672nkdCq2NcHGGuQDUk42
+         et3hh3jjrSNDNoruX+HJoC5PET+L+R48QooC5mxSC8CEPbgw2cXEzZaDWhwM3u+Elnxb
+         0Nb6iL8SysuGxmJNiE3Dx+e0VWWxGMX/ODTDMA9nXK6C15SJk9GnBFINHAnBuJt6Jxd4
+         DVRG39ZceN49jlKGbDIGVFusYF24aBYo6D6ls29jj871Fk7Dc6YH3fOLyK8kIUILuS7C
+         TwzIJv3U0TURH2k9MoigTg02aWPCF6K8goGut9QSMjtzrazjjNMswC9fvwymnvcFTxEK
+         N2qQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXWyPf8dUMLmFIr3FV8+5wMomUiV3zVnk71Bk+Y+Z6dXiaz0RcgDpQrXpDZY/7lXVVeticU5T4JuxQoqBYRM1YEXP654/yxpi075nxg65a0i98=
+X-Gm-Message-State: AOJu0Yxp21hVr+Zm1rtJuSqFtTP8wdsc+HsinVKdXe8d1G+tOcdCnZ4l
+	pdcdqiACveSRN9N70jM0pFUf5AbHyo9xmfW3ZCdeEUT696sL9fWvKuX4AfKzw5WhoskTPQQ+hks
+	=
+X-Google-Smtp-Source: AGHT+IEbPwywblqg1PHmJ6WOVqLAFdQNUuhFh7OmJ87lW/f5GlJN4YVEnCjKh12Gxxs2z0IijZihGw==
+X-Received: by 2002:a05:620a:4109:b0:7a1:e2e0:b3c9 with SMTP id af79cd13be357-7a4e151ba74mr391481985a.24.1723551230715;
+        Tue, 13 Aug 2024 05:13:50 -0700 (PDT)
 Received: from denia.c.googlers.com (123.178.145.34.bc.googleusercontent.com. [34.145.178.123])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a4c7d71ca8sm331765485a.50.2024.08.13.05.13.49
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a4c7d71ca8sm331765485a.50.2024.08.13.05.13.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2024 05:13:49 -0700 (PDT)
+        Tue, 13 Aug 2024 05:13:50 -0700 (PDT)
 From: Ricardo Ribalda <ribalda@chromium.org>
-Subject: [PATCH 0/6] media: Fix last smatch warnings
-Date: Tue, 13 Aug 2024 12:13:47 +0000
-Message-Id: <20240813-smatch-clock-v1-0-664c84295b1c@chromium.org>
+Date: Tue, 13 Aug 2024 12:13:48 +0000
+Subject: [PATCH 1/6] media: ar0521: Refactor ar0521_power_off()
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAPtNu2YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDC0Nj3eLcxJLkDN3knPzkbF2jtETjJENDcxMLU3MloJaCotS0zAqwcdG
- xtbUAgffoXl4AAAA=
+Message-Id: <20240813-smatch-clock-v1-1-664c84295b1c@chromium.org>
+References: <20240813-smatch-clock-v1-0-664c84295b1c@chromium.org>
+In-Reply-To: <20240813-smatch-clock-v1-0-664c84295b1c@chromium.org>
 To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
  =?utf-8?q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>, 
  Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -82,9 +83,8 @@ Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>, linux-media@vger.kernel.org,
  Ricardo Ribalda <ribalda@chromium.org>
 X-Mailer: b4 0.13.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240813_051351_681470_29754E36 
-X-CRM114-Status: UNSURE (   6.30  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240813_051351_925837_89264484 
+X-CRM114-Status: GOOD (  12.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,32 +101,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series completes the smatch warning cleanout.
+Factor out all the power off logic, except the clk_disable_unprepare(),
+to a new function __ar0521_power_off().
+
+This allows ar0521_power_on() to explicitly clean-out the clock during
+the error-path.
+
+The following smatch warning is fixed:
+drivers/media/i2c/ar0521.c:912 ar0521_power_on() warn: 'sensor->extclk' from clk_prepare_enable() not released on lines: 912.
 
 Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 ---
-Ricardo Ribalda (6):
-      media: ar0521: Refactor ar0521_power_off()
-      media: i2c: ov5645: Refactor ov5645_set_power_off()
-      media: i2c: s5c73m3: Move clk_prepare to its own function
-      media: tc358746: Move clk_prepare to its own function
-      media: meson: vdec_1: Refactor vdec_1_stop()
-      media: meson: vdec: hevc: Refactor vdec_hevc_start and vdec_hevc_stop
+ drivers/media/i2c/ar0521.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
- drivers/media/i2c/ar0521.c                   | 15 ++++++++--
- drivers/media/i2c/ov5645.c                   | 15 ++++++++--
- drivers/media/i2c/s5c73m3/s5c73m3-core.c     | 13 ++++++++-
- drivers/media/i2c/tc358746.c                 | 12 +++++++-
- drivers/staging/media/meson/vdec/vdec_1.c    | 16 ++++++++---
- drivers/staging/media/meson/vdec/vdec_hevc.c | 43 +++++++++++++++++++++-------
- 6 files changed, 92 insertions(+), 22 deletions(-)
----
-base-commit: c80bfa4f9e0ebfce6ac909488d412347acbcb4f9
-change-id: 20240813-smatch-clock-2fa3b1174857
+diff --git a/drivers/media/i2c/ar0521.c b/drivers/media/i2c/ar0521.c
+index 09331cf95c62..2c528db31ba6 100644
+--- a/drivers/media/i2c/ar0521.c
++++ b/drivers/media/i2c/ar0521.c
+@@ -835,7 +835,7 @@ static const struct initial_reg {
+ 	     be(0x0707)), /* 3F44: couple k factor 2 */
+ };
+ 
+-static int ar0521_power_off(struct device *dev)
++static void __ar0521_power_off(struct device *dev)
+ {
+ 	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+ 	struct ar0521_dev *sensor = to_ar0521_dev(sd);
+@@ -850,6 +850,16 @@ static int ar0521_power_off(struct device *dev)
+ 		if (sensor->supplies[i])
+ 			regulator_disable(sensor->supplies[i]);
+ 	}
++}
++
++static int ar0521_power_off(struct device *dev)
++{
++	struct v4l2_subdev *sd = dev_get_drvdata(dev);
++	struct ar0521_dev *sensor = to_ar0521_dev(sd);
++
++	clk_disable_unprepare(sensor->extclk);
++	__ar0521_power_off(dev);
++
+ 	return 0;
+ }
+ 
+@@ -908,7 +918,8 @@ static int ar0521_power_on(struct device *dev)
+ 
+ 	return 0;
+ off:
+-	ar0521_power_off(dev);
++	clk_disable_unprepare(sensor->extclk);
++	__ar0521_power_off(dev);
+ 	return ret;
+ }
+ 
 
-Best regards,
 -- 
-Ricardo Ribalda <ribalda@chromium.org>
+2.46.0.76.ge559c4bf1a-goog
 
 
 _______________________________________________
