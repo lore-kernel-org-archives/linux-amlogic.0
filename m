@@ -4,79 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE08BC52D6F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2024 16:29:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D006C3DA4A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2024 16:30:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=nugCct6jPMeGZ+DipcazCCzIRT43Cl9J4TrcBEg2VlA=; b=2zjOgVH593gA3UcMovhn113TLA
-	Gu+zXMkCl941Lu2AGFRxpn3u7r5cLRl6B7H5/DW6Dnf2DkSd7/IWTLM+O0U3jXcANMtvAa4AhES2R
-	R7XeLX40S9xt6uxQg89KMvS57r0yg8XsoFQrQtSzXBPBgMZr0fCygojy8oZo0GFUExXhzsJ+RAene
-	tCXhtUbz75TCxckqU1DjiNZCjXd93V6vKImLUYfXqLZTOeUxOKpmGDR7VtkI5rQCEGAmLWhdTuU2c
-	dcnNwl3GkzpSl1O/mpXE07mSKfhW9Ds4nj2mfqzAXlfhs11Z/wFVyIFX6gtDFKOUiwJwtx2LuHRdU
-	Gskm7gWg==;
+	bh=ZU7hekOrdNPXtyLSbWjQuxYWtglDtz90BTyN4sNvI24=; b=R0Wo8FqrOv/SSxCl+AIWVY822h
+	4u4miau6LgkSEjCLsc5Z9BXMb/zbasocR8+sTwA5f5iRQ6ixdRJcAAZxF8lqVzGWwte+wThzLZnRN
+	Zv1SyQailkF48Jvg/VybS6QiNn8PIcO4xzrlVnKExCBrlfHIhN5ihTdsK9yjFTHRyV6icdHjoNvu0
+	s8ZjPMP1PGGvNrsHNXhZJMyi/FJaWFoV4eXJj6P/Jvc9JyYCLeE0HPAQgtJMEySIep3BBZwTzNlYf
+	7Du7LzmIV8hD6HxQRELwWs2FO4E7oSVW4wzmzm3fFvEF3VougJjZlMxzk1x2lac9kxLlH+dawjid6
+	BibhHgiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sg5GU-00000002Aq6-3OON;
-	Mon, 19 Aug 2024 16:29:54 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1sg5GV-00000002AqR-12C6;
+	Mon, 19 Aug 2024 16:29:55 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sg5G1-00000002Ae5-3WvK
+	id 1sg5GA-00000002AhN-0VD1
 	for linux-amlogic@lists.infradead.org;
-	Mon, 19 Aug 2024 16:29:27 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-371b97cfd6fso1036837f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2024 09:29:24 -0700 (PDT)
+	Mon, 19 Aug 2024 16:29:35 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-42819654737so35250635e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2024 09:29:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724084964; x=1724689764; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1724084972; x=1724689772; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5US2fLlCk1Qa8yNz6skTiBfI5hTwUtCqnfiUSm9ZmH8=;
-        b=MW1NoG79M3KV5LNCvjLRRxjmkYNU0PG9ajh9pG+t+Ugn4wztGHVka4ynd6skXZ/p5B
-         gNnnAxcvY904WCwFEK+sTJ29kkEkifSQGFIdSqXdhhvIoUMX0VPXKZAZ3/sPxQpItMmQ
-         6d8wWRrv5iGdEvOSkSzwQe4vnuHvH84SszhawnVtgUeQ6470+dBM0H/4wvAVxNecdDz+
-         fseQmWw/ccvz79WWMi6U9+/v/1G6I2NgfwQTDUKP6GD3NPhL+Cr6fdWQistQXSrohZ9a
-         OgYIDsk7cW1VZH59dbxLKTvzBju8SVkxRe00XBUMxUpmDfQCVeCR3T8mxaBknbV2gouh
-         DGFw==
+        bh=vyTK/Nqg+TcWV88Hzbb8pamwVc3/Bic39dkGuh1HO74=;
+        b=CVfhVxcO5wGMhNUeWg9olp7dnNi4INUsTNF83c+InDWH9xXnQjy5UQGBnl+Lkr4r9P
+         BidqesDylZYpflQgskla91OZ5/aR6MTTMwRJIsWB9z2/aOMbOPighGSTDzcJNMKLfYTW
+         HECpbkMFgSX/FbUM0YlcmIyFDmeyUrfjlc6AEb1TcdPr8yavdDriuh7wtB+7gNdoC7sm
+         yupOXyXOdIbIDtgOba0IANMcLuRpgDYjfTQrtTV5ROAN3DWgg3/VFCDDQkEQ/iMSvVfM
+         BnsMv6Ab/YCsnIQeti6DvFfXZHlAq0rxm56mwRDjW/O283Uni1v9eT/Bk5SHu4SIZKqz
+         yy2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724084964; x=1724689764;
+        d=1e100.net; s=20230601; t=1724084972; x=1724689772;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=5US2fLlCk1Qa8yNz6skTiBfI5hTwUtCqnfiUSm9ZmH8=;
-        b=xQdmaVyO4hTo1K4NtAmmil5F//B4V1cjc9Un0/zmSbrQn/x6k5UjrI8/gTR9ffGpL8
-         Et7fOr7lW/luNuz3OKBC6hv/6Y/iaiils463/QYiUVZ9Qh0weVgaaKAVkgZPsIsvzfgE
-         WdDuNraYbVa7lFByeLFWu9aC2ljfev0YJxUqLbYJYJEcKtVjg6ukEnJFmJeQjy26JHoG
-         tg1C9rQuOhcvytxO6O4yWn7P9Olyf6t1UxCtXpItIQJLplkBPe9Mx2BpIdGj6/goJDUX
-         S82GeejeeWkwuuzmGMIL/W7XgtzX8JJbwi85e79hxdmx9ayJs88tj6+UX/Aeoj2qgbgu
-         UagA==
-X-Forwarded-Encrypted: i=1; AJvYcCWQZsIhiTbQcsR7T3Ts5MB3pM3nvvhkNedIbcboFe02/b524S4C1Cr5lZionYNTsmJtlkmX9P+VbA4o2FwrODXd8SCMa7OFc/VSdtgzGcHBh2E=
-X-Gm-Message-State: AOJu0Yx8RfXMtj7dDZWbr+JFcSV3Z1A2n//oveST58vPWZhMdMkXlPsf
-	ME5SZDeW2i0vuESnYzFLrqfyL6983yC5NNpw9zhCDWB3vW6yTsL8XycpVk/suxE=
-X-Google-Smtp-Source: AGHT+IHxfQlj6hZ6qabi9dNFuwSGuRU8pknTTNNcDBW8nTSoVe9O85P9qnLwExtrqcC3QNJEn9lkLA==
-X-Received: by 2002:a5d:4cc8:0:b0:371:82e7:6ec0 with SMTP id ffacd0b85a97d-371946d29b5mr7731949f8f.59.1724084963165;
-        Mon, 19 Aug 2024 09:29:23 -0700 (PDT)
+        bh=vyTK/Nqg+TcWV88Hzbb8pamwVc3/Bic39dkGuh1HO74=;
+        b=I/YpjdjlUGhhe7viHqC2lf3J/4crb0dS52l0y9lStnDWj9dBsET5uNSpMIutBqRnyF
+         MsXR/O5XLr1PAvtYDjfTWj9IjfNrG2fElRXcWb3BM9i4qFNBYqV1He5Tk4U7S/sBYD8x
+         vpT5uXeO4ujGAjVvhGMmRmoT4PqhN7dI85N5SW8bJR8gMjlrHvRiHbg3dtc15jA+DhCZ
+         tuxcri+DrfL3EacJj4BE49WqRffN4U+Zzz53LeLddxboFD+krkVuJQ3UZuGLqlZJfabZ
+         qg9z0SIniCycBBQfYqquYkdyGzolMGtfTaymTTtydmudabNSMPDwmrrl8kTzW+Q9sCl9
+         WKaw==
+X-Forwarded-Encrypted: i=1; AJvYcCVkqBnmslJoEosAwWqgl8dawpSOK6JRoLHhj8IlNz74irNJZSx39bpNWgvHk+uk4OSrOKl+yJRLaaLBqyqOis09nU7vp/4ZVX1Bo402vf/VqxI=
+X-Gm-Message-State: AOJu0Yw3TcEyQbSO6N7pKsQTKnIwsB35m58dn9oiBqu1aQaO3V9DYDYg
+	udHTdVJEau5/fx3m0yNQPW1+yMv4nVcjnzdlWqZxERQNhBEpa4p1DwbzboxIOqE=
+X-Google-Smtp-Source: AGHT+IFmUt462S1VhERmlQIQq8oIZQDZkUEeKWv+5iLxGFcru4qpZHKVXvR9dRFVXR4lSve7N0W4QA==
+X-Received: by 2002:a05:600c:3587:b0:426:51dc:f6cd with SMTP id 5b1f17b1804b1-429ed7b8883mr89103815e9.18.1724084971510;
+        Mon, 19 Aug 2024 09:29:31 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:f54e:4b0a:5175:5727? ([2a01:e0a:982:cbb0:f54e:4b0a:5175:5727])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898bb588sm10912541f8f.115.2024.08.19.09.29.22
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429d781047asm172550245e9.0.2024.08.19.09.29.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Aug 2024 09:29:22 -0700 (PDT)
-Message-ID: <8cae4536-52ff-4e54-ba15-6376dd9129ca@linaro.org>
-Date: Mon, 19 Aug 2024 18:29:22 +0200
+        Mon, 19 Aug 2024 09:29:31 -0700 (PDT)
+Message-ID: <b828b63d-e1a8-4c9b-9001-da686dffeb64@linaro.org>
+Date: Mon, 19 Aug 2024 18:29:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 2/9] reset: amlogic: use generic data matching function
+Subject: Re: [PATCH v3 3/9] reset: amlogic: make parameters unsigned
 To: Jerome Brunet <jbrunet@baylibre.com>,
  Philipp Zabel <p.zabel@pengutronix.de>, Stephen Boyd <sboyd@kernel.org>
 Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-clk@vger.kernel.org
 References: <20240808102742.4095904-1-jbrunet@baylibre.com>
- <20240808102742.4095904-3-jbrunet@baylibre.com>
+ <20240808102742.4095904-4-jbrunet@baylibre.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -103,10 +103,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240808102742.4095904-3-jbrunet@baylibre.com>
+In-Reply-To: <20240808102742.4095904-4-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240819_092925_923380_0B74E314 
-X-CRM114-Status: GOOD (  14.02  )
+X-CRM114-CacheID: sfid-20240819_092934_197316_3D665CAD 
+X-CRM114-Status: GOOD (  11.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,28 +125,30 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 08/08/2024 12:27, Jerome Brunet wrote:
-> There is no need to use the DT specific function to get
-> matching data, use the generic one instead
+> register count and offset cannot be negative. Use unsigned integer
+> for this.
 > 
 > Suggested-by: Stephen Boyd <sboyd@kernel.org>
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->   drivers/reset/reset-meson.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/reset/reset-meson.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
-> index b47431a21b86..820905779acd 100644
+> index 820905779acd..460ad2f8360f 100644
 > --- a/drivers/reset/reset-meson.c
 > +++ b/drivers/reset/reset-meson.c
-> @@ -128,7 +128,7 @@ static int meson_reset_probe(struct platform_device *pdev)
->   	if (IS_ERR(base))
->   		return PTR_ERR(base);
+> @@ -17,8 +17,8 @@
+>   #include <linux/types.h>
 >   
-> -	data->param = of_device_get_match_data(dev);
-> +	data->param = device_get_match_data(dev);
->   	if (!data->param)
->   		return -ENODEV;
+>   struct meson_reset_param {
+> -	int reg_count;
+> -	int level_offset;
+> +	unsigned int reg_count;
+> +	unsigned int level_offset;
+>   };
 >   
+>   struct meson_reset {
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
