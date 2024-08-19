@@ -4,84 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD1EFC52D6F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2024 16:29:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE08BC52D6F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2024 16:29:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=PqIhUdAhHQSNO2MugShKlhsNQyJWO46Vp5hpTm5ticg=; b=oRnYlT1UHQq1BX9axOI7MFV6bj
-	lH5S8KHurDbWTNlZ3ilBemLe6LzlBCj6iNNpCQ6GiFrcTpr/4asFa1q6Lqvzhak3hJDEPVHBnN+Pd
-	2XECN00mtqFB8Wo2tsjRmw/UfKsuxSTE/lfFR31+NM8ke50tV2RXEco2PUsTaEC0YdAyyYNEQLhf2
-	eAScdc6QlbvKqOFXmkKcP2RulOo0iObxhpfvXu8cXsva5zsoQabpPMVge0uponPTpyBgbnmkkgP7h
-	Nnb4xgdl4Ik0DMe76fHqjfvG6YKdEMJYY4ChhoHR/o1OmwLuhPrdMfgR+lNRQgD/xJpmrIAyyLgXs
-	D+iFIeDA==;
+	bh=nugCct6jPMeGZ+DipcazCCzIRT43Cl9J4TrcBEg2VlA=; b=2zjOgVH593gA3UcMovhn113TLA
+	Gu+zXMkCl941Lu2AGFRxpn3u7r5cLRl6B7H5/DW6Dnf2DkSd7/IWTLM+O0U3jXcANMtvAa4AhES2R
+	R7XeLX40S9xt6uxQg89KMvS57r0yg8XsoFQrQtSzXBPBgMZr0fCygojy8oZo0GFUExXhzsJ+RAene
+	tCXhtUbz75TCxckqU1DjiNZCjXd93V6vKImLUYfXqLZTOeUxOKpmGDR7VtkI5rQCEGAmLWhdTuU2c
+	dcnNwl3GkzpSl1O/mpXE07mSKfhW9Ds4nj2mfqzAXlfhs11Z/wFVyIFX6gtDFKOUiwJwtx2LuHRdU
+	Gskm7gWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sg5Fq-00000002Aah-1rDj;
-	Mon, 19 Aug 2024 16:29:14 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1sg5GU-00000002Aq6-3OON;
+	Mon, 19 Aug 2024 16:29:54 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sg5E7-000000029u3-49Xb
+	id 1sg5G1-00000002Ae5-3WvK
 	for linux-amlogic@lists.infradead.org;
-	Mon, 19 Aug 2024 16:27:29 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4280ca0791bso37013945e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2024 09:27:27 -0700 (PDT)
+	Mon, 19 Aug 2024 16:29:27 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-371b97cfd6fso1036837f8f.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2024 09:29:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724084846; x=1724689646; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1724084964; x=1724689764; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=s26y2YASDAdGxsHZ7d56abaHHsBVOs2ZG5NV1yhnbpQ=;
-        b=snMwQmpFN2FwQSY/vbXWbhhpsopvxboY86krM8SMU26nRvOAFBZ17EYWNhnx3oZaW4
-         wrtekEPJhMC023PqGcPZ10OIotaUcrOdryL6/qmHZj8UXI8HVr8aTxCu6CF7irxf3dPf
-         q9ICU2QqrCSQPFvqSecrKvGfzSi16MDkqCvcJkV66JzMsFnuPm3H5AI6kiM9vWUprA1S
-         BMo0zJagCu0K1JTti8VZVMQpKNb7E4GY+5CcghqasaPFw+CzhCvujRq13eQdqmFy2wur
-         dHKj0cOsfQzH59a8YMfJ5S9txO/pUrOkoUXzqE89R+RnJM4+kU60kK33ZGJ9x3AGTgWZ
-         XNzQ==
+        bh=5US2fLlCk1Qa8yNz6skTiBfI5hTwUtCqnfiUSm9ZmH8=;
+        b=MW1NoG79M3KV5LNCvjLRRxjmkYNU0PG9ajh9pG+t+Ugn4wztGHVka4ynd6skXZ/p5B
+         gNnnAxcvY904WCwFEK+sTJ29kkEkifSQGFIdSqXdhhvIoUMX0VPXKZAZ3/sPxQpItMmQ
+         6d8wWRrv5iGdEvOSkSzwQe4vnuHvH84SszhawnVtgUeQ6470+dBM0H/4wvAVxNecdDz+
+         fseQmWw/ccvz79WWMi6U9+/v/1G6I2NgfwQTDUKP6GD3NPhL+Cr6fdWQistQXSrohZ9a
+         OgYIDsk7cW1VZH59dbxLKTvzBju8SVkxRe00XBUMxUpmDfQCVeCR3T8mxaBknbV2gouh
+         DGFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724084846; x=1724689646;
+        d=1e100.net; s=20230601; t=1724084964; x=1724689764;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=s26y2YASDAdGxsHZ7d56abaHHsBVOs2ZG5NV1yhnbpQ=;
-        b=T1Mve0ACm6+Igce9Q2x83jYFcai1O876r+Ogi3mu89el14ZnYPKJvnPfAHEHRZjIBh
-         Jc3/wky6ytjuDw/+UkyNPalPF+PojmgasngWPcaPzQco+3rqnR+aoPlQNI9AJwsQZ/7b
-         yNd7FauVE1Y9GstMyqcu2KVWjJoKHT+/H2Y2NTs88ZkNtXA6iJi5oUraJ8hwmhy6XnpZ
-         62uphD1lUkAJ5aqK2jtP/eEt3XKhF+mtj+1QwyxJTtkVwWPlrYa6oTFETWyBkGB6IN9Y
-         3NKLdb/VdMNFSGpAv4GFLd91W8eOdYBpQ+Hhkr3qGe6mhAto1tOncNVfLibNNNtmZ64H
-         gqvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWMVHw/2Y640dtcldnjlUfubBUikFRnTOHDQUsXxFBqinDZL9+uTLjBd/S1acYIlLh3MjYMGZoiyoghwXJaC1ruw8r96OC8/zYREpa7wjZEYL0=
-X-Gm-Message-State: AOJu0Yy9B2FhjBhScAVQdn3gnezMbl+c61xq6unRm1fO4BCebD+MEZAf
-	Rbyfo6tcviCj3kgNVrs2APKokGmcwYN2+Fb6pFNOJH8NoYPnYhN+zo4y1UnNqBg=
-X-Google-Smtp-Source: AGHT+IGyaOFKm6KH67C+5hH2/5G0422FDAPK6JZLNWUTv4Npjeh6t5xLFubuidWWYm7P8IzFY6X6Bg==
-X-Received: by 2002:a05:600c:444b:b0:426:6320:7ddf with SMTP id 5b1f17b1804b1-429ed7f944bmr68331525e9.35.1724084845997;
-        Mon, 19 Aug 2024 09:27:25 -0700 (PDT)
+        bh=5US2fLlCk1Qa8yNz6skTiBfI5hTwUtCqnfiUSm9ZmH8=;
+        b=xQdmaVyO4hTo1K4NtAmmil5F//B4V1cjc9Un0/zmSbrQn/x6k5UjrI8/gTR9ffGpL8
+         Et7fOr7lW/luNuz3OKBC6hv/6Y/iaiils463/QYiUVZ9Qh0weVgaaKAVkgZPsIsvzfgE
+         WdDuNraYbVa7lFByeLFWu9aC2ljfev0YJxUqLbYJYJEcKtVjg6ukEnJFmJeQjy26JHoG
+         tg1C9rQuOhcvytxO6O4yWn7P9Olyf6t1UxCtXpItIQJLplkBPe9Mx2BpIdGj6/goJDUX
+         S82GeejeeWkwuuzmGMIL/W7XgtzX8JJbwi85e79hxdmx9ayJs88tj6+UX/Aeoj2qgbgu
+         UagA==
+X-Forwarded-Encrypted: i=1; AJvYcCWQZsIhiTbQcsR7T3Ts5MB3pM3nvvhkNedIbcboFe02/b524S4C1Cr5lZionYNTsmJtlkmX9P+VbA4o2FwrODXd8SCMa7OFc/VSdtgzGcHBh2E=
+X-Gm-Message-State: AOJu0Yx8RfXMtj7dDZWbr+JFcSV3Z1A2n//oveST58vPWZhMdMkXlPsf
+	ME5SZDeW2i0vuESnYzFLrqfyL6983yC5NNpw9zhCDWB3vW6yTsL8XycpVk/suxE=
+X-Google-Smtp-Source: AGHT+IHxfQlj6hZ6qabi9dNFuwSGuRU8pknTTNNcDBW8nTSoVe9O85P9qnLwExtrqcC3QNJEn9lkLA==
+X-Received: by 2002:a5d:4cc8:0:b0:371:82e7:6ec0 with SMTP id ffacd0b85a97d-371946d29b5mr7731949f8f.59.1724084963165;
+        Mon, 19 Aug 2024 09:29:23 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:f54e:4b0a:5175:5727? ([2a01:e0a:982:cbb0:f54e:4b0a:5175:5727])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded7d5bfsm171663065e9.46.2024.08.19.09.27.24
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898bb588sm10912541f8f.115.2024.08.19.09.29.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Aug 2024 09:27:25 -0700 (PDT)
-Message-ID: <e8c91a84-bfef-42c0-9e20-91676bb3843d@linaro.org>
-Date: Mon, 19 Aug 2024 18:27:24 +0200
+        Mon, 19 Aug 2024 09:29:22 -0700 (PDT)
+Message-ID: <8cae4536-52ff-4e54-ba15-6376dd9129ca@linaro.org>
+Date: Mon, 19 Aug 2024 18:29:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH LATER 8/9] drm/meson: dw-hdmi: don't write power
- controller registers
+Subject: Re: [PATCH v3 2/9] reset: amlogic: use generic data matching function
 To: Jerome Brunet <jbrunet@baylibre.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Cc: Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240730125023.710237-1-jbrunet@baylibre.com>
- <20240730125023.710237-9-jbrunet@baylibre.com>
+ Philipp Zabel <p.zabel@pengutronix.de>, Stephen Boyd <sboyd@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20240808102742.4095904-1-jbrunet@baylibre.com>
+ <20240808102742.4095904-3-jbrunet@baylibre.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -108,10 +103,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240730125023.710237-9-jbrunet@baylibre.com>
+In-Reply-To: <20240808102742.4095904-3-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240819_092728_150037_2257668F 
-X-CRM114-Status: GOOD (  19.21  )
+X-CRM114-CacheID: sfid-20240819_092925_923380_0B74E314 
+X-CRM114-Status: GOOD (  14.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,59 +124,31 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30/07/2024 14:50, Jerome Brunet wrote:
-> The HDMI phy has a power domain properly set in DT.
+On 08/08/2024 12:27, Jerome Brunet wrote:
+> There is no need to use the DT specific function to get
+> matching data, use the generic one instead
 > 
-> Writing the power controller register directly from the hdmi driver is
-> incorrect. The power domain framework should be used for that.
-> 
-> HHI is a collection of Amlogic devices, such as clocks, reset,
-> power domains and phys.
-> 
-> This is another step to get rid of HHI access in Amlogic display drivers
-> and possibly stop using the component API.
-> 
+> Suggested-by: Stephen Boyd <sboyd@kernel.org>
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
+>   drivers/reset/reset-meson.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->   This change depends on:
->   * f1ab099d6591 ("arm64: dts: amlogic: add power domain to hdmitx")
-> 
-> Time is needed for these changes to sink in u-boot and distros,
-> making this change safe to apply.
-
-
-Well no, we will basically need to wait until none of the stable and long-stable kernel stops
-shipping a kernel without this change, but you can check if a power-domain have been associated
-with the device and do the same.
-
-> 
->   drivers/gpu/drm/meson/meson_dw_hdmi.c | 4 ----
->   1 file changed, 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index ef059c5ef520..6c18d97b8b16 100644
-> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -111,7 +111,6 @@
->   #define HDMITX_TOP_G12A_OFFSET	0x8000
+> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
+> index b47431a21b86..820905779acd 100644
+> --- a/drivers/reset/reset-meson.c
+> +++ b/drivers/reset/reset-meson.c
+> @@ -128,7 +128,7 @@ static int meson_reset_probe(struct platform_device *pdev)
+>   	if (IS_ERR(base))
+>   		return PTR_ERR(base);
 >   
->   /* HHI Registers */
-> -#define HHI_MEM_PD_REG0		0x100 /* 0x40 */
->   #define HHI_HDMI_CLK_CNTL	0x1cc /* 0x73 */
->   #define HHI_HDMI_PHY_CNTL0	0x3a0 /* 0xe8 */
->   #define HHI_HDMI_PHY_CNTL1	0x3a4 /* 0xe9 */
-> @@ -423,9 +422,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
->   	/* Enable clocks */
->   	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
+> -	data->param = of_device_get_match_data(dev);
+> +	data->param = device_get_match_data(dev);
+>   	if (!data->param)
+>   		return -ENODEV;
 >   
-> -	/* Bring HDMITX MEM output of power down */
-> -	regmap_update_bits(priv->hhi, HHI_MEM_PD_REG0, 0xff << 8, 0);
-> -
->   	/* Bring out of reset */
->   	regmap_write(meson_dw_hdmi->top, HDMITX_TOP_SW_RESET, 0);
->   	msleep(20);
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 _______________________________________________
 linux-amlogic mailing list
