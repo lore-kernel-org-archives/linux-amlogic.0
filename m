@@ -4,79 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68266C3DA4A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2024 15:55:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0FFCC52D6F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2024 15:58:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+5/qAGt5f3Ku9nMFXnD9Wo9TXp6+ydnB+kMuD6nQHVU=; b=1gD15034UJPo2nF3Rz1H+ZT5lt
-	aaCUwRafV7uGN37R2qI6GSidOaBJq4m+iNOQaLHmxrPXt7IAOzWYkkqwx7N/sKq++rlwmNMRGrHoF
-	66dssDA4pDhcSsqBWJvwIvi3PCV0DM/Yrq8tuPUNWcgcGK+R6sfIERZ2v5WJ2XFqV6DGuRTwg7L6I
-	d85A2pVP09uFC01Qr7Bd7K38ddh6n+uRL2PGxhNPADHC/uIvdbU2A5XZLwPF/9mH5AHYFfDRpT3vI
-	g9atjM1Cm7y5OSV0twFSyJbO73huRdT23nZwMLTZ9zQDabqhRT5sT6IgKDesf6EkNWc+Nws/49Dg9
-	njdUwfQw==;
+	bh=HY9S/Vhj/42gqOwjiw9AoPO2hO8LbNxfrpRujouXJXY=; b=OT6WPpNHElK1qy5/Ig7dKozhVv
+	bVTI+SwvuovDuxZYmfFR6K2NHArjyw1nlhNgQejdlKhgndUfIQMO0wYUQ01Z/kcjIISF/7w0+x6Ms
+	DprgDtDHYNSayhdDdnpfEDm/S0JXxV+3jmz4pii04HXuLTdI4bw6lehNwRa6dhQ8sDn/CbX6SWiAs
+	0zkuLuqfzF3Q3P8ODfHGMKGzUsSX+5hWlFkP5ObkAag8Qk3JJGWE0Je6MeUWZn29Gd5LGICvVfgat
+	5L+DHv4D2zQ/JPJZ3sg5zl2lDmbOYz7kUT+/IHjdYiiqwjrhSNxzTUntRAi4Yg8pfzj/NFy6yk9J9
+	DcHKErgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sg4jQ-000000022AO-1au1;
-	Mon, 19 Aug 2024 15:55:44 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1sg4mM-000000022rf-1NsZ;
+	Mon, 19 Aug 2024 15:58:46 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sg4jN-0000000228C-1D5E
+	id 1sg4lS-000000022b8-3iMS
 	for linux-amlogic@lists.infradead.org;
-	Mon, 19 Aug 2024 15:55:42 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-42819654737so34885665e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2024 08:55:40 -0700 (PDT)
+	Mon, 19 Aug 2024 15:57:53 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-428163f7635so39377865e9.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2024 08:57:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724082939; x=1724687739; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1724083069; x=1724687869; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Qs5fWzggfiB2jX0FmUYwMsZ2TSBuyP8FCNq135EUvH4=;
-        b=iH3PoKs7UtYgVDWaxx2Gbk3070nQz/ISZWhLH9k0qELnXUCyBWvw5og3lrK0QiBmzx
-         rDABBlsGrW+9LOHqHQ7Mw7Iosh8g53m8ItSCyIlLkJwKgehdWNR7IJiD0IQ4m8jU97Lv
-         hryK9kqUjB689CH4JtPPTbSYXj0JmZKIEafdDzu505Sn3PxTql2mNsqpEAYqX2t9j4Yy
-         W1mjIYIG+h3GMYnBgdP1J8kdG5AxcqX7c7F9wXkoNqBuIj20JeFFvdAyVB/+JgHQncCJ
-         9dGMKEF8POTZKCc3h3fDUHeu31wB6qlsq8jNLSsoava92O7oPRUS2R8b9E6HlmJGfmV8
-         HnBA==
+        bh=gYLXx6IK436ZXUWm98Vv0I9P30RpVgjMhTotCo81moA=;
+        b=iAKM8ZK1/iuR//W0ZLfOQCywFVlyOp7vZcF/PdjE38Ji7lfeVDUAGxyAX4dFFyVcFU
+         uljuxLxIbnOV/mbhSXEkbhTvpLpSjsMRj4p0uXT8Qc3AMmNpwsK5cSijuO+FG8Y6Jf6o
+         ieSFK3zTQFqtplrQCRJ0edF4VOC3lCxX+07ORbcpobKgs0YM1KPsFzsggOBt76zCMU48
+         7U7DW42FtHn9kNSzAqAhhqaB8zjF/btX7+3fwgb5wczpLIyS7qJfK7Md8vFiuH99vbEx
+         0UCqypBvsukkpV4Tdny7eSEnuVBGoIQ+lGdtPt5GSdcmkfeoQjoQCsFakUutqpMB47Ik
+         oYmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724082939; x=1724687739;
+        d=1e100.net; s=20230601; t=1724083069; x=1724687869;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=Qs5fWzggfiB2jX0FmUYwMsZ2TSBuyP8FCNq135EUvH4=;
-        b=ppCUo11qQwrmoyI62tQi9/9Q6fKqyuLynW9hDTD3bIqWxkt2LO74XyzBHjxYLONjyt
-         KIBoAwF5JSdoEIxvkPFpZb9JgMC/tkQmkkMrUFvHAVgBdq2T9gprVmItiujQVmx2dQLK
-         iCJCIbRhGPXlc+mgkt1lo6W03Ry/VFVnh0z7aaHlmvLZy8Z1IsFkcDfn4E6OlR6Y5vvJ
-         VkTBN8JCipC4qDuYTzri04tUFBBYpksB9ZkgjF+N3XjlR0TiDvJBzmFu6hdOHv8EFNfy
-         D9vaUSIPCZ/1T4R0MfOpBGld5YNr1wjXr7M1VX5ZG+A/hDcpe7vIU8x0p7ytVX9ZQf9X
-         cf9w==
-X-Forwarded-Encrypted: i=1; AJvYcCVxr1lakT5jvxqubPrsaL7NiTiCS2JeH7ItFbxolHJ6ez6yRn6cKaHkkxFjjIC8WULUjTvQVGBP+LZHAvuK@lists.infradead.org
-X-Gm-Message-State: AOJu0YzpeCoe+zGh8SE7il+6gXs21yNBAi3cZQqoMoCedlLee+Nhw9v8
-	FqdfptJcVMhI65KvKMG4cb3DP9YQnPNajIRG0JXPNwZPywHsjPscJu119YU4iGs=
-X-Google-Smtp-Source: AGHT+IFJxTbaOFBT1xGu5oUq8Y1BTlG6M875inLI3Fd91V0wqoE+DkDHRodBrHYLtdnMm6jXgZ4Y4w==
-X-Received: by 2002:a05:6000:1289:b0:371:8845:a3af with SMTP id ffacd0b85a97d-371946a3f3dmr6254795f8f.39.1724082938471;
-        Mon, 19 Aug 2024 08:55:38 -0700 (PDT)
+        bh=gYLXx6IK436ZXUWm98Vv0I9P30RpVgjMhTotCo81moA=;
+        b=TihAwg19WqcfGoPbJKPTcUNqZ/kjjEOCto8ILdhbkDjfRvjfzQYjB9I90xokHrqhYQ
+         qOyHo3braWgT54Cj6OcdxpjQQoFU/sxLvNM9H38UOgd1wCzU0Ha7pfCm06XfcEwzZW/F
+         FYbK1+bCz03ohRB/6avExCd2yzaWojr5vtHTcrKV143CIcZYNjtOGGBM9QlR1iVjwNnU
+         NsM3Suy+6a++ZM04hxiC30XD3vegIkCPjOs37vXL1l47ku6JM64z7N70PVbj/wAIKneQ
+         7rSxtk9bKG/JGDaIs2G7luGghEOMb6ctwwk4WCZ+zeRQSJQF24pJu+PSaJcdjxG+OMfX
+         032w==
+X-Forwarded-Encrypted: i=1; AJvYcCXnsgWNbor5nWrDT9i+/K/tWnzRb0CUFK+OsYIZKNYZ4u9LOnbTR7ncf+LsPvGLC1SmLLlY6iPLkKRs77BpBvOZdv3Xe8sWSAoNkiLMq1OBjSU=
+X-Gm-Message-State: AOJu0YxSV0jwYWhLNDlHUQh0fD2ytzrXxDZSbowhyyRfE3AXy9g89IsE
+	Nj4vHiKURMfOGhJVxunYdRsPDbWlz9fYQ3fxzoijllM0FqynCdlGw1sKgGWyT7wH/UeMHdL11vJ
+	d
+X-Google-Smtp-Source: AGHT+IEWZ9kdWV6uTHZAXTq9g0kGd7Rheid4jblAqZmzIcGKVPLZkk5lJdCcW5NMGYbQoypK0W3cIQ==
+X-Received: by 2002:a05:600c:46c9:b0:427:985b:178b with SMTP id 5b1f17b1804b1-429ed79e585mr67849275e9.16.1724083068540;
+        Mon, 19 Aug 2024 08:57:48 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:f54e:4b0a:5175:5727? ([2a01:e0a:982:cbb0:f54e:4b0a:5175:5727])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37189849697sm10840891f8f.37.2024.08.19.08.55.37
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898aabe9sm10897543f8f.92.2024.08.19.08.57.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Aug 2024 08:55:38 -0700 (PDT)
-Message-ID: <7c598260-513a-4aad-962f-34e5de6731dd@linaro.org>
-Date: Mon, 19 Aug 2024 17:55:37 +0200
+        Mon, 19 Aug 2024 08:57:48 -0700 (PDT)
+Message-ID: <614de1b0-fcaf-457c-9183-1f3cd7f91b38@linaro.org>
+Date: Mon, 19 Aug 2024 17:57:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 1/9] reset: amlogic: convert driver to regmap
+Subject: Re: [PATCH v3 4/9] reset: amlogic: add driver parameters
 To: Jerome Brunet <jbrunet@baylibre.com>,
  Philipp Zabel <p.zabel@pengutronix.de>, Stephen Boyd <sboyd@kernel.org>
 Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-clk@vger.kernel.org
 References: <20240808102742.4095904-1-jbrunet@baylibre.com>
- <20240808102742.4095904-2-jbrunet@baylibre.com>
+ <20240808102742.4095904-5-jbrunet@baylibre.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -103,10 +104,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240808102742.4095904-2-jbrunet@baylibre.com>
+In-Reply-To: <20240808102742.4095904-5-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240819_085541_401954_E2CB73D9 
-X-CRM114-Status: GOOD (  21.26  )
+X-CRM114-CacheID: sfid-20240819_085750_968546_B13D6E0D 
+X-CRM114-Status: GOOD (  19.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,157 +127,80 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On 08/08/2024 12:27, Jerome Brunet wrote:
 > To allow using the same driver for the main reset controller and the
-> auxiliary ones embedded in the clock controllers, convert the
-> the Amlogic reset driver to regmap.
+> auxiliary ones embedded in the clock controllers, allow to customise
+> the reset offset, same as the level offset. Also add an option to make
+> the level reset active low or high.
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->   drivers/reset/reset-meson.c | 79 ++++++++++++++++++++-----------------
->   1 file changed, 43 insertions(+), 36 deletions(-)
+>   drivers/reset/reset-meson.c | 12 +++++++++++-
+>   1 file changed, 11 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
-> index f78be97898bc..b47431a21b86 100644
+> index 460ad2f8360f..8addd100e601 100644
 > --- a/drivers/reset/reset-meson.c
 > +++ b/drivers/reset/reset-meson.c
-> @@ -11,36 +11,43 @@
->   #include <linux/of.h>
->   #include <linux/module.h>
->   #include <linux/platform_device.h>
-> +#include <linux/regmap.h>
->   #include <linux/reset-controller.h>
->   #include <linux/slab.h>
->   #include <linux/types.h>
+> @@ -18,7 +18,9 @@
 >   
-> -#define BITS_PER_REG	32
-> -
 >   struct meson_reset_param {
->   	int reg_count;
->   	int level_offset;
+>   	unsigned int reg_count;
+> +	unsigned int reset_offset;
+>   	unsigned int level_offset;
+> +	bool level_low_reset;
 >   };
 >   
 >   struct meson_reset {
-> -	void __iomem *reg_base;
->   	const struct meson_reset_param *param;
->   	struct reset_controller_dev rcdev;
-> -	spinlock_t lock;
-> +	struct regmap *map;
->   };
+> @@ -46,6 +48,7 @@ static int meson_reset_reset(struct reset_controller_dev *rcdev,
+>   	unsigned int offset, bit;
 >   
-> +static void meson_reset_offset_and_bit(struct meson_reset *data,
-> +				       unsigned long id,
-> +				       unsigned int *offset,
-> +				       unsigned int *bit)
-> +{
-> +	unsigned int stride = regmap_get_reg_stride(data->map);
-> +
-> +	*offset = (id / (stride * BITS_PER_BYTE)) * stride;
-> +	*bit = id % (stride * BITS_PER_BYTE);
-> +}
-> +
->   static int meson_reset_reset(struct reset_controller_dev *rcdev,
-> -			      unsigned long id)
-> +			     unsigned long id)
->   {
->   	struct meson_reset *data =
->   		container_of(rcdev, struct meson_reset, rcdev);
-> -	unsigned int bank = id / BITS_PER_REG;
-> -	unsigned int offset = id % BITS_PER_REG;
-> -	void __iomem *reg_addr = data->reg_base + (bank << 2);
-> +	unsigned int offset, bit;
+>   	meson_reset_offset_and_bit(data, id, &offset, &bit);
+> +	offset += data->param->reset_offset;
 >   
-> -	writel(BIT(offset), reg_addr);
-> +	meson_reset_offset_and_bit(data, id, &offset, &bit);
->   
-> -	return 0;
-> +	return regmap_write(data->map, offset, BIT(bit));
+>   	return regmap_write(data->map, offset, BIT(bit));
 >   }
+> @@ -59,9 +62,10 @@ static int meson_reset_level(struct reset_controller_dev *rcdev,
 >   
->   static int meson_reset_level(struct reset_controller_dev *rcdev,
-> @@ -48,25 +55,13 @@ static int meson_reset_level(struct reset_controller_dev *rcdev,
->   {
->   	struct meson_reset *data =
->   		container_of(rcdev, struct meson_reset, rcdev);
-> -	unsigned int bank = id / BITS_PER_REG;
-> -	unsigned int offset = id % BITS_PER_REG;
-> -	void __iomem *reg_addr;
-> -	unsigned long flags;
-> -	u32 reg;
-> +	unsigned int offset, bit;
+>   	meson_reset_offset_and_bit(data, id, &offset, &bit);
+>   	offset += data->param->level_offset;
+> +	assert ^= data->param->level_low_reset;
 >   
-> -	reg_addr = data->reg_base + data->param->level_offset + (bank << 2);
-> +	meson_reset_offset_and_bit(data, id, &offset, &bit);
-> +	offset += data->param->level_offset;
->   
-> -	spin_lock_irqsave(&data->lock, flags);
-> -
-> -	reg = readl(reg_addr);
-> -	if (assert)
-> -		writel(reg & ~BIT(offset), reg_addr);
-> -	else
-> -		writel(reg | BIT(offset), reg_addr);
-> -
-> -	spin_unlock_irqrestore(&data->lock, flags);
-> -
-> -	return 0;
-> +	return regmap_update_bits(data->map, offset,
-> +				  BIT(bit), assert ? 0 : BIT(bit));
+>   	return regmap_update_bits(data->map, offset,
+> -				  BIT(bit), assert ? 0 : BIT(bit));
+> +				  BIT(bit), assert ? BIT(bit) : 0);
 >   }
 >   
 >   static int meson_reset_assert(struct reset_controller_dev *rcdev,
-> @@ -113,30 +108,42 @@ static const struct of_device_id meson_reset_dt_ids[] = {
+> @@ -84,17 +88,23 @@ static const struct reset_control_ops meson_reset_ops = {
+>   
+>   static const struct meson_reset_param meson8b_param = {
+>   	.reg_count	= 8,
+> +	.reset_offset	= 0x0,
+>   	.level_offset	= 0x7c,
+> +	.level_low_reset = true,
 >   };
->   MODULE_DEVICE_TABLE(of, meson_reset_dt_ids);
 >   
-> +static const struct regmap_config regmap_config = {
-> +	.reg_bits   = 32,
-> +	.val_bits   = 32,
-> +	.reg_stride = 4,
-> +};
-> +
->   static int meson_reset_probe(struct platform_device *pdev)
->   {
-> +	struct device *dev = &pdev->dev;
->   	struct meson_reset *data;
-> +	void __iomem *base;
+>   static const struct meson_reset_param meson_a1_param = {
+>   	.reg_count	= 3,
+> +	.reset_offset	= 0x0,
+>   	.level_offset	= 0x40,
+> +	.level_low_reset = true,
+>   };
 >   
-> -	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
->   	if (!data)
->   		return -ENOMEM;
->   
-> -	data->reg_base = devm_platform_ioremap_resource(pdev, 0);
-> -	if (IS_ERR(data->reg_base))
-> -		return PTR_ERR(data->reg_base);
-> +	base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
->   
-> -	data->param = of_device_get_match_data(&pdev->dev);
-> +	data->param = of_device_get_match_data(dev);
->   	if (!data->param)
->   		return -ENODEV;
->   
-> -	spin_lock_init(&data->lock);
-> +	data->map = devm_regmap_init_mmio(dev, base, &regmap_config);
-> +	if (IS_ERR(data->map))
-> +		return dev_err_probe(dev, PTR_ERR(data->map),
-> +				     "can't init regmap mmio region\n");
->   
->   	data->rcdev.owner = THIS_MODULE;
-> -	data->rcdev.nr_resets = data->param->reg_count * BITS_PER_REG;
-> +	data->rcdev.nr_resets = data->param->reg_count * BITS_PER_BYTE
-> +		* regmap_config.reg_stride;
->   	data->rcdev.ops = &meson_reset_ops;
-> -	data->rcdev.of_node = pdev->dev.of_node;
-> +	data->rcdev.of_node = dev->of_node;
->   
-> -	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
-> +	return devm_reset_controller_register(dev, &data->rcdev);
->   }
->   
->   static struct platform_driver meson_reset_driver = {
+>   static const struct meson_reset_param meson_s4_param = {
+>   	.reg_count	= 6,
+> +	.reset_offset	= 0x0,
+>   	.level_offset	= 0x40,
+> +	.level_low_reset = true,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Just a comment, I would rather leave the "default" users of this driver with the default value
+and use level_high_reset = true for the clock ones
+
+Neil
+
+>   };
+>   
+>   static const struct of_device_id meson_reset_dt_ids[] = {
+
 
 _______________________________________________
 linux-amlogic mailing list
