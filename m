@@ -4,81 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AEA2C531DC
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Aug 2024 19:56:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68266C3DA4A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2024 15:55:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NCCVN/rVaK6MJlevjmRFbKinYqD8JS8yjeEZpm/eRX0=; b=rpN65I5tFegx4P
-	TrfxacY94hAb068DwM5s20r3fxgamPrbRP91I5pEa+D5c+OLRJzy0W233aOt+gcTF9J5kI8afA7hh
-	Hn297ZuvK2ayTLaKUR1Vm1Hhzn5GiU34oHxJJR5VQrZmg5lBCNFw8FOEisDu8WK8R5vOYkCfGBUSB
-	pM8h+dopGyeh/MQXGXh/KOVLWQKNMTbystEy4hGFsxaxdZvmR5GvYuvRg9kOPLJXVERq1Oz6kkeOe
-	yumNd1dP5iNhW0om08YTNRiCp59xhFnnuRkTkpT0uFvHjDYQkUdB11P640wfWiyXhhzR6EwDb9PS2
-	DxA8SdTw4FFXG/tlP2YQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=+5/qAGt5f3Ku9nMFXnD9Wo9TXp6+ydnB+kMuD6nQHVU=; b=1gD15034UJPo2nF3Rz1H+ZT5lt
+	aaCUwRafV7uGN37R2qI6GSidOaBJq4m+iNOQaLHmxrPXt7IAOzWYkkqwx7N/sKq++rlwmNMRGrHoF
+	66dssDA4pDhcSsqBWJvwIvi3PCV0DM/Yrq8tuPUNWcgcGK+R6sfIERZ2v5WJ2XFqV6DGuRTwg7L6I
+	d85A2pVP09uFC01Qr7Bd7K38ddh6n+uRL2PGxhNPADHC/uIvdbU2A5XZLwPF/9mH5AHYFfDRpT3vI
+	g9atjM1Cm7y5OSV0twFSyJbO73huRdT23nZwMLTZ9zQDabqhRT5sT6IgKDesf6EkNWc+Nws/49Dg9
+	njdUwfQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sf33B-0000000DyKk-3AI1;
-	Fri, 16 Aug 2024 19:55:53 +0000
-Received: from mail-pl1-x62a.google.com ([2607:f8b0:4864:20::62a])
+	id 1sg4jQ-000000022AO-1au1;
+	Mon, 19 Aug 2024 15:55:44 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sf338-0000000DyKJ-09Cr;
-	Fri, 16 Aug 2024 19:55:52 +0000
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-201ee6b084bso19641455ad.2;
-        Fri, 16 Aug 2024 12:55:48 -0700 (PDT)
+	id 1sg4jN-0000000228C-1D5E
+	for linux-amlogic@lists.infradead.org;
+	Mon, 19 Aug 2024 15:55:42 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-42819654737so34885665e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2024 08:55:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1723838148; x=1724442948; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MGWxg1wOx8lJ4g1VL18IcZyVgXvmEtS03cqmIV5LuWw=;
-        b=SIXgGYcowED+Zv74/PaPXQt2jdpfHEzSlRiWGQh3T49okdlIElaaP9vv79jAi+xNKq
-         ZQUdKjswQMkpIT4VvLofRpvM/fg8zoO3xXzeET0OZ0QRBU3OEhdX9w3jKAvTOkX5S9MQ
-         PDBJMRXhBzpCfcSeiXynK7WQw0EEbSllrJYIk7pAGxucFUguY5A7T/6Sc3NMmtHi6OsH
-         ADgbMzFLaGlnPmJz8iI5wtCIxtgFv70AEyi17NGijtYGYZUdmbljDCwegkS7DF36fL9B
-         fBR12Dz8rtcYRrpLvI+rY3yIQ4Kj6qKrmymeT/WMr0m6JQYv7NYAc4odDUzm9AH11H0+
-         9aZw==
+        d=linaro.org; s=google; t=1724082939; x=1724687739; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Qs5fWzggfiB2jX0FmUYwMsZ2TSBuyP8FCNq135EUvH4=;
+        b=iH3PoKs7UtYgVDWaxx2Gbk3070nQz/ISZWhLH9k0qELnXUCyBWvw5og3lrK0QiBmzx
+         rDABBlsGrW+9LOHqHQ7Mw7Iosh8g53m8ItSCyIlLkJwKgehdWNR7IJiD0IQ4m8jU97Lv
+         hryK9kqUjB689CH4JtPPTbSYXj0JmZKIEafdDzu505Sn3PxTql2mNsqpEAYqX2t9j4Yy
+         W1mjIYIG+h3GMYnBgdP1J8kdG5AxcqX7c7F9wXkoNqBuIj20JeFFvdAyVB/+JgHQncCJ
+         9dGMKEF8POTZKCc3h3fDUHeu31wB6qlsq8jNLSsoava92O7oPRUS2R8b9E6HlmJGfmV8
+         HnBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723838148; x=1724442948;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MGWxg1wOx8lJ4g1VL18IcZyVgXvmEtS03cqmIV5LuWw=;
-        b=WZDGyyLK/hsZ9YpUUyWJ9PqzNc6m5kLrVDq+rwE+yyshvPGuIEXadvydIiCv4vqVuZ
-         6a6dngwWHw6RCq/fmXhCeyIk2gOc63gjrRWmkrLt3heSiurRpFeOxNlqPcclqhU6Oqrp
-         ke39dxcDeTXNsyfrMGGsE3McSvf+jA7Chkavyz3dPI4eyeJoLCyZtFoCTTMy0EsO3WnI
-         bkdgdImT5ZBMXMwb1E+UbPdTcBnZKa/2BoDHvqtQ+oMZHauj26KhOsETy1o8cy0Qj7gA
-         BoxwcvWeX1/pHU3oJP4nBXqyTjlp0L8jz7yoeD2efrjDluK2OxgqDHPVHt3I0h6q5BEI
-         OulA==
-X-Forwarded-Encrypted: i=1; AJvYcCXW0CCQPTVE2nYgyBRXT1eRaedz8tq16lL6y0zCS/vbQ/VwvAOHBKiM2GYv9KTDCGOfnauHYTMgiX5UWos3rU7V4rFlzBiRTWLjYbfl7x+s9NAsl2pqMB/LaJlPU81PWKI3G0VDlg8eXA6A5bBP5V4QV3mYJJj2IQ==
-X-Gm-Message-State: AOJu0Yy6E+3KrlRYcu3J2riucvA0HXXFoJOLHTumo972emC2pzin7EYO
-	V13BpLt33GQQBStnUfkSsUwOdJeAzMYO+hnhwAvb0S0I2+bF9dTD5qFobSRsm8wH3oT/LExuecG
-	tB49f/F1xf9IhqKvJRSXy9sI/VGQ=
-X-Google-Smtp-Source: AGHT+IGH6vqIACm8gz7WSIiK1hLIMfs+2kbloGFsHHYX1GswdRuWB0AyXiwovzGrueJUPrhdZoQKawfIyTwS/JlzZ5M=
-X-Received: by 2002:a17:902:ce91:b0:1fd:9e6e:7c1f with SMTP id
- d9443c01a7336-20203f514a7mr51522695ad.56.1723838147914; Fri, 16 Aug 2024
- 12:55:47 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1724082939; x=1724687739;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Qs5fWzggfiB2jX0FmUYwMsZ2TSBuyP8FCNq135EUvH4=;
+        b=ppCUo11qQwrmoyI62tQi9/9Q6fKqyuLynW9hDTD3bIqWxkt2LO74XyzBHjxYLONjyt
+         KIBoAwF5JSdoEIxvkPFpZb9JgMC/tkQmkkMrUFvHAVgBdq2T9gprVmItiujQVmx2dQLK
+         iCJCIbRhGPXlc+mgkt1lo6W03Ry/VFVnh0z7aaHlmvLZy8Z1IsFkcDfn4E6OlR6Y5vvJ
+         VkTBN8JCipC4qDuYTzri04tUFBBYpksB9ZkgjF+N3XjlR0TiDvJBzmFu6hdOHv8EFNfy
+         D9vaUSIPCZ/1T4R0MfOpBGld5YNr1wjXr7M1VX5ZG+A/hDcpe7vIU8x0p7ytVX9ZQf9X
+         cf9w==
+X-Forwarded-Encrypted: i=1; AJvYcCVxr1lakT5jvxqubPrsaL7NiTiCS2JeH7ItFbxolHJ6ez6yRn6cKaHkkxFjjIC8WULUjTvQVGBP+LZHAvuK@lists.infradead.org
+X-Gm-Message-State: AOJu0YzpeCoe+zGh8SE7il+6gXs21yNBAi3cZQqoMoCedlLee+Nhw9v8
+	FqdfptJcVMhI65KvKMG4cb3DP9YQnPNajIRG0JXPNwZPywHsjPscJu119YU4iGs=
+X-Google-Smtp-Source: AGHT+IFJxTbaOFBT1xGu5oUq8Y1BTlG6M875inLI3Fd91V0wqoE+DkDHRodBrHYLtdnMm6jXgZ4Y4w==
+X-Received: by 2002:a05:6000:1289:b0:371:8845:a3af with SMTP id ffacd0b85a97d-371946a3f3dmr6254795f8f.39.1724082938471;
+        Mon, 19 Aug 2024 08:55:38 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f54e:4b0a:5175:5727? ([2a01:e0a:982:cbb0:f54e:4b0a:5175:5727])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37189849697sm10840891f8f.37.2024.08.19.08.55.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Aug 2024 08:55:38 -0700 (PDT)
+Message-ID: <7c598260-513a-4aad-962f-34e5de6731dd@linaro.org>
+Date: Mon, 19 Aug 2024 17:55:37 +0200
 MIME-Version: 1.0
-References: <20240809124725.17956-1-abelova@astralinux.ru> <CAFBinCATiUnR=P9VRBxWeQhf49k6PVxK+nU95G7w94f-mR2HWQ@mail.gmail.com>
- <bb45ed80-7871-47ba-a1fd-ee71dc21a409@astralinux.ru>
-In-Reply-To: <bb45ed80-7871-47ba-a1fd-ee71dc21a409@astralinux.ru>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 16 Aug 2024 21:55:37 +0200
-Message-ID: <CAFBinCCW6E46+cMUC0M+n_4d7A6AhoJkQT=EHBxOD5wjn9O1hw@mail.gmail.com>
-Subject: Re: [PATCH] drm/meson: add check to prevent dereference of NULL
-To: Anastasia Belova <abelova@astralinux.ru>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	lvc-project@linuxtesting.org
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3 1/9] reset: amlogic: convert driver to regmap
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Stephen Boyd <sboyd@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20240808102742.4095904-1-jbrunet@baylibre.com>
+ <20240808102742.4095904-2-jbrunet@baylibre.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240808102742.4095904-2-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240816_125550_097893_C976BE45 
-X-CRM114-Status: GOOD (  16.15  )
+X-CRM114-CacheID: sfid-20240819_085541_401954_E2CB73D9 
+X-CRM114-Status: GOOD (  21.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,32 +118,167 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8gQW5hc3Rhc2lhLAoKT24gTW9uLCBBdWcgMTIsIDIwMjQgYXQgMTE6MzLigK9BTSBBbmFz
-dGFzaWEgQmVsb3ZhIDxhYmVsb3ZhQGFzdHJhbGludXgucnU+IHdyb3RlOgpbLi4uXQo+ID4gQXMg
-YW4gYWx0ZXJuYXRpdmUgdG8geW91ciBzdWdnZXN0ZWQgYXBwcm9hY2g6IGNvdWxkIHlvdSBwbGVh
-c2UgbG9vawo+ID4gaW50byB3aGV0aGVyIGRldm1fZHJtX2Rldl9hbGxvYygpIGlzIGEgc3VpdGFi
-bGUgcmVwbGFjZW1lbnQgKGlmIG5vdDoKPiA+IGp1c3QgZXhwbGFpbiB3aHkgLSB0aGVuIHRoaXMg
-cGF0Y2ggaXMgZ29vZCB0byBiZSBtZXJnZWQpPwo+Cj4gSWYgSSB1bmRlcnN0b29kIGNvcnJlY3Rs
-eSwgZGV2bV9kcm1fZGV2X2FsbG9jIGFsbG93cyB0byBkZWxldGUgZHJtX2Rldl9wdXQKPiBmcm9t
-IGVycm9yIHBhdGggaW4gbWVzb25fZHJ2X2JpbmRfbWFzdGVyIGFuZCBpbiBtZXNvbl9kcnZfdW5i
-aW5kLgpDb3JyZWN0LCB0aGF0J3MgdGhlIGlkZWEuCgo+IFRoZW4gdGhlIHByb3Bvc2VkIGNoZWNr
-IG1heSBiZSBvbW1pdGVkIGFuZCBmdW5jdGlvbiBtYXkganVzdCByZXR1cm4KPiBpbnN0ZWFkIG9m
-IGp1bXBpbmcgdG8gZnJlZV9kcm0uClRoYXQncyByaWdodAoKPiBBbmQgd291bGQgaXQgYmUgYmV0
-dGVyIHRvIHJlbmFtZSBmcmVlX2RybSB0byByZW1vdmVfZW5jb2RlcnM/ClRoYXQgZnJlZV9kcm0g
-bGFiZWwgaXMgdmVyeSBjb25mdXNpbmcgYW55d2F5cy4KVGhlIHNob3J0IGFuc3dlciBpczogeWVz
-ClRoZSBsb25nZXIgYW5zd2VyIGlzOiB3ZSdsbCBuZWVkIHRvIHdvcmsgb24gdGhlIHJlbW92YWwg
-b3JkZXIgYWdhaW46Ci0gZW5jb2RlcnMgYXJlIHByb2JlZCAqYWZ0ZXIqIGFmYmNkCi0gcmVtb3Zh
-bCBzaG91bGQgaGFwcGVuIGluIG9wcG9zaXRlIG9yZGVyIG9mIHByb2JlLCBzbyBlbmNvZGVycyBz
-aG91bGQKYmUgZnJlZWQgKmJlZm9yZSogYWZiY2QKLSBob3dldmVyLCB0aGlzIG9yZGVyIGlzIG5v
-dCBpbXBsZW1lbnRlZAoKVGhlcmUncyBubyBoYXJtIGZvciB5b3UgdG8gcmVuYW1lIHRoZSBsYWJl
-bCBub3cuIEl0IGp1c3QgbWVhbnMgdGhhdCB3ZQpuZWVkIHRvIGRvIHNvbWUgbW9yZSBjbGVhbnVw
-cy4KCkxvb2tpbmcgZm9yd2FyZCB0byB2MiBvZiB0aGUgcGF0Y2ghCgoKQmVzdCByZWdhcmRzLApN
-YXJ0aW4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxp
-bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9y
-ZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
-aWMK
+On 08/08/2024 12:27, Jerome Brunet wrote:
+> To allow using the same driver for the main reset controller and the
+> auxiliary ones embedded in the clock controllers, convert the
+> the Amlogic reset driver to regmap.
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>   drivers/reset/reset-meson.c | 79 ++++++++++++++++++++-----------------
+>   1 file changed, 43 insertions(+), 36 deletions(-)
+> 
+> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
+> index f78be97898bc..b47431a21b86 100644
+> --- a/drivers/reset/reset-meson.c
+> +++ b/drivers/reset/reset-meson.c
+> @@ -11,36 +11,43 @@
+>   #include <linux/of.h>
+>   #include <linux/module.h>
+>   #include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+>   #include <linux/reset-controller.h>
+>   #include <linux/slab.h>
+>   #include <linux/types.h>
+>   
+> -#define BITS_PER_REG	32
+> -
+>   struct meson_reset_param {
+>   	int reg_count;
+>   	int level_offset;
+>   };
+>   
+>   struct meson_reset {
+> -	void __iomem *reg_base;
+>   	const struct meson_reset_param *param;
+>   	struct reset_controller_dev rcdev;
+> -	spinlock_t lock;
+> +	struct regmap *map;
+>   };
+>   
+> +static void meson_reset_offset_and_bit(struct meson_reset *data,
+> +				       unsigned long id,
+> +				       unsigned int *offset,
+> +				       unsigned int *bit)
+> +{
+> +	unsigned int stride = regmap_get_reg_stride(data->map);
+> +
+> +	*offset = (id / (stride * BITS_PER_BYTE)) * stride;
+> +	*bit = id % (stride * BITS_PER_BYTE);
+> +}
+> +
+>   static int meson_reset_reset(struct reset_controller_dev *rcdev,
+> -			      unsigned long id)
+> +			     unsigned long id)
+>   {
+>   	struct meson_reset *data =
+>   		container_of(rcdev, struct meson_reset, rcdev);
+> -	unsigned int bank = id / BITS_PER_REG;
+> -	unsigned int offset = id % BITS_PER_REG;
+> -	void __iomem *reg_addr = data->reg_base + (bank << 2);
+> +	unsigned int offset, bit;
+>   
+> -	writel(BIT(offset), reg_addr);
+> +	meson_reset_offset_and_bit(data, id, &offset, &bit);
+>   
+> -	return 0;
+> +	return regmap_write(data->map, offset, BIT(bit));
+>   }
+>   
+>   static int meson_reset_level(struct reset_controller_dev *rcdev,
+> @@ -48,25 +55,13 @@ static int meson_reset_level(struct reset_controller_dev *rcdev,
+>   {
+>   	struct meson_reset *data =
+>   		container_of(rcdev, struct meson_reset, rcdev);
+> -	unsigned int bank = id / BITS_PER_REG;
+> -	unsigned int offset = id % BITS_PER_REG;
+> -	void __iomem *reg_addr;
+> -	unsigned long flags;
+> -	u32 reg;
+> +	unsigned int offset, bit;
+>   
+> -	reg_addr = data->reg_base + data->param->level_offset + (bank << 2);
+> +	meson_reset_offset_and_bit(data, id, &offset, &bit);
+> +	offset += data->param->level_offset;
+>   
+> -	spin_lock_irqsave(&data->lock, flags);
+> -
+> -	reg = readl(reg_addr);
+> -	if (assert)
+> -		writel(reg & ~BIT(offset), reg_addr);
+> -	else
+> -		writel(reg | BIT(offset), reg_addr);
+> -
+> -	spin_unlock_irqrestore(&data->lock, flags);
+> -
+> -	return 0;
+> +	return regmap_update_bits(data->map, offset,
+> +				  BIT(bit), assert ? 0 : BIT(bit));
+>   }
+>   
+>   static int meson_reset_assert(struct reset_controller_dev *rcdev,
+> @@ -113,30 +108,42 @@ static const struct of_device_id meson_reset_dt_ids[] = {
+>   };
+>   MODULE_DEVICE_TABLE(of, meson_reset_dt_ids);
+>   
+> +static const struct regmap_config regmap_config = {
+> +	.reg_bits   = 32,
+> +	.val_bits   = 32,
+> +	.reg_stride = 4,
+> +};
+> +
+>   static int meson_reset_probe(struct platform_device *pdev)
+>   {
+> +	struct device *dev = &pdev->dev;
+>   	struct meson_reset *data;
+> +	void __iomem *base;
+>   
+> -	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>   	if (!data)
+>   		return -ENOMEM;
+>   
+> -	data->reg_base = devm_platform_ioremap_resource(pdev, 0);
+> -	if (IS_ERR(data->reg_base))
+> -		return PTR_ERR(data->reg_base);
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+>   
+> -	data->param = of_device_get_match_data(&pdev->dev);
+> +	data->param = of_device_get_match_data(dev);
+>   	if (!data->param)
+>   		return -ENODEV;
+>   
+> -	spin_lock_init(&data->lock);
+> +	data->map = devm_regmap_init_mmio(dev, base, &regmap_config);
+> +	if (IS_ERR(data->map))
+> +		return dev_err_probe(dev, PTR_ERR(data->map),
+> +				     "can't init regmap mmio region\n");
+>   
+>   	data->rcdev.owner = THIS_MODULE;
+> -	data->rcdev.nr_resets = data->param->reg_count * BITS_PER_REG;
+> +	data->rcdev.nr_resets = data->param->reg_count * BITS_PER_BYTE
+> +		* regmap_config.reg_stride;
+>   	data->rcdev.ops = &meson_reset_ops;
+> -	data->rcdev.of_node = pdev->dev.of_node;
+> +	data->rcdev.of_node = dev->of_node;
+>   
+> -	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
+> +	return devm_reset_controller_register(dev, &data->rcdev);
+>   }
+>   
+>   static struct platform_driver meson_reset_driver = {
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
