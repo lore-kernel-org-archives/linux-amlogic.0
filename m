@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69CB5C3DA4A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2024 16:07:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92F79C52D6F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2024 16:08:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=G9z05HIUqHl4d4gcJnifHOvwxYxuwQSGHxrDQNJUEWE=; b=xTvx0Y9Z8o7M3nPx20JfWEFewQ
-	HTDsL0Wa+3NNcR8jAG/aFFr8Aa587WVI4K/alycFlchU9ocYaRSrx/Bff/coKp0eRh6V4RCIcBzf4
-	JOSRgj2XGCGshRiH/q+TYAIr/ATV+MaqFpJeJhyzOCY+2De1pV94t+db5BglDwEz9eLuyJYuf+Oz+
-	/74m1piXY2WLcbfoWSbfwEJ40YQOcGneR8XS/ErLweCShRM37HJGs5wSZXQK/lTUI3L2tkotcV1yh
-	iLXO7jC4GEG25SenvSK3fssuhfHKyqVLqYMOuMdkhWbBuxxtgYfJ4f6zPi4xjxODctM9A9I9sI+zy
-	KIKLIRrA==;
+	bh=dPf3rico80sEOYB/1HZB6qL2x9CvnLYSGgEM1e65e6A=; b=bKVRHZE/MqLtrS54EBxPBWpfnG
+	Ijp0ApfuKPX209SG7PSxikJ96r+XujRkoh1V+HKj/nb73FWiL54LA7GqGOJG8QCR3R1uPyxx6ltU5
+	1aFbGGNKgwOGeyrY2YE0M3hIH/zOp58Zksu/qsU9nFT2lXjD6tAU/AiO3MlXduUuRJo0KpJWMx6Y9
+	EB3TpEvbOtwJbsUs7/zJBSfl57ko0y+lIAUWBowpx4oCzJscc4PAI//+es5nIGwbhs3yeIBBBTjB6
+	ou6yHWvsPkK4poDFTtBNZwoMjzimmSKHzIdWcX+UDd1wazbSMOsAwaWzyFYie6odxfMcwPknRvLHy
+	EbfezpZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sg4uU-000000025j0-1V3Z;
-	Mon, 19 Aug 2024 16:07:10 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1sg4vy-0000000263O-1UDE;
+	Mon, 19 Aug 2024 16:08:42 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sg4uR-000000025ho-43V0
+	id 1sg4vu-0000000261L-2nOc
 	for linux-amlogic@lists.infradead.org;
-	Mon, 19 Aug 2024 16:07:09 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-42809d6e719so37770555e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2024 09:07:07 -0700 (PDT)
+	Mon, 19 Aug 2024 16:08:40 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-42817f1eb1fso36007895e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2024 09:08:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724083626; x=1724688426; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1724083716; x=1724688516; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5LNqeb3ZgALy4xdwAEcRE9nVauPSurOEFzQxg2hY7+Y=;
-        b=cbw7wy/huDw0Z30KJXxMHHbWflQO0GbOR5OHBmVWRDZe5tbXZcXWnEb1poZiHJ2MBX
-         Y3N0DClp160eJTCXlB82O9UkXURneslcrjEySqPAkBocHbwdreWdkQKE0q2MTbDY2xBA
-         wZ/oSl7OaDTuHxB+eoC7NFVMgbuowvEBE4SdsZBVqrN/t5loMp3lqYU0l/YUKj5bM/bN
-         zh4R2xma8HO8w10Qw+8Chso/rN3/CFTZJNE+84xnzUlUplOQP1o7zgsZIbFpjLohkLR6
-         yYFW5/qZZsnpDE33t+8r88GflRCG7KirJQKqIU6ldVLYbRIe0fobTzJm+tc92mc8BXBW
-         gf9Q==
+        bh=zZXB9eWC3jaAHU2DUNdmRkIBaE/QcD6ULIBMGv3bqxc=;
+        b=RTlTJzFxS1oM6Ft2Ktu07KotgQkKJJ9Fhn3nj2eq5Suuw561goOTVM7OgxNZkXXNwn
+         WVyCH+l2E3vS5RC6AUqbYx+d96aXtL/5/oqSe4O88DFeq3k4hdmbFVTS3ZRp4NlqSm8r
+         5hJvMR84FrogMDW0rdHoucZ0M6Q2UEpDpLIVGex06pNPu9yKN6NDEpdkW8LvkpD/ES/L
+         LDNMoeazVe7DvnP43KU47olH3vN/x6tabksaxHsyyFOjplhq1EqNNrNNgNdKSuUdd0+a
+         Ld4b87r0dLkAxH29/BuGTJLSgxhhU39M6Og9snxznGUb2dySoaX6LxeEuO2WRojVORN/
+         RZig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724083626; x=1724688426;
+        d=1e100.net; s=20230601; t=1724083716; x=1724688516;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=5LNqeb3ZgALy4xdwAEcRE9nVauPSurOEFzQxg2hY7+Y=;
-        b=H9i+BNawo9D8g1QMy977QwvsY0cAnPjaqHoPt00mxhn1hAJ/KSUoTHIoY9aMD6BSlw
-         eB5lbHgP2cOq1GR6kqlQPnQvARqbkQzLwn6ebRmqyqcXcb+o3f+nv34rWMGgfaKH6Wzq
-         zLawWug92PuNA1NlR5Urz9jH4BIvXszH8W/1h9WYhPYUW6j3zFjkbdwQBQlfECazhYwv
-         kcBz1AMmQe35mkt0poW57Ye0qTIZG6RAhnoYum1C/MRajevfuEdroBGW5a5sJTXPsIfr
-         MdioQIRn9fE8MvPtu80U/XIix7GW8tEsBcdQigZksX73v1rszesjkhY/tnd4MFPfVt3x
-         MmiA==
-X-Forwarded-Encrypted: i=1; AJvYcCV3k3yM2iT2HQsf50qSdKJX6wVg5VEdNR2nyYH4A7d8GRY/Tb5gRWTCEkNTTO5fLu3Vl1DBEPgoPgYDV9lrWk4oGZ7I6CykX/Y7+sIwFEln9IM=
-X-Gm-Message-State: AOJu0YyFJLxuF3IdbhaiwZNnlgKrEvOOdVPgwiXoq3rcKvFa/AUe16tN
-	e/ImC+xchy+1rDu0xiDC3WdaITl1K3Olf4K8HlzmIPqB8/GRJF+apEqFpvM+0eg=
-X-Google-Smtp-Source: AGHT+IEQR4t87/P6PagiJISQ0jKse0XEojnisMOIM3YVNy+F7eNVyZm87ufA5Y7uQKmtDCtIpWVusQ==
-X-Received: by 2002:a05:600c:548c:b0:426:55a3:71af with SMTP id 5b1f17b1804b1-42aa8275ea7mr49659035e9.33.1724083625240;
-        Mon, 19 Aug 2024 09:07:05 -0700 (PDT)
+        bh=zZXB9eWC3jaAHU2DUNdmRkIBaE/QcD6ULIBMGv3bqxc=;
+        b=c02prIHWsEg9eyUgWxIGPPZJRN4zQwLLBRk64PzhegI6n1v4Jf/COO3qEyhouzeJXG
+         NWs5P+o/XojvvSA+bvjL9HTHN8ntrzmVhegzFI0i6lnkJ+rBECzA6CvA8K50IH8Kwid6
+         Mgys4nntJjclWQVo67jchIO6a8R8nGX3sRpOZL5mq5QxnVNam70J2f0LApypNC8Xo1Rp
+         yatPuK9LahjowjVcZ5R3UQn3aj5Ose+f/QqWDccPPMyfDd2wtzd/YuuCWxIr6GMI8r9D
+         0RPGf0A0CNkUsCO6BhWo8aA/Ek02zLFsrEmzLr55gOmYImux3joJMSqW6vYn1BIOrlJX
+         Ytag==
+X-Forwarded-Encrypted: i=1; AJvYcCWcdbiC6O9qh3BAVWn18coy1QxyxpzTuv/iAIvXcHUh6UpaJW6UPj43+9n+nJpi6WLr7SFXI6qxTiOXnt91bXVaZlbCgSRvDywCsUBkYsJdvRw=
+X-Gm-Message-State: AOJu0YzVZ9CXMOYlIW+bZX0yrcIfWbhcCPSIiF7SKSbRxQuxeYbu/8PV
+	xxMREnL8hzomXCjvi6JwiOg/MKGtXSpPbNEDQmPMEkVm2g9j06soBQvbKktEGt8=
+X-Google-Smtp-Source: AGHT+IEctf6m+H+GvqS9ocINagd6WHDY07QHzWWDGizaBipSBKg2CM+6kL3bWVQiaT3seaoGIZrXQA==
+X-Received: by 2002:a05:600c:4445:b0:426:60e4:c691 with SMTP id 5b1f17b1804b1-429ed7891demr73947145e9.11.1724083716047;
+        Mon, 19 Aug 2024 09:08:36 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:f54e:4b0a:5175:5727? ([2a01:e0a:982:cbb0:f54e:4b0a:5175:5727])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429d780ba5dsm222433555e9.0.2024.08.19.09.07.04
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ed785708sm114205685e9.37.2024.08.19.09.08.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Aug 2024 09:07:04 -0700 (PDT)
-Message-ID: <004156e5-8dde-45a7-a291-425486e20696@linaro.org>
-Date: Mon, 19 Aug 2024 18:07:03 +0200
+        Mon, 19 Aug 2024 09:08:35 -0700 (PDT)
+Message-ID: <8d49f427-a0f8-44f4-bd46-86fbf385deab@linaro.org>
+Date: Mon, 19 Aug 2024 18:08:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 4/9] drm/meson: dw-hdmi: fix incorrect comment in suspend
+Subject: Re: [PATCH 5/9] drm/meson: dw-hdmi: split resets out of hw init.
 To: Jerome Brunet <jbrunet@baylibre.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
@@ -80,7 +80,7 @@ Cc: Kevin Hilman <khilman@baylibre.com>,
  dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20240730125023.710237-1-jbrunet@baylibre.com>
- <20240730125023.710237-5-jbrunet@baylibre.com>
+ <20240730125023.710237-6-jbrunet@baylibre.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -107,10 +107,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240730125023.710237-5-jbrunet@baylibre.com>
+In-Reply-To: <20240730125023.710237-6-jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240819_090708_039607_84837481 
-X-CRM114-Status: GOOD (  17.25  )
+X-CRM114-CacheID: sfid-20240819_090838_747560_AB0555E1 
+X-CRM114-Status: GOOD (  17.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,40 +129,62 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 30/07/2024 14:50, Jerome Brunet wrote:
-> Comment in suspend says TOP is put in suspend, but the register
-> poke following is actually de-asserting the reset, like in init.
+> This prepares the migration to regmap usage.
 > 
-> It is doing the opposite of what the comment says.
+> To properly setup regmap, the APB needs to be in working order.
+> This is easier handled if the resets are not mixed with hw init.
 > 
-> Align the comment with what the code is doing for now and add
-> a FIXME note to sort this out later
+> More checks are required to determine if the resets are needed
+> on resume or not. Add a note for this.
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->   drivers/gpu/drm/meson/meson_dw_hdmi.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/gpu/drm/meson/meson_dw_hdmi.c | 14 +++++++++-----
+>   1 file changed, 9 insertions(+), 5 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index 2890796f9d49..5cd3264ab874 100644
+> index 5cd3264ab874..47aa3e184e98 100644
 > --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
 > +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -751,7 +751,7 @@ static int __maybe_unused meson_dw_hdmi_pm_suspend(struct device *dev)
+> @@ -581,11 +581,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
+>   	/* Bring HDMITX MEM output of power down */
+>   	regmap_update_bits(priv->hhi, HHI_MEM_PD_REG0, 0xff << 8, 0);
+>   
+> -	/* Reset HDMITX APB & TX & PHY */
+> -	reset_control_reset(meson_dw_hdmi->hdmitx_apb);
+> -	reset_control_reset(meson_dw_hdmi->hdmitx_ctrl);
+> -	reset_control_reset(meson_dw_hdmi->hdmitx_phy);
+> -
+>   	/* Enable APB3 fail on error */
+>   	if (!meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>   		writel_bits_relaxed(BIT(15), BIT(15),
+> @@ -675,6 +670,10 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>   		return PTR_ERR(meson_dw_hdmi->hdmitx_phy);
+>   	}
+>   
+> +	reset_control_reset(meson_dw_hdmi->hdmitx_apb);
+> +	reset_control_reset(meson_dw_hdmi->hdmitx_ctrl);
+> +	reset_control_reset(meson_dw_hdmi->hdmitx_phy);
+> +
+>   	meson_dw_hdmi->hdmitx = devm_platform_ioremap_resource(pdev, 0);
+>   	if (IS_ERR(meson_dw_hdmi->hdmitx))
+>   		return PTR_ERR(meson_dw_hdmi->hdmitx);
+> @@ -765,6 +764,11 @@ static int __maybe_unused meson_dw_hdmi_pm_resume(struct device *dev)
 >   	if (!meson_dw_hdmi)
 >   		return 0;
 >   
-> -	/* Reset TOP */
-> +	/* FIXME: This actually bring top out reset on suspend, why ? */
->   	meson_dw_hdmi->data->top_write(meson_dw_hdmi,
->   				       HDMITX_TOP_SW_RESET, 0);
+> +	/* TODO: Is this really necessary/desirable on resume ? */
+
+Yes to reset the HDMI controller to it's default state, not sure if the note is important here.
+
+> +	reset_control_reset(meson_dw_hdmi->hdmitx_apb);
+> +	reset_control_reset(meson_dw_hdmi->hdmitx_ctrl);
+> +	reset_control_reset(meson_dw_hdmi->hdmitx_phy);
+> +
+>   	meson_dw_hdmi_init(meson_dw_hdmi);
 >   
+>   	dw_hdmi_resume(meson_dw_hdmi->hdmi);
 
-Yes, this is probably useless and should:
-meson_dw_hdmi->data->top_write(meson_dw_hdmi,
-			       HDMITX_TOP_SW_RESET, 0xffff);
-
-but I think it can be safely removed.
-
-Neil
 
 _______________________________________________
 linux-amlogic mailing list
