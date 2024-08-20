@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25E2CC531DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2024 15:05:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE575C3DA4A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2024 15:06:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6Ujl4HBtw8+oBC1cmn3hZr0xmTsOZQ7zAWSg5e4FnYI=; b=N3n3vjnsnOE5Gz
-	OvvSArW85jQcEHXZwq7m/ruRZ/0EhrvciWkKMOjGGX9WN5HpGMynSsV9nxi95ByU/fm/mDFv4i+kH
-	sX4J+1paN5EkbzXKbYpB+anoomjreLPZtqyKajMenqJZYhWCqoydPima3ltGvtE6PSdXsw/XQp6tv
-	jy1De1witBnqm0apUby9X8O8y9nDsqYZcyNvKXLkH7u3Fo7fQXyOyPpDh4E2EyYmQTnEPJ0iDAyAR
-	MSvtKzuXLpdNrbKZ4ubzODjaAoxf6OXl7onNuq6bKyRml2OMc5UvQugM5Fj517PgprFJrMLR87cTB
-	7sfVlCJC4WjoVKztGb1g==;
+	List-Owner; bh=ZwOd7bZ/Qa66JbiKcEPNrEDT1FReqMoQvMMt0xG0I6U=; b=PRte66xsVgIORJ
+	7BkCB5KR+oNljst0JZu3GgngHjjEtUe9GyYu1h9Hp7JkTHzD87g/E7VYm9NFFAWFn27ExMsxm0u2F
+	Tzl0rAvCoTNGt1Zg8MpZKFC/F1WwNJdBXNqONx4IZzmjHygAZ9J5FiEloO8ta3kFJ6i2kgxRqSaJ3
+	SJud0RvgbC+QqFiooQZ23eL6w/lkwpXckshVfHFhd8NBo4Mfzc0LKPyfu93TvxoNCZLzc+5KOggfN
+	tgQsKNhdVKiivKXbWQ2pah4d5nlFmyfhljwKfk+Dz09PzCb4uaw0CB+nDvVtRQ//pX/tuWd+eBic5
+	OtPBOCl6J9NmL/bzOwDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgQQV-00000005iPv-3G8L;
-	Tue, 20 Aug 2024 15:05:39 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1sgQRE-00000005ifW-13f8;
+	Tue, 20 Aug 2024 15:06:24 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgQIH-00000005fPK-0a96;
-	Tue, 20 Aug 2024 14:57:10 +0000
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id BDF1D10003B;
-	Tue, 20 Aug 2024 17:57:07 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru BDF1D10003B
+	id 1sgQII-00000005fPn-0FAD;
+	Tue, 20 Aug 2024 14:57:11 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id AF70F120019;
+	Tue, 20 Aug 2024 17:57:08 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru AF70F120019
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1724165827;
-	bh=NCOKTVg0nWMYZZiioHHnALckHQGoR5CtX9QXQdy+RvQ=;
+	s=mail; t=1724165828;
+	bh=Rh3JfsszeFzuirlBwoJubdS+Ixn9+e7gJuttUmBiLyg=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=Aq+Efx9LqYnKKMce6yH9pbGx/wzj5YdwynkqoTAx8njBnNnMtsd4uHhWtym4KxvlV
-	 tBkFcRQ6pwigXOsPIp+RuymoJel6L8lJ1V0iffaGBRodH91tTKFSvFdlMw1usDpG//
-	 ttnRaPUNFBAKew6yCNIs44wEa+5BkMT0wmiST/oAi/zoM1Ip+pM+/sFvGCXod15Sk7
-	 oHtd+gdw8dmoTJTBp24IZ4kfLfWfpDQb/+iWDOvLQA9l2hsxPcEQ0XJqtdTKrJpjQN
-	 ZZQzT+/FwqjPkn2FxnvXepxscAZSwDIUbZvHsbx1qbXBnci+q+4TlMjy4P5PK1tL8S
-	 K66VqQk1YO25g==
+	b=b/+fTubREZnMK30DoGXYycxUraz90ZYOzfqrQbQYxFUQWqqBlHWpo3iH9Yc6QgzBV
+	 ObVV8AkUCMvzM6amSffldSrWPO9mT8/GOUsblrken86Rlu0HsbIGS35nOh/c008GAt
+	 TqrHnH2jmg0vQnk7kS8GPiYrvQQLv0G8cwWbH/NuZ/veTWdlievEe6ilBRw/gkDa5t
+	 oRX6+HeOW/pxhNCz9NAzaSYKZL8PVmeTKKoj8fkkdh1ola+D96Tff5m27+NriH4fJh
+	 F8EBwULbwl6HBsAS+nRwhqyTvjwrmMmhdof3vJUUehGe/RxqMp9ibjTjFQUgMdgnke
+	 9MUUCUt9wFphA==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 20 Aug 2024 17:57:07 +0300 (MSK)
+	Tue, 20 Aug 2024 17:57:08 +0300 (MSK)
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
 	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
@@ -55,9 +55,9 @@ CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
  Romanov <avromanov@salutedevices.com>
-Subject: [PATCH v9 14/23] drivers: crypto: meson: add support for G12-series
-Date: Tue, 20 Aug 2024 17:56:14 +0300
-Message-ID: <20240820145623.3500864-15-avromanov@salutedevices.com>
+Subject: [PATCH v9 15/23] drivers: crypto: meson: add support for AXG-series
+Date: Tue, 20 Aug 2024 17:56:15 +0300
+Message-ID: <20240820145623.3500864-16-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240820145623.3500864-1-avromanov@salutedevices.com>
 References: <20240820145623.3500864-1-avromanov@salutedevices.com>
@@ -74,7 +74,7 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 27 0.3.27 71302da218a62dcd84ac43314e19b5cc6b38e0b6, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;s2b.tech:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, FromAlignment: n
+X-KSMG-AntiSpam-Info: LuaCore: 27 0.3.27 71302da218a62dcd84ac43314e19b5cc6b38e0b6, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, s2b.tech:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, FromAlignment: n
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
@@ -82,8 +82,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/08/20 03:45:00 #26365304
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240820_075709_619883_E61B2425 
-X-CRM114-Status: GOOD (  10.99  )
+X-CRM114-CacheID: sfid-20240820_075710_462796_A5EF3FA7 
+X-CRM114-Status: GOOD (  11.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,30 +108,32 @@ Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
  1 file changed, 13 insertions(+)
 
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 4acacd925a21..928751a6fc31 100644
+index 928751a6fc31..4275f467d1c6 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -286,11 +286,24 @@ static const struct meson_pdata meson_gxl_pdata = {
- 	.support_192bit_key = true,
+@@ -295,6 +295,15 @@ static const struct meson_pdata meson_g12a_pdata = {
+ 	.support_192bit_key = false,
  };
  
-+static const struct meson_pdata meson_g12a_pdata = {
++static const struct meson_pdata meson_axg_pdata = {
 +	.descs_reg = 0x0,
 +	.status_reg = 0x8,
-+	.setup_desc_cnt = 1,
++	.setup_desc_cnt = 3,
 +	.hasher_supported = true,
 +	.reverse_keyiv = true,
-+	.support_192bit_key = false,
++	.support_192bit_key = true,
 +};
 +
  static const struct of_device_id meson_crypto_of_match_table[] = {
  	{
  		.compatible = "amlogic,gxl-crypto",
- 		.data = &meson_gxl_pdata,
+@@ -304,6 +313,10 @@ static const struct of_device_id meson_crypto_of_match_table[] = {
+ 		.compatible = "amlogic,g12a-crypto",
+ 		.data = &meson_g12a_pdata,
  	},
 +	{
-+		.compatible = "amlogic,g12a-crypto",
-+		.data = &meson_g12a_pdata,
++		.compatible = "amlogic,axg-crypto",
++		.data = &meson_axg_pdata,
 +	},
  	{},
  };
