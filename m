@@ -4,81 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62900C531DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2024 15:31:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87243C3DA4A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2024 15:33:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MI7e0QVy4EOTHysphHRLp1o0VP1j34h2sn+Z1xHL3FM=; b=VCkTKp56Tv3EPD
-	FujFkGbATHXwHGi6Zlcxc0Q0b5q3HCB4BqY3gBOcfUSzIvlAkHmHBvskMRMB1CPGtJSn1cZx9yi7+
-	GK7rj4fcpLg6kmLztk5MSV2YC7lzZRfnfS8F9OQQaApMFKkv7+NUV0Ki3sAhaZ6S08kA74vBnIBzh
-	BK3EUsQX8QcBeceP0KJElR9hVI/AaDRkkE4kH16KjWtpEIBttdy4Dtranbzg73z1V8Q66k2Fd7iTz
-	+hp4/ADcWQRrJCF3NybtXePMBvo35bTaY9bWtLz8vEMRKub3Ow/XjoxyzLKVcX/eOK+Kd7aDgQ1J0
-	GkkcCWcWAsoJxpkOQ/oA==;
+	List-Owner; bh=A3GeuYtlZyEN3qEbbtzN7BUL51x4MNE337wlYDbTJJ8=; b=05MKs30r08PdIm
+	T1QIrSyfN/dLhVgAhnOhdbZE1h9DixzTKFLTv7FXEEwkXQws8j1JBzLtHg0iI4C+WcBRNLmKkq8ag
+	SeTtIc+Tf8XAi8NoRJe4wyIIqf3z9q7oY08nVJwNOWf6Yf8vyVF1os4+xFbSVX1sL4Eo4bToupMwJ
+	M/zAVy0xkmETeys2uTnTf4RXH2MilXX2HpnRUW7UR5vXfhlsYkL9TdAT8sd4LKmKSAKM5HLFQEGww
+	kutLO+dKdiEYAl6h1A0+pTdNPd87p6xWvGgn2qVfFbZ0J/qNg2lsEpPQOagQnXfOn9dTxWVGVWM+6
+	VuzD1GXIhyF5xBUPBPDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgQpP-00000005qTX-435L;
-	Tue, 20 Aug 2024 15:31:23 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1sgQrd-00000005qza-3MyP;
+	Tue, 20 Aug 2024 15:33:41 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgQp6-00000005qH7-2Cdu
-	for linux-amlogic@bombadil.infradead.org;
-	Tue, 20 Aug 2024 15:31:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=3Ur/Vav4aBUf1Kq1Kuvd977BxSeEb3EWBoV9+RH1igk=; b=B5dO77fkosQmPyGEStyFqtyAJH
-	G8rRXj+rl7kyZ+TA/giojfv0TgK4f9mJmSqlxEu0SHzlGEuOakaxhmeR0Riz0Ea/J4Zh+a3/EXU1i
-	PX8r2USop/vgx2lj4F/flgpKrdO7dIcufj1+TzrFqRrniz+UhbKBo5cyRbeq4AyayJSTiJwzQlCMz
-	c1E3EB7PBHv9dtvErpxz5xvI8/mkx5htXQzyedtQf6u+ptwRdHmgAOlnBCutgm7vfrkAE1B2UVTdA
-	3XUoqL8ztyeYDYsSmq8X8ogALyuVfSpzI2ObQ+H34Cb1fXV+gLGvgsM+bzEsp6IsEKMjZewjQv0GT
-	UwyCFiqg==;
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
-	by desiato.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgQp3-00000009MIo-0ODV
+	id 1sgQr7-00000005qsN-2EGj
 	for linux-amlogic@lists.infradead.org;
-	Tue, 20 Aug 2024 15:31:03 +0000
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3719398eafcso2906723f8f.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 20 Aug 2024 08:30:59 -0700 (PDT)
+	Tue, 20 Aug 2024 15:33:11 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4280b3a7efaso45165635e9.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 20 Aug 2024 08:33:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724167858; x=1724772658; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1724167988; x=1724772788; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3Ur/Vav4aBUf1Kq1Kuvd977BxSeEb3EWBoV9+RH1igk=;
-        b=E0GRTg14ZszzRS9AY0avO6e6Ev1PmfUzrwxDvM2UPxpeQKtCIoqKb1vII9FMqILIRf
-         u2+/+vJxYvHVEuJQzN1uQ5JigM0i+Rty+pkXz5jDMTC2KsdITcIXe8EZTfPPvgZ5ENAM
-         ABND0k/pmF6sdhsGL6HjvRHAxrXb2oSslvqQii9yNnmXZxkSD2gJRoIkm28THwLURgXf
-         imKPQUjvVanQe9HE6ZIyIxJN2JCl+nmM+56f0HpVHBFivjngxZCkqIgI8cC1LgPt5CyB
-         nqxeIU6WOVwznbKTzZJfRfR6rndh3bBH9GAelTOHmRhZqDw7wE2P4H46YA6HOvmf05mD
-         Z97g==
+        bh=wuviY/QQQrSO9+Z2BJ5lMr1fzmIzONdeW1It0su3NKk=;
+        b=d0y0MGnVxHB+3D/ZZWPQUXz/XDNPkTAn2jXkwAuvxhNEnpJd0pVqKb61ThHmRyqKwB
+         8lBx2s87qNbhVY41W+opXZINbqrO9/bUQaM4ta+Ru9q8KUOcTLOyeJVwJ+VsMk8WHK6c
+         5OhUnOUyHHG2cG1PnSKi4cgVTYKCsRYoRBB+VwHGSy8rkapTrPdE7wMxdYb81dT2mg03
+         onEJSN/3lbaLliSarqTL3aQ9BkCcA7D8JWmD5rmFNwyvkix47GfcO/pNOz7/f4lJV6RU
+         JFUIvD0XbhT9vPSeGdU8RyXsJy6uA6sgaW/Czu4OGX9nyPtfXPjfYW9ophTdK/GcoJf3
+         KD0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724167858; x=1724772658;
+        d=1e100.net; s=20230601; t=1724167988; x=1724772788;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3Ur/Vav4aBUf1Kq1Kuvd977BxSeEb3EWBoV9+RH1igk=;
-        b=wyw9N9x9bnLQMS2xR++L2WuGX3oJ3Zx5Xvv4z4/9ldUq6ti4xlXVGptds/O/TcsBac
-         vanfqI/2h/gkCPtMRQL9adMySypdQBlIPCSI5XqQGV0ne2PDGR5oHJ6RFsluFwiVNY5e
-         Gt0r7ytJBzZnJk2XtoiOtGfEB0qYR5V631c/vSda92raFtrUm31tRT3ozZvkqnRK6KLi
-         wPq7vgcFAA4IIFKGLHmRBxmQtZSe5/XAYdAk0WU3JtHF8GQx7j47Z1pfcDsgbdOOGq/v
-         1TLFklgCl/0W+tBnEmuonazm/cM3/zbtA2loKFqYe2mwAeksoLff/6rSkusrId4xOQd6
-         SKXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWrD18chRF9XeJ9NgvvLtreH2fxyrgoQBCkRbhPqndaE71MnPRDwH0uj70MXScMBb5cRHGtLUQ7UvjHeLsAsjhHFyxYvSIlSIblABC68FAzBf0=
-X-Gm-Message-State: AOJu0YzjMAauEwBpKLAE+3BYmPN4GzfLbJ28Opw/KYlgJyG+nNHVB0/D
-	xYoSgAt2wf9UgkA7OR2N+5JRvExNaVmeTqk+OQ3w+x5+DZZlJTY0+7lnDzIYWCC7f8IiXbyMmDi
-	o
-X-Google-Smtp-Source: AGHT+IHWMUD27wprJqfh0nu5mP583FCFaAbKyLfpBAtWWwZSc+ciqzZ5wNroIC1wy29Wu3Iqbqy2fA==
-X-Received: by 2002:adf:f0c6:0:b0:368:5a8c:580b with SMTP id ffacd0b85a97d-3719444b2d0mr10387185f8f.19.1724167857172;
-        Tue, 20 Aug 2024 08:30:57 -0700 (PDT)
+        bh=wuviY/QQQrSO9+Z2BJ5lMr1fzmIzONdeW1It0su3NKk=;
+        b=CLYP22Jj/a7guFjBSruwxx4u/xMuS7w1OFYM9ImQB8ROHBHkh7fNUFeLmtcDb7LfR9
+         7bX5sHd7I7zb3T56eh8v1EUWlsKtc0RV8HtzGmyDNuoADG8sg5lk8cE/OWF58AXxgohu
+         rrw6QX1ChaNF5pVQfxTaRue/Uta6TDy/SUjqzroatb4/rIdDsCvNlzDuveUx2/z/bBOz
+         oFwXpeGX2bz4rd4bYrnY8lxI+qTsOKIel3yCdQ//jEk3fO/e8+BCl12oqaeP0/pkOEQV
+         7qxSkV6Eq41/144gtv1+HcbWY/q9FJ42hBWysuiHF6l0Wb3g/gatbf+Km0Nl9Aov+Elt
+         9sNw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhUerjnI9S+BTMxzcp6xaK9EoLjsCP2zSIn7f51vVF8secQSbgkvnb4YEHkq3JjbpV0QKdCj19wQnH0jex@lists.infradead.org
+X-Gm-Message-State: AOJu0YwrkLEy1/pby+TbP90bDXV+WBK1ipxE1YuhgQYagJslRxy8Q4pb
+	oRa+bvRpPdUlt5jVMEXLj4YiPbJFTX3SjnpYdS7dCnCHYMxugJhRhyaSiw6LeXY=
+X-Google-Smtp-Source: AGHT+IE777Bx6pTopHtMljghqFepuFOm8sSMWy9wA6vpKgN4DJRs3RE0ahQDEyikg2nfhn/BYaFEsw==
+X-Received: by 2002:a5d:50c8:0:b0:368:6ab:ba69 with SMTP id ffacd0b85a97d-37194651b3amr10028009f8f.28.1724167987318;
+        Tue, 20 Aug 2024 08:33:07 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3718983a311sm13439592f8f.23.2024.08.20.08.30.56
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898aac62sm13311675f8f.101.2024.08.20.08.33.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2024 08:30:56 -0700 (PDT)
+        Tue, 20 Aug 2024 08:33:06 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Kevin Hilman <khilman@baylibre.com>, 
  Jerome Brunet <jbrunet@baylibre.com>, 
@@ -91,13 +75,13 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
 In-Reply-To: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
 References: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
 Subject: Re: (subset) [PATCH v3 0/6] Add new Amlogic SoCs info defines.
-Message-Id: <172416785609.3051192.670388660690339577.b4-ty@linaro.org>
-Date: Tue, 20 Aug 2024 17:30:56 +0200
+Message-Id: <172416798625.3053719.9732912917440614135.b4-ty@linaro.org>
+Date: Tue, 20 Aug 2024 17:33:06 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.14.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240820_163101_348268_1DC38D8A 
-X-CRM114-Status: UNSURE (   8.83  )
+X-CRM114-CacheID: sfid-20240820_083309_764343_E68FC6DF 
+X-CRM114-Status: UNSURE (   9.20  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -123,16 +107,20 @@ On Fri, 19 Jul 2024 16:08:08 +0800, Xianwei Zhao wrote:
 > 
 > 
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.12/drivers)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.12/arm64-dt)
 
-[1/6] dt-bindings: arm: amlogic: meson-gx-ao-secure: support more SoCs
-      https://git.kernel.org/amlogic/c/dde3c64013035c9d6f0a5d0fd894a7a7e03c79ea
-[2/6] soc: amlogic: meson-gx-socinfo: add new SoCs id
-      https://git.kernel.org/amlogic/c/009ff80bfaec1aa3fa48bbe5e2903c95931a6f37
+[3/6] arm64: dts: amlogic: s4: add ao secure node
+      https://git.kernel.org/amlogic/c/4b26afe7d216183bcb2b1aa2c0096cafdf7a9ea2
+[4/6] arm64: dts: amlogic: c3: add ao secure node
+      https://git.kernel.org/amlogic/c/84ed73ee34d152032633e540f159c482ede4c10b
+[5/6] arm64: dts: amlogic: t7: add ao secure node
+      https://git.kernel.org/amlogic/c/4c23177c51884f5307e67875b1dc87d98543be7a
+[6/6] arm64: dts: amlogic: a4: add ao secure node
+      https://git.kernel.org/amlogic/c/b2d7fd0ecb292e77a2d04cb6836c909cb6b6655b
 
 These changes has been applied on the intermediate git tree [1].
 
-The v6.12/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v6.12/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
