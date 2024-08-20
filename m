@@ -4,163 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51B5BC3DA4A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2024 13:56:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFF7DC3DA4A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2024 14:57:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:
-	References:Cc:To:Subject:Date:Message-ID:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=HUA1+dkk3ckQrAeuQyHAB4uzYBGLq5bKga3UhuJBByU=; b=KcLMGcSnvXI9ZeEb58z12P8CPV
-	i2zBKYAqNtOi+MBQ7nnViIdOI/eHjKm0DJi4hVe+AaKSnrWsqPQhvH2XkjncD6UOaEmEFPPmCfQEE
-	7byxz1Q1ozRu/Q3ofIppjxa8l2iCMXmJ+40oa4I8ahdcqp3lzEgZxUYiwsbwuvoLRDVKZb5Q1ku4F
-	FaH2//BvaFIyHxw/1PFGKxcmnK4S8GT4vXyrIs1pCOrE1MVgA8nYut7/VON04xM3Wg3erueJSfQM9
-	XOBfGSR5wcuphqbr4ra5VksLHiBnnI3nV5a4e41j/NNZBK/CUdsj948nxR7qS1yIPjUl9dcRDjVmv
-	JbNqN9UQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=d5IjsxV6yGKUELVfSnRhNpqJVqFzHKbx7JnZ+1do3sM=; b=rGOikW/HcnIUha
+	E2Rrd44Vmu27guiAnE8Wien/A2YUsmes7UQQYMVzU4Cn3VvDajxjbLQR5KVXSJyYfLjoDmx8m6z2K
+	lYvcbq1fujkgyq9P2VQaNZbP2myYTKrewIpNa+v0DR8ZuxgkSRqxHx/J5gbC4M6t+5uKLofl6V8BF
+	iVaqIQUL4BKlVuMzub0dxIasaNHVfL0vVGsI9NSuB7Kic6mYAI6n1pie4k0Txfujh/wZNmwaGUenU
+	Jf3wCiPT5+DyYbiz5lGBUZAurXxM4RG6EA4tFvmpWuvhJJOC8jPJGFJA6BGxFdzW94snjI4YTl03j
+	4qjG353mFAg6wvnphEvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgPL6-00000005Rf2-0DF7;
-	Tue, 20 Aug 2024 13:56:00 +0000
-Received: from mail-bn7nam10on20619.outbound.protection.outlook.com ([2a01:111:f403:2009::619] helo=NAM10-BN7-obe.outbound.protection.outlook.com)
+	id 1sgQI8-00000005fJx-1oL6;
+	Tue, 20 Aug 2024 14:57:00 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgPL2-00000005Rdg-1YxV;
-	Tue, 20 Aug 2024 13:55:57 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QwI4XJv3o5s5rANQn+HQXizoJ4LOjGRqFyhQzzj/Woa0erm70XcjYfSMIphXzGiO1/cWid57QNw7vJOu+yRVD5yGRbSq0Je6u65GMeRkCW2260lJ2yqHfUe/H7KPQERWmsWhWEMs46sWMgKR7SkTfTZDHqbyHNzuNnlAQ32LuznkW7UO6Cv3Qve5TNWAd1Up7P6RxyCxSYjtLmbzKWYSfSnb4Vt/vhjwutyRpi4P4UWF/HfJ568jEKrIX/rbT729DvTdOgxytRXdPlK4KXtDz/nBgJRmi7ub2kGGu/fKsVZHy1zVk3j+I26PJVR7LIViOxDPYf1H0Mg87gTVuE04JQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DE1QFjYeV7NDyUrhmpnbj+0wc9Ryqe4oYj5N4IeGTOI=;
- b=wE7IFXWZPf02ozfF3OlnzffLMDBiK2E2vmR/hEk2cKDFHJ9saG+oHSjp/9W3ypqRE04gra5HiCMC7EtHV4YuBMnInOYhI/0KqGTcA1ftdeLBT2mukUlOBusp/MzL3cJGEwZED3HOjb22ekohDscIWyIUZht224+aCDrKmRTnRmBER4KDkzJz6iYZlPIBfMGRWkdEZx2anQZQSKqkgm6Ry8/9eqPho4LdTpF12ZgsrVZXlp5iX9wVot8EF2AjIsxu+DPGg/UiQoeu1d/2FOyVGroK7kmeU/xVnWwbJ18Ecs+mHNEjhR2AyPZr0nUV2vfDENx1SjjTs/rZYaz2gWav5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DE1QFjYeV7NDyUrhmpnbj+0wc9Ryqe4oYj5N4IeGTOI=;
- b=K5XKoPbncwzI1L1HVK80OmwpLzzgwqJp7L6Fhv9XMUS3mXHOhlR0PHdQNQsl3DDIGuRSh/dVYCBAuUqPiylgnRAWAKO5d5dwfgQ3LcLMoz1jjIJGOlT3DrvFfVq1vzybccbtEc0EN3f/Tum5eDJLGZvYJYf3v0z0H8YIWVQQauc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5070.namprd12.prod.outlook.com (2603:10b6:5:389::22)
- by SJ0PR12MB7066.namprd12.prod.outlook.com (2603:10b6:a03:4ae::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Tue, 20 Aug
- 2024 13:55:45 +0000
-Received: from DM4PR12MB5070.namprd12.prod.outlook.com
- ([fe80::20a9:919e:fd6b:5a6e]) by DM4PR12MB5070.namprd12.prod.outlook.com
- ([fe80::20a9:919e:fd6b:5a6e%5]) with mapi id 15.20.7875.019; Tue, 20 Aug 2024
- 13:55:45 +0000
-Message-ID: <28cf0695-daf3-59b1-29de-ae6b60156513@amd.com>
-Date: Tue, 20 Aug 2024 08:55:42 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH -next 4/6] crypto: ccp - Remove unused declaration
- sp_get_master()
-Content-Language: en-US
-To: Yue Haibing <yuehaibing@huawei.com>, herbert@gondor.apana.org.au,
- davem@davemloft.net, clabbe@baylibre.com, linus.walleij@linaro.org,
- atenart@kernel.org, arno@natisbad.org, bbrezillon@kernel.org
-Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20240820082525.259337-1-yuehaibing@huawei.com>
- <20240820082525.259337-5-yuehaibing@huawei.com>
-From: Tom Lendacky <thomas.lendacky@amd.com>
-In-Reply-To: <20240820082525.259337-5-yuehaibing@huawei.com>
-X-ClientProxiedBy: SN4PR0501CA0024.namprd05.prod.outlook.com
- (2603:10b6:803:40::37) To DM4PR12MB5070.namprd12.prod.outlook.com
- (2603:10b6:5:389::22)
+	id 1sgQI5-00000005fHK-3cOZ;
+	Tue, 20 Aug 2024 14:56:59 +0000
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id C32E6100033;
+	Tue, 20 Aug 2024 17:56:52 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C32E6100033
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1724165812;
+	bh=T4w8YmD8VWdxpwAM+qh0428tx6ubcLSqso0bV80y5tA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=e2iDmCaNuBKQAEadEGFqqBheTwFck/FV3k0s41TUxRgHOwXD8t3DwMwujVjBOh6iW
+	 BfEYz0j0ACvH8HOH9UvMuZf6YC+LgOMuONqaT7ExyhW6N5AhYQ+ElAp6Md25LijUNh
+	 K+2f8/RA99NIoU+aqER83v01z82tqOo0tKdvCpViAMkSUqoIUFpe/T+HhIO1YyO2XK
+	 DVVl+NuTNkoHdTrBHgWDX0/m8NZg+R9lIlJW+M50548XpTwL7nqX3+cc5we/UeFDqo
+	 hamnDsi07SkFH7Iy8m8R6xhErpZV60KqN8vKkCHutRHC0GcMzSGBhqVc3NfoJt5JXC
+	 mxkQJCwjWQvUA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 20 Aug 2024 17:56:52 +0300 (MSK)
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v9 01/23] drivers: crypto: meson: don't hardcode IRQ count
+Date: Tue, 20 Aug 2024 17:56:01 +0300
+Message-ID: <20240820145623.3500864-2-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240820145623.3500864-1-avromanov@salutedevices.com>
+References: <20240820145623.3500864-1-avromanov@salutedevices.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5070:EE_|SJ0PR12MB7066:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa5bab59-bffb-4f8d-dd08-08dcc11fc992
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Tkg0SE1wUVlGNUFqWDZnNGNzWkE0a1RyZ0IzVDZTa2htNmVDMzc4QTBuSWxl?=
- =?utf-8?B?bURMejBueWEveExsVE9UcXB5U3c2YTRDRk9kVW52cHFzbUxmeXYwQnJvd3l6?=
- =?utf-8?B?emxuNVJMdHJUakJtZGFaRHN5K1BTeGlWN3hmL1FhY2NqcWhHL2tUWC95SENC?=
- =?utf-8?B?UjlyTGMzQ2NseDdzQnVzbVV1S3lSSDJhQXY5Z0VPbWF0OHJkVGE0YXR1R29o?=
- =?utf-8?B?VHhMTzN4K2VWUXFaa2ZHMUhUNnhqYWw2MlRqR21Bbi84bE84WlpNYmtvMGw1?=
- =?utf-8?B?cUNPTXRRTkRWUy9wZjRkWEhnUVpCWmNuaTdYdWI3ZUpodW1Hb3M5NWFvcTJw?=
- =?utf-8?B?a2dVNzVuaVF4M2oySTNXODk1SVRIR3hsQUQyMW1NRHEzUTZNWDc3dzBsamJr?=
- =?utf-8?B?RjAwc3lHL3Z5YTZHSlBzbkVzV0tESUVZN3M1RkpzWndrUG9lY1lJeVBQK3Q1?=
- =?utf-8?B?Mm8vQWpOVkVsNDJJYVArTGh3dHRka25JcXUwaGE2NzhvK1FqZnVLS3h0UWxO?=
- =?utf-8?B?ZGVnR2o1RnJmc0NwdFgxb2pTNnl3TjAyT2k0NEx1M1M0YmF0d2poT1hMNVor?=
- =?utf-8?B?cTlzcXZCN3Y1OEJMdGhWazU3cm1pNDlJZFk0bzBIcGhUSVVLMnk5VU1LVHlJ?=
- =?utf-8?B?Y0N5aFlSekhYSldlUnRwRUFZOWMwamR3VTRvOWU5RVN4dkRITmVpV3E2V0Jq?=
- =?utf-8?B?dk5RVklsVWdqKzV6UE1xMTNEVjRCbGtqMy9WOHdHOElJcW5McVgzWEdmYXVG?=
- =?utf-8?B?dDdLUG44R0xvZm5OYkM2NlFnQXk0czcvalBZeUV4MTNDemtxR2RHVWl5STZk?=
- =?utf-8?B?S0wzUGVFMG8wYlEweGxDUDhYRGJMMUhGb24xcmhlV0pLMURuSFNyTkt6WHNm?=
- =?utf-8?B?bHE2VTJKMXl6QlRHaUVsVFF0bnhJam9EdWllUXNtaXpZRnRUM2RuZnNlUyt6?=
- =?utf-8?B?NGx2cUM4Yzk4d0xvU1l5N21Vc1RyQ1JXR2FUVGxTeXFMei9xSTMzWkdxblQw?=
- =?utf-8?B?L2RXUkw2UDB5QlFYYjV3ZVh3MEd6UmVaaGMzT2R5OTJzME93allWeGNYbUho?=
- =?utf-8?B?RVc4YkJDUzB3ck04SFZ3dW5NSnpGcnNtS3FVMnNpTmhFMG9PbmVTVkF1OWZH?=
- =?utf-8?B?SmZ2c200d0U4ZlhKSHRIbmx3QlVKWkJOWGJEbnBBRFJ5ZHJ6OVl4QTNURk1y?=
- =?utf-8?B?SUJwUTFiNnZySzV0VDhrT0taQWE2NzdvY3N5MEhPc2ltRHVmUWhNV21EZzZX?=
- =?utf-8?B?UHBPTnIzSTVNLzI3R0xRVS81VWM0QjVLZGJHeC9tc2tRU0djVU9SZU8vWVF0?=
- =?utf-8?B?TTcwTkdoSjIycndxWWpNeGovZERPUG1BZ2JDRlYya09mYWhxem1TR0NXWkVT?=
- =?utf-8?B?TTlUeWExbnl2bXNEZ0R6cTZzSVRYTXM2czE2Tk5PNFM0LzdmLzUwQXc4QXFm?=
- =?utf-8?B?aStvTFBJenFOMEt5NERVUE9rU1hyRFNFNExyWUlQQ0hwNEJtQW5PbmpqSEpU?=
- =?utf-8?B?ZUFVczFZUUFSQmlhU01rMzRGVzh2WlNBWTFqUmdFR29ra2tDbnNPZTdwOVg4?=
- =?utf-8?B?QURHcmNBUkhicDdKOTd0U2dTcTNzTkZjTEtDeDYzeG5Vc3gzNXorYURxbmdm?=
- =?utf-8?B?TnBjY0hSWjZRREFwcURQNmZBME8yelptOCtOTU9VaTBNNjFqNXFkV3piU3U0?=
- =?utf-8?B?eWVoUXNHeHZ0cTJQbFVLM1VBRHBYY0x5ZXdEWXZNTkRIYmp1am9QTTk5cm9D?=
- =?utf-8?B?ZXpjbUJvejRjeXVYYVlXRmJoQUNwYmlGanRtK0hZU1FpTThpb2R3ZUk4ek8y?=
- =?utf-8?B?d0VNbkc0SVhqUHdneU1udz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5070.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SWNRRkFjN0pvcmFnRExFMDhVck5ua09uV3lSWlp6S0p0QXpxWFVSc21uTGtG?=
- =?utf-8?B?REdzRFNPTmtjZ21idnFrU0Y1LzdVcjBSUU92RC9pR1N0aGdQVENnbVNBK3hT?=
- =?utf-8?B?dGFCay80QXR4Q0hMTW8xc0FRS3hRVlVId2ZGdCs2YXVBY1JmR21peVRZYUNM?=
- =?utf-8?B?VU85QktSN2Nsei94bXNEbVhZQUdLNGNBaXZPSUM3TUZsbjFlVEZQcUlZVHZh?=
- =?utf-8?B?N2VOTGY2dnVjUTloMWozbUllSEd2dGlqR29NZDNoZ1JtMjFjMGxiS2JOMTVK?=
- =?utf-8?B?ZFpvK0IzU0ZjL05QRkpwMnhmVkxHeTRNU3M3b3I4N1d3Nm15QTQveHY0K1lv?=
- =?utf-8?B?WFJINTkrbTc5ZUdFZzNwMHBOcGVUUzRGaS9vZTZvTjBLRHYrc0xYRm9aVkpQ?=
- =?utf-8?B?OElCTVdjbGs4NUFwVWlGdUJIdDlYNjN3bXF6bWN2OXhWTWVCSU1ObVp6M1Ju?=
- =?utf-8?B?eGdSS0FyUTZKaGZnRzhwUTBLRG1GcWtrNThPekNEUVVKNlVkQ2Vzc2hqelMy?=
- =?utf-8?B?ZFRFTFhNNmkyTTZHQjJETDhvWERuMHpZSjVTUUw0c1F0cWVLYkpobCtEaGxS?=
- =?utf-8?B?MUpWYXV5QVQ2ZDN2d3FOTHJNSUdVSnJYeHV5dVFacU51YXV4YThuQVRYc0Nj?=
- =?utf-8?B?eGtDbkxXNmxqdFBxNTk4akVWUXF5dXNaRHo3bjZLUzFaR09pYUJLUzlobXVj?=
- =?utf-8?B?REtyNXI0dnhYckRtL2F4clM5dUxyWU04ZlUvWnhSSllaVFpXYWl1bkFxekF2?=
- =?utf-8?B?Z1NjRWtvWnFZTmJuKzZKVlY0dUJ0aFJjbFRFUHpOOHExTEQ2N0FTQnZIWmhM?=
- =?utf-8?B?VEQ5WHNFQTg5NDJjRFFpRFhUVVFPdnFiK051U3FWUzAyeU9YbWxBbTRTa20r?=
- =?utf-8?B?cWdrTjNjV1pobHVzN3FZcjV4MEdJdC9WaWNpOVlTQXNZdFdHcStvTkZYbGJK?=
- =?utf-8?B?c0g5TGg5TXNSdWlFdUE5azEwYmx1eDh6bEJJcHdSVjgvaG9PcHo5YmU2RmF0?=
- =?utf-8?B?aGZKWWVSaXU5NDg5TTk4SmxLL1J5VjU2c1I0dm8wSjlQMk9IRkg4V3lmUVJh?=
- =?utf-8?B?ZmVWZzZZNGFlUXF3d0greW10UVBXbnJ5VEtyMGE2enRHUXI0TU81WmVBU3pa?=
- =?utf-8?B?MjBMUnpmaTdEWFF0dGpKSnVEdFoxVmM2cGNsYWpRMVFESHJ5c2d0NEJmRXBp?=
- =?utf-8?B?K3FUb29GemViU3J4MkVnNVk0ak1aSCt1d1lyY0RMbkpJcWVWUmxOeElZNzlq?=
- =?utf-8?B?UEJTTmZwS0V6UHBLbml1R2VWa0dIaERHQ3NYa0pqdEg0TlJ5VDFwK3h6UXVq?=
- =?utf-8?B?T1JBMkNKSDVZU00rMjdRdCtmbzNnUXN5MWJtZkJ2dTcrWDloUzY0a2piSmUr?=
- =?utf-8?B?eXN5U3QvR3RDalczc2tROE9lN29NQlJWODg3R0lKQzlkd2M2d0xQZ3Y4SmEz?=
- =?utf-8?B?L1VaY0ZxWmF5K0N2MnlhTTkwS1E1MndUcGFGakNPcXlHUlhoN0RhcUcyRUpz?=
- =?utf-8?B?cHZqcHd1bDhuOVBWSlk1eEFlMzhVNzlUcXRiTTAycHZzei95M2RkZ3BzWGFq?=
- =?utf-8?B?VVFYVjJHejNUNnBOZ0tSVXp2RkxabkdIeHBpNmRqSVZkQzh2VVJ2a1czTjVX?=
- =?utf-8?B?d1hEVlRuL3lGMFNiMmNtYklQZUFxenRzSXJFYUswdDJubExONUoxK0I5dU56?=
- =?utf-8?B?Nk5EczBmOHhqc2grVnVMTDEvVS9nbkZXM3dGakpoN25KdExnVDE0djdZTG1s?=
- =?utf-8?B?bXJtN0UwTkUxNE4xYUJsOEdFQjJGUDRYck12MVpaTzFnQXJOd09IQXRyVTdp?=
- =?utf-8?B?TDVYNmNUdzVXeStpZzROZHZxUjZGK3lBQjV4THdmRzZkWE0ycXhhZGxKUVRq?=
- =?utf-8?B?MzFiaHVGZWI3ZnJVeEExbzFoMjZrNE9jY0VaRWNCdlIzbFAwNUpFbXZNblpa?=
- =?utf-8?B?R1htdTlIeGJMcFptcEVjUWcra1pQdmd3ZHZzVUNyY25mTFNMc2RRSzlobnQ3?=
- =?utf-8?B?MVFVSHpydUhvZjhZT2htVXphVlI5OWx4dnNiT3lBU25xRCtybUQ3OER5VDRa?=
- =?utf-8?B?R0I5ckxvM3MrbzM5YzVuUTBKU1UyenRlMEptTXNwYVVDWDgrNW5IZG0yY3g0?=
- =?utf-8?Q?LoNpiNAA1ywHjC7ddLuUO2JDL?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa5bab59-bffb-4f8d-dd08-08dcc11fc992
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5070.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2024 13:55:45.1499
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ca0N5I1BjwlewMbL3KCY7f/rIQYi92aKo1ltAhHx8z7JIE4k66dsBaSV+V0QtsddElIrHL8rhbJX4cCANwzljQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7066
+X-Originating-IP: [84.252.147.252]
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 187181 [Aug 20 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@s2b.tech
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 27 0.3.27 71302da218a62dcd84ac43314e19b5cc6b38e0b6, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;s2b.tech:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, FromAlignment: n
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/08/20 03:45:00 #26365304
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240820_065556_487345_F1005B28 
-X-CRM114-Status: GOOD (  13.83  )
+X-CRM114-CacheID: sfid-20240820_075658_427742_F8B583E6 
+X-CRM114-Status: GOOD (  22.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -177,31 +100,186 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 8/20/24 03:25, Yue Haibing wrote:
-> This function is never implemented and used since introduction in
-> commit 720419f01832 ("crypto: ccp - Introduce the AMD Secure Processor
-> device").
-> 
-> Signed-off-by: Yue Haibing <yuehaibing@huawei.com>
+IRQ count is no longer hardcoded, and make it part of
+struct meson_flow. We need this for extend driver support for
+other Amlogic SoC's.
 
-Acked-by: Tom Lendacky <thomas.lendacky@amd.com>
+Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+---
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c |  2 +-
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 47 ++++++++++++---------
+ drivers/crypto/amlogic/amlogic-gxl.h        |  8 ++--
+ 3 files changed, 31 insertions(+), 26 deletions(-)
 
-> ---
->  drivers/crypto/ccp/sp-dev.h | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/crypto/ccp/sp-dev.h b/drivers/crypto/ccp/sp-dev.h
-> index 0895de823674..6f9d7063257d 100644
-> --- a/drivers/crypto/ccp/sp-dev.h
-> +++ b/drivers/crypto/ccp/sp-dev.h
-> @@ -138,7 +138,6 @@ struct sp_device *sp_alloc_struct(struct device *dev);
->  
->  int sp_init(struct sp_device *sp);
->  void sp_destroy(struct sp_device *sp);
-> -struct sp_device *sp_get_master(void);
->  
->  int sp_suspend(struct sp_device *sp);
->  int sp_resume(struct sp_device *sp);
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index 29048da6f50a..b19032f92415 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -19,7 +19,7 @@
+ 
+ static int get_engine_number(struct meson_dev *mc)
+ {
+-	return atomic_inc_return(&mc->flow) % MAXFLOW;
++	return atomic_inc_return(&mc->flow) % mc->flow_cnt;
+ }
+ 
+ static bool meson_cipher_need_fallback(struct skcipher_request *areq)
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index f54ab0d0b1e8..35ec64df5b3a 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -28,8 +28,8 @@ static irqreturn_t meson_irq_handler(int irq, void *data)
+ 	int flow;
+ 	u32 p;
+ 
+-	for (flow = 0; flow < MAXFLOW; flow++) {
+-		if (mc->irqs[flow] == irq) {
++	for (flow = 0; flow < mc->flow_cnt; flow++) {
++		if (mc->chanlist[flow].irq == irq) {
+ 			p = readl(mc->base + ((0x04 + flow) << 2));
+ 			if (p) {
+ 				writel_relaxed(0xF, mc->base + ((0x4 + flow) << 2));
+@@ -110,7 +110,7 @@ static int meson_debugfs_show(struct seq_file *seq, void *v)
+ 	struct meson_dev *mc __maybe_unused = seq->private;
+ 	int i;
+ 
+-	for (i = 0; i < MAXFLOW; i++)
++	for (i = 0; i < mc->flow_cnt; i++)
+ 		seq_printf(seq, "Channel %d: nreq %lu\n", i,
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+ 			   mc->chanlist[i].stat_req);
+@@ -153,14 +153,32 @@ static void meson_free_chanlist(struct meson_dev *mc, int i)
+  */
+ static int meson_allocate_chanlist(struct meson_dev *mc)
+ {
++	struct platform_device *pdev = to_platform_device(mc->dev);
+ 	int i, err;
+ 
+-	mc->chanlist = devm_kcalloc(mc->dev, MAXFLOW,
++	mc->flow_cnt = platform_irq_count(pdev);
++	if (mc->flow_cnt <= 0) {
++		dev_err(mc->dev, "No IRQs defined\n");
++		return -ENODEV;
++	}
++
++	mc->chanlist = devm_kcalloc(mc->dev, mc->flow_cnt,
+ 				    sizeof(struct meson_flow), GFP_KERNEL);
+ 	if (!mc->chanlist)
+ 		return -ENOMEM;
+ 
+-	for (i = 0; i < MAXFLOW; i++) {
++	for (i = 0; i < mc->flow_cnt; i++) {
++		mc->chanlist[i].irq = platform_get_irq(pdev, i);
++		if (mc->chanlist[i].irq < 0)
++			return mc->chanlist[i].irq;
++
++		err = devm_request_irq(mc->dev, mc->chanlist[i].irq,
++				       meson_irq_handler, 0, "aml-crypto", mc);
++		if (err < 0) {
++			dev_err(mc->dev, "Cannot request IRQ for flow %d\n", i);
++			return err;
++		}
++
+ 		init_completion(&mc->chanlist[i].complete);
+ 
+ 		mc->chanlist[i].engine = crypto_engine_alloc_init(mc->dev, true);
+@@ -230,7 +248,7 @@ static void meson_unregister_algs(struct meson_dev *mc)
+ static int meson_crypto_probe(struct platform_device *pdev)
+ {
+ 	struct meson_dev *mc;
+-	int err, i;
++	int err;
+ 
+ 	mc = devm_kzalloc(&pdev->dev, sizeof(*mc), GFP_KERNEL);
+ 	if (!mc)
+@@ -252,19 +270,6 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ 		return err;
+ 	}
+ 
+-	for (i = 0; i < MAXFLOW; i++) {
+-		mc->irqs[i] = platform_get_irq(pdev, i);
+-		if (mc->irqs[i] < 0)
+-			return mc->irqs[i];
+-
+-		err = devm_request_irq(&pdev->dev, mc->irqs[i], meson_irq_handler, 0,
+-				       "gxl-crypto", mc);
+-		if (err < 0) {
+-			dev_err(mc->dev, "Cannot request IRQ for flow %d\n", i);
+-			return err;
+-		}
+-	}
+-
+ 	err = clk_prepare_enable(mc->busclk);
+ 	if (err != 0) {
+ 		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
+@@ -294,7 +299,7 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ error_alg:
+ 	meson_unregister_algs(mc);
+ error_flow:
+-	meson_free_chanlist(mc, MAXFLOW - 1);
++	meson_free_chanlist(mc, mc->flow_cnt - 1);
+ 	clk_disable_unprepare(mc->busclk);
+ 	return err;
+ }
+@@ -309,7 +314,7 @@ static void meson_crypto_remove(struct platform_device *pdev)
+ 
+ 	meson_unregister_algs(mc);
+ 
+-	meson_free_chanlist(mc, MAXFLOW - 1);
++	meson_free_chanlist(mc, mc->flow_cnt - 1);
+ 
+ 	clk_disable_unprepare(mc->busclk);
+ }
+diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
+index 1013a666c932..79177cfa8b88 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl.h
++++ b/drivers/crypto/amlogic/amlogic-gxl.h
+@@ -22,8 +22,6 @@
+ #define MESON_OPMODE_ECB 0
+ #define MESON_OPMODE_CBC 1
+ 
+-#define MAXFLOW 2
+-
+ #define MAXDESC 64
+ 
+ #define DESC_LAST BIT(18)
+@@ -62,6 +60,7 @@ struct meson_desc {
+  * @keylen:	keylen for this flow operation
+  * @complete:	completion for the current task on this flow
+  * @status:	set to 1 by interrupt if task is done
++ * @irq:	IRQ number for amlogic-crypto
+  * @t_phy:	Physical address of task
+  * @tl:		pointer to the current ce_task for this flow
+  * @stat_req:	number of request done by this flow
+@@ -70,6 +69,7 @@ struct meson_flow {
+ 	struct crypto_engine *engine;
+ 	struct completion complete;
+ 	int status;
++	int irq;
+ 	unsigned int keylen;
+ 	dma_addr_t t_phy;
+ 	struct meson_desc *tl;
+@@ -85,7 +85,7 @@ struct meson_flow {
+  * @dev:	the platform device
+  * @chanlist:	array of all flow
+  * @flow:	flow to use in next request
+- * @irqs:	IRQ numbers for amlogic-crypto
++ * @flow_cnt:	flow count for amlogic-crypto
+  * @dbgfs_dir:	Debugfs dentry for statistic directory
+  * @dbgfs_stats: Debugfs dentry for statistic counters
+  */
+@@ -95,7 +95,7 @@ struct meson_dev {
+ 	struct device *dev;
+ 	struct meson_flow *chanlist;
+ 	atomic_t flow;
+-	int irqs[MAXFLOW];
++	int flow_cnt;
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+ 	struct dentry *dbgfs_dir;
+ #endif
+-- 
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
