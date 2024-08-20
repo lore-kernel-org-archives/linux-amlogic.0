@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABFC3C3DA4A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2024 09:44:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6448C531DF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2024 09:44:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SOyqZUYkjNM4RJfVtQ6NkxufI0xpSFVPcAxUFTCOEDU=; b=wONsyN1qXbAfbF
-	HlP0aO748tnVUXDcNXkHGV/YT3BKZiMBpwq+Mm4NWPGGms3xE9hBIKOaQ0V2o7a1Qr8u7Q4Z74dTH
-	K80aLjE3oPt6xeqF8a2QQJl4H2pDAVenWxbvrCewbxvdplESo/EAv9eO4+EpZzHhyRpus1UJ7sy5b
-	sGMdo8aPSzgum6zWdsAx2F4jEriMHQpRABXK9Omv7Adxxl1nXXlyCXTXJZxQ8ViI+/aV94LP8k17W
-	/eLgDP98QfUug4cgOxYDLHblUuAGoUqAb5XUqfeTgYcFKVdErMmR3zAy1hXTO2IH0FjiIz1U3/aJQ
-	90Xr7OJRfBnkmnKFUh1A==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=nwoVviJ8OIlENzO53VhHNzNFmR+yzFKOiDKBeB+4QSk=; b=PvZHhI4IG57mVQ
+	/zCURgbR/GzD7hJBJ+lAKOmgvE6Rztcmms6ALzeIkzDeMf4DdyMvmGObFDM73IKc6YJCwR+3uyikh
+	DYIBDgHj+ZdnjHnKNpC4YiD7dNtR5l/e5llLzgJuJZGTEyC6A46/FiyH+n9m2PqXk2rygWW9Gvso/
+	pZnIQB9IwKrpjgxCegYDMejzWJWRHeFhnsBO+saaoAlr56ZPnL2UBnec1B9C28SbGRFttTIhSKPzG
+	UZ37N7TGOlCP1s4lJfwElnNKT5I1/2iMZQi0OkbjeXVbbWZHkVCdp7/nIUxDkjWbtwQFMtFrDqUBO
+	r1Ewrv7KdlhYutZA2PLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgLPi-00000004dt8-3MKi;
-	Tue, 20 Aug 2024 09:44:30 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sgLPo-00000004dw3-0ker;
+	Tue, 20 Aug 2024 09:44:36 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgLNI-00000004d4F-2jqk;
+	id 1sgLNI-00000004d4E-3gN4;
 	Tue, 20 Aug 2024 09:42:02 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id B38C660C87;
+	by sin.source.kernel.org (Postfix) with ESMTP id 19572CE0B73;
 	Tue, 20 Aug 2024 09:41:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 54036C4AF16;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 224C8C4AF10;
 	Tue, 20 Aug 2024 09:41:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1724146918;
-	bh=RksbSyby9c8du/fSNBcJ9+GCQWwXq8GYhk9FtJCx1/s=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=GTMUCyyfpdCo033gF9waLXFzKsB9oGXE76ycKJ+4m5c2aohFLAGi6wIWULTtskvXV
-	 eHg117SZNyxYj34TS7aHOc2dy3q2fAdqU+DJYigpcKDINK7Ftufa7O8REePmaeinHh
-	 Ch+7FnrCekO7HYnp2Azrs58nE2gf9/g1yd6bIv2BuOxFUWrozB7axAbSPWM1Lw/e3+
-	 H9eI01EDqK8L6XJJytmwRp9xY1sLncpG5FlBXV7Dq+B8vyZMxyE7dc7eE3+16lGnbQ
-	 yMNzi2OdXZ57kbbIqztuivT5A3lJQkvknZu+CWipPd5xbZJiFoDZn7TALLuT3uHgJh
-	 YH7mJ/OjdAtow==
+	bh=cS20O9LXg3AxB+iOazOUR7zUszo+e+eKg5CJ/BJIyYs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=PrSnKTaCGokWJ+9ot5LjVydsVuSn/k07HAcQoLftiADwT4RVBwcvD9QGP5cksnf2p
+	 ycIdCBCc5rSTOJC2nfIFPRWVhD0kVyT62zNzaeAKRRZBJosVynDtHe3SqVQxpMowZa
+	 e9RxbBA5AkKKHHQh4E5Ergfp4jT7O4zJtDoHyEJToT8/sasJpv8qHkfuGk5QIuEwIy
+	 LsyNiMGLJEK/r8NgggJe8MfH5g+3gpyjxhfNdxXUrWVCIv+lP8OqF3IAyOtl8jOVkY
+	 IX90E/xUAgiEh6ke9/4MkxmkiShMLhRTLa2c/Vwv+80Wz59SqFLEJzjGgRi8ga/UY9
+	 lLkWuNIM+oXPg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 44FBAC54722;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B843C3DA4A;
 	Tue, 20 Aug 2024 09:41:58 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 20 Aug 2024 17:41:58 +0800
-Subject: [PATCH v2 3/3] arm64: dts: amlogic: add C3 AW419 board
+Subject: [PATCH v2 0/3] add some node for amlogic c3
+Date: Tue, 20 Aug 2024 17:41:55 +0800
+Message-Id: <20240820-c3_add_node-v2-0-8fd3f06b7bce@amlogic.com>
 MIME-Version: 1.0
-Message-Id: <20240820-c3_add_node-v2-3-8fd3f06b7bce@amlogic.com>
-References: <20240820-c3_add_node-v2-0-8fd3f06b7bce@amlogic.com>
-In-Reply-To: <20240820-c3_add_node-v2-0-8fd3f06b7bce@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAONkxGYC/23MSwrCMBSF4a2UOzaSFzU6ch9SSkhu2ws2KYkEp
+ WTvxo4d/gfOt0PGRJjh1u2QsFCmGFrIUwdusWFGRr41SC41N7xnTo3W+zFEj0xLbtXlKswkDLT
+ HlnCi96E9htYL5VdMnwMv4rf+d4pgnDnuUQulRa/k3a7POJM7u7jCUGv9AiR7nACoAAAA
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Jerome Brunet <jbrunet@baylibre.com>, 
  Michael Turquette <mturquette@baylibre.com>, 
@@ -65,19 +66,20 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  linux-arm-kernel@lists.infradead.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1724146916; l=7203;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1724146916; l=1180;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=hqGlmZITY3vjqYdQYUfjkBeBJsm3J7SMxQSwSsreB9Y=;
- b=zUEJVfCGsbZZLIFehZRMhZhZ/UkOscntS36SVOxFBb8j8fTq9YGQBqcLH3KzfRibNB/SOart3
- SH4cBOQd99PBlkbA9DvRqAf9AcghFRGIh5z71pFngk0X7JbMyS+6EkX
+ bh=cS20O9LXg3AxB+iOazOUR7zUszo+e+eKg5CJ/BJIyYs=;
+ b=dEY14KH7ypUWXvY00gpy9k1dyt91sftLPhTyXn/YCkHQkpRRd7iQ3NoQZlsiNGwHgCjzBMFMa
+ qxe+0khm288APEdCK7iN2riSD4Go5XCsXZ6NiEtR5pJ0cMB6Pu2CfH+
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
  auth_id=107
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240820_024200_871715_A7F55DE7 
-X-CRM114-Status: GOOD (  13.55  )
+X-CRM114-CacheID: sfid-20240820_024201_311653_7AA955A4 
+X-CRM114-Status: UNSURE (   9.36  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,301 +97,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-Add Amlogic C3 C308L AW419 board. The corresponding binding
-has been applied, therefore, this series does not need to
-add a binding corresponding to the AW419 board.
+Add some node for board AW409 and support board C308l AW419.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
+Changes in v2:
+- Delete unused sdio node in board level dts.
+- Add the description of modifying the binding in commit msg.
+- Add the reason why some node property fileds place at board level in commit msg.
+- Link to v1: https://lore.kernel.org/r/20240806-c3_add_node-v1-0-c0de41341632@amlogic.com
+
+---
+Xianwei Zhao (3):
+      dt-bindings: clock: fix C3 PLL input parameter
+      arm64: dts: amlogic: add some device nodes for C3
+      arm64: dts: amlogic: add C3 AW419 board
+
+ .../bindings/clock/amlogic,c3-pll-clkc.yaml        |   7 +-
  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../boot/dts/amlogic/amlogic-c3-c308l-aw419.dts    | 262 +++++++++++++++++++++
- 2 files changed, 263 insertions(+)
+ .../boot/dts/amlogic/amlogic-c3-c302x-aw409.dts    | 233 ++++++++++
+ .../boot/dts/amlogic/amlogic-c3-c308l-aw419.dts    | 262 +++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        | 487 ++++++++++++++++++++-
+ 5 files changed, 987 insertions(+), 3 deletions(-)
+---
+base-commit: bfe05c592279e509a67c3ae305517859f3f5a58c
+change-id: 20240806-c3_add_node-420a37918f18
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 29417f04f886..2fbda8419c65 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -2,6 +2,7 @@
- dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
-+dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c308l-aw419.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-new file mode 100644
-index 000000000000..4477a2659e27
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-@@ -0,0 +1,262 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "amlogic-c3.dtsi"
-+
-+/ {
-+	model = "Amlogic C308l aw419 Development Board";
-+	compatible = "amlogic,aw419", "amlogic,c3";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart_b;
-+		spi0 = &spifc;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* 9 MiB reserved for ARM Trusted Firmware */
-+		secmon_reserved: secmon@7f00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x07f00000 0x0 0x900000>;
-+			no-map;
-+		};
-+	};
-+
-+	main_12v: regulator-main-12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vcc_5v: regulator-vcc-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&main_12v>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddq: regulator-vddq {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDQ";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&main_12v>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&main_12v>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddao_1v8: regulator-vddao-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	ddr4_2v5: regulator-ddr4-2v5 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DDR4_2V5";
-+		regulator-min-microvolt = <2500000>;
-+		regulator-max-microvolt = <2500000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vcc_3v3: regulator-vcc-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vcc_1v8: regulator-vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vdd_1v8: regulator-vdd-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD1V8_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddio_b: regulator-vddio-3v3-b {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_B";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	sdcard: regulator-sdcard {
-+		compatible = "regulator-fixed";
-+		regulator-name = "SDCARD_POWER";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		gpio = <&gpio GPIOA_4 GPIO_ACTIVE_LOW>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+};
-+
-+&uart_b {
-+	status = "okay";
-+};
-+
-+&nand {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	pinctrl-0 = <&nand_pins>;
-+	pinctrl-names = "default";
-+
-+	nand@0 {
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		nand-on-flash-bbt;
-+
-+		partition@0 {
-+			label = "boot";
-+			reg = <0x0 0x00200000>;
-+		};
-+		partition@200000 {
-+			label = "env";
-+			reg = <0x00200000 0x00400000>;
-+		};
-+		partition@600000 {
-+			label = "system";
-+			reg = <0x00600000 0x00a00000>;
-+		};
-+		partition@1000000 {
-+			label = "rootfs";
-+			reg = <0x01000000 0x03000000>;
-+		};
-+		partition@4000000 {
-+			label = "media";
-+			reg = <0x04000000 0x8000000>;
-+		};
-+	};
-+};
-+
-+&ethmac {
-+	status = "okay";
-+	phy-handle = <&internal_ephy>;
-+	phy-mode = "rmii";
-+};
-+
-+&spifc {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	pinctrl-0 = <&spifc_pins>;
-+	pinctrl-names = "default";
-+
-+	nand@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		spi-max-frequency = <83000000>;
-+		spi-tx-bus-width = <4>;
-+		spi-rx-bus-width = <4>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		status = "disabled";
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "boot";
-+				reg = <0 0x200000>;
-+			};
-+
-+			partition@200000 {
-+				label = "env";
-+				reg = <0x200000 0x400000>;
-+			};
-+
-+			partition@600000 {
-+				label = "system";
-+				reg = <0x600000 0xa00000>;
-+			};
-+
-+			partition@1000000 {
-+				label = "rootfs";
-+				reg = <0x1000000 0x3000000>;
-+			};
-+
-+			partition@4000000 {
-+				label = "data";
-+				reg = <0x4000000 0x8000000>;
-+			};
-+		};
-+	};
-+};
-+
-+&sd {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default","clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <50000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&sdcard>;
-+	vqmmc-supply = <&sdcard>;
-+};
-
+Best regards,
 -- 
-2.37.1
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
 
