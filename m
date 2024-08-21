@@ -4,93 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F36DC3DA4A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2024 00:35:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C22DAC531DC
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2024 08:33:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3MptZEsHqXb2zMApNxPeCMo1RS0v3GREK8G4sQda6dk=; b=KmKxyGbf1rnhzA
-	k3Zr3l2hrq/7Mt9KxXftbC6IpwwpnoKy3kR0BmuLrzDI2Kv4MS1BBqun7jCZ3venEBR7Azt8Afekv
-	UEIyLDmJa86nSfcRL44j6rSokBO2roolRf3E4fRJ/14SymT6Z/CeI6IDqstYmYOPOA0V9hI5TD+BM
-	k6VcXoHTIvFOx+DL9uaxqJPTbH9gFiZe95QnSd4Y1ZuvkH7SEMFrEBX8EwdnVNa5sTgcJR3raTGgA
-	j6bFXuH7nTOzGdBI5Tdeojla0U6ueJnn1azWP4TZIkqKhlnIrZKbVfu9d6Af7JMafCHfbRewee/HX
-	b88nWzEPAx63Nbzw/OZA==;
+	List-Owner; bh=fK1WrmrvtdDFFfnVwXD61E2immBszyP+1Pb0yrn61D8=; b=34hgID/Yj/Rgdp
+	dL1NTH9V2A+BvhQliFIkr17SxrjdD0s5vzoUp80zKbRFgVpkjKvsPHdrsC5srqO9kcMn3aXhY/KE4
+	jQ3/L1KvfcRtSvOfajL6fFRtoL2t+UiA8lUt8WdYUtDMb9NNQBJbMM8YliwHRELlXAH/grlR9JZgb
+	ei24xhDB5cihiNMoub9EjkYQSdR9EfhLlKxjxzJg/ATkHGQsn2oTZHEnQSKRPpO3NXOvzK1mF8r1d
+	oD1aHBhUym4/zAp0Lkf3WQuRqWgY3EGY06H/W4p4P2IkTtWiUVqHXBGuS/mPDyv5XWhldMHM7sksT
+	5khsQwZ22bCAcPEPaEJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgZK0-000000075ue-0vES;
-	Wed, 21 Aug 2024 00:35:32 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1sggmp-000000085Xb-1PVa;
+	Wed, 21 Aug 2024 08:33:47 +0000
+Received: from mail-wm1-f54.google.com ([209.85.128.54])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sgZJw-000000075tf-3kXB;
-	Wed, 21 Aug 2024 00:35:30 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 36F4C60DE5;
-	Wed, 21 Aug 2024 00:35:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A70D1C4AF0E;
-	Wed, 21 Aug 2024 00:35:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724200527;
-	bh=72l7jIlEa0320LNF1TSC+FnXUPhcQrDJuCQkr3p6/1c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i/jcTUmAgFm3sxsXOXZKpN7EhFM1gJ6bIkKyiXI4L6eY9DimnTKB+IBy0Xf6DOXjW
-	 gtK/hLVsP+ZStPVNH9Cq8WJi280pelNE7QrG9BpHZsxTd90Iy2ZkzeV3jqyjxA2DQx
-	 QNzA9xXGd9hAvYJILz3EkkXSz8F67/p4UuLWvdxtInMdhcjbujkkpYAwphVNJ0QKBU
-	 cJKprBY1mnoM7ZjViIx7W7ScJO1238rI0nA7a/fBlHV29SwQvYDJb5mT9NHAkRC7Sx
-	 Na3hG4QxzEZ2nepMQmXOoHn1kpG4MpRod9ASJncWGElEmmNKozPksxIktXvLZ8UQGe
-	 BPfK8aeJehqzA==
-Date: Tue, 20 Aug 2024 19:35:25 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Yunfei Dong <yunfei.dong@mediatek.com>,
-	Todor Tomov <todor.too@gmail.com>,
-	Viktor Prutyanov <viktor.prutyanov@phystech.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>, imx@lists.linux.dev,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Robert Foss <rfoss@kernel.org>, devicetree@vger.kernel.org,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-	linux-kernel@vger.kernel.org,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Del Regno <angelogioacchino.delregno@somainline.org>,
-	linux-amlogic@lists.infradead.org,
-	Samuel Holland <samuel@sholland.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Tiffany Lin <tiffany.lin@mediatek.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Shijie Qin <shijie.qin@nxp.com>,
-	Emil Velikov <emil.velikov@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Tretter <m.tretter@pengutronix.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chen-Yu Tsai <wens@csie.org>, linux-rockchip@lists.infradead.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-sunxi@lists.linux.dev, Zhou Peng <eagle.zhou@nxp.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-	Ming Qian <ming.qian@nxp.com>, Heiko Stuebner <heiko@sntech.de>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: trivial white-space and example
- cleanup
-Message-ID: <172420052496.2349176.18144624759283335223.robh@kernel.org>
-References: <20240820073658.19045-1-krzysztof.kozlowski@linaro.org>
+	id 1sgghT-000000083tn-1So3;
+	Wed, 21 Aug 2024 08:28:16 +0000
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4281d812d3eso69872905e9.3;
+        Wed, 21 Aug 2024 01:28:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724228893; x=1724833693;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0xN+FFegBOGLcV5rniaSgQIhF8qgl4CYaiswZ4vLQRc=;
+        b=HRETQpdosi7TMxARInverAssUbwAJu02JmcLzEuTrH5hMQ1GfPgJBoqeigb7UeN7oM
+         kIrRl0QeYyyavndm2azF5E6B/LT9PY9ocGwLA/88fI/xFexSfdF1xGXQ9XTLpvnGoDy9
+         +88DOf+y6Fbif/+W5VGn4YfVgMApXxIwcVyOluR9Ozf9cqjQcxtCON9QZk+l3gO2wyMm
+         If1TQYYo/qPN4eF2caAN2WspXgJQedX4dxnE077JRBAmsse4eDk+Q2RvYxEsP5rG7/rE
+         Lsu2MEvCi7J2FL0rFno630HTHzSxupDq5S3SOSCrOzHNiQchENYWBYIsmPa/0GIGTQSu
+         RmhA==
+X-Forwarded-Encrypted: i=1; AJvYcCUMXBN+I1KJA5LeU3bsYz7fAtclrwmtmwXIP2BtqOPYfzMeEyPMIO0BhlGT4bOW1N/UruyZH6v1zx6zop/J@lists.infradead.org, AJvYcCWKxGb1ZuvOHewlvadmZwvkwGJhj0UsVsYAzCW4HoaC9eRoWaxqUk/ZwTiNO0UA+phr7D/S+5kkqIU84D6v0tqieA==@lists.infradead.org
+X-Gm-Message-State: AOJu0YziKadtqjLYay/QPVDAsozDxuqccif+1z+79DDW4UrJ/HCxAkDl
+	hDg7aTEMuox0sndxS84CAFpfRKR3mfQpqJOFNUc0jgmCRWtw889y
+X-Google-Smtp-Source: AGHT+IFyFTdqX7DY6eicZcm0kgte9fLtcZE1QgZwK7wGNFJsY6+nUECjpWKpK6jCrv2y3CBhvnAMbA==
+X-Received: by 2002:a05:600c:198b:b0:426:6fd2:e14b with SMTP id 5b1f17b1804b1-42abd21517amr13358835e9.11.1724228893042;
+        Wed, 21 Aug 2024 01:28:13 -0700 (PDT)
+Received: from krzk-bin ([178.197.215.209])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42abee86d48sm16680535e9.18.2024.08.21.01.28.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2024 01:28:12 -0700 (PDT)
+Date: Wed, 21 Aug 2024 10:28:09 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alexey Romanov <avromanov@salutedevices.com>
+Cc: neil.armstrong@linaro.org, clabbe@baylibre.com, 
+	herbert@gondor.apana.org.au, davem@davemloft.net, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com, 
+	martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev, linux-crypto@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
+Subject: Re: [PATCH v9 23/23] arch: arm64: dts: meson: axg: add crypto node
+Message-ID: <ryvwncu3m7rsja34h37osyoqvfhzalgim6op4itqulmysosncg@5vtil3qsoo2o>
+References: <20240820145623.3500864-1-avromanov@salutedevices.com>
+ <20240820145623.3500864-24-avromanov@salutedevices.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20240820073658.19045-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240820145623.3500864-24-avromanov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240820_173529_086317_9122AB0C 
-X-CRM114-Status: GOOD (  11.24  )
+X-CRM114-CacheID: sfid-20240821_012815_415273_8330EEA1 
+X-CRM114-Status: GOOD (  12.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,36 +85,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Tue, 20 Aug 2024 09:36:58 +0200, Krzysztof Kozlowski wrote:
-> Minor cleanups without funcitonal impact:
->  - There should not be an empty blank line after SPDX tag,
->  - Convention is to indent DTS examples in coding style with 2- or
->    4-space indentation (4 is preferred),
->  - Drop unused labels in DTS examples.
+On Tue, Aug 20, 2024 at 05:56:23PM +0300, Alexey Romanov wrote:
+> This patch adds a crypto node declaration. With the
+> Amlogic crypto driver we can use HW implementation
+> of SHA1/224/256 and AES algo.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 > ---
->  .../media/allwinner,sun50i-h6-vpu-g2.yaml     |  1 -
->  .../bindings/media/amlogic,meson-ir-tx.yaml   |  1 -
->  .../bindings/media/amphion,vpu.yaml           |  1 -
->  .../bindings/media/fsl,imx6ull-pxp.yaml       |  1 -
->  .../media/mediatek,vcodec-decoder.yaml        |  1 -
->  .../media/mediatek,vcodec-encoder.yaml        |  1 -
->  .../media/mediatek,vcodec-subdev-decoder.yaml |  1 -
->  .../media/microchip,sama5d4-vdec.yaml         | 17 ++++----
->  .../bindings/media/nxp,imx8mq-vpu.yaml        | 41 +++++++++----------
->  .../bindings/media/qcom,msm8916-camss.yaml    |  1 -
->  .../bindings/media/qcom,msm8996-camss.yaml    |  1 -
->  .../bindings/media/qcom,sdm660-camss.yaml     |  1 -
->  .../bindings/media/qcom,sdm845-camss.yaml     |  1 -
->  .../bindings/media/qcom,sm8250-camss.yaml     |  1 -
->  .../bindings/media/rockchip,rk3568-vepu.yaml  |  1 -
->  .../bindings/media/rockchip-vpu.yaml          | 29 +++++++------
->  16 files changed, 42 insertions(+), 58 deletions(-)
-> 
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Please use subject prefixes matching the subsystem. You can get them for
+example with  on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
