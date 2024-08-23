@@ -4,63 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 697CFC52D7C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Aug 2024 15:51:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57C60C52D7C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Aug 2024 16:03:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uadJB1H3+qFMw1lbl/w1+cgPHVjnZb61Hhx3UCPSExE=; b=WxRAAEnjQWdhXlgRm25FIGPbRP
-	1ujGzfSmw1MImZmWls/SJULBPz80J0Gl56cZlU2ouBOsx6DIMXOwE+DT/DIo1/6lUYDGtgY5217B3
-	b3Iobs1pVS81I1IWbjNdOfDhxOW1w2D4GeHbtjyMN/QJWoJNLM+Bytv4Y44BawBMgHJRY9aeuUZB3
-	XOvhlEN7MW8rz29TowNZGBV29mArG0mR7m430pVOD4OAGetnGBr7A9FM40UrY9y8Lt/LTSqeX1rPZ
-	rmNRy3OtGM9zpOstjW/6F1wDxERQzZgOW693y8f92SJ5Ac20tJKEb3n1puwTku1dTP6lJ20r5UQFV
-	zFLczIzg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=41SKLz3jYCghmlCJNpigCGB6g2XJjeU2b0qpJ4Iq33g=; b=wFHXpDHN93XlxK
+	SIYUVvZA+XHmQaGtl1DCGAlEdiY2HwpXzdDNAMu4ysFEdUK7XX4Ct7JcCADSzItXR0YHk2dse2tTq
+	Q8ow85eOFyXoeB0fbtj0lKcBySou32lkzntOTNVbuefWa7lSQKfVrm/EA0qbTuV3PZ3Q9nCPY0bUx
+	nkcOcvgPIChqW/1ORYcvpp9bjaIvrUkF5MKNvFUlTeHJC/X2Esw+7izydAuyTmdRDOyR26oRJza7K
+	1olNcUeh7sv+O1tGhx6/3lLsWNJWqZYWcn+Rl6QcOSIve17tQwQaP59S6c/Kz2jCfMBzf4Z3ws9qd
+	gzWObp4pqb4vPyIlZeUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1shWZo-0000000HP45-1ls1;
-	Fri, 23 Aug 2024 15:51:48 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1shWkv-0000000HRtR-3MGJ;
+	Fri, 23 Aug 2024 16:03:17 +0000
+Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1shWZH-0000000HOxg-2bEl
+	id 1shWk7-0000000HRaa-1qpt
 	for linux-amlogic@lists.infradead.org;
-	Fri, 23 Aug 2024 15:51:18 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sin.source.kernel.org (Postfix) with ESMTP id BA175CE10DC;
-	Fri, 23 Aug 2024 15:51:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C04A3C32786;
-	Fri, 23 Aug 2024 15:51:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724428272;
-	bh=UJ8y9SbdyQJ2cpOyfwD7iZtYNXEMcqBlR4gxzqHEGxI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bP/gAoXfI7Pog1TUdgOKN8s4SexOQTEN3/DKLmgzdIN7SXK+xlz+Cthyv9su1mGGk
-	 fMvwB1aVkboO3i9jKv4q2NL7YTh5eK+mlVgbJgFfmKJAJFkXMoR36JaAJ7kbwe6H/C
-	 ovTT++QqSEY9UCr8rwN/AIWGL0X4uiWDGyQir2eqwnWUY2voEpnJ5tADF8YPdq+lWC
-	 +W2ehjaR780BCokbQUzzqXlyMBjCY9EdItqnv6IdArAecyDWh+Y2D58x5m/94jPH8Q
-	 U8jjy+ZeqMBnk/nvj2fLQyAx7wS3yUpvjez5KbQYigJ9n+Y6MlMvfUxBhyOqvrvx/7
-	 pB6uqMUfCqB/w==
-Date: Fri, 23 Aug 2024 16:51:08 +0100
-From: Conor Dooley <conor@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Yiting Deng <yiting.deng@amlogic.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: rtc: Add Amlogic A311L2 and A113X2 rtc
-Message-ID: <20240823-rotunda-machinist-4f8dabbff479@spud>
-References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
- <20240823-rtc-v1-1-6f70381da283@amlogic.com>
+	Fri, 23 Aug 2024 16:02:29 +0000
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-533496017f8so2882559e87.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 23 Aug 2024 09:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724428945; x=1725033745; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+byIGe4g18ARlIGzsWCBhessTlbszeK6bqUvyBPezWg=;
+        b=YtRHWAP3B2yQdtRkphOfUO1je4fXpqeep33X7h174xR4JX8kZq2vkN+01caa/AC86x
+         ZSStZ0MonHwyuXJmZeMKp0JqYi/nc2J7p/7LjErhKpTRbEh9CnbZdYvAVF3eyu/GjwKP
+         Bw2nftfzPcdzLtMXhzglLocAd8SYBz+R/brAFLhDCmagdAXKtYkzmVeHUYwV8DhZ1N0+
+         EAGpPPvzrjysaHiS44VS38HbnY1y0Mw3zZQhORMBm0cyydE9VoTwJ5TDLVj9AgfeaPI5
+         S2GfqCE5L58z8nZcAFkUSSzhp/qnk0ZRMjPI3p0GKuLoy8C7D60ouKjIEcKklhD3nvMA
+         iN0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724428945; x=1725033745;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+byIGe4g18ARlIGzsWCBhessTlbszeK6bqUvyBPezWg=;
+        b=dwZA6qoQwJqww4RO5i+CsqJx8jKrLNGMtaV7g53l6gFo1iSPtxlHPaZED2v6oOvIxi
+         WWRNcKUNVNYAtDChamgDMU3hykQCNVqy/dOElLxgN9rtVeacy8P8HmlFuDDPSOaLucog
+         Xu0BJcDMdwqgNtOR6Ac0GFy5LEivF56hQ2nFgByWRM5yFrzdjV1QAUgQwliqhUQE2cke
+         AOfNHylRoWZBPYZJLG9DP0zIfhdHjNLUIgwBaAeabLUVZ8cruw+mAfDSUXIgwIMCI+3q
+         xiA3zolGrjneXFsxd1d6jDJK1JQR2oWX9HQEpTLOoFVMLA58s4eLxs66Qd/hc7tOw3//
+         27VQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWCf/5RHpHFwEz3ULgGTeivhqeKRF/M+O9U51oXwBu9TcS6R9Ev1UjcdCI3VMWU62oIMrsyamk8nkAZWxob@lists.infradead.org
+X-Gm-Message-State: AOJu0YyHLjiaS46Y/MPtFJzMxSbNtIfgtrrxBDx0oM27ZQGlj/XS/oBT
+	m0osC2PyjJn3uUtL5dhQRvehazYAmz2MnzjbjVWDxxVOUS40jnbtgkC84iBfhZBy8II+G3y0XWg
+	hbb6yS96bSIqiPFRplYz2SNxzzl3quVaMPZGPSA==
+X-Google-Smtp-Source: AGHT+IEbEoxnoSIsIcOXGYvvsido0gU280o9EgFhYynNtmAq+4AgzMA3KAh37jKek70/MtZreE52cxmgz9LwgewK5p8=
+X-Received: by 2002:a05:6512:e9d:b0:533:47ca:974f with SMTP id
+ 2adb3069b0e04-5343883a0e6mr1568421e87.27.1724428944837; Fri, 23 Aug 2024
+ 09:02:24 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20240823-rtc-v1-1-6f70381da283@amlogic.com>
+References: <f74e326bd7d48003c06219545bad7c2ef1a84bf8.1723053850.git.christophe.jaillet@wanadoo.fr>
+In-Reply-To: <f74e326bd7d48003c06219545bad7c2ef1a84bf8.1723053850.git.christophe.jaillet@wanadoo.fr>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 23 Aug 2024 18:02:14 +0200
+Message-ID: <CACRpkdYUaqtqQ7mggRu6BFTs9cP-jsvqFhHv939jGSjZ4F6MCA@mail.gmail.com>
+Subject: Re: [PATCH v2] pinctrl: meson: Constify some structures
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-kernel@vger.kernel.org, 
+	kernel-janitors@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240823_085116_032079_455F1030 
-X-CRM114-Status: GOOD (  18.62  )
+X-CRM114-CacheID: sfid-20240823_090227_519978_12314D91 
+X-CRM114-Status: UNSURE (   7.23  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,153 +89,20 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7670884371736880046=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============7670884371736880046==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pFpN10RskjPDX7Mw"
-Content-Disposition: inline
-
-
---pFpN10RskjPDX7Mw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Aug 23, 2024 at 05:19:44PM +0800, Xianwei Zhao via B4 Relay wrote:
-> From: Yiting Deng <yiting.deng@amlogic.com>
->=20
-> Add documentation describing the Amlogic A113L2 and A113X2 rtc controller.
->=20
-> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  .../bindings/rtc/amlogic,amlogic-rtc.yaml          | 66 ++++++++++++++++=
-++++++
->  1 file changed, 66 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.ya=
-ml b/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
-> new file mode 100644
-> index 000000000000..fa3d7838022e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
-
-Filename matching a compatible please.
-
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/amlogic,amlogic-rtc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Real Time Clock controller include a4, a5
-> +
-> +maintainers:
-> +  - Yiting Deng <yiting.deng@amlogic.com>
-> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
-> +
-> +description:
-> +  The Amlogic new chips used RTC module.
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,a4-rtc
-> +      - amlogic,a5-rtc
-
-The names you have chosen here do not match the patch description. What
-is going on there?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: RTC clock source, available 24M or 32K crystal
-> +          oscillator source. when using 24M, need to divide 24M into 32K.
-> +      - description: RTC module accesses the clock of the apb bus.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: rtc_osc
-> +      - const: rtc_sys_clk
-
-s/_clk//, they're all clocks.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    apb {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        rtc: rtc@8e600 {
-
-And the label here can go, you've got no references to it :)
-
-Thanks,
-Conor.
-
-> +            compatible =3D "amlogic,a4-rtc";
-> +            interrupts =3D <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>;
-> +            reg =3D <0x0 0x8e600 0x0 0x38>;
-> +            clocks =3D <&xtal_32k>, <&clkc_periphs 1>;
-> +            clock-names =3D "rtc_osc", "rtc_sys_clk";
-> +        };
-> +    };
->=20
-> --=20
-> 2.37.1
->=20
->=20
-
---pFpN10RskjPDX7Mw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsiv7AAKCRB4tDGHoIJi
-0pRTAQCos2kfCyu1HmMLs3vUDMHuAt4FObAjJDqXmI50lj4prAEAoCkTanOgaIFf
-mgPp56m+d+FLEo2EuVyr4VMVi4sgkAo=
-=N36O
------END PGP SIGNATURE-----
-
---pFpN10RskjPDX7Mw--
-
-
---===============7670884371736880046==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7670884371736880046==--
-
+T24gV2VkLCBBdWcgNywgMjAyNCBhdCA4OjA14oCvUE0gQ2hyaXN0b3BoZSBKQUlMTEVUCjxjaHJp
+c3RvcGhlLmphaWxsZXRAd2FuYWRvby5mcj4gd3JvdGU6Cgo+IFRoZSBmb2xsb3dpbmcgc3RydWN0
+dXJlcyBhcmUgbm90IG1vZGlmaWVkIGluIHRoZXNlIGRyaXZlcnMuCj4gICAtIHN0cnVjdCBtZXNv
+bl9iYW5rCj4gICAtIHN0cnVjdCBtZXNvbl9wbXhfYmFuawo+ICAgLSBzdHJ1Y3QgbWVzb25fcG14
+X2Z1bmMKPiAgIC0gc3RydWN0IG1lc29uX3BteF9ncm91cAo+ICAgLSBzdHJ1Y3QgbWVzb25fcGlu
+Y3RybF9kYXRhCj4gICAtIHN0cnVjdCBtZXNvbl9heGdfcG14X2RhdGEKPgo+IENvbnN0aWZ5aW5n
+IHRoZXNlIHN0cnVjdHVyZXMgbW92ZXMgc29tZSBkYXRhIHRvIGEgcmVhZC1vbmx5IHNlY3Rpb24s
+IHNvCj4gaW5jcmVhc2Ugb3ZlcmFsbCBzZWN1cml0eS4KClBhdGNoIGFwcGxpZWQuCgpZb3VycywK
+TGludXMgV2FsbGVpagoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
+dXgtYW1sb2dpYwo=
