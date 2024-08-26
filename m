@@ -4,106 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF9B2C5321D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2024 08:28:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68081C5321E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2024 09:38:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=C+5sV0OSviAOa5uwELQ75NpxPE6j9nvQoivBroFbzEA=; b=MlbfX8F8n9al3g
-	qoVHhrbcTHDBC3G8VvhZnxfiTEw6wSAx28weE494dfvyuWNxLUIeS6ljTtjKItatq8cSeB6lz7QAF
-	5sDOtgpxmJfjYkFMzcIGhkL5td6yWECy81WZLXy3S305R+gY6MnoCVfkbHWN1w4j15TLooPos0YsB
-	qRp+T0VoL1ySBL/wkTbc2zvo1nTGC3EBWUZg/A1sO57HcURTkRsoYQQ3EW66O93of87BNaleI5NFI
-	sr3nJ/Bn3BZOyh7AgsqXf9mMjoOTcPpcmpFDW8tqSMBZUFMH9geGWlCU9eD7n9BXGVqJcetkgP61n
-	lFK5AG77Jj8cRyA29+0Q==;
+	List-Owner; bh=mQaRNuOVwh79Lns2IMD9cSyO7A0mu/ho7vG968WBzsc=; b=zsmgrE83nNEOYh
+	72XJgmfl9ESsbD4AZDRDpiaXyMZcx34TKKEfUpiBkjDyTtbJuVwOAkVaNN+g/S5Qpo57e3IbncfAc
+	m2NCsAm0uyDQ/logOUlSC7Nw1TQlcHPyPzD0a5GBaXkhCNuvkK7qRf9KlJaYE59Pqls1xxWY/iIT/
+	1pUvY/RHWB7LkL2db/N+amaBicUD5JUGNA9L1dn+pnGn0tx/IjIXReUavNbfdbKzVyRWRjwBQMpze
+	yQxa2n2C18dHzy8jANRms3ugenOpM0tObnGCYTJCfebg8+JY0yWc8qm32akmoUWzZ2/H0O3p1tJuW
+	XtEQRgvkO/QRp7tfQZJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1siV5F-00000006UaG-2fZr;
-	Mon, 26 Aug 2024 08:28:17 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1siWBD-00000006i0Y-2ZpN;
+	Mon, 26 Aug 2024 09:38:31 +0000
+Received: from szxga03-in.huawei.com ([45.249.212.189])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1siV5C-00000006UZI-08iF
-	for linux-amlogic@lists.infradead.org;
-	Mon, 26 Aug 2024 08:28:15 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 53A09A41DC7;
-	Mon, 26 Aug 2024 08:28:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1997C8CDC3;
-	Mon, 26 Aug 2024 08:28:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724660892;
-	bh=7Qq82oZd6o//DLFgkm7qZCVzpy7uvlZ7P8q3GhGE8ww=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=a5FoIFx9E3aTrtdwnwfPTfW77rc0TEeQmUIayNtsCUFWpFWyChUjQ4erfBksI+pYj
-	 +k4gsI+eoWklq3NlL509oJoI+c5xhCSDG2Jqa4x41eitd3HrrzVDTyJ3dOKsq9kmmA
-	 H9Kgr1fNQYVAEZ8N0ZceK1hVOA5pb3/LDe2n34yu+hdOh+0I3U5Xn/20CcSbiwhusw
-	 IZVXsHodBfHoT5iArSwlhBZN07j9shqHc0by1tqYhoxRXH+v6VRijtfv07Sz1iDNRV
-	 6R2QmQyP/ItWbgBkUqO7WMlG8E+vqvd2KAHkI1PmEh4A38OdvLppPA9G7qf7kxc7by
-	 oESIIdR3XFV/g==
-Message-ID: <4b79fb7e-7ff6-499b-b615-e1bd69a46d0b@kernel.org>
-Date: Mon, 26 Aug 2024 10:28:06 +0200
+	id 1siW8p-00000006hA1-0YLM;
+	Mon, 26 Aug 2024 09:36:05 +0000
+Received: from mail.maildlp.com (unknown [172.19.163.174])
+	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4WslmH2tT2z69Ly;
+	Mon, 26 Aug 2024 17:31:11 +0800 (CST)
+Received: from kwepemh500013.china.huawei.com (unknown [7.202.181.146])
+	by mail.maildlp.com (Postfix) with ESMTPS id E1569140258;
+	Mon, 26 Aug 2024 17:35:58 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemh500013.china.huawei.com
+ (7.202.181.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 26 Aug
+ 2024 17:35:57 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <miquel.raynal@bootlin.com>, <michal.simek@amd.com>, <richard@nod.at>,
+	<vigneshr@ti.com>, <liang.yang@amlogic.com>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <matthias.bgg@gmail.com>,
+	<angelogioacchino.delregno@collabora.com>, <heiko@sntech.de>,
+	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>, <wens@csie.org>,
+	<jernej.skrabec@gmail.com>, <samuel@sholland.org>, <kees@kernel.org>,
+	<ruanjinjie@huawei.com>, <gustavoars@kernel.org>, <linux@treblig.org>,
+	<robh@kernel.org>, <u.kleine-koenig@pengutronix.de>, <erick.archer@gmx.com>,
+	<christophe.jaillet@wanadoo.fr>, <val@packett.cool>,
+	<christophe.kerello@foss.st.com>, <linux-mtd@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-renesas-soc@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>, <krzk@kernel.org>,
+	<jic23@kernel.org>
+Subject: [PATCH -next RESEND 02/10] mtd: rawnand: cadence: Use for_each_child_of_node_scoped()
+Date: Mon, 26 Aug 2024 17:43:20 +0800
+Message-ID: <20240826094328.2991664-3-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240826094328.2991664-1-ruanjinjie@huawei.com>
+References: <20240826094328.2991664-1-ruanjinjie@huawei.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] MAINTAINERS: Add an entry for Amlogic RTC driver
-To: xianwei.zhao@amlogic.com, Yiting Deng <yiting.deng@amlogic.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
- <20240823-rtc-v1-3-6f70381da283@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240823-rtc-v1-3-6f70381da283@amlogic.com>
+X-Originating-IP: [10.90.53.73]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ kwepemh500013.china.huawei.com (7.202.181.146)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240826_012814_231301_20DF3621 
-X-CRM114-Status: GOOD (  11.83  )
+X-CRM114-CacheID: sfid-20240826_023603_456598_6877F8FE 
+X-CRM114-Status: UNSURE (   8.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,34 +83,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 23/08/2024 11:19, Xianwei Zhao via B4 Relay wrote:
-> From: Yiting Deng <yiting.deng@amlogic.com>
-> 
-> Add Amlogic RTC entry to MAINTAINERS to clarify the maintainers
-> 
-> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  MAINTAINERS | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 42decde38320..672290dddaaa 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2481,6 +2481,14 @@ F:	drivers/irqchip/irq-mvebu-*
->  F:	drivers/pinctrl/mvebu/
->  F:	drivers/rtc/rtc-armada38x.c
->  
-> +ARM/Amlogic RTC Driver
+Avoids the need for manual cleanup of_node_put() in early exits
+from the loop by using for_each_child_of_node_scoped().
 
-"ARM" is for Soc entries, not individual drivers. Drop. Place it
-correctly and use capital letters.
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+---
+ drivers/mtd/nand/raw/cadence-nand-controller.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-
-
-Best regards,
-Krzysztof
+diff --git a/drivers/mtd/nand/raw/cadence-nand-controller.c b/drivers/mtd/nand/raw/cadence-nand-controller.c
+index ff92c17def83..3bc89b356963 100644
+--- a/drivers/mtd/nand/raw/cadence-nand-controller.c
++++ b/drivers/mtd/nand/raw/cadence-nand-controller.c
+@@ -2836,7 +2836,6 @@ static void cadence_nand_chips_cleanup(struct cdns_nand_ctrl *cdns_ctrl)
+ static int cadence_nand_chips_init(struct cdns_nand_ctrl *cdns_ctrl)
+ {
+ 	struct device_node *np = cdns_ctrl->dev->of_node;
+-	struct device_node *nand_np;
+ 	int max_cs = cdns_ctrl->caps2.max_banks;
+ 	int nchips, ret;
+ 
+@@ -2849,10 +2848,9 @@ static int cadence_nand_chips_init(struct cdns_nand_ctrl *cdns_ctrl)
+ 		return -EINVAL;
+ 	}
+ 
+-	for_each_child_of_node(np, nand_np) {
++	for_each_child_of_node_scoped(np, nand_np) {
+ 		ret = cadence_nand_chip_init(cdns_ctrl, nand_np);
+ 		if (ret) {
+-			of_node_put(nand_np);
+ 			cadence_nand_chips_cleanup(cdns_ctrl);
+ 			return ret;
+ 		}
+-- 
+2.34.1
 
 
 _______________________________________________
