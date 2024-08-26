@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62023C5321E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2024 13:50:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B19AC5321D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2024 13:51:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d+MLwlQz/nvkpem0i0X5KggAFXezj/w8rBlRUoNBWdk=; b=1EOlNIZNk2BrG0
-	6coOI4iJdbQhr+Vb/FOAlDaEjW5j2ZwVPWWzmILmjNgn1glwrgHVnyuD8ipo/TLNG6C0nVxJC+PfL
-	t3jcoHHqGLB4O0y1i3oLFGU6E+mfBst6Hl6TOWMcx6xrp4iJOZA0GQOcPJN9ettO8J0tVlx7PM8GI
-	uIMKHTo0QTC/lfdWtPC6fW/gHCPjMA13I1EYJivZPVkIOpGsS8lR9jmKDLlqv4OdBI5ziWe+EBU9l
-	2u+KCD0Hqd5cjUZqQ6Hs6d7jHELQeqD8uqUuZscHLqo2j6LDV0Akl7m22b4yifnPpYQU9o23J0GCe
-	rhBX+BjHtQ9Pylkne54w==;
+	List-Owner; bh=sZR9kD9WoNYFkxX2rytXOqyhrPu7S+okdmYacJMg1VY=; b=1tIC4fw6shzmfp
+	n7a3tpMY6q3YKgMlivAtihNMOz00Vpl/4B6d1BId21yIPtAbkjL4TINV2nVqtAREwLBamQFH61jPQ
+	5YP6rZ1rqYmd64axNqmP+kFS+dad7r7znsxnH9+2yL5wAeqoRkB17QEAjKozfYnDGQxbWzwbeeZUA
+	199opNsLTz4SxNKPgwphnGCeuLqU8V/fyfxn+9B+29LTf8k1UhUvny8P3iQNmgJO3nh807c//X/G0
+	h1D72KMIV2YUzz1lBsFYmnwJ467YPcW+k4IbAiNmjdtXjWvoKgNZGZK1pwc9S/jr4/do+ebuQwf2B
+	whMbVPowOu4bvO/Q+PBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sia7C-00000007YSU-0rM1;
-	Mon, 26 Aug 2024 13:50:38 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1sia7y-00000007Yfd-31Q1;
+	Mon, 26 Aug 2024 13:51:26 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sia79-00000007YRp-1ZQw;
-	Mon, 26 Aug 2024 13:50:37 +0000
+	id 1sia7P-00000007YW0-11Te;
+	Mon, 26 Aug 2024 13:50:52 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 1BB1FA42754;
-	Mon, 26 Aug 2024 13:50:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60EB2C52FC7;
-	Mon, 26 Aug 2024 13:50:33 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 8A020A427F8;
+	Mon, 26 Aug 2024 13:50:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3653C52FC7;
+	Mon, 26 Aug 2024 13:50:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724680233;
-	bh=048956Hz69VplOQW8TIX6foE8BvnSSaO5WdBcuYMZ9g=;
+	s=k20201202; t=1724680250;
+	bh=3wcKQRoEo8FMvT0tRhB90fjTIKRp8q5ysFETw691w5Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yq7SRW9EcBKoGIL2P95KHrhwnlkRvqgFlUzzr7DM5u2r8244vaOSdNZoG61bFoRPC
-	 hrCZSE8Z1s8q0BUMss7PMJBTmO6jig0fesc7seDjQJcFnbXkH7/hRgAcdfajxNonON
-	 HQhStcPhBtU8xNQtw5FMsidSRS8rcPSVBcTDtZwi1+0KdW6JM3CWHWT5G84uLqm1uo
-	 nSqr0V6p6R8Wkaxrr2WH3z4+YezLnmB07/i/n1CZTTWoVW2JdVuM1AsnePmYPMueBf
-	 WlVVrIB4mkWIa8MSDfgkFI2+6dQUG6OUuJzn61wXo715pzHqIHtYWzI0Uwl9gX18BI
-	 hBj3/0WedhfUg==
-Date: Mon, 26 Aug 2024 08:50:31 -0500
-From: Rob Herring <robh@kernel.org>
+	b=qGcLDUmuNTlSpIq1qHQpIoPDJNNVelf4oqQrkK+t6xXt1kizdmDaEEkowCPaYli9P
+	 Vgf2ciaBgChFiju1IlLBLSFR4TuPDrxM/BLsgg9iLXhJRuKFFKjqFYfAiJ5chYg5CE
+	 YBwj7CGcQb0z6ZHmcqHstLB/7+dH5UMAi8XLl7t2Qoc1vUpknbDrpRvWc+0FDDwskF
+	 CFXN+W/eDWd4Ec3stRW7oAl0ZJDx4HUMKUJJZtNP7CJRWgRUk2rXFNJK0chrHTIznF
+	 onKo2fEFV3Pp/ANi3YNqrKcxtm4sAh5vpZL9xxXRvVooEEVd8QbRBV/y0wzsz0S9Fz
+	 DgRdpS9QsUEag==
+Date: Mon, 26 Aug 2024 08:50:47 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, clabbe@baylibre.com,
-	herbert@gondor.apana.org.au, davem@davemloft.net,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev,
-	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
-Subject: Re: [PATCH v9 19/23] arch: arm64: dts: meson: gxl: correct crypto
- node definition
-Message-ID: <20240826135031.GA55751-robh@kernel.org>
+Cc: robh+dt@kernel.org, linux-crypto@vger.kernel.org, clabbe@baylibre.com,
+	neil.armstrong@linaro.org, jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, vadim.fedorenko@linux.dev,
+	linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com,
+	krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
+	conor+dt@kernel.org, herbert@gondor.apana.org.au,
+	devicetree@vger.kernel.org, khilman@baylibre.com
+Subject: Re: [PATCH v9 17/23] dt-bindings: crypto: meson: correct clk and
+ remove second interrupt line
+Message-ID: <172468024695.61392.174903956615697419.robh@kernel.org>
 References: <20240820145623.3500864-1-avromanov@salutedevices.com>
- <20240820145623.3500864-20-avromanov@salutedevices.com>
+ <20240820145623.3500864-18-avromanov@salutedevices.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20240820145623.3500864-20-avromanov@salutedevices.com>
+In-Reply-To: <20240820145623.3500864-18-avromanov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240826_065035_504744_4FA68BCC 
-X-CRM114-Status: GOOD (  15.77  )
+X-CRM114-CacheID: sfid-20240826_065051_621505_9C2C6093 
+X-CRM114-Status: GOOD (  12.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,45 +79,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Aug 20, 2024 at 05:56:19PM +0300, Alexey Romanov wrote:
+
+On Tue, 20 Aug 2024 17:56:17 +0300, Alexey Romanov wrote:
 > GXL and newer SoC's uses the DMA engine (not blkmv) for crypto HW.
 > Crypto HW doesn't actually use the blkmv clk. At RTL level, crypto
-> engine is hard weired to clk81 (CLKID_CLK81). And remove clock-names
-> field: according to the new dt-binding, it is no longer required.
-
-Subject should be "arm64: dts: amlogic: ...". IIRC, Amlogic stuff has 
-moved away from using "meson".
-
+> engine is hard-wired to a clk81 (CLKID_CLK81). Drop clock-names
+> field from schema: name "blkmv" is invalid and "clk81" is confusing
+> and sounds like something global.
 > 
-> Also, GXL crypto IP isn't to seconnd interrput line. So we must
-> remove it from dt-bindings.
+> Also, GXL crypto IP isn't connected to the second interrupt line.
+> This binding is useless, there are no users of this line.
+> We must remove it from dt-bindings.
 > 
-> Fixes: c4a0457eb858 ("ARM64: dts: amlogic: adds crypto hardware node")
+> Fixes: 7f7d115dfb51 ("dt-bindings: crypto: Add DT bindings documentation for amlogic-crypto")
 > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
+>  .../bindings/crypto/amlogic,gxl-crypto.yaml           | 11 ++++-------
+>  1 file changed, 4 insertions(+), 7 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> index 17bcfa4702e1..c29d5b81ce67 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> @@ -68,10 +68,8 @@ acodec: audio-controller@c8832000 {
->  		crypto: crypto@c883e000 {
->  			compatible = "amlogic,gxl-crypto";
->  			reg = <0x0 0xc883e000 0x0 0x36>;
-> -			interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
-> -				     <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
-> -			clocks = <&clkc CLKID_BLKMV>;
-> -			clock-names = "blkmv";
-> +			interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
-> +			clocks = <&clkc CLKID_CLK81>;
->  			status = "okay";
->  		};
->  	};
-> -- 
-> 2.34.1
-> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
 _______________________________________________
 linux-amlogic mailing list
