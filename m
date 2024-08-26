@@ -4,81 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF9FCC5321E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2024 13:20:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62023C5321E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2024 13:50:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Q5uyZ8GT7xbKfgvdfF1nAyV1mQPxGItzzj3BzCV1wbc=; b=M8VzBh8FQPOanp
-	X0LDvRnjJzyQF1y+1pejVeUyR/TSJrzG5BN0bDJenDt0w40SJsI87Hv2+9f6byoKHba+CDbtcUNkQ
-	cfaKigZOYYGNTR0B8klWWc4QTAJoTkhSbILgblLTw8nJjOTAu7oSmao0wt9Nrnhs7oVERAK7PFioK
-	p4TliEUp55mbYc3DBLCgfZgIa8usA5TVF2RBS/KBjDRnVidr8w7OK/WltlBh3Wf/zvhzmo+FkpvVc
-	LVRLeS0+jDhtE7Ffd8HfjCxjeqadMdGBbD4TOKVjILL6VykfZ9CEGV8QNq57flZfj55G8Sw6nk/qu
-	ezusY/yNb7YIJBKfFgRg==;
+	List-Owner; bh=d+MLwlQz/nvkpem0i0X5KggAFXezj/w8rBlRUoNBWdk=; b=1EOlNIZNk2BrG0
+	6coOI4iJdbQhr+Vb/FOAlDaEjW5j2ZwVPWWzmILmjNgn1glwrgHVnyuD8ipo/TLNG6C0nVxJC+PfL
+	t3jcoHHqGLB4O0y1i3oLFGU6E+mfBst6Hl6TOWMcx6xrp4iJOZA0GQOcPJN9ettO8J0tVlx7PM8GI
+	uIMKHTo0QTC/lfdWtPC6fW/gHCPjMA13I1EYJivZPVkIOpGsS8lR9jmKDLlqv4OdBI5ziWe+EBU9l
+	2u+KCD0Hqd5cjUZqQ6Hs6d7jHELQeqD8uqUuZscHLqo2j6LDV0Akl7m22b4yifnPpYQU9o23J0GCe
+	rhBX+BjHtQ9Pylkne54w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1siZdl-00000007TuF-2Nso;
-	Mon, 26 Aug 2024 13:20:13 +0000
-Received: from mgamail.intel.com ([192.198.163.15])
+	id 1sia7C-00000007YSU-0rM1;
+	Mon, 26 Aug 2024 13:50:38 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1siZdh-00000007TsN-43nm
-	for linux-amlogic@lists.infradead.org;
-	Mon, 26 Aug 2024 13:20:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724678410; x=1756214410;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=L7ncuygwK7+Kr9c0J0XU++WFSpxV2mOazxQHlKpiK+o=;
-  b=irCttRd8p2sLFPdwNlPDHKu0GKobo4MJ6XGSOc+LRWNVHY0S37b4I2k/
-   s12k2YJEis4FjNdjEx1cm9agiBlcVOUVXlsetyRoWqk7G5jewKpztKlNz
-   2mH0ZhumGxYfp1P7uCHqHO63VbGxGP4nN9JVZLRoYd1X1+1+4/E3MHUuc
-   zoLVfgqf601zkzs6CC9R9k8kwlFgRsN2LFuBVho/A+9ul8PUEd0GsI6Vr
-   Sz8FTqf6ioNorppdO5coULcgmdTdBXbzNHWsZqFZmtUZlh8Gtqk4R77qb
-   KzqC40hZCkzziai1F1uDYg+oMAXBiK/myYXtgZCLm3e6rdCBdYgQwO/w9
-   g==;
-X-CSE-ConnectionGUID: pAQAOweDQR+xPuOMhHrcug==
-X-CSE-MsgGUID: YBPx86uJQzqpD92bd4aurQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="23266492"
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
-   d="scan'208";a="23266492"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2024 06:20:08 -0700
-X-CSE-ConnectionGUID: JF/zFlvhQFeztm9udLuJrA==
-X-CSE-MsgGUID: THkbdf54S3G4yPuV3/ZMgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; 
-   d="scan'208";a="93233607"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 26 Aug 2024 06:20:05 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1siZdb-000H75-0W;
-	Mon, 26 Aug 2024 13:20:03 +0000
-Date: Mon, 26 Aug 2024 21:19:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
-	Yiting Deng <yiting.deng@amlogic.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-amlogic@lists.infradead.org,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH 2/3] rtc: support for the Amlogic on-chip RTC
-Message-ID: <202408262106.tU1zTUfx-lkp@intel.com>
-References: <20240823-rtc-v1-2-6f70381da283@amlogic.com>
+	id 1sia79-00000007YRp-1ZQw;
+	Mon, 26 Aug 2024 13:50:37 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 1BB1FA42754;
+	Mon, 26 Aug 2024 13:50:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60EB2C52FC7;
+	Mon, 26 Aug 2024 13:50:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724680233;
+	bh=048956Hz69VplOQW8TIX6foE8BvnSSaO5WdBcuYMZ9g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Yq7SRW9EcBKoGIL2P95KHrhwnlkRvqgFlUzzr7DM5u2r8244vaOSdNZoG61bFoRPC
+	 hrCZSE8Z1s8q0BUMss7PMJBTmO6jig0fesc7seDjQJcFnbXkH7/hRgAcdfajxNonON
+	 HQhStcPhBtU8xNQtw5FMsidSRS8rcPSVBcTDtZwi1+0KdW6JM3CWHWT5G84uLqm1uo
+	 nSqr0V6p6R8Wkaxrr2WH3z4+YezLnmB07/i/n1CZTTWoVW2JdVuM1AsnePmYPMueBf
+	 WlVVrIB4mkWIa8MSDfgkFI2+6dQUG6OUuJzn61wXo715pzHqIHtYWzI0Uwl9gX18BI
+	 hBj3/0WedhfUg==
+Date: Mon, 26 Aug 2024 08:50:31 -0500
+From: Rob Herring <robh@kernel.org>
+To: Alexey Romanov <avromanov@salutedevices.com>
+Cc: neil.armstrong@linaro.org, clabbe@baylibre.com,
+	herbert@gondor.apana.org.au, davem@davemloft.net,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	khilman@baylibre.com, jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev,
+	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
+Subject: Re: [PATCH v9 19/23] arch: arm64: dts: meson: gxl: correct crypto
+ node definition
+Message-ID: <20240826135031.GA55751-robh@kernel.org>
+References: <20240820145623.3500864-1-avromanov@salutedevices.com>
+ <20240820145623.3500864-20-avromanov@salutedevices.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20240823-rtc-v1-2-6f70381da283@amlogic.com>
+In-Reply-To: <20240820145623.3500864-20-avromanov@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240826_062010_039198_6048A6A1 
-X-CRM114-Status: GOOD (  11.27  )
+X-CRM114-CacheID: sfid-20240826_065035_504744_4FA68BCC 
+X-CRM114-Status: GOOD (  15.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,62 +79,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Xianwei,
+On Tue, Aug 20, 2024 at 05:56:19PM +0300, Alexey Romanov wrote:
+> GXL and newer SoC's uses the DMA engine (not blkmv) for crypto HW.
+> Crypto HW doesn't actually use the blkmv clk. At RTL level, crypto
+> engine is hard weired to clk81 (CLKID_CLK81). And remove clock-names
+> field: according to the new dt-binding, it is no longer required.
 
-kernel test robot noticed the following build warnings:
+Subject should be "arm64: dts: amlogic: ...". IIRC, Amlogic stuff has 
+moved away from using "meson".
 
-[auto build test WARNING on dff71e5c6076314f3eefe700abd6af834c57bd64]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-rtc-Add-Amlogic-A311L2-and-A113X2-rtc/20240826-125504
-base:   dff71e5c6076314f3eefe700abd6af834c57bd64
-patch link:    https://lore.kernel.org/r/20240823-rtc-v1-2-6f70381da283%40amlogic.com
-patch subject: [PATCH 2/3] rtc: support for the Amlogic on-chip RTC
-config: arc-randconfig-002-20240826 (https://download.01.org/0day-ci/archive/20240826/202408262106.tU1zTUfx-lkp@intel.com/config)
-compiler: arc-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240826/202408262106.tU1zTUfx-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408262106.tU1zTUfx-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/rtc/rtc-amlogic.c:545:12: warning: 'aml_rtc_resume' defined but not used [-Wunused-function]
-     545 | static int aml_rtc_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~
->> drivers/rtc/rtc-amlogic.c:535:12: warning: 'aml_rtc_suspend' defined but not used [-Wunused-function]
-     535 | static int aml_rtc_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~~
-
-
-vim +/aml_rtc_resume +545 drivers/rtc/rtc-amlogic.c
-
-   534	
- > 535	static int aml_rtc_suspend(struct device *dev)
-   536	{
-   537		struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-   538	
-   539		if (device_may_wakeup(dev))
-   540			enable_irq_wake(rtc->irq);
-   541	
-   542		return 0;
-   543	}
-   544	
- > 545	static int aml_rtc_resume(struct device *dev)
-   546	{
-   547		struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-   548	
-   549		if (device_may_wakeup(dev))
-   550			disable_irq_wake(rtc->irq);
-   551	
-   552		return 0;
-   553	}
-   554	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> Also, GXL crypto IP isn't to seconnd interrput line. So we must
+> remove it from dt-bindings.
+> 
+> Fixes: c4a0457eb858 ("ARM64: dts: amlogic: adds crypto hardware node")
+> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> index 17bcfa4702e1..c29d5b81ce67 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> @@ -68,10 +68,8 @@ acodec: audio-controller@c8832000 {
+>  		crypto: crypto@c883e000 {
+>  			compatible = "amlogic,gxl-crypto";
+>  			reg = <0x0 0xc883e000 0x0 0x36>;
+> -			interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
+> -				     <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
+> -			clocks = <&clkc CLKID_BLKMV>;
+> -			clock-names = "blkmv";
+> +			interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
+> +			clocks = <&clkc CLKID_CLK81>;
+>  			status = "okay";
+>  		};
+>  	};
+> -- 
+> 2.34.1
+> 
 
 _______________________________________________
 linux-amlogic mailing list
