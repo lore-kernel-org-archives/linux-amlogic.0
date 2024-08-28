@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D1F7CD4853
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2024 15:25:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CF98CD4853
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2024 16:30:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,46 +13,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-ID:Cc:To:From:Date:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=TDXe2heeik9ti2YB+EoNJlweB69xf+icZrOHukla7Jk=; b=R0PF+zeIj7DcdyYcqOSuolLNq9
-	fvqm2XnM1BsLn0TztmpQxQmmd3e2eXN5ggsoFzYgdkV6CvY5dtIYwbx+s+uSM8JbRPlqF9OF3Bumt
-	djoTPxA7r37mrYQYdqHdbpHfYVUJBucVFE8Q+dEFSJuQjNaStQn1YLFs1Rpi/+5ZAWKSTmrn3r9Mz
-	5/uumP3GB6gaHl9YOmffu+JPxSMk3TS9C0ZzQLwtLKNrryhaqbiuNtYkg9pXkw7JpMAPjpseeVfjs
-	eZ1CYpXAT+MouoIIQDW4QliF5BZLhGXa1sGwZkFCl0qWZeOXVpespwpTTJ0zbD0b7y9ws6lDrrkeD
-	VwHP8ZbQ==;
+	bh=r5lT+4vj5VQpp/ty3nmV5Kvl/iq9sFMOxyPmnIbhOX0=; b=32jllLE6tT++UkQQCo0yBKiMKC
+	2OgRgOEsrGAMYvQR2sw1GHlcxQCOzJj4/GYVlRvAT0OyviD1yAEsjItWPKWPiqBZKodsLQN+TZO4/
+	1HhL/N+nWaqzpH6zPLv6bFXEEEEBLODDtKBWhMDcCPPb++GKkjxar4+OPUpUEgmuuFkLWK10VCEU/
+	xSE+ojQzUDpi8n3s5aj5RDStWEKNJDt0tLgZhkohbRaDTf2+3rZUpksity/Ln+lXcXX3KJrdVTcyW
+	E4/RHDWaAEJPVi0E9YXE7Q4k9nEC7rkLMykAWGjcD9xpJiH7FHlvMPv2CrRzlHhcYPo+4aQawyvbj
+	Pa+aDM1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slrt0-00000004zB5-2uX0;
-	Wed, 04 Sep 2024 15:25:34 +0000
+	id 1slsuA-00000005GGv-3LFh;
+	Wed, 04 Sep 2024 16:30:50 +0000
 Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sj2nO-0000000CjuX-0AIa;
-	Tue, 27 Aug 2024 20:28:07 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1724790480; cv=none; 
+	id 1sjKVn-0000000Fwzb-0O2s;
+	Wed, 28 Aug 2024 15:23:08 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1724858582; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=Aya30ztD33wDitnB3E5Gn+IYVWfddnFNtZwWR4Z/GYc/NTc4LqyK/XEhTgm7ailY6rJKItNYBd/VB14kTXRNB5birLM3a7WFCPi5rZYvBpdJVssJwFlmyfJI9uQ7q/ztXjQwKCMFKKbSA0bxO7So7c6xWW07RuSK2A1R08jXkDo=
+	b=n/0UeusnXOCvaEaJ1nhapBysPWJg8696ZD22LhKwNOjMIrmhYm6Hh/g1hJ2z3QffkO4VuqYZoxTZXKLyZ/VTyATeBFUvyW/ZTdjjq0xEj/BL5lEofKZ3SyCH2dTGpVenvq19l/KefQXVK3WIUe8zflbpzEzhS3fqEqfVoADkWcY=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724790480; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=vSjUVm1BVHx+k1tFoVAnnPQhkPlOOk9eSfEVMqyqIEY=; 
-	b=Etx//QWRTu3HlBQryriesvrIEINJornZf9rpjNIxM3SwhFaOuf+jX95Yis3yJTCJU63WAKIyTX8pLw2oy9YGJrvoDytcl94RrdY4Ycb1kIthriVX2KmlipBO9sbxLaJxhL570HOW9lR/56evwrN7yFpc8LO2jWjrXcGe1BWGn0s=
+	t=1724858582; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=XCKdPShM2BSsjoKUXd5jLwgut9vQqNvq4fosnc20z7A=; 
+	b=OP92ZjLenjEMMDFT+eHK7WNuPjfEm8fEPF52kLJYyZgF60nuoeQ6TmTaNF/rShu+hbGPRqPXTNzN3OP53bxDne9Uq8QHMJ9MK/q3vMknoCQWTbv1dUAWmiKyoRQ0RKe4AwCrlVwpwPxUnOKdJQQDDrK4d1klaeYMRNqMVbpR76U=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=collabora.com;
 	spf=pass  smtp.mailfrom=helen.koike@collabora.com;
 	dmarc=pass header.from=<helen.koike@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724790480;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724858582;
 	s=zohomail; d=collabora.com; i=helen.koike@collabora.com;
 	h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=vSjUVm1BVHx+k1tFoVAnnPQhkPlOOk9eSfEVMqyqIEY=;
-	b=hI48h1WDy87pOMX099fASJTZhXMXCO9sEwV9KBM6EfWRIvETtevOgQMj6/okJmfE
-	wXivfv2WtL0RIFAFVAtZ8qayYLD6kLZigOMut2jyKU4CPY+WcdBRNKSKftx+kUhhanY
-	HUs/4BwTFTMWQg9V8bYsxQvUQP4+pIx5NxK33DVQ=
+	bh=XCKdPShM2BSsjoKUXd5jLwgut9vQqNvq4fosnc20z7A=;
+	b=Dzkh270iCgK9bLYwALngFlgSPGwMdPTS1B0v6XJC1P80G0jRtoqar0Eds6Zhlh12
+	A6c93FpxNKjl5bogYxOE5VQ9ept63a2EgrUR6Vojrmsbfi6AhNbfmU3XHd//hy/UhZT
+	8qK23+cNsxfQjZuN+ibJPBV//LGXRxKEljTN573A=
 Received: from mail.zoho.com by mx.zohomail.com
-	with SMTP id 1724790478227916.9458842035166; Tue, 27 Aug 2024 13:27:58 -0700 (PDT)
-Date: Tue, 27 Aug 2024 17:27:58 -0300
+	with SMTP id 17248585802298.455583977077822; Wed, 28 Aug 2024 08:23:00 -0700 (PDT)
+Date: Wed, 28 Aug 2024 12:23:00 -0300
 From: Helen Mae Koike Fornazier <helen.koike@collabora.com>
-To: "Vignesh Raman" <vignesh.raman@collabora.com>
-Cc: "dri-devel" <dri-devel@lists.freedesktop.org>,
+To: "Rob Clark" <robdclark@gmail.com>
+Cc: "Vignesh Raman" <vignesh.raman@collabora.com>,
+	"dri-devel" <dri-devel@lists.freedesktop.org>,
 	"daniels" <daniels@collabora.com>, "airlied" <airlied@gmail.com>,
-	"daniel" <daniel@ffwll.ch>, "robdclark" <robdclark@gmail.com>,
+	"daniel" <daniel@ffwll.ch>,
 	"guilherme.gallo" <guilherme.gallo@collabora.com>,
 	"sergi.blanch.torne" <sergi.blanch.torne@collabora.com>,
 	"deborah.brouwer" <deborah.brouwer@collabora.com>,
@@ -64,17 +65,17 @@ Cc: "dri-devel" <dri-devel@lists.freedesktop.org>,
 	"intel-gfx" <intel-gfx@lists.freedesktop.org>,
 	"virtualization" <virtualization@lists.linux.dev>,
 	"linux-kernel" <linux-kernel@vger.kernel.org>
-Message-ID: <1919586153a.1236d9a3a2810380.346109493548527669@collabora.com>
-In-Reply-To: <20240820070818.1124403-1-vignesh.raman@collabora.com>
-References: <20240820070818.1124403-1-vignesh.raman@collabora.com>
+Message-ID: <19199953cbf.ded17a68157355.1209172729493560159@collabora.com>
+In-Reply-To: <CAF6AEGu-T4=3jPRcnq3BFBtfb_yhmWE2b8EgxgTm5Q0bqSv04Q@mail.gmail.com>
+References: <20240820070818.1124403-1-vignesh.raman@collabora.com> <CAF6AEGu-T4=3jPRcnq3BFBtfb_yhmWE2b8EgxgTm5Q0bqSv04Q@mail.gmail.com>
 Subject: Re: [PATCH v1] drm/ci: increase timeout for all jobs
 MIME-Version: 1.0
 Importance: Medium
 User-Agent: Zoho Mail
 X-Mailer: Zoho Mail
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240827_132806_189334_CC326A0B 
-X-CRM114-Status: GOOD (  14.43  )
+X-CRM114-CacheID: sfid-20240828_082307_211167_88FDA973 
+X-CRM114-Status: GOOD (  14.13  )
 X-Mailman-Approved-At: Wed, 04 Sep 2024 08:25:33 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,81 +88,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-
-
----- On Tue, 20 Aug 2024 04:08:16 -0300 Vignesh Raman  wrote ---
-
- > Set the timeout of all drm-ci jobs to 1h30m since 
- > some jobs takes more than 1 hour to complete. 
- >  
- > Signed-off-by: Vignesh Raman vignesh.raman@collabora.com> 
-
-Acked-by: Helen Koike <helen.koike@collabora.com>
-
-Thanks
-Helen
-
- > --- 
- >  drivers/gpu/drm/ci/test.yml | 5 ++++- 
- >  1 file changed, 4 insertions(+), 1 deletion(-) 
- >  
- > diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml 
- > index b6f428cdaf94..09d8447840e9 100644 
- > --- a/drivers/gpu/drm/ci/test.yml 
- > +++ b/drivers/gpu/drm/ci/test.yml 
- > @@ -10,6 +10,7 @@ 
- >  .lava-test: 
- >  extends: 
- >  - .test-rules 
- > +  timeout: "1h30m" 
- >  script: 
- >  # Note: Build dir (and thus install) may be dirty due to GIT_STRATEGY 
- >  - rm -rf install 
- > @@ -71,6 +72,7 @@ 
- >  - .baremetal-test-arm64 
- >  - .use-debian/baremetal_arm64_test 
- >  - .test-rules 
- > +  timeout: "1h30m" 
- >  variables: 
- >  FDO_CI_CONCURRENT: 10 
- >  HWCI_TEST_SCRIPT: "/install/igt_runner.sh" 
- > @@ -215,7 +217,6 @@ panfrost:rk3399: 
- >  extends: 
- >  - .lava-igt:x86_64 
- >  stage: i915 
- > -  timeout: "1h30m" 
- >  variables: 
- >  DRIVER_NAME: i915 
- >  DTB: "" 
- > @@ -414,6 +415,7 @@ panfrost:g12b: 
- >  
- >  virtio_gpu:none: 
- >  stage: software-driver 
- > +  timeout: "1h30m" 
- >  variables: 
- >  CROSVM_GALLIUM_DRIVER: llvmpipe 
- >  DRIVER_NAME: virtio_gpu 
- > @@ -436,6 +438,7 @@ virtio_gpu:none: 
- >  
- >  vkms:none: 
- >  stage: software-driver 
- > +  timeout: "1h30m" 
- >  variables: 
- >  DRIVER_NAME: vkms 
- >  GPU_VERSION: none 
- > -- 
- > 2.43.0 
- >  
- > 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgoKCi0tLS0gT24gVHVlLCAyNyBBdWcgMjAyNCAxOTowNDo0MiAtMDMwMCBSb2IgQ2xhcmsgIHdy
+b3RlIC0tLQoKID4gT24gVHVlLCBBdWcgMjAsIDIwMjQgYXQgMTI6MDnigK9BTSBWaWduZXNoIFJh
+bWFuIAogPiB2aWduZXNoLnJhbWFuQGNvbGxhYm9yYS5jb20+IHdyb3RlOiAKID4gPiAKID4gPiBT
+ZXQgdGhlIHRpbWVvdXQgb2YgYWxsIGRybS1jaSBqb2JzIHRvIDFoMzBtIHNpbmNlIAogPiA+IHNv
+bWUgam9icyB0YWtlcyBtb3JlIHRoYW4gMSBob3VyIHRvIGNvbXBsZXRlLiAKID4gPiAKID4gPiBT
+aWduZWQtb2ZmLWJ5OiBWaWduZXNoIFJhbWFuIHZpZ25lc2gucmFtYW5AY29sbGFib3JhLmNvbT4g
+CiA+ICAKID4gQWNrZWQtYnk6IFJvYiBDbGFyayByb2JkY2xhcmtAZ21haWwuY29tPiAKCkFwcGxp
+ZWQgdG8gZHJtLW1pc2MtbmV4dC4KClRoYW5rcwpIZWxlbgoKID4gIAogPiA+IC0tLSAKID4gPiAg
+ZHJpdmVycy9ncHUvZHJtL2NpL3Rlc3QueW1sIHwgNSArKysrLSAKID4gPiAgMSBmaWxlIGNoYW5n
+ZWQsIDQgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKSAKID4gPiAKID4gPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2NpL3Rlc3QueW1sIGIvZHJpdmVycy9ncHUvZHJtL2NpL3Rlc3Qu
+eW1sIAogPiA+IGluZGV4IGI2ZjQyOGNkYWY5NC4uMDlkODQ0Nzg0MGU5IDEwMDY0NCAKID4gPiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vY2kvdGVzdC55bWwgCiA+ID4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2NpL3Rlc3QueW1sIAogPiA+IEBAIC0xMCw2ICsxMCw3IEBAIAogPiA+ICAubGF2YS10ZXN0
+OiAKID4gPiAgICBleHRlbmRzOiAKID4gPiAgICAgIC0gLnRlc3QtcnVsZXMgCiA+ID4gKyAgdGlt
+ZW91dDogIjFoMzBtIiAKID4gPiAgICBzY3JpcHQ6IAogPiA+ICAgICAgIyBOb3RlOiBCdWlsZCBk
+aXIgKGFuZCB0aHVzIGluc3RhbGwpIG1heSBiZSBkaXJ0eSBkdWUgdG8gR0lUX1NUUkFURUdZIAog
+PiA+ICAgICAgLSBybSAtcmYgaW5zdGFsbCAKID4gPiBAQCAtNzEsNiArNzIsNyBAQCAKID4gPiAg
+ICAgIC0gLmJhcmVtZXRhbC10ZXN0LWFybTY0IAogPiA+ICAgICAgLSAudXNlLWRlYmlhbi9iYXJl
+bWV0YWxfYXJtNjRfdGVzdCAKID4gPiAgICAgIC0gLnRlc3QtcnVsZXMgCiA+ID4gKyAgdGltZW91
+dDogIjFoMzBtIiAKID4gPiAgICB2YXJpYWJsZXM6IAogPiA+ICAgICAgRkRPX0NJX0NPTkNVUlJF
+TlQ6IDEwIAogPiA+ICAgICAgSFdDSV9URVNUX1NDUklQVDogIi9pbnN0YWxsL2lndF9ydW5uZXIu
+c2giIAogPiA+IEBAIC0yMTUsNyArMjE3LDYgQEAgcGFuZnJvc3Q6cmszMzk5OiAKID4gPiAgICBl
+eHRlbmRzOiAKID4gPiAgICAgIC0gLmxhdmEtaWd0Ong4Nl82NCAKID4gPiAgICBzdGFnZTogaTkx
+NSAKID4gPiAtICB0aW1lb3V0OiAiMWgzMG0iIAogPiA+ICAgIHZhcmlhYmxlczogCiA+ID4gICAg
+ICBEUklWRVJfTkFNRTogaTkxNSAKID4gPiAgICAgIERUQjogIiIgCiA+ID4gQEAgLTQxNCw2ICs0
+MTUsNyBAQCBwYW5mcm9zdDpnMTJiOiAKID4gPiAKID4gPiAgdmlydGlvX2dwdTpub25lOiAKID4g
+PiAgICBzdGFnZTogc29mdHdhcmUtZHJpdmVyIAogPiA+ICsgIHRpbWVvdXQ6ICIxaDMwbSIgCiA+
+ID4gICAgdmFyaWFibGVzOiAKID4gPiAgICAgIENST1NWTV9HQUxMSVVNX0RSSVZFUjogbGx2bXBp
+cGUgCiA+ID4gICAgICBEUklWRVJfTkFNRTogdmlydGlvX2dwdSAKID4gPiBAQCAtNDM2LDYgKzQz
+OCw3IEBAIHZpcnRpb19ncHU6bm9uZTogCiA+ID4gCiA+ID4gIHZrbXM6bm9uZTogCiA+ID4gICAg
+c3RhZ2U6IHNvZnR3YXJlLWRyaXZlciAKID4gPiArICB0aW1lb3V0OiAiMWgzMG0iIAogPiA+ICAg
+IHZhcmlhYmxlczogCiA+ID4gICAgICBEUklWRVJfTkFNRTogdmttcyAKID4gPiAgICAgIEdQVV9W
+RVJTSU9OOiBub25lIAogPiA+IC0tIAogPiA+IDIuNDMuMCAKID4gPiAKID4gCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
+bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
+ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
