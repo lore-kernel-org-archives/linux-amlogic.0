@@ -4,84 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54E0ACA0ED3
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Sep 2024 08:34:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 194E9CD13CF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Sep 2024 08:36:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p0MDfNLNH96n5I4+s9l4kgMcisQZDO8F6HrG5788Rrs=; b=OhiOOckQayyAdT
-	H+o2YcrTZPiOqGCaqOAg554/z5P5qsIhmwfLAdAseqIXdCK7h554Nt+Pkcr394gWZNOOFfixQmSg1
-	xkt4y+hzB7Gk7kb51ftykdc4gt/Nq4woaU3PK/A2kwT/rIU7ZFeUH8aJK5TUjOPUuEpGW0GgJDdiN
-	sQQz/uVRUsE7pO/3fX1PEO6OuJ8r0lI83E4CQpuBBOsGhY7Vh4W/U25WiyDt4U6ay/pl7TGY7izZI
-	yHexMtbmRKnVKAXpzE6v52RpZU9UJU7YtZUcpCfVyi42i7M3cb9fujVZIYXgqlU/pYARv87gpuoT2
-	hEqjzdXVpGvIAVWhlP8A==;
+	List-Owner; bh=RybfYEv4RXH3Iv+D0G/xjlg1+ijBbQeakRT5mWEmN6c=; b=EwltB6KkI68zVK
+	nOHB4ns3FdAs6I0rUH7l9vMmTZc4i6BCHJMQNCticpy/NRaNozG+HQJejqV2V6Xj71LJrm/vIdVdx
+	DGWyevwDp5yfLyrR1oFRb6LiIPSwS6xptO6h7EuIcSxXPKv7dynMNvO2L5+0ZbDTZKZPgv+BG9gS1
+	IfbZcBaDcg+t+ALSAGO+X4tFpYqcQfqmURPD0rojtO73eFSjjJ8KmtFzmWg4MaULgEkdyTI9vkyUU
+	Ivfrohf7k95PdJCPFD0H4kA4UEypgBaqszki1wyOndFFWCxjM3L+TDebZDnOFrmCLh6LKkzKTWfCF
+	a6xrPkaKy/mr1VI2NE/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sl2WB-0000000DXDV-21st;
-	Mon, 02 Sep 2024 08:34:35 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1sl2Xy-0000000DXlM-15kh;
+	Mon, 02 Sep 2024 08:36:26 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1sl2W8-0000000DXBC-0TxH
+	id 1sl2W8-0000000DXBQ-3FR7
 	for linux-amlogic@lists.infradead.org;
-	Mon, 02 Sep 2024 08:34:33 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-42bbc70cc19so22319175e9.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 02 Sep 2024 01:34:31 -0700 (PDT)
+	Mon, 02 Sep 2024 08:34:35 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-42c2e50ec13so16504925e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 02 Sep 2024 01:34:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725266070; x=1725870870; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1725266071; x=1725870871; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+za/cAcdZ0XOTg3FDU5KvmgY/loVMFZsFxv5CioePC0=;
-        b=nQVB6jHYOVeOqEQ56Jjv+T2JURPnDHkCnR5kMKwAh8I1kRZnuZ9WFMXmQPhLBFazJc
-         knWRYGJPOYgE6D6U5/k47W2lO5rZrWGPXr5HDPtSKKiSZX1YpLXHfYbtgGcm8t16mTip
-         opAk79YLjqm2URA4JmPDYEPLYQnEcfm92wmOWiTvFKL8lJebzby5gnC1OsgXLBn/BFFk
-         Eb9II4XlT3f7p6vJGU3rMwnfJIf4vT0JvsXTIM+O30oc3AXNet+UWmBo4M6tBAw5mJiO
-         B35Js14rw6WDwoe+dCiTMj4AFtFl5W0oIlmWF91AI/vgvZQD9qlqLI+iU1UmH7hdaLFy
-         wfZg==
+        bh=zTtz4aJ6WOg0pDCld3WKbgJIlmwIlok5mPiJNkSVlqI=;
+        b=kuoLn4mSlvB0nYgB5MO3MSllw/ejZr6zZe1HMagBFyB2KOYSk3xoHlXWTu1moCae+p
+         +mXMXg3lBUO3Ba1/AaPe28jBlZEpr7pzNsOBesO2ZdaD1MfoAGoDK9tPtHdkGCKYAq7W
+         0G+4I9Wccu1DsLJkSLmHo+JC8oPB4mtvco4nqSGXWjzmO8MQ0g8bZ4zwUvTVUhw7pn/4
+         XTJ1RNSX0TVZusOSc0S3Ccwa2mYIIu2WPkv/FjIOUVFakSJHcoCEHoUdJwDFT1rsY38t
+         8Sr6jYLuGIpI10NPEoxDLTCA6z76RA12dfVAVaw+eAneAlIXBwE3OWJp4YDFV4EDFNea
+         IL5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725266070; x=1725870870;
+        d=1e100.net; s=20230601; t=1725266071; x=1725870871;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+za/cAcdZ0XOTg3FDU5KvmgY/loVMFZsFxv5CioePC0=;
-        b=l34QTs54s6aBt0q8KYnJ02KL5ODbhIRoKVoE3js3isKJ8rU04D1QlFkjcmF43NM93N
-         Dybzr5V4nYeKPoXhby6ombn+SvB8IutE7gcgLwryNFFLBcWb6ihSsJs9r87VseUuc1UZ
-         D3RvEkgvuBTgqSYfXmdEu1x6gcQvEF7PT+pqE6IlpzvYgw21JUYuWDKZKSwLFJpb2i2U
-         WSHIa5S4GZNQppRcU/T5AmW/FnRdPsXpWTpbwV6QAqQfeih8D9vG+vmlma0h2L9DiwG5
-         SK2MbEnImNRg5AbHr8oNdcNrujyEUAuwx53Ynn++WVjcaWqz8gWrShHVGLEImlWr0zwT
-         jteQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW/XNGgv9IN8Ne7HrXDmuRIWSdthTDwl8ZbuJmvjEoXwdee8jy3QkbCtfQPoLaBzz8nL0pzEYEEQSaqtQWB@lists.infradead.org
-X-Gm-Message-State: AOJu0YxJCOq8/iVH0E8dxY8ocZjHArxSs2/wzcHwuLY3h+5vYxGVEgtk
-	UF3DdkBZaLN43YCNKHXQUrgJk+WZvoiQ3ouD9XEPWQ+Sjz6bQSqvj2hRvQ2R0Ss=
-X-Google-Smtp-Source: AGHT+IFJUVovWbnX5nY+Y2YkBfcSM9FaAqLveWckf0TJzKcGo4CXWwjHWFVMGHxm8ScNSGaXGnfepQ==
-X-Received: by 2002:a5d:50ce:0:b0:374:bde6:bff5 with SMTP id ffacd0b85a97d-374bf1c94aemr3336071f8f.46.1725266069342;
-        Mon, 02 Sep 2024 01:34:29 -0700 (PDT)
+        bh=zTtz4aJ6WOg0pDCld3WKbgJIlmwIlok5mPiJNkSVlqI=;
+        b=J4MDF/3lJh2CKo6M044lLKrnfvI2iWZ+hsdVcb4dTO7VP8yF4AGQlhWn2Br+RbIWNq
+         wgkJuUz17bs78g0nVDcCgcZ8IC+rzREL18CpRiVZSD33RL+R6rYAs9bsHCkqg18aD6Nr
+         XoH40u6sv9lRBxNcrTauuDO3xxn6B7rA3RWjTbTsvjmOPRfWrc32C30lza7fF1k+mE0m
+         v4wh9KOJakk8pjgvvgX9Jq47+qL3VkfCeK4XlXxCG1RW3y7so3N9wPjmFWGIOiqG3QK7
+         7FT/vJzWoNnDjtM4t1hAfVI6pReSEcNTTBRM4ewKisPp4XmP7MoBm2WHFatWMWgMj+IB
+         I9OA==
+X-Forwarded-Encrypted: i=1; AJvYcCUbbzS0DVrGf5PVrwYWDPPuW7v2MIujzaIqFkhfK0R0ZlC1q+FcEEhvfb2/Qpd4a1EQ0368bWd6OA1u4gkR@lists.infradead.org
+X-Gm-Message-State: AOJu0Yxx9AFT3Bht3t34IxMtpJeVjazog0XV/fQtJFMO9AhE3n1KribY
+	2QFw6OmITfcAga/jTpRRdqN9PZquSp2+EuecbqSSTgkt1c5rT6fLjh4yU0wtOi8=
+X-Google-Smtp-Source: AGHT+IEW/pesy5OKJ0IGSRRTNmo3lQ2HG8HktgHM07V8Q3+5V8e1ooBtP7Edf8e8UGZ5iZ6agRXHgQ==
+X-Received: by 2002:adf:f4cb:0:b0:374:c03e:22d4 with SMTP id ffacd0b85a97d-374c03e253cmr3159185f8f.1.1725266070437;
+        Mon, 02 Sep 2024 01:34:30 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-374bfbfc7b7sm5807456f8f.88.2024.09.02.01.34.28
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-374bfbfc7b7sm5807456f8f.88.2024.09.02.01.34.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2024 01:34:28 -0700 (PDT)
+        Mon, 02 Sep 2024 01:34:30 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel test robot <lkp@intel.com>
-In-Reply-To: <20240902-fix_warning-v1-1-037029c584fc@amlogic.com>
-References: <20240902-fix_warning-v1-1-037029c584fc@amlogic.com>
-Subject: Re: [PATCH] arm64: dts: amlogic: c3: fix dtbcheck warning
-Message-Id: <172526606853.2176850.7789984946561002736.b4-ty@linaro.org>
-Date: Mon, 02 Sep 2024 10:34:28 +0200
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20240828-topic-amlogic-upstream-bindings-fixes-audio-snd-card-v2-0-58159abf0779@linaro.org>
+References: <20240828-topic-amlogic-upstream-bindings-fixes-audio-snd-card-v2-0-58159abf0779@linaro.org>
+Subject: Re: (subset) [PATCH v2 0/3] ASoC: dt-bindings:
+ amlogic-sound-cards: document clocks property
+Message-Id: <172526606951.2176850.4026983419764013991.b4-ty@linaro.org>
+Date: Mon, 02 Sep 2024 10:34:29 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.14.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240902_013432_238561_2E5B9A4D 
-X-CRM114-Status: GOOD (  11.60  )
+X-CRM114-CacheID: sfid-20240902_013432_820833_3952EFDB 
+X-CRM114-Status: GOOD (  10.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,23 +102,24 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Mon, 02 Sep 2024 13:29:39 +0800, Xianwei Zhao wrote:
-> Fix warning when use W=1 to build dtb, as following error:
-> 
-> arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi:65.7-76.4: Warning
-> (unit_address_vs_reg): /sram: node has a reg or ranges property,
-> but no unit name
-> 
-> arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi:168.34-413.6: Warning
-> (unit_address_vs_reg): /soc/bus@fe000000/pinctrl@4000: node has a
-> unit name, but no reg or ranges property
+On Wed, 28 Aug 2024 15:53:53 +0200, Neil Armstrong wrote:
+> Following an off-list discution with Jerome about fixing the following
+> DTBs check errors:
+>     sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
+>     sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+>         from schema $id: http://devicetree.org/schemas/sound/amlogic,gx-sound-card.yaml#
+>     sound: 'anyOf' conditional failed, one must be fixed:
+>         'clocks' is a required property
+>         '#clock-cells' is a required property
+>         from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.12/arm64-dt)
 
-[1/1] arm64: dts: amlogic: c3: fix dtbcheck warning
-      https://git.kernel.org/amlogic/c/ca55a30d27cb37c07f58e5c3448f4d19edb1829c
+[3/3] arm64: dts: amlogic: add clock and clock-names to sound cards
+      https://git.kernel.org/amlogic/c/9b5d25117985e51faf61a808c4b3e15432d55f85
 
 These changes has been applied on the intermediate git tree [1].
 
