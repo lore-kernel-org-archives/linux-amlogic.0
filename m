@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46043CD3437
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Sep 2024 14:04:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDFE3CD3437
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Sep 2024 14:05:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ryaUuyjZYBWudLlxlt2dT17H4y7JtvPqUrgXqYyx3pI=; b=DS6ynZ/mlTBTUP
-	TDHL/5Jl+OUXnDc9dfT8KT2m1wJ3yXNCQCgBUI5OBZPeAvQucMY89SwrErfujQh11Oq3LPqbymsNp
-	uaCvnYei4P9pSvcfigH9OMFrVEx/bgVKoVWiUIuwKI0o3NjCV9PtH5KH32V86lg0cEl8x0Aa+aGG0
-	YXdKguzihLLErrxUON6hYV/bmtCUPvQB7pNyUc0UMthlKzpdhCq0OkPl0uhVbMWquFbOL86AT3Vtf
-	V6wRbNDC56eyGr4LXFQY+Z3+2bYdLX9N89WSsu+7sUAIAmmvwBV8dsCRz4HQzQE08bOEGkvG2CD8p
-	8qUwk3cxaj4YA0j7vfZg==;
+	List-Owner; bh=M2v3m7VSRbCoZ8hNAI6vzrlVihuHzMhaAjct8vtAsEk=; b=iBjwHE+KEl3iGL
+	ULgpErz7L47kjTnW6+y9kyztfIp1BW84opYvYTnlpb0nxy2ub23X/SEK8SMESHRh88uDy9riBeCcJ
+	5Att4Z28wJQhvHlIB5FPr7zOvtElP09syhoa7E/tV651B2A7gyCfWruHdTS//dkks6G1gBg9/Nltw
+	FHj7pG2iQbc5fxNmRxaBIhPFTiKKez7Lra3zK3kNIq/1YiBfQpiWqbgQYS0bbi694DAcarWwCR+tJ
+	EU3g85T13IOUT/D8hGn9W9KOFywuDgcyY1j8COlcd4avn+HYcQ4Sr8zJt9CvPdRNbaq4DCG4KHIu3
+	FibO38QkpFFczVxBeaxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slU96-00000000Tjr-1MUn;
-	Tue, 03 Sep 2024 14:04:36 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1slU9m-00000000Tw6-3wPS;
+	Tue, 03 Sep 2024 14:05:18 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slU91-00000000TjG-1dFo
+	id 1slU9j-00000000Tud-1wa4
 	for linux-amlogic@lists.infradead.org;
-	Tue, 03 Sep 2024 14:04:34 +0000
+	Tue, 03 Sep 2024 14:05:17 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 49B0CA434E1;
-	Tue,  3 Sep 2024 14:04:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B777DC4CEC7;
-	Tue,  3 Sep 2024 14:04:27 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 1DDDDA434E1;
+	Tue,  3 Sep 2024 14:05:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94BFEC4CEC4;
+	Tue,  3 Sep 2024 14:05:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725372270;
-	bh=gUet/OBDK9ET7BiQLWA6gTEm0i9Y32UiFVRt1CJERgU=;
+	s=k20201202; t=1725372314;
+	bh=EB4Qn8QfYNvDbrC1h25pHRe0otvOHZqa46a2972CPJs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KjMmgsSOegZelumsSDy730Orwbow9QKBJ3M3+uupedtCGChYcbZe3gGbxeyAx8Az7
-	 om7KYK/0T96miNtZbw1+CSAPkbCS3qxibo3CPqTKJBAoAOr3+SBS2jFxl0obzYaaq9
-	 66dAQ0TX4cu4ssrGDutkVmpN+dPhn8Ru0rBN64ZMg/mTqPUePDvhZIr9JMotaRZf+c
-	 80tl6ccIfdJGumjFU0RZ2d9K92vp+ulT6mHGnrGIgQlNT6swGG397gg8agY6KMfIC0
-	 gW9U3ICQ8z1XrPAPLny6kx317oFjgonUoFAkx8A3Ps6BzUU6J4kHfzvIoEtKzlJPQ0
-	 PvxP+VJRvHCDA==
-Message-ID: <7560bdd0-aafc-4c6a-b5a8-f50e9aa3124b@kernel.org>
-Date: Tue, 3 Sep 2024 16:04:25 +0200
+	b=AerwbmcOGrydYlAzihg7843x/7HSBRksRCRLEwKSv8/F/N3gtr0caALyj8o54Md5+
+	 fjsgmNfCHUVOTcnK3JnwEcOl4Pd0e+7K3dTQfW43xkVTQEWMhMkHxF0dYxTr7yyss2
+	 g5bMmqRPY1SSOSRXa8KPQ3A+kST2WYstcOTCmsRKvGIs6ilFXZlFQ3zO+IFnHhcjbW
+	 RJbC/2XGKv8ZvdWexJEnCIDBhnddPtiA+rTlU68XGUh0IB+4AG1nm+15ncqfnPmifn
+	 VMZ0kbhYmAXxodW5JuSL622RDE9P8xt6vF95aI2N2CZ9o6c96Ip+KIckeKvRj2re3D
+	 bVRKj9Zd5WW4w==
+Message-ID: <2804a57d-fb92-4317-b4c4-e1811a915265@kernel.org>
+Date: Tue, 3 Sep 2024 16:05:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] rtc: support for the Amlogic on-chip RTC
+Subject: Re: [PATCH v2 3/3] MAINTAINERS: Add an entry for Amlogic RTC driver
 To: xianwei.zhao@amlogic.com, Yiting Deng <yiting.deng@amlogic.com>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -54,9 +54,9 @@ To: xianwei.zhao@amlogic.com, Yiting Deng <yiting.deng@amlogic.com>,
 Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240903-rtc-v2-0-05da5755b8d9@amlogic.com>
- <20240903-rtc-v2-2-05da5755b8d9@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <20240903-rtc-v2-3-05da5755b8d9@amlogic.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -100,10 +100,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240903-rtc-v2-2-05da5755b8d9@amlogic.com>
+In-Reply-To: <20240903-rtc-v2-3-05da5755b8d9@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240903_070433_373643_E37DF2E1 
-X-CRM114-Status: GOOD (  10.16  )
+X-CRM114-CacheID: sfid-20240903_070515_665467_93A26749 
+X-CRM114-Status: GOOD (  12.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,27 +123,25 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 03/09/2024 09:00, Xianwei Zhao via B4 Relay wrote:
 > From: Yiting Deng <yiting.deng@amlogic.com>
 > 
+> Add Amlogic RTC entry to MAINTAINERS to clarify the maintainers
+> 
+> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  MAINTAINERS | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 42decde38320..cdcd23456567 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2481,6 +2481,14 @@ F:	drivers/irqchip/irq-mvebu-*
+>  F:	drivers/pinctrl/mvebu/
+>  F:	drivers/rtc/rtc-armada38x.c
+>  
+> +AMLOGIC RTC DRIVER
 
-...
-
-> +	rtc->map = devm_regmap_init_mmio(&pdev->dev, base, &aml_rtc_regmap_config);
-> +	if (IS_ERR(rtc->map)) {
-> +		dev_err_probe(&pdev->dev, PTR_ERR(rtc->map), "regmap init failed\n");
-> +		return PTR_ERR(rtc->map);
-
-Nothing improved. Read the comment. Use git grep to see how this is done
-if the comment is somehow unclear.
-
-<form letter>
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-</form letter>
+Nope. Read the note in the file about order.
 
 Best regards,
 Krzysztof
