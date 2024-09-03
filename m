@@ -4,127 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF1BEC54FC6
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Sep 2024 02:02:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFB9AC54FC6
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Sep 2024 02:49:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9QrAPwt0wDAKowPvYbd3hWbWK9WdD1FkFCXINk6+I5I=; b=zIDrL/u+ekHTPS
-	kbP9KF0fm41p+tlKIpXAiPAYERz/rr3hywX80qezlsX8XdbXtGuOhK3OpmYOZcVimRaJAK74PwabH
-	tl5YfDL0ePeMebftC+zRgB8EQ4BpoFwV2IRLIQT7LqwdWss5CnfkWnb/WebfDbKdkChDExgeSAtjn
-	kCRD22BbCBQ/ELhiKa02mrRTx7ZBiBVnUdYQX60gLzR3vxJbTs2o8rrnnOVomsjpK9jHiNFupM1ap
-	XdoLvacaoSqbdYk21tEe84sR6bCZHn2YA82SP0G/jE5vRwvILUY8pio+L1wfewENl/mDhMx4tt6hi
-	nxjm3dI7w6wVp1rJQAlQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=3vUO+0O+LD6Tbkkuw/K64SYVM10Z6D/2Q44qshP3fj8=; b=1qwDE7WYKFelu025fo+g7zmW65
+	1rJpX+wnGN/2zVhJNaXvqYmp8BhsSwc1P5aKHqwNlf1Tg4lEwBvOIXFHptvTmQiBwP1i3vm9/mfxl
+	n15Md02HBvGBTUcVoxgPmqi6UeGFjg78hADYdt0KwfHItD2LprZFmBomXLWPnbNeoxc0lLaD/4dO3
+	Yn0JpolC5KibfLuDJHIhEGmna9KvtgkXaln/mASxqEnbIpfLpdAH+8C/dDGeBkXl0aP8pCoSakU0s
+	Gp8+ivvLWZmYQL9T3xMFMXBPWku8e/3bXtrxhoITO4zsVrQK697k6SIcsm1ZRdi0lzC8I43Ot2TOB
+	e4TVYujQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slIsD-0000000G0kC-0etP;
-	Tue, 03 Sep 2024 02:02:25 +0000
-Received: from mail-lj1-x232.google.com ([2a00:1450:4864:20::232])
+	id 1slJbA-0000000G4wY-1f24;
+	Tue, 03 Sep 2024 02:48:52 +0000
+Received: from mail-eastasiaazlp170110002.outbound.protection.outlook.com ([2a01:111:f403:c400::2] helo=HK3PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slIrx-0000000G0W8-2DbV
+	id 1slJb6-0000000G4uE-3Kau
 	for linux-amlogic@lists.infradead.org;
-	Tue, 03 Sep 2024 02:02:17 +0000
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2f3f68dd44bso50275491fa.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 02 Sep 2024 19:02:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725328926; x=1725933726; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UpzQw9LNt+SDHOumdIx/cD2vW3Vk+Ggm6Q+ZCEu5Pho=;
-        b=KWG2nRT4E0AWT7m2zCty4O5VThhMbLEZrqAYWA4A+2so3V/c6PICdcCS5rjC5kIe0O
-         Cqi0AYxI2pZJzWIana5r5SPtjFso6i9ptdKPYYX+e0MneVKw8bLRJwjJK26dXdKFgyjW
-         ZzPcZMhvUzmFlgPh3pb0RDRbecj0mU2Q7NfQTB4xILtl+J3eX5dKGsm8FRfqWuJ+uss3
-         tX2avkAMRm8YFns0A9Vt+HNffibMauj8X8zuYj0+8xBEF/LCjUKltpBS5mxqWLRWCDS/
-         FH6wgsXbAAes7Ym0e/U0FulwcafciNsiz3bv+jxlIKztQCG9QT85fAZ8CbRf47R55Q9b
-         uDtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725328926; x=1725933726;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UpzQw9LNt+SDHOumdIx/cD2vW3Vk+Ggm6Q+ZCEu5Pho=;
-        b=nsfqLllpf6/1JdMTBvDLbgmoqmjo1Q8POhgduUEQfdBdAslAGIHtMDEmTf04yBMcMG
-         RN1gz5zIQ6DMF9fyIoWh94jcmhMs/BqjvgLrChkRtDc9VZUWCPodATpdD/kvnsuytAep
-         Bk3ne2f/hWf2m/Nh4ZYUgY09vIhEdNTvpgTxGRMDvRABSUj9mn9mEyT7LFQ0Nv9cnUEo
-         +zo5n5e8r7uAtt03YMkfH+ISFjdYHbqJ0n4EdTuj5fXhAXKJEQinPMRHB7PSaSURORS4
-         J+d+6Q8tTXdKOn5+Vywoy/fgOORApBI8cFhzkTwG4RqS/4otDHmiZz4Lu5/oYJdE7icj
-         MGag==
-X-Forwarded-Encrypted: i=1; AJvYcCWTCcVVthg4VbllEmacuSQJdgF58ed7qeBuAxLCNU7w+UiTZT+Q+C2o2pr45PhLyateiW5vMsfpSo++UURn@lists.infradead.org
-X-Gm-Message-State: AOJu0YxXS5zAZO5OYoSux8kWOumnsklpENGkVldSOBCPzYRR9SlxnRp7
-	D9yfW6H7lADtOwjwsxoXZ4a4ZRLXKyX7YqpL7nHL/x5aK6j/cUO857GVPWIljng=
-X-Google-Smtp-Source: AGHT+IF8v8eYKKb2eQMr0Hsc2qs48UsPP7HLkrE86Dm+WJr2IzV/yR9tjZDK7rnfHNsBM4q2M+EhlA==
-X-Received: by 2002:a05:651c:19a9:b0:2ef:296d:1dda with SMTP id 38308e7fff4ca-2f61e025871mr77730561fa.1.1725328925919;
-        Mon, 02 Sep 2024 19:02:05 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f614ed15a5sm20827761fa.8.2024.09.02.19.02.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2024 19:02:05 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 03 Sep 2024 05:01:58 +0300
-Subject: [PATCH v5 3/3] drm/bridge-connector: reset the HDMI connector
- state
+	Tue, 03 Sep 2024 02:48:51 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kyJAmt5eFmYhdlPWvJv5hg4V+9U6KRNwk7M012aNSGOOI24JUugMzIxVPL6mt/1s0pHngexXwJ6FkBm0+pB9tWumcSjoVY6dktGDgvEHJ+gpepiL4m/uyQqdvWal8ZRbMNNywc+nDUOzrUY+hAaVjyiiU1vPUXMeCInvgOQ3AM3fMPK6BgQpxqBhE7+aopVcTd4v3XjCscQue5PaHp9KNQoFGdGDjQb37Euj5pfCDH+j+8d/Rk7IYT+/+w2eYOoorYYWxRpn+fUPv/5TpjJb4zlE8aGicGzyOme3n1NOdGVavuGTlUddI5zjCF646aFGLJW99q+HUWgo9icxjGnwRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=me7UOgNkqH9juzf2vVEFF556diZDmStj5xAQP3b6T78=;
+ b=CxbGRdTl9cNbtJPeMY4U4YTsIUQq19Rl32TBgL8qCfxobvzk1feS9LtLjBBnxpjPWoABcbU9Gq4tKAIefjJDvgxoyAAzZydBYXJJ9b73N3zx9wWq+nzAfWH5DTe8KnTVYQXLx/ihWONf+r0BstYLe6ghpAwI8IILvOLMCs5sajzMQ6WfNGZBaYxJzjD351RwElmYr4+OnHe6d9gVQEbdB6R792jWhyWtrPhmR095Tf00NlaNFEPEk3K3BAZ5/qhrCBa/sFcom7tVX17/wd+esC2qy8dxjaZ0sTvVN0NYgepElfL5sOBNsv7tVwLVZBC8t3KIMvXDW1zYEXFCVxhb8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=me7UOgNkqH9juzf2vVEFF556diZDmStj5xAQP3b6T78=;
+ b=Ten2COfvao4wdI5XH34aK4QWt5dc4eWc8FvXe5LHHecyHY4Nk26oSKlWWS8N6eUDx9bZIZNMVqmd5hq5ZFaX08CtkdHP5kVdp38SCWAoqPTZXjnloTaRXrG2Y04omqhvYKiwyEllpsuAFpZjuAEB200Gi1v8Vh/Rxlf6QMny9Py2jDZ8EFyZqD0pP0y7Z4WdAcf5rBmi1jH1WqUbLLKbc2aV198QXhJkMy4lLFnc+EJuvslLqdRqLkrfwPigVteT+D2q/ufnYdXdGYYtQiQHtA+xH98zifM4FNqpckSoKCh24TgSv8HLx3tQ3FZodA9VygEoMKVDdGqUuv5YsMZ4cA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from PUZPR03MB6888.apcprd03.prod.outlook.com (2603:1096:301:100::7)
+ by SG2PR03MB6588.apcprd03.prod.outlook.com (2603:1096:4:1da::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.25; Tue, 3 Sep
+ 2024 02:48:32 +0000
+Received: from PUZPR03MB6888.apcprd03.prod.outlook.com
+ ([fe80::57d0:f9e6:1d9f:91f]) by PUZPR03MB6888.apcprd03.prod.outlook.com
+ ([fe80::57d0:f9e6:1d9f:91f%4]) with mapi id 15.20.7918.024; Tue, 3 Sep 2024
+ 02:48:31 +0000
+Message-ID: <d6187076-5fab-4804-a008-cfb5d85f8cd1@amlogic.com>
+Date: Tue, 3 Sep 2024 10:48:27 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] rtc: support for the Amlogic on-chip RTC
+Content-Language: en-US
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Yiting Deng <yiting.deng@amlogic.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240823-rtc-v1-0-6f70381da283@amlogic.com>
+ <20240823-rtc-v1-2-6f70381da283@amlogic.com>
+ <2024082609451907fd19e2@mail.local>
+ <20ffd260-3c24-460f-bdbc-965573e110e3@amlogic.com>
+ <2024090220195462df6c95@mail.local>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <2024090220195462df6c95@mail.local>
+X-ClientProxiedBy: SG2PR03CA0117.apcprd03.prod.outlook.com
+ (2603:1096:4:91::21) To PUZPR03MB6888.apcprd03.prod.outlook.com
+ (2603:1096:301:100::7)
 MIME-Version: 1.0
-Message-Id: <20240903-drm-bridge-connector-fix-hdmi-reset-v5-3-daebde6d9857@linaro.org>
-References: <20240903-drm-bridge-connector-fix-hdmi-reset-v5-0-daebde6d9857@linaro.org>
-In-Reply-To: <20240903-drm-bridge-connector-fix-hdmi-reset-v5-0-daebde6d9857@linaro.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
- Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Paul Cercueil <paul@crapouillou.net>, 
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>, 
- Edmund Dea <edmund.j.dea@intel.com>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
- Biju Das <biju.das.jz@bp.renesas.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Mikko Perttunen <mperttunen@nvidia.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Jyri Sarha <jyri.sarha@iki.fi>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-mips@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
- freedreno@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org, 
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2407;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=/mT5/AR35rbIDoBCMIT6yhd22qoLCIO/78RuGNtcQT0=;
- b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ9q1PMnqI1KVspetFZi3Gl8JEpLtUs6+nOiyV+WlRKv/7
- tQfLsWdjMYsDIxcDLJiiiw+BS1TYzYlh33YMbUeZhArE8gUBi5OAZhIbif7PxXBmk0v/1w+d0WT
- 71S6XpXL7jLtn4avhQsSLjYWFpWlNFyaLt3N/iGnatKcwkMCu7O/rjFqCDz8KJc5ufCiQ8KledW
- /uRseHIiy8MxMVvnEyeb7WHv1FZfUhPk9i/cUHg/6HX76mM8Wtf6ERceePG1tVaz5/H9DQNLcGZ
- y6Llcc8p0+KzalN0T9jE0QmaB78cCR07q69f850w4GJ+7JZ4t78CCmYvZnNaPsssesT1P7DzTWz
- mNsNlHTrT7mds9yCbu/axEfR516y5TjmctOSC///F7oMUO36NtU1kIT+YKzleddOzbMTjo2R/KQ
- K/f8d0nnXwQH3rwSL3mk4NsGjQcrfrHr8a45VH/B/RMXAA==
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PUZPR03MB6888:EE_|SG2PR03MB6588:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85c5b2b4-32d0-4580-a46c-08dccbc2e590
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?c05qamZZSW01c1hPc1Z5a1Ivc0dDeFlPazVDM29ic3p6NlNqRDdtQ1grbEEw?=
+ =?utf-8?B?RmNsVm9uWkYyS0hZc0pvRE5xdzRLSVJBTVRJczlQQ1M1enF6R1l2aVhxNTQw?=
+ =?utf-8?B?ZWlFV0xiQkZEbnUwbkJEaElDTlJJQ1hrRnlVWFU0TXhCcmVkdHRQQkRQNURE?=
+ =?utf-8?B?SjBvVTFsdWlqU3FrMHp0ZUl6dTBNTlZ0aXluYy9XZEREK0lnaXRjTWxaTkxl?=
+ =?utf-8?B?elVaZXZlV29uVnd3OWpOcW4zNXRvT3YwRlJwdHY5Z1Z2REJPaHJjSmdLSzhP?=
+ =?utf-8?B?NzhzRWwrTW9VcldKZWZkNkJLSnVHa0xPRnUrdkhxSnZHT1d1cHVhcTlnUzcy?=
+ =?utf-8?B?QWMwWFJVZnU4dW55SEdUZFpLd050ZWdURm11d3ZhcjA3ZlRuUVdwd3lxSGpl?=
+ =?utf-8?B?cHVNYStjYjFYbEtJbHNDVG4xYkk2TDJPTWhXc0lxRTFvQmg5eXhXaGlwVVI2?=
+ =?utf-8?B?VE53VWp3VWZBSXp6eGl2ZmcyQlBUNFRPV3JjK3Z0RkRSN2crbVEvTjJoenBK?=
+ =?utf-8?B?M1JpSnQ5WEJYREk3dFF1L3B4Mk1BNVhkSXJnZ2lwcUpFNDd4TVBlOHI4Z0N2?=
+ =?utf-8?B?QjdiN1JrVVJCUEF3bFNUaHN1Nko3MEMyV0dRaUFUZU0zbHBCZDYyTTZpOVhV?=
+ =?utf-8?B?a0liUm9BNmZsMlgzUHBZRUNUUkVNUTNDZWswQnpvUkxjcnhRWVhiR1JvYkZO?=
+ =?utf-8?B?NXRQWW84WmxEdTNLNFcvOXMwdUtsMUJQQXlKMTlVVGxRNFJYZUlyRmhra285?=
+ =?utf-8?B?TGwycVZZbTdXeEVPRHJFK2lkb1NTNW5xaG8xZTlzYXhJTmRLWTlkNElrRHRa?=
+ =?utf-8?B?d3gxZ3lpN2NaWWdOOHhHTVNjeUNiakxILzlSSzFzdGl2dGEweVlSbmtRVVM1?=
+ =?utf-8?B?NEtsU3lKa1lMZ2dwNmNHc1lsbUg4NmRUaTZaNjJrWEcrTTFLb0NZNXlkUXRI?=
+ =?utf-8?B?UmlSWC9ncXJxTGREL3RzQmpqSGZFRThVbWhCb1dkQVk4TnVBbG5ZdllmZlp6?=
+ =?utf-8?B?MkZueGh5T1dQbEZMSnU4akp1cDBuQVgra292Q2djVGFTZGQzT1MzcmJxd2NZ?=
+ =?utf-8?B?QWoxUmQ1QWNMUVN1dnFGcjFVYXA3K1Z4bUs0REhxNU44OS9TeWprRXBoNmIv?=
+ =?utf-8?B?KzFnSTFEMHgveWQ1Ujh4Q2l1a2tnQ0pJbTRoOEtLZ0tKWDVZSGNMODFjdnM0?=
+ =?utf-8?B?Syt3Q3gyYXhWc1NiTDJSS01Wam11dzVjaERrN3ljZkN0RkVERXdQSHBoRkty?=
+ =?utf-8?B?cWVKUEZqaEdSTGpxdzkxN0laNUErSklIUERXcC9OWjl3WjF3UTJjcnMxRk10?=
+ =?utf-8?B?eGIwd2tabkxhMDFsUm5tM2tITnE4UHgwcm1uY2tpTE5qK3hyM2NsTjYwTnhi?=
+ =?utf-8?B?anlBSFBJZjN1b2Vid1ZsTmlYRENJOWdPK0xxSlk4ZzNrclZoR3VHdUIwbHI0?=
+ =?utf-8?B?WnBieTJkZE9rSlJYalZEU1pRQndtdnoxTlgyV2t0VzNTTk1HVGVWcTk2cDFM?=
+ =?utf-8?B?czlBYy9hOEQ2UktTZFZEUEtQdHcvTGQ3UTNNaVlOemRPZWhycHh2U0J3Y2lU?=
+ =?utf-8?B?RmswelFPQmhTYkRSRWFqZVpKMjh5dzBpdFNwcm5rQndMQ2JNS0FwWHJKMzN0?=
+ =?utf-8?B?dDJ4NHQ3eXhJajFmZ1diUEQwZG85T2MwNkM2R0p2NVljbUFvdXJzcm9VM1NL?=
+ =?utf-8?B?TXREMlhLRnQyQkY4T1YyMlBmeWQweHVTUGtDWkJGdWRwWkJBRHk2UWVLR1c0?=
+ =?utf-8?Q?EBxtSJPbInmn501kx4=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PUZPR03MB6888.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZlBxbUo3QlFzcWtjcGpiRDh1djNCQWRxT0JtT2E0Q1UvaHo5Q3ZFL2ozL0Ri?=
+ =?utf-8?B?dnp5YTkrSGtISndPNmNqSkoxR0JqeGRFTzllK2I3RkJDM2g0dTUxMG44cW1T?=
+ =?utf-8?B?TzYxT0NaMWlvekwzMEUzQnczckF6dnc1VUJJc0tBeGhuYzlLckRkYVRnVGo3?=
+ =?utf-8?B?MlpPS29pRXdHam8xaU13Ui96U0pwcms4SkpvdTNlaStPeHFsNS9RK3hjd0RI?=
+ =?utf-8?B?K3hwait5WUR3eWhVT0VSTzQ1blpONXBCUnVaaUpQajJwdnIzOXNrdFJQQXVI?=
+ =?utf-8?B?S0tpcGlsditTNHhNRHYzUDZER3o0WGxKNUdZTnhtVXB0RXJPV3BpNE5Ma3JZ?=
+ =?utf-8?B?Mk5WN004R1dIRnRMZnV0aVdGNzI4aWw3cFYvajV0Q0gvb3dGOG9WQi9RTTVG?=
+ =?utf-8?B?RTlyTXZOdGhWSkcyU0hmWVZxdHVzeS8relNKZGhvUUsxSEdpTUtyME5wUmFM?=
+ =?utf-8?B?WDg0eERTTzJTNDR6QnN4eWpnQUxHSlBrZDNmNzE3aUtOYmpYckxTbFpod240?=
+ =?utf-8?B?Y1Irb0tTVlVLVlNMNk1IRjl6M3RNcFY5WDFZcG1odlJJd0c2RGE3MS9aVVAy?=
+ =?utf-8?B?YVIrK21KZ3NWN3RQeXVUNUZsdjJGeS9CcGx1dWFpc0NhN0ZtcnJTc1A4NzRI?=
+ =?utf-8?B?UGZqZ05zUVJHcytJVFNQTEl5Q3NpRHluMDE5WWFqSDlCSFNPTWFtN0owK0t4?=
+ =?utf-8?B?akdCYnFwL2xobFR1c2xScHp1a1d2cXhhaStEVU5QeHZYVzZhZG1uVmFPeDhw?=
+ =?utf-8?B?aFMvaWtrMEc1V09rVnIrRERSME8wbFJoZWJuQXRrc2NubE9IakpZemZTOEJJ?=
+ =?utf-8?B?WTdzNDc2Q2hvQlJ6bjMrbTBxaE96Rm13eGhlZ3RuVWxFNUwvNWlpeDQ1STBP?=
+ =?utf-8?B?K1hXWE01VFUzaGp0MnlWYW5FRDdlVTd6SERkSmdvVDNnRHl4aFA1VUhOSSt0?=
+ =?utf-8?B?d0F5VFZ5S0RMSk9oS2ZNN3hIakZtSzAxOHZLejFxT3lZdUpwUG55YkRFb1lZ?=
+ =?utf-8?B?Zld5bGVaOUN0R1hrcHdhTUZjVmJHS1dQTi8wYVdXS0hhTWgyWVp2R0VvbGF1?=
+ =?utf-8?B?bGVCbjdUT1hHc01QWmN1eGNsdVErUFVWa3BVNWk4M2NJY1JkWmcwOTVrUGtq?=
+ =?utf-8?B?Y2lZQWgzKzJjY2NsM1ZseEtlSktHL1o0NzgyN0xFM0xVeW1tNDIrWlg1SGk3?=
+ =?utf-8?B?SllWVkRIV0lmOGdJWTk5TmFiell6U3BkYzc3YThYWVl6NGJ1SFcxWFNGcW9x?=
+ =?utf-8?B?YXZib0xwTkdvM1VjWFRhQzZIaW9rYlA3Q2xhZkx1bkNZU2toTnIrRHh4eFBD?=
+ =?utf-8?B?ZVhBaXJ1aG5GS3lPZGUxTkpFaTlpM012cjl0dk55djZaM1lqbVk4bzcvT0Fr?=
+ =?utf-8?B?STBVWEU3b01rdjY4bFliRmJiNkhWUmJFaW9Ud250Z0NwWnkxUXZSOGp5MDJx?=
+ =?utf-8?B?L3hOZm1ZVHJEMThWckJDNEJDV3FIUk13S2c0M0ppVzd3ZHM1UWNtSzE0Ui85?=
+ =?utf-8?B?cUpOSW9IUWtsYXIxY0VHZml2SjU0TTUxZVpOOUxhd0hmQ3ErOUFobGI3UFEx?=
+ =?utf-8?B?VUNBZEhTelEvMVAwbklXVnRHTm80Y3JwWDF3TDFWanNCeFpoMVVqSk5sVFRD?=
+ =?utf-8?B?aWJXL29UZ25wNUpFZkVrSlc2eGlPRGU1UE53SUs3aVhlVEliejl1dm95bnMv?=
+ =?utf-8?B?KzgzMlRuTVBOUnFVZnhnTU8xVys3amZRajcwcWFUVFlrNy9CdEVQL1pPY1pp?=
+ =?utf-8?B?MlQwMkFMb21pOWw5ejl1bGY1T05EMDR2ZUNxMmltMVpsSUVLaERrNWtiUnc2?=
+ =?utf-8?B?ZzlnbXkwYmhhYWFmREM5VFdPZ1laTkJ3dUpzeGQzVjR4RlpkK3BZcCtoeDA1?=
+ =?utf-8?B?TE1mN2lVSkJTR3dhVDVsSTA5ODBOU3drU2dINjlLNXlXUE5VVnl5MnllS2Z6?=
+ =?utf-8?B?dy9KWGExcHBwRmNuZDV5QW5saFhvVElRQi9HM0xIb1VqZktRWmtHd0REVVQr?=
+ =?utf-8?B?UzBhem9BRGw3bTQ4cnppTEwza2Q5OEpHZGd2STlHYVI2cjlaYml5cFFoempR?=
+ =?utf-8?B?TjZGSExWdVN3R1VqTTNFL1BUNkFVSjdtaDNiNXJsWHZaYloweXpEVElrQWdX?=
+ =?utf-8?B?d29lblNwZkkzdnQzQ000UENEOFhYWXFsUEFVbHM1elF2UElLTTREU29GOHNZ?=
+ =?utf-8?B?OUE9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85c5b2b4-32d0-4580-a46c-08dccbc2e590
+X-MS-Exchange-CrossTenant-AuthSource: PUZPR03MB6888.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2024 02:48:31.6964
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 59p65GY3mRoRKoOrYMSzYJU8uW7RQ3WjT4QEw8dMfe//84IoN9jasYY79eWaZOu5BE0lCoVNi0LypQeSzFB5zn8zPuSSEV5CF1NP4mH1llI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR03MB6588
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240902_190209_680046_94C5CA51 
-X-CRM114-Status: GOOD (  13.18  )
+X-CRM114-CacheID: sfid-20240902_194848_862321_D9E0B1BD 
+X-CRM114-Status: GOOD (  27.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,73 +175,95 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On HDMI connectors which use drm_bridge_connector and DRM_BRIDGE_OP_HDMI
-IGT chokes on the max_bpc property in several kms_properties tests due
-to the drm_bridge_connector failing to reset HDMI-related
-properties.
+Hi Alexandre,
+     Thanks for your reply.
 
-Call __drm_atomic_helper_connector_hdmi_reset() if the
-drm_bridge_connector has bridge_hdmi.
+On 2024/9/3 04:19, Alexandre Belloni wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> On 02/09/2024 16:14:45+0800, Xianwei Zhao wrote:
+>> Hi Alexandre,
+>>      Thanks for your reply.
+>>
+>> On 2024/8/26 17:45, Alexandre Belloni wrote:
+>>> [ EXTERNAL EMAIL ]
+>>>
+>>> On 23/08/2024 17:19:45+0800, Xianwei Zhao via B4 Relay wrote:
+>>>> From: Yiting Deng <yiting.deng@amlogic.com>
+>>>>
+>>>> Support for the on-chip RTC found in some of Amlogic's SoCs such as the
+>>>> A113L2 and A113X2.
+>>>>
+>>>> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
+>>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>> ---
+>>>>    drivers/rtc/Kconfig       |  12 +
+>>>>    drivers/rtc/Makefile      |   1 +
+>>>>    drivers/rtc/rtc-amlogic.c | 589 ++++++++++++++++++++++++++++++++++++++++++++++
+>>>
+>>> As pointed out, this is the third amlogic driver so the name of the file
+>>> must be more specific.
+>>>
+>>
+>> This RTC hardware includes a timing function and an alarm function.
+>> But the existing has only timing function, alarm function is using the
+>> system clock to implement a virtual alarm. And the relevant register access
+>> method is also different.
+>>
+>> The "meson" string is meaningless, it just keeps going, and now the new
+>> hardware uses the normal naming.
+> 
+> The proper naming is then definitively not just amlogic, because in 5
+> year, you are going to say the exact same thing about this driver
+> "register access is different, this is for old SoCs, etc"
+> 
+> amlogc-a4 would be more appropriate.
+>
 
-It is impossible to call this function from HDMI bridges, none of the
-bridge callbacks correspond to the drm_connector_funcs::reset().
+Will modify driver file name to rtc-amlogic-a4.c
 
-Fixes: 6b4468b0c6ba ("drm/bridge-connector: implement glue code for HDMI connector")
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
-Acked-by: Maxime Ripard <mripard@kernel.org>
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/gpu/drm/display/Kconfig                |  1 +
- drivers/gpu/drm/display/drm_bridge_connector.c | 13 ++++++++++++-
- 2 files changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/display/Kconfig b/drivers/gpu/drm/display/Kconfig
-index 8c174ceb0c4d..3763649ba251 100644
---- a/drivers/gpu/drm/display/Kconfig
-+++ b/drivers/gpu/drm/display/Kconfig
-@@ -15,6 +15,7 @@ if DRM_DISPLAY_HELPER
- 
- config DRM_BRIDGE_CONNECTOR
- 	bool
-+	select DRM_DISPLAY_HDMI_STATE_HELPER
- 	help
- 	  DRM connector implementation terminating DRM bridge chains.
- 
-diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
-index a4fbf1eb7ac5..3da5b8bf8259 100644
---- a/drivers/gpu/drm/display/drm_bridge_connector.c
-+++ b/drivers/gpu/drm/display/drm_bridge_connector.c
-@@ -216,8 +216,19 @@ static void drm_bridge_connector_debugfs_init(struct drm_connector *connector,
- 	}
- }
- 
-+static void drm_bridge_connector_reset(struct drm_connector *connector)
-+{
-+	struct drm_bridge_connector *bridge_connector =
-+		to_drm_bridge_connector(connector);
-+
-+	drm_atomic_helper_connector_reset(connector);
-+	if (bridge_connector->bridge_hdmi)
-+		__drm_atomic_helper_connector_hdmi_reset(connector,
-+							 connector->state);
-+}
-+
- static const struct drm_connector_funcs drm_bridge_connector_funcs = {
--	.reset = drm_atomic_helper_connector_reset,
-+	.reset = drm_bridge_connector_reset,
- 	.detect = drm_bridge_connector_detect,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
- 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+>>>> +             /* Enable RTC */
+>>>> +             regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, RTC_ENABLE);
+>>>
+>>>                   This must not be done at probe time, else you loose the
+>>>                   important information taht the time has never been set. Instead,
+>>>                   it should only be enabled on the first .set_time invocation do
+>>>                   you could now in .read_time that the time is currently invalid.
+>>>
+>> There are some doubts about this place.
+>>
+>> You mean that after the system is up, unless the time is set, it will fail
+>> to read the time at any time, and the alarm clock will also fail.
+>> In this case, the system must set a time.
+> 
+> Exactly, reading the time must not succeed if the time is known to be
+> bad.
+> 
 
--- 
-2.39.2
+Got it.
 
+>>
+>> When read time invlalid, system is will set time.
+>> This part of the logic I see the kernel part has not been implemented, so
+>> only the user application has been implemented. Whether this is reasonable,
+>> if not set time, you will never use RTC module.
+> 
+> This is not going to be implemented in the kernel. The kernel can't know
+> what is the proper time to set unless userspace tells it.
+> 
+
+OK will place enable action in the set_time process.
+
+> --
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
