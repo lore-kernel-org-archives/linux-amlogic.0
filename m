@@ -4,110 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81169CD342A
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Sep 2024 08:26:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD518CD3437
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Sep 2024 14:03:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=E9q3eGU1WFnIF7tugtDjwzzNpfMEyN3I4AEWIjzjbgs=; b=MxYFpjtFwHmsYi
-	LdaZBx2Gh3yUZc84yaFyYw8IV7BMTmbFO5IdtRTT7RgdkyZVExGM6qxODWpVY3s/mAav0LGyOF/J6
-	t5Ck3wxZadUTnc28Dkeg6vtvrWEXi5a7a2KZI1KF+vjWfuBiVQflsv0Y/bhQyaCFpRAJsYtuYvZIb
-	514A2DihfW26evBC7v1ev8YAw5guOGPTHwycOdWULClitEAWDm72Mu51BUCCe30ErMtAyTsRqTxr6
-	wP97cFx+itZIZBptP/BAa/sTFJanWrwdCn2xoDpQJh+O9ZK2ccbmoaDKhV8wLMb0j3mXgpbPyacJ/
-	snSgQqY0YXKPk7H5rYkQ==;
+	List-Owner; bh=5N4+2Z24GVsMnUJcMiuLZWjb2f0G0aSmKwfQ4JvuUbM=; b=vgnTZ85EWrJcHB
+	dNc2ULSR575Ngt6kXNE4mf8NFUi39UH6139t3i0eGA8R2qkgc7nT846maZ9lY+rnJEYe+9JUvkV01
+	oRWr2pIMEss5aUD26gPBfPL7p5aj9ICuL827QN3/R9yLftsBqqaD75d7eNZGODbTw99ugITTnsZyE
+	rzR/Pi5uTWHFJjWD/YuVZ/jBngQyqBaRQsPxXLD5JbQonlQMaEKCtqHXgZhXlgwGvJ+zR9LnyclqW
+	Jq9+fr5fNodMs/Fn17dE49SZTbnr4y6qHANMA+9PHnW99qY3WEmzIT0qJMvajvyIHa4iErjRQqkYm
+	KTZIOByQ+c5WG5K69EjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slOrk-0000000GtEj-1vzj;
-	Tue, 03 Sep 2024 08:26:20 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1slU7s-00000000TQV-2ZX2;
+	Tue, 03 Sep 2024 14:03:20 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slOka-0000000GsMb-2XoU;
-	Tue, 03 Sep 2024 08:18:58 +0000
+	id 1slU7p-00000000TPK-1TG0
+	for linux-amlogic@lists.infradead.org;
+	Tue, 03 Sep 2024 14:03:18 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 87A465C578F;
-	Tue,  3 Sep 2024 08:18:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CA55C4CEC4;
-	Tue,  3 Sep 2024 08:18:55 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 595EFA434E1;
+	Tue,  3 Sep 2024 14:03:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9221C4CEC8;
+	Tue,  3 Sep 2024 14:03:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725351535;
-	bh=g7ymmQH2esDD1HmWV3+1wWNSYvcNjH8kYis73gaYP5I=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=olU2tuWXIpJl+vvUtyzzy74giwBPEJKRv8ViT1WDop+wVwLYcWCzt7Fu1FzdP6aOQ
-	 omZ2kda/DoqTHYh3BkIvuTszwSh13Y9pVP4iFGHuElNuBYCZ8Vz6ReM5BwFxRINaD0
-	 iQYhbM7oWAy2epdsGIzsk2p8ejaUfgj+rLveyEhczMqXf8oEfXlZcAUcHKEtTVa7Mj
-	 7s1O+Bgz3RyrHOYTi2tc5gAPrI9OHgf4jYH859LrRxIeVK2YmYyLP60IwNE/VmSLvy
-	 B6zB3xZ8LTxG5NxuO3KX4cOo45+Q1C3iSPJW0YEaPc51JXE6yIaGfAnbACwSfrOjjx
-	 yiZn+bVCzwblw==
-From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-	Edmund Dea <edmund.j.dea@intel.com>,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Sandy Huang <hjc@rock-chips.com>,
-	=?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Jyri Sarha <jyri.sarha@iki.fi>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Maxime Ripard <mripard@kernel.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mips@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	freedreno@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v5 0/3] drm: fix two issues related to HDMI Connector implementation
-Date: Tue,  3 Sep 2024 10:18:50 +0200
-Message-ID: <172535151881.1826612.11747911526055879779.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240903-drm-bridge-connector-fix-hdmi-reset-v5-0-daebde6d9857@linaro.org>
-References: <20240903-drm-bridge-connector-fix-hdmi-reset-v5-0-daebde6d9857@linaro.org>
+	s=k20201202; t=1725372196;
+	bh=0BK2rThx0CgZ73U+3LQbaritjH6ctDsMBYwPZE0HBoU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CPRbATi4+g90ioaWeXgBbRz+FGOHqpHV6EwiK++FwTfmdTJry8KVRB5p7Nt8qYwCX
+	 0FMnmIih1m1RYOztSUphRwJfiHpgcyyoN8eYFN+9wiQKDwRs1McF4oS7JQN8Ve5Zf3
+	 HBcT9mK5tGmecxWkqjZ5OmIPkeilAllotgSI9DMGNTX09MO2oR3nzaqttvL1/FC1nj
+	 hGxNsdBlNQ1bsA2rfyDiANczkDw0HTGxqLeoR8OVNC34BhESjr9jfWejrDSccD0Fm1
+	 HZYt0/zOHGATj3SAIfvx9ihjRt7KMrwcWRMgMOAsf5hi0kfuW2EcDnyXdkoqWvsxWp
+	 NW9Fp25kuHlHQ==
+Message-ID: <2528f40c-9d4d-45b0-b02e-af88e6f02a7f@kernel.org>
+Date: Tue, 3 Sep 2024 16:03:12 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: Add Amlogic A4 and A5 rtc
+To: xianwei.zhao@amlogic.com, Yiting Deng <yiting.deng@amlogic.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240903-rtc-v2-0-05da5755b8d9@amlogic.com>
+ <20240903-rtc-v2-1-05da5755b8d9@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240903-rtc-v2-1-05da5755b8d9@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240903_011856_771582_96074BAE 
-X-CRM114-Status: UNSURE (   9.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240903_070317_557333_C7BA6819 
+X-CRM114-Status: GOOD (  12.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,21 +120,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 03 Sep 2024 05:01:55 +0300, Dmitry Baryshkov wrote:
-> Running IGT tests on Qualcomm Dragonboard820c uncovered two issues with
-> the HDMI Connector implementation and with its integration into the
-> drm_bridge_connector. Fix those issues.
+On 03/09/2024 09:00, Xianwei Zhao via B4 Relay wrote:
+> From: Yiting Deng <yiting.deng@amlogic.com>
 > 
-> Note, I'm not fully satisfied with the drm_bridge_connector move. Maybe
-> it's better to add drm_bridge_funcs::connector_reset() and call it from
-> __drm_atomic_helper_connector_reset().
+> Add documentation describing the Amlogic A4(A113L2) and A5(A113X2)
+> rtc controller.
+
+RTC. And no "controller".
+
 > 
-> [...]
+> Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  .../bindings/rtc/amlogic,amlogic-rtc.yaml          | 66 ++++++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml b/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
+> new file mode 100644
+> index 000000000000..128c60b623e1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/amlogic,amlogic-rtc.yaml
 
-Applied to misc/kernel.git (drm-misc-fixes).
+That's odd filename. Use compatible as the filename.
 
-Thanks!
-Maxime
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/amlogic,amlogic-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Real Time Clock controller include a4, a5
+
+Sorry, that's unparseable. Either this is clock controller or RTC. What
+does it mean "include a4"?
+
+
+> +
+> +maintainers:
+> +  - Yiting Deng <yiting.deng@amlogic.com>
+> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+> +
+> +description:
+> +  The Amlogic new chips used RTC module.
+
+This tells me nothing. Please say something useful or drop this.
+
+Best regards,
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
