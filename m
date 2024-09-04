@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 816C7CD3431
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2024 07:21:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05FDACD3431
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2024 07:22:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=d29d/p/aVA5cD4N6TC0WkpKrBL43pQkS0ZsmmJ0Y0bk=; b=2fmiJEeLzabzI5
-	G5oBcbc4Da9Z3jSseZtheQEI4fDN8bCEqd6taTZ1YB0foIrmvKmc7wPRN8vGEKpk1/0EE0RJQLQX2
-	fNWrckQQE1OPYWnYGFNWmmGSn/PLULVwGT5cjXP82M0eBzxMxCezljFJK7JdsFdY8fGa3mQThLDjX
-	O0YryFZh189zIHc8YR6V4WMNdg0wS1CbidiJVaZUGfjaSJ9aISTBphbqIS7/pLSUGSndnGAF39c9p
-	N6wmca8IrhjmMDHUVUBLMdn94lmSikv/a+IGR6XjgsPfdm0jAUO6y9zg5OVmOiCXpSVjZcgpx58Jj
-	QTz2isjA3KV5KsVUNM+Q==;
+	List-Owner; bh=d29d/p/aVA5cD4N6TC0WkpKrBL43pQkS0ZsmmJ0Y0bk=; b=FNowZwML1QyyKF
+	Oq3VW3MZNFgXEyDMmsOZbcgLmqtDyrgAWdcIa7RnN98BHnSeJVdNKz0tIJE6nLh3vjm41KZ9Nki+h
+	2d8Uz3bYWkzz5FD45yamWEnkfYggWM6oAA0C4koGGsPSWWV9YjSuS3co1tIqMTQNWtkhOIoKxFdCA
+	6jlQpE8pQfvwRPTHiPbP1YDqaJxTV3F17+THmuPJFc75LHJRmGCMdzl9+MSHeXU6hr+I6oGQDAKJW
+	VSRTTi6TUnL1DYmjjdp3o4S5XrwqzLETzQDL+HcEipkCcUddo+gV4bXK19PbnthujsZ2oifjCZILT
+	R5Kv/1/WmNY6xPPhoPRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slkKL-00000003AQP-1TGv;
-	Wed, 04 Sep 2024 07:21:17 +0000
+	id 1slkLD-00000003Aa0-2uKm;
+	Wed, 04 Sep 2024 07:22:11 +0000
 Received: from [58.32.228.46] (helo=mail-sh.amlogic.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1slkHf-000000039uU-3Ctg;
-	Wed, 04 Sep 2024 07:18:33 +0000
+	id 1slkJN-00000003AEP-3D5d;
+	Wed, 04 Sep 2024 07:20:18 +0000
 Received: from droid02-cd.amlogic.com (10.98.11.201) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.39; Wed, 4 Sep 2024
- 15:18:22 +0800
+ 15:20:14 +0800
 From: <chuan.liu@amlogic.com>
-To: <chuan.liu@amlogic.com>
+To: <chuan.liu@amlogic.com>, <xianwei.zhao@amlogic.com>
 CC: <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
 Subject: [PATCH 1/5] clk: meson: Fix an issue with inaccurate hifi_pll frequency
-Date: Wed, 4 Sep 2024 15:18:16 +0800
-Message-ID: <20240904071817.489245-1-chuan.liu@amlogic.com>
+Date: Wed, 4 Sep 2024 15:20:13 +0800
+Message-ID: <20240904072013.517905-1-chuan.liu@amlogic.com>
 X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
 X-Originating-IP: [10.98.11.201]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240904_001832_088320_91C996A4 
-X-CRM114-Status: UNSURE (   7.90  )
+X-CRM114-CacheID: sfid-20240904_002017_808704_35DA31BC 
+X-CRM114-Status: UNSURE (   7.88  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
