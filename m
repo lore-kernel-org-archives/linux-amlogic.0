@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00652CE7AB8
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2024 07:07:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E143CE7AB8
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2024 07:15:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TDiap7pm7C78GglgCBUNxTNTfpKpq82ZykeL8yKk6Dk=; b=l+INRXnN5D3MjV
-	qdvWR/1B6TDE7RaQldU2v6a03EHfbhu4N2S0MwEcSuowCQKcQ3l9B9Q4UdWSLTmtd3wUfMelAZfaf
-	sVAaFdKqYBhO+xf+/6T3Fj06sV0CpfjKy7QrFhjrA9DEE+5NO3FNUSthJbjCPtNG3UaKhNQ78FTpC
-	yKiHZMTR7/X+WVJyvFALrWbo8PlU8AhVZbFY7F/Ekr1ADuGfA+UBZPjdd47rBZHyDzkIHnBFvpmh4
-	BDH9BT9lvefhHLuTK4bIQHm5Xn3m4zzpbCtuCLTAhLMqsz3YhbUAwcBfJTyLuuIPAmwXs5w07f+lV
-	lVEmdvepwtfKNr1ik47A==;
+	List-Owner; bh=U21PHHBRuo3s70YiFNMG6ClZVP51M3RkmaplZllDiWg=; b=Phm9F+KQ1UZyND
+	+D10RxpjpbzLr4BCD9VI0YQFkouxNFd5+G34kxML9VwBi4XPNLmoUGXf3Rp5eaOxF4fO5AfLixhAq
+	SLvK3rg08PB39cztdUg/rnFZ/cJ9L0tysuaGqFvOD8vf64eEvH6hR2RJxDXDR+Yy33ugweIBEPv8b
+	2SJQg3LDuCKE8HiAS9lM/ebvif32MVWrFQAWB5uCE0US3jI8ITsDtZkyaVWuH+zWYEwqLnXMo6wpg
+	OZG13TaNYR4CubCljEw0f7qxU3WNIS4ALBZ0gTje/rF33FPtK6oNbdYVxaagzMbE+GjUtlpoMhSLl
+	O7cTbC+KB+EGdQ7GJGAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smT4K-0000000B1De-1WcI;
-	Fri, 06 Sep 2024 07:07:44 +0000
+	id 1smTC1-0000000B2zi-0HHI;
+	Fri, 06 Sep 2024 07:15:41 +0000
 Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smSvL-0000000AySs-11H1
+	id 1smT17-0000000B0Ix-0NGP
 	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Sep 2024 06:58:29 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-42bbe908380so13017395e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 05 Sep 2024 23:58:26 -0700 (PDT)
+	Fri, 06 Sep 2024 07:04:26 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-42bbc70caa4so12542125e9.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 06 Sep 2024 00:04:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725605905; x=1726210705; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725606263; x=1726211063; darn=lists.infradead.org;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ix3H5f1VUNP2HoArupSCtbBV1RYMrnCibJgmIW2VIQA=;
-        b=3GGGp3GdT4p842IqEVWIySKnBHPWqjkOMPfjudj56FAUNgZX1mF/dODjfCWVlsVqaM
-         t/EnD6CHIS/DMCuWBZVZn4V9VQ54xUKxRSW+pKiS4BEq4UK3c1dg1H9wspxgcTvsGRFy
-         akR+Cfz4Rouo1cUNAWGovlllTLZ7RSumGWkbKupm0qkWg7im5+iI7UYsdb4C9llTFEId
-         MlBfjFM+fWZY9LjuvDxEOSYs1PwM3w4rMHAF7l8bTwKck3YBB+HkLk9QFe0Fhbi3yRUb
-         9lI5Oe2wQghUhq3vRiChPmZYgqSKP+QNWfeXej2dEmHmLHR7VM+c5+g9L9BUf1D3VgOZ
-         focw==
+        bh=mmvQ+Tp6rwj8ytkbPRHE2L4V7NjEhAGYliO1vaPNhGg=;
+        b=lBOd/ajR3FAu/Z9BspxbNCv8EGA+cO8F99oECNZqmZALisgsoiN0EBsmLHT2ySEX/a
+         rxROG+hwxjpUPdRidiwpWgjjgaHrvKAFX5JiJeIRAHuipo8t/h67w/ufWJb8K5BUGzWe
+         aqynRw7dXN4z/xV30crXecM+mWtisWyVgjchJsM3Cx3FrR/EmXRuA62D8CAz5fNIDGSp
+         ZP28mDVvawE9MK8W8gTFCsITvCDXlhwvwKsuPdKygbOu1sq25vEseP1fVjUM9lli70lo
+         Ye4SK9qu3CsQ5/8dTp03dkSC3Upx16K5qgw/IMJWE8pKv+48HS4ghWXf1NHJjxjjlrp9
+         bwZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725605905; x=1726210705;
+        d=1e100.net; s=20230601; t=1725606263; x=1726211063;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ix3H5f1VUNP2HoArupSCtbBV1RYMrnCibJgmIW2VIQA=;
-        b=ZfDDvMRieniPQwjEI7ndDSfpxdDx2E22Sv/X5kKkueIIOeGR3VZid3sGYYJ8zy5oqu
-         GW5HQdm5kEigIFA0y8+YRPzn5YBt6+t8bOv5NpX5U6GV6l45Fe2rXVYznc6dZVbFI5ms
-         z/534hvw13oECqsq6rrMkeI54NvqqwLUepT2jTyWFDvuroQXcpGlhfxpwdVsO8rTI59C
-         WieG6kmamH6uxXq6hv4ImSLGdlLhn9bsI8NbvYg9c5oOkllkB1sMWJikaaghJwtf68iR
-         Ek5rf9JHwYwlGHAwMXiiY7vBklYzBZwD0z3D0KWg9ViO5BMNDiCBW74hQ3KGnKk1z/qb
-         /8Sg==
-X-Forwarded-Encrypted: i=1; AJvYcCUHCF5VWBWkl0t9R7GNqNzU7CKRa6cs5pQEwgDY54jx/E1+jnFf6xdnjX76UIkBC29KB32Zs5Oe0+bm6Qr3@lists.infradead.org
-X-Gm-Message-State: AOJu0YzLp+nViLV673/H2Hv+aNLNFLWXZrV+ycXoa1ttBfnbchU9qCLt
-	mY0TMKqstcu3O1FRIZhrcdT6iRyC5xxU8nQHTC5QrWZ2TY9tVGcJ+Z2I6rH1YKk=
-X-Google-Smtp-Source: AGHT+IGRqDKkE0IR4DNooBH1qA1IUgx6jQLK/m12iWtXvY9LxpMhMFNXKtqOkdjlNyX16vc5mNGEBw==
-X-Received: by 2002:a05:6000:507:b0:368:41bd:149b with SMTP id ffacd0b85a97d-37889612a68mr849398f8f.34.1725605905322;
-        Thu, 05 Sep 2024 23:58:25 -0700 (PDT)
+        bh=mmvQ+Tp6rwj8ytkbPRHE2L4V7NjEhAGYliO1vaPNhGg=;
+        b=ZX3LsTRuGTla3wq86yg8dNYV/5f6ugfp4UmvfVDyZLLcKTX0moRto7kw8DXENjMLgL
+         lJivF7300o0FdPQlkH4Vdy8W7dLqdnp+pG0ONGk18E8LkAGEwCT08CavU/gR1TYJ1DNw
+         2GyR+sivcwNW9OliAyPlK/rpLXvfpas4fsp9MQw5am4WYU0J1FvDdwddRTMTWnx0yDKZ
+         orsvjDSsk0ZJB2J8HALdal142AF4auslwzEB5uTTPEWeOwQCU7SYsN48OLMX6SBkxoFc
+         kxYRvCSkYNoOBx12j9SyFk+h5trdA9FfgJzECDYs0RUSxVAuhpHCvDAez5mvvCxxZjP7
+         2LcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUllnZKQhGIvVwLUP1QRue8imfss9kxj+bs82H/7yZLUMmtWe9C4QsKiZiD0jmY8Z1f0M45zL+H2AwbENSP@lists.infradead.org
+X-Gm-Message-State: AOJu0YzK9N6jNYFWTvD0mkjqbY38oWOaQ6k3y5j0re+EjSDUF/dJo0bB
+	cvNcRch63eI8GIziKspnrRY0wmIVskUQ6SCep/WixJ+Z/APaEI0SEkGGCw+L9R4=
+X-Google-Smtp-Source: AGHT+IGlyWHVSEWro5k26v/9BbprNSe8PT6hvmfZpe/tLbwFZ0rhCf+beAnjTByheeKXnnumuvMrBw==
+X-Received: by 2002:adf:e747:0:b0:374:c847:866 with SMTP id ffacd0b85a97d-378895cb1ddmr1033472f8f.23.1725606263243;
+        Fri, 06 Sep 2024 00:04:23 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:4e33:801c:cee0:ee57])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-374b9859486sm17815559f8f.111.2024.09.05.23.58.24
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ca05c70d6sm10465345e9.5.2024.09.06.00.04.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 23:58:24 -0700 (PDT)
+        Fri, 06 Sep 2024 00:04:12 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
@@ -69,18 +69,17 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
  <martin.blumenstingl@googlemail.com>,  chuan.liu@amlogic.com,
   linux-amlogic@lists.infradead.org,  linux-clk@vger.kernel.org,
   linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] clk: meson: s4: pll: hifi_pll support fractional
- multiplier
-In-Reply-To: <20240906-fix_clk-v1-3-2977ef0d72e7@amlogic.com> (Chuan Liu via's
-	message of "Fri, 06 Sep 2024 13:52:35 +0800")
+Subject: Re: [PATCH 0/4] clk: meson: Fix an issue with inaccurate hifi_pll
+ frequency
+In-Reply-To: <20240906-fix_clk-v1-0-2977ef0d72e7@amlogic.com> (Chuan Liu via's
+	message of "Fri, 06 Sep 2024 13:52:32 +0800")
 References: <20240906-fix_clk-v1-0-2977ef0d72e7@amlogic.com>
-	<20240906-fix_clk-v1-3-2977ef0d72e7@amlogic.com>
-Date: Fri, 06 Sep 2024 08:58:24 +0200
-Message-ID: <1jttetqne7.fsf@starbuckisacylon.baylibre.com>
+Date: Fri, 06 Sep 2024 09:04:01 +0200
+Message-ID: <1jo751qn4u.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240905_235827_310304_392CBE97 
-X-CRM114-Status: GOOD (  17.36  )
+X-CRM114-CacheID: sfid-20240906_000425_154167_FB92D9B3 
+X-CRM114-Status: GOOD (  19.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,45 +98,69 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Fri 06 Sep 2024 at 13:52, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
 
-> From: Chuan Liu <chuan.liu@amlogic.com>
+> Some PLLs with fractional multipliers have fractional denominators that
+> are fixed to "100000" instead of the previous "(1 << pll->frac.width)".
 >
-> The s4's hifi_pll supports a fractional frequency multiplier, but frac
-> parameters are not configured in the driver.
+> The hifi_pll for both C3 and S4 supports a fractional multiplier and has
+> a fixed fractional denominator of "100000".
+>
+> Here are the results of the C3-based command tests (already defined
+> CLOCK_ALLOW_WRITE_DEBUGFS):
+> * echo 491520000 > /sys/kernel/debug/clk/hifi_pll/clk_rate
+> * cat /sys/kernel/debug/clk/hifi_pll/clk_rate
+> 491520000
+> * echo 1 > /sys/kernel/debug/clk/hifi_pll/clk_prepare_enable
+> * cat /sys/kernel/debug/meson-clk-msr/clks/hifi_pll_clk
+> 491515625       +/-15625Hz
+> * devmem 0xfe008100 32
+> 0xD00304A3
+> * devmem 0xfe008104 32
+> 0x00014820
+>
+> Based on the register information read above, it can be obtained:
+> m = 0xA3 = 0d163;
+> n = 0x1 = 0d1
+> frac = 0x14820 = 0d84000
+> od = 0x3 = 0d3
+>
+> hifi_pll calculates the output frequency:
+> calc_rate = xtal_rate / n * (m + (frac / frac_max)) >> od;
+> calc_rate = 24000000 / 1 * (163 + (84000 / 100000)) >> 3;
+> calc_rate = 491520000
+>
+> clk_rate, msr_rate, and calc_rate all match.
 
-That should probably have been sent separately.
-It's about frac, yes, but it has nothing to do with the issue described
-in the cover letter.
+Thanks for the detailed description.
 
+Is there a possibility this applies to the g12/sm1 as well ? HiFi PLL
+has had trouble on these SoCs since support has been added. It sometimes
+takes a long time to report a lock. So long we consider it a failure.
+
+There was no such issue on AXG. If you check DT, it is the reason why
+AXG use the HiFi PLL for the sound card and G12/SM1 does not.
+
+>
+> The test and calculation results of S4 are consistent with those of C3,
+> which will not be repeated here.
 >
 > Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 > ---
->  drivers/clk/meson/s4-pll.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+> Chuan Liu (4):
+>       clk: meson: Support PLL with fixed fractional denominators
+>       clk: meson: c3: pll: hifi_pll frequency is not accurate
+>       clk: meson: s4: pll: hifi_pll support fractional multiplier
+>       clk: meson: s4: pll: hifi_pll frequency is not accurate
 >
-> diff --git a/drivers/clk/meson/s4-pll.c b/drivers/clk/meson/s4-pll.c
-> index b0258933fb9d..a97e19057b05 100644
-> --- a/drivers/clk/meson/s4-pll.c
-> +++ b/drivers/clk/meson/s4-pll.c
-> @@ -329,7 +329,6 @@ static struct clk_regmap s4_gp0_pll = {
->   * Internal hifi pll emulation configuration parameters
->   */
->  static const struct reg_sequence s4_hifi_init_regs[] = {
-> -	{ .reg = ANACTRL_HIFIPLL_CTRL1,	.def = 0x00010e56 },
->  	{ .reg = ANACTRL_HIFIPLL_CTRL2,	.def = 0x00000000 },
->  	{ .reg = ANACTRL_HIFIPLL_CTRL3,	.def = 0x6a285c00 },
->  	{ .reg = ANACTRL_HIFIPLL_CTRL4,	.def = 0x65771290 },
-> @@ -354,6 +353,11 @@ static struct clk_regmap s4_hifi_pll_dco = {
->  			.shift   = 10,
->  			.width   = 5,
->  		},
-> +		.frac = {
-> +			.reg_off = ANACTRL_HIFIPLL_CTRL1,
-> +			.shift   = 0,
-> +			.width   = 17,
-> +		},
->  		.l = {
->  			.reg_off = ANACTRL_HIFIPLL_CTRL0,
->  			.shift   = 31,
+>  drivers/clk/meson/c3-pll.c  |  1 +
+>  drivers/clk/meson/clk-pll.c | 22 +++++++++++++++++++---
+>  drivers/clk/meson/clk-pll.h |  1 +
+>  drivers/clk/meson/s4-pll.c  |  9 +++++++--
+>  4 files changed, 28 insertions(+), 5 deletions(-)
+> ---
+> base-commit: adac147c6a32e2919cb04555387e12e738991a19
+> change-id: 20240904-fix_clk-668f7a1a2b16
+>
+> Best regards,
 
 -- 
 Jerome
