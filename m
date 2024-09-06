@@ -4,82 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB18ACE7B0A
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2024 13:18:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C351CE7B09
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2024 13:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=B3sVLyse9rojagaWyyn7ZCQbmefAYES4WN0GaH7YiQk=; b=ns+U1eZt4dwcpE
-	QYSdLa5Qm9tY0SGaGnxD5G51I5u2JJ2Mk/20hHLWDyAnzRIJk6zgfzmuFxBZMTDyHuVFb7xwIC9/s
-	JjxEIm+rJ+GzYecLCqA4+SbP1XrDrLDg6tnQmGcpnevbpvt+Z/tAQazVkvhxQZQqYZYhWuev1peiX
-	yci/fyADOfyGs80seYdSg4WZzB2rtPKB2UPhMhZungi4HL9A+xuIjQ+kTwWcrXioIWowqwJkTBUD4
-	JIm8MXI3trOfYYosYHbvAYtHvBsTp6sv3cUqrlgmMcpXg+tZuonvyd0J0g6HxcMgy1i2ck1K55mv8
-	IwfvBg1n8MfRhVsuxsig==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=64p89rUcIPrnbYnXLe/6VKfIU1QZKJUhSdUeEAFHzR4=; b=FFXeuL1OrsgUn0
+	PT+e7zLn4XZQKO1S5TOglI3IsvSeUZfGBbWTW7R+rO61Iov2gIlIQzVZyfq50kl/TqLbSDX9PPaIn
+	fx4C+k3X8qJoinoeBmVKlty4fVp4z3hiLSGj8meD8dQH3xCErBpgg/m0fFcjXjI9ZaYh7gDZq1gpE
+	WpIIYDqU9WcnCn1linRh2rQIv47u5XNPeNRNC16R/t0O5AtpWEikNFTKtKQ/kbD3DqmUF80tePUvn
+	qVN5zK0sN41rYTLAdFbYyTfo7BPBySByfWcTG2kATijTZGZ0bse7ERkq0WRZjrrKmvX/nImdCXgAp
+	T4NkJ7rU6tB+WHq2JlRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smYqv-0000000CJXt-2GN7;
-	Fri, 06 Sep 2024 13:18:17 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1smYqt-0000000CJXc-2pGB;
+	Fri, 06 Sep 2024 13:18:15 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smYqt-0000000CJXJ-0mgx
+	id 1smYqr-0000000CJWu-2zTc
 	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Sep 2024 13:18:16 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-375e5c12042so1042428f8f.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 06 Sep 2024 06:18:14 -0700 (PDT)
+	Fri, 06 Sep 2024 13:18:14 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4280ca0791bso15652695e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 06 Sep 2024 06:18:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725628693; x=1726233493; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GbMVGb74aYuXdDMhEKUAktIeq8z3Kw9sE/mcJ8f3Io0=;
-        b=Be27I/c8xR5uFme5tajL8WTws1umcVHG7nykr9psynhk2lKGPwXZSZGcs7FKd3OfDg
-         kmytzM+hx7LwMJUxLumKp4caBbjmKAKScf5MVxgCK9J07sun6TQfzH+TFRR251ZeasbJ
-         T90+3srBJ3aJhdNhitU6DeaqQCrKQ/a1Zem7C7o8pqoJ8lBmvwl+UnJpUGv0PwTiDXdf
-         bTySICMTAscrwLD4e0CYn3jnps/8NzXWfVdYuyT4710mwW8FXQBTSSD9I1LwXndgKT/K
-         synBP2QVjoP+IaGjthc3TK7884Qwiv7RJGLOL7KOkfddAp7iMr4207jTzGxJVAiZS1eS
-         9GFA==
+        d=gmail.com; s=20230601; t=1725628691; x=1726233491; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cuoCSuGUr4RHBe0FvlKAKojWcSMGqvsurR/EVr5lVNM=;
+        b=kWMBMcc755IkioW0AEmUsVvLgd9KDCSy2eQl1F47j7sktsWT+LE1LTgelwCSrdI3qI
+         ENyrcNlwrOZETr5A8Mq+25BUkn97W7Qg//CXnGrKzXksCiWEHEJjUDHRHBGprmW7nSFb
+         ShW0IbRvTyTVjv4rWigCh2U9GUkU0kDeH2Rt9oMiKLfApRSAcvIVpLzI8Dl0zsLZCU4r
+         SxxuYmxYxkOHcUVOVNqjN7dXLewEbvicigRDrg751fnOOipgqcoCI1WPifjeTDFnTMai
+         FW1hXN92CGdo4H5OKE40qL5K9WF64lVhXerw+c0uhVANEkn96R+n9PoJRy9ZlK1EhkHi
+         Bx9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725628693; x=1726233493;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GbMVGb74aYuXdDMhEKUAktIeq8z3Kw9sE/mcJ8f3Io0=;
-        b=qJrJE6G52o9956e2b01Hf/SzG7d+NZhPB1WBrdaOo8tUl56/W+wT6KgV0U7Ebn2R2j
-         7I0/XBM3XeIhvqXEeKCHdFfMBPzKGLH27D9mTYCWxyLxUzBOrDQ/tkDenGXbjdrfSIjU
-         B3k9nWg7W/ugGiRXVtvwMT3ocHHovCX/KZp9HrPsr0sunOVFYDKPURx51S2ezNjIOaRg
-         rXjpweLTJ1yGPhA1HOzapMxF8GuTMS6n6jHbjEGT8+aC6mQY4xHCIrrnFLOQNRBKumMl
-         d3U6XOvn9JyyrfbGJ3cfmAdN0Nm/zpcj53wkKvvQzRKarMO23qA6yCTITxyhdXrWBT5E
-         4CkA==
-X-Gm-Message-State: AOJu0YzUYVDhw5wWtmrWoxL1PsdmTrTazcbW7asZ5p+8i0f0Fp0vESmy
-	Mqm1Mpy79ytkcyT6wZ8F9nwDAeXFBPLoQbWMz/sdFE7Ko4l5OoK/n9DSRfeT
-X-Google-Smtp-Source: AGHT+IGQqyuuD0wZChp8oAhKSGbQbTNi4172Pezmn1FNUoXSkz6SqKxMTenrD7XgHTDqp+GOzB7rHQ==
-X-Received: by 2002:adf:f88c:0:b0:36b:a2bb:b374 with SMTP id ffacd0b85a97d-378896c81bfmr1773957f8f.52.1725628692525;
-        Fri, 06 Sep 2024 06:18:12 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1725628691; x=1726233491;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cuoCSuGUr4RHBe0FvlKAKojWcSMGqvsurR/EVr5lVNM=;
+        b=GBTlba6Scuf8VF8mzZ8FMV8fHJDG5hUPBzIV15IKt0ASVD0CiD+HBScQ2+h+//hCAk
+         aZltQtnWS/+TLf9IPpbsGufbrY1udboZsku5CJ7c584HGsEeIWtJqJ/E3MyihYyHgK46
+         f3w97j0mUweO5ZkVcDcNN6fMtu8McKCdzDloFL43wb3AS3BhcK9vhmqNQJ1S6DSTbh6Q
+         BQmY68tWsWMftb3LRRSw9Z3mj5qx6VrMbSthswcmmpxkuxqQkDmi0lJFTBmv9XBrYwrs
+         nTmp7I/SFUlQL5sLOdE7C93ypY9Z3s0WWq2N7mp4zagfcEMg2NQ28IZo1KO03Xii5Nn5
+         eQNg==
+X-Gm-Message-State: AOJu0Yzmtd1F5dCVgi3Ygd73t8jo8aWaLyISC5jMjl73TjTRfOspLG8J
+	CWpxfgfnOT3lqTSivdCLVAgDJA4RHMRDppE01LQyrDUMjGY/B2hSUbqZbPA4
+X-Google-Smtp-Source: AGHT+IHzuT3/ZNKvRhBNKQEzZJI3iDFbdvpP4U0IzpvVBIWHWNy3eE1hyFvdzdwON6iNQ/W9K85d6Q==
+X-Received: by 2002:a05:600c:4508:b0:428:2502:75b5 with SMTP id 5b1f17b1804b1-42c9f97c81cmr17868755e9.11.1725628689961;
+        Fri, 06 Sep 2024 06:18:09 -0700 (PDT)
 Received: from voyager.localdomain (178-118-65-79.access.telenet.be. [178.118.65.79])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-374cd205ab0sm12138830f8f.87.2024.09.06.06.18.11
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42ca05c6facsm20474575e9.9.2024.09.06.06.18.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Sep 2024 06:18:11 -0700 (PDT)
+        Fri, 06 Sep 2024 06:18:09 -0700 (PDT)
 From: Theo Debrouwere <theo.debrouwere@gmail.com>
 X-Google-Original-From: Theo Debrouwere <theo.debrouwere@faytech.de>
 Received: from tdebrouw by voyager.localdomain with local (Exim 4.97)
 	(envelope-from <theo.debrouwere@gmail.com>)
-	id 1smYqo-00000002e1w-3xUp;
-	Fri, 06 Sep 2024 15:18:10 +0200
+	id 1smYqm-00000002e1q-1lvk;
+	Fri, 06 Sep 2024 15:18:08 +0200
 To: linux-amlogic@lists.infradead.org
 Cc: Theo Debrouwere <theo.debrouwere@faytech.de>
-Subject: [PATCH 2/2] clk: meson: axg-audio: fix sm1 mclk_pad support
-Date: Fri,  6 Sep 2024 15:18:02 +0200
-Message-ID: <20240906131802.630513-2-theo.debrouwere@faytech.de>
+Subject: [PATCH 1/2] dt-bindings: clk: axg-audio: add missing sm1 pad bindings
+Date: Fri,  6 Sep 2024 15:18:01 +0200
+Message-ID: <20240906131802.630513-1-theo.debrouwere@faytech.de>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240906131802.630513-1-theo.debrouwere@faytech.de>
-References: <20240906131802.630513-1-theo.debrouwere@faytech.de>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240906_061815_246360_FBE18EBC 
-X-CRM114-Status: GOOD (  11.08  )
+X-CRM114-CacheID: sfid-20240906_061813_770648_8B9EE6F0 
+X-CRM114-Status: UNSURE (   8.58  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,82 +94,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix the mclk_pad_0/1 of the sm1 family.
-The pads have an additional divider & gate.
+Add the missing pad ids for the sm1 mclk pad divider & gate.
 
 Signed-off-by: Theo Debrouwere <theo.debrouwere@faytech.de>
 ---
- drivers/clk/meson/axg-audio.c | 36 +++++++++++++++++++++++++++++++----
- 1 file changed, 32 insertions(+), 4 deletions(-)
+ include/dt-bindings/clock/axg-audio-clkc.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-index e03a5bf899c0..838281218e71 100644
---- a/drivers/clk/meson/axg-audio.c
-+++ b/drivers/clk/meson/axg-audio.c
-@@ -323,6 +323,16 @@ static const struct clk_parent_data lrclk_pad_ctrl_parent_data[] = {
- 	AUD_MUX(_name, _reg, 0x7, _shift, 0, _parents,		\
- 		CLK_SET_RATE_NO_REPARENT)
+diff --git a/include/dt-bindings/clock/axg-audio-clkc.h b/include/dt-bindings/clock/axg-audio-clkc.h
+index 08c82c22fa5f..cebf16f7de94 100644
+--- a/include/dt-bindings/clock/axg-audio-clkc.h
++++ b/include/dt-bindings/clock/axg-audio-clkc.h
+@@ -155,5 +155,9 @@
+ #define AUD_CLKID_SYSCLK_B_DIV		175
+ #define AUD_CLKID_SYSCLK_A_EN		176
+ #define AUD_CLKID_SYSCLK_B_EN		177
++#define AUD_CLKID_TDM_MCLK_PAD0_SEL	178
++#define AUD_CLKID_TDM_MCLK_PAD0_DIV	179
++#define AUD_CLKID_TDM_MCLK_PAD1_SEL	180
++#define AUD_CLKID_TDM_MCLK_PAD1_DIV	181
  
-+#define AUD_TDM_PAD_MUX(_name, _reg, _shift, _parents)			\
-+	AUD_MUX(_name##_sel, _reg, 0x7, _shift, 0, _parents,		\
-+		CLK_SET_RATE_NO_REPARENT)
-+#define AUD_TDM_PAD_DIV(_name, _reg, _shift)				\
-+	AUD_DIV(_name##_div, _reg, _shift, 8, CLK_DIVIDER_ROUND_CLOSEST,\
-+		aud_##_name##_sel, CLK_SET_RATE_PARENT)
-+#define AUD_TDM_PAD_GATE(_name, _reg, _bit)				\
-+	AUD_GATE(_name, _reg, _bit, aud_##_name##_div,			\
-+		 CLK_SET_RATE_PARENT)
-+
- /* Common Clocks */
- static struct clk_regmap ddr_arb =
- 	AUD_PCLK_GATE(ddr_arb, AUDIO_CLK_GATE_EN, 0);
-@@ -793,10 +803,20 @@ static struct clk_regmap sm1_mst_e_mclk =
- static struct clk_regmap sm1_mst_f_mclk =
- 	AUD_MST_MCLK_GATE(mst_f_mclk, AUDIO_SM1_MCLK_F_CTRL);
- 
--static struct clk_regmap sm1_tdm_mclk_pad_0 = AUD_TDM_PAD_CTRL(
--	tdm_mclk_pad_0, AUDIO_SM1_MST_PAD_CTRL0, 0, mclk_pad_ctrl_parent_data);
--static struct clk_regmap sm1_tdm_mclk_pad_1 = AUD_TDM_PAD_CTRL(
--	tdm_mclk_pad_1, AUDIO_SM1_MST_PAD_CTRL0, 4, mclk_pad_ctrl_parent_data);
-+static struct clk_regmap sm1_tdm_mclk_pad_0_sel = AUD_TDM_PAD_MUX(
-+	tdm_mclk_pad_0, AUDIO_SM1_MST_PAD_CTRL0, 8, mclk_pad_ctrl_parent_data);
-+static struct clk_regmap sm1_tdm_mclk_pad_0_div = AUD_TDM_PAD_DIV(
-+	tdm_mclk_pad_0, AUDIO_SM1_MST_PAD_CTRL0, 0);
-+static struct clk_regmap sm1_tdm_mclk_pad_0 = AUD_TDM_PAD_GATE(
-+	tdm_mclk_pad_0, AUDIO_SM1_MST_PAD_CTRL0, 15);
-+
-+static struct clk_regmap sm1_tdm_mclk_pad_1_sel = AUD_TDM_PAD_MUX(
-+	tdm_mclk_pad_1, AUDIO_SM1_MST_PAD_CTRL0, 24, mclk_pad_ctrl_parent_data);
-+static struct clk_regmap sm1_tdm_mclk_pad_1_div = AUD_TDM_PAD_DIV(
-+	tdm_mclk_pad_1, AUDIO_SM1_MST_PAD_CTRL0, 16);
-+static struct clk_regmap sm1_tdm_mclk_pad_1 = AUD_TDM_PAD_GATE(
-+	tdm_mclk_pad_1, AUDIO_SM1_MST_PAD_CTRL0, 31);
-+
- static struct clk_regmap sm1_tdm_lrclk_pad_0 = AUD_TDM_PAD_CTRL(
- 	tdm_lrclk_pad_0, AUDIO_SM1_MST_PAD_CTRL1, 16, lrclk_pad_ctrl_parent_data);
- static struct clk_regmap sm1_tdm_lrclk_pad_1 = AUD_TDM_PAD_CTRL(
-@@ -1232,6 +1252,10 @@ static struct clk_hw *sm1_audio_hw_clks[] = {
- 	[AUD_CLKID_SYSCLK_A_EN]		= &sm1_sysclk_a_en.hw,
- 	[AUD_CLKID_SYSCLK_B_DIV]	= &sm1_sysclk_b_div.hw,
- 	[AUD_CLKID_SYSCLK_B_EN]		= &sm1_sysclk_b_en.hw,
-+	[AUD_CLKID_TDM_MCLK_PAD0_SEL]	= &sm1_tdm_mclk_pad_0_sel.hw,
-+	[AUD_CLKID_TDM_MCLK_PAD0_DIV]	= &sm1_tdm_mclk_pad_0_div.hw,
-+	[AUD_CLKID_TDM_MCLK_PAD1_SEL]	= &sm1_tdm_mclk_pad_1_sel.hw,
-+	[AUD_CLKID_TDM_MCLK_PAD1_DIV]	= &sm1_tdm_mclk_pad_1_div.hw,
- };
- 
- 
-@@ -1646,6 +1670,10 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
- 	&sm1_sysclk_a_en,
- 	&sm1_sysclk_b_div,
- 	&sm1_sysclk_b_en,
-+	&sm1_tdm_mclk_pad_0_sel,
-+	&sm1_tdm_mclk_pad_0_div,
-+	&sm1_tdm_mclk_pad_1_sel,
-+	&sm1_tdm_mclk_pad_1_div,
- };
- 
- struct axg_audio_reset_data {
+ #endif /* __AXG_AUDIO_CLKC_BINDINGS_H */
 -- 
 2.45.2
 
