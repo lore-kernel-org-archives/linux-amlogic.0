@@ -4,79 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98BC5CE7A81
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2024 18:18:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63AF8C54FC6
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2024 05:52:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=lBlNgfn3VGJF10TkH/lzlY4cKwq3fGi8QyekNIhtAZk=; b=buEHzZVKxKq1CW
-	C/ItrneNGcidBBTu3OcsguRrmK29tX8QJ2B8GXP3esgIUVRH3YKqOs13I2uGsEDTYcQoN328yVfnY
-	D9eRpEKjL7imtiox40IPS3k04YG5u0QUvspG8ilEsj7lOA4kWIpqVH/1d3D4k5Yc03+IWPxrxpuvY
-	traJz59wJ8aFrHzSAwpTVvNMsHJFkZNXF9HLtTFbfi9gshsKXFVPHMymSWtQxLq75ZA5TZDwdTKbQ
-	GRGOAZ5cCY2j4Z3J6bhP01KXdmwIICSb1hr4Mo3N9u2dmtLTqbPNcXLZmn3I1TgTrSZRJ6CO8B1oz
-	hUFhSd9PfhplreAPB9Aw==;
+	List-Owner; bh=spW4VDCxPIQq4LQ5SuiBJJbLzd65smapmUCPJ4sJR/Y=; b=VZk/p6ZAXH9SLJ
+	18mvTHmV2/q0mv5SN6Oc3spgPLpAeutj1LhXF8nZK6OBUGNCC8IbvnyOelqK78Qeb9KH5Ac2NdCHZ
+	K3016G8HRJqx4QiHYFpoXhrEbyfiEp6qjrPD1uRqFItLCkkbRsPs9SXcO6e8vGGpJMTNOlJ5pRhc2
+	GY7R+k12Qcy5io12BgRiktHJ8naEowOnmJcnqEsxtUdsVtzvYQ9xWDSspQmv49dVEDCIZt/XBndxo
+	GGkkA+CTsmtM4OCh8P9id+wvzECpqbKZDNsD2cIisgPNB0W59MCtHkB5lOEmRB2wqjwwBUh3i3JST
+	4ECcylgcsR4Rl3rkl8mg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smH3k-00000009PmP-0HQ1;
-	Thu, 05 Sep 2024 18:18:20 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1smRth-0000000Am2x-18AH;
+	Fri, 06 Sep 2024 05:52:41 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smH3h-00000009Plr-2Pg5
-	for linux-amlogic@lists.infradead.org;
-	Thu, 05 Sep 2024 18:18:19 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-42bbbff40bbso9049025e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 05 Sep 2024 11:18:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1725560295; x=1726165095; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/BGyhSwzHWDltk1nAZT9l220LAyDFCsZ9sT7oqzkobE=;
-        b=JcHzW4BLushxow6QtOVp/DO74lCJ/OaVYf5/bO9vfpIKfW3haEznEMco/6/J62m74W
-         ajp810NZuW6lUPoHjtm5abJhjsjgJXj6Bx/tAJ77Q0cIyKPvMld5dtGeVSKDl+btHtCl
-         PqGHfaYuQTJi20NqNiiSH1AnNTzwF+I41i9+p98tHOhlEo6RvH4DOZE/R09JCm/fj3QF
-         O+I77Hr8D6WnL2bFECEa8dVlS4xFhcH+PJA3EG0Qu8aAQWUmVFvINZpRjewerGkXiw3p
-         0ao2mlfiapoluo3F5xCQjHqvQBDh4g7PDllFwzFtpXPui5cmJqs5cmaom+fkhiv5cSZF
-         F86w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725560295; x=1726165095;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/BGyhSwzHWDltk1nAZT9l220LAyDFCsZ9sT7oqzkobE=;
-        b=vwJahb0ks2pTdTTq6wk6OtVwO0zDORoWXJ0A+y9pZEu7oaRiKoAlM9CRV5WHIeA1Nr
-         azAOM+FLkKQfY/FFuAgEFGfcHI2XHybgGgWAFqHz661oIJUGSi6W7nRTbVGBkJKutRPA
-         o1wegvX5Z6bytPzjneagoujr/CZS2VDsmyNsTz8PQQtvDKnVpvS14foYCuWg+By41hEC
-         9sjF7hJWrqeg15QWhKArQnEbRtz04kF/M6so1GTfAYKAvoi/kcqYnZz3XN0AxV/6LtvO
-         3lEfaN1zft+z/+3EHGFwwJSiYKXkXD2T6+uo0k1wkfC/sdl+gYLIHqmY/AVUwkDKQEj0
-         Z+Eg==
-X-Gm-Message-State: AOJu0Yxwo5pajff7zygzBtVHmJQqP/0t2rz9crcxVFwcBmSwveoKEQ/7
-	TDyqSxOLDatyaKAGtYgu4diKPpBAKpaXvCqmL1B81dC+2eR6bTcZ2OdecNvj
-X-Google-Smtp-Source: AGHT+IFpi1mY9J1mFdXjcGrZOxlIugt9ggwbfVzTvEyACJcEj+SqJzUtdy+ogHq127aM8fGkb/ev6A==
-X-Received: by 2002:a05:6000:4581:b0:374:ca92:5e44 with SMTP id ffacd0b85a97d-378895d6239mr9015f8f.32.1725560295266;
-        Thu, 05 Sep 2024 11:18:15 -0700 (PDT)
-Received: from voyager.localdomain (178-118-65-79.access.telenet.be. [178.118.65.79])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-374c8e4f1b3sm12250308f8f.27.2024.09.05.11.18.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2024 11:18:14 -0700 (PDT)
-From: Theo Debrouwere <theo.debrouwere@gmail.com>
-X-Google-Original-From: Theo Debrouwere <theo.debrouwere@faytech.de>
-Received: from tdebrouw by voyager.localdomain with local (Exim 4.97)
-	(envelope-from <theo.debrouwere@gmail.com>)
-	id 1smH3e-00000000OUu-0QUg;
-	Thu, 05 Sep 2024 20:18:14 +0200
-To: linux-amlogic@lists.infradead.org
-Cc: Theo Debrouwere <theo.debrouwere@faytech.de>
-Subject: [PATCH] arm64: dts: meson-g12-common: fix uart-ao-a typo
-Date: Thu,  5 Sep 2024 20:18:03 +0200
-Message-ID: <20240905181803.94127-1-theo.debrouwere@faytech.de>
-X-Mailer: git-send-email 2.45.2
+	id 1smRte-0000000Am1G-1ZZv;
+	Fri, 06 Sep 2024 05:52:39 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id BE756A44678;
+	Fri,  6 Sep 2024 05:52:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AF551C4CEC4;
+	Fri,  6 Sep 2024 05:52:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725601956;
+	bh=g01KSPJoXIPurLe84AcyOHvY7DI2Ak8ynhEFBJfoOtg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=tKA+dOgttwwsbZFDX0yViM54k+PSdYvK9glYNgdUAgx7tA48HGEhZUiYMQirQHNNq
+	 vziGbqVkZkqUn797wPX8dSXhjE8KpNc2fl2/h1yScVNbRIfYGhRXGgU9Bgv/cnsEwy
+	 hg1vGh8xCCKl6nkU2LfrGAWW8Q5pYYRZSRe8B7yFj39QFQ88Cvk7UewyY1VXojgmMJ
+	 G0yplYeaR4IvJ637ySmGCxUI4Mu+oGoT1vYvn6l3V8LpE33/1vOiKsDrzeaGK/nPbN
+	 Ps8EkwNmMpubGrQkTrrLQCeLvBrIlnaVSPUH2ob0bggbcOTLpGtr8rYI7pqpkMt92F
+	 A0UYPs9rqghwg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 99B15C54FC6;
+	Fri,  6 Sep 2024 05:52:36 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Subject: [PATCH 0/4] clk: meson: Fix an issue with inaccurate hifi_pll
+ frequency
+Date: Fri, 06 Sep 2024 13:52:32 +0800
+Message-Id: <20240906-fix_clk-v1-0-2977ef0d72e7@amlogic.com>
 MIME-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIAKCY2mYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDSwMT3bTMivjknGxdMzOLNPNEw0SjJEMzJaDqgqJUoBTYpOjY2loAryT
+ uhFkAAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725601955; l=1915;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=g01KSPJoXIPurLe84AcyOHvY7DI2Ak8ynhEFBJfoOtg=;
+ b=XOPNho1g4xaPZsvq42GBw4qtdRF1HzWnaEFGPdOhELlSCEJOlNnmLj11KCyoC+vmwCDfw/SzU
+ R0GqjapV8XlA3dJXBmuCQcEr9UMihJD+wZRxX8G2C3dd7VdbzhpMB49
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240905_111817_636209_8D93F995 
-X-CRM114-Status: UNSURE (   9.80  )
+X-CRM114-CacheID: sfid-20240905_225238_585110_C969E713 
+X-CRM114-Status: UNSURE (   8.73  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,34 +87,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: chuan.liu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Change uart-a-ao into uart-ao-a, to use the same naming convention as
-the other uart devices.
+Some PLLs with fractional multipliers have fractional denominators that
+are fixed to "100000" instead of the previous "(1 << pll->frac.width)".
 
-Signed-off-by: Theo Debrouwere <theo.debrouwere@faytech.de>
+The hifi_pll for both C3 and S4 supports a fractional multiplier and has
+a fixed fractional denominator of "100000".
+
+Here are the results of the C3-based command tests (already defined
+CLOCK_ALLOW_WRITE_DEBUGFS):
+* echo 491520000 > /sys/kernel/debug/clk/hifi_pll/clk_rate
+* cat /sys/kernel/debug/clk/hifi_pll/clk_rate
+491520000
+* echo 1 > /sys/kernel/debug/clk/hifi_pll/clk_prepare_enable
+* cat /sys/kernel/debug/meson-clk-msr/clks/hifi_pll_clk
+491515625       +/-15625Hz
+* devmem 0xfe008100 32
+0xD00304A3
+* devmem 0xfe008104 32
+0x00014820
+
+Based on the register information read above, it can be obtained:
+m = 0xA3 = 0d163;
+n = 0x1 = 0d1
+frac = 0x14820 = 0d84000
+od = 0x3 = 0d3
+
+hifi_pll calculates the output frequency:
+calc_rate = xtal_rate / n * (m + (frac / frac_max)) >> od;
+calc_rate = 24000000 / 1 * (163 + (84000 / 100000)) >> 3;
+calc_rate = 491520000
+
+clk_rate, msr_rate, and calc_rate all match.
+
+The test and calculation results of S4 are consistent with those of C3,
+which will not be repeated here.
+
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Chuan Liu (4):
+      clk: meson: Support PLL with fixed fractional denominators
+      clk: meson: c3: pll: hifi_pll frequency is not accurate
+      clk: meson: s4: pll: hifi_pll support fractional multiplier
+      clk: meson: s4: pll: hifi_pll frequency is not accurate
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 0f7b6ed47ca2..1e803b1b24cd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -1921,7 +1921,7 @@ mux {
- 					};
- 				};
- 
--				uart_ao_a_pins: uart-a-ao {
-+				uart_ao_a_pins: uart-ao-a {
- 					mux {
- 						groups = "uart_ao_a_tx",
- 							 "uart_ao_a_rx";
+ drivers/clk/meson/c3-pll.c  |  1 +
+ drivers/clk/meson/clk-pll.c | 22 +++++++++++++++++++---
+ drivers/clk/meson/clk-pll.h |  1 +
+ drivers/clk/meson/s4-pll.c  |  9 +++++++--
+ 4 files changed, 28 insertions(+), 5 deletions(-)
+---
+base-commit: adac147c6a32e2919cb04555387e12e738991a19
+change-id: 20240904-fix_clk-668f7a1a2b16
+
+Best regards,
 -- 
-2.45.2
+Chuan Liu <chuan.liu@amlogic.com>
+
 
 
 _______________________________________________
