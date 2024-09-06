@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0734FCD5BA4
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2024 05:53:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22058CD5BA4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2024 05:54:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6hVqtIXQnwSU1PnZz1KW+OiulLVgWg3VoUtOELpS0sU=; b=hhJFnxB/VxZQwM
-	P4DXrV4BW4MVznXTcLflWwWi192v/djSqHDYnSC8S2ITOh5WGU421eq67PIISlR/R8Smd/xIUz0b3
-	AVjgKIWS/+4No0vYQVD/d0HMYDMT03kud3fRomNeY9Ix0i8sQkfgPgVHcCbGhBLLdWWRZVeaoHf4i
-	z+5KxNmWIwCQuocVhbqKLaeCwqBHrS+DNnH0kVNNShfc4nebP+GKEf/5/ovpF4Y7GNLvFDr3eFQcy
-	VK4dBIcEhwKWGntBKUhmAdVFPM/0XE7aOlIDLjp1c5amSuo4zZtIhmlG3HHCvMJf4AGiWmRs3kkV6
-	iNQnbptSaOJL/DOO9lkA==;
+	List-Owner; bh=YYXVDYyvPKhS9neOmX7pyh/hzv4CkzyMY9BkwPe4H/Q=; b=s5Jum8wKtDoTp6
+	DYWGQcRYD1Dexf0O3fIE8+kfl+kG3awBgmWgA0EO68q7G+RWWgMKqKbxXexqGCCVQdm4DJYUjSdxR
+	EMGebo5JxFceblwEtmoyQPNxbc+8MYNozaLHqDnPZ4weMbVH2kI02tji93w9ES2A2NwsX2xEhTP2O
+	ucq23wAVZgUYMCwaJbFvRcp5pMQaSTbq4xZzVNeZwrlM4QG3lkegjS3cQxIGKTA8Ez2SqOwWPeKE8
+	AYHFnuORe09VMjGe63G1WyPa9XVwHPeeBNRglMZA+3swns9Yr4cA8T02GI7sK+NbsRfs0P9t+Unvs
+	e0GB0VUze30gHiyvqt8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smRud-0000000AmLS-44Nq;
-	Fri, 06 Sep 2024 05:53:39 +0000
+	id 1smRvb-0000000Amgq-3DIj;
+	Fri, 06 Sep 2024 05:54:39 +0000
 Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smRte-0000000Am1H-1ZUV;
-	Fri, 06 Sep 2024 05:52:40 +0000
+	id 1smRte-0000000Am1I-2L7z;
+	Fri, 06 Sep 2024 05:52:41 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id CBD37A44679;
+	by nyc.source.kernel.org (Postfix) with ESMTP id F0611A44671;
 	Fri,  6 Sep 2024 05:52:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C1FAFC4CEC8;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D445CC4CEC9;
 	Fri,  6 Sep 2024 05:52:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1725601956;
-	bh=I9JprPGgr2Q1JvjMeHkxOvLVu+H/5UNCtWt/M48Ns14=;
+	bh=S3mFqsYvIRYGegsx08fYvuzsX6Qwu4VsDx147bN5fYc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Li+xwak6lwSBbAuxqsHiQ70CrZ4YDmU8reJOfqLZE2sDhVY22EzngQQ76gWGEYPwy
-	 FR1cP+SB+1+HZWggmz9cIG3X78F4ZPjTIayCiJBPhtNVpw71m/5Ub2/zdw+hucl412
-	 K3v12+KuOYxjdhDPYTXuFr017hkMQUSIqUlR5L4xQKMGV/yxaGisM2QKyQH1LLpQDy
-	 nlIcPvGmrQcDgKHp+rNJq+X9ZPEPXqqbyQmoCQR45RbKxSLmJxqEX9x2e5r7iHukpX
-	 N9l5t7DGkSlDZy/w1GEGVp7rBQWvm33/Uz7Qri9f7zk5cyNTsVsRX/tf3qSWw6c2X0
-	 X8FCl7YgsFrTg==
+	b=YCUAAoKkVzT2EMiB9d27VUcc2cwtreBRMnj8ACMRtWT68xLZHapaFd8VxJwPlmrNa
+	 eXlp8EuZ4p9XYAKbWECgqunAnmbTcFPuU+zFacPZMnNYhA/UO+/Ea8XeXy5AJ/cIHB
+	 D3Rerl1wyv3x3kN56BxKQOMO7+xAshSmTWIECqT7GapOdkQQ+3b3ApMdB26UiuiJzs
+	 fM0m17qCQEL0zynEU1HvIhsQawZeiSyjfqWCehYLajnCZRze4v3up1WYLrTQEHE+Wo
+	 UazDJJwgOj+eQZZArA24Dv+IghHu/ATxBBGjk+1LWiAxTikBDV+o2Mv65hn4gr5Nrc
+	 A4uZUJi2Nikwg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AFD64CD5BDD;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3A64CD5BA4;
 	Fri,  6 Sep 2024 05:52:36 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Fri, 06 Sep 2024 13:52:33 +0800
-Subject: [PATCH 1/4] clk: meson: Support PLL with fixed fractional
- denominators
+Date: Fri, 06 Sep 2024 13:52:34 +0800
+Subject: [PATCH 2/4] clk: meson: c3: pll: hifi_pll frequency is not
+ accurate
 MIME-Version: 1.0
-Message-Id: <20240906-fix_clk-v1-1-2977ef0d72e7@amlogic.com>
+Message-Id: <20240906-fix_clk-v1-2-2977ef0d72e7@amlogic.com>
 References: <20240906-fix_clk-v1-0-2977ef0d72e7@amlogic.com>
 In-Reply-To: <20240906-fix_clk-v1-0-2977ef0d72e7@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,19 +61,20 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725601955; l=2567;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725601955; l=836;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=SoIKZiELa8FSJI7fmIZsiz6qIoB6+tJ8z3x3hDJR/OM=;
- b=HYGdsd4TDjl5DW9tu+regMVhcuVnmoqEWuyRRdEK8IXmAPDX+KAM5EnWN+mXPd6AJqh1qj1XV
- DlfZzdykYAXDTgKqia5Qg17K3yaT8fizM93sTUuRayorsD/5VsvJQC+
+ bh=M/IqRKmFgbyGrESbxg574FVPvS6H4iQmlVvP8JBwBMQ=;
+ b=fchMifHrKQ1Qtl5EJeyYwqm5AFN+WR+v2xXBG5jYR5Bv2xcf2EFq/9m415BdgCEIMgcTOHG5p
+ ZLaESWUH2lsD2xDLkYxGRCwkuqlxfJmrulvCl1A4FRfKItaqvJsnTzp
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240905_225238_585250_4A6D3BE0 
-X-CRM114-Status: GOOD (  13.81  )
+X-CRM114-CacheID: sfid-20240905_225238_899954_410464E6 
+X-CRM114-Status: UNSURE (   9.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,84 +94,27 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-Some PLLs with fractional multipliers have fractional denominators that
-are fixed to "100000" instead of the previous "(1 << pll->frac.width)".
+The fractional denominator of C3's hifi_pll fractional multiplier is
+fixed to 100000, so flag CLK_MESON_PLL_FIXED_FRAC_MAX is added.
 
+Fixes: 8a9a129dc565 ("clk: meson: c3: add support for the C3 SoC PLL clock")
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/clk/meson/clk-pll.c | 22 +++++++++++++++++++---
- drivers/clk/meson/clk-pll.h |  1 +
- 2 files changed, 20 insertions(+), 3 deletions(-)
+ drivers/clk/meson/c3-pll.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index bc570a2ff3a3..f0009c174564 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -36,6 +36,12 @@
- #include "clk-regmap.h"
- #include "clk-pll.h"
- 
-+/*
-+ * Some PLLs with fractional multipliers have fractional denominators that
-+ * are fixed to "100000" instead of the previous "(1 << pll->frac.width)".
-+ */
-+#define FIXED_FRAC_MAX			100000
-+
- static inline struct meson_clk_pll_data *
- meson_clk_pll_data(struct clk_regmap *clk)
- {
-@@ -57,12 +63,17 @@ static unsigned long __pll_params_to_rate(unsigned long parent_rate,
- 					  struct meson_clk_pll_data *pll)
- {
- 	u64 rate = (u64)parent_rate * m;
-+	unsigned int frac_max;
- 
- 	if (frac && MESON_PARM_APPLICABLE(&pll->frac)) {
- 		u64 frac_rate = (u64)parent_rate * frac;
- 
--		rate += DIV_ROUND_UP_ULL(frac_rate,
--					 (1 << pll->frac.width));
-+		if (pll->flags & CLK_MESON_PLL_FIXED_FRAC_MAX)
-+			frac_max = FIXED_FRAC_MAX;
-+		else
-+			frac_max = (1 << pll->frac.width);
-+
-+		rate += DIV_ROUND_UP_ULL(frac_rate, frac_max);
- 	}
- 
- 	return DIV_ROUND_UP_ULL(rate, n);
-@@ -100,13 +111,18 @@ static unsigned int __pll_params_with_frac(unsigned long rate,
- 					   unsigned int n,
- 					   struct meson_clk_pll_data *pll)
- {
--	unsigned int frac_max = (1 << pll->frac.width);
-+	unsigned int frac_max;
- 	u64 val = (u64)rate * n;
- 
- 	/* Bail out if we are already over the requested rate */
- 	if (rate < parent_rate * m / n)
- 		return 0;
- 
-+	if (pll->flags & CLK_MESON_PLL_FIXED_FRAC_MAX)
-+		frac_max = FIXED_FRAC_MAX;
-+	else
-+		frac_max = (1 << pll->frac.width);
-+
- 	if (pll->flags & CLK_MESON_PLL_ROUND_CLOSEST)
- 		val = DIV_ROUND_CLOSEST_ULL(val * frac_max, parent_rate);
- 	else
-diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
-index 7b6b87274073..e996d3727eb1 100644
---- a/drivers/clk/meson/clk-pll.h
-+++ b/drivers/clk/meson/clk-pll.h
-@@ -29,6 +29,7 @@ struct pll_mult_range {
- 
- #define CLK_MESON_PLL_ROUND_CLOSEST	BIT(0)
- #define CLK_MESON_PLL_NOINIT_ENABLED	BIT(1)
-+#define CLK_MESON_PLL_FIXED_FRAC_MAX	BIT(2)
- 
- struct meson_clk_pll_data {
- 	struct parm en;
+diff --git a/drivers/clk/meson/c3-pll.c b/drivers/clk/meson/c3-pll.c
+index 32bd2ed9d304..a350173efe90 100644
+--- a/drivers/clk/meson/c3-pll.c
++++ b/drivers/clk/meson/c3-pll.c
+@@ -361,6 +361,7 @@ static struct clk_regmap hifi_pll_dco = {
+ 		.range = &c3_gp0_pll_mult_range,
+ 		.init_regs = c3_hifi_init_regs,
+ 		.init_count = ARRAY_SIZE(c3_hifi_init_regs),
++		.flags = CLK_MESON_PLL_FIXED_FRAC_MAX,
+ 	},
+ 	.hw.init = &(struct clk_init_data) {
+ 		.name = "hifi_pll_dco",
 
 -- 
 2.42.0
