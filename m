@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0635FCE7AE9
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2024 08:34:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AC52CE7AEB
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2024 08:41:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
 	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7uVSb8FW1JdDCtJZ7A9ls01/C57D/M6cYOqruxGE1J4=; b=iEksyMtIbEcy8AZdTmFbDrZXjD
-	bslfVKf7XG9bwqEe/rzmxLwPk661uxAtAVgJICj6jsATODFNeHUvEpLzRwdSZ1Mj3YUPeg/KCTom8
-	cmZ1smjxr6hvkpRJzigzZ8FZyBpaqcIxVZc5DmM4MUvZB8arfBAIU3EHE212LyotGdOPerTBs4IKl
-	ScEntJ5rwTTNOegFWLuV9V02F/4FGFpCsXZxY+GEIOAZIdy8tHcg97MojvZjE3BSQmfsPT9XTlzlt
-	a7Gp0C51xoKpDEYptekXkxEo4PI7rmiDDhYIgTHbklubUo6aGSd48uNUbULEmILdBcahxn5VztjE+
-	Ibopq5+g==;
+	bh=sX6FfF9k7NjcA2oqyXgioKmF8J5DZ43uBVFcxredznk=; b=RDOCJOwtRnNRvJ6UixSqnkb2su
+	g8R2q9PE5Da4oeHKLE2l4u0Vj0+dGPZBv2NOMF7eQH6NsYVcxuwFOEcnuJtnakEOmYmkvdWmrL5Ri
+	JBJ9RxK7CO3RjlU4F77B3hZgHaGSUfMgqNuz1oBA5MQ4OkBvCgn6sOmhXs+/vwJ4QqdA9b7bGDURX
+	uDVGpwjPujGyS1SzB57ALDZeqf8ADxBxhhLfamUJgnSjd/Uc3K1pBQ/a8BFNbsATCvW2SRQf7GTXv
+	Mn5SpIeXspwXzIrNyIfDzQXce/HZVWeo1U95yn/4aqYED+uHP1sC8uTgZoFqUJWkSz7QXzhkpbVYU
+	cfMs0vdg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smUQ7-0000000BLZR-1VEJ;
-	Fri, 06 Sep 2024 08:34:19 +0000
-Received: from mail-tyzapc01on20727.outbound.protection.outlook.com ([2a01:111:f403:2011::727] helo=APC01-TYZ-obe.outbound.protection.outlook.com)
+	id 1smUWu-0000000BNXm-2WDU;
+	Fri, 06 Sep 2024 08:41:20 +0000
+Received: from mail-tyzapc01on20711.outbound.protection.outlook.com ([2a01:111:f403:2011::711] helo=APC01-TYZ-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smUHB-0000000BIkv-2fT5;
-	Fri, 06 Sep 2024 08:25:07 +0000
+	id 1smUJ4-0000000BJMP-3A1R;
+	Fri, 06 Sep 2024 08:27:04 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZPA/+SpST0nLD9khyMTbNkjzUlPntWjt4c/3rUftVhogRK/M3ESZ9gY4fy/A9YHDnBzpAU6tiVyenDjgmhk8np4YLnHDtRFPA5mtK8ptinGnKtbR6RgZcdTHUIRXM8R+NkdnPVN3hXZeG6H9j199dfbCZZLqkJDu9orZCka94mcXLB3Wa3O+aQa5wxzSmBbLoWRaiXJlqs0a1DWDIyWqfer2T+Ue9Qxiw7psA/SQGr1tgghG4Lk4Cg8Dfhb9PZ6ITe8mN+4arNPsM1mTEPoOQPLmKBGaNtPMQCObBDUuD5sfEPI5PhCZcNMgUMr+Zq43ak1iLkEOFvvPFcxe/GPpYw==
+ b=LN8odeUYo8buOcVQZWeiQ2FQwTl4mg6Uc/inVFHcH/RYN+duISiaxvwO0PIZTqZQEZTiNFzNe6ckpG1VufdVnsrhaRR5GwI0xePv7uFv9RoGdkvofWVWBTGN+kGVcVJ2o4HXznmcGWrA8YBcLZVyvFDN98vw7jCWmPILcHE5Q+in2t0den6wGfpEyc0gHDrCxvKtgrFub6qb0NpTM2pmH+i6xxCim7L1t5X4/o8IWAStvIhthQbi6jFPbEcr4VESVWnMDKe+8fRo8fTB+yB55uEse29Zl+njqN9CG6cygFDSAnHiRL2suFcY7YJ1lIpCa1oUKQ+X2jZsbb+Tv+Nlkg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s9KDTtncxMAN8/LOeVVGp9boXs/ea3jrl051OSrbifM=;
- b=EPgDZlcaNDwshpleKMwoH9/SISZxjuFfqWz/uSneTJ/OBoATkOsGLL2sWdilUDr+VUw6nyvMlgVbDmg9HwQFkGaW85nBa1TehKoYQunERDLS3ht3lXa9FzCH2b5Ib0Z3yvc8RIGmN3pt6ypSBaNhkpPq9jnlIuHkeRWURzdq6LB5cwqWvAeDojudQjb2uSPnUUHfII2cFBJlTbRzbd0Si2Q1SyUzwz9Bk/cni//epGAVC/UZoMb3xEeac7p5uSBKWUUbpGFhW0478Xi4RZxEFMxSBouf5t8I3HdNFjEy/uw8V7JQ+rUz44HmoB3R3aBDdV/VqZI7ZP0DJHkbp4MbWA==
+ bh=m1ciVIYjbskDo23gAthGkjKyQ3U0/cdZ5/QJpx8TVpY=;
+ b=fX+AWWvKNCVuv5sgJGRwIlHE/HjsHEJ0eAm76tT1HIYPASLS6bp3z6y60HudspdJc7Kr/waE1J1K/qDs2AZsyHFCjslMLHZvxqDJ94DNKDT5btAaBK+yKceKrnZis2wuyP41phqIj25WfrFNMxHN3oFsbToWvHAfptYjHXgJ9N7ep0EXKwLTaqchYz//vinuyAyS9Fa33ygD47VZIU1Hu83Dfv11tD9cJt2CvCd95qr2GtEXSNB3iQrkxyK5H6UhEcsxUKFeRp30/6Mw3umEBS+hPT64yFvoWwSv/ckYVk5XnXbK8rqQz0RowYZfbU6X2RPqZV8/PDAJeW9VCux0xg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
  dkim=pass header.d=amlogic.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s9KDTtncxMAN8/LOeVVGp9boXs/ea3jrl051OSrbifM=;
- b=FlKIdxUhoXhR6grVAgqv7/pAzq/kB7OrrZwdlsOsmntCaW5loElpEad7bcudXuy9yRIGJPr0+Ezpazd+KOOorFb0nqaIIFCbMwDdc5zNZBpyWziEGK3Z/0vmwgnvZFp/nifvBhm4v7urG7SfRNrm0RNLQEyI9ITxk/isdFYK3rwTB+TOeyhuxGXHuEtPPOAD9y5XpPFJRq/U9yCLaNGd+5RTQLsv/PakEIEEoilqhxtwPxFss/frVZlNTd2TuM1teRXjp4xs1/Ihe43ISSSuvTvT5ZawoU+E70vVthBxg/SP1nPBAs3gWjqdpQ4dOYDV/eXtZBXll8O03ngm7WuG8A==
+ bh=m1ciVIYjbskDo23gAthGkjKyQ3U0/cdZ5/QJpx8TVpY=;
+ b=tShGm2QP+94Gu5Eh6jaIMG7yGjTt9cVLUkuvNf2KyrPJuRYLX27Z0IhKhQ7ZMMxNJ/jlsJBa3WD+QBjikdupwwHGa8LUK/xidSHKr3dTIEZfZbLbo6/C7M3FrYehoC6D4Sni0EOuospR1Hs/6VJFodmNdG273UVQBxOqDhNbwSE4jpdNZT83CWH6mVy7k+SbRxdBDEd73/E2CW3nzjArGYu6zEgWSqHI+d3/q7X6fx3WC+Nv8TUzJFmxJr1X0CsyKdrFGooSrhbvB8ZVA0prERWNsi5MGGJqPRqXIWwnBunYMYOiYyE4yDRPyYRHB3tDi3eXbXWwihRCUq7BGVk4gA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amlogic.com;
 Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
  by JH0PR03MB8023.apcprd03.prod.outlook.com (2603:1096:990:36::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.28; Fri, 6 Sep
- 2024 08:24:58 +0000
+ 2024 08:26:56 +0000
 Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
  ([fe80::9d11:d1f6:1097:22ca]) by KL1PR03MB5778.apcprd03.prod.outlook.com
  ([fe80::9d11:d1f6:1097:22ca%7]) with mapi id 15.20.7939.017; Fri, 6 Sep 2024
- 08:24:58 +0000
-Message-ID: <9ef42da8-ac90-43de-8630-04cc8dc50783@amlogic.com>
-Date: Fri, 6 Sep 2024 16:24:27 +0800
+ 08:26:56 +0000
+Message-ID: <c2555924-8669-4aec-addd-da54fa4d34e2@amlogic.com>
+Date: Fri, 6 Sep 2024 16:26:25 +0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] clk: meson: Support PLL with fixed fractional
- denominators
+Subject: Re: [PATCH 2/4] clk: meson: c3: pll: hifi_pll frequency is not
+ accurate
 To: Jerome Brunet <jbrunet@baylibre.com>,
  Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,
@@ -66,103 +66,103 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
  linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20240906-fix_clk-v1-0-2977ef0d72e7@amlogic.com>
- <20240906-fix_clk-v1-1-2977ef0d72e7@amlogic.com>
- <1j34mds2ak.fsf@starbuckisacylon.baylibre.com>
+ <20240906-fix_clk-v1-2-2977ef0d72e7@amlogic.com>
+ <1jy145qnil.fsf@starbuckisacylon.baylibre.com>
 From: Chuan Liu <chuan.liu@amlogic.com>
-In-Reply-To: <1j34mds2ak.fsf@starbuckisacylon.baylibre.com>
-X-ClientProxiedBy: SI1PR02CA0036.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::20) To KL1PR03MB5778.apcprd03.prod.outlook.com
+In-Reply-To: <1jy145qnil.fsf@starbuckisacylon.baylibre.com>
+X-ClientProxiedBy: SI1PR02CA0037.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::13) To KL1PR03MB5778.apcprd03.prod.outlook.com
  (2603:1096:820:6d::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|JH0PR03MB8023:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2c704cb-355b-4a12-2967-08dcce4d6516
+X-MS-Office365-Filtering-Correlation-Id: 07667471-2f8a-4973-73cc-08dcce4dab45
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WWhvMW0xMXZ6QzZOYW13YmVlUDR3UDcyV0ZEVWtXMjJ4VjlxWVgvbnRveVN4?=
- =?utf-8?B?ZUhYaVN2ckNCaTQwTkxOb1F5aWdURndpNWhUMlNtMUdYdm5adHAzSjJWbTRy?=
- =?utf-8?B?RGh5enc1Z0YwQ3lSZkVZeUVqbitBRTVGZDVUZU5uYXJZbnB4QVBTQmVQKy9m?=
- =?utf-8?B?ZzJQZWMwbk9UM0dyWTVBWEhPS1duUDUxY2lUcXVPbzgzVVFnTytyQ1RUdUk5?=
- =?utf-8?B?b2xnaDNQMXlLK3VyT1RCWWt2UkdrRFo1ZWJUdUlud3Iyd1U2YW9rR1NIV3JL?=
- =?utf-8?B?cmpiL0FTVDdDMkwrbm8wVFFUdVFGclZ1Z2ZaLzNmTWZDZ2dISXIrRmtlZzdn?=
- =?utf-8?B?YzIrdmc5UU9NazA4NVZkOFJCZXd6NXVlVDJvZnZEa3FtNmgxQ3ExZm1xSUwx?=
- =?utf-8?B?TlVNa2RvenVzRERFU00ySTB5b2wvK1Q5ZWx4Z3lrdUZRVGVud0Nnb1VyajNv?=
- =?utf-8?B?bmVsMFpRRkdsVnJpWjFPdm9YdFpXY3RXSjNGYmlEVXIzb1lZMCtQalRUOGVV?=
- =?utf-8?B?SERJMENFRUNUYkdialRZYXlqRFE3M1d2emVpVTVXdEM4K2NQNmNyNFpNT0gy?=
- =?utf-8?B?Q0x1RUQ2QVdrYXpuc2VranV6aGMzM3ZwSHVlY09hSzRLTWFQUlFmdXhQbmV3?=
- =?utf-8?B?NHVJZDdqVWxiTlpnSzB5MVNvVGEzNVhlcjNnOG1Jekx0KzNGcXJDQWtJNmlB?=
- =?utf-8?B?TVcxLzFLdm5CVy9mR0E1bGZvVWhsOXBVbElsZHNrZnVUTFE5RC9XU3ZDSkI0?=
- =?utf-8?B?dkxkUENuUFVuTjZ4UHlKajhJc1hmYTdqcDhYb2pKSitZVGtTYUhtMEFndkl4?=
- =?utf-8?B?MVJMWFBFTi9mUVVrTU1oZzVucE53dTEwR0M3NUtZYUkzQ2phT1RacUJNNGJy?=
- =?utf-8?B?RHUzaER6WUtYOWhmeDE5T2hla2JJREV1Yk5uMVp5RXFZczc3dnZpNi84ZjJK?=
- =?utf-8?B?anBmVnBVc1BTODJERFZMbHQzWkpURVI5czdOSWwxdlEzVDk5OUhXY2lzdGdD?=
- =?utf-8?B?cGlESnlMa0NXL2R5NmMxTlQ1eEFPQlgyUU9qb0ZmSXVGdTljcTQrTnRGY3F3?=
- =?utf-8?B?WkRuc2hLUjFKWTBaMXBtR2JobDgyckxMWnFoa1NPdWhKditoWVVEVUpCOW1n?=
- =?utf-8?B?eUNjVDI0SXY0cTVJYmhaelFuYStCWDhnWDZtQzlzT1hVVFRrL0ordXViT3Ux?=
- =?utf-8?B?Mjd6eVdOU1NZMU9NWGtoQ25CK3FwTzlVSlF0Z1hteUJ3K0ljQ1BMeUVNS09k?=
- =?utf-8?B?Wm4vWDZpSzBUNGYwWkxtVEp6bVJTMkhoWXJob1FjQTN3bWNoeGNiMlZPQ2Qr?=
- =?utf-8?B?Z3RSL05GVTQvYkVubVZIMVI0bXNjRUdpTDhNdmRBT0hsYXZmbGNZSXFUQlA4?=
- =?utf-8?B?dHYxYlFXaXlNcGZkMTlxWERIbTcyUTY5ZTkyL0JvLzVvVWZyNnVxeE9SZXAr?=
- =?utf-8?B?SG1seWswUlFqZElENGZSeHFySWpVQ0d3ZG9qR1A2aG1Ia0dlNlA0ZnNUT0dL?=
- =?utf-8?B?UE5yemx2NG5FYzB6TXFZeG5LN2QvNWJmc2xkblNMU0svTFhxWE0rRWEzck1o?=
- =?utf-8?B?MG9wN2R0WHVSVWIvL0RuR2IvWkNkMGR3T29Ma0xsWG9zcE5IVEVLRDl0QldS?=
- =?utf-8?B?UmxFOUxKRmZjRWJQdFoxRGozSFhuMmU3TFF4cDZhT0VDYkprQzhUTjVzSUxE?=
- =?utf-8?B?VVdJUDhqRmNwNDFaQmtPcWJuVWQyV3c2b1BYWlNBeVdZWlBtd3JPK2E1blM4?=
- =?utf-8?B?K0dZWGJ5WUdJWjBnc3BYVW0yVHhZajE0d0FzenJJdmFXS1Ivb0FzTkYzcmRy?=
- =?utf-8?B?b0VQdzZOS1lUeXc0QXM0Zz09?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?d3hidldvQU1pZ3lVUTNFVXZlMW9GNzViYzlZVTNHOUd4b3RmR1JhMFBZRjRB?=
+ =?utf-8?B?S05xOC84K3UvSThPNkRLSGZmWGttcGVDcS9kZi95REwzSXQrdWNNWU82YXVS?=
+ =?utf-8?B?UmxpejB3REVUUEhWcHJ4blNjQm1qb3JJY21iNUZ5dTR5SlpHcFQwZk9obThq?=
+ =?utf-8?B?alJRQTRWMkRRdE5UY0Y1ako1ZWpnbHgxNllWaFdRRW83OVFoc1VTa0JTZWhB?=
+ =?utf-8?B?YWh2bU5WbkRBTThua1dkUFRkWE9YTVI5VUZ5QkpmQVdjdUhpYVhNeUhVMC9h?=
+ =?utf-8?B?RmRwSmIzeVZwWHNhWERPdERXNHBjcTJNYysyZUM1ZEx5ekJBRXlvdTVXaFBT?=
+ =?utf-8?B?cDF6SkVHTkkrTGtxWnpJdW1aM1dpZkk0cGZPaGRuREp6YjAxV0dCU241dlpJ?=
+ =?utf-8?B?UWtDWGp1N281eithS1lEcitVS2g2UXRQMFdrRVF3TzJZS2hsS3g4WXpwMlRZ?=
+ =?utf-8?B?bUJybFdZQ2N2QUhWVkxPYUJkQ2JXWlVYWkMyQzBZektOd0IzNnc4bi9VdW8w?=
+ =?utf-8?B?ZEpwcWN0bkM4Q0YyTTdPOGpHYmx1Wng3cTVpMElGM3NKR3ZvTTRwYWw2YVhu?=
+ =?utf-8?B?TWRSNmM1VFo5MkNRL2xFcmlHVytlcytkRkhzWGkrS3N6WVdTQ3pwQ3RsUVlL?=
+ =?utf-8?B?bFhxbDZuYXFNRU92eFhPOTJrU09UaWxLSklZNHI5MXBlZzFuUzZxUE02QU84?=
+ =?utf-8?B?ZkREMlFTMktXNmlkS005MmJQUlB3ZFd6Z1RHL2VWbmtOR3BOQXR0U01iZVBw?=
+ =?utf-8?B?MURWV2o2VUgxU21KQWkvZWZuWFovNU4xS3VxaWNJRnBVQVhjUklPS0lhTG1I?=
+ =?utf-8?B?RU9xdFB1WUk4NFZvNGJ5RGdqenJvdzQvY0xtWkJXL0Y4UlVKemk2V2dnbG5I?=
+ =?utf-8?B?R0Ruc1BWWUdoaGVTdTV0RVhQek5Vb0hxWk0rMCt2UU1GSkxTQ1NaSUc0TFI0?=
+ =?utf-8?B?TzJJUGpzU1lRVFlpMkRuK2h2NjdEb2I1VFNZNDNXdnhwYWVPUzByQkpSNXZp?=
+ =?utf-8?B?bW5UTlVwTUxCcHJyd0lIZGllaDdTSWI3bHl4N0QrYTAvYmIvWkdxQno0SGhQ?=
+ =?utf-8?B?MWdCT3pSakJTNUwrSWRKNndWblR3NnpQb3IyUmE3cUExZnJIalkrVWtjc3hG?=
+ =?utf-8?B?TTEzeWQzd3NqVUp5SmNUaUlpZmMveWh5YmdVYmg4Vk1raHlqRG5aWUwvLzQ4?=
+ =?utf-8?B?dWZLK3k5ZUNOK1RjL1BpUkRHUkdwRE82VnZzbDBpMWI3U2pQMVNDTXBqSkQy?=
+ =?utf-8?B?b0dsaC9GYnMvRyt3ZmlzMU9td0lHVkFic0NRb2dlK09TdFBieDNHWHBseFM3?=
+ =?utf-8?B?RWlLUytJVkVCbm0vVzI0OUtWa0VVVC9mWFVzU2piS2pSOC9xdk5LME1IVko4?=
+ =?utf-8?B?aGNTMVI1T2xsUEtIVHZ3TjRjWE1SaE1wSWZJNkZZRWx2NmJacXh5Q3NlQ0xk?=
+ =?utf-8?B?bmpad1FhQ3crczRhcHNIUURNNEx1NlZWK1hXWC8xemJ6Rmp2aUVxYjF2Q2pn?=
+ =?utf-8?B?cXViNldPYkJPdlhMTzlaZ2plZXZqQUJneDZYTDBOZDJmZnQvbyt5LzlmZkNq?=
+ =?utf-8?B?SE9ONU1DRVlUVk1Vc0ErMVJnbFhLTkIrM2hzemZReHVLUUsrUGJEK1A2RG8y?=
+ =?utf-8?B?OVp0WVRUWURIZCthb3VtRzA5ckVlWjZvWjFIWjdFRUl6RkYyL1pRLzQ5SUx1?=
+ =?utf-8?B?RThUQ3JGYlY1Q0hqb0VnVVdZdEhpN2EzTEloOEcwd25YbDBkeXBjZ1hkSmtX?=
+ =?utf-8?B?cFRqdURDNTlLN1FtZlFqYVIvUEJ4Uk5JVEl3ZGFWQ04wcExmcis1K0hOQVg0?=
+ =?utf-8?B?S0xOcndNK2ZZdWtiMFBoQT09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c3lEVmFmbmZ0UG9GYldHbmdRY21uUnowdjIzTDlmbmhKNlE4VldLdGR0SVRP?=
- =?utf-8?B?cmxDMEVmZ2pmSDdOVjRzVDdpb3paOFdETmFXS0JLbDFGVGQyeDFFSlp2bktH?=
- =?utf-8?B?VDFmZFQ2ZkNwU2l0T3pJbVo2RWlPcTRwVExUQkVub1JKRnVCVTBpY1FnTU5h?=
- =?utf-8?B?aDNLdzc2L3VHZnNLTEJ5V3Z3MGFLQnpiUnJ3dFFDTGwydG5vM0dMVHVSSlVF?=
- =?utf-8?B?QlFWRkppZ1hhNExsVGU3R29XaEdDZDlvTnViTVY4QWVGSHJzRURvZ2tMa1VH?=
- =?utf-8?B?eHpVbzRvZjlHY2JsbTMzMmxtVFFETVA2UDRVQVN2dVdTZXBLVFdrWHBFMmdD?=
- =?utf-8?B?VnR4ZEFJTm90UmkxM3BEaXVrNXl3TGN1ck53eVh1Y2RzempRWjdNeDBFaWdm?=
- =?utf-8?B?Vkx3dFdvRWFPaDNMb09qWlEzWDg5alhraXhZazg0bnJwZHpBaUxwaDRQSGpE?=
- =?utf-8?B?aVA1RHh1amY4Um1BVkdhenEzNll2WWdGOTU1QTVKS1VhZEw2MS9janB1alVY?=
- =?utf-8?B?cWlkUVN4dWNobWMxZDAxYitXd0U5NWFoQnpSaXE3eDFKd0VZZmszeUNKcWc0?=
- =?utf-8?B?THE0eFJ0djExRUNQUThYWE1zeXpFTTVnMlU3SXJvU0FXTW5GN1NGYlAxQXJ2?=
- =?utf-8?B?dldQTzJrWmo2Zzd2V0xMNmE0eitIMi91UGkxRmZlaS9XT1VjcXpNQjE1V3Qy?=
- =?utf-8?B?bkxZemI1WG0zOVo0MzBUUzJOb0s5ZkpPUTduZUNYNHBvazNDQTVyeEVRMGsy?=
- =?utf-8?B?WTFlT1dmZk9yTmpLdHp2TG9kSUVDYXNMRGV2YXYva2tFQld6K09MUGxJc0ty?=
- =?utf-8?B?aWI3VnluK1JuNGMzbjEzbDRTcjJacjBUWEJRSTVHU3NJWHN5ZzMra0k4QVNC?=
- =?utf-8?B?dzV5cUttYlJoWVJyUjlsV2lrYkdvbnE1dlJHUW5FRGlpSFNjZk9vN3ZrMmtv?=
- =?utf-8?B?bUpaNFBaa0w4RlJuQndMV2ltM1FncDJXZE5FTERKcXowTE81VGh2WUlWWFNn?=
- =?utf-8?B?cnMwZExObUtlZnp1YXp5dVhLZ0l3TU9uazJoSit1MnMvZnJvUUx5dEVuMzJ4?=
- =?utf-8?B?ejRPQ1dia2NiWXhudWd3TVJTY2xJVFI1UHNhVWljTUJBWXlhbVREanRneFlr?=
- =?utf-8?B?VlI3eUdEUnI3RUpmUFhWbGIzK2VzdWNKdzVIZnIxQVRZeWJUalMzZ0tyVFZo?=
- =?utf-8?B?MVNxbWdKcVMzcEpzcEt1VUpTTlQ3M3dsR2hQZ3U0RWl6L3ZmeVBMbTZTUUxD?=
- =?utf-8?B?dDZMdW45R3FrZnNDMytxUTVvejNjbHByeEZEZEQ5UlFDZnhydXJVaE51OXl4?=
- =?utf-8?B?dE0rdU9TdkRnZXBjV0NYaUVLa3V2eHczMnBBa0RpVkUvVzhGWEIxSW5WRlE2?=
- =?utf-8?B?ZDczc2NSa1dkcVovT0UzMXUwMjArZzJZYlVZams5SFpCdEtld2VFUDFCbUlH?=
- =?utf-8?B?ZWNTZnZYTDdWcC9zSHdqaXczK2VEdDNTWVZkMVhDRkVnN0VCUCtxSU92RWR2?=
- =?utf-8?B?ZjlZMVhjTXlyYVpkanBBWGp5RWtUYnZLUjFQLytVb09GV21ZeFhqQmRDek5m?=
- =?utf-8?B?enlLMytnazdQdGJsTlEzeXUzQUdxS2FnY3BmazRwZTdXMzA5T2xadTRNSHNl?=
- =?utf-8?B?YnluaStZRmVnMyt5Q3hYT3RNMnNId0RpUzNxVmN0am41VnlRNVU4eStYcXMv?=
- =?utf-8?B?SHpNTXFyL1dLU0dhbzIrV3E0bmhCTXdmUUlkb284Q1ZBWC9pY090dDdVTll2?=
- =?utf-8?B?RldVQkt1UkdFUlhITVhQL2pkbGxaeEQxY3M3bXBNTXlVWXFNNzlnTlpzbGhT?=
- =?utf-8?B?SUJBOUFVMlRmUTcrMmN5eVI1WTRZc28xVkg1VnZMdGFmWm85UnZQWFBrUjFx?=
- =?utf-8?B?VFBSZVFpMjZBenBjcVhjS2JKaFd5RkN2RlhDKzcwZ2FtY21QVjVOcVNLalp5?=
- =?utf-8?B?RU5jUS9tNzhRSmRGRUJqODFFNUFoMUs4QXprUWk4MXQrZVpUZXlkYjVTcjVQ?=
- =?utf-8?B?NlVoUGl2SHVPbDZLUGlkSnNSUS96UmQydjBoc1pxL0Z5NlgrL25QamhQMVkv?=
- =?utf-8?B?YmlMWlM0V3l4NkE4ZXB3SGlSVmpVa3JTNy91eGZkMWNiUFJUejMxSGlSdTJm?=
- =?utf-8?Q?2MtyvFTHMO5ib47NRI2x/6FuB?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K0ZuSkZlZU94akdxbHB3WlUvWVBaZTNDMjZSZWZBdHNudCtiZW41d0wvZW1p?=
+ =?utf-8?B?RUlnUWtTMVhQd0U3QWZKeE50WThGeXJ0aVpYTitoNUtZWlI0VnN2REk0M2th?=
+ =?utf-8?B?aVRkS09tekplZkJlUWhlUjduZ3k3cXhBekdKazI3alNxWVVEM1RhZmFtYVZU?=
+ =?utf-8?B?SDl3OXlCVWtselpraXdKRy90ay9LdnRBNlhDd1RDbkwyQ21jUkZpOWNBai9i?=
+ =?utf-8?B?dWY0WFpOUnhGbjNodlNTNnZwZGpTNjJWV0JzUUc0TzJROGltNjRTbzB0U0ta?=
+ =?utf-8?B?K1N6QlExNFVKWi9GVGJkdi9kU0FCVytteWNXdDU2V2lHUGRCRjZObVNOc0Ju?=
+ =?utf-8?B?RzFEZlIrd0htblI1SzNaU2NiaURYSDYrTTZRNGNjc3IyOXcxdXEyUkIzZVF6?=
+ =?utf-8?B?ZFFxaDJwMHZWdUhpVlJPNGF3YXA4NVl4QjAyNXlZaGhlcWNkR000UktTNWlS?=
+ =?utf-8?B?VWtVbkxmd3JJK2JSdCtmam15MGx0VmtRQVI1YWp4bGVrc1lGQVBqSVBxenVs?=
+ =?utf-8?B?S3oyRHBzRWVMREZVTzJsVFFXYWt4MU4vNlV0M1dnbExpNDFRWjlkMnhmOGg4?=
+ =?utf-8?B?M1FnWUg4eFdFMUxBMXhNbmRlaWUwSTJOQ2s3b0dzTlluRDlkUmxIWEZGdnBJ?=
+ =?utf-8?B?RitxZlNsbHQ3TUV5QU9pdWVCd2tMaTVsR1JBR0o1ZG5UVlNlcTVpcW5iS0xL?=
+ =?utf-8?B?aEg3OFJ4ak40QnNqZ0hEem1zeTBRQk1JelpHd2prb3htdDlBYWMwNWZFdWFZ?=
+ =?utf-8?B?Vmg5Q0FPSTcwckJmMVIyNHd3Y3ZndmFWdTdYdjZaOVRMU1pHTm5HNURxNUl0?=
+ =?utf-8?B?Yy8rR2RuQVZkWG53Uk4vUmVWK1dPdmNtditvc1djVUtGNkhMWVJXQ1gxdmZS?=
+ =?utf-8?B?NGtlb01XeFV6eEdadlZpWjg1WVpvU2diK1A0clJWMXl3czBMZnJLSTZPcFh2?=
+ =?utf-8?B?YUlHZlVkNjY4NDJNUnR1YmtBMzlVSkZDdlN0b0IxdTlWYUNGUFhzdHFJMUdp?=
+ =?utf-8?B?YndQRXIrTFJkUVZpSFIxNUZtbXJTbWxiWDFXblFLVm85a2V3bk1maTU2M1dR?=
+ =?utf-8?B?U2F1c3hRQTZCakc0ZVR5V2tzYzRpNFY3NW0zM2RDREgzTjhBOElEYlBRanoy?=
+ =?utf-8?B?eG55d3g4cnpWTzg1b2QwcHk3Vm53aENXd3U1bFhKOXdyNGRudFAzL3pjdk5R?=
+ =?utf-8?B?MGRlZTFaZ1ZEZno1VHBRc25FR2tYekNmdGtseU1kYXhzNDZNdXBNMS9qdHFx?=
+ =?utf-8?B?dzVmSTNHMUJZMVZYQVFYSlYyRjUzQUV5VlJWQW9OWU0rb0pZWjg0UFFrOTBr?=
+ =?utf-8?B?NlpVTHp3RjlVUlg5OGNqSnFpK3VGcUE0ZjFDbENjc3ZYM2xPU1ZreGNNRDBT?=
+ =?utf-8?B?UFlMZzhNU0RIS2MvWTBMcWErUlhEUm9NRmE4WlFDNjJTalhiaVZwKzIxNFRT?=
+ =?utf-8?B?aFMvN1RwK2VqeTh4NXpZcEFwemJidEpOU2szU21zLzZkQm84TDN1OGduNk04?=
+ =?utf-8?B?cFZ3RlBQZFpXSlg4VVI5ZkdkaUJ2RDAxMGxmVXI3bmhsTTQrOWNSMFI2TFJw?=
+ =?utf-8?B?YjV5VzRjcTc3Mk9Ud1cxYk9wTk8yY0tQNzV5M1J3Sm9RaGNLT1NMQitzbElO?=
+ =?utf-8?B?SkRGaGFhaWc0cGNmWlYvREJFVkxnUHBXUGdMUTFvNmhveDJWWUJqdHpZSTQv?=
+ =?utf-8?B?bDIzeUpZZnBMNUo3ZmVMTHgwR29VVDMxbzc1bWxiK1k2VVRvcHp4cFZISlFX?=
+ =?utf-8?B?WUYzK1MvZGlqcXJHR2dsYlhNYjY5elNMbHhaOU9oVE1tSnhqOUFMdk1qb1Jw?=
+ =?utf-8?B?YTRUY2drZkhaSXRNU01GWWVHZXpzRWxqWFlFemY4bjBUN3lJUWpJNFJ5U3V6?=
+ =?utf-8?B?bzRaSWM2WTdkVXMwbG1Mb2VoWldZbDlPVjIwM0NZalFhYWNnSDUvSjNYNnBK?=
+ =?utf-8?B?NVlxb212NDZYTVFPZGRpdUM4c2RGWFVRZU5SVEM0QTZjWldLZ2UrczJ4Wk42?=
+ =?utf-8?B?T2xaNUNBWUt0L3hFTjFHRXdybmlJSDNSMDllZElmb1pFa3MzT1FiMVlycHNk?=
+ =?utf-8?B?ZWVCam1MY3BpUU9WL3NqRTliVWVCU0JRcDc2UkQzZTRMNE4yb3RJMUxyNmE4?=
+ =?utf-8?Q?L5nkOnz58ezdo7Mh+lpKfJDnm?=
 X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2c704cb-355b-4a12-2967-08dcce4d6516
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07667471-2f8a-4973-73cc-08dcce4dab45
 X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2024 08:24:58.4703
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2024 08:26:56.1948
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7Y38ZgKzI2uc0cQ0i3FM+fVNd7dvUFbvPpf4vnEabHhwp8PcHw1ex1ePEfyLvhP+LlFr4c/Q7uHkCO1yweTGFQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: P061fcz6tk90CuIHNm9jW6V2XO0SJ39070cHe/2Hbs+Emkst82ey4DvBMGatoJc7ct/91ugpEoRvQyW43jAucQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB8023
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240906_012505_721918_3741FAC8 
-X-CRM114-Status: GOOD (  19.28  )
+X-CRM114-CacheID: sfid-20240906_012702_837694_E45AC0A9 
+X-CRM114-Status: GOOD (  14.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -180,110 +180,43 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On 2024/9/6 14:51, Jerome Brunet wrote:
+On 2024/9/6 14:55, Jerome Brunet wrote:
 > [ EXTERNAL EMAIL ]
 >
 > On Fri 06 Sep 2024 at 13:52, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
 >
 >> From: Chuan Liu <chuan.liu@amlogic.com>
+> The patch title is not good. the clock innacurate ... Ok, but you are doing
+> something about it, right ? Plus just saying that is a bit vague.
+>
+> How about something like "fix frac maximum value" ? This what you are
+> doing, right ?
+
+
+Right, Fix in next version.
+
+
+>> The fractional denominator of C3's hifi_pll fractional multiplier is
+>> fixed to 100000, so flag CLK_MESON_PLL_FIXED_FRAC_MAX is added.
 >>
->> Some PLLs with fractional multipliers have fractional denominators that
->> are fixed to "100000" instead of the previous "(1 << pll->frac.width)".
->>
+>> Fixes: 8a9a129dc565 ("clk: meson: c3: add support for the C3 SoC PLL clock")
 >> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 >> ---
->>   drivers/clk/meson/clk-pll.c | 22 +++++++++++++++++++---
->>   drivers/clk/meson/clk-pll.h |  1 +
->>   2 files changed, 20 insertions(+), 3 deletions(-)
+>>   drivers/clk/meson/c3-pll.c | 1 +
+>>   1 file changed, 1 insertion(+)
 >>
->> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
->> index bc570a2ff3a3..f0009c174564 100644
->> --- a/drivers/clk/meson/clk-pll.c
->> +++ b/drivers/clk/meson/clk-pll.c
->> @@ -36,6 +36,12 @@
->>   #include "clk-regmap.h"
->>   #include "clk-pll.h"
->>
->> +/*
->> + * Some PLLs with fractional multipliers have fractional denominators that
->> + * are fixed to "100000" instead of the previous "(1 << pll->frac.width)".
->> + */
->> +#define FIXED_FRAC_MAX                       100000
-> When the next arbitrary limit comes around, this will get very ugly.
-> Instead, please add frac_max to the pll parameter
-
-
-I also had this consideration before, and after confirmation, the
-hifi_pll of the subsequent chip design will continue to be this value,
-and the hifi_pll of the chip in recent years is also this value. So
-let's define it here.
-
-In the next version I replaced it with a member inside the structure
-member of meson_clk_pll_data.
-
-
->
->> +
->>   static inline struct meson_clk_pll_data *
->>   meson_clk_pll_data(struct clk_regmap *clk)
->>   {
->> @@ -57,12 +63,17 @@ static unsigned long __pll_params_to_rate(unsigned long parent_rate,
->>                                          struct meson_clk_pll_data *pll)
->>   {
->>        u64 rate = (u64)parent_rate * m;
->> +     unsigned int frac_max;
->>
->>        if (frac && MESON_PARM_APPLICABLE(&pll->frac)) {
->>                u64 frac_rate = (u64)parent_rate * frac;
->>
->> -             rate += DIV_ROUND_UP_ULL(frac_rate,
->> -                                      (1 << pll->frac.width));
->> +             if (pll->flags & CLK_MESON_PLL_FIXED_FRAC_MAX)
->> +                     frac_max = FIXED_FRAC_MAX;
->> +             else
->> +                     frac_max = (1 << pll->frac.width);
->> +
->> +             rate += DIV_ROUND_UP_ULL(frac_rate, frac_max);
->>        }
->>
->>        return DIV_ROUND_UP_ULL(rate, n);
->> @@ -100,13 +111,18 @@ static unsigned int __pll_params_with_frac(unsigned long rate,
->>                                           unsigned int n,
->>                                           struct meson_clk_pll_data *pll)
->>   {
->> -     unsigned int frac_max = (1 << pll->frac.width);
->> +     unsigned int frac_max;
->>        u64 val = (u64)rate * n;
->>
->>        /* Bail out if we are already over the requested rate */
->>        if (rate < parent_rate * m / n)
->>                return 0;
->>
->> +     if (pll->flags & CLK_MESON_PLL_FIXED_FRAC_MAX)
-> Certainly don't need a flag for that. Use a parameter and default to (1
-> << pll->frac.width) if unset.
-Okay
->
->> +             frac_max = FIXED_FRAC_MAX;
->> +     else
->> +             frac_max = (1 << pll->frac.width);
->> +
->>        if (pll->flags & CLK_MESON_PLL_ROUND_CLOSEST)
->>                val = DIV_ROUND_CLOSEST_ULL(val * frac_max, parent_rate);
->>        else
->> diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
->> index 7b6b87274073..e996d3727eb1 100644
->> --- a/drivers/clk/meson/clk-pll.h
->> +++ b/drivers/clk/meson/clk-pll.h
->> @@ -29,6 +29,7 @@ struct pll_mult_range {
->>
->>   #define CLK_MESON_PLL_ROUND_CLOSEST  BIT(0)
->>   #define CLK_MESON_PLL_NOINIT_ENABLED BIT(1)
->> +#define CLK_MESON_PLL_FIXED_FRAC_MAX BIT(2)
-> Remove this.
->
->>   struct meson_clk_pll_data {
->>        struct parm en;
+>> diff --git a/drivers/clk/meson/c3-pll.c b/drivers/clk/meson/c3-pll.c
+>> index 32bd2ed9d304..a350173efe90 100644
+>> --- a/drivers/clk/meson/c3-pll.c
+>> +++ b/drivers/clk/meson/c3-pll.c
+>> @@ -361,6 +361,7 @@ static struct clk_regmap hifi_pll_dco = {
+>>                .range = &c3_gp0_pll_mult_range,
+>>                .init_regs = c3_hifi_init_regs,
+>>                .init_count = ARRAY_SIZE(c3_hifi_init_regs),
+>> +             .flags = CLK_MESON_PLL_FIXED_FRAC_MAX,
+>>        },
+>>        .hw.init = &(struct clk_init_data) {
+>>                .name = "hifi_pll_dco",
 > --
 > Jerome
 
