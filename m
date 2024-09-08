@@ -4,93 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79901E6FE2F
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2024 16:16:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A705CD4F4C
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Sep 2024 14:23:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rTWF20CopO++g/yRfonAwmC81TBrCxm4B34XV6nSNyw=; b=t0s3rbnSw0nQcp
-	/BLWy+ymNoNsqXi1PgJrIF5SodOuaJWh3FT6o+mMwyPyovLOj07yCVSldZ5M5aloX7AIqfgtgLX/B
-	RkJoXRbMw5fSotoyG20/5MKxCkZmBv/rDrcNT7g3gZItJRzQW34X/dNW/Po8KWxs2kE0GumTn0uWP
-	gWcHdT2P1HYjMATrJ7jMFTP67y+AyRAXiOdJKXuqfl3JLhOoac2yKN5hflk5vEGcDPvSPb0I0dz+D
-	8OY+WHO62kaRLe67Y00W6SH8nE+PJWBR0k6xRowlDm9DmaU9bLAEnkeAxpTmVv84lB1b59YfveRa2
-	1H6KLD17klf6XrMMtxxA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=0XGHvt9ZhyayUxSJyAeHWfKCThxTKtEnRpSDwgrqpG4=; b=l4haRG83FBtzXJ
+	aWwjrg2MlxmvP0gpAsYDZ0CnXLu0UZmbnD4Q1tqnnEL/lxqqFI70t2duDcu579HaRveOCebNOkYcA
+	7h9vRg9JD+3E0b8jKdshl4q76gGpKuacrcaXZaepmUN+BWqTZCdhk3NbCOJadAQmqALIb1lBhNiIe
+	5/SxmJ3ilgiqLmdyOX0qqoHQQ69TvKr5B455jPgADn9dTJVIbBSxo919liOAzL83Zve+noJh8ntR/
+	GlmHlX4bNwHVXDOTtMwpOwtxLbtoxi1FKzddQK4HHcTF2sp7VkiDYvv8WwZw06iEjFokPz7VaI+iO
+	kU0b/ItMICRdGi41YEUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smbda-0000000Cvdv-2yFX;
-	Fri, 06 Sep 2024 16:16:42 +0000
-Received: from relay2-d.mail.gandi.net ([2001:4b98:dc4:8::222])
+	id 1snIoa-0000000GwCv-03No;
+	Sun, 08 Sep 2024 14:22:56 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1smaVS-0000000CfAN-0rwB;
-	Fri, 06 Sep 2024 15:04:17 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CF91E40004;
-	Fri,  6 Sep 2024 15:04:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1725635051;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pBrEPabcmi1+PMKxDT3k5ophfYgYbtMNtcQd4KLDDOE=;
-	b=WyKWtegOFLdMLP623+7iNJF766m23Vek921Hg8qkxv110ANSAeJNV7SX+BQVCgoVsCjyUz
-	lKudoIUnUimLrCxHFGso9St5C4FDX9M74HkBIc81wuvBR3Ks6DAkXFolWBhKCSLRcqmmn2
-	Mh+IUeEd/zK/jHf1yR8otxqYeYAzEKCIMOxvGD66PK9jikgFoQM3rGrynQN3NkBB7FOV4t
-	X3+Ac8HKwQ0BGGjoEv7HxXtPkmfmTr4HyeP5jUaN5GHafZ/yre0WtEel6lp8vxaR53GKM0
-	dy/wyLmYEOLR8BfLHXLgJEazizbCy9ohyD/0jA9v6N1hFE7MlhkrAU5UEwQCQg==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Jinjie Ruan <ruanjinjie@huawei.com>,
-	miquel.raynal@bootlin.com,
-	michal.simek@amd.com,
-	richard@nod.at,
-	vigneshr@ti.com,
-	liang.yang@amlogic.com,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	heiko@sntech.de,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	wens@csie.org,
-	jernej.skrabec@gmail.com,
-	samuel@sholland.org,
-	kees@kernel.org,
-	gustavoars@kernel.org,
-	linux@treblig.org,
-	robh@kernel.org,
-	u.kleine-koenig@pengutronix.de,
-	erick.archer@gmx.com,
-	christophe.jaillet@wanadoo.fr,
-	val@packett.cool,
-	christophe.kerello@foss.st.com,
-	linux-mtd@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	krzk@kernel.org,
-	jic23@kernel.org
-Subject: Re: [PATCH -next RESEND 02/10] mtd: rawnand: cadence: Use for_each_child_of_node_scoped()
-Date: Fri,  6 Sep 2024 17:04:09 +0200
-Message-ID: <20240906150409.734780-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240826094328.2991664-3-ruanjinjie@huawei.com>
-References: 
+	id 1snInV-0000000Gvpx-0qTI
+	for linux-amlogic@lists.infradead.org;
+	Sun, 08 Sep 2024 14:21:52 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-42cad67ae7eso2134485e9.1
+        for <linux-amlogic@lists.infradead.org>; Sun, 08 Sep 2024 07:21:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1725805307; x=1726410107; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tqwhJtSpVBRE2P+yWS/8hgOJL8h+VSv3t9HsbyQZCr0=;
+        b=LEsqNbYPOHvF2SohN5lBdgXln3Qo1DTy6RDI/FFJrjDxaRuzEE/teBueewdavv8aLL
+         HQuTANHBJ9CcG2rh964yPubv4bKqGNDz8E3bvT54NM8lkDiQY4ttPATXFY3kCn7Bsch/
+         HcwqxK1pTHq/ty7NVf4yyUqPDsXIOCbDlC6hIX5z+ktfchGW1Tg9pENrPJ5pPPZIbWrb
+         F7SMGL9K1DWLvz/TZMp3d5NLYsG4nTXKcZ5pnNb+VZD50y23KJKfYwOqc0XwZm9O8Yse
+         /2crbQtNR5l9/aovR2bncUVvT9S50O522k9ttuapKaBxkWY5XcDcIxj1CZmWe7o212un
+         9M1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725805307; x=1726410107;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tqwhJtSpVBRE2P+yWS/8hgOJL8h+VSv3t9HsbyQZCr0=;
+        b=T8V6KFu1oAdTKlpbIAHtivRn5QU6ZGQQQoS2b8E0BF7QGnsVqU74dhnEey9PRN8/Pr
+         XEdJgef1oT4LoYmfe+kAsxzEYkfLz+T+4YZ505KCh9UuN3tEFA8FWN10BZMlnnMxdSTm
+         AVpElhYuHhE1rzwzDFma1t1CJg3OHSqDRmYNMAbWNCrNa/EGDFvodmX6ssgllD2EsYzK
+         X21qDNS52fia5VdYCIdtawzAOb/DE3+IRXnIngIz9K2uu74xVD4JFe9vcCVe5YDVSRv3
+         XwOvTIf5QVOaL7RqfpgMraQh35nyQyNnUwFndb/LeW3aTNVnscSnFNGZ9pWXZIbN26a5
+         1wGA==
+X-Forwarded-Encrypted: i=1; AJvYcCU2UoijptFYYmtQygLjuY+CH4+90NrHnh8ByUWt7LuQq5gOkgKTLUDBq0NTvAjdVvPQ5IzvGDVkCFH0r7xQ@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy22Pw2S0flEtg2KcSha6ArEkDsqxnQm4p/zQLWoTnE5mDrw9g3
+	wsdn8WtahCxwMrTZUZubhGI6WpUYu0f7RGebDj+regwfbp+9K7x1yukf/9PaOKc=
+X-Google-Smtp-Source: AGHT+IG9ZRq/DMRhNGgXiF+TDH9JtKI9MBZDNIgFAd+SfH8Xnqjsitbh2pFtDM7PPUl5w/VKJP4Lag==
+X-Received: by 2002:a5d:64e5:0:b0:374:cef0:fd46 with SMTP id ffacd0b85a97d-3788964fa72mr2863505f8f.5.1725805305990;
+        Sun, 08 Sep 2024 07:21:45 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.222.82])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37895675bc9sm3465092f8f.56.2024.09.08.07.21.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Sep 2024 07:21:45 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/5] drm: misc: few simple cleanups
+Date: Sun, 08 Sep 2024 16:21:30 +0200
+Message-Id: <20240908-regmap-config-const-v1-0-28f349004811@linaro.org>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'fc214e50e292550dcd77e459e59a2a385bda4735'
-X-GND-Sasl: miquel.raynal@bootlin.com
+X-B4-Tracking: v=1; b=H4sIAOqy3WYC/x2MQQqAIBAAvxJ7TlCJsL4SHdRW20MqGhFIf886D
+ XOYqVAwExaYuwoZLyoUQxPRd2B3HTwy2pqD5HLgE1csoz90YjYGR/5DOZk0Iwo5OjTKQCtTRkf
+ 3f13W53kBHBWAnmUAAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Stefan Agner <stefan@agner.ch>, Alison Wang <alison.wang@nxp.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=839;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=cTToaTVq2mBf2Fn9C8i98ir1v99mJbXz1+GQpR3uiOI=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBm3bLvNFcaXf8SGW37AV8bPzrMpFogzThXLLuQG
+ l+3znii392JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZt2y7wAKCRDBN2bmhouD
+ 12t0D/oCKBiGiFWPFsnvZbBBzS6lfNLS6Y9kmHg76mabyuHNJMF0vh1D359N4I6rnoOl0eLvI5O
+ zzML2lKr9W9iodldL+NGvVQky/fuNnciPMFuiVmyiSUprJ8GbdpaFqoqZurKI18YJm7utqyRo5y
+ oVfj2W2DxvKnL0fKgIHnpNTlvHunHINm0Q+5tJtb4WGdi5ccjJm7NP1lOwtbkyrRYZpVM1g5d2R
+ ZYKKNey8wi0sWZMr0eI1XRsstmm5oBFK5V1kA2ShdX9B8IRePN/vxpkRZynbDx80HJpnYRCdfMX
+ TS/gKTYUxj9xnpdTiaGx2K9pE9eRVVrv8FWBRYnq+PfxRtyK/b4/++or0Ib3763JRCQUTI6KMyG
+ +Y9HYhCTjKq0dH72Ur2Id8SWOjrbyCTGAZqdLoQ1rZStOx3KxQE4qjKmIXaqnzwLP4vdy0UYTuC
+ Y3TKFIhmMkAasktectjZjE6zcYluKkyyYghp3hKRIbYwuPOgKEjzDXH75nUHHyKLgnjxVIEPbNu
+ X8LRB+WxdcYJJ7aLwXvbeTz2zvnEgFIudoJPQA+grpjUsPnWelYqnK6WeJsKKP9RAl7uqi6Cr7O
+ jfzM1A05b9FHTIW+dNNbkZOafygeEjHY8eQ0tGoMb9RAA6SywaWmJHtNuRPSpGTZdy3R2VW1/OD
+ g1bC0WL8WXxTFKw==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240906_080414_422231_99E3E11F 
-X-CRM114-Status: UNSURE (   4.46  )
+X-CRM114-CacheID: sfid-20240908_072149_284918_A5727A99 
+X-CRM114-Status: UNSURE (   6.26  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,15 +127,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2024-08-26 at 09:43:20 UTC, Jinjie Ruan wrote:
-> Avoids the need for manual cleanup of_node_put() in early exits
-> from the loop by using for_each_child_of_node_scoped().
-> 
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+No dependencies, trivial patches.
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+Best regards,
+Krzysztof
 
-Miquel
+---
+Krzysztof Kozlowski (5):
+      drm/meson: drop unused staitc dw_hdmi_dwc_write_bits
+      drm/meson: constify regmap_config
+      drm/fsl-dcu: constify regmap_config
+      drm/mediatek: dp: constify regmap_config
+      drm/bridge: ti-dlpc3433: constify regmap_config
+
+ drivers/gpu/drm/bridge/ti-dlpc3433.c  |  2 +-
+ drivers/gpu/drm/fsl-dcu/fsl_tcon.c    |  2 +-
+ drivers/gpu/drm/mediatek/mtk_dp.c     |  2 +-
+ drivers/gpu/drm/meson/meson_drv.c     |  2 +-
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 14 --------------
+ 5 files changed, 4 insertions(+), 18 deletions(-)
+---
+base-commit: ad40aff1edffeccc412cde93894196dca7bc739e
+change-id: 20240908-regmap-config-const-2b6e126feb8b
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 _______________________________________________
 linux-amlogic mailing list
