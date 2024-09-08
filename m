@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BC78E6FE49
-	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Sep 2024 14:24:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3965CD4F4C
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Sep 2024 14:24:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H1ZNL7rsk3o06D2/bK5l+Z74dW3KYP7ykpJiD2NO+hQ=; b=cqQAbgD39CcUKQ
-	xVA1sWOzepR58ghlg5v4u3sLVcwaVVYJq2/hvl+0olXku7FEtnGZULDDo0oyPtJpH02G27ON48wEF
-	n4Y+rtdl202+cggLxNPbQLOWXgxzjJCTM7QnTJkOr71xfgQpfhQ1JxDiUBNr6IvLnZwuulpqpJjpV
-	eiI1z6MfIRN/P8kRjT9j1023TQwRoIbazza8x2DfXzozhsklR1+jTPeGXAGR1WrOXkL3sDLGtZyyv
-	jJ0ajIVF8DjFIIs8VhVb/Lm39IwTam1krM5LFhk7fC+wBhC06FNC5sMMo7LkU2hQN/bAi2NIkXsjm
-	D642vm5ZDBCkR+x8cyWA==;
+	List-Owner; bh=R0RDyAjEtZyatvnAjtfZZr2UxW/BOU22Bl3GQn7M84o=; b=rZFeN5FqLCQrkJ
+	jGaDcxaAlvr4lKJQ+kdP9ioyoNiR7eWsw/cmzC7c3I31dA3EdC4dAwUVPQffY7OI09D7d5m26UuJ3
+	c0z71vGa6od4GrXVpDplUGL36VVqR0LrHE8Rf9P3tnrjg4IxONPG80PLJSTPtCCj8V9ALJxzzM0b7
+	doYzJHlb//5XzqBxTFbV7vwN15fmsSnJNLXL8JwWa3qVwHxeaZbdFLMsIAxCY20tC128o6eR3ml73
+	8Z7BYEacoLlydpqnV542ofA402NLnUiG3ad/k+t548r15gD7mZQMT2q+U5sLFkAoMSJj//T7eKQwM
+	aZ/dl4KHPCYTuYN2rdew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snIpX-0000000GwOb-1zf9;
-	Sun, 08 Sep 2024 14:23:55 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1snIpY-0000000GwPK-1D07;
+	Sun, 08 Sep 2024 14:23:56 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snInW-0000000Gvqe-22vI
+	id 1snInY-0000000GvrU-34Z1
 	for linux-amlogic@lists.infradead.org;
-	Sun, 08 Sep 2024 14:21:53 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-42ca802545aso2815755e9.2
-        for <linux-amlogic@lists.infradead.org>; Sun, 08 Sep 2024 07:21:50 -0700 (PDT)
+	Sun, 08 Sep 2024 14:21:54 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-42cae563348so1906115e9.0
+        for <linux-amlogic@lists.infradead.org>; Sun, 08 Sep 2024 07:21:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725805309; x=1726410109; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1725805311; x=1726410111; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DmNCAE4Q1YMX3Tcl8gMK7BYQKsWpwsEcc2NsJh2xrh4=;
-        b=fEvu1kO6l5okzH3/Uihn7iguiU8Ux+k/6RwrHrMgacvLX932mawBHS/cTe85YNMe1G
-         JoOiHwEfTuCxmbAfp5lMschcPX4HBKXZdN4E/WjaitFOujxqNh2b074Y+ce3gLVH7kPA
-         VItgU/kgdpXMJdDhyFMNwMlVBsQjEiUjUswihgHLqEElXS2K6+B4r+TOqx0yw9FIzNbn
-         tW6j4cg9IOoAdI0YsPFtT2DY65pt41akOOHy0JRXIH4WyaltTirrAZQITcSPdUxJlwEz
-         ecLf4CIJCulQRUeDKYHhyWRfjze0SJDJ9+e3inAkRnsiLOHS39HxDg7X+WWPg0/eRKVh
-         yqng==
+        bh=HvzK9QbnMsy2ymdJa9zUCc35kOJVXO+e6EJ8AnZPJwM=;
+        b=UgMjwLIDH1V7nLcDZB6NHn4wFurrcvjLRB8uHa00TBl+BufILM6LqmevGOFedU1xXy
+         W4x60N1wIMr+g7ijfPGMe5pp2yYcJNhKUZwisMorbfVJRlQXQz+Jv4uMLratiHQp/Cex
+         Xuwdbb/iMdgwvT0qNicBYg30Lyqu4lB9ZJqO6wHN5AYoVQ7T3B/UM0yVBeP4f9Pz6M42
+         oFWfHD8OLJ2NttgGDTvfmbfvb11FIBfYORMPU2GlyzoozQ213YJrgRf6Dx0pP+a97kQx
+         +DDxm6bDCsN2uBRt5FA1iGo7xDnBwVyjqAeyQ5IZKYbwP/HNpz1xpCO4iDOlL9k0hWMj
+         734Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725805309; x=1726410109;
+        d=1e100.net; s=20230601; t=1725805311; x=1726410111;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DmNCAE4Q1YMX3Tcl8gMK7BYQKsWpwsEcc2NsJh2xrh4=;
-        b=QE015BM5lYZzXQq7d6tewXugPvc2hj4m7qvb1mBIgGmZAt4cbQuL0BPW5yptDVqgQj
-         XSvATyMzruSKui8yUXymFxJoZLCkoI7QUb2ZQa80EafWLl4n22cFelxC+a4vGaEVojKD
-         sXV8YtZE872hGg8/FPGuABDbT4t7C5OXkm+HUGxUTzxDPJHRCAnpzJTgYL3AIQs9dL1j
-         JgIJ2V27MxxfPY7n69szVWT8JvFAGinHlHNQHuK6Q0ac6IbwuKfp6F0Om9sN9e24gBLt
-         WdOq/qnjDos6gfTmtmpb1e59SOdnRq7ZeARNuokwqxTGpNaHKvJrqSEBrXlPEiQmVVRO
-         WFmw==
-X-Forwarded-Encrypted: i=1; AJvYcCXt2FQRcqufJ9R+LCSsdYPoc52/yRsE+KVvWpoLciQYSOZZ1Mu1ne0p2WHaf1o85D7SE60OTMofUB4R7WA7@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxjj+zaAhHj/d8Zzl0lNwyKZox/4Juu42M1TpIKZmkRMjvV9yvb
-	hAs+64jl+6Y6sVXZ3nDQDeXM31tJhk2wgIVwSr2vSQ7j4yCJId2Av/7AS+lbaEE=
-X-Google-Smtp-Source: AGHT+IEfPYmeZxoWXAcFQnFIynwYI3IhFwp318lmX0rGJhOu4zCB8JiThVgRlAkTPUtEGTM66TbBWA==
-X-Received: by 2002:a5d:5985:0:b0:374:c4c9:d501 with SMTP id ffacd0b85a97d-3788969f8famr2540273f8f.10.1725805308342;
-        Sun, 08 Sep 2024 07:21:48 -0700 (PDT)
+        bh=HvzK9QbnMsy2ymdJa9zUCc35kOJVXO+e6EJ8AnZPJwM=;
+        b=pZfdJiCVXgvEwy6LxoDEBNYtj4jdz7cXdqrOFlYdnVlcxW5toCYM26dG2EsWMI2sFK
+         7LArCfJorRr05wJARBN/xP2he26+CqbHwRwah2Dvd/OHy7pUYsu/LW1Nd1iY6DhJ4ksJ
+         xiyIyD3bPsKqINMq0w+7nebsNA2nk6Fc5sYuVIQcKNMT3DtzLrNB8Q0y6vvhCUwjFzBl
+         Em2hdTSkWzt+6XMIraWDAcZ6Gt2BTM+N2kM0FAi+3Yrsj0cligN0vtGwxJFxtbuDPhHG
+         An0HYyPyG8Z7h50J0opeVptmjK8qslsRhdnnA7V2xyrwtenV9UA+jJtatFflruQ0nnQh
+         pkUw==
+X-Forwarded-Encrypted: i=1; AJvYcCVDTIB3kaKdZdDNknXsN/vOrRSHMlXloI76GNDG6SeKriAz9gCE9Ahfws8w9WMFZzRmW1iyZqh+x4yVM/xD@lists.infradead.org
+X-Gm-Message-State: AOJu0YzlgXtac6SGUJayZ4QWW5xy62jKG8lXJJydkeOy85PT7C9ikdQt
+	wqDzKxqiRx2q5bs3bJrspeWMPFo8h/3+rSJQTPbTTHUJ/W36wiq4B0aCtnvZg+Q=
+X-Google-Smtp-Source: AGHT+IFGkCKTBZFIvwjzPmyy0UxMVxAvqoCnC4DEkYoje5P7hwJW0E6txtMBs/tVw5PKSAk1OLHtoQ==
+X-Received: by 2002:a5d:598c:0:b0:378:9560:32f with SMTP id ffacd0b85a97d-3789560049bmr1143708f8f.12.1725805310725;
+        Sun, 08 Sep 2024 07:21:50 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.222.82])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37895675bc9sm3465092f8f.56.2024.09.08.07.21.46
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37895675bc9sm3465092f8f.56.2024.09.08.07.21.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Sep 2024 07:21:47 -0700 (PDT)
+        Sun, 08 Sep 2024 07:21:50 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Sun, 08 Sep 2024 16:21:31 +0200
-Subject: [PATCH 1/5] drm/meson: drop unused staitc dw_hdmi_dwc_write_bits
+Date: Sun, 08 Sep 2024 16:21:32 +0200
+Subject: [PATCH 2/5] drm/meson: constify regmap_config
 MIME-Version: 1.0
-Message-Id: <20240908-regmap-config-const-v1-1-28f349004811@linaro.org>
+Message-Id: <20240908-regmap-config-const-v1-2-28f349004811@linaro.org>
 References: <20240908-regmap-config-const-v1-0-28f349004811@linaro.org>
 In-Reply-To: <20240908-regmap-config-const-v1-0-28f349004811@linaro.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -90,27 +90,26 @@ Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
  linux-mediatek@lists.infradead.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1186;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=776;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=xt0kZ7eoXJhJeMpnCj+RSo+GXDsYwuHZwovewC7CyRM=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBm3bLzifbiOLGTfi1rakImHboSKV6MijiY+nxNL
- 64lIGN8Vw2JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZt2y8wAKCRDBN2bmhouD
- 1z1VD/wOZ9MQKyB3Sw1CKjUwzx//foRb4DryywNPfnPq4l8A3dIm616OmVccvSkkz53RxzHsiSo
- Dw7eEnEx2HVoW7kyWifS/sxsqjS+ZJNu6o96aJZNPknaYTjCGqvsm31f+pa4nEJrbh5K6FiC34M
- jDlUbCSrH2rdiUg9gB8kqAX+93smcGE7+Z10Q8e+v7U3AOr+RRMuFrcAjN+fbvV85gIg4iU+3y/
- k+l+eWOMcpnaAdQPcSnMx/vgGKSJuJHpQO91fE04UmJyzAwR5F8QgYSVcKByRExvYTirjmiDD4k
- 13HJUKlryiBKlnP/3dtY3lA1eJaLwhaBnMLGwWxL4msNZF3martYB6dBVDA5Q6erhi9JEytv3Ub
- Ck26TT6lop4XdFmACe9z7xCNOvZ2yBRaE6MEG6PRcBvu8mpDivvO5qgntKo9mxltoomeo1GYOCm
- 6R1wWzMkLJdMhIqe7eamaJo2hVQ3ukJeC4co9VFodFrMVzTdfFqbMDmRQPgymuj/NrGyOszj9Wu
- BDuPkwp9WiHXiWR3TA7WFsOBTacW5opg8ZN4omiWyDM0FzJRydwvB1jYYMEcdoNasl/DdhxVwW1
- S+JC3i1S3tCLgePg2qs5HvIsCsX0OC1eAphTQ96Axhrg6L20JVzHESqtRnLYOmerln9EJal3X6C
- SIMxC/TjklYx1pQ==
+ bh=aPIjI3wvog8RSD6EiSqaW+WBy8gBpWkoykw90m+N8VY=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBm3bL0T6C6l0T+jasscr2GbjpaQ6wcbyWT35jQc
+ Va62zQLwNOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZt2y9AAKCRDBN2bmhouD
+ 1/0DD/9l6CzinqqFZnvJrhrKjqaSkq5E45kzLhr5PHD/mkCKkD0YY+T84/txfFf6/AaEP/HodmP
+ 78HhSeHWNPcjWpnxhaRVW3IbwBdX2aFF3BW+2zQ1R/y2F+Jnz6FxpsUuuUljHW2p050ebNx9x/7
+ zHQg7WBZPrCGzFSBzDmEGmZvGPfnQYBtODxdINnnoSMRDR4jdbfyXKZq7MMKkdcgBSF6w+1rGp3
+ JijCE1endeNXX7boyGXcRaPvGd6NyeeXqwjq2UbzV4NQdccHpQvAxPqhuLsh2+tT53bvTeqXB2A
+ jLYI3MzrcVxhUsYstfk2+KtczefK237WvepVp0agYSsV0fWeu4dhhjfpdjzNqXdbkBKdFzdER6b
+ IzbEI9wKEN2j66N32zv9zDouDzI8413GbVHRo6DsRQ49rKInBpthEx1mdvklnkPbGLyVrMkflM3
+ JGhj7U7GJLZquuk2dLqCQyoSfWnQMRWMQCJ3DBRmhsKLeYOe3jtQvgwxJL8wHmPlqGq+eQwzgrJ
+ drJS/MmBSCJOhUk0IqcXBeKumH5sF4VQY3ea9su0SfPWijaHAaZBZvjM/qDhnOtxZB048N5EJhZ
+ MjGGdoBwWnh/NeQ74ple37I5eEF0/6l3V82Qs0HJ+mEM9MLVmHcOuTxPeR28pOP5KrThISJF+w6
+ gV3tP7nWzxcLwlA==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240908_072150_564622_E35EB3E2 
-X-CRM114-Status: UNSURE (   9.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240908_072152_816387_4DCB98C9 
+X-CRM114-Status: GOOD (  10.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,40 +126,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-static inline dw_hdmi_dwc_write_bits() function is not used at all:
-
-  drivers/gpu/drm/meson/meson_dw_hdmi.c:276:20: error: unused function 'dw_hdmi_dwc_write_bits' [-Werror,-Wunused-function]
+Mark local static 'struct regmap_config' as const for safer and more
+obvious code.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 14 --------------
- 1 file changed, 14 deletions(-)
+ drivers/gpu/drm/meson/meson_drv.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 5565f7777529..b75db829b1da 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -272,20 +272,6 @@ static inline void dw_hdmi_g12a_dwc_write(struct meson_dw_hdmi *dw_hdmi,
- 	writeb(data, dw_hdmi->hdmitx + addr);
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index 4bd0baa2a4f5..6c8677d1f562 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -126,7 +126,7 @@ static bool meson_vpu_has_available_connectors(struct device *dev)
+ 	return false;
  }
  
--/* Helper to change specific bits in controller registers */
--static inline void dw_hdmi_dwc_write_bits(struct meson_dw_hdmi *dw_hdmi,
--					  unsigned int addr,
--					  unsigned int mask,
--					  unsigned int val)
--{
--	unsigned int data = dw_hdmi->data->dwc_read(dw_hdmi, addr);
--
--	data &= ~mask;
--	data |= val;
--
--	dw_hdmi->data->dwc_write(dw_hdmi, addr, data);
--}
--
- /* Bridge */
- 
- /* Setup PHY bandwidth modes */
+-static struct regmap_config meson_regmap_config = {
++static const struct regmap_config meson_regmap_config = {
+ 	.reg_bits       = 32,
+ 	.val_bits       = 32,
+ 	.reg_stride     = 4,
 
 -- 
 2.43.0
