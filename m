@@ -4,123 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5562FECE57E
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Sep 2024 09:07:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26DC4ECE57A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Sep 2024 10:09:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3gFZ8vtRj8AFc1YdaTSeEBI1OC2Xh9txuhbmV4y8TSk=; b=OP1CmSSvMttpzPu/odhpUo95R0
-	NuBw7/rqKGRMnolzQ2tpCp4WKYf8A6wMrja9m5Xts/P4469ul9ugo7U2ujdYkucP4yCKfS+RSU9b2
-	A0QfzWdq4gDdEjE4x0WU7r+7V6OFnIj2vMNMNsfDqPxbCbmqidHbugD6FMR8kAMAL0QpqpAs3FyVP
-	w/+ONKgJiuVt+8zD1kKkUrBU+c46KP+gYOepkUFq29/6M4T676afhoubN2N4aTgRJlNezxcH6i/9b
-	aXYDsBxM33zuMayUfIuhWzpG20frAFx4bTEyczy6hDCDLMphHzwQUsuOKpj4pJWikiS/ckjBxSFQB
-	mBAnUdVA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=t3WW04uv1Q9R29+jwBA7A4DV6eCPtYGN5wS8nma8A3Q=; b=VrIypUycj5Klfm
+	VSdMLLLZVF1M0wvKoILAZQvrJyurzsarqx4LT1GZ0m/slo27bY3GaTOCIeWJ04HS1rI+oG70rbcoO
+	doowHhUB3z3C1aM7N+Mw5Y+0/LgY+fsHHG1wYPjLcpht9R7/Pz8ASGpYSPWOO6gF7QilXSXT+30IH
+	2+kdWhRvxSTCaG/YwIBxw9iA5Mt/M+WMOU/YJ79SL6SP6jZCYGiNb2vp/aKiiIALjZ21J2+84t3AS
+	cd387yHapAvMiQjHEbnjMg+NIrsTUFMBqDQM4dgwo4jdYffv0eizW8QpHL0JIy4+GgLiZImeoe3C8
+	bzMiUlWKpk6j6uokTqnA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snaNA-00000001EV3-0r8f;
-	Mon, 09 Sep 2024 09:07:48 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1snbKj-00000001RuJ-2hYr;
+	Mon, 09 Sep 2024 10:09:21 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snaKA-00000001E4u-1UHx
-	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Sep 2024 09:04:44 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-374c4c6cb29so3699003f8f.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 09 Sep 2024 02:04:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1725872680; x=1726477480; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/quyWb8vumcbT1XTiobNYayKAU49ZoNqv4TkV+Bl12Y=;
-        b=IJVolDTby7cpHWG3LjOstjMhyZtG7GGk20ZPXRIOlwYtJDOu7m38pQQMBWxABeeFpl
-         gQNtuGK/JGsS9ukmRLnJTo14d2TeCm3OY7+6CmcHo20FvLxvXd2t8oJp4My3F+p9+7hD
-         JpE1SldDtN3k8i9tWHN3KWnYC0PmbyupHH3DmCC49F87nnE/o8N3+EPoY20d/tmFNYXM
-         mztHOjmqBkJ1WFtq0+oDBwBOhB7hpyKMqoBJF9GDSffbrGeL0VGJCPAw7eTJYNlAEWFL
-         3F0Al0x3d0Ym48t+qbmTNdQzjwVmQfDiN1YUf5xMduLzVTF+OKnHcR473L4/Mdll4ddP
-         UkrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1725872680; x=1726477480;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/quyWb8vumcbT1XTiobNYayKAU49ZoNqv4TkV+Bl12Y=;
-        b=k0nw0LWAnnFD0vtDGzTJzPZwBlkYvH5dODePR9k1skCVF+rEwGvWwpim7R7NDmiddO
-         81NcvPrZXMY4pL7mFUDvQwOo6gib4484HRNyeccwKcTkEm5hFj6ilZccTsbxqxROlitY
-         MUon8+qrFRxGvRhbvEgebWy9g30U+kwXG5ZfpaKaKCw3dvAMV75gr/1XlVCCxa0+Ani6
-         OPmN8SlnAh2xZNOlVXes/3vXzAFRlWWqtXl/q4s5AOYTaJp6pUSsxBpRQj6cE+rWhvKK
-         4C15npJ0KCVsxEMf6SJddYEmRX2fP0tqgnz08ZWP3tSA6gvTyxIKzt5I34px5IBFO5Bf
-         nYCg==
-X-Forwarded-Encrypted: i=1; AJvYcCX4HH/NF9XhPBMzzpkT2HgypX+hwlrKHIdsgzfcnODk8/70Kjps+4CyahxNHzrky4+K7598FYytagWod52m@lists.infradead.org
-X-Gm-Message-State: AOJu0YwvwBLNW9H5GigWqxu6np9WT+oqMZbcTRjpHGqTFcvOBqtl0Zeh
-	tDUxuhuQFTT+Gss71T6RSObpTBm6h9YdUMYR99Z0cxGU9tBYk0FdkuaCUPR5M3g=
-X-Google-Smtp-Source: AGHT+IHPyFzNJJ9CK/CbxvRhF0zXZqmiSax9i+YVPGOKwyfg6lpCSe5AQQrFB9PmBhsPgB8jUkq+yA==
-X-Received: by 2002:a5d:5081:0:b0:374:c9f0:7533 with SMTP id ffacd0b85a97d-3789243fbb9mr5688124f8f.41.1725872679665;
-        Mon, 09 Sep 2024 02:04:39 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:63a3:6883:a358:b850? ([2a01:e0a:982:cbb0:63a3:6883:a358:b850])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37895675c40sm5467200f8f.51.2024.09.09.02.04.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Sep 2024 02:04:39 -0700 (PDT)
-Message-ID: <b4ac3e8e-1d0c-4a6e-97de-482a77a3a3aa@linaro.org>
-Date: Mon, 9 Sep 2024 11:04:37 +0200
+	id 1snbKg-00000001Rt6-3hVs;
+	Mon, 09 Sep 2024 10:09:20 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 45D44A4325D;
+	Mon,  9 Sep 2024 10:09:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 61337C4CEC8;
+	Mon,  9 Sep 2024 10:09:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725876557;
+	bh=RkUWT/0arfso8PoZuHXKVk1Cw40RK964zYOKCHpr3nE=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=EHnOH4k4ZdZj7SxH1Niavu5KXKFCh02h94MH3UcaYiXKHUSywi84ReEY4czfIYVQh
+	 47f0B75OGH6xPtcZg6LZUAXE6XCpDPxhk9r2VuCsLLrDYhkz3zo5ifi7v5/2el0mjr
+	 SLA8fzJPRQPc+c89YHZMLI+3TF5MyxkHARsIW5YeHw3aTef8j1X5nxeBhct5cwZFUZ
+	 /iS1HgcxR4n0+GDYvx1evlvud5OnTjghoJC1iHQ+SiLNZ0swsTIOZOOglk83JefK2T
+	 WiMkwoUiinSFlF4DHZybJevCq/PwZj9yng7rzp5QS9AVmyaFB4jHWTjfabAZklkdUB
+	 CZNCIcaKZzVQA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4EB12ECE579;
+	Mon,  9 Sep 2024 10:09:17 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Date: Mon, 09 Sep 2024 18:08:56 +0800
+Subject: [PATCH v3 1/3] clk: meson: Support PLL with fixed fractional
+ denominators
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 1/5] drm/meson: drop unused staitc dw_hdmi_dwc_write_bits
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Stefan Agner <stefan@agner.ch>, Alison Wang <alison.wang@nxp.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Jagan Teki <jagan@amarulasolutions.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-References: <20240908-regmap-config-const-v1-0-28f349004811@linaro.org>
- <20240908-regmap-config-const-v1-1-28f349004811@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240908-regmap-config-const-v1-1-28f349004811@linaro.org>
+Message-Id: <20240909-fix_clk-v3-1-a6d8f6333c04@amlogic.com>
+References: <20240909-fix_clk-v3-0-a6d8f6333c04@amlogic.com>
+In-Reply-To: <20240909-fix_clk-v3-0-a6d8f6333c04@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1725876555; l=1833;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=tm+eqZ6z2/fu+O9mUT6fjnN7chLjmdHoODAhOfI/R44=;
+ b=U11cPwwTOmhBwh26n/Uf/6HYS90n2Yjr6nBrNusbctnjBVmkncO4x1YgCC6W4bb8CpHU6PAXJ
+ FDIVkNCLdYHAyfiGCt9F3/9ZnyZv7DL6hWUl2tTSf0Oti+fqY3IWf+I
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240909_020442_423818_541F6F46 
-X-CRM114-Status: GOOD (  12.80  )
+X-CRM114-CacheID: sfid-20240909_030919_079369_400AA3F5 
+X-CRM114-Status: GOOD (  11.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,50 +85,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Reply-To: chuan.liu@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 08/09/2024 16:21, Krzysztof Kozlowski wrote:
-> static inline dw_hdmi_dwc_write_bits() function is not used at all:
-> 
->    drivers/gpu/drm/meson/meson_dw_hdmi.c:276:20: error: unused function 'dw_hdmi_dwc_write_bits' [-Werror,-Wunused-function]
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   drivers/gpu/drm/meson/meson_dw_hdmi.c | 14 --------------
->   1 file changed, 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> index 5565f7777529..b75db829b1da 100644
-> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> @@ -272,20 +272,6 @@ static inline void dw_hdmi_g12a_dwc_write(struct meson_dw_hdmi *dw_hdmi,
->   	writeb(data, dw_hdmi->hdmitx + addr);
->   }
->   
-> -/* Helper to change specific bits in controller registers */
-> -static inline void dw_hdmi_dwc_write_bits(struct meson_dw_hdmi *dw_hdmi,
-> -					  unsigned int addr,
-> -					  unsigned int mask,
-> -					  unsigned int val)
-> -{
-> -	unsigned int data = dw_hdmi->data->dwc_read(dw_hdmi, addr);
-> -
-> -	data &= ~mask;
-> -	data |= val;
-> -
-> -	dw_hdmi->data->dwc_write(dw_hdmi, addr, data);
-> -}
-> -
->   /* Bridge */
->   
->   /* Setup PHY bandwidth modes */
-> 
+From: Chuan Liu <chuan.liu@amlogic.com>
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Some PLLS with fractional multipliers have fractional denominators with
+fixed values, instead of the previous "(1 << pll-> frc.width)".
+
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+---
+ drivers/clk/meson/clk-pll.c | 8 +++++---
+ drivers/clk/meson/clk-pll.h | 1 +
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index bc570a2ff3a3..89f0f04a16ab 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -57,12 +57,13 @@ static unsigned long __pll_params_to_rate(unsigned long parent_rate,
+ 					  struct meson_clk_pll_data *pll)
+ {
+ 	u64 rate = (u64)parent_rate * m;
++	unsigned int frac_max = pll->frac_max ? pll->frac_max :
++						(1 << pll->frac.width);
+ 
+ 	if (frac && MESON_PARM_APPLICABLE(&pll->frac)) {
+ 		u64 frac_rate = (u64)parent_rate * frac;
+ 
+-		rate += DIV_ROUND_UP_ULL(frac_rate,
+-					 (1 << pll->frac.width));
++		rate += DIV_ROUND_UP_ULL(frac_rate, frac_max);
+ 	}
+ 
+ 	return DIV_ROUND_UP_ULL(rate, n);
+@@ -100,7 +101,8 @@ static unsigned int __pll_params_with_frac(unsigned long rate,
+ 					   unsigned int n,
+ 					   struct meson_clk_pll_data *pll)
+ {
+-	unsigned int frac_max = (1 << pll->frac.width);
++	unsigned int frac_max = pll->frac_max ? pll->frac_max :
++						(1 << pll->frac.width);
+ 	u64 val = (u64)rate * n;
+ 
+ 	/* Bail out if we are already over the requested rate */
+diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+index 7b6b87274073..949157fb7bf5 100644
+--- a/drivers/clk/meson/clk-pll.h
++++ b/drivers/clk/meson/clk-pll.h
+@@ -43,6 +43,7 @@ struct meson_clk_pll_data {
+ 	unsigned int init_count;
+ 	const struct pll_params_table *table;
+ 	const struct pll_mult_range *range;
++	unsigned int frac_max;
+ 	u8 flags;
+ };
+ 
+
+-- 
+2.42.0
+
+
 
 _______________________________________________
 linux-amlogic mailing list
