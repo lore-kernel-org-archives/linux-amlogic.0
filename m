@@ -4,80 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7538FECE577
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Sep 2024 16:44:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1634ECE577
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Sep 2024 17:24:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=91KTKcZA4B3s4Wt5OQt93hTxqtvSXxwQmHl7WhqTrMM=; b=keIRfTcdBEw1d1
-	8ynluEVWv+P3VDm8npc9B0CwqaJt8frdzV6trGE5+AaM3SmJE9sNDKyF4AiSYzvGWybjrY/lMMUcB
-	YR1L9xbq17c3wCv5/WkdxPAPEQ58D+5SElRIdAjQ6wPrFfR3WFUq4epUPMGIQJQQH6FP1TDP7a7yK
-	J1ymvKfovtn/dXsemB+bF1nMBEI9fAQ++m1WUgABp8z1ZQNznZmzoD9jz0H08hA9H28zNzEgWHKXX
-	npOVYlpOBMVgXq+Mf5wEU3GHzzwBpQuJpZLdke7e4NKv08fK/TWQQuAKQLOCgvLPH3UYyGHp1bL6/
-	8yEToO+yhmVkrCwZSpsA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=1/VZsi6oGbzRs37IjlOJRAT54PMuvUD4nFQX4trcD0U=; b=hTCtJVjvHI9Hln
+	fxrTLzxFQJ2eRSMx5Qwbs8LtAQLO67U8VccJGo1GyyLqOiREG9v35BMM5FcC5GG4z3774GCW1l3tG
+	axhFatjW44mw4n7y36YVZw6CyMIshWnq4t+ub4cCyVKBvk4OfgL9TMxoac8FOgso8q62GGIFTN6hI
+	cIBxA4tux4oCQw3atc183QysFrl2wcXPDfR4VjcHCqleGAPP4Lqc8l4qkd6GchUvcwbMWgaVwSdaB
+	4yVdSgnbWWAQEI8L+T+leberXO7gjtWkuvvQsDobArwTPMXQ+GAKk/bJ8eARAllHd6U9dsIYtzRi4
+	sgCnLSpx7ThahV41wSYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snhVL-00000002iIk-2l4s;
-	Mon, 09 Sep 2024 16:44:43 +0000
-Received: from mgamail.intel.com ([192.198.163.10])
+	id 1sni7a-00000002oFG-2z41;
+	Mon, 09 Sep 2024 17:24:14 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snhUJ-00000002i4S-2MIO;
-	Mon, 09 Sep 2024 16:43:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1725900220; x=1757436220;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SPDkgjp1iESRpLEN0olg4YNX8g5J0heZpCZbWFhRj84=;
-  b=jjvZ3oU2AVACOmGobPyb5n7/3ZkXQNeSQahJzmTbK1Vj7gPxRJSV0PAF
-   x0x2yL8ul+2TFfNr3ysL7a2gNb4xUv2B5WbKCF5fYVQuyvZ7P8fT1chm5
-   33N3PDrxNNJIS9NS6EmUdY8MiHSIFHa06jajhF2oVJ6cS5hp5YVvA+sda
-   Ecgobrn46qI1yaESbR8ONANXVDy8QaRhas0MGVTm+hHXQJAMcGE/dff0Z
-   HVCMJE+YekiwXQoSTARa8qzkhOrULoeU3KFQzFo9+W1PDz5UU64F51R8C
-   tEAF1747quZZ0hB0R+LFI5YOSOLw9LtxpqEGX0UOpSnEeTmyfeENW5NrV
-   g==;
-X-CSE-ConnectionGUID: S1BgVoKlSDKCN1/grIVPXA==
-X-CSE-MsgGUID: MmXNK0PwSx2LGIZkE1d1kQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="35989349"
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
-   d="scan'208";a="35989349"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2024 09:43:37 -0700
-X-CSE-ConnectionGUID: DWYCUyg7QCmuCnaxSp+y9A==
-X-CSE-MsgGUID: m8k4tGKdSOWS4YW9oVOxWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; 
-   d="scan'208";a="71139328"
-Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 09 Sep 2024 09:43:34 -0700
-Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1snhUB-000EzC-31;
-	Mon, 09 Sep 2024 16:43:31 +0000
-Date: Tue, 10 Sep 2024 00:42:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jerome Brunet <jbrunet@baylibre.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Stephen Boyd <sboyd@kernel.org>,
+	id 1sni7W-00000002oEC-45sL;
+	Mon, 09 Sep 2024 17:24:12 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id B44945C0317;
+	Mon,  9 Sep 2024 17:24:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C67EEC4CEC5;
+	Mon,  9 Sep 2024 17:24:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1725902649;
+	bh=RA3HARXHwHsFdKkowqZX2MlM4vFFTmpEgk6U7rVwfvA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=B2+G+/XHBZUQnA4GoEUqhzdJtSoIn9iFniWw6bSrO83ULbPR+6DGn13YuxJuiV26k
+	 Xdz/85WtITZgwac+hBhrs23UBqrDkkUarfdaXFQhw6hDzIpmHYvr9934Lv2+YnWjWo
+	 KzxRYd10k8JhZ9xSj5wc/rSLmUCfR8iO7KOc/lcWrm5cjBH7Qk2F021/9nv1iwP3zU
+	 nSPC6ZwHElhYQMjeOcmyiklcMps7lz6hSA6vAgUReZbU2VdTviETXFeDs4s2Ar04Ns
+	 aTRKHe2gYG1pB4G6jsyfh5tLHNHs0OxhyZnzHrVtCSD8tdnHzcF/5Q3F5U9jRk9ogq
+	 9T2GVybY02J6g==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jiucheng Xu <jiucheng.xu@amlogic.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 9/9] reset: amlogic: add auxiliary reset driver support
-Message-ID: <202409100033.EPfBtwfK-lkp@intel.com>
-References: <20240906-meson-rst-aux-v4-9-08824c3d108b@baylibre.com>
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next] net: amlogic,meson-dwmac: Fix "amlogic,tx-delay-ns" schema
+Date: Mon,  9 Sep 2024 12:23:42 -0500
+Message-ID: <20240909172342.487675-2-robh@kernel.org>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240906-meson-rst-aux-v4-9-08824c3d108b@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240909_094339_634067_03AE98B2 
-X-CRM114-Status: UNSURE (   9.64  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240909_102411_142199_0CE5703D 
+X-CRM114-Status: GOOD (  14.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,35 +81,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+The "amlogic,tx-delay-ns" property schema has unnecessary type reference
+as it's a standard unit suffix, and the constraints are in freeform
+text rather than schema.
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/net/amlogic,meson-dwmac.yaml     | 22 +++++++++----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-[auto build test ERROR on 487b1b32e317b85c2948eb4013f3e089a0433d49]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jerome-Brunet/reset-amlogic-convert-driver-to-regmap/20240906-213857
-base:   487b1b32e317b85c2948eb4013f3e089a0433d49
-patch link:    https://lore.kernel.org/r/20240906-meson-rst-aux-v4-9-08824c3d108b%40baylibre.com
-patch subject: [PATCH v4 9/9] reset: amlogic: add auxiliary reset driver support
-config: parisc-randconfig-r123-20240909 (https://download.01.org/0day-ci/archive/20240910/202409100033.EPfBtwfK-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 14.1.0
-reproduce: (https://download.01.org/0day-ci/archive/20240910/202409100033.EPfBtwfK-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409100033.EPfBtwfK-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   hppa-linux-ld: drivers/reset/amlogic/reset-meson-aux.o: in function `meson_reset_aux_probe':
->> (.text+0xc): undefined reference to `meson_reset_controller_register'
->> hppa-linux-ld: drivers/reset/amlogic/reset-meson-aux.o:(.rodata+0x88): undefined reference to `meson_reset_toggle_ops'
-   hppa-linux-ld: drivers/reset/amlogic/reset-meson-aux.o:(.rodata+0x9c): undefined reference to `meson_reset_toggle_ops'
-
+diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+index ee7a65b528cd..d1e2bca3c503 100644
+--- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+@@ -58,18 +58,18 @@ allOf:
+             - const: timing-adjustment
+ 
+         amlogic,tx-delay-ns:
+-          $ref: /schemas/types.yaml#/definitions/uint32
++          enum: [0, 2, 4, 6]
++          default: 2
+           description:
+-            The internal RGMII TX clock delay (provided by this driver) in
+-            nanoseconds. Allowed values are 0ns, 2ns, 4ns, 6ns.
+-            When phy-mode is set to "rgmii" then the TX delay should be
+-            explicitly configured. When not configured a fallback of 2ns is
+-            used. When the phy-mode is set to either "rgmii-id" or "rgmii-txid"
+-            the TX clock delay is already provided by the PHY. In that case
+-            this property should be set to 0ns (which disables the TX clock
+-            delay in the MAC to prevent the clock from going off because both
+-            PHY and MAC are adding a delay).
+-            Any configuration is ignored when the phy-mode is set to "rmii".
++            The internal RGMII TX clock delay (provided by this driver)
++            in nanoseconds. When phy-mode is set to "rgmii" then the TX
++            delay should be explicitly configured. When the phy-mode is
++            set to either "rgmii-id" or "rgmii-txid" the TX clock delay
++            is already provided by the PHY. In that case this property
++            should be set to 0ns (which disables the TX clock delay in
++            the MAC to prevent the clock from going off because both
++            PHY and MAC are adding a delay). Any configuration is
++            ignored when the phy-mode is set to "rmii".
+ 
+         amlogic,rx-delay-ns:
+           deprecated: true
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.45.2
+
 
 _______________________________________________
 linux-amlogic mailing list
