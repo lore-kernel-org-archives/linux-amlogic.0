@@ -4,75 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58DAFEDE99B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2024 10:14:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F54EECE57A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2024 13:19:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7FEttF5ocF9+ai5Qd8yqvBoEUJMi2RoHVtoReIHjJuc=; b=rkQ6HNZNMlRzMF
-	Mj2Z/EhZnSHuzIjdhEw3If0yUc0XPQL7EVxkjG+2KCHt69oBmdIIsgdz3ZLQLrg1mijXiLi2pbhaB
-	DyHCBj44jIDz6ZmGcJkH4g6TXTLbvi/J58vNjcyRq8lu7KK/WvRahDOaWiDdfk79rxeXdKu2wvNiB
-	XsE/RSlCHuZmEOeFic3XRHMGiczsthVLOQDQtZfd4SjMg32Lyny0eguB5tG31CICFxsy5YRh1vjTN
-	vpmZe9tqBV18otruT/0SgmZtwlJ/sy/Xjfm6r85VBFnYzO15VM9yKb+J0xtt3k9qz0XYGRpqAN5hu
-	TsIbQFN1/XaiHFP9XKuA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=RsIbLcN8fVXz0Yv3Tuf+SoHZwxgJJghloeUMKwKURoI=; b=4xxZvPy4dmq7DF
+	3zzw0PzlCh/5ZyC3pRA+Ip4Ot3Ol6/wXtfy9KovSK99WwBaYgIzpeRr7CyPMa36M2VzkW2mfGY/U3
+	rAz80uSauIbGc63RnCnxMpSAqJW6XAGkP0GmU/mibcYGtCieFs3evCaCgKN2OckyZioggMZmNKgEZ
+	FiprrsqWoAZShCqYvgSZ5OvQ2MYLuZgYF2GdL9icBo8S2VzfK3ay+bKtuVy1/OVz3Sn7H9JHxHji0
+	DlZPwmAOyfkUMcC4/+pjUv12Uf5x6/uxxly+OPnL81AJ9oUFXDsv8PK3bl8S29wYepNXjfkizoSBZ
+	akd9GBR/2GdRMbBozgTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snxtK-00000005COD-09Y4;
-	Tue, 10 Sep 2024 10:14:34 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1so0mb-00000005guR-0s9i;
+	Tue, 10 Sep 2024 13:19:49 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snxt7-00000005CIZ-45NQ
-	for linux-amlogic@lists.infradead.org;
-	Tue, 10 Sep 2024 10:14:25 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 9BE0EA44558;
-	Tue, 10 Sep 2024 10:14:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 79ED9C4CED0;
-	Tue, 10 Sep 2024 10:14:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1725963260;
-	bh=Sr03DLwF+0CRjwS+JcY9FQ/jwAk9Erb+TmTfkjjxxuo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=sTomFNvL4Y/RAMJOF48nbyYbkgbN0pWqWcPG6CnQ1cANwHuUsPG6+8DRAEpeUz9Xa
-	 ACVGvKiM7VH2sTPCLOkNcez2lgtvhKJ3uJ/LjajEj3R42mjST/TcHqwE8YTnCx9Suc
-	 cLQrZ/UL3bHpa94H1Z5TDNQGiuOtm60fIc5+EydfycxPqKqdIuPsqSSYpffs8h+EtI
-	 cZKdXxiIHVmtBqqRNUR3ARE/45RS9HMJyloIt7G3bXJVr2Rce5bZb3Pk1Fe7tTu5vQ
-	 iXHmcha8N+WOB/axPmpHfCLhYyFuS5pFJbUwqt9PpwC2Obo/3bMlyQutCQH40Pv2ag
-	 VhFhu8t5c3CoQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E86BEB64DE;
-	Tue, 10 Sep 2024 10:14:20 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 10 Sep 2024 18:14:19 +0800
-Subject: [PATCH v3 2/3] rtc: support for the Amlogic on-chip RTC
+	id 1so0mW-00000005gtC-05nm;
+	Tue, 10 Sep 2024 13:19:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1725974382;
+	bh=Mr5aYDOIGEIqV8iwbGHYh7Nn/2V2geaD7danw4WAqkI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=blRZsNk27F30dlEHQnWcauNHxWHHyv+mUW5M1qAEX3Vqt3RHTwGYElwQVJDPWV7lI
+	 zwU1KYPkxtILmqKr7/myZUelppEZ7xDliBQDnTPhoeE6bUgCamT0awcqApR3nFpEV0
+	 9w3DkEPAfIDrcqg0lCuxMpVms876RvfomUoRS/cdqvzmD5d9PQhx2zcaOwdUJE5hW0
+	 9jkZ5NUWsQQ9X61Azx+OTwZHr+IYiwscGkkUBCUMYWf4u7Catx5JJYKM6VzxTmslfm
+	 XsoaQhc5VPV0gfB5mebIXoZdfre7GmpM9aj4lp21a1znQCwCUi6YVptWHowkxgiY4o
+	 AFnT05K72R33w==
+Received: from localhost.localdomain (unknown [171.76.81.149])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: vignesh)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3295D17E121F;
+	Tue, 10 Sep 2024 15:19:38 +0200 (CEST)
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: dri-devel@lists.freedesktop.org
+Cc: daniels@collabora.com,
+	helen.koike@collabora.com,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	robdclark@gmail.com,
+	guilherme.gallo@collabora.com,
+	sergi.blanch.torne@collabora.com,
+	deborah.brouwer@collabora.com,
+	linux-mediatek@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	amd-gfx@lists.freedesktop.org,
+	linux-arm-msm@vger.kernel.org,
+	intel-gfx@lists.freedesktop.org,
+	virtualization@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] drm/ci: uprev mesa, IGT and deqp-runner
+Date: Tue, 10 Sep 2024 18:49:24 +0530
+Message-ID: <20240910131927.161883-1-vignesh.raman@collabora.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Message-Id: <20240910-rtc-v3-2-1fa077a69a20@amlogic.com>
-References: <20240910-rtc-v3-0-1fa077a69a20@amlogic.com>
-In-Reply-To: <20240910-rtc-v3-0-1fa077a69a20@amlogic.com>
-To: Yiting Deng <yiting.deng@amlogic.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725963258; l=15598;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=cNbOL9mU9+fA5KZFmGLhYAJ5+VuZHdScljqBEQYouWY=;
- b=WjiqRJFmSOeL0a8UmKyqvyDba2g7b0KAkSVSD1qIzHolbZhDvwcwJrjPnAy9TzoHVb1D/JqpE
- RrSmcj8a04FAaKbDH1ZfaElNQnL/zWaAgE/XFH/csDOHy565cL2zOmE
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240910_031422_256098_388650A5 
-X-CRM114-Status: GOOD (  26.99  )
+X-CRM114-CacheID: sfid-20240910_061944_418385_8F005600 
+X-CRM114-Status: GOOD (  14.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,544 +80,906 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Yiting Deng <yiting.deng@amlogic.com>
+Uprev mesa, IGT to the latest version and deqp-runner
+to v0.20.0. Also update expectation files.
 
-This is the third amlogic driver. The RTC hardware of A4 SoC is different
-from the previous one. This RTC hardware includes a timing function and
-an alarm function. But the existing has only timing function, alarm
-function is using the system clock to implement a virtual alarm. Add
-the RTC driver to support it.
-
-Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Acked-by: Helen Koike <helen.koike@collabora.com>
+Reviewed-by: Daniel Stone <daniels@collabora.com>
+Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 ---
- drivers/rtc/Kconfig          |  12 ++
- drivers/rtc/Makefile         |   1 +
- drivers/rtc/rtc-amlogic-a4.c | 473 +++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 486 insertions(+)
 
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 2a95b05982ad..1d49738a2796 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -2043,4 +2043,16 @@ config RTC_DRV_SSD202D
- 	  This driver can also be built as a module, if so, the module
- 	  will be called "rtc-ssd20xd".
+v1:
+- Flaky test report will be sent to maintainers after this
+  patch series is reviewed.
+
+v2:
+- Uprev mesa and rerun with latest drm-misc-next.
+  Updated flaky tests bug report link.
+
+---
+ drivers/gpu/drm/ci/gitlab-ci.yml              | 14 +++--
+ drivers/gpu/drm/ci/image-tags.yml             |  2 +-
+ .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |  2 +-
+ .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |  7 +++
+ drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |  2 +-
+ .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |  7 +++
+ drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  |  1 -
+ drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt |  7 +++
+ drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  | 10 ++--
+ drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt | 14 +++++
+ drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |  1 +
+ drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  |  2 -
+ drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  | 34 ++++++++++--
+ drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |  9 ++--
+ .../drm/ci/xfails/mediatek-mt8173-fails.txt   | 11 +---
+ .../drm/ci/xfails/mediatek-mt8183-fails.txt   |  6 ---
+ .../gpu/drm/ci/xfails/meson-g12b-fails.txt    |  1 -
+ .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |  5 --
+ .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |  5 --
+ .../msm-sc7180-trogdor-kingoftown-fails.txt   | 27 ----------
+ ...sm-sc7180-trogdor-lazor-limozeen-fails.txt | 27 ----------
+ .../gpu/drm/ci/xfails/msm-sdm845-fails.txt    |  6 +--
+ .../gpu/drm/ci/xfails/msm-sdm845-flakes.txt   | 14 +++++
+ .../gpu/drm/ci/xfails/msm-sdm845-skips.txt    |  5 ++
+ .../gpu/drm/ci/xfails/panfrost-g12b-fails.txt |  1 +
+ .../drm/ci/xfails/panfrost-mt8183-fails.txt   |  1 +
+ .../drm/ci/xfails/panfrost-rk3288-fails.txt   |  1 +
+ .../drm/ci/xfails/panfrost-rk3399-fails.txt   |  1 +
+ .../drm/ci/xfails/rockchip-rk3288-fails.txt   | 22 +++++---
+ .../drm/ci/xfails/rockchip-rk3288-flakes.txt  | 28 ++++++++++
+ .../drm/ci/xfails/rockchip-rk3399-fails.txt   |  7 ---
+ .../drm/ci/xfails/rockchip-rk3399-flakes.txt  | 28 ++++++++++
+ drivers/gpu/drm/ci/xfails/vkms-none-fails.txt | 21 --------
+ drivers/gpu/drm/ci/xfails/vkms-none-skips.txt | 53 +++++++++++++++++++
+ 34 files changed, 234 insertions(+), 148 deletions(-)
+
+diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
+index eca47d4f816f..90bde9f00cc3 100644
+--- a/drivers/gpu/drm/ci/gitlab-ci.yml
++++ b/drivers/gpu/drm/ci/gitlab-ci.yml
+@@ -1,14 +1,14 @@
+ variables:
+   DRM_CI_PROJECT_PATH: &drm-ci-project-path mesa/mesa
+-  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha d9849ac46623797a9f56fb9d46dc52460ac477de
++  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha c6a9a9c3bce90923f7700219354e0b6e5a3c9ba6
  
-+config RTC_DRV_AMLOGIC_A4
-+	tristate "Amlogic RTC"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	select REGMAP_MMIO
-+	default y
-+	help
-+	  If you say yes here you get support for the RTC block on the
-+	  Amlogic A113L2(A4) and A113X2(A5) SoCs.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called "rtc-amlogic-a4".
-+
- endif # RTC_CLASS
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index 3004e372f25f..2122f469e633 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -26,6 +26,7 @@ obj-$(CONFIG_RTC_DRV_ABB5ZES3)	+= rtc-ab-b5ze-s3.o
- obj-$(CONFIG_RTC_DRV_ABEOZ9)	+= rtc-ab-eoz9.o
- obj-$(CONFIG_RTC_DRV_ABX80X)	+= rtc-abx80x.o
- obj-$(CONFIG_RTC_DRV_AC100)	+= rtc-ac100.o
-+obj-$(CONFIG_RTC_DRV_AMLOGIC_A4)	+= rtc-amlogic-a4.o
- obj-$(CONFIG_RTC_DRV_ARMADA38X)	+= rtc-armada38x.o
- obj-$(CONFIG_RTC_DRV_AS3722)	+= rtc-as3722.o
- obj-$(CONFIG_RTC_DRV_ASM9260)	+= rtc-asm9260.o
-diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
-new file mode 100644
-index 000000000000..decd74df225c
---- /dev/null
-+++ b/drivers/rtc/rtc-amlogic-a4.c
-@@ -0,0 +1,473 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-+/*
-+ * Copyright (C) 2024 Amlogic, Inc. All rights reserved
-+ * Author: Yiting Deng <yiting.deng@amlogic.com>
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/bitfield.h>
-+#include <linux/rtc.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/time64.h>
-+#include <linux/delay.h>
-+
-+/* rtc oscillator rate */
-+#define OSC_32K			(32768)
-+#define OSC_24M			(24000000)
-+
-+#define RTC_CTRL		(0x0 << 2)		/* Control RTC */
-+#define RTC_ALRM0_EN		BIT(0)
-+#define RTC_OSC_SEL		BIT(8)
-+#define RTC_ENABLE		BIT(12)
-+
-+#define RTC_COUNTER_REG		(0x1 << 2)		/* Program RTC counter initial value */
-+
-+#define RTC_ALARM0_REG		(0x2 << 2)		/* Program RTC alarm0 value */
-+
-+#define RTC_SEC_ADJUST_REG	(0x6 << 2)		/* Control second-based timing adjustment */
-+#define RTC_MATCH_COUNTER	GENMASK(18, 0)
-+#define RTC_SEC_ADJUST_CTRL	GENMASK(20, 19)
-+#define RTC_ADJ_VALID		BIT(23)
-+
-+#define RTC_INT_MASK		(0x8 << 2)		/* RTC interrupt mask */
-+#define RTC_ALRM0_IRQ_MSK	BIT(0)
-+
-+#define RTC_INT_CLR		(0x9 << 2)		/* Clear RTC interrupt */
-+#define RTC_ALRM0_IRQ_CLR	BIT(0)
-+
-+#define RTC_OSCIN_CTRL0		(0xa << 2)		/* Control RTC clk from 24M */
-+#define RTC_OSCIN_CTRL1		(0xb << 2)		/* Control RTC clk from 24M */
-+#define RTC_OSCIN_IN_EN		BIT(31)
-+#define RTC_OSCIN_OUT_CFG	GENMASK(29, 28)
-+#define RTC_OSCIN_OUT_N0M0	GENMASK(11, 0)
-+#define RTC_OSCIN_OUT_N1M1	GENMASK(23, 12)
-+
-+#define RTC_INT_STATUS		(0xc << 2)		/* RTC interrupt status */
-+#define RTC_ALRM0_IRQ_STATUS	BIT(0)
-+
-+#define RTC_REAL_TIME		(0xd << 2)		/* RTC time value */
-+
-+#define RTC_OSCIN_OUT_32K_N0	0x2dc
-+#define RTC_OSCIN_OUT_32K_N1	0x2db
-+#define RTC_OSCIN_OUT_32K_M0	0x1
-+#define RTC_OSCIN_OUT_32K_M1	0x2
-+
-+#define RTC_SWALLOW_SECOND	0x2
-+#define RTC_INSERT_SECOND	0x3
-+
-+struct aml_rtc_config {
-+	bool gray_stored;
-+};
-+
-+struct aml_rtc_data {
-+	struct regmap *map;
-+	struct rtc_device *rtc_dev;
-+	int irq;
-+	struct clk *rtc_clk;
-+	struct clk *sys_clk;
-+	int rtc_enabled;
-+	const struct aml_rtc_config *config;
-+};
-+
-+static const struct regmap_config aml_rtc_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = RTC_REAL_TIME,
-+};
-+
-+static inline u32 gray_to_binary(u32 gray)
-+{
-+	u32 bcd = gray;
-+	int size = sizeof(bcd) * 8;
-+	int i;
-+
-+	for (i = 0; (1 << i) < size; i++)
-+		bcd ^= bcd >> (1 << i);
-+
-+	return bcd;
-+}
-+
-+static inline u32 binary_to_gray(u32 bcd)
-+{
-+	return bcd ^ (bcd >> 1);
-+}
-+
-+static int aml_rtc_read_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 time_sec;
-+
-+	/* if RTC disabled, read time failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, read time failed\n");
-+		return -EINVAL;
-+	}
-+
-+	regmap_read(rtc->map, RTC_REAL_TIME, &time_sec);
-+	if (rtc->config->gray_stored)
-+		time_sec = gray_to_binary(time_sec);
-+	rtc_time64_to_tm(time_sec, tm);
-+	dev_dbg(dev, "%s: read time = %us\n", __func__, time_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_set_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 time_sec;
-+
-+	/* if RTC disabled, first enable it */
-+	if (!rtc->rtc_enabled) {
-+		regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, RTC_ENABLE);
-+		usleep_range(100, 200);
-+		rtc->rtc_enabled = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ENABLE);
-+	}
-+
-+	time_sec = rtc_tm_to_time64(tm);
-+	if (rtc->config->gray_stored)
-+		time_sec = binary_to_gray(time_sec);
-+	regmap_write(rtc->map, RTC_COUNTER_REG, time_sec);
-+	dev_dbg(dev, "%s: set time = %us\n", __func__, time_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	time64_t alarm_sec = 0;
-+
-+	/* if RTC disabled, set alarm failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, set alarm failed\n");
-+		return -EINVAL;
-+	}
-+
-+	regmap_update_bits(rtc->map, RTC_CTRL,
-+			   RTC_ALRM0_EN, RTC_ALRM0_EN);
-+	regmap_update_bits(rtc->map, RTC_INT_MASK,
-+			   RTC_ALRM0_IRQ_MSK, 0);
-+
-+	alarm_sec = rtc_tm_to_time64(&alarm->time);
-+	if (rtc->config->gray_stored)
-+		alarm_sec = binary_to_gray(alarm_sec);
-+	regmap_write(rtc->map, RTC_ALARM0_REG, alarm_sec);
-+
-+	dev_dbg(dev, "%s: alarm->enabled=%d alarm_set=%llds\n", __func__,
-+		alarm->enabled, alarm_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 alarm_sec;
-+	int alarm_enable, alarm_mask;
-+
-+	/* if RTC disabled, read alarm failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, read alarm failed\n");
-+		return -EINVAL;
-+	}
-+
-+	regmap_read(rtc->map, RTC_ALARM0_REG, &alarm_sec);
-+	if (rtc->config->gray_stored)
-+		alarm_sec = gray_to_binary(alarm_sec);
-+	rtc_time64_to_tm(alarm_sec, &alarm->time);
-+
-+	alarm_enable = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ALRM0_EN);
-+	alarm_mask = regmap_test_bits(rtc->map, RTC_INT_MASK, RTC_ALRM0_IRQ_MSK);
-+	alarm->enabled = (alarm_enable && !alarm_mask) ? 1 : 0;
-+	dev_dbg(dev, "%s: alarm->enabled=%d alarm=%us\n", __func__,
-+		alarm->enabled, alarm_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_read_offset(struct device *dev, long *offset)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 reg_val;
-+	long val;
-+	int sign, match_counter, enable;
-+
-+	/* if RTC disabled, read offset failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, read offset failed\n");
-+		return -EINVAL;
-+	}
-+
-+	regmap_read(rtc->map, RTC_SEC_ADJUST_REG, &reg_val);
-+	enable = FIELD_GET(RTC_ADJ_VALID, reg_val);
-+	if (!enable) {
-+		val = 0;
-+	} else {
-+		sign = FIELD_GET(RTC_SEC_ADJUST_CTRL, reg_val);
-+		match_counter = FIELD_GET(RTC_MATCH_COUNTER, reg_val);
-+		val = 1000000000 / (match_counter + 1);
-+		if (sign == RTC_SWALLOW_SECOND)
-+			val = -val;
-+	}
-+	*offset = val;
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_set_offset(struct device *dev, long offset)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	int sign = 0, match_counter = 0, enable = 0;
-+	u32 reg_val;
-+
-+	/* if RTC disabled, set offset failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, set offset failed\n");
-+		return -EINVAL;
-+	}
-+
-+	if (offset) {
-+		enable = 1;
-+		sign = offset < 0 ? RTC_SWALLOW_SECOND : RTC_INSERT_SECOND;
-+		match_counter = 1000000000 / abs(offset) - 1;
-+		if (match_counter < 0 || match_counter > RTC_MATCH_COUNTER)
-+			return -EINVAL;
-+	}
-+
-+	reg_val = FIELD_PREP(RTC_ADJ_VALID, enable) |
-+		  FIELD_PREP(RTC_SEC_ADJUST_CTRL, sign) |
-+		  FIELD_PREP(RTC_MATCH_COUNTER, match_counter);
-+	regmap_write(rtc->map, RTC_SEC_ADJUST_REG, reg_val);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_alarm_enable(struct device *dev, unsigned int enabled)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+
-+	if (enabled) {
-+		regmap_update_bits(rtc->map, RTC_CTRL,
-+				   RTC_ALRM0_EN, RTC_ALRM0_EN);
-+		regmap_update_bits(rtc->map, RTC_INT_MASK,
-+				   RTC_ALRM0_IRQ_MSK, 0);
-+	} else {
-+		regmap_update_bits(rtc->map, RTC_INT_MASK,
-+				   RTC_ALRM0_IRQ_MSK, RTC_ALRM0_IRQ_MSK);
-+		regmap_update_bits(rtc->map, RTC_CTRL,
-+				   RTC_ALRM0_EN, 0);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct rtc_class_ops aml_rtc_ops = {
-+	.read_time = aml_rtc_read_time,
-+	.set_time = aml_rtc_set_time,
-+	.read_alarm = aml_rtc_read_alarm,
-+	.set_alarm = aml_rtc_set_alarm,
-+	.alarm_irq_enable = aml_rtc_alarm_enable,
-+	.read_offset = aml_rtc_read_offset,
-+	.set_offset = aml_rtc_set_offset,
-+};
-+
-+static irqreturn_t aml_rtc_handler(int irq, void *data)
-+{
-+	struct aml_rtc_data *rtc = (struct aml_rtc_data *)data;
-+
-+	regmap_write(rtc->map, RTC_ALARM0_REG, 0);
-+	regmap_write(rtc->map, RTC_INT_CLR, RTC_ALRM0_IRQ_STATUS);
-+
-+	rtc_update_irq(rtc->rtc_dev, 1, RTC_AF | RTC_IRQF);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void aml_rtc_init(struct aml_rtc_data *rtc)
-+{
-+	u32 reg_val = 0;
-+
-+	rtc->rtc_enabled = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ENABLE);
-+	if (!rtc->rtc_enabled) {
-+		if (clk_get_rate(rtc->rtc_clk) == OSC_24M) {
-+			/* select 24M oscillator */
-+			regmap_write_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, RTC_OSC_SEL);
-+
-+			/*
-+			 * Set RTC oscillator to freq_out to freq_in/((N0*M0+N1*M1)/(M0+M1))
-+			 * Enable clock_in gate of oscillator 24MHz
-+			 * Set N0 to 733, N1 to 732
-+			 */
-+			reg_val = FIELD_PREP(RTC_OSCIN_IN_EN, 1)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_CFG, 1)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_N0)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_N1);
-+			regmap_write_bits(rtc->map, RTC_OSCIN_CTRL0, RTC_OSCIN_IN_EN
-+					  | RTC_OSCIN_OUT_CFG | RTC_OSCIN_OUT_N0M0
-+					  | RTC_OSCIN_OUT_N1M1, reg_val);
-+
-+			/* Set M0 to 2, M1 to 3, so freq_out = 32768 Hz*/
-+			reg_val = FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_M0)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_M1);
-+			regmap_write_bits(rtc->map, RTC_OSCIN_CTRL1, RTC_OSCIN_OUT_N0M0
-+					  | RTC_OSCIN_OUT_N1M1, reg_val);
-+		} else {
-+			/* select 32K oscillator */
-+			regmap_write_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, 0);
-+		}
-+	}
-+	regmap_write_bits(rtc->map, RTC_INT_MASK,
-+			  RTC_ALRM0_IRQ_MSK, RTC_ALRM0_IRQ_MSK);
-+	regmap_write_bits(rtc->map, RTC_CTRL, RTC_ALRM0_EN, 0);
-+}
-+
-+static int aml_rtc_probe(struct platform_device *pdev)
-+{
-+	struct aml_rtc_data *rtc;
-+	void __iomem *base;
-+	int ret = 0;
-+
-+	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
-+	if (!rtc)
-+		return -ENOMEM;
-+
-+	rtc->config = of_device_get_match_data(&pdev->dev);
-+	if (!rtc->config)
-+		return -ENODEV;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(base), "resource ioremap failed\n");
-+
-+	rtc->map = devm_regmap_init_mmio(&pdev->dev, base, &aml_rtc_regmap_config);
-+	if (IS_ERR(rtc->map))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->map), "regmap init failed\n");
-+
-+	rtc->irq = platform_get_irq(pdev, 0);
-+	if (rtc->irq < 0)
-+		return rtc->irq;
-+
-+	rtc->rtc_clk = devm_clk_get(&pdev->dev, "osc");
-+	if (IS_ERR(rtc->rtc_clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->rtc_clk),
-+				     "failed to find rtc clock\n");
-+	if (clk_get_rate(rtc->rtc_clk) != OSC_32K && clk_get_rate(rtc->rtc_clk) != OSC_24M)
-+		return dev_err_probe(&pdev->dev, -EINVAL, "Invalid clock configuration\n");
-+
-+	rtc->sys_clk = devm_clk_get(&pdev->dev, "sys");
-+	if (IS_ERR(rtc->sys_clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->sys_clk),
-+				     "failed to get rtc sys clk\n");
-+	ret = clk_prepare_enable(rtc->sys_clk);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret, "Failed to enable clk!\n");
-+
-+	aml_rtc_init(rtc);
-+
-+	device_init_wakeup(&pdev->dev, 1);
-+	platform_set_drvdata(pdev, rtc);
-+
-+	rtc->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
-+	if (IS_ERR(rtc->rtc_dev)) {
-+		ret = PTR_ERR(rtc->rtc_dev);
-+		goto err_clk;
-+	}
-+
-+	ret = devm_request_irq(&pdev->dev, rtc->irq, aml_rtc_handler,
-+			       IRQF_ONESHOT, "aml-rtc alarm", rtc);
-+	if (ret) {
-+		dev_err_probe(&pdev->dev, ret, "IRQ%d request failed, ret = %d\n",
-+			      rtc->irq, ret);
-+		goto err_clk;
-+	}
-+
-+	rtc->rtc_dev->ops = &aml_rtc_ops;
-+	rtc->rtc_dev->range_min = 0;
-+	rtc->rtc_dev->range_max = U32_MAX;
-+
-+	ret = devm_rtc_register_device(rtc->rtc_dev);
-+	if (ret) {
-+		dev_err_probe(&pdev->dev, ret, "Failed to register RTC device: %d\n", ret);
-+		goto err_clk;
-+	}
-+
-+	return 0;
-+err_clk:
-+	clk_disable_unprepare(rtc->sys_clk);
-+
-+	return ret;
-+}
-+
-+static int aml_rtc_suspend(struct device *dev)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+
-+	if (device_may_wakeup(dev))
-+		enable_irq_wake(rtc->irq);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_resume(struct device *dev)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+
-+	if (device_may_wakeup(dev))
-+		disable_irq_wake(rtc->irq);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(aml_rtc_pm_ops,
-+			 aml_rtc_suspend, aml_rtc_resume);
-+
-+static int aml_rtc_remove(struct platform_device *pdev)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(&pdev->dev);
-+
-+	/* disable RTC */
-+	regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, 0);
-+	clk_disable_unprepare(rtc->sys_clk);
-+	device_init_wakeup(&pdev->dev, 0);
-+
-+	return 0;
-+}
-+
-+static const struct aml_rtc_config a5_rtc_config = {
-+};
-+
-+static const struct aml_rtc_config a4_rtc_config = {
-+	.gray_stored = true,
-+};
-+
-+static const struct of_device_id aml_rtc_device_id[] = {
-+	{
-+		.compatible = "amlogic,a4-rtc",
-+		.data = &a4_rtc_config,
-+	},
-+	{
-+		.compatible = "amlogic,a5-rtc",
-+		.data = &a5_rtc_config,
-+	},
-+};
-+MODULE_DEVICE_TABLE(of, aml_rtc_device_id);
-+
-+static struct platform_driver aml_rtc_driver = {
-+	.probe = aml_rtc_probe,
-+	.remove = aml_rtc_remove,
-+	.driver = {
-+		.name = "aml-rtc",
-+		.pm = &aml_rtc_pm_ops,
-+		.of_match_table = aml_rtc_device_id,
-+	},
-+};
-+
-+module_platform_driver(aml_rtc_driver);
-+MODULE_DESCRIPTION("Amlogic RTC driver");
-+MODULE_AUTHOR("Yiting Deng <yiting.deng@amlogic.com>");
-+MODULE_LICENSE("GPL");
-
+   UPSTREAM_REPO: https://gitlab.freedesktop.org/drm/kernel.git
+   TARGET_BRANCH: drm-next
+ 
+-  IGT_VERSION: f13702b8e4e847c56da3ef6f0969065d686049c5
++  IGT_VERSION: a73311079a5d8ac99eb25336a8369a2c3c6b519b
+ 
+   DEQP_RUNNER_GIT_URL: https://gitlab.freedesktop.org/mesa/deqp-runner.git
+-  DEQP_RUNNER_GIT_TAG: v0.15.0
++  DEQP_RUNNER_GIT_TAG: v0.20.0
+ 
+   FDO_UPSTREAM_REPO: helen.fornazier/linux   # The repo where the git-archive daily runs
+   MESA_TEMPLATES_COMMIT: &ci-templates-commit d5aa3941aa03c2f716595116354fb81eb8012acb
+@@ -153,6 +153,14 @@ stages:
+     # Pre-merge pipeline for Marge Bot
+     - if: &is-pre-merge-for-marge '$GITLAB_USER_LOGIN == "marge-bot" && $CI_PIPELINE_SOURCE == "merge_request_event"'
+       when: on_success
++    # Push to a branch on a fork
++    - &is-fork-push '$CI_PROJECT_NAMESPACE != "mesa" && $CI_PIPELINE_SOURCE == "push"'
++
++# Rules applied to every job in the pipeline
++.common-rules:
++  rules:
++    - if: *is-fork-push
++      when: manual
+ 
+ .never-post-merge-rules:
+   rules:
+diff --git a/drivers/gpu/drm/ci/image-tags.yml b/drivers/gpu/drm/ci/image-tags.yml
+index 2c340d063a96..8d8b9e71852e 100644
+--- a/drivers/gpu/drm/ci/image-tags.yml
++++ b/drivers/gpu/drm/ci/image-tags.yml
+@@ -1,5 +1,5 @@
+ variables:
+-   CONTAINER_TAG: "2024-08-07-mesa-uprev"
++   CONTAINER_TAG: "2024-09-09-uprevs"
+    DEBIAN_X86_64_BUILD_BASE_IMAGE: "debian/x86_64_build-base"
+    DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
+ 
+diff --git a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt
+index 8e2fed6d76a3..f44dbce3151a 100644
+--- a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt
+@@ -2,6 +2,7 @@ amdgpu/amd_abm@abm_enabled,Fail
+ amdgpu/amd_abm@abm_gradual,Fail
+ amdgpu/amd_abm@backlight_monotonic_abm,Fail
+ amdgpu/amd_abm@backlight_monotonic_basic,Fail
++amdgpu/amd_abm@dpms_cycle,Fail
+ amdgpu/amd_assr@assr-links,Fail
+ amdgpu/amd_assr@assr-links-dpms,Fail
+ amdgpu/amd_mall@static-screen,Crash
+@@ -14,7 +15,6 @@ amdgpu/amd_plane@mpo-scale-p010,Fail
+ amdgpu/amd_plane@mpo-scale-rgb,Crash
+ amdgpu/amd_plane@mpo-swizzle-toggle,Fail
+ amdgpu/amd_uvd_dec@amdgpu_uvd_decode,Fail
+-dumb_buffer@invalid-bpp,Fail
+ kms_addfb_basic@bad-pitch-65536,Fail
+ kms_addfb_basic@bo-too-small,Fail
+ kms_addfb_basic@too-high,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt
+index e4faa96fa000..e70bd9d447ca 100644
+--- a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt
++++ b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt
+@@ -18,3 +18,10 @@ kms_async_flips@crc
+ # IGT Version: 1.28-g0df7b9b97
+ # Linux Version: 6.9.0-rc7
+ kms_plane@pixel-format-source-clamping
++
++# Board Name: hp-11A-G6-EE-grunt
++# Bug Report: https://lore.kernel.org/amd-gfx/09ee1862-3a0e-4085-ac1b-262601b1122b@collabora.com/T/#t
++# Failure Rate: 100
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_async_flips@async-flip-with-page-flip-events
+diff --git a/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt b/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt
+index 9b84f68a5122..0907cb0f6d9e 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt
+@@ -1,3 +1,4 @@
++core_setmaster@master-drop-set-shared-fd,Fail
+ core_setmaster@master-drop-set-user,Fail
+ core_setmaster_vs_auth,Fail
+ i915_module_load@load,Fail
+@@ -6,7 +7,6 @@ i915_module_load@reload-no-display,Fail
+ i915_module_load@resize-bar,Fail
+ i915_pm_rpm@gem-execbuf-stress,Timeout
+ i915_pm_rpm@module-reload,Fail
+-kms_ccs@crc-primary-rotation-180-yf-tiled-ccs,Timeout
+ kms_cursor_legacy@short-flip-before-cursor-atomic-transitions,Timeout
+ kms_fb_coherency@memset-crc,Crash
+ kms_flip@busy-flip,Timeout
+diff --git a/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+index 581f0da4d0f2..0207c9807bee 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+@@ -46,3 +46,10 @@ i915_hangman@engine-engine-hang
+ # IGT Version: 1.28-gf13702b8e
+ # Linux Version: 6.10.0-rc5
+ kms_pm_rpm@modeset-lpsp-stress
++
++# Board Name: asus-C433TA-AJ0005-rammus
++# Bug Report: https://lore.kernel.org/intel-gfx/61f62c86-3e82-4eff-bd3c-8123fa0ca332@collabora.com/T/#t
++# Failure Rate: 50
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_pm_rpm@drm-resources-equal
+diff --git a/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt
+index e612281149aa..64772fedaed5 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt
+@@ -8,7 +8,6 @@ kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling,Fail
+ kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-upscaling,Fail
+ kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling,Fail
+ kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling,Fail
+-kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-downscaling,Fail
+ kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling,Fail
+ kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-downscaling,Fail
+ kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-upscaling,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
+index 4663d4d13f35..e8bddda56737 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
+@@ -4,3 +4,10 @@
+ # IGT Version: 1.28-g0df7b9b97
+ # Linux Version: 6.9.0-rc7
+ kms_fb_coherency@memset-crc
++
++# Board Name: asus-C523NA-A20057-coral
++# Bug Report: https://lore.kernel.org/intel-gfx/61f62c86-3e82-4eff-bd3c-8123fa0ca332@collabora.com/T/#t
++# Failure Rate: 100
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_universal_plane@cursor-fb-leak
+diff --git a/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt b/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt
+index 2723e2832797..f352b719cf7d 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt
+@@ -1,5 +1,5 @@
++core_setmaster@master-drop-set-shared-fd,Fail
+ core_setmaster@master-drop-set-user,Fail
+-core_setmaster_vs_auth,Fail
+ i915_module_load@load,Fail
+ i915_module_load@reload,Fail
+ i915_module_load@reload-no-display,Fail
+@@ -9,10 +9,10 @@ i915_pipe_stress@stress-xrgb8888-ytiled,Fail
+ i915_pm_rpm@gem-execbuf-stress,Timeout
+ i915_pm_rpm@module-reload,Fail
+ i915_pm_rpm@system-suspend-execbuf,Timeout
+-kms_ccs@crc-primary-rotation-180-yf-tiled-ccs,Timeout
++i915_pm_rps@engine-order,Fail
++kms_big_fb@linear-16bpp-rotate-180,Timeout
+ kms_fb_coherency@memset-crc,Crash
+ kms_flip@busy-flip,Timeout
+-kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset-interruptible,Fail
+ kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-downscaling,Fail
+ kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-upscaling,Fail
+ kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling,Fail
+@@ -40,14 +40,11 @@ kms_plane_alpha_blend@alpha-basic,Fail
+ kms_plane_alpha_blend@alpha-opaque-fb,Fail
+ kms_plane_alpha_blend@alpha-transparent-fb,Fail
+ kms_plane_alpha_blend@constant-alpha-max,Fail
+-kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation,Timeout
+ kms_plane_scaling@planes-upscale-factor-0-25-downscale-factor-0-5,Timeout
+ kms_pm_rpm@modeset-stress-extra-wait,Timeout
+ kms_pm_rpm@universal-planes,Timeout
+ kms_pm_rpm@universal-planes-dpms,Timeout
+-kms_prop_blob@invalid-set-prop,Fail
+ kms_psr2_sf@cursor-plane-update-sf,Fail
+-kms_psr2_sf@fbc-plane-move-sf-dmg-area,Timeout
+ kms_psr2_sf@overlay-plane-update-continuous-sf,Fail
+ kms_psr2_sf@overlay-plane-update-sf-dmg-area,Fail
+ kms_psr2_sf@overlay-primary-update-sf-dmg-area,Fail
+@@ -55,7 +52,6 @@ kms_psr2_sf@plane-move-sf-dmg-area,Fail
+ kms_psr2_sf@primary-plane-update-sf-dmg-area,Fail
+ kms_psr2_sf@primary-plane-update-sf-dmg-area-big-fb,Fail
+ kms_psr2_su@page_flip-NV12,Fail
+-kms_psr2_su@page_flip-P010,Fail
+ kms_rotation_crc@primary-rotation-180,Timeout
+ kms_setmode@basic,Fail
+ kms_vblank@query-forked-hang,Timeout
+diff --git a/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
+index 58a6001abb28..d8401251e5f4 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
+@@ -11,3 +11,17 @@ kms_plane_alpha_blend@constant-alpha-min
+ # IGT Version: 1.28-gf13702b8e
+ # Linux Version: 6.10.0-rc5
+ kms_atomic_transition@plane-all-modeset-transition-internal-panels
++
++# Board Name: asus-C436FA-Flip-hatch
++# Bug Report: https://lore.kernel.org/intel-gfx/61f62c86-3e82-4eff-bd3c-8123fa0ca332@collabora.com/T/#t
++# Failure Rate: 100
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_plane_alpha_blend@constant-alpha-min
++
++# Board Name: asus-C436FA-Flip-hatch
++# Bug Report: https://lore.kernel.org/intel-gfx/61f62c86-3e82-4eff-bd3c-8123fa0ca332@collabora.com/T/#t
++# Failure Rate: 50
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_async_flips@crc
+diff --git a/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt b/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt
+index 4821c9adefd1..6eb64c672f7d 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt
+@@ -63,3 +63,4 @@ xe_module_load@load,Fail
+ xe_module_load@many-reload,Fail
+ xe_module_load@reload,Fail
+ xe_module_load@reload-no-display,Fail
++core_setmaster@master-drop-set-shared-fd,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt
+index 1de04a3308c4..d4fba4f55ec1 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt
+@@ -17,12 +17,10 @@ perf@i915-ref-count,Fail
+ perf_pmu@busy-accuracy-50,Fail
+ perf_pmu@module-unload,Fail
+ perf_pmu@rc6,Crash
+-prime_busy@after,Fail
+ sysfs_heartbeat_interval@long,Timeout
+ sysfs_heartbeat_interval@off,Timeout
+ sysfs_preempt_timeout@off,Timeout
+ sysfs_timeslice_duration@off,Timeout
+-testdisplay,Timeout
+ xe_module_load@force-load,Fail
+ xe_module_load@load,Fail
+ xe_module_load@many-reload,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt
+index e728ccc62326..461ef69ef08a 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt
+@@ -1,40 +1,64 @@
++api_intel_allocator@fork-simple-stress-signal,Timeout
++api_intel_allocator@open-vm,Timeout
+ api_intel_allocator@simple-allocator,Timeout
++api_intel_bb@lot-of-buffers,Timeout
+ api_intel_bb@object-reloc-keep-cache,Timeout
+ api_intel_bb@offset-control,Timeout
+-core_auth@getclient-simple,Timeout
+-core_hotunplug@hotunbind-rebind,Timeout
++api_intel_bb@render-ccs,Timeout
++api_intel_bb@reset-bb,Timeout
++core_auth@basic-auth,Timeout
++core_hotunplug@hotrebind,Timeout
++core_setmaster@master-drop-set-user,Fail
+ debugfs_test@read_all_entries_display_on,Timeout
+-drm_read@invalid-buffer,Timeout
+-drm_read@short-buffer-nonblock,Timeout
++drm_read@empty-block,Timeout
++dumb_buffer@create-clear,Timeout
++dumb_buffer@invalid-bpp,Timeout
+ gen3_render_tiledx_blits,Timeout
+ gen7_exec_parse@basic-allocation,Timeout
+-gen7_exec_parse@batch-without-end,Timeout
+ gen9_exec_parse@batch-invalid-length,Timeout
+ gen9_exec_parse@bb-secure,Timeout
+ gen9_exec_parse@secure-batches,Timeout
+ gen9_exec_parse@shadow-peek,Timeout
+ gen9_exec_parse@unaligned-jump,Timeout
++i915_getparams_basic@basic-subslice-total,Timeout
++i915_hangman@gt-engine-hang,Timeout
+ i915_module_load@load,Fail
+ i915_module_load@reload,Fail
+ i915_module_load@reload-no-display,Fail
+ i915_module_load@resize-bar,Fail
++i915_pciid,Timeout
++i915_pipe_stress@stress-xrgb8888-ytiled,Timeout
++i915_pm_rpm@gem-execbuf-stress,Timeout
++i915_pm_rps@engine-order,Timeout
++i915_pm_rps@thresholds-idle-park,Timeout
+ i915_query@engine-info,Timeout
+ i915_query@query-topology-kernel-writes,Timeout
+ i915_query@test-query-geometry-subslices,Timeout
+ kms_lease@lease-uevent,Fail
+ kms_rotation_crc@multiplane-rotation,Fail
+ perf@i915-ref-count,Fail
++perf_pmu@busy,Timeout
+ perf_pmu@enable-race,Timeout
+ perf_pmu@event-wait,Timeout
++perf_pmu@faulting-read,Timeout
+ perf_pmu@gt-awake,Timeout
+ perf_pmu@interrupts,Timeout
+ perf_pmu@module-unload,Fail
++perf_pmu@most-busy-idle-check-all,Timeout
+ perf_pmu@rc6,Crash
++perf_pmu@render-node-busy-idle,Fail
++perf_pmu@semaphore-wait-idle,Timeout
++prime_busy@after,Timeout
++prime_mmap@test_aperture_limit,Timeout
+ prime_mmap@test_map_unmap,Timeout
+ prime_mmap@test_refcounting,Timeout
+ prime_self_import@basic-with_one_bo,Timeout
++sriov_basic@enable-vfs-autoprobe-off,Timeout
++syncobj_basic@bad-destroy,Timeout
+ syncobj_basic@bad-flags-fd-to-handle,Timeout
++syncobj_basic@create-signaled,Timeout
+ syncobj_eventfd@invalid-bad-pad,Timeout
++syncobj_eventfd@timeline-wait-before-signal,Timeout
+ syncobj_wait@invalid-multi-wait-unsubmitted-signaled,Timeout
+ syncobj_wait@invalid-signal-illegal-handle,Timeout
+ syncobj_wait@invalid-single-wait-all-unsubmitted,Timeout
+diff --git a/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt
+index 2adae2175501..0ce240e3aa07 100644
+--- a/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt
+@@ -1,5 +1,5 @@
++core_setmaster@master-drop-set-shared-fd,Fail
+ core_setmaster@master-drop-set-user,Fail
+-core_setmaster_vs_auth,Fail
+ i915_module_load@load,Fail
+ i915_module_load@reload,Fail
+ i915_module_load@reload-no-display,Fail
+@@ -7,7 +7,8 @@ i915_module_load@resize-bar,Fail
+ i915_pm_rpm@gem-execbuf-stress,Timeout
+ i915_pm_rpm@module-reload,Fail
+ i915_pm_rpm@system-suspend-execbuf,Timeout
+-kms_ccs@crc-primary-rotation-180-yf-tiled-ccs,Timeout
++i915_pm_rps@engine-order,Fail
++kms_big_fb@linear-16bpp-rotate-180,Timeout
+ kms_cursor_legacy@short-flip-before-cursor-atomic-transitions,Timeout
+ kms_dirtyfb@default-dirtyfb-ioctl,Fail
+ kms_dirtyfb@fbc-dirtyfb-ioctl,Fail
+@@ -32,19 +33,17 @@ kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling,Fail
+ kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling,Fail
+ kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling,Fail
+ kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-downscaling,Fail
+-kms_frontbuffer_tracking@fbc-rgb565-draw-mmap-cpu,Timeout
+ kms_frontbuffer_tracking@fbc-tiling-linear,Fail
++kms_frontbuffer_tracking@fbc-1p-indfb-fliptrack-mmap-gtt,Timeout
+ kms_lease@lease-uevent,Fail
+ kms_plane_alpha_blend@alpha-basic,Fail
+ kms_plane_alpha_blend@alpha-opaque-fb,Fail
+ kms_plane_alpha_blend@alpha-transparent-fb,Fail
+ kms_plane_alpha_blend@constant-alpha-max,Fail
+-kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation,Timeout
+ kms_plane_scaling@planes-upscale-factor-0-25-downscale-factor-0-5,Timeout
+ kms_pm_rpm@modeset-stress-extra-wait,Timeout
+ kms_pm_rpm@universal-planes,Timeout
+ kms_pm_rpm@universal-planes-dpms,Timeout
+-kms_prop_blob@invalid-set-prop,Fail
+ kms_rotation_crc@primary-rotation-180,Timeout
+ kms_vblank@query-forked-hang,Timeout
+ perf@i915-ref-count,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
+index a14349a1967f..8e0efc80d510 100644
+--- a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
+@@ -1,8 +1,3 @@
+-device_reset@cold-reset-bound,Fail
+-device_reset@reset-bound,Fail
+-device_reset@unbind-cold-reset-rebind,Fail
+-device_reset@unbind-reset-rebind,Fail
+-dumb_buffer@invalid-bpp,Fail
+ fbdev@eof,Fail
+ fbdev@read,Fail
+ kms_3d,Fail
+@@ -27,10 +22,6 @@ kms_cursor_legacy@cursor-vs-flip-atomic,Fail
+ kms_cursor_legacy@cursor-vs-flip-legacy,Fail
+ kms_flip@flip-vs-modeset-vs-hang,Fail
+ kms_flip@flip-vs-panning-vs-hang,Fail
+-kms_flip@flip-vs-suspend,Fail
+-kms_flip@flip-vs-suspend-interruptible,Fail
+ kms_lease@lease-uevent,Fail
+-kms_properties@get_properties-sanity-atomic,Fail
+-kms_properties@plane-properties-atomic,Fail
+-kms_properties@plane-properties-legacy,Fail
+ kms_rmfb@close-fd,Fail
++kms_flip@flip-vs-suspend-interruptible,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
+index 8cb2cb67853d..845f852bb4a0 100644
+--- a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
+@@ -1,10 +1,5 @@
+ core_setmaster@master-drop-set-shared-fd,Fail
+-device_reset@cold-reset-bound,Fail
+-device_reset@reset-bound,Fail
+-device_reset@unbind-cold-reset-rebind,Fail
+-device_reset@unbind-reset-rebind,Fail
+ dumb_buffer@create-clear,Crash
+-dumb_buffer@invalid-bpp,Fail
+ fbdev@eof,Fail
+ fbdev@pan,Fail
+ fbdev@read,Fail
+@@ -18,5 +13,4 @@ kms_color@invalid-gamma-lut-sizes,Fail
+ kms_flip@flip-vs-panning-vs-hang,Fail
+ kms_flip@flip-vs-suspend,Fail
+ kms_lease@lease-uevent,Fail
+-kms_properties@plane-properties-atomic,Fail
+ kms_rmfb@close-fd,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt b/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt
+index 328967d3e23d..fc3745180683 100644
+--- a/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt
+@@ -1,4 +1,3 @@
+-dumb_buffer@invalid-bpp,Fail
+ kms_3d,Fail
+ kms_cursor_legacy@forked-bo,Fail
+ kms_cursor_legacy@forked-move,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+index 4ac46168eff3..066d24ee3e08 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+@@ -1,8 +1,3 @@
+-device_reset@cold-reset-bound,Fail
+-device_reset@reset-bound,Fail
+-device_reset@unbind-cold-reset-rebind,Fail
+-device_reset@unbind-reset-rebind,Fail
+-dumb_buffer@invalid-bpp,Fail
+ kms_3d,Fail
+ kms_cursor_legacy@torture-bo,Fail
+ kms_force_connector_basic@force-edid,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt
+index bd0653caf7a0..2893f98a6b97 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt
+@@ -1,7 +1,2 @@
+-device_reset@cold-reset-bound,Fail
+-device_reset@reset-bound,Fail
+-device_reset@unbind-cold-reset-rebind,Fail
+-device_reset@unbind-reset-rebind,Fail
+-dumb_buffer@invalid-bpp,Fail
+ kms_3d,Fail
+ kms_lease@lease-uevent,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
+index d42004cd6977..6dbc2080347d 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
+@@ -1,8 +1,3 @@
+-device_reset@cold-reset-bound,Fail
+-device_reset@reset-bound,Fail
+-device_reset@unbind-cold-reset-rebind,Fail
+-device_reset@unbind-reset-rebind,Fail
+-dumb_buffer@invalid-bpp,Fail
+ kms_color@ctm-0-25,Fail
+ kms_color@ctm-0-50,Fail
+ kms_color@ctm-0-75,Fail
+@@ -11,35 +6,13 @@ kms_color@ctm-green-to-red,Fail
+ kms_color@ctm-negative,Fail
+ kms_color@ctm-red-to-blue,Fail
+ kms_color@ctm-signed,Fail
+-kms_content_protection@atomic,Crash
+-kms_content_protection@atomic-dpms,Crash
+-kms_content_protection@content-type-change,Crash
+-kms_content_protection@lic-type-0,Crash
+-kms_content_protection@lic-type-1,Crash
+-kms_content_protection@srm,Crash
+-kms_content_protection@type1,Crash
+-kms_content_protection@uevent,Crash
+-kms_cursor_legacy@2x-cursor-vs-flip-atomic,Fail
+-kms_cursor_legacy@2x-cursor-vs-flip-legacy,Fail
+-kms_cursor_legacy@2x-flip-vs-cursor-atomic,Fail
+-kms_cursor_legacy@2x-flip-vs-cursor-legacy,Fail
+-kms_cursor_legacy@2x-long-cursor-vs-flip-atomic,Fail
+-kms_cursor_legacy@2x-long-cursor-vs-flip-legacy,Fail
+-kms_cursor_legacy@2x-long-flip-vs-cursor-atomic,Fail
+-kms_cursor_legacy@2x-long-flip-vs-cursor-legacy,Fail
+ kms_cursor_legacy@cursor-vs-flip-toggle,Fail
+ kms_cursor_legacy@cursor-vs-flip-varying-size,Fail
+-kms_display_modes@extended-mode-basic,Fail
+-kms_flip@2x-flip-vs-modeset-vs-hang,Fail
+-kms_flip@2x-flip-vs-panning-vs-hang,Fail
+ kms_flip@flip-vs-modeset-vs-hang,Fail
+ kms_flip@flip-vs-panning-vs-hang,Fail
+ kms_lease@lease-uevent,Fail
+-kms_multipipe_modeset@basic-max-pipe-crc-check,Fail
+ kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
+ kms_plane_alpha_blend@alpha-7efc,Fail
+ kms_plane_alpha_blend@coverage-7efc,Fail
+ kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
+-kms_plane_lowres@tiling-none,Fail
+ kms_rmfb@close-fd,Fail
+-kms_vblank@ts-continuation-dpms-rpm,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
+index d42004cd6977..6dbc2080347d 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
+@@ -1,8 +1,3 @@
+-device_reset@cold-reset-bound,Fail
+-device_reset@reset-bound,Fail
+-device_reset@unbind-cold-reset-rebind,Fail
+-device_reset@unbind-reset-rebind,Fail
+-dumb_buffer@invalid-bpp,Fail
+ kms_color@ctm-0-25,Fail
+ kms_color@ctm-0-50,Fail
+ kms_color@ctm-0-75,Fail
+@@ -11,35 +6,13 @@ kms_color@ctm-green-to-red,Fail
+ kms_color@ctm-negative,Fail
+ kms_color@ctm-red-to-blue,Fail
+ kms_color@ctm-signed,Fail
+-kms_content_protection@atomic,Crash
+-kms_content_protection@atomic-dpms,Crash
+-kms_content_protection@content-type-change,Crash
+-kms_content_protection@lic-type-0,Crash
+-kms_content_protection@lic-type-1,Crash
+-kms_content_protection@srm,Crash
+-kms_content_protection@type1,Crash
+-kms_content_protection@uevent,Crash
+-kms_cursor_legacy@2x-cursor-vs-flip-atomic,Fail
+-kms_cursor_legacy@2x-cursor-vs-flip-legacy,Fail
+-kms_cursor_legacy@2x-flip-vs-cursor-atomic,Fail
+-kms_cursor_legacy@2x-flip-vs-cursor-legacy,Fail
+-kms_cursor_legacy@2x-long-cursor-vs-flip-atomic,Fail
+-kms_cursor_legacy@2x-long-cursor-vs-flip-legacy,Fail
+-kms_cursor_legacy@2x-long-flip-vs-cursor-atomic,Fail
+-kms_cursor_legacy@2x-long-flip-vs-cursor-legacy,Fail
+ kms_cursor_legacy@cursor-vs-flip-toggle,Fail
+ kms_cursor_legacy@cursor-vs-flip-varying-size,Fail
+-kms_display_modes@extended-mode-basic,Fail
+-kms_flip@2x-flip-vs-modeset-vs-hang,Fail
+-kms_flip@2x-flip-vs-panning-vs-hang,Fail
+ kms_flip@flip-vs-modeset-vs-hang,Fail
+ kms_flip@flip-vs-panning-vs-hang,Fail
+ kms_lease@lease-uevent,Fail
+-kms_multipipe_modeset@basic-max-pipe-crc-check,Fail
+ kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
+ kms_plane_alpha_blend@alpha-7efc,Fail
+ kms_plane_alpha_blend@coverage-7efc,Fail
+ kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
+-kms_plane_lowres@tiling-none,Fail
+ kms_rmfb@close-fd,Fail
+-kms_vblank@ts-continuation-dpms-rpm,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt
+index 770a1c685fde..fa8c7e663858 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt
+@@ -1,8 +1,4 @@
+-device_reset@cold-reset-bound,Fail
+-device_reset@reset-bound,Fail
+-device_reset@unbind-cold-reset-rebind,Fail
+-device_reset@unbind-reset-rebind,Fail
+-dumb_buffer@invalid-bpp,Fail
++drm_read@invalid-buffer,Fail
+ kms_color@ctm-0-25,Fail
+ kms_color@ctm-0-50,Fail
+ kms_color@ctm-0-75,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt
+index 2aa96b1241c3..38ec0305c1f4 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt
+@@ -116,3 +116,17 @@ kms_cursor_legacy@flip-vs-cursor-toggle
+ # IGT Version: 1.28-gf13702b8e
+ # Linux Version: 6.10.0-rc5
+ msm/msm_shrink@copy-mmap-oom-8
++
++# Board Name: sdm845-cheza-r3
++# Bug Report: https://lore.kernel.org/linux-arm-msm/64bc4bcf-de51-4e60-a9f7-1295a1e64c65@collabora.com/T/#t
++# Failure Rate: 50
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_lease@page-flip-implicit-plane
++
++# Board Name: sdm845-cheza-r3
++# Bug Report: https://lore.kernel.org/linux-arm-msm/64bc4bcf-de51-4e60-a9f7-1295a1e64c65@collabora.com/T/#t
++# Failure Rate: 50
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc5
++kms_flip@flip-vs-expired-vblank
+diff --git a/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt b/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt
+index 90651048ab61..94783cafc21a 100644
+--- a/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt
+@@ -25,3 +25,8 @@ core_hotunplug.*
+ 
+ # Whole machine hangs
+ kms_cursor_crc.*
++
++# IGT test crash
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_content_protection@uevent
+diff --git a/drivers/gpu/drm/ci/xfails/panfrost-g12b-fails.txt b/drivers/gpu/drm/ci/xfails/panfrost-g12b-fails.txt
+index fe8ce2ce33e6..abd1ccb71561 100644
+--- a/drivers/gpu/drm/ci/xfails/panfrost-g12b-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/panfrost-g12b-fails.txt
+@@ -1 +1,2 @@
+ panfrost/panfrost_prime@gem-prime-import,Fail
++panfrost/panfrost_submit@pan-submit-error-bad-requirements,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/panfrost-mt8183-fails.txt b/drivers/gpu/drm/ci/xfails/panfrost-mt8183-fails.txt
+index fe8ce2ce33e6..abd1ccb71561 100644
+--- a/drivers/gpu/drm/ci/xfails/panfrost-mt8183-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/panfrost-mt8183-fails.txt
+@@ -1 +1,2 @@
+ panfrost/panfrost_prime@gem-prime-import,Fail
++panfrost/panfrost_submit@pan-submit-error-bad-requirements,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt b/drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt
+index 4a2f4b6b14c1..8330b934602a 100644
+--- a/drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/panfrost-rk3288-fails.txt
+@@ -1 +1,2 @@
+ panfrost/panfrost_prime@gem-prime-import,Crash
++panfrost/panfrost_submit@pan-submit-error-bad-requirements,Crash
+diff --git a/drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt b/drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt
+index fe8ce2ce33e6..abd1ccb71561 100644
+--- a/drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/panfrost-rk3399-fails.txt
+@@ -1 +1,2 @@
+ panfrost/panfrost_prime@gem-prime-import,Fail
++panfrost/panfrost_submit@pan-submit-error-bad-requirements,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt
+index ea7b2ceb95b9..90282dfa19f4 100644
+--- a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt
+@@ -1,18 +1,24 @@
+-core_setmaster@master-drop-set-root,Crash
+ core_setmaster@master-drop-set-user,Crash
+-core_setmaster_vs_auth,Crash
+-device_reset@cold-reset-bound,Crash
+-device_reset@reset-bound,Crash
+-device_reset@unbind-cold-reset-rebind,Crash
+-device_reset@unbind-reset-rebind,Crash
+ dumb_buffer@create-clear,Crash
+-dumb_buffer@invalid-bpp,Crash
+ fbdev@pan,Crash
++kms_bw@linear-tiling-2-displays-1920x1080p,Fail
+ kms_cursor_crc@cursor-onscreen-32x10,Crash
+ kms_cursor_crc@cursor-onscreen-32x32,Crash
++kms_cursor_crc@cursor-onscreen-64x64,Crash
+ kms_cursor_crc@cursor-random-32x10,Crash
++kms_cursor_crc@cursor-sliding-32x10,Crash
+ kms_cursor_crc@cursor-sliding-32x32,Crash
++kms_cursor_crc@cursor-sliding-64x21,Crash
+ kms_cursor_legacy@basic-flip-before-cursor-atomic,Fail
+ kms_cursor_legacy@cursor-vs-flip-legacy,Fail
++kms_cursor_legacy@flip-vs-cursor-crc-atomic,Crash
++kms_flip@flip-vs-panning-vs-hang,Crash
++kms_invalid_mode@int-max-clock,Crash
++kms_lease@invalid-create-leases,Fail
++kms_pipe_crc_basic@read-crc-frame-sequence,Crash
++kms_plane@pixel-format,Crash
++kms_plane@pixel-format-source-clamping,Crash
+ kms_prop_blob@invalid-set-prop,Crash
+-kms_prop_blob@invalid-set-prop-any,Crash
++kms_properties@get_properties-sanity-atomic,Crash
++kms_properties@get_properties-sanity-non-atomic,Crash
++kms_rmfb@close-fd,Crash
+diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt
+index 7ede273aab20..cd0b27d8b636 100644
+--- a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt
++++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt
+@@ -4,3 +4,31 @@
+ # IGT Version: 1.28-gf13702b8e
+ # Linux Version: 6.10.0-rc5
+ kms_cursor_legacy@flip-vs-cursor-atomic
++
++# Board Name: rk3288-veyron-jaq
++# Bug Report: https://lore.kernel.org/linux-rockchip/7505ac00-29ef-4ad9-8904-94b4c024c02b@collabora.com/T/#t
++# Failure Rate: 100
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_cursor_crc@cursor-offscreen-32x10
++
++# Board Name: rk3288-veyron-jaq
++# Bug Report: https://lore.kernel.org/linux-rockchip/7505ac00-29ef-4ad9-8904-94b4c024c02b@collabora.com/T/#t
++# Failure Rate: 100
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_cursor_edge_walk@64x64-left-edge
++
++# Board Name: rk3288-veyron-jaq
++# Bug Report: https://lore.kernel.org/linux-rockchip/7505ac00-29ef-4ad9-8904-94b4c024c02b@collabora.com/T/#t
++# Failure Rate: 100
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_flip@plain-flip-ts-check
++
++# Board Name: rk3288-veyron-jaq
++# Bug Report: https://lore.kernel.org/linux-rockchip/7505ac00-29ef-4ad9-8904-94b4c024c02b@collabora.com/T/#t
++# Failure Rate: 100
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_cursor_crc@cursor-alpha-opaque
+diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt
+index 9309ff15e23a..83a38853b4af 100644
+--- a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt
+@@ -1,9 +1,4 @@
+-device_reset@cold-reset-bound,Fail
+-device_reset@reset-bound,Fail
+-device_reset@unbind-cold-reset-rebind,Fail
+-device_reset@unbind-reset-rebind,Fail
+ dumb_buffer@create-clear,Crash
+-dumb_buffer@invalid-bpp,Fail
+ kms_atomic_transition@modeset-transition,Fail
+ kms_atomic_transition@modeset-transition-fencing,Fail
+ kms_atomic_transition@plane-toggle-modeset-transition,Fail
+@@ -46,7 +41,6 @@ kms_cursor_legacy@flip-vs-cursor-legacy,Fail
+ kms_cursor_legacy@long-nonblocking-modeset-vs-cursor-atomic,Fail
+ kms_flip@basic-flip-vs-wf_vblank,Fail
+ kms_flip@blocking-wf_vblank,Fail
+-kms_flip@dpms-vs-vblank-race,Fail
+ kms_flip@flip-vs-absolute-wf_vblank,Fail
+ kms_flip@flip-vs-blocking-wf-vblank,Fail
+ kms_flip@flip-vs-modeset-vs-hang,Fail
+@@ -59,7 +53,6 @@ kms_flip@plain-flip-fb-recreate,Fail
+ kms_flip@plain-flip-fb-recreate-interruptible,Fail
+ kms_flip@plain-flip-ts-check,Fail
+ kms_flip@plain-flip-ts-check-interruptible,Fail
+-kms_flip@wf_vblank-ts-check,Fail
+ kms_flip@wf_vblank-ts-check-interruptible,Fail
+ kms_invalid_mode@int-max-clock,Fail
+ kms_lease@lease-uevent,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt
+index d98f6a17343c..56f7d4f1ed15 100644
+--- a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt
++++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt
+@@ -46,3 +46,31 @@ kms_setmode@basic
+ # IGT Version: 1.28-gf13702b8e
+ # Linux Version: 6.10.0-rc5
+ kms_bw@connected-linear-tiling-1-displays-2560x1440p
++
++# Board Name: rk3399-gru-kevin
++# Bug Report: https://lore.kernel.org/linux-rockchip/7505ac00-29ef-4ad9-8904-94b4c024c02b@collabora.com/T/#t
++# Failure Rate: 50
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc2
++kms_flip@wf_vblank-ts-check
++
++# Board Name: rk3399-gru-kevin
++# Bug Report: https://lore.kernel.org/linux-rockchip/7505ac00-29ef-4ad9-8904-94b4c024c02b@collabora.com/T/#t
++# Failure Rate: 50
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc5
++kms_flip@dpms-vs-vblank-race
++
++# Board Name: rk3399-gru-kevin
++# Bug Report: https://lore.kernel.org/linux-rockchip/7505ac00-29ef-4ad9-8904-94b4c024c02b@collabora.com/T/#t
++# Failure Rate: 50
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc5
++kms_bw@linear-tiling-2-displays-2160x1440p
++
++# Board Name: rk3399-gru-kevin
++# Bug Report: https://lore.kernel.org/linux-rockchip/7505ac00-29ef-4ad9-8904-94b4c024c02b@collabora.com/T/#t
++# Failure Rate: 50
++# IGT Version: 1.28-ga73311079
++# Linux Version: 6.11.0-rc5
++kms_flip@flip-vs-expired-vblank
+diff --git a/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt b/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt
+index 5408110f4c60..71c02104a683 100644
+--- a/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt
++++ b/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt
+@@ -1,24 +1,3 @@
+-core_hotunplug@hotrebind,Fail
+-core_hotunplug@hotrebind-lateclose,Fail
+-core_hotunplug@hotreplug,Fail
+-core_hotunplug@hotreplug-lateclose,Fail
+-core_hotunplug@hotunbind-rebind,Fail
+-core_hotunplug@hotunplug-rescan,Fail
+-core_hotunplug@unbind-rebind,Fail
+-core_hotunplug@unplug-rescan,Fail
+-device_reset@cold-reset-bound,Fail
+-device_reset@reset-bound,Fail
+-device_reset@unbind-cold-reset-rebind,Fail
+-device_reset@unbind-reset-rebind,Fail
+-dumb_buffer@invalid-bpp,Fail
+-kms_content_protection@atomic,Crash
+-kms_content_protection@atomic-dpms,Crash
+-kms_content_protection@content-type-change,Crash
+-kms_content_protection@lic-type-0,Crash
+-kms_content_protection@lic-type-1,Crash
+-kms_content_protection@srm,Crash
+-kms_content_protection@type1,Crash
+-kms_content_protection@uevent,Crash
+ kms_cursor_crc@cursor-rapid-movement-128x128,Fail
+ kms_cursor_crc@cursor-rapid-movement-128x42,Fail
+ kms_cursor_crc@cursor-rapid-movement-256x256,Fail
+diff --git a/drivers/gpu/drm/ci/xfails/vkms-none-skips.txt b/drivers/gpu/drm/ci/xfails/vkms-none-skips.txt
+index 5ccc771fbb36..b3d16e82e9a2 100644
+--- a/drivers/gpu/drm/ci/xfails/vkms-none-skips.txt
++++ b/drivers/gpu/drm/ci/xfails/vkms-none-skips.txt
+@@ -205,6 +205,59 @@ kms_cursor_edge_walk@128x128-right-edge
+ # R10: ffffa2c181790000 R11: 0000000000000000 R12: ffffa2c1814fa810
+ # R13: 0000000000000031 R14: 0000000000000031 R15: 000000000000
+ 
++kms_cursor_edge_walk@128x128-left-edge
++# DEBUG - Begin test kms_cursor_edge_walk@128x128-left-edge
++# Oops: Oops: 0000 [#1] PREEMPT SMP NOPTI
++# CPU: 0 UID: 0 PID: 27 Comm: kworker/u8:1 Not tainted 6.11.0-rc5-g5d3429a7e9aa #1
++# Hardware name: ChromiumOS crosvm, BIOS 0
++# Workqueue: vkms_composer vkms_composer_worker [vkms]
++# RIP: 0010:compose_active_planes+0x344/0x4e0 [vkms]
++# Code: 6a 34 0f 8e 91 fe ff ff 44 89 ea 48 8d 7c 24 48 e8 71 f0 ff ff 4b 8b 04 fc 48 8b 4c 24 50 48 8b 7c 24 40 48 8b 80 48 01 00 00 <48> 63 70 18 8b 40 20 48 89 f2 48 c1 e6 03 29 d0 48 8b 54 24 48 48
++# RSP: 0018:ffffa437800ebd58 EFLAGS: 00010282
++# RAX: 0000000000000000 RBX: 0000000000000002 RCX: ffffa0e841904000
++# RDX: 00000000000000ff RSI: ffffa0e841905ff8 RDI: ffffa0e841902000
++# RBP: 0000000000000000 R08: ffffa0e84158a600 R09: 00000000000003ff
++# R10: 0000000078b2bcd2 R11: 00000000278b2bcd R12: ffffa0e84870fc60
++# R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
++# FS:  0000000000000000(0000) GS:ffffa0e86bc00000(0000) knlGS:0000000000000000
++# CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
++# CR2: 0000000000000018 CR3: 0000000101710000 CR4: 0000000000350ef0
++# Call Trace:
++#  <TASK>
++#  ? __die+0x1e/0x60
++#  ? page_fault_oops+0x17b/0x4a0
++#  ? exc_page_fault+0x6d/0x230
++#  ? asm_exc_page_fault+0x26/0x30
++#  ? compose_active_planes+0x344/0x4e0 [vkms]
++#  ? compose_active_planes+0x32f/0x4e0 [vkms]
++#  ? srso_return_thunk+0x5/0x5f
++#  vkms_composer_worker+0x205/0x240 [vkms]
++#  process_one_work+0x201/0x6c0
++#  ? lock_is_held_type+0x9e/0x110
++#  worker_thread+0x17e/0x310
++#  ? __pfx_worker_thread+0x10/0x10
++#  kthread+0xce/0x100
++#  ? __pfx_kthread+0x10/0x10
++#  ret_from_fork+0x2f/0x50
++#  ? __pfx_kthread+0x10/0x10
++#  ret_from_fork_asm+0x1a/0x30
++#  </TASK>
++# Modules linked in: vkms
++# CR2: 0000000000000018
++# ---[ end trace 0000000000000000 ]---
++# RIP: 0010:compose_active_planes+0x344/0x4e0 [vkms]
++# Code: 6a 34 0f 8e 91 fe ff ff 44 89 ea 48 8d 7c 24 48 e8 71 f0 ff ff 4b 8b 04 fc 48 8b 4c 24 50 48 8b 7c 24 40 48 8b 80 48 01 00 00 <48> 63 70 18 8b 40 20 48 89 f2 48 c1 e6 03 29 d0 48 8b 54 24 48 48
++# RSP: 0018:ffffa437800ebd58 EFLAGS: 00010282
++# RAX: 0000000000000000 RBX: 0000000000000002 RCX: ffffa0e841904000
++# RDX: 00000000000000ff RSI: ffffa0e841905ff8 RDI: ffffa0e841902000
++# RBP: 0000000000000000 R08: ffffa0e84158a600 R09: 00000000000003ff
++# R10: 0000000078b2bcd2 R11: 00000000278b2bcd R12: ffffa0e84870fc60
++# R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
++# FS:  0000000000000000(0000) GS:ffffa0e86bc00000(0000) knlGS:0000000000000000
++# CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
++# CR2: 0000000000000018 CR3: 0000000101710000 CR4: 0000000000350ef0
++# vkms_vblank_simulate: vblank timer overrun
++
+ # Skip driver specific tests
+ ^amdgpu.*
+ ^msm.*
 -- 
-2.37.1
-
+2.43.0
 
 
 _______________________________________________
