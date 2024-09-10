@@ -4,67 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAF5AECE582
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2024 08:21:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D262FECE582
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2024 09:15:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=N/XE6JGuytorPl55U0g01tsO7y1lFtBG25tQEmZjnHU=; b=2n7uCnZdH2iSkj
-	Q1tD3gGJcyVjJjdeSY/0j57Rw/UDIg6ncqWLhbVUibOCvFnejvgGHo24lLPQfMnBd5DFpEQjSL12P
-	41Fr3sLor4YRY6njtWos0mLIxUZBeQQ56wRLDC7o3h8PN6W5c9nl0ujuNCjkvPi4Bzk//fJ8Pw2a5
-	ywdYDsGyF8aKoULpB3v/SMCin0vmoGrnYFhUNHiw2bn6sW1ZQrYRDxsntiqRYrlWkwaybX4hjSEQ0
-	hwaXJ1yYouejw2XcQfXVfdoDfyRXt5R4FS7Ximr0z+2m+1nWp/M8JVc+4TKuoqBiYI99gwSuDxTmb
-	Rux33te/gXYctuNtUxmQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=uKuR9uVsxZvC94YKWzZThEIGWIr+85sPfIl90kWOqLQ=; b=yi+JU6ZGq0QaPahKQx/CaWIah3
+	NFQBBldRBg8Bp3hKaQMnKXkSOCoxZJoTILxSJJVXSpU9mydLSG7EIZuqWs9/woDhQiOGbvUQqD7rp
+	JkFWSq3ixg7IQAD/rcYy02HesfAJgr0uXrkS1ZjdGpfJnehHI8fKgxRAkgbaBTSorDo2Sxm81ZYsZ
+	gOnNnhKLDvEg0gxL18LCigVOd1KwcEj0WlhJ1clwQIE+jHnnDFNkBPwA4zpZe6GClAg6jteQnyfGi
+	6pC1iIKgo+s4SOOFtt+0GqDGvMcBFj71DS+X2k8qMJVy+4Q9p9wwWtO2CmPwjd3gAXJ6+aEb4CZAv
+	wjH6WMLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snw7Q-00000004nR9-1yTx;
-	Tue, 10 Sep 2024 08:21:00 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1snwy9-00000004yCE-0Zjn;
+	Tue, 10 Sep 2024 09:15:29 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snw7I-00000004nOz-38uv
+	id 1snvol-00000004iLf-1u8l
 	for linux-amlogic@lists.infradead.org;
-	Tue, 10 Sep 2024 08:20:54 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1snw7C-00044f-3W; Tue, 10 Sep 2024 10:20:46 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1snw7A-006qsq-WA; Tue, 10 Sep 2024 10:20:45 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1snw7A-0001qu-32;
-	Tue, 10 Sep 2024 10:20:44 +0200
-Message-ID: <86eebdd7435ec1dc09765f4c4f8cb5ba8d20d785.camel@pengutronix.de>
-Subject: Re: [PATCH v4 1/9] reset: amlogic: convert driver to regmap
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Jiucheng Xu
- <jiucheng.xu@amlogic.com>, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Tue, 10 Sep 2024 10:20:44 +0200
-In-Reply-To: <1jfrqcrgab.fsf@starbuckisacylon.baylibre.com>
-References: <20240906-meson-rst-aux-v4-0-08824c3d108b@baylibre.com>
-	 <20240906-meson-rst-aux-v4-1-08824c3d108b@baylibre.com>
-	 <984d928a37b3db11ae53c07da672ccae0d79734f.camel@pengutronix.de>
-	 <1jfrqcrgab.fsf@starbuckisacylon.baylibre.com>
-User-Agent: Evolution 3.46.4-2 
+	Tue, 10 Sep 2024 08:01:45 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-42cba6cdf32so12168305e9.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 10 Sep 2024 01:01:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1725955302; x=1726560102; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/r6IUis8EJbLyFM6C8Q7kCm8hDOlngYXSkv1zgZDfBE=;
+        b=PwljtQgfQHHKErNeWs70Rk/kVxz7vhxcrx4DBQsGlizreZXVihMAUvZSxIXbu3Lq7B
+         pkxbzATcGXXHPyhDdo0kT/ZwuL9rOTEn+qBynIjJ8t0YXDRtQuqkgKO2OqRp4Hqs24xn
+         /k0o7PJ3uLSWJgpY6BRqiJwbqBzwHr67bOGnuunZS1JyQ7TWsS0IbrnUwTvPe95YiRQ3
+         /Wwh+3l+/j8uPMEkHp+0Z1EanuSdVjrYCYVBP0fci4EfWKH4sTVfn65E82x3N5sY5w2+
+         DGpedBI8yzbwbxKmhzzG3IicWYxBuFC//yVu848/wnYGp04+0R6XY49EevvDNaWjObPL
+         H0rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725955302; x=1726560102;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/r6IUis8EJbLyFM6C8Q7kCm8hDOlngYXSkv1zgZDfBE=;
+        b=VV+aSFLzW5fqD52YYlDFiG2/bg/mE4YiVXxEfravknyJlPgocOO1Jp0YvOn0iMjI8q
+         8ljUkvvgXoXEGbFxWyg9ZOKThSNIYMVQoqiKFBxEgmExJ/8yScRBYrb+u3l0ri63jTsQ
+         LPThyuXRaZRMLoY8GDlAQJaJhvLMcTaXn1+reZ2SnaDEw99kxKHs548JWgDz5qg/xRhT
+         vGnRcsj+u6xbwmBaZokwGmdLr6RCqRcXLu+miMqSue+XcMsMaCHNpx66PqhBGT8aMB6m
+         OAsJyGVgeqK170cbOIIhc9V1GUH2XIQZN4K8g1XIUHBtFPzqzICXgu6VI/zKhDp3a5+g
+         uDYg==
+X-Forwarded-Encrypted: i=1; AJvYcCWsXXbaLWfMp8pDkxrvcWNB86f4blng2xE9dxpGTxDQZiIP7HHprtVaXCxTGvo1vquGyzA/PAtySg/SoSwt@lists.infradead.org
+X-Gm-Message-State: AOJu0YzFfBJ5GWhke9E7tgQhgfBgS/fneH0TvxbHxcl5STs+zmtxJCam
+	9yfHrKoMIT2DGMhVMV5sPxEiCqI5F27xQktjshdhelfM6wYKLSJ+HMU8kSIq7Ps=
+X-Google-Smtp-Source: AGHT+IG+nXjNuOi1bG5OAXxiKvCxpS9SGnHKIVE3xSF72Xioz3RZFybD57LPt1sAtAgTE84B8jAhPg==
+X-Received: by 2002:a05:600c:17d4:b0:42c:b16e:7a22 with SMTP id 5b1f17b1804b1-42cb16e7addmr53122225e9.12.1725955301542;
+        Tue, 10 Sep 2024 01:01:41 -0700 (PDT)
+Received: from localhost (p5dc68d3d.dip0.t-ipconnect.de. [93.198.141.61])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42caeb8b2f4sm102922055e9.45.2024.09.10.01.01.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Sep 2024 01:01:41 -0700 (PDT)
+Date: Tue, 10 Sep 2024 10:01:39 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: George Stark <gnstark@salutedevices.com>, 
+	Rob Herring <robh@kernel.org>, conor+dt@kernel.org, krzk+dt@kernel.org, 
+	neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
+	martin.blumenstingl@googlemail.com, hkallweit1@gmail.com, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, kernel@salutedevices.com, 
+	Dmitry Rokosov <ddrokosov@salutedevices.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: pwm: amlogic: Add new bindings for
+ meson A1 PWM
+Message-ID: <ak53ha3kltm24s45n5pczvibtltzocg33inpnro4bjeolu25re@33lae7y7qzvw>
+References: <20240710234116.2370655-1-gnstark@salutedevices.com>
+ <20240710234116.2370655-3-gnstark@salutedevices.com>
+ <20240712125219.GA472311-robh@kernel.org>
+ <55f73e79-2d21-48ba-8486-26ee168c7bc3@salutedevices.com>
+ <20240725-excursion-waving-0e0ad54006d4@spud>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+In-Reply-To: <20240725-excursion-waving-0e0ad54006d4@spud>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240910_012052_842683_425A92FE 
-X-CRM114-Status: GOOD (  23.05  )
+X-CRM114-CacheID: sfid-20240910_010143_528288_A75D497E 
+X-CRM114-Status: GOOD (  21.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,83 +96,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============7757634869768818350=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fr, 2024-09-06 at 16:46 +0200, Jerome Brunet wrote:
-> On Fri 06 Sep 2024 at 16:19, Philipp Zabel <p.zabel@pengutronix.de> wrote:
-> > On Fr, 2024-09-06 at 15:34 +0200, Jerome Brunet wrote:
-[...]
-> > > +static void meson_reset_offset_and_bit(struct meson_reset *data,
-> > > +				       unsigned long id,
-> > > +				       unsigned int *offset,
-> > > +				       unsigned int *bit)
-> > > +{
-> > > +	unsigned int stride = regmap_get_reg_stride(data->map);
-> > 
-> > You know this is always 4. Having a #define for this (that is also used
-> > to initialize regmap_config.reg_stride, and for now nr_resets, below)
-> > instead of going through an exported function would allow the compiler
-> > to optimize this all away:
-> 
-> Yes, for now. However, with the auxiliary you may get a regmap with
-> different value. I've seen example with stride = 1. 
-> 
-> I'll admit is very unlikely but I does not really worth it considering
-> how often we'll get through this and how difficult it will be to debug
-> if stride ever get different.
 
-Oh right, the aux regmap being passed in from the outside in a later
-patch invalidates my point.
-
-[...]
-> > > @@ -48,25 +55,13 @@ static int meson_reset_level(struct reset_controller_dev *rcdev,
-> > >  {
-> > >  	struct meson_reset *data =
-> > >  		container_of(rcdev, struct meson_reset, rcdev);
-> > > -	unsigned int bank = id / BITS_PER_REG;
-> > > -	unsigned int offset = id % BITS_PER_REG;
-> > > -	void __iomem *reg_addr;
-> > > -	unsigned long flags;
-> > > -	u32 reg;
-> > > +	unsigned int offset, bit;
-> > >  
-> > > -	reg_addr = data->reg_base + data->param->level_offset + (bank << 2);
-> > > +	meson_reset_offset_and_bit(data, id, &offset, &bit);
-> > > +	offset += data->param->level_offset;
-> > >  
-> > > -	spin_lock_irqsave(&data->lock, flags);
-> > > -
-> > > -	reg = readl(reg_addr);
-> > > -	if (assert)
-> > > -		writel(reg & ~BIT(offset), reg_addr);
-> > > -	else
-> > > -		writel(reg | BIT(offset), reg_addr);
-> > > -
-> > > -	spin_unlock_irqrestore(&data->lock, flags);
-> > > -
-> > > -	return 0;
-> > > +	return regmap_update_bits(data->map, offset,
-> > > +				  BIT(bit), assert ? 0 : BIT(bit));
-> > 
-> > Matter of taste, perhaps, but the BIT() could be moved into
-> > meson_reset_offset_and_bit().
-> 
-> It's not really related to this particular patch which is about moving
-> to regmap.
-> 
-> I can add it to another patch if you want
-
-Either way is fine.
+--===============7757634869768818350==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rkd4jonklnzz2ghs"
+Content-Disposition: inline
 
 
-regards
-Philipp
+--rkd4jonklnzz2ghs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Jul 25, 2024 at 03:08:53PM +0100, Conor Dooley wrote:
+> On Fri, Jul 12, 2024 at 06:12:26PM +0300, George Stark wrote:
+> > Hello Rob, Conor
+> >=20
+> > On 7/12/24 15:52, Rob Herring wrote:
+> > > On Thu, Jul 11, 2024 at 02:41:15AM +0300, George Stark wrote:
+> > > > The chip has 3 dual-channel PWM modules PWM_AB, PWM_CD, PWM_EF.
+> > > >=20
+> > > > Signed-off-by: George Stark <gnstark@salutedevices.com>
+> > > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > >=20
+> > > Missing ack from Conor. When you submit new versions, it is your
+> > > responsibility to add tags.
+> >=20
+> > I had Conor's ack in my mind but his response was related to the
+> > squashed patch (a1 compatible + power domains) and the current patch was
+> > a bit different that's why I didn't dare to add the ack.
+> >=20
+> > Conor, do you mind if I resend this patch (and may be [PATCH v4 1/3])
+> > with your ack?
+>=20
+> Ye, both are fine :+1:
+
+I interpreted that as an ack for patches 1 and 2 and applied these to
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
+next
+=2E I guess that interpretation is fine, please tell me if not.
+
+Best regards
+Uwe
+
+--rkd4jonklnzz2ghs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmbf/OAACgkQj4D7WH0S
+/k7u8wgAh+MoDvk6VmcbZhv3CNsVOKqhoT+xIzvJgiBbhHlANMT/TSxuBhwe7un+
+YHK3prRMH8wJsJoD0CqAVKt7O34BIAQiG7uQxbJ8LLVIGTgCjIZGiOibvb9jc0q4
+yzLjuXJGP3hkonekvncYTNgLM+U8FNP5t6ZjXR9BrB6a556c6Zx5go4JC0EE+wG7
+BE2uNduWzkSzmvpUE78R+PftaDr9iCuPjIereXhlVXYXLxL6wrDZLxFRtyOD/bP4
+AKX4Wuf2rq6TPy+5XfGFjSQtMVp0W/5hSTZYRS9v9af1dAPe213qY1DDCOL0rZp1
+lwGevELL5nVRIgso7w0Dr9q5kj9/YA==
+=kVzG
+-----END PGP SIGNATURE-----
+
+--rkd4jonklnzz2ghs--
+
+
+--===============7757634869768818350==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7757634869768818350==--
+
