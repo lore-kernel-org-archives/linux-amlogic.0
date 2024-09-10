@@ -4,68 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 366ADECE564
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2024 08:02:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAF5AECE582
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2024 08:21:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=MVwYOu6Z9FPl+gslMf7Mb4becNN9AUiB22PR8DMhiWM=; b=sNRQtUgp4DxHCG
-	XNOgZtsmvoAxJdrI9sAzUrHz1HveUDeRv0pgHBubH7R+GFZ25hCZ/gEtrgGAp0Cv0gb+bOGiGrsqI
-	JSSqkwyt/zvB2yhebxl+Y7OBbMgxLJq1Z/RS83L3mw1YuZGLAV4qEnt5hkLzOJp1AGQR+ssMZexlJ
-	01CIFyffymWCa5/YPo/xHXCzpdkmee5iYQ7xVdaYB5VQmNoP0v83r9ZetylW/5Gx6bPqho91Dnc9t
-	84nFPQgTe6vlEossjpLgvEIc951asJNeV6pn8EdRkHtEXLHoZ7Ls2mrMkMcaBnZ132plNB6QB5OG0
-	qC0NM5fwUvTu5Xe3CPxQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=N/XE6JGuytorPl55U0g01tsO7y1lFtBG25tQEmZjnHU=; b=2n7uCnZdH2iSkj
+	Q1tD3gGJcyVjJjdeSY/0j57Rw/UDIg6ncqWLhbVUibOCvFnejvgGHo24lLPQfMnBd5DFpEQjSL12P
+	41Fr3sLor4YRY6njtWos0mLIxUZBeQQ56wRLDC7o3h8PN6W5c9nl0ujuNCjkvPi4Bzk//fJ8Pw2a5
+	ywdYDsGyF8aKoULpB3v/SMCin0vmoGrnYFhUNHiw2bn6sW1ZQrYRDxsntiqRYrlWkwaybX4hjSEQ0
+	hwaXJ1yYouejw2XcQfXVfdoDfyRXt5R4FS7Ximr0z+2m+1nWp/M8JVc+4TKuoqBiYI99gwSuDxTmb
+	Rux33te/gXYctuNtUxmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snvpF-00000004iWm-3pV9;
-	Tue, 10 Sep 2024 08:02:13 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1snw7Q-00000004nR9-1yTx;
+	Tue, 10 Sep 2024 08:21:00 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1snvoK-00000004i4w-0I9D
-	for linux-amlogic@bombadil.infradead.org;
-	Tue, 10 Sep 2024 08:01:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=; b=DmIzJmttUZPANLGXDNClPDxAOV
-	jiy/NmEsqUp4X9ecCZbd/Y+CaJMzo8Ckcw9yBDs8mSt21ZepYOnnFL9oj1KNpA+hNYMZ6e+JFlUHC
-	YxxhWX1IVFgtR85jwTb31Hf5CkNZFuyR80tWGdOTR1AvRFktT9KPOfaTaNQmJlDEzSRsZaw8VWqJL
-	W/96JMr7OWneDAFKAfxF533kVl1+Q2WwqSIgbOGxALaD1zrzVDmt8afNGQjIWJlFS/NmwCjQtoioZ
-	ecfGDzU2uyAgqM7dOOZqPOnOpNDgJw1++2Kb8BdN99RDLx8gJLu4Sbf4Wy3U4/80vjEjlLyZhZzct
-	ysLPTdKQ==;
-Received: from mail.originateinc.pl ([217.61.97.94])
-	by casper.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1snvoF-00000007AH2-409j
+	id 1snw7I-00000004nOz-38uv
 	for linux-amlogic@lists.infradead.org;
-	Tue, 10 Sep 2024 08:01:14 +0000
-Received: by mail.OriginateInc.pl (Postfix, from userid 1001)
-	id BD5B084DBF; Tue, 10 Sep 2024 09:01:00 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=OriginateInc.pl;
-	s=mail; t=1725955263;
-	bh=EywM+E+OIUr7RnYatSz3YfoNTVB6dOfImeA7tdj3yJA=;
-	h=Date:From:To:Subject:From;
-	b=UGHhidZnKHTB/OozpLyuvJsOXwtNi6KJtaKhgPIZMjtwLglVpuu7b88xGExFToiOh
-	 6KWj1HwdO3GYz6PDVcTGXs9DDepeFqjoORFR+n/08aNUpRwmblQEWwnX3XKEiwc7YW
-	 D5K/sIW6lzERJqD4WWsnmneIBGa/yGDE93Gxa1p3kR1Wblb78W6hi9mpyXh5evYiig
-	 7e3dCtLQgnS+EkFeDgDMSVDKp9JMqWRrUlyiBjXsrkKwmzYQSZn0u9P79w85v3YFqQ
-	 HpnG9yCdd2JnTpNblvvn0b5kvlRKa9hSzSkfVeuJhbm79ULpb4+9vwX+HhWW3IACVl
-	 1I3zyYKXCMPJA==
-Received: by mail.OriginateInc.pl for <linux-amlogic@lists.infradead.org>; Tue, 10 Sep 2024 08:00:21 GMT
-Message-ID: <20240910074501-0.1.f2.1ovjm.0.dcrlte6jwe@OriginateInc.pl>
-Date: Tue, 10 Sep 2024 08:00:21 GMT
-From: "Kamil Tralewski" <kamil.tralewski@originateinc.pl>
-To: <linux-amlogic@lists.infradead.org>
-Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
-X-Mailer: mail.OriginateInc.pl
+	Tue, 10 Sep 2024 08:20:54 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1snw7C-00044f-3W; Tue, 10 Sep 2024 10:20:46 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1snw7A-006qsq-WA; Tue, 10 Sep 2024 10:20:45 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1snw7A-0001qu-32;
+	Tue, 10 Sep 2024 10:20:44 +0200
+Message-ID: <86eebdd7435ec1dc09765f4c4f8cb5ba8d20d785.camel@pengutronix.de>
+Subject: Re: [PATCH v4 1/9] reset: amlogic: convert driver to regmap
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Jiucheng Xu
+ <jiucheng.xu@amlogic.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Tue, 10 Sep 2024 10:20:44 +0200
+In-Reply-To: <1jfrqcrgab.fsf@starbuckisacylon.baylibre.com>
+References: <20240906-meson-rst-aux-v4-0-08824c3d108b@baylibre.com>
+	 <20240906-meson-rst-aux-v4-1-08824c3d108b@baylibre.com>
+	 <984d928a37b3db11ae53c07da672ccae0d79734f.camel@pengutronix.de>
+	 <1jfrqcrgab.fsf@starbuckisacylon.baylibre.com>
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240910_090112_379039_5C8106AB 
-X-CRM114-Status: UNSURE (   0.36  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240910_012052_842683_425A92FE 
+X-CRM114-Status: GOOD (  23.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,19 +76,83 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RHppZcWEIGRvYnJ5LAoKemFwb3puYcWCZW0gc2nEmSB6IFBhxYRzdHdhIG9mZXJ0xIUgaSB6IHBy
-enlqZW1ub8WbY2nEhSBwcnp5em5hasSZLCDFvGUgcHJ6eWNpxIVnYSB1d2FnxJkgaSB6YWNoxJlj
-YSBkbyBkYWxzenljaCByb3ptw7N3LiAKClBvbXnFm2xhxYJlbSwgxbxlIG1vxbxlIG3Ds2fFgmJ5
-bSBtaWXEhyBzd8OzaiB3a8WCYWQgdyBQYcWEc3R3YSByb3p3w7NqIGkgcG9tw7NjIGRvdHJ6ZcSH
-IHogdMSFIG9mZXJ0xIUgZG8gd2nEmWtzemVnbyBncm9uYSBvZGJpb3Jjw7N3LiBQb3p5Y2pvbnVq
-xJkgc3Ryb255IHd3dywgZHppxJlraSBjemVtdSBnZW5lcnVqxIUgxZt3aWV0bnkgcnVjaCB3IHNp
-ZWNpLgoKTW/FvGVteSBwb3Jvem1hd2lhxIcgdyBuYWpibGnFvHN6eW0gY3phc2llPwoKClBvemRy
-YXdpYW0KS2FtaWwgVHJhbGV3c2tpCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
-c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9saW51eC1hbWxvZ2ljCg==
+On Fr, 2024-09-06 at 16:46 +0200, Jerome Brunet wrote:
+> On Fri 06 Sep 2024 at 16:19, Philipp Zabel <p.zabel@pengutronix.de> wrote:
+> > On Fr, 2024-09-06 at 15:34 +0200, Jerome Brunet wrote:
+[...]
+> > > +static void meson_reset_offset_and_bit(struct meson_reset *data,
+> > > +				       unsigned long id,
+> > > +				       unsigned int *offset,
+> > > +				       unsigned int *bit)
+> > > +{
+> > > +	unsigned int stride = regmap_get_reg_stride(data->map);
+> > 
+> > You know this is always 4. Having a #define for this (that is also used
+> > to initialize regmap_config.reg_stride, and for now nr_resets, below)
+> > instead of going through an exported function would allow the compiler
+> > to optimize this all away:
+> 
+> Yes, for now. However, with the auxiliary you may get a regmap with
+> different value. I've seen example with stride = 1. 
+> 
+> I'll admit is very unlikely but I does not really worth it considering
+> how often we'll get through this and how difficult it will be to debug
+> if stride ever get different.
+
+Oh right, the aux regmap being passed in from the outside in a later
+patch invalidates my point.
+
+[...]
+> > > @@ -48,25 +55,13 @@ static int meson_reset_level(struct reset_controller_dev *rcdev,
+> > >  {
+> > >  	struct meson_reset *data =
+> > >  		container_of(rcdev, struct meson_reset, rcdev);
+> > > -	unsigned int bank = id / BITS_PER_REG;
+> > > -	unsigned int offset = id % BITS_PER_REG;
+> > > -	void __iomem *reg_addr;
+> > > -	unsigned long flags;
+> > > -	u32 reg;
+> > > +	unsigned int offset, bit;
+> > >  
+> > > -	reg_addr = data->reg_base + data->param->level_offset + (bank << 2);
+> > > +	meson_reset_offset_and_bit(data, id, &offset, &bit);
+> > > +	offset += data->param->level_offset;
+> > >  
+> > > -	spin_lock_irqsave(&data->lock, flags);
+> > > -
+> > > -	reg = readl(reg_addr);
+> > > -	if (assert)
+> > > -		writel(reg & ~BIT(offset), reg_addr);
+> > > -	else
+> > > -		writel(reg | BIT(offset), reg_addr);
+> > > -
+> > > -	spin_unlock_irqrestore(&data->lock, flags);
+> > > -
+> > > -	return 0;
+> > > +	return regmap_update_bits(data->map, offset,
+> > > +				  BIT(bit), assert ? 0 : BIT(bit));
+> > 
+> > Matter of taste, perhaps, but the BIT() could be moved into
+> > meson_reset_offset_and_bit().
+> 
+> It's not really related to this particular patch which is about moving
+> to regmap.
+> 
+> I can add it to another patch if you want
+
+Either way is fine.
+
+
+regards
+Philipp
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
