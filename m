@@ -4,64 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D11BEE01FA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2024 02:10:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77CF5EDE998
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2024 07:45:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
-	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hLPw1fWspnli4nshRDrr4x5cLIYFZ4OW/rjEz+hNpNQ=; b=R7Zd/HefzoQKsV
-	AFndyR+zP6vuEMl1QbEY251n78k8sw0rB/NK0J6mHEtCOrsjw2mVbblRnX1Jprb2OTE09B3hXQSKz
-	8S+OaG/FwQJ9av0WcfzRR6wm592D/wfkha0hI13ebiJrrNwBJ/PsmAjmSNrlpfs7bvAqyk0YfYT4T
-	0eGV3BUUbKvavHXYx0xswm5w3nydny4Ge28DJig3Y9SD/dpK+CSptPhaROAsk0CHSs4wTfl78NDXr
-	1d/KnTIPjuXNEHwWTRphNm407ViOGDBclolQUAQ7GU4BH6Pgz3y/uDdQ+PaQtU8r+TrOP8i+V2lTt
-	3x04ULgohQyRuAGC+C8Q==;
+	List-Owner; bh=ZvRQ0K6r0hxwE3qi9cS+SEi8Wp0Nq0KqQWgls1b8+6M=; b=e8FUwyY+VsuO32
+	yawIli3LsQfoWN3+Tkj64Q10p/LulDUYDvdg4pk/AiYWiUe7KuCm8scPfV1x6jeV4OD19QWVFZ8uk
+	gplVIFZxiGkTWei1bjp3eFaa8pT2stPXkuNrhGLGgD9UfsXQJPxLSiPpH3ZYPiebW2qzjTRILeKX5
+	C9a3wdJE0iTlUhvCpkq9hpZ9KRLBVLVVDUi5Ls87ND58KXUNPDhjmjO5nk4gFG+MLiabQEpBSoGKU
+	QjAUnenJXGxeDB0T0DFhKKWqBQ8oztQ7BOmYOBYEPJz2InPIhufaK0UGAEcNUe7ILyDCTGaQsni0U
+	vKLYLvrza/KNqFnHyXKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1soCoZ-00000007myA-0Krh;
-	Wed, 11 Sep 2024 02:10:39 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1soI2r-00000008VHb-3JB9;
+	Wed, 11 Sep 2024 07:45:45 +0000
+Received: from a7-40.smtp-out.eu-west-1.amazonses.com ([54.240.7.40])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1soCoU-00000007mvb-05Kp;
-	Wed, 11 Sep 2024 02:10:35 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 82015A44255;
-	Wed, 11 Sep 2024 02:10:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF6CFC4CEC4;
-	Wed, 11 Sep 2024 02:10:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726020632;
-	bh=Ukvdmk6V9AkDsXn18d1wcBFwVU2wInYSavYgNP9N5v4=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=MJhxmXY5ACfTu9lK2dO6lJ12cvkv49jnbviNSg4Y/wPAJxz0MT9j7dHnp8KY4p0D1
-	 wsJtvXAeupdL21TRCMVgaIPiKQQ72pMuw5b0vklKdaALjcVnskZveAbmp0+P9QVcMk
-	 eYgyNOXFknJr02WbWl0RzEYwlaTWe5gJAoKqjfhlZofNMaQ/N5Bkedg2igpqnCvtvW
-	 PFt7KNjONwxKHWl2iSybhQ5GQBmgns/GoNp6oKgKesTdN9YZUfVYiGGVh9jeCDY0ow
-	 UzSt8tdLxIToQcPrgaAKFjFvMCFTb0lSgdw/dfdS1TqXhiDlS7fe+RysJmBgky9IPH
-	 d5oy4avdJNCTg==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EBB5A3822FA4;
-	Wed, 11 Sep 2024 02:10:34 +0000 (UTC)
+	id 1soHzr-00000008UiS-0RWv;
+	Wed, 11 Sep 2024 07:42:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=4232tfv5ebdrjdwkr5zzm7kytdkokgug; d=collabora.com; t=1726040554;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	bh=+z0iaYPRF8aOAeyudpMIOAITImEM365oGsItYDeMrNE=;
+	b=GTLqK+Zxla3s5iAGSe/h9kxrPUSF87jCwiNhqceQcGgcSXvpl305psrUwII5SwKf
+	b24gxrEovDeflPUEpV1YVET4Ls0IBxHJo9ORtqxk838sOZrsK8AjSL9R0opIdKx1WMB
+	iTZBAayeKXwiqbZulfTtXKoqKahSzJPCaUNf0JUmhB7TQdTIQ+BpLOOHVu9/33/gsKK
+	Ez6U4I0w0VT/1uxv8DxSjCNzUmUNX0gPWCuFTVq0WIRgu0QoD/0q1NoSBvmocQJVQz3
+	8NE4JiZY1u9uci+sixDZINIEYt5O/OIK4XsrDtZpT8PqMNtlwFldLbtaouHBn8MCfFm
+	qu6rNL65gw==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=uku4taia5b5tsbglxyj6zym32efj7xqv; d=amazonses.com; t=1726040554;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=+z0iaYPRF8aOAeyudpMIOAITImEM365oGsItYDeMrNE=;
+	b=hbJ7HBdKOzai+xLjoaWwAVtHEd+Wao7fakZkcpV33sHkzS3JaM6vVCgzN6mD97Jm
+	mVWtXv8wZyidNiSvh8UfItBq/8gnlS5oNFp+6HrWeDzrhpuz8oEzuBE9Fesx608DK1K
+	CYAuH00qqq+JkPU+I7knFpOtsiuJmnPf0dwiuxaU=
+Message-ID: <01020191e008baec-ca547413-aeba-4508-8a05-2c35b06150c2-000000@eu-west-1.amazonses.com>
+Date: Wed, 11 Sep 2024 07:42:34 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next] net: amlogic,meson-dwmac: Fix "amlogic,tx-delay-ns"
- schema
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <172602063377.461532.17295023219958087443.git-patchwork-notify@kernel.org>
-Date: Wed, 11 Sep 2024 02:10:33 +0000
-References: <20240909172342.487675-2-robh@kernel.org>
-In-Reply-To: <20240909172342.487675-2-robh@kernel.org>
-To: Rob Herring (Arm) <robh@kernel.org>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] drm/mediatek: dp: constify regmap_config
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Stefan Agner <stefan@agner.ch>, Alison Wang <alison.wang@nxp.com>, 
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	Jagan Teki <jagan@amarulasolutions.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org
+References: <20240908-regmap-config-const-v1-0-28f349004811@linaro.org>
+ <20240908-regmap-config-const-v1-4-28f349004811@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240908-regmap-config-const-v1-4-28f349004811@linaro.org>
+Feedback-ID: ::1.eu-west-1.YpP9ZbxnARFfy3Cb5pfsLd/pdsXBCNK0KEM7HforL4k=:AmazonSES
+X-SES-Outgoing: 2024.09.11-54.240.7.40
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240910_191034_140090_EC8F2781 
-X-CRM114-Status: UNSURE (   9.96  )
+X-CRM114-CacheID: sfid-20240911_004239_629351_6ACF6310 
+X-CRM114-Status: UNSURE (   4.85  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,35 +92,18 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Mon,  9 Sep 2024 12:23:42 -0500 you wrote:
-> The "amlogic,tx-delay-ns" property schema has unnecessary type reference
-> as it's a standard unit suffix, and the constraints are in freeform
-> text rather than schema.
+Il 08/09/24 16:21, Krzysztof Kozlowski ha scritto:
+> Mark local static 'struct regmap_config' as const for safer and more
+> obvious code.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../bindings/net/amlogic,meson-dwmac.yaml     | 22 +++++++++----------
->  1 file changed, 11 insertions(+), 11 deletions(-)
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Here is the summary with links:
-  - [net-next] net: amlogic,meson-dwmac: Fix "amlogic,tx-delay-ns" schema
-    https://git.kernel.org/netdev/net-next/c/955f5b150862
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
 _______________________________________________
