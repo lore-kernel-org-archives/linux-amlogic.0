@@ -4,101 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2650BEE57C1
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2024 15:22:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E072BEE57C0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2024 15:23:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
 	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=BIt/kTOMaDOTHz37+f6w+pbzLHfIZhoy/9aL45hZOKI=; b=Gq3DvYOHu/+kSD
-	PUu8KB2y3FSFGo3aMFms3pSXwq2fbvM6dvJqI7+rCNc7yJMbWU3wahOdAGxCUhg7qjo406OZwingZ
-	ikHIvxUH8FzbGbF7+OPAEasUEPyliOKNHobxViW258oU8b/Ie9tO+JrvKk1RvxCVQRP72zq00YlcP
-	eyhPcLzMxwGmqKzi34c6lnUsQQBqeWpfYdp+0/iIuI/SffAXEIRWmj61xOlT1wdy3X8r4aEvzPPjg
-	ODqTxt7IOQ92vO82Cuzk5QTxWCLAlliI2vakVyNE+LkTqsqM6CudW/ZWypMUOQOleJbYz/4fcq0/t
-	xiS/3q3Z+YijR7nveuBw==;
+	List-Owner; bh=9ml4XR/Bqe8gk80SpRN/ZU2T0H1O1gKqx4wX5bEEmfY=; b=p+ys3UBQb6UuUS
+	Kt1yT0L3KEDVPdf1BCY8MASw/ZEKYgvrRpJhAhYFWzB//7woJQYHPaa9FaQW9NiF3NjIiPNy82Jeb
+	ebIDtB2ReRrjJeu1O89l/lD7Xrylhc71n5LZd4XfU7urIGaz0lqUl2C3kg5GN+86xN+klo7WplFHk
+	oyTWWYKO0owLeWt1F1Bq655wfN2JIJPHDChtxbPMCHuGdRbcWZBelwwCds1wWCTjv5C8SYoxRu1CW
+	WUMtAtWQ/7KIT9MjetZTlAOTEj0UkWwg+Hgzrl9ESafO1sOUHN/6+E8orv/H4hrvTjAhvl7cp89OP
+	MQkeMcjFeXBGhQXTAerg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1soPAZ-0000000A7p9-1QQc;
-	Wed, 11 Sep 2024 15:22:11 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1soPBo-0000000A8Rt-0PvY;
+	Wed, 11 Sep 2024 15:23:28 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1soOy0-0000000A59L-0aBf
+	id 1soP9H-0000000A759-346p
 	for linux-amlogic@lists.infradead.org;
-	Wed, 11 Sep 2024 15:09:14 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-374b5f27cf2so4170621f8f.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 11 Sep 2024 08:09:11 -0700 (PDT)
+	Wed, 11 Sep 2024 15:20:53 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-42cba8340beso6513105e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 11 Sep 2024 08:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726067350; x=1726672150; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1726068050; x=1726672850; darn=lists.infradead.org;
         h=cc:to:message-id:content-transfer-encoding:mime-version:subject
          :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YVkYHpudqLYcdqxUnypmWz6sNt1ioeqBftj88K8uSJM=;
-        b=b5MrDoh50AcmYgDmgtrh8L2MQ6S33XZIH9J/Jrf/o+73+eyM//kQqUI2SqDJFCwBrB
-         m1iyHdvChDTLie16lOw0ZflXkseNNY15ljsg9lf7kt6Rv6z1ReyRFGDbFTzB1ZJKppa8
-         eA3ivUSMyJkJnM4RoT7KVhatqCxI1lYrOhsi90PCBE1SxqR0gsUYZhzW2VEOc2gF/WN+
-         lf2UG9t4y49vwRUIbT9mHM6KhVnZu9IZh7OclyJ9DT4NphDhrRezUH14j+h3KtV4jG1Y
-         OnSau/xKv6ziIbc77J/6tLSW+lBn14v3xJUPHNl/4wp5I9qpU8cr7ZjPYfJbh4bGdQqR
-         3UMg==
+        bh=fpwVKYxub2BR6rBdSQr/mUsVWo46XLcAlWmWzYZ00ME=;
+        b=QgYkK6Iyf0gj2UcGmVSnbjJy7AypXD2e+M+yQ8/EWynZVsVgTfL64gsslFCADuIiU/
+         bfxOMqAZR8+RKrYAW1buer4LDe6p2h5ckdCrPU2aNL/wS4Y7jQGH7ncZ+ut71YI0kIkB
+         yX8DGhXtU5FdAT4EWMJaxC7GeQkVu/Dyh5kftg1eXm5wlUs/iq8ljplfbNPnCx1/95Ed
+         XuXvI52oNb/k/rqDzLC1MiCj3/ycdG6uC1PuYAnP71uuYngdP1rSfnashajGEtHxm6XU
+         7M8WMlyPJXY884YDFj5cJFxaiMVLOWaAVEHhS33O8a933QLlVxR7TwlAI4bybD6HLDM2
+         CXcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726067350; x=1726672150;
+        d=1e100.net; s=20230601; t=1726068050; x=1726672850;
         h=cc:to:message-id:content-transfer-encoding:mime-version:subject
          :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YVkYHpudqLYcdqxUnypmWz6sNt1ioeqBftj88K8uSJM=;
-        b=sB8nOih40GqRd6XylAo6LmD5CI+CPi6VydlrhnEfpwrgJO1yNtY4q34gIWz6MXlmtC
-         vmUChk3b3ipXYUWU4mN0eOgFnrTgsMhzxfM3yI8gFHrGr0tLRW08gqht427KwWq2RPrc
-         C0Zyh1/t5oCXZIlGQrAomUfm5xAW/q6Sz/Jcn7T4hFK/xjTDStoED1uJRmFlLbTaYwM9
-         E35xAAJnRGs78+U41Rowj6Efpkw3tVud0fKBEbCaS2ATgaXCIlOgvumncIgXV89Gs2Rp
-         XJFEs/5S+ceiC6zkqBXnMI5iXqwcMjrCBOA3poWt2E8XM0v0qq8KO+f3AALih3YtzS6W
-         j4zw==
-X-Gm-Message-State: AOJu0Yy9nI+gYBMIJaFVKOz43MZKgNE6udatE5fKtgHT80ZRKbWXUB0u
-	cWH7BExsIxHVrp8YOnhHY9HVCUmhpopoSrOJVHBvQRzTYnXPe0JK5FjSOrcqqg8=
-X-Google-Smtp-Source: AGHT+IH022ElrpZNSsZueuLvqwSqa0DsURDewSDN/7/BlSUlDy3q43WfoF2DOa5dbvVyxrr6XGoQBw==
-X-Received: by 2002:adf:a186:0:b0:371:8cc1:2028 with SMTP id ffacd0b85a97d-3789268edeamr8594650f8f.14.1726067349432;
-        Wed, 11 Sep 2024 08:09:09 -0700 (PDT)
+        bh=fpwVKYxub2BR6rBdSQr/mUsVWo46XLcAlWmWzYZ00ME=;
+        b=oluFTCkPL6vD6emryUlfuDVhDIMPZghndMXMEH4wPem3DtoMxpAHPmRYTuCt8kS51p
+         j7q/aMm8jW8vCGDs9WaJ0OsRMKPL8R3Dc7Dg33TCWrb9NjvGf+pzFtEvLoMkGz3a6Na5
+         BmB3PXTt4A085OfYiD6a2E0JJli2W74RQjwYVIhVZd7/URFCId+u01fxAKajwk7R8rm2
+         TehaJnlTBugmmk7w8wu5lK+co97BnErjq7ddu6BYlzOzDLDDdJ1xCHqEbh+GFTgGun52
+         cjy+2diZ24M36WNasNgfFE24g3OSJfhbvYWT/e8DfVgSjGK1gZ0bJtzaioTEjUm3+b6T
+         b9Ig==
+X-Forwarded-Encrypted: i=1; AJvYcCUV9nlotvd+X7YpSg09ZCg8/Jptatlo56Tt17N9fT+Px53VpFCWADLpnHicnnvX4/y2g3lS8Gb2AIjAI6gq@lists.infradead.org
+X-Gm-Message-State: AOJu0YzRg58YQGiKalcHcdkkQ/01cESoAgI7pvQdpf4xEjnReycKw903
+	5MTdOFUsCzw+VHbEfisuvmbaM6f+Dnx7TEr8MO3mI+R3mVJxRhGsTBK44DPfrlw=
+X-Google-Smtp-Source: AGHT+IGGHpq+zYMTZocGCaMvv+5XJ+vHhPUzGJxZgnG3MkplItlhUXqG56ppM3UlODyWrOknNfFn6A==
+X-Received: by 2002:a05:600c:1ca7:b0:42c:baf1:4c7 with SMTP id 5b1f17b1804b1-42cbddb8169mr41928635e9.4.1726068049344;
+        Wed, 11 Sep 2024 08:20:49 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3789564af1asm11823756f8f.18.2024.09.11.08.09.08
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42caeb45c81sm146751395e9.28.2024.09.11.08.20.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Sep 2024 08:09:08 -0700 (PDT)
+        Wed, 11 Sep 2024 08:20:48 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 11 Sep 2024 17:09:06 +0200
-Subject: [PATCH] dt-bindings: clock: convert amlogic,meson8b-clkc.txt to
+Date: Wed, 11 Sep 2024 17:20:47 +0200
+Subject: [PATCH] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to
  dtschema
 MIME-Version: 1.0
-Message-Id: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson8-clkc-v1-1-e0b8623c090d@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAJGy4WYC/x2NywrCMBAAf6Xk7EISLT5+RXqIyTYuNg92YxFK/
- 93oaRgYmE0JMqGo27ApxpWESu5iDoPyT5cjAoXuymp70ldjoJVKHlxaSvyR09HCu0pjdAkelAP
- lKDDTBwV8yStyg4RS8gX88vJwDujN6LQbZ636pTL+4z65T/v+BUUypTuRAAAA
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+Message-Id: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAE614WYC/x2NywrCMBAAf6Xk7EISa338SvGQxzYumAfZWAql/
+ 270NAwMzC4YKyGLx7CLiisx5dRFnQbhXiYFBPLdhZZ6lHeloOVCDkx85/BjjWcNn8KtoolgKXl
+ KgWGhDRlcTivWBhE5J4gbsKcM02Ku8jJOaO1N9E+p+M/7Zn4exxc2NRjlkwAAAA==
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3984;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5413;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=svPrUDRaKTqHQLVdWxyhvAXQB+X4yADudTbd99RZ0iE=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBm4bKTWdNSgq/DYRLr3ma+kl4WNK7Nd3+iJsaMzOD5
- CEo7ZdyJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZuGykwAKCRB33NvayMhJ0e0wD/
- oDpZ78Jn9TyUC6J2jSTfmVFEBJJtajhn5hTHTB7QZWRtuXk7SeaTYOGhD8gqgSZvL3huAqNBnB3FZ1
- IFPJRY5FUApWNMC1ArDXrjH3UIDWZbZZsTWnc+xInp6aiuEm4fEJvlbp8+rERZ/y+CbpeZseKZi1A1
- lRRqkDHfjhdau2kiKJ06xKGgBjBYNr1cTibv6OliiHwHx33wknl0gR2b4CT2kU+L4w+3RwjnHqRxyO
- cmPGTogM7D6Qnr2yQdvymgCLyPqu9HuaPXWH+hAcjr12kLj5iRxh5yoArUoYzARBfwxNxEPjvY4Kr1
- qcAB1AMGUZElNLvnp7gAVkIpsD1rCa92yrD2wkhNy6O59YI3XX/ziyn4IxeRqizOquxYpemosCv+an
- Xpobp5UpgT4rqaybTbAMrJvqloPVvXp56FXtj8qBVIAVqb8RfhutlP/Ro2X0BP5UphH5qsuwnaHajy
- epprp49pMOKwIeznTcyNOqeErQj2xiwtYY+Eq5xtj62ZqmfAx6G4fGKka+L9As0e4DZQAumbpwJL0k
- pITRIcuQYrHuNryR/ZLKdwPFpAB8Ne8egEvjA8I6glYIJA5LYO5RsO7p8emTWFa+M0r4WF3nzmi3xY
- TShErry4bkwzIFG2X5XcfWdszv4IhjJXPigldD5Hj32PKa2MUG8VYqgeeJYQ==
+ bh=vIrwLFn0Lj1NqOwB9QQ9/zFKyKXRywCPsQ36/qGl6Zo=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBm4bVQ6s636OA1QDaFeqg/34xI/mWJKr6MuE3M7Zhi
+ v87vz1qJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZuG1UAAKCRB33NvayMhJ0UAlD/
+ wLOjPu8CVqo/B/qHbOv2nTEdvk/O9OJpRlcXMqjxlX2GXOHUCSUwNl63rFacIetDsizjCcQBzQut/B
+ u7KheQKIuLlwDf1NP3x43crtnKg4OK/yfLZZWkcIBzWKU5NCszYo0BVPGLidw2fvac1TkcqdWiEZrg
+ LN9urOmmo3l6cfrpoIjDLcdMocfWoDeita3l+YvCeGsLRnye7kYTxvoWpx58V+PukMLWlKtnRSrqVn
+ z1TShFUGbFE9UGfJK+Qle3B9zVrcdAdQaCyIg3qzERfn9lDfo5XAnfil1H0rUmTUtseOx0e9E5Vt2Q
+ FmBFOWlA/EvTuzvYwYk8X9i6mvjrX7DO6D3bdM+cQfsJ7kU3Y+fupdmLegcqw1bKwXZWNbLYqWix4I
+ NdYogZY+vZFRVb/kruoCRVYRbXFGlFXolQBVoWcYPH229+GOZjZ4mXsrlVJeLhJVwmT5kMGbkv63Cw
+ uFWL9IwGMkoE3OzVGxjgdI/Rls3YR7SluHXdsI/I7aCY6Km1mfwvpF0EpKXeQ8etXWAuQXX1V0FA9p
+ Anq7FfQb7ZPEJ4SUKkuftTfMBGN5020hwyvI7xeKloLS5V6wxtfG85ClzKcLC5ubFoISLxCd22wWPo
+ dbRzJpSNqVcsgwS/BwdOwYC2w6hIJ8n+inJOaYe3pxVosaadIdeocSrJXiEw==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240911_080912_236126_697C3A88 
-X-CRM114-Status: GOOD (  14.98  )
+X-CRM114-CacheID: sfid-20240911_082051_819025_69F2465A 
+X-CRM114-Status: GOOD (  16.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,127 +115,186 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the Amlogic Meson8, Meson8b and Meson8m2 Clock and
-Reset Controller to dt-schema.
+Convert the Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+bindings to dt-schema.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/clock/amlogic,meson8-clkc.yaml        | 45 +++++++++++++++++++
- .../bindings/clock/amlogic,meson8b-clkc.txt        | 51 ----------------------
- 2 files changed, 45 insertions(+), 51 deletions(-)
+ .../bindings/mmc/amlogic,meson-mx-sdio.txt         |  54 -----------
+ .../bindings/mmc/amlogic,meson-mx-sdio.yaml        | 101 +++++++++++++++++++++
+ 2 files changed, 101 insertions(+), 54 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,meson8-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,meson8-clkc.yaml
+diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+deleted file mode 100644
+index 8765c605e6bc..000000000000
+--- a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
++++ /dev/null
+@@ -1,54 +0,0 @@
+-* Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+-
+-The highspeed MMC host controller on Amlogic SoCs provides an interface
+-for MMC, SD, SDIO and SDHC types of memory cards.
+-
+-Supported maximum speeds are the ones of the eMMC standard 4.41 as well
+-as the speed of SD standard 2.0.
+-
+-The hardware provides an internal "mux" which allows up to three slots
+-to be controlled. Only one slot can be accessed at a time.
+-
+-Required properties:
+- - compatible : must be one of
+-	- "amlogic,meson8-sdio"
+-	- "amlogic,meson8b-sdio"
+-	along with the generic "amlogic,meson-mx-sdio"
+- - reg : mmc controller base registers
+- - interrupts : mmc controller interrupt
+- - #address-cells : must be 1
+- - size-cells : must be 0
+- - clocks : phandle to clock providers
+- - clock-names : must contain "core" and "clkin"
+-
+-Required child nodes:
+-A node for each slot provided by the MMC controller is required.
+-NOTE: due to a driver limitation currently only one slot (= child node)
+-      is supported!
+-
+-Required properties on each child node (= slot):
+- - compatible : must be "mmc-slot" (see mmc.txt within this directory)
+- - reg : the slot (or "port") ID
+-
+-Optional properties on each child node (= slot):
+- - bus-width : must be 1 or 4 (8-bit bus is not supported)
+- - for cd and all other additional generic mmc parameters
+-   please refer to mmc.txt within this directory
+-
+-Examples:
+-	mmc@c1108c20 {
+-		compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
+-		reg = <0xc1108c20 0x20>;
+-		interrupts = <0 28 1>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
+-		clock-names = "core", "clkin";
+-
+-		slot@1 {
+-			compatible = "mmc-slot";
+-			reg = <1>;
+-
+-			bus-width = <4>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
 new file mode 100644
-index 000000000000..ab73d4654171
+index 000000000000..4d1142d2ff02
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/amlogic,meson8-clkc.yaml
-@@ -0,0 +1,45 @@
++++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
+@@ -0,0 +1,101 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/clock/amlogic,meson8-clkc.yaml#
++$id: http://devicetree.org/schemas/mmc/amlogic,meson-mx-sdio.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Amlogic Meson8, Meson8b and Meson8m2 Clock and Reset Controller
++title: Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
++
++description:
++  The highspeed MMC host controller on Amlogic SoCs provides an interface
++  for MMC, SD, SDIO and SDHC types of memory cards.
++  Supported maximum speeds are the ones of the eMMC standard 4.41 as well
++  as the speed of SD standard 2.0.
++  The hardware provides an internal "mux" which allows up to three slots
++  to be controlled. Only one slot can be accessed at a time.
 +
 +maintainers:
 +  - Neil Armstrong <neil.armstrong@linaro.org>
 +
 +properties:
 +  compatible:
-+    oneOf:
++    items:
 +      - enum:
-+          - amlogic,meson8-clkc
-+          - amlogic,meson8b-clkc
-+      - items:
-+          - const: amlogic,meson8m2-clkc
-+          - const: amlogic,meson8-clkc
++          - amlogic,meson8-sdio
++          - amlogic,meson8b-sdio
++      - const: amlogic,meson-mx-sdio
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
 +
 +  clocks:
-+    minItems: 2
-+    maxItems: 3
++    maxItems: 2
 +
 +  clock-names:
-+    minItems: 2
 +    items:
-+      - const: xtal
-+      - const: ddr_pll
-+      - const: clk_32k
++      - const: core
++      - const: clkin
 +
-+  '#clock-cells':
++  "#address-cells":
 +    const: 1
 +
-+  '#reset-cells':
-+    const: 1
++  "#size-cells":
++    const: 0
++
++
++patternProperties:
++  "slot@[a-f0-9]+$":
++    $ref: mmc-controller.yaml#
++    description:
++      A node for each slot provided by the MMC controller
++    properties:
++      compatible:
++        const: mmc-slot
++
++      reg:
++        description:
++          the slot (or "port") ID
++        maxItems: 1
++
++      bus-width:
++        enum: [1, 4]
++
++    required:
++      - compatible
++      - reg
++
++    unevaluatedProperties: false
 +
 +required:
 +  - compatible
++  - reg
++  - interrupts
 +  - clocks
 +  - clock-names
-+  - '#reset-cells'
++  - "#address-cells"
++  - "#size-cells"
 +
 +additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
-deleted file mode 100644
-index cc51e4746b3b..000000000000
---- a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
-+++ /dev/null
-@@ -1,51 +0,0 @@
--* Amlogic Meson8, Meson8b and Meson8m2 Clock and Reset Unit
--
--The Amlogic Meson8 / Meson8b / Meson8m2 clock controller generates and
--supplies clock to various controllers within the SoC.
--
--Required Properties:
--
--- compatible: must be one of:
--	- "amlogic,meson8-clkc" for Meson8 (S802) SoCs
--	- "amlogic,meson8b-clkc" for Meson8 (S805) SoCs
--	- "amlogic,meson8m2-clkc" for Meson8m2 (S812) SoCs
--- #clock-cells: should be 1.
--- #reset-cells: should be 1.
--- clocks: list of clock phandles, one for each entry in clock-names
--- clock-names: should contain the following:
--  * "xtal": the 24MHz system oscillator
--  * "ddr_pll": the DDR PLL clock
--  * "clk_32k": (if present) the 32kHz clock signal from GPIOAO_6 (CLK_32K_IN)
--
--Parent node should have the following properties :
--- compatible: "amlogic,meson-hhi-sysctrl", "simple-mfd", "syscon"
--- reg: base address and size of the HHI system control register space.
--
--Each clock is assigned an identifier and client nodes can use this identifier
--to specify the clock which they consume. All available clocks are defined as
--preprocessor macros in the dt-bindings/clock/meson8b-clkc.h header and can be
--used in device tree sources.
--
--Similarly a preprocessor macro for each reset line is defined in
--dt-bindings/reset/amlogic,meson8b-clkc-reset.h (which can be used from the
--device tree sources).
--
--
--Example: Clock controller node:
--
--	clkc: clock-controller {
--		compatible = "amlogic,meson8b-clkc";
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--	};
--
--
--Example: UART controller node that consumes the clock generated by the clock
--  controller:
--
--	uart_AO: serial@c81004c0 {
--		compatible = "amlogic,meson-uart";
--		reg = <0xc81004c0 0x14>;
--		interrupts = <0 90 1>;
--		clocks = <&clkc CLKID_CLK81>;
--	};
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    mmc@c1108c20 {
++        compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
++        reg = <0xc1108c20 0x20>;
++        interrupts = <GIC_SPI 28 IRQ_TYPE_EDGE_RISING>;
++        clocks = <&clk_core>, <&clk_in>;
++        clock-names = "core", "clkin";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        slot@1 {
++            compatible = "mmc-slot";
++            reg = <1>;
++            bus-width = <4>;
++        };
++    };
 
 ---
 base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
-change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson8-clkc-7dec15a0a5f0
+change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-6fa70546ebb8
 
 Best regards,
 -- 
