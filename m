@@ -4,61 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BE1CEE49AD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2024 13:51:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A8B4EE49BC
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2024 15:02:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:Cc:To:From:MIME-Version:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=L9HWL0uLdM698RTc8r2fdyf8ImElz8saY5QS4BXK01w=; b=s3XMtsMuk3SiFRSwrH6b/R9Lcg
-	VcKDMzywJV7NE5bPncEwhzyj5l7I7a97KBitPJOk51WgmAuWcfO8YWvOkMqK5AUuan6MumrbB78w5
-	qglpjYyTdzM7JjygPxk6K/YzWibqcCEn1BUvmIqJHTPhJ49ycImv7Jrfwshlwz5M3KZ63FOxH98L3
-	3Yy0h4mtN/R8uKrZLj3eEruNtlw/MLWmncN70fOauV6PmrtfwXTwucoY7PLS8Il3Cr9nX14s6m3/K
-	7u2cbJjyCioCzsFBrQWUE5zPqx25dPnyCTHVuX6anoQKjKIu40dTIP+Xt/KM3LcO9Z8ixgMJaaSiL
-	ltlADS5w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=r+gcnr+aC621+oQGD/iCaHugCJfkdPxzjPaRM+IfoyU=; b=fzODBi9pXbu18S
+	zh2zN2vqU4bntVa8zqrZIyCsRlIe8D1xtQ3NRfLZ5fF5qADgV6te9rx+z3n7hNOJ7Si0+UzLeFnku
+	Usw79pgUemCxwML3fIpOQbvaLtuoPDwNKYiPkoHRGLVjyijxAt3noYI2eHOAOW0S4zoD5pZvNgK9i
+	l9KmzPbdYJHhiPRZ5FqoHyJa0UHVkq0/uO6fifz4rXsjXXOUVZ2g/27YywVSn3bPodxvgG5zeWZLz
+	F67KP1k4WxgWh6qFPb5xnEbGhaIh3PtaZw7+WIpjHhuHmyw4uQTSfHeaYQeUNpAYrIrhyW1u6eEKh
+	Z12FvdkM5hX+y2LVy/RQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1soNkZ-00000009m7H-3U95;
-	Wed, 11 Sep 2024 13:51:16 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1soOrZ-0000000A3tc-2Ovv;
+	Wed, 11 Sep 2024 15:02:33 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1soNjW-00000009lsX-2DJr;
-	Wed, 11 Sep 2024 13:50:12 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 1B8DB5C06EA;
-	Wed, 11 Sep 2024 13:50:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A823C4CEC5;
-	Wed, 11 Sep 2024 13:50:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726062609;
-	bh=N81tFhroIl/Qerhb+Gan0l3fOl6h2MuZvqVlrmL1Op4=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=m+ZX/vz79xdEvcQq3LII2KIDx4oswbO8HI7Pyd2QEsLPgjdFhOskHmuxxhS4JKoiB
-	 MWf7HBfXTzmW0+6wbs5J/0NChEwL0aMccQ+H1lpiMCjGZPnCZC4xRu8LozEHFY1+4t
-	 CTzF8+iUXuzknMZSUKLVnsQyvBMvjwiKtcSG88Cu0RepC9GQyy7ikqe2C+LD+Hocx1
-	 Es4cXg6OItqHE5il2rnt4jrnd39HhiNERbKlhm6bA/5zxjnl26rkaMjo89iKctgdHm
-	 V/zvfqhw9ODqC+h+TVfAJ7F4i3pC1v1BYj4Z7rAg8s7mwMgOqfANNeXB+OP4sylclC
-	 Id8BUq0fsXaPg==
-Date: Wed, 11 Sep 2024 08:50:08 -0500
+	id 1soOTg-00000009xQp-2UxG;
+	Wed, 11 Sep 2024 14:37:55 +0000
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 413E210000A;
+	Wed, 11 Sep 2024 17:37:45 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 413E210000A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1726065465;
+	bh=0dnO4ujw+BJRKMFo8HSTMVWw4DKX/FH3odzibY6SRUU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=UOOIYef9Ea7pItfRX8SY/YX5hW0eCKocGsAguBcE7UTwsGMvb+SoGYpjqDHF0Dr6N
+	 5N7Nqp+L6i+9mQLE/uX/IdK3KxT5EKOKnO38X/wcmD2jgseFDiAFXBElasgNay6tPJ
+	 wSVC4+nZPAfHIXHB+m1Q3BmJsky6X7MsIRn0gU/YD26PtPZGkST8HraejoFmB7t13J
+	 HicSEiitim/pGuWwJYZzigS+bHN1rgE5w80V8h2n9wwCebtRtj7de0nKjxOVKZJqkC
+	 ERGITL2vfK8PIS2QzstmxquMzTS9zYcJz175h6Sddn4gOudrFVY0ymfHkdIJGfNFms
+	 Sai1VkOk3MwBA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 11 Sep 2024 17:37:45 +0300 (MSK)
+From: Arseniy Krasnov <avkrasnov@salutedevices.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, "Takashi
+ Iwai" <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, "Kevin
+ Hilman" <khilman@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, <alsa-devel@alsa-project.org>,
+	<linux-sound@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: <kernel@sberdevices.ru>, <oxffffaa@gmail.com>,
+	<avkrasnov@salutedevices.com>, <Stable@vger.kernel.org>
+Subject: [PATCH v1] ASoC: meson: axg-card: fix 'use-after-free'
+Date: Wed, 11 Sep 2024 17:24:25 +0300
+Message-ID: <20240911142425.598631-1-avkrasnov@salutedevices.com>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
- Jerome Brunet <jbrunet@baylibre.com>
-In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-0-feaabb45916b@linaro.org>
-References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-0-feaabb45916b@linaro.org>
-Message-Id: <172606224585.90829.12080764539678935748.robh@kernel.org>
-Subject: Re: [PATCH 0/7] ARM: dts: amlogic: first easy dtbs fixes
+X-Originating-IP: [172.28.161.232]
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 187687 [Sep 11 2024]
+X-KSMG-AntiSpam-Version: 6.1.1.5
+X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 32 0.3.32 766319f57b3d5e49f2c79a76e7d7087b621090df, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/09/11 13:00:00 #26553614
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240911_065010_682164_D94EF73A 
-X-CRM114-Status: GOOD (  13.73  )
+X-CRM114-CacheID: sfid-20240911_073753_330772_FA0DD57F 
+X-CRM114-Status: GOOD (  12.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,100 +98,79 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Buffer 'card->dai_link' is reallocated in 'meson_card_reallocate_links()',
+so move 'pad' pointer initialization after this function when memory is
+already reallocated.
 
-On Wed, 11 Sep 2024 12:19:39 +0200, Neil Armstrong wrote:
-> This is the easy fixes to start and fully document the ARM Amlogic
-> Device Trees, remaining work includes:
-> - ethmac with required phy-mode/clocks/clock-names
-> - amlogic,meson-hhi-sysctrl
-> - amlogic,meson8-clkc
-> - pinctrl: Unevaluated properties are not allowed ('reg', 'reg' were unexpected)
-> - bank@80b0:gpio-line-names is too short
-> - realtek,rt5640
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-> Neil Armstrong (7):
->       ARM: dts: amlogic: meson6: fix clk81 node name
->       ARM: dts: amlogic: meson8: fix soc thermal-zone node name
->       ARM: dts: amlogic: meson8: fix ao_arc_sram node name
->       ARM: dts: amlogic: meson6: delete undocumented nodes
->       ARM: dts: amlogic: meson8b-odroidc1: fix invalid reset-gpio
->       ARM: dts: amlogic: fix /memory node name
->       ARM: dts: amlogic: meson8: use correct pinctrl bank node name
-> 
->  arch/arm/boot/dts/amlogic/meson6-atv1200.dts      |  2 +-
->  arch/arm/boot/dts/amlogic/meson6.dtsi             | 18 +++++++++++++++++-
->  arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts |  2 +-
->  arch/arm/boot/dts/amlogic/meson8.dtsi             |  8 ++++----
->  arch/arm/boot/dts/amlogic/meson8b-ec100.dts       |  2 +-
->  arch/arm/boot/dts/amlogic/meson8b-mxq.dts         |  2 +-
->  arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts    |  4 ++--
->  arch/arm/boot/dts/amlogic/meson8b.dtsi            |  8 ++++----
->  arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts |  2 +-
->  9 files changed, 32 insertions(+), 16 deletions(-)
-> ---
-> base-commit: 100cc857359b5d731407d1038f7e76cd0e871d94
-> change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-69d624b8bccd
-> 
-> Best regards,
-> --
-> Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> 
-> 
+Kasan bug report:
 
+==================================================================
+BUG: KASAN: slab-use-after-free in axg_card_add_link+0x76c/0x9bc
+Read of size 8 at addr ffff000000e8b260 by task modprobe/356
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+CPU: 0 PID: 356 Comm: modprobe Tainted: G O 6.9.12-sdkernel #1
+Call trace:
+ dump_backtrace+0x94/0xec
+ show_stack+0x18/0x24
+ dump_stack_lvl+0x78/0x90
+ print_report+0xfc/0x5c0
+ kasan_report+0xb8/0xfc
+ __asan_load8+0x9c/0xb8
+ axg_card_add_link+0x76c/0x9bc [snd_soc_meson_axg_sound_card]
+ meson_card_probe+0x344/0x3b8 [snd_soc_meson_card_utils]
+ platform_probe+0x8c/0xf4
+ really_probe+0x110/0x39c
+ __driver_probe_device+0xb8/0x18c
+ driver_probe_device+0x108/0x1d8
+ __driver_attach+0xd0/0x25c
+ bus_for_each_dev+0xe0/0x154
+ driver_attach+0x34/0x44
+ bus_add_driver+0x134/0x294
+ driver_register+0xa8/0x1e8
+ __platform_driver_register+0x44/0x54
+ axg_card_pdrv_init+0x20/0x1000 [snd_soc_meson_axg_sound_card]
+ do_one_initcall+0xdc/0x25c
+ do_init_module+0x10c/0x334
+ load_module+0x24c4/0x26cc
+ init_module_from_file+0xd4/0x128
+ __arm64_sys_finit_module+0x1f4/0x41c
+ invoke_syscall+0x60/0x188
+ el0_svc_common.constprop.0+0x78/0x13c
+ do_el0_svc+0x30/0x40
+ el0_svc+0x38/0x78
+ el0t_64_sync_handler+0x100/0x12c
+ el0t_64_sync+0x190/0x194
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Fixes: 7864a79f37b5 ("ASoC: meson: add axg sound card support")
+Cc: <Stable@vger.kernel.org>
+Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+---
+ sound/soc/meson/axg-card.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y amlogic/meson6-atv1200.dtb amlogic/meson8-minix-neo-x8.dtb amlogic/meson8b-ec100.dtb amlogic/meson8b-mxq.dtb amlogic/meson8b-odroidc1.dtb amlogic/meson8m2-mxiii-plus.dtb' for 20240911-topic-amlogic-arm32-upstream-bindings-fixes-v1-0-feaabb45916b@linaro.org:
-
-arch/arm/boot/dts/amlogic/meson8b-mxq.dtb: pinctrl@9880: Unevaluated properties are not valid under the given schema ('reg', 'reg' were unevaluated and invalid)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
-arch/arm/boot/dts/amlogic/meson8b-odroidc1.dtb: pinctrl@9880: bank@80b0: Unevaluated properties are not allowed ('gpio-line-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
-arch/arm/boot/dts/amlogic/meson8b-odroidc1.dtb: pinctrl@9880: bank@80b0:gpio-line-names: ['J2 Header Pin 35', 'J2 Header Pin 36', 'J2 Header Pin 32', 'J2 Header Pin 31', 'J2 Header Pin 29', 'J2 Header Pin 18', 'J2 Header Pin 22', 'J2 Header Pin 16', 'J2 Header Pin 23', 'J2 Header Pin 21', 'J2 Header Pin 19', 'J2 Header Pin 33', 'J2 Header Pin 8', 'J2 Header Pin 10', 'J2 Header Pin 15', 'J2 Header Pin 13', 'J2 Header Pin 24', 'J2 Header Pin 26', 'Revision (upper)', 'Revision (lower)', 'J2 Header Pin 7', '', 'J2 Header Pin 12', 'J2 Header Pin 11', '', '', '', 'TFLASH_VDD_EN', '', '', 'VCCK_PWM (PWM_C)', 'I2CA_SDA', 'I2CA_SCL', 'I2CB_SDA', 'I2CB_SCL', 'VDDEE_PWM (PWM_D)', '', 'HDMI_HPD', 'HDMI_I2C_SDA', 'HDMI_I2C_SCL', 'ETH_PHY_INTR', 'ETH_PHY_NRST', 'ETH_TXD1', 'ETH_TXD0', 'ETH_TXD3', 'ETH_TXD2', 'ETH_RGMII_TX_CLK', 'SD_DATA1 (SDB_D1)', 'SD_DATA0 (SDB_D0)', 'SD_CLK', 'SD_CMD', 'SD_DATA3 (SDB_D3)', 'SD_DATA2 (SDB_D2)', 'SD_CDN (SD_DET_N)', 'SDC_D0 (EMMC)', 'SDC_D1 (EMMC)', 'SDC_D2 (EMMC
- )', 'SDC_D3 (EMMC)', 'SDC_D4 (EMMC)', 'SDC_D5 (EMMC)', 'SDC_D6 (EMMC)', 'SDC_D7 (EMMC)', 'SDC_CLK (EMMC)', 'SDC_RSTn (EMMC)', 'SDC_CMD (EMMC)', 'BOOT_SEL', '', '', '', '', '', '', '', 'ETH_RXD1', 'ETH_RXD0', 'ETH_RX_DV', 'RGMII_RX_CLK', 'ETH_RXD3', 'ETH_RXD2', 'ETH_TXEN', 'ETH_PHY_REF_CLK_25MOUT', 'ETH_MDC', 'ETH_MDIO'] is too short
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
-arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dtb: pinctrl@9880: Unevaluated properties are not valid under the given schema ('reg', 'reg' were unevaluated and invalid)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
-arch/arm/boot/dts/amlogic/meson8b-odroidc1.dtb: pinctrl@9880: Unevaluated properties are not valid under the given schema ('reg', 'reg' were unevaluated and invalid)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
-arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dtb: pinctrl@9880: Unevaluated properties are not valid under the given schema ('reg', 'reg' were unevaluated and invalid)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
-arch/arm/boot/dts/amlogic/meson8b-ec100.dtb: pinctrl@9880: bank@80b0: Unevaluated properties are not allowed ('gpio-line-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
-arch/arm/boot/dts/amlogic/meson8b-ec100.dtb: pinctrl@9880: bank@80b0:gpio-line-names: ['WIFI_SD_D0', 'WIFI_SD_D1', 'WIFI_SD_D2', 'WIFI_SD_D3', 'BTPCM_DOUT', 'BTPCM_DIN', 'BTPCM_SYNC', 'BTPCM_CLK', 'WIFI_SD_CLK', 'WIFI_SD_CMD', 'WIFI_32K', 'WIFI_PWREN', 'UART_B_TX', 'UART_B_RX', 'UART_B_CTS_N', 'UART_B_RTS_N', 'BT_EN', 'WIFI_WAKE_HOST', '', '', '', '', '', '', '', '', '', '', '', '', 'VCCK_PWM_C', 'I2C_SDA_A', 'I2C_SCL_A', 'I2C_SDA_B', 'I2C_SCL_B', 'VDDEE_PWM_D', 'VDDEE_PWM 3V3_5V_EN', 'HDMI_HPD', 'HDMI_I2C_SDA', 'HDMI_I2C_SCL', 'RMII_IRQ', 'RMII_RST#', 'RMII_TXD1', 'RMII_TXD0', 'AV_select_1', 'AV_select_2', 'MCU_Control_S', 'SD_D1_B', 'SD_D0_B', 'SD_CLK_8726MX', 'SD_CMD_8726MX', 'SD_D3_B', 'SD_D2_B', 'CARD_EN_DET (CARD_DET)', 'NAND_D0 (EMMC)', 'NAND_D1 (EMMC)', 'NAND_D2 (EMMC)', 'NAND_D3 (EMMC)', 'NAND_D4 (EMMC)', 'NAND_D5 (EMMC)', 'NAND_D6 (EMMC)', 'NAND_D7 (EMMC)', 'NAND_CS1 (EMMC)', 'NAND_CS2 iNAND_RS1 (EMMC)', 'NAND_nR/B iNAND_CMD (EMMC)', 'NAND_ALE (EMMC)', 'NAND_CLE (EMMC)', 'n
- RE_S1 NAND_nRE (EMMC)', 'nWE_S1 NAND_nWE (EMMC)', '', '', 'SPI_CS', 'RMII_RXD1', 'RMII_RXD0', 'RMII_CRS_DV', 'RMII_50M_IN', 'GPIODIF_4', 'GPIODIF_5', 'RMII_TXEN', 'CPUETH_25MOUT', 'RMII_MDC', 'RMII_MDIO'] is too short
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
-arch/arm/boot/dts/amlogic/meson8b-ec100.dtb: pinctrl@9880: Unevaluated properties are not valid under the given schema ('reg', 'reg' were unevaluated and invalid)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
-arch/arm/boot/dts/amlogic/meson8b-mxq.dtb: pinctrl@84: Unevaluated properties are not valid under the given schema ('reg', 'reg' were unevaluated and invalid)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-aobus.yaml#
-arch/arm/boot/dts/amlogic/meson8b-odroidc1.dtb: pinctrl@84: Unevaluated properties are not valid under the given schema ('reg', 'reg' were unevaluated and invalid)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-aobus.yaml#
-arch/arm/boot/dts/amlogic/meson8b-ec100.dtb: pinctrl@84: Unevaluated properties are not valid under the given schema ('reg', 'reg' were unevaluated and invalid)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-aobus.yaml#
-arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dtb: pinctrl@84: Unevaluated properties are not valid under the given schema ('reg', 'reg' were unevaluated and invalid)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-aobus.yaml#
-arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dtb: pinctrl@84: Unevaluated properties are not valid under the given schema ('reg', 'reg' were unevaluated and invalid)
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-aobus.yaml#
-
-
-
-
+diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
+index 8c5605c1e34e8..eb0302f207407 100644
+--- a/sound/soc/meson/axg-card.c
++++ b/sound/soc/meson/axg-card.c
+@@ -104,7 +104,7 @@ static int axg_card_add_tdm_loopback(struct snd_soc_card *card,
+ 				     int *index)
+ {
+ 	struct meson_card *priv = snd_soc_card_get_drvdata(card);
+-	struct snd_soc_dai_link *pad = &card->dai_link[*index];
++	struct snd_soc_dai_link *pad;
+ 	struct snd_soc_dai_link *lb;
+ 	struct snd_soc_dai_link_component *dlc;
+ 	int ret;
+@@ -114,6 +114,7 @@ static int axg_card_add_tdm_loopback(struct snd_soc_card *card,
+ 	if (ret)
+ 		return ret;
+ 
++	pad = &card->dai_link[*index];
+ 	lb = &card->dai_link[*index + 1];
+ 
+ 	lb->name = devm_kasprintf(card->dev, GFP_KERNEL, "%s-lb", pad->name);
+-- 
+2.30.1
 
 
 _______________________________________________
