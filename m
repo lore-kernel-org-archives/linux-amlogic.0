@@ -4,69 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8C85FC6169
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2024 17:23:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39DF1FC6190
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Sep 2024 05:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZvPJtJ7dQIih8Y0PCRA90TDdH6CqGNPrZw3ehZXL8Lw=; b=0KcWl5+132LX5rC5Z9vGL+DWA4
-	nHGWlcgPqKBlhHlhEHgxbevbpgO3MLGcRbLIhX28jGzfyJ9pXeJL3UIt3lyBX7Zx7Cs6MXGOiSNKL
-	ctndp/f76QxQw8SRVLR8eQRJWITPqxeOeDE31Ysq0o/diVUnDGogzQANRiVBw5nu6i7QJPqs/IX5i
-	1GrxlxiliMGGdsDt47lwfRkEUPP4CMRTa2TA6vK4f3zsxOS2WIYK7JeO/WMdtdTVjf9UD/UP+xrOT
-	ClZnQcMFx+TR3q4iQQZmpA4KOdqwk+FQUB95Ll6bT0qmI2StnZiIE30pNNKHYEFb9usvBR8jqH+96
-	zdo8zmVw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=rUEqlTjZqEGlnC+COutm23FB/V5ucy88r2CbUFUjnRc=; b=4m0scaQuMPTQNY
+	Wr6kT6zQnZFBDNGqwUAnvWHip4ZzqhX6O2eWNajb+6FnCJ7lh2v6BzneoQeXcbRHwSPSc7FBXqj/5
+	1Nx8najf6oazni4yMhIhfJ0neJOnmcBO5DTXQizNGlUN2SJikMpDQMsjq9cWq9A3tEv8LAb+9SXl6
+	7cGMYO9G59Qc+/DEZDgnpR1AiKoZRiESN3bHpE+IZM89QHUHeRddbm23fWgZJ9eN3cQZiiuF75Ua5
+	O9Xu++BL+WCXlhP+sdgzaTX8I+VzBok7n0air6/Onw8HKCQcLWqVpxe3Uy5kRlG2rSuXFYJ1BMl+3
+	Pptlf9lqPktNqRkrSAAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1spA15-0000000GeY9-3Smv;
-	Fri, 13 Sep 2024 17:23:31 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1spLMV-0000000075T-12XP;
+	Sat, 14 Sep 2024 05:30:23 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1spA12-0000000GeWk-1sKv;
-	Fri, 13 Sep 2024 17:23:29 +0000
+	id 1spLHq-000000005qg-17vR;
+	Sat, 14 Sep 2024 05:25:36 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 00EB3A45714;
-	Fri, 13 Sep 2024 17:23:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A1B5C4CEC0;
-	Fri, 13 Sep 2024 17:23:24 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 58DE35C5433;
+	Sat, 14 Sep 2024 05:25:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 698BCC4CEC6;
+	Sat, 14 Sep 2024 05:25:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726248207;
-	bh=fuW1xLrho8ZyDrDvp5KKZrf25rnUr95/sDyzrJYGWrU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m75UqRQWWxQp01qjARhuOIj1koH4iP0Z/IzXhjrfwrdVTmM7CT0ME4vGilO1Pk9s/
-	 l7wq7xQnweGsXOIUNv8beN6zhA5shqaBX8YOpa3Kcwsi7KgLxRZIOBqodDugM1D/sk
-	 VhmrsY86lrWyOOqKUg9pM9kRVx4zMHGP6eryiHfQazuud15bQMJ1a4n0sXXn307sia
-	 onR5LtCFt1XiPTtFyYwWJrCyXEt9Y5V9qsbseC+2qCTtg/ThpPioUyVGjaBw1Bmoi5
-	 TRrweKQW8xVX9MN5+vU1TMDbwQ3zU1FoFy4Veflw9w+WLB1GY6QIxhF0WG4VJGKSqi
-	 nihueE8U/RYbw==
-Date: Fri, 13 Sep 2024 18:23:22 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [RFC PATCH v4 3/5] dt-bindings: clock: axg-audio: document A1
- SoC audio clock controller driver
-Message-ID: <20240913-drainpipe-retrial-0167665f605f@spud>
-References: <20240913121152.817575-1-jan.dakinevich@salutedevices.com>
- <20240913121152.817575-4-jan.dakinevich@salutedevices.com>
+	s=k20201202; t=1726291532;
+	bh=XxOwoFH80Bhk5qESbi1I1pviMO4Ixnnb+WUrAi02KNk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=EVoJ8qtRaS2sV7hcYyvvwwk6rXga7bS2sH7cy7Q0+1RgFgAoilX0oHnaYM4zNpbmy
+	 lMe0wIf6DMAWOtr8SE+CNWnnMyPESAqc6XL4E80RhVtgq7kKd4m9rcoZ+bh2SxI2xK
+	 jse4DcplsIx7ESdnA9KpShWDum9ib2ZRMvd5CN+WpEhd5Glh+sLmt38bbe0BDdfCr1
+	 DPcKCICjoEbO2KujWaXbj/86zIkx2KhBxVF2SWb08rToxLt0UnBVCTzSi2tuveYpfj
+	 vvZtg73TN1JHWKELvoe2tfPbvzdo6v0pFloezMoqOFb+PpEVOGOReVb693NMe+V9HX
+	 0gg0xOC7eS+vA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 563C6FC618E;
+	Sat, 14 Sep 2024 05:25:32 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Sat, 14 Sep 2024 13:25:23 +0800
+Subject: [PATCH 1/5] dt-bindings: clock: add Amlogic A5 PLL clock
+ controller
 MIME-Version: 1.0
-In-Reply-To: <20240913121152.817575-4-jan.dakinevich@salutedevices.com>
+Message-Id: <20240914-a5-clk-v1-1-5ee2c4f1b08c@amlogic.com>
+References: <20240914-a5-clk-v1-0-5ee2c4f1b08c@amlogic.com>
+In-Reply-To: <20240914-a5-clk-v1-0-5ee2c4f1b08c@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726291530; l=3134;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=lsom9knZP0lHkNe6jVzPiJ0BTgKhyMmo+ZKlPTInwcA=;
+ b=yS6oZdIBel/t0WlOzbHPs8yDp55NT8uCAIH90lPpC1SKuLiNj9Pbfo9I1AFRulbMfX01vw5oT
+ F2ERa6kW2UIBRQaj8an7TTI67sJqClsKT+CDUPc4/aV8C/Ae9DqH1FQ
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240913_102328_567686_12B1EE8B 
-X-CRM114-Status: UNSURE (   8.08  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240913_222534_458501_68512F16 
+X-CRM114-Status: GOOD (  11.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,53 +89,128 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7976919777713858737=="
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+From: Chuan Liu <chuan.liu@amlogic.com>
 
---===============7976919777713858737==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jIzR0wEIk82J930S"
-Content-Disposition: inline
+Add the PLL clock controller dt-bindings for Amlogic A5 SoC family.
+
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ .../bindings/clock/amlogic,a5-pll-clkc.yaml        | 62 ++++++++++++++++++++++
+ include/dt-bindings/clock/amlogic,a5-pll-clkc.h    | 24 +++++++++
+ 2 files changed, 86 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a5-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a5-pll-clkc.yaml
+new file mode 100644
+index 000000000000..ef9e40193a1c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,a5-pll-clkc.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2024 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,a5-pll-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic A5 series PLL Clock Controller
++
++maintainers:
++  - Chuan Liu <chuan.liu@amlogic.com>
++  - Xianwei Zhao <xianwei.zhao@amlogic.com>
++
++properties:
++  compatible:
++    const: amlogic,a5-pll-clkc
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: input oscillator (usually at 24MHz)
++      - description: input fix pll dco
++      - description: input fix pll
++
++  clock-names:
++    items:
++      - const: xtal_24m
++      - const: fix_dco
++      - const: fix
++
++  "#clock-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - "#clock-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clock-controller@8000 {
++            compatible = "amlogic,a5-pll-clkc";
++            reg = <0x0 0x8000 0x0 0x1a4>;
++            clocks = <&xtal_24m>,
++                     <&scmi_clk 6>,
++                     <&scmi_clk 7>;
++            clock-names = "xtal_24m",
++                          "fix_dco",
++                          "fix";
++            #clock-cells = <1>;
++        };
++    };
+diff --git a/include/dt-bindings/clock/amlogic,a5-pll-clkc.h b/include/dt-bindings/clock/amlogic,a5-pll-clkc.h
+new file mode 100644
+index 000000000000..a74c448a8d8a
+--- /dev/null
++++ b/include/dt-bindings/clock/amlogic,a5-pll-clkc.h
+@@ -0,0 +1,24 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
++ * Author: Chuan Liu <chuan.liu@amlogic.com>
++ */
++
++#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_A5_PLL_CLKC_H
++#define _DT_BINDINGS_CLOCK_AMLOGIC_A5_PLL_CLKC_H
++
++#define CLKID_MPLL_PREDIV			0
++#define CLKID_MPLL0_DIV				1
++#define CLKID_MPLL0				2
++#define CLKID_MPLL1_DIV				3
++#define CLKID_MPLL1				4
++#define CLKID_MPLL2_DIV				5
++#define CLKID_MPLL2				6
++#define CLKID_MPLL3_DIV				7
++#define CLKID_MPLL3				8
++#define CLKID_GP0_PLL_DCO			9
++#define CLKID_GP0_PLL				10
++#define CLKID_HIFI_PLL_DCO			11
++#define CLKID_HIFI_PLL				12
++
++#endif  /* _DT_BINDINGS_CLOCK_AMLOGIC_A5_PLL_CLKC_H */
+
+-- 
+2.37.1
 
 
---jIzR0wEIk82J930S
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Sep 13, 2024 at 03:11:50PM +0300, Jan Dakinevich wrote:
-> Add device tree bindings for A1 SoC audio clock and reset controllers.
->=20
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---jIzR0wEIk82J930S
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuR1CgAKCRB4tDGHoIJi
-0pvFAP9kr7mdO9xRNEDwdDAwPHjyoLrlCTzOaiy+CSVAUFoI3QEAvZcerXPm4xol
-wOmsRIFe78YlrZGiXEc6w5Rk4pTHPgE=
-=Vt66
------END PGP SIGNATURE-----
-
---jIzR0wEIk82J930S--
-
-
---===============7976919777713858737==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7976919777713858737==--
-
