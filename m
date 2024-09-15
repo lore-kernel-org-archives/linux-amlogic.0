@@ -4,79 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D003C3ABA3
-	for <linux-amlogic@archiver.kernel.org>; Sun, 15 Sep 2024 19:18:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61150C3ABA3
+	for <linux-amlogic@archiver.kernel.org>; Sun, 15 Sep 2024 19:20:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PLa2csipd7kunP/6O6JAKRDMD+0YCiGFOBntg7E1IeU=; b=lXTEsFPrBcS+Le
-	K9lW9sI6cA4M9yejwAIpdKu5T8jF2dsOyZXQmyYbLl6YQ8YWEBW+nHAml3wRUH5mUW75Ujf8ks8Ud
-	XYPJsuCqVVfZUiKMmA1n32gmnL9DdzjhIQdCZCm8HABq7sfrOzOU75wIK99APN3d8Zt6p7S997RCB
-	jbr24Ul0saDpbyyfJVPosDq+gIUsebkbgG0kxTB5S2/NIzwo1bOV+o/w4Hk/eyXt739owkP2Yo4yJ
-	BfCIx9BgQj38MHs5pSCvMc99eAuNuXyBM9qM58tGz+S/93gl/V7jAOk8JuqeGO/zHK5JVp9VNd/gj
-	ia3scLD8+xvHybMdUftg==;
+	List-Owner; bh=vbrIp7mLtxY+O4l70U8ua7HsUo69Bd5lIAMaN1ozmvY=; b=Rm6cpTtiBPLUic
+	TowtKzYZq+ABKDZeNlGkUef/9337YlOj98ZyXW9cTEpg/DO3Jd7JVTI6kw1CTQGkqGUxuaLqMNXKE
+	VOijUT8bRwnbrjPMpzqFdEOh5j1oCFZ7AXHDVRpGd+wrCrg1vM9JYeO22ZvAU/doYoo+N5t7LH8BH
+	b4Fhay90ZYXwojuJNEyLJzOebUh49mqhBDrmR2cBzBppUOAI2efB2ZqcymOFdyQbgrzLsYHSX8dl1
+	XZutqKxt0h2bdZT3MTYPZbrzCl10Rwb3HSR7Q5MX85HpqYerJMu+XmDbIRjFpm3T84quMQfNu6t+c
+	786tgIKJXm+waw+EWR4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1spul8-00000002Yhe-1vFM;
-	Sun, 15 Sep 2024 19:18:10 +0000
-Received: from mail-pl1-x632.google.com ([2607:f8b0:4864:20::632])
+	id 1spunV-00000002Z03-1SUy;
+	Sun, 15 Sep 2024 19:20:37 +0000
+Received: from mail-pl1-x62a.google.com ([2607:f8b0:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1spujg-00000002YVW-2l8l;
-	Sun, 15 Sep 2024 19:16:41 +0000
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-2053616fa36so44728825ad.0;
-        Sun, 15 Sep 2024 12:16:40 -0700 (PDT)
+	id 1spumP-00000002Yqg-25Y0;
+	Sun, 15 Sep 2024 19:19:31 +0000
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-2055a3f80a4so24542945ad.2;
+        Sun, 15 Sep 2024 12:19:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1726427800; x=1727032600; darn=lists.infradead.org;
+        d=googlemail.com; s=20230601; t=1726427968; x=1727032768; darn=lists.infradead.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1bISzRPoZuznX6FBm87E7EImUCqRsCXU+FTidvkRew4=;
-        b=VuVWROYSuBLbDvApG+DeIJ6o49ei5C9ODBWM4+fTD29MamHVfs6lAZxFne5WvXKCPY
-         EMtTfvmRWlDgtUxPVyoNKtuwRSdcNd26tfI1VNlYNMMViPhxg5kWgGY6Em2PZgvGMmt/
-         CQ3YXPDygxCW3pyF6QdHA2rhmUWCUWIeNVt+9/YJdkIUR5J2hJP7l9hYGKoacEy2Zy7j
-         fPvGatHduCZYv4xPH5llj7QJV/iGVhcFbuG+l7dai0I5jtFKW3Yh7JHW456EXTjsmV54
-         HXKJdgjckMamJVSyy3zym93Kjno7Nde6Vl/sIZplonfR8jRdutaJmXtO8ppskZF2RZ3R
-         TODA==
+        bh=id5/AGqbytBVi15XvL5fitIelC5kOd0OzYrA5y5db5E=;
+        b=D2eFZ6EhkjsdGuMuCFC5g4YbjuXnkgpHdIiVGNU8gFAfeND95Bns0fniQ8dDs+kJaO
+         r+M6C7xWevVFufsy/mSMZ0Vvt6DiBs0uoivaoOGF4SHLNHPxJQ8aHJhbhTTWDtl+26cR
+         QGfOgETOwiZnoTIJoMN+7bMoNCvVnqXtvA9vKvv9czQu9fJeRhm7Od+8bPRXLdQ4K5bJ
+         1fiU51WLSshy0CQgm36lsXWG/TZabiuj80q1HEC4WmIFsgDbAOqu4ob2w6zBHGW5YP5d
+         sAxgj5IaFb/hVdhbZRQJwhd3TV/gphRaWZI3OnC6Hn/HcKS73g8oqQ+AhzYlZmZX6z6a
+         ci8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726427800; x=1727032600;
+        d=1e100.net; s=20230601; t=1726427968; x=1727032768;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1bISzRPoZuznX6FBm87E7EImUCqRsCXU+FTidvkRew4=;
-        b=TqSZo90RYvLfo8Alpg4mwfXpK/Rsw89SY+ITfEvZB4mr9BWZpI3A/ZJJj8Qf/qvgRD
-         AcvDfjgQVVznJl2htIsK7nOwOeA92sz+MzDv3QqjifvAqfk22FzBUSlJnc+iU4uf9/Ve
-         82se7XDN5y8ILO9e6N0BN+qzA9KzTD0aElesx8knoD4QkJVdGQBQ0gRgAIVxVteA56KW
-         /ibN8HVuBJgZPwqperylSScYrS/lq77nZwt3SIKsuUtbgESYOn0Fk5ijme8eiUhcbAkw
-         RMVbtTZBoLPRWCOiNjE5xRjYGJGdHwo//Q+uD3SPMrnyicXBEJ/Fk/bXj78mpp03hb7T
-         nxVw==
-X-Forwarded-Encrypted: i=1; AJvYcCUa9hvKuHxPx9642vM3zDOKu/TDgDrqfYvVgpYKbuKIn12wtoxLADCY/4EiUaMuzjnvhBbip9goCShgmKM7kS05Ag==@lists.infradead.org, AJvYcCXam59JfBILm72vYTnBohmax5l9Y5DUozfY9eqJNEIzc1hMDTWgiALav/SsrcjMqNTJ9zKMqjyCYxcSoata@lists.infradead.org
-X-Gm-Message-State: AOJu0YxLXttA+JYfwKQ1EkWcRj3wZ6uD15pxgdunJS6AufEkDfBeBowe
-	EZjes3nqrOUBanQ26V48yJmTObp048hA4KQbrbfCr6ZylwuSdzuIKbHCK7E62jvP4HC7AlFvvtT
-	dmVhGU5OsEsP61sWH6SyEhvIQQTqBgd/Q
-X-Google-Smtp-Source: AGHT+IGKsOtUpIMhmuXU2ajV4HfqdCOucfhKlteJOKWh9G0QI2ecr3Wg/AUo4NExUndPm6QvKcwhbJFZp8UVHmKZG9A=
-X-Received: by 2002:a17:903:249:b0:205:3e68:7367 with SMTP id
- d9443c01a7336-2076e34760dmr190006195ad.21.1726427799915; Sun, 15 Sep 2024
- 12:16:39 -0700 (PDT)
+        bh=id5/AGqbytBVi15XvL5fitIelC5kOd0OzYrA5y5db5E=;
+        b=wxdB2qMNxGux0lVAd5JECE976D5NPpIAYbyyLcGl3ko0qdVpR7knLQXe3lGZar9Y88
+         sLoKcougLlA4/Dp2ap7XTBP3xCEYSexJ/BEl3hDoqbvJrl5RT7nj8kKf8/uRBZklSH4C
+         njsQRliGM0wrGcYUBamL7c2V68smJBCVkp6Pj+y7UWLK0FxkxJO5GLvwNPRasgl03MMS
+         ShYbXzxWM+FmMcwF2G5xklEt1TxtvVVpNhDI8HoP3Jf5/I+TAIf6Wtw4sdl/RyOtkd3t
+         tQ/XDYFlzthiCNi6cNmPwFkFLH4KxPWL/lOdzSbNuVfINuC4cYszqPwA4pn/J/WKbsxW
+         1aCw==
+X-Forwarded-Encrypted: i=1; AJvYcCW3WeI81/jd/N1T5/fXuF0ynDzLrrz5JFclsVs79hoee21bgSvlo8zzcbbI2Cv0Kgc1ZdPhFHoJ1KYXUtx8OiHH5Q==@lists.infradead.org, AJvYcCX0j7KtiXpq5gclFphyqNQ8P8pDg+UJE0tYPkvhuObrf8Fu2xDj9Za7RfDCTjE94/FPxKMlOt1oroCckFtR@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw+SEuwRXx+FSTotZUh/I0sjFftp6k2jDF0x7UG/y5GDHYH6KTm
+	5qvAQ6FjtTcjE3wk9lqMB4i+LsAUYTziJV37BB33zqZs/EunaSAnAqXTOAvi6P7pYwC2mEk+hjF
+	j4BBCkhtr5puPjswOEMngljJAUyE=
+X-Google-Smtp-Source: AGHT+IFkurQMP33FEcivDJJ8MmLrS9yGUWMN30dEY9NxYuXboTp1DuJN8lrZ8lg/1kSF+tWfwp75fP5k8hE1B5IUKXA=
+X-Received: by 2002:a17:903:22c1:b0:207:3a5e:8809 with SMTP id
+ d9443c01a7336-2076e43efbbmr235208145ad.49.1726427968171; Sun, 15 Sep 2024
+ 12:19:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-meson-pinctrl-gpio-line-names-v1-1-4345ba336ea4@linaro.org>
-In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-meson-pinctrl-gpio-line-names-v1-1-4345ba336ea4@linaro.org>
+References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org>
+In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 15 Sep 2024 21:16:29 +0200
-Message-ID: <CAFBinCABU5mM_==zfMxETAAxM8j1qXGYJhDj87-Qwvjc+NJPvg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: amlogic,meson-pinctrl: lower
- gpio-line-names minItems for meson8b
+Date: Sun, 15 Sep 2024 21:19:17 +0200
+Message-ID: <CAFBinCAq=D4EqBODiutKjx6EoQK_KPe4x9ATjCkby3CXS8cZGA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to dtschema
 To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, linux-gpio@vger.kernel.org, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240915_121640_713395_29D2F801 
-X-CRM114-Status: UNSURE (   8.55  )
+X-CRM114-CacheID: sfid-20240915_121929_559558_C0894F80 
+X-CRM114-Status: UNSURE (   7.76  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,13 +93,12 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBTZXAgMTEsIDIwMjQgYXQgNToyNOKAr1BNIE5laWwgQXJtc3Ryb25nCjxuZWlsLmFy
-bXN0cm9uZ0BsaW5hcm8ub3JnPiB3cm90ZToKPgo+IFRoZSBBbWxvZ2ljIE1lc29uOGIgU29DIGhh
-cyA4MyBDQlVTIEdQSU9zLCB0aHVzIGxvd2VyIHRoZSBtaW5JdGVtcwo+IGZvciBncGlvLWxpbmUt
-bmFtZXMgdG8gYWNjb3VudCBmb3IgaXQsIGZpeGluZyBEVEJzIGNoZWNrIG9uIE1lc29uOGIKPiBi
-YXNlZCBib2FyZHMuCj4KPiBTaWduZWQtb2ZmLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmVpbC5hcm1z
-dHJvbmdAbGluYXJvLm9yZz4KUmV2aWV3ZWQtYnk6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRp
-bi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5jb20+CgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
-bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+VGhhbmsgeW91IE5laWwhCgpPbiBXZWQsIFNlcCAxMSwgMjAyNCBhdCA1OjIw4oCvUE0gTmVpbCBB
+cm1zdHJvbmcKPG5laWwuYXJtc3Ryb25nQGxpbmFyby5vcmc+IHdyb3RlOgo+Cj4gQ29udmVydCB0
+aGUgQW1sb2dpYyBNZXNvbjYsIE1lc29uOCBhbmQgTWVzb244YiBTRElPL01NQyBjb250cm9sbGVy
+Cj4gYmluZGluZ3MgdG8gZHQtc2NoZW1hLgo+Cj4gU2lnbmVkLW9mZi1ieTogTmVpbCBBcm1zdHJv
+bmcgPG5laWwuYXJtc3Ryb25nQGxpbmFyby5vcmc+ClJldmlld2VkLWJ5OiBNYXJ0aW4gQmx1bWVu
+c3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
+IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
