@@ -4,71 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F851C3ABA2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Sep 2024 08:14:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D09DCC3ABB2
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Sep 2024 08:16:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ghv2Dv0GeAMTULO6BYyKrjteFBJFX68OFdRe9dIbGZU=; b=vrhgxju1L/t4c8
-	On3fbm4fg4uKw0ZIdjgX1Z0lWX6/9DBj6/NEejIj6PDt1qIPU5utaZQb2nq61kifr7D1ExwmlYoO+
-	3vXrzFdm38uzcw7WJp5s5YDw6rPP+DnwByho9GCbehCoXg+zN7MW3SYfinbIUq3BV7tYimRg2Okk6
-	uM/1a2YdpZzFf3hbvF6N/PwCQMXlXhS39v6Jm2xW7MT95wVGFR8ekiI5DE/G3FTFWnLxAUlT0/TKn
-	BwTYKzrzfjr4J0iFgG5+KZyL/QvHkQgAQ7F3n0vwt03ssiC3w3Q6bCJj3A7NUTYWItyzk5TrfWU5b
-	zteiGm5Tima22/ywalYQ==;
+	List-Owner; bh=XrsX3gpCYfR0ZuMMH3+DorbVUuG4OjfjXYkXJDzbhrU=; b=AoYbTYYMDe18/W
+	qdCq9g2aumfG4TkpDeEjwR28pIWkk2uKiUQIBYHKOSLxKvAtEkJ9nyWVHVgTTNk++lBGler4fqqwO
+	pt0uHhfb3bk521Y/pW5tayDTKymbeqxt0n2HZtwmJveonRyTrLGjaoj9GZwm/JCn9WuK/bGjg8jwb
+	u9WiZZY3eQtUXIPzfm4eYWq85Bt/9O0aghGhNUD0Zz4oGKtQQlAn8TVd3ej8/7QTGi9taqQX5gJn5
+	ieKXtVeKJVc6Rnkiu+tIB8LzGgnR0/8rCYkhUn6IVHEri/OuVYX2LTp/MQ03nBaHVJ/feIb2kLCnL
+	3npnIWD6QUab082YzsUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sq6sJ-00000003Oop-1JlO;
-	Mon, 16 Sep 2024 08:14:23 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1sq6uP-00000003P4v-3SmJ;
+	Mon, 16 Sep 2024 08:16:33 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sq6mu-00000003NCx-1QkH
+	id 1sq6mw-00000003NEM-0F4i
 	for linux-amlogic@lists.infradead.org;
-	Mon, 16 Sep 2024 08:08:50 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-42cb7a2e4d6so33958005e9.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 16 Sep 2024 01:08:47 -0700 (PDT)
+	Mon, 16 Sep 2024 08:08:52 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-42cbc38a997so26130105e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 16 Sep 2024 01:08:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726474126; x=1727078926; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1726474128; x=1727078928; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HjHvRnnGg0bWNf9pKNsnu85764WCsCk+dDWy1pJT+SY=;
-        b=bAfuNd9DeX57bayMwVRmR2//H77bqzJE300GqagIGDMXYUqq88fA2ZvCdkoNs1WOhB
-         Oc5BrDUWPw8Sbox4V0w/jkfdIq56WowCtFCSHY70f+cQdMdwsBxu7CfHFMtoLNxsAnsP
-         uy2sU2sslgx4aqKn7JiTvTdfXDpLMXuSxZdwdWW/CAHNeeaNcuGWSFrGczmcsIYTolzG
-         svt0I+03nu+fi404+t4W6IOtsbAhLnsSECDpapn0n71NHSiMFtNpHiE4afTXduMLrj9r
-         uJCJQuFHNxvpx1AR2Ry4lm2NX7Lr56QRBKJ2ftTng0qmArbdeAa68mbNMN2nhLAura1l
-         dedw==
+        bh=gyrG/39yIquvbCmBYVx9eiuBKuujGgooJBfHN3TrPfQ=;
+        b=UkRNGtBXPD2r8jVFUfCFuQKY/RCY/j5skORKoMdUl7RZpRcg0sz+2ejVbW0MD1xy88
+         aXFPSI2LzMmlxb6RkcQXlr7C46vzyPtQt81fXd3v7rPf4ckGMr0KS2DwsiDqKbFd/Xcb
+         FvAdsdMOsFWH11Qs0UgbXx3RBupycxhOkkjlBmxzZNEbC2KEPiUtxBVdUxIMIOfzHC4E
+         G8ToYvSHlw5vY47qhanSSGkBe3Dr2+NsBcTU7FfQ7Y2Q1lNvNEtShBqsobQt8HBQtkuk
+         QK9zuQxi9Y94apfNU1vKDozPQ9525NOwE7ojPlRQdpStVjJokVGASKqu4xz2wPHugkar
+         /67Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726474126; x=1727078926;
+        d=1e100.net; s=20230601; t=1726474128; x=1727078928;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HjHvRnnGg0bWNf9pKNsnu85764WCsCk+dDWy1pJT+SY=;
-        b=SBK+JO0VGoeVKSrcKeVoD+VZpFzKnPUz/rVy1xZGdUIEXnvwxirOB79P83xBx5Kw9z
-         nFHjLNaYUGSwfobgjE1RM+qvPbwmfEuMZqxf64qtRQRvoIh4zsPnk2H0eNQp5FK5HT0i
-         YWbFrZrgwZWg8GmpgqQSnmOJZeQgql4nb0QHM0lpnwvOFPJ+soo3pI0NzsmyxRzfdPks
-         KrCWBCyEw32FDQKWYUZx8MfuVyhG/MQNydXKYE4AewKWX821wPtxazFlRTYtNShqoZ/I
-         KVkh3E/u9oIAxuM2vJu9f0nap0ZBmZererjOWU0EhQFIxDuoDOZ9xB8KHyvNZ+A+J8DD
-         fJlA==
-X-Forwarded-Encrypted: i=1; AJvYcCVZ3TRMkS0YfSin13aNNDquWNZS+H/56vVqkUXWMsL/19oK9fGoh2ITYO6QWjJebBsyNBT1J/brWAi7fNOS@lists.infradead.org
-X-Gm-Message-State: AOJu0YxIy7puhWFetDXigp8KFQhzRonOJQdTOwfXn9Ityt3CqTKK/a2h
-	MhvH3P1FG8SaFjhN1ZIoOCAVgc9g1qC5D2mYPX1OMDSgj99HjbIJbAd++BXEQ8w=
-X-Google-Smtp-Source: AGHT+IH5Z43MBwfJ0oR7s8OXfSkb8OAaelpuDzn1yKcbKhwrYc3YbODjgMPSI1wZr+LELZcpdF8/0Q==
-X-Received: by 2002:a05:600c:3514:b0:42c:bae0:f059 with SMTP id 5b1f17b1804b1-42cdb531943mr102665445e9.5.1726474126306;
-        Mon, 16 Sep 2024 01:08:46 -0700 (PDT)
+        bh=gyrG/39yIquvbCmBYVx9eiuBKuujGgooJBfHN3TrPfQ=;
+        b=nR2F8Rys4e7UwVmbLlLxW/EvD4Oj08K0KjSVwSWqawyqNsYWMdRUOjJEmQ4pi1/TaM
+         dwNP3Jfwthzx+/B3talNLpPYA9+e6rWAZp4Js6Acr8Gj1qHOWJgufJFYU/+ep2pWZ/Jq
+         FveMR/PzbfGD1h9/+OuFU2T/eeb//7Ej8+KUjintQGYc3f4B73OM1Gq3d3ELyVRzVgqZ
+         QfQChmtvBpkdz8KptyHIt2RxLXrHTMq/n4vkdkY0yxZv8eVSWc9WUrCUU+/C3uxv/oOr
+         Iqki95qSLuA+bEokyCELUO8hOEQqa4qcNy2Nmb5dwxULBx00jsfj1V/hqcO9qFlYnDy7
+         ftcg==
+X-Forwarded-Encrypted: i=1; AJvYcCVb+vHF6lfI67A8vAy/F10Blcbi4VDrvKCHZjqvh5BGlQWCpIv3Ei9FA2uLCPbvUskOzPmGEFkjTj97Kjiu@lists.infradead.org
+X-Gm-Message-State: AOJu0YxPhUFvAvjPA0/K50fMQJGBzs6iLRSHPPh10S3WVPbY1cpKj+E/
+	sO8HiilM5yzmGVfNtyShPOzwglw+abkzzp3IAXYh2pteHCvx1QFCtJkLajPmw1c=
+X-Google-Smtp-Source: AGHT+IHGmppS4PFg1Xsjs8QMIiLiYyfR0ofoHSGknvjx6ulr/GPZF9iZovUAobPsZPzBZ9UTs/nMAQ==
+X-Received: by 2002:a05:600c:4f08:b0:42c:b54c:a6d7 with SMTP id 5b1f17b1804b1-42cbde1a7b6mr129698535e9.14.1726474128120;
+        Mon, 16 Sep 2024 01:08:48 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42da22b900esm69309465e9.1.2024.09.16.01.08.45
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42da22b900esm69309465e9.1.2024.09.16.01.08.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Sep 2024 01:08:45 -0700 (PDT)
+        Mon, 16 Sep 2024 01:08:47 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 16 Sep 2024 10:08:33 +0200
-Subject: [PATCH v2 04/11] ARM: dts: amlogic: meson6: remove support for
- ATV1200 board
+Date: Mon, 16 Sep 2024 10:08:35 +0200
+Subject: [PATCH v2 06/11] ARM: dts: amlogic: fix /memory node name
 MIME-Version: 1.0
-Message-Id: <20240916-topic-amlogic-arm32-upstream-bindings-fixes-v2-4-0b20ed4f0571@linaro.org>
+Message-Id: <20240916-topic-amlogic-arm32-upstream-bindings-fixes-v2-6-0b20ed4f0571@linaro.org>
 References: <20240916-topic-amlogic-arm32-upstream-bindings-fixes-v2-0-0b20ed4f0571@linaro.org>
 In-Reply-To: <20240916-topic-amlogic-arm32-upstream-bindings-fixes-v2-0-0b20ed4f0571@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -79,25 +78,25 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3677;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2754;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=SZYBb5Gb2zyHYcoisQWNTlkCB+hwRbA2qHwkFS7i5yY=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBm5+eFFhvUQki0w6tRrd2l1gzQUlpb/3hbDUG3jH5I
- LTX5UfyJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZufnhQAKCRB33NvayMhJ0Z+ND/
- 0SAfO8+X1qM06OGjhuFtpf/fP4LVyI2nXl/PtDn9Yyvv3J1PqnGG19c1lPIFfSrWpOuAY8RuzIGTKm
- JHo5YW/leThE8feMOl/C57ZRuoZ0Dvzfx9KS4CRsGHT71F2NGU/4WbyjTqv22uDtjjpB/5LRKfYy/U
- EwxlVDzfuHEvvpfvqwsz9izCcQ9T2oVztqAVQyGN/KEvvB3r+yKkmpxtgB8xQCX1kl9g7BFJSH8ngD
- E+baT62i8S/eeVYauQDsZpicoQADtbCtKzTZ7IBjmwQ41bDupbphVPu7IHPyKQ4CJdAE8ntkKT0g3Y
- hv47sthPAbNh3Aa+KYtC/TsnOvL8cPCPzV5kCjvASdLl7bJ7qpZwr3leGJhuuoAwSSOLj8+WrDEbtj
- Gtts4thLz0SC4hHiaSlwM5xvpEzWpMk5+LhPgwu6FWOR3KucxHPZfdJnpbjGq+m85Zl6C6RDBFHv6T
- epGCF0fpKx5hqgsxy3kpKzA6mwLdlaSs5b3Yi5YxtgWaCG8XtLZu9Oe/rxNTEQE9XOd5WvAIBHJW+R
- mrDj+C1XB2kKOrWY1/nFOMAMpHoD/Q6AQIHDuZSsBm4RUrJIDM790RVSsxbdgTTVe2d+ZaRr3VV78U
- Hsx/mYQMAk/QwFS3oI5o+2e4lkM2II3cESODCmLTbBVwbFXc/+T+QgNs6RBw==
+ bh=k9f3zeZNf22hhWbxdNbW9N9SNlPMvy1DbsfTCeBd+r0=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBm5+eG2bxlIrKdJ79EiteVP5xs4/qQ/mQodteKiqmv
+ yVeXHP2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZufnhgAKCRB33NvayMhJ0S+VD/
+ 4hdSKVD77LSfV67vgBCvXvn7j+lCOKAzjTAh+gwy61FrFuOIL1G+NsN1L1i2QUlk2FXocQv/62qYYA
+ hZ3zV9OnqsYJsgyrTeURzrNboDZX2PZhrZEEhxat//Cc04R5jT9yyuIAE7boadg0B/QBpa28Zq6SiT
+ Bi/ceaJCC6eiK6bBhYcR1q5O0Gg4xb0in7sotEhKXJtxTZzEAm01R1s6lmYAAtj/aQg6dmnOy4olan
+ 4ZvR7E5QdeWoujOyC5nDN78z36zKIwmmfeYkHjzfYsWXo/tKxPI8ZH7fnENwuB1ScsoNgKhPNtUcxj
+ dATbs9VkpQjyfDGP6z1cp7Fj9Xl3o3Mn+B49FRVIFM55k7OS51bPXmj9TqON/2Ws/nczIbFsDDzHPV
+ WaMOQhvMTUzfWUBZKTsge1XleqAVPBg8D148QIT3F53pQSLGxbviDyTo2K0LACF8gkEHTnCNKMpnnc
+ d3Mv72rsIwPthTvybHUusEjCVGGq2/oGk9P731Nultyst3D2xR0c2qjvt1h+ll/Gm8Ks8qrwdiU3OP
+ nadxv1UeLGduq+JBUiJAjgLbTe192vhZ+LQPADV2FaFlhAYUD4Die/RtqAc2UDCGHQVeJmVsyhP6Is
+ h/5vMp0b8PXp87FuuNLLF/AZgac0cdfnB78VVH7jgwW7u7eZvdsc/b99Vqag==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240916_010848_596965_A2DE7A5C 
-X-CRM114-Status: GOOD (  12.22  )
+X-CRM114-CacheID: sfid-20240916_010850_275799_23C0ECBB 
+X-CRM114-Status: GOOD (  10.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,153 +113,83 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The meson6 atv1200 has a lot of dtbs check errors, but since
-no active contributor have any boards with Meson6 SoC, plus
-no upstream GPIO, pinctrl, clock, MMC... for that SoC either,
-let's start decommissioning Meson6 support by removing the Device
-Tree files first then remove the MACH_MESON6 in a second time.
+Use proper address in /memory node name, fixing:
+/: memory: False schema does not allow {'device_type': ['memory'], 'reg': [[1073741824, 2147483648]]}
 
-If someone is interested in Meson6 support they should bring it back
-along with a few more patches for upstream support of further
-peripherals.
-
-Suggested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm/boot/dts/amlogic/Makefile           |  2 -
- arch/arm/boot/dts/amlogic/meson6-atv1200.dts | 33 -------------
- arch/arm/boot/dts/amlogic/meson6.dtsi        | 73 ----------------------------
- 3 files changed, 108 deletions(-)
+ arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts | 2 +-
+ arch/arm/boot/dts/amlogic/meson8b-ec100.dts       | 2 +-
+ arch/arm/boot/dts/amlogic/meson8b-mxq.dts         | 2 +-
+ arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts    | 2 +-
+ arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/amlogic/Makefile b/arch/arm/boot/dts/amlogic/Makefile
-index a84310780ea3..504c533b1173 100644
---- a/arch/arm/boot/dts/amlogic/Makefile
-+++ b/arch/arm/boot/dts/amlogic/Makefile
-@@ -1,6 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
--dtb-$(CONFIG_MACH_MESON6) += \
--	meson6-atv1200.dtb
- dtb-$(CONFIG_MACH_MESON8) += \
- 	meson8-minix-neo-x8.dtb \
- 	meson8b-ec100.dtb \
-diff --git a/arch/arm/boot/dts/amlogic/meson6-atv1200.dts b/arch/arm/boot/dts/amlogic/meson6-atv1200.dts
-deleted file mode 100644
-index 98e1c94c0261..000000000000
---- a/arch/arm/boot/dts/amlogic/meson6-atv1200.dts
-+++ /dev/null
-@@ -1,33 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0 OR MIT
--/*
-- * Copyright 2014 Carlo Caione <carlo@caione.org>
-- */
--
--/dts-v1/;
--#include "meson6.dtsi"
--
--/ {
--	model = "Geniatech ATV1200";
--	compatible = "geniatech,atv1200", "amlogic,meson6";
--
--	aliases {
--		serial0 = &uart_AO;
--	};
--
--	chosen {
--		stdout-path = "serial0:115200n8";
--	};
--
+diff --git a/arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts b/arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts
+index c6d1c5a8a3bf..b97531000d55 100644
+--- a/arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts
++++ b/arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts
+@@ -19,7 +19,7 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
 -	memory {
--		device_type = "memory";
--		reg = <0x40000000 0x80000000>;
--	};
--};
--
--&uart_AO {
--	status = "okay";
--};
--
--&ethmac {
--	status = "okay";
--};
-diff --git a/arch/arm/boot/dts/amlogic/meson6.dtsi b/arch/arm/boot/dts/amlogic/meson6.dtsi
-deleted file mode 100644
-index 1c4ea7266f66..000000000000
---- a/arch/arm/boot/dts/amlogic/meson6.dtsi
-+++ /dev/null
-@@ -1,73 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0 OR MIT
--/*
-- * Copyright 2014 Carlo Caione <carlo@caione.org>
-- */
--
--#include "meson.dtsi"
--
--/ {
--	model = "Amlogic Meson6 SoC";
--	compatible = "amlogic,meson6";
--
--	cpus {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		cpu@200 {
--			device_type = "cpu";
--			compatible = "arm,cortex-a9";
--			next-level-cache = <&L2>;
--			reg = <0x200>;
--		};
--
--		cpu@201 {
--			device_type = "cpu";
--			compatible = "arm,cortex-a9";
--			next-level-cache = <&L2>;
--			reg = <0x201>;
--		};
--	};
--
--	apb2: bus@d0000000 {
--		compatible = "simple-bus";
--		reg = <0xd0000000 0x40000>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		ranges = <0x0 0xd0000000 0x40000>;
--	};
--
--	clk81: clk81 {
--		#clock-cells = <0>;
--		compatible = "fixed-clock";
--		clock-frequency = <200000000>;
--	};
--}; /* end of / */
--
--&efuse {
--	status = "disabled";
--};
--
--&timer_abcde {
--	clocks = <&xtal>, <&clk81>;
--	clock-names = "xtal", "pclk";
--};
--
--&uart_AO {
--	clocks = <&xtal>, <&clk81>, <&clk81>;
--	clock-names = "xtal", "pclk", "baud";
--};
--
--&uart_A {
--	clocks = <&xtal>, <&clk81>, <&clk81>;
--	clock-names = "xtal", "pclk", "baud";
--};
--
--&uart_B {
--	clocks = <&xtal>, <&clk81>, <&clk81>;
--	clock-names = "xtal", "pclk", "baud";
--};
--
--&uart_C {
--	clocks = <&xtal>, <&clk81>, <&clk81>;
--	clock-names = "xtal", "pclk", "baud";
--};
++	memory@40000000 {
+ 		device_type = "memory";
+ 		reg = <0x40000000 0x80000000>;
+ 	};
+diff --git a/arch/arm/boot/dts/amlogic/meson8b-ec100.dts b/arch/arm/boot/dts/amlogic/meson8b-ec100.dts
+index 49890eb12781..36fc3e15ee9f 100644
+--- a/arch/arm/boot/dts/amlogic/meson8b-ec100.dts
++++ b/arch/arm/boot/dts/amlogic/meson8b-ec100.dts
+@@ -22,7 +22,7 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
+-	memory {
++	memory@40000000 {
+ 		device_type = "memory";
+ 		reg = <0x40000000 0x40000000>;
+ 	};
+diff --git a/arch/arm/boot/dts/amlogic/meson8b-mxq.dts b/arch/arm/boot/dts/amlogic/meson8b-mxq.dts
+index 7adedd3258c3..fb28cb330f17 100644
+--- a/arch/arm/boot/dts/amlogic/meson8b-mxq.dts
++++ b/arch/arm/boot/dts/amlogic/meson8b-mxq.dts
+@@ -22,7 +22,7 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
+-	memory {
++	memory@40000000 {
+ 		device_type = "memory";
+ 		reg = <0x40000000 0x40000000>;
+ 	};
+diff --git a/arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts b/arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts
+index 962bbe3337db..2aa012f38a3b 100644
+--- a/arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts
+@@ -22,7 +22,7 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
+-	memory {
++	memory@40000000 {
+ 		device_type = "memory";
+ 		reg = <0x40000000 0x40000000>;
+ 	};
+diff --git a/arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts b/arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts
+index aa4d4bf70629..08aa661e17ad 100644
+--- a/arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts
++++ b/arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts
+@@ -26,7 +26,7 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
+-	memory {
++	memory@40000000 {
+ 		device_type = "memory";
+ 		reg = <0x40000000 0x80000000>;
+ 	};
 
 -- 
 2.34.1
