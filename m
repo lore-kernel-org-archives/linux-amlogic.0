@@ -4,66 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 104CACCD18D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Sep 2024 08:01:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19598CCD19A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Sep 2024 11:08:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=GvHn+OHcXLBHD8Ns1g+KM2zMhdQl6ek6sLX20/+AP1I=; b=urRuRP/uZ2W2LRch2j+hr5uf9G
-	+u1pPKdgjVZ7yqxkNVYzQy1v/uYfboVPVjKyWs9tt5UUY+VPua8I+9wdnkkkEgOrBjyXM58GEMNTo
-	kzdDTimCiHDmwMsGNXEk8l3R3yHOCrNb8ilLK/kz9nbtgxvPszEBcfihQMGiVilcVCRmt9+xW0Hyh
-	zlaO9TdYnpcglG4TV/VjfncJ7zkPQ3KkP+4CVde2aUJ9Cf59a9xdnlbI3yNigzOmxwcV7YaVliDn6
-	rNe/q2RwOWBOrXrVVG0Oz5Y/NyI6Lk3pzVo2JN2ZkEL4USI22m/5eSWmzt/sdvHKMMTFACJDtdxV2
-	R1CELazQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=7lrK/vOcEOCU/57MvffFUf4JSSCw06e9y7sT7gBPf4Y=; b=CvcllBTSKfIjsL
+	A3hcNdoGl5gxpYms7co1eC0NRJdNInb6Ze84fbwloRmjHC5Dfx7QzUHteu5uj52A1Z6VLlhcqry1z
+	zqrNyPDvBI7JEjKKAtl1/UKa93gqtMyN0X59133hpEXd//h+WAF+OQ2hEW4lDwE/Gpsj8tkJiSHuM
+	yxNan1cMf++w3tzfUo6Ko/8/+zLzyQwZTzZW16dqQffHBh7/t/Mnrg57pw1278On7OE7goVLOXbfM
+	Cr6LCZNTDTFUia7awyMHw4X/iEbAm+GVsBsx9xNh87jB3/mbX+KXg6ZSv/wA+S/a5LTnAaeoaaeAA
+	dOqGxn742OYQmDEvzM3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sqpdC-00000007jTm-0CNs;
-	Wed, 18 Sep 2024 08:01:46 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1sqsXc-000000085ih-2NBb;
+	Wed, 18 Sep 2024 11:08:12 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sqpd8-00000007jTK-32SE;
-	Wed, 18 Sep 2024 08:01:44 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 1DA4CA40D2C;
-	Wed, 18 Sep 2024 08:01:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA670C4CEC3;
-	Wed, 18 Sep 2024 08:01:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1726646501;
-	bh=d/mNhRT2jbPpZjm3XFtiSJ/CpRq/tuV7or+IN8D2Kc4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lIdJRJWZIEe70hqBRVKP35K+nKGGEDiDalTfZlNCCJpmmTuE3p2sapOgATZqNDHA9
-	 0z0SsozHzbAlenbZZabAQKjwpPDvoZW8xH2B1yRZtkNUIVXYYdjssmMgZYlWYqfXti
-	 NwzV75IGdrY9YHGABj7fgg/iIbfQUp6nqrfjdh7ArZt2BID5Ye4LQvTcWCwW4E1Fid
-	 xXzG+GJWX9rpV6AlXoShB9/mAIrteZKKrBHOSkfPMXuE9fB22hKiEzKnv6PKbVtiEz
-	 nUH0rC2+MIKMGqRpyN5LjzxNMTA5ew+lFE5pMxFz2ZEwvv5ifWDgPS0Wz/I02koETb
-	 4rJy0itsPLRQg==
-Date: Wed, 18 Sep 2024 09:01:44 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: zelong dong <zelong.dong@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh@kernel.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	kelvin.zhang@amlogic.com, Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Add compatible for Amlogic
- A4/A5 Reset Controller
-Message-ID: <20240918-delirious-skiing-224172be96d4@squawk>
-References: <20240918074211.8067-1-zelong.dong@amlogic.com>
- <20240918074211.8067-2-zelong.dong@amlogic.com>
- <a5d9b775dd860d8f2bbf174300a2e3161b654035.camel@pengutronix.de>
+	id 1sqsXW-000000085hq-28na;
+	Wed, 18 Sep 2024 11:08:10 +0000
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id DFE82100011;
+	Wed, 18 Sep 2024 14:07:57 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DFE82100011
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1726657677;
+	bh=u1pFFOrGbtEVB9SmgiOol9bitlNstNYO5W0RtLTSuAY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=N2izrhuAQvdijNcybHSG1a4aQXiNd9c74XzM9k26VBDzY/33vcyTV7o8Bpv6tymAr
+	 rzQy1F2/9G2H0KOckjrRwYWTVUSTRsMFrhRrIQM56VSWgsLXD2ge6xQ1qn76Kc8NTM
+	 P2dmgjQfkIrM9DzF2Cvh2znAmSKLbs6REE+mHLZWJGA/i0TTLDSpNwKiwzy0Uy9/TT
+	 lRCp8OL9D99twKfNjSXV8RUjp5RCNXGHdZE4ygcpCmZNl7vAThGFSn/ZYullfsVvCU
+	 ch9oHtXB0VVP78X/HiFUE2klo8XWgswIN/qzP6TO2DzvjEWXCUylbe5oOzoV8+Qn6e
+	 PhXq4//nyYPAw==
+Received: from smtp.sberdevices.ru (unknown [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 18 Sep 2024 14:07:57 +0300 (MSK)
+Message-ID: <473ce122-7d8f-4e52-b800-ab7034f6d00c@salutedevices.com>
+Date: Wed, 18 Sep 2024 14:05:48 +0300
 MIME-Version: 1.0
-In-Reply-To: <a5d9b775dd860d8f2bbf174300a2e3161b654035.camel@pengutronix.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v4 4/5] clk: meson: a1: add the audio clock controller
+ driver
+To: Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, "Jerome
+ Brunet" <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette
+	<mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>
+References: <20240913121152.817575-1-jan.dakinevich@salutedevices.com>
+ <20240913121152.817575-5-jan.dakinevich@salutedevices.com>
+Content-Language: en-US
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <20240913121152.817575-5-jan.dakinevich@salutedevices.com>
+X-Originating-IP: [172.28.224.154]
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-i-exch-a-m2.sberdevices.ru (172.24.196.120)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 187818 [Sep 18 2024]
+X-KSMG-AntiSpam-Version: 6.1.1.5
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 34 0.3.34 8a1fac695d5606478feba790382a59668a4f0039, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, FromAlignment: n
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/09/18 07:50:00 #26615130
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240918_010142_909595_C97C60AB 
-X-CRM114-Status: GOOD (  17.10  )
+X-CRM114-CacheID: sfid-20240918_040807_299316_D90C07A9 
+X-CRM114-Status: GOOD (  22.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,88 +98,796 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============6926996308343756213=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Also I forgot this:
 
---===============6926996308343756213==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="1OdrIj4eisHBYHwH"
-Content-Disposition: inline
++MODULE_IMPORT_NS(CLK_MESON);
 
+Without it building of module fails on 'next'. I'll add it on next resend.
 
---1OdrIj4eisHBYHwH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 9/13/24 15:11, Jan Dakinevich wrote:
+> This controller provides clocks and reset functionality for audio
+> peripherals on Amlogic A1 SoC family.
+> 
+> The driver is almost identical to 'axg-audio', however it would be better
+> to keep it separate due to following reasons:
+> 
+>  - significant amount of bits has another definition. I will bring there
+>    a mess of new defines with A1_ suffixes.
+> 
+>  - registers of this controller are located in two separate regions. It
+>    will give a lot of complications for 'axg-audio' to support this.
+> 
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> ---
+>  drivers/clk/meson/Kconfig             |  14 +
+>  drivers/clk/meson/Makefile            |   3 +
+>  drivers/clk/meson/a1-audio-clkc.c     | 359 ++++++++++++++++++++++++++
+>  drivers/clk/meson/a1-audio-drv.c      | 104 ++++++++
+>  drivers/clk/meson/a1-audio-vad-clkc.c |  85 ++++++
+>  drivers/clk/meson/a1-audio.h          | 131 ++++++++++
+>  6 files changed, 696 insertions(+)
+>  create mode 100644 drivers/clk/meson/a1-audio-clkc.c
+>  create mode 100644 drivers/clk/meson/a1-audio-drv.c
+>  create mode 100644 drivers/clk/meson/a1-audio-vad-clkc.c
+>  create mode 100644 drivers/clk/meson/a1-audio.h
+> 
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 78f648c9c97d..b558288a6b78 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -132,6 +132,20 @@ config COMMON_CLK_A1_PERIPHERALS
+>  	  device, A1 SoC Family. Say Y if you want A1 Peripherals clock
+>  	  controller to work.
+>  
+> +config COMMON_CLK_A1_AUDIO
+> +	tristate "Amlogic A1 SoC Audio clock controller support"
+> +	depends on ARM64
+> +	select COMMON_CLK_MESON_REGMAP
+> +	select COMMON_CLK_MESON_PHASE
+> +	select COMMON_CLK_MESON_SCLK_DIV
+> +	select COMMON_CLK_MESON_CLKC_UTILS
+> +	select REGMAP_MMIO
+> +	imply RESET_MESON_AUX
+> +	help
+> +	  Support for the Audio clock controller on Amlogic A113L based
+> +	  device, A1 SoC Family. Say Y if you want A1 Audio clock controller
+> +	  to work.
+> +
+>  config COMMON_CLK_C3_PLL
+>  	tristate "Amlogic C3 PLL clock controller"
+>  	depends on ARM64
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index bc56a47931c1..f7ea11df1de3 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -16,10 +16,13 @@ obj-$(CONFIG_COMMON_CLK_MESON_VCLK) += vclk.o
+>  
+>  # Amlogic Clock controllers
+>  
+> +a1-audio-y := a1-audio-drv.o a1-audio-clkc.o a1-audio-vad-clkc.o
+> +
+>  obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+>  obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+>  obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
+> +obj-$(CONFIG_COMMON_CLK_A1_AUDIO) += a1-audio.o
+>  obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
+>  obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
+>  obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+> diff --git a/drivers/clk/meson/a1-audio-clkc.c b/drivers/clk/meson/a1-audio-clkc.c
+> new file mode 100644
+> index 000000000000..48160dcb7f47
+> --- /dev/null
+> +++ b/drivers/clk/meson/a1-audio-clkc.c
+> @@ -0,0 +1,359 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
+> + *
+> + * Author: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> + */
+> +
+> +#include <dt-bindings/clock/amlogic,a1-audio-clkc.h>
+> +
+> +#include "a1-audio.h"
+> +
+> +#define AUDIO_CLK_GATE_EN0	0x000
+> +#define AUDIO_MCLK_A_CTRL	0x008
+> +#define AUDIO_MCLK_B_CTRL	0x00c
+> +#define AUDIO_MCLK_C_CTRL	0x010
+> +#define AUDIO_MCLK_D_CTRL	0x014
+> +#define AUDIO_MCLK_E_CTRL	0x018
+> +#define AUDIO_MCLK_F_CTRL	0x01c
+> +#define AUDIO_SW_RESET0		0x028
+> +#define AUDIO_MST_A_SCLK_CTRL0	0x040
+> +#define AUDIO_MST_A_SCLK_CTRL1	0x044
+> +#define AUDIO_MST_B_SCLK_CTRL0	0x048
+> +#define AUDIO_MST_B_SCLK_CTRL1	0x04c
+> +#define AUDIO_MST_C_SCLK_CTRL0	0x050
+> +#define AUDIO_MST_C_SCLK_CTRL1	0x054
+> +#define AUDIO_MST_D_SCLK_CTRL0	0x058
+> +#define AUDIO_MST_D_SCLK_CTRL1	0x05c
+> +#define AUDIO_CLK_TDMIN_A_CTRL	0x080
+> +#define AUDIO_CLK_TDMIN_B_CTRL	0x084
+> +#define AUDIO_CLK_TDMIN_LB_CTRL	0x08c
+> +#define AUDIO_CLK_TDMOUT_A_CTRL	0x090
+> +#define AUDIO_CLK_TDMOUT_B_CTRL	0x094
+> +#define AUDIO_CLK_SPDIFIN_CTRL	0x09c
+> +#define AUDIO_CLK_RESAMPLE_CTRL	0x0a4
+> +#define AUDIO_CLK_LOCKER_CTRL	0x0a8
+> +#define AUDIO_CLK_EQDRC_CTRL	0x0c0
+> +
+> +struct clk_regmap aud_ddr_arb =
+> +	AUD_PCLK_GATE(ddr_arb, AUDIO_CLK_GATE_EN0, 0);
+> +struct clk_regmap aud_tdmin_a =
+> +	AUD_PCLK_GATE(tdmin_a, AUDIO_CLK_GATE_EN0, 1);
+> +struct clk_regmap aud_tdmin_b =
+> +	AUD_PCLK_GATE(tdmin_b, AUDIO_CLK_GATE_EN0, 2);
+> +struct clk_regmap aud_tdmin_lb =
+> +	AUD_PCLK_GATE(tdmin_lb, AUDIO_CLK_GATE_EN0, 3);
+> +struct clk_regmap aud_loopback =
+> +	AUD_PCLK_GATE(loopback, AUDIO_CLK_GATE_EN0, 4);
+> +struct clk_regmap aud_tdmout_a =
+> +	AUD_PCLK_GATE(tdmout_a, AUDIO_CLK_GATE_EN0, 5);
+> +struct clk_regmap aud_tdmout_b =
+> +	AUD_PCLK_GATE(tdmout_b, AUDIO_CLK_GATE_EN0, 6);
+> +struct clk_regmap aud_frddr_a =
+> +	AUD_PCLK_GATE(frddr_a, AUDIO_CLK_GATE_EN0, 7);
+> +struct clk_regmap aud_frddr_b =
+> +	AUD_PCLK_GATE(frddr_b, AUDIO_CLK_GATE_EN0, 8);
+> +struct clk_regmap aud_toddr_a =
+> +	AUD_PCLK_GATE(toddr_a, AUDIO_CLK_GATE_EN0, 9);
+> +struct clk_regmap aud_toddr_b =
+> +	AUD_PCLK_GATE(toddr_b, AUDIO_CLK_GATE_EN0, 10);
+> +struct clk_regmap aud_spdifin =
+> +	AUD_PCLK_GATE(spdifin, AUDIO_CLK_GATE_EN0, 11);
+> +struct clk_regmap aud_resample =
+> +	AUD_PCLK_GATE(resample, AUDIO_CLK_GATE_EN0, 12);
+> +struct clk_regmap aud_eqdrc =
+> +	AUD_PCLK_GATE(eqdrc, AUDIO_CLK_GATE_EN0, 13);
+> +struct clk_regmap aud_audiolocker =
+> +	AUD_PCLK_GATE(audiolocker, AUDIO_CLK_GATE_EN0, 14);
+> +
+> +struct clk_regmap aud_mst_a_mclk_sel =
+> +	AUD_MST_MCLK_MUX(mst_a_mclk, AUDIO_MCLK_A_CTRL);
+> +struct clk_regmap aud_mst_a_mclk_div =
+> +	AUD_MST_MCLK_DIV(mst_a_mclk, AUDIO_MCLK_A_CTRL);
+> +struct clk_regmap aud_mst_a_mclk =
+> +	AUD_MST_MCLK_GATE(mst_a_mclk, AUDIO_MCLK_A_CTRL);
+> +
+> +struct clk_regmap aud_mst_b_mclk_sel =
+> +	AUD_MST_MCLK_MUX(mst_b_mclk, AUDIO_MCLK_B_CTRL);
+> +struct clk_regmap aud_mst_b_mclk_div =
+> +	AUD_MST_MCLK_DIV(mst_b_mclk, AUDIO_MCLK_B_CTRL);
+> +struct clk_regmap aud_mst_b_mclk =
+> +	AUD_MST_MCLK_GATE(mst_b_mclk, AUDIO_MCLK_B_CTRL);
+> +
+> +struct clk_regmap aud_mst_c_mclk_sel =
+> +	AUD_MST_MCLK_MUX(mst_c_mclk, AUDIO_MCLK_C_CTRL);
+> +struct clk_regmap aud_mst_c_mclk_div =
+> +	AUD_MST_MCLK_DIV(mst_c_mclk, AUDIO_MCLK_C_CTRL);
+> +struct clk_regmap aud_mst_c_mclk =
+> +	AUD_MST_MCLK_GATE(mst_c_mclk, AUDIO_MCLK_C_CTRL);
+> +
+> +struct clk_regmap aud_mst_d_mclk_sel =
+> +	AUD_MST_MCLK_MUX(mst_d_mclk, AUDIO_MCLK_D_CTRL);
+> +struct clk_regmap aud_mst_d_mclk_div =
+> +	AUD_MST_MCLK_DIV(mst_d_mclk, AUDIO_MCLK_D_CTRL);
+> +struct clk_regmap aud_mst_d_mclk =
+> +	AUD_MST_MCLK_GATE(mst_d_mclk, AUDIO_MCLK_D_CTRL);
+> +
+> +struct clk_regmap aud_spdifin_clk_sel =
+> +	AUD_MST_MCLK_MUX(spdifin_clk, AUDIO_CLK_SPDIFIN_CTRL);
+> +struct clk_regmap aud_spdifin_clk_div =
+> +	AUD_MST_MCLK_DIV(spdifin_clk, AUDIO_CLK_SPDIFIN_CTRL);
+> +struct clk_regmap aud_spdifin_clk =
+> +	AUD_MST_MCLK_GATE(spdifin_clk, AUDIO_CLK_SPDIFIN_CTRL);
+> +
+> +struct clk_regmap aud_eqdrc_clk_sel =
+> +	AUD_MST_MCLK_MUX(eqdrc_clk, AUDIO_CLK_EQDRC_CTRL);
+> +struct clk_regmap aud_eqdrc_clk_div =
+> +	AUD_MST_MCLK_DIV(eqdrc_clk, AUDIO_CLK_EQDRC_CTRL);
+> +struct clk_regmap aud_eqdrc_clk =
+> +	AUD_MST_MCLK_GATE(eqdrc_clk, AUDIO_CLK_EQDRC_CTRL);
+> +
+> +struct clk_regmap aud_resample_clk_sel =
+> +	AUD_MUX(resample_clk_sel, AUDIO_CLK_RESAMPLE_CTRL, 0xf, 24,
+> +		CLK_MUX_ROUND_CLOSEST, AUD_MST_MCLK_PDATA, 0);
+> +struct clk_regmap aud_resample_clk_div =
+> +	AUD_DIV(resample_clk_div, AUDIO_CLK_RESAMPLE_CTRL, 0, 8,
+> +		CLK_DIVIDER_ROUND_CLOSEST, aud_resample_clk_sel,
+> +		CLK_SET_RATE_PARENT);
+> +struct clk_regmap aud_resample_clk =
+> +	AUD_GATE(resample_clk, AUDIO_CLK_RESAMPLE_CTRL, 31,
+> +		 aud_resample_clk_div, CLK_SET_RATE_PARENT);
+> +
+> +struct clk_regmap aud_locker_in_clk_sel =
+> +	AUD_MUX(locker_in_clk_sel, AUDIO_CLK_LOCKER_CTRL, 0xf, 8,
+> +		CLK_MUX_ROUND_CLOSEST, AUD_MST_MCLK_PDATA, 0);
+> +struct clk_regmap aud_locker_in_clk_div =
+> +	AUD_DIV(locker_in_clk_div, AUDIO_CLK_LOCKER_CTRL, 0, 8,
+> +		CLK_DIVIDER_ROUND_CLOSEST, aud_locker_in_clk_sel,
+> +		CLK_SET_RATE_PARENT);
+> +struct clk_regmap aud_locker_in_clk =
+> +	AUD_GATE(locker_in_clk, AUDIO_CLK_LOCKER_CTRL, 15,
+> +		 aud_locker_in_clk_div, CLK_SET_RATE_PARENT);
+> +
+> +struct clk_regmap aud_locker_out_clk_sel =
+> +	AUD_MUX(locker_out_clk_sel, AUDIO_CLK_LOCKER_CTRL, 0xf, 24,
+> +		CLK_MUX_ROUND_CLOSEST, AUD_MST_MCLK_PDATA, 0);
+> +struct clk_regmap aud_locker_out_clk_div =
+> +	AUD_DIV(locker_out_clk_div, AUDIO_CLK_LOCKER_CTRL, 16, 8,
+> +		CLK_DIVIDER_ROUND_CLOSEST, aud_locker_out_clk_sel,
+> +		CLK_SET_RATE_PARENT);
+> +struct clk_regmap aud_locker_out_clk =
+> +	AUD_GATE(locker_out_clk, AUDIO_CLK_LOCKER_CTRL, 31,
+> +		 aud_locker_out_clk_div, CLK_SET_RATE_PARENT);
+> +
+> +struct clk_regmap aud_mst_a_sclk_pre_en =
+> +	AUD_MST_SCLK_PRE_EN(mst_a_sclk, AUDIO_MST_A_SCLK_CTRL0, mst_a_mclk);
+> +struct clk_regmap aud_mst_a_sclk_div =
+> +	AUD_MST_SCLK_DIV(mst_a_sclk, AUDIO_MST_A_SCLK_CTRL0);
+> +struct clk_regmap aud_mst_a_sclk_post_en =
+> +	AUD_MST_SCLK_POST_EN(mst_a_sclk, AUDIO_MST_A_SCLK_CTRL0);
+> +struct clk_regmap aud_mst_a_sclk =
+> +	AUD_MST_SCLK(mst_a_sclk, AUDIO_MST_A_SCLK_CTRL1);
+> +
+> +struct clk_regmap aud_mst_b_sclk_pre_en =
+> +	AUD_MST_SCLK_PRE_EN(mst_b_sclk, AUDIO_MST_B_SCLK_CTRL0, mst_b_mclk);
+> +struct clk_regmap aud_mst_b_sclk_div =
+> +	AUD_MST_SCLK_DIV(mst_b_sclk, AUDIO_MST_B_SCLK_CTRL0);
+> +struct clk_regmap aud_mst_b_sclk_post_en =
+> +	AUD_MST_SCLK_POST_EN(mst_b_sclk, AUDIO_MST_B_SCLK_CTRL0);
+> +struct clk_regmap aud_mst_b_sclk =
+> +	AUD_MST_SCLK(mst_b_sclk, AUDIO_MST_B_SCLK_CTRL1);
+> +
+> +struct clk_regmap aud_mst_c_sclk_pre_en =
+> +	AUD_MST_SCLK_PRE_EN(mst_c_sclk, AUDIO_MST_C_SCLK_CTRL0, mst_c_mclk);
+> +struct clk_regmap aud_mst_c_sclk_div =
+> +	AUD_MST_SCLK_DIV(mst_c_sclk, AUDIO_MST_C_SCLK_CTRL0);
+> +struct clk_regmap aud_mst_c_sclk_post_en =
+> +	AUD_MST_SCLK_POST_EN(mst_c_sclk, AUDIO_MST_C_SCLK_CTRL0);
+> +struct clk_regmap aud_mst_c_sclk =
+> +	AUD_MST_SCLK(mst_c_sclk, AUDIO_MST_C_SCLK_CTRL1);
+> +
+> +struct clk_regmap aud_mst_d_sclk_pre_en =
+> +	AUD_MST_SCLK_PRE_EN(mst_d_sclk, AUDIO_MST_D_SCLK_CTRL0, mst_d_mclk);
+> +struct clk_regmap aud_mst_d_sclk_div =
+> +	AUD_MST_SCLK_DIV(mst_d_sclk, AUDIO_MST_D_SCLK_CTRL0);
+> +struct clk_regmap aud_mst_d_sclk_post_en =
+> +	AUD_MST_SCLK_POST_EN(mst_d_sclk, AUDIO_MST_D_SCLK_CTRL0);
+> +struct clk_regmap aud_mst_d_sclk =
+> +	AUD_MST_SCLK(mst_d_sclk, AUDIO_MST_D_SCLK_CTRL1);
+> +
+> +struct clk_regmap aud_mst_a_lrclk_div =
+> +	AUD_MST_LRCLK_DIV(mst_a_lrclk, AUDIO_MST_A_SCLK_CTRL0,
+> +			  mst_a_sclk_post_en);
+> +struct clk_regmap aud_mst_a_lrclk =
+> +	AUD_MST_LRCLK(mst_a_lrclk, AUDIO_MST_A_SCLK_CTRL1);
+> +
+> +struct clk_regmap aud_mst_b_lrclk_div =
+> +	AUD_MST_LRCLK_DIV(mst_b_lrclk, AUDIO_MST_B_SCLK_CTRL0,
+> +			  mst_b_sclk_post_en);
+> +struct clk_regmap aud_mst_b_lrclk =
+> +	AUD_MST_LRCLK(mst_b_lrclk, AUDIO_MST_B_SCLK_CTRL1);
+> +
+> +struct clk_regmap aud_mst_c_lrclk_div =
+> +	AUD_MST_LRCLK_DIV(mst_c_lrclk, AUDIO_MST_C_SCLK_CTRL0,
+> +			  mst_c_sclk_post_en);
+> +struct clk_regmap aud_mst_c_lrclk =
+> +	AUD_MST_LRCLK(mst_c_lrclk, AUDIO_MST_C_SCLK_CTRL1);
+> +
+> +struct clk_regmap aud_mst_d_lrclk_div =
+> +	AUD_MST_LRCLK_DIV(mst_d_lrclk, AUDIO_MST_D_SCLK_CTRL0,
+> +			  mst_d_sclk_post_en);
+> +struct clk_regmap aud_mst_d_lrclk =
+> +	AUD_MST_LRCLK(mst_d_lrclk, AUDIO_MST_D_SCLK_CTRL1);
+> +
+> +struct clk_regmap aud_tdmin_a_sclk_sel =
+> +	AUD_TDM_SCLK_MUX(tdmin_a_sclk, AUDIO_CLK_TDMIN_A_CTRL);
+> +struct clk_regmap aud_tdmin_a_sclk_pre_en =
+> +	AUD_TDM_SCLK_PRE_EN(tdmin_a_sclk, AUDIO_CLK_TDMIN_A_CTRL);
+> +struct clk_regmap aud_tdmin_a_sclk_post_en =
+> +	AUD_TDM_SCLK_POST_EN(tdmin_a_sclk, AUDIO_CLK_TDMIN_A_CTRL);
+> +struct clk_regmap aud_tdmin_a_sclk =
+> +	AUD_TDM_SCLK_WS(tdmin_a_sclk, AUDIO_CLK_TDMIN_A_CTRL);
+> +struct clk_regmap aud_tdmin_a_lrclk =
+> +	AUD_TDM_LRLCK(tdmin_a_lrclk, AUDIO_CLK_TDMIN_A_CTRL);
+> +
+> +struct clk_regmap aud_tdmin_b_sclk_sel =
+> +	AUD_TDM_SCLK_MUX(tdmin_b_sclk, AUDIO_CLK_TDMIN_B_CTRL);
+> +struct clk_regmap aud_tdmin_b_sclk_pre_en =
+> +	AUD_TDM_SCLK_PRE_EN(tdmin_b_sclk, AUDIO_CLK_TDMIN_B_CTRL);
+> +struct clk_regmap aud_tdmin_b_sclk_post_en =
+> +	AUD_TDM_SCLK_POST_EN(tdmin_b_sclk, AUDIO_CLK_TDMIN_B_CTRL);
+> +struct clk_regmap aud_tdmin_b_sclk =
+> +	AUD_TDM_SCLK_WS(tdmin_b_sclk, AUDIO_CLK_TDMIN_B_CTRL);
+> +struct clk_regmap aud_tdmin_b_lrclk =
+> +	AUD_TDM_LRLCK(tdmin_b_lrclk, AUDIO_CLK_TDMIN_B_CTRL);
+> +
+> +struct clk_regmap aud_tdmin_lb_sclk_sel =
+> +	AUD_TDM_SCLK_MUX(tdmin_lb_sclk, AUDIO_CLK_TDMIN_LB_CTRL);
+> +struct clk_regmap aud_tdmin_lb_sclk_pre_en =
+> +	AUD_TDM_SCLK_PRE_EN(tdmin_lb_sclk, AUDIO_CLK_TDMIN_LB_CTRL);
+> +struct clk_regmap aud_tdmin_lb_sclk_post_en =
+> +	AUD_TDM_SCLK_POST_EN(tdmin_lb_sclk, AUDIO_CLK_TDMIN_LB_CTRL);
+> +struct clk_regmap aud_tdmin_lb_sclk =
+> +	AUD_TDM_SCLK_WS(tdmin_lb_sclk, AUDIO_CLK_TDMIN_LB_CTRL);
+> +struct clk_regmap aud_tdmin_lb_lrclk =
+> +	AUD_TDM_LRLCK(tdmin_lb_lrclk, AUDIO_CLK_TDMIN_LB_CTRL);
+> +
+> +struct clk_regmap aud_tdmout_a_sclk_sel =
+> +	AUD_TDM_SCLK_MUX(tdmout_a_sclk, AUDIO_CLK_TDMOUT_A_CTRL);
+> +struct clk_regmap aud_tdmout_a_sclk_pre_en =
+> +	AUD_TDM_SCLK_PRE_EN(tdmout_a_sclk, AUDIO_CLK_TDMOUT_A_CTRL);
+> +struct clk_regmap aud_tdmout_a_sclk_post_en =
+> +	AUD_TDM_SCLK_POST_EN(tdmout_a_sclk, AUDIO_CLK_TDMOUT_A_CTRL);
+> +struct clk_regmap aud_tdmout_a_sclk =
+> +	AUD_TDM_SCLK_WS(tdmout_a_sclk, AUDIO_CLK_TDMOUT_A_CTRL);
+> +struct clk_regmap aud_tdmout_a_lrclk =
+> +	AUD_TDM_LRLCK(tdmout_a_lrclk, AUDIO_CLK_TDMOUT_A_CTRL);
+> +
+> +struct clk_regmap aud_tdmout_b_sclk_sel =
+> +	AUD_TDM_SCLK_MUX(tdmout_b_sclk, AUDIO_CLK_TDMOUT_B_CTRL);
+> +struct clk_regmap aud_tdmout_b_sclk_pre_en =
+> +	AUD_TDM_SCLK_PRE_EN(tdmout_b_sclk, AUDIO_CLK_TDMOUT_B_CTRL);
+> +struct clk_regmap aud_tdmout_b_sclk_post_en =
+> +	AUD_TDM_SCLK_POST_EN(tdmout_b_sclk, AUDIO_CLK_TDMOUT_B_CTRL);
+> +struct clk_regmap aud_tdmout_b_sclk =
+> +	AUD_TDM_SCLK_WS(tdmout_b_sclk, AUDIO_CLK_TDMOUT_B_CTRL);
+> +struct clk_regmap aud_tdmout_b_lrclk =
+> +	AUD_TDM_LRLCK(tdmout_b_lrclk, AUDIO_CLK_TDMOUT_B_CTRL);
+> +
+> +static struct clk_hw *a1_audio_clkc_hws[] = {
+> +	[AUD_CLKID_DDR_ARB]		= &aud_ddr_arb.hw,
+> +	[AUD_CLKID_TDMIN_A]		= &aud_tdmin_a.hw,
+> +	[AUD_CLKID_TDMIN_B]		= &aud_tdmin_b.hw,
+> +	[AUD_CLKID_TDMIN_LB]		= &aud_tdmin_lb.hw,
+> +	[AUD_CLKID_LOOPBACK]		= &aud_loopback.hw,
+> +	[AUD_CLKID_TDMOUT_A]		= &aud_tdmout_a.hw,
+> +	[AUD_CLKID_TDMOUT_B]		= &aud_tdmout_b.hw,
+> +	[AUD_CLKID_FRDDR_A]		= &aud_frddr_a.hw,
+> +	[AUD_CLKID_FRDDR_B]		= &aud_frddr_b.hw,
+> +	[AUD_CLKID_TODDR_A]		= &aud_toddr_a.hw,
+> +	[AUD_CLKID_TODDR_B]		= &aud_toddr_b.hw,
+> +	[AUD_CLKID_SPDIFIN]		= &aud_spdifin.hw,
+> +	[AUD_CLKID_RESAMPLE]		= &aud_resample.hw,
+> +	[AUD_CLKID_EQDRC]		= &aud_eqdrc.hw,
+> +	[AUD_CLKID_LOCKER]		= &aud_audiolocker.hw,
+> +	[AUD_CLKID_MST_A_MCLK_SEL]	= &aud_mst_a_mclk_sel.hw,
+> +	[AUD_CLKID_MST_A_MCLK_DIV]	= &aud_mst_a_mclk_div.hw,
+> +	[AUD_CLKID_MST_A_MCLK]		= &aud_mst_a_mclk.hw,
+> +	[AUD_CLKID_MST_B_MCLK_SEL]	= &aud_mst_b_mclk_sel.hw,
+> +	[AUD_CLKID_MST_B_MCLK_DIV]	= &aud_mst_b_mclk_div.hw,
+> +	[AUD_CLKID_MST_B_MCLK]		= &aud_mst_b_mclk.hw,
+> +	[AUD_CLKID_MST_C_MCLK_SEL]	= &aud_mst_c_mclk_sel.hw,
+> +	[AUD_CLKID_MST_C_MCLK_DIV]	= &aud_mst_c_mclk_div.hw,
+> +	[AUD_CLKID_MST_C_MCLK]		= &aud_mst_c_mclk.hw,
+> +	[AUD_CLKID_MST_D_MCLK_SEL]	= &aud_mst_d_mclk_sel.hw,
+> +	[AUD_CLKID_MST_D_MCLK_DIV]	= &aud_mst_d_mclk_div.hw,
+> +	[AUD_CLKID_MST_D_MCLK]		= &aud_mst_d_mclk.hw,
+> +	[AUD_CLKID_RESAMPLE_CLK_SEL]	= &aud_resample_clk_sel.hw,
+> +	[AUD_CLKID_RESAMPLE_CLK_DIV]	= &aud_resample_clk_div.hw,
+> +	[AUD_CLKID_RESAMPLE_CLK]	= &aud_resample_clk.hw,
+> +	[AUD_CLKID_LOCKER_IN_CLK_SEL]	= &aud_locker_in_clk_sel.hw,
+> +	[AUD_CLKID_LOCKER_IN_CLK_DIV]	= &aud_locker_in_clk_div.hw,
+> +	[AUD_CLKID_LOCKER_IN_CLK]	= &aud_locker_in_clk.hw,
+> +	[AUD_CLKID_LOCKER_OUT_CLK_SEL]	= &aud_locker_out_clk_sel.hw,
+> +	[AUD_CLKID_LOCKER_OUT_CLK_DIV]	= &aud_locker_out_clk_div.hw,
+> +	[AUD_CLKID_LOCKER_OUT_CLK]	= &aud_locker_out_clk.hw,
+> +	[AUD_CLKID_SPDIFIN_CLK_SEL]	= &aud_spdifin_clk_sel.hw,
+> +	[AUD_CLKID_SPDIFIN_CLK_DIV]	= &aud_spdifin_clk_div.hw,
+> +	[AUD_CLKID_SPDIFIN_CLK]		= &aud_spdifin_clk.hw,
+> +	[AUD_CLKID_EQDRC_CLK_SEL]	= &aud_eqdrc_clk_sel.hw,
+> +	[AUD_CLKID_EQDRC_CLK_DIV]	= &aud_eqdrc_clk_div.hw,
+> +	[AUD_CLKID_EQDRC_CLK]		= &aud_eqdrc_clk.hw,
+> +	[AUD_CLKID_MST_A_SCLK_PRE_EN]	= &aud_mst_a_sclk_pre_en.hw,
+> +	[AUD_CLKID_MST_A_SCLK_DIV]	= &aud_mst_a_sclk_div.hw,
+> +	[AUD_CLKID_MST_A_SCLK_POST_EN]	= &aud_mst_a_sclk_post_en.hw,
+> +	[AUD_CLKID_MST_A_SCLK]		= &aud_mst_a_sclk.hw,
+> +	[AUD_CLKID_MST_B_SCLK_PRE_EN]	= &aud_mst_b_sclk_pre_en.hw,
+> +	[AUD_CLKID_MST_B_SCLK_DIV]	= &aud_mst_b_sclk_div.hw,
+> +	[AUD_CLKID_MST_B_SCLK_POST_EN]	= &aud_mst_b_sclk_post_en.hw,
+> +	[AUD_CLKID_MST_B_SCLK]		= &aud_mst_b_sclk.hw,
+> +	[AUD_CLKID_MST_C_SCLK_PRE_EN]	= &aud_mst_c_sclk_pre_en.hw,
+> +	[AUD_CLKID_MST_C_SCLK_DIV]	= &aud_mst_c_sclk_div.hw,
+> +	[AUD_CLKID_MST_C_SCLK_POST_EN]	= &aud_mst_c_sclk_post_en.hw,
+> +	[AUD_CLKID_MST_C_SCLK]		= &aud_mst_c_sclk.hw,
+> +	[AUD_CLKID_MST_D_SCLK_PRE_EN]	= &aud_mst_d_sclk_pre_en.hw,
+> +	[AUD_CLKID_MST_D_SCLK_DIV]	= &aud_mst_d_sclk_div.hw,
+> +	[AUD_CLKID_MST_D_SCLK_POST_EN]	= &aud_mst_d_sclk_post_en.hw,
+> +	[AUD_CLKID_MST_D_SCLK]		= &aud_mst_d_sclk.hw,
+> +	[AUD_CLKID_MST_A_LRCLK_DIV]	= &aud_mst_a_lrclk_div.hw,
+> +	[AUD_CLKID_MST_A_LRCLK]		= &aud_mst_a_lrclk.hw,
+> +	[AUD_CLKID_MST_B_LRCLK_DIV]	= &aud_mst_b_lrclk_div.hw,
+> +	[AUD_CLKID_MST_B_LRCLK]		= &aud_mst_b_lrclk.hw,
+> +	[AUD_CLKID_MST_C_LRCLK_DIV]	= &aud_mst_c_lrclk_div.hw,
+> +	[AUD_CLKID_MST_C_LRCLK]		= &aud_mst_c_lrclk.hw,
+> +	[AUD_CLKID_MST_D_LRCLK_DIV]	= &aud_mst_d_lrclk_div.hw,
+> +	[AUD_CLKID_MST_D_LRCLK]		= &aud_mst_d_lrclk.hw,
+> +	[AUD_CLKID_TDMIN_A_SCLK_SEL]	= &aud_tdmin_a_sclk_sel.hw,
+> +	[AUD_CLKID_TDMIN_A_SCLK_PRE_EN]	= &aud_tdmin_a_sclk_pre_en.hw,
+> +	[AUD_CLKID_TDMIN_A_SCLK_POST_EN] = &aud_tdmin_a_sclk_post_en.hw,
+> +	[AUD_CLKID_TDMIN_A_SCLK]	= &aud_tdmin_a_sclk.hw,
+> +	[AUD_CLKID_TDMIN_A_LRCLK]	= &aud_tdmin_a_lrclk.hw,
+> +	[AUD_CLKID_TDMIN_B_SCLK_SEL]	= &aud_tdmin_b_sclk_sel.hw,
+> +	[AUD_CLKID_TDMIN_B_SCLK_PRE_EN]	= &aud_tdmin_b_sclk_pre_en.hw,
+> +	[AUD_CLKID_TDMIN_B_SCLK_POST_EN] = &aud_tdmin_b_sclk_post_en.hw,
+> +	[AUD_CLKID_TDMIN_B_SCLK]	= &aud_tdmin_b_sclk.hw,
+> +	[AUD_CLKID_TDMIN_B_LRCLK]	= &aud_tdmin_b_lrclk.hw,
+> +	[AUD_CLKID_TDMIN_LB_SCLK_SEL]	= &aud_tdmin_lb_sclk_sel.hw,
+> +	[AUD_CLKID_TDMIN_LB_SCLK_PRE_EN] = &aud_tdmin_lb_sclk_pre_en.hw,
+> +	[AUD_CLKID_TDMIN_LB_SCLK_POST_EN] = &aud_tdmin_lb_sclk_post_en.hw,
+> +	[AUD_CLKID_TDMIN_LB_SCLK]	= &aud_tdmin_lb_sclk.hw,
+> +	[AUD_CLKID_TDMIN_LB_LRCLK]	= &aud_tdmin_lb_lrclk.hw,
+> +	[AUD_CLKID_TDMOUT_A_SCLK_SEL]	= &aud_tdmout_a_sclk_sel.hw,
+> +	[AUD_CLKID_TDMOUT_A_SCLK_PRE_EN] = &aud_tdmout_a_sclk_pre_en.hw,
+> +	[AUD_CLKID_TDMOUT_A_SCLK_POST_EN] = &aud_tdmout_a_sclk_post_en.hw,
+> +	[AUD_CLKID_TDMOUT_A_SCLK]	= &aud_tdmout_a_sclk.hw,
+> +	[AUD_CLKID_TDMOUT_A_LRCLK]	= &aud_tdmout_a_lrclk.hw,
+> +	[AUD_CLKID_TDMOUT_B_SCLK_SEL]	= &aud_tdmout_b_sclk_sel.hw,
+> +	[AUD_CLKID_TDMOUT_B_SCLK_PRE_EN] = &aud_tdmout_b_sclk_pre_en.hw,
+> +	[AUD_CLKID_TDMOUT_B_SCLK_POST_EN] = &aud_tdmout_b_sclk_post_en.hw,
+> +	[AUD_CLKID_TDMOUT_B_SCLK]	= &aud_tdmout_b_sclk.hw,
+> +	[AUD_CLKID_TDMOUT_B_LRCLK]	= &aud_tdmout_b_lrclk.hw,
+> +};
+> +
+> +struct a1_audio_data a1_audio_clkc = {
+> +	.hw_clks = {
+> +		.hws = a1_audio_clkc_hws,
+> +		.num = ARRAY_SIZE(a1_audio_clkc_hws),
+> +	},
+> +	.rst_drvname = "rst-a1",
+> +};
+> diff --git a/drivers/clk/meson/a1-audio-drv.c b/drivers/clk/meson/a1-audio-drv.c
+> new file mode 100644
+> index 000000000000..879a9d7bed72
+> --- /dev/null
+> +++ b/drivers/clk/meson/a1-audio-drv.c
+> @@ -0,0 +1,104 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
+> + *
+> + * Author: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/init.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+> +
+> +#include <soc/amlogic/reset-meson-aux.h>
+> +
+> +#include "a1-audio.h"
+> +
+> +static const struct regmap_config a1_audio_regmap_cfg = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+> +	.reg_stride = 4,
+> +};
+> +
+> +static int a1_audio_clkc_probe(struct platform_device *pdev)
+> +{
+> +	const struct a1_audio_data *data;
+> +	struct regmap *map;
+> +	void __iomem *base;
+> +	struct clk *clk;
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	data = device_get_match_data(&pdev->dev);
+> +	if (!data)
+> +		return -EINVAL;
+> +
+> +	clk = devm_clk_get_enabled(&pdev->dev, "pclk");
+> +	if (IS_ERR(clk))
+> +		return PTR_ERR(clk);
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	map = devm_regmap_init_mmio(&pdev->dev, base, &a1_audio_regmap_cfg);
+> +	if (IS_ERR(map))
+> +		return PTR_ERR(map);
+> +
+> +	ret = device_reset(&pdev->dev);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "failed to reset device");
+> +
+> +	for (i = 0; i < data->hw_clks.num; i++) {
+> +		struct clk_hw *hw = data->hw_clks.hws[i];
+> +		struct clk_regmap *clk_regmap = to_clk_regmap(hw);
+> +
+> +		if (!hw)
+> +			continue;
+> +
+> +		clk_regmap->map = map;
+> +
+> +		ret = devm_clk_hw_register(&pdev->dev, hw);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = devm_of_clk_add_hw_provider(&pdev->dev, meson_clk_hw_get,
+> +					  (void *)&data->hw_clks);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!data->rst_drvname)
+> +		return 0;
+> +
+> +	return devm_meson_rst_aux_register(&pdev->dev, map, data->rst_drvname);
+> +}
+> +
+> +static const struct of_device_id a1_audio_clkc_match_table[] = {
+> +	{
+> +		.compatible = "amlogic,a1-audio-clkc",
+> +		.data = &a1_audio_clkc,
+> +	},
+> +	{
+> +		.compatible = "amlogic,a1-audio-vad-clkc",
+> +		.data = &a1_audio_vad_clkc,
+> +	},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, a1_audio_clkc_match_table);
+> +
+> +static struct platform_driver a1_audio_clkc_driver = {
+> +	.probe = a1_audio_clkc_probe,
+> +	.driver = {
+> +		.name = "a1-audio-clkc",
+> +		.of_match_table = a1_audio_clkc_match_table,
+> +	},
+> +};
+> +module_platform_driver(a1_audio_clkc_driver);
+> +
+> +MODULE_DESCRIPTION("Amlogic A1 Audio Clock driver");
+> +MODULE_AUTHOR("Jan Dakinevich <jan.dakinevich@salutedevices.com>");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/clk/meson/a1-audio-vad-clkc.c b/drivers/clk/meson/a1-audio-vad-clkc.c
+> new file mode 100644
+> index 000000000000..0b1365d30ce1
+> --- /dev/null
+> +++ b/drivers/clk/meson/a1-audio-vad-clkc.c
+> @@ -0,0 +1,85 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
+> + *
+> + * Author: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> + */
+> +
+> +#include <dt-bindings/clock/amlogic,a1-audio-clkc.h>
+> +
+> +#include "a1-audio.h"
+> +
+> +#define AUDIO_VAD_CLK_GATE_EN0		0x00c
+> +#define AUDIO_VAD_MCLK_CTRL		0x040
+> +#define AUDIO_VAD_CLK_CTRL		0x044
+> +#define AUDIO_VAD_CLK_PDMIN_CTRL0	0x058
+> +#define AUDIO_CLK_VAD_PDMIN_CTRL1	0x05c
+> +
+> +struct clk_regmap aud_vad_ddr_arb =
+> +	AUD_PCLK_GATE(vad_ddr_arb, AUDIO_VAD_CLK_GATE_EN0, 0);
+> +struct clk_regmap aud_vad_pdm =
+> +	AUD_PCLK_GATE(vad_pdm, AUDIO_VAD_CLK_GATE_EN0, 1);
+> +struct clk_regmap aud_vad_tdmin_vad =
+> +	AUD_PCLK_GATE(vad_tdmin_vad, AUDIO_VAD_CLK_GATE_EN0, 2);
+> +struct clk_regmap aud_vad_toddr_vad =
+> +	AUD_PCLK_GATE(vad_toddr_vad, AUDIO_VAD_CLK_GATE_EN0, 3);
+> +struct clk_regmap aud_vad =
+> +	AUD_PCLK_GATE(vad, AUDIO_VAD_CLK_GATE_EN0, 4);
+> +struct clk_regmap aud_vad_audiotop =
+> +	AUD_PCLK_GATE(vad_audiotop, AUDIO_VAD_CLK_GATE_EN0, 7);
+> +
+> +struct clk_regmap aud_vad_mclk_sel =
+> +	AUD_MST_MCLK_MUX(vad_mclk, AUDIO_VAD_MCLK_CTRL);
+> +struct clk_regmap aud_vad_mclk_div =
+> +	AUD_MST_MCLK_DIV(vad_mclk, AUDIO_VAD_MCLK_CTRL);
+> +struct clk_regmap aud_vad_mclk =
+> +	AUD_MST_MCLK_GATE(vad_mclk, AUDIO_VAD_MCLK_CTRL);
+> +
+> +struct clk_regmap aud_vad_clk_sel =
+> +	AUD_MST_MCLK_MUX(vad_clk, AUDIO_VAD_CLK_CTRL);
+> +struct clk_regmap aud_vad_clk_div =
+> +	AUD_MST_MCLK_DIV(vad_clk, AUDIO_VAD_CLK_CTRL);
+> +struct clk_regmap aud_vad_clk =
+> +	AUD_MST_MCLK_GATE(vad_clk, AUDIO_VAD_CLK_CTRL);
+> +
+> +struct clk_regmap aud_vad_pdm_dclk_sel =
+> +	AUD_MST_MCLK_MUX(vad_pdm_dclk, AUDIO_VAD_CLK_PDMIN_CTRL0);
+> +struct clk_regmap aud_vad_pdm_dclk_div =
+> +	AUD_MST_MCLK_DIV(vad_pdm_dclk, AUDIO_VAD_CLK_PDMIN_CTRL0);
+> +struct clk_regmap aud_vad_pdm_dclk =
+> +	AUD_MST_MCLK_GATE(vad_pdm_dclk, AUDIO_VAD_CLK_PDMIN_CTRL0);
+> +
+> +struct clk_regmap aud_vad_pdm_sysclk_sel =
+> +	AUD_MST_MCLK_MUX(vad_pdm_sysclk, AUDIO_CLK_VAD_PDMIN_CTRL1);
+> +struct clk_regmap aud_vad_pdm_sysclk_div =
+> +	AUD_MST_MCLK_DIV(vad_pdm_sysclk, AUDIO_CLK_VAD_PDMIN_CTRL1);
+> +struct clk_regmap aud_vad_pdm_sysclk =
+> +	AUD_MST_MCLK_GATE(vad_pdm_sysclk, AUDIO_CLK_VAD_PDMIN_CTRL1);
+> +
+> +static struct clk_hw *a1_audio_vad_clkc_hws[] = {
+> +	[AUD_CLKID_VAD_DDR_ARB]		= &aud_vad_ddr_arb.hw,
+> +	[AUD_CLKID_VAD_PDM]		= &aud_vad_pdm.hw,
+> +	[AUD_CLKID_VAD_TDMIN]		= &aud_vad_tdmin_vad.hw,
+> +	[AUD_CLKID_VAD_TODDR]		= &aud_vad_toddr_vad.hw,
+> +	[AUD_CLKID_VAD]			= &aud_vad.hw,
+> +	[AUD_CLKID_VAD_AUDIOTOP]	= &aud_vad_audiotop.hw,
+> +	[AUD_CLKID_VAD_MCLK_SEL]	= &aud_vad_mclk_sel.hw,
+> +	[AUD_CLKID_VAD_MCLK_DIV]	= &aud_vad_mclk_div.hw,
+> +	[AUD_CLKID_VAD_MCLK]		= &aud_vad_mclk.hw,
+> +	[AUD_CLKID_VAD_CLK_SEL]		= &aud_vad_clk_sel.hw,
+> +	[AUD_CLKID_VAD_CLK_DIV]		= &aud_vad_clk_div.hw,
+> +	[AUD_CLKID_VAD_CLK]		= &aud_vad_clk.hw,
+> +	[AUD_CLKID_VAD_PDM_DCLK_SEL]	= &aud_vad_pdm_dclk_sel.hw,
+> +	[AUD_CLKID_VAD_PDM_DCLK_DIV]	= &aud_vad_pdm_dclk_div.hw,
+> +	[AUD_CLKID_VAD_PDM_DCLK]	= &aud_vad_pdm_dclk.hw,
+> +	[AUD_CLKID_VAD_PDM_SYSCLK_SEL]	= &aud_vad_pdm_sysclk_sel.hw,
+> +	[AUD_CLKID_VAD_PDM_SYSCLK_DIV]	= &aud_vad_pdm_sysclk_div.hw,
+> +	[AUD_CLKID_VAD_PDM_SYSCLK]	= &aud_vad_pdm_sysclk.hw,
+> +};
+> +
+> +struct a1_audio_data a1_audio_vad_clkc = {
+> +	.hw_clks = {
+> +		.hws = a1_audio_vad_clkc_hws,
+> +		.num = ARRAY_SIZE(a1_audio_vad_clkc_hws),
+> +	},
+> +};
+> diff --git a/drivers/clk/meson/a1-audio.h b/drivers/clk/meson/a1-audio.h
+> new file mode 100644
+> index 000000000000..ecd0b1ea4aea
+> --- /dev/null
+> +++ b/drivers/clk/meson/a1-audio.h
+> @@ -0,0 +1,131 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +/*
+> + * Copyright (c) 2024, SaluteDevices. All Rights Reserved.
+> + *
+> + * Author: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> + */
+> +
+> +#ifndef __MESON_CLK_A1_AUDIO_H
+> +#define __MESON_CLK_A1_AUDIO_H
+> +
+> +#include "clk-phase.h"
+> +#include "clk-regmap.h"
+> +#include "meson-audio.h"
+> +#include "meson-clkc-utils.h"
+> +#include "sclk-div.h"
+> +
+> +#define AUD_PCLK_GATE(_name, _reg, _bit) {				\
+> +	.data = &(struct clk_regmap_gate_data){				\
+> +		.offset = (_reg),					\
+> +		.bit_idx = (_bit),					\
+> +	},								\
+> +	.hw.init = &(struct clk_init_data) {				\
+> +		.name = "aud_"#_name,					\
+> +		.ops = &clk_regmap_gate_ops,				\
+> +		.parent_data = &(const struct clk_parent_data) {	\
+> +			.fw_name = "pclk"				\
+> +		},							\
+> +		.num_parents = 1,					\
+> +	},								\
+> +}
+> +
+> +#define AUD_MST_MCLK_PDATA ((const struct clk_parent_data[]) {		\
+> +	{ .fw_name = "mst_in0" },					\
+> +	{ .fw_name = "mst_in1" },					\
+> +	{ .fw_name = "mst_in2" },					\
+> +	{ .fw_name = "mst_in3" },					\
+> +	{ .fw_name = "mst_in4" },					\
+> +})
+> +#define AUD_MST_MCLK_MUX(_name, _reg)					\
+> +	AUD_MUX(_name##_sel, (_reg), 0x7, 24, CLK_MUX_ROUND_CLOSEST,	\
+> +		AUD_MST_MCLK_PDATA, 0)
+> +#define AUD_MST_MCLK_DIV(_name, _reg)					\
+> +	AUD_DIV(_name##_div, (_reg), 0, 16, CLK_DIVIDER_ROUND_CLOSEST,	\
+> +		aud_##_name##_sel, CLK_SET_RATE_PARENT)
+> +#define AUD_MST_MCLK_GATE(_name, _reg)					\
+> +	AUD_GATE(_name, (_reg), 31,					\
+> +		aud_##_name##_div, CLK_SET_RATE_PARENT)
+> +
+> +#define AUD_MST_SCLK_PRE_EN(_name, _reg, _pname)			\
+> +	AUD_GATE(_name##_pre_en, (_reg), 31,				\
+> +		aud_##_pname, 0)
+> +#define AUD_MST_SCLK_DIV(_name, _reg)					\
+> +	AUD_SCLK_DIV(_name##_div, (_reg), 20, 10, 0, 0,			\
+> +		aud_##_name##_pre_en, CLK_SET_RATE_PARENT)
+> +#define AUD_MST_SCLK_POST_EN(_name, _reg)				\
+> +	AUD_GATE(_name##_post_en, (_reg), 30,				\
+> +		 aud_##_name##_div, CLK_SET_RATE_PARENT)
+> +#define AUD_MST_SCLK(_name, _reg)					\
+> +	AUD_TRIPHASE(_name, (_reg), 1, 0, 2, 4,				\
+> +		aud_##_name##_post_en, CLK_SET_RATE_PARENT)
+> +
+> +#define AUD_MST_LRCLK_DIV(_name, _reg, _pname)				\
+> +	AUD_SCLK_DIV(_name##_div, (_reg), 0, 10, 10, 10,		\
+> +		aud_##_pname, 0)
+> +#define AUD_MST_LRCLK(_name, _reg)					\
+> +	AUD_TRIPHASE(_name, (_reg), 1, 1, 3, 5,				\
+> +		aud_##_name##_div, CLK_SET_RATE_PARENT)
+> +
+> +#define AUD_MST_SCLK_PDATA ((const struct clk_parent_data[]) {		\
+> +	{ .hw = &aud_mst_a_sclk.hw, .index = -1 },			\
+> +	{ .hw = &aud_mst_b_sclk.hw, .index = -1 },			\
+> +	{ .hw = &aud_mst_c_sclk.hw, .index = -1 },			\
+> +	{ .hw = &aud_mst_d_sclk.hw, .index = -1 },			\
+> +	{ .hw = NULL },							\
+> +	{ .hw = NULL },							\
+> +	{ .fw_name = "slv_sclk0" },					\
+> +	{ .fw_name = "slv_sclk1" },					\
+> +	{ .fw_name = "slv_sclk2" },					\
+> +	{ .fw_name = "slv_sclk3" },					\
+> +	{ .fw_name = "slv_sclk4" },					\
+> +	{ .fw_name = "slv_sclk5" },					\
+> +	{ .fw_name = "slv_sclk6" },					\
+> +	{ .fw_name = "slv_sclk7" },					\
+> +	{ .fw_name = "slv_sclk8" },					\
+> +	{ .fw_name = "slv_sclk9" },					\
+> +})
+> +#define AUD_TDM_SCLK_MUX(_name, _reg)					\
+> +	AUD_MUX(_name##_sel, (_reg), 0xf, 24, CLK_MUX_ROUND_CLOSEST,	\
+> +		AUD_MST_SCLK_PDATA, 0)
+> +#define AUD_TDM_SCLK_PRE_EN(_name, _reg)				\
+> +	AUD_GATE(_name##_pre_en, (_reg), 31,				\
+> +		aud_##_name##_sel, CLK_SET_RATE_PARENT)
+> +#define AUD_TDM_SCLK_POST_EN(_name, _reg)				\
+> +	AUD_GATE(_name##_post_en, (_reg), 30,				\
+> +		aud_##_name##_pre_en, CLK_SET_RATE_PARENT)
+> +#define AUD_TDM_SCLK_WS(_name, _reg)					\
+> +	AUD_SCLK_WS(_name, (_reg), 1, 29, 28,				\
+> +		aud_##_name##_post_en,					\
+> +		CLK_DUTY_CYCLE_PARENT | CLK_SET_RATE_PARENT)
+> +
+> +#define AUD_MST_LRCLK_PDATA ((const struct clk_parent_data[]) {		\
+> +	{ .hw = &aud_mst_a_lrclk.hw, .index = -1 },			\
+> +	{ .hw = &aud_mst_b_lrclk.hw, .index = -1 },			\
+> +	{ .hw = &aud_mst_c_lrclk.hw, .index = -1 },			\
+> +	{ .hw = &aud_mst_d_lrclk.hw, .index = -1 },			\
+> +	{ .hw = NULL },							\
+> +	{ .hw = NULL },							\
+> +	{ .fw_name = "slv_lrclk0" },					\
+> +	{ .fw_name = "slv_lrclk1" },					\
+> +	{ .fw_name = "slv_lrclk2" },					\
+> +	{ .fw_name = "slv_lrclk3" },					\
+> +	{ .fw_name = "slv_lrclk4" },					\
+> +	{ .fw_name = "slv_lrclk5" },					\
+> +	{ .fw_name = "slv_lrclk6" },					\
+> +	{ .fw_name = "slv_lrclk7" },					\
+> +	{ .fw_name = "slv_lrclk8" },					\
+> +	{ .fw_name = "slv_lrclk9" },					\
+> +})
+> +#define AUD_TDM_LRLCK(_name, _reg)					\
+> +	AUD_MUX(_name, (_reg), 0xf, 20, CLK_MUX_ROUND_CLOSEST,		\
+> +		AUD_MST_LRCLK_PDATA, CLK_SET_RATE_PARENT)
+> +
+> +struct a1_audio_data {
+> +	struct meson_clk_hw_data hw_clks;
+> +	const char *rst_drvname;
+> +};
+> +
+> +extern struct a1_audio_data a1_audio_clkc;
+> +extern struct a1_audio_data a1_audio_vad_clkc;
+> +
+> +#endif /* __MESON_CLK_A1_AUDIO_H */
 
-On Wed, Sep 18, 2024 at 09:51:28AM +0200, Philipp Zabel wrote:
-> On Mi, 2024-09-18 at 15:42 +0800, zelong dong wrote:
-> > From: Zelong Dong <zelong.dong@amlogic.com>
-> >=20
-> > Add new compatible for Amlogic A4/A5 Reset Controller
-> >=20
-> > Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  .../bindings/reset/amlogic,meson-reset.yaml   | 23 ++++++++++++-------
-> >  1 file changed, 15 insertions(+), 8 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-rese=
-t.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> > index 695ef38a7bb3..0ad81fe7b629 100644
-> > --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> > +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> > @@ -12,14 +12,21 @@ maintainers:
-> > =20
-> >  properties:
-> >    compatible:
-> > -    enum:
-> > -      - amlogic,meson8b-reset # Reset Controller on Meson8b and compat=
-ible SoCs
-> > -      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compat=
-ible SoCs
-> > -      - amlogic,meson-axg-reset # Reset Controller on AXG and compatib=
-le SoCs
-> > -      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible=
- SoCs
-> > -      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible=
- SoCs
-> > -      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
-> > -      - amlogic,t7-reset
-> > +    oneOf:
-> > +      - items:
->=20
-> I'm not well versed in preferred dt-bindings style, but this items
-> looks superfluous to me. It only contains a single enum.
-
-Oh, ye. Good spot.
-
---1OdrIj4eisHBYHwH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZuqI5QAKCRB4tDGHoIJi
-0oRfAQC14rdH8axKMoQQHMpS4dcHTaZa/tZa3EPK4RdqiD+vzQEAgz5WGX3k9kGY
-EV3ERmLmeSSRCW0DYza8jgbDPMC5tgQ=
-=IxkZ
------END PGP SIGNATURE-----
-
---1OdrIj4eisHBYHwH--
-
-
---===============6926996308343756213==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+Best regards
+Jan Dakinevich
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6926996308343756213==--
-
