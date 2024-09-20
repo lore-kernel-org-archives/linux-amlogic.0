@@ -4,115 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8618CF58F1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2024 08:48:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BC62CF58F0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2024 08:50:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=X1ckVGXZ0yVpvCQ9pq7ZlBPJv9k4PbjRJbHvSGQInTw=; b=ejI1AllptGIZDCnHYmuXtmTOZ/
-	EU17twEdy/BOuJlhycuyqGOj28hpYDchuTmxjpMCIMk3horf2HghxGGMgAUxPxxqHhKbiIdxb7by8
-	Azmlyufcm0uIVkorU+iM632sIqP+OEJ643BOmrgUX8vCCxnQCsUqHhKD7WOCRJQH1RQrD5GXSt7wP
-	c1rLtL8nTtRL8QMAXwnjz5OBCBMMSnBzEGgoiSQ+yiYc1WEpACQvVqkjBC+uNa1NLafcawVDdqu7b
-	LFp30Agrcvocfvpw4EmZQXlMJzfFfm8ZxfScR8x4skOR0G7Wk6DMaUKw6If0JT+n6tktN33gW//tp
-	GVQb2gMQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=cjFnf6hqIofCUO5MMxqHRgM9AZ+QRFUHD7a8I0rnBgA=; b=RFzuglcHUq9fGh
+	88CjxpPow1/6hTPSWa4Jam8TZSqrGGIcmrnhRKLfmcILeEvA8Xhn4FrMt9EMCf7bPS3cPg4pWuuwq
+	uWHrAI3rNHcm60wF0ukFMXJpUOkQGvk64hAe0Dcxe0fjKvmapRSwQydF3u3MkYQZanR20AYnmTTAV
+	dlrRxBeQeX7yoi4E3AZnn1nFgA7Ff7SRlHYUjJySVxHXtBKFdA/TiUF9o0Nj5L3BzwURwyj9V7ouR
+	w+ZsWAg3DizkGJSFHcQ2MNZ6VrLnpk7pHjvVKbhaoXUX0OlSzTfuzk3ucDQy9rMqZodfTsybprYWS
+	XrqZpyR4i4NGSRf3x6Qg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1srZJA-0000000Bp9f-1cBV;
-	Fri, 20 Sep 2024 08:48:08 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1srZLJ-0000000BpUq-1Toh;
+	Fri, 20 Sep 2024 08:50:21 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1srZ05-0000000Blib-1mCl
+	id 1srZ9V-0000000BnL1-3hcR
 	for linux-amlogic@lists.infradead.org;
-	Fri, 20 Sep 2024 08:28:26 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-42cb8dac900so15935385e9.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 20 Sep 2024 01:28:24 -0700 (PDT)
+	Fri, 20 Sep 2024 08:38:11 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-374c4d4f219so1049408f8f.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 20 Sep 2024 01:38:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1726820903; x=1727425703; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QSY/XwkbAFk0AHpPR2dqnekk1R5T+r9ialJRBpwsOMY=;
-        b=islJKEAdP+btZ5HftOTVDXElHmMZat+lWuon4wC2qwlQm1tywNpAa1s0AxK9m+cG4d
-         mO4zmEgShDARmNcDoagpCWyqL9biXBKRHU5TNxTsvqhR68Ilb7qHIloIH3ZVuhito/7S
-         XwmlQnScSNCZzSG3Zh/16gLJdV/UmIAvG1spcXSIFPz6kkk2yocYnPkYUXdvw9hlufgA
-         eKxBvMVtqHtLf9aT4UVeG07IafesEpqNu3xS4XYzM4y53yrBNFnujjwTB03D4ax/F53a
-         g6rNwx6PiKfR9YljBMI+LzhwgIFc8REHALbvm+pfbNYH2wkB57ZR+pTFGeFnjkPRdjix
-         AitA==
+        d=linaro.org; s=google; t=1726821488; x=1727426288; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CtR9rrwh7DNDhn87WGlIXFPqSFnA1qNP99faPKnPFcA=;
+        b=BPVQsMvTxtvt0+ZpS36xURRd3AFp1G0r9bi2Ho3L0zntHz8ZM0b4GWwpu/Iu8tQCgE
+         6YvKbQijUMygZg1uITtTeCLvxahcesAjfHMrzkqNX1TRja0mIGVr2y5eRwzBnlwqGrZ8
+         eXD3sTovE59k5Z/0mYFVCWSC5wwJ+QhUDWhfMVUYvCBMy6X64OGTRqpAoGgHeYZunm4P
+         j8w+WlPdXnfDk6otR5IhIBrIZgFJADYISMpnsUPDoy1rCt1L0YbP+/12K/Dkv+t3bUMu
+         OWQspWT17agSPTRkXWyj9uT2WibQHSHAIX3QrGJPytHaWVZGztJzgquYr/ohCLhDjCX7
+         /nZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726820903; x=1727425703;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=QSY/XwkbAFk0AHpPR2dqnekk1R5T+r9ialJRBpwsOMY=;
-        b=wvy3d9oauEaisLHcQsc77YcFXkgZdK0+cGgnmA9BeyTUWr8JyBO/27iCENd6oWHqKc
-         TPr7zuNaII8w+lXBsDgSKMcP599uMrAkBx6lFgDbl/URoH4C5wVJO0EMvtd8BAHMzXAj
-         SUx/irxG/E2yPLn8jYG1hbKvIHGrgWT6iJr2ZY3HKdDztwn2pwNUMtJNAlAWeOl2oogR
-         IKqE9oWOcwIhcDb9Yf7gHgXsYtjDoXUOygsubaXxk4BoDGHZAYAhMGWfuEW73VkifDwN
-         HiPhLbQXadMlLQxBpmOTEqbpa8xdpjAn/BBXHkdUmuES7UxY4vFa6D/DbIzBPRjxA/Th
-         qEZw==
-X-Forwarded-Encrypted: i=1; AJvYcCUfq9mpEyR++gnSEvtQ36Q32cF9SLfCS1oZBecnMjg6WiXdO3O4t+pUoCibMJqyxVsHo4CnjGcuuOHnjiUV@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz+tdiYPag95UEpoYNM4vmpNEXc9JNLcAg+j6+bdaCcW4Wcwp+p
-	6jzVtwkiUGvoNWbSboPYEBhHCSm02C/nyGsKuWoKKc4nkIjKJ9FOyvNJti9r93A=
-X-Google-Smtp-Source: AGHT+IEwpW97abutw3SvbbD+fpsLM/YqBbH/+ujjWdJHEh1aCbcZ94oU53Wv3GaurPQr/FG0QEN0Gw==
-X-Received: by 2002:adf:e84b:0:b0:374:cd36:8533 with SMTP id ffacd0b85a97d-37a43197db1mr1010222f8f.54.1726820903286;
-        Fri, 20 Sep 2024 01:28:23 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:b3d5:235d:4ae1:4c0f? ([2a01:e0a:982:cbb0:b3d5:235d:4ae1:4c0f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-378e7809e0fsm17044622f8f.110.2024.09.20.01.28.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Sep 2024 01:28:22 -0700 (PDT)
-Message-ID: <e8906af4-e769-48ea-8ec4-779ca4be9b8a@linaro.org>
-Date: Fri, 20 Sep 2024 10:28:22 +0200
+        d=1e100.net; s=20230601; t=1726821488; x=1727426288;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CtR9rrwh7DNDhn87WGlIXFPqSFnA1qNP99faPKnPFcA=;
+        b=mnzmhUKqHdO93sv0az/p1WJJnEh4CRYexpuIYI9pKzsZT40deTgkTDpQwZIs0au51u
+         VU2LnHpqUMOcNDW7vT0/MzSHlJNF2X1i6ADwOyR0CZi7/AIU06vZRM8JCaQC9Y16r7JZ
+         oLTL48cy00hWJn4XoHlQtDviGf1DNdyhRa/gFcuE1cMIl3y2w9Er2buroQINDYQVgsQM
+         YQmHH6+UGrVaoXS/t2+cNOpRBRwoXjWQOAJ+ABUcVhKmEkDDwvbrXsYMo+ANf9VdqE4r
+         IJmfBDZMasfjLvAntMGlXTfWWt4P0eQrYCsDw/F0fNbA5uuFmWNRZTyu3GB9x/QRbmrg
+         QmJg==
+X-Forwarded-Encrypted: i=1; AJvYcCXpkk4mpLlfq5yIRA/gkzo9aIcZxpQY3Y9As0OMiR4s59dY+jqi9lKO9lF2uPviayJygx5P9UcOhL1LLNiS@lists.infradead.org
+X-Gm-Message-State: AOJu0YwNn4JohxkO+SoPIVtj727ymM8AFLJ6jBac3av37lKVSpYnCIXh
+	/pD5xwo2/5Yw9Gv/kfzOjgwZEBSdONndBIVhRQOgwK8e7aXpnPRb3myHCzcgQ8k=
+X-Google-Smtp-Source: AGHT+IHC6NMRGd8XrHhnl2luCm5xPyNVEx8J3g73EFnggKlMIkGbyXMoJxZmTUE53GTxvFNbBZuAFg==
+X-Received: by 2002:adf:c788:0:b0:36d:2984:ef6b with SMTP id ffacd0b85a97d-37a4225216amr1084085f8f.11.1726821487809;
+        Fri, 20 Sep 2024 01:38:07 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e7540e2c1sm43099165e9.2.2024.09.20.01.38.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Sep 2024 01:38:07 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/3] dt-bindings: mmc: document mmc-slot and convert
+ amlogic,meson-mx-sdio.txt to dtschema
+Date: Fri, 20 Sep 2024 10:38:02 +0200
+Message-Id: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to
- dtschema
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Rob Herring <robh@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org>
- <20240916174030.GA835203-robh@kernel.org>
- <9394d785-5954-4d44-8ad0-9b57fbecde25@linaro.org>
- <CAFBinCAbb5rh4GZZhjFA1jSGJAPNC80vnUY+PC9AdaApLZphmA@mail.gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <CAFBinCAbb5rh4GZZhjFA1jSGJAPNC80vnUY+PC9AdaApLZphmA@mail.gmail.com>
+X-B4-Tracking: v=1; b=H4sIAGo07WYC/62OQQ6CMBBFr0K6dgytiujKexgXLQw4Ce2QGSQaw
+ 90tnMHVz/v5yftfoyiEaq7F1wjOpMQpg9sVpnn61CNQm9m40h3Li7Uw8UgN+Dhwv6bEg4PXqJO
+ gjxAotZR6hY7eqNBwmlEmiKicIL5BW2KoOn8uT8cKQ6hN9oyC2zxr7o/MT9KJ5bNdmu3a/tM+W
+ 7AQzqHzWNeVs/Y2UPLCe5bePJZl+QFqNQZmEwEAAA==
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1196;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=O0gR+EEyIIZGwIA+qtqCfN2wuQii0s/XxaptJOUZn6o=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBm7TRtbOtlTlRm40YRznfQ/pndGMNieGeHGev29+pX
+ b3EWRBCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZu00bQAKCRB33NvayMhJ0aEhD/
+ 9NFslcvRji8i+vGYoP/zVBiOQLVQ+1bF3mEoBRIY/9l9X1Z96h104J6HbFpP5YloCWA+torFEbFCdd
+ 7GbqjY+gr9oTIwyX6gZFAET6YQHK9nC4smEFUPluIgBLLbvPeh2ywK79NAuAQI65oXE3nsmpTmiGVe
+ HOcKq6e6eODBOwq7tTllFpo/KOLlu9SGR9Vct3xKOykgUYwrcndnYzLlpiN4NGbvbZgehY65zY89EM
+ D8LgChW+tC8+KpI1AIbuusJuoVzBuRDEpzb7Qf4Qi4e0kuGI3ZSlwFq1TtwaUaolYOaraBh6VfXwy+
+ BMQPYA3I5GyYrC3J+bcc4Gtc8tms6RhBFgqPNTpXB8whWCjhcFH4yi0tAdR1LFz/URt1HyIIdxkoQK
+ /x+tyCF1waIcIWzxRJoXa/kZPp4+sH6tIno952A/X2Bp3IHivQX7jVUJ0X0UHYeYo5+E+IpJTiFAoF
+ 29sWOlAr+xW5P7WYWZu23J37K4Rg1xB72oBGbZWUhkHppg8ZnxIPq91QGmKGZh2xN+NZyAqJY8prkn
+ dYGhubRZpskGLKMgyAXxNVxZ78GqQeZeMv8/Nijnn8CbKAkLsbQLcZ/3gIx7D3BhDEP7qp5+zqsWqi
+ zY/J6h8Sukf1Cl0C8ePVaYtX5PW15mqgRDNJBiMHbyuawinmIAxi9aO6WVig==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240920_012825_489441_51882DCA 
-X-CRM114-Status: UNSURE (   9.66  )
+X-CRM114-CacheID: sfid-20240920_013809_982443_BE53C0C1 
+X-CRM114-Status: UNSURE (   7.30  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,23 +112,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTkvMDkvMjAyNCAxODozMywgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPiBIaSBOZWls
-LAo+IAo+IE9uIFR1ZSwgU2VwIDE3LCAyMDI0IGF0IDk6MTPigK9BTSBOZWlsIEFybXN0cm9uZwo+
-IDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPiB3cm90ZToKPiBbLi4uXQo+Pj4+ICsgICAgICBy
-ZWc6Cj4+Pj4gKyAgICAgICAgZGVzY3JpcHRpb246Cj4+Pj4gKyAgICAgICAgICB0aGUgc2xvdCAo
-b3IgInBvcnQiKSBJRAo+Pj4+ICsgICAgICAgIG1heEl0ZW1zOiAxCj4+Pgo+Pj4gQXJlbid0IHRo
-ZXJlIGxpbWl0cyBpbiB0aGUgbnVtYmVyIG9mIHNsb3RzIHRoZSBoL3cgY2FuIHN1cHBvcnQ/Cj4+
-Cj4+IEdvb2QgcXVlc3Rpb24sIGxldCBtZSBjaGVjawo+IGFsbG93ZWQgdmFsdWVzIGFyZTogMCwg
-MSwgMgo+IAo+IEZvciB0aGUgcmVtYWluaW5nIHF1ZXN0aW9uczogSSBhbHNvIGRvbid0IGtub3cg
-LSBzbyBsZXQncyBzZWUgd2hhdAo+IFJvYidzIHN1Z2dlc3Rpb24gaXMgZ29pbmcgdG8gYmUuCgpJ
-IGRpZCBzb21ldGhpbmcsIEknbGwgcG9zdCBpdCBzaG9ydGx5LCBubyBpZGVhIGlmIGl0IHdvcmtz
-CgpOZWlsCgo+IAo+IAo+IEJlc3QgcmVnYXJkcywKPiBNYXJ0aW4KCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
-dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Document mmc-slot because used by amlogic,meson-mx-sdio.txt and
+cavium-mmc.txt, so make it common.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Fixed description, limited to 3 slots
+- Moved out mmc-slot in a separate common schema
+- Link to v1: https://lore.kernel.org/r/20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org
+
+---
+Neil Armstrong (3):
+      dt-bindings: mmc: controller: allow node name to be named slot@*
+      dt-bindings: mmc: document mmc-slot
+      dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to dtschema
+
+ .../bindings/mmc/amlogic,meson-mx-sdio.txt         | 54 ------------
+ .../bindings/mmc/amlogic,meson-mx-sdio.yaml        | 96 ++++++++++++++++++++++
+ .../devicetree/bindings/mmc/mmc-controller.yaml    |  4 +-
+ .../devicetree/bindings/mmc/mmc-slot.yaml          | 40 +++++++++
+ 4 files changed, 139 insertions(+), 55 deletions(-)
+---
+base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
+change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-6fa70546ebb8
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
