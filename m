@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F8ACF58DD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2024 08:16:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5746BCF58E5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2024 08:16:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Lu6N4dQjg5nL5lkhu05J7JFlz733FLA6OoV1rGu6Oa8=; b=CyYK+5ASRy4UZg
-	+NPXi1e//HVTR1Pr6hFfgtl9TjMJjgGK8C9XjpgwoeEDLhHp3yOEDcvgu8y990/0/cxiqnC6JdkBG
-	ieqpJYDDDTDSW7h6zZEtj8ccZPx6Mrdlg3ha3hAQk5LbG8cwO7BThMvsGrIBEnI+E6IXU21cNCxkx
-	+FnZMYRk7deXkyi5eUeNDEeHz7za5ANC82U+rfqgAwlas4DE0kPBKLpMmeQi61c14JDDEuf+w2mb7
-	l/+hWWL3Gpv1rhDjq7hSo8dKo2fRNSxOxK26mA8uhUjOF7VTtysWvMlhfakz4R/Qq8eS8I4tebyF0
-	yR5N8+ZT3Ns98OaeoL1w==;
+	List-Owner; bh=3mKrR04OvMig9FlXXcf/xP5bZq9EdeDqScw/vFqKIOk=; b=DB+SaF9zqR7V7g
+	bxuF9xy6Fl4b0x7bCONmEPYlYADrx7sfDI/iFw+gq9A5zDbei+uUcwXhh4DDnHGerlXP7+73SKZNt
+	m1LrVJtZFyGYV4Q5CyprOP62E87NLqVJFrFuWPp72zB355AKtR87mlkQYc0xqbjRVCAqh+goX9LAU
+	PIWk/XHjflpHvuGg7JwXHl+uxSXExAiLoP9L/4qa90GahXcWQt09+4HnoG0JHyrMy+7b1o9ZzLrwn
+	BTZ5v8+7U6kvFdmZyFbSKaTV0vXXQkAjDoJyQjOFYswf6Kb6+I06KzrsDLFQ0zvBW1Y44cnN7VsX/
+	QYZ9/PVP2fOom1xSC8Ng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1srYoO-0000000BiTh-3WqN;
-	Fri, 20 Sep 2024 08:16:21 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1srYoO-0000000BiTH-1a8G;
+	Fri, 20 Sep 2024 08:16:20 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1srYoL-0000000BiQN-034f;
+	id 1srYoL-0000000BiQQ-0NeA;
 	Fri, 20 Sep 2024 08:16:18 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 0EC06A441BA;
-	Fri, 20 Sep 2024 08:16:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A4805C4CECD;
+	by dfw.source.kernel.org (Postfix) with ESMTP id 72C395C5D21;
+	Fri, 20 Sep 2024 08:16:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C1D2AC4CED0;
 	Fri, 20 Sep 2024 08:16:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1726820175;
-	bh=zYrG4JOdof5Kb4KbKr9UqFtgnrrQGTE+AbTafTRVifY=;
+	bh=KGg+9yxlFddJLvy59fqrK62adIYW2fdEx4QtkoNDsrU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=m7szP3+fwUyzikmJZ2LdFSgLmJZ3olD/2ioaIno0bkiPeKe+WUfWfFsiRGBfarO5g
-	 2m+2sgPGZuU9E+0fVUdCdNyRSMJXXp/WWS5+yTyw+DOWvIXvEqn3PR9ZQyrR8aKBz2
-	 z5jOE+rqhL86qsUaUr4cvBCo/HwULe1bnqpnGWA3VI0Ds2hv5vNAmpH/KlAiCH5TGu
-	 PxZCpp+B+6OyJPynndxV41VuK7yXGt0P3zP9VRwnykSrYwQkRB3lL73OIeZYAnDTzv
-	 KtQAVQT5Ah358eGuYn6t7mUPXI9ohR40L6Vk55BC1TdXeFN2hDECqYMSz9xLkQMy9d
-	 lZNWTMvDRFesg==
+	b=PetVLVQ+3aRmiyk7jD37i7VBES0LRNaEcx1+/3DbN288tLnLBJirx6WWfzlJEA/af
+	 fMe66vfaM9Y2arpx2JcaLTgk2b6fGDhaX6WjzvhKvPGngb304Jw1shjJmdYMCMYtRW
+	 b0BhtwSLXzNRc71Z7RvrjyfhETBf/QFTxUfJ/I5yxfka4px6v06GKb2BgySTuhE08I
+	 rycCXPqCabVPfs9tpI452Mh/20wnZpJHsalMGHngMSYteeQFB8mZ7kLY9hlqwBxqiF
+	 rZelzOs93zVCxygRwuVQ4tmiLeDwRVsu3mivCF64Tev/5XcY9am2jvGYhr4NKdMA9o
+	 vpSqoUGS57zwg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F6FCCF58DD;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B74ECCF58EA;
 	Fri, 20 Sep 2024 08:16:15 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Fri, 20 Sep 2024 16:16:11 +0800
-Subject: [PATCH 1/6] clk: meson: mpll: Delete a meaningless spinlock from
- the MPLL
+Date: Fri, 20 Sep 2024 16:16:13 +0800
+Subject: [PATCH 3/6] clk: meson: meson8b: Delete the spinlock from the MPLL
 MIME-Version: 1.0
-Message-Id: <20240920-mpll_spinlock-v1-1-5249a9a7e2b7@amlogic.com>
+Message-Id: <20240920-mpll_spinlock-v1-3-5249a9a7e2b7@amlogic.com>
 References: <20240920-mpll_spinlock-v1-0-5249a9a7e2b7@amlogic.com>
 In-Reply-To: <20240920-mpll_spinlock-v1-0-5249a9a7e2b7@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,19 +60,19 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1726820173; l=1612;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726820173; l=1042;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=BZXhg4CTNZVT2pfn9n5YtAFzBvDkKei7u08ePhTMQ5Y=;
- b=c5RWy2so9ARwlG7HP5tJMif6Xs8tPQe83hHw4BrCVOzlgZUKN4PVqezSrnxDy0IjHki3OrbUv
- 9rUeCaK7jI7CMadjwdGnhqnZsyzNB6BuZ9yonfem7thhHL6aJo+BlDv
+ bh=N+7gK8ye2ZH8Sz8SGwh9nN4Tn81n4jpbYcpMlhBsfdw=;
+ b=dphtUdfobSoHJkXJrIcLyyGoAhtVltiI2V0nUCiZXjLIwlYlcis4LsTvsd/4d/Gg5DfGZ6PUO
+ OqjLr1Eei1QAyuIutGAG1gmYy2uTt1vpwQylU9mZVhHDYpYCp/cMf3Y
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240920_011617_270101_7CCB0163 
-X-CRM114-Status: UNSURE (   9.26  )
+X-CRM114-CacheID: sfid-20240920_011617_259787_B6673894 
+X-CRM114-Status: UNSURE (   8.02  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,59 +93,41 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-The existing locking mechanism of CCF can effectively avoid concurrent
-register access. struct meson_clk_mpll_data has no meaning in defining
-a spinlock repeatedly.
+It is meaningless to define a spinlock in the struct meson_clk_mpll_data.
 
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/clk/meson/clk-mpll.c | 11 -----------
- drivers/clk/meson/clk-mpll.h |  1 -
- 2 files changed, 12 deletions(-)
+ drivers/clk/meson/meson8b.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/drivers/clk/meson/clk-mpll.c b/drivers/clk/meson/clk-mpll.c
-index f639d56f0fd3..aa9abd06ae65 100644
---- a/drivers/clk/meson/clk-mpll.c
-+++ b/drivers/clk/meson/clk-mpll.c
-@@ -112,26 +112,15 @@ static int mpll_set_rate(struct clk_hw *hw,
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_clk_mpll_data *mpll = meson_clk_mpll_data(clk);
- 	unsigned int sdm, n2;
--	unsigned long flags = 0;
- 
- 	params_from_rate(rate, parent_rate, &sdm, &n2, mpll->flags);
- 
--	if (mpll->lock)
--		spin_lock_irqsave(mpll->lock, flags);
--	else
--		__acquire(mpll->lock);
--
- 	/* Set the fractional part */
- 	meson_parm_write(clk->map, &mpll->sdm, sdm);
- 
- 	/* Set the integer divider part */
- 	meson_parm_write(clk->map, &mpll->n2, n2);
- 
--	if (mpll->lock)
--		spin_unlock_irqrestore(mpll->lock, flags);
--	else
--		__release(mpll->lock);
--
- 	return 0;
- }
- 
-diff --git a/drivers/clk/meson/clk-mpll.h b/drivers/clk/meson/clk-mpll.h
-index a991d568c43a..4ffd3aeef799 100644
---- a/drivers/clk/meson/clk-mpll.h
-+++ b/drivers/clk/meson/clk-mpll.h
-@@ -20,7 +20,6 @@ struct meson_clk_mpll_data {
- 	struct parm misc;
- 	const struct reg_sequence *init_regs;
- 	unsigned int init_count;
--	spinlock_t *lock;
- 	u8 flags;
- };
- 
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index b7417ac262d3..5011768c0f4e 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -492,7 +492,6 @@ static struct clk_regmap meson8b_mpll0_div = {
+ 			.shift   = 25,
+ 			.width   = 1,
+ 		},
+-		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll0_div",
+@@ -537,7 +536,6 @@ static struct clk_regmap meson8b_mpll1_div = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll1_div",
+@@ -582,7 +580,6 @@ static struct clk_regmap meson8b_mpll2_div = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll2_div",
 
 -- 
 2.42.0
