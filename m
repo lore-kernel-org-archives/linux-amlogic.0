@@ -4,79 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FFBBCF3962
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2024 16:39:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3824CF58C0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2024 03:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CJTq/y5RWiyeBgOVtLOVTQLMPHQFvDi9lnqdGvYEdAA=; b=178KlYPoyGUysK
-	QvADby0+vquoeOZUfkW8nXZIxAYI7Gj1YXdK34sJePHdtSSzZsmdEVDTWgKH3WkmHTofSpjtdRoGg
-	RDm8ELlChosGi1ztO6jMuHmgyg9m7SmXi1bOCQI5WWtaE/0C56orYj1uHbOak/ADdAFweT+6L4lvR
-	DkqjUA8qJsxn+F50jyzbHdI90kpTuzo9IQzi2iLzlE2RR6cYS0LxQ0ITDfOYK2qE+O9d7ydJPUjTy
-	6XhHhq65oIo2p9mXtAEWM49wRBtA2W5aaWd11ET9IcIhU3kW3uOZy6zx+NJQBpZB7YISk8zPzDymD
-	seoycAmT8ExjjBRlzyvg==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=9szVE1AGBMVhL7Hp24MrYECuZMJwNNLyXY84SAYNdsM=; b=DtroSxYkSvqJ/K
+	mfr8LILJiresFKk9aN5dN+PfLCCA2W3evSmimPslfD4iiTe8SXW5p3pGnqBzLaZbL7WaEJOMYcSZ9
+	GKn61mOT/fTMRbFeT9pwMrUpfllcS4JfHWWOuq8h9r0t8HfSO/gDR/RZVbahFIJp/c0/FsBNZO8sR
+	/WMPvcV1rkYjRcqx/n8vK0qbZZj7ssy+oUs+owrI4RyJ6tXpWd9pw0Oi79jcw6L0fMD9U4mIW09XV
+	8D6Rsn1zoaFQtIq3yI0rkiV8UcnG/HBM2+twtd5xxiyfBhcZob6PxYaJnGF7xh8mlK+gQbU/RanOg
+	Kek4jrWsYeJajYa0H/Gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1srKBa-0000000AgiO-16Xn;
-	Thu, 19 Sep 2024 16:39:18 +0000
-Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
+	id 1srU2y-0000000BLTD-3Dp3;
+	Fri, 20 Sep 2024 03:11:04 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1srK5l-0000000Ag5U-0pGb;
-	Thu, 19 Sep 2024 16:33:18 +0000
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-20543fdb7acso10047495ad.1;
-        Thu, 19 Sep 2024 09:33:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1726763596; x=1727368396; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dD7ZAd80cIK9QgGYjEIVdPif7fITvc0jkxvVyO4K/Sw=;
-        b=dsoCtMYMymTHGzb78va3rt+ANc5G+DkpzuimdMjnDPs9iSuZFVrQOVUb+AvjZVpUGg
-         A/Up2KqrA1ihgSgix888OTGtVQJP1CJvSdhRQ/KKupAkthkXvsLFPkOpwcGFFcu/YY98
-         3fUCC/49S3a5A0V4XemMbjKMNbUOoiWFCyuhVRJUqBSGbXVdOiWTz1NGQt68uqD9YRVH
-         33Hp/qoel+h9JYFo9okjRB4PRIfaIwNTewMeQle3uBEnxXzDmNd2ktDtCO+yT3t5y/MH
-         D7OLwhSIw2dCBbDJyLevw/cFUb7vl0th2n2kkrj3H5z4eHS3suwvMnA6hlfR4vxtnve8
-         Ft6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1726763596; x=1727368396;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dD7ZAd80cIK9QgGYjEIVdPif7fITvc0jkxvVyO4K/Sw=;
-        b=XHwn97mrV/1y1tpc4YjG4BE1db4DY1N7QzO8MmJedXAKOn6mskSzCnYqJmwEAVaPvg
-         9W55zIvVTp0dEnSeaWXRXC5N+mjn1dXRLN11r7HAariEX1CbwaEKBYObO3ShjrIKXUh6
-         vrZQQxfcgbvDjQwhdiw4+cNWn8KCV+MtzEnGosVt+hZwp8raV7heEop6UUPCIGTtXhuv
-         8OiOIicKjjgzXKvjgvBm8V88kwLcGA70YtSpFVs1jvUzegH+sRav7wRQ/kWF4G0+C5dD
-         CuFA12173tlpV3Rjg+abgDjnkjQjHISXK4NvnWXyArHzVgx8WNbzH23yoRixtt/9qUX1
-         /rVw==
-X-Forwarded-Encrypted: i=1; AJvYcCUEl7U8CUZMwvIaSceFi9Zm1P655PhgFwJYvAEHX0Woj+vjwGdNO1jqk4WFU0TM0NznjW9T2SW9lY4wxeEf8EMC3Q==@lists.infradead.org, AJvYcCUdO+3cJctC3Y/VgEcwSWZyqwI/E8R13NepPLZvwtrKkzfPfzLBn1pxa7QYcEw01i1wSdw/lYPE+BJPEKiG@lists.infradead.org
-X-Gm-Message-State: AOJu0YwBlIKKFm0SrnCcyy5wXhyZPL5qvBnyhSnoXJSLASthrQBU2+Z1
-	2G63zlMr3DIlgiGYeSFE6dYoCE/A/ly5blVFzPjLRC3j3hn/LQk/qYpkFejqjDT6fKXMNCWy9P1
-	uL6eVlX2yKJ3jYISVG91EtkrYm6+KfQ==
-X-Google-Smtp-Source: AGHT+IEU0APxNlhgv3ZdHwNLnDsF63SfYAQ6+7TBUScvnPkZdQTFY8GHqsE1myEcFodpaTrBXEoAgJdKAo+Ihc2AQX8=
-X-Received: by 2002:a17:902:ebcd:b0:206:93e7:5845 with SMTP id
- d9443c01a7336-20782b85109mr295593555ad.59.1726763595653; Thu, 19 Sep 2024
- 09:33:15 -0700 (PDT)
+	id 1srU2u-0000000BLRi-3Sv5
+	for linux-amlogic@lists.infradead.org;
+	Fri, 20 Sep 2024 03:11:02 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 227E75C4904;
+	Fri, 20 Sep 2024 03:10:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6A4E3C4CEC7;
+	Fri, 20 Sep 2024 03:10:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1726801858;
+	bh=g8Fx5TTJzV1MuTCeRPULLGaYpS2ORG7ZcWbYMH2W/Ds=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=FfdGNfJs3xXrogoLROEuJoEXYY+YfKX+S+FpOH8f31+FsKqApheF+v8ga1Xm0iWOK
+	 ScRiCJ5XFNoP1E01uvRBj7NnVRUkEEgAoqkAE17160V37FxUlqrHfqkVXzJz7VH9NG
+	 ImMCkjPNxHDhrU7l3umu52l8Fc2BES8uIk2tTNLliKguFbBcjeLHBQ1e5WDl2ful+L
+	 TuSq5zSXX6hiKH3PiBPqH4w+n0nUfrxctIPKBkRNNZt6foO6ZlC9WOLDeIJ5JrFG+0
+	 XE0qG3YcCsF/cHWAHr3eIaei9VOrjv9xXhHVUOrUdrdOhJwj8odfMM4twRrUPxfwjU
+	 3AoMiZpIhdz8w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 59307CE8D62;
+	Fri, 20 Sep 2024 03:10:58 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v4 0/3] support for amlogic rtc
+Date: Fri, 20 Sep 2024 11:10:55 +0800
+Message-Id: <20240920-rtc-v4-0-91ae5fb4e3d5@amlogic.com>
 MIME-Version: 1.0
-References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org>
- <20240916174030.GA835203-robh@kernel.org> <9394d785-5954-4d44-8ad0-9b57fbecde25@linaro.org>
-In-Reply-To: <9394d785-5954-4d44-8ad0-9b57fbecde25@linaro.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 19 Sep 2024 18:33:04 +0200
-Message-ID: <CAFBinCAbb5rh4GZZhjFA1jSGJAPNC80vnUY+PC9AdaApLZphmA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to dtschema
-To: neil.armstrong@linaro.org
-Cc: Rob Herring <robh@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+X-B4-Tracking: v=1; b=H4sIAMDn7GYC/2XM0Q6CIBTG8VdpXEc7HESgq96jdUGAypbS0Lma8
+ 91DayvX5Xd2fv+J9D4F35PjbiLJj6EPscuj2O+IbUxXexpc3gQBC1DIaRosZSitU0yjYZzkz3v
+ yVXislfMl7yb0Q0zPNTqy5br1I6NAy0oCV8wZVPxk2lusgz3Y2JKlMOJXafgozAqEM0IKcVVO/
+ yv+oxi8Fc+KVQakNKU2CFs1z/MLl/npkwQBAAA=
+To: Yiting Deng <yiting.deng@amlogic.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1726801856; l=1589;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=g8Fx5TTJzV1MuTCeRPULLGaYpS2ORG7ZcWbYMH2W/Ds=;
+ b=uJD6SDKCaARt2GvUkVjfOKpc3p7WmcpKrCtYamVgKYVkmUJ8p1FcbSC4CVK4F9Ux1yqBEhbFw
+ 6RjgR8C9736B16+Tc8Ez4mzGpMAqE8qnuEJpdWbEb+vCysWBazzrZTE
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240919_093317_257143_50D43A6F 
-X-CRM114-Status: UNSURE (   9.48  )
+X-CRM114-CacheID: sfid-20240919_201101_038955_04CD02AF 
+X-CRM114-Status: UNSURE (   9.28  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,20 +88,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTmVpbCwKCk9uIFR1ZSwgU2VwIDE3LCAyMDI0IGF0IDk6MTPigK9BTSBOZWlsIEFybXN0cm9u
-Zwo8bmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZz4gd3JvdGU6ClsuLi5dCj4gPj4gKyAgICAgIHJl
-ZzoKPiA+PiArICAgICAgICBkZXNjcmlwdGlvbjoKPiA+PiArICAgICAgICAgIHRoZSBzbG90IChv
-ciAicG9ydCIpIElECj4gPj4gKyAgICAgICAgbWF4SXRlbXM6IDEKPiA+Cj4gPiBBcmVuJ3QgdGhl
-cmUgbGltaXRzIGluIHRoZSBudW1iZXIgb2Ygc2xvdHMgdGhlIGgvdyBjYW4gc3VwcG9ydD8KPgo+
-IEdvb2QgcXVlc3Rpb24sIGxldCBtZSBjaGVjawphbGxvd2VkIHZhbHVlcyBhcmU6IDAsIDEsIDIK
-CkZvciB0aGUgcmVtYWluaW5nIHF1ZXN0aW9uczogSSBhbHNvIGRvbid0IGtub3cgLSBzbyBsZXQn
-cyBzZWUgd2hhdApSb2IncyBzdWdnZXN0aW9uIGlzIGdvaW5nIHRvIGJlLgoKCkJlc3QgcmVnYXJk
-cywKTWFydGluCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
-ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
-bWxvZ2ljCg==
+Add rtc driver and bindigns for the amlogic A4(A113L2) and A5(A113X2) SoCs.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v4:
+- Keep the same order as as in properties.
+- Link to v3: https://lore.kernel.org/r/20240910-rtc-v3-0-1fa077a69a20@amlogic.com
+
+Changes in v3:
+- Perfect the binding description and rename binding.
+- Using dev_err_probe function correctly, and modify commit message.
+- Change placement about MAINTAINERS.
+- Link to v2: https://lore.kernel.org/r/20240903-rtc-v2-0-05da5755b8d9@amlogic.com
+
+Changes in v2:
+- Modify bindings clock name and perfect the example.
+- Fix some bug in driver, and use dev_err_probe instead of dev_err in probe process.
+- Use RTC API to handle calibration.
+- Remove unused func and rename driver file name.
+- Link to v1: https://lore.kernel.org/r/20240823-rtc-v1-0-6f70381da283@amlogic.com
+
+---
+Yiting Deng (3):
+      dt-bindings: rtc: Add Amlogic A4 and A5 RTC
+      rtc: support for the Amlogic on-chip RTC
+      MAINTAINERS: Add an entry for Amlogic RTC driver
+
+ .../devicetree/bindings/rtc/amlogic,a4-rtc.yaml    |  63 +++
+ MAINTAINERS                                        |   8 +
+ drivers/rtc/Kconfig                                |  12 +
+ drivers/rtc/Makefile                               |   1 +
+ drivers/rtc/rtc-amlogic-a4.c                       | 473 +++++++++++++++++++++
+ 5 files changed, 557 insertions(+)
+---
+base-commit: 658b3fec5fc0ef3c016c4a7eedac1a5f3b8c0151
+change-id: 20240823-rtc-127cd8192a13
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
