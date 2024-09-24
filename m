@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AAD4CF9C6B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Sep 2024 09:14:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D712ACF9C71
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Sep 2024 09:16:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Zb5r9naa2CKer3SISjzfhoSksiIMKvWLOguXa0E5OrI=; b=X2Ig/dOzSpR8mP
-	oYnTQJsIoN+QP2mPLUHMn6e4DidhP7e/gU7tAmSFmlyVq5y/SpD9ucNcnWL3urqOSikl0PsGY7NEs
-	xiRvV579GTOndJuuDHsA9MFqUb6n6fQnlNidKtJe/FRb9yqgTllScB2BCqtpl9T2eU2eXLwDU69hB
-	p5oqblTTzpwgDeB+/K82AjmHU69w1KX666TQ/4J/4tIsnzrD+gU/RphEhmZ//1S3n5GLujazl6WDF
-	eu2aC1Hd1v7iICPqScH2jbhNqJUPe1o8zVXgnyWTVcxy+4PblgJUqnfoJCr2/UEv2jKeOWM2hISrN
-	W9zcuZOapum+hNldjkkQ==;
+	List-Owner; bh=WnEJqjXXsl9TQDZoVo1n+O9KZC7fCx7nzgb6aUOEICI=; b=Pvi0lR0+hMMTZ7
+	o3g5VtAet+OE3tulXzruZzvV35R/sy+0GVIUptluQwwmuVyJx8pqqfjkKtLuN7ugZgT4o9a/T0ien
+	hGrRSBOpFcAs6IJNmMTvEheUGbQ7v/y4AGECQQyQ9jdNrmLHJZWz4WirwxHpAbmfzuUA+KAnH7/br
+	fOKV6XEK7HBDSSDJ8sghXR78tJ/vfUVzvznpP2UDT0odLHLeiqkmXroCod/8zR4YXu5sSNpTNll36
+	IgFewI4M27KMlMaYibvFeEuG4TKidnST8ThAFXog9zpR81woyoLN/jUg0ID5UxRD35+IbwRvzEQYs
+	ElEWb6I7PfgJgZYbvOHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1st1co-00000001kzC-2xe7;
-	Tue, 24 Sep 2024 09:14:26 +0000
+	id 1st1eH-00000001lEN-2IJT;
+	Tue, 24 Sep 2024 09:15:57 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1st1bE-00000001kcR-396F;
-	Tue, 24 Sep 2024 09:12:50 +0000
+	id 1st1da-00000001l83-0elP;
+	Tue, 24 Sep 2024 09:15:15 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 41A235C5B99;
-	Tue, 24 Sep 2024 09:12:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 147DFC4CEC6;
-	Tue, 24 Sep 2024 09:12:46 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 5D5C95C5B97;
+	Tue, 24 Sep 2024 09:15:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1575C4CEC4;
+	Tue, 24 Sep 2024 09:15:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727169167;
-	bh=OWP93lxMU7Kz7NXhHpQx1nS5UtQYEswveLq4GJOZPeA=;
+	s=k20201202; t=1727169313;
+	bh=2KVuSiYdwxbydC/A7uEWSSCNb1LsPPeJVYNuNNT1jtQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tWuEqDAvLDmw+g74otC7+T/ALm+AaCx1SFASlCaSbJk0UYwqeGeXw5lH63uAOihzG
-	 M6+/VdXUfX1qwTTNJsaXeVZM4jSczGcEfB+6/suJQeWfFPLjqJNpJhywOvFvi2l0Iy
-	 pFiT0xg1thDnu+RAVaqZa1AuVa7cWCTMsc1nLxecD0EX+/ctZsBnK7KAezw1U3XJig
-	 p0FHHhQAh1ulnvR2TwCfo/VHePqibUD5FnkmfkNotszk+d7Q/S6Od7pMZLL6x7umt4
-	 8vjUSReu3lGW5tGaaOgFU9O19E41UKz8rRNveEtg0Pny1rKA0uKtEe1xUGq6WQereq
-	 Pvaw4Zo5bhDYQ==
-Date: Tue, 24 Sep 2024 11:12:44 +0200
+	b=dtkeOj0JCO59riq3o9U7q6HoDynCZ1sHI7fJLReBh3tlc1BFCSnjKd3DU2py+0Gdl
+	 MJnTRjoRAPJdvcxv0U6KK7S63atk/TaGkYF4PClyYuDbWPBJcWp7EVpSQXsutDNMB8
+	 mBLnYOQ3XZXMn+Rsr/TDCpSGmP0+wreQyaeKuWMjyHyP3JTiIyGaGHrEVAuUCpSRQe
+	 Mekys1F9NomtKLjEFb3fenl3Agt40AD9Ettn/OjTuiL1IeFmHnbZGg7DB+GmOY/TgB
+	 YeeQZB5ccTK4+Ee3UXz7TSKohcXZdX2lhAe9zmV7fTjVKlyWB47nEHu3riDwPaXy+w
+	 MBrUwq7FEa1cQ==
+Date: Tue, 24 Sep 2024 11:15:09 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
@@ -49,17 +49,16 @@ Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
 	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: controller: allow node name to
- be named slot@*
-Message-ID: <qt3ivwsa3uaidcgkzbd2ewohbyd6zbzseraihftdhxpziuhnpq@xsne3f4wdfua>
+Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: document mmc-slot
+Message-ID: <5o2q5kmchnr3e4opmtp2xq3xqlzkq2hudecd5fszamoav4twhb@o3kcftkoxwzg>
 References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
- <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-1-5aa8bdfe01af@linaro.org>
+ <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-2-5aa8bdfe01af@linaro.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-1-5aa8bdfe01af@linaro.org>
+In-Reply-To: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-2-5aa8bdfe01af@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240924_021248_853862_9ED04A76 
-X-CRM114-Status: GOOD (  16.17  )
+X-CRM114-CacheID: sfid-20240924_021514_424731_C259EA4B 
+X-CRM114-Status: GOOD (  16.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,32 +75,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Sep 20, 2024 at 10:38:03AM +0200, Neil Armstrong wrote:
-> In preparation of supporting the mmc-slot subnode, allow
-> the nodename to be either mmc@ or mmc-slot@
+On Fri, Sep 20, 2024 at 10:38:04AM +0200, Neil Armstrong wrote:
+> Document the mmc-slot, which is a subnode of a multi-slot
+> MMC controlle, each slot is represented as a full MMC controller,
+
+typo: controller
+
+> the top node handling all the shared resources and slot mux.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/mmc/mmc-slot.yaml          | 40 ++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> index 58ae298cd2fc..f797c32ea688 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> @@ -20,7 +20,9 @@ description: |
->  
->  properties:
->    $nodename:
-> -    pattern: "^mmc(@.*)?$"
-> +    oneOf:
-> +      - pattern: "^mmc(@.*)?$"
-> +      - pattern: "^slot(@.*)?$"
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> new file mode 100644
+> index 000000000000..c30eda4fd2a6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/mmc-slot.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MMC/SD/SDIO slot of a multi-slot controller
+> +
+> +maintainers:
+> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> +
 
-I don't think mmc-slot is allowed by this.
+description here saying what is the MMC slot, e.g. what you wrote in
+commit msg.
 
-This should be squashed with mmc-slot child patch. It does not make
-sense to allow mmc-slots if there are no mmc-slots.
+> +allOf:
+> +  - $ref: mmc-controller.yaml
+> +
+
+Just to be sure - the slots do not have dedicated resources like clocks,
+resets, power supplies, right? IOW, it is indeed one device which
+exposes multiple controllers?
+
+> +properties:
+> +  compatible:
+> +    const: mmc-slot
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
 
 Best regards,
 Krzysztof
