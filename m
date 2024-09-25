@@ -4,83 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BAF4CF9C79
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2024 14:43:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F57DCCF9E7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2024 15:43:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IIIU66cX3KCpI7Pt2PykuVNEkHrG4L3DYM4Z3hiWNIQ=; b=HQxH7EjdDP+ivt
-	0pFbI4JilPysVi2mkfZ7wsjPyuCNjBIUcq8uYeCNKRPLnRY4W/PGH0vlQNmLNSZa8cYoEcj+m5Ak6
-	9yIGOvRgfGtiwTgYFyx9v2+dRSHxNpZYc126KizL4n2stV7GRQgJNpoCTSKYWeZ9tZVIA9/xiZpPH
-	bUa5gHrEdxPmdrKoLSEsJCeOClNfVv3OEfYrNp1X9n7r9e0rNJXoZKCLeXBj9n/sTKNHjnlBQvz2F
-	JfN09bgiw1Q9UD1qNKeMkcn26Bjiy2vlhCG3kOaTuJJKWYfLJtCHMttN4bBmYxdkfD9F/xFJ5oSwb
-	g8Gd6gP3O9y0GCFVIkCQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=DScI9r7oEMQ6sGgOrm5m/9WlNxsF5liGYQKKgoCqYFU=; b=OJC2lPm7jGia2c
+	bLyd2ruV6W62B2VH9mSusuioBOEtzuf4Yk/C3bgUnc8FVti56kKaRM4Kbyab5yNBdBU5nH909PwYz
+	5VkZyU6UJ5w8X2HBcXk5YMSgqH7NRcwBjnqMJoN9eOcDIk3HkpnkpvaEOY+w5ZqhCh28obEfJ3Jgd
+	tz+pNS2c43FVh8yB4jncnpwQs8cT0jfWyvJViZapr9Cn6YpjKj2Sn5HuwhDJ2/zwIgRmK1SsunWLp
+	zgFa5qNpGbwhRlbFUm7TUPfYADubVcW4X/yM0YotSOUq9GTLk4ioo8GFCeQRZLZg45ElUqFM/t533
+	tPbdWOQhulOeTTu7DtsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1stTEn-00000005h0p-3C59;
-	Wed, 25 Sep 2024 14:43:29 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1stUAQ-00000005uro-0kzb;
+	Wed, 25 Sep 2024 15:43:02 +0000
+Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1stTDI-00000005gg6-3Cyq
-	for linux-amlogic@lists.infradead.org;
-	Wed, 25 Sep 2024 14:42:20 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-42cb8dac900so66997515e9.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 25 Sep 2024 07:41:56 -0700 (PDT)
+	id 1stUAN-00000005uqT-29uU;
+	Wed, 25 Sep 2024 15:43:01 +0000
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a8d3cde1103so660672066b.2;
+        Wed, 25 Sep 2024 08:42:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727275315; x=1727880115; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I6YxIAdzjayyAJ7SPnjQzAFuzcgXCfaGhFkXioDlFtQ=;
-        b=S5haP1vIcTsZZh38FAQXdf4fb9xmupSCPKzOvkzyLOyxeVGDVW0nC7aGyT148zF+Mm
-         G4DlsE7y2v+HSoZHvQjiKspKqshZ3maRgP30Mpor0sYBc+aNj5nPpI29uSZ5hxWlW0ib
-         1nIOZf8c+KvhN4S0Kt2hKyKtwaQ0blnMd+A/7DKsJfIpvMiK6FOzgnLRHpkTaXcHjPfi
-         Vueuw/1LkDCG15lx/gAGHp1RB1ni+k23v+/+jzLbPi7sF//tCnqBt0YvQjuTEiiWiDf3
-         VzmlPjgI43D2BrNgNaLHLKib6oEkN/dnjMXqTp64Z0HVL5Y0HN7rs+jKLkP2Lqs/cOGy
-         njPg==
+        d=gmail.com; s=20230601; t=1727278977; x=1727883777; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tgLjgsBATCSWM6XL4qorkL1lHK3PtUuXoapmBEAcGck=;
+        b=aubsKbhXOgGV7GkxgNFN8tGs/20kbQtz4aXlklGs3aAg7u9VchHTq/YV0rDcjJMajG
+         OY3VJwkeeicS1ADD6YsrCLxHp9FvnJVmjQ5ptTDfDG334TdQy8tx7h8TZ++xpWKA07ph
+         fcUUQzrZjP2RUvO0TaRDwNOk3hDkYEhEdjfr5WrOe7fcjVpWhzkuKDvLsp7+7fbdAnH6
+         sSS62kMdg4/odbSXyNay6cgINWZhwtrNXkPGtWm0Uj1jfkdbx72WqVt3LBob9V62rBg8
+         YDIcLZ2X3IEJPNWMWNwBgRxFasJEy4VAssUpxQCJJZV4CE7V2Uw5/XP3t5LVLrhk7qQR
+         G/vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727275315; x=1727880115;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I6YxIAdzjayyAJ7SPnjQzAFuzcgXCfaGhFkXioDlFtQ=;
-        b=OQ5v/1ZK5Bd6xEGg2q4paR/jyv6J7/cDFKEg/eUeujZBlv6EvBnFVWCE3Pwx+SCV/g
-         ldiZ46/Xt+vX7fHJLSe8WC6PoRiLDCeSpjeFES3h55IcYTywAbAX2rgq2ZuUo1QmhDaC
-         Z4SL1CuBkTeC4irjv/ESIeHBxnlec60Zk24/UVUCr2zmt0bEu2VtjmibAuCvgNnxXH2w
-         tk7T4ugEh2FLw9E3HxunCbdyDqFIh/3uhwABX73ZRUXO09+9QMFPkEIPtuRjuYjKZ+3/
-         s6Y+3gi1hGrkXA+/l5WCfyCoYttEjCJ6bAJa8Gdg7o0Z/hk4zM2pFkds/kTrugW7e50I
-         lp+A==
-X-Gm-Message-State: AOJu0YwkztQDYrWcenTnixlFGXxwrtLath3eYOfOg+G+GWhEmYL+C0AR
-	2V6vMJeW2HydmDqJVfrOfE2vjbnWPLgiyuF/rMSY/RJujXwreZuuOsDXeyLkuAo=
-X-Google-Smtp-Source: AGHT+IHAfHUuxoeTZOXnlSb00AtCPxIw644azB+Jwg19bMpf06tWeqhuqjRnBMg/w0GGwp9dIbB4gw==
-X-Received: by 2002:a05:600c:1e27:b0:42c:b45d:4a7b with SMTP id 5b1f17b1804b1-42e961465c2mr20376755e9.25.1727275314706;
-        Wed, 25 Sep 2024 07:41:54 -0700 (PDT)
-Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:857b:1996:7ede:6ce4])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42e969fb894sm20822045e9.16.2024.09.25.07.41.53
+        d=1e100.net; s=20230601; t=1727278977; x=1727883777;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tgLjgsBATCSWM6XL4qorkL1lHK3PtUuXoapmBEAcGck=;
+        b=w+qDlUXkrQenQyNPcW5F90A10xQhbh6Yl6tHG0ZzGjmbddsYU21yL2ny2v2eGiEtFY
+         YgiMpA3jp0IEGTmHq8xbXMLE0+arSE3n8E969dorS8h13cqgXkR1tDFO4LqG/F9XI4OL
+         tIZGCDZTZRD12TThHdy4sD232AO/ZBLKZqfMqAMyPKrLaT0lLwZ+ICeZV8wsGfr/FHMJ
+         GoftKnNEKG0vZ9mJkj9NmzYmtqopkeElywc6368LuzoEoHFb+ixf6jxLPM3H4/qYXl0b
+         4idFHc1D/3TLjipvHvVrCGCsU5buFHsxy5S+/iSNx71d3s94pYVoZJDZAIPnBwxYet+U
+         w3UQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUtREnf28zKOaBn1UqJW4Ce6DG3ENJ+CkdYkdC9Cb02qM/dMF5sIvSsizuoabf5Uqg9cUNXlLyCasoAQ0vt@lists.infradead.org, AJvYcCW3bZlDcytwgGgQxmbu7doSwwCyx+WS3kpeRWRQKArEvItP+cZXT3/7/b9hp60MyHtRKZktjOMM4n8Jmq4Sd/E=@lists.infradead.org, AJvYcCX2/NFMUcK6ipyT+qZ+KRHNrO8cSQY32lIy4G76lg5xL616Tw42/pwt43RkJFLAii4igUBFFcA0vm+Oq7iWuKIGJQ==@lists.infradead.org
+X-Gm-Message-State: AOJu0YxOLwl5Ujz8QZCt2+38Gxe4JFwnlYBAQI0lf49B8Az01WwWMqs/
+	UcXtkhBIMv6x/STXenH4nWnbHSxKDWMF82s07ZBSqUFLcZBpStAkvfHGiraO
+X-Google-Smtp-Source: AGHT+IFkZ1n37tP3Rc2/BMb8UIyY4klrs21gwIaq2A7G/dBjrAoB3ccE5EDVcggDj2gmdvtj2kWRUg==
+X-Received: by 2002:a17:907:7da7:b0:a8c:d6a3:d038 with SMTP id a640c23a62f3a-a93a03e3095mr316176266b.37.1727278976983;
+        Wed, 25 Sep 2024 08:42:56 -0700 (PDT)
+Received: from [127.0.1.1] ([213.208.157.67])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9392f3420esm221803466b.40.2024.09.25.08.42.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 07:41:54 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Chuan Liu <chuan.liu@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240925-mpll_spinlock-v2-1-8f9b73588ec1@amlogic.com>
-References: <20240925-mpll_spinlock-v2-1-8f9b73588ec1@amlogic.com>
-Subject: Re: [PATCH v2] clk: meson: mpll: Delete a useless spinlock from
- the MPLL
-Message-Id: <172727531377.78586.12477940902502018099.b4-ty@baylibre.com>
-Date: Wed, 25 Sep 2024 16:41:53 +0200
+        Wed, 25 Sep 2024 08:42:56 -0700 (PDT)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: [PATCH 0/6] drm: constify read-only regmap structs
+Date: Wed, 25 Sep 2024 17:42:39 +0200
+Message-Id: <20240925-drm-const-regmap-v1-0-e609d502401b@gmail.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.14.1
+X-B4-Tracking: v=1; b=H4sIAG8v9GYC/x3MTQqAIBBA4avIrBswK/q5SrQInWoWmowRgXT3p
+ OW3eC9DImFKMKkMQjcnPkNBXSmwxxp2QnbFYLRp9Wg6dOLRniFdKLT7NWKj+83YphtcraFkUWj
+ j51/Oy/t+aWaESWIAAAA=
+To: Jagan Teki <jagan@amarulasolutions.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Stefan Agner <stefan@agner.ch>, Alison Wang <alison.wang@nxp.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Orson Zhai <orsonzhai@gmail.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1727278971; l=1173;
+ i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
+ bh=mV011lLjGh5QUEeOXJ02JFFzg3GXgCu8+SSQahiHbas=;
+ b=myNkjRQ3PFvNNvW6MYUDscCs4qRnSff9r34U0SADdEuPuz6/EHK14GRk3jXV4EQhRuDrFFBYk
+ q/5VY5I1EZoCwxtXU4F47W872f6MFmFLNx3SrzjZfC9qmsxNSZ5SlmM
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240925_074156_812360_E0969F90 
-X-CRM114-Status: UNSURE (   3.92  )
+X-CRM114-CacheID: sfid-20240925_084259_588851_D7D949A4 
+X-CRM114-Status: UNSURE (   8.31  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -98,14 +119,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Applied to clk-meson (clk-meson-next), thanks!
+This series adds the const modifier to the remaining regmap_bus and
+regmap_config structs under drm/ that are effectively used as const
+(i.e., only read after their declaration), but kept ad writtable data.
 
-[1/1] clk: meson: mpll: Delete a useless spinlock from the MPLL
-      https://github.com/BayLibre/clk-meson/commit/14b8d1d8b2c6
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+Javier Carrasco (6):
+      drm/bridge: dpc3433: Constify struct regmap_config
+      drm/fsl-dcu: Constify struct regmap_config
+      drm/mediatek: dp: Constify struct regmap_config
+      drm/meson: Constify struct regmap_config
+      drm/panel: ili9322: Constify struct regmap_bus
+      drm/sprd: Constify struct regmap_bus
+
+ drivers/gpu/drm/bridge/ti-dlpc3433.c         | 2 +-
+ drivers/gpu/drm/fsl-dcu/fsl_tcon.c           | 2 +-
+ drivers/gpu/drm/mediatek/mtk_dp.c            | 2 +-
+ drivers/gpu/drm/meson/meson_drv.c            | 2 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9322.c | 2 +-
+ drivers/gpu/drm/sprd/sprd_dsi.c              | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+---
+base-commit: 2b7275670032a98cba266bd1b8905f755b3e650f
+change-id: 20240925-drm-const-regmap-307f2c358d10
 
 Best regards,
---
-Jerome
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
 
 _______________________________________________
