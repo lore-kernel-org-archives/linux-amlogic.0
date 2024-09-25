@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F57DCCF9E7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2024 15:43:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97710CCF9E6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2024 15:44:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=DScI9r7oEMQ6sGgOrm5m/9WlNxsF5liGYQKKgoCqYFU=; b=OJC2lPm7jGia2c
-	bLyd2ruV6W62B2VH9mSusuioBOEtzuf4Yk/C3bgUnc8FVti56kKaRM4Kbyab5yNBdBU5nH909PwYz
-	5VkZyU6UJ5w8X2HBcXk5YMSgqH7NRcwBjnqMJoN9eOcDIk3HkpnkpvaEOY+w5ZqhCh28obEfJ3Jgd
-	tz+pNS2c43FVh8yB4jncnpwQs8cT0jfWyvJViZapr9Cn6YpjKj2Sn5HuwhDJ2/zwIgRmK1SsunWLp
-	zgFa5qNpGbwhRlbFUm7TUPfYADubVcW4X/yM0YotSOUq9GTLk4ioo8GFCeQRZLZg45ElUqFM/t533
-	tPbdWOQhulOeTTu7DtsA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=VHahNotMKzrMI3aenV57hf6Ci6BURg2mjDngrI4HcYE=; b=PzOyUcWMmdLxVH
+	STgg6ER/ysQ7en01NpfhJ5C9V3MBFUtJsqMJzg1erf/DqSjWHKhSiyB15O+5DLM2999mSOLDp7iIn
+	VPUd4+Bdx6LIADM2Eew4/aRtnFgs3K0zXwzShw/8CfK/OsYuyjM6zwRElEQpe4tKrjUlUeqegNuYb
+	GCDLz287ZIBl0MN7+N4/ZqdFwNuOlJ77kEjS3lq26/lniQcMBQ79tDkvOUEf3uWIXCse1ADXLMOsR
+	IMsXrTNnPHKwVPqV58KOWFaPs9U0Quedzq4qDo2x0NcA4FhjWYxb6clVwH1KfIvOQ8PCzz1gQLT2A
+	CeuvppRV7mu9oEENTfTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1stUAQ-00000005uro-0kzb;
-	Wed, 25 Sep 2024 15:43:02 +0000
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+	id 1stUBf-00000005vTI-3NAq;
+	Wed, 25 Sep 2024 15:44:19 +0000
+Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1stUAN-00000005uqT-29uU;
-	Wed, 25 Sep 2024 15:43:01 +0000
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a8d3cde1103so660672066b.2;
-        Wed, 25 Sep 2024 08:42:58 -0700 (PDT)
+	id 1stUAQ-00000005ur9-0JCx;
+	Wed, 25 Sep 2024 15:43:03 +0000
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a8b155b5e9eso1013235966b.1;
+        Wed, 25 Sep 2024 08:43:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727278977; x=1727883777; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tgLjgsBATCSWM6XL4qorkL1lHK3PtUuXoapmBEAcGck=;
-        b=aubsKbhXOgGV7GkxgNFN8tGs/20kbQtz4aXlklGs3aAg7u9VchHTq/YV0rDcjJMajG
-         OY3VJwkeeicS1ADD6YsrCLxHp9FvnJVmjQ5ptTDfDG334TdQy8tx7h8TZ++xpWKA07ph
-         fcUUQzrZjP2RUvO0TaRDwNOk3hDkYEhEdjfr5WrOe7fcjVpWhzkuKDvLsp7+7fbdAnH6
-         sSS62kMdg4/odbSXyNay6cgINWZhwtrNXkPGtWm0Uj1jfkdbx72WqVt3LBob9V62rBg8
-         YDIcLZ2X3IEJPNWMWNwBgRxFasJEy4VAssUpxQCJJZV4CE7V2Uw5/XP3t5LVLrhk7qQR
-         G/vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727278977; x=1727883777;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1727278980; x=1727883780; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tgLjgsBATCSWM6XL4qorkL1lHK3PtUuXoapmBEAcGck=;
-        b=w+qDlUXkrQenQyNPcW5F90A10xQhbh6Yl6tHG0ZzGjmbddsYU21yL2ny2v2eGiEtFY
-         YgiMpA3jp0IEGTmHq8xbXMLE0+arSE3n8E969dorS8h13cqgXkR1tDFO4LqG/F9XI4OL
-         tIZGCDZTZRD12TThHdy4sD232AO/ZBLKZqfMqAMyPKrLaT0lLwZ+ICeZV8wsGfr/FHMJ
-         GoftKnNEKG0vZ9mJkj9NmzYmtqopkeElywc6368LuzoEoHFb+ixf6jxLPM3H4/qYXl0b
-         4idFHc1D/3TLjipvHvVrCGCsU5buFHsxy5S+/iSNx71d3s94pYVoZJDZAIPnBwxYet+U
-         w3UQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUtREnf28zKOaBn1UqJW4Ce6DG3ENJ+CkdYkdC9Cb02qM/dMF5sIvSsizuoabf5Uqg9cUNXlLyCasoAQ0vt@lists.infradead.org, AJvYcCW3bZlDcytwgGgQxmbu7doSwwCyx+WS3kpeRWRQKArEvItP+cZXT3/7/b9hp60MyHtRKZktjOMM4n8Jmq4Sd/E=@lists.infradead.org, AJvYcCX2/NFMUcK6ipyT+qZ+KRHNrO8cSQY32lIy4G76lg5xL616Tw42/pwt43RkJFLAii4igUBFFcA0vm+Oq7iWuKIGJQ==@lists.infradead.org
-X-Gm-Message-State: AOJu0YxOLwl5Ujz8QZCt2+38Gxe4JFwnlYBAQI0lf49B8Az01WwWMqs/
-	UcXtkhBIMv6x/STXenH4nWnbHSxKDWMF82s07ZBSqUFLcZBpStAkvfHGiraO
-X-Google-Smtp-Source: AGHT+IFkZ1n37tP3Rc2/BMb8UIyY4klrs21gwIaq2A7G/dBjrAoB3ccE5EDVcggDj2gmdvtj2kWRUg==
-X-Received: by 2002:a17:907:7da7:b0:a8c:d6a3:d038 with SMTP id a640c23a62f3a-a93a03e3095mr316176266b.37.1727278976983;
-        Wed, 25 Sep 2024 08:42:56 -0700 (PDT)
+        bh=XWbh6GTwX/Nur9rLh4dOxd0uol8CDj0VjkbwHekxRn0=;
+        b=XXFf59KyUUGuI8byJo2roEe/lvkpmxIdsCDhtxJxaaQ2TarMjbLTIAw7CsL6oi1mUD
+         aTfKpk9uYX26Y7Ec+Swnt8pksmv62p1w1afnUDNyhJVzepUo0hLbmvsYtQv7VZN5Hrq6
+         J2tXNKIs3UOk6L5En5k8BwAIYDqI3b7fK/mHXFElgQk9LMrAXtJJP40UIfxEgvHSg8+U
+         k6J9n/LoAs2IZnm++9A8WremKdNgHQUZlKC0B664wwmWSFkjSmFDY86+jh2lyM9ua6gR
+         vaLL1Psji/N61uPOulAUgkULQAQhmDzSl0/Gilad9VM8DVocpx3TcbLk3qMYz3amcMbM
+         fCiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727278980; x=1727883780;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XWbh6GTwX/Nur9rLh4dOxd0uol8CDj0VjkbwHekxRn0=;
+        b=dgxhQib8BniSXKBod7eS5QFV8zSefMXB82rSRCifcLzusTPBUE1rTBZqs70POxXfMa
+         GapV8Xf7l8mTVWm03XrR5M09DtZRviEATRB+OVTqaiaui7MAJzuvQPwe9rFqT3PoyVPI
+         xey0HwwWn7hma8EmJa/QZEBK+Xxxm7+VJOOX7pbGAKScmShV7HpI3cXz7QqyHrPrbkFA
+         G1PdfJLEa2vRSJCbpUE1ijYcsFLYjJBIxio+u/AGMZ+458POBfCiDTykMfNia4Pfr1Uj
+         f0EuMZlTOLdLF8A5WWpPzn8Or+1YKztzHk8Lo/l+5LuxK8DYMNhDN0BmClKH32919wDI
+         pLKA==
+X-Forwarded-Encrypted: i=1; AJvYcCWC3IZpuO5Hn2jca9l8AiR4kK6nuqEzVdVhpa/GSxoNRkhdtN+r9m/oLRCKqbvKuHPfBiena+jCycxH0Ew2LBIBYg==@lists.infradead.org, AJvYcCWCHtHZYrVhl5+h8iFlm0zIHdOfG0hghYy5fjgd6DhWm84Xt2aYsqnd1gG1jbAFzXQqtGRptqMHtZxWkh0U+D4=@lists.infradead.org, AJvYcCXMYBrAli8Coytji27kKlYS+nCaheGD7hy4dBMG09Moqzoitc7pwYj5UTFZGgD8w9l5gwrsn9UdK0Ikm4tz@lists.infradead.org
+X-Gm-Message-State: AOJu0YyBtabVIe+NQMdMcUW7xeNlKf3tDfRJ2iQK/box99CggK3OZT9m
+	paIa5SjMLc3NFUN/4B0ddWrJz72DS6o/TedJk5gt429AmflN71BT
+X-Google-Smtp-Source: AGHT+IFOGCZlm7hxWZEDil/VHBukKjDMSy3xe8mZT1I0E9J+s+NIqup/Xj8x8pzeHvNlSTbRH1jJ6w==
+X-Received: by 2002:a17:907:742:b0:a8b:6ee7:ba28 with SMTP id a640c23a62f3a-a93a0341396mr287138266b.1.1727278979968;
+        Wed, 25 Sep 2024 08:42:59 -0700 (PDT)
 Received: from [127.0.1.1] ([213.208.157.67])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9392f3420esm221803466b.40.2024.09.25.08.42.51
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9392f3420esm221803466b.40.2024.09.25.08.42.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Sep 2024 08:42:56 -0700 (PDT)
+        Wed, 25 Sep 2024 08:42:59 -0700 (PDT)
 From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Subject: [PATCH 0/6] drm: constify read-only regmap structs
-Date: Wed, 25 Sep 2024 17:42:39 +0200
-Message-Id: <20240925-drm-const-regmap-v1-0-e609d502401b@gmail.com>
+Date: Wed, 25 Sep 2024 17:42:40 +0200
+Subject: [PATCH 1/6] drm/bridge: dpc3433: Constify struct regmap_config
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAG8v9GYC/x3MTQqAIBBA4avIrBswK/q5SrQInWoWmowRgXT3p
- OW3eC9DImFKMKkMQjcnPkNBXSmwxxp2QnbFYLRp9Wg6dOLRniFdKLT7NWKj+83YphtcraFkUWj
- j51/Oy/t+aWaESWIAAAA=
+Message-Id: <20240925-drm-const-regmap-v1-1-e609d502401b@gmail.com>
+References: <20240925-drm-const-regmap-v1-0-e609d502401b@gmail.com>
+In-Reply-To: <20240925-drm-const-regmap-v1-0-e609d502401b@gmail.com>
 To: Jagan Teki <jagan@amarulasolutions.com>, 
  Andrzej Hajda <andrzej.hajda@intel.com>, 
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
@@ -92,17 +92,16 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, 
  Javier Carrasco <javier.carrasco.cruz@gmail.com>
 X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1727278971; l=1173;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1727278971; l=841;
  i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
- bh=mV011lLjGh5QUEeOXJ02JFFzg3GXgCu8+SSQahiHbas=;
- b=myNkjRQ3PFvNNvW6MYUDscCs4qRnSff9r34U0SADdEuPuz6/EHK14GRk3jXV4EQhRuDrFFBYk
- q/5VY5I1EZoCwxtXU4F47W872f6MFmFLNx3SrzjZfC9qmsxNSZ5SlmM
+ bh=7sxYHbFVUy82VPtxBTafFtyJ4V/px/ZO0hSTzcua6/s=;
+ b=a1oRJ13BKg+sndE24RLHGwgqk3PJapTy3e06yyGNw7SE3ROWSvYabdohlrCbkn9bjP2TpGvpw
+ SI97afI/Lq2DamjammUDr/YLmCMfIJxNhTzop91yyMyj7KjM74Q+KXg
 X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
  pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240925_084259_588851_D7D949A4 
-X-CRM114-Status: UNSURE (   8.31  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240925_084302_156461_21AAD955 
+X-CRM114-Status: GOOD (  12.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,34 +118,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series adds the const modifier to the remaining regmap_bus and
-regmap_config structs under drm/ that are effectively used as const
-(i.e., only read after their declaration), but kept ad writtable data.
+`dlpc_regmap_config` is not modified and can be declared as const to
+move its data to a read-only section.
 
 Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 ---
-Javier Carrasco (6):
-      drm/bridge: dpc3433: Constify struct regmap_config
-      drm/fsl-dcu: Constify struct regmap_config
-      drm/mediatek: dp: Constify struct regmap_config
-      drm/meson: Constify struct regmap_config
-      drm/panel: ili9322: Constify struct regmap_bus
-      drm/sprd: Constify struct regmap_bus
+ drivers/gpu/drm/bridge/ti-dlpc3433.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/gpu/drm/bridge/ti-dlpc3433.c         | 2 +-
- drivers/gpu/drm/fsl-dcu/fsl_tcon.c           | 2 +-
- drivers/gpu/drm/mediatek/mtk_dp.c            | 2 +-
- drivers/gpu/drm/meson/meson_drv.c            | 2 +-
- drivers/gpu/drm/panel/panel-ilitek-ili9322.c | 2 +-
- drivers/gpu/drm/sprd/sprd_dsi.c              | 2 +-
- 6 files changed, 6 insertions(+), 6 deletions(-)
----
-base-commit: 2b7275670032a98cba266bd1b8905f755b3e650f
-change-id: 20240925-drm-const-regmap-307f2c358d10
+diff --git a/drivers/gpu/drm/bridge/ti-dlpc3433.c b/drivers/gpu/drm/bridge/ti-dlpc3433.c
+index 6b559e071301..a0a1b5dd794e 100644
+--- a/drivers/gpu/drm/bridge/ti-dlpc3433.c
++++ b/drivers/gpu/drm/bridge/ti-dlpc3433.c
+@@ -94,7 +94,7 @@ static const struct regmap_access_table dlpc_volatile_table = {
+ 	.n_yes_ranges = ARRAY_SIZE(dlpc_volatile_ranges),
+ };
+ 
+-static struct regmap_config dlpc_regmap_config = {
++static const struct regmap_config dlpc_regmap_config = {
+ 	.reg_bits		= 8,
+ 	.val_bits		= 8,
+ 	.max_register		= WR_DSI_PORT_EN,
 
-Best regards,
 -- 
-Javier Carrasco <javier.carrasco.cruz@gmail.com>
+2.43.0
 
 
 _______________________________________________
