@@ -4,83 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE6EFCF9C69
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2024 12:41:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 631A8CCFA17
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2024 23:02:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p3nTs5NJdTHhsQvEgW8XF1eqIl7G3nt4zGQszjmTARA=; b=bRyRg0OiSTvUTI
-	sW+8WELa1kI+aK9/RlEXHpSjUQU44fO//WBbNX4X1HiavVe5buzlbYd6k7pDX5xGzYZc99ouB3Lau
-	mYJepusuxGA/RhI7PGW9qyqzqiWSg00DyMCGYFz+nMZc5hewsXzmEekVibSVEFT7+pgx0esarYRFN
-	kpmtYeaEid2Bb4U7eSoAN8zODZggqKqkkY6DswZyRhuGlW73X+BstnDY8cbpV0nfrZT5y9zxxjytg
-	kM3Q+cSPbn0pXdROG8GxGnmUIwrQc5bgxSANcqwf3U+Shi3oW58dS5E4GK3Gz4wMNMAH1byuR9EYV
-	+0rZlmNputg0/C6cHSLQ==;
+	List-Owner; bh=sZ+e/HRh2E3zh13+c85BEzkIYVNyorzq1r+RY85KImI=; b=3dXHXJ0HezaDhT
+	lCVXIH2+jDpzk/7ZQYNJxr41gZNCXY/1fq03qvbh7bm8navequ06KJQdj7MrNUwaC3Q5nss5qtYYI
+	HDn8x9dGpHp3H9XOySamY1aCVctMdRFt5PsNbPuLUG+WyfwNRI7EavP+44PUnhMBPyIxRB0KX8nWS
+	HWVJnisBFuBiEW+cwziV9NoWCjOBnRBNYWu3iXnxiFihgl7tkwuEhci7w1tUmANgv3C/UyrS8w88o
+	OdhBSRiC0fysY2KkqWB8vADkqxw1iYKGgjw5ygX9wO3/tKR3nFZgdJsRzoWNkfvKGtQe8G+qQAV0H
+	zfRJptY/Ba+gVgoTq6zQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1stnnr-00000008Mjn-2aXl;
-	Thu, 26 Sep 2024 12:41:03 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1stxUe-00000009XBX-0eYr;
+	Thu, 26 Sep 2024 23:01:52 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1stnmd-00000008MYL-2egM
-	for linux-amlogic@lists.infradead.org;
-	Thu, 26 Sep 2024 12:39:49 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-42cb0f28bfbso7971825e9.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 26 Sep 2024 05:39:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727354386; x=1727959186; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UQzQys66bp2Ld4WzPHqpjCSslimeJbMa4EBqGsAQRVw=;
-        b=s9Xm/wfBWClRCK+syUERcbBCKWjILxva1eGe1wrfJMrd4EA3kt5Az4fZNDfkZ3W9LP
-         i9RGUDltnHsNsMS0ebstlV4JLgx6mluQH2f0BjjG04BF/BT1JUaK95YK1QN7x0XDLVgV
-         VU7iNQyvn6sDO7iWw4V6Dj2BaRniveTiMv1GsT5QYY9SLJoTHnLZq6NcpTg79e2MrvZk
-         4rYOF2lcxyojTvIE6unDNR3V+WPmARVnuERC3DHLyZL0F9S642dHZid2UT83x/zThK2w
-         NXadZkUfyQo1ciUxIDKmdX3PyKdccPIXeykbechlAHAv81f1XT4+CN97Ly1XxEF0N2SX
-         Ap7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727354386; x=1727959186;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UQzQys66bp2Ld4WzPHqpjCSslimeJbMa4EBqGsAQRVw=;
-        b=eWZzoscs+VU+AX2aGiFVrbug6POdaQDA7udLX5p5mk8lUtf40NZnFsvkgMSygBLhHm
-         jtVP852N3vxc/EFvp8I63RTa/UPHNIv9++2Y7Arv/tpe0ZGQhVGRM2YpNj1Kp/7UyTS+
-         gNP4hEjOMAb3MwsPl66VsP/cRXekW270J4EC4p6vXQIeCusRwdavdJNrjuRN5Iz/dMqW
-         pmSUiIbDIONU1+Za77p6fSOn0KyxeEHG3czsFQbwHTL5PAFly2ls59WBZI3Jw2X1JXMN
-         Y09NjwuUngaJlkQz3giOLRQZu9ngbVhZ1MB47gsC0XEp+PTRLW51OAGLERgcxEqw3fhr
-         LtbQ==
-X-Gm-Message-State: AOJu0Yx8I3tC8mpXq9uktGzBW1gxwqgziQs+3Pyyo1g+I1bF5qGiEtRG
-	nJMlrtMODyv/GAtNC7wGbw09LVTQ2G53K9OQqwa+NqbD+y408Fga1u8SVbKrrbQ=
-X-Google-Smtp-Source: AGHT+IF2ktbSn3Aj00xQyiv3ldfTlz4uwMS6dZVkDgJF576LsJ1mascH418BisllGC9fT21zJh/9dQ==
-X-Received: by 2002:a05:600c:1d17:b0:42c:b309:8d18 with SMTP id 5b1f17b1804b1-42f50d550e3mr31033565e9.19.1727354385700;
-        Thu, 26 Sep 2024 05:39:45 -0700 (PDT)
-Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:4a84:8f2f:8bdb:87])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-42e96a0d8eesm47177135e9.30.2024.09.26.05.39.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Sep 2024 05:39:44 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240925-clk-meson8b-spinlock-v1-1-50b7f2d02d7d@baylibre.com>
-References: <20240925-clk-meson8b-spinlock-v1-1-50b7f2d02d7d@baylibre.com>
-Subject: Re: [PATCH] clk: meson: meson8b: remove spinlock
-Message-Id: <172735438430.200072.15149649780547409113.b4-ty@baylibre.com>
-Date: Thu, 26 Sep 2024 14:39:44 +0200
+	id 1stxUa-00000009XAH-1BBo;
+	Thu, 26 Sep 2024 23:01:50 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48QG9mG7026541;
+	Thu, 26 Sep 2024 23:01:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	bDhnhxaLSsQjl7xe4xa9yaUsNXJSZfAHaDNanf+MtVA=; b=L1VGlq0yeiNIwbWD
+	rauKzq2Npx92dXPG2lryye+al+tOxfhhN9iKJfacVJR0/J9ZOC2Ca7DN7ICbUYt1
+	fd4qRogLR3EGLww/vfyLSqOejT9EajrE2A4iisWpTarlDlidDX0maKIrT5eDLFVz
+	EHFs9NRc8SDF9/aJpM/CMuI2RRDpbY+x/l8hBLB0nNXc2BZR04bDnvfaknKCBwIL
+	RTt//+k6m9HJrAjlWIWNfwSTRTNP5kig2z1sIvdnOBZ5IYeHPKhgBbRgtouVydox
+	jyH5jDY0utWXZKkcxK+lhUtyxGRpLtfKMn8Mqb16HuZ5klrQkfH5H3FPgK/g6reY
+	2ac6hg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41sn5c151y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Sep 2024 23:01:30 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48QN1TuF007471
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Sep 2024 23:01:29 GMT
+Received: from [10.134.71.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 26 Sep
+ 2024 16:01:27 -0700
+Message-ID: <e9f38fe1-10fb-49ad-b209-0e2786ec6f94@quicinc.com>
+Date: Thu, 26 Sep 2024 16:01:27 -0700
 MIME-Version: 1.0
-X-Mailer: b4 0.14.1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] docs/gpu: ci: update flake tests requirements
+To: Vignesh Raman <vignesh.raman@collabora.com>,
+        <dri-devel@lists.freedesktop.org>
+CC: <daniels@collabora.com>, <helen.koike@collabora.com>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <robdclark@gmail.com>,
+        <guilherme.gallo@collabora.com>, <sergi.blanch.torne@collabora.com>,
+        <deborah.brouwer@collabora.com>, <dmitry.baryshkov@linaro.org>,
+        <mripard@kernel.org>, <rodrigo.vivi@intel.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>, <amd-gfx@lists.freedesktop.org>,
+        <linux-arm-msm@vger.kernel.org>, <intel-gfx@lists.freedesktop.org>,
+        <virtualization@lists.linux.dev>, <linux-kernel@vger.kernel.org>
+References: <20240926070653.1773597-1-vignesh.raman@collabora.com>
+Content-Language: en-US
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20240926070653.1773597-1-vignesh.raman@collabora.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pSkChFDu4ef4NamDTDMy0qtaNpRfUdmK
+X-Proofpoint-GUID: pSkChFDu4ef4NamDTDMy0qtaNpRfUdmK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 adultscore=0 impostorscore=0 malwarescore=0 mlxlogscore=999
+ spamscore=0 mlxscore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409260160
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240926_053947_710892_CDBF621A 
-X-CRM114-Status: UNSURE (   3.54  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20240926_160148_494610_8889C57D 
+X-CRM114-Status: GOOD (  22.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,20 +101,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Applied to clk-meson (clk-meson-next), thanks!
 
-[1/1] clk: meson: meson8b: remove spinlock
-      https://github.com/BayLibre/clk-meson/commit/e736da1956cf
 
-Best regards,
---
-Jerome
+On 9/26/2024 12:06 AM, Vignesh Raman wrote:
+> Update the documentation to require linking to a relevant GitLab
+> issue for each new flake entry instead of an email report. Added
+> specific GitLab issue URLs for i915, xe and other drivers.
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+> 
+> v2:
+> - Add gitlab issue link for msm driver.
+> 
+> ---
+>   Documentation/gpu/automated_testing.rst | 16 +++++++++++-----
+>   1 file changed, 11 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
+> index 2d5a28866afe..f918fe56f2b0 100644
+> --- a/Documentation/gpu/automated_testing.rst
+> +++ b/Documentation/gpu/automated_testing.rst
+> @@ -67,20 +67,26 @@ Lists the tests that for a given driver on a specific hardware revision are
+>   known to behave unreliably. These tests won't cause a job to fail regardless of
+>   the result. They will still be run.
+>   
+> -Each new flake entry must be associated with a link to the email reporting the
+> -bug to the author of the affected driver, the board name or Device Tree name of
+> -the board, the first kernel version affected, the IGT version used for tests,
+> -and an approximation of the failure rate.
+> +Each new flake entry must include a link to the relevant GitLab issue, the board
+> +name or Device Tree name, the first kernel version affected, the IGT version used
+> +for tests and an approximation of the failure rate.
+>   
+>   They should be provided under the following format::
+>   
+> -  # Bug Report: $LORE_OR_PATCHWORK_URL
+> +  # Bug Report: $GITLAB_ISSUE
+>     # Board Name: broken-board.dtb
+>     # Linux Version: 6.6-rc1
+>     # IGT Version: 1.28-gd2af13d9f
+>     # Failure Rate: 100
+>     flaky-test
+>   
+> +The GitLab issue must include the logs and the pipeline link. Use the appropriate
+> +link below to create an issue.
+> +https://gitlab.freedesktop.org/drm/i915/kernel/-/issues for i915 driver
+> +https://gitlab.freedesktop.org/drm/xe/kernel/-/issues for xe driver
+> +https://gitlab.freedesktop.org/drm/msm/-/issues for msm driver
+> +https://gitlab.freedesktop.org/drm/misc/kernel/-/issues for other drivers
+> +
 
+Acked for MSM.
+
+Thanks
+
+Abhinav
+>   drivers/gpu/drm/ci/${DRIVER_NAME}-${HW_REVISION}-skips.txt
+>   -----------------------------------------------------------
+>   
 
 _______________________________________________
 linux-amlogic mailing list
