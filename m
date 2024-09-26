@@ -4,68 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F626CCFA18
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2024 09:04:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21D92CCF9E9
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2024 09:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GpRtlkZYuYUfb1X1iLLTRG6UwHbfhvMytEDcsE9Tea4=; b=mji0L3/7g09qKC
-	vYYjlGjdLGp1l7MkuOEohWXbMdXQT9L75ufViICKegheLY+srW9lintTF3A4Jjk5Q/RlE8ZCz8UrI
-	RqO2vrWr1bAN8BGrB6qJotUlCjds0miDkSrQ4SwzMvV6VDpu4ceVqjLtlNNYjNljt9hW5dZy0u8Od
-	EGOCfQUWZKiH1H8nQOtORfZTB2uuqZ5wDJuSJHLS3LhN7tbhSOkNMvXDOsNQiqfumHwW9nYClbyUL
-	dZNAw6HDMNEu1w4NQ3aZwFJp3jazvvnQZBmTlSoncQRmTNCYW8LZ7U+sojVe4XbefVug6AzLvNZHw
-	EXK06G0MfgTpndOlPqwQ==;
+	List-Owner; bh=/LqDgX4JJM48n8jbho0J98hxFypOiPCGuhUXGoz3XoM=; b=N3cubxJeGgF4oO
+	JgD58azbCSewGDxCjQmTJUWLjAmTiTUdhO5NpR8fO/ZiMvatI0XJAXPVOtqMScUu2dLPnB0r6hGph
+	N0xELdhAqo1mnrCNv1GGBUi73CRasN+QFKxXc/WIjMSnl3sfXYaSvpRg2uYEcLr7fSHwTJfDExMoy
+	mnnsBGqAJCJUImSdK6HUpsjH+ONqusx1kg15EMwwL1eH/3PnP6lcPe0d1TEb3sLh/g8/lnXGWs+oW
+	+9+YY518P+RhyDLQDWU5KZ/ormSWYBi4eat50bN/iuI17SLabcPBqyjCbO/Rp3brYpAHXDpNEHC8H
+	5n3cbQNFLei/U+JdFC7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1stkQT-00000007ngP-2jMk;
-	Thu, 26 Sep 2024 09:04:41 +0000
+	id 1stl8W-00000007xLG-2UWk;
+	Thu, 26 Sep 2024 09:50:12 +0000
 Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1stk9z-00000007kGp-2N2S;
-	Thu, 26 Sep 2024 08:47:41 +0000
+	id 1stkyY-00000007v1W-0ZIs;
+	Thu, 26 Sep 2024 09:39:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727340457;
-	bh=Vvzgd1LgiFFFjFTb0+aUplSVjTmllj9XrlLOmFGWpvw=;
+	s=mail; t=1727343592;
+	bh=TDiXybMeYtcjqjBx92AhyDoKNyIG5PotfOZAabaX1Gw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=W7qGOs/WXTcXx3RVTvEB2eSz0bFlxfIYGcY9VZKLpS7wzZyyKhJEQKdhfCBCZWKv9
-	 9M5yQ2aIMD9mnlwpL3oETbnJqGqSCa7DWtGW9smRY1pQ9sA2H6SXCxDrGePgnGnV6B
-	 G7LV/i6hn/yhLeyBfU5SgJw4bZrVOAfBb/FVNK2qn08z9tV1PotXjmwBrJxNjvEv+O
-	 C0DoHfqKT8zEw7l+OIobUsRFyHZTP5RgvXDTRAmsqOnK8I+f4QN33YFAnmdJL8ykb+
-	 X8sROyY544rjCZ5yvcOvQdlCNze3jQuNlxypIAGUuOIi+k4iULFsbHZFUgYhmh4Qn/
-	 sPYjix2VxY4Vg==
-Received: from [192.168.50.250] (unknown [171.76.80.165])
+	b=c5d60WBkFGQ5Akzoc/3uBQvHv1XDYHqt+L6fd+vwLMzBBq7UyumanL8oemFcKR+hC
+	 qA4ViIZHHhqPYszePwYdkE/dKfYbFRAeCC0RqRy9BwqnkkOp4p6Is+BcgshOjRZiqN
+	 YXNU3dsDAidYj28SV846xUFQ7kXBNqjADZCJnbTzGCN0Cs2EVbr+7K8zokSI8jRksP
+	 aciFZdCUEh5kzI/uFJ7QNvFkdTe9dNYXoSKY3tSIiIujXrfUOo95HZr74habGRxVZU
+	 T59unfzI7Lv7SWJDWhigLdnkAh6ys+O5c0AMrOeYt+SZSdy5GqLxatfIBzHgjll7hw
+	 E0t8U8Vo7zwvQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 50E1317E1048;
-	Thu, 26 Sep 2024 10:47:34 +0200 (CEST)
-Message-ID: <9470f582-7873-42c6-b5a5-35f841e4f693@collabora.com>
-Date: Thu, 26 Sep 2024 14:17:04 +0530
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7A3F217E10AF;
+	Thu, 26 Sep 2024 11:39:51 +0200 (CEST)
+Message-ID: <9f637af5-9836-487a-88b6-1d1ac46e6976@collabora.com>
+Date: Thu, 26 Sep 2024 11:39:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] docs/gpu: ci: update flake tests requirements
-To: Maxime Ripard <mripard@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
- helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
- robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, deborah.brouwer@collabora.com,
- dmitry.baryshkov@linaro.org, rodrigo.vivi@intel.com,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20240926070653.1773597-1-vignesh.raman@collabora.com>
- <20240926-athletic-gregarious-markhor-cc78ac@houat>
+Subject: Re: [PATCH 0/6] drm: constify read-only regmap structs
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Stefan Agner <stefan@agner.ch>, Alison Wang <alison.wang@nxp.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20240925-drm-const-regmap-v1-0-e609d502401b@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <20240926-athletic-gregarious-markhor-cc78ac@houat>
+In-Reply-To: <20240925-drm-const-regmap-v1-0-e609d502401b@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240926_014739_793453_1147538A 
-X-CRM114-Status: GOOD (  17.92  )
+X-CRM114-CacheID: sfid-20240926_023954_381097_2112EB8F 
+X-CRM114-Status: UNSURE (   8.79  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,69 +93,40 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Maxime,
-
-On 26/09/24 12:56, Maxime Ripard wrote:
-> On Thu, Sep 26, 2024 at 12:36:49PM GMT, Vignesh Raman wrote:
->> Update the documentation to require linking to a relevant GitLab
->> issue for each new flake entry instead of an email report. Added
->> specific GitLab issue URLs for i915, xe and other drivers.
->>
->> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
->> ---
->>
->> v2:
->> - Add gitlab issue link for msm driver.
->>
->> ---
->>   Documentation/gpu/automated_testing.rst | 16 +++++++++++-----
->>   1 file changed, 11 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
->> index 2d5a28866afe..f918fe56f2b0 100644
->> --- a/Documentation/gpu/automated_testing.rst
->> +++ b/Documentation/gpu/automated_testing.rst
->> @@ -67,20 +67,26 @@ Lists the tests that for a given driver on a specific hardware revision are
->>   known to behave unreliably. These tests won't cause a job to fail regardless of
->>   the result. They will still be run.
->>   
->> -Each new flake entry must be associated with a link to the email reporting the
->> -bug to the author of the affected driver, the board name or Device Tree name of
->> -the board, the first kernel version affected, the IGT version used for tests,
->> -and an approximation of the failure rate.
->> +Each new flake entry must include a link to the relevant GitLab issue, the board
->> +name or Device Tree name, the first kernel version affected, the IGT version used
->> +for tests and an approximation of the failure rate.
->>   
->>   They should be provided under the following format::
->>   
->> -  # Bug Report: $LORE_OR_PATCHWORK_URL
->> +  # Bug Report: $GITLAB_ISSUE
->>     # Board Name: broken-board.dtb
->>     # Linux Version: 6.6-rc1
->>     # IGT Version: 1.28-gd2af13d9f
->>     # Failure Rate: 100
->>     flaky-test
->>   
->> +The GitLab issue must include the logs and the pipeline link. Use the appropriate
->> +link below to create an issue.
->> +https://gitlab.freedesktop.org/drm/i915/kernel/-/issues for i915 driver
->> +https://gitlab.freedesktop.org/drm/xe/kernel/-/issues for xe driver
->> +https://gitlab.freedesktop.org/drm/msm/-/issues for msm driver
->> +https://gitlab.freedesktop.org/drm/misc/kernel/-/issues for other drivers
->> +
+Il 25/09/24 17:42, Javier Carrasco ha scritto:
+> This series adds the const modifier to the remaining regmap_bus and
+> regmap_config structs under drm/ that are effectively used as const
+> (i.e., only read after their declaration), but kept ad writtable data.
 > 
-> I can't comment for the others, but drm-misc at least still requires
-> reporting issues by mail, so, no, sorry, we can't switch to gitlab only
-> for now.
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-In https://gitlab.freedesktop.org/drm/ we have xe, i915, msm, nouveau, 
-and amd (only for issues). In drm-ci we test i915, msm and amd.
-So I will add GitLab links for these and for other drivers use email 
-reporting. I will reword this section. Thanks.
+For the entire series:
 
-Regards,
-Vignesh
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> ---
+> Javier Carrasco (6):
+>        drm/bridge: dpc3433: Constify struct regmap_config
+>        drm/fsl-dcu: Constify struct regmap_config
+>        drm/mediatek: dp: Constify struct regmap_config
+>        drm/meson: Constify struct regmap_config
+>        drm/panel: ili9322: Constify struct regmap_bus
+>        drm/sprd: Constify struct regmap_bus
+> 
+>   drivers/gpu/drm/bridge/ti-dlpc3433.c         | 2 +-
+>   drivers/gpu/drm/fsl-dcu/fsl_tcon.c           | 2 +-
+>   drivers/gpu/drm/mediatek/mtk_dp.c            | 2 +-
+>   drivers/gpu/drm/meson/meson_drv.c            | 2 +-
+>   drivers/gpu/drm/panel/panel-ilitek-ili9322.c | 2 +-
+>   drivers/gpu/drm/sprd/sprd_dsi.c              | 2 +-
+>   6 files changed, 6 insertions(+), 6 deletions(-)
+> ---
+> base-commit: 2b7275670032a98cba266bd1b8905f755b3e650f
+> change-id: 20240925-drm-const-regmap-307f2c358d10
+> 
+> Best regards,
+
+
 
 _______________________________________________
 linux-amlogic mailing list
