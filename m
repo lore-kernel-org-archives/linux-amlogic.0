@@ -4,75 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6369CEBF76
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2024 05:25:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AD74CEBF7F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2024 07:46:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uh2hWRqZHlUIVN5h7qxOjg+DE+9TiWiXeI4r8Vf5hMs=; b=bMdNmY7IPw0ETZ
-	N1r7ZhO+tWo2nF6giwKZFza8d6FMuKeoYVDdr2mwrVMvlzSKH6pcBy3pkRHUJZAj/ntrJg7MqjB/i
-	8DOrL3wj3q/ePrI/DyE5i9RM+g/lvZroCwPi0fLmJMj0zcJPBvtq2nt6WnVVGvJZCAqiNIG6TkDjy
-	Fe3mZDs+Oq8lxhS+wXlgc9KoPGML4nO4y50NsW9Ud2S7iUuj9HKt3S8yW7FA+scVsEc7jbheGfUfC
-	Cdm7M+qOuBTe63DeDXifLEu7fxjpaPuo9aCrFzTjYSEfbUypJAcJbtzOMf7B+cKaThxd4vENwPGas
-	kOTy2WgXA5Q9HuCLUXRQ==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:References:In-Reply-To:
+	Subject:To:From:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3neb8A8qaxTvCn1oLx/guwC+KbTmSGq97c4JcUJssBs=; b=rgvXDhaP8aSocR
+	FgqAYmEiiZ++iImwqGqgSFOBuDTElLTUcRCzQhEGc1HcIvFpp6Ncjh17MNIOG2YQwy3FqSeCb6rQG
+	HuebrfzlYQpQtIEKjTeHPYzthQsmteNbiaC6+HAdTyTnKcU/BChQGDf3BqxbFgVF+WEi7a1BCNC9s
+	qa+9r42vFXlhslo9g6kqxtAiOGHQtN5LDyIoECORzcDgw5LAso+U0jiPRHIARWkBH54Ju+Zg6+Ma9
+	WpSE5G3Edf7pou53u/w4qFz7t3bdXAUDznITpK9ZW9W+Yml6CyGF8jL6NwG4B0Wx3PZWOsL60ow8E
+	OV3K9ki386rZ3d1OoB7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1su3TK-0000000A3MO-0CrE;
-	Fri, 27 Sep 2024 05:24:54 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1su5fr-0000000AOQq-0vas;
+	Fri, 27 Sep 2024 07:45:59 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1su3TH-0000000A3LF-0cND;
-	Fri, 27 Sep 2024 05:24:52 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727414687;
-	bh=r5E3C8ovlOGFFH6WMn3gqo8ezIWZpB6JtgD66EOvBSU=;
-	h=From:To:Cc:Subject:Date:From;
-	b=qlfUz6egU+dmTUqLLZ/T/NtChPlvIXi5Cnxh+pjZW2RzNWlc8iwyFnQ9aLtIAqoBh
-	 3Mo5uuqK6PpFeIzDiNOfs/4acmFBcq4oFPd2V80PuLpCKTbA8rfVFhGvxvH5uHVcDf
-	 PeEIvrUpqfcFA0tm7JJVWUXTd/wW9R5KctFND710po/bTbfQVD14jaSvXziRrH973c
-	 Qilb43wFmKgA5+yspypzeEZBJDqu3cBX+WThpc8gwuUOsPFCfqb6XN9sQ4KQdr5egk
-	 4O+ryjd8lgSSuI2P5x5a2kr5k/K0vsgafGy78AzimNqxd6ufVF5SPLdttGxiRW78he
-	 zUrQFW0XMJ76g==
-Received: from localhost.localdomain (unknown [171.76.80.165])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7E15F17E0FAC;
-	Fri, 27 Sep 2024 07:24:43 +0200 (CEST)
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com,
-	helen.koike@collabora.com,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	robdclark@gmail.com,
-	guilherme.gallo@collabora.com,
-	sergi.blanch.torne@collabora.com,
-	deborah.brouwer@collabora.com,
-	dmitry.baryshkov@linaro.org,
-	mripard@kernel.org,
-	rodrigo.vivi@intel.com,
-	quic_abhinavk@quicinc.com,
-	linux-mediatek@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	amd-gfx@lists.freedesktop.org,
-	linux-arm-msm@vger.kernel.org,
-	intel-gfx@lists.freedesktop.org,
-	virtualization@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] docs/gpu: ci: update flake tests requirements
-Date: Fri, 27 Sep 2024 10:54:14 +0530
-Message-ID: <20240927052416.1833889-1-vignesh.raman@collabora.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
+	id 1su5fo-0000000AOPK-0gm8;
+	Fri, 27 Sep 2024 07:45:57 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 7804DA4529C;
+	Fri, 27 Sep 2024 07:45:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D42C4CEC7;
+	Fri, 27 Sep 2024 07:45:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727423154;
+	bh=muHlqJ7iEOLfJfdfnWfRQ+Z4rZB4TQDLw6WtJrxW/FY=;
+	h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
+	b=IloIFCHQVPrmcLnhS3Iihmfb/Rcd24BcaORt9mlaW+c37RrYEgtgRNkITVY51uovw
+	 bl5kjuT3ljwQiEQHrZVjBP7+Vx0RUkuMDqg1oDhtTGroKD/xCIr22LVQhMB1yuP68s
+	 SZSI/1KRueCUqGo7kSSWyUcJMEw/wZu2wEIvkUkZEUo2ZNmxktazbBQfpOZU+EugIm
+	 8h/BPS2wdxXpxWRGlJ5UvYdO5vqB74ndbB/67+qxPXVd+cprGszrfx145c0svxxFqg
+	 whyEQjU8IM1LLGgb68qfvB7beaP5QcLEDjE9vM5e3EvC/a/WFLOOkD/DkrWkMA/cLn
+	 oFcajaknfB5fg==
+Message-ID: <545585e6f2e9d0bbe35f0a2785838cfa@kernel.org>
+Date: Fri, 27 Sep 2024 07:45:51 +0000
+From: "Maxime Ripard" <mripard@kernel.org>
+To: "Vignesh Raman" <vignesh.raman@collabora.com>
+Subject: Re: [PATCH v3] docs/gpu: ci: update flake tests requirements
+In-Reply-To: <20240927052416.1833889-1-vignesh.raman@collabora.com>
+References: <20240927052416.1833889-1-vignesh.raman@collabora.com>
+Cc: airlied@gmail.com, amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, daniels@collabora.com, deborah.brouwer@collabora.com, dmitry.baryshkov@linaro.org, dri-devel@lists.freedesktop.org, guilherme.gallo@collabora.com, helen.koike@collabora.com, intel-gfx@lists.freedesktop.org, linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org, mripard@kernel.org, quic_abhinavk@quicinc.com, robdclark@gmail.com, rodrigo.vivi@intel.com, sergi.blanch.torne@collabora.com, virtualization@lists.linux.dev, "Maxime
+ Ripard" <mripard@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240926_222451_415870_5BAB6A28 
-X-CRM114-Status: GOOD (  11.23  )
+X-CRM114-CacheID: sfid-20240927_004556_300605_139DA3F5 
+X-CRM114-Status: UNSURE (   4.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,66 +65,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Update the documentation to specify linking to a relevant GitLab
-issue or email report for each new flake entry. Added specific
-GitLab issue urls for i915, msm and amdgpu driver.
+On Fri, 27 Sep 2024 10:54:14 +0530, Vignesh Raman wrote:
+> Update the documentation to specify linking to a relevant GitLab
+> issue or email report for each new flake entry. Added specific
+> GitLab issue urls for i915, msm and amdgpu driver.
+> 
+> Acked-by: Abhinav Kumar <quic_abhinavk@quicinc.com> # msm
+> 
+> [ ... ]
 
-Acked-by: Abhinav Kumar <quic_abhinavk@quicinc.com> # msm
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # msm
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
----
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
-v2:
-- Add gitlab issue link for msm driver.
-
-v3:
-- Update docs to specify we use email reporting or GitLab issues for flake entries.
-
----
- Documentation/gpu/automated_testing.rst | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
-index 2d5a28866afe..03769b4a17cf 100644
---- a/Documentation/gpu/automated_testing.rst
-+++ b/Documentation/gpu/automated_testing.rst
-@@ -68,19 +68,24 @@ known to behave unreliably. These tests won't cause a job to fail regardless of
- the result. They will still be run.
- 
- Each new flake entry must be associated with a link to the email reporting the
--bug to the author of the affected driver, the board name or Device Tree name of
--the board, the first kernel version affected, the IGT version used for tests,
--and an approximation of the failure rate.
-+bug to the author of the affected driver or the relevant GitLab issue. The entry
-+must also include the board name or Device Tree name, the first kernel version
-+affected, the IGT version used for tests, and an approximation of the failure rate.
- 
- They should be provided under the following format::
- 
--  # Bug Report: $LORE_OR_PATCHWORK_URL
-+  # Bug Report: $LORE_URL_OR_GITLAB_ISSUE
-   # Board Name: broken-board.dtb
-   # Linux Version: 6.6-rc1
-   # IGT Version: 1.28-gd2af13d9f
-   # Failure Rate: 100
-   flaky-test
- 
-+Use the appropriate link below to create a GitLab issue:
-+amdgpu driver: https://gitlab.freedesktop.org/drm/amd/-/issues
-+i915 driver: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues
-+msm driver: https://gitlab.freedesktop.org/drm/msm/-/issues
-+
- drivers/gpu/drm/ci/${DRIVER_NAME}-${HW_REVISION}-skips.txt
- -----------------------------------------------------------
- 
--- 
-2.43.0
-
+Thanks!
+Maxime
 
 _______________________________________________
 linux-amlogic mailing list
