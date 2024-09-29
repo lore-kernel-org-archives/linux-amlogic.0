@@ -4,144 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB034CF6497
-	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Sep 2024 09:52:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4281ACF649D
+	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Sep 2024 12:08:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=eshAGl8GdyHE/Bb9ewg7PHx6loo4hnyOqDy1QWge6oU=; b=oRVmzdcOaTIn2u
-	sXGIooP4+Ri9xQ4CoY0+nWT/1C0wXK+NAAGgcdRqlQsS9KpO1Cp3LEGqXx3VhAMxUIMEtBidOqFMV
-	SZrwBXz4X4PA4tF2UW3OBS8KP3de802A2jiu79SK/IMPY4/KKMrhHtbffSzuVhCGXocd3QtpLHuCt
-	cIu1e0zi0jfyh55oQtGKfuCIEnLeaVoyR4ya5+qc/FUWRLOSMbm8kmzpFDlj+ZWm9qaGYV7Pw/Ajd
-	vq1NBdYArxVhf/F65hWTm9SSbjfGe7VHohUzF29RiUrpcet+qK9MZ+qRrE+pCxDgjAFPm510nXPpS
-	VvswWUUihHsBHVD7MkKA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Z852iIBNrURF3ZysappPC8BLPMwINf3pZaLDvUABMCE=; b=KS9O8ljapCuWcS
+	lQnLg3vhiKdMiH6THyoYDQrZG0pTjYbD2T8dDS4zRSEZatlrPrcFQrPq5THCkWEaqOaMrZyJ8uYOx
+	3A97MhzlBWxEaKrSQZiFdAsoEMrN+jwF9lG2Mk9YJXyFgA5lx9Px8kKrI8n/fX+1Ai7XJN+u3q4/g
+	sZ1FxI8CKP0Q/MPvst4b8KrJQfoUcO2rfeJDnrZiLeIt6qoyI03gtTR3JhdAqIRN9rPnveOZcs0Cz
+	Bbk938D5qaQHclyNUwFSBtg2GVUBQ3n0N0zW5J9aDkuqKdSKHGmixaqT2UDTlR4m9zl4w4lxijXgJ
+	0P70nuZesL5Y1FedAm8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1suqav-0000000EZ0R-47sQ;
-	Sun, 29 Sep 2024 09:52:01 +0000
-Received: from mail-psaapc01on2062d.outbound.protection.outlook.com ([2a01:111:f400:feae::62d] helo=APC01-PSA-obe.outbound.protection.outlook.com)
+	id 1susj3-0000000Eivq-2kZ0;
+	Sun, 29 Sep 2024 12:08:33 +0000
+Received: from mail-pl1-x62a.google.com ([2607:f8b0:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1suqKS-0000000EWiC-1H6Q;
-	Sun, 29 Sep 2024 09:35:01 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GEA1TkvFD+r0/teis8iMjTEyLie89d2FQjpzlFu8wP9SWlNe5J/N01Yg2eCLBtDdvpyuHLZCEoe0jxBDxXP2X2dq8dRHUdsLb9IgJuqV4dt5nZ5PlAWT7MvTHlOc7sUrXt5RU1Y63eZ57I91ID2JdSh+fZjWPRdY0fDEBblPdlQlOkh05mQYJ9I8IF2hSydNvR+IFd1Hhno1Xe0iGOLLsk9tnWSyEVZA2FettgtVL1ENTZqNkq6JaavoDCBjApjgs7HE0xA3todyjjypBfNVUj1/puH7KIsAKKwCx6W6f1lKjNPSc0MpQxAzkwCRf7i122P6yFHymANxIvq1bGRiBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0dxrxpJS7t+TE633RoR+L6tOplE5LBNxwxcN8s/SCvA=;
- b=CHv7TaWMSsim+pYZgh089R5y7cPtE2Cor4Mqc3trG0Y8NPeM7CVB8RVCdYPMgyCPJc+M+BFwyKBlwG/DDZYBXqDlnM3INB3JmfTezGZV+N/3Bnd2tDIMmYlAjPrZ9J8ODSydDU9bkvJQbWHQrgxtPN1Zq9vP2rMS008i7zkGvzQRICymLtoyCPO1AfZk8t4faNaanR9FAlTm8fC6POHsZfr4QSCDXr1Uf+Ltx4xFQP2BRd4sM+9LJwCRPCVgojRm7RUZ3n/t17uxFPcQ00iKh1H+06d8IaS/AZjMnB2HGCKkzwzz9vPSAbBS/5Qr1jhivrK1czeb+S3Ia2BTiXNvHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0dxrxpJS7t+TE633RoR+L6tOplE5LBNxwxcN8s/SCvA=;
- b=cE+DdFn5wDdVdP/6xQ9fK/8myJURdo6hZNDZafzmt+hUj9HhAR1tnpfZgve27M3ROy8HMuSp6efbxGTWoTUIeq6w/g04tLaba6jJfbQ3uA3BSNV8kGCjNm8ZfhcwcDwU/yxWbHd2sDjdLgz1bMkUcXpPSIw0eazsCZduife1PgLX0pT8lIKRND85J8rhoHCorYTSFfbRhYKak+bz2X+NUFcKi1QuTNSX5uVn2iGHjvi6bi176tuGmjxnE5CIv2LzXlwSbv+Nyz7m6xS8JW+puvelnGyTGNR3J4RI+1rNfHIHovw64AMXtXXXS/R7Ylp5oke0xrZIRY4G4m3Bg7FCvQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from TYZPR06MB4461.apcprd06.prod.outlook.com (2603:1096:400:82::8)
- by SEYPR06MB5891.apcprd06.prod.outlook.com (2603:1096:101:d4::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.25; Sun, 29 Sep
- 2024 09:34:37 +0000
-Received: from TYZPR06MB4461.apcprd06.prod.outlook.com
- ([fe80::9c62:d1f5:ede3:1b70]) by TYZPR06MB4461.apcprd06.prod.outlook.com
- ([fe80::9c62:d1f5:ede3:1b70%5]) with mapi id 15.20.8005.024; Sun, 29 Sep 2024
- 09:34:36 +0000
-From: Yu Jiaoliang <yujiaoliang@vivo.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	linux-mmc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	imx@lists.linux.dev,
-	s32@nxp.com,
-	linux-arm-msm@vger.kernel.org
-Cc: opensource.kernel@vivo.com
-Subject: [PATCH v1] mmc: Fix typos in comments across various files
-Date: Sun, 29 Sep 2024 17:34:18 +0800
-Message-Id: <20240929093418.526901-1-yujiaoliang@vivo.com>
-X-Mailer: git-send-email 2.34.1
-X-ClientProxiedBy: TYWP286CA0027.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:262::11) To TYZPR06MB4461.apcprd06.prod.outlook.com
- (2603:1096:400:82::8)
+	id 1sushq-0000000Eipu-1tYW;
+	Sun, 29 Sep 2024 12:07:19 +0000
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-20b5affde14so7782195ad.3;
+        Sun, 29 Sep 2024 05:07:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1727611637; x=1728216437; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zjxInaNhLVD836E7kvEQ4tYnrdCtxNbjV5ha2p76v8M=;
+        b=UiynhWGqwQA3tp0uNvYwsgKp6JoIGsgQDRHCvgYIt2VxJdypsPjz+U7QUmlFLkEkH7
+         Gia0vtvWcr34ZFw5jkNhMbACw1CET2jm1T3/HXvuWcBPFfJanilPuUW16wjEeifdqm+Z
+         pJtx6yb6j8V++EX3ZTxV+OZgSUTlhgggrucxv4yDuBLM3DJzvuG6L7pOoDx1Tf5nswjm
+         d2l3HSuSm/1PAylmDp25ZcMFtw6G5ZuvvJV0MkvHBOyhdL/X8e0w9UG4ZXapQsgzD+Be
+         0o/qviFit5934YuOx+X+J09yOLCDJe/B4O+TTxENKKVLzyUSAHBJXR5DNZOafA0lfe8I
+         eqTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727611637; x=1728216437;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zjxInaNhLVD836E7kvEQ4tYnrdCtxNbjV5ha2p76v8M=;
+        b=vWwqaCa1yhgyLoDJjK3fOyxChj06nSTZWBFyeoYT6LJBvR1ZFKeGxr7djhLmv0KB1c
+         VmU4/ke8FJP2VbQtLGBLR0gx+8+kkF7qrva/WmWSKN82kEBE9Hwc7sy9DBGL5bHaJt3w
+         3eoJ6n/A21y6cX/WjdmqWj/puLaUjp9LIqxqujMAeyo0RIHxXd8EfR22pcaekM/AiBx8
+         Zmd2PIx/3BVgWvhk5fLlmUssYKvMCv3f6OAWxqTxRiSjDosniDDqoh9kirexbQx7JsmX
+         3g7VFGFpkpjiN47aWSFWLeUN6HMdCSJHJ3eKXnlUmyg++lE1FQ+pz4MxjXbvK3h9+ggl
+         cLaA==
+X-Forwarded-Encrypted: i=1; AJvYcCWidEJQwNxbgrl4pTrQabQINmGf9/d/XGEeUHPi+KNCHzr0zJFf9a2TeEj0gOuIMvT00CSPmMgvMnsu5F6m2UUJ1g==@lists.infradead.org, AJvYcCXeF2kA9exarkHobajLP1FDFRGmLMXd5p1oaPz7nhEuL3S/0o4oYimDJsgTt6KIvo7tude9Wp+jIsAer/Dy@lists.infradead.org
+X-Gm-Message-State: AOJu0YwdtKgvvOZ33yuKYoEgNfXtNSP7ZnLAbyXTS/k8gL97gs0o7T1g
+	rZw8TUg5uc7iFlM0BCW3GskH4h1nje5YLsiB5HVeXerOeXYkf0QhytWQIRl2oeF6yK6y3FLdLDA
+	r+1TjHZjOF/hfV6iPswMtnw4TmOL6sXTt
+X-Google-Smtp-Source: AGHT+IGkItVurXd3ky7Ze3/m8wpVZ4KRuguynlrG29y9ctBKfpIWygc9BxUDQ0/p6z4xHmFc2bL685GfGWj5pSZ1VkI=
+X-Received: by 2002:a17:902:d4c2:b0:207:13a3:a896 with SMTP id
+ d9443c01a7336-20b369d605fmr122281315ad.23.1727611636800; Sun, 29 Sep 2024
+ 05:07:16 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR06MB4461:EE_|SEYPR06MB5891:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1c6e019b-523c-42d9-8c8c-08dce069eeec
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|52116014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?VrTQG7zum8Zqf/BR7SGOhI/hJNcZp2DmxSCwlZOKvboeKCfZZSDHWFyOJ/Sl?=
- =?us-ascii?Q?7Jwn+XioqCa/x5D6M38gEmspxUA8AwLUkKJgHWvqPmDz6XJcsJCDFvOL2xZ4?=
- =?us-ascii?Q?GoLhjrAuRV9tyScEAkJYX0jpfGr8nCBBStBtFbD3p+AojVJ+P7bI7Qykheaj?=
- =?us-ascii?Q?uXhSLuPfOEId5YKqKa3me3GRciLNAH891GtC6zne31V0VR8ZfmZlH+43s3BV?=
- =?us-ascii?Q?zq37le6gctl/ThQrk0r7sVi6o06IHhxouN1RyncdIFjaKOORDslWV9PMlg0c?=
- =?us-ascii?Q?m9d95fVmpr9Gq8gmdct0y2o7NNo37frvPjQRBLaPha+zujVF0jHwhNUA0TxZ?=
- =?us-ascii?Q?6Tcx8HrZ4oKz6rljQz8f2Jwq0OcWIaOmNYmOBfwcNcTOZnocAsgwQOPTJazA?=
- =?us-ascii?Q?uH07JrrT3UnIzQiwHf3HBVi6xVw3DGQa+Kk0Ut6w5ungLJuMVKyAFNrxd3Ne?=
- =?us-ascii?Q?IwtFieK90x3sdWw5+sbFYExL9g4kPL8wVuu7voOVXCPNncaGa3K10QLBQ5mj?=
- =?us-ascii?Q?uT+1gMPYGDIvLu84P0J+XDlGQXsA6dWHBpZd4/QQaMOCcK52mvOIXhcquYh7?=
- =?us-ascii?Q?MujbdO8RTpT14+4zNg4s2mRocrcQ5Zl40w95FfOMEY1FrezERDBmgnPblQBs?=
- =?us-ascii?Q?a0gR3g5LdcJWE+p8zg2n4wpRJIPTGZMPuRk/d5XoBBJlG65mDERvvbCSY3is?=
- =?us-ascii?Q?SOsOjfu3hSoJ1d58obAjd9Osz18XU6B/1XhKnPxZHSOSW3le+d+z7GhVxa17?=
- =?us-ascii?Q?CcPkTXK0SGvXXfZOn1G/jGczSranM+x0TwwGBLfJdrl/PfZtpAdCoIkkUSMo?=
- =?us-ascii?Q?lDoR02SPST3PPVnWgYIkcvVihTaNSql6iANixpPURaCLU0xxQo+PdWQvVYHL?=
- =?us-ascii?Q?CLxD92S1Fa4Efnk8VljsTwSL7p+Uv8WDZa0kMxxry0sBF8SqKM4pNuAyeuEY?=
- =?us-ascii?Q?38b6yCTr+135Dyq0FFV3EbH4M+UaikzclnYqBOTFw1xB4Xueq4Az/zZm9/mG?=
- =?us-ascii?Q?h93OtGab866Bg2utheDzERLPQxzOOVnrSB5kDnJlI9vyNav+bUW5BRKF0bjo?=
- =?us-ascii?Q?dL27wBrn4eME83CRl36yfkK2zQ8RKpXJzN+sZ/j0rAIJKXACVr8jDjrd/6+Y?=
- =?us-ascii?Q?ewtgqkXFqZeGSuysfmFiRMjmhHaVUfBnozCukhVkJ7PByacLerRC7cN2q/Kf?=
- =?us-ascii?Q?DCKj+kRdUMPOQ3p+0PSju4RcyNYGdlMU92al9ZLcwq6e8iGKSi8CPUsKeaZU?=
- =?us-ascii?Q?987iz6fGcrlKn+gREbLjzYiAvFTzeOYRyyuUYvQQWK+6ddCTY/AImqGKfnd+?=
- =?us-ascii?Q?He6UHm3ApL78lEYjiBo0j6yoeG+mXX5P3wleRSkSOXD66+9NFsRsM4YJr81g?=
- =?us-ascii?Q?5UAD6/NPaVD0zV20rxy1eXFL2y4NKsIIkNBNIJr4+x6xUJyyPQ=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR06MB4461.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SpngrYx0TM75Z3/RNYyQlsoYYxe12od4XYiPlObY2gyBC9VMfD+O17AfJEQ7?=
- =?us-ascii?Q?yEX0QJcNmGr1vh/cfeAANaVmUQbYc9FzM5rvz8tXQ2BnF06ERJAIZMPTiPIH?=
- =?us-ascii?Q?LCWFdvBDbV3DqdV7bM4i0g/KTqNMJku8JB+gnJYq5jnb0Xi6+FzeUA54D9Zh?=
- =?us-ascii?Q?5J6ZuZSJJptsmZtdYqkuLDa26jPGvRykbbm5KHWNHWMTdAKBm5Da6HLg8Vvp?=
- =?us-ascii?Q?ajErj5sneKugBuD32xBeQC4R/FH0KigQ6mJeszcbROmpkE0L9iUsE5H6OFDK?=
- =?us-ascii?Q?erIboKGwqdrHaxaFu0H9iY/xBQUzoYk18Wy5bY1n88BouGtlsv1dK2W8GWp3?=
- =?us-ascii?Q?tntYU0es54onNa7TGPOQvWd/mNK1ZRMzrUEF9TuvwGRsVhCmnMHASHCAetMp?=
- =?us-ascii?Q?fBXVZRfdUEeDWOYeUXGmoN6p/QwQYKillTs4kjSJnv7vRWV7dFo11S1y4CKA?=
- =?us-ascii?Q?2uG6PBA2l7bWxGdLmJKkpM47NT/TkSf+j8AKmCTr8655Fqtvj/dNVHtsTVdn?=
- =?us-ascii?Q?s5IP4K/6yLvlYjO7VQp665E/CxiC0iy+G7hfy6UZ8F/hK8zpD+nR7J2yIbqv?=
- =?us-ascii?Q?Q15bJ8PR5C+y2KTJIXSknsdUM0p28KCYqZ9eEoh9BNFjM/NPKRi3dSg9Cx/F?=
- =?us-ascii?Q?lMJduBpTl+XmtmSAieIGQhhB+cRIb4EHshnbAW5G1uSa5sSFY1R0V0gcV574?=
- =?us-ascii?Q?n4aVuMYGkPtt2oTLla5Q4EqiJiv+uHf9ENozyea+aWEwiXPa+H/2JaQo1X9P?=
- =?us-ascii?Q?VxYNqRBleIujWO7NRdUzvJrzMIxT5hsJgNmO9QvxnthO48BRplCREItDT8PR?=
- =?us-ascii?Q?FcjEHm2m9LDPh3frlxCXIkjr8/YcFUfJRfwhcexKuhJ5WWS5QhNOOF7pEJFA?=
- =?us-ascii?Q?x3CDakdKFub21uVbUi2Qaakedi7kuixku64v/rkrU6q4Q8VA6CeLTUbZGcQH?=
- =?us-ascii?Q?PGF4B8i3hv4rfqRd3xBZ5lDLwAK8nqrHdlKFAZBErsJwZhJYsesY65iIHtXm?=
- =?us-ascii?Q?F/bB7BHNi4eUbOitT4vI0c8ZY+YnRReDiij+bqk2QivTHpWACNxy1e+F90o/?=
- =?us-ascii?Q?78MYl2y1rebV3hcJmLFBoM0t5uTbp3EnZxplLO/lVlTYU891BYwNk5JjAPip?=
- =?us-ascii?Q?zKlh90nAO+kXp//Hkjeg7pXluYF0dnz1t/RIfnxcRrfSX7tZ4xhk7zOTsCmg?=
- =?us-ascii?Q?HSNO5L+HabMXY8bCX474mxWPqWV/ik9YZsILRpLoohRw4FYoa/oGuIdFzVca?=
- =?us-ascii?Q?v/62Qr5icVhdezjQs2AxglUM8NWc3NlstMcLL6PBejrXuoekZ/5P3XiEYi+m?=
- =?us-ascii?Q?GWdonyCAG2OG8nd1HB538fpRshWaBlNZ+kBtUw7tMJYI567M0Y1yr2miXOYI?=
- =?us-ascii?Q?ZIhm+0qJpyb6dQiRAMwpGeH70jQIclTMhMZHBYlHytJRfCNrOwVhIcLVq9aU?=
- =?us-ascii?Q?Az71eQGH7/g6L569/5Ido5PIi8VxvK3IIlVeizG1G0P6QYCiFqi+L57H+xuB?=
- =?us-ascii?Q?yzSg7ggImAY2J7Czv07BXMlAfUhf9diZ5pTjYiD7iTT/1vaI4E9JcxbwZyP0?=
- =?us-ascii?Q?vbg5eTmAdlU3oR06VqJXIgAmsav4FAyrU+qtI0p4?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1c6e019b-523c-42d9-8c8c-08dce069eeec
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB4461.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2024 09:34:36.5898
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bG8C25mJTcWFakqvfdnyjdD3rUI/Fs1HpO5qns9knbnQ38C7H/ehptM1VlBUz6TQtcDj1tSI8Kenq55sexqHrg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5891
+References: <20240929093418.526901-1-yujiaoliang@vivo.com>
+In-Reply-To: <20240929093418.526901-1-yujiaoliang@vivo.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 29 Sep 2024 14:07:05 +0200
+Message-ID: <CAFBinCBYd2W8+-oKVayFmW9sEVU0Sp+vtW7QNABdsm1Rxh=Y=A@mail.gmail.com>
+Subject: Re: [PATCH v1] mmc: Fix typos in comments across various files
+To: Yu Jiaoliang <yujiaoliang@vivo.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, imx@lists.linux.dev, s32@nxp.com, 
+	linux-arm-msm@vger.kernel.org, opensource.kernel@vivo.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240929_023500_360419_9B2D9405 
-X-CRM114-Status: GOOD (  18.93  )
+X-CRM114-CacheID: sfid-20240929_050718_535068_D1D75054 
+X-CRM114-Status: UNSURE (   9.14  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,147 +87,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch corrects several typos in comments within the mmc/host
-directory. No functional changes are introduced, only comment
-improvements for better readability.
-
-Detected using codespell.
-
-Signed-off-by: Yu Jiaoliang <yujiaoliang@vivo.com>
----
- drivers/mmc/host/atmel-mci.c       | 2 +-
- drivers/mmc/host/au1xmmc.c         | 2 +-
- drivers/mmc/host/cavium-octeon.c   | 2 +-
- drivers/mmc/host/dw_mmc.c          | 2 +-
- drivers/mmc/host/meson-gx-mmc.c    | 2 +-
- drivers/mmc/host/mmci.h            | 2 +-
- drivers/mmc/host/sdhci-esdhc-imx.c | 4 ++--
- drivers/mmc/host/sdhci-msm.c       | 2 +-
- 8 files changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/mmc/host/atmel-mci.c b/drivers/mmc/host/atmel-mci.c
-index 6490df54a6f5..f444ca5dd154 100644
---- a/drivers/mmc/host/atmel-mci.c
-+++ b/drivers/mmc/host/atmel-mci.c
-@@ -860,7 +860,7 @@ static void atmci_send_stop_cmd(struct atmel_mci *host, struct mmc_data *data)
- }
- 
- /*
-- * Configure given PDC buffer taking care of alignement issues.
-+ * Configure given PDC buffer taking care of alignment issues.
-  * Update host->data_size and host->sg.
-  */
- static void atmci_pdc_set_single_buf(struct atmel_mci *host,
-diff --git a/drivers/mmc/host/au1xmmc.c b/drivers/mmc/host/au1xmmc.c
-index 6e80bcb668ec..7393d2ea5e57 100644
---- a/drivers/mmc/host/au1xmmc.c
-+++ b/drivers/mmc/host/au1xmmc.c
-@@ -543,7 +543,7 @@ static void au1xmmc_cmd_complete(struct au1xmmc_host *host, u32 status)
- 					cmd->resp[i] |= (r[i + 1] & 0xFF000000) >> 24;
- 			}
- 		} else {
--			/* Techincally, we should be getting all 48 bits of
-+			/* Technically, we should be getting all 48 bits of
- 			 * the response (SD_RESP1 + SD_RESP2), but because
- 			 * our response omits the CRC, our data ends up
- 			 * being shifted 8 bits to the right.  In this case,
-diff --git a/drivers/mmc/host/cavium-octeon.c b/drivers/mmc/host/cavium-octeon.c
-index 060ec4f4800f..d150d83b41ed 100644
---- a/drivers/mmc/host/cavium-octeon.c
-+++ b/drivers/mmc/host/cavium-octeon.c
-@@ -217,7 +217,7 @@ static int octeon_mmc_probe(struct platform_device *pdev)
- 		return PTR_ERR(base);
- 	host->dma_base = base;
- 	/*
--	 * To keep the register addresses shared we intentionaly use
-+	 * To keep the register addresses shared we intentionally use
- 	 * a negative offset here, first register used on Octeon therefore
- 	 * starts at 0x20 (MIO_EMM_DMA_CFG).
- 	 */
-diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
-index 41e451235f63..aab1a8df6414 100644
---- a/drivers/mmc/host/dw_mmc.c
-+++ b/drivers/mmc/host/dw_mmc.c
-@@ -1182,7 +1182,7 @@ static void dw_mci_submit_data(struct dw_mci *host, struct mmc_data *data)
- 		/*
- 		 * Use the initial fifoth_val for PIO mode. If wm_algined
- 		 * is set, we set watermark same as data size.
--		 * If next issued data may be transfered by DMA mode,
-+		 * If next issued data may be transferred by DMA mode,
- 		 * prev_blksz should be invalidated.
- 		 */
- 		if (host->wm_aligned)
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index c7c067b9415a..e87d1c4b9dc1 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -879,7 +879,7 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- 	/*
- 	 * The memory at the end of the controller used as bounce buffer for
- 	 * the dram_access_quirk only accepts 32bit read/write access,
--	 * check the aligment and length of the data before starting the request.
-+	 * check the alignment and length of the data before starting the request.
- 	 */
- 	if (host->dram_access_quirk && mrq->data) {
- 		mrq->cmd->error = meson_mmc_validate_dram_access(mmc, mrq->data);
-diff --git a/drivers/mmc/host/mmci.h b/drivers/mmc/host/mmci.h
-index a5eb4ced4d5d..4d3647f9ec06 100644
---- a/drivers/mmc/host/mmci.h
-+++ b/drivers/mmc/host/mmci.h
-@@ -77,7 +77,7 @@
- #define MCI_CPSM_INTERRUPT	BIT(8)
- #define MCI_CPSM_PENDING	BIT(9)
- #define MCI_CPSM_ENABLE		BIT(10)
--/* Command register flag extenstions in the ST Micro versions */
-+/* Command register flag extensions in the ST Micro versions */
- #define MCI_CPSM_ST_SDIO_SUSP		BIT(11)
- #define MCI_CPSM_ST_ENCMD_COMPL		BIT(12)
- #define MCI_CPSM_ST_NIEN		BIT(13)
-diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
-index 8f0bc6dca2b0..2bfb86364441 100644
---- a/drivers/mmc/host/sdhci-esdhc-imx.c
-+++ b/drivers/mmc/host/sdhci-esdhc-imx.c
-@@ -1524,7 +1524,7 @@ static void sdhci_esdhc_imx_hwinit(struct sdhci_host *host)
- 			writel(tmp, host->ioaddr + ESDHC_TUNING_CTRL);
- 		} else if (imx_data->socdata->flags & ESDHC_FLAG_MAN_TUNING) {
- 			/*
--			 * ESDHC_STD_TUNING_EN may be configed in bootloader
-+			 * ESDHC_STD_TUNING_EN may be configured in bootloader
- 			 * or ROM code, so clear this bit here to make sure
- 			 * the manual tuning can work.
- 			 */
-@@ -1626,7 +1626,7 @@ sdhci_esdhc_imx_probe_dt(struct platform_device *pdev,
- 
- 	/*
- 	 * If we have this property, then activate WP check.
--	 * Retrieveing and requesting the actual WP GPIO will happen
-+	 * Retrieving and requesting the actual WP GPIO will happen
- 	 * in the call to mmc_of_parse().
- 	 */
- 	if (of_property_read_bool(np, "wp-gpios"))
-diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-index e113b99a3eab..d6b3b343b031 100644
---- a/drivers/mmc/host/sdhci-msm.c
-+++ b/drivers/mmc/host/sdhci-msm.c
-@@ -2601,7 +2601,7 @@ static int sdhci_msm_probe(struct platform_device *pdev)
- 	sdhci_msm_handle_pwr_irq(host, 0);
- 
- 	/*
--	 * Ensure that above writes are propogated before interrupt enablement
-+	 * Ensure that above writes are propagated before interrupt enablement
- 	 * in GIC.
- 	 */
- 	mb();
--- 
-2.34.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gU3VuLCBTZXAgMjksIDIwMjQgYXQgMTE6NTLigK9BTSBZdSBKaWFvbGlhbmcgPHl1amlhb2xp
+YW5nQHZpdm8uY29tPiB3cm90ZToKPgo+IFRoaXMgcGF0Y2ggY29ycmVjdHMgc2V2ZXJhbCB0eXBv
+cyBpbiBjb21tZW50cyB3aXRoaW4gdGhlIG1tYy9ob3N0Cj4gZGlyZWN0b3J5LiBObyBmdW5jdGlv
+bmFsIGNoYW5nZXMgYXJlIGludHJvZHVjZWQsIG9ubHkgY29tbWVudAo+IGltcHJvdmVtZW50cyBm
+b3IgYmV0dGVyIHJlYWRhYmlsaXR5Lgo+Cj4gRGV0ZWN0ZWQgdXNpbmcgY29kZXNwZWxsLgo+Cj4g
+U2lnbmVkLW9mZi1ieTogWXUgSmlhb2xpYW5nIDx5dWppYW9saWFuZ0B2aXZvLmNvbT4KPiAtLS0K
+PiAgZHJpdmVycy9tbWMvaG9zdC9hdG1lbC1tY2kuYyAgICAgICB8IDIgKy0KPiAgZHJpdmVycy9t
+bWMvaG9zdC9hdTF4bW1jLmMgICAgICAgICB8IDIgKy0KPiAgZHJpdmVycy9tbWMvaG9zdC9jYXZp
+dW0tb2N0ZW9uLmMgICB8IDIgKy0KPiAgZHJpdmVycy9tbWMvaG9zdC9kd19tbWMuYyAgICAgICAg
+ICB8IDIgKy0KPiAgZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYyAgICB8IDIgKy0KZm9y
+IG1lc29uLWd4LW1tYzoKUmV2aWV3ZWQtYnk6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5i
+bHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5jb20+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxv
+Z2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
