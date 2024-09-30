@@ -4,63 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4056CE8347
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2024 14:15:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41A07CE8349
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2024 14:15:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=duqjOSS/gcbtNTFom96oga5f8f6CSKS9DFOporrHfgE=; b=WXHXi0CP4YEOxb
-	rMqK2VBNsukEKLIZzoFIhUaz7l8lEyQcQjeiQjxWB4VyjtrBwbSENmTaAgUZQpakVqpDSjtc8cUr5
-	m2vaYPQBtGQKKmYNX1iFSMx3Wo8R586cTzGi5NCEMfRhiYoQ7TSAf576oUkHB6iv7++Gk4SMVT5tC
-	+GPs55zuKed89IOketI5nnRttn66wDWSojbML/O9I6oe18RpoMILYHaFEixWGPhtBkEc5NsZem9lJ
-	Q0QoJEyCi8BbCXrlk62XepaHDNktHzfSxKNetuYiki3sEVSVM4Pwugs9HRN3bZoTOlKbDHJWDtnpc
-	234yOhgFOigADEeldX9g==;
+	List-Owner; bh=XMXqGpwoGZoU4iayFjNtSC8z4oOnCQAOGSMvKr2TkRg=; b=4eP0rH47tb7dK2
+	fnmM4JZWJ8w0cZ35WMXVw/f7zN6jhy45KsofrpBs+zVI/r+/XXfRjsMAJ7Gzxp00IOqzVOmnjeFQb
+	e+E5bUql+zij8Snvqjt+RsC6wkNjHYYC5NYqK1jGiXKwHFwehNMm2YMMOdL4TYy0j4SihM8o4BUx+
+	0x9uwDVQbQZr+DEmGnKZ123uZKO3MzByNgW5ntA/Uh15/kxm3EbvxPqFbgH57snky4hHR/iHUbvRR
+	xDAGM87+2RcwkCIjUaVaN+OxSBIuBgBG/79u+9Z210lFmxR5YeDwztmmPuMMtObi1TK05y1G7FNjh
+	KOaFBWbpTPkGuAilvurA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1svHBN-0000000HTpC-1aHd;
-	Mon, 30 Sep 2024 14:15:25 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1svHBM-0000000HTog-22NH;
+	Mon, 30 Sep 2024 14:15:24 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1svFaR-0000000H3ys-2Zvp
+	id 1svFUa-0000000H2lc-03Gy
 	for linux-amlogic@lists.infradead.org;
-	Mon, 30 Sep 2024 12:33:13 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3770320574aso2858680f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 30 Sep 2024 05:33:11 -0700 (PDT)
+	Mon, 30 Sep 2024 12:27:10 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-42cb58d810eso31525135e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 30 Sep 2024 05:27:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727699589; x=1728304389; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727699226; x=1728304026; darn=lists.infradead.org;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wcTFAf/39stw2L9rW+QSJlImzmwdaZ5jPtnTMrK6EJE=;
-        b=sM0ndOr4bX4CabkxHDery5+MHuUDhIkyGryt8Tzz5VIMuF07+pO7AR++QnOsmHr/jH
-         zBcAkoLH3JYt/aEwzLt4DTwnsCRJmDiqix2JKoFZNZ5lgF1Do5IB/V4Nt/CRtn7e48t9
-         TGjJciSZcfztLTVn2LYcJUeqw7l+XwpNNMBKa7P6lPJTJuelWTObMXgUH3034zQ8Vf6Z
-         eejUcutbxtqpaiB+2ru8yMpM62aqcB6ifhqXS8xzDgrNy74vPEx0r2FuV2SZz3nvqk/n
-         fryxgCbh+5JXo/JG806WcTKnmlf0NBXx/8md6rtVfwMDoDssO8agtMUn4GBKbv/NypZ0
-         Zgkg==
+        bh=TnfvxkU+3SpvaCEsw37+aVnbvjFaWPB2+8ZOExgpE60=;
+        b=cAddJfdIe69eSkMSvATFfVUwJyLQARvl0vnb/5B3Nl/e10iXIzo3D/V4c+ds16fvz9
+         lvzfsfuN6nSHWPkoTKK0B8spJRn+GLbBd8CqBkbNpmjnhkiQhKN6w0eXPBzYOkrXTiLB
+         WpwpvsPYqD3+aL8u9LdNlOSjlxgaNcgTrOadnDs3UaYxa5Wg+Af4CX06u2bVx8livdot
+         mZGKrqlQanY/X1wgLHBQw9L6ucfqRGftpxd0g7fC6xVCHnqosfPAi6tAC7Vuqz/XIXCT
+         MFiGhH29SPH53oRE3RMUjifJeR23CZjxcjpmAHl/R0fuOImeqOqoMLWTv88uzU1omQlU
+         VVsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727699589; x=1728304389;
+        d=1e100.net; s=20230601; t=1727699226; x=1728304026;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wcTFAf/39stw2L9rW+QSJlImzmwdaZ5jPtnTMrK6EJE=;
-        b=cVzspMYzcmARMvurLDAtTnB6ll/gDWUfZW7HpLumIgRiWC4JNokJOY9G/511nbXOyE
-         KDMxKiXPK/VgL2Fwb4kgfP8YjSwMXxpl4UH0hs8SKfN872aWWHojWxr10eZSB5d5whTw
-         MJw6NHLJzRbdRMQ/CX4A5j4dET6KBIP2e4S3V089vHstLvMGZU2zCtBOOCGJUORU82Z3
-         rlB9tL2v6ygfl0BZVqLNongW2SHP09+YNxBslszOUZvGT/GNq5csaMFAcNomtzGLoO5f
-         ovIT2ePal5wmWjUgLZYtt9uC2yNWGDqF+MxYmNz09lrK2q32wmkZdsninIq2VqIUAl5O
-         3gVA==
-X-Forwarded-Encrypted: i=1; AJvYcCWVZMw+vRAo0Ou5+cFVxStRq/Etgl9UA46TjDDsimrMh+PX/IjoXh7whG4X3w6/3p1hKZIvwjUZJwNoM1ht@lists.infradead.org
-X-Gm-Message-State: AOJu0YwAkFEudncBu1GkMJatHc/KWsMZ9kvoScfp4f2AzCYikgjhh7d/
-	vVSm7zMqwcF2icfZ4AuFuo1yQbZj86SMLY3R19scUY5Jbjb2/aCpaq8gJreTsHo=
-X-Google-Smtp-Source: AGHT+IHTY8puEfxRrHvmLqweSOnoM31uzsPdJHEBi2OMm0NwVB3ar3t6Omd21i9AD5kxBgtkSBpjTw==
-X-Received: by 2002:adf:f1d1:0:b0:374:c621:62a6 with SMTP id ffacd0b85a97d-37cd5aed352mr5657657f8f.47.1727699589487;
-        Mon, 30 Sep 2024 05:33:09 -0700 (PDT)
+        bh=TnfvxkU+3SpvaCEsw37+aVnbvjFaWPB2+8ZOExgpE60=;
+        b=BcbqAT3d4oeDImCymmj8NNJ3F5p/5ioq3E7qZtOq3w12Jr4gSyiq9ctDzxNQFCi6QW
+         R/AGjwjT0LdMVYA8qtiI3FLEAW6E7QwZT4cYqJU1rrt/TGtAnnHXMp4xxmpxrWmybapw
+         md+bGV1G8HZ8yBUvSarKvSPANmEZpYfzM47fKSj+1GeDbmIGZ4L/WbebK9Ez8dIMJmGh
+         pcX1t2Rn6ougwiM+0fNjFplvDgsOF2+616KGa9EVbQ90DvfnHKYGl1o+BKPrUGc2FvmK
+         7da3mCKvhsNP4irWfSm9uKuuGrWWa5aY7GoCRdSVsriStpBgb4Jo85O/ZXmurOs/3EtT
+         dyTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVA1aYRr9yiWYaCwuieCzOBiKhJjf5VB23Di/l9k8rhSNJxaSJCnrLK6OPgfNcbNNVwtZc14CdMJqak8iQ9@lists.infradead.org
+X-Gm-Message-State: AOJu0YyhX05Ib1jmykEy3S8HnhDL0L8dgBu7+1RO478bLx91hkXjLLTJ
+	uOxrehyB6d9aZlacuV2VEAUtPQo6EqdfdX0eVZnv0ITHSJY/j7cr/SYH66ESS58VzswcQhW9QWX
+	PFRg=
+X-Google-Smtp-Source: AGHT+IE14OFcN1Aoo5OXrKzTjQCJkSgzSoOhRyTY+Vz61AiXH/EbYZGwPtPCvJZVvzG7X4TErPBjKw==
+X-Received: by 2002:a5d:500f:0:b0:374:ba78:9013 with SMTP id ffacd0b85a97d-37cd568e21cmr6844128f8f.9.1727699226325;
+        Mon, 30 Sep 2024 05:27:06 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:b6ba:bab:ced3:2667])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd572fd9asm8996599f8f.75.2024.09.30.05.33.08
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd5752a09sm8911834f8f.108.2024.09.30.05.27.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2024 05:33:08 -0700 (PDT)
+        Mon, 30 Sep 2024 05:27:05 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
 Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
@@ -69,17 +70,17 @@ Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
  <martin.blumenstingl@googlemail.com>,  chuan.liu@amlogic.com,
   linux-clk@vger.kernel.org,  linux-kernel@vger.kernel.org,
   linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/2] clk: Fix issues related to CLK_IGNORE_UNUSED
- failures and amlogic glitch free mux
-In-Reply-To: <20240929-fix_glitch_free-v1-0-22f9c36b7edf@amlogic.com> (Chuan
-	Liu via's message of "Sun, 29 Sep 2024 14:10:04 +0800")
+Subject: Re: [PATCH 1/2] clk: Fix the CLK_IGNORE_UNUSED failure issue
+In-Reply-To: <20240929-fix_glitch_free-v1-1-22f9c36b7edf@amlogic.com> (Chuan
+	Liu via's message of "Sun, 29 Sep 2024 14:10:05 +0800")
 References: <20240929-fix_glitch_free-v1-0-22f9c36b7edf@amlogic.com>
-Date: Mon, 30 Sep 2024 14:33:07 +0200
-Message-ID: <1jcykltj7g.fsf@starbuckisacylon.baylibre.com>
+	<20240929-fix_glitch_free-v1-1-22f9c36b7edf@amlogic.com>
+Date: Mon, 30 Sep 2024 14:27:04 +0200
+Message-ID: <1jed51tjhj.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240930_053311_685516_848CE606 
-X-CRM114-Status: GOOD (  20.03  )
+X-CRM114-CacheID: sfid-20240930_052708_274633_67A53D30 
+X-CRM114-Status: GOOD (  28.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,95 +99,141 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Sun 29 Sep 2024 at 14:10, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
 
-> If CLK_OPS_PARENT_ENABLE is configured for clock,
-> clk_core_disable_unprepare() is called in clk_disable_unused_subtree().
-> Even clocks that are configured with CLK_IGNORE_UNUSED are disabled,
-> resulting in the failure of CLK_IGNORE_UNUSED.
+> From: Chuan Liu <chuan.liu@amlogic.com>
 >
-> To ensure that amlogic glitch free mux can switch clock channels
-> properly, add flag CLK_OPS_PARENT_ENABLE to glitch free mux. The issue
-> that CLK_OPS_PARENT_ENABLE in CCF causes CLK_IGNORE_UNUSED to fail is
-> also exposed.
-
-The problem is that you are mixing problems together and it makes things
-rather difficult to follow. There are 2 distinct problem, there should
-have been to distinct patchset, even if you reference the CCF one in the
-Amlogic change.
-
-CLK_IGNORE_UNUSED is no guarantee that a clock will stay on, no matter
-what happens in the clock tree. I explained that to you several times,
-and it is the very reason why you are being asked to justify each usage
-of the flag. Most of the time, using it is wrong.
-
-That being said, there seems to be problems with CLK_OPS_PARENT_ENABLE
-in clk_disable_unused_subtree(). As it is, I think
-* a clock with CLK_IGNORE_UNUSED and CLK_OPS_PARENT_ENABLE, would 'leak'
-  an enable, essentially making the parent subtree critical.
-* All parents of a CLK_OPS_PARENT_ENABLE clock would have its
-  CLK_IGNORE_UNUSED ignored as a result of the enable/disable sequence
-  (note that in any other circumstance, enable/disable should indeed
-  disable an CLK_IGNORE_UNUSED clock).
-* Parent of ignored clocks may still get disabled.
-
-I'll be sending a proposal to address these problems soon.
-
+> When the clk_disable_unused_subtree() function disables an unused clock,
+> if CLK_OPS_PARENT_ENABLE is configured on the clock,
+> clk_core_prepare_enable() and clk_core_disable_unprepare() are called
+> directly, and these two functions do not determine CLK_IGNORE_UNUSED,
+> This causes the clock to be disabled even if CLK_IGNORE_UNUSED is
+> configured when clk_core_disable_unprepare() is called.
 >
-> glitch free mux channel switchover failure issue(Test vpu_clk on S4):
-> step 1:
-> $ cat /sys/kernel/debug/clk/vpu/clk_parent 
-> vpu_0
-> $ cat /sys/kernel/debug/clk/vpu_0/clk_rate 
-> 399999994
-> $ cat /sys/kernel/debug/clk/vpu_1/clk_rate 
-> 666666656
-> $ echo 1 > /sys/kernel/debug/clk/vpu/clk_prepare_enable 
-> $ cat /sys/kernel/debug/meson-clk-msr/clks/cts_vpu_clk
-> 399987500       +/-12500Hz
+> Two new functions clk_disable_unprepare_unused() and
+> clk_prepare_enable_unused() are added to resolve the preceding
+> situation. The CLK_IGNORE_UNUSED judgment logic is added to these two
+> functions. To prevent clock configuration CLK_IGNORE_UNUSED from
+> possible failure.
 >
-> step 2:
-> $ echo 0 > /sys/kernel/debug/clk/vpu/clk_prepare_enable 
-> $ echo 1 > /sys/kernel/debug/clk/vpu/clk_parent 
-> $ cat /sys/kernel/debug/clk/vpu/clk_parent 
-> vpu_1
-> $ cat /sys/kernel/debug/clk/vpu/clk_rate 
-> 666666656
-> $ echo 1 > /sys/kernel/debug/clk/vpu/clk_prepare_enable 
-> $ cat /sys/kernel/debug/meson-clk-msr/clks/cts_vpu_clk
-> 0       +/-3125Hz
->
-> In step2, vpu_0 is disabled, and the vpu is not switched to vpu_1. At
-> this time, the vpu is still connected to vpu_0 and vpu_0 is disabled at
-> this time, resulting in the clk-measure not measuring the clock.
->
-
-If keep the display on and managed at all time is critical, then may you
-should consider having the module managing it as built-in.
-
-You would not need CLK_IGNORE_USED at all because device would be
-present before clk_disable_unused() is executed.
-
-Past the late init, if no device actively use the clock, disabling it is
-the sane thing to do because nothing says it will ever be used.
-
+> Change-Id: I56943e17b86436254f07d9b8cdbc35599328d519
 > Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 > ---
-> Chuan Liu (2):
->       clk: Fix the CLK_IGNORE_UNUSED failure issue
->       clk: meson: Fix glitch free mux related issues
+>  drivers/clk/clk.c | 67 +++++++++++++++++++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 65 insertions(+), 2 deletions(-)
 >
->  drivers/clk/clk.c                  | 67 ++++++++++++++++++++++++++++++++++++--
->  drivers/clk/meson/a1-peripherals.c | 12 +++----
->  drivers/clk/meson/axg.c            | 16 +++++----
->  drivers/clk/meson/c3-peripherals.c |  6 ++--
->  drivers/clk/meson/g12a.c           | 18 ++++++----
->  drivers/clk/meson/gxbb.c           | 18 ++++++----
->  drivers/clk/meson/s4-peripherals.c | 32 +++++++++---------
->  7 files changed, 122 insertions(+), 47 deletions(-)
-> ---
-> base-commit: e736da1956cf0880a02ec5023f3487eea7611b5f
-> change-id: 20240929-fix_glitch_free-290c88923c31
->
-> Best regards,
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index 285ed1ad8a37..5d3316699b57 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -94,6 +94,7 @@ struct clk_core {
+>  	struct hlist_node	debug_node;
+>  #endif
+>  	struct kref		ref;
+> +	bool			ignore_enabled;
+>  };
+>  
+>  #define CREATE_TRACE_POINTS
+> @@ -1479,6 +1480,68 @@ static void __init clk_unprepare_unused_subtree(struct clk_core *core)
+>  	}
+>  }
+>  
+> +static void __init clk_disable_unprepare_unused(struct clk_core *core)
+> +{
+> +	unsigned long flags;
+> +
+> +	lockdep_assert_held(&prepare_lock);
+> +
+> +	if (!core)
+> +		return;
+> +
+> +	if ((core->enable_count == 0) && core->ops->disable &&
+> +	    !core->ignore_enabled) {
+> +		flags = clk_enable_lock();
+
+Used core->enable_count without taking the lock
+
+> +		core->ops->disable(core->hw);
+
+If the there is any CLK_IS_CRITICAL in the path, it is game over.
+You've basically disregarded all the other CCF flags which are equally
+important to the ones you are dealing with.
+
+> +		clk_enable_unlock(flags);
+> +	}
+> +
+> +	if ((core->prepare_count == 0) && core->ops->unprepare &&
+> +	    !core->ignore_enabled)
+> +		core->ops->unprepare(core->hw);
+> +
+> +	core->ignore_enabled = false;
+> +
+> +	clk_disable_unprepare_unused(core->parent);
+
+Here you are disabling the parent of any CLK_IGNORE_UNUSED clock.
+IMO, the problem is not solved. It just shifted.
+
+> +}
+> +
+> +static int __init clk_prepare_enable_unused(struct clk_core *core)
+> +{
+> +	int ret = 0;
+> +	unsigned long flags;
+> +
+> +	lockdep_assert_held(&prepare_lock);
+> +
+> +	if (!core)
+> +		return 0;
+> +
+> +	ret = clk_prepare_enable_unused(core->parent);
+> +	if (ret)
+> +		return ret;
+
+That's adding another recursion in CCF, something Stephen would like to remove
+
+> +
+> +	if ((core->flags & CLK_IGNORE_UNUSED) && clk_core_is_enabled(core))
+> +		core->ignore_enabled = true;
+> +
+> +	if ((core->prepare_count == 0) && core->ops->prepare) {
+> +		ret = core->ops->prepare(core->hw);
+> +		if (ret)
+> +			goto disable_unprepare;
+> +	}
+> +
+> +	if ((core->enable_count == 0) && core->ops->enable) {
+> +		flags = clk_enable_lock();
+> +		ret = core->ops->enable(core->hw);
+> +		clk_enable_unlock(flags);
+> +		if (ret)
+> +			goto disable_unprepare;
+> +	}
+> +
+> +	return 0;
+> +disable_unprepare:
+> +	clk_disable_unprepare_unused(core->parent);
+> +	return ret;
+> +}
+> +
+>  static void __init clk_disable_unused_subtree(struct clk_core *core)
+>  {
+>  	struct clk_core *child;
+> @@ -1490,7 +1553,7 @@ static void __init clk_disable_unused_subtree(struct clk_core *core)
+>  		clk_disable_unused_subtree(child);
+>  
+>  	if (core->flags & CLK_OPS_PARENT_ENABLE)
+> -		clk_core_prepare_enable(core->parent);
+> +		clk_prepare_enable_unused(core->parent);
+>  
+>  	flags = clk_enable_lock();
+>  
+> @@ -1517,7 +1580,7 @@ static void __init clk_disable_unused_subtree(struct clk_core *core)
+>  unlock_out:
+>  	clk_enable_unlock(flags);
+>  	if (core->flags & CLK_OPS_PARENT_ENABLE)
+> -		clk_core_disable_unprepare(core->parent);
+> +		clk_disable_unprepare_unused(core->parent);
+>  }
+>  
+>  static bool clk_ignore_unused __initdata;
 
 -- 
 Jerome
