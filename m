@@ -4,68 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92607CE8375
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2024 16:58:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5567DCE837D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2024 18:14:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=C2yHUAMAbPn3u16IconPVNYhOFjuKxUDJmKUTYxgUtk=; b=Y3QTol4p4URFEd
-	DlFQO+BxFPcqfYdLFNzIgAJ3Rl4brgWi5dSUzoCPogwhWDymNZx9VjwyFrHow4I35608hQJBYmpyV
-	QuyuN03syCnNQufNojf+Z1rkP8Jszk/CR/237B3X4PPSmYsiyoLO07DbV4dP28RpD9kBbPFytYeAn
-	sVcK4IEaWd3b/NYdTcHYH2Fx/Bal69BiZasCnoNu0EqJrsDrX9tnEkyZWgLm3x72Pjott+WFALGKY
-	8ilYq/ncYH75sa9Wot1PM79wXJ/FcK0IyG2TUbttBv5bh8xRxqK0SON5riAUe1/PGROGQyQPo8Oj7
-	24gFOvlRA8byXBgJ/P1Q==;
+	List-Owner; bh=M0bhI2qY6x4XwKlvaDnL/PQftsHV73Pfc/iAXKZlxog=; b=WrPq2MImS5u6LS
+	M5U4GOV1nRuuF0Q8A+EG+fNNJ/25X+3j74dxz1jV50la3GEwBjXVL4UyOnQokETsqDQHfefD0RibS
+	zJqgY23fSZ0Lau5YXIl6v64AAcC1QsbfHLYDFCpKG9FeFq/KN3i4Ivbt3HkkDQjiSXFNvtzCLCzXt
+	3nrsqCILGZqK8La9IaL7SlpMJVpsOTynGOh7mTlzu5uIXFU00h8AmlrhzvUFvmVRR0ef7gAS6mASY
+	97rooz80GZrzqV97rJiabvdH+M1ROPxWRQh95ILDZIT6jlnPw4Fbb9tFGYkD9DP+SF5+5DC3hbuQ/
+	fMYuDotVRvB5PGEew5/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1svJjA-00000000Jce-3cbf;
-	Mon, 30 Sep 2024 16:58:28 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1svKus-00000000TDc-3QNB;
+	Mon, 30 Sep 2024 18:14:38 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1svJgy-00000000JHN-3BEk
+	id 1svKup-00000000TCa-1KoF
 	for linux-amlogic@lists.infradead.org;
-	Mon, 30 Sep 2024 16:56:14 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1svJgs-0003Pg-7Z; Mon, 30 Sep 2024 18:56:06 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1svJgr-002fvN-Eg; Mon, 30 Sep 2024 18:56:05 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1svJgr-000FXL-1G;
-	Mon, 30 Sep 2024 18:56:05 +0200
-Message-ID: <01aff9c0f129f8c1cf41c7ae53dac38048aa34a8.camel@pengutronix.de>
-Subject: Re: [PATCH v5 8/9] reset: amlogic: split the device core and
- platform probe
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Jiucheng Xu
- <jiucheng.xu@amlogic.com>, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Mon, 30 Sep 2024 18:56:05 +0200
-In-Reply-To: <1jldzwkpsu.fsf@starbuckisacylon.baylibre.com>
-References: <20240910-meson-rst-aux-v5-0-60be62635d3e@baylibre.com>
-	 <20240910-meson-rst-aux-v5-8-60be62635d3e@baylibre.com>
-	 <8cb81058c8f45e378675e078e296336a2cf74308.camel@pengutronix.de>
-	 <1jldzwkpsu.fsf@starbuckisacylon.baylibre.com>
-User-Agent: Evolution 3.46.4-2 
+	Mon, 30 Sep 2024 18:14:37 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-42cb0f28bfbso36383005e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 30 Sep 2024 11:14:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727720073; x=1728324873; darn=lists.infradead.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BnuPu2GyBAH6sHexBsv2SDLbI/yG/KxkbgJVgNvLoIo=;
+        b=HITECOdosdcdmPi3MnxSK/vHMFJdJPAYvx/m/DeJ8h89BvF+4FFtFEjOakSVSm3POo
+         UY70i3rMlwd9bedgM5Arpbzxl92zIPQar4dxjE33IAiYQgBsYyYkBovwZwdudcnnWoWF
+         JjnQv+tTniGt+wRWWC2UO0UwdDdlR62xYuF/sX9IL4vsm8tJuFP6Gbfk6h2IBVBdHCoB
+         jm5wtbMuLvZVwnC8B4vVBhdNzo/BPVh/7zcoyTDblzqc6U2QExBBgeMZzUGKF0f4fxgs
+         /nbzab9hPB29vs2osQuEXyyuCHVyAHmQij5Z1vAXXz+91ioUmm6S8xT0AVRfJk8XWwTd
+         YXTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727720073; x=1728324873;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BnuPu2GyBAH6sHexBsv2SDLbI/yG/KxkbgJVgNvLoIo=;
+        b=ale2tB6IuHnAIjHsBq7Pfa8HbkItX8tiWorS3YQbSrx/hTHiWsUYGfBhwA4h4+xMo/
+         RmfV8vu03d1LvVY3nvfi1U7GgmM4j75lT0vL/v1rklhog2AJmpb96WVJsFnZa2g0Phex
+         3pWQKDgBpnN/+0cWv4p++M2Ptx5xrPIsFgpS1SzKI2FHKA41YRNz7hW0OZdZKRfLOyhp
+         9krONRfIivehdokzeGoDUHnq/78J79pIf32RkV8tm1pVAU8ceW+eN7KmldD92buHagET
+         N/ZEWDRL3dtE3ezMv1ACmD7hHHRls0ziiMr3PbW7EOMgNKw05z4Wr8a7JH22Qix+ppdl
+         Oclg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwIZLwzFhr1PXeILKobuPur60GcIq3GeRIFgDHo8uBrQc1WlHP39eln9zGQO8u2nwdXzddLY1pdsVwH+j1@lists.infradead.org
+X-Gm-Message-State: AOJu0YwCnd+hCbWXtUrqYWFSRPpFyeReIf6Kl0soCz6vTkvvy72y5v9U
+	otY6JprXhVTtg1ye3LBiwq3v2gwevIh8gmv2G69lZ0co8CjE/8WIE38WiMKM9mY=
+X-Google-Smtp-Source: AGHT+IFVbFICq/gutzSxAKiw5gYsrp87+XDgg3juU+GA1eGUW05qmSByQBe9AmAMhqxRW7a0aLW0qA==
+X-Received: by 2002:a05:600c:4f92:b0:42c:ba1f:5475 with SMTP id 5b1f17b1804b1-42f58484eacmr94026735e9.26.1727720072714;
+        Mon, 30 Sep 2024 11:14:32 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:b6ba:bab:ced3:2667])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e969ffa22sm157539545e9.25.2024.09.30.11.14.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2024 11:14:32 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Kevin Hilman
+ <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,
+  linux-arm-kernel@lists.infradead.org,  linux-amlogic@lists.infradead.org,
+  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] reset: amlogic: Fix small whitespace issue
+In-Reply-To: <20240930-reset-align-amlogic-v1-1-f64ed5c4efc1@pengutronix.de>
+	(Philipp Zabel's message of "Mon, 30 Sep 2024 18:55:56 +0200")
+References: <20240930-reset-align-amlogic-v1-1-f64ed5c4efc1@pengutronix.de>
+Date: Mon, 30 Sep 2024 20:14:31 +0200
+Message-ID: <1j1q11t3eg.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240930_095612_802495_1EFCD503 
-X-CRM114-Status: GOOD (  24.99  )
+X-CRM114-CacheID: sfid-20240930_111435_579637_DB00A103 
+X-CRM114-Status: GOOD (  14.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,113 +94,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fr, 2024-09-13 at 08:53 +0200, Jerome Brunet wrote:
-> On Thu 12 Sep 2024 at 10:12, Philipp Zabel <p.zabel@pengutronix.de> wrote:
-> 
-> > On Di, 2024-09-10 at 18:32 +0200, Jerome Brunet wrote:
-> > > To prepare the addition of the auxiliary device support, split
-> > > out the device coomon functions from the probe of the platform device.
-> > > 
-> > > The device core function will be common to both the platform and auxiliary
-> > > driver.
-> > > 
-> > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > > ---
-> > >  drivers/reset/amlogic/Kconfig              |   7 +-
-> > >  drivers/reset/amlogic/Makefile             |   1 +
-> > >  drivers/reset/amlogic/reset-meson-common.c | 121 ++++++++++++++++++++++++++++
-> > >  drivers/reset/amlogic/reset-meson.c        | 122 ++++-------------------------
-> > >  drivers/reset/amlogic/reset-meson.h        |  24 ++++++
-> > >  5 files changed, 167 insertions(+), 108 deletions(-)
-> > > 
-> > > diff --git a/drivers/reset/amlogic/Kconfig b/drivers/reset/amlogic/Kconfig
-> > > index 532e6a4f7865..1d77987088f4 100644
-> > > --- a/drivers/reset/amlogic/Kconfig
-> > > +++ b/drivers/reset/amlogic/Kconfig
-> > > @@ -1,10 +1,15 @@
-> > > +config RESET_MESON_COMMON
-> > > +	tristate
-> > > +	select REGMAP
-> > > +
-> > >  config RESET_MESON
-> > >  	tristate "Meson Reset Driver"
-> > >  	depends on ARCH_MESON || COMPILE_TEST
-> > >  	default ARCH_MESON
-> > >  	select REGMAP_MMIO
-> > > +	select RESET_MESON_COMMON
-> > >  	help
-> > > -	  This enables the reset driver for Amlogic Meson SoCs.
-> > > +	  This enables the reset driver for Amlogic SoCs.
-> > >  
-> > >  config RESET_MESON_AUDIO_ARB
-> > >  	tristate "Meson Audio Memory Arbiter Reset Driver"
-> > > diff --git a/drivers/reset/amlogic/Makefile b/drivers/reset/amlogic/Makefile
-> > > index 55509fc78513..74aaa2fb5e13 100644
-> > > --- a/drivers/reset/amlogic/Makefile
-> > > +++ b/drivers/reset/amlogic/Makefile
-> > > @@ -1,2 +1,3 @@
-> > >  obj-$(CONFIG_RESET_MESON) += reset-meson.o
-> > > +obj-$(CONFIG_RESET_MESON_COMMON) += reset-meson-common.o
-> > >  obj-$(CONFIG_RESET_MESON_AUDIO_ARB) += reset-meson-audio-arb.o
-> > > diff --git a/drivers/reset/amlogic/reset-meson-common.c b/drivers/reset/amlogic/reset-meson-common.c
-> > > new file mode 100644
-> > > index 000000000000..d57544801ae9
-> > > --- /dev/null
-> > > +++ b/drivers/reset/amlogic/reset-meson-common.c
-> > > @@ -0,0 +1,121 @@
-> > > +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-> > > +/*
-> > > + * Amlogic Meson Reset core functions
-> > > + *
-> > > + * Copyright (c) 2016-2024 BayLibre, SAS.
-> > > + * Authors: Neil Armstrong <narmstrong@baylibre.com>
-> > > + *          Jerome Brunet <jbrunet@baylibre.com>
-> > > + */
-> > > +
-> > > +#include <linux/device.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/regmap.h>
-> > > +#include <linux/reset-controller.h>
-> > > +
-> > > +#include "reset-meson.h"
-> > > +
-> > > +struct meson_reset {
-> > > +	const struct meson_reset_param *param;
-> > > +	struct reset_controller_dev rcdev;
-> > > +	struct regmap *map;
-> > > +};
-> > > +
-> > > +static void meson_reset_offset_and_bit(struct meson_reset *data,
-> > > +				       unsigned long id,
-> > > +				       unsigned int *offset,
-> > > +				       unsigned int *bit)
-> > > +{
-> > > +	unsigned int stride = regmap_get_reg_stride(data->map);
-> > > +
-> > > +	*offset = (id / (stride * BITS_PER_BYTE)) * stride;
-> > > +	*bit = id % (stride * BITS_PER_BYTE);
-> > > +}
-> > > +
-> > > +static int meson_reset_reset(struct reset_controller_dev *rcdev,
-> > > +			     unsigned long id)
-> > 
-> > checkpatch --strict complains about the alignment here.
-> > I'll fix this up when applying, no need to resend.
-> 
-> Thanks Philipp.
-> 
-> FYI, those mis-alignement were already present in the original code and
-> there has been comments when I re-indented code while moving it
-> around so I did not touch it.
+On Mon 30 Sep 2024 at 18:55, Philipp Zabel <p.zabel@pengutronix.de> wrote:
 
-Oh, ok.
+> Fix a checkpatch --strict issue:
+>
+>   CHECK: Alignment should match open parenthesis
+>   #48: FILE: drivers/reset/amlogic/reset-meson-common.c:48:
+>   +static int meson_reset_level(struct reset_controller_dev *rcdev,
+>   +			    unsigned long id, bool assert)
+>
+> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-I've applied them to reset/next them unchanged, at:
-https://git.pengutronix.de/cgit/pza/linux/commit/?id=5b93105afcdc
-and sent a follow-up patch to fix the alignment.
+Thanks Philipp.
 
-regards
-Philipp
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+
+> ---
+>  drivers/reset/amlogic/reset-meson-common.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/reset/amlogic/reset-meson-common.c b/drivers/reset/amlogic/reset-meson-common.c
+> index a7b1b250a64dbf94530d06138f4270fff8f56d7a..38a767c06fc71b6dd8a998958b20592499db3c8a 100644
+> --- a/drivers/reset/amlogic/reset-meson-common.c
+> +++ b/drivers/reset/amlogic/reset-meson-common.c
+> @@ -45,7 +45,7 @@ static int meson_reset_reset(struct reset_controller_dev *rcdev,
+>  }
+>  
+>  static int meson_reset_level(struct reset_controller_dev *rcdev,
+> -			    unsigned long id, bool assert)
+> +			     unsigned long id, bool assert)
+>  {
+>  	struct meson_reset *data =
+>  		container_of(rcdev, struct meson_reset, rcdev);
+>
+> ---
+> base-commit: 5b93105afcdcdb94d654f253850c5432555b283e
+> change-id: 20240930-reset-align-amlogic-cd4076c1421e
+>
+> Best regards,
+
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
