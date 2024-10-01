@@ -4,83 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D321CEB2E3
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2024 04:34:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4914CE8376
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2024 06:17:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GiRm2s+9XFwNIaBtjBWN8yHPC1gJF2+F0/4baP0Vtu8=; b=Ye0STTIcM1WxLC
-	f1Ac7cPAx8sUbd9tZtz+rSCknAk9X1JxZvyJ2MveaL7wK6EEiptm9eexWXnqalV5i5Tbc/9U9+ABt
-	Z8wtIbQD1LQzxpCywE32d3nc3UhN9ExOaTX3y2zSLMb33Tmrl/U1DQUysqPo+xEr2WT9Yx9E+mEfP
-	X3xEe2EUQzesSf1Uka+FboBx7IoLOEOUaByjFIi0a0WAiNls0Q6KAWx9HXpWCc+3srz1FUXgU8nDZ
-	IxyrXFYU3wfZIDSJpSmpde2nN3t3Q7Mj4b3vMtCo0hgQEHguICYnDvkkZS7zsUe/AQHxqdhFFyLFl
-	LEqvtzamHNfTkqMwSqUw==;
+	List-Owner; bh=9Ff6N2wvZVwimgJWuzMrpWB/lTe/mWncj+SU+2HSMS4=; b=En1RhSMknCIPYJ
+	oDgLsNeBLES8BowMuQAlPsRcnlMJl86WfU08HmV05nDBFKo2oxj64C8hoKhBK+2R6tteYvLJ2YTyZ
+	EfkbzlgXkKwUS2Wrz242ZgUmqWxGgQ9cLXMLCdGa01L1F3Ww0kC6uBcWtFnfK1rw/CPVXYpAzL8CZ
+	qbyOmGHfFn8apiKN64JVUbQQmP1jAvFRRyIQX9oWyF+YRmEbt2z95AJRYKMTlM5PowRzBGPTxRufX
+	hL+rqdiwPFvtoyVBjA2Nyfu+pSGueh6O4VCtqRnbZn/gZPYBLQcrOuGnQdG2GrcgLo4VasETIRKSn
+	LL029fdxc5Qd4dJ+OQeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1svUaY-00000001ZkS-3AN2;
-	Tue, 01 Oct 2024 04:34:18 +0000
-Received: from mgamail.intel.com ([198.175.65.16])
+	id 1svWBx-00000001j31-0yec;
+	Tue, 01 Oct 2024 06:17:01 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1svUVR-00000001Z3p-4AXk;
-	Tue, 01 Oct 2024 04:29:03 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1727756942; x=1759292942;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SHJu6JkJy+sC4voXU/6ZBpQ9ICttzKY9O2x0/+V4MhM=;
-  b=jd+kY+A0e5ddxId/scL7iY34r7CARSIEv668JYS68uCSrab07HiRKoAe
-   DW93TmbQNltoRpfSI8ZOxKaajc2ml7wl6xp6j02pRhgKHNuallK7xtESl
-   DzaGxaBr+j58v7HZvMEc+147Kjzw//9x/Kr7kW1xHDdJWv8bxlIGpurfk
-   wrTVO/E46UnwDJsoauStO3JugVJBMOwsiqsuzhxtRb92OA5YUUuzHaJf/
-   gBJcQoIZBeA6QxtxelltkvUf/8GL3pjeL5/i4dX7bm3qCbxYpv9V8spAM
-   VYbfCb6v3Y6mMvveoezU82blFoxSZkWYeOLw3mRfqpX0a8kgGPcgDLoH3
-   g==;
-X-CSE-ConnectionGUID: lEtZz+9DRXGPQ2LhuZGVBg==
-X-CSE-MsgGUID: jMpp1NIlS0GwmpYulZHr9A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="26966096"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; 
-   d="scan'208";a="26966096"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2024 21:28:57 -0700
-X-CSE-ConnectionGUID: HwnQEFVlR3K4MvQHkJI6Yg==
-X-CSE-MsgGUID: vm3x0LTdQjW3AuEXtqF9NA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; 
-   d="scan'208";a="104347815"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 30 Sep 2024 21:28:53 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1svUVG-000QEb-20;
-	Tue, 01 Oct 2024 04:28:50 +0000
-Date: Tue, 1 Oct 2024 12:28:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Anastasia Belova <abelova@astralinux.ru>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Cc: oe-kbuild-all@lists.linux.dev, Anastasia Belova <abelova@astralinux.ru>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	lvc-project@linuxtesting.org, stable@vger.kernel.org
-Subject: Re: [PATCH v3] drm/meson: switch to a managed drm device
-Message-ID: <202410011034.NTOKwoXq-lkp@intel.com>
-References: <20240930082640.129543-1-abelova@astralinux.ru>
+	id 1svWBt-00000001j29-3mor;
+	Tue, 01 Oct 2024 06:16:59 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 30C53A428D3;
+	Tue,  1 Oct 2024 06:16:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9DDCC4CEC6;
+	Tue,  1 Oct 2024 06:16:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727763415;
+	bh=Hg4IVEOTj4JriXTMF/0hLXqKoldcay2hkZN5Fq1Yakc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BarxashMr3+CY5FBEM2U/PJW5q6wPC6dVt+mzB8egTBhcrlaVcQFYdktWYgO+j7Yv
+	 st50W7cT6gVEA1/dqDGaNjGnQ9AA7gJD8n39MO3BV+QS8PYRyKkFgRwCwRf2uXp2Y8
+	 dp0MSy8wQU32Rg+er7QSDMBsvPmxO8FtjjNjWdI+RBSy9Pkiff17xYddZcuy1U7MmD
+	 8G2j28TOkFm0vYpz5O+m6VrxQgVrUbADYqKtkm4v+kH0x6BE0wOgLNe9/byQAyhzAt
+	 oANVnz/YuEyuHy0rS3qUYr1qmkfNjzY7Or6LCFfrX8R+CDPDSbqK8TRB8tpythzZkI
+	 KC1d+v2a8Gx6A==
+Message-ID: <2915d4aa-a01d-4d00-ada9-43bbc227f9eb@kernel.org>
+Date: Tue, 1 Oct 2024 08:16:38 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240930082640.129543-1-abelova@astralinux.ru>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] ARM: dts: replace gpio = with gpios =
+To: Rosen Penev <rosenp@gmail.com>, linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Antoine Tenart <atenart@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Jesper Nilsson <jesper.nilsson@axis.com>,
+ Lars Persson <lars.persson@axis.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Viresh Kumar <vireshk@kernel.org>,
+ Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+ "maintainer:SPEAR PLATFORM/CLOCK/PINCTRL SUPPORT" <soc@kernel.org>,
+ Marek Vasut <marex@denx.de>, Jisheng Zhang <jszhang@kernel.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, David Lechner <david@lechnology.com>,
+ Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>,
+ Tony Lindgren <tony@atomide.com>,
+ Enric Balletbo i Serra <eballetbo@gmail.com>,
+ Javier Martinez Canillas <javier@dowhile0.org>,
+ Alexey Charkov <alchark@gmail.com>, Denis Burkov <hitechshell@mail.ru>,
+ Arnd Bergmann <arnd@arndb.de>, Stefan Wahren <wahrenst@gmx.net>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ Nicolas Chauvet <kwizart@gmail.com>, Tomasz Maciej Nowak <tmn505@gmail.com>,
+ Robert Eckelmann <longnoserob@gmail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson SoC support"
+ <linux-amlogic@lists.infradead.org>,
+ "moderated list:ARM/ASPEED MACHINE SUPPORT" <linux-aspeed@lists.ozlabs.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-rpi-kernel@lists.infradead.org>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-mediatek@lists.infradead.org>,
+ "moderated list:ARM/NUVOTON NPCM ARCHITECTURE" <openbmc@lists.ozlabs.org>,
+ "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>,
+ "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+ "open list:TQ SYSTEMS BOARD & DRIVER SUPPORT" <linux@ew.tq-group.com>,
+ "open list:DH ELECTRONICS IMX6 DHCOM/DHCOR BOARD SUPPORT"
+ <kernel@dh-electronics.com>,
+ "moderated list:ARM/STM32 ARCHITECTURE"
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+ "open list:ARM/RISC-V/RENESAS ARCHITECTURE"
+ <linux-renesas-soc@vger.kernel.org>,
+ "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
+ "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES"
+ <linux-samsung-soc@vger.kernel.org>,
+ "open list:OMAP DEVICE TREE SUPPORT" <linux-omap@vger.kernel.org>
+References: <20240930223550.353882-1-rosenp@gmail.com>
+ <20240930223550.353882-2-rosenp@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240930223550.353882-2-rosenp@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20240930_212902_089928_8A79CF71 
-X-CRM114-Status: GOOD (  14.66  )
+X-CRM114-CacheID: sfid-20240930_231658_114179_FB3E9808 
+X-CRM114-Status: UNSURE (   7.40  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,212 +169,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Anastasia,
+On 01/10/2024 00:35, Rosen Penev wrote:
+> Found with dtc:
+> 
+> Warning (deprecated_gpio_property): '[*-]gpio' is deprecated, use
+> '[*-]gpios' instead
+> 
+> Transformation performed with
+> 
+> find -name "*.dts" -exec sed -i 's/\tgpio = </\tgpios = </g' '{}' \
+> find -name "*.dtsi" -exec sed -i 's/\tgpio = </\tgpios = </g' '{}' \
 
-kernel test robot noticed the following build errors:
+Uh, no, please check if each is correct and already handled by bindings.
 
-[auto build test ERROR on linus/master]
-[also build test ERROR on v6.12-rc1 next-20240930]
-[cannot apply to drm-misc/drm-misc-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Anastasia-Belova/drm-meson-switch-to-a-managed-drm-device/20240930-162755
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20240930082640.129543-1-abelova%40astralinux.ru
-patch subject: [PATCH v3] drm/meson: switch to a managed drm device
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20241001/202410011034.NTOKwoXq-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241001/202410011034.NTOKwoXq-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410011034.NTOKwoXq-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/meson/meson_viu.c:14:
->> drivers/gpu/drm/meson/meson_drv.h:56:27: error: field 'drm' has incomplete type
-      56 |         struct drm_device drm;
-         |                           ^~~
---
-   drivers/gpu/drm/meson/meson_encoder_hdmi.c: In function 'meson_encoder_hdmi_probe':
->> drivers/gpu/drm/meson/meson_encoder_hdmi.c:405:43: error: incompatible type for argument 1 of 'drm_simple_encoder_init'
-     405 |         ret = drm_simple_encoder_init(priv->drm, &meson_encoder_hdmi->encoder,
-         |                                       ~~~~^~~~~
-         |                                           |
-         |                                           struct drm_device
-   In file included from drivers/gpu/drm/meson/meson_encoder_hdmi.c:27:
-   include/drm/drm_simple_kms_helper.h:261:48: note: expected 'struct drm_device *' but argument is of type 'struct drm_device'
-     261 | int drm_simple_encoder_init(struct drm_device *dev,
-         |                             ~~~~~~~~~~~~~~~~~~~^~~
->> drivers/gpu/drm/meson/meson_encoder_hdmi.c:423:71: error: incompatible type for argument 1 of 'drm_bridge_connector_init'
-     423 |         meson_encoder_hdmi->connector = drm_bridge_connector_init(priv->drm,
-         |                                                                   ~~~~^~~~~
-         |                                                                       |
-         |                                                                       struct drm_device
-   In file included from drivers/gpu/drm/meson/meson_encoder_hdmi.c:23:
-   include/drm/drm_bridge_connector.h:13:68: note: expected 'struct drm_device *' but argument is of type 'struct drm_device'
-      13 | struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
-         |                                                 ~~~~~~~~~~~~~~~~~~~^~~
---
-   drivers/gpu/drm/meson/meson_encoder_dsi.c: In function 'meson_encoder_dsi_probe':
->> drivers/gpu/drm/meson/meson_encoder_dsi.c:135:43: error: incompatible type for argument 1 of 'drm_simple_encoder_init'
-     135 |         ret = drm_simple_encoder_init(priv->drm, &meson_encoder_dsi->encoder,
-         |                                       ~~~~^~~~~
-         |                                           |
-         |                                           struct drm_device
-   In file included from drivers/gpu/drm/meson/meson_encoder_dsi.c:13:
-   include/drm/drm_simple_kms_helper.h:261:48: note: expected 'struct drm_device *' but argument is of type 'struct drm_device'
-     261 | int drm_simple_encoder_init(struct drm_device *dev,
-         |                             ~~~~~~~~~~~~~~~~~~~^~~
+> 
+> Signed-off-by: Rosen Penev <rosenp@gmail.com>
 
 
-vim +/drm +56 drivers/gpu/drm/meson/meson_drv.h
 
-    42	
-    43	struct meson_drm {
-    44		struct device *dev;
-    45		enum vpu_compatible compat;
-    46		void __iomem *io_base;
-    47		struct regmap *hhi;
-    48		int vsync_irq;
-    49	
-    50		struct meson_canvas *canvas;
-    51		u8 canvas_id_osd1;
-    52		u8 canvas_id_vd1_0;
-    53		u8 canvas_id_vd1_1;
-    54		u8 canvas_id_vd1_2;
-    55	
-  > 56		struct drm_device drm;
-    57		struct drm_crtc *crtc;
-    58		struct drm_plane *primary_plane;
-    59		struct drm_plane *overlay_plane;
-    60		void *encoders[MESON_ENC_LAST];
-    61	
-    62		const struct meson_drm_soc_limits *limits;
-    63	
-    64		/* Components Data */
-    65		struct {
-    66			bool osd1_enabled;
-    67			bool osd1_interlace;
-    68			bool osd1_commit;
-    69			bool osd1_afbcd;
-    70			uint32_t osd1_ctrl_stat;
-    71			uint32_t osd1_ctrl_stat2;
-    72			uint32_t osd1_blk0_cfg[5];
-    73			uint32_t osd1_blk1_cfg4;
-    74			uint32_t osd1_blk2_cfg4;
-    75			uint32_t osd1_addr;
-    76			uint32_t osd1_stride;
-    77			uint32_t osd1_height;
-    78			uint32_t osd1_width;
-    79			uint32_t osd_sc_ctrl0;
-    80			uint32_t osd_sc_i_wh_m1;
-    81			uint32_t osd_sc_o_h_start_end;
-    82			uint32_t osd_sc_o_v_start_end;
-    83			uint32_t osd_sc_v_ini_phase;
-    84			uint32_t osd_sc_v_phase_step;
-    85			uint32_t osd_sc_h_ini_phase;
-    86			uint32_t osd_sc_h_phase_step;
-    87			uint32_t osd_sc_h_ctrl0;
-    88			uint32_t osd_sc_v_ctrl0;
-    89			uint32_t osd_blend_din0_scope_h;
-    90			uint32_t osd_blend_din0_scope_v;
-    91			uint32_t osb_blend0_size;
-    92			uint32_t osb_blend1_size;
-    93	
-    94			bool vd1_enabled;
-    95			bool vd1_commit;
-    96			bool vd1_afbc;
-    97			unsigned int vd1_planes;
-    98			uint32_t vd1_if0_gen_reg;
-    99			uint32_t vd1_if0_luma_x0;
-   100			uint32_t vd1_if0_luma_y0;
-   101			uint32_t vd1_if0_chroma_x0;
-   102			uint32_t vd1_if0_chroma_y0;
-   103			uint32_t vd1_if0_repeat_loop;
-   104			uint32_t vd1_if0_luma0_rpt_pat;
-   105			uint32_t vd1_if0_chroma0_rpt_pat;
-   106			uint32_t vd1_range_map_y;
-   107			uint32_t vd1_range_map_cb;
-   108			uint32_t vd1_range_map_cr;
-   109			uint32_t viu_vd1_fmt_w;
-   110			uint32_t vd1_if0_canvas0;
-   111			uint32_t vd1_if0_gen_reg2;
-   112			uint32_t viu_vd1_fmt_ctrl;
-   113			uint32_t vd1_addr0;
-   114			uint32_t vd1_addr1;
-   115			uint32_t vd1_addr2;
-   116			uint32_t vd1_stride0;
-   117			uint32_t vd1_stride1;
-   118			uint32_t vd1_stride2;
-   119			uint32_t vd1_height0;
-   120			uint32_t vd1_height1;
-   121			uint32_t vd1_height2;
-   122			uint32_t vd1_afbc_mode;
-   123			uint32_t vd1_afbc_en;
-   124			uint32_t vd1_afbc_head_addr;
-   125			uint32_t vd1_afbc_body_addr;
-   126			uint32_t vd1_afbc_conv_ctrl;
-   127			uint32_t vd1_afbc_dec_def_color;
-   128			uint32_t vd1_afbc_vd_cfmt_ctrl;
-   129			uint32_t vd1_afbc_vd_cfmt_w;
-   130			uint32_t vd1_afbc_vd_cfmt_h;
-   131			uint32_t vd1_afbc_mif_hor_scope;
-   132			uint32_t vd1_afbc_mif_ver_scope;
-   133			uint32_t vd1_afbc_size_out;
-   134			uint32_t vd1_afbc_pixel_hor_scope;
-   135			uint32_t vd1_afbc_pixel_ver_scope;
-   136			uint32_t vd1_afbc_size_in;
-   137			uint32_t vpp_pic_in_height;
-   138			uint32_t vpp_postblend_vd1_h_start_end;
-   139			uint32_t vpp_postblend_vd1_v_start_end;
-   140			uint32_t vpp_hsc_region12_startp;
-   141			uint32_t vpp_hsc_region34_startp;
-   142			uint32_t vpp_hsc_region4_endp;
-   143			uint32_t vpp_hsc_start_phase_step;
-   144			uint32_t vpp_hsc_region1_phase_slope;
-   145			uint32_t vpp_hsc_region3_phase_slope;
-   146			uint32_t vpp_line_in_length;
-   147			uint32_t vpp_preblend_h_size;
-   148			uint32_t vpp_vsc_region12_startp;
-   149			uint32_t vpp_vsc_region34_startp;
-   150			uint32_t vpp_vsc_region4_endp;
-   151			uint32_t vpp_vsc_start_phase_step;
-   152			uint32_t vpp_vsc_ini_phase;
-   153			uint32_t vpp_vsc_phase_ctrl;
-   154			uint32_t vpp_hsc_phase_ctrl;
-   155			uint32_t vpp_blend_vd2_h_start_end;
-   156			uint32_t vpp_blend_vd2_v_start_end;
-   157		} viu;
-   158	
-   159		struct {
-   160			unsigned int current_mode;
-   161			bool hdmi_repeat;
-   162			bool venc_repeat;
-   163			bool hdmi_use_enci;
-   164		} venc;
-   165	
-   166		struct {
-   167			dma_addr_t addr_dma;
-   168			uint32_t *addr;
-   169			unsigned int offset;
-   170		} rdma;
-   171	
-   172		struct {
-   173			struct meson_afbcd_ops *ops;
-   174			u64 modifier;
-   175			u32 format;
-   176		} afbcd;
-   177	};
-   178	
+Best regards,
+Krzysztof
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
