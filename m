@@ -4,68 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17985CEACC1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2024 13:50:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA5A0CEACFF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2024 20:00:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=K46nTzr3NI+UEAnbRCd1YuvSua5prJ1QE7rfo4uE6Oo=; b=hjKxgvKSnV/0gM
-	d9yQ+qgxPEYiCCyo2iwi2+XkZUtSxnMnYd3ELIuvbk5kGD3lw62vuGvETPfLPzNZ4LvcGRzEowEKi
-	003Lvqzr6Q8dJM9tdU7KEXO10vB3LQ7CwGGdtMDyFhz7YEgIygd4eGLw5g2FTZSoygs0sNe33EWZD
-	SRvXmY5BNgI/uiu05pZiylBEdQkKgXb/rH9trj29zlmFUp0DDfx/VrUX/6fMaG3YBkj4gB15sw39F
-	oUa6ziUjOa1JW0RpVFH8Gzlpq+6o2pt/4YgUswJhuEMH8UpjnlfGp+OEcimf1/FxJ/3e44sj/9ktO
-	hpzQa2xx+sorFEOwb6Ug==;
+	List-Owner; bh=s4QXlh3VF2FRD+QJO4tN/hzs4X7fu+VAWYZ6lKbFM6o=; b=T+Wo0c1RDtvyCI
+	tjUgVQg/yCaSfUonICHTbbmFHHLtNy0MimUxflnUEiooD8/zj4ySk1CifptvPMN7RgKe3fWh/WeMr
+	k8S7YPJQfUtWMHhnoQ7R3EuM2kJgqnM5mmNgM2xmPfW9fXw6ztY6NlymAPxXvb+gMZ9D7hJJ9hIqi
+	HPX0ZDcN28O+pyNNsGGdk37rmZjcTr2JJk3tKXvUyazZWnGfz2uJ2lw/8/0e4vLi/52HvmN4Xdqz2
+	xJzgOW3S0iYSKn3u4jhl4mxDd8lyIblCbgQbcAipCpH6wSYOlH0q8wowzHNsexy7t4usuIZK202Cs
+	tak0mEz1+wskMyTRQMxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1svdH7-000000030MF-29qL;
-	Tue, 01 Oct 2024 13:50:49 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1svj2c-00000003wQN-35h2;
+	Tue, 01 Oct 2024 20:00:14 +0000
+Received: from mail-pl1-x635.google.com ([2607:f8b0:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1svdH4-000000030KS-1iRk;
-	Tue, 01 Oct 2024 13:50:48 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727790644;
-	bh=Wrdy0e1dz6T5uwCE6i2Zj6+AsBKQNypB0lnUzsj5xCI=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=YKqD4Ys/oGurqoWIOyx7Wn0hRTWDfyPPhsxJBv4liLaL79RWNITs6yYigoa9t0bYR
-	 apYOKXRQwcu6+xBYSMhtRzZYX8riNbY3jwGgx54B/mqtnC6ECCMjvF74G/KjKZbgVO
-	 RJzRdFANc0GPw4iUWTjgPb0VclImiN7kwj4rnOBg0+pqJjlWEITVsXj59SE2r7LUoj
-	 5BPDH1RBCLKq/QZ/2cqqNz0kemyYFg31AZl1ypfI77sHEXKV+OTQMPdPXhzsDquLmV
-	 MCPct2nkHj5eYZYOGgoLbN+JW1S3vLWHHoQv7M/X9CrsLunLU6HnxNWpHM5ZiXsYda
-	 Riy6fn3Jf9ZCg==
-Received: from [192.168.50.250] (unknown [171.76.80.165])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6F28B17E0FC0;
-	Tue,  1 Oct 2024 15:50:39 +0200 (CEST)
-Message-ID: <87fea8ea-fe9d-4114-b03c-7ec50a4be874@collabora.com>
-Date: Tue, 1 Oct 2024 19:20:35 +0530
+	id 1svj2Y-00000003wPQ-3Afe;
+	Tue, 01 Oct 2024 20:00:12 +0000
+Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-20b7259be6fso32127955ad.0;
+        Tue, 01 Oct 2024 13:00:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1727812810; x=1728417610; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Txj9X25LmbjQ//MeIX5ksz2p7RxnM6sQFO6w2mk7FrQ=;
+        b=jH22kuu6/bunURGQqsMuXwLQxV3R6n3/Bia7KyIVnJh6U9wNiK7Lo3v5AB1Ap72jKs
+         +ZzqyWH888er7eE30uQmvqPdhq6GLUMBUpiIRjceumPhEWC+75oqSXuLMagPg8WNXuso
+         1SgY1Ev5XksBX3GjgLi+j+6H768zC7dlHVHWisszEJXb6Z44g2CXMEvVBV8c7PM8TnDK
+         YblquqRibJV7PmrMgsZUzcvaBTNrWxQjsFmCdEaRktNrlnfiwcxfukLknsF1BwjfXDPW
+         gHisqh1AwqW5b4QSAO7VdjoA34R5qh+zP54U09cMitQ0ChOtc4Vizem2nb2n1wLICuUw
+         l/mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727812810; x=1728417610;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Txj9X25LmbjQ//MeIX5ksz2p7RxnM6sQFO6w2mk7FrQ=;
+        b=bouqX9xGRYR9eaOn8mHDPGd4eQJoqZHcKyaOsFc1wvAj5Cs21mrsnTBnyYoo047sTc
+         a9hmJ4XHnT4v6FHVXK/52uBsW3r5Vwf/ZtpxbpFI3NY6VAOiVB+1pkNMOEI8CBMTLyfr
+         lyaK40SpLSfrT8yQP7ZZbS4nhV5TIHAFiplgOaWICh4YXFLjjiQ0n3qieeePJfXOsOGJ
+         vBF8ccJNvqSwqhOjLTfLjzYsGtdu7E6DVaJOOlv2Wf6DtObCA1vJ0p8AT5CaNrRZDHio
+         52gSudVnfQBxYDFGWEQVxmDBkh+Dvv550X3myga6og+a+9nirp73ZLSjZ7d80iXxu3N8
+         48ow==
+X-Forwarded-Encrypted: i=1; AJvYcCVG96omvWwWPeSOflA/cu5TJT/1787ze+ZUgxewQJ3jEOABYqGDQQDsZUHz9qy1s1Up2kNdYgEHkMWVN1Q3Ojw=@lists.infradead.org, AJvYcCVRlWcEycg0Qls6NK8MdnhtViOVGoa/DBOPiWdBEisjnE8XimGXK5nEduCPKfJN2kJ4KKe5odu2dRXd+kP1rV0=@lists.infradead.org, AJvYcCWxmbUL0v0qS/jj8aTMvtjcjeWT/zvmXAeG2nVD9u+1n9HjESXaD1xhsecwV/NGHgGJnid+8ZzDvpQpkBgbKVp1Kg==@lists.infradead.org, AJvYcCXuEctKjnx3vSiJBRv2atjgg0H6GEAv3tZttSjt3/fS6ILQ5PoHs8j1lvEV9NIoZWCTzE8XGjM1O9Zjfryu@lists.infradead.org
+X-Gm-Message-State: AOJu0YzdrAy2nZvlFhUlmNAFA03qPVELFyfijKVkK2v5XbW0JnCoc8KL
+	+Rb0MYzhx4gwfQuvjVUfwzy0osCwepTLsPXY1eAHt6Hym6E9xeedPVlzevLfzheuNIAkp5MvxaX
+	tzm5cIO73NgC/UnfPUPV6PDtIcSQ=
+X-Google-Smtp-Source: AGHT+IEzN68oFH6UETNrpbvCGpopcDsigqPvgYKygFNF7D6FUqPz4x1zQ8ZA7UoZNXXUi84OPMM6AhdceSvhM1DdNJ4=
+X-Received: by 2002:a17:902:e550:b0:20b:720d:734 with SMTP id
+ d9443c01a7336-20bc5a5cd06mr11151925ad.41.1727812809889; Tue, 01 Oct 2024
+ 13:00:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] docs/gpu: ci: update flake tests requirements
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- amd-gfx@lists.freedesktop.org
-Cc: daniels@collabora.com, helen.koike@collabora.com, airlied@gmail.com,
- daniel@ffwll.ch, robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, deborah.brouwer@collabora.com,
- dmitry.baryshkov@linaro.org, mripard@kernel.org, rodrigo.vivi@intel.com,
- quic_abhinavk@quicinc.com, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20240930095255.2071586-1-vignesh.raman@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240930095255.2071586-1-vignesh.raman@collabora.com>
+References: <20240930223550.353882-1-rosenp@gmail.com> <20240930223550.353882-3-rosenp@gmail.com>
+In-Reply-To: <20240930223550.353882-3-rosenp@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 1 Oct 2024 21:59:58 +0200
+Message-ID: <CAFBinCB1Rz+C=Tj+RJAL5KZbk9K7cnpF_uR6rKkMeqyCuDBo4A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: assign reg to memory nodes
+To: Rosen Penev <rosenp@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Antoine Tenart <atenart@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, Jesper Nilsson <jesper.nilsson@axis.com>, 
+	Lars Persson <lars.persson@axis.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Viresh Kumar <vireshk@kernel.org>, Shiraz Hashim <shiraz.linux.kernel@gmail.com>, 
+	"maintainer:SPEAR PLATFORM/CLOCK/PINCTRL SUPPORT" <soc@kernel.org>, Marek Vasut <marex@denx.de>, Jisheng Zhang <jszhang@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, David Lechner <david@lechnology.com>, Nishanth Menon <nm@ti.com>, 
+	Santosh Shilimkar <ssantosh@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+	Enric Balletbo i Serra <eballetbo@gmail.com>, Javier Martinez Canillas <javier@dowhile0.org>, 
+	Alexey Charkov <alchark@gmail.com>, Denis Burkov <hitechshell@mail.ru>, Arnd Bergmann <arnd@arndb.de>, 
+	Stefan Wahren <wahrenst@gmx.net>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+	=?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, 
+	Nicolas Chauvet <kwizart@gmail.com>, Tomasz Maciej Nowak <tmn505@gmail.com>, 
+	Robert Eckelmann <longnoserob@gmail.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>, open list <linux-kernel@vger.kernel.org>, 
+	"open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>, 
+	"moderated list:ARM/ASPEED MACHINE SUPPORT" <linux-aspeed@lists.ozlabs.org>, 
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, 
+	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>, 
+	"moderated list:ARM/NUVOTON NPCM ARCHITECTURE" <openbmc@lists.ozlabs.org>, 
+	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, 
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
+	"open list:TQ SYSTEMS BOARD & DRIVER SUPPORT" <linux@ew.tq-group.com>, 
+	"open list:DH ELECTRONICS IMX6 DHCOM/DHCOR BOARD SUPPORT" <kernel@dh-electronics.com>, 
+	"moderated list:ARM/STM32 ARCHITECTURE" <linux-stm32@st-md-mailman.stormreply.com>, 
+	"open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>, 
+	"open list:ARM/RISC-V/RENESAS ARCHITECTURE" <linux-renesas-soc@vger.kernel.org>, 
+	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>, 
+	"open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" <linux-samsung-soc@vger.kernel.org>, 
+	"open list:OMAP DEVICE TREE SUPPORT" <linux-omap@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241001_065046_685107_7822C6F7 
-X-CRM114-Status: GOOD (  18.07  )
+X-CRM114-CacheID: sfid-20241001_130010_843979_D4F3CD41 
+X-CRM114-Status: UNSURE (   9.49  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,80 +119,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi amdgpu Maintainers,
-
-On 30/09/24 15:22, Vignesh Raman wrote:
-> Update the documentation to specify linking to a relevant GitLab
-> issue or email report for each new flake entry. Added specific
-> GitLab issue urls for amdgpu, i915, msm and xe driver.
-> 
-> Acked-by: Maxime Ripard <mripard@kernel.org>
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> #intel and xe
-> Acked-by: Abhinav Kumar <quic_abhinavk@quicinc.com> # msm
-> Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # msm
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> ---
-> 
-> v2:
-> - Add gitlab issue link for msm driver.
-> 
-> v3:
-> - Update docs to specify we use email reporting or GitLab issues for flake entries.
-> 
-> v4:
-> - Add gitlab issue link for xe driver.
-> 
-> ---
->   Documentation/gpu/automated_testing.rst | 14 ++++++++++----
->   1 file changed, 10 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
-> index 2d5a28866afe..6d7c6086034d 100644
-> --- a/Documentation/gpu/automated_testing.rst
-> +++ b/Documentation/gpu/automated_testing.rst
-> @@ -68,19 +68,25 @@ known to behave unreliably. These tests won't cause a job to fail regardless of
->   the result. They will still be run.
->   
->   Each new flake entry must be associated with a link to the email reporting the
-> -bug to the author of the affected driver, the board name or Device Tree name of
-> -the board, the first kernel version affected, the IGT version used for tests,
-> -and an approximation of the failure rate.
-> +bug to the author of the affected driver or the relevant GitLab issue. The entry
-> +must also include the board name or Device Tree name, the first kernel version
-> +affected, the IGT version used for tests, and an approximation of the failure rate.
->   
->   They should be provided under the following format::
->   
-> -  # Bug Report: $LORE_OR_PATCHWORK_URL
-> +  # Bug Report: $LORE_URL_OR_GITLAB_ISSUE
->     # Board Name: broken-board.dtb
->     # Linux Version: 6.6-rc1
->     # IGT Version: 1.28-gd2af13d9f
->     # Failure Rate: 100
->     flaky-test
->   
-> +Use the appropriate link below to create a GitLab issue:
-> +amdgpu driver: https://gitlab.freedesktop.org/drm/amd/-/issues
-
-Please could you ack this patch. Thanks.
-
-> +i915 driver: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues
-> +msm driver: https://gitlab.freedesktop.org/drm/msm/-/issues
-> +xe driver: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues
-> +
->   drivers/gpu/drm/ci/${DRIVER_NAME}-${HW_REVISION}-skips.txt
->   -----------------------------------------------------------
->   
-
-Regards,
-Vignesh
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8gUm9zZW4sCgp3aGVuIHlvdSByZS1zZW5kIHRoaXMsIHBsZWFzZSBkcm9wIHRoZSBBbWxv
+Z2ljIGZpbGVzLgoKT24gVHVlLCBPY3QgMSwgMjAyNCBhdCAxMjozNuKAr0FNIFJvc2VuIFBlbmV2
+IDxyb3NlbnBAZ21haWwuY29tPiB3cm90ZToKWy4uLl0KPiAgYXJjaC9hcm0vYm9vdC9kdHMvYW1s
+b2dpYy9tZXNvbjYtYXR2MTIwMC5kdHMgICAgICAgICAgICAgICAgICAgIHwgMiArLQpUaGlzIGZp
+bGUgd2FzIGRyb3BwZWQgd2l0aCBbMF0KCj4gIGFyY2gvYXJtL2Jvb3QvZHRzL2FtbG9naWMvbWVz
+b244LW1pbml4LW5lby14OC5kdHMgICAgICAgICAgICAgICB8IDIgKy0KPiAgYXJjaC9hcm0vYm9v
+dC9kdHMvYW1sb2dpYy9tZXNvbjhiLWVjMTAwLmR0cyAgICAgICAgICAgICAgICAgICAgIHwgMiAr
+LQo+ICBhcmNoL2FybS9ib290L2R0cy9hbWxvZ2ljL21lc29uOGItbXhxLmR0cyAgICAgICAgICAg
+ICAgICAgICAgICAgfCAyICstCj4gIGFyY2gvYXJtL2Jvb3QvZHRzL2FtbG9naWMvbWVzb244Yi1v
+ZHJvaWRjMS5kdHMgICAgICAgICAgICAgICAgICB8IDIgKy0KPiAgYXJjaC9hcm0vYm9vdC9kdHMv
+YW1sb2dpYy9tZXNvbjhtMi1teGlpaS1wbHVzLmR0cyAgICAgICAgICAgICAgIHwgMiArLQpUaGVz
+ZSBnb3QgdXBkYXRlZCB3aXRoIFsxXQoKClswXSBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9z
+Y20vbGludXgva2VybmVsL2dpdC9hbWxvZ2ljL2xpbnV4LmdpdC9jb21taXQvP2g9djYuMTMvYXJt
+LWR0JmlkPWUyYTNmMTFhZTExYzlmOWVlNzgwYmY0OWYwMGE2OWYxMmRjZTM1MjkKWzFdIGh0dHBz
+Oi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L2FtbG9naWMvbGludXgu
+Z2l0L2NvbW1pdC8/aD12Ni4xMy9hcm0tZHQmaWQ9Nzk0N2ZkMmQzNTBlNjA1N2U3NTE0NDU5Yzdl
+ZTJkYjM5ZDEwOTZhMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
+dXgtYW1sb2dpYwo=
