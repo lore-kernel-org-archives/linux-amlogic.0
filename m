@@ -4,81 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92FABCF31B4
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Oct 2024 11:03:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ACEFCF31AF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Oct 2024 11:10:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UpxYY+9qYqpqpetQy4tO7nkrhLMHLa9UKwo5Eakcluw=; b=RXP8ZRMs12/ZAa
-	EXJWmlkg65DJQKtIIBQRcZMMgtStbpZzObcZFT/fkxSXYDk2eZ6LLrmXy9CDZwoIWPX7jknLzSX5k
-	5EP69TqwGvpOsJQic3EQTGKwJRvU30u4ojIeGg5owq2HFmO4Ei0WEZs+JqcCdxoficrAS5ZbUiR94
-	q5UGYsAS4ZxiD8iVY2+seCuZfkqDooiXPPqpz2CAQrkmjHn+UA4ML1q/bSAIlvL4mva73lR8bDHMf
-	NVs/AEl42E2KYLCDjgOI8nza8VtSRWu5UkCQcWAJrNOHj0M8BidZLwJ9Z5yUFFnL0qLrd95FA/A47
-	kcVlXMeUeXOiVPDNxSIA==;
+	List-Owner; bh=3vm68OU+i14g+PbOHht096s1K9OQEo584PpiUYsISDs=; b=ySBX4xRGZU8pay
+	q+9bOyFXwA9DSAIMdnTh44bRjn2muVxdGUhF3v1C09hDPY/ZlchnZCYkA8Ci6Kad4evzfVB90yAVd
+	ri8rP0l6dpKJhC+hySUikKtT6ASJWBjIDFk0Vkmlfi3r776/5Te9G21C+vakvy8crvVK8AxXrXf37
+	xMCQutpwTYo4qCS/hEbPNBUEnq7JRwHBqheHMu/lEatulREEaBj+cvHyw+zl20NVG2r201Ew1KQoe
+	NuHBY3P2fYRqPj2f/vN98+K0HlsVCh2P8R3luZuLJarnltd8XETWVshzSaeGvgZgYzDUtu0jmo/c2
+	warS9vV+9cSBe2LtIKig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1svx94-00000005b3I-1msV;
-	Wed, 02 Oct 2024 11:03:50 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1svxF4-00000005c2a-1cB8;
+	Wed, 02 Oct 2024 11:10:02 +0000
+Received: from layka.disroot.org ([178.21.23.139])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1svwuo-00000005Y3f-1Qap;
-	Wed, 02 Oct 2024 10:49:07 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id BB2B85C03CA;
-	Wed,  2 Oct 2024 10:49:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C795C4CEC5;
-	Wed,  2 Oct 2024 10:49:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727866145;
-	bh=qu+RgAvMKGG6eHj1nt3ZqKEHLWp1YZIU8I35f+U8nJ8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ghbvx+80TtOagxSSx1YVAs9g9hcuxHcr6yLQqp1K5nKrFCl5BE+jQkcvY5Em4LizZ
-	 7TTfyi8Q1r8TcaULi1V78umAH2v2xFGVp7jizdudRRavh7XzSIkt004SYipWNHZHTG
-	 pxNRE7mWBPtSb/DiMBEpYpprx67f+1uZNjJslUZoh3KB5JI0Hz93sHd6cZOtd39/dr
-	 N0siEYxDw/yM27ljqrztpfd7ToSWiyXYdOFd/hCQndIOngs9/gPohQHUsRnCFoWhjf
-	 JjcCU7SDodapmr53g0FNnpZGRx65eKcYekP7qv3pXRoyKT/12Id4B5vvAi77tXDQIK
-	 yXLSJFNQtwPlQ==
-From: Conor Dooley <conor@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	pierre-henry.moussay@microchip.com,
-	valentina.fernandezalanis@microchip.com,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Lee Jones <lee@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
+	id 1svx3C-00000005a1b-1mQm;
+	Wed, 02 Oct 2024 10:57:48 +0000
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id B2F5423E20;
+	Wed,  2 Oct 2024 12:57:44 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id u_Zgs1HC9V7b; Wed,  2 Oct 2024 12:57:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1727866664; bh=d19584Ze1FFYfFbk3f91IPn8+zI74A5SE2RaLA6uUno=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=l4FlZMAkq48GYO3R7RMfJR4fcAeb88A7Hwdpl46hT57grAst7otNnQBRozw7M8ffI
+	 ESmOi1lEM5W70I2lYhHvUAPyzVu8HzDY8SfXsR38UqoHuXa+CKAGKUzzBQ2+T7kDKK
+	 8ILU3HxZ/ggXh2Em08Wv/QOMy73O7bXJrg1hFBbgXsoAv2R1MdXzLthiD9OA7CeOgn
+	 ZUcp6zu63VIaauOd468Xy3IZTUTYaHnNePvZO8mvuLRDhl+V7HcVj12rtH3ngDuXLB
+	 4YCoQhN6+lnjyDUqeMIJp75Maf7BRFsFLDfdKboQ1gGWVaYvCb7jDzzIroy6HCj3p2
+	 OA6Sh/s9WrhYw==
+Date: Wed, 2 Oct 2024 10:57:22 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
 	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 11/11] riscv: dts: microchip: convert clock and reset to use syscon
-Date: Wed,  2 Oct 2024 11:48:09 +0100
-Message-ID: <20241002-porous-mangy-4634b6556202@spud>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241002-private-unequal-33cfa6101338@spud>
-References: <20241002-private-unequal-33cfa6101338@spud>
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/1] drm/meson: Support drm_panic
+Message-ID: <Zv0nEqV5G2JamvxL@pineapple>
+References: <20241001210403.43535-2-ziyao@disroot.org>
+ <20241001210403.43535-3-ziyao@disroot.org>
+ <28bd30a6-127d-48f0-8e32-703ebd8f69b6@linaro.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2218; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=BB4R12hb6JJv+m+wU7R6gaxBtVYrpHfMfCCdOaNVhVc=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGl/VR7pXuTMmWI1dz5P/0rJRftzznEdb7XzW3u7THfu9 qnVD5otO0pZGMQ4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCRZ7sY/nC3+v6yfXGLZ+6S xrl5LvOFDT+JsHXWS37dPPtXKdesKB9GhrsvP9jds1yvfTTPX+HuMX/n3LNWxs83TzT3zGQWk8t 5xw8A
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Disposition: inline
+In-Reply-To: <28bd30a6-127d-48f0-8e32-703ebd8f69b6@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241002_034906_493740_7BF488D7 
-X-CRM114-Status: GOOD (  11.43  )
+X-CRM114-CacheID: sfid-20241002_035746_670262_737693EF 
+X-CRM114-Status: GOOD (  17.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,74 +81,65 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Oct 02, 2024 at 09:59:57AM +0200, Neil Armstrong wrote:
+> I thing the code should look like:
+> 
+> if (priv->viu.osd1_afbcd) {
+> 	meson_canvas_config(priv->canvas, priv->canvas_id_osd1,
+> 			    priv->viu.osd1_addr,
+> 			    priv->viu.osd1_stride,
+> 			    priv->viu.osd1_height,
+> 			    MESON_CANVAS_WRAP_NONE,
+> 			    MESON_CANVAS_BLKMODE_LINEAR, 0);
+> 
+> 	if (priv->afbcd.ops) {
+> 		priv->afbcd.ops->reset(priv);
+> 		priv->afbcd.ops->disable(priv);
+> 	}
+> 
+> 	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+> 		writel_bits_relaxed(OSD_ENDIANNESS_LE, OSD_ENDIANNESS_LE,
+> 				    priv->io_base +
+> 				    _REG(VIU_OSD1_BLK0_CFG_W0));
+> 		meson_viu_g12a_disable_osd1_afbc(priv);
+> 	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM)) {
+> 		writel_bits_relaxed(OSD_DPATH_MALI_AFBCD, 0,
+> 				    priv->io_base +
+> 				    _REG(VIU_OSD1_CTRL_STAT2));
+> 		meson_viu_gxm_disable_osd1_afbc(priv);
+> 	}
+> }
 
-The "subblock" clocks and reset registers on PolarFire SoC are located
-in the mss-top-sysreg region, alongside pinctrl and interrupt control
-functionality. Re-write the devicetree to describe the sys explicitly,
-as its own node, rather than as a region of the clock node.
-Correspondingly, the phandles to the reset controller must be updated to
-the new provider. The drivers will continue to support the old way of
-doing things.
+Thanks for correction!
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/microchip/mpfs.dtsi | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
+> AFBC is quite hard to test since it requires DRM_FORMAT_XBGR8888, but
+> I think sway should perhaps support it, Mesa should also support AFBC.
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index f8a45e4f00a0d..08aa4fe03fd30 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -251,11 +251,9 @@ pdma: dma-controller@3000000 {
- 			#dma-cells = <1>;
- 		};
- 
--		clkcfg: clkcfg@20002000 {
--			compatible = "microchip,mpfs-clkcfg";
--			reg = <0x0 0x20002000 0x0 0x1000>, <0x0 0x3E001000 0x0 0x1000>;
--			clocks = <&refclk>;
--			#clock-cells = <1>;
-+		mss_top_sysreg: syscon@20002000 {
-+			compatible = "microchip,mpfs-mss-top-sysreg", "syscon", "simple-mfd";
-+			reg = <0x0 0x20002000 0x0 0x1000>;
- 			#reset-cells = <1>;
- 		};
- 
-@@ -452,7 +450,7 @@ mac0: ethernet@20110000 {
- 			local-mac-address = [00 00 00 00 00 00];
- 			clocks = <&clkcfg CLK_MAC0>, <&clkcfg CLK_AHB>;
- 			clock-names = "pclk", "hclk";
--			resets = <&clkcfg CLK_MAC0>;
-+			resets = <&mss_top_sysreg CLK_MAC0>;
- 			status = "disabled";
- 		};
- 
-@@ -466,7 +464,7 @@ mac1: ethernet@20112000 {
- 			local-mac-address = [00 00 00 00 00 00];
- 			clocks = <&clkcfg CLK_MAC1>, <&clkcfg CLK_AHB>;
- 			clock-names = "pclk", "hclk";
--			resets = <&clkcfg CLK_MAC1>;
-+			resets = <&mss_top_sysreg CLK_MAC1>;
- 			status = "disabled";
- 		};
- 
-@@ -550,5 +548,12 @@ syscontroller_qspi: spi@37020100 {
- 			clocks = <&scbclk>;
- 			status = "disabled";
- 		};
-+
-+		clkcfg: clkcfg@3e001000 {
-+			compatible = "microchip,mpfs-clkcfg";
-+			reg = <0x0 0x3e001000 0x0 0x1000>;
-+			clocks = <&refclk>;
-+			#clock-cells = <1>;
-+		};
- 	};
- };
--- 
-2.45.2
+Have tried with Sway 1.9 and weston 14.0.0 and didn't find a way to make
+them create buffers with AFBC modifiers. modetest util in libdrm doesn't
+support it either.
 
+> At some point I made some memory dumps of AFBC buffers, perhaps they could
+> be useful here.
+> 
+> Another way would be to simply ignore the AFBC case, and bail out since
+> it would be a very rare case.
+
+I'm not sure the use case of an AFBC-enabled primary plane. It should be
+rare the whole primary plane is filled with pixel data from GPU or video
+codec.
+
+If my guess is true, bailing out when AFBC is enabled should be
+acceptable. Will try to do some AFBC tests if possible and consider
+it as a latest solution.
+
+btw, I forget to check whether drm_gem_fb_vmap() succeeds. Will fix it
+later.
+
+Thanks for your advice again!
+
+Best regards,
+Yao Zi
 
 _______________________________________________
 linux-amlogic mailing list
