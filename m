@@ -4,81 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 172D2CF31B7
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Oct 2024 12:16:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A6D1CF6D24
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Oct 2024 13:22:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ydYIRtx9EBYsmlwzz17wmLK1NIeT5BnmtWIn4jNevJU=; b=oeGl50jrxrijg9
-	OuV6sYh4p0BXjx8MMbp6Y4aOKjByp18cAZOYXy3xXtiNActUnTlZlOsQ9lHncqmTOP3nXK9bFdwPO
-	1Gls+JVfyod/eKiRJUzkstzPDp+4Oxov2HzWR5A5Hh+Fo1SwxmiUYefPLbQ8/AkkQ6ki01UUm5ziA
-	jpUjPt1h65S59WNOonpnoitEAbMMIqfCP5JUt3MeSAOCeXQGrcFFtADeUGvH6dTdnZOA4O/1f16Aw
-	uUkBZYiUEtbION9lgwn4L//I2v3Qd1s8DfB47/XEU1tUbGxuYTetlAMQRnW0KWAi56SQL4jVxUGkI
-	c1J2MKNQhD5262/qBHyQ==;
+	List-Owner; bh=cnLZ6O8nhCCfFZle7aBkHDlcbBaUpS2hJDRmfvvzB7c=; b=o7Qqe3wIWQT68m
+	bX2uPpenl086b+Fg5vJ0ibAQ3qB6XE81Wvt0fpXYFwWThh+dwDEuPNq2gTZ8JcuqYw4KZOqpcW3za
+	uQi5srVmV0+nhPPT/mxyi5Y13/7HqPlIIyDFSFpoffRPTW+ZIrIBRYilG5/PTy1f/tzv00kUUczfV
+	xLWiwVNDTBgrn+BNt5yhesGIDQ4fVbX/trlyiP7VCHf/FTjtgNqA5YZUozZO4spWOWMK385yWuvVb
+	mPWpQh7+M/eNcRLGgjnNiE4+hod8OdMfTJLqSkO8/fybqvlzBBLufVR35ix7gVVoogjo+O4+p6bPy
+	9Ik96By+EI1ZAHXxuvYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1svyHe-00000005p4y-0vIQ;
-	Wed, 02 Oct 2024 12:16:46 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1svzJV-000000066L6-2INd;
+	Wed, 02 Oct 2024 13:22:45 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1svwuj-00000005Y2U-1kBx;
-	Wed, 02 Oct 2024 10:49:02 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id C220B5C037D;
-	Wed,  2 Oct 2024 10:48:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FFBCC4CEC5;
-	Wed,  2 Oct 2024 10:48:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727866140;
-	bh=7OviCXFHffO2bkj/xL5xz0DArD3vTiDNKyE94fzpFII=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=U15x/gDfugw+t7bdXCeSi8WG8lT0ArCkTgk7oKatp1fDoXs2wjF9M8h3+2yYI1FrF
-	 2Ya2d8KeEH6N8rRmiz/JiEGQd1RzWBHSrB20F4kI9SSDuXHi2r2eb+MN6a5FIFm7GW
-	 spyLz01ZgmXAixriN4CaQUB4VEUdhJ82D/7tmiVf612cSOEnur9Cj4vEp9Hb8N3FpY
-	 pm+hsoXoy3lNsS4fkbEd4ThPqWSoCzjw92jyCl5Vby2W1PiVkVhDuRHJGc7eHdLfwR
-	 qmwSxqVsLlWr5jl8j2rq+0sIpY/yiwUIIDN1TSPwlzuOXiHQjMipdYbTyPsLkh7RW8
-	 wSD+jn6eDeeIA==
-From: Conor Dooley <conor@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	pierre-henry.moussay@microchip.com,
-	valentina.fernandezalanis@microchip.com,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Lee Jones <lee@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 10/11] riscv: dts: microchip: fix mailbox description
-Date: Wed,  2 Oct 2024 11:48:08 +0100
-Message-ID: <20241002-finch-sugar-9958077e8c2b@spud>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241002-private-unequal-33cfa6101338@spud>
+	id 1svzI7-000000065yS-1QEa
+	for linux-amlogic@lists.infradead.org;
+	Wed, 02 Oct 2024 13:21:21 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-37ccc600466so3026047f8f.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 02 Oct 2024 06:21:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727875277; x=1728480077; darn=lists.infradead.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lFcpWszJZ1PatGkbcS9TyyzC+Vcri7WA2fnl3Lvu/mU=;
+        b=14/7jBQ1eMmPJMykKeIQUxlyABWQFCS/3T0uaoiV+LE06ii+v0/7A8T5uDs1fJbaQu
+         v2bWYdC8xCya+u9duO5r184NcHEDaZSWgse3T1o25uKZYnK7sdy3I+QnKB/c0KHugZhq
+         x7+YRt7yQWH+ziLTyUyyL/bk1WoWcjdgQS+6Qmm7nRrLYacyVw60LO4gaYrSYpfMMtWE
+         sJUtfYBh0CmoWC96KybItCBqEer/3sYMgHM7xxLXb/dcElxufvXREZk8IL5jf5YzVQpU
+         vlblxJ7vfZmA3QGqO/TvixP9xfSB7O5EeC86txGiUP429db5E/KsnDUTOaZyXNYbdpKv
+         +iSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727875277; x=1728480077;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lFcpWszJZ1PatGkbcS9TyyzC+Vcri7WA2fnl3Lvu/mU=;
+        b=k27z/vMjZvO8RyyEk7RYAcjXOXWItqiQOt/nvHl3y5os4ZDh6qcgApjOb0kchGWviw
+         DxSGxsRF4C5TXNRhv02NNQ14ecsu6YoCL0K3fGiIVu5XYzocz35fLJyDPUeIbS493ZDY
+         uXv51IQ2iI2aySuy7tvXw8iPOWoyQ+sGEC2zZdtpeks6EJ4eQb9vesfmDz8e8LCMlNwe
+         ygEQjCYjs8QugF6lw0htMuCEjXiHEziWwRC/jBH/erFD0MX2v0HcSamaF3ToAFNM2Kty
+         SaoncAWu05nxNixh6/htT7S6Rp2xwf8qfpdrUlHiaVCpzHq7GUak/zA69moZDq7P11gL
+         WEtw==
+X-Forwarded-Encrypted: i=1; AJvYcCV6WGCUJh6rIUFlvkdac1mKYvVU7R/ec1XdLvyL4CqQpHZ0i2glzIZ2/slkzrv0YcQ4S274cbOadLQQVckf@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw/KAhTQXOO/S/7KEW0n+ND70gDj5SIGSEE0lMmHwsvKObcl9rC
+	ErfroKQ4zMSlNRVUfF5Jz/ToAIBm/TU6nGOpJa7ySXNc6c+mBlU8zJMulzswJn8=
+X-Google-Smtp-Source: AGHT+IGtesUnwfGBBqJcevG7GXZS5uKes3Sg3LCKiml2f2atNex2ZhNMu7Ko3bo7Z2LB1PvLr1K3nw==
+X-Received: by 2002:a05:6000:e4e:b0:37c:c9b5:5573 with SMTP id ffacd0b85a97d-37cfb8b57d6mr1834260f8f.17.1727875277309;
+        Wed, 02 Oct 2024 06:21:17 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:eced:891a:c2b9:3db5])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd575de73sm13842727f8f.115.2024.10.02.06.21.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2024 06:21:16 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>,  linux-kernel@vger.kernel.org,  Conor
+ Dooley <conor.dooley@microchip.com>,  Daire McNamara
+ <daire.mcnamara@microchip.com>,  pierre-henry.moussay@microchip.com,
+  valentina.fernandezalanis@microchip.com,  Michael Turquette
+ <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Jassi Brar
+ <jassisinghbrar@gmail.com>,  Lee Jones <lee@kernel.org>,  Paul Walmsley
+ <paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>,  Albert
+ Ou <aou@eecs.berkeley.edu>,  Kevin Hilman <khilman@baylibre.com>,  Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,  Philipp Zabel
+ <p.zabel@pengutronix.de>,  linux-riscv@lists.infradead.org,
+  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to
+ common code
+In-Reply-To: <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org> (Neil
+	Armstrong's message of "Wed, 2 Oct 2024 13:20:44 +0200")
 References: <20241002-private-unequal-33cfa6101338@spud>
+	<20241002-hula-unwashed-1c4ddbadbec2@spud>
+	<2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org>
+Date: Wed, 02 Oct 2024 15:21:16 +0200
+Message-ID: <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2063; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=DOFHAjKnf7tU+evTd+s0TtMPYvUr+DWExrkuybwEW5k=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGl/VR49cK83bXR/GN0r4v+xyLctOOfQcn9l1mg7N5FZB 7ceEnvWUcrCIMbBICumyJJ4u69Fav0flx3OPW9h5rAygQxh4OIUgImYtDEy7E9N8BHdYnf1N/8L pucOvlfebVlXf674PkfolY1NSe+2BjD8U37rVnVGl8O8ri1oXvp2dgmu/q7jAUW7HQ6cr+5cvy2 fHwA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241002_034901_580769_226F1A83 
-X-CRM114-Status: GOOD (  12.80  )
+X-CRM114-CacheID: sfid-20241002_062119_537074_7EB7C415 
+X-CRM114-Status: GOOD (  19.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,63 +105,83 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Wed 02 Oct 2024 at 13:20, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-When the binding for the mailbox on PolarFire SoC was originally
-written, and later modified, mistakes were made - and the precise
-nature of the later modification should have been a giveaway, but alas
-I was naive at the time.
+> On 02/10/2024 12:48, Conor Dooley wrote:
+>> From: Conor Dooley <conor.dooley@microchip.com>
+>> I like this one better than qualcomms and wish to use it for the
+>> PolarFire SoC clock drivers.
+>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>   drivers/clk/Kconfig                           |  4 ++
+>>   drivers/clk/Makefile                          |  1 +
+>>   drivers/clk/{meson => }/clk-regmap.c          |  2 +-
+>>   drivers/clk/meson/Kconfig                     | 46 +++++++++----------
+>>   drivers/clk/meson/Makefile                    |  1 -
+>>   drivers/clk/meson/a1-peripherals.c            |  2 +-
+>>   drivers/clk/meson/a1-pll.c                    |  2 +-
+>>   drivers/clk/meson/axg-aoclk.c                 |  2 +-
+>>   drivers/clk/meson/axg-audio.c                 |  2 +-
+>>   drivers/clk/meson/axg.c                       |  2 +-
+>>   drivers/clk/meson/c3-peripherals.c            |  2 +-
+>>   drivers/clk/meson/c3-pll.c                    |  2 +-
+>>   drivers/clk/meson/clk-cpu-dyndiv.c            |  2 +-
+>>   drivers/clk/meson/clk-dualdiv.c               |  2 +-
+>>   drivers/clk/meson/clk-mpll.c                  |  2 +-
+>>   drivers/clk/meson/clk-phase.c                 |  2 +-
+>>   drivers/clk/meson/clk-pll.c                   |  2 +-
+>>   drivers/clk/meson/g12a-aoclk.c                |  2 +-
+>>   drivers/clk/meson/g12a.c                      |  2 +-
+>>   drivers/clk/meson/gxbb-aoclk.c                |  2 +-
+>>   drivers/clk/meson/gxbb.c                      |  2 +-
+>>   drivers/clk/meson/meson-aoclk.h               |  2 +-
+>>   drivers/clk/meson/meson-eeclk.c               |  2 +-
+>>   drivers/clk/meson/meson-eeclk.h               |  2 +-
+>>   drivers/clk/meson/meson8-ddr.c                |  2 +-
+>>   drivers/clk/meson/meson8b.c                   |  2 +-
+>>   drivers/clk/meson/s4-peripherals.c            |  2 +-
+>>   drivers/clk/meson/s4-pll.c                    |  2 +-
+>>   drivers/clk/meson/sclk-div.c                  |  2 +-
+>>   drivers/clk/meson/vclk.h                      |  2 +-
+>>   drivers/clk/meson/vid-pll-div.c               |  2 +-
+>>   .../meson => include/linux/clk}/clk-regmap.h  |  0
+>>   32 files changed, 53 insertions(+), 53 deletions(-)
+>>   rename drivers/clk/{meson => }/clk-regmap.c (99%)
+>>   rename {drivers/clk/meson => include/linux/clk}/clk-regmap.h (100%)
+>> 
+> <snip>
+>
+> I don't have objections, but I think Stephen didn't like the idea
+> a few years ago, but perhaps it has changed...
+>
+> Anyway, take my:
+> Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-A more correct modelling of the hardware is to use two syscons and have
-a single reg entry for the mailbox, containing the mailbox region. The
-two syscons contain the general control/status registers for the mailbox
-and the interrupt related registers respectively. The reason for two
-syscons is that the same mailbox is present on the non-SoC version of
-the FPGA, which has no interrupt controller, and the shared part of the
-rtl was unchanged between devices.
+We had a similar discussion 3y ago indeed:
+https://lore.kernel.org/linux-clk/162734682512.2368309.12015873010777083014@swboyd.mtv.corp.google.com/
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/microchip/mpfs.dtsi | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+There are needs for a common regmap backed clocks indeed, but allowing
+meson flavored regmap clocks to spread in the kernel was not really the
+prefered way to do it. 
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index 9883ca3554c50..f8a45e4f00a0d 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -259,6 +259,11 @@ clkcfg: clkcfg@20002000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		sysreg_scb: syscon@20003000 {
-+			compatible = "microchip,mpfs-sysreg-scb", "syscon";
-+			reg = <0x0 0x20003000 0x0 0x1000>;
-+		};
-+
- 		ccc_se: clock-controller@38010000 {
- 			compatible = "microchip,mpfs-ccc";
- 			reg = <0x0 0x38010000 0x0 0x1000>, <0x0 0x38020000 0x0 0x1000>,
-@@ -521,10 +526,14 @@ usb: usb@20201000 {
- 			status = "disabled";
- 		};
- 
--		mbox: mailbox@37020000 {
-+		control_scb: syscon@37020000 {
-+			compatible = "microchip,mpfs-control-scb", "syscon", "simple-mfd";
-+			reg = <0x0 0x37020000 0x0 0x100>;
-+		};
-+
-+		mbox: mailbox@37020800 {
- 			compatible = "microchip,mpfs-mailbox";
--			reg = <0x0 0x37020000 0x0 0x58>, <0x0 0x2000318C 0x0 0x40>,
--			      <0x0 0x37020800 0x0 0x100>;
-+			reg = <0x0 0x37020800 0x0 0x100>;
- 			interrupt-parent = <&plic>;
- 			interrupts = <96>;
- 			#mbox-cells = <1>;
+IIRC, Stephen's idea was more the bring regmap support in clk-gate.c,
+clk-mux, etc ... I'm not quite sure how make iomem and regmap co-exist
+in a manageable/maintainable way within those drivers (without adding yet
+another level of abstraction I mean) ? Silently creating a regmap maybe
+? but that's probably a bit heavy. I did not really had time to dig more
+on this, I guess no one did.
+
+I don't really have a preference one way or the other but if it is going
+to be exposed in 'include/linux', we need to be sure that's how we want
+to do it. With clocks poping in many driver subsystems, it will
+difficult to change afterward. 
+
+>
+> Thanks,
+> Neil
+
 -- 
-2.45.2
-
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
