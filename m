@@ -4,103 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3403CFB441
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2024 14:30:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45CC5CFB448
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2024 15:27:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:CC:References:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9STch/h+J4ixx2Za8JiPv1P7bhnHo+A0JjM5JtB8K/4=; b=ZeH+LPeuLe8wSk
-	yVvuQKlu3ahJQqhzp+qQqp1C0Pym5C2uEe/ne1VBndS7wExCe9NgPr+fN0RLlnWc1HjJl+V2p2v53
-	OjjN2ToW3HsXIcjjevGR0qqS4i6kejijotQqP+Q2xf/AjxISPaHfZj19FZaO3okb/DXpptbc9pkfX
-	Ny6Pf34K63d0vLEU7JujDACZMm+y+3SGmFJSyWlVP22MY9bUGcJUA5u+31LcaQJsHeZH2+0a0OD3o
-	epSzvf/LQpCuAYJTSy4ktFYPLU0u4OIAiI2eX9AbEgR8pi94eKjQEnhsOQYPt+8U3T/cy3GopAApU
-	QNMI6V2wExpCK/lCbhNA==;
+	List-Owner; bh=cwH2+IMyvYEGbtSm0ViViWhl+pakEJvL/32r6rX0rjI=; b=R8GzjgqUPYd2B5
+	9rHPYAW4AcAKUuFmVwzZvAC82z5ArtbdSS5AFacteNJbx4hRj7ydlUVPMBdugWrQOGidyTjuZ7Zk6
+	P+eCP+vV8bIpBO8UyHq1muArQvszOfU31SJy5nQcETrUnVU1asBShFtct1f0uhZ4hAweFPV56CvAu
+	gT3PwtK4CowsKnmDnajgEMahWOEaILdL0zRA6slpWYtW+i3Dt1wBYlmQDgD5ZkCSYTg8ir5Ipruc0
+	9K7LAFUQ9WoCQUDXxcdUkXNZIGAV4YkMvIi0ipWYgrdcXpjmJddlc9UaO3wvWP1UbmPYpmwv7gsBo
+	MDyyMwyVm/GMFEOK8b2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxokz-00000002jZw-1jCk;
-	Mon, 07 Oct 2024 14:30:41 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1sxpdf-00000002vtH-2sPP;
+	Mon, 07 Oct 2024 15:27:11 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxoXN-00000002fgg-1Y1O
+	id 1sxpNX-00000002t48-07hS
 	for linux-amlogic@lists.infradead.org;
-	Mon, 07 Oct 2024 14:16:39 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-42e5e758093so38881005e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 07 Oct 2024 07:16:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728310595; x=1728915395; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7xRUTNSVpHiv9YcXebV17rDvGiIssghk7TcjlQFT9qE=;
-        b=mHvANakq203VzcfcUSZknf/mZ3Amq5Ku7YOgfBHze5Er+Vl9tJC12ci8e/y8ES8KGE
-         hcMs0TY4nuTnxatluh4crpNBTpEaqV5NhXpKoSg71qJ6Te6tSsOYnxwU9J50w+Ja9Sbo
-         PI5IjWnY9UGygdFLr5oadQTocnFDa97x7nTBgpThFESxhVakSVx8RLL+dMVtwh9HWRii
-         pY/28oOWJ9g7I8fByJVI6vS4CN8cW3IshDTAfKdr98O7fuEKxKW/fHBWG26i1RXyvdxC
-         SUtfouhkwOY7sKWmic+K8a14ufPEf7ZVhsYlB5s6Q/9vLgyBl5Wrt5S3KwIiVTEPxop9
-         tNeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728310595; x=1728915395;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7xRUTNSVpHiv9YcXebV17rDvGiIssghk7TcjlQFT9qE=;
-        b=Jp47zW31wjIAJNLtnncTlMvwZiKyhV7Ns8mCTRTjtIESUnl5yzIEg7TghDDaEcYw3e
-         xVFdRbYaKnAt9k0BWtl4RyQtY2JI4O7954AfKubsSELzt9WSGvuNGPQszxrkzS4zcdiE
-         CV+1FxxR/T5TptNF4lJLTjHk0+BtGyFpaMqQhA//m6Mlb1jWg1vnZJVDD5HZmJHK7rWX
-         Qu0Nqlp5Q0K4fBf3l7pZ/mPlFuOrxRf8EcMh0C6OrVT/yIBVG7hDp4/2xNYBQ/+F814g
-         X7EPZVMNu6UTSpIu9wjvr/8stS1RDPHJl46kmBhyJ+tl7x35KAHHzbmg46fdaa+wcY1f
-         /hUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVK42gOz/wPgnQ9rtiDdxPcmrueB/qoiWwKeHd7fPyHb8V31LQNDQ7a4yX9mUNeAMYQES6MAX0119V9lP0D@lists.infradead.org
-X-Gm-Message-State: AOJu0YzJw3tPl+Ax0h2j2CIdu2zuklBNHWdq1TtHPV9pAc+OW/zhjcx0
-	K3AzECtZdUkTOT6HySuPxC2RtZ6Lmden7E2kN0/gwaScrusVcFcfmuUKGwLr7n8=
-X-Google-Smtp-Source: AGHT+IHQ72ccwSzwU8GosDnb+C5lMeNAC/47JQuiE3FnkpThqnf7l5/8A9yKyPIwlZRV/GGR9UIMFg==
-X-Received: by 2002:a05:600c:4684:b0:42f:823d:dddd with SMTP id 5b1f17b1804b1-42f85aef159mr74209795e9.27.1728310595513;
-        Mon, 07 Oct 2024 07:16:35 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f86a20537sm94197965e9.15.2024.10.07.07.16.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 07:16:35 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 07 Oct 2024 16:16:26 +0200
-Subject: [PATCH 2/2] dt-bindings: pinctrl: amlogic,meson8-pinctrl-cbus: add
- reg for cbus pinctrl nodes
+	Mon, 07 Oct 2024 15:10:32 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4044A12001B;
+	Mon,  7 Oct 2024 18:01:22 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4044A12001B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1728313282;
+	bh=tDK2N1D0jqnoD+O3ST573uVP5E5qmpYkCDwEUcRwxAo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=mtxelPCOxzDQoEKR8h1OhEZ3fmEu7uKxXDrOB55hrZWVkhqe+AUncNiMorF1A2jh4
+	 88KwTu0hgqf3Y9gMweioWko4mPB3hM9uO2yYzFhWdJSWvNfZH6HLEH7BNYMAh0Wh18
+	 GFnvS6x1CNtmNTpXlIydhx0p7BC3KvebkfOCSUmUKdEHilp7pci329QnP5mdvco4MR
+	 94CGF9dYBpmhyIEhvyw7d4Yn5JPYNCAnEX4q/ggE5X90hpwAcu5zkfVUT/YsbkOh1p
+	 cUGdfhXLmuBpfQf4T+SdFq1sVa+u3KNCOQizN1Eqa2aMKTEcaswnQig+2tFtz9BDoZ
+	 wmLIRtuZSKWEQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon,  7 Oct 2024 18:01:22 +0300 (MSK)
+Message-ID: <3ec49401-de70-4779-87df-9594d3eb3321@salutedevices.com>
+Date: Mon, 7 Oct 2024 17:59:28 +0300
 MIME-Version: 1.0
-Message-Id: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-2-d3d838540033@linaro.org>
-References: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-0-d3d838540033@linaro.org>
-In-Reply-To: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-0-d3d838540033@linaro.org>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Heiner Kallweit <hkallweit1@gmail.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1629;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=uq3xUG9541kWavMjswgcR/7jEBvQhAlHsrzxs28MLMw=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnA+1AAJKgEHuWWSwWBWNNDbWxSdRz0yGsLYzIXe/4
- xjuPgBqJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZwPtQAAKCRB33NvayMhJ0Ve2D/
- 0VDp2vwfBbO2+6bz+ZmUpjcv4krlCHkib7nY3P1ffx2xc8uXGci/IJfCDcs/n7lKtZ9EMwPQfU53qp
- ujKB1QWNiroW7bfVzQ99o9Lo20wXjrtFSM1NgjZrGkK14cXE4OJ6W/uo40XgiFKZmDXs/brYDEcMgl
- Vkj6wPnW0mNegAcNZDBekI77lY8Tx2ScSz8Bdv9bvVBOGexclIOzRupM10tlrUM4ZvS/2Bh6lTAkNt
- VFUl3c34S/zgmiHnUcWZcCEiugGOHb18tIfRcsM3UyxuirMQ1tqrTqhd3dnxMWedPXpvdnqGTgLGj+
- 2P0WQlkaVZaCO0EnDawkSGsMDrhBXb2uWOaIMVaj5p8Trr4hUxVp5ZultjzqTZ6wncbQiL9xkGDJ0u
- uCErJGDC0hd+jKpyLSUJAxdXyTHUVP+o5qL1UPaSFjSPGzE2+8UTlx4u4J/MmaMesUXG6zFVNKczx5
- b79N7wO4/+gqw1y0v6vFEK8NDK5VbnAtGoralRmrAnliruY6P92z0joLTVHyKii9ZvlysSaRtz9Rrk
- 0O2UEMqu46XvfoOiK41FTkspRh2Ohl64L5ZOOyC1Me7b4raYyfC7ftgFhUoPXeppZE+TXZWwSSszcT
- lwl+ezybXQsKNiaASpe0LiUp1M6CvuANx2GVkWty0xlJxXFF7ZcfoxyIjxqQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v4 0/5] Add A1 Soc audio clock controller driver
+To: Jerome Brunet <jbrunet@baylibre.com>
+References: <20240913121152.817575-1-jan.dakinevich@salutedevices.com>
+Content-Language: en-US
+CC: Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, "Kevin
+ Hilman" <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>, Michael Turquette
+	<mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <20240913121152.817575-1-jan.dakinevich@salutedevices.com>
+X-Originating-IP: [172.28.224.13]
+X-ClientProxiedBy: p-i-exch-a-m2.sberdevices.ru (172.24.196.120) To
+ p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 188273 [Oct 07 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 39 0.3.39 e168d0b3ce73b485ab2648dd465313add1404cce, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;lore.kernel.org:7.1.1;salutedevices.com:7.1.1;sberdevices.ru:5.0.1,7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, FromAlignment: n
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/10/07 11:09:00
+X-KSMG-LinksScanning: Clean, bases: 2024/10/07 11:09:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/10/07 12:27:00 #26713662
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241007_071637_462983_03C0A879 
-X-CRM114-Status: UNSURE (   8.37  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241007_081031_414984_97A28CCF 
+X-CRM114-Status: GOOD (  14.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,60 +102,75 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-While converting the Amlogic Meson pinctrl binding to dt-schema, the mandatory
-reg property for Meson8/b cbus pinctrl node was ommited, fix this to finally
-pass all bindings checks.
+Hi, Jerome! Could you take a look at this patch series?
 
-Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml       | 22 +++++++++++++++++++---
- 1 file changed, 19 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
-index c954761e0150..3a03a1c73c92 100644
---- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
-@@ -9,9 +9,6 @@ title: Amlogic Meson8 CBUS pinmux controller
- maintainers:
-   - Neil Armstrong <neil.armstrong@linaro.org>
- 
--allOf:
--  - $ref: amlogic,meson-pinctrl-common.yaml#
--
- properties:
-   compatible:
-     oneOf:
-@@ -25,6 +22,25 @@ properties:
-           - const: amlogic,meson8m2-cbus-pinctrl
-           - const: amlogic,meson8-cbus-pinctrl
- 
-+  reg:
-+    maxItems: 1
-+
-+allOf:
-+  - $ref: amlogic,meson-pinctrl-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - amlogic,meson8-cbus-pinctrl
-+              - amlogic,meson8b-cbus-pinctrl
-+    then:
-+      required:
-+        - reg
-+    else:
-+      properties:
-+        reg: false
-+
- required:
-   - compatible
- 
+On 9/13/24 15:11, Jan Dakinevich wrote:
+> This series adds support for audio clock and reset controllers on A1 SoC family.
+> 
+> Dependency: [4]
+> 
+> Changes v3 [3] -> v4
+>  - Use auxiliary reset device implemented in [4]
+>  - Split the driver into files
+>  - Use common with axg-audio yaml schema
+>  - Unify clock-names with axg-audio
+> 
+> Changes v2 [2] -> v3
+>  - reset:
+>    * added auxiliary device
+>  - yaml:
+>    * added declaration of optional clocks
+>    * fixed names in example and another cosmetics
+>  - clocks:
+>    * reworked naming
+>    * stop using of "core" clock name
+>    * fixed wrong parenting
+> 
+> Changes v1 [1] -> v2:
+>  - Detached from v1's series (patch 2, 3, 4, 25).
+>  - Reuse some of defines from axg-audio;
+>  - Split the controller into two memory regions.
+> 
+> Links:
+>  [1] https://lore.kernel.org/lkml/20240314232201.2102178-1-jan.dakinevich@salutedevices.com/
+>  [2] https://lore.kernel.org/lkml/20240328010831.884487-1-jan.dakinevich@salutedevices.com/
+>  [3] https://lore.kernel.org/lkml/20240419125812.983409-1-jan.dakinevich@salutedevices.com/
+>  [4] https://lore.kernel.org/lkml/9a4377fe27d8eb940399e452b68fb5a6d678929f.camel@pengutronix.de/
+> 
+> Jan Dakinevich (5):
+>   reset: amlogic: add support for A1 SoC in auxiliary reset driver
+>   clk: meson: axg: share the set of audio helper macro
+>   dt-bindings: clock: axg-audio: document A1 SoC audio clock controller
+>     driver
+>   clk: meson: a1: add the audio clock controller driver
+>   arm64: dts: meson: a1: add the audio clock controller
+> 
+>  .../clock/amlogic,axg-audio-clkc.yaml         |   3 +
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  48 +++
+>  drivers/clk/meson/Kconfig                     |  14 +
+>  drivers/clk/meson/Makefile                    |   3 +
+>  drivers/clk/meson/a1-audio-clkc.c             | 359 ++++++++++++++++++
+>  drivers/clk/meson/a1-audio-drv.c              | 104 +++++
+>  drivers/clk/meson/a1-audio-vad-clkc.c         |  85 +++++
+>  drivers/clk/meson/a1-audio.h                  | 131 +++++++
+>  drivers/clk/meson/axg-audio.c                 | 138 +------
+>  drivers/clk/meson/meson-audio.h               | 143 +++++++
+>  drivers/reset/amlogic/reset-meson-aux.c       |   9 +
+>  .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++++
+>  .../reset/amlogic,meson-a1-audio-reset.h      |  29 ++
+>  13 files changed, 1051 insertions(+), 137 deletions(-)
+>  create mode 100644 drivers/clk/meson/a1-audio-clkc.c
+>  create mode 100644 drivers/clk/meson/a1-audio-drv.c
+>  create mode 100644 drivers/clk/meson/a1-audio-vad-clkc.c
+>  create mode 100644 drivers/clk/meson/a1-audio.h
+>  create mode 100644 drivers/clk/meson/meson-audio.h
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
+> 
 
 -- 
-2.34.1
-
+Best regards
+Jan Dakinevich
 
 _______________________________________________
 linux-amlogic mailing list
