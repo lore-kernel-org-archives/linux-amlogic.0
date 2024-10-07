@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 006D1CFB441
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2024 14:26:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 974BACFB43F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2024 14:28:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=QaC9q7CofDIqLZEj2zl78t1RRkmyCnOTLydNUMp+8fU=; b=2Zz5KWQM8Zc05w
-	VAfnyCQmT6ICe4pKhnzi0TSnB8Vga4QV2xmfaW3LzdM3APclh00c+Pt9+Nd/KjrwY8pi/dWurPTwd
-	YEj4cN9bbghbbgW1dfdgLFjC7KYvTR6ojZmDS6s6CrxiPw+4EAnuUvghY5UXPXi5X22hNJEjaA58Z
-	Bqv73wemsLswvJWlM8hNW/f34iDBxWJ+KYZfS8BcUikXMr1FAKAyDyoYjWH6NXsLYBXROf1q/13Ha
-	5lwEtIPIORHjOZHWfP3gejCHod+iG/SgwypEqBs8PUQs+FM3JXHOLalAffx8ogWyB+ZXjTVeNpIn4
-	exZR2z89SommBQDESRsA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=s9RWRqDLafL59EQWg14CSltnt3CEZDjEkKuIsqYnIds=; b=m1u/bYGuHAr/zB
+	KvgQkHw7D4CYghSohNUVYXw+xsPfi33JHyDqixAr+lIu6Y51WLo7p0lY6Bu4XTFh+pwYd3Gb+y1Yk
+	EfLdhTrHW6eno6NiTcf92pmqYgTTo7E7ogVNir+IxDm2aGXBcoPrDUFuDod+LiOsUpvnvxAjnjouO
+	TFlOAo4VritbWSel8Gpds1K6MZ1l1pKadAv7+hvHDyvZtqwUF8hzjrXtqdr3dPOI8SoE0oHZHUZUj
+	/qscO1eNowP3MJXa6/0kfD3ACPGfpiuWiYbmM2HaTSvxltC1wM3EXHENvOIWbIe1Z0p8mTYqeaDX7
+	LatwfkT7Uesc3IXZWuAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxoh9-00000002iQT-47pq;
-	Mon, 07 Oct 2024 14:26:43 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1sxoiR-00000002inV-0fSo;
+	Mon, 07 Oct 2024 14:28:03 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxoXL-00000002ffm-2NYN
+	id 1sxoXM-00000002ffp-0H0y
 	for linux-amlogic@lists.infradead.org;
-	Mon, 07 Oct 2024 14:16:36 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-42f56ad2afaso60418155e9.1
+	Mon, 07 Oct 2024 14:16:37 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-42e5e758093so38880885e9.1
         for <linux-amlogic@lists.infradead.org>; Mon, 07 Oct 2024 07:16:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728310594; x=1728915394; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q/TOM7EB64+eyeu1JpKwXmL1gp84yFTLvnsIJDegP4w=;
-        b=lahDvJN8MLq//igPDEkXb9FHslZ/xqUY/Q7qRHS4yYYGQX/ELW+AEMt00UGg8gVsxw
-         Q60LSojj4phLf3dp2jnZl8YcNrp/BxaH+oLVFcVCagEmJkP8G+G/8cembjIjtE3GREO4
-         GEHmW3zyLYUJG5R5UtLELZSaukODN/Gy88bJFeb2QWHNNYvhujG2KKU1OWyPfcjv42c+
-         K4ifq9QhI/6IJ2Odh3o5SR3zY/KpM1hPgqUqTl2qCXHXiEURtiu/v8gwlnrc7yHGcBLK
-         RN36ina3HVb2F91EM5X8aTTU5uKd3Gyd9S7adIVeQDgLv8ggvtxmxl3TWvvKMiIaO9ry
-         bfzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728310594; x=1728915394;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1728310595; x=1728915395; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Q/TOM7EB64+eyeu1JpKwXmL1gp84yFTLvnsIJDegP4w=;
-        b=w7xmuVp0aU8+fAhhUmOrhJa3IyNkW1pXEJm/zxj71VEkjHp5x6xVm5ztZkxJP9gx3X
-         CZL1xxhw8UawRZKSQAAty9NKDfm4LeU0nFwDaXZa7vlNZjr8/9DyEu4WPrPb4OSsKsNk
-         1+sSC0bvDB9yThIjfX/Bv1FfXVF9UDPdl6R/HqeAnO2HcxGoMMrj3BAOiz6ppNV93F8z
-         n2KOV06ax4k0OEIcvUigjojO1y8fo9B1mfb7aTB7hBw742rj2QB89gck3xQhJv4sFa7Y
-         V/HsNMT6YJ32+c0xcM6kkPY/by45oNFnlqq8ZmYjB19UW61wG71Sm11V4G6Bw79JuyeW
-         1xMA==
-X-Forwarded-Encrypted: i=1; AJvYcCXOC1BmVnAamt8boUrBNpwTzPN1E+iNQgiYkePjQB9BhG/ttTuh/wOLy6ORTPLItyGEq7MkAzfj/yotzd5t@lists.infradead.org
-X-Gm-Message-State: AOJu0Yydemt/XZoccPMImPAUAdUDhMz3DGDV9RyiFx1rybJc39XryF3W
-	WLmy9bFyGDfoiGmLpqUY33syft8q/nQ5gHBU+JmivD+SoEDr6fj1iHr8f7sRN6U=
-X-Google-Smtp-Source: AGHT+IG04331dVtmaVR4lXQicn5AzQqZD0RSic7wGjyhOhclkIxnftFNWZzaSmZpQMgfr7SYxPHz0A==
-X-Received: by 2002:a05:600c:4686:b0:42a:a6b8:f09f with SMTP id 5b1f17b1804b1-42f85ae942cmr116660645e9.23.1728310593652;
-        Mon, 07 Oct 2024 07:16:33 -0700 (PDT)
+        bh=4hv0jab3jHBZJbnh7UjMMEKId2oSGlJ5cxQvLyyyW10=;
+        b=eq1ZGmP9cQDUTIGHIr9bD0W6/G7YnnXUPWYmrTcKytF05Rpy3HMIODTP3Z8W1gJ7x2
+         lwA1TsRTP1KIeFPIJhOn1+0PsgNuApjEYLbg0U/JGFcjOyUrdloaOwEpdIzOxwQx7fNW
+         lDhon/XX6b9K8iqTkT6SpN56L4JhY1pgFfLPscu2RiAJBOpJiWQ+Mwa9NBTYQJrqC7fd
+         P2v9uxt6OpkLdaT0E6CmwPbCquvsG5ndEFdVSIZaTBri6f8yZQOf28eIAgJERr1SniGS
+         YmU+F5hEGrhCdLwWjYPilr14I8ajKNOLJHXNV5ccVLW1jZ9nhHfPq11OgLCLWCPW4GFl
+         wQMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728310595; x=1728915395;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4hv0jab3jHBZJbnh7UjMMEKId2oSGlJ5cxQvLyyyW10=;
+        b=taSn+VO1aUdcA81CHsVBWG/d9qSie18vElyJgG70IwXWaZC0IC3FAz6OS2USbwTx3g
+         DzbdH5b1MUB6K5fh/2Kp9qhywr4MXrI0O/rKg3PHzF8wKPDqwhVCJqteK1Q8OYMsLScn
+         kwh8qfZ+fi095lq9CRDaY4Gfj0a0l1fC3U4Ev6OibvYWeQphUID0ySZX9XmfN25tkCDC
+         nWqy+RR/TOUyLnf6+YQq6GZM4V9k2+iK8+Tv3zZwV1AFBtvKERhz0+24wnWaFxhjBe5x
+         OHU+1oEox04CefV6mLgGdzd74u1tBpNkvosnObINPguhPSs6mUy+APSl/bq4new7AX85
+         oEzg==
+X-Forwarded-Encrypted: i=1; AJvYcCXNtMRaFGHhp518lwNUxbyXwr5sPTkSo9NtuDaiM/IQ1bSuIB5mYlqg3h1mICAmybNAX7D1pXGSdoxi9Sb2@lists.infradead.org
+X-Gm-Message-State: AOJu0YxJvhEFYl5U0MCo5Z39UW1AzLkV6TvEnTAnfEqw3ESSTPD7P+0P
+	X/HIdoXk5fTN6GVrbTBee4d3Xx7du9fJTAO0qbLGfgrpqc4e7HG2oe03v/VzdUY=
+X-Google-Smtp-Source: AGHT+IEBNwCj4Clmc9tQOoyaPHB9G6hxgmvRd98seccIp9L6ifABf/HO1+fqXZ4HQmKQwBQV2MyofQ==
+X-Received: by 2002:a05:600c:524c:b0:42c:bae0:f065 with SMTP id 5b1f17b1804b1-42f85aa32famr89848015e9.5.1728310594553;
+        Mon, 07 Oct 2024 07:16:34 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f86a20537sm94197965e9.15.2024.10.07.07.16.32
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f86a20537sm94197965e9.15.2024.10.07.07.16.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 07:16:33 -0700 (PDT)
+        Mon, 07 Oct 2024 07:16:34 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH 0/2] dt-bindings: pinctrl:
- amlogic,meson8-pinctrl-cbus/aobus: add reg for cbus/aobus pinctrl nodes
-Date: Mon, 07 Oct 2024 16:16:24 +0200
-Message-Id: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-0-d3d838540033@linaro.org>
+Date: Mon, 07 Oct 2024 16:16:25 +0200
+Subject: [PATCH 1/2] dt-bindings: pinctrl: amlogic,meson8-pinctrl-aobus:
+ add reg for aobus pinctrl nodes
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIADntA2cC/x2NywrCMBBFf6XM2oE0Spr6K9JFTMc40DzIRBFK/
- 93o6nDgcO8OQpVJ4DrsUOnNwjl1GU8D+KdLgZDX7qCVvoxKTdhyYY8ubjn8WONZ46tIq+Qi3jm
- tnILggz8kGElyslg4+VY39M7qyRhn59lAPyiV/l3fvy3H8QUYcO5RjAAAAA==
+Message-Id: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-1-d3d838540033@linaro.org>
+References: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-0-d3d838540033@linaro.org>
+In-Reply-To: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-0-d3d838540033@linaro.org>
 To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
@@ -81,25 +81,25 @@ Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=893;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1639;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=3elurgGVViKCPdpbSagNfEraZxYhYLBwgqU9yeOTtu4=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnA+0/oMpaDd6H3HnheIXgpFZlSsGTrWXBj4P4znTb
- y1PAbreJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZwPtPwAKCRB33NvayMhJ0V6wD/
- 0Qf9gVnJ5jjPEOqXfPvBa5NRnfVCbnAR+WdosYfIDfzPALKTNcTYEVtTUkCzFckK6VpNo4C8zPtwM7
- PZxufPchtnPKPsfkMC6QChjBYNHIfeiIVFK9/137/JvZUp+VyMLtf2Qb45D1syrtC2+uVJFeYTXmpt
- FZ7PtCFAo0MWv+qwnQDZ1e/foenAMxi98iFjlu5FhB/pcOdXxjQD4Hfkn1WO9Mo6cRlq/PTWpHbHxk
- t53eW7CObQtkS6T/CfLSKAe5UPGKKojGolTT6zLennMLv370jDFvr74TCygjcmkSCuAiLy6eVwPTXS
- y4hDd4UoCklL6BXpQbE0DRFSfpQph7gtHCqp2gz71exdkJY+xo5pEnyXXqOMpIC29PQ/jwkS6euAgd
- vQaeJEfo7HG2uxXmkauB+vw9F2aDU/h28MhFz/8vVFGRdhIRwOr5nEeF9cz6Jb+m4tZy4WxxWEUwfD
- 6EZxVKO0OMbvoyGqkGtpmt/N9aUSsMQNA7GU6SNMSJ+2cg3iDFXOnEfLR2KplAEitHZZ2cciP8/iRq
- t9FAHZN+1ZLyerb7O/H1B1oLicmiTrfvZ0ru2AK93Erp3+o0U1+ZVeysRClj95h4W8EUGebik780NG
- DENgpQ73SssgIpvlfDgdiK9Rd4RXnz3s/gw2uJ+KgIN4NUY6TXtWGgMudcSg==
+ bh=h2FMnPogkHFfqhRz1WoByogMT7zBYzsPgXNwbf8hCeY=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnA+1ALGxHIst8m4naWDBSpXsrpWWhY+q6boysoTva
+ mUVfeTiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZwPtQAAKCRB33NvayMhJ0RGhEA
+ DIrWLVjjoK19N2+puCqyHlFbu2KgFdoR87XjMzHDOoiiTUecXYSmRGw4l1jZEByQYnbwseieaxTU0M
+ waJf58VQ4Ea1WpjJ9wgfr//kPXzk2frkIt0t7xFcMqPWdFyrXt3PqZRY8u6NBlT3loCPQ1yBzGx9Xy
+ XYgZAqSKWpPKHGZ3iCqNGNV31X3m5qvBDwKM6GJZ3rqHEbuuaEfRUWni8ZKu6OyrReUotV0D2QKuf2
+ ghiWFO7Ni2DjnILeP5jdZJzWJHJlfnpNl5Khxrp+sb8N0hxRqdCOlDCsAuYAyBC71sZ8SaMFeM5LaG
+ fPXbB5dqpPyJeO7vte2ZuLFVJAsNLsPhQNwzl0mMItB4/W4APVTZDR20xLTDvb27pK5fe7hjQRdq5a
+ M2N6Zf9Nu0+FhWvZO7iz/HP8qYCrqTnAb29HdnBcuN1Jx7yzC0Hqs5FLOTD28QNnyKDJ5RHFceytpz
+ 7MRtpz80cUvLwzrOvbRGrwnpOWHWoEko22SpMuS1Rb3fHCJ8zmF/efj14f27NnHDOanFynQNbUcFcx
+ iMCIGo33bjvTvPlW569zqf3SJuM3s/NlAM/Q/2aVrkJrLUYg09IaqcXZyHyM+EvHJXU6fKKAHRxS9+
+ c70jlbfYmpezaFexoFwS9Ca/qg2FtBm98t4OCGYQqY0CGwOWCZhg5kxhWwdg==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241007_071635_625789_07FD501A 
-X-CRM114-Status: UNSURE (   6.34  )
+X-CRM114-CacheID: sfid-20241007_071636_119328_36CF1BD7 
+X-CRM114-Status: UNSURE (   8.37  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,25 +118,58 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 While converting the Amlogic Meson pinctrl binding to dt-schema, the mandatory
-reg property for Meson8/b cbus/aobus pinctrl node was ommited, fix this to finally
+reg property for Meson8/b aobus pinctrl node was ommited, fix this to finally
 pass all bindings checks.
 
+Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Neil Armstrong (2):
-      dt-bindings: pinctrl: amlogic,meson8-pinctrl-aobus: add reg for aobus pinctrl nodes
-      dt-bindings: pinctrl: amlogic,meson8-pinctrl-cbus: add reg for cbus pinctrl nodes
-
  .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml      | 22 +++++++++++++++++++---
- .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml       | 22 +++++++++++++++++++---
- 2 files changed, 38 insertions(+), 6 deletions(-)
----
-base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
-change-id: 20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-ca82766a8996
+ 1 file changed, 19 insertions(+), 3 deletions(-)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+index add83c676327..76c02c6af645 100644
+--- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+@@ -9,9 +9,6 @@ title: Amlogic Meson8 AOBUS pinmux controller
+ maintainers:
+   - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+-allOf:
+-  - $ref: amlogic,meson-pinctrl-common.yaml#
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -25,6 +22,25 @@ properties:
+           - const: amlogic,meson8m2-aobus-pinctrl
+           - const: amlogic,meson8-aobus-pinctrl
+ 
++  reg:
++    maxItems: 1
++
++allOf:
++  - $ref: amlogic,meson-pinctrl-common.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,meson8-aobus-pinctrl
++              - amlogic,meson8b-aobus-pinctrl
++    then:
++      required:
++        - reg
++    else:
++      properties:
++        reg: false
++
+ required:
+   - compatible
+ 
+
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
 
 _______________________________________________
