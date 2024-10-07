@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05705CFB446
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2024 16:03:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BE47CFB448
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2024 16:04:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,56 +13,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Cc:To:From:MIME-Version:Date:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=4K5CXV4vfdUowVmAkEm90YVKya1spUHnxNUJmbDAtkA=; b=GKRmXHMlYhZ4gIbG6nNrdj0cz3
-	vlOqkBLN3eDVa9OkgLWOjb9cPvdmqukgRvsWPSlNZ+JstbgAgDzPOW+PpYAei/pZPUgYTnf1syLey
-	68a6Jl+Anpn4ueVOONutPq9h6Mn68Xqe75iAmSp+JY2FGFoW6uqrX5DQN0CSwpsPahi3U1iboASB4
-	ET/lYjKnNiFlaZF9GsZYJnkLm8GJ1sd3KSuOT4yBAxcc/iz7ifpPvT6U4a+GvgIZrJG5Uiclhv6Pq
-	61O/rowGijFXM3foDrb7C2wOPHpZQYyeZBNBHbi2Sv/6WC9cCrlVp6BR3W6D/tNBEqV/r2AoqaFq4
-	+kstk5ug==;
+	bh=dFS0qzpIJT6rOVGG1YNlXEXMm1wDA4mFM0k3d/zaDoI=; b=QEP+KJxWL/z6cL4HjsMBF7YeZh
+	JgPm3p7emvGmwwaVP69nOcQd/WrXonAJn+HJa51wGovZ1fgb6h1+E+bZDP7rFtDKs8QzfTM98mYH1
+	eGqWd8Jew9LiGYQOLiMn/+v+GHc2NprtSJlGndOhwcsg01z8+SMLebdotGht9TymHTv+VdUK/yprI
+	Qh9UgjcqQkTjePqxBSDS4dpncHcYSTYhKl+klmjM7bD11aHhCoLPvuYphqh0Gjk7U87mgiugY9s72
+	B33o0C82lX+i/Jhit6LcUWEKj8gQFVHdRaBsfLVQ6wpOIYQCL7aZfg77BemxbHb4T0c7LEsTX20ZH
+	p7DiroCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxqCH-000000034gj-2OYU;
-	Mon, 07 Oct 2024 16:02:57 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1sxqDW-000000034ps-2A56;
+	Mon, 07 Oct 2024 16:04:14 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxqBl-000000034ZZ-0xDV;
-	Mon, 07 Oct 2024 16:02:26 +0000
+	id 1sxqBl-000000034Za-2c8K;
+	Mon, 07 Oct 2024 16:02:27 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id C6CB6A419C8;
-	Mon,  7 Oct 2024 16:02:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCA85C4CEC6;
-	Mon,  7 Oct 2024 16:02:23 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id B656A5C5C9A;
+	Mon,  7 Oct 2024 16:02:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACF93C4CECC;
+	Mon,  7 Oct 2024 16:02:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1728316944;
-	bh=806jNc2mizzwBfHn3ArzLEx2D5C2yoYYUNpl5mYv32c=;
+	bh=Q4PsbsVHT/o1CZ8EWpNOAe3Ox6YRWovXBHM9oFa8aR4=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=YgDlgFVtTQHHg6zNLABaPqJoFAFjy5vCsh4MroD1s28BtDc62nqXeVFEzeEvNolqK
-	 x47/P9+MQZAtq5TTiGXWO91a7+8raFCETtLc35MAHaVqNHVpS0ReKIbCupN8260g2Y
-	 YRDk0g3ZERDesTgSVZBfHs6hf1YY0RsiE750sfEcuYmEu8NSCzpW/6xIklp5tNJ1d1
-	 I+DS+syfrQjJHBbai+3QkR4/QdQgPNs1zYeQpivqIHqQj8ZHmDsq8BZxEdTEuMRANf
-	 8x6d26ytwi1FjPCelYvxWCiZ1uxCGJ959JVEXF057/T3US6YwkCeBwHrgR8HjRvVPl
-	 2B8EXGt39SVWA==
-Date: Mon, 07 Oct 2024 11:02:23 -0500
+	b=ZhLdJsPAu6oaApYdnnxdnGgnBFHJDRCEmMzed5EEnQVaTIZxZ+FqQX7u7l7e7OXEU
+	 l52MlkeAHqXSgFemKixvZf6EsmPPHBvvt/18kSnP5uUxLDdoa7kId8W548V/XL9SB6
+	 1yW8krRX6UL4id+bP4xofIi0TCBNZ36TrS3oxP41XmK5LwyUNkn/srgJrT0mLYoYkl
+	 v3BRAV4h5PMHHEO5t+TXVZdpe7J68GX5dioDtR9OUu/iLUKJl9LNjjbShEC8rytu9+
+	 71aU6hgiTIptNBgdasrjt7GV6dXOEIH4mqvsxa/9vco9IbCQTu2G6z3UVRrv/ODYWL
+	 KSqivgsgKdybQ==
+Date: Mon, 07 Oct 2024 11:02:24 -0500
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org, 
- Conor Dooley <conor+dt@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Kevin Hilman <khilman@baylibre.com>, 
- linux-gpio@vger.kernel.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-In-Reply-To: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-1-d3d838540033@linaro.org>
+Cc: linux-kernel@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-2-d3d838540033@linaro.org>
 References: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-0-d3d838540033@linaro.org>
- <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-1-d3d838540033@linaro.org>
-Message-Id: <172831694232.937294.6889037408108312834.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl:
- amlogic,meson8-pinctrl-aobus: add reg for aobus pinctrl nodes
+ <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-2-d3d838540033@linaro.org>
+Message-Id: <172831694330.937353.14650435678577353929.robh@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: amlogic,meson8-pinctrl-cbus:
+ add reg for cbus pinctrl nodes
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241007_090225_352677_B32241EA 
-X-CRM114-Status: GOOD (  10.63  )
+X-CRM114-CacheID: sfid-20241007_090225_728949_969B6017 
+X-CRM114-Status: GOOD (  10.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,15 +79,15 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Mon, 07 Oct 2024 16:16:25 +0200, Neil Armstrong wrote:
+On Mon, 07 Oct 2024 16:16:26 +0200, Neil Armstrong wrote:
 > While converting the Amlogic Meson pinctrl binding to dt-schema, the mandatory
-> reg property for Meson8/b aobus pinctrl node was ommited, fix this to finally
+> reg property for Meson8/b cbus pinctrl node was ommited, fix this to finally
 > pass all bindings checks.
 > 
 > Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml      | 22 +++++++++++++++++++---
+>  .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml       | 22 +++++++++++++++++++---
 >  1 file changed, 19 insertions(+), 3 deletions(-)
 > 
 
@@ -97,12 +96,12 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.example.dtb: pinctrl: 'reg' is a required property
-	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-aobus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.example.dtb: pinctrl: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-cbus.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-1-d3d838540033@linaro.org
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-2-d3d838540033@linaro.org
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
