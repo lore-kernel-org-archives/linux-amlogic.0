@@ -4,73 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9931CFB440
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2024 08:59:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D235CFB43F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2024 09:01:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=NefblW+c3992irDGeT8EW8zhrjRW37roIjT8U6RHnaQ=; b=0JUYn/JB/ikPnijFxOcJ1uqVQY
-	Msb492BbMWzwDa4gL+JFsw+LdlnjVRSm8P9OahHVt4/9Bo0Xdto45abSc6rBfZBc2YLpTqUjRa/z1
-	S7IM5wtyDMVLnCl+ncUohQCZDMxfHYYlLX6T8fggDILQBHMRCNwHFPnZ3F9iGJ7IwMk0DlzFA5L/6
-	B/nfOI2E/vdYylkqwRWIy/N36XIgPlfaJuq4tmmLGTeCU6MhZto2JCNBe9EDvzLvcXHQya1dG8Fc5
-	xfwWvot+FGuYioJbBUo3twYoRXrqw9h1BCLeIP0rTlhUKpG8XNWs7XbpjsWlLNlmwHXs2p43a0ugv
-	Z77rcUaw==;
+	bh=T5dAX8XURJ62rYtPj+QRfphnrj3dtHuFzWl+gbw1K5g=; b=axH6+zsUcPnrYHsq5hHGH55NxB
+	S5aOF6OtB6OiDILwv72AAfD/I3Fc1nZVU/dHgq2rJktgLgMMJNvSRJQD6EeUN8WD+QUgmYiaoaHxZ
+	UrjhIY+1w7y6hRxGe4BEDZcMAO5Ta4FQ/PKcEDjBNCn893HaMZD8roM6UXKI0GDvx09CIf25/GZ6I
+	rldxZb5X5Lfcka5lQWYMl8E6QF5fodME3LOl7sG4TiYq8Tuky/63ndFDU4/9b2M73ikpep0Oxin4B
+	ej6gCMEnTqsTG39hjjLneqSluNxgcjgHxEOMVsTgUf3153Sis7wQ++eRgZTAIHyCi4QhBvVam8JLR
+	AtAnvgIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxjaF-00000001rN8-2fCX;
-	Mon, 07 Oct 2024 08:59:15 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1sxjcT-00000001rk6-1C0B;
+	Mon, 07 Oct 2024 09:01:33 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sxjYx-00000001rE3-1cmq
+	id 1sxjbM-00000001raP-20Ze
 	for linux-amlogic@lists.infradead.org;
-	Mon, 07 Oct 2024 08:57:57 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-37cc84c12c2so2167895f8f.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 07 Oct 2024 01:57:54 -0700 (PDT)
+	Mon, 07 Oct 2024 09:00:25 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-37ccebd7f0dso2760224f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 07 Oct 2024 02:00:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728291473; x=1728896273; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1728291622; x=1728896422; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TGBBMU8rFx26oRjbd1HxpI/xco3E3mGApwngB2hx0UA=;
-        b=jSOrqbr9FEJm9o3h6eRJDptnbhx95cz3QQe+ZLhsUey7e/g2w+k7/a9PVoZ3utux1z
-         bE4xWlGwqCcjaVjRgMB+9rPN9UVQu6ZzEK3MGIvlJuTO+L/3UJkMxmurVBQ5Q6Clayhq
-         vZF88kvLnP4UjANBANROi/jW/gz/MY+dhjzqEMxBmqG5yILO30htJO/N4sr2tvL9ynCo
-         do4KWICxVfrZL3UiMsLEMEp+zGCgGAjx2OsX6a7wGfjc58Q954IgGSima70Tes6ZFW9S
-         z4WmPK921ZpdwUhcXkf1CV4LsC/LmgLTt/PVHlqrDzFYJfQbjKssqK2uFl8KANRrpawR
-         1PyQ==
+        bh=EpuhbLasEadVeMuVqG8sosX+rym3WCHEJ89sUQ5d+fI=;
+        b=b1rNcu1Wjyvnwm7C6fgI3q2OWfvn/aHvHOSydYcnE34tpb5hqj7jEsHGvXb34BE+0O
+         JWqoEiY3L37L50iAMiRJiTPecfkL2xNqIkJt8lArpXjVb7lqUjwiwbhLYxVB+J+qNPKk
+         fyzV5maEkcGxXiRh9tx7YjjeSFU1Mca3il92oRj/q53qG4Ifw0rGfxkNTblywAbXIf9c
+         zJq4TPRtQ09fOuXcD66yBln60aAMAtzwug1/F8Nco2g1qhBce7RmimxJBwK5lT3xztQd
+         mk3k4SQERXCBDMKDbAVGUCmD/s/9jmWzfe7nirOY74ggnv3cfRG3BPvxZZxDx0lV9rPn
+         1uPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728291473; x=1728896273;
+        d=1e100.net; s=20230601; t=1728291622; x=1728896422;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=TGBBMU8rFx26oRjbd1HxpI/xco3E3mGApwngB2hx0UA=;
-        b=nJrmh6rvSAmoXcFwdEsKxILV3e8wlmvBUnpm+Omam4MPTkLMzUbuJzt29HXK5BK4ph
-         cxMvux6kP8KYejHd75qHKUoPH+4YSLtWsNt2JkXjWBFJ8WhY0c5fckYrvJfdzVpsAScI
-         LgMREdXKHsvqd5xzU1jR6WJg7g9ldE/2735SOytMwnh/nJu6Wo8L9GR9Cz+Vt/yT9xO2
-         8UNCn5K7JEAIA9iL/15ZVQd31wXbHyx1H3psarP/fG5bUrYRZiAeqJvpxC9vUo725mIN
-         o5hfCe2gDeSGTQyiHs8mCRxlcfCZ9ZspCROECIF1xbiQymXoL1uA43B/weVKzoqg40sw
-         olTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWo3Hik6MtXOqQWeUsZJwg/8pCW/PodLtQXF6+JLsCZ3lngpgXlHd515yva79UAN0Ug2LT/Y37PS90yuDAj@lists.infradead.org
-X-Gm-Message-State: AOJu0YyHCNA05R/jzRv/Trs8E2Yty0Xb2hNmbtu2G9xoah+3AHe+Dq7h
-	DrwuvxC/T1/D+WV2bgpc+lSFH+MAKWl5iK9aSTTSTdxAnPcJjl+CDxOOBMpx3qY=
-X-Google-Smtp-Source: AGHT+IHb6K+lD/kBzplnC0Ubjz9+HYTIZIIEg6E9T40OzxD0plJXKDgFKpCxd+La0sGXCiOa+xkq+g==
-X-Received: by 2002:a05:6000:4008:b0:371:8688:1660 with SMTP id ffacd0b85a97d-37d0e8f730fmr7003939f8f.51.1728291473181;
-        Mon, 07 Oct 2024 01:57:53 -0700 (PDT)
+        bh=EpuhbLasEadVeMuVqG8sosX+rym3WCHEJ89sUQ5d+fI=;
+        b=t3EekhrfPmQpDcqwjzHzKAtXp+NINYt/FVXIicoIuDMFnvCrWaD7+/vmwzF5jw9ykU
+         +LCafGp101xja12iEfH0jjyGxxK1+SwsDxUWzALAyGCtdLMQdA6fHTtSm127vAoyucW+
+         N4TxazbkVzi/sG71Do4POHp/aFEDx60tapA08bo7IQCxnSSXRSZ6a9AnjTdLypHxrmQj
+         jmnocoK0qd9iClcGX0CAX7eRDt0rMupluqWCm8XWE3vwQeNYfUpkNis6ySAxHEJBCDve
+         bpXwRtS9Z4Xg02KTrp5HnbU/ianInoCgrwtyEECUoaclPsz8jm9pMwwFxiVYZ5E1jtfX
+         T2LQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW816gMr4ud3Bb6EKWnZyOvGNRmv22yY/GRa35by8A+5OKOBxOfA0zg3N1MB5cthH0/s2uSII2AF3AeG3gt@lists.infradead.org
+X-Gm-Message-State: AOJu0YwiG9ajs/gLMK2p+ftzlesRTb2YbkRBEy38Mx0pCIhXHjIHn2EJ
+	jse8w3GXhe17x9kiSWWRMAlQD6cZninmMDTzszx2V1dLla8w6Erm2s5CsYUSWBo=
+X-Google-Smtp-Source: AGHT+IHjPdkrn1WCWqVQPWn/3AXhMdcCGbb+rmueJ3DkfERdPUW77sBkwqH9tc7v+VJ0Q+jVuYVwxg==
+X-Received: by 2002:a5d:4eca:0:b0:37c:cc67:8b1f with SMTP id ffacd0b85a97d-37d0e8de221mr6087900f8f.48.1728291609655;
+        Mon, 07 Oct 2024 02:00:09 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7? ([2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1691a55csm5206567f8f.37.2024.10.07.01.57.52
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1691a4eesm5210437f8f.31.2024.10.07.02.00.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 01:57:52 -0700 (PDT)
-Message-ID: <f2db1521-0fc4-4cc7-b195-498e2a900191@linaro.org>
-Date: Mon, 7 Oct 2024 10:57:51 +0200
+        Mon, 07 Oct 2024 02:00:08 -0700 (PDT)
+Message-ID: <818f287d-4ea5-4899-b4a9-98accc1be049@linaro.org>
+Date: Mon, 7 Oct 2024 11:00:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: document mmc-slot
+Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: controller: allow node name to
+ be named slot@*
 To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -81,8 +82,8 @@ Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
- <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-2-5aa8bdfe01af@linaro.org>
- <5o2q5kmchnr3e4opmtp2xq3xqlzkq2hudecd5fszamoav4twhb@o3kcftkoxwzg>
+ <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-1-5aa8bdfe01af@linaro.org>
+ <qt3ivwsa3uaidcgkzbd2ewohbyd6zbzseraihftdhxpziuhnpq@xsne3f4wdfua>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -109,10 +110,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <5o2q5kmchnr3e4opmtp2xq3xqlzkq2hudecd5fszamoav4twhb@o3kcftkoxwzg>
+In-Reply-To: <qt3ivwsa3uaidcgkzbd2ewohbyd6zbzseraihftdhxpziuhnpq@xsne3f4wdfua>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241007_015755_476888_D7766AD9 
-X-CRM114-Status: GOOD (  16.25  )
+X-CRM114-CacheID: sfid-20241007_020024_574230_476928B9 
+X-CRM114-Status: GOOD (  16.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,69 +131,44 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Rob, Krzysztof,
 
-On 24/09/2024 11:15, Krzysztof Kozlowski wrote:
-> On Fri, Sep 20, 2024 at 10:38:04AM +0200, Neil Armstrong wrote:
->> Document the mmc-slot, which is a subnode of a multi-slot
->> MMC controlle, each slot is represented as a full MMC controller,
-> 
-> typo: controller
-> 
->> the top node handling all the shared resources and slot mux.
+
+On 24/09/2024 11:12, Krzysztof Kozlowski wrote:
+> On Fri, Sep 20, 2024 at 10:38:03AM +0200, Neil Armstrong wrote:
+>> In preparation of supporting the mmc-slot subnode, allow
+>> the nodename to be either mmc@ or mmc-slot@
 >>
 >> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 >> ---
->>   .../devicetree/bindings/mmc/mmc-slot.yaml          | 40 ++++++++++++++++++++++
->>   1 file changed, 40 insertions(+)
+>>   Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
->> new file mode 100644
->> index 000000000000..c30eda4fd2a6
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
->> @@ -0,0 +1,40 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mmc/mmc-slot.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: MMC/SD/SDIO slot of a multi-slot controller
->> +
->> +maintainers:
->> +  - Ulf Hansson <ulf.hansson@linaro.org>
->> +
+>> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+>> index 58ae298cd2fc..f797c32ea688 100644
+>> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+>> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+>> @@ -20,7 +20,9 @@ description: |
+>>   
+>>   properties:
+>>     $nodename:
+>> -    pattern: "^mmc(@.*)?$"
+>> +    oneOf:
+>> +      - pattern: "^mmc(@.*)?$"
+>> +      - pattern: "^slot(@.*)?$"
 > 
-> description here saying what is the MMC slot, e.g. what you wrote in
-> commit msg.
-
-Right will fix the description, bad copy paste
-
+> I don't think mmc-slot is allowed by this.
 > 
->> +allOf:
->> +  - $ref: mmc-controller.yaml
->> +
-> 
-> Just to be sure - the slots do not have dedicated resources like clocks,
-> resets, power supplies, right? IOW, it is indeed one device which
-> exposes multiple controllers?
+> This should be squashed with mmc-slot child patch. It does not make
+> sense to allow mmc-slots if there are no mmc-slots.
 
-Yes exact, resources are common to the slots
+Right, I don't like this oneOf/pattern, slot@(@.*)? should really only be for slots,
+by I do not see how this can be achieved because we can't override properties: pattern.
 
-> 
->> +properties:
->> +  compatible:
->> +    const: mmc-slot
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +unevaluatedProperties: false
+Do you have any suggestions ?
+
+Neil
+
 > 
 > Best regards,
 > Krzysztof
