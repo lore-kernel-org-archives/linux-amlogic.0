@@ -4,83 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB72BCEF161
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2024 12:39:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FAE7CEF172
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2024 14:38:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9Zu/+2BtPpUnqTilJWlnu8ACq0c3rn8X/h6NrvVxr4E=; b=bwDKDhZsbNnOBt
-	Hg94TbOOFcA7Zw62yzqUkfHcwKItw3bWmyaTaKLUgjrmGSqleg2N8gWD745iR5wSSCWeeVD4uLtSS
-	yMFHUfIKxZCDAhY74HjUMmDdDb2Z7gJvG8bWhbLVwqMjz0RpeyDD60I66c2rbWeJWvNdpuXwcZJV4
-	lJozgnhTeyc4kRTy1XbEsniGp1rJYAb7OrCq+Rqo9mZ300SMsS8faZUm2IgkGD01R3sZa/bh99e2y
-	a+VptuSagbCF1m0VaizZTNKf27TxdqVNo44cg8xSyo2Ukao3i4SbaW5M6uN2n27JiOgcmJftYQXkg
-	LPu9z8L7o3xaWqjDouhQ==;
+	List-Owner; bh=+Er2aneBmB9paD39ok0ASNX4SMBaRG1QMAeUTuvjLKk=; b=htmKuIfpcAHHVY
+	BzM6nQom00Fpn91hIGez7bRQvbOV/RZ2oBZn8RekKG1n/hlhBN4gKLaG74+JvTTgWB4icqu/N8hGe
+	7lq83iSCIG4pLiYeXVTOMvWk2xAw2p9Vt82NmU/XtdunnMdnS/cxX6aAjyUFECPONGNCrWGhbao5i
+	6r3h6zZX05O54/3f2FmRpwS5qy6KYaVrsBe7HZZ7iCIO8eZr3gC06sgnXSZwFO422DZEmmW5WFQoo
+	r3qhXzg1x76Z9UfwXyYk3JKOc431tmTF5sG83UgvzgkC1xjhrc9dryYjZ+EtpbLRS+GVUYVBf8Ho/
+	FH8Lduvzz81p4HdqgF/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sy9US-00000005qPH-0ZCk;
-	Tue, 08 Oct 2024 12:39:00 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1syBMH-00000006CUN-0IpN;
+	Tue, 08 Oct 2024 14:38:41 +0000
+Received: from mail-yb1-xb34.google.com ([2607:f8b0:4864:20::b34])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sy9TV-00000005qFl-0ZOv
+	id 1syBKE-00000006BmF-3eCN
 	for linux-amlogic@lists.infradead.org;
-	Tue, 08 Oct 2024 12:38:03 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-37cd8972738so3851471f8f.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 08 Oct 2024 05:37:59 -0700 (PDT)
+	Tue, 08 Oct 2024 14:36:36 +0000
+Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-e026a2238d8so5094408276.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 08 Oct 2024 07:36:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728391078; x=1728995878; darn=lists.infradead.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=by4sWSBDpCIFjcZGzg4X08UIZKTUMpJ+pa0NCXVeqdU=;
-        b=PFtr455lOnzdNjqDkfJ1G7MxXN42bI458hujn6wPSSRFvsbT0KI7yDR5LpmawSy5FQ
-         rSmLbH1bq4bweQiyIf/+PE0VVJUmVgN4RjYcAlb5K4Rz7l1Kv8o7ikZwXLNWzb5WRoEm
-         AJUVZyi3ujAD1KwTxrYJrP7whhmJw4ajMaF3BHXHg82ord/LzRIpgQECrSgaNbFMhE6S
-         JAlTFdVXnyeCX/UgjPfWRljJqtiq4duCEB73HJD52B9AvfPD6tjBVKxch2Gm0xaDEto6
-         W4Dr3ui5aRLqe3zyrzaQeMAdnT1ftWtpSgWvQrnRk0PSEzvLJMdslSFfVbNTnjtpAq5T
-         MYmw==
+        d=linaro.org; s=google; t=1728398193; x=1729002993; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bvdDxu0uUFcfRftNtzBrq68CTjswU4MR/lPRKPBVJUA=;
+        b=NEjPyAjzCUt3sBlMk7yn6ZiPuRWnhwDOnPZpFbm33Bflu67IqtcCWbvwE5Tcer0H2Y
+         bVJLzFOnoxSB/D1mii1As7eSlXsNZRLwNJ31bpk9NKm70z/SEK+ps2rqxaG6exJnRdad
+         ABmHQlJwEKpsk5+bjcHVwnLwj2T2YIQfo3moBMKM1pE4kKsAjoT1mIM5hW5sBXcad3zg
+         jsZZaPbCaK0MR5sSBSUSWhi+dlj0IwViYoW0qfMEHDbGswRNyM1twJtSSuWYGdrNb8ul
+         Vxi3Sz9HQvYIWVPYbnbwRMyCJwQsGIkal5n4K40VBa+zglikwQ8pi7hxTkTzOvuJhcDw
+         sc+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728391078; x=1728995878;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=by4sWSBDpCIFjcZGzg4X08UIZKTUMpJ+pa0NCXVeqdU=;
-        b=eembDcAU5iBEuDmE2NZF50oqHoNSFwrqqHHPh3ZGL7sTtLeRza94DL/kYeUDVIKitj
-         brTgFOmPXUS2kIlJSk00adTCRVcKeQK9ABKKdSOP9BJ0X+M6yX8q3vA85MYb3TV0MNtG
-         I5y8FkL+rA1ifU3lAoaLfsTYLs76dh2Foanxf/l8xO6uEot+GQ6ihQIcXw97z59KUBNH
-         fxzl/BS+mA3fYaC2x6owaSo91MzmSmMUpYo+H8W7gAmCfg7ToWgmo4+iinEd/1NMcDct
-         9hCYyljZZFbLbztc7MkaxvxC5edwaCDCjjIYnlkKf33fdFpk19DZwOdSGyL+IrozuJ7d
-         H2Fg==
-X-Forwarded-Encrypted: i=1; AJvYcCXY/KJfaPFL9+QPgD3gBai2Kpu4oyRHHh27yL29iOhphCIEXazNp6kKAUGQenXkTKUlFSyRPrkbbrwU8LSe@lists.infradead.org
-X-Gm-Message-State: AOJu0YyoWJGuA2yUOkBaBTkQ5xF0DYKp0G6TQ2Bpvb6bDmqN8tUHl/jP
-	qqogtS9uplxtb09QdH7n/wkesaxoVqtv1G3dGj8B+bUH3b4uy7N1Bb3MqzBkR5w=
-X-Google-Smtp-Source: AGHT+IF7jLyp1F9r1R7paqLXL7lZm4mJSG2e31oTisk0Sxja0KjHZpxs+MoHEKQXr+fL0PGmbZlONQ==
-X-Received: by 2002:a5d:5e0b:0:b0:37c:d244:bdb1 with SMTP id ffacd0b85a97d-37d11311be4mr7478306f8f.26.1728391078001;
-        Tue, 08 Oct 2024 05:37:58 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:41f2:4244:ce34:c273])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43050578facsm20299775e9.19.2024.10.08.05.37.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2024 05:37:57 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: neil.armstrong@linaro.org
-Cc: George Stark <gnstark@salutedevices.com>,
-  u.kleine-koenig@pengutronix.de,  khilman@baylibre.com,
-  martin.blumenstingl@googlemail.com,  linux-pwm@vger.kernel.org,
-  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org,
-  linux-kernel@vger.kernel.org,  kernel@salutedevices.com
-Subject: Re: [PATCH 3/3] pwm: meson: Enable constant and polarity features
- for g12, axg, s4
-In-Reply-To: <5c3a6fdb-e4f0-4a22-9a8d-84baee12769c@linaro.org> (neil
-	armstrong's message of "Tue, 8 Oct 2024 09:31:09 +0200")
-References: <20241007193203.1753326-1-gnstark@salutedevices.com>
-	<20241007193203.1753326-4-gnstark@salutedevices.com>
-	<5c3a6fdb-e4f0-4a22-9a8d-84baee12769c@linaro.org>
-Date: Tue, 08 Oct 2024 14:37:56 +0200
-Message-ID: <1ja5fesrbv.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1728398193; x=1729002993;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bvdDxu0uUFcfRftNtzBrq68CTjswU4MR/lPRKPBVJUA=;
+        b=l/YcwA/wz9hhFzgbDSgwQuAICdcdJT7z/ws2HaC7JF0nW/PUzUDantM54GCB45jnF3
+         A15bTQxOYy+iIzo3b31pKUfvsyF1+q+EF6AtFpgNMFBoiokzZfmIYBY/1rkpTZrcdfab
+         hitQuwFSKJ/Y1FBP9iRVyfXX9JhuwUboAFQC0DNSRK0u8p5hHyQ+/cvlqD+0DT9lEOMn
+         yE/HD+r5RMEY17p4XugPIrLUpRVLVhw/tKjRWu7uNVBF7RoLHgptJ814l/dkmV4qjjRT
+         orwMn9B+gmw19DknYWws0bLsa1ebPnfrWZFE7d1kiP/EgYiRmxFn06AXyyl2bFLUzC7O
+         bDKg==
+X-Forwarded-Encrypted: i=1; AJvYcCWJr/R0Cg+kIbX5+ovSNPJwh6hjt943q6WqTVabPT7FncTBhAqka4c/PKffOv2Uic6NCwwuifT/VlVvfK6W@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw0MaMdvnmWalRLvDGX4NR8YYDarJYIhvXrYVKqIpiUUnKc84/l
+	/BPmya2gcKn2el5C5gvkxxKAV7fHysi7TjKNgY0tWjHltE3/xVMv1u/hYVmZQu8SIdlXHycq+6T
+	XjRNptGmYNmsD6bkn+BRZJHviHeL4K70IH7NuhnDy2COnRzND
+X-Google-Smtp-Source: AGHT+IH7JBySBe+ugLiwdV9z9D3yRskW3fQHkZaPcUF8iKpr4058P83ZY+ritDjNryL38gb8s14NXcVeCTMnJZxK7bU=
+X-Received: by 2002:a05:6902:2e0b:b0:e28:f668:b41d with SMTP id
+ 3f1490d57ef6-e28f668cd1bmr765146276.48.1728398192886; Tue, 08 Oct 2024
+ 07:36:32 -0700 (PDT)
 MIME-Version: 1.0
+References: <20240929093418.526901-1-yujiaoliang@vivo.com>
+In-Reply-To: <20240929093418.526901-1-yujiaoliang@vivo.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 8 Oct 2024 16:35:54 +0200
+Message-ID: <CAPDyKFohKSPqhuPVYijtvhY2DmG20ar+MY9OqWWLu5_MnB4ReQ@mail.gmail.com>
+Subject: Re: [PATCH v1] mmc: Fix typos in comments across various files
+To: Yu Jiaoliang <yujiaoliang@vivo.com>
+Cc: linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	imx@lists.linux.dev, s32@nxp.com, linux-arm-msm@vger.kernel.org, 
+	opensource.kernel@vivo.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241008_053801_346439_82159956 
-X-CRM114-Status: GOOD (  10.42  )
+X-CRM114-CacheID: sfid-20241008_073634_943659_5EC8DD7A 
+X-CRM114-Status: GOOD (  30.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,67 +91,149 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue 08 Oct 2024 at 09:31, neil.armstrong@linaro.org wrote:
-
-> On 07/10/2024 21:32, George Stark wrote:
->> g12, axg and s4 SoC families support constant and polarity bits so enable
->> those features in corresponding chip data structs.
->> Signed-off-by: George Stark <gnstark@salutedevices.com>
->> ---
->>   drivers/pwm/pwm-meson.c | 12 ++++++++++++
->>   1 file changed, 12 insertions(+)
->> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
->> index 6701738c55e3..c6f032bdfe78 100644
->> --- a/drivers/pwm/pwm-meson.c
->> +++ b/drivers/pwm/pwm-meson.c
->> @@ -571,26 +571,36 @@ static const struct meson_pwm_data pwm_gxbb_ao_data = {
->>   static const struct meson_pwm_data pwm_axg_ee_data = {
->>   	.parent_names = { "xtal", "fclk_div5", "fclk_div4", "fclk_div3" },
->>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
->> +	.has_constant = true,
->> +	.has_polarity = true,
->>   };
->>     static const struct meson_pwm_data pwm_axg_ao_data = {
->>   	.parent_names = { "xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5" },
->>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
->> +	.has_constant = true,
->> +	.has_polarity = true,
->>   };
->>     static const struct meson_pwm_data pwm_g12a_ee_data = {
->>   	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
->>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
->> +	.has_constant = true,
->> +	.has_polarity = true,
->>   };
->>     static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
->>   	.parent_names = { "xtal", "g12a_ao_clk81", "fclk_div4", "fclk_div5" },
->>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
->> +	.has_constant = true,
->> +	.has_polarity = true,
->>   };
->>     static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
->>   	.parent_names = { "xtal", "g12a_ao_clk81", NULL, NULL },
->>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
->> +	.has_constant = true,
->> +	.has_polarity = true,
->>   };
->>     static const struct meson_pwm_data pwm_meson8_v2_data = {
-
-This needs to be splitted and adjusted as well then.
-g12 and axg are covered by pwm_meson8_v2_data.
-
->> @@ -599,6 +609,8 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
->>     static const struct meson_pwm_data pwm_s4_data = {
->>   	.channels_init = meson_pwm_init_channels_s4,
->> +	.has_constant = true,
->> +	.has_polarity = true,
->>   };
->>     static const struct of_device_id meson_pwm_matches[] = {
+On Sun, 29 Sept 2024 at 11:34, Yu Jiaoliang <yujiaoliang@vivo.com> wrote:
 >
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> This patch corrects several typos in comments within the mmc/host
+> directory. No functional changes are introduced, only comment
+> improvements for better readability.
+>
+> Detected using codespell.
+>
+> Signed-off-by: Yu Jiaoliang <yujiaoliang@vivo.com>
 
--- 
-Jerome
+Applied for next, thanks!
+
+Kind regards
+Uffe
+
+
+> ---
+>  drivers/mmc/host/atmel-mci.c       | 2 +-
+>  drivers/mmc/host/au1xmmc.c         | 2 +-
+>  drivers/mmc/host/cavium-octeon.c   | 2 +-
+>  drivers/mmc/host/dw_mmc.c          | 2 +-
+>  drivers/mmc/host/meson-gx-mmc.c    | 2 +-
+>  drivers/mmc/host/mmci.h            | 2 +-
+>  drivers/mmc/host/sdhci-esdhc-imx.c | 4 ++--
+>  drivers/mmc/host/sdhci-msm.c       | 2 +-
+>  8 files changed, 9 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/mmc/host/atmel-mci.c b/drivers/mmc/host/atmel-mci.c
+> index 6490df54a6f5..f444ca5dd154 100644
+> --- a/drivers/mmc/host/atmel-mci.c
+> +++ b/drivers/mmc/host/atmel-mci.c
+> @@ -860,7 +860,7 @@ static void atmci_send_stop_cmd(struct atmel_mci *host, struct mmc_data *data)
+>  }
+>
+>  /*
+> - * Configure given PDC buffer taking care of alignement issues.
+> + * Configure given PDC buffer taking care of alignment issues.
+>   * Update host->data_size and host->sg.
+>   */
+>  static void atmci_pdc_set_single_buf(struct atmel_mci *host,
+> diff --git a/drivers/mmc/host/au1xmmc.c b/drivers/mmc/host/au1xmmc.c
+> index 6e80bcb668ec..7393d2ea5e57 100644
+> --- a/drivers/mmc/host/au1xmmc.c
+> +++ b/drivers/mmc/host/au1xmmc.c
+> @@ -543,7 +543,7 @@ static void au1xmmc_cmd_complete(struct au1xmmc_host *host, u32 status)
+>                                         cmd->resp[i] |= (r[i + 1] & 0xFF000000) >> 24;
+>                         }
+>                 } else {
+> -                       /* Techincally, we should be getting all 48 bits of
+> +                       /* Technically, we should be getting all 48 bits of
+>                          * the response (SD_RESP1 + SD_RESP2), but because
+>                          * our response omits the CRC, our data ends up
+>                          * being shifted 8 bits to the right.  In this case,
+> diff --git a/drivers/mmc/host/cavium-octeon.c b/drivers/mmc/host/cavium-octeon.c
+> index 060ec4f4800f..d150d83b41ed 100644
+> --- a/drivers/mmc/host/cavium-octeon.c
+> +++ b/drivers/mmc/host/cavium-octeon.c
+> @@ -217,7 +217,7 @@ static int octeon_mmc_probe(struct platform_device *pdev)
+>                 return PTR_ERR(base);
+>         host->dma_base = base;
+>         /*
+> -        * To keep the register addresses shared we intentionaly use
+> +        * To keep the register addresses shared we intentionally use
+>          * a negative offset here, first register used on Octeon therefore
+>          * starts at 0x20 (MIO_EMM_DMA_CFG).
+>          */
+> diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
+> index 41e451235f63..aab1a8df6414 100644
+> --- a/drivers/mmc/host/dw_mmc.c
+> +++ b/drivers/mmc/host/dw_mmc.c
+> @@ -1182,7 +1182,7 @@ static void dw_mci_submit_data(struct dw_mci *host, struct mmc_data *data)
+>                 /*
+>                  * Use the initial fifoth_val for PIO mode. If wm_algined
+>                  * is set, we set watermark same as data size.
+> -                * If next issued data may be transfered by DMA mode,
+> +                * If next issued data may be transferred by DMA mode,
+>                  * prev_blksz should be invalidated.
+>                  */
+>                 if (host->wm_aligned)
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index c7c067b9415a..e87d1c4b9dc1 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -879,7 +879,7 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+>         /*
+>          * The memory at the end of the controller used as bounce buffer for
+>          * the dram_access_quirk only accepts 32bit read/write access,
+> -        * check the aligment and length of the data before starting the request.
+> +        * check the alignment and length of the data before starting the request.
+>          */
+>         if (host->dram_access_quirk && mrq->data) {
+>                 mrq->cmd->error = meson_mmc_validate_dram_access(mmc, mrq->data);
+> diff --git a/drivers/mmc/host/mmci.h b/drivers/mmc/host/mmci.h
+> index a5eb4ced4d5d..4d3647f9ec06 100644
+> --- a/drivers/mmc/host/mmci.h
+> +++ b/drivers/mmc/host/mmci.h
+> @@ -77,7 +77,7 @@
+>  #define MCI_CPSM_INTERRUPT     BIT(8)
+>  #define MCI_CPSM_PENDING       BIT(9)
+>  #define MCI_CPSM_ENABLE                BIT(10)
+> -/* Command register flag extenstions in the ST Micro versions */
+> +/* Command register flag extensions in the ST Micro versions */
+>  #define MCI_CPSM_ST_SDIO_SUSP          BIT(11)
+>  #define MCI_CPSM_ST_ENCMD_COMPL                BIT(12)
+>  #define MCI_CPSM_ST_NIEN               BIT(13)
+> diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
+> index 8f0bc6dca2b0..2bfb86364441 100644
+> --- a/drivers/mmc/host/sdhci-esdhc-imx.c
+> +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
+> @@ -1524,7 +1524,7 @@ static void sdhci_esdhc_imx_hwinit(struct sdhci_host *host)
+>                         writel(tmp, host->ioaddr + ESDHC_TUNING_CTRL);
+>                 } else if (imx_data->socdata->flags & ESDHC_FLAG_MAN_TUNING) {
+>                         /*
+> -                        * ESDHC_STD_TUNING_EN may be configed in bootloader
+> +                        * ESDHC_STD_TUNING_EN may be configured in bootloader
+>                          * or ROM code, so clear this bit here to make sure
+>                          * the manual tuning can work.
+>                          */
+> @@ -1626,7 +1626,7 @@ sdhci_esdhc_imx_probe_dt(struct platform_device *pdev,
+>
+>         /*
+>          * If we have this property, then activate WP check.
+> -        * Retrieveing and requesting the actual WP GPIO will happen
+> +        * Retrieving and requesting the actual WP GPIO will happen
+>          * in the call to mmc_of_parse().
+>          */
+>         if (of_property_read_bool(np, "wp-gpios"))
+> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
+> index e113b99a3eab..d6b3b343b031 100644
+> --- a/drivers/mmc/host/sdhci-msm.c
+> +++ b/drivers/mmc/host/sdhci-msm.c
+> @@ -2601,7 +2601,7 @@ static int sdhci_msm_probe(struct platform_device *pdev)
+>         sdhci_msm_handle_pwr_irq(host, 0);
+>
+>         /*
+> -        * Ensure that above writes are propogated before interrupt enablement
+> +        * Ensure that above writes are propagated before interrupt enablement
+>          * in GIC.
+>          */
+>         mb();
+> --
+> 2.34.1
+>
 
 _______________________________________________
 linux-amlogic mailing list
