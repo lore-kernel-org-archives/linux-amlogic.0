@@ -4,82 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17C20CED275
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2024 07:34:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3AB6CED274
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2024 07:36:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Qi1Ykse/kWlJOmOVV9qqEOWRz09vy0gcChjhTq7TK6w=; b=4KKmCD1K0K8x2OfO+hr1GY2pjA
-	MZ4dnKvkLPsvBFbYTItSsCglv4XQFyp9H7xLvap5WagpGy6H9SxnIwSvb25kExDe1o1lIoBAvZl+5
-	Qva2XM2JAnpp46pNdS1Qb/feJNWc+EMJnnmLXmUVp+OhPnsHn/fTnTjQB6hj2aUGF53RhGnaBC023
-	UBn25YGAHPQPz4Yif2pFdMYjHZV38DUYcYI+wOo4BZTUVKEatPJ3bbtjVmX925yoIBo7u1/YJnfvN
-	c4CvkA6k41ZdkGwa1tYZN2ENypO3J3/twcEEhfHTPR+tyKfCkB6bBbR4qQVB87WF6AnNPaIALezFL
-	6LF+5BYw==;
+	bh=9I2RGxmrJviGeMHOezy6NjmVl/8Zt96S6kTmElSBngs=; b=FxXZ9EFe7QZNQUMAVpMXs9wjdg
+	U8nCmwBRUC+15zUygcDScOoErOXj2uPwE6zRL8iUTy2qRod2CLKRRdGxmUOcVlMskz8V5QvIXvHcu
+	fI8La5Cy3Ma9AZcYOK5lkwmxqiiq1M90Qn3Nb7Riza3i9XA5vVFUtC1HzFcVWg79/1qFXBf7iKBBB
+	U+f8yL4oN8rY67sOpxVjgf1XqUrmwq1NVgQ/Eg+8eSrQ4HZ5qBeM4awpJJyhGWGmAOvsl0HYX18fg
+	LCfzf4vMjhoqE8kuufrzb/MpUJav3pBWbLYFRN6QZZ+oyUv2hEc6x29NBhXUdoOvD1EyJkFzwBbpE
+	rGV83Rag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1sy4k3-00000004oII-2FfW;
-	Tue, 08 Oct 2024 07:34:47 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1sy4lO-00000004ohq-0aW4;
+	Tue, 08 Oct 2024 07:36:10 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1sy4ga-00000004nPu-3esU
+	id 1sy4hT-00000004nbj-3wos
 	for linux-amlogic@lists.infradead.org;
-	Tue, 08 Oct 2024 07:31:14 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-37cc810ce73so2777161f8f.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 08 Oct 2024 00:31:12 -0700 (PDT)
+	Tue, 08 Oct 2024 07:32:11 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-37cce5b140bso3640257f8f.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 08 Oct 2024 00:32:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728372671; x=1728977471; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1728372726; x=1728977526; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fy2shiK3fmb6j9W5GjzkVqsj9Kn/pQMnvw0hDyVzAGg=;
-        b=WzoReafHcyHykCjPr/59IXd9kQmkBueL0v+Q84+v09J4eaH8yY2vVR2/T7oSZ+41mZ
-         +bAZeGC7xAPeB9ZPP1pJ+bdamrhHNoyNiIsdL9oE6eGd21xDO7Xb0ctefm4tmEGr92oV
-         3VBe3mvvt0OwQ6CgJgf2pztmfgqxllyb7arpZ2Lmv8OPEhBjblkU3rea4bCr722+pD7c
-         vV7nSpjqgWqr6+RWxCa35+2bkmL/5rCy9EJayvbFjBg8Bhe1lAG9FHIjYLChaLFknK+D
-         pvviVAibD550JjGu+DhIo50IeZqO6Y3qV1FMZq/uJWnLv7W5Bbm/luSEWMNAs2LKMK3W
-         tBIA==
+        bh=eQ3e9GN5oT4dEQ5C0dmBdYvJDkmnHPy8M4gnBpGOCuk=;
+        b=nEu4og1yjQwdOGSisGwKItRu17XzKuRsk8RjKwU2b9hbjHdZxHTWxz1Qnk2NId3rwf
+         WEtA01Iwkv6eKOvRSPqhtUKS5UCleElDMyTfKXXfPTjVYnclOCtx5MGOvo3Ha1q32gmK
+         RA1Wu+cr091zopynq00BBnDinDPLgq/6GNjBhjPYM7xipO3Zo95oCJS//MP3mTNsD+9d
+         W68TtrKxg1SGrmgi9wvcI3JcLBV5MQXV4pZL+hVXsdmHMgB7Qc+N/+5y9St8a5QW5yd/
+         7aXhW97W1PUZFlZFsPzT8ry8ActXFkbj+Hra69Qb2/CE2DJqiOaoODZgLUK3xGjJohP5
+         ZdJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728372671; x=1728977471;
+        d=1e100.net; s=20230601; t=1728372726; x=1728977526;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=fy2shiK3fmb6j9W5GjzkVqsj9Kn/pQMnvw0hDyVzAGg=;
-        b=fKtIY8h6UIT6msyK4kZ1mBnDzj+3qnFz1v1QUFlm9k3tNr+vxg45XrCA5oKm+jzWLn
-         tPSdFn6FWMPVE1qOEyJly8eE+Vu8v24a5yS4MwshSbRu3n8UM2qYRTj9dztHlrbGtFym
-         xHJQEf7KRkB/+B2Unp28uiW7AM6HuUzkNaMdjM1+WS2Q/OgO9Wu154XRAM+1MIn3kdJj
-         POmOEwg9wtrlBGXX2679Hvu5HBJ+rVP0qN+PcGhn+3oEAbYadlKGYmgZ9YAS49Ck0tB4
-         Q7IX7Cj4rQzEI7yr+8LVRMujbdCOQT7afqv6G3tXddgA2WUHrsI3ssuCwyeH6eds9NlF
-         p3AA==
-X-Forwarded-Encrypted: i=1; AJvYcCWfTyNaYOvogaIKxzFbcWFWMNHmSbJqFdt+gGmRwfIHJTAUv4HcsdvFWg9j/UE/b+19Pn08651oUEUZKrO7@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyv/EMSnKJ8YdGlfsfqRz+r1/JU1ftwgIR+igqYsj1+ZU2rpOwN
-	5t/5tbUQgidPDEJ81OpjfQFSmeQwFAqRWCABkwAmY4axc3NdCkb/AtHu7fR2B/U=
-X-Google-Smtp-Source: AGHT+IHIPRLHczs/vsnv1oAAp5+Q/um5G5Z/VdRLJkNxGk807Uk3XMrbK8IQ+3b5doUrR7C6rxdWqQ==
-X-Received: by 2002:a05:6000:1b8b:b0:37c:ce45:96f2 with SMTP id ffacd0b85a97d-37d0e8f7390mr7513067f8f.50.1728372671045;
-        Tue, 08 Oct 2024 00:31:11 -0700 (PDT)
+        bh=eQ3e9GN5oT4dEQ5C0dmBdYvJDkmnHPy8M4gnBpGOCuk=;
+        b=gt3VzDrnlWLsIEpUqzUl+bu8ZifLBp+Ugtp9DdOdyHC5UcNrq5szBGfrTllvrICB1k
+         /3JHohetqj1jc//GgQu0+6aHHUsm6mUOp2Bs4TQfodqGLzkktYXVB28jY2UEAaZ1VlyZ
+         59XeYlmdZUA9Fg3fd7TEMoGITEErMqzvPVlt+VNMGBZaSbMHlxw1FIJNrv3ANqChS4Yf
+         F9nrKXFDHkLqp+gjaIibOWnMDVeEFiUwWVbPOwXsplX6ZsHUNeP/nL3DnfG8X4VX7Own
+         P/qFIcCsZShj9KrR/Y3lAQUC3GpTicaU5DdwudfuOE9HWZwLqKmTYR8WbW390HbWWD7s
+         Ld9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUeD8siOqAtWglrSH7jVfhzHVpSpRqvykH9FJp3z859qF5oIHqmnG1cRDj63TZ40O4fu0kbIBqy23zjsA6y@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz9evaTMXOEtZ2aUzUAhl+nCTc4bLiLfHer3+8zIdbNxjXNyOGI
+	/TZf1VbcVI1qQ7ZL/h1Einh6Gc5XbMLTMO5692XY6MXeiTPr8Rj7HI9cU4225wTuQKcBm5F1o2D
+	5ytI=
+X-Google-Smtp-Source: AGHT+IFw4OU9sE129MTmVQZwtzejQ0K8o1Icfq6ZclA5XHOehCJfST7Ts2N4ivxajAWQ0s1XGFzZrg==
+X-Received: by 2002:a05:6000:186f:b0:371:8eb3:603a with SMTP id ffacd0b85a97d-37d0e77a468mr11072487f8f.27.1728372726453;
+        Tue, 08 Oct 2024 00:32:06 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:4595:23ef:4ba2:2d19? ([2a01:e0a:982:cbb0:4595:23ef:4ba2:2d19])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f86a20393sm116449555e9.12.2024.10.08.00.31.09
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d169733c5sm7380859f8f.110.2024.10.08.00.32.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Oct 2024 00:31:09 -0700 (PDT)
-Message-ID: <5c3a6fdb-e4f0-4a22-9a8d-84baee12769c@linaro.org>
-Date: Tue, 8 Oct 2024 09:31:09 +0200
+        Tue, 08 Oct 2024 00:32:06 -0700 (PDT)
+Message-ID: <de6fda94-c8f3-473f-a3e7-f6d7f4192cdc@linaro.org>
+Date: Tue, 8 Oct 2024 09:32:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH 3/3] pwm: meson: Enable constant and polarity features for
- g12, axg, s4
-To: George Stark <gnstark@salutedevices.com>, u.kleine-koenig@pengutronix.de,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel@salutedevices.com
-References: <20241007193203.1753326-1-gnstark@salutedevices.com>
- <20241007193203.1753326-4-gnstark@salutedevices.com>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: amlogic,meson8-pinctrl-aobus:
+ add reg for aobus pinctrl nodes
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, Jerome Brunet
+ <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org,
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-gpio@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-0-d3d838540033@linaro.org>
+ <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-1-d3d838540033@linaro.org>
+ <172831694232.937294.6889037408108312834.robh@kernel.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -106,10 +111,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20241007193203.1753326-4-gnstark@salutedevices.com>
+In-Reply-To: <172831694232.937294.6889037408108312834.robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241008_003112_955740_96B4A454 
-X-CRM114-Status: GOOD (  11.28  )
+X-CRM114-CacheID: sfid-20241008_003208_062032_19FB2B83 
+X-CRM114-Status: GOOD (  16.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,67 +132,50 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 07/10/2024 21:32, George Stark wrote:
-> g12, axg and s4 SoC families support constant and polarity bits so enable
-> those features in corresponding chip data structs.
+On 07/10/2024 18:02, Rob Herring (Arm) wrote:
 > 
-> Signed-off-by: George Stark <gnstark@salutedevices.com>
-> ---
->   drivers/pwm/pwm-meson.c | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
+> On Mon, 07 Oct 2024 16:16:25 +0200, Neil Armstrong wrote:
+>> While converting the Amlogic Meson pinctrl binding to dt-schema, the mandatory
+>> reg property for Meson8/b aobus pinctrl node was ommited, fix this to finally
+>> pass all bindings checks.
+>>
+>> Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml      | 22 +++++++++++++++++++---
+>>   1 file changed, 19 insertions(+), 3 deletions(-)
+>>
 > 
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index 6701738c55e3..c6f032bdfe78 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -571,26 +571,36 @@ static const struct meson_pwm_data pwm_gxbb_ao_data = {
->   static const struct meson_pwm_data pwm_axg_ee_data = {
->   	.parent_names = { "xtal", "fclk_div5", "fclk_div4", "fclk_div3" },
->   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-> +	.has_constant = true,
-> +	.has_polarity = true,
->   };
->   
->   static const struct meson_pwm_data pwm_axg_ao_data = {
->   	.parent_names = { "xtal", "axg_ao_clk81", "fclk_div4", "fclk_div5" },
->   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-> +	.has_constant = true,
-> +	.has_polarity = true,
->   };
->   
->   static const struct meson_pwm_data pwm_g12a_ee_data = {
->   	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
->   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-> +	.has_constant = true,
-> +	.has_polarity = true,
->   };
->   
->   static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
->   	.parent_names = { "xtal", "g12a_ao_clk81", "fclk_div4", "fclk_div5" },
->   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-> +	.has_constant = true,
-> +	.has_polarity = true,
->   };
->   
->   static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
->   	.parent_names = { "xtal", "g12a_ao_clk81", NULL, NULL },
->   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-> +	.has_constant = true,
-> +	.has_polarity = true,
->   };
->   
->   static const struct meson_pwm_data pwm_meson8_v2_data = {
-> @@ -599,6 +609,8 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
->   
->   static const struct meson_pwm_data pwm_s4_data = {
->   	.channels_init = meson_pwm_init_channels_s4,
-> +	.has_constant = true,
-> +	.has_polarity = true,
->   };
->   
->   static const struct of_device_id meson_pwm_matches[] = {
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.example.dtb: pinctrl: 'reg' is a required property
+> 	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-aobus.yaml#
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-1-d3d838540033@linaro.org
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Right, I thought I tested those bindings, but seems I missed something...
+
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
