@@ -4,69 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C452CEDD90
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Oct 2024 13:16:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85A86CEE337
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Oct 2024 17:31:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7Sxsm5kIr3Z//pVRBtXqrzzEoaoqAmOWyMkf4r410xw=; b=TRjmHZJZgOy+aX
-	kswU9z1bpV4TFAHX/7LfEkgK0jeB3OaCSqbh54KW2TjARvOmSqorO5smqjPKdGJDSMTIUu4tQs1bb
-	hsQhy/ruv4uRkOXvfHcNw7EC5DwDFt5IZbsPMCQPEuEkzp3uSVxLUB9eQE3py9oKbFuS2xVm1Z7zZ
-	M9RXmI4anz4lPTzu1Xy5wV+6MQ192IeyU9dQr842qffTmuHf26O81x8j9N6DQy3EKuu9wpNuyXvmM
-	W/j8Vl74vEf5q+FP8op9zdHQbw8k3XKKcAdHRXBTBNs/oiHM8VRneHFqTd/xi/eYjPWSOPJmHPfqT
-	eRAIXvk1ByA/ymVNu40A==;
+	List-Owner; bh=To0JuH7rZm0jRFfS5QL+lOL7MdDL3WHUYOWzv0PKMGE=; b=dmzPHqmsEihDQF
+	gG0+/KVGDl8w+pd6ZTgyVch5JNG6KhoOaZTpHXhcScvDSLyPdfbVTIqN1nQrrQBNK96qHUFG2ACvm
+	VE/EH7+UbJydUoBIeIwic/I3vPAz+SQzuZkGK+hqytw/IcvZnKJIgjrN67T4wUVxB9kSOND3k8Ur6
+	Ecp/1hKCBq5lTZylnD1teSgkhZ71IXi4TM8MuTzEJp8npjHLkAT20/c0ceP53ScL8P1bTQqEkOZUU
+	wSicW93Ma2NmQm+OKFjaun5+pTw5/doEsd+1sZqZlvsfjyMF0/Cqo2Ffj0lgVhtRfgMcfN53/KHVT
+	0P+liOVyBopvHcBIlcYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1syWYT-00000009MzY-3Ccy;
-	Wed, 09 Oct 2024 13:16:41 +0000
-Received: from mx.astralinux.ru ([89.232.161.68])
+	id 1syaWT-0000000ABBU-1vOA;
+	Wed, 09 Oct 2024 17:30:53 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1syWYR-00000009Mx3-0MzV;
-	Wed, 09 Oct 2024 13:16:41 +0000
-Received: from [10.177.185.109] (helo=new-mail.astralinux.ru)
-	by mx.astralinux.ru with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <abelova@astralinux.ru>)
-	id 1syWWB-000mHF-RE; Wed, 09 Oct 2024 16:14:19 +0300
-Received: from naya-MACHC-WAX9.astradisk.ru (unknown [10.198.11.14])
-	by new-mail.astralinux.ru (Postfix) with ESMTPA id 4XNtgL0pvFzkWtC;
-	Wed,  9 Oct 2024 16:15:57 +0300 (MSK)
-From: Anastasia Belova <abelova@astralinux.ru>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Anastasia Belova <abelova@astralinux.ru>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	lvc-project@linuxtesting.org,
-	stable@vger.kernel.org
-Subject: [PATCH v4] drm/meson: switch to a managed drm device
-Date: Wed,  9 Oct 2024 16:15:38 +0300
-Message-ID: <20241009131540.619261-1-abelova@astralinux.ru>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240930082640.129543-1-abelova@astralinux.ru>
-References: 
+	id 1syZJ1-00000009tdM-2r8t;
+	Wed, 09 Oct 2024 16:12:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=uTGIexYQlN6YujaQKltAIaLDe0TVEea23e+dQ8YBlMA=; b=F2hBX2JZzP5OTQR8h0A3Ok1h8y
+	MuTibZVm1V0kB6fVi61zArbzZdtE2TwQWy07/exigWvKaQKw9zXxkS1ypKGn6izGQ0lg1+xO2BB+O
+	XzJ9T7MkqVDzpcVOs7oxL4qS7hdOo83Wj7DP2fnXgC/kTGOdfcnA2LkxCcjWT/CBdqhvUAVMAiW+p
+	bxSj7Nc7Ki2BB3+alnS9ArZL+GfijVwman6zsNSDnJ+Qb38h9xIaZPoLoG2+l/SmH7L/ryw4GWDb7
+	A3lO/EzJlrenEKQInIMsqP3U2oPAjiWTKoEZ/jRQe4yXljoMugiS30C9I2WqWGwAGMiwXvHW5lzkd
+	AS7pbuyw==;
+Received: from nyc.source.kernel.org ([147.75.193.91])
+	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1syZIy-000000050pz-3LKC;
+	Wed, 09 Oct 2024 16:12:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 241B7A44228;
+	Wed,  9 Oct 2024 16:12:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04529C4CEC3;
+	Wed,  9 Oct 2024 16:12:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728490368;
+	bh=S5aG80GvrKdfMXVhakyIDR2NbDXeLTTdwzkg9R4l52A=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=hxvP+wX7aPWLqTtiZP+W8BDHgAQNj/T5T8gVd3ljVbXCq7+6iSTL6G8IFidPvHgFc
+	 KVENSUMRVifuvcHhLxz+1mol24tzx4g1EVoBfTmbqkKr9OFtjFEjIa7uxWtpZqtzNq
+	 wZgU/F82FY31jx76spPYH2BrUz2uHoqf7DLMn2JMMdmdglyYA7o/n7BlG2Rgbtdirb
+	 VSQx47sSgJYaWCmy4huSPc0iRSCOJfC/QqAU0B+RlrLPor8c0w1u+w8SdmTJJiE+5/
+	 cfAKtrz9tOVWwLAuLX8q9qjcv70jvJKpZnupmXLtzLB9Lq/CWM9iv0MExz+UeL3NTS
+	 IctUKp5itIGUw==
+From: Lee Jones <lee@kernel.org>
+To: linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20241002-clambake-raider-a8cbb3a021a8@spud>
+References: <20241002-private-unequal-33cfa6101338@spud>
+ <20241002-clambake-raider-a8cbb3a021a8@spud>
+Subject: Re: (subset) [PATCH v1 03/11] dt-bindings: mfd: syscon document
+ the non simple-mfd syscon on PolarFire SoC
+Message-Id: <172849036272.666113.12889452067505651673.b4-ty@kernel.org>
+Date: Wed, 09 Oct 2024 17:12:42 +0100
 MIME-Version: 1.0
-X-DrWeb-SpamScore: 0
-X-DrWeb-SpamState: legit
-X-DrWeb-SpamDetail: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehuddgtddvucetufdoteggodetrfcurfhrohhfihhlvgemucfftfghgfeunecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeetnhgrshhtrghsihgruceuvghlohhvrgcuoegrsggvlhhovhgrsegrshhtrhgrlhhinhhugidrrhhuqeenucggtffrrghtthgvrhhnpefhudejgfetgfeftdeitdegffduhefftdduieeludeutdffgeeugfdvgedutddtvdenucfkphepuddtrdduleekrdduuddrudegnecurfgrrhgrmhephhgvlhhopehnrgihrgdqofetvefjvedqhgetigelrdgrshhtrhgrughishhkrdhruhdpihhnvghtpedutddrudelkedruddurddugeemfeegvddvkedpmhgrihhlfhhrohhmpegrsggvlhhovhgrsegrshhtrhgrlhhinhhugidrrhhupdhnsggprhgtphhtthhopeduiedprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhgpdhrtghpthhtoheprggsvghlohhvrgesrghsthhrrghlihhnuhigrdhruhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphhtthhope
- grihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepuggrnhhivghlsehffhiflhhlrdgthhdprhgtphhtthhopehkhhhilhhmrghnsegsrgihlhhisghrvgdrtghomhdprhgtphhtthhopehjsghruhhnvghtsegsrgihlhhisghrvgdrtghomhdprhgtphhtthhopehmrghrthhinhdrsghluhhmvghnshhtihhnghhlsehgohhoghhlvghmrghilhdrtghomhdprhgtphhtthhopegurhhiqdguvghvvghlsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtoheplhhinhhugidqrghmlhhoghhitgeslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlvhgtqdhprhhojhgvtghtsehlihhnuhigthgvshhtihhnghdrohhrghdprhgtphhtthhopehsthgrsghlvgesvhhgvghrrdhkvghrnhgvlhdrohhrghenucffrhdrhggvsgcutehnthhishhprghmmecunecuvfgrghhsme
-X-DrWeb-SpamVersion: Dr.Web Antispam 1.0.7.202406240#1728471156#02
-X-AntiVirus: Checked by Dr.Web [MailD: 11.1.19.2307031128, SE: 11.1.12.2210241838, Core engine: 7.00.65.05230, Virus records: 12199043, Updated: 2024-Oct-09 11:52:57 UTC]
+X-Mailer: b4 0.13.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241009_061639_480451_D1AAFE3B 
-X-CRM114-Status: GOOD (  19.98  )
+X-CRM114-CacheID: sfid-20241009_171252_978746_C8318F0F 
+X-CRM114-Status: UNSURE (   7.59  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,516 +96,21 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Switch to a managed drm device to cleanup some error handling
-and make future work easier.
-
-Fix dereference of NULL in meson_drv_bind_master by removing
-drm_dev_put(drm) before meson_encoder_*_remove and
-component_unbind_all where drm is dereferenced.
-
-Co-developed by Linux Verification Center (linuxtesting.org).
-
-Cc: stable@vger.kernel.org
-Fixes: 6a044642988b ("drm/meson: fix unbind path if HDMI fails to bind")
-Signed-off-by: Anastasia Belova <abelova@astralinux.ru>
----
-v2: fix commit message and add Cc: stable@vger.kernel.org
-v3: cleanup error paths
-v4: fix build errors
- drivers/gpu/drm/meson/meson_crtc.c         | 10 +--
- drivers/gpu/drm/meson/meson_drv.c          | 93 ++++++++++------------
- drivers/gpu/drm/meson/meson_drv.h          |  3 +-
- drivers/gpu/drm/meson/meson_encoder_cvbs.c |  8 +-
- drivers/gpu/drm/meson/meson_encoder_dsi.c  |  2 +-
- drivers/gpu/drm/meson/meson_encoder_hdmi.c |  4 +-
- drivers/gpu/drm/meson/meson_overlay.c      |  8 +-
- drivers/gpu/drm/meson/meson_plane.c        | 10 +--
- 8 files changed, 63 insertions(+), 75 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
-index d70616da8ce2..e1c0bf3baeea 100644
---- a/drivers/gpu/drm/meson/meson_crtc.c
-+++ b/drivers/gpu/drm/meson/meson_crtc.c
-@@ -662,13 +662,13 @@ void meson_crtc_irq(struct meson_drm *priv)
- 
- 	drm_crtc_handle_vblank(priv->crtc);
- 
--	spin_lock_irqsave(&priv->drm->event_lock, flags);
-+	spin_lock_irqsave(&priv->drm.event_lock, flags);
- 	if (meson_crtc->event) {
- 		drm_crtc_send_vblank_event(priv->crtc, meson_crtc->event);
- 		drm_crtc_vblank_put(priv->crtc);
- 		meson_crtc->event = NULL;
- 	}
--	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
-+	spin_unlock_irqrestore(&priv->drm.event_lock, flags);
- }
- 
- int meson_crtc_create(struct meson_drm *priv)
-@@ -677,18 +677,18 @@ int meson_crtc_create(struct meson_drm *priv)
- 	struct drm_crtc *crtc;
- 	int ret;
- 
--	meson_crtc = devm_kzalloc(priv->drm->dev, sizeof(*meson_crtc),
-+	meson_crtc = devm_kzalloc(priv->drm.dev, sizeof(*meson_crtc),
- 				  GFP_KERNEL);
- 	if (!meson_crtc)
- 		return -ENOMEM;
- 
- 	meson_crtc->priv = priv;
- 	crtc = &meson_crtc->base;
--	ret = drm_crtc_init_with_planes(priv->drm, crtc,
-+	ret = drm_crtc_init_with_planes(&priv->drm, crtc,
- 					priv->primary_plane, NULL,
- 					&meson_crtc_funcs, "meson_crtc");
- 	if (ret) {
--		dev_err(priv->drm->dev, "Failed to init CRTC\n");
-+		dev_err(priv->drm.dev, "Failed to init CRTC\n");
- 		return ret;
- 	}
- 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 4bd0baa2a4f5..dd87c6b61e9e 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -182,7 +182,6 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	struct platform_device *pdev = to_platform_device(dev);
- 	const struct meson_drm_match_data *match;
- 	struct meson_drm *priv;
--	struct drm_device *drm;
- 	struct resource *res;
- 	void __iomem *regs;
- 	int ret, i;
-@@ -197,58 +196,49 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	if (!match)
- 		return -ENODEV;
- 
--	drm = drm_dev_alloc(&meson_driver, dev);
--	if (IS_ERR(drm))
--		return PTR_ERR(drm);
-+	priv = devm_drm_dev_alloc(dev, &meson_driver,
-+				 struct meson_drm, drm);
- 
--	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
--	if (!priv) {
--		ret = -ENOMEM;
--		goto free_drm;
--	}
--	drm->dev_private = priv;
--	priv->drm = drm;
-+	if (IS_ERR(priv))
-+		return PTR_ERR(priv);
-+
-+	priv->drm.dev_private = priv;
- 	priv->dev = dev;
- 	priv->compat = match->compat;
- 	priv->afbcd.ops = match->afbcd_ops;
- 
- 	regs = devm_platform_ioremap_resource_byname(pdev, "vpu");
- 	if (IS_ERR(regs)) {
--		ret = PTR_ERR(regs);
--		goto free_drm;
-+		return PTR_ERR(regs);
- 	}
- 
- 	priv->io_base = regs;
- 
- 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hhi");
- 	if (!res) {
--		ret = -EINVAL;
--		goto free_drm;
-+		return -EINVAL;
- 	}
- 	/* Simply ioremap since it may be a shared register zone */
- 	regs = devm_ioremap(dev, res->start, resource_size(res));
- 	if (!regs) {
--		ret = -EADDRNOTAVAIL;
--		goto free_drm;
-+		return -EADDRNOTAVAIL;
- 	}
- 
- 	priv->hhi = devm_regmap_init_mmio(dev, regs,
- 					  &meson_regmap_config);
- 	if (IS_ERR(priv->hhi)) {
- 		dev_err(&pdev->dev, "Couldn't create the HHI regmap\n");
--		ret = PTR_ERR(priv->hhi);
--		goto free_drm;
-+		return PTR_ERR(priv->hhi);
- 	}
- 
- 	priv->canvas = meson_canvas_get(dev);
- 	if (IS_ERR(priv->canvas)) {
--		ret = PTR_ERR(priv->canvas);
--		goto free_drm;
-+		return PTR_ERR(priv->canvas);
- 	}
- 
- 	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_osd1);
- 	if (ret)
--		goto free_drm;
-+		return ret;
- 	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_0);
- 	if (ret)
- 		goto free_canvas_osd1;
-@@ -261,7 +251,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 
- 	priv->vsync_irq = platform_get_irq(pdev, 0);
- 
--	ret = drm_vblank_init(drm, 1);
-+	ret = drm_vblank_init(&priv->drm, 1);
- 	if (ret)
- 		goto free_canvas_vd1_2;
- 
-@@ -281,13 +271,13 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	if (ret)
- 		goto free_canvas_vd1_2;
- 
--	ret = drmm_mode_config_init(drm);
-+	ret = drmm_mode_config_init(&priv->drm);
- 	if (ret)
- 		goto free_canvas_vd1_2;
--	drm->mode_config.max_width = 3840;
--	drm->mode_config.max_height = 2160;
--	drm->mode_config.funcs = &meson_mode_config_funcs;
--	drm->mode_config.helper_private	= &meson_mode_config_helpers;
-+	priv->drm.mode_config.max_width = 3840;
-+	priv->drm.mode_config.max_height = 2160;
-+	priv->drm.mode_config.funcs = &meson_mode_config_funcs;
-+	priv->drm.mode_config.helper_private = &meson_mode_config_helpers;
- 
- 	/* Hardware Initialization */
- 
-@@ -308,9 +298,9 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 		goto exit_afbcd;
- 
- 	if (has_components) {
--		ret = component_bind_all(dev, drm);
-+		ret = component_bind_all(dev, &priv->drm);
- 		if (ret) {
--			dev_err(drm->dev, "Couldn't bind all components\n");
-+			dev_err(priv->drm.dev, "Couldn't bind all components\n");
- 			/* Do not try to unbind */
- 			has_components = false;
- 			goto exit_afbcd;
-@@ -319,46 +309,49 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 
- 	ret = meson_encoder_hdmi_probe(priv);
- 	if (ret)
--		goto exit_afbcd;
-+		goto unbind_components;
- 
- 	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
- 		ret = meson_encoder_dsi_probe(priv);
- 		if (ret)
--			goto exit_afbcd;
-+			goto unbind_components;
- 	}
- 
- 	ret = meson_plane_create(priv);
- 	if (ret)
--		goto exit_afbcd;
-+		goto unbind_components;
- 
- 	ret = meson_overlay_create(priv);
- 	if (ret)
--		goto exit_afbcd;
-+		goto unbind_components;
- 
- 	ret = meson_crtc_create(priv);
- 	if (ret)
--		goto exit_afbcd;
-+		goto unbind_components;
- 
--	ret = request_irq(priv->vsync_irq, meson_irq, 0, drm->driver->name, drm);
-+	ret = request_irq(priv->vsync_irq, meson_irq, 0, priv->drm.driver->name, &priv->drm);
- 	if (ret)
--		goto exit_afbcd;
-+		goto unbind_components;
- 
--	drm_mode_config_reset(drm);
-+	drm_mode_config_reset(&priv->drm);
- 
--	drm_kms_helper_poll_init(drm);
-+	drm_kms_helper_poll_init(&priv->drm);
- 
- 	platform_set_drvdata(pdev, priv);
- 
--	ret = drm_dev_register(drm, 0);
-+	ret = drm_dev_register(&priv->drm, 0);
- 	if (ret)
- 		goto uninstall_irq;
- 
--	drm_fbdev_dma_setup(drm, 32);
-+	drm_fbdev_dma_setup(&priv->drm, 32);
- 
- 	return 0;
- 
- uninstall_irq:
--	free_irq(priv->vsync_irq, drm);
-+	free_irq(priv->vsync_irq, &priv->drm);
-+unbind_components:
-+	if (has_components)
-+		component_unbind_all(dev, &priv->drm);
- exit_afbcd:
- 	if (priv->afbcd.ops)
- 		priv->afbcd.ops->exit(priv);
-@@ -370,16 +363,11 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 	meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
- free_canvas_osd1:
- 	meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
--free_drm:
--	drm_dev_put(drm);
- 
- 	meson_encoder_dsi_remove(priv);
- 	meson_encoder_hdmi_remove(priv);
- 	meson_encoder_cvbs_remove(priv);
- 
--	if (has_components)
--		component_unbind_all(dev, drm);
--
- 	return ret;
- }
- 
-@@ -391,7 +379,7 @@ static int meson_drv_bind(struct device *dev)
- static void meson_drv_unbind(struct device *dev)
- {
- 	struct meson_drm *priv = dev_get_drvdata(dev);
--	struct drm_device *drm = priv->drm;
-+	struct drm_device *drm = &priv->drm;
- 
- 	if (priv->canvas) {
- 		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
-@@ -404,7 +392,6 @@ static void meson_drv_unbind(struct device *dev)
- 	drm_kms_helper_poll_fini(drm);
- 	drm_atomic_helper_shutdown(drm);
- 	free_irq(priv->vsync_irq, drm);
--	drm_dev_put(drm);
- 
- 	meson_encoder_dsi_remove(priv);
- 	meson_encoder_hdmi_remove(priv);
-@@ -428,7 +415,7 @@ static int __maybe_unused meson_drv_pm_suspend(struct device *dev)
- 	if (!priv)
- 		return 0;
- 
--	return drm_mode_config_helper_suspend(priv->drm);
-+	return drm_mode_config_helper_suspend(&priv->drm);
- }
- 
- static int __maybe_unused meson_drv_pm_resume(struct device *dev)
-@@ -445,7 +432,7 @@ static int __maybe_unused meson_drv_pm_resume(struct device *dev)
- 	if (priv->afbcd.ops)
- 		priv->afbcd.ops->init(priv);
- 
--	return drm_mode_config_helper_resume(priv->drm);
-+	return drm_mode_config_helper_resume(&priv->drm);
- }
- 
- static void meson_drv_shutdown(struct platform_device *pdev)
-@@ -455,8 +442,8 @@ static void meson_drv_shutdown(struct platform_device *pdev)
- 	if (!priv)
- 		return;
- 
--	drm_kms_helper_poll_fini(priv->drm);
--	drm_atomic_helper_shutdown(priv->drm);
-+	drm_kms_helper_poll_fini(&priv->drm);
-+	drm_atomic_helper_shutdown(&priv->drm);
- }
- 
- /*
-diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
-index 3f9345c14f31..45554c701322 100644
---- a/drivers/gpu/drm/meson/meson_drv.h
-+++ b/drivers/gpu/drm/meson/meson_drv.h
-@@ -8,6 +8,7 @@
- #define __MESON_DRV_H
- 
- #include <linux/device.h>
-+#include <drm/drm_device.h>
- #include <linux/of.h>
- #include <linux/regmap.h>
- 
-@@ -53,7 +54,7 @@ struct meson_drm {
- 	u8 canvas_id_vd1_1;
- 	u8 canvas_id_vd1_2;
- 
--	struct drm_device *drm;
-+	struct drm_device drm;
- 	struct drm_crtc *crtc;
- 	struct drm_plane *primary_plane;
- 	struct drm_plane *overlay_plane;
-diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
-index d1191de855d9..ddca22c8c1ff 100644
---- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
-@@ -104,7 +104,7 @@ static int meson_encoder_cvbs_get_modes(struct drm_bridge *bridge,
- 	for (i = 0; i < MESON_CVBS_MODES_COUNT; ++i) {
- 		struct meson_cvbs_mode *meson_mode = &meson_cvbs_modes[i];
- 
--		mode = drm_mode_duplicate(priv->drm, &meson_mode->mode);
-+		mode = drm_mode_duplicate(&priv->drm, &meson_mode->mode);
- 		if (!mode) {
- 			dev_err(priv->dev, "Failed to create a new display mode\n");
- 			return 0;
-@@ -221,7 +221,7 @@ static const struct drm_bridge_funcs meson_encoder_cvbs_bridge_funcs = {
- 
- int meson_encoder_cvbs_probe(struct meson_drm *priv)
- {
--	struct drm_device *drm = priv->drm;
-+	struct drm_device *drm = &priv->drm;
- 	struct meson_encoder_cvbs *meson_encoder_cvbs;
- 	struct drm_connector *connector;
- 	struct device_node *remote;
-@@ -256,7 +256,7 @@ int meson_encoder_cvbs_probe(struct meson_drm *priv)
- 	meson_encoder_cvbs->priv = priv;
- 
- 	/* Encoder */
--	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_cvbs->encoder,
-+	ret = drm_simple_encoder_init(&priv->drm, &meson_encoder_cvbs->encoder,
- 				      DRM_MODE_ENCODER_TVDAC);
- 	if (ret)
- 		return dev_err_probe(priv->dev, ret,
-@@ -273,7 +273,7 @@ int meson_encoder_cvbs_probe(struct meson_drm *priv)
- 	}
- 
- 	/* Initialize & attach Bridge Connector */
--	connector = drm_bridge_connector_init(priv->drm, &meson_encoder_cvbs->encoder);
-+	connector = drm_bridge_connector_init(&priv->drm, &meson_encoder_cvbs->encoder);
- 	if (IS_ERR(connector))
- 		return dev_err_probe(priv->dev, PTR_ERR(connector),
- 				     "Unable to create CVBS bridge connector\n");
-diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
-index 7816902f5907..03bb12c69863 100644
---- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
-@@ -132,7 +132,7 @@ int meson_encoder_dsi_probe(struct meson_drm *priv)
- 	meson_encoder_dsi->priv = priv;
- 
- 	/* Encoder */
--	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_dsi->encoder,
-+	ret = drm_simple_encoder_init(&priv->drm, &meson_encoder_dsi->encoder,
- 				      DRM_MODE_ENCODER_DSI);
- 	if (ret)
- 		return dev_err_probe(priv->dev, ret,
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index 0593a1cde906..4465d987f85b 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -402,7 +402,7 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
- 	meson_encoder_hdmi->priv = priv;
- 
- 	/* Encoder */
--	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_hdmi->encoder,
-+	ret = drm_simple_encoder_init(&priv->drm, &meson_encoder_hdmi->encoder,
- 				      DRM_MODE_ENCODER_TMDS);
- 	if (ret) {
- 		dev_err_probe(priv->dev, ret, "Failed to init HDMI encoder\n");
-@@ -420,7 +420,7 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
- 	}
- 
- 	/* Initialize & attach Bridge Connector */
--	meson_encoder_hdmi->connector = drm_bridge_connector_init(priv->drm,
-+	meson_encoder_hdmi->connector = drm_bridge_connector_init(&priv->drm,
- 							&meson_encoder_hdmi->encoder);
- 	if (IS_ERR(meson_encoder_hdmi->connector)) {
- 		ret = dev_err_probe(priv->dev,
-diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
-index 7f98de38842b..60ee7f758723 100644
---- a/drivers/gpu/drm/meson/meson_overlay.c
-+++ b/drivers/gpu/drm/meson/meson_overlay.c
-@@ -484,7 +484,7 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
- 
- 	interlace_mode = new_state->crtc->mode.flags & DRM_MODE_FLAG_INTERLACE;
- 
--	spin_lock_irqsave(&priv->drm->event_lock, flags);
-+	spin_lock_irqsave(&priv->drm.event_lock, flags);
- 
- 	if ((fb->modifier & DRM_FORMAT_MOD_AMLOGIC_FBC(0, 0)) ==
- 			    DRM_FORMAT_MOD_AMLOGIC_FBC(0, 0)) {
-@@ -717,7 +717,7 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
- 
- 	priv->viu.vd1_enabled = true;
- 
--	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
-+	spin_unlock_irqrestore(&priv->drm.event_lock, flags);
- 
- 	DRM_DEBUG_DRIVER("\n");
- }
-@@ -838,7 +838,7 @@ int meson_overlay_create(struct meson_drm *priv)
- 
- 	DRM_DEBUG_DRIVER("\n");
- 
--	meson_overlay = devm_kzalloc(priv->drm->dev, sizeof(*meson_overlay),
-+	meson_overlay = devm_kzalloc(priv->drm.dev, sizeof(*meson_overlay),
- 				   GFP_KERNEL);
- 	if (!meson_overlay)
- 		return -ENOMEM;
-@@ -846,7 +846,7 @@ int meson_overlay_create(struct meson_drm *priv)
- 	meson_overlay->priv = priv;
- 	plane = &meson_overlay->base;
- 
--	drm_universal_plane_init(priv->drm, plane, 0xFF,
-+	drm_universal_plane_init(&priv->drm, plane, 0xFF,
- 				 &meson_overlay_funcs,
- 				 supported_drm_formats,
- 				 ARRAY_SIZE(supported_drm_formats),
-diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
-index b43ac61201f3..13be94309bf4 100644
---- a/drivers/gpu/drm/meson/meson_plane.c
-+++ b/drivers/gpu/drm/meson/meson_plane.c
-@@ -157,7 +157,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
- 	 * Update Buffer
- 	 * Enable Plane
- 	 */
--	spin_lock_irqsave(&priv->drm->event_lock, flags);
-+	spin_lock_irqsave(&priv->drm.event_lock, flags);
- 
- 	/* Check if AFBC decoder is required for this buffer */
- 	if ((meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
-@@ -393,7 +393,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
- 
- 	priv->viu.osd1_enabled = true;
- 
--	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
-+	spin_unlock_irqrestore(&priv->drm.event_lock, flags);
- }
- 
- static void meson_plane_atomic_disable(struct drm_plane *plane,
-@@ -536,7 +536,7 @@ int meson_plane_create(struct meson_drm *priv)
- 	const uint64_t *format_modifiers = format_modifiers_default;
- 	int ret;
- 
--	meson_plane = devm_kzalloc(priv->drm->dev, sizeof(*meson_plane),
-+	meson_plane = devm_kzalloc(priv->drm.dev, sizeof(*meson_plane),
- 				   GFP_KERNEL);
- 	if (!meson_plane)
- 		return -ENOMEM;
-@@ -549,14 +549,14 @@ int meson_plane_create(struct meson_drm *priv)
- 	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
- 		format_modifiers = format_modifiers_afbc_g12a;
- 
--	ret = drm_universal_plane_init(priv->drm, plane, 0xFF,
-+	ret = drm_universal_plane_init(&priv->drm, plane, 0xFF,
- 					&meson_plane_funcs,
- 					supported_drm_formats,
- 					ARRAY_SIZE(supported_drm_formats),
- 					format_modifiers,
- 					DRM_PLANE_TYPE_PRIMARY, "meson_primary_plane");
- 	if (ret) {
--		devm_kfree(priv->drm->dev, meson_plane);
-+		devm_kfree(priv->drm.dev, meson_plane);
- 		return ret;
- 	}
- 
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gV2VkLCAwMiBPY3QgMjAyNCAxMTo0ODowMSArMDEwMCwgQ29ub3IgRG9vbGV5IHdyb3RlOgo+
+IFRoZSAibXNzX3RvcF9zY2IiIHJlZ2lzdGVyIHJlZ2lvbiBvbiBQb2xhckZpcmUgU29DIGNvbnRh
+aW5zIG1hbnkKPiBkaWZmZXJlbnQgZnVuY3Rpb25zLCBpbmNsdWRpbmcgY29udHJvbHMgZm9yIHRo
+ZSBBWEkgYnVzIGFuZCBvdGhlciB0aGluZ3MKPiBtYWlubHkgb2YgaW50ZXJlc3QgdG8gdGhlIGJv
+b3Rsb2FkZXIuIFRoZSBpbnRlcnJ1cHQgcmVnaXN0ZXIgZm9yIHRoZQo+IHN5c3RlbSBjb250cm9s
+bGVyJ3MgbWFpbGJveCBpcyBhbHNvIGluIGhlcmUsIHdoaWNoIGlzIG5lZWRlZCBieSB0aGUKPiBv
+cGVyYXRpbmcgc3lzdGVtLgo+IAo+IAo+IFsuLi5dCgpBcHBsaWVkLCB0aGFua3MhCgpbMDMvMTFd
+IGR0LWJpbmRpbmdzOiBtZmQ6IHN5c2NvbiBkb2N1bWVudCB0aGUgbm9uIHNpbXBsZS1tZmQgc3lz
+Y29uIG9uIFBvbGFyRmlyZSBTb0MKICAgICAgICBjb21taXQ6IDhhZTE2ZDNiMmZmNjY1MGE5MGJl
+Nzg4ODFjYjg4ZGNkZjFiZDEzNzAKCi0tCkxlZSBKb25lcyBb5p2O55C85pavXQoKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFp
+bGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
+aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
