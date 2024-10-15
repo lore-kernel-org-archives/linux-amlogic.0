@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25537CFC276
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2024 08:05:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CC41CFC274
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2024 08:13:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=34aYt9bZLZAJ1gcPQpf4Xwu742t79Z8oWfF+bKqG7NY=; b=MoVV+xyXk187P0
-	n8r538jBKL6rN7LICoaVqyOHEpL+hjWWv2YDZmHHwAP9dNZ1h2PTydzQn89oJb+47+IV7j7s6CqIa
-	tIwolPww/t49SlwWWkhtOpUevb17PzrW/qxavMBxtkxx4/EyLwE6pyqPfSPlx3E4mDyW6emGLzCIz
-	t/OEMAeE+gUqdneUI12RTI/Z9ZUxeYz07MA/ojlT8GozlxMS66pIBDYkboUx6zugAGCPXNMd4Vfom
-	lhhnNLoaFDBqEy9Jdgmk1JPWPCH7FL7Tr5et3r9euereM/Wzo/7BF1IBi3C/Ag2xlnLlFQYt0FMoP
-	ksSLflmqFALWLrkyRX5w==;
+	List-Owner; bh=Sz3zK0Wx6B9B4xuMQhtbl/8adVaVPsM9Ct4HSGWlD+4=; b=I1A3Ynj+7sIfv7
+	fvqUvZ7HukNV/w9SZbWqdB9co3DOWC8Etmm8yQiKahcwM5lLtgzNOXaEhvlJ+cAjKs1azHlPP/x5C
+	k2AtW1uveaz4aRtLnNsR9a15+HwjOeFFAIy4SU3TEoDf7pnFKAMxPRIbstTsxOdGdhT2369LfUywO
+	gAh2PBPifhZZdfoNI8byA1Q0oiWhRkuBlAEf5BdRfOuApgo7dnwVgD65jFJbpLjoD1U6i9HnaRsxb
+	xmaPe9qCgfHYR7blTL8FDtCpHy2GT1HQ13YjVp+w9AaMYoZaz6Q+P114rV49IjlamKARMtpz+ptPu
+	npiyzGnh1g8pMQoEU8eg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t0cYq-00000007R3g-48dW;
-	Tue, 15 Oct 2024 08:05:44 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1t0cfy-00000007Sns-28U4;
+	Tue, 15 Oct 2024 08:13:06 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t0cTL-00000007QBs-2pvz;
-	Tue, 15 Oct 2024 08:01:06 +0000
+	id 1t0cf0-00000007SWk-3N6O;
+	Tue, 15 Oct 2024 08:12:08 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id A049B5C4BBC;
-	Tue, 15 Oct 2024 07:59:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E97E5C4CEC7;
-	Tue, 15 Oct 2024 07:59:56 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 16A65A40E59;
+	Tue, 15 Oct 2024 08:11:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0DFEC4CECD;
+	Tue, 15 Oct 2024 08:11:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728979202;
-	bh=rL++ewozoXto81Yc1rbqAgf54mHr09dluoYtOFAcW5w=;
+	s=k20201202; t=1728979925;
+	bh=YKZVkzYXS0uSyFZXdKd/pqercB3r2WXi4jqpBrkhMjg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bv1YQk3iD1eSxJHZHi8RXPgJZCFbvJhEW8fBDGP/ZF1uVphUH3yd/OxIGGs/fTOun
-	 Co6g46kVVCw0DbHrATa/ke2QdsdMdf4XxaUa24x71/0A5qKZN8TBnA/1bVJyUmK3Fc
-	 c1lS/iS31DPP0CTrbt3JPq3Oz5wo1sZGIaube9+aeQw8q4U7YOWyzQ8HsDHRLpKHRT
-	 aIE7mUUve1+KZCyjGJiAUAyX2p9uVk6SoHTr2PuGT5u+NYUo2qMoCOAXRxpWxK8CUc
-	 HdQXaeXuxxuNMqlgLcfUE8SnRqonasE3eT7znNdm0EXJhyR2sVWRRBEElQvSHNPO2r
-	 f7UOOx0En1ROQ==
-Message-ID: <9c7f0c20-aafe-45b2-aa3e-c2c21e3a5b71@kernel.org>
-Date: Tue, 15 Oct 2024 09:59:53 +0200
+	b=lHXcpaKrsOni6D4LKCyEP1nKmKLagR0ZbOQcquOdMCYn5IZWNfFbind+SzaX0Jnn9
+	 L3gqnDciJlpzRoASecIPfMDKNKq2qBjLp8N5W3o4DRZHSWrIlyoecEuEFsJh3AJUDd
+	 CrICl+j+TKq7Fj9L9d9h2mcbyz1A5eH5GJqK0FoV2rGal3QI2BShREGjJQqHJwuexk
+	 lFXCxbC14BhE26CHnE1AaMj9aU8Zvk46nKh6iSdoXaziPXNR3A7QHhd+C54XURBUvz
+	 Z5UrfEZDtZc1fbLhk48jtKgSFedD+fuuuCTAvJ3Y7MI9TgErZ5h3vN6QZumopYrbo0
+	 kgxr2cdop99Zg==
+Message-ID: <823f7e19-4815-44f7-aa7c-818c29892bfa@kernel.org>
+Date: Tue, 15 Oct 2024 10:11:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 2/3] pinctrl: meson: Add driver support for Amlogic A4
@@ -60,6 +60,8 @@ References: <20241014-a4_pinctrl-v2-0-3e74a65c285e@amlogic.com>
  <20241014-a4_pinctrl-v2-2-3e74a65c285e@amlogic.com>
  <aju3dgugbmj52i74j7csyuwejczsvk4sxtsdzuq62jutq7jxbe@wbc7fveloxv2>
  <1c054eb4-9ac1-4965-8847-d851b9fb1131@amlogic.com>
+ <9c7f0c20-aafe-45b2-aa3e-c2c21e3a5b71@kernel.org>
+ <6ef6bd97-571e-4243-951f-c6704cdb2b57@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,10 +107,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <1c054eb4-9ac1-4965-8847-d851b9fb1131@amlogic.com>
+In-Reply-To: <6ef6bd97-571e-4243-951f-c6704cdb2b57@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241015_010003_848683_B969E7B1 
-X-CRM114-Status: GOOD (  18.63  )
+X-CRM114-CacheID: sfid-20241015_011207_032242_510DFDE6 
+X-CRM114-Status: GOOD (  20.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,78 +127,93 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/10/2024 09:54, Xianwei Zhao wrote:
+On 15/10/2024 10:08, Xianwei Zhao wrote:
 > Hi Krzysztof,
->      Thanks for your reply.
+>      Thanks for your quick reply.
 > 
-> On 2024/10/15 14:01, Krzysztof Kozlowski wrote:
+> On 2024/10/15 15:59, Krzysztof Kozlowski wrote:
 >> [ EXTERNAL EMAIL ]
 >>
->> On Mon, Oct 14, 2024 at 05:05:52PM +0800, Xianwei Zhao wrote:
->>> Add a new pinctrl driver for Amlogic A4 SoCs which share
->>> the same register layout as the previous Amlogic S4.
+>> On 15/10/2024 09:54, Xianwei Zhao wrote:
+>>> Hi Krzysztof,
+>>>       Thanks for your reply.
 >>>
->>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> ---
->>>   drivers/pinctrl/meson/Kconfig              |    6 +
->>>   drivers/pinctrl/meson/Makefile             |    1 +
->>>   drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1176 ++++++++++++++++++++++++++++
->>>   3 files changed, 1183 insertions(+)
+>>> On 2024/10/15 14:01, Krzysztof Kozlowski wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>>
+>>>> On Mon, Oct 14, 2024 at 05:05:52PM +0800, Xianwei Zhao wrote:
+>>>>> Add a new pinctrl driver for Amlogic A4 SoCs which share
+>>>>> the same register layout as the previous Amlogic S4.
+>>>>>
+>>>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>> ---
+>>>>>    drivers/pinctrl/meson/Kconfig              |    6 +
+>>>>>    drivers/pinctrl/meson/Makefile             |    1 +
+>>>>>    drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1176 ++++++++++++++++++++++++++++
+>>>>>    3 files changed, 1183 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+>>>>> index cc397896762c..3e90bb5ec442 100644
+>>>>> --- a/drivers/pinctrl/meson/Kconfig
+>>>>> +++ b/drivers/pinctrl/meson/Kconfig
+>>>>> @@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
+>>>>>         select PINCTRL_MESON_AXG_PMX
+>>>>>         default y
+>>>>>
+>>>>> +config PINCTRL_AMLOGIC_A4
+>>>>> +     tristate "Amlogic A4 SoC pinctrl driver"
+>>>>> +     depends on ARM64
+>>>>> +     select PINCTRL_MESON_AXG_PMX
+>>>>> +     default y
+>>>>> +
+>>>>>    config PINCTRL_AMLOGIC_C3
+>>>>>         tristate "Amlogic C3 SoC pinctrl driver"
+>>>>>         depends on ARM64
+>>>>> diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
+>>>>> index 9e538b9ffb9b..c92a65a83344 100644
+>>>>> --- a/drivers/pinctrl/meson/Makefile
+>>>>> +++ b/drivers/pinctrl/meson/Makefile
+>>>>> @@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
+>>>>>    obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
+>>>>>    obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
+>>>>>    obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
+>>>>> +obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
+>>>>>    obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
+>>>>>    obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
+>>>>> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+>>>>> new file mode 100644
+>>>>> index 000000000000..dee1ae43edb5
+>>>>> --- /dev/null
+>>>>> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+>>>>> @@ -0,0 +1,1176 @@
+>>>>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>>>>> +/*
+>>>>> + * Pin controller and GPIO driver for Amlogic A4 SoC.
+>>>>> + *
+>>>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+>>>>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>> + *         Huqiang Qin <huqiang.qin@amlogic.com>
+>>>>> + */
+>>>>> +
+>>>>> +#include <dt-bindings/gpio/amlogic-a4-gpio.h>
+>>>>
+>>>> I do not see any usage of it.
+>>>>
 >>>
->>> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
->>> index cc397896762c..3e90bb5ec442 100644
->>> --- a/drivers/pinctrl/meson/Kconfig
->>> +++ b/drivers/pinctrl/meson/Kconfig
->>> @@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
->>>        select PINCTRL_MESON_AXG_PMX
->>>        default y
->>>
->>> +config PINCTRL_AMLOGIC_A4
->>> +     tristate "Amlogic A4 SoC pinctrl driver"
->>> +     depends on ARM64
->>> +     select PINCTRL_MESON_AXG_PMX
->>> +     default y
->>> +
->>>   config PINCTRL_AMLOGIC_C3
->>>        tristate "Amlogic C3 SoC pinctrl driver"
->>>        depends on ARM64
->>> diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
->>> index 9e538b9ffb9b..c92a65a83344 100644
->>> --- a/drivers/pinctrl/meson/Makefile
->>> +++ b/drivers/pinctrl/meson/Makefile
->>> @@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
->>>   obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
->>>   obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
->>>   obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
->>> +obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
->>>   obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
->>>   obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
->>> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
->>> new file mode 100644
->>> index 000000000000..dee1ae43edb5
->>> --- /dev/null
->>> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
->>> @@ -0,0 +1,1176 @@
->>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
->>> +/*
->>> + * Pin controller and GPIO driver for Amlogic A4 SoC.
->>> + *
->>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> + *         Huqiang Qin <huqiang.qin@amlogic.com>
->>> + */
->>> +
->>> +#include <dt-bindings/gpio/amlogic-a4-gpio.h>
+>>> The header file "amlogic-a4-gpio.h"  is used by AMLOGIC_PIN and
+>>> GPIO_GROUP_V2, The code used  is  AMLOGIC_GPIO().
+>>> This is binding definition.
 >>
->> I do not see any usage of it.
+>> Then all other defines are not used. AMLOGIC_GPIO is not used by DTS, so
+>> how is that a binding? Don't stuff random defines into the bindings.
 >>
 > 
-> The header file "amlogic-a4-gpio.h"  is used by AMLOGIC_PIN and 
-> GPIO_GROUP_V2, The code used  is  AMLOGIC_GPIO().
-> This is binding definition.
+> The AMlOGIC_GPIO definition depends on other definitions to be used.
+> It is not currently used by DTS, but will be used by other modules in 
+> the future.
 
-Then all other defines are not used. AMLOGIC_GPIO is not used by DTS, so
-how is that a binding? Don't stuff random defines into the bindings.
+You keep disagreeing, addressing only some parts and ignoring the rest.
+Explain me what do you bind here that you call it a "binding"?
 
 Best regards,
 Krzysztof
