@@ -4,170 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63A23CFC274
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2024 08:39:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C73DD21690
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2024 12:36:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=iigTNZFYazaA+h6QywNRJirzaI6j+nrlHqKIeAohKFA=; b=ox666T8AESg/BqIJmJlONKtqWJ
-	qnMkBe3edOizM5011L/gRS4olHqfZ66yAxcu6kw95SQco9Us4YsxMsIpDxfBjSXbfjNVoozyNiaMT
-	Z/7f4eOtHDALyCfR60XPbKGoPUxBgMJ+lyDPrUpn9QA4lHnED6X3NqYjI6AalHvXS7yPUrCkjfUiA
-	UcwXHia7SiVnaWa5cU4XoGj7RSU8P6lAcXvlPehz4gHWnAIr810ZkubIpKnK/rp+38noDe55U/ipc
-	//gynXwLvqMEkTqFTiBqK5W832I5pt3uJcuZ2+DVcy6vKgN+j9IowqSG6ZWlwi63raEo0yy8OBb3F
-	vvI9QVCw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=MJNpIu89gKRCzxNpBw2KHSDcmMgA/NxeNRFAAp7Yyd8=; b=lxlDruAEvA+bDB
+	KA5hTyOjN5oStuV8mLEwAqBrrIqIOrMi0RrHuF1INwGoyW58RkGXb/F6+U9MR70tMp2R/pLVomLkv
+	5p3IBabrJgtXCIMxI5SUYd/YMexQyw9gaZRvY0sLvVNV0KAR8F2k5ef9VsMEEge6pS8Z6BdFk6fHW
+	TpIt0evi8YQ6AgY6FcRS/qAxTe68cOcLlQkgFlAuLf60BpsO3g12tl7rLB9Fpn2/gVWHrIMEvTvMC
+	rOGm56MXsGs+Jvarp+h4cEA7d3misVY6uy9e+9r8pDdCzCKY6P/2jwRgXSGsbNjQlTXEiwgiAkZHE
+	0NzAOyyMVh8RreQ3jgMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t0d5J-00000007XeW-2RuI;
-	Tue, 15 Oct 2024 08:39:17 +0000
-Received: from mail-psaapc01on20717.outbound.protection.outlook.com ([2a01:111:f400:feae::717] helo=APC01-PSA-obe.outbound.protection.outlook.com)
+	id 1t0gmo-00000008Bev-0Qwi;
+	Tue, 15 Oct 2024 12:36:26 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t0d3r-00000007XIH-1UNj;
-	Tue, 15 Oct 2024 08:37:49 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CURXA+jFkoXv2EMyGgnRk1Vu68tlVcAQngeXaavyc2HjoYGj/jVjV5/83d7b/is3widkRgIR89yctCIRG5eO3auKReiFPPp00Y+X07EhBPlIg9YPV6Z/n3QVHhTpkMZa77J0pIX4pVjFhVP2lmTu+8T9HGC0W+JTPACUZYAgQ/9h9JweXuTIL/Rwk0CTPbHmzWE9//A82HNwD0FvOncXUzwpPUopj+g04Q5+Twc73nVTDytXV7Vn2u0OtNIhdu5rx+Aa5UOM4JTWqJR9OqUhamzT26vwr5Ah7JmM2TQuKUMQ9BOYTTHA+MGUfV3jU9/reFP8FxoDQaDnzZJZXfG+Gg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8hWjWhrWjCzkhKoML8gD9VrPAfDfgjSElLM4qinqYoU=;
- b=t7rmxASn5Fncm9McnjtMvu46jOJYNYufV8jbnLEKdCyYKeJXUFC7M02y0ncFSrhtVXzIHYnp1xfg6/U3hW9RPDB3aApt23ABgMVvHpgE5YTGSXoW8vD5pUN6Tj4Hm/r3i86vCkFq1LOJuAG72zhB+Hv1WYt5hpEak2iJuE+ToBt79CUpmR7t7m32NBXKs+Davd2817aARA++Jcx/yF4OivgorsZT3OxDdyQCMdTYETqWQXefPhsImKrMDuhdVaCLzFbHu3D2I/yuAqkiWeYYQ9bvQNa3b76mxu6ES1UsYBHVAbgBUXuMZkRMoa++M616VkOgjTqfRkOiNxcMEoX7dg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8hWjWhrWjCzkhKoML8gD9VrPAfDfgjSElLM4qinqYoU=;
- b=Io5BPOlQQkFC4Od3CEUNA6gK3nEUyYDIvmsLYnmwzhL7ecwuSDcbDsNIZAdTta+v3ikZRDStqlbrQpiDmcF3MV2Q8gngdvja4crvmN0KuWvzkMHevAqfD7Axx1d0r9gUG0lJDzKrbF072y2hloIUrNP7uFPD8hjlM1PRKbm3A5WXlfiF21He/1jiD1q5nIi7uWeyqyrSXeKOjkysgQjel565H8t7qtWxNk+Bch9IMba+gNOPp41WG2mRYr2vh4TYbCFH0aKFlHlCdYq0Kgzlv87FDIHK/D2XbA+DgxfMS+Hx7TWhKBHe36eNt9mKbwgcF9UmfyfwPSoIpeDMGrS/mQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SEYPR03MB7844.apcprd03.prod.outlook.com (2603:1096:101:171::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.26; Tue, 15 Oct
- 2024 08:37:27 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%6]) with mapi id 15.20.8048.020; Tue, 15 Oct 2024
- 08:37:26 +0000
-Message-ID: <106f4321-59e8-49b9-bad3-eeb57627c921@amlogic.com>
-Date: Tue, 15 Oct 2024 16:37:21 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] pinctrl: meson: Add driver support for Amlogic A4
- SoCs
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241014-a4_pinctrl-v2-0-3e74a65c285e@amlogic.com>
- <20241014-a4_pinctrl-v2-2-3e74a65c285e@amlogic.com>
- <aju3dgugbmj52i74j7csyuwejczsvk4sxtsdzuq62jutq7jxbe@wbc7fveloxv2>
- <1c054eb4-9ac1-4965-8847-d851b9fb1131@amlogic.com>
- <9c7f0c20-aafe-45b2-aa3e-c2c21e3a5b71@kernel.org>
- <6ef6bd97-571e-4243-951f-c6704cdb2b57@amlogic.com>
- <823f7e19-4815-44f7-aa7c-818c29892bfa@kernel.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <823f7e19-4815-44f7-aa7c-818c29892bfa@kernel.org>
-X-ClientProxiedBy: SG2PR02CA0102.apcprd02.prod.outlook.com
- (2603:1096:4:92::18) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	id 1t0gc7-000000089fx-1YNy
+	for linux-amlogic@lists.infradead.org;
+	Tue, 15 Oct 2024 12:25:25 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-43123368ea9so27923165e9.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 15 Oct 2024 05:25:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728995121; x=1729599921; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2+gp4l/50SduzN/lmdO32dTYxyMF1YPRRneVVHTLVqg=;
+        b=vSNvcifdjGzjF/1eutoWKlW8QVytokBOIdvce09O0aCSzun21zbim/G8q25SP9FYDN
+         iXzaH+87hkNYzFKci6B4LfbkCxEgaHGY3EtAvrqvmuGeYHSb5ubJQ+ABkYsOoZTBHBoZ
+         akPxXkw8hWfjZjzvd0pzET2vMzQXKJYDlVstnoahEnrG31RAm38hmdGoLB/4Dt/zsVVl
+         zNUrGEVQQaIuwwsP1AtxivRkjZbKC888VTn3zJi3DSgIW47s6XdM5VS7Gl4fF6vaIVf0
+         umVBaqExOOfLzKxd7evVDCsbit1VG0mR4pPR4WjWuewz3f17w2HI00nOVTad2vCwFdqy
+         pW4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728995121; x=1729599921;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2+gp4l/50SduzN/lmdO32dTYxyMF1YPRRneVVHTLVqg=;
+        b=orZgeEtLPN+GHIRqi7FZFi0QAhHVuWzOOZldxKZMStFPRWNwxwRZVSn9e4lZpRVRwL
+         fvfoHtmScxtX6aO1mfO8LOZwTDBY1v5FcjMfFrXc2Ovnj6Ss1XgHub5SIuLhfLvscBXj
+         t5AeUBpzTYlKWM7bc22mCW+OUt99AvmX/RZEALyVKiP9AoFvmfQMw/ExFIER1iaFwKar
+         PM7QBqfKn/BTUHouRknrL+8VtP8OLM/a5HT0snMY8YFIioxGtudsQxm7lQ5+sTArhXH9
+         UUXdPxPYmXfe4yo94AaWAfplwvFk3yFESP2qhORdmY/+Lwkbu/ajIeavihbEwf+KOJo7
+         qRrg==
+X-Forwarded-Encrypted: i=1; AJvYcCVCnWlHJkVL16Tbi62t5Zqkk9iAPhbGbId9Vtc1yUOMCvz8KySEjhemp3c5g0X3QyL5PoD+gWG9xFUOMER1@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzhp3XYsWXGUIJs9NCCV5SJKTfes+i+ItTifjtwW4xZOcgT+eiX
+	oZc7nB/0UbKUmjfusR2kLF2jKZidjWthXHDrox0OiiGxqcGENLc0k5SahTolTXk=
+X-Google-Smtp-Source: AGHT+IFlId/8agayFjLT3bFk0RAGaoAIUIY+X5SSXMtLCClm1D3EKBtuUnv1vBbE5WOeMrhSlBEt5Q==
+X-Received: by 2002:a05:600c:1c9c:b0:430:563a:b20a with SMTP id 5b1f17b1804b1-431255dc851mr98091695e9.11.1728995121341;
+        Tue, 15 Oct 2024 05:25:21 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fa90818sm1458517f8f.53.2024.10.15.05.25.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Oct 2024 05:25:20 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Tue, 15 Oct 2024 14:25:19 +0200
+Subject: [PATCH] ARM: dts: amlogic: meson8/8b: remove invalid pinctrl reg
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEYPR03MB7844:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc6e099a-2db6-4bd3-958e-08dcecf498f1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?enJ2eWlUMVE3RW9ja1R5T09oQ3NSd1d2c2xyZ25aaDd3VHg4U2JJNDUzRWta?=
- =?utf-8?B?Rk5FMSt0NTdFZjhLWmFNZTZsY0hGV3EzRVpaMDkrMVdUWXROcFFzZFZZWTE1?=
- =?utf-8?B?SGJ3Wk0zWENxNk11c0pvSTZna0UyRHQxUEhITFk1VFg3VXowcDAvUnBQbGoy?=
- =?utf-8?B?dWhMb1IrOTFHQmp6cWlDV29Zem5QOVNRakVuQW9Vc3NzcHZRZFNIOVBJRENm?=
- =?utf-8?B?RTFPeTZ5RnVRcjQ4VFo0WW9xeWpIazhleU1hSWh3OU9UZ25ZOFpHWWxKRjBT?=
- =?utf-8?B?UkF5UUdzcHFsRlBoNExCSG1kalI5MlJBamJJbkZoS0g5TC92blAxK0dNSEZl?=
- =?utf-8?B?Q0tyNFNMd3BlWWRYN3E0T0I5YXV1SXo3UWFpb2RxSjVZWlNZcDArRUJXVXZ0?=
- =?utf-8?B?ODdOOVNrVWYrZ21vOFdhcDFxYzA5ZHltOHBBdElVQXdKR2FsSW9KQWlybzdC?=
- =?utf-8?B?Z0o3WEQxZWc1SFJZZWV2MjQvZWI5UFhTRyt4KzBSdGtPeVBlcTB0a0MzYWJt?=
- =?utf-8?B?Smk1NEhlYjRCdzNlUHlSZVM0SExldVpEUEFUZGJNb2FQZXk1OXN1MTlNWFBX?=
- =?utf-8?B?UGtSVjc5c1ZlUVpuTUVqUFl6dGJZTzJZOFcyQ2F4VFBBWCtMY1g5bzJLc2lr?=
- =?utf-8?B?NENEajVTYkFIaFdYRG56U3UvVkFjTXdSMXEvUjB0RndqbXVtRWhHNkR1OUpj?=
- =?utf-8?B?V1RsT3BWYUgxSmxaODNZSWVJaSsrdUNNcXZabVMxWis5d3hsMFUyMzhCcC9X?=
- =?utf-8?B?OVM3aldRd21yYk8vK3AyZGYvL21PQS9vSmU3UWJpYk5wYUdrR21MQzNXa012?=
- =?utf-8?B?WGNPemFIYmgzMndVU1kzTlI2NEUxU053Qm5RbDV1dVBabmJjaG1ldExuMnV1?=
- =?utf-8?B?VkNIQXNrRy9uYXFwU2RrK0xIN3N0YkFYaFR5N0lUclRERmpnb0JPRU8rVnhJ?=
- =?utf-8?B?UFF0Sjhia3hUNWhMTUd0YmlqLzREUmh4N2Z4NTFXODhxenZMd1hZTEJMN0J5?=
- =?utf-8?B?V2RLaXRvWUdGRXZJYVEvYXp5a0x2UHJlaTNMUzF2eU5oYjVNTStwM0hoTHhN?=
- =?utf-8?B?WDlMbCtZazE2dGtOeEovL1ZCOUJEVys5UVFvNHlGdkZ0aTBMcDVqYXlJWm5u?=
- =?utf-8?B?d0RHSHg4RUVMSzRIeEQyRGF0aFRPUEthOEU1elFwZzd2M3ZPTTFURk9iZ3M5?=
- =?utf-8?B?TUJ5NkdKZW1wMWtWRk5jcUJlM0JaZVlUbjZrbmpxck9DNXVDZ3M2Mno5aEdD?=
- =?utf-8?B?S1NXd2NSQStTanJNSnFVZ3dNZVN1Z3FrcWpxNXA3ZW9HYi9rRVd4ZEFxeFRn?=
- =?utf-8?B?SVFONnBmZXN3Q1hnb1Naeks3VmJlSFI3RmxyZlFpeW00NFpMRmEyRzZWcktz?=
- =?utf-8?B?QlQ1SHhhWnE5M2IyQnNIdGZHQ0xOd0ZWZUFUdUxWMmN6VExNT3gvdE5oVnVx?=
- =?utf-8?B?cFdVY1JZY1ZaUU85cVNocFZJMlRqcTBQOE1pTnhtR0U5VGU5MjJYNWpFUnZU?=
- =?utf-8?B?QWhXSWxydjJQNVh5bUV0RmpzVXUrNVNKTFdSbTlGNGROclY3WG55WmM4L0VY?=
- =?utf-8?B?aXpEOWRRYlY4L1N0QUhWU1JER2J3ekludW5OaFlsejd1VWxXYWZzQW1QK3Va?=
- =?utf-8?B?V0R2MGxVMzBKQms4TmFCTEw4UERjeXJYV3JIdm9BRDB0NU8xMWVvd0xsdTNF?=
- =?utf-8?B?RGs2bzdxVjFxWVVDaDF6WDhRUHlVeHkvUUFXS1pFZHlMUkJsS3NwYTlRPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VUc1b08wNGVoWERrc25rQkRxQVlXR2o0L1Yxa3gxYlRyMlNHaWRNdXVySFlU?=
- =?utf-8?B?aTRtQWZQUnpWeGw4aUg1Q2tjcndsV2s2S1NETTI4MFhlMWVHdy9jNWJMN0Nk?=
- =?utf-8?B?ekxyL2xJanFDUVNwVlRTeEZyRm5YM3FPSzFuYW4wYkhyOWlRRTNCTzlvT2N3?=
- =?utf-8?B?NzlOVEwwdE5UVDBTMWpYQ0hqa1A2Z2hCK1luYTNER3g5a1dkTk9yemZ3Tlh4?=
- =?utf-8?B?N3NtNlZUM0hVSFgrQ0xtMnJUdytzbTBWaG10UzFuREZJZHc2dDVORG9OMVUx?=
- =?utf-8?B?MFRrSHRPZXcrZEtGRUZsWXVGckdVeGVRWkF2MW9oSjZGYVYxWjJDRDA4dlBU?=
- =?utf-8?B?UGVVVSs5dWNVaW5tL1k1NkpVc1ZXbmtpcHYzaVV1aTBxOUFaaGc2NFJtU00r?=
- =?utf-8?B?SWdlVWZGMmlZV0dSbjZXSXJYMDhBY09qMFhuWnhGb2NCV0MvWU4xNWorb0Yw?=
- =?utf-8?B?UE9OdHpxSWo0Vk9sUUQxUTdCQWk5QUNkVnRWWEh3UTBNcnViR1pIL2trdWhq?=
- =?utf-8?B?L2QreG5YUjNoMmlJa3ozZ3N3WlU1eVRLbStxbGVMaXQyeDJiYUJleEF3NlBt?=
- =?utf-8?B?QXZwLzNHbDJrVnhwYjhIUDBwbHBUSjkvOFpwaHV3bkEySFAwSVlrd0VINnUy?=
- =?utf-8?B?N0U5eDRISVcyOFUzWTE1Z2x5ZERTeFVKYnoxTzF5UnM5UUFXYS9tTkQ1OXVR?=
- =?utf-8?B?L1IvK3JzY29aVEFZMHFjN2xIeWN0b0tZaVUzNUdxSjlWajAzdDRyamV1bHAy?=
- =?utf-8?B?YWRxdTIwckkzNXpHTW9vUU5zcW5TTGs3clZqMkYySUNjbzZsMEZNNHBBVEJQ?=
- =?utf-8?B?cytCS1Q3Q1lVcUFDZjl2K1BVWkFIQXNWZ3A3c0ZFV2ZEbG5tOXA2L09FeGp4?=
- =?utf-8?B?a01OL3N0My9RNVJwaFFKYW9SRWFNQ0FWZ1Ryazg3WWNORHpDM1pnVXp2QUg0?=
- =?utf-8?B?MENDTDN0bEt6SmdNd215QUpGa05jVkhhdEVZZytxbUU0bXJ3bS85Y3ZKd0ZU?=
- =?utf-8?B?ODloeEN3ZHFKUlJWVlY2MHFMNVZUczdFZjJFNDVtM3MwWGhTNExyWXZKTXVH?=
- =?utf-8?B?N3FFK3RDcnhpcEUybW5MOFlpTE03dm5oaDRub0tqWVlwdVVTV0VVcEllMXNp?=
- =?utf-8?B?NnlDeTllaTdsM2RUTUpDaFZiOUptaXZRQU5yTXYxWEtDUExRdTFsN3ArU3hV?=
- =?utf-8?B?aGhEQ0Y3b3BLWmxwUmhJRk53cVB1UFYveWlwdXhUN2lnbXRtT285MUZYZnRN?=
- =?utf-8?B?UUJoUXhuYVdhRnRJbE5MbXFDV0x2SlhWM0J1blBLYnFXQWMvdWF6dzZDVjZ3?=
- =?utf-8?B?bzJiRXh6MytyL3J5OWtTWmovT1RHdjcwZ3VMQUxaZEV3enVaYjZ0bVRvMkdM?=
- =?utf-8?B?N3ltSVhsNTVMU09YcEwvZVJqQkg5QXE4cGhQR1FpbjN6U3N3Z0VGUHVUdTc5?=
- =?utf-8?B?cC9DZHBRRk5LMitTVnJwc1N6Y0crMnEyS2VLeXcwWjlSdTBhYm1COERjTmlG?=
- =?utf-8?B?Q1BFYVpZbnhOQi9TMG5CVEFKNjhSbGlQNzA5VllJcXBqWUlCUVMrZGc3Q3Uv?=
- =?utf-8?B?bWwzMnUxc3ltSjAxYzBSS1huMzRZY3hNS0JQSkJNQ1BUUEJ1b0xYb0tzSStq?=
- =?utf-8?B?bDVETmRBN2RMZlY0dlRoOTNFZEpHYkg3UEJHeWpVT2JYaFo4SEV4UUZzckZt?=
- =?utf-8?B?TTRUQmlSbDRkUEhHQUdFTE9OaG42VFZtNUVMOUZhai94YWxKUktqOU81VGpP?=
- =?utf-8?B?dzZIQ1l2aGJsVEFXaG5QSWZwSG1OUERZOFNaQy9VUktudURFNlBRaWsxTG1K?=
- =?utf-8?B?K3dyemcwUzN2YmVJcGwvcEwyNWxxTGx6NjRRbUtDWXJFdkVSV2cyS2JwVHgz?=
- =?utf-8?B?R3hyeFZVZXBaMmJpaHl2Wm5MT0oxN0FMWkJUbGJrenB6UjBCM2ZpcmNiSTRQ?=
- =?utf-8?B?c0RPbk5oWFYzYjVWRElQajc1aU9ZRjY3SmpPQWZXUUNZN3o2QXh4bE5YQnUw?=
- =?utf-8?B?SDREYnZjZG1PWEtrQTdmVGtrK1p1TGVkbzBQWHMvQUZucE52MHRzOHZTMUZl?=
- =?utf-8?B?VG8waXo5NFZENTA5TUd3TXBVTjBmTE9rbEFPby9YdFBJWU5hMHFxSTB1UTIy?=
- =?utf-8?B?eDg2UGNpUUVGRnNZQlJGZ1FGVHpJK3BlblNBVko5VExUY2ovc1lmMHZyMENv?=
- =?utf-8?B?b3c9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc6e099a-2db6-4bd3-958e-08dcecf498f1
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2024 08:37:26.3617
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3bF7S8m0ZSNGIxME8iu2UoaAd7n4fNzv3mv0b6LTq0H+oHz15xXBvd7SuNYkwo9koOlI5Ecdzu+oCoMWeEjw5XwChBH9fG15RAAiOzZarfA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7844
+Message-Id: <20241015-topic-amlogic-arm32-upstream-bindings-fixes-pinctrl-dtbs-v1-1-c7291f17063e@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAC5fDmcC/x2MywrCMBAAf6Xs2YWm1kr9FfGQJtu40DzYjSKU/
+ rvR0zAwzA5KwqRw63YQerNyTk3MqQP3tCkQsm8OQz+MpjcXrLmwQxu3HH6UeB7wVbQK2YgLJ88
+ pKK78IcXCyVXZ0NdF0V/dPE+rH42ZoO2L0L9q9/vjOL40peVKigAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3733;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=8/dJqUKHoHiWpotdIPtckagmH6omzFbOZy15zNq6Fbo=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnDl8vgS5uSivFjIPnmceCyX/RG5XjB6Tqcmj1njr/
+ HWof4xOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZw5fLwAKCRB33NvayMhJ0fIpEA
+ CVZ4yqkZXYGGsOigVICNaTxWO54gBjqQaqa5C2fgKZpzNUQck2JSO+52stZxjGDUWOqAzGlEuf6PLW
+ n4WMlZlvlnSHubd02tG5Bg8rdY0RPQeQCb8kip7x9MXTqGUwWrPeVMzihGjVp9RY41REs93QWdWjes
+ BbqloJefnvEWvWikaFEL/nZ50DXARjDlG+OFxpWk9263zqZrXur76r2nOd0L/ouMc6RLQvlzjwahVW
+ fLcS4IAAYG+QsXgaOHshvc4Kedc777jmpWSfZgPeL7diWB+dRZOaHHr9ziwsZo1ChPCaC2SPBY2nhk
+ AdJPrdDNmJmcLV+uSMiP/uQOcdj+EC7ScTCqoA/QopyI1qt7tvXrlnuypQo/sZ6YKqD2JQ7uqn96Kf
+ Ki+kp4JXZlNZBtHw+40bS7G7Es2UEnMTNM6Zb9fk+9EGVmSTNBUXFucqY9U20N/yU29rkUi/KWE0ns
+ l0v4IW07sY6OqrYUXycole6vHmx0GTe9BJoF2ax1ngJT+W7sFclma5hZBZ6VB0u2ars1H2amu+ZoEL
+ smOeAqwNhUdqnVge13EzJuGVb1+uf/NJd85uCj1M+ujNRmOem4eY0sLWRq6TSYxOrz7DmwSK/JLa69
+ /greYJbS7PlEnCnOpL5r7si00kJyP+M2RZuAXaXrBkZoooLvzfBBCoC04Row==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241015_013747_434473_20B8CB4A 
-X-CRM114-Status: GOOD (  20.77  )
+X-CRM114-CacheID: sfid-20241015_052523_464102_0D2AA503 
+X-CRM114-Status: GOOD (  10.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -179,111 +108,143 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Krzysztof,
-    Thanks for your reply.
+The pinctrl aobus/cbus was originally here to configure the
+GPIO interrupt, but it was a bad design and was moved to a
+separate gpio_intc node because the GPIO interrupt is actually
+separate from the pinctrl/gpio registers.
 
-On 2024/10/15 16:11, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 15/10/2024 10:08, Xianwei Zhao wrote:
->> Hi Krzysztof,
->>       Thanks for your quick reply.
->>
->> On 2024/10/15 15:59, Krzysztof Kozlowski wrote:
->>> [ EXTERNAL EMAIL ]
->>>
->>> On 15/10/2024 09:54, Xianwei Zhao wrote:
->>>> Hi Krzysztof,
->>>>        Thanks for your reply.
->>>>
->>>> On 2024/10/15 14:01, Krzysztof Kozlowski wrote:
->>>>> [ EXTERNAL EMAIL ]
->>>>>
->>>>> On Mon, Oct 14, 2024 at 05:05:52PM +0800, Xianwei Zhao wrote:
->>>>>> Add a new pinctrl driver for Amlogic A4 SoCs which share
->>>>>> the same register layout as the previous Amlogic S4.
->>>>>>
->>>>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>>>> ---
->>>>>>     drivers/pinctrl/meson/Kconfig              |    6 +
->>>>>>     drivers/pinctrl/meson/Makefile             |    1 +
->>>>>>     drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1176 ++++++++++++++++++++++++++++
->>>>>>     3 files changed, 1183 insertions(+)
->>>>>>
->>>>>> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
->>>>>> index cc397896762c..3e90bb5ec442 100644
->>>>>> --- a/drivers/pinctrl/meson/Kconfig
->>>>>> +++ b/drivers/pinctrl/meson/Kconfig
->>>>>> @@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
->>>>>>          select PINCTRL_MESON_AXG_PMX
->>>>>>          default y
->>>>>>
->>>>>> +config PINCTRL_AMLOGIC_A4
->>>>>> +     tristate "Amlogic A4 SoC pinctrl driver"
->>>>>> +     depends on ARM64
->>>>>> +     select PINCTRL_MESON_AXG_PMX
->>>>>> +     default y
->>>>>> +
->>>>>>     config PINCTRL_AMLOGIC_C3
->>>>>>          tristate "Amlogic C3 SoC pinctrl driver"
->>>>>>          depends on ARM64
->>>>>> diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
->>>>>> index 9e538b9ffb9b..c92a65a83344 100644
->>>>>> --- a/drivers/pinctrl/meson/Makefile
->>>>>> +++ b/drivers/pinctrl/meson/Makefile
->>>>>> @@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
->>>>>>     obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
->>>>>>     obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
->>>>>>     obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
->>>>>> +obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
->>>>>>     obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
->>>>>>     obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
->>>>>> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
->>>>>> new file mode 100644
->>>>>> index 000000000000..dee1ae43edb5
->>>>>> --- /dev/null
->>>>>> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
->>>>>> @@ -0,0 +1,1176 @@
->>>>>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
->>>>>> +/*
->>>>>> + * Pin controller and GPIO driver for Amlogic A4 SoC.
->>>>>> + *
->>>>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>>>>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>>>> + *         Huqiang Qin <huqiang.qin@amlogic.com>
->>>>>> + */
->>>>>> +
->>>>>> +#include <dt-bindings/gpio/amlogic-a4-gpio.h>
->>>>>
->>>>> I do not see any usage of it.
->>>>>
->>>>
->>>> The header file "amlogic-a4-gpio.h"  is used by AMLOGIC_PIN and
->>>> GPIO_GROUP_V2, The code used  is  AMLOGIC_GPIO().
->>>> This is binding definition.
->>>
->>> Then all other defines are not used. AMLOGIC_GPIO is not used by DTS, so
->>> how is that a binding? Don't stuff random defines into the bindings.
->>>
->>
->> The AMlOGIC_GPIO definition depends on other definitions to be used.
->> It is not currently used by DTS, but will be used by other modules in
->> the future.
-> 
-> You keep disagreeing, addressing only some parts and ignoring the rest.
-> Explain me what do you bind here that you call it a "binding"?
-> 
+Drop this reg entry, and fix all the register offsets with a
+proper range property.
 
-I will drop it from "binding".
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm/boot/dts/amlogic/meson8.dtsi  | 28 +++++++++++++---------------
+ arch/arm/boot/dts/amlogic/meson8b.dtsi | 28 +++++++++++++---------------
+ 2 files changed, 26 insertions(+), 30 deletions(-)
 
-> Best regards,
-> Krzysztof
-> 
+diff --git a/arch/arm/boot/dts/amlogic/meson8.dtsi b/arch/arm/boot/dts/amlogic/meson8.dtsi
+index 6c7596c8b96b..9ff142d9fe3f 100644
+--- a/arch/arm/boot/dts/amlogic/meson8.dtsi
++++ b/arch/arm/boot/dts/amlogic/meson8.dtsi
+@@ -346,17 +346,16 @@ pmu: pmu@e0 {
+ 		reg = <0xe0 0x18>;
+ 	};
+ 
+-	pinctrl_aobus: pinctrl@84 {
++	pinctrl_aobus: pinctrl@14 {
+ 		compatible = "amlogic,meson8-aobus-pinctrl";
+-		reg = <0x84 0xc>;
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		ranges;
++		ranges = <0x0 0x14 0x1c>;
+ 
+-		gpio_ao: bank@14 {
+-			reg = <0x14 0x4>,
+-			      <0x2c 0x4>,
+-			      <0x24 0x8>;
++		gpio_ao: bank@0 {
++			reg = <0x0 0x4>,
++			      <0x18 0x4>,
++			      <0x10 0x8>;
+ 			reg-names = "mux", "pull", "gpio";
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+@@ -461,18 +460,17 @@ clock-measure@8758 {
+ 		reg = <0x8758 0x1c>;
+ 	};
+ 
+-	pinctrl_cbus: pinctrl@9880 {
++	pinctrl_cbus: pinctrl@8030 {
+ 		compatible = "amlogic,meson8-cbus-pinctrl";
+-		reg = <0x9880 0x10>;
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		ranges;
++		ranges = <0x0 0x8030 0x108>;
+ 
+-		gpio: bank@80b0 {
+-			reg = <0x80b0 0x28>,
+-			      <0x80e8 0x18>,
+-			      <0x8120 0x18>,
+-			      <0x8030 0x30>;
++		gpio: bank@80 {
++			reg = <0x80 0x28>,
++			      <0xb8 0x18>,
++			      <0xf0 0x18>,
++			      <0x00 0x30>;
+ 			reg-names = "mux", "pull", "pull-enable", "gpio";
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+diff --git a/arch/arm/boot/dts/amlogic/meson8b.dtsi b/arch/arm/boot/dts/amlogic/meson8b.dtsi
+index c8fbeede7e38..9e02a97f86a0 100644
+--- a/arch/arm/boot/dts/amlogic/meson8b.dtsi
++++ b/arch/arm/boot/dts/amlogic/meson8b.dtsi
+@@ -308,17 +308,16 @@ pmu: pmu@e0 {
+ 		reg = <0xe0 0x18>;
+ 	};
+ 
+-	pinctrl_aobus: pinctrl@84 {
++	pinctrl_aobus: pinctrl@14 {
+ 		compatible = "amlogic,meson8b-aobus-pinctrl";
+-		reg = <0x84 0xc>;
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		ranges;
++		ranges = <0x0 0x14 0x1c>;
+ 
+-		gpio_ao: bank@14 {
+-			reg = <0x14 0x4>,
+-				<0x2c 0x4>,
+-				<0x24 0x8>;
++		gpio_ao: bank@0 {
++			reg = <0x0 0x4>,
++			      <0x18 0x4>,
++			      <0x10 0x8>;
+ 			reg-names = "mux", "pull", "gpio";
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+@@ -415,18 +414,17 @@ clock-measure@8758 {
+ 		reg = <0x8758 0x1c>;
+ 	};
+ 
+-	pinctrl_cbus: pinctrl@9880 {
++	pinctrl_cbus: pinctrl@8030 {
+ 		compatible = "amlogic,meson8b-cbus-pinctrl";
+-		reg = <0x9880 0x10>;
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		ranges;
++		ranges = <0x0 0x8030 0x108>;
+ 
+-		gpio: bank@80b0 {
+-			reg = <0x80b0 0x28>,
+-				<0x80e8 0x18>,
+-				<0x8120 0x18>,
+-				<0x8030 0x38>;
++		gpio: bank@80 {
++			reg = <0x80 0x28>,
++			      <0xb8 0x18>,
++			      <0xf0 0x18>,
++			      <0x00 0x38>;
+ 			reg-names = "mux", "pull", "pull-enable", "gpio";
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+
+---
+base-commit: b852e1e7a0389ed6168ef1d38eb0bad71a6b11e8
+change-id: 20241015-topic-amlogic-arm32-upstream-bindings-fixes-pinctrl-dtbs-d7c996fd4116
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
 _______________________________________________
 linux-amlogic mailing list
