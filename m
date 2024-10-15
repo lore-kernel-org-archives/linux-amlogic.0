@@ -4,168 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B622CFC275
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2024 08:13:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80B6DCFC276
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2024 08:36:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=N/HFQ+j3fiZk+CXXn0Hda8K9OgXJZ4HMtZ8Fz0thJ8A=; b=K8TYX7gnPlcZOa2FHq6nENJa7C
-	ZBq7fpwtRFFjpUR85qHWr9NMR/0YBKAylLQVJkTYPlOQ6nxWOntXxYyGUDxxkqxPK+q7w7ptzuhmk
-	nRADlXCTsER8X+BKsCKCLb9CfTGc1X22eArp+8RIY8mC8knKeYnj+rfq0KzVOdu/CENU1WgX9JFAV
-	RSTTopJ2gfx6OnIBXcBWCxYZtqxr6figkZ5pW6vV/n8q0YcXK7KEZ3eTYkGA2Thk92466CnvWjBJv
-	2pq2Otc2/XA1KKPy8NovCbit/4Apqr1t6Hh4NqLik7MnWwgvO7DSsU2eyNOMr8PAT4MSIq77mER+y
-	ODDYMeLw==;
+	bh=FLFGNSF9f6RdVH6tKxIt4pE6L+TIkzlq0dtOjnHtovw=; b=Y5781ANKk3kys/aG+OFO2+rvxc
+	0CmUIgsGWyvvhqnIE1Gzv4neP+bxnoWs4DNbz2FAMchhHurzaT05XdgEvobyJKuMlB9vJYgqBoRAK
+	xy45UzfvCGfADmWv6ippjnk9iA+2Zt4fvUTOhnNxdekA/DVrBu+25JjnLDain/oxYfYG2B3zQWJcu
+	GCrMTHXaposL8i8796lgHzRXsauqEWg/NXTaTnn8yuEXHsG+y3P/KqPYJs1NzTX/Cz+lNGbTmCSKG
+	zdpew9JJ+3c58e3kMNAX1PxnvdNHtpkWtIGKMd2BR2E9SonuiBcBljzdBf/ZVwHBLZA/6Cuvm6LEg
+	fKmPB9Xg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t0cfy-00000007Snh-0aGB;
-	Tue, 15 Oct 2024 08:13:06 +0000
-Received: from mail-psaapc01on2070e.outbound.protection.outlook.com ([2a01:111:f400:feae::70e] helo=APC01-PSA-obe.outbound.protection.outlook.com)
+	id 1t0d2R-00000007X5s-23Jm;
+	Tue, 15 Oct 2024 08:36:19 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t0cc7-00000007Rup-0IAQ;
-	Tue, 15 Oct 2024 08:09:08 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hupkc3n72pwW4ztLYoIy7laNP3q2jNBrd47GFMwZk+lTsFOLsqZGuMg6O22xD2x0D6C/ok09W47XI4F9m0hsdpy70LPFQgv6xxR6puyOlABzJ+M6KAffsfjB7iGulD6VF7oi+g3WTeGBFyAMpqnm2uZQjTIuyizdnSu8SIXotOl8nxtt2BSVx9I2YIlLBSkbDS3ntIqaPvx2rsOi12PZtF2GJgrQhe5msSySr/aLWSErvZ8G7RQaRcHwLolq0TRrMrTNL7Zo8XYiJ8WpFPiTKPHperHcLZKqKoiKdZUZQFx4YBxPB0Um2DFebj0/WaItj2CGLzkKFLY9ByFW3lO/Yg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xEvVTcZz+425QP9D+bzpcbCPzVSCa+vaMMnTTEqRpI8=;
- b=kKGUHCF8Zxthiq93NTHh+69/XdraLEDMGONQDueIYfCzeFAfDm9lLoiqfur015JeRMNeubgjqhHLmRTkJFphMpYRTvshcrdjHB4o4XVnzpF2t7Ry3RCLOCd2kQx+fbporZsUxmCx4+9NLxbu9crZ08Mcwcw0+Ex9BqG2le8X/iK9E48mhVKjLlBFJiq0oyBmEN1DrQQiH6Kg9IUGne5YNd/2AsAyKpo04FG+q9mVG9NIAePpiCAbnyDr4lWtKSzVfsPZb4HE4290hOh8vIhHlM0lWJ2fsLoICAldPeuaC69QblBgxxoVn+5/wYn/dS+d/UE6vPIxeCThd1rB9ZtmLQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xEvVTcZz+425QP9D+bzpcbCPzVSCa+vaMMnTTEqRpI8=;
- b=reQFfYDsuQ+C8Msl53VTKhoXRN4A0Qc2X3SRks7n1pePqQ1ld4BDym/gBOM+0Tbm00yuqIzq4ZrMVHSuLmuX5uDV2+iGyAhvy1E7epLiWScNMyyufOgqv+eUhdVRRUai8cFIAxr14NEdxsV+BYlkw1ZcAJsL/okjICjJKQHxzq0bKm9nKCn724tH0YIgHZwU+BnFdMBJsIABNWO1rzCc0Dvb02TlZk6IerS0YbJKvtY0J5JZ4KnOkhwoOnm3EY9goi0OsSTvKXlVBBfr74sSy+FcJ12rr0MyX+Rd97kXgp3Ru5b7NxzyCMCJYakHtRB/igUt8UH7CacerKu3MhReCw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by TY0PR03MB6476.apcprd03.prod.outlook.com (2603:1096:400:1bc::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.24; Tue, 15 Oct
- 2024 08:09:03 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%6]) with mapi id 15.20.8048.020; Tue, 15 Oct 2024
- 08:09:03 +0000
-Message-ID: <6ef6bd97-571e-4243-951f-c6704cdb2b57@amlogic.com>
-Date: Tue, 15 Oct 2024 16:08:58 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] pinctrl: meson: Add driver support for Amlogic A4
- SoCs
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241014-a4_pinctrl-v2-0-3e74a65c285e@amlogic.com>
- <20241014-a4_pinctrl-v2-2-3e74a65c285e@amlogic.com>
- <aju3dgugbmj52i74j7csyuwejczsvk4sxtsdzuq62jutq7jxbe@wbc7fveloxv2>
- <1c054eb4-9ac1-4965-8847-d851b9fb1131@amlogic.com>
- <9c7f0c20-aafe-45b2-aa3e-c2c21e3a5b71@kernel.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <9c7f0c20-aafe-45b2-aa3e-c2c21e3a5b71@kernel.org>
-X-ClientProxiedBy: SG2PR02CA0105.apcprd02.prod.outlook.com
- (2603:1096:4:92::21) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	id 1t0d11-00000007WwV-37ZB
+	for linux-amlogic@lists.infradead.org;
+	Tue, 15 Oct 2024 08:34:53 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-43124d1ca5dso27959445e9.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 15 Oct 2024 01:34:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728981289; x=1729586089; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oUF7jv5c/y05IM3ShRlS4OQ3zoxaQbhTTM2rs8WpeVc=;
+        b=CET3FDZXFwEZuhkw1zltw2HoAKrNAgSClI/Z/yNieEjapUcRaxpX3Rn4EF2/rpaQR0
+         VZJtaNkCQrkd3TmeqVa1ZoC98+ISYFVw4KKbuXbC/J1Qrvwap+izghrqZitGKXPJaYsi
+         fa6lIatMJ50DUs563ljBVu+XhQCH6AgPt9ga5oUT57jZAFRpMyE92hRgt3aMk0BAIaxO
+         pikzWBk0Wlkw1HwwtvHxljj6TwGoJQ1L5JSJVAlqSMQQciR5k73GLCDk6RKRU3G+4jY8
+         wjhZUqFysyaUi0x+yoTLv26dK94wFUdbPZKW8sPlloLpiM9KrE3/8flmAAfoDzYWfwkO
+         JXeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728981289; x=1729586089;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=oUF7jv5c/y05IM3ShRlS4OQ3zoxaQbhTTM2rs8WpeVc=;
+        b=d2BsVXJoC7HB/MeXVoWGz12GPBhKR8nQeTNvRUszgpFpcZCLRvujragGKwS6SGpixN
+         hbJXoSoF8lyoU4ci708aKQ7iaeJ/jrePi4CP4R0+cVLxOwvSwwqumy/YiqPwJ7xWqsTB
+         YCZjbf0bshpwTuLjGtZHf1GBB+0WHnA6e+rMCKgJjDe3DWQZqBaj3ngOQtsVfSQ6lNaS
+         sRzdh9WJGz/UxglYiM430Ct8yx1aYt7/VI2aWRksjZfzFyxRcGrWH76ZXjH0xdSgkx4t
+         IqPY+U5LtUoSMx+tdXiGF6c2EVofrDn4chjWMk7f7Zopfz0oXkolwOrqBviDulLHxwQk
+         JExQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUOQh93gXXxuC8jzyJpZ1fAPrTWE9XpAwFmem02ifr7K/qtCWazMfb2QfJ36vluPqXd8jSRFPehCPXFQyf6@lists.infradead.org
+X-Gm-Message-State: AOJu0YyUOa9xrmTsF+4vh8cDkQGkZttwv86UwpLFMYqBMUhT6APRobCZ
+	iGJCyCp2AKAzGLh7/iAWr0u4je2cJhtSyR9LX2KRJN19iiC7Lw0Jrq4WDuC7PbA=
+X-Google-Smtp-Source: AGHT+IEE9Bf4HgHbwmOabZF6YFKnn15l5Ozto9RbXwA5IBzSiR97gav6hVgamHDCguQUrt9TO/528Q==
+X-Received: by 2002:a5d:43c6:0:b0:37c:cf73:4bf7 with SMTP id ffacd0b85a97d-37d551fca59mr9456233f8f.34.1728981289440;
+        Tue, 15 Oct 2024 01:34:49 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e686:73e1:36a8:3467? ([2a01:e0a:982:cbb0:e686:73e1:36a8:3467])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fa7a06dsm974468f8f.5.2024.10.15.01.34.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Oct 2024 01:34:48 -0700 (PDT)
+Message-ID: <43bb5d15-b045-4621-8795-15e7522bc884@linaro.org>
+Date: Tue, 15 Oct 2024 10:34:47 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|TY0PR03MB6476:EE_
-X-MS-Office365-Filtering-Correlation-Id: 410c0baf-b86f-4bc6-cccb-08dcecf0a1ef
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dHF0MUVpcjVOT25sSDM2cm1KdlNqQytmY1pwZkdzSVM0WHFqbFhLbzBLcndV?=
- =?utf-8?B?bUZSdmZFUnhEczJ0T1dSMFhCQ2RFT0tTKzJkNEt0dmVQWnVHbjRZMkpkNVJs?=
- =?utf-8?B?YjYzY3pmZUFOWitocStCeStJVUpDNXQvRE93Ym9yaExUVmloTlcwS0ZFdFZG?=
- =?utf-8?B?OXZDSUk3a0hkTnBiaEpKVmVzcWg3dGhMUUs3MVVnbk1pQVYwMXh3WEJJcDhD?=
- =?utf-8?B?VlYza2d5Qkw1ekgxNVJJWGhEZDUwZzBXSTRBcXhpejN2Y3hhek5WMkpKdEdv?=
- =?utf-8?B?QnZIbXZKNitnRy9SbG1vYXNpdFdBU1hid1ErVkFKTllrWHZzNU5oam55SExk?=
- =?utf-8?B?WDZFTjRMUFFNdi9TcTZBZnNPY1V2dW5aWStONmJCemQ3NDBoYWV5RGhaWUxU?=
- =?utf-8?B?Ylc4V3ZFZjFJVUsrVzlzRG1MK08zblpWUk1wYnVXUjBnT1VsY3RUbmxmY0NV?=
- =?utf-8?B?QmcwYVdRRDEvTUhnWCsxRmJNSFNPNWw2N1FvSzRUSldRZFVvdG82ZDRTVEFT?=
- =?utf-8?B?ODVFR2cyak83dVk4ZU12TWY5VGJEZ0QzNUVxL0hDSFgyaXF4OUlvVXpTeHVC?=
- =?utf-8?B?SUNyMmJGZDlnRFBFNmNxaWVKYlIzNVp4MktOSk9jb3NLZHJFVEV6OUx3TjRY?=
- =?utf-8?B?N2hEeW9WaktsRzBZUVpMSFBjVkFBZjVtSDBaaXpDTlBjanY5bkVOazBnQmpi?=
- =?utf-8?B?L0hyLzl4aUFmWGxEekZ2N3cyam0vdG9jalBEMnFXYWZsaXVsa2FnSDl5bE9u?=
- =?utf-8?B?ZXppVWxVUDR6Z2pNdjBtdE52L2xsQU54c2U4RzZ5Y0JOWDRMSlV0ODNGalZP?=
- =?utf-8?B?amVuaERVOHd5bTJ4ZmJoZDN3a2I5SFJ5WFNvTXUvQ1IzdjBRMTdsUXBsRjVj?=
- =?utf-8?B?N3YwM0c4Znl3WGRIazYwS0lqODZXMUZ4dExYVEZiVnk2YnJSWUxSY2tSRUFU?=
- =?utf-8?B?Qk9qRW1iL0g0bDhQdHltdVNYYk1KcjEzcmdLQzR2RklsMjVBYTluQW5ZMU1i?=
- =?utf-8?B?cTljL1dtYS83VWdYRVc0THRLcCtNaCs2V3JZSXlMUEwxdXMyQmg5NlhuczQ0?=
- =?utf-8?B?eHlMNEU5QW9XdVgrUDg3Z0ZaNldsVjlMem5wWkRYN2dNeEZFNnNVai8wSGxY?=
- =?utf-8?B?c3VuVlNnVEZQeWU4SnMrYkoxYklaNXJudGJPT0krUzFQdmRvM1dzZDFJNUc0?=
- =?utf-8?B?TDFxSlBMYVNKNS9jbms3c3VXdmlnZ1VUYm5YM3A1djNBUVNNMEord2txdlNY?=
- =?utf-8?B?NmpITW15REF2T2NuaTczN3NkVm1DVXpvcVBxcS96VDBvaTV1WW5nTDZCZU9m?=
- =?utf-8?B?cmRyVWI4NGh5WWNsTEVHdWRLUjdFdHNrSlBRTWpuVVZqZVFidWZVaDBTSWRC?=
- =?utf-8?B?NDdqZjBQN0QwQ0EyYlhJK1ByeHF2YVN4M3IrUWRPenhmcFBhRnlaUkFYbnpC?=
- =?utf-8?B?ODhVZmVQR2ZzYW81WDJFMGtrV3ZhQzVkL1Rrem5HY0hjNmsreVE2c0RFMlda?=
- =?utf-8?B?WVp6aTNnVEVIYVQxREsyQVdRWHFzbzAvK2lYSXExRktLNmdaQk84c0FhTEVy?=
- =?utf-8?B?RGIwcWRRTGRxQVJvSCtjMTRGRkpUS00wSWRBNzdadGtCZks2ZDVNRUFPaVJz?=
- =?utf-8?B?UUVEK1hrb0E5QUgzN29NYmg2cVJWNVFNSVFCWk00WDRTVDFPWWNMbU9NNjhX?=
- =?utf-8?B?azNoTkt6NVpid0tQZGV0Mi9UNDVLdkhEcllJSlQycHE4eHFVczJTcTNnPT0=?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q0Fvdmp4ejZyRUF4V1IvM3h5eGNpRjNmMkZCcXRRSWdUemVUblRHK2greHNZ?=
- =?utf-8?B?MVJpMHFhRnBEQ0dqaEsvYURDVFUzWnhUZzVXdE9sS05IWmNjVkRzNjlNNFho?=
- =?utf-8?B?a2JLbDl2akdsQzBkUmh6KzMwZ3U2UGEvTjFxdlpYaUlQaUNPa3E2cGJWS0pq?=
- =?utf-8?B?L1k3STVqMmRqVFdsMmw1alZnOWM3QyttVUFOclh2L1ZacXltQTdtZ2I0RytL?=
- =?utf-8?B?RTZURTY1UHNNd1lPUW5vMjJ4alNRcnRYQVdOZUR0NWxrWlVkalJIQzBJQU1T?=
- =?utf-8?B?Zmo2bXRUbnNIYzFudHJ1ZnhQY0tSSnVZcEJ4ZUJCS3pSQjhGV0dPVnk1VktH?=
- =?utf-8?B?S0dYODd0ZmxGcDJZY2U1MGsyVURwOEx5Ykp1Qnpubnl1V09velR4TmEzckpE?=
- =?utf-8?B?YWU2TnZJN0FsaE1yYXh6a0ZoWkJENTJrTGFqVktVa05KZEVvZUs0RVNhNUZX?=
- =?utf-8?B?d2pGckN0UDZ0UXp0YmtpZGNyRDhmVlU1bU1sMFdjdjZnS2IwdUxyYjdXejdm?=
- =?utf-8?B?MzkzRUkwM2pDZFZkUkZlcmRoVlZBRGI0aWVvOGxCKzA1U3p4NXZ0NmkwVzRQ?=
- =?utf-8?B?Mzl3eDBFNUxPNEJjaFJIL0FQVEFSaXpRR3RXTHI1QlpMbDE1cS9uMGRaTUZY?=
- =?utf-8?B?WVNrVmNEQTBtY1lUQnJGMUcxTndEa2xEWlluRDVtTGdtR3lDSEgwblAvVktw?=
- =?utf-8?B?YzZ3RkJnN2lQb0ZibnJYUjZSNFpnbUFIR0ZIa29UeTUydWFvSElUZXJhUkVS?=
- =?utf-8?B?ZUtTbm9nc2t3S0xpeUVmb1o3L0lmNWY2aVRtOFd0YWphVjdWRWRaaEtxVHJ3?=
- =?utf-8?B?VE1VV2lyOHY5d09kcllSQWJzN2h2M29lTlU4eGVldmlaL1JEd3JzSU9MbTBW?=
- =?utf-8?B?UUFjREgxM2cxbE1nanVWaWhWcjcxMVBSWWNEQTI2bVp3VzgvSStLa2J0Q1Q3?=
- =?utf-8?B?R0lBTjBXYVFMd241cTFCNWVTTnpmZDg4MHZhcmJhNXMwQU9OeE5zeTlGRUtx?=
- =?utf-8?B?anlBMzBobzhOS2pjb1BEckFUS3dRZXdaeUhpa0wwRTJ0N2lhM2x0dzlhL1hX?=
- =?utf-8?B?Uk1leVFpL0FJN3kyTmM1Sk0reFU0K2hZYXNNdnJmYTdyaU5tZHNUR1l5d1dz?=
- =?utf-8?B?dkx4S3g1QkJvcVg4a2ZPbDdLc3JSY0ExcUJJbEI1NWkrNE04YzF1YzY2Wk9p?=
- =?utf-8?B?UGNuS2JZREMrTnpvdmZoS202My9HOHNGSkdybVJPTGx0VDFBVXk4cHRvWXVN?=
- =?utf-8?B?UWZBa3M1M25SL3JlN01heThnbWczRnNMUDVWYytleVo0YU9ERGk5Z21TN1hh?=
- =?utf-8?B?Q0x4SVdrRGZJbE43SHUwam11Y1o2YXpFalF6TWtrR3JtQTdQS3I0dkVmY2V6?=
- =?utf-8?B?YWtudmVrYnlRSzZjNVFud2xqZnU2eElUQ1RRZHRpdWFIZGN4VngrMDN5ckVi?=
- =?utf-8?B?MXlDeXVDR2FrQVZBczZqKyt0SWpwdzJPdWhHT01FQ3AwVGhOQ3hRVVdOa2ZQ?=
- =?utf-8?B?NGtXdC92UHY5WDZYeFcvb0toOFN5bmV0M245R2JxRGpLWVBLVGVUMk5JcUsr?=
- =?utf-8?B?ZEFWeGFDL3hucW9EaWxyUEYvYjNKekx0QStkaGJtVURFanNnKzRPSHMyM2tI?=
- =?utf-8?B?L0R6UHFOdnk0c0pia1pobzBTcmZTbFhmVzgrVk55NUJIRGkxM2E4Q25rNXo0?=
- =?utf-8?B?SXFLSnhtMkxTWWxMOFRmNEtLU1MwR2U0RHdJdTA2cmh2aXZkQnUyR3UvMDV2?=
- =?utf-8?B?azc5U0s1Qnk4U29PT25wWWN5L3Z2bXZSTk1vcEJOdnBHSlZpMU5RUWViOWVv?=
- =?utf-8?B?SDIyYjk5ZWI4SlVXUzJuY3U0QmJocGZMczFMU1hocUFrdXhtMThLK2lpZHJY?=
- =?utf-8?B?RFdQbS84WCtmZjJrMTk1NDVvai9KZ1BieDg5T0FoOUd1UEFVSjF6Q1FXYTJ6?=
- =?utf-8?B?c1AyODRwN00rbFZnbVJsdUI5WTFxSnpocEZpZ0dtS1VQalpuSUJSeE82eFBV?=
- =?utf-8?B?QktzOS9ZQmJCT0xDRklvdmlRVFBOQ29KdVZXYTJyT2VRWVRNUDhaYUdYWmpG?=
- =?utf-8?B?SWNmOTNucmpLZnU5cmNtUS8zTHFqSDQxRGZlaDdPZlBZSW1zUEJmd0ZQdnBp?=
- =?utf-8?B?OS9PWG5MeU9uQmhCS1VEcUxOaDJlajVUZmVROVVGRlY4M0c1L21rSi9iYjdT?=
- =?utf-8?B?Nnc9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 410c0baf-b86f-4bc6-cccb-08dcecf0a1ef
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2024 08:09:03.4706
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M5vxbqBu8IKQj1l086irh+uCPds3GnzNUT1JwLWkjJsGvOJLyqY458skeO1MYQk2l13wtRnSo3bf8O6GElSyUzEsAtJyY61PRpay5StxIgk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB6476
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: mmc: controller: move properties
+ common with slot out to mmc-controller-common
+To: Rob Herring <robh@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-0-ad4eb22c2a8d@linaro.org>
+ <20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-1-ad4eb22c2a8d@linaro.org>
+ <20241007200230.GA2301832-robh@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20241007200230.GA2301832-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241015_010907_150499_3339B264 
-X-CRM114-Status: GOOD (  18.70  )
+X-CRM114-CacheID: sfid-20241015_013451_822375_476C9130 
+X-CRM114-Status: GOOD (  16.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -177,98 +125,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Krzysztof,
-     Thanks for your quick reply.
+Hi Rob,
 
-On 2024/10/15 15:59, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 15/10/2024 09:54, Xianwei Zhao wrote:
->> Hi Krzysztof,
->>       Thanks for your reply.
+On 07/10/2024 22:02, Rob Herring wrote:
+> On Mon, Oct 07, 2024 at 04:03:37PM +0200, Neil Armstrong wrote:
+>> Move the common MMC "slot" properties because they are shared by the
+>> single-slot or multi-slot controllers, and will help defining a simple
+>> mmc-slot bindings document with proper slot properties and nodename.
 >>
->> On 2024/10/15 14:01, Krzysztof Kozlowski wrote:
->>> [ EXTERNAL EMAIL ]
->>>
->>> On Mon, Oct 14, 2024 at 05:05:52PM +0800, Xianwei Zhao wrote:
->>>> Add a new pinctrl driver for Amlogic A4 SoCs which share
->>>> the same register layout as the previous Amlogic S4.
->>>>
->>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>> ---
->>>>    drivers/pinctrl/meson/Kconfig              |    6 +
->>>>    drivers/pinctrl/meson/Makefile             |    1 +
->>>>    drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1176 ++++++++++++++++++++++++++++
->>>>    3 files changed, 1183 insertions(+)
->>>>
->>>> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
->>>> index cc397896762c..3e90bb5ec442 100644
->>>> --- a/drivers/pinctrl/meson/Kconfig
->>>> +++ b/drivers/pinctrl/meson/Kconfig
->>>> @@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
->>>>         select PINCTRL_MESON_AXG_PMX
->>>>         default y
->>>>
->>>> +config PINCTRL_AMLOGIC_A4
->>>> +     tristate "Amlogic A4 SoC pinctrl driver"
->>>> +     depends on ARM64
->>>> +     select PINCTRL_MESON_AXG_PMX
->>>> +     default y
->>>> +
->>>>    config PINCTRL_AMLOGIC_C3
->>>>         tristate "Amlogic C3 SoC pinctrl driver"
->>>>         depends on ARM64
->>>> diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
->>>> index 9e538b9ffb9b..c92a65a83344 100644
->>>> --- a/drivers/pinctrl/meson/Makefile
->>>> +++ b/drivers/pinctrl/meson/Makefile
->>>> @@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
->>>>    obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
->>>>    obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
->>>>    obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
->>>> +obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
->>>>    obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
->>>>    obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
->>>> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
->>>> new file mode 100644
->>>> index 000000000000..dee1ae43edb5
->>>> --- /dev/null
->>>> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
->>>> @@ -0,0 +1,1176 @@
->>>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
->>>> +/*
->>>> + * Pin controller and GPIO driver for Amlogic A4 SoC.
->>>> + *
->>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>> + *         Huqiang Qin <huqiang.qin@amlogic.com>
->>>> + */
->>>> +
->>>> +#include <dt-bindings/gpio/amlogic-a4-gpio.h>
->>>
->>> I do not see any usage of it.
->>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../bindings/mmc/mmc-controller-common.yaml        | 357 +++++++++++++++++++++
+>>   .../devicetree/bindings/mmc/mmc-controller.yaml    | 344 +-------------------
+>>   2 files changed, 360 insertions(+), 341 deletions(-)
 >>
->> The header file "amlogic-a4-gpio.h"  is used by AMLOGIC_PIN and
->> GPIO_GROUP_V2, The code used  is  AMLOGIC_GPIO().
->> This is binding definition.
+>> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
+>> new file mode 100644
+>> index 000000000000..e02d3cbcc271
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
+>> @@ -0,0 +1,357 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mmc/mmc-controller-common.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MMC Controller & Slots Common Properties
+>> +
+>> +maintainers:
+>> +  - Ulf Hansson <ulf.hansson@linaro.org>
+>> +
+>> +description: |
+>> +  These properties are common to multiple MMC host controllers and the
+>> +  possible slots or ports for multi-slot controllers.
+>> +
+>> +properties:
+>> +  "#address-cells":
+>> +    const: 1
+>> +    description: |
+>> +      The cell is the slot ID if a function subnode is used.
 > 
-> Then all other defines are not used. AMLOGIC_GPIO is not used by DTS, so
-> how is that a binding? Don't stuff random defines into the bindings.
-> 
+> Actually, this comment is wrong. When slot is used, this is still the
+> cell size for the mmc bus.
 
-The AMlOGIC_GPIO definition depends on other definitions to be used.
-It is not currently used by DTS, but will be used by other modules in 
-the future.
+I don't understand, the comment is still valid, MMC slots can have function subnodes
+aswell, perhaps the "slot ID" is confusing here ? here it stands for the MMC protocol
+slot ID, not the physical slot of the multi-slot MMC controller.
 
-> Best regards,
-> Krzysztof
-> 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
