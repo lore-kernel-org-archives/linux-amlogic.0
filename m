@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D30ACFC267
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2024 06:00:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25430CFC267
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2024 06:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qo+YI5Y0mCRH+5zVHW8PL6iIbkw0j1eLNlsCrmbu4HM=; b=r5ubpnWPXW58Tq
-	1eOneCFqTwKXh3TJ6y3tGi/iZ5wi0TdPxjxwIOPOJZht4L+WCQacsCB5pP2zQEDunMpErojJMrucB
-	ZSSqfUVxeRHAmmDC0kL/9GIxxMHO9eY8T+nY6dBaWKLWsqNSFQlY0ChcPO17BrcmU/h4OlnXRUJ3Q
-	gMlF34h12183Pa5lGz23H8GSClloWAVd9ScNhq7JlrFSyEsT8hJ+g3bq+oPnvfaGFbDT1mcMZeS8n
-	KLRkE1JJW8AtYwwI9l5eQ0HHbyHVXFTS1tMJfSFwcTStQ87YBURWHkFsKD9rS5+meviDgL5Zrt3ra
-	Er+Kmicp7NHET2+QOW+w==;
+	List-Owner; bh=S3MVITELqqX+Ir/bS3atWtco/hD0DwriEQUgUjhh490=; b=vDBn2zWxOQbYZl
+	CZ92+XQrsOwlFtCbVLg8U3nNgRiIZwNIJvjNI8nA4415z3yGmEF1e8VzYsu6u8FKqJUzQGieQqxLS
+	v/3oYVF/nsdrEcQYB77OE8T/Wbfynn/HJ1SOvsfmebIOWcLql7S9sJuP3ljavcGvAUZDmfX30RYaf
+	51dVgg9DKMfCRS7noB9OjEMmDIlGDswkk7pubZtgd177lTBaQK3ljlzVhT56e3wpIybvvO3NfrcYQ
+	9ZBxIGnsnwWX5L/K1Bj8342iIQZWN1fFOhjM32SY24PjC8P3qKiTsiMrqH70HgDxronGDnnh93Sac
+	b/egUVVwDxFjgFkN2V/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t0abA-000000079mG-10XS;
-	Tue, 15 Oct 2024 06:00:00 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1t0acZ-000000079yr-44EM;
+	Tue, 15 Oct 2024 06:01:28 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t0ab5-000000079lI-3wo6;
-	Tue, 15 Oct 2024 05:59:58 +0000
+	id 1t0ac4-000000079ti-1S4L;
+	Tue, 15 Oct 2024 06:00:57 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id C973BA401EC;
-	Tue, 15 Oct 2024 05:59:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42377C4CEC7;
-	Tue, 15 Oct 2024 05:59:52 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 556C85C5BF8;
+	Tue, 15 Oct 2024 06:00:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94A05C4CEC7;
+	Tue, 15 Oct 2024 06:00:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728971994;
-	bh=0Ra8CCMbg3ZRBIPWHy4Ub9PO/HhTwfF7f9lE/56wZQg=;
+	s=k20201202; t=1728972055;
+	bh=I65itk5tddOgMYfVz3UQOHCfBTUHhlq7vfZDyL3fcQc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sLR5p9h+4z4+In8S1EerfKLedkQPAGen1+dqrGPyppIFDaCAqM7jVOhUQifwHk/Go
-	 X7XVdbrjV2fMdLVXpJNX68E9YHJVlHPuAHbMGMx7lcwEQo7/iPoim0g3fORWY5ziz6
-	 5WGqwBYNa5b1lG18pQ+JbqZtvovQWHbzKZYwgOlnONrgONewD4U3kCkORJJqVV87ac
-	 A4vilIEX1pW3sB+hN0/BbxpsWiKiQGO7rJR7+DSuODAYvd1JY8nP5oEezmuWLn9apZ
-	 jrjSSX7+xzunrYjejByq1qvUPHB1WWiUY0q2gRPEm8RyBuQ+TIcj+sygcyocdDecLr
-	 50heymx4iTvuw==
-Date: Tue, 15 Oct 2024 07:59:49 +0200
+	b=DI1KDBJUcaBr9CSyMBck5GpJD9TG5a0+PQwOyTESsMavt6Uczjun7LyGw7ScerhqA
+	 tE4bMfU0RS77haf3CSePYATpvA6HFbOcUJRxp/HUYQJSLnlCV3oCjDl5CV8+mIpi/X
+	 tJWEyiDTGdPxE5RPh3AGZOkp8igNstcGhjUxrr016trcYNwyXtxxtdW6z8/Oi2MgGo
+	 C70dABJN0Y+nsIkXXUc9sntWnr3Emm8HsANhmR6rRsd9XgW/JYoaTJ/0KHygJWQMGB
+	 NrvLHffFSE5kRds+J8e6BLND0Hr+ZaAe/h+IcU8mpQ2XCL1DRL/nsyN7acv0D/Z8Zc
+	 1W0+DacygJgQQ==
+Date: Tue, 15 Oct 2024 08:00:51 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Xianwei Zhao <xianwei.zhao@amlogic.com>
 Cc: Linus Walleij <linus.walleij@linaro.org>, 
@@ -51,17 +51,16 @@ Cc: Linus Walleij <linus.walleij@linaro.org>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
- SoCs
-Message-ID: <u4afxqc3ludsic4n3hs3r3drg3ftmsbcwfjltic2mb66foo47x@xe57gltl77hq>
+Subject: Re: [PATCH v2 3/3] arm64: dts: amlogic: a4: add pinctrl node
+Message-ID: <nudqyugprp757romcrpkydvqbucqrww4olclsns5zgf6j2w5xi@y4vdst76qkqr>
 References: <20241014-a4_pinctrl-v2-0-3e74a65c285e@amlogic.com>
- <20241014-a4_pinctrl-v2-1-3e74a65c285e@amlogic.com>
+ <20241014-a4_pinctrl-v2-3-3e74a65c285e@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20241014-a4_pinctrl-v2-1-3e74a65c285e@amlogic.com>
+In-Reply-To: <20241014-a4_pinctrl-v2-3-3e74a65c285e@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241014_225956_075683_D3C0792F 
-X-CRM114-Status: GOOD (  14.54  )
+X-CRM114-CacheID: sfid-20241014_230056_454672_BC61DA7B 
+X-CRM114-Status: GOOD (  13.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,63 +77,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Oct 14, 2024 at 05:05:51PM +0800, Xianwei Zhao wrote:
-> Add the new compatible name for Amlogic A4 pin controller, and add
-> a new dt-binding header file which document the detail pin names.
+On Mon, Oct 14, 2024 at 05:05:53PM +0800, Xianwei Zhao wrote:
+> Add pinctrl device to support Amlogic A4.
 > 
 > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
-
-...
-
-> +++ b/include/dt-bindings/gpio/amlogic-a4-gpio.h
-> @@ -0,0 +1,38 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_A4_GPIO_H
-> +#define _DT_BINDINGS_AMLOGIC_A4_GPIO_H
-> +
-> +/* Standard port */
-> +#define GPIOB_START	0
-> +#define GPIOB_NUM	14
-> +
-> +#define GPIOD_START	(GPIOB_START + GPIOB_NUM)
-> +#define GPIOD_NUM	16
-> +
-> +#define GPIOE_START	(GPIOD_START + GPIOD_NUM)
-> +#define GPIOE_NUM	2
-> +
-> +#define GPIOT_START	(GPIOE_START + GPIOE_NUM)
-> +#define GPIOT_NUM	23
-> +
-> +#define GPIOX_START	(GPIOT_START + GPIOT_NUM)
-> +#define GPIOX_NUM	18
-> +
-> +#define PERIPHS_PIN_NUM	(GPIOX_START + GPIOX_NUM)
-> +
-> +/* Aobus port */
-> +#define GPIOAO_START	0
-> +#define GPIOAO_NUM	7
-> +
-> +/* It's a special definition, put at the end, just 1 num */
-> +#define	GPIO_TEST_N	(GPIOAO_START +  GPIOAO_NUM)
-> +#define	AOBUS_PIN_NUM	(GPIO_TEST_N + 1)
-> +
-> +#define AMLOGIC_GPIO(port, offset)	(port##_START + (offset))
-
-I do not think you implemented previous feedback. None of above are
-bindings. Drop.
-
-> +
-> +#endif /* _DT_BINDINGS_AMLOGIC_A4_GPIO_H */
+>  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 36 +++++++++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
 > 
-> -- 
-> 2.37.1
-> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> index de10e7aebf21..a748351e8b1b 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> @@ -5,6 +5,7 @@
+>  
+>  #include "amlogic-a4-common.dtsi"
+>  #include <dt-bindings/power/amlogic,a4-pwrc.h>
+> +#include <dt-bindings/gpio/amlogic-a4-gpio.h>
+>  / {
+>  	cpus {
+>  		#address-cells = <2>;
+> @@ -48,3 +49,38 @@ pwrc: power-controller {
+>  		};
+>  	};
+>  };
+> +
+> +&apb {
+> +	periphs_pinctrl: pinctrl@4000 {
+> +		compatible = "amlogic,a4-periphs-pinctrl";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x0 0x0 0x0 0x4000 0x0 0x02e0>;
+> +
+> +		gpio: bank@0 {
+> +			reg = <0x0 0x0 0x0 0x0050>,
+> +			      <0x0 0xc0 0x0 0x0220>;
+> +			reg-names = "mux", "gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&periphs_pinctrl 0 0 PERIPHS_PIN_NUM>;
+
+Really? Number of pins is coming from the binding?
+
+Best regards,
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
