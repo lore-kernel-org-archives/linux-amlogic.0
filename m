@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01838D2A529
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2024 15:30:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FB55D2A52B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2024 15:32:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=0fjdneXk2+Gst22et4ASsk2JWKHfHe+4SkFOT5ufYoA=; b=d40bCcbFl72b8Q
-	iJtc1h7xgxc4wOajidFCNmx4c62lZLyEk2ed5FTr5pzVoeMZwjLSLIEaoKqRxM9LKMtKDP+n5JjQP
-	zivW62HJcZP0Jf/uDaMQsZAsFhHaHVO7FL4aAf6CcST6WGpQ5jFl9d4AEtmimB93rw0oTDWUEdGde
-	4k9bzAXtEVpWMoogMGfvZNMGXeAFT2+NQX7l4sA13C71aunKQ2xQXCDnTc8L6Nh6y5u98SgxDpcJ/
-	5q77lrckHxhFFivVtciYz+81nT20IG+1b6tqcTn3R8C+am0MV/WJe8HKZbdprP1m1qBPaSo2pp6a3
-	gToY9jbuu/FyhAU6E16A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=y3fsc/yy8DgJcFbXnJBqSYJuVSGSlEu8HmHhzor/hZs=; b=jaFGNjHiABgNTq
+	5/rsGZODdaTIPWQTMMuSqU6W4BlEJdK4ogxINTjtiAZHu/UFyi66ilc//GPkEwYPlo7fy514/TcMg
+	/j75CT1JMAFaD1fOyx3aS2QbDuKJOvTGJsJ+J4dWuTBJxSnGuMtlL+EqkQffG7PwKPstJzZKzHEKX
+	KbtO+9J57yONODZsAMrfJN4/ezSN9UaxNii609qeQWWYlnKd3PB7iMJjYkS1Mh2XznnnNPrEl08bF
+	wWKH464l4o+PjA+3MLUIFucWMzUn/LGfai467BGtZPgf9tnVEA65ZUMLk7mM10innIphb3gnOM3LC
+	9hda8vkDlb1OJOmmu36Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t15yu-0000000CFSb-2u41;
-	Wed, 16 Oct 2024 15:30:36 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1t160K-0000000CFj8-1CnC;
+	Wed, 16 Oct 2024 15:32:04 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t15ub-0000000CEat-12gB;
+	id 1t15ub-0000000CEas-14No;
 	Wed, 16 Oct 2024 15:26:13 +0000
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id C10FD12001D;
-	Wed, 16 Oct 2024 18:26:00 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C10FD12001D
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 05F0D100011;
+	Wed, 16 Oct 2024 18:26:01 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 05F0D100011
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1729092360;
-	bh=T3Q1msRaeqxF6VzybefXJBK+HzKQABZ1uZVeBIxYoFo=;
+	s=mail; t=1729092361;
+	bh=ie0GV8DG4yd13nbeYH8GqOq95iYonfAAkZTE/wGLrds=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=lAJ8Llu23qIYlVS/UmkWoFAYtBOyPX3negL50vqIGE3ubb/+uiM+WYKeZiF+GWe61
-	 UabP+Dd1WH5CBPUi9PeJneUNhGmukkPtwCJmbQZykAT1x8OfOSEsxV2o1eK3fsuhsy
-	 cTb5FustcsfJyaWxgzhFA5nAdsTgqXFX0E1nBmHcQ6E/Z56MKbac2/3/B/9zy9lvOz
-	 w2RLO+fAidAuxQPMmAI5f9OlpLtPZbjaI4nV01/eFWquhAfyYklW/Umqh3tRUFjC45
-	 wLcycyua/k7TAopaNM7NUi0ZJ+WnpcBCM1arfJB1XHwaREb0WD2AEv8HSrUxp68OM3
-	 +HOayN/AukuQw==
+	b=onePfh5gQuBLDZEf/R9Ci7Ok70IrA7nH3jv6xKGeyhXMvdyZJ96bTVVKH5zNRSq/D
+	 C2ru6aIFtESotRpWAIAbWSGmLl0afa2Xw+iP5xF5oJdHn8cMh0zcDRlveGbDNI1Um1
+	 WN/jbirmerZ9QxTnI0+xL8LsDp9fN+m7rRk3U/Q8bUBzIVC1LJWSV1ygEtXSXMCMkC
+	 dsHkanIZwliaCXekmqqGCUp9obclgW5vlZ8izO7aUrtUx4xeyqCIUq3JMXVKdLF9A0
+	 8n9NK3S7OIvZuxbphnK6WBOKs2t5Qa+H4iJEakLNfC25QLYLGR/NrqiiZsjaZchc15
+	 BmJpD1UHb2Xuw==
 Received: from smtp.sberdevices.ru (unknown [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
@@ -52,33 +52,35 @@ To: <u.kleine-koenig@pengutronix.de>, <neil.armstrong@linaro.org>,
 CC: <linux-pwm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<kernel@salutedevices.com>, George Stark <gnstark@salutedevices.com>
-Subject: [PATCH v2 0/4] pwm: meson: Support constant and polarity bits
-Date: Wed, 16 Oct 2024 18:25:49 +0300
-Message-ID: <20241016152553.2321992-1-gnstark@salutedevices.com>
+Subject: [PATCH v2 2/4] pwm: meson: Support constant and polarity bits
+Date: Wed, 16 Oct 2024 18:25:51 +0300
+Message-ID: <20241016152553.2321992-3-gnstark@salutedevices.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241016152553.2321992-1-gnstark@salutedevices.com>
+References: <20241016152553.2321992-1-gnstark@salutedevices.com>
 MIME-Version: 1.0
 X-Originating-IP: [185.8.126.20]
 X-ClientProxiedBy: p-i-exch-a-m2.sberdevices.ru (172.24.196.120) To
  p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 188483 [Oct 16 2024]
+X-KSMG-AntiSpam-Lua-Profiles: 188482 [Oct 16 2024]
 X-KSMG-AntiSpam-Version: 6.1.0.4
 X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 39 0.3.39 e168d0b3ce73b485ab2648dd465313add1404cce, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;lore.kernel.org:7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s
+X-KSMG-AntiSpam-Info: LuaCore: 39 0.3.39 e168d0b3ce73b485ab2648dd465313add1404cce, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/10/16 12:29:00
-X-KSMG-LinksScanning: Clean, bases: 2024/10/16 12:30:00
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/10/16 12:08:00 #26762169
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241016_082610_079707_FADB4567 
-X-CRM114-Status: GOOD (  11.93  )
+X-CRM114-CacheID: sfid-20241016_082610_105280_D5595BE5 
+X-CRM114-Status: GOOD (  23.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,48 +97,220 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch series add support for amlogic's newer PWM IPs hardware features:
-constant and polarity bits.
+Newer meson PWM IPs support constant and polarity bits. Support them to
+correctly implement constant and inverted output levels.
 
-Using polarity bit for inverting output signal allows to identify inversion
-in .get_state() callback which can only rely on data read from registers.
+Using constant bit allows to have truly stable low or high output level.
+Since hi and low regs internally increment its values by 1 just writing
+zero to any of them gives 1 clock count impulse. If constant bit is set
+zero value in hi and low regs is not incremented.
 
-Using constant bit allows to have steady output level when duty cycle is zero or
-equal to period. Without this bit there will always be single-clock spikes on output.
+Using polarity bit instead of swapping hi and low reg values allows to
+correctly identify inversion in .get_state().
 
-Those bits are supported in axg, g12 and newer SoC families like s4, a1 etc.
-Tested on g12, a1.
+Signed-off-by: George Stark <gnstark@salutedevices.com>
+---
+ drivers/pwm/pwm-meson.c | 63 ++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 56 insertions(+), 7 deletions(-)
 
-Changes in v2:
-  pwm: meson: Support constant and polarity bits
-    - drop separate set_constant() and set_polarity() and move register writings
-      into enable() and disable()
-  pwm: meson: Simplify get_state() callback
-    - add new patch to make .get_state() callback consistent. Since I add new
-      fields to struct meson_pwm_channel either we should fill back all of them
-      from registers or not at all.
-  pwm: meson: Use separate device id data for axg and g12
-    - add splitting amlogic,meson8-pwm-v2 into amlogic,meson-axg-pwm-v2 and
-      amlogic,meson-g12-pwm-v2 with pwm_meson_axg_v2_data for both compatibles.
-    - update commit message
-    - add tag: Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-  pwm: meson: Enable constant and polarity features for g12, axg, s4
-    - add enabling const and polarity to pwm_meson_axg_v2_data
-    - add tag: Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-  link to v1: [1]
-
-[1] https://lore.kernel.org/linux-arm-kernel/20241007193203.1753326-4-gnstark@salutedevices.com/T/
-
-George Stark (4):
-  pwm: meson: Simplify get_state() callback
-  pwm: meson: Support constant and polarity bits
-  pwm: meson: Use separate device id data for axg and g12
-  pwm: meson: Enable constant and polarity features for g12, axg, s4
-
- drivers/pwm/pwm-meson.c | 103 +++++++++++++++++++++++++++++++++++-----
- 1 file changed, 92 insertions(+), 11 deletions(-)
-
---
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index 2ef632caebcc..974c3c74768c 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -6,7 +6,7 @@
+  * PWM output is achieved by calculating a clock that permits calculating
+  * two periods (low and high). The counter then has to be set to switch after
+  * N cycles for the first half period.
+- * The hardware has no "polarity" setting. This driver reverses the period
++ * Partly the hardware has no "polarity" setting. This driver reverses the period
+  * cycles (the low length is inverted with the high length) for
+  * PWM_POLARITY_INVERSED. This means that .get_state cannot read the polarity
+  * from the hardware.
+@@ -56,6 +56,10 @@
+ #define MISC_B_CLK_SEL_SHIFT	6
+ #define MISC_A_CLK_SEL_SHIFT	4
+ #define MISC_CLK_SEL_MASK	0x3
++#define MISC_B_CONSTANT_EN	BIT(29)
++#define MISC_A_CONSTANT_EN	BIT(28)
++#define MISC_B_INVERT_EN	BIT(27)
++#define MISC_A_INVERT_EN	BIT(26)
+ #define MISC_B_EN		BIT(1)
+ #define MISC_A_EN		BIT(0)
+ 
+@@ -68,6 +72,8 @@ static struct meson_pwm_channel_data {
+ 	u8		clk_div_shift;
+ 	u8		clk_en_shift;
+ 	u32		pwm_en_mask;
++	u32		const_en_mask;
++	u32		inv_en_mask;
+ } meson_pwm_per_channel_data[MESON_NUM_PWMS] = {
+ 	{
+ 		.reg_offset	= REG_PWM_A,
+@@ -75,6 +81,8 @@ static struct meson_pwm_channel_data {
+ 		.clk_div_shift	= MISC_A_CLK_DIV_SHIFT,
+ 		.clk_en_shift	= MISC_A_CLK_EN_SHIFT,
+ 		.pwm_en_mask	= MISC_A_EN,
++		.const_en_mask	= MISC_A_CONSTANT_EN,
++		.inv_en_mask	= MISC_A_INVERT_EN,
+ 	},
+ 	{
+ 		.reg_offset	= REG_PWM_B,
+@@ -82,6 +90,8 @@ static struct meson_pwm_channel_data {
+ 		.clk_div_shift	= MISC_B_CLK_DIV_SHIFT,
+ 		.clk_en_shift	= MISC_B_CLK_EN_SHIFT,
+ 		.pwm_en_mask	= MISC_B_EN,
++		.const_en_mask	= MISC_B_CONSTANT_EN,
++		.inv_en_mask	= MISC_B_INVERT_EN,
+ 	}
+ };
+ 
+@@ -89,6 +99,8 @@ struct meson_pwm_channel {
+ 	unsigned long rate;
+ 	unsigned int hi;
+ 	unsigned int lo;
++	bool constant;
++	bool inverted;
+ 
+ 	struct clk_mux mux;
+ 	struct clk_divider div;
+@@ -99,6 +111,8 @@ struct meson_pwm_channel {
+ struct meson_pwm_data {
+ 	const char *const parent_names[MESON_NUM_MUX_PARENTS];
+ 	int (*channels_init)(struct pwm_chip *chip);
++	bool has_constant;
++	bool has_polarity;
+ };
+ 
+ struct meson_pwm {
+@@ -160,7 +174,7 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	 * Fixing this needs some care however as some machines might rely on
+ 	 * this.
+ 	 */
+-	if (state->polarity == PWM_POLARITY_INVERSED)
++	if (state->polarity == PWM_POLARITY_INVERSED && !meson->data->has_polarity)
+ 		duty = period - duty;
+ 
+ 	freq = div64_u64(NSEC_PER_SEC * 0xffffULL, period);
+@@ -187,9 +201,11 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	if (duty == period) {
+ 		channel->hi = cnt;
+ 		channel->lo = 0;
++		channel->constant = true;
+ 	} else if (duty == 0) {
+ 		channel->hi = 0;
+ 		channel->lo = cnt;
++		channel->constant = true;
+ 	} else {
+ 		duty_cnt = mul_u64_u64_div_u64(fin_freq, duty, NSEC_PER_SEC);
+ 
+@@ -197,6 +213,7 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
+ 
+ 		channel->hi = duty_cnt;
+ 		channel->lo = cnt - duty_cnt;
++		channel->constant = false;
+ 	}
+ 
+ 	channel->rate = fin_freq;
+@@ -204,6 +221,14 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	return 0;
+ }
+ 
++static inline void meson_pwm_assign_bit(u32 *data, u32 mask, bool value)
++{
++	if (value)
++		*data |= mask;
++	else
++		*data &= ~mask;
++}
++
+ static void meson_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
+ {
+ 	struct meson_pwm *meson = to_meson_pwm(chip);
+@@ -227,6 +252,15 @@ static void meson_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
+ 
+ 	value = readl(meson->base + REG_MISC_AB);
+ 	value |= channel_data->pwm_en_mask;
++
++	if (meson->data->has_constant)
++		meson_pwm_assign_bit(&value, channel_data->const_en_mask,
++				     channel->constant);
++
++	if (meson->data->has_polarity)
++		meson_pwm_assign_bit(&value, channel_data->inv_en_mask,
++				     channel->inverted);
++
+ 	writel(value, meson->base + REG_MISC_AB);
+ 
+ 	spin_unlock_irqrestore(&meson->lock, flags);
+@@ -235,13 +269,22 @@ static void meson_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
+ static void meson_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
+ {
+ 	struct meson_pwm *meson = to_meson_pwm(chip);
++	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
++	struct meson_pwm_channel_data *channel_data;
+ 	unsigned long flags;
+ 	u32 value;
+ 
++	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
++
+ 	spin_lock_irqsave(&meson->lock, flags);
+ 
+ 	value = readl(meson->base + REG_MISC_AB);
+-	value &= ~meson_pwm_per_channel_data[pwm->hwpwm].pwm_en_mask;
++	value &= ~channel_data->pwm_en_mask;
++
++	if (meson->data->has_polarity)
++		meson_pwm_assign_bit(&value, channel_data->inv_en_mask,
++				     channel->inverted);
++
+ 	writel(value, meson->base + REG_MISC_AB);
+ 
+ 	spin_unlock_irqrestore(&meson->lock, flags);
+@@ -254,10 +297,12 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
+ 	int err = 0;
+ 
++	channel->inverted = (state->polarity == PWM_POLARITY_INVERSED);
++
+ 	if (!state->enabled) {
+-		if (state->polarity == PWM_POLARITY_INVERSED) {
++		if (channel->inverted && !meson->data->has_polarity) {
+ 			/*
+-			 * This IP block revision doesn't have an "always high"
++			 * Some of IP block revisions don't have an "always high"
+ 			 * setting which we can use for "inverted disabled".
+ 			 * Instead we achieve this by setting mux parent with
+ 			 * highest rate and minimum divider value, resulting
+@@ -271,6 +316,7 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+ 			channel->rate = ULONG_MAX;
+ 			channel->hi = ~0;
+ 			channel->lo = 0;
++			channel->constant = true;
+ 
+ 			meson_pwm_enable(chip, pwm);
+ 		} else {
+@@ -319,6 +365,11 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	value = readl(meson->base + REG_MISC_AB);
+ 	state->enabled = value & channel_data->pwm_en_mask;
+ 
++	if (meson->data->has_polarity && (value & channel_data->inv_en_mask))
++		state->polarity = PWM_POLARITY_INVERSED;
++	else
++		state->polarity = PWM_POLARITY_NORMAL;
++
+ 	value = readl(meson->base + channel_data->reg_offset);
+ 	lo = FIELD_GET(PWM_LOW_MASK, value);
+ 	hi = FIELD_GET(PWM_HIGH_MASK, value);
+@@ -326,8 +377,6 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	state->period = meson_pwm_cnt_to_ns(chip, pwm, lo + hi);
+ 	state->duty_cycle = meson_pwm_cnt_to_ns(chip, pwm, hi);
+ 
+-	state->polarity = PWM_POLARITY_NORMAL;
+-
+ 	return 0;
+ }
+ 
+-- 
 2.25.1
 
 
