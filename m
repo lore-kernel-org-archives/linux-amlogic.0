@@ -4,83 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FB55D2A52B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2024 15:32:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25BB2D2F7FC
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Oct 2024 08:23:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y3fsc/yy8DgJcFbXnJBqSYJuVSGSlEu8HmHhzor/hZs=; b=jaFGNjHiABgNTq
-	5/rsGZODdaTIPWQTMMuSqU6W4BlEJdK4ogxINTjtiAZHu/UFyi66ilc//GPkEwYPlo7fy514/TcMg
-	/j75CT1JMAFaD1fOyx3aS2QbDuKJOvTGJsJ+J4dWuTBJxSnGuMtlL+EqkQffG7PwKPstJzZKzHEKX
-	KbtO+9J57yONODZsAMrfJN4/ezSN9UaxNii609qeQWWYlnKd3PB7iMJjYkS1Mh2XznnnNPrEl08bF
-	wWKH464l4o+PjA+3MLUIFucWMzUn/LGfai467BGtZPgf9tnVEA65ZUMLk7mM10innIphb3gnOM3LC
-	9hda8vkDlb1OJOmmu36Q==;
+	List-Owner; bh=nLug84M637fwGC9shxpfCPCH1Z0IWAm0x0Dnw1ebJF8=; b=wTf8Y2HugX2GZ4
+	hR1QVEVh50JIqfaLWO5XQjzZvx5FO9ufrrSJ8LVi1UQunjmkJ3m+us2ylamtfxHLXNElD49hvYSBU
+	GMvxI8Jhj4l/xcYeU6qbpzMteGu6uiuDOzwsatyEq61N6ySM8rxs4bHAUlaXyw2qcoRM7hYqQ8QIS
+	Ov2WxrVln1aT6zC090j9ElI3mZ4SebgWyfiI2irc+WpUWQ5eHuoRYqnIjgd0Kga7zekCxysUZbifA
+	MbZXeUgDAf6BlQkfnT9InMm+EatOcrOXFSIGYFDSPTEikGUEu2QN/eXfp6XMCY135KJzaSJeen1HR
+	meXV3Znv6pwehoSLd5Sg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t160K-0000000CFj8-1CnC;
-	Wed, 16 Oct 2024 15:32:04 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1t1LnL-0000000EAXS-05dE;
+	Thu, 17 Oct 2024 08:23:43 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t15ub-0000000CEas-14No;
-	Wed, 16 Oct 2024 15:26:13 +0000
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 05F0D100011;
-	Wed, 16 Oct 2024 18:26:01 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 05F0D100011
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1729092361;
-	bh=ie0GV8DG4yd13nbeYH8GqOq95iYonfAAkZTE/wGLrds=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=onePfh5gQuBLDZEf/R9Ci7Ok70IrA7nH3jv6xKGeyhXMvdyZJ96bTVVKH5zNRSq/D
-	 C2ru6aIFtESotRpWAIAbWSGmLl0afa2Xw+iP5xF5oJdHn8cMh0zcDRlveGbDNI1Um1
-	 WN/jbirmerZ9QxTnI0+xL8LsDp9fN+m7rRk3U/Q8bUBzIVC1LJWSV1ygEtXSXMCMkC
-	 dsHkanIZwliaCXekmqqGCUp9obclgW5vlZ8izO7aUrtUx4xeyqCIUq3JMXVKdLF9A0
-	 8n9NK3S7OIvZuxbphnK6WBOKs2t5Qa+H4iJEakLNfC25QLYLGR/NrqiiZsjaZchc15
-	 BmJpD1UHb2Xuw==
-Received: from smtp.sberdevices.ru (unknown [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 16 Oct 2024 18:26:00 +0300 (MSK)
-From: George Stark <gnstark@salutedevices.com>
-To: <u.kleine-koenig@pengutronix.de>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>
-CC: <linux-pwm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@salutedevices.com>, George Stark <gnstark@salutedevices.com>
-Subject: [PATCH v2 2/4] pwm: meson: Support constant and polarity bits
-Date: Wed, 16 Oct 2024 18:25:51 +0300
-Message-ID: <20241016152553.2321992-3-gnstark@salutedevices.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241016152553.2321992-1-gnstark@salutedevices.com>
-References: <20241016152553.2321992-1-gnstark@salutedevices.com>
+	id 1t1Llo-0000000EAGb-2jeC
+	for linux-amlogic@lists.infradead.org;
+	Thu, 17 Oct 2024 08:22:13 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-37d43a9bc03so405962f8f.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 17 Oct 2024 01:22:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729153326; x=1729758126; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l+o161Gg5qEIBbD/Irkt8zZ7lwsNP+yatDJyy3MG9Sw=;
+        b=rhMYj95GGg0WS1NCzHAknbkZ1ieWQRP+/TqK1YmMOtbbNGPQnk3oXVRqseItor8/em
+         8+0rh3Vh3EFG8t6DGgYJXJJjGuac1G7yNVRwte1fElDLL9kHWM0yejrknPejQIR1V91E
+         HQdUFOGWclY9lTiLn3p42RF/6lptzStbTFXcYJOpoOzzc9oVf8DHP++J1TP56nmtkXf9
+         PIRBM91eOhIg8YNlh13oHPxxwt330gV2dAsxoZysLzCfm1bWXUYVTcK31vLZ0FZxbtOs
+         d9yT23h0PnIaOQ45C8naQBE5K6eWU9mMc45SCC++fI1pTR1L0k7kb2LzwaNpPZ/rAOh2
+         vzsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729153326; x=1729758126;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l+o161Gg5qEIBbD/Irkt8zZ7lwsNP+yatDJyy3MG9Sw=;
+        b=ocEJaR1yttOr4Z0IZZ/LSfm3RpMOljBhMK4uRoZBvJY3Mm0ujBZsh+//SQdzW9j/BO
+         HyWAeOyfY/a+MVg9EjBFWmbQ6kFd4h/P3otkyAPyRiPvkk67ranJ4MfIdbbG2XfybWCC
+         TKDkF0cz58Y28DT7p2IYjoTiJf8axRRfC9ZQ5HWdkLpI7C3RZN9mALwQHAwZVpIOsI9Y
+         brnRYYcp33ed59SpMBOC/3/ymvyCDBIfQA0KQX+etp40XFqBp0xVndJeYGD53x9/5ZOl
+         d5z/dE+xPhn3vxgVM/+ujJTyqt2RK0RYKh4XQnzlLNDoI9rTLAyRCP3AgQn2sS2Fi4/x
+         mGzw==
+X-Forwarded-Encrypted: i=1; AJvYcCUxIAK2LYba4LGsp2SmbpP0Cl2ZiJfvBHgFirTn8jkKPnufCFNm/zsUDBMSaqWZt3RBqjoD0hENdl+jwdCG@lists.infradead.org
+X-Gm-Message-State: AOJu0YzUSDJgoZdD/ToICZKQwXe00JUbvT5bvh7ZBAD90mlqqzAwm7wt
+	ZXAen+nAObKUYHl/swkPUqfUQEaHoGyjXu4KykcdDRbToAyTb7UBOoL23YigOKI=
+X-Google-Smtp-Source: AGHT+IHtsgU6ukQtSJeOkmPtLxn9d1+7JFeyM7WZp79bJmJ9dLCMy+8OJEeHqNpJw8LWr8LrqN9mng==
+X-Received: by 2002:a05:6000:118c:b0:37d:2ceb:ef92 with SMTP id ffacd0b85a97d-37d5fedbb12mr12179177f8f.27.1729153326514;
+        Thu, 17 Oct 2024 01:22:06 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d7fbf8567sm6511645f8f.76.2024.10.17.01.22.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Oct 2024 01:22:06 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20241015-topic-amlogic-arm32-upstream-bindings-fixes-pinctrl-dtbs-v1-1-c7291f17063e@linaro.org>
+References: <20241015-topic-amlogic-arm32-upstream-bindings-fixes-pinctrl-dtbs-v1-1-c7291f17063e@linaro.org>
+Subject: Re: [PATCH] ARM: dts: amlogic: meson8/8b: remove invalid pinctrl
+ reg
+Message-Id: <172915332568.1203867.12350138706735239328.b4-ty@linaro.org>
+Date: Thu, 17 Oct 2024 10:22:05 +0200
 MIME-Version: 1.0
-X-Originating-IP: [185.8.126.20]
-X-ClientProxiedBy: p-i-exch-a-m2.sberdevices.ru (172.24.196.120) To
- p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 188482 [Oct 16 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 39 0.3.39 e168d0b3ce73b485ab2648dd465313add1404cce, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/10/16 12:08:00 #26762169
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241016_082610_105280_D5595BE5 
-X-CRM114-Status: GOOD (  23.46  )
+X-CRM114-CacheID: sfid-20241017_012209_249555_0DF8AF93 
+X-CRM114-Status: GOOD (  12.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,221 +98,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Newer meson PWM IPs support constant and polarity bits. Support them to
-correctly implement constant and inverted output levels.
+Hi,
 
-Using constant bit allows to have truly stable low or high output level.
-Since hi and low regs internally increment its values by 1 just writing
-zero to any of them gives 1 clock count impulse. If constant bit is set
-zero value in hi and low regs is not incremented.
+On Tue, 15 Oct 2024 14:25:19 +0200, Neil Armstrong wrote:
+> The pinctrl aobus/cbus was originally here to configure the
+> GPIO interrupt, but it was a bad design and was moved to a
+> separate gpio_intc node because the GPIO interrupt is actually
+> separate from the pinctrl/gpio registers.
+> 
+> Drop this reg entry, and fix all the register offsets with a
+> proper range property.
+> 
+> [...]
 
-Using polarity bit instead of swapping hi and low reg values allows to
-correctly identify inversion in .get_state().
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.13/arm-dt)
 
-Signed-off-by: George Stark <gnstark@salutedevices.com>
----
- drivers/pwm/pwm-meson.c | 63 ++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 56 insertions(+), 7 deletions(-)
+[1/1] ARM: dts: amlogic: meson8/8b: remove invalid pinctrl reg
+      https://git.kernel.org/amlogic/c/2b901e9ef05d84e99582607e85393a6eba0e2363
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 2ef632caebcc..974c3c74768c 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -6,7 +6,7 @@
-  * PWM output is achieved by calculating a clock that permits calculating
-  * two periods (low and high). The counter then has to be set to switch after
-  * N cycles for the first half period.
-- * The hardware has no "polarity" setting. This driver reverses the period
-+ * Partly the hardware has no "polarity" setting. This driver reverses the period
-  * cycles (the low length is inverted with the high length) for
-  * PWM_POLARITY_INVERSED. This means that .get_state cannot read the polarity
-  * from the hardware.
-@@ -56,6 +56,10 @@
- #define MISC_B_CLK_SEL_SHIFT	6
- #define MISC_A_CLK_SEL_SHIFT	4
- #define MISC_CLK_SEL_MASK	0x3
-+#define MISC_B_CONSTANT_EN	BIT(29)
-+#define MISC_A_CONSTANT_EN	BIT(28)
-+#define MISC_B_INVERT_EN	BIT(27)
-+#define MISC_A_INVERT_EN	BIT(26)
- #define MISC_B_EN		BIT(1)
- #define MISC_A_EN		BIT(0)
- 
-@@ -68,6 +72,8 @@ static struct meson_pwm_channel_data {
- 	u8		clk_div_shift;
- 	u8		clk_en_shift;
- 	u32		pwm_en_mask;
-+	u32		const_en_mask;
-+	u32		inv_en_mask;
- } meson_pwm_per_channel_data[MESON_NUM_PWMS] = {
- 	{
- 		.reg_offset	= REG_PWM_A,
-@@ -75,6 +81,8 @@ static struct meson_pwm_channel_data {
- 		.clk_div_shift	= MISC_A_CLK_DIV_SHIFT,
- 		.clk_en_shift	= MISC_A_CLK_EN_SHIFT,
- 		.pwm_en_mask	= MISC_A_EN,
-+		.const_en_mask	= MISC_A_CONSTANT_EN,
-+		.inv_en_mask	= MISC_A_INVERT_EN,
- 	},
- 	{
- 		.reg_offset	= REG_PWM_B,
-@@ -82,6 +90,8 @@ static struct meson_pwm_channel_data {
- 		.clk_div_shift	= MISC_B_CLK_DIV_SHIFT,
- 		.clk_en_shift	= MISC_B_CLK_EN_SHIFT,
- 		.pwm_en_mask	= MISC_B_EN,
-+		.const_en_mask	= MISC_B_CONSTANT_EN,
-+		.inv_en_mask	= MISC_B_INVERT_EN,
- 	}
- };
- 
-@@ -89,6 +99,8 @@ struct meson_pwm_channel {
- 	unsigned long rate;
- 	unsigned int hi;
- 	unsigned int lo;
-+	bool constant;
-+	bool inverted;
- 
- 	struct clk_mux mux;
- 	struct clk_divider div;
-@@ -99,6 +111,8 @@ struct meson_pwm_channel {
- struct meson_pwm_data {
- 	const char *const parent_names[MESON_NUM_MUX_PARENTS];
- 	int (*channels_init)(struct pwm_chip *chip);
-+	bool has_constant;
-+	bool has_polarity;
- };
- 
- struct meson_pwm {
-@@ -160,7 +174,7 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
- 	 * Fixing this needs some care however as some machines might rely on
- 	 * this.
- 	 */
--	if (state->polarity == PWM_POLARITY_INVERSED)
-+	if (state->polarity == PWM_POLARITY_INVERSED && !meson->data->has_polarity)
- 		duty = period - duty;
- 
- 	freq = div64_u64(NSEC_PER_SEC * 0xffffULL, period);
-@@ -187,9 +201,11 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
- 	if (duty == period) {
- 		channel->hi = cnt;
- 		channel->lo = 0;
-+		channel->constant = true;
- 	} else if (duty == 0) {
- 		channel->hi = 0;
- 		channel->lo = cnt;
-+		channel->constant = true;
- 	} else {
- 		duty_cnt = mul_u64_u64_div_u64(fin_freq, duty, NSEC_PER_SEC);
- 
-@@ -197,6 +213,7 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
- 
- 		channel->hi = duty_cnt;
- 		channel->lo = cnt - duty_cnt;
-+		channel->constant = false;
- 	}
- 
- 	channel->rate = fin_freq;
-@@ -204,6 +221,14 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
- 	return 0;
- }
- 
-+static inline void meson_pwm_assign_bit(u32 *data, u32 mask, bool value)
-+{
-+	if (value)
-+		*data |= mask;
-+	else
-+		*data &= ~mask;
-+}
-+
- static void meson_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
- {
- 	struct meson_pwm *meson = to_meson_pwm(chip);
-@@ -227,6 +252,15 @@ static void meson_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
- 
- 	value = readl(meson->base + REG_MISC_AB);
- 	value |= channel_data->pwm_en_mask;
-+
-+	if (meson->data->has_constant)
-+		meson_pwm_assign_bit(&value, channel_data->const_en_mask,
-+				     channel->constant);
-+
-+	if (meson->data->has_polarity)
-+		meson_pwm_assign_bit(&value, channel_data->inv_en_mask,
-+				     channel->inverted);
-+
- 	writel(value, meson->base + REG_MISC_AB);
- 
- 	spin_unlock_irqrestore(&meson->lock, flags);
-@@ -235,13 +269,22 @@ static void meson_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
- static void meson_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
- {
- 	struct meson_pwm *meson = to_meson_pwm(chip);
-+	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
-+	struct meson_pwm_channel_data *channel_data;
- 	unsigned long flags;
- 	u32 value;
- 
-+	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
-+
- 	spin_lock_irqsave(&meson->lock, flags);
- 
- 	value = readl(meson->base + REG_MISC_AB);
--	value &= ~meson_pwm_per_channel_data[pwm->hwpwm].pwm_en_mask;
-+	value &= ~channel_data->pwm_en_mask;
-+
-+	if (meson->data->has_polarity)
-+		meson_pwm_assign_bit(&value, channel_data->inv_en_mask,
-+				     channel->inverted);
-+
- 	writel(value, meson->base + REG_MISC_AB);
- 
- 	spin_unlock_irqrestore(&meson->lock, flags);
-@@ -254,10 +297,12 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
- 	int err = 0;
- 
-+	channel->inverted = (state->polarity == PWM_POLARITY_INVERSED);
-+
- 	if (!state->enabled) {
--		if (state->polarity == PWM_POLARITY_INVERSED) {
-+		if (channel->inverted && !meson->data->has_polarity) {
- 			/*
--			 * This IP block revision doesn't have an "always high"
-+			 * Some of IP block revisions don't have an "always high"
- 			 * setting which we can use for "inverted disabled".
- 			 * Instead we achieve this by setting mux parent with
- 			 * highest rate and minimum divider value, resulting
-@@ -271,6 +316,7 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 			channel->rate = ULONG_MAX;
- 			channel->hi = ~0;
- 			channel->lo = 0;
-+			channel->constant = true;
- 
- 			meson_pwm_enable(chip, pwm);
- 		} else {
-@@ -319,6 +365,11 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	value = readl(meson->base + REG_MISC_AB);
- 	state->enabled = value & channel_data->pwm_en_mask;
- 
-+	if (meson->data->has_polarity && (value & channel_data->inv_en_mask))
-+		state->polarity = PWM_POLARITY_INVERSED;
-+	else
-+		state->polarity = PWM_POLARITY_NORMAL;
-+
- 	value = readl(meson->base + channel_data->reg_offset);
- 	lo = FIELD_GET(PWM_LOW_MASK, value);
- 	hi = FIELD_GET(PWM_HIGH_MASK, value);
-@@ -326,8 +377,6 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 	state->period = meson_pwm_cnt_to_ns(chip, pwm, lo + hi);
- 	state->duty_cycle = meson_pwm_cnt_to_ns(chip, pwm, hi);
- 
--	state->polarity = PWM_POLARITY_NORMAL;
--
- 	return 0;
- }
- 
+These changes has been applied on the intermediate git tree [1].
+
+The v6.13/arm-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
 -- 
-2.25.1
+Neil
 
 
 _______________________________________________
