@@ -4,111 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 413B1D2127B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2024 08:43:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAC2FD2F7E8
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2024 08:47:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6SmlYB8DlFb6Kd9OQrbAhxlfsSB6tRVAAjBUWejIc7Y=; b=rZHpTCtAMHYQEU
-	ScDJGCnrKBqZ7qa5ndqWqlt3l5mogi5JaGg4BvrSu1bYWm6oCaBT0urXXQNF1reP1ofdv/zOBMpJE
-	awfvcabv883j/m9NE0c6xBC7xEjTckxwX0IrRkl2k5RYE3d8d6PLaS7+BHWlcecPn0upx6EvtXxxT
-	TEXFB39DVqJrnzEK9zT3VUkPF7Lzv5Ouzt321wWJTf7Avp8zGw7y63kybGwJ5iEUuvuONqIvb5Af1
-	l31uIxAGGU5KPQMj2FHECET1ot8EWPOpNIzQ2hpg/USo7uM6nGNZZJaz7+xyAlv1cS86k5g6gp1fT
-	T3iNO+8TPUZFbD45zHqw==;
+	List-Owner; bh=8x+XrxGRSzIX2ht7KFAEpDHr+GU+O4hz5GySwi9E3Og=; b=xqXXz96K6sRqZg
+	nwGSXh67URWNHLAiZcRZpe2andh9VIvcSs6G5ofMgEWwcdmm0D/bPNGog0P8mjqYWscgyEZtEGDVb
+	sWai3MJ9VvGSygnWrS0wJhN645flSMZYkd1eoTmbDL0Jj0BW9KGnoqhuuP8l3THJbX5qxNvdox4vP
+	mVJuq4Hll+vcuI7W4RGMs76NRElPUptrum2S+pnSZq2RgwacvfFlW32Xt9T7s8EzROix5CMOtRtur
+	Blc0BPaHseIyVT3fni+ek0FNvsgT1O59tYJrHWKdxQiS79VBlTlDfMLTtVLv66Aq9h3bBYX8CXoTN
+	NcvB21AdPeUZrLLlLaNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t1iZZ-000000000vk-2lTi;
-	Fri, 18 Oct 2024 08:43:01 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1t1idz-000000002Mn-1CFp;
+	Fri, 18 Oct 2024 08:47:35 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t1iLy-0000000HXTG-3gLK;
-	Fri, 18 Oct 2024 08:29:00 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 386505C5CCE;
-	Fri, 18 Oct 2024 08:28:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07221C4CED2;
-	Fri, 18 Oct 2024 08:28:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729240137;
-	bh=t8azlsJbzD/d+kmWsD1ut8PM1RBFHLHmrKBaTNuU6Rc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bmzm/TyyPgFTWdoISymC/SS/jMcTNqY2UMTdf/oqjdaIewu0umxaNzhle11wZ523A
-	 BsRjg/SjVpWI0vodQPXi70BP+6RWad8FuA+4BwF6mnublVnXHwI7F+mO/z19Xklrsg
-	 fnXyIc8sFqwuRHsEbYpPv21UDVySO8fSMolQLshpKzZLQyjVn1M0S+sANMOitsFKj8
-	 75HrGlCSD2kheD3BSw9UMMb1cHMLgPHuSldEOGrsaNpq6tc0m3uspwZpQtH+QyYtLz
-	 nUsGhXC+K2KAA5GEMO7ptl8fy7YiHZHb0cUIpaymZv7YSB5nLyRhrzh+qYNTJeVRjw
-	 8FbBFnlZS1S2g==
-Message-ID: <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
-Date: Fri, 18 Oct 2024 10:28:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	id 1t1iWB-0000000HafK-2WbP
+	for linux-amlogic@lists.infradead.org;
+	Fri, 18 Oct 2024 08:39:33 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-430ee5c9570so24010185e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 18 Oct 2024 01:39:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729240770; x=1729845570; darn=lists.infradead.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HrncWdVx0bleY/RhYi61o0nRl8Zpr6NCNC/up3U4baE=;
+        b=3MNHUAKaIxSImv7vRwf8eAT5T392gd+BuUE1EuGW5H3wL9j5Ly9YQrAGFSKq6n7xqW
+         qPtmvmdrZ8vShJE9w7N1d4UqvOnyRBFKjFZ3IPCD+6jzsdlntgw6n+t/ghpwuAGZc13Q
+         +XdGfypjBUD3dY9eoVdHZvkdqg4YQNEcR1olMyWQhC8Ig7GJ1UG1JxBNojtNanxv2RJn
+         gYvHc91pjrXNRHy3eearBNfTmtIZCgXnwO3Yi94D47kwMLNFbBuOnA/lVTGqwInUfGRJ
+         pEPctn+zybU2l59P9mDMUHEBOyKkCJyxz2zXc+mMSgo2bkCp/tKlS/d7OrNOcVmu9TkA
+         oBaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729240770; x=1729845570;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HrncWdVx0bleY/RhYi61o0nRl8Zpr6NCNC/up3U4baE=;
+        b=a1qjKX+RR2B4r79AZWCyuJUcHw//3ZYH6zv4jFeJ9+we3Oz6P+LlJPgw1qFx6mgtNS
+         +JT7CoNCSm9/E8+Egq2Ztpmy1JY6NxPuyrpDDazXf5AjtVen1tk1kn6F1UidcHWSOXiL
+         M1lw6HhL1ctlISAiczZ5JFrN9+sEJQEddEzmsMK0B7pYNFdhCN4RBDcgI7StVtkBUfeN
+         AxlJ97DClISQ4i8KMlD+aFBpne4VxDdhymQbkbyG4EVyvL2+yKtPXDeLFVdCwL/aCqfx
+         zVNvB2b5RzUHDOt5n6+3JSZSe1wP5VKn29BiogpLk+ReUQQrfs070Rp5D7EiM+uCKjMK
+         ILyg==
+X-Forwarded-Encrypted: i=1; AJvYcCVx5A7My+5YtD2qYNGl5vOCFVPBnIChVSUXAwWe/bfCvgLbXHd3/nnJ2xcSaIeCaNE/H6yAElnyPVmOmGhy@lists.infradead.org
+X-Gm-Message-State: AOJu0YwIPxe/Ya/sxCBApAaD7zuSrGl9us9Icltejg5LIxbaC/Lexdn2
+	jD4na4V/YEQmNyYow3iD2QYjrD0Hgi40ZQgtd4o6Wix3XlBzV2PJVFVtwzqREKQ=
+X-Google-Smtp-Source: AGHT+IEtT0VrGwMXWD3f3PNN6+mMk8Niqje0hsKtwQA0iMPfyIkaGazeJqRT2ugGAgBVN1yXC2tZog==
+X-Received: by 2002:a05:600c:4e8b:b0:431:5c3d:1700 with SMTP id 5b1f17b1804b1-43161642386mr15793305e9.21.1729240769641;
+        Fri, 18 Oct 2024 01:39:29 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:6e2b:4562:2d66:575e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43160e4fd55sm17360595e9.45.2024.10.18.01.39.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Oct 2024 01:39:29 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: xianwei.zhao@amlogic.com,  Linus Walleij <linus.walleij@linaro.org>,
+  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,  Bartosz Golaszewski
+ <brgl@bgdev.pl>,  linux-gpio@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-amlogic@lists.infradead.org,
+  linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
  SoCs
-To: xianwei.zhao@amlogic.com, Linus Walleij <linus.walleij@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
+In-Reply-To: <4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org> (Krzysztof
+	Kozlowski's message of "Fri, 18 Oct 2024 10:28:51 +0200")
 References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
- <20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
+	<20241018-a4_pinctrl-v3-1-e76fd1cf01d7@amlogic.com>
+	<4a79f996-9d82-48b2-8a93-d7917413ed8c@kernel.org>
+Date: Fri, 18 Oct 2024 10:39:28 +0200
+Message-ID: <1jttd9rein.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241018_012859_039744_FB666FF4 
-X-CRM114-Status: UNSURE (   7.10  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241018_013931_926249_BC3049ED 
+X-CRM114-Status: GOOD (  11.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,19 +100,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18/10/2024 10:10, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> Add the new compatible name for Amlogic A4 pin controller, and add
-> a new dt-binding header file which document the detail pin names.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Fri 18 Oct 2024 at 10:28, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> On 18/10/2024 10:10, Xianwei Zhao via B4 Relay wrote:
+>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> 
+>> Add the new compatible name for Amlogic A4 pin controller, and add
+>> a new dt-binding header file which document the detail pin names.
 
-Best regards,
-Krzysztof
+the change does not do what is described here. At least the description
+needs updating.
 
+So if the pin definition is now in the driver, does it mean that pins have
+to be referenced in DT directly using the made up numbers that are
+created in pinctrl-amlogic-a4.c at the beginning of patch #2 ?
+
+If that's case, it does not look very easy a read.
+
+>> 
+>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> Best regards,
+> Krzysztof
+
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
