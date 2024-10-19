@@ -4,69 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B1B7D30019
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2024 15:52:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8427BD3C919
+	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Oct 2024 14:57:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aVUL3bFXuRKqglOpMEuOQtNSJBcFiYiercDGJekUb+0=; b=JncfGtRBuF0AcK
-	Wo+sp/nm1TUfIg/KM4JrdwVqKYdrX2Hog+xF0E1eQiFtxRD8JhjOjUxVGUQtvAe5ntsVo6lfParfd
-	xisNwved1ZDBjWfQeDcbW+9x1mhpGwPg1mCQl5zU/NpJikaYqnCwfCbhrrGEVTlL+RsSVYqMGdjUK
-	jc2yymg49jA4VgMUDDNgfIWF2zeI8iPaJ/sCqu2WV3ZNLHEWEpe+1oDoShcwiIceWG3QXU0PJXWkl
-	A8jkak9wGA8Pt27iWL3QEUHZNoLxYnrXXoSKuvzft4he3GujRQ7PGTPtkMNR03Jk9LGOdqkRPMS0y
-	010Tq/u32yznNcqgOdzQ==;
+	List-Owner; bh=Grz3qq3rztcmsbLM4/0LXSPpGnstvpCNMxbQlRkODmk=; b=ZoAoGT0LyobsXN
+	M45RZAOtF5nJYDkEehecdIPzy3iDyc5pw/YvCGJGCQ3ZCRiSiFaXhicX2EUkVUGDl32trnJ8+guLF
+	dnYIeLunMrJqzRescsiDzCzjtPw7cSXwbfP6I2rIH1fcaH+Sm0Azt1wBgfk2McijDsDG2gkNtjgPX
+	kporUKa34izz+G1NZqs75BHKj8EM9gu82sSh+tSoPfgyx6lTujv09zK0QRLC33oy86Hza0toReVHF
+	1NQGJ4kYTgoNKToheK4oXdTVbzyydE/b0Yu9pVbUajZzbqhpp/hv37FCzFYtBMTT7s9VXsgfZIxNk
+	LBu3Gpn0khVZWHQ6Psyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t1pGg-00000001FkZ-3tNw;
-	Fri, 18 Oct 2024 15:51:58 +0000
-Received: from smtp-78.smtpout.orange.fr ([80.12.242.78] helo=msa.smtpout.orange.fr)
+	id 1t2AtM-00000003Srs-3G0V;
+	Sat, 19 Oct 2024 14:57:20 +0000
+Received: from mail-lj1-x233.google.com ([2a00:1450:4864:20::233])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t1pGc-00000001Fif-2U1W;
-	Fri, 18 Oct 2024 15:51:57 +0000
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id 1pGStsci8jsSz1pGStrPkf; Fri, 18 Oct 2024 17:51:46 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1729266706;
-	bh=sLry7svattCS2VIxhjFRtmY/ODP4U3928+bO0Nd9eYk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=uOeco2E+QH4CUOS8p/vIaRqUOczATdzDubY7N5PrkqLWeK9FoeOCS0jI7RuPQ3Y5D
-	 3YfzV6/FErDr7/dbA5F2BJ6vqX45v5gyOcZGlrV6VyLBHxPyCQGqbeMwlOxw3m6K3f
-	 t5mmM/VsgjSBUP9QQO+FZJpDTKriCETUqSd1chgQeQW5wVhE00QQNrlGguWBk3Hfp1
-	 i7IZjPWy/1NdxdHEanezhBD9QHbF7IYUtoWXHEqUlJXFt0RKy0flT1BQaIt3LOf4b5
-	 nqn1qGcVuM774czTuDqgoSi9BEYAMF4LS7vtnzx1+8nMJL0aeFGeQoF4p0mWkONrgt
-	 5F+gWqjnPSOEQ==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Fri, 18 Oct 2024 17:51:46 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <3e1b23e9-d5a3-4b3d-973c-546b994e3ae2@wanadoo.fr>
-Date: Fri, 18 Oct 2024 17:51:44 +0200
+	id 1t2AtJ-00000003Sqd-3VW9
+	for linux-amlogic@lists.infradead.org;
+	Sat, 19 Oct 2024 14:57:19 +0000
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2fb584a8f81so34568241fa.3
+        for <linux-amlogic@lists.infradead.org>; Sat, 19 Oct 2024 07:57:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1729349836; x=1729954636; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9j8gEdaXjCgYvssEU5IyYldyfPJ7EgCEc7AKiV0Wplo=;
+        b=TihQjIU5ysnlShRLuAJ8vzWxygz08tJeAcMIx9Ht8c6JS0mq9L+nQd7jxIOHjawAlo
+         IEuLOkk1rhLawXzg1a1KcM2LJH7PJoxg+prFtZ2S2eSGMljyWY8u9EgHx+DouuxtEu/7
+         Z3Wun7WzDag5LCJGY2ZrnCb5pBB/kbkP5/HyhuFE4l1iA9RzJPC0iYc8XhWQNCX++xZ0
+         XBw1vwtxZ4HXJTDvJjVct40/8i5HT8EDl7Jz52MK32jS+Wz8qUxVTHJPuhwBAbxAbm1z
+         e3tK59pJhfx5lZEPyQySAVNG0IL56h0g4/T/EZ7HSmYedaPQPIsjvw/oVYo87MOMZ7aL
+         D2RQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729349836; x=1729954636;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9j8gEdaXjCgYvssEU5IyYldyfPJ7EgCEc7AKiV0Wplo=;
+        b=UZl2nzreZmzABAifzVp96a00mv1yTsVYA23kqMKFBit/NOvd2Y+NYhAHPJkthb187D
+         SqPtmaR5JxKwwbuMlqZTysvVcFaGrIgSwWLshS8yAWxe12q7xT6BoKLdqCxrSDK52ReR
+         nUr4kIID0tfTqSLZJfZUBAKBplunk5b7zyRftaTxhed+1SgBHzgjtQ/90TL70bx/ieLb
+         q7UjVkSH1e1agAECKESePPJzlQX8MGmMTYZ55bfF/UTNQdn/P+1DIGfQ41QTAMEONGJD
+         gMFfFH36mQ8H4RbgXlzw4G4m0nX9eHzA1JjyyuFzmy4lZlXITMla1LL9o31YNrbwQtPx
+         rRSg==
+X-Forwarded-Encrypted: i=1; AJvYcCXggCUCO5Bb7eKUiLucmJcbjzMopeGPPoZHihOX9F/AXLNwayTiDXxrarUkgwjLf7nxeOPSef67PgZZ/BCs@lists.infradead.org
+X-Gm-Message-State: AOJu0YyereH2D6yjDm5LIgduBdmMuZ6HZrWov7OPD64ThzzSrzlRohRW
+	B1yuWkIV9Hvr5AyS6N/rp5AZgJ4RdrkkiT8vjHTQ8VHRwZMvGFfr5vMO83mFK/c=
+X-Google-Smtp-Source: AGHT+IF6G/RBVCJ37Wkr6byblq1JGc4buk0lZZCEyfBOLwQBxZWy4M9lW7077J1jd9gHkbNS4kARzw==
+X-Received: by 2002:a05:6512:3a82:b0:539:ed5e:e226 with SMTP id 2adb3069b0e04-53a1522a891mr3517985e87.26.1729349835560;
+        Sat, 19 Oct 2024 07:57:15 -0700 (PDT)
+Received: from eriador.lan (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53a15214f1dsm551788e87.288.2024.10.19.07.57.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Oct 2024 07:57:15 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Jagan Teki <jagan@amarulasolutions.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Stefan Agner <stefan@agner.ch>,
+	Alison Wang <alison.wang@nxp.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 0/6] drm: constify read-only regmap structs
+Date: Sat, 19 Oct 2024 17:57:07 +0300
+Message-ID: <172934981948.2755496.13654719356285263322.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240925-drm-const-regmap-v1-0-e609d502401b@gmail.com>
+References: <20240925-drm-const-regmap-v1-0-e609d502401b@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] pinctrl: meson: Add driver support for Amlogic A4
- SoCs
-To: xianwei.zhao@amlogic.com, Linus Walleij <linus.walleij@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
- <20241018-a4_pinctrl-v3-2-e76fd1cf01d7@amlogic.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20241018-a4_pinctrl-v3-2-e76fd1cf01d7@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241018_085155_394115_A8E24A12 
-X-CRM114-Status: GOOD (  12.57  )
+X-CRM114-CacheID: sfid-20241019_075717_919731_06C035E4 
+X-CRM114-Status: UNSURE (   7.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,108 +117,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TGUgMTgvMTAvMjAyNCDDoCAxMDoxMCwgWGlhbndlaSBaaGFvIHZpYSBCNCBSZWxheSBhIMOpY3Jp
-dMKgOgo+IEZyb206IFhpYW53ZWkgWmhhbyA8eGlhbndlaS56aGFvQGFtbG9naWMuY29tPgo+IAo+
-IEFkZCBhIG5ldyBwaW5jdHJsIGRyaXZlciBmb3IgQW1sb2dpYyBBNCBTb0NzIHdoaWNoIHNoYXJl
-Cj4gdGhlIHNhbWUgcmVnaXN0ZXIgbGF5b3V0IGFzIHRoZSBwcmV2aW91cyBBbWxvZ2ljIFM0Lgo+
-IAo+IFNpZ25lZC1vZmYtYnk6IFhpYW53ZWkgWmhhbyA8eGlhbndlaS56aGFvQGFtbG9naWMuY29t
-Pgo+IC0tLQo+ICAgZHJpdmVycy9waW5jdHJsL21lc29uL0tjb25maWcgICAgICAgICAgICAgIHwg
-ICAgNiArCj4gICBkcml2ZXJzL3BpbmN0cmwvbWVzb24vTWFrZWZpbGUgICAgICAgICAgICAgfCAg
-ICAxICsKPiAgIGRyaXZlcnMvcGluY3RybC9tZXNvbi9waW5jdHJsLWFtbG9naWMtYTQuYyB8IDEy
-NTMgKysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+ICAgMyBmaWxlcyBjaGFuZ2VkLCAxMjYw
-IGluc2VydGlvbnMoKykKCkhpLAoKYSBmZXcgbml0cGlja3MgYmVsb3cuCgouLi4KCj4gKwo+ICtz
-dGF0aWMgc3RydWN0IG1lc29uX3BteF9ncm91cCBhNF9wZXJpcGhzX2dyb3Vwc1tdID0gewoKSSB0
-aGluayB0aGF0IHN0cnVjdCBtZXNvbl9wbXhfZ3JvdXAgY291bGQgYmUgY29uc3QuCihzYW1lIGZv
-ciBhNF9hb2J1c19ncm91cHMgYWJvdmUpCgo+ICsJLyogZnVuYzAgYXMgR1BJTyAqLwo+ICsJR1BJ
-T19HUk9VUChHUElPRV8wKSwKPiArCUdQSU9fR1JPVVAoR1BJT0VfMSksCj4gKwoKLi4uCgo+ICtz
-dGF0aWMgc3RydWN0IG1lc29uX3BteF9mdW5jIGE0X3BlcmlwaHNfZnVuY3Rpb25zW10gPSB7CgpJ
-IHRoaW5rIHRoYXQgc3RydWN0IG1lc29uX3BteF9mdW5jIGNvdWxkIGJlIGNvbnN0LgooYTRfYW9i
-dXNfZnVuY3Rpb25zIGFib3ZlIGFzIHdlbGwpCgo+ICsJRlVOQ1RJT04oZ3Bpb19wZXJpcGhzKSwK
-PiArCUZVTkNUSU9OKHVhcnRfYSksCj4gKwlGVU5DVElPTih1YXJ0X2IpLAo+ICsJRlVOQ1RJT04o
-dWFydF9kKSwKPiArCUZVTkNUSU9OKHVhcnRfZSksCj4gKwlGVU5DVElPTihpMmMwKSwKPiArCUZV
-TkNUSU9OKGkyYzEpLAo+ICsJRlVOQ1RJT04oaTJjMiksCj4gKwlGVU5DVElPTihpMmMzKSwKPiAr
-CUZVTkNUSU9OKHB3bV9hKSwKPiArCUZVTkNUSU9OKHB3bV9iKSwKPiArCUZVTkNUSU9OKHB3bV9j
-KSwKPiArCUZVTkNUSU9OKHB3bV9kKSwKPiArCUZVTkNUSU9OKHB3bV9lKSwKPiArCUZVTkNUSU9O
-KHB3bV9mKSwKPiArCUZVTkNUSU9OKHB3bV9nKSwKPiArCUZVTkNUSU9OKHB3bV9oKSwKPiArCUZV
-TkNUSU9OKHJlbW90ZV9vdXQpLAo+ICsJRlVOQ1RJT04ocmVtb3RlX2luKSwKPiArCUZVTkNUSU9O
-KGRjb25fbGVkKSwKPiArCUZVTkNUSU9OKHNwaW5mKSwKPiArCUZVTkNUSU9OKGxjZCksCj4gKwlG
-VU5DVElPTihqdGFnXzEpLAo+ICsJRlVOQ1RJT04oZ2VuX2NsayksCj4gKwlGVU5DVElPTihjbGsx
-Ml8yNCksCj4gKwlGVU5DVElPTihlbW1jKSwKPiArCUZVTkNUSU9OKG5hbmQpLAo+ICsJRlVOQ1RJ
-T04oc3BpX2EpLAo+ICsJRlVOQ1RJT04oc3BpX2IpLAo+ICsJRlVOQ1RJT04ocGRtKSwKPiArCUZV
-TkNUSU9OKHNkaW8pLAo+ICsJRlVOQ1RJT04oZXRoKSwKPiArCUZVTkNUSU9OKG1pY19tdXRlKSwK
-PiArCUZVTkNUSU9OKG1jbGspLAo+ICsJRlVOQ1RJT04odGRtKSwKPiArCUZVTkNUSU9OKHNwZGlm
-X2luKSwKPiArCUZVTkNUSU9OKHNwZGlmX291dCkKPiArfTsKPiArCj4gK3N0YXRpYyBzdHJ1Y3Qg
-bWVzb25fYmFuayBhNF9wZXJpcGhzX2JhbmtzW10gPSB7CgpJIHRoaW5rIHRoYXQgYm90aCBzdHJ1
-Y3QgbWVzb25fYmFuayBjb3VsZCBiZSBjb25zdC4KCj4gKwkvKiBuYW1lICBmaXJzdCAgbGFzdCAg
-aXJxICBwdWxsZW4gIHB1bGwgIGRpciAgb3V0ICBpbiAqLwo+ICsJQkFOS19EUygiRSIsICBHUElP
-RV8wLCAgR1BJT0VfMSwgIDE0LCAgMTUsCj4gKwkJMHg0MywgIDAsIDB4NDQsICAwLCAweDQyLCAg
-MCwgMHg0MSwgIDAsIDB4NDAsICAwLCAweDQ3LCAgMCksCj4gKwlCQU5LX0RTKCJEIiwgIEdQSU9E
-XzAsIEdQSU9EXzE1LCAgMTYsIDMxLAo+ICsJCTB4MzMsICAwLCAweDM0LCAgMCwgMHgzMiwgIDAs
-IDB4MzEsICAwLCAweDMwLCAgMCwgMHgzNywgIDApLAo+ICsJQkFOS19EUygiQiIsICBHUElPQl8w
-LCBHUElPQl8xMywgMCwgMTMsCj4gKwkJMHg2MywgIDAsIDB4NjQsICAwLCAweDYyLCAgMCwgMHg2
-MSwgIDAsIDB4NjAsICAwLCAweDY3LCAgMCksCj4gKwlCQU5LX0RTKCJYIiwgIEdQSU9YXzAsIEdQ
-SU9YXzE3LCA1NSwgNzIsCj4gKwkJMHgxMywgIDAsIDB4MTQsICAwLCAweDEyLCAgMCwgMHgxMSwg
-IDAsIDB4MTAsICAwLCAweDE3LCAgMCksCj4gKwlCQU5LX0RTKCJUIiwgIEdQSU9UXzAsIEdQSU9U
-XzIyLCAzMiwgNTQsCj4gKwkJMHgyMywgIDAsIDB4MjQsICAwLCAweDIyLCAgMCwgMHgyMSwgIDAs
-IDB4MjAsICAwLCAweDI3LCAgMCksCj4gK307Cj4gKwo+ICtzdGF0aWMgc3RydWN0IG1lc29uX2Jh
-bmsgYTRfYW9idXNfYmFua3NbXSA9IHsKPiArCUJBTktfRFMoIkFPIiwgR1BJT0FPXzAsIEdQSU9B
-T182LCAgMCwgIDYsCj4gKwkJMHgzLCAgIDAsICAweDQsICAwLCAgIDB4MiwgIDAsICAweDEsICAw
-LCAgMHgwLCAgMCwgIDB4NywgMCksCj4gKwlCQU5LX0RTKCJURVNUX04iLCBHUElPX1RFU1RfTiwg
-ICAgR1BJT19URVNUX04sICAgNywgNywKPiArCQkweDEzLCAgMCwgIDB4MTQsICAwLCAgMHgxMiwg
-MCwgIDB4MTEsICAwLCAweDEwLCAwLCAweDE3LCAwKSwKPiArfTsKPiArCj4gK3N0YXRpYyBzdHJ1
-Y3QgbWVzb25fcG14X2JhbmsgYTRfcGVyaXBoc19wbXhfYmFua3NbXSA9IHsKCkkgdGhpbmsgdGhh
-dCBib3RoIHN0cnVjdCBtZXNvbl9wbXhfYmFuayBjb3VsZCBiZSBjb25zdC4KCj4gKwkvKiBuYW1l
-ICBmaXJzdCAgbGFzayAgcmVnICBvZmZzZXQgKi8KPiArCUJBTktfUE1YKCJFIiwgIEdQSU9FXzAs
-ICBHUElPRV8xLCAweDEyLCAgMCksCj4gKwlCQU5LX1BNWCgiRCIsICBHUElPRF8wLCBHUElPRF8x
-NSwgMHgxMCwgIDApLAo+ICsJQkFOS19QTVgoIkIiLCAgR1BJT0JfMCwgR1BJT0JfMTMsIDB4MDAs
-ICAwKSwKPiArCUJBTktfUE1YKCJYIiwgIEdQSU9YXzAsIEdQSU9YXzE3LCAweDAzLCAgMCksCj4g
-KwlCQU5LX1BNWCgiVCIsICBHUElPVF8wLCBHUElPVF8yMiwgMHgwYiwgIDApLAo+ICt9Owo+ICsK
-PiArc3RhdGljIHN0cnVjdCBtZXNvbl9wbXhfYmFuayBhNF9hb2J1c19wbXhfYmFua3NbXSA9IHsK
-PiArCUJBTktfUE1YKCJBTyIsIEdQSU9BT18wLCBHUElPQU9fNiwgMHgwMCwgIDApLAo+ICsJQkFO
-S19QTVgoIlRFU1RfTiIsIEdQSU9fVEVTVF9OLCBHUElPX1RFU1RfTiwgMHgwLCAgMjgpLAo+ICt9
-Owo+ICsKPiArc3RhdGljIHN0cnVjdCBtZXNvbl9heGdfcG14X2RhdGEgYTRfcGVyaXBoc19wbXhf
-YmFua3NfZGF0YSA9IHsKCkkgdGhpbmsgdGhhdCBib3RoIHN0cnVjdCBtZXNvbl9heGdfcG14X2Rh
-dGEgY291bGQgYmUgY29uc3QuCgo+ICsJLnBteF9iYW5rcwk9IGE0X3BlcmlwaHNfcG14X2Jhbmtz
-LAo+ICsJLm51bV9wbXhfYmFua3MJPSBBUlJBWV9TSVpFKGE0X3BlcmlwaHNfcG14X2JhbmtzKSwK
-PiArfTsKPiArCj4gK3N0YXRpYyBzdHJ1Y3QgbWVzb25fYXhnX3BteF9kYXRhIGE0X2FvYnVzX3Bt
-eF9iYW5rc19kYXRhID0gewo+ICsJLnBteF9iYW5rcwk9IGE0X2FvYnVzX3BteF9iYW5rcywKPiAr
-CS5udW1fcG14X2JhbmtzCT0gQVJSQVlfU0laRShhNF9hb2J1c19wbXhfYmFua3MpLAo+ICt9Owo+
-ICsKPiArc3RhdGljIHN0cnVjdCBtZXNvbl9waW5jdHJsX2RhdGEgYTRfcGVyaXBoc19waW5jdHJs
-X2RhdGEgPSB7CgpJIHRoaW5rIHRoYXQgYm90aCBzdHJ1Y3QgbWVzb25fcGluY3RybF9kYXRhIGNv
-dWxkIGJlIGNvbnN0LgoKPiArCS5uYW1lCQk9ICJwZXJpcGhzLWJhbmtzIiwKPiArCS5waW5zCQk9
-IGE0X3BlcmlwaHNfcGlucywKPiArCS5ncm91cHMJCT0gYTRfcGVyaXBoc19ncm91cHMsCj4gKwku
-ZnVuY3MJCT0gYTRfcGVyaXBoc19mdW5jdGlvbnMsCj4gKwkuYmFua3MJCT0gYTRfcGVyaXBoc19i
-YW5rcywKPiArCS5udW1fcGlucwk9IEFSUkFZX1NJWkUoYTRfcGVyaXBoc19waW5zKSwKPiArCS5u
-dW1fZ3JvdXBzCT0gQVJSQVlfU0laRShhNF9wZXJpcGhzX2dyb3VwcyksCj4gKwkubnVtX2Z1bmNz
-CT0gQVJSQVlfU0laRShhNF9wZXJpcGhzX2Z1bmN0aW9ucyksCj4gKwkubnVtX2JhbmtzCT0gQVJS
-QVlfU0laRShhNF9wZXJpcGhzX2JhbmtzKSwKPiArCS5wbXhfb3BzCT0gJm1lc29uX2F4Z19wbXhf
-b3BzLAo+ICsJLnBteF9kYXRhCT0gJmE0X3BlcmlwaHNfcG14X2JhbmtzX2RhdGEsCj4gKwkucGFy
-c2VfZHQJPSAmbWVzb25fYTFfcGFyc2VfZHRfZXh0cmEsCj4gK307Cj4gKwo+ICtzdGF0aWMgc3Ry
-dWN0IG1lc29uX3BpbmN0cmxfZGF0YSBhNF9hb2J1c19waW5jdHJsX2RhdGEgPSB7Cj4gKwkubmFt
-ZQkJPSAiYW9idXMtYmFua3MiLAo+ICsJLnBpbnMJCT0gYTRfYW9idXNfcGlucywKPiArCS5ncm91
-cHMJCT0gYTRfYW9idXNfZ3JvdXBzLAo+ICsJLmZ1bmNzCQk9IGE0X2FvYnVzX2Z1bmN0aW9ucywK
-PiArCS5iYW5rcwkJPSBhNF9hb2J1c19iYW5rcywKPiArCS5udW1fcGlucwk9IEFSUkFZX1NJWkUo
-YTRfYW9idXNfcGlucyksCj4gKwkubnVtX2dyb3Vwcwk9IEFSUkFZX1NJWkUoYTRfYW9idXNfZ3Jv
-dXBzKSwKPiArCS5udW1fZnVuY3MJPSBBUlJBWV9TSVpFKGE0X2FvYnVzX2Z1bmN0aW9ucyksCj4g
-KwkubnVtX2JhbmtzCT0gQVJSQVlfU0laRShhNF9hb2J1c19iYW5rcyksCj4gKwkucG14X29wcwk9
-ICZtZXNvbl9heGdfcG14X29wcywKPiArCS5wbXhfZGF0YQk9ICZhNF9hb2J1c19wbXhfYmFua3Nf
-ZGF0YSwKPiArCS5wYXJzZV9kdAk9ICZtZXNvbl9hMV9wYXJzZV9kdF9leHRyYSwKPiArfTsKPiAr
-Cj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIGE0X3BpbmN0cmxfZHRfbWF0Y2hb
-XSA9IHsKPiArCXsKPiArCQkuY29tcGF0aWJsZSA9ICJhbWxvZ2ljLGE0LXBlcmlwaHMtcGluY3Ry
-bCIsCj4gKwkJLmRhdGEgPSAmYTRfcGVyaXBoc19waW5jdHJsX2RhdGEsCj4gKwl9LAo+ICsJewo+
-ICsJCS5jb21wYXRpYmxlID0gImFtbG9naWMsYTQtYW9idXMtcGluY3RybCIsCj4gKwkJLmRhdGEg
-PSAmYTRfYW9idXNfcGluY3RybF9kYXRhLAo+ICsJfSwKPiArCXsgfSwKClVzdWFsbHksIHRoZXJl
-IGlzIG5vIGV4dHJhICIsIiBhZnRlciBhIHRlcmluYXRvciBpdGVtLgoKPiArfTsKPiArTU9EVUxF
-X0RFVklDRV9UQUJMRShvZiwgYTRfcGluY3RybF9kdF9tYXRjaCk7Cj4gKwo+ICtzdGF0aWMgc3Ry
-dWN0IHBsYXRmb3JtX2RyaXZlciBhNF9waW5jdHJsX2RyaXZlciA9IHsKPiArCS5wcm9iZSAgPSBt
-ZXNvbl9waW5jdHJsX3Byb2JlLAo+ICsJLmRyaXZlciA9IHsKPiArCQkubmFtZQk9ICJhbWxvZ2lj
-LWE0LXBpbmN0cmwiLAo+ICsJCS5vZl9tYXRjaF90YWJsZSA9IGE0X3BpbmN0cmxfZHRfbWF0Y2gs
-Cj4gKwl9LAo+ICt9OwoKLi4uCgpDSgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNA
-bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Wed, 25 Sep 2024 17:42:39 +0200, Javier Carrasco wrote:
+> This series adds the const modifier to the remaining regmap_bus and
+> regmap_config structs under drm/ that are effectively used as const
+> (i.e., only read after their declaration), but kept ad writtable data.
+> 
+> 
+
+Applied to drm-misc-next, thanks!
+
+[1/6] drm/bridge: dpc3433: Constify struct regmap_config
+      commit: b895a1805e0b01d523afa71818cb97a5d2655fcf
+[2/6] drm/fsl-dcu: Constify struct regmap_config
+      commit: 9239d961ce9d95ec13e241407d0320228e664d68
+[3/6] drm/mediatek: dp: Constify struct regmap_config
+      commit: 02f686d17c4305a0b5e2a9de749664dfe9c0f63e
+[4/6] drm/meson: Constify struct regmap_config
+      commit: 0bcbddb7ef0edb8b4ca994033128e955bb8b1b74
+[5/6] drm/panel: ili9322: Constify struct regmap_bus
+      commit: 6a92271233fb4789f69a9ba9410b23e2e5ab30e2
+[6/6] drm/sprd: Constify struct regmap_bus
+      commit: 420fb223fe6049f5eecac0d28136df5bc5699ea2
+
+Best regards,
+-- 
+With best wishes
+Dmitry
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
