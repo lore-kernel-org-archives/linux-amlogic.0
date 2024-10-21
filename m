@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E287D3C53F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2024 06:31:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DA4FD3C53F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2024 06:33:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Y6Z3wSS8MCOMZc1IbapPANLKQlTflapknhMEh8Horrk=; b=Rqbg6lgyxqHCNv
-	PTGiJaem8wrOBBKi6mkRFqofpmUlvQMRNoUnYKPxOUqHGn5KBxvwsaZd2T6CNCbZxDEXkQlulYR2S
-	dBkZhejJ/NejYDsYBuDmNHIM0PpzZfkeCLk41m0YJjOf2IvTeZmpk8SK3VpZhIaj93DbFI1/a7eMF
-	B6OvWQsGXZuTSPBVjO5ktWwkS/7PWReVfs0qm3b9ICOEV5LX1ZDbqTtNGeECZG9lwE6lavBErSPF8
-	Lr7a9we4y0DPAibZai157rL7zN1nil09winbWHoVOpdeCxuu1OQUtyZ2lGfNnPm02zBp8o1qpeUMH
-	vdYCmnSF2+hcc4tzHqng==;
+	List-Owner; bh=pzTVOQNUhnI7+TXRGGPa0U72R9cfJWugncA6nq5NzUM=; b=vt8/F52yeDZoY5
+	Mlh8bsNR0+g9uh60FEFne2nWViG/3vZgzz8i7GR24fBcWn8xTWFeeifHzdtyvgeQMzn2UgyTd5+Dl
+	tnSUB2QDqYIdKuQCalqYgpwDou+uFtmMUfeRejUPkTzVELYsnM+uRPy8hjY597ylMgSW3auQjg1Zs
+	d4u6xVbiZXS2WEzlby7wJYyVZBIbTRlMbJfZaD9ey7Xg1Cu0/ACvlBfBgpCYunNqM4MxSK4CQI7Hv
+	XSa4RK4hfPA6E+00WFDBSQtAi+AZWkVqkPEcRkp05XT9RSPt++SAIqIjGc0L8/rpjlg3K4ArVk3w/
+	VfmO3BOSotiYAxZMzU1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t2lx2-00000006CtJ-362q;
-	Mon, 21 Oct 2024 06:31:36 +0000
+	id 1t2lyX-00000006DAS-1qUw;
+	Mon, 21 Oct 2024 06:33:09 +0000
 Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t2lwz-00000006Csu-2KxS;
-	Mon, 21 Oct 2024 06:31:35 +0000
+	id 1t2lyC-00000006D6L-2Sys;
+	Mon, 21 Oct 2024 06:32:49 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 55D96A4172A;
-	Mon, 21 Oct 2024 06:31:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71EB7C4CEC3;
-	Mon, 21 Oct 2024 06:31:26 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 7F4EAA41720;
+	Mon, 21 Oct 2024 06:32:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C21DAC4CEC3;
+	Mon, 21 Oct 2024 06:32:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1729492291;
-	bh=WhSHnMsUMuuz6aBN+4q6e1xLL5CV8bctPFFrYJZFMVA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eZukqSlv2DxN+4ie17Ri7yvctbzM61UVj2Kzwz+aRuqk8sIqQ4308kPxgDgDk8PT9
-	 PNiNWniiAbvOqTKztxwrXzolsyKfw4OAAJu8Wt7bX/c9NDJkgiCV9l+vDwouD02uRH
-	 3VHaiXZxboXKvZ4gHbSRoJ3aMEBinqtzKk2O/nQ9+ybAEILC8uom3Snxe2uh6QSkZB
-	 jdvU2KB4ZzCp755RRVOf+bktFOshHobJbdxtYuW2Q02+x81IGOGatdGQCzdsrw5pf5
-	 ykTFZ//xQ1E5/SRANTfVtRJ/uX95OqYkrbcQ6RWhyQxJE3FM0XZ5T6/714+dzwjbDY
-	 RJGtHswEg86YA==
-Message-ID: <8cb615cf-1b4e-49ba-91fc-6e1f5f57cd3c@kernel.org>
-Date: Mon, 21 Oct 2024 08:31:23 +0200
+	s=k20201202; t=1729492367;
+	bh=zpa4Fatg54DYqfk5OKylbowe0195Hg2MiUo5EvTyIxU=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=TwOAlGvIimmLdmkiDg5An7a7QN2gYBWQlH7uQ4T4SYgv0YNzvllK6AFyh2ShcFSuL
+	 D6kmQ5cncjwb0XIeVeONMgieydjPXjnQOwz8LTZB6efQycibaJ9EtLpSDifaAJMKCs
+	 DKbaPauZLfevKN8FrlE9HBj3FsvSrjcujGqPl2TgLwrRPwNkjF0V3Pd0Ssqy3dPdpP
+	 eVocuS52+J6pgmOscGh0QBH/QhAvdw/xMO4uTKF1O3YjsHmnaxuRYWRfHPmew0eUcR
+	 C9ugl0PgbhXvvubwTsGAFv8XqaNT+x8AY/CteGS02v/nhk327dyQPjvrGi5k8qhNAE
+	 i/SFtJKrcJDMw==
+Message-ID: <119e86e4-acb4-455d-9b0b-ee851b621c91@kernel.org>
+Date: Mon, 21 Oct 2024 08:32:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Amlogic A4
  SoCs
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>
 Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,
  Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
@@ -65,7 +66,7 @@ References: <20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com>
  <1jmsj1rclh.fsf@starbuckisacylon.baylibre.com>
  <d654d2b2-977b-44c0-8b01-b26f5eb0a3fe@kernel.org>
  <1jiktpr40d.fsf@starbuckisacylon.baylibre.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <8cb615cf-1b4e-49ba-91fc-6e1f5f57cd3c@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -110,10 +111,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <1jiktpr40d.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <8cb615cf-1b4e-49ba-91fc-6e1f5f57cd3c@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241020_233133_762436_8B6C0F67 
-X-CRM114-Status: GOOD (  22.46  )
+X-CRM114-CacheID: sfid-20241020_233248_790310_07E1FBB5 
+X-CRM114-Status: GOOD (  15.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,92 +131,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18/10/2024 14:26, Jerome Brunet wrote:
-> On Fri 18 Oct 2024 at 12:13, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
->> On 18/10/2024 11:20, Jerome Brunet wrote:
->>> On Fri 18 Oct 2024 at 17:01, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
+On 21/10/2024 08:31, Krzysztof Kozlowski wrote:
+>>>>
+>>>>  reset-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
+>>>>
+>>>> And others will go in the driver to see that is maps to GPIOX_10 ? the number
+>>>> being completly made up, with no link to anything HW/Datasheet
+>>>> whatsoever ?
+>>>>
+>>>> This is how things should be done now ?
 >>>
->>>> Hi Jerome,
->>>>    Thanks for your reply.
->>>>
->>>> On 2024/10/18 16:39, Jerome Brunet wrote:
->>>>> [ EXTERNAL EMAIL ]
->>>>> On Fri 18 Oct 2024 at 10:28, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>>
->>>>>> On 18/10/2024 10:10, Xianwei Zhao via B4 Relay wrote:
->>>>>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>>>>>
->>>>>>> Add the new compatible name for Amlogic A4 pin controller, and add
->>>>>>> a new dt-binding header file which document the detail pin names.
->>>>> the change does not do what is described here. At least the description
->>>>> needs updating.
->>>>>
->>>>
->>>> Will do.
->>>>
->>>>> So if the pin definition is now in the driver, does it mean that pins have
->>>>> to be referenced in DT directly using the made up numbers that are
->>>>> created in pinctrl-amlogic-a4.c at the beginning of patch #2 ?
->>>>>
->>>>
->>>> Yes.
->>>>
->>>>> If that's case, it does not look very easy a read.
->>>>>
->>>>
->>>> It does happen. The pin definition does not fall under the category of
->>>> binding.
->>>>
->>>> https://lore.kernel.org/all/106f4321-59e8-49b9-bad3-eeb57627c921@amlogic.com/
+>>> Why would you need to do this? Why it cannot be <&gpio 10
+>>> GPIO_ACTIVE_LOW>, assuming it is GPIO 10?
 >>>
->>> So the expectation is that people will write something like:
->>>
->>>  reset-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
->>>
->>> And others will go in the driver to see that is maps to GPIOX_10 ? the number
->>> being completly made up, with no link to anything HW/Datasheet
->>> whatsoever ?
->>>
->>> This is how things should be done now ?
+>>> Bindings have absolutely nothing to do with it. You have GPIO 10, not
+>>> 42, right?
 >>
->> Why would you need to do this? Why it cannot be <&gpio 10
->> GPIO_ACTIVE_LOW>, assuming it is GPIO 10?
+>> That's what being proposed here, as far as I can see.
 >>
->> Bindings have absolutely nothing to do with it. You have GPIO 10, not
->> 42, right?
+>> GPIOX_10 (not GPIO 10) maps to 42. If this goes through, for DTs to be
+>> valid in any OS, all need to share the same definition. That looks like
+>> a binding to me.
+>>
+>> On these SOC, gpios in each controller are organized in bank with
+>> different number of pins. So far, this was represented as single linear
+>> array and that was not a problem since the mapping was part of the binding.
+>>
+>> Are you suggesting 2 params instead of one ? something like this maybe ?
+>>
+>> reset-gpios = <&gpio BANK_X 10 GPIO_ACTIVE_LOW>;
 > 
-> That's what being proposed here, as far as I can see.
+> No, I propose the same as you wrote:
+> <&gpio 10 GPIO_ACTIVE_LOW>
 > 
-> GPIOX_10 (not GPIO 10) maps to 42. If this goes through, for DTs to be
-> valid in any OS, all need to share the same definition. That looks like
-> a binding to me.
+> but I don't mind putting bank there.
 > 
-> On these SOC, gpios in each controller are organized in bank with
-> different number of pins. So far, this was represented as single linear
-> array and that was not a problem since the mapping was part of the binding.
+>>
+>> This means this A4 controller will be software incompatible with the
+>> previous generation. It will need to handled differently eventhough the
+>> HW is exactly the same.
+>>
+>> Note that some form of binding would still be required to define the
+>> banks which are referenced by arbitrary letter in doc, not numbers.
 > 
-> Are you suggesting 2 params instead of one ? something like this maybe ?
+> Usually banks are considered separate gpio controllers, so numbering
+> always start from 0 because phandle encodes the bank.
 > 
-> reset-gpios = <&gpio BANK_X 10 GPIO_ACTIVE_LOW>;
+> And this is exactly what Rob already asked in v1 review.
 
-No, I propose the same as you wrote:
-<&gpio 10 GPIO_ACTIVE_LOW>
-
-but I don't mind putting bank there.
-
-> 
-> This means this A4 controller will be software incompatible with the
-> previous generation. It will need to handled differently eventhough the
-> HW is exactly the same.
-> 
-> Note that some form of binding would still be required to define the
-> banks which are referenced by arbitrary letter in doc, not numbers.
-
-Usually banks are considered separate gpio controllers, so numbering
-always start from 0 because phandle encodes the bank.
-
-And this is exactly what Rob already asked in v1 review.
+Ha, actually I misread his reply, I think he proposed your syntax:
+<&gpio BANK_X 10 GPIO_ACTIVE_LOW>
 
 Best regards,
 Krzysztof
