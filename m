@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20749D1CDB8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Oct 2024 08:52:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2FB9D1CDCA
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Oct 2024 09:43:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qHZcypZenSNb7PhQRBOGmqUXHtx6NOfvVHhP1Is7MyA=; b=NcMIO6HKp5FHTR
-	7R2kMAI/Kztvhw9zGSVvJP+ONTDBO2MTxmMVJTqynSQBz/lOe9OFsvYISAQiJnIvzCj8EndX4VqBG
-	PCwURw0Ho7ifJ84VqNqOOFmCHT4QKN69aYvifOccyh0xZde+t1FIZbKd3nbFQTw5pUg0EPdmMxf+/
-	dLhQgGCd6SVfthW8cvRD4NER9hbTHD3Ugl+bQKx5GwZGrqkEGB1LfEEAiQhfRAGVybQS9Wjtwl99V
-	Ffh/UFqnMB9LOf7MF9XVMNP69lMh21lTc9wnscKF9pvUcJ4CwXa+Vq9tNEkNo0Smkw2ToMqNMFA+Q
-	PjnLVPy231xHhL8Oxzvg==;
+	List-Owner; bh=f+Qr83C9iQxhfhQpOs9kZku8MlzvpUrFKHE1W3G8+pc=; b=kKzbPEDfV5pBn9
+	XJt8yYxw8hVlAxtaLOJnLFB3AfOAbjWZI2uxmW+s/n7Vh1X0jFlV18+BpJ/DTkYszKAuzg1ua6f6F
+	raT6xufprRDCn+UELICp7BJ04uIvtNGk0ruc/AlYIMGu1oNMuuZ04lMSP4FziapO/0r9Ty+9Y4TyW
+	fQPmxZhIt9HKkre0E2MVuzUOwnPu0Yl5ltDjVijkOhg4ksrizUCcLXntnrapeoWpn1WAlQoeEkkaF
+	bm7H/cyQ83X9zOG9hRkSWBbmfyTnKx2AdbXDjcegTA/FEnFKm+EDoB2jipjuTUVmjypGBXvQYWDQB
+	Q1PI3IIuOcQ3GNdjSHkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t3Acc-0000000AElV-2dml;
-	Tue, 22 Oct 2024 08:52:10 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1t3BQF-0000000AOcg-333c;
+	Tue, 22 Oct 2024 09:43:27 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t3AVz-0000000ADQm-2Px6
+	id 1t3BHC-0000000AMjY-0huP
 	for linux-amlogic@lists.infradead.org;
-	Tue, 22 Oct 2024 08:45:21 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4316a44d1bbso26294465e9.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 22 Oct 2024 01:45:19 -0700 (PDT)
+	Tue, 22 Oct 2024 09:34:10 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-37d6a2aa748so3558590f8f.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 22 Oct 2024 02:34:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729586718; x=1730191518; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1729589644; x=1730194444; darn=lists.infradead.org;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Acw2yEf0B8QWtsSk4Q4U7jM/pzwUxcjLN/d69G1/bQ=;
-        b=Km5bvdZFWCk/8U7jpB+UyaO9jSWB84ORaDH15RC9+SZnPmpVcs/VbhJS5LCcA0rF41
-         Mqy3TxWk4RB7/hCylCDaBqsEVAmr4WCi+JGiFoLZ1Wh7U3Dh4D/MkErsv3Alo1ljn0nm
-         kEt6dG9lPRifcHIrV3FITfns3OB3A9fUpNvVUb/zowkX5UmmtDYaz1XBVNJLNyvSQRru
-         k9W4+S+lIPxGrWj37JuQjTGZGuVl2z0keXj6bP9DTOSsbD0Wapq/M2soc2hdWQGAIq0B
-         LEmSPYBypyqu5NyTAwxC4pshxOgqaigpFKZWwft1YZnX2W8RlS++lKMYAFZaGoAPCM72
-         xnpA==
+        bh=gZycHHif1XK15/J1/2rimbGE/T++GDZJvNYQ0hrutG4=;
+        b=pRY5uguEyKv4Vjdd4UyMhCUMEggb+Y4d5LJSkNtbl95WPMIt9vBu927dpMaqoTaGXm
+         WqgDDAq+c+HquLN1c5/+7VtP3gDMHP1FTBeg1d8tCRAI2Ni7SNWWqbjk85GV2Pfwgio9
+         NySJJP3CuW8AceFIC/XozpENjJsHzZSOb4DIUk1buwxjDadXMa4GfX7vBrTVcVbDKDO3
+         QHE7cpUmlLdwfPG9xVdSxdziGWnCTAxbvxctlsixamiJfH/5uSmhBm6SLeZuFJx22IwZ
+         5sZMP7kz1kjxg4m9P/JQqB54Dr2p3BoV0URVAspw4o4T+TcrSp6iNcm0JTMTRu3JpBPy
+         D28g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729586718; x=1730191518;
+        d=1e100.net; s=20230601; t=1729589644; x=1730194444;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Acw2yEf0B8QWtsSk4Q4U7jM/pzwUxcjLN/d69G1/bQ=;
-        b=BKgBid+tBdPL7JBfDGQuIrDE2HPDWXFdgyUdkt0VdrW2SZksDpNvtqGSfz4IQqER9N
-         B6623Qp6aLOaMKQcbW7UgXrnq7DWremArfn6nf67PtqdZAaB997WX3sgqrg2f4rfiMQK
-         WIizFMbU+nw5Kr3nGlryPOQWNZV9zKCZbUeOuUPnusyjYtpDLfDqOgwV/130QQuUOoTU
-         mpmByPRBS2HVIsYgUTJDkPncfDDGj/bJwnX5I0XpAgpq87fp8eX8zEpkBT8JmUCuaJRO
-         60fwTqr6uLTZ6lv/gJh0QmsAosgak6Bf2A93zpPT+YUKPMPZfnJZ3wnAjkcB/LZ2k1S8
-         uXMA==
-X-Forwarded-Encrypted: i=1; AJvYcCXDWJgaWCwT4M/ZW2Dykqv6IbEfQ5VHSrqnP3T8HzoqEFa8Rrv2AbESs08QAPICR47Ajvff7zZ29NThYV0K@lists.infradead.org
-X-Gm-Message-State: AOJu0YwtEprOI+Hpq+oock2wScOhSuYPY623X8GyNfrO8LaVsAw03SKn
-	MJostO+uBM93KCNXYxj9U3wb0eTWafkPI4/cH7KFfsajNKz8eGc/4nv0YII4B6w=
-X-Google-Smtp-Source: AGHT+IGlODZ2Z52H3OR+XFpSdf+vvptcBZKHvdo5Z1My0fNGTccq1f3jHtb6ywkRxw+u6rwhTHBfjQ==
-X-Received: by 2002:a05:600c:4446:b0:431:52b7:a47e with SMTP id 5b1f17b1804b1-4317cb0ad3dmr11144395e9.35.1729586717834;
-        Tue, 22 Oct 2024 01:45:17 -0700 (PDT)
+        bh=gZycHHif1XK15/J1/2rimbGE/T++GDZJvNYQ0hrutG4=;
+        b=aZATxH/m4s9KIuSvSPE4m+Ei9W/fMt4Mslf3+lrotv3tqB++JRhg78O5mzdBFcagDi
+         AWrbcYx9H1ZBpzIBJLIWrzmvQhnGKXPqSd1qhET7ToqOqSsm37+4b62zKZoPh2D2NUQ3
+         VOEUVInNCTqnkiW1dfxNWQ6+uB2Dtoo3RgfCn7tLqqqyJ7uznD2VryEvwqeDkfXFO4Lu
+         BptZQf4PmCjdvdtRzXJHYKyXf05NCX4zA2L+9EeB5ZQHb19zqp4SchNOojC5J60DP1Od
+         bwvP6ImjW3vTDM2wUjHr6UQrtKZN52R5xLKHY/Ot6xoTVX8qIM5tS9g/FIeAxJZacqpm
+         cLEg==
+X-Forwarded-Encrypted: i=1; AJvYcCUNVjECC3ld5yi8mB9A54chf/8Q/wqio+luIKSEvfzvR5ndznmPE11S5pPYUr6ne6WTAXdZfw/Ty69RhWGX@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx4AW9O6tSjyvD5GPUxY091wSVGUSTbQne+ZpnBx5gJ+1rT0AXs
+	fIxUpFRz5LIRVudtjjXsKkZVzM+wk9O3eXo1ggVmCff+b3+H+PKqe4Gyzb/c6N0=
+X-Google-Smtp-Source: AGHT+IF2AI9bQIr0tGScY7Bv5vlVywZpblspYP/H+5e4xTqZiXyoU9NwrHtaw3F1qCz0C5DcMMgfnA==
+X-Received: by 2002:adf:f744:0:b0:37d:5103:8896 with SMTP id ffacd0b85a97d-37eab4ed1ddmr8572359f8f.41.1729589643781;
+        Tue, 22 Oct 2024 02:34:03 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:ef1c:ae40:1300:20c6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4316f570c79sm82765835e9.3.2024.10.22.01.45.17
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0a37d25sm6220808f8f.23.2024.10.22.02.34.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Oct 2024 01:45:17 -0700 (PDT)
+        Tue, 22 Oct 2024 02:34:03 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 Cc: Conor Dooley <conor+dt@kernel.org>,  <devicetree@vger.kernel.org>,
@@ -78,12 +78,12 @@ In-Reply-To: <20240913121152.817575-4-jan.dakinevich@salutedevices.com> (Jan
 	Dakinevich's message of "Fri, 13 Sep 2024 15:11:50 +0300")
 References: <20240913121152.817575-1-jan.dakinevich@salutedevices.com>
 	<20240913121152.817575-4-jan.dakinevich@salutedevices.com>
-Date: Tue, 22 Oct 2024 10:45:16 +0200
-Message-ID: <1j7ca0le5f.fsf@starbuckisacylon.baylibre.com>
+Date: Tue, 22 Oct 2024 11:34:02 +0200
+Message-ID: <1jzfmwjxbp.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241022_014519_652694_51CB47A6 
-X-CRM114-Status: GOOD (  15.67  )
+X-CRM114-CacheID: sfid-20241022_023406_257260_EEC9485E 
+X-CRM114-Status: GOOD (  14.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,12 +105,6 @@ On Fri 13 Sep 2024 at 15:11, Jan Dakinevich <jan.dakinevich@salutedevices.com> w
 > Add device tree bindings for A1 SoC audio clock and reset controllers.
 >
 > Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-
-Reset and clock are now independent.
-
-Please split the patch and send the changes in the related series,
-bindings before the driver change.
-
 > ---
 >  .../clock/amlogic,axg-audio-clkc.yaml         |   3 +
 >  .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++++++++++++++++
@@ -128,6 +122,10 @@ bindings before the driver change.
 >    compatible:
 >      enum:
 > +      - amlogic,a1-audio-clkc
+
+This controller is missing aud_top clock input coming from the vad
+controller, AFAICT.
+
 > +      - amlogic,a1-audio-vad-clkc
 >        - amlogic,axg-audio-clkc
 >        - amlogic,g12a-audio-clkc
