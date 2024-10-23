@@ -4,106 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F901D2E022
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Oct 2024 08:30:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1F20CF5366
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Oct 2024 12:21:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uIn5LRW54x4/KIKZ94/LygIH7xtWtTST8cdagfxbz1I=; b=CjbDumJXIy+5F7Se8N5zwspb4t
-	MyN1rhVNfd5iC+kgmjXgbUW+w+KgesQPIAQ0E+n1tZ0LWO8CV+8xmN2ozFN3bV3kuqIDsrC7TEOyb
-	9vQeY+G0QjXFife9UVg4bsAt1tka/MR8SVZhmeM3BeaOd60toNKIc2lULA081a6ag07eDvMgpRuWy
-	6NgXqVP83awDmfSiHDxxoJ8KtUKgh/xrGJRqlnOAYbRtRzDOKwL7bPLHh0p64EVG7CSpnvCdrFl8W
-	wOHW6MkFEdpYwEFcoURVck25VHXFaNjBkeiWh5u4ubP1Q0X5zkp/oHKZteJO0PKWnOB4pKhz7VoZh
-	XQbBcIow==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=r3rPoYhq0QOHsYr+FMN5XuRAEh1CtHsyQFbaaJr/IFk=; b=VMmlhvMRkN1NR/
+	GpMprG0JUWOwrNTyiNtoeAgtcqPiaUPN1nKjQiA7xnlpAWTCya2Px7kf4hWbgrTbMntdwbaAxAGaz
+	sASzkEFP14fsqBSJhMoVobwRqMlcKnrua1bBxJ4MpY14/IwDe/wnkzM0OphehkQ0lGicmAKRKugqs
+	U0TIfNXgVrui6oHVaxuU00rVfbhCEENqTbvLiB1vtYOlKIgKhGFagAHdf+pzCn11Rc5zMmNLFK8/F
+	PhhriQo0cMc7YjhNKQpMLIpYrtmwKf/7R5fxO1VaN1KaiyrKJSDbOHt8Se1I4GXdV2ZlmKn0xy6rU
+	5fvGRVwxkDofK+/ORZ+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t3WlJ-0000000DZVC-2VW1;
-	Wed, 23 Oct 2024 08:30:37 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1t3aM8-0000000EJ7L-1csn;
+	Wed, 23 Oct 2024 12:20:52 +0000
+Received: from mail-pf1-x436.google.com ([2607:f8b0:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t3Wde-0000000DY4A-3qLq
+	id 1t3aE2-0000000EH7J-21LX
 	for linux-amlogic@lists.infradead.org;
-	Wed, 23 Oct 2024 08:22:44 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-37d47eff9acso4443639f8f.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 23 Oct 2024 01:22:41 -0700 (PDT)
+	Wed, 23 Oct 2024 12:12:33 +0000
+Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-71ec997ad06so2349197b3a.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 23 Oct 2024 05:12:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1729671760; x=1730276560; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GZeibUM7HddfM+a+Ry1X+LSQiHn1Kf3JGuVfKpMjSxE=;
-        b=sSWgpuVtk1xBOIscuQwDpHBKP0JeYfziFFCvut0FzfqVcgHoT5bSSmH8qtv6kCbBUQ
-         PF1apRkUCtB8LxR3OcIwN3S5AKL/ivtZ/PLPUG+AKV0rufI+0T1ETZ+L9sNU4+z2AehD
-         qC4t8z1a7kzaBa9NUX/sb66awSBNYJrfR2+xWg2N8sRtgJMI7gHrQhUzUVCXvQFxRVBI
-         FJql4LFkNjz9zQDj5BzyRzUKmVGWqKtV0QsVjxAYb6gy2iyw/DdWrKypQPArFV3I6h2h
-         CLDfhmEeNdsVSo/pwAHF+6Ui4wvBPbPpfvGbNc7+H/v8sT6RBxD86fB3bvaKxMzQj7Q4
-         bG3g==
+        d=videowindow.eu; s=google; t=1729685549; x=1730290349; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gFG1E25U9ERkhMI08BPPQ9FotYmza9yUBba8R8ewJXg=;
+        b=oRs10RV/s6SIclGUFf6ju3JjQelEFBabZBsVuSHeR1PwOiHXLRetNpXJ/CWSEjJXyh
+         QzqBZAZjvkthgVArr6fLAElkAW3gzE2jmwYsIQi1ZpodkGhSUfDUe5Ewwq5Sw/8+0VeT
+         9kr1lfiwCaJZ6dZ2Fra89v/TcLtX6a2erG99vn95Ssh4r1/TnnwKZjThfNjG30AbUT1T
+         aKBRm3JtWJLbQkLev5rOIdcoliiXPFx29jSh0Jim9hAje8TJazmbYRX8c/x+cDgDCia+
+         /bKUEMCtn6DdbC0qk/iT/dtJh4FA8OpjK7y04fAjl9d4mSFcFosTBnbBk/UVogGVEccy
+         Lh4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1729671760; x=1730276560;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=GZeibUM7HddfM+a+Ry1X+LSQiHn1Kf3JGuVfKpMjSxE=;
-        b=JQzyf/3HOuhpa5DriSuZaaHa4tzxxrBvDWT7G+vC/+pE9LYY6YK+E6ilycrIASQJJ5
-         6zCmzmTRIVbALP4PUm5Rmqk4BxrK5ebyujLEqPhB3UjLmIbTTmpFZmUrikPJ8uVpvm8/
-         IquNzl7xJ6HHTIMZuwwhGSQyperNG9J5BgK7cZZEtbwwttbDVQgTWcmNmJnVIDxr0E+4
-         qAJ3Gekf1WisVw0TPRVLJFb/rGK9fkTDE+nj4vZQd/loVO4qyTw0MI1XO0mgas3gMTRW
-         3HGF3AljMKcE2D0YnoDxqBpQiTpzIi2Lg7JXIFm1MIxj3G0odxZ5uGYnDGtZq4SlXaNf
-         QQ8Q==
-X-Gm-Message-State: AOJu0YyUPC00GrAo93Cp5A1PuApQiBIYic+9YjId9wP+TM6tqQhrDUUD
-	L5U8TeW0qWC0j6lPVcfD4ECJ/JplvrLNd0VOCb3MsbSK9lsSjH5/ZSFT9vJvMj5MM4eP3ZCXK6j
-	RFfU=
-X-Google-Smtp-Source: AGHT+IENH/k2ADAWYi431Yq0XGAAwC9n/nPgRYEvT4VTXEtu2gQLKA1M0/o5QAibMZ58KnjtJDENzA==
-X-Received: by 2002:a05:6000:d08:b0:37d:446b:7dfa with SMTP id ffacd0b85a97d-37efcf7ebd9mr1023484f8f.39.1729671760580;
-        Wed, 23 Oct 2024 01:22:40 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:cad:2140:f9e2:19d:5b22:8044? ([2a01:e0a:cad:2140:f9e2:19d:5b22:8044])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37ee0b9bb15sm8377768f8f.99.2024.10.23.01.22.39
-        for <linux-amlogic@lists.infradead.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Oct 2024 01:22:40 -0700 (PDT)
-Message-ID: <40c07e23-0784-4bcd-8da6-485866e81425@linaro.org>
-Date: Wed, 23 Oct 2024 10:22:37 +0200
+        d=1e100.net; s=20230601; t=1729685549; x=1730290349;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gFG1E25U9ERkhMI08BPPQ9FotYmza9yUBba8R8ewJXg=;
+        b=Mmvls1P16AiWE3MfEz1dxc/7N9k8yiAotQT2LQNvKSapWyEf3kd9SP7I9aHPVQOIlF
+         3VYSQrNInDUkfIIJRo+GoriwG+uDeojvkhuJPkAiexLE70gCFmLHRtromGhr6XwlBQFs
+         cNg/4w0i/cr08+x5f4nrT/2sgCp0qWTAutSkaG70Y0Jl3//tQOlr87uqD+6Sushyxwxz
+         FEkhMBe16YvYNexALSNWCWuA+AcUbEMHZ7eW2w6x4xPDPP0UVYwk/MM4jimxpeGsRHrt
+         r0oaM19vBBHRuFN7en6XqJhvKHoHugCpDxXvyVEBuUYpDH9aWGC8NUsOmJXbfH0BTFgB
+         luiA==
+X-Gm-Message-State: AOJu0Yyt769G0cXw82XmiVrYf0udWxE6F2dazIqrnpwlh9USc689XHsX
+	0kmsizFwW+/x9y5/L376uprvtbmHhdcuQ93hQvfwfTzuk4jSCjdt9NYbFJb7gb7Vgw5c4O0lBRY
+	kJ3Qd0e0TsXYrDU6CeMoH4Lyp9eYP1k1U1dY67A==
+X-Google-Smtp-Source: AGHT+IHTEeb7DeWahu+DTKwqg1qihkXPgEs7BSrU+y+Ktt3+nCiIkfN7/0lH0YmKx8QUhKWZLQ8SXDBolPIztn6RhRw=
+X-Received: by 2002:a05:6a00:2382:b0:71e:702c:a680 with SMTP id
+ d2e1a72fcca58-72030ba33f8mr3272725b3a.26.1729685548908; Wed, 23 Oct 2024
+ 05:12:28 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: meson: Enabling full-range HDMI output
-To: linux-amlogic@lists.infradead.org
 References: <CAN-StX2faaw60pUqRcDtHgrovWYFsM+PGDDAhU8wbT6aeDQKwg@mail.gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <CAN-StX2faaw60pUqRcDtHgrovWYFsM+PGDDAhU8wbT6aeDQKwg@mail.gmail.com>
+ <40c07e23-0784-4bcd-8da6-485866e81425@linaro.org>
+In-Reply-To: <40c07e23-0784-4bcd-8da6-485866e81425@linaro.org>
+From: Francisco Ayala Le Brun <francisco@videowindow.eu>
+Date: Wed, 23 Oct 2024 12:12:16 +0000
+Message-ID: <CAN-StX1D8-noDF5a_b08FX-7GAgw+o3UYryUXh3_zmG-MTWfZg@mail.gmail.com>
+Subject: Re: meson: Enabling full-range HDMI output
+To: neil.armstrong@linaro.org
+Cc: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241023_012243_025690_6E066A27 
-X-CRM114-Status: GOOD (  15.23  )
+X-CRM114-CacheID: sfid-20241023_051230_921802_D611C5AF 
+X-CRM114-Status: GOOD (  28.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,61 +84,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 23/10/2024 10:00, Francisco Ayala Le Brun wrote:
-> Hello,
-> 
-> I am seeking some guidance regarding enabling full-range HDMI output.
-> Specifically, I am wondering which component in the video pipeline
-> could be clamping HDMI output values to 16-235? Further details
-> follow:
-> 
-> I have been trying to get full-range HDMI output from a Le Potato
-> s905x SBC. At the moment, HDMI output seems to be hard-coded to color
-> quantization limited range (16-235). This greatly diminishes the
-> contrast in full range displays.
-> 
-> So far setting the VIU_OSD1/2_FULL_RANGE bit in the
-> VIU_OSD1/2_CTRL_STAT2 register does not seem to work. I have also
-> looked at the color space conversion matrix in dw_hdmi in case that is
-> the culprit, but the values seem fine and setting that to zero does
-> produce a signal in the full range (0). The buffer from the VIU is
-> using a YUV format so dw_hdmi is not using the full to limited range
-> conversion matrix.
-
-Indeed the internal VPU pipeline is in 10bit YUV444, so it requires enabling
-the dw-hdmi CSC, so perhaps those are not designed to output full-range RGB ?
-
-Could you revert:
-d3d6b1bf85ae drm: bridge: dw_hdmi: fix preference of RGB modes over YUV420
-
-This would give you direct YUV444 HDMI output without CSC involved, reverting
-is not an options because of low-cost HDMI panels lying in their EDID
-and not really supporting YUV HDMI...
-
-So if the original YUV is in full range, the culprit is in the DW-HDMI CSC
-table.
-
-Neil
-
-> 
-> Thank you in advance,
-> Francisco
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIHJlc3BvbnNlLiBJIGNhbiBjb25maXJtIHJldmVydGluZyB0aGUg
+Y29tbWl0IHNvbHZlcwp0aGUgaXNzdWUuIEhvd2V2ZXIsIGl0IG9ubHkgbGVhdmVzIG1lIG1vcmUg
+Y29uZnVzZWQgYXMgdG8gdGhlIHJvb3QKY2F1c2UuCgpJZiBkdy1oZG1pIGlzIHNldCB0byBvdXRw
+dXQgUkdCLCBhbmQgeW91IHNldCB0aGUgQ1NDIG1hdHJpeCB0byB6ZXJvZXMsCnRoZW4gaXQgd2ls
+bCBzaG93IGEgY29ycmVjdGx5IGNvbXBsZXRlbHkgYmxhY2sgb3V0cHV0LiBIb3dldmVyLCBpZiB5
+b3UKc2V0IHRoZSBmaXJzdCBjb2x1bW4gb2YgdGhlIFlVVi10by1SR0IgbWF0cml4IHRvIG9uZXMs
+IGFuZCBzaG93IGEKYmxhY2sgaW1hZ2UgdmlhIERSTSwgdGhlbiB0aGUgdG9uZSBpcyBpbiB0aGUg
+bGltaXRlZCByYW5nZS4gVGhpcwpzZWVtZWQgdG8gaW5kaWNhdGUgZHctaGRtaSBjYW4gb3V0cHV0
+IGZ1bGwgcmFuZ2UgUkdCLCBhbmQgdGhlIHByb2JsZW0Kd2FzIGZhcnRoZXIgdXBzdHJlYW0uCgpQ
+ZXJoYXBzIHRoZSBwcm9ibGVtIGlzIHRoZSBDU0MgbWF0cmljZXM/IEkgd2FzIHVuZGVyIHRoZSBh
+c3N1bXB0aW9uCjB4MjAwMCBjb3JyZXNwb25kZWQgdG8gMSwgZXZlbiB0aG91Z2ggaS5NWDYgbWFu
+dWFsIGNoYXB0ZXIgMzMgc2VlbXMgdG8Kc3VnZ2VzdCB3aXRoIGEgY3NjX3NjYWxlIG9mIDEsIHRo
+ZW4gMHg4MDAgd291bGQgY29ycmVzcG9uZCB0byAxLgpTdGlsbCwgSSB3b3VsZCBleHBlY3QgYXQg
+bGVhc3QgZnVsbHkgYmxhY2sgdG8gYmUgY29ycmVjdCBhcyB0aGF0IHdvdWxkCmdpdmUgYSBtdWx0
+aXBsaWNhdGlvbiBieSB6ZXJvLgoKT3IgdGhlIHN0YXRlIG9mIGR3X2hkbWkgaXMgYWZmZWN0aW5n
+IHRoZSBWSVUgaW4gc29tZSB3YXk/IFBlcmhhcHMgdGhlClZJVSBoYXJkd2FyZSBpcyBtYWRlIHRv
+IGNsYW1wIGx1bWluYW5jZSB3aGVuIGR3X2hkbWkgaXMgb3V0cHV0dGluZwpSR0I/IEkgbm90aWNl
+ZCBmb3IgdGhlIENTQyB0aGVyZSBpcyBvbmx5IGEgc3BlY2lhbCBtYXRyaXggZm9yClJHQi10by1s
+aW1pdGVkLVJHQiwgYnV0IG5vIHNwZWNpYWwgbWF0cml4IGZvciBZVVYtdG8tbGltaXRlZC1SR0Iu
+IFRoYXQKc2VlbXMgdG8gc3VnZ2VzdCB0aGUgY2xhbXBpbmcgbWF5IGJlIGRvbmUgdXBzdHJlYW0g
+aW4gdGhvc2UgY2FzZXMuCgpGcmFuY2lzY28KCgpPbiBXZWQsIE9jdCAyMywgMjAyNCBhdCA4OjMw
+4oCvQU0gPG5laWwuYXJtc3Ryb25nQGxpbmFyby5vcmc+IHdyb3RlOgo+Cj4gSGksCj4KPiBPbiAy
+My8xMC8yMDI0IDEwOjAwLCBGcmFuY2lzY28gQXlhbGEgTGUgQnJ1biB3cm90ZToKPiA+IEhlbGxv
+LAo+ID4KPiA+IEkgYW0gc2Vla2luZyBzb21lIGd1aWRhbmNlIHJlZ2FyZGluZyBlbmFibGluZyBm
+dWxsLXJhbmdlIEhETUkgb3V0cHV0Lgo+ID4gU3BlY2lmaWNhbGx5LCBJIGFtIHdvbmRlcmluZyB3
+aGljaCBjb21wb25lbnQgaW4gdGhlIHZpZGVvIHBpcGVsaW5lCj4gPiBjb3VsZCBiZSBjbGFtcGlu
+ZyBIRE1JIG91dHB1dCB2YWx1ZXMgdG8gMTYtMjM1PyBGdXJ0aGVyIGRldGFpbHMKPiA+IGZvbGxv
+dzoKPiA+Cj4gPiBJIGhhdmUgYmVlbiB0cnlpbmcgdG8gZ2V0IGZ1bGwtcmFuZ2UgSERNSSBvdXRw
+dXQgZnJvbSBhIExlIFBvdGF0bwo+ID4gczkwNXggU0JDLiBBdCB0aGUgbW9tZW50LCBIRE1JIG91
+dHB1dCBzZWVtcyB0byBiZSBoYXJkLWNvZGVkIHRvIGNvbG9yCj4gPiBxdWFudGl6YXRpb24gbGlt
+aXRlZCByYW5nZSAoMTYtMjM1KS4gVGhpcyBncmVhdGx5IGRpbWluaXNoZXMgdGhlCj4gPiBjb250
+cmFzdCBpbiBmdWxsIHJhbmdlIGRpc3BsYXlzLgo+ID4KPiA+IFNvIGZhciBzZXR0aW5nIHRoZSBW
+SVVfT1NEMS8yX0ZVTExfUkFOR0UgYml0IGluIHRoZQo+ID4gVklVX09TRDEvMl9DVFJMX1NUQVQy
+IHJlZ2lzdGVyIGRvZXMgbm90IHNlZW0gdG8gd29yay4gSSBoYXZlIGFsc28KPiA+IGxvb2tlZCBh
+dCB0aGUgY29sb3Igc3BhY2UgY29udmVyc2lvbiBtYXRyaXggaW4gZHdfaGRtaSBpbiBjYXNlIHRo
+YXQgaXMKPiA+IHRoZSBjdWxwcml0LCBidXQgdGhlIHZhbHVlcyBzZWVtIGZpbmUgYW5kIHNldHRp
+bmcgdGhhdCB0byB6ZXJvIGRvZXMKPiA+IHByb2R1Y2UgYSBzaWduYWwgaW4gdGhlIGZ1bGwgcmFu
+Z2UgKDApLiBUaGUgYnVmZmVyIGZyb20gdGhlIFZJVSBpcwo+ID4gdXNpbmcgYSBZVVYgZm9ybWF0
+IHNvIGR3X2hkbWkgaXMgbm90IHVzaW5nIHRoZSBmdWxsIHRvIGxpbWl0ZWQgcmFuZ2UKPiA+IGNv
+bnZlcnNpb24gbWF0cml4Lgo+Cj4gSW5kZWVkIHRoZSBpbnRlcm5hbCBWUFUgcGlwZWxpbmUgaXMg
+aW4gMTBiaXQgWVVWNDQ0LCBzbyBpdCByZXF1aXJlcyBlbmFibGluZwo+IHRoZSBkdy1oZG1pIENT
+Qywgc28gcGVyaGFwcyB0aG9zZSBhcmUgbm90IGRlc2lnbmVkIHRvIG91dHB1dCBmdWxsLXJhbmdl
+IFJHQiA/Cj4KPiBDb3VsZCB5b3UgcmV2ZXJ0Ogo+IGQzZDZiMWJmODVhZSBkcm06IGJyaWRnZTog
+ZHdfaGRtaTogZml4IHByZWZlcmVuY2Ugb2YgUkdCIG1vZGVzIG92ZXIgWVVWNDIwCj4KPiBUaGlz
+IHdvdWxkIGdpdmUgeW91IGRpcmVjdCBZVVY0NDQgSERNSSBvdXRwdXQgd2l0aG91dCBDU0MgaW52
+b2x2ZWQsIHJldmVydGluZwo+IGlzIG5vdCBhbiBvcHRpb25zIGJlY2F1c2Ugb2YgbG93LWNvc3Qg
+SERNSSBwYW5lbHMgbHlpbmcgaW4gdGhlaXIgRURJRAo+IGFuZCBub3QgcmVhbGx5IHN1cHBvcnRp
+bmcgWVVWIEhETUkuLi4KPgo+IFNvIGlmIHRoZSBvcmlnaW5hbCBZVVYgaXMgaW4gZnVsbCByYW5n
+ZSwgdGhlIGN1bHByaXQgaXMgaW4gdGhlIERXLUhETUkgQ1NDCj4gdGFibGUuCj4KPiBOZWlsCj4K
+PiA+Cj4gPiBUaGFuayB5b3UgaW4gYWR2YW5jZSwKPiA+IEZyYW5jaXNjbwo+ID4KPiA+IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiBsaW51eC1hbWxv
+Z2ljIG1haWxpbmcgbGlzdAo+ID4gbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCj4g
+PiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
+aWMKPgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+PiBsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAo+IGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwo+IGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
+dXgtYW1sb2dpYwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
+YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
+YW1sb2dpYwo=
