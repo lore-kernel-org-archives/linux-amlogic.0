@@ -4,97 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23135D11718
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Oct 2024 07:46:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45889D0C5E6
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Oct 2024 09:00:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jCS0E8EzDYIK6nSG04dxMTjdFcH92pDCF2F3OUpUgto=; b=K4c3EvAPFZGTx9
-	YVPP/MDBrBhxquEwjX6ju+BmzIntf02UCVYL9/9bnuJhsPDJ3FM4Bj3SdHDyozostSGgiJqdWcvrs
-	Z8UfjO4sZMPYOXqBbpi10Z3cZLrAcq9/LExUUMbys+5IbLk4XCSCnktfD/ohk+2Ya7mxTUkuIRCkz
-	sAjrmWWE0k6nD/6FiC/niYej2ebFj6q6XlmeFahZbYsv5XXwOTO2nJmxH43c2gY5PBxQoNud3ilct
-	AJcUY2VLzBCj764ZWXGf0gLlW0TePbG26eqjbNbd8lfIJH8CtSEIu2L3l4sjiZbjCOmlybb4iWeiw
-	TucRrRDWhiTc/dX7AKcw==;
+	List-Owner; bh=zHmWkjuCG7tmaTfLMgiN7gx68IAI8JHkqxsghY2Qb08=; b=HZP1tqyMMknlYY
+	04QrEA8bxHt3QdHFV6m4jvGXr8o6n4qwDUAgUgUr1O1PQ5kvbPaDZKNUr/Q1lvY7TDzKc3HKjzUdY
+	Dx/YAn11Kdk4y25btL0aFNcySCMurtgGqUYIAgIQcg0asNGnGjcU0gZi5J2MJPqvDVwT66Vd3pAEK
+	pub5aqBN+tdxElvqxVIlw7omcPvjJgX+/LZCXwYtAM8MNbHZyoiycgfPt2dx1R086ScHWIZ7fLfdi
+	Iz6QD+kIqyHccwXX64oZ79KpCfVMM6bU0kcesErWXpGDH3ktdU1/W2y3SmRslCvlZtLAO6aPYZkZa
+	PQm+fTC/QKG5Rj+8O9Bg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t4F1q-00000002qTL-0B72;
-	Fri, 25 Oct 2024 07:46:38 +0000
-Received: from mgamail.intel.com ([198.175.65.21])
+	id 1t4GBc-000000035CM-0Ipc;
+	Fri, 25 Oct 2024 09:00:48 +0000
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t4F1n-00000002qSS-2O11;
-	Fri, 25 Oct 2024 07:46:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1729842396; x=1761378396;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=Mzm/p9vp/1SxZYyxLUIAr3dK4m/QwRpy+mAy/vi+65A=;
-  b=k+gtezm2NcSqlzjisTkLO+YXGUZ+mSjuXPsYJVHJsz+VmqXEFwgjnn11
-   QMAqHYg3uxtCNSDJ8dXl+LujPexYByd6b56jwMaUJHmQJD6xJL81jKGHU
-   3URnzFbnEZZcOtjhzwcUxSr0SsOPyUTb3QJtYdG4Jg6fPZcJK7y/vtmqM
-   aR8cmdbsvyboKbu84w/Q2oBDNySDBQrNqd+O7wvhplr9O+8Q3VDfKNUU2
-   GI22RBSdkbsJVEEBQGrS/8nraN8wXWMEXDY4vwCIEuh7q4hthdN7KHAFd
-   6fbH7d+sZpqt6CbLBj4aJaUxo8qabRTFxU4mCEbKxJXC2qwXCiHZd1JHk
-   Q==;
-X-CSE-ConnectionGUID: RzqhEcmoSDqxKTtXrf0Zgw==
-X-CSE-MsgGUID: IDdZvurRRuelmiwzUGEYlw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29446878"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="29446878"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2024 00:46:34 -0700
-X-CSE-ConnectionGUID: 4NLKVHg9T6yFez9/u+3hfQ==
-X-CSE-MsgGUID: 8E8OB6zhRpuvXvELpRP+eg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; 
-   d="scan'208";a="80948136"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
-  by fmviesa008.fm.intel.com with SMTP; 25 Oct 2024 00:46:24 -0700
-Received: by stinkbox (sSMTP sendmail emulation); Fri, 25 Oct 2024 10:46:23 +0300
-Date: Fri, 25 Oct 2024 10:46:23 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Alex Deucher <alexander.deucher@amd.com>,
-	Alexey Brodkin <abrodkin@synopsys.com>,
-	amd-gfx@lists.freedesktop.org, Andy Yan <andy.yan@rock-chips.com>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Danilo Krummrich <dakr@redhat.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	freedreno@lists.freedesktop.org,
-	Hans de Goede <hdegoede@redhat.com>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Inki Dae <inki.dae@samsung.com>, Jyri Sarha <jyri.sarha@iki.fi>,
-	Karol Herbst <kherbst@redhat.com>,
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-msm@vger.kernel.orga, linux-mediatek@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	Liviu Dudau <liviu.dudau@arm.com>, Lyude Paul <lyude@redhat.com>,
-	=?iso-8859-1?Q?Ma=EDra?= Canal <mairacanal@riseup.net>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	nouveau@lists.freedesktop.org, nouveau@lists.freedesktop.orga,
-	Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
-	Rob Clark <robdclark@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Sandy Huang <hjc@rock-chips.com>, Sean Paul <sean@poorly.run>,
-	spice-devel@lists.freedesktop.org, virtualization@lists.linux.dev,
-	xen-devel@lists.xenproject.org, Xinhui Pan <Xinhui.Pan@amd.com>,
-	Zack Rusin <zack.rusin@broadcom.com>
-Subject: Re: [PATCH 0/2] drm: Treewide plane/crtc legacy state sweeping
-Message-ID: <ZxtMz8JP3DbzpMew@intel.com>
-References: <20241002182200.15363-1-ville.syrjala@linux.intel.com>
+	id 1t4G8T-0000000344z-31iJ
+	for linux-amlogic@lists.infradead.org;
+	Fri, 25 Oct 2024 08:57:36 +0000
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-a9a0c7abaa6so209584466b.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 25 Oct 2024 01:57:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=videowindow.eu; s=google; t=1729846651; x=1730451451; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k0YNbJXqdYsU+hC15A4NcGEh4EkxDUO3EG3zkmNsqcI=;
+        b=eHF7Solzp8gHAgXnQq4/oizYK1AUHYf76qr5XUlZB2//4jg4TTyrpxUk2RXoBUQaKx
+         Xajhd+J8JT7waBdlimEtnFP+zO1Prc5600rgpvmE2r9l52qz8YYkAGb5+N1xosgAYvpW
+         Kxv42k6A9y3gd3Hb/P68LOLLgZ8dzibK/EenaENai8fPKJ9jlHVQhlONdK7kNBeLGXJ/
+         i1tP+IhC2ePVd9Oan/BwfkTR8T9tSrrZqS1Q/49g4qkb6kJebXBMXiq2atc3NUCAWAuR
+         /nbbrH0wFYIGdAQA/rZ/Y+79SBTSDXgoB+oQ1oxB4aj2zelVUK/UqS6YAMDiPXLdNkzC
+         PR8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729846651; x=1730451451;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k0YNbJXqdYsU+hC15A4NcGEh4EkxDUO3EG3zkmNsqcI=;
+        b=m2lUGtPv2/5kFqxyK8VbnCQOA3r39OzcW4B+m+EfC0aff3xPiAJ6PgmpjvUe40fAB7
+         3syG+U9tLdDoX6syx5eo1rYazc/a2DXwQdnnoBcDyI2x9JZ5T+Mn+8l8ez0JgPyMOv9E
+         UBBzaTnyzvdAc3oCaGkUCBJJhyoq4wcNcr3AdM9f58muWC9LQIPTTNiZ7W8p912A9StR
+         8mfEDO3AuUWbHA9e0VE+XOMOy/kj1FAdSnqsP/dpbqdulyjf8FHee7J54H+QwPU7xy9z
+         jMbUT4GWtwgrhKdh9nowvgp3L5WzsGthtqLi2WRfUFJfdGvKmttr0xChwEVcmDfuaeF8
+         O4iA==
+X-Gm-Message-State: AOJu0Yx9HatZQovRGf/dnMBHUVYnehp3AjBK/IXGaDOFiPXnyX4m1jd8
+	Yp3050MVoo0ZjRHLrnnI1M2+vwJNraxpybMWK3F8xCD1+M4YxrQGGId+mFoOdOBzE056ZkDZBLG
+	CMP/vogKjMPu7wOi9aXNAS4o1srYydJcb0UzQJw==
+X-Google-Smtp-Source: AGHT+IFPJpNUn1futteA+hj0Dp5jv0hj24v884D/BYct9vlDVXaWtL62CBdSb+HPUJk5wS4n/imKz0tbz+uTORKxKIM=
+X-Received: by 2002:a17:907:743:b0:a8a:8d81:97ac with SMTP id
+ a640c23a62f3a-a9abf851e22mr763793766b.4.1729846650868; Fri, 25 Oct 2024
+ 01:57:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241002182200.15363-1-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
+References: <CAN-StX2faaw60pUqRcDtHgrovWYFsM+PGDDAhU8wbT6aeDQKwg@mail.gmail.com>
+ <40c07e23-0784-4bcd-8da6-485866e81425@linaro.org> <CAN-StX1D8-noDF5a_b08FX-7GAgw+o3UYryUXh3_zmG-MTWfZg@mail.gmail.com>
+ <0dea0c5d-62e8-4671-abd2-63790dcfb237@linaro.org> <e3224c02-3b5d-48af-828a-f01017fd0fd9@linaro.org>
+In-Reply-To: <e3224c02-3b5d-48af-828a-f01017fd0fd9@linaro.org>
+From: Francisco Ayala Le Brun <francisco@videowindow.eu>
+Date: Fri, 25 Oct 2024 08:57:16 +0000
+Message-ID: <CAN-StX04sLnx+zSSJau=7tngNBH0nikVro+_8RmpbD4cbSa8GA@mail.gmail.com>
+Subject: Re: meson: Enabling full-range HDMI output
+To: neil.armstrong@linaro.org
+Cc: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241025_004635_720338_53796FA9 
-X-CRM114-Status: GOOD (  21.73  )
+X-CRM114-CacheID: sfid-20241025_015734_090072_BA0D4443 
+X-CRM114-Status: GOOD (  42.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,200 +85,114 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Oct 02, 2024 at 09:21:58PM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> An attempt to hide the drm_plane/crtc legacy state better.
-> =
-
-> This also highlights the fact that a lot of supposedly
-> atomic drivers are poking around in the legacy crtc state,
-> which is rather questionable. For planes we did force the
-> legacy state to NULL already to force drivers to behave.
-> But even then it seems capable of confusing people with
-> its high profile location directly under drm_plane.
-> =
-
-> This might end up as some kind of conflict
-> galore, but the alternative would involve trying
-> to wean the atomic drivers off one by one,
-> which would probably take forever. At least with
-> this the issue becomes visible and shouldn't be
-> forgotten as easily.
-
-Ping, anyone have thoughts on this? I'd like to get something
-like this in at some point to make the legacy state (ab)users
-easily visible...
-
-> =
-
-> The cc list was getting way out of hand, so I had
-> to trim it a bit. Hopefully I didn't chop off too
-> many names...
-> =
-
-> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Cc: Alain Volmat <alain.volmat@foss.st.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Alexey Brodkin <abrodkin@synopsys.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: Andy Yan <andy.yan@rock-chips.com>
-> Cc: "Christian K=F6nig" <christian.koenig@amd.com>
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: freedreno@lists.freedesktop.org
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> Cc: "Heiko St=FCbner" <heiko@sntech.de>
-> Cc: Inki Dae <inki.dae@samsung.com>
-> Cc: Jyri Sarha <jyri.sarha@iki.fi>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: linux-amlogic@lists.infradead.org
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: linux-arm-msm@vger.kernel.orga
-> Cc: linux-mediatek@lists.infradead.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: "Ma=EDra Canal" <mairacanal@riseup.net>
-> Cc: Marijn Suijten <marijn.suijten@somainline.org>
-> Cc: nouveau@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.orga
-> Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Russell King <linux@armlinux.org.uk>
-> Cc: Sandy Huang <hjc@rock-chips.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: spice-devel@lists.freedesktop.org
-> Cc: virtualization@lists.linux.dev
-> Cc: xen-devel@lists.xenproject.org
-> Cc: Xinhui Pan <Xinhui.Pan@amd.com>
-> Cc: Zack Rusin <zack.rusin@broadcom.com>
-> =
-
-> Ville Syrj=E4l=E4 (2):
->   drm: Move plane->{fb,old_fb,crtc} to legacy sub-structure
->   drm: Move crtc->{x,y,mode,enabled} to legacy sub-structure
-> =
-
->  .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    |  7 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   | 20 ++---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_pll.c       |  2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c      |  2 +-
->  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        | 35 ++++----
->  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        | 35 ++++----
->  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         | 37 ++++-----
->  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         | 35 ++++----
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 ++--
->  .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  2 +-
->  drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c  |  4 +-
->  drivers/gpu/drm/arm/hdlcd_drv.c               |  2 +-
->  drivers/gpu/drm/arm/malidp_hw.c               |  2 +-
->  drivers/gpu/drm/armada/armada_crtc.c          | 12 ++-
->  drivers/gpu/drm/ast/ast_dp.c                  |  8 +-
->  drivers/gpu/drm/drm_atomic.c                  |  6 +-
->  drivers/gpu/drm/drm_atomic_helper.c           |  8 +-
->  drivers/gpu/drm/drm_client_modeset.c          | 10 +--
->  drivers/gpu/drm/drm_crtc.c                    | 31 +++----
->  drivers/gpu/drm/drm_crtc_helper.c             | 80 ++++++++++---------
->  drivers/gpu/drm/drm_fb_helper.c               | 12 +--
->  drivers/gpu/drm/drm_framebuffer.c             |  4 +-
->  drivers/gpu/drm/drm_plane.c                   | 69 ++++++++--------
->  drivers/gpu/drm/drm_plane_helper.c            |  6 +-
->  drivers/gpu/drm/drm_vblank.c                  |  2 +-
->  drivers/gpu/drm/exynos/exynos5433_drm_decon.c |  4 +-
->  drivers/gpu/drm/gma500/cdv_intel_display.c    |  2 +-
->  drivers/gpu/drm/gma500/cdv_intel_dp.c         |  6 +-
->  drivers/gpu/drm/gma500/cdv_intel_hdmi.c       |  3 +-
->  drivers/gpu/drm/gma500/cdv_intel_lvds.c       |  6 +-
->  drivers/gpu/drm/gma500/gma_display.c          | 22 ++---
->  drivers/gpu/drm/gma500/oaktrail_crtc.c        |  2 +-
->  drivers/gpu/drm/gma500/psb_intel_display.c    |  2 +-
->  drivers/gpu/drm/gma500/psb_intel_lvds.c       |  6 +-
->  drivers/gpu/drm/gma500/psb_intel_sdvo.c       |  8 +-
->  drivers/gpu/drm/i2c/ch7006_drv.c              |  7 +-
->  drivers/gpu/drm/i2c/sil164_drv.c              |  2 +-
->  .../drm/i915/display/intel_modeset_setup.c    |  4 +-
->  drivers/gpu/drm/imx/lcdc/imx-lcdc.c           | 31 ++++---
->  drivers/gpu/drm/mediatek/mtk_crtc.c           |  6 +-
->  drivers/gpu/drm/meson/meson_overlay.c         |  2 +-
->  drivers/gpu/drm/meson/meson_plane.c           |  8 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c | 18 +++--
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |  6 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c     | 16 ++--
->  drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c     |  4 +-
->  drivers/gpu/drm/nouveau/dispnv04/crtc.c       | 25 +++---
->  drivers/gpu/drm/nouveau/dispnv04/cursor.c     |  2 +-
->  drivers/gpu/drm/nouveau/dispnv04/dfp.c        |  2 +-
->  drivers/gpu/drm/nouveau/dispnv04/disp.c       |  4 +-
->  .../gpu/drm/nouveau/dispnv04/tvmodesnv17.c    |  4 +-
->  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c     |  7 +-
->  drivers/gpu/drm/nouveau/nouveau_connector.c   |  6 +-
->  drivers/gpu/drm/qxl/qxl_display.c             |  6 +-
->  drivers/gpu/drm/radeon/atombios_crtc.c        | 28 +++----
->  drivers/gpu/drm/radeon/cik.c                  | 12 +--
->  drivers/gpu/drm/radeon/evergreen.c            | 16 ++--
->  drivers/gpu/drm/radeon/r100.c                 | 16 ++--
->  drivers/gpu/drm/radeon/r600_cs.c              |  2 +-
->  drivers/gpu/drm/radeon/r600_dpm.c             |  4 +-
->  drivers/gpu/drm/radeon/radeon_connectors.c    |  7 +-
->  drivers/gpu/drm/radeon/radeon_cursor.c        | 29 +++----
->  drivers/gpu/drm/radeon/radeon_device.c        |  2 +-
->  drivers/gpu/drm/radeon/radeon_display.c       | 26 +++---
->  drivers/gpu/drm/radeon/radeon_drv.c           |  2 +-
->  drivers/gpu/drm/radeon/radeon_legacy_crtc.c   | 16 ++--
->  .../gpu/drm/radeon/radeon_legacy_encoders.c   |  2 +-
->  drivers/gpu/drm/radeon/radeon_pm.c            |  2 +-
->  drivers/gpu/drm/radeon/rs600.c                | 10 +--
->  drivers/gpu/drm/radeon/rs690.c                | 22 ++---
->  drivers/gpu/drm/radeon/rs780_dpm.c            |  6 +-
->  drivers/gpu/drm/radeon/rv515.c                | 30 +++----
->  drivers/gpu/drm/radeon/rv770.c                |  2 +-
->  drivers/gpu/drm/radeon/si.c                   | 14 ++--
->  .../gpu/drm/renesas/rcar-du/rcar_du_crtc.c    |  2 +-
->  .../gpu/drm/renesas/shmobile/shmob_drm_crtc.c |  2 +-
->  drivers/gpu/drm/rockchip/rockchip_drm_vop.c   |  6 +-
->  drivers/gpu/drm/sti/sti_crtc.c                |  4 +-
->  drivers/gpu/drm/sti/sti_cursor.c              |  2 +-
->  drivers/gpu/drm/sti/sti_gdp.c                 |  2 +-
->  drivers/gpu/drm/sti/sti_hqvdp.c               |  2 +-
->  drivers/gpu/drm/sti/sti_tvout.c               |  6 +-
->  drivers/gpu/drm/sti/sti_vid.c                 |  2 +-
->  drivers/gpu/drm/tilcdc/tilcdc_crtc.c          | 10 +--
->  drivers/gpu/drm/tiny/arcpgu.c                 |  2 +-
->  drivers/gpu/drm/vboxvideo/vbox_mode.c         |  2 +-
->  drivers/gpu/drm/vc4/vc4_dpi.c                 |  2 +-
->  drivers/gpu/drm/vc4/vc4_plane.c               |  4 +-
->  drivers/gpu/drm/virtio/virtgpu_display.c      |  4 +-
->  drivers/gpu/drm/vkms/vkms_composer.c          |  4 +-
->  drivers/gpu/drm/vkms/vkms_crtc.c              |  2 +-
->  drivers/gpu/drm/vkms/vkms_writeback.c         |  4 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c           |  8 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c           | 18 +++--
->  drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c          |  9 ++-
->  drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c          |  4 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c          |  2 +-
->  drivers/gpu/drm/xen/xen_drm_front_kms.c       |  2 +-
->  include/drm/drm_crtc.h                        | 75 ++++++++---------
->  include/drm/drm_plane.h                       | 52 ++++++------
->  100 files changed, 599 insertions(+), 547 deletions(-)
-> =
-
-> -- =
-
-> 2.45.2
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVGh1LCBPY3QgMjQsIDIwMjQgYXQgODo1MeKAr0FNIE5laWwgQXJtc3Ryb25nCjxuZWlsLmFy
+bXN0cm9uZ0BsaW5hcm8ub3JnPiB3cm90ZToKPgo+IE9uIDI0LzEwLzIwMjQgMTA6MzgsIG5laWwu
+YXJtc3Ryb25nQGxpbmFyby5vcmcgd3JvdGU6Cj4gPiBPbiAyMy8xMC8yMDI0IDE0OjEyLCBGcmFu
+Y2lzY28gQXlhbGEgTGUgQnJ1biB3cm90ZToKPiA+PiBUaGFuayB5b3UgZm9yIHlvdXIgcmVzcG9u
+c2UuIEkgY2FuIGNvbmZpcm0gcmV2ZXJ0aW5nIHRoZSBjb21taXQgc29sdmVzCj4gPj4gdGhlIGlz
+c3VlLiBIb3dldmVyLCBpdCBvbmx5IGxlYXZlcyBtZSBtb3JlIGNvbmZ1c2VkIGFzIHRvIHRoZSBy
+b290Cj4gPj4gY2F1c2UuCj4gPj4KPiA+PiBJZiBkdy1oZG1pIGlzIHNldCB0byBvdXRwdXQgUkdC
+LCBhbmQgeW91IHNldCB0aGUgQ1NDIG1hdHJpeCB0byB6ZXJvZXMsCj4gPj4gdGhlbiBpdCB3aWxs
+IHNob3cgYSBjb3JyZWN0bHkgY29tcGxldGVseSBibGFjayBvdXRwdXQuIEhvd2V2ZXIsIGlmIHlv
+dQo+ID4+IHNldCB0aGUgZmlyc3QgY29sdW1uIG9mIHRoZSBZVVYtdG8tUkdCIG1hdHJpeCB0byBv
+bmVzLCBhbmQgc2hvdyBhCj4gPj4gYmxhY2sgaW1hZ2UgdmlhIERSTSwgdGhlbiB0aGUgdG9uZSBp
+cyBpbiB0aGUgbGltaXRlZCByYW5nZS4gVGhpcwo+ID4+IHNlZW1lZCB0byBpbmRpY2F0ZSBkdy1o
+ZG1pIGNhbiBvdXRwdXQgZnVsbCByYW5nZSBSR0IsIGFuZCB0aGUgcHJvYmxlbQo+ID4+IHdhcyBm
+YXJ0aGVyIHVwc3RyZWFtLgo+ID4+Cj4gPj4gUGVyaGFwcyB0aGUgcHJvYmxlbSBpcyB0aGUgQ1ND
+IG1hdHJpY2VzPyBJIHdhcyB1bmRlciB0aGUgYXNzdW1wdGlvbgo+ID4+IDB4MjAwMCBjb3JyZXNw
+b25kZWQgdG8gMSwgZXZlbiB0aG91Z2ggaS5NWDYgbWFudWFsIGNoYXB0ZXIgMzMgc2VlbXMgdG8K
+PiA+PiBzdWdnZXN0IHdpdGggYSBjc2Nfc2NhbGUgb2YgMSwgdGhlbiAweDgwMCB3b3VsZCBjb3Jy
+ZXNwb25kIHRvIDEuCj4gPj4gU3RpbGwsIEkgd291bGQgZXhwZWN0IGF0IGxlYXN0IGZ1bGx5IGJs
+YWNrIHRvIGJlIGNvcnJlY3QgYXMgdGhhdCB3b3VsZAo+ID4+IGdpdmUgYSBtdWx0aXBsaWNhdGlv
+biBieSB6ZXJvLgo+ID4+Cj4gPj4gT3IgdGhlIHN0YXRlIG9mIGR3X2hkbWkgaXMgYWZmZWN0aW5n
+IHRoZSBWSVUgaW4gc29tZSB3YXk/IFBlcmhhcHMgdGhlCj4gPj4gVklVIGhhcmR3YXJlIGlzIG1h
+ZGUgdG8gY2xhbXAgbHVtaW5hbmNlIHdoZW4gZHdfaGRtaSBpcyBvdXRwdXR0aW5nCj4gPj4gUkdC
+PyBJIG5vdGljZWQgZm9yIHRoZSBDU0MgdGhlcmUgaXMgb25seSBhIHNwZWNpYWwgbWF0cml4IGZv
+cgo+ID4+IFJHQi10by1saW1pdGVkLVJHQiwgYnV0IG5vIHNwZWNpYWwgbWF0cml4IGZvciBZVVYt
+dG8tbGltaXRlZC1SR0IuIFRoYXQKPiA+PiBzZWVtcyB0byBzdWdnZXN0IHRoZSBjbGFtcGluZyBt
+YXkgYmUgZG9uZSB1cHN0cmVhbSBpbiB0aG9zZSBjYXNlcy4KPiA+Pgo+ID4+IEZyYW5jaXNjbwo+
+ID4+Cj4gPj4KPiA+PiBPbiBXZWQsIE9jdCAyMywgMjAyNCBhdCA4OjMw4oCvQU0gPG5laWwuYXJt
+c3Ryb25nQGxpbmFyby5vcmc+IHdyb3RlOgo+ID4+Pgo+ID4+PiBIaSwKPiA+Pj4KPiA+Pj4gT24g
+MjMvMTAvMjAyNCAxMDowMCwgRnJhbmNpc2NvIEF5YWxhIExlIEJydW4gd3JvdGU6Cj4gPj4+PiBI
+ZWxsbywKPiA+Pj4+Cj4gPj4+PiBJIGFtIHNlZWtpbmcgc29tZSBndWlkYW5jZSByZWdhcmRpbmcg
+ZW5hYmxpbmcgZnVsbC1yYW5nZSBIRE1JIG91dHB1dC4KPiA+Pj4+IFNwZWNpZmljYWxseSwgSSBh
+bSB3b25kZXJpbmcgd2hpY2ggY29tcG9uZW50IGluIHRoZSB2aWRlbyBwaXBlbGluZQo+ID4+Pj4g
+Y291bGQgYmUgY2xhbXBpbmcgSERNSSBvdXRwdXQgdmFsdWVzIHRvIDE2LTIzNT8gRnVydGhlciBk
+ZXRhaWxzCj4gPj4+PiBmb2xsb3c6Cj4gPj4+Pgo+ID4+Pj4gSSBoYXZlIGJlZW4gdHJ5aW5nIHRv
+IGdldCBmdWxsLXJhbmdlIEhETUkgb3V0cHV0IGZyb20gYSBMZSBQb3RhdG8KPiA+Pj4+IHM5MDV4
+IFNCQy4gQXQgdGhlIG1vbWVudCwgSERNSSBvdXRwdXQgc2VlbXMgdG8gYmUgaGFyZC1jb2RlZCB0
+byBjb2xvcgo+ID4+Pj4gcXVhbnRpemF0aW9uIGxpbWl0ZWQgcmFuZ2UgKDE2LTIzNSkuIFRoaXMg
+Z3JlYXRseSBkaW1pbmlzaGVzIHRoZQo+ID4+Pj4gY29udHJhc3QgaW4gZnVsbCByYW5nZSBkaXNw
+bGF5cy4KPiA+Pj4+Cj4gPj4+PiBTbyBmYXIgc2V0dGluZyB0aGUgVklVX09TRDEvMl9GVUxMX1JB
+TkdFIGJpdCBpbiB0aGUKPiA+Pj4+IFZJVV9PU0QxLzJfQ1RSTF9TVEFUMiByZWdpc3RlciBkb2Vz
+IG5vdCBzZWVtIHRvIHdvcmsuIEkgaGF2ZSBhbHNvCj4gPj4+PiBsb29rZWQgYXQgdGhlIGNvbG9y
+IHNwYWNlIGNvbnZlcnNpb24gbWF0cml4IGluIGR3X2hkbWkgaW4gY2FzZSB0aGF0IGlzCj4gPj4+
+PiB0aGUgY3VscHJpdCwgYnV0IHRoZSB2YWx1ZXMgc2VlbSBmaW5lIGFuZCBzZXR0aW5nIHRoYXQg
+dG8gemVybyBkb2VzCj4gPj4+PiBwcm9kdWNlIGEgc2lnbmFsIGluIHRoZSBmdWxsIHJhbmdlICgw
+KS4gVGhlIGJ1ZmZlciBmcm9tIHRoZSBWSVUgaXMKPiA+Pj4+IHVzaW5nIGEgWVVWIGZvcm1hdCBz
+byBkd19oZG1pIGlzIG5vdCB1c2luZyB0aGUgZnVsbCB0byBsaW1pdGVkIHJhbmdlCj4gPj4+PiBj
+b252ZXJzaW9uIG1hdHJpeC4KPiA+Pj4KPiA+Pj4gSW5kZWVkIHRoZSBpbnRlcm5hbCBWUFUgcGlw
+ZWxpbmUgaXMgaW4gMTBiaXQgWVVWNDQ0LCBzbyBpdCByZXF1aXJlcyBlbmFibGluZwo+ID4+PiB0
+aGUgZHctaGRtaSBDU0MsIHNvIHBlcmhhcHMgdGhvc2UgYXJlIG5vdCBkZXNpZ25lZCB0byBvdXRw
+dXQgZnVsbC1yYW5nZSBSR0IgPwo+ID4+Pgo+ID4+PiBDb3VsZCB5b3UgcmV2ZXJ0Ogo+ID4+PiBk
+M2Q2YjFiZjg1YWUgZHJtOiBicmlkZ2U6IGR3X2hkbWk6IGZpeCBwcmVmZXJlbmNlIG9mIFJHQiBt
+b2RlcyBvdmVyIFlVVjQyMAo+ID4+Pgo+ID4+PiBUaGlzIHdvdWxkIGdpdmUgeW91IGRpcmVjdCBZ
+VVY0NDQgSERNSSBvdXRwdXQgd2l0aG91dCBDU0MgaW52b2x2ZWQsIHJldmVydGluZwo+ID4+PiBp
+cyBub3QgYW4gb3B0aW9ucyBiZWNhdXNlIG9mIGxvdy1jb3N0IEhETUkgcGFuZWxzIGx5aW5nIGlu
+IHRoZWlyIEVESUQKPiA+Pj4gYW5kIG5vdCByZWFsbHkgc3VwcG9ydGluZyBZVVYgSERNSS4uLgo+
+ID4+Pgo+ID4+PiBTbyBpZiB0aGUgb3JpZ2luYWwgWVVWIGlzIGluIGZ1bGwgcmFuZ2UsIHRoZSBj
+dWxwcml0IGlzIGluIHRoZSBEVy1IRE1JIENTQwo+ID4+PiB0YWJsZS4KPiA+Cj4gPiBTbyBzZWVt
+cyB0aGUgY3VycmVudCBDU0MgdGFibGVzIG91dHB1dHMgbGltaXRlZCByYW5nZSBmcm9tIFlVViwg
+Y291bGQgeW91IHRyeToKPiA+Cj4gPiA9PT09PT09PT09PT09PT09PT48PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9icmlk
+Z2Uvc3lub3BzeXMvZHctaGRtaS5jIGIvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9k
+dy1oZG1pLmMKPiA+IGluZGV4IDAwMzFmM2M1NDg4Mi4uOWUxY2I5YmU0NjIyIDEwMDY0NAo+ID4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9kdy1oZG1pLmMKPiA+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5jCj4gPiBAQCAtMTc2OSw4
+ICsxNzY5LDExIEBAIHN0YXRpYyB2b2lkIGhkbWlfY29uZmlnX0FWSShzdHJ1Y3QgZHdfaGRtaSAq
+aGRtaSwKPiA+ICAgICAgICAgIGRybV9oZG1pX2F2aV9pbmZvZnJhbWVfZnJvbV9kaXNwbGF5X21v
+ZGUoJmZyYW1lLCBjb25uZWN0b3IsIG1vZGUpOwo+ID4KPiA+ICAgICAgICAgIGlmIChoZG1pX2J1
+c19mbXRfaXNfcmdiKGhkbWktPmhkbWlfZGF0YS5lbmNfb3V0X2J1c19mb3JtYXQpKSB7Cj4gPiAr
+ICAgICAgICAgICAgICAgYm9vbCBpc19pbnB1dF9yZ2IgPSBoZG1pX2J1c19mbXRfaXNfcmdiKGhk
+bWktPmhkbWlfZGF0YS5lbmNfaW5fYnVzX2Zvcm1hdCk7Cj4gPiArICAgICAgICAgICAgICAgYm9v
+bCBpc19saW1pdGVkX3JhbmdlID0gaGRtaS0+aGRtaV9kYXRhLnJnYl9saW1pdGVkX3JhbmdlIHwh
+aXNfaW5wdXRfcmdiOwo+Cj4gT2YgY291cnNlOgo+Cj4gICAgICAgICAgICAgICBib29sIGlzX2xp
+bWl0ZWRfcmFuZ2UgPSBoZG1pLT5oZG1pX2RhdGEucmdiX2xpbWl0ZWRfcmFuZ2UgfHwgIWlzX2lu
+cHV0X3JnYjsKPgo+IFNvcnJ5IGZvciB0aGUgdHlwby4KPgo+ID4gKwo+ID4gICAgICAgICAgICAg
+ICAgICBkcm1faGRtaV9hdmlfaW5mb2ZyYW1lX3F1YW50X3JhbmdlKCZmcmFtZSwgY29ubmVjdG9y
+LCBtb2RlLAo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgaGRtaS0+aGRtaV9kYXRhLnJnYl9saW1pdGVkX3JhbmdlID8KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlzX2xpbWl0ZWRfcmFuZ2Ug
+Pwo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IEhETUlfUVVBTlRJWkFUSU9OX1JBTkdFX0xJTUlURUQgOgo+ID4gICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEhETUlfUVVBTlRJWkFUSU9OX1JBTkdF
+X0ZVTEwpOwo+ID4gICAgICAgICAgfSBlbHNlIHsKPiA+ID09PT09PT09PT09PT09PT09Pjw9PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj4gPgo+ID4gSXQgd29uJ3Qgb3V0cHV0IGZ1
+bGwgcmFuZ2UsIGJ1dCBhdCBsZWFzdCB0aGUgbW9uaXRvciB3aWxsIGtub3cgdGhlIHJlYWwKPiA+
+IHNpZ25hbCBxdWFudCByYW5nZS4KPiA+Cj4gPiBUaGUgcmVhbCBmaXggd291bGQgYmUgdG8gY2Fs
+Y3VsYXRlIHNvbWUgbmV3IHBhcmFtZXRlcnMgZm9yIGZ1bGwgcmFuZ2UsCj4gPiBidXQgSSdtIG5v
+dCBhYmxlIHRvIGRvIHRoYXQgcGVyc29uYWxseS4KPiA+Cj4gPiBOZWlsCj4gPgo+ID4+Pgo+ID4+
+PiBOZWlsCj4gPj4+Cj4gPj4+Pgo+ID4+Pj4gVGhhbmsgeW91IGluIGFkdmFuY2UsCj4gPj4+PiBG
+cmFuY2lzY28KPiA+Pj4+Cj4gPj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwo+ID4+Pj4gbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKPiA+Pj4+IGxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+ID4+Pj4gaHR0cDovL2xpc3RzLmluZnJh
+ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCj4gPj4+Cj4gPj4+Cj4gPj4+
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPj4+IGxp
+bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cj4gPj4+IGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwo+ID4+PiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2xpbnV4LWFtbG9naWMKPiA+Cj4gPgo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KPiA+IGxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cj4gPiBsaW51
+eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKPiA+IGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo+CgpUaGFuayB5b3UgZm9yIHRoZSBw
+YXRjaC4gSG93ZXZlciwgaXQgZG9lcyBub3QgZml4IHRoZSBpc3N1ZSBpbiB0aGUKcGFuZWwgSSBh
+bSB1c2luZy4gUGVyaGFwcyBpdCBkb2VzIG5vdCBzdXBwb3J0IGxpbWl0ZWQgcXVhbnRpemF0aW9u
+CnJhbmdlIGF0IGFsbC4KCkhvcGVmdWxseSBJIGNhbiBoYXZlIGEgbG9vayBhdCB0aGUgQ1NDIHRh
+YmxlcyBzb29uLgoKRnJhbmNpc2NvCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC1hbWxvZ2ljCg==
