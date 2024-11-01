@@ -4,90 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FD60E6B27D
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Nov 2024 13:57:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A100AE6B27C
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Nov 2024 14:06:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7FEttF5ocF9+ai5Qd8yqvBoEUJMi2RoHVtoReIHjJuc=; b=pZjk61jzHvNLOD
-	zgyGRbObx3WaB7vNh/P344gft58+BewNMA68FI6JBT9n7/VbHd2EcVAXlbPyN5r+T1wN19GWJ+shd
-	yWNLr/B1GLOo17u1v9dQs8FH35eo4BDZ+Q8CCQq6BvJ8U+HJhajWT3q9jL7xnmpodoH4hXCumRgk5
-	9kUHMV4BzxTz0gKA4GJw7cQTRyG9WvIudJlQ5ilot9OOPvYHslL4R/Q97CqcP4c8YO0RDrk8Sn8WG
-	7vJO0LRyd0tcREFk+gbZwPIEKxLBIHfn0lmCJmVph5UaagWowadFUR6Pmk4jWwlpka4h3C9q9/xa9
-	pYmyTLJO2+zGd/RwExFA==;
+	List-Owner; bh=Yiae09AwrQ+iNQ+/1sjz0kKNGIHkKB6xaPYwIDG1R4A=; b=uv6qvDpEpqgH5d
+	EossbMca/qyqStak4RutBAglaBJIAh6I/tydx5bJN+5kR49y1Ns3aHItDYav59DKQAhZP/vPaO0+a
+	bZ29j1kMWoN9A6vftFVH7GlnrgFcNx6rD7MKgjiPjClhiCt0sESONG9lMFY/PDR/783SPzftkWAmr
+	q7f8OjKoQ86heX3xzW6ZHE4vOp3Sc/1fxqXeTfHP0ISVwZNytBfA6s0Zf71+yidQhhYbhpqnxciJE
+	//x1ipL9lYlGKWTm0M4m7Ee/K92+KkWt6+tCQ4FRpDnfTRru5XI0gXBdRzZJBYrXpooAIYhAJU2jW
+	dG8bIEX/wdC6cWgCCcUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t6s9Y-00000007Fqr-3BjV;
-	Fri, 01 Nov 2024 13:57:28 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t6s50-00000007Et9-0G2X
-	for linux-amlogic@bombadil.infradead.org;
-	Fri, 01 Nov 2024 13:52:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Reply-To:Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Content-ID:Content-Description;
-	bh=5jyAvRPsygI7XFJHSsHdPoZnmgPjLRPxij8t2wXJTyY=; b=k5oiv3P+Jk79V2hSeA4i7rhDuq
-	cMM40NERlJWSz8qfqSNbnhQTE7ubOI7oh8qf/zI/52cuz6SVzhXOICyJBrMDuzy+oCrpj3kKRnZTZ
-	hHtgpZnteq3C9t/sEmCznR731CMg+vSbs03+va1sfLkvdGW4dUEKdb44m2MoPaPR1UngpUpBi5U4a
-	8VQB9th3UiUKj7bChZQMhi1+F7B5xXSVRzSqfqOuQdahs86X3o8lHemo0E54wiRd/5+159NKmbwl2
-	FWQ8LWBatSMPsWAdQXcHvScNcJWZIHkhx99Mym5LlCNmLEgf/x6UnG8ZdURJtzRXj3dLlBhmxo17+
-	R9+xJBoQ==;
+	id 1t6sHj-00000007Gwl-3yF0;
+	Fri, 01 Nov 2024 14:05:55 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
-	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t6s4w-0000000AhOV-0fha
-	for linux-amlogic@lists.infradead.org;
-	Fri, 01 Nov 2024 13:52:44 +0000
+	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1t6s5U-00000007Ejl-1rnk;
+	Fri, 01 Nov 2024 13:53:53 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 205295CAFE3;
-	Fri,  1 Nov 2024 02:06:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 43180C4CED5;
-	Fri,  1 Nov 2024 02:06:59 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 514A95C3D3B;
+	Fri,  1 Nov 2024 08:26:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DEC11C4CED1;
+	Fri,  1 Nov 2024 08:27:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730426819;
-	bh=Sr03DLwF+0CRjwS+JcY9FQ/jwAk9Erb+TmTfkjjxxuo=;
+	s=k20201202; t=1730449640;
+	bh=MCBWWquIaqRRLK3E/mSW2MxChTg98CpQYIDGqrBBPxk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=N8xLlUIWqeXR08SeZbFQPv/Z72cPEv1RNjVDNdqJ6HrvRPynLhkOmljfkqJzWEYdF
-	 +gpliBfpolVt1E/FAfLMrcaO2F3qsZTWA3XYXv8weM+hIfRg6D3EuaF4D11Zpqn7bn
-	 cu9JfYJOKyB/ewqlDiToDHgyaP2RBWntoBnQAMgTXapRHcvVQlCg/YV0oqSd5+YEFF
-	 7YcbYlSocdTTH4eyrA5NQX9BoHIhaVzeZw1aksnsjvnXE1LNHl3/nKAAhR4kSNT3X+
-	 EFDTN3O3LPtxwdEFWcCrmTB90zc4wd1jL/PVdQ4CbXKrewQqZXn2h3Timuu6lIPi/G
-	 /PC7hOP6N5W4A==
+	b=W7BWo727slttmfToXtlnSZzYUucZqdeG0lHp3+QPIWExb56283Hy8/nC+hLZRME3C
+	 54KsjrqgXniGZngcnF7KYce2eGfdkIKuYIsHnlOsjYANPt4GlN6/TDX5Qyp7VJLevF
+	 aZfLqcjkGmFsEmQ4TBIImBKfTu2lcaocTuzB7D0hI2CcM/fdw2h8R89HdeNraUBd0X
+	 /aGf9bw1nKwtJilMG5MoxqQLdFmY/eD2hBSMH65vk7+fg4uASrzpZu3xHj27+EV8TG
+	 Mh5DjaQ/gvafF2r+NMglmyyBuNhBLzS/lf2eYSDCK92z0u56L5rkP8QBPGRtQKSohU
+	 EeM9pdzwl2gpw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 364C8E67495;
-	Fri,  1 Nov 2024 02:06:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D4648E67497;
+	Fri,  1 Nov 2024 08:27:20 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 01 Nov 2024 10:06:48 +0800
-Subject: [PATCH RESEND v4 2/3] rtc: support for the Amlogic on-chip RTC
+Date: Fri, 01 Nov 2024 16:27:19 +0800
+Subject: [PATCH RFC v4 3/4] pinctrl: meson: Add driver support for Amlogic
+ A4 SoCs
 MIME-Version: 1.0
-Message-Id: <20241101-rtc-v4-2-14e1ed486ed8@amlogic.com>
-References: <20241101-rtc-v4-0-14e1ed486ed8@amlogic.com>
-In-Reply-To: <20241101-rtc-v4-0-14e1ed486ed8@amlogic.com>
-To: Yiting Deng <yiting.deng@amlogic.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
+Message-Id: <20241101-a4_pinctrl-v4-3-efd98edc3ad4@amlogic.com>
+References: <20241101-a4_pinctrl-v4-0-efd98edc3ad4@amlogic.com>
+In-Reply-To: <20241101-a4_pinctrl-v4-0-efd98edc3ad4@amlogic.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1730426817; l=15598;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730449638; l=45478;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=cNbOL9mU9+fA5KZFmGLhYAJ5+VuZHdScljqBEQYouWY=;
- b=rp+BUaU3jaC/gLCKeA5V1S9ZtbJDm78IhJIOT0jrC25qvP7p0bfUz59A6q2byPR2lX17nktQp
- LV/k83FvZ3FCerGw+FYTpFNcUb+nRiAPSf/rF+VxaUqgMUne/xWEEx/
+ bh=ZouMKmSpSQVVvY/5OvWOfkdSHutPW8YVJgm56BltJxE=;
+ b=fqAMCc7VLJcIzD3CzXHEYOAJk64HrLyG+EXfR23yBP4+pIUdRpI6sWsG5Nddk39fDhR9R4xkq
+ ekwq2P/Ott7DmjfBwBSJqdYLYHRjFMElximjgnee3TYuZsmwxl1g0KL
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
  auth_id=107
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241101_135243_349351_A16804C0 
-X-CRM114-Status: GOOD (  26.02  )
+X-CRM114-CacheID: sfid-20241101_065316_755453_2EC81AC4 
+X-CRM114-Status: GOOD (  13.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,534 +93,1373 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Yiting Deng <yiting.deng@amlogic.com>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-This is the third amlogic driver. The RTC hardware of A4 SoC is different
-from the previous one. This RTC hardware includes a timing function and
-an alarm function. But the existing has only timing function, alarm
-function is using the system clock to implement a virtual alarm. Add
-the RTC driver to support it.
+Add a new pinctrl driver for Amlogic A4 SoCs which share
+the same register layout as the previous Amlogic S4.
 
-Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- drivers/rtc/Kconfig          |  12 ++
- drivers/rtc/Makefile         |   1 +
- drivers/rtc/rtc-amlogic-a4.c | 473 +++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 486 insertions(+)
+ drivers/pinctrl/meson/Kconfig              |    6 +
+ drivers/pinctrl/meson/Makefile             |    1 +
+ drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1321 ++++++++++++++++++++++++++++
+ 3 files changed, 1328 insertions(+)
 
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 2a95b05982ad..1d49738a2796 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -2043,4 +2043,16 @@ config RTC_DRV_SSD202D
- 	  This driver can also be built as a module, if so, the module
- 	  will be called "rtc-ssd20xd".
+diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+index cc397896762c..3e90bb5ec442 100644
+--- a/drivers/pinctrl/meson/Kconfig
++++ b/drivers/pinctrl/meson/Kconfig
+@@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
+ 	select PINCTRL_MESON_AXG_PMX
+ 	default y
  
-+config RTC_DRV_AMLOGIC_A4
-+	tristate "Amlogic RTC"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	select REGMAP_MMIO
++config PINCTRL_AMLOGIC_A4
++	tristate "Amlogic A4 SoC pinctrl driver"
++	depends on ARM64
++	select PINCTRL_MESON_AXG_PMX
 +	default y
-+	help
-+	  If you say yes here you get support for the RTC block on the
-+	  Amlogic A113L2(A4) and A113X2(A5) SoCs.
 +
-+	  This driver can also be built as a module. If so, the module
-+	  will be called "rtc-amlogic-a4".
-+
- endif # RTC_CLASS
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index 3004e372f25f..2122f469e633 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -26,6 +26,7 @@ obj-$(CONFIG_RTC_DRV_ABB5ZES3)	+= rtc-ab-b5ze-s3.o
- obj-$(CONFIG_RTC_DRV_ABEOZ9)	+= rtc-ab-eoz9.o
- obj-$(CONFIG_RTC_DRV_ABX80X)	+= rtc-abx80x.o
- obj-$(CONFIG_RTC_DRV_AC100)	+= rtc-ac100.o
-+obj-$(CONFIG_RTC_DRV_AMLOGIC_A4)	+= rtc-amlogic-a4.o
- obj-$(CONFIG_RTC_DRV_ARMADA38X)	+= rtc-armada38x.o
- obj-$(CONFIG_RTC_DRV_AS3722)	+= rtc-as3722.o
- obj-$(CONFIG_RTC_DRV_ASM9260)	+= rtc-asm9260.o
-diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
+ config PINCTRL_AMLOGIC_C3
+ 	tristate "Amlogic C3 SoC pinctrl driver"
+ 	depends on ARM64
+diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
+index 9e538b9ffb9b..c92a65a83344 100644
+--- a/drivers/pinctrl/meson/Makefile
++++ b/drivers/pinctrl/meson/Makefile
+@@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
+ obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
+ obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
+ obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
++obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
+ obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
+ obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
+diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
 new file mode 100644
-index 000000000000..decd74df225c
+index 000000000000..6729a6e9d365
 --- /dev/null
-+++ b/drivers/rtc/rtc-amlogic-a4.c
-@@ -0,0 +1,473 @@
++++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+@@ -0,0 +1,1321 @@
 +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
 +/*
-+ * Copyright (C) 2024 Amlogic, Inc. All rights reserved
-+ * Author: Yiting Deng <yiting.deng@amlogic.com>
++ * Pin controller and GPIO driver for Amlogic A4 SoC.
++ *
++ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
++ * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
++ *         Huqiang Qin <huqiang.qin@amlogic.com>
 + */
 +
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/bitfield.h>
-+#include <linux/rtc.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/time64.h>
-+#include <linux/delay.h>
++#include "pinctrl-meson.h"
++#include "pinctrl-meson-axg-pmx.h"
++#include <dt-bindings/gpio/amlogic-gpio.h>
 +
-+/* rtc oscillator rate */
-+#define OSC_32K			(32768)
-+#define OSC_24M			(24000000)
++/* Standard port */
 +
-+#define RTC_CTRL		(0x0 << 2)		/* Control RTC */
-+#define RTC_ALRM0_EN		BIT(0)
-+#define RTC_OSC_SEL		BIT(8)
-+#define RTC_ENABLE		BIT(12)
++#define GPIOE_0				0
++#define GPIOE_1				1
 +
-+#define RTC_COUNTER_REG		(0x1 << 2)		/* Program RTC counter initial value */
++#define GPIOD_0				2
++#define GPIOD_1				3
++#define GPIOD_2				4
++#define GPIOD_3				5
++#define GPIOD_4				6
++#define GPIOD_5				7
++#define GPIOD_6				8
++#define GPIOD_7				9
++#define GPIOD_8				10
++#define GPIOD_9				11
++#define GPIOD_10			12
++#define GPIOD_11			13
++#define GPIOD_12			14
++#define GPIOD_13			15
++#define GPIOD_14			16
++#define GPIOD_15			17
 +
-+#define RTC_ALARM0_REG		(0x2 << 2)		/* Program RTC alarm0 value */
++#define GPIOB_0				18
++#define GPIOB_1				19
++#define GPIOB_2				20
++#define GPIOB_3				21
++#define GPIOB_4				22
++#define GPIOB_5				23
++#define GPIOB_6				24
++#define GPIOB_7				25
++#define GPIOB_8				26
++#define GPIOB_9				27
++#define GPIOB_10			28
++#define GPIOB_11			29
++#define GPIOB_12			30
++#define GPIOB_13			31
 +
-+#define RTC_SEC_ADJUST_REG	(0x6 << 2)		/* Control second-based timing adjustment */
-+#define RTC_MATCH_COUNTER	GENMASK(18, 0)
-+#define RTC_SEC_ADJUST_CTRL	GENMASK(20, 19)
-+#define RTC_ADJ_VALID		BIT(23)
++#define GPIOX_0				32
++#define GPIOX_1				33
++#define GPIOX_2				34
++#define GPIOX_3				35
++#define GPIOX_4				36
++#define GPIOX_5				37
++#define GPIOX_6				38
++#define GPIOX_7				39
++#define GPIOX_8				40
++#define GPIOX_9				41
++#define GPIOX_10			42
++#define GPIOX_11			43
++#define GPIOX_12			44
++#define GPIOX_13			45
++#define GPIOX_14			46
++#define GPIOX_15			47
++#define GPIOX_16			48
++#define GPIOX_17			49
 +
-+#define RTC_INT_MASK		(0x8 << 2)		/* RTC interrupt mask */
-+#define RTC_ALRM0_IRQ_MSK	BIT(0)
++#define GPIOT_0				50
++#define GPIOT_1				51
++#define GPIOT_2				52
++#define GPIOT_3				53
++#define GPIOT_4				54
++#define GPIOT_5				55
++#define GPIOT_6				56
++#define GPIOT_7				57
++#define GPIOT_8				58
++#define GPIOT_9				59
++#define GPIOT_10			60
++#define GPIOT_11			61
++#define GPIOT_12			62
++#define GPIOT_13			63
++#define GPIOT_14			64
++#define GPIOT_15			65
++#define GPIOT_16			66
++#define GPIOT_17			67
++#define GPIOT_18			68
++#define GPIOT_19			69
++#define GPIOT_20			70
++#define GPIOT_21			71
++#define GPIOT_22			72
 +
-+#define RTC_INT_CLR		(0x9 << 2)		/* Clear RTC interrupt */
-+#define RTC_ALRM0_IRQ_CLR	BIT(0)
++/* Aobus port */
++#define GPIOAO_0			0
++#define GPIOAO_1			1
++#define GPIOAO_2			2
++#define GPIOAO_3			3
++#define GPIOAO_4			4
++#define GPIOAO_5			5
++#define GPIOAO_6			6
 +
-+#define RTC_OSCIN_CTRL0		(0xa << 2)		/* Control RTC clk from 24M */
-+#define RTC_OSCIN_CTRL1		(0xb << 2)		/* Control RTC clk from 24M */
-+#define RTC_OSCIN_IN_EN		BIT(31)
-+#define RTC_OSCIN_OUT_CFG	GENMASK(29, 28)
-+#define RTC_OSCIN_OUT_N0M0	GENMASK(11, 0)
-+#define RTC_OSCIN_OUT_N1M1	GENMASK(23, 12)
++#define GPIO_TEST_N			7
 +
-+#define RTC_INT_STATUS		(0xc << 2)		/* RTC interrupt status */
-+#define RTC_ALRM0_IRQ_STATUS	BIT(0)
++#define GPIOE_NUM			2
++#define GPIOD_NUM			16
++#define GPIOB_NUM			14
++#define GPIOX_NUM			18
++#define GPIOT_NUM			23
++#define GPIOAO_NUM			7
 +
-+#define RTC_REAL_TIME		(0xd << 2)		/* RTC time value */
++static const struct pinctrl_pin_desc a4_aobus_pins[] = {
++	MESON_PIN(GPIOAO_0),
++	MESON_PIN(GPIOAO_1),
++	MESON_PIN(GPIOAO_2),
++	MESON_PIN(GPIOAO_3),
++	MESON_PIN(GPIOAO_4),
++	MESON_PIN(GPIOAO_5),
++	MESON_PIN(GPIOAO_6),
 +
-+#define RTC_OSCIN_OUT_32K_N0	0x2dc
-+#define RTC_OSCIN_OUT_32K_N1	0x2db
-+#define RTC_OSCIN_OUT_32K_M0	0x1
-+#define RTC_OSCIN_OUT_32K_M1	0x2
-+
-+#define RTC_SWALLOW_SECOND	0x2
-+#define RTC_INSERT_SECOND	0x3
-+
-+struct aml_rtc_config {
-+	bool gray_stored;
++	MESON_PIN(GPIO_TEST_N)
 +};
 +
-+struct aml_rtc_data {
-+	struct regmap *map;
-+	struct rtc_device *rtc_dev;
-+	int irq;
-+	struct clk *rtc_clk;
-+	struct clk *sys_clk;
-+	int rtc_enabled;
-+	const struct aml_rtc_config *config;
++static const struct pinctrl_pin_desc a4_periphs_pins[] = {
++	MESON_PIN(GPIOE_0),
++	MESON_PIN(GPIOE_1),
++
++	MESON_PIN(GPIOD_0),
++	MESON_PIN(GPIOD_1),
++	MESON_PIN(GPIOD_2),
++	MESON_PIN(GPIOD_3),
++	MESON_PIN(GPIOD_4),
++	MESON_PIN(GPIOD_5),
++	MESON_PIN(GPIOD_6),
++	MESON_PIN(GPIOD_7),
++	MESON_PIN(GPIOD_8),
++	MESON_PIN(GPIOD_9),
++	MESON_PIN(GPIOD_10),
++	MESON_PIN(GPIOD_11),
++	MESON_PIN(GPIOD_12),
++	MESON_PIN(GPIOD_13),
++	MESON_PIN(GPIOD_14),
++	MESON_PIN(GPIOD_15),
++
++	MESON_PIN(GPIOB_0),
++	MESON_PIN(GPIOB_1),
++	MESON_PIN(GPIOB_2),
++	MESON_PIN(GPIOB_3),
++	MESON_PIN(GPIOB_4),
++	MESON_PIN(GPIOB_5),
++	MESON_PIN(GPIOB_6),
++	MESON_PIN(GPIOB_7),
++	MESON_PIN(GPIOB_8),
++	MESON_PIN(GPIOB_9),
++	MESON_PIN(GPIOB_10),
++	MESON_PIN(GPIOB_11),
++	MESON_PIN(GPIOB_12),
++	MESON_PIN(GPIOB_13),
++
++	MESON_PIN(GPIOX_0),
++	MESON_PIN(GPIOX_1),
++	MESON_PIN(GPIOX_2),
++	MESON_PIN(GPIOX_3),
++	MESON_PIN(GPIOX_4),
++	MESON_PIN(GPIOX_5),
++	MESON_PIN(GPIOX_6),
++	MESON_PIN(GPIOX_7),
++	MESON_PIN(GPIOX_8),
++	MESON_PIN(GPIOX_9),
++	MESON_PIN(GPIOX_10),
++	MESON_PIN(GPIOX_11),
++	MESON_PIN(GPIOX_12),
++	MESON_PIN(GPIOX_13),
++	MESON_PIN(GPIOX_14),
++	MESON_PIN(GPIOX_15),
++	MESON_PIN(GPIOX_16),
++	MESON_PIN(GPIOX_17),
++
++	MESON_PIN(GPIOT_0),
++	MESON_PIN(GPIOT_1),
++	MESON_PIN(GPIOT_2),
++	MESON_PIN(GPIOT_3),
++	MESON_PIN(GPIOT_4),
++	MESON_PIN(GPIOT_5),
++	MESON_PIN(GPIOT_6),
++	MESON_PIN(GPIOT_7),
++	MESON_PIN(GPIOT_8),
++	MESON_PIN(GPIOT_9),
++	MESON_PIN(GPIOT_10),
++	MESON_PIN(GPIOT_11),
++	MESON_PIN(GPIOT_12),
++	MESON_PIN(GPIOT_13),
++	MESON_PIN(GPIOT_14),
++	MESON_PIN(GPIOT_15),
++	MESON_PIN(GPIOT_16),
++	MESON_PIN(GPIOT_17),
++	MESON_PIN(GPIOT_18),
++	MESON_PIN(GPIOT_19),
++	MESON_PIN(GPIOT_20),
++	MESON_PIN(GPIOT_21),
++	MESON_PIN(GPIOT_22)
 +};
 +
-+static const struct regmap_config aml_rtc_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = RTC_REAL_TIME,
++/* GPIOAO func1 */
++static const unsigned int i2c_slave_a_sda_ao0_pins[]		= { GPIOAO_0 };
++static const unsigned int i2c_slave_a_scl_ao1_pins[]		= { GPIOAO_1 };
++static const unsigned int remote_ao_input_ao3_pins[]		= { GPIOAO_3 };
++static const unsigned int uart_ao_c_tx_ao4_pins[]		= { GPIOAO_4 };
++static const unsigned int uart_ao_c_rx_ao5_pins[]		= { GPIOAO_5 };
++static const unsigned int clk_32k_ao_out_pins[]			= { GPIOAO_6 };
++
++/* GPIOAO func2 */
++static const unsigned int uart_ao_c_tx_ao0_pins[]		= { GPIOAO_0 };
++static const unsigned int uart_ao_c_rx_ao1_pins[]		= { GPIOAO_1 };
++static const unsigned int i2c_slave_a_sda_ao2_pins[]		= { GPIOAO_2 };
++static const unsigned int i2c_slave_a_scl_ao3_pins[]		= { GPIOAO_3 };
++static const unsigned int remote_ao_input_ao4_pins[]		= { GPIOAO_4 };
++static const unsigned int pwm_g_pins[]				= { GPIOAO_6 };
++
++/* GPIOAO func3 */
++static const unsigned int remote_ao_input_ao1_pins[]		= { GPIOAO_1 };
++static const unsigned int remote_ao_input_ao6_pins[]		= { GPIOAO_6 };
++
++/* GPIOAO func4 */
++static const unsigned int pmic_sleep_ao2_pins[]			= { GPIOAO_2 };
++static const unsigned int pmic_sleep_ao4_pins[]			= { GPIOAO_4 };
++
++static const struct meson_pmx_group a4_aobus_groups[] = {
++	GPIO_GROUP(GPIOAO_0),
++	GPIO_GROUP(GPIOAO_1),
++	GPIO_GROUP(GPIOAO_2),
++	GPIO_GROUP(GPIOAO_3),
++	GPIO_GROUP(GPIOAO_4),
++	GPIO_GROUP(GPIOAO_5),
++	GPIO_GROUP(GPIOAO_6),
++
++	GPIO_GROUP(GPIO_TEST_N),
++
++	/* GPIOAO func1 */
++	GROUP(i2c_slave_a_sda_ao0,			1),
++	GROUP(i2c_slave_a_scl_ao1,			1),
++	GROUP(remote_ao_input_ao3,			1),
++	GROUP(uart_ao_c_tx_ao4,				1),
++	GROUP(uart_ao_c_rx_ao5,				1),
++	GROUP(clk_32k_ao_out,				1),
++
++	/* GPIOAO func2 */
++	GROUP(uart_ao_c_tx_ao0,				2),
++	GROUP(uart_ao_c_rx_ao1,				2),
++	GROUP(i2c_slave_a_sda_ao2,			2),
++	GROUP(i2c_slave_a_scl_ao3,			2),
++	GROUP(remote_ao_input_ao4,			2),
++	GROUP(pwm_g,					2),
++
++	/* GPIOAO func3 */
++	GROUP(remote_ao_input_ao1,			3),
++	GROUP(remote_ao_input_ao6,			3),
++
++	/* GPIOAO func4 */
++	GROUP(pmic_sleep_ao2,				4),
++	GROUP(pmic_sleep_ao4,				4)
 +};
 +
-+static inline u32 gray_to_binary(u32 gray)
++/* GPIOE func1 */
++static const unsigned int pwm_e_e0_pins[]			= { GPIOE_0 };
++static const unsigned int pwm_f_pins[]				= { GPIOE_1 };
++
++/* GPIOE func3 */
++static const unsigned int uart_b_tx_e0_pins[]			= { GPIOE_0 };
++static const unsigned int uart_b_rx_e1_pins[]			= { GPIOE_1 };
++
++/* GPIOE func5 */
++static const unsigned int i2c0_sda_e0_pins[]			= { GPIOE_0 };
++static const unsigned int i2c0_scl_e1_pins[]			= { GPIOE_1 };
++
++/* GPIOD func1 */
++static const unsigned int pdm_din1_d2_pins[]			= { GPIOD_2 };
++static const unsigned int pdm_din0_d3_pins[]			= { GPIOD_3 };
++static const unsigned int pdm_dclk_d4_pins[]			= { GPIOD_4 };
++static const unsigned int remote_out_pins[]			= { GPIOD_5 };
++static const unsigned int jtag_1_clk_pins[]			= { GPIOD_6 };
++static const unsigned int jtag_1_tms_pins[]			= { GPIOD_7 };
++static const unsigned int jtag_1_tdi_pins[]			= { GPIOD_8 };
++static const unsigned int jtag_1_tdo_pins[]			= { GPIOD_9 };
++static const unsigned int clk12_24_pins[]			= { GPIOD_10 };
++static const unsigned int tdm_d3_d11_pins[]			= { GPIOD_11 };
++static const unsigned int tdm_d2_d12_pins[]			= { GPIOD_12 };
++static const unsigned int mclk1_d13_pins[]			= { GPIOD_13 };
++static const unsigned int tdm_sclk1_d14_pins[]			= { GPIOD_14 };
++static const unsigned int tdm_fs1_d15_pins[]			= { GPIOD_15 };
++
++/* GPIOD func2 */
++static const unsigned int uart_b_tx_d0_pins[]			= { GPIOD_0 };
++static const unsigned int uart_b_rx_d1_pins[]			= { GPIOD_1 };
++static const unsigned int uart_b_cts_pins[]			= { GPIOD_2 };
++static const unsigned int uart_b_rts_pins[]			= { GPIOD_3 };
++static const unsigned int remote_in_pins[]			= { GPIOD_5 };
++static const unsigned int pwm_a_hiz_pins[]			= { GPIOD_6 };
++static const unsigned int pwm_b_hiz_pins[]			= { GPIOD_7 };
++static const unsigned int pwm_c_hiz_pins[]			= { GPIOD_8 };
++static const unsigned int pwm_d_hiz_pins[]			= { GPIOD_9 };
++static const unsigned int gen_clk_pins[]			= { GPIOD_10 };
++static const unsigned int pwm_e_hiz_pins[]			= { GPIOD_11 };
++static const unsigned int i2c3_sda_d12_pins[]			= { GPIOD_12 };
++static const unsigned int i2c3_scl_d13_pins[]			= { GPIOD_13 };
++static const unsigned int i2c2_sda_d14_pins[]			= { GPIOD_14 };
++static const unsigned int i2c2_scl_d15_pins[]			= { GPIOD_15 };
++
++/* GPIOD func3 */
++static const unsigned int uart_a_tx_d2_pins[]			= { GPIOD_2 };
++static const unsigned int uart_a_rx_d3_pins[]			= { GPIOD_3 };
++static const unsigned int pwm_a_d6_pins[]			= { GPIOD_6 };
++static const unsigned int pwm_b_d7_pins[]			= { GPIOD_7 };
++static const unsigned int pwm_c_d8_pins[]			= { GPIOD_8 };
++static const unsigned int pwm_d_d9_pins[]			= { GPIOD_9 };
++static const unsigned int pwm_e_d11_pins[]			= { GPIOD_11 };
++static const unsigned int pwm_h_d12_pins[]			= { GPIOD_12 };
++
++/* GPIOD func4 */
++static const unsigned int spi_b_miso_d2_pins[]			= { GPIOD_2 };
++static const unsigned int spi_b_mosi_d3_pins[]			= { GPIOD_3 };
++static const unsigned int spi_b_clk_d4_pins[]			= { GPIOD_4 };
++static const unsigned int spi_b_ss0_d5_pins[]			= { GPIOD_5 };
++static const unsigned int spi_b_dq2_pins[]			= { GPIOD_6 };
++static const unsigned int spi_b_dq3_pins[]			= { GPIOD_7 };
++static const unsigned int tdm_d12_d8_pins[]			= { GPIOD_8 };
++static const unsigned int tdm_d13_d9_pins[]			= { GPIOD_9 };
++static const unsigned int i2c1_sda_d10_pins[]			= { GPIOD_10 };
++static const unsigned int i2c1_scl_d11_pins[]			= { GPIOD_11 };
++
++/* GPIOD func5 */
++static const unsigned int i2c1_sda_d2_pins[]			= { GPIOD_2 };
++static const unsigned int i2c1_scl_d3_pins[]			= { GPIOD_3 };
++static const unsigned int eth_mdio_d6_pins[]			= { GPIOD_6 };
++static const unsigned int eth_mdc_d7_pins[]			= { GPIOD_7 };
++static const unsigned int dcon_led_d8_pins[]			= { GPIOD_8 };
++static const unsigned int mic_mute_en_pins[]			= { GPIOD_10 };
++static const unsigned int mic_mute_key_pins[]			= { GPIOD_11 };
++static const unsigned int dcon_led_d12_pins[]			= { GPIOD_12 };
++static const unsigned int mclk0_d13_pins[]			= { GPIOD_13 };
++static const unsigned int tdm_sclk0_d14_pins[]			= { GPIOD_14 };
++static const unsigned int tdm_fs0_d15_pins[]			= { GPIOD_15 };
++
++/* GPIOB func1 */
++static const unsigned int emmc_nand_d0_pins[]			= { GPIOB_0 };
++static const unsigned int emmc_nand_d1_pins[]			= { GPIOB_1 };
++static const unsigned int emmc_nand_d2_pins[]			= { GPIOB_2 };
++static const unsigned int emmc_nand_d3_pins[]			= { GPIOB_3 };
++static const unsigned int emmc_nand_d4_pins[]			= { GPIOB_4 };
++static const unsigned int emmc_nand_d5_pins[]			= { GPIOB_5 };
++static const unsigned int emmc_nand_d6_pins[]			= { GPIOB_6 };
++static const unsigned int emmc_nand_d7_pins[]			= { GPIOB_7 };
++static const unsigned int emmc_clk_pins[]			= { GPIOB_8 };
++static const unsigned int emmc_rst_pins[]			= { GPIOB_9 };
++static const unsigned int emmc_cmd_pins[]			= { GPIOB_10 };
++static const unsigned int emmc_nand_ds_pins[]			= { GPIOB_11 };
++
++/* GPIOB func2 */
++static const unsigned int nand_wen_clk_pins[]			= { GPIOB_8 };
++static const unsigned int nand_ale_pins[]			= { GPIOB_9 };
++static const unsigned int nand_ren_wr_pins[]			= { GPIOB_10 };
++static const unsigned int nand_cle_pins[]			= { GPIOB_11 };
++static const unsigned int nand_ce0_pins[]			= { GPIOB_12 };
++
++/* GPIOB func4 */
++static const unsigned int spinf_mo_d0_pins[]			= { GPIOB_0 };
++static const unsigned int spinf_mi_d1_pins[]			= { GPIOB_1 };
++static const unsigned int spinf_wp_d2_pins[]			= { GPIOB_2 };
++static const unsigned int spinf_hold_d3_pins[]			= { GPIOB_3 };
++static const unsigned int spinf_d4_pins[]			= { GPIOB_4 };
++static const unsigned int spinf_d5_pins[]			= { GPIOB_5 };
++static const unsigned int spinf_d6_pins[]			= { GPIOB_6 };
++static const unsigned int spinf_d7_pins[]			= { GPIOB_7 };
++static const unsigned int spinf_rst_pins[]			= { GPIOB_9 };
++static const unsigned int spinf_clk_pins[]			= { GPIOB_10 };
++static const unsigned int spinf_cs1_pins[]			= { GPIOB_12 };
++static const unsigned int spinf_cs0_pins[]			= { GPIOB_13 };
++
++/* GPIOX func1 */
++static const unsigned int sdio_d0_pins[]			= { GPIOX_0 };
++static const unsigned int sdio_d1_pins[]			= { GPIOX_1 };
++static const unsigned int sdio_d2_pins[]			= { GPIOX_2 };
++static const unsigned int sdio_d3_pins[]			= { GPIOX_3 };
++static const unsigned int sdio_clk_pins[]			= { GPIOX_4 };
++static const unsigned int sdio_cmd_pins[]			= { GPIOX_5 };
++static const unsigned int mclk0_x6_pins[]			= { GPIOX_6 };
++static const unsigned int tdm_d1_pins[]				= { GPIOX_7 };
++static const unsigned int tdm_d0_x8_pins[]			= { GPIOX_8 };
++static const unsigned int tdm_fs0_x9_pins[]			= { GPIOX_9 };
++static const unsigned int tdm_sclk0_x10_pins[]			= { GPIOX_10 };
++static const unsigned int uart_a_tx_x11_pins[]			= { GPIOX_11 };
++static const unsigned int uart_a_rx_x12_pins[]			= { GPIOX_12 };
++static const unsigned int uart_a_cts_pins[]			= { GPIOX_13 };
++static const unsigned int uart_a_rts_pins[]			= { GPIOX_14 };
++static const unsigned int pwm_g_x15_pins[]			= { GPIOX_15 };
++static const unsigned int pwm_b_x17_pins[]			= { GPIOX_17 };
++
++/* GPIOX func2 */
++static const unsigned int pwm_a_x6_pins[]			= { GPIOX_6 };
++static const unsigned int spi_a_mosi_x7_pins[]			= { GPIOX_7 };
++static const unsigned int spi_a_miso_x8_pins[]			= { GPIOX_8 };
++static const unsigned int spi_a_ss0_x9_pins[]			= { GPIOX_9 };
++static const unsigned int spi_a_clk_x10_pins[]			= { GPIOX_10 };
++static const unsigned int i2c0_sda_x16_pins[]			= { GPIOX_16 };
++static const unsigned int i2c0_scl_x17_pins[]			= { GPIOX_17 };
++
++/* GPIOX func5 */
++static const unsigned int eth_mdio_x0_pins[]			= { GPIOX_0 };
++static const unsigned int eth_mdc_x1_pins[]			= { GPIOX_1 };
++static const unsigned int eth_rgmii_rx_clk_pins[]		= { GPIOX_2 };
++static const unsigned int eth_rx_dv_pins[]			= { GPIOX_3 };
++static const unsigned int eth_rxd0_pins[]			= { GPIOX_4 };
++static const unsigned int eth_rxd1_pins[]			= { GPIOX_5 };
++static const unsigned int eth_rxd2_rgmii_pins[]			= { GPIOX_6 };
++static const unsigned int eth_rxd3_rgmii_pins[]			= { GPIOX_7 };
++static const unsigned int eth_rgmii_tx_clk_pins[]		= { GPIOX_8 };
++static const unsigned int eth_txen_pins[]			= { GPIOX_9 };
++static const unsigned int eth_txd0_pins[]			= { GPIOX_10 };
++static const unsigned int eth_txd1_pins[]			= { GPIOX_11 };
++static const unsigned int eth_txd2_rgmii_pins[]			= { GPIOX_12 };
++static const unsigned int eth_txd3_rgmii_pins[]			= { GPIOX_13 };
++static const unsigned int spi_b_mosi_x14_pins[]			= { GPIOX_14 };
++static const unsigned int spi_b_ss0_x15_pins[]			= { GPIOX_15 };
++static const unsigned int spi_b_clk_x16_pins[]			= { GPIOX_16 };
++static const unsigned int spi_b_miso_x17_pins[]			= { GPIOX_17 };
++
++/* GPIOT func1 */
++static const unsigned int tdm_d2_t0_pins[]			= { GPIOT_0 };
++static const unsigned int tdm_d3_t1_pins[]			= { GPIOT_1 };
++static const unsigned int tdm_fs1_t2_pins[]			= { GPIOT_2 };
++static const unsigned int tdm_sclk1_t3_pins[]			= { GPIOT_3 };
++static const unsigned int mclk1_t4_pins[]			= { GPIOT_4 };
++static const unsigned int tdm_d4_t5_pins[]			= { GPIOT_5 };
++static const unsigned int tdm_d5_t6_pins[]			= { GPIOT_6 };
++static const unsigned int tdm_d6_t7_pins[]			= { GPIOT_7 };
++static const unsigned int tdm_d7_pins[]				= { GPIOT_8 };
++static const unsigned int spdif_out_pins[]			= { GPIOT_9 };
++static const unsigned int spdif_in_t10_pins[]			= { GPIOT_10 };
++static const unsigned int tdm_fs2_t11_pins[]			= { GPIOT_11 };
++static const unsigned int tdm_sclk2_t12_pins[]			= { GPIOT_12 };
++static const unsigned int tdm_d8_pins[]				= { GPIOT_13 };
++static const unsigned int tdm_d9_pins[]				= { GPIOT_14 };
++static const unsigned int tdm_d10_pins[]			= { GPIOT_15 };
++static const unsigned int tdm_d11_pins[]			= { GPIOT_16 };
++static const unsigned int mclk2_t17_pins[]			= { GPIOT_17 };
++static const unsigned int tdm_d12_t18_pins[]			= { GPIOT_18 };
++static const unsigned int tdm_d13_t19_pins[]			= { GPIOT_19 };
++static const unsigned int i2c0_sda_t21_pins[]			= { GPIOT_21 };
++static const unsigned int i2c0_scl_t22_pins[]			= { GPIOT_22 };
++
++/* GPIOT func2 */
++static const unsigned int i2c3_sda_t0_pins[]			= { GPIOT_0 };
++static const unsigned int i2c3_scl_t1_pins[]			= { GPIOT_1 };
++static const unsigned int uart_d_tx_t7_pins[]			= { GPIOT_7 };
++static const unsigned int uart_d_rx_t8_pins[]			= { GPIOT_8 };
++static const unsigned int uart_d_cts_pins[]			= { GPIOT_9 };
++static const unsigned int uart_d_rts_pins[]			= { GPIOT_10 };
++static const unsigned int spi_a_dq2_pins[]			= { GPIOT_11 };
++static const unsigned int spi_a_dq3_pins[]			= { GPIOT_12 };
++static const unsigned int spi_a_clk_t13_pins[]			= { GPIOT_13 };
++static const unsigned int spi_a_mosi_t14_pins[]			= { GPIOT_14 };
++static const unsigned int spi_a_miso_t15_pins[]			= { GPIOT_15 };
++static const unsigned int spi_a_ss0_t16_pins[]			= { GPIOT_16 };
++static const unsigned int spi_a_ss1_pins[]			= { GPIOT_17 };
++static const unsigned int spi_a_ss2_pins[]			= { GPIOT_18 };
++static const unsigned int pwm_g_t19_pins[]			= { GPIOT_19 };
++static const unsigned int pwm_h_t20_pins[]			= { GPIOT_20 };
++static const unsigned int eth_link_led_t21_pins[]		= { GPIOT_21 };
++static const unsigned int eth_act_led_t22_pins[]		= { GPIOT_22 };
++
++/* GPIOT func3 */
++static const unsigned int pdm_din1_t0_pins[]			= { GPIOT_0 };
++static const unsigned int pdm_din0_t1_pins[]			= { GPIOT_1 };
++static const unsigned int pdm_dclk_t2_pins[]			= { GPIOT_2 };
++static const unsigned int spi_b_clk_t5_pins[]			= { GPIOT_5 };
++static const unsigned int spi_b_mosi_t6_pins[]			= { GPIOT_6 };
++static const unsigned int spi_b_miso_t7_pins[]			= { GPIOT_7 };
++static const unsigned int spi_b_ss0_t8_pins[]			= { GPIOT_8 };
++static const unsigned int spi_b_ss1_pins[]			= { GPIOT_9 };
++static const unsigned int spi_b_ss2_pins[]			= { GPIOT_10 };
++static const unsigned int uart_e_tx_pins[]			= { GPIOT_14 };
++static const unsigned int uart_e_rx_pins[]			= { GPIOT_15 };
++static const unsigned int uart_e_rts_pins[]			= { GPIOT_16 };
++static const unsigned int uart_e_cts_pins[]			= { GPIOT_17 };
++static const unsigned int eth_link_led_t18_pins[]		= { GPIOT_18 };
++static const unsigned int eth_act_led_t19_pins[]		= { GPIOT_19 };
++static const unsigned int tdm_d4_t20_pins[]			= { GPIOT_20 };
++static const unsigned int tdm_d5_t21_pins[]			= { GPIOT_21 };
++static const unsigned int tdm_d6_t22_pins[]			= { GPIOT_22 };
++
++/* GPIOT func4 */
++static const unsigned int dcon_led_t4_pins[]			= { GPIOT_4 };
++static const unsigned int mclk2_t5_pins[]			= { GPIOT_5 };
++static const unsigned int tdm_fs2_t6_pins[]			= { GPIOT_6 };
++static const unsigned int tdm_sclk2_t7_pins[]			= { GPIOT_7 };
++static const unsigned int spdif_in_t9_pins[]			= { GPIOT_9 };
++static const unsigned int i2c2_sda_t11_pins[]			= { GPIOT_11 };
++static const unsigned int i2c2_scl_t12_pins[]			= { GPIOT_12 };
++static const unsigned int pwm_d_t15_pins[]			= { GPIOT_15 };
++static const unsigned int pwm_c_t16_pins[]			= { GPIOT_16 };
++static const unsigned int uart_d_tx_t18_pins[]			= { GPIOT_18 };
++static const unsigned int uart_d_rx_t19_pins[]			= { GPIOT_19 };
++static const unsigned int tdm_d0_t20_pins[]			= { GPIOT_20 };
++static const unsigned int tdm_fs0_t21_pins[]			= { GPIOT_21 };
++static const unsigned int tdm_sclk0_t22_pins[]			= { GPIOT_22 };
++
++/* GPIOT func5 */
++static const unsigned int lcd_d0_pins[]				= { GPIOT_0 };
++static const unsigned int lcd_d1_pins[]				= { GPIOT_1 };
++static const unsigned int lcd_d2_pins[]				= { GPIOT_2 };
++static const unsigned int lcd_d3_pins[]				= { GPIOT_3 };
++static const unsigned int lcd_d4_pins[]				= { GPIOT_4 };
++static const unsigned int lcd_d5_pins[]				= { GPIOT_5 };
++static const unsigned int lcd_d6_pins[]				= { GPIOT_6 };
++static const unsigned int lcd_d7_pins[]				= { GPIOT_7 };
++static const unsigned int lcd_d8_pins[]				= { GPIOT_8 };
++static const unsigned int lcd_d9_pins[]				= { GPIOT_9 };
++static const unsigned int lcd_d10_pins[]			= { GPIOT_10 };
++static const unsigned int lcd_d11_pins[]			= { GPIOT_11 };
++static const unsigned int lcd_d12_pins[]			= { GPIOT_12 };
++static const unsigned int lcd_d13_pins[]			= { GPIOT_13 };
++static const unsigned int lcd_d14_pins[]			= { GPIOT_14 };
++static const unsigned int lcd_d15_pins[]			= { GPIOT_15 };
++static const unsigned int lcd_d16_pins[]			= { GPIOT_16 };
++static const unsigned int lcd_d17_pins[]			= { GPIOT_17 };
++static const unsigned int lcd_clk_pins[]			= { GPIOT_18 };
++static const unsigned int lcd_den_pins[]			= { GPIOT_19 };
++static const unsigned int lcd_hsync_pins[]			= { GPIOT_20 };
++static const unsigned int lcd_vsync_pins[]			= { GPIOT_21 };
++
++static const struct meson_pmx_group a4_periphs_groups[] = {
++	/* func0 as GPIO */
++	GPIO_GROUP(GPIOE_0),
++	GPIO_GROUP(GPIOE_1),
++
++	GPIO_GROUP(GPIOD_0),
++	GPIO_GROUP(GPIOD_1),
++	GPIO_GROUP(GPIOD_2),
++	GPIO_GROUP(GPIOD_3),
++	GPIO_GROUP(GPIOD_4),
++	GPIO_GROUP(GPIOD_5),
++	GPIO_GROUP(GPIOD_6),
++	GPIO_GROUP(GPIOD_7),
++	GPIO_GROUP(GPIOD_8),
++	GPIO_GROUP(GPIOD_9),
++	GPIO_GROUP(GPIOD_10),
++	GPIO_GROUP(GPIOD_11),
++	GPIO_GROUP(GPIOD_12),
++	GPIO_GROUP(GPIOD_13),
++	GPIO_GROUP(GPIOD_14),
++	GPIO_GROUP(GPIOD_15),
++
++	GPIO_GROUP(GPIOB_0),
++	GPIO_GROUP(GPIOB_1),
++	GPIO_GROUP(GPIOB_2),
++	GPIO_GROUP(GPIOB_3),
++	GPIO_GROUP(GPIOB_4),
++	GPIO_GROUP(GPIOB_5),
++	GPIO_GROUP(GPIOB_6),
++	GPIO_GROUP(GPIOB_7),
++	GPIO_GROUP(GPIOB_8),
++	GPIO_GROUP(GPIOB_9),
++	GPIO_GROUP(GPIOB_10),
++	GPIO_GROUP(GPIOB_11),
++	GPIO_GROUP(GPIOB_12),
++	GPIO_GROUP(GPIOB_13),
++
++	GPIO_GROUP(GPIOX_0),
++	GPIO_GROUP(GPIOX_1),
++	GPIO_GROUP(GPIOX_2),
++	GPIO_GROUP(GPIOX_3),
++	GPIO_GROUP(GPIOX_4),
++	GPIO_GROUP(GPIOX_5),
++	GPIO_GROUP(GPIOX_6),
++	GPIO_GROUP(GPIOX_7),
++	GPIO_GROUP(GPIOX_8),
++	GPIO_GROUP(GPIOX_9),
++	GPIO_GROUP(GPIOX_10),
++	GPIO_GROUP(GPIOX_11),
++	GPIO_GROUP(GPIOX_12),
++	GPIO_GROUP(GPIOX_13),
++	GPIO_GROUP(GPIOX_14),
++	GPIO_GROUP(GPIOX_15),
++	GPIO_GROUP(GPIOX_16),
++	GPIO_GROUP(GPIOX_17),
++
++	GPIO_GROUP(GPIOT_0),
++	GPIO_GROUP(GPIOT_1),
++	GPIO_GROUP(GPIOT_2),
++	GPIO_GROUP(GPIOT_3),
++	GPIO_GROUP(GPIOT_4),
++	GPIO_GROUP(GPIOT_5),
++	GPIO_GROUP(GPIOT_6),
++	GPIO_GROUP(GPIOT_7),
++	GPIO_GROUP(GPIOT_8),
++	GPIO_GROUP(GPIOT_9),
++	GPIO_GROUP(GPIOT_10),
++	GPIO_GROUP(GPIOT_11),
++	GPIO_GROUP(GPIOT_12),
++	GPIO_GROUP(GPIOT_13),
++	GPIO_GROUP(GPIOT_14),
++	GPIO_GROUP(GPIOT_15),
++	GPIO_GROUP(GPIOT_16),
++	GPIO_GROUP(GPIOT_17),
++	GPIO_GROUP(GPIOT_18),
++	GPIO_GROUP(GPIOT_19),
++	GPIO_GROUP(GPIOT_20),
++	GPIO_GROUP(GPIOT_21),
++	GPIO_GROUP(GPIOT_22),
++
++	/* GPIOE func1 */
++	GROUP(pwm_e_e0,			1),
++	GROUP(pwm_f,			1),
++
++	/* GPIOE func3 */
++	GROUP(uart_b_tx_e0,		3),
++	GROUP(uart_b_rx_e1,		3),
++
++	/* GPIOE func5 */
++	GROUP(i2c0_sda_e0,		5),
++	GROUP(i2c0_scl_e1,		5),
++
++	/* GPIOD func1 */
++	GROUP(pdm_din1_d2,		1),
++	GROUP(pdm_din0_d3,		1),
++	GROUP(pdm_dclk_d4,		1),
++	GROUP(remote_out,		1),
++	GROUP(jtag_1_clk,		1),
++	GROUP(jtag_1_tms,		1),
++	GROUP(jtag_1_tdi,		1),
++	GROUP(jtag_1_tdo,		1),
++	GROUP(clk12_24,			1),
++	GROUP(tdm_d3_d11,		1),
++	GROUP(tdm_d2_d12,		1),
++	GROUP(mclk1_d13,		1),
++	GROUP(tdm_sclk1_d14,		1),
++	GROUP(tdm_fs1_d15,		1),
++
++	/* GPIOD func2 */
++	GROUP(uart_b_tx_d0,		2),
++	GROUP(uart_b_rx_d1,		2),
++	GROUP(uart_b_cts,		2),
++	GROUP(uart_b_rts,		2),
++	GROUP(remote_in,		2),
++	GROUP(pwm_a_hiz,		2),
++	GROUP(pwm_b_hiz,		2),
++	GROUP(pwm_c_hiz,		2),
++	GROUP(pwm_d_hiz,		2),
++	GROUP(gen_clk,			2),
++	GROUP(pwm_e_hiz,		2),
++	GROUP(i2c3_sda_d12,		2),
++	GROUP(i2c3_scl_d13,		2),
++	GROUP(i2c2_sda_d14,		2),
++	GROUP(i2c2_scl_d15,		2),
++
++	/* GPIOD func3 */
++	GROUP(uart_a_tx_d2,		3),
++	GROUP(uart_a_rx_d3,		3),
++	GROUP(pwm_a_d6,			3),
++	GROUP(pwm_b_d7,			3),
++	GROUP(pwm_c_d8,			3),
++	GROUP(pwm_d_d9,			3),
++	GROUP(pwm_e_d11,		3),
++	GROUP(pwm_h_d12,		3),
++
++	/* GPIOD func4 */
++	GROUP(spi_b_miso_d2,		4),
++	GROUP(spi_b_mosi_d3,		4),
++	GROUP(spi_b_clk_d4,		4),
++	GROUP(spi_b_ss0_d5,		4),
++	GROUP(spi_b_dq2,		4),
++	GROUP(spi_b_dq3,		4),
++	GROUP(tdm_d12_d8,		4),
++	GROUP(tdm_d13_d9,		4),
++	GROUP(i2c1_sda_d10,		4),
++	GROUP(i2c1_scl_d11,		4),
++
++	/* GPIOD func5 */
++	GROUP(i2c1_sda_d2,		5),
++	GROUP(i2c1_scl_d3,		5),
++	GROUP(eth_mdio_d6,		5),
++	GROUP(eth_mdc_d7,		5),
++	GROUP(dcon_led_d8,		5),
++	GROUP(mic_mute_en,		5),
++	GROUP(mic_mute_key,		5),
++	GROUP(dcon_led_d12,		5),
++	GROUP(mclk0_d13,		5),
++	GROUP(tdm_sclk0_d14,		5),
++	GROUP(tdm_fs0_d15,		5),
++
++	/* GPIOB func1 */
++	GROUP(emmc_nand_d0,		1),
++	GROUP(emmc_nand_d1,		1),
++	GROUP(emmc_nand_d2,		1),
++	GROUP(emmc_nand_d3,		1),
++	GROUP(emmc_nand_d4,		1),
++	GROUP(emmc_nand_d5,		1),
++	GROUP(emmc_nand_d6,		1),
++	GROUP(emmc_nand_d7,		1),
++	GROUP(emmc_clk,			1),
++	GROUP(emmc_rst,			1),
++	GROUP(emmc_cmd,			1),
++	GROUP(emmc_nand_ds,		1),
++
++	/* GPIOB func2 */
++	GROUP(nand_wen_clk,		2),
++	GROUP(nand_ale,			2),
++	GROUP(nand_ren_wr,		2),
++	GROUP(nand_cle,			2),
++	GROUP(nand_ce0,			2),
++
++	/* GPIOB func4 */
++	GROUP(spinf_mo_d0,		4),
++	GROUP(spinf_mi_d1,		4),
++	GROUP(spinf_wp_d2,		4),
++	GROUP(spinf_hold_d3,		4),
++	GROUP(spinf_d4,			4),
++	GROUP(spinf_d5,			4),
++	GROUP(spinf_d6,			4),
++	GROUP(spinf_d7,			4),
++	GROUP(spinf_rst,		4),
++	GROUP(spinf_clk,		4),
++	GROUP(spinf_cs1,		4),
++	GROUP(spinf_cs0,		4),
++
++	/* GPIOX func1 */
++	GROUP(sdio_d0,			1),
++	GROUP(sdio_d1,			1),
++	GROUP(sdio_d2,			1),
++	GROUP(sdio_d3,			1),
++	GROUP(sdio_clk,			1),
++	GROUP(sdio_cmd,			1),
++	GROUP(mclk0_x6,			1),
++	GROUP(tdm_d1,			1),
++	GROUP(tdm_d0_x8,		1),
++	GROUP(tdm_fs0_x9,		1),
++	GROUP(tdm_sclk0_x10,		1),
++	GROUP(uart_a_tx_x11,		1),
++	GROUP(uart_a_rx_x12,		1),
++	GROUP(uart_a_cts,		1),
++	GROUP(uart_a_rts,		1),
++	GROUP(pwm_g_x15,		1),
++	GROUP(pwm_b_x17,		1),
++
++	/* GPIOX func2 */
++	GROUP(pwm_a_x6,			2),
++	GROUP(spi_a_mosi_x7,		2),
++	GROUP(spi_a_miso_x8,		2),
++	GROUP(spi_a_ss0_x9,		2),
++	GROUP(spi_a_clk_x10,		2),
++	GROUP(i2c0_sda_x16,		2),
++	GROUP(i2c0_scl_x17,		2),
++
++	/* GPIOX func5 */
++	GROUP(eth_mdio_x0,		5),
++	GROUP(eth_mdc_x1,		5),
++	GROUP(eth_rgmii_rx_clk,		5),
++	GROUP(eth_rx_dv,		5),
++	GROUP(eth_rxd0,			5),
++	GROUP(eth_rxd1,			5),
++	GROUP(eth_rxd2_rgmii,		5),
++	GROUP(eth_rxd3_rgmii,		5),
++	GROUP(eth_rgmii_tx_clk,		5),
++	GROUP(eth_txen,			5),
++	GROUP(eth_txd0,			5),
++	GROUP(eth_txd1,			5),
++	GROUP(eth_txd2_rgmii,		5),
++	GROUP(eth_txd3_rgmii,		5),
++	GROUP(spi_b_mosi_x14,		5),
++	GROUP(spi_b_ss0_x15,		5),
++	GROUP(spi_b_clk_x16,		5),
++	GROUP(spi_b_miso_x17,		5),
++
++	/* GPIOT func1 */
++	GROUP(tdm_d2_t0,		1),
++	GROUP(tdm_d3_t1,		1),
++	GROUP(tdm_fs1_t2,		1),
++	GROUP(tdm_sclk1_t3,		1),
++	GROUP(mclk1_t4,			1),
++	GROUP(tdm_d4_t5,		1),
++	GROUP(tdm_d5_t6,		1),
++	GROUP(tdm_d6_t7,		1),
++	GROUP(tdm_d7,			1),
++	GROUP(spdif_out,		1),
++	GROUP(spdif_in_t10,		1),
++	GROUP(tdm_fs2_t11,		1),
++	GROUP(tdm_sclk2_t12,		1),
++	GROUP(tdm_d8,			1),
++	GROUP(tdm_d9,			1),
++	GROUP(tdm_d10,			1),
++	GROUP(tdm_d11,			1),
++	GROUP(mclk2_t17,		1),
++	GROUP(tdm_d12_t18,		1),
++	GROUP(tdm_d13_t19,		1),
++	GROUP(i2c0_sda_t21,		1),
++	GROUP(i2c0_scl_t22,		1),
++
++	/* GPIOT func2 */
++	GROUP(i2c3_sda_t0,		2),
++	GROUP(i2c3_scl_t1,		2),
++	GROUP(uart_d_tx_t7,		2),
++	GROUP(uart_d_rx_t8,		2),
++	GROUP(uart_d_cts,		2),
++	GROUP(uart_d_rts,		2),
++	GROUP(spi_a_dq2,		2),
++	GROUP(spi_a_dq3,		2),
++	GROUP(spi_a_clk_t13,		2),
++	GROUP(spi_a_mosi_t14,		2),
++	GROUP(spi_a_miso_t15,		2),
++	GROUP(spi_a_ss0_t16,		2),
++	GROUP(spi_a_ss1,		2),
++	GROUP(spi_a_ss2,		2),
++	GROUP(pwm_g_t19,		2),
++	GROUP(pwm_h_t20,		2),
++	GROUP(eth_link_led_t21,		2),
++	GROUP(eth_act_led_t22,		2),
++
++	/* GPIOT func3 */
++	GROUP(pdm_din1_t0,		3),
++	GROUP(pdm_din0_t1,		3),
++	GROUP(pdm_dclk_t2,		3),
++	GROUP(spi_b_clk_t5,		3),
++	GROUP(spi_b_mosi_t6,		3),
++	GROUP(spi_b_miso_t7,		3),
++	GROUP(spi_b_ss0_t8,		3),
++	GROUP(spi_b_ss1,		3),
++	GROUP(spi_b_ss2,		3),
++	GROUP(uart_e_tx,		3),
++	GROUP(uart_e_rx,		3),
++	GROUP(uart_e_rts,		3),
++	GROUP(uart_e_cts,		3),
++	GROUP(eth_link_led_t18,		3),
++	GROUP(eth_act_led_t19,		3),
++	GROUP(tdm_d4_t20,		3),
++	GROUP(tdm_d5_t21,		3),
++	GROUP(tdm_d6_t22,		3),
++
++	/* GPIOT func4 */
++	GROUP(dcon_led_t4,		4),
++	GROUP(mclk2_t5,			4),
++	GROUP(tdm_fs2_t6,		4),
++	GROUP(tdm_sclk2_t7,		4),
++	GROUP(spdif_in_t9,		4),
++	GROUP(i2c2_sda_t11,		4),
++	GROUP(i2c2_scl_t12,		4),
++	GROUP(pwm_d_t15,		4),
++	GROUP(pwm_c_t16,		4),
++	GROUP(uart_d_tx_t18,		4),
++	GROUP(uart_d_rx_t19,		4),
++	GROUP(tdm_d0_t20,		4),
++	GROUP(tdm_fs0_t21,		4),
++	GROUP(tdm_sclk0_t22,		4),
++
++	/* GPIOT func5 */
++	GROUP(lcd_d0,			5),
++	GROUP(lcd_d1,			5),
++	GROUP(lcd_d2,			5),
++	GROUP(lcd_d3,			5),
++	GROUP(lcd_d4,			5),
++	GROUP(lcd_d5,			5),
++	GROUP(lcd_d6,			5),
++	GROUP(lcd_d7,			5),
++	GROUP(lcd_d8,			5),
++	GROUP(lcd_d9,			5),
++	GROUP(lcd_d10,			5),
++	GROUP(lcd_d11,			5),
++	GROUP(lcd_d12,			5),
++	GROUP(lcd_d13,			5),
++	GROUP(lcd_d14,			5),
++	GROUP(lcd_d15,			5),
++	GROUP(lcd_d16,			5),
++	GROUP(lcd_d17,			5),
++	GROUP(lcd_clk,			5),
++	GROUP(lcd_den,			5),
++	GROUP(lcd_hsync,		5),
++	GROUP(lcd_vsync,		5)
++};
++
++static const char * const gpio_aobus_groups[] = {
++	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3",
++	"GPIOAO_4", "GPIOAO_5", "GPIOAO_6",
++	"GPIO_TEST_N"
++};
++
++static const char * const i2c_slave_ao_groups[] = {
++	"i2c_slave_a_sda_ao0", "i2c_slave_a_scl_ao1",
++	"i2c_slave_a_sda_ao2", "i2c_slave_a_scl_ao3"
++};
++
++static const char * const remote_in_ao_groups[] = {
++	"remote_ao_input_ao1", "remote_ao_input_ao3", "remote_ao_input_ao4",
++	"remote_ao_input_ao6"
++};
++
++static const char * const uart_c_ao_groups[] = {
++	"uart_ao_c_tx_ao0", "uart_ao_c_rx_ao1", "uart_ao_c_tx_ao4",
++	"uart_ao_c_rx_ao5"
++};
++
++static const char * const clk32_ao_groups[] = {
++	"clk_32k_ao_out"
++};
++
++static const char * const pwm_g_ao_groups[] = {
++	"pwm_g"
++};
++
++static const char * const pmic_sleep_ao_groups[] = {
++	"pmic_sleep_ao2", "pmic_sleep_ao4"
++};
++
++static const struct meson_pmx_func a4_aobus_functions[] = {
++	FUNCTION(gpio_aobus),
++	FUNCTION(i2c_slave_ao),
++	FUNCTION(remote_in_ao),
++	FUNCTION(uart_c_ao),
++	FUNCTION(clk32_ao),
++	FUNCTION(pwm_g_ao),
++	FUNCTION(pmic_sleep_ao)
++};
++
++static const char * const gpio_periphs_groups[] = {
++	"GPIOE_0", "GPIOE_1",  "GPIOD_0", "GPIOD_1", "GPIOD_2",
++	"GPIOD_3", "GPIOD_4", "GPIOD_5", "GPIOD_6",
++	"GPIOD_7", "GPIOD_8", "GPIOD_9", "GPIOD_10",
++	"GPIOD_11", "GPIOD_12", "GPIOD_13", "GPIOD_14",
++	"GPIOD_15", "GPIOB_0", "GPIOB_1", "GPIOB_2",
++	"GPIOB_3", "GPIOB_4", "GPIOB_5", "GPIOB_6",
++	"GPIOB_7", "GPIOB_8", "GPIOB_9", "GPIOB_10",
++	"GPIOB_11", "GPIOB_12", "GPIOB_13", "GPIOX_0",
++	"GPIOX_1", "GPIOX_2", "GPIOX_3", "GPIOX_4",
++	"GPIOX_5", "GPIOX_6", "GPIOX_7", "GPIOX_8",
++	"GPIOX_9", "GPIOX_10", "GPIOX_11", "GPIOX_12",
++	"GPIOX_13", "GPIOX_14", "GPIOX_15", "GPIOX_16",
++	"GPIOX_17", "GPIOT_0", "GPIOT_1", "GPIOT_2",
++	"GPIOT_3", "GPIOT_4", "GPIOT_5", "GPIOT_6",
++	"GPIOT_7", "GPIOT_8", "GPIOT_9", "GPIOT_10",
++	"GPIOT_11", "GPIOT_12", "GPIOT_13", "GPIOT_14",
++	"GPIOT_15", "GPIOT_16", "GPIOT_17", "GPIOT_18",
++	"GPIOT_19", "GPIOT_20", "GPIOT_21", "GPIOT_22"
++};
++
++static const char * const uart_a_groups[] = {
++	"uart_a_tx_d2", "uart_a_rx_d3", "uart_a_tx_x11",
++	"uart_a_rx_x12", "uart_a_cts", "uart_a_rts"
++};
++
++static const char * const uart_b_groups[] = {
++	"uart_b_tx_e0", "uart_b_rx_e1", "uart_b_tx_d0", "uart_b_cts",
++	"uart_b_rts", "uart_b_rx_d1"
++};
++
++static const char * const uart_d_groups[] = {
++	"uart_d_tx_t7", "uart_d_rx_t8", "uart_d_cts", "uart_d_rts",
++	"uart_d_tx_t18", "uart_d_rx_t19"
++};
++
++static const char * const uart_e_groups[] = {
++	"uart_e_tx", "uart_e_rx", "uart_e_rts", "uart_e_cts"
++};
++
++static const char * const i2c0_groups[] = {
++	"i2c0_sda_e0", "i2c0_scl_e1", "i2c0_sda_x16", "i2c0_scl_x17",
++	"i2c0_sda_t21", "i2c0_scl_t22"
++};
++
++static const char * const i2c1_groups[] = {
++	"i2c1_sda_d2", "i2c1_scl_d3", "i2c1_sda_d10", "i2c1_scl_d11"
++};
++
++static const char * const i2c2_groups[] = {
++	"i2c2_sda_d14", "i2c2_scl_d15", "i2c2_sda_t11", "i2c2_scl_t12"
++};
++
++static const char * const i2c3_groups[] = {
++	"i2c3_sda_d12", "i2c3_scl_d13", "i2c3_sda_t0", "i2c3_scl_t1"
++};
++
++static const char * const pwm_a_groups[] = {
++	"pwm_a_hiz", "pwm_a_x6", "pwm_a_d6"
++};
++
++static const char * const pwm_b_groups[] = {
++	"pwm_b_hiz", "pwm_b_x17", "pwm_b_d7"
++};
++
++static const char * const pwm_c_groups[] = {
++	"pwm_c_hiz", "pwm_c_t16", "pwm_c_d8"
++};
++
++static const char * const pwm_d_groups[] = {
++	"pwm_d_hiz", "pwm_d_t15", "pwm_d_d9"
++};
++
++static const char * const pwm_e_groups[] = {
++	"pwm_e_e0", "pwm_e_hiz", "pwm_e_d11"
++};
++
++static const char * const pwm_f_groups[] = {
++	"pwm_f"
++};
++
++static const char * const pwm_g_groups[] = {
++	"pwm_g_x15", "pwm_g_t19"
++};
++
++static const char * const pwm_h_groups[] = {
++	"pwm_h_d12", "pwm_h_t20"
++};
++
++static const char * const remote_out_groups[] = {
++	"remote_out"
++};
++
++static const char * const remote_in_groups[] = {
++	"remote_in"
++};
++
++static const char * const dcon_led_groups[] = {
++	"dcon_led_d8", "dcon_led_d12", "dcon_led_t4"
++};
++
++static const char * const spinf_groups[] = {
++	"spinf_mo_d0", "spinf_mi_d1", "spinf_wp_d2", "spinf_hold_d3",
++	"spinf_d4", "spinf_d5", "spinf_d6", "spinf_d7", "spinf_rst",
++	"spinf_clk", "spinf_cs1", "spinf_cs0"
++};
++
++static const char * const lcd_groups[] = {
++	"lcd_d0", "lcd_d1", "lcd_d2", "lcd_d3", "lcd_d4", "lcd_d5",
++	"lcd_d6", "lcd_d7", "lcd_d8", "lcd_d9", "lcd_d10", "lcd_d11",
++	"lcd_d12", "lcd_d13", "lcd_d14", "lcd_d15", "lcd_d16", "lcd_d17",
++	"lcd_clk", "lcd_den", "lcd_hsync", "lcd_vsync"
++};
++
++static const char * const jtag_1_groups[] = {
++	"jtag_1_clk", "jtag_1_tms", "jtag_1_tdi", "jtag_1_tdo"
++};
++
++static const char * const gen_clk_groups[] = {
++	"gen_clk"
++};
++
++static const char * const clk12_24_groups[] = {
++	"clk12_24"
++};
++
++static const char * const emmc_groups[] = {
++	"emmc_nand_d0", "emmc_nand_d1", "emmc_nand_d2", "emmc_nand_d3",
++	"emmc_nand_d4", "emmc_nand_d5", "emmc_nand_d6", "emmc_nand_d7",
++	"emmc_clk", "emmc_rst", "emmc_cmd", "emmc_nand_ds"
++};
++
++static const char * const nand_groups[] = {
++	"emmc_nand_d0", "emmc_nand_d1", "emmc_nand_d2", "emmc_nand_d3",
++	"emmc_nand_d4", "emmc_nand_d5", "emmc_nand_d6", "emmc_nand_d7",
++	"nand_wen_clk", "nand_ale", "nand_ren_wr", "nand_cle", "nand_ce0"
++};
++
++static const char * const spi_a_groups[] = {
++	"spi_a_mosi_x7", "spi_a_miso_x8", "spi_a_ss0_x9", "spi_a_clk_x10",
++	"spi_a_dq2", "spi_a_dq3", "spi_a_clk_t13", "spi_a_mosi_t14",
++	"spi_a_miso_t15", "spi_a_ss0_t16", "spi_a_ss1", "spi_a_ss2"
++};
++
++static const char * const spi_b_groups[] = {
++	"spi_b_miso_d2", "spi_b_mosi_d3", "spi_b_clk_d4", "spi_b_ss0_d5",
++	"spi_b_dq2", "spi_b_dq3", "spi_b_mosi_x14", "spi_b_ss0_x15",
++	"spi_b_clk_x16", "spi_b_miso_x17", "spi_b_clk_t5", "spi_b_mosi_t6",
++	"spi_b_miso_t7", "spi_b_ss0_t8", "spi_b_ss1", "spi_b_ss2"
++};
++
++static const char * const pdm_groups[] = {
++	"pdm_din1_d2", "pdm_dclk_d4", "pdm_din1_t0", "pdm_din0_t1",
++	"pdm_dclk_t2", "pdm_din0_d3"
++};
++
++static const char * const sdio_groups[] = {
++	"sdio_d0", "sdio_d1", "sdio_d2", "sdio_d3",
++	"sdio_clk", "sdio_cmd"
++};
++
++static const char * const eth_groups[] = {
++	"eth_mdio_d6", "eth_mdc_d7", "eth_mdio_x0", "eth_mdc_x1",
++	"eth_rgmii_rx_clk", "eth_rx_dv", "eth_rxd0", "eth_rxd1",
++	"eth_rxd2_rgmii", "eth_rxd3_rgmii", "eth_rgmii_tx_clk", "eth_txen",
++	"eth_txd0", "eth_txd1", "eth_txd2_rgmii", "eth_txd3_rgmii",
++	"eth_link_led_t18", "eth_act_led_t19", "eth_link_led_t21",
++	"eth_act_led_t22"
++};
++
++static const char * const mic_mute_groups[] = {
++	"mic_mute_en", "mic_mute_key"
++};
++
++static const char * const mclk_groups[] = {
++	"mclk0_x6", "mclk0_d13", "mclk1_d13", "mclk1_t4",
++	"mclk2_t5", "mclk2_t17"
++};
++
++static const char * const tdm_groups[] = {
++	"tdm_d12_d8", "tdm_d13_d9", "tdm_d2_d12", "tdm_sclk1_d14",
++	"tdm_fs1_d15", "tdm_d1", "tdm_d0_x8", "tdm_fs0_x9",
++	"tdm_sclk0_x10", "tdm_d2_t0", "tdm_d3_t1", "tdm_fs1_t2",
++	"tdm_sclk1_t3", "tdm_d4_t5", "tdm_d5_t6", "tdm_d6_t7",
++	"tdm_d7", "tdm_fs2_t11", "tdm_sclk2_t12", "tdm_d8",
++	"tdm_d9", "tdm_d10", "tdm_d11", "tdm_d12_t18",
++	"tdm_d13_t19", "tdm_d4_t20", "tdm_d5_t21", "tdm_d6_t22",
++	"tdm_d3_d11", "tdm_sclk0_d14", "tdm_fs0_d15", "tdm_fs2_t6",
++	"tdm_sclk2_t7", "tdm_d0_t20", "tdm_fs0_t21", "tdm_sclk0_t22"
++};
++
++static const char * const spdif_in_groups[] = {
++	"spdif_in_t9", "spdif_in_t10"
++};
++
++static const char * const spdif_out_groups[] = {
++	"spdif_out"
++};
++
++static struct meson_pmx_func a4_periphs_functions[] = {
++	FUNCTION(gpio_periphs),
++	FUNCTION(uart_a),
++	FUNCTION(uart_b),
++	FUNCTION(uart_d),
++	FUNCTION(uart_e),
++	FUNCTION(i2c0),
++	FUNCTION(i2c1),
++	FUNCTION(i2c2),
++	FUNCTION(i2c3),
++	FUNCTION(pwm_a),
++	FUNCTION(pwm_b),
++	FUNCTION(pwm_c),
++	FUNCTION(pwm_d),
++	FUNCTION(pwm_e),
++	FUNCTION(pwm_f),
++	FUNCTION(pwm_g),
++	FUNCTION(pwm_h),
++	FUNCTION(remote_out),
++	FUNCTION(remote_in),
++	FUNCTION(dcon_led),
++	FUNCTION(spinf),
++	FUNCTION(lcd),
++	FUNCTION(jtag_1),
++	FUNCTION(gen_clk),
++	FUNCTION(clk12_24),
++	FUNCTION(emmc),
++	FUNCTION(nand),
++	FUNCTION(spi_a),
++	FUNCTION(spi_b),
++	FUNCTION(pdm),
++	FUNCTION(sdio),
++	FUNCTION(eth),
++	FUNCTION(mic_mute),
++	FUNCTION(mclk),
++	FUNCTION(tdm),
++	FUNCTION(spdif_in),
++	FUNCTION(spdif_out)
++};
++
++static const struct meson_bank a4_periphs_banks[] = {
++	/* name  first  last  irq  pullen  pull  dir  out  in */
++	BANK_DS("E",  GPIOE_0,  GPIOE_1,  14,  15,
++		0x43,  0, 0x44,  0, 0x42,  0, 0x41,  0, 0x40,  0, 0x47,  0),
++	BANK_DS("D",  GPIOD_0, GPIOD_15,  16, 31,
++		0x33,  0, 0x34,  0, 0x32,  0, 0x31,  0, 0x30,  0, 0x37,  0),
++	BANK_DS("B",  GPIOB_0, GPIOB_13, 0, 13,
++		0x63,  0, 0x64,  0, 0x62,  0, 0x61,  0, 0x60,  0, 0x67,  0),
++	BANK_DS("X",  GPIOX_0, GPIOX_17, 55, 72,
++		0x13,  0, 0x14,  0, 0x12,  0, 0x11,  0, 0x10,  0, 0x17,  0),
++	BANK_DS("T",  GPIOT_0, GPIOT_22, 32, 54,
++		0x23,  0, 0x24,  0, 0x22,  0, 0x21,  0, 0x20,  0, 0x27,  0),
++};
++
++static const struct meson_bank a4_aobus_banks[] = {
++	BANK_DS("AO", GPIOAO_0, GPIOAO_6,  0,  6,
++		0x3,   0,  0x4,  0,   0x2,  0,  0x1,  0,  0x0,  0,  0x7, 0),
++	BANK_DS("TEST_N", GPIO_TEST_N,    GPIO_TEST_N,   7, 7,
++		0x13,  0,  0x14,  0,  0x12, 0,  0x11,  0, 0x10, 0, 0x17, 0),
++};
++
++static const struct meson_pmx_bank a4_periphs_pmx_banks[] = {
++	/* name  first  lask  reg  offset */
++	BANK_PMX("E",  GPIOE_0,  GPIOE_1, 0x12,  0),
++	BANK_PMX("D",  GPIOD_0, GPIOD_15, 0x10,  0),
++	BANK_PMX("B",  GPIOB_0, GPIOB_13, 0x00,  0),
++	BANK_PMX("X",  GPIOX_0, GPIOX_17, 0x03,  0),
++	BANK_PMX("T",  GPIOT_0, GPIOT_22, 0x0b,  0),
++};
++
++static const struct meson_pmx_bank a4_aobus_pmx_banks[] = {
++	BANK_PMX("AO", GPIOAO_0, GPIOAO_6, 0x00,  0),
++	BANK_PMX("TEST_N", GPIO_TEST_N, GPIO_TEST_N, 0x0,  28),
++};
++
++static const struct meson_axg_pmx_data a4_periphs_pmx_banks_data = {
++	.pmx_banks	= a4_periphs_pmx_banks,
++	.num_pmx_banks	= ARRAY_SIZE(a4_periphs_pmx_banks),
++};
++
++static const struct meson_axg_pmx_data a4_aobus_pmx_banks_data = {
++	.pmx_banks	= a4_aobus_pmx_banks,
++	.num_pmx_banks	= ARRAY_SIZE(a4_aobus_pmx_banks),
++};
++
++static int a4_of_gpio_xlate(struct gpio_chip *gc,
++			    const struct of_phandle_args *gpiospec,
++			    u32 *flags)
 +{
-+	u32 bcd = gray;
-+	int size = sizeof(bcd) * 8;
-+	int i;
++	int gpio_num = -1;
 +
-+	for (i = 0; (1 << i) < size; i++)
-+		bcd ^= bcd >> (1 << i);
++	u32 bank  = AMLOGIC_BANK(gpiospec->args[0]);
++	u8 offset = AMLOGIC_OFFSET(gpiospec->args[0]);
 +
-+	return bcd;
-+}
-+
-+static inline u32 binary_to_gray(u32 bcd)
-+{
-+	return bcd ^ (bcd >> 1);
-+}
-+
-+static int aml_rtc_read_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 time_sec;
-+
-+	/* if RTC disabled, read time failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, read time failed\n");
++	if (gc->of_gpio_n_cells < 2) {
++		WARN_ON(1);
 +		return -EINVAL;
 +	}
 +
-+	regmap_read(rtc->map, RTC_REAL_TIME, &time_sec);
-+	if (rtc->config->gray_stored)
-+		time_sec = gray_to_binary(time_sec);
-+	rtc_time64_to_tm(time_sec, tm);
-+	dev_dbg(dev, "%s: read time = %us\n", __func__, time_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_set_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 time_sec;
-+
-+	/* if RTC disabled, first enable it */
-+	if (!rtc->rtc_enabled) {
-+		regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, RTC_ENABLE);
-+		usleep_range(100, 200);
-+		rtc->rtc_enabled = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ENABLE);
-+	}
-+
-+	time_sec = rtc_tm_to_time64(tm);
-+	if (rtc->config->gray_stored)
-+		time_sec = binary_to_gray(time_sec);
-+	regmap_write(rtc->map, RTC_COUNTER_REG, time_sec);
-+	dev_dbg(dev, "%s: set time = %us\n", __func__, time_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	time64_t alarm_sec = 0;
-+
-+	/* if RTC disabled, set alarm failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, set alarm failed\n");
++	if (WARN_ON(gpiospec->args_count < gc->of_gpio_n_cells))
 +		return -EINVAL;
-+	}
 +
-+	regmap_update_bits(rtc->map, RTC_CTRL,
-+			   RTC_ALRM0_EN, RTC_ALRM0_EN);
-+	regmap_update_bits(rtc->map, RTC_INT_MASK,
-+			   RTC_ALRM0_IRQ_MSK, 0);
-+
-+	alarm_sec = rtc_tm_to_time64(&alarm->time);
-+	if (rtc->config->gray_stored)
-+		alarm_sec = binary_to_gray(alarm_sec);
-+	regmap_write(rtc->map, RTC_ALARM0_REG, alarm_sec);
-+
-+	dev_dbg(dev, "%s: alarm->enabled=%d alarm_set=%llds\n", __func__,
-+		alarm->enabled, alarm_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 alarm_sec;
-+	int alarm_enable, alarm_mask;
-+
-+	/* if RTC disabled, read alarm failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, read alarm failed\n");
-+		return -EINVAL;
-+	}
-+
-+	regmap_read(rtc->map, RTC_ALARM0_REG, &alarm_sec);
-+	if (rtc->config->gray_stored)
-+		alarm_sec = gray_to_binary(alarm_sec);
-+	rtc_time64_to_tm(alarm_sec, &alarm->time);
-+
-+	alarm_enable = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ALRM0_EN);
-+	alarm_mask = regmap_test_bits(rtc->map, RTC_INT_MASK, RTC_ALRM0_IRQ_MSK);
-+	alarm->enabled = (alarm_enable && !alarm_mask) ? 1 : 0;
-+	dev_dbg(dev, "%s: alarm->enabled=%d alarm=%us\n", __func__,
-+		alarm->enabled, alarm_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_read_offset(struct device *dev, long *offset)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 reg_val;
-+	long val;
-+	int sign, match_counter, enable;
-+
-+	/* if RTC disabled, read offset failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, read offset failed\n");
-+		return -EINVAL;
-+	}
-+
-+	regmap_read(rtc->map, RTC_SEC_ADJUST_REG, &reg_val);
-+	enable = FIELD_GET(RTC_ADJ_VALID, reg_val);
-+	if (!enable) {
-+		val = 0;
-+	} else {
-+		sign = FIELD_GET(RTC_SEC_ADJUST_CTRL, reg_val);
-+		match_counter = FIELD_GET(RTC_MATCH_COUNTER, reg_val);
-+		val = 1000000000 / (match_counter + 1);
-+		if (sign == RTC_SWALLOW_SECOND)
-+			val = -val;
-+	}
-+	*offset = val;
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_set_offset(struct device *dev, long offset)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	int sign = 0, match_counter = 0, enable = 0;
-+	u32 reg_val;
-+
-+	/* if RTC disabled, set offset failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, set offset failed\n");
-+		return -EINVAL;
-+	}
-+
-+	if (offset) {
-+		enable = 1;
-+		sign = offset < 0 ? RTC_SWALLOW_SECOND : RTC_INSERT_SECOND;
-+		match_counter = 1000000000 / abs(offset) - 1;
-+		if (match_counter < 0 || match_counter > RTC_MATCH_COUNTER)
++	if (bank == AMLOGIC_GPIO_B) {
++		if (offset >= GPIOB_NUM)
 +			return -EINVAL;
++		gpio_num = GPIOB_0 + offset;
++	} else if (bank == AMLOGIC_GPIO_D) {
++		if (offset >= GPIOD_NUM)
++			return -EINVAL;
++		gpio_num = GPIOD_0 + offset;
++	} else if (bank == AMLOGIC_GPIO_E) {
++		if (offset >= GPIOE_NUM)
++			return -EINVAL;
++		gpio_num = GPIOE_0 + offset;
++	} else if (bank == AMLOGIC_GPIO_X) {
++		if (offset >= GPIOX_NUM)
++			return -EINVAL;
++		gpio_num = GPIOX_0 + offset;
++	} else if (bank == AMLOGIC_GPIO_T) {
++		if (offset >= GPIOT_NUM)
++			return -EINVAL;
++		gpio_num = GPIOT_0 + offset;
++	} else if (bank == AMLOGIC_GPIO_TEST_N) {
++		if (offset != 0)
++			return -EINVAL;
++		gpio_num = GPIO_TEST_N;
++	} else if (bank == AMLOGIC_GPIO_AO) {
++		if (offset >= GPIOAO_NUM)
++			return -EINVAL;
++		gpio_num = GPIOAO_0 + offset;
 +	}
 +
-+	reg_val = FIELD_PREP(RTC_ADJ_VALID, enable) |
-+		  FIELD_PREP(RTC_SEC_ADJUST_CTRL, sign) |
-+		  FIELD_PREP(RTC_MATCH_COUNTER, match_counter);
-+	regmap_write(rtc->map, RTC_SEC_ADJUST_REG, reg_val);
++	if (gpio_num == -1)
++		return -EINVAL;
 +
-+	return 0;
++	if (flags)
++		*flags = gpiospec->args[1];
++
++	return gpio_num;
 +}
 +
-+static int aml_rtc_alarm_enable(struct device *dev, unsigned int enabled)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+
-+	if (enabled) {
-+		regmap_update_bits(rtc->map, RTC_CTRL,
-+				   RTC_ALRM0_EN, RTC_ALRM0_EN);
-+		regmap_update_bits(rtc->map, RTC_INT_MASK,
-+				   RTC_ALRM0_IRQ_MSK, 0);
-+	} else {
-+		regmap_update_bits(rtc->map, RTC_INT_MASK,
-+				   RTC_ALRM0_IRQ_MSK, RTC_ALRM0_IRQ_MSK);
-+		regmap_update_bits(rtc->map, RTC_CTRL,
-+				   RTC_ALRM0_EN, 0);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct rtc_class_ops aml_rtc_ops = {
-+	.read_time = aml_rtc_read_time,
-+	.set_time = aml_rtc_set_time,
-+	.read_alarm = aml_rtc_read_alarm,
-+	.set_alarm = aml_rtc_set_alarm,
-+	.alarm_irq_enable = aml_rtc_alarm_enable,
-+	.read_offset = aml_rtc_read_offset,
-+	.set_offset = aml_rtc_set_offset,
++static const struct meson_pinctrl_data a4_periphs_pinctrl_data = {
++	.name		= "periphs-banks",
++	.pins		= a4_periphs_pins,
++	.groups		= a4_periphs_groups,
++	.funcs		= a4_periphs_functions,
++	.banks		= a4_periphs_banks,
++	.num_pins	= ARRAY_SIZE(a4_periphs_pins),
++	.num_groups	= ARRAY_SIZE(a4_periphs_groups),
++	.num_funcs	= ARRAY_SIZE(a4_periphs_functions),
++	.num_banks	= ARRAY_SIZE(a4_periphs_banks),
++	.pmx_ops	= &meson_axg_pmx_ops,
++	.pmx_data	= &a4_periphs_pmx_banks_data,
++	.parse_dt	= &meson_a1_parse_dt_extra,
++	.of_gpio_n_cells = 2,
++	.of_xlate	= &a4_of_gpio_xlate,
 +};
 +
-+static irqreturn_t aml_rtc_handler(int irq, void *data)
-+{
-+	struct aml_rtc_data *rtc = (struct aml_rtc_data *)data;
-+
-+	regmap_write(rtc->map, RTC_ALARM0_REG, 0);
-+	regmap_write(rtc->map, RTC_INT_CLR, RTC_ALRM0_IRQ_STATUS);
-+
-+	rtc_update_irq(rtc->rtc_dev, 1, RTC_AF | RTC_IRQF);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void aml_rtc_init(struct aml_rtc_data *rtc)
-+{
-+	u32 reg_val = 0;
-+
-+	rtc->rtc_enabled = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ENABLE);
-+	if (!rtc->rtc_enabled) {
-+		if (clk_get_rate(rtc->rtc_clk) == OSC_24M) {
-+			/* select 24M oscillator */
-+			regmap_write_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, RTC_OSC_SEL);
-+
-+			/*
-+			 * Set RTC oscillator to freq_out to freq_in/((N0*M0+N1*M1)/(M0+M1))
-+			 * Enable clock_in gate of oscillator 24MHz
-+			 * Set N0 to 733, N1 to 732
-+			 */
-+			reg_val = FIELD_PREP(RTC_OSCIN_IN_EN, 1)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_CFG, 1)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_N0)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_N1);
-+			regmap_write_bits(rtc->map, RTC_OSCIN_CTRL0, RTC_OSCIN_IN_EN
-+					  | RTC_OSCIN_OUT_CFG | RTC_OSCIN_OUT_N0M0
-+					  | RTC_OSCIN_OUT_N1M1, reg_val);
-+
-+			/* Set M0 to 2, M1 to 3, so freq_out = 32768 Hz*/
-+			reg_val = FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_M0)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_M1);
-+			regmap_write_bits(rtc->map, RTC_OSCIN_CTRL1, RTC_OSCIN_OUT_N0M0
-+					  | RTC_OSCIN_OUT_N1M1, reg_val);
-+		} else {
-+			/* select 32K oscillator */
-+			regmap_write_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, 0);
-+		}
-+	}
-+	regmap_write_bits(rtc->map, RTC_INT_MASK,
-+			  RTC_ALRM0_IRQ_MSK, RTC_ALRM0_IRQ_MSK);
-+	regmap_write_bits(rtc->map, RTC_CTRL, RTC_ALRM0_EN, 0);
-+}
-+
-+static int aml_rtc_probe(struct platform_device *pdev)
-+{
-+	struct aml_rtc_data *rtc;
-+	void __iomem *base;
-+	int ret = 0;
-+
-+	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
-+	if (!rtc)
-+		return -ENOMEM;
-+
-+	rtc->config = of_device_get_match_data(&pdev->dev);
-+	if (!rtc->config)
-+		return -ENODEV;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(base), "resource ioremap failed\n");
-+
-+	rtc->map = devm_regmap_init_mmio(&pdev->dev, base, &aml_rtc_regmap_config);
-+	if (IS_ERR(rtc->map))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->map), "regmap init failed\n");
-+
-+	rtc->irq = platform_get_irq(pdev, 0);
-+	if (rtc->irq < 0)
-+		return rtc->irq;
-+
-+	rtc->rtc_clk = devm_clk_get(&pdev->dev, "osc");
-+	if (IS_ERR(rtc->rtc_clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->rtc_clk),
-+				     "failed to find rtc clock\n");
-+	if (clk_get_rate(rtc->rtc_clk) != OSC_32K && clk_get_rate(rtc->rtc_clk) != OSC_24M)
-+		return dev_err_probe(&pdev->dev, -EINVAL, "Invalid clock configuration\n");
-+
-+	rtc->sys_clk = devm_clk_get(&pdev->dev, "sys");
-+	if (IS_ERR(rtc->sys_clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->sys_clk),
-+				     "failed to get rtc sys clk\n");
-+	ret = clk_prepare_enable(rtc->sys_clk);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret, "Failed to enable clk!\n");
-+
-+	aml_rtc_init(rtc);
-+
-+	device_init_wakeup(&pdev->dev, 1);
-+	platform_set_drvdata(pdev, rtc);
-+
-+	rtc->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
-+	if (IS_ERR(rtc->rtc_dev)) {
-+		ret = PTR_ERR(rtc->rtc_dev);
-+		goto err_clk;
-+	}
-+
-+	ret = devm_request_irq(&pdev->dev, rtc->irq, aml_rtc_handler,
-+			       IRQF_ONESHOT, "aml-rtc alarm", rtc);
-+	if (ret) {
-+		dev_err_probe(&pdev->dev, ret, "IRQ%d request failed, ret = %d\n",
-+			      rtc->irq, ret);
-+		goto err_clk;
-+	}
-+
-+	rtc->rtc_dev->ops = &aml_rtc_ops;
-+	rtc->rtc_dev->range_min = 0;
-+	rtc->rtc_dev->range_max = U32_MAX;
-+
-+	ret = devm_rtc_register_device(rtc->rtc_dev);
-+	if (ret) {
-+		dev_err_probe(&pdev->dev, ret, "Failed to register RTC device: %d\n", ret);
-+		goto err_clk;
-+	}
-+
-+	return 0;
-+err_clk:
-+	clk_disable_unprepare(rtc->sys_clk);
-+
-+	return ret;
-+}
-+
-+static int aml_rtc_suspend(struct device *dev)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+
-+	if (device_may_wakeup(dev))
-+		enable_irq_wake(rtc->irq);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_resume(struct device *dev)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+
-+	if (device_may_wakeup(dev))
-+		disable_irq_wake(rtc->irq);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(aml_rtc_pm_ops,
-+			 aml_rtc_suspend, aml_rtc_resume);
-+
-+static int aml_rtc_remove(struct platform_device *pdev)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(&pdev->dev);
-+
-+	/* disable RTC */
-+	regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, 0);
-+	clk_disable_unprepare(rtc->sys_clk);
-+	device_init_wakeup(&pdev->dev, 0);
-+
-+	return 0;
-+}
-+
-+static const struct aml_rtc_config a5_rtc_config = {
++static const struct meson_pinctrl_data a4_aobus_pinctrl_data = {
++	.name		= "aobus-banks",
++	.pins		= a4_aobus_pins,
++	.groups		= a4_aobus_groups,
++	.funcs		= a4_aobus_functions,
++	.banks		= a4_aobus_banks,
++	.num_pins	= ARRAY_SIZE(a4_aobus_pins),
++	.num_groups	= ARRAY_SIZE(a4_aobus_groups),
++	.num_funcs	= ARRAY_SIZE(a4_aobus_functions),
++	.num_banks	= ARRAY_SIZE(a4_aobus_banks),
++	.pmx_ops	= &meson_axg_pmx_ops,
++	.pmx_data	= &a4_aobus_pmx_banks_data,
++	.parse_dt	= &meson_a1_parse_dt_extra,
++	.of_gpio_n_cells = 2,
++	.of_xlate	= &a4_of_gpio_xlate,
 +};
 +
-+static const struct aml_rtc_config a4_rtc_config = {
-+	.gray_stored = true,
-+};
-+
-+static const struct of_device_id aml_rtc_device_id[] = {
++static const struct of_device_id a4_pinctrl_dt_match[] = {
 +	{
-+		.compatible = "amlogic,a4-rtc",
-+		.data = &a4_rtc_config,
++		.compatible = "amlogic,a4-periphs-pinctrl",
++		.data = &a4_periphs_pinctrl_data,
 +	},
 +	{
-+		.compatible = "amlogic,a5-rtc",
-+		.data = &a5_rtc_config,
++		.compatible = "amlogic,a4-aobus-pinctrl",
++		.data = &a4_aobus_pinctrl_data,
 +	},
++	{ }
 +};
-+MODULE_DEVICE_TABLE(of, aml_rtc_device_id);
++MODULE_DEVICE_TABLE(of, a4_pinctrl_dt_match);
 +
-+static struct platform_driver aml_rtc_driver = {
-+	.probe = aml_rtc_probe,
-+	.remove = aml_rtc_remove,
++static struct platform_driver a4_pinctrl_driver = {
++	.probe  = meson_pinctrl_probe,
 +	.driver = {
-+		.name = "aml-rtc",
-+		.pm = &aml_rtc_pm_ops,
-+		.of_match_table = aml_rtc_device_id,
++		.name	= "amlogic-a4-pinctrl",
++		.of_match_table = a4_pinctrl_dt_match,
 +	},
 +};
 +
-+module_platform_driver(aml_rtc_driver);
-+MODULE_DESCRIPTION("Amlogic RTC driver");
-+MODULE_AUTHOR("Yiting Deng <yiting.deng@amlogic.com>");
-+MODULE_LICENSE("GPL");
++module_platform_driver(a4_pinctrl_driver);
++
++MODULE_AUTHOR("Xianwei Zhao <xianwei.zhao@amlogic.com>");
++MODULE_DESCRIPTION("Pin controller and GPIO driver for Amlogic A4 SoC");
++MODULE_LICENSE("Dual BSD/GPL");
 
 -- 
 2.37.1
