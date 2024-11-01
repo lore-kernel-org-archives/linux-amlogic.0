@@ -4,67 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A5DBE674BB
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Nov 2024 09:15:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FD60E6B27D
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Nov 2024 13:57:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:Cc:To:From:References:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HUJ6PFnq3nkgcN+jDuNp8tnUWcjC9UFhWc30yBuhaZQ=; b=gNBR58TrDCBWLN
-	ftOBMFXNXBgbavnz6IZ9zb4kKtYrI48TfUKbrasmBjbSnzEW2S7vktMw0IcuokXCFFiSBjk+mIH+b
-	7osQgLEe5MU7RMQr2XvAK/VIMgjHszHQzNgJkj6fJXna00IRHRUwgb3GDKm5RGJCAVkrVbncJLWne
-	74Uo4zetuzG1fqja4rmyHJkfo/WmV97gmd78Y5s2i+HkJK0YxskBIfyDFJ0AdBoHybhjM6xM7cC5K
-	PqhhJMzj7QX0+jivUohoVVNmATI06eIK95iIJy5Iv+rEwNc8Ouyx2pUTXsM0rr2sQ9+qDJA0LYgH7
-	78mtsvmZLdhPd1t3vJew==;
+	List-Owner; bh=7FEttF5ocF9+ai5Qd8yqvBoEUJMi2RoHVtoReIHjJuc=; b=pZjk61jzHvNLOD
+	zgyGRbObx3WaB7vNh/P344gft58+BewNMA68FI6JBT9n7/VbHd2EcVAXlbPyN5r+T1wN19GWJ+shd
+	yWNLr/B1GLOo17u1v9dQs8FH35eo4BDZ+Q8CCQq6BvJ8U+HJhajWT3q9jL7xnmpodoH4hXCumRgk5
+	9kUHMV4BzxTz0gKA4GJw7cQTRyG9WvIudJlQ5ilot9OOPvYHslL4R/Q97CqcP4c8YO0RDrk8Sn8WG
+	7vJO0LRyd0tcREFk+gbZwPIEKxLBIHfn0lmCJmVph5UaagWowadFUR6Pmk4jWwlpka4h3C9q9/xa9
+	pYmyTLJO2+zGd/RwExFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t6nks-00000006Mfo-0j51;
-	Fri, 01 Nov 2024 09:15:42 +0000
-Received: from smtp-22.smtpout.orange.fr ([80.12.242.22] helo=smtp.smtpout.orange.fr)
+	id 1t6s9Y-00000007Fqr-3BjV;
+	Fri, 01 Nov 2024 13:57:28 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t6nko-00000006Mf2-16y1
+	id 1t6s50-00000007Et9-0G2X
+	for linux-amlogic@bombadil.infradead.org;
+	Fri, 01 Nov 2024 13:52:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Reply-To:Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Content-ID:Content-Description;
+	bh=5jyAvRPsygI7XFJHSsHdPoZnmgPjLRPxij8t2wXJTyY=; b=k5oiv3P+Jk79V2hSeA4i7rhDuq
+	cMM40NERlJWSz8qfqSNbnhQTE7ubOI7oh8qf/zI/52cuz6SVzhXOICyJBrMDuzy+oCrpj3kKRnZTZ
+	hHtgpZnteq3C9t/sEmCznR731CMg+vSbs03+va1sfLkvdGW4dUEKdb44m2MoPaPR1UngpUpBi5U4a
+	8VQB9th3UiUKj7bChZQMhi1+F7B5xXSVRzSqfqOuQdahs86X3o8lHemo0E54wiRd/5+159NKmbwl2
+	FWQ8LWBatSMPsWAdQXcHvScNcJWZIHkhx99Mym5LlCNmLEgf/x6UnG8ZdURJtzRXj3dLlBhmxo17+
+	R9+xJBoQ==;
+Received: from dfw.source.kernel.org ([139.178.84.217])
+	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1t6s4w-0000000AhOV-0fha
 	for linux-amlogic@lists.infradead.org;
-	Fri, 01 Nov 2024 09:15:40 +0000
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id 6nkgtkAk1e9TB6nkgto0N8; Fri, 01 Nov 2024 10:15:32 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1730452532;
-	bh=tNM5Z7wC0Hy8iSQfrM+16FEpDBVMI2P+7p22mCHlKmI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To;
-	b=E1obOpSTnroH0+bBlgKK8phjigBdrvecKBIC/+WPdIsln2iR2L23v9MCWEFBTCdmt
-	 UZSBz14hqXFki2hk7rhfCFoHoWwVFutfjdNHJYjQh5zK4uYyQgHKzGhodP64M2fkGM
-	 wzJkJSHMucVgG4lQ0MqpKlIFZkmAVmhLZdJpPEYBZTHjzfYXQ2iNvRQI4DL106CGZ3
-	 jtuBq30JrRg+75/tIQ/UyiIXxoMNEefX5jQMG9H+TM6bH3nwGM4I4u/k5MmWVXxT/x
-	 M1VAguiVWwnGsIt6vYXDiBLamSfi7GV/hWdDSthpprcLdh6ItDBv4vp8y1va3m1uZR
-	 2/EsBYaCShfew==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Fri, 01 Nov 2024 10:15:32 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <7eaaa765-d6ed-4afb-8ea3-35bec91c667e@wanadoo.fr>
-Date: Fri, 1 Nov 2024 10:15:27 +0100
+	Fri, 01 Nov 2024 13:52:44 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 205295CAFE3;
+	Fri,  1 Nov 2024 02:06:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 43180C4CED5;
+	Fri,  1 Nov 2024 02:06:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730426819;
+	bh=Sr03DLwF+0CRjwS+JcY9FQ/jwAk9Erb+TmTfkjjxxuo=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=N8xLlUIWqeXR08SeZbFQPv/Z72cPEv1RNjVDNdqJ6HrvRPynLhkOmljfkqJzWEYdF
+	 +gpliBfpolVt1E/FAfLMrcaO2F3qsZTWA3XYXv8weM+hIfRg6D3EuaF4D11Zpqn7bn
+	 cu9JfYJOKyB/ewqlDiToDHgyaP2RBWntoBnQAMgTXapRHcvVQlCg/YV0oqSd5+YEFF
+	 7YcbYlSocdTTH4eyrA5NQX9BoHIhaVzeZw1aksnsjvnXE1LNHl3/nKAAhR4kSNT3X+
+	 EFDTN3O3LPtxwdEFWcCrmTB90zc4wd1jL/PVdQ4CbXKrewQqZXn2h3Timuu6lIPi/G
+	 /PC7hOP6N5W4A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 364C8E67495;
+	Fri,  1 Nov 2024 02:06:59 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Fri, 01 Nov 2024 10:06:48 +0800
+Subject: [PATCH RESEND v4 2/3] rtc: support for the Amlogic on-chip RTC
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v4 2/3] rtc: support for the Amlogic on-chip RTC
+Message-Id: <20241101-rtc-v4-2-14e1ed486ed8@amlogic.com>
 References: <20241101-rtc-v4-0-14e1ed486ed8@amlogic.com>
- <20241101-rtc-v4-2-14e1ed486ed8@amlogic.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Xianwei Zhao <xianwei.zhao@amlogic.com>,
- Yiting Deng <yiting.deng@amlogic.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+In-Reply-To: <20241101-rtc-v4-0-14e1ed486ed8@amlogic.com>
+To: Yiting Deng <yiting.deng@amlogic.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20241101-rtc-v4-2-14e1ed486ed8@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1730426817; l=15598;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=cNbOL9mU9+fA5KZFmGLhYAJ5+VuZHdScljqBEQYouWY=;
+ b=rp+BUaU3jaC/gLCKeA5V1S9ZtbJDm78IhJIOT0jrC25qvP7p0bfUz59A6q2byPR2lX17nktQp
+ LV/k83FvZ3FCerGw+FYTpFNcUb+nRiAPSf/rF+VxaUqgMUne/xWEEx/
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241101_021538_883501_68E44010 
-X-CRM114-Status: GOOD (  25.00  )
+X-CRM114-CacheID: sfid-20241101_135243_349351_A16804C0 
+X-CRM114-Status: GOOD (  26.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,139 +99,547 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-TGUgMDEvMTEvMjAyNCDDoCAwMzowNiwgWGlhbndlaSBaaGFvIHZpYSBCNCBSZWxheSBhIMOpY3Jp
-dMKgOgo+IEZyb206IFlpdGluZyBEZW5nIDx5aXRpbmcuZGVuZy1McFIxamVhV3VodEJEZ2pLN3k3
-VFVRQHB1YmxpYy5nbWFuZS5vcmc+Cj4gCj4gVGhpcyBpcyB0aGUgdGhpcmQgYW1sb2dpYyBkcml2
-ZXIuIFRoZSBSVEMgaGFyZHdhcmUgb2YgQTQgU29DIGlzIGRpZmZlcmVudAo+IGZyb20gdGhlIHBy
-ZXZpb3VzIG9uZS4gVGhpcyBSVEMgaGFyZHdhcmUgaW5jbHVkZXMgYSB0aW1pbmcgZnVuY3Rpb24g
-YW5kCj4gYW4gYWxhcm0gZnVuY3Rpb24uIEJ1dCB0aGUgZXhpc3RpbmcgaGFzIG9ubHkgdGltaW5n
-IGZ1bmN0aW9uLCBhbGFybQo+IGZ1bmN0aW9uIGlzIHVzaW5nIHRoZSBzeXN0ZW0gY2xvY2sgdG8g
-aW1wbGVtZW50IGEgdmlydHVhbCBhbGFybS4gQWRkCj4gdGhlIFJUQyBkcml2ZXIgdG8gc3VwcG9y
-dCBpdC4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBZaXRpbmcgRGVuZyA8eWl0aW5nLmRlbmctTHBSMWpl
-YVd1aHRCRGdqSzd5N1RVUUBwdWJsaWMuZ21hbmUub3JnPgo+IFNpZ25lZC1vZmYtYnk6IFhpYW53
-ZWkgWmhhbyA8eGlhbndlaS56aGFvLUxwUjFqZWFXdWh0QkRnaks3eTdUVVFAcHVibGljLmdtYW5l
-Lm9yZz4KCi4uLgoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ydGMvcnRjLWFtbG9naWMtYTQuYyBi
-L2RyaXZlcnMvcnRjL3J0Yy1hbWxvZ2ljLWE0LmMKPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+IGlu
-ZGV4IDAwMDAwMDAwMDAwMC4uZGVjZDc0ZGYyMjVjCj4gLS0tIC9kZXYvbnVsbAo+ICsrKyBiL2Ry
-aXZlcnMvcnRjL3J0Yy1hbWxvZ2ljLWE0LmMKPiBAQCAtMCwwICsxLDQ3MyBAQAo+ICsvLyBTUERY
-LUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAtb25seSBPUiBNSVQpCj4gKy8qCj4gKyAqIENv
-cHlyaWdodCAoQykgMjAyNCBBbWxvZ2ljLCBJbmMuIEFsbCByaWdodHMgcmVzZXJ2ZWQKPiArICog
-QXV0aG9yOiBZaXRpbmcgRGVuZyA8eWl0aW5nLmRlbmctTHBSMWplYVd1aHRCRGdqSzd5N1RVUUBw
-dWJsaWMuZ21hbmUub3JnPgo+ICsgKi8KPiArCj4gKyNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4K
-PiArI2luY2x1ZGUgPGxpbnV4L3BsYXRmb3JtX2RldmljZS5oPgo+ICsjaW5jbHVkZSA8bGludXgv
-cmVnbWFwLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9iaXRmaWVsZC5oPgo+ICsjaW5jbHVkZSA8bGlu
-dXgvcnRjLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9jbGsuaD4KPiArI2luY2x1ZGUgPGxpbnV4L2Ns
-ay1wcm92aWRlci5oPgo+ICsjaW5jbHVkZSA8bGludXgvdGltZTY0Lmg+Cj4gKyNpbmNsdWRlIDxs
-aW51eC9kZWxheS5oPgoKTml0cGljazogc29tZXRpbWVzLCBhbHBoYWJldGljYWwgb3JkZXIgaXMg
-cHJlZmVycmVkLgoKPiArCj4gKy8qIHJ0YyBvc2NpbGxhdG9yIHJhdGUgKi8KPiArI2RlZmluZSBP
-U0NfMzJLCQkJKDMyNzY4KQo+ICsjZGVmaW5lIE9TQ18yNE0JCQkoMjQwMDAwMDApCgpOaXRwaWNr
-OiBtYXliZSB0aGVzZSAoKSBjb3VsZCBiZSByZW1vdmVkIHRvIGVhc2UgcmVhZGluZz8KCj4gKwo+
-ICsjZGVmaW5lIFJUQ19DVFJMCQkoMHgwIDw8IDIpCQkvKiBDb250cm9sIFJUQyAqLwo+ICsjZGVm
-aW5lIFJUQ19BTFJNMF9FTgkJQklUKDApCj4gKyNkZWZpbmUgUlRDX09TQ19TRUwJCUJJVCg4KQo+
-ICsjZGVmaW5lIFJUQ19FTkFCTEUJCUJJVCgxMikKCi4uLgoKPiArc3RhdGljIGludCBhbWxfcnRj
-X3NldF90aW1lKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IHJ0Y190aW1lICp0bSkKPiArewo+
-ICsJc3RydWN0IGFtbF9ydGNfZGF0YSAqcnRjID0gZGV2X2dldF9kcnZkYXRhKGRldik7Cj4gKwl1
-MzIgdGltZV9zZWM7Cj4gKwo+ICsJLyogaWYgUlRDIGRpc2FibGVkLCBmaXJzdCBlbmFibGUgaXQg
-Ki8KPiArCWlmICghcnRjLT5ydGNfZW5hYmxlZCkgewo+ICsJCXJlZ21hcF93cml0ZV9iaXRzKHJ0
-Yy0+bWFwLCBSVENfQ1RSTCwgUlRDX0VOQUJMRSwgUlRDX0VOQUJMRSk7Cj4gKwkJdXNsZWVwX3Jh
-bmdlKDEwMCwgMjAwKTsKPiArCQlydGMtPnJ0Y19lbmFibGVkID0gcmVnbWFwX3Rlc3RfYml0cyhy
-dGMtPm1hcCwgUlRDX0NUUkwsIFJUQ19FTkFCTEUpOwoKU2hvdWxkIHdlIGhhdmUgc29tZXRoaW5n
-IGxpa2U6CgoJCWlmICghcnRjLT5ydGNfZW5hYmxlZCkgewoJCQlkZXZfZXJyKGRldiwgIjxzb21l
-dGhpbmc+Iik7CgkJCXJldHVybiAtRUlOVkFMOwoJCX0KCmlmIGVuYWJsaW5nIGZhaWxzPwoKPiAr
-CX0KPiArCj4gKwl0aW1lX3NlYyA9IHJ0Y190bV90b190aW1lNjQodG0pOwo+ICsJaWYgKHJ0Yy0+
-Y29uZmlnLT5ncmF5X3N0b3JlZCkKPiArCQl0aW1lX3NlYyA9IGJpbmFyeV90b19ncmF5KHRpbWVf
-c2VjKTsKPiArCXJlZ21hcF93cml0ZShydGMtPm1hcCwgUlRDX0NPVU5URVJfUkVHLCB0aW1lX3Nl
-Yyk7Cj4gKwlkZXZfZGJnKGRldiwgIiVzOiBzZXQgdGltZSA9ICV1c1xuIiwgX19mdW5jX18sIHRp
-bWVfc2VjKTsKPiArCj4gKwlyZXR1cm4gMDsKPiArfQo+ICsKPiArc3RhdGljIGludCBhbWxfcnRj
-X3NldF9hbGFybShzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBydGNfd2thbHJtICphbGFybSkK
-PiArewo+ICsJc3RydWN0IGFtbF9ydGNfZGF0YSAqcnRjID0gZGV2X2dldF9kcnZkYXRhKGRldik7
-Cj4gKwl0aW1lNjRfdCBhbGFybV9zZWMgPSAwOwoKTml0cGljazogTm8gbmVlZCB0byBpbml0LgoK
-PiArCj4gKwkvKiBpZiBSVEMgZGlzYWJsZWQsIHNldCBhbGFybSBmYWlsZWQgKi8KPiArCWlmICgh
-cnRjLT5ydGNfZW5hYmxlZCkgewo+ICsJCWRldl9lcnIoZGV2LCAiUlRDIGRpc2FibGVkLCBzZXQg
-YWxhcm0gZmFpbGVkXG4iKTsKPiArCQlyZXR1cm4gLUVJTlZBTDsKPiArCX0KPiArCj4gKwlyZWdt
-YXBfdXBkYXRlX2JpdHMocnRjLT5tYXAsIFJUQ19DVFJMLAo+ICsJCQkgICBSVENfQUxSTTBfRU4s
-IFJUQ19BTFJNMF9FTik7Cj4gKwlyZWdtYXBfdXBkYXRlX2JpdHMocnRjLT5tYXAsIFJUQ19JTlRf
-TUFTSywKPiArCQkJICAgUlRDX0FMUk0wX0lSUV9NU0ssIDApOwo+ICsKPiArCWFsYXJtX3NlYyA9
-IHJ0Y190bV90b190aW1lNjQoJmFsYXJtLT50aW1lKTsKPiArCWlmIChydGMtPmNvbmZpZy0+Z3Jh
-eV9zdG9yZWQpCj4gKwkJYWxhcm1fc2VjID0gYmluYXJ5X3RvX2dyYXkoYWxhcm1fc2VjKTsKPiAr
-CXJlZ21hcF93cml0ZShydGMtPm1hcCwgUlRDX0FMQVJNMF9SRUcsIGFsYXJtX3NlYyk7Cj4gKwo+
-ICsJZGV2X2RiZyhkZXYsICIlczogYWxhcm0tPmVuYWJsZWQ9JWQgYWxhcm1fc2V0PSVsbGRzXG4i
-LCBfX2Z1bmNfXywKPiArCQlhbGFybS0+ZW5hYmxlZCwgYWxhcm1fc2VjKTsKPiArCj4gKwlyZXR1
-cm4gMDsKPiArfQoKLi4uCgo+ICtzdGF0aWMgaW50IGFtbF9ydGNfcmVhZF9vZmZzZXQoc3RydWN0
-IGRldmljZSAqZGV2LCBsb25nICpvZmZzZXQpCj4gK3sKPiArCXN0cnVjdCBhbWxfcnRjX2RhdGEg
-KnJ0YyA9IGRldl9nZXRfZHJ2ZGF0YShkZXYpOwo+ICsJdTMyIHJlZ192YWw7Cj4gKwlsb25nIHZh
-bDsKPiArCWludCBzaWduLCBtYXRjaF9jb3VudGVyLCBlbmFibGU7Cj4gKwo+ICsJLyogaWYgUlRD
-IGRpc2FibGVkLCByZWFkIG9mZnNldCBmYWlsZWQgKi8KPiArCWlmICghcnRjLT5ydGNfZW5hYmxl
-ZCkgewo+ICsJCWRldl9lcnIoZGV2LCAiUlRDIGRpc2FibGVkLCByZWFkIG9mZnNldCBmYWlsZWRc
-biIpOwo+ICsJCXJldHVybiAtRUlOVkFMOwo+ICsJfQo+ICsKPiArCXJlZ21hcF9yZWFkKHJ0Yy0+
-bWFwLCBSVENfU0VDX0FESlVTVF9SRUcsICZyZWdfdmFsKTsKPiArCWVuYWJsZSA9IEZJRUxEX0dF
-VChSVENfQURKX1ZBTElELCByZWdfdmFsKTsKPiArCWlmICghZW5hYmxlKSB7Cj4gKwkJdmFsID0g
-MDsKCk5pdHBpY2s6IElmIHZhbCB3YXMgaW5pdGlhbGlzZWQgYWJvdmUsIHlvdSBjb3VsZCBzYXZl
-IDIgbGluZXMgb2YgY29kZSBoZXJlLgoKPiArCX0gZWxzZSB7Cj4gKwkJc2lnbiA9IEZJRUxEX0dF
-VChSVENfU0VDX0FESlVTVF9DVFJMLCByZWdfdmFsKTsKPiArCQltYXRjaF9jb3VudGVyID0gRklF
-TERfR0VUKFJUQ19NQVRDSF9DT1VOVEVSLCByZWdfdmFsKTsKPiArCQl2YWwgPSAxMDAwMDAwMDAw
-IC8gKG1hdGNoX2NvdW50ZXIgKyAxKTsKPiArCQlpZiAoc2lnbiA9PSBSVENfU1dBTExPV19TRUNP
-TkQpCj4gKwkJCXZhbCA9IC12YWw7Cj4gKwl9Cj4gKwkqb2Zmc2V0ID0gdmFsOwo+ICsKPiArCXJl
-dHVybiAwOwo+ICt9CgouLi4KCj4gK3N0YXRpYyBpbnQgYW1sX3J0Y19wcm9iZShzdHJ1Y3QgcGxh
-dGZvcm1fZGV2aWNlICpwZGV2KQo+ICt7Cj4gKwlzdHJ1Y3QgYW1sX3J0Y19kYXRhICpydGM7CgpO
-aXRwaWNrOiBkZWZpbmluZzoKCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZwZGV2LT5kZXY7Cgp3b3Vs
-ZCBzaW1wbGlmeSBjb2RlIGJlbGxvdy4KCj4gKwl2b2lkIF9faW9tZW0gKmJhc2U7Cj4gKwlpbnQg
-cmV0ID0gMDsKPiArCj4gKwlydGMgPSBkZXZtX2t6YWxsb2MoJnBkZXYtPmRldiwgc2l6ZW9mKCpy
-dGMpLCBHRlBfS0VSTkVMKTsKPiArCWlmICghcnRjKQo+ICsJCXJldHVybiAtRU5PTUVNOwo+ICsK
-PiArCXJ0Yy0+Y29uZmlnID0gb2ZfZGV2aWNlX2dldF9tYXRjaF9kYXRhKCZwZGV2LT5kZXYpOwo+
-ICsJaWYgKCFydGMtPmNvbmZpZykKPiArCQlyZXR1cm4gLUVOT0RFVjsKPiArCj4gKwliYXNlID0g
-ZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jlc291cmNlKHBkZXYsIDApOwo+ICsJaWYgKElTX0VSUihi
-YXNlKSkKPiArCQlyZXR1cm4gZGV2X2Vycl9wcm9iZSgmcGRldi0+ZGV2LCBQVFJfRVJSKGJhc2Up
-LCAicmVzb3VyY2UgaW9yZW1hcCBmYWlsZWRcbiIpOwo+ICsKPiArCXJ0Yy0+bWFwID0gZGV2bV9y
-ZWdtYXBfaW5pdF9tbWlvKCZwZGV2LT5kZXYsIGJhc2UsICZhbWxfcnRjX3JlZ21hcF9jb25maWcp
-Owo+ICsJaWYgKElTX0VSUihydGMtPm1hcCkpCj4gKwkJcmV0dXJuIGRldl9lcnJfcHJvYmUoJnBk
-ZXYtPmRldiwgUFRSX0VSUihydGMtPm1hcCksICJyZWdtYXAgaW5pdCBmYWlsZWRcbiIpOwo+ICsK
-PiArCXJ0Yy0+aXJxID0gcGxhdGZvcm1fZ2V0X2lycShwZGV2LCAwKTsKPiArCWlmIChydGMtPmly
-cSA8IDApCj4gKwkJcmV0dXJuIHJ0Yy0+aXJxOwo+ICsKPiArCXJ0Yy0+cnRjX2NsayA9IGRldm1f
-Y2xrX2dldCgmcGRldi0+ZGV2LCAib3NjIik7Cj4gKwlpZiAoSVNfRVJSKHJ0Yy0+cnRjX2Nsaykp
-Cj4gKwkJcmV0dXJuIGRldl9lcnJfcHJvYmUoJnBkZXYtPmRldiwgUFRSX0VSUihydGMtPnJ0Y19j
-bGspLAo+ICsJCQkJICAgICAiZmFpbGVkIHRvIGZpbmQgcnRjIGNsb2NrXG4iKTsKPiArCWlmIChj
-bGtfZ2V0X3JhdGUocnRjLT5ydGNfY2xrKSAhPSBPU0NfMzJLICYmIGNsa19nZXRfcmF0ZShydGMt
-PnJ0Y19jbGspICE9IE9TQ18yNE0pCj4gKwkJcmV0dXJuIGRldl9lcnJfcHJvYmUoJnBkZXYtPmRl
-diwgLUVJTlZBTCwgIkludmFsaWQgY2xvY2sgY29uZmlndXJhdGlvblxuIik7Cj4gKwo+ICsJcnRj
-LT5zeXNfY2xrID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJzeXMiKTsKCk1heWJlIGRldm1f
-Y2xrX2dldF9lbmFibGVkKCkgdG8gc2ltcGxpZnkgY29kZSBiZWxvdyBhbmQgdGhlIC5yZW1vdmUo
-KSAKZnVuY3Rpb24/Cgo+ICsJaWYgKElTX0VSUihydGMtPnN5c19jbGspKQo+ICsJCXJldHVybiBk
-ZXZfZXJyX3Byb2JlKCZwZGV2LT5kZXYsIFBUUl9FUlIocnRjLT5zeXNfY2xrKSwKPiArCQkJCSAg
-ICAgImZhaWxlZCB0byBnZXQgcnRjIHN5cyBjbGtcbiIpOwo+ICsJcmV0ID0gY2xrX3ByZXBhcmVf
-ZW5hYmxlKHJ0Yy0+c3lzX2Nsayk7Cj4gKwlpZiAocmV0KQo+ICsJCXJldHVybiBkZXZfZXJyX3By
-b2JlKCZwZGV2LT5kZXYsIHJldCwgIkZhaWxlZCB0byBlbmFibGUgY2xrIVxuIik7Cj4gKwo+ICsJ
-YW1sX3J0Y19pbml0KHJ0Yyk7Cj4gKwo+ICsJZGV2aWNlX2luaXRfd2FrZXVwKCZwZGV2LT5kZXYs
-IDEpOwo+ICsJcGxhdGZvcm1fc2V0X2RydmRhdGEocGRldiwgcnRjKTsKPiArCj4gKwlydGMtPnJ0
-Y19kZXYgPSBkZXZtX3J0Y19hbGxvY2F0ZV9kZXZpY2UoJnBkZXYtPmRldik7Cj4gKwlpZiAoSVNf
-RVJSKHJ0Yy0+cnRjX2RldikpIHsKPiArCQlyZXQgPSBQVFJfRVJSKHJ0Yy0+cnRjX2Rldik7Cj4g
-KwkJZ290byBlcnJfY2xrOwo+ICsJfQo+ICsKPiArCXJldCA9IGRldm1fcmVxdWVzdF9pcnEoJnBk
-ZXYtPmRldiwgcnRjLT5pcnEsIGFtbF9ydGNfaGFuZGxlciwKPiArCQkJICAgICAgIElSUUZfT05F
-U0hPVCwgImFtbC1ydGMgYWxhcm0iLCBydGMpOwo+ICsJaWYgKHJldCkgewo+ICsJCWRldl9lcnJf
-cHJvYmUoJnBkZXYtPmRldiwgcmV0LCAiSVJRJWQgcmVxdWVzdCBmYWlsZWQsIHJldCA9ICVkXG4i
-LAo+ICsJCQkgICAgICBydGMtPmlycSwgcmV0KTsKPiArCQlnb3RvIGVycl9jbGs7Cj4gKwl9Cj4g
-Kwo+ICsJcnRjLT5ydGNfZGV2LT5vcHMgPSAmYW1sX3J0Y19vcHM7Cj4gKwlydGMtPnJ0Y19kZXYt
-PnJhbmdlX21pbiA9IDA7Cj4gKwlydGMtPnJ0Y19kZXYtPnJhbmdlX21heCA9IFUzMl9NQVg7Cj4g
-Kwo+ICsJcmV0ID0gZGV2bV9ydGNfcmVnaXN0ZXJfZGV2aWNlKHJ0Yy0+cnRjX2Rldik7Cj4gKwlp
-ZiAocmV0KSB7Cj4gKwkJZGV2X2Vycl9wcm9iZSgmcGRldi0+ZGV2LCByZXQsICJGYWlsZWQgdG8g
-cmVnaXN0ZXIgUlRDIGRldmljZTogJWRcbiIsIHJldCk7Cj4gKwkJZ290byBlcnJfY2xrOwo+ICsJ
-fQo+ICsKPiArCXJldHVybiAwOwo+ICtlcnJfY2xrOgo+ICsJY2xrX2Rpc2FibGVfdW5wcmVwYXJl
-KHJ0Yy0+c3lzX2Nsayk7CgpTaG91bGQgZGV2aWNlX2luaXRfd2FrZXVwKC4uLiwgMCkgYmUgY2Fs
-bGVkIGhlcmU/CihhcyBpbiB0aGUgcmVtb3ZlIGZ1bmN0aW9uKQoKPiArCj4gKwlyZXR1cm4gcmV0
-Owo+ICt9CgouLi4KCj4gK3N0YXRpYyBTSU1QTEVfREVWX1BNX09QUyhhbWxfcnRjX3BtX29wcywK
-PiArCQkJIGFtbF9ydGNfc3VzcGVuZCwgYW1sX3J0Y19yZXN1bWUpOwo+ICsKPiArc3RhdGljIGlu
-dCBhbWxfcnRjX3JlbW92ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQoKU2hvdWxkJ250
-IGl0IHJldHVybiB2b2lkPwpDb21waWxhdGlvbiBmYWlscyB3aXRoIGxhdGVzdCAtbmV4dC4KCj4g
-K3sKPiArCXN0cnVjdCBhbWxfcnRjX2RhdGEgKnJ0YyA9IGRldl9nZXRfZHJ2ZGF0YSgmcGRldi0+
-ZGV2KTsKPiArCj4gKwkvKiBkaXNhYmxlIFJUQyAqLwo+ICsJcmVnbWFwX3dyaXRlX2JpdHMocnRj
-LT5tYXAsIFJUQ19DVFJMLCBSVENfRU5BQkxFLCAwKTsKPiArCWNsa19kaXNhYmxlX3VucHJlcGFy
-ZShydGMtPnN5c19jbGspOwo+ICsJZGV2aWNlX2luaXRfd2FrZXVwKCZwZGV2LT5kZXYsIDApOwo+
-ICsKPiArCXJldHVybiAwOwo+ICt9CgouLi4KCkNKCgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
-YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
-aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+From: Yiting Deng <yiting.deng@amlogic.com>
+
+This is the third amlogic driver. The RTC hardware of A4 SoC is different
+from the previous one. This RTC hardware includes a timing function and
+an alarm function. But the existing has only timing function, alarm
+function is using the system clock to implement a virtual alarm. Add
+the RTC driver to support it.
+
+Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ drivers/rtc/Kconfig          |  12 ++
+ drivers/rtc/Makefile         |   1 +
+ drivers/rtc/rtc-amlogic-a4.c | 473 +++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 486 insertions(+)
+
+diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+index 2a95b05982ad..1d49738a2796 100644
+--- a/drivers/rtc/Kconfig
++++ b/drivers/rtc/Kconfig
+@@ -2043,4 +2043,16 @@ config RTC_DRV_SSD202D
+ 	  This driver can also be built as a module, if so, the module
+ 	  will be called "rtc-ssd20xd".
+ 
++config RTC_DRV_AMLOGIC_A4
++	tristate "Amlogic RTC"
++	depends on ARCH_MESON || COMPILE_TEST
++	select REGMAP_MMIO
++	default y
++	help
++	  If you say yes here you get support for the RTC block on the
++	  Amlogic A113L2(A4) and A113X2(A5) SoCs.
++
++	  This driver can also be built as a module. If so, the module
++	  will be called "rtc-amlogic-a4".
++
+ endif # RTC_CLASS
+diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
+index 3004e372f25f..2122f469e633 100644
+--- a/drivers/rtc/Makefile
++++ b/drivers/rtc/Makefile
+@@ -26,6 +26,7 @@ obj-$(CONFIG_RTC_DRV_ABB5ZES3)	+= rtc-ab-b5ze-s3.o
+ obj-$(CONFIG_RTC_DRV_ABEOZ9)	+= rtc-ab-eoz9.o
+ obj-$(CONFIG_RTC_DRV_ABX80X)	+= rtc-abx80x.o
+ obj-$(CONFIG_RTC_DRV_AC100)	+= rtc-ac100.o
++obj-$(CONFIG_RTC_DRV_AMLOGIC_A4)	+= rtc-amlogic-a4.o
+ obj-$(CONFIG_RTC_DRV_ARMADA38X)	+= rtc-armada38x.o
+ obj-$(CONFIG_RTC_DRV_AS3722)	+= rtc-as3722.o
+ obj-$(CONFIG_RTC_DRV_ASM9260)	+= rtc-asm9260.o
+diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
+new file mode 100644
+index 000000000000..decd74df225c
+--- /dev/null
++++ b/drivers/rtc/rtc-amlogic-a4.c
+@@ -0,0 +1,473 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
++/*
++ * Copyright (C) 2024 Amlogic, Inc. All rights reserved
++ * Author: Yiting Deng <yiting.deng@amlogic.com>
++ */
++
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/bitfield.h>
++#include <linux/rtc.h>
++#include <linux/clk.h>
++#include <linux/clk-provider.h>
++#include <linux/time64.h>
++#include <linux/delay.h>
++
++/* rtc oscillator rate */
++#define OSC_32K			(32768)
++#define OSC_24M			(24000000)
++
++#define RTC_CTRL		(0x0 << 2)		/* Control RTC */
++#define RTC_ALRM0_EN		BIT(0)
++#define RTC_OSC_SEL		BIT(8)
++#define RTC_ENABLE		BIT(12)
++
++#define RTC_COUNTER_REG		(0x1 << 2)		/* Program RTC counter initial value */
++
++#define RTC_ALARM0_REG		(0x2 << 2)		/* Program RTC alarm0 value */
++
++#define RTC_SEC_ADJUST_REG	(0x6 << 2)		/* Control second-based timing adjustment */
++#define RTC_MATCH_COUNTER	GENMASK(18, 0)
++#define RTC_SEC_ADJUST_CTRL	GENMASK(20, 19)
++#define RTC_ADJ_VALID		BIT(23)
++
++#define RTC_INT_MASK		(0x8 << 2)		/* RTC interrupt mask */
++#define RTC_ALRM0_IRQ_MSK	BIT(0)
++
++#define RTC_INT_CLR		(0x9 << 2)		/* Clear RTC interrupt */
++#define RTC_ALRM0_IRQ_CLR	BIT(0)
++
++#define RTC_OSCIN_CTRL0		(0xa << 2)		/* Control RTC clk from 24M */
++#define RTC_OSCIN_CTRL1		(0xb << 2)		/* Control RTC clk from 24M */
++#define RTC_OSCIN_IN_EN		BIT(31)
++#define RTC_OSCIN_OUT_CFG	GENMASK(29, 28)
++#define RTC_OSCIN_OUT_N0M0	GENMASK(11, 0)
++#define RTC_OSCIN_OUT_N1M1	GENMASK(23, 12)
++
++#define RTC_INT_STATUS		(0xc << 2)		/* RTC interrupt status */
++#define RTC_ALRM0_IRQ_STATUS	BIT(0)
++
++#define RTC_REAL_TIME		(0xd << 2)		/* RTC time value */
++
++#define RTC_OSCIN_OUT_32K_N0	0x2dc
++#define RTC_OSCIN_OUT_32K_N1	0x2db
++#define RTC_OSCIN_OUT_32K_M0	0x1
++#define RTC_OSCIN_OUT_32K_M1	0x2
++
++#define RTC_SWALLOW_SECOND	0x2
++#define RTC_INSERT_SECOND	0x3
++
++struct aml_rtc_config {
++	bool gray_stored;
++};
++
++struct aml_rtc_data {
++	struct regmap *map;
++	struct rtc_device *rtc_dev;
++	int irq;
++	struct clk *rtc_clk;
++	struct clk *sys_clk;
++	int rtc_enabled;
++	const struct aml_rtc_config *config;
++};
++
++static const struct regmap_config aml_rtc_regmap_config = {
++	.reg_bits = 32,
++	.val_bits = 32,
++	.reg_stride = 4,
++	.max_register = RTC_REAL_TIME,
++};
++
++static inline u32 gray_to_binary(u32 gray)
++{
++	u32 bcd = gray;
++	int size = sizeof(bcd) * 8;
++	int i;
++
++	for (i = 0; (1 << i) < size; i++)
++		bcd ^= bcd >> (1 << i);
++
++	return bcd;
++}
++
++static inline u32 binary_to_gray(u32 bcd)
++{
++	return bcd ^ (bcd >> 1);
++}
++
++static int aml_rtc_read_time(struct device *dev, struct rtc_time *tm)
++{
++	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
++	u32 time_sec;
++
++	/* if RTC disabled, read time failed */
++	if (!rtc->rtc_enabled) {
++		dev_err(dev, "RTC disabled, read time failed\n");
++		return -EINVAL;
++	}
++
++	regmap_read(rtc->map, RTC_REAL_TIME, &time_sec);
++	if (rtc->config->gray_stored)
++		time_sec = gray_to_binary(time_sec);
++	rtc_time64_to_tm(time_sec, tm);
++	dev_dbg(dev, "%s: read time = %us\n", __func__, time_sec);
++
++	return 0;
++}
++
++static int aml_rtc_set_time(struct device *dev, struct rtc_time *tm)
++{
++	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
++	u32 time_sec;
++
++	/* if RTC disabled, first enable it */
++	if (!rtc->rtc_enabled) {
++		regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, RTC_ENABLE);
++		usleep_range(100, 200);
++		rtc->rtc_enabled = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ENABLE);
++	}
++
++	time_sec = rtc_tm_to_time64(tm);
++	if (rtc->config->gray_stored)
++		time_sec = binary_to_gray(time_sec);
++	regmap_write(rtc->map, RTC_COUNTER_REG, time_sec);
++	dev_dbg(dev, "%s: set time = %us\n", __func__, time_sec);
++
++	return 0;
++}
++
++static int aml_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alarm)
++{
++	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
++	time64_t alarm_sec = 0;
++
++	/* if RTC disabled, set alarm failed */
++	if (!rtc->rtc_enabled) {
++		dev_err(dev, "RTC disabled, set alarm failed\n");
++		return -EINVAL;
++	}
++
++	regmap_update_bits(rtc->map, RTC_CTRL,
++			   RTC_ALRM0_EN, RTC_ALRM0_EN);
++	regmap_update_bits(rtc->map, RTC_INT_MASK,
++			   RTC_ALRM0_IRQ_MSK, 0);
++
++	alarm_sec = rtc_tm_to_time64(&alarm->time);
++	if (rtc->config->gray_stored)
++		alarm_sec = binary_to_gray(alarm_sec);
++	regmap_write(rtc->map, RTC_ALARM0_REG, alarm_sec);
++
++	dev_dbg(dev, "%s: alarm->enabled=%d alarm_set=%llds\n", __func__,
++		alarm->enabled, alarm_sec);
++
++	return 0;
++}
++
++static int aml_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
++{
++	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
++	u32 alarm_sec;
++	int alarm_enable, alarm_mask;
++
++	/* if RTC disabled, read alarm failed */
++	if (!rtc->rtc_enabled) {
++		dev_err(dev, "RTC disabled, read alarm failed\n");
++		return -EINVAL;
++	}
++
++	regmap_read(rtc->map, RTC_ALARM0_REG, &alarm_sec);
++	if (rtc->config->gray_stored)
++		alarm_sec = gray_to_binary(alarm_sec);
++	rtc_time64_to_tm(alarm_sec, &alarm->time);
++
++	alarm_enable = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ALRM0_EN);
++	alarm_mask = regmap_test_bits(rtc->map, RTC_INT_MASK, RTC_ALRM0_IRQ_MSK);
++	alarm->enabled = (alarm_enable && !alarm_mask) ? 1 : 0;
++	dev_dbg(dev, "%s: alarm->enabled=%d alarm=%us\n", __func__,
++		alarm->enabled, alarm_sec);
++
++	return 0;
++}
++
++static int aml_rtc_read_offset(struct device *dev, long *offset)
++{
++	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
++	u32 reg_val;
++	long val;
++	int sign, match_counter, enable;
++
++	/* if RTC disabled, read offset failed */
++	if (!rtc->rtc_enabled) {
++		dev_err(dev, "RTC disabled, read offset failed\n");
++		return -EINVAL;
++	}
++
++	regmap_read(rtc->map, RTC_SEC_ADJUST_REG, &reg_val);
++	enable = FIELD_GET(RTC_ADJ_VALID, reg_val);
++	if (!enable) {
++		val = 0;
++	} else {
++		sign = FIELD_GET(RTC_SEC_ADJUST_CTRL, reg_val);
++		match_counter = FIELD_GET(RTC_MATCH_COUNTER, reg_val);
++		val = 1000000000 / (match_counter + 1);
++		if (sign == RTC_SWALLOW_SECOND)
++			val = -val;
++	}
++	*offset = val;
++
++	return 0;
++}
++
++static int aml_rtc_set_offset(struct device *dev, long offset)
++{
++	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
++	int sign = 0, match_counter = 0, enable = 0;
++	u32 reg_val;
++
++	/* if RTC disabled, set offset failed */
++	if (!rtc->rtc_enabled) {
++		dev_err(dev, "RTC disabled, set offset failed\n");
++		return -EINVAL;
++	}
++
++	if (offset) {
++		enable = 1;
++		sign = offset < 0 ? RTC_SWALLOW_SECOND : RTC_INSERT_SECOND;
++		match_counter = 1000000000 / abs(offset) - 1;
++		if (match_counter < 0 || match_counter > RTC_MATCH_COUNTER)
++			return -EINVAL;
++	}
++
++	reg_val = FIELD_PREP(RTC_ADJ_VALID, enable) |
++		  FIELD_PREP(RTC_SEC_ADJUST_CTRL, sign) |
++		  FIELD_PREP(RTC_MATCH_COUNTER, match_counter);
++	regmap_write(rtc->map, RTC_SEC_ADJUST_REG, reg_val);
++
++	return 0;
++}
++
++static int aml_rtc_alarm_enable(struct device *dev, unsigned int enabled)
++{
++	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
++
++	if (enabled) {
++		regmap_update_bits(rtc->map, RTC_CTRL,
++				   RTC_ALRM0_EN, RTC_ALRM0_EN);
++		regmap_update_bits(rtc->map, RTC_INT_MASK,
++				   RTC_ALRM0_IRQ_MSK, 0);
++	} else {
++		regmap_update_bits(rtc->map, RTC_INT_MASK,
++				   RTC_ALRM0_IRQ_MSK, RTC_ALRM0_IRQ_MSK);
++		regmap_update_bits(rtc->map, RTC_CTRL,
++				   RTC_ALRM0_EN, 0);
++	}
++
++	return 0;
++}
++
++static const struct rtc_class_ops aml_rtc_ops = {
++	.read_time = aml_rtc_read_time,
++	.set_time = aml_rtc_set_time,
++	.read_alarm = aml_rtc_read_alarm,
++	.set_alarm = aml_rtc_set_alarm,
++	.alarm_irq_enable = aml_rtc_alarm_enable,
++	.read_offset = aml_rtc_read_offset,
++	.set_offset = aml_rtc_set_offset,
++};
++
++static irqreturn_t aml_rtc_handler(int irq, void *data)
++{
++	struct aml_rtc_data *rtc = (struct aml_rtc_data *)data;
++
++	regmap_write(rtc->map, RTC_ALARM0_REG, 0);
++	regmap_write(rtc->map, RTC_INT_CLR, RTC_ALRM0_IRQ_STATUS);
++
++	rtc_update_irq(rtc->rtc_dev, 1, RTC_AF | RTC_IRQF);
++
++	return IRQ_HANDLED;
++}
++
++static void aml_rtc_init(struct aml_rtc_data *rtc)
++{
++	u32 reg_val = 0;
++
++	rtc->rtc_enabled = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ENABLE);
++	if (!rtc->rtc_enabled) {
++		if (clk_get_rate(rtc->rtc_clk) == OSC_24M) {
++			/* select 24M oscillator */
++			regmap_write_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, RTC_OSC_SEL);
++
++			/*
++			 * Set RTC oscillator to freq_out to freq_in/((N0*M0+N1*M1)/(M0+M1))
++			 * Enable clock_in gate of oscillator 24MHz
++			 * Set N0 to 733, N1 to 732
++			 */
++			reg_val = FIELD_PREP(RTC_OSCIN_IN_EN, 1)
++				  | FIELD_PREP(RTC_OSCIN_OUT_CFG, 1)
++				  | FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_N0)
++				  | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_N1);
++			regmap_write_bits(rtc->map, RTC_OSCIN_CTRL0, RTC_OSCIN_IN_EN
++					  | RTC_OSCIN_OUT_CFG | RTC_OSCIN_OUT_N0M0
++					  | RTC_OSCIN_OUT_N1M1, reg_val);
++
++			/* Set M0 to 2, M1 to 3, so freq_out = 32768 Hz*/
++			reg_val = FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_M0)
++				  | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_M1);
++			regmap_write_bits(rtc->map, RTC_OSCIN_CTRL1, RTC_OSCIN_OUT_N0M0
++					  | RTC_OSCIN_OUT_N1M1, reg_val);
++		} else {
++			/* select 32K oscillator */
++			regmap_write_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, 0);
++		}
++	}
++	regmap_write_bits(rtc->map, RTC_INT_MASK,
++			  RTC_ALRM0_IRQ_MSK, RTC_ALRM0_IRQ_MSK);
++	regmap_write_bits(rtc->map, RTC_CTRL, RTC_ALRM0_EN, 0);
++}
++
++static int aml_rtc_probe(struct platform_device *pdev)
++{
++	struct aml_rtc_data *rtc;
++	void __iomem *base;
++	int ret = 0;
++
++	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
++	if (!rtc)
++		return -ENOMEM;
++
++	rtc->config = of_device_get_match_data(&pdev->dev);
++	if (!rtc->config)
++		return -ENODEV;
++
++	base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(base))
++		return dev_err_probe(&pdev->dev, PTR_ERR(base), "resource ioremap failed\n");
++
++	rtc->map = devm_regmap_init_mmio(&pdev->dev, base, &aml_rtc_regmap_config);
++	if (IS_ERR(rtc->map))
++		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->map), "regmap init failed\n");
++
++	rtc->irq = platform_get_irq(pdev, 0);
++	if (rtc->irq < 0)
++		return rtc->irq;
++
++	rtc->rtc_clk = devm_clk_get(&pdev->dev, "osc");
++	if (IS_ERR(rtc->rtc_clk))
++		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->rtc_clk),
++				     "failed to find rtc clock\n");
++	if (clk_get_rate(rtc->rtc_clk) != OSC_32K && clk_get_rate(rtc->rtc_clk) != OSC_24M)
++		return dev_err_probe(&pdev->dev, -EINVAL, "Invalid clock configuration\n");
++
++	rtc->sys_clk = devm_clk_get(&pdev->dev, "sys");
++	if (IS_ERR(rtc->sys_clk))
++		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->sys_clk),
++				     "failed to get rtc sys clk\n");
++	ret = clk_prepare_enable(rtc->sys_clk);
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "Failed to enable clk!\n");
++
++	aml_rtc_init(rtc);
++
++	device_init_wakeup(&pdev->dev, 1);
++	platform_set_drvdata(pdev, rtc);
++
++	rtc->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
++	if (IS_ERR(rtc->rtc_dev)) {
++		ret = PTR_ERR(rtc->rtc_dev);
++		goto err_clk;
++	}
++
++	ret = devm_request_irq(&pdev->dev, rtc->irq, aml_rtc_handler,
++			       IRQF_ONESHOT, "aml-rtc alarm", rtc);
++	if (ret) {
++		dev_err_probe(&pdev->dev, ret, "IRQ%d request failed, ret = %d\n",
++			      rtc->irq, ret);
++		goto err_clk;
++	}
++
++	rtc->rtc_dev->ops = &aml_rtc_ops;
++	rtc->rtc_dev->range_min = 0;
++	rtc->rtc_dev->range_max = U32_MAX;
++
++	ret = devm_rtc_register_device(rtc->rtc_dev);
++	if (ret) {
++		dev_err_probe(&pdev->dev, ret, "Failed to register RTC device: %d\n", ret);
++		goto err_clk;
++	}
++
++	return 0;
++err_clk:
++	clk_disable_unprepare(rtc->sys_clk);
++
++	return ret;
++}
++
++static int aml_rtc_suspend(struct device *dev)
++{
++	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
++
++	if (device_may_wakeup(dev))
++		enable_irq_wake(rtc->irq);
++
++	return 0;
++}
++
++static int aml_rtc_resume(struct device *dev)
++{
++	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
++
++	if (device_may_wakeup(dev))
++		disable_irq_wake(rtc->irq);
++
++	return 0;
++}
++
++static SIMPLE_DEV_PM_OPS(aml_rtc_pm_ops,
++			 aml_rtc_suspend, aml_rtc_resume);
++
++static int aml_rtc_remove(struct platform_device *pdev)
++{
++	struct aml_rtc_data *rtc = dev_get_drvdata(&pdev->dev);
++
++	/* disable RTC */
++	regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, 0);
++	clk_disable_unprepare(rtc->sys_clk);
++	device_init_wakeup(&pdev->dev, 0);
++
++	return 0;
++}
++
++static const struct aml_rtc_config a5_rtc_config = {
++};
++
++static const struct aml_rtc_config a4_rtc_config = {
++	.gray_stored = true,
++};
++
++static const struct of_device_id aml_rtc_device_id[] = {
++	{
++		.compatible = "amlogic,a4-rtc",
++		.data = &a4_rtc_config,
++	},
++	{
++		.compatible = "amlogic,a5-rtc",
++		.data = &a5_rtc_config,
++	},
++};
++MODULE_DEVICE_TABLE(of, aml_rtc_device_id);
++
++static struct platform_driver aml_rtc_driver = {
++	.probe = aml_rtc_probe,
++	.remove = aml_rtc_remove,
++	.driver = {
++		.name = "aml-rtc",
++		.pm = &aml_rtc_pm_ops,
++		.of_match_table = aml_rtc_device_id,
++	},
++};
++
++module_platform_driver(aml_rtc_driver);
++MODULE_DESCRIPTION("Amlogic RTC driver");
++MODULE_AUTHOR("Yiting Deng <yiting.deng@amlogic.com>");
++MODULE_LICENSE("GPL");
+
+-- 
+2.37.1
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
