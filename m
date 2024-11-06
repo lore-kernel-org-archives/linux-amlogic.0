@@ -4,57 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 264C2D3E788
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Nov 2024 04:01:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 439EED44D59
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Nov 2024 13:30:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=cUS+zjSRE+rEm6lePZQf0X5d5xYUUCTD0iJWmId1MVI=; b=1lpl5Cn3v5XC6Z
-	4S1Bk83VghmBkrOOX2+0HuFL59DuCPZKy3fQpfUsLBOhbdWFYx/+6KGCEA29+afqzc9vUu1kQmkC/
-	d0uz9CNMDkd3KOWdVwYUkAWnHIqPw2N5UW4VJKb87rgzedPbG60iZfh2/tgfGO6M8WJVqPOacOZB1
-	dSefaHIYJpbB/5F30bB+Ojqnxud0RRsBh3udFoUae83/MpuwaZs8WiZpvoo9adMGzyX8EUcc/klpP
-	4hj/FW/ACcbi9WFipZEHz9rAP26D1VHPaw++WWwyQ1r+dYooZMlWondqw2nPL3dZJYtArUa6CCUmb
-	xAwdgmDVfh/eIfLk/DbA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=6q0V4yGfgVedo8rXtyDAQFvv8UuVRxtdtRMnBEpF0Rk=; b=4Ulsy6krhR3JULU1u69VWogcW/
+	6e63Wc5DV/EeOTZ0Ae2xdZDZJlbZalEJb6k/mudJ6/V2Gqrz1c5ymCGxyzeklwklPEnSNeFXk7ufc
+	FY8tQ8Hlp/LwcpFgk+JK6NAdM8Lx4Aq6D3PkexLv92jcH4307mDlUkxtts932ogmHbUwOin106QA6
+	ulydUC44O4WQlZQdHDb5SKB27WjyoQcoiZhG9++qmQuV0k0b60F19NTgYDUU3ET0GERDFqp97jEV1
+	G5jktrJgibqtW7T1hVG7HVhFcsYtppnN1WIw541DSHm4C5WJyOyaHc/sVdN61IYRRdqRfcNmWT8RQ
+	v2CxcXNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8XES-00000001kIU-3uGl;
-	Wed, 06 Nov 2024 04:01:24 +0000
-Received: from szxga04-in.huawei.com ([45.249.212.190])
+	id 1t8g71-00000003QIb-2wC5;
+	Wed, 06 Nov 2024 13:30:19 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8WD1-00000001cKu-17Hi;
-	Wed, 06 Nov 2024 02:55:54 +0000
-Received: from mail.maildlp.com (unknown [172.19.163.17])
-	by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4XjqXm0lcPz2Fbr5;
-	Wed,  6 Nov 2024 10:54:00 +0800 (CST)
-Received: from kwepemh100007.china.huawei.com (unknown [7.202.181.92])
-	by mail.maildlp.com (Postfix) with ESMTPS id B91CE1A0188;
-	Wed,  6 Nov 2024 10:55:40 +0800 (CST)
-Received: from huawei.com (10.67.175.69) by kwepemh100007.china.huawei.com
- (7.202.181.92) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 6 Nov
- 2024 10:55:40 +0800
-From: Zhang Kunbo <zhangkunbo@huawei.com>
-To: <neil.armstrong@linaro.org>, <maarten.lankhorst@linux.intel.com>,
-	<mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-	<simona@ffwll.ch>
-CC: <dri-devel@lists.freedesktop.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<chris.zjh@huawei.com>, <liaochang1@huawei.com>
-Subject: [PATCH] drm/meson: Avoid use-after-free issues with crtc
-Date: Wed, 6 Nov 2024 02:45:48 +0000
-Message-ID: <20241106024548.1915611-1-zhangkunbo@huawei.com>
-X-Mailer: git-send-email 2.34.1
+	id 1t8faL-00000003KiV-0Bm9;
+	Wed, 06 Nov 2024 12:56:34 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 45E965C490E;
+	Wed,  6 Nov 2024 12:55:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 427F6C4CECD;
+	Wed,  6 Nov 2024 12:56:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1730897791;
+	bh=9ijZ17+hfv173zIRsOLUz+ONcBtjK1noi4xIUL4UXiM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CLuSR5vlRZejmXGOTr2xkmuiFaAbNeB2RYqCYYSTohQYjkwLSSH40Ya4qJTuEZJZ/
+	 29Fz2lpnp3KTKwlbiVUCC4tzQBpHkT83M6tVoE1B9oBaE1ipSczWXKFY1+4ZYtDVTh
+	 tfgew3c/kbSscfwGdCDX2RMCOR2hvowbao+ebxr//l7iV5fYz8wm14jD8hlwTSX1n0
+	 g9LXyt+W0CWru9jjM6aIxwBt1L1Q0Pa7V7GXfM2BzFIW+NMNZJhHBwRRjxzqR7+0Jd
+	 b9k0n0NHwxSh46nojWFF01+TLtxAZNz/cCol3HBd+D7kNrGPtOMa9s/qhtVaYQF2Kq
+	 Sl6SCUCUXJi2g==
+Date: Wed, 6 Nov 2024 12:56:25 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	pierre-henry.moussay@microchip.com,
+	valentina.fernandezalanis@microchip.com,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to
+ common code
+Message-ID: <20241106-freefall-slider-db379b05821e@spud>
+References: <20241002-private-unequal-33cfa6101338@spud>
+ <20241002-hula-unwashed-1c4ddbadbec2@spud>
+ <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org>
+ <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com>
+ <20241003-tacking-ladylike-dfe2b633e647@spud>
 MIME-Version: 1.0
-X-Originating-IP: [10.67.175.69]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- kwepemh100007.china.huawei.com (7.202.181.92)
+In-Reply-To: <20241003-tacking-ladylike-dfe2b633e647@spud>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241105_185551_947280_B98E6F6E 
-X-CRM114-Status: UNSURE (   9.94  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241106_045633_198348_D0F49E05 
+X-CRM114-Status: GOOD (  44.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,67 +87,168 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============3758906375774171419=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-It's dangerous to call drm_crtc_init_with_planes() whose second
-argument is allocated with devm_kzalloc() [1][2].
 
-Use drmm_kzalloc instead to avoid UAF.
+--===============3758906375774171419==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+TLJ5hylperMRXZ0"
+Content-Disposition: inline
 
-[1] https://lore.kernel.org/all/a830685d8b10a00cfe0a86db1ee9fb13@ispras.ru
-[2] https://lore.kernel.org/all/2111196.TG1k3f53YQ@avalon
 
-Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
-Signed-off-by: Zhang Kunbo <zhangkunbo@huawei.com>
----
- drivers/gpu/drm/meson/meson_crtc.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+--+TLJ5hylperMRXZ0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
-index d70616da8ce2..603022554a48 100644
---- a/drivers/gpu/drm/meson/meson_crtc.c
-+++ b/drivers/gpu/drm/meson/meson_crtc.c
-@@ -17,6 +17,7 @@
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_vblank.h>
-+#include <drm/drm_managed.h>
- 
- #include "meson_crtc.h"
- #include "meson_plane.h"
-@@ -72,7 +73,6 @@ static void meson_crtc_disable_vblank(struct drm_crtc *crtc)
- static const struct drm_crtc_funcs meson_crtc_funcs = {
- 	.atomic_destroy_state	= drm_atomic_helper_crtc_destroy_state,
- 	.atomic_duplicate_state = drm_atomic_helper_crtc_duplicate_state,
--	.destroy		= drm_crtc_cleanup,
- 	.page_flip		= drm_atomic_helper_page_flip,
- 	.reset			= drm_atomic_helper_crtc_reset,
- 	.set_config             = drm_atomic_helper_set_config,
-@@ -677,14 +677,14 @@ int meson_crtc_create(struct meson_drm *priv)
- 	struct drm_crtc *crtc;
- 	int ret;
- 
--	meson_crtc = devm_kzalloc(priv->drm->dev, sizeof(*meson_crtc),
-+	meson_crtc = drmm_kzalloc(priv->drm, sizeof(*meson_crtc),
- 				  GFP_KERNEL);
- 	if (!meson_crtc)
- 		return -ENOMEM;
- 
- 	meson_crtc->priv = priv;
- 	crtc = &meson_crtc->base;
--	ret = drm_crtc_init_with_planes(priv->drm, crtc,
-+	ret = drmm_crtc_init_with_planes(priv->drm, crtc,
- 					priv->primary_plane, NULL,
- 					&meson_crtc_funcs, "meson_crtc");
- 	if (ret) {
--- 
-2.34.1
+Stephen,
 
+On Thu, Oct 03, 2024 at 12:33:40PM +0100, Conor Dooley wrote:
+> On Wed, Oct 02, 2024 at 03:21:16PM +0200, Jerome Brunet wrote:
+> > On Wed 02 Oct 2024 at 13:20, Neil Armstrong <neil.armstrong@linaro.org>=
+ wrote:
+> >=20
+> > > On 02/10/2024 12:48, Conor Dooley wrote:
+> > >> From: Conor Dooley <conor.dooley@microchip.com>
+> > >> I like this one better than qualcomms and wish to use it for the
+> > >> PolarFire SoC clock drivers.
+> > >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > >> ---
+> > >>   drivers/clk/Kconfig                           |  4 ++
+> > >>   drivers/clk/Makefile                          |  1 +
+> > >>   drivers/clk/{meson =3D> }/clk-regmap.c          |  2 +-
+> > >>   drivers/clk/meson/Kconfig                     | 46 +++++++++------=
+----
+> > >>   drivers/clk/meson/Makefile                    |  1 -
+> > >>   drivers/clk/meson/a1-peripherals.c            |  2 +-
+> > >>   drivers/clk/meson/a1-pll.c                    |  2 +-
+> > >>   drivers/clk/meson/axg-aoclk.c                 |  2 +-
+> > >>   drivers/clk/meson/axg-audio.c                 |  2 +-
+> > >>   drivers/clk/meson/axg.c                       |  2 +-
+> > >>   drivers/clk/meson/c3-peripherals.c            |  2 +-
+> > >>   drivers/clk/meson/c3-pll.c                    |  2 +-
+> > >>   drivers/clk/meson/clk-cpu-dyndiv.c            |  2 +-
+> > >>   drivers/clk/meson/clk-dualdiv.c               |  2 +-
+> > >>   drivers/clk/meson/clk-mpll.c                  |  2 +-
+> > >>   drivers/clk/meson/clk-phase.c                 |  2 +-
+> > >>   drivers/clk/meson/clk-pll.c                   |  2 +-
+> > >>   drivers/clk/meson/g12a-aoclk.c                |  2 +-
+> > >>   drivers/clk/meson/g12a.c                      |  2 +-
+> > >>   drivers/clk/meson/gxbb-aoclk.c                |  2 +-
+> > >>   drivers/clk/meson/gxbb.c                      |  2 +-
+> > >>   drivers/clk/meson/meson-aoclk.h               |  2 +-
+> > >>   drivers/clk/meson/meson-eeclk.c               |  2 +-
+> > >>   drivers/clk/meson/meson-eeclk.h               |  2 +-
+> > >>   drivers/clk/meson/meson8-ddr.c                |  2 +-
+> > >>   drivers/clk/meson/meson8b.c                   |  2 +-
+> > >>   drivers/clk/meson/s4-peripherals.c            |  2 +-
+> > >>   drivers/clk/meson/s4-pll.c                    |  2 +-
+> > >>   drivers/clk/meson/sclk-div.c                  |  2 +-
+> > >>   drivers/clk/meson/vclk.h                      |  2 +-
+> > >>   drivers/clk/meson/vid-pll-div.c               |  2 +-
+> > >>   .../meson =3D> include/linux/clk}/clk-regmap.h  |  0
+> > >>   32 files changed, 53 insertions(+), 53 deletions(-)
+> > >>   rename drivers/clk/{meson =3D> }/clk-regmap.c (99%)
+> > >>   rename {drivers/clk/meson =3D> include/linux/clk}/clk-regmap.h (10=
+0%)
+> > >>=20
+> > > <snip>
+> > >
+> > > I don't have objections, but I think Stephen didn't like the idea
+> > > a few years ago, but perhaps it has changed...
+> > >
+> > > Anyway, take my:
+> > > Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+> >=20
+> > We had a similar discussion 3y ago indeed:
+> > https://lore.kernel.org/linux-clk/162734682512.2368309.1201587301077708=
+3014@swboyd.mtv.corp.google.com/
+> >=20
+> > There are needs for a common regmap backed clocks indeed, but allowing
+> > meson flavored regmap clocks to spread in the kernel was not really the
+> > prefered way to do it.=20
+>=20
+> Cool, thanks for that link.
+>=20
+> > IIRC, Stephen's idea was more the bring regmap support in clk-gate.c,
+> > clk-mux, etc ... I'm not quite sure how make iomem and regmap co-exist
+> > in a manageable/maintainable way within those drivers (without adding y=
+et
+> > another level of abstraction I mean) ? Silently creating a regmap maybe
+> > ? but that's probably a bit heavy. I did not really had time to dig more
+> > on this, I guess no one did.
+>=20
+> I guess I have some motivation to looking into it at the moment. I had
+> my reservations about the Meson approach too, liking it more than
+> Qualcomm's didn't mean I completely liked it.
+> It was already my intention to implement point b of your mail, had the
+> general idea here been acceptable, cos that's a divergence from how the
+> generic clock types (that the driver in question currently uses) work.
+> And on that note, I just noticed I left the mild-annoyance variable name
+> "sigh" in the submitted driver changes, which I had used for the
+> clk_regmap struct that your point b in the link relates to.
+>=20
+> > I don't really have a preference one way or the other but if it is going
+> > to be exposed in 'include/linux', we need to be sure that's how we want
+> > to do it. With clocks poping in many driver subsystems, it will
+> > difficult to change afterward.=20
+>=20
+> Yeah, I agree. I didn't expect this to go in right away, and I also
+> didn't want to surge ahead on some rework of the clock types, were
+> people to hate even the reuse.
+
+Hmm, so how (in-)complete of a regmap implementation can I get away
+with? I only need clk-gate and clk-divider for this patchset...
+
+Shoving the regmap into the clk structs makes things pretty trivial as I
+don't need to do anything special in any function other than
+clk_*_readl()/clk_*_writel() and the registration code. A flag isn't
+even needed to determine if a clock is a regmap one I don't think, since
+you can just check if the regmap pointer is non-NULL. My use case doesn't
+actually need the registration code changes either as, currently, only reg
+gets set at runtime, but leaving that out is a level of incomplete I'd not
+let myself away with.
+Obviously shoving the extra members into the clk structs has the downside
+of taking up a pointer and a offset worth of memory for each clock of
+that type registered, but it is substantially easier to support devices
+with multiple regmaps that way. Probably moot though since the approach you
+suggested in the thread linked above that implements a clk_hw_get_regmap()
+has to store a pointer to the regmap's identifier which would take up an
+identical amount of memory.
+
+I don't really care which way you want it done, both are pretty easy to
+implement if I can get away with just doing so for the two standard
+clock types that I am using - is it okay to just do those two?
+
+Cheers,
+Conor.
+
+--+TLJ5hylperMRXZ0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZytneQAKCRB4tDGHoIJi
+0hKAAQCFpDV3E/AK8dWA7TkIPrTKd116nVNbF4DDHJKcPS36cAEAtymt/KGIdIPF
+koqYyHxopwgZYIbz0xbdA1kU80glwQo=
+=DxRh
+-----END PGP SIGNATURE-----
+
+--+TLJ5hylperMRXZ0--
+
+
+--===============3758906375774171419==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3758906375774171419==--
+
