@@ -4,67 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E20B4D2B92B
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2024 13:35:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 264C2D3E788
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Nov 2024 04:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Bmt4Aupr2jyd0Ec9s8g5bh3CAM/u420WQwN2Dd+iHOA=; b=wQxKpMnnyWpWZf
-	6Gwvoptd3RfXhvTShPsgIgU0KBS8cf23RL1a/j73ueXtNz6pFHc8ZdVA+ZFCpiR6PN0fWM6DM7Iq4
-	1xV3IrrVgzNP79CewzA/HAqlE6Hi5+06CuomP82KWam2Tdr2bC+pasQZpqpxdmD3I3yDyh6gjLD8G
-	2rE0rD617UR49a9r2s/sZs8DFtKplscWTwsGLdW63njJwli6puvi6sGM7Omf6YaTjnFNNTP7c1sDh
-	by8ndowLFPHq4Xu74BxbIc+qjOAVe1ZxfuSEDaeGUKkDYaVzyPylukMMn4YUgSNQGeDopDWGBit6B
-	1NdVRC/nYSuuYjghlxPw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=cUS+zjSRE+rEm6lePZQf0X5d5xYUUCTD0iJWmId1MVI=; b=1lpl5Cn3v5XC6Z
+	4S1Bk83VghmBkrOOX2+0HuFL59DuCPZKy3fQpfUsLBOhbdWFYx/+6KGCEA29+afqzc9vUu1kQmkC/
+	d0uz9CNMDkd3KOWdVwYUkAWnHIqPw2N5UW4VJKb87rgzedPbG60iZfh2/tgfGO6M8WJVqPOacOZB1
+	dSefaHIYJpbB/5F30bB+Ojqnxud0RRsBh3udFoUae83/MpuwaZs8WiZpvoo9adMGzyX8EUcc/klpP
+	4hj/FW/ACcbi9WFipZEHz9rAP26D1VHPaw++WWwyQ1r+dYooZMlWondqw2nPL3dZJYtArUa6CCUmb
+	xAwdgmDVfh/eIfLk/DbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8JiN-0000000H8Yd-0fW4;
-	Tue, 05 Nov 2024 13:35:23 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1t8XES-00000001kIU-3uGl;
+	Wed, 06 Nov 2024 04:01:24 +0000
+Received: from szxga04-in.huawei.com ([45.249.212.190])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8Jhl-0000000H8OO-06g0;
-	Tue, 05 Nov 2024 13:34:46 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 989FAA43194;
-	Tue,  5 Nov 2024 13:32:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D377C4CED3;
-	Tue,  5 Nov 2024 13:34:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730813683;
-	bh=f+dltnIbONF+ddlfH/eH4Kjbf7iN7W4LgqnVSQXYzsI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hCf9YKwZ3dWnonKa8ESMw8CHnRDs3pxRMAjKtIPiqn77AslCYcwJmM00f3GVr8AVj
-	 D9csyB6lKmZRf5dE0m1YAN++ESgyUvF1Zvf6fjyDAKyifYM0ixsGLOHyFtmxiS0080
-	 eiPqYQ4Rw5bvRhI6z/nP231kDs6eB36gDJADZZPHBhNJ8hXoyMHCJUjAs4wO/g0N7n
-	 3n7dGzwUg7i7YUOoXlmrbTXpYWI75JU6fxL9ZRvQy3SLSIxWFyRoAdpT44jz4qTcYu
-	 Ez8FCFNJT9Hfb3696Z9zXYEuX64LU/5shOuCxMDd1SApKgjPuDQcnkFS++E5jYbAOE
-	 I2r3RQIh1W3mg==
-Date: Tue, 5 Nov 2024 07:34:41 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-gpio@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC v4 1/4] dt-bindings: pinctrl: Add support for Amlogic
- A4 SoCs
-Message-ID: <173081368066.3086220.14112409084743616798.robh@kernel.org>
-References: <20241101-a4_pinctrl-v4-0-efd98edc3ad4@amlogic.com>
- <20241101-a4_pinctrl-v4-1-efd98edc3ad4@amlogic.com>
+	id 1t8WD1-00000001cKu-17Hi;
+	Wed, 06 Nov 2024 02:55:54 +0000
+Received: from mail.maildlp.com (unknown [172.19.163.17])
+	by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4XjqXm0lcPz2Fbr5;
+	Wed,  6 Nov 2024 10:54:00 +0800 (CST)
+Received: from kwepemh100007.china.huawei.com (unknown [7.202.181.92])
+	by mail.maildlp.com (Postfix) with ESMTPS id B91CE1A0188;
+	Wed,  6 Nov 2024 10:55:40 +0800 (CST)
+Received: from huawei.com (10.67.175.69) by kwepemh100007.china.huawei.com
+ (7.202.181.92) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 6 Nov
+ 2024 10:55:40 +0800
+From: Zhang Kunbo <zhangkunbo@huawei.com>
+To: <neil.armstrong@linaro.org>, <maarten.lankhorst@linux.intel.com>,
+	<mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
+	<simona@ffwll.ch>
+CC: <dri-devel@lists.freedesktop.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<chris.zjh@huawei.com>, <liaochang1@huawei.com>
+Subject: [PATCH] drm/meson: Avoid use-after-free issues with crtc
+Date: Wed, 6 Nov 2024 02:45:48 +0000
+Message-ID: <20241106024548.1915611-1-zhangkunbo@huawei.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241101-a4_pinctrl-v4-1-efd98edc3ad4@amlogic.com>
+X-Originating-IP: [10.67.175.69]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ kwepemh100007.china.huawei.com (7.202.181.92)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241105_053445_168052_F36AD69E 
-X-CRM114-Status: UNSURE (   9.02  )
+X-CRM114-CacheID: sfid-20241105_185551_947280_B98E6F6E 
+X-CRM114-Status: UNSURE (   9.94  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,20 +71,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+It's dangerous to call drm_crtc_init_with_planes() whose second
+argument is allocated with devm_kzalloc() [1][2].
 
-On Fri, 01 Nov 2024 16:27:17 +0800, Xianwei Zhao wrote:
-> Add the new compatible name for Amlogic A4 pin controller, and add
-> a new dt-binding header file which document the GPIO bank names of
-> all Amlogic subsequent SoCs.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  .../bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml |  2 +
->  include/dt-bindings/gpio/amlogic-gpio.h            | 50 ++++++++++++++++++++++
->  2 files changed, 52 insertions(+)
-> 
+Use drmm_kzalloc instead to avoid UAF.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+[1] https://lore.kernel.org/all/a830685d8b10a00cfe0a86db1ee9fb13@ispras.ru
+[2] https://lore.kernel.org/all/2111196.TG1k3f53YQ@avalon
+
+Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
+Signed-off-by: Zhang Kunbo <zhangkunbo@huawei.com>
+---
+ drivers/gpu/drm/meson/meson_crtc.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
+index d70616da8ce2..603022554a48 100644
+--- a/drivers/gpu/drm/meson/meson_crtc.c
++++ b/drivers/gpu/drm/meson/meson_crtc.c
+@@ -17,6 +17,7 @@
+ #include <drm/drm_print.h>
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_vblank.h>
++#include <drm/drm_managed.h>
+ 
+ #include "meson_crtc.h"
+ #include "meson_plane.h"
+@@ -72,7 +73,6 @@ static void meson_crtc_disable_vblank(struct drm_crtc *crtc)
+ static const struct drm_crtc_funcs meson_crtc_funcs = {
+ 	.atomic_destroy_state	= drm_atomic_helper_crtc_destroy_state,
+ 	.atomic_duplicate_state = drm_atomic_helper_crtc_duplicate_state,
+-	.destroy		= drm_crtc_cleanup,
+ 	.page_flip		= drm_atomic_helper_page_flip,
+ 	.reset			= drm_atomic_helper_crtc_reset,
+ 	.set_config             = drm_atomic_helper_set_config,
+@@ -677,14 +677,14 @@ int meson_crtc_create(struct meson_drm *priv)
+ 	struct drm_crtc *crtc;
+ 	int ret;
+ 
+-	meson_crtc = devm_kzalloc(priv->drm->dev, sizeof(*meson_crtc),
++	meson_crtc = drmm_kzalloc(priv->drm, sizeof(*meson_crtc),
+ 				  GFP_KERNEL);
+ 	if (!meson_crtc)
+ 		return -ENOMEM;
+ 
+ 	meson_crtc->priv = priv;
+ 	crtc = &meson_crtc->base;
+-	ret = drm_crtc_init_with_planes(priv->drm, crtc,
++	ret = drmm_crtc_init_with_planes(priv->drm, crtc,
+ 					priv->primary_plane, NULL,
+ 					&meson_crtc_funcs, "meson_crtc");
+ 	if (ret) {
+-- 
+2.34.1
 
 
 _______________________________________________
