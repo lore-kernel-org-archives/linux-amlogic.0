@@ -4,78 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 439EED44D59
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Nov 2024 13:30:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71A8DD44D6F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Nov 2024 13:59:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6q0V4yGfgVedo8rXtyDAQFvv8UuVRxtdtRMnBEpF0Rk=; b=4Ulsy6krhR3JULU1u69VWogcW/
-	6e63Wc5DV/EeOTZ0Ae2xdZDZJlbZalEJb6k/mudJ6/V2Gqrz1c5ymCGxyzeklwklPEnSNeFXk7ufc
-	FY8tQ8Hlp/LwcpFgk+JK6NAdM8Lx4Aq6D3PkexLv92jcH4307mDlUkxtts932ogmHbUwOin106QA6
-	ulydUC44O4WQlZQdHDb5SKB27WjyoQcoiZhG9++qmQuV0k0b60F19NTgYDUU3ET0GERDFqp97jEV1
-	G5jktrJgibqtW7T1hVG7HVhFcsYtppnN1WIw541DSHm4C5WJyOyaHc/sVdN61IYRRdqRfcNmWT8RQ
-	v2CxcXNg==;
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
+	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=l8xDDeMOJxduVNCQvzX1ilzMvrQw51ClX6WqgkvJ8IY=; b=Xk6gg5CN87THgD
+	AhgIOFc8FYFw1A5wI/2x8MfHfh8IfmiFumuizGpIKC/pvqbgFd95mLl2B1pD1QzG45NPm9xPpDG8Y
+	8Iej6XR9D6Qler5wjEVfQRKVtb19+vzSs9208YK0V85Z393yNhi+vfDUSNbuDuSEmTygFe6rBSfSr
+	cx5mf/rbqEi1HKWPoiLJC8+QuDSz5c0DWLkDG5gdJZRt4KazoN/iQuRoHRqdPVFrFat1rgE37ZNSs
+	wrqryXmtWhFnvJTPpniUoKbtG8Vk9LBco5PmWieu2iuf/Yk60+j7HUC8rxQVvnnOxmsJHOqmtHMhx
+	j5f+qbz0mHkumZP/7KXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8g71-00000003QIb-2wC5;
-	Wed, 06 Nov 2024 13:30:19 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1t8gZ4-00000003WBk-2n7c;
+	Wed, 06 Nov 2024 13:59:18 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8faL-00000003KiV-0Bm9;
-	Wed, 06 Nov 2024 12:56:34 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 45E965C490E;
-	Wed,  6 Nov 2024 12:55:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 427F6C4CECD;
-	Wed,  6 Nov 2024 12:56:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1730897791;
-	bh=9ijZ17+hfv173zIRsOLUz+ONcBtjK1noi4xIUL4UXiM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CLuSR5vlRZejmXGOTr2xkmuiFaAbNeB2RYqCYYSTohQYjkwLSSH40Ya4qJTuEZJZ/
-	 29Fz2lpnp3KTKwlbiVUCC4tzQBpHkT83M6tVoE1B9oBaE1ipSczWXKFY1+4ZYtDVTh
-	 tfgew3c/kbSscfwGdCDX2RMCOR2hvowbao+ebxr//l7iV5fYz8wm14jD8hlwTSX1n0
-	 g9LXyt+W0CWru9jjM6aIxwBt1L1Q0Pa7V7GXfM2BzFIW+NMNZJhHBwRRjxzqR7+0Jd
-	 b9k0n0NHwxSh46nojWFF01+TLtxAZNz/cCol3HBd+D7kNrGPtOMa9s/qhtVaYQF2Kq
-	 Sl6SCUCUXJi2g==
-Date: Wed, 6 Nov 2024 12:56:25 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	pierre-henry.moussay@microchip.com,
-	valentina.fernandezalanis@microchip.com,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to
- common code
-Message-ID: <20241106-freefall-slider-db379b05821e@spud>
-References: <20241002-private-unequal-33cfa6101338@spud>
- <20241002-hula-unwashed-1c4ddbadbec2@spud>
- <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org>
- <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com>
- <20241003-tacking-ladylike-dfe2b633e647@spud>
+	id 1t8gKT-00000003T1G-1rTc
+	for linux-amlogic@lists.infradead.org;
+	Wed, 06 Nov 2024 13:44:15 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-431695fa98bso52631615e9.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 06 Nov 2024 05:44:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1730900651; x=1731505451; darn=lists.infradead.org;
+        h=content-transfer-encoding:organization:autocrypt:content-language
+         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Z1t9SmRdC1grTnxYfq0WRsgynjzOVFKr29y6dkcaAKA=;
+        b=O0KtdupuRMZbKzc87eCpOZOVjn1N9KVvXZMrzm0sL0nywnl94+2Ts69fVXAgSvLm5i
+         mJRwVUSStKL2iA5Iy4KVf48aiR0Q4n9xH1//YKBoRnKd5VNKAT+pLpSxIh0pxiByd834
+         TMeUPbq71uHE78jgO19Qm3sog8q4yN2IbvzWDVE3xMyOXQ1L4uwNMZY7ZxQY7G41BLKx
+         5ZixxcnzGotvZxV4F9NY0E8dGYoUr3coItUeiDMhec0NYNIMSSZgPx4gc9/oPYO9uSUa
+         jOhDiHAzmJYMhvAqiAarJprpLsbZfVW0cpxkWztd9Fx0Orw2Akx9+DRLAtUfREPWfA/s
+         sRkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730900651; x=1731505451;
+        h=content-transfer-encoding:organization:autocrypt:content-language
+         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z1t9SmRdC1grTnxYfq0WRsgynjzOVFKr29y6dkcaAKA=;
+        b=okiwTJFLwimf4S6Lz/K6QzlHSXdFRPDhMQQGF58HhUUmtQaQj7bPCFsoMfBeC6Bu25
+         bBNiTsaxnoC808/hdp8ogN7w6kbEka6UpQd+ZRJ+eBYf80Y/WTm4B8vk3Md1HS7YHO7c
+         yjzlwWkJYHeE/N3FbIisgZMoHS0eMlQAcTKCJPjRr9w6JLo+hFIEFUA/fhyhpBZOhc6q
+         ExsxnY2uAByb4qsmCrWaXBdjZaDEOF7bloyl4FrHEXJz9kikcb0ghoblSKWNXYVEdg4O
+         kdPRCRSOxPJdymD1pXfzdQzGWp7KP1RSX+2d4xBjFP/Dsjwxk6XHyv2aAucY6TY2aqwU
+         7eag==
+X-Gm-Message-State: AOJu0YzeMrxfAGbjKKoV+21jslNSOF3gwo1RcCtnb2mXar2NB/sr33YT
+	z2MUkYSPNVPPXGpAkXWfoqNzWVRa6dgbNFDbrAU22Zq9OGLh16FHrZhN6vrEQbYjYaJT7P8jz2/
+	CS6A=
+X-Google-Smtp-Source: AGHT+IEDfXHPYnEzdKdGDOIx5isWt6UJom2MOYrbNvWHKRq/DHETWuaNiRBX5ymPlQgTN2VRGVjI+g==
+X-Received: by 2002:a05:600c:524c:b0:426:5e91:3920 with SMTP id 5b1f17b1804b1-4319ad24a7fmr381006385e9.29.1730900651357;
+        Wed, 06 Nov 2024 05:44:11 -0800 (PST)
+Received: from [172.16.23.252] ([89.101.134.25])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432aa6ae726sm22960195e9.3.2024.11.06.05.44.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Nov 2024 05:44:10 -0800 (PST)
+Message-ID: <ffaa3755-8c5d-4fc3-86bf-9129d3889bff@linaro.org>
+Date: Wed, 6 Nov 2024 14:44:09 +0100
 MIME-Version: 1.0
-In-Reply-To: <20241003-tacking-ladylike-dfe2b633e647@spud>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [GIT PULL] amlogic ARM DT updates for v6.13
+To: soc@kernel.org, arm@kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241106_045633_198348_D0F49E05 
-X-CRM114-Status: GOOD (  44.39  )
+X-CRM114-CacheID: sfid-20241106_054413_544440_54D9B4D9 
+X-CRM114-Status: UNSURE (   9.27  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,168 +112,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3758906375774171419=="
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
---===============3758906375774171419==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+TLJ5hylperMRXZ0"
-Content-Disposition: inline
+Here's the first set of fixes towards fixing all bindings check errors,
+this set + the dt-bindings fixes picked by other subsystems fixes most
+of the errors.
 
+Thanks,
+Neil
 
---+TLJ5hylperMRXZ0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The following changes since commit 9852d85ec9d492ebef56dc5f229416c925758edc:
 
-Stephen,
+   Linux 6.12-rc1 (2024-09-29 15:06:19 -0700)
 
-On Thu, Oct 03, 2024 at 12:33:40PM +0100, Conor Dooley wrote:
-> On Wed, Oct 02, 2024 at 03:21:16PM +0200, Jerome Brunet wrote:
-> > On Wed 02 Oct 2024 at 13:20, Neil Armstrong <neil.armstrong@linaro.org>=
- wrote:
-> >=20
-> > > On 02/10/2024 12:48, Conor Dooley wrote:
-> > >> From: Conor Dooley <conor.dooley@microchip.com>
-> > >> I like this one better than qualcomms and wish to use it for the
-> > >> PolarFire SoC clock drivers.
-> > >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > >> ---
-> > >>   drivers/clk/Kconfig                           |  4 ++
-> > >>   drivers/clk/Makefile                          |  1 +
-> > >>   drivers/clk/{meson =3D> }/clk-regmap.c          |  2 +-
-> > >>   drivers/clk/meson/Kconfig                     | 46 +++++++++------=
-----
-> > >>   drivers/clk/meson/Makefile                    |  1 -
-> > >>   drivers/clk/meson/a1-peripherals.c            |  2 +-
-> > >>   drivers/clk/meson/a1-pll.c                    |  2 +-
-> > >>   drivers/clk/meson/axg-aoclk.c                 |  2 +-
-> > >>   drivers/clk/meson/axg-audio.c                 |  2 +-
-> > >>   drivers/clk/meson/axg.c                       |  2 +-
-> > >>   drivers/clk/meson/c3-peripherals.c            |  2 +-
-> > >>   drivers/clk/meson/c3-pll.c                    |  2 +-
-> > >>   drivers/clk/meson/clk-cpu-dyndiv.c            |  2 +-
-> > >>   drivers/clk/meson/clk-dualdiv.c               |  2 +-
-> > >>   drivers/clk/meson/clk-mpll.c                  |  2 +-
-> > >>   drivers/clk/meson/clk-phase.c                 |  2 +-
-> > >>   drivers/clk/meson/clk-pll.c                   |  2 +-
-> > >>   drivers/clk/meson/g12a-aoclk.c                |  2 +-
-> > >>   drivers/clk/meson/g12a.c                      |  2 +-
-> > >>   drivers/clk/meson/gxbb-aoclk.c                |  2 +-
-> > >>   drivers/clk/meson/gxbb.c                      |  2 +-
-> > >>   drivers/clk/meson/meson-aoclk.h               |  2 +-
-> > >>   drivers/clk/meson/meson-eeclk.c               |  2 +-
-> > >>   drivers/clk/meson/meson-eeclk.h               |  2 +-
-> > >>   drivers/clk/meson/meson8-ddr.c                |  2 +-
-> > >>   drivers/clk/meson/meson8b.c                   |  2 +-
-> > >>   drivers/clk/meson/s4-peripherals.c            |  2 +-
-> > >>   drivers/clk/meson/s4-pll.c                    |  2 +-
-> > >>   drivers/clk/meson/sclk-div.c                  |  2 +-
-> > >>   drivers/clk/meson/vclk.h                      |  2 +-
-> > >>   drivers/clk/meson/vid-pll-div.c               |  2 +-
-> > >>   .../meson =3D> include/linux/clk}/clk-regmap.h  |  0
-> > >>   32 files changed, 53 insertions(+), 53 deletions(-)
-> > >>   rename drivers/clk/{meson =3D> }/clk-regmap.c (99%)
-> > >>   rename {drivers/clk/meson =3D> include/linux/clk}/clk-regmap.h (10=
-0%)
-> > >>=20
-> > > <snip>
-> > >
-> > > I don't have objections, but I think Stephen didn't like the idea
-> > > a few years ago, but perhaps it has changed...
-> > >
-> > > Anyway, take my:
-> > > Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
-> >=20
-> > We had a similar discussion 3y ago indeed:
-> > https://lore.kernel.org/linux-clk/162734682512.2368309.1201587301077708=
-3014@swboyd.mtv.corp.google.com/
-> >=20
-> > There are needs for a common regmap backed clocks indeed, but allowing
-> > meson flavored regmap clocks to spread in the kernel was not really the
-> > prefered way to do it.=20
->=20
-> Cool, thanks for that link.
->=20
-> > IIRC, Stephen's idea was more the bring regmap support in clk-gate.c,
-> > clk-mux, etc ... I'm not quite sure how make iomem and regmap co-exist
-> > in a manageable/maintainable way within those drivers (without adding y=
-et
-> > another level of abstraction I mean) ? Silently creating a regmap maybe
-> > ? but that's probably a bit heavy. I did not really had time to dig more
-> > on this, I guess no one did.
->=20
-> I guess I have some motivation to looking into it at the moment. I had
-> my reservations about the Meson approach too, liking it more than
-> Qualcomm's didn't mean I completely liked it.
-> It was already my intention to implement point b of your mail, had the
-> general idea here been acceptable, cos that's a divergence from how the
-> generic clock types (that the driver in question currently uses) work.
-> And on that note, I just noticed I left the mild-annoyance variable name
-> "sigh" in the submitted driver changes, which I had used for the
-> clk_regmap struct that your point b in the link relates to.
->=20
-> > I don't really have a preference one way or the other but if it is going
-> > to be exposed in 'include/linux', we need to be sure that's how we want
-> > to do it. With clocks poping in many driver subsystems, it will
-> > difficult to change afterward.=20
->=20
-> Yeah, I agree. I didn't expect this to go in right away, and I also
-> didn't want to surge ahead on some rework of the clock types, were
-> people to hate even the reuse.
+are available in the Git repository at:
 
-Hmm, so how (in-)complete of a regmap implementation can I get away
-with? I only need clk-gate and clk-divider for this patchset...
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm-dt-for-v6.13
 
-Shoving the regmap into the clk structs makes things pretty trivial as I
-don't need to do anything special in any function other than
-clk_*_readl()/clk_*_writel() and the registration code. A flag isn't
-even needed to determine if a clock is a regmap one I don't think, since
-you can just check if the regmap pointer is non-NULL. My use case doesn't
-actually need the registration code changes either as, currently, only reg
-gets set at runtime, but leaving that out is a level of incomplete I'd not
-let myself away with.
-Obviously shoving the extra members into the clk structs has the downside
-of taking up a pointer and a offset worth of memory for each clock of
-that type registered, but it is substantially easier to support devices
-with multiple regmaps that way. Probably moot though since the approach you
-suggested in the thread linked above that implements a clk_hw_get_regmap()
-has to store a pointer to the regmap's identifier which would take up an
-identical amount of memory.
+for you to fetch changes up to 2b901e9ef05d84e99582607e85393a6eba0e2363:
+amlogic-arm-dt-for-v6.13
+   ARM: dts: amlogic: meson8/8b: remove invalid pinctrl reg (2024-10-17 10:21:32 +0200)
 
-I don't really care which way you want it done, both are pretty easy to
-implement if I can get away with just doing so for the two standard
-clock types that I am using - is it okay to just do those two?
+----------------------------------------------------------------
+Amlogic ARM DT changes for v6.13:
+- DT fixes to pass bindings chedk, including:
+  - fixing nodes names
+  - dropping meson6 ATV1200 board
+  - add missing properties
 
-Cheers,
-Conor.
+----------------------------------------------------------------
+Neil Armstrong (12):
+       ARM: dts: amlogic: meson6: fix clk81 node name
+       ARM: dts: amlogic: meson8: fix soc thermal-zone node name
+       ARM: dts: amlogic: meson8: fix ao_arc_sram node name
+       ARM: dts: amlogic: meson6: remove support for ATV1200 board
+       ARM: dts: amlogic: meson8b-odroidc1: fix invalid reset-gpio
+       ARM: dts: amlogic: fix /memory node name
+       ARM: dts: amlogic: meson8: use correct pinctrl bank node name
+       ARM: dts: amlogic: add missing phy-mode in ethmac node
+       ARM: dts: amlogic: meson8-minix-neo-x8: fix invalid pnictrl-names
+       ARM: dts: amlogic: meson8b-ec100: add missing clocks property in sound card
+       ARM: dts: amlogic: meson8b-ec100: add missing gpio-line-names entry
+       ARM: dts: amlogic: meson8/8b: remove invalid pinctrl reg
 
---+TLJ5hylperMRXZ0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZytneQAKCRB4tDGHoIJi
-0hKAAQCFpDV3E/AK8dWA7TkIPrTKd116nVNbF4DDHJKcPS36cAEAtymt/KGIdIPF
-koqYyHxopwgZYIbz0xbdA1kU80glwQo=
-=DxRh
------END PGP SIGNATURE-----
-
---+TLJ5hylperMRXZ0--
-
-
---===============3758906375774171419==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+  arch/arm/boot/dts/amlogic/Makefile                |  2 -
+  arch/arm/boot/dts/amlogic/meson6-atv1200.dts      | 33 ----------
+  arch/arm/boot/dts/amlogic/meson6.dtsi             | 73 -----------------------
+  arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts |  5 +-
+  arch/arm/boot/dts/amlogic/meson8.dtsi             | 32 +++++-----
+  arch/arm/boot/dts/amlogic/meson8b-ec100.dts       |  8 ++-
+  arch/arm/boot/dts/amlogic/meson8b-mxq.dts         |  2 +-
+  arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts    |  4 +-
+  arch/arm/boot/dts/amlogic/meson8b.dtsi            | 32 +++++-----
+  arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts |  2 +-
+  10 files changed, 43 insertions(+), 150 deletions(-)
+  delete mode 100644 arch/arm/boot/dts/amlogic/meson6-atv1200.dts
+  delete mode 100644 arch/arm/boot/dts/amlogic/meson6.dtsi
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3758906375774171419==--
-
