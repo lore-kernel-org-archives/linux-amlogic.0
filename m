@@ -4,71 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71A8DD44D6F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Nov 2024 13:59:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28B22D44D71
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Nov 2024 14:02:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
 	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=l8xDDeMOJxduVNCQvzX1ilzMvrQw51ClX6WqgkvJ8IY=; b=Xk6gg5CN87THgD
-	AhgIOFc8FYFw1A5wI/2x8MfHfh8IfmiFumuizGpIKC/pvqbgFd95mLl2B1pD1QzG45NPm9xPpDG8Y
-	8Iej6XR9D6Qler5wjEVfQRKVtb19+vzSs9208YK0V85Z393yNhi+vfDUSNbuDuSEmTygFe6rBSfSr
-	cx5mf/rbqEi1HKWPoiLJC8+QuDSz5c0DWLkDG5gdJZRt4KazoN/iQuRoHRqdPVFrFat1rgE37ZNSs
-	wrqryXmtWhFnvJTPpniUoKbtG8Vk9LBco5PmWieu2iuf/Yk60+j7HUC8rxQVvnnOxmsJHOqmtHMhx
-	j5f+qbz0mHkumZP/7KXg==;
+	List-Owner; bh=rQM+2DE40tKgQgFv5ad/buwn6YOBmT5aNxgUvSbrk7k=; b=bAQZ5Bog3pOqAH
+	iYFfS/VNW60zN4DMSKsA75+3w/JvOSlvwHVk/HecA/C/5cueOpRmoHUliytEZ7lRpHDJNQdrTRETP
+	ksKwGPcC8gx/0v2AZ+6urTCVwmm36wxQvOPb7oY7AVgy04UHPVQI9320jpLwN0B6SSGdByk2lV2Wv
+	Rhim2+8eEy5oSu1xqwXxcOCXH5VPP2PdmgmdO8ThJGE51w1IyRyDs3re36a1uDc3csLm71YpoT0uM
+	5cA6BDwahY+HhnHIcxVWdSG9RZTLnRix/3AbyZ4hJne0x+y5P4Si1Z6Ha413WEjQ7ay1/oJLkqdrj
+	WQBeq20X1ygw9/O5MH7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8gZ4-00000003WBk-2n7c;
-	Wed, 06 Nov 2024 13:59:18 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1t8gcV-00000003WvR-0h1c;
+	Wed, 06 Nov 2024 14:02:51 +0000
+Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8gKT-00000003T1G-1rTc
+	id 1t8gMC-00000003TOz-1nr2
 	for linux-amlogic@lists.infradead.org;
-	Wed, 06 Nov 2024 13:44:15 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-431695fa98bso52631615e9.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 06 Nov 2024 05:44:12 -0800 (PST)
+	Wed, 06 Nov 2024 13:46:02 +0000
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-539e59dadebso8342350e87.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 06 Nov 2024 05:45:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1730900651; x=1731505451; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1730900758; x=1731505558; darn=lists.infradead.org;
         h=content-transfer-encoding:organization:autocrypt:content-language
          :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Z1t9SmRdC1grTnxYfq0WRsgynjzOVFKr29y6dkcaAKA=;
-        b=O0KtdupuRMZbKzc87eCpOZOVjn1N9KVvXZMrzm0sL0nywnl94+2Ts69fVXAgSvLm5i
-         mJRwVUSStKL2iA5Iy4KVf48aiR0Q4n9xH1//YKBoRnKd5VNKAT+pLpSxIh0pxiByd834
-         TMeUPbq71uHE78jgO19Qm3sog8q4yN2IbvzWDVE3xMyOXQ1L4uwNMZY7ZxQY7G41BLKx
-         5ZixxcnzGotvZxV4F9NY0E8dGYoUr3coItUeiDMhec0NYNIMSSZgPx4gc9/oPYO9uSUa
-         jOhDiHAzmJYMhvAqiAarJprpLsbZfVW0cpxkWztd9Fx0Orw2Akx9+DRLAtUfREPWfA/s
-         sRkA==
+        bh=ehYC5jyHQqP2TfK80B/7xWqvzi8c0/X0fL6unhG4urs=;
+        b=nBPoOJzhykyoYbwcV19EzWU567+GvMs56ZjjqGvWDKJgk1b4BkRDJmIPtk0IWKEzLs
+         HlqpIRDhG+9Ze7tbdgugys6ltl5wyndu/LyVb4zjZYkwGyPfUQRVVdyJPFDeraZh1MIY
+         oxloAfE5E1ycfc8MeKk6uaZrWjvSTk9nvxDLPgA1VMndPGgYpE7J6i+X1s1oN41awXUa
+         GTncyQBFh7BLt678Xx94tS+SII2Icv4/OcjDQSJ90V2zuPcw3tMRY+UKX2NGL2G5rDnL
+         PhvSE2etHLMdP4drQHCc+FTtlrrof3d59R+iSzQi0r5jU9GhpIx1RUCo6i9Yq2OAHkxu
+         KNYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730900651; x=1731505451;
+        d=1e100.net; s=20230601; t=1730900758; x=1731505558;
         h=content-transfer-encoding:organization:autocrypt:content-language
          :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z1t9SmRdC1grTnxYfq0WRsgynjzOVFKr29y6dkcaAKA=;
-        b=okiwTJFLwimf4S6Lz/K6QzlHSXdFRPDhMQQGF58HhUUmtQaQj7bPCFsoMfBeC6Bu25
-         bBNiTsaxnoC808/hdp8ogN7w6kbEka6UpQd+ZRJ+eBYf80Y/WTm4B8vk3Md1HS7YHO7c
-         yjzlwWkJYHeE/N3FbIisgZMoHS0eMlQAcTKCJPjRr9w6JLo+hFIEFUA/fhyhpBZOhc6q
-         ExsxnY2uAByb4qsmCrWaXBdjZaDEOF7bloyl4FrHEXJz9kikcb0ghoblSKWNXYVEdg4O
-         kdPRCRSOxPJdymD1pXfzdQzGWp7KP1RSX+2d4xBjFP/Dsjwxk6XHyv2aAucY6TY2aqwU
-         7eag==
-X-Gm-Message-State: AOJu0YzeMrxfAGbjKKoV+21jslNSOF3gwo1RcCtnb2mXar2NB/sr33YT
-	z2MUkYSPNVPPXGpAkXWfoqNzWVRa6dgbNFDbrAU22Zq9OGLh16FHrZhN6vrEQbYjYaJT7P8jz2/
-	CS6A=
-X-Google-Smtp-Source: AGHT+IEDfXHPYnEzdKdGDOIx5isWt6UJom2MOYrbNvWHKRq/DHETWuaNiRBX5ymPlQgTN2VRGVjI+g==
-X-Received: by 2002:a05:600c:524c:b0:426:5e91:3920 with SMTP id 5b1f17b1804b1-4319ad24a7fmr381006385e9.29.1730900651357;
-        Wed, 06 Nov 2024 05:44:11 -0800 (PST)
-Received: from [172.16.23.252] ([89.101.134.25])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432aa6ae726sm22960195e9.3.2024.11.06.05.44.09
+        bh=ehYC5jyHQqP2TfK80B/7xWqvzi8c0/X0fL6unhG4urs=;
+        b=kJjs1Dlp8KDmJ14/iBf75Pdje0PYCjlK/r5xlwdn3tFmJGdUvzBsG3IKoS8EQZRUsS
+         s5rOT+9ammEwblfunkkG/HZdIdCxmq9CS3e/MQs9c3rHqSWPkaX/oUUqUdUHv6D5TN5v
+         X/bk2XycOCzUhfFEP1nr4iFDUfXJWSN6Z9g8BhITKAxdqhFhILAAPbqrEvbEyBvTO6O2
+         xpiDBKvpyRveboX36J+E2ul1/tJ5nYC1DF2KKUSC06xqVY1Ht82PJG/GfyE8iLKjcdP/
+         d1dPJBgzmwNqqLHj4lpwK+/s2+bIewN4hiFnonETCejp3KKrs/+W3cdqXG1/hp+WzvSm
+         m4IQ==
+X-Gm-Message-State: AOJu0YyP15KzKB2rI8OYn566bB4FK0C2uycwB7EzuBPUE3+hSOpdHw8b
+	rJ4LtuJ0M491JPMAeQRUBDE/1AyKdPvggxpRexvi2SXsU+UebHTsDpROgdrMYBQ=
+X-Google-Smtp-Source: AGHT+IG36xkVt+ks+JYrBPCyJZNNr5to2RevB/PEtfvJ914bM+YQAJ+CS5sRJcV8XkOk11ShH2fhow==
+X-Received: by 2002:a05:6512:3ba3:b0:539:eb44:7ec3 with SMTP id 2adb3069b0e04-53b3490fabamr19945832e87.31.1730900758178;
+        Wed, 06 Nov 2024 05:45:58 -0800 (PST)
+Received: from [172.16.23.252] ([154.14.63.34])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432aa5b60cfsm23255865e9.7.2024.11.06.05.45.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Nov 2024 05:44:10 -0800 (PST)
-Message-ID: <ffaa3755-8c5d-4fc3-86bf-9129d3889bff@linaro.org>
-Date: Wed, 6 Nov 2024 14:44:09 +0100
+        Wed, 06 Nov 2024 05:45:57 -0800 (PST)
+Message-ID: <6fb3d64a-3913-4db0-9cdc-336af32a88a9@linaro.org>
+Date: Wed, 6 Nov 2024 14:45:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic ARM DT updates for v6.13
+Subject: [GIT PULL] amlogic ARM64 DT updates for v6.13
 To: soc@kernel.org, arm@kernel.org
 Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Language: en-US, fr
@@ -98,8 +97,8 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241106_054413_544440_54D9B4D9 
-X-CRM114-Status: UNSURE (   9.27  )
+X-CRM114-CacheID: sfid-20241106_054600_515117_E5AA8FAB 
+X-CRM114-Status: UNSURE (   6.57  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -120,9 +119,8 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-Here's the first set of fixes towards fixing all bindings check errors,
-this set + the dt-bindings fixes picked by other subsystems fixes most
-of the errors.
+Here's a set of Amlogic ARM64 DT changes for v6.13, with
+PWM for A1 & C3, missing properties & typo fix.
 
 Thanks,
 Neil
@@ -133,47 +131,33 @@ The following changes since commit 9852d85ec9d492ebef56dc5f229416c925758edc:
 
 are available in the Git repository at:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm-dt-for-v6.13
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v6.13
 
-for you to fetch changes up to 2b901e9ef05d84e99582607e85393a6eba0e2363:
-amlogic-arm-dt-for-v6.13
-   ARM: dts: amlogic: meson8/8b: remove invalid pinctrl reg (2024-10-17 10:21:32 +0200)
+for you to fetch changes up to be90cd4bd422e8ae235f534a2fa46d40dae0816b:
 
-----------------------------------------------------------------
-Amlogic ARM DT changes for v6.13:
-- DT fixes to pass bindings chedk, including:
-  - fixing nodes names
-  - dropping meson6 ATV1200 board
-  - add missing properties
+   arm64: dts: amlogic: Add Amlogic C3 PWM (2024-10-09 09:57:50 +0200)
 
 ----------------------------------------------------------------
-Neil Armstrong (12):
-       ARM: dts: amlogic: meson6: fix clk81 node name
-       ARM: dts: amlogic: meson8: fix soc thermal-zone node name
-       ARM: dts: amlogic: meson8: fix ao_arc_sram node name
-       ARM: dts: amlogic: meson6: remove support for ATV1200 board
-       ARM: dts: amlogic: meson8b-odroidc1: fix invalid reset-gpio
-       ARM: dts: amlogic: fix /memory node name
-       ARM: dts: amlogic: meson8: use correct pinctrl bank node name
-       ARM: dts: amlogic: add missing phy-mode in ethmac node
-       ARM: dts: amlogic: meson8-minix-neo-x8: fix invalid pnictrl-names
-       ARM: dts: amlogic: meson8b-ec100: add missing clocks property in sound card
-       ARM: dts: amlogic: meson8b-ec100: add missing gpio-line-names entry
-       ARM: dts: amlogic: meson8/8b: remove invalid pinctrl reg
+Amlogic ARM64 DT changes for v6.13:
+- Add PWM nodes for Amlogic A1 & C3
+- Addd missing power-domains properties
+- Fix G12 uart node name
 
-  arch/arm/boot/dts/amlogic/Makefile                |  2 -
-  arch/arm/boot/dts/amlogic/meson6-atv1200.dts      | 33 ----------
-  arch/arm/boot/dts/amlogic/meson6.dtsi             | 73 -----------------------
-  arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts |  5 +-
-  arch/arm/boot/dts/amlogic/meson8.dtsi             | 32 +++++-----
-  arch/arm/boot/dts/amlogic/meson8b-ec100.dts       |  8 ++-
-  arch/arm/boot/dts/amlogic/meson8b-mxq.dts         |  2 +-
-  arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts    |  4 +-
-  arch/arm/boot/dts/amlogic/meson8b.dtsi            | 32 +++++-----
-  arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts |  2 +-
-  10 files changed, 43 insertions(+), 150 deletions(-)
-  delete mode 100644 arch/arm/boot/dts/amlogic/meson6-atv1200.dts
-  delete mode 100644 arch/arm/boot/dts/amlogic/meson6.dtsi
+----------------------------------------------------------------
+George Stark (2):
+       arm64: dts: meson: a1: add definitions for meson PWM
+       arm64: dts: meson: a1: bind power domain to temperature sensor
+
+Kelvin Zhang (1):
+       arm64: dts: amlogic: Add Amlogic C3 PWM
+
+Theo Debrouwere (1):
+       arm64: dts: meson-g12-common: fix uart-ao-a typo
+
+  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi       | 364 ++++++++++++++++++++++
+  arch/arm64/boot/dts/amlogic/meson-a1.dtsi         | 216 +++++++++++++
+  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi |   2 +-
+  3 files changed, 581 insertions(+), 1 deletion(-)
 
 _______________________________________________
 linux-amlogic mailing list
