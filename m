@@ -4,78 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD34FD44D75
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Nov 2024 14:30:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93E90D5AE73
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Nov 2024 08:44:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=dm+WD7J5hhqnQmmfowhZluBgk0aHmOHosoGGYVKIda4=; b=HTS9gES3KC2vbC
-	CWkBHG8OAPsJ+gBjXKUVjo7uzFmtpEmIIn8gWxELij70w3tK7N0ISYjBQCG7gRrSelfuCBPVCN/Of
-	4+LfqqlZ7HRvoEi7AIkIxpce683ASGPRtA6imjkisoBmUjYe/TutQjClOqrJMaJtYKPnqQrhDfjmZ
-	7HW48MxcnavrjQEvQUBebnFmx06AZSLqmf2FSQcyasIchep/Gs3bNO2z3jYW/iLKWhZzKe4mzyuAf
-	0dgC72x0x9xnloiNvRxdxRDD9f4OfkCASnJRwTQyajdYX3QFyxCKLOrc4EZYrFJMmuoHTBGsB4/3q
-	+uHChVeRuKHM+DfFGraw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Fa+d9+1FNZBqra8cQLjmg+f7lOhY0ZR4LmEfsOE3tA8=; b=CKU4wC/Fl58iaCf6hPGkYtYWqA
+	V36Yz1nR+C5Hp7D7SGLHe9P24a2w3zHcnii5Fftd1mxZ4pPgd49kvcKFCqhBrT1pQGnic8JgxDs8o
+	M5O1WtPlIfvEYBmzqtB/ZIe8KbtW8MiQ9qQyQGy0IDVR1aWOcEhNFk7H8earLxRzqSPUKjF0bF5k6
+	HdaWk9FbgifnsoGIzEGprGivpqHiB9pMSnf6m+9sO/2L8Ffr3euL+xkZRKYvxC6LB2EzReMi1AVWf
+	kqW9WNYDe+IY4U5/ZLG8xF65gM+DsWpUQQlGFj85upaEwf4n6k3It2RlYzm2XCUV3lgmmS4uPYR8C
+	VEtOLg8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8h3T-00000003ch7-2MWd;
-	Wed, 06 Nov 2024 14:30:43 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1t8y8A-00000006ADj-2Lkn;
+	Thu, 07 Nov 2024 08:44:42 +0000
+Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t8h1q-00000003btR-3W4j
+	id 1t8y5C-000000069gY-2IDc
 	for linux-amlogic@lists.infradead.org;
-	Wed, 06 Nov 2024 14:29:05 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-43162cf1eaaso79430755e9.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 06 Nov 2024 06:29:01 -0800 (PST)
+	Thu, 07 Nov 2024 08:41:40 +0000
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a9a850270e2so113991766b.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 07 Nov 2024 00:41:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730903340; x=1731508140; darn=lists.infradead.org;
-        h=mime-version:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=fR07OvAKZCcn4c5fWCDFwwdic4q9vTVULluh2TSx4BY=;
-        b=X2+bkobaTkOcW1a2YS9TXrPxzBHn2pY/8q/BAdNzCYWTXN7gDNN/CZt9ERthH3HrfC
-         gbG8GoSbjhFQxIW/Gz435fm5rIInxoBWu2uehFDiZQpV0STCWDRHrOfmK9Dc67ca9Rib
-         6OLBJkTtv19zmlBWWUN6JNzBpWpjs4JwUrXfz8lF6O/Mkiu+sfIWTXVEdraSeMrTnpQl
-         XGLGJlHelP8mNb+ko+2AKF5NwDMOmbCErk6DDokh2OD6YH4fhz9KXS3Lv/9ezDuEHCLC
-         BXuYuus9h2F8qHxnImHXe+Au6HIqH8O2caIhZLhLQIt1MJUk86R6+wkNuUVVqq0PeBMH
-         Twtw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1730968896; x=1731573696; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gCBwFpuOJkUFhUsOyTcZgxDubddLr0CvKoCO+bs50mg=;
+        b=x5p0fRbQTVb8aRcHMQet/k0Ehd5BLGGBsLRziCjdZ0f8255rT9BiXZVZPRxsiUE28U
+         8ZAonCeQrpxYLeX45FABeRHtPOC3UUimGTAxrVBxnIuctWsZUdMc277BkmjtjWIq6Suj
+         r26rTZTatNsmP30gKbin0Kd7UkAnou/8l47qGTi04ppMwpxKv2QW08gopFi7Da7OgF8O
+         TDPOIUH4X8riEuPivpsrQqLcWs2/SSCmhsC/AcTKT0c5NzXkYHciF2kGtt17zDoUJDoH
+         t5xPigpwmDaVOkw5cK9AjEIKxW5+yMXWHoIbboFg942b4dgRJ/X7HHaZR5wDO5BD4HMF
+         gY7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1730903340; x=1731508140;
-        h=mime-version:message-id:date:subject:cc:to:from:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fR07OvAKZCcn4c5fWCDFwwdic4q9vTVULluh2TSx4BY=;
-        b=A/XUOY+4mxhMR93u8pX4N0v5oxMjdN4IFeizZpXXLXpILG57dB7uVmQ52CerJ0rejf
-         ANwYVOyN1MxPJRPADqXjXzspnwhEoZMptLnM5nn+VdrSwdC2+sWpPdP2FeI2T+x1Kph7
-         mf7cLZRGDhJrlwXzu+14Lrx8qsJBju4t35Kev4Y131nZDsqBeRWsnc/ikrj1L8YPptg3
-         1hkhxaWoOlIPzSLiLrNgCBK9g/hbCa+SuKMs3lMAvZpB9VwZ+tPzHr8+YeVWDXDgod1U
-         1t2xJU3zH5SU/mbq/Rnr9E+aIV1JL3LgdFLtw84QCQguyMidhwN0G31+3pwANf3f0bVr
-         cPFw==
-X-Forwarded-Encrypted: i=1; AJvYcCXN0r3UHKukXMH2qRQEk8tcyzzCWAS6O1zoWMLhQNBS/+LJ9BWKWVsAJGHOhxySvlW3kbMZJ4JQJCtPz81W@lists.infradead.org
-X-Gm-Message-State: AOJu0YxTKDhACX8ByAmoL0uURNiIPXK58ljQ4ffxooii40tzlWe63jvu
-	sVcpFiuhTdE/bKXlxxgq4+YHO4O+f7tKTqsRn0XENz3IxAOTy7YjmRBvjoMm+T1KdxcwHXHdy29
-	8
-X-Google-Smtp-Source: AGHT+IGstdQ9A4MrGynIfGTZqv+ah9OkeHbjRp/dz/mM+KY45mCPilbar4JgbcfnSu8Wz5uGPgy1Uw==
-X-Received: by 2002:a05:600c:444d:b0:42f:75e0:780e with SMTP id 5b1f17b1804b1-4328324ad00mr207455705e9.10.1730903339920;
-        Wed, 06 Nov 2024 06:28:59 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:aefe:7cf1:a25f:8f85])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381c10b7a9esm19251468f8f.21.2024.11.06.06.28.58
+        d=1e100.net; s=20230601; t=1730968896; x=1731573696;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gCBwFpuOJkUFhUsOyTcZgxDubddLr0CvKoCO+bs50mg=;
+        b=fk6ME5wWyLq4l1hBPy4hmqjWn79GJEJjbHHNBp8xXpG5E2LurbLa8KxOvRFfqAQjVa
+         L1TapYSjo7mDyWHJ0/6p75dHmfd2ElKS+bjWU3hObZDcT68v4AjK698LMPZ+eWUpklYu
+         4+aZn5bJjhgTBp6ZHbIt+T8+QCAumyverpewaP4Fc92Kipox5dQVcQ27eXt5bQOhh29p
+         FS8snq+8T87IqDhiFS/gCA2XO5F2jtrSPE7upFl0fUj3kXeXj2oSGVpPBFvzaoXO7Ymv
+         U0xtJQy1eGhyCcimTzoPCCZ5K47jAdcTGVFPkvTBd8oMh6oJIB0ODEqo00AKfG/kFh1T
+         SdwA==
+X-Forwarded-Encrypted: i=1; AJvYcCVG4RGD3N+O/zZQGKRKjqzvKkTUHedbYWOuBkC8wbPm6qrBgGfwqHhlg/T6iThWeFKifW5LrJoRT6gLbPPY@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw4jYR6Q/JmFSLsVkKtyFav3HlegADd/nw25tJwtS0vH33So8Nm
+	+Ql2/SwyS9X/xUseg8fYKNTYBlcsWym2UMv7FBfnhkdFUetXK8xoRBEdRqhIB0U=
+X-Google-Smtp-Source: AGHT+IECtbyHGknyaysdu7uNuPBdqFJ/lC8OST23yihlsX4TuSJya+GcgvzFJKIKUAa2ZP1s0r51nw==
+X-Received: by 2002:a17:907:1c02:b0:a99:a9b6:2eb6 with SMTP id a640c23a62f3a-a9e652c179emr2216146166b.0.1730968896486;
+        Thu, 07 Nov 2024 00:41:36 -0800 (PST)
+Received: from localhost (p509159f1.dip0.t-ipconnect.de. [80.145.89.241])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9ee0a46119sm60879066b.46.2024.11.07.00.41.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Nov 2024 06:28:58 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
- <khilman@baylibre.com>, "linux-clk@vger.kernel.org"
- <linux-clk@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
- <linux-amlogic@lists.infradead.org>, Philipp Zabel
- <p.zabel@pengutronix.de>
-Subject: [GIT PULL] clk: meson: amlogic clock updates for v6.13
-Date: Wed, 06 Nov 2024 15:28:57 +0100
-Message-ID: <1jy11w307q.fsf@starbuckisacylon.baylibre.com>
+        Thu, 07 Nov 2024 00:41:35 -0800 (PST)
+Date: Thu, 7 Nov 2024 09:41:34 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: George Stark <gnstark@salutedevices.com>
+Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
+	martin.blumenstingl@googlemail.com, linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, kernel@salutedevices.com
+Subject: Re: [PATCH v2 2/4] pwm: meson: Support constant and polarity bits
+Message-ID: <l5xvdndysdvtil472it6ylthcfam5jp7lh3son45mezq7dh2yk@3yj557k2o5k5>
+References: <20241016152553.2321992-1-gnstark@salutedevices.com>
+ <20241016152553.2321992-3-gnstark@salutedevices.com>
+ <w3igi2jmva6mfa7anlieyp3iiwfzhsvi3t37wwcqqtzdy42fqn@btmdsfsmpw7r>
+ <f08513c8-56d6-4551-8ac6-84641c134552@salutedevices.com>
 MIME-Version: 1.0
+In-Reply-To: <f08513c8-56d6-4551-8ac6-84641c134552@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241106_062902_930270_96E636B9 
-X-CRM114-Status: GOOD (  15.75  )
+X-CRM114-CacheID: sfid-20241107_004138_830167_54BE57CD 
+X-CRM114-Status: GOOD (  31.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,122 +90,168 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============6393392310240756046=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-Hi Stephen,
+--===============6393392310240756046==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7ur3dmr5dbhirxpm"
+Content-Disposition: inline
 
-Here is the Amlogic clock update for v6.13.
 
-This is one is a bit out of the ordinary. You'll notice a fair amount
-change in drivers/reset. We completed the rework to take the resets of
-the axg controller out of drivers/clk/meson. This code will now be
-maintained where it belongs. This will also allow to not duplicate reset
-driver with the new audio clock controllers coming up.
+--7ur3dmr5dbhirxpm
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/4] pwm: meson: Support constant and polarity bits
+MIME-Version: 1.0
 
-The reset change present in this PR come from the following tag provided
-by Philipp:
+On Wed, Nov 06, 2024 at 04:54:41PM +0300, George Stark wrote:
+> On 11/4/24 12:32, Uwe Kleine-K=F6nig wrote:
+> > > @@ -68,6 +72,8 @@ static struct meson_pwm_channel_data {
+> > >   	u8		clk_div_shift;
+> > >   	u8		clk_en_shift;
+> > >   	u32		pwm_en_mask;
+> > > +	u32		const_en_mask;
+> > > +	u32		inv_en_mask;
+> > >   } meson_pwm_per_channel_data[MESON_NUM_PWMS] =3D {
+> > >   	{
+> > >   		.reg_offset	=3D REG_PWM_A,
+> > > @@ -75,6 +81,8 @@ static struct meson_pwm_channel_data {
+> > >   		.clk_div_shift	=3D MISC_A_CLK_DIV_SHIFT,
+> > >   		.clk_en_shift	=3D MISC_A_CLK_EN_SHIFT,
+> > >   		.pwm_en_mask	=3D MISC_A_EN,
+> > > +		.const_en_mask	=3D MISC_A_CONSTANT_EN,
+> > > +		.inv_en_mask	=3D MISC_A_INVERT_EN,
+> > >   	},
+> > >   	{
+> > >   		.reg_offset	=3D REG_PWM_B,
+> > > @@ -82,6 +90,8 @@ static struct meson_pwm_channel_data {
+> > >   		.clk_div_shift	=3D MISC_B_CLK_DIV_SHIFT,
+> > >   		.clk_en_shift	=3D MISC_B_CLK_EN_SHIFT,
+> > >   		.pwm_en_mask	=3D MISC_B_EN,
+> > > +		.const_en_mask	=3D MISC_B_CONSTANT_EN,
+> > > +		.inv_en_mask	=3D MISC_B_INVERT_EN,
+> > >   	}
+> > >   };
+> >=20
+> > So the generic register description describes the const and invert bits,
+> > but it doesn't apply to all IPs. Thinking about that, I wonder why this
+> > struct exists at all. I would have done this as follows:
+> >=20
+> > 	#define MESON_PWM_REG_PWM(chan)		(0 + 4 * (chan))
+> >=20
+> > 	#define MESON_PWM_REG_MISC		(8)
+> > 	#define MESON_PWM_REG_MISC_EN(chan)		BIT(chan)
+> > 	#define MESON_PWM_REG_MISC_CLK_SEL(chan)	GENMASK(5 + 2 * (chan), 4 + 2=
+ * (chan))
+> > 	....
+> >=20
+> > and then use these constants directly (with pwm->hwpwm as parameter if
+> > needed) in the code. I would expect this to result in more efficient and
+> > smaller code.
+>=20
+> I've been looking into this driver for more than a year and got used to
+> it so much so never thought about changing the foundations :) Although it=
+'s
+> an interesting thought.
+>=20
+> 1. I took meson_pwm_enable() without
+> const patches and reimplemented it using only defines (e.g. w/o local
+> var channel_data) and objdumped current and new versions. New version
+> turned out to be one instruction longer (arm64, gcc, default -O2). So tot=
+al
+> difference in executable code may be not that significant although
+> we can win in C-code line count.
 
-https://git.pengutronix.de/cgit/pza/linux/tag/?h=reset-amlogic-aux
+Oh, I indeed would have expected a slight advantage size-wise. Maybe the
+compiler already optimizes out the meson_pwm_per_channel_data variable.
 
-One of the change present in this PR depends on these reset changes
-which is why I pulled it.
+> 2. Things like
+> #define MISC_B_EN		BIT(1)
+> #define MISC_A_EN		BIT(0)
+> is more straightforward and can be matched to the datasheet easier
+> comparing to (a + b * (chan)) things.
 
-The rest of the PR is business as usual.
+In my (subjective) view that comparison isn't hard with the
+parametrised definition.
 
-The following changes since commit 9852d85ec9d492ebef56dc5f229416c925758edc:
+> So I'm not sure either.
+>=20
+> > > @@ -227,6 +252,15 @@ static void meson_pwm_enable(struct pwm_chip *ch=
+ip, struct pwm_device *pwm)
+> > >   	value =3D readl(meson->base + REG_MISC_AB);
+> > >   	value |=3D channel_data->pwm_en_mask;
+> > > +
+> > > +	if (meson->data->has_constant)
+> > > +		meson_pwm_assign_bit(&value, channel_data->const_en_mask,
+> > > +				     channel->constant);
+> >=20
+> > Personally I'd prefer:
+> >=20
+> > 	value &=3D ~MESON_PWM_REG_MISC_CONST_EN(pwm->hwpwm);
+> > 	if (meson->data->has_constant && channel->constant)
+> > 		value |=3D MESON_PWM_REG_MISC_CONST_EN(pwm->hwpwm);
+> >=20
+> > even though your variant only mentions the mask once. While it has this
+> > repetition, it's clear what happens without having to know what
+> > meson_pwm_assign_bit() does. Maybe that's subjective?
+>=20
+> Actually I also don't like meson_pwm_assign_bit() too match and I'm
+> surprised there's no something like this in the kernel already.
+> I again objdumped versions meson_pwm_assign_bit() vs double mask repetiti=
+on.
+> Unconditional bit clearing takes only a single instruction:
+>=20
+> // value &=3D ~channel_data->const_en_mask;
+> 9ac:	0a250040 	bic	w0, w2, w5
+>=20
+> So in the current series I could drop meson_pwm_assign_bit() and use:
+>=20
+> value &=3D ~channel_data->const_en_mask;
+> if (meson->data->has_constant && channel->constant)
+> 	value |=3D channel_data->const_en_mask;
+>=20
+> If it's decided now or later to drop meson_pwm_channel_data then
+> w\o meson_pwm_assign_bit() future patch will be line-to-line change.
+>=20
+> What you think?
 
-  Linux 6.12-rc1 (2024-09-29 15:06:19 -0700)
+Sounds sensible.
 
-are available in the Git repository at:
+Best regards
+Uwe
 
-  https://github.com/BayLibre/clk-meson.git tags/clk-meson-v6.13-1
+--7ur3dmr5dbhirxpm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-for you to fetch changes up to 664988eb47dd2d6ae1d9e4188ec91832562f8f26:
+-----BEGIN PGP SIGNATURE-----
 
-  clk: amlogic: axg-audio: use the auxiliary reset driver (2024-10-14 10:11:05 +0200)
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcsfTwACgkQj4D7WH0S
+/k7W2ggAiWbFklqZfRb0lCzJW9msXnzW0j2vYPkmdTdU4UXb+bz4Nc/vo6AbIG4V
+zgaSDWYTwULDPzgKvkP403SAaZeB6Jg875zyty8nLVyCuydPE9LM7fc598PPzfUf
+8VgBR7p3x7iq/Zlnpb5btp2o3nCwniHPCc2wsjooAYy6j50dCK1UVvtlbJL8zzN4
+vgc98VppmOeutOa8/2ZhcXhczb5pgJfCviPGyyXlwoaeHB7WV358AkaOcvcMpDbN
+1TKOPew6x4fiRd56KOzN0C/M1Fpb3DSPhf21z3kdo/9LKPnap/sZ1Au22xOHTawD
++8ZSV6hZqzueMQJQY307eFT+otZ9hg==
+=7j4z
+-----END PGP SIGNATURE-----
 
-----------------------------------------------------------------
-Amlogic clock updates for v6.13
+--7ur3dmr5dbhirxpm--
 
-* Fix hifi_pll rate calculation on s4 and c3
-* Move audio reset implementation from the axg-audio clock controller
-  driver to the reset directory, using the auxiliary device bus.
-* Remove the unnecessary spinlock in the mpll driver
-* Fix meson8 clock controller DT bindings
 
-----------------------------------------------------------------
-Chuan Liu (5):
-      clk: meson: s4: pll: hifi_pll support fractional multiplier
-      clk: meson: Support PLL with fixed fractional denominators
-      clk: meson: c3: pll: fix frac maximum value for hifi_pll
-      clk: meson: s4: pll: fix frac maximum value for hifi_pll
-      clk: meson: mpll: Delete a useless spinlock from the MPLL
-
-Jerome Brunet (14):
-      clk: meson: meson8b: remove spinlock
-      Merge tag 'v6.12-rc1' into clk-meson-next
-      Merge branch 'v6.13/bindings' into clk-meson-next
-      reset: amlogic: convert driver to regmap
-      reset: amlogic: use generic data matching function
-      reset: amlogic: make parameters unsigned
-      reset: amlogic: add driver parameters
-      reset: amlogic: use reset number instead of register count
-      reset: amlogic: add reset status support
-      reset: amlogic: move drivers to a dedicated directory
-      reset: amlogic: split the device core and platform probe
-      reset: amlogic: add auxiliary reset driver support
-      Merge tag 'reset-amlogic-aux' into clk-meson-next
-      clk: amlogic: axg-audio: use the auxiliary reset driver
-
-Neil Armstrong (1):
-      dt-bindings: clock: convert amlogic,meson8b-clkc.txt to dtschema
-
-Philipp Zabel (1):
-      reset: amlogic: Fix small whitespace issue
-
- .../bindings/clock/amlogic,meson8-clkc.yaml        |  45 ++++++
- .../bindings/clock/amlogic,meson8b-clkc.txt        |  51 -------
- drivers/clk/meson/Kconfig                          |   1 +
- drivers/clk/meson/axg-audio.c                      | 109 ++------------
- drivers/clk/meson/axg.c                            |   6 -
- drivers/clk/meson/c3-pll.c                         |   1 +
- drivers/clk/meson/clk-mpll.c                       |  11 --
- drivers/clk/meson/clk-mpll.h                       |   1 -
- drivers/clk/meson/clk-pll.c                        |   8 +-
- drivers/clk/meson/clk-pll.h                        |   1 +
- drivers/clk/meson/g12a.c                           |   6 -
- drivers/clk/meson/gxbb.c                           |   6 -
- drivers/clk/meson/meson8b.c                        |  10 --
- drivers/clk/meson/s4-pll.c                         |  13 +-
- drivers/reset/Kconfig                              |  15 +-
- drivers/reset/Makefile                             |   3 +-
- drivers/reset/amlogic/Kconfig                      |  27 ++++
- drivers/reset/amlogic/Makefile                     |   4 +
- .../reset/{ => amlogic}/reset-meson-audio-arb.c    |   0
- drivers/reset/amlogic/reset-meson-aux.c            | 136 ++++++++++++++++++
- drivers/reset/amlogic/reset-meson-common.c         | 142 ++++++++++++++++++
- drivers/reset/amlogic/reset-meson.c                | 105 ++++++++++++++
- drivers/reset/amlogic/reset-meson.h                |  28 ++++
- drivers/reset/reset-meson.c                        | 159 ---------------------
- include/soc/amlogic/reset-meson-aux.h              |  23 +++
- 25 files changed, 535 insertions(+), 376 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,meson8-clkc.yaml
- delete mode 100644 Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
- create mode 100644 drivers/reset/amlogic/Kconfig
- create mode 100644 drivers/reset/amlogic/Makefile
- rename drivers/reset/{ => amlogic}/reset-meson-audio-arb.c (100%)
- create mode 100644 drivers/reset/amlogic/reset-meson-aux.c
- create mode 100644 drivers/reset/amlogic/reset-meson-common.c
- create mode 100644 drivers/reset/amlogic/reset-meson.c
- create mode 100644 drivers/reset/amlogic/reset-meson.h
- delete mode 100644 drivers/reset/reset-meson.c
- create mode 100644 include/soc/amlogic/reset-meson-aux.h
+--===============6393392310240756046==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6393392310240756046==--
+
