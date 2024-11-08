@@ -4,84 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71264D5E14D
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2024 10:08:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB6C2D5E152
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2024 10:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iMkEYYK3xnO/V1npzjvfm6xqYa1D8ksVjKrR7KIGvVI=; b=TgV5+3dmirm+eZ
-	X5s/6PKVb0NJ2tyLLX6psyE9zYfSJqyCvZzmE54uR1Ba5dqzJIgP0RLLs2+Rp4ESMDzthTkoyg16s
-	YUqHPtucT8NKeds4LZzi7ytVgeglJ2CvkVKIJeXz9noRIFpt1sA9wS36d6rm97aVfBlzodWkPJIeo
-	vuloEZkJ8u3sj6LjO8oeH03H4a3Bs06PdLtDnqx3p7vUF3pBCLZgZO5Dt7wt20S4DCmYTfWW/V1sw
-	a5Vmt59zXqP//cYr4PUvaXvv1jVfsCrd2cke2dWIks6Za7d/DcJ0v3Fm/vs3b5eTW3rubV/rthKOc
-	zBNO5XKeViZaXbKguBDQ==;
+	List-Owner; bh=JmE4sKuC8xtsszaWeeMJqlAFofRuNuWpq0zfRJ0Q/40=; b=IKWkCYoy4D1kQN
+	bbM+PJDpWAcji2W5DKn1mAeAer1aME0RiBgCk36dIoaBd4HInQ5xKpkMNUH1maS3Sd/3LN8QfPSQo
+	0RnWEflmuZNR+0tOKsHbHNcl1oxc8Z+Iy3vaod06oiUCYr5Vx5gsy37f6YmhimsTQxkXCs5ZWigyX
+	yy4UvZHI72YqUPAHDk+e4i56Us7jr8kdkaHz1tQGfK36erGzOwCbSV8lXbsR/nqlJ1ZPbC9bttg3z
+	UIZzaGlJve/pc31x76Anig96wrrP4gFaiy+ndYgcvpZ5X9PLZC9L3Ju5cnNj3n10wwgzANadiSTiW
+	5sYNIlR8C/VwtMUvY61A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t9Lv2-0000000A44r-3Ejs;
-	Fri, 08 Nov 2024 10:08:44 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1t9MFD-0000000A6hI-3jFn;
+	Fri, 08 Nov 2024 10:29:36 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t9Llq-0000000A2LY-46gI
-	for linux-amlogic@lists.infradead.org;
-	Fri, 08 Nov 2024 09:59:17 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4314fa33a35so15973535e9.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 08 Nov 2024 01:59:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731059953; x=1731664753; darn=lists.infradead.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eTIHfF+UH1Xa7DK8o/xh7XL9H7nZTNldWgZ8nJ8rQE0=;
-        b=fBAfOh22nVHn9RFgdF4ibdQUl7TGFA/c3RoVykySeVvWwzS4LOm/vKMn7I48IC/+oN
-         hKnGXGf5EXRIPCrqYXnxmrvOq96aGo4nbg+Irj879eu4ry+FYcaVBES4W1fmI+dnsByJ
-         ON/Bs1oXhT20B8LUp0kVObUZQFhbxIxBt9AsCM6HRrAnVO75+zD18uOHAzkzZYfxpyKi
-         ztj44hqPvCjvOPuwlVVjlqtMRaLzFqHpPwLdTkaU4T7scvWW6xhCeoUq/Hvqto32lNbv
-         vNMycPvW/vGoVXrLqNkV5jCd0qf5OFUY5QLIoxdLnzsD5QYoRcFTLpgKGMwN6lf7tADn
-         cJKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731059953; x=1731664753;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eTIHfF+UH1Xa7DK8o/xh7XL9H7nZTNldWgZ8nJ8rQE0=;
-        b=DhYxdyAjXeDusLt6V7jdApW9/zaoldEm66GtKOJw7JRz9JwG7i1yapw1hLrD4XgguT
-         D/s+/Os2Kzjf/10efChZj8zCKpT8naQM9cWFXQ2681MHPZgsk/sEZTksHaDHHfr0hwkU
-         CCywon6xV5F2ffPUm1ym3WTjiW0Vrn4784qR69JkDVKzkntzmes2h81uoFeU21e1gOXf
-         yTbSzVnVfij3Sm4Tan9VmGw12eDbLn8dpmbSPtCRzaBhni6fXJTY6PD26AWEfWwjY5Xe
-         Pdy/W8CQOryPQMPFcJqnnuje6o+0qUBM1syT3hM+K6+7DURuLIhgTU1G4BJZpHDjzhZl
-         R8pA==
-X-Forwarded-Encrypted: i=1; AJvYcCXH4s9GOB+MLPb6J+++r0UlZiwvC4nHr6WZxS60Ztoi3U8rYJnmBXWfktXXLy5qMc/oPbepUlN++zBhZUZD@lists.infradead.org
-X-Gm-Message-State: AOJu0YzsUOMXANy+vqnDvJcqIFju7fGlkedzEgssnsu0t5RHwlDa0Xjc
-	bBdNUGRIUy0YknhXS2L5Za4PlxefC6WSe0Vd7LGfo7+uHQMTPC8q150F1/TB18Y=
-X-Google-Smtp-Source: AGHT+IE52uNEd1M4kmQsGgrrxZ5e+HBgRbQ6hYCN5h70Y/Y7u6ZLc+ouQ9mgPck15oFzZ/AUamay2Q==
-X-Received: by 2002:a05:600c:4f87:b0:431:5ed4:7e7d with SMTP id 5b1f17b1804b1-432b7508053mr18099615e9.18.1731059953350;
-        Fri, 08 Nov 2024 01:59:13 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:ecfd:9f8d:62a3:6ba8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432b0530599sm58205685e9.1.2024.11.08.01.59.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Nov 2024 01:59:12 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Stephen Boyd <sboyd@kernel.org>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
-  linux-clk@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC PATCH] clk: core: refine disable unused clocks
-In-Reply-To: <85aae140-5c9b-4ff9-a522-549009f62601@amlogic.com> (Chuan Liu's
-	message of "Fri, 8 Nov 2024 17:23:53 +0800")
-References: <1jcykltj7g.fsf@starbuckisacylon.baylibre.com>
-	<20241004133953.494445-1-jbrunet@baylibre.com>
-	<07594a59-c999-4592-84b8-4e163d3edba4@amlogic.com>
-	<1jttci2k8k.fsf@starbuckisacylon.baylibre.com>
-	<85aae140-5c9b-4ff9-a522-549009f62601@amlogic.com>
-Date: Fri, 08 Nov 2024 10:59:12 +0100
-Message-ID: <1jcyj62gi7.fsf@starbuckisacylon.baylibre.com>
+	id 1t9MF9-0000000A6el-3JpG;
+	Fri, 08 Nov 2024 10:29:34 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2C03012002E;
+	Fri,  8 Nov 2024 13:29:25 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2C03012002E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1731061765;
+	bh=WFuAArP6J98eZb/1JhFy1BBqp0mr+GrAAmxwASrRsUI=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=VIWEhO0vQE3PJyg3XT/wxB10Kg/BJllw5SNZU3cmnVRIr7XZdMcXiOjXWM5M2vJEQ
+	 JCo7gD+SY58c9dQdZ1gO3FxcTkryeuOM+1aPG1+E1YZhQaclcr/8jtlG0xEITr42xi
+	 IHoJnmcE8ZOK7yw25S0P5LSDtlGsgON49hT8UbsGbo6Dd2q9O2eC5fDmbRtuLSk/h/
+	 q15wyeG6o5sE7vjGtRPS9im7O5dZW/8hB5nuDKQYZ8H3ElbWTom7RI4m7J1VaMH5uY
+	 kIuZDVaAdspGDs8V/n9qiJom48oHxhBLCi3rEaSXWEopoPJw8ESZ9Bc2OKOuFoeJli
+	 a7NfzKbDaSO9g==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri,  8 Nov 2024 13:29:25 +0300 (MSK)
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, "Alexey
+ Romanov" <avromanov@salutedevices.com>
+Subject: [PATCH v10 01/22] crypto: amlogic - Don't hardcode IRQ count
+Date: Fri, 8 Nov 2024 13:28:46 +0300
+Message-ID: <20241108102907.1788584-2-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241108102907.1788584-1-avromanov@salutedevices.com>
+References: <20241108102907.1788584-1-avromanov@salutedevices.com>
 MIME-Version: 1.0
+X-Originating-IP: [172.28.192.125]
+X-ClientProxiedBy: p-i-exch-a-m2.sberdevices.ru (172.24.196.120) To
+ p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 189039 [Nov 08 2024]
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/08 08:34:00 #26834472
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241108_015915_511000_02E97EE9 
-X-CRM114-Status: GOOD (  13.46  )
+X-CRM114-CacheID: sfid-20241108_022932_533762_0F0472E6 
+X-CRM114-Status: GOOD (  22.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,80 +100,186 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri 08 Nov 2024 at 17:23, Chuan Liu <chuan.liu@amlogic.com> wrote:
+IRQ count is no longer hardcoded, and make it part of
+struct meson_flow. We need this for extend driver support for
+other Amlogic SoC's.
 
->>>> -       if (core->flags & CLK_IGNORE_UNUSED)
->>>> +       /*
->>>> +        * If the parent is disabled but the gate is open, we should sanitize
->>>> +        * the situation. This will avoid an unexpected enable of the clock as
->>>> +        * soon as the parent is enabled, without control of CCF.
->>>> +        *
->>>> +        * Doing so is not possible with a CLK_OPS_PARENT_ENABLE clock without
->>>> +        * forcefully enabling a whole part of the subtree.  Just let the
->>>> +        * situation resolve it self on the first enable of the clock
->>>> +        */
->>>> +       if (!parent_enabled && (core->flags & CLK_OPS_PARENT_ENABLE))
->
-> At first, I couldn't grasp the logic behind the 'return' here. Now it's
-> clear. This approach is equivalent to completely giving up on
-> handling clocks with CLK_OPS_PARENT_ENABLE feature in
-> clk_disable_unused_subtree().
->
+Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+---
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c |  2 +-
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 47 ++++++++++++---------
+ drivers/crypto/amlogic/amlogic-gxl.h        |  8 ++--
+ 3 files changed, 31 insertions(+), 26 deletions(-)
 
-No. It's handled correctly as long as the tree is in coherent state.
-
-What is not done anymore is fixing up an inconsistent tree, by this I
-mean: A clock with CLK_OPS_PARENT_ENABLE, which report enabled from its
-own registers but has its parent disabled.
-
-In that particular case, clk_disable_unused_subtree() won't be turning on
-everything to properly disable that one clock. That is the root cause of
-the problem you reported initially. The clock is disabled anyway.
-
-Every other case are properly handled (at least I think).
-
->>>>                   goto unlock_out;
->>>>
->>>>           /*
->>>> @@ -1516,8 +1545,7 @@ static void __init clk_disable_unused_subtree(struct clk_core *core)
->>>>
->>>>    unlock_out:
->>>>           clk_enable_unlock(flags);
->>>> -       if (core->flags & CLK_OPS_PARENT_ENABLE)
->>>> -               clk_core_disable_unprepare(core->parent);
->>>> +       return (core->flags & CLK_IGNORE_UNUSED) && enabled;
->>>>    }
->>>>
->>>>    static bool clk_ignore_unused __initdata;
->>>> @@ -1550,16 +1578,16 @@ static int __init clk_disable_unused(void)
->>>>           clk_prepare_lock();
->>>>
->>>>           hlist_for_each_entry(core, &clk_root_list, child_node)
->>>> -               clk_disable_unused_subtree(core);
->>>> +               clk_disable_unused_subtree(core, true);
->>>>
->>>>           hlist_for_each_entry(core, &clk_orphan_list, child_node)
->>>> -               clk_disable_unused_subtree(core);
->>>> +               clk_disable_unused_subtree(core, true);
->>>>
->>>>           hlist_for_each_entry(core, &clk_root_list, child_node)
->>>> -               clk_unprepare_unused_subtree(core);
->>>> +               clk_unprepare_unused_subtree(core, true);
->>>>
->>>>           hlist_for_each_entry(core, &clk_orphan_list, child_node)
->>>> -               clk_unprepare_unused_subtree(core);
->>>> +               clk_unprepare_unused_subtree(core, true);
->>>>
->>>>           clk_prepare_unlock();
->>>>
->>>> --
->>>> 2.45.2
->>>>
->> --
->> Jerome
-
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index 29048da6f50a..b19032f92415 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -19,7 +19,7 @@
+ 
+ static int get_engine_number(struct meson_dev *mc)
+ {
+-	return atomic_inc_return(&mc->flow) % MAXFLOW;
++	return atomic_inc_return(&mc->flow) % mc->flow_cnt;
+ }
+ 
+ static bool meson_cipher_need_fallback(struct skcipher_request *areq)
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index 1c18a5b8470e..dc35d7304eb0 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -28,8 +28,8 @@ static irqreturn_t meson_irq_handler(int irq, void *data)
+ 	int flow;
+ 	u32 p;
+ 
+-	for (flow = 0; flow < MAXFLOW; flow++) {
+-		if (mc->irqs[flow] == irq) {
++	for (flow = 0; flow < mc->flow_cnt; flow++) {
++		if (mc->chanlist[flow].irq == irq) {
+ 			p = readl(mc->base + ((0x04 + flow) << 2));
+ 			if (p) {
+ 				writel_relaxed(0xF, mc->base + ((0x4 + flow) << 2));
+@@ -110,7 +110,7 @@ static int meson_debugfs_show(struct seq_file *seq, void *v)
+ 	struct meson_dev *mc __maybe_unused = seq->private;
+ 	int i;
+ 
+-	for (i = 0; i < MAXFLOW; i++)
++	for (i = 0; i < mc->flow_cnt; i++)
+ 		seq_printf(seq, "Channel %d: nreq %lu\n", i,
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+ 			   mc->chanlist[i].stat_req);
+@@ -153,14 +153,32 @@ static void meson_free_chanlist(struct meson_dev *mc, int i)
+  */
+ static int meson_allocate_chanlist(struct meson_dev *mc)
+ {
++	struct platform_device *pdev = to_platform_device(mc->dev);
+ 	int i, err;
+ 
+-	mc->chanlist = devm_kcalloc(mc->dev, MAXFLOW,
++	mc->flow_cnt = platform_irq_count(pdev);
++	if (mc->flow_cnt <= 0) {
++		dev_err(mc->dev, "No IRQs defined\n");
++		return -ENODEV;
++	}
++
++	mc->chanlist = devm_kcalloc(mc->dev, mc->flow_cnt,
+ 				    sizeof(struct meson_flow), GFP_KERNEL);
+ 	if (!mc->chanlist)
+ 		return -ENOMEM;
+ 
+-	for (i = 0; i < MAXFLOW; i++) {
++	for (i = 0; i < mc->flow_cnt; i++) {
++		mc->chanlist[i].irq = platform_get_irq(pdev, i);
++		if (mc->chanlist[i].irq < 0)
++			return mc->chanlist[i].irq;
++
++		err = devm_request_irq(mc->dev, mc->chanlist[i].irq,
++				       meson_irq_handler, 0, "aml-crypto", mc);
++		if (err < 0) {
++			dev_err(mc->dev, "Cannot request IRQ for flow %d\n", i);
++			return err;
++		}
++
+ 		init_completion(&mc->chanlist[i].complete);
+ 
+ 		mc->chanlist[i].engine = crypto_engine_alloc_init(mc->dev, true);
+@@ -230,7 +248,7 @@ static void meson_unregister_algs(struct meson_dev *mc)
+ static int meson_crypto_probe(struct platform_device *pdev)
+ {
+ 	struct meson_dev *mc;
+-	int err, i;
++	int err;
+ 
+ 	mc = devm_kzalloc(&pdev->dev, sizeof(*mc), GFP_KERNEL);
+ 	if (!mc)
+@@ -250,19 +268,6 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ 		return err;
+ 	}
+ 
+-	for (i = 0; i < MAXFLOW; i++) {
+-		mc->irqs[i] = platform_get_irq(pdev, i);
+-		if (mc->irqs[i] < 0)
+-			return mc->irqs[i];
+-
+-		err = devm_request_irq(&pdev->dev, mc->irqs[i], meson_irq_handler, 0,
+-				       "gxl-crypto", mc);
+-		if (err < 0) {
+-			dev_err(mc->dev, "Cannot request IRQ for flow %d\n", i);
+-			return err;
+-		}
+-	}
+-
+ 	err = clk_prepare_enable(mc->busclk);
+ 	if (err != 0) {
+ 		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
+@@ -292,7 +297,7 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ error_alg:
+ 	meson_unregister_algs(mc);
+ error_flow:
+-	meson_free_chanlist(mc, MAXFLOW - 1);
++	meson_free_chanlist(mc, mc->flow_cnt - 1);
+ 	clk_disable_unprepare(mc->busclk);
+ 	return err;
+ }
+@@ -307,7 +312,7 @@ static void meson_crypto_remove(struct platform_device *pdev)
+ 
+ 	meson_unregister_algs(mc);
+ 
+-	meson_free_chanlist(mc, MAXFLOW - 1);
++	meson_free_chanlist(mc, mc->flow_cnt - 1);
+ 
+ 	clk_disable_unprepare(mc->busclk);
+ }
+diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
+index d68094ffb70a..9f1ef87333ae 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl.h
++++ b/drivers/crypto/amlogic/amlogic-gxl.h
+@@ -22,8 +22,6 @@
+ #define MESON_OPMODE_ECB 0
+ #define MESON_OPMODE_CBC 1
+ 
+-#define MAXFLOW 2
+-
+ #define MAXDESC 64
+ 
+ #define DESC_LAST BIT(18)
+@@ -62,6 +60,7 @@ struct meson_desc {
+  * @keylen:	keylen for this flow operation
+  * @complete:	completion for the current task on this flow
+  * @status:	set to 1 by interrupt if task is done
++ * @irq:	IRQ number for amlogic-crypto
+  * @t_phy:	Physical address of task
+  * @tl:		pointer to the current ce_task for this flow
+  * @stat_req:	number of request done by this flow
+@@ -70,6 +69,7 @@ struct meson_flow {
+ 	struct crypto_engine *engine;
+ 	struct completion complete;
+ 	int status;
++	int irq;
+ 	unsigned int keylen;
+ 	dma_addr_t t_phy;
+ 	struct meson_desc *tl;
+@@ -85,7 +85,7 @@ struct meson_flow {
+  * @dev:	the platform device
+  * @chanlist:	array of all flow
+  * @flow:	flow to use in next request
+- * @irqs:	IRQ numbers for amlogic-crypto
++ * @flow_cnt:	flow count for amlogic-crypto
+  * @dbgfs_dir:	Debugfs dentry for statistic directory
+  * @dbgfs_stats: Debugfs dentry for statistic counters
+  */
+@@ -95,7 +95,7 @@ struct meson_dev {
+ 	struct device *dev;
+ 	struct meson_flow *chanlist;
+ 	atomic_t flow;
+-	int irqs[MAXFLOW];
++	int flow_cnt;
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+ 	struct dentry *dbgfs_dir;
+ #endif
 -- 
-Jerome
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
