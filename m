@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3416CD5E159
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2024 10:50:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4865BD5E159
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2024 10:52:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EZX5McgmN3l4zvW8TFFW4rFNh4HZ9T/y+r54oBCK5G0=; b=kmlswmgqIQhRkJ
-	gO00WMrbgS5EtTgLqbdjisuyoAGbXHKANCVZvgSyVfodOfGl+xMUxYWOX/d4TWYKo+nztFDy0pbeL
-	7jpuoCcbLk3YBFLLzT2DPbMW0qWxK73fdTOg54qKP+CBkCJkM7YxBVo7fA5zPpHO3hjLq9uxxg72M
-	CdPAEpKlR+OEwD6OVd1XU158ri+AzVztYvtxIzpxkxYl9GvR1mC47O5E6QAKhZP928iSRaXhztFkV
-	CGd9DCCP/FmB7wR8sey03V2abZDNWHgHxPR3QWRadbpey0MqUOocacmQqhuJNTRKlaZ+GS54pZvVJ
-	wSo9446TIYuyfMYMhevA==;
+	List-Owner; bh=o1gGDzAuVForSJMcWVHYsUbZ2Unw0TVjwv33spR0/oQ=; b=VDiWPD+8db1F0b
+	f0CVqczce0sqHmOjMp1hhQhlm0eEwKY9YVlf/SO8xCsjcVsLtxgwva4MphMUhxr8gUhzG5v/1+FjF
+	maMm5kbS/S/cDv4uSE5ldw4pN/zOm5AYVdvjeSPv4tlKu6ZKfzdAiCysyNBPQ3ZabVKAnaFodt5dm
+	Kh3CVU/PftgGKBaSohc1n1KYXB/qWPbg04gVHBH4nVQGr4FIc9vhCJUooXE0h9v7ZPJKQFExGRuSR
+	RVFiO82cyi1BYj4KY+1esSJh9rer+BOrbZfLEUPfOpULxMX2+6u0sjqMeL3X3plv9hhBJ7bLuYw02
+	PM+IKJF2mv/RUhzJuZYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t9MZW-0000000AC9u-3RhW;
-	Fri, 08 Nov 2024 10:50:34 +0000
+	id 1t9MbJ-0000000ACtA-0Y6r;
+	Fri, 08 Nov 2024 10:52:25 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t9MFR-0000000A6ls-2zV6;
-	Fri, 08 Nov 2024 10:29:51 +0000
+	id 1t9MFS-0000000A6mZ-2I6B;
+	Fri, 08 Nov 2024 10:29:53 +0000
 Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 47415120035;
-	Fri,  8 Nov 2024 13:29:48 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 47415120035
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 23CCC120036;
+	Fri,  8 Nov 2024 13:29:49 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 23CCC120036
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1731061788;
-	bh=NlTgjLiDZB3+EThS0OjBAYlr2cUeyj8y7VZ7+LTPTmY=;
+	s=mail; t=1731061789;
+	bh=fAcgV1r7oNNX9AxRnU+3mnq4q6Fxo7+EuYkriNujJnA=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=NnT9/wTOHhBW4ooXOKKM4Dpxs3yXjUeFykqw6rv24hieKKwrUZ/VFEVfEFt8Oy0Bb
-	 XuVP82FoGDsYMXTrE+EJoTS5XlisyHBuniXHeAHwqvcGT+YZOf3h1LS2MkZxxRQ8nf
-	 qWwaT3JAZDMEmiEJS1wv/L3OruRJSyDmQllRujIUBq2thfOnZh/GRGWc4VJfrQn6qS
-	 f1dAYGCIrJyKyR9TLRdLx1xRW1M+b8xwyZYpL/aRu7xUhnx+7jGMPgcyQnMMEQ7/l9
-	 u8Hdf1X9kCDJAheaTDxVQ8oVoLHLVUPYBjNgG4VDCao05YD5QmnV63gUu/S6h/CXzU
-	 29qkmlSH1IgdQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	b=nU9Mo0/xK4mrx+/OmHnewp7r0JG3Rp+by6zUn+YbMS5kj8KeUUwDRv4/ZqUbQIq2h
+	 chdmgnarkt+dWUDkdYJm83Jw4iFP1rvC5h5Kao67VG0t2oyWI8rsUA36JaMbv3rFRO
+	 qn+dsn4blxSPnvqXN7ZiDnMyqBr5sJSENuToDXAUlVbj4z5fsq/WqNzCaYmYnXzPbJ
+	 I8gR2yasS+2ai0NK32phhE98SsPhZjOrWjQZmZEyn9Gl1cIq21HevLLX6+fhIyjr36
+	 wluTo6CUUEkNuk6OmgpcD4PAqo8J79f0MS5dRIdDs0kPhKBbeq3ijwchC7rNkgGCiv
+	 LhM0WmerOMxow==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
@@ -55,9 +55,9 @@ CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, "Alexey
  Romanov" <avromanov@salutedevices.com>
-Subject: [PATCH v10 13/22] crypto: amlogic - Add support for G12-series
-Date: Fri, 8 Nov 2024 13:28:58 +0300
-Message-ID: <20241108102907.1788584-14-avromanov@salutedevices.com>
+Subject: [PATCH v10 14/22] crypto: amlogic - Add support for AXG-series
+Date: Fri, 8 Nov 2024 13:28:59 +0300
+Message-ID: <20241108102907.1788584-15-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241108102907.1788584-1-avromanov@salutedevices.com>
 References: <20241108102907.1788584-1-avromanov@salutedevices.com>
@@ -82,8 +82,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/08 08:34:00 #26834472
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241108_022950_182883_6ACF6C41 
-X-CRM114-Status: GOOD (  10.77  )
+X-CRM114-CacheID: sfid-20241108_022951_142559_0A0AF36C 
+X-CRM114-Status: GOOD (  11.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,29 +108,31 @@ Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
  1 file changed, 12 insertions(+)
 
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 0f4b3db85031..6529ae24b75f 100644
+index 6529ae24b75f..9452f05d2f10 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -282,11 +282,23 @@ static const struct meson_pdata meson_gxl_pdata = {
- 	.support_192bit_key = true,
+@@ -290,6 +290,14 @@ static const struct meson_pdata meson_g12a_pdata = {
+ 	.support_192bit_key = false,
  };
  
-+static const struct meson_pdata meson_g12a_pdata = {
++static const struct meson_pdata meson_axg_pdata = {
 +	.descs_reg = 0x0,
 +	.status_reg = 0x8,
-+	.setup_desc_cnt = 1,
++	.setup_desc_cnt = 3,
 +	.hasher_supported = true,
-+	.support_192bit_key = false,
++	.support_192bit_key = true,
 +};
 +
  static const struct of_device_id meson_crypto_of_match_table[] = {
  	{
  		.compatible = "amlogic,gxl-crypto",
- 		.data = &meson_gxl_pdata,
+@@ -299,6 +307,10 @@ static const struct of_device_id meson_crypto_of_match_table[] = {
+ 		.compatible = "amlogic,g12a-crypto",
+ 		.data = &meson_g12a_pdata,
  	},
 +	{
-+		.compatible = "amlogic,g12a-crypto",
-+		.data = &meson_g12a_pdata,
++		.compatible = "amlogic,axg-crypto",
++		.data = &meson_axg_pdata,
 +	},
  	{},
  };
