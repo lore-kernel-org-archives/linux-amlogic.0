@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D3D4D5E13B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70544D5E13A
 	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2024 05:55:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ojnkR71qRO6AtGB6mY7jhZclWzd9p2BT0UQyfgQ5wrA=; b=e+V3M7pRM1CTDq
-	vsJsUz5PD6U7HpjC9VRbdWCUfkUxIT2I71fUQE1QUXTBYry3+eLNZ4z6n7D4pvtvMWJeGr+rmdt7U
-	cYQCwPYI1Ux9kDG8nqCxRuvu12+6rAVTo0nHWMPmEeoGsfr8it9ntgPxrMNrqwfE1RiQpsTwo+ZLe
-	u46ba44Lu+BiWBWw1j9+WfRk/9yCdPYqURXtgqwYV385/rCLcRzZlNrdp16eqhxyMwf01zWOrqNLZ
-	prWjwgL9curLTTrAbsSpa+DBnnJSluAeMMTGG9aTCBOaHlVt75gW0/VXUIx+ID9vOpmfieZ+yYyAh
-	YJnol7vrV7QsNN5AmfsA==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fImEVd8MSeEmhD35Ir+2/kwiJamQpck1EawVGXJ551Y=; b=SLcZ5JBZwkwvhp
+	iNdr1z1bNLB2zjoJISfPQ4rDMpcbrINppd//1gh9ANRjVERn2tuA/kie/JHFn5YMaYar5iYZYCubI
+	YWJvA6zOOxjGNc8n0NMe79n6WaRPqjFg+jBjlYEhY66412I3J/diejbWHSezFiXE2Pa+Aa33PzRgK
+	ANVVdSVt+lAY1NRgnNUeq0gwsBf9QcHJmzxlHx1Vp752TN8UdT8d3Fxe81N27+eEeKm4lB7IwX9+/
+	vry4H4CDfvd0XOwvTk+ZO/O+OGbys62lOnhjnApVq7iqbRt21GPN1JGmfOPqkw81QR9/fxjHgq2MX
+	mOhrnFU72c5C0u2MWElQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t9HxP-00000009R6Y-1Ttt;
+	id 1t9HxP-00000009R6c-2wEY;
 	Fri, 08 Nov 2024 05:54:55 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t9HxL-00000009R55-3AGP
+	id 1t9HxL-00000009R52-3Yt7
 	for linux-amlogic@lists.infradead.org;
-	Fri, 08 Nov 2024 05:54:53 +0000
+	Fri, 08 Nov 2024 05:54:54 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id F26055C33A0;
-	Fri,  8 Nov 2024 05:54:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 08C2EC4CECE;
+	by nyc.source.kernel.org (Postfix) with ESMTP id C6A02A45018;
+	Fri,  8 Nov 2024 05:52:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 17B40C4CED0;
 	Fri,  8 Nov 2024 05:54:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1731045290;
-	bh=Y4CwMwPQuIcU9wjKisRuEikA8yK46OIFjAflX16ws80=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=shxcgGRTmacMyTpjGSaJWRS6iK/Bx9lHAHgM1quxNTYHRpypU/9SsvTiIfPZbfm83
-	 OnqfPKhua8smLOI4ZV6TNR7fxVNS8jrTfSkGE9Czc1zZe8rWQfyOnoxWEEMQlvHMY8
-	 v5HV+guG7c99gzwdiz6c4GRHEHWu7gF6GXiU6XBtRqmMsQJ6kFYio1ks3naVh9A6nu
-	 Tg0MLNgTCodgUuTuWXoNX2FEHXsogC0gXUqzn5sJphpEULZ1Rw5ilvztQ89Wq8vPBr
-	 ktMbUx+sivy1QUZ9UmbE6+MudN0O/t46Eh/bQmsSfOI5BqkpGJ6ILleQ+Z9rxQR3U/
-	 wGh4SyPHAzzCg==
+	bh=HJE0pA+74tCzliJNJXQ3Kg9jGHLW4xMEmX5HYgB7ZDs=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=FH1CyNy6+oSMCp4UOvd7VFGlx1KI0R+Wk/Mqo+xEgXrNwAkz1emwPxg0wWqn2KmzK
+	 rcslwDzvK+DkI/3uj7wRwN/e6F6c1HLXYRgRgvY+0F+DjFz8EK4RXNHpuITVf74VI8
+	 MxxGnlPhT3tqC0apACAL/p1IBSVGUbWUxF63V9HeUxaVZETmpWz4TJc0BC3E4/Z1e3
+	 rARoP0P4ClExve+wKWNSW2kv081KQux9vVIHClEWl2CDNd0R26q5zLbkJFxbkoHN/d
+	 Be87x6iBbQ/hlNkikCrh5jKwe6O+GNsePjbPFor7RgNPtn/Ua4KbPr1okSKUJGeZ4q
+	 JnalI64EZsNCg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6A5CD5E136;
-	Fri,  8 Nov 2024 05:54:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 079A0D5E134;
+	Fri,  8 Nov 2024 05:54:50 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Subject: [PATCH v5 0/3] support for amlogic rtc
-Date: Fri, 08 Nov 2024 13:54:40 +0800
-Message-Id: <20241108-rtc-v5-0-0194727c778b@amlogic.com>
+Date: Fri, 08 Nov 2024 13:54:41 +0800
+Subject: [PATCH v5 1/3] dt-bindings: rtc: Add Amlogic A4 and A5 RTC
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAKCnLWcC/2XMQQrCMBCF4atI1kZmJk2TuPIe4mKapBpQK6kUp
- fTuRi2ouHzDfP8o+phT7MV6MYoch9Sn7lyGXi6EP/B5H2UKZQsCqsCSkvnqJZLxwaIjRiXK5yX
- HNt1ele2u7EPqr12+v6IDPq+/fkAJsm4NKIuByaoNn47dPvmV707iWRjooxzMiooCHVgbrRsb3
- L9SXwrhrVRR2DIYw7Vjgn9VfSmaVVWUQ466baqogv5V0zQ9AHxC7B46AQAA
+Message-Id: <20241108-rtc-v5-1-0194727c778b@amlogic.com>
+References: <20241108-rtc-v5-0-0194727c778b@amlogic.com>
+In-Reply-To: <20241108-rtc-v5-0-0194727c778b@amlogic.com>
 To: Yiting Deng <yiting.deng@amlogic.com>, 
  Alexandre Belloni <alexandre.belloni@bootlin.com>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -63,20 +61,19 @@ Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
  Xianwei Zhao <xianwei.zhao@amlogic.com>, 
  Krzysztof Kozlowski <krzk@kernel.org>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1731045288; l=1783;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1731045288; l=2146;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=Y4CwMwPQuIcU9wjKisRuEikA8yK46OIFjAflX16ws80=;
- b=jNGWNeJoco9mLfZbzE2NrkqAIYDH1CSdtYucDI0JEHejYpvcKvY4w66zcRCS9Mb/K3YCtBcUj
- hkfwvRfI3bkB02bbKqR3yXYI6kKWxsGkcNT9ClwgDaq+OXPLCFZvPrc
+ bh=SnfWHSIVk7X6HuExSpIoFJO0hQjcCpxtc5dtKXQKyis=;
+ b=Q3892j42P21hB6EVcwdsGEr7eXmMcm8B7queUI3trZjJlX45iLaJOla/ummE+cV031mLJvHU+
+ hUmZxgIURvzBl+8ln3Jf+15w92/71nCbmmUkrAoEVb0FHcoV4734Pjp
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
  auth_id=107
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241107_215451_922894_8C3F2972 
-X-CRM114-Status: UNSURE (   9.64  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241107_215452_046424_5E69DD8E 
+X-CRM114-Status: GOOD (  10.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,50 +91,89 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add rtc driver and bindigns for the amlogic A4(A113L2) and A5(A113X2) SoCs.
+From: Yiting Deng <yiting.deng@amlogic.com>
 
+Add documentation describing the Amlogic A4(A113L2) and A5(A113X2) RTC.
+
+Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-Changes in v5:
-- Some formatting adjustments and minor fixes were made based on Christophe's suggestions.
-- Link to v4: https://lore.kernel.org/r/20240920-rtc-v4-0-91ae5fb4e3d5@amlogic.com
+ .../devicetree/bindings/rtc/amlogic,a4-rtc.yaml    | 63 ++++++++++++++++++++++
+ 1 file changed, 63 insertions(+)
 
-Changes in v4:
-- Keep the same order as as in properties.
-- Link to v3: https://lore.kernel.org/r/20240910-rtc-v3-0-1fa077a69a20@amlogic.com
+diff --git a/Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml b/Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
+new file mode 100644
+index 000000000000..5d3ac737abcb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2024 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/amlogic,a4-rtc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic A4 and A5 RTC
++
++maintainers:
++  - Yiting Deng <yiting.deng@amlogic.com>
++  - Xianwei Zhao <xianwei.zhao@amlogic.com>
++
++allOf:
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    enum:
++      - amlogic,a4-rtc
++      - amlogic,a5-rtc
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: RTC clock source, available 24M or 32K crystal
++          oscillator source. when using 24M, need to divide 24M into 32K.
++      - description: RTC module accesses the clock of the apb bus.
++
++  clock-names:
++    items:
++      - const: osc
++      - const: sys
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        rtc@8e600 {
++            compatible = "amlogic,a4-rtc";
++            reg = <0x0 0x8e600 0x0 0x38>;
++            clocks = <&xtal_32k>, <&clkc_periphs 1>;
++            clock-names = "osc", "sys";
++            interrupts = <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>;
++        };
++    };
 
-Changes in v3:
-- Perfect the binding description and rename binding.
-- Using dev_err_probe function correctly, and modify commit message.
-- Change placement about MAINTAINERS.
-- Link to v2: https://lore.kernel.org/r/20240903-rtc-v2-0-05da5755b8d9@amlogic.com
-
-Changes in v2:
-- Modify bindings clock name and perfect the example.
-- Fix some bug in driver, and use dev_err_probe instead of dev_err in probe process.
-- Use RTC API to handle calibration.
-- Remove unused func and rename driver file name.
-- Link to v1: https://lore.kernel.org/r/20240823-rtc-v1-0-6f70381da283@amlogic.com
-
----
-Yiting Deng (3):
-      dt-bindings: rtc: Add Amlogic A4 and A5 RTC
-      rtc: support for the Amlogic on-chip RTC
-      MAINTAINERS: Add an entry for Amlogic RTC driver
-
- .../devicetree/bindings/rtc/amlogic,a4-rtc.yaml    |  63 +++
- MAINTAINERS                                        |   8 +
- drivers/rtc/Kconfig                                |  12 +
- drivers/rtc/Makefile                               |   1 +
- drivers/rtc/rtc-amlogic-a4.c                       | 476 +++++++++++++++++++++
- 5 files changed, 560 insertions(+)
----
-base-commit: 8a2c49e0fd92e6760636bcfbf11e11d9ddd61cf9
-change-id: 20240823-rtc-127cd8192a13
-
-Best regards,
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+2.37.1
 
 
 
