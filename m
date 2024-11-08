@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 313DCD5E155
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2024 10:35:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47E0ED5E157
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2024 10:39:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9bMiGldu18L3QdST0aan2h2lj0ymTahhZCkJaJx/mLE=; b=LLuPOMJ8uTj8ni
-	Sk1PjtBou6Zci6w9cIzJVWH4dVQ6cWvuhX7Gm9gdlCzCYaXAy2mFHnKPnpAPQCU13qFui+M2/zClW
-	6wcrAAffNPPQUcb74k/SImKDkLkWMSBkD22xf6eQhBNBo1YIbqimNsgLqcI14PCa5DMVhOWrrAEf3
-	X3Ilt/rmS1YVCbr7oIAjEmGQcimYjXSGu4JIgyyqqw8qmlz5Z31bLvPrVLt7nguG1l4mwxa+DJv21
-	fzC7rXt7iQu1EqUbMWYqrcuv/xHj6ohmiuyxtIxL5NTRyZfv9TPtgIIn7vYIg2V/Z9ASMhYUnpLyA
-	jLMFVFhUoTk7eMx8b9NA==;
+	List-Owner; bh=VVmK6MteOs8aP6WEVnCu/ebWZQU3ob2O3n36vaNZlQ4=; b=DiOcMDFpT6f78T
+	k5OGPXdbnWNH1FZR+COnxcSYi46cznu1J9OV7HJhDsj8B3L/dCKtnxrp9g3WFnCO+dxFg5lY9qad0
+	Oe89WndYulI3SPAlGfdZuS1dkTytsTpWmDj2V6jsqwlqf8gc/XNfC2UGfFnMZtTOQahH3cJ9CpQFU
+	l2ld6t38jeNhm33DZIBMOvkfz5vLisg7PRarwkDCQP/Ad7Q4y3BD+Ry06FjxlOJckA1x8RYDFCI2N
+	Kh2OYINHz51r6MGAndy1xTPVIrzIL3WmgaSUGlj4f1P2L0Ol7WJy3jNRlW4+mJmvqy0/M48/P5I3u
+	E+Rk8RR1EVJKKEwvlHhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t9MKh-0000000A8VD-3tA3;
-	Fri, 08 Nov 2024 10:35:15 +0000
+	id 1t9MOL-0000000A9Pw-2ZoV;
+	Fri, 08 Nov 2024 10:39:01 +0000
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t9MFC-0000000A6ge-2Too;
-	Fri, 08 Nov 2024 10:29:36 +0000
+	id 1t9MFE-0000000A6hH-2g7n;
+	Fri, 08 Nov 2024 10:29:38 +0000
 Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 41199120034;
-	Fri,  8 Nov 2024 13:29:33 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 41199120034
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 318CA120035;
+	Fri,  8 Nov 2024 13:29:35 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 318CA120035
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1731061773;
-	bh=Wy9OiI+7szsDjno2sdPj55bgsp0gdMIN+aJDlIWoX/c=;
+	s=mail; t=1731061775;
+	bh=NZTVPcZeKUMgDksdDkSQWCB5Zcm+F6oKuU7k10f8YS4=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=Ay+oooWyCHxMrmqch4p4J/n9anINvu13TG7L3q1q1hiCz9/0hEVbraoU2pCLHfck1
-	 2EAIfa3sGOZstL7G61IBzWIPyCz6Wg1j7vGNOoQ5gu354uAwDbzit9y3kwcXHvo8aY
-	 mDLIAirIWm08M92ZTqa8IPZjx5rKlUTu0PoKxlmF5or7o7phVPw39aDXwKhSGgxDue
-	 M8XxzmIg0fAFTWiBM4SXVjESlsG9MebE9t9w7S6o7PoKnc6iEtV7cD53MCbOM98bvi
-	 e3zCQ1NS4WS42FG1fheZ7t36Cc97PXibwnr1RmIa9tpn56IjBh6+o0/qzzT2qIN5v+
-	 RkxBbvqLBQzQA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	b=mKzljSwZfp14eNe77OPSGNrv5kLG4v0ovbzwOOxBzo1whYSfVySypx1p1H1tjnWIq
+	 9s+yKiEHvmM7NnthhYRAxUcewWsgp5GxbsK1a9nihQOO/x74ncB20lhhhbfgvwxEz4
+	 GDHfXZNetAjYubCbdT/4Jf7TjA4h6g114YzPo/I7Ijs1vJiW6TCxVOBzFdSMJqRONS
+	 zyAUiIbSXzR+NmtqNCku+iNUGLXel1awZ9P3FAM+jo4wEvWyLVBeNwlprh8vZVRvRy
+	 aUpKXhSAWhQogLOnW8Nra5s1dnQRh7XEuXVrovCGHTGP3SIB7Ccf8+tcwfgAYvwZuE
+	 sgK0Lern86/+w==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri,  8 Nov 2024 13:29:33 +0300 (MSK)
+	Fri,  8 Nov 2024 13:29:35 +0300 (MSK)
 From: Alexey Romanov <avromanov@salutedevices.com>
 To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
 	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
@@ -55,9 +55,9 @@ CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, "Alexey
  Romanov" <avromanov@salutedevices.com>
-Subject: [PATCH v10 04/22] crypto: amlogic - Add MMIO helpers
-Date: Fri, 8 Nov 2024 13:28:49 +0300
-Message-ID: <20241108102907.1788584-5-avromanov@salutedevices.com>
+Subject: [PATCH v10 05/22] crypto: amlogic - Move get_engine_number()
+Date: Fri, 8 Nov 2024 13:28:50 +0300
+Message-ID: <20241108102907.1788584-6-avromanov@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241108102907.1788584-1-avromanov@salutedevices.com>
 References: <20241108102907.1788584-1-avromanov@salutedevices.com>
@@ -82,8 +82,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/08 08:34:00 #26834472
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241108_022935_001699_A9F584B9 
-X-CRM114-Status: GOOD (  15.14  )
+X-CRM114-CacheID: sfid-20241108_022937_035976_D11421D5 
+X-CRM114-Status: GOOD (  11.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,84 +100,79 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add MMIO access helpers: meson_dma_start() and meson_dma_ready().
+Move get_engine_number() function from cipher.c to core.c
 
 Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/crypto/amlogic/amlogic-gxl-cipher.c |  2 +-
- drivers/crypto/amlogic/amlogic-gxl-core.c   | 24 ++++++++++++++++-----
- drivers/crypto/amlogic/amlogic-gxl.h        |  2 ++
- 3 files changed, 22 insertions(+), 6 deletions(-)
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c | 9 ++-------
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 5 +++++
+ drivers/crypto/amlogic/amlogic-gxl.h        | 2 ++
+ 3 files changed, 9 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-index 7eff3ae7356f..1fe916b0a138 100644
+index 1fe916b0a138..18e9e2d39b1f 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-@@ -225,7 +225,7 @@ static int meson_cipher(struct skcipher_request *areq)
+@@ -17,11 +17,6 @@
+ #include <crypto/internal/skcipher.h>
+ #include "amlogic-gxl.h"
  
- 	reinit_completion(&mc->chanlist[flow].complete);
- 	mc->chanlist[flow].status = 0;
--	writel(mc->chanlist[flow].t_phy | 2, mc->base + ((mc->pdata->descs_reg + flow) << 2));
-+	meson_dma_start(mc, flow);
- 	wait_for_completion_interruptible_timeout(&mc->chanlist[flow].complete,
- 						  msecs_to_jiffies(500));
- 	if (mc->chanlist[flow].status == 0) {
+-static int get_engine_number(struct meson_dev *mc)
+-{
+-	return atomic_inc_return(&mc->flow) % mc->flow_cnt;
+-}
+-
+ static bool meson_cipher_need_fallback(struct skcipher_request *areq)
+ {
+ 	struct scatterlist *src_sg = areq->src;
+@@ -282,7 +277,7 @@ int meson_skdecrypt(struct skcipher_request *areq)
+ 	rctx->op_dir = MESON_DECRYPT;
+ 	if (meson_cipher_need_fallback(areq))
+ 		return meson_cipher_do_fallback(areq);
+-	e = get_engine_number(op->mc);
++	e = meson_get_engine_number(op->mc);
+ 	engine = op->mc->chanlist[e].engine;
+ 	rctx->flow = e;
+ 
+@@ -300,7 +295,7 @@ int meson_skencrypt(struct skcipher_request *areq)
+ 	rctx->op_dir = MESON_ENCRYPT;
+ 	if (meson_cipher_need_fallback(areq))
+ 		return meson_cipher_do_fallback(areq);
+-	e = get_engine_number(op->mc);
++	e = meson_get_engine_number(op->mc);
+ 	engine = op->mc->chanlist[e].engine;
+ 	rctx->flow = e;
+ 
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 90b539401b71..e617dddf5e2b 100644
+index e617dddf5e2b..44e71e917e5e 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -22,18 +22,32 @@
+@@ -22,6 +22,11 @@
  
  #include "amlogic-gxl.h"
  
-+void meson_dma_start(struct meson_dev *mc, int flow)
++int meson_get_engine_number(struct meson_dev *mc)
 +{
-+	u32 offset = (mc->pdata->descs_reg + flow) << 2;
-+
-+	writel(mc->chanlist[flow].t_phy | 2, mc->base + offset);
++	return atomic_inc_return(&mc->flow) % mc->flow_cnt;
 +}
 +
-+static bool meson_dma_ready(struct meson_dev *mc, int flow)
-+{
-+	u32 offset = (mc->pdata->status_reg + flow) << 2;
-+	u32 data = readl(mc->base + offset);
-+
-+	if (data)
-+		writel_relaxed(0xF, mc->base + offset);
-+
-+	return data;
-+}
-+
- static irqreturn_t meson_irq_handler(int irq, void *data)
+ void meson_dma_start(struct meson_dev *mc, int flow)
  {
- 	struct meson_dev *mc = (struct meson_dev *)data;
- 	int flow;
--	u32 p;
- 
- 	for (flow = 0; flow < mc->flow_cnt; flow++) {
- 		if (mc->chanlist[flow].irq == irq) {
--			p = readl(mc->base + ((mc->pdata->status_reg + flow) << 2));
--			if (p) {
--				writel_relaxed(0xF, mc->base +
--					      ((mc->pdata->status_reg + flow) << 2));
-+			if (meson_dma_ready(mc, flow)) {
- 				mc->chanlist[flow].status = 1;
- 				complete(&mc->chanlist[flow].complete);
- 				return IRQ_HANDLED;
+ 	u32 offset = (mc->pdata->descs_reg + flow) << 2;
 diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
-index e0bc5c39bf2c..0ccf6542995f 100644
+index 0ccf6542995f..cb70277c3a31 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl.h
 +++ b/drivers/crypto/amlogic/amlogic-gxl.h
 @@ -161,6 +161,8 @@ struct meson_alg_template {
  #endif
  };
  
-+void meson_dma_start(struct meson_dev *mc, int flow);
++int meson_get_engine_number(struct meson_dev *mc);
 +
+ void meson_dma_start(struct meson_dev *mc, int flow);
+ 
  int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
- 		     unsigned int keylen);
- int meson_cipher_init(struct crypto_tfm *tfm);
 -- 
 2.34.1
 
