@@ -4,82 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EB36D64079
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2024 19:09:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C83BD5D69B
+	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Nov 2024 12:25:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HK1xeYpz1nJMDsycFTqBfpTnQUnIrxMsebXsLBHeBmM=; b=Su425E8ucJwA1M
-	BsfBSeKm5LurhmI5rYFNTHyePbd+pKEZ8rnKpSvzs//UYX2z39Mxz8ZXGvKuqp+O4F/sQ/rSncLt3
-	XU7wyaFIaWCehp5npIpdLquuZLre8mtevWMp49usRu4lSR4kUY0TD4rQenAsMumcvtLB+o20dR0R5
-	ASsDLAn8slV4XKX2naBaP/uSYFtSy9TX2olcNGg7PhJ2/aJ1mt6KcwpGTX5dwYhOL4gNLUQY0tFr8
-	mWoXDDOJYzM+03Ccb8+g86zlOIivwYghiBi0A9lq5WQ4a45YmgQRo/2zQz997XJw6CEd55al3l3Wm
-	5TIvLSY2V1uIriLeveBg==;
+	List-Owner; bh=AwGiMF8LcEHPy+4bDw3afI3YPehziT3YKknWu466BaM=; b=xXtryMOSQTtGIy
+	bgZ71+JnQtJ96ktCEEJBpobgfYp0PkrGi9movC48+7umaaixhowa/CtpCjblqaFgg2oUJIMO+KyBF
+	hxbFxGuT4QQOAVQvq5R3Sr4O1iNerchDaSGWD6+orokISvLq9eqJA548xj697oM/30G36HJgZ6B+Q
+	+kDky0cRoGnUXqeHcHNcYoGnxeJxxcjnjtPjVcYGYz0RqsdVNKNaeXj1GVvP7Y+OhKVvNLsNSf1Ca
+	jlk/kgUNK2Hpr3qfEhynq0zrGXvLhDJgzBnL2zElAnEmHLvoeqT93MwOeQtSw6y+U70ikYEEnBrJ6
+	MEP9OuHzHt/41DXbMl/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1t9UMH-0000000BhQa-3XwZ;
-	Fri, 08 Nov 2024 19:09:25 +0000
-Received: from mgamail.intel.com ([198.175.65.13])
+	id 1tA70C-0000000Eq0y-2sGP;
+	Sun, 10 Nov 2024 12:25:12 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1t9UMD-0000000BhPb-47lo;
-	Fri, 08 Nov 2024 19:09:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1731092962; x=1762628962;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=R+CGtLg7J7cZFkaK6iEbxTqVB/sl271eFJkHFX8PQlI=;
-  b=nojhclBeajCu+gWMTqEkl6HCqCDSH8tEOtzgjhtR6u3HHX7rrtnsxPNl
-   qeUAX2fWSFyd+2fW1mD+BMtZ6dYJ+PLEyaPahRDWfhdWBxzrbJq7h0HS1
-   E7IiLZ6Xv27CohFYsXuz9xbK5W6EaydmGQuQkuOwkSiVYpqnPZs4v0j8u
-   MMh9DiusICFbiCoLuY+tDiXJrAgHgAZUzEsJISv7FL0s7TQiQIf9K5GAk
-   szO8JhkAxXMq+39lgZZNJYgcDug0DSzip3jbGgM1x94PPW35RqQBHfXIV
-   y2Vk0rJvjyG+Y7XSjwgRM31MW+GFRC27u4fP+i6Ss5mMoHBKqtBg7Tbos
-   g==;
-X-CSE-ConnectionGUID: vb0mMZm1QCWcewiGmoxAKw==
-X-CSE-MsgGUID: KKnRooZrQkiANBvnhVdvHw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="42086776"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="42086776"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2024 11:09:20 -0800
-X-CSE-ConnectionGUID: XD1n0tMySAq3Ut+3KlDDLQ==
-X-CSE-MsgGUID: YGwNEXImR2OgQ2epJ63MLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; 
-   d="scan'208";a="90231501"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 08 Nov 2024 11:09:15 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t9UM5-000ria-11;
-	Fri, 08 Nov 2024 19:09:13 +0000
-Date: Sat, 9 Nov 2024 03:08:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alexey Romanov <avromanov@salutedevices.com>, neil.armstrong@linaro.org,
-	clabbe@baylibre.com, herbert@gondor.apana.org.au,
-	davem@davemloft.net, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com,
-	Alexey Romanov <avromanov@salutedevices.com>
-Subject: Re: [PATCH v10 09/22] crypto: amlogic - Process more than MAXDESCS
- descriptors
-Message-ID: <202411090235.a7vEgZQo-lkp@intel.com>
-References: <20241108102907.1788584-10-avromanov@salutedevices.com>
+	id 1tA6zM-0000000Epuy-2HdV
+	for linux-amlogic@lists.infradead.org;
+	Sun, 10 Nov 2024 12:24:22 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4315eac969aso20490695e9.1
+        for <linux-amlogic@lists.infradead.org>; Sun, 10 Nov 2024 04:24:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731241458; x=1731846258; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rvXYUadJ0YY+CbymfbcOM/wzKxval+r+XKbtSthLR0Q=;
+        b=Pqw2nR686iJfmPVhriVLyDwE4GDyIH2ukolbsmoGlqrQcyV+XPPpsy9KeXPJEt5vdd
+         LCA5Ri9GratIW9MkqAahtonmXk0ZX45qiM72BGd6etuEDybtxkmUDGYDcEVWwJ/GMi8s
+         JRGO3bjxsWH1JP0f55Jyuf1jOJwpOtPYkr7jlEHUo53BoKHZ/y567DfkO8bp6m7uh0L3
+         EfAAjsqYR5JqZbxnyrlZWheel4Atp8fjSw9iaUyrbY8hPLtGN2I+C0fnqbj9PI2AGvLP
+         2a0yNcH8kZEPXUh5OFklDjXBvsyVc6GHS+tj5wZ5MK+tzJfugrLJvQg0VwejmcHqMFwV
+         crZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731241458; x=1731846258;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rvXYUadJ0YY+CbymfbcOM/wzKxval+r+XKbtSthLR0Q=;
+        b=m836tZsSyBQMNSCygwTVw3oEB5nBKWdYPdUES4Ouu1IWaFAvjYqXmIOyAk64c+oB52
+         8qXnNcC1vh5MyvtijXclfz+IMujgr8OPLksVADeh5yUXtlUmKkZMfHrANVZgoDdDQYgx
+         aAjXvuW5kfmQbH2dD9ZkOr2a1lQQsgn3z/zwTU6rBSpYkxQ2mjzy+Rwm4e+V4gsPlehf
+         HoGkN6SosZ0umym5I7WYCTNBZB8r4c4lVU0Wy1upijETKIyNDJn0hVsPTFbjG/IrKXNU
+         R5LNTjVL7wBhr/tXB2s94AzRi3/QYAs9oHP+iGWoEHk77UrzB0CCKxL5t+LZ8WINfzvB
+         oFKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUNFHOjOq28Lmf/pVViovaIdyAopto9fPkiLL7XJ9pll4ZFQ9+65CiTl/0FQ7TkuOpGAx741IVC7hCWFqM3@lists.infradead.org
+X-Gm-Message-State: AOJu0YyA0Qjm/V8MVa18GSINP1H3A5dJNFxjEVNHCqN01XT6h7lzpHsE
+	DWG4VQIryxuDmDRFLT7gLm0nkc3b9C5duImvsKFdAbWEoixD7d8SmnlQ41akKus=
+X-Google-Smtp-Source: AGHT+IGhj9FWXxXNMyiRS3rVPR92d2i9obKrk1HDWxw33l4TLDIFDIzAxuSd6E/CWeUFU724XoVgXA==
+X-Received: by 2002:a05:600c:4f4e:b0:431:4a82:97f2 with SMTP id 5b1f17b1804b1-432b6858db8mr83883675e9.6.1731241458324;
+        Sun, 10 Nov 2024 04:24:18 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e984:9f27:9cbb:71ca? ([2a01:e0a:982:cbb0:e984:9f27:9cbb:71ca])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432aa70a1d8sm180707145e9.27.2024.11.10.04.24.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Nov 2024 04:24:17 -0800 (PST)
+Message-ID: <27aa3716-1d28-4da8-80e6-212d7f94d193@linaro.org>
+Date: Sun, 10 Nov 2024 13:24:15 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241108102907.1788584-10-avromanov@salutedevices.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v4 0/4] Pinctrl: A4: Add pinctrl driver
+To: xianwei.zhao@amlogic.com, Linus Walleij <linus.walleij@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241101-a4_pinctrl-v4-0-efd98edc3ad4@amlogic.com>
+Content-Language: en-GB
+From: Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <20241101-a4_pinctrl-v4-0-efd98edc3ad4@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241108_110922_099849_9ADD2308 
-X-CRM114-Status: GOOD (  13.95  )
+X-CRM114-CacheID: sfid-20241110_042420_621841_761A4EC9 
+X-CRM114-Status: GOOD (  18.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,134 +95,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Alexey,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on herbert-cryptodev-2.6/master]
-[also build test WARNING on next-20241108]
-[cannot apply to herbert-crypto-2.6/master robh/for-next linus/master v6.12-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexey-Romanov/crypto-amlogic-Don-t-hardcode-IRQ-count/20241108-183503
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git master
-patch link:    https://lore.kernel.org/r/20241108102907.1788584-10-avromanov%40salutedevices.com
-patch subject: [PATCH v10 09/22] crypto: amlogic - Process more than MAXDESCS descriptors
-config: x86_64-buildonly-randconfig-002-20241109 (https://download.01.org/0day-ci/archive/20241109/202411090235.a7vEgZQo-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241109/202411090235.a7vEgZQo-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411090235.a7vEgZQo-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/crypto/amlogic/amlogic-gxl-cipher.c:14:
-   In file included from include/crypto/scatterwalk.h:16:
-   In file included from include/linux/highmem.h:8:
-   In file included from include/linux/cacheflush.h:5:
-   In file included from arch/x86/include/asm/cacheflush.h:5:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/crypto/amlogic/amlogic-gxl-cipher.c:235:13: warning: variable 'new_iv_phys' set but not used [-Wunused-but-set-variable]
-     235 |         dma_addr_t new_iv_phys;
-         |                    ^
-   2 warnings generated.
-
-
-vim +/new_iv_phys +235 drivers/crypto/amlogic/amlogic-gxl-cipher.c
-
-   220	
-   221	static int meson_kick_hardware(struct cipher_ctx *ctx)
-   222	{
-   223		struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(ctx->areq);
-   224		struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(ctx->areq);
-   225		struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
-   226		struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
-   227		struct meson_alg_template *algt = container_of(alg,
-   228							       struct meson_alg_template,
-   229							       alg.skcipher.base);
-   230		struct meson_dev *mc = op->mc;
-   231		unsigned int ivsize = crypto_skcipher_ivsize(tfm);
-   232		unsigned int blockmode = algt->blockmode;
-   233		enum dma_data_direction new_iv_dir;
-   234		struct scatterlist *sg_head;
- > 235		dma_addr_t new_iv_phys;
-   236		void *new_iv;
-   237		int err;
-   238	
-   239		if (blockmode == DESC_OPMODE_CBC) {
-   240			struct scatterlist *sg_current;
-   241			unsigned int offset;
-   242	
-   243			if (rctx->op_dir == MESON_ENCRYPT) {
-   244				sg_current = ctx->dst_sg;
-   245				sg_head = ctx->areq->dst;
-   246				offset = ctx->dst_offset;
-   247				new_iv_dir = DMA_FROM_DEVICE;
-   248			} else {
-   249				sg_current = ctx->src_sg;
-   250				sg_head = ctx->areq->src;
-   251				offset = ctx->src_offset;
-   252				new_iv_dir = DMA_TO_DEVICE;
-   253			}
-   254	
-   255			if (ctx->areq->src == ctx->areq->dst)
-   256				new_iv_dir = DMA_BIDIRECTIONAL;
-   257	
-   258			offset -= ivsize;
-   259			new_iv = sg_virt(sg_current) + offset;
-   260			new_iv_phys = sg_dma_address(sg_current) + offset;
-   261		}
-   262	
-   263		if (blockmode == DESC_OPMODE_CBC &&
-   264		    rctx->op_dir == MESON_DECRYPT) {
-   265			dma_sync_sg_for_cpu(mc->dev, sg_head,
-   266					    sg_nents(sg_head), new_iv_dir);
-   267			memcpy(ctx->areq->iv, new_iv, ivsize);
-   268		}
-   269	
-   270		reinit_completion(&mc->chanlist[rctx->flow].complete);
-   271		meson_dma_start(mc, rctx->flow);
-   272		err = wait_for_completion_interruptible_timeout(&mc->chanlist[rctx->flow].complete,
-   273								msecs_to_jiffies(500));
-   274		if (err == 0) {
-   275			dev_err(mc->dev, "DMA timeout for flow %d\n", rctx->flow);
-   276			return -EINVAL;
-   277		} else if (err < 0) {
-   278			dev_err(mc->dev, "Waiting for DMA completion is failed (%d)\n", err);
-   279			return err;
-   280		}
-   281	
-   282		if (blockmode == DESC_OPMODE_CBC &&
-   283		    rctx->op_dir == MESON_ENCRYPT) {
-   284			dma_sync_sg_for_cpu(mc->dev, sg_head,
-   285					    sg_nents(sg_head), new_iv_dir);
-   286			memcpy(ctx->areq->iv, new_iv, ivsize);
-   287		}
-   288	
-   289		ctx->tloffset = 0;
-   290	
-   291		return 0;
-   292	}
-   293	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksCgpMZSAwMS8xMS8yMDI0IMOgIDA5OjI3LCBYaWFud2VpIFpoYW8gdmlhIEI0IFJlbGF5IGEg
+w6ljcml0wqA6Cj4gQWRkIHBpbmN0cmwgZHJpdmVyIHN1cHBvcnQgZm9yIEFtbG9pZ2MgQTQgU29D
+Cj4gCj4gSSB3YW50IHRvIGZpbmQgb3V0IHdoYXQga2luZCBvZiBzb2x1dGlvbiBpcyBmZWFzaWJs
+ZSB0bwo+IG1lZXQgdGhlIG5lZWRzIG9mIGFsbCBwYXJ0aWVzLiBUaGlzIFJGQyB2ZXJpb24gaXMg
+b25lIG9mIHRoZW0uCj4gCj4gQWxsIG9mIEFtb2dpYyBTb0NzIEdQSU8gZGV2aWNlIHJlcXVpcmVt
+ZW50IGlzIG1ldCBoZXJlIGJ5Cj4gYWRkaW5nIEdQSU8gYmFuayBkZWZpbml0aW9uIGluc3RlYWQg
+b2YgdGhlIHBpbiBkZWZpbml0aW9uLgo+IEJpbmRpbmcgaGVhZGVyIGZpbGVzIHdpbGwgbm8gbG9u
+Z2VyIGJlIGFkZGVkIHRvIGZ1dHVyZQo+IFNvQ3MncyBwaW4gZGV2aWNlcy4KPiAKPiBUaGUgcGlu
+Y3RybCBzb2Z0d2FyZSBvbmx5IGFkZHMgaW5zdGVyZmFjZSBvZiBvZl94bGF0ZSB0byBzdXBwb3J0
+Cj4gZm9yIHRyYW5zZm9ybWF0aW9uIHdpdGhvdXQgYWZmZWN0aW5nIHRoZSBvdmVyYWxsIGZyYW1l
+d29yayBhbmQKPiBpcyBjb21wYXRpYmxlIHdpdGggcHJldmlvdXMgZHJpdmVycy4KPiAKPiBUaGUg
+Y29kZSBpbiBEVFMgZmlsZSBpcyBhbHNvIHJlYWRhYmxlIHdoZW4gdXNpbmcgR1BJTywgYXMgYmVs
+b3c6Cj4gCj4gcmVzZXQtZ3Bpb3MgPSA8JmdwaW8gQU1MT0dJQ19HUElPKEFNTE9HSUNfR1BJT19Y
+LCA2KSBHUElPX0FDVElWRV9MT1c+OwoKRmluZSwgYnV0IHdoeSBub3QgdXNlIDMgY2VsbHMgaW5z
+dGVhZCBvZiB0aGlzIG1hY3JvID8gU2luY2UgeW91IGludHJvZHVjZWQgdGhlCmN1c3RvbSB4bGF0
+ZSwgcGFyc2luZyB0aGUgMyBjZWxscyB3b3VsZCBiZSBlYXNpZXIgdGhhdCB1c2luZyBhIG1hY3Jv
+OgoKcmVzZXQtZ3Bpb3MgPSA8JmdwaW8gQU1MT0dJQ19HUElPX1ggNiBHUElPX0FDVElWRV9MT1c+
+OwoKTmVpbAoKPiAKPiBTaWduZWQtb2ZmLWJ5OiBYaWFud2VpIFpoYW8gPHhpYW53ZWkuemhhb0Bh
+bWxvZ2ljLmNvbT4KPiAtLS0KPiBDaGFuZ2VzIGluIHY0Ogo+IC0gQWRkIGludGVyZmFjZSBvZiBv
+Zl94bGF0ZSBzdXBwb3J0Lgo+IC0gQWRkIGNvbnN0IGZvciBzb21lIHZhcmlhYmxlLgo+IC0gTGlu
+ayB0byB2MzogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvci8yMDI0MTAxOC1hNF9waW5jdHJsLXYz
+LTAtZTc2ZmQxY2YwMWQ3QGFtbG9naWMuY29tCj4gCj4gQ2hhbmdlcyBpbiB2MzoKPiAtIFJlbW92
+ZSBoZWFkIGZpbGUgZnJvbSBiaW5kaW5nLgo+IC0gTW92ZSBHUElPIGRlZmluZSB0byBmaWxlICou
+Yy4KPiAtIExpbmsgdG8gdjI6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAyNDEwMTQtYTRf
+cGluY3RybC12Mi0wLTNlNzRhNjVjMjg1ZUBhbWxvZ2ljLmNvbQo+IAo+IENoYW5nZXMgaW4gdjI6
+Cj4gLSBVc2Ugb25lIG1hcmNvIGluc3RlYWQgb2YgYWxsIHBpbiBkZWZpbmUuCj4gLSBBZGQgdW5p
+dCBuYW1lIGZvciBkdHMgbm9kZS4KPiAtIExpbmsgdG8gdjE6IGh0dHBzOi8vbG9yZS5rZXJuZWwu
+b3JnL2FsbC8yMDI0MDYxMS1hNF9waW5jdHJsLXYxLTAtZGM0ODdiMTk3N2IzQGFtbG9naWMuY29t
+Lwo+IAo+IC0tLQo+IFhpYW53ZWkgWmhhbyAoNCk6Cj4gICAgICAgIGR0LWJpbmRpbmdzOiBwaW5j
+dHJsOiBBZGQgc3VwcG9ydCBmb3IgQW1sb2dpYyBBNCBTb0NzCj4gICAgICAgIHBpbmN0cmw6IG1l
+c29uOiBhZGQgaW50ZXJmYWNlIG9mIG9mX3hsYXRlCj4gICAgICAgIHBpbmN0cmw6IG1lc29uOiBB
+ZGQgZHJpdmVyIHN1cHBvcnQgZm9yIEFtbG9naWMgQTQgU29Dcwo+ICAgICAgICBhcm02NDogZHRz
+OiBhbWxvZ2ljOiBhNDogYWRkIHBpbmN0cmwgbm9kZQo+IAo+ICAgLi4uL2JpbmRpbmdzL3BpbmN0
+cmwvYW1sb2dpYyxtZXNvbi1waW5jdHJsLWExLnlhbWwgfCAgICAyICsKPiAgIGFyY2gvYXJtNjQv
+Ym9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLWE0LmR0c2kgICAgICAgIHwgICAzNiArCj4gICBkcml2
+ZXJzL3BpbmN0cmwvbWVzb24vS2NvbmZpZyAgICAgICAgICAgICAgICAgICAgICB8ICAgIDYgKwo+
+ICAgZHJpdmVycy9waW5jdHJsL21lc29uL01ha2VmaWxlICAgICAgICAgICAgICAgICAgICAgfCAg
+ICAxICsKPiAgIGRyaXZlcnMvcGluY3RybC9tZXNvbi9waW5jdHJsLWFtbG9naWMtYTQuYyAgICAg
+ICAgIHwgMTMyMSArKysrKysrKysrKysrKysrKysrKwo+ICAgZHJpdmVycy9waW5jdHJsL21lc29u
+L3BpbmN0cmwtbWVzb24uYyAgICAgICAgICAgICAgfCAgICA0ICsKPiAgIGRyaXZlcnMvcGluY3Ry
+bC9tZXNvbi9waW5jdHJsLW1lc29uLmggICAgICAgICAgICAgIHwgICAgNCArCj4gICBpbmNsdWRl
+L2R0LWJpbmRpbmdzL2dwaW8vYW1sb2dpYy1ncGlvLmggICAgICAgICAgICB8ICAgNTAgKwo+ICAg
+OCBmaWxlcyBjaGFuZ2VkLCAxNDI0IGluc2VydGlvbnMoKykKPiAtLS0KPiBiYXNlLWNvbW1pdDog
+NThlMmQyOGVkMjhlNWJjODgzNmY4YzE0ZGYxZjk0YzI3YzFmOWUyZgo+IGNoYW5nZS1pZDogMjAy
+NDEwMTItYTRfcGluY3RybC0wOWQxYjJhMTdlNDcKPiAKPiBCZXN0IHJlZ2FyZHMsCgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
+YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
+cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
