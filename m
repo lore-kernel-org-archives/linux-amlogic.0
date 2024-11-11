@@ -4,76 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A8B5D12D68
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Nov 2024 03:42:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A72CD2E9CB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Nov 2024 09:37:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=F3oFg5JRYVSuEQJ4rbb5xuF8GKs3WLylhOq8f8JuM8w=; b=z5PlMmBgStOlM0
-	2RV/9efezQpJTTOFeRr4gMiDSQ5aIGWqpAEmBCjKr36dkNtw08JN0mpDpp6KzHjlrJ3bIKZ3CGcbb
-	sezAdFEquP2BBaf549IIdg7brj8nX9R7a5vY5j1HRdnSF34U9TDwu2S4PpsDQsT2+Cgkw4P/8cZiX
-	tliNv2SDdUWhxpt1aoUwefdgjchhZwPDOMVASU2ER9JUAB9+my05PY846tEn22rZFAtv22aXEA6/5
-	1PYxZpoUx+sQMoq15+HV969BqBR9ogF8aCrE98mEFq7f+0JEbjEhcng9q2M+J+yFUiDpEXwYRYG5W
-	xcIE53dLfI8Lc6QezfIA==;
+	List-Owner; bh=yMab0vXnjS7f7IUGG4BAy6aFjpuCGS2HrYAm2TQ1hqQ=; b=sYN3Y27sc2q+De
+	e4HNHjSO6/za1+f9fE3VwIrkzVxE6sAw6ZuNwqY9MUEJREm46H/gMkqlHZha5NoDwldNLioRpLv7W
+	ZpKFV1dpdKwcb9mjIAXjeP3X4A+PV0qNoOrRtu9QwG516uEYUyW1egLVdCnJ9DIsTMkDslsLDEVg5
+	y39ooNsJfhWOhtVi9qzuc+C33fkBC21EPeeCpx8d5PNtaRFkM//c5UNDhGKQCi1t09pCetrNUoSjC
+	0Ni2PoW/N+k8EhXvd4zY6GXzh7IILr5e+x8RC6ysrkOazeN/unYChPo34MGltSQMLoTLE0Zk5ygmg
+	rbLUULG0aAUv45Wmxupw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tALK0-0000000GFBG-2xjH;
-	Mon, 11 Nov 2024 03:42:36 +0000
+	id 1tAQrY-0000000H7uP-2x7F;
+	Mon, 11 Nov 2024 09:37:36 +0000
 Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tALEl-0000000GEYM-3mzt;
-	Mon, 11 Nov 2024 03:37:14 +0000
+	id 1tAQrV-0000000H7tC-28Z3;
+	Mon, 11 Nov 2024 09:37:35 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id A369AA40DBF;
-	Mon, 11 Nov 2024 03:35:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AACF0C4CECD;
-	Mon, 11 Nov 2024 03:37:09 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 385A7A4141B;
+	Mon, 11 Nov 2024 09:35:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3A48AC4CED0;
+	Mon, 11 Nov 2024 09:37:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731296229;
-	bh=g6bebViV2vgswvScFFgT4ihiXpYioBTgIRcyCJ4wOg0=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=lAEK7ZDGnUWWeuGgGHoSBZSIch//gY4F4iZv+vqgfDMvl4H2cXdo1ktf7PTJalbhK
-	 OqPDqc7hZoV+ypChfdcdFWFRgOPUIW2OpBGKmVf4wL3KfMT3qfqkNprFjUWHwoIxoi
-	 8w/5kxlytyCl8AA9bqTbC2JO45bqunfJLZ+sUBno9FnWb1bSNpLoZtxRt8K0RJ1/Du
-	 +doveSPWZ5KWISLC+6CjI6csMkXFnJIOvQoV3YM4yZO6ONSsB0Xv5t6oYDrQ/GvldD
-	 bbSPZsyRjIElY3luIiIy0FHF0x/5R6H5fTHmpj9NbXxSw6TcPnFCIn5FGCDtlu2Lbi
-	 QjecLV+Ifsb0Q==
+	s=k20201202; t=1731317852;
+	bh=0VT0DgwU4hUwHYcqJKK/CsUnggWcjRObe2eKtg5y1ck=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=FqhrNvtO3XQ4no4/osquF01ayqHq/kVrgVifWort4/bLLnGMlrd+xyU4iwUUDaXLo
+	 2QHysDB90vMa4wuXcaJQ6heUsLI0ATGbfbhz3HNjK3X8nsC3ZxwVNCBllmbeBoPKBl
+	 Sbps063HEN9tmpfTnoYbvEEs89gfI2NYoGOxZaYpqfSI+XcKaf599L8ejMsycQyOsW
+	 3QZrfMhEYNkXNNSN/lA8V10tE/oj3H1Ey1yOZ0madl5q0C3nrEMSwwEkotKaRxVnq6
+	 cJaasOXWrM1iG7K/mnPl6KV9KxXv9BtcRnHEmrwgdBBZH2cfkvDcCrUS07Amu+zTzM
+	 UOcuTV1Gtn6ZA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A09F0D12D49;
-	Mon, 11 Nov 2024 03:37:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D2B8D2E9CC;
+	Mon, 11 Nov 2024 09:37:32 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Subject: [PATCH v2 0/3] clk: Fix issues related to CLK_IGNORE_UNUSED
- failures and amlogic glitch free mux
-Date: Mon, 11 Nov 2024 11:37:00 +0800
-Message-Id: <20241111-fix_glitch_free-v2-0-0099fd9ad3e5@amlogic.com>
+Date: Mon, 11 Nov 2024 17:37:28 +0800
+Subject: [PATCH] clk: meson: Fix children of ro_clk may be tampered with
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIANx7MWcC/3WNwQqDMBBEf0X23JS4ltb01P8oInbdJAtqJBFpE
- f+9qfce3zDzZoPEUTjBvdgg8ipJwpQBTwWQ7ybHSvrMgBov2qBRVt6tG2Qh39rIrNBoqmuDFVU
- l5NUcOVcO47PJ7CUtIX6Og7X8pf9da6m0QrSGquvrxr19dOMQnNCZwgjNvu9f+2eoY7AAAAA=
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+Message-Id: <20241111-fix_childclk_of_roclk_has_been_tampered_with-v1-1-f8c1b6ffdcb0@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAFfQMWcC/x2NwQrCMBBEf6Xs2YCJJYK/IrKkm61ZrEnZFBVK/
+ 72pc5p3eDMrVFbhCrduBeWPVCm5gT11QCnkJxuJjcGdXW9bzCg/pCRTpOmFZUQtR0mh4sCccQn
+ vmZUjfmVJxts4EHl3ufYe2uSs3Pz/3f2xbTsnulnBfgAAAA==
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jian Hu <jian.hu@amlogic.com>, Dmitry Rokosov <ddrokosov@sberdevices.ru>, 
+ Yu Tu <yu.tu@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1731296227; l=2635;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1731317850; l=13683;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=g6bebViV2vgswvScFFgT4ihiXpYioBTgIRcyCJ4wOg0=;
- b=5sClNyptQe3+bagbINnhGgZawIIkUqgm0F9mH6dWCZh1WqRUKdk8EPEuNykuNhlrS8kgQYefe
- +FPz2kz/kQND05wRTL8OF9cTnv6S6R+ApC+whsKI9TACfH4LDcdITbt
+ bh=YxXioEaTtbKEjn0qaJusuyt0oVp19SJ+e2gENpuSvCg=;
+ b=lve99QSTWeR4830u6P+GXxi4kW75eZvQBMZfogiMVdx3BYUicBNbWSh8Yy3jJQksisGuhnS+i
+ +T6eAG1B1fTCoAiv5qtC73I0kW+poQV5eLDef2UNgavxvAzkx/7OuO6
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241110_193712_109349_2539D9C1 
-X-CRM114-Status: GOOD (  10.60  )
+X-CRM114-CacheID: sfid-20241111_013733_735417_FAD0EF98 
+X-CRM114-Status: GOOD (  15.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,69 +93,388 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-If CLK_OPS_PARENT_ENABLE is configured for clock,
-clk_core_disable_unprepare() is called in clk_disable_unused_subtree().
-Even clocks that are configured with CLK_IGNORE_UNUSED are disabled,
-resulting in the failure of CLK_IGNORE_UNUSED.
+From: Chuan Liu <chuan.liu@amlogic.com>
 
-To ensure that amlogic glitch free mux can switch clock channels
-properly, add flag CLK_OPS_PARENT_ENABLE to glitch free mux. The issue
-that CLK_OPS_PARENT_ENABLE in CCF causes CLK_IGNORE_UNUSED to fail is
-also exposed.
+When setting the rate of a clock using clk_regmap_divider_ro_ops, the
+rate of its children may be tampered with.
 
-glitch free mux channel switchover failure issue(Test vpu_clk on S4):
-step 1:
-$ cat /sys/kernel/debug/clk/vpu/clk_parent 
-vpu_0
-$ cat /sys/kernel/debug/clk/vpu_0/clk_rate 
-399999994
-$ cat /sys/kernel/debug/clk/vpu_1/clk_rate 
-666666656
-$ echo 1 > /sys/kernel/debug/clk/vpu/clk_prepare_enable 
-$ cat /sys/kernel/debug/meson-clk-msr/clks/cts_vpu_clk
-399987500       +/-12500Hz
-
-step 2:
-$ echo 0 > /sys/kernel/debug/clk/vpu/clk_prepare_enable 
-$ echo 1 > /sys/kernel/debug/clk/vpu/clk_parent 
-$ cat /sys/kernel/debug/clk/vpu/clk_parent 
-vpu_1
-$ cat /sys/kernel/debug/clk/vpu/clk_rate 
-666666656
-$ echo 1 > /sys/kernel/debug/clk/vpu/clk_prepare_enable 
-$ cat /sys/kernel/debug/meson-clk-msr/clks/cts_vpu_clk
-0       +/-3125Hz
-
-In step2, vpu_0 is disabled, and the vpu is not switched to vpu_1. At
-this time, the vpu is still connected to vpu_0 and vpu_0 is disabled at
-this time, resulting in the clk-measure not measuring the clock.
-
+Fixes: 84af914404db ("clk: meson: a1: add Amlogic A1 Peripherals clock controller driver")
+Fixes: 87173557d2f6 ("clk: meson: clk-pll: remove od parameters")
+Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
+Fixes: 64aa7008e957 ("clk: meson: add a driver for the Meson8/8b/8m2 DDR clock controller")
+Fixes: 57b55c76aaf1 ("clk: meson: S4: add support for Amlogic S4 SoC peripheral clock controller")
+Fixes: e787c9c55eda ("clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver")
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
-Changes in v2:
-- The failure of glitch-free mux switching and the suppression of glitch
-are split into two patch.
-- The glitch-free mux adds support for the meson-8 family.
-- Link to v1: https://lore.kernel.org/r/20240929-fix_glitch_free-v1-0-22f9c36b7edf@amlogic.com
+Background: During the execution of clk_set_rate(), the function 
+clk_core_round_rate_nolock() is called to calculate the matching rate
+and save it to 'core->new_rate'. At the same time, it recalculates and
+updates its 'child->newrate'. Finally, clk_change_rate() is called to
+set all 'new_rates'.
 
+In clk_regmap_divider_ro_ops, there is an implementation of
+'determine_rate'. If a clock (name as 'ro_divider') that references
+clk_regmap_divider_ro_ops is not configured with CLK_DIVIDER_READ_ONLY,
+it will result in the calculation of an incorrect core->new_rate and
+potentially tamper with child->newrate, ultimately leading to the
+corruption of the rate for 'ro_divider's' children.
 ---
-Chuan Liu (3):
-      clk: Fix the CLK_IGNORE_UNUSED failure issue
-      clk: meson: Fix failure of glitch-free mux switching
-      clk: meson: Fix glitch occurs when setting up glitch-free mux
+ drivers/clk/meson/a1-peripherals.c |  2 ++
+ drivers/clk/meson/axg.c            |  5 +++--
+ drivers/clk/meson/g12a.c           | 23 ++++++++++++++---------
+ drivers/clk/meson/gxbb.c           | 18 ++++++++++--------
+ drivers/clk/meson/meson8-ddr.c     |  2 +-
+ drivers/clk/meson/meson8b.c        |  4 +++-
+ drivers/clk/meson/s4-peripherals.c |  2 ++
+ drivers/clk/meson/s4-pll.c         |  2 +-
+ 8 files changed, 36 insertions(+), 22 deletions(-)
 
- drivers/clk/clk.c                  | 67 ++++++++++++++++++++++++++++++++++++--
- drivers/clk/meson/a1-peripherals.c | 12 +++----
- drivers/clk/meson/axg.c            | 16 +++++----
- drivers/clk/meson/c3-peripherals.c |  6 ++--
- drivers/clk/meson/g12a.c           | 18 ++++++----
- drivers/clk/meson/gxbb.c           | 18 ++++++----
- drivers/clk/meson/meson8b.c        | 21 ++++++++++--
- drivers/clk/meson/s4-peripherals.c | 32 +++++++++---------
- 8 files changed, 140 insertions(+), 50 deletions(-)
+diff --git a/drivers/clk/meson/a1-peripherals.c b/drivers/clk/meson/a1-peripherals.c
+index 7aa6abb2eb1f..eedf7c2bf970 100644
+--- a/drivers/clk/meson/a1-peripherals.c
++++ b/drivers/clk/meson/a1-peripherals.c
+@@ -266,6 +266,7 @@ static struct clk_regmap sys_b_div = {
+ 		.offset = SYS_CLK_CTRL0,
+ 		.shift = 16,
+ 		.width = 10,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "sys_b_div",
+@@ -314,6 +315,7 @@ static struct clk_regmap sys_a_div = {
+ 		.offset = SYS_CLK_CTRL0,
+ 		.shift = 0,
+ 		.width = 10,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "sys_a_div",
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index 1b08daf579b2..eb86c4d10046 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -71,7 +71,7 @@ static struct clk_regmap axg_fixed_pll = {
+ 		.offset = HHI_MPLL_CNTL,
+ 		.shift = 16,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "fixed_pll",
+@@ -130,7 +130,7 @@ static struct clk_regmap axg_sys_pll = {
+ 		.offset = HHI_SYS_PLL_CNTL,
+ 		.shift = 16,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "sys_pll",
+@@ -471,6 +471,7 @@ static struct clk_regmap axg_mpll_prediv = {
+ 		.offset = HHI_MPLL_CNTL5,
+ 		.shift = 12,
+ 		.width = 1,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll_prediv",
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index d3539fe9f7af..c7c9fdfd021f 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -76,7 +76,7 @@ static struct clk_regmap g12a_fixed_pll = {
+ 		.offset = HHI_FIX_PLL_CNTL0,
+ 		.shift = 16,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "fixed_pll",
+@@ -443,6 +443,7 @@ static struct clk_regmap g12a_cpu_clk_mux1_div = {
+ 		.offset = HHI_SYS_CPU_CLK_CNTL0,
+ 		.shift = 20,
+ 		.width = 6,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_clk_dyn1_div",
+@@ -627,6 +628,7 @@ static struct clk_regmap g12b_cpub_clk_mux1_div = {
+ 		.offset = HHI_SYS_CPUB_CLK_CNTL,
+ 		.shift = 20,
+ 		.width = 6,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpub_clk_dyn1_div",
+@@ -746,6 +748,7 @@ static struct clk_regmap sm1_dsu_clk_mux0_div = {
+ 		.offset = HHI_SYS_CPU_CLK_CNTL5,
+ 		.shift = 4,
+ 		.width = 6,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "dsu_clk_dyn0_div",
+@@ -781,6 +784,7 @@ static struct clk_regmap sm1_dsu_clk_mux1_div = {
+ 		.offset = HHI_SYS_CPU_CLK_CNTL5,
+ 		.shift = 20,
+ 		.width = 6,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "dsu_clk_dyn1_div",
+@@ -1198,7 +1202,7 @@ static struct clk_regmap g12a_cpu_clk_apb_div = {
+ 		.offset = HHI_SYS_CPU_CLK_CNTL1,
+ 		.shift = 3,
+ 		.width = 3,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_clk_apb_div",
+@@ -1232,7 +1236,7 @@ static struct clk_regmap g12a_cpu_clk_atb_div = {
+ 		.offset = HHI_SYS_CPU_CLK_CNTL1,
+ 		.shift = 6,
+ 		.width = 3,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_clk_atb_div",
+@@ -1266,7 +1270,7 @@ static struct clk_regmap g12a_cpu_clk_axi_div = {
+ 		.offset = HHI_SYS_CPU_CLK_CNTL1,
+ 		.shift = 9,
+ 		.width = 3,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_clk_axi_div",
+@@ -1300,7 +1304,7 @@ static struct clk_regmap g12a_cpu_clk_trace_div = {
+ 		.offset = HHI_SYS_CPU_CLK_CNTL1,
+ 		.shift = 20,
+ 		.width = 3,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_clk_trace_div",
+@@ -1736,7 +1740,7 @@ static struct clk_regmap sm1_gp1_pll = {
+ 		.shift = 16,
+ 		.width = 3,
+ 		.flags = (CLK_DIVIDER_POWER_OF_TWO |
+-			  CLK_DIVIDER_ROUND_CLOSEST),
++			  CLK_DIVIDER_ROUND_CLOSEST | CLK_DIVIDER_READ_ONLY),
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "gp1_pll",
+@@ -1999,7 +2003,7 @@ static struct clk_regmap g12a_hdmi_pll_od = {
+ 		.offset = HHI_HDMI_PLL_CNTL0,
+ 		.shift = 16,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_pll_od",
+@@ -2017,7 +2021,7 @@ static struct clk_regmap g12a_hdmi_pll_od2 = {
+ 		.offset = HHI_HDMI_PLL_CNTL0,
+ 		.shift = 18,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_pll_od2",
+@@ -2035,7 +2039,7 @@ static struct clk_regmap g12a_hdmi_pll = {
+ 		.offset = HHI_HDMI_PLL_CNTL0,
+ 		.shift = 20,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_pll",
+@@ -4048,6 +4052,7 @@ static struct clk_regmap g12a_ts_div = {
+ 		.offset = HHI_TS_CLK_CNTL,
+ 		.shift = 0,
+ 		.width = 8,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "ts_div",
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 262c318edbd5..e2b419100e0c 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -131,7 +131,7 @@ static struct clk_regmap gxbb_fixed_pll = {
+ 		.offset = HHI_MPLL_CNTL,
+ 		.shift = 16,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "fixed_pll",
+@@ -267,7 +267,7 @@ static struct clk_regmap gxbb_hdmi_pll_od = {
+ 		.offset = HHI_HDMI_PLL_CNTL2,
+ 		.shift = 16,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_pll_od",
+@@ -285,7 +285,7 @@ static struct clk_regmap gxbb_hdmi_pll_od2 = {
+ 		.offset = HHI_HDMI_PLL_CNTL2,
+ 		.shift = 22,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_pll_od2",
+@@ -303,7 +303,7 @@ static struct clk_regmap gxbb_hdmi_pll = {
+ 		.offset = HHI_HDMI_PLL_CNTL2,
+ 		.shift = 18,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_pll",
+@@ -321,7 +321,7 @@ static struct clk_regmap gxl_hdmi_pll_od = {
+ 		.offset = HHI_HDMI_PLL_CNTL + 8,
+ 		.shift = 21,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_pll_od",
+@@ -339,7 +339,7 @@ static struct clk_regmap gxl_hdmi_pll_od2 = {
+ 		.offset = HHI_HDMI_PLL_CNTL + 8,
+ 		.shift = 23,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_pll_od2",
+@@ -357,7 +357,7 @@ static struct clk_regmap gxl_hdmi_pll = {
+ 		.offset = HHI_HDMI_PLL_CNTL + 8,
+ 		.shift = 19,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hdmi_pll",
+@@ -413,7 +413,7 @@ static struct clk_regmap gxbb_sys_pll = {
+ 		.offset = HHI_SYS_PLL_CNTL,
+ 		.shift = 10,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "sys_pll",
+@@ -703,6 +703,7 @@ static struct clk_regmap gxbb_mpll_prediv = {
+ 		.offset = HHI_MPLL_CNTL5,
+ 		.shift = 12,
+ 		.width = 1,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll_prediv",
+@@ -911,6 +912,7 @@ static struct clk_regmap gxbb_mpeg_clk_div = {
+ 		.offset = HHI_MPEG_CLK_CNTL,
+ 		.shift = 0,
+ 		.width = 7,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpeg_clk_div",
+diff --git a/drivers/clk/meson/meson8-ddr.c b/drivers/clk/meson/meson8-ddr.c
+index 4b73ea244b63..950f323072fb 100644
+--- a/drivers/clk/meson/meson8-ddr.c
++++ b/drivers/clk/meson/meson8-ddr.c
+@@ -65,7 +65,7 @@ static struct clk_regmap meson8_ddr_pll = {
+ 		.offset = AM_DDR_PLL_CNTL,
+ 		.shift = 16,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "ddr_pll",
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index e4b474c5f86c..4dba11c0ab7e 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -104,7 +104,7 @@ static struct clk_regmap meson8b_fixed_pll = {
+ 		.offset = HHI_MPLL_CNTL,
+ 		.shift = 16,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "fixed_pll",
+@@ -457,6 +457,7 @@ static struct clk_regmap meson8b_mpll_prediv = {
+ 		.offset = HHI_MPLL_CNTL5,
+ 		.shift = 12,
+ 		.width = 1,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll_prediv",
+@@ -635,6 +636,7 @@ static struct clk_regmap meson8b_mpeg_clk_div = {
+ 		.offset = HHI_MPEG_CLK_CNTL,
+ 		.shift = 0,
+ 		.width = 7,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpeg_clk_div",
+diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
+index c930cf0614a0..470431355e25 100644
+--- a/drivers/clk/meson/s4-peripherals.c
++++ b/drivers/clk/meson/s4-peripherals.c
+@@ -175,6 +175,7 @@ static struct clk_regmap s4_sysclk_b_div = {
+ 		.offset = CLKCTRL_SYS_CLK_CTRL0,
+ 		.shift = 16,
+ 		.width = 10,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "sysclk_b_div",
+@@ -221,6 +222,7 @@ static struct clk_regmap s4_sysclk_a_div = {
+ 		.offset = CLKCTRL_SYS_CLK_CTRL0,
+ 		.shift = 0,
+ 		.width = 10,
++		.flags = CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "sysclk_a_div",
+diff --git a/drivers/clk/meson/s4-pll.c b/drivers/clk/meson/s4-pll.c
+index d8e621e79428..5dc051afc06a 100644
+--- a/drivers/clk/meson/s4-pll.c
++++ b/drivers/clk/meson/s4-pll.c
+@@ -72,7 +72,7 @@ static struct clk_regmap s4_fixed_pll = {
+ 		.offset = ANACTRL_FIXPLL_CTRL0,
+ 		.shift = 16,
+ 		.width = 2,
+-		.flags = CLK_DIVIDER_POWER_OF_TWO,
++		.flags = CLK_DIVIDER_POWER_OF_TWO | CLK_DIVIDER_READ_ONLY,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "fixed_pll",
+
 ---
 base-commit: 664988eb47dd2d6ae1d9e4188ec91832562f8f26
-change-id: 20240929-fix_glitch_free-290c88923c31
+change-id: 20241111-fix_childclk_of_roclk_has_been_tampered_with-61dbcc623746
 
 Best regards,
 -- 
