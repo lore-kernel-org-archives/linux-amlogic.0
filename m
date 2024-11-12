@@ -4,75 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41512D41D4A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2024 03:10:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9486BD41D61
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2024 07:07:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eWynrJKt/kF4KrHXyvxMhss7pzHrhNFZo2Er72Rp1SA=; b=cpzuaRmX++/aX3
-	uBayVR06Tm8qa/7gwsMiIQ3dXrWp3vAnSBE+8joobU/ASEOmVUHY8YVHkBEV1nLigJATnU6Bb+k1m
-	/folAkWLjGoR8Q0o/6phhtU/H0wwd3khG2FVn4aAb8giZzwfFPw0RDkVncj8Q6cXY5r4oG76Wlo9Z
-	kxjP0IHYVAEk2oSAwBQeb1As+srWh3u4ef9q8fIA6mUEqhogz5MXosWGOf07tO/HnxHrkHePmwGsp
-	gzbuC9TlTZ8HQhiPrYGkxIbVs+6V3Ng8QeKcHCQ6HQfJBaylCfWjsyT6HJTQjZcYcIn7DeXQl2764
-	VEhiYdRAnmVRLXNTlzyg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=px9PrcoVFUNt3rCI7FP7EvB7v+EZK5IJOWGupcR7HCM=; b=K/Sosu3Q4EZ6xZ
+	+/bt3BupOr8HcnE9X2iSs0q1VKKyUKNJX3NFYWfMdr6xdOD1jCVYIr5+YOcQ7uamTRjAXQZRyYkhb
+	+HOHq3P4eXB4h+5xZQ66P2dkqYfoPx0MOr6XCKJ33LF8Kxs5PvtW1J35ZVUdoCGYonpiArfCc0ipz
+	LhH4OAxzO76J4p1dRdCTwwF0ZPIFnPhrERbpN/jsXOxdUpkW/3fs2d+/zqEPQMLP3/QTKEowOosNa
+	T0P2e31GegdTQqVNnwT5jR0emRPwhBWLJNQTQAD8dhtBiEfQVm3yGOwwq3rC0Z4dUjZ+QusAC8Vkf
+	WBI9nh98VTXe8I1JlPfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAhIP-000000022dL-2dHf;
-	Tue, 12 Nov 2024 03:10:25 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tAkzR-00000002PkW-1Yfu;
+	Tue, 12 Nov 2024 07:07:05 +0000
+Received: from mail-gw02.astralinux.ru ([195.16.41.108])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAhIK-000000022Yk-06CD
-	for linux-amlogic@lists.infradead.org;
-	Tue, 12 Nov 2024 03:10:22 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 623F95C562C;
-	Tue, 12 Nov 2024 03:09:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 26D36C4AF0B;
-	Tue, 12 Nov 2024 03:10:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731381018;
-	bh=+hKa5KKLkmi+z4aY9T/zGIvNRwQ8odXz1+tu9NIJoRc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=joqF+1rkKXCvNB6PBeQNFhz7PR/BjjOiI8bPN6jdmeqrjVLeO6Be2QvA9NxPDxteX
-	 HZCGK2u2ipOWXePldR6/JwcB4WBqDTdi9ftKSkSgBFJPFF09+H7K+80Tmaa3O6hadk
-	 ekN0r5OoUDSZdihPtEcG6WCjwfW/xppPEQMm6ASvQ22c3GN2n7nH/Aod69vyzfj2pg
-	 ut1Xb2fZoSAB+0+RNWSTn3AhTZzXBuyK1MHPwJIztTxZEAhMic0SVSP2cmg2j1tSMX
-	 VjvQDffT0alD0T2KD+QaGCet0ZnVCURLwmJRgIsAxlUKQQOpSzpc35KLEeppGIvAeD
-	 yyrHEPyqXavcw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 13AB7D41D46;
-	Tue, 12 Nov 2024 03:10:18 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 12 Nov 2024 11:10:15 +0800
-Subject: [PATCH v6 2/3] rtc: support for the Amlogic on-chip RTC
+	id 1tAkuO-00000002OpL-3ipd;
+	Tue, 12 Nov 2024 07:01:55 +0000
+Received: from gca-msk-a-srv-ksmg02.astralinux.ru (localhost [127.0.0.1])
+	by mail-gw02.astralinux.ru (Postfix) with ESMTP id 43C921F9CA;
+	Tue, 12 Nov 2024 10:01:44 +0300 (MSK)
+Received: from new-mail.astralinux.ru (gca-yc-ruca-srv-mail03.astralinux.ru [10.177.185.108])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail-gw02.astralinux.ru (Postfix) with ESMTPS;
+	Tue, 12 Nov 2024 10:01:38 +0300 (MSK)
+Received: from rbta-msk-lt-106062.astralinux.ru (unknown [10.177.20.58])
+	by new-mail.astralinux.ru (Postfix) with ESMTPA id 4Xnclj5102z1h0WK;
+	Tue, 12 Nov 2024 10:01:37 +0300 (MSK)
+From: Anastasia Belova <abelova@astralinux.ru>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Anastasia Belova <abelova@astralinux.ru>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Nicolas Belin <nbelin@baylibre.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	lvc-project@linuxtesting.org,
+	stable@vger.kernel.org
+Subject: [PATCH v4 resend] drm/meson: switch to a managed drm device
+Date: Tue, 12 Nov 2024 10:00:51 +0300
+Message-Id: <20241112070051.2795-1-abelova@astralinux.ru>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Message-Id: <20241112-rtc-v6-2-a71b60d2f354@amlogic.com>
-References: <20241112-rtc-v6-0-a71b60d2f354@amlogic.com>
-In-Reply-To: <20241112-rtc-v6-0-a71b60d2f354@amlogic.com>
-To: Yiting Deng <yiting.deng@amlogic.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1731381015; l=15456;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=dTCOepBRzxg2g0M6eKzxPyfC8FTqTa9XLW6EyBbZhng=;
- b=tXQLOuDD2y8YFQ/gO84P/rcaeFDsXU5u20Hp64SFnXTxOcbG124jqc6WNYSjMlcOfzAeTL8d9
- F0z1KG7bQhkDZDI46CXbnyunoiuELDVQ2KagkCvKg0kRCZ3yv0MhFtB
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-KSMG-AntiPhishing: NotDetected
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Envelope-From: abelova@astralinux.ru
+X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_internal2}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;new-mail.astralinux.ru:7.1.1;astralinux.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiSpam-Lua-Profiles: 189101 [Nov 12 2024]
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.1.0.7854, bases: 2024/11/12 05:52:00 #26846809
+X-KSMG-AntiVirus-Status: NotDetected, skipped
+X-KSMG-LinksScanning: NotDetected
+X-KSMG-Message-Action: skipped
+X-KSMG-Rule-ID: 1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241111_191020_252959_2EF67D7D 
-X-CRM114-Status: GOOD (  27.04  )
+X-CRM114-CacheID: sfid-20241111_230153_304594_353EA575 
+X-CRM114-Status: GOOD (  20.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,546 +90,513 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Yiting Deng <yiting.deng@amlogic.com>
+Switch to a managed drm device to cleanup some error handling
+and make future work easier.
 
-This is the third amlogic driver. The RTC hardware of A4 SoC is different
-from the previous one. This RTC hardware includes a timing function and
-an alarm function. But the existing has only timing function, alarm
-function is using the system clock to implement a virtual alarm. Add
-the RTC driver to support it.
+Fix dereference of NULL in meson_drv_bind_master by removing
+drm_dev_put(drm) before meson_encoder_*_remove and
+component_unbind_all where drm is dereferenced.
 
-Signed-off-by: Yiting Deng <yiting.deng@amlogic.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Co-developed by Linux Verification Center (linuxtesting.org).
+
+Cc: stable@vger.kernel.org
+Fixes: 6a044642988b ("drm/meson: fix unbind path if HDMI fails to bind")
+Signed-off-by: Anastasia Belova <abelova@astralinux.ru>
 ---
- drivers/rtc/Kconfig          |  12 ++
- drivers/rtc/Makefile         |   1 +
- drivers/rtc/rtc-amlogic-a4.c | 474 +++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 487 insertions(+)
+v2: fix commit message and add Cc: stable@vger.kernel.org
+v3: cleanup error paths
+v4: fix build errors
+ drivers/gpu/drm/meson/meson_crtc.c         | 10 +--
+ drivers/gpu/drm/meson/meson_drv.c          | 93 ++++++++++------------
+ drivers/gpu/drm/meson/meson_drv.h          |  3 +-
+ drivers/gpu/drm/meson/meson_encoder_cvbs.c |  8 +-
+ drivers/gpu/drm/meson/meson_encoder_dsi.c  |  2 +-
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c |  4 +-
+ drivers/gpu/drm/meson/meson_overlay.c      |  8 +-
+ drivers/gpu/drm/meson/meson_plane.c        | 10 +--
+ 8 files changed, 63 insertions(+), 75 deletions(-)
 
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 66eb1122248b..98bce0c42307 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -2070,4 +2070,16 @@ config RTC_DRV_SSD202D
- 	  This driver can also be built as a module, if so, the module
- 	  will be called "rtc-ssd20xd".
+diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
+index d70616da8ce2..e1c0bf3baeea 100644
+--- a/drivers/gpu/drm/meson/meson_crtc.c
++++ b/drivers/gpu/drm/meson/meson_crtc.c
+@@ -662,13 +662,13 @@ void meson_crtc_irq(struct meson_drm *priv)
  
-+config RTC_DRV_AMLOGIC_A4
-+	tristate "Amlogic RTC"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	select REGMAP_MMIO
-+	default y
-+	help
-+	  If you say yes here you get support for the RTC block on the
-+	  Amlogic A113L2(A4) and A113X2(A5) SoCs.
+ 	drm_crtc_handle_vblank(priv->crtc);
+ 
+-	spin_lock_irqsave(&priv->drm->event_lock, flags);
++	spin_lock_irqsave(&priv->drm.event_lock, flags);
+ 	if (meson_crtc->event) {
+ 		drm_crtc_send_vblank_event(priv->crtc, meson_crtc->event);
+ 		drm_crtc_vblank_put(priv->crtc);
+ 		meson_crtc->event = NULL;
+ 	}
+-	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
++	spin_unlock_irqrestore(&priv->drm.event_lock, flags);
+ }
+ 
+ int meson_crtc_create(struct meson_drm *priv)
+@@ -677,18 +677,18 @@ int meson_crtc_create(struct meson_drm *priv)
+ 	struct drm_crtc *crtc;
+ 	int ret;
+ 
+-	meson_crtc = devm_kzalloc(priv->drm->dev, sizeof(*meson_crtc),
++	meson_crtc = devm_kzalloc(priv->drm.dev, sizeof(*meson_crtc),
+ 				  GFP_KERNEL);
+ 	if (!meson_crtc)
+ 		return -ENOMEM;
+ 
+ 	meson_crtc->priv = priv;
+ 	crtc = &meson_crtc->base;
+-	ret = drm_crtc_init_with_planes(priv->drm, crtc,
++	ret = drm_crtc_init_with_planes(&priv->drm, crtc,
+ 					priv->primary_plane, NULL,
+ 					&meson_crtc_funcs, "meson_crtc");
+ 	if (ret) {
+-		dev_err(priv->drm->dev, "Failed to init CRTC\n");
++		dev_err(priv->drm.dev, "Failed to init CRTC\n");
+ 		return ret;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index 4bd0baa2a4f5..dd87c6b61e9e 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -182,7 +182,6 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 	struct platform_device *pdev = to_platform_device(dev);
+ 	const struct meson_drm_match_data *match;
+ 	struct meson_drm *priv;
+-	struct drm_device *drm;
+ 	struct resource *res;
+ 	void __iomem *regs;
+ 	int ret, i;
+@@ -197,58 +196,49 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 	if (!match)
+ 		return -ENODEV;
+ 
+-	drm = drm_dev_alloc(&meson_driver, dev);
+-	if (IS_ERR(drm))
+-		return PTR_ERR(drm);
++	priv = devm_drm_dev_alloc(dev, &meson_driver,
++				 struct meson_drm, drm);
+ 
+-	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+-	if (!priv) {
+-		ret = -ENOMEM;
+-		goto free_drm;
+-	}
+-	drm->dev_private = priv;
+-	priv->drm = drm;
++	if (IS_ERR(priv))
++		return PTR_ERR(priv);
 +
-+	  This driver can also be built as a module. If so, the module
-+	  will be called "rtc-amlogic-a4".
-+
- endif # RTC_CLASS
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index f62340ecc534..efeba9a2eaad 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -26,6 +26,7 @@ obj-$(CONFIG_RTC_DRV_ABB5ZES3)	+= rtc-ab-b5ze-s3.o
- obj-$(CONFIG_RTC_DRV_ABEOZ9)	+= rtc-ab-eoz9.o
- obj-$(CONFIG_RTC_DRV_ABX80X)	+= rtc-abx80x.o
- obj-$(CONFIG_RTC_DRV_AC100)	+= rtc-ac100.o
-+obj-$(CONFIG_RTC_DRV_AMLOGIC_A4)	+= rtc-amlogic-a4.o
- obj-$(CONFIG_RTC_DRV_ARMADA38X)	+= rtc-armada38x.o
- obj-$(CONFIG_RTC_DRV_AS3722)	+= rtc-as3722.o
- obj-$(CONFIG_RTC_DRV_ASM9260)	+= rtc-asm9260.o
-diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
-new file mode 100644
-index 000000000000..9423dce4193d
---- /dev/null
-+++ b/drivers/rtc/rtc-amlogic-a4.c
-@@ -0,0 +1,474 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-+/*
-+ * Copyright (C) 2024 Amlogic, Inc. All rights reserved
-+ * Author: Yiting Deng <yiting.deng@amlogic.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/rtc.h>
-+#include <linux/time64.h>
-+
-+/* rtc oscillator rate */
-+#define OSC_32K			32768
-+#define OSC_24M			24000000
-+
-+#define RTC_CTRL		(0x0 << 2)		/* Control RTC */
-+#define RTC_ALRM0_EN		BIT(0)
-+#define RTC_OSC_SEL		BIT(8)
-+#define RTC_ENABLE		BIT(12)
-+
-+#define RTC_COUNTER_REG		(0x1 << 2)		/* Program RTC counter initial value */
-+
-+#define RTC_ALARM0_REG		(0x2 << 2)		/* Program RTC alarm0 value */
-+
-+#define RTC_SEC_ADJUST_REG	(0x6 << 2)		/* Control second-based timing adjustment */
-+#define RTC_MATCH_COUNTER	GENMASK(18, 0)
-+#define RTC_SEC_ADJUST_CTRL	GENMASK(20, 19)
-+#define RTC_ADJ_VALID		BIT(23)
-+
-+#define RTC_INT_MASK		(0x8 << 2)		/* RTC interrupt mask */
-+#define RTC_ALRM0_IRQ_MSK	BIT(0)
-+
-+#define RTC_INT_CLR		(0x9 << 2)		/* Clear RTC interrupt */
-+#define RTC_ALRM0_IRQ_CLR	BIT(0)
-+
-+#define RTC_OSCIN_CTRL0		(0xa << 2)		/* Control RTC clk from 24M */
-+#define RTC_OSCIN_CTRL1		(0xb << 2)		/* Control RTC clk from 24M */
-+#define RTC_OSCIN_IN_EN		BIT(31)
-+#define RTC_OSCIN_OUT_CFG	GENMASK(29, 28)
-+#define RTC_OSCIN_OUT_N0M0	GENMASK(11, 0)
-+#define RTC_OSCIN_OUT_N1M1	GENMASK(23, 12)
-+
-+#define RTC_INT_STATUS		(0xc << 2)		/* RTC interrupt status */
-+#define RTC_ALRM0_IRQ_STATUS	BIT(0)
-+
-+#define RTC_REAL_TIME		(0xd << 2)		/* RTC time value */
-+
-+#define RTC_OSCIN_OUT_32K_N0	0x2dc
-+#define RTC_OSCIN_OUT_32K_N1	0x2db
-+#define RTC_OSCIN_OUT_32K_M0	0x1
-+#define RTC_OSCIN_OUT_32K_M1	0x2
-+
-+#define RTC_SWALLOW_SECOND	0x2
-+#define RTC_INSERT_SECOND	0x3
-+
-+struct aml_rtc_config {
-+	bool gray_stored;
-+};
-+
-+struct aml_rtc_data {
-+	struct regmap *map;
-+	struct rtc_device *rtc_dev;
-+	int irq;
-+	struct clk *rtc_clk;
-+	struct clk *sys_clk;
-+	int rtc_enabled;
-+	const struct aml_rtc_config *config;
-+};
-+
-+static const struct regmap_config aml_rtc_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = RTC_REAL_TIME,
-+};
-+
-+static inline u32 gray_to_binary(u32 gray)
-+{
-+	u32 bcd = gray;
-+	int size = sizeof(bcd) * 8;
-+	int i;
-+
-+	for (i = 0; (1 << i) < size; i++)
-+		bcd ^= bcd >> (1 << i);
-+
-+	return bcd;
-+}
-+
-+static inline u32 binary_to_gray(u32 bcd)
-+{
-+	return bcd ^ (bcd >> 1);
-+}
-+
-+static int aml_rtc_read_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 time_sec;
-+
-+	/* if RTC disabled, read time failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, read time failed\n");
++	priv->drm.dev_private = priv;
+ 	priv->dev = dev;
+ 	priv->compat = match->compat;
+ 	priv->afbcd.ops = match->afbcd_ops;
+ 
+ 	regs = devm_platform_ioremap_resource_byname(pdev, "vpu");
+ 	if (IS_ERR(regs)) {
+-		ret = PTR_ERR(regs);
+-		goto free_drm;
++		return PTR_ERR(regs);
+ 	}
+ 
+ 	priv->io_base = regs;
+ 
+ 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hhi");
+ 	if (!res) {
+-		ret = -EINVAL;
+-		goto free_drm;
 +		return -EINVAL;
-+	}
-+
-+	regmap_read(rtc->map, RTC_REAL_TIME, &time_sec);
-+	if (rtc->config->gray_stored)
-+		time_sec = gray_to_binary(time_sec);
-+	rtc_time64_to_tm(time_sec, tm);
-+	dev_dbg(dev, "%s: read time = %us\n", __func__, time_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_set_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 time_sec;
-+
-+	/* if RTC disabled, first enable it */
-+	if (!rtc->rtc_enabled) {
-+		regmap_write_bits(rtc->map, RTC_CTRL, RTC_ENABLE, RTC_ENABLE);
-+		usleep_range(100, 200);
-+		rtc->rtc_enabled = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ENABLE);
-+		if (!rtc->rtc_enabled)
-+			return -EINVAL;
-+	}
-+
-+	time_sec = rtc_tm_to_time64(tm);
-+	if (rtc->config->gray_stored)
-+		time_sec = binary_to_gray(time_sec);
-+	regmap_write(rtc->map, RTC_COUNTER_REG, time_sec);
-+	dev_dbg(dev, "%s: set time = %us\n", __func__, time_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	time64_t alarm_sec;
-+
-+	/* if RTC disabled, set alarm failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, set alarm failed\n");
-+		return -EINVAL;
-+	}
-+
-+	regmap_update_bits(rtc->map, RTC_CTRL,
-+			   RTC_ALRM0_EN, RTC_ALRM0_EN);
-+	regmap_update_bits(rtc->map, RTC_INT_MASK,
-+			   RTC_ALRM0_IRQ_MSK, 0);
-+
-+	alarm_sec = rtc_tm_to_time64(&alarm->time);
-+	if (rtc->config->gray_stored)
-+		alarm_sec = binary_to_gray(alarm_sec);
-+	regmap_write(rtc->map, RTC_ALARM0_REG, alarm_sec);
-+
-+	dev_dbg(dev, "%s: alarm->enabled=%d alarm_set=%llds\n", __func__,
-+		alarm->enabled, alarm_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 alarm_sec;
-+	int alarm_enable;
-+	int alarm_mask;
-+
-+	/* if RTC disabled, read alarm failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, read alarm failed\n");
-+		return -EINVAL;
-+	}
-+
-+	regmap_read(rtc->map, RTC_ALARM0_REG, &alarm_sec);
-+	if (rtc->config->gray_stored)
-+		alarm_sec = gray_to_binary(alarm_sec);
-+	rtc_time64_to_tm(alarm_sec, &alarm->time);
-+
-+	alarm_enable = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ALRM0_EN);
-+	alarm_mask = regmap_test_bits(rtc->map, RTC_INT_MASK, RTC_ALRM0_IRQ_MSK);
-+	alarm->enabled = (alarm_enable && !alarm_mask) ? 1 : 0;
-+	dev_dbg(dev, "%s: alarm->enabled=%d alarm=%us\n", __func__,
-+		alarm->enabled, alarm_sec);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_read_offset(struct device *dev, long *offset)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	u32 reg_val;
-+	long val;
-+	int sign, match_counter, enable;
-+
-+	/* if RTC disabled, read offset failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, read offset failed\n");
-+		return -EINVAL;
-+	}
-+
-+	regmap_read(rtc->map, RTC_SEC_ADJUST_REG, &reg_val);
-+	enable = FIELD_GET(RTC_ADJ_VALID, reg_val);
-+	if (!enable) {
-+		val = 0;
-+	} else {
-+		sign = FIELD_GET(RTC_SEC_ADJUST_CTRL, reg_val);
-+		match_counter = FIELD_GET(RTC_MATCH_COUNTER, reg_val);
-+		val = 1000000000 / (match_counter + 1);
-+		if (sign == RTC_SWALLOW_SECOND)
-+			val = -val;
-+	}
-+	*offset = val;
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_set_offset(struct device *dev, long offset)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+	int sign = 0;
-+	int match_counter = 0;
-+	int enable = 0;
-+	u32 reg_val;
-+
-+	/* if RTC disabled, set offset failed */
-+	if (!rtc->rtc_enabled) {
-+		dev_err(dev, "RTC disabled, set offset failed\n");
-+		return -EINVAL;
-+	}
-+
-+	if (offset) {
-+		enable = 1;
-+		sign = offset < 0 ? RTC_SWALLOW_SECOND : RTC_INSERT_SECOND;
-+		match_counter = 1000000000 / abs(offset) - 1;
-+		if (match_counter < 0 || match_counter > RTC_MATCH_COUNTER)
-+			return -EINVAL;
-+	}
-+
-+	reg_val = FIELD_PREP(RTC_ADJ_VALID, enable) |
-+		  FIELD_PREP(RTC_SEC_ADJUST_CTRL, sign) |
-+		  FIELD_PREP(RTC_MATCH_COUNTER, match_counter);
-+	regmap_write(rtc->map, RTC_SEC_ADJUST_REG, reg_val);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_alarm_enable(struct device *dev, unsigned int enabled)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+
-+	if (enabled) {
-+		regmap_update_bits(rtc->map, RTC_CTRL,
-+				   RTC_ALRM0_EN, RTC_ALRM0_EN);
-+		regmap_update_bits(rtc->map, RTC_INT_MASK,
-+				   RTC_ALRM0_IRQ_MSK, 0);
-+	} else {
-+		regmap_update_bits(rtc->map, RTC_INT_MASK,
-+				   RTC_ALRM0_IRQ_MSK, RTC_ALRM0_IRQ_MSK);
-+		regmap_update_bits(rtc->map, RTC_CTRL,
-+				   RTC_ALRM0_EN, 0);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct rtc_class_ops aml_rtc_ops = {
-+	.read_time = aml_rtc_read_time,
-+	.set_time = aml_rtc_set_time,
-+	.read_alarm = aml_rtc_read_alarm,
-+	.set_alarm = aml_rtc_set_alarm,
-+	.alarm_irq_enable = aml_rtc_alarm_enable,
-+	.read_offset = aml_rtc_read_offset,
-+	.set_offset = aml_rtc_set_offset,
-+};
-+
-+static irqreturn_t aml_rtc_handler(int irq, void *data)
-+{
-+	struct aml_rtc_data *rtc = (struct aml_rtc_data *)data;
-+
-+	regmap_write(rtc->map, RTC_ALARM0_REG, 0);
-+	regmap_write(rtc->map, RTC_INT_CLR, RTC_ALRM0_IRQ_STATUS);
-+
-+	rtc_update_irq(rtc->rtc_dev, 1, RTC_AF | RTC_IRQF);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void aml_rtc_init(struct aml_rtc_data *rtc)
-+{
-+	u32 reg_val = 0;
-+
-+	rtc->rtc_enabled = regmap_test_bits(rtc->map, RTC_CTRL, RTC_ENABLE);
-+	if (!rtc->rtc_enabled) {
-+		if (clk_get_rate(rtc->rtc_clk) == OSC_24M) {
-+			/* select 24M oscillator */
-+			regmap_write_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, RTC_OSC_SEL);
-+
-+			/*
-+			 * Set RTC oscillator to freq_out to freq_in/((N0*M0+N1*M1)/(M0+M1))
-+			 * Enable clock_in gate of oscillator 24MHz
-+			 * Set N0 to 733, N1 to 732
-+			 */
-+			reg_val = FIELD_PREP(RTC_OSCIN_IN_EN, 1)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_CFG, 1)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_N0)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_N1);
-+			regmap_write_bits(rtc->map, RTC_OSCIN_CTRL0, RTC_OSCIN_IN_EN
-+					  | RTC_OSCIN_OUT_CFG | RTC_OSCIN_OUT_N0M0
-+					  | RTC_OSCIN_OUT_N1M1, reg_val);
-+
-+			/* Set M0 to 2, M1 to 3, so freq_out = 32768 Hz*/
-+			reg_val = FIELD_PREP(RTC_OSCIN_OUT_N0M0, RTC_OSCIN_OUT_32K_M0)
-+				  | FIELD_PREP(RTC_OSCIN_OUT_N1M1, RTC_OSCIN_OUT_32K_M1);
-+			regmap_write_bits(rtc->map, RTC_OSCIN_CTRL1, RTC_OSCIN_OUT_N0M0
-+					  | RTC_OSCIN_OUT_N1M1, reg_val);
-+		} else {
-+			/* select 32K oscillator */
-+			regmap_write_bits(rtc->map, RTC_CTRL, RTC_OSC_SEL, 0);
-+		}
-+	}
-+	regmap_write_bits(rtc->map, RTC_INT_MASK,
-+			  RTC_ALRM0_IRQ_MSK, RTC_ALRM0_IRQ_MSK);
-+	regmap_write_bits(rtc->map, RTC_CTRL, RTC_ALRM0_EN, 0);
-+}
-+
-+static int aml_rtc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct aml_rtc_data *rtc;
-+	void __iomem *base;
-+	int ret = 0;
-+
-+	rtc = devm_kzalloc(dev, sizeof(*rtc), GFP_KERNEL);
-+	if (!rtc)
-+		return -ENOMEM;
-+
-+	rtc->config = of_device_get_match_data(dev);
-+	if (!rtc->config)
-+		return -ENODEV;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return dev_err_probe(dev, PTR_ERR(base), "resource ioremap failed\n");
-+
-+	rtc->map = devm_regmap_init_mmio(dev, base, &aml_rtc_regmap_config);
-+	if (IS_ERR(rtc->map))
-+		return dev_err_probe(dev, PTR_ERR(rtc->map), "regmap init failed\n");
-+
-+	rtc->irq = platform_get_irq(pdev, 0);
-+	if (rtc->irq < 0)
-+		return rtc->irq;
-+
-+	rtc->rtc_clk = devm_clk_get(dev, "osc");
-+	if (IS_ERR(rtc->rtc_clk))
-+		return dev_err_probe(dev, PTR_ERR(rtc->rtc_clk),
-+				     "failed to find rtc clock\n");
-+	if (clk_get_rate(rtc->rtc_clk) != OSC_32K && clk_get_rate(rtc->rtc_clk) != OSC_24M)
-+		return dev_err_probe(dev, -EINVAL, "Invalid clock configuration\n");
-+
-+	rtc->sys_clk = devm_clk_get_enabled(dev, "sys");
-+	if (IS_ERR(rtc->sys_clk))
-+		return dev_err_probe(dev, PTR_ERR(rtc->sys_clk),
-+				     "failed to get_enable rtc sys clk\n");
-+	aml_rtc_init(rtc);
-+
-+	device_init_wakeup(dev, 1);
-+	platform_set_drvdata(pdev, rtc);
-+
-+	rtc->rtc_dev = devm_rtc_allocate_device(dev);
-+	if (IS_ERR(rtc->rtc_dev)) {
-+		ret = PTR_ERR(rtc->rtc_dev);
-+		goto err_clk;
-+	}
-+
-+	ret = devm_request_irq(dev, rtc->irq, aml_rtc_handler,
-+			       IRQF_ONESHOT, "aml-rtc alarm", rtc);
-+	if (ret) {
-+		dev_err_probe(dev, ret, "IRQ%d request failed, ret = %d\n",
-+			      rtc->irq, ret);
-+		goto err_clk;
-+	}
-+
-+	rtc->rtc_dev->ops = &aml_rtc_ops;
-+	rtc->rtc_dev->range_min = 0;
-+	rtc->rtc_dev->range_max = U32_MAX;
-+
-+	ret = devm_rtc_register_device(rtc->rtc_dev);
-+	if (ret) {
-+		dev_err_probe(&pdev->dev, ret, "Failed to register RTC device: %d\n", ret);
-+		goto err_clk;
-+	}
-+
-+	return 0;
-+err_clk:
-+	clk_disable_unprepare(rtc->sys_clk);
-+	device_init_wakeup(dev, 0);
-+
-+	return ret;
-+}
-+
-+#ifdef CONFIG_PM_SLEEP
-+static int aml_rtc_suspend(struct device *dev)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+
-+	if (device_may_wakeup(dev))
-+		enable_irq_wake(rtc->irq);
-+
-+	return 0;
-+}
-+
-+static int aml_rtc_resume(struct device *dev)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(dev);
-+
-+	if (device_may_wakeup(dev))
-+		disable_irq_wake(rtc->irq);
-+
-+	return 0;
-+}
-+#endif
-+
-+static SIMPLE_DEV_PM_OPS(aml_rtc_pm_ops,
-+			 aml_rtc_suspend, aml_rtc_resume);
-+
-+static void aml_rtc_remove(struct platform_device *pdev)
-+{
-+	struct aml_rtc_data *rtc = dev_get_drvdata(&pdev->dev);
-+
-+	clk_disable_unprepare(rtc->sys_clk);
-+	device_init_wakeup(&pdev->dev, 0);
-+}
-+
-+static const struct aml_rtc_config a5_rtc_config = {
-+};
-+
-+static const struct aml_rtc_config a4_rtc_config = {
-+	.gray_stored = true,
-+};
-+
-+static const struct of_device_id aml_rtc_device_id[] = {
-+	{
-+		.compatible = "amlogic,a4-rtc",
-+		.data = &a4_rtc_config,
-+	},
-+	{
-+		.compatible = "amlogic,a5-rtc",
-+		.data = &a5_rtc_config,
-+	},
-+};
-+MODULE_DEVICE_TABLE(of, aml_rtc_device_id);
-+
-+static struct platform_driver aml_rtc_driver = {
-+	.probe = aml_rtc_probe,
-+	.remove = aml_rtc_remove,
-+	.driver = {
-+		.name = "aml-rtc",
-+		.pm = &aml_rtc_pm_ops,
-+		.of_match_table = aml_rtc_device_id,
-+	},
-+};
-+
-+module_platform_driver(aml_rtc_driver);
-+MODULE_DESCRIPTION("Amlogic RTC driver");
-+MODULE_AUTHOR("Yiting Deng <yiting.deng@amlogic.com>");
-+MODULE_LICENSE("GPL");
-
+ 	}
+ 	/* Simply ioremap since it may be a shared register zone */
+ 	regs = devm_ioremap(dev, res->start, resource_size(res));
+ 	if (!regs) {
+-		ret = -EADDRNOTAVAIL;
+-		goto free_drm;
++		return -EADDRNOTAVAIL;
+ 	}
+ 
+ 	priv->hhi = devm_regmap_init_mmio(dev, regs,
+ 					  &meson_regmap_config);
+ 	if (IS_ERR(priv->hhi)) {
+ 		dev_err(&pdev->dev, "Couldn't create the HHI regmap\n");
+-		ret = PTR_ERR(priv->hhi);
+-		goto free_drm;
++		return PTR_ERR(priv->hhi);
+ 	}
+ 
+ 	priv->canvas = meson_canvas_get(dev);
+ 	if (IS_ERR(priv->canvas)) {
+-		ret = PTR_ERR(priv->canvas);
+-		goto free_drm;
++		return PTR_ERR(priv->canvas);
+ 	}
+ 
+ 	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_osd1);
+ 	if (ret)
+-		goto free_drm;
++		return ret;
+ 	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_0);
+ 	if (ret)
+ 		goto free_canvas_osd1;
+@@ -261,7 +251,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 
+ 	priv->vsync_irq = platform_get_irq(pdev, 0);
+ 
+-	ret = drm_vblank_init(drm, 1);
++	ret = drm_vblank_init(&priv->drm, 1);
+ 	if (ret)
+ 		goto free_canvas_vd1_2;
+ 
+@@ -281,13 +271,13 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 	if (ret)
+ 		goto free_canvas_vd1_2;
+ 
+-	ret = drmm_mode_config_init(drm);
++	ret = drmm_mode_config_init(&priv->drm);
+ 	if (ret)
+ 		goto free_canvas_vd1_2;
+-	drm->mode_config.max_width = 3840;
+-	drm->mode_config.max_height = 2160;
+-	drm->mode_config.funcs = &meson_mode_config_funcs;
+-	drm->mode_config.helper_private	= &meson_mode_config_helpers;
++	priv->drm.mode_config.max_width = 3840;
++	priv->drm.mode_config.max_height = 2160;
++	priv->drm.mode_config.funcs = &meson_mode_config_funcs;
++	priv->drm.mode_config.helper_private = &meson_mode_config_helpers;
+ 
+ 	/* Hardware Initialization */
+ 
+@@ -308,9 +298,9 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 		goto exit_afbcd;
+ 
+ 	if (has_components) {
+-		ret = component_bind_all(dev, drm);
++		ret = component_bind_all(dev, &priv->drm);
+ 		if (ret) {
+-			dev_err(drm->dev, "Couldn't bind all components\n");
++			dev_err(priv->drm.dev, "Couldn't bind all components\n");
+ 			/* Do not try to unbind */
+ 			has_components = false;
+ 			goto exit_afbcd;
+@@ -319,46 +309,49 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 
+ 	ret = meson_encoder_hdmi_probe(priv);
+ 	if (ret)
+-		goto exit_afbcd;
++		goto unbind_components;
+ 
+ 	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+ 		ret = meson_encoder_dsi_probe(priv);
+ 		if (ret)
+-			goto exit_afbcd;
++			goto unbind_components;
+ 	}
+ 
+ 	ret = meson_plane_create(priv);
+ 	if (ret)
+-		goto exit_afbcd;
++		goto unbind_components;
+ 
+ 	ret = meson_overlay_create(priv);
+ 	if (ret)
+-		goto exit_afbcd;
++		goto unbind_components;
+ 
+ 	ret = meson_crtc_create(priv);
+ 	if (ret)
+-		goto exit_afbcd;
++		goto unbind_components;
+ 
+-	ret = request_irq(priv->vsync_irq, meson_irq, 0, drm->driver->name, drm);
++	ret = request_irq(priv->vsync_irq, meson_irq, 0, priv->drm.driver->name, &priv->drm);
+ 	if (ret)
+-		goto exit_afbcd;
++		goto unbind_components;
+ 
+-	drm_mode_config_reset(drm);
++	drm_mode_config_reset(&priv->drm);
+ 
+-	drm_kms_helper_poll_init(drm);
++	drm_kms_helper_poll_init(&priv->drm);
+ 
+ 	platform_set_drvdata(pdev, priv);
+ 
+-	ret = drm_dev_register(drm, 0);
++	ret = drm_dev_register(&priv->drm, 0);
+ 	if (ret)
+ 		goto uninstall_irq;
+ 
+-	drm_fbdev_dma_setup(drm, 32);
++	drm_fbdev_dma_setup(&priv->drm, 32);
+ 
+ 	return 0;
+ 
+ uninstall_irq:
+-	free_irq(priv->vsync_irq, drm);
++	free_irq(priv->vsync_irq, &priv->drm);
++unbind_components:
++	if (has_components)
++		component_unbind_all(dev, &priv->drm);
+ exit_afbcd:
+ 	if (priv->afbcd.ops)
+ 		priv->afbcd.ops->exit(priv);
+@@ -370,16 +363,11 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 	meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
+ free_canvas_osd1:
+ 	meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
+-free_drm:
+-	drm_dev_put(drm);
+ 
+ 	meson_encoder_dsi_remove(priv);
+ 	meson_encoder_hdmi_remove(priv);
+ 	meson_encoder_cvbs_remove(priv);
+ 
+-	if (has_components)
+-		component_unbind_all(dev, drm);
+-
+ 	return ret;
+ }
+ 
+@@ -391,7 +379,7 @@ static int meson_drv_bind(struct device *dev)
+ static void meson_drv_unbind(struct device *dev)
+ {
+ 	struct meson_drm *priv = dev_get_drvdata(dev);
+-	struct drm_device *drm = priv->drm;
++	struct drm_device *drm = &priv->drm;
+ 
+ 	if (priv->canvas) {
+ 		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
+@@ -404,7 +392,6 @@ static void meson_drv_unbind(struct device *dev)
+ 	drm_kms_helper_poll_fini(drm);
+ 	drm_atomic_helper_shutdown(drm);
+ 	free_irq(priv->vsync_irq, drm);
+-	drm_dev_put(drm);
+ 
+ 	meson_encoder_dsi_remove(priv);
+ 	meson_encoder_hdmi_remove(priv);
+@@ -428,7 +415,7 @@ static int __maybe_unused meson_drv_pm_suspend(struct device *dev)
+ 	if (!priv)
+ 		return 0;
+ 
+-	return drm_mode_config_helper_suspend(priv->drm);
++	return drm_mode_config_helper_suspend(&priv->drm);
+ }
+ 
+ static int __maybe_unused meson_drv_pm_resume(struct device *dev)
+@@ -445,7 +432,7 @@ static int __maybe_unused meson_drv_pm_resume(struct device *dev)
+ 	if (priv->afbcd.ops)
+ 		priv->afbcd.ops->init(priv);
+ 
+-	return drm_mode_config_helper_resume(priv->drm);
++	return drm_mode_config_helper_resume(&priv->drm);
+ }
+ 
+ static void meson_drv_shutdown(struct platform_device *pdev)
+@@ -455,8 +442,8 @@ static void meson_drv_shutdown(struct platform_device *pdev)
+ 	if (!priv)
+ 		return;
+ 
+-	drm_kms_helper_poll_fini(priv->drm);
+-	drm_atomic_helper_shutdown(priv->drm);
++	drm_kms_helper_poll_fini(&priv->drm);
++	drm_atomic_helper_shutdown(&priv->drm);
+ }
+ 
+ /*
+diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
+index 3f9345c14f31..45554c701322 100644
+--- a/drivers/gpu/drm/meson/meson_drv.h
++++ b/drivers/gpu/drm/meson/meson_drv.h
+@@ -8,6 +8,7 @@
+ #define __MESON_DRV_H
+ 
+ #include <linux/device.h>
++#include <drm/drm_device.h>
+ #include <linux/of.h>
+ #include <linux/regmap.h>
+ 
+@@ -53,7 +54,7 @@ struct meson_drm {
+ 	u8 canvas_id_vd1_1;
+ 	u8 canvas_id_vd1_2;
+ 
+-	struct drm_device *drm;
++	struct drm_device drm;
+ 	struct drm_crtc *crtc;
+ 	struct drm_plane *primary_plane;
+ 	struct drm_plane *overlay_plane;
+diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+index d1191de855d9..ddca22c8c1ff 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
++++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+@@ -104,7 +104,7 @@ static int meson_encoder_cvbs_get_modes(struct drm_bridge *bridge,
+ 	for (i = 0; i < MESON_CVBS_MODES_COUNT; ++i) {
+ 		struct meson_cvbs_mode *meson_mode = &meson_cvbs_modes[i];
+ 
+-		mode = drm_mode_duplicate(priv->drm, &meson_mode->mode);
++		mode = drm_mode_duplicate(&priv->drm, &meson_mode->mode);
+ 		if (!mode) {
+ 			dev_err(priv->dev, "Failed to create a new display mode\n");
+ 			return 0;
+@@ -221,7 +221,7 @@ static const struct drm_bridge_funcs meson_encoder_cvbs_bridge_funcs = {
+ 
+ int meson_encoder_cvbs_probe(struct meson_drm *priv)
+ {
+-	struct drm_device *drm = priv->drm;
++	struct drm_device *drm = &priv->drm;
+ 	struct meson_encoder_cvbs *meson_encoder_cvbs;
+ 	struct drm_connector *connector;
+ 	struct device_node *remote;
+@@ -256,7 +256,7 @@ int meson_encoder_cvbs_probe(struct meson_drm *priv)
+ 	meson_encoder_cvbs->priv = priv;
+ 
+ 	/* Encoder */
+-	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_cvbs->encoder,
++	ret = drm_simple_encoder_init(&priv->drm, &meson_encoder_cvbs->encoder,
+ 				      DRM_MODE_ENCODER_TVDAC);
+ 	if (ret)
+ 		return dev_err_probe(priv->dev, ret,
+@@ -273,7 +273,7 @@ int meson_encoder_cvbs_probe(struct meson_drm *priv)
+ 	}
+ 
+ 	/* Initialize & attach Bridge Connector */
+-	connector = drm_bridge_connector_init(priv->drm, &meson_encoder_cvbs->encoder);
++	connector = drm_bridge_connector_init(&priv->drm, &meson_encoder_cvbs->encoder);
+ 	if (IS_ERR(connector))
+ 		return dev_err_probe(priv->dev, PTR_ERR(connector),
+ 				     "Unable to create CVBS bridge connector\n");
+diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+index 7816902f5907..03bb12c69863 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
++++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+@@ -132,7 +132,7 @@ int meson_encoder_dsi_probe(struct meson_drm *priv)
+ 	meson_encoder_dsi->priv = priv;
+ 
+ 	/* Encoder */
+-	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_dsi->encoder,
++	ret = drm_simple_encoder_init(&priv->drm, &meson_encoder_dsi->encoder,
+ 				      DRM_MODE_ENCODER_DSI);
+ 	if (ret)
+ 		return dev_err_probe(priv->dev, ret,
+diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+index 0593a1cde906..4465d987f85b 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+@@ -402,7 +402,7 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
+ 	meson_encoder_hdmi->priv = priv;
+ 
+ 	/* Encoder */
+-	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_hdmi->encoder,
++	ret = drm_simple_encoder_init(&priv->drm, &meson_encoder_hdmi->encoder,
+ 				      DRM_MODE_ENCODER_TMDS);
+ 	if (ret) {
+ 		dev_err_probe(priv->dev, ret, "Failed to init HDMI encoder\n");
+@@ -420,7 +420,7 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
+ 	}
+ 
+ 	/* Initialize & attach Bridge Connector */
+-	meson_encoder_hdmi->connector = drm_bridge_connector_init(priv->drm,
++	meson_encoder_hdmi->connector = drm_bridge_connector_init(&priv->drm,
+ 							&meson_encoder_hdmi->encoder);
+ 	if (IS_ERR(meson_encoder_hdmi->connector)) {
+ 		ret = dev_err_probe(priv->dev,
+diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+index 7f98de38842b..60ee7f758723 100644
+--- a/drivers/gpu/drm/meson/meson_overlay.c
++++ b/drivers/gpu/drm/meson/meson_overlay.c
+@@ -484,7 +484,7 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+ 
+ 	interlace_mode = new_state->crtc->mode.flags & DRM_MODE_FLAG_INTERLACE;
+ 
+-	spin_lock_irqsave(&priv->drm->event_lock, flags);
++	spin_lock_irqsave(&priv->drm.event_lock, flags);
+ 
+ 	if ((fb->modifier & DRM_FORMAT_MOD_AMLOGIC_FBC(0, 0)) ==
+ 			    DRM_FORMAT_MOD_AMLOGIC_FBC(0, 0)) {
+@@ -717,7 +717,7 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+ 
+ 	priv->viu.vd1_enabled = true;
+ 
+-	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
++	spin_unlock_irqrestore(&priv->drm.event_lock, flags);
+ 
+ 	DRM_DEBUG_DRIVER("\n");
+ }
+@@ -838,7 +838,7 @@ int meson_overlay_create(struct meson_drm *priv)
+ 
+ 	DRM_DEBUG_DRIVER("\n");
+ 
+-	meson_overlay = devm_kzalloc(priv->drm->dev, sizeof(*meson_overlay),
++	meson_overlay = devm_kzalloc(priv->drm.dev, sizeof(*meson_overlay),
+ 				   GFP_KERNEL);
+ 	if (!meson_overlay)
+ 		return -ENOMEM;
+@@ -846,7 +846,7 @@ int meson_overlay_create(struct meson_drm *priv)
+ 	meson_overlay->priv = priv;
+ 	plane = &meson_overlay->base;
+ 
+-	drm_universal_plane_init(priv->drm, plane, 0xFF,
++	drm_universal_plane_init(&priv->drm, plane, 0xFF,
+ 				 &meson_overlay_funcs,
+ 				 supported_drm_formats,
+ 				 ARRAY_SIZE(supported_drm_formats),
+diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+index b43ac61201f3..13be94309bf4 100644
+--- a/drivers/gpu/drm/meson/meson_plane.c
++++ b/drivers/gpu/drm/meson/meson_plane.c
+@@ -157,7 +157,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+ 	 * Update Buffer
+ 	 * Enable Plane
+ 	 */
+-	spin_lock_irqsave(&priv->drm->event_lock, flags);
++	spin_lock_irqsave(&priv->drm.event_lock, flags);
+ 
+ 	/* Check if AFBC decoder is required for this buffer */
+ 	if ((meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+@@ -393,7 +393,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+ 
+ 	priv->viu.osd1_enabled = true;
+ 
+-	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
++	spin_unlock_irqrestore(&priv->drm.event_lock, flags);
+ }
+ 
+ static void meson_plane_atomic_disable(struct drm_plane *plane,
+@@ -536,7 +536,7 @@ int meson_plane_create(struct meson_drm *priv)
+ 	const uint64_t *format_modifiers = format_modifiers_default;
+ 	int ret;
+ 
+-	meson_plane = devm_kzalloc(priv->drm->dev, sizeof(*meson_plane),
++	meson_plane = devm_kzalloc(priv->drm.dev, sizeof(*meson_plane),
+ 				   GFP_KERNEL);
+ 	if (!meson_plane)
+ 		return -ENOMEM;
+@@ -549,14 +549,14 @@ int meson_plane_create(struct meson_drm *priv)
+ 	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+ 		format_modifiers = format_modifiers_afbc_g12a;
+ 
+-	ret = drm_universal_plane_init(priv->drm, plane, 0xFF,
++	ret = drm_universal_plane_init(&priv->drm, plane, 0xFF,
+ 					&meson_plane_funcs,
+ 					supported_drm_formats,
+ 					ARRAY_SIZE(supported_drm_formats),
+ 					format_modifiers,
+ 					DRM_PLANE_TYPE_PRIMARY, "meson_primary_plane");
+ 	if (ret) {
+-		devm_kfree(priv->drm->dev, meson_plane);
++		devm_kfree(priv->drm.dev, meson_plane);
+ 		return ret;
+ 	}
+ 
 -- 
-2.37.1
-
-
+2.43.0
 
 _______________________________________________
 linux-amlogic mailing list
