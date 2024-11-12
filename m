@@ -4,114 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9642CD42B81
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2024 13:44:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 891C2D42B8E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2024 14:45:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=tiS3Vq/RTZq+Dt+MKLziTjND6Ncfvqui8vMJ/tPh0pM=; b=tmUrus3jbWgT1USRbUdeCBl8WD
-	vtY3Bdsh6X+PrCBI8QQYTNzVhYpO1GbX9rPva6GUqn7Aa2SKZVSOk6q17md3nizzGta/BkdMXb8Ah
-	geV4GkIkmaoDpJ30I9iis4p7TUhKrZ/LjF+m5A5xdguxukKl+Yf+A2CYYB2Vx3D6G1NPBJmh3fAeA
-	sJ+5tp4hwe2H3V8bh53bSnCfq+qSwqCfHGyLrXP4lzW0pMVdDQeSm7j/0odcjswXNSEPWUN4bBVCB
-	7D7kPf3Pj/clSBCFDOnGIMFob+48zu0L2xk2ibckhSka9VoAS6+y1Y9XdxkhXFye4O/QDY+lGfPT0
-	p/bg3HFg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=zh1uS5zlO8kipL9nNYlVRPdXa0RsKOSvXQhWLRZgQGU=; b=cdQ3Zk+ZY90fBK
+	ldqmJjj2xnfw8iDtrWJ6zlh8KbHuPco+PQyfmnaWgDKIsfj15q0QD75ZeMXR5eRdE5shEALq/5pXn
+	k5Bo8XbOswfcN2yjLnKV92rprVDjqXe9+3kP1BFE3rLWzjK4+08CN7e/EdjXFFlrzjHf9H1HpiYI4
+	zzHmXZEZTJ5JqWRgdmfjDVe5s7j74nlYZy5y/8RcAJgaWcA1PyeV60oZ7IhhdHKihtzQ36nSkX/pB
+	WgZ75a9+XrGsc2x+5eCFmBArybPKIofFcvtzIs1DKxFa7tjxT574LALLn4O7UIuLgRo7FHMoVkg41
+	0i3UitHvzijtSL5SFUsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tArCO-00000003dC6-2jqf;
-	Tue, 12 Nov 2024 13:44:52 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1tAs8v-00000003o1a-2owa;
+	Tue, 12 Nov 2024 14:45:21 +0000
+Received: from relay4-d.mail.gandi.net ([217.70.183.196])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAr24-00000003b5f-1Ktd
+	id 1tAs0p-00000003mFN-2DKj
 	for linux-amlogic@lists.infradead.org;
-	Tue, 12 Nov 2024 13:34:13 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4316a44d1bbso47271285e9.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 12 Nov 2024 05:34:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731418450; x=1732023250; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p+omseve6sEWaNT3PbUtmXKwUOZhyNZ+lRjB/niytBE=;
-        b=IQVv2w7IjWql2lvrnlzOEMjZZL+JEvKNQzFxJ2QGi8Do7nE5NSERHWxGyq/LCo8yIn
-         45wI7wr0iIEDxlVPFlTn+4Zd1i7xfeY+tbHAmUuxgE/F6PvrXxBUmDPV4GHYrx1wFW9m
-         RIIOk2yxOf2i3dWDVcP3zuQ1/03/bjlnjDDbPvNav3vTXwHqkYpWishVN1XZhqDmvyvR
-         ZvlpUZTXPf4e0OajIvMdmnQvKdDPi7qYw17EewHiAO6Tenl5mt6rdnsMvYh8as2sRQg2
-         BHWIAwWApsNDLiRqZNtRm5YHgIaAQVtSfIcRMpezP0XDeUCn0jrA9m9G/hEDbbdjsNDd
-         5F5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731418450; x=1732023250;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=p+omseve6sEWaNT3PbUtmXKwUOZhyNZ+lRjB/niytBE=;
-        b=MqyZxjjXZJHeqmV/vssPNSKL/DA1wcwJIJEkZj/+fiJDnNsiIbUTZSdOyHmPt35X+0
-         8hUSkDzT+F+lNXL2Xj7hlx6vP+M3NUKve22Bj+zpdR3ZZN9NRwmpnXD4Cmo8vCzIboj2
-         3DnZSIBOgEwE+oaAi//wgadRxbNiZZxq65CdLpDCkvrihvF7YKIwwmuyjOCA8ZDZjWnD
-         EWCueODYfADGPrjuSy6rdazW5gTDMGlhKP7IE8z66W1VX+bN58WRl2VACl2nXe1RQadk
-         BkaBXv2o6dZRnqxjf9g6xMe+t8HoTUVRps1r4VntqY3Sy3bJ6UPXnVeH1ZjycJh4MtLC
-         1UeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUUO45uw3E1FEPJEtAlLc7xT+F6KLYZHq/rNsg6lcDcnjqpp+FZOc5hkA9ZSgeMr/46y5kI62ldQNdStAsh@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw2isJMa1XqltegplX7s5A9avx9xVsNMZ7N4XsABk/COVTeCg+u
-	EZ8wn73H011BMWXNmXBbDEqIlgehyV1huEXHC4VwPZuGEudsZwYV8/9QEDLLxzg=
-X-Google-Smtp-Source: AGHT+IE3ISTkzyh/KPRmrTOaebvxmXujGnc7RmLYTWKcmrFKgulLlHkQDLI+4AM/xhjc2ZCd/a/i1w==
-X-Received: by 2002:a05:600c:510a:b0:431:4e3f:9dee with SMTP id 5b1f17b1804b1-432b74fd7edmr145104225e9.4.1731418450344;
-        Tue, 12 Nov 2024 05:34:10 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:860c:aff4:d0e9:9db8? ([2a01:e0a:982:cbb0:860c:aff4:d0e9:9db8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432b05c1a13sm210146095e9.29.2024.11.12.05.34.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Nov 2024 05:34:09 -0800 (PST)
-Message-ID: <950f4d06-e064-46f3-b8e7-8bfd48b2b16f@linaro.org>
-Date: Tue, 12 Nov 2024 14:34:08 +0100
+	Tue, 12 Nov 2024 14:37:00 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 05EB3E0002;
+	Tue, 12 Nov 2024 14:36:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1731422216;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=aJFnJDAFTBKSIxX6b5Pe3koShCEbFS2HnrAwtx42ffc=;
+	b=jc0Cclrg0P6NeE/g2h2R05ymYh2BbiAaXrZJDL2mXdBja7XqKDo8+6DxTvWVdjxJIw0nFp
+	85kXoFYkwGQrBZDD40Tve+G8MAspmKsi1262SId7spG/eIolHidEZJ6jR3EmH0SaUcrGij
+	lmTqH4Dof7ulzgfFbKu2zv9x6c/suTshCZuogfmLqOrOZx43xyWuiSfZjaq2ZYEo4pqnaP
+	P/rEwg5bogCnZJMnuGqszRji7p0AueKkebL3OVK2lUhN27KaWsVBIwWP8HtwmZrGp1gO13
+	StOsZKz9/8D3Ev9AnCjG138MCCf/FqroUkW1aG+Ql/2EMd+THm8yGz+Chno1tA==
+From: alexandre.belloni@bootlin.com
+To: Yiting Deng <yiting.deng@amlogic.com>,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: linux-amlogic@lists.infradead.org,
+	linux-rtc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] rtc: amlogic-a4: drop error messages
+Date: Tue, 12 Nov 2024 15:36:52 +0100
+Message-ID: <20241112143652.3445648-1-alexandre.belloni@bootlin.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 5/5] arm64: dts: amlogic: a4: add pinctrl node
-To: xianwei.zhao@amlogic.com, Linus Walleij <linus.walleij@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241112-a4_pinctrl-v5-0-3460ce10c480@amlogic.com>
- <20241112-a4_pinctrl-v5-5-3460ce10c480@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20241112-a4_pinctrl-v5-5-3460ce10c480@amlogic.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241112_053412_446610_0EC9195C 
-X-CRM114-Status: GOOD (  12.38  )
+X-CRM114-CacheID: sfid-20241112_063659_725606_5E3D9D8F 
+X-CRM114-Status: UNSURE (   8.39  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,76 +68,88 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12/11/2024 11:26, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> Add pinctrl device to support Amlogic A4.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 36 +++++++++++++++++++++++++++++
->   1 file changed, 36 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-> index de10e7aebf21..a176faf7f1ef 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-> @@ -5,6 +5,7 @@
->   
->   #include "amlogic-a4-common.dtsi"
->   #include <dt-bindings/power/amlogic,a4-pwrc.h>
-> +#include <dt-bindings/gpio/amlogic-gpio.h>
->   / {
->   	cpus {
->   		#address-cells = <2>;
-> @@ -48,3 +49,38 @@ pwrc: power-controller {
->   		};
->   	};
->   };
-> +
-> +&apb {
-> +	periphs_pinctrl: pinctrl@4000 {
-> +		compatible = "amlogic,a4-periphs-pinctrl";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges = <0x0 0x0 0x0 0x4000 0x0 0x02e0>;
-> +
-> +		gpio: bank@0 {
-> +			reg = <0x0 0x0 0x0 0x0050>,
-> +			      <0x0 0xc0 0x0 0x0220>;
-> +			reg-names = "mux", "gpio";
-> +			gpio-controller;
-> +			#gpio-cells = <3>;
-> +			gpio-ranges = <&periphs_pinctrl 0 0 73>;
-> +		};
-> +	};
-> +
-> +	aobus_pinctrl: pinctrl@8e700 {
-> +		compatible = "amlogic,a4-aobus-pinctrl";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges = <0x0 0x0 0x0 0x8e700 0x0 0x0064>;
-> +
-> +		ao_gpio: bank@0 {
-> +			reg = <0x0 0x00 0x0 0x04>,
-> +			      <0x0 0x04 0x0 0x60>;
-> +			reg-names = "mux", "gpio";
-> +			gpio-controller;
-> +			#gpio-cells = <3>;
-> +			gpio-ranges = <&aobus_pinctrl 0 0 8>;
-> +		};
-> +	};
-> +
-> +};
-> 
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Drop error message because there is a high probability they will never be
+seen and the final user action is clear, the time has to be set again.
+
+Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+---
+ drivers/rtc/rtc-amlogic-a4.c | 20 +++++---------------
+ 1 file changed, 5 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
+index 9423dce4193d..4960790c4b24 100644
+--- a/drivers/rtc/rtc-amlogic-a4.c
++++ b/drivers/rtc/rtc-amlogic-a4.c
+@@ -102,10 +102,8 @@ static int aml_rtc_read_time(struct device *dev, struct rtc_time *tm)
+ 	u32 time_sec;
+ 
+ 	/* if RTC disabled, read time failed */
+-	if (!rtc->rtc_enabled) {
+-		dev_err(dev, "RTC disabled, read time failed\n");
++	if (!rtc->rtc_enabled)
+ 		return -EINVAL;
+-	}
+ 
+ 	regmap_read(rtc->map, RTC_REAL_TIME, &time_sec);
+ 	if (rtc->config->gray_stored)
+@@ -145,10 +143,8 @@ static int aml_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alarm)
+ 	time64_t alarm_sec;
+ 
+ 	/* if RTC disabled, set alarm failed */
+-	if (!rtc->rtc_enabled) {
+-		dev_err(dev, "RTC disabled, set alarm failed\n");
++	if (!rtc->rtc_enabled)
+ 		return -EINVAL;
+-	}
+ 
+ 	regmap_update_bits(rtc->map, RTC_CTRL,
+ 			   RTC_ALRM0_EN, RTC_ALRM0_EN);
+@@ -174,10 +170,8 @@ static int aml_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
+ 	int alarm_mask;
+ 
+ 	/* if RTC disabled, read alarm failed */
+-	if (!rtc->rtc_enabled) {
+-		dev_err(dev, "RTC disabled, read alarm failed\n");
++	if (!rtc->rtc_enabled)
+ 		return -EINVAL;
+-	}
+ 
+ 	regmap_read(rtc->map, RTC_ALARM0_REG, &alarm_sec);
+ 	if (rtc->config->gray_stored)
+@@ -201,10 +195,8 @@ static int aml_rtc_read_offset(struct device *dev, long *offset)
+ 	int sign, match_counter, enable;
+ 
+ 	/* if RTC disabled, read offset failed */
+-	if (!rtc->rtc_enabled) {
+-		dev_err(dev, "RTC disabled, read offset failed\n");
++	if (!rtc->rtc_enabled)
+ 		return -EINVAL;
+-	}
+ 
+ 	regmap_read(rtc->map, RTC_SEC_ADJUST_REG, &reg_val);
+ 	enable = FIELD_GET(RTC_ADJ_VALID, reg_val);
+@@ -231,10 +223,8 @@ static int aml_rtc_set_offset(struct device *dev, long offset)
+ 	u32 reg_val;
+ 
+ 	/* if RTC disabled, set offset failed */
+-	if (!rtc->rtc_enabled) {
+-		dev_err(dev, "RTC disabled, set offset failed\n");
++	if (!rtc->rtc_enabled)
+ 		return -EINVAL;
+-	}
+ 
+ 	if (offset) {
+ 		enable = 1;
+-- 
+2.47.0
+
 
 _______________________________________________
 linux-amlogic mailing list
