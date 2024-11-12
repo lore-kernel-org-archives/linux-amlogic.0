@@ -4,61 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83CA4D32D8D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2024 13:08:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 433E2D3ABFB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2024 13:28:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=hBfIbFNNpYY0KZI+F0sD1TU1UkzkcpD2OAO7aKNXSVk=; b=nP+S8LqT1eGEFnPgozZV6ILIT5
-	zcARfD2VlJ3i6bwp1nOFN5/ogw9Bw4AoQRRx/pv84d9qAhqagValJ5i1eP+FQoaDxDgmrAXwTA0kO
-	3Wfdk/Wmu8tncg5VJQ/DcvxaEc6OZKTXCNXxJeOskpHqep44ddddlqFOwQZX57jfpDb6SWIkIaicS
-	0qzZeRLZLPyAl3oPHKco3k9bivXFQO/sci5GMXT5KDKfHyM3/K5TYZhz0nPrZjX/shohpl1kYVom2
-	PcPSbQr3xXZU535qNErhMOaxUfVbh6KlZnpjto3wME1jUoxBuVQXFtSSmI0fD6uwOqGzKey5l6Qsp
-	UOQX1RMQ==;
+	bh=7GrHlYk9Q9oBU+dwBvyrFJ9m+obc8rFtbXsOW8qj5uQ=; b=BgBjheNgwLb+Zxzelouw5BqdM2
+	91wv3jjiosx+evzIz+f0eWU4pVJCYRjDmP6WKFrkWceOVxPccvHOJonY7z0p231XYLzOYdh4FEXY7
+	8XQmkyyY6gubggbq9IpDxlFulLi33RUnbTyRvsFkkkjhwZd9tHLQwaqaU2EmlLYv4OQvmq8nw2lJS
+	DoorMPmJH5xhhvomyzwTt8Q2mNFwDp5QmnNkyCJbvbEdLbqdeRJO2j42apt7qAlm73tStC/N7dJNa
+	x9UTVVK+cwDkkmSwLke552FomCWmlqeR/LiG5Rb/ju+GjGxm94cHZ9y7CDNLgpiDKM2JK2B69TiDS
+	v4acHuCg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAqd4-00000003V5G-2ji2;
-	Tue, 12 Nov 2024 13:08:22 +0000
-Received: from mail-eastasiaazlp170110002.outbound.protection.outlook.com ([2a01:111:f403:c400::2] helo=HK3PR03CU002.outbound.protection.outlook.com)
+	id 1tAqwc-00000003Z0H-2YA1;
+	Tue, 12 Nov 2024 13:28:34 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAqZl-00000003USY-2bZL;
-	Tue, 12 Nov 2024 13:04:59 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=geHSo71opXMmtWl2rQTjVn0ppKc5qPlAfWQN24RKlS7ZvurdWeunkmS1jKusMSKtmKPH1B+0iSDWaUDECe8bBh7hAzyUUvT2b8pm9EukQkjUhJsN2H+mfqph3q1h6PoEeGrhE4FyPQezGLTy3q1j6osU5IMguNydjNRA7WoaI+PX0udCihtgdxaT8EGdK9QzjeMHgBP2by9cux6rQl2kKMTqJPH4uk/X5IVbV4FqF1Jre0cNBoJd+QKbAAD93/G8In6kEWvvOkAFjQO95PXlyfUl6drfOOIFkuDGwwwSYMo7ddT0SaJRAc4a56eoDwHSrSnj+UCdIR+SOmUwxJymKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dKtnalvDMxt+G/A3o+mCHtM8XSr9QgToBzSjsJ+8e98=;
- b=rrdAdUEVuz9zGKi6q8br1qgvrnOTiIUSp0IfXl+2sXtid3PMgysPYVbFYwFOfMiaI+FhIt3AbnosgTkPJGZ0LqXXfpXXyreSqDCyLSCKOpSyp/atb51EE5H30goop9ZIDsjaFmLxyeCoKkHW8H2s/0yFVcPsx3HHtjU6mSQVyefeOudBBxuPnoArGvwCPWBll+s9Be6Nt4UcT5P3YHrWu/8PKEajoxJpfICT2rDsyE6wrJ6F9ldigdetygYArIPB1T46/m6iNsKJsGbi90EcAXif/CzJ+wusNcVHUZrKJKuhSplXRGyyjFPF5VtooOhjU3ryLspyfzviOMa9pgIIOQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dKtnalvDMxt+G/A3o+mCHtM8XSr9QgToBzSjsJ+8e98=;
- b=gOtbYAdqXx18DgJ0nb7pITQM7YZfasussiF0tA/OQ3oXWsw+wk4sLcXoVbgOUvpJo1pV8r7EnY3JIeaHSAkvttaBLfJWMOvcLcMnZlC+DmVHmNKmd+GXs9igQyKGyMcnvWmdX8Gc3Ql6oBNrVicQYpyY++3wlh71lvftLRqpNAdsi/S4j4nBzTmvsoe4oq5aPV+x+0hqu5q7LHrdA9iCTwJTxlkFTmwcVLXUMmClfwlANZsU7BUfCZZouqb4XAy+w2i6FXoewuTQlDEvsg3c0AqMczUIqus4NIbHcgRtBhzOg0bfi3y3qEgIo9iqFg3Rsc4jDI90KNXD0tF+CXwXYw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
- by JH0PR03MB8113.apcprd03.prod.outlook.com (2603:1096:990:3c::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.28; Tue, 12 Nov
- 2024 13:04:47 +0000
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::9d11:d1f6:1097:22ca]) by KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::9d11:d1f6:1097:22ca%7]) with mapi id 15.20.8137.027; Tue, 12 Nov 2024
- 13:04:47 +0000
-Message-ID: <8a006cf8-2f65-43bf-a990-712fba01f0fb@amlogic.com>
-Date: Tue, 12 Nov 2024 21:04:07 +0800
+	id 1tAqsj-00000003Y5P-2ASi
+	for linux-amlogic@lists.infradead.org;
+	Tue, 12 Nov 2024 13:24:39 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-37d5aedd177so3315401f8f.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 12 Nov 2024 05:24:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731417872; x=1732022672; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=op9TisDjuU6SXMVv/j5ec//p11wAht9zab/vpdAa0jE=;
+        b=j15hQcMV0NYShAnHaUWxXWl2Nls61DXLv8JuxOtzrrrAANTCuA87R6lCERNe9XWrfJ
+         x2JZpjIrN5Ke6WVr6BqvwJjZXuxpqmsIk9IW2/WBbPiDAeFp/JFsbY3wgaW61fY845VP
+         gzrhDZ53/6RIXa8dI/hBlVi0ngy9sOD4PhtHnL26bMmU99SkwvQGmV0bRF6q4gQnA/Ot
+         mN6UpMpOW5cJJPzTlVyrz5li1Uco84/CAXSBSE30yoF8D0FaartaoHFTiozM79M3QWKu
+         SgyT9LmYasA4Fv322ufPKFGIur7nz+e1PFll2DVxHLTHNCdSCoMPtt9DasfFGQ7xNusz
+         Q+IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731417872; x=1732022672;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=op9TisDjuU6SXMVv/j5ec//p11wAht9zab/vpdAa0jE=;
+        b=jwPHw5TpPvl94nBlZsGN1XVazHml1hucAj38a6wQIHU3o8iGuRtQSoj+7Zmcye+qyp
+         l1Kk8HGxVwKhfmP4m5Ix1ksMOospJn/5/kBysgJk3wFvgavmORbYtEDGqExrC/GNXRaX
+         /qdyCf+77dJnW6L/qWIVY1gOXTaeudItBU9ZneXMWfkdepH6k/o00YfhxP8o/gD4dnwF
+         MqvvIkXDArFyu69bnJUtH2BA8Juo4SxPK+X2UZnB2ExWorr4UTF6jZy6LT3sZyFQ3QNJ
+         raNzfe4BN7bWIwCBrc9nGAH9ZxTFbxGNoWk/4r/yOEEpthnFUIVqtKFfwdWj/6xFXsik
+         zXsw==
+X-Gm-Message-State: AOJu0YzhqW5E1jrFahOD1gIM0HDHeN0m8Bts10TGzHtdb8VAf3QH+0rX
+	ASevl9vnbrY3XR1HBr/a+eyXwhTGQicZaRTSRApAdryz0sLFUCXwqgCf+cFIFz8=
+X-Google-Smtp-Source: AGHT+IFUbvqpp7hxTTTbUnzJmnji9CfW4r3V54ckUUimyAfT0DIrLZ5j+wf8asngwceIIwDWhCpAYw==
+X-Received: by 2002:a05:6000:4913:b0:381:ed41:da7a with SMTP id ffacd0b85a97d-381f1848940mr12877952f8f.54.1731417871732;
+        Tue, 12 Nov 2024 05:24:31 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:860c:aff4:d0e9:9db8? ([2a01:e0a:982:cbb0:860c:aff4:d0e9:9db8])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381eda05dfcsm15353314f8f.91.2024.11.12.05.24.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Nov 2024 05:24:31 -0800 (PST)
+Message-ID: <35307d7a-a110-430d-9ba5-808a05450adb@linaro.org>
+Date: Tue, 12 Nov 2024 14:24:30 +0100
+MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
 Subject: Re: [PATCH v2] clk: meson: Fix the determine rate error in
  clk_regmap_divider_ro_ops
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>,
+To: chuan.liu@amlogic.com, Jerome Brunet <jbrunet@baylibre.com>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -67,100 +80,36 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20241112-fix_childclk_of_roclk_has_been_tampered_with-v2-1-64f8009cdf2a@amlogic.com>
-From: Chuan Liu <chuan.liu@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
 In-Reply-To: <20241112-fix_childclk_of_roclk_has_been_tampered_with-v2-1-64f8009cdf2a@amlogic.com>
-X-ClientProxiedBy: SI2PR02CA0040.apcprd02.prod.outlook.com
- (2603:1096:4:196::6) To KL1PR03MB5778.apcprd03.prod.outlook.com
- (2603:1096:820:6d::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|JH0PR03MB8113:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9595150e-534a-4e25-99d8-08dd031a95c2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?eTdzakpWMkJYQWt0VjRGa052RTJSdjQwQUFram1hVm9qeVp5ciszampzcUE5?=
- =?utf-8?B?bzVpM0JaSGRZZlEzUisrNnh4Q0MrWWo4NHA3a1MvTnk0QSs2VW0vbERVS1NI?=
- =?utf-8?B?MUZueXNhWHdIWUYwRzlQbXF6WG11dmkzY0xaQklWZDVkamlxc2NWRFEzWnlz?=
- =?utf-8?B?RzR5Tkd2UUNUelhHNDJmUG0xYTJvalhZN3h4L05kRWM1bzlnZ3BpVjBPSllY?=
- =?utf-8?B?S3JLRjA1ZVhONUxGek5oeFlIellMQ3prVkU5MUtzdG5xUWZFb2U5RzAzeURr?=
- =?utf-8?B?bmhMMlZjeGtHQ2R5LytKVUwyZWY4YlpUS3hBdHVqaStOM2RqdkNOL09CVmJr?=
- =?utf-8?B?YitIb2lMTFBMNmlsemYyc1NwU0hGMFBNTGNXakVxb3Ewa05ZSExaYWV3TkRS?=
- =?utf-8?B?NkprcjVTaXM2ZXhBKzF3aTFNL01CZFFYeUp3RFluWEM0cjM1Q1RLYmVvdUtH?=
- =?utf-8?B?NHhGNFc1a0xHYmEwT1pmWFp1T1IycHI2bmdra1V1S1BZcElVTnFXd0IzSk9I?=
- =?utf-8?B?VlE2VzhzbUtQYitXTC9ESmRST2tEdVVqWnI2OFA5QVdWdUlrMHBuajFKanlZ?=
- =?utf-8?B?Q3U1Nm1CM3M5N1F3eVpBdDdGc3ZyaDhDclF1Y2lKQ0FWN0FyNlhpTHY0a0pY?=
- =?utf-8?B?a2N2VDk5TE5oMDg3eDdDTGZndVdVVFB0RUtXbkNRUktnRWJZMlJqeUlsV3M3?=
- =?utf-8?B?c0dWVUFLRWNycE5oSWpCM0FqNWFOY2RGM0VPZmZ3bnkyYmNLRWdNN3hoY1hG?=
- =?utf-8?B?NXFlUTVyNnZqcElQNGYxemgvcFFZWGFSWmh6T3BxaW1GcnpzSzQyY0M5UU0x?=
- =?utf-8?B?VGRwYXZWMFQycm84a1NmVHhCSlFSUWdTUER5MTFQRC9DVFhJYlpPNFBzWEJH?=
- =?utf-8?B?Uk9pbUUzVWR4aFFhajNHMURPNGFWWUV3WnBSdmdjK0xlcktkVXlSN2N1UENm?=
- =?utf-8?B?Nzc1NXZsQ1lUbDM5aG1mMDNoZ0Q3YW1lNFBsTGY3TlRTOWowOGN4YVYwR2RK?=
- =?utf-8?B?L1MxSmljdU9xbExBY0ttSzJhSUpyeWFxT0lBdDRYUTRnYUV0Q1Q0WU1zY2Iz?=
- =?utf-8?B?SDBMR291L2I1cEVYdVp0SmxxUUFYdTd6QVBWbnJYSzROUGhnTjlFM1Z3c2tB?=
- =?utf-8?B?OFZLcXE3U2g1eUM4Y0ZZUEgzblBjWWc3VHdod1E1WG80Y20vNC9taVZFc2Q4?=
- =?utf-8?B?eC9JSzJNTlJkU3Z1K0gwMUZWa0NGN0s1bU9hbFRxcnBScDVyNnFkdjNsbU02?=
- =?utf-8?B?ZkE0QXUxdWY3Ymx6Wks0TElJaFpJQVRyeExGM3NWbWMzeDBmNS90MENEU0VF?=
- =?utf-8?B?NXRGVU84M2VrcEtpSUs2ek9FYVZaQlYzQytLaWZRZnpYQmd5VkxSMzFVdlFN?=
- =?utf-8?B?SUFZNnRoejdYLzRVTlVlNVBiTjRFaXd1bi9nV0FKU0xRdWpRK1JiR1NlV1Yw?=
- =?utf-8?B?em91bjQvWnBNSzVwYnRmQ2NRQWVITlA2SmNkSnZoVTd4TURWVG1NeEdhcjgy?=
- =?utf-8?B?MzZINVIrak8xODkzalpmOHVHVWNqS2tIc3hFQkFqdjlod2Z6VW9IbXZHdWcr?=
- =?utf-8?B?UVVaS1Q0cEhiNFhkWXJ6cjkyNDZQZkY0Q0o5OGZMU3JZV3EyRWlUczJoWERw?=
- =?utf-8?B?UkdoejJKVnNsaVdqN2M3dWNRdGIrUVp4Y3BEZmVPbkQrWnl6LzNTS0FwZjVl?=
- =?utf-8?B?YTFlMzdPN0pWQ21XV3FBODlaQU00NTd3OVZIWXFVajZZUUFyUzJMUFg1b2dw?=
- =?utf-8?Q?RdNzgt7Umc8yoHkvZF1QSKKoRbAO3H4S1dBbJp2?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(366016)(376014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WDJ4dnJDdjRETklyaS92NnY5MXAreGJYNnp2Y0w3Q0xEcUVXRmNvdDlaa1Ew?=
- =?utf-8?B?QTh0c0NWRDF2LzhvQU9FNU95M0JDc2UzVzE3SVRlak5GRHZhWklnZllRQTZr?=
- =?utf-8?B?MjJmakJac0ppRk5YZ2V6L0VLa0FPaTZQYjd2TjZXcVFzWG5mQnJjQUZadS8x?=
- =?utf-8?B?dldIOEFHTXZhVWtyMXlCamhQczVBN1RqcDVKNVNzM1JhUkxSaU9Mc1dpZ2l6?=
- =?utf-8?B?ZG8vazkyNU1YSy9tMDRCZE5IbkhRSWZCZzdoV0loS00xQnNMNnZYVWxrY3ly?=
- =?utf-8?B?NDY4UEoyd2U1T0ZXRGwrcmlINVRSODFmOWNJMnNIcE1VK2pzS2xtdWNpemN0?=
- =?utf-8?B?aDBxdm9qY21zR1czTlRsMXFhdUdJL09mbHNrOUs3YjZPakpzUzF0b0pnRW91?=
- =?utf-8?B?RG9laHhRcnljVTBsaGhEOCtnVStqNjNIbE9EQjdObVRaZS9DMnVSSlFPUFNK?=
- =?utf-8?B?NThCaGhzTkpYMWpvY0lzNWVBV1k4TGsrbXBxYlNsRTVOcGpjc2ZiWXgzRmI1?=
- =?utf-8?B?V3EvT1U3RkpnWk14RnJVOFYrc1ZoVmtaRDF4cHN2Z0htYXRTb0J2UWducEti?=
- =?utf-8?B?S1lmd2hmTTIvamh5ckkrZVhDVkNsOVBpaE5VUGlXRXdVR1JEb1I3UHRkcmhP?=
- =?utf-8?B?Ui9wZ21ScStVQ0hjT0NqYmNLTHpXYVh4YXNoU1g4emkzNGhHY3JRd0RNNGVS?=
- =?utf-8?B?WFIvT0xsYUxkT0FReDlLNlV0V3RUNXpyVlRvNE52cHJSYXJZNnY4dlRjV3Uv?=
- =?utf-8?B?cVF0bGthYlhaMDJtQkM5aDFwTzVkQ2NpajRhN2p0T2xsNkIxTHhxcGw5SW9h?=
- =?utf-8?B?YU9aQWVic2I4RndlVk9BVDVSYjV1ZUtVZTAvYm8xelE5dnZlMDRnZEtvY1ZO?=
- =?utf-8?B?NC9MTFNDS3NYc0s2MC9ZdEFPZHpLSkR6ZGp6QmNMaVBVRWlNdnc4YXd1SUZY?=
- =?utf-8?B?MTd6NzIzTENDenhSWm5sNjRwMExZMi8wdklhTzFVM2ZUVGhEWkVobVpPSDZW?=
- =?utf-8?B?Rm1WdWtXM2Yvc2lDUEwvNEpGOUlldVVHemtMK0ZsbjYyZGR2cFk2WVlsQXB1?=
- =?utf-8?B?eHR2RXdwVFNlaTYxYXA1cVE3R0U1RXkrM0JqamVDUEFZaUN3cjZNY084QVZK?=
- =?utf-8?B?REYrZEdjV1Q1eUhaT094b21ZazVFVU16Y3ErbDExaThpRGprM3pCcEp5bFlG?=
- =?utf-8?B?NFNrQ2UwUFRRbkNwK01JS0RuL1JNZjRJN05wYjdyV1NCblRRa0l2WVhTN0JY?=
- =?utf-8?B?SDFpbTNWczhyYWhLUWllWTZQd1V5Y2hSeEFTaDJIa21wYTZZTHRZT1pQS3Nq?=
- =?utf-8?B?UE1lZ0oveko2dlA3SzhKSEpNWDlpZHlDS3FuZW5kMkMwT2xCSldaaS8rZ2p1?=
- =?utf-8?B?VGVJNktNUE9qVWM5MHVEQ0VxWGJodjZlS0JYV2I5MjNxUGwzb3JGa0JqSzhj?=
- =?utf-8?B?TVNEak5BZFBBV1dvbWJCL3J6a1J0QU5JcXZSaGVWdEo4RGNQcHREZnByWVgx?=
- =?utf-8?B?OHEzaC8zTk5uRU42a3BCVTUycDc4d1RzSHRTZjNZVkJYT3FuejUvQVoyc1VY?=
- =?utf-8?B?ZVpFN2ZScmVXQi9qemU4RDM3U3Rob3F4N0xOVXZ1NmNmVHhHZVB6S0J2Ulgw?=
- =?utf-8?B?VVlGTUROamI1ZUpnbmNuaG9xbXA2dmUwTlFjZTlrNDRHd2JXU2JZR00rNlBz?=
- =?utf-8?B?cC96ckFxOXZiVmdXRExyWFVibUpOY3hkbkpWTVBJN0UrYnZyMTA1SzFHM05k?=
- =?utf-8?B?NjFTMW43aXM5VElOSmpIZHJ6Rmg1bkViRmtqeTBuejF4ZlNGZFI4UmpCd05a?=
- =?utf-8?B?WVRWcWMwZzhvb2RBM3F6THRNVkh0dktmNUM3ZUd4RnpzbG5aM3YvdEowdEhD?=
- =?utf-8?B?M2VPVDgreDhkYjhISTIwTlNsL3NKK0xERDROU0pjSzhJMlBYTGlFdUZkTG1I?=
- =?utf-8?B?Wk1hM2E0RVJqOE9PQUIrSG0rNHQ0UEtkeVEzbmFwbGR1VVE1aWs5VGJOQTZY?=
- =?utf-8?B?ODNIWjJ4V0srM1dEM0JHYThsTFBRQzVPajh1TDkyaldtbGZDem9mVERBU3BJ?=
- =?utf-8?B?dkZ1NEdRTmJQSXdIcVRONGFGclY2QnpqcG1MRTZCTXpMZUh6dFprRktzWjNZ?=
- =?utf-8?Q?KuhgnebAEqgrKM0GYDSuJF0Gl?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9595150e-534a-4e25-99d8-08dd031a95c2
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2024 13:04:47.4315
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4hyTb9E56ndaHYPGYuMNnbD8AlJbFy0f0EeU8d38hVOGgWRH86BD2XEeQ1s4w7YQ40pJcZXNHAtyQmbGXy+BBA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB8113
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241112_050457_995156_3BC50B74 
-X-CRM114-Status: GOOD (  24.18  )
+X-CRM114-CacheID: sfid-20241112_052433_665813_92DDAB9E 
+X-CRM114-Status: GOOD (  22.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -172,28 +121,21 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On 11/12/2024 8:57 PM, Chuan Liu via B4 Relay wrote:
-> [Some people who received this message don't often get email from devnull+chuan.liu.amlogic.com@kernel.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->
-> [ EXTERNAL EMAIL ]
->
+On 12/11/2024 13:57, Chuan Liu via B4 Relay wrote:
 > From: Chuan Liu <chuan.liu@amlogic.com>
->
+> 
 > The rate determined by calling clk_regmap_divider_ro_ops with
 > clk_regmap_div_determine_rate is not RO, which will result in the
 > unexpected modification of the frequency of its children when setting
 > the rate of a clock that references clk_regmap_divider_ro_ops.
->
+> 
 > Fiexs: ea11dda9e091 ("clk: meson: add regmap clocks")
-
-typo of "Fiexs", corrected in the next version.
-
 > Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 > ---
 > Background: During the execution of clk_set_rate(), the function
@@ -210,73 +152,77 @@ typo of "Fiexs", corrected in the next version.
 > ---
 >   drivers/clk/meson/clk-regmap.c | 36 ++++++++++++++++++++----------------
 >   1 file changed, 20 insertions(+), 16 deletions(-)
->
+> 
 > diff --git a/drivers/clk/meson/clk-regmap.c b/drivers/clk/meson/clk-regmap.c
 > index 07f7e441b916..edf65ca92c7a 100644
 > --- a/drivers/clk/meson/clk-regmap.c
 > +++ b/drivers/clk/meson/clk-regmap.c
 > @@ -80,21 +80,6 @@ static int clk_regmap_div_determine_rate(struct clk_hw *hw,
 >   {
->          struct clk_regmap *clk = to_clk_regmap(hw);
->          struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
-> -       unsigned int val;
-> -       int ret;
+>   	struct clk_regmap *clk = to_clk_regmap(hw);
+>   	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
+> -	unsigned int val;
+> -	int ret;
 > -
-> -       /* if read only, just return current value */
-> -       if (div->flags & CLK_DIVIDER_READ_ONLY) {
-> -               ret = regmap_read(clk->map, div->offset, &val);
-> -               if (ret)
-> -                       return ret;
+> -	/* if read only, just return current value */
+> -	if (div->flags & CLK_DIVIDER_READ_ONLY) {
+
+You're breaking current code by no more checking this flag,
+the new clk_regmap_div_ro_determine_rate() is fine, but you should call
+it from here if CLK_DIVIDER_READ_ONLY is set.
+
+Neil
+
+> -		ret = regmap_read(clk->map, div->offset, &val);
+> -		if (ret)
+> -			return ret;
 > -
-> -               val >>= div->shift;
-> -               val &= clk_div_mask(div->width);
+> -		val >>= div->shift;
+> -		val &= clk_div_mask(div->width);
 > -
-> -               return divider_ro_determine_rate(hw, req, div->table,
-> -                                                div->width, div->flags, val);
-> -       }
->
->          return divider_determine_rate(hw, req, div->table, div->width,
->                                        div->flags);
+> -		return divider_ro_determine_rate(hw, req, div->table,
+> -						 div->width, div->flags, val);
+> -	}
+>   
+>   	return divider_determine_rate(hw, req, div->table, div->width,
+>   				      div->flags);
 > @@ -127,9 +112,28 @@ const struct clk_ops clk_regmap_divider_ops = {
 >   };
 >   EXPORT_SYMBOL_NS_GPL(clk_regmap_divider_ops, CLK_MESON);
->
+>   
 > +static int clk_regmap_div_ro_determine_rate(struct clk_hw *hw,
-> +                                           struct clk_rate_request *req)
+> +					    struct clk_rate_request *req)
 > +{
-> +       struct clk_regmap *clk = to_clk_regmap(hw);
-> +       struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
-> +       unsigned int val;
-> +       int ret;
+> +	struct clk_regmap *clk = to_clk_regmap(hw);
+> +	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
+> +	unsigned int val;
+> +	int ret;
 > +
-> +       ret = regmap_read(clk->map, div->offset, &val);
-> +       if (ret)
-> +               return ret;
+> +	ret = regmap_read(clk->map, div->offset, &val);
+> +	if (ret)
+> +		return ret;
 > +
-> +       val >>= div->shift;
-> +       val &= clk_div_mask(div->width);
+> +	val >>= div->shift;
+> +	val &= clk_div_mask(div->width);
 > +
-> +       return divider_ro_determine_rate(hw, req, div->table, div->width,
-> +                                        div->flags, val);
+> +	return divider_ro_determine_rate(hw, req, div->table, div->width,
+> +					 div->flags, val);
 > +}
 > +
 >   const struct clk_ops clk_regmap_divider_ro_ops = {
->          .recalc_rate = clk_regmap_div_recalc_rate,
-> -       .determine_rate = clk_regmap_div_determine_rate,
-> +       .determine_rate = clk_regmap_div_ro_determine_rate,
+>   	.recalc_rate = clk_regmap_div_recalc_rate,
+> -	.determine_rate = clk_regmap_div_determine_rate,
+> +	.determine_rate = clk_regmap_div_ro_determine_rate,
 >   };
 >   EXPORT_SYMBOL_NS_GPL(clk_regmap_divider_ro_ops, CLK_MESON);
->
->
+>   
+> 
 > ---
 > base-commit: 664988eb47dd2d6ae1d9e4188ec91832562f8f26
 > change-id: 20241111-fix_childclk_of_roclk_has_been_tampered_with-61dbcc623746
->
+> 
 > Best regards,
-> --
-> Chuan Liu <chuan.liu@amlogic.com>
->
->
+
 
 _______________________________________________
 linux-amlogic mailing list
