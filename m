@@ -4,84 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 637C1D41D68
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2024 08:33:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58A9FD41D6E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2024 08:45:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UqR+BAZ1tP6hBvc8BNBgEld1PqjwDKhzulk0InXLFh4=; b=lMWf2YUdakrTn1
-	JZ41toJLoU1Ho0aiYF7TLGZ1JMjvwetYkSDExFvUhQ6RGL0bkEwuxhekuG6FjWxB3u642M6DGBxSO
-	wBYsxICXmtUQTNZIycVmtrKwotm8j4rlXeoPhtvaO/D/adclH1VMoXsSAOtxZUJZxlHnVuQCxNENN
-	cCgTPVgx+SfNvrGi4TBw8YAoO7yrqH+DilVw521IZGdSUJ3c8SKJQRzpc7lXhUyiP0tZBSPNWfpYu
-	M04F3fDzZyuQvxNW151nxf5PCVh0rEUmAC59+MJSud040DfIf0s2DIQ2x4/Ub+RB5qs6DgnsgDzI5
-	+omokXBt3mpAHpuRi11A==;
+	List-Owner; bh=iajehofitaoJ1Zq3Wc9MkRuMRmvBBz9YmLlOjDe/Mww=; b=ZD+TgJSb60ybnY
+	LJgJ2Gc8QyCrzVis5c4vw8sNGUx7T8SmQ5u2bNvYIf43bHYlTOUvoJZXFQQ1TJvJp9q9o/IA7+LI7
+	gSvj7Q4erfP9WSVbSRjZFngUj4IPf1xVn+0sv1fyYvYPCzp+2FaUs+xzTKXo2Ys7MPXP8aUQqGdFs
+	vEdVSP0ozy7hx2/2HBNZLo2xppt97CExapAVpm1QssZs7oK289FeF3uiUtmRzYkpZPRQ6QpEKOBew
+	5pUyX2BzOY7+yIaKbZjW5bER1QrSNJmo488b/POOL5ljc7wyV0qtBEcMa1fHjjl+Y8hP5QAzveVNR
+	4M/PPkBpAjxPrwhqqIIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAmKa-00000002eDc-1v96;
-	Tue, 12 Nov 2024 08:33:00 +0000
-Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
+	id 1tAmWK-00000002gcJ-3wl8;
+	Tue, 12 Nov 2024 08:45:08 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAmKW-00000002eC0-3Txx
+	id 1tAmO3-00000002enf-3hk9
 	for linux-amlogic@lists.infradead.org;
-	Tue, 12 Nov 2024 08:32:58 +0000
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-539f4d8ef84so6744845e87.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 12 Nov 2024 00:32:55 -0800 (PST)
+	Tue, 12 Nov 2024 08:36:38 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-37d4ac91d97so5042899f8f.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 12 Nov 2024 00:36:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731400374; x=1732005174; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731400594; x=1732005394; darn=lists.infradead.org;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MpOmmhEgCIw/0RfkRHrc8gag9KJhea6HQz3Fc6gj8mk=;
-        b=w/BkrmGIJ7RXQBVZeQnff6+gVCJf+GoT2cu3sqzL7CNzxV201zvB/C2HmhzN20yUDg
-         A+d13v3594KdEQn3gvzqizw0h1H7/HQhb18tHNrNqYM3/Esmf566sVTdYR+UDfIzR2k3
-         IYgtrc5DoGjg+Y6KM3SkHFUBALrl/ksXko0F8HniCngGqfb674nxrLnolD0JxQwYwJy9
-         QHTTq+Za1mwA7oUDEUsshzEZQa2xONx9GLaPB9l8k9flYje0KHJvZD9spTIfgWXksi+n
-         CGguHXTx21h1o0Y05175C6TfigzpKY/uKdrgBwD16Ud3F+7/XhhTUIdyO43Qsc30inj3
-         908Q==
+        bh=/MXKM1Sqb74I8ZQpKiaye137tCtqvkpww9vx9BtZ+wc=;
+        b=d6x3ezWhB6Agexri1a20I/DMBo/iZApEkGryS4ia2+TW55LV9Ax+6OeWlDSzIKYTuf
+         8m3y730Ph5jBVM/zJEUkCMoxexcZJcThDCBaPmmNjsOeUb6cqYiA82Cmzlb/AJ3ha1Gs
+         Uzgbs/wDLraR3Ei/P/3SIeY+LxFF7CmJGqgmW/JL+bhEIUm+GfIqpg66Xl+uloKrTRcy
+         4KaSzuDZ91AJGtgF5fO9rF3N3LQhxz6oAc9sS1TlbO3AhN6c1sCHlSu5JfStGgoluCu1
+         S//nct/h2YdAlEQNdvXWzrkM4QWGbMSGL9Xqcp5km7Fl6oloeK6+PUyxM6ci7Zec1vGT
+         d8PQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731400374; x=1732005174;
+        d=1e100.net; s=20230601; t=1731400594; x=1732005394;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MpOmmhEgCIw/0RfkRHrc8gag9KJhea6HQz3Fc6gj8mk=;
-        b=oRcTlL5GqxuRwQSd+7lXTL05FZ8aHUihQvQRYim97mOtw64oockBoW67F+embaO6yM
-         ukPDcZ12w+Lg1PFvdnCAJ8BhPImSzMFIviUMn9fUXSmiPXuyYkC8+hlfuPS455PGoCMX
-         Gr/0GBg0zIY0OKAzfmCyE8OSrtnFYYgWMa/RCuJA+e0ycgr3fcz8nBJhr5Us5NtTDwZg
-         +Cpi8xV9NLmZDrB6Sz7bxCa1lDjKfS7KvKzt4J9MbdbJRL/GFTC9GzBWEftRDV+ZaDBy
-         d4cJp1TRvJTqLu3XyzUvRfZv89fSpuuK7E5eF/+IrL1SlehByDoNBCcSOoL9In8XSQGE
-         OLZA==
-X-Forwarded-Encrypted: i=1; AJvYcCUB/qX0194HQh5ETD8Eq+h+HpE5KSI9vmno6CXv1w9nc/ml8HMdBgl4eGMRY9KKE/ylV1ID+0DBNI/7isK9@lists.infradead.org
-X-Gm-Message-State: AOJu0YzOM+PwA51kayBNc7ctEpy599qVYDbRzRf4X1zSv73QVaG/NAJb
-	XOS6/FJEfjLMOD0NOERaGevfrKI2Ax6abthzyjHNWx4RFSlRXv4Ev7BjIshXNTLTWvHEGX6InPk
-	C
-X-Google-Smtp-Source: AGHT+IFDkMH3817tueatY05ODRpjlMk98rQ1z0j0irToOsmILa1mIIxBQeYG9cqGFBBCc961D8pddw==
-X-Received: by 2002:a05:6512:2393:b0:53b:4bc0:72aa with SMTP id 2adb3069b0e04-53d862431b0mr7092845e87.34.1731400374216;
-        Tue, 12 Nov 2024 00:32:54 -0800 (PST)
+        bh=/MXKM1Sqb74I8ZQpKiaye137tCtqvkpww9vx9BtZ+wc=;
+        b=MpQswCKmVE8q1qQN+sEtKu7hOuuyJEczdeipcctuKkt3IEv9x6nggReD0Yx06MJIqp
+         /XmjASWk0zhvioitZ488IAcQEu8c2tEbGhvq0QxiNG/TQlqy8f+fWBDbunGamdMYwMEu
+         JMon/AWnkyWVgZrzRr58Q1sV2kiYSo1fNFYtPyfGGTVSbyaG5qn5WKaloh/uDSW94GDy
+         zrrkShQsXiXgLYfFPHrzFTlJh34N8jpwuQBW6StZEG8zkUGdsVRh+swvvJHGzzHOX7p8
+         cM1h4lzHHO2BDhHTxdEjHb4HTaXBUS/v9K3LH8D+uoNi9cMK6fVgcHRvaSOf4McjP3Ki
+         Lj+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWPHzAsmt0GymrJRpC2E7C8w8PuGEPnaVeBdG4BTrhMr+/qOUqlql6ORiFGW412rzA9ju1IruYFAo393fdI@lists.infradead.org
+X-Gm-Message-State: AOJu0YxZSG5Jgr9ZEgmpYZaSCOHgn37fzEQNVnDjMy2Pgj4RcTtWImk2
+	/XFgi3VCsZ5GLueDTpvjaSLDl7VYY8hwvwrxbE67mbkzXQ/axy2KoGU/IPMTdnA=
+X-Google-Smtp-Source: AGHT+IH8yunZYqyZqpSqETzBCKEoRJ1QIodl+MOpYN4uXnicVv8QU+PV+QjD7NHinPY4E5kCPs85PQ==
+X-Received: by 2002:a05:6000:1fa1:b0:37d:3e6d:6a00 with SMTP id ffacd0b85a97d-381f1884805mr15336017f8f.47.1731400593801;
+        Tue, 12 Nov 2024 00:36:33 -0800 (PST)
 Received: from localhost ([2a01:e0a:3c5:5fb1:50f9:1df6:c2b9:a468])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432b053047dsm200262155e9.3.2024.11.12.00.32.53
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381ed997320sm14968695f8f.47.2024.11.12.00.36.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Nov 2024 00:32:53 -0800 (PST)
+        Tue, 12 Nov 2024 00:36:33 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Neil Armstrong <neil.armstrong@linaro.org>,  Kevin
- Hilman <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  chuan.liu@amlogic.com,
+To: Chuan Liu <chuan.liu@amlogic.com>
+Cc: Stephen Boyd <sboyd@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
   linux-clk@vger.kernel.org,  linux-kernel@vger.kernel.org,
   linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] clk: meson: Fix failure of glitch-free mux
- switching
-In-Reply-To: <20241111-fix_glitch_free-v2-2-0099fd9ad3e5@amlogic.com> (Chuan
-	Liu via's message of "Mon, 11 Nov 2024 11:37:02 +0800")
-References: <20241111-fix_glitch_free-v2-0-0099fd9ad3e5@amlogic.com>
-	<20241111-fix_glitch_free-v2-2-0099fd9ad3e5@amlogic.com>
-Date: Tue, 12 Nov 2024 09:32:53 +0100
-Message-ID: <1j8qto3l8q.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [RFC PATCH] clk: core: refine disable unused clocks
+In-Reply-To: <5eb12197-330c-4f55-82f7-d13ea458ba43@amlogic.com> (Chuan Liu's
+	message of "Fri, 8 Nov 2024 19:49:59 +0800")
+References: <1jcykltj7g.fsf@starbuckisacylon.baylibre.com>
+	<20241004133953.494445-1-jbrunet@baylibre.com>
+	<07594a59-c999-4592-84b8-4e163d3edba4@amlogic.com>
+	<1jttci2k8k.fsf@starbuckisacylon.baylibre.com>
+	<85aae140-5c9b-4ff9-a522-549009f62601@amlogic.com>
+	<1jcyj62gi7.fsf@starbuckisacylon.baylibre.com>
+	<5eb12197-330c-4f55-82f7-d13ea458ba43@amlogic.com>
+Date: Tue, 12 Nov 2024 09:36:32 +0100
+Message-ID: <1j4j4c3l2n.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241112_003257_018114_7DFAAC2F 
-X-CRM114-Status: GOOD (  25.23  )
+X-CRM114-CacheID: sfid-20241112_003636_156991_E93268C4 
+X-CRM114-Status: GOOD (  19.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,272 +100,106 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon 11 Nov 2024 at 11:37, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
+On Fri 08 Nov 2024 at 19:49, Chuan Liu <chuan.liu@amlogic.com> wrote:
 
-> From: Chuan Liu <chuan.liu@amlogic.com>
+> On 11/8/2024 5:59 PM, Jerome Brunet wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> On Fri 08 Nov 2024 at 17:23, Chuan Liu <chuan.liu@amlogic.com> wrote:
+>>
+>>>>>> -       if (core->flags & CLK_IGNORE_UNUSED)
+>>>>>> +       /*
+>>>>>> +        * If the parent is disabled but the gate is open, we should sanitize
+>>>>>> +        * the situation. This will avoid an unexpected enable of the clock as
+>>>>>> +        * soon as the parent is enabled, without control of CCF.
+>>>>>> +        *
+>>>>>> +        * Doing so is not possible with a CLK_OPS_PARENT_ENABLE clock without
+>>>>>> +        * forcefully enabling a whole part of the subtree.  Just let the
+>>>>>> +        * situation resolve it self on the first enable of the clock
+>>>>>> +        */
+>>>>>> +       if (!parent_enabled && (core->flags & CLK_OPS_PARENT_ENABLE))
+>>> At first, I couldn't grasp the logic behind the 'return' here. Now it's
+>>> clear. This approach is equivalent to completely giving up on
+>>> handling clocks with CLK_OPS_PARENT_ENABLE feature in
+>>> clk_disable_unused_subtree().
+>>>
+>> No. It's handled correctly as long as the tree is in coherent state.
+>>
+>> What is not done anymore is fixing up an inconsistent tree, by this I
+>> mean: A clock with CLK_OPS_PARENT_ENABLE, which report enabled from its
+>> own registers but has its parent disabled.
+>>
+>> In that particular case, clk_disable_unused_subtree() won't be turning on
+>> everything to properly disable that one clock. That is the root cause of
+>> the problem you reported initially. The clock is disabled anyway.
+>>
+>> Every other case are properly handled (at least I think).
 >
-> glitch-free mux has two clock channels (channel 0 and channel 1) with
-> the same configuration.Channel 0 of glitch-free mux is not only the
-> clock source for the mux, but also the working clock for glitch free
-> mux. Therefore, when glitch-free mux switches, it is necessary to ensure
-> that channel 0 has a clock input, otherwise glitch free mux will not
-> work and cannot switch to the target channel. So adding flag
-> CLK_OPS_PARENT_ENABLE ensures that both channels 0 and 1 are enabled
-> when mux switches.
+> name              en_sts            flags
+> clk_a                1          CLK_IGNORE_UNUSED
+>     clk_b            0                0
+>         clk_c        1         CLK_OPS_PARENT_ENABLE
 >
-> In fact, we just need to make sure that channel 0 is enabled. The
-> purpose of CLK_OPS_PARENT_ENABLE may not be to solve our situation, but
-> adding this flag does solve our current problem.
+> Based on the above case:
+> 1. When 'clk_c' is configured with CLK_OPS_PARENT_ENABLE, disabling
+> 'clk_c' requires enabling 'clk_b' first (disabling 'clk_c' before
+> disabling 'clk_b'). How can to ensure that during the period of
+> disabling 'clk_c', 'clk_b' remains enabled?
+
+That's perfect example of incoherent state.
+How can 'clk_c' be enabled if its parent is disable. That makes no
+sense, so there is no point enabling a whole subtree for this IMO.
+
 >
-> Fixes: 84af914404db ("clk: meson: a1: add Amlogic A1 Peripherals clock
-> controller driver")
+> 2. 'clk_c' is not configured with CLK_IGNORE_UNUSED, it should be
+> disabled later. However, here it goes to a 'goto' statement and then
+> return 'false', ultimately resulting in 'clk_c' not being disabled?
 
-Fix your mailer please
+We've discussed that 2 times already. This discussion is going in
+circles now.
 
-> Fixes: 14ebb3154b8f ("clk: meson: axg: add Video Clocks")
-> Fixes: f06ac3ed04e8 ("clk: meson: c3: add c3 clock peripherals controller
-> driver")
-> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
-> Fixes: fac9a55b66c9 ("clk: meson-gxbb: Add MALI clocks")
-> Fixes: 74e1f2521f16 ("clk: meson: meson8b: add the GPU clock tree")
-> Fixes: 57b55c76aaf1 ("clk: meson: S4: add support for Amlogic S4 SoC
-> peripheral clock controller")
-
-There is no reason to mix up so many things together.
-
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
->  drivers/clk/meson/a1-peripherals.c |  4 ++--
->  drivers/clk/meson/axg.c            |  4 ++--
->  drivers/clk/meson/c3-peripherals.c |  2 +-
->  drivers/clk/meson/g12a.c           |  6 +++---
->  drivers/clk/meson/gxbb.c           |  6 +++---
->  drivers/clk/meson/meson8b.c        | 21 ++++++++++++++++++---
->  drivers/clk/meson/s4-peripherals.c | 12 ++++++------
->  7 files changed, 35 insertions(+), 20 deletions(-)
 >
-> diff --git a/drivers/clk/meson/a1-peripherals.c b/drivers/clk/meson/a1-peripherals.c
-> index 7aa6abb2eb1f..4b9686916b17 100644
-> --- a/drivers/clk/meson/a1-peripherals.c
-> +++ b/drivers/clk/meson/a1-peripherals.c
-> @@ -489,7 +489,7 @@ static struct clk_regmap dspa_sel = {
->  			&dspa_b.hw,
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -635,7 +635,7 @@ static struct clk_regmap dspb_sel = {
->  			&dspb_b.hw,
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-> index 1b08daf579b2..a1217dff40fa 100644
-> --- a/drivers/clk/meson/axg.c
-> +++ b/drivers/clk/meson/axg.c
-> @@ -1144,7 +1144,7 @@ static struct clk_regmap axg_vpu = {
->  			&axg_vpu_1.hw
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_NO_REPARENT,
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -1260,7 +1260,7 @@ static struct clk_regmap axg_vapb_sel = {
->  			&axg_vapb_1.hw
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_NO_REPARENT,
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> diff --git a/drivers/clk/meson/c3-peripherals.c b/drivers/clk/meson/c3-peripherals.c
-> index 7dcbf4ebee07..4566c2aeeb19 100644
-> --- a/drivers/clk/meson/c3-peripherals.c
-> +++ b/drivers/clk/meson/c3-peripherals.c
-> @@ -1431,7 +1431,7 @@ static struct clk_regmap hcodec = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_data = hcodec_parent_data,
->  		.num_parents = ARRAY_SIZE(hcodec_parent_data),
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-> index d3539fe9f7af..4d3b064d09fc 100644
-> --- a/drivers/clk/meson/g12a.c
-> +++ b/drivers/clk/meson/g12a.c
-> @@ -2812,7 +2812,7 @@ static struct clk_regmap g12a_vpu = {
->  			&g12a_vpu_1.hw,
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_NO_REPARENT,
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -3105,7 +3105,7 @@ static struct clk_regmap g12a_vapb_sel = {
->  			&g12a_vapb_1.hw,
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_NO_REPARENT,
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -4039,7 +4039,7 @@ static struct clk_regmap g12a_mali = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = g12a_mali_parent_hws,
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index 262c318edbd5..dfa9ffc61b41 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -1132,7 +1132,7 @@ static struct clk_regmap gxbb_mali = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = gxbb_mali_parent_hws,
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -1613,7 +1613,7 @@ static struct clk_regmap gxbb_vpu = {
->  			&gxbb_vpu_1.hw
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_NO_REPARENT,
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -1748,7 +1748,7 @@ static struct clk_regmap gxbb_vapb_sel = {
->  			&gxbb_vapb_1.hw
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_NO_REPARENT,
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index e4b474c5f86c..0af76b527e5b 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -1997,7 +1997,22 @@ static struct clk_regmap meson8b_mali = {
->  			&meson8b_mali_1.hw,
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		/*
-> +		 * glitch-free mux has two clock channels (channel 0 and
-> +		 * channel 1) with the same configuration.Channel 0 of
-> +		 * glitch-free mux is not only the clock source for the mux,
-> +		 * but also the working clock for glitch free mux. Therefore,
-> +		 * when glitch-free mux switches, it is necessary to ensure that
-> +		 * channel 0 has a clock input, otherwise glitch free mux will
-> +		 * not work and cannot switch to the target channel. So adding
-> +		 * flag CLK_OPS_PARENT_ENABLE ensures that both channels 0 and 1
-> +		 * are enabled when mux switches.
-> +		 *
-> +		 * In fact, we just need to make sure that channel 0 is enabled.
-> +		 * The purpose of CLK_OPS_PARENT_ENABLE may not be to solve our
-> +		 * situation, but adding this flag does solve our current problem.
-> +		 */
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -2252,7 +2267,7 @@ static struct clk_regmap meson8b_vpu = {
->  			&meson8b_vpu_1.hw,
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -2364,7 +2379,7 @@ static struct clk_regmap meson8b_vdec_1 = {
->  			&meson8b_vdec_1_2.hw,
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
-> index c930cf0614a0..79e0240d58e6 100644
-> --- a/drivers/clk/meson/s4-peripherals.c
-> +++ b/drivers/clk/meson/s4-peripherals.c
-> @@ -1404,7 +1404,7 @@ static struct clk_regmap s4_mali_mux = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = s4_mali_parent_hws,
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -1536,7 +1536,7 @@ static struct clk_regmap s4_vdec_mux = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = s4_vdec_mux_parent_hws,
->  		.num_parents = ARRAY_SIZE(s4_vdec_mux_parent_hws),
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -1656,7 +1656,7 @@ static struct clk_regmap s4_hevcf_mux = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = s4_hevcf_mux_parent_hws,
->  		.num_parents = ARRAY_SIZE(s4_hevcf_mux_parent_hws),
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -1774,7 +1774,7 @@ static struct clk_regmap s4_vpu = {
->  			&s4_vpu_1.hw,
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -1989,7 +1989,7 @@ static struct clk_regmap s4_vpu_clkc_mux = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = s4_vpu_mux_parent_hws,
->  		.num_parents = ARRAY_SIZE(s4_vpu_mux_parent_hws),
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
->  
-> @@ -2115,7 +2115,7 @@ static struct clk_regmap s4_vapb = {
->  			&s4_vapb_1.hw
->  		},
->  		.num_parents = 2,
-> -		.flags = CLK_SET_RATE_PARENT,
-> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->  	},
->  };
+>>>>>>                    goto unlock_out;
+>>>>>>
+>>>>>>            /*
+>>>>>> @@ -1516,8 +1545,7 @@ static void __init clk_disable_unused_subtree(struct clk_core *core)
+>>>>>>
+>>>>>>     unlock_out:
+>>>>>>            clk_enable_unlock(flags);
+>>>>>> -       if (core->flags & CLK_OPS_PARENT_ENABLE)
+>>>>>> -               clk_core_disable_unprepare(core->parent);
+>>>>>> +       return (core->flags & CLK_IGNORE_UNUSED) && enabled;
+>>>>>>     }
+>>>>>>
+>>>>>>     static bool clk_ignore_unused __initdata;
+>>>>>> @@ -1550,16 +1578,16 @@ static int __init clk_disable_unused(void)
+>>>>>>            clk_prepare_lock();
+>>>>>>
+>>>>>>            hlist_for_each_entry(core, &clk_root_list, child_node)
+>>>>>> -               clk_disable_unused_subtree(core);
+>>>>>> +               clk_disable_unused_subtree(core, true);
+>>>>>>
+>>>>>>            hlist_for_each_entry(core, &clk_orphan_list, child_node)
+>>>>>> -               clk_disable_unused_subtree(core);
+>>>>>> +               clk_disable_unused_subtree(core, true);
+>>>>>>
+>>>>>>            hlist_for_each_entry(core, &clk_root_list, child_node)
+>>>>>> -               clk_unprepare_unused_subtree(core);
+>>>>>> +               clk_unprepare_unused_subtree(core, true);
+>>>>>>
+>>>>>>            hlist_for_each_entry(core, &clk_orphan_list, child_node)
+>>>>>> -               clk_unprepare_unused_subtree(core);
+>>>>>> +               clk_unprepare_unused_subtree(core, true);
+>>>>>>
+>>>>>>            clk_prepare_unlock();
+>>>>>>
+>>>>>> --
+>>>>>> 2.45.2
+>>>>>>
+>>>> --
+>>>> Jerome
+>> --
+>> Jerome
 
 -- 
 Jerome
