@@ -4,82 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 433E2D3ABFB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2024 13:28:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8DBFD3ABFB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2024 13:32:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7GrHlYk9Q9oBU+dwBvyrFJ9m+obc8rFtbXsOW8qj5uQ=; b=BgBjheNgwLb+Zxzelouw5BqdM2
-	91wv3jjiosx+evzIz+f0eWU4pVJCYRjDmP6WKFrkWceOVxPccvHOJonY7z0p231XYLzOYdh4FEXY7
-	8XQmkyyY6gubggbq9IpDxlFulLi33RUnbTyRvsFkkkjhwZd9tHLQwaqaU2EmlLYv4OQvmq8nw2lJS
-	DoorMPmJH5xhhvomyzwTt8Q2mNFwDp5QmnNkyCJbvbEdLbqdeRJO2j42apt7qAlm73tStC/N7dJNa
-	x9UTVVK+cwDkkmSwLke552FomCWmlqeR/LiG5Rb/ju+GjGxm94cHZ9y7CDNLgpiDKM2JK2B69TiDS
-	v4acHuCg==;
+	bh=TCVvuYNJ3ewqCBiGHxznkaLUtLRqYaEBKg9Q+Yo7psM=; b=tbifU37JUU9tU0jOjekUSC7qnZ
+	DUYGN1bMFr+Pb2dzmRFMgyphgJdf9cF4IO362gbab/yXxC/SWABFk61InIs/ESlIkd11jPxbV+gTl
+	Yj60HC5XHh+5ZQ0o2YjrcIR9SjKR1TewYZDvWvb0hlB0Es+9kcoGq5MQ5gcllAfI7UGHYgG2OWNOA
+	Foxqpl41veRlve+GuZiFuZErJuWksjKbCBmIot11n7r7GI8vvnAZS3KnaxDPQdHzXZZS97G/CoHwT
+	PK3HhiUWHq66wRAaUIskEDICNsZ2JbZfMNQ3GTUvKndNerLOC++OIXVu+0K40k4k4hbNf3PQvFf7u
+	uwIWa+qQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAqwc-00000003Z0H-2YA1;
-	Tue, 12 Nov 2024 13:28:34 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1tAr0K-00000003ZzH-2xAK;
+	Tue, 12 Nov 2024 13:32:24 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tAqsj-00000003Y5P-2ASi
+	id 1tAquw-00000003YaN-3d8A
 	for linux-amlogic@lists.infradead.org;
-	Tue, 12 Nov 2024 13:24:39 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-37d5aedd177so3315401f8f.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 12 Nov 2024 05:24:33 -0800 (PST)
+	Tue, 12 Nov 2024 13:26:53 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-43159c9f617so44744125e9.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 12 Nov 2024 05:26:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731417872; x=1732022672; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1731418009; x=1732022809; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=op9TisDjuU6SXMVv/j5ec//p11wAht9zab/vpdAa0jE=;
-        b=j15hQcMV0NYShAnHaUWxXWl2Nls61DXLv8JuxOtzrrrAANTCuA87R6lCERNe9XWrfJ
-         x2JZpjIrN5Ke6WVr6BqvwJjZXuxpqmsIk9IW2/WBbPiDAeFp/JFsbY3wgaW61fY845VP
-         gzrhDZ53/6RIXa8dI/hBlVi0ngy9sOD4PhtHnL26bMmU99SkwvQGmV0bRF6q4gQnA/Ot
-         mN6UpMpOW5cJJPzTlVyrz5li1Uco84/CAXSBSE30yoF8D0FaartaoHFTiozM79M3QWKu
-         SgyT9LmYasA4Fv322ufPKFGIur7nz+e1PFll2DVxHLTHNCdSCoMPtt9DasfFGQ7xNusz
-         Q+IA==
+        bh=dRmLbf/bz31mm/eeVY/iGKbUEcxPetAbKwSG1URLvJ0=;
+        b=Xw/0xv3yUptElTePLJCpIPeqJ+cRn6zQ8l9LilwzpoEoHg8hnviLfouQ1I5T9pVH1p
+         a7zcr30a6w/NrKpPb7AgXRd2jyq0VkiZTZHH28f8xjxL4VBSjgDZrfvLXqdjqIS+Axc1
+         gt+9SXbDecSo8hq0mevUB02EidP7DusVX159ieFLHOKIUVgI023LKnIHIJywOki5Iqie
+         x/aLiGVRhvURcXILZz66+BCIYum+5tvuBsEIf4km5vQWzAjZf56LnX8WW9HQ6ZL27jr2
+         MoRNmKqMgkB7EkbIoXcytm3GvgWHf3P8V2GeE/wDh7nyONjFNHT4qlEds/ITJDWInZuj
+         BCnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731417872; x=1732022672;
+        d=1e100.net; s=20230601; t=1731418009; x=1732022809;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=op9TisDjuU6SXMVv/j5ec//p11wAht9zab/vpdAa0jE=;
-        b=jwPHw5TpPvl94nBlZsGN1XVazHml1hucAj38a6wQIHU3o8iGuRtQSoj+7Zmcye+qyp
-         l1Kk8HGxVwKhfmP4m5Ix1ksMOospJn/5/kBysgJk3wFvgavmORbYtEDGqExrC/GNXRaX
-         /qdyCf+77dJnW6L/qWIVY1gOXTaeudItBU9ZneXMWfkdepH6k/o00YfhxP8o/gD4dnwF
-         MqvvIkXDArFyu69bnJUtH2BA8Juo4SxPK+X2UZnB2ExWorr4UTF6jZy6LT3sZyFQ3QNJ
-         raNzfe4BN7bWIwCBrc9nGAH9ZxTFbxGNoWk/4r/yOEEpthnFUIVqtKFfwdWj/6xFXsik
-         zXsw==
-X-Gm-Message-State: AOJu0YzhqW5E1jrFahOD1gIM0HDHeN0m8Bts10TGzHtdb8VAf3QH+0rX
-	ASevl9vnbrY3XR1HBr/a+eyXwhTGQicZaRTSRApAdryz0sLFUCXwqgCf+cFIFz8=
-X-Google-Smtp-Source: AGHT+IFUbvqpp7hxTTTbUnzJmnji9CfW4r3V54ckUUimyAfT0DIrLZ5j+wf8asngwceIIwDWhCpAYw==
-X-Received: by 2002:a05:6000:4913:b0:381:ed41:da7a with SMTP id ffacd0b85a97d-381f1848940mr12877952f8f.54.1731417871732;
-        Tue, 12 Nov 2024 05:24:31 -0800 (PST)
+        bh=dRmLbf/bz31mm/eeVY/iGKbUEcxPetAbKwSG1URLvJ0=;
+        b=gt07eY6Pio4eICyQBXlOJKndvRqcYsl6Uxghg5WrsS8jUhciDWBclHPH+aibWzI59R
+         YzEPYCVCUVzu2DW/J8A4mtbtD9lJJdwAgbWZo4+4zoT3122Ly5rt7FD+0NGJGU641+Np
+         gVqYH7XOqNAoRwjvcGqY8+ojLjBYaOXtrTiWGIRjPzzswjeH106jTAjhCpf+2KrocXAT
+         N6YhzEuZPSlZvPoBT5Bk7N8+KAAd3lhvY4HqvWyFb0rrO8P1rBkLuqBb8tDJ09ph7vxS
+         QCUghr/JeVcOFjen3MP0Fmtyy/98FJyM1Qq1iQ5ejAgrHJn0Q0KAN77VYbKA5+ZMol/w
+         DxTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXNrLiVxQdZWfWKznT2NVSe9eC+GBr6RJ1zKOK2u2wmrA6aOwyus6C2iPDpuYVfGpSSXChYcvcXQ1jay9xp@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx/PMO3VN21Mij3SX2Z6ST3LVWGYx2iXG1GEqwBxudeMRloNRHc
+	VkQDrFPQ+n4gbydo4jMiAbM5GKMbYQob09l1Xpz7dw/zAtCSBA5ViAqJwnn+HzY=
+X-Google-Smtp-Source: AGHT+IFTQlXSukq+djtZ02mrwHjUmWSAl2HtnKbbzOayDUOl3KycAHIOi0rl6/yfP9eUPu5iRkh9QA==
+X-Received: by 2002:a05:600c:3514:b0:42f:4f6:f8f3 with SMTP id 5b1f17b1804b1-432b74fde60mr137847665e9.7.1731418009251;
+        Tue, 12 Nov 2024 05:26:49 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:860c:aff4:d0e9:9db8? ([2a01:e0a:982:cbb0:860c:aff4:d0e9:9db8])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381eda05dfcsm15353314f8f.91.2024.11.12.05.24.30
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432b0566544sm205123355e9.24.2024.11.12.05.26.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Nov 2024 05:24:31 -0800 (PST)
-Message-ID: <35307d7a-a110-430d-9ba5-808a05450adb@linaro.org>
-Date: Tue, 12 Nov 2024 14:24:30 +0100
+        Tue, 12 Nov 2024 05:26:48 -0800 (PST)
+Message-ID: <e1b810f6-b5b3-43aa-9cc1-e9601589ddf5@linaro.org>
+Date: Tue, 12 Nov 2024 14:26:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2] clk: meson: Fix the determine rate error in
- clk_regmap_divider_ro_ops
-To: chuan.liu@amlogic.com, Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+Subject: Re: [PATCH v5 1/5] dt-bindings: pinctrl: modify gpio-cells property
+To: xianwei.zhao@amlogic.com, Linus Walleij <linus.walleij@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jian Hu <jian.hu@amlogic.com>, Dmitry Rokosov <ddrokosov@sberdevices.ru>,
- Yu Tu <yu.tu@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241112-fix_childclk_of_roclk_has_been_tampered_with-v2-1-64f8009cdf2a@amlogic.com>
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241112-a4_pinctrl-v5-0-3460ce10c480@amlogic.com>
+ <20241112-a4_pinctrl-v5-1-3460ce10c480@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -106,10 +108,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20241112-fix_childclk_of_roclk_has_been_tampered_with-v2-1-64f8009cdf2a@amlogic.com>
+In-Reply-To: <20241112-a4_pinctrl-v5-1-3460ce10c480@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241112_052433_665813_92DDAB9E 
-X-CRM114-Status: GOOD (  22.41  )
+X-CRM114-CacheID: sfid-20241112_052651_047712_9F487485 
+X-CRM114-Status: GOOD (  13.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,102 +129,44 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12/11/2024 13:57, Chuan Liu via B4 Relay wrote:
-> From: Chuan Liu <chuan.liu@amlogic.com>
-> 
-> The rate determined by calling clk_regmap_divider_ro_ops with
-> clk_regmap_div_determine_rate is not RO, which will result in the
-> unexpected modification of the frequency of its children when setting
-> the rate of a clock that references clk_regmap_divider_ro_ops.
-> 
-> Fiexs: ea11dda9e091 ("clk: meson: add regmap clocks")
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
-> Background: During the execution of clk_set_rate(), the function
-> clk_core_round_rate_nolock() is called to calculate the matching rate
-> and save it to 'core->new_rate'. At the same time, it recalculates and
-> updates its 'child->newrate'. Finally, clk_change_rate() is called to
-> set all 'new_rates'.
-> ---
-> Changes in v2:
-> - Remove the CLK_DIVIDER_READ_ONLY judgment logic in
-> clk_regmap_div_determine_rate().
-> - Add clk_regmap_div_ro_determine_rate().
-> - Link to v1: https://lore.kernel.org/r/20241111-fix_childclk_of_roclk_has_been_tampered_with-v1-1-f8c1b6ffdcb0@amlogic.com
-> ---
->   drivers/clk/meson/clk-regmap.c | 36 ++++++++++++++++++++----------------
->   1 file changed, 20 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/clk/meson/clk-regmap.c b/drivers/clk/meson/clk-regmap.c
-> index 07f7e441b916..edf65ca92c7a 100644
-> --- a/drivers/clk/meson/clk-regmap.c
-> +++ b/drivers/clk/meson/clk-regmap.c
-> @@ -80,21 +80,6 @@ static int clk_regmap_div_determine_rate(struct clk_hw *hw,
->   {
->   	struct clk_regmap *clk = to_clk_regmap(hw);
->   	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
-> -	unsigned int val;
-> -	int ret;
-> -
-> -	/* if read only, just return current value */
-> -	if (div->flags & CLK_DIVIDER_READ_ONLY) {
+Hi,
 
-You're breaking current code by no more checking this flag,
-the new clk_regmap_div_ro_determine_rate() is fine, but you should call
-it from here if CLK_DIVIDER_READ_ONLY is set.
+On 12/11/2024 11:26, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> 
+> Extend the value range of #gpio-cells property, including [2, 3],
+> to compatible with Amlogic A4 SoC and later chips's pinctrl module.
+> The early GPIO parameter number is 2, and the later GPIO parameter
+> number is 3.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>   .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml       | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+> index e707c222a07f..6b53577dea59 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+> @@ -36,7 +36,7 @@ $defs:
+>         gpio-controller: true
+>   
+>         "#gpio-cells":
+> -        const: 2
+> +        enum: [2, 3]
+>   
+>         gpio-ranges:
+>           maxItems: 1
+> 
+
+This is not what I expected, this allows 3 cells for all Amlogic pinctrl,
+which is wrong.
+
+Instead, remove "#gpio-cells" definition from amlogic,meson-pinctrl-common.yaml
+and add them in all amlogic,meson-pinctrl-XXX.yaml with const: 2, and then when you
+introduce A4/A5, add a new amlogic,meson-pinctrl-a5.yaml with const: 3.
 
 Neil
-
-> -		ret = regmap_read(clk->map, div->offset, &val);
-> -		if (ret)
-> -			return ret;
-> -
-> -		val >>= div->shift;
-> -		val &= clk_div_mask(div->width);
-> -
-> -		return divider_ro_determine_rate(hw, req, div->table,
-> -						 div->width, div->flags, val);
-> -	}
->   
->   	return divider_determine_rate(hw, req, div->table, div->width,
->   				      div->flags);
-> @@ -127,9 +112,28 @@ const struct clk_ops clk_regmap_divider_ops = {
->   };
->   EXPORT_SYMBOL_NS_GPL(clk_regmap_divider_ops, CLK_MESON);
->   
-> +static int clk_regmap_div_ro_determine_rate(struct clk_hw *hw,
-> +					    struct clk_rate_request *req)
-> +{
-> +	struct clk_regmap *clk = to_clk_regmap(hw);
-> +	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	ret = regmap_read(clk->map, div->offset, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val >>= div->shift;
-> +	val &= clk_div_mask(div->width);
-> +
-> +	return divider_ro_determine_rate(hw, req, div->table, div->width,
-> +					 div->flags, val);
-> +}
-> +
->   const struct clk_ops clk_regmap_divider_ro_ops = {
->   	.recalc_rate = clk_regmap_div_recalc_rate,
-> -	.determine_rate = clk_regmap_div_determine_rate,
-> +	.determine_rate = clk_regmap_div_ro_determine_rate,
->   };
->   EXPORT_SYMBOL_NS_GPL(clk_regmap_divider_ro_ops, CLK_MESON);
->   
-> 
-> ---
-> base-commit: 664988eb47dd2d6ae1d9e4188ec91832562f8f26
-> change-id: 20241111-fix_childclk_of_roclk_has_been_tampered_with-61dbcc623746
-> 
-> Best regards,
-
 
 _______________________________________________
 linux-amlogic mailing list
