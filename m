@@ -4,8 +4,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FA14D41C17
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Nov 2024 08:31:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58E76D41C17
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Nov 2024 08:33:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,57 +13,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=jfuJaoD+epUCCqLZSzyWOATckEpIF00enrqx3CyObt0=; b=OKalKYMtRb7AfKg51KYiMfsQ16
-	9f6lDM6N8XxBwJrhGeziKK21h1HmqJgDbyNzhO2kBto2C0b2kEyBHOQmrj+Ik3lEiDRLwHpF5bUjY
-	yQR1bRQP01DpTY4B2WajLxSgqjtTUHWhF1NcnZlrEw7HuWef1qjlcUqJ8GVkw6r/wIWznYyC6sdYp
-	uR/EEUC2y4/aDjgGCmGZ6K6R4zV+szBMHjH5FjAiIIFCpfiYKWkypNxnVTsIMOeyND/1b+s2HO2Li
-	BpOXkCo7LIAlgznpkDcK47TieJKr8d6c8b8NqcGsRjRJgEmjTbEz5LL/I8JRfYE9AN2NTZB5rQhrI
-	Kdd4zA0Q==;
+	bh=RKn1Z/uPcYXvLv7h/+Zy2Mn/dnBGMtdmgMvFzQc5Gkc=; b=tbDegRNp3jP5TSTE8N/NKTJqbW
+	jXIUCdsvJ+i6pCG0JHuFsllZ0CorRzRr8A/Vn3tlNUypgjMQH9k3fY0sdkPLlcZNyE5h9JfUlfQHs
+	F0DEzKT6CGmbpU5MdbfvzYCMEWwWrG9GL2EG0GEOjhlsYQIqc28fzMh/6AC68BCxaxoYncXF+4x+f
+	rKynEj9eLdXeUXVQhViPV491aRaCDNwOzXZ/fEJ/IR112QQ88w3KMPyR/g4gMCRI46no/jWfmRE8V
+	dJagU1IZ74uMH1AaxHHva4eOL0dNjllLyCMJjNserFSSWcUwqvk03YYTefNv5WbObxHlkBfiyPW7q
+	iFIy36bg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tB8n2-000000066VW-2TuQ;
-	Wed, 13 Nov 2024 08:31:52 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1tB8on-0000000671y-3OQW;
+	Wed, 13 Nov 2024 08:33:41 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tB8mU-000000066Ob-1gbA;
-	Wed, 13 Nov 2024 08:31:20 +0000
+	id 1tB8mW-000000066Ou-0qc0;
+	Wed, 13 Nov 2024 08:31:21 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 8412AA403EC;
-	Wed, 13 Nov 2024 08:29:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21A3CC4CECD;
-	Wed, 13 Nov 2024 08:31:17 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 1EB415C5813;
+	Wed, 13 Nov 2024 08:30:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E20D1C4CECD;
+	Wed, 13 Nov 2024 08:31:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731486677;
-	bh=bM0X38UhkBzintoDYGOc67/pd8CabjjLBzBwfbjIAU8=;
+	s=k20201202; t=1731486679;
+	bh=l0aV/85UGh+TiyIXs15oLeWBBhnvktxy+Ao2xmqdPEU=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=V/ClBW7JwcDylSEPox1BqKSEFHkB+LEzuBaojbVOGIy5b+8a+S9VJV/1wKjvDGtV0
-	 xIS+YSt/XmC/DGYp82maL5LSjKKKldeiQBG0tt1iO6CR2A8256Q9TW88RcWeKul782
-	 2rPdxf9wR/C6F+3wSKfViRTW3D80A4BN+Xmiwdi7TYtidAqEGeQW02n7FEnXhfXZzu
-	 zVSu/f5IXmlPvHY3FuiOgv4U4g9J1Vq1XWVdJGAXAJv4mciSkwQO8a79YowB403YBf
-	 40kCVTCcm9QaMAS1UuzvQTfhy3XI9dXXXg/iUz+k/JJ5aEa3vZFLo5OLcu+aSP7sud
-	 tjBAAe6yRErhw==
-Date: Wed, 13 Nov 2024 02:31:15 -0600
+	b=u+IQMb7vc+ybZwRlOggvAhtm85ytDrq6c9zHkN2yooJE8m+gQFoEKPWK6I8MIclz+
+	 d7RWYG1Nxf/xG0BZ9vP4/S/AvlDtGGou78bAL+EnYJhJcrZvhu6G7bMB4mgwrrVJJK
+	 pTZzVkj0aGvVniYBG6ZSyPFmzmVn/WglUcnH/0XOz6/23zBCwePmbAky1VGfG7pQ6J
+	 B1P2HH3O9oQnEIZjw/N5eFf7r+e1K50TzuvV97d6j3b45AMlX04PSydWmVMnc0wuP7
+	 iofodvFB6X09burdwn1n9hqMs/Q18Z8TPQxb1nTATC4UESeq1YtkWoPKTz0qC/ko7J
+	 Tdeg5o1J/8OJg==
+Date: Wed, 13 Nov 2024 02:31:17 -0600
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Linus Walleij <linus.walleij@linaro.org>, 
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
- Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
+ Jerome Brunet <jbrunet@baylibre.com>, Bartosz Golaszewski <brgl@bgdev.pl>
 To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20241113-a4_pinctrl-v6-1-35ba2401ee35@amlogic.com>
+In-Reply-To: <20241113-a4_pinctrl-v6-2-35ba2401ee35@amlogic.com>
 References: <20241113-a4_pinctrl-v6-0-35ba2401ee35@amlogic.com>
- <20241113-a4_pinctrl-v6-1-35ba2401ee35@amlogic.com>
-Message-Id: <173148667456.3371316.2229241108190941426.robh@kernel.org>
-Subject: Re: [PATCH v6 1/5] dt-bindings: pinctrl: move gpio-cells property
+ <20241113-a4_pinctrl-v6-2-35ba2401ee35@amlogic.com>
+Message-Id: <173148667535.3371357.17914251694384557561.robh@kernel.org>
+Subject: Re: [PATCH v6 2/5] dt-bindings: pinctrl: Add support for Amlogic
+ A4 SoCs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241113_003118_592922_6F5A7B0F 
-X-CRM114-Status: UNSURE (   9.90  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241113_003120_427502_597B9CC1 
+X-CRM114-Status: GOOD (  10.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,19 +80,17 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Wed, 13 Nov 2024 15:29:39 +0800, Xianwei Zhao wrote:
-> Move #gpio-cells property from common yaml file
-> to lower-level yaml files.
+On Wed, 13 Nov 2024 15:29:40 +0800, Xianwei Zhao wrote:
+> Add the dt-bindings for Amlogic A4 pin controller, and add a new
+> dt-binding header file which document the GPIO bank names of all
+> Amlogic subsequent SoCs.
 > 
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml          | 3 +++
->  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml      | 3 ---
->  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml  | 3 +++
->  .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml           | 3 +++
->  .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml      | 3 +++
->  .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml       | 3 +++
->  6 files changed, 15 insertions(+), 3 deletions(-)
+>  .../bindings/pinctrl/amlogic,meson-pinctrl-a4.yaml | 80 ++++++++++++++++++++++
+>  include/dt-bindings/gpio/amlogic-gpio.h            | 45 ++++++++++++
+>  2 files changed, 125 insertions(+)
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -101,20 +98,12 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
-	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
-	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
-	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
-	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a4.yaml: patternProperties:^bank@[0-9a-f]+$:properties: 'gpio-controller' is a dependency of '#gpio-cells'
 	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241113-a4_pinctrl-v6-1-35ba2401ee35@amlogic.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241113-a4_pinctrl-v6-2-35ba2401ee35@amlogic.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
