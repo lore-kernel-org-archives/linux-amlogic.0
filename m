@@ -4,94 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89F01D41C25
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Nov 2024 09:37:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 449FED41C26
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Nov 2024 09:38:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=GaRahRPELYlgEw8NCP6LBmZ2Uba4DmN4Aftq4BsNLSs=; b=3rSAmu5S+fhpuz
-	KUmLhDlQSDpgL9qpFjUokIKLOo0VKR+IiIHA1QmzBHrMwZC2HBOF5Av0dR9Hd+bOX5ZoCiAdqHv/H
-	8IYMGy27vdAkzC2RKZ9NL01kWDbE5cQQczMfiRJdCFDncV1fBVxTKccQHzuho8KjiO5Z2V/UDhGbo
-	3mTY0ofMfTZR93oLlF/+XfSBRpQKpS9LAIj5rdu+zd6GuO4G0yRpJVcjM3Rx7mNLSq/sW0NXJ79wC
-	wKsnRGWSASP5WUZuYyuX3I7MgzaTT+rgbubT5RuzkghXypo+aqjzqWaNRIl5nKnwIGBpZbex19cM2
-	BcJmmeExlHy3sdaj7UYA==;
+	List-Owner; bh=PbwdflX5CKv+OA+KlDbGk5BO3OVVQNC65Jr1plYYx4I=; b=hFcRUKRIQBlhZZ
+	4Bd/EHwxMUUVEtKM6EQvn08h4epA19FNJolMrgUGQ9H79LYGXGdCle/TZex3bjtHzvJtGhJ/y/rC1
+	hZvyDz8RbXdJ82Q3TfgXlMX0ehDuiJKIucesM0qnS0EguBj/Vyo7pd0WSS7rdfUmzTjV5lRat0ztR
+	+6Ce6MlXBdHYVwERYLuO5SqmNrnyo40LN6EDzkqIqYiO5t3LpIrgM/BSkN2XVCeREa9RitKjgxHoi
+	OldqdSoN75Tsh94C040DbPu8ni/rVMJHFlt4Zx2l38EYxo37x+MRIHPxO1amnAg/+joAMVz8/81Zn
+	gtHnn9y0VCY84JAiYMBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tB9o5-00000006G2z-1xMS;
-	Wed, 13 Nov 2024 09:37:01 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tB9o3-00000006G2i-1mMw;
-	Wed, 13 Nov 2024 09:36:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Reply-To:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Content-ID:Content-Description:In-Reply-To:References;
-	bh=3l8HpYNfs2EFwl1Bgyt5QQ8IGggSrLbdojct/api3CA=; b=QMm3NO8M0vldMDb/M2RzH5ZPLD
-	wjpJCToJV49ZSpinh1xKCz+eXy3Qj6wNlbP78KBZ/zTl5Ro/bZXmEiBq4hhvmr+DQlxhvcHLClnOg
-	mbiFy5h0uKrI+jGIPJyGA+Y2jeWVhtE6ol+xf2RLBa3W6ZA8Fy0bE4dLua7UjzeXDVPpUh5w7IV8I
-	pLHgsskhABZhywwomzUciSFfstaF/1R2lttE8Yog58u5NfCyfNW1wmY9Q7tRWZSawl/0aRt6YZ81v
-	jV9oC8TjomHG7P4D0yqCvbF14OXskYh7auv1kmqJjpvkNdqa4zCAzNfXZbLcjP5jiu5lhXODj6MNa
-	gebFQaiQ==;
+	id 1tB9ps-00000006GP0-12ZU;
+	Wed, 13 Nov 2024 09:38:52 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
-	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tB9nx-0000000DDuC-3yiQ;
-	Wed, 13 Nov 2024 09:36:57 +0000
+	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1tB9oe-00000006G85-3yR9;
+	Wed, 13 Nov 2024 09:37:38 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 008D55C0FDA;
-	Wed, 13 Nov 2024 09:36:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EC09BC4CECD;
-	Wed, 13 Nov 2024 09:36:48 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id A9A935C47F9;
+	Wed, 13 Nov 2024 09:36:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9F4B3C4CECD;
+	Wed, 13 Nov 2024 09:37:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731490609;
-	bh=2YwXzis6Ve+VboxE95rpK7Is2IaGUN76qS7qkgQHAFY=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=lhJ5TA50hUHGpeMBkQIlZHc0Gr5VXQkn0VL7DLAOS2NaKX6Nh8iDBT/TK2cggYJ4Q
-	 K9tQZtqg88EHW0pzLU/6PGR18ElQxrWwcDoa4vIV04wE/MyaNaPAx/njJ8JhSbiz4r
-	 /TESdVQyd2eP6UcZyN/cqR/9r0BE5pNvExpUsuiAPL+Pk89khk8IaUrTH8BmyPjbgr
-	 0LXNU6REyyDO3etATlaQetlivM+zP0GiXP0Gbhy6MPBLMD21UsxkIIN36Re1dKkzI2
-	 UkA2dMmQ8RdO/oHdvXPoGb7mVlcl8Opgxc17plkQb5HM3Vxq7SAm+kVAkhow11jwy7
-	 TDWsGLozax2dA==
+	s=k20201202; t=1731490655;
+	bh=qTS2ziexAh89vvy4FSHg7dzW319+bsLiuJWRRaM9kfs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=OWzWrLDqWavENPjjF7MlpPVcZKHR50slUJkPVjP/XwNTPCmPlLCY9qSbcq1bKyV7L
+	 06wPIIh1DTwlKzedLx9jiHLlY6WvL98d4UMxmKTOFk2IFAuXMOgjBuyuZ3WCOTmCEW
+	 HVAr5ss7wlVYJbvucy21vjmFh+zK1Wgw6h4EOT++RQxk+wpCCJvf9Ylu5g+rWFl3JS
+	 prSS09wwyqVb7+f/kpFYOWrngkfNy9y69s5/9RO6s0adExGRko5KVdVkfRZVd80nAC
+	 WabSKCK38VEnB142TDOggrd/KFgGXSf1gARQcNhfXqvOEihKf5EB7iLUJOEsvd9Vny
+	 nFMZjF8Ymyc+g==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1EEED41C00;
-	Wed, 13 Nov 2024 09:36:48 +0000 (UTC)
-From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Wed, 13 Nov 2024 17:36:46 +0800
-Subject: [PATCH v3] clk: meson: Fix the determine rate error in
- clk_regmap_divider_ro_ops
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9231ED41C24;
+	Wed, 13 Nov 2024 09:37:35 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v7 0/5] Pinctrl: A4: Add pinctrl driver
+Date: Wed, 13 Nov 2024 17:37:27 +0800
+Message-Id: <20241113-a4_pinctrl-v7-0-0546a20c1c22@amlogic.com>
 MIME-Version: 1.0
-Message-Id: <20241113-fix_childclk_of_roclk_has_been_tampered_with-v3-1-2c624308337b@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAC1zNGcC/52NQQ6CMBBFr2K6FkMLqejKexjTlOmUTgRKWoIaw
- t0trHSps5r/k//ezCIGwsjOu5kFnCiS71Mo9jsGTvcNZmRSZiIXJU+XWXoqcNQaaO/KWxX8+jg
- dVY3Yq1F3AwY06kGjyyQ3NYAUxbGULCGHgGm/6a63lB3F0YfXZp/42v4pmniWFhXwWlproM4vu
- mt9Q3AA37FVNYlPvPgRLxJelrbK8xMYK/Q3flmWN5K5x29JAQAA
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+X-B4-Tracking: v=1; b=H4sIAFdzNGcC/2XP0YoCIRTG8VcJrzOOetRpr/Y9llhMz5RQM+GEb
+ MS8+2oQjczlJ/z+HJ9sohRpYl+bJ0uU4xTHoQy73TB/dsOJeAxlMwkSBQjJHf7e4uDv6cJhH8R
+ ROmEJLSvglqiPf6/Yz6Hsc5zuY3q82lnW13cGl5ksOXBFFp3RXnaavt31Mp6i3/nxymooqyXuG
+ qwKJmv6IHwPItg1xg8uusFYcR/2HQWvXMA11gvc/j7rejYa8CTAYwdrbJZYNdhUrI9OIggipVs
+ 8z/M/b9ou45oBAAA=
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jian Hu <jian.hu@amlogic.com>, Dmitry Rokosov <ddrokosov@sberdevices.ru>, 
- Yu Tu <yu.tu@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Chuan Liu <chuan.liu@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1731490607; l=2575;
- i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=EwVrOsGFSv8d11s7BZKnGfuGkTWiDeiqd6+q7e3YxDQ=;
- b=FQKgJ4e25qoC6/pS5s/LNKSQtYlURL82MNRads2emSz7hMQgT+Pdvo1F0lrZBv7TDf4Hj8wO7
- D4AyvSvv+Z+B08f/Pet19xHCatpX7Q1zwO5iG3rKmpqNvF77PYuXkGo
-X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
- pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
-X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
- auth_id=203
-X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1731490653; l=3357;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=qTS2ziexAh89vvy4FSHg7dzW319+bsLiuJWRRaM9kfs=;
+ b=rVtfd7vxwtUNkzCi2pn9hCbxfuRYSfTKlT18lUv3Tzahuctx0RDSKWrhvzhSwQamm7cQgGRPW
+ OMR9fcgHNwjDL7k0eMuzDAew3mlwzGHQM8bER6qm2c9BRBt7XYJ1V+T
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241113_093654_981314_B70E28B5 
-X-CRM114-Status: GOOD (  12.00  )
+X-CRM114-CacheID: sfid-20241113_013737_270206_A6432665 
+X-CRM114-Status: GOOD (  11.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,83 +89,90 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: chuan.liu@amlogic.com
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Chuan Liu <chuan.liu@amlogic.com>
+Add pinctrl driver support for Amloigc A4 SoC
 
-The rate determined by calling clk_regmap_divider_ro_ops with
-clk_regmap_div_determine_rate is not 'RO', which will result in the
-unexpected modification of the frequency of its children when setting
-the rate of a clock that references clk_regmap_divider_ro_ops.
+All of Amogic SoCs GPIO device requirement is met here by
+adding GPIO bank definition instead of the pin definition.
+Binding header files will no longer be added to future
+SoCs's pin devices.
 
-Fixes: ea11dda9e091 ("clk: meson: add regmap clocks")
-Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+The pinctrl software only adds insterface of of_xlate to support
+for transformation without affecting the overall framework and
+is compatible with previous drivers.
+
+The code in DTS file is also readable when using GPIO, as below:
+
+reset-gpios = <&gpio AMLOGIC_GPIO_X 6 GPIO_ACTIVE_LOW>;
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-Background: During the execution of clk_set_rate(), the function 
-clk_core_round_rate_nolock() is called to calculate the matching rate
-and save it to 'core->new_rate'. At the same time, it recalculates and
-updates its 'child->newrate'. Finally, clk_change_rate() is called to
-set all 'new_rates'.
----
+Changes in v7:
+- Move gpio-controller property with "#gpio-cells" property
+- Link to v6: https://lore.kernel.org/r/20241113-a4_pinctrl-v6-0-35ba2401ee35@amlogic.com
+
+Changes in v6:
+- Adjust code formatting and style.
+- Remove "#gpio-cells" definition from amlogic,meson-pinctrl-common.yaml
+  and add them in all amlogic,meson-pinctrl-XXX.yaml with const: 2, and then
+  add amlogic,meson-pinctrl-a4.yaml(copy form  amlogic,meson-pinctrl-a1.yaml) with const: 3.
+- Link to v5: https://lore.kernel.org/r/20241112-a4_pinctrl-v5-0-3460ce10c480@amlogic.com
+
+Changes in v5:
+- Modify if to switch.
+- Dropped parameter combination, bank and offset as independent parameter passing
+- Link to v4: https://lore.kernel.org/r/20241101-a4_pinctrl-v4-0-efd98edc3ad4@amlogic.com
+
+Changes in v4:
+- Add interface of of_xlate support.
+- Add const for some variable.
+- Link to v3: https://lore.kernel.org/r/20241018-a4_pinctrl-v3-0-e76fd1cf01d7@amlogic.com
+
 Changes in v3:
-- Restore clk_regmap_div_determine_rate().
-- Link to v2: https://lore.kernel.org/r/20241112-fix_childclk_of_roclk_has_been_tampered_with-v2-1-64f8009cdf2a@amlogic.com
+- Remove head file from binding.
+- Move GPIO define to file *.c.
+- Link to v2: https://lore.kernel.org/r/20241014-a4_pinctrl-v2-0-3e74a65c285e@amlogic.com
 
 Changes in v2:
-- Remove the CLK_DIVIDER_READ_ONLY judgment logic in
-clk_regmap_div_determine_rate().
-- Add clk_regmap_div_ro_determine_rate().
-- Link to v1: https://lore.kernel.org/r/20241111-fix_childclk_of_roclk_has_been_tampered_with-v1-1-f8c1b6ffdcb0@amlogic.com
----
- drivers/clk/meson/clk-regmap.c | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/clk/meson/clk-regmap.c b/drivers/clk/meson/clk-regmap.c
-index 07f7e441b916..2b0b4eb0a3f0 100644
---- a/drivers/clk/meson/clk-regmap.c
-+++ b/drivers/clk/meson/clk-regmap.c
-@@ -127,9 +127,28 @@ const struct clk_ops clk_regmap_divider_ops = {
- };
- EXPORT_SYMBOL_NS_GPL(clk_regmap_divider_ops, CLK_MESON);
- 
-+static int clk_regmap_div_ro_determine_rate(struct clk_hw *hw,
-+					    struct clk_rate_request *req)
-+{
-+	struct clk_regmap *clk = to_clk_regmap(hw);
-+	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(clk->map, div->offset, &val);
-+	if (ret)
-+		return ret;
-+
-+	val >>= div->shift;
-+	val &= clk_div_mask(div->width);
-+
-+	return divider_ro_determine_rate(hw, req, div->table, div->width,
-+					 div->flags, val);
-+}
-+
- const struct clk_ops clk_regmap_divider_ro_ops = {
- 	.recalc_rate = clk_regmap_div_recalc_rate,
--	.determine_rate = clk_regmap_div_determine_rate,
-+	.determine_rate = clk_regmap_div_ro_determine_rate,
- };
- EXPORT_SYMBOL_NS_GPL(clk_regmap_divider_ro_ops, CLK_MESON);
- 
+- Use one marco instead of all pin define.
+- Add unit name for dts node.
+- Link to v1: https://lore.kernel.org/all/20240611-a4_pinctrl-v1-0-dc487b1977b3@amlogic.com/
 
 ---
-base-commit: 664988eb47dd2d6ae1d9e4188ec91832562f8f26
-change-id: 20241111-fix_childclk_of_roclk_has_been_tampered_with-61dbcc623746
+Xianwei Zhao (5):
+      dt-bindings: pinctrl: move gpio-cells and gpio-controller property
+      dt-bindings: pinctrl: Add support for Amlogic A4 SoCs
+      pinctrl: meson: add interface of of_xlate
+      pinctrl: meson: Add driver support for Amlogic A4 SoCs
+      arm64: dts: amlogic: a4: add pinctrl node
+
+ .../bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml |    5 +
+ .../bindings/pinctrl/amlogic,meson-pinctrl-a4.yaml |   82 ++
+ .../pinctrl/amlogic,meson-pinctrl-common.yaml      |    5 -
+ .../pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml  |    5 +
+ .../amlogic,meson-pinctrl-g12a-periphs.yaml        |    5 +
+ .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml      |    5 +
+ .../pinctrl/amlogic,meson8-pinctrl-cbus.yaml       |    5 +
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |   36 +
+ drivers/pinctrl/meson/Kconfig                      |    6 +
+ drivers/pinctrl/meson/Makefile                     |    1 +
+ drivers/pinctrl/meson/pinctrl-amlogic-a4.c         | 1324 ++++++++++++++++++++
+ drivers/pinctrl/meson/pinctrl-meson.c              |    4 +
+ drivers/pinctrl/meson/pinctrl-meson.h              |    4 +
+ include/dt-bindings/gpio/amlogic-gpio.h            |   45 +
+ 14 files changed, 1527 insertions(+), 5 deletions(-)
+---
+base-commit: 58e2d28ed28e5bc8836f8c14df1f94c27c1f9e2f
+change-id: 20241012-a4_pinctrl-09d1b2a17e47
 
 Best regards,
 -- 
-Chuan Liu <chuan.liu@amlogic.com>
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
 
