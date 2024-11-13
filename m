@@ -4,64 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EC85D41C1E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Nov 2024 09:07:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89F01D41C25
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Nov 2024 09:37:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DrWTZdPYETaazaynPnKmk8XIeU2qHnrtt1QyU0Dvrk8=; b=1HVjTt9kB6IqQ7
-	9/FT3shrU0N8sVRn4JnDVRb3DzJg46huvBspJr9wPb5gQ5vfXGMDtPxO7+g6ed9Wu6LkhMkNHnumn
-	iC58oMvzAmKtu2oVlB2OHQCdkVYcfizx5YXy7d+ueO86DIB4DB1x02pR1nVuxOHeDurJOyQr0pcFU
-	Yx6NJLp8suxe+YQGWstApidqliarr9yEyW//x6rM5E8uPjx5V21QBsHrDyj0Jmi7bB/nbEG60m2qf
-	UZm8Wwj7ZgukHK13OgEEmnffOPc4sEz3Ri3goVKS2WedvI9Q5DIO8uwAVC48MS5y536A6PtNVgJzS
-	ikE9SQI2WT85I3X4XNPw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=GaRahRPELYlgEw8NCP6LBmZ2Uba4DmN4Aftq4BsNLSs=; b=3rSAmu5S+fhpuz
+	KUmLhDlQSDpgL9qpFjUokIKLOo0VKR+IiIHA1QmzBHrMwZC2HBOF5Av0dR9Hd+bOX5ZoCiAdqHv/H
+	8IYMGy27vdAkzC2RKZ9NL01kWDbE5cQQczMfiRJdCFDncV1fBVxTKccQHzuho8KjiO5Z2V/UDhGbo
+	3mTY0ofMfTZR93oLlF/+XfSBRpQKpS9LAIj5rdu+zd6GuO4G0yRpJVcjM3Rx7mNLSq/sW0NXJ79wC
+	wKsnRGWSASP5WUZuYyuX3I7MgzaTT+rgbubT5RuzkghXypo+aqjzqWaNRIl5nKnwIGBpZbex19cM2
+	BcJmmeExlHy3sdaj7UYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tB9LE-00000006ByZ-2HnV;
-	Wed, 13 Nov 2024 09:07:12 +0000
-Received: from relay4-d.mail.gandi.net ([2001:4b98:dc4:8::224])
+	id 1tB9o5-00000006G2z-1xMS;
+	Wed, 13 Nov 2024 09:37:01 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tB9EU-00000006AkR-1OcO;
-	Wed, 13 Nov 2024 09:00:16 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 06D74E0003;
-	Wed, 13 Nov 2024 09:00:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1731488409;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=E9njZBTIcLfCJhjDXkZM9IcrPjxMe5ftrTxBl5Q+hx0=;
-	b=O+cSYTJpFtM59gEG2fZwS7Kx64rVoZIN/fz8XtKBOJzQMqYjJSxrv3pcM2VZGX9E6YcSvZ
-	emU0OCIPrY7gwusoiN5YBL8JKFiJTvlkli3Fcfl+C94ok0g8Z5vUk5GBG6Yh3vT862KnTe
-	khUuzcc3GVP6/AD3nJ3ou7nvae/zV6+/lOjftJvSkrurn5Hb3nc5VreqnsInfcFSmCBoGp
-	uUGl00j3aNMkHIWhD6Yz67oaGJ4L0W1COTCmsnsm9elzfh4hyrq8S80sOC9i70V4mX6nuQ
-	CHhL3lJv0mOL3HsldCGmhi94uYX+s7oSLUy0kAKdPRb5QsuBmTQPsFUicTpPIw==
-Date: Wed, 13 Nov 2024 10:00:06 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Cc: linux-rtc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, Arnd Bergmann <arnd@arndb.de>,
-	Olof Johansson <olof@lixom.net>, linux-amlogic@lists.infradead.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH 0/5] Merge RTC Haoyu HYM8563 into RTC PCF8563
-Message-ID: <2024111309000615fd9fbd@mail.local>
-References: <20241113085355.1972607-1-iwamatsu@nigauri.org>
+	id 1tB9o3-00000006G2i-1mMw;
+	Wed, 13 Nov 2024 09:36:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Reply-To:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
+	Content-ID:Content-Description:In-Reply-To:References;
+	bh=3l8HpYNfs2EFwl1Bgyt5QQ8IGggSrLbdojct/api3CA=; b=QMm3NO8M0vldMDb/M2RzH5ZPLD
+	wjpJCToJV49ZSpinh1xKCz+eXy3Qj6wNlbP78KBZ/zTl5Ro/bZXmEiBq4hhvmr+DQlxhvcHLClnOg
+	mbiFy5h0uKrI+jGIPJyGA+Y2jeWVhtE6ol+xf2RLBa3W6ZA8Fy0bE4dLua7UjzeXDVPpUh5w7IV8I
+	pLHgsskhABZhywwomzUciSFfstaF/1R2lttE8Yog58u5NfCyfNW1wmY9Q7tRWZSawl/0aRt6YZ81v
+	jV9oC8TjomHG7P4D0yqCvbF14OXskYh7auv1kmqJjpvkNdqa4zCAzNfXZbLcjP5jiu5lhXODj6MNa
+	gebFQaiQ==;
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1tB9nx-0000000DDuC-3yiQ;
+	Wed, 13 Nov 2024 09:36:57 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 008D55C0FDA;
+	Wed, 13 Nov 2024 09:36:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EC09BC4CECD;
+	Wed, 13 Nov 2024 09:36:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731490609;
+	bh=2YwXzis6Ve+VboxE95rpK7Is2IaGUN76qS7qkgQHAFY=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=lhJ5TA50hUHGpeMBkQIlZHc0Gr5VXQkn0VL7DLAOS2NaKX6Nh8iDBT/TK2cggYJ4Q
+	 K9tQZtqg88EHW0pzLU/6PGR18ElQxrWwcDoa4vIV04wE/MyaNaPAx/njJ8JhSbiz4r
+	 /TESdVQyd2eP6UcZyN/cqR/9r0BE5pNvExpUsuiAPL+Pk89khk8IaUrTH8BmyPjbgr
+	 0LXNU6REyyDO3etATlaQetlivM+zP0GiXP0Gbhy6MPBLMD21UsxkIIN36Re1dKkzI2
+	 UkA2dMmQ8RdO/oHdvXPoGb7mVlcl8Opgxc17plkQb5HM3Vxq7SAm+kVAkhow11jwy7
+	 TDWsGLozax2dA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E1EEED41C00;
+	Wed, 13 Nov 2024 09:36:48 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Date: Wed, 13 Nov 2024 17:36:46 +0800
+Subject: [PATCH v3] clk: meson: Fix the determine rate error in
+ clk_regmap_divider_ro_ops
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241113085355.1972607-1-iwamatsu@nigauri.org>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Message-Id: <20241113-fix_childclk_of_roclk_has_been_tampered_with-v3-1-2c624308337b@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAC1zNGcC/52NQQ6CMBBFr2K6FkMLqejKexjTlOmUTgRKWoIaw
+ t0trHSps5r/k//ezCIGwsjOu5kFnCiS71Mo9jsGTvcNZmRSZiIXJU+XWXoqcNQaaO/KWxX8+jg
+ dVY3Yq1F3AwY06kGjyyQ3NYAUxbGULCGHgGm/6a63lB3F0YfXZp/42v4pmniWFhXwWlproM4vu
+ mt9Q3AA37FVNYlPvPgRLxJelrbK8xMYK/Q3flmWN5K5x29JAQAA
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jian Hu <jian.hu@amlogic.com>, Dmitry Rokosov <ddrokosov@sberdevices.ru>, 
+ Yu Tu <yu.tu@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1731490607; l=2575;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=EwVrOsGFSv8d11s7BZKnGfuGkTWiDeiqd6+q7e3YxDQ=;
+ b=FQKgJ4e25qoC6/pS5s/LNKSQtYlURL82MNRads2emSz7hMQgT+Pdvo1F0lrZBv7TDf4Hj8wO7
+ D4AyvSvv+Z+B08f/Pet19xHCatpX7Q1zwO5iG3rKmpqNvF77PYuXkGo
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241113_010014_552149_F59F98A0 
-X-CRM114-Status: GOOD (  14.48  )
+X-CRM114-CacheID: sfid-20241113_093654_981314_B70E28B5 
+X-CRM114-Status: GOOD (  12.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,49 +103,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: chuan.liu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/11/2024 17:53:50+0900, Nobuhiro Iwamatsu wrote:
-> RTC Haoyu HYM8563 has the same hardware structure as RTC PCF8563, and
-> operates with the same device driver. Therefore, since we do not need
-> two drivers with the same function, this merges HYM8563 into PCF8563.
-> 
+From: Chuan Liu <chuan.liu@amlogic.com>
 
-I've seen that but last I checked both drivers are not functionally
-identical so this is not that simple.
+The rate determined by calling clk_regmap_divider_ro_ops with
+clk_regmap_div_determine_rate is not 'RO', which will result in the
+unexpected modification of the frequency of its children when setting
+the rate of a clock that references clk_regmap_divider_ro_ops.
 
-> This series was tested with PCF8563 and HYM8563 on khadas vim3 board.
-> 
-> Nobuhiro Iwamatsu (5):
->   ARM: multi_v7_defconfig: Add RTC PCF8563 support
->   rtc: pcf8563: Add support Haoyu HYM8563
->   dt-bindings: rtc: pcf8563: Add Haoyu HYM8563 compatibility
->   rtc: Remove HYM8563 RTC driver
->   dt-bindings: rtc: hym8563: Remove hym8563 binding
-> 
->  .../bindings/rtc/haoyu,hym8563.yaml           |  56 --
->  .../devicetree/bindings/rtc/nxp,pcf8563.yaml  |  18 +-
->  arch/arm/configs/multi_v7_defconfig           |   2 +-
->  arch/arm64/configs/defconfig                  |   1 -
->  drivers/rtc/Kconfig                           |  11 -
->  drivers/rtc/Makefile                          |   1 -
->  drivers/rtc/rtc-hym8563.c                     | 587 ------------------
->  drivers/rtc/rtc-pcf8563.c                     |   2 +
->  8 files changed, 17 insertions(+), 661 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
->  delete mode 100644 drivers/rtc/rtc-hym8563.c
-> 
-> -- 
-> 2.45.2
-> 
+Fixes: ea11dda9e091 ("clk: meson: add regmap clocks")
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+---
+Background: During the execution of clk_set_rate(), the function 
+clk_core_round_rate_nolock() is called to calculate the matching rate
+and save it to 'core->new_rate'. At the same time, it recalculates and
+updates its 'child->newrate'. Finally, clk_change_rate() is called to
+set all 'new_rates'.
+---
+Changes in v3:
+- Restore clk_regmap_div_determine_rate().
+- Link to v2: https://lore.kernel.org/r/20241112-fix_childclk_of_roclk_has_been_tampered_with-v2-1-64f8009cdf2a@amlogic.com
 
+Changes in v2:
+- Remove the CLK_DIVIDER_READ_ONLY judgment logic in
+clk_regmap_div_determine_rate().
+- Add clk_regmap_div_ro_determine_rate().
+- Link to v1: https://lore.kernel.org/r/20241111-fix_childclk_of_roclk_has_been_tampered_with-v1-1-f8c1b6ffdcb0@amlogic.com
+---
+ drivers/clk/meson/clk-regmap.c | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/clk/meson/clk-regmap.c b/drivers/clk/meson/clk-regmap.c
+index 07f7e441b916..2b0b4eb0a3f0 100644
+--- a/drivers/clk/meson/clk-regmap.c
++++ b/drivers/clk/meson/clk-regmap.c
+@@ -127,9 +127,28 @@ const struct clk_ops clk_regmap_divider_ops = {
+ };
+ EXPORT_SYMBOL_NS_GPL(clk_regmap_divider_ops, CLK_MESON);
+ 
++static int clk_regmap_div_ro_determine_rate(struct clk_hw *hw,
++					    struct clk_rate_request *req)
++{
++	struct clk_regmap *clk = to_clk_regmap(hw);
++	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
++	unsigned int val;
++	int ret;
++
++	ret = regmap_read(clk->map, div->offset, &val);
++	if (ret)
++		return ret;
++
++	val >>= div->shift;
++	val &= clk_div_mask(div->width);
++
++	return divider_ro_determine_rate(hw, req, div->table, div->width,
++					 div->flags, val);
++}
++
+ const struct clk_ops clk_regmap_divider_ro_ops = {
+ 	.recalc_rate = clk_regmap_div_recalc_rate,
+-	.determine_rate = clk_regmap_div_determine_rate,
++	.determine_rate = clk_regmap_div_ro_determine_rate,
+ };
+ EXPORT_SYMBOL_NS_GPL(clk_regmap_divider_ro_ops, CLK_MESON);
+ 
+
+---
+base-commit: 664988eb47dd2d6ae1d9e4188ec91832562f8f26
+change-id: 20241111-fix_childclk_of_roclk_has_been_tampered_with-61dbcc623746
+
+Best regards,
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Chuan Liu <chuan.liu@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
