@@ -4,60 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30243D637BD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Nov 2024 20:55:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 872D3D65C61
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Nov 2024 09:21:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y2miniB0PvGnPhYO8idkikJLr94a2bU3VS2zVeAG5PA=; b=1grt8/Um0oK3Il
-	Gtp49LEYyXs9iCIjtwqFzhLoHA5HDVm5da/vJBV0SmlRIPhyiI2aeXTWGIn22ReqL3HGfdvgTQ5un
-	2t+e1PtNlD6GyV66A98zMK36xVvDUlSVXCJAaZMVhf0X2rolEpTij6CktO23GnnyVgimw6bev/EwL
-	AyvWPO29JZ3nI4FDw5dea6oQMnXsxXB3qR/wQrQb7w06zEdfg0kL0ektgJiI0YIJigopaXQDs0iKK
-	l1nvITFLSeZX7UzTTK8ojBQO+6I2hA756wTt7TX3kLlSSjXgCWbSPRmDtxXvzxwx3ttzJtoxtYz9H
-	9F/7Ux5KKiKGzWfklA7A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=CkaQ+pi17b37g59MBD8hNVNp/2r13PYiv96BXEfL+L8=; b=V/2NW64F4fWrKesHXPrpBwk0ve
+	Xw4kzq+OwjfxzTukSa0vub9gDmZJvVF6WbqjeCTZgTi2TXSkFubKHjTWSCOYNWuzuH0CZBgUxs+FO
+	SzlMijDtAQoh4yT4pDsol1bonW+Z01Czjwgh75DNGL9PMqMXLr2sw0mg3Ef2QbWXQD9f32cWDycRv
+	QC3X9GTBUF1LWpRKFcmsg56AAD1uP7Dqp84DM5cM2n1L3n0gpNR/vDLkiBxkv6DbFhnQ5KjdhyB8C
+	qkXsVg8utUTVxI6e6sszWp4SLG8rQJjCrL88S+0iVwccoRnyiHxBikYxUF6olhRIJnuyghUWiXHOK
+	+Vh2/SwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBKOg-000000080my-369L;
-	Wed, 13 Nov 2024 20:55:30 +0000
-Received: from relay3-d.mail.gandi.net ([2001:4b98:dc4:8::223])
+	id 1tBW2w-00000009LPE-1eTU;
+	Thu, 14 Nov 2024 09:21:50 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBKOb-000000080m3-2ZTa
+	id 1tBW2s-00000009LNi-2GyE
 	for linux-amlogic@lists.infradead.org;
-	Wed, 13 Nov 2024 20:55:28 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3170B60006;
-	Wed, 13 Nov 2024 20:55:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1731531321;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=oT6RDAGorrpozc7cGqo0CYW2HsUHLsv4C8N1Q7/mPHc=;
-	b=jkMivzI9tJLx3be10oF0crb0Bb77pOao+EmePu6fhmUfJTZTHPa5t68QN8JzG8sdcl+lr3
-	lHd0mNpqWtsVrIDfMzW5ENltlS6hASiBIieyGthUau7hgNCuwowYpvw3bRgZt98MwMzn5i
-	46u6V1RdF1s43mCyQeuWf8mBnVT6oU2D+Jj64XBZEwb3NLmVuPPIDFw2kXzVxWwpPblgNP
-	9FtOPH3jDH+WoE4e3QfMvsacPMDRx1ZidztLF1t7vBMZyEQBwGxIXM2M5oEJPlJkMAkjAq
-	peD4koZqIpEZ4o3ebc4HpUu6BiWZI5UBAk3zakSz96oEXD+ODwjNrMwDAYy2sA==
-Date: Wed, 13 Nov 2024 21:55:19 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Yiting Deng <yiting.deng@amlogic.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
-	linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] rtc: amlogic-a4: fix compile error
-Message-ID: <173153128691.3601836.5746984703959903174.b4-ty@bootlin.com>
-References: <20241113-fix_a4_rtc-v1-1-307af26449a8@amlogic.com>
+	Thu, 14 Nov 2024 09:21:48 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-432d9bb168cso2949585e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 14 Nov 2024 01:21:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731576104; x=1732180904; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JNbRU7FU8XNSE+dI3k8p5qd8iE3w171o5k5wliBXgFc=;
+        b=Ls2N5iSHhBrqegD4n+iC9PJ7WkTXhAfGV8iAOoq8m6Yq5qY8RKuUYlU2YWoduFVjl5
+         AvuXAlvj/MFxPnv8JXRVvDNLjpHHkk5os/bbsIsgoUEFGBYEbgatZDABcgzBa1ICfWCn
+         crPcmHUjXDEVIxj5F+ZpWPzqIRjSbFXz8XX/ixSODfeHXRWIpJo51sWndhiasjB3dGth
+         UIQaSx7nexbehH2uztg48s2WVr53CmYVHqjltAFEksveMIZCHaaLvhq++EjWZEYBJGNv
+         m6AVUDTB7Iam1o0RAzApjjA77T0fhwPwAjZeU81TUncvYyX4v8F6VQ/wTMfkc38AKc8I
+         2cdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731576104; x=1732180904;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=JNbRU7FU8XNSE+dI3k8p5qd8iE3w171o5k5wliBXgFc=;
+        b=L01dvCR9vMzd6bWt39NVUMTe5iUuSIHr1cqFh9OEprEJeydYpvYLxAgg1rX/ILm+JC
+         WCPk86lrZqcT+ZfiQfzDEXiANfpGQre/ziRXLusRCVjHkusf7v20Mdm3RuJsIeI7NxCT
+         eZwFy1z+Nvhc101y4slW8aSk6+y2c/g2A+bfhu7kZmyHDa/83jDrUxg9mYBQLGpNoMAN
+         L9V3T9h7exT1+yBSlQW0rc1ko5ktlZmYemjmGKcI0O9Z4ITZcDLAy6bqHJa7OrL8gP2L
+         zq6aRiU0UuA836IZkwWi+X8XLbg9/H0wqmCswMx7C93t3vox3GNUGiWIa39dSviwwO8r
+         vPOg==
+X-Forwarded-Encrypted: i=1; AJvYcCVRKsh1i8+Tq8a4x4ErrYLdbsPELv6uWJgTHB1O4838jneKnJc0ztfxfjtk7hvDEvJUsh8IErB+T2XZooHv@lists.infradead.org
+X-Gm-Message-State: AOJu0YwCJ7egled4pk/dsD4fCzB5COKRW0wwsuuaF+APJmEM1eICMmEf
+	VGfL4kxuNnY/41gp07Mibt+MYI+lEhjWJzXL81zpDl0L9kNaAtal6Hl71xVawYU=
+X-Google-Smtp-Source: AGHT+IGM57ayVcNIkg/6jNzPlgjqqAGpWcaIJPQpCV0fYV9Ae2IGCnZ+nme2wZAoiNPas+AMtq+mKw==
+X-Received: by 2002:a5d:598c:0:b0:371:8685:84c with SMTP id ffacd0b85a97d-382140394cdmr1793139f8f.15.1731576103705;
+        Thu, 14 Nov 2024 01:21:43 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a62a:6bba:b737:406e? ([2a01:e0a:982:cbb0:a62a:6bba:b737:406e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3821adada24sm936148f8f.40.2024.11.14.01.21.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Nov 2024 01:21:43 -0800 (PST)
+Message-ID: <1764b1b4-336d-4ca5-ab21-8213691a9622@linaro.org>
+Date: Thu, 14 Nov 2024 10:21:42 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241113-fix_a4_rtc-v1-1-307af26449a8@amlogic.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v6 4/5] pinctrl: meson: Add driver support for Amlogic A4
+ SoCs
+To: Rob Herring <robh@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241113-a4_pinctrl-v6-0-35ba2401ee35@amlogic.com>
+ <20241113-a4_pinctrl-v6-4-35ba2401ee35@amlogic.com>
+ <20241113180405.GA653353-robh@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20241113180405.GA653353-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241113_125526_806363_D96AF5EF 
-X-CRM114-Status: UNSURE (   7.72  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241114_012146_657443_B2083592 
+X-CRM114-Status: GOOD (  22.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,32 +125,126 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 13 Nov 2024 13:57:15 +0800, Xianwei Zhao wrote:
-> When compile rtc-a4, build error as following:
-> ERROR: modpost: drivers/rtc/rtc-amlogic-a4: struct of_device_id is
-> not terminated with a NULL entry!
-> This commit is to fix it.
+On 13/11/2024 19:04, Rob Herring wrote:
+> On Wed, Nov 13, 2024 at 03:29:42PM +0800, Xianwei Zhao wrote:
+>> Add a new pinctrl driver for Amlogic A4 SoCs which share
+>> the same register layout as the previous Amlogic S4.
+>>
+>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> ---
+>>   drivers/pinctrl/meson/Kconfig              |    6 +
+>>   drivers/pinctrl/meson/Makefile             |    1 +
+>>   drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1324 ++++++++++++++++++++++++++++
+>>   3 files changed, 1331 insertions(+)
+>>
+>> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+>> index cc397896762c..3e90bb5ec442 100644
+>> --- a/drivers/pinctrl/meson/Kconfig
+>> +++ b/drivers/pinctrl/meson/Kconfig
+>> @@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
+>>   	select PINCTRL_MESON_AXG_PMX
+>>   	default y
+>>   
+>> +config PINCTRL_AMLOGIC_A4
+>> +	tristate "Amlogic A4 SoC pinctrl driver"
+>> +	depends on ARM64
+>> +	select PINCTRL_MESON_AXG_PMX
+>> +	default y
+>> +
+>>   config PINCTRL_AMLOGIC_C3
+>>   	tristate "Amlogic C3 SoC pinctrl driver"
+>>   	depends on ARM64
+>> diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
+>> index 9e538b9ffb9b..c92a65a83344 100644
+>> --- a/drivers/pinctrl/meson/Makefile
+>> +++ b/drivers/pinctrl/meson/Makefile
+>> @@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
+>>   obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
+>>   obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
+>>   obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
+>> +obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
+>>   obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
+>>   obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
+>> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+>> new file mode 100644
+>> index 000000000000..edc5f2ba2c8a
+>> --- /dev/null
+>> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+>> @@ -0,0 +1,1324 @@
+>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>> +/*
+>> + * Pin controller and GPIO driver for Amlogic A4 SoC.
+>> + *
+>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> + *         Huqiang Qin <huqiang.qin@amlogic.com>
+>> + */
+>> +
+>> +#include "pinctrl-meson.h"
+>> +#include "pinctrl-meson-axg-pmx.h"
+>> +#include <dt-bindings/gpio/amlogic-gpio.h>
+>> +
+>> +/* Standard port */
+>> +
+>> +#define GPIOE_0				0
+>> +#define GPIOE_1				1
+>> +
+>> +#define GPIOD_0				2
+>> +#define GPIOD_1				3
+>> +#define GPIOD_2				4
+>> +#define GPIOD_3				5
+>> +#define GPIOD_4				6
+>> +#define GPIOD_5				7
+>> +#define GPIOD_6				8
+>> +#define GPIOD_7				9
+>> +#define GPIOD_8				10
+>> +#define GPIOD_9				11
+>> +#define GPIOD_10			12
+>> +#define GPIOD_11			13
+>> +#define GPIOD_12			14
+>> +#define GPIOD_13			15
+>> +#define GPIOD_14			16
+>> +#define GPIOD_15			17
 > 
+> The conversion from bank+index to a single index space seems less than
+> ideal, and looks like a work-around to fit into the existing driver from
+> a brief look at it.
+
+Not really, it simply adds a custom xlate per SoC, nothing particulary hacky.
+
+I was relunctant at first, but since Xianwei added the plumbing for a per-SoC
+xlate, then it was easy to add 3-cells support.
+
 > 
+> If there's not really banks of GPIOs here, then DT shouldn't have them
+> either. The question is does anything need to know the bank number
+> and/or index? If it's only for human readability (and matching to
+> datasheet), then just something like this can be done:
+> 
+> #define GPIOD(n) (2 + (n))
 
-Applied, thanks!
+There's no linear mapping possible, each set of gpios is grouped into logical
+"banks" per group of functions, and this grouping is also in the gpio controller
+register space.
 
-[1/1] rtc: amlogic-a4: fix compile error
-      https://git.kernel.org/abelloni/c/6cc79a629571
+So it makes sense to split this in 2 with banks and offset, it maps the architecture
+of the SoC, and with this scheme we only need to add the bindings for the
+"banks" once since all the SoCs shares the same names.
 
-This needed a Reported-by though.
+It simplifies bindings, has minimal cost due to the 3 cells, and only requires slightly
+more larger xlate function per SoC family.
 
-Best regards,
+Neil
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> 
+> Rob
+
 
 _______________________________________________
 linux-amlogic mailing list
