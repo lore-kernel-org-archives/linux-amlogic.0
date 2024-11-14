@@ -4,64 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B1B2D68B33
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Nov 2024 15:51:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17DB4D68B36
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Nov 2024 16:35:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=LFVR11s9rhfQU3AAIZeeJLwd0sjBz/+TCmIMQKkGVIQ=; b=vb+FZ5x+VCACUJ
-	eTCwZnsagXj6X6qcDrWhAEMwTo0XAgUp8xd1vvNoA+0jc6Vkip348xuSnpRtcNDJRXgz67AabsCb2
-	KA51S7t7oJ2WiX1C+HXq9ZG5voIJvVTmHBf6w5FdK7iQgNMD+EhkutzupU24ZO0GHYmZ4h0KFv+2y
-	lQml9phrM2XWlPI7U8+yGkTKqNx/cM6HUzdnRxC6tuXe4rDiTwSxwN6ukKMW3qIvF4f7FDQNiQy55
-	6QGsvkI66dmHOsX0Zn3o2AEwbvx+jPN34Z/cDhGGAFwWZqgKcgFkvm3ueqTbf2Cz552bcZwHJ7c7d
-	ys+hP19BTqHjQSB7DlAQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=q15+YcZHKvkBEg/FT2aHXiVlboyNY119dZRUiEZPIno=; b=jrvfDS2k83ilD+
+	iG4T+caoEdlHWYVR2MBhQzH9UQ2xKKi4MP279Y7b2VM0moGqp+KTLbPl8qIcggLNU25xLmJ8/e1KJ
+	6qVthtTrKwwNCnNZkhfdTUNH78D7m8m9usx+aWU+2tSwXxyls5KA3FLIGNKaZxt5BR0nJTCdkOuAz
+	6a0wHsvEqIRKl5xeVfLcAFnMfbny0ncnNK+NqoIP+Tp2TVTg5vXs+mu/Nx25vI67iMGfZVUuROA58
+	ppvRMP5IheI/h+EnL3in4uS4L7Xen4yAxeV2lQMMzRvx8PW3fdngZAeqEMkZfMgwQlHAnIlUmI+ZF
+	z9XWi7NCfngEVygqPvhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBc7l-00000000GYH-3Saa;
-	Thu, 14 Nov 2024 15:51:13 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1tBcoi-000000009P6-3S3f;
+	Thu, 14 Nov 2024 16:35:36 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBc5o-00000000FqO-1RiM;
-	Thu, 14 Nov 2024 15:49:17 +0000
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 6D8A2100002;
-	Thu, 14 Nov 2024 18:49:02 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6D8A2100002
+	id 1tBcoh-000000009OV-1w52;
+	Thu, 14 Nov 2024 16:35:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From:Sender:
+	Reply-To:Cc:Content-ID:Content-Description;
+	bh=uWFM2OIDny8aQRNfF/FtlMduc/pXhoIYLcpFwT4ifvg=; b=jZ19qofm/ftD1RzWGfZRaGRvY7
+	6sdz14Q5KagH4j4UKWfOJSxOeqtH2pZK5KccD5hEIR5onTqlcIn5G2kgKZB7Dk+ezGLt+YrG9h8do
+	+Eqvkr9MDYUTxUmCnrJoRSM8qKQ06XJOrC5D/KDG/p3X13ozTkwvn8fJMYLjV2oCdJ5FTTI6eyRPQ
+	jbcfJ6nX2gy7ncPSIQUsVYihONxK8HDZ1fbNj9kjQ9HjGmwd5XMg7odA3qwqwI3BaTvFuSh35b159
+	ywD5l9yF7o1T/upy+ykzDK+FYbpiaBk6PgnsWaCwVOrJtx3uDzFmrGf9krjofkMfyAAkSZag7hc0z
+	kU6u8i6A==;
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1tBcod-000000007pt-025q;
+	Thu, 14 Nov 2024 16:35:33 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 488DB12000F;
+	Thu, 14 Nov 2024 19:29:33 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 488DB12000F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1731599342;
-	bh=lsFacXP5o2cIfFFjFmHt4+id49zlrLdO2XORIjPTsvI=;
+	s=mail; t=1731601773;
+	bh=uWFM2OIDny8aQRNfF/FtlMduc/pXhoIYLcpFwT4ifvg=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=kXloHT1HT2fl4vo9D14HHJ+tfNVXTgcdzLcP7cbMJG3e92pVtpaBJNgrmE4AD37FE
-	 ut1E2T75pKRjrkFOryV7fs50WYGEYW5k2KGjlUVOyxvy1IScoUMBKBmWT6L/mC7KE+
-	 kow794vbbvBhnDoY7vZdfhmUgMMrUy835N6q6M5bOJTZbhImM7s3cgFZMPBHWw1xdR
-	 D3fmk1zKhinG6TtnD/7FvpmpmlKazqjiBEl7gV53dVmNlC8KUU0K+6E9YI/47keO5x
-	 psEmFY1VBjuZR9rpS9TCWZ0bFhcuIw7v9ZDJWzLqJoSUq/HY9Dg3hmtvUK/han9zmf
-	 FUFlHsAjasUJw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	b=NTk0EQQq1dTOoLVAR6GaTO++UVCib4kqHgC5/08c3yFCw4g/2aPtLZLuSqF5Iu77/
+	 4afD9B1yly2t5vKet6TX2wtmprg6tC217vm7GHcKy2mVpRIN4SNSBKIOm/Ylo1hvFG
+	 MycBb4j0nIYBd/sQRWscVnsTdtyYYSDNe+xQjghLZPxHSKW4MRF7bWtb/E5jeXGL8m
+	 1J56xNkZApekA3xLCyCEJgQswh2pmiZQ+PvOZYkgX1nWIFH5YXlafBrQgbf6cvCaOR
+	 7qIXDkkXiMCxb/j1b00WSIrrkbP/xPmDAaAb7RMFqfZ46CO5KZgVRqZZIKj4tP8PNm
+	 TR/k7qKZIe4rA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 14 Nov 2024 18:49:02 +0300 (MSK)
+	Thu, 14 Nov 2024 19:29:33 +0300 (MSK)
 From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Christian Hewitt
-	<christianshewitt@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, "Kevin
- Hilman" <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet
+	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
 	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Xianwei Zhao
-	<xianwei.zhao@amlogic.com>
-Subject: [PATCH v2 0/2] Introduce initial support of Amlogic AC200 board
-Date: Thu, 14 Nov 2024 18:48:54 +0300
-Message-ID: <20241114154856.3353691-1-jan.dakinevich@salutedevices.com>
+	<linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>, Michael Turquette
+	<mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Stephen Boyd <sboyd@kernel.org>
+Subject: [RFC PATCH 2/3] clk: amlogic: axg-audio: synchronize *_audio_hw_clks and *_clk_regmaps arrays
+Date: Thu, 14 Nov 2024 19:29:25 +0300
+Message-ID: <20241114162926.3356551-3-jan.dakinevich@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241114162926.3356551-1-jan.dakinevich@salutedevices.com>
+References: <20241114162926.3356551-1-jan.dakinevich@salutedevices.com>
 MIME-Version: 1.0
 X-Originating-IP: [172.28.64.45]
-X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+X-ClientProxiedBy: p-i-exch-a-m2.sberdevices.ru (172.24.196.120) To
  p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
@@ -72,17 +86,16 @@ X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;lore.kernel.org:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:7.1.1,5.0.1;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, FromAlignment: n
+X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_smtp_not_equal_from}, salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, FromAlignment: n
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/11/14 12:25:00
-X-KSMG-LinksScanning: Clean, bases: 2024/11/14 12:25:00
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/14 14:31:00 #26861614
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241114_074914_515457_A52861AB 
-X-CRM114-Status: UNSURE (   8.43  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241114_163531_374817_63BCF1D4 
+X-CRM114-Status: GOOD (  10.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,24 +112,67 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Changes v1 [1] -> v2:
- - added "Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>" to
-   dt-bindings
- - don't share the definition of sound card between ac2xx boards
+To simplify review, synchronize the content and order of clocks listed
+in these arrays.
 
-Links:
- [1] https://lore.kernel.org/all/20240521222155.28094-1-jan.dakinevich@salutedevices.com/
+Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+---
+ drivers/clk/meson/axg-audio.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
-Jan Dakinevich (2):
-  dt-bindings: arm: amlogic: document AC200 support
-  arch/arm64: dts: ac200: introduce initial support of the board
-
- .../devicetree/bindings/arm/amlogic.yaml      |   1 +
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../boot/dts/amlogic/meson-sm1-ac200.dts      | 109 ++++++++++++++++++
- 3 files changed, 111 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dts
-
+diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
+index 05a72a199ebd..5d2901b2a964 100644
+--- a/drivers/clk/meson/axg-audio.c
++++ b/drivers/clk/meson/axg-audio.c
+@@ -1095,6 +1095,8 @@ static struct clk_hw *g12a_audio_hw_clks[] = {
+ 	[AUD_CLKID_TDM_SCLK_PAD0]	= &g12a_tdm_sclk_pad_0.hw,
+ 	[AUD_CLKID_TDM_SCLK_PAD1]	= &g12a_tdm_sclk_pad_1.hw,
+ 	[AUD_CLKID_TDM_SCLK_PAD2]	= &g12a_tdm_sclk_pad_2.hw,
++	[AUD_CLKID_TORAM]		= &toram.hw,
++	[AUD_CLKID_EQDRC]		= &eqdrc.hw,
+ 	[AUD_CLKID_TOP]			= &axg_aud_top,
+ };
+ 
+@@ -1428,6 +1430,9 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
+ 	&spdifout_clk_sel,
+ 	&spdifout_clk_div,
+ 	&spdifout_clk,
++	&spdifout_b_clk_sel,
++	&spdifout_b_clk_div,
++	&spdifout_b_clk,
+ 	&spdifin_clk_sel,
+ 	&spdifin_clk_div,
+ 	&spdifin_clk,
+@@ -1508,9 +1513,6 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
+ 	&tdmout_a_lrclk,
+ 	&tdmout_b_lrclk,
+ 	&tdmout_c_lrclk,
+-	&spdifout_b_clk_sel,
+-	&spdifout_b_clk_div,
+-	&spdifout_b_clk,
+ 	&g12a_tdm_mclk_pad_0,
+ 	&g12a_tdm_mclk_pad_1,
+ 	&g12a_tdm_lrclk_pad_0,
+@@ -1565,6 +1567,9 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
+ 	&spdifout_clk_sel,
+ 	&spdifout_clk_div,
+ 	&spdifout_clk,
++	&spdifout_b_clk_sel,
++	&spdifout_b_clk_div,
++	&spdifout_b_clk,
+ 	&spdifin_clk_sel,
+ 	&spdifin_clk_div,
+ 	&spdifin_clk,
+@@ -1645,9 +1650,6 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
+ 	&tdmout_a_lrclk,
+ 	&tdmout_b_lrclk,
+ 	&tdmout_c_lrclk,
+-	&spdifout_b_clk_sel,
+-	&spdifout_b_clk_div,
+-	&spdifout_b_clk,
+ 	&sm1_tdm_mclk_pad_0,
+ 	&sm1_tdm_mclk_pad_1,
+ 	&sm1_tdm_lrclk_pad_0,
 -- 
 2.34.1
 
