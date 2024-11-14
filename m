@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17DB4D68B36
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB548D68B37
 	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Nov 2024 16:35:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,53 +12,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=q15+YcZHKvkBEg/FT2aHXiVlboyNY119dZRUiEZPIno=; b=jrvfDS2k83ilD+
-	iG4T+caoEdlHWYVR2MBhQzH9UQ2xKKi4MP279Y7b2VM0moGqp+KTLbPl8qIcggLNU25xLmJ8/e1KJ
-	6qVthtTrKwwNCnNZkhfdTUNH78D7m8m9usx+aWU+2tSwXxyls5KA3FLIGNKaZxt5BR0nJTCdkOuAz
-	6a0wHsvEqIRKl5xeVfLcAFnMfbny0ncnNK+NqoIP+Tp2TVTg5vXs+mu/Nx25vI67iMGfZVUuROA58
-	ppvRMP5IheI/h+EnL3in4uS4L7Xen4yAxeV2lQMMzRvx8PW3fdngZAeqEMkZfMgwQlHAnIlUmI+ZF
-	z9XWi7NCfngEVygqPvhw==;
+	List-Owner; bh=Hvj4HOMYRWF3J2c7EUMgpynaMNeqQ9k44VeNkhzE6ys=; b=el56bn+17EIep+
+	pQn8w9pL6PVLUN70SP1dPlDhwaIAzLrnW82iF3XsnJfKjsfREpetqckgW9A4aPjXTRdYJjga9YzLo
+	GwffCgvz2H9XwcdDTKVbsRJX+TZjGfpUlzWg/8gZ22+6PA1hmSGcNQaebdL8LBT14nmB7xx+zvAYJ
+	fqb4Qas38USAO3JlbuK3zTpiw6/X7+XeiI9RfLXRv27f8h19qChu+3785BQLZJ9Lu0pRFowicRNdS
+	pqJHJ3XzoCMy1oxkwvFtMQaO16rg2LIyidu+WZG+arPTq1dz1PjijHpMURGqt6IO6vlgX4jt8tLnC
+	4PQygDBujlssPnUxyEag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBcoi-000000009P6-3S3f;
+	id 1tBcoi-000000009Ov-24LM;
 	Thu, 14 Nov 2024 16:35:36 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBcoh-000000009OV-1w52;
+	id 1tBcoh-000000009OU-1wQs;
 	Thu, 14 Nov 2024 16:35:35 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
 	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From:Sender:
 	Reply-To:Cc:Content-ID:Content-Description;
-	bh=uWFM2OIDny8aQRNfF/FtlMduc/pXhoIYLcpFwT4ifvg=; b=jZ19qofm/ftD1RzWGfZRaGRvY7
-	6sdz14Q5KagH4j4UKWfOJSxOeqtH2pZK5KccD5hEIR5onTqlcIn5G2kgKZB7Dk+ezGLt+YrG9h8do
-	+Eqvkr9MDYUTxUmCnrJoRSM8qKQ06XJOrC5D/KDG/p3X13ozTkwvn8fJMYLjV2oCdJ5FTTI6eyRPQ
-	jbcfJ6nX2gy7ncPSIQUsVYihONxK8HDZ1fbNj9kjQ9HjGmwd5XMg7odA3qwqwI3BaTvFuSh35b159
-	ywD5l9yF7o1T/upy+ykzDK+FYbpiaBk6PgnsWaCwVOrJtx3uDzFmrGf9krjofkMfyAAkSZag7hc0z
-	kU6u8i6A==;
+	bh=DOSHt+MVfqoI6yUFl7+wi3kWGpaEllOtAf6f4LEbPEc=; b=VuqjpOaVqv54A4WFLnRx0Niuu/
+	IIEKLId+dZVuSQjjspG6haPN5g3G8vX0cT5n5jH03qH49iVh2KjsfZP5vgrfhBiDNz/Yy2yHO8UaM
+	/7aEkKKl/9gZAMNX1sXSP0EX/vUfTGGJXvvozEmgpeiELHZ2DWBIzdrdi9DniIBZAU71Uc3Hru/Aa
+	UDgUwCUlwQjwJ+3y+t1But02+wqBJW9UQu535AUTx/z5lilHe+GnXqBXIgY2lYKA8hN+wGE6fWQHM
+	jiFZcaiABM7E8yzrxOJnH+q/DKGaH3ouBk8fgtBGZsa1bO27b0jQrqdR4sAeR5ylbyCJNdqAdF7fM
+	e6fGt9zg==;
 Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBcod-000000007pt-025q;
+	id 1tBcod-000000007pu-027X;
 	Thu, 14 Nov 2024 16:35:33 +0000
 Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 488DB12000F;
-	Thu, 14 Nov 2024 19:29:33 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 488DB12000F
+	by mx1.sberdevices.ru (Postfix) with ESMTP id EC46D12000B;
+	Thu, 14 Nov 2024 19:29:32 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru EC46D12000B
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1731601773;
-	bh=uWFM2OIDny8aQRNfF/FtlMduc/pXhoIYLcpFwT4ifvg=;
+	s=mail; t=1731601772;
+	bh=DOSHt+MVfqoI6yUFl7+wi3kWGpaEllOtAf6f4LEbPEc=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=NTk0EQQq1dTOoLVAR6GaTO++UVCib4kqHgC5/08c3yFCw4g/2aPtLZLuSqF5Iu77/
-	 4afD9B1yly2t5vKet6TX2wtmprg6tC217vm7GHcKy2mVpRIN4SNSBKIOm/Ylo1hvFG
-	 MycBb4j0nIYBd/sQRWscVnsTdtyYYSDNe+xQjghLZPxHSKW4MRF7bWtb/E5jeXGL8m
-	 1J56xNkZApekA3xLCyCEJgQswh2pmiZQ+PvOZYkgX1nWIFH5YXlafBrQgbf6cvCaOR
-	 7qIXDkkXiMCxb/j1b00WSIrrkbP/xPmDAaAb7RMFqfZ46CO5KZgVRqZZIKj4tP8PNm
-	 TR/k7qKZIe4rA==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	b=rzvOSwCYK/zMLnQrueRDbBS95+kMns5Op0wLS1mA4qqbvlQVtFI5qo/3CrR2FCWSZ
+	 JX6a7Jz0n1kHn2Qyt4OoLb+i28bacSjb+wfvgdkYpTy7CGwnSItJ9fqhuRcUPoyQ5a
+	 vcht/sWqWCIFm3lpq4XMNFiR0MHpHzyE5a1dAUEhYMG/k5Ok99TqVXCiADkFZnfCwL
+	 Jm7MSvlJZPldihhF6N/Fnid1uno3wjQRv2zp+txJSHKNtx2zZntb4gjpAJ6qapH4i2
+	 PF/YmgcLGzrKG1ysrsTpin9s9U9aZNBnbO5V8k1+mY4PY07QnRx+lHjOj+wQiGCHIz
+	 UYP5zySafFU/w==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 14 Nov 2024 19:29:33 +0300 (MSK)
+	Thu, 14 Nov 2024 19:29:32 +0300 (MSK)
 From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet
 	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
@@ -67,9 +67,9 @@ To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet
  Blumenstingl" <martin.blumenstingl@googlemail.com>, Michael Turquette
 	<mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>,
 	Stephen Boyd <sboyd@kernel.org>
-Subject: [RFC PATCH 2/3] clk: amlogic: axg-audio: synchronize *_audio_hw_clks and *_clk_regmaps arrays
-Date: Thu, 14 Nov 2024 19:29:25 +0300
-Message-ID: <20241114162926.3356551-3-jan.dakinevich@salutedevices.com>
+Subject: [RFC PATCH 1/3] clk: amlogic: axg-audio: use dev_err_probe()
+Date: Thu, 14 Nov 2024 19:29:24 +0300
+Message-ID: <20241114162926.3356551-2-jan.dakinevich@salutedevices.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241114162926.3356551-1-jan.dakinevich@salutedevices.com>
 References: <20241114162926.3356551-1-jan.dakinevich@salutedevices.com>
@@ -94,8 +94,8 @@ X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/14 14:31:00 #26861614
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241114_163531_374817_63BCF1D4 
-X-CRM114-Status: GOOD (  10.76  )
+X-CRM114-CacheID: sfid-20241114_163531_355302_C85FD447 
+X-CRM114-Status: GOOD (  12.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,67 +112,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-To simplify review, synchronize the content and order of clocks listed
-in these arrays.
+Replace dev_err() with dev_err_probe() to simplify the code.
 
 Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 ---
- drivers/clk/meson/axg-audio.c | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ drivers/clk/meson/axg-audio.c | 19 +++++++------------
+ 1 file changed, 7 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-index 05a72a199ebd..5d2901b2a964 100644
+index 7714bde5ffc0..05a72a199ebd 100644
 --- a/drivers/clk/meson/axg-audio.c
 +++ b/drivers/clk/meson/axg-audio.c
-@@ -1095,6 +1095,8 @@ static struct clk_hw *g12a_audio_hw_clks[] = {
- 	[AUD_CLKID_TDM_SCLK_PAD0]	= &g12a_tdm_sclk_pad_0.hw,
- 	[AUD_CLKID_TDM_SCLK_PAD1]	= &g12a_tdm_sclk_pad_1.hw,
- 	[AUD_CLKID_TDM_SCLK_PAD2]	= &g12a_tdm_sclk_pad_2.hw,
-+	[AUD_CLKID_TORAM]		= &toram.hw,
-+	[AUD_CLKID_EQDRC]		= &eqdrc.hw,
- 	[AUD_CLKID_TOP]			= &axg_aud_top,
- };
+@@ -1714,10 +1714,8 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
  
-@@ -1428,6 +1430,9 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
- 	&spdifout_clk_sel,
- 	&spdifout_clk_div,
- 	&spdifout_clk,
-+	&spdifout_b_clk_sel,
-+	&spdifout_b_clk_div,
-+	&spdifout_b_clk,
- 	&spdifin_clk_sel,
- 	&spdifin_clk_div,
- 	&spdifin_clk,
-@@ -1508,9 +1513,6 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
- 	&tdmout_a_lrclk,
- 	&tdmout_b_lrclk,
- 	&tdmout_c_lrclk,
--	&spdifout_b_clk_sel,
--	&spdifout_b_clk_div,
--	&spdifout_b_clk,
- 	&g12a_tdm_mclk_pad_0,
- 	&g12a_tdm_mclk_pad_1,
- 	&g12a_tdm_lrclk_pad_0,
-@@ -1565,6 +1567,9 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
- 	&spdifout_clk_sel,
- 	&spdifout_clk_div,
- 	&spdifout_clk,
-+	&spdifout_b_clk_sel,
-+	&spdifout_b_clk_div,
-+	&spdifout_b_clk,
- 	&spdifin_clk_sel,
- 	&spdifin_clk_div,
- 	&spdifin_clk,
-@@ -1645,9 +1650,6 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
- 	&tdmout_a_lrclk,
- 	&tdmout_b_lrclk,
- 	&tdmout_c_lrclk,
--	&spdifout_b_clk_sel,
--	&spdifout_b_clk_div,
--	&spdifout_b_clk,
- 	&sm1_tdm_mclk_pad_0,
- 	&sm1_tdm_mclk_pad_1,
- 	&sm1_tdm_lrclk_pad_0,
+ 	axg_audio_regmap_cfg.max_register = data->max_register;
+ 	map = devm_regmap_init_mmio(dev, regs, &axg_audio_regmap_cfg);
+-	if (IS_ERR(map)) {
+-		dev_err(dev, "failed to init regmap: %ld\n", PTR_ERR(map));
+-		return PTR_ERR(map);
+-	}
++	if (IS_ERR(map))
++		return dev_err_probe(dev, PTR_ERR(map), "failed to init regmap\n");
+ 
+ 	/* Get the mandatory peripheral clock */
+ 	clk = devm_clk_get_enabled(dev, "pclk");
+@@ -1725,10 +1723,8 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ 		return PTR_ERR(clk);
+ 
+ 	ret = device_reset(dev);
+-	if (ret) {
+-		dev_err_probe(dev, ret, "failed to reset device\n");
+-		return ret;
+-	}
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to reset device\n");
+ 
+ 	/* Populate regmap for the regmap backed clocks */
+ 	for (i = 0; i < data->regmap_clk_num; i++)
+@@ -1746,10 +1742,9 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ 		name = hw->init->name;
+ 
+ 		ret = devm_clk_hw_register(dev, hw);
+-		if (ret) {
+-			dev_err(dev, "failed to register clock %s\n", name);
+-			return ret;
+-		}
++		if (ret)
++			return dev_err_probe(dev, ret, "failed to register clock %s\n",
++					     name);
+ 	}
+ 
+ 	ret = devm_of_clk_add_hw_provider(dev, meson_clk_hw_get, (void *)&data->hw_clks);
 -- 
 2.34.1
 
