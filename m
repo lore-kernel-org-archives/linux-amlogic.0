@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 875A7D6A221
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Nov 2024 20:33:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7366ED6A249
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Nov 2024 22:42:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bbDAQHurTPD0pTTEQcKkrhpxRtXCcQuMRH+Vw4nn4hE=; b=uUwsErBMdGWgsw
-	IBorvRvfrPTJFBrYHH74MTalkoLBujNdTniwSdGNc5cjAh6HdcA6dahdIV6JDmPMIP9EZZm9aEF1V
-	ON0gGjLAh3/41pLeIJAmBclWSDQgWiXrSJ/4YE2+24feQSXYeQ7Ku9Pbokz+5pTLtSf7ti6wbP1SL
-	tDjnzavjZNiGT2BU8TSWAth5TuBH2JLT/RKrOVdB7X3Erbqa54UpFg1CCYGx0/sQJADEL5YO0PjZN
-	USLIeavhX2IGYKO3x2dfVYoirnOkyn2612e7vQwF1mfJeQy+pKcjufaKHlZXkH2ZMD9Mnp3UW7i2G
-	e7Wxi9BBX1SedO2cz5Gw==;
+	List-Archive:List-Unsubscribe:List-Id:Date:To:From:Subject:References:
+	In-Reply-To:MIME-Version:Message-ID:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=ecBwY8R/bbZHF78lEC1la/en1q2/1bHUFwOBJgwIBow=; b=h2vb9mNhR5D3Hm/SHep02dnTXz
+	36lw4QsQdlHBZ7Kj4M6iksleB3gq+/ioP+7KwLpyP0Iu0rms5bXIeUMuSuVYJXrfZzm+fjWytLgEV
+	I592hpYQlSZmBHX1+dy52FtJxk2OM1oymohQcV/hc0gsVu85h5uSIwCBxMrF0nBTZg567iKlokPDg
+	pU0FxCwYYDSuLvYCZCCY3pc8GY4gIUWVEmotbc3Gvyb8pfm/keZkFyCQlZdZIoprJvBxcZf7yW04G
+	MHGmQi3LFPV6bpFc6Txbbl9gJ2DnJW3fT/EUaweHYG1UuZFI99pNXO6nA1Cn33C1JIDT56OBIBBVA
+	weZjbudw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBgWq-00000000lfD-15Jb;
-	Thu, 14 Nov 2024 20:33:24 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tBiXi-000000010o3-328m;
+	Thu, 14 Nov 2024 22:42:26 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBgWo-00000000lel-0QZ3;
-	Thu, 14 Nov 2024 20:33:23 +0000
+	id 1tBiVo-000000010VC-2z0E;
+	Thu, 14 Nov 2024 22:40:29 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 514005C5C4B;
-	Thu, 14 Nov 2024 20:32:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F65BC4CECD;
-	Thu, 14 Nov 2024 20:33:21 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id C019F5C1127;
+	Thu, 14 Nov 2024 22:39:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A196AC4CECD;
+	Thu, 14 Nov 2024 22:40:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731616401;
-	bh=+CDkKWnuIWE7Qdr1ZvsvyfLP2c+eEHLfxf+YncF80ho=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=VelODjWB+adbMJUXY/GTYKQEnsvUt4j+gZlgfx5ZdX6f6VAEY4F7q7mnYzrk9Tify
-	 vhrc2rdpYl3YrubN6lMMvikrWRWHLXVmNcnN3Re0kB5nu2/uc6w6rCBcwkGMBQaDxj
-	 ZLV2MuJBEfS8rIcOs5XwpkGtr1JXzOmaUOP++YkzqES4yEDBk7H0lr43VpZ7WBrtAc
-	 Dq+pnrl06ns4SoIaPaiNGsZGf/rKSxgZNug7uZCRefpH6emO6j8Sqm3K0yOOuF3cEt
-	 N++Qgi98eoAat791ChTWEaM8fjqtV8erYyib8sqJE5u12Sgfub1ZjebZSRynRZly6g
-	 FEERvrZt6yleA==
-Message-ID: <9efa4e83bb57b9121a03f53755d1f9f3.sboyd@kernel.org>
+	s=k20201202; t=1731624027;
+	bh=q+dgoQrtOgKVilV2nVsbgAYQbJrn9GgLDKGPgYV2pDc=;
+	h=In-Reply-To:References:Subject:From:To:Date:From;
+	b=jtVWwzYFOpJ/mB2Fa/mloq4oMS5Ir56qJWbEJZ9Twwar0LaFkh95AowpZF8iCrCQd
+	 F5pEAvNrhBpZmWIiS9ptJQYx5LjZq7iKb4UjO8kmCw6QIIqjaypemN3Rc6Rk7mlQ3K
+	 uFPAqZKNYEcdi7+rUvWEbkcDzA2wS9GN0tGhBzJ06RpzBBFug/XhkfcNfhbGTip3Re
+	 g7xzzMprUniwI5qruvRrKGr/+ZKV6JhwuQjQzv8l6tzyzgMZUl8luQwsEGt2wuMkcM
+	 NQ3MBC6axxq99EM16xbEjn4nDTWvX4pccd/uNsaznxIm9rF29zcN3fg0rmcJepAVo3
+	 anI0qsoPILy4A==
+Message-ID: <b473d92cc353b1cf58169410236e4c51.sboyd@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20241111102932.3209861-1-arnd@kernel.org>
-References: <20241111102932.3209861-1-arnd@kernel.org>
-Subject: Re: [PATCH] clk: amlogic: axg-audio: fix Kconfig dependency on RESET_MESON_AUX
+In-Reply-To: <20241112230443.1406460-4-jan.dakinevich@salutedevices.com>
+References: <20241112230443.1406460-1-jan.dakinevich@salutedevices.com> <20241112230443.1406460-4-jan.dakinevich@salutedevices.com>
+Subject: Re: [PATCH v5 3/3] clk: meson: a1: add the audio clock controller driver
 From: Stephen Boyd <sboyd@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-To: Arnd Bergmann <arnd@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 14 Nov 2024 12:33:19 -0800
+To: Conor Dooley <conor+dt@kernel.org>, Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 14 Nov 2024 14:40:25 -0800
 User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241114_123322_187752_895C28E2 
-X-CRM114-Status: UNSURE (   6.43  )
+X-CRM114-CacheID: sfid-20241114_144028_794543_1279E7E9 
+X-CRM114-Status: UNSURE (   8.66  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -71,22 +71,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Arnd Bergmann (2024-11-11 02:29:21)
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> As in most cases, using 'imply' is wrong here and does not prevent
-> build failures since that code may not be visible to a built-in
-> clk driver:
-> 
-> axg-audio.c:(.text+0x15c): undefined reference to `devm_meson_rst_aux_register'
-> 
-> Replace the incorrt 'imply' with the necessary 'depends on'.
-> 
-> Fixes: 664988eb47dd ("clk: amlogic: axg-audio: use the auxiliary reset driver")
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
+Quoting Jan Dakinevich (2024-11-12 15:04:43)
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 7cb21fc223b0..49f2086bc773 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -133,6 +133,20 @@ config COMMON_CLK_A1_PERIPHERALS
+>           device, A1 SoC Family. Say Y if you want A1 Peripherals clock
+>           controller to work.
+>  
+> +config COMMON_CLK_A1_AUDIO
+> +       tristate "Amlogic A1 SoC Audio clock controller support"
+> +       depends on ARM64
+> +       select COMMON_CLK_MESON_REGMAP
+> +       select COMMON_CLK_MESON_PHASE
+> +       select COMMON_CLK_MESON_SCLK_DIV
+> +       select COMMON_CLK_MESON_CLKC_UTILS
+> +       select REGMAP_MMIO
+> +       imply RESET_MESON_AUX
 
-Applied to clk-next
+Should be 'depends on RESET_MESON_AUX'
 
 _______________________________________________
 linux-amlogic mailing list
