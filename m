@@ -4,66 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDC0DD6DDED
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Nov 2024 11:41:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 121E1D68BCD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Nov 2024 17:09:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=htElBZBnrfqk0cdx0jK+cj8FRopcacys2ywVvCkG+tc=; b=KhSoHFk0XMHrdh
-	ewQLyxN8S7Sp7BBtqO+XGpPvs+NaAxJ8KPbdkwRKcnSmF+edb/6fDI8cSuAY2rlj+5lhWNDc6MN7E
-	pp5XYokutNk4wGrqArEIPQq1KH20NvVh9DMEOot7sSmGOfy+ogT1WA3AlQCBVc5iyuN1EMygvxsrq
-	bOXkzpuylSAHYbBK4S+NjJjIbIZGRxwElPZGdnYaazeV8WXpagLQcUzmbH4wC7VYlndUQNWH+hDqu
-	n2ZK3OmmhG2czB2FbV+92QLFLPPdCeUeu3Tfh6ut9cpjiuF1OSDZs1Zm8cWLEDTL881DU+OxX/xwL
-	Qpc0TFngZMu9MfPTVXMA==;
+	List-Owner; bh=x7CnS5jav4KeBHymbnZ3UGppvZdZYIo64zNIXiLGxC4=; b=uBuk3o/wzts8bx
+	T2abTaV2mSID2J+yLCp9edg/UfMUfgNRvO2v85pzWrXagTya22V+rpoOL5b0VH17TGUjkGocHu32l
+	jQGEXALyNxSqVDqlmG32dkf3ePkxubkCjb6U/RBa5rG7YHqqDXqwY7Cr1flN5X5zWxyTcYI8Vk/b6
+	O2T1fq3IVpjuXu58uxYNkAoE0yjRZio+HJ1jdG044rjRLnMGI6hA/N/iL0VZyRVW0iOJrbWBcZ/0A
+	PpTKXf8oNRNMjO9BrTUEBeBK2gstzAXQLdSl0BAlXDauCfi04PYvGMWGopX+x3qaC8IHDPOpOFYPe
+	NVO2bIMg9hMgZe3EA25g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBuhG-00000002YTi-2Ghk;
-	Fri, 15 Nov 2024 11:41:06 +0000
-Received: from abb.hmeau.com ([144.6.53.87])
+	id 1tBzp2-00000003Uf7-069K;
+	Fri, 15 Nov 2024 17:09:28 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBuhD-00000002YRw-2NUq;
-	Fri, 15 Nov 2024 11:41:05 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=U+8swLwqF2X83AK80kvODCLIKsVeONdbEHVvDm0uwjk=; b=tCLhJN8tAY3prXd8p6rS+OVy+Y
-	j+bYIBxLt8CwVkBOQ2qcUGG3PZ1iL67tud/C76A34ge7MHGs8q7sGhbGLQW0eW/G7W/2bh3J+rm8i
-	e6f79azl0SzqPmQOpVvFAh1jiDIgXzxanvBLkVD1OWA+RljuigUAUaA63fceQX+DTDgX4CMI3fmcv
-	hy93AUtjqmnq5J4Diks1LGLMt6hX+Nsz1QtWjE5wGZU8HDyPOxAIP79/Plxm1EMXUzgslNEsCM1/P
-	GPqn9t1ougoVP1Ue+a2E+d4Kn3+nJcDQGLW4F+KHHJgiH+BA7JkuhUdSzeep4SN3A9AqCAEY6k6tc
-	fhw+gixA==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1tBugk-00H1lk-2q;
-	Fri, 15 Nov 2024 19:40:35 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 15 Nov 2024 19:40:34 +0800
-Date: Fri, 15 Nov 2024 19:40:34 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, clabbe@baylibre.com, davem@davemloft.net,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, khilman@baylibre.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	vadim.fedorenko@linux.dev, linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	id 1tBzp0-00000003Ueb-0h0H;
+	Fri, 15 Nov 2024 17:09:27 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 8C6C9A42B60;
+	Fri, 15 Nov 2024 17:07:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF2DDC4CECF;
+	Fri, 15 Nov 2024 17:09:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731690565;
+	bh=Kat0vAa0R0WH/hqaed0tTlbgXevMzDUhnZLBXcBEO8E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tUkFj+1V4H5JGTNQNeKE4bp0/9yLPX11JH7rDNUBd59qfbrY9qhxOwyU0GyclUsqU
+	 FNzzJimsDZSn+6yn/qxKa2ddEzagWoSkSqTvnx4WaW+t0LwO3Z4AaYik8wLx2n74q+
+	 NpNKkVtN8tEz3F/TZhEoJzS3hmGeIbtWCZRzOJsiNihxb6aTIaoc6/WupAaaibGRBk
+	 lNCBVlvVD/KMGu/LAEsVsIetmZWL3RPltmcGJAavsXyg5o0l4MXMzILTPAfq0o9q4o
+	 pRoRUNKAHH5MexxRl8sHW9L7Imb4cyyTOw8FVeKJbOreurjMpNy8usapuVmgXNCPCb
+	 OiU5TZf0qidPA==
+Date: Fri, 15 Nov 2024 11:09:23 -0600
+From: Rob Herring <robh@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@salutedevices.com
-Subject: Re: [PATCH v10 11/22] crypto: amlogic - Introduce hasher
-Message-ID: <ZzczMlpfC33yjQ0j@gondor.apana.org.au>
-References: <20241108102907.1788584-1-avromanov@salutedevices.com>
- <20241108102907.1788584-12-avromanov@salutedevices.com>
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 1/5] dt-bindings: pinctrl: move gpio-cells and
+ gpio-controller property
+Message-ID: <20241115170923.GA3356657-robh@kernel.org>
+References: <20241113-a4_pinctrl-v7-0-0546a20c1c22@amlogic.com>
+ <20241113-a4_pinctrl-v7-1-0546a20c1c22@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20241108102907.1788584-12-avromanov@salutedevices.com>
+In-Reply-To: <20241113-a4_pinctrl-v7-1-0546a20c1c22@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241115_034103_611871_66A62F4F 
-X-CRM114-Status: UNSURE (   7.42  )
+X-CRM114-CacheID: sfid-20241115_090926_265561_17A8E399 
+X-CRM114-Status: UNSURE (   9.10  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -81,24 +82,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Nov 08, 2024 at 01:28:56PM +0300, Alexey Romanov wrote:
->
-> +struct meson_hasher_req_ctx {
-> +	u8 state[SHA256_DIGEST_SIZE + 16] ____cacheline_aligned;
-> +	u8 partial[SHA256_BLOCK_SIZE] ____cacheline_aligned;
-> +	unsigned int partial_size ____cacheline_aligned;
+On Wed, Nov 13, 2024 at 05:37:28PM +0800, Xianwei Zhao wrote:
+> Move #gpio-cells and gpio-controller properties from common yaml file
+> to lower-level yaml files.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml        | 5 +++++
+>  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml    | 5 -----
+>  .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml           | 5 +++++
+>  .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml         | 5 +++++
+>  .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml    | 5 +++++
+>  .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml     | 5 +++++
+>  6 files changed, 25 insertions(+), 5 deletions(-)
 
-Is this alignment for DMA? If so you cannot use ___cachealign_aligned
-to achieve what you want.
+Please don't send new versions when the prior version comments are not 
+resolved.
 
-Instead of this check out the crypto_ahash_ctx_dma helper.  For
-an example driver doing this for DMA, you could look at caam.
-
-Cheers,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
