@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7366ED6A249
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Nov 2024 22:42:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4C03D6A225
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Nov 2024 01:30:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=ecBwY8R/bbZHF78lEC1la/en1q2/1bHUFwOBJgwIBow=; b=h2vb9mNhR5D3Hm/SHep02dnTXz
-	36lw4QsQdlHBZ7Kj4M6iksleB3gq+/ioP+7KwLpyP0Iu0rms5bXIeUMuSuVYJXrfZzm+fjWytLgEV
-	I592hpYQlSZmBHX1+dy52FtJxk2OM1oymohQcV/hc0gsVu85h5uSIwCBxMrF0nBTZg567iKlokPDg
-	pU0FxCwYYDSuLvYCZCCY3pc8GY4gIUWVEmotbc3Gvyb8pfm/keZkFyCQlZdZIoprJvBxcZf7yW04G
-	MHGmQi3LFPV6bpFc6Txbbl9gJ2DnJW3fT/EUaweHYG1UuZFI99pNXO6nA1Cn33C1JIDT56OBIBBVA
-	weZjbudw==;
+	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
+	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=dphFJA+ZNAIkC3ZBAwhdj823ZidcB5HnDwhVWSFKUaQ=; b=n4OQwHljbEtZ9t
+	5LbvKTo46STOuxMXZurNyr4EXiibd43U2je9WLhkWnKE0BbhoenkbcS5HDTEPXdRayfbJ110eDoZ5
+	HUfN2WmxluxhsUSTi6kVE8y0EqlnY7JEeiHDBOHUZ/KRV7sm8yHD7k7YQ30871GDdYKCWGGACYBVE
+	N+yrCRyuj5O90R7q444hmT4sETpUBxL9qZiQdHw+ERcgMjdBs0LoiUzEeykz5ZrcUzAcCfJ0gY/y4
+	2M7xT2V/3Ru0Q//pSzA7wGse4xtsu9+CslOkH7HI4po+hpsLNXIU9CCy7JXwtP2aNvnlu4svtBfY6
+	xhzUFIAtKun2CbNlElRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBiXi-000000010o3-328m;
-	Thu, 14 Nov 2024 22:42:26 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1tBl9s-00000001JD4-35FK;
+	Fri, 15 Nov 2024 01:30:00 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tBiVo-000000010VC-2z0E;
-	Thu, 14 Nov 2024 22:40:29 +0000
+	id 1tBl9p-00000001JCO-3tlV;
+	Fri, 15 Nov 2024 01:29:59 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id C019F5C1127;
-	Thu, 14 Nov 2024 22:39:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A196AC4CECD;
-	Thu, 14 Nov 2024 22:40:27 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 1150BA41D43;
+	Fri, 15 Nov 2024 01:28:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 946C1C4CECD;
+	Fri, 15 Nov 2024 01:29:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731624027;
-	bh=q+dgoQrtOgKVilV2nVsbgAYQbJrn9GgLDKGPgYV2pDc=;
-	h=In-Reply-To:References:Subject:From:To:Date:From;
-	b=jtVWwzYFOpJ/mB2Fa/mloq4oMS5Ir56qJWbEJZ9Twwar0LaFkh95AowpZF8iCrCQd
-	 F5pEAvNrhBpZmWIiS9ptJQYx5LjZq7iKb4UjO8kmCw6QIIqjaypemN3Rc6Rk7mlQ3K
-	 uFPAqZKNYEcdi7+rUvWEbkcDzA2wS9GN0tGhBzJ06RpzBBFug/XhkfcNfhbGTip3Re
-	 g7xzzMprUniwI5qruvRrKGr/+ZKV6JhwuQjQzv8l6tzyzgMZUl8luQwsEGt2wuMkcM
-	 NQ3MBC6axxq99EM16xbEjn4nDTWvX4pccd/uNsaznxIm9rF29zcN3fg0rmcJepAVo3
-	 anI0qsoPILy4A==
-Message-ID: <b473d92cc353b1cf58169410236e4c51.sboyd@kernel.org>
+	s=k20201202; t=1731634196;
+	bh=F7vjyos0o0cMAhq/QgY+/gErSw+KDdiVVSrnj53mNpI=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=U3jc+NoYqih9t4XYPl8bBhd15QLfcgEeksTy//Rp2d2nGRctt9Dcp23AQ8BO4mQwM
+	 xNRvSiTJEENI7Ju7D5OuVF+l31xIJM1E5r29OiugiXvikQNAqDS7UUq+yPYcgfsx85
+	 sfwpG/xQ9zYmXw3vWRxe6AmxJZTgHS1j6kAbOhkkV6xVzWsyWNyCcDH4U78ZNXf3lN
+	 y8RjonQ9d0H14CuP2XgNuiRZWUcrcLPx9HlNl1fG4DbnjXx917CI3E3FJIN3PrvfVf
+	 V1JJGpMDtUg2Gs+F2KhYqNKwtm+VLet5xVzlMoyAmqXSvyX3g8pOLnVm1cYWz99pVo
+	 DOCosyyQ6rDag==
+Message-ID: <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20241112230443.1406460-4-jan.dakinevich@salutedevices.com>
-References: <20241112230443.1406460-1-jan.dakinevich@salutedevices.com> <20241112230443.1406460-4-jan.dakinevich@salutedevices.com>
-Subject: Re: [PATCH v5 3/3] clk: meson: a1: add the audio clock controller driver
+In-Reply-To: <20241106-freefall-slider-db379b05821e@spud>
+References: <20241002-private-unequal-33cfa6101338@spud> <20241002-hula-unwashed-1c4ddbadbec2@spud> <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org> <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com> <20241003-tacking-ladylike-dfe2b633e647@spud> <20241106-freefall-slider-db379b05821e@spud>
+Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to common code
 From: Stephen Boyd <sboyd@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>, Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Thu, 14 Nov 2024 14:40:25 -0800
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+To: Conor Dooley <conor@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
+Date: Thu, 14 Nov 2024 17:29:54 -0800
 User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241114_144028_794543_1279E7E9 
-X-CRM114-Status: UNSURE (   8.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241114_172958_192211_6B1BCD13 
+X-CRM114-Status: GOOD (  47.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,26 +70,137 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jan Dakinevich (2024-11-12 15:04:43)
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index 7cb21fc223b0..49f2086bc773 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -133,6 +133,20 @@ config COMMON_CLK_A1_PERIPHERALS
->           device, A1 SoC Family. Say Y if you want A1 Peripherals clock
->           controller to work.
->  
-> +config COMMON_CLK_A1_AUDIO
-> +       tristate "Amlogic A1 SoC Audio clock controller support"
-> +       depends on ARM64
-> +       select COMMON_CLK_MESON_REGMAP
-> +       select COMMON_CLK_MESON_PHASE
-> +       select COMMON_CLK_MESON_SCLK_DIV
-> +       select COMMON_CLK_MESON_CLKC_UTILS
-> +       select REGMAP_MMIO
-> +       imply RESET_MESON_AUX
+Quoting Conor Dooley (2024-11-06 04:56:25)
+> On Thu, Oct 03, 2024 at 12:33:40PM +0100, Conor Dooley wrote:
+> > > IIRC, Stephen's idea was more the bring regmap support in clk-gate.c,
+> > > clk-mux, etc ... I'm not quite sure how make iomem and regmap co-exist
+> > > in a manageable/maintainable way within those drivers (without adding yet
+> > > another level of abstraction I mean) ? Silently creating a regmap maybe
+> > > ? but that's probably a bit heavy. I did not really had time to dig more
+> > > on this, I guess no one did.
+> > 
+> > I guess I have some motivation to looking into it at the moment. I had
+> > my reservations about the Meson approach too, liking it more than
+> > Qualcomm's didn't mean I completely liked it.
+> > It was already my intention to implement point b of your mail, had the
+> > general idea here been acceptable, cos that's a divergence from how the
+> > generic clock types (that the driver in question currently uses) work.
+> > And on that note, I just noticed I left the mild-annoyance variable name
+> > "sigh" in the submitted driver changes, which I had used for the
+> > clk_regmap struct that your point b in the link relates to.
+> > 
+> > > I don't really have a preference one way or the other but if it is going
+> > > to be exposed in 'include/linux', we need to be sure that's how we want
+> > > to do it. With clocks poping in many driver subsystems, it will
+> > > difficult to change afterward. 
+> > 
+> > Yeah, I agree. I didn't expect this to go in right away, and I also
+> > didn't want to surge ahead on some rework of the clock types, were
+> > people to hate even the reuse.
+> 
+> Hmm, so how (in-)complete of a regmap implementation can I get away
+> with? I only need clk-gate and clk-divider for this patchset...
+> 
+> Shoving the regmap into the clk structs makes things pretty trivial as I
+> don't need to do anything special in any function other than
+> clk_*_readl()/clk_*_writel() and the registration code. A flag isn't
+> even needed to determine if a clock is a regmap one I don't think, since
+> you can just check if the regmap pointer is non-NULL.
 
-Should be 'depends on RESET_MESON_AUX'
+For the basic clk types I think it would be good to leave the old stuff
+alone. We have already split the logic out into helpers, so I wonder if
+we can do this better by making kernel modules for the different basic
+regmap clk types and exposing registration APIs. If we force drivers
+that use the basic regmap types to 'select' the module then we'll make
+it so that we don't include code that isn't used anywhere. That's one of
+the problems with the basic clk types, it's always built. It also lets
+us avoid making regmap a dependency for the clk framework at large.
+
+Doing that would also let us avoid the flag because it will be explicit
+in any registration API, clk_register_divider() vs.
+clk_register_regmap_divider(). Yes we duplicate some boiler plate logic
+around read-only and registration paths, but this is alright as long as
+we can share most of the code and gain the advantage of removing the
+code entirely when it isn't used.
+
+I wonder if we can even make a regmap on the fly for the iomem pointers
+so that clk_divider_readl() can always use the regmap API to access the
+hardware. Sounds wasteful but maybe it would work.
+
+> My use case doesn't
+> actually need the registration code changes either as, currently, only reg
+> gets set at runtime, but leaving that out is a level of incomplete I'd not
+> let myself away with.
+> Obviously shoving the extra members into the clk structs has the downside
+> of taking up a pointer and a offset worth of memory for each clock of
+> that type registered, but it is substantially easier to support devices
+> with multiple regmaps that way. Probably moot though since the approach you
+> suggested in the thread linked above that implements a clk_hw_get_regmap()
+> has to store a pointer to the regmap's identifier which would take up an
+> identical amount of memory.
+
+We don't need to store the regmap identifier in the struct clk. We can
+store it in the 'struct clk_init_data' with some new field, and only do
+that when/if we actually need to. We would need to pass the init data to
+the clk_ops::init() callback though. We currently knock that out during
+registration so that clk_hw->init is NULL. Probably we can just set that
+to NULL after the init routine runs in __clk_core_init().
+
+Long story short, don't add something to 'struct clk_core', 'struct
+clk', or 'struct clk_hw' for these details. We can have a 'struct
+clk_regmap_hw' that everyone else can build upon:
+
+  struct clk_regmap_hw {
+        struct regmap *regmap;
+        struct clk_hw hw;
+  };
+
+and then set the regmap pointer during registration in
+clk_hw_init_regmap().
+
+int clk_hw_init_regmap(struct clk_hw *hw)
+{
+	struct device *dev;
+	struct regmap *regmap;
+	struct clk_regmap_hw *rhw;
+
+	rhw = clk_hw_to_clk_regmap_hw(hw);
+
+	dev = clk_hw_get_dev(hw);
+	if (!dev)
+		return -EINVAL;
+
+	regmap = dev_get_regmap(dev, hw->init->regmap_name);
+	if (!regmap)
+		return -EINVAL; // Print helpful message
+	rhw->regmap = regmap;
+
+	return 0;
+}
+
+or we can even make it so that there's clk_hw_init_regmap() and
+clk_hw_init_regmap_name() so that drivers can have multiple functions if
+the clks need different regmaps.
+
+int my_init_regmap(struct clk_hw *hw)
+{
+	int ret;
+
+	ret = clk_hw_init_regmap_name(hw, "my_name");
+	...
+}
+
+If you don't need the multiple regmap support then it's fine to punt
+here until later.
+
+> 
+> I don't really care which way you want it done, both are pretty easy to
+> implement if I can get away with just doing so for the two standard
+> clock types that I am using - is it okay to just do those two?
+> 
+
+Of course, doing only what is minimally required is better than changing
+everything if you're not sure the approach is going to land.
 
 _______________________________________________
 linux-amlogic mailing list
