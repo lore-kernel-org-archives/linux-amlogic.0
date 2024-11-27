@@ -4,109 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3076FD3B7CA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2024 09:18:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50D5BD66BB0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Nov 2024 04:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ZFwdzZsHnV64pkESbA+8p1ZCU5uRNSGfYBA35cfRGVk=; b=Hu2vAIu+Je8uOR
-	QvEMIrmRHKw77RHfmO/5MTYhDvPzSCM+1KnEy6pGRKjhiLirKOm/iZHySmEOYonaNOyKc0j9OqIq7
-	wkLeavTY2l+/NGyA3b8xpsorRjvEaVWGJ/d9tzOdGnyj7PuqEoT3p4upv8WM9r9dqUqDrXOhQHA0Q
-	36mQgEA2n1vrytY3NUwXET+lpZje2ZAEe6rB7JEEbeVXNU5lJbdp2OyL/JzWoFbyN8yWBrdMIVMPw
-	iB0kRHhVUuigZWwGWIVDD7Besd4FetkXdXAF1+cDASZnAmL4B4WBDqYg8CDYbLxtn44nRMTm27aD4
-	4F6XGUI4REs72KONSGww==;
+	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
+	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=5d4D05r6fnIRfDB60BF/4sozzwceSRUij73n1jiOW1U=; b=UCZVx74ISC15dW
+	jY+wGb0PKa8x9QC9bym2WsfEETF7XGF3cRDcTYoiuFKYlui8NYdqUcUhAHjrGEhidnca6DVyPO5CY
+	8XTXoL8t48huEHmPdUqtdZbtk3/xZxLs2NhOzf2WpJgTq34/AcZZ+qBoYkRJXG03S1sgsPLfiLJ8C
+	wirImoFghNjlcb+I138DnBf9YoM/CMr6NekI6jIxxZ5lDr5wlTff6tJdM8uAO7jJrNgkTA5GbJv0N
+	hLcXt/UEkH8frURBZlsxlOjZy65tTvmu+JTQOW930ZjqqB8iP+eARc2p/OFmhfokm1CGuaDavsuue
+	4quAQfBsBf3nJl2FrNsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tFriJ-0000000A4YE-2NMU;
-	Tue, 26 Nov 2024 09:18:31 +0000
-Received: from mx08-00178001.pphosted.com ([91.207.212.93] helo=mx07-00178001.pphosted.com)
+	id 1tG9KD-0000000CBdZ-2AiX;
+	Wed, 27 Nov 2024 04:06:49 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tFrfL-0000000A3dd-2j9p;
-	Tue, 26 Nov 2024 09:15:29 +0000
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQ96KIe013233;
-	Tue, 26 Nov 2024 10:15:16 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=selector1; bh=vSTujhm+41nFZVVxdT162i
-	RX0EXX7Jnr8vBVXGlgN9o=; b=0PAAs2vrk1CIEumwjtIG7XmJDGmDRPvsFpyBfh
-	cwVH0l4gpwUrlWi8cZ8QUJGGy1fX9Ma2bn1cGtHYTFtd3ujPjn2HJCuYznNYiXVa
-	ZT7Sgi8OwP9kT6Rvox3/11HTDKivabIBkvE9yRmWQnKzsf5KRG9mhsgRXIik7WPk
-	i6ujuLYcsLRXW18S+eUtLWJxQADjPbFgJqLUMeX/Z2D85Hr76LGC5Gh02s7sTyeK
-	xsoZ2XH4farv1WmobIIjzPCvmUO3s2IO7oWvxWF0Z9doMpFM8AKExNJfOkJDIGE1
-	/UanvByBGvZemldS7BaMffe2dN99d/G4XP5jjd4O3Hf/9HYg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43352942gg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 10:15:15 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 746A540047;
-	Tue, 26 Nov 2024 10:13:21 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CB0D326B647;
-	Tue, 26 Nov 2024 10:11:06 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE4.st.com
- (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 26 Nov
- 2024 10:11:06 +0100
-Received: from localhost (10.48.86.121) by SAFDAG1NODE1.st.com (10.75.90.17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 26 Nov
- 2024 10:11:06 +0100
-From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Maxime
- Coquelin" <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer
-	<s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        "Jerome
- Brunet" <jbrunet@baylibre.com>,
-        Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>,
-        Matthias Brugger
-	<matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>,
-        Patrice Chotard
-	<patrice.chotard@foss.st.com>,
-        Fabien Dessenne <fabien.dessenne@foss.st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <imx@lists.linux.dev>, <linux-amlogic@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>
-Subject: [PATCH v14 0/8] Introduction of a remoteproc tee to load signed firmware
-Date: Tue, 26 Nov 2024 10:10:31 +0100
-Message-ID: <20241126091042.918144-1-arnaud.pouliquen@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-X-Originating-IP: [10.48.86.121]
-X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+	id 1tG9JF-0000000CBZ8-1REF;
+	Wed, 27 Nov 2024 04:05:50 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-434aafd68e9so1044835e9.0;
+        Tue, 26 Nov 2024 20:05:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732680347; x=1733285147; darn=lists.infradead.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eGMgbMDKyJQFsX2FhhmL+N7rAH4Be2hXmFG8guEZ4I4=;
+        b=HQrjhj6oqnsas5sP/XKJfqMY42Ntp2kg6lewCkbFpUJBcaScKI9N7gsVetJlYsg4xQ
+         JhJurNd92aAKQasAsgDwuLmWiFlyIFC2nj1Xk+wh0xb5sTD/6V2+R6LZ53DaATJAmLAy
+         Lf0Ys6yiRuBAGVLhmM6+YWXjR/4qfikGLQrUzJCiuRd7d4WB3XtFJtj2hX7i74loIt74
+         SjFUkrDWHzzgNq2jJnqXkec9KzXhk0blbANxJQW+j8OsrlUKUUNPSHzqsfl2GXC7ibfk
+         otgCPWYwEKSFrMs1EB3ni2evIuHiiEU1dB9xaNNzqxLU4J0bHF218Bt4Tj2wl4+T6t9z
+         SpLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732680347; x=1733285147;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eGMgbMDKyJQFsX2FhhmL+N7rAH4Be2hXmFG8guEZ4I4=;
+        b=k/dwb3nsX636+t85IvNeX0IAGKIXv0qz96sztCUag6bZ/xosOk77PYuL+ibSsaKUa2
+         3lu5MJ5xzYvnU/v2OpmL/9+9f3U0vIzXcbplGrxE4MPZlvw45U0cC39EoE1siFfdLT17
+         VRUzVmQz21tk66f1rS4+EV11BLnfowwN5N6bel/rXANyY+AXnONU6WgTmZR8mdsQdxdY
+         iMtXkxkupvna3OLVIre3wqoGpJ5RI8d+tWaGXVUawHJgTqNOYQ83oyjrPPaaJvAmirF2
+         Aj33LXCquygv+jTAQ+snBJzQ9h5O0VpWgklkXugHEHkMV6ohqmSH49Kv7zpS0zrr5bJW
+         HfXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUIvXesDbElzYC98qdGgOvpNvewjsi2HwqJuKtDJb8+K5MIxDopsDu2gdFWfGOwsSfyNB6QEvH5Xbx8FE6n@lists.infradead.org, AJvYcCVUpAhA3yFuiHP1P2JmiaR82g+56m4eGS2RUAoFPe6Y+r5if/oG7FJpV1yyLejr53W+IKkIIEcPXRvgYxIvJaAJMA==@lists.infradead.org
+X-Gm-Message-State: AOJu0YwhHl6sbnV8HqTAwSVlEpqwv2OdVOD63k6gpAW/Q3MWdJ020x8x
+	9dPAaV3o5ipKjbkf01rbWML4d4JbhKyPNxsITfckD1sPpmoJuLPs
+X-Gm-Gg: ASbGncscL5x3hRf9tF7nmS8hAJx84IA1kX9l6y9QbNgGgz/LWdrCPrl4LPY/I4dK+TC
+	775Bvk7kscJHNALaG6zXKShJjgTC1Jf5349HGbCabrfBpEgwE6oDk7OICCQ69VMLoBfemlOTQnw
+	LVQ/NGTbqjxTAC8XWOQKdWXJnpHcQlGOfWNfLSiwUuqv5bMwG+mkaZrwOSwEer4bhoqd6iRUjiH
+	qE5w5/9GU31FlfVr0gRm45vqeg7FVwhE/R62rX1PSHirtvFHXYuTF1in3QMCz2n5ycaECw1
+X-Google-Smtp-Source: AGHT+IHc99eGtijXfEAq6+Nq0ctt6V5ES855jF/j39G6AUo9KVVVWLSlAJEn/iJyJYwFhVzX13IpTQ==
+X-Received: by 2002:a5d:59a3:0:b0:37c:cc67:8b1f with SMTP id ffacd0b85a97d-385c6ef477amr1008941f8f.48.1732680346883;
+        Tue, 26 Nov 2024 20:05:46 -0800 (PST)
+Received: from smtpclient.apple ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fafe504sm14932923f8f.25.2024.11.26.20.05.44
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 26 Nov 2024 20:05:46 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.200.121\))
+Subject: Re: [PATCH] WIP: arm64: dts: meson: drop broadcom compatible from
+ reference board SDIO nodes
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <027767d4-89e7-4665-b840-294a84a89869@linaro.org>
+Date: Wed, 27 Nov 2024 08:05:33 +0400
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Message-Id: <2B479B54-2784-4D75-BEE8-23A52EEFBF17@gmail.com>
+References: <20241124083453.900368-1-christianshewitt@gmail.com>
+ <027767d4-89e7-4665-b840-294a84a89869@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: Apple Mail (2.3826.200.121)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241126_011527_978750_52258E5D 
-X-CRM114-Status: GOOD (  13.70  )
+X-CRM114-CacheID: sfid-20241126_200549_401573_79E10D37 
+X-CRM114-Status: GOOD (  11.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,114 +102,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Main updates from version V13[1]:
-- Introduce new rproc_ops operation: load_fw() and release_fw(),
-- Rename load() operation to load_segments() in rproc_ops structure and
-  drivers.
-
-More details are available in each patch commit message.
-
-[1] https://lore.kernel.org/linux-arm-kernel/20241104133515.256497-1-arnaud.pouliquen@foss.st.com/T/
-
-Tested-on: commit 42f7652d3eb5 ("Linux 6.12-rc4")
-Description of the feature:
---------------------------
-This series proposes the implementation of a remoteproc tee driver to
-communicate with a TEE trusted application responsible for authenticating
-and loading the remoteproc firmware image in an Arm secure context.
-
-1) Principle:
-
-The remoteproc tee driver provides services to communicate with the OP-TEE
-trusted application running on the Trusted Execution Context (TEE).
-The trusted application in TEE manages the remote processor lifecycle:
-
-- authenticating and loading firmware images,
-- isolating and securing the remote processor memories,
-- supporting multi-firmware (e.g., TF-M + Zephyr on a Cortex-M33),
-- managing the start and stop of the firmware by the TEE.
-
-2) Format of the signed image:
-
-Refer to:
-https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/src/remoteproc_core.c#L18-L57
-
-3) OP-TEE trusted application API:
-
-Refer to:
-https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/include/ta_remoteproc.h
-
-4) OP-TEE signature script
-
-Refer to:
-https://github.com/OP-TEE/optee_os/blob/master/scripts/sign_rproc_fw.py
-
-Example of usage:
-sign_rproc_fw.py --in <fw1.elf> --in <fw2.elf> --out <signed_fw.sign> --key ${OP-TEE_PATH}/keys/default.pem
-
-
-5) Impact on User space Application
-
-No sysfs impact. The user only needs to provide the signed firmware image
-instead of the ELF image.
-
-
-For more information about the implementation, a presentation is available here
-(note that the format of the signed image has evolved between the presentation
-and the integration in OP-TEE).
-
-https://resources.linaro.org/en/resource/6c5bGvZwUAjX56fvxthxds
-
-Arnaud Pouliquen (8):
-  remoteproc: core: Introduce rproc_pa_to_va helper
-  remoteproc: Add TEE support
-  remoteproc: Introduce load_fw and release_fw optional operation
-  remoteproc: Rename load() operation to load_segments() in rproc_ops
-    struct
-  remoteproc: Make load_segments and load_fw ops exclusive and optional
-  dt-bindings: remoteproc: Add compatibility for TEE support
-  remoteproc: stm32: Create sub-functions to request shutdown and
-    release
-  remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
-
- .../bindings/remoteproc/st,stm32-rproc.yaml   |  58 +-
- drivers/remoteproc/Kconfig                    |  10 +
- drivers/remoteproc/Makefile                   |   1 +
- drivers/remoteproc/imx_dsp_rproc.c            |   2 +-
- drivers/remoteproc/imx_rproc.c                |   2 +-
- drivers/remoteproc/meson_mx_ao_arc.c          |   2 +-
- drivers/remoteproc/mtk_scp.c                  |   2 +-
- drivers/remoteproc/qcom_q6v5_adsp.c           |   2 +-
- drivers/remoteproc/qcom_q6v5_mss.c            |   2 +-
- drivers/remoteproc/qcom_q6v5_pas.c            |   4 +-
- drivers/remoteproc/qcom_q6v5_wcss.c           |   4 +-
- drivers/remoteproc/qcom_wcnss.c               |   2 +-
- drivers/remoteproc/rcar_rproc.c               |   2 +-
- drivers/remoteproc/remoteproc_core.c          |  68 ++-
- drivers/remoteproc/remoteproc_internal.h      |  20 +-
- drivers/remoteproc/remoteproc_tee.c           | 508 ++++++++++++++++++
- drivers/remoteproc/st_remoteproc.c            |   2 +-
- drivers/remoteproc/st_slim_rproc.c            |   2 +-
- drivers/remoteproc/stm32_rproc.c              | 141 +++--
- drivers/remoteproc/xlnx_r5_remoteproc.c       |   2 +-
- include/linux/remoteproc.h                    |  20 +-
- include/linux/remoteproc_tee.h                | 105 ++++
- 22 files changed, 893 insertions(+), 68 deletions(-)
- create mode 100644 drivers/remoteproc/remoteproc_tee.c
- create mode 100644 include/linux/remoteproc_tee.h
-
-
-base-commit: adc218676eef25575469234709c2d87185ca223a
--- 
-2.25.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+PiBPbiAyNCBOb3YgMjAyNCwgYXQgODoxMeKAr3BtLCBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5
+c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+IHdyb3RlOgo+IAo+IE9uIDI0LzExLzIwMjQgMDk6
+MzQsIENocmlzdGlhbiBIZXdpdHQgd3JvdGU6Cj4+IERyb3AgdGhlIEJyb2FkY29tIGNvbXBhdGli
+bGUgYW5kIHVzZSBhIGdlbmVyaWMgc2RpbyBpZGVudGlmaWVyIHdpdGggdGhlIEFtbG9naWMKPiAK
+PiAxLiBIZWgsIHdoYXQ/IFdoeT8gVGhpcyBpcyBub3QgcmVhbGx5IGV4cGxhaW5lZCBhbmQgZG9l
+cyBub3QgbG9vawo+IHNlbnNpYmxlIGF0IGFsbC4KPiAyLiBXaGF0IGlzICJnZW5lcmlvYyBzZGlv
+IGlkZW50aWZpZXIiPwo+IAo+PiByZWZlcmVuY2UgYm9hcmRzLiBUaGlzIGFsbG93cyBhIHdpZGVy
+IHJhbmdlIG9mIEFuZHJvaWQgU1RCIGRldmljZXMgd2l0aCBRQ0E5Mzc3Cj4+IGFuZCBSVEw4MTg5
+RVMvRlMgY2hpcHMgdG8gaGF2ZSB3b3JraW5nIFdpRmkgd2hlbiBib290aW5nIGZyb20gdGhlIHJl
+ZmVyZW5jZSBkdGIKPiAKPiBQbGVhc2Ugd3JhcCBjb21taXQgbWVzc2FnZSBhY2NvcmRpbmcgdG8g
+TGludXggY29kaW5nIHN0eWxlIC8gc3VibWlzc2lvbgo+IHByb2Nlc3MgKG5laXRoZXIgdG9vIGVh
+cmx5IG5vciBvdmVyIHRoZSBsaW1pdCk6Cj4gaHR0cHM6Ly9lbGl4aXIuYm9vdGxpbi5jb20vbGlu
+dXgvdjYuNC1yYzEvc291cmNlL0RvY3VtZW50YXRpb24vcHJvY2Vzcy9zdWJtaXR0aW5nLXBhdGNo
+ZXMucnN0I0w1OTcKPiAKPiAKPj4gZmlsZXMuIFRoZXJlIGlzIG5vIG9ic2VydmVkIGltcGFjdCBv
+biBCcm9hZGNvbSBkZXZpY2VzLgo+IAo+IFNvIGhvdyBkb2VzIGl0IGFsbG93IHdpZGVyIHJhbmdl
+IG9mIGRldmljZXMgdG8gaGF2ZSB3b3JraW5nIHdpZmk/CgpTZW5kaW5nIHBhdGNoZXMgd2hpbGUg
+cmVjb3ZlcmluZyBmcm9tIGEgMTAwa20gVHJpYXRobG9uIGxhc3Qgd2Vla2VuZApyZXN1bHRlZCBp
+biBzb21lIGZvcm1hdHRpbmcgYW5kIHN1Ym1pc3Npb24gbWlzdGFrZXMgLSBzb3JyeSBmb3IgdGhh
+dCA6KAoKSeKAmWxsIHNlbmQgYSB2MiBzaG9ydGx5IHdpdGggcmVkdWNlZCBzdWJqZWN0L2xpbmUg
+bGVuZ3RoIGFuZCBhIGJldHRlcgpkZXNjcmlwdGlvbiBvZiB0aGUgY2hhbmdlIGFuZCByZWFzb25p
+bmcuCgpDaHJpc3RpYW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
+dXgtYW1sb2dpYwo=
