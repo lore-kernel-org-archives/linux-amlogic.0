@@ -4,89 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C7ACD690F5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Nov 2024 10:37:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D574D6910B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Nov 2024 13:34:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:CC:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=daVpQ5E7nsNarlIyhQ7HZMd+c1olJuO9tA96mzfJfFM=; b=0f4Wv3MReVo9EUPB/Q3qI98Y0i
-	YYa8ITUl/rkcAYMtCctof4z+dlzrjdFo/sK/ww9GBLOaNqGljEy36pzyArsDt0Pp0TKwkaCF2pUQ+
-	Vx6Ix352G63qHyo6VfkeF86JhQ5nhqL1hlkYP6XEXnNiXSbDAryKQka1l3GF/c6D00SObP5zuVynK
-	xQobgyu6koiattDatLizwu7MNwFsxaBHF9mQG1jwREj1nvgc9yPJ5l6xgxK3m0pJBLr6BUDtXFcv6
-	dFiQHLSgslq9E02SQaDk5hc39vDBN3wGrV4HtwpH2VwD53e0RPG3oUzY4bRniELsVvYz3E6YhyKN8
-	Q8/Amckg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=YQ24ClhnrzRuL9EURaw60mR9/saegiNwOO5DAdClPp0=; b=RuKaI5FKFRgOLf
+	DdKpqc97TUKq6xeYa5K6B5S3ieDPKX5riSahZf+Jss5FpApOsGbalqEH8BJGvb/RyG71jXGCn1b9W
+	E8oGA8xr3BKKAF+7woag0DL0ngEML6q6nLkPxB9UVGKWU0qSftiD9YjHjD+uAtoPSs4ljrNSrexh3
+	IHRmMi6OYv1Lrk1XnEi3Wqd1w6nsGrxAMnkElnxkTEPX0f8uYu65FdJyDM9WrRFKEWJVch3F0Wv/K
+	Ndfa7mNCI/OGgeZG46+c/u9xFN4LtbkBX4GL7dzlcEtrnm6yoOk9x7bc/NuCz0T2wfO1sd4Dln5Qy
+	Skr49VMRopuNmGIgF8fA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGbtd-0000000FGyx-3X0y;
-	Thu, 28 Nov 2024 10:37:17 +0000
-Received: from esa.microchip.iphmx.com ([68.232.154.123])
+	id 1tGef1-0000000FdfA-10sv;
+	Thu, 28 Nov 2024 13:34:23 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGbta-0000000FGxu-2hge;
-	Thu, 28 Nov 2024 10:37:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1732790234; x=1764326234;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=X//+aLlv/ZUgHtxgxEk8ipshJKC/R6yilpLawZd/s4Q=;
-  b=W/6L+ODKssqUfpTz8DaB/cOGXcxDduZw2TFFJIsyFLzsKbH6B15353nb
-   e9EDwSkQtPRxww6gouUCLvm2QOAkC8pol96xNiWDRoiHgYnYv7GrKOUMe
-   taCXwNdoUm4G2QY5aV1A7DH+S+j8+xjdcRUNWGoccO01kIym+rNkO1pdj
-   HSNYTtXY0OtCMs/v349xAI5JzFXP5LHK3RKP83JabeTP9IhLAEK4ZkrAu
-   Uhf7bWJEe0FzCkVUbl8uWqNa439jtuFw/2eyfbTqpc/sBEJcySi3ZjLlU
-   VNCKLfMPZrISEJIQij8/8KqSha5qj5etKWlAWHFEMAfSlROuH7xrCdqk/
-   w==;
-X-CSE-ConnectionGUID: wSflfb+LS36CStD+2SM6ZQ==
-X-CSE-MsgGUID: PIuDtMU8RDao3fADMTrbCA==
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; 
-   d="asc'?scan'208";a="35386534"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Nov 2024 03:37:10 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 28 Nov 2024 03:36:47 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 28 Nov 2024 03:36:43 -0700
-Date: Thu, 28 Nov 2024 10:36:16 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Stephen Boyd <sboyd@kernel.org>
-CC: Conor Dooley <conor@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>, <linux-kernel@vger.kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	<pierre-henry.moussay@microchip.com>,
-	<valentina.fernandezalanis@microchip.com>, Michael Turquette
-	<mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones
-	<lee@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
-	<palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Kevin Hilman
-	<khilman@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	<linux-riscv@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to
- common code
-Message-ID: <20241128-monstrous-embargo-a665d921410d@wendy>
-References: <20241002-private-unequal-33cfa6101338@spud>
- <20241002-hula-unwashed-1c4ddbadbec2@spud>
- <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org>
- <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com>
- <20241003-tacking-ladylike-dfe2b633e647@spud>
- <20241106-freefall-slider-db379b05821e@spud>
- <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
+	id 1tGee1-0000000FdZp-31MR
+	for linux-amlogic@lists.infradead.org;
+	Thu, 28 Nov 2024 13:33:24 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-434a852bb6eso7422615e9.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 28 Nov 2024 05:33:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732800800; x=1733405600; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gmgFSpEV/joPPiUmtOBENMot4M1WgXF/FvOd2XyYmN4=;
+        b=Hxd9jDpGtCj0arg1WXziIGZqsoyLzhUC9lTaH1C4yYRnA+8SW8vaIL2U0DPWT0NS+4
+         rhMXf20gWTWVsXRA91hZfnFJTS4Hvcz+Zrsk7bWPsWgPIvZeHVvYQKolhpoL3NXzZask
+         Mo3hxV3hpjB6aDHllSPEX+bC+24i7ieL7fB1ylkH00lVaIl1cdGPv6J6n0nn6aPAoVMU
+         8s3zfaKhkJdOEZnntqDtC16/0KkA1prILDZDgwVkB0XJYa1wnoyEmQ+wyibjFxx3BrCN
+         lpNE7HryY2URuxmTqYwYWi++eJGgFsbg0WImZUcSw9j4Tj1Zb21rt+DZgCxCGOiRp7pc
+         HV0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732800800; x=1733405600;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gmgFSpEV/joPPiUmtOBENMot4M1WgXF/FvOd2XyYmN4=;
+        b=eQ4VC9BFtqRvhsx8EKw3k+327zLFqFuJOjdb/LmKZv5P6/+pHhi4PmnAcYQAZywv9V
+         OIXoqwpxxR7cH+S4Rt0UFA+U2x8ikw0XMtrhUEQxpdtYuKd0fS/Js/cf4MsnzgdDvCHK
+         quUKHRW2nSbAlEHFLEjh3x4YpMB5qV5FXUMXRTHcsKPXmKko3uv4Ll7NuFfLRdjg9Q/4
+         wFCGFV79d408bMxYhqmUj2uic1c6P3DEGSmA2+x6kTFemwQ6l2NCgZCfjnjp7/Dwr08o
+         Qm7tPR7Hpi0JKoAWRGyf3GxUj1mJhRSUbCBh6zXS7dnVRP9S6+tlmLeT+RBt1eds+xOT
+         +uqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUF6QxFU9aA5/06cjbVcc8oTMwFIIXT7StIIySXgFkEZ8/PDcJKZrSPfGKsxlWumWpWxTMOoB4mLQKlZHVi@lists.infradead.org
+X-Gm-Message-State: AOJu0YzYHbIUNzkC4qCJOd/f0A/1sArdqDQRQrUTxCUfX7Y6c9IhYmPe
+	tvIEzbqmRmTWW5f5iOVHCC39te5o7pvvLmkaa1pc90PDQOSH3o2O3p4GHFh7tf4C68tvkOT/hJ1
+	S
+X-Gm-Gg: ASbGnctm2FAjl/vIAtn0IvDoiif/t7ZrvkzdNz+zkIfPg4q+tPbbAmWH0P3+Tc4caxb
+	cebFLU1NftMVeqr3uOjruNpkDYcu54b97e5Phw0IotMSmzRELZfmUGtGxlwCirJm6NerlK3xNOa
+	x5ZOXzaIESAdFasB9kVXcxonS32rdKxlbCKX02AP5y7TDDppn85+iX/WYb+k4aWNyjMYJQbUnvj
+	Ruzm9KKbu7ArjUOnc8zJ1kG+mqModiH2X3DRSvrdW6lDnfgsA==
+X-Google-Smtp-Source: AGHT+IGrMdn+38U9uolOFNk+mS2Fm4W0jJARLcSQoHOhr2LuU6616dbNhFwztnrfvkaZnx6NZ9uZrw==
+X-Received: by 2002:a05:600c:1d8d:b0:434:a902:4168 with SMTP id 5b1f17b1804b1-434a9dd00d3mr68710925e9.18.1732800799856;
+        Thu, 28 Nov 2024 05:33:19 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:b89d:29e9:7047:2d6f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434b0d9bee2sm22577455e9.1.2024.11.28.05.33.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2024 05:33:19 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: "Arnd Bergmann" <arnd@arndb.de>
+Cc: "Neil Armstrong" <neil.armstrong@linaro.org>,  "Michael Turquette"
+ <mturquette@baylibre.com>,  "Stephen Boyd" <sboyd@kernel.org>,  "Kevin
+ Hilman" <khilman@baylibre.com>,  "Martin Blumenstingl"
+ <martin.blumenstingl@googlemail.com>,  linux-amlogic@lists.infradead.org,
+  linux-clk@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-kernel@vger.kernel.org,  "Mark Brown" <broonie@kernel.org>
+Subject: Re: [PATCH] clk: amlogic: axg-audio: select RESET_MESON_AUX
+In-Reply-To: <f8de4a2a-776f-4c10-b75e-e845bcc38dde@app.fastmail.com> (Arnd
+	Bergmann's message of "Wed, 27 Nov 2024 22:23:52 +0100")
+References: <20241127-clk-audio-fix-rst-missing-v1-1-9f9d0ab98fce@baylibre.com>
+	<12f29978-c8ce-4bee-a447-dcd086eb936d@app.fastmail.com>
+	<1ja5dk2y5l.fsf@starbuckisacylon.baylibre.com>
+	<f8de4a2a-776f-4c10-b75e-e845bcc38dde@app.fastmail.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Thu, 28 Nov 2024 14:33:18 +0100
+Message-ID: <1j4j3r32ld.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241128_023714_810292_3CB8B92D 
-X-CRM114-Status: GOOD (  23.82  )
+X-CRM114-CacheID: sfid-20241128_053322_023541_C471A2F6 
+X-CRM114-Status: GOOD (  30.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,107 +100,93 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5420377332175901549=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============5420377332175901549==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jOw7oZ/dHujpxqRG"
-Content-Disposition: inline
+On Wed 27 Nov 2024 at 22:23, "Arnd Bergmann" <arnd@arndb.de> wrote:
 
---jOw7oZ/dHujpxqRG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Wed, Nov 27, 2024, at 21:56, Jerome Brunet wrote:
+>> On Wed 27 Nov 2024 at 20:30, "Arnd Bergmann" <arnd@arndb.de> wrote:
+>>>
+>>> It looks like RESET_MESON_AUX is a user-visible symbol,
+>>> so you can simply ask users to turn it on, and add it to
+>>> the defconfig.
+>>
+>> That would work yes but It's really something a user should not be
+>> concerned with. I can follow-up with another change to remove the user
+>> visibilty of RESET_MESON_AUX. It is always going to be something
+>> requested by another driver.
+>
+> But that's true for all reset drivers, each one of them is
+> only useful because it's going to be used by another driver,
+> same for clk, pinctrl, regulator, ...
+>
 
-On Thu, Nov 14, 2024 at 05:29:54PM -0800, Stephen Boyd wrote:
-> Quoting Conor Dooley (2024-11-06 04:56:25)
-> > My use case doesn't
-> > actually need the registration code changes either as, currently, only =
-reg
-> > gets set at runtime, but leaving that out is a level of incomplete I'd =
-not
-> > let myself away with.
-> > Obviously shoving the extra members into the clk structs has the downsi=
-de
-> > of taking up a pointer and a offset worth of memory for each clock of
-> > that type registered, but it is substantially easier to support devices
-> > with multiple regmaps that way. Probably moot though since the approach=
- you
-> > suggested in the thread linked above that implements a clk_hw_get_regma=
-p()
-> > has to store a pointer to the regmap's identifier which would take up an
-> > identical amount of memory.
->=20
-> We don't need to store the regmap identifier in the struct clk. We can
-> store it in the 'struct clk_init_data' with some new field, and only do
-> that when/if we actually need to. We would need to pass the init data to
-> the clk_ops::init() callback though. We currently knock that out during
-> registration so that clk_hw->init is NULL. Probably we can just set that
-> to NULL after the init routine runs in __clk_core_init().
->=20
-> Long story short, don't add something to 'struct clk_core', 'struct
-> clk', or 'struct clk_hw' for these details. We can have a 'struct
-> clk_regmap_hw' that everyone else can build upon:
->=20
->   struct clk_regmap_hw {
->         struct regmap *regmap;
->         struct clk_hw hw;
->   };
+All clk, pinctrl or regulator are used by other driver yes, this one as
+well, sure.
 
-What's the point of this? I don't understand why you want to do this over
-what clk_divider et al already do, where clk_hw and the iomem pointer
-are in the struct itself.
+What special about this on is that it is an auxiliary bus driver.
+It is directly instantiated by another driver. That's where
+it differs. The axg-audio clock driver instantiate the auxiliary reset,
+it does not use it, which is why it makes sense for it to select the
+driver.
 
->=20
-> and then set the regmap pointer during registration in
-> clk_hw_init_regmap().
->=20
-> int clk_hw_init_regmap(struct clk_hw *hw)
-> {
-> 	struct device *dev;
-> 	struct regmap *regmap;
-> 	struct clk_regmap_hw *rhw;
->=20
-> 	rhw =3D clk_hw_to_clk_regmap_hw(hw);
->=20
-> 	dev =3D clk_hw_get_dev(hw);
-> 	if (!dev)
-> 		return -EINVAL;
->=20
-> 	regmap =3D dev_get_regmap(dev, hw->init->regmap_name);
-> 	if (!regmap)
-> 		return -EINVAL; // Print helpful message
-> 	rhw->regmap =3D regmap;
->=20
-> 	return 0;
-> }
+I agree that in such case I should not have added prompt for that
+symbol. I'd be happy to fix that mistake in the coming cycle.
 
---jOw7oZ/dHujpxqRG
-Content-Type: application/pgp-signature; name="signature.asc"
+> All other reset drivers are user-visible, with 'default, so for
+> consistency I think it's best to keep it that way, and
+> just add a 'default ARCH_MESON' the same way we have for many
+> other reset drivers:
 
------BEGIN PGP SIGNATURE-----
+Same consistency remark applies to the clock Kconfig patched here, which
+select the drivers they directly need and I'd like to keep consistency
+here too.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0hHlQAKCRB4tDGHoIJi
-0r+YAQDAe67NaDMRenGcDGtot2a/AgJVl48Api+arsoWqWN6QAD9GCn98CCFJZBY
-gZMaI09bAeDcbhzSqAEHQ9GpSbRtMAg=
-=CQKc
------END PGP SIGNATURE-----
+Also 'default ARCH_MESON' does not accurately reflect when the driver is
+needed, it will turn on the driver in configuration where it is not
+necessarily needed, making it more difficult to trim the configuration
+down without intimate knowledge of the problem.
 
---jOw7oZ/dHujpxqRG--
+ATM, RESET_MESON_AUX is only needed if COMMON_CLK_AXG_AUDIO is enabled.
+Isn't it what select is all about ?
 
+>
+> diff --git a/drivers/reset/amlogic/Kconfig b/drivers/reset/amlogic/Kconfig
+> index 3bee9fd60269..c02edc1b51aa 100644
+> --- a/drivers/reset/amlogic/Kconfig
+> +++ b/drivers/reset/amlogic/Kconfig
+> @@ -14,6 +14,7 @@ config RESET_MESON
+>  config RESET_MESON_AUX
+>         tristate "Meson Reset Auxiliary Driver"
+>         depends on ARCH_MESON || COMPILE_TEST
+> +       default ARCH_MESON
+>         select AUXILIARY_BUS
+>         select RESET_MESON_COMMON
+>         help
+>
+> The only bit that's special here is the exported symbol,
+> but that is handled by the dependency.
+>
+>>> I also see some silliness going on in the
+>>> include/soc/amlogic/reset-meson-aux.h, which has a
+>>> non-working 'static inline' definition of the exported
+>>> function. Before my fix, that would have caused the
+>>> problem auf a non-working audio driver.
+>>
+>> If by 'silliness' you mean there is symbol definition for when
+>> RESET_MESON_AUX is disabled, indeed I guess that could go away.
+>
+> Yes, that's what I meant.
+>
+>       Arnd
 
---===============5420377332175901549==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5420377332175901549==--
-
