@@ -4,94 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 522E5D66BA0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Nov 2024 06:00:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7856DD690EE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Nov 2024 08:56:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ro4Y726GWmggm7W6fmEY5fI+xI6vHwNaUhp+juzLkxw=; b=n95L9T4sXqEnxU
-	1z2kBaoxq9ETAfhRCf/kmTQqY0qeH7bDx5XaGToVXIZnQipVRSZKb4AEW0+V/Y+cWxpHtRgOxulwk
-	cyGmWwbh+JCI44PIAzvpnLs8BsCCVCxcmrPZx1NKTjWuxTppcrGhWSJ2Vdkyc/FDD62Y3+nlz8Gbr
-	arbAypzTnkXpTslB8viusbJl7hywgyS7L90s4OuApzeyewCJHMc+6Trb4LzSXfj0yMdlvpVinUgqR
-	45B1RyZrMM26DGvGq+zUX54M2EZQada3V1QRs1lMgaEqvTBvwjuG1WAhYBIY9pBDCGcPnR3KyrxTh
-	xtg6MUz8HV9NeZ/vvGHQ==;
+	List-Owner; bh=kKoflbldsL9dlNqz1Q1dYyrITocxI8R+bkBPFcB7HV0=; b=fuaKvXjcyo6wKc
+	eXa8hcjJTanm66NQEmUChPtIpoD7FTAFyjc1OkMkGkUZAFr5tCydx+1b8JoDXMDGKrW1kryAlrhQ0
+	40NyGOcBUw/FQdb2peY+8GHBdvx2JDFYbtUdWl9ZZERTnGIG+67yh6WPYySxL+TFXxdeHVeCK432C
+	OuJcu3LbmJtGOYj0rKQROgB03a3SnbYICjcI7m+YGf4SSe/ptCF4lkNM1vL/5SKJWnQcrptusKK87
+	XygUnhHaOmv4eFjz0M3jKP7WdtSSL5UES5ucIzwtDbejgosbqnajhFA0+Nb9s+gwr1Gqr8aFomOTM
+	1ye1bv4YEdZFSP4by9RQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGXZw-0000000ElbC-3I3S;
-	Thu, 28 Nov 2024 06:00:40 +0000
-Received: from mgamail.intel.com ([192.198.163.9])
+	id 1tGaJh-0000000F53a-0OAJ;
+	Thu, 28 Nov 2024 08:56:05 +0000
+Received: from mx07-00178001.pphosted.com ([185.132.182.106])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGXYw-0000000ElSB-2OuW;
-	Thu, 28 Nov 2024 05:59:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732773578; x=1764309578;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=c0KVSQsmu1rPPpFE3S5HnK03A6rk+5gg33/ro18oufE=;
-  b=XtG5j9Z6W1FNiZcMTe3PHy4yMoWn1Q2mhFTDtMMg4Dtw6y86nV0uQxMW
-   VLgRijJ1esmNGjC1YzMiL48P+i84krdjSwzxryKT4sAY5W3pwj7cf8PNr
-   81okgs2+byTGEz/fRfPAQwTPnh4/rgob2PWVKpzc8Fubi0ZK1VJ8bFgGq
-   lMdNMCJSr1ZFxsuyQNiSp9qWM1VO75EFotUwiDvSvg8Zjk+6Otfuv6vOh
-   fUsMpPFCmRKkYlEVa2sZ/RuR1dsKXx/kbAiOg8JjaPh7Hy1noQEYX09Fb
-   GxqCfn+ElaGB0gMz+KLHdzw2MAzUwYG718bMStKQl8J0OAfCuWp0iwPMr
-   g==;
-X-CSE-ConnectionGUID: vt2Vai3fRYONFrGfy7wh3Q==
-X-CSE-MsgGUID: UzyiIdcVTIK1C3uHlNm4iQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="43662856"
-X-IronPort-AV: E=Sophos;i="6.12,191,1728975600"; 
-   d="scan'208";a="43662856"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2024 21:59:32 -0800
-X-CSE-ConnectionGUID: kPW4/6JXQPuGryDD7XfTRQ==
-X-CSE-MsgGUID: lmzrxaPdSyinw+0AgZvGbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,191,1728975600"; 
-   d="scan'208";a="91751016"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 27 Nov 2024 21:59:27 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tGXYi-00097f-2U;
-	Thu, 28 Nov 2024 05:59:24 +0000
-Date: Thu, 28 Nov 2024 13:58:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-	linux-remoteproc@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v14 4/8] remoteproc: Rename load() operation to
- load_segments() in rproc_ops struct
-Message-ID: <202411281332.Ra70nJAW-lkp@intel.com>
-References: <20241126091042.918144-5-arnaud.pouliquen@foss.st.com>
+	id 1tGaDO-0000000F3oJ-0giw;
+	Thu, 28 Nov 2024 08:49:35 +0000
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AS20fp6032587;
+	Thu, 28 Nov 2024 09:49:20 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	f0OxH3wtdemYyz01Yb+Te/k2HhBq/Vf5wfmG702w8ds=; b=lenFKO0cjBOcKClN
+	3jZQ8Xva9eGXdMPgxgvNBwicqik6OpsLQoGvA3oJPyskO+Cp+pc/o/vG+yPuYceh
+	/a4+2jsMWRKbIzcyTYejBna410M46nvm1MiaqZCUGCj9XdGBg9ZuDS4tS222icL7
+	y3AmgjT4oSyj8dzdnnQ/cD7RZzUjcu9IAvNb/KnybAaVgC96DDwje9O30SJQf3gi
+	muzGBrubh3NNTS22Sp0CPeBQjPuxOh4evjk3KqrFmuvr/dwhwsAgwbmY4FbKeBz5
+	/MEoSBYP9yeCzq2m73CBnkRYiq4yDu/K3AcCMhp0bm0kH153UKO0LPSC1e3UJB2i
+	DUqfpg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 436713k67r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Nov 2024 09:49:19 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 42D234005E;
+	Thu, 28 Nov 2024 09:47:25 +0100 (CET)
+Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BEB49269609;
+	Thu, 28 Nov 2024 09:43:00 +0100 (CET)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
+ (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 28 Nov
+ 2024 09:43:00 +0100
+Received: from localhost (10.48.86.121) by SAFDAG1NODE1.st.com (10.75.90.17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 28 Nov
+ 2024 09:43:00 +0100
+From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer
+	<s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        "Jerome
+ Brunet" <jbrunet@baylibre.com>,
+        Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>,
+        Matthias Brugger
+	<matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>,
+        Patrice Chotard
+	<patrice.chotard@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        kernel test robot
+	<lkp@intel.com>, <linux-remoteproc@vger.kernel.org>,
+        <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH v15 4/8] remoteproc: Rename load() operation to load_segments() in rproc_ops struct
+Date: Thu, 28 Nov 2024 09:42:11 +0100
+Message-ID: <20241128084219.2159197-5-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241128084219.2159197-1-arnaud.pouliquen@foss.st.com>
+References: <20241128084219.2159197-1-arnaud.pouliquen@foss.st.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241126091042.918144-5-arnaud.pouliquen@foss.st.com>
+X-Originating-IP: [10.48.86.121]
+X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241127_215938_623236_76A0C43A 
-X-CRM114-Status: GOOD (  14.22  )
+X-CRM114-CacheID: sfid-20241128_004934_505881_54A40F69 
+X-CRM114-Status: GOOD (  15.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,142 +120,314 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Arnaud,
+With the introduction of the load_fw() operation in the rproc_ops
+structure, we need to clarify the difference in the use of the load()
+and load_fw() ops.
 
-kernel test robot noticed the following build errors:
+The legacy load() is dedicated to loading the ELF segments into memory.
+Rename this to a more explicit name: load_segments().
 
-[auto build test ERROR on adc218676eef25575469234709c2d87185ca223a]
+Suggested-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+---
+Update vs version V14:
+Fix: Rename missing load() to load_segments() in drivers/remoteproc/pru_rproc.c.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Arnaud-Pouliquen/remoteproc-core-Introduce-rproc_pa_to_va-helper/20241128-094434
-base:   adc218676eef25575469234709c2d87185ca223a
-patch link:    https://lore.kernel.org/r/20241126091042.918144-5-arnaud.pouliquen%40foss.st.com
-patch subject: [PATCH v14 4/8] remoteproc: Rename load() operation to load_segments() in rproc_ops struct
-config: i386-buildonly-randconfig-002-20241128 (https://download.01.org/0day-ci/archive/20241128/202411281332.Ra70nJAW-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241128/202411281332.Ra70nJAW-lkp@intel.com/reproduce)
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202411281332.Ra70nJAW-lkp@intel.com/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411281332.Ra70nJAW-lkp@intel.com/
+---
+ drivers/remoteproc/imx_dsp_rproc.c       | 2 +-
+ drivers/remoteproc/imx_rproc.c           | 2 +-
+ drivers/remoteproc/meson_mx_ao_arc.c     | 2 +-
+ drivers/remoteproc/mtk_scp.c             | 2 +-
+ drivers/remoteproc/pru_rproc.c           | 2 +-
+ drivers/remoteproc/qcom_q6v5_adsp.c      | 2 +-
+ drivers/remoteproc/qcom_q6v5_mss.c       | 2 +-
+ drivers/remoteproc/qcom_q6v5_pas.c       | 4 ++--
+ drivers/remoteproc/qcom_q6v5_wcss.c      | 4 ++--
+ drivers/remoteproc/qcom_wcnss.c          | 2 +-
+ drivers/remoteproc/rcar_rproc.c          | 2 +-
+ drivers/remoteproc/remoteproc_core.c     | 4 ++--
+ drivers/remoteproc/remoteproc_internal.h | 4 ++--
+ drivers/remoteproc/st_remoteproc.c       | 2 +-
+ drivers/remoteproc/st_slim_rproc.c       | 2 +-
+ drivers/remoteproc/stm32_rproc.c         | 2 +-
+ drivers/remoteproc/xlnx_r5_remoteproc.c  | 2 +-
+ include/linux/remoteproc.h               | 4 ++--
+ 18 files changed, 23 insertions(+), 23 deletions(-)
 
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/remoteproc/pru_rproc.c:24:
-   In file included from include/linux/remoteproc.h:40:
-   In file included from include/linux/virtio.h:7:
-   In file included from include/linux/scatterlist.h:8:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/remoteproc/pru_rproc.c:1018:14: error: no member named 'load' in 'struct rproc_ops'
-    1018 |         rproc->ops->load = pru_rproc_load_elf_segments;
-         |         ~~~~~~~~~~  ^
-   1 warning and 1 error generated.
-
-
-vim +1018 drivers/remoteproc/pru_rproc.c
-
-d4ce2de7e4af8b Suman Anna      2020-12-08   987  
-d4ce2de7e4af8b Suman Anna      2020-12-08   988  static int pru_rproc_probe(struct platform_device *pdev)
-d4ce2de7e4af8b Suman Anna      2020-12-08   989  {
-d4ce2de7e4af8b Suman Anna      2020-12-08   990  	struct device *dev = &pdev->dev;
-d4ce2de7e4af8b Suman Anna      2020-12-08   991  	struct device_node *np = dev->of_node;
-d4ce2de7e4af8b Suman Anna      2020-12-08   992  	struct platform_device *ppdev = to_platform_device(dev->parent);
-d4ce2de7e4af8b Suman Anna      2020-12-08   993  	struct pru_rproc *pru;
-d4ce2de7e4af8b Suman Anna      2020-12-08   994  	const char *fw_name;
-d4ce2de7e4af8b Suman Anna      2020-12-08   995  	struct rproc *rproc = NULL;
-d4ce2de7e4af8b Suman Anna      2020-12-08   996  	struct resource *res;
-d4ce2de7e4af8b Suman Anna      2020-12-08   997  	int i, ret;
-1d39f4d199214f Suman Anna      2020-12-08   998  	const struct pru_private_data *data;
-d4ce2de7e4af8b Suman Anna      2020-12-08   999  	const char *mem_names[PRU_IOMEM_MAX] = { "iram", "control", "debug" };
-d4ce2de7e4af8b Suman Anna      2020-12-08  1000  
-1d39f4d199214f Suman Anna      2020-12-08  1001  	data = of_device_get_match_data(&pdev->dev);
-1d39f4d199214f Suman Anna      2020-12-08  1002  	if (!data)
-1d39f4d199214f Suman Anna      2020-12-08  1003  		return -ENODEV;
-1d39f4d199214f Suman Anna      2020-12-08  1004  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1005  	ret = of_property_read_string(np, "firmware-name", &fw_name);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1006  	if (ret) {
-d4ce2de7e4af8b Suman Anna      2020-12-08  1007  		dev_err(dev, "unable to retrieve firmware-name %d\n", ret);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1008  		return ret;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1009  	}
-d4ce2de7e4af8b Suman Anna      2020-12-08  1010  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1011  	rproc = devm_rproc_alloc(dev, pdev->name, &pru_rproc_ops, fw_name,
-d4ce2de7e4af8b Suman Anna      2020-12-08  1012  				 sizeof(*pru));
-d4ce2de7e4af8b Suman Anna      2020-12-08  1013  	if (!rproc) {
-d4ce2de7e4af8b Suman Anna      2020-12-08  1014  		dev_err(dev, "rproc_alloc failed\n");
-d4ce2de7e4af8b Suman Anna      2020-12-08  1015  		return -ENOMEM;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1016  	}
-d4ce2de7e4af8b Suman Anna      2020-12-08  1017  	/* use a custom load function to deal with PRU-specific quirks */
-d4ce2de7e4af8b Suman Anna      2020-12-08 @1018  	rproc->ops->load = pru_rproc_load_elf_segments;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1019  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1020  	/* use a custom parse function to deal with PRU-specific resources */
-d4ce2de7e4af8b Suman Anna      2020-12-08  1021  	rproc->ops->parse_fw = pru_rproc_parse_fw;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1022  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1023  	/* error recovery is not supported for PRUs */
-d4ce2de7e4af8b Suman Anna      2020-12-08  1024  	rproc->recovery_disabled = true;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1025  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1026  	/*
-d4ce2de7e4af8b Suman Anna      2020-12-08  1027  	 * rproc_add will auto-boot the processor normally, but this is not
-d4ce2de7e4af8b Suman Anna      2020-12-08  1028  	 * desired with PRU client driven boot-flow methodology. A PRU
-d4ce2de7e4af8b Suman Anna      2020-12-08  1029  	 * application/client driver will boot the corresponding PRU
-d4ce2de7e4af8b Suman Anna      2020-12-08  1030  	 * remote-processor as part of its state machine either through the
-d4ce2de7e4af8b Suman Anna      2020-12-08  1031  	 * remoteproc sysfs interface or through the equivalent kernel API.
-d4ce2de7e4af8b Suman Anna      2020-12-08  1032  	 */
-d4ce2de7e4af8b Suman Anna      2020-12-08  1033  	rproc->auto_boot = false;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1034  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1035  	pru = rproc->priv;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1036  	pru->dev = dev;
-1d39f4d199214f Suman Anna      2020-12-08  1037  	pru->data = data;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1038  	pru->pruss = platform_get_drvdata(ppdev);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1039  	pru->rproc = rproc;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1040  	pru->fw_name = fw_name;
-919e8942548aa8 MD Danish Anwar 2023-01-06  1041  	pru->client_np = NULL;
-102853400321ba Roger Quadros   2023-01-06  1042  	spin_lock_init(&pru->rmw_lock);
-919e8942548aa8 MD Danish Anwar 2023-01-06  1043  	mutex_init(&pru->lock);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1044  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1045  	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
-d4ce2de7e4af8b Suman Anna      2020-12-08  1046  		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-d4ce2de7e4af8b Suman Anna      2020-12-08  1047  						   mem_names[i]);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1048  		pru->mem_regions[i].va = devm_ioremap_resource(dev, res);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1049  		if (IS_ERR(pru->mem_regions[i].va)) {
-d4ce2de7e4af8b Suman Anna      2020-12-08  1050  			dev_err(dev, "failed to parse and map memory resource %d %s\n",
-d4ce2de7e4af8b Suman Anna      2020-12-08  1051  				i, mem_names[i]);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1052  			ret = PTR_ERR(pru->mem_regions[i].va);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1053  			return ret;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1054  		}
-d4ce2de7e4af8b Suman Anna      2020-12-08  1055  		pru->mem_regions[i].pa = res->start;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1056  		pru->mem_regions[i].size = resource_size(res);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1057  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1058  		dev_dbg(dev, "memory %8s: pa %pa size 0x%zx va %pK\n",
-d4ce2de7e4af8b Suman Anna      2020-12-08  1059  			mem_names[i], &pru->mem_regions[i].pa,
-d4ce2de7e4af8b Suman Anna      2020-12-08  1060  			pru->mem_regions[i].size, pru->mem_regions[i].va);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1061  	}
-d4ce2de7e4af8b Suman Anna      2020-12-08  1062  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1063  	ret = pru_rproc_set_id(pru);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1064  	if (ret < 0)
-d4ce2de7e4af8b Suman Anna      2020-12-08  1065  		return ret;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1066  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1067  	platform_set_drvdata(pdev, rproc);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1068  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1069  	ret = devm_rproc_add(dev, pru->rproc);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1070  	if (ret) {
-d4ce2de7e4af8b Suman Anna      2020-12-08  1071  		dev_err(dev, "rproc_add failed: %d\n", ret);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1072  		return ret;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1073  	}
-d4ce2de7e4af8b Suman Anna      2020-12-08  1074  
-20ad1de0f14fbd Suman Anna      2020-12-08  1075  	pru_rproc_create_debug_entries(rproc);
-20ad1de0f14fbd Suman Anna      2020-12-08  1076  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1077  	dev_dbg(dev, "PRU rproc node %pOF probed successfully\n", np);
-d4ce2de7e4af8b Suman Anna      2020-12-08  1078  
-d4ce2de7e4af8b Suman Anna      2020-12-08  1079  	return 0;
-d4ce2de7e4af8b Suman Anna      2020-12-08  1080  }
-d4ce2de7e4af8b Suman Anna      2020-12-08  1081  
-
+diff --git a/drivers/remoteproc/imx_dsp_rproc.c b/drivers/remoteproc/imx_dsp_rproc.c
+index 376187ad5754..a4a85fbce907 100644
+--- a/drivers/remoteproc/imx_dsp_rproc.c
++++ b/drivers/remoteproc/imx_dsp_rproc.c
+@@ -934,7 +934,7 @@ static const struct rproc_ops imx_dsp_rproc_ops = {
+ 	.start		= imx_dsp_rproc_start,
+ 	.stop		= imx_dsp_rproc_stop,
+ 	.kick		= imx_dsp_rproc_kick,
+-	.load		= imx_dsp_rproc_elf_load_segments,
++	.load_segments	= imx_dsp_rproc_elf_load_segments,
+ 	.parse_fw	= imx_dsp_rproc_parse_fw,
+ 	.find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table,
+ 	.sanity_check	= rproc_elf_sanity_check,
+diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+index 800015ff7ff9..f45b3207f7e9 100644
+--- a/drivers/remoteproc/imx_rproc.c
++++ b/drivers/remoteproc/imx_rproc.c
+@@ -681,7 +681,7 @@ static const struct rproc_ops imx_rproc_ops = {
+ 	.stop		= imx_rproc_stop,
+ 	.kick		= imx_rproc_kick,
+ 	.da_to_va       = imx_rproc_da_to_va,
+-	.load		= rproc_elf_load_segments,
++	.load_segments	= rproc_elf_load_segments,
+ 	.parse_fw	= imx_rproc_parse_fw,
+ 	.find_loaded_rsc_table = imx_rproc_elf_find_loaded_rsc_table,
+ 	.get_loaded_rsc_table = imx_rproc_get_loaded_rsc_table,
+diff --git a/drivers/remoteproc/meson_mx_ao_arc.c b/drivers/remoteproc/meson_mx_ao_arc.c
+index f6744b538323..a1c8c0929ce3 100644
+--- a/drivers/remoteproc/meson_mx_ao_arc.c
++++ b/drivers/remoteproc/meson_mx_ao_arc.c
+@@ -137,7 +137,7 @@ static struct rproc_ops meson_mx_ao_arc_rproc_ops = {
+ 	.stop		= meson_mx_ao_arc_rproc_stop,
+ 	.da_to_va	= meson_mx_ao_arc_rproc_da_to_va,
+ 	.get_boot_addr	= rproc_elf_get_boot_addr,
+-	.load		= rproc_elf_load_segments,
++	.load_segments	= rproc_elf_load_segments,
+ 	.sanity_check	= rproc_elf_sanity_check,
+ };
+ 
+diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+index e744c07507ee..4e9a8bf3bc6e 100644
+--- a/drivers/remoteproc/mtk_scp.c
++++ b/drivers/remoteproc/mtk_scp.c
+@@ -924,7 +924,7 @@ static int scp_stop(struct rproc *rproc)
+ static const struct rproc_ops scp_ops = {
+ 	.start		= scp_start,
+ 	.stop		= scp_stop,
+-	.load		= scp_load,
++	.load_segments	= scp_load,
+ 	.da_to_va	= scp_da_to_va,
+ 	.parse_fw	= scp_parse_fw,
+ 	.sanity_check	= rproc_elf_sanity_check,
+diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+index 327f0c7ee3d6..0b2bf2574f74 100644
+--- a/drivers/remoteproc/pru_rproc.c
++++ b/drivers/remoteproc/pru_rproc.c
+@@ -1015,7 +1015,7 @@ static int pru_rproc_probe(struct platform_device *pdev)
+ 		return -ENOMEM;
+ 	}
+ 	/* use a custom load function to deal with PRU-specific quirks */
+-	rproc->ops->load = pru_rproc_load_elf_segments;
++	rproc->ops->load_segments = pru_rproc_load_elf_segments;
+ 
+ 	/* use a custom parse function to deal with PRU-specific resources */
+ 	rproc->ops->parse_fw = pru_rproc_parse_fw;
+diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
+index 572dcb0f055b..aa9896930bcf 100644
+--- a/drivers/remoteproc/qcom_q6v5_adsp.c
++++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+@@ -527,7 +527,7 @@ static const struct rproc_ops adsp_ops = {
+ 	.stop = adsp_stop,
+ 	.da_to_va = adsp_da_to_va,
+ 	.parse_fw = adsp_parse_firmware,
+-	.load = adsp_load,
++	.load_segments = adsp_load,
+ 	.panic = adsp_panic,
+ };
+ 
+diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
+index 2a42215ce8e0..a8beac1deabe 100644
+--- a/drivers/remoteproc/qcom_q6v5_mss.c
++++ b/drivers/remoteproc/qcom_q6v5_mss.c
+@@ -1687,7 +1687,7 @@ static const struct rproc_ops q6v5_ops = {
+ 	.start = q6v5_start,
+ 	.stop = q6v5_stop,
+ 	.parse_fw = qcom_q6v5_register_dump_segments,
+-	.load = q6v5_load,
++	.load_segments = q6v5_load,
+ 	.panic = q6v5_panic,
+ };
+ 
+diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+index ef82835e98a4..9b269ce390c1 100644
+--- a/drivers/remoteproc/qcom_q6v5_pas.c
++++ b/drivers/remoteproc/qcom_q6v5_pas.c
+@@ -436,7 +436,7 @@ static const struct rproc_ops adsp_ops = {
+ 	.stop = adsp_stop,
+ 	.da_to_va = adsp_da_to_va,
+ 	.parse_fw = qcom_register_dump_segments,
+-	.load = adsp_load,
++	.load_segments = adsp_load,
+ 	.panic = adsp_panic,
+ };
+ 
+@@ -446,7 +446,7 @@ static const struct rproc_ops adsp_minidump_ops = {
+ 	.stop = adsp_stop,
+ 	.da_to_va = adsp_da_to_va,
+ 	.parse_fw = qcom_register_dump_segments,
+-	.load = adsp_load,
++	.load_segments = adsp_load,
+ 	.panic = adsp_panic,
+ 	.coredump = adsp_minidump,
+ };
+diff --git a/drivers/remoteproc/qcom_q6v5_wcss.c b/drivers/remoteproc/qcom_q6v5_wcss.c
+index e913dabae992..44b5736dc8b9 100644
+--- a/drivers/remoteproc/qcom_q6v5_wcss.c
++++ b/drivers/remoteproc/qcom_q6v5_wcss.c
+@@ -771,7 +771,7 @@ static const struct rproc_ops q6v5_wcss_ipq8074_ops = {
+ 	.start = q6v5_wcss_start,
+ 	.stop = q6v5_wcss_stop,
+ 	.da_to_va = q6v5_wcss_da_to_va,
+-	.load = q6v5_wcss_load,
++	.load_segments = q6v5_wcss_load,
+ 	.get_boot_addr = rproc_elf_get_boot_addr,
+ };
+ 
+@@ -779,7 +779,7 @@ static const struct rproc_ops q6v5_wcss_qcs404_ops = {
+ 	.start = q6v5_qcs404_wcss_start,
+ 	.stop = q6v5_wcss_stop,
+ 	.da_to_va = q6v5_wcss_da_to_va,
+-	.load = q6v5_wcss_load,
++	.load_segments = q6v5_wcss_load,
+ 	.get_boot_addr = rproc_elf_get_boot_addr,
+ 	.parse_fw = qcom_register_dump_segments,
+ };
+diff --git a/drivers/remoteproc/qcom_wcnss.c b/drivers/remoteproc/qcom_wcnss.c
+index a7bb9da27029..42102bc4c458 100644
+--- a/drivers/remoteproc/qcom_wcnss.c
++++ b/drivers/remoteproc/qcom_wcnss.c
+@@ -335,7 +335,7 @@ static const struct rproc_ops wcnss_ops = {
+ 	.stop = wcnss_stop,
+ 	.da_to_va = wcnss_da_to_va,
+ 	.parse_fw = qcom_register_dump_segments,
+-	.load = wcnss_load,
++	.load_segments = wcnss_load,
+ };
+ 
+ static irqreturn_t wcnss_wdog_interrupt(int irq, void *dev)
+diff --git a/drivers/remoteproc/rcar_rproc.c b/drivers/remoteproc/rcar_rproc.c
+index cc17e8421f65..e36778fec072 100644
+--- a/drivers/remoteproc/rcar_rproc.c
++++ b/drivers/remoteproc/rcar_rproc.c
+@@ -142,7 +142,7 @@ static struct rproc_ops rcar_rproc_ops = {
+ 	.prepare	= rcar_rproc_prepare,
+ 	.start		= rcar_rproc_start,
+ 	.stop		= rcar_rproc_stop,
+-	.load		= rproc_elf_load_segments,
++	.load_segments	= rproc_elf_load_segments,
+ 	.parse_fw	= rcar_rproc_parse_fw,
+ 	.find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table,
+ 	.sanity_check	= rproc_elf_sanity_check,
+diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+index 8df4b2c59bb6..e4ad024efcda 100644
+--- a/drivers/remoteproc/remoteproc_core.c
++++ b/drivers/remoteproc/remoteproc_core.c
+@@ -2485,11 +2485,11 @@ static int rproc_alloc_ops(struct rproc *rproc, const struct rproc_ops *ops)
+ 	if (!rproc->ops->coredump)
+ 		rproc->ops->coredump = rproc_coredump;
+ 
+-	if (rproc->ops->load || rproc->ops->load_fw)
++	if (rproc->ops->load_segments || rproc->ops->load_fw)
+ 		return 0;
+ 
+ 	/* Default to ELF loader if no load function is specified */
+-	rproc->ops->load = rproc_elf_load_segments;
++	rproc->ops->load_segments = rproc_elf_load_segments;
+ 	rproc->ops->parse_fw = rproc_elf_load_rsc_table;
+ 	rproc->ops->find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table;
+ 	rproc->ops->sanity_check = rproc_elf_sanity_check;
+diff --git a/drivers/remoteproc/remoteproc_internal.h b/drivers/remoteproc/remoteproc_internal.h
+index 2104ca449178..b898494600cf 100644
+--- a/drivers/remoteproc/remoteproc_internal.h
++++ b/drivers/remoteproc/remoteproc_internal.h
+@@ -167,8 +167,8 @@ u64 rproc_get_boot_addr(struct rproc *rproc, const struct firmware *fw)
+ static inline
+ int rproc_load_segments(struct rproc *rproc, const struct firmware *fw)
+ {
+-	if (rproc->ops->load)
+-		return rproc->ops->load(rproc, fw);
++	if (rproc->ops->load_segments)
++		return rproc->ops->load_segments(rproc, fw);
+ 
+ 	return -EINVAL;
+ }
+diff --git a/drivers/remoteproc/st_remoteproc.c b/drivers/remoteproc/st_remoteproc.c
+index 1340be9d0110..8d6b75e91531 100644
+--- a/drivers/remoteproc/st_remoteproc.c
++++ b/drivers/remoteproc/st_remoteproc.c
+@@ -233,7 +233,7 @@ static const struct rproc_ops st_rproc_ops = {
+ 	.start			= st_rproc_start,
+ 	.stop			= st_rproc_stop,
+ 	.parse_fw		= st_rproc_parse_fw,
+-	.load			= rproc_elf_load_segments,
++	.load_segments		= rproc_elf_load_segments,
+ 	.find_loaded_rsc_table	= rproc_elf_find_loaded_rsc_table,
+ 	.sanity_check		= rproc_elf_sanity_check,
+ 	.get_boot_addr		= rproc_elf_get_boot_addr,
+diff --git a/drivers/remoteproc/st_slim_rproc.c b/drivers/remoteproc/st_slim_rproc.c
+index 5412beb0a692..0f91d8f1e7c7 100644
+--- a/drivers/remoteproc/st_slim_rproc.c
++++ b/drivers/remoteproc/st_slim_rproc.c
+@@ -201,7 +201,7 @@ static const struct rproc_ops slim_rproc_ops = {
+ 	.stop		= slim_rproc_stop,
+ 	.da_to_va       = slim_rproc_da_to_va,
+ 	.get_boot_addr	= rproc_elf_get_boot_addr,
+-	.load		= rproc_elf_load_segments,
++	.load_segments	= rproc_elf_load_segments,
+ 	.sanity_check	= rproc_elf_sanity_check,
+ };
+ 
+diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
+index 8c7f7950b80e..7e8ffd9fcc57 100644
+--- a/drivers/remoteproc/stm32_rproc.c
++++ b/drivers/remoteproc/stm32_rproc.c
+@@ -667,7 +667,7 @@ static const struct rproc_ops st_rproc_ops = {
+ 	.attach		= stm32_rproc_attach,
+ 	.detach		= stm32_rproc_detach,
+ 	.kick		= stm32_rproc_kick,
+-	.load		= rproc_elf_load_segments,
++	.load_segments	= rproc_elf_load_segments,
+ 	.parse_fw	= stm32_rproc_parse_fw,
+ 	.find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table,
+ 	.get_loaded_rsc_table = stm32_rproc_get_loaded_rsc_table,
+diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
+index 5aeedeaf3c41..59cfba0a02e7 100644
+--- a/drivers/remoteproc/xlnx_r5_remoteproc.c
++++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
+@@ -864,7 +864,7 @@ static const struct rproc_ops zynqmp_r5_rproc_ops = {
+ 	.unprepare	= zynqmp_r5_rproc_unprepare,
+ 	.start		= zynqmp_r5_rproc_start,
+ 	.stop		= zynqmp_r5_rproc_stop,
+-	.load		= rproc_elf_load_segments,
++	.load_segments	= rproc_elf_load_segments,
+ 	.parse_fw	= zynqmp_r5_parse_fw,
+ 	.find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table,
+ 	.sanity_check	= rproc_elf_sanity_check,
+diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+index ba6fd560f7ba..55c20424a99f 100644
+--- a/include/linux/remoteproc.h
++++ b/include/linux/remoteproc.h
+@@ -374,7 +374,7 @@ enum rsc_handling_status {
+  * @find_loaded_rsc_table: find the loaded resource table from firmware image
+  * @get_loaded_rsc_table: get resource table installed in memory
+  *			  by external entity
+- * @load:		load firmware to memory, where the remote processor
++ * @load_segments:	load firmware ELF segment to memory, where the remote processor
+  *			expects to find it
+  * @sanity_check:	sanity check the fw image
+  * @get_boot_addr:	get boot address to entry point specified in firmware
+@@ -402,7 +402,7 @@ struct rproc_ops {
+ 				struct rproc *rproc, const struct firmware *fw);
+ 	struct resource_table *(*get_loaded_rsc_table)(
+ 				struct rproc *rproc, size_t *size);
+-	int (*load)(struct rproc *rproc, const struct firmware *fw);
++	int (*load_segments)(struct rproc *rproc, const struct firmware *fw);
+ 	int (*sanity_check)(struct rproc *rproc, const struct firmware *fw);
+ 	u64 (*get_boot_addr)(struct rproc *rproc, const struct firmware *fw);
+ 	unsigned long (*panic)(struct rproc *rproc);
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
 _______________________________________________
 linux-amlogic mailing list
