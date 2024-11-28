@@ -4,106 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C00BD69115
-	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Nov 2024 15:23:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36A77D69119
+	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Nov 2024 15:35:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Sj5BxjbhXHinYNIXyEPv0RwtuMcyCuN3//X/fWPr88k=; b=qqVshL6XuKObw3
-	WQbviriL0Ai50ZfAlorXwpwwPVpUK+9w/uO4W82m8JgO2lYoxhPKLc0P8Ep1S6IdPjMgmFzGXpm56
-	3lBHxeeRtXFae/mqUjZ4WVvlFFwaU7HB0Y9cbE5pyT86SbN15NQG5dD8JkBUvUbpbZUiF9FJpJG/j
-	wSejySGk1gEsQFWPFQYfi5Sdy2OWmJRhtn3rtSGiKiXRNDwxWsQvg2prYlux41zK+KR+S0nh6ekOb
-	yeqjq5qqvxC/TFQDxfGlw/DuGJArN0Wh4NRvrxUOc4iZIGvwxZeGjKjk1VF103cDpJduG0TiIz4cJ
-	MHb4V4y+6Q/nU6LGJDTw==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:References:In-Reply-To:
+	Message-Id:Cc:To:From:Date:MIME-Version:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=8wSZaZ2oDfifBwJttjodGAbI7ehLn5d392fLqRCLKLc=; b=sDFwIfRroSPH9ELuC9y28kOu3F
+	WL2MYQYt6Ne42VCID1Kl3M9JIziulT+P8MNlxuYv1DCaCeCgm3GfkqiFJxpxRSK56Li7oRlzE+yt5
+	CJeJrCqDzdXg1l37q5JMTiRtw6U4E3tXoDlBW62SdMSQCUVO7Uj6VC939vowgWTguwikARsV6GB53
+	R3//B1elIk8+5QQ6Ibskp7b2R4MYnivO7UspQOiNB+/zMlkrfLCof+r3nH5KpU7OflZs7sSTTUsA5
+	/5Xc1qn9lFLFFaCxOnn298I8ztWhLllBQzqgNnAp6+1CXd+exrgDwmiBLhoDs0kp5/171QrkDXbZI
+	EyTXOXlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGgMF-0000000FsLk-1DMq;
-	Thu, 28 Nov 2024 15:23:07 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1tGgYH-0000000Fu3X-3Haa;
+	Thu, 28 Nov 2024 15:35:33 +0000
+Received: from fout-b3-smtp.messagingengine.com ([202.12.124.146])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGgGD-0000000Fr6v-2kX3
-	for linux-amlogic@lists.infradead.org;
-	Thu, 28 Nov 2024 15:16:54 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-434a10588f3so5926355e9.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 28 Nov 2024 07:16:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732807012; x=1733411812; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tzpFYlwmRDjUdywRFCwk3EMOwG1W4Bvy7VRMs6AVjzU=;
-        b=sd9c1B/Eucb5xLKs1LnltS+cFqWnPdbZ+xNsS+K14ql8uQCMjV/WjJL+kCiIXxViAH
-         T3JGeqfTsJD2BqoVfaECSWyFEG2oDc+0Aq2kF0w/y+v6clO/II6BPhjXxoR0S4SK28Jc
-         OHGaycYOgdOwz+WoWakNnWS/NUU/wFXCiipZh+qpv4AcqhsXpfyRIeN4s8eEu94qXGjI
-         148Mt2M20slgdT6QYKyhoqwRdx68UZrjtuWGw2hiKsiiCwLsqAD9bYPV/6XDGCk4U8eF
-         W3xkFhgVhUCtJq78rjDu2t9DBZJFKqEZm4IjeWhfYLtVUZ242ZsdxsTJLMM3XAVqFxQl
-         oRNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732807012; x=1733411812;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tzpFYlwmRDjUdywRFCwk3EMOwG1W4Bvy7VRMs6AVjzU=;
-        b=QwntrVehIEjtlQ2nUqSiQXPHDviPe0OY/fsvYpG5rZIdNAk5vpujuCya4zCz9b5R7q
-         74B0hKqCrDolEj+gR4AHI+1csjG02d0NKkuZyRYL8AvzjsyJLicvKocYV7SFRqOwQ8+Y
-         B9GpV70VPOnnSytjkxEz72FejBSirs6fiLrvtOZBpIJjTnni5WEwa13fpgTzxpS1yH95
-         UZ1/Trbi7qSfmg6DeHPgERQrXTFZjgoB93r0ADzfbpHxUU+4WIh0JiGumEyDiK99+yIC
-         UHbFJQQ10zeDbIaXZXdomapx+ywfUr41QOeXMuMY531zYIuhz2FECGEfH3HnEJZHTOeK
-         q9Ug==
-X-Forwarded-Encrypted: i=1; AJvYcCUDHoG0vRwGBxkTkpbG6zdhau6DBjzK9+iYnj5B0umllZB18Moq6GyHygJpVc2soBujivvYYV5ENmVsT9lr@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyp/D5xMfgm7rCUbojtBuPocsnzufjYiUN72Dzp9e4lieuXTtg2
-	ufvnoyAgjFwiXEfWJDJtX+HWquM9OUetQCQ05iSrThxvLh1GgD4hP+rPmYS7w94=
-X-Gm-Gg: ASbGnctSKM3gwKlqGoWp4KbSOuIzpDZViR2PzhbcuxFP0S8QIc2jRjDnNOnjuv5kVCA
-	mCOzlS1sFA6XY1vXrtMU6emG3cMx/+n3M2yeUjXRu7Dysz+QJ1jSSMGWDvDQPxe7QI9sBj3FK3Q
-	czYjApSWeEtUSU78/82DPY8q/SuAI3AOFER7LqANFrebz9iCf/lpZ7LyHyCasqQL75EwYe4G7TN
-	PUecnd0/jkSI7ZQoRUhYiB/qIhhvuClBrxO22wZvr++qCtHOfEv4ajHnm+2oz1g6vnI8E0=
-X-Google-Smtp-Source: AGHT+IH4AIKDNQTGuzrRL5OCcaR5+oCwqwuiQGkqb+Yio/Cxxa2N2THu7Mb64eFoUBklqJHWFxGrjw==
-X-Received: by 2002:a05:6000:1846:b0:382:4d6e:9f3f with SMTP id ffacd0b85a97d-385c6ec0b9dmr6474374f8f.34.1732807011807;
-        Thu, 28 Nov 2024 07:16:51 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa7e4fe1sm55867025e9.38.2024.11.28.07.16.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Nov 2024 07:16:51 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 28 Nov 2024 16:16:45 +0100
-Subject: [PATCH v4 5/5] dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt
- to dtschema
+	id 1tGgYE-0000000Fu34-1sUp;
+	Thu, 28 Nov 2024 15:35:32 +0000
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfout.stl.internal (Postfix) with ESMTP id C559611401AA;
+	Thu, 28 Nov 2024 10:35:28 -0500 (EST)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-10.internal (MEProxy); Thu, 28 Nov 2024 10:35:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1732808128;
+	 x=1732894528; bh=ABd2E925i20MEj4ELZS+Ijgs5QfhIL7sEUJJIVYesWg=; b=
+	BEMNsoQ9uCXfNDsb0MTId8qxxrNIFf6WII43GdcSgCtAF5NjH3ErVbMNW+UYrCPz
+	jJIaPgs2irKbfmRFIhgEpaf8dO13WBgCeIWGGNmgq6hCY0o6vNuDRLo7JH3YysI6
+	adWri8GFYNdOUA1QfAUR3yHxfQvNwJuZfzOI7/wHtsYGuTt+xE0AhHNqtK9FPzYr
+	ND+Q9NAeiCBLUFu1jgRPwERvWLLlAJSL5jZN7KFBhfan8xnbQyGn9F15K1RvT9Oh
+	8Jk0yyP10aor/jop+auqG1h6B0Ul7vcVDzl1aFVSljjzUydrgpOyHSms82cJYY63
+	UzfD/AbyP+tNrJEr7nWW9Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1732808128; x=
+	1732894528; bh=ABd2E925i20MEj4ELZS+Ijgs5QfhIL7sEUJJIVYesWg=; b=4
+	qbVI3GCWTAuAgTnL/VwXQnOQ3cZgRSKdUzStu3ng0ZQyfUz/ozrYsBvKSDyaaZxG
+	GcZOzFDKltWxWCfZzku/nc2gS0toHdFukvTPtDx4LTlJ2QaUvvfeVHAuDJqdL6qg
+	Q/PAnsf4oSnUXZlCxQubTJbdYZJjwvqdUASdY5B72oKSeH5ywjTEnAQSR5Nmo4tt
+	nridA5YQ69ZdqLqNuRAaAk7+yLKAqRu8VtUob9EGUTBv/onLOYzRPcgfE8XaK8/8
+	J6UuqSaXjPWdvhMn7Bsl3wYiioo+FKPcggaN/KbMQDZgw2EV2Gjm9tsBsYM7eGAX
+	Lumfh89mEd72OW2ZvTeUg==
+X-ME-Sender: <xms:wI1IZwuSYzX_k7OJfA_6xV7N4GOtl0tcUsX2qy4Hg9Y3apIV08alZQ>
+    <xme:wI1IZ9cstaQRaaoBk4vnH44BcWGmKeeUtNsg1Nj7sLwrHwTXQUOkKar0zqYJ56FWR
+    MYJWD59mEyeAb2CDug>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrhedugdejiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
+    tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
+    hsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredttden
+    ucfhrhhomhepfdetrhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdrug
+    gvqeenucggtffrrghtthgvrhhnpeefhfehteffuddvgfeigefhjeetvdekteekjeefkeek
+    leffjeetvedvgefhhfeihfenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluh
+    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhn
+    uggsrdguvgdpnhgspghrtghpthhtohepuddupdhmohguvgepshhmthhpohhuthdprhgtph
+    htthhopehjsghruhhnvghtsegsrgihlhhisghrvgdrtghomhdprhgtphhtthhopehkhhhi
+    lhhmrghnsegsrgihlhhisghrvgdrtghomhdprhgtphhtthhopehmthhurhhquhgvthhtvg
+    essggrhihlihgsrhgvrdgtohhmpdhrtghpthhtohepmhgrrhhtihhnrdgslhhumhgvnhhs
+    thhinhhglhesghhoohhglhgvmhgrihhlrdgtohhmpdhrtghpthhtohepsghrohhonhhivg
+    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshgsohihugeskhgvrhhnvghlrdhorhhg
+    pdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprh
+    gtphhtthhopehlihhnuhigqdgrmhhlohhgihgtsehlihhsthhsrdhinhhfrhgruggvrggu
+    rdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrd
+    hinhhfrhgruggvrggurdhorhhg
+X-ME-Proxy: <xmx:wI1IZ7yZAaffLnkN_MPOE1FMgd9cLSlFlyMz7p6XwacP-iiFq6VOvA>
+    <xmx:wI1IZzPJAJIlFkJ-YbyEwZW_q5Zj_cJ7WPmZe5WHrqCB8tCAQN13LA>
+    <xmx:wI1IZw9BYdCWqSIUkT5o1Z41hiYbqWUvvPaWnV5E1aScT0vfMczDtw>
+    <xmx:wI1IZ7XJlpagthbBUorL1TIcTgGOK720Gx1PQ5kB4g9UV9CcjiMZcg>
+    <xmx:wI1IZx01Zlb3znosZEH8ZfnPYlesaVlCsUlCYWYALqYcm1MWhJemZvG2>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 394B72220071; Thu, 28 Nov 2024 10:35:28 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-Message-Id: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-5-11d9f9200a59@linaro.org>
-References: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-0-11d9f9200a59@linaro.org>
-In-Reply-To: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-0-11d9f9200a59@linaro.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Maxime Ripard <mripard@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5272;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=EyHdKYQSzhp6Q5IckerUZg/bcUhVWP1QC3wdvMtdE4Y=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnSIldLzAfDGWjxNDmzJ2/2WMIp1sGGnOvNvp6JCAp
- myNjCKKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ0iJXQAKCRB33NvayMhJ0azxEA
- C0McuYqWQAYwfk2xajPs3bcX+BmlzuLuas2bMzBD/me9jZu2mkdUG1VEwoolEX0gCO6JlqxaxQJ4WM
- wL5TOWyl98rq7QvpGteUK8etgNs2ID4qhKX5hsWLrDH4oFKHIg776KlZ16WwFxrM9zotbWNMva+AMr
- PN2wCcOX42276Z2sU+fwg0/lzdd9L6FPWHRy5eEpK0aQHmiDQj+xWmpVF02Rpy5PZfZLrrFk0JKfYn
- kMwv8pGldajb1UUUNMVjgVjW3nCPo6TR2mKVgq07cyTxpi/BpzMzsx7mKZyQRV1wIhs/0vaSqGGoR8
- PtPicnej6Zrj/gBQ0Rx41nTgYe1ymgeHaeu7hTpaGuswR1U4Yst4g4st1a9VRP+Z3+aHaE9G68NBGW
- EFEGhsTm7hiRiOpOm/e4mIwZNv8BHi2KP+D8nWhyGQaMZQNCOoFsYII+g1gTq+O57co/vJIJGoPCS7
- HiFh3roegB3Z1kHpgZfMy+n26Nq6UgphQZK9vM8DIcEtNg+hpAvS+D2SArm9nd7UVMq3GLHcRwABCo
- znU/pLdQSIlPfCbgFBobDgij0o20asawXWTryI8DjRMq5MWYv1IFkyqg1upLB3lmE/KKIGgVc+oyRs
- rKG7qfGo4UICqZfJVFM5ejB7HSDuzO9FBcPhkyYtfPmmG3r90+p5BpLOl+yw==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Date: Thu, 28 Nov 2024 16:34:46 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Jerome Brunet" <jbrunet@baylibre.com>
+Cc: "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Kevin Hilman" <khilman@baylibre.com>,
+ "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ "Mark Brown" <broonie@kernel.org>
+Message-Id: <ce67e512-a15b-4482-8194-b917096f4eeb@app.fastmail.com>
+In-Reply-To: <1jplmf1jqa.fsf@starbuckisacylon.baylibre.com>
+References: <20241127-clk-audio-fix-rst-missing-v1-1-9f9d0ab98fce@baylibre.com>
+ <12f29978-c8ce-4bee-a447-dcd086eb936d@app.fastmail.com>
+ <1ja5dk2y5l.fsf@starbuckisacylon.baylibre.com>
+ <f8de4a2a-776f-4c10-b75e-e845bcc38dde@app.fastmail.com>
+ <1j4j3r32ld.fsf@starbuckisacylon.baylibre.com>
+ <306b0b30-5a32-4c7c-86b4-57d50e2307e8@app.fastmail.com>
+ <1jy1131kxz.fsf@starbuckisacylon.baylibre.com>
+ <c06317c6-b2b2-4b6d-96e4-0c2cfc6846de@app.fastmail.com>
+ <1jplmf1jqa.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH] clk: amlogic: axg-audio: select RESET_MESON_AUX
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241128_071653_699366_8BC1393D 
-X-CRM114-Status: GOOD (  16.23  )
+X-CRM114-CacheID: sfid-20241128_073531_196540_B04E07C8 
+X-CRM114-Status: GOOD (  19.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,181 +128,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert the Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
-bindings to dt-schema.
+On Thu, Nov 28, 2024, at 16:06, Jerome Brunet wrote:
+> On Thu 28 Nov 2024 at 15:51, "Arnd Bergmann" <arnd@arndb.de> wrote:
+>> On Thu, Nov 28, 2024, at 15:39, Jerome Brunet wrote:
+>>> On Thu 28 Nov 2024 at 15:11, "Arnd Bergmann" <arnd@arndb.de> wrote:
+>>> Eventually that will happen for the rest of the reset implemented
+>>> under drivers/clk/meson.
+>>>
+>>> It allows to make some code common between the platform reset
+>>> drivers and the aux ones. It also ease maintainance for both
+>>> Stephen and Philipp.
+>>
+>> I don't understand how this helps: the entire point of using
+>> an auxiliary device is to separate the lifetime rules of
+>> the different bits, but by doing the creation of the device
+>> in the same file as the implementation, you are not taking
+>> advantage of that at all, but instead get the complexity of
+>> a link-time dependency in addition to a lot of extra code
+>> for dealing with the additional device.
+>
+> My initial rework had the creation in clock (note: that is why I
+> initially used 'imply', and forgot to update when the creation moved to
+> reset).
+>
+> I was asked to move the creation in reset:
+> https://lore.kernel.org/r/217a785212d7c1a5b504c6040b3636e6.sboyd@kernel.org
+>
+> We are deviating a bit from the initial regression reported by Mark.
+> Is Ok with you to proceed with that fix and then continue this discussion
+> ?
 
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../bindings/mmc/amlogic,meson-mx-sdio.txt         | 54 -------------
- .../bindings/mmc/amlogic,meson-mx-sdio.yaml        | 94 ++++++++++++++++++++++
- 2 files changed, 94 insertions(+), 54 deletions(-)
+I really don't want to see those stray 'select' statements
+in there, as that leave very little incentive for anyone to
+fix it properly.
 
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
-deleted file mode 100644
-index 8765c605e6bc761db2923ad748b5bb70d40ea830..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
-+++ /dev/null
-@@ -1,54 +0,0 @@
--* Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
--
--The highspeed MMC host controller on Amlogic SoCs provides an interface
--for MMC, SD, SDIO and SDHC types of memory cards.
--
--Supported maximum speeds are the ones of the eMMC standard 4.41 as well
--as the speed of SD standard 2.0.
--
--The hardware provides an internal "mux" which allows up to three slots
--to be controlled. Only one slot can be accessed at a time.
--
--Required properties:
-- - compatible : must be one of
--	- "amlogic,meson8-sdio"
--	- "amlogic,meson8b-sdio"
--	along with the generic "amlogic,meson-mx-sdio"
-- - reg : mmc controller base registers
-- - interrupts : mmc controller interrupt
-- - #address-cells : must be 1
-- - size-cells : must be 0
-- - clocks : phandle to clock providers
-- - clock-names : must contain "core" and "clkin"
--
--Required child nodes:
--A node for each slot provided by the MMC controller is required.
--NOTE: due to a driver limitation currently only one slot (= child node)
--      is supported!
--
--Required properties on each child node (= slot):
-- - compatible : must be "mmc-slot" (see mmc.txt within this directory)
-- - reg : the slot (or "port") ID
--
--Optional properties on each child node (= slot):
-- - bus-width : must be 1 or 4 (8-bit bus is not supported)
-- - for cd and all other additional generic mmc parameters
--   please refer to mmc.txt within this directory
--
--Examples:
--	mmc@c1108c20 {
--		compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
--		reg = <0xc1108c20 0x20>;
--		interrupts = <0 28 1>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
--		clock-names = "core", "clkin";
--
--		slot@1 {
--			compatible = "mmc-slot";
--			reg = <1>;
--
--			bus-width = <4>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..022682a977c6d347c36279f958dcd6f53d385b71
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
-@@ -0,0 +1,94 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/amlogic,meson-mx-sdio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
-+
-+description: |
-+  The highspeed MMC host controller on Amlogic SoCs provides an interface
-+  for MMC, SD, SDIO and SDHC types of memory cards.
-+
-+  Supported maximum speeds are the ones of the eMMC standard 4.41 as well
-+  as the speed of SD standard 2.0.
-+
-+  The hardware provides an internal "mux" which allows up to three slots
-+  to be controlled. Only one slot can be accessed at a time.
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - amlogic,meson8-sdio
-+          - amlogic,meson8b-sdio
-+      - const: amlogic,meson-mx-sdio
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: clkin
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "slot@[0-2]$":
-+    $ref: mmc-slot.yaml#
-+    description:
-+      A node for each slot provided by the MMC controller
-+
-+    properties:
-+      reg:
-+        enum: [0, 1, 2]
-+
-+      bus-width:
-+        enum: [1, 4]
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    mmc@c1108c20 {
-+        compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
-+        reg = <0xc1108c20 0x20>;
-+        interrupts = <GIC_SPI 28 IRQ_TYPE_EDGE_RISING>;
-+        clocks = <&clk_core>, <&clk_in>;
-+        clock-names = "core", "clkin";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        slot@1 {
-+            compatible = "mmc-slot";
-+            reg = <1>;
-+            bus-width = <4>;
-+        };
-+    };
+It sounds like Stephen gave you bad advice for how it should
+be structured, so my best suggestion would be to move the
+the problem (and the reset driver) back into his subsystem
+and leave only a simple 'select RESET_CONTROLLER'.
 
--- 
-2.34.1
+From the message you cited, I think Stephen had the right
+intentions ("so that the clk and reset drivers are decoupled"),
+but the end result did not actually do what he intended
+even if you did what he asked for.
 
+Stephen, can you please take a look here and see if you
+have a better idea for either decoupling the two drivers
+enough to avoid the link time dependency, or to reintegrate
+the reset controller code into the clk driver and avoid
+the complexity?
+
+      Arnd
 
 _______________________________________________
 linux-amlogic mailing list
