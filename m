@@ -4,107 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E1F5D6D23D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Nov 2024 21:24:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 522E5D66BA0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 28 Nov 2024 06:00:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:References:In-Reply-To:
-	Message-Id:Cc:To:From:Date:MIME-Version:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=RhOGUh1x4NvUB8haAAD1jGK+wSAeESRjn0fNRyOEgRQ=; b=vb9sIxzw8gHcUp4HziHEtdtgjI
-	qsms8msy7MpziVAiTzPR/6ak7Mlfoud6BXQFEjMscJzZkNte46rKr80UCsFvQvhSoqMnhu5toOWDa
-	jcJoPoGdz8lN5/3LgQyHpZLFkuucCvQjE2iQEx9SCHCgF5ZktuXFykrUfgaF2jL31Xy2ueBtsJA8y
-	zBA5ps3b8E7Zz7VdAgmhB5tpJszeBt5Nb2aaFT1ZVvz6UjvxzoTq+e2GAqPgs/QNF4gRtddDco7rC
-	UGKfil7PUVwrq0s9xG5aSWFx0OZMRfKa1G44b5ObNDNHDpR/nTqIAMpnTkigm2kzAVxpS6wSjq9qL
-	NC/xt38w==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Ro4Y726GWmggm7W6fmEY5fI+xI6vHwNaUhp+juzLkxw=; b=n95L9T4sXqEnxU
+	1z2kBaoxq9ETAfhRCf/kmTQqY0qeH7bDx5XaGToVXIZnQipVRSZKb4AEW0+V/Y+cWxpHtRgOxulwk
+	cyGmWwbh+JCI44PIAzvpnLs8BsCCVCxcmrPZx1NKTjWuxTppcrGhWSJ2Vdkyc/FDD62Y3+nlz8Gbr
+	arbAypzTnkXpTslB8viusbJl7hywgyS7L90s4OuApzeyewCJHMc+6Trb4LzSXfj0yMdlvpVinUgqR
+	45B1RyZrMM26DGvGq+zUX54M2EZQada3V1QRs1lMgaEqvTBvwjuG1WAhYBIY9pBDCGcPnR3KyrxTh
+	xtg6MUz8HV9NeZ/vvGHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGPWD-0000000E7Sj-2p1L;
-	Wed, 27 Nov 2024 21:24:17 +0000
-Received: from fhigh-a6-smtp.messagingengine.com ([103.168.172.157])
+	id 1tGXZw-0000000ElbC-3I3S;
+	Thu, 28 Nov 2024 06:00:40 +0000
+Received: from mgamail.intel.com ([192.198.163.9])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tGPWB-0000000E7SC-0a1y;
-	Wed, 27 Nov 2024 21:24:16 +0000
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 0F9E3114019B;
-	Wed, 27 Nov 2024 16:24:13 -0500 (EST)
-Received: from phl-imap-11 ([10.202.2.101])
-  by phl-compute-10.internal (MEProxy); Wed, 27 Nov 2024 16:24:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1732742653;
-	 x=1732829053; bh=A/qG1PCWH5DIdjBCou8V6S3ZjochUv53NXLjRXrbNBA=; b=
-	gjq3hl0XgvRADwxaY6xtVoz2rKXiUC+9uUIjK4JTyo1B1TgozvlUu5J+lfzmMGRx
-	+U/PbOrTr4G7/wW18lBRGEjs9AGk0CuZ83nO6loMdATqv/Rjt8z93Z8kdraPeB7d
-	RNZlMOMN0ZsWn592gnrKjD5D7gnQDr87DZnHPgxet3szA6Q+QKzb6PogLVj1Bv8B
-	QnhbeiNFAu1wVbvxhpWpdoy2PYHhoUWp5GL1uMCozj8bbICGt0I9LKfQRFJUwKHo
-	Y6fd9aKXXMsJjkZTvivrdYdyA1UpyWT8xdyhM2imAD4506dtLLzhjHtKEdeQNwoE
-	+wSmRZXmmdicvinRZt7R4A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1732742653; x=
-	1732829053; bh=A/qG1PCWH5DIdjBCou8V6S3ZjochUv53NXLjRXrbNBA=; b=O
-	wTYQmd9TokVOLvF2vAUccJfwlyLPiRR+Ctjlp2D6Q/+QhK3bWZM02wr+h03D8YSm
-	6tOQf5lLvxwMMHMc1o/SmIuwG06+W6utUJMtT4GsgvWTHzrGdqCrV1fGdGBvVC/7
-	GMLQ//uep/AFuZkzU7mws1oFFxAfSFMAjckG1oWESy8lGU3qbPbidUZ8YLiKVewL
-	k0zy2FszKmEmkv/WoAALuUHhx5tH9d1nv5fKkgx2S9bPQaMm3KiouInkWVnQ2EZx
-	Q8V1gQMusCh+nCJ5UuXVa3V+gSHzC4jcdxzd/mHSyvgT+gCHWccCOVaPAu4v2cKL
-	Rmg19EGUt3wu5i9ezquzw==
-X-ME-Sender: <xms:_I1HZyaQhEH4eHjR5OhZ10hCPejA0CCvC8p2egqcgPvxViq50J-bSQ>
-    <xme:_I1HZ1ag8R2tf9dHilhGNaPLvdg3vOs-jhTjLRj5Xhg3xiadbUMimzlUHPN5iPGHX
-    A42ur3BB-deBEAgGlE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrgeelgddugedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
-    necuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrd
-    guvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefg
-    gfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
-    hmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepuddu
-    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehjsghruhhnvghtsegsrgihlhhisg
-    hrvgdrtghomhdprhgtphhtthhopehkhhhilhhmrghnsegsrgihlhhisghrvgdrtghomhdp
-    rhgtphhtthhopehmthhurhhquhgvthhtvgessggrhihlihgsrhgvrdgtohhmpdhrtghpth
-    htohepmhgrrhhtihhnrdgslhhumhgvnhhsthhinhhglhesghhoohhglhgvmhgrihhlrdgt
-    ohhmpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
-    epshgsohihugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhgvihhlrdgrrhhmshht
-    rhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehlihhnuhigqdgrmhhlohhgih
-    gtsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplhhinhhugidq
-    rghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
-X-ME-Proxy: <xmx:_I1HZ8_gljDEAjSj2_i2Z32mj08WcG0CpxI1zfSJ_oJPxJPsntoPpQ>
-    <xmx:_I1HZ0oe70OojxKuJDXilLWlsi8MBucRGyAEZ3uUCGQ5n36zHwBSuQ>
-    <xmx:_I1HZ9olghZMkwyy6fj-KC-n5WxUi5GgDyBvL1LJOAPGhMcPWB1qIg>
-    <xmx:_I1HZySWSvXIL8IFo4ONqcn7vqXzffoi6f45QK1OqQcg3_N46AoHRQ>
-    <xmx:_Y1HZ6jihTLiBZlmwD58U1KDPO3yzSFtSW4gdoCbZ3mvINjfEFKhJ_mX>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id A71B22220071; Wed, 27 Nov 2024 16:24:12 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	id 1tGXYw-0000000ElSB-2OuW;
+	Thu, 28 Nov 2024 05:59:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732773578; x=1764309578;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=c0KVSQsmu1rPPpFE3S5HnK03A6rk+5gg33/ro18oufE=;
+  b=XtG5j9Z6W1FNiZcMTe3PHy4yMoWn1Q2mhFTDtMMg4Dtw6y86nV0uQxMW
+   VLgRijJ1esmNGjC1YzMiL48P+i84krdjSwzxryKT4sAY5W3pwj7cf8PNr
+   81okgs2+byTGEz/fRfPAQwTPnh4/rgob2PWVKpzc8Fubi0ZK1VJ8bFgGq
+   lMdNMCJSr1ZFxsuyQNiSp9qWM1VO75EFotUwiDvSvg8Zjk+6Otfuv6vOh
+   fUsMpPFCmRKkYlEVa2sZ/RuR1dsKXx/kbAiOg8JjaPh7Hy1noQEYX09Fb
+   GxqCfn+ElaGB0gMz+KLHdzw2MAzUwYG718bMStKQl8J0OAfCuWp0iwPMr
+   g==;
+X-CSE-ConnectionGUID: vt2Vai3fRYONFrGfy7wh3Q==
+X-CSE-MsgGUID: UzyiIdcVTIK1C3uHlNm4iQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="43662856"
+X-IronPort-AV: E=Sophos;i="6.12,191,1728975600"; 
+   d="scan'208";a="43662856"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2024 21:59:32 -0800
+X-CSE-ConnectionGUID: kPW4/6JXQPuGryDD7XfTRQ==
+X-CSE-MsgGUID: lmzrxaPdSyinw+0AgZvGbg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,191,1728975600"; 
+   d="scan'208";a="91751016"
+Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 27 Nov 2024 21:59:27 -0800
+Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tGXYi-00097f-2U;
+	Thu, 28 Nov 2024 05:59:24 +0000
+Date: Thu, 28 Nov 2024 13:58:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	linux-remoteproc@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v14 4/8] remoteproc: Rename load() operation to
+ load_segments() in rproc_ops struct
+Message-ID: <202411281332.Ra70nJAW-lkp@intel.com>
+References: <20241126091042.918144-5-arnaud.pouliquen@foss.st.com>
 MIME-Version: 1.0
-Date: Wed, 27 Nov 2024 22:23:52 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Jerome Brunet" <jbrunet@baylibre.com>
-Cc: "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Kevin Hilman" <khilman@baylibre.com>,
- "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- "Mark Brown" <broonie@kernel.org>
-Message-Id: <f8de4a2a-776f-4c10-b75e-e845bcc38dde@app.fastmail.com>
-In-Reply-To: <1ja5dk2y5l.fsf@starbuckisacylon.baylibre.com>
-References: <20241127-clk-audio-fix-rst-missing-v1-1-9f9d0ab98fce@baylibre.com>
- <12f29978-c8ce-4bee-a447-dcd086eb936d@app.fastmail.com>
- <1ja5dk2y5l.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [PATCH] clk: amlogic: axg-audio: select RESET_MESON_AUX
+Content-Disposition: inline
+In-Reply-To: <20241126091042.918144-5-arnaud.pouliquen@foss.st.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241127_132415_571980_5D44AAA3 
-X-CRM114-Status: GOOD (  19.24  )
+X-CRM114-CacheID: sfid-20241127_215938_623236_76A0C43A 
+X-CRM114-Status: GOOD (  14.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,55 +108,142 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Nov 27, 2024, at 21:56, Jerome Brunet wrote:
-> On Wed 27 Nov 2024 at 20:30, "Arnd Bergmann" <arnd@arndb.de> wrote:
->>
->> It looks like RESET_MESON_AUX is a user-visible symbol,
->> so you can simply ask users to turn it on, and add it to
->> the defconfig.
->
-> That would work yes but It's really something a user should not be
-> concerned with. I can follow-up with another change to remove the user
-> visibilty of RESET_MESON_AUX. It is always going to be something
-> requested by another driver.
+Hi Arnaud,
 
-But that's true for all reset drivers, each one of them is
-only useful because it's going to be used by another driver,
-same for clk, pinctrl, regulator, ...
+kernel test robot noticed the following build errors:
 
-All other reset drivers are user-visible, with 'default, so for
-consistency I think it's best to keep it that way, and
-just add a 'default ARCH_MESON' the same way we have for many
-other reset drivers:
+[auto build test ERROR on adc218676eef25575469234709c2d87185ca223a]
 
-diff --git a/drivers/reset/amlogic/Kconfig b/drivers/reset/amlogic/Kconfig
-index 3bee9fd60269..c02edc1b51aa 100644
---- a/drivers/reset/amlogic/Kconfig
-+++ b/drivers/reset/amlogic/Kconfig
-@@ -14,6 +14,7 @@ config RESET_MESON
- config RESET_MESON_AUX
-        tristate "Meson Reset Auxiliary Driver"
-        depends on ARCH_MESON || COMPILE_TEST
-+       default ARCH_MESON
-        select AUXILIARY_BUS
-        select RESET_MESON_COMMON
-        help
+url:    https://github.com/intel-lab-lkp/linux/commits/Arnaud-Pouliquen/remoteproc-core-Introduce-rproc_pa_to_va-helper/20241128-094434
+base:   adc218676eef25575469234709c2d87185ca223a
+patch link:    https://lore.kernel.org/r/20241126091042.918144-5-arnaud.pouliquen%40foss.st.com
+patch subject: [PATCH v14 4/8] remoteproc: Rename load() operation to load_segments() in rproc_ops struct
+config: i386-buildonly-randconfig-002-20241128 (https://download.01.org/0day-ci/archive/20241128/202411281332.Ra70nJAW-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241128/202411281332.Ra70nJAW-lkp@intel.com/reproduce)
 
-The only bit that's special here is the exported symbol,
-but that is handled by the dependency.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411281332.Ra70nJAW-lkp@intel.com/
 
->> I also see some silliness going on in the
->> include/soc/amlogic/reset-meson-aux.h, which has a
->> non-working 'static inline' definition of the exported
->> function. Before my fix, that would have caused the
->> problem auf a non-working audio driver.
->
-> If by 'silliness' you mean there is symbol definition for when
-> RESET_MESON_AUX is disabled, indeed I guess that could go away.
+All errors (new ones prefixed by >>):
 
-Yes, that's what I meant.
+   In file included from drivers/remoteproc/pru_rproc.c:24:
+   In file included from include/linux/remoteproc.h:40:
+   In file included from include/linux/virtio.h:7:
+   In file included from include/linux/scatterlist.h:8:
+   In file included from include/linux/mm.h:2213:
+   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/remoteproc/pru_rproc.c:1018:14: error: no member named 'load' in 'struct rproc_ops'
+    1018 |         rproc->ops->load = pru_rproc_load_elf_segments;
+         |         ~~~~~~~~~~  ^
+   1 warning and 1 error generated.
 
-      Arnd
+
+vim +1018 drivers/remoteproc/pru_rproc.c
+
+d4ce2de7e4af8b Suman Anna      2020-12-08   987  
+d4ce2de7e4af8b Suman Anna      2020-12-08   988  static int pru_rproc_probe(struct platform_device *pdev)
+d4ce2de7e4af8b Suman Anna      2020-12-08   989  {
+d4ce2de7e4af8b Suman Anna      2020-12-08   990  	struct device *dev = &pdev->dev;
+d4ce2de7e4af8b Suman Anna      2020-12-08   991  	struct device_node *np = dev->of_node;
+d4ce2de7e4af8b Suman Anna      2020-12-08   992  	struct platform_device *ppdev = to_platform_device(dev->parent);
+d4ce2de7e4af8b Suman Anna      2020-12-08   993  	struct pru_rproc *pru;
+d4ce2de7e4af8b Suman Anna      2020-12-08   994  	const char *fw_name;
+d4ce2de7e4af8b Suman Anna      2020-12-08   995  	struct rproc *rproc = NULL;
+d4ce2de7e4af8b Suman Anna      2020-12-08   996  	struct resource *res;
+d4ce2de7e4af8b Suman Anna      2020-12-08   997  	int i, ret;
+1d39f4d199214f Suman Anna      2020-12-08   998  	const struct pru_private_data *data;
+d4ce2de7e4af8b Suman Anna      2020-12-08   999  	const char *mem_names[PRU_IOMEM_MAX] = { "iram", "control", "debug" };
+d4ce2de7e4af8b Suman Anna      2020-12-08  1000  
+1d39f4d199214f Suman Anna      2020-12-08  1001  	data = of_device_get_match_data(&pdev->dev);
+1d39f4d199214f Suman Anna      2020-12-08  1002  	if (!data)
+1d39f4d199214f Suman Anna      2020-12-08  1003  		return -ENODEV;
+1d39f4d199214f Suman Anna      2020-12-08  1004  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1005  	ret = of_property_read_string(np, "firmware-name", &fw_name);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1006  	if (ret) {
+d4ce2de7e4af8b Suman Anna      2020-12-08  1007  		dev_err(dev, "unable to retrieve firmware-name %d\n", ret);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1008  		return ret;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1009  	}
+d4ce2de7e4af8b Suman Anna      2020-12-08  1010  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1011  	rproc = devm_rproc_alloc(dev, pdev->name, &pru_rproc_ops, fw_name,
+d4ce2de7e4af8b Suman Anna      2020-12-08  1012  				 sizeof(*pru));
+d4ce2de7e4af8b Suman Anna      2020-12-08  1013  	if (!rproc) {
+d4ce2de7e4af8b Suman Anna      2020-12-08  1014  		dev_err(dev, "rproc_alloc failed\n");
+d4ce2de7e4af8b Suman Anna      2020-12-08  1015  		return -ENOMEM;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1016  	}
+d4ce2de7e4af8b Suman Anna      2020-12-08  1017  	/* use a custom load function to deal with PRU-specific quirks */
+d4ce2de7e4af8b Suman Anna      2020-12-08 @1018  	rproc->ops->load = pru_rproc_load_elf_segments;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1019  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1020  	/* use a custom parse function to deal with PRU-specific resources */
+d4ce2de7e4af8b Suman Anna      2020-12-08  1021  	rproc->ops->parse_fw = pru_rproc_parse_fw;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1022  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1023  	/* error recovery is not supported for PRUs */
+d4ce2de7e4af8b Suman Anna      2020-12-08  1024  	rproc->recovery_disabled = true;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1025  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1026  	/*
+d4ce2de7e4af8b Suman Anna      2020-12-08  1027  	 * rproc_add will auto-boot the processor normally, but this is not
+d4ce2de7e4af8b Suman Anna      2020-12-08  1028  	 * desired with PRU client driven boot-flow methodology. A PRU
+d4ce2de7e4af8b Suman Anna      2020-12-08  1029  	 * application/client driver will boot the corresponding PRU
+d4ce2de7e4af8b Suman Anna      2020-12-08  1030  	 * remote-processor as part of its state machine either through the
+d4ce2de7e4af8b Suman Anna      2020-12-08  1031  	 * remoteproc sysfs interface or through the equivalent kernel API.
+d4ce2de7e4af8b Suman Anna      2020-12-08  1032  	 */
+d4ce2de7e4af8b Suman Anna      2020-12-08  1033  	rproc->auto_boot = false;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1034  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1035  	pru = rproc->priv;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1036  	pru->dev = dev;
+1d39f4d199214f Suman Anna      2020-12-08  1037  	pru->data = data;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1038  	pru->pruss = platform_get_drvdata(ppdev);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1039  	pru->rproc = rproc;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1040  	pru->fw_name = fw_name;
+919e8942548aa8 MD Danish Anwar 2023-01-06  1041  	pru->client_np = NULL;
+102853400321ba Roger Quadros   2023-01-06  1042  	spin_lock_init(&pru->rmw_lock);
+919e8942548aa8 MD Danish Anwar 2023-01-06  1043  	mutex_init(&pru->lock);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1044  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1045  	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
+d4ce2de7e4af8b Suman Anna      2020-12-08  1046  		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+d4ce2de7e4af8b Suman Anna      2020-12-08  1047  						   mem_names[i]);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1048  		pru->mem_regions[i].va = devm_ioremap_resource(dev, res);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1049  		if (IS_ERR(pru->mem_regions[i].va)) {
+d4ce2de7e4af8b Suman Anna      2020-12-08  1050  			dev_err(dev, "failed to parse and map memory resource %d %s\n",
+d4ce2de7e4af8b Suman Anna      2020-12-08  1051  				i, mem_names[i]);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1052  			ret = PTR_ERR(pru->mem_regions[i].va);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1053  			return ret;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1054  		}
+d4ce2de7e4af8b Suman Anna      2020-12-08  1055  		pru->mem_regions[i].pa = res->start;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1056  		pru->mem_regions[i].size = resource_size(res);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1057  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1058  		dev_dbg(dev, "memory %8s: pa %pa size 0x%zx va %pK\n",
+d4ce2de7e4af8b Suman Anna      2020-12-08  1059  			mem_names[i], &pru->mem_regions[i].pa,
+d4ce2de7e4af8b Suman Anna      2020-12-08  1060  			pru->mem_regions[i].size, pru->mem_regions[i].va);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1061  	}
+d4ce2de7e4af8b Suman Anna      2020-12-08  1062  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1063  	ret = pru_rproc_set_id(pru);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1064  	if (ret < 0)
+d4ce2de7e4af8b Suman Anna      2020-12-08  1065  		return ret;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1066  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1067  	platform_set_drvdata(pdev, rproc);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1068  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1069  	ret = devm_rproc_add(dev, pru->rproc);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1070  	if (ret) {
+d4ce2de7e4af8b Suman Anna      2020-12-08  1071  		dev_err(dev, "rproc_add failed: %d\n", ret);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1072  		return ret;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1073  	}
+d4ce2de7e4af8b Suman Anna      2020-12-08  1074  
+20ad1de0f14fbd Suman Anna      2020-12-08  1075  	pru_rproc_create_debug_entries(rproc);
+20ad1de0f14fbd Suman Anna      2020-12-08  1076  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1077  	dev_dbg(dev, "PRU rproc node %pOF probed successfully\n", np);
+d4ce2de7e4af8b Suman Anna      2020-12-08  1078  
+d4ce2de7e4af8b Suman Anna      2020-12-08  1079  	return 0;
+d4ce2de7e4af8b Suman Anna      2020-12-08  1080  }
+d4ce2de7e4af8b Suman Anna      2020-12-08  1081  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
