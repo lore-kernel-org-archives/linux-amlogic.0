@@ -4,56 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3143E6C5F0
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Dec 2024 02:53:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 682F1E6C61A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Dec 2024 09:17:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6mwY8vQ54IIvu7Sulha3cJiP1iuyAIIIQZByyWP0z3I=; b=yr514le/9tM6FU
-	carrYy0fyxEfF66hYX3DBQ09aYAvJXu55i5ztB6Xv/xnP/0zC3/O8fgVP5GYoLVqJTBDqbGybH8Wi
-	aaxHQRom5acUo+vHm79+QDLtcf4jfjn4gDSMjqag1BuuX1Fk89IbUbPvifjM8laKe8aPAoyNfUe/I
-	89gIapTyfVo9GH4ljdQCTD0QzZ+s8X2jGVq81ImDWToky8r4n8hy3KqUdimMzRGIhsgge94QC/RQJ
-	nCq5fwcuAt2WhC3ltH09KbT3q4acZe8HolztEfPmEXQNFOhHsseLVMF9lREy7puDm/LiV9krBXRHL
-	QvlKlE3ILCdInLuEHoFA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=crkB/OHGNlAZ5oVlAiNB8eMs8sEGH3bSKi8UpVUwF20=; b=L9/DIUzZJszNzo
+	meOyXDCuhzkgW8iKdip3Pf9jShLI8vsHiMFjYRsGRRU4AIS80am+93Vnv25DjLcw6EPCQvsAsmYti
+	2l8n6h0oRlAG1CQwIOb0oH8sVpe2E11077Vz1TaE3hLoIapaCeiT0BPheL9RiAiLMBE+lKiT9X5fh
+	o8X15ZBl/v4nQ4p0EoJoXeSTNv+5f6iN5+m65Ou2lZFe7KhayxTV3plCHf1mNJ5ar7vcVRZGVRTvV
+	AfgdmumIJOLMijJMzkq8SMsOqma39ZKjDCUeapRXmi4ZQwi/oDf6HELjYjShv9vDqsonhyCZmD1hn
+	kmH6LzKJz+98kPJMy43g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tIJ2e-000000084Rb-0EBq;
-	Tue, 03 Dec 2024 02:53:36 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1tIP1r-00000008qG4-2fZY;
+	Tue, 03 Dec 2024 09:17:11 +0000
+Received: from mail.fintara.pl ([51.68.214.200])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tIJ2b-000000084PI-19mW;
-	Tue, 03 Dec 2024 02:53:34 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id C3B875C476C;
-	Tue,  3 Dec 2024 02:52:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66EE1C4CED1;
-	Tue,  3 Dec 2024 02:53:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733194412;
-	bh=5NrfrujeFDf+fSH5kneC5axcRATmJ0Nz3tqBpohP0O4=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=MDMb89+cXWpckQeitaTf+4Fsdz2GcREa0ZeO+jAxqBDf4AoOIZerr12+iiwTXJfJm
-	 EwC95pmrY2tOpTHpeMcaus/DE/qIC1pcf4TkH6uEavp1i6l3zu3Q7DjAGRJWoo4aee
-	 KfS5xOuGxQ46w0C7bKs8UyWctftKF1sR1ItCFb14YznnkNWp7EYFWDEFgwkfaPwZ07
-	 Z7gkyitCytSLX4UOySYqy7S9PhV7e85pRkvmvpdc6ITUdCzBdhvoq4ne8X9QxWQ6H5
-	 hx63iPyVu9bjUV+GYRhMcBcpwJbOoeQC49b65w3JbzM6Eff8jcZWxllOTh/VcYGQ9r
-	 9UTP8UDzDsJwg==
-Message-ID: <df0a53ee859e450d84e81547099f5f36.sboyd@kernel.org>
+	id 1tIP1h-00000008qB9-28Oz
+	for linux-amlogic@lists.infradead.org;
+	Tue, 03 Dec 2024 09:17:03 +0000
+Received: by mail.fintara.pl (Postfix, from userid 1002)
+	id 67DF24CD0B; Tue,  3 Dec 2024 10:15:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fintara.pl; s=mail;
+	t=1733217385; bh=0Yjr6NsrKkaYb/LNYm1mPKHuxqkR0iWhkNkzH9QSzrg=;
+	h=Date:From:To:Subject:From;
+	b=jsy4DzREYaAnpmYYh4WLWH+7y9xZXmRttEtuYmbO3YmsT13g3zMPGjBUzBJCQEAga
+	 pocu6uktNa4ZRWCzDbzkyN9dinOkFq/BmCqsj/Qmvk6Nkzv7mdVrarUAq5z2TVSVGr
+	 xEDbV7/NJBe1XQztj669zTJO2c+9iZnUfVzuSxPd+CeZWfRXu0AL2/myfSdsljLL13
+	 trpXxD7kW3Mf3H4eB3iskyl4frRpy5P09NDyrVoRYXjSEDBDrBdgro5CF5EVeJuCy/
+	 qh+qlsmC8V8iXpgkJFg+wH6YPYE9HoZp8/S796JWYj3jzhbzjHf2CourcbICtBQR9m
+	 GEiefLKfkscjQ==
+Received: by mail.fintara.pl for <linux-amlogic@lists.infradead.org>; Tue,  3 Dec 2024 09:15:29 GMT
+Message-ID: <20241203084500-0.1.6g.13vn8.0.174h14i4mj@fintara.pl>
+Date: Tue,  3 Dec 2024 09:15:29 GMT
+From: "Dominik Lotka" <dominik.lotka@fintara.pl>
+To: <linux-amlogic@lists.infradead.org>
+Subject: =?UTF-8?Q?Prosz=C4=99_o_kontakt?=
+X-Mailer: mail.fintara.pl
 MIME-Version: 1.0
-In-Reply-To: <ce67e512-a15b-4482-8194-b917096f4eeb@app.fastmail.com>
-References: <20241127-clk-audio-fix-rst-missing-v1-1-9f9d0ab98fce@baylibre.com> <12f29978-c8ce-4bee-a447-dcd086eb936d@app.fastmail.com> <1ja5dk2y5l.fsf@starbuckisacylon.baylibre.com> <f8de4a2a-776f-4c10-b75e-e845bcc38dde@app.fastmail.com> <1j4j3r32ld.fsf@starbuckisacylon.baylibre.com> <306b0b30-5a32-4c7c-86b4-57d50e2307e8@app.fastmail.com> <1jy1131kxz.fsf@starbuckisacylon.baylibre.com> <c06317c6-b2b2-4b6d-96e4-0c2cfc6846de@app.fastmail.com> <1jplmf1jqa.fsf@starbuckisacylon.baylibre.com> <ce67e512-a15b-4482-8194-b917096f4eeb@app.fastmail.com>
-Subject: Re: [PATCH] clk: amlogic: axg-audio: select RESET_MESON_AUX
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>
-To: Arnd Bergmann <arnd@arndb.de>, Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 02 Dec 2024 18:53:30 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241202_185333_400273_BC9F5622 
-X-CRM114-Status: GOOD (  33.59  )
+X-CRM114-CacheID: sfid-20241203_011702_221616_2E9FC4C0 
+X-CRM114-Status: UNSURE (   1.35  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,81 +61,16 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Happy Thanksgiving!
-
-Quoting Arnd Bergmann (2024-11-28 07:34:46)
-> On Thu, Nov 28, 2024, at 16:06, Jerome Brunet wrote:
-> > On Thu 28 Nov 2024 at 15:51, "Arnd Bergmann" <arnd@arndb.de> wrote:
-> >> On Thu, Nov 28, 2024, at 15:39, Jerome Brunet wrote:
-> >>> On Thu 28 Nov 2024 at 15:11, "Arnd Bergmann" <arnd@arndb.de> wrote:
-> >>> Eventually that will happen for the rest of the reset implemented
-> >>> under drivers/clk/meson.
-> >>>
-> >>> It allows to make some code common between the platform reset
-> >>> drivers and the aux ones. It also ease maintainance for both
-> >>> Stephen and Philipp.
-> >>
-> >> I don't understand how this helps: the entire point of using
-> >> an auxiliary device is to separate the lifetime rules of
-> >> the different bits, but by doing the creation of the device
-> >> in the same file as the implementation, you are not taking
-> >> advantage of that at all, but instead get the complexity of
-> >> a link-time dependency in addition to a lot of extra code
-> >> for dealing with the additional device.
-> >
-> > My initial rework had the creation in clock (note: that is why I
-> > initially used 'imply', and forgot to update when the creation moved to
-> > reset).
-> >
-> > I was asked to move the creation in reset:
-> > https://lore.kernel.org/r/217a785212d7c1a5b504c6040b3636e6.sboyd@kernel.org
-> >
-> > We are deviating a bit from the initial regression reported by Mark.
-> > Is Ok with you to proceed with that fix and then continue this discussion
-> > ?
-> 
-> I really don't want to see those stray 'select' statements
-> in there, as that leave very little incentive for anyone to
-> fix it properly.
-> 
-> It sounds like Stephen gave you bad advice for how it should
-> be structured, so my best suggestion would be to move the
-> the problem (and the reset driver) back into his subsystem
-> and leave only a simple 'select RESET_CONTROLLER'.
-> 
-> From the message you cited, I think Stephen had the right
-> intentions ("so that the clk and reset drivers are decoupled"),
-> but the end result did not actually do what he intended
-> even if you did what he asked for.
-> 
-> Stephen, can you please take a look here and see if you
-> have a better idea for either decoupling the two drivers
-> enough to avoid the link time dependency, or to reintegrate
-> the reset controller code into the clk driver and avoid
-> the complexity?
-
-I think the best approach is to add the reset auxilary device with a
-function that creates the auxiliary device directly by string name and
-does nothing else. Maybe we can have some helper in the auxiliary
-layer that does that all for us, because it's quite a bit of boiler
-plate that we need to write over and over again. Something like:
-
-  int devm_auxiliary_device_create(struct device *parent, const char *name)
-
-that does the whole kzalloc() + ida dance that
-devm_meson_rst_aux_register() is doing today and wraps it all up so that
-the device is removed when the parent driver unbinds. Then this clk
-driver can register the reset device with a single call and not need to
-do anything besides select AUXILIARY_BUS. The regmap can be acquired
-from the parent device in the auxiliary driver probe with
-dev_get_regmap(adev->parent).
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RHppZcWEIGRvYnJ5LAoKQ3p5IGplc3QgbW/FvGxpd2/Fm8SHIG5hd2nEhXphbmlhIHdzcMOzxYJw
+cmFjeSB6IFBhxYRzdHdlbT8KClogY2jEmWNpxIUgcG9yb3ptYXdpYW0geiBvc29ixIUgemFqbXVq
+xIVjxIUgc2nEmSBkemlhxYJhbmlhbWkgendpxIV6YW55bWkgemUgc3ByemVkYcW8xIUuCgpQb21h
+Z2FteSBza3V0ZWN6bmllIHBvenlza2l3YcSHIG5vd3ljaCBrbGllbnTDs3cuCgpaYXByYXN6YW0g
+ZG8ga29udGFrdHUuCgoKUG96ZHJhd2lhbQpEb21pbmlrIExvdGthCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
+dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
+ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
