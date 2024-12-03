@@ -4,56 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9D83E74AD1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Dec 2024 20:22:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABE44E74AFF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Dec 2024 22:26:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZtV5WsdGC+6CHmE3ZW7UMzwWJ3LLC3sMtYwr4BFFw98=; b=GztbAS7gXIjsvu
-	iETU6nDQspI+72eAWwQTBLakKEWWCppc+tDvFSjgdTzpFNJvbBDGoF9lCZoGZU3jy76QI8tx7N8VB
-	M8XZXzuH/ExuNVLVjZvZUu3B4rTOBk3arG2qnOoXvwlt8aIVVH2XZZJ9ZkoGexr5BgVsk9FoxHQtk
-	L+/6ln+GvAPEmFByh26C+Fock5OJidr757gjs0oDVWsIdw6APfTAiarmQWZGcN5C9cJuJebQMJndp
-	ZznI+UD4FiN34gOLsEZ2k65/ZJYt+YG9w9mpxn4eIY4vZJ3zec8OltfDSPl6/d4ZP9e5h2kav5a4+
-	deSOJ62q369ghgTnw+4Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=GWfto4RtgrKzDyTgQxG5VrvZ0zYBJVADzhqhwSqGkeQ=; b=IqTLBFDwOMtsfEJY5CGR/FisCP
+	zRB1gdmI7uqZJJiaJ0Q8c7bjAMzdjbxZyRkHZtZ1PbX8S3dmboiFTjtFAIw1dlfpv/YBFCRWQbhul
+	2NULh1Qp8gDs3VDZaqAY/xWZ97yrO8kDxZjEsnsSujDAWdSa1dApYPZgduuLEfEZzU3Bb6MuXHalh
+	KhHWzg+TGZ6IYuCEj4KmWVj41PC1w8aklCan39ugNt1oq9/zqB7NWYKF9jcrEaFY6R/rRFoqARjoQ
+	BfaFM99WhSqyOByKRqfqMyto8fw0cPUBJmPkzxxeAFZKp5fmoqhlGjVaGn1H18ceXFSjAz4MgTA+W
+	Ex1e3P7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tIZPD-0000000AcLu-1JlS;
-	Tue, 03 Dec 2024 20:21:59 +0000
+	id 1tIbLY-0000000Auni-0mdo;
+	Tue, 03 Dec 2024 22:26:20 +0000
 Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tIZPA-0000000AcKm-1W55;
-	Tue, 03 Dec 2024 20:21:57 +0000
+	id 1tIbHg-0000000AuA0-0KWq;
+	Tue, 03 Dec 2024 22:22:21 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 217B8A40BBB;
-	Tue,  3 Dec 2024 20:20:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE8D9C4CED6;
-	Tue,  3 Dec 2024 20:21:54 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 92D40A4195E;
+	Tue,  3 Dec 2024 22:20:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AAE0C4CEDC;
+	Tue,  3 Dec 2024 22:22:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733257315;
-	bh=XvHonDC5Zqxszw1JDIsgXnXHPmUro0m9SxjIASwNeoY=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=pT74FNcNxVkwjB2rO21AYzErpMozWgTU1hTUGLgG4jrT/AT9oTopc+JJA2k5xCnPc
-	 QRhKyQxHvSPCH9GpGhlq199vQsqESY27KWU5qxMGQOZuYkYI6IhjUtkNwDS4HyQ9mg
-	 iR4NqZ9P7ie3R4/an+2UTmtdLM03G3KE6WPfJxbFMZZk8L6QE7NdFyiBazL+LkBUn8
-	 kL9Jx5YT/23Q/+LN2eiZech0HVdiXU9QuDAE0Sa+F93HRf3f9x9bz/k8sk/gwOTAHc
-	 hirQL9oa7nLkeOG62oyKY7AWwzd/zUnMna4NaWvrFHLS4nLM2hfZatzqVh9ga+JlSi
-	 E5MB+w+PEzKGA==
-Message-ID: <c9556de589e289cb1d278d41014791a6.sboyd@kernel.org>
-MIME-Version: 1.0
-In-Reply-To: <0f07300a-8b32-4d3e-a447-b3fe3cf1ca81@app.fastmail.com>
-References: <20241127-clk-audio-fix-rst-missing-v1-1-9f9d0ab98fce@baylibre.com> <f8de4a2a-776f-4c10-b75e-e845bcc38dde@app.fastmail.com> <1j4j3r32ld.fsf@starbuckisacylon.baylibre.com> <306b0b30-5a32-4c7c-86b4-57d50e2307e8@app.fastmail.com> <1jy1131kxz.fsf@starbuckisacylon.baylibre.com> <c06317c6-b2b2-4b6d-96e4-0c2cfc6846de@app.fastmail.com> <1jplmf1jqa.fsf@starbuckisacylon.baylibre.com> <ce67e512-a15b-4482-8194-b917096f4eeb@app.fastmail.com> <df0a53ee859e450d84e81547099f5f36.sboyd@kernel.org> <0f07300a-8b32-4d3e-a447-b3fe3cf1ca81@app.fastmail.com>
+	s=k20201202; t=1733264538;
+	bh=I4I5URB1VDk2Y1ouDFGGvz2k1B/mzf5I2HU3r9wirFY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Y+0TLJnDkKrzWZbina+CPZi6zr4SVit9pG0xtWnrXDk4QmTcFivDkf0wO+2arI3Y7
+	 hoemoVk7ZiDIxpWmfNvPuCMDTxE9z3BlkKXjEN3LdbjiuvdDvEXmYvnRzKU7n1gDod
+	 WoruJ9jAJOYeswjKTqJb1P+DGrfTnDsSjxF2gRgPHlP6ld5A/6OMqhXxDsBFLXD6aW
+	 B2GQ7EE1HlLPNXc68jkF5BpnqmC7C5pxk6ceGo3tiVK7jnFcNp8sYiH4jDo0OFz9LH
+	 hPymnB02MeY+Zni0byi+EcOyd1x/2mbI6hkzioezqcaaSB3eYqSJVbNyV52S4kw6xq
+	 Tj3k6twbaDOKQ==
+Date: Tue, 3 Dec 2024 22:22:04 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Arnd Bergmann <arnd@arndb.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH] clk: amlogic: axg-audio: select RESET_MESON_AUX
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>
-To: Arnd Bergmann <arnd@arndb.de>, Jerome Brunet <jbrunet@baylibre.com>
-Date: Tue, 03 Dec 2024 12:21:52 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+Message-ID: <dbb2de3c-cb29-4384-a00b-4fdedeab1a10@sirena.org.uk>
+References: <f8de4a2a-776f-4c10-b75e-e845bcc38dde@app.fastmail.com>
+ <1j4j3r32ld.fsf@starbuckisacylon.baylibre.com>
+ <306b0b30-5a32-4c7c-86b4-57d50e2307e8@app.fastmail.com>
+ <1jy1131kxz.fsf@starbuckisacylon.baylibre.com>
+ <c06317c6-b2b2-4b6d-96e4-0c2cfc6846de@app.fastmail.com>
+ <1jplmf1jqa.fsf@starbuckisacylon.baylibre.com>
+ <ce67e512-a15b-4482-8194-b917096f4eeb@app.fastmail.com>
+ <df0a53ee859e450d84e81547099f5f36.sboyd@kernel.org>
+ <1jr06pkof6.fsf@starbuckisacylon.baylibre.com>
+ <37b656cc8272552ba07c93c5a9a59641.sboyd@kernel.org>
+MIME-Version: 1.0
+In-Reply-To: <37b656cc8272552ba07c93c5a9a59641.sboyd@kernel.org>
+X-Cookie: Alimony is the high cost of leaving.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241203_122156_530677_99D894B8 
-X-CRM114-Status: GOOD (  29.95  )
+X-CRM114-CacheID: sfid-20241203_142220_183987_2B1836AB 
+X-CRM114-Status: GOOD (  13.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,59 +80,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1691735802478904193=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Arnd Bergmann (2024-12-03 04:43:03)
-> On Tue, Dec 3, 2024, at 03:53, Stephen Boyd wrote:
-> > Quoting Arnd Bergmann (2024-11-28 07:34:46)
-> >> On Thu, Nov 28, 2024, at 16:06, Jerome Brunet wrote:
-> >> Stephen, can you please take a look here and see if you
-> >> have a better idea for either decoupling the two drivers
-> >> enough to avoid the link time dependency, or to reintegrate
-> >> the reset controller code into the clk driver and avoid
-> >> the complexity?
-> >
-> > I think the best approach is to add the reset auxilary device with a
-> > function that creates the auxiliary device directly by string name and
-> > does nothing else. Maybe we can have some helper in the auxiliary
-> > layer that does that all for us, because it's quite a bit of boiler
-> > plate that we need to write over and over again. Something like:
-> >
-> >   int devm_auxiliary_device_create(struct device *parent, const char *name)
-> >
-> > that does the whole kzalloc() + ida dance that
-> > devm_meson_rst_aux_register() is doing today and wraps it all up so that
-> > the device is removed when the parent driver unbinds. Then this clk
-> > driver can register the reset device with a single call and not need to
-> > do anything besides select AUXILIARY_BUS. The regmap can be acquired
-> > from the parent device in the auxiliary driver probe with
-> > dev_get_regmap(adev->parent).
-> 
-> I like the idea. Two questions about the interface:
-> 
->  - should there be a 'void *platform_data' argument anyway?
->    Even if this can be looked up from the parent, it seems
->    useful enough
 
-Sure. Probably that can be added as some variant like
-devm_auxiliary_device_create_pdata() when/if it's needed.
+--===============1691735802478904193==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vfsej6gT1fRj3j9O"
+Content-Disposition: inline
 
-> 
->  - What is the scope of the 'ida' number? My impression was
->    this should be local to one parent device, but I don't
->    know how the number is used in the end, so maybe a global
->    number allocator is sufficient.
-> 
 
-From what I can tell it's only used for the device name and not for
-driver matching. That's probably to make it so we don't get conflicts in
-sysfs with devices because they all share the same bus. I'd guess that a
-global allocator is sufficient.
+--vfsej6gT1fRj3j9O
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Tue, Dec 03, 2024 at 12:15:48PM -0800, Stephen Boyd wrote:
+> Quoting Jerome Brunet (2024-12-03 03:15:41)
+
+> > I suspect the the generic path is likely to trigger more discussion.
+> > I'd like to be able to finish this migration, instead of leaving half
+> > finished like it is now.
+
+> Is the half finished migration a problem for this cycle? I was intending
+> to send the revert later this week and try again next cycle.
+
+Yes, this patch was triggered by me reporting that multiple boards in my
+test farm have completely broken audio with defconfig.  It's already a
+bit frustrating that -rc1 isn't working.
+
+--vfsej6gT1fRj3j9O
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdPhIsACgkQJNaLcl1U
+h9D5iwf9Eohzpz2Z+ckFVyYXe/jKUAU36yzwFRoX5x5CT8xFgFF/zSLLbkQWNNgF
+K/DLUkdb79PXfoiVKTM27FkJii1vQ5eUXudtXuOKOtk3s9PEGlZzaES9ieUXT3+H
+rC/OJt/eVnlCSw53POeJUYNatrK6TBzS/7ZrYhYrii4D98vNo/q9R9b1ixjPR+ud
+U5u4fZW3VO++tdYzYJzYgAAcnKcO7AuZbaFthys9MbT5ROAzNmFQV63Uj1BpaV93
+rryPmwII4t9zDAyPAdpxuSduClQxJmlYHAeemw8sZDY8ufD+ot00ZyMakd9jbL0/
+AzeMVkapZCI0kPNbR1lc4bduobU/pw==
+=veKX
+-----END PGP SIGNATURE-----
+
+--vfsej6gT1fRj3j9O--
+
+
+--===============1691735802478904193==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============1691735802478904193==--
+
