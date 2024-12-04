@@ -4,71 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95765E77166
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Dec 2024 22:59:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97A78E7716B
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Dec 2024 14:15:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=d51+nyWL7w1I4plEvx740nSvE3kAGtU3kodguaR0UaE=; b=hnBwbWcPoZP8V7ljxJSUEy9Zho
-	gjlVObZdNkvqEDPjDiJZM0kzH10j2DpWcELwc+//GkiqaGkGFHm5C49r9b6IvVy3iiKrXtsLU/CXr
-	ZXUGoyUxrPjp1+z1mkvqg/+jrmg4kOyll4F6t1s+qYhDmQ2INYSVWSJBC3Uz0liCFH4tRT54e4oYb
-	hBFH5UlbcN7l3laH8HO9AZ5e9HyA0IUzpwqZ/7vWnBjiHwpt1F/44u7TIjf3Bq+H+yQwVKZkv6JIa
-	TvYWri8FoZvjseI+FnK23lO+k7vErwPv22Ra/GQXb/S8mrk2QlgDJk0sSnVUThyTA9k05Kq9YTQ4L
-	R9BomLgg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=WVmtZ6sGxaZ0THye8RH2gzEdnaTeFidwfToWiCPJzpo=; b=L8TidE6NiZ3shO
+	wpK8RuAeUgNi585yiToZETnuD0HUnWR0X3KZJQIb9iOp7Q9fv1Uf0Bl6DXH5GscsEHpl0idT5lRhI
+	wLAUMlLBHePofATlvk5Z6vQZKAKwHDBd2PX6x8r2xKQIbmNw4Q0ZVG0ek8QPW7yblSeTTRi36729k
+	Se9QriY5QyWZ1Aa0C8QvE4qIrFFr7yhz+U7xyT50TyILIvYw5phGlEeloRpaPoIk3QFGqUkTfaUyb
+	AjYxMnE6m3obIiMO23u6b9Q2mXSAS3nuzHffvPd5HDUvekxBNWeYmHAdPtpq19zrSMcxse6811VaP
+	s81MT9PIgFNKCuonbU0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tIbrb-0000000AypC-08YC;
-	Tue, 03 Dec 2024 22:59:27 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tIqA9-0000000CnZB-0NrC;
+	Wed, 04 Dec 2024 14:15:33 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tIbrY-0000000Aymu-1Apo;
-	Tue, 03 Dec 2024 22:59:25 +0000
+	id 1tIqA6-0000000CnYj-3hDC;
+	Wed, 04 Dec 2024 14:15:31 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 7A5C85C6DC5;
-	Tue,  3 Dec 2024 22:58:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A55DC4CEDC;
-	Tue,  3 Dec 2024 22:59:18 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 791CE5C6EBA;
+	Wed,  4 Dec 2024 14:14:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADEBC4CECD;
+	Wed,  4 Dec 2024 14:15:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733266763;
-	bh=RHovkVW6REiiiCFyAhJ+JqNCBa0opkh9DJwle8ld2R0=;
+	s=k20201202; t=1733321730;
+	bh=fJGcZcCvocrYYD5ARLmU36d5qyxLWZqmfekPOwaJlFA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rn3dN8XeKM5vVkOfP7bFH82cyF2OhOe7YMZqUkY3EgOXMhYPv8lzs76l6dxOdv8Ng
-	 Lb+v/wLBHkzoHCGe0kYd38ICn8tMeBTNyjxXHaTVZq0plXNY9ZOZN9o8nnlRSz+5mx
-	 DxUBtOKuYVoZVDtwwPa1sUm7o1okC8KfhoZ1GX9dKBdGZ1/pSHPJaq85Xu0O5IGncw
-	 bRASROsD9nHFm8zo0NZAr+lJRW6Uk1UHeEqscZGtdDQEC25TeHUGgObOntX0ScRG6Y
-	 rMZHWHH+rQgZULwczzz4FKW4uPe2zs+o9eQZqTjtUdw/5uFvVHr0LLRrzlvae3ezfv
-	 Z2qjCA0a2vDrQ==
-Date: Tue, 3 Dec 2024 22:59:14 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
+	b=Xaje4v2LAo8DiuFogqnwp0IxwdRAJSvcAF4Wqr6Nl27/WXwqHyhLjcZoZFQLFZQgv
+	 nhjO6vDUgg4YxbLx4d1gGM8prSl/a6VeIPjqirl5LO86NR7//gBFH9NUUvHuCgo7iy
+	 4jv6yQOrkKrruEIthtgtxI0MmBf/ZfZLJnVft9XIKPl87097OCFBBNVnlMVPVRCHMc
+	 MhmTiwa6tNhJQcAHSRmIQUGsleSQqjzCFMWDhuS/JtqIJXylgbmhRfOed42ws5YmlF
+	 UIrf1CFqsqVScW7V8ObteDN+t1Tudkac15fKjBQ1JhxiRNqLxtlg/eLRHJlKYgSCxk
+	 LSr5AXQ2QTPYg==
+Date: Wed, 4 Dec 2024 08:15:28 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	Kevin Hilman <khilman@baylibre.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	linux-amlogic@lists.infradead.org,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] clk: amlogic: axg-audio: select RESET_MESON_AUX
-Message-ID: <31edf979-e03a-4c9c-bb93-59ceea6b44a1@sirena.org.uk>
-References: <306b0b30-5a32-4c7c-86b4-57d50e2307e8@app.fastmail.com>
- <1jy1131kxz.fsf@starbuckisacylon.baylibre.com>
- <c06317c6-b2b2-4b6d-96e4-0c2cfc6846de@app.fastmail.com>
- <1jplmf1jqa.fsf@starbuckisacylon.baylibre.com>
- <ce67e512-a15b-4482-8194-b917096f4eeb@app.fastmail.com>
- <df0a53ee859e450d84e81547099f5f36.sboyd@kernel.org>
- <1jr06pkof6.fsf@starbuckisacylon.baylibre.com>
- <37b656cc8272552ba07c93c5a9a59641.sboyd@kernel.org>
- <dbb2de3c-cb29-4384-a00b-4fdedeab1a10@sirena.org.uk>
- <c982c5061ea6b0d465dd8b7fefc59cc7.sboyd@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v4 1/5] dt-bindings: mmc: controller: clarify the
+ address-cells description
+Message-ID: <173332172731.169103.7423360262255147051.robh@kernel.org>
+References: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-0-11d9f9200a59@linaro.org>
+ <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-1-11d9f9200a59@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <c982c5061ea6b0d465dd8b7fefc59cc7.sboyd@kernel.org>
-X-Cookie: Blackout restrictions apply.
+Content-Disposition: inline
+In-Reply-To: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-1-11d9f9200a59@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241203_145924_359472_BE4D0925 
-X-CRM114-Status: GOOD (  11.79  )
+X-CRM114-CacheID: sfid-20241204_061530_957907_FB67E741 
+X-CRM114-Status: GOOD (  12.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,63 +76,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============5906842098902777039=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============5906842098902777039==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="oHjAMmplQrPbLqyA"
-Content-Disposition: inline
+On Thu, 28 Nov 2024 16:16:41 +0100, Neil Armstrong wrote:
+> The term "slot ID" has nothing to do with the SDIO function number
+> which is specified in the reg property of the subnodes, rephrase
+> the description to be more accurate.
+> 
+> Fixes: f9b7989859dd ("dt-bindings: mmc: Add YAML schemas for the generic MMC options")
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
---oHjAMmplQrPbLqyA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Dec 03, 2024 at 02:32:56PM -0800, Stephen Boyd wrote:
-> Quoting Mark Brown (2024-12-03 14:22:04)
-
-> > Yes, this patch was triggered by me reporting that multiple boards in my
-> > test farm have completely broken audio with defconfig.=20
-
-> I thought that commit 5ae1a43486fb ("clk: amlogic: axg-audio: revert
-> reset implementation") was sufficient to fix the problem. Is that
-> incorrect?
-
-Yes, it should be - it didn't appear in mainline or -next yet and was a
-bit more buried in my mailbox than this thread but I see it's in now.
-
---oHjAMmplQrPbLqyA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdPjUEACgkQJNaLcl1U
-h9Ck5wf+IvbqQTemhM/dZRBZBQkVRYqK48KrdX0LIz2UA9Ezxw90SsDD8aKlYrfS
-eaHXd1CUNlZu+BLoA4GwTxjF/Qysu0xs1vd3DscOZ6NkFgMIU3g/THIXv4gGCxLp
-6PCBcOlNxmtOPIHaW8HgUEJpn9EsvJyEC+KQ47vVbZWnnkIkYoWrVj19uJacKfcI
-EQu0TxpKuj3Z21YqEFBRIvTCy/ZXfFLXy39EthD/0q/LUmQ7oLySJl5MLXeh0Wls
-Gvme2HfCtenwVhZ1glILuB/Fcqcg1wZlbnhrv4B/9E+dqUh/9lkgwoeILLzInWpc
-l0p1PqdwpqlE+vH9uPWGGmMzQRdwfg==
-=Tcei
------END PGP SIGNATURE-----
-
---oHjAMmplQrPbLqyA--
-
-
---===============5906842098902777039==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5906842098902777039==--
-
