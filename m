@@ -4,116 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FBCCE77170
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Dec 2024 20:11:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05E5BE77173
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Dec 2024 13:56:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:References:In-Reply-To:
-	Message-Id:Cc:To:From:Date:MIME-Version:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=gnQ40fGtEhNQ8LUMngGToSd0tDCNWJYdEt8McuCTx+0=; b=X+fHDKQP8B+QGhItp97ZqsuF9E
-	sP9GNSSFVkMJDEpAtfvWgaTrQ/1G78wKL67aLYzYk90N9qJl6YTSazLrrCEpUr6CoLzPCWxTDOg+v
-	540f1R/dNBYOCAJKFxyWAJYmFACufqiAA+IkMhV0GaU6UIFcM2jgIaUDNNngiUsF/+gbh2MPTLfxJ
-	pTU89NjVHEH8z/h7jyeIbO7bZrnK461oCcWQT2DokgOvqyozVALLua6Cwt+rEYr8atruJ1WlpvJbt
-	eIeVDiT6gXc8qt1r9qwgnHELDwjrnAgpsdg1I5fCiWjMa45Cpcc0BVLUG86wiSlifX9k7lo9qebyI
-	EpVi1H0w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=oCaxEJClS8aDsHkMEZxt22e7H0wwZVOyWH6LSK1YOmA=; b=rfLVdUXjQBTw2u2xMDhvvIHqrJ
+	aNImyuNSlhA5YwEf/Jsrm1Qaq1oNSyyp3zkH4HeFzsyrEX8KiHfTT7wK08BSZ++HrSWxZl6aLKWdH
+	N9B60123jHCbdTN9h7LlZ03jwehcqC8cDjqdEwBz2fzLdD2/he20LSIVZLwxmtEjzzPPUxXxqq131
+	UNjz9I58V+p3xzzJUqYXvBO71QdtBEgRvQjTXx5DQVdXdq9k516DJUHxOL5dXk8/O7M9tG3ti5vFu
+	0jvJp98KQix76vdL4r+VaUcdr9ccZSJl6kgx9/NCanWdvRGWQZo7SR2CeBCQvStXW6QWpgTUxg0TW
+	Qgw1HidA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tIvi9-0000000Dll0-1fW6;
-	Wed, 04 Dec 2024 20:11:01 +0000
-Received: from fout-b6-smtp.messagingengine.com ([202.12.124.149])
+	id 1tJYot-00000001nJ6-2aeW;
+	Fri, 06 Dec 2024 13:56:35 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tIvhw-0000000Dlgx-0GOz;
-	Wed, 04 Dec 2024 20:10:49 +0000
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
-	by mailfout.stl.internal (Postfix) with ESMTP id 5346B11401BB;
-	Wed,  4 Dec 2024 15:10:46 -0500 (EST)
-Received: from phl-imap-11 ([10.202.2.101])
-  by phl-compute-10.internal (MEProxy); Wed, 04 Dec 2024 15:10:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1733343046;
-	 x=1733429446; bh=+pTkT1NCxwV2/cGRATL4ar4kOp5miZIhwWMWvCm7vsM=; b=
-	V8CbS3xh5FNtjgrWeOjySBAk1vJuFG688HFl50tjSl6VbPY0T/i2nK5Lu4apFqg+
-	HodGcILYXCkE9ivdd3GVt1LtbAl7S4NqcEb3i0McN0fRgV1wUguhOXv3pP/46IDu
-	S/TcE6pxXUSTUx6lf3louiB1fNDO33nLkses3iUBnlPn5YVG4jMf6+NzYJ3Kpeac
-	VhpdDe9d9r07e75yWX2UqxoD3TanhsiVPaFWW+mMRLKMOlfkZszUmqzvJebvKlZP
-	EMg8xMge+LK3mjonh6X9U4nNg7tahX9HGCoEcdtmdjIK6pDSBU3d6rOfdQOXBkHV
-	p93Vi9cGucvYj9BKULZN3A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1733343046; x=
-	1733429446; bh=+pTkT1NCxwV2/cGRATL4ar4kOp5miZIhwWMWvCm7vsM=; b=1
-	T5uLIvKFHbFWwSSyBZSyZGy/4VpQzV6irTI4Lj9R3lpmmj2OJBvB/xilheAF20K0
-	kL7+WUwIwCzSstqaOoq0PBgbZ6oxpOUcD8Rh/1jh2+6PFaNyAaW7VjdYZdKMvYpZ
-	8cZlxwjVhHhcvMjJz3pHFsUaHuC1sLhOU9EcUixjcM9OOXw5m3pcS3HXNGbmXvYn
-	RpcX+gN4xFbrhX1M1f+v8wA1vLjAa7mdYiCX9vzwKZbvE7mymY+pQtHbl1CdJ61i
-	Cnx6HjG1w2Fto3am5COa9kcecWTHqE38RdOiBhQMX39tiOEbDWXiS+X0HrsT9JE6
-	VvzxsePPMzQdUcq10NTqA==
-X-ME-Sender: <xms:RbdQZwUgaqG7miOJ0jVtMLzh3mfw96Df5YzeXUJ3EG2S1cWPeJPt4w>
-    <xme:RbdQZ0k8hjWrJLuufi0fQOqeuAJ0P0Jr_ZUrUC_rPib8T01cVg-xLE4k_fO1hoZMU
-    c8vh8vsaZ1FwIzX1XU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrieehgdduvdelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
-    necuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrd
-    guvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefg
-    gfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
-    hmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepuddu
-    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehjsghruhhnvghtsegsrgihlhhisg
-    hrvgdrtghomhdprhgtphhtthhopehkhhhilhhmrghnsegsrgihlhhisghrvgdrtghomhdp
-    rhgtphhtthhopehmthhurhhquhgvthhtvgessggrhihlihgsrhgvrdgtohhmpdhrtghpth
-    htohepmhgrrhhtihhnrdgslhhumhgvnhhsthhinhhglhesghhoohhglhgvmhgrihhlrdgt
-    ohhmpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
-    epshgsohihugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhgvihhlrdgrrhhmshht
-    rhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehlihhnuhigqdgrmhhlohhgih
-    gtsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplhhinhhugidq
-    rghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
-X-ME-Proxy: <xmx:RbdQZ0aZ_TwgVBRyl-x_CFgxTbgr4p7_o5y19PTRnNfZ0bzz_8SLgw>
-    <xmx:RbdQZ_WSGhWFi6uUOODa8gzy8mtWn7k7mYRWmLrNb8ycPTWIT0VQhA>
-    <xmx:RbdQZ6l0eAjyi2k-_HoMrE8tBz_T8LMs56dKajZOc9useNI7I64nyQ>
-    <xmx:RbdQZ0cezG4w-pIyU7B9dO6pOsy_agfkGBXlCzm2uFRzCMrnAU0YxQ>
-    <xmx:RrdQZzeDeeRl9SZ-m0D1fIKJBc0NMLXaDD8-AHUtnwoVnyI_rscrjQvp>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id D6D442220072; Wed,  4 Dec 2024 15:10:45 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	id 1tJYoa-00000001nFt-1Z24;
+	Fri, 06 Dec 2024 13:56:17 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id B4FB3A416C3;
+	Fri,  6 Dec 2024 13:54:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 261C0C4CEDC;
+	Fri,  6 Dec 2024 13:56:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733493375;
+	bh=563SsPu6/+OsYwdbvzEtes3bIYtTyUec5qqj5KSLCAo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z0++dduS4VP6El2s8mBfIALW+2dmy6vZ33ooYuEgdXM317b/U4EqhGelyHGrrZNzL
+	 miIzeR+cSJnDn2jCkwlWbbPQzMvGFWSHJhDdY+7Q/Yd+Cq1A2hSDtsk9xQb/HEkLVt
+	 0ZmBu6Yv/uqEFGGpNw+RidIfX39MLYvNpox74jqIsyHDwG8s0kme4AlF6hXb3g1p4Q
+	 PD8UA0A0sOhtVkJtPiVQde7vkG47XDvRIjeALCafiEVQT9rNkK5XaiRD+igQQhlf1T
+	 9Ixw6DsaTKfU0t/e/lZGzQ9lrlMDkUdvGSpTCflX+LMZTIiL/wAyKsXyfrrwV7lYxj
+	 OjWK6lrW78A6Q==
+Date: Fri, 6 Dec 2024 13:56:08 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-kernel@vger.kernel.org,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	pierre-henry.moussay@microchip.com,
+	valentina.fernandezalanis@microchip.com,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to
+ common code
+Message-ID: <20241206-threaten-showing-1214491f3899@spud>
+References: <20241002-private-unequal-33cfa6101338@spud>
+ <20241002-hula-unwashed-1c4ddbadbec2@spud>
+ <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org>
+ <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com>
+ <20241003-tacking-ladylike-dfe2b633e647@spud>
+ <20241106-freefall-slider-db379b05821e@spud>
+ <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
+ <20241128-monstrous-embargo-a665d921410d@wendy>
+ <e53adbf9fdf6e3f142083b0d40d074ca.sboyd@kernel.org>
 MIME-Version: 1.0
-Date: Wed, 04 Dec 2024 21:10:24 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Jerome Brunet" <jbrunet@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>
-Cc: "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Kevin Hilman" <khilman@baylibre.com>,
- "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- "Mark Brown" <broonie@kernel.org>
-Message-Id: <0241900c-3533-42d1-8dc0-df64181e6aca@app.fastmail.com>
-In-Reply-To: <1jfrn3l615.fsf@starbuckisacylon.baylibre.com>
-References: <20241127-clk-audio-fix-rst-missing-v1-1-9f9d0ab98fce@baylibre.com>
- <f8de4a2a-776f-4c10-b75e-e845bcc38dde@app.fastmail.com>
- <1j4j3r32ld.fsf@starbuckisacylon.baylibre.com>
- <306b0b30-5a32-4c7c-86b4-57d50e2307e8@app.fastmail.com>
- <1jy1131kxz.fsf@starbuckisacylon.baylibre.com>
- <c06317c6-b2b2-4b6d-96e4-0c2cfc6846de@app.fastmail.com>
- <1jplmf1jqa.fsf@starbuckisacylon.baylibre.com>
- <ce67e512-a15b-4482-8194-b917096f4eeb@app.fastmail.com>
- <df0a53ee859e450d84e81547099f5f36.sboyd@kernel.org>
- <1jr06pkof6.fsf@starbuckisacylon.baylibre.com>
- <37b656cc8272552ba07c93c5a9a59641.sboyd@kernel.org>
- <1jfrn3l615.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [PATCH] clk: amlogic: axg-audio: select RESET_MESON_AUX
+In-Reply-To: <e53adbf9fdf6e3f142083b0d40d074ca.sboyd@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241204_121048_722202_DC8F7073 
-X-CRM114-Status: GOOD (  12.19  )
+X-CRM114-CacheID: sfid-20241206_055616_546846_EEA2DF46 
+X-CRM114-Status: GOOD (  34.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,39 +92,122 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============7827753301952848330=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Dec 4, 2024, at 18:19, Jerome Brunet wrote:
-> On Tue 03 Dec 2024 at 12:15, Stephen Boyd <sboyd@kernel.org> wrote:
->>> 
->>> May I add back the boiler plate code in drivers/clk/meson, similar to
->>> what was proposed in the RFC [1] and propose the generic implementation
->>> in parallel ? It will just be a matter of switching when/if it is approved.
->>
->> Sure. You can make devm_meson_clk_rst_aux_register() use the same
->> signature as I proposed above so that it's a one line patch later. And
->> definitely drop the imply RESET_MESON and depends on REGMAP part. Maybe
->> you can put it in the clkc-utils file?
 
-> * Why drop 'imply RESET_MESON_AUX' ? I would still like the
->   COMMON_CLK_AXG_AUDIO to 'strongly suggest' RESET_MESON_AUX, with
->   dependency problem sorted out.
+--===============7827753301952848330==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="D3KsjEcBH/hYSuAR"
+Content-Disposition: inline
 
-You can do it the other way round and use 'default
-COMMON_CLK_AXG_AUDIO' if you want to tie the two together
-with the same effect but avoid the ugly "imply" statement.
 
-I still think it's best to just leave it out. From a user
-perspective, the dependency isn't really that the clk
-driver needs the reset driver, but instead it's the audio
-driver that needs both.
+--D3KsjEcBH/hYSuAR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-      Arnd
+On Tue, Dec 03, 2024 at 02:50:31PM -0800, Stephen Boyd wrote:
+> Quoting Conor Dooley (2024-11-28 02:36:16)
+> > On Thu, Nov 14, 2024 at 05:29:54PM -0800, Stephen Boyd wrote:
+> > > Quoting Conor Dooley (2024-11-06 04:56:25)
+> > > > My use case doesn't
+> > > > actually need the registration code changes either as, currently, o=
+nly reg
+> > > > gets set at runtime, but leaving that out is a level of incomplete =
+I'd not
+> > > > let myself away with.
+> > > > Obviously shoving the extra members into the clk structs has the do=
+wnside
+> > > > of taking up a pointer and a offset worth of memory for each clock =
+of
+> > > > that type registered, but it is substantially easier to support dev=
+ices
+> > > > with multiple regmaps that way. Probably moot though since the appr=
+oach you
+> > > > suggested in the thread linked above that implements a clk_hw_get_r=
+egmap()
+> > > > has to store a pointer to the regmap's identifier which would take =
+up an
+> > > > identical amount of memory.
+> > >=20
+> > > We don't need to store the regmap identifier in the struct clk. We can
+> > > store it in the 'struct clk_init_data' with some new field, and only =
+do
+> > > that when/if we actually need to. We would need to pass the init data=
+ to
+> > > the clk_ops::init() callback though. We currently knock that out duri=
+ng
+> > > registration so that clk_hw->init is NULL. Probably we can just set t=
+hat
+> > > to NULL after the init routine runs in __clk_core_init().
+> > >=20
+> > > Long story short, don't add something to 'struct clk_core', 'struct
+> > > clk', or 'struct clk_hw' for these details. We can have a 'struct
+> > > clk_regmap_hw' that everyone else can build upon:
+> > >=20
+> > >   struct clk_regmap_hw {
+> > >         struct regmap *regmap;
+> > >         struct clk_hw hw;
+> > >   };
+> >=20
+> > What's the point of this? I don't understand why you want to do this ov=
+er
+> > what clk_divider et al already do, where clk_hw and the iomem pointer
+> > are in the struct itself.
+>=20
+> Can you give an example? I don't understand what you're suggesting. I
+> prefer a struct clk_regmap_hw like above so that the existing struct
+> clk_hw in the kernel aren't increased by a pointer. SoC drivers can use
+> the same struct as a replacement for their struct clk_hw member today.
+
+Best example I guess is to link what I did? This one is the core
+changes:
+https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
+=3Dsyscon-rework-2&id=3D35904222355e971c24b3eb9b9fad3dd0c38d1393
+clk-gate has my original hack that I did while trying to figure out
+what you wanted, clk-divider-regmap is a 99% copy of clk-divider with
+the types, function names and readl()/writel() implementations modified.
+Before your last set of comments I was doing something identical to the
+clk-gate change for clk-divider also.
+Here's the changes required to my driver to make it work with the
+updated:
+https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
+=3Dsyscon-rework-2&id=3Dea40211fe20f8bc6ef0320b93e1baa5b3f244601
+It's pretty much a drop in replacement, other than the additional
+complexity in probe.
+
+Hopefully that either gets my point across or lets you spot why I don't
+understand the benefit of a wrapper around clk_hw.
+
+Cheers,
+Conor.
+
+--D3KsjEcBH/hYSuAR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1MCeAAKCRB4tDGHoIJi
+0sqzAP9waSsOIi7fzVRAF2IfUyhCzbN2HRg7fuiXsVL8Q28vwQD7BAtQFxtD1L8h
+wFWZMACgozCdkOQyTUTRyE/s54HVoAg=
+=wQYC
+-----END PGP SIGNATURE-----
+
+--D3KsjEcBH/hYSuAR--
+
+
+--===============7827753301952848330==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7827753301952848330==--
+
