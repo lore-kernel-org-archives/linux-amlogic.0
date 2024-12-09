@@ -4,87 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 124FDE77181
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2024 13:08:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD2D7E7717D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2024 16:05:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TGZfKd7CKb9asixUICm9z5sThP9rR1bVbFhPEx5QXQ4=; b=bD+cld2qTu8Wis
-	v0G9TezuEC/bweTYsJzlro5xshBFuSM0/yW88It2HGqBKVFf2NdgmWa+WRceSRRU3f+CaTWH0Zvt2
-	43JBtHh2EEm/8eacGB41KAXLCYIMuOJOY8W3uRL2mh15claJv1dYk85SPxV41Q2+LujBNSAZzUIQJ
-	wnhkLCyMxBzkSCwlujnV3u/zcZLfZjCjD0JZtuMA2NItyzumX5nGi95WFmO6sNRU8hKGuoWkK80pd
-	KDbIhKCMLzlqaCh6v4uqBrcswgz/7Qzw2bel3/yahKCWCG8rorSZaTC0JdKaBeLIQ0LElbzmS3TaO
-	PBrBBwcbwJgqAK1VvQIg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=m28uDe1hzBh4Bn9eWZO2tcv4no9hwmT+jzwtvxhDWWE=; b=ehjMtzT6dbzXD9
+	blo+SsfcalzJk2myBAKVmJoU9Z9MogjA/M9KJBuBqxtDP5ectTVqRXM31bhMCC7sK+gkBVq3f5yFC
+	G36mRQmqlCovxJtgkev0np1Qzdjn2vTydpPd9d2xh8c2NKgIx+a2i/lYI5tmyfQCwXoPwYeMaX1j9
+	TNS6yYbYeSpFScWxtvAk8nGaXMLKiIvUopaDVhmy2+0kW2vaNuUD680JjmuGJ7FSCnxeWjfeKw/XA
+	vCYhmWUMF6R5AHcQIu/cg7dk0IL/Azs6pOv2RcW4ZbM+aOzO1t/LaXqoUsyWhnkrNyQH70D+LdPLj
+	LGfhyO7d3RrQKHzNSuvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKdVJ-00000007sfc-3ced;
-	Mon, 09 Dec 2024 13:08:49 +0000
-Received: from gloria.sntech.de ([185.11.138.130])
+	id 1tKgFw-00000008UM0-0vZK;
+	Mon, 09 Dec 2024 16:05:08 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKdBf-00000007mdK-2V6d;
-	Mon, 09 Dec 2024 12:48:32 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=YALQ/5d5xwJu+LceFpjWJMU1LIe6WE2pCNsHkacRTcI=; b=B2ScI27/o23d0xltBjPie1Ue+t
-	5XtAHemGGtwCU4r6Kw0aUPIQD/3gXCT7f1etTJxip3qhzWcqwfw4JXmXyLata74X+iJwHGqLwKa35
-	Nsd1CRZa4iw5OSl1D/JJ2ykK/4Lhc6MWwuc3LANeJWXxROWIri8EAGM0W5W6wQBQ3EvnsHzYSD1mt
-	0joyVgYhvrm/vdVBRbOVXBRMMOhfFEqjbGpFySbSEGgtfYppDM1xZwd4TSHOu8y61wQNkR15i7U5m
-	H7+bIm3oEyj2kB3K5ikDYec5gCiDvo1hNBIHz4HbHxHJ2D2OX0emZVllTYnSxCB05IAnB9+Rf6M4W
-	k43Bx9+g==;
-Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tKdBK-00088z-7p; Mon, 09 Dec 2024 13:48:10 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Ming Qian <ming.qian@nxp.com>, Zhou Peng <eagle.zhou@nxp.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Tiffany Lin <tiffany.lin@mediatek.com>,
- Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Viktor Prutyanov <viktor.prutyanov@phystech.edu>,
- Shijie Qin <shijie.qin@nxp.com>, Michael Tretter <m.tretter@pengutronix.de>,
- Emil Velikov <emil.velikov@collabora.com>,
- Del Regno <angelogioacchino.delregno@somainline.org>,
- Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [RESEND PATCH] media: dt-bindings: trivial white-space and example
- cleanup
-Date: Mon, 09 Dec 2024 13:48:08 +0100
-Message-ID: <9635159.2WqB4rESCP@diego>
-In-Reply-To: <20241209113405.74226-1-krzysztof.kozlowski@linaro.org>
-References: <20241209113405.74226-1-krzysztof.kozlowski@linaro.org>
+	id 1tKgFs-00000008UJp-24Gs
+	for linux-amlogic@lists.infradead.org;
+	Mon, 09 Dec 2024 16:05:06 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-434e9716feaso12258545e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 09 Dec 2024 08:05:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733760302; x=1734365102; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7ZV6/jGEGN0ycOt9l71mDvvXlfIgyAlXjHfNlD6BSSA=;
+        b=La0W/gHEuZ33EfMlHGYxDUatZJtiIH4Yp+lnTEoLVwqQT7NIHf7gh0KSL9dLg88iZI
+         QkerX1BUbGvSE2g1PgfSp2zPbOELubygW8zrf8v0IXOwP56mLxm8HpdWpXZONh9ZeXMB
+         6yJzJ4a7VV6Zz/Ye4sCjRxPXtdtHNEUu151F7rMSwx1cSds+NGMnQHZT92vVh97EVWFi
+         t20MXtS9pHObr80LE2uHb38RM/aIWyZK+X5qbyJkiJwmbZUMQuGYxWuhEm+HYjCBHYT9
+         QTBisA+cxDSCRLzwrR7Jht0SXUIUNYa+n+ComgjGkXm2pkm+SylvtgtFygk7RRf7llwG
+         NKZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733760302; x=1734365102;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7ZV6/jGEGN0ycOt9l71mDvvXlfIgyAlXjHfNlD6BSSA=;
+        b=CvOnIOfBZ9dvpdY+1amzurBCFp9mX+NWApMV/U7+2t7+DcOLS7C2V0CbNx/mWkQAyA
+         oUOKHT5vMkFKSXB2mdEmnKnYJfS06G+kG2h4BNW2olsXnQE+4tIsbsB5uibWtf5+OWkE
+         LpiJAe3F6ivIbalsqraAJFoukmlxwjllLGs4TbolUpFpwmVuTyo/yfYELXH/5wyuc7QM
+         ySoC17LI5pGABqFCWLSQDLal/aV+qIHWRffudV7jKltCBp9+kCTy/mW/TQEYjZdApg8p
+         fUYK7miaeIrOC9JCfp8kdwAerlKvL6s9RQ9K5cIhPiUQ/j4XgsD2XMbh0eww0G4/+tZt
+         BC7g==
+X-Forwarded-Encrypted: i=1; AJvYcCX0G2Hw0w0Ew9CVq/aYwWpmQaKctuXXybav7XOqVcYZx3oLbnn81Ytg+ycvTOxE4475T0FZodSi2BMab3vf@lists.infradead.org
+X-Gm-Message-State: AOJu0YxPfdX7DVAUQMiJNrIXarRe9GN3XNqkDIUGEMFXpoyQEChxUYb0
+	KUy6+w8wLnzPOgI3btOPoXJLj7csAT7/oe8ckSDPEBLYs9mw78NYrvjpB+CfATpgo6dHTbyFMS8
+	T
+X-Gm-Gg: ASbGncsP4hSWDqk6jd6AP0CnP8agqoSRhABJ5wZxcuSqNpYsY6OCulrqiGjK3NXH1xA
+	1NEjBOtR+MysUSJHRYStMs1Mmf+sKHmItcSepGqid9EodeZXG77LPHHs7FyyyPUCqgui5dOaQDc
+	irCwPkuNdJf27uVMFBjoAPhNeJ/4+8bnFffR6CuemdzaxwdF/81hZ8YAX+JO17GZuA0t4HEcBqG
+	pEEsWSZIDkHPxagVc16OcBLAoQXiJ7tXd15pFMyDUW6mZZ6KoKCRWFyDxjbToKt
+X-Google-Smtp-Source: AGHT+IF5I9z/yJYWju5kftjmnEGFEfuICa8J5jFX6BR1vJ1MZdpvs0pvrcqwWB9585oM8D3NR9VuUQ==
+X-Received: by 2002:a05:600c:21d4:b0:434:fbda:1f36 with SMTP id 5b1f17b1804b1-434fbda20a1mr19800685e9.20.1733760302154;
+        Mon, 09 Dec 2024 08:05:02 -0800 (PST)
+Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:432b:3c3e:b17a:687a])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-434f3d89b75sm61459015e9.15.2024.12.09.08.05.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Dec 2024 08:05:01 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+Subject: [PATCH 0/2] reset: amlogic: rework auxiliary reset support
+Date: Mon, 09 Dec 2024 17:04:33 +0100
+Message-Id: <20241209-meson-rst-aux-rework-v1-0-d2afb69cc72e@baylibre.com>
 MIME-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIABEVV2cC/0WNyw6CMBBFf4V07SRtwcLwK4ZFH1OdKFRbfCTGf
+ 7fBhctzk3vOWxTKTEWMzVtkenDhtFRQu0b4k12OBBwqCy11p7REmKmkBXJZwd5fkOmZ8hlIG98
+ r401vtKjXa6bIr017mH6c6Xav9vU3/uVjs6mV7sFfzlUaOEE9b4mZS+HlCNIN0ughYNu58bEln
+ C0EPs0zr2PTBsSIulWOgo9ofXRo9hZ70+3tQD5abG0ng5g+ny9hJWmz8wAAAA==
+X-Change-ID: 20241209-meson-rst-aux-rework-e26c716c6762
+To: Philipp Zabel <p.zabel@pengutronix.de>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jiucheng Xu <jiucheng.xu@amlogic.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Arnd Bergmann <arnd@arndb.de>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1548; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=evbbOU+lk70bFQXkzUYim69wTqMh7DKLswkpygTzlc4=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnVxUqbrpv5I8zC+5JUxaNorAp8JMBdDpjGJU6s
+ h/37CR27LKJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ1cVKgAKCRDm/A8cN/La
+ heyaEACGUxT73ntzD/EA0m+VipsjkIaKfxH8c9z+qs54HllPKjYPuai4DkVv4BVNp4AoLnpFiOQ
+ 1WtD65Z8lheHQ+XI50SAi/kEIPd3lPs/but/mmmSpgkkeiif8mNJ6ktANXJDb4O5VoqS+1vaDlR
+ uFSx3xKZNSnXjR1zoR1slF6sD9iOBHt4qKLTez8sLBoklq5Ajvfu7QIACvyS/oBuhrQ3UY2nk0z
+ /8VlCuRWu2MiGTE9Ke3b2x4hZ+5UVzK6JNhnCHNCxDUu137ri5jByI4NAr//GkuoROMEuumq3js
+ SJvMD/ImZ0alJIEmluL9UGj85MOglaJaorvA4UQNeiwSrPhkIidf3iQijIn4vQaYGccdRegmIdT
+ lgXuptIF9aRRomeK3vXERe2qO857BVnyDpFQtiLfQnkDQQo/LkMshfRLULiU1D8Fw+gMc3KH82w
+ +4nqUxHPaoHuDH8LBeusfv/AGFUU+EWpvIZF/EfTWY11mlQI6gIWZNfxgh4p8L0hNTDvZiPjXb6
+ /q2g8+i/j4SNuDRENAFNI9wV3FJm4+WkEBC4iP5HYujfc55M//CI19HIHyCCCIKImfKudHGymMJ
+ UBRaa6sDAX5O7Y1KKhsuEBXtwSPfGzk0cN6jo6zgDhiZN3Los4nT8WlJgvsU7AE0JbkRs19eOfw
+ 99E6tb2SzePIY4A==
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241209_044831_629050_B99F3536 
-X-CRM114-Status: GOOD (  11.49  )
+X-CRM114-CacheID: sfid-20241209_080504_539860_F77B2003 
+X-CRM114-Status: UNSURE (   9.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,19 +122,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Am Montag, 9. Dezember 2024, 12:34:05 CET schrieb Krzysztof Kozlowski:
-> Minor cleanups without funcitonal impact:
->  - There should not be an empty blank line after SPDX tag,
->  - Convention is to indent DTS examples in coding style with 2- or
->    4-space indentation (4 is preferred),
->  - Drop unused labels in DTS examples.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The current implementation of auxiliary reset controller, with the
+registration helper in the same module as the driver code, does not
+allow to properly decouple the registered auxiliary driver from
+the registering one.
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+This patchset removes the registration helper from the auxiliary reset
+driver and changes how regmap is passed, to simplify the interface a bit.
 
-(even looked at the whole patch and not only the Rockchip parts :-) )
+This patcheset depends on:
+commit 5ae1a43486fb ("clk: amlogic: axg-audio: revert reset implementation")
 
+The above removes the only user of the auxiliary reset controller, restoring
+old implementation as a temporary solution, while it is reworked.
+
+The commit has been applied to clock fixes [1] branch and will eventually
+make its way to an rc release.
+
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/commit/?h=clk-fixes&id=5ae1a43486fb3febd5ce78da13eb354f16d049e0
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+Jerome Brunet (2):
+      reset: amlogic: aux: get regmap through parent device
+      reset: amlogic: aux: drop aux registration helper
+
+ drivers/reset/amlogic/reset-meson-aux.c | 85 +++------------------------------
+ include/soc/amlogic/reset-meson-aux.h   | 23 ---------
+ 2 files changed, 6 insertions(+), 102 deletions(-)
+---
+base-commit: 3d99f9231bedcf9acfb965a97645a8ecfa93a40d
+change-id: 20241209-meson-rst-aux-rework-e26c716c6762
+prerequisite-change-id: 20241127-clk-audio-fix-rst-missing-0b80628d934b:v2
+prerequisite-patch-id: 8bf55ab8ba9db1abea5df2554864a2f4f9c72e77
+
+Best regards,
+-- 
+Jerome
 
 
 _______________________________________________
