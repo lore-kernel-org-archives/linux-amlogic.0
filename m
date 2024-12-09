@@ -4,75 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F12CE7717D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2024 16:06:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91EF2E77181
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2024 16:08:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Y2GfImHZk7pWO1+r/31OLznCTw+P+nndqTLdQrn+uHM=; b=ge3JETXkE24xdh
-	grtjA2aoTdfqjIchAvrW0vX/tcAZYDrE+mdR2AvFJ37uydlrB8lN4UGKAW32gJaPLFsWZwWvVr3K1
-	f5ib3o0rzgAzvNB+vIH08Qyqs4y+KKfatO/I0XumpYi03W362woie/Q016hddK5BVac7zfT3ka2Bm
-	su4r4ZnlxgOnUhZy9CFdYNGQz9TPkQQ9wZMCUdOIJoaf2oGOnlbrMdkXR2cqx/fwGqE+kxfcBEv/V
-	sMBtysbRL20UqnmH1xj5c/rIqO9U/hcd2hS2Wg4OaVmOYMyc2dtnB3wv1xhH1QMecjFsu5stbaIR1
-	Qflv6BaG5jsSldrLXAJQ==;
+	List-Owner; bh=SA4rTR2gcWzua+uWXQ8qKQOypRtr/0paKTlr19VUX2Q=; b=aM00ItjVraNfNj
+	IhVWTxTYGdChKDMSlH52r63Mu/ho41aDRDlruYpDbSbnziQbVibNvA+YRIyj+smirVs2GS8zGyS0n
+	IXjeqvRugLsCBkQQWANqv5+CzcoioGREHLLblu4CvBnBGMcSPcb74XqycIq83qUs3mZ/FGFI3811+
+	OBFw5cQwOp3bk6YgFCk1WpllNLIwTA8Sr42ZLXSJtmV5mNiPMkETdKnG1l/lICvQoiZqs+53w+eeu
+	x8WMj/MGrtihDACmWuZHxsQcyVnd9yO7EEC17V6ZivFSor4rJoqT1hCbayqndLrRzJJJhkcyGmFTv
+	C6lzLCB8Nvhl+u97DWsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKgGx-00000008Uas-0zVj;
-	Mon, 09 Dec 2024 16:06:11 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1tKgIy-00000008UsT-3Mxw;
+	Mon, 09 Dec 2024 16:08:16 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKgFt-00000008UJu-0b2x
+	id 1tKgFv-00000008ULA-21Pn
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Dec 2024 16:05:06 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-434e406a547so15815215e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 09 Dec 2024 08:05:04 -0800 (PST)
+	Mon, 09 Dec 2024 16:05:09 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-434a1833367so26815675e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 09 Dec 2024 08:05:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733760303; x=1734365103; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733760305; x=1734365105; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=idjswr3CZVaGYQninP+vbzfJuDUomFBTKvCN0oZEZio=;
-        b=VZgnqdoYpaDp0JYqyI7h3EU7gdco9A+e9Q4XC2dBcuFs46WrngZoc2PtyqzPyvpSTO
-         uL1ei2VycbJejS2leJAvisBjtyFIhyml6QNjLRqFKhUU8uoeYwwLn/zVpV/yEnT3woLA
-         Dv7SpKgbkUyalpbtATOK/PazQV0+MI6EsRKpciWkh9p+izcMJCGxO4PDDf0jTqae5dWe
-         7rDYMgsRo/cVH03FFbiB9Jjl+nIMO7D2xDP5FDQFsCnucs+1glYpD+gNrW43xldce5Ca
-         tacP72ebB3T26PeHNCvInRtPb/fmWYqP+G5KLU9mMuq8DFWjJqXaAHjNnM2fSpPIiCoL
-         C1kw==
+        bh=6gQvn01SCFaYf85wm7wZA4AxrI1YMc0NMUI8LVKIi7Q=;
+        b=hqtpVFWEzZyIXb9icCgPIu0bUXh+F3aMxPismFhEnROPTpmmUnpWCRGEyzy9RKgYbZ
+         CJKKpJ4BV1ydB6unbeILqArTxhwg04Axg2fAoxx6E86V2EUxQNTs1uOJqrmhHcO4JtRx
+         nHcbCd2ReoIDLytYdN5fXozc8mbE7zcy7kXhA//U8clg9ISQBI9NcQMWQT4MQctYeAX0
+         5CXTTdwKjZDVTKCdWWxdVFq3MI1AcQUiLybavALMNftYaIJ1cxOEirlUj2gT02Toaq/5
+         mVgmDOGIlgEWzevMAl0alRYIv0W7iWA8p+GrFAVKsYp9P2CxEsaRq5Y3jIx4U+th6Jm/
+         Qxyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733760303; x=1734365103;
+        d=1e100.net; s=20230601; t=1733760305; x=1734365105;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=idjswr3CZVaGYQninP+vbzfJuDUomFBTKvCN0oZEZio=;
-        b=TzlEJJB0Tr9i2QliHN4L/XZMYKvdru0wunyHBFDDiKjQ9g04Dr8JrPgDEreYYRfsV1
-         hGdwAukcLV63zeUWwV9Lz0k2M2bzpUJEVPcD8P8RwXFLkiCZdOYPMwsuZu7fyykCHCpe
-         L5KYRvrsYmXWozYmTRkJcUxgDY4ygmqVXW45xuGfPuTPTzaUFr0bJo2fnglB1tuBuxr4
-         P4utrOYHKa0oz6SvPl0mjc9Y7FcPXej2//r9yi8M5RLydckbk564a2Ruywzr7EzahE69
-         T4d+0E7GoGIEq2H8+8au9uYykgeSo386kGlmrK5ud6Z5NCuqxFETyLO+Dmf27JiTbGXM
-         oqqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWzv2jZ43WDyhHipTNRBzD3KoCePhXPbE+V3TMXK9owH6Pl7d3257XasTf1N7VCkanL/Hjs5w4/V8D5sgZh@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw6ytrIoxsSDVxEwi+CZLjnmj3gpPalGaaxB4Ku6i27jhXVNLKy
-	KUJDqaCl18REc9WuiEpcxFMV+cdVcuT34a07PrWCt4VFpCBoLU3MdR+wUhG5anStB8Fzyt758Qu
-	G
-X-Gm-Gg: ASbGnct7b+V4i6YMpbXmyL7ZX4GwiEGow3EYNBOY1TD09s59IGF4Mm8oQfXfTuZ6906
-	t0p65DcJxSvavpjUn0+BB5TBRKCx3zE/8yPi9dYDLTmKW42cns/jCGAvQ9gNfUYqfw9zW64/LI4
-	0MAkBYzbxhXiIXWDKmeC2B5/nwxJ71ob7AOytAG6in8s8QFzBYEdJbSHJ7ksSo/Wr8TP0jOBqYg
-	pHS+B7tj508hXSJOi4SP9nLn99czszNJiR0R1rqLi3qVWJEIscvHzYxIHiMNcoi
-X-Google-Smtp-Source: AGHT+IFxmJwOIZdSDCITBs7oFnEjBxY6Amfn6FoL8IA0PX5snnp8jJg+2IGwONPosv/ODGNfFL0F5w==
-X-Received: by 2002:a05:600c:1d12:b0:432:d797:404a with SMTP id 5b1f17b1804b1-434fffa2ad1mr8902035e9.22.1733760303044;
+        bh=6gQvn01SCFaYf85wm7wZA4AxrI1YMc0NMUI8LVKIi7Q=;
+        b=aL/OvcFucY8oEMospI51+PrrBXuluDAOsvkX3Z83299atzp66vmGuHI5fcWFFBJ+jV
+         vkl7dW1+ThlA8eWHpLsLDtRhSMRormc2rBy1zXUmk4LvOibvp6FHrQ+SHyNfSkwsEqc+
+         Tz/M5ROyF/E25W7XLkDsg15iHaL1czK60jYFoVxBo6M8/Dpk7QXcNeQ96ln3pAHnvjTd
+         rvvZcivr/37zJssu/vaPEVKOj4nKEC+RuzwFWfnNm1ZFlBWNinLE79Q6vlS6bWdx2NHA
+         eMxImgHdnulV0EAHgP341+kI3I+AQZZca7PplKswrjOj6qE+3ZwqZPEBPVF5qdz56I9b
+         50iQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVrtkUJah+K3ucRnd6nLHxn6sagcK9MUDGBNdxFEOH2i0GN7OhBIgpoBUJTQOC5uE6AD2LtCK7ClyPuBu1U@lists.infradead.org
+X-Gm-Message-State: AOJu0YyG1S5QLRNllLJAHIXr5u96um2hP6vhfTsqnelWk4VOuCigsv6e
+	RAUe+mdrIngyxVfp6dwvPdjTPP6h75FDa+vKkVtyYT2HkmFc3ST8/JAQJS4ijeaNhDZlZcxOO3h
+	W
+X-Gm-Gg: ASbGncv53iI0sW+f1jhsigsLAUgqMeFOaR6JcsSV+IEadcxiaqg9BOtNdNAZ7fqIPcq
+	0rN++gWUWimwKkqvnS5ZC3as5L6GdnTdvb9FHqfsB+22Z4gqO3nnfr5oZmIRXbJG258W5//xq2x
+	I5hPxdzOQO9zSdlRg2ZnrtRIZAVdts6YvbnS60sY7W89Pg/T8YIenslBwFrXyQ55EuxHxk65Hw+
+	knqeS/duFvmX+tsAcpmrLYxpDziQSmKLuiIMeHdUCKSGocng3hgudp0uaIR9iHw
+X-Google-Smtp-Source: AGHT+IFLgrvvJ4ZbcU5oZ15CP6sGt89w7sS5cZEiwVmnaeCinGDbdxMMBd+lkWhnwgPAIvZ9epw2HA==
+X-Received: by 2002:a05:600c:3659:b0:434:e65e:457b with SMTP id 5b1f17b1804b1-434e65e47cbmr71087645e9.3.1733760303838;
         Mon, 09 Dec 2024 08:05:03 -0800 (PST)
 Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:432b:3c3e:b17a:687a])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-434f3d89b75sm61459015e9.15.2024.12.09.08.05.02
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-434f3d89b75sm61459015e9.15.2024.12.09.08.05.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Dec 2024 08:05:02 -0800 (PST)
+        Mon, 09 Dec 2024 08:05:03 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 09 Dec 2024 17:04:34 +0100
-Subject: [PATCH 1/2] reset: amlogic: aux: get regmap through parent device
+Date: Mon, 09 Dec 2024 17:04:35 +0100
+Subject: [PATCH 2/2] reset: amlogic: aux: drop aux registration helper
 MIME-Version: 1.0
-Message-Id: <20241209-meson-rst-aux-rework-v1-1-d2afb69cc72e@baylibre.com>
+Message-Id: <20241209-meson-rst-aux-rework-v1-2-d2afb69cc72e@baylibre.com>
 References: <20241209-meson-rst-aux-rework-v1-0-d2afb69cc72e@baylibre.com>
 In-Reply-To: <20241209-meson-rst-aux-rework-v1-0-d2afb69cc72e@baylibre.com>
 To: Philipp Zabel <p.zabel@pengutronix.de>, 
@@ -84,25 +84,25 @@ To: Philipp Zabel <p.zabel@pengutronix.de>,
 Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2997; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=GIzXS2CMipBruUg013x80hnunrhkIkK1Hy8qrpszX8M=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnVxUrYW638WrIiCr42AH4JqorjA4A+TLUZqfdJ
- 0cE5/fWf0iJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ1cVKwAKCRDm/A8cN/La
- hT1WD/wJ6B/JrH/0Q+H6hMUfb52yQg381BFefDiZ+hYlFFSL2G/5ELCs7skolU4LuewUJ4kYYlO
- 73Lgt1ujDqW6CJhhdzDCeqqMXrPuXjX5OHdcP9uB78toj45dBkSJPwSiALZORP4IMCg1gehyy1E
- 6sBd0VUvAjT1b3abHb/tDmDrdY5O381LR7/eQvWquiXl1Q9YoamWtXsnoQO4BO6oHzXXtUxNjs7
- d8g3SFiIUSkz/tB+ruYtiOhYJeOAeUA/uaAp4ViGHyIgHvE/U8a2wX4C6wpWRfuHgce0Q6IxQSA
- nWGCU5bWf5oAQ/GNrEC/0EPKPWzgrqwIcq0Wbxj/W+FgAL9ckUa/USHn+xtYLRcGpFGCN/2DAlL
- IoCifTNiA5iVmZVveeFhRqvLpzN30iRltEkRI+Oqf9Rtn5v3uyU7mCUPbmMkiTaTuMTyLxB3YPu
- IHTFzpqaH8FxnEDAkUsA6TKPO6lfL9Rucz5qm55Nw7Hs36IzonVAwwoVjwYwfgQUkibZ9EJYkvQ
- C2PhkeHy+5dM5CDNfRpaIaGCDBE/ISd8HMpJiYJdsoZ19Ln+bGCGZa8MeX2fAY1mr/wqjghxnJ5
- TVLHtTxaXfyFoPDzbllL9HKjCAdU+64YDXCeDPxh53FLzWyWkGsQ48kVQ+WTRIp4Art0Z6r9kN2
- IAt5sbbUECe72WQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3766; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=rBR5NXgnww06Sh65Qy/7Azyi2Gb2xpN2qKRXGKxDmUQ=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnVxUsYkSkA4Qwt3VALxgGbnvIVc8tf8kC27Tdj
+ dF6gxpmN7iJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ1cVLAAKCRDm/A8cN/La
+ hYLDEACeLDq6gapWnzc/DY38UK33183muDLmS35DUORGdkyly9YR8SSsNCdgUThmQj7ZGrECxOr
+ VACnCXVFGcdnQk+SJhg/x2a/y5Bvh/kJYH5RNDcLWYAlXyCsYKw6GAnPc1q8cZ+0oEiRiQTvF4O
+ eVRLt8oFMXOpgSzceSZ/AXAEaPRsUa1yVGih6LQp802v+sp6x2SJK7kvpkyIL8AHKhuoAbLz8uH
+ mxYYi3OajcQM4B/Z0secKuabppMS1DfMB4JsKpbRDRGlaa4oa0MWjiULPBbXd5lAsPxDk6WFx3d
+ PhpbjYQCF9wXXCAJtPXcDWKidypQ6D56IfoP+OfGNw/4Idw3of+1fSebpIUrL4lcReeCNWNU7A+
+ nctX/aQ4/FSHYW8aPvKP1yj/1u6gVl5o0Z2tdPyTktiGYncfHhSuk7KYRlsAPzADVKOJ41zFRYD
+ yPhUJU0YZFwbYh6AK3l9/1a8PgEC5gWWJpTw7laTHX3QIBMQuUcBCKNADgz39Y0BmGBnCrHd0T0
+ 6TxWvh+RG7mHc+3uAgpv7kcqt6UDYuwJYGf8kwCW5wB2rcfo+mPaaDHHH/lcOvmSdMR11ORdf8L
+ IYVtcVu0rMsV7LJWl4snnxIw97Vnyf1hda505G5SAVkM3q2AR/XRU/UsSfs9JyMVMz6k0VyBp6j
+ +h15x7Daa+PgfKg==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241209_080505_173354_D810567F 
-X-CRM114-Status: GOOD (  12.23  )
+X-CRM114-CacheID: sfid-20241209_080507_525902_0C09D59E 
+X-CRM114-Status: GOOD (  13.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,106 +119,131 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Get regmap directly from the parent device registering the
-auxiliary reset driver, instead of using device data attached
-to the auxiliary device.
+Having the aux registration helper along with the registered driver is not
+great dependency wise. It does not allow the registering driver to be
+properly decoupled from the registered auxiliary driver.
 
-This simplifies the registration a bit.
+Drop the registration helper from the amlogic auxiliary reset driver.
+This will be handled in the registering clock driver to start with while
+a more generic solution is worked on.
 
-Suggested-by: Stephen Boyd <sboyd@kernel.org>
+Suggested-by: Arnd Bergmann <arnd@arndb.de>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/reset/amlogic/reset-meson-aux.c | 36 +++++++++++----------------------
- 1 file changed, 12 insertions(+), 24 deletions(-)
+ drivers/reset/amlogic/reset-meson-aux.c | 61 ---------------------------------
+ include/soc/amlogic/reset-meson-aux.h   | 23 -------------
+ 2 files changed, 84 deletions(-)
 
 diff --git a/drivers/reset/amlogic/reset-meson-aux.c b/drivers/reset/amlogic/reset-meson-aux.c
-index 4b422ae5fcd209e1041e9a793d980627203d00b0..0fc1788eb7a83810ac524facfe09b5fa032573c3 100644
+index 0fc1788eb7a83810ac524facfe09b5fa032573c3..1a2024afa056ea4d9404f6444476e48265ac8da4 100644
 --- a/drivers/reset/amlogic/reset-meson-aux.c
 +++ b/drivers/reset/amlogic/reset-meson-aux.c
-@@ -18,14 +18,6 @@
+@@ -11,12 +11,8 @@
+ #include <linux/auxiliary_bus.h>
+ #include <linux/regmap.h>
+ #include <linux/reset-controller.h>
+-#include <linux/slab.h>
  
- static DEFINE_IDA(meson_rst_aux_ida);
+ #include "reset-meson.h"
+-#include <soc/amlogic/reset-meson-aux.h>
+-
+-static DEFINE_IDA(meson_rst_aux_ida);
  
--struct meson_reset_adev {
--	struct auxiliary_device adev;
--	struct regmap *map;
--};
--
--#define to_meson_reset_adev(_adev) \
--	container_of((_adev), struct meson_reset_adev, adev)
--
  static const struct meson_reset_param meson_a1_audio_param = {
  	.reset_ops	= &meson_reset_toggle_ops,
- 	.reset_num	= 32,
-@@ -72,10 +64,13 @@ static int meson_reset_aux_probe(struct auxiliary_device *adev,
- {
- 	const struct meson_reset_param *param =
- 		(const struct meson_reset_param *)(id->driver_data);
--	struct meson_reset_adev *raux =
--		to_meson_reset_adev(adev);
-+	struct regmap *map;
-+
-+	map = dev_get_regmap(adev->dev.parent, NULL);
-+	if (!map)
-+		return -EINVAL;
+@@ -79,63 +75,6 @@ static struct auxiliary_driver meson_reset_aux_driver = {
+ };
+ module_auxiliary_driver(meson_reset_aux_driver);
  
--	return meson_reset_controller_register(&adev->dev, raux->map, param);
-+	return meson_reset_controller_register(&adev->dev, map, param);
- }
- 
- static struct auxiliary_driver meson_reset_aux_driver = {
-@@ -87,11 +82,9 @@ module_auxiliary_driver(meson_reset_aux_driver);
- static void meson_rst_aux_release(struct device *dev)
- {
- 	struct auxiliary_device *adev = to_auxiliary_dev(dev);
--	struct meson_reset_adev *raux =
--		to_meson_reset_adev(adev);
- 
- 	ida_free(&meson_rst_aux_ida, adev->id);
--	kfree(raux);
-+	kfree(adev);
- }
- 
- static void meson_rst_aux_unregister_adev(void *_adev)
-@@ -103,24 +96,19 @@ static void meson_rst_aux_unregister_adev(void *_adev)
- }
- 
- int devm_meson_rst_aux_register(struct device *dev,
--				struct regmap *map,
- 				const char *adev_name)
- {
--	struct meson_reset_adev *raux;
- 	struct auxiliary_device *adev;
- 	int ret;
- 
--	raux = kzalloc(sizeof(*raux), GFP_KERNEL);
--	if (!raux)
-+	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
-+	if (!adev)
- 		return -ENOMEM;
- 
- 	ret = ida_alloc(&meson_rst_aux_ida, GFP_KERNEL);
- 	if (ret < 0)
--		goto raux_free;
+-static void meson_rst_aux_release(struct device *dev)
+-{
+-	struct auxiliary_device *adev = to_auxiliary_dev(dev);
 -
--	raux->map = map;
-+		goto adev_free;
- 
--	adev = &raux->adev;
- 	adev->id = ret;
- 	adev->name = adev_name;
- 	adev->dev.parent = dev;
-@@ -142,8 +130,8 @@ int devm_meson_rst_aux_register(struct device *dev,
- 
- ida_free:
- 	ida_free(&meson_rst_aux_ida, adev->id);
--raux_free:
--	kfree(raux);
-+adev_free:
-+	kfree(adev);
- 	return ret;
- }
- EXPORT_SYMBOL_GPL(devm_meson_rst_aux_register);
+-	ida_free(&meson_rst_aux_ida, adev->id);
+-	kfree(adev);
+-}
+-
+-static void meson_rst_aux_unregister_adev(void *_adev)
+-{
+-	struct auxiliary_device *adev = _adev;
+-
+-	auxiliary_device_delete(adev);
+-	auxiliary_device_uninit(adev);
+-}
+-
+-int devm_meson_rst_aux_register(struct device *dev,
+-				const char *adev_name)
+-{
+-	struct auxiliary_device *adev;
+-	int ret;
+-
+-	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
+-	if (!adev)
+-		return -ENOMEM;
+-
+-	ret = ida_alloc(&meson_rst_aux_ida, GFP_KERNEL);
+-	if (ret < 0)
+-		goto adev_free;
+-
+-	adev->id = ret;
+-	adev->name = adev_name;
+-	adev->dev.parent = dev;
+-	adev->dev.release = meson_rst_aux_release;
+-	device_set_of_node_from_dev(&adev->dev, dev);
+-
+-	ret = auxiliary_device_init(adev);
+-	if (ret)
+-		goto ida_free;
+-
+-	ret = __auxiliary_device_add(adev, dev->driver->name);
+-	if (ret) {
+-		auxiliary_device_uninit(adev);
+-		return ret;
+-	}
+-
+-	return devm_add_action_or_reset(dev, meson_rst_aux_unregister_adev,
+-					adev);
+-
+-ida_free:
+-	ida_free(&meson_rst_aux_ida, adev->id);
+-adev_free:
+-	kfree(adev);
+-	return ret;
+-}
+-EXPORT_SYMBOL_GPL(devm_meson_rst_aux_register);
+-
+ MODULE_DESCRIPTION("Amlogic Meson Reset Auxiliary driver");
+ MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
+ MODULE_LICENSE("Dual BSD/GPL");
+diff --git a/include/soc/amlogic/reset-meson-aux.h b/include/soc/amlogic/reset-meson-aux.h
+deleted file mode 100644
+index d8a15d48c98494c45c6e3d7e88fa714f770f12e3..0000000000000000000000000000000000000000
+--- a/include/soc/amlogic/reset-meson-aux.h
++++ /dev/null
+@@ -1,23 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
+-#ifndef __SOC_RESET_MESON_AUX_H
+-#define __SOC_RESET_MESON_AUX_H
+-
+-#include <linux/err.h>
+-
+-struct device;
+-struct regmap;
+-
+-#if IS_ENABLED(CONFIG_RESET_MESON_AUX)
+-int devm_meson_rst_aux_register(struct device *dev,
+-				struct regmap *map,
+-				const char *adev_name);
+-#else
+-static inline int devm_meson_rst_aux_register(struct device *dev,
+-					      struct regmap *map,
+-					      const char *adev_name)
+-{
+-	return 0;
+-}
+-#endif
+-
+-#endif /* __SOC_RESET_MESON_AUX_H */
 
 -- 
 2.45.2
