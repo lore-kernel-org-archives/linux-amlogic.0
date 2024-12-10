@@ -4,106 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49A56E77180
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2024 16:08:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68765E77180
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2024 16:15:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:References:In-Reply-To:
-	Message-Id:Cc:To:From:Date:MIME-Version:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=VkHnCSGn1g2gLHRJf8Ibo/DVl1PxY4Wl/iV3a1m6o8A=; b=wXajuyDZ7vHkjhyamW7ffNayoH
-	iyNrahunaK1wedJkWid4tZsf4tal3VJbqUIxn2vnEJ3XHL4NbCqm9cYWN7n+Sj5efLZHarhakgI7B
-	jQY9EoDm0ABesz9EqYl54ShRuaYMlIM7Cir3Ef2sIpap0jYo8tM80/HuWh9plmrSvjaMWiu69jgoZ
-	n5Cu4sWtRQVrml2xtFX9Bp74DeADIZp3+Zlhy24P2Syn1r0wP5VMMXabnbbDlpNBR9cMHjo4DOmq8
-	r+Qms+JvhiGH/fbLzTzszkW/F68bLNHjjfZkoqguJhja8HhPKR4rerBYXT53s4TYzFaRFO3qoSmJ3
-	Eel8lVwA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=gq+APghin0UMBNgduEg81vbwthqNNyL7qqqsNVhazOk=; b=So7h/vnDYC1Mw5
+	LRCYva7OUGJgUOw3jzto5SzBgDTeHO9bEotSrsj41p1coJ2GrgfUyRA6qE/6twLl7tC8T10QCC7Qm
+	z23HiRQ45B4VZWVMvX7XvSPIHo8RteA47/2z/O1Z6f5z2yxOp28KuWLETFACNrEQ60mOeNvX37Ko7
+	A+/xE3QQDaktdhG40WV6eglN1fKsvnbm3HUPk375QO7nnTKc6QsxGZykbC6nh6uFCJIaaF0thLmEL
+	F1VlPRUi+xJGSDn9oylyTh5tq/XGFJ5ED6LXYdZC4SzKei0uEoy41hhh/CaaLnM0aS7PXsXURwETx
+	WE2k7j+ePbWanbV3zaOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKgIz-00000008Usk-2z5t;
-	Mon, 09 Dec 2024 16:08:17 +0000
-Received: from fout-b6-smtp.messagingengine.com ([202.12.124.149])
+	id 1tL2tU-0000000C3QC-2hzo;
+	Tue, 10 Dec 2024 16:15:28 +0000
+Received: from mail-yb1-xb29.google.com ([2607:f8b0:4864:20::b29])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tKgIw-00000008Urz-0DUk;
-	Mon, 09 Dec 2024 16:08:15 +0000
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
-	by mailfout.stl.internal (Postfix) with ESMTP id 2458A1140192;
-	Mon,  9 Dec 2024 11:08:12 -0500 (EST)
-Received: from phl-imap-11 ([10.202.2.101])
-  by phl-compute-10.internal (MEProxy); Mon, 09 Dec 2024 11:08:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1733760491;
-	 x=1733846891; bh=lGGzdxKs99WIvOvhHGBuDPDZWmYDMpqFQRNBN6fwpSw=; b=
-	TBLTHCMplAQlJdeuQQkMM42PUgi3ZqruQ8Jw4QMtNE8/2V0vyb8XjhcGzScGH24n
-	XmMvnYKhhhamUi8B+/7Dyq4k0jUaHA+g+jQ+DrViFmI5dFjvA/hEUwvS8EE0xxMF
-	hJdmI5eWHJM6wgJSQiU1AlKJAleGf008VF8QZjDFjffizPJyL1uqumSMxm8L/l+7
-	WOUInjjhPhydDvcWUNn1xKp2/WVWiALIQ8+KiIetCCJ11ENKHEoNpNFCbWP68FGN
-	0L1miB6SH79m+tijSQKh4d5chjpHN01ziMjStD4bLb763x3otd8j4sFNCeBpyFd6
-	Epi330aKMHQL/93/b3QODg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1733760491; x=
-	1733846891; bh=lGGzdxKs99WIvOvhHGBuDPDZWmYDMpqFQRNBN6fwpSw=; b=l
-	vGr9RJEsg5snz80iOXaT3YI60d8ndjMSPOp2dwht+WbMYyHNhLc6dMsTiDoifh1p
-	1fqXguOCKZeH2oXDxCUHFLPfFTa5TubcZxujO2IOcZEIeOqjdASMrpDVk5sPng9b
-	nfU4J9dld6EsHYVVxofNdbZ+Qz57Jp4llfJRJZgjsFa8i1uEi53t9sxzH+IhVr9E
-	eLVyrPJHTdwwyR3JfrPlAe7QTllZ6eSrJPH5wD8DZ5s44biKy7QpIMyEStuPfl4X
-	jepIa5A7MFI2bOyN6z279/jBJt5qCs94wwhnMpY5SiL6078pS0mZtC6b92m8Qbjv
-	pjH+7WDodtPWkhd4D/D5A==
-X-ME-Sender: <xms:6xVXZ1YdRy5luvP_KolHRbeucQwqGXeZgFu_HWCLdSyHzJmUamNS2g>
-    <xme:6xVXZ8bd4H9MFb7v_UtQU40jPIKI4QVWsGv_zZu3jt6FGpbzg4-rBGSJ0PG6516Vs
-    IsuwurKLog0_xCRG7k>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrjeeigdehkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
-    tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
-    hsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredttden
-    ucfhrhhomhepfdetrhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdrug
-    gvqeenucggtffrrghtthgvrhhnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffg
-    vedugeduveelvdekhfdvieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
-    grihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggvpdhnsggprhgtphhtthhopedutddp
-    mhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepjhhiuhgthhgvnhhgrdiguhesrghmlh
-    hoghhitgdrtghomhdprhgtphhtthhopehjsghruhhnvghtsegsrgihlhhisghrvgdrtgho
-    mhdprhgtphhtthhopehkhhhilhhmrghnsegsrgihlhhisghrvgdrtghomhdprhgtphhtth
-    hopehmrghrthhinhdrsghluhhmvghnshhtihhnghhlsehgohhoghhlvghmrghilhdrtgho
-    mhdprhgtphhtthhopehssghohigusehkvghrnhgvlhdrohhrghdprhgtphhtthhopehnvg
-    hilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhgpdhrtghpthhtoheplhhinhhu
-    gidqrghmlhhoghhitgeslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtth
-    hopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdr
-    ohhrghdprhgtphhtthhopehprdiirggsvghlsehpvghnghhuthhrohhnihigrdguvg
-X-ME-Proxy: <xmx:6xVXZ3-p5pfO8YOYxyU94ucOT9yL81ex1CEDu31SN2hDc05SK07c9Q>
-    <xmx:6xVXZzqxdZEwqEFx5y72G5_2BNeyNeJ718OlImRJGhs-oFPNAj0puA>
-    <xmx:6xVXZwpWEpZiQVKzIlv6jSO07--YRBCmAAEWmpoJ5Gk4M-wfj9Miqg>
-    <xmx:6xVXZ5Q6Ot2189TBydRQ5wS5LNDeur3Js0FCwfKVr1uADo__emnbqg>
-    <xmx:6xVXZ32UoQWhJWnPf8wEmQMaYSUeZHwtPaFr3GZRiLd-akKNSn4CRCqW>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 727622220073; Mon,  9 Dec 2024 11:08:11 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	id 1tL2oQ-0000000C2YW-3ET6
+	for linux-amlogic@lists.infradead.org;
+	Tue, 10 Dec 2024 16:10:16 +0000
+Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-e398484b60bso4770837276.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 10 Dec 2024 08:10:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733847013; x=1734451813; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HNXvfug15XfoQwdKiIGBWtNC3tcA8qpMkETpkFfQs6Q=;
+        b=EglYlCcUvbK5+9SIdzWa6X84cNs7jL+zhekHrNLQjflWhofO21g8KWRbvxz0iwr6OU
+         U+38R6fi5/kx5FKYf91js6FQ2Zw3bb0UWnOSTuiR5/ugk287w7g7LVatUFGma37m/Diw
+         V1Z9jsR3RQwtuKObFfuZbqQNiINrJeW0OmVSeiAZXIquLERo83eFML9WAUgJ1+909kfc
+         D6YWH9adSnTTzsuvZyxHG75nKtQKIz68ybyShffNp0lfj20UMoKMSx0PSNBRHbl15eTE
+         /9zi+js+Xe22ooKURWaFXOQQZv8LgVPadBrHe1OikjkVIQqEf/Dj4gs4QKEWKkOrNGt6
+         A0Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733847013; x=1734451813;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HNXvfug15XfoQwdKiIGBWtNC3tcA8qpMkETpkFfQs6Q=;
+        b=oI/iLMcTDnAuW1aaFYVm+5D9Yup08RcRlWCQhn4FgxiMDikrW9Gtmmy1QiJziMOpGX
+         0Ra4lMmYXFcETCEocDyuHe9QEZn3uNnPw4bNOPnImE/IiXb+lAo5a3q5SRp37/ul6GTT
+         x3ss4viI8MJ03mjr/ns7TbE6o+l7Myj6RCLYlPoSYQ10uu7kGokBS/2/Jrcyb5cxsUOI
+         yFYaN+xGOCiT3bWeyqoDTEoPHDgawPn9MawF9od5Peiph3QBEh33ZmiW1KDSjUUNuIvq
+         qN9rSX1yjKjrfzgEBfhYeilfptebXtUe3GaB+fxO8xT8NqLNYH+Jfme1wIoYHWwpKVLZ
+         3Vmw==
+X-Forwarded-Encrypted: i=1; AJvYcCUq6La9x6yq5SHe2/I+s/R2OQFEW4oX+RKSNxJP5mMzzuhyJf2rBAT1pEpYoya0dR6UhozOhJ5kUdK2dP2I@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz/9Ekr98rdwJ7Wvm/h41M1V2EBXyUmR3BuysnytQVQs316Kmil
+	/uvJ2BdZq/SkwuvE6RXoOo+XaBqeQaBrGEiMIreHp5hDF3SLg6oS9/o2ylYMI7ytgqAQSuT/8+E
+	KHqe8TWEDewEo69glOcZsbXFLbD01RTj6Ibza7w==
+X-Gm-Gg: ASbGnctsBdzp4QqHfXmNWLaMmxUxV9DPNvFRfKoaDXWO+5gJu+qA5Tiv2MBeg11LM6P
+	IAG1YomUCw48KCVPj+SGy1JzXMBnfMGJplsmv
+X-Google-Smtp-Source: AGHT+IELbJvk0NPV36M+fcncTTHMyREVObNbnHGvfeRgsIrYaGiOwpPdOwf890kyMOnEyS8+yJEfq/uf9mQc3jRotz8=
+X-Received: by 2002:a05:6902:2b0c:b0:e38:b889:7eff with SMTP id
+ 3f1490d57ef6-e3a0b071e93mr15453171276.6.1733847013083; Tue, 10 Dec 2024
+ 08:10:13 -0800 (PST)
 MIME-Version: 1.0
-Date: Mon, 09 Dec 2024 17:07:50 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Jerome Brunet" <jbrunet@baylibre.com>,
- "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Kevin Hilman" <khilman@baylibre.com>,
- "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
- "Jiucheng Xu" <jiucheng.xu@amlogic.com>, "Stephen Boyd" <sboyd@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Message-Id: <5519bdc5-4056-417f-a89e-26f9ae426922@app.fastmail.com>
-In-Reply-To: <20241209-meson-rst-aux-rework-v1-0-d2afb69cc72e@baylibre.com>
-References: <20241209-meson-rst-aux-rework-v1-0-d2afb69cc72e@baylibre.com>
-Subject: Re: [PATCH 0/2] reset: amlogic: rework auxiliary reset support
+References: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-0-11d9f9200a59@linaro.org>
+In-Reply-To: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-0-11d9f9200a59@linaro.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 10 Dec 2024 17:09:37 +0100
+Message-ID: <CAPDyKFon9-3U5Vn2i+WtarSAYQHnA_ho8CGQmiVoboq1tnt4fw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/5] dt-bindings: mmc: document mmc-slot and convert
+ amlogic,meson-mx-sdio.txt to dtschema
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Maxime Ripard <mripard@kernel.org>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241209_080814_151615_6D5A7C5B 
-X-CRM114-Status: UNSURE (   9.67  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241210_081014_830878_2BB0B010 
+X-CRM114-Status: GOOD (  13.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,19 +97,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Dec 9, 2024, at 17:04, Jerome Brunet wrote:
-> The current implementation of auxiliary reset controller, with the
-> registration helper in the same module as the driver code, does not
-> allow to properly decouple the registered auxiliary driver from
-> the registering one.
+On Thu, 28 Nov 2024 at 16:16, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 >
-> This patchset removes the registration helper from the auxiliary reset
-> driver and changes how regmap is passed, to simplify the interface a bit.
+> Document mmc-slot because used by amlogic,meson-mx-sdio.txt and
+> cavium-mmc.txt, so make it common.
 >
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Looks good to me,
+Applied for next, thanks!
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+Kind regards
+Uffe
+
+
+> ---
+> Changes in v4:
+> - Fixed address-cells description of mmc controller
+> - Cleanup '|' when not needed
+> - Added review tags
+> - Link to v3: https://lore.kernel.org/r/20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-0-ad4eb22c2a8d@linaro.org
+>
+> Changes in v3:
+> - Revert and insteads move common properties between slot and controller into mmc-controller-common.yaml
+> - Fix other comments on patch 2 & 3
+> - Link to v2: https://lore.kernel.org/r/20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org
+>
+> Changes in v2:
+> - Fixed description, limited to 3 slots
+> - Moved out mmc-slot in a separate common schema
+> - Link to v1: https://lore.kernel.org/r/20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org
+>
+> ---
+> Neil Armstrong (5):
+>       dt-bindings: mmc: controller: clarify the address-cells description
+>       dt-bindings: mmc: controller: move properties common with slot out to mmc-controller-common
+>       dt-bindings: mmc: controller: remove '|' when not needed
+>       dt-bindings: mmc: document mmc-slot
+>       dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to dtschema
+>
+>  .../bindings/mmc/amlogic,meson-mx-sdio.txt         |  54 ----
+>  .../bindings/mmc/amlogic,meson-mx-sdio.yaml        |  94 ++++++
+>  .../bindings/mmc/mmc-controller-common.yaml        | 357 +++++++++++++++++++++
+>  .../devicetree/bindings/mmc/mmc-controller.yaml    | 346 +-------------------
+>  .../devicetree/bindings/mmc/mmc-slot.yaml          |  49 +++
+>  5 files changed, 504 insertions(+), 396 deletions(-)
+> ---
+> base-commit: f486c8aa16b8172f63bddc70116a0c897a7f3f02
+> change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-6fa70546ebb8
+>
+> Best regards,
+> --
+> Neil Armstrong <neil.armstrong@linaro.org>
+>
 
 _______________________________________________
 linux-amlogic mailing list
