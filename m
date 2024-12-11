@@ -4,76 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41205E7717D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2024 06:51:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A14F5E7717D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2024 07:54:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eL6sWOXHt4XE5u8VgTP9ncWrjsWJolz5QhGivyN4FtA=; b=eORpYyn9zObWGQ
-	HVSkPtKAbQnYRi7zpTS74ssRbI0HB+BTqByaDCsVbVSIP6UFXyD3/FtrmyKXywTmFspfLwKfAdX5c
-	YeR7NatWJzXICcXg5aLDuQgyZblMWJ1MLH1MoM2Fu53WXUcH8EOwjWdwrFvODGPuQ4t9IwFjyxTnt
-	peuwMZaOOtyAYoQwPcg6rahR3Pj5CMGtxalXnwcwDjdIQkKk9AmQ8sisiFAVHV7OVseyGeZkG2c5B
-	c5U8aJxG2DrEtng5/wU78orukhCdDsmkxxiLpxXjnCqWHqn1ayOJWiTvxoVOQLazRcw254FE/A3R4
-	TYIyGGACOiv5tCfWFIfQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=UZjO/mDh77LfX3+ALlMFElK7rJlEkaZSQmUuuZbLSNs=; b=D2H1+95kSqxphMkogdSXdV78j+
+	Z07JQfCH0tqKsT6wQs05kmvT5OAtw5+qL4CDlDZ8+2VmEx6/nLNwL/SsPkeANU5aJV9mpqf2aMAIw
+	4fpVlN+4oJvj9q89pdNJIUWjL1ZyDdqQVD3RizPV9w3wZVyUMZl4R67EPnUqT9dP3QRn/Cb6GU6Gb
+	plBnTaFAzWNbRaxRg1W+mFYPdZX7Z3CRqxlXp0hJp8AlCp6gAOOyvZJda37MzYGkzglvwiIqE/W1h
+	jUxxc5JLNPUUYBVFYFtlQ6is+j4uiVzmx+kMHfJaEtQwSn4bwRq21PMm45h2WPdBLRolQk9LxwmME
+	tCIiSUvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLGZC-0000000Dyfi-2Xrc;
-	Wed, 11 Dec 2024 06:51:26 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1tLHY2-0000000E75t-1lkz;
+	Wed, 11 Dec 2024 07:54:18 +0000
+Received: from mail-eastasiaazlp170110002.outbound.protection.outlook.com ([2a01:111:f403:c400::2] helo=HK3PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLGW4-0000000Dy4i-3MWA;
-	Wed, 11 Dec 2024 06:48:15 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 3A0625C64DB;
-	Wed, 11 Dec 2024 06:47:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0B505C4CEE2;
-	Wed, 11 Dec 2024 06:48:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733899689;
-	bh=AvtvlmAcgiiWK/kxpM7KiSb7Iil6k345Mvqeupuh7/c=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=cpDtr8QduXIlNBoXTqpuILWb0SLNJWhQVZ4B74n/ZPYy399xkED1l69+W9WP9rLsL
-	 3o5OnFKa9COsInGTEmRespPkd56XDgFh5frSTeQkf9GAf0C6yvuT8QuzaN9GsVdM+a
-	 MluleUODIam8miGSJNsfyIXor3jMWXequ7XW9m7clEbGCP7SrFGxtF/ts2XKCZm1Cj
-	 UMThyLikf8j25nmlSg8CLjpbB9X1eEjZ3cCgHX31qAeTup2SMUvnlz41ey6XUd+Fqs
-	 wfjT5x1Us3j6htF8gvZCTHGkpb+Gdrplq5A7plljB/Wm5UFd8rzRcafujUpj7cHo/o
-	 FBAuwcOdJY/5g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EED9FE77180;
-	Wed, 11 Dec 2024 06:48:08 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 11 Dec 2024 14:47:50 +0800
-Subject: [PATCH RFC 2/3] pinctrl: Add driver support for Amlogic SoCs
+	id 1tLHY0-0000000E74m-078x;
+	Wed, 11 Dec 2024 07:54:17 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=botJONRrxFSolfmR9olGHoe+sHJUUd01kbQDkBFZ/UD++o8Q0FRZfXF/51tXnWEV+klLZghCjBI3XNODFXJAlfFC1MrJtpHP/rivqNKz3GpxUIsYib8KRsmDQ5isLlZUUX1f8QivZEJiNCn2piVvZKK7h/p4wBwJHS4zBdWjlMrPl5ImbzqQSCHfPbvlD0neW7Azsfeo8mmUNL+IpEZPbAYNls1Lw6Chw1fkf41/B12HWac4FbSicUxZC67qU6zLOpbX6hUX9Nlh8kYFqx71w5adWmyK6/640Y/gEUTwG36KmRuNT82ytFyNCsd7doNPpTgFCBPeCXoikhpgysJH4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UzMUbfR52GyWiInJA1q7VGtz0BvZZPETAoazXH/jPoI=;
+ b=CSQCXXP46l8n3GbmuGooZNAXWIAB8woYwcuKGZbwXjOVNbkzP9u/msgRd/TisCLLaHyEyKCdmfW7yfI4KQKB2UdabhjvTR2IKtebpD6x7Rv4Wy4IJruYrF59ub9fYFRWdaEBcCcn/b9ojlEfr3by6O2C04+UAbiKo5KvFzTp6OtnHh4lHr0R16Bq/ZX47pizhvGFdTbwvm0GAX+OqbcNIqYbte3+/O5M11LqWzc26E8o3O6Bq5pqhqGVl3nxQhZxXbawkJQzfffH9biaRKYIV7+lzsojZ0l2IXjL/9Ox2iHVmOz07NPNmgZ4STlUCsJqjGlzaRE7Wdi4A+Q/Q50XYQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UzMUbfR52GyWiInJA1q7VGtz0BvZZPETAoazXH/jPoI=;
+ b=ZxHr8QmkFAz7KnVkdqgyWzJrEE1LgtYwugFdzfn4ezaa7PBn2ogR8Ku+htOklYJl1VfNR1kbhN3ZXrNksgV3wAuVLuK6t3f8CnsKcasjZu342mxiWYVSMxZ2fSis+xOWHKQqFjGLy14PUzHbHpQ7rmF1wpSKDM/ChzAuz7Szu1QkuCVCtkgbpFN1iw6c2fS94WqFhiXdBrsrqwGhRaL1Et8Dt9D+UfrS4jYANEy4vV3pNsD3cZKHSaaxVpFaoPxj79dYuLniGy1pH/p/xjyJTdDqCq1a0Adq97lv7oLfqpKwMpbz1cJ0yvwrBnOti2f6Y/mxWhfFMOYCh/tTNMJCFA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by JH0PR03MB7982.apcprd03.prod.outlook.com (2603:1096:990:36::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.15; Wed, 11 Dec
+ 2024 07:54:02 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123%7]) with mapi id 15.20.8251.008; Wed, 11 Dec 2024
+ 07:54:02 +0000
+Message-ID: <e5085ed9-191d-47b2-9728-22962673af02@amlogic.com>
+Date: Wed, 11 Dec 2024 15:53:57 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] clk: meson: add support for the A5 SoC PLL clock
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20241120-a5-clk-v2-0-1208621e961d@amlogic.com>
+ <20241120-a5-clk-v2-4-1208621e961d@amlogic.com>
+ <1jttbvtfxv.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-US
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <1jttbvtfxv.fsf@starbuckisacylon.baylibre.com>
+X-ClientProxiedBy: SI2PR01CA0044.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::8) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 MIME-Version: 1.0
-Message-Id: <20241211-amlogic-pinctrl-v1-2-410727335119@amlogic.com>
-References: <20241211-amlogic-pinctrl-v1-0-410727335119@amlogic.com>
-In-Reply-To: <20241211-amlogic-pinctrl-v1-0-410727335119@amlogic.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733899686; l=33694;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=0lA3QO5wF8INZIMcdYfvEllaQiq/tF5p3KeBjeBcimw=;
- b=f1knmamn8oRaLa+/mmoF3FT2inEGQotoC6TcyNwb6JkvB2CZEEfLVf/NAVHt3/nrun/T5rwDP
- CZg7RfpI9O4AfVif8L6LgxVtBhnXDg019IcX8Eot6LPA0BFOTdL8k3L
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|JH0PR03MB7982:EE_
+X-MS-Office365-Filtering-Correlation-Id: d9a38005-0538-49f5-ba3b-08dd19b8fa36
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WE9XUmNVbXByOTU2cVFvSVZnTHNWU1pKS2p6emNWclUxbkQ0Q3plWENPNzVL?=
+ =?utf-8?B?UE1mRXh3a3hMV3FxbE5WdVBwTnJicVR5bk9rT2N6OWVEa0piZzBNOHVnVDBS?=
+ =?utf-8?B?YW5yYzRCMk1iWlpMQ2YvM2c3dGFMMzFuZjAwS1dRT0ljempPZnM0TmFRNlBZ?=
+ =?utf-8?B?dkJJYnJ4OFBaL3kwQithQXRicmQ3RFRGaHRKVU9wRklNOGU4QnlsSC9GZ3l4?=
+ =?utf-8?B?YXI0R1NGQ3VGcEdTWldMWHdlbGJsbFlQN1BJQlJ2MzlUd24xVnNLVlhaVDZq?=
+ =?utf-8?B?TkhIVlhJZVlxQzZwUkVaekxhZUlxbytRS1IvU2JHVE5nTUVuQTBsbGFmRy9F?=
+ =?utf-8?B?Zy9SekVCcmRDdkM0bzRzVzJRMjJJT1ZBQWZseG1WTnRZNVpNbUt5aWVraytG?=
+ =?utf-8?B?RDdvUEpmYTVhd0pWbHQ4cnVCYnZOeWhXaytrSGxDSkVKbHhyT1RGT0NodVpK?=
+ =?utf-8?B?Yng0cVh4eGlWQVA5d1pFc3pFUlljSzJBZ3I0ZFFKZStSQWxVRTdFTkplNTE3?=
+ =?utf-8?B?d0pVK1M1UnBxY3hvNDZhL2lPTVc4dVJFWkVGdG5wZWNXWHBvbmFVMkJCWmg0?=
+ =?utf-8?B?OTlMZkRnSklQNWZhejNpd0JTaW5DenZkUEszb3ZLU0NpUWEzcWJVTUZLMU1O?=
+ =?utf-8?B?K3hPdDBrZ0t2QTNpMjIyRVFMR1AwSmlWQzJKY0ZnV2Z0ai92WkloZlgrL3Yy?=
+ =?utf-8?B?OEgxK2pkajN4WFFlMVczSzk3b3NiQzZFcU5OY1h6ZDlNL2QzdjhHWVZFSkIz?=
+ =?utf-8?B?S052Mzl4dkJncE5GTmV6dERNOGRpem9BMGl5NDNmOEZUSWtxL01lbDluc1ZN?=
+ =?utf-8?B?dlRQUnpKNXAvbXZRTjBncXNjbTlOUW9Vd2VWb0ZIWVRMaFV4VTNsRWs4cnJo?=
+ =?utf-8?B?OEtLT0Fka05IREQ5d3ZCRmNxV2hFTjRlVVdwcm5IM1ZkRDI5dUlyT0NJYWVj?=
+ =?utf-8?B?UU5CU3Y4RkNkc0ZGQzVlWEI4NUlqSndXK1JCTkY4UmNqTmRMTXlhTVcxbkNR?=
+ =?utf-8?B?VnFqMXlOS0JOVEM1SnBiWDE1ODFNMi9keFA0Wk45cm1USUpqUlJHQ0xjeUZw?=
+ =?utf-8?B?OGtaUkpmY3FBalQ1ZVRtWWtNWmlIRDc5UisvSmE3Z0c2alU5M3prK1FnYStU?=
+ =?utf-8?B?OWxvOUJwSWlVdHRCRmRPRlpDUndCMTdsZm85K0lkcXpXZDZSTk5mSkFiSlRx?=
+ =?utf-8?B?Y0lwZjhnMmcxYjFKdElJS0xFTzdzN2pIWGtxZWpoREkxU1YxOTRWM2x5RXVK?=
+ =?utf-8?B?TEdiOVhXcVcrT0hYQ1lEY2t2QjVhR2thOVB1VmRJcFAzNm44eFZnUm1FMkRR?=
+ =?utf-8?B?N3M4a0FLMGw2aEowRll1K2EvaGo5WjkvV0hKTFE5aEVYN2RZU0JuQkdFVG5J?=
+ =?utf-8?B?WEpCTzBGK3Frc3UrVlJKZmhON3FnaE1xeHBxKy9wb1VTazdBVXkrOUwvYTJV?=
+ =?utf-8?B?RjRoT3d4aDkxK1ZvdXFTblBXS00rT2JjeG9uamY4OXA4bHFHNGVWQ0lxY2F2?=
+ =?utf-8?B?YW1QeGJ6RUlCbk5ETitFMG9wSExuUU5JRW1pTkc5YTZ6amdYQXR4TlUycHg0?=
+ =?utf-8?B?OVE3cktNRkJFOHdrME9YYmR6YURaNmtjYnY5Qk80RDdacUxGNTcyeWZJWUZY?=
+ =?utf-8?B?dVpUZm53bzVKRzc3QjdBZ3JqYTNLSXo4b2hLMGhaZU8wNUppbWZ6TE8yZVc4?=
+ =?utf-8?B?NkU5L3VoNUNJNDRHRVhxclBYRkxtR3lkeW5ZMktha0tCMzRFSGRkKy9TdG1k?=
+ =?utf-8?B?Yk43UmcxSjMxaGh2aUd3VmY4REtSN2RZQy9IVm84UmxVdGp1SmwwMFJMcHZF?=
+ =?utf-8?B?RUJZNHNtM3ZZdVk3djMvQT09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RW96QmRGdkJqODZjczNUWUExN0M5RmdjenlFVEhNNkpvZklWZDlCZnBncEFo?=
+ =?utf-8?B?cnVBRmRXbDlDQ0N1bUtZTVhCZ1prdlpvRVVzMWI5eTVJbzJjMERxeVk4dC92?=
+ =?utf-8?B?OERuQ0JSMVBEN2IwVTM3cGlQVTIwSEh1cC9aOWdOcDV5TWY2czNIMUFrTWsx?=
+ =?utf-8?B?Y1pLZmRXVVBTQXlIZFNaZVFXTTNyeGxiWHpFbElqRE1aV0I5YUNEWll1aXRn?=
+ =?utf-8?B?NHAyeVJGaGFrd21PUDBkTFA5UTZuNFZmNTFxTnN6OU5DYitWaUxuQmprbTBE?=
+ =?utf-8?B?SFFmT25ZdHM0MGtvbm1rTFRvd2RVUmRvbE50aGwvOW92RFQrUG1IbmtNS2Jz?=
+ =?utf-8?B?dTVYMGNRa1J0OWQyTFlDUnVWUGUyZVRKTDg2dUFkVmZOU2JJMDlYbmpLdVZK?=
+ =?utf-8?B?bm4xYjZaNjFRS3Q3OFlKeFlsOVI2R0I3RkZhYUNqMFFKcWkweTFYb0s1cTBM?=
+ =?utf-8?B?UEEydUpjRFNUMHhaWnEvbjV4dk9qZWpJMCs4WUNLdUErL1ZBVmZFU3VyblNF?=
+ =?utf-8?B?TGJvNjdjWi9ncXl3akZvNXd6Vi85d0gvZG5RdzJIZmFSU1g4dEtqd283Nkcv?=
+ =?utf-8?B?STN5MzhLVzc3M2c0a2RNOFdIc2xLTXZBN2I1SURvSWNWTVc0SFhqckFsV3lz?=
+ =?utf-8?B?bFR2S0JwcHpXQ2Q4K3llSWZVT25hTStwbE55LzhFY2xuWmc5ekZoWlpScGEr?=
+ =?utf-8?B?a1FDTjNoaytjbERGOHJFR1RrZTVTQjBrZ2J4d1ZDZDZEUUkvcDlXZnNMSnpV?=
+ =?utf-8?B?Q0kyL2Q4U0I0ekxWUzFSb2xsQ0Q3Um9jUStVTS8xajE5RjdOeHhVeUg5Y0VG?=
+ =?utf-8?B?ODk1NFJMNlh0eDRONUNvOERGdmwyeE8zaGJINU5rV0xOcEJCU1FqVTlnQVI3?=
+ =?utf-8?B?bmpya3hOd0oraGRGaWxFZnRkTnlMVEwwbVVRV0Y2dU5haEVEZkhtYU40amN2?=
+ =?utf-8?B?TVgvRkZTVzd4cHBzL2FvUFlPVlJaUjM5a1pJUHNSSHZpYkhxbGtvcUVxVlF5?=
+ =?utf-8?B?Nm1FSkZuOEFzTTYxWjdaZTVUQ00zSVZKYTdPUHdJc2d0MUN6b3lkRkVmb1BT?=
+ =?utf-8?B?bGRFT1o4WlJmaktzRlNURmRWYnVYQnkvNUVVUHhFcmpHNEVFVVhBRjE3WURE?=
+ =?utf-8?B?V0kzSkNWakRCZmN4SHo5Y0d1RDRjRzJNRExseHNiemJ6RUxQWE8xTGJJVUlr?=
+ =?utf-8?B?ajAvRng4L1QzalNremdGZzNpTXNBVmFEc09TZEVnTjlrR1ZDaUFZMXhaVmdt?=
+ =?utf-8?B?QkR3Rk1WRllVZEtkdklHS0t2M0hGSjRTZFJYSmFocmVXNk11N0FXaHMxYUFV?=
+ =?utf-8?B?N0k5TW94ZFIxWkg2L1UzWGJOSm45eHZmTVVKU1BPTW5hcGFidG1XaDJ2Qytp?=
+ =?utf-8?B?RldMcmdwVUhRQUFSVmZERVlrYWFOMzQ4bHlQb2RwR1ppRHR3UXlmZ0JmN1NB?=
+ =?utf-8?B?QTg3ZmJPVUFwVERyaHNkN3BTK3M1ZGZrTXVYTWU5UzBmUExyOWdsQ0J5dFla?=
+ =?utf-8?B?cFBZYXpmNXV1bGI3QldsRHNqWVRsL054UExkTFY0MXlIcVF6M0htZGU3Sk40?=
+ =?utf-8?B?U21kS2NJVnhLZFlJZkpaRzJRazhoQ2FIT1hvbmR1ZTVlallnRnVTeUxUV29j?=
+ =?utf-8?B?ckRwL2VncldSaEdMT0ZoMktQLy9lMXhBR2VQUzM1Z0pUeGFXOHQ2TytmS0RO?=
+ =?utf-8?B?MklIQmJEQmtUOFZxR1ZEZ1hVS3JQQjJiU3BuTnNrdTBFcUNJVFppTTNKQXU0?=
+ =?utf-8?B?c05tYjc2MnZPRGwzTWhCcFZWS0puaDljQ1NqeGx6RXVWTHJPM0NUeXZyOGxL?=
+ =?utf-8?B?Mm5jWEJsdmlRcmE2aGlhaUcrOTJvTGFNay9iMm1oTjJLU3pWeHQ3ZHNZMVNF?=
+ =?utf-8?B?NXBid2E0Z1Z5d1lFZTFVck1OdGJJemMrcVBqR0NNY21qY2ozZHRBMENBV1JM?=
+ =?utf-8?B?SVJ4WCs3cjY1ODVOWUZuenorNElJaFpGNWM0YmVJSGZlSkZrT1YyaG5XOEJq?=
+ =?utf-8?B?WW9Va2VFSzRCOXovUUQ5NmhiZ01WdnBUYkppN20zdUdka0diMytuNUQ4OXFp?=
+ =?utf-8?B?clFObVhMMTlkN25mUXdMUXRqSnhTNXpiNDEvQnBZMWs4TWJkb2NRZWpvMHlE?=
+ =?utf-8?B?MWRpa0wrc2I0TldwNkI2WjlpTVI0dFk3M2NEMHhPUVhNaUhFNVZXQ1h5WmNp?=
+ =?utf-8?B?Rnc9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d9a38005-0538-49f5-ba3b-08dd19b8fa36
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2024 07:54:02.1989
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fjo5tdnWTFDTCCgUOSZ2TCqv43oocF9QK0r0Li5GY0oJfrnT+NR7uERI9gbGVNuJiMS8HMNkw1JQkemYgAHgxTIfwsjFOSwS/ApKLSTLmWI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7982
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241210_224812_963778_EC65A392 
-X-CRM114-Status: GOOD (  24.05  )
+X-CRM114-CacheID: sfid-20241210_235416_229836_7D74C0E4 
+X-CRM114-Status: GOOD (  22.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,1267 +179,655 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Hi Jerome,
+    Thanks for your reply.
 
-Add a new pinctrl driver for Amlogic SoCs. All future Amlogic
-SoCs pinctrl drives use this, such A4, A5, S6, S7 etc. To support
-new Amlogic SoCs, only need to add the corresponding dts file.
+On 2024/11/26 00:51, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> On Wed 20 Nov 2024 at 15:01, Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
+> 
+>> From: Chuan Liu <chuan.liu@amlogic.com>
+>>
+>> Add the PLL clock controller driver for the Amlogic A5 SoC family.
+>>
+>> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> ---
+>>   drivers/clk/meson/Kconfig  |  14 ++
+>>   drivers/clk/meson/Makefile |   1 +
+>>   drivers/clk/meson/a5-pll.c | 543 +++++++++++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 558 insertions(+)
+>>
+>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>> index 78f648c9c97d..3c97b3a1649d 100644
+>> --- a/drivers/clk/meson/Kconfig
+>> +++ b/drivers/clk/meson/Kconfig
+>> @@ -132,6 +132,20 @@ config COMMON_CLK_A1_PERIPHERALS
+>>          device, A1 SoC Family. Say Y if you want A1 Peripherals clock
+>>          controller to work.
+>>
+>> +config COMMON_CLK_A5_PLL
+>> +     tristate "Amlogic A5 PLL clock controller"
+>> +     depends on ARM64
+>> +     default y
+>> +     imply COMMON_CLK_SCMI
+>> +     select COMMON_CLK_MESON_REGMAP
+>> +     select COMMON_CLK_MESON_PLL
+>> +     select COMMON_CLK_MESON_MPLL
+>> +     select COMMON_CLK_MESON_CLKC_UTILS
+>> +     help
+>> +       Support for the PLL clock controller on Amlogic AV40x device, AKA A5.
+> 
+> What is an AV40x ? if it is a SoC that's alright.
+> If it is a board, then it is not Ok. The driver does not support a
+> single board, does it ?
+> 
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- drivers/pinctrl/Kconfig           |   18 +
- drivers/pinctrl/Makefile          |    1 +
- drivers/pinctrl/pinctrl-amlogic.c | 1190 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 1209 insertions(+)
+It is a board, Will modify.
 
-diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-index 354536de564b..41bd85aa433d 100644
---- a/drivers/pinctrl/Kconfig
-+++ b/drivers/pinctrl/Kconfig
-@@ -49,6 +49,24 @@ config PINCTRL_AMD
- 	  Requires ACPI/FDT device enumeration code to set up a platform
- 	  device.
- 
-+config PINCTRL_AMLOGIC
-+	bool "AMLOGIC pincontrol"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	depends on OF
-+	default y
-+	select PINMUX
-+	select PINCONF
-+	select GENERIC_PINCONF
-+	select GPIOLIB
-+	select OF_GPIO
-+	select REGMAP_MMIO
-+	help
-+	  This is the driver for the pin controller found on Amlogic SoCs.
-+
-+	  This driver is simplify subsequent support for new amlogic SoCs,
-+	  to support new Amlogic SoCs, only need to add the corresponding dts file,
-+	  no additional binding header files or C file are added.
-+
- config PINCTRL_APPLE_GPIO
- 	tristate "Apple SoC GPIO pin controller driver"
- 	depends on ARCH_APPLE
-diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
-index 97823f52b972..f24c0b92a462 100644
---- a/drivers/pinctrl/Makefile
-+++ b/drivers/pinctrl/Makefile
-@@ -10,6 +10,7 @@ obj-$(CONFIG_GENERIC_PINCONF)	+= pinconf-generic.o
- obj-$(CONFIG_OF)		+= devicetree.o
- 
- obj-$(CONFIG_PINCTRL_AMD)	+= pinctrl-amd.o
-+obj-$(CONFIG_PINCTRL_AMLOGIC) 	+= pinctrl-amlogic.o
- obj-$(CONFIG_PINCTRL_APPLE_GPIO) += pinctrl-apple-gpio.o
- obj-$(CONFIG_PINCTRL_ARTPEC6)	+= pinctrl-artpec6.o
- obj-$(CONFIG_PINCTRL_AS3722)	+= pinctrl-as3722.o
-diff --git a/drivers/pinctrl/pinctrl-amlogic.c b/drivers/pinctrl/pinctrl-amlogic.c
-new file mode 100644
-index 000000000000..61351b0d8fb0
---- /dev/null
-+++ b/drivers/pinctrl/pinctrl-amlogic.c
-@@ -0,0 +1,1190 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/init.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/seq_file.h>
-+#include <linux/slab.h>
-+#include <linux/string_helpers.h>
-+
-+#include <linux/pinctrl/consumer.h>
-+#include <linux/pinctrl/pinconf.h>
-+#include <linux/pinctrl/pinctrl.h>
-+#include <linux/pinctrl/pinmux.h>
-+#include <dt-bindings/pinctrl/amlogic,pinctrl.h>
-+
-+#include "core.h"
-+#include "pinconf.h"
-+
-+#define gpio_chip_to_bank(chip) \
-+		container_of(chip, struct aml_gpio_bank, gpio_chip)
-+/**
-+ * enum aml_reg_type - type of registers encoded in @aml_reg_desc
-+ */
-+enum aml_reg_type {
-+	REG_PULLEN,
-+	REG_PULL,
-+	REG_DIR,
-+	REG_OUT,
-+	REG_IN,
-+	REG_DS,
-+	NUM_REG,
-+};
-+
-+static const unsigned int aml_bit_strides[NUM_REG] = {
-+	1, 1, 1, 1, 1, 2
-+};
-+
-+static const unsigned int aml_reg_type_offset[NUM_REG] = {
-+	3, 4, 2, 1, 0, 7
-+};
-+
-+enum aml_pinconf_drv {
-+	PINCONF_DRV_500UA,
-+	PINCONF_DRV_2500UA,
-+	PINCONF_DRV_3000UA,
-+	PINCONF_DRV_4000UA,
-+};
-+
-+struct aml_pio_control {
-+	int reg_mux_offset;
-+	int bit_mux_offset;
-+	int reg_gpio_offset;
-+	int reg_offset[NUM_REG];
-+};
-+
-+struct aml_pctl_data {
-+};
-+
-+struct aml_pinconf {
-+	int		pin;
-+	int		altfunc;
-+};
-+
-+struct aml_pmx_func {
-+	const char	*name;
-+	const char	**groups;
-+	unsigned int	ngroups;
-+};
-+
-+struct aml_pctl_group {
-+	const char		*name;
-+	unsigned short		npins;
-+	unsigned int		*pins;
-+	struct aml_pinconf	*pin_conf;
-+	unsigned long           *configs;
-+	unsigned int            num_configs;
-+};
-+
-+struct aml_gpio_bank {
-+	struct gpio_chip		gpio_chip;
-+	struct aml_pio_control		pc;
-+	unsigned int                    bank_idx;
-+	unsigned int			pin_base;
-+};
-+
-+struct aml_pinctrl {
-+	struct device			*dev;
-+	struct pinctrl_dev		*pctl;
-+	struct aml_gpio_bank		*banks;
-+	int				nbanks;
-+	struct aml_pmx_func		*functions;
-+	int				nfunctions;
-+	struct aml_pctl_group		*groups;
-+	int				ngroups;
-+
-+	struct regmap			*reg_mux;
-+	struct regmap			*reg_gpio;
-+	struct regmap			*reg_pullen;
-+	struct regmap			*reg_pull;
-+	struct regmap			*reg_ds;
-+	const struct aml_pctl_data	*data;
-+};
-+
-+static int aml_pmx_calc_reg_and_offset(struct pinctrl_gpio_range *range,
-+				       unsigned int pin, unsigned int *reg,
-+				       unsigned int *offset)
-+{
-+	struct aml_gpio_bank *bank = gpio_chip_to_bank(range->gc);
-+	unsigned int shift;
-+
-+	shift = ((pin - range->pin_base) << 2) + bank->pc.bit_mux_offset;
-+	*reg = (bank->pc.reg_mux_offset + (shift / 32)) * 4;
-+	*offset = shift % 32;
-+
-+	return 0;
-+}
-+
-+static int aml_pctl_set_function(struct aml_pinctrl *info,
-+				 struct pinctrl_gpio_range *range,
-+				 int pin_id, int func)
-+{
-+	int reg;
-+	int offset;
-+
-+	aml_pmx_calc_reg_and_offset(range, pin_id, &reg, &offset);
-+	return regmap_update_bits(info->reg_mux, reg,
-+			0xf << offset, (func & 0xf) << offset);
-+}
-+
-+static int aml_pmx_get_funcs_count(struct pinctrl_dev *pctldev)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return info->nfunctions;
-+}
-+
-+static const char *aml_pmx_get_fname(struct pinctrl_dev *pctldev,
-+				     unsigned int selector)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return info->functions[selector].name;
-+}
-+
-+static int aml_pmx_get_groups(struct pinctrl_dev *pctldev,
-+			      unsigned int selector,
-+			      const char * const **grps,
-+			      unsigned * const ngrps)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	*grps = info->functions[selector].groups;
-+	*ngrps = info->functions[selector].ngroups;
-+
-+	return 0;
-+}
-+
-+static int aml_pmx_set_mux(struct pinctrl_dev *pctldev, unsigned int fselector,
-+			   unsigned int group)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
-+	struct aml_pinconf *conf = info->groups[group].pin_conf;
-+	struct pinctrl_gpio_range *range;
-+	int i;
-+
-+	for (i = 0; i < info->groups[group].npins; i++) {
-+		range =  pinctrl_find_gpio_range_from_pin(pctldev, conf[i].pin);
-+		aml_pctl_set_function(info, range, conf[i].pin, conf[i].altfunc);
-+	}
-+
-+	return 0;
-+}
-+
-+static int aml_pmx_request_gpio(struct pinctrl_dev *pctldev,
-+				struct pinctrl_gpio_range *range,
-+				unsigned int pin)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return aml_pctl_set_function(info, range, pin, 0);
-+}
-+
-+static const struct pinmux_ops aml_pmx_ops = {
-+	.set_mux		= aml_pmx_set_mux,
-+	.get_functions_count	= aml_pmx_get_funcs_count,
-+	.get_function_name	= aml_pmx_get_fname,
-+	.get_function_groups	= aml_pmx_get_groups,
-+	.gpio_request_enable	= aml_pmx_request_gpio,
-+};
-+
-+static int aml_calc_reg_and_bit(struct pinctrl_dev *pctldev,
-+				unsigned int pin,
-+				enum aml_reg_type reg_type,
-+				unsigned int *reg, unsigned int *bit)
-+{
-+	struct pinctrl_gpio_range *range =
-+			 pinctrl_find_gpio_range_from_pin(pctldev, pin);
-+	struct aml_gpio_bank *bank = gpio_chip_to_bank(range->gc);
-+
-+	*bit = (pin - range->pin_base) * aml_bit_strides[reg_type];
-+	*reg = (bank->pc.reg_offset[reg_type] + (*bit / 32)) * 4;
-+	*bit &= 0x1f;
-+
-+	return 0;
-+}
-+
-+static int aml_pinconf_get_pull(struct aml_pinctrl *info, unsigned int pin)
-+{
-+	unsigned int reg, bit, val;
-+	int ret, conf;
-+
-+	aml_calc_reg_and_bit(info->pctl, pin, REG_PULLEN, &reg, &bit);
-+
-+	ret = regmap_read(info->reg_pullen, reg, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (!(val & BIT(bit))) {
-+		conf = PIN_CONFIG_BIAS_DISABLE;
-+	} else {
-+		aml_calc_reg_and_bit(info->pctl, pin, REG_PULL, &reg, &bit);
-+
-+		ret = regmap_read(info->reg_pull, reg, &val);
-+		if (ret)
-+			return ret;
-+
-+		if (val & BIT(bit))
-+			conf = PIN_CONFIG_BIAS_PULL_UP;
-+		else
-+			conf = PIN_CONFIG_BIAS_PULL_DOWN;
-+	}
-+
-+	return conf;
-+}
-+
-+static int aml_pinconf_get_drive_strength(struct aml_pinctrl *info,
-+					  unsigned int pin,
-+					  u16 *drive_strength_ua)
-+{
-+	unsigned int reg, bit;
-+	unsigned int val;
-+	int ret;
-+
-+	if (!info->reg_ds)
-+		return -EOPNOTSUPP;
-+
-+	aml_calc_reg_and_bit(info->pctl, pin, REG_DS, &reg, &bit);
-+	ret = regmap_read(info->reg_ds, reg, &val);
-+	if (ret)
-+		return ret;
-+
-+	switch ((val >> bit) & 0x3) {
-+	case PINCONF_DRV_500UA:
-+		*drive_strength_ua = 500;
-+		break;
-+	case PINCONF_DRV_2500UA:
-+		*drive_strength_ua = 2500;
-+		break;
-+	case PINCONF_DRV_3000UA:
-+		*drive_strength_ua = 3000;
-+		break;
-+	case PINCONF_DRV_4000UA:
-+		*drive_strength_ua = 4000;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int aml_pinconf_get_gpio_bit(struct aml_pinctrl *info,
-+				    unsigned int pin,
-+				    unsigned int reg_type)
-+{
-+	unsigned int reg, bit, val;
-+	int ret;
-+
-+	aml_calc_reg_and_bit(info->pctl, pin, reg_type, &reg, &bit);
-+	ret = regmap_read(info->reg_gpio, reg, &val);
-+	if (ret)
-+		return ret;
-+
-+	return BIT(bit) & val ? 1 : 0;
-+}
-+
-+static int aml_pinconf_get_output(struct aml_pinctrl *info,
-+				  unsigned int pin)
-+{
-+	int ret = aml_pinconf_get_gpio_bit(info, pin, REG_DIR);
-+
-+	if (ret < 0)
-+		return ret;
-+
-+	return !ret;
-+}
-+
-+static int aml_pinconf_get_drive(struct aml_pinctrl *info,
-+				 unsigned int pin)
-+{
-+	return aml_pinconf_get_gpio_bit(info, pin, REG_OUT);
-+}
-+
-+static int aml_pinconf_get(struct pinctrl_dev *pcdev, unsigned int pin,
-+			   unsigned long *config)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pcdev);
-+	enum pin_config_param param = pinconf_to_config_param(*config);
-+	u16 arg;
-+	int ret;
-+
-+	switch (param) {
-+	case PIN_CONFIG_BIAS_DISABLE:
-+	case PIN_CONFIG_BIAS_PULL_DOWN:
-+	case PIN_CONFIG_BIAS_PULL_UP:
-+		if (aml_pinconf_get_pull(info, pin) == param)
-+			arg = 1;
-+		else
-+			return -EINVAL;
-+		break;
-+	case PIN_CONFIG_DRIVE_STRENGTH_UA:
-+		ret = aml_pinconf_get_drive_strength(info, pin, &arg);
-+		if (ret)
-+			return ret;
-+		break;
-+	case PIN_CONFIG_OUTPUT_ENABLE:
-+		ret = aml_pinconf_get_output(info, pin);
-+		if (ret <= 0)
-+			return -EINVAL;
-+		arg = 1;
-+		break;
-+	case PIN_CONFIG_OUTPUT:
-+		ret = aml_pinconf_get_output(info, pin);
-+		if (ret <= 0)
-+			return -EINVAL;
-+
-+		ret = aml_pinconf_get_drive(info, pin);
-+		if (ret < 0)
-+			return -EINVAL;
-+
-+		arg = ret;
-+		break;
-+
-+	default:
-+		return -ENOTSUPP;
-+	}
-+
-+	*config = pinconf_to_config_packed(param, arg);
-+	dev_dbg(info->dev, "pinconf for pin %u is %lu\n", pin, *config);
-+
-+	return 0;
-+}
-+
-+static int aml_pinconf_disable_bias(struct aml_pinctrl *info,
-+				    unsigned int pin)
-+{
-+	unsigned int reg, bit = 0;
-+
-+	aml_calc_reg_and_bit(info->pctl, pin, REG_PULLEN, &reg, &bit);
-+
-+	return regmap_update_bits(info->reg_pullen, reg, BIT(bit), 0);
-+}
-+
-+static int aml_pinconf_enable_bias(struct aml_pinctrl *info, unsigned int pin,
-+				   bool pull_up)
-+{
-+	unsigned int reg, bit, val = 0;
-+	int ret;
-+
-+	aml_calc_reg_and_bit(info->pctl, pin, REG_PULL, &reg, &bit);
-+	if (pull_up)
-+		val = BIT(bit);
-+
-+	ret = regmap_update_bits(info->reg_pull, reg, BIT(bit), val);
-+	if (ret)
-+		return ret;
-+
-+	aml_calc_reg_and_bit(info->pctl, pin, REG_PULLEN, &reg, &bit);
-+	return regmap_update_bits(info->reg_pullen, reg, BIT(bit), BIT(bit));
-+}
-+
-+static int aml_pinconf_set_drive_strength(struct aml_pinctrl *info,
-+					  unsigned int pin,
-+					  u16 drive_strength_ua)
-+{
-+	unsigned int reg, bit, ds_val;
-+
-+	if (!info->reg_ds) {
-+		dev_err(info->dev, "drive-strength not supported\n");
-+		return -EOPNOTSUPP;
-+	}
-+
-+	aml_calc_reg_and_bit(info->pctl, pin, REG_DS, &reg, &bit);
-+
-+	if (drive_strength_ua <= 500) {
-+		ds_val = PINCONF_DRV_500UA;
-+	} else if (drive_strength_ua <= 2500) {
-+		ds_val = PINCONF_DRV_2500UA;
-+	} else if (drive_strength_ua <= 3000) {
-+		ds_val = PINCONF_DRV_3000UA;
-+	} else if (drive_strength_ua <= 4000) {
-+		ds_val = PINCONF_DRV_4000UA;
-+	} else {
-+		dev_warn_once(info->dev,
-+			      "pin %u: invalid drive-strength : %d , default to 4mA\n",
-+			      pin, drive_strength_ua);
-+		ds_val = PINCONF_DRV_4000UA;
-+	}
-+
-+	return regmap_update_bits(info->reg_ds, reg, 0x3 << bit, ds_val << bit);
-+}
-+
-+static int aml_pinconf_set_gpio_bit(struct aml_pinctrl *info,
-+				    unsigned int pin,
-+				    unsigned int reg_type,
-+				    bool arg)
-+{
-+	unsigned int reg, bit;
-+
-+	aml_calc_reg_and_bit(info->pctl, pin, reg_type, &reg, &bit);
-+	return regmap_update_bits(info->reg_gpio, reg, BIT(bit),
-+				  arg ? BIT(bit) : 0);
-+}
-+
-+static int aml_pinconf_set_output(struct aml_pinctrl *info,
-+				  unsigned int pin,
-+				  bool out)
-+{
-+	return aml_pinconf_set_gpio_bit(info, pin, REG_DIR, !out);
-+}
-+
-+static int aml_pinconf_set_drive(struct aml_pinctrl *info,
-+				 unsigned int pin,
-+				 bool high)
-+{
-+	return aml_pinconf_set_gpio_bit(info, pin, REG_OUT, high);
-+}
-+
-+static int aml_pinconf_set_output_drive(struct aml_pinctrl *info,
-+					unsigned int pin,
-+					bool high)
-+{
-+	int ret;
-+
-+	ret = aml_pinconf_set_output(info, pin, true);
-+	if (ret)
-+		return ret;
-+
-+	return aml_pinconf_set_drive(info, pin, high);
-+}
-+
-+static int aml_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
-+			   unsigned long *configs, unsigned int num_configs)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pcdev);
-+	enum pin_config_param param;
-+	unsigned int arg = 0;
-+	int i, ret;
-+
-+	for (i = 0; i < num_configs; i++) {
-+		param = pinconf_to_config_param(configs[i]);
-+
-+		switch (param) {
-+		case PIN_CONFIG_DRIVE_STRENGTH_UA:
-+		case PIN_CONFIG_OUTPUT_ENABLE:
-+		case PIN_CONFIG_OUTPUT:
-+			arg = pinconf_to_config_argument(configs[i]);
-+			break;
-+
-+		default:
-+			break;
-+		}
-+
-+		switch (param) {
-+		case PIN_CONFIG_BIAS_DISABLE:
-+			ret = aml_pinconf_disable_bias(info, pin);
-+			break;
-+		case PIN_CONFIG_BIAS_PULL_UP:
-+			ret = aml_pinconf_enable_bias(info, pin, true);
-+			break;
-+		case PIN_CONFIG_BIAS_PULL_DOWN:
-+			ret = aml_pinconf_enable_bias(info, pin, false);
-+			break;
-+		case PIN_CONFIG_DRIVE_STRENGTH_UA:
-+			ret = aml_pinconf_set_drive_strength(info, pin, arg);
-+			break;
-+		case PIN_CONFIG_OUTPUT_ENABLE:
-+			ret = aml_pinconf_set_output(info, pin, arg);
-+			break;
-+		case PIN_CONFIG_OUTPUT:
-+			ret = aml_pinconf_set_output_drive(info, pin, arg);
-+			break;
-+		default:
-+			ret = -ENOTSUPP;
-+		}
-+
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int aml_pinconf_group_set(struct pinctrl_dev *pcdev,
-+				 unsigned int num_group,
-+				 unsigned long *configs,
-+				 unsigned int num_configs)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pcdev);
-+	int i;
-+
-+	for (i = 0; i < info->groups[num_group].npins; i++) {
-+		aml_pinconf_set(pcdev, info->groups[num_group].pins[i], configs,
-+				num_configs);
-+	}
-+
-+	return 0;
-+}
-+
-+static int aml_pinconf_group_get(struct pinctrl_dev *pcdev,
-+				 unsigned int group, unsigned long *config)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static const struct pinconf_ops aml_pinconf_ops = {
-+	.pin_config_get		= aml_pinconf_get,
-+	.pin_config_set		= aml_pinconf_set,
-+	.pin_config_group_get	= aml_pinconf_group_get,
-+	.pin_config_group_set	= aml_pinconf_group_set,
-+	.is_generic		= true,
-+};
-+
-+static int aml_get_groups_count(struct pinctrl_dev *pctldev)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return info->ngroups;
-+}
-+
-+static const char *aml_get_group_name(struct pinctrl_dev *pctldev,
-+				      unsigned int selector)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return info->groups[selector].name;
-+}
-+
-+static int aml_get_group_pins(struct pinctrl_dev *pctldev,
-+			      unsigned int selector, const unsigned int **pins,
-+			      unsigned int *npins)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	if (selector >= info->ngroups)
-+		return -EINVAL;
-+
-+	*pins = info->groups[selector].pins;
-+	*npins = info->groups[selector].npins;
-+
-+	return 0;
-+}
-+
-+static inline const struct aml_pctl_group *
-+	aml_pctl_find_group_by_name(const struct aml_pinctrl *info,
-+				    const char *name)
-+{
-+	int i;
-+
-+	for (i = 0; i < info->ngroups; i++) {
-+		if (!strcmp(info->groups[i].name, name))
-+			return &info->groups[i];
-+	}
-+
-+	return NULL;
-+}
-+
-+static int aml_dt_node_to_map(struct pinctrl_dev *pctldev,
-+			      struct device_node *np,
-+			      struct pinctrl_map **map,
-+			      unsigned int *num_maps)
-+{
-+	struct aml_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
-+	const struct aml_pctl_group *grp;
-+	struct device *dev = info->dev;
-+	struct pinctrl_map *new_map;
-+	struct device_node *parent;
-+	int map_num, i;
-+
-+	grp = aml_pctl_find_group_by_name(info, np->name);
-+	if (!grp) {
-+		dev_err(dev, "unable to find group for node %pOFn\n", np);
-+		return -EINVAL;
-+	}
-+
-+	if (grp->num_configs)
-+		map_num = grp->npins + 1;
-+	else
-+		map_num = 1;
-+	new_map = devm_kcalloc(dev, map_num, sizeof(*new_map), GFP_KERNEL);
-+	if (!new_map)
-+		return -ENOMEM;
-+
-+	parent = of_get_parent(np);
-+	if (!parent) {
-+		devm_kfree(dev, new_map);
-+		return -EINVAL;
-+	}
-+
-+	*map = new_map;
-+	*num_maps = map_num;
-+	new_map[0].type = PIN_MAP_TYPE_MUX_GROUP;
-+	new_map[0].data.mux.function = parent->name;
-+	new_map[0].data.mux.group = np->name;
-+	of_node_put(parent);
-+
-+	if (grp->num_configs) {
-+		new_map++;
-+		for (i = 0; i < grp->npins; i++) {
-+			new_map[i].type = PIN_MAP_TYPE_CONFIGS_PIN;
-+			new_map[i].data.configs.group_or_pin =
-+				pin_get_name(pctldev, grp->pins[i]);
-+			new_map[i].data.configs.configs = grp->configs;
-+			new_map[i].data.configs.num_configs = grp->num_configs;
-+		}
-+	}
-+
-+	dev_info(dev, "maps: function %s group %s num %d\n",
-+		 (*map)->data.mux.function, grp->name, map_num);
-+
-+	return 0;
-+}
-+
-+static void aml_dt_free_map(struct pinctrl_dev *pctldev,
-+			    struct pinctrl_map *map, unsigned int num_maps)
-+{
-+}
-+
-+static void aml_pin_dbg_show(struct pinctrl_dev *pcdev, struct seq_file *s,
-+			     unsigned int offset)
-+{
-+	seq_printf(s, " %s", dev_name(pcdev->dev));
-+}
-+
-+static const struct pinctrl_ops aml_pctrl_ops = {
-+	.get_groups_count	= aml_get_groups_count,
-+	.get_group_name		= aml_get_group_name,
-+	.get_group_pins		= aml_get_group_pins,
-+	.dt_node_to_map		= aml_dt_node_to_map,
-+	.dt_free_map		= aml_dt_free_map,
-+	.pin_dbg_show		= aml_pin_dbg_show,
-+};
-+
-+static int aml_pctl_dt_calculate_pin(struct aml_pinctrl *info,
-+				     unsigned int bank_idx, unsigned int offset)
-+{
-+	struct aml_gpio_bank *bank;
-+	int retval = -EINVAL;
-+	int i;
-+
-+	for (i = 0; i < info->nbanks; i++) {
-+		bank = &info->banks[i];
-+		if (bank->bank_idx == bank_idx) {
-+			if (offset < bank->gpio_chip.ngpio)
-+				retval = bank->pin_base + offset;
-+			break;
-+		}
-+	}
-+	if (retval == -EINVAL)
-+		dev_err(info->dev, "pin [bank:%d, offset:%d] is not present\n", bank_idx, offset);
-+
-+	return retval;
-+}
-+
-+static int aml_pctl_dt_parse_groups(struct device_node *np,
-+				    struct aml_pctl_group *grp,
-+				    struct aml_pinctrl *info, int idx)
-+{
-+	struct device *dev = info->dev;
-+	struct aml_pinconf *conf;
-+	struct property *of_pins;
-+	unsigned int bank_idx;
-+	unsigned int offset, npins;
-+	int i = 0;
-+	int ret;
-+
-+	of_pins = of_find_property(np, "pinmux", NULL);
-+	if (!of_pins) {
-+		dev_info(dev, "Missing pinmux property\n");
-+		return -ENOENT;
-+	}
-+
-+	npins = of_pins->length / sizeof(u32);
-+	grp->npins = npins;
-+	grp->name = np->name;
-+	grp->pins = devm_kcalloc(dev, npins, sizeof(*grp->pins), GFP_KERNEL);
-+	grp->pin_conf = devm_kcalloc(dev, npins, sizeof(*grp->pin_conf), GFP_KERNEL);
-+
-+	if (!grp->pins || !grp->pin_conf)
-+		return -ENOMEM;
-+
-+	ret = pinconf_generic_parse_dt_config(np, info->pctl, &grp->configs,
-+					      &grp->num_configs);
-+	if (ret < 0) {
-+		dev_err(dev, "%pOF: could not parse node property\n", np);
-+		return ret;
-+	}
-+
-+	for (i = 0; i < npins; i++) {
-+		u32 value;
-+
-+		ret = of_property_read_u32_index(np, "pinmux", i, &value);
-+		if (ret)
-+			return ret;
-+
-+		conf = &grp->pin_conf[i];
-+
-+		bank_idx = AML_PINMUX_TO_BANK(value);
-+		offset = AML_PINMUX_TO_OFFSET(value);
-+		conf->pin = aml_pctl_dt_calculate_pin(info, bank_idx, offset);
-+		if (conf->pin < 0)
-+			return dev_err_probe(dev, -EINVAL, "pinmux get pin failed\n");
-+		conf->altfunc = value & AML_PIN_ALT_FUNC_MASK;
-+
-+		grp->pins[i] = conf->pin;
-+	}
-+
-+	return 0;
-+}
-+
-+static int aml_pctl_parse_functions(struct device_node *np,
-+				    struct aml_pinctrl *info, u32 index,
-+				    int *grp_index)
-+{
-+	struct device *dev = info->dev;
-+	struct aml_pmx_func *func;
-+	struct aml_pctl_group *grp;
-+	int ret, i;
-+
-+	func = &info->functions[index];
-+	func->name = np->name;
-+	func->ngroups = of_get_child_count(np);
-+	if (func->ngroups == 0)
-+		return dev_err_probe(dev, -EINVAL, "No groups defined\n");
-+
-+	func->groups = devm_kcalloc(dev, func->ngroups, sizeof(*func->groups), GFP_KERNEL);
-+	if (!func->groups)
-+		return -ENOMEM;
-+
-+	i = 0;
-+	for_each_child_of_node_scoped(np, child) {
-+		func->groups[i] = child->name;
-+		grp = &info->groups[*grp_index];
-+		*grp_index += 1;
-+		ret = aml_pctl_dt_parse_groups(child, grp, info, i++);
-+		if (ret)
-+			return ret;
-+	}
-+	dev_info(dev, "Function[%d\t name:%s,\tgroups:%d]\n", index, func->name, func->ngroups);
-+
-+	return 0;
-+}
-+
-+static u32 aml_bank_pins(struct device_node *np)
-+{
-+	u32 value;
-+
-+	if (of_property_read_u32(np, "npins", &value) < 0)
-+		return 0;
-+	else
-+		return value;
-+}
-+
-+static u32 aml_bank_reg_gpio_offset(struct device_node *np)
-+{
-+	u32 value;
-+
-+	if (of_property_read_u32(np, "reg-gpio-offset", &value) < 0)
-+		return 0;
-+	else
-+		return value;
-+}
-+
-+static u32 aml_bank_reg_mux_offset(struct device_node *np)
-+{
-+	u32 value;
-+
-+	if (of_property_read_u32(np, "reg-mux-offset", &value) < 0)
-+		return 0;
-+	else
-+		return value;
-+}
-+
-+static u32 aml_bank_bit_mux_offset(struct device_node *np)
-+{
-+	u32 value;
-+
-+	if (of_property_read_u32(np, "bit-mux-offset", &value) < 0)
-+		return 0;
-+	else
-+		return value;
-+}
-+
-+static u32 aml_bank_index(struct device_node *np)
-+{
-+	u32 value;
-+
-+	if (of_property_read_u32(np, "bank-index", &value) < 0)
-+		return 0;
-+	else
-+		return value;
-+}
-+
-+static unsigned int aml_count_pins(struct device_node *np)
-+{
-+	struct device_node *child;
-+	unsigned int pins = 0;
-+
-+	for_each_child_of_node(np, child) {
-+		if (of_property_read_bool(child, "gpio-controller"))
-+			pins += aml_bank_pins(child);
-+	}
-+
-+	return pins;
-+}
-+
-+static void aml_pctl_dt_child_count(struct aml_pinctrl *info,
-+				    struct device_node *np)
-+{
-+	struct device_node *child;
-+
-+	for_each_child_of_node(np, child) {
-+		if (of_property_read_bool(child, "gpio-controller")) {
-+			info->nbanks++;
-+		} else {
-+			info->nfunctions++;
-+			info->ngroups += of_get_child_count(child);
-+		}
-+	}
-+}
-+
-+static struct regmap_config aml_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+};
-+
-+static struct regmap *aml_map_resource(struct aml_pinctrl *info,
-+				       struct device_node *node, char *name)
-+{
-+	struct resource res;
-+	void __iomem *base;
-+	int i;
-+
-+	i = of_property_match_string(node, "reg-names", name);
-+	if (of_address_to_resource(node, i, &res))
-+		return NULL;
-+
-+	base = devm_ioremap_resource(info->dev, &res);
-+	if (IS_ERR(base))
-+		return ERR_CAST(base);
-+
-+	aml_regmap_config.max_register = resource_size(&res) - 4;
-+	aml_regmap_config.name = devm_kasprintf(info->dev, GFP_KERNEL,
-+						"%pOFn-%s", node,
-+						name);
-+	if (!aml_regmap_config.name)
-+		return ERR_PTR(-ENOMEM);
-+
-+	return devm_regmap_init_mmio(info->dev, base, &aml_regmap_config);
-+}
-+
-+static inline int aml_gpio_calc_reg_and_bit(struct aml_gpio_bank *bank,
-+					    enum aml_reg_type reg_type,
-+					    unsigned int gpio,
-+					    unsigned int *reg,
-+					    unsigned int *bit)
-+{
-+	*bit = gpio * aml_bit_strides[reg_type];
-+	*reg = (bank->pc.reg_offset[reg_type] + (*bit / 32)) * 4;
-+	*bit &= 0x1f;
-+
-+	return 0;
-+}
-+
-+static int aml_gpio_get_direction(struct gpio_chip *chip, unsigned int gpio)
-+{
-+	struct aml_gpio_bank *bank = gpiochip_get_data(chip);
-+	struct aml_pinctrl *info = dev_get_drvdata(chip->parent);
-+	unsigned int bit, reg, val;
-+	int ret;
-+
-+	aml_gpio_calc_reg_and_bit(bank, REG_DIR, gpio, &reg, &bit);
-+
-+	ret = regmap_read(info->reg_gpio, reg, &val);
-+	if (ret)
-+		return ret;
-+
-+	return BIT(bit) & val ? GPIO_LINE_DIRECTION_OUT : GPIO_LINE_DIRECTION_IN;
-+}
-+
-+static int aml_gpio_direction_input(struct gpio_chip *chip, unsigned int gpio)
-+{
-+	struct aml_gpio_bank *bank = gpiochip_get_data(chip);
-+	struct aml_pinctrl *info = dev_get_drvdata(chip->parent);
-+	unsigned int bit, reg;
-+
-+	aml_gpio_calc_reg_and_bit(bank, REG_DIR, gpio, &reg, &bit);
-+
-+	return regmap_update_bits(info->reg_gpio, reg, BIT(bit), BIT(bit));
-+}
-+
-+static int aml_gpio_direction_output(struct gpio_chip *chip, unsigned int gpio,
-+				     int value)
-+{
-+	struct aml_gpio_bank *bank = gpiochip_get_data(chip);
-+	struct aml_pinctrl *info = dev_get_drvdata(chip->parent);
-+	unsigned int bit, reg;
-+	int ret;
-+
-+	aml_gpio_calc_reg_and_bit(bank, REG_DIR, gpio, &reg, &bit);
-+	ret = regmap_update_bits(info->reg_gpio, reg, BIT(bit), BIT(bit));
-+	if (ret < 0)
-+		return ret;
-+
-+	aml_gpio_calc_reg_and_bit(bank, REG_OUT, gpio, &reg, &bit);
-+
-+	return regmap_update_bits(info->reg_gpio, reg, BIT(bit),
-+				  value ? BIT(bit) : 0);
-+}
-+
-+static void aml_gpio_set(struct gpio_chip *chip, unsigned int gpio, int value)
-+{
-+	struct aml_gpio_bank *bank = gpiochip_get_data(chip);
-+	struct aml_pinctrl *info = dev_get_drvdata(chip->parent);
-+	unsigned int bit, reg;
-+
-+	aml_gpio_calc_reg_and_bit(bank, REG_OUT, gpio, &reg, &bit);
-+
-+	regmap_update_bits(info->reg_gpio, reg, BIT(bit),
-+			   value ? BIT(bit) : 0);
-+}
-+
-+static int aml_gpio_get(struct gpio_chip *chip, unsigned int gpio)
-+{
-+	struct aml_gpio_bank *bank = gpiochip_get_data(chip);
-+	struct aml_pinctrl *info = dev_get_drvdata(chip->parent);
-+	unsigned int reg, bit, val;
-+
-+	aml_gpio_calc_reg_and_bit(bank, REG_IN, gpio, &reg, &bit);
-+	regmap_read(info->reg_gpio, reg, &val);
-+
-+	return !!(val & BIT(bit));
-+}
-+
-+static const struct gpio_chip aml_gpio_template = {
-+	.request		= gpiochip_generic_request,
-+	.free			= gpiochip_generic_free,
-+	.set_config		= gpiochip_generic_config,
-+	.set			= aml_gpio_set,
-+	.get			= aml_gpio_get,
-+	.direction_input	= aml_gpio_direction_input,
-+	.direction_output	= aml_gpio_direction_output,
-+	.get_direction		= aml_gpio_get_direction,
-+	.can_sleep		= false,
-+};
-+
-+static int aml_gpiolib_register_bank(struct aml_pinctrl *info,
-+				     int bank_nr, struct device_node *np,
-+				     int pin_next_index)
-+{
-+	struct aml_gpio_bank *bank = &info->banks[bank_nr];
-+	struct device *dev = info->dev;
-+	int err;
-+	int i;
-+
-+	bank->pc.reg_gpio_offset = aml_bank_reg_gpio_offset(np);
-+	bank->pc.reg_mux_offset = aml_bank_reg_mux_offset(np);
-+	bank->pc.bit_mux_offset = aml_bank_bit_mux_offset(np);
-+	for (i = 0; i < NUM_REG; i++)
-+		bank->pc.reg_offset[i] = bank->pc.reg_gpio_offset + aml_reg_type_offset[i];
-+
-+	bank->gpio_chip = aml_gpio_template;
-+	bank->gpio_chip.base = -1;
-+	bank->gpio_chip.ngpio = aml_bank_pins(np);
-+	bank->gpio_chip.fwnode = of_fwnode_handle(np);
-+	bank->gpio_chip.parent = dev;
-+
-+	of_property_read_string(np, "bank-name", &bank->gpio_chip.label);
-+
-+	bank->pin_base = pin_next_index;
-+	bank->bank_idx = aml_bank_index(np);
-+
-+	err  = gpiochip_add_data(&bank->gpio_chip, bank);
-+	if (err)
-+		return dev_err_probe(dev, err, "Failed to add gpiochip(%d)!\n", bank_nr);
-+
-+	dev_dbg(dev, "%s bank added.\n", bank->gpio_chip.label);
-+
-+	return 0;
-+}
-+
-+static void aml_pctl_reg_extra(struct aml_pinctrl *info)
-+{
-+	if (!info->reg_pull)
-+		info->reg_pull = info->reg_gpio;
-+	if (!info->reg_pullen)
-+		info->reg_pullen = info->reg_gpio;
-+	if (!info->reg_ds)
-+		info->reg_ds = info->reg_gpio;
-+}
-+
-+static int aml_pctl_probe_dt(struct platform_device *pdev,
-+			     struct pinctrl_desc *pctl_desc,
-+			     struct aml_pinctrl *info)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct pinctrl_pin_desc *pdesc;
-+	struct device_node *np = dev->of_node;
-+	int grp_index = 0;
-+	int i = 0, j = 0, k = 0, bank;
-+	int ret = 0;
-+
-+	aml_pctl_dt_child_count(info, np);
-+	if (!info->nbanks)
-+		return dev_err_probe(dev, -EINVAL, "you need at least one gpio bank\n");
-+
-+	dev_dbg(dev, "nbanks = %d\n", info->nbanks);
-+	dev_dbg(dev, "nfunctions = %d\n", info->nfunctions);
-+	dev_dbg(dev, "ngroups = %d\n", info->ngroups);
-+
-+	info->functions = devm_kcalloc(dev, info->nfunctions, sizeof(*info->functions), GFP_KERNEL);
-+
-+	info->groups = devm_kcalloc(dev, info->ngroups, sizeof(*info->groups), GFP_KERNEL);
-+
-+	info->banks = devm_kcalloc(dev, info->nbanks, sizeof(*info->banks), GFP_KERNEL);
-+
-+	if (!info->functions || !info->groups || !info->banks)
-+		return -ENOMEM;
-+
-+	info->reg_mux = aml_map_resource(info, np, "mux");
-+	if (IS_ERR_OR_NULL(info->reg_mux))
-+		return dev_err_probe(dev, info->reg_mux ? PTR_ERR(info->reg_mux) : -ENOENT,
-+				     "mux registers not found\n");
-+
-+	info->reg_gpio = aml_map_resource(info, np, "gpio");
-+	if (IS_ERR_OR_NULL(info->reg_gpio))
-+		return dev_err_probe(dev, info->reg_gpio ? PTR_ERR(info->reg_gpio) : -ENOENT,
-+				     "gpio registers not found\n");
-+
-+	info->reg_pull = aml_map_resource(info, np, "pull");
-+	if (IS_ERR(info->reg_pull))
-+		info->reg_pull = NULL;
-+
-+	info->reg_pullen = aml_map_resource(info, np, "pull-enable");
-+	if (IS_ERR(info->reg_pullen))
-+		info->reg_pullen = NULL;
-+
-+	info->reg_ds = aml_map_resource(info, np, "ds");
-+	if (IS_ERR(info->reg_ds)) {
-+		dev_dbg(info->dev, "ds registers not found - skipping\n");
-+		info->reg_ds = NULL;
-+	}
-+
-+	aml_pctl_reg_extra(info);
-+
-+	info->data = (struct aml_pctl_data *)of_device_get_match_data(dev);
-+
-+	pctl_desc->npins = aml_count_pins(np);
-+
-+	pdesc =	devm_kcalloc(dev, pctl_desc->npins, sizeof(*pdesc), GFP_KERNEL);
-+	if (!pdesc)
-+		return -ENOMEM;
-+
-+	pctl_desc->pins = pdesc;
-+
-+	bank = 0;
-+	for_each_child_of_node_scoped(np, child) {
-+		if (of_property_read_bool(child, "gpio-controller")) {
-+			const char *bank_name = NULL;
-+			char **pin_names;
-+
-+			ret = aml_gpiolib_register_bank(info, bank, child, k);
-+			if (ret)
-+				return ret;
-+
-+			k = info->banks[bank].pin_base;
-+			bank_name = info->banks[bank].gpio_chip.label;
-+
-+			pin_names = devm_kasprintf_strarray(dev, bank_name,
-+							    info->banks[bank].gpio_chip.ngpio);
-+			if (IS_ERR(pin_names))
-+				return PTR_ERR(pin_names);
-+
-+			for (j = 0; j < info->banks[bank].gpio_chip.ngpio; j++, k++) {
-+				pdesc->number = k;
-+				pdesc->name = pin_names[j];
-+				pdesc++;
-+			}
-+			bank++;
-+		} else {
-+			ret = aml_pctl_parse_functions(child, info,
-+						       i++, &grp_index);
-+			if (ret)
-+				return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int aml_pctl_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct aml_pinctrl *info;
-+	struct pinctrl_desc *pctl_desc;
-+	int ret, i;
-+
-+	pctl_desc = devm_kzalloc(dev, sizeof(*pctl_desc), GFP_KERNEL);
-+	if (!pctl_desc)
-+		return -ENOMEM;
-+
-+	info = devm_kzalloc(dev, sizeof(*info), GFP_KERNEL);
-+	if (!info)
-+		return -ENOMEM;
-+
-+	info->dev = dev;
-+	platform_set_drvdata(pdev, info);
-+	ret = aml_pctl_probe_dt(pdev, pctl_desc, info);
-+	if (ret)
-+		return ret;
-+
-+	pctl_desc->owner	= THIS_MODULE;
-+	pctl_desc->pctlops	= &aml_pctrl_ops;
-+	pctl_desc->pmxops	= &aml_pmx_ops;
-+	pctl_desc->confops	= &aml_pinconf_ops;
-+	pctl_desc->name		= dev_name(dev);
-+
-+	info->pctl = devm_pinctrl_register(dev, pctl_desc, info);
-+	if (IS_ERR(info->pctl)) {
-+		dev_err(dev, "Failed pinctrl registration\n");
-+		ret = PTR_ERR(info->pctl);
-+		goto error;
-+	}
-+
-+	for (i = 0; i < info->nbanks; i++) {
-+		ret = gpiochip_add_pin_range(&info->banks[i].gpio_chip, dev_name(dev), 0,
-+					     info->banks[i].pin_base,
-+					     info->banks[i].gpio_chip.ngpio);
-+		if (ret < 0) {
-+			dev_err(dev, "Failed add pin range\n");
-+			goto error;
-+		}
-+	}
-+
-+	return 0;
-+error:
-+	for (i = 0; i < info->nbanks; i++)
-+		gpiochip_remove(&info->banks[i].gpio_chip);
-+	return ret;
-+}
-+
-+static const struct of_device_id aml_pctl_of_match[] = {
-+	{ .compatible = "amlogic,pinctrl", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, aml_pctl_dt_match);
-+
-+static struct platform_driver aml_pctl_driver = {
-+	.driver = {
-+		.name = "amlogic-pinctrl",
-+		.of_match_table = aml_pctl_of_match,
-+	},
-+	.probe = aml_pctl_probe,
-+};
-+module_platform_driver(aml_pctl_driver);
-+
-+MODULE_AUTHOR("Xianwei Zhao <xianwei.zhao@amlogic.com>");
-+MODULE_DESCRIPTION("Pin controller and GPIO driver for Amlogic SoC");
-+MODULE_LICENSE("Dual BSD/GPL");
+>> +       Say Y if you want the board to work, because PLLs are the parent
+>> +       of most peripherals.
+>> +
+>>   config COMMON_CLK_C3_PLL
+>>        tristate "Amlogic C3 PLL clock controller"
+>>        depends on ARM64
+>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>> index bc56a47931c1..fc4b8a723145 100644
+>> --- a/drivers/clk/meson/Makefile
+>> +++ b/drivers/clk/meson/Makefile
+>> @@ -20,6 +20,7 @@ obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
+>>   obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+>>   obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+>>   obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
+>> +obj-$(CONFIG_COMMON_CLK_A5_PLL) += a5-pll.o
+>>   obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
+>>   obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
+>>   obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+>> diff --git a/drivers/clk/meson/a5-pll.c b/drivers/clk/meson/a5-pll.c
+>> new file mode 100644
+>> index 000000000000..f18700dfd055
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/a5-pll.c
+>> @@ -0,0 +1,543 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Amlogic A5 PLL Controller Driver
+>> + *
+>> + * Copyright (c) 2024 Amlogic, inc.
+>> + * Author: Chuan Liu <chuan.liu@amlogic.com>
+>> + */
+>> +
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/platform_device.h>
+>> +#include "clk-regmap.h"
+>> +#include "clk-pll.h"
+>> +#include "clk-mpll.h"
+>> +#include "meson-clkc-utils.h"
+>> +#include <dt-bindings/clock/amlogic,a5-pll-clkc.h>
+>> +
+>> +#define ANACTRL_GP0PLL_CTRL0                 0x80
+>> +#define ANACTRL_GP0PLL_CTRL1                 0x84
+>> +#define ANACTRL_GP0PLL_CTRL2                 0x88
+>> +#define ANACTRL_GP0PLL_CTRL3                 0x8c
+>> +#define ANACTRL_GP0PLL_CTRL4                 0x90
+>> +#define ANACTRL_GP0PLL_CTRL5                 0x94
+>> +#define ANACTRL_GP0PLL_CTRL6                 0x98
+>> +#define ANACTRL_HIFIPLL_CTRL0                        0x100
+>> +#define ANACTRL_HIFIPLL_CTRL1                        0x104
+>> +#define ANACTRL_HIFIPLL_CTRL2                        0x108
+>> +#define ANACTRL_HIFIPLL_CTRL3                        0x10c
+>> +#define ANACTRL_HIFIPLL_CTRL4                        0x110
+>> +#define ANACTRL_HIFIPLL_CTRL5                        0x114
+>> +#define ANACTRL_HIFIPLL_CTRL6                        0x118
+>> +#define ANACTRL_MPLL_CTRL0                   0x180
+>> +#define ANACTRL_MPLL_CTRL1                   0x184
+>> +#define ANACTRL_MPLL_CTRL2                   0x188
+>> +#define ANACTRL_MPLL_CTRL3                   0x18c
+>> +#define ANACTRL_MPLL_CTRL4                   0x190
+>> +#define ANACTRL_MPLL_CTRL5                   0x194
+>> +#define ANACTRL_MPLL_CTRL6                   0x198
+>> +#define ANACTRL_MPLL_CTRL7                   0x19c
+>> +#define ANACTRL_MPLL_CTRL8                   0x1a0
+> 
+> Same question as usual, is there clocks and *ONLY* clock between 0x0 and
+> 0x1a0 ?
+> 
+> If you can guarantee that, you'll need to split the controller into
+> multiple devices.
+> 
 
--- 
-2.37.1
+Between 0x0 and 0x5c are fix_pll and sys_pll. These two plls are
+processed in bl31 due to security restrictions. Besides, there are
+no registers of other modules interspersed in it.
 
+>> +
+>> +static struct clk_fixed_factor mpll_prediv = {
+>> +     .mult = 1,
+>> +     .div = 2,
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "mpll_prediv",
+>> +             .ops = &clk_fixed_factor_ops,
+>> +             .parent_data = &(const struct clk_parent_data) {
+>> +                     .fw_name = "fix_dco"
+>> +             },
+>> +             .num_parents = 1,
+>> +     },
+>> +};
+>> +
+>> +static const struct reg_sequence mpll0_init_regs[] = {
+>> +     { .reg = ANACTRL_MPLL_CTRL2,    .def = 0x40000033 },
+>> +};
+>> +
+>> +static struct clk_regmap mpll0_div = {
+>> +     .data = &(struct meson_clk_mpll_data){
+>> +             .sdm = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL1,
+>> +                     .shift   = 0,
+>> +                     .width   = 14,
+>> +             },
+>> +             .sdm_en = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL1,
+>> +                     .shift   = 30,
+>> +                     .width   = 1,
+>> +             },
+>> +             .n2 = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL1,
+>> +                     .shift   = 20,
+>> +                     .width   = 9,
+>> +             },
+>> +             .ssen = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL1,
+>> +                     .shift   = 29,
+>> +                     .width   = 1,
+>> +             },
+>> +             .init_regs = mpll0_init_regs,
+>> +             .init_count = ARRAY_SIZE(mpll0_init_regs),
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "mpll0_div",
+>> +             .ops = &meson_clk_mpll_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &mpll_prediv.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap mpll0 = {
+>> +     .data = &(struct clk_regmap_gate_data){
+>> +             .offset = ANACTRL_MPLL_CTRL1,
+>> +             .bit_idx = 31,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "mpll0",
+>> +             .ops = &clk_regmap_gate_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) { &mpll0_div.hw },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +static const struct reg_sequence mpll1_init_regs[] = {
+>> +     { .reg = ANACTRL_MPLL_CTRL4,    .def = 0x40000033 },
+>> +};
+>> +
+>> +static struct clk_regmap mpll1_div = {
+>> +     .data = &(struct meson_clk_mpll_data){
+>> +             .sdm = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL3,
+>> +                     .shift   = 0,
+>> +                     .width   = 14,
+>> +             },
+>> +             .sdm_en = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL3,
+>> +                     .shift   = 30,
+>> +                     .width   = 1,
+>> +             },
+>> +             .n2 = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL3,
+>> +                     .shift   = 20,
+>> +                     .width   = 9,
+>> +             },
+>> +             .ssen = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL3,
+>> +                     .shift   = 29,
+>> +                     .width   = 1,
+>> +             },
+>> +             .init_regs = mpll1_init_regs,
+>> +             .init_count = ARRAY_SIZE(mpll1_init_regs),
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "mpll1_div",
+>> +             .ops = &meson_clk_mpll_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &mpll_prediv.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap mpll1 = {
+>> +     .data = &(struct clk_regmap_gate_data){
+>> +             .offset = ANACTRL_MPLL_CTRL3,
+>> +             .bit_idx = 31,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "mpll1",
+>> +             .ops = &clk_regmap_gate_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) { &mpll1_div.hw },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +static const struct reg_sequence mpll2_init_regs[] = {
+>> +     { .reg = ANACTRL_MPLL_CTRL6,    .def = 0x40000033 },
+>> +};
+>> +
+>> +static struct clk_regmap mpll2_div = {
+>> +     .data = &(struct meson_clk_mpll_data){
+>> +             .sdm = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL5,
+>> +                     .shift   = 0,
+>> +                     .width   = 14,
+>> +             },
+>> +             .sdm_en = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL5,
+>> +                     .shift   = 30,
+>> +                     .width   = 1,
+>> +             },
+>> +             .n2 = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL5,
+>> +                     .shift   = 20,
+>> +                     .width   = 9,
+>> +             },
+>> +             .ssen = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL5,
+>> +                     .shift   = 29,
+>> +                     .width   = 1,
+>> +             },
+>> +             .init_regs = mpll2_init_regs,
+>> +             .init_count = ARRAY_SIZE(mpll2_init_regs),
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "mpll2_div",
+>> +             .ops = &meson_clk_mpll_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &mpll_prediv.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap mpll2 = {
+>> +     .data = &(struct clk_regmap_gate_data){
+>> +             .offset = ANACTRL_MPLL_CTRL5,
+>> +             .bit_idx = 31,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "mpll2",
+>> +             .ops = &clk_regmap_gate_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) { &mpll2_div.hw },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +static const struct reg_sequence mpll3_init_regs[] = {
+>> +     { .reg = ANACTRL_MPLL_CTRL8,    .def = 0x40000033 },
+>> +};
+>> +
+>> +static struct clk_regmap mpll3_div = {
+>> +     .data = &(struct meson_clk_mpll_data){
+>> +             .sdm = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL7,
+>> +                     .shift   = 0,
+>> +                     .width   = 14,
+>> +             },
+>> +             .sdm_en = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL7,
+>> +                     .shift   = 30,
+>> +                     .width   = 1,
+>> +             },
+>> +             .n2 = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL7,
+>> +                     .shift   = 20,
+>> +                     .width   = 9,
+>> +             },
+>> +             .ssen = {
+>> +                     .reg_off = ANACTRL_MPLL_CTRL7,
+>> +                     .shift   = 29,
+>> +                     .width   = 1,
+>> +             },
+>> +             .init_regs = mpll3_init_regs,
+>> +             .init_count = ARRAY_SIZE(mpll3_init_regs),
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "mpll3_div",
+>> +             .ops = &meson_clk_mpll_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &mpll_prediv.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap mpll3 = {
+>> +     .data = &(struct clk_regmap_gate_data){
+>> +             .offset = ANACTRL_MPLL_CTRL7,
+>> +             .bit_idx = 31,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "mpll3",
+>> +             .ops = &clk_regmap_gate_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) { &mpll3_div.hw },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +static const struct reg_sequence gp0_init_regs[] = {
+>> +     { .reg = ANACTRL_GP0PLL_CTRL2, .def = 0x00000000 },
+>> +     { .reg = ANACTRL_GP0PLL_CTRL3, .def = 0x6a295c00 },
+>> +     { .reg = ANACTRL_GP0PLL_CTRL4, .def = 0x65771290 },
+>> +     { .reg = ANACTRL_GP0PLL_CTRL5, .def = 0x3927200a },
+>> +     { .reg = ANACTRL_GP0PLL_CTRL6, .def = 0x54540000 }
+>> +};
+>> +
+>> +static const struct pll_mult_range gp0_pll_mult_range = {
+>> +     .min = 125,
+>> +     .max = 250,
+>> +};
+>> +
+>> +static struct clk_regmap gp0_pll_dco = {
+>> +     .data = &(struct meson_clk_pll_data) {
+>> +             .en = {
+>> +                     .reg_off = ANACTRL_GP0PLL_CTRL0,
+>> +                     .shift   = 28,
+>> +                     .width   = 1,
+>> +             },
+>> +             .m = {
+>> +                     .reg_off = ANACTRL_GP0PLL_CTRL0,
+>> +                     .shift   = 0,
+>> +                     .width   = 8,
+>> +             },
+>> +             .frac = {
+>> +                     .reg_off = ANACTRL_GP0PLL_CTRL1,
+>> +                     .shift   = 0,
+>> +                     .width   = 17,
+>> +             },
+>> +             .n = {
+>> +                     .reg_off = ANACTRL_GP0PLL_CTRL0,
+>> +                     .shift   = 10,
+>> +                     .width   = 5,
+>> +             },
+>> +             .l = {
+>> +                     .reg_off = ANACTRL_GP0PLL_CTRL0,
+>> +                     .shift   = 31,
+>> +                     .width   = 1,
+>> +             },
+>> +             .rst = {
+>> +                     .reg_off = ANACTRL_GP0PLL_CTRL0,
+>> +                     .shift   = 29,
+>> +                     .width   = 1,
+>> +             },
+>> +             .range = &gp0_pll_mult_range,
+>> +             .init_regs = gp0_init_regs,
+>> +             .init_count = ARRAY_SIZE(gp0_init_regs),
+>> +             .frac_max = 100000,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data) {
+>> +             .name = "gp0_pll_dco",
+>> +             .ops = &meson_clk_pll_ops,
+>> +             .parent_data = &(const struct clk_parent_data) {
+>> +                     .fw_name = "xtal_24m",
+>> +             },
+>> +             .num_parents = 1,
+>> +     },
+>> +};
+>> +
+>> +/* The maximum frequency divider supports is 32, not 128(2^7) */
+>> +static const struct clk_div_table gp0_pll_od_table[] = {
+>> +     { 0,  1 },
+>> +     { 1,  2 },
+>> +     { 2,  4 },
+>> +     { 3,  8 },
+>> +     { 4, 16 },
+>> +     { 5, 32 },
+>> +     { /* sentinel */ }
+>> +};
+>> +
+>> +static struct clk_regmap gp0_pll = {
+>> +     .data = &(struct clk_regmap_div_data) {
+>> +             .offset = ANACTRL_GP0PLL_CTRL0,
+>> +             .shift = 16,
+>> +             .width = 3,
+>> +             .table = gp0_pll_od_table,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data) {
+>> +             .name = "gp0_pll",
+>> +             .ops = &clk_regmap_divider_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &gp0_pll_dco.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +static const struct reg_sequence hifi_init_regs[] = {
+>> +     { .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00000000 },
+>> +     { .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x6a295c00 },
+>> +     { .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x65771290 },
+>> +     { .reg = ANACTRL_HIFIPLL_CTRL5, .def = 0x3927200a },
+>> +     { .reg = ANACTRL_HIFIPLL_CTRL6, .def = 0x54540000 }
+>> +};
+>> +
+>> +static const struct pll_mult_range hifi_pll_mult_range = {
+>> +     .min = 125,
+>> +     .max = 250,
+>> +};
+>> +
+>> +static struct clk_regmap hifi_pll_dco = {
+>> +     .data = &(struct meson_clk_pll_data) {
+>> +             .en = {
+>> +                     .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> +                     .shift   = 28,
+>> +                     .width   = 1,
+>> +             },
+>> +             .m = {
+>> +                     .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> +                     .shift   = 0,
+>> +                     .width   = 8,
+>> +             },
+>> +             .frac = {
+>> +                     .reg_off = ANACTRL_HIFIPLL_CTRL1,
+>> +                     .shift   = 0,
+>> +                     .width   = 17,
+>> +             },
+>> +             .n = {
+>> +                     .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> +                     .shift   = 10,
+>> +                     .width   = 5,
+>> +             },
+>> +             .l = {
+>> +                     .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> +                     .shift   = 31,
+>> +                     .width   = 1,
+>> +             },
+>> +             .rst = {
+>> +                     .reg_off = ANACTRL_HIFIPLL_CTRL0,
+>> +                     .shift   = 29,
+>> +                     .width   = 1,
+>> +             },
+>> +             .range = &hifi_pll_mult_range,
+>> +             .init_regs = hifi_init_regs,
+>> +             .init_count = ARRAY_SIZE(hifi_init_regs),
+>> +             .frac_max = 100000,
+>> +             /* NOTE: The original design of hifi_pll is to provide
+>> +              * clock for audio, which requires clock accuracy.
+>> +              * Therefore, flag CLK_MESON_PLL_ROUND_CLOSEST is added
+>> +              * to make the output frequency of hifi_pll closer to
+>> +              * the target frequency.
+>> +              */
+> 
+> The comment format is incorrect. not quite sure the commnet itself is useful.
+> 
 
+Delete this comment in the next version.
+
+>> +             .flags = CLK_MESON_PLL_ROUND_CLOSEST,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data) {
+>> +             .name = "hifi_pll_dco",
+>> +             .ops = &meson_clk_pll_ops,
+>> +             .parent_data = &(const struct clk_parent_data) {
+>> +                     .fw_name = "xtal_24m",
+>> +             },
+>> +             .num_parents = 1,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap hifi_pll = {
+>> +     .data = &(struct clk_regmap_div_data) {
+>> +             .offset = ANACTRL_HIFIPLL_CTRL0,
+>> +             .shift = 16,
+>> +             /* NOTE: The actual reserved bit width of the od (output
+>> +              * divider) of hifi_pll is 3 bit, but its actual maximum
+>> +              * effective divider factor is 8. It can just use 2 bit and add
+>> +              * flag CLK_DIVIDER_POWER_OF_TWO (max_div = 2^3 = 8).
+>> +              */
+> 
+> Same here
+
+Delete this comment in the next version.
+
+> 
+>> +             .width = 2,
+> 
+> ... yet the width is 2 ??
+> 
+>> +             .flags = CLK_DIVIDER_POWER_OF_TWO,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data) {
+>> +             .name = "hifi_pll",
+>> +             .ops = &clk_regmap_divider_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &hifi_pll_dco.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_hw *a5_pll_hw_clks[] = {
+>> +     [CLKID_MPLL_PREDIV]     = &mpll_prediv.hw,
+>> +     [CLKID_MPLL0_DIV]       = &mpll0_div.hw,
+>> +     [CLKID_MPLL0]           = &mpll0.hw,
+>> +     [CLKID_MPLL1_DIV]       = &mpll1_div.hw,
+>> +     [CLKID_MPLL1]           = &mpll1.hw,
+>> +     [CLKID_MPLL2_DIV]       = &mpll2_div.hw,
+>> +     [CLKID_MPLL2]           = &mpll2.hw,
+>> +     [CLKID_MPLL3_DIV]       = &mpll3_div.hw,
+>> +     [CLKID_MPLL3]           = &mpll3.hw,
+>> +     [CLKID_GP0_PLL_DCO]     = &gp0_pll_dco.hw,
+>> +     [CLKID_GP0_PLL]         = &gp0_pll.hw,
+>> +     [CLKID_HIFI_PLL_DCO]    = &hifi_pll_dco.hw,
+>> +     [CLKID_HIFI_PLL]        = &hifi_pll.hw
+>> +};
+>> +
+>> +/* Convenience table to populate regmap in .probe */
+>> +static struct clk_regmap *const a5_pll_clk_regmaps[] = {
+>> +     &mpll0_div,
+>> +     &mpll0,
+>> +     &mpll1_div,
+>> +     &mpll1,
+>> +     &mpll2_div,
+>> +     &mpll2,
+>> +     &mpll3_div,
+>> +     &mpll3,
+>> +     &gp0_pll_dco,
+>> +     &gp0_pll,
+>> +     &hifi_pll_dco,
+>> +     &hifi_pll
+>> +};
+>> +
+>> +static const struct regmap_config clkc_regmap_config = {
+>> +     .reg_bits       = 32,
+>> +     .val_bits       = 32,
+>> +     .reg_stride     = 4,
+>> +     .max_register   = ANACTRL_MPLL_CTRL8,
+>> +};
+>> +
+>> +static struct meson_clk_hw_data a5_pll_clks = {
+>> +     .hws = a5_pll_hw_clks,
+>> +     .num = ARRAY_SIZE(a5_pll_hw_clks),
+>> +};
+>> +
+>> +static int aml_a5_pll_probe(struct platform_device *pdev)
+>> +{
+>> +     struct device *dev = &pdev->dev;
+>> +     struct regmap *regmap;
+>> +     void __iomem *base;
+>> +     int clkid, ret, i;
+>> +
+>> +     base = devm_platform_ioremap_resource(pdev, 0);
+>> +     if (IS_ERR(base))
+>> +             return PTR_ERR(base);
+>> +
+>> +     regmap = devm_regmap_init_mmio(dev, base, &clkc_regmap_config);
+>> +     if (IS_ERR(regmap))
+>> +             return PTR_ERR(regmap);
+>> +
+>> +     /* Populate regmap for the regmap backed clocks */
+>> +     for (i = 0; i < ARRAY_SIZE(a5_pll_clk_regmaps); i++)
+>> +             a5_pll_clk_regmaps[i]->map = regmap;
+>> +
+>> +     for (clkid = 0; clkid < a5_pll_clks.num; clkid++) {
+>> +             /* array might be sparse */
+>> +             if (!a5_pll_clks.hws[clkid])
+>> +                     continue;
+>> +
+>> +             ret = devm_clk_hw_register(dev, a5_pll_clks.hws[clkid]);
+>> +             if (ret) {
+>> +                     dev_err(dev, "Clock registration failed\n");
+>> +                     return ret;
+>> +             }
+>> +     }
+>> +
+>> +     return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get,
+>> +                                        &a5_pll_clks);
+>> +}
+>> +
+>> +static const struct of_device_id a5_pll_clkc_match_table[] = {
+>> +     {
+>> +             .compatible = "amlogic,a5-pll-clkc",
+>> +     },
+>> +     {}
+>> +};
+>> +MODULE_DEVICE_TABLE(of, a5_pll_clkc_match_table);
+>> +
+>> +static struct platform_driver a5_pll_driver = {
+>> +     .probe          = aml_a5_pll_probe,
+>> +     .driver         = {
+>> +             .name   = "a5-pll-clkc",
+>> +             .of_match_table = a5_pll_clkc_match_table,
+>> +     },
+>> +};
+>> +module_platform_driver(a5_pll_driver);
+>> +
+>> +MODULE_DESCRIPTION("Amlogic A5 PLL Clock Controller driver");
+>> +MODULE_AUTHOR("Chuan Liu <chuan.liu@amlogic.com>");
+>> +MODULE_LICENSE("GPL");
+> 
+> --
+> Jerome
 
 _______________________________________________
 linux-amlogic mailing list
