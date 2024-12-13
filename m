@@ -4,89 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D01FFE7717F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2024 09:01:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 534A9E7717F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2024 10:03:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=na7fupSsBfqlOqtehvZGDEblnm+84+b9t4yD4Mwgb6E=; b=SxeEv5P1r0GAB/
-	c/2ax3eS3UZKpBX9dazsE33wvBKtxR+ICFRxYp+fHFwqd9MJpf6uNfPN4uLgTeG+aFgK6z9mkLY/X
-	/guMj6eBqoqviHYrfl1179dFyK7mQRK1Tf70jdReBbngU3vjQ5uDqrcUnGC0jBVzO3whJ64ioO2SE
-	WO63dLnVP5ks3i5mxUTVYdt2dOhvepF/2/ygcSDtkf3XKIqInCqpe1Kj6aJ3RtZhvJwxjWfAsdyaF
-	fbWo4w2jpd4VYqgb41ddhzIPxnV2cqpF3DZs7Rl8XSa9fg5rP6LZh2BJ3RNn8M7TRG0Cy9uBh82O+
-	/Wb0A3NL2hahfKolbNvw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Dwcv8xHOnIAvdWFuaBmcectka9Mk/LlnJwS27Ft/8f4=; b=e5H6BolVOY5xz+
+	jVPdx/U+h4mJhf4YhqeIgnG0L8u/4Kj5x/0e+gIJenBVS0Mqzf7BWDWCAZRUAj5bn1vDZfB0IFJb2
+	AmgfvIXYMFBUyMqeecjFU8rfnA45K+KxOxWFMGJb3UVv57OLsfueImWpovATNnkk/FWAZaWFdHhG6
+	sWoC46Zfg6xFMObgSqbbHbb7TcAl+ZtnXOfgcdwDfjC88x6gRUERLwa9sv94Fcqa8yYTypSamZ1eA
+	87pFd855DxPfh6IrgWJrzJ9zsVnljAHAcKiN1UMmIOVBO+c8fSSCC1yC2jeZcdaSu9D0qxPw++dco
+	PEYsyqjYfOTShH8cvt6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLf4Y-0000000HPJe-0O9j;
-	Thu, 12 Dec 2024 09:01:26 +0000
-Received: from mail-lf1-x130.google.com ([2a00:1450:4864:20::130])
+	id 1tM2WB-00000003Mjg-06mR;
+	Fri, 13 Dec 2024 10:03:31 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tLf4V-0000000HPHl-0Apc
+	id 1tM2W7-00000003Mif-2lOi
 	for linux-amlogic@lists.infradead.org;
-	Thu, 12 Dec 2024 09:01:24 +0000
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-53e3a5fa6aaso1579341e87.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 12 Dec 2024 01:01:22 -0800 (PST)
+	Fri, 13 Dec 2024 10:03:29 +0000
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-385e87b25f0so1737171f8f.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 13 Dec 2024 02:03:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733994081; x=1734598881; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=V9TiYS4KmaBT6zbP9iM8l86SrBTAKM/ReGWqOBeJ8zc=;
-        b=ItNe/MjPIUdTyRQWKVSIhmeyIk3ge5loUvsr6abQhc1mR62R4NuvExiT4Ps3iKOrQq
-         CQHW92gF1Ho9ATDkFD2CSREFahUqDFdVOtRD7WNlj6d4jS7R2hh8d1ppt3A0kRH4p0MM
-         ZcvQz40Z4SBxeeDa8W4QRHcJoaVnHZprg08ESSUnbe/6I5LavgJ1tQpbU0vYXLN3jQyg
-         z9vnHz22RGCPAHLVbBw4drIMgfEiaEPdAVSz9xBB8JLhfF6Xk64IhVrNLmBEzRdl2yF1
-         s/Qu0+/1qq3OiLp0MsbzMnuZSdH7Z4joS7DjDLefNojH+U1w0ap1C6s4tbxlfHlTlRQT
-         crHA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734084205; x=1734689005; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fFI9i4ok0V47vvvqEZzi7w3lJlZg6r1OCY/7ewYTXag=;
+        b=T/J9o1SuimW4M3jLdAm4zH1fzm8ajigo82X0jji+HNAaGoGTTnGDXjFenb3a8DuCP8
+         rKXII5yvr0x8u7FEfYuf4y/Fmhen4e6FTPsYDSPl7Og5efrY7yUL7drBspj8b2JHdS1S
+         MpCL7mTI4yd253DgR8fJNV5cma0fitvpXbzVCRR2k1tq7yEpVmqQDyQhvY25c1RRPu26
+         sJiU3udEQox9nPcRk2yvWBGZ32sONU8if78ByJRkqnlxniNe6UfJ2LQah2UdvFNJqeP4
+         ELDPQRriVLVm74QF/0DFvAqGVaJ0WCdwLLkIEDdN/CGmv3EquQLzrNby0EGk+WuE3NXd
+         t/MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733994081; x=1734598881;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V9TiYS4KmaBT6zbP9iM8l86SrBTAKM/ReGWqOBeJ8zc=;
-        b=k2TuKpwBo2W0/oVtz+jWHprqJJ/g/DqBzkX0zpn//DiWIiJaBFTmy11vbZGhIRV1j9
-         ctCBM2RMaYSFw0iR/ctWVLcE8B6kal7bV9kJX5Mf02su8PwfNlflR2X5Z6vcUKlvk9xH
-         LrMqxgzHFfIbGijnGimG6HbRPFZ+EUY3VaKywTvNJzMM7304JHf7X4y5iSIU1ZXY9l89
-         js8U8inzDoIyjfi2T6Ppy4ed6q8CokSl0ET/PR+dzr58xJOuNdGismOadhCEcKbGH2ud
-         B2H+LxtiFvvWItc47ti56DPmAjE3TKB0t81N2FbuLSY0leufV/o0LsGlMBRcre3m+tHs
-         Ia1A==
-X-Forwarded-Encrypted: i=1; AJvYcCV5lEm/JnV2ldc0JACeqGLZFMl9CxcJ83ZYUQMBX7ZQ8jigm3OCP/ghRy3DstW0e6fQF8vXfLTRS9DV3Iow@lists.infradead.org
-X-Gm-Message-State: AOJu0YyjORnB/+wxVySjVhw3Ouhd4EaaYn14FfsNKwPqmae1eK7I4Gd9
-	hrN/Y9Af/2odyXL52jSOgK03C+l1S6Jo1J5QXYf/cVJ0z75oKZisthaWNfYoBRk=
-X-Gm-Gg: ASbGnctL77a+zOvYUakT4s2rutP0SKoJtWkOfwo7qErWtw16htUDFlh9C/vC7Frzixp
-	h/DqAyv+CHmWuAjf4Q54OktO0w4hQ+UTKCG75jF5WS1VGyThtFel+9A1qtWJZVQOAhXWOeGACob
-	RKhu3k9mn2uZwAbw72wXowl/SYqdWQ/ymN42a80UaI5ymtw0SN7+kmLTguSZNXMdSqKQ4iz3pHY
-	84CqhE1jwWy6mevOb2JLDuenrApMayVhqsVx58wrtbDDj5dpRHeqDfcDMl5/xi4ePChlxQv+SnD
-	/auSrSHUTg/Ezx9Wy6YgVM54d50NpuukKG/E
-X-Google-Smtp-Source: AGHT+IHhrzxQingAH1/ImMh2/INtXiKEWN+68GziFuYfWDP98tpJWX78ikqP9dctbaH1rrrlMK66Bg==
-X-Received: by 2002:a05:6512:3056:b0:540:20c5:f847 with SMTP id 2adb3069b0e04-54032dd7f6fmr166941e87.22.1733994079461;
-        Thu, 12 Dec 2024 01:01:19 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53f39c826a2sm1608722e87.214.2024.12.12.01.01.17
+        d=1e100.net; s=20230601; t=1734084205; x=1734689005;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fFI9i4ok0V47vvvqEZzi7w3lJlZg6r1OCY/7ewYTXag=;
+        b=nBh52EF3SRVm9hk1UupmkTCgOwRsPdSYdXGuKCblWiuogafeo7DY2BvWqDxHe8d92l
+         wtqXdturcenodbe1DpRulX4HHWuqIiB/xQtnjGucbxw47NYhYL7UBB7s7MXsg9rS06MX
+         LYPu8Pd9053yxtjB0LkfMhgG2A8s1Rq9p3IfjaJgkoECFNx5/hzIvIKWNrjAp/UsznLD
+         MqaQqz/RBj/+KxEsO60x2x8qmU+CphzYk5tTNYKUuvEaSb/4S9V1hI/9v3mlg/m3rf2h
+         NqcgOE6kvsD7vBz7LkLzZxfm/PpL0q7YWnRS1tEewA2E5AUjmxir94ShG7wSlPEv28up
+         68gQ==
+X-Gm-Message-State: AOJu0Yyj25T5c4G1t992Be/k+KTelSKCYGHZVSH1+YUlBjHsOYOliPNc
+	qVwHltA0x+rFXaQNp/+7I+PNMOcoXITgdeiLHVgFd82xhFt18P+EtZen52jIbEs=
+X-Gm-Gg: ASbGncsqEFQ9juVnpcxodb+gvqY6vu6eAQVqt4FpMc3ZvbT+pKUJSPAcIllLyaPoWzE
+	mxPumwbAtNkDKgCVX2FRvF+QWp+/m85+1JRQvTk030BnPJPoLqhE+4lL1u9fB2Avyao49WvOctr
+	6UCsMFTsGWcsv9i5BuzZLCKvL2XAnZjeim3gnTBj4kN1hfnPg81r1PlRZ1TxfUDDNZSbpmXGAfq
+	VHYbAmqVhJjSR547L9DRSfNTSlxNfIDc56/93EASTVfaA4t9QWWrvcPwpTFFDVt0XY=
+X-Google-Smtp-Source: AGHT+IGWMsKDo1RGySfTJ3+dMT498NxRdjvPBH6a71w42cCCbzdBrjO8TlN1ev5zP81xAaiujA6C1Q==
+X-Received: by 2002:a5d:47c6:0:b0:386:37bb:ddf8 with SMTP id ffacd0b85a97d-387887b8642mr5284456f8f.6.1734084205560;
+        Fri, 13 Dec 2024 02:03:25 -0800 (PST)
+Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:3da8:c88:4a1:9b7])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3878251dbbfsm6531759f8f.97.2024.12.13.02.03.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Dec 2024 01:01:18 -0800 (PST)
-Date: Thu, 12 Dec 2024 11:01:16 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
-	helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch, robdclark@gmail.com, 
-	guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com, 
-	linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
-	intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] drm/ci: uprev IGT
-Message-ID: <auyavxigqqk3eq3ke775pv5cf4pwu3mdxmr5bfx2dybjnszseg@5rla5d7icwxk>
-References: <20241211142806.1824961-1-vignesh.raman@collabora.com>
- <f2dac4eatkajw633ksnnb3nfq7zop2l4ux2euj6jqg4hg3soqt@sv7p2r6xk7fz>
- <3e719a95-5b84-4530-9afe-c742e5c6eff7@collabora.com>
+        Fri, 13 Dec 2024 02:03:24 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Fri, 13 Dec 2024 11:03:23 +0100
+Subject: [PATCH] clk: amlogic: g12a: fix mmc A peripheral clock
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <3e719a95-5b84-4530-9afe-c742e5c6eff7@collabora.com>
+Message-Id: <20241213-amlogic-clk-g12a-mmca-fix-v1-1-5af421f58b64@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAGoGXGcC/x2MQQqAMAzAviI9W3DTy/yKeKi1zqJT2UAE2d8dH
+ hNIXkgSVRL01QtRbk16HgVMXQGvdHhBnQuDbWxnrGmRwn56ZeR9Q28sYQhMuOiD7GQiXtpudgy
+ lv6IU/b+HMecP4zYA92sAAAA=
+X-Change-ID: 20241213-amlogic-clk-g12a-mmca-fix-c9ebacf34d9c
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jian Hu <jian.hu@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Jerome Brunet <jbrunet@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1562; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=n4zlrLsVQUGa5+NUAanIaq9aZoPbWfTfoCH89MaS3JM=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnXAZrMpC1y+J/u2peikLthve2ae+c+aoWUB6+f
+ ii30C1SL9CJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ1wGawAKCRDm/A8cN/La
+ hdoVD/9ogoG46YZegGOTeTQRSPngGmTelmUFx85r5qO/DwY1ZIUFp/DFjiC0cz9pk1H5IYyLh1T
+ M1Ne61pUqt43/j4zwkym8YOj3jEvKM4/SBeBuKB0Dpt4zeLeyZQfRtad/ny4Yxy1RdnquxihrHU
+ tm7gW/py5Bq2jCMj09beHKQxTzyW7IcvJtHvAU8hicAH3vKGKpK1/EN2APw67jgbjKbWGglaDFx
+ oGK319P1tQ39jBGTzOrtK4b3ePOzPa9znAslAi5Fx+nd8Cu2+aCMyw4mpGiQ0f+fWOGCWB7kKrO
+ zc9pbED8gPXELWl3ETAwwZhTHLpjSceNBkYR3CXKddaoe2U3NhqE2W1JLnz8ThDNzb1T1//gB//
+ OZ33zmyUli0cRl92iVMMrbRWbriFprxf7j0vruOH7fx4NMzCeDM6wj8ygCPtzDDzYdDGmQgtE3Z
+ Ux8doX8e6wakG0c22BPeXTstDUtGJFkdyxpoF4/2TbdjSimBHUV3aLVnrdb8YkS6jAL7PEsRjLA
+ oRknwYxMcVYSlB6S2T3G67wWXlauLspQet3Z5DjtS+9rF+LAfgrJagf3htfHokddSxMwV7fq8cx
+ IFpRJkr6D1rXbN5bxlySlvlGB57g7U0w6icE3WB7Rjx+67cIlzd3BaH0MzcM+8tDvax8hTY+lCG
+ TEifzLYOsJM5nbg==
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241212_010123_076373_57D52C7C 
-X-CRM114-Status: GOOD (  23.35  )
+X-CRM114-CacheID: sfid-20241213_020327_965247_1C113835 
+X-CRM114-Status: GOOD (  11.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,174 +118,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Dec 12, 2024 at 11:36:29AM +0530, Vignesh Raman wrote:
-> Hi Dmitry,
-> 
-> On 12/12/24 03:09, Dmitry Baryshkov wrote:
-> > On Wed, Dec 11, 2024 at 07:58:05PM +0530, Vignesh Raman wrote:
-> > > Uprev IGT to the latest version and update expectation files.
-> > > 
-> > > Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> > > ---
-> > > 
-> > > v1:
-> > >    - Pipeline link - https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1327810
-> > >      Will update the flake bug report link after v1 is reviewed.
-> > > 
-> > > ---
-> > > diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-> > > index 066d24ee3e08..7752adff05c1 100644
-> > > --- a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-> > > +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-> > > @@ -1,4 +1,7 @@
-> > >   kms_3d,Fail
-> > > +kms_cursor_legacy@forked-bo,Fail
-> > > +kms_cursor_legacy@forked-move,Fail
-> > > +kms_cursor_legacy@single-bo,Fail
-> > >   kms_cursor_legacy@torture-bo,Fail
-> > 
-> > Interesting, DRM_MODE_CURSOR_BO tests fail
-> > 
-> > >   kms_force_connector_basic@force-edid,Fail
-> > >   kms_hdmi_inject@inject-4k,Fail
-> > > diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
-> > > index 6dbc2080347d..581d0aa33b4f 100644
-> > > --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
-> > > +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
-> > > @@ -8,6 +8,8 @@ kms_color@ctm-red-to-blue,Fail
-> > >   kms_color@ctm-signed,Fail
-> > >   kms_cursor_legacy@cursor-vs-flip-toggle,Fail
-> > >   kms_cursor_legacy@cursor-vs-flip-varying-size,Fail
-> > > +kms_display_modes@extended-mode-basic,Fail
-> > > +kms_display_modes@mst-extended-mode-negative,Fail
-> > 
-> > This is a bug in 5f7cde6a9878 ("tests/kms_display_modes: Skip test if
-> > joiner display is connected"), the driver unconditionally calls
-> > is_joiner_mode(), or in 88abc2d2c646 ("lib/igt_kms: Add is_joiner_mode
-> > function"), the is_joiner_mode() should return false for non-Intel
-> > hardware. Please fix it in the IGT instead.
-> 
-> Can we add this in skips mentioning the IGT gitab issue link?
+The bit index of the peripheral clock for mmc A is wrong
+This was probably not a problem for mmc A as the peripheral is likely left
+enabled by the bootloader.
 
-It's fine with me.
+No issues has been reported so far but it could be a problem, most likely
+some form of conflict between the ethernet and mmc A clock, breaking
+ethernet on init.
 
-> > >   kms_flip@flip-vs-modeset-vs-hang,Fail
-> > >   kms_flip@flip-vs-panning-vs-hang,Fail
-> > >   kms_lease@lease-uevent,Fail
-> > > @@ -15,4 +17,3 @@ kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
-> > >   kms_plane_alpha_blend@alpha-7efc,Fail
-> > >   kms_plane_alpha_blend@coverage-7efc,Fail
-> > >   kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
-> > > -kms_rmfb@close-fd,Fail
-> > > diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
-> > > index d74e04405e65..5122233b9941 100644
-> > > --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
-> > > +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
-> > > @@ -18,3 +18,10 @@ msm/msm_shrink@copy-gpu-oom-32
-> > >   # IGT Version: 1.28-g0df7b9b97
-> > >   # Linux Version: 6.9.0-rc7
-> > >   msm/msm_shrink@copy-gpu-oom-8
-> > > +
-> > > +# Board Name: sc7180-trogdor-kingoftown
-> > > +# Bug Report:
-> > > +# Failure Rate: 50
-> > > +# IGT Version: 1.29-g33adea9eb
-> > > +# Linux Version: 6.13.0-rc2
-> > > +kms_lease@page-flip-implicit-plane
-> > 
-> > Do you have a failure log?
-> 
-> 
-> https://gitlab.freedesktop.org/vigneshraman/linux/-/jobs/68026461#L3262
-> 
-> Let me know if I can create a gitlab issue for this.
+Use the value provided by the documentation for mmc A before this
+becomes an actual problem.
 
-Somebody will have to look for more details, this one isn't that
-obvious.
+Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/g12a.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> Regards,
-> Vginesh
-> 
-> > 
-> > > diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
-> > > index 6dbc2080347d..581d0aa33b4f 100644
-> > > --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
-> > > +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
-> > > @@ -8,6 +8,8 @@ kms_color@ctm-red-to-blue,Fail
-> > >   kms_color@ctm-signed,Fail
-> > >   kms_cursor_legacy@cursor-vs-flip-toggle,Fail
-> > >   kms_cursor_legacy@cursor-vs-flip-varying-size,Fail
-> > > +kms_display_modes@extended-mode-basic,Fail
-> > > +kms_display_modes@mst-extended-mode-negative,Fail
-> > 
-> > Again, the same IGT issue.
-> > 
-> > >   kms_flip@flip-vs-modeset-vs-hang,Fail
-> > >   kms_flip@flip-vs-panning-vs-hang,Fail
-> > >   kms_lease@lease-uevent,Fail
-> > > @@ -15,4 +17,3 @@ kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
-> > >   kms_plane_alpha_blend@alpha-7efc,Fail
-> > >   kms_plane_alpha_blend@coverage-7efc,Fail
-> > >   kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
-> > > -kms_rmfb@close-fd,Fail
-> > > diff --git a/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt
-> > > index fa8c7e663858..69076751af24 100644
-> > > --- a/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt
-> > > +++ b/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt
-> > > @@ -1,4 +1,3 @@
-> > > -drm_read@invalid-buffer,Fail
-> > >   kms_color@ctm-0-25,Fail
-> > >   kms_color@ctm-0-50,Fail
-> > >   kms_color@ctm-0-75,Fail
-> > > @@ -19,6 +18,8 @@ kms_cursor_legacy@flip-vs-cursor-atomic,Fail
-> > >   kms_cursor_legacy@flip-vs-cursor-crc-atomic,Fail
-> > >   kms_cursor_legacy@flip-vs-cursor-crc-legacy,Fail
-> > >   kms_cursor_legacy@flip-vs-cursor-legacy,Fail
-> > > +kms_display_modes@extended-mode-basic,Fail
-> > > +kms_display_modes@mst-extended-mode-negative,Fail
-> > 
-> > The same IGT error
-> > 
-> > >   kms_flip@flip-vs-modeset-vs-hang,Fail
-> > >   kms_flip@flip-vs-panning-vs-hang,Fail
-> > >   kms_lease@lease-uevent,Fail
-> > > @@ -28,4 +29,3 @@ kms_plane_alpha_blend@coverage-7efc,Fail
-> > >   kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
-> > >   kms_plane_cursor@overlay,Fail
-> > >   kms_plane_cursor@viewport,Fail
-> > > -kms_rmfb@close-fd,Fail
-> > > diff --git a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
-> > > index 4892c0c70a6d..8d26b23133aa 100644
-> > > --- a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
-> > > +++ b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
-> > > @@ -7,9 +7,4 @@ kms_cursor_legacy@torture-bo,Fail
-> > >   kms_cursor_legacy@torture-move,Fail
-> > >   kms_hdmi_inject@inject-4k,Fail
-> > >   kms_lease@lease-uevent,Fail
-> > > -kms_plane_alpha_blend@alpha-7efc,Fail
-> > > -kms_plane_alpha_blend@alpha-basic,Fail
-> > > -kms_plane_alpha_blend@alpha-opaque-fb,Fail
-> > > -kms_plane_alpha_blend@alpha-transparent-fb,Fail
-> > > -kms_plane_alpha_blend@constant-alpha-max,Fail
-> > >   msm/msm_recovery@gpu-fault-parallel,Fail
-> > > diff --git a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-flakes.txt
-> > > deleted file mode 100644
-> > > index c1859d9b165f..000000000000
-> > > --- a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-flakes.txt
-> > > +++ /dev/null
-> > > @@ -1,6 +0,0 @@
-> > > -# Board Name: sm8350-hdk
-> > > -# Bug Report: https://gitlab.freedesktop.org/drm/msm/-/issues/65
-> > > -# Failure Rate: 100
-> > > -# IGT Version: 1.28-ga73311079
-> > > -# Linux Version: 6.12.0-rc1
-> > > -msm/msm_recovery@gpu-fault
-> > 
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index d3539fe9f7af5538201a78ce560f662ddb3935f2..20be7b037c07535bd2115f6e70404a95a7832756 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -4311,7 +4311,7 @@ static MESON_GATE(g12a_spicc_1,			HHI_GCLK_MPEG0,	14);
+ static MESON_GATE(g12a_hiu_reg,			HHI_GCLK_MPEG0,	19);
+ static MESON_GATE(g12a_mipi_dsi_phy,		HHI_GCLK_MPEG0,	20);
+ static MESON_GATE(g12a_assist_misc,		HHI_GCLK_MPEG0,	23);
+-static MESON_GATE(g12a_emmc_a,			HHI_GCLK_MPEG0,	4);
++static MESON_GATE(g12a_emmc_a,			HHI_GCLK_MPEG0,	24);
+ static MESON_GATE(g12a_emmc_b,			HHI_GCLK_MPEG0,	25);
+ static MESON_GATE(g12a_emmc_c,			HHI_GCLK_MPEG0,	26);
+ static MESON_GATE(g12a_audio_codec,		HHI_GCLK_MPEG0,	28);
 
+---
+base-commit: 52fd1709e41d3a85b48bcfe2404a024ebaf30c3b
+change-id: 20241213-amlogic-clk-g12a-mmca-fix-c9ebacf34d9c
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Jerome
+
 
 _______________________________________________
 linux-amlogic mailing list
