@@ -4,87 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AF34E7717F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2024 14:32:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29D3EE7717D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2024 14:38:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yrgll8sC5USS+mcwlb8xITdK7qjbYGHYqF7SVSUkKaU=; b=Wor7EQZ3oxTANo
-	WpDZfyVhz3rJ0g7ZOBYj3YksDewfy3FooZD4paC5fAzP4nXJNTugwADJkl2N77KxemBKp1ZGhBvZT
-	x+ObOf6wlOhEWGiKYrEyIldTA1Sw8R9CL8oEcXbpsdHoHjoTe01o1Q3LB/iX1SqBT9IPbMsU20jcq
-	tieoI3fS4IwEVkS+jzCWjWko2GlbThGlSJuLYDCr8sfBoCdK6mG7QjS2KLm6ShtwT97bFqF5e3mpy
-	zT5Xcz4oV5UcmqdaPku3X/sTh6hDH9n+ECBpZdvxUS69v23rZd3zCWtKLMBW9o732XBRh3R1aMJKf
-	JPMF4f1NS9jMUCIyYebQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=WjXr/+gQNcKwB+OxXvLmApDcVA4oeIMcB3MQWOoi1kw=; b=izgO5eqeD/WXPH
+	f+UtjdMzWPgUyVHnS8yC3Lm7CNt2SEoJFk/rwIGKqckJ+HzGBmB/X3LiBaTWPZa+VwcdVw2wNj/l+
+	cozQfMW9bS9pkmuFZIvdm/BapkGapg+iYvQh0L+H/orQsrm/LBhB2PzmMvQlJrP8M3GyvnJgO6Yfg
+	j8eb8GFcY5KVlUvK3qMhFES2nVKVSB+qYnbhRKOKAKjljEq1Iar9FjdLs41xCFdRRYER8P/uarWKo
+	RilKjFb01LTe8nL27OpEiGSzJGea4qdWYoYGzQLEG1JBHJV9UxwxtM75reXYzF4LWKD62oJSShTtt
+	0kp3L4D4fl4S7M5qBFAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tM6iU-0000000459j-2Sqq;
-	Fri, 13 Dec 2024 14:32:30 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1tM6np-000000047ac-3BWS;
+	Fri, 13 Dec 2024 14:38:01 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tM6LP-00000003xQ1-1JCP;
-	Fri, 13 Dec 2024 14:08:40 +0000
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 01E7812002C;
-	Fri, 13 Dec 2024 17:08:38 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 01E7812002C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1734098918;
-	bh=vGHSkfQnvyBF6gk9XJP/QdQawDEuoaZWrgxVLILuTYo=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=nc+zid9pzUtHPXwRfMBVFBISGT87era/y9FUm9MHgeLtGTr7NdI7bkBX2AW4aA3RI
-	 SsBlWpAMjHPuDEk2fVIof6CyBYLXg6Kg+BBi7gMDZekLfmsopw4GJgGtUgpx5F+8aj
-	 C3BgiJ/8kxpYhqC6rBNx6rkbfN0ATXhnYt0myWQ+mLz7bY88ceqkGOfMQ/PAb3ZsQC
-	 MuWVNp6z1fjiwKFoytNXCjnQG5Pv2H4C3JeS0N2ZVyQX4mt7cUBsM4iVLqyrNNVrpq
-	 hTRCDKystRhU9BbDOs/RQmDhM9AaPMr4g1KakMAE9BQYUlWAQoKjDBytz7g2sKsBQR
-	 QZZ4o9fBbrPFw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Fri, 13 Dec 2024 17:08:37 +0300 (MSK)
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
-	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
-CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, "Alexey
- Romanov" <avromanov@salutedevices.com>
-Subject: [PATCH v11 22/22] arm64: dts: amlogic: axg: add crypto node
-Date: Fri, 13 Dec 2024 17:07:55 +0300
-Message-ID: <20241213140755.1298323-23-avromanov@salutedevices.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241213140755.1298323-1-avromanov@salutedevices.com>
-References: <20241213140755.1298323-1-avromanov@salutedevices.com>
+	id 1tM6gT-000000044YR-0I3y
+	for linux-amlogic@lists.infradead.org;
+	Fri, 13 Dec 2024 14:30:28 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4361fe642ddso18397205e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 13 Dec 2024 06:30:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734100223; x=1734705023; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pi1TXEqqDBiezezG8nYR4uQXdlaFaxavbh3mrGsln2Q=;
+        b=s6GGt5JAZN1pN/bYVnY/strXyqP1sJO3aSVGq7jZQ/tn9reSo8yJju/8pZWMY6AsVp
+         UYsEF//XwjApHoesDSCaNAytBtiCr0nSmN8h6y4o0Ndds3S4GaX+URCxbB70OJRn9ANw
+         iY9bEYf01FWJvtOz9+u0deQdTWqp0YpA4E8CZ4wjtVyaYsphxKIFL4F4Z1kL5a5FL4ez
+         VV4qrM1bYRUAcSCAq8sI6O9NrHKyGK/iii1mYjF5a3KlEMe+QQPe/hfX/fwW5NfD0jkl
+         xgfR7HagY5CDJwdjyAHe0c1ZUvIcvbuaD37T+r6+6uF8JFb0dX/TmzbONJNyeDY1g7gb
+         LF2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734100223; x=1734705023;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Pi1TXEqqDBiezezG8nYR4uQXdlaFaxavbh3mrGsln2Q=;
+        b=GHa8wLsEaky2BhfCjrAjq45CVHRdyvoch6AWDQI1nxySRCtq6yTW8h1wwFKCekunDX
+         u/gaJP9Kw9E1jIcJgmgZJ6snx7PCn/95aOVvjCItgA0l2LmCJX5UbMvYEH+RaeAjBt/K
+         XVuW9st8OsOES0pmvLyuDNJephx1NICsbw35/Yvf/p+z1ti3Sv7h3z4lQC575ZYLpe8m
+         oyLl9Iqe3+h1J2udeGTSI/Ui+jJlmcFygIyuUZzK8EYMjrJvZ1rGiMK1u3/HFHNxjg+U
+         PsEblMrVymxFIc0sg2RInpYNsqOINsz/pdly6eCUvitx8EOq+bwW6k52fCn/UF9xPgL/
+         Po4g==
+X-Gm-Message-State: AOJu0YzCe4LziUx2z/uzOfO7dtuz3VrF2k0qpUd/D+t2AoyluR8YalBW
+	Qd1Abb/wtGpHukTam/528B/MHLRFURaE1DtVN3BMwCgke+jQrWSZwMC9IyAglbua01mxuzaoq/m
+	k
+X-Gm-Gg: ASbGncsMKWL80vHMZ+bUyjKaUTtVEXuMkJlTVyUB4Ma0bVnaWBfCIDgmczaBZCzu8ys
+	eneTkvsZ9MBf3mkj9BL7ygOTa8/q4JG+Qr9sizNBi+gKYrJqcWOdIP/IIwlwDXZni8BeERqCA0x
+	gekzEJNQNJLDT27McWSPAGbUqZfO+p6f8QQ9iIm5TxDaqHCXs6sea/cIgiqb4thiFjcgaIadrpF
+	F71wX7kU25iRgrDOY+nVvT4oJKAVCnGGcA8I1uQrZDUPt/DeGTigVDUj4qGL6zLyOs=
+X-Google-Smtp-Source: AGHT+IEBmcupQ7jLd1GlerO1KBdvvlUtU+d7uGcD/hEi+3rvYzaqGrrDbYHOw1AfBKz8/xsv1HIlnQ==
+X-Received: by 2002:a05:600c:a08b:b0:434:a386:6cf with SMTP id 5b1f17b1804b1-4362aa1543dmr28303935e9.2.1734100223162;
+        Fri, 13 Dec 2024 06:30:23 -0800 (PST)
+Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:3da8:c88:4a1:9b7])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43625579464sm50747805e9.10.2024.12.13.06.30.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Dec 2024 06:30:22 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Fri, 13 Dec 2024 15:30:17 +0100
+Subject: [PATCH] clk: amlogic: g12b: fix cluster A parent data
 MIME-Version: 1.0
-X-Originating-IP: [172.28.130.77]
-X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
- p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 189823 [Dec 13 2024]
-X-KSMG-AntiSpam-Version: 6.1.1.7
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 47 0.3.47 57010b355d009055a5b6c34e0385c69b21a4e07f, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/12/13 12:33:00 #26873825
-X-KSMG-AntiVirus-Status: Clean, skipped
+Message-Id: <20241213-amlogic-clk-g12a-cpua-parent-fix-v1-1-d8c0f41865fe@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAPhEXGcC/x2NQQqDMBAAvyJ77oJZU8F+pfSw3a5xqY0hUSmIf
+ 2/oceYwc0DRbFrg1hyQdbdiS6zgLg3IxDEo2qsyUEvekeuQP/MSTFDmNwZHjJI2xsRZ44qjfbH
+ 3XU9+uI4yPKFmUtaq/4v74zx/w3KPD3IAAAA=
+X-Change-ID: 20241213-amlogic-clk-g12a-cpua-parent-fix-64362495fc9b
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Alexandre Mergnat <amergnat@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Jerome Brunet <jbrunet@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3449; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=l+LOytW4KMl4YzA8MDmiu6FsOw4fpbkKcHgg4999JHE=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnXET9FTQHlDf7COIAQ8tPKiSkEOeg1ym4k8nLN
+ w2YmO/f+xSJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ1xE/QAKCRDm/A8cN/La
+ hV1vD/oDVg1JFi3oFO2Jgffxn8O9WOKcGf5BljQHVgYNnYlO0R5E8Z0XETf+jKNf1t9+l7n65n9
+ LEj685/INquJNq/DB0GqKRtBy8FuWJWEfoK35F07328l+LSh98VzWqB3QWMRb+LkyT9NQwrkN4h
+ t19ECF0qW8AhO/kisqFU7bChtVoTrigfi+JCmmyE8vQgiMWaeUizUh1/DIlFOZ1iXOp805T1PLi
+ FwQtPej0JyLfkjyw2lJ6ryu/EOEAmaYXvPGLCD3e24yt8Y5kFWnHdt/AfgylfLBnZEAW3+mkRnn
+ +k+ClGBYBKjUnbx5PFWZ4+8zqK1meKPXwy8ZT8DFrC+48zevkLBGtZ5PVQwBywDwjYRBya/a2NH
+ Q90mai8gFNfmTAKeK4P7i4wwzywzXg8uD9NX5vGczQoThKOcSJPaF69dGyY5/tGDo+lktSv8t6u
+ Cl6cPEtw2RpLhzOCw2NQK8QSyaHfKUIfVayUZGttC1muG5li22PY/yE/2nXl+rdjNFL80fzKkMA
+ uQuGWkG1ESYa0BE8q+5FFStR5UdMTRAZJQ99crrEJomu09ftxVfNAd9JpuIf89vvJoFXzSUQe06
+ PWyv2wb3sA87J3EJrOgBID930xZbfC2KIXq1zbiI4kUXzYflicq4EJfNGNFkAyhFCNBpxjt9upc
+ pSxW8yaFTC0phXw==
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241213_060839_683344_ABA314EB 
-X-CRM114-Status: UNSURE (   9.27  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20241213_063027_029091_5FCA0D9B 
+X-CRM114-Status: GOOD (  13.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,35 +119,104 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds a crypto node declaration. With the
-Amlogic crypto driver we can use HW implementation
-of SHA1/224/256 and AES algo.
+Several clocks used by both g12a and g12b use the g12a cpu A clock hw
+pointer as clock parent. This is incorrect on g12b since the parents of
+cluster A cpu clock are different. Also the hw clock provided as parent to
+these children is not even registered clock on g12b.
 
-Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+Fix the problem by reverting to the global namespace and let CCF pick
+the appropriate, as it is already done for other clocks, such as
+cpu_clk_trace_div.
+
+Fixes: 25e682a02d91 ("clk: meson: g12a: migrate to the new parent description method")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/clk/meson/g12a.c | 36 ++++++++++++++++++++++++------------
+ 1 file changed, 24 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index e9b22868983d..20a5fff3cda5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -294,6 +294,13 @@ ethmac: ethernet@ff3f0000 {
- 			status = "disabled";
- 		};
- 
-+		crypto: crypto@ff63e000 {
-+			compatible = "amlogic,axg-crypto";
-+			reg = <0x0 0xff63e000 0x0 0x48>;
-+			interrupts = <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc CLKID_CLK81>;
-+		};
-+
- 		pcie_phy: phy@ff644000 {
- 			compatible = "amlogic,axg-pcie-phy";
- 			reg = <0x0 0xff644000 0x0 0x1c>;
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index 20be7b037c07535bd2115f6e70404a95a7832756..4e6584377e43fa7c9956017ddfcd3f295fafd686 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -1137,8 +1137,18 @@ static struct clk_regmap g12a_cpu_clk_div16_en = {
+ 	.hw.init = &(struct clk_init_data) {
+ 		.name = "cpu_clk_div16_en",
+ 		.ops = &clk_regmap_gate_ro_ops,
+-		.parent_hws = (const struct clk_hw *[]) {
+-			&g12a_cpu_clk.hw
++		.parent_data = &(const struct clk_parent_data) {
++			/*
++			 * Note:
++			 * G12A and G12B have different cpu clocks (with
++			 * different struct clk_hw). We fallback to the global
++			 * naming string mechanism so this clock picks
++			 * up the appropriate one. Same goes for the other
++			 * clock using cpu cluster A clock output and present
++			 * on both G12 variant.
++			 */
++			.name = "cpu_clk",
++			.index = -1,
+ 		},
+ 		.num_parents = 1,
+ 		/*
+@@ -1203,7 +1213,10 @@ static struct clk_regmap g12a_cpu_clk_apb_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_clk_apb_div",
+ 		.ops = &clk_regmap_divider_ro_ops,
+-		.parent_hws = (const struct clk_hw *[]) { &g12a_cpu_clk.hw },
++		.parent_data = &(const struct clk_parent_data) {
++			.name = "cpu_clk",
++			.index = -1,
++		},
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -1237,7 +1250,10 @@ static struct clk_regmap g12a_cpu_clk_atb_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_clk_atb_div",
+ 		.ops = &clk_regmap_divider_ro_ops,
+-		.parent_hws = (const struct clk_hw *[]) { &g12a_cpu_clk.hw },
++		.parent_data = &(const struct clk_parent_data) {
++			.name = "cpu_clk",
++			.index = -1,
++		},
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -1271,7 +1287,10 @@ static struct clk_regmap g12a_cpu_clk_axi_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_clk_axi_div",
+ 		.ops = &clk_regmap_divider_ro_ops,
+-		.parent_hws = (const struct clk_hw *[]) { &g12a_cpu_clk.hw },
++		.parent_data = &(const struct clk_parent_data) {
++			.name = "cpu_clk",
++			.index = -1,
++		},
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -1306,13 +1325,6 @@ static struct clk_regmap g12a_cpu_clk_trace_div = {
+ 		.name = "cpu_clk_trace_div",
+ 		.ops = &clk_regmap_divider_ro_ops,
+ 		.parent_data = &(const struct clk_parent_data) {
+-			/*
+-			 * Note:
+-			 * G12A and G12B have different cpu_clks (with
+-			 * different struct clk_hw). We fallback to the global
+-			 * naming string mechanism so cpu_clk_trace_div picks
+-			 * up the appropriate one.
+-			 */
+ 			.name = "cpu_clk",
+ 			.index = -1,
+ 		},
+
+---
+base-commit: 799ce46951dcc75682223cdab12fdc905f2fe735
+change-id: 20241213-amlogic-clk-g12a-cpua-parent-fix-64362495fc9b
+
+Best regards,
 -- 
-2.34.1
+Jerome
 
 
 _______________________________________________
