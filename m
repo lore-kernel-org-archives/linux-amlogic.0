@@ -4,115 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E2EEE7717D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2024 10:35:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACD42E7717D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2024 14:08:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=lFkhbNezT7rJJRnpvixJp3uqjLFj2ovPv2IHkk0ZbOg=; b=0OO8OVK2PURfCV8mQvAJjgglgX
-	G1oCbBVCTSO3p/jZRltZ1dd7IOwiPt7OYBhme0z71D/7yfomlpP0ek5FgboOxDnNJt58wbNvGfsV5
-	tKlAYT265hlBL0kedbMuJph4sXW6kSQd3mQzgi1uq0ZGCwAyYgBeNRJ8EWZlGXU2SibneYxzV7JPV
-	5HhoPYvR5xzltPFv8So2Z5DF7zqBkau/Y8M41qwZweAV0emVSV6+IVazqNyVLZyTE5ZXGc0Lz02H8
-	PVu0zMpjg5KaUPvN7iEqmHMDcdre/hzrd8G/RKRWO7dR32+CYUxxRHqLpQaHxCqzKwK9GjssJSS7F
-	103c8N9w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=9bMiGldu18L3QdST0aan2h2lj0ymTahhZCkJaJx/mLE=; b=NFWDAHWnmgSdXY
+	QvMgVxYA4oC+u8pA1xCQIb2OAB98v/DonwU8dLbPAn5z57YLAc9Tvy2AFOzI5HPjTSyjyh2kYaKbb
+	isV7VxVKTRbz1qWlPM2FKbQ/RNhtXxrdbhOB1PuXq5UEA64Q8YjD2Uw4ht+dJ1+p3ofvZiGyIZWp4
+	R3DtReepuv78x1UEbW0G6BtEtVqYuyQrJsC70V4nW1EW0lbbWE/aP2uAJx8nKUT9oeSDgpz4A3VSa
+	1W+7E08o/hBmkQqH4uJQ3M4vdNh5pxUF+L1woPyIOMJaX/vvFDW9ocixV6+olKGxi6iZlVVe5kNW4
+	+n1pZ0+jEUkpDQ5Hseqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tM30w-00000003RHx-1Evq;
-	Fri, 13 Dec 2024 10:35:18 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1tM6LD-00000003xI1-42sq;
+	Fri, 13 Dec 2024 14:08:27 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tM30E-00000003R8s-3i3y
-	for linux-amlogic@lists.infradead.org;
-	Fri, 13 Dec 2024 10:34:36 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-436202dd7f6so16743995e9.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 13 Dec 2024 02:34:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734086073; x=1734690873; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WA6drCMppYdVISfpkuD87PDa0h+Hfy91b3d0JmUIEnc=;
-        b=PMGQOxzrrtBNEvGocHzwHgbVanIB/Dc7x3U9FceaL3MUdG2D2bDB6r/2A4KYimsn2S
-         vkgaygFoUp5TAVIpcYg/0z1HdtsSt5cKTIYa0SiqIIN/UZufKKdfi4jjEXFr64iiCbQ6
-         74DtFvPHauzJE1sWCzBUKHjyZlL8dAAx0F6v0KpbKheT/CE0ToARUHZ4nmoOXM/7gr3t
-         ow65dP8srAHnMzTK5LPfE8NwaCGtbDvfD1zRuUsDAwhjT8fQvFF3SeommRtarU1UbK1O
-         SXIsodlrKZyj2YHQUDWo17qDsTPr7W9rDXpP4O3d7ALJGZKe7pmROJILIrqM/P0r5F0p
-         t03g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734086073; x=1734690873;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=WA6drCMppYdVISfpkuD87PDa0h+Hfy91b3d0JmUIEnc=;
-        b=AX8BrKVIgg+jhANd/w81sI+QWqsv7e7ElLErgrrH+gqzaZbn1A7HcNx83TohkdgwKM
-         6GlNUoHzoYN450LwHHILBr+2Z2iDCG759y9Dgn2LLOcYaM9Mcrh8nu+GxtwfxCRnnk9w
-         zPB29S1yX2aHHRk9C3qSqtbnOJIe2ro1eAJ0s9bQLqGKtAveNFAeMTZY4onFuYHNiuLm
-         i5ZRYZBlaRMGwiWrhnKnK/CsdgeWcEXWndFCT32cpIY/Rb6H87q+c38PNnHXEmkOzWww
-         1JJKYFspFoMj6VvIgelFqxWeRJNtW39TQcKcuG9lKWMGCrav9GRIFZ3iswWrfSfryBz6
-         2Wqg==
-X-Gm-Message-State: AOJu0YzBk55sJrHYWaHCNE75L5p/DUBdcVt9qEK6J19qXaXNDPDqAlPv
-	NCH/BdgxoK1/MGDOXt/QM6e+GuByeVCrVdpsjoDMWvlzxmJRXRubHIVLcN5Ijfc=
-X-Gm-Gg: ASbGncu6OjpvXlPdOif+nd3yNPlV1IAynkAEuY3vd3pq/YeuTDQgivpzGlb7Zyc8u6K
-	8x7NXNeRLcaqlgqTW5sE7qG5YylyuTgRIrp5wHyGcZWustp+q+UA/cVSmt2bXrjKdAD9GuaTzBO
-	y1AKdxJLNMlfhkeBy23E42gq0jE7PMBqY7WoqYcCHMfzoi0PN12WyeGpfS82rqlforbDVtj2sdY
-	6NF4+dVwkL5MaNDN1hgUYxiLp4VhLrAmQlLpnUMTOiOtwcvNgm17S96NpysN41k3WGzw+X8u5Qj
-	lmSkFMtNro7kZtiPGVGZrVEZk3C+3+IVUw==
-X-Google-Smtp-Source: AGHT+IE8QIvOjYdMGFe/6r6ILHvAeGLSVV3a3eXEBuyeoNQwwo9IPedJWyk14Nak5HhAqjkv4xRTYQ==
-X-Received: by 2002:a05:600c:3503:b0:434:ff25:19a0 with SMTP id 5b1f17b1804b1-4362aa94379mr15608885e9.21.1734086073135;
-        Fri, 13 Dec 2024 02:34:33 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4795:2d16:2587:ed70? ([2a01:e0a:982:cbb0:4795:2d16:2587:ed70])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436257178e3sm45453865e9.41.2024.12.13.02.34.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 02:34:32 -0800 (PST)
-Message-ID: <cbf51c06-2183-4423-ab61-65a93f903a04@linaro.org>
-Date: Fri, 13 Dec 2024 11:34:31 +0100
+	id 1tM6LA-00000003xEM-3zAF;
+	Fri, 13 Dec 2024 14:08:27 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 28A19120009;
+	Fri, 13 Dec 2024 17:08:12 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 28A19120009
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1734098892;
+	bh=Wy9OiI+7szsDjno2sdPj55bgsp0gdMIN+aJDlIWoX/c=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=vorydM9+kbkjM9zvZEnjyN7QAJQcob0pm0Bt7hcyJgyr/gfGNYfe5nDOo1r+xHuLB
+	 qS6vYLU1+M50Dgrf9HhdEs0kRQD7DpNRVzhz6pN9eUdHvyuUI9Xl3y2akHkT4D3HGJ
+	 BKzkOZuwZ/u74xAl+MZLcH012l7b6mOdI+5t4AcVpNl1swDw3+k6nOvALBKF7YPA0K
+	 S3ynK/L3LjjDStAKBjEOg+0RdkKuA4LhMkOpoSuG1LF+KW5ZvPopJJqw98irxvbt+Q
+	 wGhjZnW+zfgEQyTPg2+0wSW+bR1nwWFdJpn+CVvf+gCpNXpHHEDst5uu87UPrfruIJ
+	 pxO0RLkhZn1fg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 13 Dec 2024 17:08:11 +0300 (MSK)
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, "Alexey
+ Romanov" <avromanov@salutedevices.com>
+Subject: [PATCH v11 04/22] crypto: amlogic - Add MMIO helpers
+Date: Fri, 13 Dec 2024 17:07:37 +0300
+Message-ID: <20241213140755.1298323-5-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241213140755.1298323-1-avromanov@salutedevices.com>
+References: <20241213140755.1298323-1-avromanov@salutedevices.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] clk: amlogic: g12a: fix mmc A peripheral clock
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jian Hu <jian.hu@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241213-amlogic-clk-g12a-mmca-fix-v1-1-5af421f58b64@baylibre.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20241213-amlogic-clk-g12a-mmca-fix-v1-1-5af421f58b64@baylibre.com>
+X-Originating-IP: [172.28.130.77]
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 189823 [Dec 13 2024]
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 47 0.3.47 57010b355d009055a5b6c34e0385c69b21a4e07f, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/12/13 12:33:00 #26873825
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241213_023434_947431_9072B814 
-X-CRM114-Status: GOOD (  16.22  )
+X-CRM114-CacheID: sfid-20241213_060825_680261_90A23CB6 
+X-CRM114-Status: GOOD (  14.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,51 +95,92 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/12/2024 11:03, Jerome Brunet wrote:
-> The bit index of the peripheral clock for mmc A is wrong
-> This was probably not a problem for mmc A as the peripheral is likely left
-> enabled by the bootloader.
-> 
-> No issues has been reported so far but it could be a problem, most likely
-> some form of conflict between the ethernet and mmc A clock, breaking
-> ethernet on init.
-> 
-> Use the value provided by the documentation for mmc A before this
-> becomes an actual problem.
-> 
-> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->   drivers/clk/meson/g12a.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-> index d3539fe9f7af5538201a78ce560f662ddb3935f2..20be7b037c07535bd2115f6e70404a95a7832756 100644
-> --- a/drivers/clk/meson/g12a.c
-> +++ b/drivers/clk/meson/g12a.c
-> @@ -4311,7 +4311,7 @@ static MESON_GATE(g12a_spicc_1,			HHI_GCLK_MPEG0,	14);
->   static MESON_GATE(g12a_hiu_reg,			HHI_GCLK_MPEG0,	19);
->   static MESON_GATE(g12a_mipi_dsi_phy,		HHI_GCLK_MPEG0,	20);
->   static MESON_GATE(g12a_assist_misc,		HHI_GCLK_MPEG0,	23);
-> -static MESON_GATE(g12a_emmc_a,			HHI_GCLK_MPEG0,	4);
-> +static MESON_GATE(g12a_emmc_a,			HHI_GCLK_MPEG0,	24);
->   static MESON_GATE(g12a_emmc_b,			HHI_GCLK_MPEG0,	25);
->   static MESON_GATE(g12a_emmc_c,			HHI_GCLK_MPEG0,	26);
->   static MESON_GATE(g12a_audio_codec,		HHI_GCLK_MPEG0,	28);
-> 
-> ---
-> base-commit: 52fd1709e41d3a85b48bcfe2404a024ebaf30c3b
-> change-id: 20241213-amlogic-clk-g12a-mmca-fix-c9ebacf34d9c
-> 
-> Best regards,
+Add MMIO access helpers: meson_dma_start() and meson_dma_ready().
 
+Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c |  2 +-
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 24 ++++++++++++++++-----
+ drivers/crypto/amlogic/amlogic-gxl.h        |  2 ++
+ 3 files changed, 22 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index 7eff3ae7356f..1fe916b0a138 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -225,7 +225,7 @@ static int meson_cipher(struct skcipher_request *areq)
+ 
+ 	reinit_completion(&mc->chanlist[flow].complete);
+ 	mc->chanlist[flow].status = 0;
+-	writel(mc->chanlist[flow].t_phy | 2, mc->base + ((mc->pdata->descs_reg + flow) << 2));
++	meson_dma_start(mc, flow);
+ 	wait_for_completion_interruptible_timeout(&mc->chanlist[flow].complete,
+ 						  msecs_to_jiffies(500));
+ 	if (mc->chanlist[flow].status == 0) {
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index 90b539401b71..e617dddf5e2b 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -22,18 +22,32 @@
+ 
+ #include "amlogic-gxl.h"
+ 
++void meson_dma_start(struct meson_dev *mc, int flow)
++{
++	u32 offset = (mc->pdata->descs_reg + flow) << 2;
++
++	writel(mc->chanlist[flow].t_phy | 2, mc->base + offset);
++}
++
++static bool meson_dma_ready(struct meson_dev *mc, int flow)
++{
++	u32 offset = (mc->pdata->status_reg + flow) << 2;
++	u32 data = readl(mc->base + offset);
++
++	if (data)
++		writel_relaxed(0xF, mc->base + offset);
++
++	return data;
++}
++
+ static irqreturn_t meson_irq_handler(int irq, void *data)
+ {
+ 	struct meson_dev *mc = (struct meson_dev *)data;
+ 	int flow;
+-	u32 p;
+ 
+ 	for (flow = 0; flow < mc->flow_cnt; flow++) {
+ 		if (mc->chanlist[flow].irq == irq) {
+-			p = readl(mc->base + ((mc->pdata->status_reg + flow) << 2));
+-			if (p) {
+-				writel_relaxed(0xF, mc->base +
+-					      ((mc->pdata->status_reg + flow) << 2));
++			if (meson_dma_ready(mc, flow)) {
+ 				mc->chanlist[flow].status = 1;
+ 				complete(&mc->chanlist[flow].complete);
+ 				return IRQ_HANDLED;
+diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
+index e0bc5c39bf2c..0ccf6542995f 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl.h
++++ b/drivers/crypto/amlogic/amlogic-gxl.h
+@@ -161,6 +161,8 @@ struct meson_alg_template {
+ #endif
+ };
+ 
++void meson_dma_start(struct meson_dev *mc, int flow);
++
+ int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
+ 		     unsigned int keylen);
+ int meson_cipher_init(struct crypto_tfm *tfm);
+-- 
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
