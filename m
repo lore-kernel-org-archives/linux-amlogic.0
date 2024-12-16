@@ -4,105 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29D3EE7717D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2024 14:38:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6008E7717F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2024 13:25:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=WjXr/+gQNcKwB+OxXvLmApDcVA4oeIMcB3MQWOoi1kw=; b=izgO5eqeD/WXPH
-	f+UtjdMzWPgUyVHnS8yC3Lm7CNt2SEoJFk/rwIGKqckJ+HzGBmB/X3LiBaTWPZa+VwcdVw2wNj/l+
-	cozQfMW9bS9pkmuFZIvdm/BapkGapg+iYvQh0L+H/orQsrm/LBhB2PzmMvQlJrP8M3GyvnJgO6Yfg
-	j8eb8GFcY5KVlUvK3qMhFES2nVKVSB+qYnbhRKOKAKjljEq1Iar9FjdLs41xCFdRRYER8P/uarWKo
-	RilKjFb01LTe8nL27OpEiGSzJGea4qdWYoYGzQLEG1JBHJV9UxwxtM75reXYzF4LWKD62oJSShTtt
-	0kp3L4D4fl4S7M5qBFAw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=FdjmMd156kkwStzXmU1OgfesJ4v8p+s7r+es1A8J6Xg=; b=o8HXa+UzdwVDQw
+	n8Mk8kvOtrrLUAwDpgfPk+37hEJd6CohvrF+aUI6dwHxkzmboHE/ot2Vvmlyy/KOeJLEzP7mGH0CR
+	DtGoauZi2WxC8H7tQ3kJKKRBJpDWg+nF9o+qlx85C9z0g4PnUL36ftHR7o/f+xqRFZ4bYjK8vhvwh
+	GZfoC9CWdU9c1fB5+3Hc55fYJGQJXtnU0xOYKQNkxLmTtNf1A2IKG5KxUoO4NIE2FAFfmSWliri4Q
+	/YNfsbQ7+atJvk7Nzm94D6B3UzgjkFCfN8OQxEKJU/65pusQA9HsF8KcpLbxUE6w5MOGHNsjpAFel
+	Z6/JmnucdYFH8O7U6lKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tM6np-000000047ac-3BWS;
-	Fri, 13 Dec 2024 14:38:01 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1tNB6L-0000000A5yV-3TXK;
+	Mon, 16 Dec 2024 13:25:33 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tM6gT-000000044YR-0I3y
+	id 1tNB6J-0000000A5vW-0sKL
 	for linux-amlogic@lists.infradead.org;
-	Fri, 13 Dec 2024 14:30:28 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4361fe642ddso18397205e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 13 Dec 2024 06:30:24 -0800 (PST)
+	Mon, 16 Dec 2024 13:25:33 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-435f8f29f8aso29172555e9.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 16 Dec 2024 05:25:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734100223; x=1734705023; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pi1TXEqqDBiezezG8nYR4uQXdlaFaxavbh3mrGsln2Q=;
-        b=s6GGt5JAZN1pN/bYVnY/strXyqP1sJO3aSVGq7jZQ/tn9reSo8yJju/8pZWMY6AsVp
-         UYsEF//XwjApHoesDSCaNAytBtiCr0nSmN8h6y4o0Ndds3S4GaX+URCxbB70OJRn9ANw
-         iY9bEYf01FWJvtOz9+u0deQdTWqp0YpA4E8CZ4wjtVyaYsphxKIFL4F4Z1kL5a5FL4ez
-         VV4qrM1bYRUAcSCAq8sI6O9NrHKyGK/iii1mYjF5a3KlEMe+QQPe/hfX/fwW5NfD0jkl
-         xgfR7HagY5CDJwdjyAHe0c1ZUvIcvbuaD37T+r6+6uF8JFb0dX/TmzbONJNyeDY1g7gb
-         LF2g==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734355529; x=1734960329; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/+mqcC4nUfs+PmDPNc0X6w6K0gFUO863U6TSJc51xeI=;
+        b=a3avMeRkDpY21n4AuQFi1Msu8LkctSvoPLWLrsZqdpesn2YXawR90wpGhf0Ctya+mA
+         t9njmOcRLLWX8Ck3ziQdixoJN2oEaPJhA7FpbUdbBt0TvlOnhqUI6t/LeXcMMzbJ09q9
+         QjCrLFnp5HrlYrvs2uEptUoZIyeN0t0EP6V0CjmupPJtsVs+foq5rk5f4EbUqV62Py+e
+         w0JpR5qAIO08fgxFJY0/e6q4O8UmN7VPPwNA3pZXSahrRw9pltqxLluqDwrdcHgXbfN/
+         tXMYUCzMlse2uMwZw0M26rj2loK1DjS/yuIM/Cdfc0mBtYYRWdfUjopDxgULuUJnXB92
+         MAWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734100223; x=1734705023;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pi1TXEqqDBiezezG8nYR4uQXdlaFaxavbh3mrGsln2Q=;
-        b=GHa8wLsEaky2BhfCjrAjq45CVHRdyvoch6AWDQI1nxySRCtq6yTW8h1wwFKCekunDX
-         u/gaJP9Kw9E1jIcJgmgZJ6snx7PCn/95aOVvjCItgA0l2LmCJX5UbMvYEH+RaeAjBt/K
-         XVuW9st8OsOES0pmvLyuDNJephx1NICsbw35/Yvf/p+z1ti3Sv7h3z4lQC575ZYLpe8m
-         oyLl9Iqe3+h1J2udeGTSI/Ui+jJlmcFygIyuUZzK8EYMjrJvZ1rGiMK1u3/HFHNxjg+U
-         PsEblMrVymxFIc0sg2RInpYNsqOINsz/pdly6eCUvitx8EOq+bwW6k52fCn/UF9xPgL/
-         Po4g==
-X-Gm-Message-State: AOJu0YzCe4LziUx2z/uzOfO7dtuz3VrF2k0qpUd/D+t2AoyluR8YalBW
-	Qd1Abb/wtGpHukTam/528B/MHLRFURaE1DtVN3BMwCgke+jQrWSZwMC9IyAglbua01mxuzaoq/m
-	k
-X-Gm-Gg: ASbGncsMKWL80vHMZ+bUyjKaUTtVEXuMkJlTVyUB4Ma0bVnaWBfCIDgmczaBZCzu8ys
-	eneTkvsZ9MBf3mkj9BL7ygOTa8/q4JG+Qr9sizNBi+gKYrJqcWOdIP/IIwlwDXZni8BeERqCA0x
-	gekzEJNQNJLDT27McWSPAGbUqZfO+p6f8QQ9iIm5TxDaqHCXs6sea/cIgiqb4thiFjcgaIadrpF
-	F71wX7kU25iRgrDOY+nVvT4oJKAVCnGGcA8I1uQrZDUPt/DeGTigVDUj4qGL6zLyOs=
-X-Google-Smtp-Source: AGHT+IEBmcupQ7jLd1GlerO1KBdvvlUtU+d7uGcD/hEi+3rvYzaqGrrDbYHOw1AfBKz8/xsv1HIlnQ==
-X-Received: by 2002:a05:600c:a08b:b0:434:a386:6cf with SMTP id 5b1f17b1804b1-4362aa1543dmr28303935e9.2.1734100223162;
-        Fri, 13 Dec 2024 06:30:23 -0800 (PST)
-Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:3da8:c88:4a1:9b7])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43625579464sm50747805e9.10.2024.12.13.06.30.22
+        d=1e100.net; s=20230601; t=1734355529; x=1734960329;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/+mqcC4nUfs+PmDPNc0X6w6K0gFUO863U6TSJc51xeI=;
+        b=URx0mZg6lsCXy0IK3iHyYNx6JwdnuYoXvo2V/ISlMo+BWNZIvUCMZ0JS8C5QmmfTA8
+         tKg8UnALSBmsVJ2Jn94DbYkYGUdr+bVnPPyauuT+Rp7Xy/hJ5YLR6SRsZIxHZZXc8it8
+         6UyO5tAllTyAV+K5BREYarVu9xMY4eAP13w6LXcRBSOY4zM/qRJklLp1d2yipyIrOVZk
+         /mYjTYgRo92hWXVTinl9VBJEeCWXZTJ4n4wrbSHpasl/zEMsdCHGlwYBFbnsTbMEsIAr
+         2Yf3AbB2BuBpumf0QVzFCgTvBlj7afa7ZsPSt/QQstsnySEmo+pz08SicRQ1QOldAUDN
+         RDVA==
+X-Forwarded-Encrypted: i=1; AJvYcCW78GBK6ykE8B+JFIeS4ZiAWBv0fz5uRw6oIrGgTfv6jZNqi5K5e7fia/7cEIl4Fv7LPWHcCqUAyszvMB9S@lists.infradead.org
+X-Gm-Message-State: AOJu0YyvQNBY3rcUmOtqJJr1AlrwlArZ7pf//q7bRO51k3ECvgOhrIQ1
+	8YddciAvVe3Mc9XrWQrIb0kyBj5FI64neG0xmnfvvffk1448GzHzKOFHrbM0+yQ=
+X-Gm-Gg: ASbGncs+/CNSuL6FGZCm3XYnxvsiXG3Q+PHSXLizuNLfn3HSdxfZM3lUxU0m06iZpMm
+	wc5OgDzoO7yq9J6Vbmd31npMApzNETndx0fUTlS7e1iQUJZq6G1L8adNMlcTg4cJj/AxtIB8nEG
+	RESkodwsHcnP7TPshJzB4SAg0IES1Choxxr8/1mZbD9LQBVIQhKpw0GoSffRu+z9IBwBGD0xdFI
+	kD3tuEam6h6syfLQcXtoEtR0nH0w3nQLP3fmqVF1YSsMQDp6cKkuPCR
+X-Google-Smtp-Source: AGHT+IGIyE4iqHy6qjfXtXiJhLI3MnMB4y90ql3yNDbrxX8BJ9U/zPgLvNusMt/FrTysNv6gm8bzUA==
+X-Received: by 2002:a5d:6481:0:b0:386:4277:6cf1 with SMTP id ffacd0b85a97d-3888e0b5977mr11178475f8f.39.1734355529380;
+        Mon, 16 Dec 2024 05:25:29 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:1663:6fb7:239c:2f51])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-388c80601desm8136387f8f.90.2024.12.16.05.25.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Dec 2024 06:30:22 -0800 (PST)
+        Mon, 16 Dec 2024 05:25:28 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Fri, 13 Dec 2024 15:30:17 +0100
-Subject: [PATCH] clk: amlogic: g12b: fix cluster A parent data
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Kevin Hilman
+ <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Jiucheng Xu
+ <jiucheng.xu@amlogic.com>,  Stephen Boyd <sboyd@kernel.org>,  Arnd
+ Bergmann <arnd@arndb.de>,  linux-arm-kernel@lists.infradead.org,
+  linux-amlogic@lists.infradead.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] reset: amlogic: rework auxiliary reset support
+In-Reply-To: <20241209-meson-rst-aux-rework-v1-0-d2afb69cc72e@baylibre.com>
+	(Jerome Brunet's message of "Mon, 09 Dec 2024 17:04:33 +0100")
+References: <20241209-meson-rst-aux-rework-v1-0-d2afb69cc72e@baylibre.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 16 Dec 2024 14:25:28 +0100
+Message-ID: <1jmsgv220n.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Message-Id: <20241213-amlogic-clk-g12a-cpua-parent-fix-v1-1-d8c0f41865fe@baylibre.com>
-X-B4-Tracking: v=1; b=H4sIAPhEXGcC/x2NQQqDMBAAvyJ77oJZU8F+pfSw3a5xqY0hUSmIf
- 2/oceYwc0DRbFrg1hyQdbdiS6zgLg3IxDEo2qsyUEvekeuQP/MSTFDmNwZHjJI2xsRZ44qjfbH
- 3XU9+uI4yPKFmUtaq/4v74zx/w3KPD3IAAAA=
-X-Change-ID: 20241213-amlogic-clk-g12a-cpua-parent-fix-64362495fc9b
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Jerome Brunet <jbrunet@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3449; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=l+LOytW4KMl4YzA8MDmiu6FsOw4fpbkKcHgg4999JHE=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnXET9FTQHlDf7COIAQ8tPKiSkEOeg1ym4k8nLN
- w2YmO/f+xSJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ1xE/QAKCRDm/A8cN/La
- hV1vD/oDVg1JFi3oFO2Jgffxn8O9WOKcGf5BljQHVgYNnYlO0R5E8Z0XETf+jKNf1t9+l7n65n9
- LEj685/INquJNq/DB0GqKRtBy8FuWJWEfoK35F07328l+LSh98VzWqB3QWMRb+LkyT9NQwrkN4h
- t19ECF0qW8AhO/kisqFU7bChtVoTrigfi+JCmmyE8vQgiMWaeUizUh1/DIlFOZ1iXOp805T1PLi
- FwQtPej0JyLfkjyw2lJ6ryu/EOEAmaYXvPGLCD3e24yt8Y5kFWnHdt/AfgylfLBnZEAW3+mkRnn
- +k+ClGBYBKjUnbx5PFWZ4+8zqK1meKPXwy8ZT8DFrC+48zevkLBGtZ5PVQwBywDwjYRBya/a2NH
- Q90mai8gFNfmTAKeK4P7i4wwzywzXg8uD9NX5vGczQoThKOcSJPaF69dGyY5/tGDo+lktSv8t6u
- Cl6cPEtw2RpLhzOCw2NQK8QSyaHfKUIfVayUZGttC1muG5li22PY/yE/2nXl+rdjNFL80fzKkMA
- uQuGWkG1ESYa0BE8q+5FFStR5UdMTRAZJQ99crrEJomu09ftxVfNAd9JpuIf89vvJoFXzSUQe06
- PWyv2wb3sA87J3EJrOgBID930xZbfC2KIXq1zbiI4kUXzYflicq4EJfNGNFkAyhFCNBpxjt9upc
- pSxW8yaFTC0phXw==
-X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
- fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241213_063027_029091_5FCA0D9B 
-X-CRM114-Status: GOOD (  13.51  )
+X-CRM114-CacheID: sfid-20241216_052531_244099_8B9600DE 
+X-CRM114-Status: GOOD (  15.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,105 +101,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Several clocks used by both g12a and g12b use the g12a cpu A clock hw
-pointer as clock parent. This is incorrect on g12b since the parents of
-cluster A cpu clock are different. Also the hw clock provided as parent to
-these children is not even registered clock on g12b.
+On Mon 09 Dec 2024 at 17:04, Jerome Brunet <jbrunet@baylibre.com> wrote:
 
-Fix the problem by reverting to the global namespace and let CCF pick
-the appropriate, as it is already done for other clocks, such as
-cpu_clk_trace_div.
+> The current implementation of auxiliary reset controller, with the
+> registration helper in the same module as the driver code, does not
+> allow to properly decouple the registered auxiliary driver from
+> the registering one.
+>
+> This patchset removes the registration helper from the auxiliary reset
+> driver and changes how regmap is passed, to simplify the interface a bit.
+>
+> This patcheset depends on:
+> commit 5ae1a43486fb ("clk: amlogic: axg-audio: revert reset implementation")
+>
+> The above removes the only user of the auxiliary reset controller, restoring
+> old implementation as a temporary solution, while it is reworked.
+>
+> The commit has been applied to clock fixes [1] branch and will eventually
+> make its way to an rc release.
+>
+> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/commit/?h=clk-fixes&id=5ae1a43486fb3febd5ce78da13eb354f16d049e0
 
-Fixes: 25e682a02d91 ("clk: meson: g12a: migrate to the new parent description method")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/g12a.c | 36 ++++++++++++++++++++++++------------
- 1 file changed, 24 insertions(+), 12 deletions(-)
+Hi Philipp,
 
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index 20be7b037c07535bd2115f6e70404a95a7832756..4e6584377e43fa7c9956017ddfcd3f295fafd686 100644
---- a/drivers/clk/meson/g12a.c
-+++ b/drivers/clk/meson/g12a.c
-@@ -1137,8 +1137,18 @@ static struct clk_regmap g12a_cpu_clk_div16_en = {
- 	.hw.init = &(struct clk_init_data) {
- 		.name = "cpu_clk_div16_en",
- 		.ops = &clk_regmap_gate_ro_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_cpu_clk.hw
-+		.parent_data = &(const struct clk_parent_data) {
-+			/*
-+			 * Note:
-+			 * G12A and G12B have different cpu clocks (with
-+			 * different struct clk_hw). We fallback to the global
-+			 * naming string mechanism so this clock picks
-+			 * up the appropriate one. Same goes for the other
-+			 * clock using cpu cluster A clock output and present
-+			 * on both G12 variant.
-+			 */
-+			.name = "cpu_clk",
-+			.index = -1,
- 		},
- 		.num_parents = 1,
- 		/*
-@@ -1203,7 +1213,10 @@ static struct clk_regmap g12a_cpu_clk_apb_div = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cpu_clk_apb_div",
- 		.ops = &clk_regmap_divider_ro_ops,
--		.parent_hws = (const struct clk_hw *[]) { &g12a_cpu_clk.hw },
-+		.parent_data = &(const struct clk_parent_data) {
-+			.name = "cpu_clk",
-+			.index = -1,
-+		},
- 		.num_parents = 1,
- 	},
- };
-@@ -1237,7 +1250,10 @@ static struct clk_regmap g12a_cpu_clk_atb_div = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cpu_clk_atb_div",
- 		.ops = &clk_regmap_divider_ro_ops,
--		.parent_hws = (const struct clk_hw *[]) { &g12a_cpu_clk.hw },
-+		.parent_data = &(const struct clk_parent_data) {
-+			.name = "cpu_clk",
-+			.index = -1,
-+		},
- 		.num_parents = 1,
- 	},
- };
-@@ -1271,7 +1287,10 @@ static struct clk_regmap g12a_cpu_clk_axi_div = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cpu_clk_axi_div",
- 		.ops = &clk_regmap_divider_ro_ops,
--		.parent_hws = (const struct clk_hw *[]) { &g12a_cpu_clk.hw },
-+		.parent_data = &(const struct clk_parent_data) {
-+			.name = "cpu_clk",
-+			.index = -1,
-+		},
- 		.num_parents = 1,
- 	},
- };
-@@ -1306,13 +1325,6 @@ static struct clk_regmap g12a_cpu_clk_trace_div = {
- 		.name = "cpu_clk_trace_div",
- 		.ops = &clk_regmap_divider_ro_ops,
- 		.parent_data = &(const struct clk_parent_data) {
--			/*
--			 * Note:
--			 * G12A and G12B have different cpu_clks (with
--			 * different struct clk_hw). We fallback to the global
--			 * naming string mechanism so cpu_clk_trace_div picks
--			 * up the appropriate one.
--			 */
- 			.name = "cpu_clk",
- 			.index = -1,
- 		},
+FYI, the dependency above has made it to v6.13-rc3
 
----
-base-commit: 799ce46951dcc75682223cdab12fdc905f2fe735
-change-id: 20241213-amlogic-clk-g12a-cpua-parent-fix-64362495fc9b
+Cheers
 
-Best regards,
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+> Jerome Brunet (2):
+>       reset: amlogic: aux: get regmap through parent device
+>       reset: amlogic: aux: drop aux registration helper
+>
+>  drivers/reset/amlogic/reset-meson-aux.c | 85 +++------------------------------
+>  include/soc/amlogic/reset-meson-aux.h   | 23 ---------
+>  2 files changed, 6 insertions(+), 102 deletions(-)
+> ---
+> base-commit: 3d99f9231bedcf9acfb965a97645a8ecfa93a40d
+> change-id: 20241209-meson-rst-aux-rework-e26c716c6762
+> prerequisite-change-id: 20241127-clk-audio-fix-rst-missing-0b80628d934b:v2
+> prerequisite-patch-id: 8bf55ab8ba9db1abea5df2554864a2f4f9c72e77
+>
+> Best regards,
+
 -- 
 Jerome
-
 
 _______________________________________________
 linux-amlogic mailing list
