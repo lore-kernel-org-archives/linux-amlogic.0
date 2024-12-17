@@ -4,75 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50598E7717F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2024 11:02:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CDD5E7717F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2024 14:20:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cZKcnYSNWWQP/SfTedXdH3DHTf81zhLSVymAnOYmtA8=; b=DJxk0qD/AGhwXF
-	Xor1grZJU2AVVyoV6/LtD1VQ6zjQ4oMbbF00e5A6YRUAjyWJyKP8eIWBGBmZ80fwiQEjRQhlHOsLO
-	8FGGNjdSXU5AKCd9j3zToBoMZDVivXy8spgN36oLNUAvpxBJBWTaDAkHBevQqVBDr4kotb/qZtiYk
-	is95RndHrNd+6YlVKoetPEip1OMcGsx9MMW+CuZGygt9snKZ2dMF8wIpWfOmkKtZYGTaQJxUQzajw
-	YmzLMPsD4pMyjZPii6aUFpfM/Y1l2rCfQmr0On9yJuCzYQKYxzRjcJdyM4iHwypKxBJSKi/BphwVG
-	O/pJG03qf+S0os2QCRJg==;
+	List-Owner; bh=LmimaI53YmBwhnG0a+gUn7ntcmeFcVG2xZMo3Vjs9CU=; b=EOLQY2vnuVpYpF
+	FiftQ+hUbiCU7ifrkZYIrnN6upVoF3tpfnlLsGJMxtE05w2Q4to4lV90qzWqiiA2aZWWSApp7yXlW
+	VHeOTKEYAJufBu6v41ny1H9CP5y0YnXWIdAeGIEhVMqqe9d3Tu0zi2ez+uitXGpS8Gdm8D0TzSpZS
+	tP7M9/3ckUHJ6SUY6Wa+nZoJDsBo7zhvymal6hVISWe1EKrqvV4ts8+nxMpYzYfYwbDPuPPQnxjkC
+	M88WW3rmjxJBjXuM/eM0hq97Bv22/A/flVwaL9M60wn10heBB/ELE3y4jjX/B2zqh1FW81Rn2WN0g
+	ZaaKXteN38NGe98X5W/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tNVKz-0000000DCa4-0D3q;
-	Tue, 17 Dec 2024 11:02:01 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tNVKv-0000000DCZZ-3Zz2;
-	Tue, 17 Dec 2024 11:01:59 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6FFEA1063;
-	Tue, 17 Dec 2024 03:02:23 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CE4E93F528;
-	Tue, 17 Dec 2024 03:01:47 -0800 (PST)
-Date: Tue, 17 Dec 2024 11:01:40 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-rtc@vger.kernel.org, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Yiting Deng <yiting.deng@amlogic.com>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>, Sebastian Hesselbarth
- <sebastian.hesselbarth@gmail.com>, Nicolas Ferre
- <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>,
- Support Opensource <support.opensource@diasemi.com>, Paul Cercueil
- <paul@crapouillou.net>, Vladimir Zapolskiy <vz@mleia.com>, Piotr
- Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, Chanwoo Choi
- <cw00.choi@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Eddie Huang
- <eddie.huang@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Orson Zhai
- <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan
- Zhang <zhang.lyra@gmail.com>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Vincent
- Shih <vincent.sunplus@gmail.com>, Thierry Reding
- <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, Michal
- Simek <michal.simek@amd.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, chrome-platform@lists.linux.dev,
- linux-mips@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev,
- linux-tegra@vger.kernel.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH] rtc: use boolean values with device_init_wakeup()
-Message-ID: <20241217110140.22c92138@donnerap.manchester.arm.com>
-In-Reply-To: <20241217071331.3607-2-wsa+renesas@sang-engineering.com>
-References: <20241217071331.3607-2-wsa+renesas@sang-engineering.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	id 1tNYR8-0000000Dj8Y-0SGN;
+	Tue, 17 Dec 2024 14:20:34 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1tNYR6-0000000Dj7v-0lpK;
+	Tue, 17 Dec 2024 14:20:33 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 6EDD65C5415;
+	Tue, 17 Dec 2024 14:19:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D5B0C4CEE2;
+	Tue, 17 Dec 2024 14:20:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734445230;
+	bh=1xLYQcVFD6UDieUDBsRWEFAwh5cBNG7GFvrc7tOnR0g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WGKhjtldNnWXqymtnR6R9dvmW+oRDpd4hLi40LZTAMvdT2q/x+LXqUE7LzzOQalIj
+	 ojFyuY7eC9WIRaY4F87BdR3wmP3i34TT3xDHrdhAQ+fJ0kFPjS40ynesx+Ze6iL3kE
+	 0YeR4/kdaCtXfdyoiJjSCDZeG0RmwPWwU2lLHdY8jDZgxD1iH3jZ9nT3peBhStO5rc
+	 +OlIfAIsKOAEehZchXzocDLQXnWR1irEs/3dD9iKGE7aXj5LYeGgyscT1Ag45kAtpg
+	 4FognD8V77G4YTQhAIBtuuH3AUnLHqEModOLBPUkBb2hGnhX6ZGJ4Hs6nXERiYaZRG
+	 hd6p11dGKGa1g==
+Date: Tue, 17 Dec 2024 08:20:28 -0600
+From: Rob Herring <robh@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH RFC 1/3] dt-bindings: pinctrl: Add support for Amlogic
+ SoCs
+Message-ID: <20241217142028.GA1441221-robh@kernel.org>
+References: <20241211-amlogic-pinctrl-v1-0-410727335119@amlogic.com>
+ <20241211-amlogic-pinctrl-v1-1-410727335119@amlogic.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20241211-amlogic-pinctrl-v1-1-410727335119@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241217_030157_990701_D365261B 
-X-CRM114-Status: GOOD (  14.28  )
+X-CRM114-CacheID: sfid-20241217_062032_307143_FDB05F7C 
+X-CRM114-Status: GOOD (  22.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,81 +81,287 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 17 Dec 2024 08:13:26 +0100
-Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
-
-> device_init_wakeup() second argument is a bool type. Use proper boolean
-> values when calling it to match the type and to produce unambiguous code
-> which is easier to understand.
+On Wed, Dec 11, 2024 at 02:47:49PM +0800, Xianwei Zhao wrote:
+> Add the dt-bindings for Amlogic pin controller, and add a new
+> dt-binding header file which document the GPIO bank names and
+> alternative func value of all Amlogic subsequent SoCs.
 > 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-Verified via regexps that it's indeed this pattern: 1 => true, 0 => false.
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
-> Created with a coccinelle script. I opted for a single patch because the change
-> is rather trivial. I can break out per driver if this is desired. If you
-> like the change at all, that is.
+>  .../bindings/pinctrl/amlogic,pinctrl.yaml          | 150 +++++++++++++++++++++
+>  include/dt-bindings/pinctrl/amlogic,pinctrl.h      |  68 ++++++++++
+>  2 files changed, 218 insertions(+)
 > 
->  drivers/rtc/rtc-88pm80x.c       | 2 +-
->  drivers/rtc/rtc-88pm860x.c      | 2 +-
->  drivers/rtc/rtc-amlogic-a4.c    | 6 +++---
->  drivers/rtc/rtc-armada38x.c     | 2 +-
->  drivers/rtc/rtc-as3722.c        | 2 +-
->  drivers/rtc/rtc-at91rm9200.c    | 2 +-
->  drivers/rtc/rtc-at91sam9.c      | 2 +-
->  drivers/rtc/rtc-cadence.c       | 2 +-
->  drivers/rtc/rtc-cmos.c          | 2 +-
->  drivers/rtc/rtc-cpcap.c         | 2 +-
->  drivers/rtc/rtc-cros-ec.c       | 2 +-
->  drivers/rtc/rtc-da9055.c        | 2 +-
->  drivers/rtc/rtc-ds3232.c        | 2 +-
->  drivers/rtc/rtc-isl1208.c       | 2 +-
->  drivers/rtc/rtc-jz4740.c        | 2 +-
->  drivers/rtc/rtc-loongson.c      | 4 ++--
->  drivers/rtc/rtc-lp8788.c        | 2 +-
->  drivers/rtc/rtc-lpc32xx.c       | 2 +-
->  drivers/rtc/rtc-max77686.c      | 2 +-
->  drivers/rtc/rtc-max8925.c       | 2 +-
->  drivers/rtc/rtc-max8997.c       | 2 +-
->  drivers/rtc/rtc-meson-vrtc.c    | 2 +-
->  drivers/rtc/rtc-mpc5121.c       | 2 +-
->  drivers/rtc/rtc-mt6397.c        | 2 +-
->  drivers/rtc/rtc-mv.c            | 4 ++--
->  drivers/rtc/rtc-mxc.c           | 2 +-
->  drivers/rtc/rtc-mxc_v2.c        | 2 +-
->  drivers/rtc/rtc-omap.c          | 2 +-
->  drivers/rtc/rtc-palmas.c        | 2 +-
->  drivers/rtc/rtc-pic32.c         | 2 +-
->  drivers/rtc/rtc-pm8xxx.c        | 2 +-
->  drivers/rtc/rtc-pxa.c           | 2 +-
->  drivers/rtc/rtc-rc5t583.c       | 2 +-
->  drivers/rtc/rtc-rc5t619.c       | 2 +-
->  drivers/rtc/rtc-renesas-rtca3.c | 2 +-
->  drivers/rtc/rtc-rk808.c         | 2 +-
->  drivers/rtc/rtc-s3c.c           | 2 +-
->  drivers/rtc/rtc-s5m.c           | 2 +-
->  drivers/rtc/rtc-sa1100.c        | 2 +-
->  drivers/rtc/rtc-sc27xx.c        | 4 ++--
->  drivers/rtc/rtc-sh.c            | 2 +-
->  drivers/rtc/rtc-spear.c         | 4 ++--
->  drivers/rtc/rtc-sun6i.c         | 2 +-
->  drivers/rtc/rtc-sunplus.c       | 4 ++--
->  drivers/rtc/rtc-tegra.c         | 2 +-
->  drivers/rtc/rtc-test.c          | 2 +-
->  drivers/rtc/rtc-tps6586x.c      | 2 +-
->  drivers/rtc/rtc-tps65910.c      | 2 +-
->  drivers/rtc/rtc-twl.c           | 2 +-
->  drivers/rtc/rtc-wm831x.c        | 2 +-
->  drivers/rtc/rtc-wm8350.c        | 2 +-
->  drivers/rtc/rtc-xgene.c         | 4 ++--
->  drivers/rtc/rtc-zynqmp.c        | 4 ++--
->  53 files changed, 62 insertions(+), 62 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl.yaml
+> new file mode 100644
+> index 000000000000..b0c2ae585d7d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl.yaml
+> @@ -0,0 +1,150 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/amlogic,pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic pinmux controller
+> +
+> +maintainers:
+> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+> +
+> +allOf:
+> +  - $ref: pinctrl.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,pinctrl
+
+Only one Amlogic pinctrl block? Pretty sure there's more than 1 SoC and 
+pinctrl is unlikely identical for all. This must be SoC specific.
+
+> +
+> +  reg:
+> +    minItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: mux
+> +      - const: gpio
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 2
+
+Why do you need these? You don't have any child nodes with addresses. 
+But maybe you should?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +patternProperties:
+> +  "^gpio[a-z]":
+
+This allows "gpioanythingyouwant" for example. If there is no 
+unit-address, then it should be '^gpio-[0-9]+$'.
+
+> +    type: object
+> +
+> +    properties:
+> +      gpio-controller: true
+> +
+> +      "#gpio-cells":
+> +        const: 2
+> +
+> +      bank-name:
+> +        $ref: /schemas/types.yaml#/definitions/string
+
+You must define values, but why do you need this? No other GPIO 
+controller needs something like this.
+
+> +
+> +      npins:
+
+We have a standard property for this: ngpios
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 1
+> +        maximum: 32
+> +
+> +      bank-index:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 29
+
+Consider if 'bank' should be part of the gpio cells rather than 
+separate controller nodes. That works better if each bank is not its own 
+separate h/w block. If banks share a register, then that's not separate 
+blocks.
+
+> +
+> +      reg-mux-offset:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +      bit-mux-offset:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +      reg-gpio-offset:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+
+Put these into 'reg'. We even have a way to deal with bit offsets. See 
+leds/register-bit-led.yaml for example.
+
+
+> +
+> +    required:
+> +      - gpio-controller
+> +      - "#gpio-cells"
+> +      - npins
+> +      - bank-index
+> +      - reg-mux-offset
+> +      - reg-gpio-offset
+> +      - bank-name
+> +
+> +    additionalProperties: false
+> +    unevaluatedProperties: false
+
+Don't need both. 'additionalProperties' is more restrictive, so drop 
+unevaluatedProperties.
+
+> +
+> +  "^func-[0-9a-z]":
+
+"^func-[0-9a-z-]+$"
+
+> +    type: object
+> +    additionalProperties:
+> +      type: object
+> +      allOf:
+> +        - $ref: pincfg-node.yaml#
+> +        - $ref: pinmux-node.yaml#
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    apb {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +      periphs_pinctrl: pinctrl@8e700 {
+> +        compatible = "amlogic,pinctrl";
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        reg = <0x0 0x8e700 0x0 0x04>,
+> +              <0x0 0x8e704 0x0 0x60>;
+> +        reg-names = "mux", "gpio";
+> +
+> +        gpiob {
+> +          gpio-controller;
+> +          #gpio-cells = <2>;
+> +          npins = <10>;
+> +          bank-index = <1>;
+> +          reg-mux-offset = <0x14>;
+> +          bit-mux-offset = <0x14>;
+> +          reg-gpio-offset = <0x30>;
+> +          bank-name = "GPIOB";
+> +        };
+> +
+> +        gpioe {
+> +          gpio-controller;
+> +          #gpio-cells = <2>;
+> +          npins = <10>;
+> +          bank-index = <5>;
+> +          reg-mux-offset = <0x14>;
+> +          reg-gpio-offset = <0x30>;
+> +          bank-name = "GPIOE";
+> +        };
+> +
+> +        func-uart-b {
+> +          uart-b-default{
+> +            pinmux = <3>;
+> +            bias-pull-up;
+> +            drive-strength-microamp = <4000>;
+> +          };
+> +
+> +          uart-c-default{
+> +            pinmux = <4>;
+> +            bias-pull-up;
+> +            drive-strength-microamp = <4000>;
+> +          };
+> +        };
+> +
+> +        func-uart-c {
+> +          uart-c-default{
+> +            pinmux = <3>;
+> +            bias-pull-up;
+> +            drive-strength-microamp = <4000>;
+> +          };
+> +        };
+> +      };
+> +    };
+> diff --git a/include/dt-bindings/pinctrl/amlogic,pinctrl.h b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
+> new file mode 100644
+> index 000000000000..03db0a730e8b
+> --- /dev/null
+> +++ b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
+> @@ -0,0 +1,68 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_AMLOGIC_PINCTRL_H
+> +#define _DT_BINDINGS_AMLOGIC_PINCTRL_H
+> +
+> +/* define PIN modes */
+> +#define AF0	0x0
+> +#define AF1	0x1
+> +#define AF2	0x2
+> +#define AF3	0x3
+> +#define AF4	0x4
+> +#define AF5	0x5
+> +#define AF6	0x6
+> +#define AF7	0x7
+> +#define AF8	0x8
+> +#define AF9	0x9
+> +#define AF10	0xa
+> +#define AF11	0xb
+> +#define AF12	0xc
+> +#define AF13	0xd
+> +#define AF14	0xe
+> +#define AF15	0xf
+> +
+> +#define AML_PIN_ALT_FUNC_MASK	0xf
+> +
+> +/* Normal PIN bank */
+> +#define AMLOGIC_GPIO_A		0
+> +#define AMLOGIC_GPIO_B		1
+> +#define AMLOGIC_GPIO_C		2
+> +#define AMLOGIC_GPIO_D		3
+> +#define AMLOGIC_GPIO_E		4
+> +#define AMLOGIC_GPIO_F		5
+> +#define AMLOGIC_GPIO_G		6
+> +#define AMLOGIC_GPIO_H		7
+> +#define AMLOGIC_GPIO_I		8
+> +#define AMLOGIC_GPIO_J		9
+> +#define AMLOGIC_GPIO_K		10
+> +#define AMLOGIC_GPIO_L		11
+> +#define AMLOGIC_GPIO_M		12
+> +#define AMLOGIC_GPIO_N		13
+> +#define AMLOGIC_GPIO_O		14
+> +#define AMLOGIC_GPIO_P		15
+> +#define AMLOGIC_GPIO_Q		16
+> +#define AMLOGIC_GPIO_R		17
+> +#define AMLOGIC_GPIO_S		18
+> +#define AMLOGIC_GPIO_T		19
+> +#define AMLOGIC_GPIO_U		20
+> +#define AMLOGIC_GPIO_V		21
+> +#define AMLOGIC_GPIO_W		22
+> +#define AMLOGIC_GPIO_X		23
+> +#define AMLOGIC_GPIO_Y		24
+> +#define AMLOGIC_GPIO_Z		25
+> +
+> +/* Special PIN bank */
+> +#define AMLOGIC_GPIO_DV		26
+> +#define AMLOGIC_GPIO_AO		27
+> +#define AMLOGIC_GPIO_CC		28
+> +#define AMLOGIC_GPIO_TEST_N	29
+> +
+> +#define AML_PINMUX(bank, offset, mode)	(((((bank) << 8) + (offset)) << 8) | (mode))
+> +#define AML_PINMUX_TO_BANK(pinmux)	(((pinmux) >> 16) & 0xff)
+> +#define AML_PINMUX_TO_OFFSET(pinmux)	(((pinmux) >> 8) & 0xff)
+> +
+> +#endif /* _DT_BINDINGS_AMLOGIC_PINCTRL_H */
+> 
+> -- 
+> 2.37.1
 > 
 
 _______________________________________________
