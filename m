@@ -4,122 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B78AE7716A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2024 10:37:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50598E7717F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2024 11:02:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kBIPCRT2K2/ooZZDjYBeJztoNHf99G/vvKA9yLDRkZI=; b=JS81y0iSLvmzgL
-	RqbAkeJMY7iEANNKk1zSCndQuj2Rx4uCU6avwel+WSQgSaT870enXWg25eTy983fKrg9Uz4Sa1nqZ
-	2QhtU66imayQgUsGDXzs2nvH9IpzpWPQT3gus4SeuZGXaq1nVmBQR0NVeq79Kuv61ZillKhNStRG/
-	qYZodMJLJwwQnPmCQYpnQPbOOjcv7PpKAyKjWfl/5uc0TBXw55ZmGA9Y0CzbtXrf2lJL3K0aC2cG8
-	GUwwtAkr0P/u2YO/n6Y/kEhCo0Rp4PJmtY4ZC44ZzU4K6GwkjYjHarLX79ZNjuuS0QBNbWJLP7nTA
-	TZZa7/sTSvMA0sE64yXg==;
+	List-Owner; bh=cZKcnYSNWWQP/SfTedXdH3DHTf81zhLSVymAnOYmtA8=; b=DJxk0qD/AGhwXF
+	Xor1grZJU2AVVyoV6/LtD1VQ6zjQ4oMbbF00e5A6YRUAjyWJyKP8eIWBGBmZ80fwiQEjRQhlHOsLO
+	8FGGNjdSXU5AKCd9j3zToBoMZDVivXy8spgN36oLNUAvpxBJBWTaDAkHBevQqVBDr4kotb/qZtiYk
+	is95RndHrNd+6YlVKoetPEip1OMcGsx9MMW+CuZGygt9snKZ2dMF8wIpWfOmkKtZYGTaQJxUQzajw
+	YmzLMPsD4pMyjZPii6aUFpfM/Y1l2rCfQmr0On9yJuCzYQKYxzRjcJdyM4iHwypKxBJSKi/BphwVG
+	O/pJG03qf+S0os2QCRJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tNUwq-0000000D8kj-2Q7x;
-	Tue, 17 Dec 2024 10:37:04 +0000
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25] helo=mx0b-001ae601.pphosted.com)
-	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tNUwn-0000000D8jE-2qXp;
-	Tue, 17 Dec 2024 10:37:03 +0000
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BH4pZxb025779;
-	Tue, 17 Dec 2024 04:36:26 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=PODMain02222019; bh=DncSMB8awaOalGRsmX
-	KLNqehj2Q8AYTF94wrCAJZets=; b=JHyqdCnAmk49Rks7tVDdl3Y0WoutMvr9mB
-	x3iG4Gih0mGgeaQ7b7y6YZuqiBWOeWqniSGkkhacOVcylwjh8Ais2tnzOBK/LMn4
-	L0mw7++y/sEhaKUgqkptQ2STbN8qQslOWHFUNPyAGAbUW95HpYe45bEj6R2MacLE
-	dr3Wr5bd/vBehFbMarGrAwhRCuKkSl17WHMrxdePJ6CkIqY7VVHogsI1yu/xu+jW
-	Wa2jZzHOPe9mMk1J+kcKIRKz7s9P5ZOc7MRlf0NKePCETF34apari5BqsJ3qElvv
-	wKRhesX/OXcQJ4j4tQh4kn7cFQdc5GKOyJmpynrAUNV3yzmMWYUg==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 43h8a237vd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Dec 2024 04:36:26 -0600 (CST)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Tue, 17 Dec
- 2024 10:36:23 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1544.13 via Frontend Transport; Tue, 17 Dec 2024 10:36:23 +0000
-Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id B0265820248;
-	Tue, 17 Dec 2024 10:36:23 +0000 (UTC)
-Date: Tue, 17 Dec 2024 10:36:22 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
+	id 1tNVKz-0000000DCa4-0D3q;
+	Tue, 17 Dec 2024 11:02:01 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
+	id 1tNVKv-0000000DCZZ-3Zz2;
+	Tue, 17 Dec 2024 11:01:59 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6FFEA1063;
+	Tue, 17 Dec 2024 03:02:23 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CE4E93F528;
+	Tue, 17 Dec 2024 03:01:47 -0800 (PST)
+Date: Tue, 17 Dec 2024 11:01:40 +0000
+From: Andre Przywara <andre.przywara@arm.com>
 To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-CC: <linux-rtc@vger.kernel.org>,
-        Alexandre Belloni
-	<alexandre.belloni@bootlin.com>,
-        Yiting Deng <yiting.deng@amlogic.com>,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth
-	<sebastian.hesselbarth@gmail.com>,
-        Nicolas Ferre
-	<nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Paul Cercueil
-	<paul@crapouillou.net>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Piotr Wojtaszczyk
-	<piotr.wojtaszczyk@timesys.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        "Jerome
- Brunet" <jbrunet@baylibre.com>,
-        Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger
-	<matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang
-	<zhang.lyra@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec
-	<jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        "Vincent
- Shih" <vincent.sunplus@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Michal Simek <michal.simek@amd.com>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <chrome-platform@lists.linux.dev>, <linux-mips@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-samsung-soc@vger.kernel.org>, <linux-sunxi@lists.linux.dev>,
-        <linux-tegra@vger.kernel.org>, <patches@opensource.cirrus.com>
+Cc: linux-rtc@vger.kernel.org, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Yiting Deng <yiting.deng@amlogic.com>,
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>, Sebastian Hesselbarth
+ <sebastian.hesselbarth@gmail.com>, Nicolas Ferre
+ <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>,
+ Support Opensource <support.opensource@diasemi.com>, Paul Cercueil
+ <paul@crapouillou.net>, Vladimir Zapolskiy <vz@mleia.com>, Piotr
+ Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, Chanwoo Choi
+ <cw00.choi@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Eddie Huang
+ <eddie.huang@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Orson Zhai
+ <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan
+ Zhang <zhang.lyra@gmail.com>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Vincent
+ Shih <vincent.sunplus@gmail.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, Michal
+ Simek <michal.simek@amd.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, chrome-platform@lists.linux.dev,
+ linux-mips@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-tegra@vger.kernel.org, patches@opensource.cirrus.com
 Subject: Re: [PATCH] rtc: use boolean values with device_init_wakeup()
-Message-ID: <Z2FUJhC1Iq5mmkEg@opensource.cirrus.com>
-References: <20241217071331.3607-2-wsa+renesas@sang-engineering.com>
-MIME-Version: 1.0
-Content-Disposition: inline
+Message-ID: <20241217110140.22c92138@donnerap.manchester.arm.com>
 In-Reply-To: <20241217071331.3607-2-wsa+renesas@sang-engineering.com>
-X-Proofpoint-ORIG-GUID: ZFiaGqpxjixZfdP0EJY2r8mb04vfd9VM
-X-Proofpoint-GUID: ZFiaGqpxjixZfdP0EJY2r8mb04vfd9VM
-X-Proofpoint-Spam-Reason: safe
+References: <20241217071331.3607-2-wsa+renesas@sang-engineering.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241217_023701_717989_6525BB5B 
-X-CRM114-Status: GOOD (  11.40  )
+X-CRM114-CacheID: sfid-20241217_030157_990701_D365261B 
+X-CRM114-Status: GOOD (  14.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,20 +89,82 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Dec 17, 2024 at 08:13:26AM +0100, Wolfram Sang wrote:
+On Tue, 17 Dec 2024 08:13:26 +0100
+Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
+
 > device_init_wakeup() second argument is a bool type. Use proper boolean
 > values when calling it to match the type and to produce unambiguous code
 > which is easier to understand.
 > 
 > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+Verified via regexps that it's indeed this pattern: 1 => true, 0 => false.
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
 > ---
-
-For the old Wolfson parts:
-
-Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-
-Thanks,
-Charles
+> Created with a coccinelle script. I opted for a single patch because the change
+> is rather trivial. I can break out per driver if this is desired. If you
+> like the change at all, that is.
+> 
+>  drivers/rtc/rtc-88pm80x.c       | 2 +-
+>  drivers/rtc/rtc-88pm860x.c      | 2 +-
+>  drivers/rtc/rtc-amlogic-a4.c    | 6 +++---
+>  drivers/rtc/rtc-armada38x.c     | 2 +-
+>  drivers/rtc/rtc-as3722.c        | 2 +-
+>  drivers/rtc/rtc-at91rm9200.c    | 2 +-
+>  drivers/rtc/rtc-at91sam9.c      | 2 +-
+>  drivers/rtc/rtc-cadence.c       | 2 +-
+>  drivers/rtc/rtc-cmos.c          | 2 +-
+>  drivers/rtc/rtc-cpcap.c         | 2 +-
+>  drivers/rtc/rtc-cros-ec.c       | 2 +-
+>  drivers/rtc/rtc-da9055.c        | 2 +-
+>  drivers/rtc/rtc-ds3232.c        | 2 +-
+>  drivers/rtc/rtc-isl1208.c       | 2 +-
+>  drivers/rtc/rtc-jz4740.c        | 2 +-
+>  drivers/rtc/rtc-loongson.c      | 4 ++--
+>  drivers/rtc/rtc-lp8788.c        | 2 +-
+>  drivers/rtc/rtc-lpc32xx.c       | 2 +-
+>  drivers/rtc/rtc-max77686.c      | 2 +-
+>  drivers/rtc/rtc-max8925.c       | 2 +-
+>  drivers/rtc/rtc-max8997.c       | 2 +-
+>  drivers/rtc/rtc-meson-vrtc.c    | 2 +-
+>  drivers/rtc/rtc-mpc5121.c       | 2 +-
+>  drivers/rtc/rtc-mt6397.c        | 2 +-
+>  drivers/rtc/rtc-mv.c            | 4 ++--
+>  drivers/rtc/rtc-mxc.c           | 2 +-
+>  drivers/rtc/rtc-mxc_v2.c        | 2 +-
+>  drivers/rtc/rtc-omap.c          | 2 +-
+>  drivers/rtc/rtc-palmas.c        | 2 +-
+>  drivers/rtc/rtc-pic32.c         | 2 +-
+>  drivers/rtc/rtc-pm8xxx.c        | 2 +-
+>  drivers/rtc/rtc-pxa.c           | 2 +-
+>  drivers/rtc/rtc-rc5t583.c       | 2 +-
+>  drivers/rtc/rtc-rc5t619.c       | 2 +-
+>  drivers/rtc/rtc-renesas-rtca3.c | 2 +-
+>  drivers/rtc/rtc-rk808.c         | 2 +-
+>  drivers/rtc/rtc-s3c.c           | 2 +-
+>  drivers/rtc/rtc-s5m.c           | 2 +-
+>  drivers/rtc/rtc-sa1100.c        | 2 +-
+>  drivers/rtc/rtc-sc27xx.c        | 4 ++--
+>  drivers/rtc/rtc-sh.c            | 2 +-
+>  drivers/rtc/rtc-spear.c         | 4 ++--
+>  drivers/rtc/rtc-sun6i.c         | 2 +-
+>  drivers/rtc/rtc-sunplus.c       | 4 ++--
+>  drivers/rtc/rtc-tegra.c         | 2 +-
+>  drivers/rtc/rtc-test.c          | 2 +-
+>  drivers/rtc/rtc-tps6586x.c      | 2 +-
+>  drivers/rtc/rtc-tps65910.c      | 2 +-
+>  drivers/rtc/rtc-twl.c           | 2 +-
+>  drivers/rtc/rtc-wm831x.c        | 2 +-
+>  drivers/rtc/rtc-wm8350.c        | 2 +-
+>  drivers/rtc/rtc-xgene.c         | 4 ++--
+>  drivers/rtc/rtc-zynqmp.c        | 4 ++--
+>  53 files changed, 62 insertions(+), 62 deletions(-)
+> 
 
 _______________________________________________
 linux-amlogic mailing list
