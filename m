@@ -4,116 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4F4FE7718B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Dec 2024 11:12:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 687A2E77188
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Dec 2024 14:14:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Qp/Ta5XR5YtiF3sB7cD8cnagz1qMaiQ1O43UzcfkAes=; b=rvPXMxQsQe7CjseNVQCBIqbBWr
-	3sOg/ih9WPvQ7VrislOAC/YIWVAM3OULgrevlsB16lSOvWKGiDj+j9lD3EYxKSDOY84u3Wx0xJqKs
-	3hoQp7s+Oe27YpRpOtK+PExxleBlxm+8bjbgPF3rTLcywT89MJ4+3iUy4mB75znqQdA/2R7bfoTfy
-	mj5dWNHcxyF5fWujx1yXNxR1AYdAaXmJr5DdWWko/ISTiX4fO1XlFiuhkfCHRaLQkExmKqAi2joM0
-	ayRJBcJekQbtEbdsouUzBYuogyovl/Xv3NhlljYUzMko2gyQrpBxAmNap0clUeFUxrKhdUMMgAL68
-	nztE9E8Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=dPym4y8+KyjmCibxGaqADOFC7rfww5M+bnKsap2cr+s=; b=QHu2wVV/37qwn1
+	kjZMe4+LLZob6wzO+9FKAzw3o6MU6p1YuWQS5UbUZ0uHZsTInbxBeGqx45v8rc3a68SaOWr9gdZXo
+	NmqcSmc1lOxJ4sgAGlQVCnaQgRyFmaqBjYQVOiOEQYAZfSd0a3gH/WyLEXv3G/jMiQc/jYnAOMZ7Z
+	b4zLnk05YsI4wecukqHx45PavKWx0XkiRxHx2hxchvnz02114iWU31OckaZoeOHJ6ttflDCCAkrT0
+	1nbobiG0X9xaS1Tve6CXnhWBFLR9NhlzRIRVkrPc6JCNOy1x38RMK85oRDLr9Rj2idDKJBT1aqmHo
+	O2NYSmXrJE2HAMgjPwxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tOavn-00000004gMr-1Hur;
-	Fri, 20 Dec 2024 11:12:31 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1tOdly-0000000572G-0taX;
+	Fri, 20 Dec 2024 14:14:34 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tOaLx-00000004bkA-40bp
+	id 1tOdg2-0000000565y-4B9N
 	for linux-amlogic@lists.infradead.org;
-	Fri, 20 Dec 2024 10:35:31 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a9e8522445dso353110166b.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 20 Dec 2024 02:35:29 -0800 (PST)
+	Fri, 20 Dec 2024 14:08:29 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-386329da1d9so982253f8f.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 20 Dec 2024 06:08:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734690928; x=1735295728; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9Rv0UntN9peSVxfJzXiam0tq/DzIR6KqCCDtf23v9d4=;
-        b=NUHcLYXqViA7X4WkppuvtR6QjufLL2DD1BWe4ryyPqcv5ui8Rc3pLd93eGiJf78g7C
-         4EohxRodZl8nAKbQRTPLedDndW+JzyC2fRBUpNU0w7wh0WRYkBQOh3UeqalOWVZ0bsBW
-         DynTgn5pH7+E3BUKeWWAJTQpYfc4KfBCm4Z/d1kSRdNOlLDvwFRZ1sX2DtfAKWhWRHFN
-         KYz3ZLTV0n7+R4JubWjqCt1ts11mJ2T5KxUxZM/9G3DtY0/CC2/vY4d3WuSUWoPRs1+T
-         PnyPrLBpFctQum3WQe8o5UX2Ik/1lVoWCfaeNOCxy1Y7DDs3DJnAdrl19uRnj2Wfv4Od
-         5lQA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734703705; x=1735308505; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p2OQDSxlIjkv6IYB32QqjLNdXWxA9l5+c++JHu/xF9o=;
+        b=du1OCQZ7axvr0Kb/Yfvm4p0b6PRBsLzGJytInemtca96IA6e01L85h9rUHzPICSeaq
+         lwZiwhjjdcIcqq7r66wjjnwPDPss04ZTW5i3vawfxr1C3mZsPVGO6G1qTWGhsGkr3I2a
+         01vicqfWVOobjY5eia2W/AwXDHHBg6MkiTlp6jRPxsUtvEw6pcu0ZTNdkcwyHSKLqgde
+         JQekyBk8QVaL3zvxo+nDIkHyo3Wycaqm4qB34yKJeH8fGjKKIb+kYxxf05n19K6toKSG
+         /PhD7BGhOdfToSH2IYIB2wtsfAomraDWqrqgfjL0sYBGyYMfj9/XUTtSNFkTc4p7a5Jo
+         2Xng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734690928; x=1735295728;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9Rv0UntN9peSVxfJzXiam0tq/DzIR6KqCCDtf23v9d4=;
-        b=jDEEaWSDpvkRI3jBAE3cMmJ78kBWBQ/b6UtEdHz6RisN2nrac+5BU9WoUQFzfsYOFS
-         RUOeW5SaXFPXzkyKTznJkN0bo2Jj4sj/GdNnlZQlzDsh9CHXQjnChtl25oypYhm/0Maz
-         wHx3ZPGbj4yoObSAuWaKHb7KyZEdotW7zzKxV5BSUJEsMOPKXN+IcPAATMxC94rtG/76
-         GiONKBO1jS3EzP0kx/Edntom0mOThVZlTumD/wsoGus1QDr01Kr56azwn8KQ809gAvuA
-         nUQdQuQGp8w1GBVv1ZMO8krOW4Ev78c4MYzAg2CphquBrb3x4g66lUc9pzCGzKBRX0Zi
-         67VA==
-X-Gm-Message-State: AOJu0YyNBbxExIEhjT+xiaiKJjBEzs+u4tbh/D4i1q7CszROytysi1u5
-	zwSwyb3pfDU1FBH9WsMT5qui9rrLKWduzIk9vCvwP1FGOI+U1iGzCy0D1Kvp35saDJj89f4OdvN
-	Mgfs=
-X-Gm-Gg: ASbGncvKVCQydR6AhSVbJrAjwrZ4j9TJMDtNZwn6Q+xsXta9QocOJxw+YfBRglELMGR
-	C9LEr9RQpm/G8AwfbhJhCYlAUxlZT+Kdl/d1iQmpu0pmVrpcBcaGkDGLzjoUn41HKHRwBAuylAW
-	zq5cAayZFNepWC08JHTJgGVyYtV1VeX35ZRC/fR9CO5Bec4R2h2lmgLTh182x4Uppe+22Lhp763
-	mgv6Q4CM/2s8AUqxdLTa2ewVEezWnCCoQBJmr9x6NMECn3uEMdMSn9MPH3rrGmQc6Kx
-X-Google-Smtp-Source: AGHT+IFAtwJ+blPxyb/enh4drXznLmMhq3Xg9jY4Fyo3nuW5sg/0md1T6M+1jUSvQ7usw39sxgNTWg==
-X-Received: by 2002:a17:907:809:b0:aa6:832b:8d71 with SMTP id a640c23a62f3a-aac270283bfmr169199266b.2.1734690927584;
-        Fri, 20 Dec 2024 02:35:27 -0800 (PST)
-Received: from [192.168.7.191] ([212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e8953b6sm164516066b.65.2024.12.20.02.35.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Dec 2024 02:35:26 -0800 (PST)
-Message-ID: <72f222a9-32b4-479a-8307-4653bc99686d@linaro.org>
-Date: Fri, 20 Dec 2024 11:35:25 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] clk: amlogic: gxbb: drop non existing 32k clock
- parent
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        d=1e100.net; s=20230601; t=1734703705; x=1735308505;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p2OQDSxlIjkv6IYB32QqjLNdXWxA9l5+c++JHu/xF9o=;
+        b=OxnT2j9P5JNSZfHFDbyvOeNWtlyCsj7a1kzJArUIFJwHhwzYD99P5+wv90eHfH8jkc
+         weYbNcpdpIfVVmJBAFpGJmsTQ65T/b6vDRwmZ8PEAy43z0d5fewbxOA1sjIKKtMxMTpL
+         r3jl//uNOgsaC65yY2FOV1mphOKYSDbzIuCqBwrQn9qE2oHBeBMyR2bf34BLAWVZaDGk
+         BhMLFimYBXG2Q7vB6l+OxcDRogvCiZZU9dg6IREK3IjaOtUM8nxFNP6zf+zP79oTF6Dy
+         w7mAfjqVHU1JJFzUSyfz6PA0Ygxa3JBtgvHNRkwuPNK2ScRjYYqrMhtFcMXrcOv5wTTX
+         yUZA==
+X-Gm-Message-State: AOJu0YyXGiyVc42/nDQoI31Hn63HcYWgx4VQCK+b9bjhDTOAY5pCI0IM
+	OTixEXCyP7smQEzWJ8xIdoM0WFBuM4zLd2IPH9Q6VEck7R0b+xGo+JM4xkntZLA=
+X-Gm-Gg: ASbGncuolaEhlr6qWuXQlGq720wSwuPLrmM6+vI3lZc7u9B51hoDvh97dlQomwnk4Fa
+	QEdMq1vKKvMAd/3xw926nYeNIgQe7Ec3qrGREQ9GBpaIRFiwXUcE5z0WrGHCuKPz4Q9FKceTS6L
+	ruEKa9KH0HubOLK1R+YII4oKpi/4LFl1mlg5RhEDN22Fy43BWfSyNg+GKrYU1Y8slRBjCNlzh5d
+	Fqvu1vJSyM3gtTACn032aeJ/KRTOfSaf9ZYKqcay+dxLSbTqrGVUm4Xuym85xgb2zl+/OE=
+X-Google-Smtp-Source: AGHT+IHaVoo3sOmtyWzw4UW+4I/j953uzAjZoTRNej1wZU+3u9kyNjoPkTcRqItKHRuM4B6rwHxI9A==
+X-Received: by 2002:a05:6000:1fa5:b0:385:ed16:c91 with SMTP id ffacd0b85a97d-38a221faf85mr2931306f8f.24.1734703704952;
+        Fri, 20 Dec 2024 06:08:24 -0800 (PST)
+Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:c000:46df:1e3e:983f])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38a1c84722dsm4148880f8f.53.2024.12.20.06.08.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Dec 2024 06:08:24 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20241220-amlogic-clk-gxbb-32k-fixes-v1-0-baca56ecf2db@baylibre.com>
 References: <20241220-amlogic-clk-gxbb-32k-fixes-v1-0-baca56ecf2db@baylibre.com>
- <20241220-amlogic-clk-gxbb-32k-fixes-v1-2-baca56ecf2db@baylibre.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20241220-amlogic-clk-gxbb-32k-fixes-v1-2-baca56ecf2db@baylibre.com>
+Subject: Re: [PATCH 0/2] clk: amlogic: gxbb: 32k clock fixes
+Message-Id: <173470370410.3067219.1883604095856278984.b4-ty@baylibre.com>
+Date: Fri, 20 Dec 2024 15:08:24 +0100
+MIME-Version: 1.0
+X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241220_023529_999290_EEDA80E4 
-X-CRM114-Status: GOOD (  20.72  )
+X-CRM114-CacheID: sfid-20241220_060827_256171_6539FA44 
+X-CRM114-Status: UNSURE (   3.11  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,66 +96,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/12/2024 11:25, Jerome Brunet wrote:
-> The 32k clock reference a parent 'cts_slow_oscin' with a fixme note saying
-> that this clock should be provided by AO controller.
-> 
-> The HW probably has this clock but it does not exist at the moment in
-> any controller implementation. Furthermore, referencing clock by the global
-> name should be avoided whenever possible.
-> 
-> There is no reason to keep this hack around, at least for now.
-> 
-> Fixes: 14c735c8e308 ("clk: meson-gxbb: Add EE 32K Clock for CEC")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->   drivers/clk/meson/gxbb.c | 12 ++++++------
->   1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index 62494cf06e7d775bdb18b2242c3d45bf246bdd0e..66f299f6fef1442ead5e978c1d3750b55b800c2e 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -1266,14 +1266,13 @@ static struct clk_regmap gxbb_cts_i958 = {
->   	},
->   };
->   
-> +/*
-> + * This table skips a clock named 'cts_slow_oscin' in the documentation
-> + * This clock does not exist yet in this controller or the AO one
-> + */
-> +static u32 gxbb_32k_clk_parents_val_table[] = { 0, 2, 3 };
->   static const struct clk_parent_data gxbb_32k_clk_parent_data[] = {
->   	{ .fw_name = "xtal", },
-> -	/*
-> -	 * FIXME: This clock is provided by the ao clock controller but the
-> -	 * clock is not yet part of the binding of this controller, so string
-> -	 * name must be use to set this parent.
-> -	 */
-> -	{ .name = "cts_slow_oscin", .index = -1 },
->   	{ .hw = &gxbb_fclk_div3.hw },
->   	{ .hw = &gxbb_fclk_div5.hw },
->   };
-> @@ -1283,6 +1282,7 @@ static struct clk_regmap gxbb_32k_clk_sel = {
->   		.offset = HHI_32K_CLK_CNTL,
->   		.mask = 0x3,
->   		.shift = 16,
-> +		.table = gxbb_32k_clk_parents_val_table,
->   		},
->   	.hw.init = &(struct clk_init_data){
->   		.name = "32k_clk_sel",
-> 
+Applied to clk-meson (clk-meson-next), thanks!
 
-I guess it's for using alternate 32k clk source from the GPIOAO_6/CLK_32K_IN,
-but AFAIK no boards never used that so we can't even test it...
+[1/2] clk: amlogic: gxbb: drop incorrect flag on 32k clock
+      https://github.com/BayLibre/clk-meson/commit/66eff51d972c
+[2/2] clk: amlogic: gxbb: drop non existing 32k clock parent
+      https://github.com/BayLibre/clk-meson/commit/1e1fd26ed4ca
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Best regards,
+--
+Jerome
+
 
 _______________________________________________
 linux-amlogic mailing list
