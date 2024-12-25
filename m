@@ -4,82 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3B2FE77188
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Dec 2024 14:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72213E7718B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2024 10:58:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S7iKEF912ZczCq556Y+esYwLc5/uVjx8IpqKp0HNX0k=; b=xyhdKV8qa5TLL7
-	X4HFGilreejzxM1EOWJpnY3q+lWo/Dj/PNQ1ZzLrWWB/vW50jH+VWu4x+iuqqpU4KPMWBP0ATb8qr
-	85uyKRA5F/eQ+4QsbDifsWbx1NTnRwhZRLy4G1LcMzHty13E/tofuZrpDKNHj9kTk9cHaujBZNCat
-	XSxZ6IiR5CpHaiIRWmHWlbQJ+y67DJrZdRYvMH8TsNAZR+z3T17SjDsJcD8BDCiDKzyoSzAInMuYg
-	qEuW3tbRXas0x6QRgDu36OUImEqwofGovl7M1ClKapiR0+mSsQesfDBR+JgGbrS5qCCh1jtGUz4x6
-	0yFuYRQszabY0l4l0WWA==;
+	List-Owner; bh=kVA+e163yYFzRSu+2arw8ZBMv2tNwKU2/I1ODr75JzY=; b=a9MyDtojR1fb9j
+	2RUZ0kKmuazp8BbHcCaXeCge+9T2MJYQ7H6sqvI9QOZ9Esa+D0w1qWAlOzAP8ARjrYNbiJP5R2Xvq
+	sOsRW1p8VYKXo8WM3BVHbJvkUAO66zDwbDa4DRaLmwcwMBu1sSSqfdTuP4U0bvt1+h1imVn+Ejexd
+	L+sHnA9GwYSQQ0+VqHXp57FQm9Bl3JGd58mCtu6IDSu1WLrjK0g7f7X/wgWXTID+NH1Si5RaQ48uJ
+	Mfb5CMADNWWwbr9konWhUT8k7Q5fVk8QZsJuX65kBLWotEa8Ez0Jxpwa1exHszerJR6D75mO1wysf
+	0y2ttyo43wG3oK6luNhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tQ63I-0000000C9jt-0MFG;
-	Tue, 24 Dec 2024 14:38:28 +0000
-Received: from mail-pl1-x62b.google.com ([2607:f8b0:4864:20::62b])
+	id 1tQP5Y-0000000Dg9e-36WO;
+	Wed, 25 Dec 2024 10:58:04 +0000
+Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tQ624-0000000C9ev-3DSj;
-	Tue, 24 Dec 2024 14:37:14 +0000
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-21634338cfdso74704055ad.2;
-        Tue, 24 Dec 2024 06:37:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1735051031; x=1735655831; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d22KTIl3OplnLRpPFcAzrWIcYBNdTH4ggDHSk/lL2yk=;
-        b=ibbTgw/LsPDFXeubqz9R6XIyoytjHxtxiz4Wh7creJQwWdTVWLITPG5fecsr81mlmm
-         1BZc5HfFBtYVVeXI63F5EbNB77v5KOoWAwlqEDckfFlfO38o7fouzWVH1YkXnz0WnJyP
-         mO659B4b89aKloWb5agcmLxtzB4nyQkcb5m/0F9lj1pLDXUf8qxB64lZqp58OZ2iL+Gk
-         b4/BN32ROGuLvYxAVnUqAiBzWCm2jRo2p9IwrIgvYgziNC+I2DMqPkIzqQHEm/URHkoK
-         XmLBNIQbkHi3OqZ5S0lsHU9C9XFiv8CWo6CDDYrtNgoJlSqoVPDJ8p9vtQmmlEWssMap
-         sV2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735051031; x=1735655831;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=d22KTIl3OplnLRpPFcAzrWIcYBNdTH4ggDHSk/lL2yk=;
-        b=ZPTTCx1r8deYTsnyO/rv1QqV4VGguxoCpiVxfDBfq10lCTFsqAkF/NdaHSG6DvEZG+
-         LT/j7D11ZXgElLov5tEpUoAUzSHLXHetkkEWtAPvMtk/yN9KVWYh4mGmMlTgVhkh2cyS
-         qJcXkjrIQiwZnASly326ma/qyJlYS6ubJzMdP88VS+Kp1LxiQSo2rx7Ko8On6CyCgb5u
-         9PLMUWAc33lDVTnUTc8MxCP/DtmpBwH+LOptFaUZxLA8TyvmK809c+Cqz09euP9+B1W0
-         2HpiJD0PpBeiH9lU1A31/cRB3rIgcSAYFM2b0OjT2gmAjLVTWUMbRGx2OEE5jgXqpJxA
-         lhqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWtbpRcHgXRCCqU/qWB7rqnu6R5PYQeNf//qvy9uLh2jvdZXnNOqcznPnqk4utyQ508rZKeS60+pAb1C0e6@lists.infradead.org
-X-Gm-Message-State: AOJu0YxAYZr0xSLC5TAgEsje6avwGMdUNuvKdnCWJwm2xwdMjLmzNNLD
-	5X49LaaZ8jUQ9FpBkh/MeV1DbyEtKCAbwogG48wY3wzPAi+FdIhxduDhcCyuzfZqHfxbrAHlOJ1
-	hXwops6V1S8QXplp4FCeWMy5RNNU=
-X-Gm-Gg: ASbGncvQlXCHMikbg/DMnJ8BcBt2Mnj1qtIjQlMcqbljhgu8BP5WVmQv1BaqBCpiYIx
-	5jiErq8AMi4mo5u0o47uCJwQmQvCOFRq0TeKzFSZLkSv43rihZzVw
-X-Google-Smtp-Source: AGHT+IE/mJTksJ5MUxt+Px4xwExymbX2lQdDPYewgw+owvA5v/YqFnqOXEhm6l3ZZ4oKIThu+ozZapG9TdbkkT3nwAg=
-X-Received: by 2002:a17:902:fc44:b0:215:a964:e680 with SMTP id
- d9443c01a7336-219e6ebcf72mr256770385ad.25.1735051031637; Tue, 24 Dec 2024
- 06:37:11 -0800 (PST)
+	id 1tQP4Z-0000000DfxG-1Hun;
+	Wed, 25 Dec 2024 10:57:07 +0000
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 6A0CF12002A;
+	Wed, 25 Dec 2024 13:56:52 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6A0CF12002A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1735124212;
+	bh=uNLnVR9vGF1ncRzwJjWhsdEqfpo2sCMhV9fziN1rC3U=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=Tw+qhIqhtXZKVdYg+E3R4KbFilIeYTsn0Jn83YP9bKnGS7GQM6/BHzX5e64dVGSm2
+	 qUvtu43CMTcl6b3FDC/GMPpdKiWQGpAggLtStgtoLCtbLjz01xOToNJ8DZzf/VAAdI
+	 ItkXS8orYrEaYPzeq32SWCwMCsgx3+AfWfOf4NU1bTGfa6MOnGvuwtuBMp6k4SBg/P
+	 HLlGB5l/uuDqVNMJn+A1JPnMN9ZsHhSPwacGqyv/zr4/H1X9Hpm9TyomehbSNRyLup
+	 cuCDH6Q8XTiU1wGfuGzobRJRliuHiA1GY5t89IBVb0PJMmF78Pcf5YyPRtrf7gSGSV
+	 E2ICJbVVv2UhA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 25 Dec 2024 13:56:52 +0300 (MSK)
+From: George Stark <gnstark@salutedevices.com>
+To: <ukleinek@kernel.org>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-pwm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kernel@salutedevices.com>, George Stark <gnstark@salutedevices.com>
+Subject: [PATCH 1/2] pwm: meson: Simplify meson_pwm_cnt_to_ns()
+Date: Wed, 25 Dec 2024 13:56:38 +0300
+Message-ID: <20241225105639.1787237-2-gnstark@salutedevices.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241225105639.1787237-1-gnstark@salutedevices.com>
+References: <20241225105639.1787237-1-gnstark@salutedevices.com>
 MIME-Version: 1.0
-References: <20240323231309.415425-1-martin.blumenstingl@googlemail.com>
- <20240323231309.415425-3-martin.blumenstingl@googlemail.com> <37cb9bc9-88c0-4e2b-8f46-0f67b91bc5be@salutedevices.com>
-In-Reply-To: <37cb9bc9-88c0-4e2b-8f46-0f67b91bc5be@salutedevices.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 24 Dec 2024 15:37:00 +0100
-Message-ID: <CAFBinCBxsv92t_B_T3vBDJJ1K5BwUbV=as6sy-KyQYz+2jur2g@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] iio: adc: meson: consistently use bool/enum in
- struct meson_sar_adc_param
-To: George Stark <gnstark@salutedevices.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	neil.armstrong@linaro.org, lars@metafoo.de, jic23@kernel.org, 
-	linux-amlogic@lists.infradead.org, 
-	"kernel@salutedevices.com" <kernel@salutedevices.com>, Xingyu Chen <xingyu.chen@amlogic.com>, 
-	Zelong Dong <zelong.dong@amlogic.com>
+X-Originating-IP: [176.57.76.93]
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 190053 [Dec 25 2024]
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 49 0.3.49 28b3b64a43732373258a371bd1554adb2caa23cb, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/12/25 07:56:00 #26914998
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241224_063712_815547_483E2433 
-X-CRM114-Status: GOOD (  15.77  )
+X-CRM114-CacheID: sfid-20241225_025704_179481_9163BD8B 
+X-CRM114-Status: GOOD (  13.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,53 +92,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgR2VvcmdlLAoKT24gVHVlLCBNYXIgMjYsIDIwMjQgYXQgMTo0MeKAr0FNIEdlb3JnZSBTdGFy
-ayA8Z25zdGFya0BzYWx1dGVkZXZpY2VzLmNvbT4gd3JvdGU6ClsuLi5dCj4gPiAgIGVudW0gbWVz
-b25fc2FyX2FkY19hdmdfbW9kZSB7Cj4gPiAgICAgICBOT19BVkVSQUdJTkcgPSAweDAsCj4gPiAg
-ICAgICBNRUFOX0FWRVJBR0lORyA9IDB4MSwKPiA+IEBAIC0zMjEsMTMgKzMyNiwxMyBAQCBzdHJ1
-Y3QgbWVzb25fc2FyX2FkY19wYXJhbSB7Cj4gPiAgICAgICB1OCAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgdGVtcGVyYXR1cmVfdHJpbW1pbmdfYml0czsKPiA+ICAgICAgIHVu
-c2lnbmVkIGludCAgICAgICAgICAgICAgICAgICAgICAgICAgICB0ZW1wZXJhdHVyZV9tdWx0aXBs
-aWVyOwo+ID4gICAgICAgdW5zaWduZWQgaW50ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRl
-bXBlcmF0dXJlX2RpdmlkZXI7Cj4gPiAtICAgICB1OCAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgZGlzYWJsZV9yaW5nX2NvdW50ZXI7Cj4gPiArICAgICBib29sICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgZGlzYWJsZV9yaW5nX2NvdW50ZXI7Cj4gPiAgICAg
-ICBib29sICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaGFzX3JlZzExOwo+ID4g
-ICAgICAgYm9vbCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGhhc192cmVmX3Nl
-bGVjdDsKPiA+IC0gICAgIHU4ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB2
-cmVmX3NlbGVjdDsKPiA+IC0gICAgIHU4ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICBjbXZfc2VsZWN0Owo+ID4gLSAgICAgdTggICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIGFkY19lb2M7Cj4KPgo+IFRoZSByZWFzb24gdG8gY2hvb3NlIHU4IHR5cGUgb3Zl
-ciBib29sIHdhcyB0aGF0IHRob3NlIGFyZSBub3QgYWN0dWFsbHkKPiBib29sIHZhbHVlcyBidXQg
-ZGlyZWN0IHZhbHVlcyBvZiBodyByZWdpc3RlciBiaXRzLiBXZSBoYXZlIGxpdHRsZQo+IGluZm9y
-bWF0aW9uIGFib3V0IHJlYWwgbWVhbmluZyBvZiB0aGVzZSBiaXRzIHNvIGl0IHdvbid0IGhlbHAg
-bXVjaCB0bwo+IGFkZCBib29sIGxheWVyIGFuZCBrZWVwIHJlYWwgdmFsdWVzIGluIHRoZSBpbml0
-IGNvZGUgaW5zdGVhZCBvZiBwYXJhbQo+IHNlY3Rpb24gKGFkY19lb2MsIGNtdl9zZWxlY3QpLgo+
-IGJvb2wgZGlzYWJsZV9yaW5nX2NvdW50ZXIgd2lsbCBsb29rIGRlY2VwdGl2ZSB0b28gYmVjYXVz
-ZSBpdCBkb2Vzbid0Cj4gc2F5IHdoZXRoZXIgZGlzYWJsZSByaW5nX2NvdW50ZXIgb3Igbm90ICh3
-ZSBhbHdheXMgZGlzYWJsZSBpdCkgYnV0Cj4gaG93IHRvIGRpc2FibGUgaXQgKHdyaXRlIDAgb3Ig
-MSkKRG8geW91IGhhdmUgYW55IGNvbnRhY3QgYXQgQW1sb2dpYyB0aGF0IGNhbiBoZWxwIGV4cGxh
-aW4gdGhlIHB1cnBvc2UKb2YgdGhlc2UgYml0cz8KSSB0cmllZCByZWFjaGluZyBvdXQgdG8gbXkg
-Y29udGFjdCBvZmYtbGlzdCBidXQgZGlkIG5vdCBnZXQgYW55IGFuc3dlcnMuCgpJIGFsc28gaGF2
-ZSBtb3JlIHF1ZXN0aW9ucyBhYm91dCB0aGUgU0FSQURDIElQIGJsb2NrIG9uIHRoZSBHWExYIFNv
-Qy4KV2UgKENocmlzdGlhbiBhbmQgSSkgaGF2ZSBhIHBhdGNoIHByZXBhcmVkIHRvIGZpeCBhdWRp
-byAob3IgcmF0aGVyIHRoZQpNUExMIGNsb2Nrcykgb24gdGhlIEdYTFggU29DIChzZWUgWzBdKS4g
-VW5mb3J0dW5hdGVseSB0aGVyZSBzZWVtcyB0bwpiZSBub2JvZHkgdGhhdCdzIGFuc3dlcmluZyBt
-ZSB3aXRoIGVub3VnaCBpbmZvIHNvIHdlIGNhbiB1cHN0cmVhbSB0aGF0CnBhdGNoLgoKU28gaWYg
-eW91IGhhdmUgYW55IGNvbnRhY3Qgb3IgaW5zaWdodHMgaW50byBkYXRhc2hlZXRzIC0gcGxlYXNl
-IGNoZWNrCmFuZCBzZWUgaWYgeW91IGNhbiBwcm92aWRlIGluZm9ybWF0aW9uIHNvIHdlIGNhbiBp
-bXByb3ZlIHRoZSBuYW1pbmcgb2YKdGhlc2UgYml0cyBhbmQgaG9wZWZ1bGx5IGdldCBHWExYIFNv
-QyBzdXBwb3J0IGZpeGVkLgoKQWxzbyArQ2MgWGluZ3l1IENoZW4gYW5kIFplbG9uZyBEb25nIC0g
-SSBmb3VuZCB5b3VyIG5hbWVzIGluCmRvd25zdHJlYW0gcGF0Y2hlcyB0byB0aGUgU0FSQURDIGRy
-aXZlciBbMV0uCgoKVGhhbmsgeW91IGFuZCBiZXN0IHJlZ2FyZHMsCk1hcnRpbgoKClswXSBodHRw
-czovL2xvcmUua2VybmVsLm9yZy9saW51eC1hbWxvZ2ljLzIwMjQwNjA0MDU1NDMxLjMzMTM5NjEt
-Mi1jaHJpc3RpYW5zaGV3aXR0QGdtYWlsLmNvbS8KWzFdIGh0dHBzOi8vZ2l0aHViLmNvbS9raGFk
-YXMvbGludXgvY29tbWl0LzEzMzIxZDIzMjMxYTdhNGQwOGY0ZmVmZWJjZWYxMWIzNzk0NzVhMzcK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
-bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
-Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+meson_pwm_cnt_to_ns() uses clock rate got from clk_get_rate(). clk object
+is getting from driver's private data thru several steps. Since
+meson_pwm_cnt_to_ns() is called several times from a single scope it's
+easier to get clock rate once and pass it as parameter.
+
+Signed-off-by: George Stark <gnstark@salutedevices.com>
+---
+ drivers/pwm/pwm-meson.c | 22 ++++++----------------
+ 1 file changed, 6 insertions(+), 16 deletions(-)
+
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index 806e06c2b92e..8c6bf3d49753 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -331,21 +331,9 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	return 0;
+ }
+ 
+-static u64 meson_pwm_cnt_to_ns(struct pwm_chip *chip, struct pwm_device *pwm,
+-			       u32 cnt)
++static u64 meson_pwm_cnt_to_ns(unsigned long fin_freq, u32 cnt)
+ {
+-	struct meson_pwm *meson = to_meson_pwm(chip);
+-	struct meson_pwm_channel *channel;
+-	unsigned long fin_freq;
+-
+-	/* to_meson_pwm() can only be used after .get_state() is called */
+-	channel = &meson->channels[pwm->hwpwm];
+-
+-	fin_freq = clk_get_rate(channel->clk);
+-	if (fin_freq == 0)
+-		return 0;
+-
+-	return div64_ul(NSEC_PER_SEC * (u64)cnt, fin_freq);
++	return fin_freq ? div64_ul(NSEC_PER_SEC * (u64)cnt, fin_freq) : 0;
+ }
+ 
+ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+@@ -353,10 +341,12 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+ {
+ 	struct meson_pwm *meson = to_meson_pwm(chip);
+ 	struct meson_pwm_channel_data *channel_data;
++	unsigned long fin_freq;
+ 	unsigned int hi, lo;
+ 	u32 value;
+ 
+ 	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
++	fin_freq = clk_get_rate(meson->channels[pwm->hwpwm].clk);
+ 
+ 	value = readl(meson->base + REG_MISC_AB);
+ 	state->enabled = value & channel_data->pwm_en_mask;
+@@ -370,8 +360,8 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	lo = FIELD_GET(PWM_LOW_MASK, value);
+ 	hi = FIELD_GET(PWM_HIGH_MASK, value);
+ 
+-	state->period = meson_pwm_cnt_to_ns(chip, pwm, lo + hi);
+-	state->duty_cycle = meson_pwm_cnt_to_ns(chip, pwm, hi);
++	state->period = meson_pwm_cnt_to_ns(fin_freq, lo + hi);
++	state->duty_cycle = meson_pwm_cnt_to_ns(fin_freq, hi);
+ 
+ 	return 0;
+ }
+-- 
+2.25.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
