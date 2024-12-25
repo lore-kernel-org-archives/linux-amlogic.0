@@ -4,81 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19BBAE7718B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2024 11:00:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 167EDE7718B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2024 19:00:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=rjYyfPg3f1Lb+m+ujuAEPWQGMN96KLwZ7oUENQoR/Ak=; b=biDExe3bYy0tFI
-	Vr8xa7wGz96N4IfAZhr0c8uofZBCeoK8r+3j9W9ENSHk04H8JeDsNyw7RPKK2Mb7ZAD7YzO4wwAVn
-	2Banv4g/5LBbt7a601/5Sb5ad+vCBB/VO5bnF/8SvLFff9n6bynvJF5ccfcSUKI4fftfoo3w4LuT6
-	Et4M6bUY9/5pIPNyq2lHjnpp3oIRJtJooy5YlnIEn4zoJEzgYRiwB3YPHy9HWoEQLpx7Pa0RJZMUW
-	7vqZc6x2mka3855LAAHsSutH8YSj7l2kRt3SGVQXMAgrPA4La3of4aEmfP0ebMObPskC0p/18UfNq
-	c/y+ZQOZqfbG5nk0fK6A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=hOMHhwHy5dGK9O+OmlCiqH3B5OCtzVNasW0An3tPDC4=; b=c0Ena96fk47xOJ
+	j8qhhRltLis5qmodFYhcG0j9NVYHxM50oPTZmVlmre7qbXEIgt12t4xxCi8LlT7cW7E71ypT7oapP
+	2ZO1CLcMqokVrUk7VCiM/CM6HDfDGo7wh85IH1I2Wswoq4EcaS4ltb5LfdUL6c6i0lP2/8CSDy4JJ
+	fQp3M1wRDiG5LivSFzup5Sq0Vk1bqVwpd2AfKjqz3ApncgIey+FLuOcbeOAH4tWmAjLlyaB0JgfDK
+	5EdBZqX88IkXLIRNLkuu83/g/lxk3diy2RxPO8Z5b1mylVweb4KUfAOEGcBWuB1MgvOoKCrmqid9q
+	6h2bbNYX9OQ3DJf+A7vg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tQP7r-0000000DgRu-3XP4;
-	Wed, 25 Dec 2024 11:00:27 +0000
-Received: from mx2.sberdevices.ru ([45.89.224.132] helo=mx1.sberdevices.ru)
+	id 1tQWc3-0000000ED71-1S22;
+	Wed, 25 Dec 2024 19:00:07 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tQP4Z-0000000DfxF-1Gln;
-	Wed, 25 Dec 2024 10:57:08 +0000
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id EC96E120029;
-	Wed, 25 Dec 2024 13:56:51 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru EC96E120029
+	id 1tQWbw-0000000ED5Z-3EhO;
+	Wed, 25 Dec 2024 19:00:05 +0000
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id DA1BE100004;
+	Wed, 25 Dec 2024 21:59:50 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru DA1BE100004
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1735124211;
-	bh=aW6usGsOL7OyXjgNlUS/zBBhFNHbOhEYlvaEKoGU80c=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=hqs9GlJo+qr77qbsabqXfzrRFlmeRg4ei9Y8pQHWTvGE+Vj14PS9PhPB4Ijx/Cf9g
-	 2dC7QP66eyU9561UsIUmSGutVVWOsAx20Rygvt5eEcQ70I7a6RS9J324xdoD8Bfag3
-	 KdyopbU7F38MkpWMYK64jRQ7dr4QmoYJ66ZVzQoVfY9HLRS7g2NkgBaTO+1opx2eBp
-	 LIWYdg10XQ4Yv3kLmst2/3FUA1/0oToYryM1JFWTHzpzHBZqjo6krHT4iw9rmsuVh3
-	 wIDZkffQKmA1IZmIAueGexg3LZ/MgogjUXHnNxgB871GMjK/CbHvLamTWknHub04r4
-	 Mb0LnDAUQNgzA==
+	s=mail; t=1735153190;
+	bh=77AplkoSGCxoTa1YkDUJlVHZqj2RtqiABDMyhY8HDtE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=SkYsd/lBBBshTX1D8P5pOKUu03fMbligVrL9aP8uV2FYgPqxq8GF3wvnCgMQamiuV
+	 SylXfpKuJ4N8qcSCMd5KmWpONJWgCToRO0E+i3YqbbrJ848wjADpm0BTbLLPNu4MtO
+	 JF9ivBrh/JvxEQSunmHIuMYxs6//Y89V/0+9mLMox/rAF6pduCPV/zb6R7VOGBbwqt
+	 u0NCHfCcTypM0n1lJ+wlwbEUT3lj9scbR3s+WkQgmtbBltM089sPtrCemHoX2Yl4Qq
+	 0AGeiWeFSinucUFi+TThX3vaKg9BU+8MDnnDp9yvdoIeS56H7e7gw78BpZoGxYaEvz
+	 q7jeTtW22vUFw==
 Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
 	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 25 Dec 2024 13:56:51 +0300 (MSK)
-From: George Stark <gnstark@salutedevices.com>
-To: <ukleinek@kernel.org>, <neil.armstrong@linaro.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>
-CC: <linux-pwm@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<kernel@salutedevices.com>, George Stark <gnstark@salutedevices.com>
-Subject: [PATCH 0/2] pwm: meson: fixes
-Date: Wed, 25 Dec 2024 13:56:37 +0300
-Message-ID: <20241225105639.1787237-1-gnstark@salutedevices.com>
-X-Mailer: git-send-email 2.25.1
+	Wed, 25 Dec 2024 21:59:50 +0300 (MSK)
+Message-ID: <55de8bd9-7fbd-460b-b6d1-3b4b9e288f2c@salutedevices.com>
+Date: Wed, 25 Dec 2024 21:59:12 +0300
 MIME-Version: 1.0
-X-Originating-IP: [176.57.76.93]
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/3] iio: adc: meson: consistently use bool/enum in
+ struct meson_sar_adc_param
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<neil.armstrong@linaro.org>, <lars@metafoo.de>, <jic23@kernel.org>,
+	<linux-amlogic@lists.infradead.org>, "kernel@salutedevices.com"
+	<kernel@salutedevices.com>, Xingyu Chen <xingyu.chen@amlogic.com>, Zelong
+ Dong <zelong.dong@amlogic.com>
+References: <20240323231309.415425-1-martin.blumenstingl@googlemail.com>
+ <20240323231309.415425-3-martin.blumenstingl@googlemail.com>
+ <37cb9bc9-88c0-4e2b-8f46-0f67b91bc5be@salutedevices.com>
+ <CAFBinCBxsv92t_B_T3vBDJJ1K5BwUbV=as6sy-KyQYz+2jur2g@mail.gmail.com>
+Content-Language: en-US
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <CAFBinCBxsv92t_B_T3vBDJJ1K5BwUbV=as6sy-KyQYz+2jur2g@mail.gmail.com>
+X-Originating-IP: [172.28.128.238]
 X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 190053 [Dec 25 2024]
+X-KSMG-AntiSpam-Lua-Profiles: 190063 [Dec 25 2024]
 X-KSMG-AntiSpam-Version: 6.1.1.7
 X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 49 0.3.49 28b3b64a43732373258a371bd1554adb2caa23cb, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;git.kernel.org:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;lore.kernel.org:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1, FromAlignment: s
+X-KSMG-AntiSpam-Info: LuaCore: 49 0.3.49 28b3b64a43732373258a371bd1554adb2caa23cb, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;lore.kernel.org:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;github.com:7.1.1, FromAlignment: s
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/12/25 08:56:00
-X-KSMG-LinksScanning: Clean, bases: 2024/12/25 09:00:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/12/25 07:56:00 #26914998
+X-KSMG-AntiPhishing: Clean, bases: 2024/12/25 17:49:00
+X-KSMG-LinksScanning: Clean, bases: 2024/12/25 17:49:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/12/25 17:59:00 #26917053
 X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241225_025704_187266_10A7A27D 
-X-CRM114-Status: GOOD (  14.42  )
+X-CRM114-CacheID: sfid-20241225_110003_100589_C7091A77 
+X-CRM114-Status: GOOD (  21.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,130 +97,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The 1st patch from the series is only intended to drop several unneeded code lines
-along with outdated comment. It's too simple to be sent alone.
-
-The 2nd patch adjusts pwm frequency calculation. The patch depends on
-not-yet-accepted series:
-https://lore.kernel.org/linux-arm-kernel/20241119125318.3492261-1-gnstark@salutedevices.com/T/
-
-Below I researched several cases this patch will affect.
-One of the most frequent use of meson pwm in mainline dts files are:
-1) wifi clock source and 2) cpu power regulation.
-
-1) wifi clock source with period 32768Hz and 50% dutycycle is configured in DTS like this:
-    pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-Here is the calculated and measured frequency output with and without the patch on
-several boads/SoCs, where
-${CLK_RATE} - pwm clock source
-${COUNT_REG} - meson pwm regster with hi and lo values (e.g. PWMEF_PWM_E reg)
-
-*** khadas vim1 ***
-${CLK_RATE} -> 166666667
-w/o the patch:
-${COUNT_REG} -> 0x09EF09EF
-oscilloscope measure: 32.7564Khz
-calculated period: ${CLK_RATE} / (${COUNT_REG}.lo + ${COUNT_REG}.hi + 2) = 32756.8134827 Hz
-with the patch:
-${COUNT_REG} -> 0x09EE09EE
-oscilloscope measure: 32.7693Khz
-calculated period: ${CLK_RATE} / (${COUNT_REG}.lo + ${COUNT_REG}.hi + 2) = 32769.694652 Hz
-
-*** khadas vim3 ***
-${CLK_RATE} -> 666666656
-w/o patch:
-${COUNT_REG} -> 0x27BC27BD
-oscilloscope measure: 32.7652Khz
-calculated period: ${CLK_RATE} / (${COUNT_REG}.lo + ${COUNT_REG}.hi + 2) = 32764.8624367 Hz
-with the patch:
-${COUNT_REG} -> 0x27BB27BC
-oscilloscope measure: 32.7684Khz
-calculated period: ${CLK_RATE} / (${COUNT_REG}.lo + ${COUNT_REG}.hi + 2) = 32768.083362 Hz
-
-*** meson a1 board ***
-${CLK_RATE} -> 64000000
-w/o patch:
-${COUNT_REG} -> 0x03D003D1
-calculated period: ${CLK_RATE} / (${COUNT_REG}.lo + ${COUNT_REG}.hi + 2) = 32736.57289 Hz
-with the patch:
-${COUNT_REG} -> 0x03CF03D0
-calculated period: ${CLK_RATE} / (${COUNT_REG}.lo + ${COUNT_REG}.hi + 2) = 32770.0972862 Hz
-
-2) pwm power regulator. Power is regulated changing duty value with the constant period
-*** meson a1 board ***
-required: period 1500ns (667kHz), duty 70% for 0.8V
-${CLK_RATE} -> 307200000
-with the patch:
-${COUNT_REG} -> 0x01410089
-calculated period: ${CLK_RATE} / (${COUNT_REG}.lo + ${COUNT_REG}.hi + 2) = 667826.086957 Hz
-calculated duty: (${COUNT_REG}.hi + 1) / (${COUNT_REG}.hi + ${COUNT_REG}.lo + 2) = 0.7
-oscilloscope measure: 667.8Khz, 1498ns/1049ns, duty 70%
-w/o the patch:
-${COUNT_REG} -> 0x0142008A
-calculated duty: (${COUNT_REG}.hi + 1) / (${COUNT_REG}.hi + ${COUNT_REG}.lo + 2) = 0.69
-oscilloscope measure: 664.9Khz, 1504ns/1051ns, duty 69%
-
-*******************
-**** ATTENTION ****
-*******************
-There's a potential problem related to meson_pwm_get_state's change.
-When pwm-regulator is initialized before the kernel is loaded and incomplete
-voltage-table is used (meson a1 board vendor kernel)
-
-voltage table fragment from kernel dts:
-  compatible = "pwm-regulator";
-  voltage-table =
-  ...
-  <800000 70>,
-  <790000 73>,
-  <780000 76>,
-  ...
-
-pwm regulator is initialized in bootloader bl2/bl3.x
-${CLK_RATE} -> 24000000
-${COUNT_REG} -> 0x00190009
-oscilloscope measure: 666.67Khz, 1500ns/1083ns, duty 72%
-
-pwm_get_state w/o the patch returns:
-pwm period: (${COUNT_REG}.hi + ${COUNT_REG}.lo) / ${CLK_RATE} = 1416 ns
-pwm duty: ${COUNT_REG}.hi / ${CLK_RATE} = 1041 ns
-duty: 1041 / 1416 = 73%
-Value 73% is found in the voltage table and everything is ok
-
-pwm_get_state with the patch returns:
-pwm period: (${COUNT_REG}.hi + ${COUNT_REG}.lo + 2) / ${CLK_RATE} = 1500 ns
-pwm duty: (${COUNT_REG}.hi + 1) / ${CLK_RATE} = 1083 ns
-duty: 1083 / 1500 = 72%
-
-72% is not found in the voltage table.
-In that case pwm-regulator driver on its own sets the minimum voltage from the table.
-If this is the cpu power regulator then cpu may hang due to voltage is lowered
-w/o prior proper frequency lowering. In that situation voltage-table should be
-adjusted to have intermediate values.
-
-Just before sending the letter I've found the only mainline board that may be
-broken by this patch:
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-I can patch meson-s4-s805x2-aq222.dts' voltage table or propose patch to pwm-regulator
-to change the way pwm-regulator deals with out-of-table pwm values.
-
-George Stark (2):
-  pwm: meson: Simplify meson_pwm_cnt_to_ns()
-  pwm: meson: Fix computing counter register
-
- drivers/pwm/pwm-meson.c | 38 ++++++++++++++++++++++----------------
- 1 file changed, 22 insertions(+), 16 deletions(-)
-
---
-2.25.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8gTWFydGluCgpPbiAxMi8yNC8yNCAxNzozNywgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90
+ZToKPiBIaSBHZW9yZ2UsCj4gCj4gT24gVHVlLCBNYXIgMjYsIDIwMjQgYXQgMTo0MeKAr0FNIEdl
+b3JnZSBTdGFyayA8Z25zdGFya0BzYWx1dGVkZXZpY2VzLmNvbT4gd3JvdGU6Cj4gWy4uLl0KPj4+
+ICAgIGVudW0gbWVzb25fc2FyX2FkY19hdmdfbW9kZSB7Cj4+PiAgICAgICAgTk9fQVZFUkFHSU5H
+ID0gMHgwLAo+Pj4gICAgICAgIE1FQU5fQVZFUkFHSU5HID0gMHgxLAo+Pj4gQEAgLTMyMSwxMyAr
+MzI2LDEzIEBAIHN0cnVjdCBtZXNvbl9zYXJfYWRjX3BhcmFtIHsKPj4+ICAgICAgICB1OCAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGVtcGVyYXR1cmVfdHJpbW1pbmdfYml0
+czsKPj4+ICAgICAgICB1bnNpZ25lZCBpbnQgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGVt
+cGVyYXR1cmVfbXVsdGlwbGllcjsKPj4+ICAgICAgICB1bnNpZ25lZCBpbnQgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgdGVtcGVyYXR1cmVfZGl2aWRlcjsKPj4+IC0gICAgIHU4ICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXNhYmxlX3JpbmdfY291bnRlcjsKPj4+ICsg
+ICAgIGJvb2wgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXNhYmxlX3Jpbmdf
+Y291bnRlcjsKPj4+ICAgICAgICBib29sICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgaGFzX3JlZzExOwo+Pj4gICAgICAgIGJvb2wgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBoYXNfdnJlZl9zZWxlY3Q7Cj4+PiAtICAgICB1OCAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgdnJlZl9zZWxlY3Q7Cj4+PiAtICAgICB1OCAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgY212X3NlbGVjdDsKPj4+IC0gICAgIHU4ICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhZGNfZW9jOwo+Pgo+Pgo+PiBUaGUgcmVhc29u
+IHRvIGNob29zZSB1OCB0eXBlIG92ZXIgYm9vbCB3YXMgdGhhdCB0aG9zZSBhcmUgbm90IGFjdHVh
+bGx5Cj4+IGJvb2wgdmFsdWVzIGJ1dCBkaXJlY3QgdmFsdWVzIG9mIGh3IHJlZ2lzdGVyIGJpdHMu
+IFdlIGhhdmUgbGl0dGxlCj4+IGluZm9ybWF0aW9uIGFib3V0IHJlYWwgbWVhbmluZyBvZiB0aGVz
+ZSBiaXRzIHNvIGl0IHdvbid0IGhlbHAgbXVjaCB0bwo+PiBhZGQgYm9vbCBsYXllciBhbmQga2Vl
+cCByZWFsIHZhbHVlcyBpbiB0aGUgaW5pdCBjb2RlIGluc3RlYWQgb2YgcGFyYW0KPj4gc2VjdGlv
+biAoYWRjX2VvYywgY212X3NlbGVjdCkuCj4+IGJvb2wgZGlzYWJsZV9yaW5nX2NvdW50ZXIgd2ls
+bCBsb29rIGRlY2VwdGl2ZSB0b28gYmVjYXVzZSBpdCBkb2Vzbid0Cj4+IHNheSB3aGV0aGVyIGRp
+c2FibGUgcmluZ19jb3VudGVyIG9yIG5vdCAod2UgYWx3YXlzIGRpc2FibGUgaXQpIGJ1dAo+PiBo
+b3cgdG8gZGlzYWJsZSBpdCAod3JpdGUgMCBvciAxKQo+IERvIHlvdSBoYXZlIGFueSBjb250YWN0
+IGF0IEFtbG9naWMgdGhhdCBjYW4gaGVscCBleHBsYWluIHRoZSBwdXJwb3NlCj4gb2YgdGhlc2Ug
+Yml0cz8KCkkgcmVtZW1iZXIgSSB3YXMgZGlnZ2luZyB0aHJ1IHZlbmRvciBrZXJuZWwgYW5kIHVi
+b290IGNvZGUgdG8gdW5kZXJzdGFuZCAKdGhlIG1lYW5pbmcgb2YgdGhvc2UgYml0cyB3aGVuIHBy
+ZXBhcmVkIG15IGFkYyBwYXRjaGVzLiBJJ2xsIGNoZWNrIGl0IAphZ2FpbiBhYm91dCB0aGVzZSBh
+bmQgYmVsbG93IGJpdHMgYW5kIHdpbGwgbGV0IHlvdSBrbm93IGlmIEkgZmluZCAKYW55dGhpbmcg
+d29ydGh3aGlsZS4KCj4gSSB0cmllZCByZWFjaGluZyBvdXQgdG8gbXkgY29udGFjdCBvZmYtbGlz
+dCBidXQgZGlkIG5vdCBnZXQgYW55IGFuc3dlcnMuCj4gCj4gSSBhbHNvIGhhdmUgbW9yZSBxdWVz
+dGlvbnMgYWJvdXQgdGhlIFNBUkFEQyBJUCBibG9jayBvbiB0aGUgR1hMWCBTb0MuCj4gV2UgKENo
+cmlzdGlhbiBhbmQgSSkgaGF2ZSBhIHBhdGNoIHByZXBhcmVkIHRvIGZpeCBhdWRpbyAob3IgcmF0
+aGVyIHRoZQo+IE1QTEwgY2xvY2tzKSBvbiB0aGUgR1hMWCBTb0MgKHNlZSBbMF0pLiBVbmZvcnR1
+bmF0ZWx5IHRoZXJlIHNlZW1zIHRvCj4gYmUgbm9ib2R5IHRoYXQncyBhbnN3ZXJpbmcgbWUgd2l0
+aCBlbm91Z2ggaW5mbyBzbyB3ZSBjYW4gdXBzdHJlYW0gdGhhdAo+IHBhdGNoLgo+IAo+IFNvIGlm
+IHlvdSBoYXZlIGFueSBjb250YWN0IG9yIGluc2lnaHRzIGludG8gZGF0YXNoZWV0cyAtIHBsZWFz
+ZSBjaGVjawo+IGFuZCBzZWUgaWYgeW91IGNhbiBwcm92aWRlIGluZm9ybWF0aW9uIHNvIHdlIGNh
+biBpbXByb3ZlIHRoZSBuYW1pbmcgb2YKPiB0aGVzZSBiaXRzIGFuZCBob3BlZnVsbHkgZ2V0IEdY
+TFggU29DIHN1cHBvcnQgZml4ZWQuCj4gCj4gQWxzbyArQ2MgWGluZ3l1IENoZW4gYW5kIFplbG9u
+ZyBEb25nIC0gSSBmb3VuZCB5b3VyIG5hbWVzIGluCj4gZG93bnN0cmVhbSBwYXRjaGVzIHRvIHRo
+ZSBTQVJBREMgZHJpdmVyIFsxXS4KPiAKPiAKPiBUaGFuayB5b3UgYW5kIGJlc3QgcmVnYXJkcywK
+PiBNYXJ0aW4KPiAKPiAKPiBbMF0gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtYW1sb2dp
+Yy8yMDI0MDYwNDA1NTQzMS4zMzEzOTYxLTItY2hyaXN0aWFuc2hld2l0dEBnbWFpbC5jb20vCj4g
+WzFdIGh0dHBzOi8vZ2l0aHViLmNvbS9raGFkYXMvbGludXgvY29tbWl0LzEzMzIxZDIzMjMxYTdh
+NGQwOGY0ZmVmZWJjZWYxMWIzNzk0NzVhMzcKCi0tIApCZXN0IHJlZ2FyZHMKR2VvcmdlCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
+IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
+c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
