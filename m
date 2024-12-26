@@ -4,86 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A929BE77188
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2024 10:17:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DDB9E77188
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2024 22:04:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FNAdfeQmfCqbT53nBAbcNuhiEjF1nDafsgjSGLc4ANw=; b=E3Zs7+vYqMTzBb
-	js5VSGw2GEHvMYCRJwLJ50FdIHk3Ol5o+3ykswzWkt0RSFtMfzxPgk3Sby7JX86vQxOLOj6/Qg4e9
-	dFQ/rAusPfyoeT8A/gv/UmIuKFUt6vgPejUSGWkXT4wXZjNQeTp+U9u2YfuE9irARitVysHKljXuQ
-	dVMOxgmOzQyBB3mJz7c1Eid8VZ98WZ8iOlh77o6cdg+N7QmjuMQAN438gM543NIrt2/Qdd6K6TSBO
-	+eKnbu2tQXUJb+UZ560+wj355Yfn1Q5LyyMGsi7iF/Xi8ETwCiv+R0xdY7CyOH/dhsvjrBc9v4BDH
-	/aCDMv6kPA6JXM73K7Uw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=zzRNnRlEyy6ptpzJrZJcpFTfYNUJSGFQN62BkGe31+8=; b=0sDAE1kiOXWcIz
+	MamgoHvJysIpJf70JY3t6W93pq2RF94E3hg0WyCpi9PHmpx6VOslQzd206SRIb8HozO7GD43OtYiv
+	PDLx5agi65Hl7xQGXqKfidgO3tA9KKafi2R+Zaqi3kvWNECsMAkp0uTHvK2CBUnyjlhULcfXcjRIJ
+	6KWnvs8tvVHxN2cijLKMPkScs9UsYB4g8f0tm16MPBFLTtD781l/mTIS61cAiEjselotfmWkav7dV
+	/Qk8P2BxU5VLvQhAYwyDay+oDHQiOIIAp69Vott31m4nKFf59qg/8SnnOyJk8QYYPe5K9yMg05zSf
+	HU6gNTWOW7KZKqAkLsNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tQkvp-0000000Fao0-04xd;
-	Thu, 26 Dec 2024 10:17:29 +0000
-Received: from mgamail.intel.com ([192.198.163.14])
+	id 1tQvxd-0000000GVwJ-3Pmf;
+	Thu, 26 Dec 2024 22:04:05 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tQkuU-0000000FagH-3cye;
-	Thu, 26 Dec 2024 10:16:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1735208167; x=1766744167;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PNysoKr4x3TzAEfHcmAw8WO9zljvb8duad9elAZ9Cfo=;
-  b=agrYOLAkKtT84qAthrkD/ZL+OEd1+2p9P7DW3fhLSTWRJVQdi1q/URJE
-   b+84ZmbIXmG7kyxHMZf66WUBQk7T3TIXBIvXmT8/Y2xNK9FmwAxRk9AKF
-   WQQ6ux6yuejjEjvOy+m8FuocFRYGj/Ii7rzZfji/oL1HMPEAPKgjuIdh1
-   4dsuJ1m5R5zCiqQJnk0eBFGNizeUY48LOnz0fuNGns2UHIfH3oUzzMrlk
-   sKexS1/oLp8P30WBkqI6Aj0c6MzYUAVrNPlYSE+TnQJN/texnh5lwXS7T
-   ZEoH8wxNBrEctN0geTJUJvr02xnlejSjN3x9vBl4Ces1gxvhO4nsgFJTh
-   A==;
-X-CSE-ConnectionGUID: KvFQlqgZTmioVE5k9k32Rw==
-X-CSE-MsgGUID: 8Yo+JHKsQ0mtdhve1N508Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11296"; a="35855079"
-X-IronPort-AV: E=Sophos;i="6.12,265,1728975600"; 
-   d="scan'208";a="35855079"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Dec 2024 02:16:02 -0800
-X-CSE-ConnectionGUID: YtWgRRzCSgS7Y0XstJNVKg==
-X-CSE-MsgGUID: SXJucXphRAa1naaBE0aT+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="100716808"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 26 Dec 2024 02:15:58 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tQkuJ-0002TS-1u;
-	Thu, 26 Dec 2024 10:15:55 +0000
-Date: Thu, 26 Dec 2024 18:15:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: oe-kbuild-all@lists.linux.dev, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH v2 2/5] pinctrl: pinconf-generic: Add API for pinmux
- propertity in DTS file
-Message-ID: <202412261752.6HK0iJXu-lkp@intel.com>
-References: <20241226-amlogic-pinctrl-v2-2-cdae42a67b76@amlogic.com>
+	id 1tQvxb-0000000GVvp-2GI9;
+	Thu, 26 Dec 2024 22:04:04 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-aab925654d9so1217271566b.2;
+        Thu, 26 Dec 2024 14:04:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1735250641; x=1735855441; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zCq4pgg3ghZQ5gyCQM0kq4IJL3Ban35pSeSFFuGXBL8=;
+        b=dy9sSkBeJghSX8YhBq3qMXae5HBYT7Cz5DsWBfkmEpB9hDaTniOME/2kdiDb2ahN08
+         xwVJqX8JjmagoiYfF99QLqQHKdy6bSq58S1cZ/Pu8+TgTyxMPmTYqF41/2x+e1gHYdzo
+         To4qNL5yKvbRjcahB12USJW9UHcj0SsRUYuIxyq1TDsTJEWNgU3krO57v2aij1PowzC4
+         ur6b3eBhlV5BvWDDln2VZKs1sO6Bk1qiSDHkaVSlU9Xrkmxip5lu9WDfs6S4ZyxwMPNQ
+         vAfd6DEeGAXT88Hh1RCL7xUn/VwddTpbda7BUMWn4lcT99F/tkNvNDLtAQAcX90ub9YT
+         QD+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735250641; x=1735855441;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zCq4pgg3ghZQ5gyCQM0kq4IJL3Ban35pSeSFFuGXBL8=;
+        b=ZX9gJEAbkJdY3RogiPDbqWhiexPkDXBt0Tq+Ki5F/Psb7Ww4Gnn78VqfMVM83/r0x2
+         RWGhKQB2h5+sGBSO/TsOGq08N2E6ZZYoz8ZSYC215QArI8rc72hptqEEes4qGHoY/Omc
+         1qpQnjUFhiYsGqqPksoko3hk66vebdq66LaB1LqJRs9+moJmEVliFNJAnbMycFVISF8w
+         PTeRbVoBN+wdT991b4lqQqPKe+c3pfnR3xrRZCjf7KUyzn2pTPkA2b3E9W8NQVBQEckG
+         GHiF9QsHT7rEBvfagPD3LGCfzxQcQyMYu1mHrk+ExNpvFSCNcgrgtVhsn6kGQXWjXgop
+         BYyA==
+X-Gm-Message-State: AOJu0YytMVlfiymVGMjnDH3yGO2bwxQXP89llyPb32/z31xFWJICj+Mi
+	rj72y5nVg2BqDnj89d32eZxQyVbCWm5NTt/Szwrno1v2iawpsMGg4kpPpg==
+X-Gm-Gg: ASbGncsbUdgUNtQYMZjv2J6mXNbH2/xwrlW59M3JxRIUqnyR+stnPNBaLg6SMzN90Lx
+	Jb6Tt5DNqfh8VoszbeTfdDVUTGYGFDaLgsE/uS0w8gWZ1I1ZLyZq1qp4FnYW3tHIVKYSOOP7n2U
+	1UM1Qpn7Koo4Oc8lf6l9PRsBjKmekohxYcM4swLTY5Nrer7YnsOuI3gddVrgSAozeV2myVcAYt+
+	NuDBD4zdx3+h3Q/emMWsP10eB3AKtUOfQi00MSo1heIbWMnfhEmKk/lPHg4MoYXSVanavUt7V2a
+	gahP/kQy5rnhRcBhEJnOTtF4YWYOR1oBvaUd796JDbSQHtXxMBCmZzB+QixcVn5+mc7MS5NXECm
+	WkpFkZ4k=
+X-Google-Smtp-Source: AGHT+IGuGLsLz0eg3XnX61A2VWimbSnHZ3HdwaSlpZ2eb6Tkhezt3kD08zYUbIsbh9VNY2rsmYs2HQ==
+X-Received: by 2002:a17:907:d9f:b0:aac:619:7ed8 with SMTP id a640c23a62f3a-aac28748b30mr2394212066b.7.1735250640729;
+        Thu, 26 Dec 2024 14:04:00 -0800 (PST)
+Received: from localhost.localdomain (dynamic-2a02-3100-9da0-ce00-0000-0000-0000-0e63.310.pool.telefonica.de. [2a02:3100:9da0:ce00::e63])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-aac0e82ede9sm1011815266b.2.2024.12.26.14.03.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Dec 2024 14:03:59 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	neil.armstrong@linaro.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH] ARM: dts: amlogic: meson: remove size and address cells from USB nodes
+Date: Thu, 26 Dec 2024 23:03:52 +0100
+Message-ID: <20241226220352.965505-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241226-amlogic-pinctrl-v2-2-cdae42a67b76@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241226_021606_964726_F86D0FFF 
-X-CRM114-Status: GOOD (  12.19  )
+X-CRM114-CacheID: sfid-20241226_140403_587416_89D038E7 
+X-CRM114-Status: GOOD (  10.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,99 +97,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Xianwei,
+The only board that actually requires these properties is
+meson8b-odroidc1.dts but that already sets it on it's own. Drop these
+properties from meson.dtsi because otherwise they can cause dtc
+warnings:
+  /soc/usb@c9040000: unnecessary #address-cells/#size-cells without
+  "ranges", "dma-ranges" or child "reg" property
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/boot/dts/amlogic/meson.dtsi | 4 ----
+ 1 file changed, 4 deletions(-)
 
-[auto build test WARNING on 4de5110762b94b9978fb8182a568572fb2194f8b]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-pinctrl-Add-support-for-Amlogic-SoCs/20241226-155844
-base:   4de5110762b94b9978fb8182a568572fb2194f8b
-patch link:    https://lore.kernel.org/r/20241226-amlogic-pinctrl-v2-2-cdae42a67b76%40amlogic.com
-patch subject: [PATCH v2 2/5] pinctrl: pinconf-generic: Add API for pinmux propertity in DTS file
-config: arc-randconfig-001-20241226 (https://download.01.org/0day-ci/archive/20241226/202412261752.6HK0iJXu-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241226/202412261752.6HK0iJXu-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412261752.6HK0iJXu-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/pinctrl/pinconf-generic.c:250: warning: Function parameter or struct member 'dev' not described in 'pinconf_generic_parse_dt_pinmux'
->> drivers/pinctrl/pinconf-generic.c:250: warning: Excess function parameter 'pctldev' description in 'pinconf_generic_parse_dt_pinmux'
-
-
-vim +250 drivers/pinctrl/pinconf-generic.c
-
-   235	
-   236	/**
-   237	 * pinconf_generic_parse_dt_pinmux()
-   238	 * parse the pinmux properties into generic pin mux values.
-   239	 * @np: node containing the pinmux properties
-   240	 * @pctldev: pincontrol device
-   241	 * @pid: array with pin identity entries
-   242	 * @pmux: array with pin mux value entries
-   243	 * @npins: number of pins
-   244	 *
-   245	 * pinmux propertity: mux value [0,7]bits and pin identity [8,31]bits.
-   246	 */
-   247	int pinconf_generic_parse_dt_pinmux(struct device_node *np, struct device *dev,
-   248					    unsigned int **pid, unsigned int **pmux,
-   249					    unsigned int *npins)
- > 250	{
-   251		unsigned int *pid_t;
-   252		unsigned int *pmux_t;
-   253		struct property *prop;
-   254		unsigned int npins_t, i;
-   255		u32 value;
-   256		int ret;
-   257	
-   258		prop = of_find_property(np, "pinmux", NULL);
-   259		if (!prop) {
-   260			dev_info(dev, "Missing pinmux property\n");
-   261			return -ENOENT;
-   262		}
-   263	
-   264		if (!pid || !pmux || !npins) {
-   265			dev_err(dev, "paramers error\n");
-   266			return -EINVAL;
-   267		}
-   268	
-   269		npins_t = prop->length / sizeof(u32);
-   270		pid_t = devm_kcalloc(dev, npins_t, sizeof(*pid_t), GFP_KERNEL);
-   271		pmux_t = devm_kcalloc(dev, npins_t, sizeof(*pmux_t), GFP_KERNEL);
-   272		if (!pid_t || !pmux_t) {
-   273			dev_err(dev, "kalloc memory fail\n");
-   274			return -ENOMEM;
-   275		}
-   276		for (i = 0; i < npins_t; i++) {
-   277			ret = of_property_read_u32_index(np, "pinmux", i, &value);
-   278			if (ret) {
-   279				dev_err(dev, "get pinmux value fail\n");
-   280				goto exit;
-   281			}
-   282			pmux_t[i] = value & 0xff;
-   283			pid_t[i] = (value >> 8) & 0xffffff;
-   284		}
-   285		*pid = pid_t;
-   286		*pmux = pmux_t;
-   287		*npins = npins_t;
-   288	
-   289		return 0;
-   290	exit:
-   291		devm_kfree(dev, pid_t);
-   292		devm_kfree(dev, pmux_t);
-   293		return ret;
-   294	}
-   295	EXPORT_SYMBOL_GPL(pinconf_generic_parse_dt_pinmux);
-   296	
-
+diff --git a/arch/arm/boot/dts/amlogic/meson.dtsi b/arch/arm/boot/dts/amlogic/meson.dtsi
+index 8cb0fc78b2af..28ec2c821cdc 100644
+--- a/arch/arm/boot/dts/amlogic/meson.dtsi
++++ b/arch/arm/boot/dts/amlogic/meson.dtsi
+@@ -255,8 +255,6 @@ rtc: rtc@740 {
+ 
+ 		usb0: usb@c9040000 {
+ 			compatible = "snps,dwc2";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+ 			reg = <0xc9040000 0x40000>;
+ 			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+ 			phys = <&usb0_phy>;
+@@ -270,8 +268,6 @@ usb0: usb@c9040000 {
+ 
+ 		usb1: usb@c90c0000 {
+ 			compatible = "snps,dwc2";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+ 			reg = <0xc90c0000 0x40000>;
+ 			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+ 			phys = <&usb1_phy>;
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.1
+
 
 _______________________________________________
 linux-amlogic mailing list
