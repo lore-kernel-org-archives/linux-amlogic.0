@@ -4,85 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA76AE77188
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Dec 2024 10:00:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61FFCE77188
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Dec 2024 10:01:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nMCukQyXTeN0lxgPw1k5qa0OZh81C1xR8DB2sXEFbvQ=; b=lkwsmFuP+C92IK
-	bA1uySe8+YA+zs2ue46xlFrDVa/tJlsD93zsGatsftkFEMcHIy8qVvBNzgPoj5YX4fLn67TBFj//8
-	SyvxmVejnXbzHsvYO6allw7eqQStCThIgflg+9X7KpGP7rPIV+yjPAHp2kB0kbYaqNGoorQBce6Wb
-	vyd3+D16tuIgVPRiP0lSsckdnTVak0fQvbNpPAWmaIMm5/z9z5UNTV5RAkagf0vCLp71ndMohL4T+
-	lKBC0oS5a2446hs2hUyg67X9imFPDNPFw1Nr+i8bnU+VdMbZ94fGsw1mSiG/EQeMHB9VvS0ABmUQQ
-	/CqKeWwCOf9yKa9HgkMQ==;
+	List-Owner; bh=ozdOCRD0JzSHlwZkND7pay2KVnXsoLqpPbk50lLUDx0=; b=ClSDRNJovh9w0O
+	qSQGSO450qhvDwNUtwM0sxYZ74Xjqk4xuOyE7M4NfF3JxgrbpfchVFvruV925VBsRenlxjqHAME2m
+	DJxCabE2yCvlJSWyGBrxT69wXCPkkOJx+g9oxMnk+qMwivAaEZgJ0tAvLdQUn8xaT164TCP13cA67
+	z0XR4cuoVy1tE518qqr4bYrBQUfpEuyMUqEqWJDDBQjsXjCVcueTGL0pbvvoH1kbMDei4NgLRIeuf
+	TKH7+Lwal3JGK7jVCFYNCickEkUTwy9R3tNdxanO4nRnhH60T+rlR0eXub7o5J4ynx3Ez/e6nqAOF
+	BzvecSOguRw8Uv/TESSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tSCZT-00000004zXL-15Zj;
-	Mon, 30 Dec 2024 10:00:23 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1tSCac-00000004ziG-2Drq;
+	Mon, 30 Dec 2024 10:01:34 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tSCYd-00000004zRC-4BKv
+	id 1tSCZR-00000004zWh-3O0P
 	for linux-amlogic@lists.infradead.org;
-	Mon, 30 Dec 2024 09:59:33 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-38632b8ae71so6518285f8f.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 30 Dec 2024 01:59:31 -0800 (PST)
+	Mon, 30 Dec 2024 10:00:23 +0000
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-38632b8ae71so6518961f8f.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 30 Dec 2024 02:00:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735552770; x=1736157570; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1735552820; x=1736157620; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ORCqMwl+SAp/HgeyDZWrdJX6WYlSwrJwZn4hxNWVVck=;
-        b=WeVf49BP9WG3Q/wiuY81KDK5doX1wGEEvdBJO4jaXOJmg3c816feV/8d+GCr8XdqEa
-         SqK6jt43GntvjsUESuGzZghLclYtga5dLCPkGpy1+OyxqlkC7YaFZPSnzQn8UZ2HNbb0
-         MkkUkS7vaRN9tXTniZATB01dIwNyeC58voHAZ4vCY+xDzdlbRH7G7C35RlPsIT2t6VnG
-         sDUs3oNN+oqs0g+ACqAsoI/mAdiFyin1P7J1/Yn4OP/lz1HEuO0eNeweDds3Zxqk6MHw
-         1FvmZGOX7/DgKy4EFQt4RzX9urK0wz7bBufM+tPxVDBE1gliIboN6fk/JGpAmalvz9mP
-         4cVA==
+        bh=6jfp9SmUDH518VNnaMu3qm3fIwFvpgmQiefan0yTgrM=;
+        b=Ucjus2psg8RzMRUUXUyAOL4IobLBwV1WEQo9KwJHHl/bjZ25UvElP/v7GXsBUbOEYL
+         +PUSrNCSedsqp8QgcBFjQMb8Pdi2z4msceQXqlTIb4x1uAMEbmBM5S40g3+GNqC+tVyA
+         AZxF+sMWvLKHeBmPgp4Gn/t87PtUa4wsPlQQTRqS6khR9EgG75VUORTaO4AKLyTFzTPZ
+         LvSYs2lAoAEusIIeHe0T1dDdzRK/Rca7KDjPwGFhQd7cWZrnFkOjzVmmCSVxqf+YbKx7
+         V3YPg6nPJQozekBz7znig+TBl1SnB5CJe1f2AARhDphLPWrk83qShqGRgEQj9o8jhkkW
+         uh0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735552770; x=1736157570;
+        d=1e100.net; s=20230601; t=1735552820; x=1736157620;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ORCqMwl+SAp/HgeyDZWrdJX6WYlSwrJwZn4hxNWVVck=;
-        b=GgusC2TYL8kDpzE+E7j151dYKpszG+yNWibpXzqURUNpwdTyMyGxdbPLyOyk7/wraA
-         sw496dGYZqe2bsPlyX5E5SsG7p1hTfynLSlF++XiTjF4rCbTEpGBOPMmT++lW5cVnqNP
-         3TPmuKpXOngTaQRMgquAUDHsjzr+Umhdr2BtThypmtnpOo6FREn51fgPAxQrWBgp/dlL
-         oDDnQXyYNjOX1LS88fV2+9flKSuv4aTxHMKxvvSrk0GpgDU0bw+En7LIH7r0nmcp458G
-         yqt89GlhqEJf8VsaG78D4aMSBbP4rxnjDv3ZyqFN3OC4XkDs3zEUf7LR6r16GRlbDsHa
-         SUVg==
-X-Gm-Message-State: AOJu0YxizhWZaUzDkgLzc3LQvLXc8JOkjeyTXQY+ZpJKYGE7S8AREGfX
-	rXdCfG4Buur/Dukz3u7Yk65f+O7ZSQmS3HOLxEHLUt0tdEt+uQoGRcNt8tPEbKk=
-X-Gm-Gg: ASbGncuEfu+irwr++Zve1Bgo4h9wJg5oYx6pg9zEQ83VyFwJq0RFLsHbAPWizEYJc/R
-	6EYWQHR6WmQGki8ecrDwXS45Deag6W2yKIcHc07+8WxTcCjpLsuX+P0hBbluak+NBixysRWKnJm
-	vgDIHIqlny5gOWBknMjhYmUM011FGPqEZd+Wol0ppYuSEFOtypG3PjkuieigRg5vWTqiDSz6u4q
-	R/FfLK9t47dFsjXmTf+VnnzG1UmgkkiyOacMFW2x5QnTEnPTedEDA9HTmKXpy2Cx1fU3lYaCrTP
-	Fw==
-X-Google-Smtp-Source: AGHT+IEtZftynNsczV2vu95ZXDwj5mXq7bMZgAVBOfkVYRXoJZgIO+SXbYok4rrRMwDseSXqu17tkQ==
-X-Received: by 2002:adf:ab0c:0:b0:386:37f5:99f6 with SMTP id ffacd0b85a97d-38a223ff225mr24971091f8f.53.1735552770588;
-        Mon, 30 Dec 2024 01:59:30 -0800 (PST)
+        bh=6jfp9SmUDH518VNnaMu3qm3fIwFvpgmQiefan0yTgrM=;
+        b=tebaYQ85jkuoqKYf3I4IJejtzAPgWhZYq8NU+BRHJGEVxdYvWrQWYuUgt+gUZq0M6f
+         P12acAlbXj+S3ulTdvkMwbRHw9Z5rBS/U55AOBxQyEfc1d3B+7drS9bsEYijDWDXmjbH
+         VI7YP0r9O7K1OevhqkA2024cWqieroaodeoVcNiiDZRiRX2PuLqNMNyBr0dJEPdi/ope
+         medg6+Jb98Z20X0ErKZZVDiV4u2T32fQTKP8wubFUiB49W47NKXJOY28YxUE0+0FulUB
+         d13rhNZpERQicq4yi15Wdu5RWuQQJdvslLcPnYb77RcsRh2ykmRjhNlKKNOsFQSA6Z9D
+         2w2w==
+X-Gm-Message-State: AOJu0Yxe5sFghfsY6tzKaNsK4+IR+16QqcL1jRou3vW4CEB8VQ1mViWF
+	0lFC1qck0COktk4dJu97skY0CN1/Pvk3AHklLq+15zc2KXSo+FwfGriFoIyVtbA=
+X-Gm-Gg: ASbGncvPSejyz7QKdQRx6w6pCLbXssnFt97RHVJjf++2Wpa3RxHQCEss1lCGYprTaFz
+	LEeLn9JFoRFRCkhxXneQUHLVu4BtVsUwdTLZJz+cu3IIbTKRl6Dcqwd4rjhnDdaPiNhAFm6RIGo
+	wWEunJszI3UVbPt49h69vSGwtiqcuNLPLSuZ34C3w4o5H9wptDq1aSmyCNGqF39zymi2GCVW7q8
+	ZMSBeaf73EHK14FogchE/RAMEZtCEgMff0Omj0HYFYbGoyEWlRu8WIMPIAACyms86eRNQ6dYK29
+	gQ==
+X-Google-Smtp-Source: AGHT+IEuGi6MCYipXIk5Q5oobmNxWaU1dKW0QbR9Td99CaPeqsk/klM4UWZLTAwld9MSa5fELHIXHw==
+X-Received: by 2002:a5d:5e09:0:b0:37c:d23f:e464 with SMTP id ffacd0b85a97d-38a223f75bdmr31618551f8f.38.1735552820388;
+        Mon, 30 Dec 2024 02:00:20 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4366127c493sm347650735e9.28.2024.12.30.01.59.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4365c08afcbsm360576575e9.21.2024.12.30.02.00.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Dec 2024 01:59:30 -0800 (PST)
+        Mon, 30 Dec 2024 02:00:20 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: linux-amlogic@lists.infradead.org, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, jbrunet@baylibre.com
-In-Reply-To: <20241227212514.1376682-1-martin.blumenstingl@googlemail.com>
-References: <20241227212514.1376682-1-martin.blumenstingl@googlemail.com>
-Subject: Re: (subset) [PATCH 0/5] dts: amlogic: switch to the new PWM
- controller binding
-Message-Id: <173555276981.2075882.719017533990914280.b4-ty@linaro.org>
-Date: Mon, 30 Dec 2024 10:59:29 +0100
+ devicetree@vger.kernel.org
+In-Reply-To: <20241226220352.965505-1-martin.blumenstingl@googlemail.com>
+References: <20241226220352.965505-1-martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH] ARM: dts: amlogic: meson: remove size and address
+ cells from USB nodes
+Message-Id: <173555281977.2076800.1598444993782802807.b4-ty@linaro.org>
+Date: Mon, 30 Dec 2024 11:00:19 +0100
 MIME-Version: 1.0
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241230_015932_183652_6464B488 
-X-CRM114-Status: GOOD (  12.71  )
+X-CRM114-CacheID: sfid-20241230_020021_921585_8F124331 
+X-CRM114-Status: GOOD (  10.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,31 +101,24 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Fri, 27 Dec 2024 22:25:09 +0100, Martin Blumenstingl wrote:
-> This series switches all Amlogic SoCs to use the new PWM controller
-> binding. The main benefits of the new binding are:
-> - the pwm controller driver now picks the best possible clock to
->   achieve the most accurate pwm output
-> - board.dts don't have to know about the pwm clock inputs anymore (as
->   the driver picks the best one automatically)
-> - new SoCs only need a new compatible string but no pwm-meson driver
->   changes, assuming only the clock inputs differ from older IP
->   revisions
+On Thu, 26 Dec 2024 23:03:52 +0100, Martin Blumenstingl wrote:
+> The only board that actually requires these properties is
+> meson8b-odroidc1.dts but that already sets it on it's own. Drop these
+> properties from meson.dtsi because otherwise they can cause dtc
+> warnings:
+>   /soc/usb@c9040000: unnecessary #address-cells/#size-cells without
+>   "ranges", "dma-ranges" or child "reg" property
 > 
 > [...]
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.15/arm64-dt)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.14/arm-dt)
 
-[3/5] arm64: dts: amlogic: gx: switch to the new PWM controller binding
-      https://git.kernel.org/amlogic/c/12abaac5a70994490e565249dcffbb5c329b30bd
-[4/5] arm64: dts: amlogic: axg: switch to the new PWM controller binding
-      https://git.kernel.org/amlogic/c/77747dbb11466d5ac2ee11a260e8de0b65f3fd1c
-[5/5] arm64: dts: amlogic: g12: switch to the new PWM controller binding
-      https://git.kernel.org/amlogic/c/06c993691a2fdcabc43053a8fdd813cdeef516c4
+[1/1] ARM: dts: amlogic: meson: remove size and address cells from USB nodes
+      https://git.kernel.org/amlogic/c/3a4bb81850662bebab74f1ad27071652b1825d58
 
 These changes has been applied on the intermediate git tree [1].
 
-The v6.15/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v6.14/arm-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
