@@ -4,85 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C225FE77188
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Dec 2024 09:56:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B5B2E77188
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Dec 2024 09:57:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=djslkIdILEGWWjvchAzcoI5As252Knorn4pYS3vOZjM=; b=Azmxg0IfHc4+k+rgWmTelk01ev
-	e2ORAfTgnFDTQr4iY0P4kt47FhFvmukIEzf+1VEvdWMdmNNh9iPp3XuF7yejedQL4jqVQQA6ONq+m
-	WTWvT68ymPdRAxM0a1FBkrVSyOcnHOjCr8Lp5JqoVwXB20Hf2IWs3nAqXWEOmpeBIE7PCnHXHRCRE
-	EBvvMR0TbRz2X+tzIoMTFTJkPMLq7WmQzwAXtaDk+WbcAPqtKWWqeCcflM+3TlBpEjoqqZmvEdNpd
-	Lb0U2g5LapE4IS4HWtU7KSCJNrBxLQyJhbs9t+AFJs2lWX/fYbAnIp6wvCsSsCIzc+AVzoMwjnU74
-	duKouC1g==;
+	bh=jS00b891Rd4XlwtzCB4D1s94k3bbEd950fB1YbUqHqY=; b=I/CjCBE8NeN4L1p/MEB4uTAfOV
+	XxromhrYDzkGogHgyh6EzkFaoYPgafnF+v8BJwtJG1oAEC1HdQOesNu4+KaTjIq8Rztqwu/HlTAse
+	SQEXiZMwDJOaQbS7iJwiB9r4UZ68whVZ1hh/9lbekbR9SBXd8aCKdZ7KEqqp8WF1wz4FMb6vIt1KT
+	FrK+ITQQVBNP8CXTqJgwEC8Ph7Ga7WB2JZ+hMXVkKvWKRAtX8DWoTCU6KLHXg345YnPs9xwxQXBlH
+	HFrQhn4u+/IuU1GVkRTo4SyCjLbbnbFQYyGQ7noeG65NMYBCpl+WVFjc/aAMw4OOfQMqZK/yk37Vb
+	CHO62Fxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tSCVx-00000004yoN-2ruS;
-	Mon, 30 Dec 2024 09:56:45 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1tSCWD-00000004yvG-0D9t;
+	Mon, 30 Dec 2024 09:57:01 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tSCUm-00000004yeS-27jI
+	id 1tSCWA-00000004ytS-2M4A
 	for linux-amlogic@lists.infradead.org;
-	Mon, 30 Dec 2024 09:55:33 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4361b0ec57aso90518465e9.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 30 Dec 2024 01:55:31 -0800 (PST)
+	Mon, 30 Dec 2024 09:56:59 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4363ae65100so94771885e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 30 Dec 2024 01:56:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735552530; x=1736157330; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1735552617; x=1736157417; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=EwAnJkcxsn7EAvnKUqGy9C9BQqWODnfQQiu9/oYFC0k=;
-        b=H5tESCXmGLDdiDAF/dSavm6qEt9VfL5l042wbtAUyUiFTJ49v+jHPvYo3N0afy3717
-         QXeDuwuf4X0SZ+oOGbf90k+4DEshavN14WffSkW7dXxe+NV9flH8sA9UPMpAXQJxD/Vo
-         AwcTiyy2RHTA11Ino9EmAcPvRKnKsL8T+tbLbXAMtv7XT5hTKi0J7ZzU08+7fyDILyWn
-         2S3FzIs65aAsz1631t5980yXENbDx1WEJrB0auutLkm7/lT5y9g9rn00Zcn6ya196sP2
-         aQGXfZIPRa+X2wyHztreL/Q5uVVFXZywawbYq2zBcL/X2NIs2qH1kxt6rMK+fR77qerv
-         i4/A==
+        bh=5I15+dY+aIukWIWhqchquvXUi0oT/lsxucwaaW3b9T4=;
+        b=a5Hi6QCbdPhHSFk5KXjC8Gnef8gRDzo3mwi9DCrn4g5IQ8KnQN3IP4tAL1v7an3lFT
+         MxygbahfcT0TgIbRcDPnP+MfQJkbJ0XEI5uEiRh8c37TqgVwo8kl0l6fo/V/ikLTNIbN
+         2/ksi75OY/olHWRl7vL+kNP04oJ7DnOFE5ornaURIXB8K/cqlPV+CxNwwHo7omdFeOJM
+         K1gN+I0nC7zNpjmgT3+jIwqH4vkZeX4JFNTvRfLJtLtXGRQeGivqt92dMbIVJbA6Ja+w
+         mAlMvxZKicOT/7KxGlGKXcw3Iaa6hTP/HDjfeVzbPMnGv+rXwMdKMXTCvZI1XSlZXQwH
+         GvbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735552530; x=1736157330;
+        d=1e100.net; s=20230601; t=1735552617; x=1736157417;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=EwAnJkcxsn7EAvnKUqGy9C9BQqWODnfQQiu9/oYFC0k=;
-        b=MzqQLJ537pYaVRTvlloXqi9V7RSJq2eDL9jTdHM5JVKbKQvZxi1sPAottHmzxvhpX+
-         5m+Xmn5+Wp5CcqEtfwXNp1hHviHDaQzfM6wNnopVgBkan0Y6JeN84sgFnYunBCbV180C
-         b5Dd9tRNKQ1qJIcQFK1Cu8Sa7Bq6gXUxPbe5J/J6QAITwa3Vq3oMY1nxeLQMVWZMwDhN
-         9zcMvsTUmFrR2Om18wiSFc63vdZibNsKred8XVnjNAtuqGwGfB7DisbNIWKvJZA5OH+T
-         9e0ldNsHY+lMoMJ47N+ICsmiUoRJ7zqGm8RABFS1G2L3pDUbq+Ugiyi+IMRXR7JTqnTS
-         UvAw==
-X-Forwarded-Encrypted: i=1; AJvYcCVnPdMqLOUy7PXTVxOilfnYgbKmC5fvz+jEZEMdb/A83dPOkH51a+3+O1O5yQnKMK4TwMGYCsyRlx0RG1mY@lists.infradead.org
-X-Gm-Message-State: AOJu0YzYsQVmJdLHMDkroPzJEDmZ2N4ZS/QIrZFmW7fHg2kCKJIjul5C
-	3viE1Nid0tz5P/h4INlw2uQLWTD/nRiMG53118KPC8x+tb7S3KjjrAxeXSu6sWnhcITlVQC8g5d
-	T
-X-Gm-Gg: ASbGnctwbGD093zIWQcmp3fE7MsDq7dgiAQWK0qTUhFrsyEzH6JbophB2qkBHneF0gL
-	azFfeLD+z1e3rOC6E96Qo622Dg5FSEiVWobNx4osfHTlYKiYU9mNk94kWTeP9BiwoMwoSObaHzB
-	5zMXiMfZxXyHfOREbPnGKPfFQ0xDSMw5Sfk6gl7MOkraM5uGfzfkTeia3oUMuN5bkV1GG5yYo7+
-	lMy3xR/tcKIibHug2Vk3eakcI8s1LKdzxx08B7O1cHZYS2umI6fjkMhVlZaIoQVN+FJIPPBdYot
-	CwZhmcTGLOXjP5I//YNUEGtsM8swXouxWA==
-X-Google-Smtp-Source: AGHT+IFdNbJoTRyUHSe3BWfH+hpDzCDJYSHHchJ9jf6Jrt8SN+H4dATnk9L+2XQ1MCTWkCD61qL+qQ==
-X-Received: by 2002:a05:600c:4510:b0:434:feb1:adbb with SMTP id 5b1f17b1804b1-43668b76a08mr321281525e9.31.1735552530302;
-        Mon, 30 Dec 2024 01:55:30 -0800 (PST)
+        bh=5I15+dY+aIukWIWhqchquvXUi0oT/lsxucwaaW3b9T4=;
+        b=frdLbMYWvPU6gd6nHTTvFhKg094GElu/oPe51hcwzHs9sYmSq1X+z+YKfESfnrRsvS
+         COgrsctsRhHgiaglpNHelC5IKwkikbWPAayUd2pBYBvkIcvxKBfdR+dt+vpXCFtnMKRN
+         nbABY5Xa0q7bk8FhWm9FKLmbT1ZWm6QxJ7EQrGR89j61XqFlvrp9gCEbEFl1TCBeuxHH
+         vqKb3VNo0py1w6S3GzfD5SbzDiW2qlfpV8vZ4mJ/TXC1OPaP3oHoPwQ1IEF6QwWB8XIc
+         DiAbtSRyuCWLOhM2W5iLTVocZFoQLHbYVn+RJQQZaAqj4xBWZmMDcCZwZPvMu6KClFzC
+         iCIA==
+X-Forwarded-Encrypted: i=1; AJvYcCVAspGxYCvgRhYscGhfBZrR1ooQ6R5F2YQQ9sGrBIDrn+zBsYAOfGCNlvGa1oNW87YE6Zpdt0EZqbY3SBVc@lists.infradead.org
+X-Gm-Message-State: AOJu0YzeWjs4vc/tAXjUE95Z4lCaliCpxHjO+Z9bfIIizLgdPT377LZz
+	LhCZ0mgyJDXgRWw40Rdz2x7+i3McEm0BY+tMHJMy+DEFjVocI91SGNKGmh5ve+qy1iJxW10oBcr
+	c
+X-Gm-Gg: ASbGnctv6nd/HxT0a1azFryYbxViZX4/wfV3taTpxU2fEx2S4WmHY0KPIflSt38FyA7
+	v+iceqNQQQ/WPufz41hiWsUF9VFuBjBwWv7YLkDSm9Jl/OwbN4sR6D8T5VjlCOUipdv+hJvGsZ8
+	RTHbDpnKmAJa8iv03LA8417rz9dWzVbiJBx2JRABlWrrzBzivFRkLiZBqVqaU5GfCmmIjoJdALx
+	KXu1HsaxLQXQ7x3Z4kLgXICI9IZnxufa6f+OTT+UDyQZG+3yEPe/Bsb0kF/cfHxIShVKDyJ6n8Y
+	XK3OYatvFFDIum8D2L+6WUfUGngkmDAUBw==
+X-Google-Smtp-Source: AGHT+IEBE78/HeRDA/F7+TamaKKbELYqVuNJpyUAMgc9BzN9CCa+wQXxK+QSy+ywq+gUvsq3dokZUw==
+X-Received: by 2002:a05:600c:350c:b0:434:9ec0:9e4e with SMTP id 5b1f17b1804b1-43668b5f6f7mr315772855e9.30.1735552616872;
+        Mon, 30 Dec 2024 01:56:56 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:883b:3c16:2465:ad55? ([2a01:e0a:982:cbb0:883b:3c16:2465:ad55])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8472casm30168549f8f.45.2024.12.30.01.55.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4366128a3c9sm352128265e9.40.2024.12.30.01.56.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Dec 2024 01:55:29 -0800 (PST)
-Message-ID: <e08e5be6-9d0e-4d32-9d67-eec57634f6db@linaro.org>
-Date: Mon, 30 Dec 2024 10:55:29 +0100
+        Mon, 30 Dec 2024 01:56:56 -0800 (PST)
+Message-ID: <da394f9e-e1f7-432d-871d-e0ae400e38ca@linaro.org>
+Date: Mon, 30 Dec 2024 10:56:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
-Subject: Re: [PATCH] ARM: dts: amlogic: meson: remove size and address cells
- from USB nodes
+Subject: Re: [PATCH 0/5] dts: amlogic: switch to the new PWM controller
+ binding
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20241226220352.965505-1-martin.blumenstingl@googlemail.com>
+ devicetree@vger.kernel.org, jbrunet@baylibre.com
+References: <20241227212514.1376682-1-martin.blumenstingl@googlemail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -109,10 +109,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20241226220352.965505-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20241227212514.1376682-1-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241230_015532_590472_8C7E62A0 
-X-CRM114-Status: GOOD (  11.67  )
+X-CRM114-CacheID: sfid-20241230_015658_606687_9CA9CB1D 
+X-CRM114-Status: GOOD (  17.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,43 +130,94 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 26/12/2024 23:03, Martin Blumenstingl wrote:
-> The only board that actually requires these properties is
-> meson8b-odroidc1.dts but that already sets it on it's own. Drop these
-> properties from meson.dtsi because otherwise they can cause dtc
-> warnings:
->    /soc/usb@c9040000: unnecessary #address-cells/#size-cells without
->    "ranges", "dma-ranges" or child "reg" property
+On 27/12/2024 22:25, Martin Blumenstingl wrote:
+> This series switches all Amlogic SoCs to use the new PWM controller
+> binding. The main benefits of the new binding are:
+> - the pwm controller driver now picks the best possible clock to
+>    achieve the most accurate pwm output
+> - board.dts don't have to know about the pwm clock inputs anymore (as
+>    the driver picks the best one automatically)
+> - new SoCs only need a new compatible string but no pwm-meson driver
+>    changes, assuming only the clock inputs differ from older IP
+>    revisions
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->   arch/arm/boot/dts/amlogic/meson.dtsi | 4 ----
->   1 file changed, 4 deletions(-)
+> This silences the following warning(s) at boot (for each pwm
+> controller instance):
+>    using obsolete compatible, please consider updating dt
 > 
-> diff --git a/arch/arm/boot/dts/amlogic/meson.dtsi b/arch/arm/boot/dts/amlogic/meson.dtsi
-> index 8cb0fc78b2af..28ec2c821cdc 100644
-> --- a/arch/arm/boot/dts/amlogic/meson.dtsi
-> +++ b/arch/arm/boot/dts/amlogic/meson.dtsi
-> @@ -255,8 +255,6 @@ rtc: rtc@740 {
->   
->   		usb0: usb@c9040000 {
->   			compatible = "snps,dwc2";
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
->   			reg = <0xc9040000 0x40000>;
->   			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
->   			phys = <&usb0_phy>;
-> @@ -270,8 +268,6 @@ usb0: usb@c9040000 {
->   
->   		usb1: usb@c90c0000 {
->   			compatible = "snps,dwc2";
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
->   			reg = <0xc90c0000 0x40000>;
->   			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
->   			phys = <&usb1_phy>;
+> I have tested this on two devices:
+> - meson8b: odroidc1 (boots fine and cycling through all CPU
+>    frequencies and thus voltages works fine)
+> - meson-sm1: x96-air-gbit (boots and the rtw8822cs SDIO card is
+>    detected, so the 32kHz clock for the SDIO card works)
+> 
+> Since I cannot test all devices I'm asking for this series to be
+> applied so the Kernel CI board farm can help verify it works on all
+> boards available there.
 
+Ack I'll appply them for the next release so it stays in -next for a while.
+
+For the serie:
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Thanks!
+Neil
+
+> 
+> 
+> Martin Blumenstingl (5):
+>    ARM: dts: amlogic: meson8: switch to the new PWM controller binding
+>    ARM: dts: amlogic: meson8b: switch to the new PWM controller binding
+>    arm64: dts: amlogic: gx: switch to the new PWM controller binding
+>    arm64: dts: amlogic: axg: switch to the new PWM controller binding
+>    arm64: dts: amlogic: g12: switch to the new PWM controller binding
+> 
+>   arch/arm/boot/dts/amlogic/meson8.dtsi         | 18 ++++++++--
+>   arch/arm/boot/dts/amlogic/meson8b-ec100.dts   |  2 --
+>   arch/arm/boot/dts/amlogic/meson8b-mxq.dts     |  2 --
+>   .../arm/boot/dts/amlogic/meson8b-odroidc1.dts |  2 --
+>   arch/arm/boot/dts/amlogic/meson8b.dtsi        | 18 ++++++++--
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    | 24 +++++++++++---
+>   .../boot/dts/amlogic/meson-g12-common.dtsi    | 33 ++++++++++++++++---
+>   .../boot/dts/amlogic/meson-g12a-fbx8am.dts    |  4 ---
+>   .../dts/amlogic/meson-g12a-radxa-zero.dts     |  4 ---
+>   .../boot/dts/amlogic/meson-g12a-sei510.dts    |  4 ---
+>   .../boot/dts/amlogic/meson-g12a-u200.dts      |  2 --
+>   .../boot/dts/amlogic/meson-g12a-x96-max.dts   |  4 ---
+>   .../amlogic/meson-g12b-a311d-libretech-cc.dts |  2 --
+>   .../dts/amlogic/meson-g12b-bananapi-cm4.dtsi  |  4 ---
+>   .../boot/dts/amlogic/meson-g12b-bananapi.dtsi |  4 ---
+>   .../dts/amlogic/meson-g12b-khadas-vim3.dtsi   |  4 ---
+>   .../boot/dts/amlogic/meson-g12b-odroid.dtsi   |  4 ---
+>   .../dts/amlogic/meson-g12b-radxa-zero2.dts    |  8 -----
+>   .../boot/dts/amlogic/meson-g12b-w400.dtsi     |  6 ----
+>   .../dts/amlogic/meson-gx-libretech-pc.dtsi    |  6 ----
+>   .../boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  |  2 --
+>   arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |  8 ++---
+>   .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts |  2 --
+>   .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    |  2 --
+>   .../boot/dts/amlogic/meson-gxbb-p20x.dtsi     |  2 --
+>   .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi |  2 --
+>   .../boot/dts/amlogic/meson-gxbb-wetek.dtsi    |  2 --
+>   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi   | 25 ++++++++++++++
+>   .../boot/dts/amlogic/meson-gxl-s805x-p241.dts |  2 --
+>   .../meson-gxl-s905w-jethome-jethub-j80.dts    |  2 --
+>   .../meson-gxl-s905x-hwacom-amazetv.dts        |  2 --
+>   .../amlogic/meson-gxl-s905x-khadas-vim.dts    |  2 --
+>   .../amlogic/meson-gxl-s905x-nexbox-a95x.dts   |  2 --
+>   .../dts/amlogic/meson-gxl-s905x-p212.dtsi     |  2 --
+>   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    | 25 ++++++++++++++
+>   .../dts/amlogic/meson-gxm-khadas-vim2.dts     |  4 ---
+>   .../boot/dts/amlogic/meson-gxm-rbox-pro.dts   |  2 --
+>   .../amlogic/meson-libretech-cottonwood.dtsi   |  6 ----
+>   .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     |  6 ----
+>   .../boot/dts/amlogic/meson-sm1-bananapi.dtsi  |  2 --
+>   .../dts/amlogic/meson-sm1-khadas-vim3l.dts    |  2 --
+>   .../boot/dts/amlogic/meson-sm1-odroid.dtsi    |  2 --
+>   .../boot/dts/amlogic/meson-sm1-sei610.dts     |  6 ----
+>   43 files changed, 132 insertions(+), 135 deletions(-)
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
