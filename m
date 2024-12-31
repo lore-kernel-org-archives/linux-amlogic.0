@@ -4,88 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCB75E7718B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Dec 2024 19:20:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A79BE77188
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Dec 2024 19:42:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=x7xVtYhOb1TD15vJN1fqvQiiA4PfTGXLpzXPzinDGyk=; b=2G5Bl//uED0qVB
-	FmHh5wrIcbQ69YjiQgir1GnkoSLmKcG7RAFWeiruFhPZgnCZ7uGGXut8c97fwEpnelo7aBIF3UDUD
-	glzT/Jlo4WERDj/8iGC0GlkbHwaomMzTy2NDzgFcp+RSx5WAONgiiK4AgywrGKt9/x3xROX6tvX0N
-	2gY/9Gu/SO1+2X5N7OIao3wWjlLrK0g6CNlH1gwadKEZl+QEqgK+ChQA8tUWv1ZGB9adRQJdYYdeW
-	sAuwq7xJV2wIKjg0ob6/woWnbjmnSRiUrPS94Ed+A+JGZpdkVibM5kELprTudEujDaVqiOwQhYR5k
-	n5R19HnZGfYWQhozcFjQ==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=WiSUHUJnW1Lb3mc5RenuExkciTiBfhCUT8Txk1fNd4Q=; b=srMbc9zeWqHk27
+	/wd84DzeIICbtfLJQsd60JOdUHwlMwdreqYlLc1F3QCCxPjtU445+3FGeW13P3BtYVJjN0dA4vbDK
+	u7Sgwa7DPo1HghoKINP/rYLfHG0KXnskTZonxUgRh9mvY0s/+KtBU/qm9Be0z7hPfbNCatXusG3RY
+	4t+3UKtuVjfSpqHj5d9IXVgMBFSJ//ExdkQXZln4PA8IeQQNA9OKXtpEkZiKojgTHRrvqciCNo6zO
+	BhOXepUL7ThOT7N4GlvYo5/Wn4JDHPuWWx8vXkGs5cxg+537YBiFHSZbcG+j3SCT/JDMVuP+qXcPi
+	/750cqTDQjoJOutMC42A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tShms-00000007e8E-0WxI;
-	Tue, 31 Dec 2024 19:20:18 +0000
-Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
+	id 1tSi8V-00000007fgC-474G;
+	Tue, 31 Dec 2024 19:42:39 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tShkU-00000007dkZ-3tjV;
-	Tue, 31 Dec 2024 19:17:52 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5d414b8af7bso19892810a12.0;
-        Tue, 31 Dec 2024 11:17:50 -0800 (PST)
+	id 1tSi8T-00000007ffb-1U2E;
+	Tue, 31 Dec 2024 19:42:38 +0000
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5d0ac27b412so13609833a12.1;
+        Tue, 31 Dec 2024 11:42:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1735672669; x=1736277469; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UlDWSD9D4eFOrxR5d5GrT8K9grdu0sXiJhpdsmzP/Bs=;
-        b=QLoaJQrBhbk9jh+cDbvZN41spwnTBfQ62yodEvfOlooNfnKGChqMdAoiNQebuWKHTI
-         iHMIx8EHEG/AryR90Jm2bGk9NHegt/JPdaXIC6GnT9B9JCiVD5lP9Fee0WOhAXch2tW7
-         ubxKTzjYtMPIjqRWOEr4dBATwUXwPHrkWjzvMwe5fV7c3+nLOrqsSJRPoKgF0GyjPS2F
-         haUdTDfbcf69UP3bclZ1LEr2+BQNnEpI8qzgtNIwSlaD38I/DPz9OJjL1zjj5BB5KsBN
-         LIHf+shqtekxnBWnfwaR9LbWVuBiX3ROhuma9AoDuaiXMmHDCVwZ6bl5zLiKXjl3oMsr
-         V0gg==
+        d=googlemail.com; s=20230601; t=1735674155; x=1736278955; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O4LH06p6e80pK5KxPNhNgWz2cmsFSg5nIydohZVyBn0=;
+        b=QiXbfAlVZRcWaGr+sV7AzOR6+0VjJiA4Y1k9ZjATvWIzyANBfIC8/VNAZ3CvDQmo1h
+         +4NyGMtYSQnHv5MInVxzfa7R91ci4H5PC0G0HE5/VZYkbCAb6d53zU35AmKQrmN8QW60
+         5hF9jHf8sfFkXmHLHpTZFjBsf/cuCBymjdwPQLp0eanulstXZhyhF61qtg6LIveHitWF
+         7JfSNJX9MUGQi4jIpqa9wGZvXQfhl/WKB1TAEF9mggUSE3bTS+D87OdTJSRRYcipfEJX
+         CyifHKVP/aFvRuP1FykHEF61OhwHsezVqv+PXuSbfldlowR6qRvr7ZchDj562nCIC4D+
+         wuJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735672669; x=1736277469;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UlDWSD9D4eFOrxR5d5GrT8K9grdu0sXiJhpdsmzP/Bs=;
-        b=LtMp9KyYBjPyZnt4EqlvHnYWEmA8iIcDwTUQ8JGYfC5R8/KnayxNYfHXzl/xE4sztn
-         Mj1eTXKwXOkG3fkoN5KTabe680TZ7vr+d1KA/1nVzNU+jo6oNRq5IxVbNBnWyKp64jT5
-         +m+gs0BHKOeQZ0fX0y1DLPhbiPWB4mr8R1mXPstaIGt3ibiQYC+ZHgdyv/HAgi0Tdzy6
-         SlpogTI5GpqZ3F6/7VyyWje0DTndvTlBgYEYdybgVGUFIhp0ZEROPkhYT6x/j/W0yREN
-         ov0r7AqTReqnIflyaosJL8Nj3ZeYW/pNjD5EXof9aAybyx9RxQrTHxvPb96OhZm9Jo9K
-         XTIw==
-X-Forwarded-Encrypted: i=1; AJvYcCU6+DSrpzFIdqD4HXmw4blONkcCQtzcB3SljMyETh++pEMEUkD6BUaU4nkZRuoLeXzz/qg8z3XE6zs=@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx+NJL5okgFZj5EaJVmS5jzHyHcyJpF1TObN699W+HrvXheunIg
-	obzmuqPlaZth1hhKTgsfnDFj5vpg+Dp1twt7DZYug9KovgfSGe3Qz8zb7Q==
-X-Gm-Gg: ASbGnct1MkSVNN66PMfBFH/+HpMRrrmigMdNlCuKeFWREHJH2VSlCvG7HOOgzDwtV0Z
-	gpfCO1l4Z0pMrbeFrbcx8Ts24ZTakTnbSDVWrDukCCY7QWMVhAIqHIHiH1DjoXvKRBnBKR2JRzk
-	F/A3aH37N3+EAErEmEdbOz0kNMoOukFNdkzhg+621XChlE/Dv5l+MbU4ljza4sxnKnPoLYyfG8X
-	FZzJaKUzVUUthcYapkVdMrEtmSsKWYU5sUtu6Pz8dfX5q2KC211v4VNWZrotulVXxF0poKeL4ZT
-	mqSckvW5pbs8dAu/y4KwlnKgAyptN04tEiTxXx9J7P0vv6LejkVFpGqiutDKZZLtK0eYlFV/AZk
-	UJ7SToYrxP74VIiQi+oCohOhy
-X-Google-Smtp-Source: AGHT+IF9acAp+7NdPV6IzvYhctAufWO/ZujC2AIYiI0xxmTKMU+ZtZZw5R0wjHlrzSPEmkjGfjvvJA==
-X-Received: by 2002:a05:6402:1eca:b0:5d6:37ec:60cf with SMTP id 4fb4d7f45d1cf-5d81de48c1cmr44247236a12.27.1735672668726;
-        Tue, 31 Dec 2024 11:17:48 -0800 (PST)
+        d=1e100.net; s=20230601; t=1735674155; x=1736278955;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O4LH06p6e80pK5KxPNhNgWz2cmsFSg5nIydohZVyBn0=;
+        b=L1xWhJakb99ysnwCmRjFCnn832UHNHu7aaUvCeMw/Uy/u6xRE0KWeIe0swUtQU+tpR
+         rBWu6yB5+erOWIiAda92yYrX2JEuv0FgZLEgOvYc/Xg8XLrCzx0joyikatWBPEw4iwJd
+         8oEUSy44zei1iQLM41RIRTVZB6t+Hpnm6cbyNtxrlRPbFOHUTBir/3Az24yTE2V5iz0Q
+         EddsnBj81r6Jfq4w2ZS4S40FMNudW6QmySyuCW5zBFdmC3iGwl7ElmNFKRL77oilMlzs
+         vQ7VItGeoIJe32nNK/2Wkddpu/goC/nUtHnhab0v3lQosNUL1tOx+Y7L47kuF9ZFbfds
+         Sxcw==
+X-Forwarded-Encrypted: i=1; AJvYcCUR4Zyx3c4RjLG96GyfBCeD9iB9J0lAByV3YTN8Kjcvg6mLgxnG18qfa+rD0Ys6SQ3Gkx+kGi/IPC4knX5FmcXT@lists.infradead.org
+X-Gm-Message-State: AOJu0YyNih2shntE2XXobj36eu0h8ZfzqFe/Th5Tvhf92R0IRV0v7HVD
+	1lWdNIJU9ZZG+vLcfgcPuo3wl18+cCKeEYZE1eKr62+FMrvJUuuryJ7O3Q==
+X-Gm-Gg: ASbGncvlFuzehu/+0bLs1mQ5nmXs/vzlHh/SZMRfnBjuF4SGmVgYwHdxWvpsg1zHsMJ
+	aycvoS7yCO1ceFtMZXm0BzbY3FU+FAyafKC1Pski7ypirkex35/vuQ4cakNiuvpXK2kxw5kZpDq
+	Tng4aKCnS8i6e80tHoz/f4s3IGZWSvZ5d7cA6P1OX+mt181t6Jl/2ho0C188x9VL+dsLHRtDp+Q
+	KZvVY/g7xsWnI+slyAvwhkhq/FC1N9nKLM8hpbiQro3j1GBi0ykPbr0TZSIov2xpG03Iq8ROvR1
+	67fJ0WvbB/oArwBJvfcED8Ht3WGG3ZYP2HpfwqIpuZwvykZtHhcyXCAitjWqG+dGEs0yYpSoM3Q
+	HrE99oXPuy0Vqb4glXYOKoMQl
+X-Google-Smtp-Source: AGHT+IGXqm/aQBqvNi35rgVLYkC8kH5DSjX826DjeCEUtekC9n0oOmjoa0MClXKsVCVmiNvGJMlXhg==
+X-Received: by 2002:a05:6402:3217:b0:5d4:4143:c06c with SMTP id 4fb4d7f45d1cf-5d81ddffa67mr36677539a12.23.1735674154722;
+        Tue, 31 Dec 2024 11:42:34 -0800 (PST)
 Received: from localhost.localdomain (dynamic-2a02-3100-b300-ce00-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:b300:ce00:1e86:bff:fe2f:57b7])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5d80675a3d2sm16311780a12.16.2024.12.31.11.17.46
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5d80676f9acsm16237820a12.31.2024.12.31.11.42.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Dec 2024 11:17:48 -0800 (PST)
+        Tue, 31 Dec 2024 11:42:33 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
-	linux-phy@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	vkoul@kernel.org,
-	kishon@kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH 2/2] phy: amlogic: meson8b-usb2: Use the regmap_{clear,set}_bits helpers
-Date: Tue, 31 Dec 2024 20:17:18 +0100
-Message-ID: <20241231191718.2764065-3-martin.blumenstingl@googlemail.com>
+	linux-iio@vger.kernel.org
+Subject: [RFC PATCH v1 0/2] iio: adc: meson: add MPLL clock workaround for GXLX
+Date: Tue, 31 Dec 2024 20:42:05 +0100
+Message-ID: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241231191718.2764065-1-martin.blumenstingl@googlemail.com>
-References: <20241231191718.2764065-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20241231_111750_976733_7569BE15 
-X-CRM114-Status: GOOD (  11.62  )
+X-CRM114-CacheID: sfid-20241231_114237_413589_AB7F95F0 
+X-CRM114-Status: GOOD (  12.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,85 +89,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, lars@metafoo.de, robh@kernel.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, gnstark@salutedevices.com, krzk+dt@kernel.org, jic23@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-These require less code, reduce the chance of typos and overall make the
-intent clearer. No functional changes.
+Hello,
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/phy/amlogic/phy-meson8b-usb2.c | 28 ++++++++++----------------
- 1 file changed, 11 insertions(+), 17 deletions(-)
+Amlogic GXLX SoCs seem to be mostly the same silicon as GXL. The only
+known differences are:
+- one less Mali-450 GPU core
+- no VP9 codec
+- and an odd one: the three MPLL clocks need a bit toggled in the SAR
+  ADC register space
 
-diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
-index d9c761b7c15c..a553231a9f7c 100644
---- a/drivers/phy/amlogic/phy-meson8b-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
-@@ -165,8 +165,7 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
- 		return ret;
- 	}
- 
--	regmap_update_bits(priv->regmap, REG_CONFIG, REG_CONFIG_CLK_32k_ALTSEL,
--			   REG_CONFIG_CLK_32k_ALTSEL);
-+	regmap_set_bits(priv->regmap, REG_CONFIG, REG_CONFIG_CLK_32k_ALTSEL);
- 
- 	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_REF_CLK_SEL_MASK,
- 			   FIELD_PREP(REG_CTRL_REF_CLK_SEL_MASK, 0x2));
-@@ -175,23 +174,20 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
- 			   FIELD_PREP(REG_CTRL_FSEL_MASK, 0x5));
- 
- 	/* reset the PHY */
--	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET,
--			   REG_CTRL_POWER_ON_RESET);
-+	regmap_set_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET);
- 	udelay(RESET_COMPLETE_TIME);
--	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET, 0);
-+	regmap_clear_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET);
- 	udelay(RESET_COMPLETE_TIME);
- 
--	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_SOF_TOGGLE_OUT,
--			   REG_CTRL_SOF_TOGGLE_OUT);
-+	regmap_set_bits(priv->regmap, REG_CTRL, REG_CTRL_SOF_TOGGLE_OUT);
- 
- 	if (priv->dr_mode == USB_DR_MODE_HOST) {
--		regmap_update_bits(priv->regmap, REG_DBG_UART,
--				   REG_DBG_UART_SET_IDDQ, 0);
-+		regmap_clear_bits(priv->regmap, REG_DBG_UART,
-+				  REG_DBG_UART_SET_IDDQ);
- 
- 		if (priv->match->host_enable_aca) {
--			regmap_update_bits(priv->regmap, REG_ADP_BC,
--					   REG_ADP_BC_ACA_ENABLE,
--					   REG_ADP_BC_ACA_ENABLE);
-+			regmap_set_bits(priv->regmap, REG_ADP_BC,
-+					REG_ADP_BC_ACA_ENABLE);
- 
- 			udelay(ACA_ENABLE_COMPLETE_TIME);
- 
-@@ -214,17 +210,15 @@ static int phy_meson8b_usb2_power_off(struct phy *phy)
- 	struct phy_meson8b_usb2_priv *priv = phy_get_drvdata(phy);
- 
- 	if (priv->dr_mode == USB_DR_MODE_HOST)
--		regmap_update_bits(priv->regmap, REG_DBG_UART,
--				   REG_DBG_UART_SET_IDDQ,
--				   REG_DBG_UART_SET_IDDQ);
-+		regmap_set_bits(priv->regmap, REG_DBG_UART,
-+				REG_DBG_UART_SET_IDDQ);
- 
- 	clk_disable_unprepare(priv->clk_usb);
- 	clk_disable_unprepare(priv->clk_usb_general);
- 	reset_control_rearm(priv->reset);
- 
- 	/* power off the PHY by putting it into reset mode */
--	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET,
--			   REG_CTRL_POWER_ON_RESET);
-+	regmap_set_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET);
- 
- 	return 0;
- }
+This series attempt to fix audio output (which relies on the MPLL
+clocks) on the GXLX boards. Unfortunately all we have is a downstream
+commit [0] without any further explanation (or anyone who wants to
+provide details on this). Since it's not clear if this is a gate, a
+reset or some other hardware fix: the driver side includes a warning
+for users to update their .dtb along with kernel images in case we
+ever figure out what these bits do and how to model them properly.
+
+
+[0] https://github.com/khadas/linux/commit/d1d98f2ed8c83eb42af8880ed8e206aa402dd70a#diff-c5aaf54323ef93777c5083de37f933058ea8d0af79a1941e0b5a0667dc0f89b3
+
+
+Martin Blumenstingl (2):
+  dt-bindings: iio: adc: amlogic,meson-saradc: Add GXLX SoC compatible
+  iio: adc: meson: add support for the GXLX SoC
+
+ .../iio/adc/amlogic,meson-saradc.yaml         |  1 +
+ drivers/iio/adc/meson_saradc.c                | 34 +++++++++++++++++++
+ 2 files changed, 35 insertions(+)
+
 -- 
 2.47.1
 
