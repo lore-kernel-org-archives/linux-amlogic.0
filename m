@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 789BEE7718F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Jan 2025 09:03:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4BEDE7718F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Jan 2025 17:10:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MBud50er6P9W/c4dYda5bWc2f2pkeW3fcGPrQoXnuuI=; b=C9mqFUOZfz1LvA
-	tayRDo1oGv8iCwbMgLAFZ7juq2iTUDPBqSZs6uT4rzRiPSeNT60DrpPnaaG11rDzrJgqs0g8gvatw
-	M564XeRkODLBWkpnT1wSvO9JbSjP/hWSqoyNaHbBmsan2tgavUFWN951ZWb70+n5tnEqCQ5EgXdAm
-	UWL9h4lhaP46gV2Gw697mCdGoDuaSPqO4QTGitQyOoE6WpggRthxNGpfYRsHd02rH4m/M+unFwJnq
-	Et4gd8JWU9tEn9GEFGGDkhtva004o5mgEDXe4Brju6EXdmd37V7JXVcj6DYzXVsHo0gLmeYzHL3kd
-	QQ1R5QqgKJg8G/nPAW6g==;
+	List-Owner; bh=NbIuewV3S1xxE7YVbPkxYJJpNGpz8kmlZvbB2NqEErQ=; b=YWl3VgN8lWu/vL
+	MOycSc+mOWzvKWi/XYqz/cWKMAbXFEik17OB95qaZU5Amg6BVbloetrp5abi6KakkUuh2RWAyXIfg
+	s9u5T7O7JfwaOfyiOpTqGQAj08DuyeKNvftOgnnFvbsq2fT2LMeK9IVPJGmTUrLEsi5OIBEpiLWny
+	Jyi4P4J/MGKO045gHd+W145Lubzu+oA0ppL4gzVGrdmYLLrh/i99hmMP50w1D0RhEsFp3RsRj4mJc
+	ZY0CdOWpGo0UMc26YMUYEdWh3O8BXHI1uai6Te1ZxjRAi4CCZpI0Jviw5avT8/uJO/vkERqnD3SCw
+	m0X3c+gXirk/wcC3EzBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tSudZ-00000008Sda-0m9B;
-	Wed, 01 Jan 2025 09:03:33 +0000
-Received: from mgamail.intel.com ([198.175.65.13])
+	id 1tT2ET-00000009DIS-2lgC;
+	Wed, 01 Jan 2025 17:10:09 +0000
+Received: from [192.198.163.13] (helo=mgamail.intel.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tSudW-00000008SdA-2XjG;
-	Wed, 01 Jan 2025 09:03:32 +0000
+	id 1tT2EQ-00000009DHk-3UcC;
+	Wed, 01 Jan 2025 17:10:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1735722210; x=1767258210;
+  t=1735751407; x=1767287407;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=Nz9aDcQrTUetxC6iaoCKUJgnBxM+z4ES6m8B+iYezLY=;
-  b=BWa6NUfio121hELwaZJoH5MRkXX3dtBUn8wLhY86i6MuqVQucAgJCH7R
-   92VYekKeBKvUzldHJddG+4G0DmYhMFvvf7Qcsap0ZzH/KE36SeG3VeBgq
-   i3SlziZpTESOewXZ76gZD7KTdkMbODXHQNznfh9ykTjHYfsvwuYaTNivK
-   4AsS8+zi/Yt9+A2O+WJlR9dnXVbSR+aipIJbhD5jamyigcpUpDvtYBAD2
-   ZNoi0K5p3NoZV31Yg2VIE4iwkQdC0/cZVXF1CiNc3Q1LK/RNDD0Ro5Nm9
-   B0CCcjrYIOmrGWKqJziBauQ/ad0Sb6OCiDQrbRFK7U3kZbVaUB/RzcPck
-   A==;
-X-CSE-ConnectionGUID: SQPseovYTqKbgmQRSd2BwA==
-X-CSE-MsgGUID: MSPC4cQOQ9yDWakkpL9mQw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="46972197"
-X-IronPort-AV: E=Sophos;i="6.12,281,1728975600"; 
-   d="scan'208";a="46972197"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jan 2025 01:03:26 -0800
-X-CSE-ConnectionGUID: XuUNBDnHRJ6foHwmfMM9/A==
-X-CSE-MsgGUID: IBcWmbpJQUmPS6sZZkwOAw==
+  bh=w4806pHttcq14fcDsE1TCQs1bNJyXM6xixxGIsaUg00=;
+  b=R9qvFud+jcfMkthSHNDaSAdwrVI3Z6h/VfeY4kS2OQK9NR+6ES8zNXN7
+   uPQ7CxazMpmyEIBT9C6vPCgx4DftDQOx/tnIDTyqrm/69a9M80vrS8QGH
+   beS09eMIKElnd9waqldO8HtQT9iJQmEd4z6cXrL3Hjk4TDQKhA2VLC/Nn
+   RSWJv3stSxNRqJbRu1Cr1GaNL7tlktFp8pxKc+PRG3Qx/w9sJ0YBMiTFq
+   2iMN3fZanbkbEtPkewLHTqPK1BK6tUL+i9m9xk/fHjPnqXUEi7BVAv3+E
+   US61dfz73O2lo2wttea4iHGjUCcEn+wBp/r3ivgKN7DyI9+RfXLds5o03
+   w==;
+X-CSE-ConnectionGUID: VtOjt3aGRWCeB09s5nWcPQ==
+X-CSE-MsgGUID: HpEoNWwKRp+1IjhJyLJLAg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="38830085"
+X-IronPort-AV: E=Sophos;i="6.12,282,1728975600"; 
+   d="scan'208";a="38830085"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jan 2025 09:09:59 -0800
+X-CSE-ConnectionGUID: skjhXKsiSWyP1f8EVfehDQ==
+X-CSE-MsgGUID: 1u7BJ6rmS0+nb2yF7WxL+g==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="101051676"
+   d="scan'208";a="132237852"
 Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 01 Jan 2025 01:03:22 -0800
+  by fmviesa001.fm.intel.com with ESMTP; 01 Jan 2025 09:09:55 -0800
 Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1tSudM-0007jb-19;
-	Wed, 01 Jan 2025 09:03:20 +0000
-Date: Wed, 1 Jan 2025 17:02:58 +0800
+	id 1tT2EC-0007xz-1b;
+	Wed, 01 Jan 2025 17:09:52 +0000
+Date: Thu, 2 Jan 2025 01:09:14 +0800
 From: kernel test robot <lkp@intel.com>
 To: Jian Hu <jian.hu@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>,
 	Xianwei Zhao <xianwei.zhao@amlogic.com>,
@@ -75,15 +75,16 @@ Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
 	linux-amlogic <linux-amlogic@lists.infradead.org>,
 	linux-kernel <linux-kernel@vger.kernel.org>,
 	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 4/5] clk: meson: t7: add support for the T7 SoC PLL clock
-Message-ID: <202501011623.EZwn2GFV-lkp@intel.com>
-References: <20241231060047.2298871-5-jian.hu@amlogic.com>
+Subject: Re: [PATCH 5/5] clk: meson: t7: add t7 clock peripherals controller
+ driver
+Message-ID: <202501020007.bve7QkV9-lkp@intel.com>
+References: <20241231060047.2298871-6-jian.hu@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20241231060047.2298871-5-jian.hu@amlogic.com>
+In-Reply-To: <20241231060047.2298871-6-jian.hu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250101_010330_691756_01408808 
-X-CRM114-Status: GOOD (  13.10  )
+X-CRM114-CacheID: sfid-20250101_091006_915964_F5B13EF9 
+X-CRM114-Status: GOOD (  12.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,26 +113,31 @@ https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
 url:    https://github.com/intel-lab-lkp/linux/commits/Jian-Hu/dt-bindings-clock-add-Amlogic-T7-PLL-clock-controller/20241231-141835
 base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20241231060047.2298871-5-jian.hu%40amlogic.com
-patch subject: [PATCH 4/5] clk: meson: t7: add support for the T7 SoC PLL clock
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20250101/202501011623.EZwn2GFV-lkp@intel.com/config)
+patch link:    https://lore.kernel.org/r/20241231060047.2298871-6-jian.hu%40amlogic.com
+patch subject: [PATCH 5/5] clk: meson: t7: add t7 clock peripherals controller driver
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20250102/202501020007.bve7QkV9-lkp@intel.com/config)
 compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250101/202501011623.EZwn2GFV-lkp@intel.com/reproduce)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250102/202501020007.bve7QkV9-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501011623.EZwn2GFV-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501020007.bve7QkV9-lkp@intel.com/
 
 All warnings (new ones prefixed by >>, old ones prefixed by <<):
 
->> WARNING: modpost: module t7-pll uses symbol meson_clk_hw_get from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-pll uses symbol meson_clk_pll_ops from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-pll uses symbol clk_regmap_divider_ops from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-pll uses symbol meson_clk_pcie_pll_ops from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-pll uses symbol meson_clk_mpll_ops from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-pll uses symbol clk_regmap_gate_ops from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-pll uses symbol clk_regmap_mux_ops from namespace CLK_MESON, but does not import it.
+WARNING: modpost: module t7-pll uses symbol meson_clk_hw_get from namespace CLK_MESON, but does not import it.
+WARNING: modpost: module t7-pll uses symbol meson_clk_pll_ops from namespace CLK_MESON, but does not import it.
+WARNING: modpost: module t7-pll uses symbol clk_regmap_divider_ops from namespace CLK_MESON, but does not import it.
+WARNING: modpost: module t7-pll uses symbol meson_clk_pcie_pll_ops from namespace CLK_MESON, but does not import it.
+WARNING: modpost: module t7-pll uses symbol meson_clk_mpll_ops from namespace CLK_MESON, but does not import it.
+WARNING: modpost: module t7-pll uses symbol clk_regmap_gate_ops from namespace CLK_MESON, but does not import it.
+WARNING: modpost: module t7-pll uses symbol clk_regmap_mux_ops from namespace CLK_MESON, but does not import it.
+>> WARNING: modpost: module t7-peripherals uses symbol meson_clk_hw_get from namespace CLK_MESON, but does not import it.
+>> WARNING: modpost: module t7-peripherals uses symbol clk_regmap_gate_ops from namespace CLK_MESON, but does not import it.
+>> WARNING: modpost: module t7-peripherals uses symbol meson_clk_dualdiv_ops from namespace CLK_MESON, but does not import it.
+>> WARNING: modpost: module t7-peripherals uses symbol clk_regmap_mux_ops from namespace CLK_MESON, but does not import it.
+>> WARNING: modpost: module t7-peripherals uses symbol clk_regmap_divider_ops from namespace CLK_MESON, but does not import it.
 
 -- 
 0-DAY CI Kernel Test Service
