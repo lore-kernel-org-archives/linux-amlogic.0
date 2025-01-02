@@ -4,87 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4BEDE7718F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Jan 2025 17:10:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E16DCE77188
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jan 2025 07:59:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NbIuewV3S1xxE7YVbPkxYJJpNGpz8kmlZvbB2NqEErQ=; b=YWl3VgN8lWu/vL
-	MOycSc+mOWzvKWi/XYqz/cWKMAbXFEik17OB95qaZU5Amg6BVbloetrp5abi6KakkUuh2RWAyXIfg
-	s9u5T7O7JfwaOfyiOpTqGQAj08DuyeKNvftOgnnFvbsq2fT2LMeK9IVPJGmTUrLEsi5OIBEpiLWny
-	Jyi4P4J/MGKO045gHd+W145Lubzu+oA0ppL4gzVGrdmYLLrh/i99hmMP50w1D0RhEsFp3RsRj4mJc
-	ZY0CdOWpGo0UMc26YMUYEdWh3O8BXHI1uai6Te1ZxjRAi4CCZpI0Jviw5avT8/uJO/vkERqnD3SCw
-	m0X3c+gXirk/wcC3EzBg==;
+	List-Owner; bh=OwflxzwYjS7xPEOczWrXKhqQ7kOGEHqZx70ePltoFT4=; b=KEOmEo/BceljYJ
+	GE/PVzWfJ+e+00afJh9pyT8Pg4N7yWBX4C1bO1cAwl5jLXhZNmwmte30CZwmezzXiwcleuueLMnTB
+	nUk5wJ18rZJF89gKExZHpe7L2SlkmXb0iQrxWbN7E/LAVryYtcjZuPgyu7CIbcwlUgLyX3pOiQPbn
+	gr8GNVhzACdrkIT1gc5XAj5dw1EOL46vHbSJ8fSbypysG91AWzgkrcHTtyZo+6LGn1eQJl92QI1ty
+	cTfT+h4viJ8y9aaSkGeFC9+k68fMHWsufbCsvKPDCg1cLCB8eXpUFXsnLMJkffEIiBAF0Nk4uxDNm
+	bmLOsWO02O8UKwJABkMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tT2ET-00000009DIS-2lgC;
-	Wed, 01 Jan 2025 17:10:09 +0000
-Received: from [192.198.163.13] (helo=mgamail.intel.com)
+	id 1tTG76-00000009tl7-3Kme;
+	Thu, 02 Jan 2025 07:59:28 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tT2EQ-00000009DHk-3UcC;
-	Wed, 01 Jan 2025 17:10:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1735751407; x=1767287407;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=w4806pHttcq14fcDsE1TCQs1bNJyXM6xixxGIsaUg00=;
-  b=R9qvFud+jcfMkthSHNDaSAdwrVI3Z6h/VfeY4kS2OQK9NR+6ES8zNXN7
-   uPQ7CxazMpmyEIBT9C6vPCgx4DftDQOx/tnIDTyqrm/69a9M80vrS8QGH
-   beS09eMIKElnd9waqldO8HtQT9iJQmEd4z6cXrL3Hjk4TDQKhA2VLC/Nn
-   RSWJv3stSxNRqJbRu1Cr1GaNL7tlktFp8pxKc+PRG3Qx/w9sJ0YBMiTFq
-   2iMN3fZanbkbEtPkewLHTqPK1BK6tUL+i9m9xk/fHjPnqXUEi7BVAv3+E
-   US61dfz73O2lo2wttea4iHGjUCcEn+wBp/r3ivgKN7DyI9+RfXLds5o03
-   w==;
-X-CSE-ConnectionGUID: VtOjt3aGRWCeB09s5nWcPQ==
-X-CSE-MsgGUID: HpEoNWwKRp+1IjhJyLJLAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="38830085"
-X-IronPort-AV: E=Sophos;i="6.12,282,1728975600"; 
-   d="scan'208";a="38830085"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jan 2025 09:09:59 -0800
-X-CSE-ConnectionGUID: skjhXKsiSWyP1f8EVfehDQ==
-X-CSE-MsgGUID: 1u7BJ6rmS0+nb2yF7WxL+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="132237852"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 01 Jan 2025 09:09:55 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tT2EC-0007xz-1b;
-	Wed, 01 Jan 2025 17:09:52 +0000
-Date: Thu, 2 Jan 2025 01:09:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jian Hu <jian.hu@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Chuan Liu <chuan.liu@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-	robh+dt <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Jian Hu <jian.hu@amlogic.com>,
-	devicetree <devicetree@vger.kernel.org>,
-	linux-clk <linux-clk@vger.kernel.org>,
-	linux-amlogic <linux-amlogic@lists.infradead.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>,
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 5/5] clk: meson: t7: add t7 clock peripherals controller
- driver
-Message-ID: <202501020007.bve7QkV9-lkp@intel.com>
-References: <20241231060047.2298871-6-jian.hu@amlogic.com>
+	id 1tTG6x-00000009tje-23Vm;
+	Thu, 02 Jan 2025 07:59:20 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 773DFA40100;
+	Thu,  2 Jan 2025 07:57:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B16BC4CED0;
+	Thu,  2 Jan 2025 07:59:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735804758;
+	bh=Wtds6vwJjBF4P/XZvYFiH00JqcJXxnLQHetnGMvlTUI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FTMfkafwdqE5Xtg30VWOi0HKrhX2KrG/HBucVTsuWPOgi/HepUzTyW6wm19DAJKgs
+	 KvzXYINs5yYtWlkd5lZmg+gUOoFKINYa+otZWQY2OG/qtfq+C42aojIzPOIQ2FAO9s
+	 Gien8iO5D+rNiFYkai3gJi0Ox+ISHOPVFD+081P+ZTo+j4tgiv5rQfa2OCdUfxMmVP
+	 5LeVe/BBXGr/l54RIoKXPYLKKdkEmPIn0hsvv/icOXIkqi3qWsE2628XStkprVP0Ot
+	 AwmfDm2eLuACKbLKiE1xvclC2yaroUHinrtBR63qQGA1bv572DAlRRztj0/4RYUcQl
+	 nAF9LHNEC4f+w==
+Date: Thu, 2 Jan 2025 08:59:15 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [RFC PATCH v1 1/2] dt-bindings: iio: adc: amlogic,meson-saradc:
+ Add GXLX SoC compatible
+Message-ID: <akqtrf3yklgplxutne63fq4iz2cxw4gkzinjgxldjdabbsvusd@rfuofb3bcqmx>
+References: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com>
+ <20241231194207.2772750-2-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20241231060047.2298871-6-jian.hu@amlogic.com>
+In-Reply-To: <20241231194207.2772750-2-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250101_091006_915964_F5B13EF9 
-X-CRM114-Status: GOOD (  12.33  )
+X-CRM114-CacheID: sfid-20250101_235919_610133_AB321A3E 
+X-CRM114-Status: GOOD (  10.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,52 +66,27 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, lars@metafoo.de, robh@kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, jic23@kernel.org, gnstark@salutedevices.com, linux-amlogic@lists.infradead.org, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jian,
+On Tue, Dec 31, 2024 at 08:42:06PM +0100, Martin Blumenstingl wrote:
+> Add a compatible string for the GXLX SoC. It's very similar to GXL but
+> has three additional bits in MESON_SAR_ADC_REG12 for the three MPLL
+> clocks.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  .../devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml        | 1 +
+>  1 file changed, 1 insertion(+)
 
-kernel test robot noticed the following build warnings:
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-[auto build test WARNING on clk/clk-next]
-[also build test WARNING on linus/master v6.13-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Best regards,
+Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jian-Hu/dt-bindings-clock-add-Amlogic-T7-PLL-clock-controller/20241231-141835
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20241231060047.2298871-6-jian.hu%40amlogic.com
-patch subject: [PATCH 5/5] clk: meson: t7: add t7 clock peripherals controller driver
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20250102/202501020007.bve7QkV9-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250102/202501020007.bve7QkV9-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501020007.bve7QkV9-lkp@intel.com/
-
-All warnings (new ones prefixed by >>, old ones prefixed by <<):
-
-WARNING: modpost: module t7-pll uses symbol meson_clk_hw_get from namespace CLK_MESON, but does not import it.
-WARNING: modpost: module t7-pll uses symbol meson_clk_pll_ops from namespace CLK_MESON, but does not import it.
-WARNING: modpost: module t7-pll uses symbol clk_regmap_divider_ops from namespace CLK_MESON, but does not import it.
-WARNING: modpost: module t7-pll uses symbol meson_clk_pcie_pll_ops from namespace CLK_MESON, but does not import it.
-WARNING: modpost: module t7-pll uses symbol meson_clk_mpll_ops from namespace CLK_MESON, but does not import it.
-WARNING: modpost: module t7-pll uses symbol clk_regmap_gate_ops from namespace CLK_MESON, but does not import it.
-WARNING: modpost: module t7-pll uses symbol clk_regmap_mux_ops from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-peripherals uses symbol meson_clk_hw_get from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-peripherals uses symbol clk_regmap_gate_ops from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-peripherals uses symbol meson_clk_dualdiv_ops from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-peripherals uses symbol clk_regmap_mux_ops from namespace CLK_MESON, but does not import it.
->> WARNING: modpost: module t7-peripherals uses symbol clk_regmap_divider_ops from namespace CLK_MESON, but does not import it.
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
