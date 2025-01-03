@@ -4,87 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6448CE7718F
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jan 2025 10:41:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 447F9E77188
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jan 2025 18:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Efyk3x1/QoQeybtBOStNzpwrK7wkJO8//WGpN1VK2Bc=; b=pfzIuFbxRQsmRw
-	pDYItSfw/0XWktCsaNHXhN3U/amkqtX4MUZTdf4WP/NItZIQWBBIpWTn2oz/Zi5ifmAqr6wLIFNFp
-	EeMuevdEBK+Z9hOxX7xtzY9gkae54bDsjzHfwLwaj3pW5INpCiVGu19lTxuR+R/hGLj9REERoUGzz
-	/WEsBSqXdJuOy9MuIX+oa8whxeruLzqTIbj3HQyHb2lK5jWjbgQnFdcD7FidtW+tBKDdGIFWsVQxp
-	i8BktoafNggWE306A+CG1Od6uu2EUXMPd5MmGZo6p6d2sXVKCHgNADqrtlbeq070aJTdvlROWwwEG
-	lnFJyGDkJ4Sj4EaOhARw==;
+	List-Owner; bh=jjPctA22qdbAjcQkVguB8p/9sa6TQ49+xABdviXaa+g=; b=Onej+wA4Ckk60f
+	1QjC2H15XmBk9Dr0w/teB8ocwbS4hQ9/k74b+K8tNA577vTLafeqFanqIyNg9GTfV+V2Mcvflreuz
+	Y/Jw8sCrVOId8D08vdttVmEbcqK3UdsnV51wVvdO8d2Ynr1yTzqeuasd5J2FL3meRKoD2Ix5rtjlD
+	/nrvpUpXipqRu/9drLum9VdfAPVqvktiYAztejQfB+TMX4t4P1irlufnLIWsM4u4YSnYe/yGGcR8T
+	9DN8L/u0f1fEJ8UP352+m18tTj/ET20u5hfCCNh+KT9gLmLwiC1jXSFJiyCSGEMTy3oibTyhaGFJx
+	In7aw1WZVjhCckncn+wQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tTf7G-0000000CkU9-1oMy;
-	Fri, 03 Jan 2025 10:41:18 +0000
-Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
+	id 1tTmpg-0000000DmAz-1LDh;
+	Fri, 03 Jan 2025 18:55:40 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tTf4C-0000000CkAU-2IcF
-	for linux-amlogic@lists.infradead.org;
-	Fri, 03 Jan 2025 10:38:11 +0000
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-30219437e63so140308331fa.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 03 Jan 2025 02:38:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735900686; x=1736505486; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/m618hW0R2m1nQFr2zn8iDxB4stTlPC9L/MKkQZd3FA=;
-        b=dGK7Qja9JJ6z4MjqrydsQHD6O8daQgqdS0o9ZxV7/AtCVWDtYzN6qFQOdLg0JqucgC
-         M80gC37oTfvKryCYFeQ2rFGjn3p0y6UkSLjz99kYfR/t1YByu7inKTgBWmYtEZW80tyq
-         O3FMJhtw3Zn31mAoYI/sKqv7H/myJkKwBNNVnLuRe6eB+nI2WHzuw+wipNiORopmbYvl
-         Gu3swCKL0qCAQKkQJWydwkA637jwx7tEk7+X7oo7RgdWeExHLoUXCFSf73JLwp6jRooW
-         190kxjDXgH8Xa7pTxQlNc2V9uF4HtdmTg6+CUOA7ET1YSRTKxFOMFbFrO090cy0RfCbl
-         CZqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735900686; x=1736505486;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/m618hW0R2m1nQFr2zn8iDxB4stTlPC9L/MKkQZd3FA=;
-        b=hhNUYcW3Seh2mJfcQAVCOUDB4IhEvE24cAFH04fu5lpnAnFWla8zDqlXAHyPfvKezQ
-         DczPMIZp2/scGyqeuvEcNdXMBIpSQazLWe+IB/mWt7pIOHnQDdLwFwKwR0UEaDK3uNjl
-         IiEqt1bnacVecUKAs5YbWTpuGvICUiQvMKWQzT/SdNRRyyPdokNi28VbqInU+0LJb4K8
-         vlslIYcJ8to0nVKFsq8lJ7ssqnuEDX/cdGYC/ApC974elGpXuwLxo+ATZqEYtz+Gvg5S
-         TKtvZu/9Zyr9uPyHqYuFdAMvIPMJrq7t9XfGRovSHMd0vB4l5YhMK2UUvSh+opAyJeNT
-         o1uw==
-X-Forwarded-Encrypted: i=1; AJvYcCVvxjeWURVw6D61x8QbQc2hnqhw3aFbHbU9qMYcaJdX7nldqevcZyC1UAFKy1MstjiptITvlRZZ/l/33hbr@lists.infradead.org
-X-Gm-Message-State: AOJu0Yzo0LG/QstrHVWJ5W/KmAQkPaRwWOqqREwQ69Dl2EA98/SvpOoT
-	Cq5ehPhMJRYKzOTUhu9w9a3cypXwdcrtEzzgTMYREZwGlQFxMJLpHbXsgsQXx98=
-X-Gm-Gg: ASbGncvYLBFnytGASkVCV2B8W0eQESMyo/GczBSCJ9PmSltMxak8Dgw8xBmwF4YnquG
-	du84pzK2M96w0qLEVjslyXLoPGwSKFbiyH/2q58UNZkjSuuk48AwH1m9GcAgked6UfcqdQ70SDk
-	/ESgvMh2HPtsEkBGtoVG3cBqZ1Qqjlksas5F3A/Q2Hft7GU0QkGwb7y3BZRKDk70eRHLH3a3j02
-	udxVbcRsjGr2PlujE/K+VTbFv22AXhLSFPxwfS/dFCmwfa8f/TtR1YHOi50hCk0VrGyl8EDePJG
-	djdcIzRQDZZX/ti6EMB+N3n2U6fuKBr+Eq6j
-X-Google-Smtp-Source: AGHT+IHqyYKM0jK9B76DdsBNsu1ksVUKqjrNzWi2li/1a+VHxpUAgfWN/haMqHCMVuXOoMkqVNCF/Q==
-X-Received: by 2002:a2e:bc1b:0:b0:302:215f:94ee with SMTP id 38308e7fff4ca-30458337550mr161864691fa.4.1735900686412;
-        Fri, 03 Jan 2025 02:38:06 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3045b096cafsm45400051fa.123.2025.01.03.02.38.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jan 2025 02:38:05 -0800 (PST)
-Date: Fri, 3 Jan 2025 12:38:03 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
-	helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch, robdclark@gmail.com, 
-	guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com, 
-	linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
-	intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] drm/ci: uprev IGT
-Message-ID: <gxrc6hqlmjl2pdylvi33wdukxgz6wqbhzgwk4ptyx3i55jshic@uu45kcjailxa>
-References: <20241217160655.2371138-1-vignesh.raman@collabora.com>
+	id 1tTmpd-0000000DmAE-3R79;
+	Fri, 03 Jan 2025 18:55:39 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id E6B025C632D;
+	Fri,  3 Jan 2025 18:54:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA394C4CED2;
+	Fri,  3 Jan 2025 18:55:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735930536;
+	bh=XQxYutNgrITYpUa9i4dLX5UIo7Vh+etoJ94keWJktx0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FD2Xt62SwcGD/iot4UTktOgDx0pupKu3+l2s1JX8e+wyFnyFG4eKajMWrLRfnGKEy
+	 SO7gh/SkLthepU5wfB2xqMDQdJwa8tyBZDN0jD8ynydKUf6qCTIAiII3ekKlUXOLU1
+	 6fQU8sTIowPnBEX8zRJGclu+0TKYkJVP0eKXPSYJjYYbtC8iBztPV2dF7y8yJu5yzz
+	 wTISr3FZMLFBcIO6N7M1JR4vnk9+kPhUe/D3A9uwaAGFzJ50UotZS5FVFjdb++5tAI
+	 CCmPQ8EemmpyQ5T8d/mGxpRV6bcBUw5eJUGFpv6bZ/pjbEGIs1tvJBFbvD8ocUL/Y5
+	 mkU+YKTSf1z0A==
+Date: Fri, 3 Jan 2025 12:55:35 -0600
+From: Rob Herring <robh@kernel.org>
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Chuan Liu <chuan.liu@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+	devicetree <devicetree@vger.kernel.org>,
+	linux-clk <linux-clk@vger.kernel.org>,
+	linux-amlogic <linux-amlogic@lists.infradead.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>,
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/5] dt-bindings: clock: add Amlogic T7 PLL clock
+ controller
+Message-ID: <20250103185535.GA2552898-robh@kernel.org>
+References: <20241231060047.2298871-1-jian.hu@amlogic.com>
+ <20241231060047.2298871-2-jian.hu@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20241217160655.2371138-1-vignesh.raman@collabora.com>
+In-Reply-To: <20241231060047.2298871-2-jian.hu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250103_023808_598286_34B241FD 
-X-CRM114-Status: GOOD (  15.10  )
+X-CRM114-CacheID: sfid-20250103_105537_942508_47412CCC 
+X-CRM114-Status: GOOD (  16.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,90 +84,211 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Dec 17, 2024 at 09:36:52PM +0530, Vignesh Raman wrote:
-> Uprev IGT to the latest version and update expectation files.
+On Tue, Dec 31, 2024 at 02:00:43PM +0800, Jian Hu wrote:
+> Add DT bindings for the PLL clock controller of the Amlogic T7 SoC family.
 > 
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
+>  .../bindings/clock/amlogic,t7-pll-clkc.yaml   | 115 ++++++++++++++++++
+>  .../dt-bindings/clock/amlogic,t7-pll-clkc.h   |  57 +++++++++
+>  2 files changed, 172 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,t7-pll-clkc.h
 > 
-> v1:
->   - Pipeline link - https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1327810
->     Will update the flake bug report link after v1 is reviewed.
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+> new file mode 100644
+> index 000000000000..f90e6021d298
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,t7-pll-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic T7 PLL Clock Control Controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@amlogic.com>
+> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,t7-pll-gp0
+> +      - amlogic,t7-pll-gp1
+> +      - amlogic,t7-pll-hifi
+> +      - amlogic,t7-pll-pcie
+> +      - amlogic,t7-mpll
+> +      - amlogic,t7-pll-hdmi
+> +      - amlogic,t7-pll-mclk
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,t7-pll-gp0
+> +              - amlogic,t7-pll-gp1
+> +              - amlogic,t7-pll-hifi
+> +              - amlogic,t7-pll-pcie
+> +              - amlogic,t7-mpll
+> +              - amlogic,t7-pll-hdmi
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: pll input oscillator gate
+> +
+> +        clock-names:
+> +          items:
+> +            - const: input
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,t7-pll-mclk
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: mclk pll input oscillator gate
+> +            - description: 24M oscillator input clock source for mclk_sel_0
+> +            - description: fix 50Mhz input clock source for mclk_sel_0
+> +
+> +        clock-names:
+> +          items:
+> +            - const: input
+> +            - const: mclk_in0
+> +            - const: mclk_in1
+
+Define the names and descriptions at the top level. Then here just say 
+'minItems: 3'
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        gp0:clock-controller@8080 {
+
+Drop unused labels.
+
+> +            compatible = "amlogic,t7-pll-gp0";
+> +            reg = <0 0x8080 0 0x20>;
+> +            clocks = <&scmi_clk 2>;
+> +            clock-names = "input";
+> +            #clock-cells = <1>;
+> +        };
+> +
+> +        mclk:clock-controller@8300 {
+> +            compatible = "amlogic,t7-pll-mclk";
+> +            reg = <0 0x8300 0 0x18>;
+> +            clocks = <&scmi_clk 2>,
+> +                     <&xtal>,
+> +                     <&scmi_clk 31>;
+> +            clock-names = "input", "mclk_in0", "mclk_in1";
+> +            #clock-cells = <1>;
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/clock/amlogic,t7-pll-clkc.h b/include/dt-bindings/clock/amlogic,t7-pll-clkc.h
+> new file mode 100644
+> index 000000000000..e88c342028db
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,t7-pll-clkc.h
+> @@ -0,0 +1,57 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + */
+> +
+> +#ifndef __T7_PLL_CLKC_H
+> +#define __T7_PLL_CLKC_H
+> +
+> +/* GP0 */
+> +#define CLKID_GP0_PLL_DCO	0
+> +#define CLKID_GP0_PLL		1
+> +
+> +/* GP1 */
+> +#define CLKID_GP1_PLL_DCO	0
+> +#define CLKID_GP1_PLL		1
+> +
+> +/* HIFI */
+> +#define CLKID_HIFI_PLL_DCO	0
+> +#define CLKID_HIFI_PLL		1
+> +
+> +/* PCIE */
+> +#define CLKID_PCIE_PLL_DCO	0
+> +#define CLKID_PCIE_PLL_DCO_DIV2	1
+> +#define CLKID_PCIE_PLL_OD	2
+> +#define CLKID_PCIE_PLL		3
+> +
+> +/* MPLL */
+> +#define CLKID_MPLL_PREDIV	0
+> +#define CLKID_MPLL0_DIV		1
+> +#define CLKID_MPLL0		2
+> +#define CLKID_MPLL1_DIV		3
+> +#define CLKID_MPLL1		4
+> +#define CLKID_MPLL2_DIV		5
+> +#define CLKID_MPLL2		6
+> +#define CLKID_MPLL3_DIV		7
+> +#define CLKID_MPLL3		8
+> +
+> +/* HDMI */
+> +#define CLKID_HDMI_PLL_DCO	0
+> +#define CLKID_HDMI_PLL_OD	1
+> +#define CLKID_HDMI_PLL		2
+> +
+> +/* MCLK */
+> +#define CLKID_MCLK_PLL_DCO	0
+> +#define CLKID_MCLK_PRE		1
+> +#define CLKID_MCLK_PLL		2
+> +#define CLKID_MCLK_0_SEL	3
+> +#define CLKID_MCLK_0_DIV2	4
+> +#define CLKID_MCLK_0_PRE	5
+> +#define CLKID_MCLK_0		6
+> +#define CLKID_MCLK_1_SEL	7
+> +#define CLKID_MCLK_1_DIV2	8
+> +#define CLKID_MCLK_1_PRE	9
+> +#define CLKID_MCLK_1		10
+> +
+> +#endif /* __T7_PLL_CLKC_H */
+> -- 
+> 2.47.1
 > 
-> v2:
->   - Pipeline link - https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1331363
->     Updated flake test bug report links.
-> 
-> ---
->  drivers/gpu/drm/ci/gitlab-ci.yml              |   2 +-
->  .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |   8 +-
->  .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |  21 +-
->  .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt |   5 +
->  drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |  20 +-
->  .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |  14 +
->  drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |   1 +
->  drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  |   8 +-
->  drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  |  22 +-
->  drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |   7 +
->  drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |   1 +
->  drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |  31 +-
->  drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt |   7 +
->  drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  | 298 ++++++++++
->  drivers/gpu/drm/ci/xfails/i915-jsl-fails.txt  |  18 +-
->  drivers/gpu/drm/ci/xfails/i915-jsl-flakes.txt |  15 +-
->  drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  | 112 ++++
->  drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  |  55 +-
->  drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  |  13 +
->  drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |  15 +-
->  drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt |   7 +
->  .../drm/ci/xfails/mediatek-mt8173-fails.txt   |   7 +-
->  .../drm/ci/xfails/mediatek-mt8173-flakes.txt  |   7 +
->  .../drm/ci/xfails/mediatek-mt8173-skips.txt   |   5 +
->  .../drm/ci/xfails/mediatek-mt8183-fails.txt   |  12 +-
->  .../drm/ci/xfails/mediatek-mt8183-skips.txt   |   5 +
->  .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |   3 +
->  .../msm-sc7180-trogdor-kingoftown-fails.txt   |   1 -
->  .../msm-sc7180-trogdor-kingoftown-flakes.txt  |  14 +
->  .../msm-sc7180-trogdor-kingoftown-skips.txt   |   5 +
->  ...sm-sc7180-trogdor-lazor-limozeen-fails.txt |   1 -
->  ...sm-sc7180-trogdor-lazor-limozeen-skips.txt |   5 +
->  .../gpu/drm/ci/xfails/msm-sdm845-fails.txt    |   2 -
->  .../gpu/drm/ci/xfails/msm-sdm845-skips.txt    |   5 +
->  .../drm/ci/xfails/msm-sm8350-hdk-fails.txt    |   5 -
->  .../drm/ci/xfails/rockchip-rk3288-fails.txt   |  26 +-
->  .../drm/ci/xfails/rockchip-rk3399-fails.txt   |  13 +-
->  .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  56 ++
->  .../drm/ci/xfails/rockchip-rk3399-skips.txt   |   5 +
->  .../drm/ci/xfails/virtio_gpu-none-skips.txt   |   5 +
->  drivers/gpu/drm/ci/xfails/vkms-none-fails.txt |   8 -
->  drivers/gpu/drm/ci/xfails/vkms-none-skips.txt | 543 +++++++++++++++++-
->  42 files changed, 1202 insertions(+), 211 deletions(-)
-> 
-
-
-> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-> index 066d24ee3e08..7752adff05c1 100644
-> --- a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-> @@ -1,4 +1,7 @@
->  kms_3d,Fail
-> +kms_cursor_legacy@forked-bo,Fail
-> +kms_cursor_legacy@forked-move,Fail
-> +kms_cursor_legacy@single-bo,Fail
->  kms_cursor_legacy@torture-bo,Fail
->  kms_force_connector_basic@force-edid,Fail
->  kms_hdmi_inject@inject-4k,Fail
-
-Interesting. Though this might by the platform legacy cursor code (it
-doesn't use a plane for cursors).
-
-Anyway,
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # msm
-
--- 
-With best wishes
-Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
