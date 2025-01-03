@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DD61E77188
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jan 2025 19:02:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 150FFE77188
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jan 2025 19:05:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mbaNmi/Y5D7EtPp7YUR/wnzEWYiaYJBwXPuHG5dXVn8=; b=t8nuaGOeNLxNGB
-	/hbdQhQYrVANUN4Xt0Wu4xMhDYyF1OszeIbgSuR5Y4hc9ldR6/aoyHJvamyeouM2ZVQDfN1reTDAq
-	6Oxi0Hwc7EY3faRQQNa69QM0+0LkWhmHPEHFPSeUYnSq1qbqCZyCwQbqp7+QfDbNUoLvoaN5w45ZO
-	YwUFciweKcSrJM21tAubK1VQAFwotHD0BdZX8JAnLpSBaO5LUbQFbEYsoGB9A8ePxTf8+5izPpZUK
-	ekKIW8eHpAisY+FPkeocL7NlWkvgdr+3olH1REu2SvcQzQWSDwLFAcrCSXV0M12CEwaenN+fE2V9c
-	67hFZ9wQSHqzQnzOsASg==;
+	List-Owner; bh=xfBlxOyvs7iIqAlcL0R99B5zaCIHV8GoIsfa3vbErBY=; b=Zw+HMfGbW1JZ/R
+	wsO3jElRc2Be8K5zIb9lPtEWo8c7Md1UxwhIGCMjVdbA/oYTRViiVpsoro3sHGv5DbcS1XgCorAg9
+	YIQ2pkxMxxMLFIstK3JOCHM3/6XaE9cEl1bqQ2Llcxus/MkSAppKhSIgw/YBHS3ymaoRBtEZfmUOX
+	MoBe0Rl8t6beq6L9xkP0jqMX4tL17mFuf/LtDYj2XgrL8m0CL6yzb3VwH1+OTUiowWeLwMrKxxhIa
+	QCkG937zV3bz0kCMvwPHkaZEoK/o1SmS2OFnrVZ7d3mHrZwVYybkQe7uHd/kWCsxSTtoSL+p3OXIN
+	7mjhsPn/kiDw+EeNFDeA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tTmwT-0000000DmsY-3Sn6;
-	Fri, 03 Jan 2025 19:02:41 +0000
+	id 1tTmyp-0000000DnI9-2s13;
+	Fri, 03 Jan 2025 19:05:07 +0000
 Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tTmwR-0000000DmsB-3apK;
-	Fri, 03 Jan 2025 19:02:40 +0000
+	id 1tTmxY-0000000Dn5R-4AtG;
+	Fri, 03 Jan 2025 19:03:50 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id CCFACA410AF;
-	Fri,  3 Jan 2025 19:00:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A6BDC4CECE;
-	Fri,  3 Jan 2025 19:02:38 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 231A2A4109D;
+	Fri,  3 Jan 2025 19:01:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC49DC4CECE;
+	Fri,  3 Jan 2025 19:03:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735930958;
-	bh=ROKm26zYjtVGso2D9k6xdXLPr8Xlhh6uzj4BFB9Dvxc=;
+	s=k20201202; t=1735931027;
+	bh=nYCCUOzh0NUnGVSzltg9x7aYnSuqSSKJyBYNWshTqgY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OmiqMEyipWsfK1pr6JNIIjBnTYXBG6JPlyZRxwEJJS3Hw0An40h7OVgybzdz81d38
-	 k8ELYW88QGmKm5Itw9NC9dqeZ4tuQNY+GTsnnZnJPxQV/tuL4Ko20rBpdumfCp7guV
-	 ILGU49EsKAdtdAINHROIGwZ9vHiyBfNusplgI7edMKzrQHfWxmiUhfhtLqWvFBPBl8
-	 BNlDCDXdjuZoFwOPoEpokiYwET61I+K2cjTrwLkvKJaYOduhIgMfOst+zDcs0Ab3vo
-	 Zfc2wxVvIx3jG6rjGVGrnxteMeCONnUPTBBMxCkOlvwIWF99odej6DOwNdeNo03TeQ
-	 +qgCoVYfaqjrA==
-Date: Fri, 3 Jan 2025 13:02:36 -0600
+	b=fIfc+PgaKw27/OT2xpjfQo4xQfcrSl70OdbWGYZW/tV5GswHgE/5ZZi8MBWKWKgH7
+	 VZGKyqXY9ZvyNlwXxFZnCVYpXXXa7aCTmLmVO5v0w/JvrCJcF0r9pRL7vNLLiNO7dr
+	 r4Ch73VefRfXzN9vZo4k+64kuMwlAYatPo+sXrjeRtB8XPhGFlNUsyyEWVqwmZu0/i
+	 hQ5B2EOC3nQJR38vZOX/ikBuZoNJzcNKpAhVkUURLU2UeXDkwQ087TwG30oS9afosQ
+	 PoOM9SZNxDYTDu/egLhoOJo+VA8YI1gWsHyzyOhoZFrlzMb01ZI7pz8DbX1yRHi3KY
+	 WMyMSsKbfGo8Q==
+Date: Fri, 3 Jan 2025 13:03:45 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Jian Hu <jian.hu@amlogic.com>
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Chuan Liu <chuan.liu@amlogic.com>, robh+dt <robh+dt@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
+Cc: Kevin Hilman <khilman@baylibre.com>, robh+dt <robh+dt@kernel.org>,
 	linux-kernel <linux-kernel@vger.kernel.org>,
-	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-	Michael Turquette <mturquette@baylibre.com>,
-	linux-clk <linux-clk@vger.kernel.org>,
-	linux-amlogic <linux-amlogic@lists.infradead.org>,
-	devicetree <devicetree@vger.kernel.org>,
 	Stephen Boyd <sboyd@kernel.org>,
+	devicetree <devicetree@vger.kernel.org>,
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+	linux-clk <linux-clk@vger.kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
 	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-	Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH 2/5] dt-bindings: clock: add Amlogic T7 SCMI clock
+	Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Chuan Liu <chuan.liu@amlogic.com>,
+	linux-amlogic <linux-amlogic@lists.infradead.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>
+Subject: Re: [PATCH 3/5] dt-bindings: clock: add Amlogic T7 peripherals clock
  controller
-Message-ID: <173593095558.2568839.4677596962650586768.robh@kernel.org>
+Message-ID: <173593102550.2572043.16817852344252694801.robh@kernel.org>
 References: <20241231060047.2298871-1-jian.hu@amlogic.com>
- <20241231060047.2298871-3-jian.hu@amlogic.com>
+ <20241231060047.2298871-4-jian.hu@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20241231060047.2298871-3-jian.hu@amlogic.com>
+In-Reply-To: <20241231060047.2298871-4-jian.hu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250103_110239_960764_A2F326BA 
-X-CRM114-Status: UNSURE (   7.60  )
+X-CRM114-CacheID: sfid-20250103_110349_098828_D462FD02 
+X-CRM114-Status: UNSURE (   7.89  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,17 +86,20 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Tue, 31 Dec 2024 14:00:44 +0800, Jian Hu wrote:
-> Add DT bindings for the SCMI clock controller of the Amlogic T7 SoC family.
+On Tue, 31 Dec 2024 14:00:45 +0800, Jian Hu wrote:
+> Add DT bindings for the peripheral clock controller of the Amlogic T7
+> SoC family.
 > 
 > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
->  include/dt-bindings/clock/amlogic,t7-scmi.h | 48 +++++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 include/dt-bindings/clock/amlogic,t7-scmi.h
+>  .../clock/amlogic,t7-peripherals-clkc.yaml    | 111 +++++++++
+>  .../clock/amlogic,t7-peripherals-clkc.h       | 231 ++++++++++++++++++
+>  2 files changed, 342 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,t7-peripherals-clkc.h
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
 _______________________________________________
