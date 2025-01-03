@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6665DE77198
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jan 2025 05:59:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6448CE7718F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jan 2025 10:41:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jpTmxRmBBCX/jfSi/3uVt7+Jj+UkuwRoI8ioRtQY2NI=; b=NBL/u+ApgGOQBl
-	tEK6dcn50IdS612R++s6xlOtwoqFbz35ycaAG/c4Alf7MufBtaFsDoIVqVzmaqA+wk1i0Fi0kKUpx
-	f5m7fl3stYxlqYFoBzmqia2h/cD8TSILdiWOiPkHnVyaav0Mb/Lu8ZB7fKYTw5Pri7aNW2/yAWcSU
-	+X2f/F4LdCLmEP/0Zs2Y11TwSICbeXdRg2ANRC6iUT6HgZGh0l5JPe8Skvv12Zhrh+DPn2AfvaeP3
-	e+JNG+kkyevMBcOdZs4PJz3N5zXtZX3QGbxx7xJPXKKES9PPjRCMPeGXQjDKdAuEDFCMDexbTD8iI
-	woYQT28CcK4kxiqNj8gg==;
+	List-Owner; bh=Efyk3x1/QoQeybtBOStNzpwrK7wkJO8//WGpN1VK2Bc=; b=pfzIuFbxRQsmRw
+	pDYItSfw/0XWktCsaNHXhN3U/amkqtX4MUZTdf4WP/NItZIQWBBIpWTn2oz/Zi5ifmAqr6wLIFNFp
+	EeMuevdEBK+Z9hOxX7xtzY9gkae54bDsjzHfwLwaj3pW5INpCiVGu19lTxuR+R/hGLj9REERoUGzz
+	/WEsBSqXdJuOy9MuIX+oa8whxeruLzqTIbj3HQyHb2lK5jWjbgQnFdcD7FidtW+tBKDdGIFWsVQxp
+	i8BktoafNggWE306A+CG1Od6uu2EUXMPd5MmGZo6p6d2sXVKCHgNADqrtlbeq070aJTdvlROWwwEG
+	lnFJyGDkJ4Sj4EaOhARw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tTai8-0000000C9nw-25gp;
-	Fri, 03 Jan 2025 05:59:04 +0000
-Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
+	id 1tTf7G-0000000CkU9-1oMy;
+	Fri, 03 Jan 2025 10:41:18 +0000
+Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tTai4-0000000C9mO-2mL4
+	id 1tTf4C-0000000CkAU-2IcF
 	for linux-amlogic@lists.infradead.org;
-	Fri, 03 Jan 2025 05:59:03 +0000
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-3004028c714so133142281fa.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 02 Jan 2025 21:58:59 -0800 (PST)
+	Fri, 03 Jan 2025 10:38:11 +0000
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-30219437e63so140308331fa.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 03 Jan 2025 02:38:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735883938; x=1736488738; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1735900686; x=1736505486; darn=lists.infradead.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=sFlWSYAVuSson+OhthOc5MObp0JO2PaKlR/7cwxtKLk=;
-        b=lJOCF4getyLfCTeb7T9gis1JfTlyqANzE85LuaJJDjqnhHKEfFUXaBl1pOx5+IbRaJ
-         WSqfIche3gDO6hCmbpiqvFnUlNhDfvd0kGOThC5LwT6ny2gKBtAhE61MO+wF1+rtiUYI
-         901Ozh5JDaLzwB8MmM0CsIOxsK+DOa+2qod6BTSBAORj0cuJuKMWQLuSQXe2wpeQB3Yg
-         1o+hmCEU//PxONurY6juhbXJjqrZhCGKL5IJ55Pxz5mN+b3noKKCoqEZblL535LRj0LU
-         Yn+9JuQsnp6K6WjQui2ZsyDshsjlwKKioUs1/xn0i9EdK/PMIEWWcniY8Rq8kcb5X2V1
-         m88g==
+        bh=/m618hW0R2m1nQFr2zn8iDxB4stTlPC9L/MKkQZd3FA=;
+        b=dGK7Qja9JJ6z4MjqrydsQHD6O8daQgqdS0o9ZxV7/AtCVWDtYzN6qFQOdLg0JqucgC
+         M80gC37oTfvKryCYFeQ2rFGjn3p0y6UkSLjz99kYfR/t1YByu7inKTgBWmYtEZW80tyq
+         O3FMJhtw3Zn31mAoYI/sKqv7H/myJkKwBNNVnLuRe6eB+nI2WHzuw+wipNiORopmbYvl
+         Gu3swCKL0qCAQKkQJWydwkA637jwx7tEk7+X7oo7RgdWeExHLoUXCFSf73JLwp6jRooW
+         190kxjDXgH8Xa7pTxQlNc2V9uF4HtdmTg6+CUOA7ET1YSRTKxFOMFbFrO090cy0RfCbl
+         CZqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735883938; x=1736488738;
+        d=1e100.net; s=20230601; t=1735900686; x=1736505486;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sFlWSYAVuSson+OhthOc5MObp0JO2PaKlR/7cwxtKLk=;
-        b=acZPdYZhmIYpctGLQOng6c0cekQ54fZ2cwV8xo9PvGwaG8DZxNdy0H78DkARwG5iOL
-         s5bgr7ARQegjlwuWFzRjAwt8lvkNFV2WO58iMD8sq+pq1k/yY/0zoauCIb5mfaRZ86h+
-         Ta22OQiUzv8hIF20WHiomW+DWfmfj5iiBTo7Vdsv/NWZyvPgTycz5205pEye1IvfFYjg
-         8jQ91sHnrfzIR4sl6MT5i74pQ7uQThqTTmHUZarvKN6zy0IWEu6h16W+kFxNKx2vr8mm
-         LaRgpfYmD0WXNWw2FTsNN9189ERx4Bu96SX9y4KMQpSkdZ9HZfQDHr3Cc6vwW7CACK2A
-         nw3g==
-X-Forwarded-Encrypted: i=1; AJvYcCV7rU2z796+2Mk2MfqeGkqFm6WSZoQ/NvLJ3g/BrYCH43JqJnqPortzbgk3FJbj+6NJufno2MF0E8BXAAiK@lists.infradead.org
-X-Gm-Message-State: AOJu0YwJXzjIjDEkl0hNU5ZnqUFXpvxSqBOvOVJpls4Mq/1abU6mbTFJ
-	FHdj4NGGtYJHq7km8F3inJtGRH9puLd2/LbbmMy4L1Ys3htGcRhEd6VfO949/7w=
-X-Gm-Gg: ASbGncuQx3ace2i29+OrJpuhogO9Kee8znAe2ty6SZcGR8GU/2h+pojtM096gCDIw2f
-	w9S9LzErBWw9fOhkN6BZ76lhHmNhDX9Ljus96jTz2Lw4+LZ6iPTJy68nxjQhipLVnICLNkbuc7+
-	rDUVzkJl0E3usprwkjW/zeDXvcbMfyS/j/CXNxKEgz++7ftGtPUDzLIoYg9P/WwnoUorECuUfh6
-	KMQt2wZJ4Xs7QxupHKLKbQg3Fn+9pm2MsBJ9/XMG6R4/PXnH6rIcvZaYtn2qMJ29VIhngMHkSB0
-	QtySHXhL1tAwHStfXV4EGQECqMJWXR4T8PC/
-X-Google-Smtp-Source: AGHT+IE6y4JdTtlzcbrnGGg7v7FjSgwU7e/vWxQ7TgNE5uhhWt7BpBzFop0XHrbVtbgwiv0CXbLJOQ==
-X-Received: by 2002:a2e:bc1a:0:b0:302:3a46:10a7 with SMTP id 38308e7fff4ca-3046851f9cemr129431821fa.5.1735883938405;
-        Thu, 02 Jan 2025 21:58:58 -0800 (PST)
+        bh=/m618hW0R2m1nQFr2zn8iDxB4stTlPC9L/MKkQZd3FA=;
+        b=hhNUYcW3Seh2mJfcQAVCOUDB4IhEvE24cAFH04fu5lpnAnFWla8zDqlXAHyPfvKezQ
+         DczPMIZp2/scGyqeuvEcNdXMBIpSQazLWe+IB/mWt7pIOHnQDdLwFwKwR0UEaDK3uNjl
+         IiEqt1bnacVecUKAs5YbWTpuGvICUiQvMKWQzT/SdNRRyyPdokNi28VbqInU+0LJb4K8
+         vlslIYcJ8to0nVKFsq8lJ7ssqnuEDX/cdGYC/ApC974elGpXuwLxo+ATZqEYtz+Gvg5S
+         TKtvZu/9Zyr9uPyHqYuFdAMvIPMJrq7t9XfGRovSHMd0vB4l5YhMK2UUvSh+opAyJeNT
+         o1uw==
+X-Forwarded-Encrypted: i=1; AJvYcCVvxjeWURVw6D61x8QbQc2hnqhw3aFbHbU9qMYcaJdX7nldqevcZyC1UAFKy1MstjiptITvlRZZ/l/33hbr@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzo0LG/QstrHVWJ5W/KmAQkPaRwWOqqREwQ69Dl2EA98/SvpOoT
+	Cq5ehPhMJRYKzOTUhu9w9a3cypXwdcrtEzzgTMYREZwGlQFxMJLpHbXsgsQXx98=
+X-Gm-Gg: ASbGncvYLBFnytGASkVCV2B8W0eQESMyo/GczBSCJ9PmSltMxak8Dgw8xBmwF4YnquG
+	du84pzK2M96w0qLEVjslyXLoPGwSKFbiyH/2q58UNZkjSuuk48AwH1m9GcAgked6UfcqdQ70SDk
+	/ESgvMh2HPtsEkBGtoVG3cBqZ1Qqjlksas5F3A/Q2Hft7GU0QkGwb7y3BZRKDk70eRHLH3a3j02
+	udxVbcRsjGr2PlujE/K+VTbFv22AXhLSFPxwfS/dFCmwfa8f/TtR1YHOi50hCk0VrGyl8EDePJG
+	djdcIzRQDZZX/ti6EMB+N3n2U6fuKBr+Eq6j
+X-Google-Smtp-Source: AGHT+IHqyYKM0jK9B76DdsBNsu1ksVUKqjrNzWi2li/1a+VHxpUAgfWN/haMqHCMVuXOoMkqVNCF/Q==
+X-Received: by 2002:a2e:bc1b:0:b0:302:215f:94ee with SMTP id 38308e7fff4ca-30458337550mr161864691fa.4.1735900686412;
+        Fri, 03 Jan 2025 02:38:06 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3049ec4ca6bsm26165151fa.56.2025.01.02.21.58.56
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3045b096cafsm45400051fa.123.2025.01.03.02.38.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jan 2025 21:58:57 -0800 (PST)
-Date: Fri, 3 Jan 2025 07:58:54 +0200
+        Fri, 03 Jan 2025 02:38:05 -0800 (PST)
+Date: Fri, 3 Jan 2025 12:38:03 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Vignesh Raman <vignesh.raman@collabora.com>
 Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
@@ -77,14 +77,14 @@ Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
 	linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
 	intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v2] drm/ci: uprev IGT
-Message-ID: <dj2r22upxnj2aicjnsvoqnhd4n73tyfgm36jtvixxp4vphocev@gggcjakm3xge>
+Message-ID: <gxrc6hqlmjl2pdylvi33wdukxgz6wqbhzgwk4ptyx3i55jshic@uu45kcjailxa>
 References: <20241217160655.2371138-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
 Content-Disposition: inline
 In-Reply-To: <20241217160655.2371138-1-vignesh.raman@collabora.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250102_215900_709255_742BA96A 
-X-CRM114-Status: GOOD (  10.29  )
+X-CRM114-CacheID: sfid-20250103_023808_598286_34B241FD 
+X-CRM114-Status: GOOD (  15.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,9 +115,72 @@ On Tue, Dec 17, 2024 at 09:36:52PM +0530, Vignesh Raman wrote:
 >   - Pipeline link - https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1331363
 >     Updated flake test bug report links.
 > 
+> ---
+>  drivers/gpu/drm/ci/gitlab-ci.yml              |   2 +-
+>  .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |   8 +-
+>  .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |  21 +-
+>  .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt |   5 +
+>  drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |  20 +-
+>  .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |  14 +
+>  drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |   1 +
+>  drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  |   8 +-
+>  drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  |  22 +-
+>  drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |   7 +
+>  drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |   1 +
+>  drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |  31 +-
+>  drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt |   7 +
+>  drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  | 298 ++++++++++
+>  drivers/gpu/drm/ci/xfails/i915-jsl-fails.txt  |  18 +-
+>  drivers/gpu/drm/ci/xfails/i915-jsl-flakes.txt |  15 +-
+>  drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  | 112 ++++
+>  drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  |  55 +-
+>  drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  |  13 +
+>  drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |  15 +-
+>  drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt |   7 +
+>  .../drm/ci/xfails/mediatek-mt8173-fails.txt   |   7 +-
+>  .../drm/ci/xfails/mediatek-mt8173-flakes.txt  |   7 +
+>  .../drm/ci/xfails/mediatek-mt8173-skips.txt   |   5 +
+>  .../drm/ci/xfails/mediatek-mt8183-fails.txt   |  12 +-
+>  .../drm/ci/xfails/mediatek-mt8183-skips.txt   |   5 +
+>  .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |   3 +
+>  .../msm-sc7180-trogdor-kingoftown-fails.txt   |   1 -
+>  .../msm-sc7180-trogdor-kingoftown-flakes.txt  |  14 +
+>  .../msm-sc7180-trogdor-kingoftown-skips.txt   |   5 +
+>  ...sm-sc7180-trogdor-lazor-limozeen-fails.txt |   1 -
+>  ...sm-sc7180-trogdor-lazor-limozeen-skips.txt |   5 +
+>  .../gpu/drm/ci/xfails/msm-sdm845-fails.txt    |   2 -
+>  .../gpu/drm/ci/xfails/msm-sdm845-skips.txt    |   5 +
+>  .../drm/ci/xfails/msm-sm8350-hdk-fails.txt    |   5 -
+>  .../drm/ci/xfails/rockchip-rk3288-fails.txt   |  26 +-
+>  .../drm/ci/xfails/rockchip-rk3399-fails.txt   |  13 +-
+>  .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  56 ++
+>  .../drm/ci/xfails/rockchip-rk3399-skips.txt   |   5 +
+>  .../drm/ci/xfails/virtio_gpu-none-skips.txt   |   5 +
+>  drivers/gpu/drm/ci/xfails/vkms-none-fails.txt |   8 -
+>  drivers/gpu/drm/ci/xfails/vkms-none-skips.txt | 543 +++++++++++++++++-
+>  42 files changed, 1202 insertions(+), 211 deletions(-)
+> 
 
-What is the current state of this patch? It would have been really nice
-to get it in, we have patches depending on updated IGT.
+
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+> index 066d24ee3e08..7752adff05c1 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+> @@ -1,4 +1,7 @@
+>  kms_3d,Fail
+> +kms_cursor_legacy@forked-bo,Fail
+> +kms_cursor_legacy@forked-move,Fail
+> +kms_cursor_legacy@single-bo,Fail
+>  kms_cursor_legacy@torture-bo,Fail
+>  kms_force_connector_basic@force-edid,Fail
+>  kms_hdmi_inject@inject-4k,Fail
+
+Interesting. Though this might by the platform legacy cursor code (it
+doesn't use a plane for cursors).
+
+Anyway,
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # msm
 
 -- 
 With best wishes
