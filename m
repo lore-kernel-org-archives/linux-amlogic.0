@@ -4,67 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03B70E77188
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jan 2025 21:24:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 801C1E7718F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jan 2025 05:37:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nTjea6Qv6gbBSjZcfbOEwB/QqlmYDihydvNpEzmvHzE=; b=jgSjcsbIMaa6Zn
-	WWMEoJwndnGriNhid0UUfozzLVpsZF+kprMUFVLMhhQAZ2AayVxTpd4UT5XShP0f6BHOzRVeABa7l
-	yBcCA2lhAwUhc8HR4i1/F/xLcysDGg7HHhV9S+GbqQnwUtyPyB/46+4CB55MhqGuWBkHXifxBX1zW
-	3hGB8culFf7z8+y2uCvdrtQEJFMzCvy4kQG7RH5SMnxx9R6Dznuj7mYakKNnRC7GhFoXfiDf0Z/qa
-	VIxx4ilbYXGxrogak+TqnT+VUXuDATUlFWg70JswruqMWU1M4/30MTR2E+dCSgD25vEl5Z/LvSwBy
-	n+L0Yp5r96KD6enkMQxw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=m7wlQaVU21nxQClsBR050LUaa99tlGaRCHkWE8/doao=; b=nZ6UEzVsRRlfI4
+	8z2rKJ3oYpDfp1HGZmiTac348p0X/v2Bg/zfswguBLXtxMQb9T7iRIG0BN7vJiMJB1mjb9TQO8tut
+	ulJCkNZY5+Ep07oLkTVJXN5funmHK7nZLUwZbgDkkRS4L0I+/aD+7O7PAo3oAQyxEs0y1fmawCnND
+	5OaTOLafplQ0vfSe8zZqZpbLpACTb29OBT4ZZlP/q8Ni/5NioNQ/DpIHS5lztSi/nV6XNbDd1Xzqp
+	rS75uyIauE7MfeBJZ2NfjV/rnRITMmrx7VrGz/x9x2UVcQ7H1c/epX4q+38ckQwNeWOcXfbrBsvQP
+	emdMZRuJi0gm+s/tORTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tTSg8-0000000BUn0-1TgC;
-	Thu, 02 Jan 2025 21:24:28 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1tTaNR-0000000C7rD-3r9k;
+	Fri, 03 Jan 2025 05:37:41 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tTSg5-0000000BUmV-2nPw;
-	Thu, 02 Jan 2025 21:24:27 +0000
+	id 1tTaMY-0000000C7cw-3BHh;
+	Fri, 03 Jan 2025 05:36:48 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 6FEC9A413E9;
-	Thu,  2 Jan 2025 21:22:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 155DDC4CED0;
-	Thu,  2 Jan 2025 21:24:23 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 430935C60C8;
+	Fri,  3 Jan 2025 05:36:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 39D86C4CECE;
+	Fri,  3 Jan 2025 05:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735853064;
-	bh=RlEMXqLIvB66KqD+ZOSG+hVombFC6wVIgl14dTaT7rI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EnkRXRqoDOUePeSUAUnsOv219OG38AV7+P70bYG5KRKrSCxqK5bQoQmThHVmXc8rH
-	 Een33mJDfwBfYbA/KtLSbeYDbinbgYgvA6YKrHVFsKlDQaaG/RP4Q5lIHIf4p8UHCy
-	 q8AUIXpEYv/FnWGY1A0+Gb+AVlANkE9dIrn24pdu+ZxhU6og+cK0i0HYSxyqBrIOJF
-	 5CLVpNN87U/HC6B8Gi4c2NtQgY7UMvBaNnO85r2LW4HCbP0KvLk1zvnIMQcXHqy4Up
-	 1UN9Yr4SRk3a/kj+I9MD2NftuPjq0gPsqG7B31q4f14k5PYFUm5GHHSDk0xHioqs/9
-	 JutsEffKxgIdw==
-Date: Thu, 2 Jan 2025 15:24:22 -0600
-From: Rob Herring <robh@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: Add support for Amlogic SoCs
-Message-ID: <20250102212422.GA554486-robh@kernel.org>
-References: <20241226-amlogic-pinctrl-v2-0-cdae42a67b76@amlogic.com>
- <20241226-amlogic-pinctrl-v2-1-cdae42a67b76@amlogic.com>
+	s=k20201202; t=1735882605;
+	bh=ZptAS+5MfVYHwRbyK5bmvm62nwegy8I9wdDDR18v5n4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=LZyIuBdn/I5Te8li0s6qloz09dvUiA5Bq3l28vhNbhP4xdZtx4vbjPj4CjZGeW1Rz
+	 sJ4VJrpHovIpXYo7MueKpf02BZiG+ESLhLdUQdTqP4Gh7iYBbCdFw8MHm/AI9E4JE+
+	 ofwuxnI1Lt20hJDFDC3/uvukKqq+fraZ8pmeh3k+uFzlnJZyIYZI+uReVV3n7LLXN0
+	 C1mZmQlbnr4iSAuW2zfsHP2G6DO3XHYmyWmbj0y1COyqdw2WP66B5Dq7lCKrHmlJZ2
+	 MaE0ve/iMNDsykExAc50SL1KHtPmxShsfmIjUGS5zus2ksYf5TaZUaHQ0kc+pOumfi
+	 rs+MDt5AAObMw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26D85E77188;
+	Fri,  3 Jan 2025 05:36:45 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/5] Add A5 SoC PLLs and Peripheral clock
+Date: Fri, 03 Jan 2025 13:36:40 +0800
+Message-Id: <20250103-a5-clk-v3-0-a207ce83b9e9@amlogic.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241226-amlogic-pinctrl-v2-1-cdae42a67b76@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAGl3d2cC/1WMQQqDMBBFryJZNyUTo2hXvUfpIo5THaqmJCW0i
+ HdvFBS6fJ//3iwCeaYgLtksPEUO7KYE+SkT2NupI8ltYqGVNqoGkLaQODxlXqCpLTa5IRDp/PL
+ 04M8Wut0T9xzezn+3boR13RNmT0SQShZEGs0DGlXh1Y6D6xjP6EaxRqI+RACtDlEnMXFVaqC6h
+ PZfXJblB2doYz3XAAAA
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1735882602; l=2678;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=ZptAS+5MfVYHwRbyK5bmvm62nwegy8I9wdDDR18v5n4=;
+ b=zL9UkYY6YjfifjhPWGcgbd6WLqUytsG2stmsDAanVcuNKVg1DnIXfNZT0t6duvz7/uQ9UPdP0
+ y4UhupkQEgzB7VlGR/wfDoDm2CAkZuS9j8AKyGqYL1PGz+TLOvwUWW6
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250102_132425_851741_A7CC6C9C 
-X-CRM114-Status: GOOD (  27.29  )
+X-CRM114-CacheID: sfid-20250102_213646_912800_DC5AFB48 
+X-CRM114-Status: UNSURE (   9.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,297 +91,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Dec 26, 2024 at 03:57:41PM +0800, Xianwei Zhao wrote:
-> Add the dt-bindings for Amlogic pin controller, and add a new
-> dt-binding header file which document the GPIO bank names and
-> alternative func value of all Amlogic subsequent SoCs.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  .../bindings/pinctrl/amlogic,pinctrl-a4.yaml       | 155 +++++++++++++++++++++
->  include/dt-bindings/pinctrl/amlogic,pinctrl.h      |  68 +++++++++
->  2 files changed, 223 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-> new file mode 100644
-> index 000000000000..75863d179933
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-> @@ -0,0 +1,155 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/amlogic,pinctrl-a4.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic pinmux controller
-> +
-> +maintainers:
-> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
-> +
-> +allOf:
-> +  - $ref: pinctrl.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,pinctrl-a4
-> +
-> +  reg:
-> +    minItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: mux
-> +      - const: gpio
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
+The patchset adds support for the peripheral and PLL clock controller
+found on the Amlogic A5 SoC family, such as A113X2.
 
-The addresses in 'reg' below are MMIO, right? If so, #size-cells can't 
-be 0 and you also need 'ranges' here.
+Some clocks are provided by security zones. These clock accessed
+througth SCMI driver in linux, inlcuding OSC, SYS_CLK, AXI_CLK,
+CPU_CLK, DSU_CLK, GP1_PLL, FIXED_PLL_DCO, FIXED_PLL, SYS_PLL_DIV16,
+ACLKM, CPU_CLK_DIV16, FCLK_50M_PREDIV, FCLK_50M_DIV, FCLK_50M, 
+FCLK_DIV2_DIV, FCLK_DIV2, FCLK_DIV2P5_DIV, FCLK_DIV2P5, FCLK_DIV3_DIV,
+FCLK_DIV3, FCLK_DIV4_DIV, FCLK_DIV4, FCLK_DIV5_DIV, FCLK_DIV5,
+FCLK_DIV7_DIV, FCLK_DIV7, CLKID_SYS_MMC_PCLK, CLKID_SYS_CPU_CTRL,
+CLKID_SYS_IRQ_CTRL, CLKID_SYS_GIC, CLKID_SYS_BIG_NIC, CLKID_AXI_SYS_NIC,
+and CLKID_AXI_CPU_DMC.
 
-> +
-> +required:
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v3:
+- Rename xtal_24m to xtal, and modify some description of Kconfig.
+- Drop some comment of PLL source code.
+- Move definition of A5_CLK_GATE_FW frome common code into A5 peripheral source code.
+- Use hw instead of name to describe parent_data.
+- Making SCMI binding the first to submit. 
+- Link to v2: https://lore.kernel.org/r/20241120-a5-clk-v2-0-1208621e961d@amlogic.com
 
-Move after 'patternProperties'.
+Changes in v2:
+- Move some sys clock and axi clock from peripheral to scmi impletement.
+- Remove  ARM_SCMI_PROTOCOL in Kconfig and correct name A5 but not A4.
+- Add two optional clock inputs for the peripheral(ddr pll and clk-measure)
+- Make some changes and adjustments according to suggestions.
+- Link to v1: https://lore.kernel.org/r/20240914-a5-clk-v1-0-5ee2c4f1b08c@amlogic.com
 
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +patternProperties:
-> +  "^gpio@[0-9a-f]+$":
-> +    type: object
-> +
-> +    properties:
-> +      reg:
-> +        minItems: 2
+---
+Chuan Liu (5):
+      dt-bindings: clock: add Amlogic A5 SCMI clock controller support
+      dt-bindings: clock: add Amlogic A5 PLL clock controller
+      dt-bindings: clock: add Amlogic A5 peripherals clock controller
+      clk: meson: add support for the A5 SoC PLL clock
+      clk: meson: add A5 clock peripherals controller driver
 
-You need to describe what each entry is:
+ .../clock/amlogic,a5-peripherals-clkc.yaml         |  132 ++
+ .../bindings/clock/amlogic,a5-pll-clkc.yaml        |   63 +
+ drivers/clk/meson/Kconfig                          |   27 +
+ drivers/clk/meson/Makefile                         |    2 +
+ drivers/clk/meson/a5-peripherals.c                 | 1408 ++++++++++++++++++++
+ drivers/clk/meson/a5-pll.c                         |  532 ++++++++
+ .../clock/amlogic,a5-peripherals-clkc.h            |  132 ++
+ include/dt-bindings/clock/amlogic,a5-pll-clkc.h    |   24 +
+ include/dt-bindings/clock/amlogic,a5-scmi-clkc.h   |   44 +
+ 9 files changed, 2364 insertions(+)
+---
+base-commit: 961101258aa2da34b032ea21f32599a895448996
+change-id: 20240911-a5-clk-35c49acb34e1
 
-items:
-  - description: foo
-  - description: bar
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-> +
-> +      mask:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +      gpio-controller: true
-> +
-> +      "#gpio-cells":
-> +        const: 2
-> +
-> +      ngpios:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
 
-Don't need a type here.
-
-> +        minimum: 1
-> +        maximum: 32
-> +
-> +      identity:
-
-Needs a better name. This is the bank number?
-
-But shouldn't you be able to use gpio-ranges here:
-
-gpio-ranges = <&periphs_pinctrl 0 (bank# << 8) (value of npgios)>;
-
-And do you really need ngpios if you have the value here?
-
-> +        description: |
-> +          identifier are provided by the pin controller header file at:
-> +          <include/dt-bindings/pinctrl/amlogic,pinctrl.h>
-> +
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +    required:
-> +      - reg
-> +      - gpio-controller
-> +      - "#gpio-cells"
-> +      - ngpios
-> +      - identity
-> +
-> +    additionalProperties: false
-> +
-> +  "^func-[0-9a-z-]+$":
-> +    type: object
-> +    additionalProperties:
-
-Define a pattern for the node names instead. We only allow anything for 
-existing bindings.
-
-> +      type: object
-> +      allOf:
-> +        - $ref: pincfg-node.yaml#
-> +        - $ref: pinmux-node.yaml#
-> +
-> +      description:
-> +        A pin multiplexing sub-node describes how to configure a set of (or a
-> +        single) pin in some desired alternate function mode.
-> +        A single sub-node may define several pin configurations.
-> +
-> +      properties:
-> +        pinmux:
-> +          description: |
-> +            Integer array representing pin number and pin multiplexing
-> +            configuration.
-> +            When a pin has to be configured in alternate function mode, use
-> +            this property to identify the pin by its global index, and provide
-> +            its alternate function configuration number along with it.
-> +            bank identifier are provided by the pin controller header file at:
-> +            <include/dt-bindings/pinctrl/amlogic,pinctrl.h>
-> +            Integers values in "pinmux" argument list are assembled as:
-> +            (((BANK << 8) + PIN) << 8)  | MUX_FUNC))
-> +
-> +      required:
-> +        - pinmux
-> +
-> +      additionalProperties: true
-
-No, not allowed to be true except on common schemas.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
-> +    apb {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +      periphs_pinctrl: pinctrl@8e700 {
-> +        compatible = "amlogic,pinctrl-a4";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        reg = <0x0 0x8e700 0x0 0x04>,
-> +              <0x0 0x8e704 0x0 0x60>;
-> +        reg-names = "mux", "gpio";
-> +
-> +        gpio@14 {
-> +          reg = <0x14>,<0x30>;
-> +          gpio-controller;
-> +          #gpio-cells = <2>;
-> +          ngpios = <10>;
-> +          identity = <AMLOGIC_GPIO_B>;
-> +        };
-> +
-> +        func-uart-b {
-> +          uart-b-default {
-> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 1, AF4)>;
-> +            bias-pull-up;
-> +            drive-strength-microamp = <4000>;
-> +          };
-> +
-> +          uart-b-pins1 {
-> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 5, AF2)>;
-> +            bias-pull-up;
-> +            drive-strength-microamp = <4000>;
-> +          };
-> +        };
-> +
-> +        func-uart-c {
-> +          uart-c-default {
-> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 3, AF1)>,
-> +                     <AML_PINMUX(AMLOGIC_GPIO_B, 2, AF1)>;
-> +            bias-pull-up;
-> +            drive-strength-microamp = <4000>;
-> +          };
-> +        };
-> +      };
-> +    };
-> diff --git a/include/dt-bindings/pinctrl/amlogic,pinctrl.h b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
-> new file mode 100644
-> index 000000000000..03db0a730e8b
-> --- /dev/null
-> +++ b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
-> @@ -0,0 +1,68 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_PINCTRL_H
-> +#define _DT_BINDINGS_AMLOGIC_PINCTRL_H
-> +
-> +/* define PIN modes */
-> +#define AF0	0x0
-> +#define AF1	0x1
-> +#define AF2	0x2
-> +#define AF3	0x3
-> +#define AF4	0x4
-> +#define AF5	0x5
-> +#define AF6	0x6
-> +#define AF7	0x7
-> +#define AF8	0x8
-> +#define AF9	0x9
-> +#define AF10	0xa
-> +#define AF11	0xb
-> +#define AF12	0xc
-> +#define AF13	0xd
-> +#define AF14	0xe
-> +#define AF15	0xf
-
-There's no need for defines in the form "FOOn n".
-
-> +
-> +#define AML_PIN_ALT_FUNC_MASK	0xf
-> +
-> +/* Normal PIN bank */
-> +#define AMLOGIC_GPIO_A		0
-> +#define AMLOGIC_GPIO_B		1
-> +#define AMLOGIC_GPIO_C		2
-> +#define AMLOGIC_GPIO_D		3
-> +#define AMLOGIC_GPIO_E		4
-> +#define AMLOGIC_GPIO_F		5
-> +#define AMLOGIC_GPIO_G		6
-> +#define AMLOGIC_GPIO_H		7
-> +#define AMLOGIC_GPIO_I		8
-> +#define AMLOGIC_GPIO_J		9
-> +#define AMLOGIC_GPIO_K		10
-> +#define AMLOGIC_GPIO_L		11
-> +#define AMLOGIC_GPIO_M		12
-> +#define AMLOGIC_GPIO_N		13
-> +#define AMLOGIC_GPIO_O		14
-> +#define AMLOGIC_GPIO_P		15
-> +#define AMLOGIC_GPIO_Q		16
-> +#define AMLOGIC_GPIO_R		17
-> +#define AMLOGIC_GPIO_S		18
-> +#define AMLOGIC_GPIO_T		19
-> +#define AMLOGIC_GPIO_U		20
-> +#define AMLOGIC_GPIO_V		21
-> +#define AMLOGIC_GPIO_W		22
-> +#define AMLOGIC_GPIO_X		23
-> +#define AMLOGIC_GPIO_Y		24
-> +#define AMLOGIC_GPIO_Z		25
-> +
-> +/* Special PIN bank */
-> +#define AMLOGIC_GPIO_DV		26
-> +#define AMLOGIC_GPIO_AO		27
-> +#define AMLOGIC_GPIO_CC		28
-> +#define AMLOGIC_GPIO_TEST_N	29
-> +
-> +#define AML_PINMUX(bank, offset, mode)	(((((bank) << 8) + (offset)) << 8) | (mode))
-> +#define AML_PINMUX_TO_BANK(pinmux)	(((pinmux) >> 16) & 0xff)
-> +#define AML_PINMUX_TO_OFFSET(pinmux)	(((pinmux) >> 8) & 0xff)
-> +
-> +#endif /* _DT_BINDINGS_AMLOGIC_PINCTRL_H */
-> 
-> -- 
-> 2.37.1
-> 
 
 _______________________________________________
 linux-amlogic mailing list
