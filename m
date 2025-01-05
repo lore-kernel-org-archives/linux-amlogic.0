@@ -4,57 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8A82E77188
-	for <linux-amlogic@archiver.kernel.org>; Sat,  4 Jan 2025 13:59:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11FCAE77197
+	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Jan 2025 15:50:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dEPX/xdAZgYnobJz2I0N4pBrJHAc6xBwR4nrjgzJntc=; b=bcz6ds460k/kUr
-	XF7J2mYJfHJjyNcm0EMoYTEZCvdkSxd8a1BPRn55RR3UEIs2J6rl06XMU/u1sg2T+4f3swhL5yDPn
-	TFZKnKOiYZbBL2sdcqfQbKVKajhd8Dii3JMlSpmCxDfIyEBlp5xI35leUfx7+dtmqa0yubvqZqvVA
-	5PoAuPDkNxC2BaYtnCW5zy1AEyY+tSt54mEIBNAB0T6d4tM2eCqtTSrMnCDcRBrwNB6MKeYfUG37E
-	BUiOFVj9xS2iUY9Baocphx4RAax2H1YwZe63cvjZHSOwR3uyJujk/QMMOX9tonSiPBtBnX+KEH6Q9
-	C9XTuQNmMxMgrN3piE+Q==;
+	List-Owner; bh=EnN6zJst8ld2JTrs4lVKsmp9yseZYtSmKA/TEJ92c0k=; b=4YnHjpN6YOAx4e
+	/E5os8KnmibeTF76QPZvA5FxXl/cu5sKCfz26XUzhUu4AxS8vhXmuMkGFdSjuDVSNmXjISpUteadJ
+	2XpK6stIFkKT4IaCHafpGBfCK8GxzO1+ddQAC/ywYT11/qfZjwcQzSSz//H4IfFM/AOCQE9YR8s5S
+	QIadbdi3GOm4LQIBTnyDdIeUVHgdvWX2C2lvh8mmh7xiaa++gP2E9Is4duDIK+D/WktKlcb+mUWG5
+	bTHDBhcyiSx8VnjXutDEEYx4o5QpHxcIuRIfm49Tx9VfH0WatkjTDHBcXhnKTbIwSDquVCZGfm26U
+	WrfZAjTt+AMglKmkGTSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tU4gU-0000000F4lE-1DSb;
-	Sat, 04 Jan 2025 13:59:22 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1tUSt9-0000000H12Z-0w5l;
+	Sun, 05 Jan 2025 15:50:03 +0000
+Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tU4gS-0000000F4kO-0ZCQ;
-	Sat, 04 Jan 2025 13:59:21 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 45D56A40AC6;
-	Sat,  4 Jan 2025 13:57:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3762EC4CED1;
-	Sat,  4 Jan 2025 13:59:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735999159;
-	bh=4n1bUXFAX1wVT1KsrzG+8WwspZWcX0SLePYj+L4Un+U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=jTa8YRn1JZwSxkRuIT5DIPHiVeeRyilrkHcgh0hOQVUargj5dkAmfKINI/Moj8vdk
-	 /j5RvYC6ohzW8W6WXg0r86x0oS94gS8PXyqTyznpwRXdY0dLvBgnGHmAfheAbNoBJO
-	 Gj1NOqu2TM+W85SO3/ELFqzAExAgoG9Mt2XdDxEnNTD6vCwvvYVZVklbc6vqqk1MZ4
-	 0iioKgm4yCb8j9jcHpacG7MezcPIrdpHmqGNsO8J7Jz8hC2XgyqxsF8bZJXABK+b5C
-	 +0aAw9CK3l44HuCfHZVLB0Uk+rglW15+H9bGN9yFz9IZUMxtySLzNsBDYiSCOefq3G
-	 vXOdptBIGjQmg==
-Date: Sat, 4 Jan 2025 13:59:12 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [RFC PATCH v1 2/2] iio: adc: meson: add support for the GXLX
- SoC
-Message-ID: <20250104135912.390ec87c@jic23-huawei>
-In-Reply-To: <20241231194207.2772750-3-martin.blumenstingl@googlemail.com>
-References: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com>
-	<20241231194207.2772750-3-martin.blumenstingl@googlemail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	id 1tUSt7-0000000H11o-25yE;
+	Sun, 05 Jan 2025 15:50:02 +0000
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-216401de828so180596075ad.3;
+        Sun, 05 Jan 2025 07:50:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1736092200; x=1736697000; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YywA5lTEdJWoFMmlp4DfxD/jE6edYt47y3+JzLz1vMk=;
+        b=Ab/rLD7lrEowNJEt/xSwSR3wZZRKNxUXbDI1YWIP6gHhjzFP9Yj9FnSZg387U5HgqM
+         JYyts/ehe8CVCfPhftxn88+mNIQbpQrWSAZi6fNn/S9VBfEz6cuZk1usGJR0AvMryrGu
+         YmqGcMTMS1RQG1fc0dvbGyphvVkLsQTUnkGYRcqHR8fJf4hUPF2Pvr3FJqZCJgoPg3cq
+         tY8MSBaeNvcT0UlojAFRkWBBsbu0rRaCe+uZWbrlANL9qV2kBpnlUepl7ZsbmaS2MRWd
+         pGM68Hh70S/H71EYeSHA8ZkJXIavNE5VHbKhVNIqMXcDym2dmIysk24gPBR6+HDYky4R
+         +Ctw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736092200; x=1736697000;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YywA5lTEdJWoFMmlp4DfxD/jE6edYt47y3+JzLz1vMk=;
+        b=tCWNsMdzY50hLESGnltSiIUjHYMx0fnWgzO1Q8mSOM9dZmveA2HCyqwULduEMdw6lr
+         4aZhAWdLbcniO6Eh+JsbR2WaBChIKrEmDQVyhE8gMIUH66YYoWrYkJHmRT4j8cwFynGG
+         rYJZf8DLLZf5S8xR+qz+CzCAXTfslLCxk5Rt1zUtjmVV+YIBguEoBvBiDNCxWZfbaD2U
+         4axkx6Zn6xtKAR6R4MRwdWZYb7QOqppMN8dTT61ym3z2JF+Xo8f/klj2InaJ2W9I2Zn9
+         b1ApNdMTa8Bqrk6v1qptPxPZzR2uISPp3UD/S4lv4h8LhqxqifNXrhI2QzUNLtyyg8/r
+         BuuA==
+X-Forwarded-Encrypted: i=1; AJvYcCV8sgeMStY5SQdJr+EXKdIY4fTswevwAspE/2HywddGnkn4QYZrMNyx12KLkTjFzgQJzPv23xnLJLvhp67tt35s@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz26RwA9jEf7OxpFXiH7K7S4I6KtFkq4+Va4ANmrZ+OmHo2q6HG
+	lKXA6i8GB2FFtYBUONWO4uAmZUei01MT9dnkVetpNfN93HmlzL6B3HzL/2F99IUVWdfMSurEe+w
+	gBBR/RN9lNty7xb1TRpuPrczLQt0UBw==
+X-Gm-Gg: ASbGncsg+MobNWgAN1uzmJphlnhcTuB2ovTlJf12QNkOY0IoTGDbnbkzyB6iWLaU5ST
+	597hDJ6jte5N2713XpbbUg+2rYCYX7V2nAzbcpiuLUBTHhcOeDLRs
+X-Google-Smtp-Source: AGHT+IHBq4Bpn7IMCuiOvWpCDfq6WSEWbk+kF8P/My012EE2LHfMCwEfjsvbXgI3Q5S8UqpawhTxxnoNTWpu5as8yyE=
+X-Received: by 2002:a17:902:d4c4:b0:216:7cbf:951f with SMTP id
+ d9443c01a7336-219e6ea195cmr764170955ad.21.1736092200275; Sun, 05 Jan 2025
+ 07:50:00 -0800 (PST)
 MIME-Version: 1.0
+References: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com>
+ <20241231194207.2772750-3-martin.blumenstingl@googlemail.com> <20250104135912.390ec87c@jic23-huawei>
+In-Reply-To: <20250104135912.390ec87c@jic23-huawei>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 5 Jan 2025 16:49:49 +0100
+Message-ID: <CAFBinCBxaVet9HxW98uCSDnv1XVXV6r4V9Z3BRmZJypTcxDZ0Q@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 2/2] iio: adc: meson: add support for the GXLX SoC
+To: Jonathan Cameron <jic23@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250104_055920_316548_771781CF 
-X-CRM114-Status: GOOD (  28.30  )
+X-CRM114-CacheID: sfid-20250105_075001_576237_90143877 
+X-CRM114-Status: GOOD (  22.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,121 +86,41 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, lars@metafoo.de, robh@kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, gnstark@salutedevices.com, linux-amlogic@lists.infradead.org, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 31 Dec 2024 20:42:07 +0100
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-
-> The SARADC IP on the GXLX SoC itself is identical to the one found on
-> GXL SoCs. However, GXLX SoCs require poking the first three bits in the
-> MESON_SAR_ADC_REG12 register to get the three MPLL clocks (used as clock
-> generators for the audio frequencies) to work.
-> 
-> The reason why there are MPLL clock bits in the ADC register space is
-> entirely unknown and it seems that nobody is able to comment on this.
-> So clearly mark this as a workaround and add a warning so users are
-> notified that this workaround can change (once we know what these bits
-> actually do).
-
-So IIUC this is to make some non ADC component work.
-How are you handling dependencies?  The ADC driver might not be loaded or
-is there some reason it definitely is at the point where the audio driver
-loads?
-
-Jonathan
-
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/iio/adc/meson_saradc.c | 34 ++++++++++++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> index 997def4a4d2f..df15a2566ec7 100644
-> --- a/drivers/iio/adc/meson_saradc.c
-> +++ b/drivers/iio/adc/meson_saradc.c
-> @@ -160,6 +160,11 @@
->  	#define MESON_SAR_ADC_REG11_EOC				BIT(1)
->  	#define MESON_SAR_ADC_REG11_VREF_SEL			BIT(0)
->  
-> +#define MESON_SAR_ADC_REG12					0x30
-> +	#define MESON_SAR_ADC_REG12_MPLL0_UNKNOWN		BIT(0)
-> +	#define MESON_SAR_ADC_REG12_MPLL1_UNKNOWN		BIT(1)
-> +	#define MESON_SAR_ADC_REG12_MPLL2_UNKNOWN		BIT(2)
-> +
->  #define MESON_SAR_ADC_REG13					0x34
->  	#define MESON_SAR_ADC_REG13_12BIT_CALIBRATION_MASK	GENMASK(13, 8)
->  
-> @@ -326,6 +331,7 @@ struct meson_sar_adc_param {
->  	u8					cmv_select;
->  	u8					adc_eoc;
->  	enum meson_sar_adc_vref_sel		vref_voltage;
-> +	bool					enable_mpll_clock_workaround;
->  };
->  
->  struct meson_sar_adc_data {
-> @@ -995,6 +1001,15 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
->  				    priv->param->cmv_select);
->  		regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG11,
->  				   MESON_SAR_ADC_REG11_CMV_SEL, regval);
-> +
-> +		if (priv->param->enable_mpll_clock_workaround) {
-> +			dev_warn(dev,
-> +				 "Enabling unknown bits to make the MPLL clocks work. This may change so always update dtbs and kernel together\n");
-> +			regmap_write(priv->regmap, MESON_SAR_ADC_REG12,
-> +				     MESON_SAR_ADC_REG12_MPLL0_UNKNOWN |
-> +				     MESON_SAR_ADC_REG12_MPLL1_UNKNOWN |
-> +				     MESON_SAR_ADC_REG12_MPLL2_UNKNOWN);
-> +		}
->  	}
->  
->  	ret = clk_set_parent(priv->adc_sel_clk, priv->clkin);
-> @@ -1219,6 +1234,17 @@ static const struct meson_sar_adc_param meson_sar_adc_gxl_param = {
->  	.cmv_select = 1,
->  };
->  
-> +static const struct meson_sar_adc_param meson_sar_adc_gxlx_param = {
-> +	.has_bl30_integration = true,
-> +	.clock_rate = 1200000,
-> +	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
-> +	.resolution = 12,
-> +	.disable_ring_counter = 1,
-> +	.vref_voltage = VREF_VOLTAGE_1V8,
-> +	.cmv_select = true,
-> +	.enable_mpll_clock_workaround = true,
-> +};
-> +
->  static const struct meson_sar_adc_param meson_sar_adc_axg_param = {
->  	.has_bl30_integration = true,
->  	.clock_rate = 1200000,
-> @@ -1267,6 +1293,11 @@ static const struct meson_sar_adc_data meson_sar_adc_gxl_data = {
->  	.name = "meson-gxl-saradc",
->  };
->  
-> +static const struct meson_sar_adc_data meson_sar_adc_gxlx_data = {
-> +	.param = &meson_sar_adc_gxlx_param,
-> +	.name = "meson-gxlx-saradc",
-> +};
-> +
->  static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
->  	.param = &meson_sar_adc_gxl_param,
->  	.name = "meson-gxm-saradc",
-> @@ -1298,6 +1329,9 @@ static const struct of_device_id meson_sar_adc_of_match[] = {
->  	}, {
->  		.compatible = "amlogic,meson-gxl-saradc",
->  		.data = &meson_sar_adc_gxl_data,
-> +	}, {
-> +		.compatible = "amlogic,meson-gxlx-saradc",
-> +		.data = &meson_sar_adc_gxlx_data,
->  	}, {
->  		.compatible = "amlogic,meson-gxm-saradc",
->  		.data = &meson_sar_adc_gxm_data,
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgSm9uYXRoYW4sCgpPbiBTYXQsIEphbiA0LCAyMDI1IGF0IDI6NTnigK9QTSBKb25hdGhhbiBD
+YW1lcm9uIDxqaWMyM0BrZXJuZWwub3JnPiB3cm90ZToKPgo+IE9uIFR1ZSwgMzEgRGVjIDIwMjQg
+MjA6NDI6MDcgKzAxMDAKPiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3Rpbmds
+QGdvb2dsZW1haWwuY29tPiB3cm90ZToKPgo+ID4gVGhlIFNBUkFEQyBJUCBvbiB0aGUgR1hMWCBT
+b0MgaXRzZWxmIGlzIGlkZW50aWNhbCB0byB0aGUgb25lIGZvdW5kIG9uCj4gPiBHWEwgU29Dcy4g
+SG93ZXZlciwgR1hMWCBTb0NzIHJlcXVpcmUgcG9raW5nIHRoZSBmaXJzdCB0aHJlZSBiaXRzIGlu
+IHRoZQo+ID4gTUVTT05fU0FSX0FEQ19SRUcxMiByZWdpc3RlciB0byBnZXQgdGhlIHRocmVlIE1Q
+TEwgY2xvY2tzICh1c2VkIGFzIGNsb2NrCj4gPiBnZW5lcmF0b3JzIGZvciB0aGUgYXVkaW8gZnJl
+cXVlbmNpZXMpIHRvIHdvcmsuCj4gPgo+ID4gVGhlIHJlYXNvbiB3aHkgdGhlcmUgYXJlIE1QTEwg
+Y2xvY2sgYml0cyBpbiB0aGUgQURDIHJlZ2lzdGVyIHNwYWNlIGlzCj4gPiBlbnRpcmVseSB1bmtu
+b3duIGFuZCBpdCBzZWVtcyB0aGF0IG5vYm9keSBpcyBhYmxlIHRvIGNvbW1lbnQgb24gdGhpcy4K
+PiA+IFNvIGNsZWFybHkgbWFyayB0aGlzIGFzIGEgd29ya2Fyb3VuZCBhbmQgYWRkIGEgd2Fybmlu
+ZyBzbyB1c2VycyBhcmUKPiA+IG5vdGlmaWVkIHRoYXQgdGhpcyB3b3JrYXJvdW5kIGNhbiBjaGFu
+Z2UgKG9uY2Ugd2Uga25vdyB3aGF0IHRoZXNlIGJpdHMKPiA+IGFjdHVhbGx5IGRvKS4KPgo+IFNv
+IElJVUMgdGhpcyBpcyB0byBtYWtlIHNvbWUgbm9uIEFEQyBjb21wb25lbnQgd29yay4KVGhhdCdz
+IGNvcnJlY3QKCj4gSG93IGFyZSB5b3UgaGFuZGxpbmcgZGVwZW5kZW5jaWVzPyAgVGhlIEFEQyBk
+cml2ZXIgbWlnaHQgbm90IGJlIGxvYWRlZCBvcgo+IGlzIHRoZXJlIHNvbWUgcmVhc29uIGl0IGRl
+ZmluaXRlbHkgaXMgYXQgdGhlIHBvaW50IHdoZXJlIHRoZSBhdWRpbyBkcml2ZXIKPiBsb2Fkcz8K
+VW5mb3J0dW5hdGVseSB0aGVyZSBhcmUgbm8gZGVwZW5kZW5jaWVzIGF0IHRoZSBtb21lbnQuClRv
+IG1lIGl0J3Mgbm90IGV2ZW4gMTAwJSBjbGVhciBpZiB0aG9zZSBiaXRzIGFyZSBhIGRlcGVuZGVu
+Y3kgZm9yIHRoZQphdWRpbyBJUCBvciBpZiB0aGV5IGFyZSBpbnN0ZWFkIGxpbmtlZCB3aXRoIHRo
+ZSBjbG9jayBjb250cm9sbGVyIChtb3JlCmJhY2tncm91bmQgaW5mbzogc29tZSBvZiB0aGUgTVBM
+TCBjbG9ja3MgYXJlIC0gYXQgbGVhc3QgaW4gdGhlb3J5LCBpbgpwcmFjdGljZSB3ZSBkb24ndCB1
+c2UgdGhhdCAtIGFyZSBhbHNvIHVzZWQgYXMgaW5wdXQgZm9yIHRoZSBNYWxpIEdQVQphbmQgdmlk
+ZW8gc3Vic3lzdGVtLiBUaGUgb25seSBwcmFjdGljYWwgdXNhZ2UgdGhhdCBJJ20gYXdhcmUgb2Yg
+aXMgdGhlCmF1ZGlvIGNvbnRyb2xsZXIpLgoKQ2hyaXN0aWFuIGFuZCBJIGhhdmUgYm90aCB0cmll
+ZCB3aXRoIGFsbCBvZiBvdXIgY29udGFjdHMgYXQgQW1sb2dpYwpidXQgZGlkIG5vdCBnZXQgYW55
+IGFuc3dlcnMuCklmIEkga25ldyB0aGUgcHVycG9zZSBvZiB0aGVzZSBiaXRzIEknZCBtb2RlbCB0
+aGVtIGFzIHdoYXRldmVyIHRoZXkKYXJlIChyZXNldHMsIGNsb2NrIGdhdGVzLCAuLi4pIGFuZCBw
+cm92aWRlIHByb3BlciBkdC1iaW5kaW5ncy4KCgpCZXN0IHJlZ2FyZHMsCk1hcnRpbgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
+YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
+cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
