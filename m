@@ -4,75 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFACCE77198
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 14:32:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C7C3E77188
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 14:37:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
 	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=SOeraQF0lLJzadYHHfOrDRpqvzAz3TQauYrkGYurIss=; b=HGv5/hqwzh+agz
-	E4dCIGbwicm8M94mllO4Uv8n9Vt2y5eyhzce63CNhPVEoOxiOZseEeMmcYVVMzzYRLNHoUJf8r8LF
-	mPBJHdkGzjDIPr6cWcvmZ8pCfUjlN6jBPPtKA/NF2qqm7fx7V8VwfccBKOmKNKVTRES2kTJJfa7ob
-	Esz9jSrmfCj0ZAz5CulKcbUAIdifeUwKO6yQwZ0fe+pTY6fPRj1/adGEV+BjkIhPdBl03QNVxLD/z
-	2q9WfMreeKr6MRvGN8m4rTP/WSgGgJmUhcsUeTGOv5rzQfEUq3LOoXWrWxpNpFFx0+XIIeRHDlyB1
-	2T4av4rBXPRyXti4MXyw==;
+	List-Owner; bh=gSrTTCMDV0mS2wV3Z84Q9l9RWaNMadOrGwtAqOqByzs=; b=R1W1BHW9JCJkQE
+	50R/KJoBUwwSvkQO/2MQ1DkdIwI9Ezl/JUcdZwyrEC+aR0oph/FIvMzlzRuRwlFLeRJAUFHKiGbHW
+	4d5jev2EfVexAqyxWj4xCzie0DyNYR6j21FzLP9vmyFduVUJCVFu40w5UgiIwe8e4ku46dhA2eGv2
+	P6d1PBtrxsKdYf8iEiyd2+d5eVzkScMubAKl3V/jUyaIebYDKpz24y4U9GKGGUYrqFRaxrIogbN3u
+	na5K64040AC/Dhf7kY+8G2aGELwVpY6LD7A++0GlelzujS3gu8/mUSFNNwC9F/pYvDNqabwn5PwvR
+	9qsAu7FASm8jmlN6voKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUo9M-00000001aEn-1Se5;
-	Mon, 06 Jan 2025 14:32:12 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1tUoDz-00000001bGC-1Xce;
+	Mon, 06 Jan 2025 14:36:59 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUo0f-00000001YPQ-3g6Z
+	id 1tUo2X-00000001Yxv-2Xsi
 	for linux-amlogic@lists.infradead.org;
-	Mon, 06 Jan 2025 14:23:15 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4361e89b6daso99160645e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2025 06:23:13 -0800 (PST)
+	Mon, 06 Jan 2025 14:25:10 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4361815b96cso95987605e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2025 06:25:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736173392; x=1736778192; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1736173508; x=1736778308; darn=lists.infradead.org;
         h=content-transfer-encoding:organization:autocrypt:content-language
          :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=v+ISvG17XlCRUc2+RRHh59wTwYCWMY/Hqwqq505SSb0=;
-        b=kAFktXvKk7ebjEqlALzUAUPc0JHKDRRIJhOJMWnoZ7QajCyGd6ZfIYnixpyd0gQQ7U
-         BrJoxEObOh5P8F81VZsSqecBLeO1l4XlVWSLQIhFFvdg2JMiHyApcWZMacDfVhr+Cn7u
-         3QPTPybFP0hOtJgotC2VdxeO35AiddG1Z3Rfelt1/UfrtVyL1YYg6v+TcQArD4NIu17F
-         40ynFmhXmPGwuRdyvOL5Bj0TsOSpUFHGRmQjz6sSsN4eAwWrMYIWayrs12fSHgPsXq0q
-         Uq6nf76XWDILw7xPTSPbPLFlM/1nyf/JdrwjUDkWkleJ2S8ad8ZhhOMWtfcjKeURPcY4
-         3hVw==
+        bh=7TIciRlELDCLEEoclqE+Kfoj3mhZ/N1C2qRWtIuv9OY=;
+        b=OYN6LI3IKJEwfE90o+j/T2z7uY4Ochw4kUgru8EeILye/U+hsDZkDa9OlY1m3H3KeO
+         wGmhvFhqnbedG8UxxRpHN1flC4WURpf15bLAcO/Wph26RWa6uPYFYRc0lu056mdYwk3K
+         K8dMDImv6tJaWI7AhvLxvvgBGqwKN/ycy2Jm3VnI1VmCP/jAUwif2JYx9xUcmV+8+hLz
+         Msol44QhiPowZCXmKQq2DIEKo2SgVfs0TXY2x2/ydgRw0N55gIKngKB6N3vZDmVrnUgj
+         4bONqBOlBmWR0AfTzTm9Lo0fkMGNw4VXdu1dkkyCkTMVPMz8nNU+BnBqHoMhyNsGgRd3
+         zJaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736173392; x=1736778192;
+        d=1e100.net; s=20230601; t=1736173508; x=1736778308;
         h=content-transfer-encoding:organization:autocrypt:content-language
          :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v+ISvG17XlCRUc2+RRHh59wTwYCWMY/Hqwqq505SSb0=;
-        b=GOQMdyyzs/MRPBdHMTka+0NRRzlVJaWIWccy95j94V1bL1yhqOJu1n/FDgL4uwCk2w
-         pfKk5jWQuQR9b2SjVNms9Qh/TGCNdji+8G8ExOgDXmkVZyRoVyZEgyaJrJrrbQKjIswQ
-         4HqemDGpZlwUfKVeRobwmb6H723Epz5X0u9BbT58/Yp2Tfhq3fyo7T1BZNAFKQwiwNlC
-         FOXP++66Gx+MqMoW/ojIr6Bw44nRpgZ7hJa5O9VY86qdk2ud6ZvwN64NQe/Ox4ftcTfH
-         VdIFcbqyhzKsGiOo09aMNWVcBPbX8N18TQH816S0JB+rmp3a/0ozUgZSApIfrSvKh2zL
-         EGNw==
-X-Gm-Message-State: AOJu0YyiK6b2QMLNi2431fCFdmO2q1PPA+LhxRHsYhQdPDhAefxl6JJz
-	MNJ+rbFQKdsuYbPv9xyExtzCzs327Bd5YBNb8p2QASW3yv7Z/NmaJEYjo9NSdss=
-X-Gm-Gg: ASbGncu5dz8o1QS5yhIwhBhM5RssliSfZVo2DOjO7ZBRLNSnAT2FDjvhBJ08JWN9bNy
-	P+U7w0ROkIyCQd62+BJt0lpuvLxMZExGJYiURn7nzj4T+F4sq4C559yW+SNOZ46ByPlYrkbnA77
-	kAxdVL4dhEtHclVNPm5JEBCYpk8pONdltzsXGRJRL2Vjg898w5roF5d/iUeBoAuzvn58B66buyx
-	RGF5oTfoh0GPus/iUSy/X8znveQcYbIOfQy0jaUK3WNks+liehofZ9PFHJ837mHqA+qprRoTvzv
-	h/iuxn8BZZHjFcnmyXzbseqMj0xz
-X-Google-Smtp-Source: AGHT+IFbQVoTEVhEDDdBwsowpTrnhU+0JKPMJ0XbhCvp1qdAqGclVtuhezzIVxR/+KsmGKTLOCnaDw==
-X-Received: by 2002:a05:600c:350b:b0:434:f131:1e6d with SMTP id 5b1f17b1804b1-43668643203mr623670995e9.10.1736173392034;
-        Mon, 06 Jan 2025 06:23:12 -0800 (PST)
+        bh=7TIciRlELDCLEEoclqE+Kfoj3mhZ/N1C2qRWtIuv9OY=;
+        b=wQ950osX9b8jyfVBEg1vgoEP9/NWfPNiFSeFv1Eo5EFZScbVlOmamXZ7dVN6qBt7nk
+         6S47e7rWr75rLCybA7iely+w1KIH2jrprMD9tCiam/T7U98sK7GF0BJzt/BvK1miRASt
+         KQEDlMh+7noYsPEcjdGiQg7TEaUt2MdXxGVURYVkS3+aPQW7/hMvrqKhcZPPkBCZzzG8
+         h9JwzDdo5FdzdFLGsE39XVyARpfn0o0Dr0pxls9tLnlGeZiGlIYyrNdvK+c4/sxe8clt
+         cI9fAmzivje2SXVkUu9wZMYQDC4WyLHxRZ/IEQ01wTuFzXwjyvo8QYU+I/AeiG6h2b70
+         zmsg==
+X-Gm-Message-State: AOJu0YyR+M3QG+LQtR/AoffxKFrFDcdIbI7bHXibBn/zJhcMAbt3XRxU
+	fSAnfUVikkeLQ4TBCRrfDY87WFV5bNhiZv9K/2nYz1xobOhOmJtmF5sz0DbSmaHaPUxWDdcu7Ty
+	c
+X-Gm-Gg: ASbGncs730qou+ixPBLizyxNxfw7MheiKkIinq+bVrpqbRr1HoCfdo/Ew/OfH+GJjTO
+	bkREPrn73hZv9i1z0vDt6sARG53RX8jle94yA1q2I4ZrYbvGJfZra4BsB8eyvGdCGCViBhK2pBN
+	Zw3nY3Msiv0mwKCkZOiU8mL8ysyzGSwgt0MiUdkaR9pzSsSYNRoZJGMYwFB13M2HX+rS1oBlkif
+	60P9jUReAFH5O/ayY+k1KYPrFQqX7pXxxJVPeaG6tPY9xLoTF0oGL3FeL/wCC1N/1sz+n7hserk
+	ipEoC7hAmowfUpn4bY1TdvJQbvir
+X-Google-Smtp-Source: AGHT+IFDv6yPrrMdiLufyHJiRsCS+tNLTAQN7y7Zs6wjnXNJFvDTqtBqNWJ/t9oqV6eZf1xaBL1XqA==
+X-Received: by 2002:a05:600c:1912:b0:434:a968:89a3 with SMTP id 5b1f17b1804b1-436686436f9mr515572745e9.9.1736173508239;
+        Mon, 06 Jan 2025 06:25:08 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:95:e905:1421:811c? ([2a01:e0a:982:cbb0:95:e905:1421:811c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43661289d3dsm575723455e9.41.2025.01.06.06.23.11
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4366127c639sm564181945e9.31.2025.01.06.06.25.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jan 2025 06:23:11 -0800 (PST)
-Message-ID: <72d71d3f-99c3-4767-8c80-8fa7a865c846@linaro.org>
-Date: Mon, 6 Jan 2025 15:23:10 +0100
+        Mon, 06 Jan 2025 06:25:07 -0800 (PST)
+Message-ID: <d22513cc-c326-443c-982b-78adf755d3dc@linaro.org>
+Date: Mon, 6 Jan 2025 15:25:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic ARM64 DT updates for v6.14
+Subject: [GIT PULL] Amlogic drivers updates for v6.14
 To: soc@kernel.org, arm@kernel.org
 Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Language: en-US, fr
@@ -102,8 +103,8 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250106_062313_922179_163A6D2E 
-X-CRM114-Status: UNSURE (   5.82  )
+X-CRM114-CacheID: sfid-20250106_062509_648621_B15042E1 
+X-CRM114-Status: UNSURE (   5.40  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,10 +125,9 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-Here's a single change for Amlogic ARM64 DT, removing the broadcom wifi
-compatible from the SDIO subnode because the Amlogic GX reference
-board can be shipped with different brands of pin compatible SDIO
-chips.
+Here's the final DT bindings change that will give 100% success in Amlogic
+ARM64 & ARM64 DT Bindings checks, with the mmc-slot bindings change routed
+via the MMC tree.
 
 Thanks,
 Neil
@@ -138,27 +138,23 @@ The following changes since commit 40384c840ea1944d7c5a392e8975ed088ecf0b37:
 
 are available in the Git repository at:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v6.14
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-drivers-for-v6.14
 
-for you to fetch changes up to 1ba1964a7f83daae7fdeaf2de584a7ba758c4491:
+for you to fetch changes up to 960a4140ade8f6ba44e78dc40b80bbf272027805:
 
-   arm64: dts: meson: remove broadcom wifi compatible from GX reference boards (2024-12-13 10:36:02 +0100)
-
-----------------------------------------------------------------
-Amlogic ARM64 DT changes for v6.13:
-- remove broadcom wifi compatible from GX reference boards
+   dt-bindings: soc: amlogic,meson-gx-hhi-sysctrl: Document the System Control registers found on early Meson SoC (2024-12-11 09:49:49 +0100)
 
 ----------------------------------------------------------------
-Christian Hewitt (1):
-       arm64: dts: meson: remove broadcom wifi compatible from GX reference boards
+Amlogic drivers changes for v6.14:
+- Document the System Control registers found on early Meson SoC
 
-  arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi      | 3 +--
-  arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts  | 3 +--
-  arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts  | 3 +--
-  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 3 +--
-  arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts        | 3 +--
-  arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts        | 3 +--
-  6 files changed, 6 insertions(+), 12 deletions(-)
+----------------------------------------------------------------
+Neil Armstrong (1):
+       dt-bindings: soc: amlogic,meson-gx-hhi-sysctrl: Document the System Control registers found on early Meson SoC
+
+  .../bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml | 14 ++++++++++++++
+  1 file changed, 14 insertions(+)
+
 
 _______________________________________________
 linux-amlogic mailing list
