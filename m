@@ -4,70 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CC24E77199
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8C17E77198
 	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 14:13:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=9RwJfcGDiIc+hCLp7+dgdAbGgluya33E9OIBSfwmIWo=; b=LpbyOX1wxpcLsG
-	ZNFJsv9w8JgkYT4hgByicNMKl2cXkUpSMjlgAXT9DxSd/P70ebyTln7E35POvd/oKMGHwekmJJVZ3
-	KqswfOWFpHgL09GhOuCX/4A2bbPiBOBtbFm0ClJc3kgqyenFbLOGv6yvtQ24wXpHlQOzIitwoUE9b
-	3fKfkZNU/Ug/m09ZcDZLK8B2rb889nxwm5/o+t5JoEpuUvs33sWeCvUkf4qDGIZVa68DwbB2IP0s/
-	gr6uNKHcQahxsCqlDgSIHoxXPb512NsKT5sG+TENrdIFoP4W/A3N+n5Lsrpn/q4hZOH6p3JN4UwpG
-	roSOGMyy9jxHhmsugt2w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oYueXExZY+XWFtWrsXszL2y+lpkV53zCD19to52jarQ=; b=kU212ndUbFFViv
+	Zrf+nZtcbAKBVN91srmlzyEUmRcQaM7ZfLr4tb1sIfVXBbtRh4XHGJ2FyTc6ULCiFtQDQPs4eEFty
+	TEQX4R4wqFk4rYcDZKiAifuKZo3Rf9gb2PQmjiGQ2y3OfelMqV2gzrvf5pa3Li+XoUuWmo/0ucTro
+	zewFnw5NfKKMNiZokzWYHhbJxvz+lEHPa+R/vmsB0KsdWX8BDhwW+0+pPaAot0RJspIjL81qLlIaB
+	qv/gM7PxtX+bOLxLu7Bt44DhVhyKnT49+ZO/eKK7gLNMpN9dIpF3Y2Cjk9wfb+2iFe/k9ccz4IdFI
+	6oF9dLqB44n9NPwv9saA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUnrY-00000001Wn7-3HjB;
-	Mon, 06 Jan 2025 14:13:48 +0000
-Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
+	id 1tUnrZ-00000001WnG-0UpH;
+	Mon, 06 Jan 2025 14:13:49 +0000
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUnrW-00000001Wm3-1BMF
+	id 1tUnrW-00000001Wm5-3ENg
 	for linux-amlogic@lists.infradead.org;
 	Mon, 06 Jan 2025 14:13:47 +0000
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-aa689a37dd4so75340466b.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2025 06:13:45 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5d34030ebb2so9225861a12.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2025 06:13:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1736172824; x=1736777624; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=deuzC29BtjFy0NCkULSfuChWERldX97tanuampvrqsk=;
-        b=eVtkouhhHqRF0RrwDVdlEGN5KVSo37BvgU/opkPsYwHZ2JS+hhazCLjRYG9FNhRWKU
-         wRBp8J50X2o1BjQh48n9RvIvbEddS5axoIldLYUsQcmR4a4SCJSFx4sUoGGL/0PKE9BJ
-         sCt6nYflPbOJ8TsQFFcp3HO+aCxE4u1+6KqAUoLTr/QqxMIImaNgp+nDrW1iPbiowQdy
-         5Dxkd4gdg5XL7bCMLkdCVngB/KFc5XBJzh68l8cpVuF7sgVlMuTahd19E2ut1W8ek8HU
-         A8HY1z33w31gSLxBClPd+VQ4+7BwHItwknbk0pf9wNaI7CXf/YIv80CiS0wuFWbJmGac
-         pnAg==
+        d=googlemail.com; s=20230601; t=1736172825; x=1736777625; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ue4Bu5Xm3aSnr3aDQKCmaVaK/VUPDoH9ftWxJfeazzw=;
+        b=nEp5+fcIN4jq+Hl8p2Bb/Q9pJeciO3u1JLsZmbxF9Jxz1XkvIU9LrA2UqYkNp6uNaH
+         TSvpZ5ol+TEz5TZGFwKSNOnphMYKwh4R69wpFe821iKSX2CRi+QszfipCOG/3ZdlRgyE
+         yxCuPHyGEdNjPEgXvFgg9Npg/y8JMRr3InmGQmU0mA6eeCb8rrGkmK3Jx4/7zh/bko3Z
+         UWMDh8CS6yQOrR/NVcfRXvdR7VQSGyTZRY/d2ojuereEAagmbtX75nVxFsQ4mLOMN/03
+         qjQKwLwaSbt3t2QatO47rMooex82teBgQtDTbSBeQUB9uwxTXgsYE2IGnka7n/A32dst
+         Ew+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736172824; x=1736777624;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=deuzC29BtjFy0NCkULSfuChWERldX97tanuampvrqsk=;
-        b=EzstCXsKQnme+LONMp4JkQwFcmYmCGAPIfMMmgW17I8h3rugCxOKRHIKr1bH/o4FMC
-         H+ESikMKYdUbKumPxn2hoOLi/gwL6ZNHUijRDE9yLrIpv6syq1102Rzp/cq0W0ZCt4TJ
-         I03jFHKUmKIjhcM1hiAEk1Q+AUnPJSX4fjIksEdO1ukGVjZZ9+ZGAqgIzD7hrByGozKK
-         hFicf/BJ1ZSDtS+FKTLA0jLUjYQVsuH+XfObQH/FoJ7X6jIPOeR1T3cuGTmKeXlogOi1
-         3ea/Vc1fB+soHsd16rAFNms212GzYARM8BmhHEPpdXddMPHRLsMzWmX8Ejxrqd1tVDNB
-         BRKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX485rcZhBxpFefu9+nBiZU7Qb6CxU5ppM2m7srfzl6qkR2Y34sSNl5eusdxJzBT9nVkyGRZmwE1y65jRsy@lists.infradead.org
-X-Gm-Message-State: AOJu0YyjPBNnHoloIXcGgWJEHw+WzcFA/iKD67DiW37XHxbIbZri29CI
-	GLe6DFb/xmstEbNbEN8m4kUDgvoppODTJzvYxRrRVI8ALLMaQFw8
-X-Gm-Gg: ASbGnct+nAstXXPoyTZmczp/viM6MkmckFz92V6CXgkRUUDM5kiIx8KPSDwZqQBg75A
-	lBPYUOaUKuv2SoTyuzDc4nJWULwLlZ8cWqpRymAvAcEnh5jL2A0HEqA3cIQ6nUDeLoNVhH/7eoJ
-	XhVnrVjIbYl7CnUgs2DGKp+ARmOlp48rzXWYUz9jLnEm0SY3EZ1gC+JlrX2KqGlRNXQPk39nErI
-	JD4Xfqwkic61PiwCzq6YbaMH1MEK2rHUkJbDerKGDGsLTGYKBnMtusaibHkyAKGhyagbH9vAu1s
-	MsXWXil61XxOhdtdP69NWJYl1yGmx0JUnX18slDmvewpsWcNplCmbMom4z+ycYg+BgeCpSRUZRO
-	FwUgZNw==
-X-Google-Smtp-Source: AGHT+IHYFAClER1tFlfRYUeI2kVSFpYXijNXltkCZwPCe+sxy0eaQoXBkfxp8qViPmzVW1dJIIrKEA==
-X-Received: by 2002:a17:907:72ce:b0:aa6:25c6:d94f with SMTP id a640c23a62f3a-aac2ba3f469mr5630955366b.31.1736172824155;
-        Mon, 06 Jan 2025 06:13:44 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736172825; x=1736777625;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ue4Bu5Xm3aSnr3aDQKCmaVaK/VUPDoH9ftWxJfeazzw=;
+        b=iWb1RF+2Br8F+ya1ZtF6PlYediyZi5+7w8YoqPSCtBg0PLCSfOzJ/JCNxniTOhRaZr
+         /Zs0Gv9MsYSbBQMYElcXcsahp+f3Zo8jv3cO5FWglRKJ7xl1ztUaeaVRPpDFfW0GpVHi
+         NbKv2/kOIzostMOxzAyxExtVD8WTqRpjyVK066JygMVxkXuZe6yb9ZiqLImFNfcH+ta3
+         jpwI9mmLB27whQJ2rGU9okdMWMVK3yAmUOVa86fjOWtsiwhnUwqPKJmNenW1frd5h8oH
+         kADg04wgVyn8QPADHHRP33pLZXtXdlIcQZFEkkd1duJAB6qytQVYOLc97fSdSJ2TOuty
+         iQhg==
+X-Forwarded-Encrypted: i=1; AJvYcCV2CO0gx2Q1qBfmCG9jDrL3sdViRPs50YVrPlxlCSOARN7oxhqXtxBkgQrrUHNJ6Ok/8FesAPS1iwE5+uQP@lists.infradead.org
+X-Gm-Message-State: AOJu0Yxo2klF16zrvJjkk9T8adwSMawahsN+2wpkL3s6NnD5yPZGQLYN
+	NDPWxgfmmkLjuxFNHAetAcssocki+JhZJeA/PnIeI5/o4YvtvFcB
+X-Gm-Gg: ASbGncs97daDEl+gITawaIf8ou7goezL+viqspz8N3CXKpCbusEjnw0oEoWBPZGWgfd
+	0OK+uH9kTnvTWnE97R7BvaVH5+zIr97OBJQKQ0D2plyTCavHDqeEtzDrOceEBsux2f7HrC63Cl6
+	dH3boUNeB7803N/kSJUd1hnskkTve08IYVy1VwbZjmdbmMlZBZr2DspS4D5irGJuoQra478O0k9
+	H+rBCEfi/JAnXEqbJXSErM3BN4yQlY9OK3otOa0NnOVHLZWFrVIGf/hCClVGPAotcqBKEhaq0/w
+	eY9j+g1MsupCXhQNUJHhjDfrEKgL91kxAMG2FVuVpsz4Ht1vENrSnrtyeIW5SzK+2bjPnSgIxOp
+	KdDWQAw==
+X-Google-Smtp-Source: AGHT+IEnu2WBqAc4ZLV2zVb1tutjBgjXj2jnmiXy8Gw+WqDg3zTtAv3hDkZ3fUD63mUvDPlmvBph2w==
+X-Received: by 2002:a17:907:7da8:b0:aa6:8676:3b3d with SMTP id a640c23a62f3a-aac2ba3c134mr5574351166b.29.1736172825126;
+        Mon, 06 Jan 2025 06:13:45 -0800 (PST)
 Received: from localhost.localdomain (dynamic-2a02-3100-a9f2-7d00-0000-0000-0000-0e63.310.pool.telefonica.de. [2a02:3100:a9f2:7d00::e63])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-aaede7ef3cfsm1811342766b.77.2025.01.06.06.13.42
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-aaede7ef3cfsm1811342766b.77.2025.01.06.06.13.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 06:13:43 -0800 (PST)
+        Mon, 06 Jan 2025 06:13:44 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-sound@vger.kernel.org,
 	linux-amlogic@lists.infradead.org
@@ -77,14 +78,16 @@ Cc: s.nawrocki@samsung.com,
 	linux-kernel@vger.kernel.org,
 	jbrunet@baylibre.com,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [RFC PATCH v1 0/2] ASoC: prepare streams on codec-to-codec links
-Date: Mon,  6 Jan 2025 15:13:14 +0100
-Message-ID: <20250106141316.375984-1-martin.blumenstingl@googlemail.com>
+Subject: [RFC PATCH v1 1/2] ASoC: soc-dai: add snd_soc_dai_prepare() and use it internally
+Date: Mon,  6 Jan 2025 15:13:15 +0100
+Message-ID: <20250106141316.375984-2-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20250106141316.375984-1-martin.blumenstingl@googlemail.com>
+References: <20250106141316.375984-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250106_061346_323231_153AB0DC 
-X-CRM114-Status: GOOD (  12.53  )
+X-CRM114-CacheID: sfid-20250106_061346_808211_DDAA69C1 
+X-CRM114-Status: GOOD (  14.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,44 +104,76 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
+Add a new snd_soc_dai_prepare() which can be used (in an upcoming patch)
+by soc-dapm.c. Use this new function internally in
+snd_soc_pcm_dai_prepare() to avoid duplicating code.
 
-the DRM subsystem has recently gained a HDMI audio codec framework [0].
-This is already queued for Linux 6.14.
-
-I want to implement a HDMI controller driver for the Amlogic
-Meson8/8b/8m2 SoCs using the DRM HDMI audio codec framework. Internally
-the DRM HDMI audio codec framework relies on hdmi-codec's .prepare
-callback to be called. This unfortunately is not happening on Amlogic
-Meson8/8b/8m2 platforms [1].
-
-Jerome suggested that this may be because of the codec-to-codec link on
-our Amlogic AIU audio driver [2]. He encouraged me to send this series
-to allow hdmi-codec's .prepare() callback to be called - even on
-platforms that connect it via a codec-to-codec link.
-
-The reason why this series is marked as RFC is that I'm not familiar
-with the ASoC subsystem and lot of the functionality and terminology
-is new to me.
-
-Also I Cc'ed Sylwester Nawrocki (Samsung maintainer) as codec-to-codec
-links seem to be most heavily used on Samsung and Amlogic platforms.
-
-
-[0] https://lore.kernel.org/dri-devel/20241224-drm-bridge-hdmi-connector-v10-0-dc89577cd438@linaro.org/
-[1] https://lore.kernel.org/linux-amlogic/CAFBinCDdiJ3UNVUcShjq=7U2=oUwT3ciYdKSuZ5TdcrikxFBpg@mail.gmail.com/
-[2] https://lore.kernel.org/linux-amlogic/1ja5c4b4rt.fsf@starbuckisacylon.baylibre.com/
-
-
-Martin Blumenstingl (2):
-  ASoC: soc-dai: add snd_soc_dai_prepare() and use it internally
-  ASoC: dapm: add support for preparing streams
-
+Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
  include/sound/soc-dai.h |  3 +++
  sound/soc/soc-dai.c     | 27 +++++++++++++++++++--------
- sound/soc/soc-dapm.c    |  7 +++++++
- 3 files changed, 29 insertions(+), 8 deletions(-)
+ 2 files changed, 22 insertions(+), 8 deletions(-)
 
+diff --git a/include/sound/soc-dai.h b/include/sound/soc-dai.h
+index aab57c19f62b..a11501752637 100644
+--- a/include/sound/soc-dai.h
++++ b/include/sound/soc-dai.h
+@@ -193,6 +193,9 @@ int snd_soc_dai_set_channel_map(struct snd_soc_dai *dai,
+ 
+ int snd_soc_dai_set_tristate(struct snd_soc_dai *dai, int tristate);
+ 
++int snd_soc_dai_prepare(struct snd_soc_dai *dai,
++			struct snd_pcm_substream *substream);
++
+ /* Digital Audio Interface mute */
+ int snd_soc_dai_digital_mute(struct snd_soc_dai *dai, int mute,
+ 			     int direction);
+diff --git a/sound/soc/soc-dai.c b/sound/soc/soc-dai.c
+index 34ba1a93a4c9..ca0308f6d41c 100644
+--- a/sound/soc/soc-dai.c
++++ b/sound/soc/soc-dai.c
+@@ -360,6 +360,22 @@ int snd_soc_dai_set_tristate(struct snd_soc_dai *dai, int tristate)
+ }
+ EXPORT_SYMBOL_GPL(snd_soc_dai_set_tristate);
+ 
++int snd_soc_dai_prepare(struct snd_soc_dai *dai,
++			struct snd_pcm_substream *substream)
++{
++	int ret = 0;
++
++	if (!snd_soc_dai_stream_valid(dai, substream->stream))
++		return 0;
++
++	if (dai->driver->ops &&
++	    dai->driver->ops->prepare)
++		ret = dai->driver->ops->prepare(substream, dai);
++
++	return soc_dai_ret(dai, ret);
++}
++EXPORT_SYMBOL_GPL(snd_soc_dai_prepare);
++
+ /**
+  * snd_soc_dai_digital_mute - configure DAI system or master clock.
+  * @dai: DAI
+@@ -577,14 +593,9 @@ int snd_soc_pcm_dai_prepare(struct snd_pcm_substream *substream)
+ 	int i, ret;
+ 
+ 	for_each_rtd_dais(rtd, i, dai) {
+-		if (!snd_soc_dai_stream_valid(dai, substream->stream))
+-			continue;
+-		if (dai->driver->ops &&
+-		    dai->driver->ops->prepare) {
+-			ret = dai->driver->ops->prepare(substream, dai);
+-			if (ret < 0)
+-				return soc_dai_ret(dai, ret);
+-		}
++		ret = snd_soc_dai_prepare(dai, substream);
++		if (ret < 0)
++			return ret;
+ 	}
+ 
+ 	return 0;
 -- 
 2.47.1
 
