@@ -4,86 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB520E77188
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 14:48:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A44D8E77188
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 14:51:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VcJ2ZDbVrIODrZIrh5/qUx/8ZaaxCMb+cjNGsSFEb3k=; b=UMXmzxsyBqZp7h
-	K8Ilh343Z1U01OIn1AR5gsSqWNsMK6zQMxLq2haq6oO854yBDhBtJidyUZZy/MOULnkb3e1b1GMIr
-	0mRUV4HgK+jZz0GfhGCeXQQ22RfjO2qKci4yn/7lZanQSi3/WzdW4fIwJ91DZX8zamI0RE6e2X9nZ
-	uHaHXd1Kwu3iKEkRXyxqnpDH/8bFJeMFYyuOtgAYdDO5S5VQEbBGYNlK8kcTY3QOB7gfL35R2DEDo
-	XEIa/Ay5V9Sg34t3PK30kNHZdTn89GcB+B4Lo8BHAtCIXaZSTO9cxmmc3ewIOxlChoC2ITImgoHQD
-	gc/QdGd22cXqRd7PDoeA==;
+	List-Owner; bh=aTlAXskPdLCLPhtOtETM1sl6vQuafCeziGjfq1XE2NQ=; b=oJKYYtCBz3xAj2
+	QBHAmnd9jxtxW4RLbaUcccnILqu39XQtCk7elneoWaCWEFibVN4qilou3dVVRv1FWiGa2UiP7IyIv
+	AwT+pCKdgu5Ogkkiq/ModLhnQgky9xaZaSdSSFhni2JdM5kwb87mgCqdL77130ok47D7ZJgCtsVc0
+	tqXOQ1VTQkGcpgu8J/8tY3fyQF+GEWc0gT/ZtwuM09JBOXZlrp0fVgj5AHYESvrVJoVxY6FoHERB1
+	Mq+JcDQTBf1roaNZyX8xojwZM1exkaiJI4HGY5vZhke55tc3POINAcb428Yq1JcUFbP5r18/ReW+p
+	zWUVo04tyruZUcJlUzTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUoPY-00000001dsK-2zpQ;
-	Mon, 06 Jan 2025 14:48:56 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1tUoSM-00000001eZA-3fBe;
+	Mon, 06 Jan 2025 14:51:50 +0000
+Received: from mail-pl1-x632.google.com ([2607:f8b0:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUoB9-00000001afV-3Hwc
-	for linux-amlogic@lists.infradead.org;
-	Mon, 06 Jan 2025 14:34:05 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-43618283dedso143742955e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2025 06:34:03 -0800 (PST)
+	id 1tUnJY-00000001Qah-0gRI;
+	Mon, 06 Jan 2025 13:38:41 +0000
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-21661be2c2dso187535235ad.1;
+        Mon, 06 Jan 2025 05:38:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736174042; x=1736778842; darn=lists.infradead.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LJS2rW2T2RcSfQ5iAkA0Gffqe23ezlX4jRnbxIk5ccs=;
-        b=trrv+qZunZ0+TmQ/KN4zO3TW13be+dpKPMcb98VUTbINabb7VTT4LdU+0tyhqixw4K
-         SmXfnoAeRvQdYAxCP5NWtv8mAm+wwcptJgjWJhxIUZLcfVgHdbEkuQ11o0MHE1Y8/GYl
-         k6T05Z01mnzxJATpiwcdDedGTSZOl6uSH/s6NC3kWeMdYrlj/eiaKqfYCfk3tLN0BeEn
-         hxRCGwIc3NckNlStw9rUlGDyYwjpHIj+Js6yUtY7SL8+HRQipNZInZFZXzu4dYo6WUCd
-         CNYFWQ0fuzrh6V1QaslrgprCg+Q/hBHIvtWx6VDxznL87UR15vA4yAn9rZnCccAa9zph
-         7eyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736174042; x=1736778842;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+        d=googlemail.com; s=20230601; t=1736170719; x=1736775519; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LJS2rW2T2RcSfQ5iAkA0Gffqe23ezlX4jRnbxIk5ccs=;
-        b=VI6/RkRbuBXPMMyZN4Fax0UVm/sUGMyHBLxZHUbjLjLEvRdtf8goXnKZ6DwCP/+Zbf
-         UXg/eh4O9wBzqmnFycED/CBv13p2oqSzXYPFCf1aIOP6zdnpxhtgebuVfaQhRokOp45Z
-         zDR4oum7N4L/6aInHQ+iNneIl66dE4LPl7q+MsYECNrYKN9ffZeTlVlo9TgwSTa230FE
-         iGQ2+lffb90hkoMvzTBjYlBVjzzXV9vEtc3ck54/cvANe2WbBSgQ8TVII6T933LRqu9a
-         YHOHhBe2Z+zRQSn0H3PfjUZBJDXUsVl5KLm3m1nDYXDrH93iMntNXojolBHZ7OKUU6w9
-         YTgw==
-X-Forwarded-Encrypted: i=1; AJvYcCU3PzrkxxZp9F5AB9Pl8a+V49TJmG+6j6ImuAEd4ZGaVfOrcWCYPX5f0AJVrlWAK7IQgTRG7fx4cHkrj+s0@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw0ltLJNkv4edG2KHgD9OvISdZCxU3qK3DWU/bSoNmfokXXqHsG
-	LRyowwevL9Hvvl2z1asx/hmsclsao0JivxcuLjmx/eYwmlRYdG+g8kB48Rivbzk=
-X-Gm-Gg: ASbGncs4EmBVfGJ2aHIPl4jJs5497S/RdOR3Feg/2x3W+JUMxqHgAVDHOJVvtH7puOP
-	gjwE0010f2NXVNRH4/KUt31NiVCHjbWuplyQYpwIkxD/kMrEfX44ZwveNFcwvqGOYYJ+e2SQS/3
-	CfR7uEpx2ZwByclPxTi3Eiyi3lT0MSIpxkQwmk0lxgrCNqqCw/jjlGjVvrb7otxjlYUtS9TJfPR
-	cZovEJwOQeAjsg9XmNl9iwYsJL4NSCgJ0/rW/nqQv0A49RT53mLqqu/
-X-Google-Smtp-Source: AGHT+IFP7sfF3m4i727Wam1azM0kasnMNja3MbbIcuKtEVEEuVjvrxhTyPP+GTViojdnICts5GSdLA==
-X-Received: by 2002:a7b:cd98:0:b0:42c:b9c8:2bb0 with SMTP id 5b1f17b1804b1-4366b2f95c5mr489415105e9.4.1736174042302;
-        Mon, 06 Jan 2025 06:34:02 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:2a4a:e041:e2ff:6b41])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436611ea40csm569164115e9.1.2025.01.06.06.34.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 06:34:01 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-sound@vger.kernel.org,  linux-amlogic@lists.infradead.org,
-  s.nawrocki@samsung.com,  lgirdwood@gmail.com,  broonie@kernel.org,
-  linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v1 2/2] ASoC: dapm: add support for preparing streams
-In-Reply-To: <1jy0zo9fu4.fsf@starbuckisacylon.baylibre.com> (Jerome Brunet's
-	message of "Mon, 06 Jan 2025 15:28:35 +0100")
-References: <20250106141316.375984-1-martin.blumenstingl@googlemail.com>
-	<20250106141316.375984-3-martin.blumenstingl@googlemail.com>
-	<1jy0zo9fu4.fsf@starbuckisacylon.baylibre.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Mon, 06 Jan 2025 15:34:01 +0100
-Message-ID: <1jsepw9fl2.fsf@starbuckisacylon.baylibre.com>
+        bh=Wu/duhkbgGlNJWz7ztxoYWw979ezogxfVeEKKcsMTTk=;
+        b=Di0xMQZqnfOFv8uh4+iz/29h4Dyhz+sFHKZizGzyWwIJu4CNaRfFzhTKVtfLdTsQx9
+         GgXMN0mEVCJv0rVfu4o5k59uKBZ89rfgbxL8NhOyZnRD/xi/y9DATxqb/osZCXQRIOJf
+         eJzncSZwE5StpmDKlzCpDRiv9LbXYjt+ZWt7pe7ZLxMHqI+kbmFTvUnE0kWnvbO5m65u
+         3N/uaSZ/xh0JtH128+Xv//I+lU2/dxo8UFAZkSt08ZSNe7SJpeBfDrb2JioenRcuffcy
+         LZ7Nx1y1Du8uVaIkGcicMXVu9Szq03OXOjnGF7kWj7llpeMDwZdlVJMzWI2jqXNP4A+v
+         l8Uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736170719; x=1736775519;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Wu/duhkbgGlNJWz7ztxoYWw979ezogxfVeEKKcsMTTk=;
+        b=Fwn16TyDJy5lpn9D9i5Akju9BTe2RFW+uHsW1OHn1rfkcQAqNqfKWnDE3U/JeWfpMY
+         4Bv2ByNCHFyfVLKeK4mfei9N94J398Z+R6DaMW6yvO49+CkN0WHjAlFg7FyUugjcNNwK
+         5YqM8p8fVsFmRmbVyMvPFJ001TdyXBM7Km4K5ZY+LwCcW7gDpNBcstGFDLc+V8Nprr+F
+         lf8GWY/Nx1lBfVqIxkaWlpW8NCbij063JkkEusKJBThAfuNU8x0EWQpFzXN/qbMv0/9/
+         HrBSCY1sd9yNYqQDK3bd1shYEjWvwKGQRVWU6fb/BJE4YPjEPcndzn2hMX9ckZPNLQak
+         xm7g==
+X-Forwarded-Encrypted: i=1; AJvYcCWZpP+cW6gwu2RMgLAvM8GDKtEkKR6kYjQt1eQ0kFx+Boo1gnX87iiOCfbIjsVqTqmX+QAClU3VLFko9g+UVxir@lists.infradead.org
+X-Gm-Message-State: AOJu0Ywms2A17JK4HwsOymkfSsR+hci91R4Mo46TXLN9xxBIH78JyYKz
+	tDdkx8kfUKNS9ewMoBm4d1S+0B66yAnipe0MYqdkIhYEEWr/MDrkwllNXxqXP8OtOh/lJaDnBP5
+	yJ1i1UuFsbbal4zjssZNTY3Ztlgch/bCn
+X-Gm-Gg: ASbGncs7Waxslr4TgHxKycW+4EY7r9BH064g/CDDlJMwkDGplgDggFb1V4Dicvo5jgw
+	v91UK+PIQ4wSC9SlkpoSITpl7eKfKWgACJPofKPeypGWLRi2ewotn
+X-Google-Smtp-Source: AGHT+IHCpyL2RoYltN/Son8caT8kY8aAmajpToxCZK8DLZGGKoPJGKURhGVgsvMDpcmla3l7r6gwPZ0/44HMzZ5UWKg=
+X-Received: by 2002:a17:903:98e:b0:215:9bc2:42ec with SMTP id
+ d9443c01a7336-219e6f24eecmr837678925ad.47.1736170719510; Mon, 06 Jan 2025
+ 05:38:39 -0800 (PST)
 MIME-Version: 1.0
+References: <CAFBinCDdiJ3UNVUcShjq=7U2=oUwT3ciYdKSuZ5TdcrikxFBpg@mail.gmail.com>
+ <1ja5c4b4rt.fsf@starbuckisacylon.baylibre.com> <CAFBinCCAAZHqrKHyfwHPqk9Ki9nDeGFFQfj34ZF58wj+6AjH-g@mail.gmail.com>
+ <1j4j2caxds.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1j4j2caxds.fsf@starbuckisacylon.baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 6 Jan 2025 14:38:28 +0100
+Message-ID: <CAFBinCA2pz+ZeWr2hA-QRwZ5gC70qp=2iqemX5MpyM75cAbJwg@mail.gmail.com>
+Subject: Re: meson-aiu: HDMI codec .prepare() callback not called
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-sound@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	dmitry.baryshkov@linaro.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250106_063403_823271_A94F50EF 
-X-CRM114-Status: GOOD (  20.93  )
+X-CRM114-CacheID: sfid-20250106_053840_198031_35BB40E3 
+X-CRM114-Status: GOOD (  27.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,75 +89,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon 06 Jan 2025 at 15:28, Jerome Brunet <jbrunet@baylibre.com> wrote:
-
-> On Mon 06 Jan 2025 at 15:13, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
->
->> Codec driver can implement .hw_params and/or .prepare from struct
->> snd_soc_dai_ops. For codec-to-codec links only the former (.hw_params)
->> callback has been called.
->>
->> On platforms like Amlogic Meson8/8b/8m2 the SoC's sound card
->> (sound/soc/meson/gx-card.c) uses a codec-to-codec link for the HDMI
->> codec output because further digital routing is required after the
->> backend. The new DRM HDMI (audio) codec framework (which internally
->> uses sound/soc/codecs/hdmi-codec.c) relies on the .prepare callback
->> of the hdmi-codec to be called. Implement a call to
->> snd_soc_dai_prepare() so the .prepare callback of the hdmi-codec is
->> called on those platforms.
->>
->> For platforms or sound cards without a codec-to-codec link with
->> additional parameters (which applies to most hardware) this changes
->> nothing as the .prepare callback is already called via
->> snd_pcm_do_prepare() (as well as dpcm_fe_dai_prepare() and
->> dpcm_be_dai_prepare()) on those.
->>
->> Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-> Thanks for working on this. Overall it looks good.
->
-> Not sure if the call the .prepare() should go at the beginning of
-> POST_PMU, as done here, or at the end of PRE_PMU ? 
->
->> ---
->>  sound/soc/soc-dapm.c | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
->> index 99521c784a9b..ac8eef217dc4 100644
->> --- a/sound/soc/soc-dapm.c
->> +++ b/sound/soc/soc-dapm.c
->> @@ -4013,6 +4013,13 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
->>  		break;
->>  
->>  	case SND_SOC_DAPM_POST_PMU:
->> +		snd_soc_dapm_widget_for_each_sink_path(w, path) {
->> +			sink = path->sink->priv;
->> +
->> +			snd_soc_dai_prepare(sink, substream);
-
-I initially missed it but I think you should do that on the source path
-too
-
-On Amlogic, the cpu side of the link does not have a .prepare() callback
-but it would be incorrect to do the codec side only if it did.
-
->> +			ret = 0;
->> +		}
->> +
->>  		snd_soc_dapm_widget_for_each_sink_path(w, path) {
->>  			sink = path->sink->priv;
-
--- 
-Jerome
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgSmVyb21lLAoKT24gTW9uLCBKYW4gNiwgMjAyNSBhdCAyOjI04oCvUE0gSmVyb21lIEJydW5l
+dCA8amJydW5ldEBiYXlsaWJyZS5jb20+IHdyb3RlOgo+Cj4gT24gTW9uIDA2IEphbiAyMDI1IGF0
+IDEzOjQ5LCBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1h
+aWwuY29tPiB3cm90ZToKPgo+ID4gSGkgSmVyb21lLAo+ID4KPiA+IE9uIE1vbiwgSmFuIDYsIDIw
+MjUgYXQgMTE6NDTigK9BTSBKZXJvbWUgQnJ1bmV0IDxqYnJ1bmV0QGJheWxpYnJlLmNvbT4gd3Jv
+dGU6Cj4gPiBbLi4uXQo+ID4+ID4gSSBoYXZlIGZ1cnRoZXIgdmVyaWZpZWQgdGhhdCB0aGUgZ3gt
+Y2FyZCBwYXJzaW5nIGRvZXMgZmluZCB0aGUgSERNaQo+ID4+ID4gY29udHJvbGxlciBhbmQgbGlu
+a3MgaXQgY29ycmVjdGx5Lgo+ID4+ID4gVG8gbWUgaXQncyBvZGQgdGhhdCBvbmx5IHRoZSAucHJl
+cGFyZSgpIGNhbGxiYWNrIGlzIG5vdCBjYWxsZWQsIGFsbAo+ID4+ID4gb3RoZXJzIChhcyBtZW50
+aW9uZWQgYWJvdmU6IC5od19wYXJhbXMsIC5zdGFydHVwLCAuLi4pIGFyZSB3b3JraW5nCj4gPj4g
+PiBmaW5lLgo+ID4+Cj4gPj4gSSB0aGluayB0aGUgcHJvYmxlbSB5b3UgYXJlIHNlZWluZyBjb21l
+cyBmcm9tIHRoZSBxdWlyayBvZgo+ID4+IGNvZGVjLXRvLWNvZGVjIGxpbmtzLiBUaGUgaGRtaSBj
+b2RlYyBsaW5rIGlzIHN1Y2ggYSBsaW5rIG9uIEFtbG9naWMKPiA+PiBiZWNhdXNlIGZ1cnRoZXIg
+ZGlnaXRhbCByb3V0aW5nIGlzIHJlcXVpcmVkIGFmdGVyIHRoZSBiYWNrZW5kLgo+ID4+Cj4gPj4g
+VGhvc2UgdHlwZSBvZiBsaW5rcyBhcmUgbm90IHVzZWQgbXVjaCBiZXNpZGUgc29tZQo+ID4+IENQ
+VSBvZmZsb2FkaW5nIG9uIFNhbXN1bmcgYW5kIEFtbG9naWMsIGFzIGZhciBhcyBJIGtub3cuCj4g
+Pj4gSXQgaXMgcG9zc2libGUsIGV2ZW4gbGlrZWx5LCB0aGF0IHRoaW5ncyBhcmUgc3RpbGwgbWlz
+c2luZyB0aGVyZS4KPiA+Pgo+ID4+IFNvIHRob3NlIEMyQyBsaW5rcyBhcmUgb3BlcmF0ZWQgYnkg
+dGhlIERBUE0gZXZlbnRzLCBub3QgdGhlIHJlZ3VhbGFyCj4gPj4gQVNvQyBjb2RlLiBZb3UgY2Fu
+IHN0YXJ0IGhlcmU6Cj4gPj4gaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tl
+cm5lbC9naXQvdG9ydmFsZHMvbGludXguZ2l0L3RyZWUvc291bmQvc29jL3NvYy1kYXBtLmMjbjM5
+OTUKPiA+IFRoYW5rIHlvdSAtIHRoYXQgaXMgaW5kZWVkIHRoZSByb290IGNhdXNlIQo+ID4KPiA+
+PiBZb3UnbGwgc2VlIHRoYXQgLnByZXBhcmUoKSBpcyBub3QgY2FsbGVkLCBzYW1lIGFzIC50cmln
+Z2VyKCkKPiA+PiBUaGF0IHNob3VsZCBwcm9wYWJseSBiZSBmaXhlZCA6Lwo+ID4gU2luY2UgSSdt
+IHN0aWxsIHZlcnkgbXVjaCBjbHVlbGVzcyBhYm91dCBhbGwgb2YgdGhpcyBJIGp1c3QgY2FtZSB1
+cAo+ID4gd2l0aCBhbiBleHBlcmltZW50YWwgcGF0Y2guIEFueSBmZWVkYmFjayBvbiBpdCBpcyB3
+ZWxjb21lIChJIGNhbiBzZW5kCj4gPiBpdCBhcyBSRkMgcGF0Y2ggLSBidXQgcHJlcGFyZSBmb3Ig
+bWUgbmVlZGluZyBzdXBwb3J0KS4KPgo+IEl0IGlzIHByb2JhYmx5IGEgZ29vZCBpZGVhIHRvIHNl
+bmQgaXQgdG8gZ2V0IG1vcmUgZmVlZGJhY2ssIHllcy4KU3VyZSwgSSdsbCBkbyB0aGF0IGxhdGVy
+IGFuZCBrZWVwIHlvdSBDYydlZC4KCj4gPiBXaXRoIHRoZSBhdHRhY2hlZCBwYXRjaCBJIG5vdyBz
+ZWUgaGRtaS1jb2RlYydzIC5wcmVwYXJlIGNhbGxiYWNrIGJlaW5nIGNhbGxlZDoKPgo+IExvb2tz
+IGxpa2UgYSBnb29kIHN0YXJ0IDopCj4KPiBDb3VwbGVzIG9mIG5pdHBpY2tzOgo+Cj4gWW91IG1p
+Z2h0IHdhbnQgdG8gY2hlY2sgdGhlIHN0cmVhbSB2YWxpZGl0eSBpbgo+IHRoZSBmdW5jdGlvbiB5
+b3UndmUgaW50cm9kdWNlZCwgbGlrZSBpbiBzb2NfZGFpX3RyaWdnZXIoKQpzbmRfc29jX2RhaV9o
+d19wYXJhbXMoKSBkb2Vzbid0IGNoZWNrIGl0IGVpdGhlciBidXQgc25kX3NvY19kYWlfc3RhcnR1
+cCgpIGRvZXMuCgo+IEl0IG1heSBhbHNvIGJlIG5pY2UgdG8gdXBkYXRlIHNuZF9zb2NfcGNtX2Rh
+aV9wcmVwYXJlKCkgd2l0aCB0aGUKPiBpbnRyb2R1Y2VkIGZ1bmN0aW9uLgpBaCwgdGhpcyBvbmUg
+aXMgYWxzbyBjaGVja2luZyBmb3Igc3Vic3RyZWFtIHZhbGlkaXR5LiBUaGF0IGV4cGxhaW5zCnlv
+dXIgcHJldmlvdXMgc3VnZ2VzdGlvbiA6LSkKCgpCZXN0IHJlZ2FyZHMsCk1hcnRpbgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
+YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
+cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
