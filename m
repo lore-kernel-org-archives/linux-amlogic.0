@@ -4,80 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 059C3E77188
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 20:18:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A66FE77188
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 21:10:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
+	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SSNqFqCcghzX5mBzXXkI/ZRTy6CBp/XueuTQGtKiDKw=; b=K0vjH42vEPzcPM
-	VgxZmELkeZfBFA1xIjCoApi0f9TeD98VYqDGvhVgCJit0tH0rlm1Mudw7E+G7lYNa27fM7e0AG9BY
-	ik3Duyzlo8n8iawGmg+SLQjNlf+sMjXwrvdagUP24RnbQ+f5WhAKPtaK7e725IQRWf4lnPFSxX8CC
-	SFZxWHP0Ra/sKP7hDClAmxJGcLe1sLTWYPcl1aub86mJfVQJzAsnISLYMEe9gXyp7o+bJh3w3Jx9y
-	jIHCiyt/Z6NeskbYzIg0HzD14qw5MuId+GdpgVWnpqHEI0RI5cUxBNXRxAbJG3SLoL4mfZsJuuUnF
-	/Ts4FASMsp4gahkpYNyA==;
+	List-Owner; bh=qhKgU2RQ7nwTdzoA9nDhlNy9ukxkJpLa1FKN8dRUuu8=; b=FerL67i0T/ZxIB
+	joS5KRCwBXEXVF44NhKRNF+ekY77gLj2n8vBibNri7uigIK5FWSV2++NsMCGN5vszhpTLkJ2sucsL
+	stSWSU/dcI0kipIjfjFCj9X6eANuKTPpE7vKtydEEu1siualznoG46BO0fIRTtp0kvdihv2ZGixgX
+	39eqhzzk9GrLpslmlmNk/ao48jCU71Lv3IhAvh+pgE6uAKwpqR8IaL63yZX4YaP6enTtMgpQnAmxw
+	8z7wu0XagYiHMlMWVpae2zZoNgqZQaF8HqoqsgIVVzIZy3flcOTVcKea9kGdI8n7hvl/pE/jUVT+8
+	A7AeJJYlADqHolWeVkpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUtYA-00000002ZeZ-2AYL;
-	Mon, 06 Jan 2025 20:18:10 +0000
-Received: from mail-pj1-x102b.google.com ([2607:f8b0:4864:20::102b])
+	id 1tUuMD-00000002hMY-3YZv;
+	Mon, 06 Jan 2025 21:09:53 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUtY8-00000002Ze5-1EZ6
-	for linux-amlogic@lists.infradead.org;
-	Mon, 06 Jan 2025 20:18:09 +0000
-Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-2efe25558ddso16446173a91.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2025 12:18:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1736194687; x=1736799487; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P0GaMDU1JHDijDof5t0FbQDlFNQpuiTQnqh6uywyrTg=;
-        b=Y2cbMzgBhwokHhu1etiEv6mpA5QGcE/hNMs0L+hIM+ZOUKfBG4SBx7O6yh33aPVBWX
-         EzrSky9xI7t4Y53G8H32t/xfxq/2KbZKfhYoNcUOR67DjrFUseS1BBFjurob75M9gdLc
-         K3WziIqH7BM6z3FgRp+A+692TnnzbLmbKgtkt4losk7b54tluEN9Co5+Bi7MiQO+wda6
-         5SuLOIj4SzOLfqNX9CVyw1Ln9YDUCyvlYX7VHKks7nj0ASUaZAKrZ336dNWUDCjsfzWj
-         WkrmPeIIhkjspZqt6VQBxVu+MszQOOn9tNkBELl+hLCkEB6Qu7U9+YcLozZywYtNGLJr
-         MloQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736194687; x=1736799487;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P0GaMDU1JHDijDof5t0FbQDlFNQpuiTQnqh6uywyrTg=;
-        b=wqWU2TQAhTx7/88PZ3eVpL1iBSdGlVKFLPmb4HiZn8nFqPC3x9s0Ekdqoc0DmhQeZk
-         y+dbauZ09yELTWLTkeKgBOWrzS8vqIF5YnD+rQ1kffLzZ8uifrhjRiy9m3ySnbyC4X/v
-         UwjW5aE93pyBXwHSFHvUnjNKX34jaablm+hrP4szOhAaB5XH+sS9z0jfI4OJaKzOhCKT
-         1YOTrgKwoHvNBG6LcrNpJBwjmEWCTxbxARXhUzgOWdREyFWlPiRmHPK+RwxFazbr8Rdk
-         8HuWonXUsd6NJjWUtIEbt7tQtIQ7NWYUGTlENaBQJGfqC25Jy4O33cvTrzSsMa4QU9Zf
-         Ytow==
-X-Forwarded-Encrypted: i=1; AJvYcCWr9YlkEl16z7b2/2omLc44hbiVJLjAWTzzT24iEBWvJakrLlIp+CQvuSvCb5yIbJhFSLnu4Xg79aCCmy1P@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz2qbKhC/ndXdZVb42dA2CQKXhpFcqGaYk0TUcgTSPWMyI0ZvgY
-	do9dgo745nV5cPgAn6s2cciqLFH+KM1MEo3B4Dv1KfMG63HA0qv15txoFftcMPOsyN6ZKOb6eFv
-	VXq4xKWQ7yEyrhUrYHDIU5+MtASE=
-X-Gm-Gg: ASbGncvMYsmEoZN+QRiFhlvgWnI8paE6BKy9U+vgUI5MhKYyaA75FdMzYnEAddEUNIR
-	Q+vM+Ik/2dt0+xuRuJiWCzJZ+Z4gL4tG7i8Ps8qRF2lLgqJk21CniIBQaoJXRtmppUFOfY3U=
-X-Google-Smtp-Source: AGHT+IEMGb87OFQuJfOXeyD6W2MV/LaUciQW64MBFpUBXTvmXxqYjiY4re2OdxXlItV8fNYPUYktNeEauohkfWTnwKY=
-X-Received: by 2002:a17:90b:54c4:b0:2ee:cded:9ac7 with SMTP id
- 98e67ed59e1d1-2f452e38d72mr89776314a91.20.1736194686711; Mon, 06 Jan 2025
- 12:18:06 -0800 (PST)
+	id 1tUuLW-00000002hFT-0Hmt;
+	Mon, 06 Jan 2025 21:09:11 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id B23645C5E77;
+	Mon,  6 Jan 2025 21:08:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78F62C4CED2;
+	Mon,  6 Jan 2025 21:09:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736197748;
+	bh=d1lmIkFGT2wN5FlmMfsKR7+J04liC6MhrcnlDGlR1cs=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=qG+EVTQ1EzEZrWxgJZTuUZTyxf80bfaH5aOPwR5X36MK4fcqLobeWv71FAMsgyjj2
+	 ahvGMkJFOsWaRszDn5eyDDmcutreJajnKH/9hzlj2msnPUkaRV/PC/HLlzCNf0ZeHi
+	 zmR3Bu5vdHsrUNBcUZRHaViH+op1QJ0bEh2bZsJfXRV0uak/24quKi2qkg0O5vq6rY
+	 p4wMev+CUEijy1mIZCX1i1el4/030xY3DRhzcvu6sgi/AeapUxHJ2hnAPYloiIlxvp
+	 Twjv5b/92Ej3Xoe/HTgP6JKrDLnsOfsdslIh9XSXKJ7/1RSHluL3duF9RjzCtqMggu
+	 tM4MpuGoIkxsg==
+Message-ID: <ed20c67e7d1a91d7fd8b921f156f56fb.sboyd@kernel.org>
 MIME-Version: 1.0
-References: <20250106141316.375984-1-martin.blumenstingl@googlemail.com>
- <20250106141316.375984-3-martin.blumenstingl@googlemail.com> <1jy0zo9fu4.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jy0zo9fu4.fsf@starbuckisacylon.baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 6 Jan 2025 21:17:55 +0100
-X-Gm-Features: AbW1kvZ4sjlSpzNI2qfZDOfjihDRPUGNnWB5HCHlgSe6uNrrrt1gQ8zPmoQo7Nc
-Message-ID: <CAFBinCDanNUqcM35gEn7yREY0egddGMCppemnxj57Wo065Rwww@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 2/2] ASoC: dapm: add support for preparing streams
-To: Jerome Brunet <jbrunet@baylibre.com>, broonie@kernel.org
-Cc: linux-sound@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	s.nawrocki@samsung.com, lgirdwood@gmail.com, linux-kernel@vger.kernel.org
+In-Reply-To: <1jfrlwb69r.fsf@starbuckisacylon.baylibre.com>
+References: <20241220-amlogic-clk-drop-clk-regmap-tables-v1-0-96dd657cbfbd@baylibre.com> <20241220-amlogic-clk-drop-clk-regmap-tables-v1-2-96dd657cbfbd@baylibre.com> <9f1d69ebe1ddce5dfc170e986c9213f2.sboyd@kernel.org> <1ja5cp8f87.fsf@starbuckisacylon.baylibre.com> <88fe909ab182d1f17f6ef18161c7f064.sboyd@kernel.org> <1jfrlwb69r.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH 2/3] clk: amlogic: drop clk_regmap tables
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Mon, 06 Jan 2025 13:09:06 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250106_121808_333369_BC87A5C8 
-X-CRM114-Status: GOOD (  19.60  )
+X-CRM114-CacheID: sfid-20250106_130910_199496_FE8C79FB 
+X-CRM114-Status: GOOD (  65.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,43 +65,195 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBKYW4gNiwgMjAyNSBhdCAzOjI44oCvUE0gSmVyb21lIEJydW5ldCA8amJydW5ldEBi
-YXlsaWJyZS5jb20+IHdyb3RlOgo+Cj4gT24gTW9uIDA2IEphbiAyMDI1IGF0IDE1OjEzLCBNYXJ0
-aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPiB3cm90
-ZToKPgo+ID4gQ29kZWMgZHJpdmVyIGNhbiBpbXBsZW1lbnQgLmh3X3BhcmFtcyBhbmQvb3IgLnBy
-ZXBhcmUgZnJvbSBzdHJ1Y3QKPiA+IHNuZF9zb2NfZGFpX29wcy4gRm9yIGNvZGVjLXRvLWNvZGVj
-IGxpbmtzIG9ubHkgdGhlIGZvcm1lciAoLmh3X3BhcmFtcykKPiA+IGNhbGxiYWNrIGhhcyBiZWVu
-IGNhbGxlZC4KPiA+Cj4gPiBPbiBwbGF0Zm9ybXMgbGlrZSBBbWxvZ2ljIE1lc29uOC84Yi84bTIg
-dGhlIFNvQydzIHNvdW5kIGNhcmQKPiA+IChzb3VuZC9zb2MvbWVzb24vZ3gtY2FyZC5jKSB1c2Vz
-IGEgY29kZWMtdG8tY29kZWMgbGluayBmb3IgdGhlIEhETUkKPiA+IGNvZGVjIG91dHB1dCBiZWNh
-dXNlIGZ1cnRoZXIgZGlnaXRhbCByb3V0aW5nIGlzIHJlcXVpcmVkIGFmdGVyIHRoZQo+ID4gYmFj
-a2VuZC4gVGhlIG5ldyBEUk0gSERNSSAoYXVkaW8pIGNvZGVjIGZyYW1ld29yayAod2hpY2ggaW50
-ZXJuYWxseQo+ID4gdXNlcyBzb3VuZC9zb2MvY29kZWNzL2hkbWktY29kZWMuYykgcmVsaWVzIG9u
-IHRoZSAucHJlcGFyZSBjYWxsYmFjawo+ID4gb2YgdGhlIGhkbWktY29kZWMgdG8gYmUgY2FsbGVk
-LiBJbXBsZW1lbnQgYSBjYWxsIHRvCj4gPiBzbmRfc29jX2RhaV9wcmVwYXJlKCkgc28gdGhlIC5w
-cmVwYXJlIGNhbGxiYWNrIG9mIHRoZSBoZG1pLWNvZGVjIGlzCj4gPiBjYWxsZWQgb24gdGhvc2Ug
-cGxhdGZvcm1zLgo+ID4KPiA+IEZvciBwbGF0Zm9ybXMgb3Igc291bmQgY2FyZHMgd2l0aG91dCBh
-IGNvZGVjLXRvLWNvZGVjIGxpbmsgd2l0aAo+ID4gYWRkaXRpb25hbCBwYXJhbWV0ZXJzICh3aGlj
-aCBhcHBsaWVzIHRvIG1vc3QgaGFyZHdhcmUpIHRoaXMgY2hhbmdlcwo+ID4gbm90aGluZyBhcyB0
-aGUgLnByZXBhcmUgY2FsbGJhY2sgaXMgYWxyZWFkeSBjYWxsZWQgdmlhCj4gPiBzbmRfcGNtX2Rv
-X3ByZXBhcmUoKSAoYXMgd2VsbCBhcyBkcGNtX2ZlX2RhaV9wcmVwYXJlKCkgYW5kCj4gPiBkcGNt
-X2JlX2RhaV9wcmVwYXJlKCkpIG9uIHRob3NlLgo+ID4KPiA+IFN1Z2dlc3RlZC1ieTogSmVyb21l
-IEJydW5ldCA8amJydW5ldEBiYXlsaWJyZS5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4g
-Qmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgo+Cj4gVGhh
-bmtzIGZvciB3b3JraW5nIG9uIHRoaXMuIE92ZXJhbGwgaXQgbG9va3MgZ29vZC4KPgo+IE5vdCBz
-dXJlIGlmIHRoZSBjYWxsIHRoZSAucHJlcGFyZSgpIHNob3VsZCBnbyBhdCB0aGUgYmVnaW5uaW5n
-IG9mCj4gUE9TVF9QTVUsIGFzIGRvbmUgaGVyZSwgb3IgYXQgdGhlIGVuZCBvZiBQUkVfUE1VID8K
-SSBvbmx5IGtub3cgdGhhdCAucHJlcGFyZSgpIHNob3VsZCBiZSBjYWxsZWQgbGF0ZXIgdGhhbiAu
-aHdfcGFyYW1zKCkKc28gdGhpcyBpcyB3aGF0IEkgY2FtZSB1cCB3aXRoLgpNYXJrLCBkbyB5b3Ug
-aGF2ZSBhbnkgcHJlZmVyZW5jZXMgb3Igc3VnZ2VzdGlvbnMgaGVyZT8KClJlZ2FyZGluZyB0aGUg
-Y2FsbCB0byBzbmRfc29jX2RhaV9wcmVwYXJlKCk6IEknbGwgdGFrZSBjYXJlIG9mIHRoYXQgaW4K
-djIgb25jZSB0aGUgYWJvdmUgcXVlc3Rpb24gaGFzIGJlZW4gY2xhcmlmaWVkLgoKCkJlc3QgcmVn
-YXJkcywKTWFydGluCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJh
-ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51
-eC1hbWxvZ2ljCg==
+Quoting Jerome Brunet (2025-01-06 02:12:16)
+> On Mon 30 Dec 2024 at 17:08, Stephen Boyd <sboyd@kernel.org> wrote:
+> 
+> > Quoting Jerome Brunet (2024-12-21 03:09:28)
+> >> On Fri 20 Dec 2024 at 16:12, Stephen Boyd <sboyd@kernel.org> wrote:
+> >> 
+> >> > Quoting Jerome Brunet (2024-12-20 09:17:43)
+> >> >> Remove the big clk_regmap tables that are used to populate the regmap
+> >> >> field of clk_regmap clocks at runtime. Instead of using tables, use devres
+> >> >> to allow the clocks to get the necessary regmap.
+> >> >> 
+> >> >> A simpler solution would have been to use dev_get_regmap() but this would
+> >> >> not work with syscon based controllers.
+> >> >
+> >> > Why not have two init functions, one that uses the syscon approach from
+> >> > the parent device?
+> >> 
+> >> That would duplicate all the ops and would not scale if anything else
+> >> comes along. It would also tie the controller quirks with
+> >> clock ops. I would like to keep to clock ops and controllers decoupled as
+> >> much as possible
+> >
+> > Hmm... Maybe the init function should be moved out of the clk_ops and
+> > into the clk_init_data structure. It isn't used beyond registration time
+> > anyway, so it may make sense to do that and decouple the clk_ops from
+> > the controllers completely. Or we can have two init routines, one for
+> > the software side and one for the hardware side, but that's probably
+> > confusing. If anything, a clk hardware init function can be exported and
+> > called from the clk software init function if needed.
+> 
+> The .init() is really for the clock itself, so it makes sense for it to
+> in the ops. Removing the init from the ops would just be another layer of
+> controller init, something we can deal with in the probe() function.
+> 
+> What I'm trying to do here is properly decouple what belongs in each.
+
+Got it.
+
+> 
+> >
+> >> 
+> >> > Is the typical path to not use a syscon anyway?
+> >> >
+> >> 
+> >> I sure hope there will be no new syscon based controller but, ATM, around
+> >> 50% are syscon based in drivers/clk/meson. Those are here to stay and I
+> >> doubt we can do anything about it.
+> >
+> > Ok.
+> >
+> >> 
+> >> >> 
+> >> >> This rework save a bit memory and the result is less of a maintenance
+> >> >> burden.
+> >> >> 
+> >> >> Unfortunately meson8b is left out for now since it is an early clock
+> >> >> driver that does not have proper device support for now.
+> >> >
+> >> > We should add a clk_hw_get_of_node() function that returns
+> >> > hw->core->of_node. Then there can be a similar function that looks at
+> >> > the of_node of a clk registered with of_clk_hw_register() and tries to
+> >> > find the regmap either with
+> >> > syscon_node_to_regmap(clk_hw_get_of_node(hw)) or on the parent of the
+> >> > node for the clk.
+> >> 
+> >> That's the thing. It means encoding the controller quirk of how to get
+> >> regmap in the clock ops. I would be prefer to avoid that.
+> >
+> > So if we moved the init function out of struct clk_ops it would work?
+> 
+> That's already what I'm doing actually. I have the controller part which
+> position regmap so the clock part may get it regardless of where it
+> comes from (syscon, io or something else)
+> 
+> > We could have helpers for the common paths, i.e. the device has the
+> > regmap, or the syscon has the regmap, etc.
+> 
+> I think this is what I'm doing actually.
+
+Great!
+
+> >
+> >> 
+> >> >
+> >> > TL;DR: Don't use devres.
+> >> 
+> >> Using it makes thing nice and tidy. clk_regmap does not care were regmap
+> >> comes from. It just picks it up where it has been prepared
+> >
+> > It doesn't work for early clocks that don't have a device.
+> 
+> This is why I left the possibility for regmap to be "pre-populated" so it
+> continues to work the way it previously did.
+
+I missed that part. If the old way stills works then we stay in the
+halfway state which is undesirable. It's better to just finish a
+transition.
+
+> 
+> I admit early clocks is a low priority for me since I only have one
+> controller like this and I do not expect more.
+> 
+> If cleaning up this particular case is important, then I could add
+> another level of init:
+> * A callback passed along the init data of the clock to get the regmap.
+>   That callback would be called by the .init() ops, if set.
+>   That can encode any quirks without polluting the ops.
+> * It will grow the init data so the change won't save memory anymore.
+>   This was more a bonus so I don't really mind. Maintainability is more
+>   important.
+
+The struct clk_init_data _can_ be thrown away or reused, but it isn't
+always done that way.
+
+> * If the callback is not set, then it goes through the default, as
+>   proposed here. This would avoid patching all the clk_regmap clock of
+>   every controller.
+> 
+> 
+> > Furthermore, the name of the regmap is
+> > also usually device/clk controller specific.
+> 
+> The name registered in regmap_config itself is device specific, not
+> controller specific, since it can come from something else in the
+> platform (syscon or even aux devs), that why I think an independent
+> namespace is desirable -- Same goes the generic solution Conor is
+> working on I think.
+
+Alright.
+
+> 
+> > The regmap assignment
+> > doesn't really fit with the clk_ops because it's not operating on the
+> > clk hardware like the other clk_ops all do.
+> 
+> I see what you mean and I agree. It does not operate on the hardware but
+> it does collect the resources it needs to operate the HW, and ideally
+> it should do just that - without controller quirks popping up there.
+> 
+> Anyway a callback passed in init data takes care of 'io vs syscon'
+> controller too, same as devres. I can go that route if this is what you
+> prefer. I thought devres was a more elegant solution but it is indeed
+> restricted to 'device enabled' controllers. 
+> 
+> The change will be a bit ugly in the syscon ones but I don't mind.
+> Is that fine for v2 ?
+> 
+
+Sure. I wonder if we should make it a 'const void *data' member of
+struct clk_init_data so it can be anything and then either take a flag
+day to pass that to the struct clk_ops::init() function or set the
+struct clk_hw::init member to NULL after the init function is called. If
+we're concerned about bloating clk_init_data then we could introduce
+another two registration APIs that take a data argument and then pass
+that to the init function.
+
+ int clk_hw_register_data(struct device *dev, struct clk_hw *hw, const void *data)
+ int of_clk_hw_register_data(struct device *dev, struct clk_hw *hw, const void *data)
+
+or we could wrap the init data in a container struct in the drivers and
+move the setting of struct clk_hw::init to NULL after calling the init
+function.
+
+	struct clk_driver_init_data {
+		void *data;
+		int (*driver_init_function)(struct clk_hw *hw);
+		int (*regmap_driver_init_function)(struct clk_regmap *rclk);
+		etc...
+
+		struct clk_init_data init;
+	};
+
+Then the clk provider can use container_of(). If we did this we could
+even copy the contents of struct clk_hw::init into the driver specific
+wrapper that lives on the stack, repoint the struct clk_hw::init pointer
+to the stack copy, and then all the logic can live in the clk provider
+driver that registers the clk.
+
+This last option may be the best because it saves memory by not
+increasing the size of 'struct clk_init_data' and doesn't require a flag
+day to change the function signature of struct clk_ops::init(), even if
+there's only a handful of those right now. What do you think?
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
