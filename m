@@ -4,86 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFE4EE77197
-	for <linux-amlogic@archiver.kernel.org>; Sun,  5 Jan 2025 18:01:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E1C6E77198
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 10:13:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=30L1ArntV8rpLQrPPna2oJ0qLDtnLiaoLLhWq1QYyJk=; b=1n939N8wQ4ceUm
-	ORwnsxBTWVUe3behbyqGXhPtRjADzR6OKQd6B1LrKMotIB8ZkYfNL3id8k4gIe+P/9sQ29zejisVW
-	Dw3uDwIo5m1WEcOLvwDzdD2ta03hosYxyAhuBxlj6WheDWPDx2p4KSiPxpiyTf/qMLcKkS99f5RtV
-	+aFutImN1UZ9zZ5ilMQEFDVOrKfwI4qNgGvJR/G01olW4P2fmFB/r7uF0wdR8MK3cHI7hGvQhbkWL
-	sPUQZFiCdkfO/lsNr7rGj6F1bCfCUjHfExbo/Y8QDOzdsvtZeFkoHamSIYtFT8J2okiWiwVWZ0wKe
-	7BiQwPfQtYdujuPxpxzw==;
+	List-Owner; bh=ueqQ3doKpDbRtFJcasTIye1VgAvZrFuslibj5iPg5q8=; b=idp17kz0lexq2h
+	DB0DaSw2kRCCj9oldHp1J9JyrbfamtTHAPKUPefU1FES5pGSeFrwcqHBax3pIjfmSOc/xlZhloz55
+	lWWGwoOQNaEUF70p7fIe+TZqqe2nz8WD1QjXdehP84g0FR2nv8tQd/ptxAyVC45iGMWXA1LBaBEMt
+	vBb2PJpFheGZ802Pewdy85NjYd0TB7bkDxnR5gjKhOPNOtBPlTtPsBIDFv4DWgDd4AADqjNy4yoNB
+	cDSomGAc2I5tzKwNr0cjqpz3vYhAy0X4E4KpeiRe+yXzEAQDc0fdxznWJD33KgnrcgVZF4D9FTfnG
+	H3r72rv7IwZhptlxnnHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUUwB-0000000HEMs-35ga;
-	Sun, 05 Jan 2025 18:01:19 +0000
-Received: from mgamail.intel.com ([198.175.65.16])
+	id 1tUk74-00000000phx-348L;
+	Mon, 06 Jan 2025 10:13:34 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUUw9-0000000HELu-2F2f;
-	Sun, 05 Jan 2025 18:01:19 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736100078; x=1767636078;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cspNj5F8aDJyAAQ4b/34Sfk3+U9AtmMxeKqzn6Bn/sg=;
-  b=GupHcCAdL2HwNSIbNiZycCsG0QIl8LeyqpvTsVPPtG2qnUencOMXiW2K
-   YFjx/9TWiHPoKx0ERkYI+QYsjha+vUXGmRYSCgwpyjilfn0FnNy5EjW9m
-   qZ/dC2y+uFLsbg20lwHTP8zu/wzDFS/XCSMXqjrEGBtO6A5lMpVSyJAbV
-   rRLuPxbv+5gIkMPZii+FgtbIfq80LCr6tbV9lSLKY/nLR0NCXLzkP36sl
-   cSJpCCD3w7M7uVjessJ0P4kdJF3qsIUxNQnZl81omLtCvC6q5vrWDBE9p
-   JnLJdH0XhJeHwpxNk0CVDq/u7kpdEmoos2HsdRJYm6aiKAGGvih9wFo6z
-   g==;
-X-CSE-ConnectionGUID: pH3FUh5xQSSuqnxtfY70hA==
-X-CSE-MsgGUID: N9YoIjNFTsyFhzhLVSUNkg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="36414375"
-X-IronPort-AV: E=Sophos;i="6.12,291,1728975600"; 
-   d="scan'208";a="36414375"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2025 10:01:11 -0800
-X-CSE-ConnectionGUID: GDMyISq1QWqYzeHEk2plfQ==
-X-CSE-MsgGUID: 3KYqPRWERYqSP0EY+2XogA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,291,1728975600"; 
-   d="scan'208";a="133085080"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 05 Jan 2025 10:01:07 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tUUvw-000Btv-2D;
-	Sun, 05 Jan 2025 18:01:04 +0000
-Date: Mon, 6 Jan 2025 02:00:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jian Hu <jian.hu@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Chuan Liu <chuan.liu@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-	robh+dt <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, Jian Hu <jian.hu@amlogic.com>,
-	devicetree <devicetree@vger.kernel.org>,
-	linux-clk <linux-clk@vger.kernel.org>,
-	linux-amlogic <linux-amlogic@lists.infradead.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>,
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 5/5] clk: meson: t7: add t7 clock peripherals controller
- driver
-Message-ID: <202501060104.R3FJGgmC-lkp@intel.com>
-References: <20241231060047.2298871-6-jian.hu@amlogic.com>
+	id 1tUk5s-00000000pTQ-0U4D
+	for linux-amlogic@lists.infradead.org;
+	Mon, 06 Jan 2025 10:12:22 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-385e27c75f4so10222352f8f.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2025 02:12:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736158338; x=1736763138; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rrz0lFCuK82Hp07LVC+cIDO78ZFHfxHGrWZYexDodT4=;
+        b=Fd3R0EQaEKWcOoMd6d5PGq8jr+lfJV0EYIHh2uCImdqOawdymuZfqKswvZCW03K63I
+         gbxJGAg5Cxocyl3kXdGOE+1hz8K9NWXY5nYo+rHTKR3wjGwSiqUZlUzDZqO8XTHZ6sBE
+         w1/MTW2fpwpoCW2SsKWI0JqeUCjKqQUlCiPKOfU2yRay7gzXaqYEbnh20AsMqc67xxbL
+         84r6rvHhE7VIj+wlzWEjKe6e6kkJiWWsK0wvK2g8p4GHRoB/HkrFRc/AVmfS7SZXK6C0
+         psg5WjA0iFtyRvHsaN7wyQLHsXSl80FYXjrH6Q7zaVgW55PFPFBUYXqURi8Wd+dt1m2f
+         uQuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736158338; x=1736763138;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rrz0lFCuK82Hp07LVC+cIDO78ZFHfxHGrWZYexDodT4=;
+        b=KynG1EZd6AtqO0lBQMCEOH2dw1u7wQJ4HU4NrD8/muKDEv+M2mXVvMFvPdNK9PHKox
+         R9+5X1cG5OS+QuKeOm9jmNj1eYpHRRAKhjEmebClk4dEUTOpjeqv4Vt4SLn1EbpJ1Ejh
+         Zz9D1xp0R9PBFwvf00vPGYheSolHka8KlNriGopF19PkXeWOdwgSG8KZbvuk2lCGIRyk
+         QYeYVzIkDnpPNsItXe8g1P3yDNUGqt9UV8+Bx96jqv8DdV0P0+496/E0VOOHEORMxhmi
+         wf3TjEXknooZNWkTrI0KiytbaoNF8nyDOiULAtMSwMMzDjyVxVnmhBzoIbhBCkpasuvu
+         B8cQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX5VJjfd4XXKSqyy8gOYKSdW4SROa+DEJd/erIl4bwM4VzeUZGJi8uuo9GB+XZLslxFXMREeIJ4GUyGQu/q@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz/k6q+zh4lPR9KiGPJEMik3sP3aKAg7MyvgaBQcXg1LKoucYwS
+	qV2y01u/FglyleSdFDKIXYzLQbCC6MrEv2ddIduAHTD9tXy5K65ync6dy64W5bo=
+X-Gm-Gg: ASbGncteMoZju8KY6dBt0+IcJAkCptd0QDmQPCRqjiC0XTJqj2PRxbC+3PrfJmvODcX
+	HMonb2PmQm9dRUgLmGw3vfz5tDz1sietXTg4DtxTkhAzBdIOY1yKBMrUK0ePLcHc/ZkIN9q1+/W
+	jd5MwGNgg9HWoEX6K4ogtmAmONxDMLN6AAx+PLs5ELpw6vqA7hfLZj11VuUjh9C7uCtzxLqUX62
+	QQCw2w+6qQ3MlNjyhsxj8b31qwS9ZcYeOK6/klt1/nRDAxOb2IFNCMQ
+X-Google-Smtp-Source: AGHT+IFaxGixHUun2XH8nipy7jJnc/zpryL28gv0v5yxv4oK1sYJlkwuVGxq58OL8DC4FuqLVbEAMg==
+X-Received: by 2002:a05:6000:1f81:b0:386:1cd3:8a07 with SMTP id ffacd0b85a97d-38a221e2d29mr54182442f8f.7.1736158337707;
+        Mon, 06 Jan 2025 02:12:17 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:2a4a:e041:e2ff:6b41])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c89e375sm48306220f8f.73.2025.01.06.02.12.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 02:12:17 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Michael Turquette
+ <mturquette@baylibre.com>,  Neil Armstrong <neil.armstrong@linaro.org>,
+  linux-clk@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/3] clk: amlogic: drop clk_regmap tables
+In-Reply-To: <88fe909ab182d1f17f6ef18161c7f064.sboyd@kernel.org> (Stephen
+	Boyd's message of "Mon, 30 Dec 2024 17:08:26 -0800")
+References: <20241220-amlogic-clk-drop-clk-regmap-tables-v1-0-96dd657cbfbd@baylibre.com>
+	<20241220-amlogic-clk-drop-clk-regmap-tables-v1-2-96dd657cbfbd@baylibre.com>
+	<9f1d69ebe1ddce5dfc170e986c9213f2.sboyd@kernel.org>
+	<1ja5cp8f87.fsf@starbuckisacylon.baylibre.com>
+	<88fe909ab182d1f17f6ef18161c7f064.sboyd@kernel.org>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 06 Jan 2025 11:12:16 +0100
+Message-ID: <1jfrlwb69r.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241231060047.2298871-6-jian.hu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250105_100117_671887_6D8F8D4D 
-X-CRM114-Status: GOOD (  11.29  )
+X-CRM114-CacheID: sfid-20250106_021220_434316_C1A7558A 
+X-CRM114-Status: GOOD (  51.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,60 +104,161 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jian,
+On Mon 30 Dec 2024 at 17:08, Stephen Boyd <sboyd@kernel.org> wrote:
 
-kernel test robot noticed the following build warnings:
+> Quoting Jerome Brunet (2024-12-21 03:09:28)
+>> On Fri 20 Dec 2024 at 16:12, Stephen Boyd <sboyd@kernel.org> wrote:
+>> 
+>> > Quoting Jerome Brunet (2024-12-20 09:17:43)
+>> >> Remove the big clk_regmap tables that are used to populate the regmap
+>> >> field of clk_regmap clocks at runtime. Instead of using tables, use devres
+>> >> to allow the clocks to get the necessary regmap.
+>> >> 
+>> >> A simpler solution would have been to use dev_get_regmap() but this would
+>> >> not work with syscon based controllers.
+>> >
+>> > Why not have two init functions, one that uses the syscon approach from
+>> > the parent device?
+>> 
+>> That would duplicate all the ops and would not scale if anything else
+>> comes along. It would also tie the controller quirks with
+>> clock ops. I would like to keep to clock ops and controllers decoupled as
+>> much as possible
+>
+> Hmm... Maybe the init function should be moved out of the clk_ops and
+> into the clk_init_data structure. It isn't used beyond registration time
+> anyway, so it may make sense to do that and decouple the clk_ops from
+> the controllers completely. Or we can have two init routines, one for
+> the software side and one for the hardware side, but that's probably
+> confusing. If anything, a clk hardware init function can be exported and
+> called from the clk software init function if needed.
 
-[auto build test WARNING on clk/clk-next]
-[also build test WARNING on linus/master v6.13-rc5 next-20241220]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The .init() is really for the clock itself, so it makes sense for it to
+in the ops. Removing the init from the ops would just be another layer of
+controller init, something we can deal with in the probe() function.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jian-Hu/dt-bindings-clock-add-Amlogic-T7-PLL-clock-controller/20241231-141835
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20241231060047.2298871-6-jian.hu%40amlogic.com
-patch subject: [PATCH 5/5] clk: meson: t7: add t7 clock peripherals controller driver
-config: arm64-randconfig-r112-20250105 (https://download.01.org/0day-ci/archive/20250106/202501060104.R3FJGgmC-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce: (https://download.01.org/0day-ci/archive/20250106/202501060104.R3FJGgmC-lkp@intel.com/reproduce)
+What I'm trying to do here is properly decouple what belongs in each.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501060104.R3FJGgmC-lkp@intel.com/
+>
+>> 
+>> > Is the typical path to not use a syscon anyway?
+>> >
+>> 
+>> I sure hope there will be no new syscon based controller but, ATM, around
+>> 50% are syscon based in drivers/clk/meson. Those are here to stay and I
+>> doubt we can do anything about it.
+>
+> Ok.
+>
+>> 
+>> >> 
+>> >> This rework save a bit memory and the result is less of a maintenance
+>> >> burden.
+>> >> 
+>> >> Unfortunately meson8b is left out for now since it is an early clock
+>> >> driver that does not have proper device support for now.
+>> >
+>> > We should add a clk_hw_get_of_node() function that returns
+>> > hw->core->of_node. Then there can be a similar function that looks at
+>> > the of_node of a clk registered with of_clk_hw_register() and tries to
+>> > find the regmap either with
+>> > syscon_node_to_regmap(clk_hw_get_of_node(hw)) or on the parent of the
+>> > node for the clk.
+>> 
+>> That's the thing. It means encoding the controller quirk of how to get
+>> regmap in the clock ops. I would be prefer to avoid that.
+>
+> So if we moved the init function out of struct clk_ops it would work?
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/clk/meson/t7-peripherals.c:1276:26: sparse: sparse: Initializer entry defined twice
-   drivers/clk/meson/t7-peripherals.c:1277:26: sparse:   also defined here
+That's already what I'm doing actually. I have the controller part which
+position regmap so the clock part may get it regardless of where it
+comes from (syscon, io or something else)
 
-vim +1276 drivers/clk/meson/t7-peripherals.c
+> We could have helpers for the common paths, i.e. the device has the
+> regmap, or the syscon has the regmap, etc.
 
-  1262	
-  1263	 static u32 eth_rmii_table[] = { 0, 7 };
-  1264	
-  1265	static struct clk_regmap eth_rmii_sel = {
-  1266		.data = &(struct clk_regmap_mux_data) {
-  1267			.offset = CLKCTRL_ETH_CLK_CTRL,
-  1268			.mask = 0x3,
-  1269			.shift = 9,
-  1270			.table = eth_rmii_table
-  1271		},
-  1272		.hw.init = &(struct clk_init_data){
-  1273			.name = "eth_rmii_sel",
-  1274			.ops = &clk_regmap_mux_ops,
-  1275			.parent_data = &(const struct clk_parent_data) {
-> 1276				.fw_name = "fdiv2",
-  1277				.fw_name = "rmii_pad"
-  1278			},
-  1279			.num_parents = 2
-  1280		},
-  1281	};
-  1282	
+I think this is what I'm doing actually.
+
+>
+>> 
+>> With what you are suggesting I could make an ops that
+>> * Try dev_get_regmap() first
+>> * Try the syscon/of_node way next
+>> 
+>> I can make this "trial an error" approach work but I think it is pretty
+>> nasty and encode controller stuff inside the clock driver.
+>
+> I get it. The difference in driver design while sharing the same clk
+> hardware and clk_ops causes this tension.
+>
+>> 
+>> >
+>> > TL;DR: Don't use devres.
+>> 
+>> Using it makes thing nice and tidy. clk_regmap does not care were regmap
+>> comes from. It just picks it up where it has been prepared
+>
+> It doesn't work for early clocks that don't have a device.
+
+This is why I left the possibility for regmap to be "pre-populated" so it
+continues to work the way it previously did.
+
+I admit early clocks is a low priority for me since I only have one
+controller like this and I do not expect more.
+
+If cleaning up this particular case is important, then I could add
+another level of init:
+* A callback passed along the init data of the clock to get the regmap.
+  That callback would be called by the .init() ops, if set.
+  That can encode any quirks without polluting the ops.
+* It will grow the init data so the change won't save memory anymore.
+  This was more a bonus so I don't really mind. Maintainability is more
+  important.
+* If the callback is not set, then it goes through the default, as
+  proposed here. This would avoid patching all the clk_regmap clock of
+  every controller.
+
+>
+>> 
+>> That approach could be extended to support controller with multiple
+>> regmaps, with a name that does not depend on regmap_config and is local
+>> to the clock controller. This will be useful when the name if defined
+>> somewhere else (syscon, auxiliary device, etc ...)
+>> 
+>
+> I think you're saying that clk_ops can be common things that aren't
+> device/clk controller specific, while the regmap config is usually
+> device/clk controller specific.
+
+Agreed
+
+> Furthermore, the name of the regmap is
+> also usually device/clk controller specific.
+
+The name registered in regmap_config itself is device specific, not
+controller specific, since it can come from something else in the
+platform (syscon or even aux devs), that why I think an independent
+namespace is desirable -- Same goes the generic solution Conor is
+working on I think.
+
+> The regmap assignment
+> doesn't really fit with the clk_ops because it's not operating on the
+> clk hardware like the other clk_ops all do.
+
+I see what you mean and I agree. It does not operate on the hardware but
+it does collect the resources it needs to operate the HW, and ideally
+it should do just that - without controller quirks popping up there.
+
+Anyway a callback passed in init data takes care of 'io vs syscon'
+controller too, same as devres. I can go that route if this is what you
+prefer. I thought devres was a more elegant solution but it is indeed
+restricted to 'device enabled' controllers. 
+
+The change will be a bit ugly in the syscon ones but I don't mind.
+Is that fine for v2 ?
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
