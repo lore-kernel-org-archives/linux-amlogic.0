@@ -4,79 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07B7EE77188
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 13:12:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4441E77198
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 13:24:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=d4sS+bR3a1fLzNbwi91HwapJUQO68CDMC9poaNEKO7A=; b=xvUfjJwIzP0eeLH9/gVmdkJ99w
-	RfHB2GMFbiz1NV3s7VeF1A5KS741gQcfc8OgCPWHKLBKbhcUvM2dg6CpMKFJV3/VYFrnnZPHl1aKk
-	5oDbINstlffyYKMD42BqPxaSKhFj6B67JIe3B1DlUTIYXp8dVZ+YK3dL0wymWCUSCFLKfWChhPEXC
-	igBDsUh6q+L94dgBAWHLpcZMwgAK4TJqBgiQBaqyIeTMLwSEouf1aJyK7SUurcEXxFzJAqma4n25y
-	3wAd0iJGFxqWkc7KXergZAWcyNo7VuposUXs2q+DX5agDypUfcmqrZdAdLHaz7/GcokELPIo6yMPQ
-	SSkaohyA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=jcZrjLJBTtjVeooTb0hiAuH1dxIN3+c5iAumC+G4Z9g=; b=uRRVPNPDmdK5KX
+	+qFCprjEXHfB4Fsqamd9e/qCdI/4sBYCUuOH78AbIVdl0+xf6kg/BdTSv6k2d4u8csVsZ0D4CaLSZ
+	PIkmYliQs2AvQy4u17o2ItutRCwGheKZ2BAyVeWVT85ZG72n1hMwZdgo/UwsOzKCEtr5rcFkjoZm5
+	fAOSMHmCrUa/I+AqY82qAPAJg2zxmuu6fw/l/YnamWW7RJV9P4lgaKO456cKgqcrM11CpzsaSfsnK
+	wPQ1cEGEKnjw32iGCYkqLQAeS1IzPeLbJhW6NG+a09MdeHSj0lHdiYggz6uNB9cNd3qxjdvbfE24r
+	ZEeiplze5V6WKar/RgEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUmu8-00000001LwM-3ZHC;
-	Mon, 06 Jan 2025 13:12:24 +0000
-Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
+	id 1tUn6E-00000001OYK-09Ds;
+	Mon, 06 Jan 2025 13:24:54 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUmYO-00000001HtV-1p9U;
-	Mon, 06 Jan 2025 12:49:58 +0000
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-2165cb60719so208201065ad.0;
-        Mon, 06 Jan 2025 04:49:56 -0800 (PST)
+	id 1tUn5e-00000001OL7-2P8U
+	for linux-amlogic@lists.infradead.org;
+	Mon, 06 Jan 2025 13:24:20 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-388cae9eb9fso7710231f8f.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2025 05:24:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1736167796; x=1736772596; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uNEZk5ddA3ly0m7I4Ts+PZ2QcYJquoLTFQCrFxQhjcE=;
-        b=TnJgu7U3J/NwpC9gnLT3ug12l4UzaWLk3UZwI3brHKG/VauycyUN0t/6AiRN4c8B07
-         LeIbaqY3xWUuOBDFyQoRxxEDdu5QHtA+wqS6JSIePSaBvIptB5FgTq1KIzVFVoiHJHEb
-         B5+t9+q0ogpwAGRXZykgZHgnebd2j14KRv8fRUMWqRhXwovXCEK2YFUIb4WdyA5dJpDA
-         9drj4GBWZInZqUxztZ6HNTGlIqpMcmWU9j22nAnZTbK2B4KoHev6isng5DStBbO4qUo5
-         Ftu9OFSMA9pOMTVp1vN4TW+IdrU2wtnlAroDfAkSEg1JOFbCx6QRklzdcUOs5LyokISU
-         Zu+w==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736169856; x=1736774656; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wh7y9ZL8IHaZKAw4Kx4QJ+0Dl9iHJaYj8tnVocIhEBI=;
+        b=Vsp2EK/rGA69PO48gKE1pxCnvYM/JS4YlIymi1sFI9tnN8fq21ufkA0RttRKHqUfbr
+         CfzFoO0GerF1PtgaONUu74pxulR6DkS1xcJc2G6jtRTgkMo6Y0X9/IxPpn2Ibzm/erXg
+         hY/+eFCn1rI3DVrz2pJQPk9FOdDtBaqqFR7fHZPGEtqVCwlApa71u1y+yuuxvxvGhtAT
+         5+rTKu4n75z6v92awWBI2LzNJE+Gy4DP4z85GBDom/5iaoCWrrlf32EvQ2E++scUu+VN
+         VQ7psVdn/znSJ2sPj1hs/mbHIl4CDiV2RgwIQ4asIy5f/7DVaGjCD/GUWiTgQDbJhpZ8
+         ay/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736167796; x=1736772596;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uNEZk5ddA3ly0m7I4Ts+PZ2QcYJquoLTFQCrFxQhjcE=;
-        b=AqF5BOl/OhX6V0m5FHIYqgHpwf3rXH7SZnMvZK8Nynwc0BJNYURP3EmBPf2niADF8F
-         Dm/gsw10Fcjojzbj3CZrz/RFi9ZCvI+YVlLDyMSkAwiAR1DRxQF0mTPP3oeYAK4Rh3ac
-         JWcqL1wdjlRs+dsrgp/f7wmhLEbJmGVC/vQFDP4tflARDiZ2F+Eww8uoH9NEzo/7Iuag
-         wCMiSx6urnuy5Bp4rQs17QE+HIoVMQL9pr99PgZArYVS6nsuAIVTRHSHuBHpCced+f6L
-         wLwPhHAngI83IwOBG5gecAKn9uN0LfMwvSO1EBEaMe+52UWQMJrb+C/q1xeusUPevSQq
-         OUdg==
-X-Forwarded-Encrypted: i=1; AJvYcCWhpDEbqsrSmkVVw0NeIdWwXywvYtacMmOgEkojOQvqQBd7zvBbwvCjouB9ddWHah0YNdjXc5YrZ8y59Jz93ppa@lists.infradead.org
-X-Gm-Message-State: AOJu0YzGDtqkTS2JvLqO02p9TNdEq7QIIntcIuKxXqms0wTKijU1px2p
-	iQYuLGsrCmab1B6av/H5VRMBdmyszufHMEIUHPgcITRRfWznEd1AVXDxeVyAlRA0EjsIyLBoZXN
-	T/Dm55KmYdQ20jhfKUu+BC0l8S6w=
-X-Gm-Gg: ASbGncuLVrhQRbgIoRnq5oWdmuV5STd7MhOTYHCEkBU1QDFYDOByQUKRYhQq55aDTR5
-	6c3FwFERZ+LY2nrD+4jsuKPf2YiDKjzWy37PPqvywrDvQdIBeDleF
-X-Google-Smtp-Source: AGHT+IEiBsuTS3ff1IHORBHdNPZnr464pawYcL5M4FmA7wQd0hDWTnZA/P5tSzmClXti0ljt5D65N86rEgJnLxZ2pCs=
-X-Received: by 2002:a17:902:ef08:b0:20b:6d82:acb with SMTP id
- d9443c01a7336-219e6e9f521mr786531895ad.23.1736167795584; Mon, 06 Jan 2025
- 04:49:55 -0800 (PST)
-MIME-Version: 1.0
-References: <CAFBinCDdiJ3UNVUcShjq=7U2=oUwT3ciYdKSuZ5TdcrikxFBpg@mail.gmail.com>
- <1ja5c4b4rt.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1ja5c4b4rt.fsf@starbuckisacylon.baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 6 Jan 2025 13:49:44 +0100
-Message-ID: <CAFBinCCAAZHqrKHyfwHPqk9Ki9nDeGFFQfj34ZF58wj+6AjH-g@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1736169856; x=1736774656;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=wh7y9ZL8IHaZKAw4Kx4QJ+0Dl9iHJaYj8tnVocIhEBI=;
+        b=FWv0C5o+LM04nqzyZAEiDFYggkOn0c8W7r3dwElRilbVRYYED7Va2HjZo6Hs8dZqMj
+         5dEnfQF+uNiz238rG8AIcHzASGZdaSh7+khQ7QGW7VhpHyk2nQA+CVd52hVzSaUneSZC
+         EXciWSytsbFc3a1z6O18HY4IQ/ZI8peEGl70UavYjsld3eR/o8j6KAyVn+NMk2loEpy/
+         oO9f7Jm8gysY33NAjqC6TBjCkEej7Q30ZfmDkw6Ew3pb/f5/JIayr6BSdVsdlGG4XaFB
+         Wn3Dr9xrLnjSp/U/n0M6dHlOi+S87ijqprmUTEfPMbuoAoWv3NPpmAlHw816q1AnXq96
+         NnAw==
+X-Gm-Message-State: AOJu0Ywug/QchHV0IT3sgPQsmcOXK4z4N9sjP4e8mpZqRmdjnieub/bL
+	GcdLOEJqlqIcWr9ldTfFo4yXrPZZ1FoZhpAXk5d08aC/aJc2M2ufj2nuYzZPbNs=
+X-Gm-Gg: ASbGncvBQPJ9kHNYe0KgskbhEYeU7AXa/eSqGNLy9DR+i2tl8VNpfFe2MDvZQ0z8xA5
+	kE87NaXQali62+59RqES2toUSGzxggnxwEpvrlHCVO/FOd3ijnt9tP18vErv29pfBabCWwh0yZ6
+	A7uYi/vFebinUzp91zs/cEMyMotVnvmhLAsU3D5KQIL+gkARvYpmYKGYibSX9OnNmf5EgfwQj5i
+	VtSurQxHpe7XSRLKOa4WimIz9xkeGC4/AgqfCGNFV48IB+Tsn7hM8xr
+X-Google-Smtp-Source: AGHT+IEYX2sk1R9ukeY4XWDMmDErFBY6fzPWeg/ypRYwHmYveU89A+VrD/4Ey7f29RphiwDzBZmMKg==
+X-Received: by 2002:a05:6000:178b:b0:385:e303:8dd8 with SMTP id ffacd0b85a97d-38a221ffda0mr51262438f8f.26.1736169856421;
+        Mon, 06 Jan 2025 05:24:16 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:2a4a:e041:e2ff:6b41])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8330e0sm47133587f8f.34.2025.01.06.05.24.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 05:24:16 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org,  linux-sound@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org,
+  dmitry.baryshkov@linaro.org
 Subject: Re: meson-aiu: HDMI codec .prepare() callback not called
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, linux-sound@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dmitry.baryshkov@linaro.org
-Content-Type: multipart/mixed; boundary="000000000000ba0f07062b09103d"
+In-Reply-To: <CAFBinCCAAZHqrKHyfwHPqk9Ki9nDeGFFQfj34ZF58wj+6AjH-g@mail.gmail.com>
+	(Martin Blumenstingl's message of "Mon, 6 Jan 2025 13:49:44 +0100")
+References: <CAFBinCDdiJ3UNVUcShjq=7U2=oUwT3ciYdKSuZ5TdcrikxFBpg@mail.gmail.com>
+	<1ja5c4b4rt.fsf@starbuckisacylon.baylibre.com>
+	<CAFBinCCAAZHqrKHyfwHPqk9Ki9nDeGFFQfj34ZF58wj+6AjH-g@mail.gmail.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 06 Jan 2025 14:24:15 +0100
+Message-ID: <1j4j2caxds.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250106_044956_558755_458DA7FF 
-X-CRM114-Status: GOOD (  22.69  )
+X-CRM114-CacheID: sfid-20250106_052418_876664_4A5C21BB 
+X-CRM114-Status: GOOD (  21.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,113 +95,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---000000000000ba0f07062b09103d
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Jerome,
-
-On Mon, Jan 6, 2025 at 11:44=E2=80=AFAM Jerome Brunet <jbrunet@baylibre.com=
-> wrote:
-[...]
-> > I have further verified that the gx-card parsing does find the HDMi
-> > controller and links it correctly.
-> > To me it's odd that only the .prepare() callback is not called, all
-> > others (as mentioned above: .hw_params, .startup, ...) are working
-> > fine.
->
-> I think the problem you are seeing comes from the quirk of
-> codec-to-codec links. The hdmi codec link is such a link on Amlogic
-> because further digital routing is required after the backend.
->
-> Those type of links are not used much beside some
-> CPU offloading on Samsung and Amlogic, as far as I know.
-> It is possible, even likely, that things are still missing there.
->
-> So those C2C links are operated by the DAPM events, not the regualar
-> ASoC code. You can start here:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/s=
-ound/soc/soc-dapm.c#n3995
-Thank you - that is indeed the root cause!
-
-> You'll see that .prepare() is not called, same as .trigger()
-> That should propably be fixed :/
-Since I'm still very much clueless about all of this I just came up
-with an experimental patch. Any feedback on it is welcome (I can send
-it as RFC patch - but prepare for me needing support).
-With the attached patch I now see hdmi-codec's .prepare callback being call=
-ed:
-$ speaker-test -c2
-
-speaker-test 1.2.13
-
-Playback device is default
-Stream parameters are 48000Hz, S16_LE, 2 channels
-Using 16 octaves of pink noise
-Rate set to 48000Hz (requested 48000Hz)
-Buffer size range from 128 to 262144
-Period size range from 64 to 131072
-Periods =3D 4
-[   42.043413] hdmi-audio-codec hdmi-audio-codec.0.auto:
-hdmi_codec_hw_params() width 16 rate 48000 channels 2
-[   42.047916] hdmi-audio-codec hdmi-audio-codec.0.auto:
-hdmi_codec_prepare() width 16 rate 48000 channels 2
-
-
-
-Best regards,
-Martin
-
---000000000000ba0f07062b09103d
-Content-Type: text/x-patch; charset="US-ASCII"; name="soc-damp-call-prepare.diff"
-Content-Disposition: attachment; filename="soc-damp-call-prepare.diff"
-Content-Transfer-Encoding: base64
-Content-ID: <f_m5l1ck5a0>
-X-Attachment-Id: f_m5l1ck5a0
-
-ZGlmZiAtLWdpdCBhL2luY2x1ZGUvc291bmQvc29jLWRhaS5oIGIvaW5jbHVkZS9zb3VuZC9zb2Mt
-ZGFpLmgKaW5kZXggYWFiNTdjMTlmNjJiLi5hMTE1MDE3NTI2MzcgMTAwNjQ0Ci0tLSBhL2luY2x1
-ZGUvc291bmQvc29jLWRhaS5oCisrKyBiL2luY2x1ZGUvc291bmQvc29jLWRhaS5oCkBAIC0xOTMs
-NiArMTkzLDkgQEAgaW50IHNuZF9zb2NfZGFpX3NldF9jaGFubmVsX21hcChzdHJ1Y3Qgc25kX3Nv
-Y19kYWkgKmRhaSwKIAogaW50IHNuZF9zb2NfZGFpX3NldF90cmlzdGF0ZShzdHJ1Y3Qgc25kX3Nv
-Y19kYWkgKmRhaSwgaW50IHRyaXN0YXRlKTsKIAoraW50IHNuZF9zb2NfZGFpX3ByZXBhcmUoc3Ry
-dWN0IHNuZF9zb2NfZGFpICpkYWksCisJCQlzdHJ1Y3Qgc25kX3BjbV9zdWJzdHJlYW0gKnN1YnN0
-cmVhbSk7CisKIC8qIERpZ2l0YWwgQXVkaW8gSW50ZXJmYWNlIG11dGUgKi8KIGludCBzbmRfc29j
-X2RhaV9kaWdpdGFsX211dGUoc3RydWN0IHNuZF9zb2NfZGFpICpkYWksIGludCBtdXRlLAogCQkJ
-ICAgICBpbnQgZGlyZWN0aW9uKTsKZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy9zb2MtZGFpLmMgYi9z
-b3VuZC9zb2Mvc29jLWRhaS5jCmluZGV4IDM0YmExYTkzYTRjOS4uOGU4MTc4M2U1YmU5IDEwMDY0
-NAotLS0gYS9zb3VuZC9zb2Mvc29jLWRhaS5jCisrKyBiL3NvdW5kL3NvYy9zb2MtZGFpLmMKQEAg
-LTM2MCw2ICszNjAsMTggQEAgaW50IHNuZF9zb2NfZGFpX3NldF90cmlzdGF0ZShzdHJ1Y3Qgc25k
-X3NvY19kYWkgKmRhaSwgaW50IHRyaXN0YXRlKQogfQogRVhQT1JUX1NZTUJPTF9HUEwoc25kX3Nv
-Y19kYWlfc2V0X3RyaXN0YXRlKTsKIAoraW50IHNuZF9zb2NfZGFpX3ByZXBhcmUoc3RydWN0IHNu
-ZF9zb2NfZGFpICpkYWksCisJCQlzdHJ1Y3Qgc25kX3BjbV9zdWJzdHJlYW0gKnN1YnN0cmVhbSkK
-K3sKKwlpbnQgcmV0ID0gMDsKKworCWlmIChkYWktPmRyaXZlci0+b3BzICYmCisJICAgIGRhaS0+
-ZHJpdmVyLT5vcHMtPnByZXBhcmUpCisJCXJldCA9IGRhaS0+ZHJpdmVyLT5vcHMtPnByZXBhcmUo
-c3Vic3RyZWFtLCBkYWkpOworCisJcmV0dXJuIHNvY19kYWlfcmV0KGRhaSwgcmV0KTsKK30KKwog
-LyoqCiAgKiBzbmRfc29jX2RhaV9kaWdpdGFsX211dGUgLSBjb25maWd1cmUgREFJIHN5c3RlbSBv
-ciBtYXN0ZXIgY2xvY2suCiAgKiBAZGFpOiBEQUkKZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy9zb2Mt
-ZGFwbS5jIGIvc291bmQvc29jL3NvYy1kYXBtLmMKaW5kZXggOTk1MjFjNzg0YTliLi5hYzhlZWYy
-MTdkYzQgMTAwNjQ0Ci0tLSBhL3NvdW5kL3NvYy9zb2MtZGFwbS5jCisrKyBiL3NvdW5kL3NvYy9z
-b2MtZGFwbS5jCkBAIC00MDEzLDYgKzQwMTMsMTMgQEAgc3RhdGljIGludCBzbmRfc29jX2RhaV9s
-aW5rX2V2ZW50KHN0cnVjdCBzbmRfc29jX2RhcG1fd2lkZ2V0ICp3LAogCQlicmVhazsKIAogCWNh
-c2UgU05EX1NPQ19EQVBNX1BPU1RfUE1VOgorCQlzbmRfc29jX2RhcG1fd2lkZ2V0X2Zvcl9lYWNo
-X3NpbmtfcGF0aCh3LCBwYXRoKSB7CisJCQlzaW5rID0gcGF0aC0+c2luay0+cHJpdjsKKworCQkJ
-c25kX3NvY19kYWlfcHJlcGFyZShzaW5rLCBzdWJzdHJlYW0pOworCQkJcmV0ID0gMDsKKwkJfQor
-CiAJCXNuZF9zb2NfZGFwbV93aWRnZXRfZm9yX2VhY2hfc2lua19wYXRoKHcsIHBhdGgpIHsKIAkJ
-CXNpbmsgPSBwYXRoLT5zaW5rLT5wcml2OwogCg==
---000000000000ba0f07062b09103d
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---000000000000ba0f07062b09103d--
-
+T24gTW9uIDA2IEphbiAyMDI1IGF0IDEzOjQ5LCBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4u
+Ymx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPiB3cm90ZToKCj4gSGkgSmVyb21lLAo+Cj4gT24g
+TW9uLCBKYW4gNiwgMjAyNSBhdCAxMTo0NOKAr0FNIEplcm9tZSBCcnVuZXQgPGpicnVuZXRAYmF5
+bGlicmUuY29tPiB3cm90ZToKPiBbLi4uXQo+PiA+IEkgaGF2ZSBmdXJ0aGVyIHZlcmlmaWVkIHRo
+YXQgdGhlIGd4LWNhcmQgcGFyc2luZyBkb2VzIGZpbmQgdGhlIEhETWkKPj4gPiBjb250cm9sbGVy
+IGFuZCBsaW5rcyBpdCBjb3JyZWN0bHkuCj4+ID4gVG8gbWUgaXQncyBvZGQgdGhhdCBvbmx5IHRo
+ZSAucHJlcGFyZSgpIGNhbGxiYWNrIGlzIG5vdCBjYWxsZWQsIGFsbAo+PiA+IG90aGVycyAoYXMg
+bWVudGlvbmVkIGFib3ZlOiAuaHdfcGFyYW1zLCAuc3RhcnR1cCwgLi4uKSBhcmUgd29ya2luZwo+
+PiA+IGZpbmUuCj4+Cj4+IEkgdGhpbmsgdGhlIHByb2JsZW0geW91IGFyZSBzZWVpbmcgY29tZXMg
+ZnJvbSB0aGUgcXVpcmsgb2YKPj4gY29kZWMtdG8tY29kZWMgbGlua3MuIFRoZSBoZG1pIGNvZGVj
+IGxpbmsgaXMgc3VjaCBhIGxpbmsgb24gQW1sb2dpYwo+PiBiZWNhdXNlIGZ1cnRoZXIgZGlnaXRh
+bCByb3V0aW5nIGlzIHJlcXVpcmVkIGFmdGVyIHRoZSBiYWNrZW5kLgo+Pgo+PiBUaG9zZSB0eXBl
+IG9mIGxpbmtzIGFyZSBub3QgdXNlZCBtdWNoIGJlc2lkZSBzb21lCj4+IENQVSBvZmZsb2FkaW5n
+IG9uIFNhbXN1bmcgYW5kIEFtbG9naWMsIGFzIGZhciBhcyBJIGtub3cuCj4+IEl0IGlzIHBvc3Np
+YmxlLCBldmVuIGxpa2VseSwgdGhhdCB0aGluZ3MgYXJlIHN0aWxsIG1pc3NpbmcgdGhlcmUuCj4+
+Cj4+IFNvIHRob3NlIEMyQyBsaW5rcyBhcmUgb3BlcmF0ZWQgYnkgdGhlIERBUE0gZXZlbnRzLCBu
+b3QgdGhlIHJlZ3VhbGFyCj4+IEFTb0MgY29kZS4gWW91IGNhbiBzdGFydCBoZXJlOgo+PiBodHRw
+czovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC90b3J2YWxkcy9saW51
+eC5naXQvdHJlZS9zb3VuZC9zb2Mvc29jLWRhcG0uYyNuMzk5NQo+IFRoYW5rIHlvdSAtIHRoYXQg
+aXMgaW5kZWVkIHRoZSByb290IGNhdXNlIQo+Cj4+IFlvdSdsbCBzZWUgdGhhdCAucHJlcGFyZSgp
+IGlzIG5vdCBjYWxsZWQsIHNhbWUgYXMgLnRyaWdnZXIoKQo+PiBUaGF0IHNob3VsZCBwcm9wYWJs
+eSBiZSBmaXhlZCA6Lwo+IFNpbmNlIEknbSBzdGlsbCB2ZXJ5IG11Y2ggY2x1ZWxlc3MgYWJvdXQg
+YWxsIG9mIHRoaXMgSSBqdXN0IGNhbWUgdXAKPiB3aXRoIGFuIGV4cGVyaW1lbnRhbCBwYXRjaC4g
+QW55IGZlZWRiYWNrIG9uIGl0IGlzIHdlbGNvbWUgKEkgY2FuIHNlbmQKPiBpdCBhcyBSRkMgcGF0
+Y2ggLSBidXQgcHJlcGFyZSBmb3IgbWUgbmVlZGluZyBzdXBwb3J0KS4KCkl0IGlzIHByb2JhYmx5
+IGEgZ29vZCBpZGVhIHRvIHNlbmQgaXQgdG8gZ2V0IG1vcmUgZmVlZGJhY2ssIHllcy4KCj4gV2l0
+aCB0aGUgYXR0YWNoZWQgcGF0Y2ggSSBub3cgc2VlIGhkbWktY29kZWMncyAucHJlcGFyZSBjYWxs
+YmFjayBiZWluZyBjYWxsZWQ6CgpMb29rcyBsaWtlIGEgZ29vZCBzdGFydCA6KQoKQ291cGxlcyBv
+ZiBuaXRwaWNrczoKCllvdSBtaWdodCB3YW50IHRvIGNoZWNrIHRoZSBzdHJlYW0gdmFsaWRpdHkg
+aW4KdGhlIGZ1bmN0aW9uIHlvdSd2ZSBpbnRyb2R1Y2VkLCBsaWtlIGluIHNvY19kYWlfdHJpZ2dl
+cigpCgpJdCBtYXkgYWxzbyBiZSBuaWNlIHRvIHVwZGF0ZSBzbmRfc29jX3BjbV9kYWlfcHJlcGFy
+ZSgpIHdpdGggdGhlCmludHJvZHVjZWQgZnVuY3Rpb24uCgo+ICQgc3BlYWtlci10ZXN0IC1jMgo+
+Cj4gc3BlYWtlci10ZXN0IDEuMi4xMwo+Cj4gUGxheWJhY2sgZGV2aWNlIGlzIGRlZmF1bHQKPiBT
+dHJlYW0gcGFyYW1ldGVycyBhcmUgNDgwMDBIeiwgUzE2X0xFLCAyIGNoYW5uZWxzCj4gVXNpbmcg
+MTYgb2N0YXZlcyBvZiBwaW5rIG5vaXNlCj4gUmF0ZSBzZXQgdG8gNDgwMDBIeiAocmVxdWVzdGVk
+IDQ4MDAwSHopCj4gQnVmZmVyIHNpemUgcmFuZ2UgZnJvbSAxMjggdG8gMjYyMTQ0Cj4gUGVyaW9k
+IHNpemUgcmFuZ2UgZnJvbSA2NCB0byAxMzEwNzIKPiBQZXJpb2RzID0gNAo+IFsgICA0Mi4wNDM0
+MTNdIGhkbWktYXVkaW8tY29kZWMgaGRtaS1hdWRpby1jb2RlYy4wLmF1dG86Cj4gaGRtaV9jb2Rl
+Y19od19wYXJhbXMoKSB3aWR0aCAxNiByYXRlIDQ4MDAwIGNoYW5uZWxzIDIKPiBbICAgNDIuMDQ3
+OTE2XSBoZG1pLWF1ZGlvLWNvZGVjIGhkbWktYXVkaW8tY29kZWMuMC5hdXRvOgo+IGhkbWlfY29k
+ZWNfcHJlcGFyZSgpIHdpZHRoIDE2IHJhdGUgNDgwMDAgY2hhbm5lbHMgMgo+Cj4KPgo+IEJlc3Qg
+cmVnYXJkcywKPiBNYXJ0aW4KPgo+IFsyLiB0ZXh0L3gtcGF0Y2g7IHNvYy1kYW1wLWNhbGwtcHJl
+cGFyZS5kaWZmXS4uLgoKLS0gCkplcm9tZQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
