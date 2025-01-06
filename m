@@ -4,90 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E1C6E77198
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 10:13:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AACD7E77198
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 10:45:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ueqQ3doKpDbRtFJcasTIye1VgAvZrFuslibj5iPg5q8=; b=idp17kz0lexq2h
-	DB0DaSw2kRCCj9oldHp1J9JyrbfamtTHAPKUPefU1FES5pGSeFrwcqHBax3pIjfmSOc/xlZhloz55
-	lWWGwoOQNaEUF70p7fIe+TZqqe2nz8WD1QjXdehP84g0FR2nv8tQd/ptxAyVC45iGMWXA1LBaBEMt
-	vBb2PJpFheGZ802Pewdy85NjYd0TB7bkDxnR5gjKhOPNOtBPlTtPsBIDFv4DWgDd4AADqjNy4yoNB
-	cDSomGAc2I5tzKwNr0cjqpz3vYhAy0X4E4KpeiRe+yXzEAQDc0fdxznWJD33KgnrcgVZF4D9FTfnG
-	H3r72rv7IwZhptlxnnHg==;
+	List-Owner; bh=7EITQxS7CaC1JaSj5iesAd5dpQzabAA80vFXRUHepgI=; b=f1rZKP5ZBKhaRh
+	RKU5YoqiQK6pDMajTDqWHSgARmg7g/GFnUSumWsbrOi3wTUdAISxlgKFm7W4Wv3tjrrjpV/UlsC1U
+	oBGcU+CVbHHR/f89Rd3ZPrWLr6iquRDbNVU/o/fv3h5+6fy0oLIi99ZW6fgQlDVVshI7SjKhBYwam
+	Sl+Csr87NnsI6se1kPPKCbmZ+Dbu8qgYUteQ0RsCfffDGzeg7I65B7yeLeYcKAuVEk3PDwSSAIbKb
+	Nx7vfMz+U/ualRJWmsmSqBfBhEQTrNtcwJ5rYFhk2sC4YUOSJPEqzuQOzWSspDzolFTW4FQsAf07D
+	N9fl8bRR4Lc1VL6kfC/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUk74-00000000phx-348L;
-	Mon, 06 Jan 2025 10:13:34 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1tUkc2-00000000uHc-47X0;
+	Mon, 06 Jan 2025 10:45:34 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUk5s-00000000pTQ-0U4D
+	id 1tUkbC-00000000u5V-17yO
 	for linux-amlogic@lists.infradead.org;
-	Mon, 06 Jan 2025 10:12:22 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-385e27c75f4so10222352f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2025 02:12:19 -0800 (PST)
+	Mon, 06 Jan 2025 10:44:43 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-436ce2ab251so16104235e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2025 02:44:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736158338; x=1736763138; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736160280; x=1736765080; darn=lists.infradead.org;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rrz0lFCuK82Hp07LVC+cIDO78ZFHfxHGrWZYexDodT4=;
-        b=Fd3R0EQaEKWcOoMd6d5PGq8jr+lfJV0EYIHh2uCImdqOawdymuZfqKswvZCW03K63I
-         gbxJGAg5Cxocyl3kXdGOE+1hz8K9NWXY5nYo+rHTKR3wjGwSiqUZlUzDZqO8XTHZ6sBE
-         w1/MTW2fpwpoCW2SsKWI0JqeUCjKqQUlCiPKOfU2yRay7gzXaqYEbnh20AsMqc67xxbL
-         84r6rvHhE7VIj+wlzWEjKe6e6kkJiWWsK0wvK2g8p4GHRoB/HkrFRc/AVmfS7SZXK6C0
-         psg5WjA0iFtyRvHsaN7wyQLHsXSl80FYXjrH6Q7zaVgW55PFPFBUYXqURi8Wd+dt1m2f
-         uQuA==
+        bh=URK3fgfuzCYj9ufRvcHXSc7DgTihX+ky3vmNQnZQfBc=;
+        b=EG86uJj8QDgbHz3AIUn6bgtCBCMtRKLEPkw+0HRrifyFTsPbSP9EgbJPKv7e0yEUbe
+         /XnCsg6AX3AIs+8MH8iYvSxPoqf1pUpqjXgqz+chzURCapiDN6Cj9p1uLivpgHreMz44
+         NmX0wbLHofQcyc8ndD160qc8Zn/nkMKE7DoGi798MJZOWP/QGGx3hZ9IXB8Emo3nqYJv
+         oUcJQ6ePNfcduoB7O9S9ZHOBGvmom+/g0dVN+Eh3GCD7IGTlJ2geTeQ6O8SQiedPfmot
+         ICfkpbhWxcqTQryJjYCA6p9v7kwfgY6jFS71BS0r3y32iDUc19owBRhOoZS5MD8tyXFj
+         1Vsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736158338; x=1736763138;
+        d=1e100.net; s=20230601; t=1736160280; x=1736765080;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rrz0lFCuK82Hp07LVC+cIDO78ZFHfxHGrWZYexDodT4=;
-        b=KynG1EZd6AtqO0lBQMCEOH2dw1u7wQJ4HU4NrD8/muKDEv+M2mXVvMFvPdNK9PHKox
-         R9+5X1cG5OS+QuKeOm9jmNj1eYpHRRAKhjEmebClk4dEUTOpjeqv4Vt4SLn1EbpJ1Ejh
-         Zz9D1xp0R9PBFwvf00vPGYheSolHka8KlNriGopF19PkXeWOdwgSG8KZbvuk2lCGIRyk
-         QYeYVzIkDnpPNsItXe8g1P3yDNUGqt9UV8+Bx96jqv8DdV0P0+496/E0VOOHEORMxhmi
-         wf3TjEXknooZNWkTrI0KiytbaoNF8nyDOiULAtMSwMMzDjyVxVnmhBzoIbhBCkpasuvu
-         B8cQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX5VJjfd4XXKSqyy8gOYKSdW4SROa+DEJd/erIl4bwM4VzeUZGJi8uuo9GB+XZLslxFXMREeIJ4GUyGQu/q@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz/k6q+zh4lPR9KiGPJEMik3sP3aKAg7MyvgaBQcXg1LKoucYwS
-	qV2y01u/FglyleSdFDKIXYzLQbCC6MrEv2ddIduAHTD9tXy5K65ync6dy64W5bo=
-X-Gm-Gg: ASbGncteMoZju8KY6dBt0+IcJAkCptd0QDmQPCRqjiC0XTJqj2PRxbC+3PrfJmvODcX
-	HMonb2PmQm9dRUgLmGw3vfz5tDz1sietXTg4DtxTkhAzBdIOY1yKBMrUK0ePLcHc/ZkIN9q1+/W
-	jd5MwGNgg9HWoEX6K4ogtmAmONxDMLN6AAx+PLs5ELpw6vqA7hfLZj11VuUjh9C7uCtzxLqUX62
-	QQCw2w+6qQ3MlNjyhsxj8b31qwS9ZcYeOK6/klt1/nRDAxOb2IFNCMQ
-X-Google-Smtp-Source: AGHT+IFaxGixHUun2XH8nipy7jJnc/zpryL28gv0v5yxv4oK1sYJlkwuVGxq58OL8DC4FuqLVbEAMg==
-X-Received: by 2002:a05:6000:1f81:b0:386:1cd3:8a07 with SMTP id ffacd0b85a97d-38a221e2d29mr54182442f8f.7.1736158337707;
-        Mon, 06 Jan 2025 02:12:17 -0800 (PST)
+        bh=URK3fgfuzCYj9ufRvcHXSc7DgTihX+ky3vmNQnZQfBc=;
+        b=mYMuUNagripXBKrrzXCbLx+GuP0lKrPerSRXIBb3u7eX4D1/wGzcRSfJIUeG2T8m5k
+         13+SP/kAsYkLNbPVTlrAcdKmWbtUV74A5birx+gHo7KHhpk6IDYp8VUmPZ65PYdorf9d
+         QPMmiigs80Fx1NV541fadTx+KqZveBLpME6K9EWLNvhz3AWX9BV8K4rdeI6bVoWoyZuY
+         7OC8FaOim64aGS5jQ+Dix9SUiwBlD6DQ+SSnbC3iUCWee5UBixyxMVKPOVOH+xn/Gmjv
+         ePFocez6qUhDhw2ixq17KcEPwTuoNFL1REAL2XrGP6IAEuovZOrCb7nwRz7IVg98BHVK
+         twWQ==
+X-Gm-Message-State: AOJu0Ywd0lZoI6Po8Qdcr6s+OehNuUOEfuOWwkM3BpiJzzZJWLjEsrnk
+	amGb7IT8bWwp/jDLHefmD+dPZoYclikoeiQVRdNP1lTmw+4I/GSuO3UMmpIz4Z0=
+X-Gm-Gg: ASbGncsF0v3odNpeFw6Pvq3xGXqwDtKXpO4AMfFLTYGskZE8pq/M3g78eV97iRWApAm
+	l1KHaGJX4qAzQNIpEHopCdz0om4yf9KeuBLzNiF2S3WllfXm4lkqL3vSN8dWNjEKksPLDX7lD6J
+	Y1UrAMFc2GYu3hd0+OQ9KcAW3HzKng4Q7bubhh/+caH5nrXDlWiLjpfL8HX3ziueoR7R1Fj0EgA
+	RApzG3rxw5hKQl4tUq0H7HyjPzYMUkgOnrYiXTbRWuoHak8pkXdYYiz
+X-Google-Smtp-Source: AGHT+IHoY2q0XdnrpBdI9reTe90onfZ6dA7Pk+FthfP9lXA7CWjLaTCoOtDhHYEthX6HJnO2DBTxqw==
+X-Received: by 2002:a05:600c:154b:b0:432:d797:404a with SMTP id 5b1f17b1804b1-43668b49976mr470611445e9.22.1736160280576;
+        Mon, 06 Jan 2025 02:44:40 -0800 (PST)
 Received: from localhost ([2a01:e0a:3c5:5fb1:2a4a:e041:e2ff:6b41])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c89e375sm48306220f8f.73.2025.01.06.02.12.17
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43661219578sm569128335e9.20.2025.01.06.02.44.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 02:12:17 -0800 (PST)
+        Mon, 06 Jan 2025 02:44:40 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  Michael Turquette
- <mturquette@baylibre.com>,  Neil Armstrong <neil.armstrong@linaro.org>,
-  linux-clk@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] clk: amlogic: drop clk_regmap tables
-In-Reply-To: <88fe909ab182d1f17f6ef18161c7f064.sboyd@kernel.org> (Stephen
-	Boyd's message of "Mon, 30 Dec 2024 17:08:26 -0800")
-References: <20241220-amlogic-clk-drop-clk-regmap-tables-v1-0-96dd657cbfbd@baylibre.com>
-	<20241220-amlogic-clk-drop-clk-regmap-tables-v1-2-96dd657cbfbd@baylibre.com>
-	<9f1d69ebe1ddce5dfc170e986c9213f2.sboyd@kernel.org>
-	<1ja5cp8f87.fsf@starbuckisacylon.baylibre.com>
-	<88fe909ab182d1f17f6ef18161c7f064.sboyd@kernel.org>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org,  linux-sound@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org,
+  dmitry.baryshkov@linaro.org
+Subject: Re: meson-aiu: HDMI codec .prepare() callback not called
+In-Reply-To: <CAFBinCDdiJ3UNVUcShjq=7U2=oUwT3ciYdKSuZ5TdcrikxFBpg@mail.gmail.com>
+	(Martin Blumenstingl's message of "Tue, 31 Dec 2024 19:44:20 +0100")
+References: <CAFBinCDdiJ3UNVUcShjq=7U2=oUwT3ciYdKSuZ5TdcrikxFBpg@mail.gmail.com>
 User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Mon, 06 Jan 2025 11:12:16 +0100
-Message-ID: <1jfrlwb69r.fsf@starbuckisacylon.baylibre.com>
+Date: Mon, 06 Jan 2025 11:44:38 +0100
+Message-ID: <1ja5c4b4rt.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250106_021220_434316_C1A7558A 
-X-CRM114-Status: GOOD (  51.62  )
+X-CRM114-CacheID: sfid-20250106_024442_370774_D35B17FD 
+X-CRM114-Status: GOOD (  25.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,158 +97,106 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon 30 Dec 2024 at 17:08, Stephen Boyd <sboyd@kernel.org> wrote:
+On Tue 31 Dec 2024 at 19:44, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-> Quoting Jerome Brunet (2024-12-21 03:09:28)
->> On Fri 20 Dec 2024 at 16:12, Stephen Boyd <sboyd@kernel.org> wrote:
->> 
->> > Quoting Jerome Brunet (2024-12-20 09:17:43)
->> >> Remove the big clk_regmap tables that are used to populate the regmap
->> >> field of clk_regmap clocks at runtime. Instead of using tables, use devres
->> >> to allow the clocks to get the necessary regmap.
->> >> 
->> >> A simpler solution would have been to use dev_get_regmap() but this would
->> >> not work with syscon based controllers.
->> >
->> > Why not have two init functions, one that uses the syscon approach from
->> > the parent device?
->> 
->> That would duplicate all the ops and would not scale if anything else
->> comes along. It would also tie the controller quirks with
->> clock ops. I would like to keep to clock ops and controllers decoupled as
->> much as possible
+> Hi Jerome,
 >
-> Hmm... Maybe the init function should be moved out of the clk_ops and
-> into the clk_init_data structure. It isn't used beyond registration time
-> anyway, so it may make sense to do that and decouple the clk_ops from
-> the controllers completely. Or we can have two init routines, one for
-> the software side and one for the hardware side, but that's probably
-> confusing. If anything, a clk hardware init function can be exported and
-> called from the clk software init function if needed.
-
-The .init() is really for the clock itself, so it makes sense for it to
-in the ops. Removing the init from the ops would just be another layer of
-controller init, something we can deal with in the probe() function.
-
-What I'm trying to do here is properly decouple what belongs in each.
-
+> I am still working on a HDMI controller driver for Meson8/8b/8m2.
+> HDMI output would be incomplete without audio.
+> There's a great series from Dmitry [0] which simplifies the HDMI
+> controller driver implementation by moving all the hdmi-codec related
+> management to a generic framework.
 >
->> 
->> > Is the typical path to not use a syscon anyway?
->> >
->> 
->> I sure hope there will be no new syscon based controller but, ATM, around
->> 50% are syscon based in drivers/clk/meson. Those are here to stay and I
->> doubt we can do anything about it.
+> I tried integrating Dmitry's work [0] into my HDMI controller driver.
+> While testing I found that hdmi-codec's .prepare() callback is not
+> called at all and asked Dmitry for help [1]. All other callbacks
+> (.hw_params, .startup, .shutdown, ...) however are called.
+> On his board (Qualcomm SDM845, sdm845-db845c.dts) hdmi_codec_prepare()
+> is called by snd_soc_pcm_dai_prepare() (core sound framework, not
+> platform specific).
+> However, on my Odroid-C1 this is not happening.
 >
-> Ok.
+> Looking further snd_soc_pcm_dai_prepare() I can see that
+> for_each_rtd_dais() has three entries:
+>   snd_soc_pcm_dai_prepare(), dai name=I2S Encoder, id=2
+>   snd_soc_pcm_dai_prepare(), dai name=CODEC CTRL HDMI I2S IN, id=0
+>   snd_soc_pcm_dai_prepare(), dai name=I2S FIFO, id=0
+> What I'm missing here is a dai name "i2s-hifi" (from
+> sound/soc/codecs/hdmi-codec.c, see hdmi_i2s_dai)
 >
->> 
->> >> 
->> >> This rework save a bit memory and the result is less of a maintenance
->> >> burden.
->> >> 
->> >> Unfortunately meson8b is left out for now since it is an early clock
->> >> driver that does not have proper device support for now.
->> >
->> > We should add a clk_hw_get_of_node() function that returns
->> > hw->core->of_node. Then there can be a similar function that looks at
->> > the of_node of a clk registered with of_clk_hw_register() and tries to
->> > find the regmap either with
->> > syscon_node_to_regmap(clk_hw_get_of_node(hw)) or on the parent of the
->> > node for the clk.
->> 
->> That's the thing. It means encoding the controller quirk of how to get
->> regmap in the clock ops. I would be prefer to avoid that.
+> My hdmi_tx node looks like this (abbreviated):
+>   hdmi_tx: hdmi-tx@42000 {
+>       compatible = "amlogic,meson8b-hdmi-tx";
+>       reg = <0x42000 0xc>;
+>       #sound-dai-cells = <1>;
+>        ...
+>   };
 >
-> So if we moved the init function out of struct clk_ops it would work?
-
-That's already what I'm doing actually. I have the controller part which
-position regmap so the clock part may get it regardless of where it
-comes from (syscon, io or something else)
-
-> We could have helpers for the common paths, i.e. the device has the
-> regmap, or the syscon has the regmap, etc.
-
-I think this is what I'm doing actually.
-
+> Then I have a "amlogic,gx-sound-card" instance with the following dai-links:
+>   dai-link-0 {
+>       sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
+>   };
+>   dai-link-1 {
+>       sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
+>       dai-format = "i2s";
+>       mclk-fs = <256>;
 >
->> 
->> With what you are suggesting I could make an ops that
->> * Try dev_get_regmap() first
->> * Try the syscon/of_node way next
->> 
->> I can make this "trial an error" approach work but I think it is pretty
->> nasty and encode controller stuff inside the clock driver.
+>       codec-0 {
+>           sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
+>     };
+>   };
+>   dai-link-2 {
+>       sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
 >
-> I get it. The difference in driver design while sharing the same clk
-> hardware and clk_ops causes this tension.
+>       codec-0 {
+>           sound-dai = <&hdmi_tx 0>;
+>       };
+>   };
+> So apart from the additional cell in the sound-dai towards hdmi_tx
+> (Meson8/8b/8m2's HDMI controller has two inputs: I2C and SPDIF. I2C is
+> the first one, hence &hdmi_tx 0) this is identical to
+> arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts.
 >
->> 
->> >
->> > TL;DR: Don't use devres.
->> 
->> Using it makes thing nice and tidy. clk_regmap does not care were regmap
->> comes from. It just picks it up where it has been prepared
->
-> It doesn't work for early clocks that don't have a device.
+> I have further verified that the gx-card parsing does find the HDMi
+> controller and links it correctly.
+> To me it's odd that only the .prepare() callback is not called, all
+> others (as mentioned above: .hw_params, .startup, ...) are working
+> fine.
 
-This is why I left the possibility for regmap to be "pre-populated" so it
-continues to work the way it previously did.
+I think the problem you are seeing comes from the quirk of
+codec-to-codec links. The hdmi codec link is such a link on Amlogic
+because further digital routing is required after the backend.
 
-I admit early clocks is a low priority for me since I only have one
-controller like this and I do not expect more.
+Those type of links are not used much beside some
+CPU offloading on Samsung and Amlogic, as far as I know.
+It is possible, even likely, that things are still missing there.
 
-If cleaning up this particular case is important, then I could add
-another level of init:
-* A callback passed along the init data of the clock to get the regmap.
-  That callback would be called by the .init() ops, if set.
-  That can encode any quirks without polluting the ops.
-* It will grow the init data so the change won't save memory anymore.
-  This was more a bonus so I don't really mind. Maintainability is more
-  important.
-* If the callback is not set, then it goes through the default, as
-  proposed here. This would avoid patching all the clk_regmap clock of
-  every controller.
+So those C2C links are operated by the DAPM events, not the regualar
+ASoC code. You can start here:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/sound/soc/soc-dapm.c#n3995
+
+You'll see that .prepare() is not called, same as .trigger()
+That should propably be fixed :/
+
+Side Note:
+While this type of link is not used much, I think that - fully
+implemented - it could hold the key to proper DAI chaining ... possibly
+allowing to get rid of DPCM.
 
 >
->> 
->> That approach could be extended to support controller with multiple
->> regmaps, with a name that does not depend on regmap_config and is local
->> to the clock controller. This will be useful when the name if defined
->> somewhere else (syscon, auxiliary device, etc ...)
->> 
+> I'm not familiar with the sound stack and I'm hoping that you have
+> some ideas on how to either debug or fix it.
 >
-> I think you're saying that clk_ops can be common things that aren't
-> device/clk controller specific, while the regmap config is usually
-> device/clk controller specific.
-
-Agreed
-
-> Furthermore, the name of the regmap is
-> also usually device/clk controller specific.
-
-The name registered in regmap_config itself is device specific, not
-controller specific, since it can come from something else in the
-platform (syscon or even aux devs), that why I think an independent
-namespace is desirable -- Same goes the generic solution Conor is
-working on I think.
-
-> The regmap assignment
-> doesn't really fit with the clk_ops because it's not operating on the
-> clk hardware like the other clk_ops all do.
-
-I see what you mean and I agree. It does not operate on the hardware but
-it does collect the resources it needs to operate the HW, and ideally
-it should do just that - without controller quirks popping up there.
-
-Anyway a callback passed in init data takes care of 'io vs syscon'
-controller too, same as devres. I can go that route if this is what you
-prefer. I thought devres was a more elegant solution but it is indeed
-restricted to 'device enabled' controllers. 
-
-The change will be a bit ugly in the syscon ones but I don't mind.
-Is that fine for v2 ?
+>
+> Thanks in advance and best regards,
+> Martin
+>
+>
+> [0] https://lore.kernel.org/dri-devel/20241224-drm-bridge-hdmi-connector-v10-0-dc89577cd438@linaro.org/
+> [1] https://lore.kernel.org/dri-devel/20241231004311.2574720-1-martin.blumenstingl@googlemail.com/
+> [2] https://lore.kernel.org/dri-devel/l3u3wtnxyhrwjynevkwfjwarisc4yt4xy2rbzf5kb7k5l5dw3n@lxqtimymyjg6/
+>
+> [2. text/x-patch; sound-soc-soc-dai-snd_soc_pcm_dai_prepare-info.diff]...
 
 -- 
 Jerome
