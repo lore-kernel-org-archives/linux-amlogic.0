@@ -4,77 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CC30E77198
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2025 22:34:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D75ACE77197
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2025 12:59:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3WczKxgETZBo9ezHqslzvKN1CC7j8401f5s8q03Y+/Y=; b=hU+ut+mD24RTwo
-	+PP6BAkJ/4gRUS0MltHk1fUP7t57RMXoFJ4grIcFiU8Uxjw227eMSTk/d/n2qk9Iujgi0Nf7uzGE/
-	ubDI37jxMYTd9x28ssh6VLIXmgOHDZfmRRs9QZfSEkCtgsGBoV4mPg8vJ+B9YJ+iCk8ewcG0PQlUv
-	CW+qdUD9EEraCZZ1nDy03Q9hBP6l3iqvLmc23cC3V/8UfsQdKPGEfjFjYtaNGoQlbbsgiIJI1q0Md
-	dqeC5ylgRqcTUTsidm+Y54W5jTvgY9XmPmtW6QyiDKk05Rv2fOJI+pRco0ZJXMCqptO8InCdISmA0
-	BFMaZfTbsuv0XdnlgfbQ==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=UuBxtv7K47EWqJrhRKmZjOSksywgzXJRSWgc7IbzKj8=; b=ofdhfb/V7vkLBT
+	1KjmOuJDNLnRUpikaRUIjmZlqFXKRHDjp5FqlHAVzcCzTC6vGz/ngRa84LpPxjr622hKFj/I5jDgP
+	ZvnnCcNeN9cukHNj/vndXec6WN/iV9WAwa4KbGYIM3HoqNddkczZzxiq2H0HPfPkGe02qSEfW2q0u
+	ruTHQzJIiqyC3kYs6iXtzDAxBaLNmFhi/9hWuZRunT8fPq0WAyGhjfoRGqE6vuDonpswoXiHgNjZn
+	uejfj+WedFTq5T560i2uEnjEseLvtdhEdyjCVFYcRXQjM3qUCjG/S+MH89jHMjfgh27CN+w1Xzgyw
+	WMWlN1m4tWiYhF6tL0/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUvg2-00000002sxP-39wR;
-	Mon, 06 Jan 2025 22:34:26 +0000
-Received: from mail-pl1-x62a.google.com ([2607:f8b0:4864:20::62a])
+	id 1tV9BX-00000004sda-1ccB;
+	Tue, 07 Jan 2025 12:59:51 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUvfy-00000002swq-3IM9;
-	Mon, 06 Jan 2025 22:34:24 +0000
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-21628b3fe7dso209400815ad.3;
-        Mon, 06 Jan 2025 14:34:21 -0800 (PST)
+	id 1tV988-00000004rdr-2GG2
+	for linux-amlogic@lists.infradead.org;
+	Tue, 07 Jan 2025 12:56:25 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3862de51d38so781449f8f.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 07 Jan 2025 04:56:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1736202861; x=1736807661; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SRJ5zQMdFgK4dAX2MgR2Lkjmxo4dchPiAv78ousBkGs=;
-        b=cc8//KRe519uwqTVB2u9ZJUPnpMd4MgHfAGnRwNrJX/e9CcNThvF7BTirqN+3z1xi4
-         EV2hA8k6jaOEvqZFR//d8kqntHXYxkGzVU98TnnEgtJBaZKQ2b5yuv7bRRtM4sPpT9Lu
-         QyE6dU3bsEe5HM3ZSe0i2uDGEvUdIMZB+qyXhQ0YjtY0LzCSIjl8VVLqRAHJBDQaTqHN
-         qI8tTGVijRoSL2OvNzCbvaMH/QxEwSy8ahzXxx3iz12oCmUD8xUl9H+ENc3J4xcIS9Sc
-         sE6V88a1Wlb1JrOJ/Dqs2D30CFxV3OL5IsR3grkEfI6/YNkrISKS40kpJRbg7oMkD3p2
-         6/XA==
+        d=linaro.org; s=google; t=1736254578; x=1736859378; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SSJv9cd7B+Ts5chgbSK94dYazJRqIDFOFvz1Ru/QShk=;
+        b=v5YP1eNH55zvY/WA1fQvCsqUg8OKdbfWP5YrIUnKSWHuto2XBBwSiAmpxNWzvPaRKM
+         gfsTFyQ/xZaAb8kpid9FraivcB0ZOpBsovOs9bYLp1qnKJa8jRq/3W9SLoFvEP99ufUt
+         jSilQWLfU1BPVFBtWPwGcSiS5/eglrZYjE0uyELo0J8UIuE5QMoIKTwvUif7GbnS9Lpj
+         GCsiTS24C53Elh4yTT9GgpHHPouCoe3j7SvhYrnbVIoJ8TTGZ3SkJZOddvDDpI11o95I
+         wY7x5SGXPtTLgorb/hjH0PGVtPKu0Ow9i4b1Q9mhqFUbdoxDESYDksIjKdaIShG03jHK
+         VHhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736202861; x=1736807661;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SRJ5zQMdFgK4dAX2MgR2Lkjmxo4dchPiAv78ousBkGs=;
-        b=CwWmqMMuI5PjPNuxHHXPb30vcQcUxt6L6saahWmbVrcR8If7rUU2Ab+iwOYlqxI69G
-         ImWAZf3Dle7U+xZdxiMF84M2+LczD3Bov+TWlhrDB+NFUNchsro5UVUeISylvfjfJjIY
-         s6Dsbi1PUIzk0jDbJKOfZf6udSUKy7t7jUuEKL0ECj7xx3HPrsiTRB3l6e6h60uXxsBs
-         3kRYpCkMyf+jpi39VHPLE4pp4j632o1bGqxjnAEpCsRB/AJINjEI59mQOsuo2cuuzcIu
-         v11Zzt++RW/0H9ghjthoSkcRWM5aoOHdZ0MdIQOMxwoZZJph3yQFDJN04oV0FcWLZxMy
-         y/DQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAyg4RNpLBNlSI3hU5SPHOqSOua4+EIdertNr9yT+pMG6LIfvpKOKnmrUDen34Be05KkOaI7vTm5ZVhSdjYCbC@lists.infradead.org
-X-Gm-Message-State: AOJu0YyFMqUrgeoxWbkqbkgL1joaEOMV2vfbhhBp8LuYS7r7vKW47rd9
-	dfPuC7yYsKaP/CSVZLJzv6iZXkytFS3E3T6BZFim+fLtg6T460YmoIYAvV+M2h9ShVPVWAfQQnh
-	5ql2zryLdRwGVaJHhXnuE4yho2LUnpS6J
-X-Gm-Gg: ASbGncvscx34Y+apFYB1URwfkBw+2DtVEfznATZfYadJI3TaAQrk4DCC2MidGVttDDt
-	iPuWt1ZpppUBtNtMke19wdMOZOMK2bZGqIS2zAR+CEx7cChjHtRCLK/HWCS+oywaEDUf+lkE=
-X-Google-Smtp-Source: AGHT+IGuUWgHSGN1lA/AsRYmUZDFO+rvMP+cWksOszeiSFwoBDZhKmY0oZmSfEmHnYRQlzYmpGLf37XLSYew5ncL1FQ=
-X-Received: by 2002:a17:902:fc50:b0:215:b8c6:338a with SMTP id
- d9443c01a7336-219e6e85ccemr917173095ad.4.1736202861119; Mon, 06 Jan 2025
- 14:34:21 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736254578; x=1736859378;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SSJv9cd7B+Ts5chgbSK94dYazJRqIDFOFvz1Ru/QShk=;
+        b=W4S945milpe5HSTJo3CmfPKQhu4IHiRoZvzf3Y8VV7MfveabjXVYqx9Pzjr3DMyLJK
+         PAhTQ4hzONL4HmWSyxiSAdxkQGJwsixlbJhZhOE9XvQ1BaK9ueHL7UV6+qWxSkGCznHn
+         1M6OSNy4yTqvhxD4Jec1je0LxZFMYEyvqelzojQwiMeeFB1DbJbQvz3pRKBnGPFrG8b8
+         heFmEViVFo8/CRkaXABZvwNk8alaeS6VO8ipoTiA86BCdH3+p7KBw/1UDq2n3sEf8XhL
+         EVR5BYWEBuu1djyhdr2Uv9CjJ8padmT1fHzZy9Leot1+MEmEFiF6IaEzdT45lXaeaYXp
+         56+g==
+X-Forwarded-Encrypted: i=1; AJvYcCU0B0BWHhf7a1nSRUk0yjoNKgFj6k/dcDw3tKYbSYvOQelQ1NWXxVInwmRXbIDwLZCtVn+EA8IpGJa13IsS@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy9teP5oS9/3nQB91yTbTA1cydUn/jkKq1FgGwaKjGnlnt4RGEF
+	1e4azOUpUGvXOg2wbbNSRwBikXFZBkn0SmQa2cHO9UHipWTo4hklgyo4G8jgj08=
+X-Gm-Gg: ASbGncuQLqvFCYrday5lbB6R+mBLkM39BFGVcUlMPJ2/aKxoD4ubUNb3Jv7Ni9rw07b
+	xFUhIDE3Urwhv15267bZD6CTfgx29nrncv5dBhLXYDveicPm64t97S76UddnRbF7H4sd/wGmLbk
+	RozVhtyLhBA1Rwd7t6lHyvSk9YCeUO4Nq6O2orsv0GTIVBdPHMiYjuRxEFwPmKrF9OACAVr0+rc
+	Zw63NIhAQ7dV3YW1Tk5CVCMdNi9GcS/f9nnDAQoROq4joIDpoEww4fPgk3TPegGCXjoY7I=
+X-Google-Smtp-Source: AGHT+IGFEJdX3s3JzkTAxu1HuQQv34HUHDN0bVD1EDnfGo+xIctyAQDkT+Ihr//lYJ/3ypgD4WRiww==
+X-Received: by 2002:a05:6000:1a8f:b0:382:41ad:d8e1 with SMTP id ffacd0b85a97d-38a223f9c1dmr20778414f8f.14.1736254578226;
+        Tue, 07 Jan 2025 04:56:18 -0800 (PST)
+Received: from krzk-bin.. ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c847263sm50118575f8f.50.2025.01.07.04.56.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jan 2025 04:56:17 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Doug Berger <opendmb@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Dario Binacchi <dariobin@libero.it>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Grygorii Strashko <grygorii.strashko@ti.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Brian Norris <briannorris@chromium.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-can@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-wireless@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH net-next] dt-bindings: net: Correct indentation and style in DTS example
+Date: Tue,  7 Jan 2025 13:56:13 +0100
+Message-ID: <20250107125613.211478-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com> <20241231194207.2772750-3-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20241231194207.2772750-3-martin.blumenstingl@googlemail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 6 Jan 2025 23:34:09 +0100
-X-Gm-Features: AbW1kvaztPL8d6H70jEb3XF9EAvFNAZiRKy1VNxPZvUwBLqrgdTHWiSR8CCcvyM
-Message-ID: <CAFBinCCC54naeaRj1ZvRDk6ha-sV=XhNrD8eHUjr30_87hViEg@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 2/2] iio: adc: meson: add support for the GXLX SoC
-To: linux-amlogic@lists.infradead.org, linux-iio@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250106_143422_822859_56B0DB1B 
-X-CRM114-Status: UNSURE (   9.33  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250107_045620_631941_0138BEC3 
+X-CRM114-Status: GOOD (  11.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,26 +125,493 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, lars@metafoo.de, robh@kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, gnstark@salutedevices.com, krzk+dt@kernel.org, jic23@kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBEZWMgMzEsIDIwMjQgYXQgODo0MuKAr1BNIE1hcnRpbiBCbHVtZW5zdGluZ2wKPG1h
-cnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5jb20+IHdyb3RlOgpbLi4uXQo+ICtzdGF0aWMg
-Y29uc3Qgc3RydWN0IG1lc29uX3Nhcl9hZGNfcGFyYW0gbWVzb25fc2FyX2FkY19neGx4X3BhcmFt
-ID0gewo+ICsgICAgICAgLmhhc19ibDMwX2ludGVncmF0aW9uID0gdHJ1ZSwKPiArICAgICAgIC5j
-bG9ja19yYXRlID0gMTIwMDAwMCwKPiArICAgICAgIC5yZWdtYXBfY29uZmlnID0gJm1lc29uX3Nh
-cl9hZGNfcmVnbWFwX2NvbmZpZ19neGJiLAo+ICsgICAgICAgLnJlc29sdXRpb24gPSAxMiwKPiAr
-ICAgICAgIC5kaXNhYmxlX3JpbmdfY291bnRlciA9IDEsCj4gKyAgICAgICAudnJlZl92b2x0YWdl
-ID0gVlJFRl9WT0xUQUdFXzFWOCwKSSBqdXN0IG5vdGljZWQgdGhhdCBJIGRpZCBub3QgcHJvcGVy
-bHkgcmViYXNlIHRoaXMgbG9jYWxseS4KVlJFRl9WT0xUQUdFXzFWOCBvbmx5IGV4aXN0cyBpbiBh
-IGxvY2FsIHBhdGNoIG9mIG1pbmUgKHRvIGJlIHNlbnQKbGF0ZXIsIEkgYXNzdW1lIENocmlzdGlh
-biBhbHNvIGhhcyBpdCBpbiBoaXMgdHJlZSB3aGljaCBpcyB3aHkgaXQKd2Fzbid0IG5vdGljZWQp
-LgpCZWZvcmUgdGhpcyBjYW4gYmUgYXBwbGllZCBJIG5lZWQgdG8gY2hhbmdlIGl0IHRvIDEuCkkn
-bGwgZG8gdGhpcyBvbmNlIHRoZSBkaXNjdXNzaW9uIGlzIG92ZXIgYW5kIHRoZW4gc2VuZCBhIHYy
-LgoKSW4gb3RoZXIgd29yZHM6CkpvbmF0aGFuLCBwbGVhc2UgZG9uJ3QgbWVyZ2UgdjEuCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
-IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+DTS example in the bindings should be indented with 2- or 4-spaces and
+aligned with opening '- |', so correct any differences like 3-spaces or
+mixtures 2- and 4-spaces in one binding.
+
+No functional changes here, but saves some comments during reviews of
+new patches built on existing code.
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/net/amlogic,meson-dwmac.yaml     | 14 +--
+ .../devicetree/bindings/net/asix,ax88178.yaml |  4 +-
+ .../bindings/net/brcm,bcmgenet.yaml           | 32 +++----
+ .../bindings/net/brcm,mdio-mux-iproc.yaml     | 46 ++++-----
+ .../bindings/net/can/bosch,c_can.yaml         | 10 +-
+ .../bindings/net/can/microchip,mcp2510.yaml   | 18 ++--
+ .../devicetree/bindings/net/stm32-dwmac.yaml  | 94 +++++++++----------
+ .../bindings/net/ti,davinci-mdio.yaml         | 10 +-
+ .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 20 ++--
+ .../bindings/net/ti,k3-am654-cpts.yaml        | 36 +++----
+ .../bindings/net/wireless/marvell,sd8787.yaml | 17 ++--
+ 11 files changed, 150 insertions(+), 151 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+index d1e2bca3c503..798a4c19f18c 100644
+--- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+@@ -166,11 +166,11 @@ unevaluatedProperties: false
+ examples:
+   - |
+     ethmac: ethernet@c9410000 {
+-         compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
+-         reg = <0xc9410000 0x10000>, <0xc8834540 0x8>;
+-         interrupts = <8>;
+-         interrupt-names = "macirq";
+-         clocks = <&clk_eth>, <&clk_fclk_div2>, <&clk_mpll2>, <&clk_fclk_div2>;
+-         clock-names = "stmmaceth", "clkin0", "clkin1", "timing-adjustment";
+-         phy-mode = "rgmii";
++        compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
++        reg = <0xc9410000 0x10000>, <0xc8834540 0x8>;
++        interrupts = <8>;
++        interrupt-names = "macirq";
++        clocks = <&clk_eth>, <&clk_fclk_div2>, <&clk_mpll2>, <&clk_fclk_div2>;
++        clock-names = "stmmaceth", "clkin0", "clkin1", "timing-adjustment";
++        phy-mode = "rgmii";
+     };
+diff --git a/Documentation/devicetree/bindings/net/asix,ax88178.yaml b/Documentation/devicetree/bindings/net/asix,ax88178.yaml
+index 768504ccbf74..03341b7438d5 100644
+--- a/Documentation/devicetree/bindings/net/asix,ax88178.yaml
++++ b/Documentation/devicetree/bindings/net/asix,ax88178.yaml
+@@ -63,8 +63,8 @@ examples:
+             #size-cells = <0>;
+ 
+             ethernet@1 {
+-               compatible = "usbb95,772b";
+-               reg = <1>;
++                compatible = "usbb95,772b";
++                reg = <1>;
+             };
+         };
+     };
+diff --git a/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml b/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
+index 7c90a4390531..0e3fb4e42e3f 100644
+--- a/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
++++ b/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
+@@ -85,16 +85,16 @@ examples:
+         #size-cells = <1>;
+ 
+         mdio0: mdio@e14 {
+-           compatible = "brcm,genet-mdio-v4";
+-           #address-cells = <1>;
+-           #size-cells = <0>;
+-           reg = <0xe14 0x8>;
++            compatible = "brcm,genet-mdio-v4";
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <0xe14 0x8>;
+ 
+-           phy1: ethernet-phy@1 {
++            phy1: ethernet-phy@1 {
+                 max-speed = <1000>;
+                 reg = <1>;
+                 compatible = "ethernet-phy-ieee802.3-c22";
+-           };
++            };
+         };
+     };
+ 
+@@ -110,10 +110,10 @@ examples:
+         interrupts = <0x0 0x16 0x0>, <0x0 0x17 0x0>;
+ 
+         mdio1: mdio@e14 {
+-           compatible = "brcm,genet-mdio-v4";
+-           #address-cells = <1>;
+-           #size-cells = <0>;
+-           reg = <0xe14 0x8>;
++            compatible = "brcm,genet-mdio-v4";
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <0xe14 0x8>;
+         };
+     };
+ 
+@@ -129,15 +129,15 @@ examples:
+         interrupts = <0x0 0x18 0x0>, <0x0 0x19 0x0>;
+ 
+         mdio2: mdio@e14 {
+-           compatible = "brcm,genet-mdio-v4";
+-           #address-cells = <1>;
+-           #size-cells = <0>;
+-           reg = <0xe14 0x8>;
++            compatible = "brcm,genet-mdio-v4";
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <0xe14 0x8>;
+ 
+-           phy0: ethernet-phy@0 {
++            phy0: ethernet-phy@0 {
+                 max-speed = <1000>;
+                 reg = <0>;
+                 compatible = "ethernet-phy-ieee802.3-c22";
+-           };
++            };
+         };
+     };
+diff --git a/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
+index af96b4fd89d5..3f27746d9a56 100644
+--- a/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
++++ b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
+@@ -38,43 +38,43 @@ unevaluatedProperties: false
+ 
+ examples:
+   - |
+-    mdio_mux_iproc: mdio-mux@66020000 {
++    mdio-mux@66020000 {
+         compatible = "brcm,mdio-mux-iproc";
+         reg = <0x66020000 0x250>;
+         #address-cells = <1>;
+         #size-cells = <0>;
+ 
+         mdio@0 {
+-           reg = <0x0>;
+-           #address-cells = <1>;
+-           #size-cells = <0>;
++            reg = <0x0>;
++            #address-cells = <1>;
++            #size-cells = <0>;
+ 
+-           pci_phy0: pci-phy@0 {
+-              compatible = "brcm,ns2-pcie-phy";
+-              reg = <0x0>;
+-              #phy-cells = <0>;
+-           };
++            pci-phy@0 {
++                compatible = "brcm,ns2-pcie-phy";
++                reg = <0x0>;
++                #phy-cells = <0>;
++            };
+         };
+ 
+         mdio@7 {
+-           reg = <0x7>;
+-           #address-cells = <1>;
+-           #size-cells = <0>;
++            reg = <0x7>;
++            #address-cells = <1>;
++            #size-cells = <0>;
+ 
+-           pci_phy1: pci-phy@0 {
+-              compatible = "brcm,ns2-pcie-phy";
+-              reg = <0x0>;
+-              #phy-cells = <0>;
+-           };
++            pci-phy@0 {
++                compatible = "brcm,ns2-pcie-phy";
++                reg = <0x0>;
++                #phy-cells = <0>;
++            };
+         };
+ 
+         mdio@10 {
+-           reg = <0x10>;
+-           #address-cells = <1>;
+-           #size-cells = <0>;
++            reg = <0x10>;
++            #address-cells = <1>;
++            #size-cells = <0>;
+ 
+-           gphy0: eth-phy@10 {
+-              reg = <0x10>;
+-           };
++            eth-phy@10 {
++                reg = <0x10>;
++            };
+         };
+     };
+diff --git a/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml b/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
+index 4d7d67ee175a..ff1b59a0294e 100644
+--- a/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
++++ b/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
+@@ -99,11 +99,11 @@ examples:
+     #include <dt-bindings/reset/altr,rst-mgr.h>
+ 
+     can@ffc00000 {
+-       compatible = "bosch,d_can";
+-       reg = <0xffc00000 0x1000>;
+-       interrupts = <0 131 4>, <0 132 4>, <0 133 4>, <0 134 4>;
+-       clocks = <&can0_clk>;
+-       resets = <&rst CAN0_RESET>;
++        compatible = "bosch,d_can";
++        reg = <0xffc00000 0x1000>;
++        interrupts = <0 131 4>, <0 132 4>, <0 133 4>, <0 134 4>;
++        clocks = <&can0_clk>;
++        resets = <&rst CAN0_RESET>;
+     };
+   - |
+     can@0 {
+diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
+index db446dde6842..e0ec53bc10c6 100644
+--- a/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
++++ b/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
+@@ -56,15 +56,15 @@ examples:
+         #size-cells = <0>;
+ 
+         can@1 {
+-             compatible = "microchip,mcp2515";
+-             reg = <1>;
+-             clocks = <&clk24m>;
+-             interrupt-parent = <&gpio4>;
+-             interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
+-             vdd-supply = <&reg5v0>;
+-             xceiver-supply = <&reg5v0>;
+-             gpio-controller;
+-             #gpio-cells = <2>;
++            compatible = "microchip,mcp2515";
++            reg = <1>;
++            clocks = <&clk24m>;
++            interrupt-parent = <&gpio4>;
++            interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
++            vdd-supply = <&reg5v0>;
++            xceiver-supply = <&reg5v0>;
++            gpio-controller;
++            #gpio-cells = <2>;
+         };
+     };
+ 
+diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+index bf23838fe6e8..85cea9966a27 100644
+--- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+@@ -154,56 +154,56 @@ examples:
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     #include <dt-bindings/clock/stm32mp1-clks.h>
+     //Example 1
+-     ethernet0: ethernet@5800a000 {
+-           compatible = "st,stm32mp1-dwmac", "snps,dwmac-4.20a";
+-           reg = <0x5800a000 0x2000>;
+-           reg-names = "stmmaceth";
+-           interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+-           interrupt-names = "macirq";
+-           clock-names = "stmmaceth",
+-                     "mac-clk-tx",
+-                     "mac-clk-rx",
+-                     "ethstp",
+-                     "eth-ck";
+-           clocks = <&rcc ETHMAC>,
+-                <&rcc ETHTX>,
+-                <&rcc ETHRX>,
+-                <&rcc ETHSTP>,
+-                <&rcc ETHCK_K>;
+-           st,syscon = <&syscfg 0x4>;
+-           snps,pbl = <2>;
+-           snps,axi-config = <&stmmac_axi_config_0>;
+-           snps,tso;
+-           phy-mode = "rgmii";
+-       };
++    ethernet0: ethernet@5800a000 {
++        compatible = "st,stm32mp1-dwmac", "snps,dwmac-4.20a";
++        reg = <0x5800a000 0x2000>;
++        reg-names = "stmmaceth";
++        interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "macirq";
++        clock-names = "stmmaceth",
++                      "mac-clk-tx",
++                      "mac-clk-rx",
++                      "ethstp",
++                      "eth-ck";
++        clocks = <&rcc ETHMAC>,
++                 <&rcc ETHTX>,
++                 <&rcc ETHRX>,
++                 <&rcc ETHSTP>,
++                 <&rcc ETHCK_K>;
++        st,syscon = <&syscfg 0x4>;
++        snps,pbl = <2>;
++        snps,axi-config = <&stmmac_axi_config_0>;
++        snps,tso;
++        phy-mode = "rgmii";
++    };
+ 
+   - |
+     //Example 2 (MCU example)
+-     ethernet1: ethernet@40028000 {
+-           compatible = "st,stm32-dwmac", "snps,dwmac-3.50a";
+-           reg = <0x40028000 0x8000>;
+-           reg-names = "stmmaceth";
+-           interrupts = <0 61 0>, <0 62 0>;
+-           interrupt-names = "macirq", "eth_wake_irq";
+-           clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
+-           clocks = <&rcc 0 25>, <&rcc 0 26>, <&rcc 0 27>;
+-           st,syscon = <&syscfg 0x4>;
+-           snps,pbl = <8>;
+-           snps,mixed-burst;
+-           phy-mode = "mii";
+-       };
++    ethernet1: ethernet@40028000 {
++        compatible = "st,stm32-dwmac", "snps,dwmac-3.50a";
++        reg = <0x40028000 0x8000>;
++        reg-names = "stmmaceth";
++        interrupts = <0 61 0>, <0 62 0>;
++        interrupt-names = "macirq", "eth_wake_irq";
++        clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
++        clocks = <&rcc 0 25>, <&rcc 0 26>, <&rcc 0 27>;
++        st,syscon = <&syscfg 0x4>;
++        snps,pbl = <8>;
++        snps,mixed-burst;
++        phy-mode = "mii";
++    };
+ 
+   - |
+     //Example 3
+-     ethernet2: ethernet@40027000 {
+-           compatible = "st,stm32-dwmac", "snps,dwmac-4.10a";
+-           reg = <0x40028000 0x8000>;
+-           reg-names = "stmmaceth";
+-           interrupts = <61>;
+-           interrupt-names = "macirq";
+-           clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
+-           clocks = <&rcc 62>, <&rcc 61>, <&rcc 60>;
+-           st,syscon = <&syscfg 0x4>;
+-           snps,pbl = <8>;
+-           phy-mode = "mii";
+-       };
++    ethernet2: ethernet@40027000 {
++        compatible = "st,stm32-dwmac", "snps,dwmac-4.10a";
++        reg = <0x40028000 0x8000>;
++        reg-names = "stmmaceth";
++        interrupts = <61>;
++        interrupt-names = "macirq";
++        clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
++        clocks = <&rcc 62>, <&rcc 61>, <&rcc 60>;
++        st,syscon = <&syscfg 0x4>;
++        snps,pbl = <8>;
++        phy-mode = "mii";
++    };
+diff --git a/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml b/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml
+index 53604fab0b73..08119b6880ee 100644
+--- a/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml
++++ b/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml
+@@ -72,9 +72,9 @@ unevaluatedProperties: false
+ examples:
+   - |
+     davinci_mdio: mdio@4a101000 {
+-         compatible = "ti,davinci_mdio";
+-         #address-cells = <1>;
+-         #size-cells = <0>;
+-         reg = <0x4a101000 0x1000>;
+-         bus_freq = <1000000>;
++        compatible = "ti,davinci_mdio";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0x4a101000 0x1000>;
++        bus_freq = <1000000>;
+     };
+diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+index 02b6d32003cc..b11894fbaec4 100644
+--- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
++++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+@@ -302,16 +302,16 @@ examples:
+                     ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+                 };
+             };
+-        };
+ 
+-        cpts@3d000 {
+-             compatible = "ti,am65-cpts";
+-             reg = <0x0 0x3d000 0x0 0x400>;
+-             clocks = <&k3_clks 18 2>;
+-             clock-names = "cpts";
+-             interrupts-extended = <&gic500 GIC_SPI 858 IRQ_TYPE_LEVEL_HIGH>;
+-             interrupt-names = "cpts";
+-             ti,cpts-ext-ts-inputs = <4>;
+-             ti,cpts-periodic-outputs = <2>;
++            cpts@3d000 {
++                compatible = "ti,am65-cpts";
++                reg = <0x0 0x3d000 0x0 0x400>;
++                clocks = <&k3_clks 18 2>;
++                clock-names = "cpts";
++                interrupts-extended = <&gic500 GIC_SPI 858 IRQ_TYPE_LEVEL_HIGH>;
++                interrupt-names = "cpts";
++                ti,cpts-ext-ts-inputs = <4>;
++                ti,cpts-periodic-outputs = <2>;
++            };
+         };
+     };
+diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml
+index 3888692275ad..3572749147fb 100644
+--- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml
++++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml
+@@ -131,23 +131,23 @@ examples:
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     cpts@310d0000 {
+-         compatible = "ti,am65-cpts";
+-         reg = <0x310d0000 0x400>;
+-         reg-names = "cpts";
+-         clocks = <&main_cpts_mux>;
+-         clock-names = "cpts";
+-         interrupts-extended = <&k3_irq 163 0 IRQ_TYPE_LEVEL_HIGH>;
+-         interrupt-names = "cpts";
+-         ti,cpts-periodic-outputs = <6>;
+-         ti,cpts-ext-ts-inputs = <8>;
++        compatible = "ti,am65-cpts";
++        reg = <0x310d0000 0x400>;
++        reg-names = "cpts";
++        clocks = <&main_cpts_mux>;
++        clock-names = "cpts";
++        interrupts-extended = <&k3_irq 163 0 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "cpts";
++        ti,cpts-periodic-outputs = <6>;
++        ti,cpts-ext-ts-inputs = <8>;
+ 
+-         main_cpts_mux: refclk-mux {
+-               #clock-cells = <0>;
+-               clocks = <&k3_clks 118 5>, <&k3_clks 118 11>,
+-                        <&k3_clks 157 91>, <&k3_clks 157 77>,
+-                        <&k3_clks 157 102>, <&k3_clks 157 80>,
+-                        <&k3_clks 120 3>, <&k3_clks 121 3>;
+-               assigned-clocks = <&main_cpts_mux>;
+-               assigned-clock-parents = <&k3_clks 118 11>;
+-         };
++        main_cpts_mux: refclk-mux {
++            #clock-cells = <0>;
++            clocks = <&k3_clks 118 5>, <&k3_clks 118 11>,
++                     <&k3_clks 157 91>, <&k3_clks 157 77>,
++                     <&k3_clks 157 102>, <&k3_clks 157 80>,
++                     <&k3_clks 120 3>, <&k3_clks 121 3>;
++            assigned-clocks = <&main_cpts_mux>;
++            assigned-clock-parents = <&k3_clks 118 11>;
++        };
+     };
+diff --git a/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml b/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
+index 1715b22e0dcf..930b700b73d0 100644
+--- a/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
+@@ -79,15 +79,14 @@ examples:
+     #include <dt-bindings/interrupt-controller/irq.h>
+ 
+     mmc {
+-         #address-cells = <1>;
+-         #size-cells = <0>;
++        #address-cells = <1>;
++        #size-cells = <0>;
+ 
+-         wifi@1 {
+-             compatible = "marvell,sd8897";
+-             reg = <1>;
+-             interrupt-parent = <&pio>;
+-             interrupts = <38 IRQ_TYPE_LEVEL_LOW>;
+-             marvell,wakeup-pin = <3>;
++        wifi@1 {
++            compatible = "marvell,sd8897";
++            reg = <1>;
++            interrupt-parent = <&pio>;
++            interrupts = <38 IRQ_TYPE_LEVEL_LOW>;
++            marvell,wakeup-pin = <3>;
+         };
+     };
+-
+-- 
+2.43.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
