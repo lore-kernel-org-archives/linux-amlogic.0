@@ -4,140 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40175E77197
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2025 17:42:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 566C4E77198
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2025 20:36:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
-	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=azGuJe6ApZnbrrZHyB1/BikLXFuWVzQyqmTXk5tdW9k=; b=acuHNUkgbFmER8Fu9WoLrzbqdK
-	Z17hrYMU3wNDwg9wAqsK2eQ21SVvV8p9aRoCLh9MADhDxIIznCM4fa/2AtHaC6A13LjP2aAFZkG7v
-	fOe2ddrNN2AOBXBburwY6rRNaWc5LNGTdNnjCZTe7SxP2n6Ch9f0MVf8AoxxG4WGutYyVHQB2V0Yj
-	HFZd0jyClDqsP8ftoPlfVMcMVCsQEuL0XBsydgvq7CD6Sf1n/0NLjn1wr7B2Y6Gtr7FelCNUOD+bJ
-	DVAntSghcvO+mTfA4HxAgDskEKd3E2PLcBr7aKnBxYnX7YfP3tirJ1Ts4K2kqVVxqWPlobVFfjp9y
-	SN0r9PQQ==;
+	bh=xRFofivpeQA65p/JJuCn69CgItut5O9+zRpyJkalcPE=; b=QvCB0VUuOssDMBR6tTS2NmXIkG
+	lrpyjaD3DUbP8kw3n7/vxTvXumMSXRRSyQSzm8SGDMzVO5YHapjXBMuxXs+7LV35J3EqPM4q1lTy4
+	Dp5ZpBkG3Uf8eGbAeIPtEQsjS6rBf2K3bjb7IV5P1D6+DHoVo1USChJQsItB9zdQ5p+fqIhgi7avw
+	ysluWYsJMgEzRx6d70kyR748d3W6kFYpFSkGLP2uq0iGscEx6Ee0KXUVqlz435MyjxTZ/GLaxTU8M
+	bA8wsrx4bjkI/WE+tNIYO6wheufabRAfzDRjdSj9XJoFMGJyPkYyMH/yMLS3fcmh+BwCnRIg2zu2f
+	eGF28XYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tVDay-00000005tgw-2F1K;
-	Tue, 07 Jan 2025 17:42:24 +0000
-Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
+	id 1tVGJJ-00000006Fzi-2nRq;
+	Tue, 07 Jan 2025 20:36:21 +0000
+Received: from mail-pl1-x62d.google.com ([2607:f8b0:4864:20::62d])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tVDLM-00000005qpC-0tZY
-	for linux-amlogic@lists.infradead.org;
-	Tue, 07 Jan 2025 17:26:20 +0000
-Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-2163bd70069so41510755ad.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 07 Jan 2025 09:26:15 -0800 (PST)
+	id 1tVGI6-00000006FsD-2hBu;
+	Tue, 07 Jan 2025 20:35:07 +0000
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-21654fdd5daso219168885ad.1;
+        Tue, 07 Jan 2025 12:35:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1736270775; x=1736875575; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=a2x6Czl6GO65kHVW9zAO9v64ouXW8ETVJWZJ2hxoejQ=;
-        b=Gh9iIGfZDxLOMdj9bcWNV8BhC+Cn4/mWE/WOwhisbusWaaosJ8lGx7aJbp1NXmg82h
-         lwt5c9zS+ncswxWdD3TYk2FYXjXYD1PZVt7PROToQS9FCCS5cngE7M2ghhc4q23BEinJ
-         xPK0fzss0OPrdWnsbJZTl36pyG/ksqe1ztbD0=
+        d=googlemail.com; s=20230601; t=1736282104; x=1736886904; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dRVB3EQAdfG27QmfkAvFcAO8XBrqAJULsCwLs00LZPA=;
+        b=g9tpGxB0WjphbFfn3KyzQZKaPsqVlqW47cqMvt2oTjagPDBdsj8Z/OzrIpWpceOEO/
+         JCZkNArCB0AxuiQ68yNwK3Sr9X5eRf0iThO7BCqg6pMjcm+w/e8fYy3a03lnUFGTATv7
+         OkUZWYTlNRnEPQH0qVDfAARSInl4XZPybXd4B7yhYLN+Hk1Obp30HF1WDkp4aERnEVOm
+         hzQCrBZmKycyOFXYl9Uz1nvv/VmjeRujhmrVdMBRUUm4e4vY3HfVXIHtladaNYI9aCQg
+         j4SMPC9FowN/BjjAht010nv0CW+Xp2mxBUxYlfkWQ7RZKvQdCFaiVBgDzMVRgCmpwoI5
+         DkrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736270775; x=1736875575;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1736282104; x=1736886904;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a2x6Czl6GO65kHVW9zAO9v64ouXW8ETVJWZJ2hxoejQ=;
-        b=O3LyFSysl8BZmbjD0gHDamuDz4cDT4V9wm5bJ5kzIdto9CnJ+ZvdJPQ80Nr8I6OMJR
-         zhE/EgDi81x1cO5/3+IPB6VjuxWtfOIT38dYstHnpqKyFYO9uSdmUB+WhyrbkewTkHBX
-         IbTxMHOhyUWFYNx4HekxPTHH7iDKNXHTYawVjHGs5ipv/xTpE+RsykRCJrspT4CleDpJ
-         o3/KH4o9i8K+61EODSzzDCIP8n6/y659dydAP3cdo+lvmXn3a+/fxdanSRiKBek/8LYB
-         elXI1U0Uw9JUGYf4m9We5oIHbe9bRGNuyECWEJktMC6p/9/0EWR11EktKm5bQ7kwIjFs
-         azDg==
-X-Forwarded-Encrypted: i=1; AJvYcCXkVDWt2WwaNa6Kr3HxvErfZVOuByRSvAUEVKScIyKi9IcqmMg8yQ6B2RJEbznciY7O5BIJOHFtHVIsGuzU@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy5D6RcVHUntJXFCDt9L8ZMbSVhDb9TNDKmRmJXpPc5EJSHvREk
-	sR7sA/DxfIi31Yg//dpvHvHk1EsWhyVQAgY4YRbT5tyHWVx30KObKSQjkMD0MA==
-X-Gm-Gg: ASbGncs85ZcSTSoZ9YiJDYVNZJsAFRkQYWD2u7E9VAS5rA/XWaf2PnqxVn8cB4z+qYO
-	csAb/u/0DtFseZ5KNL64eUsZ5v0tkX5rdOEvk69pzoTJiahVGnbeNipHNTdAWCdTU55qX+IRTRq
-	xorOKxl9X0KWvfH2BObsoLiRFci1ZsiBThdXOSawyKTUtTPeVQu2lfMbjtqdoZX0RBqxGRZyZCE
-	n2Pj5IlE9tOXWtNoOM/GC+xP5/BBMcuy6R3m6cFto+aBCj1RCkfwElj2IOTd8WG2/ccgcoYVTd/
-	vz2gEqwlKTyR71dPYO6D
-X-Google-Smtp-Source: AGHT+IFzu1VIJT9VJiC2aXWDy+NgNyxkD0g/GqwTMrp+Om0AwR+ht03XX6NjXXazKeHe7i80AzxoTg==
-X-Received: by 2002:a17:902:e886:b0:216:5e6e:68cb with SMTP id d9443c01a7336-219e6e9fd95mr929686065ad.16.1736270774736;
-        Tue, 07 Jan 2025 09:26:14 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc9716b3sm314412505ad.90.2025.01.07.09.26.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jan 2025 09:26:14 -0800 (PST)
-Message-ID: <901992c2-4c48-4534-bbfb-7b6b70d15d48@broadcom.com>
-Date: Tue, 7 Jan 2025 09:26:10 -0800
+        bh=dRVB3EQAdfG27QmfkAvFcAO8XBrqAJULsCwLs00LZPA=;
+        b=RkY1WHwp3NBYjx9nnlstixXT4R09XtMAN6UPN9MMSX3leTs5EUOQF4emW87f9ntBnM
+         9hMySXtlkeeUyH+xwYO30hXa3s+knbQnodNbK0jIqkEPKGlmB+hHO7UXOCXuKTdlp8pF
+         S+PPxpouqzIGtVHu4qV8cf6AnlO1FXi8JaLE3NV1zgAX2/CQQ1eNrwrizVZYCkmuqQkL
+         0BvnjJycgNa0NiqAyRaWC06X7+x9lc2iWYZZ03XwUZT3va/XNDWLdevHgICa4u8N5ijx
+         qb7tJOunrn2LtYnEJizktCREVldkgX7X6+3AGVpoyBFNzWo+SX3kCoRYtfJ6XpqhlOK7
+         9nYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVEYffhUICw2vtQOwiz2gEFG7QxXzKZHl/EKbSKnRnOAHYKXfxzwSO2306p7DaQpWXTt/c1+wqM7Fsm6Uu0IK3otA==@lists.infradead.org, AJvYcCXiGUvAEY2NZeDs/HNev+FYMZH3FE94XdkCMM/iuG+fgkgc0hfYYGA/xm7eyBLJNI8LlHkPpsQYO4yK3P4I@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzn40DM83XZ91/QolMKVySkKI3Kt38j8tDZHvyAfzDEfq0yZCS1
+	wK4D66ZUf8OjCLY0k96QtqFwgh8op6YTaf1n7pCNcBFkFaZTvUaD6VNUf8BT6vpxEPSJ88eQtek
+	G1rxkq4lDoNuPbllHKzbA9Erohh0=
+X-Gm-Gg: ASbGncslJRjgxFJ/DWgjrWdlXp9TbVMq724+pf+F3nUJC2LGmu543voJuEhJZZriI60
+	YFmL2PSqAYXJwulkEzw2WXvvNPjyY7EDH7IvPM9a/1cc867GJeJ8+
+X-Google-Smtp-Source: AGHT+IEWXQpDosg5fBG9oEhfRRnfn4Ki8gx5OzGLJWxwUbX8THg3BLPGAJ7UBdXDRFLc1aDS+WnzGa2ZkElhUYtCfxw=
+X-Received: by 2002:a17:903:22c1:b0:216:554a:2127 with SMTP id
+ d9443c01a7336-21a83fde33fmr5223815ad.41.1736282104261; Tue, 07 Jan 2025
+ 12:35:04 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next] dt-bindings: net: Correct indentation and style
- in DTS example
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Doug Berger <opendmb@gmail.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>, Marc Kleine-Budde
- <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Kalle Valo <kvalo@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>,
- Dario Binacchi <dariobin@libero.it>,
- Christophe Roullier <christophe.roullier@foss.st.com>,
- Grygorii Strashko <grygorii.strashko@ti.com>,
- Siddharth Vadapalli <s-vadapalli@ti.com>, Roger Quadros <rogerq@kernel.org>,
- Brian Norris <briannorris@chromium.org>, Frank Li <Frank.Li@nxp.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-wireless@vger.kernel.org
-References: <20250107125613.211478-1-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250107125613.211478-1-krzysztof.kozlowski@linaro.org>
+References: <20241219-mmc-slot-v1-1-dfc747a3d3fb@microchip.com>
+ <20241219-scenic-revision-17da9231d61a@spud> <91dfdd42-6ddb-490f-acda-41ce55782959@microchip.com>
+In-Reply-To: <91dfdd42-6ddb-490f-acda-41ce55782959@microchip.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 7 Jan 2025 21:34:52 +0100
+X-Gm-Features: AbW1kvZQsZremWvONR__RIVII7Gmwg3ACXgayGcRUA1UfxoArUjpvPFmSVjBTV4
+Message-ID: <CAFBinCCxZjuXL0duy3ePPDtL1oJS_GZiX3=djXpHR+-6gLkN_w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: move compatible property to its
+ specific binding
+To: Dharma.B@microchip.com
+Cc: conor@kernel.org, ulf.hansson@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, 
+	khilman@baylibre.com, jbrunet@baylibre.com, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="0000000000000e2074062b23aefc"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250107_092616_348005_53989861 
-X-CRM114-Status: UNSURE (   8.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250107_123506_694600_B5E48BBC 
+X-CRM114-Status: GOOD (  22.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,31 +92,96 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 1/7/25 04:56, Krzysztof Kozlowski wrote:
-> DTS example in the bindings should be indented with 2- or 4-spaces and
-> aligned with opening '- |', so correct any differences like 3-spaces or
-> mixtures 2- and 4-spaces in one binding.
-> 
-> No functional changes here, but saves some comments during reviews of
-> new patches built on existing code.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   .../bindings/net/amlogic,meson-dwmac.yaml     | 14 +--
->   .../devicetree/bindings/net/asix,ax88178.yaml |  4 +-
->   .../bindings/net/brcm,bcmgenet.yaml           | 32 +++----
->   .../bindings/net/brcm,mdio-mux-iproc.yaml     | 46 ++++-----
+--0000000000000e2074062b23aefc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Florian Fainelli <florian.fainelli@broadcom.com> # net/brcm,*
--- 
-Florian
+Hi Dharma,
+
+On Tue, Jan 7, 2025 at 4:34=E2=80=AFAM <Dharma.B@microchip.com> wrote:
+>
+> On 20/12/24 1:41 am, Conor Dooley wrote:
+> > On Thu, Dec 19, 2024 at 09:40:41AM +0530, Dharma Balasubiramani wrote:
+> >> Move the `compatible` property into its specific binding to make the M=
+MC
+> >> slot more generic and modular.
+> > This makes no sense, as presented. What's the real reason for this
+> > change? You want to ref mmc-slot.yaml but the compatible is causing a
+> > driver to probe?
+>
+> We don=E2=80=99t have the configuration for that driver enabled. Wouldn=
+=E2=80=99t
+> including the compatible in the DTS files without the actual driver be
+> redundant?
+>
+> Is it the correct approach to add the compatible just to fix the dt
+> binding errors?
+Let me try to summarize what I understand so far:
+- your are trying to convert the dt-binding of atmel-hsmci from .txt to .ya=
+ml
+- while doing so Rob asked to reference the mmc-slot schema
+- after referencing the mmc-slot schema you now get warnings in when
+validating the .dts because your .dts doesn't specify compatible =3D
+"mmc-slot"
+
+Is that correct?
+
+There aren't many MMC controllers with multiple slot support out there.
+When I wrote the dt-bindings for amlogic,meson-mx-sdio I *think* (it's
+been some years) Ulf pointed out another dt-binding
+(Documentation/devicetree/bindings/mmc/cavium-mmc.txt) and driver
+(drivers/mmc/host/cavium-thunderx.c) that already used the mmc-slot
+compatible string.
+
+> related discussion:
+> https://lore.kernel.org/lkml/63473475-f29e-4a65-a0aa-1f1e4112b57d@microch=
+ip.com/
+Rob has suggested two approaches in that thread:
+- don't mark the "compatible" property as required (in
+Documentation/devicetree/bindings/mmc/mmc-slot.yaml)
+- add the compatible string where needed (I attached a diff with an
+example where I picked one random Atmel board and added the compatible
+string)
+
+Your patch is different from these suggestions as it forbids the
+compatible property in the generic mmc-slot binding.
+What's the problem with Rob's suggestions? If they cannot be
+implemented then please document why that is.
+
+
+Best regards,
+Martin
+
+--0000000000000e2074062b23aefc
+Content-Type: text/x-patch; charset="US-ASCII"; name="add-compatible-string-example.diff"
+Content-Disposition: attachment; 
+	filename="add-compatible-string-example.diff"
+Content-Transfer-Encoding: base64
+Content-ID: <f_m5mxaprh0>
+X-Attachment-Id: f_m5mxaprh0
+
+ZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL21pY3JvY2hpcC9hdDkxc2FtOW4xMmVrLmR0
+cyBiL2FyY2gvYXJtL2Jvb3QvZHRzL21pY3JvY2hpcC9hdDkxc2FtOW4xMmVrLmR0cwppbmRleCA2
+NDNjM2IyYWI5N2UuLmEyN2ZjZWYyOGRmNSAxMDA2NDQKLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMv
+bWljcm9jaGlwL2F0OTFzYW05bjEyZWsuZHRzCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL21pY3Jv
+Y2hpcC9hdDkxc2FtOW4xMmVrLmR0cwpAQCAtODAsNiArODAsNyBAQCAmcGluY3RybF9tbWMwX3Ns
+b3QwX2Nsa19jbWRfZGF0MAogCQkJCQkmcGluY3RybF9tbWMwX3Nsb3QwX2RhdDFfMz47CiAJCQkJ
+c3RhdHVzID0gIm9rYXkiOwogCQkJCXNsb3RAMCB7CisJCQkJCWNvbXBhdGlibGUgPSAibW1jLXNs
+b3QiOwogCQkJCQlyZWcgPSA8MD47CiAJCQkJCWJ1cy13aWR0aCA9IDw0PjsKIAkJCQkJY2QtZ3Bp
+b3MgPSA8JnBpb0EgNyBHUElPX0FDVElWRV9ISUdIPjsK
+--0000000000000e2074062b23aefc
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--0000000000000e2074062b23aefc--
+
