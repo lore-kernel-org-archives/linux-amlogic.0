@@ -4,85 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22AD1E77197
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2025 15:18:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C85B2E77197
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2025 17:13:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mZVcjTQWOSirZJ5cHU6bc2/6e/CcjLRvb0zKjva3CuE=; b=NiQ5XE/rbX3dWJ
-	ei1MRb0znYIwq4eekViuotNFfiaIZB9nWjxiYsYmjmzDCBleNQ+tW2ZA2kKpiqnuoSpDS0OlOY/8t
-	gf9LXns66010OAhLOPSxausgOww8c26G0gYDnRlyWejoJANvT8BakT6vNnjGmNFR80wAa0h9F9Z4Z
-	m6TtjLkgL1SAENcZ/BlHOnhGqVu0Qsz7cV5ybnIf17gvveUDnNuTyHKjKNuBUSQpu8nQ4axIe12Xk
-	PghShwzvNRFU5+SdkkKs6AAYFoHo4qDxXv0B3/I5nyMbE0CgOy749vKBYZ30RZLnBYYQfIBFNj0hv
-	7/JXfYuIXHchn5/aUb+A==;
+	List-Owner; bh=uTAoHROgfwysk9AtexKrBOhCSgQlmFvlnjEgn0kz6UM=; b=RzUI4JxDnJhC17
+	z2MGhn85tzGa5++ID/hM9DygHQQwrcri8aV8lkBOBT9W4JxUCgq2j+PY7CtzgQ3f9+vjORGQgt4fG
+	dzrRoCFDQtVhjUf8nUA2N0SDvpNFbK+uALw4XiLrr6Kz6mGWcpHcHmUoOaFnl5mIHcK7nETtZ5oes
+	a1CHqZ4Sqyi4a+Iawn4aMS4gnK6NKi6/WzE1DmEVIjYV43AsRM85e2lBKXfrFFf5jXA73ufX27W78
+	ZgzDHKzmbGqUgRFMImIvXnK97irElRKvcWjLgb/+bCYo0ZoOoAq8ZsvD4+P1P72zTXNHIssRFhNIp
+	t2NvZkeJCSfPgPBU31UQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tVBLp-00000005Oy4-2Css;
-	Tue, 07 Jan 2025 15:18:37 +0000
-Received: from mail-lj1-x22e.google.com ([2a00:1450:4864:20::22e])
+	id 1tVD95-00000005nYw-0WJi;
+	Tue, 07 Jan 2025 17:13:35 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tVBLj-00000005Owz-48f0
+	id 1tVCjb-00000005hUP-3Aig
 	for linux-amlogic@lists.infradead.org;
-	Tue, 07 Jan 2025 15:18:35 +0000
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-3003d7ca01cso163613631fa.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 07 Jan 2025 07:18:31 -0800 (PST)
+	Tue, 07 Jan 2025 16:47:19 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-43635796b48so95511575e9.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 07 Jan 2025 08:47:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736263110; x=1736867910; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wd/OIh9+XuLROZNqgy3qFc0I67rLSdyN4Q7q2BFezNE=;
-        b=QDW2YrlWd+zy8ID0M0YN2WQHHC1mN+Fqhzj9w+m75Lax3hEzZHJTJT+HuUQ8YGvPI2
-         oiXmjLUNkx5IosdDjPzP9G/dAACasa5rCrEux1zlQKPmIl9hYp6xbM56qJcDYbi9vO4M
-         xdCnG7W14snS9/TlwbjWLaoD9XCCEH3qllBeeRv1i3ckNDAwSBERWn7Y1zBaSTvMPWJi
-         3dPVDPt5D8xAAo+g3bH5/SzBOudLmZeterHcQZDu54alAbfZH/A48kbs1B5uqdb1gH3Z
-         EY00TRnFyzainFRRVQYZiS+1Gmh7VF2yq5g4Qx9RiKcMylmKl98LyHiNd5hHoAzmBsDr
-         bDlA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736268434; x=1736873234; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LfIG31bng2HxoyJWuXm1aKqR+Q5i5Ik2oXWCciq8hzg=;
+        b=up+r7l6vVzJ91gcGhrFJAOjtnbtzC3sMXGvR7jNV8Y34IzlZuPxc7aHCpH28mnFPQi
+         Dy6nHBSbj6lC060mJkeRCA39OYq3SwcjWNhUnLYk7opXbiyGy0UJAhkMnZ+DEMXyEXzc
+         1ewjNiM2Ikywtako6BHpzzhnpyTorjm4QvNCTrmBNkRYdg2M8HdUgub7Y/24J2lN6aqg
+         eetPr8bXUHZgoRYjwLx+gOTd6hjLvaRa26hfQ8zo0ARVwciWF0uBYjRMqhdElmlp71eY
+         YgM23/yGBZ/siFfZfPsw0B/5b47rQehZ7N3/VcW5J0dW7M7x3SunxT9g6kYBRCZka8Ak
+         PHCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736263110; x=1736867910;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Wd/OIh9+XuLROZNqgy3qFc0I67rLSdyN4Q7q2BFezNE=;
-        b=WC7Ep48SoFVVtGuwXcwrbsy9G1Lqr1ktNIUyhyXGtEvjNGXgmAMoGdpSmjyIU/y2N3
-         I8JN9ApKRHUu54e7bHlnXUvmmc7sHkmGofPd7UUcf2Azks3e3bAC1OLdVgbZEMvVMjIG
-         HdQ3MsLorPeAg0UF5EAsyqCONM/BMsZ9kvErQFwA5Zfh5DsDbuafuy6XSklxDDIjmjfK
-         DeLP3HME2dCAcmKNatkPvVA1W8jsCjacuKJWZfa4TEuk53oKcsL2eo4PKKliOfI1lkny
-         xZWHL2A4XLQ/0DU0MaaWUVbK6HjOt++ZlinG/iI8zns2O0qF9E7dzVLOiZcsiLCTeHAS
-         3Rlg==
-X-Forwarded-Encrypted: i=1; AJvYcCUR7CVvkHWJyIZ4ctBshUS/hwExqS71fNrMiF+m5ncsQcZfAcziuGP8i9kIBqmB54pQIhvc2wf5wvsDf93/@lists.infradead.org
-X-Gm-Message-State: AOJu0YzxiuVZ3X+ezxdlR7Zy+ujnv2+wpLWodFkDngJeTg+9k6TkNvyb
-	c+Xa6uWy1ARwolt+M6Ngtls6OUCgfuZw74nXqqVuaQAfUtC5TEx01I1SRbQ+y5RH72zUYQW5qs7
-	nKf/mUOf1dInO7fJI0AnnRY1Trg2AnBDRs0bo6g==
-X-Gm-Gg: ASbGncvpV9UyA44LN4E/xEqZmbaZN4B/DHgAwtv1S6O97rlmUPZxWcS10WRw4/KILbD
-	PvVcFLkWgRv7xTPfPHHS0+X1T5+hIE4+3Q79O
-X-Google-Smtp-Source: AGHT+IFfSJ/IVHhrJ2qR+8hDDFjdqdHa8DoOmF81YVHP8qeEB0D4AktjBUg7IrZZHNZ63UvWGjpkKeBdKSBO3q3o3/Q=
-X-Received: by 2002:a05:6512:3b08:b0:53e:39c2:f02b with SMTP id
- 2adb3069b0e04-54229562a86mr17756761e87.42.1736263109745; Tue, 07 Jan 2025
- 07:18:29 -0800 (PST)
-MIME-Version: 1.0
-References: <20241226-amlogic-pinctrl-v2-0-cdae42a67b76@amlogic.com> <20241226-amlogic-pinctrl-v2-2-cdae42a67b76@amlogic.com>
-In-Reply-To: <20241226-amlogic-pinctrl-v2-2-cdae42a67b76@amlogic.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 7 Jan 2025 16:18:18 +0100
-Message-ID: <CACRpkdYrUDK9RsJ0VzksUNAyZ=grdQLAkMN1_BjeqQumY8bjSw@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1736268434; x=1736873234;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LfIG31bng2HxoyJWuXm1aKqR+Q5i5Ik2oXWCciq8hzg=;
+        b=cBAtBpp/Ib4jiGyPCHbZwGwDDPN13Asdz4lC+6QgeZq1+0IPShuooYLxLFI5lQ0mF/
+         estwWWhDysCeEEzhU2taE0a3cfkxzHFItaTc0OIcPknpLU5KKsMQCJGdNOTQzzCDaLOr
+         Zk8RPiVwH8MbiunjU8Z/HBrTa0J3cJL2Mr0jtUwT3NspH5S5BsP4lSlJdX1HC9AfvDx3
+         910xb/c4OhSQUwDy8AqkndZPvLTxRBKzngpK8/TS5Uqd8Pt248i0Jo/6zu7QFNJ/9r4D
+         Bg2/94QYV60lvcHD5VwJUkyecPUkbKrl+0oWArC0wOktphbYqDT4XwTT53w7iGSiQePX
+         vOTA==
+X-Forwarded-Encrypted: i=1; AJvYcCW9nMLDzPuv1wJmERRxTu2p2n7CDVkEWIk1zPhJjdHdq4Yd7GvgLi8zmjxlDZLmUjXMlN8UCw5RQ7YLbL1C@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz3wqBeemkWxLrkzNo8TCaztmVpWqdSJLL2VZ1gTP+jnxeKvww+
+	mlNrpb9spox/A0kDI5Gf3uOlyrVprAUOeMaRUPZYz/OG0RPLy8KI+Qo7cwdDhk8=
+X-Gm-Gg: ASbGnctEEhyWNTEgOs5gl694gb7p2nt4QzmGhvuwVP2ex5bO9VG6wBDV6OavARV3Ca8
+	MFyAyIkConjdXIWcJWAvNDnnXW3VyVJT/QGPpMck9EvMpvba+04Gn0GCeDrWJdC9VZ04B8ayPL8
+	umFXPCVh1T9LzfoJQJqGFdUWmg0N2sfi6kSY/sEJ8xw+fIFpBCSg737DnJ9LRVlIc2H8Q4znN+q
+	FaJ8RlFGKcOLhATdG3i720CvK3/dm5ocuNy1PkQLIM+C85Vt3gHZHNU
+X-Google-Smtp-Source: AGHT+IGmQTKGo+jGOC4/fXhjIYb21MrLqy9TVlZ6yFYHitFQZAEUoZmuJBC1Ro0j7d1OAph9GOuU3g==
+X-Received: by 2002:a05:600c:3494:b0:434:e69c:d338 with SMTP id 5b1f17b1804b1-436dc1dd4b0mr30072175e9.5.1736268433736;
+        Tue, 07 Jan 2025 08:47:13 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:834b:735a:a2e8:9e7d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b013e1sm630609295e9.12.2025.01.07.08.47.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jan 2025 08:47:13 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  Neil Armstrong <neil.armstrong@linaro.org>,
+  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Bartosz Golaszewski
+ <brgl@bgdev.pl>,  xianwei.zhao@amlogic.com,  linux-gpio@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-amlogic@lists.infradead.org
 Subject: Re: [PATCH v2 2/5] pinctrl: pinconf-generic: Add API for pinmux
  propertity in DTS file
-To: xianwei.zhao@amlogic.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org
+In-Reply-To: <20241226-amlogic-pinctrl-v2-2-cdae42a67b76@amlogic.com> (Xianwei
+	Zhao via's message of "Thu, 26 Dec 2024 15:57:42 +0800")
+References: <20241226-amlogic-pinctrl-v2-0-cdae42a67b76@amlogic.com>
+	<20241226-amlogic-pinctrl-v2-2-cdae42a67b76@amlogic.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Tue, 07 Jan 2025 17:47:12 +0100
+Message-ID: <1jed1ea7vz.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250107_071832_032704_374FCE73 
-X-CRM114-Status: UNSURE (   9.12  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250107_084716_059785_08BC631F 
+X-CRM114-Status: GOOD (  25.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,26 +100,246 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVGh1LCBEZWMgMjYsIDIwMjQgYXQgODo1N+KAr0FNIFhpYW53ZWkgWmhhbyB2aWEgQjQgUmVs
-YXkKPGRldm51bGwreGlhbndlaS56aGFvLmFtbG9naWMuY29tQGtlcm5lbC5vcmc+IHdyb3RlOgoK
-PiBGcm9tOiBYaWFud2VpIFpoYW8gPHhpYW53ZWkuemhhb0BhbWxvZ2ljLmNvbT4KPgo+IFdoZW4g
-ZGVzY3JpYmluZyBwaW4gbXV4IGZ1bmMgdGhyb3VnaCBwaW5tdXggcHJvcGVydGl0eSwKPiBhIHN0
-YW5kYXJkIEFQSSBpcyBhZGRlZCBmb3Igc3VwcG9ydC4gVGhlIHBpbm11eCBjb250YWlucyBwaW4K
-PiBpZGVudGlmaWNhdGlvbiBhbmQgbXV4IHZhbHVlcywgd2hpY2ggY2FuIGluY2x1ZGUgbXVsdGlw
-bGUKPiBwaW5zLiBBbmQgZ3JvdXBzIGNvbmZpZ3VyYXRpb24gdXNlIG90aGVyIHdvcmQuIERUUyBz
-dWNoIGFzOgo+Cj4gZnVuYy1uYW1lIHsKPiAgICAgICAgIGdyb3VwX2FsaWFzOiBncm91cC1uYW1l
-ewo+ICAgICAgICAgICAgICAgICBwaW5tdXg9IDxwaW5faWQgPDwgOCB8IG11eF92YWx1ZSk+LAo+
-ICAgICAgICAgICAgICAgICAgICAgICAgIDxwaW5faWQgPDwgOCB8IG11eF92YWx1ZSk+Owo+ICAg
-ICAgICAgICAgICAgICBiaWFzLXB1bGwtdXA7Cj4gICAgICAgICAgICAgICAgIGRyaXZlLXN0cmVu
-Z3RoLW1pY3JvYW1wID0gPDQwMDA+Owo+ICAgICAgICAgfTsKPiB9Owo+Cj4gU2lnbmVkLW9mZi1i
-eTogWGlhbndlaSBaaGFvIDx4aWFud2VpLnpoYW9AYW1sb2dpYy5jb20+CgpUaGVyZSBhcmUgc29t
-ZSBidWlsZCBlcnJvcnMsIGJ1dCBJIHJlYWxseSBsaWtlIHRoZSBwYXRoIHRha2VuIHdpdGgKdGhl
-IHV0aWxpdHkgZnVuY3Rpb24gaGVyZSEKCllvdXJzLApMaW51cyBXYWxsZWlqCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
-bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Thu 26 Dec 2024 at 15:57, Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
+
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>
+> When describing pin mux func through pinmux propertity,
+> a standard API is added for support. The pinmux contains pin
+> identification and mux values, which can include multiple
+> pins. And groups configuration use other word. DTS such as:
+>
+> func-name {
+> 	group_alias: group-name{
+> 		pinmux= <pin_id << 8 | mux_value)>,
+> 			<pin_id << 8 | mux_value)>;
+
+This representation does not seem very generic but more tailored to
+your use-case.
+
+> 		bias-pull-up;
+> 		drive-strength-microamp = <4000>;
+
+If you want to add pinmux (aka alternate function) selection as a
+pinconf prop then I think there should be a single pinmux setting per
+group, and as many groups as you need per function defined.
+
+something like
+
+func-foo {
+	group-a {
+        	groups = "pin_a", "pin_b";
+                bias-pull-up;
+                alternate-function = <2>;
+        };
+
+	group-b {
+        	groups = "pin_c"";
+                bias-disable;
+                alternate-function = <5>;
+        };
+};
+
+Something similar is already done to handle different pin bias requirement
+on single function on amlogic platforms:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/meson-axg.dtsi?h=v6.13-rc6#n421
+
+
+> 	};
+> };
+>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  drivers/pinctrl/pinconf-generic.c       | 130 ++++++++++++++++++++++++++++++++
+>  drivers/pinctrl/pinconf.h               |   4 +
+>  include/linux/pinctrl/pinconf-generic.h |   4 +
+>  3 files changed, 138 insertions(+)
+>
+> diff --git a/drivers/pinctrl/pinconf-generic.c b/drivers/pinctrl/pinconf-generic.c
+> index 0b13d7f17b32..a4d3c12a80c4 100644
+> --- a/drivers/pinctrl/pinconf-generic.c
+> +++ b/drivers/pinctrl/pinconf-generic.c
+> @@ -233,6 +233,67 @@ static void parse_dt_cfg(struct device_node *np,
+>  	}
+>  }
+>  
+> +/**
+> + * pinconf_generic_parse_dt_pinmux()
+> + * parse the pinmux properties into generic pin mux values.
+> + * @np: node containing the pinmux properties
+> + * @pctldev: pincontrol device
+> + * @pid: array with pin identity entries
+> + * @pmux: array with pin mux value entries
+> + * @npins: number of pins
+> + *
+> + * pinmux propertity: mux value [0,7]bits and pin identity [8,31]bits.
+> + */
+> +int pinconf_generic_parse_dt_pinmux(struct device_node *np, struct device *dev,
+> +				    unsigned int **pid, unsigned int **pmux,
+> +				    unsigned int *npins)
+> +{
+> +	unsigned int *pid_t;
+> +	unsigned int *pmux_t;
+> +	struct property *prop;
+> +	unsigned int npins_t, i;
+> +	u32 value;
+> +	int ret;
+> +
+> +	prop = of_find_property(np, "pinmux", NULL);
+> +	if (!prop) {
+> +		dev_info(dev, "Missing pinmux property\n");
+> +		return -ENOENT;
+> +	}
+> +
+> +	if (!pid || !pmux || !npins) {
+> +		dev_err(dev, "paramers error\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	npins_t = prop->length / sizeof(u32);
+> +	pid_t = devm_kcalloc(dev, npins_t, sizeof(*pid_t), GFP_KERNEL);
+> +	pmux_t = devm_kcalloc(dev, npins_t, sizeof(*pmux_t), GFP_KERNEL);
+> +	if (!pid_t || !pmux_t) {
+> +		dev_err(dev, "kalloc memory fail\n");
+> +		return -ENOMEM;
+> +	}
+> +	for (i = 0; i < npins_t; i++) {
+> +		ret = of_property_read_u32_index(np, "pinmux", i, &value);
+> +		if (ret) {
+> +			dev_err(dev, "get pinmux value fail\n");
+> +			goto exit;
+> +		}
+> +		pmux_t[i] = value & 0xff;
+> +		pid_t[i] = (value >> 8) & 0xffffff;
+> +	}
+> +	*pid = pid_t;
+> +	*pmux = pmux_t;
+> +	*npins = npins_t;
+> +
+> +	return 0;
+> +exit:
+> +	devm_kfree(dev, pid_t);
+> +	devm_kfree(dev, pmux_t);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(pinconf_generic_parse_dt_pinmux);
+> +
+>  /**
+>   * pinconf_generic_parse_dt_config()
+>   * parse the config properties into generic pinconfig values.
+> @@ -295,6 +356,75 @@ int pinconf_generic_parse_dt_config(struct device_node *np,
+>  }
+>  EXPORT_SYMBOL_GPL(pinconf_generic_parse_dt_config);
+>  
+> +int pinconf_generic_dt_node_to_map_pinmux(struct pinctrl_dev *pctldev,
+> +					  struct device_node *np,
+> +					  struct pinctrl_map **map,
+> +					  unsigned int *num_maps)
+> +{
+> +	struct device *dev = pctldev->dev;
+> +	struct device_node *pnode;
+> +	unsigned long *configs = NULL;
+> +	unsigned int num_configs = 0;
+> +	struct property *prop;
+> +	unsigned int reserved_maps;
+> +	int reserve;
+> +	int ret;
+> +
+> +	prop = of_find_property(np, "pinmux", NULL);
+> +	if (!prop) {
+> +		dev_info(dev, "Missing pinmux property\n");
+> +		return -ENOENT;
+> +	}
+> +
+> +	pnode = of_get_parent(np);
+> +	if (!pnode) {
+> +		dev_info(dev, "Missing function node\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	reserved_maps = 0;
+> +	*map = NULL;
+> +	*num_maps = 0;
+> +
+> +	ret = pinconf_generic_parse_dt_config(np, pctldev, &configs,
+> +					      &num_configs);
+> +	if (ret < 0) {
+> +		dev_err(dev, "%pOF: could not parse node property\n", np);
+> +		return ret;
+> +	}
+> +
+> +	reserve = 1;
+> +	if (num_configs)
+> +		reserve++;
+> +
+> +	ret = pinctrl_utils_reserve_map(pctldev, map, &reserved_maps,
+> +					num_maps, reserve);
+> +	if (ret < 0)
+> +		goto exit;
+> +
+> +	ret = pinctrl_utils_add_map_mux(pctldev, map,
+> +					&reserved_maps, num_maps, np->name,
+> +					pnode->name);
+> +	if (ret < 0)
+> +		goto exit;
+> +
+> +	if (num_configs) {
+> +		ret = pinctrl_utils_add_map_configs(pctldev, map, &reserved_maps,
+> +						    num_maps, np->name, configs,
+> +						    num_configs, PIN_MAP_TYPE_CONFIGS_GROUP);
+> +		if (ret < 0)
+> +			goto exit;
+> +	}
+> +
+> +exit:
+> +	kfree(configs);
+> +	if (ret)
+> +		pinctrl_utils_free_map(pctldev, *map, *num_maps);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(pinconf_generic_dt_node_to_map_pinmux);
+> +
+>  int pinconf_generic_dt_subnode_to_map(struct pinctrl_dev *pctldev,
+>  		struct device_node *np, struct pinctrl_map **map,
+>  		unsigned int *reserved_maps, unsigned int *num_maps,
+> diff --git a/drivers/pinctrl/pinconf.h b/drivers/pinctrl/pinconf.h
+> index a14c950bc700..a171195b3615 100644
+> --- a/drivers/pinctrl/pinconf.h
+> +++ b/drivers/pinctrl/pinconf.h
+> @@ -138,4 +138,8 @@ int pinconf_generic_parse_dt_config(struct device_node *np,
+>  				    struct pinctrl_dev *pctldev,
+>  				    unsigned long **configs,
+>  				    unsigned int *nconfigs);
+> +
+> +int pinconf_generic_parse_dt_pinmux(struct device_node *np, struct device *dev,
+> +				    unsigned int **pid, unsigned int **pmux,
+> +				    unsigned int *npins);
+>  #endif
+> diff --git a/include/linux/pinctrl/pinconf-generic.h b/include/linux/pinctrl/pinconf-generic.h
+> index 53cfde98433d..1bcf071b860e 100644
+> --- a/include/linux/pinctrl/pinconf-generic.h
+> +++ b/include/linux/pinctrl/pinconf-generic.h
+> @@ -232,4 +232,8 @@ static inline int pinconf_generic_dt_node_to_map_all(struct pinctrl_dev *pctldev
+>  			PIN_MAP_TYPE_INVALID);
+>  }
+>  
+> +int pinconf_generic_dt_node_to_map_pinmux(struct pinctrl_dev *pctldev,
+> +					  struct device_node *np,
+> +					  struct pinctrl_map **map,
+> +					  unsigned int *num_maps);
+>  #endif /* __LINUX_PINCTRL_PINCONF_GENERIC_H */
+
+-- 
+Jerome
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
