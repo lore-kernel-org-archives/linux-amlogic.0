@@ -4,81 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F09ACE77197
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2025 13:06:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4128CE77199
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2025 13:15:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=pYwZIpckQhcsnaoihus7bhfp2XoukaG6RJ1/U05bR50=; b=CZMP0s3OehDP6Jb4fj1L1bxlhb
-	1/G0fF+2hBZUo0D2CFyq7ZXB2II3iBxcaolsfq0i8BvtkTRokWzBkVgvDxDRz2fNCofH6pfecR2xp
-	QZVsRcLutezuGGfTIZV/qf9SwR5xOsnTXKo1TkX7kMJCxjc3NWsuzviTOyNU1OU+Cilzzy49zbuFR
-	63wNlh0yOxxFGWL4gVfuSZXW5Z9KRAwVfbEvec8g3zllzCRg7r+8jNdu3vqMcJLbJBoD4JZHpAwF4
-	1jzrivZppLFSrxN1jIXMycamYcFZI4mYoeTrymJuUshhL0kWUb0l35c3A9eqaFYoIhYEEjv5HVNgH
-	I/olFz2w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fAUjAt8d+MaKE8Yo8WGHnOKSqaIMv8MTFR1aGADagAw=; b=elU3d+v7PxosNm
+	mfcsNtB5m4mPNAoYECAmq0DdY7j5oqKcKawtQVFAgGN9f/bOn19MBvZlOiDkxPIZGNcoK2mtUU+pu
+	Wg836vNPQB5gG6UHPXdrcDfZymcIYLRlaFzM+R1GS0qO1P8A95VGUGtRR6eWHbCDFEoT8Bl5egVdj
+	2fz7tcuRazhYN6Mc0gNsgWAztcDCR4L0T7ndK2TNUFKsjt+ys+7atkBi0k4ZJ8+1RzkMN1eAfm/VY
+	x3MoLqOy5oui3sPd31o7tADSM+nbp32JmjJeMipgcm/ue8hVbZVnvOiAciiu+Uti18AC//W4Bo4hF
+	Vi+OqTygBZBZeI8HE1gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tV9Hi-00000004v3h-2eOk;
-	Tue, 07 Jan 2025 13:06:14 +0000
-Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
+	id 1tV9QZ-00000004xoU-0j3K;
+	Tue, 07 Jan 2025 13:15:23 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tV9Fv-00000004tqJ-14lb
-	for linux-amlogic@lists.infradead.org;
-	Tue, 07 Jan 2025 13:04:27 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tV9FZ-0003iC-6R; Tue, 07 Jan 2025 14:04:01 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tV9FV-007Lc1-27;
-	Tue, 07 Jan 2025 14:03:58 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id E073E3A08A6;
-	Tue, 07 Jan 2025 13:03:57 +0000 (UTC)
-Date: Tue, 7 Jan 2025 14:03:57 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Doug Berger <opendmb@gmail.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Kalle Valo <kvalo@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>, 
-	Dario Binacchi <dariobin@libero.it>, Christophe Roullier <christophe.roullier@foss.st.com>, 
-	Grygorii Strashko <grygorii.strashko@ti.com>, Siddharth Vadapalli <s-vadapalli@ti.com>, 
-	Roger Quadros <rogerq@kernel.org>, Brian Norris <briannorris@chromium.org>, 
-	Frank Li <Frank.Li@nxp.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-can@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-wireless@vger.kernel.org
+	id 1tV9MD-00000004wfx-3shY;
+	Tue, 07 Jan 2025 13:10:56 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id DA0CFA41194;
+	Tue,  7 Jan 2025 13:09:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49C9AC4CEDD;
+	Tue,  7 Jan 2025 13:10:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736255452;
+	bh=fLby7RmtqFgkq0hZnNCEPuxeUfnBSBSrwvZ237HZbOs=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=WkNBqjpfT7KKhM/f78qZQIFRDy+o42B9Af5XsAHCztHXmckom/t0fkGKdrYbmRfAN
+	 +7IIRSchHVmfgB2O/dnady+xriNeJ8GnYZmkaMqmMElfKeVn+W99hKsulP28dDYHY1
+	 rbtkoSk+FHuEiEDaKFGutWYq6dne4rkp19x7avvI7Rol7WV9Fln8Itfh3sOKYDmIO8
+	 DBzDRxHIdmg2C9dOosm5sz/bp+6Wb0RwbC8H5Strg/UNgVyrK6dZD5Pg1Kf61/xZb/
+	 YYR5luvVGVQ4iaNdl1BExAlfGcBnZ/9E2upQ1mym/8nMhW7B1in2N/hPz59gxWiL4b
+	 0yRxnP2vAomFA==
+Message-ID: <f4686d25-76d5-41b9-b82e-2787917deb89@kernel.org>
+Date: Tue, 7 Jan 2025 15:10:34 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH net-next] dt-bindings: net: Correct indentation and style
  in DTS example
-Message-ID: <20250107-cocky-industrious-hare-c508f6-mkl@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Doug Berger <opendmb@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>, Marc Kleine-Budde
+ <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Kalle Valo <kvalo@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>,
+ Dario Binacchi <dariobin@libero.it>,
+ Christophe Roullier <christophe.roullier@foss.st.com>,
+ Grygorii Strashko <grygorii.strashko@ti.com>,
+ Siddharth Vadapalli <s-vadapalli@ti.com>,
+ Brian Norris <briannorris@chromium.org>, Frank Li <Frank.Li@nxp.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-wireless@vger.kernel.org
 References: <20250107125613.211478-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
 In-Reply-To: <20250107125613.211478-1-krzysztof.kozlowski@linaro.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250107_050423_295904_4AE31B1F 
-X-CRM114-Status: GOOD (  14.59  )
+X-CRM114-CacheID: sfid-20250107_051054_035444_7F78CAE9 
+X-CRM114-Status: UNSURE (   8.49  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,77 +93,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0314837265229250372=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============0314837265229250372==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5vdg3z53mqf4igqc"
-Content-Disposition: inline
 
-
---5vdg3z53mqf4igqc
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH net-next] dt-bindings: net: Correct indentation and style
- in DTS example
-MIME-Version: 1.0
-
-On 07.01.2025 13:56:13, Krzysztof Kozlowski wrote:
+On 07/01/2025 14:56, Krzysztof Kozlowski wrote:
 > DTS example in the bindings should be indented with 2- or 4-spaces and
 > aligned with opening '- |', so correct any differences like 3-spaces or
 > mixtures 2- and 4-spaces in one binding.
->=20
+> 
 > No functional changes here, but saves some comments during reviews of
 > new patches built on existing code.
->=20
+> 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../bindings/net/can/bosch,c_can.yaml         | 10 +-
->  .../bindings/net/can/microchip,mcp2510.yaml   | 18 ++--
-
-Acked-by: Marc Kleine-Budde <mkl@pengutronix.de> # for net/can
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---5vdg3z53mqf4igqc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmd9JjoACgkQKDiiPnot
-vG9NNgf/SxxAC8UsIuL4bDVaIUg+kAj0yKfrwEWjhutunUKK24lVKylz+/UY8+zv
-3+LqniAsnEwHJPxLZ5S0rCe2+qZ6gsvXSBlQSqEJukZOzpWNVYECd8Wf8Q8dQzu+
-qYoaEgvr5jcwNUr+cdrPvhyn4CXuNJCsdmwpfJn98S6XLhwSX+SxgiSUAkXpRmQn
-EE2nnt52Dbrrk4CILlRtPPpd0/hsAXMEWGjIUBYW2f/FJqVNv+yPwZiEsIC2iDSG
-V4fs/zJxh98GK89T2fN8fRzlMTG9pMPmWaQLbMPmVkHn5eJbX7LUoQzmSBe6Kgc3
-I+WqIjPZzj6L9ubrNZg4MgJ3t+T4tg==
-=gbSE
------END PGP SIGNATURE-----
-
---5vdg3z53mqf4igqc--
 
 
---===============0314837265229250372==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 20 ++--
+>  .../bindings/net/ti,k3-am654-cpts.yaml        | 36 +++----
+
+Reviewed-by: Roger Quadros <rogerq@kernel.org>	# for ti,k3-am654-*
+
+-- 
+cheers,
+-roger
+
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0314837265229250372==--
-
