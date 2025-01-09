@@ -4,73 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B10EE77197
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2025 12:20:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64404E77199
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2025 20:03:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
-	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JG+t0/cq8hRDI9DFfc48QK61dKzHwG3tmbzHgNl9Br0=; b=rz9s1rz7OyL/s+
-	OJ5pvpLfxjjRds8zzv3SG9uAQK/M4FVd0neR4xraxhaadSE2ZqoBbP9DHNTndL5JUuSETGUeEwG6T
-	bj3k5M2H3MtBKmyHMWsGZH7dbirNAGDGWFVAIxp7Ya8cZrR5c9o9MxUtdzngP4EEgCmGmpO4TMbEl
-	blNO8jiSrg1MjIu6/FEzQjBw+rjz83neCL9V5Fz5OxXhSi7pUMa2fgCpVVqjFVmQw1FrP8cJnBpDV
-	ze9qc2/UG908IuKrd6PcIlyhXo1Gbh3BJ1ieBt9NXyzQU1iGMrrmxhte0ceLK+FJ5RBF1266S6Mnn
-	TNV47W3ZiHWtUH2cD3Ng==;
+	List-Owner; bh=sST8vgjJ41fdHH5P3o626cLSW0YRa6uzp/0vQtZxKxc=; b=kQm65HI+EnYDL9
+	maji+++OTWVLlTb38inf5CxYEIlqJ23i+s2iyd+TBH1RKzAn8NDf2/z140JmN86k2YmI7rUoEmq9o
+	hVC1Gm9E8wGi3x+MkDcoQsQ0x2XIuGyUbMlB4BnKZ8gTKfy6AKikl0IM+LR9degBtoFK0nGvCS+xi
+	cgFl3Z3M3MtBHoqRqSS1FZKVhmmrg7SHsEEIRF825PP96nC/dra7cUZ8pDeSWf6Kf1Ao0Q+bxIHQS
+	dp4Lgdbm/YfFNg3mhogth3lDkLiD+jz8ASXL5TH9impqDaXEg1Sk8PZVPV7dY4sxkq2jfQELLq+a2
+	WEdB2dSXyZHxtBJ1Ycug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tVrWK-0000000Bpef-0Lzy;
-	Thu, 09 Jan 2025 12:20:16 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1tVykO-0000000DBY3-12je;
+	Thu, 09 Jan 2025 20:03:16 +0000
+Received: from relay9-d.mail.gandi.net ([2001:4b98:dc4:8::229])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tVrWF-0000000Bpdb-3PRe;
-	Thu, 09 Jan 2025 12:20:13 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 6AE8BA41A34;
-	Thu,  9 Jan 2025 12:18:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ED65C4CED2;
-	Thu,  9 Jan 2025 12:20:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736425210;
-	bh=1y+/0y5Mn+3mmY+Rqdubf97qrdL5lDWfwQl+N0okVJU=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=bBTDpivSMWuijJnQh3u2XfH9P2b2E4ReENVkg276ScYNV8Ss+42DNVlNmjVmLQUr3
-	 apQ2/amP9GMMjCFtqCT61NPIdITDXPY3uOrt3IiBSUrkpuAmcy0AvW1rEVOc+6oMLA
-	 ML6onBd5rB0YzWtEyB5mMrqlq8WiKRlUfKdxN3y4+Ll6leBYD0RWQQi4rH3o/LhEJI
-	 RjkHYtHLgkgOIxn7mk1Zv5WdZ9OkR/GN+tYej1kiYzelwtXhPIVn3q7RGwH5N3NfTl
-	 5UJfKT0FaCYrZQ6CwtVlUj2LKCfvg1L7TLY0H/xKpSbZ3vOqp+CKpUsu6+e7STHpdg
-	 6GZHN7Aa/zmTg==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33DFA3805DB2;
-	Thu,  9 Jan 2025 12:20:33 +0000 (UTC)
+	id 1tVykL-0000000DBWS-0QXh;
+	Thu, 09 Jan 2025 20:03:14 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 81E65FF802;
+	Thu,  9 Jan 2025 20:03:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736452988;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ufquL8MTaCaDartUz08Jv9Co5w4deNYxwsOj/E8fcww=;
+	b=aqnMgi8dmXNmdqbb82gZLgfSEWXhFqHsrY4xDCQkXxC1eVbQ/WCgrOzndGV9myrqe/hElG
+	jef5H3/ls9gbinUu25fBKeiz2GZiCFulJ+4WhYBhfC45VCcq4EfPtR0KIHfjbcek+Q1VfV
+	9wBuydXTJ3vjy+3TBFcHwgj4253G33JMK1TEdzYz0Ww2Ja4TgQmwoyNJWYJWfnKuos+WPd
+	cU46FTlgkwEX3NlsLIdW4FYBG1lIgDNygresvTuecEYNDGFWiC7SET7ShqD2glnBctwGq+
+	pVYOLHmLiyMp2+38SZucpgCpNOe0nHGnaKhJZh2gFh8WYrNUDI6LJ28dYOimqg==
+Date: Thu, 9 Jan 2025 21:03:04 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: linux-rtc@vger.kernel.org,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Yiting Deng <yiting.deng@amlogic.com>,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Support Opensource <support.opensource@diasemi.com>,
+	Paul Cercueil <paul@crapouillou.net>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Eddie Huang <eddie.huang@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Vincent Shih <vincent.sunplus@gmail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Michal Simek <michal.simek@amd.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	chrome-platform@lists.linux.dev, linux-mips@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	linux-tegra@vger.kernel.org, patches@opensource.cirrus.com
+Subject: Re: [PATCH] rtc: use boolean values with device_init_wakeup()
+Message-ID: <173644377117.1019413.12980385173648327961.b4-ty@bootlin.com>
+References: <20241217071331.3607-2-wsa+renesas@sang-engineering.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next] dt-bindings: net: Correct indentation and style in
- DTS example
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <173642523202.1303894.12707902460357622367.git-patchwork-notify@kernel.org>
-Date: Thu, 09 Jan 2025 12:20:32 +0000
-References: <20250107125613.211478-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250107125613.211478-1-krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, neil.armstrong@linaro.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, opendmb@gmail.com,
- florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- rjui@broadcom.com, sbranden@broadcom.com, mkl@pengutronix.de,
- mailhol.vincent@wanadoo.fr, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, kvalo@kernel.org, o.rempel@pengutronix.de,
- dariobin@libero.it, christophe.roullier@foss.st.com,
- grygorii.strashko@ti.com, s-vadapalli@ti.com, rogerq@kernel.org,
- briannorris@chromium.org, Frank.Li@nxp.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-can@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-wireless@vger.kernel.org
+Content-Disposition: inline
+In-Reply-To: <20241217071331.3607-2-wsa+renesas@sang-engineering.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250109_042011_989685_DDE27896 
-X-CRM114-Status: UNSURE (   9.01  )
+X-CRM114-CacheID: sfid-20250109_120313_294918_E2E83611 
+X-CRM114-Status: UNSURE (   8.97  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,31 +109,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by Paolo Abeni <pabeni@redhat.com>:
-
-On Tue,  7 Jan 2025 13:56:13 +0100 you wrote:
-> DTS example in the bindings should be indented with 2- or 4-spaces and
-> aligned with opening '- |', so correct any differences like 3-spaces or
-> mixtures 2- and 4-spaces in one binding.
+On Tue, 17 Dec 2024 08:13:26 +0100, Wolfram Sang wrote:
+> device_init_wakeup() second argument is a bool type. Use proper boolean
+> values when calling it to match the type and to produce unambiguous code
+> which is easier to understand.
 > 
-> No functional changes here, but saves some comments during reviews of
-> new patches built on existing code.
 > 
-> [...]
 
-Here is the summary with links:
-  - [net-next] dt-bindings: net: Correct indentation and style in DTS example
-    https://git.kernel.org/netdev/net-next/c/9d8c354a56e9
+Applied, thanks!
 
-You are awesome, thank you!
+[1/1] rtc: use boolean values with device_init_wakeup()
+      https://git.kernel.org/abelloni/c/8c28c4993f11
+
+Best regards,
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
