@@ -4,167 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E1A3E77188
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2025 02:34:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D36FE77197
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2025 09:23:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Yh6MzzqOT+mvW9S4+ZpWt3ZDVV9vBP96lGBrhJPE50c=; b=RAhY6qtLo3UR4JmF3VDjfkONSk
-	pcH5JwtQXIqF+mXRNy07CRiFYDkDDcqBSOADMq5uP/AEau1+oYoLGtKBFM0QD9HjIqlJTLj3MW/2+
-	yCU08mHv1Jq5eSgN0ffHpbkDLsE30nVpCC31wUW29Hct26Gwg8AjWHpyBWNRPDgz5jnANXHV+zaII
-	17syTREc/wu8ddGmLBHnTUMtfVUG3U2BuRMqbMG6aZ/95g/2RRFTnde669z2ixBCM7hI8cINnMhqX
-	2stBFIiA+rZjjzHH/Y8JwDMx0fIxI4GLZnVis1n85hl5dyO0gGb54AcQGXOzXvmX8nLscqP7YX4eh
-	ZG7kt42w==;
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=i3vvwtGnrJlv9ZNRMKiNFIn5m9pcFz40o8xDiVMnztc=; b=WV4CeU4xCh/YSY
+	z/JeP2+0H5q6R4NwrmRI+rF43RVDbTLfIlkf+S6xhDpyxLEj30EYJLJmF5tmXa5XkSfaBGRbur3CA
+	bswdm9Vl5e5sv+I5pj6UuO3VETNNEgwbvbvOuKeRg0wX+zD17tL4lHCDJM5cLQ9bUGNVHwFOBdW6L
+	O72tMa6HOXQMRtICH8fQ/BMvHSHdIle0XVThl2KuxjxKOeX8uzkz0MGSBzvwu8WbXTzliwfGCASu8
+	TQVhm9dVWu5JYTraLRwv8rggH8MWxnWDOF+6rHVjW2WPJkFCrWjLSHosj4WjPAJvJaWQh9g3iwi5O
+	OfdCXWeTAUhwLXbHZnRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tViNl-0000000ARo8-0HyN;
-	Thu, 09 Jan 2025 02:34:49 +0000
-Received: from mail-psaapc01on2118.outbound.protection.outlook.com ([40.107.255.118] helo=APC01-PSA-obe.outbound.protection.outlook.com)
+	id 1tVokg-0000000BLB6-0dXp;
+	Thu, 09 Jan 2025 09:22:54 +0000
+Received: from mail-gw02.astralinux.ru ([195.16.41.108])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tViMV-0000000ARWK-2n85;
-	Thu, 09 Jan 2025 02:33:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GFQRRjJ/xOllgtJCsjOejhXX6GxM7R5z/poEIpcEcscL7eFem1tiZGeFEPy+vzpDTikkjUdNZOGsMzIhIKhba/xh7WWBhmZJ19wfL7rTeTET/RysILh/KzQUX6MD6SO5cXYxnkAQqbRVGICn72NOB25wqzDHouY4pGtfY3nUux+yVz3Z8Bm0f2iD1okJaenJj3pPZFTDy5K6QV6aDQbWZ9fQEPosM5jdbnFBv9H86onpZled+a1zNkJ+tvenTSwwP5B3/WhJ1+Egc+tcZXGexnzB+hZVTL5zFcw0ENEVniAyTiVjn7qhpE50Y04nTMU3NzLdvhFHiX7+9sOKSPmkOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rGMzp78C09ETjvzu/jCvVd+/cb/9tclMNdfhak5fr0M=;
- b=m02uZBs6LXZwgcoYMhglEd6frLsQNDiMdhFWY4WIpDYxRQqa/vJIFvl8SEfnZNBrfcE+YOV8ARFnOQhuvUyP4Dsjo/TsFWduuLBGRWXeB2WV9+ROeKoEGRcfmK3ZNLieyHP9D4o5bnenJ7TAeqdyjjoyEi0aOrY74I2Q6wEmPlQQhmLv/htW3u/JlFrJkxsn1Et+uo661+ytMpTO1nuv1tfp6RRICyVuAmmOe2MId6mnDNPjKE6GHuZauAODnvx92sgc3YD7IdS01SB/gf/tUFvhYFB0f3PH+RWZ7fa7dNzlfJXDZ2rkkN1cJq5uzhZETCzbiHbd7aBTMmSu+DPflQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rGMzp78C09ETjvzu/jCvVd+/cb/9tclMNdfhak5fr0M=;
- b=jhfmprFi6FdolWYvF5H1nDVFebpQsIHeepKskY+1lWl358rmAJk2rzLniQgA+cYKAjtgjNpCujG9Kf0u7zK1riNz9GchSPhuS1GioD0GKR4m4SFVBLkOvOqg14G9eBWsTOh90Ay05yvoZBfkpoc+PjV2smEcaokvc94fLxWKxHPAe2/j3UyfqEBE+gEJAfQcWXoZP5cqdCqF5WOkAjec1aURiB/PePsN8Z2xjoBZw8VEWyAs7Isfbo/22DGp6gfI2Vh9t7cJq9662poFKmZURFwS97AYDX2D+4JUnv7hFE2htEcS/Q3gIKcXyUxhK2UDPsALXBCbEWLBdjMQBnEsrg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SEYPR03MB7814.apcprd03.prod.outlook.com (2603:1096:101:178::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Thu, 9 Jan
- 2025 02:32:57 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%7]) with mapi id 15.20.8314.015; Thu, 9 Jan 2025
- 02:32:57 +0000
-Message-ID: <8ae1ee73-d710-40d2-bc70-605680421fb8@amlogic.com>
-Date: Thu, 9 Jan 2025 10:32:52 +0800
+	id 1tVojM-0000000BL00-2P79;
+	Thu, 09 Jan 2025 09:21:34 +0000
+Received: from gca-msk-a-srv-ksmg02.astralinux.ru (localhost [127.0.0.1])
+	by mail-gw02.astralinux.ru (Postfix) with ESMTP id 4B5ED1F9E3;
+	Thu,  9 Jan 2025 12:21:24 +0300 (MSK)
+Received: from new-mail.astralinux.ru (gca-yc-ruca-srv-mail04.astralinux.ru [10.177.185.109])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail-gw02.astralinux.ru (Postfix) with ESMTPS;
+	Thu,  9 Jan 2025 12:21:21 +0300 (MSK)
+Received: from [10.198.51.250] (unknown [10.198.51.250])
+	by new-mail.astralinux.ru (Postfix) with ESMTPA id 4YTK626LvvzkWxT;
+	Thu,  9 Jan 2025 12:21:14 +0300 (MSK)
+Message-ID: <95dc2a3b-1659-4fc9-b0bb-d69475d424cd@astralinux.ru>
+Date: Thu, 9 Jan 2025 12:21:13 +0300
+MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: Add support for Amlogic SoCs
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+Subject: Re: [PATCH v4 resend] drm/meson: switch to a managed drm device
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20241226-amlogic-pinctrl-v2-0-cdae42a67b76@amlogic.com>
- <20241226-amlogic-pinctrl-v2-1-cdae42a67b76@amlogic.com>
- <20250102212422.GA554486-robh@kernel.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20250102212422.GA554486-robh@kernel.org>
-X-ClientProxiedBy: SI2PR02CA0030.apcprd02.prod.outlook.com
- (2603:1096:4:195::17) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEYPR03MB7814:EE_
-X-MS-Office365-Filtering-Correlation-Id: 84b328bd-b87f-41be-d63a-08dd3055ed6a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YUVWQ1BGMDIrY0FxUTBrNFBlSGREUmRsQjgwdG1DNTBOOXNxeU1GOGxkTTVi?=
- =?utf-8?B?Q3FwVmVsWngydk5mcDBoTzViUzQ0emU3Yyt2aFAxNXdjUmk5UUlyUVhBaGUz?=
- =?utf-8?B?R2oxekRINTZBU0FPdzVxVzQ4SFAyS05rNTdKRGc3Z2lSdUIwMkRDak5IS0NB?=
- =?utf-8?B?ZFdZcFcvTHJaNzJRSXNqUVREV3hKeVZtTk1nbVVGWnhJa3hlSCt5VHpyWVVu?=
- =?utf-8?B?VWx5Q2EwWWJZUmliKzJuYzFiM1R1bUFBUC8vOXpjUTRZMElkQkFYMU80Q25Z?=
- =?utf-8?B?VUw4V1htQnVQYmJuRW9RbXc1Z3oyWXdGRmVJRHA2SG1Xck1nTUdxak10c3g5?=
- =?utf-8?B?MTYrcGhnc21jT3JBRkZ3ZjAydmhJZlk0bjFNVHlNaVlMbjMxdmdoR3hMUU1J?=
- =?utf-8?B?MGwzQVpmT2QzT0dLTVFYOUNtSHlaclZ3WUZOWjhPRDZ4SE4zS3VnTUJRTFlZ?=
- =?utf-8?B?blUwQ2dTZGFrOFBMSmM4NEZWS1dkSHFuVXljd2c4eTM3ZUtkeWhtalFrSWhp?=
- =?utf-8?B?SExPdHZzTTM1WXZBTCt1b3FJNGVMMkc4clp6M043MUc3UmUwd1QwRHF2RitN?=
- =?utf-8?B?cDQ5ZG9VcmZQdXJIQ0w2R2VQeUFBRTJ1YURmb3lLQlk1MmdpcTlsK3p4WENX?=
- =?utf-8?B?SDNvcUtRSUhDOXBLQkpBNWRHLzYwOWlGbHpKeVM1RVFJeUpiRFFQbDZSNTY4?=
- =?utf-8?B?UUczNFNFZGVMUTQ0RXRmVytkRnhTRUtYVDZJTXFjK0NoMTN0RmZCbC84NG9W?=
- =?utf-8?B?OURXOU5VQ3pmWi9VMWpzV3MyeXBJWWQ0SWM2MHFtSzJIRFdmdWN5NnhhT0Zv?=
- =?utf-8?B?ck81eEplZ0FXVkxSUUpxT1dJNlduV0RVUFVrSVI5NnBZRmg2VUFJUTdkeStQ?=
- =?utf-8?B?RjVkK01LSGNuZGd2NzNzM1oxaUxDejJOVjkxcjlpck9pbk9McDMwN1pnOGZ6?=
- =?utf-8?B?bWs3UmJnTzJnRGJ6RjRodEdjRUplL0Uwd05TUE1wVlZ2NEtjWmZUSEEySzhx?=
- =?utf-8?B?ZDY5Zysvd2JxWFduek9MVlhGTmkxd0gvMWN0UWZjeFNoMEtNRjJ1Qjg4cDFl?=
- =?utf-8?B?MTI2blNqK2Q0NXlWWUJOZjhLeUFNN1JMVGVpVDRPdFpDdFBITk1BWVh3Qnls?=
- =?utf-8?B?T2FiQkcwZ1dMek8wSkw5blVpVTRLSmZnTThiT2l2SXlHK2REanNSdncxYjFQ?=
- =?utf-8?B?bFF2b01ndEdNMEdVeThsR00rODhMdXF3R0Q5UHU5Yy9mUUp3ektSSWo4SklJ?=
- =?utf-8?B?Ty85UDhBTVZTQnI3RWZ2NS90a2NCKytOM3VMVG1xeFpDYUZwMGV5cDNMcG1u?=
- =?utf-8?B?NjE1bEhXZDVaTFBVR05zbUFoSHlwajc3cG5VbzE0UjRkM29pZ1k4eHdwS3hx?=
- =?utf-8?B?VG1SYzJuUkZCdVcvTzFRRERVdVZyc2x4YWdJb1NtVGZDUzhkVUM3UHp6dmFo?=
- =?utf-8?B?cHluVGd3a1dnNHdhS3Y3L0MyZUtCTFZCajJFWWFTUXV2VHpndWs5TFZJR1ds?=
- =?utf-8?B?Q3ArWi9OcFgzRmJMeUN2YjN1WExCQzhTems2eHFFR0x6Q1dOVWdtMm1tTlFK?=
- =?utf-8?B?NURSeHNWdVdtRm5qeGJONUlkdHFUcXFDZStCY0JPQmMxYmdkaXVyRlhBb3Bu?=
- =?utf-8?B?YVVKWEdLZnk0cUhmYnA1Nk9iNlQ5VWRMRUR4Q010TFV6UzNlbnd3dmJQc3Zs?=
- =?utf-8?B?QjkyeTdIcXlFTFJBNURKSkxQUWFNbXZ5aWN3aWlycG1oOUEvaHhOemdzTm9i?=
- =?utf-8?B?dWZTMmZtVFlGeTU1ZlZ3emJkSDRGZlpSbE15aUxXUDE4M0pQSXBkdWErYnpH?=
- =?utf-8?B?WkV3dUd1N0t3Q0JjNU5tZz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z0gvekUvRnl3MjdYY1NSMUlMc2dLMWc1Um95bE9nbm9aVkp5REtsbnlGeUtF?=
- =?utf-8?B?Z3A1ZmdvcjVLck5Ia2NpRFJ0Sm42YUNvMjRiZ294T2gvamJzc2VwSUdwWWpI?=
- =?utf-8?B?MWRnVnh4d3lxeGdsUzVPVkxFanB1OUJPS3lVdHBLeUk2U1BhbDgxTlBJK1d6?=
- =?utf-8?B?bkNqQ3J0Tkh4VHBCdm9RYUU0KzBieCtMeC9qemtkZU4vMHcva0Z2R0VDcGF3?=
- =?utf-8?B?Zkg1SmpDSEdBMDA3eEFacFBIUnZtaHJHKzBpbVJwemRPcmJ2QkwvWStJaXRM?=
- =?utf-8?B?NWE2RUE3TWxGZjBuR2hjMWsydzFDZ0JFT2lzczlKaENhUWdraVdtMmlEUVJM?=
- =?utf-8?B?bXF0akMyZXpBWjZCRC9NbWN1NFd4TTU4anpBeEdYZklCQmxOYzl4Q1RuUUVw?=
- =?utf-8?B?a1RxaW9xU2E4L1kyTzBCYjBKVEx6Y29IR2QvRWY5aHd0Vk1mQjhQMER6UjFU?=
- =?utf-8?B?cjZ4T0dxZlZxUm9GcWs2MURYYlJ0YTRjUGpsK0JlV0d2eGNnTzR4am5FbU9w?=
- =?utf-8?B?cjBRY3JlWlFsRm5DN1BBWWp4aHlWaE1jZFpneWVuZjdWb0lLRGdFdWR4N3Ni?=
- =?utf-8?B?NW41TzNPM05Cc3gzTU4rTU1PV0ZTcDMrTzd1Z0hnUi9telhIZXYrSC9TVTVV?=
- =?utf-8?B?d2ZMWWN3VmFIbHVUZHRDVC9rYWtxV1U3cVNBeEZQSkNibDFvRUt2cUl1MmpX?=
- =?utf-8?B?SUI5OXZtZm5mQ3VQY0hxcTVjVzYvV3c4MnN6cVU2MHRwaEFaY0o2SlVpampV?=
- =?utf-8?B?d2srdW1EcDRROWRBc2t3SFQ2VURXWmFNME1lbDRVQmZ0c2xSWkJraCtIMHEz?=
- =?utf-8?B?blpiMnR3MFUxRzhFRy9PbUtzRTZpUlVOWmpYR3psQXFzMWdCTFVTNDBPYjhs?=
- =?utf-8?B?aFUwTklRZ2NMZHFyL1FDN0kxM0JFMXBXdGRVTXg4b2tBMjZMSTVnSzVUWTBD?=
- =?utf-8?B?ZjN4U0NKUkExbjJ4MUdmVkNiZ2o2Qy82YmdJZDJUM3RoSldJem5ZRWhOREJF?=
- =?utf-8?B?VVhlQjJtUWZhU3dGYUErQndEQ0pWTmlsSXliaFRsaUpDd29FWmpHcVloUitw?=
- =?utf-8?B?ZWw4bjMyTVlaMmJWcmErYXVaS1hMZWExT2dSVFhaU2RLcXdBZFlEVzlteW9F?=
- =?utf-8?B?dCsrVjh4NXZ0UFdWMmJ3Z1JHRTh2blBiaSswcjk4bVkybUhxR1V4ZWNLdFVB?=
- =?utf-8?B?K3B5cUo0d0p1MDJWSUFaK1BrZlhtdkdEd0V1UWozZjE0K0lMQVE3MzdKMDVY?=
- =?utf-8?B?UFpVMVhMN3BEaVZPRHNubS95bmJLNVhmaHJjcFFndU5oQ0NYZXpLU2QzdDQx?=
- =?utf-8?B?eFd2LzZuT3dia2h4S002YkxNWXF1YUxnSDZUVkRsRHg3ak1NU3Ftb05uM0VZ?=
- =?utf-8?B?T0d0Q3p2QldzcVFFVEZhOVpXb0ZUR29FZkRFbFRQcFVucGFJWlNaMk92MEpx?=
- =?utf-8?B?WlV3bWtjcVhWRTZpSTB4MjlNNVBkdHo3OGtaR1htUDlHR0oyN3ZjUXJTY29P?=
- =?utf-8?B?YXlUbDV0R0RPZnFhRjhGaWl0M2laSUozZnhkSHVJNFh3RTBoME1lYnpibUs4?=
- =?utf-8?B?TzRuVGFQWlA1Vnl5VE05VTVHM3ExU3BqMkt5Mk5JZFV0ZnBGLzN2enRWbVZh?=
- =?utf-8?B?L0tUSTJDUDJmUktsZFBGK2pONWdLanFCMXZuT2VWMlJ6MFB1a2xHLzlrUTJy?=
- =?utf-8?B?Qlp6aWtPdW1IZ0lXemFOTTVtMmpHNjJoeGo4QnFhVlBLTDdDV1l0bHZscitR?=
- =?utf-8?B?Z1pxZ2R2WVVTZmNGaGYyeEYxMHk1U0VWamp1RU0wQTY2K1FSbTVZQ2V5MmMr?=
- =?utf-8?B?dGZKK21mMXR6MnhKVmVyTE94STNTWS9qNmZVMGhjdDZYYm9YbjJyZmNkVncy?=
- =?utf-8?B?OUpQRGhWSVFSRldaWjVQTy9KMFNhblVIbS9BWEgxUkxXMWtRcENLRzNFMWtB?=
- =?utf-8?B?TEFhQ1RTMXA1L2NTN0poQy85K1ozR2x3bTJWbFpiQk93K2xSVmRHYm5VOVkw?=
- =?utf-8?B?bWc4RVhVekhlWlZGdDI3REhUVnk3QVgySlV5SjBDWTZ1aFRodGR5dUJvbG9a?=
- =?utf-8?B?WGdkbEFDZ3RNU0NDRkRZK1huSXVxcytqY0dkU0M3Um5mQVRkUGM2NUVodUIw?=
- =?utf-8?B?N1p1N2dZQ2g5OHM5ajVDQTNlRW85THVFNmcxSnNjdlRvWXRyWWVuTCsvaFBK?=
- =?utf-8?B?S3c9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84b328bd-b87f-41be-d63a-08dd3055ed6a
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2025 02:32:57.1821
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GKhFscyFUYPlJ6xuKqguTZgHD1jWTd5KIqliS17fVsGI3+f3nbXPvOzAIrrsB2elay/q0U9noR+cKNKe8jbtpat7VodDxUzJlixomW0KUOE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7814
+ Nicolas Belin <nbelin@baylibre.com>, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org,
+ stable@vger.kernel.org
+References: <20241112070051.2795-1-abelova@astralinux.ru>
+Content-Language: ru
+From: Anastasia Belova <abelova@astralinux.ru>
+In-Reply-To: <20241112070051.2795-1-abelova@astralinux.ru>
+X-KSMG-AntiPhishing: NotDetected
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Envelope-From: abelova@astralinux.ru
+X-KSMG-AntiSpam-Info: LuaCore: 49 0.3.49 28b3b64a43732373258a371bd1554adb2caa23cb, {Tracking_from_domain_doesnt_match_to}, new-mail.astralinux.ru:7.1.1;127.0.0.199:7.1.2;astralinux.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiSpam-Lua-Profiles: 190210 [Jan 09 2025]
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.1.0.7854, bases: 2025/01/09 08:30:00 #26962612
+X-KSMG-AntiVirus-Status: NotDetected, skipped
+X-KSMG-LinksScanning: NotDetected
+X-KSMG-Message-Action: skipped
+X-KSMG-Rule-ID: 1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250108_183331_855245_790C4E70 
-X-CRM114-Status: GOOD (  26.93  )
+X-CRM114-CacheID: sfid-20250109_012132_982241_1BDAED15 
+X-CRM114-Status: GOOD (  26.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -181,323 +91,512 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Rob,
-    Thanks for your reply.
+Hi,
 
-On 2025/1/3 05:24, Rob Herring wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On Thu, Dec 26, 2024 at 03:57:41PM +0800, Xianwei Zhao wrote:
->> Add the dt-bindings for Amlogic pin controller, and add a new
->> dt-binding header file which document the GPIO bank names and
->> alternative func value of all Amlogic subsequent SoCs.
->>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   .../bindings/pinctrl/amlogic,pinctrl-a4.yaml       | 155 +++++++++++++++++++++
->>   include/dt-bindings/pinctrl/amlogic,pinctrl.h      |  68 +++++++++
->>   2 files changed, 223 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
->> new file mode 100644
->> index 000000000000..75863d179933
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
->> @@ -0,0 +1,155 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pinctrl/amlogic,pinctrl-a4.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic pinmux controller
->> +
->> +maintainers:
->> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
->> +
->> +allOf:
->> +  - $ref: pinctrl.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: amlogic,pinctrl-a4
->> +
->> +  reg:
->> +    minItems: 2
->> +
->> +  reg-names:
->> +    items:
->> +      - const: mux
->> +      - const: gpio
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
-> 
-> The addresses in 'reg' below are MMIO, right? If so, #size-cells can't
-> be 0 and you also need 'ranges' here.
-> 
+Gentle ping on this patch.
 
-Will add ranges here, reg and reg-names move into gpio object.
 
->> +
->> +required:
-> 
-> Move after 'patternProperties'.
-> 
-Will do.
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - "#address-cells"
->> +  - "#size-cells"
->> +
->> +patternProperties:
->> +  "^gpio@[0-9a-f]+$":
->> +    type: object
->> +
->> +    properties:
->> +      reg:
->> +        minItems: 2
-> 
-> You need to describe what each entry is:
-> 
-> items:
->    - description: foo
->    - description: bar
-> 
-Will add description in next version
->> +
->> +      mask:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +      gpio-controller: true
->> +
->> +      "#gpio-cells":
->> +        const: 2
->> +
->> +      ngpios:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> Don't need a type here.
-> 
-
-Will drop ngpios, use gpio_rangs instead.
-
->> +        minimum: 1
->> +        maximum: 32
->> +
->> +      identity:
-> 
-> Needs a better name. This is the bank number?
-> 
-
-named 'bank-number'.
-
-> But shouldn't you be able to use gpio-ranges here:
-> 
-> gpio-ranges = <&periphs_pinctrl 0 (bank# << 8) (value of npgios)>;
-> 
-> And do you really need ngpios if you have the value here?
-> 
->> +        description: |
->> +          identifier are provided by the pin controller header file at:
->> +          <include/dt-bindings/pinctrl/amlogic,pinctrl.h>
->> +
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +    required:
->> +      - reg
->> +      - gpio-controller
->> +      - "#gpio-cells"
->> +      - ngpios
->> +      - identity
->> +
->> +    additionalProperties: false
->> +
->> +  "^func-[0-9a-z-]+$":
->> +    type: object
->> +    additionalProperties:
-> 
-> Define a pattern for the node names instead. We only allow anything for
-> existing bindings.
+On 11/12/24 10:00 AM, Anastasia Belova wrote:
+> Switch to a managed drm device to cleanup some error handling
+> and make future work easier.
 >
-
-Will use patternProperies
-
->> +      type: object
->> +      allOf:
->> +        - $ref: pincfg-node.yaml#
->> +        - $ref: pinmux-node.yaml#
->> +
->> +      description:
->> +        A pin multiplexing sub-node describes how to configure a set of (or a
->> +        single) pin in some desired alternate function mode.
->> +        A single sub-node may define several pin configurations.
->> +
->> +      properties:
->> +        pinmux:
->> +          description: |
->> +            Integer array representing pin number and pin multiplexing
->> +            configuration.
->> +            When a pin has to be configured in alternate function mode, use
->> +            this property to identify the pin by its global index, and provide
->> +            its alternate function configuration number along with it.
->> +            bank identifier are provided by the pin controller header file at:
->> +            <include/dt-bindings/pinctrl/amlogic,pinctrl.h>
->> +            Integers values in "pinmux" argument list are assembled as:
->> +            (((BANK << 8) + PIN) << 8)  | MUX_FUNC))
->> +
->> +      required:
->> +        - pinmux
->> +
->> +      additionalProperties: true
-> 
-> No, not allowed to be true except on common schemas.
-> 
-
-This object  I will only save
-      allOf:
-        - $ref: pincfg-node.yaml#
-        - $ref: pinmux-node.yaml#
-others(description, properties,required,  additionalProperties) will be 
-dropped.
-
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
->> +    apb {
->> +      #address-cells = <2>;
->> +      #size-cells = <2>;
->> +      periphs_pinctrl: pinctrl@8e700 {
->> +        compatible = "amlogic,pinctrl-a4";
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +        reg = <0x0 0x8e700 0x0 0x04>,
->> +              <0x0 0x8e704 0x0 0x60>;
->> +        reg-names = "mux", "gpio";
->> +
->> +        gpio@14 {
->> +          reg = <0x14>,<0x30>;
->> +          gpio-controller;
->> +          #gpio-cells = <2>;
->> +          ngpios = <10>;
->> +          identity = <AMLOGIC_GPIO_B>;
->> +        };
->> +
->> +        func-uart-b {
->> +          uart-b-default {
->> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 1, AF4)>;
->> +            bias-pull-up;
->> +            drive-strength-microamp = <4000>;
->> +          };
->> +
->> +          uart-b-pins1 {
->> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 5, AF2)>;
->> +            bias-pull-up;
->> +            drive-strength-microamp = <4000>;
->> +          };
->> +        };
->> +
->> +        func-uart-c {
->> +          uart-c-default {
->> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 3, AF1)>,
->> +                     <AML_PINMUX(AMLOGIC_GPIO_B, 2, AF1)>;
->> +            bias-pull-up;
->> +            drive-strength-microamp = <4000>;
->> +          };
->> +        };
->> +      };
->> +    };
->> diff --git a/include/dt-bindings/pinctrl/amlogic,pinctrl.h b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
->> new file mode 100644
->> index 000000000000..03db0a730e8b
->> --- /dev/null
->> +++ b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
->> @@ -0,0 +1,68 @@
->> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->> +/*
->> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> + */
->> +
->> +#ifndef _DT_BINDINGS_AMLOGIC_PINCTRL_H
->> +#define _DT_BINDINGS_AMLOGIC_PINCTRL_H
->> +
->> +/* define PIN modes */
->> +#define AF0  0x0
->> +#define AF1  0x1
->> +#define AF2  0x2
->> +#define AF3  0x3
->> +#define AF4  0x4
->> +#define AF5  0x5
->> +#define AF6  0x6
->> +#define AF7  0x7
->> +#define AF8  0x8
->> +#define AF9  0x9
->> +#define AF10 0xa
->> +#define AF11 0xb
->> +#define AF12 0xc
->> +#define AF13 0xd
->> +#define AF14 0xe
->> +#define AF15 0xf
-> 
-> There's no need for defines in the form "FOOn n".
-> 
-
-Will do.
-
->> +
->> +#define AML_PIN_ALT_FUNC_MASK        0xf
->> +
->> +/* Normal PIN bank */
->> +#define AMLOGIC_GPIO_A               0
->> +#define AMLOGIC_GPIO_B               1
->> +#define AMLOGIC_GPIO_C               2
->> +#define AMLOGIC_GPIO_D               3
->> +#define AMLOGIC_GPIO_E               4
->> +#define AMLOGIC_GPIO_F               5
->> +#define AMLOGIC_GPIO_G               6
->> +#define AMLOGIC_GPIO_H               7
->> +#define AMLOGIC_GPIO_I               8
->> +#define AMLOGIC_GPIO_J               9
->> +#define AMLOGIC_GPIO_K               10
->> +#define AMLOGIC_GPIO_L               11
->> +#define AMLOGIC_GPIO_M               12
->> +#define AMLOGIC_GPIO_N               13
->> +#define AMLOGIC_GPIO_O               14
->> +#define AMLOGIC_GPIO_P               15
->> +#define AMLOGIC_GPIO_Q               16
->> +#define AMLOGIC_GPIO_R               17
->> +#define AMLOGIC_GPIO_S               18
->> +#define AMLOGIC_GPIO_T               19
->> +#define AMLOGIC_GPIO_U               20
->> +#define AMLOGIC_GPIO_V               21
->> +#define AMLOGIC_GPIO_W               22
->> +#define AMLOGIC_GPIO_X               23
->> +#define AMLOGIC_GPIO_Y               24
->> +#define AMLOGIC_GPIO_Z               25
->> +
->> +/* Special PIN bank */
->> +#define AMLOGIC_GPIO_DV              26
->> +#define AMLOGIC_GPIO_AO              27
->> +#define AMLOGIC_GPIO_CC              28
->> +#define AMLOGIC_GPIO_TEST_N  29
->> +
->> +#define AML_PINMUX(bank, offset, mode)       (((((bank) << 8) + (offset)) << 8) | (mode))
->> +#define AML_PINMUX_TO_BANK(pinmux)   (((pinmux) >> 16) & 0xff)
->> +#define AML_PINMUX_TO_OFFSET(pinmux) (((pinmux) >> 8) & 0xff)
->> +
->> +#endif /* _DT_BINDINGS_AMLOGIC_PINCTRL_H */
->>
->> --
->> 2.37.1
->>
+> Fix dereference of NULL in meson_drv_bind_master by removing
+> drm_dev_put(drm) before meson_encoder_*_remove and
+> component_unbind_all where drm is dereferenced.
+>
+> Co-developed by Linux Verification Center (linuxtesting.org).
+>
+> Cc: stable@vger.kernel.org
+> Fixes: 6a044642988b ("drm/meson: fix unbind path if HDMI fails to bind")
+> Signed-off-by: Anastasia Belova <abelova@astralinux.ru>
+> ---
+> v2: fix commit message and add Cc: stable@vger.kernel.org
+> v3: cleanup error paths
+> v4: fix build errors
+>   drivers/gpu/drm/meson/meson_crtc.c         | 10 +--
+>   drivers/gpu/drm/meson/meson_drv.c          | 93 ++++++++++------------
+>   drivers/gpu/drm/meson/meson_drv.h          |  3 +-
+>   drivers/gpu/drm/meson/meson_encoder_cvbs.c |  8 +-
+>   drivers/gpu/drm/meson/meson_encoder_dsi.c  |  2 +-
+>   drivers/gpu/drm/meson/meson_encoder_hdmi.c |  4 +-
+>   drivers/gpu/drm/meson/meson_overlay.c      |  8 +-
+>   drivers/gpu/drm/meson/meson_plane.c        | 10 +--
+>   8 files changed, 63 insertions(+), 75 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
+> index d70616da8ce2..e1c0bf3baeea 100644
+> --- a/drivers/gpu/drm/meson/meson_crtc.c
+> +++ b/drivers/gpu/drm/meson/meson_crtc.c
+> @@ -662,13 +662,13 @@ void meson_crtc_irq(struct meson_drm *priv)
+>   
+>   	drm_crtc_handle_vblank(priv->crtc);
+>   
+> -	spin_lock_irqsave(&priv->drm->event_lock, flags);
+> +	spin_lock_irqsave(&priv->drm.event_lock, flags);
+>   	if (meson_crtc->event) {
+>   		drm_crtc_send_vblank_event(priv->crtc, meson_crtc->event);
+>   		drm_crtc_vblank_put(priv->crtc);
+>   		meson_crtc->event = NULL;
+>   	}
+> -	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
+> +	spin_unlock_irqrestore(&priv->drm.event_lock, flags);
+>   }
+>   
+>   int meson_crtc_create(struct meson_drm *priv)
+> @@ -677,18 +677,18 @@ int meson_crtc_create(struct meson_drm *priv)
+>   	struct drm_crtc *crtc;
+>   	int ret;
+>   
+> -	meson_crtc = devm_kzalloc(priv->drm->dev, sizeof(*meson_crtc),
+> +	meson_crtc = devm_kzalloc(priv->drm.dev, sizeof(*meson_crtc),
+>   				  GFP_KERNEL);
+>   	if (!meson_crtc)
+>   		return -ENOMEM;
+>   
+>   	meson_crtc->priv = priv;
+>   	crtc = &meson_crtc->base;
+> -	ret = drm_crtc_init_with_planes(priv->drm, crtc,
+> +	ret = drm_crtc_init_with_planes(&priv->drm, crtc,
+>   					priv->primary_plane, NULL,
+>   					&meson_crtc_funcs, "meson_crtc");
+>   	if (ret) {
+> -		dev_err(priv->drm->dev, "Failed to init CRTC\n");
+> +		dev_err(priv->drm.dev, "Failed to init CRTC\n");
+>   		return ret;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 4bd0baa2a4f5..dd87c6b61e9e 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -182,7 +182,6 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>   	struct platform_device *pdev = to_platform_device(dev);
+>   	const struct meson_drm_match_data *match;
+>   	struct meson_drm *priv;
+> -	struct drm_device *drm;
+>   	struct resource *res;
+>   	void __iomem *regs;
+>   	int ret, i;
+> @@ -197,58 +196,49 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>   	if (!match)
+>   		return -ENODEV;
+>   
+> -	drm = drm_dev_alloc(&meson_driver, dev);
+> -	if (IS_ERR(drm))
+> -		return PTR_ERR(drm);
+> +	priv = devm_drm_dev_alloc(dev, &meson_driver,
+> +				 struct meson_drm, drm);
+>   
+> -	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> -	if (!priv) {
+> -		ret = -ENOMEM;
+> -		goto free_drm;
+> -	}
+> -	drm->dev_private = priv;
+> -	priv->drm = drm;
+> +	if (IS_ERR(priv))
+> +		return PTR_ERR(priv);
+> +
+> +	priv->drm.dev_private = priv;
+>   	priv->dev = dev;
+>   	priv->compat = match->compat;
+>   	priv->afbcd.ops = match->afbcd_ops;
+>   
+>   	regs = devm_platform_ioremap_resource_byname(pdev, "vpu");
+>   	if (IS_ERR(regs)) {
+> -		ret = PTR_ERR(regs);
+> -		goto free_drm;
+> +		return PTR_ERR(regs);
+>   	}
+>   
+>   	priv->io_base = regs;
+>   
+>   	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hhi");
+>   	if (!res) {
+> -		ret = -EINVAL;
+> -		goto free_drm;
+> +		return -EINVAL;
+>   	}
+>   	/* Simply ioremap since it may be a shared register zone */
+>   	regs = devm_ioremap(dev, res->start, resource_size(res));
+>   	if (!regs) {
+> -		ret = -EADDRNOTAVAIL;
+> -		goto free_drm;
+> +		return -EADDRNOTAVAIL;
+>   	}
+>   
+>   	priv->hhi = devm_regmap_init_mmio(dev, regs,
+>   					  &meson_regmap_config);
+>   	if (IS_ERR(priv->hhi)) {
+>   		dev_err(&pdev->dev, "Couldn't create the HHI regmap\n");
+> -		ret = PTR_ERR(priv->hhi);
+> -		goto free_drm;
+> +		return PTR_ERR(priv->hhi);
+>   	}
+>   
+>   	priv->canvas = meson_canvas_get(dev);
+>   	if (IS_ERR(priv->canvas)) {
+> -		ret = PTR_ERR(priv->canvas);
+> -		goto free_drm;
+> +		return PTR_ERR(priv->canvas);
+>   	}
+>   
+>   	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_osd1);
+>   	if (ret)
+> -		goto free_drm;
+> +		return ret;
+>   	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_0);
+>   	if (ret)
+>   		goto free_canvas_osd1;
+> @@ -261,7 +251,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>   
+>   	priv->vsync_irq = platform_get_irq(pdev, 0);
+>   
+> -	ret = drm_vblank_init(drm, 1);
+> +	ret = drm_vblank_init(&priv->drm, 1);
+>   	if (ret)
+>   		goto free_canvas_vd1_2;
+>   
+> @@ -281,13 +271,13 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>   	if (ret)
+>   		goto free_canvas_vd1_2;
+>   
+> -	ret = drmm_mode_config_init(drm);
+> +	ret = drmm_mode_config_init(&priv->drm);
+>   	if (ret)
+>   		goto free_canvas_vd1_2;
+> -	drm->mode_config.max_width = 3840;
+> -	drm->mode_config.max_height = 2160;
+> -	drm->mode_config.funcs = &meson_mode_config_funcs;
+> -	drm->mode_config.helper_private	= &meson_mode_config_helpers;
+> +	priv->drm.mode_config.max_width = 3840;
+> +	priv->drm.mode_config.max_height = 2160;
+> +	priv->drm.mode_config.funcs = &meson_mode_config_funcs;
+> +	priv->drm.mode_config.helper_private = &meson_mode_config_helpers;
+>   
+>   	/* Hardware Initialization */
+>   
+> @@ -308,9 +298,9 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>   		goto exit_afbcd;
+>   
+>   	if (has_components) {
+> -		ret = component_bind_all(dev, drm);
+> +		ret = component_bind_all(dev, &priv->drm);
+>   		if (ret) {
+> -			dev_err(drm->dev, "Couldn't bind all components\n");
+> +			dev_err(priv->drm.dev, "Couldn't bind all components\n");
+>   			/* Do not try to unbind */
+>   			has_components = false;
+>   			goto exit_afbcd;
+> @@ -319,46 +309,49 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>   
+>   	ret = meson_encoder_hdmi_probe(priv);
+>   	if (ret)
+> -		goto exit_afbcd;
+> +		goto unbind_components;
+>   
+>   	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>   		ret = meson_encoder_dsi_probe(priv);
+>   		if (ret)
+> -			goto exit_afbcd;
+> +			goto unbind_components;
+>   	}
+>   
+>   	ret = meson_plane_create(priv);
+>   	if (ret)
+> -		goto exit_afbcd;
+> +		goto unbind_components;
+>   
+>   	ret = meson_overlay_create(priv);
+>   	if (ret)
+> -		goto exit_afbcd;
+> +		goto unbind_components;
+>   
+>   	ret = meson_crtc_create(priv);
+>   	if (ret)
+> -		goto exit_afbcd;
+> +		goto unbind_components;
+>   
+> -	ret = request_irq(priv->vsync_irq, meson_irq, 0, drm->driver->name, drm);
+> +	ret = request_irq(priv->vsync_irq, meson_irq, 0, priv->drm.driver->name, &priv->drm);
+>   	if (ret)
+> -		goto exit_afbcd;
+> +		goto unbind_components;
+>   
+> -	drm_mode_config_reset(drm);
+> +	drm_mode_config_reset(&priv->drm);
+>   
+> -	drm_kms_helper_poll_init(drm);
+> +	drm_kms_helper_poll_init(&priv->drm);
+>   
+>   	platform_set_drvdata(pdev, priv);
+>   
+> -	ret = drm_dev_register(drm, 0);
+> +	ret = drm_dev_register(&priv->drm, 0);
+>   	if (ret)
+>   		goto uninstall_irq;
+>   
+> -	drm_fbdev_dma_setup(drm, 32);
+> +	drm_fbdev_dma_setup(&priv->drm, 32);
+>   
+>   	return 0;
+>   
+>   uninstall_irq:
+> -	free_irq(priv->vsync_irq, drm);
+> +	free_irq(priv->vsync_irq, &priv->drm);
+> +unbind_components:
+> +	if (has_components)
+> +		component_unbind_all(dev, &priv->drm);
+>   exit_afbcd:
+>   	if (priv->afbcd.ops)
+>   		priv->afbcd.ops->exit(priv);
+> @@ -370,16 +363,11 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>   	meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
+>   free_canvas_osd1:
+>   	meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
+> -free_drm:
+> -	drm_dev_put(drm);
+>   
+>   	meson_encoder_dsi_remove(priv);
+>   	meson_encoder_hdmi_remove(priv);
+>   	meson_encoder_cvbs_remove(priv);
+>   
+> -	if (has_components)
+> -		component_unbind_all(dev, drm);
+> -
+>   	return ret;
+>   }
+>   
+> @@ -391,7 +379,7 @@ static int meson_drv_bind(struct device *dev)
+>   static void meson_drv_unbind(struct device *dev)
+>   {
+>   	struct meson_drm *priv = dev_get_drvdata(dev);
+> -	struct drm_device *drm = priv->drm;
+> +	struct drm_device *drm = &priv->drm;
+>   
+>   	if (priv->canvas) {
+>   		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
+> @@ -404,7 +392,6 @@ static void meson_drv_unbind(struct device *dev)
+>   	drm_kms_helper_poll_fini(drm);
+>   	drm_atomic_helper_shutdown(drm);
+>   	free_irq(priv->vsync_irq, drm);
+> -	drm_dev_put(drm);
+>   
+>   	meson_encoder_dsi_remove(priv);
+>   	meson_encoder_hdmi_remove(priv);
+> @@ -428,7 +415,7 @@ static int __maybe_unused meson_drv_pm_suspend(struct device *dev)
+>   	if (!priv)
+>   		return 0;
+>   
+> -	return drm_mode_config_helper_suspend(priv->drm);
+> +	return drm_mode_config_helper_suspend(&priv->drm);
+>   }
+>   
+>   static int __maybe_unused meson_drv_pm_resume(struct device *dev)
+> @@ -445,7 +432,7 @@ static int __maybe_unused meson_drv_pm_resume(struct device *dev)
+>   	if (priv->afbcd.ops)
+>   		priv->afbcd.ops->init(priv);
+>   
+> -	return drm_mode_config_helper_resume(priv->drm);
+> +	return drm_mode_config_helper_resume(&priv->drm);
+>   }
+>   
+>   static void meson_drv_shutdown(struct platform_device *pdev)
+> @@ -455,8 +442,8 @@ static void meson_drv_shutdown(struct platform_device *pdev)
+>   	if (!priv)
+>   		return;
+>   
+> -	drm_kms_helper_poll_fini(priv->drm);
+> -	drm_atomic_helper_shutdown(priv->drm);
+> +	drm_kms_helper_poll_fini(&priv->drm);
+> +	drm_atomic_helper_shutdown(&priv->drm);
+>   }
+>   
+>   /*
+> diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
+> index 3f9345c14f31..45554c701322 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.h
+> +++ b/drivers/gpu/drm/meson/meson_drv.h
+> @@ -8,6 +8,7 @@
+>   #define __MESON_DRV_H
+>   
+>   #include <linux/device.h>
+> +#include <drm/drm_device.h>
+>   #include <linux/of.h>
+>   #include <linux/regmap.h>
+>   
+> @@ -53,7 +54,7 @@ struct meson_drm {
+>   	u8 canvas_id_vd1_1;
+>   	u8 canvas_id_vd1_2;
+>   
+> -	struct drm_device *drm;
+> +	struct drm_device drm;
+>   	struct drm_crtc *crtc;
+>   	struct drm_plane *primary_plane;
+>   	struct drm_plane *overlay_plane;
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+> index d1191de855d9..ddca22c8c1ff 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+> +++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+> @@ -104,7 +104,7 @@ static int meson_encoder_cvbs_get_modes(struct drm_bridge *bridge,
+>   	for (i = 0; i < MESON_CVBS_MODES_COUNT; ++i) {
+>   		struct meson_cvbs_mode *meson_mode = &meson_cvbs_modes[i];
+>   
+> -		mode = drm_mode_duplicate(priv->drm, &meson_mode->mode);
+> +		mode = drm_mode_duplicate(&priv->drm, &meson_mode->mode);
+>   		if (!mode) {
+>   			dev_err(priv->dev, "Failed to create a new display mode\n");
+>   			return 0;
+> @@ -221,7 +221,7 @@ static const struct drm_bridge_funcs meson_encoder_cvbs_bridge_funcs = {
+>   
+>   int meson_encoder_cvbs_probe(struct meson_drm *priv)
+>   {
+> -	struct drm_device *drm = priv->drm;
+> +	struct drm_device *drm = &priv->drm;
+>   	struct meson_encoder_cvbs *meson_encoder_cvbs;
+>   	struct drm_connector *connector;
+>   	struct device_node *remote;
+> @@ -256,7 +256,7 @@ int meson_encoder_cvbs_probe(struct meson_drm *priv)
+>   	meson_encoder_cvbs->priv = priv;
+>   
+>   	/* Encoder */
+> -	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_cvbs->encoder,
+> +	ret = drm_simple_encoder_init(&priv->drm, &meson_encoder_cvbs->encoder,
+>   				      DRM_MODE_ENCODER_TVDAC);
+>   	if (ret)
+>   		return dev_err_probe(priv->dev, ret,
+> @@ -273,7 +273,7 @@ int meson_encoder_cvbs_probe(struct meson_drm *priv)
+>   	}
+>   
+>   	/* Initialize & attach Bridge Connector */
+> -	connector = drm_bridge_connector_init(priv->drm, &meson_encoder_cvbs->encoder);
+> +	connector = drm_bridge_connector_init(&priv->drm, &meson_encoder_cvbs->encoder);
+>   	if (IS_ERR(connector))
+>   		return dev_err_probe(priv->dev, PTR_ERR(connector),
+>   				     "Unable to create CVBS bridge connector\n");
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+> index 7816902f5907..03bb12c69863 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
+> +++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+> @@ -132,7 +132,7 @@ int meson_encoder_dsi_probe(struct meson_drm *priv)
+>   	meson_encoder_dsi->priv = priv;
+>   
+>   	/* Encoder */
+> -	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_dsi->encoder,
+> +	ret = drm_simple_encoder_init(&priv->drm, &meson_encoder_dsi->encoder,
+>   				      DRM_MODE_ENCODER_DSI);
+>   	if (ret)
+>   		return dev_err_probe(priv->dev, ret,
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> index 0593a1cde906..4465d987f85b 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> @@ -402,7 +402,7 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
+>   	meson_encoder_hdmi->priv = priv;
+>   
+>   	/* Encoder */
+> -	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_hdmi->encoder,
+> +	ret = drm_simple_encoder_init(&priv->drm, &meson_encoder_hdmi->encoder,
+>   				      DRM_MODE_ENCODER_TMDS);
+>   	if (ret) {
+>   		dev_err_probe(priv->dev, ret, "Failed to init HDMI encoder\n");
+> @@ -420,7 +420,7 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
+>   	}
+>   
+>   	/* Initialize & attach Bridge Connector */
+> -	meson_encoder_hdmi->connector = drm_bridge_connector_init(priv->drm,
+> +	meson_encoder_hdmi->connector = drm_bridge_connector_init(&priv->drm,
+>   							&meson_encoder_hdmi->encoder);
+>   	if (IS_ERR(meson_encoder_hdmi->connector)) {
+>   		ret = dev_err_probe(priv->dev,
+> diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+> index 7f98de38842b..60ee7f758723 100644
+> --- a/drivers/gpu/drm/meson/meson_overlay.c
+> +++ b/drivers/gpu/drm/meson/meson_overlay.c
+> @@ -484,7 +484,7 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+>   
+>   	interlace_mode = new_state->crtc->mode.flags & DRM_MODE_FLAG_INTERLACE;
+>   
+> -	spin_lock_irqsave(&priv->drm->event_lock, flags);
+> +	spin_lock_irqsave(&priv->drm.event_lock, flags);
+>   
+>   	if ((fb->modifier & DRM_FORMAT_MOD_AMLOGIC_FBC(0, 0)) ==
+>   			    DRM_FORMAT_MOD_AMLOGIC_FBC(0, 0)) {
+> @@ -717,7 +717,7 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+>   
+>   	priv->viu.vd1_enabled = true;
+>   
+> -	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
+> +	spin_unlock_irqrestore(&priv->drm.event_lock, flags);
+>   
+>   	DRM_DEBUG_DRIVER("\n");
+>   }
+> @@ -838,7 +838,7 @@ int meson_overlay_create(struct meson_drm *priv)
+>   
+>   	DRM_DEBUG_DRIVER("\n");
+>   
+> -	meson_overlay = devm_kzalloc(priv->drm->dev, sizeof(*meson_overlay),
+> +	meson_overlay = devm_kzalloc(priv->drm.dev, sizeof(*meson_overlay),
+>   				   GFP_KERNEL);
+>   	if (!meson_overlay)
+>   		return -ENOMEM;
+> @@ -846,7 +846,7 @@ int meson_overlay_create(struct meson_drm *priv)
+>   	meson_overlay->priv = priv;
+>   	plane = &meson_overlay->base;
+>   
+> -	drm_universal_plane_init(priv->drm, plane, 0xFF,
+> +	drm_universal_plane_init(&priv->drm, plane, 0xFF,
+>   				 &meson_overlay_funcs,
+>   				 supported_drm_formats,
+>   				 ARRAY_SIZE(supported_drm_formats),
+> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+> index b43ac61201f3..13be94309bf4 100644
+> --- a/drivers/gpu/drm/meson/meson_plane.c
+> +++ b/drivers/gpu/drm/meson/meson_plane.c
+> @@ -157,7 +157,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+>   	 * Update Buffer
+>   	 * Enable Plane
+>   	 */
+> -	spin_lock_irqsave(&priv->drm->event_lock, flags);
+> +	spin_lock_irqsave(&priv->drm.event_lock, flags);
+>   
+>   	/* Check if AFBC decoder is required for this buffer */
+>   	if ((meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+> @@ -393,7 +393,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+>   
+>   	priv->viu.osd1_enabled = true;
+>   
+> -	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
+> +	spin_unlock_irqrestore(&priv->drm.event_lock, flags);
+>   }
+>   
+>   static void meson_plane_atomic_disable(struct drm_plane *plane,
+> @@ -536,7 +536,7 @@ int meson_plane_create(struct meson_drm *priv)
+>   	const uint64_t *format_modifiers = format_modifiers_default;
+>   	int ret;
+>   
+> -	meson_plane = devm_kzalloc(priv->drm->dev, sizeof(*meson_plane),
+> +	meson_plane = devm_kzalloc(priv->drm.dev, sizeof(*meson_plane),
+>   				   GFP_KERNEL);
+>   	if (!meson_plane)
+>   		return -ENOMEM;
+> @@ -549,14 +549,14 @@ int meson_plane_create(struct meson_drm *priv)
+>   	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>   		format_modifiers = format_modifiers_afbc_g12a;
+>   
+> -	ret = drm_universal_plane_init(priv->drm, plane, 0xFF,
+> +	ret = drm_universal_plane_init(&priv->drm, plane, 0xFF,
+>   					&meson_plane_funcs,
+>   					supported_drm_formats,
+>   					ARRAY_SIZE(supported_drm_formats),
+>   					format_modifiers,
+>   					DRM_PLANE_TYPE_PRIMARY, "meson_primary_plane");
+>   	if (ret) {
+> -		devm_kfree(priv->drm->dev, meson_plane);
+> +		devm_kfree(priv->drm.dev, meson_plane);
+>   		return ret;
+>   	}
+>   
 
 _______________________________________________
 linux-amlogic mailing list
