@@ -4,90 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31BAEE77188
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 10:25:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6401DE7719C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 10:27:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=v9ymOrJynrOFUHh876PtPOYY4ChItGQk2hVX6hKP1Hs=; b=uA/WvwrLi2dfhrycj9GEnzrdkw
-	XVUirTzX+0aeepnBaWmtdA2W/2alv/U1PCCY1vEMmEfogUf96GDEHeCan0Mwnnr1X8cWbdxmjX2sp
-	IBGrpXV0UhfZ4Mrl6WE5QhVCf6AKrdSAtAOLYo6thnB11ZHj4pO52mU+eIZ3g/XcKqO2nIJ4gwMoj
-	FuSxaK/rNlMy1ZyL6w0BDaoVR5bbp0SeCR8UlJEnEfNmctd8A0Imq9wBu4wCLFd7xOk8ibQAWSvAT
-	GPJPzEynEWQoisCkSbgAY7E8tIupoBHcILWbpH05vaM0IEMdiVydBaZwV9+7geSeBrHVCY1l3mc84
-	B+pOBxTg==;
+	bh=5IsVidpLnxgkrtMSJhjP7udlmCwyOGhWANDOXPkCFdM=; b=Tl4xaqEh325rE3HAr/jOOmeO2S
+	FZYLc+jVrxcKqf5MxgXwhtfF6c3+B1jr8h1ZTDzbYpHAfICb/4qOrikTTv4DmvUlUoN6c6mWKM86g
+	WmqRnpsE4OZGdRgHvO5QY5jdZuKxcOsFz8lWsDZ1jQsDmFRqmJdpae3D4vYUTgQ1GRrA2e0/fGYna
+	WI2piq/vmBGvl8q1qokB87RkGhheJJoey+FrVN3NvYYDCMrUKOvahYsM0dF0bz56e4Z7h2jpun2CQ
+	a1CYZm3YIaqNYQBXOAYje/rV/PI13JKeBNo9//ORCW6gbuw6A4DB4sV8ChUcVa1JBY99I9np0qsWl
+	6rxbjbAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWCCR-0000000Ew8O-3VaC;
-	Fri, 10 Jan 2025 10:25:07 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1tWCEp-0000000Ewlb-1lMy;
+	Fri, 10 Jan 2025 10:27:35 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWByF-0000000EtGL-1pIx
+	id 1tWC0n-0000000Eu2F-1N5f
 	for linux-amlogic@lists.infradead.org;
-	Fri, 10 Jan 2025 10:10:28 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-385e06af753so1018638f8f.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 10 Jan 2025 02:10:26 -0800 (PST)
+	Fri, 10 Jan 2025 10:13:06 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4363ae65100so19971175e9.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 10 Jan 2025 02:13:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736503825; x=1737108625; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1736503984; x=1737108784; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qU/YhP9GBvho7wDOYndiW+o3LX+a4ZB1ApDiQFDDSEE=;
-        b=xDa3+9JaOP2y1hOSYLNLG2XfMY13tq5tzq8mwMR4gfak24XJPMjrNH6Kw/+NJFkh6P
-         hKvUqoEQ7niOTiSPGTi2i92Y83Ng+0MPg/1IaPgD6hrZ3nTi7er4ZfGW5lmjE0fCj17f
-         qCg4S2bh1ZoamqiV0XiMDafpBc8+fOLyeE2W5rqdGdKjONx+jm7klprVdRA2hkFWmerI
-         dLYi2TI1qYG1Hx2iY8vn88v6yGKCVQ4qvN/3DmQ2gMZ9FhEu3kHj9jXqee6KY6f0oXZ/
-         tK/U8utoK+Ytk61kkgySzaDKe4x7JnWDrlFgr42ortBn5BZIrPjWRTltRj2R5meuqDoB
-         NwHA==
+        bh=QOUzYhTzRbU2PZyaCr9aEEOmHEzU4GQv9eiFuMaGvrQ=;
+        b=okIVrXFhcKomZ6Z5ynA6K/a1tdWHl100M6AT83VTZ2ISYzTVRG+1HHMOjEjwCYsZIA
+         anhv96WYGnfG9JRByotEvWMMor1o3jM0Zgt7w9cOd3PNI3RyzFli8/bC0pe/jtrUbN1b
+         z7UK6/7UvCbWepLmB3zht3pmFKDwDZ9JFpFk2Z8YdJo/7ZRtJeCZmqJtYHQ+rfQR7VxG
+         teyqhJdOK7yS70U7NMafAQwRe3uRNYgl81cyySDcKu8KltfyH9HPUo1Eo7oILOK0JLkm
+         w0Gaxtbh7cp5o6WIv6UuI+k7WSVPP3V2u1zg+KMeBChx/jV9Y4CgJiECW4jERcdNuqJM
+         zumA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736503825; x=1737108625;
+        d=1e100.net; s=20230601; t=1736503984; x=1737108784;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=qU/YhP9GBvho7wDOYndiW+o3LX+a4ZB1ApDiQFDDSEE=;
-        b=IMp8eJjZzuO0j04bLOrhRcSp5kBTGrLoYgagCRqXLCYKTFG1ikF5F1hsgYKkrHv2tj
-         C+BGoa+nCJX/HojYq6ymAm0wq4iQMhkVUVRgWe3IbsaWsr4u5N1F8DpkoygsdBAX65kk
-         nfiIFA/VNHPhYLMfzywlZ9Z0xypaBvXBRlfwbaJi8BzvKIaN/TJmO29dhMPaTkvs1l6a
-         cmI5E+qBkcDhfwOGYTinJAloyRBUx3YaOCbYRyx+mvaBH/Hepp/VTIrGtL5McQe8v73G
-         2TVmXfc8rbQLnr6UkLE6pomCP0jreR2DJE7zErPQd6j0zHkS2H4RyXxQ+H5uAIopyE1b
-         R7Xw==
-X-Forwarded-Encrypted: i=1; AJvYcCVH1v48jnvrmXWCVi4/dG4lEfQR4uKc5zpcwJm6AYeSciC3lANAj9N8vpL23jYNQu3UgyiGFmrSOD74KP+8@lists.infradead.org
-X-Gm-Message-State: AOJu0YyU5+3seGwKut41Q3/NklVIATqemVxVGP2Np786iK9uSbxEyJR3
-	nyanxrfZUgWOcElksW+4NuXe73HBbkTisULKxWk6fN+grU0APikPVD1uX+RkSe8=
-X-Gm-Gg: ASbGnctOHlzWa9TFgCNP8s7ZvKl/lmfXYro+uec0d/VR/ro0iXAnD70tkfTHJZR/Ofl
-	oGXKcC7q3lYLDChXh5NEMSIpMHsTjxSllsVydWEs+ZiJ8oTdkpOMLiLWrg0HNFKghWKFFgs4fv/
-	SZ5JcmrdOhQ0d2OygFxocLfgqEyfLCCxGiiuRlwXMK7D6h+palFNcl0VV99orJ/gbRj9emMvaTk
-	KkCnO3szq2tkXJp5AqCpwnEIUTKU0WJouQBaqeqqHMX0duzIkjkD4n3h87/e4rvIOTDMPh/mbx8
-	PTgIqoDRcteofgc8uA4KGaY41B3WJ1qiLw==
-X-Google-Smtp-Source: AGHT+IEAfZxwOFx6sDD+ACgYzTQU4qG7OfE8myEixibPdomib11nsV0CbsCQwQeJsvXZ0TfyY9GBNA==
-X-Received: by 2002:a05:6000:4913:b0:385:fbb7:672d with SMTP id ffacd0b85a97d-38a8735638dmr8832262f8f.52.1736503825258;
-        Fri, 10 Jan 2025 02:10:25 -0800 (PST)
+        bh=QOUzYhTzRbU2PZyaCr9aEEOmHEzU4GQv9eiFuMaGvrQ=;
+        b=KkHtugMnFDuNmSoo2oi6v8wC2yr2ROlko32DfNwNmgJ1A5xUiMgqaQKvVt6+/Bj37H
+         aI1c2xncTcQhf+SfxPuVw6xV6K2EqBGEqfKhaX1bj/nwH3nREf75NAWS7qgoxfEJmR/M
+         eozZgDe3AionRPABEtTKyosDPsB4NwkopZloyD+ABdgfqGitKRic5M+vHWCQuAjrwRXf
+         BCeskMQUuAfxN95HZmDdSNIa3V2T45SoN7LiCv9end5E7DybBddZ1hFqDYqY6Wtcpe99
+         HokyCD305AvJqcYPigs6J8WV/AEKZxoOVyScTGMRVyfGD5FcFEhXPYFvVb2Ibq154OOz
+         EH0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUeyTPiUsBJo5S9C9Rjj6+LXbYUBNkGCECi5TKhTB37cADjB9rvw7LlRSaleDre9b/MNjRwwiR1+uWFapw0@lists.infradead.org
+X-Gm-Message-State: AOJu0YxsqE/8Jq0Wq7Rs3JgTuW2Vyp12WgSVyQjm7BHdPrRBRv+wzlKu
+	tpzN8h2JXznjGhvvdVea3rkfkcdcv0bRMs90IUhSxf5zif7wRLYVgzXct8J0Wb0=
+X-Gm-Gg: ASbGncurLSdm4RtIp2Nh6n3RCl727l1tRL/WFaLiy7RWfzbWlJJQQonSx3iuQaAfhmm
+	T7j/+BfiU+y7JyTTY5t18ysvk2scRZhLcksguD1RJxKDwJ7FTZBB4AapXZWgsQuXsBQmJcNqnX2
+	ITiizBCNdv14VTyFZEetKTm3QJm+8rfFXHNDIcZFE3XWC6CQyk1YKnDS5k2t+LtWZ8fWOB9DVgj
+	ZU/bUFv2Oyae/kFRgDv3VhkqA3xNmXKzRvFMW/3CUmv/Cb+HMjJ9+TQNtJnYvzyrt8iAENuipL3
+	Gt7TShIcw6/ABVrO+v1iLYgQXdXoIH0bRw==
+X-Google-Smtp-Source: AGHT+IH14VgpNAHxLDfw+eb1nzA4fydxlf+fdVrPXOSjYG/N+CGyBX4YnPcgAjL/ozrdB+dQhWcohA==
+X-Received: by 2002:a05:600c:46d2:b0:434:a1d3:a321 with SMTP id 5b1f17b1804b1-436e2679db4mr91257665e9.3.1736503983816;
+        Fri, 10 Jan 2025 02:13:03 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:bf4e:5758:59ef:deb8? ([2a01:e0a:982:cbb0:bf4e:5758:59ef:deb8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9d8fc51sm47902305e9.7.2025.01.10.02.10.24
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9dc895esm47221015e9.13.2025.01.10.02.13.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Jan 2025 02:10:24 -0800 (PST)
-Message-ID: <2967a475-9fbe-4d20-a27c-04676c74d03c@linaro.org>
-Date: Fri, 10 Jan 2025 11:10:23 +0100
+        Fri, 10 Jan 2025 02:13:03 -0800 (PST)
+Message-ID: <bca7f65c-cdb8-48be-a800-2c36aeeeb8e3@linaro.org>
+Date: Fri, 10 Jan 2025 11:13:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 00/11] Subject: [PATCH 00/11] Add DRM support for Amlogic
- S4
-To: ao.xu@amlogic.com, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+Subject: Re: [PATCH 1/2] Revert "drm/meson: vclk: fix calculation of 59.94
+ fractional rates"
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
+Cc: stable@vger.kernel.org
+References: <20250110074458.3624094-1-christianshewitt@gmail.com>
+ <20250110074458.3624094-2-christianshewitt@gmail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -114,10 +115,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
+In-Reply-To: <20250110074458.3624094-2-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250110_021027_473752_4C3192DA 
-X-CRM114-Status: GOOD (  17.47  )
+X-CRM114-CacheID: sfid-20250110_021305_368776_BF977C39 
+X-CRM114-Status: GOOD (  15.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,68 +136,51 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 10/01/2025 06:39, Ao Xu via B4 Relay wrote:
-> This patch series adds DRM support for the Amlogic S4-series SoCs.
-> Compared to the Amlogic G12-series, the S4-series introduces the following changes:
+On 10/01/2025 08:44, Christian Hewitt wrote:
+> This reverts commit bfbc68e4d8695497f858a45a142665e22a512ea3.
 > 
-> 1 The S4-series splits the HIU into three separate components: `sys_ctrl`, `pwr_ctrl`, and `clk_ctrl`.
->    As a result, VENC and VCLK drivers are updated with S4-specific compatible strings to accommodate these changes.
-> 2 The S4-series secures access to HDMITX DWC and TOP registers,
->    requiring modifications to the driver to handle this new access method.
-> 3 The register addresses for the video1 and video2 planes have been updated in the S4 hardware,
->    and the DRM driver has been adapted accordingly.
-> 4 The OSD, VIU, and VPP components remain unchanged and are consistent with the G12-series.
-
-Thanks a lot for this high quality changeset, happy to see DRM support for a new SoC !
-
-I'll review it carefully next week.
-
-Neil
-
+> The patch does permit the offending YUV420 @ 59.94 phy_freq and
+> vclk_freq mode to match in calculations. It also results in all
+> fractional rates being unavailable for use. This was unintended
+> and requires the patch to be reverted.
 > 
-> Signed-off-by: Ao Xu <ao.xu@amlogic.com>
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
-> Ao Xu (11):
->        dt-bindings: display: meson-dw-hdmi: Add compatible for S4 HDMI controller
->        dt-bindings: display: meson-vpu: Add compatible for S4 display controller
->        drm: meson: add S4 compatible for DRM driver
->        drm: meson: add primary and overlay plane support for S4
->        drm: meson: update VIU and VPP support for S4
->        drm: meson: add meson_dw_hdmi support for S4
->        drm: meson: change api call parameter
->        drm: meson: add hdmitx vmode timing support for S4
->        drm: meson: add vpu clk setting for S4
->        drm: meson: add CVBS support for S4
->        arm64: dts: amlogic: s4: add DRM support [1/1]
+>   drivers/gpu/drm/meson/meson_vclk.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
 > 
->   .../bindings/display/amlogic,meson-dw-hdmi.yaml    |    1 +
->   .../bindings/display/amlogic,meson-vpu.yaml        |   48 +-
->   .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     |   39 +
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |  121 +++
->   drivers/gpu/drm/meson/meson_crtc.c                 |   90 +-
->   drivers/gpu/drm/meson/meson_drv.c                  |  127 ++-
->   drivers/gpu/drm/meson/meson_drv.h                  |    6 +
->   drivers/gpu/drm/meson/meson_dw_hdmi.c              |  244 ++++-
->   drivers/gpu/drm/meson/meson_dw_hdmi.h              |  126 +++
->   drivers/gpu/drm/meson/meson_encoder_cvbs.c         |   10 +
->   drivers/gpu/drm/meson/meson_encoder_hdmi.c         |   19 +-
->   drivers/gpu/drm/meson/meson_overlay.c              |    7 +-
->   drivers/gpu/drm/meson/meson_plane.c                |   24 +-
->   drivers/gpu/drm/meson/meson_registers.h            |   17 +
->   drivers/gpu/drm/meson/meson_vclk.c                 | 1018 ++++++++++++++------
->   drivers/gpu/drm/meson/meson_venc.c                 |  346 ++++++-
->   drivers/gpu/drm/meson/meson_venc.h                 |    4 +-
->   drivers/gpu/drm/meson/meson_viu.c                  |    9 +-
->   drivers/gpu/drm/meson/meson_vpp.c                  |   12 +-
->   19 files changed, 1865 insertions(+), 403 deletions(-)
-> ---
-> base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
-> change-id: 20250110-drm-s4-c96c88be52e4
-> 
-> Best regards,
+> diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
+> index 2a942dc6a6dc..2a82119eb58e 100644
+> --- a/drivers/gpu/drm/meson/meson_vclk.c
+> +++ b/drivers/gpu/drm/meson/meson_vclk.c
+> @@ -790,13 +790,13 @@ meson_vclk_vic_supported_freq(struct meson_drm *priv, unsigned int phy_freq,
+>   				 FREQ_1000_1001(params[i].pixel_freq));
+>   		DRM_DEBUG_DRIVER("i = %d phy_freq = %d alt = %d\n",
+>   				 i, params[i].phy_freq,
+> -				 FREQ_1000_1001(params[i].phy_freq/1000)*1000);
+> +				 FREQ_1000_1001(params[i].phy_freq/10)*10);
+>   		/* Match strict frequency */
+>   		if (phy_freq == params[i].phy_freq &&
+>   		    vclk_freq == params[i].vclk_freq)
+>   			return MODE_OK;
+>   		/* Match 1000/1001 variant */
+> -		if (phy_freq == (FREQ_1000_1001(params[i].phy_freq/1000)*1000) &&
+> +		if (phy_freq == (FREQ_1000_1001(params[i].phy_freq/10)*10) &&
+>   		    vclk_freq == FREQ_1000_1001(params[i].vclk_freq))
+>   			return MODE_OK;
+>   	}
+> @@ -1070,7 +1070,7 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+>   
+>   	for (freq = 0 ; params[freq].pixel_freq ; ++freq) {
+>   		if ((phy_freq == params[freq].phy_freq ||
+> -		     phy_freq == FREQ_1000_1001(params[freq].phy_freq/1000)*1000) &&
+> +		     phy_freq == FREQ_1000_1001(params[freq].phy_freq/10)*10) &&
+>   		    (vclk_freq == params[freq].vclk_freq ||
+>   		     vclk_freq == FREQ_1000_1001(params[freq].vclk_freq))) {
+>   			if (vclk_freq != params[freq].vclk_freq)
 
+I wonder if a Fixes is also required here
 
 _______________________________________________
 linux-amlogic mailing list
