@@ -4,84 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95D6BE7719D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 20:02:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2881E77188
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 21:07:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Subject:To:From:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=wgPQGjav9D+O7RdWX4BSnK6C/T65aQEwVyZk0VqCkN0=; b=h0Ls8DS1/xUfYg
-	LMZtiY2Ik2zZm3tURn8AOAw6Mddv3Y8L8AsujrrpED1vSFngPa5WwmOIreFngB2aue+GXePE6jPGu
-	GVIzwR52dVP6oOr5WH0xFb2xQmcfiMpiRIIAZOv9IvaM1JXwGikFBSGOjkMuuw8ECYBDf06wza2Ln
-	6l6zejf6pjjTYKWYULp1GRqnOcJi2dIuPSkwOgru7eqLiqIFzhsWNt+Z1c8cVnzTd6z+ibiCBYRhr
-	R0dXnqcUhSy1R889C/GNqeFc+ApYA/CoeHjXmhhW13fj9nkbtG7Cd8olEsLTqpuaofVP62tqlGpOR
-	kDD+HNSCBZ1cJHC8nYbw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=eBksaoq4mmJ2ArVhT8p2amlvyFu/PNaGJVtSI4uXixk=; b=eMb2Baa3l4J55X
+	COfNtR9IfSENx7L1aZpW6PyyG9fC58KcPgc1msMaU0ncWW1okU/7PTTDQcHL8r6g8WgL4i0vZatt/
+	UfxgoSrr/UsVGvKz9lh5K3uiaadVIRF5NX952J6arnUbCUJqM+J9GV9+nAvpUWddiVXmosaIpSvmJ
+	7Bk/EeEaajQEnjLKT23LhryBatMp858iqL7wD9OdrTM+3uaJ4Kt+tqBhejiItvpX4qtat7yn9wjE5
+	QdjDpdMgRdU7rVPQ9hDtH2nyVVL+Wbf09TxlSu6vSBkx8bdPg8vGSWUJWmotmojJheEyow7ZmihCo
+	UhGZ2w6Y8B8JmG75yF/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWLCj-0000000GqMT-1jbV;
-	Fri, 10 Jan 2025 20:02:01 +0000
-Received: from mail-pj1-x102b.google.com ([2607:f8b0:4864:20::102b])
+	id 1tWMEO-0000000GyWW-0yfy;
+	Fri, 10 Jan 2025 21:07:48 +0000
+Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWLCh-0000000GqLa-0zKG
+	id 1tWMEL-0000000GyUz-1CvB
 	for linux-amlogic@lists.infradead.org;
-	Fri, 10 Jan 2025 20:02:00 +0000
-Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-2ee51f8c47dso3366939a91.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 10 Jan 2025 12:01:58 -0800 (PST)
+	Fri, 10 Jan 2025 21:07:46 +0000
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-aaee2c5ee6eso415581866b.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 10 Jan 2025 13:07:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bizdrive.in.net; s=google; t=1736539317; x=1737144117; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:subject:to:from
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Ze7kgvi8pmS4xQq554trq1SSrfy1YRgiq8NEGv01ew=;
-        b=NBsbqoZNfhknahX8tohSTH2IPc8lspqNt5g5c4k6/aLJRsOze8N65iMphy3wSpos0U
-         G8NoFaW8k2LY/6pb5S/ZUq+JYKNsBrGXpmDGhQHN9TgPCKjepvlmccQv1QAVRpCbgZ3N
-         QpSUz1Ql3WSmaLvSAaTRCqrWA3oZxP80L9jN0q1ef/oFJsdLtL2LKFdBJHpapoOG+9w5
-         az+ICysRUAWay508GhCN1FKZkXb8AEmqWNZmVotFVUPJdCgsroTt5uQt4rvDr8iFnYxP
-         NlvMxtg15zFO8puwLv6mZ1OaVfn6VDD5rIi/D7rUa/cwX6lKTcUD8kHF1HrA7hKhmkRk
-         M9UA==
+        d=googlemail.com; s=20230601; t=1736543263; x=1737148063; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rqM66oq8blRLcCYzJ2r8dGrXeD7gM6fhGOLD4v43C1s=;
+        b=e5Wr+JxaPYCKOYtPceZOvigyxihtdmbITDOJ03B/Hd55C+X/PoeOjMv/FJoDLvkjZW
+         OQiueozzFQkegkgtc38JftbKtVRn6gC2m5ysVHRfbH1oGIQdAOJnKaKrhluz8jK79kPV
+         UUT2R73OGzmHYfx8pcrt/GSXBhjBamvm/g1Iwhc7CTiFAZrP7VadyueADOLcCAkgVKMQ
+         D3p68tweYxRrBaQByML2PXhEof/zC1jPA1UF6/YNhaUvtMuchMFnxjWe3FaLIwhB2lfq
+         OwUQBlGqjh5P9E0tAW005zSzsqxbwIMMAOWehsHf9kbHTHhtgV96J82/WCHvQbnjuOZh
+         Zw/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736539317; x=1737144117;
-        h=content-transfer-encoding:mime-version:date:subject:to:from
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+Ze7kgvi8pmS4xQq554trq1SSrfy1YRgiq8NEGv01ew=;
-        b=xGZwRDi/4zlc3Qy5Fgsjv7r3dxbZQrB03wJ43nz4JKUy5XSSAHGYeBU9AwhbSsy1hZ
-         q0ZatptLTib1wTcjrdu8mT0q5DzLsqRXHkLlxc2NI06IKq+oBb45qEi5faNT72Fu+Zw+
-         /A5b3xtvCvMKlFlSRaOvgjjtMtKKIGOy1bfzl/F1F2tHGNZNG8xoUY3iz5x475Rb365I
-         bVMh65Udn263ts7/os6rEG65hVutVrri9gosDv15b80gyMX5iWoYfdOD8JT7P3PeYLRL
-         Xz7wXJ7FkkwaiVFSqQvwxF5uHT4wf9cf8lXTa6QV6M3yPwvn10t3n9tePCAPf8wJxWC1
-         4aXw==
-X-Gm-Message-State: AOJu0YyWEvwZzGGILTzm4Wxm8d+Kjmqrtt4mTwr7/GEvJWw5Cg2qOUBY
-	0S7bzDAKTMhU1G899jIHwaAZ1VmUr5k6tK03HSo/0GgDIXMczFVrdLPi11Ji6M1hhu2sMmnhsSw
-	R
-X-Gm-Gg: ASbGncsee8+XmWTncbDwG8Djwwb5djCU/j9ZFtHdtqanOGkMsXVWPX7EYp22DDq3XeG
-	yU61mQsXmRCQ8WpPYbnhUzTrQvyyNq1dmsSUZJnvHsaF5RA6ScSFBrG+Gxqgo9zQQ+03IfL5qSH
-	yrAMLx8LqeNAJXNgycvVVUOrcaPoCsplwEK/SUoeamMt2BlzctFHYh6d6zTvU+xSYRfAdaeLHvz
-	bQG1AmPSqcMK/aNFSqUUwm6nI/erXBjSHWY6sgqLraFA5OA6qwcpKKCCDG1Zu8XaAk91+ZuW4YA
-	hmKkc7z0jJjeDG8REcPEbf5Qcw0=
-X-Google-Smtp-Source: AGHT+IGML4KGTP0FODqkYQTpYK+jJ5xSUkBb8XtSL0q8jtYe2cR/IgNRbqRtMVAuLdy5WIThxWwd+g==
-X-Received: by 2002:a17:90b:258b:b0:2ee:c2df:5d30 with SMTP id 98e67ed59e1d1-2f548f1a2b8mr15130565a91.26.1736539317294;
-        Fri, 10 Jan 2025 12:01:57 -0800 (PST)
-Received: from mlhytinh.cn (c-73-170-41-125.hsd1.ca.comcast.net. [73.170.41.125])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f5593d0911sm3928755a91.8.2025.01.10.12.01.55
-        for <linux-amlogic@lists.infradead.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 10 Jan 2025 12:01:56 -0800 (PST)
-Message-ID: <85a33b5985c256fda30ef4772659c6a4@bizdrive.in.net>
-From: =?utf-8?Q?=EF=BC=AA=EF=BC=A1=E3=83=8D=E3=83=83=E3=83=88=E3=83=90=E3=83=B3=E3=82=AF?= <sendonly992@bizdrive.in.net>
-To: "=?utf-8?Q?linux-amlogic@lists.infradead.org?=" <linux-amlogic@lists.infradead.org>
-Subject: =?utf-8?Q?=E3=80=90=E7=B7=8A=E6=80=A5=E6=83=85=E5=A0=B1?=
-	=?utf-8?Q?=E3=80=91=E7=99=BB=E9=8C=B2=E5=80=8B=E4=BA=BA=E6=83=85?=
-	=?utf-8?Q?=E5=A0=B1=E5=86=8D=E7=A2=BA=E8=AA=8D=E3=81=AE=E3=81=8A?=
-	=?utf-8?Q?=E9=A1=98=E3=81=84?=
-Date: Fri, 10 Jan 2025 20:01:54 +0000
-X-Priority: 3
+        d=1e100.net; s=20230601; t=1736543263; x=1737148063;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rqM66oq8blRLcCYzJ2r8dGrXeD7gM6fhGOLD4v43C1s=;
+        b=ueamztmb6AUb+oGZbYXST1BRqm215JfzZYlchwWoV6wq60BYCTSN78Tt2mjE5Jl/lv
+         AA8jNHg/QT+S42NPotMFBXpckFwFZNSRwREpGwm5N+nc4Bm82qf/qVVHJlBvEg6g5wDL
+         d/GlAW5LPO2xy8osuYaXc5BMtqarcooVcgkCvsD/8JapEaawf4uoG9KNWlJxad4Skrbj
+         9PprAuO2fcQChxkD9ohaNiZTvrahmWCSEvu+sKswIzDUHmmfphZeno3tDrgRMq7RK/kW
+         4URdx0I6GWs3xaYtCgsxUSg04HCx86TXN82lGfwK9Inw/8odWsU50CoSQDSKO7Ukzuvw
+         ZZLw==
+X-Forwarded-Encrypted: i=1; AJvYcCXCSlfB6X0iuLGVvEn8dTyIoPdsU09sLGJMUJIInWAlb2eqJF1OeNctV1XiKlvPm6b8UiNl27Ed4BwKEM+I@lists.infradead.org
+X-Gm-Message-State: AOJu0YwbmR9lwYjK8yE2nSFwdeRcz0PUTryWW03Bg+iOLrvCY4wo4lTr
+	A0GlQQCvpooJLJCVLpgl9362oMrsYMAGKn2IwiJNBdR/DaUgF53+
+X-Gm-Gg: ASbGncs95LqSJO+CHiTMuhntRVipgFLakoj0HOCv6msSXIukJwp04o71ywytBk95rcM
+	2t9X+5y1HXlRA4FdtBxHt8zd2rlHaS9itnMKUeKl4RZIKoArmHxvRRAx6aMvsWM1VhbeSogZAuk
+	p455CjvCYHYfdwV5uPn1BfDR4qLRA+zkaOrdc/SBiSn9Xa9cby1aU8asJdAKSttFEvBQQpa4/9X
+	Fci59dXvxy5tJXc7ARuXb64y2emb9JwzzOz44vF095pK96XZ+SGz9JHtsoMWGg6C4yZkm4UtS2L
+	+uYfVdYHpShrTCEXWYTzPtptaUF/U7yXSzt4I438oUohJshWUqh3tHmLVg0gzbLEJqeYL0vV0Jo
+	ZjmBtMfKTeAMhukv6pwz8U4kf
+X-Google-Smtp-Source: AGHT+IFjPcmaG75UjWdWsZvDbLhl3UcK9XXTRLW8Fl8wf2CyQSnJCCTdS1notr4bnsELUVoeaKGUxg==
+X-Received: by 2002:a17:906:3492:b0:ab2:e262:686f with SMTP id a640c23a62f3a-ab2e26269e6mr295678866b.56.1736543263214;
+        Fri, 10 Jan 2025 13:07:43 -0800 (PST)
+Received: from localhost.localdomain (dynamic-2a02-3100-a97f-2b00-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:a97f:2b00:1e86:bff:fe2f:57b7])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ab2c905e2ebsm207172966b.10.2025.01.10.13.07.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jan 2025 13:07:41 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-sound@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Cc: s.nawrocki@samsung.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	linux-kernel@vger.kernel.org,
+	jbrunet@baylibre.com,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [RFC v2 1/2] ASoC: soc-dai: add snd_soc_dai_prepare() and use it internally
+Date: Fri, 10 Jan 2025 22:07:29 +0100
+Message-ID: <20250110210730.705613-2-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20250110210730.705613-1-martin.blumenstingl@googlemail.com>
+References: <20250110210730.705613-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250110_120159_277233_73FDA8F0 
-X-CRM114-Status: UNSURE (   1.58  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250110_130745_334871_0101AD80 
+X-CRM114-Status: GOOD (  14.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,30 +99,90 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-44GE44Gk44KC77yq77yh44ON44OD44OI44OQ44Oz44Kv44KS44GU5Yip55So44GE44Gf44Gg44GN
-44GC44KK44GM44Go44GG44GU44GW44GE44G+44GZ44CCDQoNCuePvuWcqOOAgeW9k+ihjOOBq+OB
-p+OBr+mHkeiejeW6geaMh+WwjuOBruOCguOBqOOAgeODnuODjeODreODs+etieWvvuetluOBruS4
-gOeSsOOBqOOBl+OBpuOAgeOBiuWPluW8leOBruWGheWuueOAgeeKtuazgeetieOBq+W/nOOBmOOB
-puOAgemBjuWOu+OBq+eiuuiqjeOBl+OBn+awj+WQjeODu+S9j+aJgOODu+eUn+W5tOaciOaXpeOD
-u+OBlOiBt+alreOChOOAgeWPluW8leOBruebrueahOetieOBq+OBpOOBhOOBpuOAgeWGjeW6puei
-uuiqjeOCkuOBleOBm+OBpuOBhOOBn+OBoOOBhOOBpuOBiuOCiuOBvuOBmeOAgg0KDQrjgYrmiYvm
-lbDjgYrjgYvjgZHjgZfjgb7jgZnjgYzjgIHkuIvoqJjjga7jg6rjg7Pjgq/jgpLjgqLjgq/jgrvj
-grnjgZfjgIHmj5Dlh7rjgavjgZTljZTlipvjgY/jgaDjgZXjgYTjgIINCg0KaHR0cHM6Ly9mcmFu
-c3RhZ2UuY29tL3lhYml0aGEuaHRtbA0KDQoNCuOBlOeiuuiqjeOCkuOBhOOBn+OBoOOBkeOBquOB
-hOWgtOWQiOOAgeOCu+OCreODpeODquODhuOCo+S4iuOBruims+eCueOBi+OCieOBlOWIqeeUqOWI
-tumZkOOCkuOBi+OBkeOBleOBm+OBpuOBhOOBn+OBoOOBj+OBk+OBqOOCkuS6iOOCgeOBlOS6huaJ
-v+S4i+OBleOBhOOAgg0KDQrjgYrlrqLmp5jjgavjga/jgZTov7fmg5HjgIHjgZTlv4PphY3jgpLj
-gYrmjpvjgZHjgZfjgIHoqqDjgavnlLPjgZfoqLPjgZTjgZbjgYTjgb7jgZvjgpMNCu+8je+8je+8
-je+8je+8je+8je+8je+8je+8je+8je+8je+8je+8je+8je+8je+8je+8je+8je+8je+8je+8je+8
-je+8je+8je+8je+8je+8je+8jQ0KDQrjgZTkuI3mmI7jgarngrnjgYzjgZTjgZbjgYTjgb7jgZfj
-gZ/jgonjgIHkuIvoqJjjgb7jgafjgZTpgKPntaHjgY/jgaDjgZXjgYTjgIINCumAo+e1oeWFiCDv
-vJDvvJHvvJLvvJDvvI3vvJDvvJXvvJjvvI3vvJDvvJnvvJgNCuOBk+OCjOOBi+OCieOCgu+8qu+8
-oeODjeODg+ODiOODkOODs+OCr+OCkuOCiOOCjeOBl+OBj+OBiumhmOOBhOOBl+OBvuOBmeOAggoK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
-bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
-Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Add a new snd_soc_dai_prepare() which can be used (in an upcoming patch)
+by soc-dapm.c. Use this new function internally in
+snd_soc_pcm_dai_prepare() to avoid duplicating code.
+
+Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+Changes since v1:
+- none
+
+
+ include/sound/soc-dai.h |  3 +++
+ sound/soc/soc-dai.c     | 27 +++++++++++++++++++--------
+ 2 files changed, 22 insertions(+), 8 deletions(-)
+
+diff --git a/include/sound/soc-dai.h b/include/sound/soc-dai.h
+index aab57c19f62b..a11501752637 100644
+--- a/include/sound/soc-dai.h
++++ b/include/sound/soc-dai.h
+@@ -193,6 +193,9 @@ int snd_soc_dai_set_channel_map(struct snd_soc_dai *dai,
+ 
+ int snd_soc_dai_set_tristate(struct snd_soc_dai *dai, int tristate);
+ 
++int snd_soc_dai_prepare(struct snd_soc_dai *dai,
++			struct snd_pcm_substream *substream);
++
+ /* Digital Audio Interface mute */
+ int snd_soc_dai_digital_mute(struct snd_soc_dai *dai, int mute,
+ 			     int direction);
+diff --git a/sound/soc/soc-dai.c b/sound/soc/soc-dai.c
+index 34ba1a93a4c9..ca0308f6d41c 100644
+--- a/sound/soc/soc-dai.c
++++ b/sound/soc/soc-dai.c
+@@ -360,6 +360,22 @@ int snd_soc_dai_set_tristate(struct snd_soc_dai *dai, int tristate)
+ }
+ EXPORT_SYMBOL_GPL(snd_soc_dai_set_tristate);
+ 
++int snd_soc_dai_prepare(struct snd_soc_dai *dai,
++			struct snd_pcm_substream *substream)
++{
++	int ret = 0;
++
++	if (!snd_soc_dai_stream_valid(dai, substream->stream))
++		return 0;
++
++	if (dai->driver->ops &&
++	    dai->driver->ops->prepare)
++		ret = dai->driver->ops->prepare(substream, dai);
++
++	return soc_dai_ret(dai, ret);
++}
++EXPORT_SYMBOL_GPL(snd_soc_dai_prepare);
++
+ /**
+  * snd_soc_dai_digital_mute - configure DAI system or master clock.
+  * @dai: DAI
+@@ -577,14 +593,9 @@ int snd_soc_pcm_dai_prepare(struct snd_pcm_substream *substream)
+ 	int i, ret;
+ 
+ 	for_each_rtd_dais(rtd, i, dai) {
+-		if (!snd_soc_dai_stream_valid(dai, substream->stream))
+-			continue;
+-		if (dai->driver->ops &&
+-		    dai->driver->ops->prepare) {
+-			ret = dai->driver->ops->prepare(substream, dai);
+-			if (ret < 0)
+-				return soc_dai_ret(dai, ret);
+-		}
++		ret = snd_soc_dai_prepare(dai, substream);
++		if (ret < 0)
++			return ret;
+ 	}
+ 
+ 	return 0;
+-- 
+2.47.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
