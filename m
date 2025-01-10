@@ -4,95 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64404E77199
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2025 20:03:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A783DE7719C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 04:04:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sST8vgjJ41fdHH5P3o626cLSW0YRa6uzp/0vQtZxKxc=; b=kQm65HI+EnYDL9
-	maji+++OTWVLlTb38inf5CxYEIlqJ23i+s2iyd+TBH1RKzAn8NDf2/z140JmN86k2YmI7rUoEmq9o
-	hVC1Gm9E8wGi3x+MkDcoQsQ0x2XIuGyUbMlB4BnKZ8gTKfy6AKikl0IM+LR9degBtoFK0nGvCS+xi
-	cgFl3Z3M3MtBHoqRqSS1FZKVhmmrg7SHsEEIRF825PP96nC/dra7cUZ8pDeSWf6Kf1Ao0Q+bxIHQS
-	dp4Lgdbm/YfFNg3mhogth3lDkLiD+jz8ASXL5TH9impqDaXEg1Sk8PZVPV7dY4sxkq2jfQELLq+a2
-	WEdB2dSXyZHxtBJ1Ycug==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Ww3+IMwzedOW2slFv+YJIdIknWd0MjRSrGeIAfWTbP0=; b=JMVePs1XODlKkh
+	xTomoBWXoVR+eIV/fY6meZer4B3+snd65uZb9YLOFBdJgOt44K4XaVt71XY3SMW4E+G2SowjMCt9S
+	DnaXcJiQy/Q+Y03DwLEU7nMRnLB3xAWElvcjt7Xatr5Wgz9PNDeHpftLpEUFsGDNqgqVcg620jUOI
+	7elfjNGwzFogtwtsTZxc+1k/r8/8K4OQU1sSnDOIKQ+hrLToWqW6a5pV1zSn7mm+047yStvoNqGHh
+	3RiEFPgZ980POB3J1FM3uivmASi43uAmsTR3l24zQQ/f3x83lcFcT0rI1PcfKYYZiLbNWrb/3hS9F
+	e8uBv/MNBzjlOhh2Bkog==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tVykO-0000000DBY3-12je;
-	Thu, 09 Jan 2025 20:03:16 +0000
-Received: from relay9-d.mail.gandi.net ([2001:4b98:dc4:8::229])
+	id 1tW6Fd-0000000Dx20-3g1U;
+	Fri, 10 Jan 2025 04:04:01 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tVykL-0000000DBWS-0QXh;
-	Thu, 09 Jan 2025 20:03:14 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 81E65FF802;
-	Thu,  9 Jan 2025 20:03:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736452988;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ufquL8MTaCaDartUz08Jv9Co5w4deNYxwsOj/E8fcww=;
-	b=aqnMgi8dmXNmdqbb82gZLgfSEWXhFqHsrY4xDCQkXxC1eVbQ/WCgrOzndGV9myrqe/hElG
-	jef5H3/ls9gbinUu25fBKeiz2GZiCFulJ+4WhYBhfC45VCcq4EfPtR0KIHfjbcek+Q1VfV
-	9wBuydXTJ3vjy+3TBFcHwgj4253G33JMK1TEdzYz0Ww2Ja4TgQmwoyNJWYJWfnKuos+WPd
-	cU46FTlgkwEX3NlsLIdW4FYBG1lIgDNygresvTuecEYNDGFWiC7SET7ShqD2glnBctwGq+
-	pVYOLHmLiyMp2+38SZucpgCpNOe0nHGnaKhJZh2gFh8WYrNUDI6LJ28dYOimqg==
-Date: Thu, 9 Jan 2025 21:03:04 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: linux-rtc@vger.kernel.org,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Yiting Deng <yiting.deng@amlogic.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	Support Opensource <support.opensource@diasemi.com>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Eddie Huang <eddie.huang@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Vincent Shih <vincent.sunplus@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Michal Simek <michal.simek@amd.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	chrome-platform@lists.linux.dev, linux-mips@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	linux-tegra@vger.kernel.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH] rtc: use boolean values with device_init_wakeup()
-Message-ID: <173644377117.1019413.12980385173648327961.b4-ty@bootlin.com>
-References: <20241217071331.3607-2-wsa+renesas@sang-engineering.com>
+	id 1tW6Fb-0000000Dx1W-0N4l
+	for linux-amlogic@lists.infradead.org;
+	Fri, 10 Jan 2025 04:04:00 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-43690d4605dso12188725e9.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 09 Jan 2025 20:03:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736481837; x=1737086637; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=K9Bo1wufBfvDp17xEGdBsgVq8YY1KmqG+B+4M+rmsTk=;
+        b=PoFVx7Fgopy39yhPGV3c8xKJ9q3LRuc2B6g++zSTsYqrE6solt3n8qIBrrz+qjez3K
+         gNb1r8tfzXNkSQi7yqxVM5WuF3/32l1XwFMxLOm217rqwQJ9uE+ZmK7V1rQBrXobfMyV
+         qjntKLPPViyAqH2OtVzentFhqatEhzXeUw7/rnDumADbj50La+6fMVDaO194Rp3gEQgi
+         9jMD7pkEX7esJxE8gwoqUxWhA+fclXSfJfb2kKbugN3v8vH0JmjhfDp7PHSn1HZ7hVLI
+         rzkcKRyDhwzZ44T311i4KcVCYMexrXp+CdJbGPTQvvRhLDXaMfvuki1jlftGgxvrJ9jf
+         hXnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736481837; x=1737086637;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K9Bo1wufBfvDp17xEGdBsgVq8YY1KmqG+B+4M+rmsTk=;
+        b=bBnOSF/6Rpx30FlzBxlwz+SovREVuI+804AABFaAiXmXbyWlG7NHQg0NHM620FOl5B
+         A0W/Q3AYeZ+5XPGhPNH/uJo77dZmMm7iZTwYX69KMQcxFrBjaOFoRpQ0mFEI5klc950u
+         jy6y3dX45Dtg6qUkf+cqOBUfIARBmU9C+KXWw48vdK2oUqe8f6bQ9rec6AXbB/ezi+Vc
+         cvGnUsfN4LTnwLPpVaj4LQ2b8OPy6sW2HmMQqy8qgKKbHdWBAV8337vy7RBGAhNL2REj
+         sNWbAgFE4knOEEEdptf3Hp2yqkygtRaULZb7GGbgoANm2hyQuxLuw/RTKbuUNVIDc2QX
+         YKMA==
+X-Forwarded-Encrypted: i=1; AJvYcCV1g92LCrDrRAu6bl2SWwKcbZznubyzKtZhWQUK38wo2h30RLzm3Rb/HV4FtAgWQOZHzoiX6DuoBkEHTR23@lists.infradead.org
+X-Gm-Message-State: AOJu0YwLKvcrXpF2yPEKsCySyxfS66sFI/mUQ5mzPedaAObgyeux6GOn
+	HN7F2j5LHWAu0rrQNU/AYBiZUdEbzeKcDShkjvTplCOeyljWoB6COYyGNQ==
+X-Gm-Gg: ASbGnctGtyW88yMUUeLkeyji0v3rX5AY2YNjfOu7cXZZ9ciYkb2o1m7fkUq3ZXWmdXp
+	qRzru4xwrFjbGZMAZcgKB/gkuy++eRlec6YjD4l9ewGt27kdzr64Tq+0XMDbdnZifsbhym6a2iy
+	VqE3eavuJKx7cU2D4KvLJ6xAabkcvpYzm/AsQ0I5mdDEZeR5XWiKBIbc5cA7QVcSiytBOXUo86J
+	eAVru95DPXvU5j8c/EctO+WNxC/0Js+r423qfTpIpR+4hHKyo2wZnEywHnctA==
+X-Google-Smtp-Source: AGHT+IHiy+F2Jl4v5xbpj+sHo2KV7tlexhqY548aspvjHj4DdDRLp+zVYDo51bSm0OoUyQn9/eyrcw==
+X-Received: by 2002:adf:b1dc:0:b0:38a:88bc:ace1 with SMTP id ffacd0b85a97d-38a88bcadc9mr5438179f8f.34.1736481836597;
+        Thu, 09 Jan 2025 20:03:56 -0800 (PST)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e37d69sm38686505e9.30.2025.01.09.20.03.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jan 2025 20:03:56 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Tom Rini <trini@konsulko.com>,
+	u-boot@lists.denx.de,
+	u-boot-amlogic@groups.io,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH] board: amlogic: odroid-n2: remove amlogic prefix from fdtdir path
+Date: Fri, 10 Jan 2025 04:03:53 +0000
+Message-Id: <20250110040353.3424412-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241217071331.3607-2-wsa+renesas@sang-engineering.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250109_120313_294918_E2E83611 
-X-CRM114-Status: UNSURE (   8.97  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250109_200359_126928_5FEEDE6F 
+X-CRM114-Status: GOOD (  10.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,24 +96,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 17 Dec 2024 08:13:26 +0100, Wolfram Sang wrote:
-> device_init_wakeup() second argument is a bool type. Use proper boolean
-> values when calling it to match the type and to produce unambiguous code
-> which is easier to understand.
-> 
-> 
+Commit 834e7c8136c6 ("dts: meson-g12a: Switch to using upstream DT")
+changed Amlogic configs to contain the default /amlogic device-tree
+path prefix, e.g. for odroid-n2:
 
-Applied, thanks!
+CONFIG_DEFAULT_DEVICE_TREE="amlogic/meson-g12b-odroid-n2"
 
-[1/1] rtc: use boolean values with device_init_wakeup()
-      https://git.kernel.org/abelloni/c/8c28c4993f11
+The board files also prefix amlogic when using fdtdir resulting in
+an /amlogic/amlogic/meson-g12b-odroid-n2.dtb path which is invalid
+with most distro packaging. Drop the prefix here to align with the
+board configs. This resolves fdtdir boot on Odroid N2/C4/HC4.
 
-Best regards,
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ board/amlogic/odroid-n2/odroid-n2.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/board/amlogic/odroid-n2/odroid-n2.c b/board/amlogic/odroid-n2/odroid-n2.c
+index ae953d0e4ba..e98580631ec 100644
+--- a/board/amlogic/odroid-n2/odroid-n2.c
++++ b/board/amlogic/odroid-n2/odroid-n2.c
+@@ -62,7 +62,7 @@ static void odroid_set_fdtfile(char *soc, char *variant)
+ {
+ 	char s[128];
+ 
+-	snprintf(s, sizeof(s), "amlogic/meson-%s-odroid-%s.dtb", soc, variant);
++	snprintf(s, sizeof(s), "meson-%s-odroid-%s.dtb", soc, variant);
+ 	env_set("fdtfile", s);
+ }
+ 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
