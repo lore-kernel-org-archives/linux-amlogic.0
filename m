@@ -4,93 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E3AFE7719D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 07:47:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A91BE7719C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 08:36:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qApuX7DVAZsejqlsGKu+j/lylMvN7FxWnm8UJv4cDNU=; b=wLPl4pSjfcMGZv
-	LoJteiMdAkt+urXqH/VQGNYYQAT40ZxhDlEcv4E4CiKA8ubmWgeYImElVieSABKGOkYrc0K5+o+zD
-	T56yQQsS1JYjLj6KUJVaVmfznTxzscSOVRcLh9wm3SGlDZlG0xpb74gnvnm+o5sx7Pj2UXFyZDjms
-	nSSVW1fGOoa1tse7+D6Beu2BiVohGceyHfsorvh2+CZ+05cmiJ5zN5nFkxc+Pa4OYQ1dkh+Qgq1ao
-	Gdg7GrUOKGwlRDKsQuA4toAwgv7vHhIGGm6KgCvc4/f84N7hNACvyc4zqq93ya9gpIDzZN43MglEo
-	NlquYZwh5NxyaRySZP1A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=saoQytCxKSa6qJXxJkl73WI9a3pB8nieOmhjuRz0uI4=; b=m+1lfoDypqiC/B19pnaoTn8lax
+	MrlBYUuQrEPOlT6DNJuoUdSI5TPmp6NA+67KYSV0lpTUOSt+y/xjKyqdarpXOJ3+AIiSFWp0IampK
+	s7z1jLJbAw5x6FnMmtiGCNvjNddXU64492EojXX6AVjTe9Lqi/jpj7A2+I+bwqm2f9gcAFuy0Twyn
+	YCLevCmoWjY3tEJPucsDKFSP9gXeWrItQ+N0mCvSpsNh2rx/9UzjyiyEZF/wtiypLv8a4PhhR14IB
+	YHy0ZiS7SRvGnHdfPfmqF1p41eE2xhsihlHNp0PKaUPAUI+UwXgAqj6hhSDuwELH/IBItac/C1FjQ
+	duZp89cQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tW9k0-0000000EQu4-3DnB;
-	Fri, 10 Jan 2025 07:47:36 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1tWAVX-0000000EYho-46G8;
+	Fri, 10 Jan 2025 08:36:43 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tW9hf-0000000EQAz-3VZN;
-	Fri, 10 Jan 2025 07:45:13 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-38632b8ae71so1195789f8f.0;
-        Thu, 09 Jan 2025 23:45:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736495110; x=1737099910; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2jNHP4kZ+vx7B4mNnjwcHbIWUQy7cq2XYj5Zl2+8UJQ=;
-        b=ONmp9EEv4k5oMc5SFU0NKRSA0Ju/P2gqQkpLoJXUd4RMkmhCmkjXvTsvovoH2v5dBk
-         cLnRVxhZsLiGVhqXuMpfrsvUYYpc5MFiAcnGbE+jw6q9pMfhI/A9ItdokWVEv5HSIX+2
-         ufh+YU99hO5q7+0Fm7RsExzm481zXOEZaEDEpPXG+g97ptgr2DJIy6GiKdUonz62Z5QM
-         qIX4mEWXjt+tijy1/mixHah7+P46YmSgey/uQkc/vhG08+JYBiDXxsqvIwFG7lgrAHAq
-         4D9CTkiXi9cRKF/Q5SQXedRC/VZ9hf3mvZl+GqJu9tUE+ktAR+AC/HC/p/jfm4BWqQpS
-         vTkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736495110; x=1737099910;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2jNHP4kZ+vx7B4mNnjwcHbIWUQy7cq2XYj5Zl2+8UJQ=;
-        b=MogUocLyRkkHPzeAvU6ocMTcuHJ8+QeBmN1PyYYY5PenSRIP7GGOoxMXw4gZUSjc9/
-         8OW2j3mnbYdTnhRC/6YAASJbTNUgl6hp4gQoTTzCLSOZ0ijk8e9Zh0q7clSBFflcDYsF
-         QTEPBsQid7FIEikjvyjEfsnz2d2z4btIw6WM6cxQeI3yEVtzTXJhTRSqEeQ7bA/ViZdl
-         ItjWgKoQ/tDkX8nCAw2C3qDfw+c64ejn5i6kF/JoFDI8TtjPDe6s+UIubTFaRJzTV/2T
-         WY+WyBeUZstzV+yDF+jG9JpFMbgEpYdr7l7hdMI/1V8iWNygMBQhIs3+p5ZgOXaQflDV
-         k39g==
-X-Forwarded-Encrypted: i=1; AJvYcCWR/9FvEFyvUjAlRxd6SV/IvBjT6rE37lxGasUVKYMrhwj2Xr4/gQ0Wk4SUQ0ELF49NrOHfNqmS6zsBNYGG@lists.infradead.org, AJvYcCX9q2PELiFoywtDM3MpjlgaqywZIyihoDDzggokyr93nTRhCCaQ0Mo8Cb6o10fFF5xT80t0d5uVgyilkPh1MRtVLQ==@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz3TLr3S1VXv2iUGoMjNbso6LV7tlsgL5C6ajxHelPOY16+8NS2
-	UqPILOUXThExhU+CJ6sPi70sXgm2zFWzMwx5uOUp5cW8Iw05gOMaZhCnBqhd
-X-Gm-Gg: ASbGncs+gLuGxr1btrYPzv41XCJ4TvHWlEAnOM3f/Cp5o2Yxu0fqpGYmLkhzqldbQao
-	JbU11MXybIH7L7rmHhwS1q87SPTx0+7ck+KHfnBVgn3TQB/LbQ7mNrA4vkmYrBuzvGcirQBSZFR
-	KcIKIVnONmXwsAGMy01DSL1p321iaeQWGpK/7RoTCNd+bAE2a8rL23zEFZwtscoNwgzW7M3JfWh
-	Pot/GyKze4tn9ysNxLCnoOSowvb0HG7kNBidx5Ek80NnJRAmdXTQmjbgFldcg==
-X-Google-Smtp-Source: AGHT+IEWgMeyWDOA+o/1zzBIG4lq5Hb3irgWYUor5mMfHYLLxUho1JaxY7qlzPernGP85Damom0BMw==
-X-Received: by 2002:a5d:5f8f:0:b0:38a:2b39:679d with SMTP id ffacd0b85a97d-38a87313e2cmr8298382f8f.32.1736495109806;
-        Thu, 09 Jan 2025 23:45:09 -0800 (PST)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2e8a326sm78547995e9.35.2025.01.09.23.45.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 23:45:09 -0800 (PST)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] drm/meson: vclk: fix precision in vclk calculations
-Date: Fri, 10 Jan 2025 07:44:58 +0000
-Message-Id: <20250110074458.3624094-3-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250110074458.3624094-1-christianshewitt@gmail.com>
+	id 1tWAVG-0000000EYbu-09zO;
+	Fri, 10 Jan 2025 08:36:27 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 4EA5CA41AA8;
+	Fri, 10 Jan 2025 08:34:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25483C4CED6;
+	Fri, 10 Jan 2025 08:36:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736498184;
+	bh=UZYR9BQ78eQpmXxKNkzo8ij+KKJLIbLq6n6+WAIXr+c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CE3jWFU7ipWWPgNiDIphsdBeFWdglPSMmOiMUVZpwQi9vqkL3mxTpMOdwng9QnNjE
+	 rQEOQtByIlqG+JMOXUUANwi/0K1GSf9Qzgf5A8JyNdLKuT3EAJrzYf8sTy3Pk1IShw
+	 MjpC164el4vygwvsJJ8H2qaq97sp4oLv3wsBJw92JAv7kGbE/NBjA/Oq+bD2PHfiW9
+	 DEWhT9+j0ai40Ah8orT/yboOL6EvBGnp/7TdEIvIAh/Rk9ZPUVU9TnGW6JbDRMokUv
+	 Kgd9LQzDdcbeFKx9YoyVj4dUVnJWjazeaTYVfUt+RTnE7zkco2gin6UszxSu5SA7tC
+	 7HHamEXgtZywA==
+Date: Fri, 10 Jan 2025 09:36:21 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Christian Hewitt <christianshewitt@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] drm/meson: vclk: fix precision in vclk calculations
+Message-ID: <20250110-flat-quantum-frigatebird-2432f1@houat>
 References: <20250110074458.3624094-1-christianshewitt@gmail.com>
+ <20250110074458.3624094-3-christianshewitt@gmail.com>
 MIME-Version: 1.0
+In-Reply-To: <20250110074458.3624094-3-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250109_234511_911638_B471EFBC 
-X-CRM114-Status: GOOD (  15.93  )
+X-CRM114-CacheID: sfid-20250110_003626_211545_18224FD5 
+X-CRM114-Status: GOOD (  23.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,144 +71,164 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============6706367933644282398=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Playing YUV420 @ 59.94 media causes HDMI output to lose sync
-with a fatal error reported:
 
-[   89.610280] Fatal Error, invalid HDMI vclk freq 593406
+--===============6706367933644282398==
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="z2aeiokg3uqigxue"
+Content-Disposition: inline
 
-In meson_encoder_hdmi_set_vclk the initial vclk_freq value is
-593407 but YUV420 modes halve the value to 296703.5 and this
-is stored as int which loses precision by rounding down to
-296703. The rounded value is later doubled to 593406 and then
-meson_encoder_hdmi_set_vclk sets an invalid vclk_freq value
-and the error triggers during meson_vlkc_setup validation.
 
-Fix precision in meson_encoder_hdmi_set_vclk by switching to
-unsigned long long KHz values instead of int MHz. As values
-for phy_freq are now more accurate we also need to handle an
-additional match scenario in meson_vclk_setup.
+--z2aeiokg3uqigxue
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/2] drm/meson: vclk: fix precision in vclk calculations
+MIME-Version: 1.0
 
-Fixes: e5fab2ec9ca4 ("drm/meson: vclk: add support for YUV420 setup")
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 42 +++++++++++-----------
- drivers/gpu/drm/meson/meson_vclk.c         |  3 +-
- 2 files changed, 23 insertions(+), 22 deletions(-)
+Hi,
 
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index 0593a1cde906..fa37cf975992 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -70,12 +70,12 @@ static void meson_encoder_hdmi_set_vclk(struct meson_encoder_hdmi *encoder_hdmi,
- {
- 	struct meson_drm *priv = encoder_hdmi->priv;
- 	int vic = drm_match_cea_mode(mode);
--	unsigned int phy_freq;
--	unsigned int vclk_freq;
--	unsigned int venc_freq;
--	unsigned int hdmi_freq;
-+	unsigned long long vclk_freq;
-+	unsigned long long phy_freq;
-+	unsigned long long venc_freq;
-+	unsigned long long hdmi_freq;
- 
--	vclk_freq = mode->clock;
-+	vclk_freq = mode->clock * 1000ULL;
- 
- 	/* For 420, pixel clock is half unlike venc clock */
- 	if (encoder_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
-@@ -85,8 +85,9 @@ static void meson_encoder_hdmi_set_vclk(struct meson_encoder_hdmi *encoder_hdmi,
- 	phy_freq = vclk_freq * 10;
- 
- 	if (!vic) {
--		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, phy_freq,
--				 vclk_freq, vclk_freq, vclk_freq, false);
-+		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, phy_freq / 1000ULL,
-+				 vclk_freq / 1000ULL, vclk_freq / 1000ULL,
-+				 vclk_freq / 1000ULL, false);
- 		return;
- 	}
- 
-@@ -107,12 +108,9 @@ static void meson_encoder_hdmi_set_vclk(struct meson_encoder_hdmi *encoder_hdmi,
- 	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
- 		venc_freq /= 2;
- 
--	dev_dbg(priv->dev, "vclk:%d phy=%d venc=%d hdmi=%d enci=%d\n",
--		phy_freq, vclk_freq, venc_freq, hdmi_freq,
--		priv->venc.hdmi_use_enci);
--
--	meson_vclk_setup(priv, MESON_VCLK_TARGET_HDMI, phy_freq, vclk_freq,
--			 venc_freq, hdmi_freq, priv->venc.hdmi_use_enci);
-+	meson_vclk_setup(priv, MESON_VCLK_TARGET_HDMI, phy_freq / 1000ULL,
-+			 vclk_freq / 1000ULL, venc_freq / 1000ULL, hdmi_freq / 1000ULL,
-+			 priv->venc.hdmi_use_enci);
- }
- 
- static enum drm_mode_status meson_encoder_hdmi_mode_valid(struct drm_bridge *bridge,
-@@ -122,10 +120,10 @@ static enum drm_mode_status meson_encoder_hdmi_mode_valid(struct drm_bridge *bri
- 	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
- 	struct meson_drm *priv = encoder_hdmi->priv;
- 	bool is_hdmi2_sink = display_info->hdmi.scdc.supported;
--	unsigned int phy_freq;
--	unsigned int vclk_freq;
--	unsigned int venc_freq;
--	unsigned int hdmi_freq;
-+	unsigned long long vclk_freq;
-+	unsigned long long phy_freq;
-+	unsigned long long venc_freq;
-+	unsigned long long hdmi_freq;
- 	int vic = drm_match_cea_mode(mode);
- 	enum drm_mode_status status;
- 
-@@ -149,7 +147,7 @@ static enum drm_mode_status meson_encoder_hdmi_mode_valid(struct drm_bridge *bri
- 	} else if (!meson_venc_hdmi_supported_vic(vic))
- 		return MODE_BAD;
- 
--	vclk_freq = mode->clock;
-+	vclk_freq = mode->clock * 1000ULL;
- 
- 	/* For 420, pixel clock is half unlike venc clock */
- 	if (drm_mode_is_420_only(display_info, mode) ||
-@@ -179,10 +177,12 @@ static enum drm_mode_status meson_encoder_hdmi_mode_valid(struct drm_bridge *bri
- 	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
- 		venc_freq /= 2;
- 
--	dev_dbg(priv->dev, "%s: vclk:%d phy=%d venc=%d hdmi=%d\n",
--		__func__, phy_freq, vclk_freq, venc_freq, hdmi_freq);
-+	dev_dbg(priv->dev, "%s: phy=%lld vclk=%lld venc=%lld hdmi=%lld\n",
-+		__func__, phy_freq / 1000ULL, vclk_freq / 1000ULL,
-+		venc_freq / 1000ULL, hdmi_freq / 1000ULL);
- 
--	return meson_vclk_vic_supported_freq(priv, phy_freq, vclk_freq);
-+	return meson_vclk_vic_supported_freq(priv, phy_freq / 1000ULL,
-+					     vclk_freq / 1000ULL);
- }
- 
- static void meson_encoder_hdmi_atomic_enable(struct drm_bridge *bridge,
-diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
-index 2a82119eb58e..a2e93b500ed6 100644
---- a/drivers/gpu/drm/meson/meson_vclk.c
-+++ b/drivers/gpu/drm/meson/meson_vclk.c
-@@ -1070,7 +1070,8 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
- 
- 	for (freq = 0 ; params[freq].pixel_freq ; ++freq) {
- 		if ((phy_freq == params[freq].phy_freq ||
--		     phy_freq == FREQ_1000_1001(params[freq].phy_freq/10)*10) &&
-+		     phy_freq == FREQ_1000_1001(params[freq].phy_freq/10)*10 ||
-+		   ((phy_freq/10)*10) == FREQ_1000_1001(params[freq].phy_freq/10)*10) &&
- 		    (vclk_freq == params[freq].vclk_freq ||
- 		     vclk_freq == FREQ_1000_1001(params[freq].vclk_freq))) {
- 			if (vclk_freq != params[freq].vclk_freq)
--- 
-2.34.1
+On Fri, Jan 10, 2025 at 07:44:58AM +0000, Christian Hewitt wrote:
+> Playing YUV420 @ 59.94 media causes HDMI output to lose sync
+> with a fatal error reported:
+>=20
+> [   89.610280] Fatal Error, invalid HDMI vclk freq 593406
+>=20
+> In meson_encoder_hdmi_set_vclk the initial vclk_freq value is
+> 593407 but YUV420 modes halve the value to 296703.5 and this
+> is stored as int which loses precision by rounding down to
+> 296703. The rounded value is later doubled to 593406 and then
+> meson_encoder_hdmi_set_vclk sets an invalid vclk_freq value
+> and the error triggers during meson_vlkc_setup validation.
+>=20
+> Fix precision in meson_encoder_hdmi_set_vclk by switching to
+> unsigned long long KHz values instead of int MHz. As values
+> for phy_freq are now more accurate we also need to handle an
+> additional match scenario in meson_vclk_setup.
+>=20
+> Fixes: e5fab2ec9ca4 ("drm/meson: vclk: add support for YUV420 setup")
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  drivers/gpu/drm/meson/meson_encoder_hdmi.c | 42 +++++++++++-----------
+>  drivers/gpu/drm/meson/meson_vclk.c         |  3 +-
+>  2 files changed, 23 insertions(+), 22 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm=
+/meson/meson_encoder_hdmi.c
+> index 0593a1cde906..fa37cf975992 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> @@ -70,12 +70,12 @@ static void meson_encoder_hdmi_set_vclk(struct meson_=
+encoder_hdmi *encoder_hdmi,
+>  {
+>  	struct meson_drm *priv =3D encoder_hdmi->priv;
+>  	int vic =3D drm_match_cea_mode(mode);
+> -	unsigned int phy_freq;
+> -	unsigned int vclk_freq;
+> -	unsigned int venc_freq;
+> -	unsigned int hdmi_freq;
+> +	unsigned long long vclk_freq;
+> +	unsigned long long phy_freq;
+> +	unsigned long long venc_freq;
+> +	unsigned long long hdmi_freq;
+> =20
+> -	vclk_freq =3D mode->clock;
+> +	vclk_freq =3D mode->clock * 1000ULL;
 
+You should be using drm_hdmi_compute_mode_clock() here
+
+
+
+>  	/* For 420, pixel clock is half unlike venc clock */
+>  	if (encoder_hdmi->output_bus_fmt =3D=3D MEDIA_BUS_FMT_UYYVYY8_0_5X24)
+> @@ -85,8 +85,9 @@ static void meson_encoder_hdmi_set_vclk(struct meson_en=
+coder_hdmi *encoder_hdmi,
+>  	phy_freq =3D vclk_freq * 10;
+> =20
+>  	if (!vic) {
+> -		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, phy_freq,
+> -				 vclk_freq, vclk_freq, vclk_freq, false);
+> +		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, phy_freq / 1000ULL,
+> +				 vclk_freq / 1000ULL, vclk_freq / 1000ULL,
+> +				 vclk_freq / 1000ULL, false);
+>  		return;
+>  	}
+> =20
+> @@ -107,12 +108,9 @@ static void meson_encoder_hdmi_set_vclk(struct meson=
+_encoder_hdmi *encoder_hdmi,
+>  	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+>  		venc_freq /=3D 2;
+> =20
+> -	dev_dbg(priv->dev, "vclk:%d phy=3D%d venc=3D%d hdmi=3D%d enci=3D%d\n",
+> -		phy_freq, vclk_freq, venc_freq, hdmi_freq,
+> -		priv->venc.hdmi_use_enci);
+> -
+> -	meson_vclk_setup(priv, MESON_VCLK_TARGET_HDMI, phy_freq, vclk_freq,
+> -			 venc_freq, hdmi_freq, priv->venc.hdmi_use_enci);
+> +	meson_vclk_setup(priv, MESON_VCLK_TARGET_HDMI, phy_freq / 1000ULL,
+> +			 vclk_freq / 1000ULL, venc_freq / 1000ULL, hdmi_freq / 1000ULL,
+> +			 priv->venc.hdmi_use_enci);
+>  }
+> =20
+>  static enum drm_mode_status meson_encoder_hdmi_mode_valid(struct drm_bri=
+dge *bridge,
+> @@ -122,10 +120,10 @@ static enum drm_mode_status meson_encoder_hdmi_mode=
+_valid(struct drm_bridge *bri
+>  	struct meson_encoder_hdmi *encoder_hdmi =3D bridge_to_meson_encoder_hdm=
+i(bridge);
+>  	struct meson_drm *priv =3D encoder_hdmi->priv;
+>  	bool is_hdmi2_sink =3D display_info->hdmi.scdc.supported;
+> -	unsigned int phy_freq;
+> -	unsigned int vclk_freq;
+> -	unsigned int venc_freq;
+> -	unsigned int hdmi_freq;
+> +	unsigned long long vclk_freq;
+> +	unsigned long long phy_freq;
+> +	unsigned long long venc_freq;
+> +	unsigned long long hdmi_freq;
+>  	int vic =3D drm_match_cea_mode(mode);
+>  	enum drm_mode_status status;
+> =20
+> @@ -149,7 +147,7 @@ static enum drm_mode_status meson_encoder_hdmi_mode_v=
+alid(struct drm_bridge *bri
+>  	} else if (!meson_venc_hdmi_supported_vic(vic))
+>  		return MODE_BAD;
+> =20
+> -	vclk_freq =3D mode->clock;
+> +	vclk_freq =3D mode->clock * 1000ULL;
+
+And here too.
+
+Maxime
+
+--z2aeiokg3uqigxue
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ4DcBQAKCRAnX84Zoj2+
+dn9+AX0WIzrGw8NcHeicQHdElHcmHrP/e9bXGuOH6onY2l7buxWUY4niinP1ivWy
+O2jmKVgBgKFBwgNAvpSLOsf5QXxgiCr5fqCVkln5DwS1slVVRJgw0EeQkrcvvb5N
+QXY0HcWZ7A==
+=FFqZ
+-----END PGP SIGNATURE-----
+
+--z2aeiokg3uqigxue--
+
+
+--===============6706367933644282398==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6706367933644282398==--
+
