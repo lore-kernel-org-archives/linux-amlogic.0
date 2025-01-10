@@ -4,63 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02FCAE77188
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 14:11:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3357CE77188
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 14:12:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GIuYlku/IskaMm1Q0Ixrip/A4x+5AFoPUAzBl1GzxBU=; b=iX8g96ppgNDxxM
-	ETCuaEvq5erFAS66X299S7SHEI5odQBOthGo6zSC8M3ZRUGBE+75VBREWwQnqGVdNpPbvn90/Hzr6
-	nXm+SOQrRpTM9E7IsN3eiDRX+oBVeQOCEVwX78JU3gHDaJauPj5ixgUq9v6ebAs1sLZg0jpm4d+jc
-	pzfCm5O7WyHbYu3gz4/tQsb0oPrGgDGR+AulGpbhli8vY/+cT6bKgTrDIh+QQ492z5rHf8ARc0m6+
-	MvP/x16867HjO5bsOI3eSOUbNyk2tIXKNzJqteFS04s4kNWbuwgGsldJtwAf23q/VDNNYXYaQBFam
-	EZPAfb2WEG+7Op1CNzLw==;
+	List-Owner; bh=nQNVdZ3jB8zjOotS+BxYYUJ+Uwk1UqKtgrV8KQg+TEw=; b=B7WtUYYTMI6xxD
+	YgcJnHh6IbNxVRy6Gs/y2STBAbln/FhT7eOtxXr9bH02VYQ2n9EsTJvxrityfD+IV29rE7TKgmjeD
+	+rjCWKHjshzrUvJ0x8PAJ6YQ7OxPRJcy1ASK/bgaU7gB4yeohHxdC4z1ka1/q3BurhE/qkddAy3I/
+	24oCgeLzsxRrpX+jM+onTY5UhLO8+lO1prnGbFRsIokO6bz/grjynekTs9slFilf3RYvwczYqcBIB
+	TZQyoagp1n4YL93pAlrQYhpOCBNq3+zCPZUt2nnTC/FUU4/RfvX0bZNbk1seLtxEp9FhkfggQJC3Q
+	cSd3dwtM1Q7IFIWr30rQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWFiz-0000000Fb3a-0GkK;
-	Fri, 10 Jan 2025 14:10:57 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1tWFkB-0000000FbHC-068y;
+	Fri, 10 Jan 2025 14:12:11 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWFg7-0000000FaTu-3lMh;
-	Fri, 10 Jan 2025 14:08:00 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=bXqVeapMhTwwMxHw1epq/5QLIlurPqqrqA54jwg2zo8=; b=VPvRtCS23zcJBcYkSFrKMxjHUw
-	Bx09Fwst/AQG1lXu2X3y8qKAal12XaBnWcjtF1HT3SRldyum1SgdXptIeylaVUGlWj+u6IE6OpiOT
-	wv/VAcYx7IXhXcLgBMy6USLQNTvgMVbYSTs580e/R3ACTtpFT/43lbS7de7cBvFSwPinC2o7+23iC
-	rgMA/5YwQskdJ4pmm2lZp3QT/EZh1ooDZDGmGcfTZCyPLkTqrrC4t2w9XXJiLsEBQxnjAF8KQFUCO
-	tgGHSZRiTn15kMI+H9lZ0SSDF5bttZYCc6YlT6yyWRDyM1DXod034hMBgD3LFJAu67SX66Zx5gIB9
-	dBaYtzIQ==;
-Received: from nyc.source.kernel.org ([147.75.193.91])
-	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWFg4-00000009nGO-2wnM;
-	Fri, 10 Jan 2025 14:07:58 +0000
+	id 1tWFhD-0000000Fag7-05ya;
+	Fri, 10 Jan 2025 14:09:08 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id D541BA41F1A;
-	Fri, 10 Jan 2025 14:06:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0C22C4CED6;
-	Fri, 10 Jan 2025 14:07:49 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 2F8B15C01C3;
+	Fri, 10 Jan 2025 14:08:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5DE0C4CEE0;
+	Fri, 10 Jan 2025 14:09:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736518075;
-	bh=h9vJfhia9FmB8R5nTZlXxWCBnbQiNP0ULKa3jelu3Mo=;
+	s=k20201202; t=1736518145;
+	bh=QSTpgdnGaxbuPABiJ8UiyIexQ49ZqfGcPSr1bxVDwiM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WEF1V2wIfvpYmlT8ARjrLpEw6oA780J0eYY6cAF6KgVTLp8LXHg13IJMIaFU95ZFF
-	 TUeQdwoBeQca86kVSJubqRbg5hljQiorFFBrvZ3+oiqUrC5D39wEhb9shcvpWR2cLj
-	 Cqj/qXrwr0j8gJvCF+1pntKS0f5ONM0e9DAVUQhqmuxOvGKiES3HPdiyKy+h8xtHMY
-	 VGDUXU0/R6csjmO+/WRUNoqHr6ZOGR6Zha6Q2JqL8ajgCcXlgFYIXcXmac+r5tT6Hk
-	 4lfzeqGP6QHqBdpjbkVO7BpkuUfeAOgn9atFTqxJihAKZ1mLSyUp7caO50WBwJxwC9
-	 GNH3XkuZuu4Sw==
-Message-ID: <4dd4fade-1ea4-48aa-bc89-4299c70bdb86@kernel.org>
-Date: Fri, 10 Jan 2025 15:07:47 +0100
+	b=MU33h4cv6ZXR4COBL+eIe6A3+3G6qBFycIwRMWyyHMgah8htp7UmVBPN9EaWQwUdQ
+	 xg++m8qOSzL012cMLgPXwxpAs0L2AEIx3va2p1ekiBHf4PvQHj9hU3EV1XSCQibT/5
+	 Hb+gaq2lM+uCxQY3fejjcy0AfSPJgfpWUAJdCI0S0lVU0hDBqlk8W2yjf+qq/IGWgk
+	 N3Cm9Uh7MWHVbp58Y90DjeFJarHzNICJTIY7UHvyrrwnox0SHX+f4a71WWRsxavglc
+	 PGJxPh/aiIVbgzFvT/XKzgmhyZoWXbDWey11eVEpZUjQFav+S5c1rH2Mnxs8LUbV0R
+	 IFEVEcfjjhjyA==
+Message-ID: <566be852-f7fc-4e6d-ad88-295416f8ec84@kernel.org>
+Date: Fri, 10 Jan 2025 15:08:58 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/11] dt-bindings: display: meson-vpu: Add compatible for
- S4 display controller
+Subject: Re: [PATCH 06/11] drm: meson: add meson_dw_hdmi support for S4
 To: ao.xu@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
@@ -73,7 +58,7 @@ Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
- <20250110-drm-s4-v1-2-cbc2d5edaae8@amlogic.com>
+ <20250110-drm-s4-v1-6-cbc2d5edaae8@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -119,10 +104,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250110-drm-s4-v1-2-cbc2d5edaae8@amlogic.com>
+In-Reply-To: <20250110-drm-s4-v1-6-cbc2d5edaae8@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250110_140757_062162_2630F918 
-X-CRM114-Status: GOOD (  12.90  )
+X-CRM114-CacheID: sfid-20250110_060907_148713_2CF5D417 
+X-CRM114-Status: GOOD (  10.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,99 +125,39 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 10/01/2025 06:39, Ao Xu via B4 Relay wrote:
-> From: Ao Xu <ao.xu@amlogic.com>
-> 
-> Add devicetree document for S4 VPU
-> 
-> Signed-off-by: Ao Xu <ao.xu@amlogic.com>
-> ---
->  .../bindings/display/amlogic,meson-vpu.yaml        | 48 ++++++++++++++++++++--
->  1 file changed, 44 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-> index cb0a90f0232190031430c08f936b8f0d3b217601..3d7eceb3724e81d9c911039507df072d332a028f 100644
-> --- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-> @@ -66,14 +66,13 @@ properties:
->            - const: amlogic,meson-gx-vpu
->        - enum:
->            - amlogic,meson-g12a-vpu # G12A (S905X2, S905Y2, S905D2)
-> +          - amlogic,meson-s4-vpu # S4 (S905Y4)
+>  	/* Setup PHY */
+> -	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1, meson_dw_hdmi->data->cntl1_init);
+> -	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, meson_dw_hdmi->data->cntl0_init);
+> +	if (dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-s4-dw-hdmi")) {
+> +		regmap_write(priv->hhi, ANACTRL_HDMIPHY_CTRL1,
+> +			     meson_dw_hdmi->data->cntl1_init);
+> +		regmap_write(priv->hhi, ANACTRL_HDMIPHY_CTRL0,
+> +			     meson_dw_hdmi->data->cntl0_init);
+> +	} else {
+> +		regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1, meson_dw_hdmi->data->cntl1_init);
+> +		regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, meson_dw_hdmi->data->cntl0_init);
+> +	}
 >  
->    reg:
-> -    maxItems: 2
-> +    minItems: 2
-
-Missing maxItems
-
+>  	/* Enable HDMI-TX Interrupt */
+>  	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_INTR_STAT_CLR,
+> @@ -766,10 +923,13 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>  	dw_plat_data->ycbcr_420_allowed = true;
+>  	dw_plat_data->disable_cec = true;
+>  	dw_plat_data->output_port = 1;
+> +	if (dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-s4-dw-hdmi"))
+> +		dw_plat_data->phy_force_vendor = 1;
 >  
->    reg-names:
-> -    items:
-> -      - const: vpu
-> -      - const: hhi
-> +    minItems: 2
-
-Just grow the list here with minItems
-
+>  	if (dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxl-dw-hdmi") ||
+>  	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxm-dw-hdmi") ||
+> -	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-g12a-dw-hdmi"))
+> +	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-g12a-dw-hdmi") ||
+> +	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-s4-dw-hdmi"))
+>  		dw_plat_data->use_drm_infoframe = true;
 >  
->    interrupts:
->      maxItems: 1
-> @@ -117,6 +116,47 @@ required:
->    - "#size-cells"
->    - amlogic,canvas
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: amlogic,meson-s4-vpu
-> +    then:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - description: vcbus registers
-> +            - description: hhi registers
-> +            - description: clkctrl registers
-> +            - description: power control registers
-> +            - description: sysctrl registers
-> +        reg-names:
-> +          items:
-> +            - const: vpu
-> +            - const: hhi
-> +            - const: clkctrl
-> +            - const: pwctrl
-> +            - const: sysctrl
+You should properly define driver/match data, instead of running
+compatibility check 10 times in your driver.
 
-and here min/maxItems
-
-> +        clocks:
-> +          items:
-> +            - description: vpu clock
-> +            - description: vapb clock
-> +        clock-names:
-> +          items:
-> +            - const: vpu
-> +            - const: vapb
-
-All properties must be defined in top-level. Just disallow it :false for
-other variants.
-
-> +    else:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - description: vcbus registers
-> +            - description: hhi registers
-> +        reg-names:
-> +          items:
-> +            - const: vpu
-> +            - const: hhi
-
-maxItems: 2
-
-
-Look how other bindings are doing it for lists with common parts.
+This is unscalable and unmaintainable approach.
 
 Best regards,
 Krzysztof
