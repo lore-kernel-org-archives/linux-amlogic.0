@@ -4,87 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CD51E7719C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 21:07:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36AB8E7719C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 22:44:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=jXH4ZvXrU+5pL6/WpYOTnPoIcx1HIOAmjEx+4H16J3o=; b=4ew1qAEYX8Lv+u
-	tIaYA2QegF5lyN7A3dLQXWRpkrqDyAR+zbqfE1V9kR7H1HJoU9PuN7KeO1dBn2telcPXa8Hlfr4Jq
-	iwT9LRXsgV0U4GvVgT/DfOhLOwjjVAAupmVJj3tDsock+suuXNIGjltdp/r9avdtWt6rEuB2WzcA/
-	T/Udo7Jd2hdYPSKCeJ3lmoQLSleQArkzxCMKDf4xlIFGqz1aLwBXqOOEFQU5ZW/OvNHbUgQCvGarK
-	s0Ct9i38wBs2AoLSW7iN1vJyp2RWocmS0jT/dGq+KUekbcMTFWutuNq9kCewNaXlLUCsyYxqg58Jr
-	FYU4aUgrK7lUnz3JULmg==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=bPuKq1hg0SYzC86E28G4JlstVjCTbs+uaXWeq0P+Lyw=; b=y6yDN9AcYPJWXINvIH3E4H/9/s
+	5csjL0t7UrtrqjeAr7UBzYEG2w/OFv/YjfSV0uAibfWtVQkW/SzyvnVMygfH3JgVXBK78KIpIRGb6
+	Sgcovlru1sXW4LGfH6N3EJf3zRMU5uo/2SaJm9OEYTJLsR9EVY7dvEwZ8XfFvTQoqQj/5Cnojhyr4
+	cwgbB0uTH/9Icv6uqI4WxudLjCC3mO3DGGa5bMmsIHSefLeP7uuocpxA1BcnT3Tn0+yPdBeZ6FSej
+	OBOEY9V0VxnKlJae5jXv/Bc/YUgqdjgEbTGCNlIZq+jd4Nq9OFWwGwGTv69M8nRwNO3j8soXQBihz
+	XSGFJmQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWMEL-0000000GyVf-3fcb;
-	Fri, 10 Jan 2025 21:07:45 +0000
-Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
+	id 1tWNjW-0000000HAHJ-2sl1;
+	Fri, 10 Jan 2025 22:44:02 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWMEJ-0000000GyU6-2gWe
-	for linux-amlogic@lists.infradead.org;
-	Fri, 10 Jan 2025 21:07:44 +0000
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5d3e6f6cf69so3981402a12.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 10 Jan 2025 13:07:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1736543262; x=1737148062; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=G+2E4XF4R2L7U4jDZMfpOUeLdApfDnqjbzX1VGK6SNk=;
-        b=DmyDpG9IjtFqQA8Eugd6oDgBAu866QcUsgbE1cirAdVx0/qKuhBrNfOd1WlED25+pU
-         ZnyWRmHgivLHpUedgspIPRXfnb0EtwvuH6mYBz/vPuidF0TELSFKtALLrWjeL63Pmqlg
-         aZXQVyKEOtepWEYj7hbAkHxDkmTg4V8FVrpN7LG8uBPvPg4/sIDMVumk1Mdsno8jUDhS
-         XM6ZXH91DJduJTEHky4DGJdGUEhcExwrzHrIiOLFBTY5En8OoQWb269jWoE+nPD5tO+B
-         KGDbNp5IIJ2kYFRX1Q/Ev8YLMXSO6PIKxN9pppCNcg2nasZhDM/dj63vCcgrZysuQXKf
-         VyFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736543262; x=1737148062;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G+2E4XF4R2L7U4jDZMfpOUeLdApfDnqjbzX1VGK6SNk=;
-        b=jfmHR/NFt6kz2gKtYYg6RI1Djgm8otdPVlyOlw+HgiRwDxfAjphgB7mll/9fG+Sitw
-         fSNdmtBftyRJNn9PV8JdkW1gZc56IjRwdg+7uuFXFx1YrkV/5AiF6syUP4cTX8OJz3G6
-         Qr43gyhUTY0hC5OTAUxV36vfTAQ7pHjLj+iMpssmKN/vojvrJJdCRi1fenOs6NYu8vb5
-         myUwz0PGyoGbSmVTKNd5WCUVRPcjonIIlQCmYWDyrTlgX9BGBP9x8pMoFMcStwrHP60V
-         6kzcSl6qKSMT2SEncEnZoQzCZKVfK2QHKuwe2x5E6VZdYrAVc/39KNPHgTdNcjzTiPJk
-         q09w==
-X-Forwarded-Encrypted: i=1; AJvYcCVrLM4XjGF9RMVHVxbmVLEmXRdiQ5kvghsijR2RzXtaD3+A+mco31SkP0xbW8L0iM6SMHvj1bxBPjwVRxwL@lists.infradead.org
-X-Gm-Message-State: AOJu0YyoBcwhG5+3+GA5P7UL1HNOs8Y8dhGWSYWpCcOT6PoDUrBj+m1U
-	ijZvtgm3rpYlJFaUzODT54pTbdlUajnCyElS8mlYF/1NhTZ/v7wxGoYOimUR
-X-Gm-Gg: ASbGncvrFj132VtwJrtkpI4cJajvOd2UznVaheMLZrvlJa+XQXg7lCYW2rLT3WjtnAg
-	P1DJ9I8fVbeBN5vG1OCHSmwpX0rGYWpH2oxwFrgXuKE4mRIqcKmwPBXkgC0QK+r9tWfJ7TF6Wr/
-	CUAOiSMTj1cwho/gLnwHRHxGe8YNul4xdTci0VSKNu/XbMvDZmNxfHu5O/Nb/BiQilJdIFccRGc
-	ltRwuWRhjjOr4+EoXZEYSPWtwtyoghIYpkhtFU6yrSOM3KYVA0EEC5PuKoW1fjZZVhauMZK0Huh
-	AU9PTnDVZHS1dKLaWsWh3ENZ7n8AFlpSXb52mLHyYrqE0F1J2lQuYlH+Lz23pjOBGQCv9W94ZEA
-	Y9b10ysRJ2ZmWlDtJlbCGdIAs
-X-Google-Smtp-Source: AGHT+IHyUhpuKiJImObkWg/lNo1hgMitMJ7DYUlKMmVG3Hzv/f6Npg00kC5fb9KJ8mLKeTnMZthLuA==
-X-Received: by 2002:a17:907:72d0:b0:aa6:aa8a:9088 with SMTP id a640c23a62f3a-ab2abc789bbmr1170872866b.41.1736543261408;
-        Fri, 10 Jan 2025 13:07:41 -0800 (PST)
-Received: from localhost.localdomain (dynamic-2a02-3100-a97f-2b00-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:a97f:2b00:1e86:bff:fe2f:57b7])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ab2c905e2ebsm207172966b.10.2025.01.10.13.07.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2025 13:07:39 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-sound@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Cc: s.nawrocki@samsung.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	linux-kernel@vger.kernel.org,
-	jbrunet@baylibre.com,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [RFC v2 0/2] ASoC: prepare streams on codec-to-codec links
-Date: Fri, 10 Jan 2025 22:07:28 +0100
-Message-ID: <20250110210730.705613-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.47.1
+	id 1tWNjU-0000000HAGK-0ByP;
+	Fri, 10 Jan 2025 22:44:01 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 2274C5C0158;
+	Fri, 10 Jan 2025 22:43:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 945AEC4CED6;
+	Fri, 10 Jan 2025 22:43:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736549038;
+	bh=9rxUz9ojcB/buc6JlnGsz5tAJUhPR3MfHzPlf9l/4YM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ZAceQn9zD6mKmAJJThF/9noy3JaT3TbU+1fC4XwPWpaBAlPScwK9iTz5ZgTL715lZ
+	 Rv2+H/UDKipn+OIkpBTPktI2pUhYT2YfQBoHKeYv9ASyMJ1Lw0p/10+H+mxVz8sPeV
+	 K8kc0EvnSK5tiHiHwE8ma0Dz/ePRfV+TZBh80HSIn/aPTPPZYQW57nUYRgc69M7PnH
+	 88u092fu1L3SOY/VbOvvhENX7jl9o6axtpsyyx+aaAStbjpr7ZJJ3RmmC6bF9PJJQL
+	 1hf4q4K8BbrqMitNHeGdgreWgGQdssbalAWWWPerMrIOoZH1dhfx/dPGUgPYzIaqoq
+	 xOtalLDmftdVQ==
+Date: Fri, 10 Jan 2025 16:43:57 -0600
 MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+To: Ao Xu <ao.xu@amlogic.com>
+In-Reply-To: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
+References: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
+Message-Id: <173654872408.3799019.13473379234545268910.robh@kernel.org>
+Subject: Re: [PATCH 00/11] Subject: [PATCH 00/11] Add DRM support for
+ Amlogic S4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250110_130743_676633_EC5AF534 
-X-CRM114-Status: GOOD (  14.15  )
+X-CRM114-CacheID: sfid-20250110_144400_175052_99DA30DB 
+X-CRM114-Status: GOOD (  20.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,51 +80,94 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
 
-the DRM subsystem has recently gained a HDMI audio codec framework [0].
-This is already queued for Linux 6.14.
+On Fri, 10 Jan 2025 13:39:50 +0800, Ao Xu wrote:
+> This patch series adds DRM support for the Amlogic S4-series SoCs.
+> Compared to the Amlogic G12-series, the S4-series introduces the following changes:
+> 
+> 1 The S4-series splits the HIU into three separate components: `sys_ctrl`, `pwr_ctrl`, and `clk_ctrl`.
+>   As a result, VENC and VCLK drivers are updated with S4-specific compatible strings to accommodate these changes.
+> 2 The S4-series secures access to HDMITX DWC and TOP registers,
+>   requiring modifications to the driver to handle this new access method.
+> 3 The register addresses for the video1 and video2 planes have been updated in the S4 hardware,
+>   and the DRM driver has been adapted accordingly.
+> 4 The OSD, VIU, and VPP components remain unchanged and are consistent with the G12-series.
+> 
+> Signed-off-by: Ao Xu <ao.xu@amlogic.com>
+> ---
+> Ao Xu (11):
+>       dt-bindings: display: meson-dw-hdmi: Add compatible for S4 HDMI controller
+>       dt-bindings: display: meson-vpu: Add compatible for S4 display controller
+>       drm: meson: add S4 compatible for DRM driver
+>       drm: meson: add primary and overlay plane support for S4
+>       drm: meson: update VIU and VPP support for S4
+>       drm: meson: add meson_dw_hdmi support for S4
+>       drm: meson: change api call parameter
+>       drm: meson: add hdmitx vmode timing support for S4
+>       drm: meson: add vpu clk setting for S4
+>       drm: meson: add CVBS support for S4
+>       arm64: dts: amlogic: s4: add DRM support [1/1]
+> 
+>  .../bindings/display/amlogic,meson-dw-hdmi.yaml    |    1 +
+>  .../bindings/display/amlogic,meson-vpu.yaml        |   48 +-
+>  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     |   39 +
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |  121 +++
+>  drivers/gpu/drm/meson/meson_crtc.c                 |   90 +-
+>  drivers/gpu/drm/meson/meson_drv.c                  |  127 ++-
+>  drivers/gpu/drm/meson/meson_drv.h                  |    6 +
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c              |  244 ++++-
+>  drivers/gpu/drm/meson/meson_dw_hdmi.h              |  126 +++
+>  drivers/gpu/drm/meson/meson_encoder_cvbs.c         |   10 +
+>  drivers/gpu/drm/meson/meson_encoder_hdmi.c         |   19 +-
+>  drivers/gpu/drm/meson/meson_overlay.c              |    7 +-
+>  drivers/gpu/drm/meson/meson_plane.c                |   24 +-
+>  drivers/gpu/drm/meson/meson_registers.h            |   17 +
+>  drivers/gpu/drm/meson/meson_vclk.c                 | 1018 ++++++++++++++------
+>  drivers/gpu/drm/meson/meson_venc.c                 |  346 ++++++-
+>  drivers/gpu/drm/meson/meson_venc.h                 |    4 +-
+>  drivers/gpu/drm/meson/meson_viu.c                  |    9 +-
+>  drivers/gpu/drm/meson/meson_vpp.c                  |   12 +-
+>  19 files changed, 1865 insertions(+), 403 deletions(-)
+> ---
+> base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
+> change-id: 20250110-drm-s4-c96c88be52e4
+> 
+> Best regards,
+> --
+> Ao Xu <ao.xu@amlogic.com>
+> 
+> 
+> 
 
-I want to implement a HDMI controller driver for the Amlogic
-Meson8/8b/8m2 SoCs using the DRM HDMI audio codec framework. Internally
-the DRM HDMI audio codec framework relies on hdmi-codec's .prepare
-callback to be called. This unfortunately is not happening on Amlogic
-Meson8/8b/8m2 platforms [1].
 
-Jerome suggested that this may be because of the codec-to-codec link on
-our Amlogic AIU audio driver [2]. He encouraged me to send this series
-to allow hdmi-codec's .prepare() callback to be called - even on
-platforms that connect it via a codec-to-codec link.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-The reason why this series is marked as RFC is that I'm not familiar
-with the ASoC subsystem and lot of the functionality and terminology
-is new to me.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Also I Cc'ed Sylwester Nawrocki (Samsung maintainer) as codec-to-codec
-links seem to be most heavily used on Samsung and Amlogic platforms.
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-Changes since v1 at [3]:
-- updated patch #2 to also prepare the source side of the link for
-  consistency reasons (as suggested by Jerome and Mark)
+  pip3 install dtschema --upgrade
 
 
-[0] https://lore.kernel.org/dri-devel/20241224-drm-bridge-hdmi-connector-v10-0-dc89577cd438@linaro.org/
-[1] https://lore.kernel.org/linux-amlogic/CAFBinCDdiJ3UNVUcShjq=7U2=oUwT3ciYdKSuZ5TdcrikxFBpg@mail.gmail.com/
-[2] https://lore.kernel.org/linux-amlogic/1ja5c4b4rt.fsf@starbuckisacylon.baylibre.com/
-[3] https://lore.kernel.org/linux-sound/20250106141316.375984-1-martin.blumenstingl@googlemail.com/
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com:
+
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: vpu@ff000000: reg: [[0, 4278190080, 0, 262144], [0, 4261445632, 0, 8192], [0, 4261412864, 0, 8192], [0, 4261462016, 0, 2048], [0, 4261478400, 0, 256]] is too long
+	from schema $id: http://devicetree.org/schemas/display/amlogic,meson-vpu.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: vpu@ff000000: reg-names: ['vpu', 'hhi', 'clkctrl', 'pwrctrl', 'sysctrl'] is too long
+	from schema $id: http://devicetree.org/schemas/display/amlogic,meson-vpu.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: vpu@ff000000: reg-names:3: 'pwctrl' was expected
+	from schema $id: http://devicetree.org/schemas/display/amlogic,meson-vpu.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: vpu@ff000000: 'assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/display/amlogic,meson-vpu.yaml#
 
 
-Martin Blumenstingl (2):
-  ASoC: soc-dai: add snd_soc_dai_prepare() and use it internally
-  ASoC: dapm: add support for preparing streams
 
- include/sound/soc-dai.h |  3 +++
- sound/soc/soc-dai.c     | 27 +++++++++++++++++++--------
- sound/soc/soc-dapm.c    | 12 ++++++++++++
- 3 files changed, 34 insertions(+), 8 deletions(-)
 
--- 
-2.47.1
 
 
 _______________________________________________
