@@ -4,75 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C024E77188
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 11:50:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71D6EE7719C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jan 2025 13:40:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=g0Q5F9HsncKmcArTGuqaRCHcNCeDhTQORAIGNyP38bA=; b=iuKdsi4NFs230U
-	0b49Dyv4g84BgrOXzZhpvv6kI2Td1GguyK2VN5Tv8joxBam16dIZOgRsuWQRqvTKjhgE/OXqz3ulL
-	29tlFJxJZF961eVArZzrTGQhgXLlDRe7a/icBoqHnGtRANT2i0hyUY4Yf4yHQESbk8rz407cVYcMM
-	COZSBoJrwJZIguGPWjrG2zIQ4fR8wUdYFjl8PHz+vLoIacHKdCN67lsSeGL4XEhvNghlV0T2pjr+k
-	HOBos/DlW/TYwWFycDQ0t2Wov8mH1/twgRlNOK90P1wTNd0ZWgZ8++orSWyOQHZr9aBfeMq37f1Qi
-	8fFi2OZwGUrhK9g5wgAA==;
+	List-Owner; bh=FoBjxpbOqrzRDZT3bBMcMScWI9nDgPrX8aXMt0RTDOc=; b=iBgCIAhoujWW6t
+	YP8VnQZFywYr0Kf3aIb4l//cs0fivkS8h5DIjYMj2HV1wvyufGn52TS5XNcDeFKT0nzNQo4s1VqlG
+	QtNDGldHV0zqJ9cAXzmFMH0IlCpUdfrZR9SulDi7jTvcHg3g6q7icOv4qXk6oe//7LCi+gNS6RFFf
+	xL2fpfejmIdQrSxOoLkHYeAG1hdR9ls9O6JzBj63WKIRDiheO0fDRG/Z6ZET4T1gIru+6Ooy4O4pw
+	EquxyU5MwDAT7fCXCvOT5jE4Z0fsvaxTIR/qP/UURwQ2Y/IsdSfPgIlPts9VGPzHalwvxdMv+TFrc
+	3C3BvtDVvtpsxBb+JODQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWDWt-0000000FAVi-46Ag;
-	Fri, 10 Jan 2025 11:50:19 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1tWFFN-0000000FVdi-3haA;
+	Fri, 10 Jan 2025 13:40:21 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tWDUU-0000000FA1f-1sCS;
-	Fri, 10 Jan 2025 11:47:52 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id C44EEA419FB;
-	Fri, 10 Jan 2025 11:46:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E0FA1C4CEE0;
-	Fri, 10 Jan 2025 11:47:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736509668;
-	bh=2LuqfPJMjVZ/DDPyRk3omDydC7N76YqAGAm21Z7ZFXk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=i4Vye6nlN8OTpRoVDWqva4QwMK0gSKfbmkEu+tBlYAW2PNLgxS6E+lKjOCahPs7JU
-	 vVjDFpFTHUt9IUYjYveEE94LQrjRwbRSmw0T1e7Gc/S2NmFUiAcCdrh6GQNOR1YIFl
-	 Jcp9AXqs6t9rDKDC1+Kr+Y8IpqHd/6smiU/YQamWq37nX2aMBmvMv9DzrhKGZjgljK
-	 LCtMTQ54Q5+9BwQBhdx1Ld2P1c9R13dMp9wk0rZRpNShhV/H8cX0iiRtf00sxpmLDC
-	 SroI3TQODdVyTGUO9SZwAoX1s+8EWGwJ47gPQLTAkYLa1+MAJ+1FdroiJN9RHucD/k
-	 52LIPFxKH/Piw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CFB43E7719D;
-	Fri, 10 Jan 2025 11:47:48 +0000 (UTC)
-From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Fri, 10 Jan 2025 19:47:10 +0800
-Subject: [PATCH 1/2] clk: Add initialize the rate boundaries of the clk
- provider
+	id 1tWFBX-0000000FV0Y-3gZl
+	for linux-amlogic@lists.infradead.org;
+	Fri, 10 Jan 2025 13:36:25 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4361c705434so15548605e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 10 Jan 2025 05:36:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736516182; x=1737120982; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8P7iNv0mAXeAGSKfCf0HUawhqYYLf6sisnMlgkknW/s=;
+        b=kYtEKG0XjPlD5cG2TXhU6KZumr6Fs3DY58MQiHrKw377DhifyDxbiOPnrGLiNxhwkR
+         ypdSLYPhh8VhRm+InahcAOnC7VnOOFubPFhF9i+TO+W73cZufr2ytDD2NEns/0SaQRSh
+         ObBjXQ2MtNbHtVuEHVC6pJNazGZU5M1vwTaZP+2FpVSMh3NR3OdVUKBFyawKv1+9xph7
+         dI3BJNAlSNFX3qEL4W9L7eS6DEdUe2lQdb8rgB3XllxliHc05aguO8k5OWlYHzeFfFAV
+         2b+YD+5LkYct16hhkbO+wBB/y6Dk3rLg0sgckwQzIwHzuhbE5EbtIZdG4Bf2xURxblcA
+         Dwyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736516182; x=1737120982;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8P7iNv0mAXeAGSKfCf0HUawhqYYLf6sisnMlgkknW/s=;
+        b=E4nv9H7LNGpBH0W7Dh4+kYwEP+FKR0EQQg6c80NokQ0UacfpRcc0H4FCz2PL0o4OW7
+         aiLycpbvZ4XHISfqV/qf8cM2k7T5J8udLtut5Jd2Xz79Xcspunw37xXuKYcFuY6oxKuv
+         HTvxHXBQCCJraYBek4SSsFoqac21rCF5EAZkYYbzr/RDhx+VeubvKezBmKQk3BoVhS00
+         KjJVUqOGgvGu/sAYifBh8+PtV5hDtFb3HoRzNbq5o0w/TD8X4eU018Dnp7UxHBQRl2lq
+         XDMld2JY1XIoalJKZloSQOS0LY7+XXpZjxY9aFBH4tNqcQSWBo+z1APwBMtCVimbAwU8
+         f1/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW5qlOP5qOO7Q59ozr8IsUAYn+fUUIxeqzGC2h4t3SIbHOYz07h0E5WlDMezjpkmfB5HQmPkyfiwxcPYEjJ@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx8JPtbVz+cBWJjrIh9p8rf2se6QQaD2uRXlnKsGzL3ETIoJ2Gp
+	WeUSaV2HqQ9MbkYNdfX8dYq26CCmW7uAtrkAnGG1bbryIWbfiqkxCujeL0lvjT8=
+X-Gm-Gg: ASbGncvdL9tCKGgS79hyMSzwwBHW694Xveowwb5lnCzLXb5UVaNhk+oTzoxzYXKTb5E
+	USMFWBMJ8t5cycsfoTtYoXs5JbQhkwb1TqnJ/pQcMykxCUToiiKorvpvY6phpzf/OCX101Y/Uab
+	Ocdi6gLsxsvMexPchHFEEtNYVjQD+PqyRGY9F4TF934LIYmE2mp99v+QDFi5G3AIRBl4gwevlda
+	m8n0jELljU652p5RJveCF29rXqjbk6flwGHK496upkzFrTSErW6E2U=
+X-Google-Smtp-Source: AGHT+IE2t38/6Fgkasnk5z1oGlZWIwNNkxu56/ClKRywxNOMHRMUbu2KBmbq53eWMrvzd2a8fGu+uA==
+X-Received: by 2002:a05:600c:5486:b0:434:f131:1e64 with SMTP id 5b1f17b1804b1-436e2696d1fmr96900075e9.9.1736516181737;
+        Fri, 10 Jan 2025 05:36:21 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:f3f7:a818:65b5:3db])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e383dedsm4640121f8f.35.2025.01.10.05.36.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jan 2025 05:36:21 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Ao Xu via B4 Relay <devnull+ao.xu.amlogic.com@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+  Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
+ <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  Kevin Hilman <khilman@baylibre.com>,
+  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+  ao.xu@amlogic.com,  dri-devel@lists.freedesktop.org,
+  linux-amlogic@lists.infradead.org,  devicetree@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 03/11] drm: meson: add S4 compatible for DRM driver
+In-Reply-To: <20250110-drm-s4-v1-3-cbc2d5edaae8@amlogic.com> (Ao Xu via's
+	message of "Fri, 10 Jan 2025 13:39:53 +0800")
+References: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
+	<20250110-drm-s4-v1-3-cbc2d5edaae8@amlogic.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Fri, 10 Jan 2025 14:36:20 +0100
+Message-ID: <1j8qriaizv.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Message-Id: <20250110-limit-rate-range-of-clk-v1-1-dd618adc4aa8@amlogic.com>
-References: <20250110-limit-rate-range-of-clk-v1-0-dd618adc4aa8@amlogic.com>
-In-Reply-To: <20250110-limit-rate-range-of-clk-v1-0-dd618adc4aa8@amlogic.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- Chuan Liu <chuan.liu@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736509666; l=1896;
- i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=NLbcI+Nns/2o6n4G9nqU4NOW+TQbJwF6LoFvcGM+2I4=;
- b=/HIhXIBeMDoFfKkG+m2ONfOOFLZiafM1eyQll49aSyxL2rXP4aEC5eWqUqKBgLD+IC9SM+MwL
- MB/kqgbTb4DCcVAFh9ZPihXtnYXLBLiD4tVb9iZtoh0zjY6mcTxVxc9
-X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
- pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
-X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
- auth_id=203
-X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250110_034750_650298_10952C4F 
-X-CRM114-Status: GOOD (  11.94  )
+X-CRM114-CacheID: sfid-20250110_053623_933603_BD153D8D 
+X-CRM114-Status: GOOD (  26.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,69 +101,261 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: chuan.liu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Chuan Liu <chuan.liu@amlogic.com>
+On Fri 10 Jan 2025 at 13:39, Ao Xu via B4 Relay <devnull+ao.xu.amlogic.com@kernel.org> wrote:
 
-The rate boundaries output by different clk providers vary due to
-hardware limitations.
+> From: Ao Xu <ao.xu@amlogic.com>
+>
+> Add S4 compatible for DRM driver. This update driver logic to support
+> S4-specific configurations. This also add vpu clock operation in
+> bind, suspend, resume, shutdown stage.
+>
+> Signed-off-by: Ao Xu <ao.xu@amlogic.com>
+> ---
+>  drivers/gpu/drm/meson/meson_drv.c | 127 +++++++++++++++++++++++++++++++++++++-
+>  drivers/gpu/drm/meson/meson_drv.h |   6 ++
+>  2 files changed, 132 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 81d2ee37e7732dca89d02347b9c972300b38771a..d28094efeb137ae0b9990ab3608825d563358dba 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/aperture.h>
+>  #include <linux/component.h>
+>  #include <linux/module.h>
+> +#include <linux/clk.h>
+>  #include <linux/of_graph.h>
+>  #include <linux/sys_soc.h>
+>  #include <linux/platform_device.h>
+> @@ -160,6 +161,34 @@ static void meson_vpu_init(struct meson_drm *priv)
+>  	writel_relaxed(value, priv->io_base + _REG(VPU_WRARB_MODE_L2C1));
+>  }
+>  
+> +static void meson_setup_clk(struct meson_drm *priv, bool enable)
+> +{
+> +	int ret;
+> +
+> +	if (!priv || !priv->vpu_clk || !priv->vapb_clk)
+> +		return;
+> +
+> +	if (!meson_vpu_is_compatible(priv, VPU_COMPATIBLE_S4))
+> +		return;
+> +
+> +	if (enable) {
+> +		ret = clk_prepare_enable(priv->vpu_clk);
+> +		if (ret) {
+> +			dev_err(priv->dev, "Failed to set vpu clk\n");
+> +			return;
+> +		}
+> +		ret = clk_prepare_enable(priv->vapb_clk);
+> +		if (ret) {
+> +			dev_err(priv->dev, "Failed to Set vapb clk\n");
+> +			clk_disable_unprepare(priv->vpu_clk);
+> +			return;
+> +		}
+> +	} else {
+> +		clk_disable_unprepare(priv->vpu_clk);
+> +		clk_disable_unprepare(priv->vapb_clk);
+> +	}
+> +}
+> +
+>  struct meson_drm_soc_attr {
+>  	struct meson_drm_soc_limits limits;
+>  	const struct soc_device_attribute *attrs;
+> @@ -241,6 +270,83 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  		goto free_drm;
+>  	}
+>  
+> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_S4)) {
+> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sysctrl");
+> +		if (!res) {
+> +			ret = -EINVAL;
+> +			goto free_drm;
+> +		}
+> +		/* Simply ioremap since it may be a shared register zone */
 
-When registering the clk, limit the rate boundaries of the clk provider
-to prevent setting the rate of the clk provider beyond the design
-specifications and causing abnormal conditions.
+This comment, the name of the zone and even the usage you are making of
+it clearly show this is repeating the error of past, directly accessing
+improperly shared registers which should otherwise have been implemented
+as proper controller using the kernel available framework, such PD, phys,
+clock, reset, etc ...
 
-Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
----
- drivers/clk/clk.c            | 4 ++--
- include/linux/clk-provider.h | 4 ++++
- 2 files changed, 6 insertions(+), 2 deletions(-)
+Worse, it gets encoded into the dt binding, making extremely difficult
+to fix later on.
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index 9b45fa005030..36e4b4f16f1d 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -4359,8 +4359,8 @@ __clk_register(struct device *dev, struct device_node *np, struct clk_hw *hw)
- 	core->hw = hw;
- 	core->flags = init->flags;
- 	core->num_parents = init->num_parents;
--	core->min_rate = 0;
--	core->max_rate = ULONG_MAX;
-+	core->min_rate = init->min_rate ? init->min_rate : 0;
-+	core->max_rate = init->max_rate ? init->max_rate : ULONG_MAX;
- 
- 	ret = clk_core_populate_parent_map(core, init);
- 	if (ret)
-diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-index 2e6e603b7493..46cfc342819e 100644
---- a/include/linux/clk-provider.h
-+++ b/include/linux/clk-provider.h
-@@ -294,6 +294,8 @@ struct clk_parent_data {
-  * @parent_hws: array of pointers to all possible parents (when all parents
-  *              are internal to the clk controller)
-  * @num_parents: number of possible parents
-+ * @min_rate: min rate provided by the clk provider
-+ * @max_rate: max rate provided by the clk provider
-  * @flags: framework-level hints and quirks
-  */
- struct clk_init_data {
-@@ -304,6 +306,8 @@ struct clk_init_data {
- 	const struct clk_parent_data	*parent_data;
- 	const struct clk_hw		**parent_hws;
- 	u8			num_parents;
-+	unsigned long		min_rate;
-+	unsigned long		max_rate;
- 	unsigned long		flags;
- };
- 
+> +		regs = devm_ioremap(dev, res->start, resource_size(res));
+> +		if (!regs) {
+> +			ret = -EADDRNOTAVAIL;
+> +			goto free_drm;
+> +		}
+> +
+> +		priv->sysctrl = devm_regmap_init_mmio(dev, regs,
+> +						  &meson_regmap_config);
+> +		if (IS_ERR(priv->sysctrl)) {
+> +			dev_err(&pdev->dev, "Couldn't create the SYSCTRL regmap\n");
+> +			ret = PTR_ERR(priv->sysctrl);
+> +			goto free_drm;
+> +		}
+> +
+> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "clkctrl");
+> +		if (!res) {
+> +			ret = -EINVAL;
+> +			goto free_drm;
+> +		}
+> +		/* Simply ioremap since it may be a shared register zone */
+> +		regs = devm_ioremap(dev, res->start, resource_size(res));
+> +		if (!regs) {
+> +			ret = -EADDRNOTAVAIL;
+> +			goto free_drm;
+> +		}
+> +
+> +		priv->clkctrl = devm_regmap_init_mmio(dev, regs,
+> +						  &meson_regmap_config);
+> +		if (IS_ERR(priv->clkctrl)) {
+> +			dev_err(&pdev->dev, "Couldn't create the clkctrl regmap\n");
+> +			ret = PTR_ERR(priv->clkctrl);
+> +			goto free_drm;
+> +		}
+> +
+> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "pwrctrl");
+> +		if (!res) {
+> +			ret = -EINVAL;
+> +			goto free_drm;
+> +		}
+> +		/* Simply ioremap since it may be a shared register zone */
+> +		regs = devm_ioremap(dev, res->start, resource_size(res));
+> +		if (!regs) {
+> +			ret = -EADDRNOTAVAIL;
+> +			goto free_drm;
+> +		}
+> +
+> +		priv->pwrctrl = devm_regmap_init_mmio(dev, regs,
+> +						  &meson_regmap_config);
+> +		if (IS_ERR(priv->pwrctrl)) {
+> +			dev_err(&pdev->dev, "Couldn't create the pwrctrl regmap\n");
+> +			ret = PTR_ERR(priv->pwrctrl);
+> +			goto free_drm;
+> +		}
+> +
+> +		priv->vpu_clk = devm_clk_get(&pdev->dev, "vpu");
+> +		if (IS_ERR(priv->vpu_clk)) {
+> +			dev_err(&pdev->dev, "vpu clock request failed\n");
+> +			ret = PTR_ERR(priv->vpu_clk);
+> +			goto free_drm;
+> +		}
+> +
+> +		priv->vapb_clk = devm_clk_get(&pdev->dev, "vapb");
+> +		if (IS_ERR(priv->vapb_clk)) {
+> +			dev_err(&pdev->dev, "vapb clock request failed\n");
+> +			ret = PTR_ERR(priv->vapb_clk);
+> +			goto free_drm;
+> +		}
+> +		meson_setup_clk(priv, true);
+> +	}
+> +
+>  	priv->canvas = meson_canvas_get(dev);
+>  	if (IS_ERR(priv->canvas)) {
+>  		ret = PTR_ERR(priv->canvas);
+> @@ -424,12 +530,21 @@ static const struct component_master_ops meson_drv_master_ops = {
+>  
+>  static int __maybe_unused meson_drv_pm_suspend(struct device *dev)
+>  {
+> +	int ret;
+>  	struct meson_drm *priv = dev_get_drvdata(dev);
+>  
+>  	if (!priv)
+>  		return 0;
+>  
+> -	return drm_mode_config_helper_suspend(priv->drm);
+> +	ret = drm_mode_config_helper_suspend(priv->drm);
+> +	if (unlikely(ret)) {
+> +		drm_err(dev, "suspend error: %d", ret);
+> +		return ret;
+> +	}
+> +
+> +	meson_setup_clk(priv, false);
+> +
+> +	return ret;
+>  }
+>  
+>  static int __maybe_unused meson_drv_pm_resume(struct device *dev)
+> @@ -439,6 +554,7 @@ static int __maybe_unused meson_drv_pm_resume(struct device *dev)
+>  	if (!priv)
+>  		return 0;
+>  
+> +	meson_setup_clk(priv, true);
+>  	meson_vpu_init(priv);
+>  	meson_venc_init(priv);
+>  	meson_vpp_init(priv);
+> @@ -458,6 +574,7 @@ static void meson_drv_shutdown(struct platform_device *pdev)
+>  
+>  	drm_kms_helper_poll_fini(priv->drm);
+>  	drm_atomic_helper_shutdown(priv->drm);
+> +	meson_setup_clk(priv, false);
+>  }
+>  
+>  /*
+> @@ -471,6 +588,7 @@ static const struct of_device_id components_dev_match[] = {
+>  	{ .compatible = "amlogic,meson-gxl-dw-hdmi" },
+>  	{ .compatible = "amlogic,meson-gxm-dw-hdmi" },
+>  	{ .compatible = "amlogic,meson-g12a-dw-hdmi" },
+> +	{ .compatible = "amlogic,meson-s4-dw-hdmi" },
+>  	{}
+>  };
+>  
+> @@ -539,6 +657,11 @@ static struct meson_drm_match_data meson_drm_g12a_data = {
+>  	.afbcd_ops = &meson_afbcd_g12a_ops,
+>  };
+>  
+> +static struct meson_drm_match_data meson_drm_s4_data = {
+> +	.compat = VPU_COMPATIBLE_S4,
+> +	.afbcd_ops = &meson_afbcd_g12a_ops,
+> +};
+> +
+>  static const struct of_device_id dt_match[] = {
+>  	{ .compatible = "amlogic,meson-gxbb-vpu",
+>  	  .data       = (void *)&meson_drm_gxbb_data },
+> @@ -548,6 +671,8 @@ static const struct of_device_id dt_match[] = {
+>  	  .data       = (void *)&meson_drm_gxm_data },
+>  	{ .compatible = "amlogic,meson-g12a-vpu",
+>  	  .data       = (void *)&meson_drm_g12a_data },
+> +	{ .compatible = "amlogic,meson-s4-vpu",
+> +	  .data       = (void *)&meson_drm_s4_data },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, dt_match);
+> diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
+> index 3f9345c14f31c13b071f420533fe8a450d3e0f36..c801a2e3e55a054247710aebae5602e44c9e1624 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.h
+> +++ b/drivers/gpu/drm/meson/meson_drv.h
+> @@ -22,6 +22,7 @@ enum vpu_compatible {
+>  	VPU_COMPATIBLE_GXL  = 1,
+>  	VPU_COMPATIBLE_GXM  = 2,
+>  	VPU_COMPATIBLE_G12A = 3,
+> +	VPU_COMPATIBLE_S4 = 4,
+>  };
+>  
+>  enum {
+> @@ -45,6 +46,11 @@ struct meson_drm {
+>  	enum vpu_compatible compat;
+>  	void __iomem *io_base;
+>  	struct regmap *hhi;
+> +	struct regmap *sysctrl;
+> +	struct regmap *clkctrl;
+> +	struct regmap *pwrctrl;
+> +	struct clk *vpu_clk;
+> +	struct clk *vapb_clk;
+>  	int vsync_irq;
+>  
+>  	struct meson_canvas *canvas;
 
 -- 
-2.42.0
-
-
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
