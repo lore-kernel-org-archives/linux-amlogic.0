@@ -4,85 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F8C7C02180
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2025 15:36:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D2BEC02180
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2025 15:59:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JHInbO77Jw+zWkGT8/I8wj7vXc6MAs2QUrjB7EflMUM=; b=i6MdObP4JK9kYL
-	D3mJ2M3K0TlAdNL4EmB89OFj4iExj++T3Q3BQbuqpTCFFi7Pcbx62+C2nuZaIkv8TWsrhfDgBkndv
-	C1nIXVKW/kylLk01aGNNWWbnAz4wyUj8a2ZrmHsBFs7avUYs25tJsxyoeboP5n1b7AZYmZia0IdzQ
-	ZM7yzyDrQj8faoKmpUvRA3xD6f8tx/F5KTXoP1IY6JS3Z/BiV4C9cJgyUkRMFVf9eBnjC4Vy/cHbn
-	5URyMAFSTsoc5b2e2stHkfTLhhPcSz4uvDuQE7TNZ3JvvJrmUs44sn4amEnJ0vl59YZTCpLpRvi+a
-	T1GEcMnwPCyqMRhyrAgA==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=3bktgpoqliOczEgvVnTHJ8OdZRgkVgfyXUf0dwcYQz4=; b=C3/Xmf3drrlgKS1gUisphQexHV
+	BpOeqG0Vig0iWZfIYMvlEHPYTF32MlZ7PjHHPB1AAVVrOIdbm/k/pcRT+U1ren1Dk3dPxsCI2fHNJ
+	HH6eogh4Qb9aNyG3NkXUD0QhXFLMAIRQvHApa+GURmUJ6XfHLclGfgdQYAmeiFeRMw3md3dABGtl4
+	4mHrooEZH/GPSVbClZln1AJsbYZjovk5ZL2UPD0DKj2RGtcEPa1AdtWHX1QObsm4MTLtX11kYk+C9
+	P9X4uG64OxKW/We8cP6FGwS+TZi5YBdaDNuu7q6eRoewDdwy18trJU6FV7wGyBDuMTLPIB5G+tloE
+	ERcFESFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tXMUT-00000005fXF-0E3U;
-	Mon, 13 Jan 2025 15:36:33 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1tXMqI-00000005kiI-0UDv;
+	Mon, 13 Jan 2025 15:59:06 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tXLot-00000005Ull-0d0b
-	for linux-amlogic@lists.infradead.org;
-	Mon, 13 Jan 2025 14:53:37 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-43618283dedso42074275e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jan 2025 06:53:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736780014; x=1737384814; darn=lists.infradead.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9/0zkVo6BPZJsn/AYAHqf+tAnwEA7SioBWvb7jrwaXQ=;
-        b=dVxBnueQtkwIeoeXXPmHAty9gt5HXZKAOss+XYmufM3T/r8dHFT93YHkdwBG/fZnq0
-         poiUNdXys0IhN1S2vBkHApQN3XZosap0IX80rgHzgMfs82nRjURLjLdy9WTnj/niBFXE
-         7HFPIfr9N9ztoiz5tX6qVs3JNOdmh9tKGsoolHZEF0wEfN8jWopmtvHpllAxol4D/ANN
-         imWTG4YkSvbrveM3Vw5yC5pM7KLHyXL6BI5jtYavroLw1muLQxs6HUGRNki/fsoRCS/D
-         rUJ3LIocD2chWOauL8lApjgOMP2s+SUjT5UUEWlYQpT8H4es1vbMb3sh40syUJxTGCc7
-         vDGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736780014; x=1737384814;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9/0zkVo6BPZJsn/AYAHqf+tAnwEA7SioBWvb7jrwaXQ=;
-        b=wgwP7/d/n5zsh0eatXI6+D/OXht6ZvIvRDaEe2vtXYlwVGtWXllSWBEAyR6LMkjHLl
-         Vk6cVOYBAygbS82FIrBeAkVRjyAMbLCa1342yXklCsWc8eKP1nzs3FIXanSjzww9xFRW
-         GHRmPtTJyi+qXRjPWTBbf24thMq/MhhZ0KQamClRUm3js328jGjrZuNPmKWdKe8IOsRE
-         4TKHYvX74pWJGZdsidLkhx45yyy4L+8uoRXhJ5JPyiar5SVfeSU8jrxuor+L36PYXl50
-         yCrmjI5dr97zKVGlK6l9ZcgSjuJdLUd+mV9DzAgX7PG0BkJ/WJj+sqw8PlDqs2r/Bb7e
-         hY+w==
-X-Forwarded-Encrypted: i=1; AJvYcCUBLZHYItzv3ntmjcsPfQm5xi19n1MGupNldOvOhKRdDPWi71lCeLIpAw4NOKAlJuLoyB/GCniiSgT0gO3w@lists.infradead.org
-X-Gm-Message-State: AOJu0YzEVBcyM0qHoQwgkS898XlJTjDDZlsc5k2T427A8y99T/Wb1KbM
-	6nYoAQuKj88axC4BbcQ1XW7ypw0gIOqwsKvT/3aCtJ5V7qvmqQdgYcht9PXA8FQPyDDVGBrVmBm
-	g
-X-Gm-Gg: ASbGncvp3Qd+EDSYfA1H/0ZgmI5dzynezjVDJlLeyJY6VTvWR6CBjHmSQ+pZfpvgVu8
-	ZO9TW5flnOzWp2+axrRv3pCJGtMNaEaXOL6iKaX4kkZ2xabDo6Tmqik7K+9503Chs/Sa9pjRWC8
-	4s666JsArotYICBxKDMHwZIDjHAocnHmcAwfa8bcLjw6LVe2sDlImS0IBAMzpSpoVjRvLSptyj1
-	vh+Yig+G+j8KxzyFChjBECpl8FTb71yHdtkQ+93JpN6ZXh/OlY8ozQS
-X-Google-Smtp-Source: AGHT+IEJCTsIQ3wdP93WTDTAocTSHQepImiqan0vvXGCfqItYdd81SmU4Jd+TPG29liWrOItMHz9kg==
-X-Received: by 2002:a05:600c:5ca:b0:436:ed38:5c7f with SMTP id 5b1f17b1804b1-436ed385da5mr144999725e9.12.1736780013786;
-        Mon, 13 Jan 2025 06:53:33 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:9d2d:28cc:aafd:8429])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2da6271sm179682235e9.9.2025.01.13.06.53.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 06:53:33 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-sound@vger.kernel.org,  linux-amlogic@lists.infradead.org,
-  s.nawrocki@samsung.com,  lgirdwood@gmail.com,  broonie@kernel.org,
-  linux-kernel@vger.kernel.org
-Subject: Re: [RFC v2 0/2] ASoC: prepare streams on codec-to-codec links
-In-Reply-To: <20250110210730.705613-1-martin.blumenstingl@googlemail.com>
-	(Martin Blumenstingl's message of "Fri, 10 Jan 2025 22:07:28 +0100")
-References: <20250110210730.705613-1-martin.blumenstingl@googlemail.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Mon, 13 Jan 2025 15:53:32 +0100
-Message-ID: <1jfrlm934j.fsf@starbuckisacylon.baylibre.com>
+	id 1tXMKR-00000005ck2-2enD;
+	Mon, 13 Jan 2025 15:26:13 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 336065C564A;
+	Mon, 13 Jan 2025 15:25:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 980F5C4CEE6;
+	Mon, 13 Jan 2025 15:26:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736781970;
+	bh=T7t+1Ze8yLQOWuB84xpWs3Ri1LIErbNg7RQFQV/TxUQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=jYfqx2/Z4QGhBfoSDKllsJeP9TSCI17tpVC+pdmI+BN+iG1sGEOtdQGgrZIldw7wh
+	 kHluGCOY0QaXSPFusc2eiQI4+bqmFDgr/mUud5vGEJGaA/CYoGYtWA8IdBsN+KojWS
+	 /sggSFJ2hQw+t+BfLhsJWTFKNOCJU/2jb42LqVV6nrW/trDBNWHYZvw/Z6SLBcY5Dx
+	 mKgqPiuJ8yFCE8nV4EzMPibJ+IUJ5km+9PlhM7lUkrMi3z+vyJ2zNkzq0+jGcqGraJ
+	 w5wnBXBcPK8mSJg1InYS54PA/zwBDNgzdEWFZZ3GV1Fbn13B4cOC0S1Mwl0Ye+S+Kn
+	 ssXo7DlFm3Tqg==
+Date: Mon, 13 Jan 2025 09:26:09 -0600
 MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Mark Brown <broonie@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jaroslav Kysela <perex@perex.cz>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
+ devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
+ linux-amlogic@lists.infradead.org, linux-sound@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+To: jiebing chen <jiebing.chen@amlogic.com>
+In-Reply-To: <20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com>
+References: <20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com>
+Message-Id: <173678161502.2153418.9839486392491673173.robh@kernel.org>
+Subject: Re: [PATCH 0/3] Add support for S4 audio
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250113_065335_187514_E7958912 
-X-CRM114-Status: GOOD (  20.28  )
+X-CRM114-CacheID: sfid-20250113_072611_758509_6CB97C8F 
+X-CRM114-Status: GOOD (  14.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,59 +78,106 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri 10 Jan 2025 at 22:07, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-> Hello,
->
-> the DRM subsystem has recently gained a HDMI audio codec framework [0].
-> This is already queued for Linux 6.14.
->
-> I want to implement a HDMI controller driver for the Amlogic
-> Meson8/8b/8m2 SoCs using the DRM HDMI audio codec framework. Internally
-> the DRM HDMI audio codec framework relies on hdmi-codec's .prepare
-> callback to be called. This unfortunately is not happening on Amlogic
-> Meson8/8b/8m2 platforms [1].
->
-> Jerome suggested that this may be because of the codec-to-codec link on
-> our Amlogic AIU audio driver [2]. He encouraged me to send this series
-> to allow hdmi-codec's .prepare() callback to be called - even on
-> platforms that connect it via a codec-to-codec link.
->
-> The reason why this series is marked as RFC is that I'm not familiar
-> with the ASoC subsystem and lot of the functionality and terminology
-> is new to me.
->
-> Also I Cc'ed Sylwester Nawrocki (Samsung maintainer) as codec-to-codec
-> links seem to be most heavily used on Samsung and Amlogic platforms.
->
-> Changes since v1 at [3]:
-> - updated patch #2 to also prepare the source side of the link for
->   consistency reasons (as suggested by Jerome and Mark)
->
->
-> [0] https://lore.kernel.org/dri-devel/20241224-drm-bridge-hdmi-connector-v10-0-dc89577cd438@linaro.org/
-> [1] https://lore.kernel.org/linux-amlogic/CAFBinCDdiJ3UNVUcShjq=7U2=oUwT3ciYdKSuZ5TdcrikxFBpg@mail.gmail.com/
-> [2] https://lore.kernel.org/linux-amlogic/1ja5c4b4rt.fsf@starbuckisacylon.baylibre.com/
-> [3] https://lore.kernel.org/linux-sound/20250106141316.375984-1-martin.blumenstingl@googlemail.com/
->
->
-> Martin Blumenstingl (2):
->   ASoC: soc-dai: add snd_soc_dai_prepare() and use it internally
->   ASoC: dapm: add support for preparing streams
+On Mon, 13 Jan 2025 14:35:12 +0800, jiebing chen wrote:
+> Add the tdmout pad control and tocodec control driver.
+> 
+> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+> ---
+> jiebing chen (3):
+>       ASoC: dt-bindings: Add Amlogic S4 audio
+>       ASoC: meson: s4:support for the on-chip audio
+>       arm64: dts: amlogic: Add Amlogic S4 Audio
+> 
+>  .../bindings/sound/amlogic,s4-tdmout-pad.yaml      |  36 ++
+>  .../bindings/sound/amlogic,s4-tocodec.yaml         |  44 +++
+>  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 226 ++++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 385 ++++++++++++++++++++-
+>  sound/soc/meson/Kconfig                            |  16 +
+>  sound/soc/meson/Makefile                           |   6 +
+>  sound/soc/meson/s4-pad-out-control.c               | 372 ++++++++++++++++++++
+>  sound/soc/meson/s4-tocodec-control.c               | 376 ++++++++++++++++++++
+>  sound/soc/meson/t9015.c                            |   5 +-
+>  9 files changed, 1461 insertions(+), 5 deletions(-)
+> ---
+> base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
+> change-id: 20250110-audio_drvier-07a5381c494b
+> 
+> Best regards,
+> --
+> jiebing chen <jiebing.chen@amlogic.com>
+> 
+> 
+> 
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Not sure the RFC tag was necessary, this could go in as it is I suppose.
-Thanks Martin !
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
->
->  include/sound/soc-dai.h |  3 +++
->  sound/soc/soc-dai.c     | 27 +++++++++++++++++++--------
->  sound/soc/soc-dapm.c    | 12 ++++++++++++
->  3 files changed, 34 insertions(+), 8 deletions(-)
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
--- 
-Jerome
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com:
+
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: bus@fe000000: audio-controller@1A000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: bus@330000: audio-controller@E58: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: clock-controller@0: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@300: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@340: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@3c0: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@1A000: 'AVDD-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,t9015.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-amplifier-0: '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/sound/simple-audio-amplifier.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: sound: 'anyOf' conditional failed, one must be fixed:
+	'clocks' is a required property
+	'#clock-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+
+
+
+
+
 
 _______________________________________________
 linux-amlogic mailing list
