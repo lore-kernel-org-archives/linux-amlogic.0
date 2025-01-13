@@ -4,64 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D2BEC02180
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2025 15:59:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E73FFC02183
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2025 16:20:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=3bktgpoqliOczEgvVnTHJ8OdZRgkVgfyXUf0dwcYQz4=; b=C3/Xmf3drrlgKS1gUisphQexHV
-	BpOeqG0Vig0iWZfIYMvlEHPYTF32MlZ7PjHHPB1AAVVrOIdbm/k/pcRT+U1ren1Dk3dPxsCI2fHNJ
-	HH6eogh4Qb9aNyG3NkXUD0QhXFLMAIRQvHApa+GURmUJ6XfHLclGfgdQYAmeiFeRMw3md3dABGtl4
-	4mHrooEZH/GPSVbClZln1AJsbYZjovk5ZL2UPD0DKj2RGtcEPa1AdtWHX1QObsm4MTLtX11kYk+C9
-	P9X4uG64OxKW/We8cP6FGwS+TZi5YBdaDNuu7q6eRoewDdwy18trJU6FV7wGyBDuMTLPIB5G+tloE
-	ERcFESFQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4Ifn517rhKAK4kPblGxh958I8b7bKVL3ZD4An5S/N2s=; b=bHN0GpZPmnddpP
+	0wVoLutBnTUnNbC3TZZ4SvveJ4g9I2jASmRjmV5AtcdccUpOxLvvkM4CE29xB3cKlgeq1Hi1iX2lw
+	qm5sFF6U6BklslxCkP/G/D4p9eubMzQy1XaUU6U2J/YDHY4sz+PCDuJfg02o2TN1Uhj8CGaUhwAZY
+	6eHlzli5yUClrNQiIIQDVt7CiPoldqnsZMJcaf8vrslvo2vHq4jSfSErJ1lS3WIR3av8DPF4hjAin
+	fIcyaIsvE9jWgvB9++ybqEXSUaTXO/Md8oqujUtXUDi5Hseu8z0qCIj590qa+XqyBRBPXUPOkuA1z
+	+bkhecUyNIqsDdJ3V6pQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tXMqI-00000005kiI-0UDv;
-	Mon, 13 Jan 2025 15:59:06 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tXNAo-00000005our-0iTo;
+	Mon, 13 Jan 2025 16:20:18 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tXMKR-00000005ck2-2enD;
-	Mon, 13 Jan 2025 15:26:13 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 336065C564A;
-	Mon, 13 Jan 2025 15:25:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 980F5C4CEE6;
-	Mon, 13 Jan 2025 15:26:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736781970;
-	bh=T7t+1Ze8yLQOWuB84xpWs3Ri1LIErbNg7RQFQV/TxUQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=jYfqx2/Z4QGhBfoSDKllsJeP9TSCI17tpVC+pdmI+BN+iG1sGEOtdQGgrZIldw7wh
-	 kHluGCOY0QaXSPFusc2eiQI4+bqmFDgr/mUud5vGEJGaA/CYoGYtWA8IdBsN+KojWS
-	 /sggSFJ2hQw+t+BfLhsJWTFKNOCJU/2jb42LqVV6nrW/trDBNWHYZvw/Z6SLBcY5Dx
-	 mKgqPiuJ8yFCE8nV4EzMPibJ+IUJ5km+9PlhM7lUkrMi3z+vyJ2zNkzq0+jGcqGraJ
-	 w5wnBXBcPK8mSJg1InYS54PA/zwBDNgzdEWFZZ3GV1Fbn13B4cOC0S1Mwl0Ye+S+Kn
-	 ssXo7DlFm3Tqg==
-Date: Mon, 13 Jan 2025 09:26:09 -0600
+	id 1tXMh1-00000005iev-3D0F
+	for linux-amlogic@lists.infradead.org;
+	Mon, 13 Jan 2025 15:49:33 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3863494591bso2396062f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jan 2025 07:49:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736783370; x=1737388170; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Azq+DaVA//EhU0oOCgPNA2FLamSCcJm54Ub5++OHsas=;
+        b=xUC3oP0p8ITnNkLWxqp50l0U2D12MbtVz8iMCZwf3KTuITQhVsMRga2QYKDVkG1+z2
+         iJBShjTl6es7PEkjYyQXkt/9FZICjbSC8wLjlKAfOsbCP4P0sScxvvWIKxR4nGZxfyPc
+         w5rEreOqxEKWxRLflWUfFo1IQMRVU5Y95MOjJop05U1r+sr0+W9YlSu1eIv6kY888wNL
+         dgbGY61tCuQKeGgg3DwDi8hjgicI9sbLZDTkd1tW4tBph1rLDJmR8qxPInKtua2QrUYt
+         LKhyTUXl2q+QLTmODRlyyujv86HOQv4uRmq8l7Izt1evdRODqnR/D1n2wI7EZ+9zW89N
+         TgRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736783370; x=1737388170;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Azq+DaVA//EhU0oOCgPNA2FLamSCcJm54Ub5++OHsas=;
+        b=uueRhiE18rrunaUZsjrPXcRoA6LxkAfJqvuV6Wc0yaPksu3SuRobDQKCg7VRKACrs2
+         FYK7UWerzq+3OPAVWxEe6TaWkRlHGVQ3Vv2GXCLD0BQCJ9a7u93auEtCwjXpgzelixYQ
+         SxqiTupe6DpL7d1N0smF7fa+Vhvf9S6co7C77zKxn5Ebfu/LvXDEYJtY6mGolmZpZpa8
+         2nuGLgZymXvTQJ21Y6Qbe0GsmApepifNiSGwoRvWUhtXLj8vTxVyioCV7yn0FLZU8c90
+         qZ4IRwSyrWNQcj6vm2aQi6CkZEp3Qa4S7ULePW8A00ayWITw06bJkt/Z4wpKzTW19w8S
+         wAeA==
+X-Forwarded-Encrypted: i=1; AJvYcCX+cqXMdXfIGFxP6duFsYU1hyyZokplQ8TLdtvsRxdv+l0K68eMAXxm2Th4ZI0UXSQF0u+vvxKvD3tTv0xY@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzw02YY0+zVoKDgc0YjByABxllo1g9lpNHBAP6Re9bFfODScC1/
+	ExgBigZNbgv6IAq6plfo3QFYpsEx97R/3O6wh0EgwTJmBR4RmHw6NvqzYl/oYV0=
+X-Gm-Gg: ASbGnct6FWwsSn+ZjVKo8Lbd5nfZQ+NqdIsGfLObCFWCfPgEIS8CFCxsSdJDWDbYX4h
+	SXWKzBOprCT03XnlPgMx7bQl6aeQ93huHXF61vXS+JMtSftkqnKT9F5yrJV3zs3Wo5XY2vBc5Ow
+	TbS5hEPLKaAS5P/t790d/dJrYgDkLRGElG4iFJZMXnqFamxKTG0/A8IhMjXaiPtXSERWYSPW4hS
+	ENYSHFVs1/riK5kTWdsmNZQa31+iOgVLXUKIHZ4OT+KTCPoOLQe0V+i
+X-Google-Smtp-Source: AGHT+IF09k926b51tgNC96zHwr2fNP9lLjmS+3CaIX3Evh6rq9eXJgioLCN7Rbq+LYTF7EgYPM9XXg==
+X-Received: by 2002:a05:6000:1446:b0:385:f47a:e9d1 with SMTP id ffacd0b85a97d-38a872dec76mr17354805f8f.17.1736783369675;
+        Mon, 13 Jan 2025 07:49:29 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:9d2d:28cc:aafd:8429])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e384054sm12552709f8f.36.2025.01.13.07.49.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2025 07:49:29 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Chuan Liu <chuan.liu@amlogic.com>,  Chuan Liu via B4 Relay
+ <devnull+chuan.liu.amlogic.com@kernel.org>,  Michael Turquette
+ <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Kevin Hilman
+ <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  linux-clk@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  linux-amlogic@lists.infradead.org,
+  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] clk: amlogic: c3: Limit the rate boundaries of clk_hw
+In-Reply-To: <af501f2e-2dd6-4182-872d-76260edba973@linaro.org> (Neil
+	Armstrong's message of "Mon, 13 Jan 2025 15:46:39 +0100")
+References: <20250110-limit-rate-range-of-clk-v1-0-dd618adc4aa8@amlogic.com>
+	<20250110-limit-rate-range-of-clk-v1-2-dd618adc4aa8@amlogic.com>
+	<1j34hqai39.fsf@starbuckisacylon.baylibre.com>
+	<2578a79d-1e24-4336-9859-e384c8f69269@amlogic.com>
+	<1jr05693nn.fsf@starbuckisacylon.baylibre.com>
+	<af501f2e-2dd6-4182-872d-76260edba973@linaro.org>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 13 Jan 2025 16:49:28 +0100
+Message-ID: <1ja5bu90jb.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Mark Brown <broonie@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jaroslav Kysela <perex@perex.cz>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
- devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
- linux-amlogic@lists.infradead.org, linux-sound@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-To: jiebing chen <jiebing.chen@amlogic.com>
-In-Reply-To: <20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com>
-References: <20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com>
-Message-Id: <173678161502.2153418.9839486392491673173.robh@kernel.org>
-Subject: Re: [PATCH 0/3] Add support for S4 audio
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250113_072611_758509_6CB97C8F 
-X-CRM114-Status: GOOD (  14.10  )
+X-CRM114-CacheID: sfid-20250113_074931_810720_C135475F 
+X-CRM114-Status: GOOD (  14.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,106 +107,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Mon 13 Jan 2025 at 15:46, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 
-On Mon, 13 Jan 2025 14:35:12 +0800, jiebing chen wrote:
-> Add the tdmout pad control and tocodec control driver.
-> 
-> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
-> ---
-> jiebing chen (3):
->       ASoC: dt-bindings: Add Amlogic S4 audio
->       ASoC: meson: s4:support for the on-chip audio
->       arm64: dts: amlogic: Add Amlogic S4 Audio
-> 
->  .../bindings/sound/amlogic,s4-tdmout-pad.yaml      |  36 ++
->  .../bindings/sound/amlogic,s4-tocodec.yaml         |  44 +++
->  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 226 ++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 385 ++++++++++++++++++++-
->  sound/soc/meson/Kconfig                            |  16 +
->  sound/soc/meson/Makefile                           |   6 +
->  sound/soc/meson/s4-pad-out-control.c               | 372 ++++++++++++++++++++
->  sound/soc/meson/s4-tocodec-control.c               | 376 ++++++++++++++++++++
->  sound/soc/meson/t9015.c                            |   5 +-
->  9 files changed, 1461 insertions(+), 5 deletions(-)
-> ---
-> base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
-> change-id: 20250110-audio_drvier-07a5381c494b
-> 
-> Best regards,
-> --
-> jiebing chen <jiebing.chen@amlogic.com>
-> 
-> 
-> 
+>>>
+>>> I think that the clock configuration exceeding the timing constraints
+>>> is a hidden danger that all chips have and face, but this hidden danger
+>>> is not easy to be exposed?
+>>>
+>>> For instance, if the routing of a clock network is close to the clock
+>>> or data bus of other modules, and this clock network is wrongly
+>>> configured to a frequency beyond the constraints, causing crosstalk
+>>> that affects the normal operation of other modules. If such a situation
+>>> occurs, it will be very difficult to troubleshoot. How should this
+>>> situation be handled more reasonably?
+>> Fix your consumers drivers if you need to. Set range if you must.
+>> Those are not clock provider constraints. Those are use-case ones. It
+>> does belong here and CCF already provides the necessary infra to deal
+>> with ranges.
+>
+> I kind of disagree here, if the vendor has the data and is willing to share
+> the range for each clock path of the system, I think it should be welcome!
+>
+> Usually those ranges are not disclosed, so we don't set them, but CCF will
+> certainly use all those range to make an even better decision on the lock
+> routing.
 
+I did not say you should not use them, I say that a platform
+use-case, which is what this is, should not be hard coded within the
+clock provider driver.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+This is no different than an assigned-rate, and like any other platform
+description, it belong in DT.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+We've already seen how these ranges may depend on what else you choose
+to do on the system or even what package a particular SoC variant is
+using.
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com:
-
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: Unevaluated properties are not allowed ('clock-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: Unevaluated properties are not allowed ('clock-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: Unevaluated properties are not allowed ('clock-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: bus@fe000000: audio-controller@1A000: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: bus@330000: audio-controller@E58: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: clock-controller@0: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@300: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@340: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@3c0: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@1A000: 'AVDD-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/amlogic,t9015.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-amplifier-0: '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/sound/simple-audio-amplifier.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: sound: 'anyOf' conditional failed, one must be fixed:
-	'clocks' is a required property
-	'#clock-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
-
-
-
-
-
+>
+> Neil
+>
+>> 
 
 _______________________________________________
 linux-amlogic mailing list
