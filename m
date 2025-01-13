@@ -4,66 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 423B0E7719F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2025 07:20:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7875EE7719F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2025 08:59:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=6UXpY8pvuaGdoai6obJtA6kF0OCIzmg+MVJvdQGd7Jc=; b=SWSV62Y1M126va6YVCRjMjbps3
-	n2+lctyPO7fNUP+bdQnGzkgJx46Db9wYXJAzfDMqDvuq2bWSpC8wwt/97M+I5sLtfPn/KDHrTq9pL
-	7iTcrruxKkyOaolJS75iJSJ6IM0No6rk6URKJnv0UqwumQoL73vtjuLlLE8orVLj06untYLXOcJP/
-	Vp7QK1lTE8M5/gCNqFgaYnryAJRasFrZaW7lO+kQTOfb+7Hc+A8d4JJynm1RtU8ZHzGij9muqSDhE
-	h2NRwJB+s4HGYTcOtDlPZNQVr0lx0EljTNkTB/b6XmpHJc8K3yweh5Wa1J0u2EcLZm/NYZ2RPBV7u
-	b1oTTOeA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=PBVOHJugAU6LyfwU/+qLErtFOUsViUko/8I6VrI10MQ=; b=4fXck/auIQ40Ct
+	SjT/XW0IWdxmzOsLFom5D14+W4Qun7YeVkctN0jQ0w+f4cQ35HebI+wJGS8oHMw6gMMQKENkooScw
+	OYbMrL4s/F9gUZJ/ct/siXlO0LlSYMtlT54J5R4PmWMMMDDXv+u3AOW8TTZ3XfuJEW22H15iSiunK
+	3REFLviRf6nED5pWPurghQI6Pl68xDNxVYBjwScdJ+Roil94BbJeHGJMVgdV5VYml3x2213mqtCGs
+	4Qfe6hGRUDNj5jZuoKrXl37vgf2DF0fc2PCAqDc2pIVbeeT/YFCvKyO2M1SXst4ZnvU6uvdLWZqZU
+	ujITH/g/ySkiNS1CHImw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tXEjx-00000004ELw-48rc;
-	Mon, 13 Jan 2025 07:20:01 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1tXGIP-00000004VQG-2wnd;
+	Mon, 13 Jan 2025 08:59:41 +0000
+Received: from mail.bizplore.pl ([217.61.0.78])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tXEjv-00000004EKf-0AgC;
-	Mon, 13 Jan 2025 07:20:00 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id B0C035C4C98;
-	Mon, 13 Jan 2025 07:19:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A9A8C4CED6;
-	Mon, 13 Jan 2025 07:19:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736752797;
-	bh=MYJh3nER0YHHitikyQndEMbpoJyhZPDW6g9Dil0vlRY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=mjKFkpRjdNsXXJ5zthwnqTsDxtfOwux3uS6dTV9/A8lV3ByHLs7QPzZoG5eOX3XTu
-	 Z9Y6yGThfI432tMiVYIueQY4bFTd1oy20h+H2JfbtijnbZom14Vzd9PoG9p+HObrH+
-	 9iCFrUMlX5B8RSLX1xf+dtGPqjlK/NNjZjtmjShbqyj14xpNMwiLKjA9JdT4ucp919
-	 asB5Q5Di+p3sPXIQ08Tf8telCIYOX1wkRg4Iqvhzmzl28rHR9ZATGve5/jmPTXItjZ
-	 7ccTeP5T3pn2qLLwpSljNU4DSYOWTiFUyD7EwozyfUT+HrvoLTZ3kkBaTgI8KnFP/n
-	 MppiBw38PetPw==
-Date: Mon, 13 Jan 2025 01:19:56 -0600
+	id 1tXGF4-00000004UgI-0Zbd
+	for linux-amlogic@lists.infradead.org;
+	Mon, 13 Jan 2025 08:56:16 +0000
+Received: by mail.bizplore.pl (Postfix, from userid 1002)
+	id 5421C83B78; Mon, 13 Jan 2025 09:56:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=bizplore.pl; s=mail;
+	t=1736758569; bh=cD6ZiYZPfnTHveQoLEkQv8j5EP2cE9hI2+tv5HbcV0g=;
+	h=Date:From:To:Subject:From;
+	b=wAufPQ2nQQSYEqlBV1ftyxh5l5URvRwaZgeVer5BDNcJ86klpHFkvItSGJ9hkLfOm
+	 h+POzxW+CzRTwCR0xq7n3zN6akJ3qYVG/Sue0M5O7sFbZw/zvzb/lKD4pMl2LYDFEQ
+	 xeObjKtZgFqtbAUyawPqRdBoh7P/4fzrowoDyGBOCNzm+De84qq4eh9i/aBlS/EMBL
+	 djd8xVTz1iXEA9kcGAZwodLocQWAKNJO42NYWogPT3RqT0hSUMR5dTEV0oO/F1AhDA
+	 Z2k6HVqqVSIMPWGQ9akyuJHm6wvLcWU33We4YFym+h4mFV1v9TO1jlftTtXG6N+TVf
+	 c9SCyilVeBHAw==
+Received: by mail.bizplore.pl for <linux-amlogic@lists.infradead.org>; Mon, 13 Jan 2025 08:55:22 GMT
+Message-ID: <20250113084500-0.1.g.wrj.0.akxq6g95qo@bizplore.pl>
+Date: Mon, 13 Jan 2025 08:55:22 GMT
+From: "Joanna Pachnau" <joanna.pachnau@bizplore.pl>
+To: <linux-amlogic@lists.infradead.org>
+Subject: =?UTF-8?Q?Przyznanie_=C5=9Brodk=C3=B3w?=
+X-Mailer: mail.bizplore.pl
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jaroslav Kysela <perex@perex.cz>, Kevin Hilman <khilman@baylibre.com>, 
- linux-sound@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>, 
- Takashi Iwai <tiwai@suse.com>, devicetree@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Liam Girdwood <lgirdwood@gmail.com>
-To: jiebing chen <jiebing.chen@amlogic.com>
-In-Reply-To: <20250113-audio_drvier-v1-1-8c14770f38a0@amlogic.com>
-References: <20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com>
- <20250113-audio_drvier-v1-1-8c14770f38a0@amlogic.com>
-Message-Id: <173675279619.745064.11661644624607210871.robh@kernel.org>
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: Add Amlogic S4 audio
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250112_231959_123553_3414D74F 
-X-CRM114-Status: GOOD (  10.29  )
+X-CRM114-CacheID: sfid-20250113_005614_852725_8E690A7F 
+X-CRM114-Status: UNSURE (   1.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,53 +61,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Mon, 13 Jan 2025 14:35:13 +0800, jiebing chen wrote:
-> Add documentation describing the Amlogic S4 TDM output pad and toacodec.
-> 
-> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
-> ---
->  .../bindings/sound/amlogic,s4-tdmout-pad.yaml      | 36 ++++++++++++++++++
->  .../bindings/sound/amlogic,s4-tocodec.yaml         | 44 ++++++++++++++++++++++
->  2 files changed, 80 insertions(+)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/sound/amlogic,s4-tocodec.example.dts:23.35-36 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/sound/amlogic,s4-tocodec.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250113-audio_drvier-v1-1-8c14770f38a0@amlogic.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RHppZcWEIGRvYnJ5LAoKcGlzesSZIGRvIFBhxYRzdHdhLCBwb25pZXdhxbwgZG9zdHJ6ZWdhbSBt
+b8W8bGl3b8WbxIcgcG96eXNrYW5pYSBkbGEgUGHFhHN0d2EgZG9kYXRrb3d5Y2ggxZtyb2Rrw7N3
+IG5hIGR6aWHFgmFsbm/Fm8SHIHogYmFua3UuCgpQb21hZ2FtIHBvenlza2HEhyB3c3BhcmNpZSBm
+aW5hbnNvd2UgZGxhIHByemVkc2nEmWJpb3Jjw7N3LCBrdMOzcnp5IHByb3dhZHrEhSBqZWRub29z
+b2Jvd8SFIGR6aWHFgmFsbm/Fm8SHIGdvc3BvZGFyY3rEhSBvcmF6IGZpcm0gdyBmb3JtaWUgc3DD
+s8WCa2kuIEpha28gc3BlY2phbGlzdGEgbmllendpxIV6YW55IHogxbxhZG55bSBiYW5raWVtIGd3
+YXJhbnR1asSZIG5hamxlcHN6ZSB6IG1vxbxsaXd5Y2ggd2FydW5rw7N3LgoKV3NwaWVyYW0gbmEg
+a2HFvGR5bSBldGFwaWUgd25pb3Nrb3dhbmlhIG9yYXogdyB3eXBlxYJuaWVuaXUgd3N6eXN0a2lj
+aCBmb3JtYWxub8WbY2kuCgpDaGNlY2llIFBhxYRzdHdvIG5pZXpvYm93acSFenVqxIVjbyBzcHJh
+d2R6acSHIGRvc3TEmXBuZSBvcGNqZSB6IHLDs8W8bnljaCBwbGFjw7N3ZWs/CgoKUG96ZHJhd2lh
+bQpKb2FubmEgUGFjaG5hdQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
+bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
+bGludXgtYW1sb2dpYwo=
