@@ -4,120 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97F47C02180
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2025 14:48:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30B3CC02180
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jan 2025 14:50:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=43aukoVT2eMWU5/JRetr4QudqK4t5u7toPOp1InIv/k=; b=s2ACljKwmJcdiee6drzzVXZdGO
-	kHJb26vJ6tiAJCQgaKQ2mrlUgJbcqI3CLLrIdcOjuP1XNvjCJ/wV0sxbt/c2wYt5hVYYNtbTCoGhK
-	KdwjaMXaKs7ZwV+Dx7/F2Q4OdCWZxWDXrEMZ/ErZ/YTaY6Mt5bkOi2gO6kjZsfnB709ZtI+piyOMy
-	ir2R40GdjnzSjXjbwd7/lziPVB/VSwwqzxCk0/9paK29uBqGW5UjjEUdk0pMupRfzi4rISn7LJRzH
-	ivm9gH+eFsYxhHLXRa5ieUaZekuLlwjquGsMZRCEVt6m/6JvkA9iBIitnnIoCvfqj5syuFJJE6WwF
-	37sV0Gxw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=jIpOaxiYmCaEx1EQNK5N7XTreYB99E8nbBGsLvlWQCc=; b=wBhOCQOd3Xs+0r
+	GinIJo71x0JWJu522L9fbYtA80Bc5IgO64U/pZHu+BjGBPGt1gH8MMqV4JEprME3RNcRU1LxR40AT
+	YLouqDVTo/XzDoWMjZpHpRLuRuQtmRv+ee8evd1d1/83QYepYZ1y6oKuC5CROVfkBnXNE1tdHcPv5
+	eV7HjlRoAd6xMHiW+S+e7XqmuGuiZRmRG1fQddpZlHCNovblyXpJKsNkJGLiLz7v9gi3WqVcIeLTk
+	UZvG8J1TscINCnF8nm/kR2nTldDjQxkj5BBR4PutT29bgCC5NNIiRq4C8AXL0kWcFlGyVBs1FaC33
+	fFyZAUAZkoT3CD89sGKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tXLkI-00000005TEJ-1sDh;
-	Mon, 13 Jan 2025 14:48:50 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1tXLlp-00000005TY7-3rxy;
+	Mon, 13 Jan 2025 14:50:25 +0000
+Received: from mx1.sberdevices.ru ([37.18.73.165])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tXLiF-00000005Sjy-2MZt
-	for linux-amlogic@lists.infradead.org;
-	Mon, 13 Jan 2025 14:46:45 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-43625c4a50dso31664185e9.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jan 2025 06:46:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736779601; x=1737384401; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tE6hZ+Fd5mw5nOuuEkulLuKJpq+Pv/1H3hGSSWLum8w=;
-        b=sOGf/eRDeMz6/+jsaxTyM29A0E9CUgfh4x7Vvnpz9j43H7yHH87B2soZPpnd7r3mZC
-         J8+0diVu3uJokClDQD/EsQ2XMEmKvHFI5QDCNqwNvVFl7exzskgh0WUIzfRU8KaA6faF
-         RAkcBVbc9DBk+b3xx3ttHWWZOB+0xtL+zzO0cdzgpBJX6X+FhGoq2wxB2e0kW/6BDTeh
-         geBdnlZzFpRlCj1p3JZwxGGHuv1lGSb2tbOQ0W53slJCaTaCEbf8EP1XGtl14xMFq3UU
-         B13bT/zzdA2IXuGSGAemfXjT8isDNcx1VTfVE7hixGkAC7hzmDaNnGx+HcdXmGMvcviZ
-         ES1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736779601; x=1737384401;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=tE6hZ+Fd5mw5nOuuEkulLuKJpq+Pv/1H3hGSSWLum8w=;
-        b=VPYFtakqWbhh443neSrnScHWOqVM4ywaN52/ygqHS3rhCE/vrzzttGbvHuB2/1QhEK
-         Nag+HwCWdDlN0aTsixH6LR1FY17G3GrH3icHxjOBwh95HyYcq3idEOziW413mKNebGNw
-         TLk/mgR1YyLs+ZQg+glglTmsgw8q9qorWFTUMqd2VAiYOqh8JN8G/LCX4T+HSm2okwoZ
-         nYe5dDWbEsguM7VMWRZSid2xg0h6mf5jToXLhAnNJ7hHkCXR07rxiuJf/wlL9jYdWnV4
-         n0/iaSBmGCQbL+G7VHSkD/k/FmgroOoEYQWi0TJHGFoVGrnukGmsMvvMQn5BN/etWCKh
-         virA==
-X-Forwarded-Encrypted: i=1; AJvYcCUnnePu+Rq6Qroo/U4Z7SYSNwGSC3eWj5NrKLx6lpJuCB6uwm+PkLs3pK5YBq4oc8a0nxMphq+qblNqWlOD@lists.infradead.org
-X-Gm-Message-State: AOJu0YwtjyStN2hANiPV6QHjDuGzUkGwk2mL/clnW70RiXryL4IEGAJG
-	lEGxzAPLv6WDS3IESz8O6rTehiaps5jVi6jxV0SIICDNfw+olbBCV/IYRRmx9O4=
-X-Gm-Gg: ASbGnctV/5n7HeiJ0PuMvcCtKsYUEbWKbn+wvjh0nWtM3bN0w2uADFPUhkUNaIYs7pK
-	uKquAZmFiflA+K7iDke6yUZcAPAhp9nOMP6Bo7vwoq4e+cqN5B8Id0mqHrVXLOgsEPW1Mdm28Zc
-	CFkBJ9QO+xJxYkgf2C3WEoCkT0rwcsxWXPUSO6prtl5zQ2H+ODphqMDQ+rV59P/grQIHaVyZYYu
-	P4qOLeoixsGbZBm34F/3dLbhI7y9PrrwhNAjF6EvwVB3rJwsFTwOiWiRoBZKm1IDLgJpCtQGONx
-	S8/3rA/184sNX/GRZ2eAf+vXQpEPEzrs8A==
-X-Google-Smtp-Source: AGHT+IGSgrLOXrRzTlVLniHLSwjw2ewxLMRWdGdwprfbH4ZVqnu/OhLOX7NBhsM0TFAi3c/YYUsydA==
-X-Received: by 2002:a05:600c:a09:b0:434:f1e9:afb3 with SMTP id 5b1f17b1804b1-436e267863emr180558495e9.3.1736779601413;
-        Mon, 13 Jan 2025 06:46:41 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:d7c2:9cac:29c7:268b? ([2a01:e0a:982:cbb0:d7c2:9cac:29c7:268b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e37d7fsm144561755e9.32.2025.01.13.06.46.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jan 2025 06:46:40 -0800 (PST)
-Message-ID: <af501f2e-2dd6-4182-872d-76260edba973@linaro.org>
-Date: Mon, 13 Jan 2025 15:46:39 +0100
+	id 1tXLlm-00000005TVV-1NA4;
+	Mon, 13 Jan 2025 14:50:24 +0000
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 20D6D10000A;
+	Mon, 13 Jan 2025 17:50:09 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 20D6D10000A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1736779809;
+	bh=3Z0sdnVMXkMM+PvR3lzPK52+uryZkoCDg7AZ36tPRr4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=D+w4RxjDwuC6fWy2qdieubaEQBk++0K+QSltkUkmp5vBe7SRwXHCsr32e1QqqS9jm
+	 mPSsHstDaw+Eb4Q8AeBtwptf0Ae/JzU/HxFfuBwPLgJCB2vM+agE8kWq0GRItGJVqM
+	 zWxuSwlXjGtLcCvAnyhLogXjx1q1kDdS1AI7Qo+ahU7cJdLCikga1VdekU+PVCtHBD
+	 bXMtu1VAoNNW4iwTKYPvUqe95eZ5cMFg8IKc0Pr5L9zOf6WVOSdYYhP9ewBM/44e/w
+	 jv3atxiGARRLgHgWjTSx6+ywrrCYuO4FzgY9sG7R0UenlcGJ6OusrgubKjMChFruY9
+	 4jeAvC2QXn4EA==
+Received: from smtp.sberdevices.ru (p-i-exch-a-m1.sberdevices.ru [172.24.196.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon, 13 Jan 2025 17:50:08 +0300 (MSK)
+Message-ID: <388076e3-35f1-4573-b682-90f6f5932f28@salutedevices.com>
+Date: Mon, 13 Jan 2025 17:49:20 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] clk: amlogic: c3: Limit the rate boundaries of clk_hw
-To: Jerome Brunet <jbrunet@baylibre.com>, Chuan Liu <chuan.liu@amlogic.com>
-Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20250110-limit-rate-range-of-clk-v1-0-dd618adc4aa8@amlogic.com>
- <20250110-limit-rate-range-of-clk-v1-2-dd618adc4aa8@amlogic.com>
- <1j34hqai39.fsf@starbuckisacylon.baylibre.com>
- <2578a79d-1e24-4336-9859-e384c8f69269@amlogic.com>
- <1jr05693nn.fsf@starbuckisacylon.baylibre.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <1jr05693nn.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH v2 0/2] Introduce initial support of Amlogic AC200 board
+To: Christian Hewitt <christianshewitt@gmail.com>, Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Xianwei Zhao
+	<xianwei.zhao@amlogic.com>
+References: <20241114154856.3353691-1-jan.dakinevich@salutedevices.com>
+Content-Language: en-US
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <20241114154856.3353691-1-jan.dakinevich@salutedevices.com>
+X-Originating-IP: [172.28.224.37]
+X-ClientProxiedBy: p-i-exch-a-m2.sberdevices.ru (172.24.196.120) To
+ p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 190309 [Jan 13 2025]
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 49 0.3.49 28b3b64a43732373258a371bd1554adb2caa23cb, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, FromAlignment: n
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2025/01/13 14:03:00
+X-KSMG-LinksScanning: Clean, bases: 2025/01/13 14:02:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2025/01/13 07:04:00 #26996016
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250113_064643_599256_16A1A220 
-X-CRM114-Status: GOOD (  26.30  )
+X-CRM114-CacheID: sfid-20250113_065023_029124_59780BD0 
+X-CRM114-Status: UNSURE (   8.97  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,313 +96,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/01/2025 15:42, Jerome Brunet wrote:
-> On Mon 13 Jan 2025 at 13:24, Chuan Liu <chuan.liu@amlogic.com> wrote:
-> 
->> hi Jerome,
->>
->> Thanks for your prompt reply.
->>
->>
->> On 1/10/2025 9:55 PM, Jerome Brunet wrote:
->>> [ EXTERNAL EMAIL ]
->>>
->>> On Fri 10 Jan 2025 at 19:47, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
->>>
->>>> From: Chuan Liu <chuan.liu@amlogic.com>
->>>>
->>>> The PLL can only stably lock within a limited frequency range.
->>>>
->>>> Due to timing constraints, the maximum frequency of the peripheral clock
->>>> cannot exceed the design specifications.
->>>>
->>>> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
->>>> ---
->>>>    drivers/clk/meson/c3-peripherals.c | 21 +++++++++++++++++++++
->>>>    drivers/clk/meson/c3-pll.c         |  4 ++++
->>>>    2 files changed, 25 insertions(+)
->>>>
->>>> diff --git a/drivers/clk/meson/c3-peripherals.c b/drivers/clk/meson/c3-peripherals.c
->>>> index 7dcbf4ebee07..9f0a3990f0d6 100644
->>>> --- a/drivers/clk/meson/c3-peripherals.c
->>>> +++ b/drivers/clk/meson/c3-peripherals.c
->>>> @@ -568,6 +568,7 @@ static const struct clk_parent_data pwm_parent_data[] = {
->>>>                 .ops = &clk_regmap_gate_ops,                    \
->>>>                 .parent_names = (const char *[]) { #_name "_div" },\
->>>>                 .num_parents = 1,                               \
->>>> +             .max_rate = 200000000,                          \
->>>>                 .flags = CLK_SET_RATE_PARENT,                   \
->>>>         },                                                      \
->>>>    }
->>>> @@ -724,6 +725,7 @@ static struct clk_regmap spicc_a = {
->>>>                         &spicc_a_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 500000000,
->>> I'm sorry but the whole thing is completly wrong.
->>>
->>> All the clocks I'm seeing here are gates. This type of HW hardly cares
->>> what rates it handles. Same goes from mux, dividers, etc ...
->>
->>
->> The purpose of the patch is to constrain the clock network between
->> "clk_hw" and "clk_sonsumers". The output source of this clock network
->> may come from gate, mux, divider, etc.
->>
->>
->>>
->>> All you are doing here is trying enforce some made up "safety" / use-case
->>> defined limits that do not belong in the clock controller.
->>
->>
->> Yes, the purpose is also to ensure "safety". From a strict perspective,
->> this constraint indeed does not belong to the clock controller. However,
->> the source of the potential hazard comes from the clock driver, and we
->> have already identified this hazard. Therefore, I think it is better to
->> avoid it in the clock driver?
->>
-> 
-> No. The clock provider driver describe the how the clock are _provided_,
-> not how they are meant to used.
-> 
->>
->>>
->>> The only piece of HW where limits could possibly make sense are PLL DCO,
->>> and even there, you've got multiplier range which is way better as an
->>> abstraction.
->>
->>
->>  From the perspective of HW, the timing constraints of the clock are for
->> the entire clock network with the same name. The output source of this
->> clock network may come from PLL, gate, mux, etc. The multiplier range
->> of the PLL can also achieve a similar effect. If this approach works,
->> we don't need to define the multiplier range for the PLL (PS: Our
->> current multiplier range is limited to the case where "n" is not divided).
->>
->>
->>>
->>> So it's a nack on the series.
->>>
->>> If devices are have particular requirement on rate range, have the
->>> related driver set it.
->>
->>
->> I think that the clock configuration exceeding the timing constraints
->> is a hidden danger that all chips have and face, but this hidden danger
->> is not easy to be exposed?
->>
->> For instance, if the routing of a clock network is close to the clock
->> or data bus of other modules, and this clock network is wrongly
->> configured to a frequency beyond the constraints, causing crosstalk
->> that affects the normal operation of other modules. If such a situation
->> occurs, it will be very difficult to troubleshoot. How should this
->> situation be handled more reasonably?
-> 
-> Fix your consumers drivers if you need to. Set range if you must.
-> 
-> Those are not clock provider constraints. Those are use-case ones. It
-> does belong here and CCF already provides the necessary infra to deal
-> with ranges.
+Gentle ping.
 
-I kind of disagree here, if the vendor has the data and is willing to share
-the range for each clock path of the system, I think it should be welcome!
-
-Usually those ranges are not disclosed, so we don't set them, but CCF will
-certainly use all those range to make an even better decision on the lock
-routing.
-
-Neil
-
+On 11/14/24 18:48, Jan Dakinevich wrote:
+> Changes v1 [1] -> v2:
+>  - added "Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>" to
+>    dt-bindings
+>  - don't share the definition of sound card between ac2xx boards
 > 
->>
->>
->>>
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -771,6 +773,7 @@ static struct clk_regmap spicc_b = {
->>>>                         &spicc_b_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 500000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -829,6 +832,7 @@ static struct clk_regmap spifc = {
->>>>                         &spifc_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 167000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -887,6 +891,7 @@ static struct clk_regmap sd_emmc_a = {
->>>>                         &sd_emmc_a_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 250000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -934,6 +939,7 @@ static struct clk_regmap sd_emmc_b = {
->>>>                         &sd_emmc_b_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 250000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -981,6 +987,7 @@ static struct clk_regmap sd_emmc_c = {
->>>>                         &sd_emmc_c_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 1200000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1074,6 +1081,7 @@ static struct clk_regmap eth_rmii = {
->>>>                         &eth_rmii_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 50000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1132,6 +1140,7 @@ static struct clk_regmap mipi_dsi_meas = {
->>>>                         &mipi_dsi_meas_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 200000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1190,6 +1199,7 @@ static struct clk_regmap dsi_phy = {
->>>>                         &dsi_phy_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 1500000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1248,6 +1258,7 @@ static struct clk_regmap vout_mclk = {
->>>>                         &vout_mclk_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 334000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1306,6 +1317,7 @@ static struct clk_regmap vout_enc = {
->>>>                         &vout_enc_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 200000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1431,6 +1443,7 @@ static struct clk_regmap hcodec = {
->>>>                 .ops = &clk_regmap_mux_ops,
->>>>                 .parent_data = hcodec_parent_data,
->>>>                 .num_parents = ARRAY_SIZE(hcodec_parent_data),
->>>> +             .max_rate = 667000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1489,6 +1502,7 @@ static struct clk_regmap vc9000e_aclk = {
->>>>                         &vc9000e_aclk_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 667000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1536,6 +1550,7 @@ static struct clk_regmap vc9000e_core = {
->>>>                         &vc9000e_core_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 400000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1594,6 +1609,7 @@ static struct clk_regmap csi_phy0 = {
->>>>                         &csi_phy0_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 200000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1652,6 +1668,7 @@ static struct clk_regmap dewarpa = {
->>>>                         &dewarpa_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 800000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1710,6 +1727,7 @@ static struct clk_regmap isp0 = {
->>>>                         &isp0_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 400000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1768,6 +1786,7 @@ static struct clk_regmap nna_core = {
->>>>                         &nna_core_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 800000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1826,6 +1845,7 @@ static struct clk_regmap ge2d = {
->>>>                         &ge2d_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 667000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> @@ -1884,6 +1904,7 @@ static struct clk_regmap vapb = {
->>>>                         &vapb_div.hw
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .max_rate = 400000000,
->>>>                 .flags = CLK_SET_RATE_PARENT,
->>>>         },
->>>>    };
->>>> diff --git a/drivers/clk/meson/c3-pll.c b/drivers/clk/meson/c3-pll.c
->>>> index 35fda31a19e2..d80d6ee2409d 100644
->>>> --- a/drivers/clk/meson/c3-pll.c
->>>> +++ b/drivers/clk/meson/c3-pll.c
->>>> @@ -286,6 +286,8 @@ static struct clk_regmap gp0_pll_dco = {
->>>>                         .fw_name = "top",
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .min_rate = 3000000000,
->>>> +             .max_rate = 6000000000,
->>>>         },
->>>>    };
->>>>
->>>> @@ -370,6 +372,8 @@ static struct clk_regmap hifi_pll_dco = {
->>>>                         .fw_name = "top",
->>>>                 },
->>>>                 .num_parents = 1,
->>>> +             .min_rate = 3000000000,
->>>> +             .max_rate = 6000000000,
->>>>         },
->>>>    };
->>> --
->>> Jerome
+> Links:
+>  [1] https://lore.kernel.org/all/20240521222155.28094-1-jan.dakinevich@salutedevices.com/
+> 
+> Jan Dakinevich (2):
+>   dt-bindings: arm: amlogic: document AC200 support
+>   arch/arm64: dts: ac200: introduce initial support of the board
+> 
+>  .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+>  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+>  .../boot/dts/amlogic/meson-sm1-ac200.dts      | 109 ++++++++++++++++++
+>  3 files changed, 111 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dts
 > 
 
+-- 
+Best regards
+Jan Dakinevich
 
 _______________________________________________
 linux-amlogic mailing list
