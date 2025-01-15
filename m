@@ -4,94 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BC5DC02185
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jan 2025 16:00:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1447C02180
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jan 2025 19:38:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MqhHp8byakuShv+RRiccEQ2WYL8wItBGbYPP1865NOQ=; b=kvuHTWgFciCpFZ
-	lA+XRUkv1vfYJ0ZctBu0MArgZunjFq+t7DA4nslCOAMt8ySop4OAydVGsZcy01yHqlIrCcE1TZ02Q
-	u9iBR8+p7CFinDlJBUnqlOk+1dLeFeM/yz3+6+VLkTuG12cDu2dAGNO5i4wFLPPHgjanL3NAsyK1o
-	lbZlq2VN3a6sF6qu26DSOzrCZQmP5afhItuJJmDrY2ryGeBbDpLNizfUONoZnEl/13zTV30rB/u7k
-	EUjKuccUSU9R4w4b/vVhVeqXOBCe+//mx/nzdKiVZqWoI5TreRHlYFPEj4N80kZfe9IzIOpfy6b45
-	ZPKKb7FVX0FhYUMg4Aiw==;
+	List-Owner; bh=wftRrTOtViJm0MpxyPLSXkX+5oelelozbVdHLEo/mvo=; b=4TLMaD2oBnWAIt
+	WNgotNT+TA7t0t9vtPEdVjLD0yp0ANPXcZK6sstgF05guVRN9RN60PiemWcTE8jRhVsPJN4HYEaBx
+	FTbwVu5IezY3BJHdVfBYp00lsDtfNeCLIYxOnHJfl4fzx9mUESG7ELkPNQGVbVhp/1Q8WlDh8oXni
+	9oTkLJ84Il72Xqdvd3Y9F01wGsjezTcDfgwhBgwUhHFcgYfjYqR9MCsFUmny+w4w74ZYfSX8R3N5u
+	D5C9fU6/YLKchNA3tQUmlHTE5ryB8UMWUQcd7YIMJkliybwbHetAwC/9bGNok+7tdEt0CEaKtklpF
+	PM4EKDq8vQyMpRhOESBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tY5oZ-0000000CLsA-403R;
-	Wed, 15 Jan 2025 16:00:19 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1tY9Dp-0000000Cv30-2Iob;
+	Wed, 15 Jan 2025 19:38:37 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tY5nG-0000000CLfw-0UJQ
+	id 1tY9Dn-0000000Cv2c-3AFL
 	for linux-amlogic@lists.infradead.org;
-	Wed, 15 Jan 2025 15:59:00 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4361e89b6daso49477185e9.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 15 Jan 2025 07:58:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736956736; x=1737561536; darn=lists.infradead.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kqI+5tYngrQZ8qcvDthiAqlsLEDhI5d+xlqNj7Uno+M=;
-        b=IxlyYJyscLxHqldz7IZZQl52TKDPinHQXCg39K2R8A5LO29d7bb6eE6GEPukkQj8pP
-         wT9LOEXwoBcIc/VRNNwHG00aVSdBU8IGQEpqbNAePD9Yzbb4zaDv4NpScuMUrsiotr+4
-         rDMZB4rCnhk5hxon2d744aNACSGL1e2EuNl8CpptU8V9rKc1FrJn0cRdLMgy72tTnP0i
-         qYhJu2hOnTi92l9efKOMY0I1ezjxLUktxoAGE+fl+DPRe1g9lLfS/Fy02NjPXfz7JhWW
-         Ch0wMacgq9rIqTk1lSMSFGV1yX1LL59u7J28/WEHr6J/OtD2y/kMO862jgJ2GWSTvn4O
-         otTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736956736; x=1737561536;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kqI+5tYngrQZ8qcvDthiAqlsLEDhI5d+xlqNj7Uno+M=;
-        b=Kb93zTZndtuKOHjtkYxXHOtgvp9Poa+r0WEmZrk8tZyiu9mR1VBeJ4d3uvAvSlZeQO
-         3bef4BK0rNTiEcSQtWKGeZ3qbmOzyMC/zzXc7AC37GZ1i5UZU6p6rktlvvWDMV/p71+b
-         HNbBo40yRlTUdVPZpv2tH6Do95NNHgn3XQt1G3T/DeVR0TPvebEjqU5VXPXl5xhERWfd
-         dwW/Mc3365jAPd0csysxCMlV499Gi8qJPiF9uelHxlR7h6Okro17p9rKxli2h5riiOvU
-         LDxcUA8T2cRVMf7UAMzLP6MhjKa5VOqgaO3wqLkyYta6c/jBj8yaOdkYhtj/3r/y3Bqb
-         3kow==
-X-Forwarded-Encrypted: i=1; AJvYcCXHc6AcDBTinzwUNCspQf8G4No4TTIviXK2PdvJAarZqFaKNOmZUaM2nEHzsN7/kBxbjoWewDF3P4bIfCh0@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw+GMlYQRwmLxuPB/f07HZAXSW5mjhP8efkMmjVsZSPBHg9L439
-	QYl/6PdPjsClLqJKOjkP6mtViWAL3N5PI/QjwSe/6cRWlw/9a1sBncwhLjiFV8g=
-X-Gm-Gg: ASbGnctU61xWEZGHojYpQIUcYHjrKJQJ0zUmdBoIlr1BUzt1kg6nzj5katFgXWr8cgw
-	of61gxeWtu8zURhdr6eq+mZ1NS7xciIVAccFZKLeWzz1Vn1XgJxSy7LBZ7StVXokDI62G5mqsW6
-	SjFpedeBKwY2GD5sMpuS4wpKjqdBGYSUaSztFiWbOe/9h9B1GCKtbcr276H1vV3R/ydNjpBGVk+
-	ft+EAyYmhp9YBe6Zrm6A3LiWsPc44obm5be2VOnQNV7HVcbr3ojrBrj
-X-Google-Smtp-Source: AGHT+IGTWZcoa8XD12jSxjfVWwFjPhENVFnb3eU7ZCXjNrolCccgNcWPAZKi2S5+z1LypovQRe1hYQ==
-X-Received: by 2002:a05:600c:4f42:b0:434:a4a6:51f8 with SMTP id 5b1f17b1804b1-436e2555edcmr291354455e9.0.1736956736615;
-        Wed, 15 Jan 2025 07:58:56 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:e7b8:6186:fc23:f678])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c16610a0sm33309815e9.1.2025.01.15.07.58.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2025 07:58:56 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  Michael Turquette
- <mturquette@baylibre.com>,  Neil Armstrong <neil.armstrong@linaro.org>,
-  linux-clk@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] clk: amlogic: drop clk_regmap tables
-In-Reply-To: <697b634770d789ef8ff0e05cec9465f5.sboyd@kernel.org> (Stephen
-	Boyd's message of "Tue, 07 Jan 2025 13:28:50 -0800")
-References: <20241220-amlogic-clk-drop-clk-regmap-tables-v1-0-96dd657cbfbd@baylibre.com>
-	<20241220-amlogic-clk-drop-clk-regmap-tables-v1-2-96dd657cbfbd@baylibre.com>
-	<9f1d69ebe1ddce5dfc170e986c9213f2.sboyd@kernel.org>
-	<1ja5cp8f87.fsf@starbuckisacylon.baylibre.com>
-	<88fe909ab182d1f17f6ef18161c7f064.sboyd@kernel.org>
-	<1jfrlwb69r.fsf@starbuckisacylon.baylibre.com>
-	<ed20c67e7d1a91d7fd8b921f156f56fb.sboyd@kernel.org>
-	<1jmsg2adgu.fsf@starbuckisacylon.baylibre.com>
-	<697b634770d789ef8ff0e05cec9465f5.sboyd@kernel.org>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Wed, 15 Jan 2025 16:58:55 +0100
-Message-ID: <1j4j205ark.fsf@starbuckisacylon.baylibre.com>
+	Wed, 15 Jan 2025 19:38:37 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 3F0D35C5AF6;
+	Wed, 15 Jan 2025 19:37:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3389FC4CED1;
+	Wed, 15 Jan 2025 19:38:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736969914;
+	bh=CJClRZEfy8Pts8aXQUlUF+PP0Z0cuzM2vs65cM1w/6A=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=m2eqR7b5oBJJTvdF+UQbMeEOkfD3q1gyOySBM0lc+6Kv6Atuk1ruPNyPPrn8ZXj12
+	 0ffnHK4s2eXbFkME527nmS9kmlmv9TTfLharERoPmGr0G+rGUNp58Aq9UTB6i5HWV1
+	 V64vYJJ52FUC+KiJT9GJDFwL3ea+Rtj+lCc9DgIb5IK9JZYATqxd+maeiLavMs4liF
+	 IN37r06ME6YdgA25cf1MGzUfeqEil1YPWAplC8TsVmXJoYTzNPCbcIJyCX1tUxdKN6
+	 vOLKj3y63KXfhN1St3hE+sYDqjM9IvI1+XExFJesmQw4fZHzfFVf1dKSj7YoLmSRWG
+	 HggyGlfm/n1lw==
+From: Mark Brown <broonie@kernel.org>
+To: linux-sound@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: s.nawrocki@samsung.com, lgirdwood@gmail.com, 
+ linux-kernel@vger.kernel.org, jbrunet@baylibre.com, 
+ ckeepax@opensource.cirrus.com
+In-Reply-To: <20250114215617.336105-1-martin.blumenstingl@googlemail.com>
+References: <20250114215617.336105-1-martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v3 0/2] ASoC: prepare streams on codec-to-codec links
+Message-Id: <173696991294.258685.10820885833141683786.b4-ty@kernel.org>
+Date: Wed, 15 Jan 2025 19:38:32 +0000
 MIME-Version: 1.0
+X-Mailer: b4 0.15-dev-1b0d6
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250115_075858_421278_FEA102B9 
-X-CRM114-Status: GOOD (  16.84  )
+X-CRM114-CacheID: sfid-20250115_113835_842901_DD9EA56C 
+X-CRM114-Status: GOOD (  12.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,74 +74,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue 07 Jan 2025 at 13:28, Stephen Boyd <sboyd@kernel.org> wrote:
+On Tue, 14 Jan 2025 22:56:15 +0100, Martin Blumenstingl wrote:
+> the DRM subsystem has recently gained a HDMI audio codec framework [0].
+> This is already queued for Linux 6.14.
+> 
+> I want to implement a HDMI controller driver for the Amlogic
+> Meson8/8b/8m2 SoCs using the DRM HDMI audio codec framework. Internally
+> the DRM HDMI audio codec framework relies on hdmi-codec's .prepare
+> callback to be called. This unfortunately is not happening on Amlogic
+> Meson8/8b/8m2 platforms [1].
+> 
+> [...]
 
-> Quoting Jerome Brunet (2025-01-07 06:46:41)
->> 
->> So, if it's OK, I'll resend this series with a temporary solution to
->> remove tables. Removing the table simplify the other clean-up I have
->> already line-up and avoid some unnecessary diffs. I'll circle back to
->> reworking the init_data afterward.
->> 
->
-> Ok, sure. Let's see how it goes.
+Applied to
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Hey Stephen,
+Thanks!
 
-While implementing a temporary solution I've been thinking about the
-longer term one (I'd rather not end up stuck on a temporary one, so it
-has been bothering me a bit)
+[1/2] ASoC: soc-dai: add snd_soc_dai_prepare() and use it internally
+      commit: d4e91adfc261de1454538ee6437e6014a2d1fca1
+[2/2] ASoC: dapm: add support for preparing streams
+      commit: e436d43551764bd6ca22a1ab1e80e98939b8aec7
 
-I'll reformulate what I'm trying to acheive.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-I'd like to register controller init hook to apply on all the clocks of
-a particular type. The reason to do that is to drop the big clk_regmap
-table that are a pain to maintain (in addition to be ugly). I hoped it
-would also save a bit of memory.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-The solutions we've been discussing so far feels like we are moving
-around the problem, recreating the memory saved somewhere else,
-perhaps in a more complicated way. I'd like to find something more
-convinient to use, which does not scale the memory used with the number
-of clock registered. The point is not a different hook for clk_hw after
-all.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Here is an idea, how about list of hook identified by ops and controller ?
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-The node would look like this
+Thanks,
+Mark
 
-struct clk_type_init_node {
-       struct list_head	        entry;
-       
-       struct device_node	*of_node;
-       struct device		*dev;
-       const struct clk_ops	*ops;
-
-       int (*init_hook)(struct clk_hw *hw);
-};
-
-The change would be minimal in core CCF, just searching the list for a
-match in clk_register. On most platform the list would be empty so there
-is virtually no penalty when it is not used.
-
-From the controller, the usage would be very simple, just calling a
-function before registering the clocks, something like:
-
-int clk_type_register_dev_hook(struct device *dev,
-                               const struct clk_ops *ops,
-                               int (*init_hook)(struct clk_hw *hw))
-
-or the 'of_node' equivalent.
-
-I admit this is heavily inspired by how devres works :) but it does solve
-the early clock controller problem and does not scale with the number of
-clock registered.
-
-Would you be ok with this approach ?
-
--- 
-Jerome
 
 _______________________________________________
 linux-amlogic mailing list
