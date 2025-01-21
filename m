@@ -4,83 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8779CC02181
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jan 2025 21:57:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D544C02181
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2025 02:50:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KzWSOybB852MH62grB8E68LjXHHZWNbj+mgNrAEofSc=; b=p/UpEarsCE2pXl
-	mVjlMd18IklMTxjZrhHVNUarGoIf4cBDHOML2BPa3xKhbNlRjHnObWoL9Bi+taXG2ot9be5K58RPz
-	JC56oznR/EI2fP0Djc0/gAzJKgZdAkHOSLlb8DOqBtwoGIet4IAilMpD1a6aZwvoOSxTIpoMPXznJ
-	uehuXrik4qmyPwIKbGluEkXPceMimOw8gmxiT/98iRsMFmiZMdoWl2/YQyhDS6im3SRSJ7tha4sDP
-	7dg4JDsCjlW09PRw3i/j/HkLHtB6vFrAK8dZme1YN0C+5VcqFqxrRr2ZHESYa+w9XTEznFTteJTIH
-	CS8h0dEfBr8siUZjddQQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=X5N5UrSlfPxfO7J6TefZDDIlDe06v9Kt52K74rudVEM=; b=vH6c7DSoZuJXx/dgGIUlxLfF8N
+	GFD79LTAmV9qMO98TQomfbAxzXU7Jp5cZqFNX6s4Z6tSga+c8958X8P3J4tgakJgsEB0G26ppY0vb
+	C+33k7xzrq5HK2MSo59FLX8MJ+VzasEI/qMNPN9tiv95rvd3DNwOlk3xRvgpLiOaj+4DyfokMKDwo
+	F8mH+c6+eSyR4HzGkEM/JYkoHxGmCNKfX95cv4sgwY1bZt+lxLbTLU0SO+0J/UjmibzdI2Bbwnhwe
+	jKCDMxGJnnWwTXkuzHrtaqJgZCLMp6plZ0H0qFq0mTAKL8oXdiPh4MGfUNIk3jFjZj9h2CCzlKCgj
+	ud+SfKPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tZzlZ-00000006UoG-2Jrt;
-	Mon, 20 Jan 2025 21:57:05 +0000
-Received: from mgamail.intel.com ([192.198.163.13])
+	id 1ta4LL-00000006k8i-0Xja;
+	Tue, 21 Jan 2025 02:50:19 +0000
+Received: from mail-eastasiaazlp170100000.outbound.protection.outlook.com ([2a01:111:f403:c400::] helo=HK2PR02CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tZzlX-00000006Umm-0WNT;
-	Mon, 20 Jan 2025 21:57:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737410223; x=1768946223;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+EFqRv2B6bqOUlGn1H//PxFNhb+WsAIIPmOfXe+iHC8=;
-  b=V37ATh1lWVFnsqHao6c/GxdbOuWiaTb4GvJ4xPhhBAPirQvfNrOck+0V
-   oWwl0CjwekViewrAxcLOjW13cXVSS4lyeySUH59jX1egH2MUU6USHWiy3
-   tA0jfc7TnsJ1C2QOo2twOfHtN6Uy5SZ0Go/Zpjs1P5fwZf8TGK7MmmYhc
-   zBfEIIQ/ku5hTF6vf5Kd1u9VG6VyMJYqKjdpkWuJ+RR3w6+n75GWpUjev
-   Rwe86qcXShnJ5TVI8JHwUv+PtfJz4NeQE7nZN3uICnMgMdkikOjszh4+m
-   TO6pV9HPBvjiWlxwtLBM9QEwjt+haoQBR5HiB/reDW1U2qEZNFT/mes4z
-   A==;
-X-CSE-ConnectionGUID: GvedlxLBRhC95nvBeqtL0Q==
-X-CSE-MsgGUID: I4+90S/3QFSzIBZo8Ihr9A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="40629214"
-X-IronPort-AV: E=Sophos;i="6.13,220,1732608000"; 
-   d="scan'208";a="40629214"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 13:56:58 -0800
-X-CSE-ConnectionGUID: laPeCXdRQ/G3Fm2+VJSATA==
-X-CSE-MsgGUID: ZjP2SWxcQoqHHk8fpcJepg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,220,1732608000"; 
-   d="scan'208";a="111612110"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 20 Jan 2025 13:56:54 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tZzlL-000XGZ-2v;
-	Mon, 20 Jan 2025 21:56:51 +0000
-Date: Tue, 21 Jan 2025 05:56:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Hewitt <christianshewitt@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/2] drm/meson: vclk: fix precision in vclk calculations
-Message-ID: <202501210513.GCec6kts-lkp@intel.com>
-References: <20250110074458.3624094-3-christianshewitt@gmail.com>
+	id 1ta4LI-00000006k75-3SKK;
+	Tue, 21 Jan 2025 02:50:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IDRANBkzjIlOzLCtB9mL9+VUDTkJjzC4tdY4t+9Na1JJ8kBZ3LAfohWYufWEtWYNaRrPiVO76qp83F4/6IZ2ihufp1fdZ6mDTB4dYDuUysjSzdCwL2LSSzOq2qY73UiQqqRDpDEcSCwb+lBP7Qfezfoz4c5nfC/EF5U+SbhEfcbk2x1V0hwQWz4HgtTbSV9P92timPmn5hyFrJUoM3KUMkVHwUZYgzNP6Bfv1KWVLiHgCrx9G4nBeT0T+n/+MVhT1WNmcDescMbF7uxbAnIi7aYeEf4t9stRrYhwVQCKU4I6C2BHn/6Sz0V/wigmrrF2nHcqUsu3Pl8oSYUDaJJnaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OM1fHNQjdeig9s+opZK+7X+6LbbyFxicS5Tq1FiSa9Q=;
+ b=QPXEbn2SQ6U8i7W/RFXnW4uLOBJfWpG2icddPCROlBQZlsZzcg8D3DP1FnK9bneUPz94iN4CM8UFeB2V/SDfZVKVh+Rh04qwsVozPvXtda5C0mfCQqEkI8TVyw6XONVQorN22ET1Sf+BgRq7cnoYPGK/ArqVO3ZZ0eqzmTXUxIEx3mewHhZVPliG9CgPMen7cum2AsC3n1qyuYUpzzcFcA8GqhQNv3X5+o7vw+cve+hmxHm4LExW6yfKbQld1kHkXQg9dcluCwNGJzC1CwMA5WS+8svP6yrgebKnkGhuTfXfie74sRe5eXba7S7NMKse/v7E1+L8of5u7FEfyWtn9Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OM1fHNQjdeig9s+opZK+7X+6LbbyFxicS5Tq1FiSa9Q=;
+ b=sCfeG+ZTD+QgfkKI6KtJGva6A/mrcXvyrhmbA+pec+d/o8Q1HoaOnd8daX/epXlrSMkDq/FDUnK5wL5/LhslA73+Ef33YeHMEhTktJAfQQ2NeWjHez2u3JFieJD/Q32SXP+dDJTKFlK2NIjS2ONiP6CIoA5oijKK1YHAL0Ere3YW+JLE7CWRwwm12TTz0gJb+KlKqTum0FGJal6trg97hIASDEN++GfvcvBxFE2ced9AYY3zV8CMYSYvgUOqs0KkGSTWuvKsfkShqQzRM9HlpJPsD9nZrMbh/uJ+JX7n0wFjRu/IsGLlwzzDIWDx+Cq6Mb0gcFjwdAbqV1iZtTX02Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
+ by TYZPR03MB8192.apcprd03.prod.outlook.com (2603:1096:405:26::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.17; Tue, 21 Jan
+ 2025 02:50:02 +0000
+Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
+ ([fe80::9d11:d1f6:1097:22ca]) by KL1PR03MB5778.apcprd03.prod.outlook.com
+ ([fe80::9d11:d1f6:1097:22ca%4]) with mapi id 15.20.8356.020; Tue, 21 Jan 2025
+ 02:50:02 +0000
+Message-ID: <3472d255-be08-4c6c-a1fa-7fba19c571ab@amlogic.com>
+Date: Tue, 21 Jan 2025 10:49:50 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] clk: amlogic: s4: remove unused data
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+References: <20250120-amlogic-clk-drop-clk-regmap-tables-v3-0-126244146947@baylibre.com>
+ <20250120-amlogic-clk-drop-clk-regmap-tables-v3-4-126244146947@baylibre.com>
+From: Chuan Liu <chuan.liu@amlogic.com>
+In-Reply-To: <20250120-amlogic-clk-drop-clk-regmap-tables-v3-4-126244146947@baylibre.com>
+X-ClientProxiedBy: SG2PR01CA0129.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:40::33) To KL1PR03MB5778.apcprd03.prod.outlook.com
+ (2603:1096:820:6d::13)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20250110074458.3624094-3-christianshewitt@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|TYZPR03MB8192:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4865b4b5-551d-48ef-80aa-08dd39c64d93
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?M2xQNGxFcm5WWEpYSFNnSUJkSVZ5THVoQzNPRnJlYWxYc1hiYzBKb09CTGkv?=
+ =?utf-8?B?S1VKVVNRUC84UVN4bGtWTmNCT0xhRjFDY3pYQjFLcmwwSDlWSExzODgvS21H?=
+ =?utf-8?B?Q1FmZVhJWGdCdnBtYk1vZitTR1c3ZjY2VWxrMmVMMkVOVElsekF6aUg1OEJo?=
+ =?utf-8?B?UHVGTDlvbStQSTVUbC9JQVdEYkJXVzBEbWV6QWowL2Q1VldCZFNHYXZqOGV2?=
+ =?utf-8?B?OHc4MUw5MmVIR1JlY2NzZHJkL3JFMnYwU0tyQTNzRWFoME1mcm5YUWVFdEdC?=
+ =?utf-8?B?YVY1TytzL240Y1BhQWcrRlRia2hHVTdTWFZTZDd3YlJ5NmhjZkltOHAyTkND?=
+ =?utf-8?B?UXlCNi9uYkpJSnpWYTF1RWJFT1FyV2k0amxyenMwVEMyN05meGJiZ0pJdXlN?=
+ =?utf-8?B?WCswcGlPMVI1VmE2WGdoQnJHdTJGTkhJU2pRTXFuV3pyaXJIRmwrVTgzcWc3?=
+ =?utf-8?B?aGtGdnQ5TitRYjN6VUgxMjdYVzRZNzNBUFB6TVJzNTNuQjRIZS9GWkRheXJs?=
+ =?utf-8?B?a3RkUHFXZ0grQUpXZ0UxamFaMDZWZmwzYnp2cGdaK2JBWVJlU00vMVc5UG14?=
+ =?utf-8?B?cU1XWSt2QmRrbDlmZDNOWmJQbVkrZ2Q3VFdhRWh5TE4ySFo2MTlWR0grcEc1?=
+ =?utf-8?B?bzhlZ3psNXYyblAwZ2ZqelB1U01lVThDcEtqZUJlOGkrMXFFVXhVRnBtbHg4?=
+ =?utf-8?B?NFdmSThtVWczZVBZakxPR0dBRk9tVXNXNHNrY05TZVlOWmk5SDd4d1kxTUg2?=
+ =?utf-8?B?emlYUTJaMlhOU1krS0MwQ3YrUGpFUzdnRjNMQ3d1MW9hRXRnMGxjTGY4VDFi?=
+ =?utf-8?B?UmVteEVVUGJ2eVZmdVRuaWtnZGpmcDZWMHltYy8zMnhJTVFreXFManhCVi9Y?=
+ =?utf-8?B?eTBldDhOK09mTGEyWmwxT2RtempHN0htcjB1elZpcHZ6NlN0VmJPZ29LS1Jw?=
+ =?utf-8?B?ZGNmenhOL3FhZ0h2N0l1M0tOK0x3QnZBZHNIZllCQkQ2bGhqSitpSjN1MGEz?=
+ =?utf-8?B?QkpwZUR2WFcybVZzVUVXdWtydHlOVFhZQVBxUDBodW5CeE14dytXZWZWNnlD?=
+ =?utf-8?B?MkE1K1c0R3djUFQ2aG92QjVqTko4eWo1V0tnWjBpdU9oZWU1dXlUMmtnOUpk?=
+ =?utf-8?B?UjdmSnlSdG5CL01lOGMreXcvUUcwTlIvUUdsSGZBNWJtR0Zlc0toMmxMejNU?=
+ =?utf-8?B?T0tRSjArRm9GUGxuL2w5a3BGUXBSZW5CdlpoQnlmYXpaUzlMSzhGVXRIdzV3?=
+ =?utf-8?B?andFbmtjRENpUzRoZUM2c1dUQThacmpaK21Jd1V1RjA1RWV6eVFmaDVtU1FM?=
+ =?utf-8?B?dVQ2TmwwRnk3bDB4UnpqaUI5bi96S1lsRFdpRVluSUVqdDdEZnBqNlg2eDVY?=
+ =?utf-8?B?eWNkWHBhUTZ5UHVmT1lTSVVyNUI5Ni9lVlFqWEh4eDdnQVpyNjFRRjFPTHlJ?=
+ =?utf-8?B?YXMwUHdmVHhhVjJlT1g0ZFA4aUxNQ0dTY0poWEFieUxTM0xaTXNybnJhNVdq?=
+ =?utf-8?B?MDBEMmdWbU1uNEN5NkEwdFVRWGw3RTQ1dnhVTjZHUU9ud05kZkVmZG1RbGc4?=
+ =?utf-8?B?R2lGNWdKOUtJZFAxT1IxdjV0Rkw1eVdRMVlRdW55eHBlejVURFI2SWVObDRI?=
+ =?utf-8?B?cXBQNkxnRUVlSVkxQ0toR2VENmVvRE5YK1VpTkdTUmd3Z0Zqc3AyNzdxSWJy?=
+ =?utf-8?B?M1VmKzhHZDFqS2o5U0FocmkwVkJ6RzI0Vkd4anc5UzRvYk5wejZ2SC9JbGpF?=
+ =?utf-8?B?VWY5Y0hsaUlJUWN2TmlIZUdTOTkvalh2cXIvL0lsTC95bklHTFc4UWZudFZ3?=
+ =?utf-8?B?QXB6dWJoaGN5QXBrQzBBUT09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U0NDU1dkRWdRNHpCODlEaXZkSDBrL3VxdDdZTGt3Q3ZaKzU2NzVORVExMm1m?=
+ =?utf-8?B?S1ZIM2ttQ1hoaFJXV2MxK2hRMHlldTBFYWEySXVOb2tVWUdTWlNTa09DTVJj?=
+ =?utf-8?B?ZGZWSGptWDV5dmZVMTBlT09DZEgxVkFIc201dVcyOTJPTE9rMWZWeGZZNGta?=
+ =?utf-8?B?Z0h2bFkzNXhNZSt5OGJKdktlSjkyYXVNczdFWSthQU9tNWNQZm1Obzg5Lzdp?=
+ =?utf-8?B?a0YyOFhMYUhzZGo5YzUwQW1UcDFPL3UzdmErRVNGYWNzV1ZlbFYxVFF2eHlh?=
+ =?utf-8?B?aE1nRmkyengvOXpKN0NydWx2ZCtJSXJQbXNJb0lSaWREN1ZuK08zZVdGbVNT?=
+ =?utf-8?B?WnpWTlBDbEV3WW1NNzlJdDhOQW1HdlljUXN3djV4RVRRejgrSWFacUNzK0JI?=
+ =?utf-8?B?ZTFBOFJPM2tBVVZ4L0gzNm5kTFBKZzEyT3dNZkQzcHdwTHNLU2lVaUp0QjJT?=
+ =?utf-8?B?STFmdTNWY3cvUnJlRkY3UnM1VnRyTVVUd3lKOWNGME9BbmtGekF3cjR5N3Qy?=
+ =?utf-8?B?Y0F3bGpib0tOaDZjWHZ2RnUxWUFIT1B0NTUyVGRTSzU2Nm5SL2Z3N2ZLUm5l?=
+ =?utf-8?B?MFRZbFJ0WXgvSHJPVVUyc2I1MDRwQ1ZBN3ZmdHRIQ0QrME9pQlN4VEFma0pV?=
+ =?utf-8?B?bEplU0J6YU83dXlmN3hpdFJZcVdFMSt1OEhKdklyRU8wUDN0ZWJYQ1hqbmNr?=
+ =?utf-8?B?UVNvT0F0UVRSc0IrczBaU2Qvd0lyK0h2alpxRHNhSVBmSlZXWERPSXE5QlBD?=
+ =?utf-8?B?a2kyVStFYTVaelV1ZmxubVpNRkVST3hTdGlWUE96UGRINndVblpWb25BQVJn?=
+ =?utf-8?B?NFV4M2lvREVNVVdCOEUzTEZ1ajQ5N2dVQVZBNzV4K1NzVzlqT2VYQndTMkIr?=
+ =?utf-8?B?Y1U2c3l4NmZDNUJzbldkMlBKZmJhTytJdkN0QVUySXp5Nko1WnlDVkgzd2Jq?=
+ =?utf-8?B?QmpRSDVyWkxoWUxFcTJsTFJLNzhrYUY1UVMwVUY4b3g5QzhPZmhUbmlTU0NY?=
+ =?utf-8?B?a3R1OWp0cmt2K2lLdmtHbmJYYWJ6ZlczY2xDaTdFNXdwSmtMbUhkczFpY29W?=
+ =?utf-8?B?SGpHc0Z1ZCszUFdrZmNiUWp4bU1rOVcvdkNEYXpFSitSc0cyY21vSVZ3aHVq?=
+ =?utf-8?B?T3RlbVpNS2pHWThxbkJVZXpvZzBFTU5CQnVGVzlNeDN6WUluR1ZDY0Y5U2Vh?=
+ =?utf-8?B?Z0drZTBxVEVlRHVHRFNLYjF2dzFkOFJkczlHOExTUGhTYXlPY2l2NWh4WWFY?=
+ =?utf-8?B?MitrYW5IN0gzTnJCRlFsMWZBZ3BrVW83UVF6YmhnZEVOOUJUenNvQ3BRY0Jm?=
+ =?utf-8?B?Rk5PaTIxWjhZMXlET3JYa0t0ditldDlzM2lIVkZCamtscmwzYUJ3ZkI0VnZ2?=
+ =?utf-8?B?enQ3VDJ5NUNTUCtMUGlacnBEcFcwQ0krZ3MwNVlzeGFNZDk3em1rcWp0emhy?=
+ =?utf-8?B?OVNNSWZYQWM3L2lVV3VCYjArYkFQVFBEcFBRNWZwbFN2WDgwVEhCVXFGMEpj?=
+ =?utf-8?B?cStiSkF2SktMeXdsWjF2MWZObkJSK0lpNHpkdnc3ZExncFRCUjBXT2IxVGl5?=
+ =?utf-8?B?OWJSaSt0T0dBL2c2b3pVaGN2WDBlblRhRU80b0Uwc2YwRXgzRHNvNjNGejVE?=
+ =?utf-8?B?TjFNeGVlOUhST0NNTU1xR2JxMFNraEpHNlJoTVdTMTUzbllJcDBNZjF5RjVO?=
+ =?utf-8?B?cWZFdko2TlBza0JsQnBjelR6K2pBVGRyZ3BvU0h0Y1FHR084L3V5cmFsU2hL?=
+ =?utf-8?B?VnRPM0tiRlJLeWoxTFc3UGJrck1hZ2NIVmJVR0ZSQXY2bXFzWGpUNmUyeVNv?=
+ =?utf-8?B?S3FRNlNHWUlUYzhsNEdleStqNG8vODNpMmJMekxsSUhud0d6VzRBblpka0k0?=
+ =?utf-8?B?dkNLUmxocFZnSURnTU5jUE9SR0N6N2VqdVIvQm15M20waEVIbDFIUUJ6OEo2?=
+ =?utf-8?B?WnRxd1BlbGxtdEJubE4yTHcrSHpncVY2TjdDOGxUVHN0NzdwYjhVOUl2RXYy?=
+ =?utf-8?B?VmRhK1VpOG50T0YvRnord0o1Y25hODlza2hqYWhrRVcxc2RHQmdsOUROMHli?=
+ =?utf-8?B?NloybHlmcnM5WlhGbDlCbkgzRkl0RGREdDV3emFTK2ppaGZwcTJQSFBQK1lj?=
+ =?utf-8?Q?fUBG/moI9BF/yaV1BHfp2qrkt?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4865b4b5-551d-48ef-80aa-08dd39c64d93
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2025 02:50:02.6253
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CxscjL5irtup1GE3QHalniiDoudoR/XFs7NbMYwpQ0LrSNhy7UNJ1GbRCaQOy/MgH7VmuwuYBQkMAFU5/UOKJg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB8192
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250120_135703_167326_AF8A931A 
-X-CRM114-Status: GOOD (  10.45  )
+X-CRM114-CacheID: sfid-20250120_185017_019029_8B7C8ABD 
+X-CRM114-Status: GOOD (  18.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,44 +171,161 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Christian,
+Reviewed-by: Chuan Liu <chuan.liu@amlogic.com>
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on linus/master]
-[also build test ERROR on v6.13 next-20250120]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Hewitt/Revert-drm-meson-vclk-fix-calculation-of-59-94-fractional-rates/20250110-154701
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20250110074458.3624094-3-christianshewitt%40gmail.com
-patch subject: [PATCH 2/2] drm/meson: vclk: fix precision in vclk calculations
-config: arm-randconfig-r072-20250118 (https://download.01.org/0day-ci/archive/20250121/202501210513.GCec6kts-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project c23f2417dc5f6dc371afb07af5627ec2a9d373a0)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250121/202501210513.GCec6kts-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501210513.GCec6kts-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-WARNING: modpost: missing MODULE_DESCRIPTION() in arch/arm/probes/kprobes/test-kprobes.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/slub_kunit.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/gpib/fmh_gpib/fmh_gpib.o
->> ERROR: modpost: "__aeabi_uldivmod" [drivers/gpu/drm/meson/meson-drm.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+On 1/21/2025 1:15 AM, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+>
+> Following the removal of the clk_regmap clock table from the s4-peripherals
+> clock controller driver, it appears some clocks are unused, which means
+> these are not exported or even registered.
+>
+> In all likelihood, these clocks have not been tested. Remove the unused
+> clocks for now. These can added back later when they have been properly
+> tested.
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>   drivers/clk/meson/s4-peripherals.c | 112 -------------------------------------
+>   1 file changed, 112 deletions(-)
+>
+> diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
+> index 6a736e32e0ed8e2e8a37fbea94f9c5a90ea95fa6..853053b5f0689399a0224d263c30a985df6e1652 100644
+> --- a/drivers/clk/meson/s4-peripherals.c
+> +++ b/drivers/clk/meson/s4-peripherals.c
+> @@ -3129,118 +3129,6 @@ static struct clk_regmap s4_gen_clk = {
+>          },
+>   };
+>
+> -static const struct clk_parent_data s4_adc_extclk_in_parent_data[]  = {
+> -       { .fw_name = "xtal", },
+> -       { .fw_name = "fclk_div4", },
+> -       { .fw_name = "fclk_div3", },
+> -       { .fw_name = "fclk_div5", },
+> -       { .fw_name = "fclk_div7", },
+> -       { .fw_name = "mpll2", },
+> -       { .fw_name = "gp0_pll", },
+> -       { .fw_name = "hifi_pll", },
+> -};
+> -
+> -static struct clk_regmap s4_adc_extclk_in_mux = {
+> -       .data = &(struct clk_regmap_mux_data) {
+> -               .offset = CLKCTRL_DEMOD_CLK_CTRL,
+> -               .mask = 0x7,
+> -               .shift = 25,
+> -       },
+> -       .hw.init = &(struct clk_init_data){
+> -               .name = "adc_extclk_in_mux",
+> -               .ops = &clk_regmap_mux_ops,
+> -               .parent_data = s4_adc_extclk_in_parent_data,
+> -               .num_parents = ARRAY_SIZE(s4_adc_extclk_in_parent_data),
+> -               .flags = 0,
+> -       },
+> -};
+> -
+> -static struct clk_regmap s4_adc_extclk_in_div = {
+> -       .data = &(struct clk_regmap_div_data) {
+> -               .offset = CLKCTRL_DEMOD_CLK_CTRL,
+> -               .shift = 16,
+> -               .width = 7,
+> -       },
+> -       .hw.init = &(struct clk_init_data){
+> -               .name = "adc_extclk_in_div",
+> -               .ops = &clk_regmap_divider_ops,
+> -               .parent_hws = (const struct clk_hw *[]) {
+> -                       &s4_adc_extclk_in_mux.hw
+> -               },
+> -               .num_parents = 1,
+> -               .flags = CLK_SET_RATE_PARENT,
+> -       },
+> -};
+> -
+> -static struct clk_regmap s4_adc_extclk_in_gate = {
+> -       .data = &(struct clk_regmap_gate_data) {
+> -               .offset = CLKCTRL_DEMOD_CLK_CTRL,
+> -               .bit_idx = 24,
+> -       },
+> -       .hw.init = &(struct clk_init_data){
+> -               .name = "adc_extclk_in",
+> -               .ops = &clk_regmap_gate_ops,
+> -               .parent_hws = (const struct clk_hw *[]) {
+> -                       &s4_adc_extclk_in_div.hw
+> -               },
+> -               .num_parents = 1,
+> -               .flags = CLK_SET_RATE_PARENT,
+> -       },
+> -};
+> -
+> -static struct clk_regmap s4_demod_core_clk_mux = {
+> -       .data = &(struct clk_regmap_mux_data) {
+> -               .offset = CLKCTRL_DEMOD_CLK_CTRL,
+> -               .mask = 0x3,
+> -               .shift = 9,
+> -       },
+> -       .hw.init = &(struct clk_init_data){
+> -               .name = "demod_core_clk_mux",
+> -               .ops = &clk_regmap_mux_ops,
+> -               .parent_data = (const struct clk_parent_data []) {
+> -                       { .fw_name = "xtal", },
+> -                       { .fw_name = "fclk_div7", },
+> -                       { .fw_name = "fclk_div4", },
+> -                       { .hw = &s4_adc_extclk_in_gate.hw }
+> -               },
+> -               .num_parents = 4,
+> -               .flags = CLK_SET_RATE_PARENT,
+> -       },
+> -};
+> -
+> -static struct clk_regmap s4_demod_core_clk_div = {
+> -       .data = &(struct clk_regmap_div_data) {
+> -               .offset = CLKCTRL_DEMOD_CLK_CTRL,
+> -               .shift = 0,
+> -               .width = 7,
+> -       },
+> -       .hw.init = &(struct clk_init_data){
+> -               .name = "demod_core_clk_div",
+> -               .ops = &clk_regmap_divider_ops,
+> -               .parent_hws = (const struct clk_hw *[]) {
+> -                       &s4_demod_core_clk_mux.hw
+> -               },
+> -               .num_parents = 1,
+> -               .flags = CLK_SET_RATE_PARENT,
+> -       },
+> -};
+> -
+> -static struct clk_regmap s4_demod_core_clk_gate = {
+> -       .data = &(struct clk_regmap_gate_data) {
+> -               .offset = CLKCTRL_DEMOD_CLK_CTRL,
+> -               .bit_idx = 8,
+> -       },
+> -       .hw.init = &(struct clk_init_data){
+> -               .name = "demod_core_clk",
+> -               .ops = &clk_regmap_gate_ops,
+> -               .parent_hws = (const struct clk_hw *[]) {
+> -                       &s4_demod_core_clk_div.hw
+> -               },
+> -               .num_parents = 1,
+> -               .flags = CLK_SET_RATE_PARENT,
+> -       },
+> -};
+> -
+>   #define MESON_GATE(_name, _reg, _bit) \
+>          MESON_PCLK(_name, _reg, _bit, &s4_sys_clk.hw)
+>
+>
+> --
+> 2.45.2
+>
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 _______________________________________________
 linux-amlogic mailing list
