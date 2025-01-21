@@ -4,52 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09EFEC02182
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2025 08:42:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F67BC02182
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2025 17:40:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=QbR/P3tp+Xvifvd4zec21QAc9LzZzgDvYEsbutEhSyc=; b=lweP1WSnvcgpfK
-	GTPlUGto8LEW3PAtpW6D42CVPcmFG6x/ktCy5j3gz70m63/GJWKp2NakvnTADRlExse4OEqvvpT1d
-	3gYaQiQl3kt9bieRd33k8VEODN0H5HFRL3Xb9dBQznFKV7+7tjW0ZcNrYk+dtL8aGoinNYjiLkrdL
-	74vgClALCFO7OPdsAe2qrkjQV0Zv2atVfId2be/xzHVQ9Ps5BVQe05Yw3uk1Rcpv2wsbF/t3pVLiL
-	RwIIZTBiCAYJVLsmb5s7iqNdsyBDNwX9ELD4QJEa1AVuA2kbG276UzfRBlInxWnUd8njp25eU7uKw
-	D5Ku4eCvmquNBMmBLHdA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=SXtxeeYFVoaaj9duV6FRDeV4W0ceOB5N215zPde1rb8=; b=vSHHi7nFIBEXe6abURJJ9vcDkN
+	09jzWdSG5WWpxgfSPR0Rku38G0gyyAwCtBUDKHbfEG1Zy3AGUR3yICnTDtQi8+TmQT9jw/Fngi/1t
+	RaByoTV4u9NihLP4tp1rW5yK+KuNJrrmAONSNGMIQ6q/sZqRTzv2x7fBqexTNEpeeC77S2yz9b+3j
+	tlirE9CTbcDk0iGdE+IAC+TOyqVeItaCWs6VGAl8oLaV0eBFCNu+X7aDWk43/Z4oSFd/ebSJNXUwi
+	Q+ez+CCtBgAPIrlbPh5ZPa+W5vpfSnSB/Rzstg9epYkpuxFiwV+XrMoR9q9p8MdFX7XpYksR8E8/C
+	ootEIj7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1ta9q7-00000007I0B-2v1Y;
-	Tue, 21 Jan 2025 08:42:27 +0000
-Received: from mail.zyskento.pl ([94.177.230.237])
+	id 1taIEu-00000008VQm-1AGe;
+	Tue, 21 Jan 2025 17:40:36 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1ta9pe-00000007Hyh-49tm
-	for linux-amlogic@lists.infradead.org;
-	Tue, 21 Jan 2025 08:42:01 +0000
-Received: by mail.zyskento.pl (Postfix, from userid 1002)
-	id AD83082A06; Tue, 21 Jan 2025 09:41:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=zyskento.pl; s=mail;
-	t=1737448913; bh=QueUkPpGIdH4dHXXuyMmUFm7m9Ovl4HSasK15DTt+X0=;
-	h=Date:From:To:Subject:From;
-	b=MJ2EyVv4Fj2iY0nOx0zXYNmB/7hxJucX+KaCvw+RQt7Y3FUN+Ki7EThsVd2W0YUrO
-	 XWrtlsINg7otIgLiyfCkQO5WScwES/EQ74FYJWpVLDUAKssUmpIVi3vuG6eDhMiC6I
-	 Qpp+h3kGDBWE3xzqvZbkblAsEDH8udoh9eioGc/lVwS7LSIODYDO5C5rY9RsowSflQ
-	 qbFoORItGpYbqraGR8RpgxDkv2nxJNUlHru47nOWxt2sQ3/Zn06JrmD6xIHnY+U5o0
-	 kUfRrmgHvC3KzZSQOMGV9ir9m2LduCAuV6TCmSbL19ZbiFYcTq9+y1cm9/BTf9JI5Y
-	 vRpAl2D6s2LYA==
-Received: by mail.zyskento.pl for <linux-amlogic@lists.infradead.org>; Tue, 21 Jan 2025 08:40:47 GMT
-Message-ID: <20250121084500-0.1.6u.gqah.0.xmk9v13m7c@zyskento.pl>
-Date: Tue, 21 Jan 2025 08:40:47 GMT
-From: "Robert Paczkowski" <robert.paczkowski@zyskento.pl>
-To: <linux-amlogic@lists.infradead.org>
-Subject: =?UTF-8?Q?Wsp=C3=B3=C5=82praca?=
-X-Mailer: mail.zyskento.pl
+	id 1taIDM-00000008VC0-4APY;
+	Tue, 21 Jan 2025 17:39:02 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 77C60A41E83;
+	Tue, 21 Jan 2025 17:37:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F280C4CEE0;
+	Tue, 21 Jan 2025 17:38:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737481139;
+	bh=t1rkrWpngB8qu0qIipVwW9LLPcWHKJVK6COBi/J1BpY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ajfIfNQBvTue6CtD5VhVhF9/E2qk9jDjJhV0NzExcP2VkUx2aLsxcK11UR6pvlP0H
+	 olSn3FNnAN5QhBbvmrZ5pv6E+g7+a4dn9oacfDi6HGdT4S+Pz465IlabRPZzfAcr7m
+	 qsGjvYwD2qgU01EskQgB7xLgQzliLJEQaxRcBPhzrmaI9Er1z7M0zCEoZwLX0OGrT4
+	 QvCItcV3iN9LCLnrJ4CpMGluKkBd9Pc1VNM2PDVY2QVnZjjb0aH+sayIqrrxEsSZNN
+	 T/3MGzsyw+zHg9V3egoPLxPyR821zp63YIGFy422sATrTQznzlmwmEgVk9J0K1Tf5T
+	 amnyGMfni45hw==
+Date: Tue, 21 Jan 2025 17:38:53 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-kernel@vger.kernel.org,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	pierre-henry.moussay@microchip.com,
+	valentina.fernandezalanis@microchip.com,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to
+ common code
+Message-ID: <20250121-cheddar-kissing-bea27c6f2726@spud>
+References: <20241002-private-unequal-33cfa6101338@spud>
+ <20241002-hula-unwashed-1c4ddbadbec2@spud>
+ <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org>
+ <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com>
+ <20241003-tacking-ladylike-dfe2b633e647@spud>
+ <20241106-freefall-slider-db379b05821e@spud>
+ <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
+ <20241128-monstrous-embargo-a665d921410d@wendy>
+ <e53adbf9fdf6e3f142083b0d40d074ca.sboyd@kernel.org>
+ <20241206-threaten-showing-1214491f3899@spud>
 MIME-Version: 1.0
+In-Reply-To: <20241206-threaten-showing-1214491f3899@spud>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250121_004159_703304_DCD66746 
-X-CRM114-Status: UNSURE (   1.60  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250121_093901_156282_007284B5 
+X-CRM114-Status: GOOD (  38.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,18 +93,130 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1824270116003709184=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RHppZcWEIGRvYnJ5LCAKCkN6eSBpbnRlcmVzdWplIFBhxYRzdHdhIHBvenlza2FuaWUgbm93eWNo
-IGtsaWVudMOzdz8KClpham11amVteSBzacSZIHByb2Zlc2pvbmFsbmllIHdzcGFyY2llbSBmaXJt
-IHcgdHltIHpha3Jlc2llLiAKCk5hc2kgcGFydG5lcnp5IHp5c2t1asSFIHN0YcWCeSBuYXDFgnl3
-IG5vd3ljaCB6bGVjZcWEIG9yYXogemFtw7N3aWXFhCwgYSB0eW0gc2FteW0gendpxJlrc3phasSF
-IHN3b2plIHd5bmlraSBzcHJ6ZWRhxbx5LgoKQ3p5IG1vxbxlbXkgcHJ6ZWRzdGF3acSHIHN6Y3pl
-Z8OzxYJ5IGRvdHljesSFY2UgemFzYWQgaSBtb8W8bGl3b8WbY2kgd3Nww7PFgnByYWN5PwoKClog
-cG93YcW8YW5pZW0KUm9iZXJ0IFBhY3prb3dza2kKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFt
-bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+--===============1824270116003709184==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="0nzZXl//t82IHPg6"
+Content-Disposition: inline
+
+
+--0nzZXl//t82IHPg6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hey Stephen,
+
+Any thoughts on the example I gave below?
+
+On Fri, Dec 06, 2024 at 01:56:08PM +0000, Conor Dooley wrote:
+> On Tue, Dec 03, 2024 at 02:50:31PM -0800, Stephen Boyd wrote:
+> > Quoting Conor Dooley (2024-11-28 02:36:16)
+> > > On Thu, Nov 14, 2024 at 05:29:54PM -0800, Stephen Boyd wrote:
+> > > > Quoting Conor Dooley (2024-11-06 04:56:25)
+> > > > > My use case doesn't
+> > > > > actually need the registration code changes either as, currently,=
+ only reg
+> > > > > gets set at runtime, but leaving that out is a level of incomplet=
+e I'd not
+> > > > > let myself away with.
+> > > > > Obviously shoving the extra members into the clk structs has the =
+downside
+> > > > > of taking up a pointer and a offset worth of memory for each cloc=
+k of
+> > > > > that type registered, but it is substantially easier to support d=
+evices
+> > > > > with multiple regmaps that way. Probably moot though since the ap=
+proach you
+> > > > > suggested in the thread linked above that implements a clk_hw_get=
+_regmap()
+> > > > > has to store a pointer to the regmap's identifier which would tak=
+e up an
+> > > > > identical amount of memory.
+> > > >=20
+> > > > We don't need to store the regmap identifier in the struct clk. We =
+can
+> > > > store it in the 'struct clk_init_data' with some new field, and onl=
+y do
+> > > > that when/if we actually need to. We would need to pass the init da=
+ta to
+> > > > the clk_ops::init() callback though. We currently knock that out du=
+ring
+> > > > registration so that clk_hw->init is NULL. Probably we can just set=
+ that
+> > > > to NULL after the init routine runs in __clk_core_init().
+> > > >=20
+> > > > Long story short, don't add something to 'struct clk_core', 'struct
+> > > > clk', or 'struct clk_hw' for these details. We can have a 'struct
+> > > > clk_regmap_hw' that everyone else can build upon:
+> > > >=20
+> > > >   struct clk_regmap_hw {
+> > > >         struct regmap *regmap;
+> > > >         struct clk_hw hw;
+> > > >   };
+> > >=20
+> > > What's the point of this? I don't understand why you want to do this =
+over
+> > > what clk_divider et al already do, where clk_hw and the iomem pointer
+> > > are in the struct itself.
+> >=20
+> > Can you give an example? I don't understand what you're suggesting. I
+> > prefer a struct clk_regmap_hw like above so that the existing struct
+> > clk_hw in the kernel aren't increased by a pointer. SoC drivers can use
+> > the same struct as a replacement for their struct clk_hw member today.
+>=20
+> Best example I guess is to link what I did? This one is the core
+> changes:
+> https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
+=3Dsyscon-rework-2&id=3D35904222355e971c24b3eb9b9fad3dd0c38d1393
+> clk-gate has my original hack that I did while trying to figure out
+> what you wanted, clk-divider-regmap is a 99% copy of clk-divider with
+> the types, function names and readl()/writel() implementations modified.
+> Before your last set of comments I was doing something identical to the
+> clk-gate change for clk-divider also.
+> Here's the changes required to my driver to make it work with the
+> updated:
+> https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
+=3Dsyscon-rework-2&id=3Dea40211fe20f8bc6ef0320b93e1baa5b3f244601
+> It's pretty much a drop in replacement, other than the additional
+> complexity in probe.
+>=20
+> Hopefully that either gets my point across or lets you spot why I don't
+> understand the benefit of a wrapper around clk_hw.
+>=20
+> Cheers,
+> Conor.
+
+
+
+--0nzZXl//t82IHPg6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4/brQAKCRB4tDGHoIJi
+0nEMAP9cytqQKQB1hDGGUuuWB8kfRUG6ZyWTRYsNGzXuc2Ue7gEA8dAE6AfxgRC9
+ekDfb4tyAyN/mrt6sVTLQWKZX1CKqwg=
+=UWpp
+-----END PGP SIGNATURE-----
+
+--0nzZXl//t82IHPg6--
+
+
+--===============1824270116003709184==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============1824270116003709184==--
+
