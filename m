@@ -4,84 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F67BC02182
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jan 2025 17:40:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE521C02181
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2025 03:26:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=SXtxeeYFVoaaj9duV6FRDeV4W0ceOB5N215zPde1rb8=; b=vSHHi7nFIBEXe6abURJJ9vcDkN
-	09jzWdSG5WWpxgfSPR0Rku38G0gyyAwCtBUDKHbfEG1Zy3AGUR3yICnTDtQi8+TmQT9jw/Fngi/1t
-	RaByoTV4u9NihLP4tp1rW5yK+KuNJrrmAONSNGMIQ6q/sZqRTzv2x7fBqexTNEpeeC77S2yz9b+3j
-	tlirE9CTbcDk0iGdE+IAC+TOyqVeItaCWs6VGAl8oLaV0eBFCNu+X7aDWk43/Z4oSFd/ebSJNXUwi
-	Q+ez+CCtBgAPIrlbPh5ZPa+W5vpfSnSB/Rzstg9epYkpuxFiwV+XrMoR9q9p8MdFX7XpYksR8E8/C
-	ootEIj7Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=JFkMTc0CrZaEsk3TGtcjxIwFiQFSbxUIi3FWEwn9ZCE=; b=4ZNReCYkvR+ITh
+	hwrIlQzJo/U7nZzxIGpVwYxIPNjxSbwoLGzNFA6NxtKaXzFYbR2fiKJS5Htvzv9zakmuI5+e8dkji
+	pYyCJelZDiwlkKwfkv+91PUHz79UXCJO3cyXGBadewGYN9ntu4Tr1/Kp8iX0CtQCuocsovNJ+RKuk
+	GQ5jLtVwIaw2M1QHXN/5wtBLqrIZ6v/QY1LKN2NzOhfF2+jRmrnyuFvIWqMk9CR3Ms6Nro/t+tJzx
+	J//cL1dlRx67ulYJKiUewFns3XgWiMw/EdCFn/6awg8wueG4xRv5cSkbQBw9Q7NxLYEXiIeTXVBAM
+	HtaONWJvdZ/rOt4k/mwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1taIEu-00000008VQm-1AGe;
-	Tue, 21 Jan 2025 17:40:36 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1taRNZ-00000009JCM-02v0;
+	Wed, 22 Jan 2025 03:26:09 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1taIDM-00000008VC0-4APY;
-	Tue, 21 Jan 2025 17:39:02 +0000
+	id 1taRNW-00000009JAk-3VEn;
+	Wed, 22 Jan 2025 03:26:08 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 77C60A41E83;
-	Tue, 21 Jan 2025 17:37:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F280C4CEE0;
-	Tue, 21 Jan 2025 17:38:55 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 78D7B5C5475;
+	Wed, 22 Jan 2025 03:25:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 51599C4CEE0;
+	Wed, 22 Jan 2025 03:26:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737481139;
-	bh=t1rkrWpngB8qu0qIipVwW9LLPcWHKJVK6COBi/J1BpY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ajfIfNQBvTue6CtD5VhVhF9/E2qk9jDjJhV0NzExcP2VkUx2aLsxcK11UR6pvlP0H
-	 olSn3FNnAN5QhBbvmrZ5pv6E+g7+a4dn9oacfDi6HGdT4S+Pz465IlabRPZzfAcr7m
-	 qsGjvYwD2qgU01EskQgB7xLgQzliLJEQaxRcBPhzrmaI9Er1z7M0zCEoZwLX0OGrT4
-	 QvCItcV3iN9LCLnrJ4CpMGluKkBd9Pc1VNM2PDVY2QVnZjjb0aH+sayIqrrxEsSZNN
-	 T/3MGzsyw+zHg9V3egoPLxPyR821zp63YIGFy422sATrTQznzlmwmEgVk9J0K1Tf5T
-	 amnyGMfni45hw==
-Date: Tue, 21 Jan 2025 17:38:53 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	pierre-henry.moussay@microchip.com,
-	valentina.fernandezalanis@microchip.com,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to
- common code
-Message-ID: <20250121-cheddar-kissing-bea27c6f2726@spud>
-References: <20241002-private-unequal-33cfa6101338@spud>
- <20241002-hula-unwashed-1c4ddbadbec2@spud>
- <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org>
- <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com>
- <20241003-tacking-ladylike-dfe2b633e647@spud>
- <20241106-freefall-slider-db379b05821e@spud>
- <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
- <20241128-monstrous-embargo-a665d921410d@wendy>
- <e53adbf9fdf6e3f142083b0d40d074ca.sboyd@kernel.org>
- <20241206-threaten-showing-1214491f3899@spud>
+	s=k20201202; t=1737516365;
+	bh=XL7xgtK2u7YldrOEUnHxMb1LEyE3M52/Fl9sJ94c2pc=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=HfGIzox8y13K6MdF4TRJmm9bYjS1DH7fIS2JBji7y3s24OShDv3yTVarAVeIg53aC
+	 I8xXJq3+v/XOuSlSzcZdhr7vW0HhhMtBJvRzRyuJ+FdRJ4zyNKXupK0C+++1JqWIs+
+	 v2owQgrVEhvhTBmA9h8kpEd4NWf6hFeWHaDVkgqCRyJtJ+NgtqFMrxiNzJMaKVK3dA
+	 r9bJ/AwveRSMZ8oTE+GtemqfQ1Y6LDXFcs1n367Olbs8RYdTQReA0g4fDirHy6b+GF
+	 1h+PWV8PYM6k0NU+c8fOIXxW44zyWx2/cSilTfIPlI9eEmB+al+XnE3Ld1ypgrI9B4
+	 fOT06uU31ujXA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 482DBC02181;
+	Wed, 22 Jan 2025 03:26:05 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Wed, 22 Jan 2025 11:26:00 +0800
+Subject: [PATCH v4 2/5] pinctrl: pinconf-generic: Add API for pinmux
+ propertity in DTS file
 MIME-Version: 1.0
-In-Reply-To: <20241206-threaten-showing-1214491f3899@spud>
+Message-Id: <20250122-amlogic-pinctrl-v4-2-4677b2e18ff1@amlogic.com>
+References: <20250122-amlogic-pinctrl-v4-0-4677b2e18ff1@amlogic.com>
+In-Reply-To: <20250122-amlogic-pinctrl-v4-0-4677b2e18ff1@amlogic.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1737516363; l=5889;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=0V9oW4wj+wgR5xyuwmzT7zLRhqxwLpzfCdcpq/8d8uc=;
+ b=orYi6UbxkU3mFWcy4yDQJqf6o/gb42xS9bFKV1A+KZRYTtWnqkU1leimCUtuJnCCKXuMK9mDX
+ i15wsrRcrcyDX3B30nto9WMuAqEkVB4UX0JvrzDHImR19EBroMA95BJ
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250121_093901_156282_007284B5 
-X-CRM114-Status: GOOD (  38.15  )
+X-CRM114-CacheID: sfid-20250121_192606_979550_1A1952F8 
+X-CRM114-Status: GOOD (  16.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,130 +87,216 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1824270116003709184=="
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
---===============1824270116003709184==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0nzZXl//t82IHPg6"
-Content-Disposition: inline
+When describing pin mux func through pinmux propertity,
+a standard API is added for support. The pinmux contains pin
+identification and mux values, which can include multiple
+pins. And groups configuration use other word. DTS such as:
+
+func-name {
+	group_alias: group-name{
+		pinmux= <pin_id << 8 | mux_value)>,
+			<pin_id << 8 | mux_value)>;
+		bias-pull-up;
+		drive-strength-microamp = <4000>;
+	};
+};
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ drivers/pinctrl/pinconf-generic.c       | 130 ++++++++++++++++++++++++++++++++
+ drivers/pinctrl/pinconf.h               |   4 +
+ include/linux/pinctrl/pinconf-generic.h |   4 +
+ 3 files changed, 138 insertions(+)
+
+diff --git a/drivers/pinctrl/pinconf-generic.c b/drivers/pinctrl/pinconf-generic.c
+index 0b13d7f17b32..b8e5e441e67c 100644
+--- a/drivers/pinctrl/pinconf-generic.c
++++ b/drivers/pinctrl/pinconf-generic.c
+@@ -233,6 +233,67 @@ static void parse_dt_cfg(struct device_node *np,
+ 	}
+ }
+ 
++/**
++ * pinconf_generic_parse_dt_pinmux()
++ * parse the pinmux properties into generic pin mux values.
++ * @np: node containing the pinmux properties
++ * @dev: pincontrol core device
++ * @pid: array with pin identity entries
++ * @pmux: array with pin mux value entries
++ * @npins: number of pins
++ *
++ * pinmux propertity: mux value [0,7]bits and pin identity [8,31]bits.
++ */
++int pinconf_generic_parse_dt_pinmux(struct device_node *np, struct device *dev,
++				    unsigned int **pid, unsigned int **pmux,
++				    unsigned int *npins)
++{
++	unsigned int *pid_t;
++	unsigned int *pmux_t;
++	struct property *prop;
++	unsigned int npins_t, i;
++	u32 value;
++	int ret;
++
++	prop = of_find_property(np, "pinmux", NULL);
++	if (!prop) {
++		dev_info(dev, "Missing pinmux property\n");
++		return -ENOENT;
++	}
++
++	if (!pid || !pmux || !npins) {
++		dev_err(dev, "paramers error\n");
++		return -EINVAL;
++	}
++
++	npins_t = prop->length / sizeof(u32);
++	pid_t = devm_kcalloc(dev, npins_t, sizeof(*pid_t), GFP_KERNEL);
++	pmux_t = devm_kcalloc(dev, npins_t, sizeof(*pmux_t), GFP_KERNEL);
++	if (!pid_t || !pmux_t) {
++		dev_err(dev, "kalloc memory fail\n");
++		return -ENOMEM;
++	}
++	for (i = 0; i < npins_t; i++) {
++		ret = of_property_read_u32_index(np, "pinmux", i, &value);
++		if (ret) {
++			dev_err(dev, "get pinmux value fail\n");
++			goto exit;
++		}
++		pmux_t[i] = value & 0xff;
++		pid_t[i] = (value >> 8) & 0xffffff;
++	}
++	*pid = pid_t;
++	*pmux = pmux_t;
++	*npins = npins_t;
++
++	return 0;
++exit:
++	devm_kfree(dev, pid_t);
++	devm_kfree(dev, pmux_t);
++	return ret;
++}
++EXPORT_SYMBOL_GPL(pinconf_generic_parse_dt_pinmux);
++
+ /**
+  * pinconf_generic_parse_dt_config()
+  * parse the config properties into generic pinconfig values.
+@@ -295,6 +356,75 @@ int pinconf_generic_parse_dt_config(struct device_node *np,
+ }
+ EXPORT_SYMBOL_GPL(pinconf_generic_parse_dt_config);
+ 
++int pinconf_generic_dt_node_to_map_pinmux(struct pinctrl_dev *pctldev,
++					  struct device_node *np,
++					  struct pinctrl_map **map,
++					  unsigned int *num_maps)
++{
++	struct device *dev = pctldev->dev;
++	struct device_node *pnode;
++	unsigned long *configs = NULL;
++	unsigned int num_configs = 0;
++	struct property *prop;
++	unsigned int reserved_maps;
++	int reserve;
++	int ret;
++
++	prop = of_find_property(np, "pinmux", NULL);
++	if (!prop) {
++		dev_info(dev, "Missing pinmux property\n");
++		return -ENOENT;
++	}
++
++	pnode = of_get_parent(np);
++	if (!pnode) {
++		dev_info(dev, "Missing function node\n");
++		return -EINVAL;
++	}
++
++	reserved_maps = 0;
++	*map = NULL;
++	*num_maps = 0;
++
++	ret = pinconf_generic_parse_dt_config(np, pctldev, &configs,
++					      &num_configs);
++	if (ret < 0) {
++		dev_err(dev, "%pOF: could not parse node property\n", np);
++		return ret;
++	}
++
++	reserve = 1;
++	if (num_configs)
++		reserve++;
++
++	ret = pinctrl_utils_reserve_map(pctldev, map, &reserved_maps,
++					num_maps, reserve);
++	if (ret < 0)
++		goto exit;
++
++	ret = pinctrl_utils_add_map_mux(pctldev, map,
++					&reserved_maps, num_maps, np->name,
++					pnode->name);
++	if (ret < 0)
++		goto exit;
++
++	if (num_configs) {
++		ret = pinctrl_utils_add_map_configs(pctldev, map, &reserved_maps,
++						    num_maps, np->name, configs,
++						    num_configs, PIN_MAP_TYPE_CONFIGS_GROUP);
++		if (ret < 0)
++			goto exit;
++	}
++
++exit:
++	kfree(configs);
++	if (ret)
++		pinctrl_utils_free_map(pctldev, *map, *num_maps);
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(pinconf_generic_dt_node_to_map_pinmux);
++
+ int pinconf_generic_dt_subnode_to_map(struct pinctrl_dev *pctldev,
+ 		struct device_node *np, struct pinctrl_map **map,
+ 		unsigned int *reserved_maps, unsigned int *num_maps,
+diff --git a/drivers/pinctrl/pinconf.h b/drivers/pinctrl/pinconf.h
+index a14c950bc700..a171195b3615 100644
+--- a/drivers/pinctrl/pinconf.h
++++ b/drivers/pinctrl/pinconf.h
+@@ -138,4 +138,8 @@ int pinconf_generic_parse_dt_config(struct device_node *np,
+ 				    struct pinctrl_dev *pctldev,
+ 				    unsigned long **configs,
+ 				    unsigned int *nconfigs);
++
++int pinconf_generic_parse_dt_pinmux(struct device_node *np, struct device *dev,
++				    unsigned int **pid, unsigned int **pmux,
++				    unsigned int *npins);
+ #endif
+diff --git a/include/linux/pinctrl/pinconf-generic.h b/include/linux/pinctrl/pinconf-generic.h
+index 53cfde98433d..1bcf071b860e 100644
+--- a/include/linux/pinctrl/pinconf-generic.h
++++ b/include/linux/pinctrl/pinconf-generic.h
+@@ -232,4 +232,8 @@ static inline int pinconf_generic_dt_node_to_map_all(struct pinctrl_dev *pctldev
+ 			PIN_MAP_TYPE_INVALID);
+ }
+ 
++int pinconf_generic_dt_node_to_map_pinmux(struct pinctrl_dev *pctldev,
++					  struct device_node *np,
++					  struct pinctrl_map **map,
++					  unsigned int *num_maps);
+ #endif /* __LINUX_PINCTRL_PINCONF_GENERIC_H */
+
+-- 
+2.37.1
 
 
---0nzZXl//t82IHPg6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey Stephen,
-
-Any thoughts on the example I gave below?
-
-On Fri, Dec 06, 2024 at 01:56:08PM +0000, Conor Dooley wrote:
-> On Tue, Dec 03, 2024 at 02:50:31PM -0800, Stephen Boyd wrote:
-> > Quoting Conor Dooley (2024-11-28 02:36:16)
-> > > On Thu, Nov 14, 2024 at 05:29:54PM -0800, Stephen Boyd wrote:
-> > > > Quoting Conor Dooley (2024-11-06 04:56:25)
-> > > > > My use case doesn't
-> > > > > actually need the registration code changes either as, currently,=
- only reg
-> > > > > gets set at runtime, but leaving that out is a level of incomplet=
-e I'd not
-> > > > > let myself away with.
-> > > > > Obviously shoving the extra members into the clk structs has the =
-downside
-> > > > > of taking up a pointer and a offset worth of memory for each cloc=
-k of
-> > > > > that type registered, but it is substantially easier to support d=
-evices
-> > > > > with multiple regmaps that way. Probably moot though since the ap=
-proach you
-> > > > > suggested in the thread linked above that implements a clk_hw_get=
-_regmap()
-> > > > > has to store a pointer to the regmap's identifier which would tak=
-e up an
-> > > > > identical amount of memory.
-> > > >=20
-> > > > We don't need to store the regmap identifier in the struct clk. We =
-can
-> > > > store it in the 'struct clk_init_data' with some new field, and onl=
-y do
-> > > > that when/if we actually need to. We would need to pass the init da=
-ta to
-> > > > the clk_ops::init() callback though. We currently knock that out du=
-ring
-> > > > registration so that clk_hw->init is NULL. Probably we can just set=
- that
-> > > > to NULL after the init routine runs in __clk_core_init().
-> > > >=20
-> > > > Long story short, don't add something to 'struct clk_core', 'struct
-> > > > clk', or 'struct clk_hw' for these details. We can have a 'struct
-> > > > clk_regmap_hw' that everyone else can build upon:
-> > > >=20
-> > > >   struct clk_regmap_hw {
-> > > >         struct regmap *regmap;
-> > > >         struct clk_hw hw;
-> > > >   };
-> > >=20
-> > > What's the point of this? I don't understand why you want to do this =
-over
-> > > what clk_divider et al already do, where clk_hw and the iomem pointer
-> > > are in the struct itself.
-> >=20
-> > Can you give an example? I don't understand what you're suggesting. I
-> > prefer a struct clk_regmap_hw like above so that the existing struct
-> > clk_hw in the kernel aren't increased by a pointer. SoC drivers can use
-> > the same struct as a replacement for their struct clk_hw member today.
->=20
-> Best example I guess is to link what I did? This one is the core
-> changes:
-> https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
-=3Dsyscon-rework-2&id=3D35904222355e971c24b3eb9b9fad3dd0c38d1393
-> clk-gate has my original hack that I did while trying to figure out
-> what you wanted, clk-divider-regmap is a 99% copy of clk-divider with
-> the types, function names and readl()/writel() implementations modified.
-> Before your last set of comments I was doing something identical to the
-> clk-gate change for clk-divider also.
-> Here's the changes required to my driver to make it work with the
-> updated:
-> https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
-=3Dsyscon-rework-2&id=3Dea40211fe20f8bc6ef0320b93e1baa5b3f244601
-> It's pretty much a drop in replacement, other than the additional
-> complexity in probe.
->=20
-> Hopefully that either gets my point across or lets you spot why I don't
-> understand the benefit of a wrapper around clk_hw.
->=20
-> Cheers,
-> Conor.
-
-
-
---0nzZXl//t82IHPg6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4/brQAKCRB4tDGHoIJi
-0nEMAP9cytqQKQB1hDGGUuuWB8kfRUG6ZyWTRYsNGzXuc2Ue7gEA8dAE6AfxgRC9
-ekDfb4tyAyN/mrt6sVTLQWKZX1CKqwg=
-=UWpp
------END PGP SIGNATURE-----
-
---0nzZXl//t82IHPg6--
-
-
---===============1824270116003709184==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============1824270116003709184==--
-
