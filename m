@@ -4,87 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB83CC02181
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jan 2025 12:44:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 696CFC02182
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Jan 2025 10:39:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xUDJXjMvy+qi7MUm1zejca4hnC6A5I1jmdeSohT7JPI=; b=IlbBq44ni5BLUt
-	30NmKOw8PFbQm5WkxrK6ecWO/X5pdyg4Udsrpqqa3LRfRIbAUBJ5vOLJzEhtnVkoN7JoWcwDwYyqh
-	rKSl5dAG008Nl3M7AejPbp1M5o7bDbo2X77vwTzjyOj/u047SV38uKL3YpwOIKjIEnXTYYepXXyq0
-	gZ4nIybzOlJ9kDS7QE0RPYe6YMtIN0GIl5JxqSlJ6QQUztaI7DaG8xCfLz+iWUD47aa3Y5TZmjZlL
-	D/vjhgf6UAO6oEHCHXMx52IZrV+m5P033/Z5oC25RDWv1WdOa4H6bT0bTZwLvSfvQ1tev4OqE7aTt
-	Ip27tWYo9OBdxzTG1wCw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=zju6qRsMc9s9w9DD1QbPIlUkMcFAyNFL+ylG6+JiLUw=; b=vNKaGlKs+KzvWi
+	7Z+4h0MpF3TH40ug0ZwzzMNvzcSYPfN3URp254l/oucSAv5GoBj0LSNronQm/6BPQPiIWAPz5wvnQ
+	FF0PxoYFyAjMMWpRmPMiz8DG+6JkNAyjAsEVYvk0iIR1scJuSndAjaT/miaZgsNXltGJS0ppIm1db
+	HPZ/ANkI2n+5E2wPBMpLDX8rY7vZM2CWb7poiOaUi8Y8OFMDsjCJgFpZHZEjaqwbDQ8n8SvuOS12w
+	HfC8s5r+yoMXkmBvA+GkVBun5m5JWwHTTnGOBUoS/OQpmYnrz/BVOrPVhdWjhQ3IASWgFVQ+G4D0L
+	jxiMY+YCzEpGNnfNolSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1taa6F-0000000ABZR-3PKw;
-	Wed, 22 Jan 2025 12:44:51 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1taucW-0000000CEbx-03ZQ;
+	Thu, 23 Jan 2025 10:39:32 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1taa3V-0000000AAnx-1BmV;
-	Wed, 22 Jan 2025 12:42:04 +0000
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id C866810000F;
-	Wed, 22 Jan 2025 15:41:45 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C866810000F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1737549705;
-	bh=YTtwLlBe37BdCgnBuy1MLWGgT5Jb4n0isj9w5Ot2fmw=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=avQeXlvD0X76BKyLAQbtpU0G3qYpQ3zlmE3dI99AX943Xfct8cW7NJvm9cGfOjrdc
-	 s/HQN1xG/Jb5rcHHGMz4UkoXcyVbj85l5FNQbJsB58oJO5ecLOmARNbj+Pd7+EEuAT
-	 BHivPC0jbb25+xuKVki+2UaTOsinFp2B61IyZ/9Ps0RnzoHHl57QMEYDBdt91KRr1h
-	 JCfW7rMzEghqyABkc5rrb1LZyVUVTzh23wYkqvfvDgwpuI2pFmkef+WZ2OsfBYLFDB
-	 2q31eADmH1Jm1F2H/EzfcHW2Dp7Tt89tmuzSiglcufKcm5P8HfbRWXDcI45npON9xz
-	 SxjmCWLErLEJQ==
-Received: from smtp.sberdevices.ru (p-exch-cas-a-m1.sberdevices.ru [172.24.201.216])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 22 Jan 2025 15:41:45 +0300 (MSK)
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: <herbert@gondor.apana.org.au>
-CC: <avromanov@salutedevices.com>, <clabbe@baylibre.com>,
-	<conor+dt@kernel.org>, <davem@davemloft.net>, <devicetree@vger.kernel.org>,
-	<jbrunet@baylibre.com>, <kernel@salutedevices.com>, <khilman@baylibre.com>,
-	<krzk+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<martin.blumenstingl@googlemail.com>, <neil.armstrong@linaro.org>,
-	<robh+dt@kernel.org>, <vadim.fedorenko@linux.dev>
-Subject: Re: [PATCH v11 11/22] crypto: amlogic - Introduce hasher
-Date: Wed, 22 Jan 2025 15:41:29 +0300
-Message-ID: <Z2aokzSrAHpJE_PG@gondor.apana.org.au> (raw)
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241213140755.1298323-12-avromanov@salutedevices.com>
-References: <Z2aokzSrAHpJE_PG@gondor.apana.org.au>
+	id 1tauaX-0000000CENQ-0AeP;
+	Thu, 23 Jan 2025 10:37:30 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id E7C8A5C54CE;
+	Thu, 23 Jan 2025 10:36:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F04FDC4CED3;
+	Thu, 23 Jan 2025 10:37:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737628648;
+	bh=OLu3vDS2ZKNfJItxo4kTx0bToRxzEIyab1r5UHmyvxs=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=ga8qYqDsybdkksU/AwUp5UHj7N1EaIJmc1s/MDEYBSkyXAqBSD0QAf+tbcnzwE0j0
+	 R8aIo+J5V42W+CAOPHvhmTNYxGv/fUv3rDrum2h8MM5lX77u6CM1ixkK+OhzdcL7Ex
+	 UTxPOIJ4lkdif86wrFQe9flEJHGjCUTVPUNd4brpNmxwSwWB0RgA+kFcXwozkHSWmu
+	 Llv7X2h7FzX99xtA5QZZu3D9i23p0HGlq3FniNT6AiQBZgU1LmZ75e6JPhWmqd/q03
+	 q9Ww76zPuv/xeOegTyuuseSAK/3N7XXKon9+F2nB+fNrdxZiM60GNgDTrNE2XGyWlV
+	 OOIS5x45lNgTA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E62D3C02182;
+	Thu, 23 Jan 2025 10:37:27 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Date: Thu, 23 Jan 2025 18:37:08 +0800
+Subject: [PATCH] soc: amlogic: clk-measure: Optimize the memory size of
+ clk-measure
 MIME-Version: 1.0
-X-Originating-IP: [172.28.160.235]
-X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
- p-exch-cas-a-m1.sberdevices.ru (172.24.201.216)
-X-KSMG-Rule-ID: 1
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 190505 [Jan 22 2025]
-X-KSMG-AntiSpam-Version: 6.1.1.7
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 50 0.3.50 df4aeb250ed63fd3baa80a493fa6caee5dd9e10f, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;elixir.bootlin.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2025/01/22 11:41:00
-X-KSMG-LinksScanning: Clean, bases: 2025/01/22 11:41:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2025/01/22 10:19:00 #27099507
-X-KSMG-AntiVirus-Status: Clean, skipped
+Message-Id: <20250123-optimize_memory_size_of_clk_measure-v1-1-06aa6a01ff37@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIANMbkmcC/x2N0QrCMBAEf6Xcs4Ektmj9FSmhxI0emqbcqail/
+ 270bWYedhdSCEPp0CwkeLJymaq4TUPxMk5nGD5VJ299Z53fmjLfOfMHISMXeQf9cUkh3q41jfo
+ QmNTH1mLvul3fUl2aBYlf/5fjsK5fo59KM3UAAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1737628646; l=9300;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=09XhYDP6iI0Tb7WSsTJeEPwen1jQBHDBnTyU/ciBS8c=;
+ b=IDA62YuwwJTS75iY3P6AMNE7mnzXnQVceQXhlo/VtGYQqoiiAqWtFDNQMB/I8/2d/D3hif5PK
+ 99O/0zM5p/MAmBD4AtSdc6WekpU+vYnfuoA5qii9cL8DanTxN/Dstpq
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250122_044202_618163_56BA0BC7 
-X-CRM114-Status: UNSURE (   5.49  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250123_023729_179255_BBA71E51 
+X-CRM114-Status: GOOD (  19.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,20 +83,308 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: chuan.liu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
-Message-ID: <20250122124129.sC9CjFW9TOrue8dz0rOvQcksd7nHv0hqw0Afkn9810o@z>
 
-> You cannot sleep in the digest function.
+From: Chuan Liu <chuan.liu@amlogic.com>
 
-Why? I couldn't find this explanation anywhere.
-In addition, I found an example of one of the digest functions that is sleeping [1].
+Define struct meson_msr as a static global variable and remove the
+"*priv" member from struct meson_msr_id.
 
-Links:
+Define the size of the corresponding array based on the actual number of
+msr_id of the chip.
 
-  - [1] https://elixir.bootlin.com/linux/v6.12.6/source/drivers/crypto/mxs-dcp.c#L804
+The array corresponding to msr_id is defined as "__initdata" to reduce
+memory usage.
+
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+---
+Each msr_id defines a pointer(*priv), and all these pointers point to
+the same address.
+
+The number of msr_ids for each chip is inconsistent. Defining a
+fixed-size array for each chip to store msr_ids would waste memory.
+---
+ drivers/soc/amlogic/meson-clk-measure.c | 119 ++++++++++++++++++++------------
+ 1 file changed, 74 insertions(+), 45 deletions(-)
+
+diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
+index a6453ffeb753..b52e9ce25ea8 100644
+--- a/drivers/soc/amlogic/meson-clk-measure.c
++++ b/drivers/soc/amlogic/meson-clk-measure.c
+@@ -33,23 +33,27 @@ static DEFINE_MUTEX(measure_lock);
+ #define DIV_STEP		32
+ #define DIV_MAX			640
+ 
+-#define CLK_MSR_MAX		128
+-
+ struct meson_msr_id {
+-	struct meson_msr *priv;
+ 	unsigned int id;
+ 	const char *name;
+ };
+ 
++struct meson_msr_data {
++	struct meson_msr_id *msr_table;
++	unsigned int msr_count;
++};
++
+ struct meson_msr {
+ 	struct regmap *regmap;
+-	struct meson_msr_id msr_table[CLK_MSR_MAX];
++	struct meson_msr_data data;
+ };
+ 
+ #define CLK_MSR_ID(__id, __name) \
+ 	[__id] = {.id = __id, .name = __name,}
+ 
+-static struct meson_msr_id clk_msr_m8[CLK_MSR_MAX] = {
++static struct meson_msr meson_msr;
++
++static struct meson_msr_id clk_msr_m8[] __initdata = {
+ 	CLK_MSR_ID(0, "ring_osc_out_ee0"),
+ 	CLK_MSR_ID(1, "ring_osc_out_ee1"),
+ 	CLK_MSR_ID(2, "ring_osc_out_ee2"),
+@@ -98,7 +102,7 @@ static struct meson_msr_id clk_msr_m8[CLK_MSR_MAX] = {
+ 	CLK_MSR_ID(63, "mipi_csi_cfg"),
+ };
+ 
+-static struct meson_msr_id clk_msr_gx[CLK_MSR_MAX] = {
++static struct meson_msr_id clk_msr_gx[] __initdata = {
+ 	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
+ 	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
+ 	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
+@@ -168,7 +172,7 @@ static struct meson_msr_id clk_msr_gx[CLK_MSR_MAX] = {
+ 	CLK_MSR_ID(82, "ge2d"),
+ };
+ 
+-static struct meson_msr_id clk_msr_axg[CLK_MSR_MAX] = {
++static struct meson_msr_id clk_msr_axg[] __initdata = {
+ 	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
+ 	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
+ 	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
+@@ -242,7 +246,7 @@ static struct meson_msr_id clk_msr_axg[CLK_MSR_MAX] = {
+ 	CLK_MSR_ID(109, "audio_locker_in"),
+ };
+ 
+-static struct meson_msr_id clk_msr_g12a[CLK_MSR_MAX] = {
++static struct meson_msr_id clk_msr_g12a[] __initdata = {
+ 	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
+ 	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
+ 	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
+@@ -358,7 +362,7 @@ static struct meson_msr_id clk_msr_g12a[CLK_MSR_MAX] = {
+ 	CLK_MSR_ID(122, "audio_pdm_dclk"),
+ };
+ 
+-static struct meson_msr_id clk_msr_sm1[CLK_MSR_MAX] = {
++static struct meson_msr_id clk_msr_sm1[] __initdata = {
+ 	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
+ 	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
+ 	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
+@@ -489,9 +493,8 @@ static struct meson_msr_id clk_msr_sm1[CLK_MSR_MAX] = {
+ };
+ 
+ static int meson_measure_id(struct meson_msr_id *clk_msr_id,
+-			       unsigned int duration)
++			    unsigned int duration)
+ {
+-	struct meson_msr *priv = clk_msr_id->priv;
+ 	unsigned int val;
+ 	int ret;
+ 
+@@ -499,22 +502,22 @@ static int meson_measure_id(struct meson_msr_id *clk_msr_id,
+ 	if (ret)
+ 		return ret;
+ 
+-	regmap_write(priv->regmap, MSR_CLK_REG0, 0);
++	regmap_write(meson_msr.regmap, MSR_CLK_REG0, 0);
+ 
+ 	/* Set measurement duration */
+-	regmap_update_bits(priv->regmap, MSR_CLK_REG0, MSR_DURATION,
++	regmap_update_bits(meson_msr.regmap, MSR_CLK_REG0, MSR_DURATION,
+ 			   FIELD_PREP(MSR_DURATION, duration - 1));
+ 
+ 	/* Set ID */
+-	regmap_update_bits(priv->regmap, MSR_CLK_REG0, MSR_CLK_SRC,
++	regmap_update_bits(meson_msr.regmap, MSR_CLK_REG0, MSR_CLK_SRC,
+ 			   FIELD_PREP(MSR_CLK_SRC, clk_msr_id->id));
+ 
+ 	/* Enable & Start */
+-	regmap_update_bits(priv->regmap, MSR_CLK_REG0,
++	regmap_update_bits(meson_msr.regmap, MSR_CLK_REG0,
+ 			   MSR_RUN | MSR_ENABLE,
+ 			   MSR_RUN | MSR_ENABLE);
+ 
+-	ret = regmap_read_poll_timeout(priv->regmap, MSR_CLK_REG0,
++	ret = regmap_read_poll_timeout(meson_msr.regmap, MSR_CLK_REG0,
+ 				       val, !(val & MSR_BUSY), 10, 10000);
+ 	if (ret) {
+ 		mutex_unlock(&measure_lock);
+@@ -522,10 +525,10 @@ static int meson_measure_id(struct meson_msr_id *clk_msr_id,
+ 	}
+ 
+ 	/* Disable */
+-	regmap_update_bits(priv->regmap, MSR_CLK_REG0, MSR_ENABLE, 0);
++	regmap_update_bits(meson_msr.regmap, MSR_CLK_REG0, MSR_ENABLE, 0);
+ 
+ 	/* Get the value in multiple of gate time counts */
+-	regmap_read(priv->regmap, MSR_CLK_REG2, &val);
++	regmap_read(meson_msr.regmap, MSR_CLK_REG2, &val);
+ 
+ 	mutex_unlock(&measure_lock);
+ 
+@@ -579,7 +582,7 @@ static int clk_msr_summary_show(struct seq_file *s, void *data)
+ 	seq_puts(s, "  clock                     rate    precision\n");
+ 	seq_puts(s, "---------------------------------------------\n");
+ 
+-	for (i = 0 ; i < CLK_MSR_MAX ; ++i) {
++	for (i = 0 ; i < meson_msr.data.msr_count ; ++i) {
+ 		if (!msr_table[i].name)
+ 			continue;
+ 
+@@ -604,77 +607,103 @@ static const struct regmap_config meson_clk_msr_regmap_config = {
+ 
+ static int meson_msr_probe(struct platform_device *pdev)
+ {
+-	const struct meson_msr_id *match_data;
+-	struct meson_msr *priv;
++	const struct meson_msr_data *match_data;
++	struct meson_msr_id *msr_table;
+ 	struct dentry *root, *clks;
+ 	void __iomem *base;
+ 	int i;
+ 
+-	priv = devm_kzalloc(&pdev->dev, sizeof(struct meson_msr),
+-			    GFP_KERNEL);
+-	if (!priv)
+-		return -ENOMEM;
+-
+ 	match_data = device_get_match_data(&pdev->dev);
+ 	if (!match_data) {
+ 		dev_err(&pdev->dev, "failed to get match data\n");
+ 		return -ENODEV;
+ 	}
+ 
+-	memcpy(priv->msr_table, match_data, sizeof(priv->msr_table));
++	msr_table = devm_kcalloc(&pdev->dev, match_data->msr_count,
++				 sizeof(struct meson_msr_id), GFP_KERNEL);
++	if (!msr_table)
++		return -ENOMEM;
++
++	memcpy(msr_table, match_data->msr_table,
++	       match_data->msr_count * sizeof(struct meson_msr_id));
++	meson_msr.data.msr_table = msr_table;
++	meson_msr.data.msr_count = match_data->msr_count;
+ 
+ 	base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(base))
+ 		return PTR_ERR(base);
+ 
+-	priv->regmap = devm_regmap_init_mmio(&pdev->dev, base,
+-					     &meson_clk_msr_regmap_config);
+-	if (IS_ERR(priv->regmap))
+-		return PTR_ERR(priv->regmap);
++	meson_msr.regmap = devm_regmap_init_mmio(&pdev->dev, base,
++						 &meson_clk_msr_regmap_config);
++	if (IS_ERR(meson_msr.regmap))
++		return PTR_ERR(meson_msr.regmap);
+ 
+ 	root = debugfs_create_dir("meson-clk-msr", NULL);
+ 	clks = debugfs_create_dir("clks", root);
+ 
+-	debugfs_create_file("measure_summary", 0444, root,
+-			    priv->msr_table, &clk_msr_summary_fops);
++	debugfs_create_file("measure_summary", 0444, root, msr_table,
++			    &clk_msr_summary_fops);
+ 
+-	for (i = 0 ; i < CLK_MSR_MAX ; ++i) {
+-		if (!priv->msr_table[i].name)
++	for (i = 0 ; i < meson_msr.data.msr_count ; ++i) {
++		if (!msr_table[i].name)
+ 			continue;
+ 
+-		priv->msr_table[i].priv = priv;
+-
+-		debugfs_create_file(priv->msr_table[i].name, 0444, clks,
+-				    &priv->msr_table[i], &clk_msr_fops);
++		debugfs_create_file(msr_table[i].name, 0444, clks,
++				    &msr_table[i], &clk_msr_fops);
+ 	}
+ 
+ 	return 0;
+ }
+ 
++static const struct meson_msr_data clk_msr_gx_data = {
++	.msr_table = clk_msr_gx,
++	.msr_count = ARRAY_SIZE(clk_msr_gx),
++};
++
++static const struct meson_msr_data clk_msr_m8_data = {
++	.msr_table = clk_msr_m8,
++	.msr_count = ARRAY_SIZE(clk_msr_m8),
++};
++
++static const struct meson_msr_data clk_msr_axg_data = {
++	.msr_table = clk_msr_axg,
++	.msr_count = ARRAY_SIZE(clk_msr_axg),
++};
++
++static const struct meson_msr_data clk_msr_g12a_data = {
++	.msr_table = clk_msr_g12a,
++	.msr_count = ARRAY_SIZE(clk_msr_g12a),
++};
++
++static const struct meson_msr_data clk_msr_sm1_data = {
++	.msr_table = clk_msr_sm1,
++	.msr_count = ARRAY_SIZE(clk_msr_sm1),
++};
++
+ static const struct of_device_id meson_msr_match_table[] = {
+ 	{
+ 		.compatible = "amlogic,meson-gx-clk-measure",
+-		.data = (void *)clk_msr_gx,
++		.data = &clk_msr_gx_data,
+ 	},
+ 	{
+ 		.compatible = "amlogic,meson8-clk-measure",
+-		.data = (void *)clk_msr_m8,
++		.data = &clk_msr_m8_data,
+ 	},
+ 	{
+ 		.compatible = "amlogic,meson8b-clk-measure",
+-		.data = (void *)clk_msr_m8,
++		.data = &clk_msr_m8_data,
+ 	},
+ 	{
+ 		.compatible = "amlogic,meson-axg-clk-measure",
+-		.data = (void *)clk_msr_axg,
++		.data = &clk_msr_axg_data,
+ 	},
+ 	{
+ 		.compatible = "amlogic,meson-g12a-clk-measure",
+-		.data = (void *)clk_msr_g12a,
++		.data = &clk_msr_g12a_data,
+ 	},
+ 	{
+ 		.compatible = "amlogic,meson-sm1-clk-measure",
+-		.data = (void *)clk_msr_sm1,
++		.data = &clk_msr_sm1_data,
+ 	},
+ 	{ /* sentinel */ }
+ };
+
+---
+base-commit: 1e1fd26ed4ca05cc1f0e5857918da4dd54967f7d
+change-id: 20250123-optimize_memory_size_of_clk_measure-f9c40e815794
+
+Best regards,
+-- 
+Chuan Liu <chuan.liu@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
