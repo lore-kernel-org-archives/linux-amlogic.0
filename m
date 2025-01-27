@@ -4,84 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B5DEC0218C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jan 2025 09:59:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4EA5C0218A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jan 2025 18:59:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PS2l/xVqjflF//hNvOjo5RwV2TFWsqUX4hDdjceHO3w=; b=A2aU6eKx743PMf
-	bWQBQ5StQyMbaQKXoGuFa2bVaeYLStoEblOJG4Jhj0ujr0QFwunX+hlQePXoD1bGysrbCjhrOdgHv
-	IG9LRxryayJTtO5QDXFdu0PkXIKKj/5IQQYecauYeiBsOiCXWKWf7NStl2wLC4QstsgJUC2MhRh+m
-	qNBMcGLc6ieFu7nvbJx+Ym4DcXYGgCDn1c0EP+HFNWPrf4Q2TLSfteWH74iAlRv/jDO0N/46EcPN5
-	oZaRIvrzIAuVsXbY8NwvFHHECVMa5nCW+NLwrPmlzlmRUuTL/8RewTYxmpIx0tIcc12StNZ72Ym8Q
-	B/KUApjGoYL9tcM7RA3Q==;
+	List-Owner; bh=dzY3bdTCLOenVTb52t5RAWvVbY0HlojWX9uJBOFGXfU=; b=guxjpd9TcK9Xwk
+	bFHOYHdmKIXvgd/YcL18vv2BxM/bnymMsVBsUPuGkx5nZkH9NsnNhOTkzHSupvYe8zhBXF1Fk9rCp
+	FY+8MyWYiyy+IE6vKK+PRbfulLUN5sOyAbDRNDctf0yAFYIvuDIGrReeawZwrFzg3waD5GzBOuLUf
+	TZrJ2f3IX6bB+7+gu+UCyKEdlDJCtcHLbrGxkGF8Bhe0Co277WpdcUQGHqJxBZpItWzXvI3KLwK+F
+	u6Abia/qJSKPcWV/wfdhbXjbUl4/4cWdU0YqhyDNvZ4LmfpEmvmfxztJ5pGzua5+rf56VF6i4CGJ4
+	6W9TvPIcJZNI70ujEbMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tcLu2-000000025V1-3RIg;
-	Mon, 27 Jan 2025 09:59:34 +0000
-Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
+	id 1tcUKn-000000034kq-1DzW;
+	Mon, 27 Jan 2025 18:59:45 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tcLu0-000000025Tk-2u29
-	for linux-amlogic@lists.infradead.org;
-	Mon, 27 Jan 2025 09:59:33 +0000
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-53ff1f7caaeso4282037e87.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 27 Jan 2025 01:59:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737971970; x=1738576770; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nqS8yiFvPoQH42365EOQ4XQDK7lHJ8Wg2V08GdiylrY=;
-        b=R29CjJFdNJ/yH6bP5Are1le53wqs4sMBL61m/JfKb5rCiHdCoZZCsq4Qk7QVBj803g
-         eo4HQE8QAtF+P0Ip0KHSy10Ar8Pv1ch0FW5NSjzJB+Xrlhx/xKRMC53G2//7Ev/QmjZv
-         HLjhlQOsm8c3fMzmYd9EA5tkNAORBD6wcfE8F3Vv3302R1SUFgK8i0Jo6DMbdhkxUCzP
-         x7d9e7JuG2E5iM/BfcMBdNGT206ZFypIYSWqIm1FU8XmQMbRBAnu18sMsTOUV2mRC1rW
-         P4NXBHpZjWMtSs79BCASLVowW4r6vsaFD4hU0RNXbS2HmK2Zy7tjivU6Jiq6qnlmrSpW
-         1eag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737971970; x=1738576770;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nqS8yiFvPoQH42365EOQ4XQDK7lHJ8Wg2V08GdiylrY=;
-        b=M5xZf7wLxhuKyY/HnDiqRaTq9pHwHYERWG3UyEQSXJJOFCfIHy0SU33Q+ZUjCEy5Rx
-         TsUJn72CzgE6dW/TVZL+VicFD8JfF58MzRzUBeMgf7sdSZCNQ64uj5qUcBo8P1RQeK/g
-         y03HVOq0KtMJ+ExE+2UgNy4mZ6HwAshDDwlvucqynxlbxDz7MXjWhAypRtIiRkRGopKZ
-         5+Q1xBnCXfFx18buEO1a1NImNK6kfPt0jVAqxWw2HmgTqeXQp8E+/Qiqe5PtTrcROUtT
-         /7BI2qU5Z93nMYGfu2vfp01LwVml6hV8zb3+L8+fCAmTUW3syt8kAecQtwHbHPBCD/yT
-         Vzbw==
-X-Forwarded-Encrypted: i=1; AJvYcCUu/7vn1u21BjuChSLrZX2/aOH5P7fsJFGrTv/seiIw52xhtEYZLN7T1nAi9m+6zVr0qW658lgSbg4CbrB3@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz+DimQLnDHpysRR7riBhTAuuLy9AkLWFGJhC7hEOAmGu6TsANq
-	Gbg5wpIseaSk/GdJVhQ2chWOe2TGgnRRiLQitBFlkeXgEJy93UZmlwfU7UgAoA/8/ognZ6keQdT
-	oEFUkaRtFkDoN1oSwJ6enc2BSf3hjGwVx5ae8ag==
-X-Gm-Gg: ASbGncsNv5ThdYIgUzxKCYOsfj62XBrJIL8t3xiF/KwXixS9IRbmasA/5rHU3Qqvj+y
-	EfRz0TK7yFZfM5BXKuZHmsfGwCBDY9fkRCChx5i4byclRmCB6GCBdj6TyPbm7
-X-Google-Smtp-Source: AGHT+IHqpm1ys9+lwbd/QxujcbzJL4i0yKhhKzjeujkw2d5Z1I5Id1mRs2qKI/MXH9CQY+F8hE4OzkVsIK/ZHQmuZJE=
-X-Received: by 2002:a05:6512:1312:b0:542:234b:9a6a with SMTP id
- 2adb3069b0e04-5439c281f9amr15646461e87.33.1737971970154; Mon, 27 Jan 2025
- 01:59:30 -0800 (PST)
-MIME-Version: 1.0
-References: <20250122-amlogic-pinctrl-v4-0-4677b2e18ff1@amlogic.com> <20250122-amlogic-pinctrl-v4-3-4677b2e18ff1@amlogic.com>
-In-Reply-To: <20250122-amlogic-pinctrl-v4-3-4677b2e18ff1@amlogic.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 27 Jan 2025 10:59:19 +0100
-X-Gm-Features: AWEUYZlw3ilYGs0ATdzTHL2yQh4eIVQWc6_6OrIXQyU_MtlIHFv72pFxPtpk8xc
-Message-ID: <CACRpkdZRbpd0Kw9V=aYX5P0vJLtErNR+aBzPagSwf=AZh6QERA@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] pinctrl: Add driver support for Amlogic SoCs
-To: xianwei.zhao@amlogic.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	id 1tcUKk-000000034k3-0ruC;
+	Mon, 27 Jan 2025 18:59:43 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 4D4CF5C585C;
+	Mon, 27 Jan 2025 18:59:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E06F4C4CEE0;
+	Mon, 27 Jan 2025 18:59:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738004381;
+	bh=AT2ZxPgXT3E2xTLKhdLn/GaF61LTdzus5efSC1f26Ec=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n2GuMsTJaSw9Mfj2FiENWbgqSZ3wVfIMQVmbhkHkNsb4TkeGqalzHollxY5Po4kFl
+	 zR/58oZx75I0QDtGdU8SnurUP3wh+ZxKX0TSeE3UpXkUQ6/HolK2IkCQzbcOSsaeyk
+	 BL9WaFgF4rYqdorlvRYcMXpXp3xUS80VJnZf0s1gPya+S36lOItgt7kqKok2wkEWRH
+	 prvblDTG1V5kOjWoPBWwun9/gnwm6tp1Ocqw/pSLzBE5b6x9C4aQkIahwLeMzgXXfv
+	 Ft1Z46PiuEm9Hc72XP1kVd4F9ol0tet1H6N53hascvHxfGWRPntgNUWLaXLNfA/PU2
+	 Zge4E+02FFkog==
+Date: Mon, 27 Jan 2025 12:59:39 -0600
+From: Rob Herring <robh@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v4 1/5] dt-bindings: pinctrl: Add support for Amlogic SoCs
+Message-ID: <20250127185939.GA612868-robh@kernel.org>
+References: <20250122-amlogic-pinctrl-v4-0-4677b2e18ff1@amlogic.com>
+ <20250122-amlogic-pinctrl-v4-1-4677b2e18ff1@amlogic.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20250122-amlogic-pinctrl-v4-1-4677b2e18ff1@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250127_015932_740720_BC86A7BD 
-X-CRM114-Status: GOOD (  12.07  )
+X-CRM114-CacheID: sfid-20250127_105942_335682_D0718B1B 
+X-CRM114-Status: GOOD (  19.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,32 +76,231 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgWGlhbndlaSwKCnRoYW5rcyBmb3IgeW91ciBwYXRjaCEKCk9uIFdlZCwgSmFuIDIyLCAyMDI1
-IGF0IDQ6MjbigK9BTSBYaWFud2VpIFpoYW8gdmlhIEI0IFJlbGF5CjxkZXZudWxsK3hpYW53ZWku
-emhhby5hbWxvZ2ljLmNvbUBrZXJuZWwub3JnPiB3cm90ZToKCj4gRnJvbTogWGlhbndlaSBaaGFv
-IDx4aWFud2VpLnpoYW9AYW1sb2dpYy5jb20+Cj4KPiBBZGQgYSBuZXcgcGluY3RybCBkcml2ZXIg
-Zm9yIEFtbG9naWMgU29Dcy4gQWxsIGZ1dHVyZSBBbWxvZ2ljCj4gU29DcyBwaW5jdHJsIGRyaXZl
-cyB1c2UgdGhpcywgc3VjaCBBNCwgQTUsIFM2LCBTNyBldGMuIFRvIHN1cHBvcnQKPiBuZXcgQW1s
-b2dpYyBTb0NzLCBvbmx5IG5lZWQgdG8gYWRkIHRoZSBjb3JyZXNwb25kaW5nIGR0cyBmaWxlLgo+
-Cj4gU2lnbmVkLW9mZi1ieTogWGlhbndlaSBaaGFvIDx4aWFud2VpLnpoYW9AYW1sb2dpYy5jb20+
-Cj4gLS0tCj4gIGRyaXZlcnMvcGluY3RybC9LY29uZmlnICAgICAgICAgICB8ICAgMTggKwo+ICBk
-cml2ZXJzL3BpbmN0cmwvTWFrZWZpbGUgICAgICAgICAgfCAgICAxICsKPiAgZHJpdmVycy9waW5j
-dHJsL3BpbmN0cmwtYW1sb2dpYy5jIHwgMTA1MyArKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrCgpQbGVhc2UgbW92ZSB0aGlzIGZpbGUgaW50byBkcml2ZXJzL3BpbmN0cmwvbWVz
-b24gYXMgSSByZXF1ZXN0ZWQKZWFybGllci4gV2UgY2FuIHJlbmFtZSAibWVzb24iIHRvICJhbWxv
-Z2ljIiBsYXRlciBpZiB0aGF0IHBsYWNlbWVudAppcyBjb25mdXNpbmcuCgo+ICtjb25maWcgUElO
-Q1RSTF9BTUxPR0lDCgpUaGVyZSBpcyBhbHJlYWR5IFBJTkNUUkxfQU1MT0dJQ19DMyBhbmQgUElO
-Q1RSTF9BTUxPR0lDX1Q3CmFzIHdpbGwgYmUgdmVyeSBhcHBhcmVudCB3aGVuIHlvdSBtb3ZlIHRo
-aXMgZHJpdmVyLgoKV2hhdCBpcyBhICpwcm9wZXIqIG5hbWUgZm9yIHRoaXMgZmFtaWx5IG9mIFNv
-Q3M/Cgo+ICtNT0RVTEVfTElDRU5TRSgiRHVhbCBCU0QvR1BMIik7CgpPbiB0aGUgdG9wIG9mIHRo
-ZSBmaWxlIHlvdSBoYXZlOgo+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1v
-bmx5CgpTbyB0aGlzIGRvZXMgbm90IGFkZCB1cC4gRml4IG9uZSBvciB0aGUgb3RoZXIuCgpZb3Vy
-cywKTGludXMgV2FsbGVpagoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
-bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
-bGludXgtYW1sb2dpYwo=
+On Wed, Jan 22, 2025 at 11:25:59AM +0800, Xianwei Zhao wrote:
+> Add the dt-bindings for Amlogic pin controller, and add a new
+> dt-binding header file which document the GPIO bank names of
+> all Amlogic subsequent SoCs.
+
+Did you mean 'all subsequent Amlogic SoCs'? How can you know that? 
+Future SoCs may be different.
+
+Update the subject to say this is for A4 SoC.
+
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  .../bindings/pinctrl/amlogic,pinctrl-a4.yaml       | 127 +++++++++++++++++++++
+>  include/dt-bindings/pinctrl/amlogic,pinctrl.h      |  46 ++++++++
+>  2 files changed, 173 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
+> new file mode 100644
+> index 000000000000..c4fdcd69bbf5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
+> @@ -0,0 +1,127 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/amlogic,pinctrl-a4.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic pinmux controller
+> +
+> +maintainers:
+> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+> +
+> +allOf:
+> +  - $ref: pinctrl.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,pinctrl-a4
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 2
+
+Do you really need 2^64 address space to define the GPIO nodes?
+
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^gpio@[0-9a-f]+$":
+> +    type: object
+> +
+> +    properties:
+> +      reg:
+> +        minItems: 1
+> +        items:
+> +          - description: pin config register
+> +          - description: pin mux setting register (some special pin fixed function)
+> +          - description: pin drive strength register (optional)
+> +
+> +      reg-names:
+> +        minItems: 1
+> +        items:
+> +          - const: gpio
+> +          - const: mux
+> +          - const: ds
+> +
+> +      gpio-controller: true
+> +
+> +      "#gpio-cells":
+> +        const: 2
+> +
+> +      gpio-ranges:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - reg
+> +      - reg-names
+> +      - gpio-controller
+> +      - "#gpio-cells"
+> +      - gpio-ranges
+> +
+> +    additionalProperties: false
+
+Move this above 'properties'
+
+> +
+> +  "^func-[0-9a-z-]+$":
+> +    type: object
+> +    patternProperties:
+> +      "^group-[0-9a-z-]+$":
+> +        type: object
+> +        allOf:
+> +          - $ref: /schemas/pinctrl/pincfg-node.yaml
+> +          - $ref: /schemas/pinctrl/pinmux-node.yaml
+> +
+> +        required:
+> +          - pinmux
+> +    additionalProperties: false
+
+Move this above 'patternProperties'
+
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
+> +    apb {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +      periphs_pinctrl: pinctrl {
+> +        compatible = "amlogic,pinctrl-a4";
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        ranges;
+> +
+> +        gpio@14 {
+> +          reg = <0 0x14 0 0x10>, <0 0x14 0 0x10>;
+
+Both registers at the same address? I hope that's a typo.
+
+> +          reg-names = "gpio", "mux";
+> +          gpio-controller;
+> +          #gpio-cells = <2>;
+> +          gpio-ranges = <&periphs_pinctrl 0 8 10>;
+> +        };
+> +
+> +        func-uart-b {
+> +          group-default {
+> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 1, 4)>;
+> +            bias-pull-up;
+> +            drive-strength-microamp = <4000>;
+> +          };
+> +
+> +          group-pins1 {
+> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 5, 2)>;
+> +            bias-pull-up;
+> +            drive-strength-microamp = <4000>;
+> +          };
+> +        };
+> +
+> +        func-uart-c {
+> +          group-default {
+> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 3, 1)>,
+> +                     <AML_PINMUX(AMLOGIC_GPIO_B, 2, 1)>;
+> +            bias-pull-up;
+> +            drive-strength-microamp = <4000>;
+> +          };
+> +        };
+> +      };
+> +    };
+> diff --git a/include/dt-bindings/pinctrl/amlogic,pinctrl.h b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
+> new file mode 100644
+> index 000000000000..7d40aecc7147
+> --- /dev/null
+> +++ b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
+> @@ -0,0 +1,46 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_AMLOGIC_PINCTRL_H
+> +#define _DT_BINDINGS_AMLOGIC_PINCTRL_H
+> +/* Normal PIN bank */
+> +#define AMLOGIC_GPIO_A		0
+> +#define AMLOGIC_GPIO_B		1
+> +#define AMLOGIC_GPIO_C		2
+> +#define AMLOGIC_GPIO_D		3
+> +#define AMLOGIC_GPIO_E		4
+> +#define AMLOGIC_GPIO_F		5
+> +#define AMLOGIC_GPIO_G		6
+> +#define AMLOGIC_GPIO_H		7
+> +#define AMLOGIC_GPIO_I		8
+> +#define AMLOGIC_GPIO_J		9
+> +#define AMLOGIC_GPIO_K		10
+> +#define AMLOGIC_GPIO_L		11
+> +#define AMLOGIC_GPIO_M		12
+> +#define AMLOGIC_GPIO_N		13
+> +#define AMLOGIC_GPIO_O		14
+> +#define AMLOGIC_GPIO_P		15
+> +#define AMLOGIC_GPIO_Q		16
+> +#define AMLOGIC_GPIO_R		17
+> +#define AMLOGIC_GPIO_S		18
+> +#define AMLOGIC_GPIO_T		19
+> +#define AMLOGIC_GPIO_U		20
+> +#define AMLOGIC_GPIO_V		21
+> +#define AMLOGIC_GPIO_W		22
+> +#define AMLOGIC_GPIO_X		23
+> +#define AMLOGIC_GPIO_Y		24
+> +#define AMLOGIC_GPIO_Z		25
+> +
+> +/* Special PIN bank */
+> +#define AMLOGIC_GPIO_DV		26
+> +#define AMLOGIC_GPIO_AO		27
+> +#define AMLOGIC_GPIO_CC		28
+> +#define AMLOGIC_GPIO_TEST_N	29
+> +#define AMLOGIC_GPIO_ANALOG	30
+> +
+> +#define AML_PINMUX(bank, offset, mode)	(((((bank) << 8) + (offset)) << 8) | (mode))
+> +
+> +#endif /* _DT_BINDINGS_AMLOGIC_PINCTRL_H */
+> 
+> -- 
+> 2.37.1
+> 
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
