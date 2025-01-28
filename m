@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A18EBC0218D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Jan 2025 22:32:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 565F5C0218A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Jan 2025 22:32:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ncQVO9AF1BykVYhtWWIQOnh7lEBQJRwKTZI46TH/rW4=; b=3xvLTphx4LkB5x
-	IpCWqLiUEXjNT1GKmJ3eCjbA7rF1rOWaKYDjeGrqbv44Bw49d8HGNMViNY9wmcj8q61xNEQf5mutl
-	uJxpn6EzkStmxw2Nc6/q9CksxZRDLMn+F63wNR4BYa+dpvrZwLkXb/vInW28cL6h1NWcJR1kWsxr0
-	bTZjofrk9IxmxmCBHUsWNMON5xIwVyLvNSD198YI2i7Iz+Bd6v/CpI5EQFOBhCdJsHrYPHAmTzmWD
-	b+38MPVBNqk7ktm+qFiDG+3CkaW4f3RgBZb+eKgvSxEcRpIG4IrfiPyDfvdFu+1PQKk0XK+VslzKa
-	YFoqK8SqSjTYBfyXedtA==;
+	List-Owner; bh=lmD11N1z8n0Iltx8FlK3Zu5pBAp7fVnUi3ri3q+Kh1I=; b=FFVZYPWCu/l95m
+	dWAnKH9Qg6kVbvYYGSTiRdFv+gSM3ubi2vdeaQNIQGlEeUGQ6mkGxU+f8fBIDx/gtH4lswtWrAbIr
+	YF4FfoZtnv/oH0hv6xJUwZkPsfTbaYAyij8sSMW0A1fVfpRAuhU9zPgh7QC7j4KXicxFyqtkmu+PI
+	9FVr17Ij65okRidnCl/d0Bawwn+Kai/9M1lx/GyyVwnIV4rYQiEvoOB2I6ra4SzBBn3foZAlxcYG3
+	QS1CHoTLSheS7pezRxnMQ+RQ9L0jFICPYpFmnOGp9rlttgocw6Xsfzez7JsN4kBCJOkXcu3qR7SLa
+	WGdHNnY+1eJzc2iCRbqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tcu8S-00000005xS2-24qp;
-	Tue, 28 Jan 2025 22:32:44 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1tcu8V-00000005xWH-49oe;
+	Tue, 28 Jan 2025 22:32:47 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tcu8P-00000005xNv-4217
+	id 1tcu8R-00000005xPn-248r
 	for linux-amlogic@lists.infradead.org;
-	Tue, 28 Jan 2025 22:32:43 +0000
+	Tue, 28 Jan 2025 22:32:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1738103561;
+	s=mimecast20190719; t=1738103562;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=N/Il65n7d2FNdwRu7j2DfL+2gqiTcQ9juutchj4unv8=;
-	b=Ifjea2LGBMv4MDgPgQVSJTPvpvtiCaCmXIBVTplcx1dLlpy/GLqVmzwPthIqiVRzUJou6M
-	sqwrpxPb598LyAyqhDT61ynWzCBB9CwbK8nRmTlCKFyg3x/qA3ldrZYduTGj7+wwmPXZyu
-	zB4hJV3nGBG/dyWHJDJNJXAQkcHnjYs=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+	bh=8ppu6Hxn7eds6hVdudyY6IyGaw0deGVqQvLkC+3cElE=;
+	b=BCSEyag1g++JmAvbd0EAqym02kzydiArLJxh7ptTra2bd3xMEs6RxVjy3vIEvVa76TxSzl
+	ILwYkU017IEH9YJUGgKeOB03ogmSkbD0Rj6cMrpVNEmCjbIDxnXJTvoKOJvqEw/vDIkEcI
+	W617JSbd+DKqoz6jbE8uupEJvIMUFWM=
+Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-198-Z5t1DH4TPUSNjcxacOkECA-1; Tue,
- 28 Jan 2025 17:32:35 -0500
-X-MC-Unique: Z5t1DH4TPUSNjcxacOkECA-1
-X-Mimecast-MFC-AGG-ID: Z5t1DH4TPUSNjcxacOkECA
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-564-GPMXt3rGMeahSr_HoeOi3A-1; Tue,
+ 28 Jan 2025 17:31:13 -0500
+X-MC-Unique: GPMXt3rGMeahSr_HoeOi3A-1
+X-Mimecast-MFC-AGG-ID: GPMXt3rGMeahSr_HoeOi3A
 Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id BA29A195608B;
-	Tue, 28 Jan 2025 22:32:27 +0000 (UTC)
+	by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 3676E1955DCC;
+	Tue, 28 Jan 2025 22:31:07 +0000 (UTC)
 Received: from asrivats-na.rmtustx.csb (unknown [10.2.16.231])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id F1FCA18008D4;
-	Tue, 28 Jan 2025 22:32:16 +0000 (UTC)
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 2C55218008D4;
+	Tue, 28 Jan 2025 22:30:55 +0000 (UTC)
 From: Anusha Srivatsa <asrivats@redhat.com>
-Date: Tue, 28 Jan 2025 17:29:34 -0500
-Subject: [PATCH 10/14] drm/stm: move to devm_platform_ioremap_resource()
- usage
+Date: Tue, 28 Jan 2025 17:29:27 -0500
+Subject: [PATCH 03/14] drm/hisilicon: move to
+ devm_platform_ioremap_resource() usage
 MIME-Version: 1.0
-Message-Id: <20250128-cocci-memory-api-v1-10-0d1609a29587@redhat.com>
+Message-Id: <20250128-cocci-memory-api-v1-3-0d1609a29587@redhat.com>
 References: <20250128-cocci-memory-api-v1-0-0d1609a29587@redhat.com>
 In-Reply-To: <20250128-cocci-memory-api-v1-0-0d1609a29587@redhat.com>
 To: Joel Stanley <joel@jms.id.au>, 
@@ -107,20 +107,20 @@ Cc: linux-aspeed@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
  imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
  linux-stm32@st-md-mailman.stormreply.com, linux-tegra@vger.kernel.org, 
  linux-doc@vger.kernel.org, Anusha Srivatsa <asrivats@redhat.com>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738103410; l=1552;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738103410; l=2919;
  i=asrivats@redhat.com; s=20250122; h=from:subject:message-id;
- bh=SBQvLlE5WdolnkNtVzzAyIi/XRoTRcXCfSRhVrqoWuM=;
- b=gTFB4qqvXFU3N6mS6uEVgMa+d38j8Ixc/qOlT74VphyV+UdXlGHEHukzxa+uSO2Rhcqqyl575
- DbvTLy76BbYBQleInZIE9L46We9yrtR4G/j4tW0IKFhF1vxosUJKLo9
+ bh=Psk2ovSxNSmPk2j8mgWkV0b48v8ExBeAmG1+F82B7t4=;
+ b=1sq/7D6zzuwyG7D9t25OtBv+NjBas+ltESTs3qH9oSOySLstuoe5U0ByLencsB3oi9NzB5N1T
+ 0tjbtLixIFCDdv/UfLyukM8IVBaBlWK/938tBYGgq+90ECO4eJGfjlp
 X-Developer-Key: i=asrivats@redhat.com; a=ed25519;
  pk=brnIHkBsUZEhyW6Zyn0U92AeIZ1psws/q8VFbIkf1AU=
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: K1pCCfqaG8x2qZql8-0sD6fzdHria-qMpEkaOGaTHK8_1738103548
+X-Mimecast-MFC-PROC-ID: CvhI42b_60yJC_iTfsDbJn491UaKr3AKm1ir7nKGnZI_1738103468
 X-Mimecast-Originator: redhat.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250128_143242_119905_1AEC9D5B 
-X-CRM114-Status: GOOD (  10.17  )
+X-CRM114-CacheID: sfid-20250128_143243_603926_0A2F09F2 
+X-CRM114-Status: GOOD (  13.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,36 +152,63 @@ identifier pdev;
 -ioremap_res = devm_ioremap_resource(...);
 +ioremap_res = devm_platform_ioremap_resource(pdev,0);
 
-Cc: Yannick Fertre <yannick.fertre@foss.st.com>
-Cc: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Cc: Philippe Cornu <philippe.cornu@foss.st.com>
+Cc: Xinliang Liu <xinliang.liu@linaro.org>
+Cc: Tian Tao <tiantao6@hisilicon.com>
+Cc: Xinwei Kong <kong.kongxinwei@hisilicon.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>
+Cc: Yongqin Liu <yongqin.liu@linaro.org>
+Cc: John Stultz <jstultz@google.com>
+
 Signed-off-by: Anusha Srivatsa <asrivats@redhat.com>
 ---
- drivers/gpu/drm/stm/ltdc.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c    | 4 +---
+ drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c | 4 +---
+ 2 files changed, 2 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-index 54a73753eff98902012c6012914fa8c6482affbd..ba315c66a04d72758b9d3cfcd842432877f66d3a 100644
---- a/drivers/gpu/drm/stm/ltdc.c
-+++ b/drivers/gpu/drm/stm/ltdc.c
-@@ -1900,7 +1900,6 @@ int ltdc_load(struct drm_device *ddev)
- 	struct drm_panel *panel;
- 	struct drm_crtc *crtc;
- 	struct reset_control *rstc;
+diff --git a/drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c b/drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c
+index 2eea9fb0e76bf3ead8f5914e6ebb65b5b3603b9a..e80debdc41763357cb2cf321205c0dfac80a911e 100644
+--- a/drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c
++++ b/drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c
+@@ -825,7 +825,6 @@ static const struct component_ops dsi_ops = {
+ static int dsi_parse_dt(struct platform_device *pdev, struct dw_dsi *dsi)
+ {
+ 	struct dsi_hw_ctx *ctx = dsi->ctx;
 -	struct resource *res;
- 	int irq, i, nb_endpoints;
- 	int ret = -ENODEV;
  
-@@ -1966,8 +1965,7 @@ int ltdc_load(struct drm_device *ddev)
- 		reset_control_deassert(rstc);
+ 	ctx->pclk = devm_clk_get(&pdev->dev, "pclk");
+ 	if (IS_ERR(ctx->pclk)) {
+@@ -833,8 +832,7 @@ static int dsi_parse_dt(struct platform_device *pdev, struct dw_dsi *dsi)
+ 		return PTR_ERR(ctx->pclk);
  	}
  
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	ldev->regs = devm_ioremap_resource(dev, res);
-+	ldev->regs = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(ldev->regs)) {
- 		DRM_ERROR("Unable to get ltdc registers\n");
- 		ret = PTR_ERR(ldev->regs);
+-	ctx->base = devm_ioremap_resource(&pdev->dev, res);
++	ctx->base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(ctx->base)) {
+ 		DRM_ERROR("failed to remap dsi io region\n");
+ 		return PTR_ERR(ctx->base);
+diff --git a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c b/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
+index 2eb49177ac42bc6dba692328cca5c99d5925041c..45c4eb008ad5d639340f769ad022d186ec454722 100644
+--- a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
++++ b/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
+@@ -844,7 +844,6 @@ static struct drm_plane_funcs ade_plane_funcs = {
+ static void *ade_hw_ctx_alloc(struct platform_device *pdev,
+ 			      struct drm_crtc *crtc)
+ {
+-	struct resource *res;
+ 	struct device *dev = &pdev->dev;
+ 	struct device_node *np = pdev->dev.of_node;
+ 	struct ade_hw_ctx *ctx = NULL;
+@@ -856,8 +855,7 @@ static void *ade_hw_ctx_alloc(struct platform_device *pdev,
+ 		return ERR_PTR(-ENOMEM);
+ 	}
+ 
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	ctx->base = devm_ioremap_resource(dev, res);
++	ctx->base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(ctx->base)) {
+ 		DRM_ERROR("failed to remap ade io base\n");
+ 		return ERR_PTR(-EIO);
 
 -- 
 2.47.0
