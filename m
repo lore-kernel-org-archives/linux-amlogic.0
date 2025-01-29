@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A327C02193
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Jan 2025 15:34:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B343C02190
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Jan 2025 15:40:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=DBgj2OBTNPcO6L60iE3a0qPgb2Tv/G9SwJQSaeBEELA=; b=3WncCpS8rMmlPZWI1kz743F/hL
-	tMBw4ZiknF7/CGfUjbh1ln9XTQpqgE0x10VRAD3LCIC7W6KpyVCp6ZftMm08xD/LcNxrhU0i73iXD
-	XXfV4gWe7RdSscreaS/wp5VkaSU1fuf0EadgySHyE1m87Z980r5QmLWuxH+DwrPhVKxlguoQitKxb
-	QF8TuNCy0rlSdesw9xIqmYary43e297wfui72/XYh6D9Ls4mhlSfzMK5pueewdCYksyBAteOxNlIK
-	dKTLUmC8YA3SDGC+v8n7fKClJBulG6JOTokMbiC737+Nw8H3HOgdRJgNsKs1KFnW1YSdZHXKV0koW
-	nJoabcBg==;
+	bh=mKrW6CpIYnha8S1f51Ae5tlrKi0S05qvaW0dItyjBtg=; b=bUFZt1bHaX+bfPJ/0zrIOef717
+	MukWQbUc7tyIj9YqdDuD7TKq9Sl3PF48QuN3CcaRIlKnkjb/eoElK8Rtca8wkoEnsoaJDeh2kp78Y
+	zqSuj1aEwFMHqV1pjtnqi4NLBiS0gDh4CBzIXF/NtN7P8yOdS/TL/aIu6MoYacIb8Me7PpJ1YBTr5
+	m0Pc2uwYUzKP0YLqrnq6F5/72rWPk2bxElPSa4DPBCaR2Y793nZEOeB2SfpObSbntj1pojGsLujsc
+	l1C4+GlT+oO/vRLlVnAwifGMpt3cqCIKMqUMrzVQbkunYwgvZYQsnA4MD/BRSCH2jECjxw71WqQYG
+	pkrJm/SA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tdA5G-00000007GZU-3RuD;
-	Wed, 29 Jan 2025 15:34:30 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1tdAAk-00000007HLZ-0YKQ;
+	Wed, 29 Jan 2025 15:40:10 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tdA4F-00000007GQj-1zIh;
-	Wed, 29 Jan 2025 15:33:28 +0000
+	id 1tdAAh-00000007HJx-1DQY;
+	Wed, 29 Jan 2025 15:40:08 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id A2881A41A66;
-	Wed, 29 Jan 2025 15:31:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8610C4CED1;
-	Wed, 29 Jan 2025 15:33:24 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 9CE8C5C5DB8;
+	Wed, 29 Jan 2025 15:39:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B54A4C4CED3;
+	Wed, 29 Jan 2025 15:40:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738164806;
-	bh=MINsAlGP+IWemPuIKVuQIkc4AnIYXc8ewNTg0fTGbZk=;
+	s=k20201202; t=1738165205;
+	bh=H7Wno81VDmAC8LZxebVHqmFv78aV+GntC7UloBA6wQA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tqrvmPa5UhekDfsy+cPdeHlTD9eEK6B5/Kuz61v80rcNV7C5be85yrZ3LkZThJuqZ
-	 REhX4Sx6D+sYCmlPMDzeLzuams0lpiG6AfMG21NglJQMD4qblG2xuEBx1Q3hernB8w
-	 eG3UNI53K925jPmHC4QVjBlPQH7d815/egQX0aBgMGqoIsA5BruQ9KbbuqGxk/zAY2
-	 zcTOw7JSTxKnnmHMk/4f7gn6RdZGjntB1ogpqPG4kBR27Hc1KH7qcmlVtke7DwPHfe
-	 BUaaDWTH3JAPzWVYwfALZJW/P8WjAl3TbOMHbarnsPcyJAtx7JESkUJtZKpw2N+Xz4
-	 Bl94cgjlVNDEQ==
-Date: Wed, 29 Jan 2025 16:33:22 +0100
+	b=blVJU1tBuGlKF4p47SaFusm9eG5WZSgkALpUADxFuWuQiIFr9qF7DNpOhnbEUeXbs
+	 7viGrnwFOcJSwLPYI+Ehdw7eY23dv9mEQ7o9fqlXjrbnP3pst1omLXvrGlE1aBm30m
+	 Bi7pbYb1UPpMvMHUuyONufYRLOO7ZVEBsAkaSFoyED0QRRyozXtecJBokIiLtaVWOO
+	 q0djJLUSg4eE2yATE1o5zFnBrTEQd2LiyidKL5wQWTiQ5Taf9QVxZKqyI4HsxEX9wi
+	 K7GNZwBmVTPWfpazFvFm2ldBBFkDsVN11cDjiMvXt+chOhLgfReDoepEnSHIosPwoR
+	 O1uHFNJcIFiaA==
+Date: Wed, 29 Jan 2025 16:40:01 +0100
 From: Maxime Ripard <mripard@kernel.org>
 To: Anusha Srivatsa <asrivats@redhat.com>
 Cc: Joel Stanley <joel@jms.id.au>, 
@@ -72,16 +72,16 @@ Cc: Joel Stanley <joel@jms.id.au>,
 	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
 	linux-amlogic@lists.infradead.org, imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
 	linux-stm32@st-md-mailman.stormreply.com, linux-tegra@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 03/14] drm/hisilicon: move to
+Subject: Re: [PATCH 06/14] drm/mxsfb: move to
  devm_platform_ioremap_resource() usage
-Message-ID: <6ccprzvnxkrqphxrsfp5gofzkicqyibjpveniup7wpra7p2tg2@x5tz45kit2oc>
+Message-ID: <ivwhzbasvxnnnzoqpqd6w24d6wma6pufcrc6jl7b6gsyzrnup2@r36hiijgac7m>
 References: <20250128-cocci-memory-api-v1-0-0d1609a29587@redhat.com>
- <20250128-cocci-memory-api-v1-3-0d1609a29587@redhat.com>
+ <20250128-cocci-memory-api-v1-6-0d1609a29587@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20250128-cocci-memory-api-v1-3-0d1609a29587@redhat.com>
+In-Reply-To: <20250128-cocci-memory-api-v1-6-0d1609a29587@redhat.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250129_073327_653925_D2BAFFB8 
-X-CRM114-Status: GOOD (  10.62  )
+X-CRM114-CacheID: sfid-20250129_074007_523308_55DFFBCD 
+X-CRM114-Status: GOOD (  10.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,26 +93,26 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8083151058573668407=="
+Content-Type: multipart/mixed; boundary="===============1927428111459528787=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============8083151058573668407==
+--===============1927428111459528787==
 Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="dupye724qr742yg3"
+	protocol="application/pgp-signature"; boundary="j6fxajocgelt3kwa"
 Content-Disposition: inline
 
 
---dupye724qr742yg3
+--j6fxajocgelt3kwa
 Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 03/14] drm/hisilicon: move to
+Subject: Re: [PATCH 06/14] drm/mxsfb: move to
  devm_platform_ioremap_resource() usage
 MIME-Version: 1.0
 
-On Tue, Jan 28, 2025 at 05:29:27PM -0500, Anusha Srivatsa wrote:
+On Tue, Jan 28, 2025 at 05:29:30PM -0500, Anusha Srivatsa wrote:
 > Replace platform_get_resource + devm_ioremap_resource
 > with just devm_platform_ioremap_resource()
 >=20
@@ -128,35 +128,30 @@ On Tue, Jan 28, 2025 at 05:29:27PM -0500, Anusha Srivatsa wrote:
 > -ioremap_res =3D devm_ioremap_resource(...);
 > +ioremap_res =3D devm_platform_ioremap_resource(pdev,0);
 >=20
-> Cc: Xinliang Liu <xinliang.liu@linaro.org>
-> Cc: Tian Tao <tiantao6@hisilicon.com>
-> Cc: Xinwei Kong <kong.kongxinwei@hisilicon.com>
-> Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> Cc: Yongqin Liu <yongqin.liu@linaro.org>
-> Cc: John Stultz <jstultz@google.com>
->=20
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Stefan Agner <stefan@agner.ch>
 > Signed-off-by: Anusha Srivatsa <asrivats@redhat.com>
 
 Reviewed-by: Maxime Ripard <mripard@kernel.org>
 
 Maxime
 
---dupye724qr742yg3
+--j6fxajocgelt3kwa
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ5pKQgAKCRAnX84Zoj2+
-dgnAAYDocV8Hi1jItqly1rX3RgJxBvbHB7dRM9x+ADwfWacUO02HGMnqwmBc16Bx
-dkudzNMBf01rR/o3BCIIpg5xa99y2kiswp8ppBoSmPORAmV5OyaRnLWfOw8PehtB
-NryfqyN45g==
-=XqRS
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ5pL0QAKCRAnX84Zoj2+
+dpu8AX92mKVtYr4NesUkaNaAZLgSW9h3CZMfohWW2Hi3OHXPAvC1LmJnp0Zowbq8
+4FFBL/wBf2VL8YqmcT3T9+XhphtMFWv/+85mR4/YE14rKn4brg9xZxj2nw0jIWJ5
+ZU3psZFZbg==
+=rMo6
 -----END PGP SIGNATURE-----
 
---dupye724qr742yg3--
+--j6fxajocgelt3kwa--
 
 
---===============8083151058573668407==
+--===============1927428111459528787==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -167,5 +162,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============8083151058573668407==--
+--===============1927428111459528787==--
 
