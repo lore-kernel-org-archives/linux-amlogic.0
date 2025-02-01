@@ -4,66 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88D13C0218A
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Feb 2025 10:15:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D43BAC0218A
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Feb 2025 10:37:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Cc:From:
 	Subject:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+tJChNYvT1dxrPvXVdOw4Qaj6znoC5YucUL5+J2RJig=; b=RHErWw9ofKlJ3r
-	XYoxHuv0sLJsVMx6OjJ8iEXIRYO2XhOm/fSVgUYhmTRAJAKh9pVAI/wysnoE2pifPm71Rlzj11TQQ
-	4wcv8SLArJHocn89LVyBo3590LUIPuwCIC/COaI3G2nFHOgCcTdL+6zSowPxvGyZ2dBL1lk1XXdhY
-	6I57uZ0uBWtmV0k60rPAnqwPHoSlk3tbnbSarSDmeFNLOLVNKN1YVRrWEBv3Mvcxtv7tEWo92pz6Q
-	nhq3sh72OlxCBjW1mZ5KucyOYn35xv46NAS6n/ydKQrk4XLdAxGQJN2+V9u0xb69cG8/rSd28+GdB
-	sQNmKMYF+TW9Tr7XBVuA==;
+	List-Owner; bh=p8c+J2ZLBS3P4mMEMYxqDDR6W+ytUwkqy2UF8tyKnf4=; b=YuhMAm9/JYae3n
+	kDFRpA0rPoP4Po+a4Sv1q2ixTDMIXpvZfausLt0lJWd/ZUgCTRaB/Aj2ZHNOedDVm0JCFMMdu0lDD
+	L8i5hI17Pq0kIyPMN1vJc3+zgYMORbPz3N/wUBw9B5mbSFHkzIRTNJyeLgTITKwZBnuWvpiYwuRvx
+	hiIxHLmDOjkMXNzYLdXtp9zZhGJGWy0AoIuHdZNZN6nF8w9ZbYRmDc0a7gRDRkuLESnrUFH1ycHM7
+	9lUd1oE5jPlcASIZvRC0i18SFnRKhkt1ceAKoPgyIhfMrSyubPI1mzLhsdD2jjI3D5Yl4aWsGMr37
+	JufcrYlEZhuV+AtKnLng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1teAWf-0000000C7u2-3BOX;
-	Sat, 01 Feb 2025 10:14:57 +0000
-Received: from out-183.mta1.migadu.com ([2001:41d0:203:375::b7])
+	id 1teAsY-0000000C9uL-3o6z;
+	Sat, 01 Feb 2025 10:37:34 +0000
+Received: from out-184.mta0.migadu.com ([91.218.175.184])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1teAWd-0000000C7tK-0K2k
+	id 1teAsV-0000000C9tz-1Bxz
 	for linux-amlogic@lists.infradead.org;
-	Sat, 01 Feb 2025 10:14:56 +0000
+	Sat, 01 Feb 2025 10:37:33 +0000
 Mime-Version: 1.0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1738404892;
+	s=key1; t=1738406243;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=96rZKH5baF3RIgzA4V8zMqp7dM/6uPD7zsmS9yr/NDE=;
-	b=IbDdiCn74N1qJ6m4LzTt+CYPP0D5o2at45JhSgscXm/m84S9+RKvJ4hLz/r5oG8cugk5vA
-	/ejbgNK8RFTW6XoafI3gJJwuYefXYgJhnGXDXPS3nWb3HGwpVsaMYz1+89uGtdiCI8DQZq
-	ma/beqUPeM9aCii5Ht3h8HhnU1MKrXoB6PkDmKADjwBO7vfrYTEK+eMBNc+zVpShlgcx0S
-	62KgtcLg8Zk0Rr5x4qJPWPk4oW5Po+FHLg+xwnajhzX99bC6MWp2O+HgKFVcslWNAqSBmk
-	c9bHqfjtBLXueorjXNedhQwGp7puGZPpGgkI7l8qKxJLeTRszp798AwvSYmFVw==
-Date: Sat, 01 Feb 2025 10:14:03 +0000
-Message-Id: <D7H1348E1P68.3JUDJXGJYILFS@postmarketos.org>
-Subject: Re: [PATCH 0/2] Add support for Xiaomi Mi TV Stick
+	bh=PATAQ/9BwIrWJ3JG6zuTUGePxEvjmurrP+nZnbHjNSM=;
+	b=pTBB+O0KTKCP9wTrBMgiLMyxMhEgbSIKEe7gFkbkqj+M9bU6lh7kxg5MEHk2wfS0+PVSRu
+	hnf78jkW3RAFs6CGJAgLCkgHVwr440+Td5zj12/HeuPGp5EEkaGlTLFH2ghxaTuFXzsFiF
+	+5VZjumqIIEwxgpbw9DzYrLP2o7CSAOMAAHbvSjn1aSApAINi8jFMyQt4VnHsTETrG9SPK
+	KhbdR1yqNSfu9PPVEAisb3nuR14Ys06aNZZGV4d87nc8P0X8T1b7wv5jz/ydGSMzrBkENQ
+	l8vl05ah/dbQuQeF4sRveDRHsPI6Hfjv/PImveicpK0OGSxFSA1tci0mvlkA1Q==
+Date: Sat, 01 Feb 2025 10:36:37 +0000
+Message-Id: <D7H1KE36MWE6.1G0PMUXEGX4XG@postmarketos.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add Xiaomi Mi TV Stick
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: "Ferass El Hafidi" <funderscore@postmarketos.org>
-Cc: "Conor Dooley" <conor+dt@kernel.org>,
- <linux-amlogic@lists.infradead.org>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Jerome Brunet" <jbrunet@baylibre.com>,
- <linux-arm-kernel@lists.infradead.org>,
- <~postmarketos/upstreaming@lists.sr.ht>, <devicetree@vger.kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Kevin Hilman"
- <khilman@baylibre.com>, <linux-kernel@vger.kernel.org>, "Karl Chan"
- <exxxxkc@getgoogleoff.me>, "Martin Blumenstingl"
- <martin.blumenstingl@googlemail.com>, "Artur Weber"
- <aweber.kernel@gmail.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: "Neil Armstrong" <neil.armstrong@linaro.org>, "Kevin Hilman"
+ <khilman@baylibre.com>, "Jerome Brunet" <jbrunet@baylibre.com>, "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, <linux-amlogic@lists.infradead.org>,
+ <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
+ "Artur Weber" <aweber.kernel@gmail.com>, "Karl Chan"
+ <exxxxkc@getgoogleoff.me>
+To: "Christian Hewitt" <christianshewitt@gmail.com>
 References: <20250131200319.19996-1-funderscore@postmarketos.org>
- <173835855352.46011.13506160179490240246.robh@kernel.org>
-In-Reply-To: <173835855352.46011.13506160179490240246.robh@kernel.org>
+ <20250131200319.19996-2-funderscore@postmarketos.org>
+ <5D2DE475-BD47-4AAB-9638-3F1BF6C57811@gmail.com>
+In-Reply-To: <5D2DE475-BD47-4AAB-9638-3F1BF6C57811@gmail.com>
 X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250201_021455_241565_C2929EB6 
-X-CRM114-Status: UNSURE (   5.26  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250201_023731_768353_0B468475 
+X-CRM114-Status: GOOD (  15.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,29 +74,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi!
-
-On Fri Jan 31, 2025 at 9:23 PM UTC, Rob Herring (Arm) wrote:
-<snip>
-> arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dtb: pwm@86c0: clock-names: False schema does not allow ['clkin0']
-> 	from schema $id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml#
-
-I don't think I touched that bit.
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts#n279
-
-> arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dtb: leds: led-white:default-state:0: 'heartbeat' is not one of ['on', 'off', 'keep']
-> 	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
-> arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dtb: leds: led-white: Unevaluated properties are not allowed ('default-state' was unexpected)
-> 	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
-
-I'll fix the rest in a v2, thanks!
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gU2F0IEZlYiAxLCAyMDI1IGF0IDU6NDUgQU0gVVRDLCBDaHJpc3RpYW4gSGV3aXR0IHdyb3Rl
+Ogo+ID4gT24gMSBGZWIgMjAyNSwgYXQgMTI6MDPigK9hbSwgRmVyYXNzIEVsIEhhZmlkaSA8ZnVu
+ZGVyc2NvcmVAcG9zdG1hcmtldG9zLm9yZz4gd3JvdGU6Cj4gPiAKPiA+IEZyb206IEZlcmFzcyBF
+bCBIYWZpZGkgPGZ1bmRlcnNjb3JlQHBvc3RtYXJrZXRvcy5vcmc+Cj4gPiAKPiA+IEFkZCBzdXBw
+b3J0IGZvciB4aWFvbWktYXF1YW1hbi4KPiA+IAo+ID4gU2lnbmVkLW9mZi1ieTogRmVyYXNzIEVs
+IEhhZmlkaSA8ZnVuZGVyc2NvcmVAcG9zdG1hcmtldG9zLm9yZz4KPiA+IC0tLQo+ID4gRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9hbWxvZ2ljLnlhbWwgfCAxICsKPiA+IDEg
+ZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9hbWxvZ2ljLnlhbWwgYi9Eb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2FtbG9naWMueWFtbAo+ID4gaW5kZXggMDY0Nzg1
+MWFlLi4wZGI3MDM4YjkgMTAwNjQ0Cj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvYXJtL2FtbG9naWMueWFtbAo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2FybS9hbWxvZ2ljLnlhbWwKPiA+IEBAIC03MCw2ICs3MCw3IEBAIHByb3Bl
+cnRpZXM6Cj4gPiAgICAgICAgICAgLSBlbnVtOgo+ID4gICAgICAgICAgICAgICAtIGFtbG9naWMs
+cDI0MQo+ID4gICAgICAgICAgICAgICAtIGxpYnJldGVjaCxhbWwtczgwNXgtYWMKPiA+ICsgICAg
+ICAgICAgICAgIC0geGlhb21pLGFxdWFtYW4KPgo+IElmIHRoaXMgaXMgUzgwNVkgbm90IFM4MDVY
+LCB5b3Ugc2hvdWxkIGFkZCBhIG5ldyBiaW5kaW5nIHNlY3Rpb24gZm9yCj4gUzgwNVkgZGV2aWNl
+cywgYW5kIGFkZCB0aGUgYm9hcmQgdGhlcmUuCgpXaWxsIGRvLiAgVGhhbmtzLgoKPgo+IGUuZy4g
+SSBkaWQgdGhpcyBmb3IgUzkwNUwgKEdYTFgpIGRldmljZXM6Cj4gaHR0cHM6Ly9wYXRjaHdvcmsu
+a2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LWFtbG9naWMvcGF0Y2gvMjAyNDA2MDQwODQxMzQuMzMx
+NTg0MS0xLWNocmlzdGlhbnNoZXdpdHRAZ21haWwuY29tLwo+Cj4gQ2hyaXN0aWFuCj4KPiA+ICAg
+ICAgICAgICAtIGNvbnN0OiBhbWxvZ2ljLHM4MDV4Cj4gPiAgICAgICAgICAgLSBjb25zdDogYW1s
+b2dpYyxtZXNvbi1neGwKPiA+IAo+ID4gLS0gCj4gPiAyLjQ3LjEKPiA+IAo+ID4gCj4gPiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4gbGludXgtYW1s
+b2dpYyBtYWlsaW5nIGxpc3QKPiA+IGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+
+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxv
+Z2ljCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGlu
+dXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3Jn
+Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dp
+Ywo=
