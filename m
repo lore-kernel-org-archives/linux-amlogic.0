@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58AA1C02196
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Feb 2025 09:20:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DFC4C02192
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Feb 2025 09:22:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:Subject:To:
+	Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lzc2HgrkOMw5US1FQGihb4PNgr2uqywINi85CrdKIME=; b=Fatd352lx7lOyM
-	7xAObnDtF5he3T+Dce6aAsI539BWsSWwQ4k2/mUaq/dSZyooFuMhE+ddFbsT5NAu9nVm11s881AKo
-	7PL2p3XqtEK/cdgmNLG17H/8pIycJE9HXPv4npQs0D2TNYfc41ysNrmIPLdtcbC5fgqJ4ObDstYCa
-	sid1U3LDv+LYnuLCFoRBCvaVlF/JLr10Bc0uX+x+X8BMq79mnNwoi7vrxyWKfuLAkO21KUqanVe5O
-	Pr0ELAKtIYpsGlN3kSxAA/4hLxvMqeJ7Es0nY7KT1zuMeXQKVK6YRaWgr3dZVsZqMTzHeso5ciyBQ
-	eRnrnHHsKFWiUFVIad4A==;
+	List-Owner; bh=RUwMOEKMKQkZcAcNQlXXz8OnUMuy+wWhhy62Q2oJyP4=; b=ct2CsFFkb+J5j+
+	5vp7T3VpvA96z/PlpYP2R7YfAz9E/qORUESW+0BfdumnyWAXGQztn6GAwTzJ351aGAjILWzo0D+BD
+	/TpJ/RGloySFCcZvOECYhYtL1kmp1+ybLavEJclMqxDi8wz9OqU1Qs7Hgxk306ojhqlE/AWDOROrP
+	R7z4cUzgJ+Rz0W6F/yC/5BzfPCm80zJzfBcbybLgWOE5weJPPDwI47nCrZ3NJQxhPqdhbXz4Jvq9s
+	VZNWl670Fd3ZnzAM0PLgOJ8d2iQVshuk424dcYwMERrEDiHlgNtswLQPMS8O8deAzYR5xDMtVRDtD
+	MvUgtqRE/zVW6/u8hb8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tesce-0000000EyHj-0f3f;
-	Mon, 03 Feb 2025 09:20:04 +0000
-Received: from out-184.mta0.migadu.com ([91.218.175.184])
+	id 1tesfF-0000000EyrF-3LB9;
+	Mon, 03 Feb 2025 09:22:45 +0000
+Received: from out-185.mta1.migadu.com ([95.215.58.185])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tesYp-0000000Exff-3d99
+	id 1tesab-0000000ExwP-4Bne
 	for linux-amlogic@lists.infradead.org;
-	Mon, 03 Feb 2025 09:16:09 +0000
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+	Mon, 03 Feb 2025 09:17:59 +0000
+Mime-Version: 1.0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1738574160;
+	s=key1; t=1738574263;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=PfeWW2izyOBXVFTCSVVMUxMdxx1jsAYi7jHeVQMVX3c=;
-	b=jb6HuZupjRVpg9DfAKsHsj+VhRaKkLjRURL/Kb2DUoMaC4THaY8AjgAUAfTM/uQ+Zi4jab
-	UHUUtC13hejHEX8NHD9bmk0JuqAFOwQkZcqqtGvEschBblUWyvLhghxL4J/qXZuHeLrMSo
-	A4Um9O6zxLbZm5oNu9F4uPeye3aKK8W6dIFWqoUCfckfr59C1rF0FykNF81vlPteRJNJWP
-	vjGiGQF0708CbixVsqgbH32O8u93pyuIzeNdoEuAv2g7h+36brKEm+PGnbFWJlRsciitlA
-	oW8EI/mPTANq3dZ1ZBSEeTgHz9m2L9LLLn4vuL5GYfYu2cvOqh8Ji3N95lf79g==
-From: Ferass El Hafidi <funderscore@postmarketos.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH v3 2/2] arm64: dts: amlogic: add support for xiaomi-aquaman/Mi TV Stick
-Date: Mon,  3 Feb 2025 09:14:53 +0000
-Message-ID: <20250203091453.15751-3-funderscore@postmarketos.org>
-In-Reply-To: <20250203091453.15751-1-funderscore@postmarketos.org>
-References: <20250203091453.15751-1-funderscore@postmarketos.org>
-MIME-Version: 1.0
+	bh=HZ3MU5Alwy2jOdKOqGh+Wgi75fgSkITzfd+ri8LOY3o=;
+	b=XekN5ZnQzXVYdJE3CcYaapzKa2Kf+/Hikgg9TZHzdWkN0hdjEAbOTXyDB8ZJSOOLXXPyqU
+	o9d0PSXbNEHynQkYfxqKwsgDkKa3cadPWHcfQNGfIzDMBycbwSQ+gg246IdtGtMxmENoNC
+	DHaJhOL2JOkRsbjnCsENVNaosUXHeQhFOv5NC8nHc+HtANvdwjfj/LDbwpP05o7ftycr2/
+	s4FyCnOAhIzxcwV8AVUbvzb/FjI7SVmaImOnBm8m9edCAiYQcOVdoihx0A+9VRb2mgjTsz
+	SHy4DA5qMAvfRRE+aHQ/LL/GDzSHKVs/i8AsNacCXx4I3h61NO+50PyypzWIxQ==
+Date: Mon, 03 Feb 2025 09:16:50 +0000
+Message-Id: <D7IP4ECJ9XM5.3JSGHFAI75K9M@postmarketos.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add S805Y and Mi TV
+ Stick
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Ferass El Hafidi" <funderscore@postmarketos.org>
+References: <20250201193044.28856-1-funderscore@postmarketos.org>
+ <20250201193044.28856-2-funderscore@postmarketos.org>
+ <20250202-wisteria-rook-of-intensity-6fecfa@krzk-bin>
+ <D7I0F3OMXALB.1ZT1G03JTKSEZ@postmarketos.org>
+ <56ec442d-54b3-404a-a10b-763a00e7099e@kernel.org>
+In-Reply-To: <56ec442d-54b3-404a-a10b-763a00e7099e@kernel.org>
 X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250203_011608_051561_E74E478E 
-X-CRM114-Status: GOOD (  15.27  )
+X-CRM114-CacheID: sfid-20250203_011758_174867_3CD7E190 
+X-CRM114-Status: GOOD (  11.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,361 +68,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>, Karl Chan <exxxxkc@getgoogleoff.me>, linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, funderscore@postmarketos.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Conor
+ Dooley <conor+dt@kernel.org>, Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh@kernel.org>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, Karl Chan <exxxxkc@getgoogleoff.me>, devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Xiaomi Mi TV Stick is a small Amlogic-based Android TV stick released in
-2020.  It is known as `xiaomi-aquaman` internally.  Specifications:
- * Amlogic S805Y SoC
- * Android TV 9, upgradable to Android TV 10
- * 8 GB eMMC
- * 1 GB of RAM
-
-The devicetree is based on p241's DT, with some changes to better match
-the Mi TV Stick:
- * there is no Ethernet port, no IR, no CVBS connector on the stick
- * a white LED is present
- * adjust memory to have 1 GB of RAM available
-
-Signed-off-by: Ferass El Hafidi <funderscore@postmarketos.org>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../meson-gxl-s805y-xiaomi-aquaman.dts        | 288 ++++++++++++++++++
- .../boot/dts/amlogic/meson-gxl-s805y.dtsi     |  10 +
- 3 files changed, 299 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 2fbda8419..0921707f1 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -49,6 +49,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-wetek-hub.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-wetek-play2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-libretech-ac.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805y-xiaomi-aquaman.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-libretech-pc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-mecool-kii-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
-new file mode 100644
-index 000000000..c29cc01d8
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
-@@ -0,0 +1,288 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2025 Ferass El Hafidi <funderscore@postmarketos.org>
-+ * Based on meson-gxl-s805x-p241.dtb:
-+ *  - Copyright (c) 2018 BayLibre, SAS.
-+ *    Author: Neil Armstrong <narmstrong@baylibre.com>
-+ *    Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/sound/meson-aiu.h>
-+
-+#include "meson-gxl-s805y.dtsi"
-+
-+/ {
-+	compatible = "xiaomi,aquaman", "amlogic,s805y", "amlogic,meson-gxl";
-+	model = "Xiaomi Mi TV Stick (aquaman)";
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+		serial1 = &uart_A;
-+	};
-+
-+	au2: analog-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		sound-name-prefix = "AU2";
-+		VCC-supply = <&vcc_5v>;
-+		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-white {
-+			color = <LED_COLOR_ID_WHITE>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+			panic-indicator;
-+		};
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	vddio_boot: regulator-vddio-boot {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vddao_3v3: regulator-vddao-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	vddio_ao18: regulator-vddio-ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vcc_3v3: regulator-vcc-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	vcc_5v: regulator-vcc-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "XIAOMI-AQUAMAN";
-+		audio-aux-devs = <&au2>;
-+		audio-widgets = "Line", "Lineout";
-+		audio-routing = "AU2 INL", "ACODEC LOLN",
-+				"AU2 INR", "ACODEC LORN",
-+				"Lineout", "AU2 OUTL",
-+				"Lineout", "AU2 OUTR";
-+		clocks = <&clkc CLKID_MPLL0>,
-+			 <&clkc CLKID_MPLL1>,
-+			 <&clkc CLKID_MPLL2>;
-+
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	AVDD-supply = <&vddio_ao18>;
-+	status = "okay";
-+};
-+
-+&aiu {
-+	status = "okay";
-+};
-+
-+&cec_AO {
-+	status = "okay";
-+	pinctrl-0 = <&ao_cec_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&vcc_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddio_ao18>;
-+};
-+
-+/* Wireless SDIO Module */
-+&sd_emmc_a {
-+	status = "disabled";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <50000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	/* WiFi firmware requires power to be kept while in suspend */
-+	keep-power-in-suspend;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* This is connected to the Bluetooth module: */
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+	dr_mode = "otg";
-+};
-+
-+&usb2_phy0 {
-+	vbus-supply = <&vcc_5v>;
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
-new file mode 100644
-index 000000000..49b29b71f
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
-@@ -0,0 +1,10 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2025 Ferass El Hafidi <funderscore@postmarketos.org>
-+ */
-+
-+#include "meson-gxl-s805x.dtsi"
-+
-+/ {
-+	compatible = "amlogic,s805y", "amlogic,meson-gxl";
-+};
--- 
-2.47.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgS3J6eXN6dG9mLAoKT24gU3VuIEZlYiAyLCAyMDI1IGF0IDI6MDcgUE0gVVRDLCBLcnp5c3p0
+b2YgS296bG93c2tpIHdyb3RlOgo+IE9uIDAyLzAyLzIwMjUgMTQ6NTUsIEZlcmFzcyBFbCBIYWZp
+ZGkgd3JvdGU6Cj4gPiBIaSwKPiA+IAo+ID4gT24gU3VuIEZlYiAyLCAyMDI1IGF0IDE6NTQgUE0g
+VVRDLCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOgo+ID4+IE9uIFNhdCwgRmViIDAxLCAyMDI1
+IGF0IDA3OjMwOjQzUE0gKzAwMDAsIEZlcmFzcyBFbCBIYWZpZGkgd3JvdGU6Cj4gPj4+IEZyb206
+IEZlcmFzcyBFbMKgSGFmaWRpIDxmdW5kZXJzY29yZUBwb3N0bWFya2V0b3Mub3JnPgo+ID4+Pgo+
+ID4+PiBBZGQgc3VwcG9ydCBmb3IgdGhlIEFtbG9naWMgUzgwNVkgU29DIGFuZCB0aGUgWGlhb21p
+IE1pIFRWIFN0aWNrIChha2EuCj4gPj4+IHhpYW9taS1hcXVhbWFuKS4gIFRoZSBTODA1WSBpcyB2
+ZXJ5IHNpbWlsYXIgdG8gdGhlIFM4MDVYLCB3aXRoIGp1c3QgYQo+ID4+PiBmZXcgbWlub3IgZGlm
+ZmVyZW5jZXMuCj4gPj4+Cj4gPj4+IFNpZ25lZC1vZmYtYnk6IEZlcmFzcyBFbMKgSGFmaWRpIDxm
+dW5kZXJzY29yZUBwb3N0bWFya2V0b3Mub3JnPgo+ID4+Cj4gPj4gUGxlYXNlIHJ1biBjaGVja3Bh
+dGNoLiBZb3UgaGF2ZSBmcm9tL1NvQiBtaXNtYXRjaC4KPiA+IAo+ID4gSSBkb24ndCBzZWUgYW55
+IG1pc21hdGNoLiAgTWF5YmUgaXQgY29tcGxhaW5zIGJlY2F1c2Ugb2YgYSBzcHVyaW91cwo+ID4g
+bm9uLWJyZWFraW5nIHNwYWNlPwo+ID4gCj4gQ291bGQgYmUsIG5vIGNsdWUuIEkgY29waWVkIHRo
+ZW0gdG8gZWRpdG9yIGFuZCBpdCBhbHNvIHNlZXMgbWlzbWF0Y2ggLQo+IGJvdGggZW50cmllcyBq
+dXN0IGRvIG5vdCBtYXRjaC4KClRoZSBGcm9tL1NvQiBtaXNtYXRjaCBzaG91bGQgYmUgZml4ZWQg
+aW4gdGhlIHYzOgpodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1hbWxvZ2ljLzIwMjUwMjAz
+MDkxNDUzLjE1NzUxLTEtZnVuZGVyc2NvcmVAcG9zdG1hcmtldG9zLm9yZy9ULyN1CgpUaGFua3Mu
+Cgo+Cj4gQmVzdCByZWdhcmRzLAo+IEtyenlzenRvZgoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
+YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
+aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
