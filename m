@@ -4,63 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44117C02194
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2025 17:58:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11816C0219D
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Feb 2025 19:01:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:From:Subject:
-	Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=O1jlJbNC9gO10lpKHq+kIv9UTBly7VDzqdzllafC620=; b=it2PwxxJm07xQX
-	UTCASCkj+ahyKKZH7guetRpTSt0iijqFHXCBScxcVWL0g99Wjc/gHBYVUPeuoUJeowzGL2FgZ94Nx
-	4AohO4zo3Zhwoj2Y0iO2Pbd9QVtt/ChM6Y5Mh9sSS4R39G6I4OXi2+xzHO17r97QJkPx6rg8798VW
-	B1noFIahBaRu4OmfREoSqCg/cln6hFutxErjUdwyv8hFf/+S1+xCYTguuFaOBJU0DfFk2tFtDsdoZ
-	jlrkznAutG8zEhF7t8EEBGCpcAYi4lwOBk27TH5j2+hBHBBPLNazmAaV4X+LJoknjOYmYaCLRJv/i
-	5f8v8KKoDHxj/PTzqIrg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=AixGKx5lkPrOLc5St1Pq+eUsGgEUi7BTajvIdbQxMDY=; b=JACijrj74otcdFhTgDwxEwjvzB
+	4I2fCv9IocBo/aWvJ3/CnGzsA2gyXo1YiunkfY7818a0Ml0LFaElAXEGgjmqeU0YFCnN0PWpSwN5T
+	32roXpwrrpths8buWpJaylFQQfTDUTY8HZq43Jm77v+6LH5nlTZxI9/a5kcXRmQ/r7kwxCshNScSg
+	8ZC8cV7+AS/M26RDkPkH5I6TmMU05xO6qQtLDVkj282d+8UN7hjJ6OUr0GtwSBcr2VFnqORtIN+di
+	e89dXSMogo6lod69nvlUPwaXTUkGga+Ok3FxxyQt7RHrgqfB0DzHeTwY+43xDc7sl0F/hmkpxxXGa
+	wxlv60xA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tg68o-000000074IA-26xJ;
-	Thu, 06 Feb 2025 17:58:18 +0000
-Received: from out-177.mta0.migadu.com ([2001:41d0:1004:224b::b1])
+	id 1tg785-00000007IXj-1e1d;
+	Thu, 06 Feb 2025 19:01:37 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tg67W-00000007419-1LZC
-	for linux-amlogic@lists.infradead.org;
-	Thu, 06 Feb 2025 17:56:59 +0000
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1738864601;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=w1Ia8rkI+1aqp/BE7ykJwCWC2yFoWhBOndDQb5udbXE=;
-	b=Zcruyz62rIFMRV7nP0cqLglClrweMo/C1yT3rMF6lT888HLeDTO8Ll6t5GGgjgYHB+xdaj
-	i9qilqbOok7wWndAewqrqlcDnfYzmFaiO7UGn6ficjBM+CnUiskqgvRMB1Edi4ZYk7O+Yb
-	sup2AYZODDtaPUHwfseE3VyQy4o5plRhZF6duBEqrKKl0NN1sQ+K1MLGCyc6MwMk0SbVj+
-	b3qT0cDf2urdQMZpVpJHjkqcFvulLIR1wpOvAZx+Q0/IrnVUtm9Mkz/yHOeBlxKpEd6t54
-	6JPQEFBazVkvE9vfrzXZBdWwcuwt5Srtq3zlnaH5dlQKcrzVDiGrNe00fyX9vA==
-Date: Thu, 06 Feb 2025 17:55:48 +0000
-Message-Id: <D7LK1DPOAAG5.3EUG8X7DVSDO5@postmarketos.org>
-Subject: Re: [PATCH v4 2/2] arm64: dts: amlogic: add support for
- xiaomi-aquaman/Mi TV Stick
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Ferass El Hafidi" <funderscore@postmarketos.org>
-To: "exxxxkc" <exxxxkc@getgoogleoff.me>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Kevin Hilman" <khilman@baylibre.com>, "Jerome
- Brunet" <jbrunet@baylibre.com>, "Martin Blumenstingl"
- <martin.blumenstingl@googlemail.com>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, <linux-amlogic@lists.infradead.org>
-References: <20250203174346.13737-1-funderscore@postmarketos.org>
- <20250203174346.13737-3-funderscore@postmarketos.org>
- <19c8e021-d2c8-44b4-968b-153d798c140d@getgoogleoff.me>
-In-Reply-To: <19c8e021-d2c8-44b4-968b-153d798c140d@getgoogleoff.me>
-X-Migadu-Flow: FLOW_OUT
+	id 1tg6b1-00000007BYY-22gM;
+	Thu, 06 Feb 2025 18:27:28 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id A0F87A444A0;
+	Thu,  6 Feb 2025 18:25:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C45CBC4CEDD;
+	Thu,  6 Feb 2025 18:27:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738866446;
+	bh=IJL45hof8EZ76ZqW9H/9ssbUlriH90R7kETPe0qwoQc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RFGuxbDOBC88PRxt7HKAdOjq3A0i/bQ8+C5XbqjQB39QEv99MNFUclW2JE/Zthi++
+	 RmSkqwcMRCd4EacMzjQ7dY2MfrO7Ug21geRoyBE8dMtA0i4MCNzqkwi1MklY+at55d
+	 Cfue6yNhEVHtPtNFBcPsIgdk/lW5wYL+P9W360ClAPhRpde4/L6hfW1koeu/eYyhvS
+	 pjPAYcrX6ayQMQM6hDqaHbkR1XXbMcz8NyUS62uPQGoB/JTpRL2qQRLm2cdbc48rFr
+	 0+u62LdUEVbGsFdGmIg+pcoZQB/3yzATztpHkdJB3eFaxEIe1zjijZ5PmdZhCSnGgf
+	 cnod05VfazxDA==
+Date: Thu, 6 Feb 2025 18:27:21 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC v2] dt-bindings: mmc: mmc-slot: make compatible
+ property optional
+Message-ID: <20250206-drainer-vastly-34a3c738e2bf@spud>
+References: <20250205-mmc-slot-v2-1-da3c5f30e2d9@microchip.com>
+MIME-Version: 1.0
+In-Reply-To: <20250205-mmc-slot-v2-1-da3c5f30e2d9@microchip.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250206_095658_490900_42A5A7FB 
-X-CRM114-Status: UNSURE (   9.92  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250206_102727_586697_B11774C8 
+X-CRM114-Status: GOOD (  17.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,26 +74,90 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>, linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============4547289423852506075=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVGh1IEZlYiA2LCAyMDI1IGF0IDQ6MTQgUE0gVVRDLCBleHh4eGtjIHdyb3RlOgo+ICDCoHVt
-IGl0IHNlZW0gdGhlIHNkaW8gd2lmaSBtb2R1bGUvY2hpcCBjb25uZWN0ZWQgdG8gc2RfZW1tY19h
-IGl0IGlzIAo+IGFjdHVhbGx5IGNvbm5lY3RlZCB0byBzZF9lbW1jX2IKPgo+IGkgdHJpZWQgdG8g
-ZW5hYmxlIHNkX2VtbWNfYSBidXQgbm90aGluZyBzaG93ZWQgdXAgaW4gdGhlIGtlcm5lbCB0aHVz
-IGkgCj4gdHJpZWQgdG8gZW5hYmxlZCBzZGRfZW1tY19iIGFuZCB0aGVyZSBhcmUgYSBzZGlvIGRl
-dmljZSBzaG93ZWQgaW4gdGhlIAo+IGtlcm5lbCAoc2RpbzpjMDd2ODg4OGQ4ODg4KQo+Cj4gPGh0
-dHBzOi8vbWF0cml4LnRvLyMvIWJEREFjYmFERFlZd3NWZ2VsajpwaXhpZS50b3duLyRZVVNRSVot
-cEYyMmo5LUVsckNzdDhYQ1VnMXBhYzdDeldiVWluTlpMOUhJP3ZpYT1waXhpZS50b3duJnZpYT1t
-YXRyaXgub3JnJnZpYT1kaXNzb25hbnQuZGV2Pgo+Cj4gYWNjIHRvIGh0dHBzOi8vcGFzdGUuY29y
-ZWVsZWMub3JnL0Nvb2xlcnNIdXJyeSAKPiA8aHR0cHM6Ly9wYXN0ZS5jb3JlZWxlYy5vcmcvQ29v
-bGVyc0h1cnJ5PiBpdCBzZWVtIGl0IGlzIGFtbG9naWMgdzEgY2hpcCA/Cj4KPiAod2VsbCBvbiBt
-eSBib2FyZCBpdCBpcyBhbWxvZ2ljIHcxLiB0aGVyZSBhcmUgc29tZSB2YXJpYW50IHRoYXQgdXNl
-IAo+IG90aGVyIHdpZmkgY2hpcCApCgpHb29kIGNhdGNoISAgSSdsbCBzZWUgaWYgSSBjYW4gbWVz
-cyBhcm91bmQgd2l0aCB0aGF0IHN0dWZmIGEgYml0IG1vcmUgYXQKc29tZSBwb2ludC4KCkNoZWVy
-cyEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
-LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
-dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+--===============4547289423852506075==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="gSRDlsoD+Bdf79l9"
+Content-Disposition: inline
+
+
+--gSRDlsoD+Bdf79l9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Feb 05, 2025 at 09:18:40AM +0530, Dharma Balasubiramani wrote:
+> Remove the compatible property from the list of required properties and
+> mark it as optional.
+>=20
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+> Changes in v2:
+> - Instead of moving the compatible string to the other binding, just make=
+ it
+>   optional (remove from required list).
+> - Link to v1: https://lore.kernel.org/r/20241219-mmc-slot-v1-1-dfc747a3d3=
+fb@microchip.com
+
+Why is this RFC? I don't see any complaints from Rob's bot, so I am
+assuming that this actually works and the error you mentioned in the
+previously version has been resolved?
+
+> ---
+>  Documentation/devicetree/bindings/mmc/mmc-slot.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Docume=
+ntation/devicetree/bindings/mmc/mmc-slot.yaml
+> index 1f0667828063..ca3d0114bfc6 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> @@ -29,7 +29,6 @@ properties:
+>      maxItems: 1
+> =20
+>  required:
+> -  - compatible
+>    - reg
+> =20
+>  unevaluatedProperties: false
+>=20
+> ---
+> base-commit: 40b8e93e17bff4a4e0cc129e04f9fdf5daa5397e
+> change-id: 20241219-mmc-slot-0574889daea3
+>=20
+> Best regards,
+> --=20
+> Dharma Balasubiramani <dharma.b@microchip.com>
+>=20
+
+--gSRDlsoD+Bdf79l9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ6T/CQAKCRB4tDGHoIJi
+0heMAP9RIv6EPmFdFdH9C4KniHclVT6q7+ipdJy9MNtonSEGeAEAuKgviFIr+311
+YAtp4FSk/X/xf6nVb9pNP7sDITwXVgc=
+=vdJI
+-----END PGP SIGNATURE-----
+
+--gSRDlsoD+Bdf79l9--
+
+
+--===============4547289423852506075==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4547289423852506075==--
+
