@@ -4,168 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16325C02196
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Feb 2025 07:09:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0871C02192
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Feb 2025 09:05:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=42m2ZO+9+QVSxE5CKlS5z0IGEYUeVlXfg6MTK3fH8nA=; b=ZRSf3NYvxM2HjqTcSNbpqgMmjS
-	AmhAx6axeuT1Fu2EfZdfE7YPPYfrIlm/UR6FF0OfJvDvZwCthjLIdV/xJXiWMplAdOxcA69jMuZ8r
-	evYLdmvvbJueXv7Gvps8YPLICEzh6aChr0BSbV6xnXGVBeaQ46VC+groeIMyJXOOmODe2+kWJClVA
-	crPPUsV7iBIUT6IscC3ws94QGoq7+8KfFt0xKWS/xCN64/W2CMNaj9v/xfWU+sQwPca+aoFl57ve6
-	3KnVk8cnUTVpGr2sZuaDS4C/Vhy/0cb7u5TJ9PUTHxg5OHrMgyKck/EtE9wB2n3RbNqY2zqVG0Y5l
-	0E/GkLnA==;
+	bh=0s2F5qakl3XCESlqHZTuhkP4VPZCqB8YN7FReZkjW74=; b=izGNZ7QqsLNENTss5iJSqwXAxe
+	0UBhSN2+EnvYP69nmyaHZHIVdHwPecCM5HapJ/jtBYWQjHSrzsTQSKIVmIbrX1EHpPkofbRHFldIt
+	7nf9+Pel0g6lGB4Jirlzs2B4AVwT45azNSsHtNv0cri0us3g30u4uCRjrPyAeCAXaNtWdGqZolCWT
+	QD4faZ2MD4beHyCr3uxb/0+NbH/eTezzakzL7V/AR84Ut7A3/KBWyGnfdBi0L1WC8aeocOgk+ghYh
+	6WQZDcAxaXYTTiLXBYETAEf/V2Bi95JVe5oyNtnERuGB1lLDWyDJv7MtiqrX+AiQTEFBGC2kR5xUv
+	gzeOASNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tgIU6-00000008bQO-2SEG;
-	Fri, 07 Feb 2025 07:09:06 +0000
-Received: from mail-psaapc01on20701.outbound.protection.outlook.com ([2a01:111:f403:200e::701] helo=APC01-PSA-obe.outbound.protection.outlook.com)
+	id 1tgKIL-00000008w9a-25PX;
+	Fri, 07 Feb 2025 09:05:05 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tgISi-00000008bBq-0HMu;
-	Fri, 07 Feb 2025 07:07:41 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZrgRVPCrU1YZo4naKlZDxOtyx9i4h6CsEFhfLzn3RdPeok/rr24mHWjU2uxtlg+mC8myPoi92r7Knt3PudFQKMC5cpZoEd3ggmS9h5S0lMaxmlolNFG2s9UM3ISnD20Z2Kgk50h1t5PWzVOuDPBEcWy78lM+evo5qnVgQ63JM82U4i3QXs4o76KML4u5aG68Y/YqbElJPSkLBSiAxjY2VTak++xoJF2DaksZb3+C+bThKCda+x2bJ7OVJD4D6P5p8DWEdpjdHbKq633oA8+Ih0MSI1GZkyH1otNPjz5f0I8o4RkcNcnkCm6ijbRrQy2h7+b6RYgfqk7tHhlgeSxn+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=puu2+/4Po2GvPaRCKnnJMrHGieggJ+nvt3cw3+y3yDM=;
- b=MkNOeYFVODT3NtpkbI17VlR3AZ492iNH1jRKUMg5+trNA8VDiAd4X5vLf3xcEQSSwtTxKyV3S6/116NeP4ji6NP8nf3Uo9hsoE6lQH8yYhEB6bqaqLdO3CmSIYgvJZkHrtcROuFuttMEXX45Mbv3VEvpmBNZOht3wtOUvq9aw1YTVGSbcKVMaVbErls/lnYN6dB74szDdYPE7qFkmIssSgaloqmJuJ7OTk+0btsIXsmpvAUp6EtvlMqS6I8XP7oPHyrXwM+XR0VpKgMankAjLKebQp08Vioy3AY102FzsXfamtcGGdcLY9ltVcnW79zq1OM3+12LdMFoAZEB8esiiQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=puu2+/4Po2GvPaRCKnnJMrHGieggJ+nvt3cw3+y3yDM=;
- b=G6mteD0GvYR6gO/nwmn0VSkKCC0c2NvLlFgnPFGM6oxZBBjMlQD9HouXXWrqCQ5d0ehKWctsWJWTskr9gv/yYPbzZ/7BuU2KjUB3OgVCaJa56CYaneuuBs1o6cx4LOeAzjQnUOktfNoH32655dTV7ctcFEmeZRPbW6qhGcfYUo27NtAWBoizuEjDgugkN8qqbYquJijSC9p/0nh3/fRxS4w8DXXT4/BGC+YW02XmpQFAGTzr6eU8PmQcbIVOvZ4acZrADRGSJdS/5OfLM5AnfBU2+HF9uUvCavCBv9xeHgNV7GG3aLK7SRx8uMqatio1+Ms7H+4rUHBZHjKlNAnAjA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SEYPR03MB6579.apcprd03.prod.outlook.com (2603:1096:101:86::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.12; Fri, 7 Feb
- 2025 07:07:32 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%7]) with mapi id 15.20.8398.021; Fri, 7 Feb 2025
- 07:07:32 +0000
-Message-ID: <fc2ee33d-db32-425f-ae5b-e56a15bc27e4@amlogic.com>
-Date: Fri, 7 Feb 2025 15:07:27 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] pinctrl: Add driver support for Amlogic SoCs
-Content-Language: en-US
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20250122-amlogic-pinctrl-v4-0-4677b2e18ff1@amlogic.com>
- <20250122-amlogic-pinctrl-v4-3-4677b2e18ff1@amlogic.com>
- <CACRpkdZRbpd0Kw9V=aYX5P0vJLtErNR+aBzPagSwf=AZh6QERA@mail.gmail.com>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <CACRpkdZRbpd0Kw9V=aYX5P0vJLtErNR+aBzPagSwf=AZh6QERA@mail.gmail.com>
-X-ClientProxiedBy: SI2P153CA0010.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:140::13) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	id 1tgK8d-00000008tfY-2XO5
+	for linux-amlogic@lists.infradead.org;
+	Fri, 07 Feb 2025 08:55:05 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-38dcab4b0e1so317531f8f.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 07 Feb 2025 00:55:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738918501; x=1739523301; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4NA/X6pVv6MhxU2rOACQGZ3o3qUufdc5q7/UZzaZAT4=;
+        b=Pc+6tnviEnlwGdKXBQ+eqER4c5K80qxbxHbUHKGhUNxvKU/tnCAuw9K/fWVTULzucy
+         5279el/WDQc839MEhoDD42CdTJbsdJtddVd//0u1puJlcTFC4A1aNOg0qqNWcPEmJaIC
+         HEwjrFW4LzwgGZMMM6jmRCgfc41GS44LmeQSaLi+zDFp9GZxBKX7zlkOK9ATJs3yrGiP
+         wIyyQMado1Buh3zBpaWTA4DHSCg7+SJOg8Y/BHkDu4HX8mT5UebOz3eFdtcqCyKJuO6k
+         r+aSECXU+KLW/mCe8V+m6Eyddxcvex8MgAU0sTfavr6md2kvSMdhc6llmmDyx517NaLj
+         TAWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738918501; x=1739523301;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=4NA/X6pVv6MhxU2rOACQGZ3o3qUufdc5q7/UZzaZAT4=;
+        b=n850rmgJlYTxXJOBNiF6ujl+C0NxkfTcBoLRTHv1b0GuEWQDfRpWpA8SMW2iSXV2Eg
+         MwOwl447r/r0eOCkuLnKVOhd46Fo8DaO0wD5+b8KsEpzXOZIl7WertJ2BHUOjgE63can
+         cdMzdm08wCwbIbJogCnumcj6PH5tP7SEzcSau7RT8C11QLGKuavZqe0wYn2Zhchf8v8i
+         f8j24ZGIWqIHSFeBg2vzS6F2/hi8YcFMla8O7ALZ/h/j/P4AnAWJQEune2lRb/ELMlgl
+         1KeaMsMb8p52v1OLFh3mA4jI51RJNeAhK4Mm9RQ4XnTEkM/B90IljUqJmwGtsnwGI9KC
+         qAag==
+X-Forwarded-Encrypted: i=1; AJvYcCUuyfruu3QljjqL3ufoWu2jAQ5RVo89LnS+6UaAWgibyB7F5fWGG6GLrAhLH7RY19O6XqyvJV8V52lmsCjZ@lists.infradead.org
+X-Gm-Message-State: AOJu0YzsOUe01nXSG+cVgr6bdb2R693hrdNe/uyNSFy/lbcf/R/zEb70
+	3BNsezJEwl5unzEIyXbDcNvHoCmN174kXWvKVTmrzPdkqCEqOnT4HXz5lZ+40ro=
+X-Gm-Gg: ASbGncuDRrjx9l6nOp6zdP4nmoYKTDzNfcs/PiPEU52eFe5YTYWIPwAYP048Su7HVxs
+	U8xkQZR19E45/i8XnUEhC65QyyKMd065t/EaogvB30cgqii8PqtJP992GZ9ePnv0sdR/wQJ5gYM
+	9+56Ov9abZSomlQVDG54BdscdEGL7mUnGkrIVR9mfcSB8ftoBKYEcdaaJzAGDA47QGkiLDdZ00B
+	YEQDuDrb3u1pEbG+iR8YKG1Tyg8Aqm9vaIYc4QB8WhTc09jQlOfWSUNnjN8KwRAk8L8mYzsYCVM
+	i9fcaDp4Lqxwl9b+F/AO/tB5CD8HPObjBKIu50WvPVUgLW2kKtkpGMz0LORdVYMkz79K
+X-Google-Smtp-Source: AGHT+IH/4XDsyicpqDQ9Y3WcFD83TXmZ51RuwSfEt0UMQTshRCiwBSTUAjS4DsFc8GU0SU2TumjluQ==
+X-Received: by 2002:a05:6000:dd0:b0:386:37f5:99e7 with SMTP id ffacd0b85a97d-38dc91133aamr1353355f8f.33.1738918501273;
+        Fri, 07 Feb 2025 00:55:01 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5b26:96be:712e:30cd? ([2a01:e0a:982:cbb0:5b26:96be:712e:30cd])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4390d94db77sm82525305e9.15.2025.02.07.00.55.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Feb 2025 00:55:00 -0800 (PST)
+Message-ID: <f6d7ffa0-6c08-45fb-9153-5e4aad1ca86a@linaro.org>
+Date: Fri, 7 Feb 2025 09:55:00 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEYPR03MB6579:EE_
-X-MS-Office365-Filtering-Correlation-Id: da074f16-ec6b-46ba-8c32-08dd4746171f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RE95Ly9VbHhyR3pSU1ErdUxxQStja0crZnVpUGpHZ0tYRzRnL1VFakNZOTVE?=
- =?utf-8?B?YVFFcFJldUZRSkFSRVMwd2MxRnV5S2JYdlJGdmEyaHpRNWFyZ3B4L0tZVWxC?=
- =?utf-8?B?UkVnRUs0T1pBaE1haEZ4OHVjMGxmT29UeG4vWFcxWFlQNUVKMzVCL1dEUExL?=
- =?utf-8?B?L0Y3UmhBakFyaSsvY2o3djMzSXFTZm1oSGtUWmdMTXZvRFJDWFpPZzA3WVBi?=
- =?utf-8?B?RmZDT2JmU0MzYVhtVjN1aVlOazgxaDNaaTlQMDYwYTlTWng4RDVLTGZ4dy9o?=
- =?utf-8?B?ZExsditsVHlGc1hxUFp6OXN2YlNSeUZoYnpkd09FUjJJczVISElHVndOdm92?=
- =?utf-8?B?VHdMUDU0ZExxMWRPZDB4eW9iMTZFWlpZNmlzVmtIenpVNzl0eTRad1ViM0VV?=
- =?utf-8?B?SCsyb1l4VGN0NVl3MG8wRFNwY1JBZlRPV2tJUHZqMGFiN3pibWxaTmlDcGZo?=
- =?utf-8?B?VEwvYWp3aHk3WFJkQVFPaS9TSTdtZGlkMU9KUW8wbkNBUEFlbWp4dVdaSC9C?=
- =?utf-8?B?N0ZCMTY4Rnd0Q3hHQXRqNldCRHpkSzJFenhuUXNGQkFGSEwwc2V6czBXK3lL?=
- =?utf-8?B?MEd6U0FwQ3J6TjVTWVhJTmNVY2p0T09XYlhiVExJR21kcGdTbEVYeUdwak4z?=
- =?utf-8?B?ZGkzNUdjK29SdlJpRTlUUVhiVS96Tm9lcDl5T1RXM2ltS3dSa3FHc0VvQUJk?=
- =?utf-8?B?emNvd2Jpb3J4RzhYL0RwNjJaeUcxay9nWkN1TnZ5cXpmWDMwNExCUlBSUzV3?=
- =?utf-8?B?enVwVVpvNUxqeEpKWDk1Rzg5MVpDL2xuVExqTzY5Vno1SngrTTc1ZEZ1OHdV?=
- =?utf-8?B?T3hUYlF5SEhEeFRCelQzUTVYS2JmZitodHRmbTJ3NFRuNnVSYldib1NSaHdl?=
- =?utf-8?B?OHNpbFJneWgyK0FlMUtCdDk1VXVuRnhub3JFV0Uxd3ZHZzRsOHpQR1k5cm1H?=
- =?utf-8?B?L1JvdkNRbVhHbk1WZE9LdEovVnRNT0hEVStNMFcyZlZwVTdFQXVXWDJJZkR4?=
- =?utf-8?B?S3dSaUlpdVJJUDZjaTUrSDZUYnVyYkhmeXhKZmNldll3RlpKbVcxZ0l0eDF6?=
- =?utf-8?B?Y3BHci9ycWpSQ3M2WEJoZmxiaEtwL3U3Rjc1TEtOaWRmNWVwNHNGdXRVbGxi?=
- =?utf-8?B?YXM5NWt4OEpqa3hhUEUyS0QvczVvOEhtN1lyN0o0ekNhdzlML1NOSnhtYm1I?=
- =?utf-8?B?cXEveVVvbnhpY05tUEpmRENjTkNoT0RkbEhwL3I4VjZNa3dmUWtSeGNBcFB6?=
- =?utf-8?B?OG9BdE9LeDBOMmV2eGFaNGpQZDFNZWpaNjVPMXR0QTlpeFJHbGNLcHA4VGFH?=
- =?utf-8?B?VHR1cDg2VFRuN09LMlprS0ZoRjFlcW55MC9KQXhWOW5lbWUwL2pjRk02b296?=
- =?utf-8?B?WWw1cm92ZUxUenVvOFkrSW0rS0pvMzhyV3hDc3AwWUM5UTNUczRwc1hhRm9Y?=
- =?utf-8?B?S0lOS0h0blFnMC9neTNJcnlkK3FXeituOXFvaVNCOTd5ZlNaNXZmVW9vR2Nv?=
- =?utf-8?B?aVFRd2JyZUxlNTR0dFpCOUpKVWFWNXhaeUlCbmRZU3NiSzRqa2hOQm5EWW9u?=
- =?utf-8?B?OFY5VFhTTVhQeWpJVWlFcFR0V1Q5RjE3MDg4T2JIZ1NJUzduSFBkNFhuQmtZ?=
- =?utf-8?B?SVh1SFRLM3ZkZ0h1anJRRzVwT2wrYTRHcXFCcEd6SnJvSmJyNCtNL1hjZlZt?=
- =?utf-8?B?THNEWDdXUnRzbmFQc3JsTmRGenQ4bkgyOHRjYkVnUWFqWEhzeG03UHhIcUlB?=
- =?utf-8?B?ek1GMFh3N1lLejN5L2dKSjFDSFh4SkFqOGc5U1YraXU3bUU5dWJJbzBCeGE0?=
- =?utf-8?B?NjhzeGgwMy9ES1QwU0xiem1SUjJUUjNoWW9TR2VuYTlIeTc3dTBjWjl2amJN?=
- =?utf-8?Q?+nDLBOdgrifyi?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MlUvckN2WHhNRldaN1o5UVlMT016VUt0dTQ2cEZrbjdhK2RMWm1hK0tnUEIv?=
- =?utf-8?B?OFl5b0x6Z2NFdnBKUEVDVmF6TFA2N2xXTGRCRWVEelk3M2poYnV1UGVlRDM4?=
- =?utf-8?B?SklaVE5pM2FwUGRkbVZZcWo0c2dxVmVUa0tDNXFqSktXc2FBWWU3SThzRFNz?=
- =?utf-8?B?Y0dDdHZaQVNxUzZFZHBUNkM3MzdORmdTaWJzUXdZaWdZVWNvbXE1L2lzSUVv?=
- =?utf-8?B?NFpKN3crdi9rQ2g4b1ZiZVB0RTBBUE5yTHI2TkJEOFBRQ0x3dGtTRlVDUnNO?=
- =?utf-8?B?QkVJam83RkovbUdYSHh1TzZXVVA3WUkwd3BOS1AybnFXSjMzQmx1ZGV3OW9M?=
- =?utf-8?B?NlhPZGI1RllENTE5RHd1bExIM1ZaQStxdTh2dFdsVlFmZXZiTU0rT0dSOWov?=
- =?utf-8?B?TVFYTnVDNmE0ZjJZRnE3dW5oVzhneWd1WExueHduR3VWU01weS81MHMvcmxZ?=
- =?utf-8?B?OTNEdmc5TmYxYThpOTBUSndOYmQvT3MvcE91d0Yxa29YS0dGUHNpelZWVldn?=
- =?utf-8?B?R0gyeU4yUHk0cjZ0MnBPYnBudDlHSW13WlVkTitZNDFKU3RqSTExYmZmeGt1?=
- =?utf-8?B?bVpIWGhTLzhFcFh0SjVra2V4T05MY1Q4NThXUEFDYjNGaDRpNjBCa0RJUkw3?=
- =?utf-8?B?cGxtc0pJejZaTXBqTDdxakU4WTlNTy9xVDR4ZmJIcDl1ZjFXblhLRE1TZDN5?=
- =?utf-8?B?SWRuL2NKWkVoU2Q1MkJXZS9lTHhQajVSOTc5RGRMSkxSdXlPNUFydWNzUVRQ?=
- =?utf-8?B?WnNWT2l3SWhUNDNkcHc5L0g1eko1TFpSa3c1M3R4OTNZZFIvSWlkM1dta1py?=
- =?utf-8?B?cFlvUk92QTluMTErOVdEUFMreU1lbXIzb1RycGNFTVYzRllkV2dLUDgzbVJi?=
- =?utf-8?B?K0JmaFBaMW84U0tZT2JuSFhGWUtvQTBlRVh4Q0JZd05CVm5WVDNFU0t4SklI?=
- =?utf-8?B?Y3lHR3lZaExZTHZRK3pHVE01Y01RVC8vUWkxTng0NUdpcmQxZEVwS3JHS3Bi?=
- =?utf-8?B?VHdCUmE5aFArc1RIV0krVnFHVkVmL2U2ZDJyWEJzUVBkdEc3TVMwdllHTzVC?=
- =?utf-8?B?UjhIZHNrVW9SdHR3TWtiL1VOVlR3eW5nSlIyTGt6R2lSaDBtZ3g0NHhCbFQ1?=
- =?utf-8?B?TlY2dG1LdE0rV0NVZ0dNbHBhb3dnTFpqdTZnYTJOMG9vbklmV1ZJSjRPV0RX?=
- =?utf-8?B?RUgxUHhOTGpLTHM0b3NKc0hQSVZUVWJLQ1p6ZjAyQnltTHVSNTEyNFVJMEcv?=
- =?utf-8?B?V1BSS3JIYTVYMjZxY3g5c0lGZGphdW00TlVDMm9aZlBGZUgyUTVHcHlLT2xh?=
- =?utf-8?B?V3VxYmFRTzVWbXIvejc4WUlpMVZmUktydEhNempTcmtodnI1ZjBSL3BITytH?=
- =?utf-8?B?WGdDcWVSOCs5NW9kOFpycklRR0UyajA4dEpJdTVmSThYTzNZb3EvbG5xR3Bo?=
- =?utf-8?B?MEorT2JnRWRPUzhlMzQ0aVFJemdRcmpYVmIxbmNiQTk2S0ZZNnU0YkpEQmhH?=
- =?utf-8?B?T3U1MzVDcUxpQ1RjTWtEQ01kaklqVjBPWFpVU3JpYUlYK3A3NnkvQ09rVHZX?=
- =?utf-8?B?dVFUTjJVVjJxR3Nqem9BeHpIOFlERlVmcFVyM1N0aUt0SkJ3N0tFYmttaER4?=
- =?utf-8?B?dWFqVllwOCs1TVM5SVBWS2dQV2dqUGMzeEpsWHAxQWxzR0FEOTVrL2NIdHJ3?=
- =?utf-8?B?MDZXeWdDbXpuQWR5REJhUXRuTDh2SHpydkZtcUhqR3B2WHFFVGxNQ0FheTJE?=
- =?utf-8?B?MU4xQkNrTWljUnc4Yzk2TENLdHRNYSsxL0lHa2pRbHVGd28wYUNhMU1ydnEr?=
- =?utf-8?B?L2oySU5YbWhOTVY1dEVUeXErWjdxQVBNMVpMRGZhQjRQQWE1V3FFTkZ4T1M2?=
- =?utf-8?B?ZU85eHZoaHZHUW1sZmJvSFNES3NVTzhvU1J3SlJYT1NFYVBSL2l1L3hmMHk2?=
- =?utf-8?B?TlhYUnl6VG80ekNvZWNTT3NhWS8rWWFqcWE3ZFZPZEdYcnNCdGtCNis5K1pl?=
- =?utf-8?B?dTQ5TkJHZmJNQ2h0dlQyY3FycGdXbkpkVng0eko1OENjR0QxOHJodW1aTnpk?=
- =?utf-8?B?QzBLLytwQVpYOFROajVXNnprUm5zeUF1eDFHMm9HbURXOU9ndHFVZkRieTgr?=
- =?utf-8?B?VDBKTFpyV2E5UDhpbERCek5qRHl3TWxNNmk1WTRvMjBzL0VJMXRwaHUzNzhp?=
- =?utf-8?B?R0E9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: da074f16-ec6b-46ba-8c32-08dd4746171f
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2025 07:07:31.9622
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: K4j2BLDmefGPbXvdO1NK9qtM6jyivye0q5wdjyakxY9Dt9t6Ww7WULnGw5qLsPA5OSOGMOKO9Zl/qr8x73wGRwndfzmwpu/FGRbXaNBf2C8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB6579
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH RFC v2] dt-bindings: mmc: mmc-slot: make compatible
+ property optional
+To: Dharma Balasubiramani <dharma.b@microchip.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250205-mmc-slot-v2-1-da3c5f30e2d9@microchip.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250205-mmc-slot-v2-1-da3c5f30e2d9@microchip.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250206_230740_105952_DACD02AB 
-X-CRM114-Status: GOOD (  16.92  )
+X-CRM114-CacheID: sfid-20250207_005503_661472_32F35CC7 
+X-CRM114-Status: GOOD (  13.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -177,38 +128,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTGludXMsCiAgICBUaGFua3MgZm9yIHlvdXIgcmVwbHkuCgpPbiAyMDI1LzEvMjcgMTc6NTks
-IExpbnVzIFdhbGxlaWogd3JvdGU6Cj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4gCj4gSGkgWGlhbndl
-aSwKPiAKPiB0aGFua3MgZm9yIHlvdXIgcGF0Y2ghCj4gCj4gT24gV2VkLCBKYW4gMjIsIDIwMjUg
-YXQgNDoyNuKAr0FNIFhpYW53ZWkgWmhhbyB2aWEgQjQgUmVsYXkKPiA8ZGV2bnVsbCt4aWFud2Vp
-LnpoYW8uYW1sb2dpYy5jb21Aa2VybmVsLm9yZz4gd3JvdGU6Cj4gCj4+IEZyb206IFhpYW53ZWkg
-WmhhbyA8eGlhbndlaS56aGFvQGFtbG9naWMuY29tPgo+Pgo+PiBBZGQgYSBuZXcgcGluY3RybCBk
-cml2ZXIgZm9yIEFtbG9naWMgU29Dcy4gQWxsIGZ1dHVyZSBBbWxvZ2ljCj4+IFNvQ3MgcGluY3Ry
-bCBkcml2ZXMgdXNlIHRoaXMsIHN1Y2ggQTQsIEE1LCBTNiwgUzcgZXRjLiBUbyBzdXBwb3J0Cj4+
-IG5ldyBBbWxvZ2ljIFNvQ3MsIG9ubHkgbmVlZCB0byBhZGQgdGhlIGNvcnJlc3BvbmRpbmcgZHRz
-IGZpbGUuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IFhpYW53ZWkgWmhhbyA8eGlhbndlaS56aGFvQGFt
-bG9naWMuY29tPgo+PiAtLS0KPj4gICBkcml2ZXJzL3BpbmN0cmwvS2NvbmZpZyAgICAgICAgICAg
-fCAgIDE4ICsKPj4gICBkcml2ZXJzL3BpbmN0cmwvTWFrZWZpbGUgICAgICAgICAgfCAgICAxICsK
-Pj4gICBkcml2ZXJzL3BpbmN0cmwvcGluY3RybC1hbWxvZ2ljLmMgfCAxMDUzICsrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysKPiAKPiBQbGVhc2UgbW92ZSB0aGlzIGZpbGUgaW50
-byBkcml2ZXJzL3BpbmN0cmwvbWVzb24gYXMgSSByZXF1ZXN0ZWQKPiBlYXJsaWVyLiBXZSBjYW4g
-cmVuYW1lICJtZXNvbiIgdG8gImFtbG9naWMiIGxhdGVyIGlmIHRoYXQgcGxhY2VtZW50Cj4gaXMg
-Y29uZnVzaW5nLgo+IAoKV2lsbCBNb3ZlIHRoaXMgZmlsZSBpbnRvIGRyaXZlcnMvcGluY3RybC9t
-ZXNvbiBpbiBuZXh0IHZlcnNpb24uCgo+PiArY29uZmlnIFBJTkNUUkxfQU1MT0dJQwo+IAo+IFRo
-ZXJlIGlzIGFscmVhZHkgUElOQ1RSTF9BTUxPR0lDX0MzIGFuZCBQSU5DVFJMX0FNTE9HSUNfVDcK
-PiBhcyB3aWxsIGJlIHZlcnkgYXBwYXJlbnQgd2hlbiB5b3UgbW92ZSB0aGlzIGRyaXZlci4KPiAK
-PiBXaGF0IGlzIGEgKnByb3BlciogbmFtZSBmb3IgdGhpcyBmYW1pbHkgb2YgU29Dcz8KPiAKClRo
-aXMgaXMgZm9yIEE0LCBXaWxsIHVzZSBQSU5DVFJMX0FNTE9HSUNfQTQgaW5zdGVhZC4KCj4+ICtN
-T0RVTEVfTElDRU5TRSgiRHVhbCBCU0QvR1BMIik7Cj4gCj4gT24gdGhlIHRvcCBvZiB0aGUgZmls
-ZSB5b3UgaGF2ZToKPj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9ubHkK
-PiAKPiBTbyB0aGlzIGRvZXMgbm90IGFkZCB1cC4gRml4IG9uZSBvciB0aGUgb3RoZXIuCj4gCgpX
-aWxsIGRyb3AgIk1PRFVMRV9MSUNFTlNFKCJEdWFsIEJTRC9HUEwiKTsiLgoKPiBZb3VycywKPiBM
-aW51cyBXYWxsZWlqCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJh
-ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51
-eC1hbWxvZ2ljCg==
+On 05/02/2025 04:48, Dharma Balasubiramani wrote:
+> Remove the compatible property from the list of required properties and
+> mark it as optional.
+> 
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+> Changes in v2:
+> - Instead of moving the compatible string to the other binding, just make it
+>    optional (remove from required list).
+> - Link to v1: https://lore.kernel.org/r/20241219-mmc-slot-v1-1-dfc747a3d3fb@microchip.com
+> ---
+>   Documentation/devicetree/bindings/mmc/mmc-slot.yaml | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> index 1f0667828063..ca3d0114bfc6 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> @@ -29,7 +29,6 @@ properties:
+>       maxItems: 1
+>   
+>   required:
+> -  - compatible
+>     - reg
+
+If you remove it from here then it's still required in Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
+so please add it.
+
+Thanks,
+Neil
+
+>   
+>   unevaluatedProperties: false
+> 
+> ---
+> base-commit: 40b8e93e17bff4a4e0cc129e04f9fdf5daa5397e
+> change-id: 20241219-mmc-slot-0574889daea3
+> 
+> Best regards,
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
