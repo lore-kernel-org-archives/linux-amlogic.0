@@ -4,86 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B523C02198
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Feb 2025 09:52:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F03A8C02198
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Feb 2025 09:53:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZpQmzkW1rpIE+F5jsqbmDRMKZ7fPM9FRuxrUsC10sAM=; b=1guEp0xEn6JiCIqSYk3O8yTed3
-	t04lQZT7Zl83fokVWa5Dk5q54NXgE4fmsihRRS9I5/p9XsFAmNQXCD6zbW5Q4k7sExLu6CPYscXIz
-	J8CdOcHMUpS/3RLmVgog+XOfI3fH/EJVExBGlTuKj9X1o2bL5IfljtCr/U3YmuXMOBsrLLX98iBH4
-	wnNVy5yEEpEKenvwGCq3MJ/fSo7xfhEz/VqmjViWWpWEqrSlpAFgLdgEupqNdfO+FWycc4XR2JDVI
-	RH03EuqwSADTsMxF4RW3x2LbbIGXX2UuZg1l+HZDxQ0VrwXT80ai87wC0PmgTXiGoyZeJ0B4ubQhb
-	FRqJIKpg==;
+	bh=jtlMNGfO/7jlquLvkGuWaakFYXIL2rA7EkdNjgoxIHM=; b=tEYFtqNV0we9/HW433AS3og1sh
+	4j3Ti/6ju7243tNtdSaDzo4/GW+v/6u0Kl53gUGkJj+zTXeS/E3LqoUxPwpGfsbCTiysfjAVb4Yrp
+	JSbxnfysmMfMTrgjIY4ZwwOzGGWcf+xtGvXUOeGzwyl3TG8oSlcAHRe+SWZXAlqKlOwzqnvapZWND
+	K/ScayPmzRjAqPWPXo7pKyU1i3F3q87ejZuczIqR0uqk8Lz0c4KYLejW9OIvbh+58giXb2UNOplrD
+	MAdlZLxMLisUZe5yKmK+XhoM7daX0BVqguazSFmaW6xhNcPZ1fn0FRO1qMAqCkrN8EwUr4NCsNJf0
+	oAVGgMPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1thQSa-0000000Gsot-0rWn;
-	Mon, 10 Feb 2025 09:52:12 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1thQTx-0000000Gt3s-17Qj;
+	Mon, 10 Feb 2025 09:53:37 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1thQR2-0000000GsW1-2nSW
+	id 1thQSB-0000000Gsj2-1NWn
 	for linux-amlogic@lists.infradead.org;
-	Mon, 10 Feb 2025 09:50:37 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4361b0ec57aso41103045e9.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 10 Feb 2025 01:50:36 -0800 (PST)
+	Mon, 10 Feb 2025 09:51:48 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-43675b1155bso46345605e9.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 10 Feb 2025 01:51:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739181035; x=1739785835; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1739181106; x=1739785906; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=LagJi4kw7+CXMtX4h66oy5kDRSLSVOPBo3JG3mSYr8w=;
-        b=DFHUTACgXU36E+CvhI4hU5OEKOeY0CiYRCzjUAyLQoSC/vttkzQqBr9bIph6+O4G2o
-         mBbfwaOQVjreBPUJeT9oZGE5XEHFaWzENSdKGXHlR9AHS8S8l4iEZR9mMO5EqccA8LDw
-         A4g+4uLNW0h/ZKBzVMkGoUKqEtegDXXd6tVefmh7II+SyvFXXll4ROST0o0UolcVZ9Cb
-         GGiJkSXNxPYTgFgKw/QF3QRiX4zcaM6NgYuSXcRaGj0TmxZck+WIvWeKoRRxhsde726s
-         55ERJCpliBGt53EP2djiGoS8wfiBAQMZZeHcxQxdVkdhp4X5H+0LXdMxZSIEcOpaTz+P
-         BTPg==
+        bh=OyOzPnDD5nV6TA3iG57NOHGaY6BlLamnSYD7hNHtszo=;
+        b=mWlwnsftDHNNu7f4OIxkyRxTMp3VK4CbiuHUsNjFtv7aYvq05dQTJkebw358AArfM7
+         b4kb6rGA1de5iVI7C30B57hKuaxOu1fk3MEFFTdM05dQB7JJp578uwTYCXoIQ+S52gDl
+         ODtHkN75pB9lLH1ttyaf4LRYzaUM2bLQXJtak1LlRR+02lMV4oiOal8HviJ2KNZ2O95U
+         FotqGysPwocKO9bHuajq//UMk0PdOd5FRZCx0V+sUnmVU9KTytQWKmaWlnGZYfae1fC8
+         SxS3/bsGtaAk6vHT1yNJIy0V0OhxS1qJ7dTzS49yDLQbPJ1YbWPlIjtbcd+vfyzTzw+g
+         IdTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739181035; x=1739785835;
+        d=1e100.net; s=20230601; t=1739181106; x=1739785906;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=LagJi4kw7+CXMtX4h66oy5kDRSLSVOPBo3JG3mSYr8w=;
-        b=gnI0+/5SNxWIXwThrWY3oQK2hnon+UDXkxuftf/sYz6uxCkxz0x2WoFCk8/3s1qFdH
-         2ryJfkbh/veqgK6r3Vu9X9Bq+WhiHnozlVAVKn0UKm3V5A3/GonC4vvndcxZy7xYK7RB
-         NEhB6qQfcSOqWqvP7vx7uLDP8IiAnryiPm7OA4Mm1BU9io359H8cTA5Dtw0YAp2AeA/z
-         SK004slmqGa8AHto+eimtiloZ5osE0YOzM+2UWNIATTVNuGNxQGX9+s0L9eo3By0blZs
-         S+xyk0Ru5UXfWSwjzhZRuofzt2OY6/c6eGrcXHwmhUTHOd8s8sHRVsHsj6HNB5CQrv9c
-         DFWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWsBxTr/jnIhngPDRcwsczYiIKUWG2tQI5JJQ2DQpJLm9k9dRrrJJRKnizjb6EgBVfqf2Kd4Nkx/1vGU7OL@lists.infradead.org
-X-Gm-Message-State: AOJu0YwTVf0MvAoQTOP7KRW46IxR+C2PCpUwxj57AETagVQ1vq/Z1Vyi
-	qdc4pNKM8ww5/qAR0ilWztlV0DTR4CLUWdPUde6op7w8aadqK2tMJVQaII1Gv/+fCfaomlBnSrB
-	L
-X-Gm-Gg: ASbGnctS6uNvwJgAfipYiDW0quCQmPYJ8hljkZ4tnqUTq47wQg3htcmwkwcOOUsOgZE
-	gnzWoy/afWce8UzPjPh6mo9qllARK5RBT0PgjK/IevBCeG0Bm961e7c7E4W1uDTA5oQl0ksjPRd
-	6lqWGuYdiOTx8Ooq39flYnIWm9eqVXl6RWpJWUf9OKZvszT+aSmTeFuE5Y4dDjlLhXcP/lQ0KAA
-	45gxfbUi3N45nHBZ/42q/gl9WS7feS4MuLxcvYE/ZDTbkt7HExj8DBqu2AdPavnBkkrkp1teZVk
-	QMZKfxMJdhbdD8N4KjKOpA/K33KbdA62H0sHdG/5m0aQWLtx0KQ8ZdJ8aJY4Wa4Wg18w
-X-Google-Smtp-Source: AGHT+IE+Zw8vElKrozbDz9J93cx5VFxG4xf7O0Noct2EF/OGFeCzZy73gmY3TWsR9K3loN+SESU9JA==
-X-Received: by 2002:a05:600c:4e89:b0:439:45ce:15e9 with SMTP id 5b1f17b1804b1-43945ce19a1mr13888945e9.26.1739181034804;
-        Mon, 10 Feb 2025 01:50:34 -0800 (PST)
+        bh=OyOzPnDD5nV6TA3iG57NOHGaY6BlLamnSYD7hNHtszo=;
+        b=r3tYpLG/5D0JOwsT1BFrVRnpxxa9HxGtIy7ctM2cbWXJ0B7D5YabQmnXXKf850YWHv
+         sSzq9LiiKY3B1WDq3OSzrN5UQiouefIuoKYXDw22+aUZLTfZ/mEeVQIprIuRxi/2qt3t
+         wtlePp6iNCUikeA3TDXDo/vL3gN1GU/+S0n65i3H0LLNAm8VZ1DfrcbdNDncR2aUDZim
+         5p9njtWPJw80KapRX2fM1dTk0g7Z2nsQUP2b4kps3jQLMhfLLzgHh8WtGjApRu4JLXxB
+         ZqMWMT5+HHwgRWmLtC7Gc+20fu/8qruzhGuLSbT1JY+xETk/LNml7GMYyzqmhJ5AN9fb
+         KXoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWLmqWGKtNWl1HCtdf4PW3rgRJ3Zjro6FIs2NO5PZaaC3GJc853W2u7d3SMa89C7SrK0ZWuxeqilcso/ioJ@lists.infradead.org
+X-Gm-Message-State: AOJu0YwKRFbET0B+voIxnpl9U+3Wv6EvzCKlw15nGuL3fk7/HD5YJ+AS
+	XyqgR8UlxuIsFNmHD4flPZLU4/ZomO1yOKSC8WFM5ncQ1ar+bqAQTMYTbjLvBGo=
+X-Gm-Gg: ASbGncvDmmUmrp4wv7pEIN2LforsadLMGx512/inCAuBURsdiUSp0e8s3anEUJ+kMAf
+	CteJ30vnEobG2D1xNl6iNx5CectVXdTxPXV58B018Osmz0I7MU6Qe9jNzB02eVkiLUAoRvfjigo
+	91c8ANFnYaUIcEV2yhmYuf3frVYiKxC/9UCVCnDWip+SbzO1W/0z1uK+yLF2cOCxh8qDQeMJ5Im
+	14KslnSM30YuPwaKV6uIqL24SbCuxr2pO40XxWObNNfMSfDMnRi4UYMbuOzose8esOPEVQWAljH
+	gCxbJ27RpUxpR7WRS9jMy4qvtC+/+QvUzxCq1YtbzCqqkMoPiQlcPLnJZseb/0jbu1VL
+X-Google-Smtp-Source: AGHT+IG2G+0jkkCrFzcyOswfbkjejbMcC59iHCIyTbbyZg24kwvnpZM5H9uQkhpiqY1F6e5Q+1GToQ==
+X-Received: by 2002:a05:600c:511f:b0:434:e9ee:c3d with SMTP id 5b1f17b1804b1-439249a82dcmr96610705e9.20.1739181105553;
+        Mon, 10 Feb 2025 01:51:45 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:8235:1ea0:1a75:c4d5? ([2a01:e0a:982:cbb0:8235:1ea0:1a75:c4d5])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dc73c2e00sm9872571f8f.57.2025.02.10.01.50.34
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4394127afcbsm37731515e9.23.2025.02.10.01.51.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Feb 2025 01:50:34 -0800 (PST)
-Message-ID: <774d1a84-cc35-418d-9a84-867888b843da@linaro.org>
-Date: Mon, 10 Feb 2025 10:50:33 +0100
+        Mon, 10 Feb 2025 01:51:45 -0800 (PST)
+Message-ID: <c0f9424a-664b-4d77-b8e9-1938e49746fc@linaro.org>
+Date: Mon, 10 Feb 2025 10:51:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2] soc: amlogic: clk-measure: Optimize the memory size of
- clk-measure
-To: chuan.liu@amlogic.com, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH RFC v2] dt-bindings: mmc: mmc-slot: make compatible
+ property optional
+To: Dharma.B@microchip.com, ulf.hansson@linaro.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20250205-optimize_memory_size_of_clk_measure-v2-1-4f546053495d@amlogic.com>
+References: <20250205-mmc-slot-v2-1-da3c5f30e2d9@microchip.com>
+ <f6d7ffa0-6c08-45fb-9153-5e4aad1ca86a@linaro.org>
+ <003ffa44-c88a-4234-a54a-50cd1140982a@microchip.com>
+ <7180babd-302a-4f86-8770-bdd9f5c773cf@linaro.org>
+ <7de20917-3176-4e80-8ccd-9c01c037cc9a@microchip.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -110,10 +114,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250205-optimize_memory_size_of_clk_measure-v2-1-4f546053495d@amlogic.com>
+In-Reply-To: <7de20917-3176-4e80-8ccd-9c01c037cc9a@microchip.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250210_015036_702596_1E682778 
-X-CRM114-Status: GOOD (  24.43  )
+X-CRM114-CacheID: sfid-20250210_015147_371429_DE17475D 
+X-CRM114-Status: GOOD (  15.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,251 +130,74 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: neil.armstrong@linaro.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 05/02/2025 08:58, Chuan Liu via B4 Relay wrote:
-> From: Chuan Liu <chuan.liu@amlogic.com>
-> 
-> Drop "CLK_MSR_MAX" and replace it with adding a member "msr_count" in
-> the structure to specify the count of msr_id.
-> 
-> Mark the table of msr_id as const.
-> 
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
-> The number of msr_ids for each chip is inconsistent. Defining a
-> fixed-size array for each chip to store msr_ids would waste memory.
-> ---
-> Changes in v2:
-> - Discard the global variable and restore the "priv" member in the
-> "struct meson_msr_id".
-> - Mark msr_id_table as const.
-> - Link to v1: https://lore.kernel.org/r/20250123-optimize_memory_size_of_clk_measure-v1-1-06aa6a01ff37@amlogic.com
-> ---
->   drivers/soc/amlogic/meson-clk-measure.c | 86 ++++++++++++++++++++++++---------
->   1 file changed, 62 insertions(+), 24 deletions(-)
-> 
-> diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
-> index a6453ffeb753..39638d6a593c 100644
-> --- a/drivers/soc/amlogic/meson-clk-measure.c
-> +++ b/drivers/soc/amlogic/meson-clk-measure.c
-> @@ -33,23 +33,26 @@ static DEFINE_MUTEX(measure_lock);
->   #define DIV_STEP		32
->   #define DIV_MAX			640
->   
-> -#define CLK_MSR_MAX		128
-> -
->   struct meson_msr_id {
->   	struct meson_msr *priv;
->   	unsigned int id;
->   	const char *name;
->   };
->   
-> +struct meson_msr_data {
-> +	struct meson_msr_id *msr_table;
-> +	unsigned int msr_count;
-> +};
-> +
->   struct meson_msr {
->   	struct regmap *regmap;
-> -	struct meson_msr_id msr_table[CLK_MSR_MAX];
-> +	struct meson_msr_data data;
->   };
->   
->   #define CLK_MSR_ID(__id, __name) \
->   	[__id] = {.id = __id, .name = __name,}
->   
-> -static struct meson_msr_id clk_msr_m8[CLK_MSR_MAX] = {
-> +static const struct meson_msr_id clk_msr_m8[] = {
->   	CLK_MSR_ID(0, "ring_osc_out_ee0"),
->   	CLK_MSR_ID(1, "ring_osc_out_ee1"),
->   	CLK_MSR_ID(2, "ring_osc_out_ee2"),
-> @@ -98,7 +101,7 @@ static struct meson_msr_id clk_msr_m8[CLK_MSR_MAX] = {
->   	CLK_MSR_ID(63, "mipi_csi_cfg"),
->   };
->   
-> -static struct meson_msr_id clk_msr_gx[CLK_MSR_MAX] = {
-> +static const struct meson_msr_id clk_msr_gx[] = {
->   	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
->   	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
->   	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
-> @@ -168,7 +171,7 @@ static struct meson_msr_id clk_msr_gx[CLK_MSR_MAX] = {
->   	CLK_MSR_ID(82, "ge2d"),
->   };
->   
-> -static struct meson_msr_id clk_msr_axg[CLK_MSR_MAX] = {
-> +static const struct meson_msr_id clk_msr_axg[] = {
->   	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
->   	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
->   	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
-> @@ -242,7 +245,7 @@ static struct meson_msr_id clk_msr_axg[CLK_MSR_MAX] = {
->   	CLK_MSR_ID(109, "audio_locker_in"),
->   };
->   
-> -static struct meson_msr_id clk_msr_g12a[CLK_MSR_MAX] = {
-> +static const struct meson_msr_id clk_msr_g12a[] = {
->   	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
->   	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
->   	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
-> @@ -358,7 +361,7 @@ static struct meson_msr_id clk_msr_g12a[CLK_MSR_MAX] = {
->   	CLK_MSR_ID(122, "audio_pdm_dclk"),
->   };
->   
-> -static struct meson_msr_id clk_msr_sm1[CLK_MSR_MAX] = {
-> +static const struct meson_msr_id clk_msr_sm1[] = {
->   	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
->   	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
->   	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
-> @@ -489,7 +492,7 @@ static struct meson_msr_id clk_msr_sm1[CLK_MSR_MAX] = {
->   };
->   
->   static int meson_measure_id(struct meson_msr_id *clk_msr_id,
-> -			       unsigned int duration)
-> +			    unsigned int duration)
->   {
->   	struct meson_msr *priv = clk_msr_id->priv;
->   	unsigned int val;
-> @@ -573,13 +576,14 @@ DEFINE_SHOW_ATTRIBUTE(clk_msr);
->   static int clk_msr_summary_show(struct seq_file *s, void *data)
->   {
->   	struct meson_msr_id *msr_table = s->private;
-> +	unsigned int msr_count = msr_table->priv->data.msr_count;
->   	unsigned int precision = 0;
->   	int val, i;
->   
->   	seq_puts(s, "  clock                     rate    precision\n");
->   	seq_puts(s, "---------------------------------------------\n");
->   
-> -	for (i = 0 ; i < CLK_MSR_MAX ; ++i) {
-> +	for (i = 0 ; i < msr_count ; ++i) {
->   		if (!msr_table[i].name)
->   			continue;
->   
-> @@ -604,7 +608,7 @@ static const struct regmap_config meson_clk_msr_regmap_config = {
->   
->   static int meson_msr_probe(struct platform_device *pdev)
->   {
-> -	const struct meson_msr_id *match_data;
-> +	const struct meson_msr_data *match_data;
->   	struct meson_msr *priv;
->   	struct dentry *root, *clks;
->   	void __iomem *base;
-> @@ -621,7 +625,16 @@ static int meson_msr_probe(struct platform_device *pdev)
->   		return -ENODEV;
->   	}
->   
-> -	memcpy(priv->msr_table, match_data, sizeof(priv->msr_table));
-> +	priv->data.msr_table = devm_kcalloc(&pdev->dev,
-> +					    match_data->msr_count,
-> +					    sizeof(struct meson_msr_id),
-> +					    GFP_KERNEL);
-> +	if (!priv->data.msr_table)
-> +		return -ENOMEM;
-> +
-> +	memcpy(priv->data.msr_table, match_data->msr_table,
-> +	       match_data->msr_count * sizeof(struct meson_msr_id));
-> +	priv->data.msr_count = match_data->msr_count;
->   
->   	base = devm_platform_ioremap_resource(pdev, 0);
->   	if (IS_ERR(base))
-> @@ -636,45 +649,70 @@ static int meson_msr_probe(struct platform_device *pdev)
->   	clks = debugfs_create_dir("clks", root);
->   
->   	debugfs_create_file("measure_summary", 0444, root,
-> -			    priv->msr_table, &clk_msr_summary_fops);
-> +			    priv->data.msr_table, &clk_msr_summary_fops);
->   
-> -	for (i = 0 ; i < CLK_MSR_MAX ; ++i) {
-> -		if (!priv->msr_table[i].name)
-> +	for (i = 0 ; i < priv->data.msr_count ; ++i) {
-> +		if (!priv->data.msr_table[i].name)
->   			continue;
->   
-> -		priv->msr_table[i].priv = priv;
-> +		priv->data.msr_table[i].priv = priv;
->   
-> -		debugfs_create_file(priv->msr_table[i].name, 0444, clks,
-> -				    &priv->msr_table[i], &clk_msr_fops);
-> +		debugfs_create_file(priv->data.msr_table[i].name, 0444, clks,
-> +				    &priv->data.msr_table[i], &clk_msr_fops);
->   	}
->   
->   	return 0;
->   }
->   
-> +static const struct meson_msr_data clk_msr_gx_data = {
-> +	.msr_table = (void *)clk_msr_gx,
-> +	.msr_count = ARRAY_SIZE(clk_msr_gx),
-> +};
-> +
-> +static const struct meson_msr_data clk_msr_m8_data = {
-> +	.msr_table = (void *)clk_msr_m8,
-> +	.msr_count = ARRAY_SIZE(clk_msr_m8),
-> +};
-> +
-> +static const struct meson_msr_data clk_msr_axg_data = {
-> +	.msr_table = (void *)clk_msr_axg,
-> +	.msr_count = ARRAY_SIZE(clk_msr_axg),
-> +};
-> +
-> +static const struct meson_msr_data clk_msr_g12a_data = {
-> +	.msr_table = (void *)clk_msr_g12a,
-> +	.msr_count = ARRAY_SIZE(clk_msr_g12a),
-> +};
-> +
-> +static const struct meson_msr_data clk_msr_sm1_data = {
-> +	.msr_table = (void *)clk_msr_sm1,
-> +	.msr_count = ARRAY_SIZE(clk_msr_sm1),
-> +};
-> +
->   static const struct of_device_id meson_msr_match_table[] = {
->   	{
->   		.compatible = "amlogic,meson-gx-clk-measure",
-> -		.data = (void *)clk_msr_gx,
-> +		.data = &clk_msr_gx_data,
->   	},
->   	{
->   		.compatible = "amlogic,meson8-clk-measure",
-> -		.data = (void *)clk_msr_m8,
-> +		.data = &clk_msr_m8_data,
->   	},
->   	{
->   		.compatible = "amlogic,meson8b-clk-measure",
-> -		.data = (void *)clk_msr_m8,
-> +		.data = &clk_msr_m8_data,
->   	},
->   	{
->   		.compatible = "amlogic,meson-axg-clk-measure",
-> -		.data = (void *)clk_msr_axg,
-> +		.data = &clk_msr_axg_data,
->   	},
->   	{
->   		.compatible = "amlogic,meson-g12a-clk-measure",
-> -		.data = (void *)clk_msr_g12a,
-> +		.data = &clk_msr_g12a_data,
->   	},
->   	{
->   		.compatible = "amlogic,meson-sm1-clk-measure",
-> -		.data = (void *)clk_msr_sm1,
-> +		.data = &clk_msr_sm1_data,
->   	},
->   	{ /* sentinel */ }
->   };
-> 
-> ---
-> base-commit: 1e1fd26ed4ca05cc1f0e5857918da4dd54967f7d
-> change-id: 20250123-optimize_memory_size_of_clk_measure-f9c40e815794
-> 
-> Best regards,
-
-Looks fine, thanks !!!
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTAvMDIvMjAyNSAwNjoyOCwgRGhhcm1hLkJAbWljcm9jaGlwLmNvbSB3cm90ZToKPiBPbiAw
+Ny8wMi8yNSAyOjQ3IHBtLCBuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnIHdyb3RlOgo+PiBFWFRF
+Uk5BTCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNz
+IHlvdSBrbm93Cj4+IHRoZSBjb250ZW50IGlzIHNhZmUKPj4KPj4gT24gMDcvMDIvMjAyNSAxMDow
+MiwgRGhhcm1hLkJAbWljcm9jaGlwLmNvbSB3cm90ZToKPj4+IE9uIDA3LzAyLzI1IDI6MjUgcG0s
+IE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+Pj4+IEVYVEVSTkFMIEVNQUlMOiBEbyBub3QgY2xpY2sg
+bGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IGtub3cKPj4+PiB0aGUgY29udGVu
+dCBpcyBzYWZlCj4+Pj4KPj4+PiBPbiAwNS8wMi8yMDI1IDA0OjQ4LCBEaGFybWEgQmFsYXN1Ymly
+YW1hbmkgd3JvdGU6Cj4+Pj4+IFJlbW92ZSB0aGUgY29tcGF0aWJsZSBwcm9wZXJ0eSBmcm9tIHRo
+ZSBsaXN0IG9mIHJlcXVpcmVkIHByb3BlcnRpZXMgYW5kCj4+Pj4+IG1hcmsgaXQgYXMgb3B0aW9u
+YWwuCj4+Pj4+Cj4+Pj4+IFNpZ25lZC1vZmYtYnk6IERoYXJtYSBCYWxhc3ViaXJhbWFuaSA8ZGhh
+cm1hLmJAbWljcm9jaGlwLmNvbT4KPj4+Pj4gLS0tCj4+Pj4+IENoYW5nZXMgaW4gdjI6Cj4+Pj4+
+IC0gSW5zdGVhZCBvZiBtb3ZpbmcgdGhlIGNvbXBhdGlibGUgc3RyaW5nIHRvIHRoZSBvdGhlciBi
+aW5kaW5nLCBqdXN0Cj4+Pj4+IG1ha2UgaXQKPj4+Pj4gIMKgwqDCoCBvcHRpb25hbCAocmVtb3Zl
+IGZyb20gcmVxdWlyZWQgbGlzdCkuCj4+Pj4+IC0gTGluayB0byB2MTogaHR0cHM6Ly9sb3JlLmtl
+cm5lbC5vcmcvci8yMDI0MTIxOS1tbWMtc2xvdC12MS0xLQo+Pj4+PiBkZmM3NDdhM2QzZmJAbWlj
+cm9jaGlwLmNvbQo+Pj4+PiAtLS0KPj4+Pj4gIMKgwqAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL21tYy9tbWMtc2xvdC55YW1sIHwgMSAtCj4+Pj4+ICDCoMKgIDEgZmlsZSBjaGFu
+Z2VkLCAxIGRlbGV0aW9uKC0pCj4+Pj4+Cj4+Pj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvbW1jL21tYy1zbG90LnlhbWwgYi8KPj4+Pj4gRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9tbWMtc2xvdC55YW1sCj4+Pj4+IGluZGV4IDFm
+MDY2NzgyODA2My4uY2EzZDAxMTRiZmM2IDEwMDY0NAo+Pj4+PiAtLS0gYS9Eb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvbW1jL21tYy1zbG90LnlhbWwKPj4+Pj4gKysrIGIvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9tbWMtc2xvdC55YW1sCj4+Pj4+IEBAIC0y
+OSw3ICsyOSw2IEBAIHByb3BlcnRpZXM6Cj4+Pj4+ICDCoMKgwqDCoMKgwqAgbWF4SXRlbXM6IDEK
+Pj4+Pj4KPj4+Pj4gIMKgwqAgcmVxdWlyZWQ6Cj4+Pj4+IC3CoCAtIGNvbXBhdGlibGUKPj4+Pj4g
+IMKgwqDCoMKgIC0gcmVnCj4+Pj4KPj4+PiBJZiB5b3UgcmVtb3ZlIGl0IGZyb20gaGVyZSB0aGVu
+IGl0J3Mgc3RpbGwgcmVxdWlyZWQgaW4gRG9jdW1lbnRhdGlvbi8KPj4+PiBkZXZpY2V0cmVlL2Jp
+bmRpbmdzL21tYy9hbWxvZ2ljLG1lc29uLW14LXNkaW8ueWFtbAo+Pj4+IHNvIHBsZWFzZSBhZGQg
+aXQuCj4+Pgo+Pj4gSWYgbW92aW5nIHRoZSBjb21wYXRpYmxlIHRvIGl0cyBzcGVjaWZpYyBiaW5k
+aW5nIGlzbid0IGFwcHJvcHJpYXRlIChhcwo+Pj4gcGVyIENvbm9yKSwKPj4+IGFuZCBpZiByZW1v
+dmluZyBpdCBmcm9tIHRoZSByZXF1aXJlZCBsaXN0IGhlcmUgZG9lc27igJl0IHNlZW0gcmVhc29u
+YWJsZQo+Pj4gdG8geW91LAo+Pj4gdGhlbiBhZGRpbmcgYW4gdW5uZWNlc3NhcnkgY29tcGF0aWJs
+ZSBzdHJpbmcgaW4gb3VyIERUUyBmaWxlcyBkb2VzbuKAmXQKPj4+IG1ha2Ugc2Vuc2UgdG8gbWUu
+Cj4+Pgo+Pj4gV2hhdCBjb3VsZCBiZSB0aGUgc29sdXRpb24gdGhlbj8KPj4KPj4gVGhlIHNvbHV0
+aW9uIGlzIHJpZ2h0IGJ1dCB5b3UgbW9kaWZ5IHRoZSBtZXNvbi1teC1zZGlvIGJpbmRpbmdzLCBz
+bwo+PiBzaW1wbHkgYWRkIGNvbXBhdGlibGUgaW4gYSByZXF1aXJlZCBsaXN0IGZvciB0aGUgc2xv
+dCBub2RlLgo+IAo+IE9rYXksIHdlIGRlY2xhcmUgY29tcGF0aWJsZSBhcyBvcHRpb25hbCBpbiB0
+aGUgZ2VuZXJpYyBtbWMtc2xvdCBiaW5kaW5nCj4gYnV0IG1ha2UgaXQgcmVxdWlyZWQgaW4gdGhl
+IG1lc29uLW14LXNkaW8gYmluZGluZywgd2hpY2ggaW5oZXJpdHMgZnJvbSBpdC4KPiAKPiBTbyB3
+aHkgbm90IGRlZmluZSB0aGUgcHJvcGVydHkgZGlyZWN0bHkgaW4gdGhlIG1lc29uLW14LXNkaW8g
+YmluZGluZwo+IGluc3RlYWQ/Cj4gCj4gSXQgZmVlbHMgbGlrZSB0aGUgbW1jLXNsb3QgYmluZGlu
+ZyBpdHNlbGYgc2VydmVzIG5vIHJlYWwgcHVycG9zZS4KCkl0J3MgZGVzaWduZWQgdG8gYmUgcmV1
+c2VkLCB0aGUgZ29hbCB3YXMgdG8gZmFjaWxpdGF0ZSBtaWdyYXRpb24gb2YKb3RoZXIgbW1jIGNv
+bnRyb2xsZXJzIGJpbmRpbmdzLgoKTmVpbAoKPiAKPj4KPj4gU29tZXRoaW5nIGxpa2U6Cj4+ID09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PQo+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL21tYy9hbWxvZ2ljLG1lc29uLW14LQo+PiBzZGlvLnlhbWwgYi9Eb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvbW1jL2FtbG9naWMsbWVzb24tbXgtCj4+IHNkaW8ueWFtbAo+
+PiBpbmRleCAwMjI2ODJhOTc3YzYuLjBkNGQ5Y2E2YThkOSAxMDA2NDQKPj4gLS0tIGEvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9hbWxvZ2ljLG1lc29uLW14LXNkaW8ueWFt
+bAo+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL2FtbG9naWMs
+bWVzb24tbXgtc2Rpby55YW1sCj4+IEBAIC02MCw2ICs2MCw5IEBAIHBhdHRlcm5Qcm9wZXJ0aWVz
+Ogo+PiAgIMKgwqDCoMKgwqDCoCBidXMtd2lkdGg6Cj4+ICAgwqDCoMKgwqDCoMKgwqDCoCBlbnVt
+OiBbMSwgNF0KPj4KPj4gK8KgwqDCoCByZXF1aXJlZDoKPj4gK8KgwqDCoMKgwqAgLSBjb21wYXRp
+YmxlCj4+ICsKPj4gICDCoMKgwqDCoCB1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlCj4+Cj4+
+ID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PQo+Pgo+PiBDb25vciwgSXMgaXQgcmlnaHQgPwo+Pgo+PiBOZWlsCj4+
+Cj4+Pj4KPj4+PiBUaGFua3MsCj4+Pj4gTmVpbAo+Pj4+Cj4+Pj4+Cj4+Pj4+ICDCoMKgIHVuZXZh
+bHVhdGVkUHJvcGVydGllczogZmFsc2UKPj4+Pj4KPj4+Pj4gLS0tCj4+Pj4+IGJhc2UtY29tbWl0
+OiA0MGI4ZTkzZTE3YmZmNGE0ZTBjYzEyOWUwNGY5ZmRmNWRhYTUzOTdlCj4+Pj4+IGNoYW5nZS1p
+ZDogMjAyNDEyMTktbW1jLXNsb3QtMDU3NDg4OWRhZWEzCj4+Pj4+Cj4+Pj4+IEJlc3QgcmVnYXJk
+cywKPj4+Pgo+Pj4KPj4+Cj4+Cj4gCj4gCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
