@@ -4,82 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E1E2C0219B
-	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Feb 2025 07:19:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B7E5C02198
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Feb 2025 06:48:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:In-Reply-To:To:References:
-	Date:Subject:Mime-Version:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xq5TO/cdmxo4uHWnaIgsGCZVG2+7pPTCt/4zNTyxi+w=; b=MBN0kq4WBceikN
-	RNXaXLXb/EQfn7gauhS8zQ46ZXkouZZVuFOJHTwrI+aEsnZJoXt/RTeBxOYEpziUJXeaAT/t94+FI
-	jYNKHdqRqlldFq5gx5vXxFc70x7Tk3/HVd6CObaGc9K1zYMpzSqDq8pN5T5llHC4ZoAtewewXW/wp
-	QMl1VfChfprfzHEFRGecyFQqSP7hb4jYQ7mCikKXg0jAfUjWGBENJptme+Wj4RfNRw/WS1+u5oA9/
-	BmkVJxIMj7g6nTboQUBe2CCaPNhxpU4zF6bAQbakcF6OilIhmZf6VBQCNbC8BH+TcEve50bnnC2+P
-	+/d8oBLch9zK/LyCI/sQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=lq4zJ3f6Hec1em0IWrkRlOtpGZDSYFGOYxiu204EdRU=; b=Grpgzzgs1vCcZKHYLavBnzqbwI
+	KlREvQbiDokfecIkjUBTZtRAnmLKyGZc0/KeoSlRLc/Ba2eKq8ZWTxmiWEKDG/3pnl8IflYOE5V3S
+	Z/h43dCyjc/JB+z0WLFhaarEa5rl6V+/KOEI5gZAni7P2FkNbAYIv0fLinkVXTTqQaCVrBA32xZEd
+	rpfMrRqVLE+09uQcQ9IHpDEWJF/6JgA2IElh4ch9PtBr3+YeGkeXHVXyXN3j2GB27Yet87CxZuaj8
+	RCok2+n2CAk4zf+CQCNULiT3zauiQYGshdI0iqOVe7wQJkMQo5eqp3cp4Mpn1E4O1+9qOu9H0m9bR
+	EbAH7DWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1th1b2-0000000EGjM-3v4N;
-	Sun, 09 Feb 2025 07:19:16 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1thNb2-0000000GPk2-2cUY;
+	Mon, 10 Feb 2025 06:48:44 +0000
+Received: from mail-tyzapc01on2072b.outbound.protection.outlook.com ([2a01:111:f403:2011::72b] helo=APC01-TYZ-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1th1az-0000000EGix-2wnl
-	for linux-amlogic@lists.infradead.org;
-	Sun, 09 Feb 2025 07:19:15 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-38dc73cc5acso1322785f8f.0
-        for <linux-amlogic@lists.infradead.org>; Sat, 08 Feb 2025 23:19:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1739085551; x=1739690351; darn=lists.infradead.org;
-        h=message-id:in-reply-to:to:references:date:subject:mime-version
-         :content-transfer-encoding:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Be/TkZhDldtJLSE9EWVKHYkYd14HQKbNbtl1yrtX5Pw=;
-        b=KmktM83vgWL6k8IBELyqq9+wQwLRNGgNjU4RamBquJ329O2q0iqB/LyXZQQHsSAJoE
-         MYMkpTbXA0LRbSK2G6gI8bBkFf1CuZrFkMkYOKwEhAKOi6DX8czwbd19Nnd+Di1cfOSc
-         TahE20ILDNkXzwqhnYUkJ3WUXiXItOLFpwE/9spNpdEHIUuaCgZzQ/+RhFoQevk2NvmH
-         jyNEkdCWONBIfWcZcdJI3Ig3ijt5jAqMzSOXNo0WWWd7llitD8EXkrKhzMaEg/AQx+Lb
-         mfgzlWsPlzf2RqeJIjBMa/eYMKwW8vo8auWJnV0m3hY0AxAtvlxewaRt3s+YL37B1xo8
-         IO+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739085551; x=1739690351;
-        h=message-id:in-reply-to:to:references:date:subject:mime-version
-         :content-transfer-encoding:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Be/TkZhDldtJLSE9EWVKHYkYd14HQKbNbtl1yrtX5Pw=;
-        b=bB+6F6n8CwrJqKR5HWI5ooXO05Id+Oh1kJOyXQF+8ogT4dAWUc2jEbMBp2teLbqgjD
-         01Hz7qlhx9vwkenJTm0dpBn9w1LeImrbojSYmz3GpaSwpw8uLz6anFJDpRiXW+xvsKBd
-         G5Z5yEzciiWk9p0+vDwT2LNlN0uDs5ziSVGxq0Oez1ukmmmt0kigcnk/WzCIns+NfPuS
-         VZM2OOPxMh3xHm1OPA4z21eTph/IzAZgL/McqA0YZMQy3ZqKVzENG0NU5+FdNiaHcFm8
-         +rChRWwKvEXMcue9E7Wzct1eH436ebC3IZNYtMYn50KECRVxiqG2fg5m0Z/M7w6Be/MB
-         JpQQ==
-X-Gm-Message-State: AOJu0YzkLfGrYBgvsMl2tfFfzeqYG2ZVijZEGZrwmc3JNirL12aojfzY
-	k1SUDIflBOLJB6i3hh46kr/Zkh7msGfWwjnoJDuipLSOqzNO83+Wk15UnBWx
-X-Gm-Gg: ASbGncs153k8am5+XVSox/FtKjhMCOmP5oft6WkrMlWp5Qt2KC/VNe5Aw9hOteEKzrW
-	2CRiFrwUiWsNtYKkB5/sww7LgMr8/08IRPqC9geyFBzZcrwUK4rL2ja5tVyrkBNzxeX8VOlBMVm
-	4jekQK/wIcqz8D4zr1zIYdQdTXAJeQc9zG0T3mv9BsPORzXLoxV7HxgAmymoXQFY633RrDNEjqk
-	bveu+PreGW0wXK/isQ5pH6c7NJ31pIzY1hgNpckDkrG/z+azGXq3mSM+XVYuK0DHRbvidD62MIZ
-	nBtb0WYX/Qj0TehtWpNW8xnvaIjUzhwivcDSfA==
-X-Google-Smtp-Source: AGHT+IGkZMn6PlUjMstdOXU+R5UQv73yH3thGdlO/whD6V89aaFXkHCuQH84HLcyyq+kK+sUwxSOPg==
-X-Received: by 2002:a05:6000:154b:b0:38d:c6b8:9fe1 with SMTP id ffacd0b85a97d-38dc9ba7670mr6887253f8f.24.1739085550466;
-        Sat, 08 Feb 2025 23:19:10 -0800 (PST)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38dc4d00645sm7748488f8f.66.2025.02.08.23.19.09
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 08 Feb 2025 23:19:10 -0800 (PST)
-From: Christian Hewitt <christianshewitt@gmail.com>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.200.121\))
-Subject: Re: Amlogic ASoC vs. VDEC deadlock bug or interaction
-Date: Sun, 9 Feb 2025 11:18:57 +0400
-References: <A97451C4-BA1A-4A5D-9766-BE4915E8C5E5@gmail.com>
-To: linux-amlogic@lists.infradead.org,
- linux-sound@vger.kernel.org
-In-Reply-To: <A97451C4-BA1A-4A5D-9766-BE4915E8C5E5@gmail.com>
-Message-Id: <A374C4C7-4BB3-46E0-8842-E1D6519D3B34@gmail.com>
-X-Mailer: Apple Mail (2.3826.200.121)
+	id 1thNZc-0000000GPbI-0h7X;
+	Mon, 10 Feb 2025 06:47:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JD4nFIRgi2hyXUb71qfrdu41BWFnbnKQljlb8v4QlM6DrAIwrNQhlRNcbani/Sc+rkizc2mKcZ5zq8RYckN05Okrk24GbY8vqmaw1rrERvvpMfcdpZQ5COb3C0+T7Ku/lO3ASVb24CDrhjUjKup0KjW1UWUN/aLUC1dCJApMedjf/UgeQMiFvK7YsqvSU6Z/NooLEEmqnRAgoQ5Td/7SmTgAH4ij7MrtV0PE6S5uiwBDhI5LsJk5FPurJ8kt3SOiDTHTAUBRIQpLZZRz+r9zdsfzwzB/nG9czHXl3OjSB5Ol/Kdaoi6WpjONp6TiXj8j6t4+WDkvLizDRVgXuKFn5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qLShpQ+GcGX1O6scCtLD508voNktZZvh0+KDBe4CwmI=;
+ b=mdlYDyoOBTQiFMSHels8IMB7oMBazeLrR0Yse3hwhE4zH0dx7O5BTyWC62fjsHpdM4wcWs3ysW1gTOD3hT7NL4wAer5u5gngMjZCfrzKrf60P/Ym4diUG/vrfvX/tyd9nb4OPAFJHyjZ76XEjeQynHgWW0pDSbZunXxqFat4A1WrupkA0S4K424Jdl2Ye8J90J8cGSHa+xSdTF+OCnu8Zms7YwqiIqVVMNXvWw7/GhdA/Fxc+THwWsUxwBO9vLAp+xnfQ8ephtYOf2LuyzUAlHwCSVVwicsZ4Yhm4J9iyUjwM8aAL7DDpRH7asigh/rADj+AagT2pizN0vXVt0rSeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qLShpQ+GcGX1O6scCtLD508voNktZZvh0+KDBe4CwmI=;
+ b=hiYBNoQUXDf64jC59WGoIowpbhcKUlWsMkQ/fr5VlrUVkT8fldoPwBcf4H/kq4gQe/fkeN9dyK3S1TLOLSE+/k5jZWWVx3Djii20Eo4qpsgadmYgyRrVjoPkyDp+8bIJYAsjmjHL6pgWk6Uy1qh38utcjCEtEmsYi6WNQ7OJwxSH/yX3gUPK6W9JJFMhHc5m1ietYUdmcXrtwQKOJS3bUejYTsYgLVCwtLaUFbVn7Me7yU3jrXrXv0YMVzCd8zHiEP6pbLPgmwqmOQkIjOL0EaJGpqOfMiIdEMqAwJ36VS6Xyfb5A0HMKCS7NF3Qb5vKX7NlbJPFFwGvhOcGyg7X6g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
+ by SEYPR03MB7168.apcprd03.prod.outlook.com (2603:1096:101:d3::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.16; Mon, 10 Feb
+ 2025 06:46:57 +0000
+Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
+ ([fe80::9d11:d1f6:1097:22ca]) by KL1PR03MB5778.apcprd03.prod.outlook.com
+ ([fe80::9d11:d1f6:1097:22ca%5]) with mapi id 15.20.8422.015; Mon, 10 Feb 2025
+ 06:46:56 +0000
+Message-ID: <f08d0c8d-46a1-4b66-9d62-4b758d0ab949@amlogic.com>
+Date: Mon, 10 Feb 2025 14:46:38 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] soc: amlogic: clk-measure: Optimize the memory size of
+ clk-measure
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250205-optimize_memory_size_of_clk_measure-v2-1-4f546053495d@amlogic.com>
+From: Chuan Liu <chuan.liu@amlogic.com>
+In-Reply-To: <20250205-optimize_memory_size_of_clk_measure-v2-1-4f546053495d@amlogic.com>
+X-ClientProxiedBy: SI2PR01CA0003.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::16) To KL1PR03MB5778.apcprd03.prod.outlook.com
+ (2603:1096:820:6d::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|SEYPR03MB7168:EE_
+X-MS-Office365-Filtering-Correlation-Id: ce5b9b89-7721-490b-d387-08dd499eb619
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?QnV6bzRMRjZWaGszTzVvWGNvQVAzVU9Ja2pJMHc4NFlMUnhzNjl2U1J6UFQv?=
+ =?utf-8?B?VnlYSFNvSEMxRTVSWmlZUnNSempGYjhFNW8vbjkrMkRLeW1MbFZLWnlwRklQ?=
+ =?utf-8?B?TkhOL1N3T293L0ZZWUIwdEpDdmtxSU9kOThqY3NRZE14UVRTOW9KcUd6dlUv?=
+ =?utf-8?B?Zk80Z0FmYnBobXlqSTJtRlFMSkI3NG5rekUzNFRtV3V6TDdIUFFoT0VmWm9P?=
+ =?utf-8?B?TkJmbUlNcEVrRjdidTV2Ri9zeFB1OW9TZ1RjREpZV3AyNHBIcWNjQjd2cHht?=
+ =?utf-8?B?WFRUTFl2RWZqNWRqV0M5UHBHcy8rRkZaYXdabFRyOEFEOVBNMVh6NC9XVDcv?=
+ =?utf-8?B?VGQ4YStWeGlmR2hsckVlOHpCSEZ3SnBXamp5cDlReXBFdlNuNlZSY0lpUWRm?=
+ =?utf-8?B?WklycVY1b0hGRnRFd1psdXpBaVluTlM5TVRVK2xQOGtOUmlNQ0pTWjJWbG5R?=
+ =?utf-8?B?N2s0a0VMUXhiUW5rREM1dUY3dFdNdWhYRnFGdnlHaGliWkM3RTZpZ3RLN3VT?=
+ =?utf-8?B?NjV2L25ZVjc5Q1FScHF6R2tyU3dGN2tvR2JUa1oxVTc2NDB3VmFUSSthblVm?=
+ =?utf-8?B?OG03d1FvbTRsQlJBdC9oQ3J1QTZlNEwwYTVOVDdvSWhpbG96NEhZSVR6ZUQy?=
+ =?utf-8?B?TFIvMGhienFxalNGcW9sR05OeE1nLzk2MTR0SmUyQmhJazAveU9FTTZmTWQz?=
+ =?utf-8?B?TXNOYk5Ec3UwTjFQODc1b0owUnZlRE00bHBiYXQyRTJmZlVnbUVCajUwZzhF?=
+ =?utf-8?B?WE9uN3NDbFRmNTQ3djZiQldDVnFoQXREQzcvK0NpY2x3bHhmSU1TcDNhWTNs?=
+ =?utf-8?B?VGRhWTA4dTZERStkbkQxaDN4T0EvNFNvSGNDV3NHcUQ0MXp4Q1BLdGZnTVhD?=
+ =?utf-8?B?T1l0aFFHSEtWTjM4eXBpb2xDdHVlWDlueVhNQURzSU1OeUFLeHVEMytOUVh3?=
+ =?utf-8?B?by8wSGhub2s3STd0UTJveEpoRHBKR2d1OHhXaHdwZUI1RXkrVGZCbGRoSEwy?=
+ =?utf-8?B?ang1cS9ZblNGc1FTMGhRMXhGQmY3Q2krd0tzd3Q1emNjTFFKM2ErQ0lDOXNI?=
+ =?utf-8?B?SzNObmt6L2pyWWVvdCtlL3kwdk5HbGJSRkk5aTZGTHVvb2ZGYzhzb2d1R2Iz?=
+ =?utf-8?B?bkRJaFFkakRCcFBwek9yRy9SZjh3dlN0cmFaU3JJbGsvWTE2b0t3K0RoaFIv?=
+ =?utf-8?B?N1NmV2YyL1B5UWJzOVh3bFd1UlBJYnR6dVl2WG9RSjFTVjVYVUFtSFo0NkJQ?=
+ =?utf-8?B?ZHlld0NKaEx6T0JPQytXalhWN1BlUWxEa256WjJFUFRFa3cvREt3Z090TkJm?=
+ =?utf-8?B?aHJCU3E0R1pHdzBOci80cUJoRmx6V1poTEowTEZDSE5Oa0FzTEF5Y01xcVVo?=
+ =?utf-8?B?NG1YS3lLUERDYllma2pydkpTbHpEeHkxQk8rQmI1dk55SXV5cHk3OWYvZC84?=
+ =?utf-8?B?eHNTeUNyeTJZTUFhV0ZMc0VEaGRRbXc3R2VTSUwxOEpzOUNmL0t5bWNUV0xp?=
+ =?utf-8?B?ME8wTGRyWlhVM0RySVlEcGJDa1hob3JqdnZsRkNNb015bXNJamJwMzZKZUlT?=
+ =?utf-8?B?WU1nV3h4cFNrSVBHb3hNWTBTU2FsM01MRFF6MDlmUEM1Tk9sc1RRNjR4NjZH?=
+ =?utf-8?B?citaVGFXVjZTZ1hscWdJMVlDYUlVOEJzUnZENjRpZUpBVnhyTUd1d0hRTFlr?=
+ =?utf-8?B?VFB6d1JycUlIZzMyak9nRFMzcGRFWnE3Q2RoYXVHOGZhOWFNdEZKSEVHNE1t?=
+ =?utf-8?B?TG9vWExvYTRDL0p4SExjQ1FyV3VaY2RISWNqZFBpdFpJQmtISmk0MTdLcHBM?=
+ =?utf-8?B?T0pzekZMQjlUdnc4QWE0c1kxLzdlNUZlUlc5dmh0V3VXT0Rhajlhd1JQWXlK?=
+ =?utf-8?Q?LwtxvSmI/pY5T?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bFJDdTFXWG5KdXJDOGc3YU5qaFR5UU9yUTdLcHl0Q3Jpd3A5Q0ZrTVhlVlFZ?=
+ =?utf-8?B?TnBwSmU1K09QWHpOc3Y2anNFUnBFTWszSzBzdURBS3dKblJPSGszL2NPS0Fx?=
+ =?utf-8?B?Z292TzZ2V29qQm1mZzQvM1dKRjdMSG5LRXNIQUx6eE1XcFhNMHZ1WDhrbkov?=
+ =?utf-8?B?U3BrekNHMExKeGg0ZW1KRlp3enN5UVRFODFoZ2VIbFd3M3pSNUh2QTZTWjJ0?=
+ =?utf-8?B?MmRZQTIxSlRXdE14eE5wemVNT2d2aDRIcnJQT2hJdjBYR1ViUmdmaCtYS1p6?=
+ =?utf-8?B?VEFDQ3h3cXV5ZExNL2IxMWlVaVlGeHFVQ2xYUFJ4LzJMRkZPNXBCVTN3UDV5?=
+ =?utf-8?B?cEp4RVcvNGE2LzFaclN4MTFvckdqelMzSGxFLzR0TkRjamIxdDVSMmdrSmpH?=
+ =?utf-8?B?OG1rME4zQjh6V3RISTREeHVJbW80c053TWRtNmJRaVl6MXhTeUJQQUFXYnNp?=
+ =?utf-8?B?YjNPVEdwR1lhY2Y4anRKQmduSnJEUTU4MHlYTXhLUnY5WTBaTHJEK3JpOWgr?=
+ =?utf-8?B?MXIrcWtxRFBONlZDNVBNU1YvNWcxSG5UMGpRYjVJc1Q0UGYyaFo0bjNZZm5l?=
+ =?utf-8?B?ZVY0ZWJUdTZGS3pFMmhKdXV3ZUdXRkwybFdEdGJIY0FyYndYcyt1QWRkYWNo?=
+ =?utf-8?B?aHBrZEZNM1ZYd0grZ0Mxb1F4VGl0cHVteGljVlRtWUYvT2xyNy9Ya3FyREh0?=
+ =?utf-8?B?ZTdETDVtMHRUZ3UvRlVCeCtWdkJaRjFBak9lZG82cythTmxGT3BGN1dnWFc0?=
+ =?utf-8?B?ZldXMTdIazFQc0hkODlxSU1pN01OTHV4clBJQTROcURDMXBxcElWUTkyRWVD?=
+ =?utf-8?B?RlVUY3hWYWNYaEMyWS94UnBJWEhEMmhNN1NWK0lESUZTZWJOM2JsSkdSVnZP?=
+ =?utf-8?B?RmJSY2tMTnc5Q1BUV3VHeDZwYTJjZkRsSUJsVFdreEN0dFQxWm91OWFOKy8z?=
+ =?utf-8?B?QmUxeEVHMTN2ZFZldmlpcmd4UUM2WDhPaTBKWGNZb09SbGVob1Z6cTVyUFBp?=
+ =?utf-8?B?NXFJcVF2QmlPYnVUSXhmd3ZKdFMxTzVoNHJvTXlPT2x0dnlIOG1aeGFNaFVF?=
+ =?utf-8?B?ejhhTTBLblVTaU5KMThkWUdCZ3lKTm9KVmJvcVdlVzFmVittUGFKMlVDSWxq?=
+ =?utf-8?B?d0JlL3M2eUNYQjMzQTZNOVBleUJlMStCdFp4K1VkKytKUG9LR1lhdVlId0ZK?=
+ =?utf-8?B?VGc5ejNTamtVRnNSMHFKc09Fb3lDRk9WcUxGMVIybFJZWmdsTENzdW5CaTQx?=
+ =?utf-8?B?SXZwWk5zeWtBOS9PcW9xZUFrWGJIK042WENiclcrTSt5NTROSFNFcjJzVzM2?=
+ =?utf-8?B?T0VjbHRJUnFvRDg2K1hjMmZUajIwVzZMT3FQWWRVSTBUN1dkOUVKMVBsaVAy?=
+ =?utf-8?B?UHgyQjZHdXhxdWhtT0o4VHRSWU9kNmUxRGRqbUM3OTJmVFl6aGNCak9JNUN0?=
+ =?utf-8?B?UG9KNmhhNnRhSk1ydFVYZ29hMW9ZQ1gzMGs5RkYxMWF4RzhadlpTZU9hVUhN?=
+ =?utf-8?B?S3UvUmpHaExoYkhLd0cwc0lxSmc0RjRoWEhNRjNINFU1bkVvTnlDem1LOWZZ?=
+ =?utf-8?B?QjNnek5nQnE2MmtqaVZhcVc4bjhLNkI4Uzg3RE54cHFUSWdFUWJxdTVHRzhB?=
+ =?utf-8?B?TVNWRFFGYnFQYjlXTDFiaFptS3VJd21jNXo4N0pqRlE4RDNHNUJ4SXpiL0w0?=
+ =?utf-8?B?bk1yQkNQZlRKMFFVakM3OVN2VllZWGdIUC9GWEFGVzg4Z2pFWUFRVkgxMERC?=
+ =?utf-8?B?M09lS1hXZlZpSXNjeVZhTUcxRXpBQmQzanNsTnJhTHAxRTZCM01pcmtDTmR2?=
+ =?utf-8?B?RjhVR3ZlajR4KzhQWU9PbGNVS2daSFlkNVJLQ0E5R2duSm9MNHNGQzhIdHdm?=
+ =?utf-8?B?ZzdyaXpia1JTZkswVFE4SDg4Z3gwMnQ4YStTenIveTBqYWRwOFJ0QkZ6SnVT?=
+ =?utf-8?B?Rmk1Zll2M1NrcGxyU1k2SW40aUlJNHJEK3A3UGFEQmVSVk5BVXVmaEd1bnEw?=
+ =?utf-8?B?NFgvU0NxdHQ2VEE0d040aTVYUUtrOTVaRThycGxPVlM1aFhLc0JHQzRZU3Zo?=
+ =?utf-8?B?SzNIWFgrV0orOXZxUWR3UzVTMWpMZWd6eExVLzRXOXQ4N00xNGViamJKM3B0?=
+ =?utf-8?Q?zyi74t90AKKIKhB25zc8iSLOh?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce5b9b89-7721-490b-d387-08dd499eb619
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2025 06:46:56.8215
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FWk0gB9324SALm+hRTahb8ut64tJdfbHhwy4uN6OojIdDVwny0b6DHFwG6j4p8FBKiK3E/J8JcSPZINFe728Gg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7168
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250208_231913_744022_2350791B 
-X-CRM114-Status: GOOD (  22.19  )
+X-CRM114-CacheID: sfid-20250209_224716_314726_700940B1 
+X-CRM114-Status: GOOD (  24.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,117 +170,261 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-PiBPbiA3IEZlYiAyMDI1LCBhdCA4OjQz4oCvcG0sIENocmlzdGlhbiBIZXdpdHQgPGNocmlzdGlh
-bnNoZXdpdHRAZ21haWwuY29tPiB3cm90ZToKPiAKPiBIZWxsbyBmb2xrcywKPiAKPiBJ4oCZdmUg
-dW5lYXJ0aGVkIGEgYnVnLCBhbmQgSSBuZWVkIGhlbHAgd2l0aCBmdXJ0aGVyIGludmVzdGlnYXRp
-b24gOikKPiAKPiBIZXJl4oCZcyB0aGUgZGVzY3JpcHRpb246Cj4gCj4gQW1sb2dpYyBHMTJBL0cx
-MkIvU00xIGJvYXJkcyBleHBlcmllbmNlIGEgYm9hcmQgZGVhZGxvY2sgd2hlbiBwbGF5aW5nIEhF
-VkMgMTAtYml0IG1lZGlhIHZpYSB0aGUgaGFyZHdhcmUgZGVjb2RlIGNvZGVjLiBUaGV5IGNhbiBw
-bGF5IDEwLWJpdCBWUDkgbWVkaWEsIDgtYml0IEhFVkMsIGFuZCBIMjY0IG1lZGlhIHdpdGhvdXQg
-aXNzdWVzLiBBcyB0aGUgSEVWQyBkZWNvZGVyIGlzIHVuZmluaXNoZWQgd29yayAocGF0Y2hlZCBp
-bnRvIGEgY3VycmVudCBrZXJuZWwpIHRoZSBsb25nLXJ1bm5pbmcgYXNzdW1wdGlvbiBoYXMgYmVl
-biB0aGF0IHRoZSBpbmNvbXBsZXRlIGNvZGUgaXMgYXQgZmF1bHQuIEFzIHRoZSBoYXJkIGRlYWRs
-b2NrIGRvZXMgbm90IGxlYXZlIGFueSBzcGxhdCBjbHVlcywgdGhlIHN1c3BpY2lvbiBpcyBtZW1v
-cnkgYWNjZXNzIG9yIGNvcnJ1cHRpb24uIFRoZSAxMC1iaXQgSEVWQyBwYXRoIHVzZXMgTU1VLCBh
-bHRob3VnaCB0aGUgVlA5IGNvZGVjIHdoaWNoIHNoYXJlcyBhIGxvdCBvZiBjb21tb24gY29kZSB3
-aXRoIEhFVkMgYW5kIGFsc28gdXNlcyBNTVUgd29ya3MgZmluZS4gVGhlIDgtYml0IEhFVkMgcGF0
-aCBpcyBhbHNvIGZpbmUsIGFuZCB0aGlzIHByb2JhYmx5IGV4cGxhaW5zIHdoeSBIRVZDIGRlY29k
-ZSBoYXMgbm8gZGVhZGxvY2sgaXNzdWUgb24gb2xkZXIgQW1sb2dpYyBjaGlwcyB0aGF0IGRvIG5v
-dCBzdXBwb3J0IDEwLWJpdCBvdXRwdXQuCj4gCj4gSW4gdGhlIGxhc3Qgd2VlayBzb21lb25lIHN1
-Z2dlc3RlZCBlbmFibGluZyDigJxzbGFiX2RlYnVnPUZa4oCdIHRvIHNlZSBpZiB0aGF0IHdvdWxk
-IGdlbmVyYXRlIGFueSBuZXcgY2x1ZXMuIEl0IGhhcyAodGhlIFogb3B0aW9uIHRyaWdnZXJzIHRo
-ZSBpc3N1ZSwgdGhlIEYgZG9lcyBub3QpIGJ1dCBub3QgaW4gdmRlYyBjb2RlLiBTZWUgYmVsb3c6
-Cj4gCj4gWyAyLjc4OTA3MV0gVW5hYmxlIHRvIGhhbmRsZSBrZXJuZWwgcGFnaW5nIHJlcXVlc3Qg
-YXQgdmlydHVhbCBhZGRyZXNzIDAwM2MwMjFkNTcyMzdkZDIKPiBbIDIuNzkzMDMyXSBNZW0gYWJv
-cnQgaW5mbzoKPiBbIDIuNzk1Nzk4XSBFU1IgPSAweDAwMDAwMDAwOTYwMDAwMDQKPiBbIDIuNzk5
-NTIxXSBFQyA9IDB4MjU6IERBQlQgKGN1cnJlbnQgRUwpLCBJTCA9IDMyIGJpdHMKPiBbIDIuODA0
-ODA4XSBTRVQgPSAwLCBGblYgPSAwCj4gWyAyLjgwNzg0MF0gRUEgPSAwLCBTMVBUVyA9IDAKPiBb
-IDIuODEwOTYxXSBGU0MgPSAweDA0OiBsZXZlbCAwIHRyYW5zbGF0aW9uIGZhdWx0Cj4gWyAyLjgx
-NTgxNF0gRGF0YSBhYm9ydCBpbmZvOgo+IFsgMi44MTg2NzNdIElTViA9IDAsIElTUyA9IDB4MDAw
-MDAwMDQsIElTUzIgPSAweDAwMDAwMDAwCj4gWyAyLjgyNDE0Ml0gQ00gPSAwLCBXblIgPSAwLCBU
-bkQgPSAwLCBUYWdBY2Nlc3MgPSAwCj4gWyAyLjgyOTE2MF0gR0NTID0gMCwgT3ZlcmxheSA9IDAs
-IERpcnR5Qml0ID0gMCwgWHMgPSAwCj4gWyAyLjgzNDQ0OF0gWzAwM2MwMjFkNTcyMzdkZDJdIGFk
-ZHJlc3MgYmV0d2VlbiB1c2VyIGFuZCBrZXJuZWwgYWRkcmVzcyByYW5nZXMKPiBbIDIuODQxNTU2
-XSBJbnRlcm5hbCBlcnJvcjogT29wczogMDAwMDAwMDA5NjAwMDAwNCBbIzFdIFNNUAo+IFsgMi44
-NDcwOThdIE1vZHVsZXMgbGlua2VkIGluOgo+IFsgMi44NTAxMzNdIENQVTogNCBVSUQ6IDAgUElE
-OiAxMSBDb21tOiBrd29ya2VyL3UyNDowIE5vdCB0YWludGVkIDYuMTMuMSAjMQo+IFsgMi44NTcw
-NjNdIEhhcmR3YXJlIG5hbWU6IEhhcmRrZXJuZWwgT0RST0lELU4yUGx1cyAoRFQpCj4gWyAyLjg2
-MjM1Ml0gV29ya3F1ZXVlOiBldmVudHNfdW5ib3VuZCBkZWZlcnJlZF9wcm9iZV93b3JrX2Z1bmMK
-PiBbIDIuODY4MTU3XSBwc3RhdGU6IDAwMDAwMDA1IChuemN2IGRhaWYgLVBBTiAtVUFPIC1UQ08g
-LURJVCAtU1NCUyBCVFlQRT0tLSkKPiBbIDIuODc1MDkwXSBwYyA6IHNuZF9zb2NfY29tcGVuc2F0
-ZV9jaGFubmVsX2Nvbm5lY3Rpb25fbWFwKzB4YTQvMHgxZDQKPiBbIDIuODgxNTAzXSBsciA6IHNu
-ZF9zb2NfYmluZF9jYXJkKzB4MmU0LzB4YjRjCj4gWyAyLjg4NTkyM10gc3AgOiBmZmZmODAwMDgw
-MDhiOWYwCj4gWyAyLjg4OTIxN10geDI5OiBmZmZmODAwMDgwMDhiOWYwIHgyODogZmZmZjgwMDA4
-MWIwYzk3MCB4Mjc6IGZmZmYwMDAwMDc1MjEyMDAKPiBbIDIuODk2MzIzXSB4MjY6IDAwMDAwMDAw
-MDAwMDAwMDcgeDI1OiBmZmZmMDAwMDA3NTIxMDg4IHgyNDogMDAwMDAwMDAwMDAwMDExOAo+IFsg
-Mi45MDM0MzBdIHgyMzogZmZmZjAwMDAwODJiZDVmMCB4MjI6IGZmZmY4MDAwODEyNWQxMzAgeDIx
-OiBmZmZmMDAwMDA3NTIxMDg4Cj4gWyAyLjkxMDUzNl0geDIwOiBmZmZmODAwMDgxYjRjYTEwIHgx
-OTogMDAwMDAwMDAwMDAwMDAwMCB4MTg6IDAwMDAwMDAwMDAwMDAwMDEKPiBbIDIuOTE3NjQzXSB4
-MTc6IDAwMDAwMDAwMDAwMDAwNjggeDE2OiAwMDAwMDAwMDAwMDAwMGMwIHgxNTogMDAwMDAwMDAw
-MDAwMDAwMgo+IFsgMi45MjQ3NTBdIHgxNDogMDAwMDAwMDAwMDAwMDAwMCB4MTM6IDAwMDAwMDAw
-MDAwZTRjZTMgeDEyOiAwMDAwMDAwMDAwMDAwMDAwCj4gWyAyLjkzMTg1N10geDExOiAwMDAwMDAw
-MDAwMDAwMDA2IHgxMDogMDAwMDAwMDAwMDAwMDAwMCB4OSA6IDAwMDAwMDAwMDAwMDAwMDgKPiBb
-IDIuOTM4OTYzXSB4OCA6IDAxMDEwMTAxMDEwMTAxMDEgeDcgOiA3ZjdmN2Y3ZjdmN2Y3ZjdmIHg2
-IDogMDAwMDAwMDAwMDAwMDAwMQo+IFsgMi45NDYwNzBdIHg1IDogNDEzYzAyMWQ1NzIzN2RkMiB4
-NCA6IDAwMDAwMDAwMDAwMDAwMDEgeDMgOiA0MTNjMDIxZDU3MjM3ZGQyCj4gWyAyLjk1MzE3N10g
-eDIgOiAwMDAwMDAwMDAwMDAwMDAwIHgxIDogNDEzYzAyMWQ1NzIzN2RkMiB4MCA6IDAwMDAwMDAw
-MDAwMDAwMDAKPiBbIDIuOTYwMjg0XSBDYWxsIHRyYWNlOgo+IFsgMi45NjI3MTBdIHNuZF9zb2Nf
-Y29tcGVuc2F0ZV9jaGFubmVsX2Nvbm5lY3Rpb25fbWFwKzB4YTQvMHgxZDQgKFApCj4gWyAyLjk2
-OTEyNF0gc25kX3NvY19iaW5kX2NhcmQrMHgyZTQvMHhiNGMKPiBbIDIuOTczMTk3XSBzbmRfc29j
-X3JlZ2lzdGVyX2NhcmQrMHhlYy8weDEwMAo+IFsgMi45Nzc1MzBdIGRldm1fc25kX3NvY19yZWdp
-c3Rlcl9jYXJkKzB4NDgvMHhhMAo+IFsgMi45ODIyMTBdIG1lc29uX2NhcmRfcHJvYmUrMHgyMTQv
-MHgyOTAKPiBbIDIuOTg2MTk3XSBwbGF0Zm9ybV9wcm9iZSsweDY0LzB4Y2MKPiBbIDIuOTg5ODM3
-XSByZWFsbHlfcHJvYmUrMHhiYy8weDM4OAo+IFsgMi45OTMzOTBdIF9fZHJpdmVyX3Byb2JlX2Rl
-dmljZSsweDc4LzB4MTQ0Cj4gWyAyLjk5NzcyM10gZHJpdmVyX3Byb2JlX2RldmljZSsweDM4LzB4
-MTE4Cj4gWyAzLjAwMTg4M10gX19kZXZpY2VfYXR0YWNoX2RyaXZlcisweGIwLzB4MTQ0Cj4gWyAz
-LjAwNjMwM10gYnVzX2Zvcl9lYWNoX2RydisweDgwLzB4ZTAKPiBbIDMuMDA5OTQwXSB1c2IgMS0x
-OiBuZXcgaGlnaC1zcGVlZCBVU0IgZGV2aWNlIG51bWJlciAyIHVzaW5nIHhoY2ktaGNkCj4gWyAz
-LjAxMDExNl0gX19kZXZpY2VfYXR0YWNoKzB4OWMvMHgxYjQKPiBbIDMuMDIwNDMwXSBkZXZpY2Vf
-aW5pdGlhbF9wcm9iZSsweDEwLzB4MjAKPiBbIDMuMDI0NTkwXSBidXNfcHJvYmVfZGV2aWNlKzB4
-YTgvMHhiOAo+IFsgMy4wMjg0MDNdIGRlZmVycmVkX3Byb2JlX3dvcmtfZnVuYysweGE0LzB4ZjAK
-PiBbIDMuMDMyOTEwXSBwcm9jZXNzX29uZV93b3JrKzB4MTQwLzB4MzAwCj4gWyAzLjAzNjg5N10g
-d29ya2VyX3RocmVhZCsweDJhMC8weDRkNAo+IFsgMy4wNDA2MjNdIGt0aHJlYWQrMHhkYy8weGUw
-Cj4gWyAzLjA0MzY1N10gcmV0X2Zyb21fZm9yaysweDEwLzB4MjAKPiBbIDMuMDQ3MjEyXSBDb2Rl
-OiBiMDAwMzYxNiA5MTA0NjI5NCA5MTA0YzJkNiAxNDAwMDAwZCAoYjg2MDY4YTcpIAo+IFsgMy4w
-NTMyNzhdIC0tLVsgZW5kIHRyYWNlIDAwMDAwMDAwMDAwMDAwMDAgXS0tLQo+IAo+IEJvb3QgbG9n
-ICh1bnRpbCBkZWFkbG9jaykgaXMgaGVyZTogaHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L0tRbVhN
-YU5ICj4gCj4gSWYgSSBkaXNhYmxlIHRoZSBzb3VuZCBub2RlIGluIHRoZSBib2FyZCBkZXZpY2Ut
-dHJlZSB0byBwcmV2ZW50IHNuZF9zb2MgYmVpbmcgcHJvYmVkIHRoZSBrZXJuZWwgYm9vdHMgZmlu
-ZS4gSW50ZXJlc3RpbmdseSBJIGNhbiBub3cg4oCYcGxheeKAmSBIRVZDIDEwLWJpdCBtZWRpYTsg
-S29kaSBmYWlscyB0byBzaG93IGFueXRoaW5nIG9uLXNjcmVlbiBkdWUgdG8gZmZtcGVnIG5vdCBm
-aW5kaW5nIGEgdmFsaWQgVjRMMiBjYXB0dXJlIGZvcm1hdCwgYnV0IGl0IGlzIG90aGVyd2lzZSB0
-cnlpbmcgdG8gcGxheSB0aGUgbWVkaWEgZmlsZSBhbmQgSSBjYW4gcHJlc3Mg4oCZc3RvcOKAmSB0
-byBleGl0IHBsYXliYWNrIGFuZCBhbGwgaXMgZmluZSwgbm8gZGVhZGxvY2suIElmIEkgYm9vdCB3
-aXRob3V0IHRoZSBzbGFiX2RlYnVnIG9wdGlvbnMgKGFuZCB0aGUgc291bmQgbm9kZSByZXN0b3Jl
-ZCkgc291bmQgd29ya3Mgd2VsbCB3aXRob3V0IGFueSBrbm93biBpc3N1ZXMuIFRoZXJlIGlzIGNs
-ZWFybHkgYW4gaW50ZXJhY3Rpb24gYmV0d2VlbiBzbmRfc29jIGFuZCB2ZGVjLgo+IAo+IFRoZSBw
-YXRjaGVzIHRoYXQgYWRkIEhFVkMgY29kZWMgdG8gdGhlIHZkZWMgZHJpdmVyIGFyZSBhIG1peCBv
-ZiB1bmZpbmlzaGVkIHdvcmsgZnJvbSAyMDE5LCBhbmQgd29yayB0byBhZGQgMTAtYml0IHN1cHBv
-cnQgaW4gMjAyMi4gSeKAmXZlIHRlc3RlZCB3aXRoIHRoZSAxMC1iaXQgd29yayBhbmQgYWxsIEFT
-b0MgcGF0Y2hlcyBpbiBteSB0cmVlIHJldmVydGVkIChhIGNvdXBsZSBvZiBtaW5vciBiYWNrcG9y
-dHMgYW5kIGEgaGFjayBmb3IgY2hhbm5lbCBtYXBwaW5nKSBhbmQgdGhlcmXigJlzIG5vIGNoYW5n
-ZS4gSeKAmXZlIGJ1aWx0IGEgNi4xMiBrZXJuZWwgYW5kIHRoZSBpc3N1ZSBleGlzdHMgdGhlcmUg
-LSBJIHN1c3BlY3QgdGhlIHByb2JsZW0gZGF0ZXMgYmFjayB0byAyMDE5LzIwIHdoZW4gdGhlIG9y
-aWdpbmFsIHZkZWMgd29yayB3YXMgYmVpbmcgZG9uZS4gCj4gCj4gSSB3aWxsIGF0dGVtcHQgdG8g
-YnVpbHQgYSBtdWNoIG9sZGVyIDUueCBrZXJuZWwgdG8gZXN0YWJsaXNoIGEgYmlzZWN0IGJvdW5k
-YXJ5LCBidXQgb3VyIGVtYmVkZGVkIHN0eWxlIGRpc3RybyBwYWNrYWdpbmcgYW5kIHRoZSBzY2Fs
-ZSBvZiBzb21lIG9mIHRoZSBwYXRjaGVzIHdpbGwgbWFrZSBhIHByb3BlciBiaXNlY3QgY2hhbGxl
-bmdpbmcuIFRvIGRvIG11Y2ggbW9yZSBJ4oCZbGwgbmVlZCBzb21lIGd1aWRhbmNlIGFzIEkgZG9u
-4oCZdCBoYXZlIHRoZSBjIG9yIGtlcm5lbCBhcmNoaXRlY3R1cmUga25vd2xlZGdlIHRvIHByb3Bl
-cmx5IGRlYnVnLgo+IAo+IFdoYXQgaWRlYXMgZG8geW91IGhhdmU/IC0gV2hhdOKAmXMgbmV4dD8K
-CkluIHNob3J0LCB0aGUgcmVhc29uIEhFVkMgbWVkaWEgcGxheXMgaXMgYSBiYWQgcGF0Y2gg4oCY
-Zml4aW5n4oCZIGEgcG9pbnRlciBkZXJlZmVyZW5jZTsgd2hpY2ggYnJva2Ugc29tZSBWNEwyIHBs
-dW1iaW5nIGNhdXNpbmcgS29kaS9GRk1wZWcgdG8gc29mdHdhcmUgZGVjb2RlLCB0aHVzIGF2b2lk
-aW5nIHRoZSBWREVDIGlzc3VlLiBXaXRoIHRoYXQgY2hhbmdlIHJldmVydGVkIG5vcm1hbCBiZWhh
-dmlvdXIgKGRlYWRsb2NrKSBpcyByZXN0b3JlZC4gU28gdGhlcmXigJlzIG5vIHByb2JsZW0gaW50
-ZXJhY3Rpb24gYmV0d2VlbiBzbmRfc29jIGFuZCBkZWNvZGluZy4gQXBvbG9naWVzIGZvciB0aGUg
-bm9pc2Ugb24gdGhhdC4KClRoZSBzbmRfc29jIGZhaWx1cmUgd2hlbiDigJxzbGFiX2RlYnVnPUZa
-4oCdIGlzIGVuYWJsZWQgaXMgc3RpbGwgdmFsaWQgdGhvdWdoIChBRkFJQ1QpPwoKQ2hyaXN0aWFu
-CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
-YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
-dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi, Neil:
+
+Do you have any further suggestions regarding this patch?
+
+I plan to submit the relevant patches for S4 and C3 support of
+clk-measure based on this patch.
+
+
+On 2/5/2025 3:58 PM, Chuan Liu via B4 Relay wrote:
+> [ EXTERNAL EMAIL ]
+>
+> From: Chuan Liu <chuan.liu@amlogic.com>
+>
+> Drop "CLK_MSR_MAX" and replace it with adding a member "msr_count" in
+> the structure to specify the count of msr_id.
+>
+> Mark the table of msr_id as const.
+>
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> ---
+> The number of msr_ids for each chip is inconsistent. Defining a
+> fixed-size array for each chip to store msr_ids would waste memory.
+> ---
+> Changes in v2:
+> - Discard the global variable and restore the "priv" member in the
+> "struct meson_msr_id".
+> - Mark msr_id_table as const.
+> - Link to v1: https://lore.kernel.org/r/20250123-optimize_memory_size_of_clk_measure-v1-1-06aa6a01ff37@amlogic.com
+> ---
+>   drivers/soc/amlogic/meson-clk-measure.c | 86 ++++++++++++++++++++++++---------
+>   1 file changed, 62 insertions(+), 24 deletions(-)
+>
+> diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
+> index a6453ffeb753..39638d6a593c 100644
+> --- a/drivers/soc/amlogic/meson-clk-measure.c
+> +++ b/drivers/soc/amlogic/meson-clk-measure.c
+> @@ -33,23 +33,26 @@ static DEFINE_MUTEX(measure_lock);
+>   #define DIV_STEP               32
+>   #define DIV_MAX                        640
+>
+> -#define CLK_MSR_MAX            128
+> -
+>   struct meson_msr_id {
+>          struct meson_msr *priv;
+>          unsigned int id;
+>          const char *name;
+>   };
+>
+> +struct meson_msr_data {
+> +       struct meson_msr_id *msr_table;
+> +       unsigned int msr_count;
+> +};
+> +
+>   struct meson_msr {
+>          struct regmap *regmap;
+> -       struct meson_msr_id msr_table[CLK_MSR_MAX];
+> +       struct meson_msr_data data;
+>   };
+>
+>   #define CLK_MSR_ID(__id, __name) \
+>          [__id] = {.id = __id, .name = __name,}
+>
+> -static struct meson_msr_id clk_msr_m8[CLK_MSR_MAX] = {
+> +static const struct meson_msr_id clk_msr_m8[] = {
+>          CLK_MSR_ID(0, "ring_osc_out_ee0"),
+>          CLK_MSR_ID(1, "ring_osc_out_ee1"),
+>          CLK_MSR_ID(2, "ring_osc_out_ee2"),
+> @@ -98,7 +101,7 @@ static struct meson_msr_id clk_msr_m8[CLK_MSR_MAX] = {
+>          CLK_MSR_ID(63, "mipi_csi_cfg"),
+>   };
+>
+> -static struct meson_msr_id clk_msr_gx[CLK_MSR_MAX] = {
+> +static const struct meson_msr_id clk_msr_gx[] = {
+>          CLK_MSR_ID(0, "ring_osc_out_ee_0"),
+>          CLK_MSR_ID(1, "ring_osc_out_ee_1"),
+>          CLK_MSR_ID(2, "ring_osc_out_ee_2"),
+> @@ -168,7 +171,7 @@ static struct meson_msr_id clk_msr_gx[CLK_MSR_MAX] = {
+>          CLK_MSR_ID(82, "ge2d"),
+>   };
+>
+> -static struct meson_msr_id clk_msr_axg[CLK_MSR_MAX] = {
+> +static const struct meson_msr_id clk_msr_axg[] = {
+>          CLK_MSR_ID(0, "ring_osc_out_ee_0"),
+>          CLK_MSR_ID(1, "ring_osc_out_ee_1"),
+>          CLK_MSR_ID(2, "ring_osc_out_ee_2"),
+> @@ -242,7 +245,7 @@ static struct meson_msr_id clk_msr_axg[CLK_MSR_MAX] = {
+>          CLK_MSR_ID(109, "audio_locker_in"),
+>   };
+>
+> -static struct meson_msr_id clk_msr_g12a[CLK_MSR_MAX] = {
+> +static const struct meson_msr_id clk_msr_g12a[] = {
+>          CLK_MSR_ID(0, "ring_osc_out_ee_0"),
+>          CLK_MSR_ID(1, "ring_osc_out_ee_1"),
+>          CLK_MSR_ID(2, "ring_osc_out_ee_2"),
+> @@ -358,7 +361,7 @@ static struct meson_msr_id clk_msr_g12a[CLK_MSR_MAX] = {
+>          CLK_MSR_ID(122, "audio_pdm_dclk"),
+>   };
+>
+> -static struct meson_msr_id clk_msr_sm1[CLK_MSR_MAX] = {
+> +static const struct meson_msr_id clk_msr_sm1[] = {
+>          CLK_MSR_ID(0, "ring_osc_out_ee_0"),
+>          CLK_MSR_ID(1, "ring_osc_out_ee_1"),
+>          CLK_MSR_ID(2, "ring_osc_out_ee_2"),
+> @@ -489,7 +492,7 @@ static struct meson_msr_id clk_msr_sm1[CLK_MSR_MAX] = {
+>   };
+>
+>   static int meson_measure_id(struct meson_msr_id *clk_msr_id,
+> -                              unsigned int duration)
+> +                           unsigned int duration)
+>   {
+>          struct meson_msr *priv = clk_msr_id->priv;
+>          unsigned int val;
+> @@ -573,13 +576,14 @@ DEFINE_SHOW_ATTRIBUTE(clk_msr);
+>   static int clk_msr_summary_show(struct seq_file *s, void *data)
+>   {
+>          struct meson_msr_id *msr_table = s->private;
+> +       unsigned int msr_count = msr_table->priv->data.msr_count;
+>          unsigned int precision = 0;
+>          int val, i;
+>
+>          seq_puts(s, "  clock                     rate    precision\n");
+>          seq_puts(s, "---------------------------------------------\n");
+>
+> -       for (i = 0 ; i < CLK_MSR_MAX ; ++i) {
+> +       for (i = 0 ; i < msr_count ; ++i) {
+>                  if (!msr_table[i].name)
+>                          continue;
+>
+> @@ -604,7 +608,7 @@ static const struct regmap_config meson_clk_msr_regmap_config = {
+>
+>   static int meson_msr_probe(struct platform_device *pdev)
+>   {
+> -       const struct meson_msr_id *match_data;
+> +       const struct meson_msr_data *match_data;
+>          struct meson_msr *priv;
+>          struct dentry *root, *clks;
+>          void __iomem *base;
+> @@ -621,7 +625,16 @@ static int meson_msr_probe(struct platform_device *pdev)
+>                  return -ENODEV;
+>          }
+>
+> -       memcpy(priv->msr_table, match_data, sizeof(priv->msr_table));
+> +       priv->data.msr_table = devm_kcalloc(&pdev->dev,
+> +                                           match_data->msr_count,
+> +                                           sizeof(struct meson_msr_id),
+> +                                           GFP_KERNEL);
+> +       if (!priv->data.msr_table)
+> +               return -ENOMEM;
+> +
+> +       memcpy(priv->data.msr_table, match_data->msr_table,
+> +              match_data->msr_count * sizeof(struct meson_msr_id));
+> +       priv->data.msr_count = match_data->msr_count;
+>
+>          base = devm_platform_ioremap_resource(pdev, 0);
+>          if (IS_ERR(base))
+> @@ -636,45 +649,70 @@ static int meson_msr_probe(struct platform_device *pdev)
+>          clks = debugfs_create_dir("clks", root);
+>
+>          debugfs_create_file("measure_summary", 0444, root,
+> -                           priv->msr_table, &clk_msr_summary_fops);
+> +                           priv->data.msr_table, &clk_msr_summary_fops);
+>
+> -       for (i = 0 ; i < CLK_MSR_MAX ; ++i) {
+> -               if (!priv->msr_table[i].name)
+> +       for (i = 0 ; i < priv->data.msr_count ; ++i) {
+> +               if (!priv->data.msr_table[i].name)
+>                          continue;
+>
+> -               priv->msr_table[i].priv = priv;
+> +               priv->data.msr_table[i].priv = priv;
+>
+> -               debugfs_create_file(priv->msr_table[i].name, 0444, clks,
+> -                                   &priv->msr_table[i], &clk_msr_fops);
+> +               debugfs_create_file(priv->data.msr_table[i].name, 0444, clks,
+> +                                   &priv->data.msr_table[i], &clk_msr_fops);
+>          }
+>
+>          return 0;
+>   }
+>
+> +static const struct meson_msr_data clk_msr_gx_data = {
+> +       .msr_table = (void *)clk_msr_gx,
+> +       .msr_count = ARRAY_SIZE(clk_msr_gx),
+> +};
+> +
+> +static const struct meson_msr_data clk_msr_m8_data = {
+> +       .msr_table = (void *)clk_msr_m8,
+> +       .msr_count = ARRAY_SIZE(clk_msr_m8),
+> +};
+> +
+> +static const struct meson_msr_data clk_msr_axg_data = {
+> +       .msr_table = (void *)clk_msr_axg,
+> +       .msr_count = ARRAY_SIZE(clk_msr_axg),
+> +};
+> +
+> +static const struct meson_msr_data clk_msr_g12a_data = {
+> +       .msr_table = (void *)clk_msr_g12a,
+> +       .msr_count = ARRAY_SIZE(clk_msr_g12a),
+> +};
+> +
+> +static const struct meson_msr_data clk_msr_sm1_data = {
+> +       .msr_table = (void *)clk_msr_sm1,
+> +       .msr_count = ARRAY_SIZE(clk_msr_sm1),
+> +};
+> +
+>   static const struct of_device_id meson_msr_match_table[] = {
+>          {
+>                  .compatible = "amlogic,meson-gx-clk-measure",
+> -               .data = (void *)clk_msr_gx,
+> +               .data = &clk_msr_gx_data,
+>          },
+>          {
+>                  .compatible = "amlogic,meson8-clk-measure",
+> -               .data = (void *)clk_msr_m8,
+> +               .data = &clk_msr_m8_data,
+>          },
+>          {
+>                  .compatible = "amlogic,meson8b-clk-measure",
+> -               .data = (void *)clk_msr_m8,
+> +               .data = &clk_msr_m8_data,
+>          },
+>          {
+>                  .compatible = "amlogic,meson-axg-clk-measure",
+> -               .data = (void *)clk_msr_axg,
+> +               .data = &clk_msr_axg_data,
+>          },
+>          {
+>                  .compatible = "amlogic,meson-g12a-clk-measure",
+> -               .data = (void *)clk_msr_g12a,
+> +               .data = &clk_msr_g12a_data,
+>          },
+>          {
+>                  .compatible = "amlogic,meson-sm1-clk-measure",
+> -               .data = (void *)clk_msr_sm1,
+> +               .data = &clk_msr_sm1_data,
+>          },
+>          { /* sentinel */ }
+>   };
+>
+> ---
+> base-commit: 1e1fd26ed4ca05cc1f0e5857918da4dd54967f7d
+> change-id: 20250123-optimize_memory_size_of_clk_measure-f9c40e815794
+>
+> Best regards,
+> --
+> Chuan Liu <chuan.liu@amlogic.com>
+>
+>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
