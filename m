@@ -4,85 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BD34C021A5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Feb 2025 17:42:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA99AC021A1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Feb 2025 17:43:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=J7Ry+xkt71Lf1oGsi6A5CUWn91rvSEdxsM4mYT4EuHI=; b=czc4tt/GCKU7Q6
-	1ubxkMFs5uCaVKDRwKRl1A9BTDmukI2JMs3OeDOHDZIy28e3Qi9PSvB6cLxqL1dlYS8BC7h8SMerI
-	8EgRF7K3plx2HS/M6Dwmsl2+3f+Td+paY9ynS3iVP4kRB2HgRo2kzqCib7oXnAhmhOA4zWBt4VCIi
-	SKWh69ndWi9wAsSh3IlG9OJiNiQHEXkfQNb9VGDv3qRza6G5WH3fjuQHpIoKFkxxO28mJTtI+Ky/K
-	U2VGvQQx3IvYFuZ3usOvfss6c//BHCF/ByEpp4uK7Zo+dZ08ghiO6dZn/wkAbJZhqfN+zn9mbLw9E
-	Y7Z2WTUWSc+y1vsYIT8A==;
+	List-Owner; bh=czjrqrhl47gPLNBrRAmnRvNPqvV4XoGVtK4t6TV7WKE=; b=hU7fTO5DJ3fV8v
+	tM8KdX4RecsMlUaho4xo3THk/KWn1NaKRZldPTkCKDM4ydwBp8oHlrs6oJwnpiK0d/EpIjiauj6yn
+	JHcMQ0WXPlLkxCi0IX7psz1pnmnDn+WbOEs6wnK3P9/e0B9i0xE+Caz4hSqDmMrJSmAy5FZnwm1CG
+	WF66XonKg6VpiK75GcP5wYfk+WrOJm1e3CcYmtAhC0XUhaNoy9N1qKWghtDwwfc4BZivgEIdauSEP
+	nWq27VzqgSc/9k/we3DkPzhFCSPgOPwQfV53quKsabykUnp3cGEqlD2UdcvoTdcUfwlv455aQmq9v
+	n2xFa7FLERPTgZGQ3M6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1thuHe-00000004iKY-3Q6z;
-	Tue, 11 Feb 2025 17:42:54 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1thuHg-00000004iMw-2Y9e;
+	Tue, 11 Feb 2025 17:42:56 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1thu3p-00000004g3J-2pQ1
-	for linux-amlogic@bombadil.infradead.org;
-	Tue, 11 Feb 2025 17:28:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=O2biH2pTKEoyD3yCVVt7sf7r+6yC9eORZimpeabOUGQ=; b=fFqCn8pZ/MlYwtszB4oMT9Pg05
-	R1DNqe6iVjao7rZiiEYO/NXcLEOimfTx/OxWhw1/yx7RPtel4dTNaakivVuutXDn33vDQiu4mqGKo
-	/p4urnfXTpbRGYLCwBvDkkLEXaOlAboEvYgq1XnfpLH8ddOz1c95SXqtApFdbBJ2RFop7Q4qtfMYD
-	Kr2JoSmBJR90MIf/aHj4u8QW9OY/w2mCVvdVexMOWaHJVNDQss9cvHSHo3kA0OPs4nlogqc233z9a
-	stnZ45RIsPbiFvjnQKjbHrWioc+fYvXqGZErt4e9w2Mn1ILuslNBG9zJvaewKquhZaCP7L68P3uiq
-	aqBEnOWQ==;
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
-	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1thu3m-00000000eM5-39ho
+	id 1thu3q-00000004g3T-2DRk
 	for linux-amlogic@lists.infradead.org;
-	Tue, 11 Feb 2025 17:28:36 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-38dc1dfd9f2so3886152f8f.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 11 Feb 2025 09:28:33 -0800 (PST)
+	Tue, 11 Feb 2025 17:28:39 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-43956e3863eso4843595e9.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 11 Feb 2025 09:28:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739294912; x=1739899712; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739294917; x=1739899717; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=O2biH2pTKEoyD3yCVVt7sf7r+6yC9eORZimpeabOUGQ=;
-        b=wmfNEeu613nVUguogghTfBjsEKMWvNt3hKwHcEc2gJsriYa4ZWy+uI8hN83/NdWiQa
-         lk9L2OB/OCssRUiTqHxKfZOLFUbejzQb5J6oxowfkj9B48tRHswSqRFE0vM1O3NrY4Dn
-         a6ZTaFiM8g0NaVVMed6O+eu1LRv9fFxqIzj42vhxpappW9r5OlCQ4iE6QyHCVon5Yoaj
-         zLE6wV/bvuWEh+hXZkyotgZ/gZaC9VOEpwCDJDYeYvxoAme447pUL8Muco34gY5dX8Si
-         R0ztwU5lA6FCDElOHCVfVkDKlCL6N8A/RY5Y6X6i9uXWpJC0OeTKmUCHHMHBtt6zqO8V
-         XC6w==
+        bh=q9bx0I47Tn6bEo7jRo7TyxG1K/HAB+sHkf2wm2VOOzI=;
+        b=M9eslVNiuSWjDC6qyh+ekVKLJnkNY5lvm4kSXg0GJxjjfJAaR7jbHKogInq5flS+cJ
+         rbFqIeLot5PI5JMrXjGT1hpmOpzejJ0trjkacm+MJn//vKoRYb1AcuW6Ql0BXgMSXfRG
+         IfiETNmSdMMlcZov96DbLQXT/boYE52yYwXW40cXq+mBTQEENlavqgikIBYdcDwA1uqs
+         3GRUnU2rFthkMrsRNWaPxjOw6YngEHkrkn2lZrHWOMbjgm/kB1UqadkYcONK3GhxBP8Z
+         9I828T8jWT2jBZcGfUfz0e7o2XFeXqlfjzB7/I9q6uAbs70IxNUX9/AE6KbsgtTboMaP
+         JShg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739294912; x=1739899712;
+        d=1e100.net; s=20230601; t=1739294917; x=1739899717;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=O2biH2pTKEoyD3yCVVt7sf7r+6yC9eORZimpeabOUGQ=;
-        b=s6SkSVQKyLtOR9M9Q/xgttBbWo3UCJZy/iKbzufu5oYFYKgTpM/wVcJFCuGvyQ70zW
-         uePZ+i7if+dVZySLxEonlsZwcyMrLElxxROGUoWJt7UjoGTtVsQjRdRJOEL7y8PQQ3nh
-         xlLCVDnsYshvhSFZiCy5KQ6Bs/kxnHAz45ml78pFeqd9J8ruYhZ0Z3aJrGySdxMUYW0T
-         5sdohmBUFWu2/OHKVqQxFO5ghhoCOELHN1oPlxLWjct/87GF2AtivA9vN8tvcUDHmdxc
-         CQIED3KpWsZlMReuIe58r7P6pWlnd/GuvvDv7MTDkKi/svFsSaKBhlM/JmJHDXYGLcmW
-         it9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUl3KPPYnmlrTgsIkpYUaZ5CWQaIaiTzKuXXLISyw57nV1b6NheWVLRrinST+A9gs805m6pNbMoDFeOYeAl@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy/b2sHTAbUGPZVhzEzdHuguuUXgXSAAtNfstm/PKeCQqQtjDOa
-	u4C9czWnaqUp/VpG/Zs1BNbwi9vcQ4liXk4yRfZ+f37Cnqk89kFcKiMIBbi5eL4=
-X-Gm-Gg: ASbGncv21w+j2SwTeweJmvpnahnrAKTr+gLS8zx7sq1afdYCCo1VjzxJRmXdM8u0Mxj
-	sO7Gm0M0M3c4jIICMtQu1aXfPfvqygp0FNTr3aAwv+BrTxtQMcTJNPuNvWyXOys6Za8XGdAOFOM
-	Y+eZhZWVj9x9E7Nv9HQ2VKfYEF/IWwGpV1HCy1I7Y4CUDAv1M6QiBQ6/dZ/ypUR489gdfMMSzG6
-	U4Ii/nxEZ4hupbbxrJJn8T+t2jHFjVGOWqgenKPfaJWX8MUEkFyoquG2wrN3gy6JPiZbj8gW7dU
-	VjRcz+KHFq0+os3e+g==
-X-Google-Smtp-Source: AGHT+IE/lWpaI6pWVO8Sv+YQSGH06MG0caNle2AbW37wTjANlrKJ9s7lqNySg7B+IZ8uIOLB+l1Tjw==
-X-Received: by 2002:a5d:47aa:0:b0:38d:d69e:1314 with SMTP id ffacd0b85a97d-38dd69e1ba1mr9007347f8f.9.1739294912415;
-        Tue, 11 Feb 2025 09:28:32 -0800 (PST)
+        bh=q9bx0I47Tn6bEo7jRo7TyxG1K/HAB+sHkf2wm2VOOzI=;
+        b=byOgN7Xy8jlT5LceQD825Je1Xmxm50uruCECvNZ0TqfB9nbdT9ki/Z8O5kzRRuwJfy
+         iYbAhNRwbMJvl7C6d9IbgcZG7bt66c8VpF8CEvkV19npw4gAGWgE4pbUVx03NxWccOyr
+         hInGlrDXBAhEV+7G3BEMDL0a1g8HGXFHdSA2ZW5tjMQYFSNMJ12evH//h9XfHF3tPQna
+         z0Ea50yDE53f0FHPvN5P8Z2E4xwmg3916F70KEbu9tjet4JLUullIQFBgxo6iivl4lOs
+         mbdTymCTlzoRVEZWsOakRzID1dgVYuJ0TZl9LuLEcai6UChLYxsHMBomJNOA4OeSjcis
+         CDtw==
+X-Forwarded-Encrypted: i=1; AJvYcCX1Py0U6ViTMYnu4jTPOPG/XiQfLFVukHXsZuH/B9ad/YhwFMCgmtnsv9P8Q33QQujx1Elg3lEhPt91pLIG@lists.infradead.org
+X-Gm-Message-State: AOJu0YwaMWeylTEYSedxa9bYU38gjlE7cod8EMH+pMWX3NOuDG3umN0o
+	FNUPqbWtZ9QaJTogjIIcOQuANjYGMe7X5qG9wUJf/aw+bffSWQtRKiaTmGMXo0o=
+X-Gm-Gg: ASbGnctYD3H6i0znvgvEyoqyDKhOWkbGuPQze0qkzyd3xeKc1I+empwGVYg38TDN6jc
+	QOd7LZFwF9/c//kSCga0f9UCp16q9Bx5fYlny6dWnfAepdmgUq70UXCjtlorMx3dKtwOEvvHS7k
+	0JG3K1kcYm7rqAMIJV/pwqegu+msytVf9XhQgap2JINbG4Hf2jIi0DvOvbbmgWgHH6g9gpaBzsn
+	BJau+yU9VxfGG7N3fC7Z7sF8UH2B0s1TpNaQpcUlae7szzVva46ocGHVRb9mmrk4tcboPNfSbAc
+	TUaGgONzWwDbzVHkHg==
+X-Google-Smtp-Source: AGHT+IFtn7cTk53CsXLOs0ym8l94Gy0ie7XH6W8nO4K/ObG+5/+lrQBGQ0HbQ/z1Qw6bfBt122n8Rw==
+X-Received: by 2002:a5d:5887:0:b0:38d:e3a9:d655 with SMTP id ffacd0b85a97d-38de3a9d75bmr4402306f8f.15.1739294916823;
+        Tue, 11 Feb 2025 09:28:36 -0800 (PST)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:fc0c:6c04:7ae0:c5c2])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38dc6c80df2sm13691082f8f.18.2025.02.11.09.28.29
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38dc6c80df2sm13691082f8f.18.2025.02.11.09.28.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Feb 2025 09:28:31 -0800 (PST)
+        Tue, 11 Feb 2025 09:28:36 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Dave Ertman <david.m.ertman@intel.com>,
@@ -131,31 +116,31 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH v3 3/7] drm/bridge: ti-sn65dsi86: use the auxiliary device creation helper
-Date: Tue, 11 Feb 2025 18:28:00 +0100
-Message-ID: <20250211-aux-device-create-helper-v3-3-7edb50524909@baylibre.com>
+Subject: [PATCH v3 5/7] clk: eyeq: use the auxiliary device creation helper
+Date: Tue, 11 Feb 2025 18:28:02 +0100
+Message-ID: <20250211-aux-device-create-helper-v3-5-7edb50524909@baylibre.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250211-aux-device-create-helper-v3-0-7edb50524909@baylibre.com>
 References: <20250211-aux-device-create-helper-v3-0-7edb50524909@baylibre.com>
 MIME-Version: 1.0
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4038; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=4I/YUW3hUfV7LW4vqIimfK2wLippJhEosTDRns8e2Tk=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnq4g3KBrsjz/YbGJrLq2rlkWwu0SsOmQVpTCXu
- VtviTS8naaJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ6uINwAKCRDm/A8cN/La
- hV5wD/9CJGF/RCRwHbIbJXrKSWU73Zd91U9+X8P+nRRrN2lbOiILtbHRZF2AXs7l2tOiLDUVf4G
- hypCmzHSVFVgMR06Q7kXrEbTRx0O2Ul1Q07H0IFD4k0xt58ug/V7ezrJ8lMEcM/FcwImcVkoYJ8
- lwmjvrONgcgoZBExdOnJlv1UD+Dddr4Wi+sWDLmDALlFjbDYuQrfZjHc4L2zc9ve8rHjnU0pC6f
- YMm6EjEhHMcFgsbKge/+kkfDcTqsuk4jfLytI2sF2jHT2cwesgQfceYXMsqKePtNCuHTv8Tpp1b
- 5nWhj/l8S+yLfIAiVNy2nxba00yx5R4v4NoCPZCX05JCtquBC2WB4CNUzhQYHyHMMQ+ePGN7JKm
- NVtRFVPUx9oJOjGRhqWRi88hiSwNg4QPj+OFtWuOs7D51J/yTJdD5XMgYgADimBsSrLGtGB/1r/
- IorMXfmpkm0xw+RREwA4WKwLMT/KLgfShgDVdmOk4Kbnh4GrUvX/Rspym/xjVfg9es+PgegGjWK
- rCix4SNzCGiSAgOwWvJGJDOCAjzpvnzAHYXnvgCoFs75RSMC9B2KvyOk+IQ1l+9g5tLRkthUfJX
- P2X8n0M0gtdsistRrOtkv7GakcFOKAF6ZmIzmj/mW2xQRBXpnMf+sa95bdok5/LFdpbKMw5knAN dqVQqlnz7A0W1ig==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3038; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=aFYZ6uitcWrrRO3QpVWn0nNaiQ1LXsJLRLMMtNT53bw=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnq4g5lkk3cqWgHMP3CCG4BuwFe5C2F3wDshnNy
+ Adoe13MMYqJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ6uIOQAKCRDm/A8cN/La
+ hfxOD/9Ov3vQy2nAixWu6Lno5OjamDl9bupksGzUtMDHc3Xnbgp0ZK8iN2OFHVZlt0w267iS/4d
+ 7BXXIUjw9uPxlI6NadJ92+0lsfL6O0LWMo9OmvzB1/x5pZBA+YEREunOSpce9nC20sikciEBxTi
+ rAxg8rwr8ZbHZQdXySHjwnBJQwZC/iPPASuRiiFLp/ifq/OFA4BnF7OEQskN0iU7hG3dGoppKWP
+ bWpN0Ij+Lrk15oMjG8ab6kxJlyfgfETay2YsUbcEO0nXWQ+5USk4ckRfYMdt3al182sK+D3FrRE
+ PFFDpVNKveSTOJEVtRnW1eESzOqeg2fE3VkPAei/faQ0lwxcbDbLcY0UxsCoCxGmYLHN6hhgC5U
+ XuMNecOSpFOMeKJO6vJFQQ0A3eACqbzTC6C3syS5lCJmD50uYrnc9EgYrbePOD3pbuhz9xpuNys
+ ZvepVJNwvwaxXq/ouY7OWTUNzROguqe6owYkGT5o8Bzx14gpbHkorKDg8Yv007gSfVQPEra2XqZ
+ SQ/E9ifTm3uHKHiGZjfpCIQNSXD38akhhCAtt8XKGlSYC11IsLi73ZRanAiq5Exj4o8s3iA/rg0
+ u6tC0ZB/l5f4rEl3yzKymgSCtpn/VsM2fgBmzvPeQsj9wqGXJ4L4L6xeTkVUpxcrmqImB9uxOse KsRdlOtx7sxXS6g==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp; fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250211_172834_896814_D9F3F55B 
-X-CRM114-Status: GOOD (  16.25  )
+X-CRM114-CacheID: sfid-20250211_092838_571317_9CB78BD2 
+X-CRM114-Status: GOOD (  15.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -179,128 +164,94 @@ Use it and remove some boilerplate code.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/gpu/drm/bridge/ti-sn65dsi86.c | 84 +++++++++--------------------------
- 1 file changed, 20 insertions(+), 64 deletions(-)
+ drivers/clk/clk-eyeq.c | 57 +++++++++++---------------------------------------
+ 1 file changed, 12 insertions(+), 45 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi86.c b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-index e4d9006b59f1b975cf63e26b221e985206caf867..e583b8ba1fd4f27d98e03d4382e0417bbd50436f 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-@@ -454,62 +454,6 @@ static void ti_sn65dsi86_debugfs_init(struct ti_sn65dsi86 *pdata)
- 	debugfs_create_file("status", 0600, debugfs, pdata, &status_fops);
+diff --git a/drivers/clk/clk-eyeq.c b/drivers/clk/clk-eyeq.c
+index 640c25788487f8cf6fb4431ed6fb612cf099f114..37e76ad3fbe95ee2dea7df8f6b02d28f19f1d5ef 100644
+--- a/drivers/clk/clk-eyeq.c
++++ b/drivers/clk/clk-eyeq.c
+@@ -322,38 +322,18 @@ static void eqc_probe_init_fixed_factors(struct device *dev,
+ 	}
  }
  
--/* -----------------------------------------------------------------------------
-- * Auxiliary Devices (*not* AUX)
-- */
--
--static void ti_sn65dsi86_uninit_aux(void *data)
+-static void eqc_auxdev_release(struct device *dev)
 -{
--	auxiliary_device_uninit(data);
+-	struct auxiliary_device *adev = to_auxiliary_dev(dev);
+-
+-	kfree(adev);
 -}
 -
--static void ti_sn65dsi86_delete_aux(void *data)
--{
--	auxiliary_device_delete(data);
--}
--
--static void ti_sn65dsi86_aux_device_release(struct device *dev)
--{
--	struct auxiliary_device *aux = container_of(dev, struct auxiliary_device, dev);
--
--	kfree(aux);
--}
--
--static int ti_sn65dsi86_add_aux_device(struct ti_sn65dsi86 *pdata,
--				       struct auxiliary_device **aux_out,
--				       const char *name)
--{
--	struct device *dev = pdata->dev;
--	struct auxiliary_device *aux;
+-static int eqc_auxdev_create(struct device *dev, void __iomem *base,
+-			     const char *name, u32 id)
++static void eqc_auxdev_create_optional(struct device *dev, void __iomem *base,
++				       const char *name)
+ {
+ 	struct auxiliary_device *adev;
 -	int ret;
 -
--	aux = kzalloc(sizeof(*aux), GFP_KERNEL);
--	if (!aux)
+-	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
+-	if (!adev)
 -		return -ENOMEM;
 -
--	aux->name = name;
--	aux->dev.parent = dev;
--	aux->dev.release = ti_sn65dsi86_aux_device_release;
--	device_set_of_node_from_dev(&aux->dev, dev);
--	ret = auxiliary_device_init(aux);
--	if (ret) {
--		kfree(aux);
--		return ret;
--	}
--	ret = devm_add_action_or_reset(dev, ti_sn65dsi86_uninit_aux, aux);
+-	adev->name = name;
+-	adev->dev.parent = dev;
+-	adev->dev.platform_data = (void __force *)base;
+-	adev->dev.release = eqc_auxdev_release;
+-	adev->id = id;
+ 
+-	ret = auxiliary_device_init(adev);
 -	if (ret)
 -		return ret;
 -
--	ret = auxiliary_device_add(aux);
+-	ret = auxiliary_device_add(adev);
 -	if (ret)
--		return ret;
--	ret = devm_add_action_or_reset(dev, ti_sn65dsi86_delete_aux, aux);
--	if (!ret)
--		*aux_out = aux;
+-		auxiliary_device_uninit(adev);
 -
 -	return ret;
--}
++	if (name) {
++		adev = devm_auxiliary_device_create(dev, name,
++						    (void __force *)base, 0);
++		if (IS_ERR(adev))
++			dev_warn(dev, "failed creating auxiliary device %s.%s: %ld\n",
++				 KBUILD_MODNAME, name, PTR_ERR(adev));
++	}
+ }
+ 
+ static int eqc_probe(struct platform_device *pdev)
+@@ -365,7 +345,6 @@ static int eqc_probe(struct platform_device *pdev)
+ 	unsigned int i, clk_count;
+ 	struct resource *res;
+ 	void __iomem *base;
+-	int ret;
+ 
+ 	data = device_get_match_data(dev);
+ 	if (!data)
+@@ -379,21 +358,9 @@ static int eqc_probe(struct platform_device *pdev)
+ 	if (!base)
+ 		return -ENOMEM;
+ 
+-	/* Init optional reset auxiliary device. */
+-	if (data->reset_auxdev_name) {
+-		ret = eqc_auxdev_create(dev, base, data->reset_auxdev_name, 0);
+-		if (ret)
+-			dev_warn(dev, "failed creating auxiliary device %s.%s: %d\n",
+-				 KBUILD_MODNAME, data->reset_auxdev_name, ret);
+-	}
 -
- /* -----------------------------------------------------------------------------
-  * AUX Adapter
-  */
-@@ -671,7 +615,12 @@ static int ti_sn_aux_probe(struct auxiliary_device *adev,
- 	 * The eDP to MIPI bridge parts don't work until the AUX channel is
- 	 * setup so we don't add it in the main driver probe, we add it now.
- 	 */
--	return ti_sn65dsi86_add_aux_device(pdata, &pdata->bridge_aux, "bridge");
-+	pdata->bridge_aux = devm_auxiliary_device_create(pdata->dev, "bridge",
-+							 NULL, 0);
-+	if (IS_ERR(pdata->bridge_aux))
-+		return PTR_ERR(pdata->bridge_aux);
-+
-+	return 0;
- }
- 
- static const struct auxiliary_device_id ti_sn_aux_id_table[] = {
-@@ -1950,15 +1899,17 @@ static int ti_sn65dsi86_probe(struct i2c_client *client)
- 	 */
- 
- 	if (IS_ENABLED(CONFIG_OF_GPIO)) {
--		ret = ti_sn65dsi86_add_aux_device(pdata, &pdata->gpio_aux, "gpio");
+-	/* Init optional pinctrl auxiliary device. */
+-	if (data->pinctrl_auxdev_name) {
+-		ret = eqc_auxdev_create(dev, base, data->pinctrl_auxdev_name, 0);
 -		if (ret)
--			return ret;
-+		pdata->gpio_aux = devm_auxiliary_device_create(pdata->dev, "gpio",
-+							       NULL, 0);
-+		if (IS_ERR(pdata->gpio_aux))
-+			return PTR_ERR(pdata->gpio_aux);
- 	}
+-			dev_warn(dev, "failed creating auxiliary device %s.%s: %d\n",
+-				 KBUILD_MODNAME, data->pinctrl_auxdev_name, ret);
+-	}
++	/* Init optional auxiliary devices. */
++	eqc_auxdev_create_optional(dev, base, data->reset_auxdev_name);
++	eqc_auxdev_create_optional(dev, base, data->pinctrl_auxdev_name);
  
- 	if (IS_ENABLED(CONFIG_PWM)) {
--		ret = ti_sn65dsi86_add_aux_device(pdata, &pdata->pwm_aux, "pwm");
--		if (ret)
--			return ret;
-+		pdata->pwm_aux = devm_auxiliary_device_create(pdata->dev, "pwm",
-+							      NULL, 0);
-+		if (IS_ERR(pdata->pwm_aux))
-+			return PTR_ERR(pdata->pwm_aux);
- 	}
- 
- 	/*
-@@ -1967,7 +1918,12 @@ static int ti_sn65dsi86_probe(struct i2c_client *client)
- 	 * AUX channel is there and this is a very simple solution to the
- 	 * dependency problem.
- 	 */
--	return ti_sn65dsi86_add_aux_device(pdata, &pdata->aux_aux, "aux");
-+	pdata->aux_aux = devm_auxiliary_device_create(pdata->dev, "aux",
-+						      NULL, 0);
-+	if (IS_ERR(pdata->aux_aux))
-+		return PTR_ERR(pdata->aux_aux);
-+
-+	return 0;
- }
- 
- static const struct i2c_device_id ti_sn65dsi86_id[] = {
+ 	if (data->pll_count + data->div_count + data->fixed_factor_count == 0)
+ 		return 0; /* Zero clocks, we are done. */
 
 -- 
 2.45.2
