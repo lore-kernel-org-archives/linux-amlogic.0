@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E450C021A1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4A13C021A2
 	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Feb 2025 17:42:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,62 +12,77 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=X+wmjn3Ooj5VhzIXDGYQYJcMPzWBN27MXqZUlaRZvac=; b=sf/e6Z4mAgXiCk
-	fpf4FxBuFV1sDl1OWVT5FKnSyZu24Z4NEJtATmAz53vbY0Iw719CGtSS9TcneKF5u9tZzYSwiawxx
-	6o9G5XRJZm1r9JvazDh1R7ev0p1Z9le4WiWFPiDf5WohtrFnU5TMIEhDG2Luojk8DvU3vQCceLCP6
-	hj/QzDc/rhDWZvEEqQtDAc3eSEuEOjPEATFnhAkB3gezZ9912UYS8taOE6SRxZWCmnyOXDeExbaZy
-	5IXs6rDx303RgY+g5q7vSlHzRDGZKBTHSD8N5tyfV2LPxWJDl5/f56nBabfUaRB0OXVebh0TO50yj
-	UP58dCeI+5B/2HRdTCSA==;
+	List-Owner; bh=Skdvc3EjCrcrcz8UELEerCiucLT+/rdXKsSdfncz52g=; b=trIsBitRWL0bWM
+	0rjPGWkyv4gYsxmiKvqVGeV2kosv4Ilk/Oel1NHYuB5cUWj6kvr0yRU1cG/oRk538dlm3izIbU/Wc
+	rhgUHzTvWC5hrBrCI1993DQT5ZKxBQ7PGbaXbrUuuFDm4OsHFCcGlhc1NldZEiVWQscsVHtCDkYsD
+	S68AYZx63K3VjTgHMp31AevZFPRdehzCNItCTYv3AvmxOBz4dT9skcEjujqEjhyDqD8Qh12CTCUvp
+	dVRri43oxB3TrvmgoSx0xuM0Nu6eq0KtI7sQK2y4KRlnfVMzGREESoN/LJCmIGMBF8DVo1cQn9Qfy
+	UrIpwAPiB3em4kWmjbrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1thuHa-00000004iH4-3hDE;
-	Tue, 11 Feb 2025 17:42:50 +0000
-Received: from mail-wr1-f45.google.com ([209.85.221.45])
+	id 1thuHd-00000004iJe-3HNA;
+	Tue, 11 Feb 2025 17:42:53 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1thu3h-00000004fvP-2xd7
+	id 1thu3o-00000004g1v-1oW8
+	for linux-amlogic@bombadil.infradead.org;
+	Tue, 11 Feb 2025 17:28:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=vS3u0ChTSEKOd8+Sz6F6ngUlw65dB3dACQW1SqE48AI=; b=EPwR7r4axWfcjdme7ls0LdiRjx
+	tLKye8R+JEh4Lh7MZf5pK6ccKYCcneBwOKl5uBh6Af2R1fs1Z5mBhbId5kXtxzZqdsYGqfPg1nFBq
+	QrhdgtrZcx/P3dVsvEBqkRIXYqL6SlkOGYcZ5qEyegs3LXx1MC6RMHEPrPQBmTq/dz/KXubUJ3jtb
+	pYTOiwsj0nwPdxA5u8ARDAeS3ChvuA44DzTmevmK5gbEh5Q+aDI3x1Ag1YrTtm2BiauJYTq3sll2L
+	mato3fbU0UPzJ+D6YupZptLevttf+ULXGav2e7os/SN1CfIoB9fsajALlNmMymNmCKK8cpT342zzy
+	TXbYQTMA==;
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1thu3k-00000000eLX-2XTp
 	for linux-amlogic@lists.infradead.org;
-	Tue, 11 Feb 2025 17:28:30 +0000
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-38dc5b8ed86so2581162f8f.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 11 Feb 2025 09:28:29 -0800 (PST)
+	Tue, 11 Feb 2025 17:28:35 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4362bae4d7dso39192935e9.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 11 Feb 2025 09:28:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739294907; x=1739899707; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739294910; x=1739899710; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XRpmne0VBcJf7jZbKVrpAIB9gKqtJmCGDdvQHW0V2jE=;
-        b=1y++KU2NkQaKLpDyz2gNYp5cL48Ar1k7CKk3NhzfVfjDJ5isTxzfVAONJq3wsFOZDn
-         iZthoOys1geYFN63xVNffAF0MbZgKCFMJ8vP+VPKo3G3IIeZWA6qZTrjn/SNN0oxOc/T
-         pgjSbL0miPF07fEDa+yCY6YDGviFfcaxthU0sB8NyZZv/WAXo70l3Qg6VHLqCp2jFW2E
-         hr0PJ4r5ViiuX+uPINH3mDyRFn/6QXgkPmkp3R7r4u5aLtPwsXqROR+gIQaAVzZnuoRG
-         k/Gmfw3ikpl/S3W4rsaImN6oJwOnX5V1SRq40cW8A8puvR4sb8tQ9DDtRLi3LhjhbDqb
-         k+ZA==
+        bh=vS3u0ChTSEKOd8+Sz6F6ngUlw65dB3dACQW1SqE48AI=;
+        b=Vf6708KxMBuOYhp4MzlCvuFAAvfmx6Hl1lyakOEneefJf81zUM69HxoQDyEkqrdokY
+         hC9upITaqcN5gRM7+mFYyYbqLrmtFoc0A74Xn4gELiTVIOdmi9V0pwEBZT4PrKAMBdUv
+         c0E2kRh6bbRf8Q4dH6zlWv7XYjELx+eEQc3CS1yKvkZJgC7CpuOdsupw4bX3XoSlmrDC
+         gWqwFlv212qe5JQeLH9HM98XglcaYKoAHiZlfcV3roK1H/b1mVZfqelQ5KzoD+Na2JZA
+         kG5KpZphiWHA3Ayd22fdE4cdvVd+veHgMF+D9GsYD9+paqmZ9I+O/pS7SuyYvYjLxYAv
+         RtRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739294907; x=1739899707;
+        d=1e100.net; s=20230601; t=1739294910; x=1739899710;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XRpmne0VBcJf7jZbKVrpAIB9gKqtJmCGDdvQHW0V2jE=;
-        b=YDDOMi165sg/FU//Bq2fak9k1qJ2VrbbXzLRC4UCoQMOpUsMURw64060lpOqNBF7vN
-         B5u3ycrr++5qb5XmTftCbvD1fuuzVwI+qW4wV9P9+UT3krrGQ41MJ7/dJqEHIvFOtsr1
-         UKxgket6w1umg6aGN6kFtXRFdWn6RC9okaWgy1l9d3sx2kYh39Mc2x6Ee7SwI6HVDUc9
-         39GkKSt5W36CtKmDAfswt3wBidU668s6p5OSkQD2GkLQU9dnXhmq587NHD5oxJBHVRFq
-         opb6PCPlPhC9eGj10as7R/MrwN23z5DbhO9TdkZGbf2qX8Vbm+Gvrnea9daFjv25Z3ll
-         FS/g==
-X-Forwarded-Encrypted: i=1; AJvYcCW8WVcyEeBX0GEtTGHmhzAmFZ3ZgbO83g4q+gZfi9pafIl3nOfBPEWy8Vu17YRNBtrOpnbdPcEpde6hxbrv@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw7UXUbR+ZfmwOY9XuW3/b8pUqU5W81cMUKa6Jq+bE55fBYF8dx
-	NrD8DZoNjiIYecc7xkmJ5I4r8RRwYcRMmOU7Gw14X8AqjDDH6GJrqSlgCseqK28=
-X-Gm-Gg: ASbGncskcCBEywc9nnVxKqvKdEEU8joiBoJVONHhkD8GmC8zLhsWUWvireYSjaMdCmo
-	WNZXFF1XUwjetgZTTjsLk340MCt07sgMw+f3ek+n0Y3QZ6ubwTg/Dgy0ECBPSHQ2lv+7HYvgmpZ
-	KYAnxawBCGDwfU2s0Xlw0nwm8DsO6MnhWmKSTJuaYCXZ4s22HaV/NTsjeNA0CMsj3gTyxEOv43S
-	UxIT3kfxBIbWWFBsGpUWnJtyJTFJNnb8MowWsMI94l4pgtLMk6/hRdxUV4LQZbL3EiK4lmopHq3
-	olOCRcb6ce0YqZho1w==
-X-Google-Smtp-Source: AGHT+IGy2T23PgwDmJGcN14Q/mCFh4UYzD0ptO9o4GXW666CumGfNzzI0RhLancAMnBStTnS1c8Jkg==
-X-Received: by 2002:a05:6000:1f82:b0:38d:e1b1:be99 with SMTP id ffacd0b85a97d-38de4193da8mr3997996f8f.23.1739294907528;
-        Tue, 11 Feb 2025 09:28:27 -0800 (PST)
+        bh=vS3u0ChTSEKOd8+Sz6F6ngUlw65dB3dACQW1SqE48AI=;
+        b=cd9SHJY72XGRG0zh0dismw27d2dupow0TshEVwpy9kQ2w9JV/z/0tzLx7ez+snwWvD
+         vkoyfVpz8vrmkBYhD2kuraEc3//yx7JAsRjW+dFxRuswifPc6dyKJFfFhwtZSzIMN7dz
+         oC5nxs6LvF29KmRP9LnvVbLAP9T/iMwrSis/yf3IO4ZOVhFKLZrTuI1Upl4PdeCqE/lz
+         teC4puHT8KOjJXdE4vf/PlWDXDPdv502zUT1YbPoU9WWszhzZKJxdG40lN7ByXv3Nk2o
+         Hzdqx2bAavk6U7XW4QAePCPx8bFWAJ3L2l+Se/fcw3DJ5aOaPT3Qtl/cPJZdfGtvsQD0
+         mJPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVtInfJJufMObmL3zlgMl/gPDF/+QDwYEaKrOot0SETpszdoUsapVuqvrhGGBFZZUwIc3GUxnGaJ+CkKRrj@lists.infradead.org
+X-Gm-Message-State: AOJu0YytzIjx/q6czEaKJxfoOHfm68/TLs8CEpbosGlXbXhg4ZviB6tQ
+	IE70V0YVrGo5EEPIgU5l24thFdymBL2Yr8PFprHWMSWcxHpDZ63X4G20GA0Z8jo=
+X-Gm-Gg: ASbGnctwzMghsO9xEEyrCqMxM41sDTwnIRCjvHgsI6LX6LnJ/UXr7ZH09Sj/iBG2opI
+	NzhIBuqhvxjbOrqw1R49YPAIDFKS4XOz1yzo/dDCUWQn9cyRAyYb5kggIruQT8PbtDz8e/2xkKq
+	oJ2GxGWxYVWykWupTYaID0bryjVgAHveiaaLpJ1LCOUQO7G0k8/W5q0TK0NZTvMtmEiy0r7RO4L
+	V2hHikPwtIm8fVyyN6Uhx4nUP8SyF5+kYzA4jeuE4IXk4STrRBgNMrXq28vjY070NHQ/Hfd0Tw4
+	cjUZpk6tocn4ktLcAA==
+X-Google-Smtp-Source: AGHT+IHqQL8DP1JxgbD5VCseSPJliBuud4+TKe0/7TKQBN2dXAAu4cWiVWufhhODSvakeasxOn/B7w==
+X-Received: by 2002:a5d:6c66:0:b0:38a:418e:1177 with SMTP id ffacd0b85a97d-38dc8d9202dmr13638587f8f.11.1739294909768;
+        Tue, 11 Feb 2025 09:28:29 -0800 (PST)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:fc0c:6c04:7ae0:c5c2])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38dc6c80df2sm13691082f8f.18.2025.02.11.09.28.25
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38dc6c80df2sm13691082f8f.18.2025.02.11.09.28.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Feb 2025 09:28:26 -0800 (PST)
+        Tue, 11 Feb 2025 09:28:29 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Dave Ertman <david.m.ertman@intel.com>,
@@ -116,31 +131,31 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH v3 1/7] driver core: auxiliary bus: add device creation helpers
-Date: Tue, 11 Feb 2025 18:27:58 +0100
-Message-ID: <20250211-aux-device-create-helper-v3-1-7edb50524909@baylibre.com>
+Subject: [PATCH v3 2/7] reset: mpfs: use the auxiliary device creation helper
+Date: Tue, 11 Feb 2025 18:27:59 +0100
+Message-ID: <20250211-aux-device-create-helper-v3-2-7edb50524909@baylibre.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250211-aux-device-create-helper-v3-0-7edb50524909@baylibre.com>
 References: <20250211-aux-device-create-helper-v3-0-7edb50524909@baylibre.com>
 MIME-Version: 1.0
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4290; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=L2mc7++2m+KbwXPJfmeanEsMndjpINIhEyR+p/vnM+0=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnq4g2Jb64zhGo4nYo4f11I5GNQZEAzlSZ9Yo5d
- ngkcisRo/6JAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ6uINgAKCRDm/A8cN/La
- hf93D/9ySJRRpTfhwXJWNiKfMhcJCrBwzYVVixaTTNiJUGMkApqchMSmB0zNWhrawPaDlId3Qiv
- auxx3nD/C8QUQGOe3pmyimoKTtJX68sya3tWzYS13H4Sa0H9qFl2RM0zYZ2KeIfFaB5bXjAyZbp
- 8AafPJDeusV3rANuFGpxeUk8OJf2I26NERiAMf4JIeYfEk+DdUX/qaaekow/K+zX0friJeeHzfS
- n3nNP0mPksNRZ70HmTScJgvfPOEIO1hH8exi8I+Ge5RadGPr4ZAvrdduyqDrUcI+eC7Vw/vJkNh
- sW2YMStxssdA3V4ydPTzpH9vn+vlpXW1isL2h2lNUHHsZ6qQneIycJfGJCCYP1GDRky2C6AtPib
- l71wFmbfhXQPTnOmW1byyhQNUf2DG0Kse6unCPxWmU2O+bBwnBvUp3XtMEU/LOPI0MGCpZctNwz
- teda+aTYeFlWq/IRpLHb256e0QTj8OwBd64Y8+cWTJlY3OJswpzqv3zklJ0nKa5VDXQDUjv8dE/
- 3Z3LHSVu21jO5GhGjKjzeZeJVnbohnbeTurbB9m0HLLQkVNy1b6qdMD98Y9uIm1F0V6fv5ak8Ji
- vqYRsnbb3UUjcLUi7RMxyNaRwF7lp8opYquywNB5WMkoWzbD21tWKnQOr6ID3hMTihGNxCRzIyH O4UjCmzh9bo+k5A==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2220; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=JaT81TlS5JMrK8kOZ5IZdpgPZCU4QD/jFNP5Hu5Ari0=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnq4g2b7ztdhzPOxtPtSHwTFX2Q+o4rv+DEa9t5
+ h6A3WVIiOaJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ6uINgAKCRDm/A8cN/La
+ hfOYD/99mpDDUk+53d/ZanCMbwJ18FpyC1UiheDU5tolp1TjYQ6xJZCD+FUPxTFT7MftJJcmhYU
+ ppgXsxWu0vXkLiqwtls3vqypBiQP+/Br9Qd5XQWkcZy/dc3ZG2zA3FYPdrfq+GhBMRIkGuLuHTL
+ o7EuhQ8gx6YcEgqWCA6gSH/AN/YL2kOG6F+B5JEBMrI37awyyaz1Rygwhyl0qItpoUOWJamW9JV
+ wIpocIeEtV+MlTG1Kbg1WF84EI6JwAjfM5JOZjn65GDvReg9Ar7nhjkfw9C+PcnPZH0HZyY/RsO
+ 2nb7YpQYtDrCuTOtHOVSR7fA8CD/QL0C/aSz1PBFOUFaQHD5znSEvuNqIZ9MPROPDFGwWQTygho
+ 2baf6O6czt8zk+qqtahPDzlgKfvfXO6FmH4Hb1xyCFSAyBR2DoZV+W2xJP1brfagyAH+hw0+twD
+ 635z1DYFdgPAGxz2iXJxZK24JpVoR9CrB33x3a2TEwdc/KaNUt7ax6Lt2f81O587Z+7O8L6/JP4
+ XoAxgdGRTcmsl4S9zAEnByChdEI4wOcGAX/bdK2ZG0vy8N1L3IoKJnpRT+bFUN4v+dlR2ppl9wt
+ u0Jd4hipB0voUxKyhN6Eu4LjGycuGC96lmkrjExZld1DdDEdciaO1sLFUKFZ592SZ9dz1emyXb5 8Aak+H6IrmLmDhg==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp; fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250211_092829_743290_3340291D 
-X-CRM114-Status: GOOD (  16.48  )
+X-CRM114-CacheID: sfid-20250211_172833_032672_5821C801 
+X-CRM114-Status: GOOD (  12.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,139 +172,86 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add helper functions to create a device on the auxiliary bus.
+The auxiliary device creation of this driver is simple enough to
+use the available auxiliary device creation helper.
 
-This is meant for fairly simple usage of the auxiliary bus, to avoid having
-the same code repeated in the different drivers.
+Use it and remove some boilerplate code.
 
-Suggested-by: Stephen Boyd <sboyd@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/base/auxiliary.c      | 88 +++++++++++++++++++++++++++++++++++++++++++
- include/linux/auxiliary_bus.h | 10 +++++
- 2 files changed, 98 insertions(+)
+ drivers/reset/reset-mpfs.c | 52 +++-------------------------------------------
+ 1 file changed, 3 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/base/auxiliary.c b/drivers/base/auxiliary.c
-index afa4df4c5a3f371b91d8dd8c4325495d32ad1291..0f697c9c243dc9a50498a52362806db594345faf 100644
---- a/drivers/base/auxiliary.c
-+++ b/drivers/base/auxiliary.c
-@@ -385,6 +385,94 @@ void auxiliary_driver_unregister(struct auxiliary_driver *auxdrv)
+diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
+index 574e59db83a4fcf30b60cb5f638607a2ec7b0580..bbea64862181877eb7ae51fdaa9e50ffac17c908 100644
+--- a/drivers/reset/reset-mpfs.c
++++ b/drivers/reset/reset-mpfs.c
+@@ -155,62 +155,16 @@ static int mpfs_reset_probe(struct auxiliary_device *adev,
+ 	return devm_reset_controller_register(dev, rcdev);
  }
- EXPORT_SYMBOL_GPL(auxiliary_driver_unregister);
  
-+static void auxiliary_device_release(struct device *dev)
-+{
-+	struct auxiliary_device *auxdev = to_auxiliary_dev(dev);
-+
-+	kfree(auxdev);
-+}
-+
-+static struct auxiliary_device *auxiliary_device_create(struct device *dev,
-+							const char *modname,
-+							const char *devname,
-+							void *platform_data,
-+							int id)
-+{
-+	struct auxiliary_device *auxdev;
-+	int ret;
-+
-+	auxdev = kzalloc(sizeof(*auxdev), GFP_KERNEL);
-+	if (!auxdev)
-+		return ERR_PTR(-ENOMEM);
-+
-+	auxdev->id = id;
-+	auxdev->name = devname;
-+	auxdev->dev.parent = dev;
-+	auxdev->dev.platform_data = platform_data;
-+	auxdev->dev.release = auxiliary_device_release;
-+	device_set_of_node_from_dev(&auxdev->dev, dev);
-+
-+	ret = auxiliary_device_init(auxdev);
-+	if (ret) {
-+		kfree(auxdev);
-+		return ERR_PTR(ret);
-+	}
-+
-+	ret = __auxiliary_device_add(auxdev, modname);
-+	if (ret) {
-+		/*
-+		 * NOTE: It may look odd but auxdev should not be freed
-+		 * here. auxiliary_device_uninit() calls device_put()
-+		 * which call the device release function, freeing auxdev.
-+		 */
-+		auxiliary_device_uninit(auxdev);
-+		return ERR_PTR(ret);
-+	}
-+
-+	return auxdev;
-+}
-+
-+static void auxiliary_device_destroy(void *_auxdev)
-+{
-+	struct auxiliary_device *auxdev = _auxdev;
-+
-+	auxiliary_device_delete(auxdev);
-+	auxiliary_device_uninit(auxdev);
-+}
-+
-+/**
-+ * __devm_auxiliary_device_create - create a device on the auxiliary bus
-+ * @dev: parent device
-+ * @modname: module name used to create the auxiliary driver name.
-+ * @devname: auxiliary bus device name
-+ * @platform_data: auxiliary bus device platform data
-+ * @id: auxiliary bus device id
-+ *
-+ * Device managed helper to create an auxiliary bus device.
-+ * The device create matches driver 'modname.devname' on the auxiliary bus.
-+ */
-+struct auxiliary_device *__devm_auxiliary_device_create(struct device *dev,
-+							const char *modname,
-+							const char *devname,
-+							void *platform_data,
-+							int id)
-+{
-+	struct auxiliary_device *auxdev;
-+	int ret;
-+
-+	auxdev = auxiliary_device_create(dev, modname, devname, platform_data, id);
-+	if (IS_ERR(auxdev))
-+		return auxdev;
-+
-+	ret = devm_add_action_or_reset(dev, auxiliary_device_destroy,
-+				       auxdev);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return auxdev;
-+}
-+EXPORT_SYMBOL_GPL(__devm_auxiliary_device_create);
-+
- void __init auxiliary_bus_init(void)
+-static void mpfs_reset_unregister_adev(void *_adev)
+-{
+-	struct auxiliary_device *adev = _adev;
+-
+-	auxiliary_device_delete(adev);
+-	auxiliary_device_uninit(adev);
+-}
+-
+-static void mpfs_reset_adev_release(struct device *dev)
+-{
+-	struct auxiliary_device *adev = to_auxiliary_dev(dev);
+-
+-	kfree(adev);
+-}
+-
+-static struct auxiliary_device *mpfs_reset_adev_alloc(struct device *clk_dev)
+-{
+-	struct auxiliary_device *adev;
+-	int ret;
+-
+-	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
+-	if (!adev)
+-		return ERR_PTR(-ENOMEM);
+-
+-	adev->name = "reset-mpfs";
+-	adev->dev.parent = clk_dev;
+-	adev->dev.release = mpfs_reset_adev_release;
+-	adev->id = 666u;
+-
+-	ret = auxiliary_device_init(adev);
+-	if (ret) {
+-		kfree(adev);
+-		return ERR_PTR(ret);
+-	}
+-
+-	return adev;
+-}
+-
+ int mpfs_reset_controller_register(struct device *clk_dev, void __iomem *base)
  {
- 	WARN_ON(bus_register(&auxiliary_bus_type));
-diff --git a/include/linux/auxiliary_bus.h b/include/linux/auxiliary_bus.h
-index 65dd7f15437474468acf0e28f6932a7ff2cfff2c..c098568eeed2a518b055afbf1f1e68623a2c109a 100644
---- a/include/linux/auxiliary_bus.h
-+++ b/include/linux/auxiliary_bus.h
-@@ -254,6 +254,16 @@ int __auxiliary_driver_register(struct auxiliary_driver *auxdrv, struct module *
+ 	struct auxiliary_device *adev;
+-	int ret;
  
- void auxiliary_driver_unregister(struct auxiliary_driver *auxdrv);
+-	adev = mpfs_reset_adev_alloc(clk_dev);
++	adev = devm_auxiliary_device_create(clk_dev, "reset-mpfs",
++					    (__force void *)base, 666u);
+ 	if (IS_ERR(adev))
+ 		return PTR_ERR(adev);
  
-+struct auxiliary_device *__devm_auxiliary_device_create(struct device *dev,
-+							const char *modname,
-+							const char *devname,
-+							void *platform_data,
-+							int id);
-+
-+#define devm_auxiliary_device_create(dev, devname, platform_data, id) \
-+	__devm_auxiliary_device_create(dev, KBUILD_MODNAME, devname,  \
-+				       platform_data, id)
-+
- /**
-  * module_auxiliary_driver() - Helper macro for registering an auxiliary driver
-  * @__auxiliary_driver: auxiliary driver struct
+-	ret = auxiliary_device_add(adev);
+-	if (ret) {
+-		auxiliary_device_uninit(adev);
+-		return ret;
+-	}
+-
+-	adev->dev.platform_data = (__force void *)base;
+-
+-	return devm_add_action_or_reset(clk_dev, mpfs_reset_unregister_adev, adev);
++	return 0;
+ }
+ EXPORT_SYMBOL_NS_GPL(mpfs_reset_controller_register, "MCHP_CLK_MPFS");
+ 
 
 -- 
 2.45.2
