@@ -4,70 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5500DC0219B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Feb 2025 17:43:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BD34C021A5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Feb 2025 17:42:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BINfTwZzVfvkgDqdV2RH2flf/YdeHwQZitgWcwwdbYU=; b=XR6o9NDNoTpaWQ
-	a0ReHwtMy0GpJEqsjim23nvspt5t50NBgR54rLGGtY/uitonm3lFwEAqCSo5hLCyO9tV5oQqQhzNw
-	Kau5GTuleBEkaDi1pem6rI/TmfC2mlBKWxFAiNuaiFfys1wZ81TmP9lMsJsnooarD1DR9fawMRB+L
-	8+ER19fJhfNLqHvKtJKrMy7UVf8MUQoPZGJ4c5FzelU7XC6CKrapJnPWrRCG6jInWMPjn9Z+q/YBr
-	5kc8C8eyXmLWQTQR84cUpuRKiDaj5YI50NS/kam4u3Fb0Rp6GBhcU6iblIO4vFQCteI1+EAgDj5GJ
-	27sC+zTYrTj8We/0Fh/Q==;
+	List-Owner; bh=J7Ry+xkt71Lf1oGsi6A5CUWn91rvSEdxsM4mYT4EuHI=; b=czc4tt/GCKU7Q6
+	1ubxkMFs5uCaVKDRwKRl1A9BTDmukI2JMs3OeDOHDZIy28e3Qi9PSvB6cLxqL1dlYS8BC7h8SMerI
+	8EgRF7K3plx2HS/M6Dwmsl2+3f+Td+paY9ynS3iVP4kRB2HgRo2kzqCib7oXnAhmhOA4zWBt4VCIi
+	SKWh69ndWi9wAsSh3IlG9OJiNiQHEXkfQNb9VGDv3qRza6G5WH3fjuQHpIoKFkxxO28mJTtI+Ky/K
+	U2VGvQQx3IvYFuZ3usOvfss6c//BHCF/ByEpp4uK7Zo+dZ08ghiO6dZn/wkAbJZhqfN+zn9mbLw9E
+	Y7Z2WTUWSc+y1vsYIT8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1thuHf-00000004iLG-0ojc;
-	Tue, 11 Feb 2025 17:42:55 +0000
-Received: from mail-wm1-f49.google.com ([209.85.128.49])
+	id 1thuHe-00000004iKY-3Q6z;
+	Tue, 11 Feb 2025 17:42:54 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1thu3o-00000004g1o-2NkY
+	id 1thu3p-00000004g3J-2pQ1
+	for linux-amlogic@bombadil.infradead.org;
+	Tue, 11 Feb 2025 17:28:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=O2biH2pTKEoyD3yCVVt7sf7r+6yC9eORZimpeabOUGQ=; b=fFqCn8pZ/MlYwtszB4oMT9Pg05
+	R1DNqe6iVjao7rZiiEYO/NXcLEOimfTx/OxWhw1/yx7RPtel4dTNaakivVuutXDn33vDQiu4mqGKo
+	/p4urnfXTpbRGYLCwBvDkkLEXaOlAboEvYgq1XnfpLH8ddOz1c95SXqtApFdbBJ2RFop7Q4qtfMYD
+	Kr2JoSmBJR90MIf/aHj4u8QW9OY/w2mCVvdVexMOWaHJVNDQss9cvHSHo3kA0OPs4nlogqc233z9a
+	stnZ45RIsPbiFvjnQKjbHrWioc+fYvXqGZErt4e9w2Mn1ILuslNBG9zJvaewKquhZaCP7L68P3uiq
+	aqBEnOWQ==;
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1thu3m-00000000eM5-39ho
 	for linux-amlogic@lists.infradead.org;
-	Tue, 11 Feb 2025 17:28:38 +0000
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43934d41730so31987885e9.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 11 Feb 2025 09:28:36 -0800 (PST)
+	Tue, 11 Feb 2025 17:28:36 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-38dc1dfd9f2so3886152f8f.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 11 Feb 2025 09:28:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739294914; x=1739899714; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739294912; x=1739899712; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gDYe4zVCJHl1J7zmO8YwQPUsImFhukXxkzdj3E5Ja/8=;
-        b=pH4t7sq4Y0TeOoc8wSeymrHIvLWRkUXSjdvDRlUWydnvJ1IFJaVVP3/mNsdg66BCrp
-         3SicsHB8O4NqsOhZjf9E4xIEhbsM+Cx7w0Cy1RQGIw0LxZXOuZS/3hg/crWoT1/rEaci
-         5+TR7dTQgCaM/DmMneGkVRutUKldGubeAKrLSiSHNI8tDGXqSSVYRhF4KzFP798lQV3L
-         4IHQJfKIJVGhqZ5eo3uW9lCuNaJks3/qZpN7Wd3q/7zGDxk4a+rxE4H+FdbDEctHM/xg
-         JuDXd9J42dxyeszymfVQc5kqdjdiLoclQmq7F8Jb3LZZfYzFro2NQ/3LgmSL2GcyC1li
-         tbgQ==
+        bh=O2biH2pTKEoyD3yCVVt7sf7r+6yC9eORZimpeabOUGQ=;
+        b=wmfNEeu613nVUguogghTfBjsEKMWvNt3hKwHcEc2gJsriYa4ZWy+uI8hN83/NdWiQa
+         lk9L2OB/OCssRUiTqHxKfZOLFUbejzQb5J6oxowfkj9B48tRHswSqRFE0vM1O3NrY4Dn
+         a6ZTaFiM8g0NaVVMed6O+eu1LRv9fFxqIzj42vhxpappW9r5OlCQ4iE6QyHCVon5Yoaj
+         zLE6wV/bvuWEh+hXZkyotgZ/gZaC9VOEpwCDJDYeYvxoAme447pUL8Muco34gY5dX8Si
+         R0ztwU5lA6FCDElOHCVfVkDKlCL6N8A/RY5Y6X6i9uXWpJC0OeTKmUCHHMHBtt6zqO8V
+         XC6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739294914; x=1739899714;
+        d=1e100.net; s=20230601; t=1739294912; x=1739899712;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gDYe4zVCJHl1J7zmO8YwQPUsImFhukXxkzdj3E5Ja/8=;
-        b=UGYuelu+4Lv9PciRc4afA6kGW3tazIQqLe72CLPB7AhpP+gf3QtmR0EEl8Qd5Qr3fS
-         khslhMUTPudjPNDh772L2MM2467d7qIiD/Hoth5NBNVR2rt50heotBl0skz8NKD+aTvB
-         WeP461CypZnxkD1J9SnKySF7nWt6OnajwOV8jgrRapCEOR3dXqg9hLDsRNPvnsiONNDL
-         +JR56MNJRblThi2MKymgE6+/3oEZNjNXuJCV6EEdNqRaCFri8QqIymSHl8+bdsry6xH2
-         84HwWRPW6LBzsulbivRZAM55Ea+n7B9c29qQUH4YHUIUNvDoiEIUVxE8st0xlP/5ESB6
-         0mxA==
-X-Forwarded-Encrypted: i=1; AJvYcCV/EAM7/l/QTvLKXTNMqAsKvEsfbTocnB4cTcHqqtQqoBb9CyR3v9/K2s2F8CtvtbdEKebDcu4pOYfrWIVq@lists.infradead.org
-X-Gm-Message-State: AOJu0YxnGBQk2blxjR4tWdzDgIAy3aaWHGCuvKOKBnj6kszliSajlZAH
-	viVxTAftj2Z06wko+37Ey3/U1rYtJA2wlZ0s7rd/08DldIx6TOgLrcX24IZ/EWQ=
-X-Gm-Gg: ASbGncs2yiJD3AGQkT8+LTtSmt7xelV3DQvSIHVTexl3riVdqvxhLCW2EN8xqA4EnzX
-	AHEIqYNe0I6xSIAK/KyO7xfO/nA8wt7J/UInPPnQ9GIifHaIAgcTrREFmu/fNaaX8zwOtDnERHc
-	KZzV6GFV66LZghmNcRdbd/VvU+iyn40YfY7Lwmh7DICSL472NlwxO2DiFVS716M+Cmjpwp96nD+
-	lfiVuAt17oKKEd1E9S21JB2IMoKASyEfNl32U0kQ/Y+leX6VRzf1fRfd8In2G8XSKcpCY78nL+3
-	IVZJsaoCbI5ScK/rxw==
-X-Google-Smtp-Source: AGHT+IHFkzaOXapiWN4/SxKHetf09scMUxofFapehDhsYxM6Mf+yjBALSpgOHKp7OlGFg6yNQWYZRQ==
-X-Received: by 2002:a5d:5f8b:0:b0:38d:cf33:31a1 with SMTP id ffacd0b85a97d-38de92887dbmr644098f8f.23.1739294914574;
-        Tue, 11 Feb 2025 09:28:34 -0800 (PST)
+        bh=O2biH2pTKEoyD3yCVVt7sf7r+6yC9eORZimpeabOUGQ=;
+        b=s6SkSVQKyLtOR9M9Q/xgttBbWo3UCJZy/iKbzufu5oYFYKgTpM/wVcJFCuGvyQ70zW
+         uePZ+i7if+dVZySLxEonlsZwcyMrLElxxROGUoWJt7UjoGTtVsQjRdRJOEL7y8PQQ3nh
+         xlLCVDnsYshvhSFZiCy5KQ6Bs/kxnHAz45ml78pFeqd9J8ruYhZ0Z3aJrGySdxMUYW0T
+         5sdohmBUFWu2/OHKVqQxFO5ghhoCOELHN1oPlxLWjct/87GF2AtivA9vN8tvcUDHmdxc
+         CQIED3KpWsZlMReuIe58r7P6pWlnd/GuvvDv7MTDkKi/svFsSaKBhlM/JmJHDXYGLcmW
+         it9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUl3KPPYnmlrTgsIkpYUaZ5CWQaIaiTzKuXXLISyw57nV1b6NheWVLRrinST+A9gs805m6pNbMoDFeOYeAl@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy/b2sHTAbUGPZVhzEzdHuguuUXgXSAAtNfstm/PKeCQqQtjDOa
+	u4C9czWnaqUp/VpG/Zs1BNbwi9vcQ4liXk4yRfZ+f37Cnqk89kFcKiMIBbi5eL4=
+X-Gm-Gg: ASbGncv21w+j2SwTeweJmvpnahnrAKTr+gLS8zx7sq1afdYCCo1VjzxJRmXdM8u0Mxj
+	sO7Gm0M0M3c4jIICMtQu1aXfPfvqygp0FNTr3aAwv+BrTxtQMcTJNPuNvWyXOys6Za8XGdAOFOM
+	Y+eZhZWVj9x9E7Nv9HQ2VKfYEF/IWwGpV1HCy1I7Y4CUDAv1M6QiBQ6/dZ/ypUR489gdfMMSzG6
+	U4Ii/nxEZ4hupbbxrJJn8T+t2jHFjVGOWqgenKPfaJWX8MUEkFyoquG2wrN3gy6JPiZbj8gW7dU
+	VjRcz+KHFq0+os3e+g==
+X-Google-Smtp-Source: AGHT+IE/lWpaI6pWVO8Sv+YQSGH06MG0caNle2AbW37wTjANlrKJ9s7lqNySg7B+IZ8uIOLB+l1Tjw==
+X-Received: by 2002:a5d:47aa:0:b0:38d:d69e:1314 with SMTP id ffacd0b85a97d-38dd69e1ba1mr9007347f8f.9.1739294912415;
+        Tue, 11 Feb 2025 09:28:32 -0800 (PST)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:fc0c:6c04:7ae0:c5c2])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38dc6c80df2sm13691082f8f.18.2025.02.11.09.28.32
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38dc6c80df2sm13691082f8f.18.2025.02.11.09.28.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Feb 2025 09:28:34 -0800 (PST)
+        Tue, 11 Feb 2025 09:28:31 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Dave Ertman <david.m.ertman@intel.com>,
@@ -116,31 +131,31 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH v3 4/7] platform: arm64: lenovo-yoga-c630: use the auxiliary device creation helper
-Date: Tue, 11 Feb 2025 18:28:01 +0100
-Message-ID: <20250211-aux-device-create-helper-v3-4-7edb50524909@baylibre.com>
+Subject: [PATCH v3 3/7] drm/bridge: ti-sn65dsi86: use the auxiliary device creation helper
+Date: Tue, 11 Feb 2025 18:28:00 +0100
+Message-ID: <20250211-aux-device-create-helper-v3-3-7edb50524909@baylibre.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250211-aux-device-create-helper-v3-0-7edb50524909@baylibre.com>
 References: <20250211-aux-device-create-helper-v3-0-7edb50524909@baylibre.com>
 MIME-Version: 1.0
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2003; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=qoSrX8iU6ZsOmDdt2vcxpMmdn8e+H5V+wLsqMb+WXTw=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnq4g4/dIaY7N0MjawcCtYO6owHszhAtyjcgr7D
- 3Gd3AdMv6qJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ6uIOAAKCRDm/A8cN/La
- hR9uEACtV/xHFmThUeYWuRuZeLIZDjRSGPPZEm0NF1IUEyqMa+/w0GkdSU2I/GhBRDekpL969e+
- flE7DvZyypim/I0FZ9+E91BhWYhmSRaSfH/9/AKcVVKiogJILw22nAQLwHQAU4pI9XrwljjuAbt
- MSgI6Qhm5jlq1GlYCQ/hou9AbHVR9B2Oe4/YFrBkUNxEblpZLIcnrsPVO2FY5baXHpZvJ2k5CAZ
- MSpgdClj9yIkdl580XYiAPYYvwvjElVhwesa1zzt/XSJ1Idm/YRnZRAjDFe/uief6LxhKmzn8Cq
- PTKk6exeDtcsIhy2ONXg2237HCo0rho1EMRdeb/E1B5sDTqLMLKfHFYyvFYva/imfWDg260QPE8
- SB0ucc4PEGbCTcI28Hh+JdOrNP9ChRaJgfsOqR+3qLLQgWYBJ5ScIXYmp0UW91AvMrtqrwf9ySl
- UBWBVpazEhLxSaE9ItQoc2xzaUOqL71se/uZnoCaqvztP8gDdl+8GXSP2/fps5dhBhhCYQi0gi2
- n4q1VatCARnM9Gq2nM8qG9+sE/r+6AOa9faLGrXdf3ZP5y7Z1f9I1TqXigFb/dco4k7vTWAFo3Z
- /tSZVYtq1SnEy4BRJqk9nLxSPeko3sbBy6g+ly8JaELAzWpBynghDBX7iUt8qUwY3k22TI1x6Zi chvp+TE0JiJbh2Q==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4038; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=4I/YUW3hUfV7LW4vqIimfK2wLippJhEosTDRns8e2Tk=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBnq4g3KBrsjz/YbGJrLq2rlkWwu0SsOmQVpTCXu
+ VtviTS8naaJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ6uINwAKCRDm/A8cN/La
+ hV5wD/9CJGF/RCRwHbIbJXrKSWU73Zd91U9+X8P+nRRrN2lbOiILtbHRZF2AXs7l2tOiLDUVf4G
+ hypCmzHSVFVgMR06Q7kXrEbTRx0O2Ul1Q07H0IFD4k0xt58ug/V7ezrJ8lMEcM/FcwImcVkoYJ8
+ lwmjvrONgcgoZBExdOnJlv1UD+Dddr4Wi+sWDLmDALlFjbDYuQrfZjHc4L2zc9ve8rHjnU0pC6f
+ YMm6EjEhHMcFgsbKge/+kkfDcTqsuk4jfLytI2sF2jHT2cwesgQfceYXMsqKePtNCuHTv8Tpp1b
+ 5nWhj/l8S+yLfIAiVNy2nxba00yx5R4v4NoCPZCX05JCtquBC2WB4CNUzhQYHyHMMQ+ePGN7JKm
+ NVtRFVPUx9oJOjGRhqWRi88hiSwNg4QPj+OFtWuOs7D51J/yTJdD5XMgYgADimBsSrLGtGB/1r/
+ IorMXfmpkm0xw+RREwA4WKwLMT/KLgfShgDVdmOk4Kbnh4GrUvX/Rspym/xjVfg9es+PgegGjWK
+ rCix4SNzCGiSAgOwWvJGJDOCAjzpvnzAHYXnvgCoFs75RSMC9B2KvyOk+IQ1l+9g5tLRkthUfJX
+ P2X8n0M0gtdsistRrOtkv7GakcFOKAF6ZmIzmj/mW2xQRBXpnMf+sa95bdok5/LFdpbKMw5knAN dqVQqlnz7A0W1ig==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp; fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250211_092836_641085_5300D81B 
-X-CRM114-Status: GOOD (  12.26  )
+X-CRM114-CacheID: sfid-20250211_172834_896814_D9F3F55B 
+X-CRM114-Status: GOOD (  16.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -164,68 +179,128 @@ Use it and remove some boilerplate code.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/platform/arm64/lenovo-yoga-c630.c | 42 +++----------------------------
- 1 file changed, 4 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c | 84 +++++++++--------------------------
+ 1 file changed, 20 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/platform/arm64/lenovo-yoga-c630.c b/drivers/platform/arm64/lenovo-yoga-c630.c
-index 1f05c9a6a89d5ee146144062f5d2e36795c56639..921a93d4ea39ac54344cc964e2805e974cc7e808 100644
---- a/drivers/platform/arm64/lenovo-yoga-c630.c
-+++ b/drivers/platform/arm64/lenovo-yoga-c630.c
-@@ -191,50 +191,16 @@ void yoga_c630_ec_unregister_notify(struct yoga_c630_ec *ec, struct notifier_blo
+diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi86.c b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
+index e4d9006b59f1b975cf63e26b221e985206caf867..e583b8ba1fd4f27d98e03d4382e0417bbd50436f 100644
+--- a/drivers/gpu/drm/bridge/ti-sn65dsi86.c
++++ b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
+@@ -454,62 +454,6 @@ static void ti_sn65dsi86_debugfs_init(struct ti_sn65dsi86 *pdata)
+ 	debugfs_create_file("status", 0600, debugfs, pdata, &status_fops);
  }
- EXPORT_SYMBOL_GPL(yoga_c630_ec_unregister_notify);
  
--static void yoga_c630_aux_release(struct device *dev)
--{
--	struct auxiliary_device *adev = to_auxiliary_dev(dev);
+-/* -----------------------------------------------------------------------------
+- * Auxiliary Devices (*not* AUX)
+- */
 -
--	kfree(adev);
+-static void ti_sn65dsi86_uninit_aux(void *data)
+-{
+-	auxiliary_device_uninit(data);
 -}
 -
--static void yoga_c630_aux_remove(void *data)
+-static void ti_sn65dsi86_delete_aux(void *data)
 -{
--	struct auxiliary_device *adev = data;
--
--	auxiliary_device_delete(adev);
--	auxiliary_device_uninit(adev);
+-	auxiliary_device_delete(data);
 -}
 -
- static int yoga_c630_aux_init(struct device *parent, const char *name,
- 			      struct yoga_c630_ec *ec)
- {
- 	struct auxiliary_device *adev;
+-static void ti_sn65dsi86_aux_device_release(struct device *dev)
+-{
+-	struct auxiliary_device *aux = container_of(dev, struct auxiliary_device, dev);
+-
+-	kfree(aux);
+-}
+-
+-static int ti_sn65dsi86_add_aux_device(struct ti_sn65dsi86 *pdata,
+-				       struct auxiliary_device **aux_out,
+-				       const char *name)
+-{
+-	struct device *dev = pdata->dev;
+-	struct auxiliary_device *aux;
 -	int ret;
 -
--	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
--	if (!adev)
+-	aux = kzalloc(sizeof(*aux), GFP_KERNEL);
+-	if (!aux)
 -		return -ENOMEM;
 -
--	adev->name = name;
--	adev->id = 0;
--	adev->dev.parent = parent;
--	adev->dev.release = yoga_c630_aux_release;
--	adev->dev.platform_data = ec;
- 
--	ret = auxiliary_device_init(adev);
+-	aux->name = name;
+-	aux->dev.parent = dev;
+-	aux->dev.release = ti_sn65dsi86_aux_device_release;
+-	device_set_of_node_from_dev(&aux->dev, dev);
+-	ret = auxiliary_device_init(aux);
 -	if (ret) {
--		kfree(adev);
+-		kfree(aux);
 -		return ret;
 -	}
+-	ret = devm_add_action_or_reset(dev, ti_sn65dsi86_uninit_aux, aux);
+-	if (ret)
+-		return ret;
 -
--	ret = auxiliary_device_add(adev);
--	if (ret) {
--		auxiliary_device_uninit(adev);
+-	ret = auxiliary_device_add(aux);
+-	if (ret)
 -		return ret;
--	}
-+	adev = devm_auxiliary_device_create(parent, name, ec, 0);
-+	if (IS_ERR(adev))
-+		return PTR_ERR(adev);
- 
--	return devm_add_action_or_reset(parent, yoga_c630_aux_remove, adev);
+-	ret = devm_add_action_or_reset(dev, ti_sn65dsi86_delete_aux, aux);
+-	if (!ret)
+-		*aux_out = aux;
+-
+-	return ret;
+-}
+-
+ /* -----------------------------------------------------------------------------
+  * AUX Adapter
+  */
+@@ -671,7 +615,12 @@ static int ti_sn_aux_probe(struct auxiliary_device *adev,
+ 	 * The eDP to MIPI bridge parts don't work until the AUX channel is
+ 	 * setup so we don't add it in the main driver probe, we add it now.
+ 	 */
+-	return ti_sn65dsi86_add_aux_device(pdata, &pdata->bridge_aux, "bridge");
++	pdata->bridge_aux = devm_auxiliary_device_create(pdata->dev, "bridge",
++							 NULL, 0);
++	if (IS_ERR(pdata->bridge_aux))
++		return PTR_ERR(pdata->bridge_aux);
++
 +	return 0;
  }
  
- static int yoga_c630_ec_probe(struct i2c_client *client)
+ static const struct auxiliary_device_id ti_sn_aux_id_table[] = {
+@@ -1950,15 +1899,17 @@ static int ti_sn65dsi86_probe(struct i2c_client *client)
+ 	 */
+ 
+ 	if (IS_ENABLED(CONFIG_OF_GPIO)) {
+-		ret = ti_sn65dsi86_add_aux_device(pdata, &pdata->gpio_aux, "gpio");
+-		if (ret)
+-			return ret;
++		pdata->gpio_aux = devm_auxiliary_device_create(pdata->dev, "gpio",
++							       NULL, 0);
++		if (IS_ERR(pdata->gpio_aux))
++			return PTR_ERR(pdata->gpio_aux);
+ 	}
+ 
+ 	if (IS_ENABLED(CONFIG_PWM)) {
+-		ret = ti_sn65dsi86_add_aux_device(pdata, &pdata->pwm_aux, "pwm");
+-		if (ret)
+-			return ret;
++		pdata->pwm_aux = devm_auxiliary_device_create(pdata->dev, "pwm",
++							      NULL, 0);
++		if (IS_ERR(pdata->pwm_aux))
++			return PTR_ERR(pdata->pwm_aux);
+ 	}
+ 
+ 	/*
+@@ -1967,7 +1918,12 @@ static int ti_sn65dsi86_probe(struct i2c_client *client)
+ 	 * AUX channel is there and this is a very simple solution to the
+ 	 * dependency problem.
+ 	 */
+-	return ti_sn65dsi86_add_aux_device(pdata, &pdata->aux_aux, "aux");
++	pdata->aux_aux = devm_auxiliary_device_create(pdata->dev, "aux",
++						      NULL, 0);
++	if (IS_ERR(pdata->aux_aux))
++		return PTR_ERR(pdata->aux_aux);
++
++	return 0;
+ }
+ 
+ static const struct i2c_device_id ti_sn65dsi86_id[] = {
 
 -- 
 2.45.2
