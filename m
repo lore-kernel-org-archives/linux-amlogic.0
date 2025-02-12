@@ -4,83 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57A3DC02198
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Feb 2025 09:27:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D177C02198
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Feb 2025 14:42:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References:Message-ID
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OpC3d1WHVuZr2mxXgFkjk8gAmSHwSYt4CvlxrPao88A=; b=CnLIS6gEzPhEGU
-	GNCo24EL/T7ACvB3SraV1RA9pIVibvgWQP7K3586ZkzTLo75KJJ4RjgvXMDgoQPQzeoCKIVqOibbB
-	vhdZ3uBOiPUwLMi0OWARabrYy7ujo4H6cQlkxQf+vhUuWIBKXlcccaeoM0nH1kIBR8pTCxG4zngNu
-	jr18LYiRoC2yXJRWtzFP9ZkGBJsmh5TCfnZwf0g4C8DUrdRDHFASpyxYFtdFe6VMoAYDT3acywHKQ
-	Gs/w/NHVpNikdqANTyC4jOEeR276VZLYEgNkTmcNM5ooDH6ytmDgOp9gjZKFFtZQeV7LZnMGK1E05
-	NnintqpguUXf0wQJlrWw==;
+	List-Owner; bh=B9mitkwljR34PhMp58Lz1OfqvwytfBwq62aA72fszi0=; b=rIaWrz0m2L1ssf
+	e6d8+fY9HFkA/0AEVTTLJ4DNraig/r/9MLsX1uEpn/NL1xtA2jBLSD/rUIIukXr01LY/7C70L5o8k
+	E3zwfepeemtRchZN+auPADxHCg82Z8FlN3TaH1Pgvat3K+MI+T6+T2mTSIcbhb9Zy8I71wTYCNpIU
+	vZKdgRV/DKjj2XSrKE//bzx85P/UA1z74KkbHeZ5hLjWBwFOpgMJIJnKxbEfj8HV+3oprG0GoSX91
+	+JhgMlR/vCUIb9rYD/1HHOPUJKnVhMHX4yhGAk3GKlV6M9tSzwaO6HJ0CJyP5z7TTpyGOdnfVsBXM
+	4fNmjH/h5s1NKFXTSqgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1ti91l-00000006m00-0VL2;
-	Wed, 12 Feb 2025 09:27:29 +0000
-Received: from esa.microchip.iphmx.com ([68.232.154.123])
+	id 1tiDw3-00000007inI-0774;
+	Wed, 12 Feb 2025 14:41:55 +0000
+Received: from relay3-d.mail.gandi.net ([2001:4b98:dc4:8::223])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1ti8xW-00000006l1r-3adE;
-	Wed, 12 Feb 2025 09:23:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1739352186; x=1770888186;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=A1lTgaCSCPH+LFYIcMVq6NgsuaXTkZ36T56r0CfFEyU=;
-  b=1RiW90MEF1osw2K7KYxv8tdJg9Kvaon/IggQ1EirHeMVBAll7GZWUFNT
-   qEYm8yuPk2K3WjTIFdpVIYBay6gBRYhY7e5cchOKGiRlNyvCEB91oYkq0
-   uDziO490FbMOy/owornutQ0L737w/qu3s62Y4mI+HOkcEaG8C/xEJqyyy
-   ebZR8mGCg+aAf1QX8vILEIIu2qcSSsYqWA9VPHgbfP+zKEYVua06997Jk
-   OxO6jjXTekyBMLKnqldvRmqtPPw0gACziw5pkWzHHiPps36dGfheOjF/t
-   TlM8Y/Q8k8kiqURToFVaV3A3s6Bikj99x4P9tixQNdm9GwhgPui4Sk82B
-   w==;
-X-CSE-ConnectionGUID: Im7caqcMRgeiMBKdbNTopA==
-X-CSE-MsgGUID: Ydz9VnPsRnKzfMIBBjCRkg==
-X-IronPort-AV: E=Sophos;i="6.13,279,1732604400"; 
-   d="scan'208";a="37190268"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Feb 2025 02:23:03 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 12 Feb 2025 02:22:33 -0700
-Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Wed, 12 Feb 2025 02:22:28 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Wed, 12 Feb 2025 14:52:11 +0530
-Subject: [PATCH v3 2/2] dt-bindings: mmc: atmel,hsmci: Convert to json
- schema
+	id 1tiDvz-00000007ijR-3ak8;
+	Wed, 12 Feb 2025 14:41:54 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1FDCF204A5;
+	Wed, 12 Feb 2025 14:41:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1739371303;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hV58UJrNiafKUEEBYyT5622rc4906GKqOPPegyEjpJc=;
+	b=GvBu9t563kxnFl8vpKqJnl1NlFNwRhwgqpgwrV/WKHt+P/P2VyItdyvSR8e7YpylVkrJFh
+	ZambmdwrU19UQNsfxlqJs00qmG1mJgRSWTe8ObzqtbHpk8slTgRKlELpQzT2avGKq6lyJb
+	LL8HprxNBtH1BHLc61viq/yj9L1DFSAe2WWN2RQe9dFql+ICrfKfp8CUe3mO2pCCPgX8tS
+	TP6aR8s3Mrn/9Z42s8BUVceDzlUrOyyDuDl6gLHzqZEXHOkCL7Q/nrgv8UdwGzqRqtay8e
+	1kA/qjLYuimHcatcpaPr75L+A1gxNamRx4P/B6fzdeCUHAvX/o80W0TZ2LG1gg==
+From: =?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>
+To: jbrunet@baylibre.com
+Cc: Laurent.pinchart@ideasonboard.com,
+	abelvesa@kernel.org,
+	airlied@gmail.com,
+	andrzej.hajda@intel.com,
+	arnd@arndb.de,
+	bryan.odonoghue@linaro.org,
+	conor.dooley@microchip.com,
+	daire.mcnamara@microchip.com,
+	dakr@kernel.org,
+	david.m.ertman@intel.com,
+	dianders@chromium.org,
+	dri-devel@lists.freedesktop.org,
+	festevam@gmail.com,
+	gregkh@linuxfoundation.org,
+	gregory.clement@bootlin.com,
+	hdegoede@redhat.com,
+	ilpo.jarvinen@linux.intel.com,
+	imx@lists.linux.dev,
+	ira.weiny@intel.com,
+	jernej.skrabec@gmail.com,
+	jonas@kwiboo.se,
+	kernel@pengutronix.de,
+	khilman@baylibre.com,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	maarten.lankhorst@linux.intel.com,
+	martin.blumenstingl@googlemail.com,
+	mripard@kernel.org,
+	mturquette@baylibre.com,
+	neil.armstrong@linaro.org,
+	p.zabel@pengutronix.de,
+	peng.fan@nxp.com,
+	platform-driver-x86@vger.kernel.org,
+	rafael@kernel.org,
+	rfoss@kernel.org,
+	s.hauer@pengutronix.de,
+	sboyd@kernel.org,
+	shawnguo@kernel.org,
+	simona@ffwll.ch,
+	theo.lebrun@bootlin.com,
+	tzimmermann@suse.de,
+	vladimir.kondratiev@mobileye.com
+Subject: [PATCH] reset: eyeq: drop device_set_of_node_from_dev() done by parent
+Date: Wed, 12 Feb 2025 15:41:26 +0100
+Message-ID: <20250212144126.120231-1-theo.lebrun@bootlin.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250211-aux-device-create-helper-v3-5-7edb50524909@baylibre.com>
+References: <20250211-aux-device-create-helper-v3-5-7edb50524909@baylibre.com>
 MIME-Version: 1.0
-Message-ID: <20250212-mmc-slot-v3-2-2bf288207040@microchip.com>
-References: <20250212-mmc-slot-v3-0-2bf288207040@microchip.com>
-In-Reply-To: <20250212-mmc-slot-v3-0-2bf288207040@microchip.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
-	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, "Martin
- Blumenstingl" <martin.blumenstingl@googlemail.com>
-CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Dharma Balasubiramani
-	<dharma.b@microchip.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739352136; l=4768;
- i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
- bh=A1lTgaCSCPH+LFYIcMVq6NgsuaXTkZ36T56r0CfFEyU=;
- b=Lcp/a3O6yv2QXnNOK3V/BtiNINsPT6P7qaEjWrE56J8XikZUjIugwaqJ43z6SzQYhqTQKUE30
- oVJfL27sDDBClvHBJjSY45HEGAHzmAEoUQ7mDXNEORYqUgBDn0+Uiws
-X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
- pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
+X-GND-State: clean
+X-GND-Score: 0
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeggeduhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucenucfjughrpefhvfevufffkffojghfgggtgfesthekredtredtjeenucfhrhhomhepvfhhrohoucfnvggsrhhunhcuoehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeghfejhfdviefftedvieetfedugeefvedtfedujefhhedvhefggfduhfefueektdenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeiieegsgemfhdtfhhfmehfvgdutdemlegvfhgunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeiieegsgemfhdtfhhfmehfvgdutdemlegvfhgupdhhvghlohepthhlvggsqdgsohhothhlihhnqdhffidqtddvrddrpdhmrghilhhfrhhomhepthhhvghordhlvggsrhhunhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepgeejpdhrtghpthhtohepjhgsrhhunhgvthessggrhihlihgsrhgvrdgtohhmpdhrtghpthhtohepnfgruhhrvghnthdrphhinhgthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopegrsggvlhhvvghsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghirhhlihgvugesghhmr
+ ghilhdrtghomhdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtoheprghrnhgusegrrhhnuggsrdguvgdprhgtphhtthhopegsrhihrghnrdhoughonhhoghhhuhgvsehlihhnrghrohdrohhrghdprhgtphhtthhopegtohhnohhrrdguohholhgvhiesmhhitghrohgthhhiphdrtghomh
+X-GND-Sasl: theo.lebrun@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250212_012306_965561_8221ED6B 
-X-CRM114-Status: GOOD (  15.49  )
+X-CRM114-CacheID: sfid-20250212_064152_374191_1AF996B0 
+X-CRM114-Status: GOOD (  11.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,217 +114,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert atmel,hsmci documentation to yaml format. The new file will inherit
-from mmc-controller.yaml.
-
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
- .../devicetree/bindings/mmc/atmel,hsmci.yaml       | 106 +++++++++++++++++++++
- .../devicetree/bindings/mmc/atmel-hsmci.txt        |  73 --------------
- 2 files changed, 106 insertions(+), 73 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
-new file mode 100644
-index 000000000000..feaa98e44955
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
-@@ -0,0 +1,106 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/atmel,hsmci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel High-Speed MultiMedia Card Interface (HSMCI)
-+
-+description:
-+  The Atmel HSMCI controller provides an interface for MMC, SD, and SDIO memory
-+  cards.
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Aubin Constans <aubin.constans@microchip.com>
-+
-+allOf:
-+  - $ref: mmc-controller.yaml
-+
-+properties:
-+  compatible:
-+    const: atmel,hsmci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    const: rxtx
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: mci_clk
-+
-+  "#address-cells":
-+    const: 1
-+    description: Used for slot IDs.
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^slot@[0-9]+$":
-+    $ref: mmc-slot.yaml
-+    description: A slot node representing an MMC, SD, or SDIO slot.
-+
-+    properties:
-+      reg:
-+        enum: [0, 1]
-+
-+    required:
-+      - reg
-+      - bus-width
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+anyOf:
-+  - required:
-+      - slot@0
-+  - required:
-+      - slot@1
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/at91.h>
-+    mmc@f0008000 {
-+      compatible = "atmel,hsmci";
-+      reg = <0xf0008000 0x600>;
-+      interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&mci0_clk>;
-+      clock-names = "mci_clk";
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      slot@0 {
-+        reg = <0>;
-+        bus-width = <4>;
-+        cd-gpios = <&pioD 15 0>;
-+        cd-inverted;
-+      };
-+
-+      slot@1 {
-+        reg = <1>;
-+        bus-width = <4>;
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt b/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt
-deleted file mode 100644
-index 07ad02075a93..000000000000
---- a/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt
-+++ /dev/null
-@@ -1,73 +0,0 @@
--* Atmel High Speed MultiMedia Card Interface
--
--This controller on atmel products provides an interface for MMC, SD and SDIO
--types of memory cards.
--
--This file documents differences between the core properties described
--by mmc.txt and the properties used by the atmel-mci driver.
--
--1) MCI node
--
--Required properties:
--- compatible: should be "atmel,hsmci"
--- #address-cells: should be one. The cell is the slot id.
--- #size-cells: should be zero.
--- at least one slot node
--- clock-names: tuple listing input clock names.
--	Required elements: "mci_clk"
--- clocks: phandles to input clocks.
--
--The node contains child nodes for each slot that the platform uses
--
--Example MCI node:
--
--mmc0: mmc@f0008000 {
--	compatible = "atmel,hsmci";
--	reg = <0xf0008000 0x600>;
--	interrupts = <12 4>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	clock-names = "mci_clk";
--	clocks = <&mci0_clk>;
--
--	[ child node definitions...]
--};
--
--2) slot nodes
--
--Required properties:
--- reg: should contain the slot id.
--- bus-width: number of data lines connected to the controller
--
--Optional properties:
--- cd-gpios: specify GPIOs for card detection
--- cd-inverted: invert the value of external card detect gpio line
--- wp-gpios: specify GPIOs for write protection
--
--Example slot node:
--
--slot@0 {
--	reg = <0>;
--	bus-width = <4>;
--	cd-gpios = <&pioD 15 0>
--	cd-inverted;
--};
--
--Example full MCI node:
--mmc0: mmc@f0008000 {
--	compatible = "atmel,hsmci";
--	reg = <0xf0008000 0x600>;
--	interrupts = <12 4>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	slot@0 {
--		reg = <0>;
--		bus-width = <4>;
--		cd-gpios = <&pioD 15 0>
--		cd-inverted;
--	};
--	slot@1 {
--		reg = <1>;
--		bus-width = <4>;
--	};
--};
-
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T3VyIHBhcmVudCBkcml2ZXIgKGNsay1leWVxKSBub3cgZG9lcyB0aGUKCWRldmljZV9zZXRfb2Zf
+bm9kZV9mcm9tX2RldihkZXYsIGRldi0+cGFyZW50KQpjYWxsIHRocm91Z2ggdGhlIG5ld2x5IGlu
+dHJvZHVjZWQgZGV2bV9hdXhpbGlhcnlfZGV2aWNlX2NyZWF0ZSgpIGhlbHBlci4KCkRvaW5nIGl0
+IGFnYWluIGluIHRoZSByZXNldC1leWVxIHByb2JlIHdvdWxkIGJlIHJlZHVuZGFudC4KRHJvcCBi
+b3RoIHRoZSBXQVJOX09OKCkgYW5kIHRoZSBkZXZpY2Vfc2V0X29mX25vZGVfZnJvbV9kZXYoKSBj
+YWxsLgpBbHNvIGZpeCB0aGUgZm9sbG93aW5nIGNvbW1lbnQgdGhhdCB0YWxrcyBhYm91dCAib3Vy
+IG5ld2ZvdW5kIE9GIG5vZGUiLgoKU2lnbmVkLW9mZi1ieTogVGjDqW8gTGVicnVuIDx0aGVvLmxl
+YnJ1bkBib290bGluLmNvbT4KLS0tCiBkcml2ZXJzL3Jlc2V0L3Jlc2V0LWV5ZXEuYyB8IDEzICsr
+LS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9u
+cygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvcmVzZXQvcmVzZXQtZXllcS5jIGIvZHJpdmVycy9y
+ZXNldC9yZXNldC1leWVxLmMKaW5kZXggMDJkNTAwNDEwNDhiLi44MDE4ZmE4OTU0MjcgMTAwNjQ0
+Ci0tLSBhL2RyaXZlcnMvcmVzZXQvcmVzZXQtZXllcS5jCisrKyBiL2RyaXZlcnMvcmVzZXQvcmVz
+ZXQtZXllcS5jCkBAIC00MjAsMTcgKzQyMCw4IEBAIHN0YXRpYyBpbnQgZXFyX3Byb2JlKHN0cnVj
+dCBhdXhpbGlhcnlfZGV2aWNlICphZGV2LAogCWludCByZXQ7CiAKIAkvKgotCSAqIFdlIGFyZSBh
+biBhdXhpbGlhcnkgZGV2aWNlIG9mIGNsay1leWVxLiBXZSBkbyBub3QgaGF2ZSBhbiBPRiBub2Rl
+IGJ5Ci0JICogZGVmYXVsdDsgbGV0J3MgcmV1c2Ugb3VyIHBhcmVudCdzIE9GIG5vZGUuCi0JICov
+Ci0JV0FSTl9PTihkZXYtPm9mX25vZGUpOwotCWRldmljZV9zZXRfb2Zfbm9kZV9mcm9tX2Rldihk
+ZXYsIGRldi0+cGFyZW50KTsKLQlpZiAoIWRldi0+b2Zfbm9kZSkKLQkJcmV0dXJuIC1FTk9ERVY7
+Ci0KLQkvKgotCSAqIFVzaW5nIG91ciBuZXdmb3VuZCBPRiBub2RlLCB3ZSBjYW4gZ2V0IG1hdGNo
+IGRhdGEuIFdlIGNhbm5vdCB1c2UKLQkgKiBkZXZpY2VfZ2V0X21hdGNoX2RhdGEoKSBiZWNhdXNl
+IGl0IGRvZXMgbm90IG1hdGNoIHJldXNlZCBPRiBub2Rlcy4KKwkgKiBHZXQgbWF0Y2ggZGF0YS4g
+V2UgY2Fubm90IHVzZSBkZXZpY2VfZ2V0X21hdGNoX2RhdGEoKSBiZWNhdXNlIGl0IGRvZXMKKwkg
+KiBub3QgYWNjZXB0IHJldXNlZCBPRiBub2Rlczsgc2VlIGRldmljZV9zZXRfb2Zfbm9kZV9mcm9t
+X2RldigpLgogCSAqLwogCW1hdGNoID0gb2ZfbWF0Y2hfbm9kZShkZXYtPmRyaXZlci0+b2ZfbWF0
+Y2hfdGFibGUsIGRldi0+b2Zfbm9kZSk7CiAJaWYgKCFtYXRjaCB8fCAhbWF0Y2gtPmRhdGEpCi0t
+IAoyLjQ4LjEKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
+ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
+bWxvZ2ljCg==
