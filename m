@@ -4,96 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4D5DC021A4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2025 18:36:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44FABC021A0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2025 22:17:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=YgRlX/lJT/LEHGSl+M9/VxVTXmc+k1CJS09g5D8FTtE=; b=e/Od5gn3P35MMli9fwDRBSO+Jx
-	ZFwcCcfDkNDZKpiJxzxZX8BvTkMEazh1S3SzofF3xgJo3CmrJDbBTIQeb5G9S9qN/q5uhOlAWmSsY
-	8Y+joKA+otEWI2TrkcEY+bsP4gMbPq+j0taejuTiaitEyEqVv2bap7VUR6ZZAWCqv5+ljuJdC2lOj
-	DDejQ9pVAthAQ0nKHqO+oyAqPrJ0aDmMkYvguKc1citqb36phAyoHo1l4kfke1YI2uDg429k7ysZC
-	wTYQxvnvgSqCOy29uCXeESMedXyO2ptB7q63Yk7Nde1q8mjkPnwpRR5vKQdThBQ1tCFMaKm21Vkzz
-	QvrhdEFw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=VyMnudyhr5yyevLTHK44cfg4egfaxYiR1Vu04mD50os=; b=ag6WLaZhFqr5aK
+	QaSHp37gZuuF4E4CzdjjPyG+Ub0MSEI3oLtMq13lj8xb5Quni8HJQVoQy2pKbHrP9aFnDu4ghq+uS
+	LmmHPO4xV7fQKU0XADQBxk4iuwCsBDznLvejbDXe8kwaFw/ymxfBNmyw7hjsles9KTa2ObB08Sinn
+	OiEquS0xMGZ3BEfdohQuU22JTqZIcBWE7rZCeF/NUA/hKmZp9BM+IXW6HUAWBDA0v3gELLcqDlyCM
+	j+rUdXhfvkI0Tstvuhcmg3V5kZL6HPDNhH+3P4+roQV6rIYHSavrYuavhDF2+a9b5lVjzk3DwkXKi
+	ybT5FlRUTi1xfutYTYMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tie4X-0000000CGQm-3bZ8;
-	Thu, 13 Feb 2025 18:36:25 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tihWp-0000000CnpT-0QPT;
+	Thu, 13 Feb 2025 22:17:51 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tidUd-0000000C6x7-29sx;
-	Thu, 13 Feb 2025 17:59:20 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 3CED05C58EA;
-	Thu, 13 Feb 2025 17:58:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 537F5C4CEE5;
-	Thu, 13 Feb 2025 17:59:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739469558;
-	bh=Pgn2vbpHZGhCOn5YhZz8fN0a5lPUgj2hH+tawYr3GvI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R52iamQnStdvdjPzrUWP5m3f6dlxeAVUJqqh2Zat/hZmMmlZ3FHIP25gpThz11R/D
-	 vg96qHC/2qAMYIMR6wmNuF/4329RLihz4GzMSQUEt68g3bpYzwf1dJzrZl3Rg7/t1p
-	 jvOBSQiBorqQZPb3p1svf5VOM8/TFStUBnvqPVCIw4pO27r3Z6Qnyi3pk4mD0z74yO
-	 B66OYoxbo/tqlkGISaWYvy3fvp2dC5W/XgM4ye3k/MUixPd3wsUdolVYLoaiZk9TAl
-	 7no88D98e6379shrdeW11gVSPGGHH/QAm4ezRmpsgWS00PbSjF8oG67spsPDlwYQfa
-	 cFQyhc2+LYypQ==
-Date: Thu, 13 Feb 2025 17:59:07 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dave Ertman <david.m.ertman@intel.com>,
-	Ira Weiny <ira.weiny@intel.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Douglas Anderson <dianders@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	id 1tihWm-0000000Cnp9-3Ya5;
+	Thu, 13 Feb 2025 22:17:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=CTvlTgh9FkYy1gsP0z8BmLVeMXguz+BQdutA7bg9psA=; b=kVO9DdzZW6U+DJV0WVxNb1eC8i
+	gZhCN+ihtwFru1vdjujaGM5FQLDiUl7WkZLpR/jx0KnvwF9/bvjNPhB+VdYPhexjtYGYY/dAiWtMw
+	KWDz4DdEJeCXiPvYRpP8tHInMEcyLtY+19KNzZsTYbOkJDfEqSEV89Ev/FLKHu5NXByOwSEBvpOtD
+	iD4cX5oZECiBwmmSFwJi3WpjdY0mEiIoCig7l4c74QWYgIPMLg8TDPx8Se0bxENQZGs/ZkWrxBcls
+	iJ+Z0H6FzycaHwA4Ltn/yRi1UeNPVfVSEz4mRWTZN5lxRcOuVu7fPN7nf+22aIMplRxROZfQGso6L
+	GYnz5EDA==;
+Received: from mail.mvand.net ([185.229.52.35])
+	by desiato.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
+	id 1tihWQ-000000017X9-46uz;
+	Thu, 13 Feb 2025 22:17:46 +0000
+Received: from xrossbuild.mvand.net (mail.mvand.net [185.229.52.35])
+	by mail.mvand.net (Postfix) with ESMTPSA id 4E4D21FF3D;
+	Thu, 13 Feb 2025 23:17:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=martijnvandeventer.nl; s=default; t=1739485043;
+	bh=++zlBheuf2ghp6IKg2VkyhrcpY1H9g9JvPugZj9lb6c=;
+	h=From:To:Cc:Subject:Date:From;
+	b=wQ+otXL/AsRnI0M5Wli7eTKcR1/hhmmL/vCU/O1IhJgNCGT7hTbuBSjpI+2RlDVQ2
+	 vNBKUGLbrLt7BuIbR/sr98pFGcsxJpO4V6wg7ZEfTK9x9PtOAL8a0vwBYaW0+jDfSE
+	 yv3oblxoousTZWjoAWLYGD3akzcFCRTO+f5jC51/VEjvVR7dUubb0MD8Rl0fSQWVdN
+	 QaXHBZkqMHh6HClJNQBSgndP8VJwIZ2HXQ2a4NZsoiEWa+ItYcVlLje011BRFs8yKe
+	 6CMAAdUy04lLaOLmm2IIYfOIZefKiENDwZzArE4ADVmbMHRE6EXVPKJTX1Y2yDE8yb
+	 PT6ice7j7RwIw==
+From: Martijn van Deventer <linux@martijnvandeventer.nl>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
 	Michael Turquette <mturquette@baylibre.com>,
-	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	platform-driver-x86@vger.kernel.org, linux-mips@vger.kernel.org,
-	linux-clk@vger.kernel.org, imx@lists.linux.dev,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org,
+	linux-clk@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v3 2/7] reset: mpfs: use the auxiliary device creation
- helper
-Message-ID: <20250213-crown-clustered-81c6434c892b@spud>
-References: <20250211-aux-device-create-helper-v3-0-7edb50524909@baylibre.com>
- <20250211-aux-device-create-helper-v3-2-7edb50524909@baylibre.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] clk: meson: g12a: Fix kernel warnings when no display attached
+Date: Thu, 13 Feb 2025 23:17:01 +0100
+Message-Id: <20250213221702.606-1-linux@martijnvandeventer.nl>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-In-Reply-To: <20250211-aux-device-create-helper-v3-2-7edb50524909@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250213_095919_640183_964D3576 
-X-CRM114-Status: GOOD (  19.42  )
+X-CRM114-CacheID: sfid-20250213_221728_107542_DBD5CD1A 
+X-CRM114-Status: UNSURE (   9.31  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,147 +84,113 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7631985832046220222=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+When booting SM1 or G12A boards without a dislay attached to HDMI,
+the kernel shows the following warning:
 
---===============7631985832046220222==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hayvwxyUW11W/dJv"
-Content-Disposition: inline
+[CRTC:46:meson_crtc] vblank wait timed out
+WARNING: CPU: 2 PID: 265 at drivers/gpu/drm/drm_atomic_helper.c:1682 drm_atomic_helper_wait_for_vblanks.part.0+0x240/0x264
+CPU: 2 UID: 0 PID: 265 Comm: setfont Tainted: G         C
+Tainted: [C]=CRAP
+pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : drm_atomic_helper_wait_for_vblanks.part.0+0x240/0x264
+lr : drm_atomic_helper_wait_for_vblanks.part.0+0x240/0x264
+Call trace:
+ drm_atomic_helper_wait_for_vblanks.part.0+0x240/0x264
+ drm_atomic_helper_commit_tail_rpm+0x84/0xa0
+ commit_tail+0xa4/0x18c
+ drm_atomic_helper_commit+0x164/0x178
+ drm_atomic_commit+0xb4/0xec
+ drm_client_modeset_commit_atomic+0x210/0x270
+ drm_client_modeset_commit_locked+0x5c/0x188
+ drm_fb_helper_pan_display+0xb8/0x1d4
+ fb_pan_display+0x7c/0x120
+ bit_update_start+0x20/0x48
+ fbcon_switch+0x418/0x54c
+ el0t_64_sync+0x194/0x198
 
+This happens when the kernel disables the unused clocks.
+Sometimes this causes the boot to hang.
 
---hayvwxyUW11W/dJv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+By (re)adding the flag CLK_IGNORE_UNUSED to the VCLK2 clocks, these
+clocks will not be disabled.
 
-On Tue, Feb 11, 2025 at 06:27:59PM +0100, Jerome Brunet wrote:
-> The auxiliary device creation of this driver is simple enough to
-> use the available auxiliary device creation helper.
->=20
-> Use it and remove some boilerplate code.
->=20
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/reset/reset-mpfs.c | 52 +++-------------------------------------=
-------
->  1 file changed, 3 insertions(+), 49 deletions(-)
->=20
-> diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
-> index 574e59db83a4fcf30b60cb5f638607a2ec7b0580..bbea64862181877eb7ae51fda=
-a9e50ffac17c908 100644
-> --- a/drivers/reset/reset-mpfs.c
-> +++ b/drivers/reset/reset-mpfs.c
-> @@ -155,62 +155,16 @@ static int mpfs_reset_probe(struct auxiliary_device=
- *adev,
->  	return devm_reset_controller_register(dev, rcdev);
->  }
-> =20
-> -static void mpfs_reset_unregister_adev(void *_adev)
-> -{
-> -	struct auxiliary_device *adev =3D _adev;
-> -
-> -	auxiliary_device_delete(adev);
-> -	auxiliary_device_uninit(adev);
-> -}
-> -
-> -static void mpfs_reset_adev_release(struct device *dev)
-> -{
-> -	struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
-> -
-> -	kfree(adev);
-> -}
-> -
-> -static struct auxiliary_device *mpfs_reset_adev_alloc(struct device *clk=
-_dev)
-> -{
-> -	struct auxiliary_device *adev;
-> -	int ret;
-> -
-> -	adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
-> -	if (!adev)
-> -		return ERR_PTR(-ENOMEM);
-> -
-> -	adev->name =3D "reset-mpfs";
-> -	adev->dev.parent =3D clk_dev;
-> -	adev->dev.release =3D mpfs_reset_adev_release;
-> -	adev->id =3D 666u;
-> -
-> -	ret =3D auxiliary_device_init(adev);
-> -	if (ret) {
-> -		kfree(adev);
-> -		return ERR_PTR(ret);
-> -	}
-> -
-> -	return adev;
-> -}
-> -
->  int mpfs_reset_controller_register(struct device *clk_dev, void __iomem =
-*base)
->  {
->  	struct auxiliary_device *adev;
-> -	int ret;
-> =20
-> -	adev =3D mpfs_reset_adev_alloc(clk_dev);
-> +	adev =3D devm_auxiliary_device_create(clk_dev, "reset-mpfs",
-> +					    (__force void *)base, 666u);
+This partially reverts commit b70cb1a21a54 ("clk: meson: g12a:
+make VCLK2 and ENCL clock path configurable by CCF").
 
-Moving the boilerplate into a helper makes sense:
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Fixes: b70cb1a21a54 ("clk: meson: g12a: make VCLK2 and ENCL clock path configurable by CCF").
+Signed-off-by: Martijn van Deventer <linux@martijnvandeventer.nl>
+---
+ drivers/clk/meson/g12a.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-One think that's always felt a bit meh to me is this id number stuff,
-I just threw in 666 for meme value. The whole thing seems super
-arbitrary, do any of the users of this helper actually put meaningful
-values into the id parameter?
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index cfffd434e998..1651898658f5 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -3234,7 +3234,7 @@ static struct clk_regmap g12a_vclk2_div = {
+ 			&g12a_vclk2_input.hw
+ 		},
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_GATE,
++		.flags = CLK_SET_RATE_GATE | CLK_IGNORE_UNUSED,
+ 	},
+ };
+ 
+@@ -3270,7 +3270,7 @@ static struct clk_regmap g12a_vclk2 = {
+ 		.ops = &meson_vclk_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_div.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT,
++		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+ 	},
+ };
+ 
+@@ -3354,7 +3354,7 @@ static struct clk_regmap g12a_vclk2_div1 = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT,
++		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+ 	},
+ };
+ 
+@@ -3368,7 +3368,7 @@ static struct clk_regmap g12a_vclk2_div2_en = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT,
++		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+ 	},
+ };
+ 
+@@ -3382,7 +3382,7 @@ static struct clk_regmap g12a_vclk2_div4_en = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT,
++		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+ 	},
+ };
+ 
+@@ -3396,7 +3396,7 @@ static struct clk_regmap g12a_vclk2_div6_en = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+ 		.num_parents = 1,
+-		.flags = CLK_SET_RATE_PARENT,
++		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+ 	},
+ };
+ 
+-- 
+2.39.2
 
->  	if (IS_ERR(adev))
->  		return PTR_ERR(adev);
-> =20
-> -	ret =3D auxiliary_device_add(adev);
-> -	if (ret) {
-> -		auxiliary_device_uninit(adev);
-> -		return ret;
-> -	}
-> -
-> -	adev->dev.platform_data =3D (__force void *)base;
-> -
-> -	return devm_add_action_or_reset(clk_dev, mpfs_reset_unregister_adev, ad=
-ev);
-> +	return 0;
->  }
->  EXPORT_SYMBOL_NS_GPL(mpfs_reset_controller_register, "MCHP_CLK_MPFS");
-> =20
->=20
-> --=20
-> 2.45.2
->=20
-
---hayvwxyUW11W/dJv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ64y1gAKCRB4tDGHoIJi
-0tpDAQDNGTJm0hUvHu9/lgcEwur44fxS2Qlcl7n70eboDVTC6gD/VBr9uDAEKvks
-C7yxajoK6tXd6NFsVd0104wfqGk41QU=
-=kI4Q
------END PGP SIGNATURE-----
-
---hayvwxyUW11W/dJv--
-
-
---===============7631985832046220222==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7631985832046220222==--
-
