@@ -4,131 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFA8FC021A0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2025 15:41:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4D5DC021A4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Feb 2025 18:36:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H1WZcVY9WzAsW63cy5i2K+s/WkCKCSl8UxLc96glbY0=; b=iyn7IU1Y3Oclpu
-	P/GaB62yGADR7rLrDXEPuBhJSo8f4SMFKK2DLtQqRzei8g9mnELrO/bGwWKoAVU2mZuSLLjX/8Ck5
-	Ui12sC652FOFontr2XlqzxTJeE7Lq2LwuWFXt+KL0nbucbAlYPy+x5bM8JU98SQ75WexAqRm73We9
-	FBvJculXchaeimFCB7VKTv9bgDvIcy1aMjMEfKve3HL/Pc84CbGWSNGCZo+yaSggAHSr3hXEWw8tw
-	U75At3QA906ibXvBRcSq45b6VDgW0IoK8N0ScFAqyjT1Bovr4PPtmtMF6UnClnSd2I09MSgiLbicT
-	myDDTgO531pH+B9ObGBA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=YgRlX/lJT/LEHGSl+M9/VxVTXmc+k1CJS09g5D8FTtE=; b=e/Od5gn3P35MMli9fwDRBSO+Jx
+	ZFwcCcfDkNDZKpiJxzxZX8BvTkMEazh1S3SzofF3xgJo3CmrJDbBTIQeb5G9S9qN/q5uhOlAWmSsY
+	8Y+joKA+otEWI2TrkcEY+bsP4gMbPq+j0taejuTiaitEyEqVv2bap7VUR6ZZAWCqv5+ljuJdC2lOj
+	DDejQ9pVAthAQ0nKHqO+oyAqPrJ0aDmMkYvguKc1citqb36phAyoHo1l4kfke1YI2uDg429k7ysZC
+	wTYQxvnvgSqCOy29uCXeESMedXyO2ptB7q63Yk7Nde1q8mjkPnwpRR5vKQdThBQ1tCFMaKm21Vkzz
+	QvrhdEFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tibL4-0000000BZyW-3kFg;
-	Thu, 13 Feb 2025 15:41:18 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1tie4X-0000000CGQm-3bZ8;
+	Thu, 13 Feb 2025 18:36:25 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tiZNs-0000000BAoI-2vaR
-	for linux-amlogic@bombadil.infradead.org;
-	Thu, 13 Feb 2025 13:36:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:MIME-Version:Message-ID:
-	Date:References:In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=4lyrHtSipeKghn9xCx+8COWh0BWty29N6DnBPAUwOek=; b=hhZn+aeSJ4pSVQlHcuqULpeAsT
-	kjHlQxelE1s0sl0y7WCDtPzoAA0RCX9H8hJ2f3jH8hj7HzQDeniiC2cW/8vgK+CrtkL9o1OQsQ4Bo
-	14p3Py3zq86OSAC8jomvZMbh6irbhBJl/pUbDb8C+rpSE2kVW/8W1Mbp33AD7zS9D/iKxKs+KwqOC
-	NFCLWgKgrlvzq8xqPj21dw2aQsziOudeoXkP8hF8MXw0Wbx2eb2cu2GK9MbhP7ABPMWMokZXnSaX/
-	y96jH/sKT3Fdf1FZLZYH9QQAAXC1VMnx3TvHHQ1/lFjGfjIFlmPFVhDjUlBCave2x8bEf1zG/YjqW
-	zOuMAyUQ==;
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
-	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tiZNp-000000010Oo-1u3g
-	for linux-amlogic@lists.infradead.org;
-	Thu, 13 Feb 2025 13:36:03 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4395f81db4dso5337205e9.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 13 Feb 2025 05:35:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739453759; x=1740058559; darn=lists.infradead.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4lyrHtSipeKghn9xCx+8COWh0BWty29N6DnBPAUwOek=;
-        b=pCJ4iEXS5joeF2Or9EqZRJ6vS57XWxqme9Zwgau6MR85+SzNlAYBtghDGJXjs9qIam
-         N6hGBvaLmcVr7BHw+H0ADIHk0H7he+2RYkKPU00uwdjXwGY0NAXDR1xYnvA7gQurKE84
-         vqZAAMyBFKxB0XJ2umhzes3ExgqM8tR0yh8TCGGzju4P7YP0ARu566z1FEUVvSf8SCwb
-         GlwP32OaL92hUS1klQfSQ/cm3Vg1YFEKvGzJK4JL4qffrXGHMXNGVe6sQE0eSBcrDpXU
-         lczSzGCTEyjMNznpCkCAxg1tdyDzlXmTaApMHpQc7FYC5na0jRgIU8K/sZsev7e87x2o
-         snhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739453759; x=1740058559;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4lyrHtSipeKghn9xCx+8COWh0BWty29N6DnBPAUwOek=;
-        b=kgo/sfOq3U8RmflCGNgjwIQF5S9yS5URmeouhxDVa8jIZjsWrq7vTR3Qw/2ecrdkLC
-         tieCu41dLo4YpseTTns8yKI2btixGlnpfIvv2v98NtO7ipgdysxikU3pW0hFrUaiJCwk
-         JMOtybIZ669Qn0XY/zua30qbY3dWh8ZQesm0ZZew0pdcy6EN4T28vhH4AhS1Ck5YIshj
-         uw0rCy+DYKalMH3OrJKczQhDltAanb0JiGbff0pg3Rq9SF8E8mpCRqjG3um1xiSAfvei
-         m8Gnp1+q181iDi7UPCTkLiipUYfiEy75kc3tVxzgkuR3zxbA4oBeQasNi9tb5SE3Kuha
-         +tiw==
-X-Forwarded-Encrypted: i=1; AJvYcCVW/qVIjS2bwAmB6ccQQywD3cHHwFqRISBJ+EPMQ4VGki1UfM4hVK9U4Zeiwpk78AYcfK5MT1O6KpyC/gHC@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz42mtPDFMK6/EIu+Kqqkn3yVu7Q0xhedSjDjuCz/76vkK88sYL
-	1n7IerizlcdQMMw3zVGefyX4b5BkLRjLGzNCbe/h2mNEeqi+hTA/F8cq1pdEiVk=
-X-Gm-Gg: ASbGnctj1bSJ2C3g3wVLYuofQdhuDmgZvRcbDY+AM1aD9L1lKSYJlMDlcaBc8wVUlaM
-	/oeoPx27WxKNwxt2ttOQ8UFY2AFX7ujgmsTAF+irTKqoezqTAUrcPnd0sfKXhge0bTqoNNEwOCY
-	kC6PX6VGqmZODLp2mI683RdVlguSrUC4Rh0zszmFjWWBJYELoCbZa+ilVlbOEJXG3X3Xn350cbd
-	xOaLDQKEytqtDF1sqGMOrmSx8fKKI25rb9HYeWK0ver7JqXWEhPe59+Ij2PHQeq4xJ9ha/5FlRG
-	nFjQreDI7V+llw==
-X-Google-Smtp-Source: AGHT+IFlyyROQN/jp5N25OPHAwGGncnJ/FLwqH6qkR/P/8dmal2Zk5G/l0wZieziiMnBJNT5H1Y22g==
-X-Received: by 2002:a05:600c:a0c:b0:434:f1bd:1e40 with SMTP id 5b1f17b1804b1-43960e81b92mr29235125e9.6.1739453758160;
-        Thu, 13 Feb 2025 05:35:58 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:b617:2c1:fc8c:2705])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4395a056151sm49618825e9.16.2025.02.13.05.35.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2025 05:35:57 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: "Arnd Bergmann" <arnd@arndb.de>
-Cc: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,  "Dave Ertman"
- <david.m.ertman@intel.com>,  "Ira Weiny" <ira.weiny@intel.com>,  "Rafael J
- . Wysocki" <rafael@kernel.org>,  "Stephen Boyd" <sboyd@kernel.org>,
-  "Danilo Krummrich" <dakr@kernel.org>,  "Conor.Dooley"
- <conor.dooley@microchip.com>,  "Daire McNamara"
- <daire.mcnamara@microchip.com>,  "Philipp Zabel" <p.zabel@pengutronix.de>,
-  "Doug Anderson" <dianders@chromium.org>,  "Andrzej Hajda"
- <andrzej.hajda@intel.com>,  "Neil Armstrong" <neil.armstrong@linaro.org>,
-  "Robert Foss" <rfoss@kernel.org>,  "laurent.pinchart"
- <Laurent.pinchart@ideasonboard.com>,  "Jonas Karlman" <jonas@kwiboo.se>,
-  "Jernej Skrabec" <jernej.skrabec@gmail.com>,  "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>,  "Maxime Ripard"
- <mripard@kernel.org>,  "Thomas Zimmermann" <tzimmermann@suse.de>,  "Dave
- Airlie" <airlied@gmail.com>,  "Simona Vetter" <simona@ffwll.ch>,  "Hans de
- Goede" <hdegoede@redhat.com>,  Ilpo =?utf-8?Q?J=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>,  "Bryan O'Donoghue"
- <bryan.odonoghue@linaro.org>,  "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>,  "Gregory Clement"
- <gregory.clement@bootlin.com>,  =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
-  "Michael Turquette" <mturquette@baylibre.com>,  "Abel Vesa"
- <abelvesa@kernel.org>,  "Peng Fan" <peng.fan@nxp.com>,  "Shawn Guo"
- <shawnguo@kernel.org>,  "Sascha Hauer" <s.hauer@pengutronix.de>,
-  "Pengutronix Kernel Team" <kernel@pengutronix.de>,  "Fabio Estevam"
- <festevam@gmail.com>,  "Kevin Hilman" <khilman@baylibre.com>,  "Martin
- Blumenstingl" <martin.blumenstingl@googlemail.com>,
-  linux-kernel@vger.kernel.org,  linux-riscv@lists.infradead.org,
-  dri-devel@lists.freedesktop.org,  platform-driver-x86@vger.kernel.org,
-  linux-mips@vger.kernel.org,  linux-clk@vger.kernel.org,
-  imx@lists.linux.dev,  linux-arm-kernel@lists.infradead.org,
-  linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v3 7/7] clk: amlogic: axg-audio: use the auxiliary reset
- driver - take 2
-In-Reply-To: <73c1ab6b-fd5e-47e3-8815-8f74758535f1@app.fastmail.com> (Arnd
-	Bergmann's message of "Thu, 13 Feb 2025 13:26:12 +0100")
+	id 1tidUd-0000000C6x7-29sx;
+	Thu, 13 Feb 2025 17:59:20 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 3CED05C58EA;
+	Thu, 13 Feb 2025 17:58:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 537F5C4CEE5;
+	Thu, 13 Feb 2025 17:59:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739469558;
+	bh=Pgn2vbpHZGhCOn5YhZz8fN0a5lPUgj2hH+tawYr3GvI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R52iamQnStdvdjPzrUWP5m3f6dlxeAVUJqqh2Zat/hZmMmlZ3FHIP25gpThz11R/D
+	 vg96qHC/2qAMYIMR6wmNuF/4329RLihz4GzMSQUEt68g3bpYzwf1dJzrZl3Rg7/t1p
+	 jvOBSQiBorqQZPb3p1svf5VOM8/TFStUBnvqPVCIw4pO27r3Z6Qnyi3pk4mD0z74yO
+	 B66OYoxbo/tqlkGISaWYvy3fvp2dC5W/XgM4ye3k/MUixPd3wsUdolVYLoaiZk9TAl
+	 7no88D98e6379shrdeW11gVSPGGHH/QAm4ezRmpsgWS00PbSjF8oG67spsPDlwYQfa
+	 cFQyhc2+LYypQ==
+Date: Thu, 13 Feb 2025 17:59:07 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Dave Ertman <david.m.ertman@intel.com>,
+	Ira Weiny <ira.weiny@intel.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Douglas Anderson <dianders@chromium.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	dri-devel@lists.freedesktop.org,
+	platform-driver-x86@vger.kernel.org, linux-mips@vger.kernel.org,
+	linux-clk@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v3 2/7] reset: mpfs: use the auxiliary device creation
+ helper
+Message-ID: <20250213-crown-clustered-81c6434c892b@spud>
 References: <20250211-aux-device-create-helper-v3-0-7edb50524909@baylibre.com>
-	<20250211-aux-device-create-helper-v3-7-7edb50524909@baylibre.com>
-	<73c1ab6b-fd5e-47e3-8815-8f74758535f1@app.fastmail.com>
-User-Agent: mu4e 1.12.8; emacs 29.4
-Date: Thu, 13 Feb 2025 14:35:56 +0100
-Message-ID: <1j1pw20xxf.fsf@starbuckisacylon.baylibre.com>
+ <20250211-aux-device-create-helper-v3-2-7edb50524909@baylibre.com>
 MIME-Version: 1.0
+In-Reply-To: <20250211-aux-device-create-helper-v3-2-7edb50524909@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250213_133601_655291_CB6C73FC 
-X-CRM114-Status: GOOD (  18.37  )
+X-CRM114-CacheID: sfid-20250213_095919_640183_964D3576 
+X-CRM114-Status: GOOD (  19.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,57 +105,147 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============7631985832046220222=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu 13 Feb 2025 at 13:26, "Arnd Bergmann" <arnd@arndb.de> wrote:
 
-> On Tue, Feb 11, 2025, at 18:28, Jerome Brunet wrote:
->>
->>  I also think this is more readeable and maintainable than a bunch of
->>  'default CONFIG_FOO if CONFIG_FOO' for CONFIG_RESET_MESON_AUX. This approach
->>  also would have several pitfall, such as picking the value of the first config
->>  set or the config of RESET_MESON_AUX staying to 'n' if CONFIG_FOO is turned on
->>  with menuconfig.
->
-> I still think you should just drop the 'imply' line, all it does it
-> force reviewers to double-check that you didn't make a mistake
-> here, so it's a waste of time.
+--===============7631985832046220222==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hayvwxyUW11W/dJv"
+Content-Disposition: inline
 
-Arnd, you've made you preference clear and this note has been added
-specifically for this reason, and transparency. 
 
-I've exposed a technical reason for my choice. Going with the 'default'
-approach makes things more difficult in the long run for those
-maintaining this platform, me included.
+--hayvwxyUW11W/dJv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The trouble of having to coordinate changes in 2 different subsystems to
-have an appropriate configuration and the pitfalls of using 'default'
-outweigh the extra review trouble of using 'imply' ... especially when
-the pitfall mentioned in documentation is explicitly addressed in the
-description.
+On Tue, Feb 11, 2025 at 06:27:59PM +0100, Jerome Brunet wrote:
+> The auxiliary device creation of this driver is simple enough to
+> use the available auxiliary device creation helper.
+>=20
+> Use it and remove some boilerplate code.
+>=20
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/reset/reset-mpfs.c | 52 +++-------------------------------------=
+------
+>  1 file changed, 3 insertions(+), 49 deletions(-)
+>=20
+> diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
+> index 574e59db83a4fcf30b60cb5f638607a2ec7b0580..bbea64862181877eb7ae51fda=
+a9e50ffac17c908 100644
+> --- a/drivers/reset/reset-mpfs.c
+> +++ b/drivers/reset/reset-mpfs.c
+> @@ -155,62 +155,16 @@ static int mpfs_reset_probe(struct auxiliary_device=
+ *adev,
+>  	return devm_reset_controller_register(dev, rcdev);
+>  }
+> =20
+> -static void mpfs_reset_unregister_adev(void *_adev)
+> -{
+> -	struct auxiliary_device *adev =3D _adev;
+> -
+> -	auxiliary_device_delete(adev);
+> -	auxiliary_device_uninit(adev);
+> -}
+> -
+> -static void mpfs_reset_adev_release(struct device *dev)
+> -{
+> -	struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
+> -
+> -	kfree(adev);
+> -}
+> -
+> -static struct auxiliary_device *mpfs_reset_adev_alloc(struct device *clk=
+_dev)
+> -{
+> -	struct auxiliary_device *adev;
+> -	int ret;
+> -
+> -	adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
+> -	if (!adev)
+> -		return ERR_PTR(-ENOMEM);
+> -
+> -	adev->name =3D "reset-mpfs";
+> -	adev->dev.parent =3D clk_dev;
+> -	adev->dev.release =3D mpfs_reset_adev_release;
+> -	adev->id =3D 666u;
+> -
+> -	ret =3D auxiliary_device_init(adev);
+> -	if (ret) {
+> -		kfree(adev);
+> -		return ERR_PTR(ret);
+> -	}
+> -
+> -	return adev;
+> -}
+> -
+>  int mpfs_reset_controller_register(struct device *clk_dev, void __iomem =
+*base)
+>  {
+>  	struct auxiliary_device *adev;
+> -	int ret;
+> =20
+> -	adev =3D mpfs_reset_adev_alloc(clk_dev);
+> +	adev =3D devm_auxiliary_device_create(clk_dev, "reset-mpfs",
+> +					    (__force void *)base, 666u);
 
-If there something wrong with 'imply' existing and being used, maybe the
-Documentation should be updated to reflect this, or the support be
-removed entirely.
+Moving the boilerplate into a helper makes sense:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-ATM, it exists and it makes things a lot easier for me to support and
-maintain this device.
+One think that's always felt a bit meh to me is this id number stuff,
+I just threw in 666 for meme value. The whole thing seems super
+arbitrary, do any of the users of this helper actually put meaningful
+values into the id parameter?
 
-This all started with a maintainer request to move some resets away
-from clock. More requests have been added along the way, making things
-more generic. I'm more than happy to have contributed my effort and
-time on this and I don't think anybody's time has been wasted so far.
+>  	if (IS_ERR(adev))
+>  		return PTR_ERR(adev);
+> =20
+> -	ret =3D auxiliary_device_add(adev);
+> -	if (ret) {
+> -		auxiliary_device_uninit(adev);
+> -		return ret;
+> -	}
+> -
+> -	adev->dev.platform_data =3D (__force void *)base;
+> -
+> -	return devm_add_action_or_reset(clk_dev, mpfs_reset_unregister_adev, ad=
+ev);
+> +	return 0;
+>  }
+>  EXPORT_SYMBOL_NS_GPL(mpfs_reset_controller_register, "MCHP_CLK_MPFS");
+> =20
+>=20
+> --=20
+> 2.45.2
+>=20
 
->
->     Arnd
+--hayvwxyUW11W/dJv
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Jerome
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ64y1gAKCRB4tDGHoIJi
+0tpDAQDNGTJm0hUvHu9/lgcEwur44fxS2Qlcl7n70eboDVTC6gD/VBr9uDAEKvks
+C7yxajoK6tXd6NFsVd0104wfqGk41QU=
+=kI4Q
+-----END PGP SIGNATURE-----
+
+--hayvwxyUW11W/dJv--
+
+
+--===============7631985832046220222==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7631985832046220222==--
+
