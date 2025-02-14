@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE8B0C021A0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2025 02:44:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1B0CC021A6
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2025 02:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=XYhzpX0auGufyihKSBdkVmOVEKx0sWN70/tainPpp10=; b=yegT3HvVyEM7xt
-	Irnv6syoPShtcpkw7ZEAhlFHz2kk7zqOsFNbnnGUqt6VtMxOJN13XoWFXzKEHYkl690VGUtE/5ZTv
-	00v8HZk6pbs4Geub3tdtUJp2kVA/aepAVBXRu9na6NT4OI3WGgBcwxHkJ5yoh14ClZxXVkdHZIneo
-	alCYS2NvI0dkex2DF2Ul6rqrziIR3rrBiqLTcYA3kAn1/UiyBISn9Uv/3INzwm5pEsx0TKQwC2SQf
-	68Bztuq04mqZXtzjdEqUAJ3nYuGDkQ5aGyX/hWCNLiB8wgRtfytwHMkEPnHshhOQpT0+C6DskC60h
-	AQ09JnN/h7mvbus0GPqQ==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oZaTcjm6yRv75ETZdzwo/Vd2+5D7n2ibqqjf9NF/vxg=; b=DRvdMxJSrXseyI
+	ERCWnFxhFF0nEx+lHY5zO/BIfa0RJOSX0WGx7lQ5XZp9McN3XJM7TiCdpApIqp29ISiIJAV5ILkDs
+	ZyUUTu8CXrrXa0ueWf0fhQgx9utZsgYJNtsnzM7bCk2VqCGeeYw3iLDTA9/4gIpe3tSKdXxsgD64H
+	NFT20p12JQoOcn+8t1h96FBuSF054KD+cyZhjvUOJeVu9TjR2y8RguKwSvP5/GtNJehMYOTvJtQNb
+	UIe6IWuCyGFjeV48QDRN3l59SPioxXA25tbE03fs4xaJm3yq3Ym7tAidPkMd8J4vuG6nQRfNHeqHY
+	Miv6J9iGzzykMtocJk9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tilgz-0000000DOF7-0vKW;
-	Fri, 14 Feb 2025 02:44:37 +0000
+	id 1tiljo-0000000DOjX-13OM;
+	Fri, 14 Feb 2025 02:47:32 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tilD6-0000000DJWn-2SST;
-	Fri, 14 Feb 2025 02:13:45 +0000
+	id 1tilD6-0000000DJWo-394c;
+	Fri, 14 Feb 2025 02:13:46 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 1FF0D5C0654;
+	by dfw.source.kernel.org (Postfix) with ESMTP id 69EA75C5D48;
 	Fri, 14 Feb 2025 02:13:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 41CF1C4CED1;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 55A06C4CEE5;
 	Fri, 14 Feb 2025 02:13:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1739499223;
-	bh=ODJBeAyu7yG9wfg1tMx7ifensJoaGn0MRyzsb8NOKTs=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=lrABkyUPohJ7Xv2Hzb2tmHYKBu0Z8Q55WtJqrcMQ6X8E+W8cqVBKIkhVwDdzY5lzX
-	 IGoZ1aXzL5/65FQExBtHXqqLq5qyoD2BBozd1pJoCRo92vZJROq078UHdNH/n/dGvo
-	 mSOFnJjyy3kaIXQ1viaZ45jozeN3JRPtLHVlzFYLuDSaBGq3axnYFc0bDi4HKp6z7n
-	 wUEiHNxPCUUgLBhZHHx3EZWAZIicpHvwE0SKm+lyj+cEQMtLwwtUfIhBNrqJAfzcfb
-	 OVcTvsK37RuH/IMTZOTivAAFYTeeizQ0VWuw4MGECnqQcwkjlb3D0PIhSV0glPtVL5
-	 EYggi3uIEqDbA==
+	bh=J1c0zfW3w2qqbwBk6grELOoOJWOzilKRY8yWea8SsbU=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=DtcUWs2DuPlCTCSNl34WF6fUcKJD1Ami9nRaNqnHRHCDcVASDEBZcr2pWt4DfV4ev
+	 uxXcaBcqxmJPG2QoL8xUOlyhtvxtgdhzwUCqD6Dztdt0CH4+mN5MVLbeMcCR7kuEqs
+	 bHTdHV3Xqn6tPr/cZZHIW9yc3tyiKODMK60f5DhN/3EVz+xPQomZmRJn5jGOo6aK/X
+	 bdU99JrIqt3M3XS7QVxaDmjPzsBMBWKnHiA2entsdniAJRY6nDYIf9gofvKxwiVR9v
+	 0ga0RAvLuPHZtChs/oYrzWEXuagd0P0RCxsidAz652fBacoARP0wwSJaufFMU3wIoL
+	 PbV83ERgCcV0Q==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A6EDC021A0;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 42BDEC021A4;
 	Fri, 14 Feb 2025 02:13:43 +0000 (UTC)
 From: jiebing chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>
-Subject: [PATCH v2 0/5] Add support for S4 audio
-Date: Fri, 14 Feb 2025 10:13:39 +0800
-Message-Id: <20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com>
+Date: Fri, 14 Feb 2025 10:13:40 +0800
+Subject: [PATCH v2 1/5] dt-bindings: clock: axg-audio: Add mclk and sclk
+ pad for s4
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIANOmrmcC/1XM0QrCIBTG8VcZ5zrjqBtaV71HjDB124E2Q0uK4
- btngy66/H/w/VZIPpJPcGxWiD5TorDUELsG7GSW0TNytUGg6JBzZObpKFxczOQjQ2U6qbltD+0
- V6uUe/UCvjTv3tSdKjxDfm575d/1B8h/KnCHTlrdK4SC1wZOZb2Eku7dhhr6U8gGrkwkdqgAAA
- A==
-X-Change-ID: 20250110-audio_drvier-07a5381c494b
+Message-Id: <20250214-audio_drvier-v2-1-37881fa37c9e@amlogic.com>
+References: <20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com>
+In-Reply-To: <20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -69,19 +67,19 @@ Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
  jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com, 
  jiebing chen <jiebing.chen@amlogic.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739499221; l=1437;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1739499221; l=2710;
  i=jiebing.chen@amlogic.com; s=20250110; h=from:subject:message-id;
- bh=ODJBeAyu7yG9wfg1tMx7ifensJoaGn0MRyzsb8NOKTs=;
- b=IrYG6+tVk3zdh0UgKNgdgxRY+xWdt28tefwfjiNO5BANQ+TJ21Qx+JAznmInNJ7kI3fsjNZfz
- IWlwUx5kJtmA4NHvM8XL6TIpzmiiJ1CRbtjSwHivS4etqDvXEIsuYMa
+ bh=TXC0nl0bF7ijEJ/f38+2QuSrF8LeB5NHcRgGAcnuK24=;
+ b=hAMjhlWqZaRMxN531Yg+WGONAd/WY5kKkSD06NC7KGnMbzlciO0K80ublViD+xrTkfXqM8JwG
+ p75Eq0MFLDoDJKe4Vm/Wx/FTn0L6cGgslDabJaKnkzKXY/41ZfN7WYd
 X-Developer-Key: i=jiebing.chen@amlogic.com; a=ed25519;
  pk=6rFvvF45A84pLNRy03hfUHeROxHCnZ+1KAGw/DoqKic=
 X-Endpoint-Received: by B4 Relay for jiebing.chen@amlogic.com/20250110 with
  auth_id=316
 X-Original-From: jiebing chen <jiebing.chen@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250213_181344_747433_6969EC4B 
-X-CRM114-Status: UNSURE (   9.11  )
+X-CRM114-CacheID: sfid-20250213_181344_916344_4123CBD1 
+X-CRM114-Status: UNSURE (   8.29  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,41 +98,90 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add s4 audio base driver. 
+From: jiebing chen <jiebing.chen@amlogic.com>
+
+add the s4 audio power domain, add the mclk pad, sclk pad
+and lrclk pad clock id for s4
 
 Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
 ---
-Changes in v2:
-- remove tdm pad control and change tocodec base on g12a
-- change hifipll rate to support 24bit
-- add s4 audio clock
-- Link to v1: https://lore.kernel.org/r/20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com
+ .../bindings/clock/amlogic,axg-audio-clkc.yaml         | 18 ++++++++++++++++++
+ include/dt-bindings/clock/axg-audio-clkc.h             | 11 +++++++++++
+ 2 files changed, 29 insertions(+)
 
----
-jiebing chen (5):
-      dt-bindings: clock: axg-audio: Add mclk and sclk pad for s4
-      dt-bindings: Asoc: axg-audio: Add s4 audio tocodec
-      ASoC: meson: s4:support the audio clk
-      ASoC: meson: s4:support audio tocodec
-      arm64: dts: amlogic: Add Amlogic S4 Audio
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+index fd7982dd4ceab82389167079c2258a9acff51a76..364783c6f7572b09d57de2b35d33adb7bcf7db18 100644
+--- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
++++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+@@ -21,6 +21,7 @@ properties:
+       - amlogic,axg-audio-clkc
+       - amlogic,g12a-audio-clkc
+       - amlogic,sm1-audio-clkc
++      - amlogic,s4-audio-clkc
+ 
+   '#clock-cells':
+     const: 1
+@@ -100,6 +101,9 @@ properties:
+   resets:
+     description: internal reset line
+ 
++  power-domains:
++    description: audio controller power
++
+ required:
+   - compatible
+   - '#clock-cells'
+@@ -116,12 +120,26 @@ allOf:
+             enum:
+               - amlogic,g12a-audio-clkc
+               - amlogic,sm1-audio-clkc
++              - amlogic,s4-audio-clkc
+     then:
+       required:
+         - '#reset-cells'
+     else:
+       properties:
+         '#reset-cells': false
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,s4-audio-clkc
++    then:
++      required:
++        - power-domains
++
++    else:
++      properties:
++        power-domains: false
+ 
+ additionalProperties: false
+ 
+diff --git a/include/dt-bindings/clock/axg-audio-clkc.h b/include/dt-bindings/clock/axg-audio-clkc.h
+index 607f23b83fa7287fe0403682ebf827e2df26a1ce..75dde05343d1fa74304ee21c9ec0541a8f51b15e 100644
+--- a/include/dt-bindings/clock/axg-audio-clkc.h
++++ b/include/dt-bindings/clock/axg-audio-clkc.h
+@@ -162,5 +162,16 @@
+ #define AUD_CLKID_EARCRX_DMAC_SEL	182
+ #define AUD_CLKID_EARCRX_DMAC_DIV	183
+ #define AUD_CLKID_EARCRX_DMAC		184
++#define AUD_CLKID_TDM_MCLK_PAD0_SEL     185
++#define AUD_CLKID_TDM_MCLK_PAD1_SEL     186
++#define AUD_CLKID_TDM_MCLK_PAD0_DIV     187
++#define AUD_CLKID_TDM_MCLK_PAD1_DIV     188
++#define AUD_CLKID_TDM_MCLK_PAD2         189
++#define AUD_CLKID_TDM_MCLK_PAD2_SEL     190
++#define AUD_CLKID_TDM_MCLK_PAD2_DIV     191
++#define AUD_CLKID_TDM_SCLK_PAD3		192
++#define AUD_CLKID_TDM_SCLK_PAD4		193
++#define AUD_CLKID_TDM_LRCLK_PAD3	194
++#define AUD_CLKID_TDM_LRCLK_PAD4	195
+ 
+ #endif /* __AXG_AUDIO_CLKC_BINDINGS_H */
 
- .../bindings/clock/amlogic,axg-audio-clkc.yaml     |  18 +
- .../bindings/sound/amlogic,g12a-toacodec.yaml      |   1 +
- .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 219 +++++++++++
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 370 ++++++++++++++++++-
- drivers/clk/meson/axg-audio.c                      | 410 ++++++++++++++++++++-
- drivers/clk/meson/axg-audio.h                      |   4 +
- include/dt-bindings/clock/axg-audio-clkc.h         |  11 +
- sound/soc/meson/axg-card.c                         |   3 +-
- sound/soc/meson/g12a-toacodec.c                    |  64 ++++
- 9 files changed, 1095 insertions(+), 5 deletions(-)
----
-base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
-change-id: 20250110-audio_drvier-07a5381c494b
-
-Best regards,
 -- 
-jiebing chen <jiebing.chen@amlogic.com>
+2.43.0
 
 
 
