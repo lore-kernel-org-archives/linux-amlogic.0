@@ -4,116 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 362B0C02198
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2025 09:05:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5761EC02198
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Feb 2025 09:10:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vFXsxDOHhSivl6OdDijqamQOmZGLhid6QwO6qa3IxYQ=; b=W8vXOfRhVhidYd
-	frG4QTT5vqer8RtxPfzr9DqI7LFV71WQOrdzddeRhSmFEHkfbJ7rWRMmw70iUIFyunra3swzqKhzw
-	7GLmjwEPogu8bULOh+D99qhbmDfs3RYy4rmn202VkKfFS4vVyoq+A3ca/m+f/4wDTBYDaHPX0+2l4
-	EwSGhsas5IuHA1VW+gO9MhvqFsLC7n5TnZqlqdE2e+jeQfCNwiUxCPfbCU26TPZKoCwd1NYJVogcp
-	yust37gYjGh4kYz37Zs9SahLeG6Xc3/eXl/QDen50HGIIzSxARkbkcroUYR4gW6w3EK5QQOC+U4zc
-	K+RyvxH7d91VT1OkA2lA==;
+	List-Owner; bh=lrfhbNTE+4d22Y+mLGvLAaAuuVid/SWE7qyRq+rY6s0=; b=wo7Hci9CzusjYU
+	P1+c8J8puvcxuJkbdWjfy+wSi9+xypVQq9gCWl1torzzBoDNSSp9OGHdlIoWPVEsyO8grLrf1+XcJ
+	KXfMcCa9TXs91qPhfeG4pM6jWVBse0Br3MaZ66+SeQcP9EfBCawSK9uIwbnuMB01vT6/Vc5ufQkbT
+	Y1sVYRyErr1tEPVcC4JvSrGH8eOkkdtIHpWs8tgXYglwJP3ID0VOmDeZNx9AJ1eGn68BD0QrqPSB+
+	mENTIp6/Ct6hP1SkfpKYrwyNSsKfe10Ao5ZcGdvitVBDFFXHHvFEo0YVzcqBLbIcFSXEaOQoyRNiA
+	TiJ17KgJhLrKxf14katw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tirdk-0000000EEhd-1LEe;
-	Fri, 14 Feb 2025 09:05:40 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1tirhq-0000000EFwz-3144;
+	Fri, 14 Feb 2025 09:09:54 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tirXu-0000000EDD8-3Fbx
+	id 1tirgN-0000000EFRX-2oD2
 	for linux-amlogic@lists.infradead.org;
-	Fri, 14 Feb 2025 08:59:42 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-38dd93a6f0aso1444167f8f.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 14 Feb 2025 00:59:38 -0800 (PST)
+	Fri, 14 Feb 2025 09:08:25 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-38f22fe8762so884125f8f.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 14 Feb 2025 01:08:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739523577; x=1740128377; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739524102; x=1740128902; darn=lists.infradead.org;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zoda2EDe08w9D7LB4RKFhW/A5U1oY6oOY5HMe4wfwNc=;
-        b=S02ATY3a2D25DIicVv/BpIY7bwCmhwFCVIfdFcHrvCUIWBDBl7MsjXYCR4r+tlWR7l
-         xw1qEXIu7MNa2vrfjU7sCB1b+BmEBVVwALZTaYIz4LJeQtWYzrEw/S9RnV1suBz47QPt
-         GTxt2sHxxFqZLeXIoBUqmWGRy9LryTqa+GdBvpv/ejX2WRxq/6yryExvrUQ7EIBOsPy1
-         3YTYDdK4srFvQ0joNk+tCTBvqJVwFVAeT9KaBUCLTJS80RsINlc0SwnU5mSq5HP1DuIJ
-         FapCU55iHMID7m3gK3HMbgAdPlXaoO1NgDLAQ3E7Em6spSuRmNoIbznO2r5+jSLNupjB
-         CZ2Q==
+        bh=FRBZ9LnljeKdyPrMlrMbswWuQjbGiHO54rQVeWsI8fs=;
+        b=nb7uVmKAujYsRglX+d78hr+hfPRnkONM5blA+TTeevlX+09lp5bgsMzseumPk84VnL
+         dIWgtw0kPZxJqap8AaOxy1S88lbEFRnmedZ+C+c1Q0u98pHAbY2tSwcr09MYePSEjoBL
+         jj4sD1y4vBgF/14lJdlL/9iOIaphHcPh24DQ0fB5Mlv6ssimu1zxHElA3jdS520XR/b8
+         mU93E6nUPpRPQ9CWSzDvfVDeDuSVzI4WKEeTf1+d5cN29rHvyY/nZPmCK6EYDUOSLX4n
+         PWUXwEj+OJISTgQbWSIijvLpyL2ueLEYRqvEGiaxv9qBkeBYtAbhaKGzcySQDCVcv2l/
+         oaAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739523577; x=1740128377;
+        d=1e100.net; s=20230601; t=1739524102; x=1740128902;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Zoda2EDe08w9D7LB4RKFhW/A5U1oY6oOY5HMe4wfwNc=;
-        b=RhqSODGlLsxgQYcmnoPDK/qDAhPLeTnU09vCnkCraG7gWw5eywSec1wBVpL/shI6tv
-         6w4H96EWjWGvX+siBTNluh7oGEoKZscSP1jfhVTUKlvKSF9fZFQel89Y9Y1DBVhlRais
-         yvMdemjk26v+dxiYLHGRq02Ytjl3K8gOkPzeKi6W2iY6FwNZieBKGQUUHPnRNlcm25XL
-         uM7kkrbQFB8/cjRsGf+aX/F3w83/5RcpdHF9DUJA7lNXihAnQ9QlkOxiyEh+meMLZm1x
-         /1t/r37Rck3uwdcMz3fHREVXNjzKNRrpkOm4uRqGeMQAje6LesFv2rfpgPXnZmlk6IaQ
-         mnWw==
-X-Forwarded-Encrypted: i=1; AJvYcCWfLPuXoZNWFpoaCi2tWqR1n0DRY9FUK8zyg+5TAi0ozw0o83SVBv0MIaaqP2lFsIAyHZkXkX6R3kQK4pkL@lists.infradead.org
-X-Gm-Message-State: AOJu0Ywrdu20BfV+wtHRGkbe/MflVsW1iYGBIlLNluLEc4ISDw36s81m
-	HK+hq20MhPp7eTZN5FcPoeQAz8ECHqZhgfk8uWhESszOlpzvHvaee5xhBVpII7w=
-X-Gm-Gg: ASbGncsQhOYdV26XPDsQokxEnhXOYZY5Gp8HAljiP8P2QRcru/2tuGmlipB9ELv49I7
-	t0+3mFQcv6lddgBG1RnIwBblaokK8AkPLINKwswwV66AxptnpFn1w2LzXUDLHalJASOlIKU9XJO
-	xsChezzJEIwwGqW5ioetafsV657Y9rZW8i1/sj6v14cH7i9NOp28sstt/74Kg2f1Go1LYgVqfZY
-	7v6PxWs319JLk5PlgjBpTiKSuzPNYiKwEjgRUtk2q5Bp9vnW6rP4AP/JB06bE4M2rKf1reuKATm
-	hPMOdavFiyZlznU=
-X-Google-Smtp-Source: AGHT+IHr8NGbRnNCNsasOEgGwEH9hogJeR/Q2q11CcGnTNY+PAq+96jRXtyg1EfxGENX3t8ZZduxZg==
-X-Received: by 2002:a5d:5250:0:b0:38f:3141:8912 with SMTP id ffacd0b85a97d-38f31418a8cmr220671f8f.24.1739523576712;
-        Fri, 14 Feb 2025 00:59:36 -0800 (PST)
+        bh=FRBZ9LnljeKdyPrMlrMbswWuQjbGiHO54rQVeWsI8fs=;
+        b=ZexTWgKqC/DrLdvk0vEzGrpwsho707+giOd3VVsKXl9kgKovbkdSQHp0Ewt6GtndCt
+         nQjcged/FEkIzjUdtP1V6vfB64XNj8cnWIdhQuDTYMMCv70hvWqFkLDKgpIdo3C8/rbf
+         zgOAcrUakapbpuBzme4CjHgdEBDTwrqI5IxJVuYK8dzyoOkgl9TkHOudc0UzqrWFkPlY
+         1zlDsVCc4+rBrCyz6fKsEnqMuwKMuQ0i7aZUeqEZwPFqcUbPuEHAHIHcSs1/y33TZb9R
+         fwW1QD448aXQCNhKoyi28h1uqpb+LrS5Pg5pxQeBmNI85dge1IqB3x0XtrH0u1dXdGA/
+         s+tQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWCohFMyrrkIxPSapqhJIO6WZxjm1nq7vhccSNLrioi4iftH9mXSZQDRpZBigluek7u3mcZvBP1WukIIW+3@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw8rW5RR9SoEUN8cjvzWaVUTXLThsrPbHjs93+7UqySq61ojkC3
+	UTzrs/uVP9pGT7iW7LsAMZUFoQrZwLssfTKB/5ig2uz0AbpEHvjQke8IHXWpr/A=
+X-Gm-Gg: ASbGncv6lHkUY/O59rdisqIxR/t6izZPpIuzjZJw64NgyOuqdrsRgYm9I5MDRk7eQGl
+	udpE9TvGyxA5gomVLYO6ld8ybT+EEvwK4JgBu+MubKRrD+6EppdiP6vqGVVgS9YKTcm5/AEfRp0
+	i0lEQkxNfs/8vWo9m4PLZ1wgoIWfUnvFUM0x0VMNsl/30jEbi1QtYOdQ6XdjqJt/FzDXLNpM/wf
+	v2jd1jmq2M/QPxh7tKR4iZBdYjeeL3ir0IDuy3TPGXTo6PPHPKWJi4vBIFJLgwaeDa11HhOkuQT
+	QSHZduv4+m50604=
+X-Google-Smtp-Source: AGHT+IE0/rSxXHcT0d8T4npVkX/xeGrYvHZ7lAWe+eAfluyBR05NqZXCHJQG0OjEOL1oPVBXgPrHSg==
+X-Received: by 2002:a05:6000:18a4:b0:38f:3009:61d7 with SMTP id ffacd0b85a97d-38f30096396mr623237f8f.4.1739524100676;
+        Fri, 14 Feb 2025 01:08:20 -0800 (PST)
 Received: from localhost ([2a01:e0a:3c5:5fb1:baa6:bc65:b9db:3759])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-38f258ccda0sm4052204f8f.27.2025.02.14.00.59.35
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-38f259d8dd6sm4117993f8f.62.2025.02.14.01.08.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2025 00:59:36 -0800 (PST)
+        Fri, 14 Feb 2025 01:08:20 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,  Dave Ertman
- <david.m.ertman@intel.com>,  Ira Weiny <ira.weiny@intel.com>,  "Rafael J.
- Wysocki" <rafael@kernel.org>,  Stephen Boyd <sboyd@kernel.org>,  Arnd
- Bergmann <arnd@arndb.de>,  Danilo Krummrich <dakr@kernel.org>,  Conor
- Dooley <conor.dooley@microchip.com>,  Daire McNamara
- <daire.mcnamara@microchip.com>,  Philipp Zabel <p.zabel@pengutronix.de>,
-  Douglas Anderson <dianders@chromium.org>,  Andrzej Hajda
- <andrzej.hajda@intel.com>,  Neil Armstrong <neil.armstrong@linaro.org>,
-  Robert Foss <rfoss@kernel.org>,  Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>,  Jonas Karlman <jonas@kwiboo.se>,
-  Jernej Skrabec <jernej.skrabec@gmail.com>,  Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
-  Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
- <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Hans de Goede
- <hdegoede@redhat.com>,  Ilpo =?utf-8?Q?J=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>,
-  Bryan O'Donoghue <bryan.odonoghue@linaro.org>,  Vladimir Kondratiev
- <vladimir.kondratiev@mobileye.com>,  Gregory CLEMENT
- <gregory.clement@bootlin.com>,  =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
-  Michael Turquette <mturquette@baylibre.com>,  Abel Vesa
- <abelvesa@kernel.org>,  Peng Fan <peng.fan@nxp.com>,  Shawn Guo
- <shawnguo@kernel.org>,  Sascha Hauer <s.hauer@pengutronix.de>,
-  Pengutronix Kernel Team <kernel@pengutronix.de>,  Fabio Estevam
- <festevam@gmail.com>,  Kevin Hilman <khilman@baylibre.com>,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
-  linux-kernel@vger.kernel.org,  linux-riscv@lists.infradead.org,
-  dri-devel@lists.freedesktop.org,  platform-driver-x86@vger.kernel.org,
-  linux-mips@vger.kernel.org,  linux-clk@vger.kernel.org,
-  imx@lists.linux.dev,  linux-arm-kernel@lists.infradead.org,
-  linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v3 2/7] reset: mpfs: use the auxiliary device creation
- helper
-In-Reply-To: <20250213-crown-clustered-81c6434c892b@spud> (Conor Dooley's
-	message of "Thu, 13 Feb 2025 17:59:07 +0000")
-References: <20250211-aux-device-create-helper-v3-0-7edb50524909@baylibre.com>
-	<20250211-aux-device-create-helper-v3-2-7edb50524909@baylibre.com>
-	<20250213-crown-clustered-81c6434c892b@spud>
+To: Martijn van Deventer <linux@martijnvandeventer.nl>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
+ <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Kevin Hilman
+ <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  linux-amlogic@lists.infradead.org,
+  linux-clk@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] clk: meson: g12a: Fix kernel warnings when no display
+ attached
+In-Reply-To: <20250213221702.606-1-linux@martijnvandeventer.nl> (Martijn van
+	Deventer's message of "Thu, 13 Feb 2025 23:17:01 +0100")
+References: <20250213221702.606-1-linux@martijnvandeventer.nl>
 User-Agent: mu4e 1.12.8; emacs 29.4
-Date: Fri, 14 Feb 2025 09:59:35 +0100
-Message-ID: <1jv7tczytk.fsf@starbuckisacylon.baylibre.com>
+Date: Fri, 14 Feb 2025 10:08:19 +0100
+Message-ID: <1jpljkzyf0.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250214_005939_068674_7CD48FD4 
-X-CRM114-Status: GOOD (  21.53  )
+X-CRM114-CacheID: sfid-20250214_010823_706966_F4BF83A4 
+X-CRM114-Status: GOOD (  19.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,120 +103,115 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu 13 Feb 2025 at 17:59, Conor Dooley <conor@kernel.org> wrote:
+On Thu 13 Feb 2025 at 23:17, Martijn van Deventer <linux@martijnvandeventer.nl> wrote:
 
-> On Tue, Feb 11, 2025 at 06:27:59PM +0100, Jerome Brunet wrote:
->> The auxiliary device creation of this driver is simple enough to
->> use the available auxiliary device creation helper.
->> 
->> Use it and remove some boilerplate code.
->> 
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>  drivers/reset/reset-mpfs.c | 52 +++-------------------------------------------
->>  1 file changed, 3 insertions(+), 49 deletions(-)
->> 
->> diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
->> index 574e59db83a4fcf30b60cb5f638607a2ec7b0580..bbea64862181877eb7ae51fdaa9e50ffac17c908 100644
->> --- a/drivers/reset/reset-mpfs.c
->> +++ b/drivers/reset/reset-mpfs.c
->> @@ -155,62 +155,16 @@ static int mpfs_reset_probe(struct auxiliary_device *adev,
->>  	return devm_reset_controller_register(dev, rcdev);
->>  }
->>  
->> -static void mpfs_reset_unregister_adev(void *_adev)
->> -{
->> -	struct auxiliary_device *adev = _adev;
->> -
->> -	auxiliary_device_delete(adev);
->> -	auxiliary_device_uninit(adev);
->> -}
->> -
->> -static void mpfs_reset_adev_release(struct device *dev)
->> -{
->> -	struct auxiliary_device *adev = to_auxiliary_dev(dev);
->> -
->> -	kfree(adev);
->> -}
->> -
->> -static struct auxiliary_device *mpfs_reset_adev_alloc(struct device *clk_dev)
->> -{
->> -	struct auxiliary_device *adev;
->> -	int ret;
->> -
->> -	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
->> -	if (!adev)
->> -		return ERR_PTR(-ENOMEM);
->> -
->> -	adev->name = "reset-mpfs";
->> -	adev->dev.parent = clk_dev;
->> -	adev->dev.release = mpfs_reset_adev_release;
->> -	adev->id = 666u;
->> -
->> -	ret = auxiliary_device_init(adev);
->> -	if (ret) {
->> -		kfree(adev);
->> -		return ERR_PTR(ret);
->> -	}
->> -
->> -	return adev;
->> -}
->> -
->>  int mpfs_reset_controller_register(struct device *clk_dev, void __iomem *base)
->>  {
->>  	struct auxiliary_device *adev;
->> -	int ret;
->>  
->> -	adev = mpfs_reset_adev_alloc(clk_dev);
->> +	adev = devm_auxiliary_device_create(clk_dev, "reset-mpfs",
->> +					    (__force void *)base, 666u);
+> When booting SM1 or G12A boards without a dislay attached to HDMI,
+> the kernel shows the following warning:
 >
-> Moving the boilerplate into a helper makes sense:
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> [CRTC:46:meson_crtc] vblank wait timed out
+> WARNING: CPU: 2 PID: 265 at drivers/gpu/drm/drm_atomic_helper.c:1682 drm_atomic_helper_wait_for_vblanks.part.0+0x240/0x264
+> CPU: 2 UID: 0 PID: 265 Comm: setfont Tainted: G         C
+> Tainted: [C]=CRAP
+> pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> pc : drm_atomic_helper_wait_for_vblanks.part.0+0x240/0x264
+> lr : drm_atomic_helper_wait_for_vblanks.part.0+0x240/0x264
+> Call trace:
+>  drm_atomic_helper_wait_for_vblanks.part.0+0x240/0x264
+>  drm_atomic_helper_commit_tail_rpm+0x84/0xa0
+>  commit_tail+0xa4/0x18c
+>  drm_atomic_helper_commit+0x164/0x178
+>  drm_atomic_commit+0xb4/0xec
+>  drm_client_modeset_commit_atomic+0x210/0x270
+>  drm_client_modeset_commit_locked+0x5c/0x188
+>  drm_fb_helper_pan_display+0xb8/0x1d4
+>  fb_pan_display+0x7c/0x120
+>  bit_update_start+0x20/0x48
+>  fbcon_switch+0x418/0x54c
+>  el0t_64_sync+0x194/0x198
 >
-> One think that's always felt a bit meh to me is this id number stuff,
-> I just threw in 666 for meme value.
+> This happens when the kernel disables the unused clocks.
+> Sometimes this causes the boot to hang.
+>
+> By (re)adding the flag CLK_IGNORE_UNUSED to the VCLK2 clocks, these
+> clocks will not be disabled.
+>
+> This partially reverts commit b70cb1a21a54 ("clk: meson: g12a:
+> make VCLK2 and ENCL clock path configurable by CCF").
 
-:)
+It looks like DRM needs those clock enabled regardless of connection
+status on HDMI. Even with this change applied, you would get the same
+problem again if the bootloader does not take of turning the clock on,
+which is not a given.
 
-> The whole thing seems super
-> arbitrary, do any of the users of this helper actually put meaningful
-> values into the id parameter?
+CLK_IGNORE_UNUSED gives not guarantee a clock will be enabled or stay
+enabled at any point.
 
-In example changes I've sent, no.
-
-In other simple usages (those using container_of()) of the auxiliary
-bus, I think there are a few that uses 0 and 1 for 2 instances.
-
-I guess your question is "do we really need this parameter here ?"
-
-We could remove it and still address 90% of the original target.
-
-Keeping it leaves the door open in case the figure above does not hold
-and it is pretty cheap to do. It could also enable drivers requiring an
-IDA to use the helper, possibly.
+A proper fix to this issue should be done in DRM, IMO.
 
 >
->>  	if (IS_ERR(adev))
->>  		return PTR_ERR(adev);
->>  
->> -	ret = auxiliary_device_add(adev);
->> -	if (ret) {
->> -		auxiliary_device_uninit(adev);
->> -		return ret;
->> -	}
->> -
->> -	adev->dev.platform_data = (__force void *)base;
->> -
->> -	return devm_add_action_or_reset(clk_dev, mpfs_reset_unregister_adev, adev);
->> +	return 0;
->>  }
->>  EXPORT_SYMBOL_NS_GPL(mpfs_reset_controller_register, "MCHP_CLK_MPFS");
->>  
->> 
->> -- 
->> 2.45.2
->> 
+> Fixes: b70cb1a21a54 ("clk: meson: g12a: make VCLK2 and ENCL clock path configurable by CCF").
+> Signed-off-by: Martijn van Deventer <linux@martijnvandeventer.nl>
+> ---
+>  drivers/clk/meson/g12a.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+> index cfffd434e998..1651898658f5 100644
+> --- a/drivers/clk/meson/g12a.c
+> +++ b/drivers/clk/meson/g12a.c
+> @@ -3234,7 +3234,7 @@ static struct clk_regmap g12a_vclk2_div = {
+>  			&g12a_vclk2_input.hw
+>  		},
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_GATE,
+> +		.flags = CLK_SET_RATE_GATE | CLK_IGNORE_UNUSED,
+>  	},
+>  };
+>  
+> @@ -3270,7 +3270,7 @@ static struct clk_regmap g12a_vclk2 = {
+>  		.ops = &meson_vclk_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_div.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>  	},
+>  };
+>  
+> @@ -3354,7 +3354,7 @@ static struct clk_regmap g12a_vclk2_div1 = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>  	},
+>  };
+>  
+> @@ -3368,7 +3368,7 @@ static struct clk_regmap g12a_vclk2_div2_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>  	},
+>  };
+>  
+> @@ -3382,7 +3382,7 @@ static struct clk_regmap g12a_vclk2_div4_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>  	},
+>  };
+>  
+> @@ -3396,7 +3396,7 @@ static struct clk_regmap g12a_vclk2_div6_en = {
+>  		.ops = &clk_regmap_gate_ops,
+>  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
+>  		.num_parents = 1,
+> -		.flags = CLK_SET_RATE_PARENT,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>  	},
+>  };
 
 -- 
 Jerome
