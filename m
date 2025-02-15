@@ -4,51 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D47BCC021A0
-	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Feb 2025 06:54:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33EE2C021A0
+	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Feb 2025 12:50:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FwR1k/4z5rKqL/VqbXW0bs3oObYDqW/IyQtR/VZXLpM=; b=T8vTc/QrHIIs1/
-	JVj7YnXtiW+8trDFH3qOhrdgr4Vwv0OoHlXnwPQbbNeOd7KcP9yqhv4GQJsYN6UA/2g6Phf1ML4E1
-	t6t/v7azjDhY51QHBHdONG+sXfKJulAszuECiBUhkw37iEG092CbpteFUaUXptXBZvu8vgHhcxKSY
-	FrDwDOtNjjXhHcIqxia10yQmLCZKE0VgplEhYPRqmzK5zVLrO/TKNi/oQOddYOcXCFBBB1SXN2mjA
-	PcbKSGEX9K2MMvuzKRISVoBFJixga1Vecr9wOBiQS03KeM5FkikspMXS9qV0rDkWlTB93eu9h4AEf
-	QvNtZ6LRVECPbDFtgUbQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=zELipwtk6JrbIdpM8q6q8Hmc10qMXlkO88/7RWyASKM=; b=JOf3gIi1N0PNq+ldG1HWiygDWW
+	ZwrHDpGHqcmXXFBeFC1Q3oKSOwpnw1A8tNjSp3GThTR9royNGTmGwpGoUZ3z00C7rj3GHytAr+2kx
+	Dwdq+U+7wbMjOU26ia87k4gOPh4QbcAVQee2ovUyypECdE9OBybHoVbP3bCg+S2BHEP9xo65pyHMd
+	9L9nx6akQZARs9qsQ0O89cVgWg05GN47fqa03MhtXVuI3uxLHNzjRIbEicT5BAB6XNyJSTZ77ZPSY
+	X7ztRbaFNMpX3K2Ng6v9dPJhX9msLJoh6xBKB2mezoqTa/kfK72NKVzw9Kq+Xeu0QRzHAhlK0RBga
+	eaKLJUOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tjC4E-0000000H8T9-3Xrb;
-	Sat, 15 Feb 2025 06:54:22 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1tjHcp-000000005Ya-2bUb;
+	Sat, 15 Feb 2025 12:50:27 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tjC4C-0000000H8SR-41Tc;
-	Sat, 15 Feb 2025 06:54:22 +0000
+	id 1tjHcm-000000005Xl-3qBu;
+	Sat, 15 Feb 2025 12:50:26 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id A5B105C410D;
-	Sat, 15 Feb 2025 06:53:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 326CCC4CEDF;
-	Sat, 15 Feb 2025 06:54:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1739602457;
-	bh=mfCqWG6NaYR6Sxd++9L3Sle7RqL0qWrh+kjSNFtksAE=;
+	by nyc.source.kernel.org (Postfix) with ESMTP id C8520A40362;
+	Sat, 15 Feb 2025 12:48:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84BD0C4CEE9;
+	Sat, 15 Feb 2025 12:50:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739623822;
+	bh=drN/Xok8UudjMurUXacPKQ2++MI+GHNgJsb1gQKHxmw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uS4GDR/SYf5jq318wLFt00h54nZgI/f4yIrfYTZvBV7jtSKQ1RY9pTAqlNYYxSCC6
-	 zygTR0MT/JQ5CQ/0x1v48rY/2sgioAgVjQlS+fAcz/p+8ZpKoylYdoM2+Ime/YZKv1
-	 76WODxrBGyq6uEyBhlP3dGL1sSbDsZD2GKoZSyLE=
-Date: Sat, 15 Feb 2025 07:53:12 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+	b=TI7OwbBejVq+s0MNcjVR0OO68WWGeU3nLMSFjv/iooPZQkFgekvtYlJVZMHL4yhGu
+	 X+NvMH38mriKk1PDUcyHjwbzECOAXrRCBNn9U36VXx/c8m+LhK9r+9CyTE6RYI4i18
+	 r1pLW7R4TInPKnEeFX9WUG5PqtfWIPuLmmuUoi3E8A0A0/4ZupRtFx5ykSkJfxoWU1
+	 JSSIsK/AtdQvdtCF3n/UYl3JTA4Hs4cA70QyCuK0IzY+i8/ZvMd1HSVZ2fGkRVyFmc
+	 3KBpadsxw7ag6TDN+7Q0Rn0JRDwxVXa6Ic4DnHHR5HSm4OAwa2yr2Q1DySe1dJlh9Y
+	 F8vI+B2Os2Bpg==
+Date: Sat, 15 Feb 2025 12:50:12 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Doug Anderson <dianders@chromium.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Dave Ertman <david.m.ertman@intel.com>,
+	Ira Weiny <ira.weiny@intel.com>,
 	"Rafael J. Wysocki" <rafael@kernel.org>,
 	Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
 	Danilo Krummrich <dakr@kernel.org>,
 	Conor Dooley <conor.dooley@microchip.com>,
 	Daire McNamara <daire.mcnamara@microchip.com>,
 	Philipp Zabel <p.zabel@pengutronix.de>,
-	Douglas Anderson <dianders@chromium.org>,
 	Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Robert Foss <rfoss@kernel.org>,
@@ -79,19 +84,19 @@ Cc: Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>,
 	linux-clk@vger.kernel.org, imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v3 1/7] driver core: auxiliary bus: add device creation
- helpers
-Message-ID: <2025021501-tamer-sank-142a@gregkh>
+Subject: Re: [PATCH v3 2/7] reset: mpfs: use the auxiliary device creation
+ helper
+Message-ID: <20250215-scared-clothing-942f9bf3d039@spud>
 References: <20250211-aux-device-create-helper-v3-0-7edb50524909@baylibre.com>
- <20250211-aux-device-create-helper-v3-1-7edb50524909@baylibre.com>
- <2025021437-washout-stonewall-d13e@gregkh>
- <1jwmdsxugx.fsf@starbuckisacylon.baylibre.com>
+ <20250211-aux-device-create-helper-v3-2-7edb50524909@baylibre.com>
+ <20250213-crown-clustered-81c6434c892b@spud>
+ <1jv7tczytk.fsf@starbuckisacylon.baylibre.com>
+ <CAD=FV=VeSrZktEbxNXXTgD80QGTpW5b-WiXUFko+a8FUzmN+fQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1jwmdsxugx.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <CAD=FV=VeSrZktEbxNXXTgD80QGTpW5b-WiXUFko+a8FUzmN+fQ@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250214_225421_115670_7C35DDAD 
-X-CRM114-Status: GOOD (  52.91  )
+X-CRM114-CacheID: sfid-20250215_045025_088602_05D33EAD 
+X-CRM114-Status: GOOD (  21.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,172 +108,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============5271057711398924366=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Feb 14, 2025 at 07:16:30PM +0100, Jerome Brunet wrote:
-> On Fri 14 Feb 2025 at 17:33, Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
-> 
-> > On Tue, Feb 11, 2025 at 06:27:58PM +0100, Jerome Brunet wrote:
-> >> Add helper functions to create a device on the auxiliary bus.
-> >> 
-> >> This is meant for fairly simple usage of the auxiliary bus, to avoid having
-> >> the same code repeated in the different drivers.
-> >> 
-> >> Suggested-by: Stephen Boyd <sboyd@kernel.org>
-> >> Cc: Arnd Bergmann <arnd@arndb.de>
-> >> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> >> ---
-> >>  drivers/base/auxiliary.c      | 88 +++++++++++++++++++++++++++++++++++++++++++
-> >>  include/linux/auxiliary_bus.h | 10 +++++
-> >>  2 files changed, 98 insertions(+)
+
+--===============5271057711398924366==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2DqldZNjQ+dLYWFk"
+Content-Disposition: inline
+
+
+--2DqldZNjQ+dLYWFk
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Feb 14, 2025 at 07:25:59AM -0800, Doug Anderson wrote:
+> Hi,
+>=20
+> On Fri, Feb 14, 2025 at 12:59=E2=80=AFAM Jerome Brunet <jbrunet@baylibre.=
+com> wrote:
 > >
-> > I like the idea, see much the same of what I recently did for the "faux"
-> > bus here:
-> > 	https://lore.kernel.org/all/2025021023-sandstorm-precise-9f5d@gregkh/
-> 
-> Reading this, I'm getting the feeling that some (most?) simple auxiliary
-> driver might be better off migrating to "faux", instead of what I'm
-> proposing here ? Is this what you are suggesting ?
-
-For any that do not actually talk to any real hardware (i.e. they are
-NOT sharing resources with a parent device), then yes, they should.  I
-was also trying to point out that "simple" apis like what you created
-here are a good thing in my opinion, I like it!
-
-> Few Q:
-> Is there some sort of 'platform_data' (sorry for the lack of a better
-> term, no provocation intended ;) ) ... it there a
-> simple way to pass an arbitrary struct to the created device with 'faux' ?
-
-There are at least 2 ways to do this:
-  - embed a faux_device inside a larger structure and then do a
-    container_of() in any sysfs callback to get to your real structure
-  - in a provided probe() callback, set the driverdata field with a call
-    to faux_device_set_drvdata()
-
-> The difference between aux and faux I'm seeing it that aux seems to
-> decouple things a bit more. The only thing aux needs is a module name to
-> pop something up, while faux needs a reference to the ops instead.
-
-aux is needed for when you want multiple drivers to be bound to the same
-hardware resource and need some way to share all of that.  faux is used
-for "fake" devices where you just need a struct device in the /sys/ tree
-to be used for "something" or as a parent device for something else.
-See the examples in the above patch series where I convert many
-different types of drivers over to use faux.
-
-> I can see the appeal to use aux for maintainers trying to decouple
-> different subsystems.
-
-Again aux is needed for "sharing" a real device.  faux is there for fake
-ones that people previously were using platform devices for.
-
-> > Some review comments:
+> > > One think that's always felt a bit meh to me is this id number stuff,
+> > > I just threw in 666 for meme value.
 > >
-> >> diff --git a/drivers/base/auxiliary.c b/drivers/base/auxiliary.c
-> >> index afa4df4c5a3f371b91d8dd8c4325495d32ad1291..0f697c9c243dc9a50498a52362806db594345faf 100644
-> >> --- a/drivers/base/auxiliary.c
-> >> +++ b/drivers/base/auxiliary.c
-> >> @@ -385,6 +385,94 @@ void auxiliary_driver_unregister(struct auxiliary_driver *auxdrv)
-> >>  }
-> >>  EXPORT_SYMBOL_GPL(auxiliary_driver_unregister);
-> >>  
-> >> +static void auxiliary_device_release(struct device *dev)
-> >> +{
-> >> +	struct auxiliary_device *auxdev = to_auxiliary_dev(dev);
-> >> +
-> >> +	kfree(auxdev);
-> >> +}
-> >> +
-> >> +static struct auxiliary_device *auxiliary_device_create(struct device *dev,
-> >> +							const char *modname,
-> >> +							const char *devname,
-> >> +							void *platform_data,
+> > :)
 > >
-> > Can you have the caller set the platform_data if they need/want it after
-> > the device is created?  Or do you need that in the probe callback?
-> 
-> My assumption was that it is needed in probe, but I guess that entirely
-> depends on the driver. If that was ever needed, it could be added later
-> I think.
-> 
+> > > The whole thing seems super
+> > > arbitrary, do any of the users of this helper actually put meaningful
+> > > values into the id parameter?
 > >
-> > And can't this be a global function too for those that don't want to
-> > deal with devm stuff?
-> 
-> There was a note about that in the cover-letter of the v1 but I did not
-> repeat it after.
-> 
-> It can be exported but I had no use for it so I thought It was better not
-> export it until it was actually needed. I really do not have a strong
-> preference over this.
-> 
+> > In example changes I've sent, no.
 > >
-> >> +							int id)
-> >> +{
-> >> +	struct auxiliary_device *auxdev;
-> >> +	int ret;
-> >> +
-> >> +	auxdev = kzalloc(sizeof(*auxdev), GFP_KERNEL);
-> >> +	if (!auxdev)
-> >> +		return ERR_PTR(-ENOMEM);
+> > In other simple usages (those using container_of()) of the auxiliary
+> > bus, I think there are a few that uses 0 and 1 for 2 instances.
 > >
-> > Ick, who cares what the error value really is?  Why not just do NULL or
-> > a valid pointer?  That makes the caller much simpler to handle, right?
+> > I guess your question is "do we really need this parameter here ?"
 > >
-> 
-> Sure why not
-> 
-> >> +
-> >> +	auxdev->id = id;
-> >> +	auxdev->name = devname;
-> >> +	auxdev->dev.parent = dev;
-> >> +	auxdev->dev.platform_data = platform_data;
-> >> +	auxdev->dev.release = auxiliary_device_release;
-> >> +	device_set_of_node_from_dev(&auxdev->dev, dev);
-> >> +
-> >> +	ret = auxiliary_device_init(auxdev);
+> > We could remove it and still address 90% of the original target.
 > >
-> > Only way this will fail is if you forgot to set parent or a valid name.
-> > So why not check for devname being non-NULL above this?
-> 
-> If auxiliary_device_init() ever changes it would be easy to forget to
-> update that and lead to something nasty to debug, don't you think ?
+> > Keeping it leaves the door open in case the figure above does not hold
+> > and it is pretty cheap to do. It could also enable drivers requiring an
+> > IDA to use the helper, possibly.
+>=20
+> FWIW, once you resolve the conflicts in drm-misc with ti-sn65dsi86
+> you'll need the ID value. ;-)
+>=20
+> There was a big-ol' discussion here:
+>=20
+> https://lore.kernel.org/r/8c2df6a903f87d4932586b25f1d3bd548fe8e6d1.172918=
+0470.git.geert+renesas@glider.be
+>=20
+> I eventually pushed v2 of the patch:
+>=20
+> https://lore.kernel.org/r/7a68a0e3f927e26edca6040067fb653eb06efb79.173384=
+0089.git.geert+renesas@glider.be
 
-Yes, this is being more defensive, I take back my objection, thanks.
+Think it makes sense to have a "simplified" wrapper for the cases where
+the id has no meaning then? Not really a fan of the drivers coming up with
+magic numbers.
 
-> >> +	if (ret) {
-> >> +		kfree(auxdev);
-> >> +		return ERR_PTR(ret);
-> >> +	}
-> >> +
-> >> +	ret = __auxiliary_device_add(auxdev, modname);
-> >> +	if (ret) {
-> >> +		/*
-> >> +		 * NOTE: It may look odd but auxdev should not be freed
-> >> +		 * here. auxiliary_device_uninit() calls device_put()
-> >> +		 * which call the device release function, freeing auxdev.
-> >> +		 */
-> >> +		auxiliary_device_uninit(auxdev);
-> >
-> > Yes it is odd, are you SURE you should be calling device_del() on the
-> > device if this fails?  auxiliary_device_uninit(), makes sense so why not
-> > just call that here?
-> 
-> I'm confused ... I am call auxiliary_device_uninit() here. What do you
-> mean ? 
+--2DqldZNjQ+dLYWFk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Oh wow, I got this wrong, sorry, I was thinking you were calling
-auxiliary_device_destroy().  Nevermind, ugh, it was a long day...
+-----BEGIN PGP SIGNATURE-----
 
-thanks,
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ7CNhAAKCRB4tDGHoIJi
+0tAUAQCqnRPkOySGXu//3wT8OcQkfE+e51feUW6fi3X49on2qQD9FeMpjQKlnQ9Q
+UjJ/Rxce6BMBO5o9ndbm21Ie8SKdSAY=
+=owAZ
+-----END PGP SIGNATURE-----
 
-greg k-h
+--2DqldZNjQ+dLYWFk--
+
+
+--===============5271057711398924366==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============5271057711398924366==--
+
