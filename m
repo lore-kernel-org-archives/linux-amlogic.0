@@ -4,94 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CF3FC021AA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Feb 2025 12:32:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ECC0C021AA
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Feb 2025 16:06:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date
-	:From:In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hlaSViWuJtp6Pbji71egoPXChuZf+FlkBry+TSqHOkM=; b=24CtSz/vm7V6/f
-	JVeycNxqBgQebINxVGRH15DgPu9gjbl+mBmUmx1AFtXqo4+NjYTjRbP4pUWaSLZQAyTmrlcp2qvdL
-	LAXHPeamKUVCDRZmWjq7NO2UImLsxlFVVshjkYPyv3vrhVM2bKdQqfnDD4eufM4jtr0CyMWZE6y1d
-	F5mHy7Svimc9QaXbE+tmYQhRSuRwyH8Q0RTdYIsSJS6iEgFcBiRRz1h9wgw761MiDfsv0vjiRtexN
-	E+LySF4fqInUb4VC3621Z8jJCIe18LceHJZP9w3UA+CXFfaJDnR/E7BI1HBQuSrqU78+XwWfRIA70
-	4wiReUJZ+DNYqGD1zynw==;
+	List-Owner; bh=nQuGYS1j9I88j8nnYOZJcdC879H3WO8s8j01KQAK+VM=; b=uKkzlXQpMfmAcX
+	mwrYvNWJSScMKn1lZfI/ZgNy7/V+hlLa2u6GxeOJkVGDEON44EKpKRdMvzd5xQ5r2soHFvnv3fmeW
+	tT9dhC1liwurfHv92IUpnfKk20cetCI3SZS9H1n7JHgPmWNmGta1Tdfas/EwoWXS5Hkgp2mG4aBqU
+	ktUamQbk9yNVcOi39vSsHEz5bFXzWlIOFfQy/a1Xls3Hk8O6LH3cq8nZK2BP7m9QEXl5egOFM74FJ
+	YyufeNlH6sly08a7jKyteOQxt/OQFzKiJXIlo+4DNQEohOLFf4Gsoe8OX6yO5z2tpDWI2zFjzneuF
+	JxoW3r6JpJL/S7FYJ6EQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkMlm-000000089xa-2ze0;
-	Tue, 18 Feb 2025 12:32:10 +0000
-Received: from mail-lj1-f169.google.com ([209.85.208.169])
+	id 1tkQ6f-00000008seC-2gel;
+	Tue, 18 Feb 2025 16:05:57 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkMj5-000000089F9-1qzt;
-	Tue, 18 Feb 2025 12:29:24 +0000
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30762598511so51382081fa.0;
-        Tue, 18 Feb 2025 04:29:23 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739881756; x=1740486556;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=h+VJIQ0ApMIfEX8niiA/w5UOINZk4mk6qd15CEV+pRs=;
-        b=pT/4pYP9VT9vlHg6DEHMl0moyXNpw5t0/3b1qLKXyCwxzEYkMmx1IKsdeWiry9tL+J
-         Ie3ktUI07o1wYEi3oBD9aBVwZnBkm93SUdUBHptctIBRbHDKg7pZMMfYtPpPJsVtU0bF
-         BQkxjHgOJCErWhx80HHCK5wsu5AUEJXo5meIOFtjwMael/XosJyHbPtsiAl4fSWbFHPg
-         uq8ETati8wFRI3RZN+BLOgigVcs8ZDFuBedfPEFdMSoIpZwZj6UvH7gSIcqkpWTaAwWi
-         R+GyoXHzopgYsu8AEsnLRS71LmBe6DmI94atuKxbwHoDXb6mRVyo5KiBM5n+sOpKDt7r
-         i49Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV+DvhQ0JWftawmBaTRMQxc1SrmQpKSW8IRZyIZG7/UqSorPAYuPo1Jqw9KB3pv9+tG2sDKOJdQP1uzPgAt@lists.infradead.org, AJvYcCW4riitRsMbMNKyPZ0JOMq4N/ZCzefyW4mS2YC9iRTotWM3rLISimcVBWfONxpSlRal87Q0ZJmWxuX/S84=@lists.infradead.org, AJvYcCXGflRK4fzhoC30IIQbyJl3jQjtxYZx0a54XZRJUshYBExsFNniNIYYPJG3PY6AtL/ind5/7hqO8zHWw2mK/0O3qw==@lists.infradead.org
-X-Gm-Message-State: AOJu0YxlQ20ebiEKtTrmRNhADD/1szqiAJZ8YzIOjMj0O46kVqcewxyx
-	+mXUGCcDcmeYBVCczmhS5A4ArKAVgarrPIQ425Nt8HXTn9gCHrlugbMQDIWK4Dc=
-X-Gm-Gg: ASbGncvRk7KeE1mHbhoutZJyJ5kPfcpP7jlpowyqkCVW9sqYlRGiwllqc0O8Db0yA66
-	VR+Yy07xlJR3VU+A6TI7hN/yB3/fYT48Uy0IFqOzCyNm91enKFYLYwmsmnzH2qKirdBV1aq4laE
-	sgdgRhPK5x5UvU3KgV441XykgSxIDegSmqr2kRMld485ps0lN0LOWlZEOE9540oHti+jpOrvs9F
-	+x8q2of3vzPKZFkoK5eJWL6V4mMNLejJyDXXGlyZxMBd/SY6wHzJYQO3A6ih1FaM/tRwupdwrDb
-	ZrrnbZFFzzgcX0Idj5hjpugFrY/7hT7tfh9cJQ796npNoOrt
-X-Google-Smtp-Source: AGHT+IGEHeAW1f4vIdDqZ7AzqLi+b9aRuN/j9KIk1gBLBXocsY6kiAdb+lQLY7NcKrLiYPpMqUrJpA==
-X-Received: by 2002:a2e:8808:0:b0:308:f4cc:9519 with SMTP id 38308e7fff4ca-30927a2cd16mr36962241fa.5.1739881756385;
-        Tue, 18 Feb 2025 04:29:16 -0800 (PST)
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3091029b75esm19495651fa.103.2025.02.18.04.29.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Feb 2025 04:29:15 -0800 (PST)
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-30a317e4c27so18774201fa.2;
-        Tue, 18 Feb 2025 04:29:15 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUVhvUxpHJT3OP24WkZAK5nlhIIDb7Cp7dbQYl7C2ZniIbIbWubMwbXGXKAWIu9WqrJBh6+ukpoRKlQcD02@lists.infradead.org, AJvYcCWfMeEOa0b3s+wsZx9bc/m02Yi2Vvf/xpfc1ZNS0MAPStpWSUzQR00UFRJnr5hN2BwevGylVWtK2Hj/5Onbe4fl2g==@lists.infradead.org, AJvYcCWkevGYhBeRFbulYs3EQrAK2CkfZL59wWbOcOr5NdgtD1lLa8V5Eeq4ou2/Brwb3/j1PFzLlLu28cfwPsI=@lists.infradead.org
-X-Received: by 2002:a2e:9995:0:b0:308:fac7:9cc9 with SMTP id
- 38308e7fff4ca-30927a474acmr41266951fa.14.1739881754898; Tue, 18 Feb 2025
- 04:29:14 -0800 (PST)
-MIME-Version: 1.0
-References: <Z7Rf2daOaf778TOg@shell.armlinux.org.uk> <E1tkKmN-004ObM-Ge@rmk-PC.armlinux.org.uk>
-In-Reply-To: <E1tkKmN-004ObM-Ge@rmk-PC.armlinux.org.uk>
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Tue, 18 Feb 2025 20:29:02 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67xPoo-LQp9Z70yEBDXmgJTD=RvLP0tYYEXUJZr6B+Xkw@mail.gmail.com>
-X-Gm-Features: AWEUYZmOiTlBF_l0MM194DGfKDDxifchVc42QrgCh8BPzRfhHgMRNbv9Q3dSaz0
-Message-ID: <CAGb2v67xPoo-LQp9Z70yEBDXmgJTD=RvLP0tYYEXUJZr6B+Xkw@mail.gmail.com>
-Subject: Re: [PATCH net-next 3/3] net: stmmac: "speed" passed to fix_mac_speed
- is an int
+	id 1tkQ3d-00000008rxk-44c5;
+	Tue, 18 Feb 2025 16:02:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=iZeu6krTMthi8CUDyl1NRXj5ixOnKRmLYoBYxiHjuLU=; b=b8Pxa+hlyS+/K78vlE0kqLbK8q
+	cvWQ/hHvvOGNj3k8R2I3d7D9ijLWH+CfsbUUL4BAXb/CrtTOqp8QCdghSDwbzCpadN8mOvL1ml7d5
+	8UyDbPy5u379laIruCH49wbxFBMCYuXPLAG/e/VBwOEoOno2uFaPP21gTtRut4MMJlwY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tkQ3D-00FLM1-RT; Tue, 18 Feb 2025 17:02:23 +0100
+Date: Tue, 18 Feb 2025 17:02:23 +0100
+From: Andrew Lunn <andrew@lunn.ch>
 To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Drew Fustini <drew@pdp7.com>, Emil Renner Berthing <kernel@esmil.dk>, Eric Dumazet <edumazet@google.com>, 
-	Fabio Estevam <festevam@gmail.com>, Fu Wei <wefu@redhat.com>, Guo Ren <guoren@kernel.org>, 
-	imx@lists.linux.dev, Jakub Kicinski <kuba@kernel.org>, 
-	Jan Petrous <jan.petrous@oss.nxp.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Minda Chen <minda.chen@starfivetech.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, 
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, NXP S32 Linux Team <s32@nxp.com>, 
-	Paolo Abeni <pabeni@redhat.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Samuel Holland <samuel@sholland.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+Cc: netdev@vger.kernel.org, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, Chen-Yu Tsai <wens@csie.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Drew Fustini <drew@pdp7.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Eric Dumazet <edumazet@google.com>,
+	Fabio Estevam <festevam@gmail.com>, Fu Wei <wefu@redhat.com>,
+	Guo Ren <guoren@kernel.org>, imx@lists.linux.dev,
+	Jakub Kicinski <kuba@kernel.org>,
+	Jan Petrous <jan.petrous@oss.nxp.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	NXP S32 Linux Team <s32@nxp.com>, Paolo Abeni <pabeni@redhat.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Samuel Holland <samuel@sholland.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
 	Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH net-next 2/3] net: stmmac: remove useless priv->flow_ctrl
+Message-ID: <77f72c87-924d-4478-a9b2-0f14673e5481@lunn.ch>
+References: <Z7Rf2daOaf778TOg@shell.armlinux.org.uk>
+ <E1tkKmI-004ObG-DL@rmk-PC.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <E1tkKmI-004ObG-DL@rmk-PC.armlinux.org.uk>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250218_042923_483668_CB9C1D69 
-X-CRM114-Status: GOOD (  12.86  )
+X-CRM114-CacheID: sfid-20250218_080250_006955_1FAC864A 
+X-CRM114-Status: GOOD (  12.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,27 +89,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: wens@csie.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBGZWIgMTgsIDIwMjUgYXQgNjoyNeKAr1BNIFJ1c3NlbGwgS2luZyAoT3JhY2xlKQo8
-cm1rK2tlcm5lbEBhcm1saW51eC5vcmcudWs+IHdyb3RlOgo+Cj4gcHJpdi0+cGxhdC0+Zml4X21h
-Y19zcGVlZCgpIGlzIGNhbGxlZCBmcm9tIHN0bW1hY19tYWNfbGlua191cCgpLCB3aGljaAo+IGlz
-IHBhc3NlZCB0aGUgc3BlZWQgYXMgYW4gImludCIuIEhvd2V2ZXIsIGZpeF9tYWNfc3BlZWQoKSBp
-bXBsaWNpdGx5Cj4gY2FzdHMgdGhpcyB0byBhbiB1bnNpZ25lZCBpbnQuIFNvbWUgcGxhdGZvcm0g
-Z2x1ZSBjb2RlIHByaW50IHRoaXMgdmFsdWUKPiB1c2luZyAldSwgb3RoZXJzIHdpdGggJWQuIFNv
-bWUgaW1wbGljaXRseSBjYXN0IGl0IGJhY2sgdG8gYW4gaW50LCBhbmQKPiBvdGhlcnMgdG8gdTMy
-Lgo+Cj4gR29vZCBwcmFjdGljZSBpcyB0byB1c2Ugb25lIHR5cGUgYW5kIG9ubHkgb25lIHR5cGUg
-dG8gcmVwcmVzZW50IGEgdmFsdWUKPiBiZWluZyBwYXNzZWQgYXJvdW5kIGEgZHJpdmVyLgo+Cj4g
-U3dpdGNoIGFsbCBvZiB0aGVzZSBvdmVyIHRvIGNvbnNpc3RlbnRseSB1c2UgImludCIgd2hlbiBk
-ZWFsaW5nIHdpdGggYQo+IHNwZWVkIHBhc3NlZCBmcm9tIHN0bW1hY19tYWNfbGlua191cCgpLCBl
-dmVuIHRob3VnaCB0aGUgc3BlZWQgd2lsbAo+IGFsd2F5cyBiZSBwb3NpdGl2ZS4KPgo+IFNpZ25l
-ZC1vZmYtYnk6IFJ1c3NlbGwgS2luZyAoT3JhY2xlKSA8cm1rK2tlcm5lbEBhcm1saW51eC5vcmcu
-dWs+Cj4gLS0tCgo+ICBkcml2ZXJzL25ldC9ldGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9kd21hYy1z
-dW54aS5jICAgICAgIHwgMiArLQoKQWNrZWQtYnk6IENoZW4tWXUgVHNhaSA8d2Vuc0Bjc2llLm9y
-Zz4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
-LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
-dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Tue, Feb 18, 2025 at 10:24:34AM +0000, Russell King (Oracle) wrote:
+> priv->flow_ctrl is only accessed by stmmac_main.c, and the only place
+> that it is read is in stmmac_mac_flow_ctrl(). This function is only
+> called from stmmac_mac_link_up() which always sets priv->flow_ctrl
+> immediately before calling this function.
+> 
+> Therefore, initialising this at probe time is ineffectual because it
+> will always be overwritten before it's read. As such, the "flow_ctrl"
+> module parameter has been useless for some time. Rather than remove
+> the module parameter, which would risk module load failure, change the
+> description to indicate that it is obsolete, and warn if it is set by
+> userspace.
+> 
+> Moreover, storing the value in the stmmac_priv has no benefit as it's
+> set and then immediately read stmmac_mac_flow_ctrl(). Instead, pass it
+> as a parameter to this function..
+> 
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
