@@ -4,66 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D31F5C02198
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Feb 2025 08:25:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9FE1C02198
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Feb 2025 10:29:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DnFarKjZIqUYfQ5Hz9CKVIet2OnhATHQaD4SNwPuvsQ=; b=PXfOifRDu23BfR
-	eYKhKcnQjPM2B8QiyF3YQiI2w3qNUHmL5Dj/HZFUBXru3tR3gddSI/IcnEmyYkLpxbEmTA1PtNV+u
-	CUGrDokSGyD9eVL76D7rjFJNtjBKMoUFVjkYT7nFzs6Dmm2vokhHsVuedlcETvYIRim5zzOFwzBoA
-	uG00e4diZH31Y8XPzALxW5Wg0Y9ezpiBkcBpxFzIH0sLR2+FSu41OmuYn+Taf3uUMZI3B4prqPsaM
-	BdAhfePR71NQLfdK6qw69QOqrBdaPuNl4nvl1QnlNOY32Zsds42B5E1gkDIqrx431wXKs+27/4G3P
-	HKwG255k/jYNYjRxzMpg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=8jPs+KkeneGY3/JLA0TOCChxM8bJJ79hX6bV+0jRwhA=; b=1oiw+jX2cjATkY
+	VUEiapL/1nkUx5r15+YWp84SJuiuE/UeBDRuTurTSXxdZstMOBCSw5Lycsvt9J/45WxE+tg+sx1M7
+	k8WTaUEupLKXCKiKeDp/HAa5rg5rpSYPRdB4lxuEBuJbJETfoQQdWcVJw7EflbwmUVHe1AalyUhIz
+	iFTqSEWhCLwnCJ8ZiSYpUiKm1Mll5a3JFJ4Oss/XnjnpNfEdlTiB3dTrPSoMLjXg06L8Ul+/guOhA
+	NCZUa8NRdcp8ReN94+EmBivW8T42MU4CEkKp+oWq3Kjav9Uw27NHWHUzi1jZYflEkRz8ldvcmB9ii
+	vg93VG4jJPG/V5mV4Hvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkIvR-00000007GfD-3MC0;
-	Tue, 18 Feb 2025 08:25:53 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1tkKqz-00000007l5p-19CF;
+	Tue, 18 Feb 2025 10:29:25 +0000
+Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkIvP-00000007Ge9-1Agl;
-	Tue, 18 Feb 2025 08:25:52 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id A4610A41D2C;
-	Tue, 18 Feb 2025 08:24:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A7A8C4CEE2;
-	Tue, 18 Feb 2025 08:25:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739867150;
-	bh=EvID7D86PKXTeqELs9veszakyXMUP1t20zGjfOD7Rt4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X3r4LZVwnWLy/POh9hH3tZRQxKLNC1XClRyAHPbp2o1mm4xMHA4MRjgdRBRszn8tX
-	 y7VJKFLeiz+p+r2UUM82Nptn726NNgkG/JuPjxcYYDTQIRneYDE/hKbRtXngp00Fph
-	 g68+Z3QiTUgGQfW6oOOEGwZmsYRwJLkvJ8xXh0IItNPlFBaBjArVl8TDhPv76WXnuD
-	 xxv2EdFS64ShgdI6qiezKwfEqLbBNmWw98LM9ys50zz9t3GqWgDmXWlOIV4jB5WlkT
-	 GASt9J1eAtYDKfm+/6e9gfIP5l47Q3ERmlNZx4TuosVJPnKlT/9byu1o0WovsunJJK
-	 ExYJsVmS1wKEQ==
-Date: Tue, 18 Feb 2025 09:25:46 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: jiebing chen <jiebing.chen@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, jian.xu@amlogic.com, 
-	shuai.li@amlogic.com, zhe.wang@amlogic.com
-Subject: Re: [PATCH v2 2/5] dt-bindings: Asoc: axg-audio: Add s4 audio tocodec
-Message-ID: <20250218-opalescent-teal-of-patience-82cecb@krzk-bin>
-References: <20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com>
- <20250214-audio_drvier-v2-2-37881fa37c9e@amlogic.com>
+	id 1tkKok-00000007jkl-1x5t;
+	Tue, 18 Feb 2025 10:27:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=iCGlt1XjQ6QDZy/H4sRD//zFdvPIbzwJDuXqfDTZWiE=; b=HDZagU0Or4bBEC1KIYcsqJYh/t
+	12u8YWrIKHC1A5oUovdwvFi/FDdvMnDe/THtbf4y8XcD/uhvsgSmx07Z5awaA/yoe9v1go+Ipe+IT
+	nibmkv8+HhR7rAOoPdjYZLPjl2NKEbaWZNYQLZOqhHuBhthsa1TLSeepcdEV25+msAg1JArMcjnFm
+	m4nQ0ZJPpH6E9ebcVHtzpwQsuTk0Ovrq1v7AadIt/WJOeskVT5ktiRN36HRfCg8AZkWl+HXd0wEud
+	4SSqtUx3Y5WuUskBrOmfMBdGmCRPDLe+JAb7QZcY0WOUCNRSaqxgkhyIkSY3hZ40tn5pHvizppt9B
+	+/cSlsLg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35042)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tkKmJ-0001Uw-0C;
+	Tue, 18 Feb 2025 10:24:35 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tkKm9-0007B7-2G;
+	Tue, 18 Feb 2025 10:24:25 +0000
+Date: Tue, 18 Feb 2025 10:24:25 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: netdev@vger.kernel.org
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, Chen-Yu Tsai <wens@csie.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Drew Fustini <drew@pdp7.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Eric Dumazet <edumazet@google.com>,
+	Fabio Estevam <festevam@gmail.com>, Fu Wei <wefu@redhat.com>,
+	Guo Ren <guoren@kernel.org>, imx@lists.linux.dev,
+	Jakub Kicinski <kuba@kernel.org>,
+	Jan Petrous <jan.petrous@oss.nxp.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	NXP S32 Linux Team <s32@nxp.com>, Paolo Abeni <pabeni@redhat.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Samuel Holland <samuel@sholland.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH net-next 0/3] net: stmmac: further cleanups
+Message-ID: <Z7Rf2daOaf778TOg@shell.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250214-audio_drvier-v2-2-37881fa37c9e@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250218_002551_381603_AD32417A 
-X-CRM114-Status: GOOD (  13.10  )
+X-CRM114-CacheID: sfid-20250218_022706_501925_78DFC54C 
+X-CRM114-Status: UNSURE (   8.20  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,39 +103,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Feb 14, 2025 at 10:13:41AM +0800, jiebing chen wrote:
-> add the s4 tocodec compatible
+Hi,
 
-1. Please write full sentences.
-2. We see that from the diff. Say something about hardware instead.
+This small series does further cleanups to the stmmac driver:
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+1. Name priv->pause to indicate that it's a timeout and clarify the
+units of the "pause" module parameter
+2. Remove useless priv->flow_ctrl member and deprecate the useless
+"flow_ctrl" module parameter
+3. Fix long-standing signed-ness issue with "speed" passed around the
+driver from the mac_link_up method.
 
-> 
-> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
-> ---
->  Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
-> index 23f82bb89750898d20c866015bc2e1a4b0554846..ea669f4359bc81b0f45bc2105c832fc2b11d8441 100644
-> --- a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
-> +++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
-> @@ -26,6 +26,7 @@ properties:
->        - items:
->            - enum:
->                - amlogic,sm1-toacodec
-> +              - amlogic,s4-toacodec
+ .../ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c    |  4 +--
+ drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c    |  8 ++---
+ .../net/ethernet/stmicro/stmmac/dwmac-intel-plat.c |  4 +--
+ .../net/ethernet/stmicro/stmmac/dwmac-ipq806x.c    |  8 ++---
+ .../net/ethernet/stmicro/stmmac/dwmac-loongson.c   |  3 +-
+ drivers/net/ethernet/stmicro/stmmac/dwmac-meson.c  |  2 +-
+ .../ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c    |  6 ++--
+ drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c     |  2 +-
+ drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c    |  2 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-socfpga.c    |  2 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-starfive.c   |  4 +--
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sti.c    |  8 ++---
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sunxi.c  |  2 +-
+ drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c  |  4 +--
+ .../net/ethernet/stmicro/stmmac/dwmac-visconti.c   |  2 +-
+ drivers/net/ethernet/stmicro/stmmac/stmmac.h       |  3 +-
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c  | 37 +++++++++++-----------
+ include/linux/stmmac.h                             |  2 +-
+ 18 files changed, 50 insertions(+), 53 deletions(-)
 
-Keep alphabetical order.
-
-Best regards,
-Krzysztof
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
 _______________________________________________
 linux-amlogic mailing list
