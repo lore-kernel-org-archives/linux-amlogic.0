@@ -4,76 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92B71C021AD
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Feb 2025 20:12:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C99FC021AD
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Feb 2025 21:26:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=apy1LBIkcHVyd++JF0cA+tbUqla47r4Cgfarc6IYlUU=; b=0pwajbX5alYMCi
-	f7PiL29ONg6El6ZXJPYsbl/1QQSdC0XXywcBFnebQiJgAJhmBVcrorgquWqboCakNZLeTBdSu1PSs
-	OABHUE6p4esyBBuN5aZLhPOvA7fmWt0gMSLfi4X/ziz/+rc8go/g1K64amFdg+pTrFIppKqqUV9yx
-	gopDZYIc68jP6TGobtVoNmV4FAp+ai64vcDZalqkF6W/mS1nyKM8WJi4e+Bsdt4CLLr5AVPuwDHeY
-	tbCXKi8gkdwa9j8dieYN6ab+D6WxqUzE1jKc485ZuLov9Jsf5y3kzvLXrUO+qBv09fFEMl6sZcwl7
-	ryTqvRIUMI22qrh4hfMw==;
+	List-Owner; bh=YVlmSj1BRxxR8AlgHH5DNuFolEKG6LnhTWK+QHSDWq8=; b=GpPk8UvBVTEmyV
+	dHm1QmrUKNc5CtqdQOxS6VReVOk5m/X+qFn3han8VhgYHPdPjqPj90i+/BqXdF1WJikcSnno3XV+Y
+	16b1CjTpOGuBvDnndutwNzzDtrAniwId3066q3Q9EMKjSLbUfi4TJ6CtWWYkROaNV4MXoKhVWYIJ5
+	ipFQ/Kh5C3AzIN5cKcffqql8oTASM65LWRVN604fBxEeKnTPKz8gMVpaZFAsoMNQoQsYNmNO71J7x
+	ChXrZRY1dffi0Y0hUJZ6khWgV7XLkd+ONxJeOOvaF7mm6yK5x9u3lM4YqQPLCuu8Qeg8HJ7qBo5lb
+	BxsQ/qIv9JMB6BAVuPng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkTxB-00000009iJR-01sD;
-	Tue, 18 Feb 2025 20:12:25 +0000
-Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
+	id 1tkV6U-00000009ywg-2snk;
+	Tue, 18 Feb 2025 21:26:06 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkTIy-00000009aCA-0lVD
+	id 1tkTJ3-00000009aGb-2Sy6
 	for linux-amlogic@lists.infradead.org;
-	Tue, 18 Feb 2025 19:30:54 +0000
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5e08064b4ddso1159373a12.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 18 Feb 2025 11:30:52 -0800 (PST)
+	Tue, 18 Feb 2025 19:30:59 +0000
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5e0373c7f55so6257425a12.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 18 Feb 2025 11:30:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739907051; x=1740511851; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739907056; x=1740511856; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=V2IJA96cn2epCMiVThMTa+CHJ1H46iDl1Xl8KOw8NEU=;
-        b=ZO5cSFtFK7xy/0fAXFlHnnPXESJkFXR9IMjnaAYyk5FPRCGKSwdHBWuwBV7OqYsZtD
-         Ictcv3m+LaYCPBl7LWChUZXmzo7phTqUNzNZj7+E+cXKtuPlYhOuIIFUZlM3msaaOfDi
-         7gZDGUKJTTPVUnduNxHrPPLS4szX1LixKI6iUkFgdVrCiLrJdHCMyRSha4G5Umiqtlq/
-         Xs88hK9ZxY0wWwljKMbGXBI99vhPQNdTX7QX00k7I87iTATLJehJ82bltZdvu8NQXgc7
-         Dov8IA9eXAoAJPUF8X5lPz+jq/UieQU7JL3jVmwVxmnRK3E1zcTYbSLnz94Vhq9JticK
-         E2dg==
+        bh=E174y95QWB8sLP4kKdqQSVofl2EIrt9GShIhCjB+Tv8=;
+        b=pLtjJ7loSzv0eAgM+ZsYCE2uQ6Atyda57pikXujev2PVauPBfhWCQkCn0PQEx9zYYE
+         5Pw1Il1FmkKrW+cGrOMIQlrrZu4M5pMmozTRHA7usTS/LBRMqT/X4gWPedjUYK4f6AU5
+         4PlYmEZaBlwy+Wr2KYPK4bhMftfq3jvidBWF/jM0xiP5WPrnPExiEPLl01nwzNzn/NSi
+         we9wyuvIIz8K5rgM4WjRxUm+151MF9km+QciHgVgjLva/FY/QCo0t7G1v/QAicU33K8N
+         bTAC3Wz3CNIHAtnzdRPGvc+7CtVpt2IxdW4j5+69gqyZa7WZPuQKqc7abvMbF8lDREve
+         ILKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739907051; x=1740511851;
+        d=1e100.net; s=20230601; t=1739907056; x=1740511856;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=V2IJA96cn2epCMiVThMTa+CHJ1H46iDl1Xl8KOw8NEU=;
-        b=l9iLQl4tG7ju0qfQCFamEtQbiG54u17Bm8+M9rDx/rfQ26Ry/5AWmQ2Js4oHtZBEqE
-         Ho5kQX2Q3f4Bcx4w78VhIvO5efyAy7VWKFucde/Yg5x3/p4gjtoq0v05W1qTbM2FlYRy
-         B5H5RqbcVgCao/oIbmGXlX1+1N/+g7Qq1hqnLBUy5Li+knzskFJNgJbd/fDzxbo4K/D+
-         on82+eTxPwsFCTSHZsti5CaAJEn00Ed4gvgHaezzVtMhFDeESPR2SeNuTmxH7EqhYcK2
-         iH9tKthmHhwT2D02sljQjjh5GXDjh92pU+h12gqzHDJesd4g4WFXMFl8Y3TfZJCkJYiF
-         oriw==
-X-Forwarded-Encrypted: i=1; AJvYcCWUA6yu6ubZCAGeuJN1vaDCorJVQC9fdhzhlOhMSEqNsmBLWaL6BNRLFQ56IMw+JG5dFrRvMjbN8k8AgAry@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx/6H+o6aY5PEBlIwgfs1pGR43X4gDpJLjf6P5EixUmUhfGF6R2
-	OCd5AVxrGWMA0Yx34t+CwNV4juq7Lj61G6owUcQRhPOFnJ9s4jCSvMmLGWo6B40=
-X-Gm-Gg: ASbGnctjtdGQ2wx1ewXRzJx+XkUWTebBJWE7/5R0fnSpAXDf3h0LQoZjSdHNV/GFwBf
-	hoxhi4sI/0LfylusOqf9muegUNSW5YUHMKMuRzWd2tLXUOfwtXMgeE/T7R4KYC64iBS4HWh/joD
-	S62mTOKqBAS2dt7HCKyA705hp+HuxITd3Ds8hxP9Y9F1dU4NA8xRs7DfUvXrV6AOTLHddAXIK4B
-	P3pL8PTDVuhKPNCrzLKIPR6W7po7NEm1lyG2YbkwXragE40n+EoKaH4yFh2WYCdu5cBxwXGXHTq
-	f1oXIKoAjwKgYT8gorCOvAM/hYNN
-X-Google-Smtp-Source: AGHT+IHXtRDavoFEuaxpZTZMT0EqHfm1KbVfaahxr8Qdj+LPqSMJy9KjmSUTGyYJHs3yvBW2gyEYug==
-X-Received: by 2002:a05:6402:1ec8:b0:5e0:69b3:441c with SMTP id 4fb4d7f45d1cf-5e069b34491mr6798656a12.26.1739907050796;
-        Tue, 18 Feb 2025 11:30:50 -0800 (PST)
+        bh=E174y95QWB8sLP4kKdqQSVofl2EIrt9GShIhCjB+Tv8=;
+        b=Hm9bgV047Vq16uDTJQYa8yIcW6J5+WjmF6Z7mxirJMz+G+LJ2DlG1h1Ea0ZuhLEH5W
+         g5srH+PsRr1NQfvUlCKh8Pdd8mEdSXM55zrwD0/3C6uAalktwH9ReeIwUGRtMDgHi4C7
+         AYcfnZgSKZ4bGPvKHAUpcfgs7FHxpSARz5aOmbeTqvEMN4A/n4Dj5ga1zf3SFqmKJixL
+         twt1Xc39e07VAmf5k9wssu3PYL527feT3o1Ljl+fLK8JrUxA2ZP1YcmgNB0LUmLGZkyJ
+         1HnwWIpu8pL6fgpUMS/fSlXsZMIqtIxDRnFKwwkCLq+nsyY+b3YUKRgTlh/nK7/Qz9cC
+         j+XA==
+X-Forwarded-Encrypted: i=1; AJvYcCXdeTMiZMzWk/SIPKFa40StYgqy4N4UGJtmAPPD5hmaEF1rU6Gmk/APHpuOk9x3QR3WLy7n347wMjV0lqIE@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx37ry5q2CjrYzGOy7YusYMA26L7BISW8I3SHXwmu6IIc9KVsuo
+	MQyFGcXcDQdPQhpvVXCssjngcXFgev2j054zADPZKOGSWTnTFaLAj4uJB2tgS7w=
+X-Gm-Gg: ASbGncss62Yymgy2V8hDoYzFMoH2g+Fui9gUYmrB/EkB1+3ha0VSygdGK/D+PnNvtwu
+	1zcYSz4CsCEKGFDUx9Js1Lo2svMRIlpYybYldjb4PT6eqpa1nBX1YYvyTKHYsoDAjJUQlsAwT96
+	xDSCrLZaI13Vf+jJgfgIQ826GXnnC3jsUdRF2e/c/77cC5G9W65zXIZMj1FyfUXT8VprC/OmpaO
+	wjFjrNoESXhUELaeYEf8az5ltHxRk8MKbIFHj5WPALqvl8euAZafJKmVhN5n9+FnpdTsYFXVm+P
+	k5OQuVfulcjDMKYFS6ATfmaRKHug
+X-Google-Smtp-Source: AGHT+IH6dYXNSP6vLBRqe/ecMthhMu5dDSxKiguicPwszoCj13HXx3I+/2icxv2B1ExrsNYAjEdIdw==
+X-Received: by 2002:a05:6402:2354:b0:5e0:4c04:4186 with SMTP id 4fb4d7f45d1cf-5e089d2fb1dmr614186a12.24.1739907056050;
+        Tue, 18 Feb 2025 11:30:56 -0800 (PST)
 Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:cbaf:af0:839d:fb4a])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1c3ce5sm9338985a12.17.2025.02.18.11.30.47
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1c3ce5sm9338985a12.17.2025.02.18.11.30.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Feb 2025 11:30:49 -0800 (PST)
+        Tue, 18 Feb 2025 11:30:54 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Tue, 18 Feb 2025 20:29:51 +0100
-Subject: [PATCH v4 6/8] reset: eyeq: drop device_set_of_node_from_dev()
- done by parent
+Date: Tue, 18 Feb 2025 20:29:53 +0100
+Subject: [PATCH v4 8/8] clk: amlogic: axg-audio: use the auxiliary reset
+ driver - take 2
 MIME-Version: 1.0
-Message-Id: <20250218-aux-device-create-helper-v4-6-c3d7dfdea2e6@baylibre.com>
+Message-Id: <20250218-aux-device-create-helper-v4-8-c3d7dfdea2e6@baylibre.com>
 References: <20250218-aux-device-create-helper-v4-0-c3d7dfdea2e6@baylibre.com>
 In-Reply-To: <20250218-aux-device-create-helper-v4-0-c3d7dfdea2e6@baylibre.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
@@ -109,25 +109,25 @@ Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1584; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=Ay58eJ7ot5/ul3WJ0A2vWFebi7iz9JDlKKz/MQBcPk0=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBntN/UNRwYRSxCacN/wjpG+gTD5T1KG1hcBQsMM
- QnDuvUYONiJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ7Tf1AAKCRDm/A8cN/La
- hWCyEACe+SnGCN6YdYLKgHmg2tCmpB+scSaVfptOtiiCaNmkm2ceymUua+hl4HQuc+cggoymEAI
- NRoyFjvpDwxEsenxo50indBSo4J+xKz/BxfWgchbJ5jBN98rcIbG8qbRJoK6bofmL8VieWY/C9n
- QziuMeen3+L6VIqwheLwS89czpdFIbtEchmvyO7447kPZT/f9tcqTtHyZZQ9ZWmUEPqyytQH3g1
- FXnb/QkITd2cOjX8fiWKCwqHnHuZZioCk73ybWlnXFChDFTJO1C/Kubw+Ku8ou5Oi1eNm5DpAKD
- AnhlKqHvcd9jAybx2STZQG34ILyCq0PGKCqdShGQNi3dEiokHFL3C08wZwHaieTJgG/BRqHDLxd
- +zWCAJ1BPN4sHUG0VUhEU1N3y5PLQTlN+fqW1PfZs66fZF3RWN2m6IST2cjtFQqOp9qEe9VL2m9
- h+b2UEflNPJZnzrxvGsMYOa1GOe3xEDN35bjBbnpOKh+SqsEnFVFvC/O08+02k2pGEvuCJgPAjN
- cmFW/PiIsKprUWk5c8WAdIAGfcL4OPNoHW/au92eXmWfXnZY45TkkT8Hkk2hgbQosUEC1eOtFKf
- MF1kq+BTKv4twjueAZWSPLgmQ+t+yWBdXZDVBktP2ocMRM8KOEqTeFZuMEw7Sebi/SXGVa4YK25
- DPOtNJY5VIKPj0g==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5906; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=QQ/ztLzccoD2euaC9XiJx7WBiQoWT8xupZIvkEt0604=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBntN/VtNnyVBp1TZn2uakB3wDmrM70EYdAQGZ+h
+ wV2jlYYVniJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ7Tf1QAKCRDm/A8cN/La
+ hQBjD/0RTaMxkXwenpFzTWRtbkfYP170epu7rqTng51UkW5dx0c746c0Qrzw65ygwvKsO9bol97
+ b/pX1khkHz4ELctHC0/gUmfugRQcCjQABsrNxkCDZbVBWRI7TKwaVoFcjcogbLRmvhkjiXSfa1S
+ 76FtH1DuaN7gQrQdnBBv1x7FKtahKBLyNkCamDmUN9/H+D4B5VUNpcymmgVRLIBszSinmGqPTL3
+ MFDp0iDIpcxyoimExExtn7UXtiiqjTpiVC3WAuZQXY27zbMEjJJxtF7SWARmqxnkHPm4H6w4tje
+ yctm1scmNxdLcnIBZBttjcu1TSntqESMEE4DFI03peNUvXuIL/XIFKO9EyRcTaq7T5JooFZ+uYF
+ LjdTh5p1c+BdBEMRNBzCgChSerJ/F58X3dhAkb7BXDZfPr8Y2bCPMd1mwrJAwZRHh5EgJA5zdFo
+ rSJu5S0ppYvzv4qYrPuiIwYXLpBN9djNeVshuwVJwGsoAJqs06vCyDgSjU/Wht/lVTA6m64V/xZ
+ oA6dK3fHpBl5KIXSw65n854LYYRdWFln2yKyuGoYuso0i2Ib91Z91bnr/bzsBtM6h7s6w+3u2D3
+ qcBQmOQ4aRSkyjclGXHc52MWgItdbJJ6s4Skitguub8FI3JxLo5cemUnME0vG2oMshqf0hDvQex
+ S37+rb/FVdA14/A==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250218_113052_246911_B4F7C8A0 
-X-CRM114-Status: GOOD (  13.19  )
+X-CRM114-CacheID: sfid-20250218_113057_663936_BEE84823 
+X-CRM114-Status: GOOD (  21.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -139,39 +139,215 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RnJvbTogVGjDqW8gTGVicnVuIDx0aGVvLmxlYnJ1bkBib290bGluLmNvbT4KCk91ciBwYXJlbnQg
-ZHJpdmVyIChjbGstZXllcSkgbm93IGRvZXMgdGhlCglkZXZpY2Vfc2V0X29mX25vZGVfZnJvbV9k
-ZXYoZGV2LCBkZXYtPnBhcmVudCkKY2FsbCB0aHJvdWdoIHRoZSBuZXdseSBpbnRyb2R1Y2VkIGRl
-dm1fYXV4aWxpYXJ5X2RldmljZV9jcmVhdGUoKSBoZWxwZXIuCgpEb2luZyBpdCBhZ2FpbiBpbiB0
-aGUgcmVzZXQtZXllcSBwcm9iZSB3b3VsZCBiZSByZWR1bmRhbnQuCkRyb3AgYm90aCB0aGUgV0FS
-Tl9PTigpIGFuZCB0aGUgZGV2aWNlX3NldF9vZl9ub2RlX2Zyb21fZGV2KCkgY2FsbC4KQWxzbyBm
-aXggdGhlIGZvbGxvd2luZyBjb21tZW50IHRoYXQgdGFsa3MgYWJvdXQgIm91ciBuZXdmb3VuZCBP
-RiBub2RlIi4KClNpZ25lZC1vZmYtYnk6IFRow6lvIExlYnJ1biA8dGhlby5sZWJydW5AYm9vdGxp
-bi5jb20+ClNpZ25lZC1vZmYtYnk6IEplcm9tZSBCcnVuZXQgPGpicnVuZXRAYmF5bGlicmUuY29t
-PgotLS0KIGRyaXZlcnMvcmVzZXQvcmVzZXQtZXllcS5jIHwgMTMgKystLS0tLS0tLS0tLQogMSBm
-aWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9yZXNldC9yZXNldC1leWVxLmMgYi9kcml2ZXJzL3Jlc2V0L3Jlc2V0LWV5ZXEu
-YwppbmRleCAwMmQ1MDA0MTA0OGI0MjkyMWUzZTUxMTE0OGNkMjlmMjE1YjVmYzVlLi44MDE4ZmE4
-OTU0MjdiYjFlNTFlYTIzYjk5ODAzZGM3ZmU2MTA4NDIxIDEwMDY0NAotLS0gYS9kcml2ZXJzL3Jl
-c2V0L3Jlc2V0LWV5ZXEuYworKysgYi9kcml2ZXJzL3Jlc2V0L3Jlc2V0LWV5ZXEuYwpAQCAtNDIw
-LDE3ICs0MjAsOCBAQCBzdGF0aWMgaW50IGVxcl9wcm9iZShzdHJ1Y3QgYXV4aWxpYXJ5X2Rldmlj
-ZSAqYWRldiwKIAlpbnQgcmV0OwogCiAJLyoKLQkgKiBXZSBhcmUgYW4gYXV4aWxpYXJ5IGRldmlj
-ZSBvZiBjbGstZXllcS4gV2UgZG8gbm90IGhhdmUgYW4gT0Ygbm9kZSBieQotCSAqIGRlZmF1bHQ7
-IGxldCdzIHJldXNlIG91ciBwYXJlbnQncyBPRiBub2RlLgotCSAqLwotCVdBUk5fT04oZGV2LT5v
-Zl9ub2RlKTsKLQlkZXZpY2Vfc2V0X29mX25vZGVfZnJvbV9kZXYoZGV2LCBkZXYtPnBhcmVudCk7
-Ci0JaWYgKCFkZXYtPm9mX25vZGUpCi0JCXJldHVybiAtRU5PREVWOwotCi0JLyoKLQkgKiBVc2lu
-ZyBvdXIgbmV3Zm91bmQgT0Ygbm9kZSwgd2UgY2FuIGdldCBtYXRjaCBkYXRhLiBXZSBjYW5ub3Qg
-dXNlCi0JICogZGV2aWNlX2dldF9tYXRjaF9kYXRhKCkgYmVjYXVzZSBpdCBkb2VzIG5vdCBtYXRj
-aCByZXVzZWQgT0Ygbm9kZXMuCisJICogR2V0IG1hdGNoIGRhdGEuIFdlIGNhbm5vdCB1c2UgZGV2
-aWNlX2dldF9tYXRjaF9kYXRhKCkgYmVjYXVzZSBpdCBkb2VzCisJICogbm90IGFjY2VwdCByZXVz
-ZWQgT0Ygbm9kZXM7IHNlZSBkZXZpY2Vfc2V0X29mX25vZGVfZnJvbV9kZXYoKS4KIAkgKi8KIAlt
-YXRjaCA9IG9mX21hdGNoX25vZGUoZGV2LT5kcml2ZXItPm9mX21hdGNoX3RhYmxlLCBkZXYtPm9m
-X25vZGUpOwogCWlmICghbWF0Y2ggfHwgIW1hdGNoLT5kYXRhKQoKLS0gCjIuNDcuMgoKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
-bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
-dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Remove the implementation of the reset driver in axg audio
+clock driver and migrate to the one provided by reset framework
+on the auxiliary bus.
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/Kconfig     |   2 +-
+ drivers/clk/meson/axg-audio.c | 114 +++++-------------------------------------
+ 2 files changed, 14 insertions(+), 102 deletions(-)
+
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+index be2e3a5f83363b07cdcec2601acf15780ff24892..7cb21fc223b063cb93812643f02f192343981ed8 100644
+--- a/drivers/clk/meson/Kconfig
++++ b/drivers/clk/meson/Kconfig
+@@ -106,7 +106,7 @@ config COMMON_CLK_AXG_AUDIO
+ 	select COMMON_CLK_MESON_SCLK_DIV
+ 	select COMMON_CLK_MESON_CLKC_UTILS
+ 	select REGMAP_MMIO
+-	select RESET_CONTROLLER
++	imply RESET_MESON_AUX
+ 	help
+ 	  Support for the audio clock controller on AmLogic A113D devices,
+ 	  aka axg, Say Y if you want audio subsystem to work.
+diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
+index 9df627b142f89788966ede0262aaaf39e13f0b49..3948f5d0faca372dd5cc4ed6dc95f9c89fe5bae8 100644
+--- a/drivers/clk/meson/axg-audio.c
++++ b/drivers/clk/meson/axg-audio.c
+@@ -4,6 +4,7 @@
+  * Author: Jerome Brunet <jbrunet@baylibre.com>
+  */
+ 
++#include <linux/auxiliary_bus.h>
+ #include <linux/clk.h>
+ #include <linux/clk-provider.h>
+ #include <linux/init.h>
+@@ -12,7 +13,6 @@
+ #include <linux/platform_device.h>
+ #include <linux/regmap.h>
+ #include <linux/reset.h>
+-#include <linux/reset-controller.h>
+ #include <linux/slab.h>
+ 
+ #include "meson-clkc-utils.h"
+@@ -1678,84 +1678,6 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
+ 	&sm1_earcrx_dmac_clk,
+ };
+ 
+-struct axg_audio_reset_data {
+-	struct reset_controller_dev rstc;
+-	struct regmap *map;
+-	unsigned int offset;
+-};
+-
+-static void axg_audio_reset_reg_and_bit(struct axg_audio_reset_data *rst,
+-					unsigned long id,
+-					unsigned int *reg,
+-					unsigned int *bit)
+-{
+-	unsigned int stride = regmap_get_reg_stride(rst->map);
+-
+-	*reg = (id / (stride * BITS_PER_BYTE)) * stride;
+-	*reg += rst->offset;
+-	*bit = id % (stride * BITS_PER_BYTE);
+-}
+-
+-static int axg_audio_reset_update(struct reset_controller_dev *rcdev,
+-				unsigned long id, bool assert)
+-{
+-	struct axg_audio_reset_data *rst =
+-		container_of(rcdev, struct axg_audio_reset_data, rstc);
+-	unsigned int offset, bit;
+-
+-	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
+-
+-	regmap_update_bits(rst->map, offset, BIT(bit),
+-			assert ? BIT(bit) : 0);
+-
+-	return 0;
+-}
+-
+-static int axg_audio_reset_status(struct reset_controller_dev *rcdev,
+-				unsigned long id)
+-{
+-	struct axg_audio_reset_data *rst =
+-		container_of(rcdev, struct axg_audio_reset_data, rstc);
+-	unsigned int val, offset, bit;
+-
+-	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
+-
+-	regmap_read(rst->map, offset, &val);
+-
+-	return !!(val & BIT(bit));
+-}
+-
+-static int axg_audio_reset_assert(struct reset_controller_dev *rcdev,
+-				unsigned long id)
+-{
+-	return axg_audio_reset_update(rcdev, id, true);
+-}
+-
+-static int axg_audio_reset_deassert(struct reset_controller_dev *rcdev,
+-				unsigned long id)
+-{
+-	return axg_audio_reset_update(rcdev, id, false);
+-}
+-
+-static int axg_audio_reset_toggle(struct reset_controller_dev *rcdev,
+-				unsigned long id)
+-{
+-	int ret;
+-
+-	ret = axg_audio_reset_assert(rcdev, id);
+-	if (ret)
+-		return ret;
+-
+-	return axg_audio_reset_deassert(rcdev, id);
+-}
+-
+-static const struct reset_control_ops axg_audio_rstc_ops = {
+-	.assert = axg_audio_reset_assert,
+-	.deassert = axg_audio_reset_deassert,
+-	.reset = axg_audio_reset_toggle,
+-	.status = axg_audio_reset_status,
+-};
+-
+ static struct regmap_config axg_audio_regmap_cfg = {
+ 	.reg_bits	= 32,
+ 	.val_bits	= 32,
+@@ -1766,8 +1688,7 @@ struct audioclk_data {
+ 	struct clk_regmap *const *regmap_clks;
+ 	unsigned int regmap_clk_num;
+ 	struct meson_clk_hw_data hw_clks;
+-	unsigned int reset_offset;
+-	unsigned int reset_num;
++	const char *rst_drvname;
+ 	unsigned int max_register;
+ };
+ 
+@@ -1775,7 +1696,7 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+ 	const struct audioclk_data *data;
+-	struct axg_audio_reset_data *rst;
++	struct auxiliary_device *auxdev;
+ 	struct regmap *map;
+ 	void __iomem *regs;
+ 	struct clk_hw *hw;
+@@ -1834,22 +1755,15 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
+ 
+-	/* Stop here if there is no reset */
+-	if (!data->reset_num)
+-		return 0;
+-
+-	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
+-	if (!rst)
+-		return -ENOMEM;
+-
+-	rst->map = map;
+-	rst->offset = data->reset_offset;
+-	rst->rstc.nr_resets = data->reset_num;
+-	rst->rstc.ops = &axg_audio_rstc_ops;
+-	rst->rstc.of_node = dev->of_node;
+-	rst->rstc.owner = THIS_MODULE;
++	/* Register auxiliary reset driver when applicable */
++	if (data->rst_drvname) {
++		auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
++							data->rst_drvname, NULL, 0);
++		if (!auxdev)
++			return -ENODEV;
++	}
+ 
+-	return devm_reset_controller_register(dev, &rst->rstc);
++	return 0;
+ }
+ 
+ static const struct audioclk_data axg_audioclk_data = {
+@@ -1869,8 +1783,7 @@ static const struct audioclk_data g12a_audioclk_data = {
+ 		.hws = g12a_audio_hw_clks,
+ 		.num = ARRAY_SIZE(g12a_audio_hw_clks),
+ 	},
+-	.reset_offset = AUDIO_SW_RESET,
+-	.reset_num = 26,
++	.rst_drvname = "rst-g12a",
+ 	.max_register = AUDIO_CLK_SPDIFOUT_B_CTRL,
+ };
+ 
+@@ -1881,8 +1794,7 @@ static const struct audioclk_data sm1_audioclk_data = {
+ 		.hws = sm1_audio_hw_clks,
+ 		.num = ARRAY_SIZE(sm1_audio_hw_clks),
+ 	},
+-	.reset_offset = AUDIO_SM1_SW_RESET0,
+-	.reset_num = 39,
++	.rst_drvname = "rst-sm1",
+ 	.max_register = AUDIO_EARCRX_DMAC_CLK_CTRL,
+ };
+ 
+
+-- 
+2.47.2
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
