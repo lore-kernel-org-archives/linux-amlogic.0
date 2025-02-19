@@ -4,130 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C99FC021AD
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Feb 2025 21:26:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97DA2C021AA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2025 00:43:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YVlmSj1BRxxR8AlgHH5DNuFolEKG6LnhTWK+QHSDWq8=; b=GpPk8UvBVTEmyV
-	dHm1QmrUKNc5CtqdQOxS6VReVOk5m/X+qFn3han8VhgYHPdPjqPj90i+/BqXdF1WJikcSnno3XV+Y
-	16b1CjTpOGuBvDnndutwNzzDtrAniwId3066q3Q9EMKjSLbUfi4TJ6CtWWYkROaNV4MXoKhVWYIJ5
-	ipFQ/Kh5C3AzIN5cKcffqql8oTASM65LWRVN604fBxEeKnTPKz8gMVpaZFAsoMNQoQsYNmNO71J7x
-	ChXrZRY1dffi0Y0hUJZ6khWgV7XLkd+ONxJeOOvaF7mm6yK5x9u3lM4YqQPLCuu8Qeg8HJ7qBo5lb
-	BxsQ/qIv9JMB6BAVuPng==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=jJ06h7/kZAtBY5qXBaiBzhICU+3ypOUdQfzJZHyHZdo=; b=4ZXD+2xVMPLNgwHFjzcsWD+kn9
+	D8nCXHc0qqFqw68KWq6iP8wVk0O22rxsExrrGGe6VIxNeIaLg2Dp7dnUsqhXYYRpxMR9PByWX6Xf5
+	56SRL8XT3N7bXckMN2+jmXR/oqsF0LN6ePl2ameFuj5mnakHaTEmeSzJlHQ8cFya6GN7D3qwi6B65
+	J0kKzy0gwXc9GwDXy8zfJH+xqU+K1H4QKexdIh5yxBmGB+2Y++Pn1p7FzmIQ7xbfIAYPKkMj1ZlDS
+	Q/76BXb6rNq/C61ECURq+5V9hw0lmjAXvC0BsbmpRrY48F8WLr81XcfuJwsslRyiKa2gfLIRAwioc
+	47Hti0RA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkV6U-00000009ywg-2snk;
-	Tue, 18 Feb 2025 21:26:06 +0000
-Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
+	id 1tkYBq-0000000AO5R-2JiE;
+	Wed, 19 Feb 2025 00:43:50 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkTJ3-00000009aGb-2Sy6
-	for linux-amlogic@lists.infradead.org;
-	Tue, 18 Feb 2025 19:30:59 +0000
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5e0373c7f55so6257425a12.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 18 Feb 2025 11:30:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1739907056; x=1740511856; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E174y95QWB8sLP4kKdqQSVofl2EIrt9GShIhCjB+Tv8=;
-        b=pLtjJ7loSzv0eAgM+ZsYCE2uQ6Atyda57pikXujev2PVauPBfhWCQkCn0PQEx9zYYE
-         5Pw1Il1FmkKrW+cGrOMIQlrrZu4M5pMmozTRHA7usTS/LBRMqT/X4gWPedjUYK4f6AU5
-         4PlYmEZaBlwy+Wr2KYPK4bhMftfq3jvidBWF/jM0xiP5WPrnPExiEPLl01nwzNzn/NSi
-         we9wyuvIIz8K5rgM4WjRxUm+151MF9km+QciHgVgjLva/FY/QCo0t7G1v/QAicU33K8N
-         bTAC3Wz3CNIHAtnzdRPGvc+7CtVpt2IxdW4j5+69gqyZa7WZPuQKqc7abvMbF8lDREve
-         ILKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739907056; x=1740511856;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E174y95QWB8sLP4kKdqQSVofl2EIrt9GShIhCjB+Tv8=;
-        b=Hm9bgV047Vq16uDTJQYa8yIcW6J5+WjmF6Z7mxirJMz+G+LJ2DlG1h1Ea0ZuhLEH5W
-         g5srH+PsRr1NQfvUlCKh8Pdd8mEdSXM55zrwD0/3C6uAalktwH9ReeIwUGRtMDgHi4C7
-         AYcfnZgSKZ4bGPvKHAUpcfgs7FHxpSARz5aOmbeTqvEMN4A/n4Dj5ga1zf3SFqmKJixL
-         twt1Xc39e07VAmf5k9wssu3PYL527feT3o1Ljl+fLK8JrUxA2ZP1YcmgNB0LUmLGZkyJ
-         1HnwWIpu8pL6fgpUMS/fSlXsZMIqtIxDRnFKwwkCLq+nsyY+b3YUKRgTlh/nK7/Qz9cC
-         j+XA==
-X-Forwarded-Encrypted: i=1; AJvYcCXdeTMiZMzWk/SIPKFa40StYgqy4N4UGJtmAPPD5hmaEF1rU6Gmk/APHpuOk9x3QR3WLy7n347wMjV0lqIE@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx37ry5q2CjrYzGOy7YusYMA26L7BISW8I3SHXwmu6IIc9KVsuo
-	MQyFGcXcDQdPQhpvVXCssjngcXFgev2j054zADPZKOGSWTnTFaLAj4uJB2tgS7w=
-X-Gm-Gg: ASbGncss62Yymgy2V8hDoYzFMoH2g+Fui9gUYmrB/EkB1+3ha0VSygdGK/D+PnNvtwu
-	1zcYSz4CsCEKGFDUx9Js1Lo2svMRIlpYybYldjb4PT6eqpa1nBX1YYvyTKHYsoDAjJUQlsAwT96
-	xDSCrLZaI13Vf+jJgfgIQ826GXnnC3jsUdRF2e/c/77cC5G9W65zXIZMj1FyfUXT8VprC/OmpaO
-	wjFjrNoESXhUELaeYEf8az5ltHxRk8MKbIFHj5WPALqvl8euAZafJKmVhN5n9+FnpdTsYFXVm+P
-	k5OQuVfulcjDMKYFS6ATfmaRKHug
-X-Google-Smtp-Source: AGHT+IH6dYXNSP6vLBRqe/ecMthhMu5dDSxKiguicPwszoCj13HXx3I+/2icxv2B1ExrsNYAjEdIdw==
-X-Received: by 2002:a05:6402:2354:b0:5e0:4c04:4186 with SMTP id 4fb4d7f45d1cf-5e089d2fb1dmr614186a12.24.1739907056050;
-        Tue, 18 Feb 2025 11:30:56 -0800 (PST)
-Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:cbaf:af0:839d:fb4a])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5dece1c3ce5sm9338985a12.17.2025.02.18.11.30.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Feb 2025 11:30:54 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Tue, 18 Feb 2025 20:29:53 +0100
-Subject: [PATCH v4 8/8] clk: amlogic: axg-audio: use the auxiliary reset
- driver - take 2
+	id 1tkYAM-0000000ANl0-34w7;
+	Wed, 19 Feb 2025 00:42:20 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 12E24A41E68;
+	Wed, 19 Feb 2025 00:40:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E737C4CEEA;
+	Wed, 19 Feb 2025 00:42:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1739925737;
+	bh=khIFgwQ769ZHyT5CdIGu1HrTamF79U/Lvixfrt97yy4=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=tYMECnuhBbykHVm1RU15MSPfwodg3z1htxAN/KBLJjEfTm6ZjKKZzvM4LQNkkEvqR
+	 ClaezR+1hPyqLCLF9vcsJwyS3LhntD+NWvyEi5YBIFSW0FufMXlY1v2Y3LqPPUDAVR
+	 xk+l2T+xh4m0oCPjiQ6a6pP+ZQSZLa2lgZFSJkOQe1mAAOjV497vgDKm+pNJJooPld
+	 hebKKloMzj0TIyTVuWJP9YJgRpgmVHlc7LehcPCefynw7SIqVXZockj4d/PfPp8T8+
+	 mDTXJSCkCKGNNLetz1B3T4purqsau+/G7TLHts/6T/lZbHqDxHtSBH5R8JQkvnWwJT
+	 sCoYAzENbIfkw==
+Date: Tue, 18 Feb 2025 18:42:16 -0600
 MIME-Version: 1.0
-Message-Id: <20250218-aux-device-create-helper-v4-8-c3d7dfdea2e6@baylibre.com>
-References: <20250218-aux-device-create-helper-v4-0-c3d7dfdea2e6@baylibre.com>
-In-Reply-To: <20250218-aux-device-create-helper-v4-0-c3d7dfdea2e6@baylibre.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>, Danilo Krummrich <dakr@kernel.org>, 
- Conor Dooley <conor.dooley@microchip.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Douglas Anderson <dianders@chromium.org>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Hans de Goede <hdegoede@redhat.com>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ Kevin Hilman <khilman@baylibre.com>, Takashi Iwai <tiwai@suse.com>, 
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
+ shuai.li@amlogic.com, Stephen Boyd <sboyd@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jaroslav Kysela <perex@perex.cz>, zhe.wang@amlogic.com, 
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
  Michael Turquette <mturquette@baylibre.com>, 
- Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org, 
- linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- Jerome Brunet <jbrunet@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5906; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=QQ/ztLzccoD2euaC9XiJx7WBiQoWT8xupZIvkEt0604=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBntN/VtNnyVBp1TZn2uakB3wDmrM70EYdAQGZ+h
- wV2jlYYVniJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCZ7Tf1QAKCRDm/A8cN/La
- hQBjD/0RTaMxkXwenpFzTWRtbkfYP170epu7rqTng51UkW5dx0c746c0Qrzw65ygwvKsO9bol97
- b/pX1khkHz4ELctHC0/gUmfugRQcCjQABsrNxkCDZbVBWRI7TKwaVoFcjcogbLRmvhkjiXSfa1S
- 76FtH1DuaN7gQrQdnBBv1x7FKtahKBLyNkCamDmUN9/H+D4B5VUNpcymmgVRLIBszSinmGqPTL3
- MFDp0iDIpcxyoimExExtn7UXtiiqjTpiVC3WAuZQXY27zbMEjJJxtF7SWARmqxnkHPm4H6w4tje
- yctm1scmNxdLcnIBZBttjcu1TSntqESMEE4DFI03peNUvXuIL/XIFKO9EyRcTaq7T5JooFZ+uYF
- LjdTh5p1c+BdBEMRNBzCgChSerJ/F58X3dhAkb7BXDZfPr8Y2bCPMd1mwrJAwZRHh5EgJA5zdFo
- rSJu5S0ppYvzv4qYrPuiIwYXLpBN9djNeVshuwVJwGsoAJqs06vCyDgSjU/Wht/lVTA6m64V/xZ
- oA6dK3fHpBl5KIXSw65n854LYYRdWFln2yKyuGoYuso0i2Ib91Z91bnr/bzsBtM6h7s6w+3u2D3
- qcBQmOQ4aRSkyjclGXHc52MWgItdbJJ6s4Skitguub8FI3JxLo5cemUnME0vG2oMshqf0hDvQex
- S37+rb/FVdA14/A==
-X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
- fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, jian.xu@amlogic.com, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Mark Brown <broonie@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+To: jiebing chen <jiebing.chen@amlogic.com>
+In-Reply-To: <20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com>
+References: <20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com>
+Message-Id: <173992515659.2064996.1911122760174546370.robh@kernel.org>
+Subject: Re: [PATCH v2 0/5] Add support for S4 audio
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250218_113057_663936_BEE84823 
-X-CRM114-Status: GOOD (  21.29  )
+X-CRM114-CacheID: sfid-20250218_164218_897597_ABE80B3D 
+X-CRM114-Status: GOOD (  15.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,207 +82,100 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Remove the implementation of the reset driver in axg audio
-clock driver and migrate to the one provided by reset framework
-on the auxiliary bus.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/Kconfig     |   2 +-
- drivers/clk/meson/axg-audio.c | 114 +++++-------------------------------------
- 2 files changed, 14 insertions(+), 102 deletions(-)
+On Fri, 14 Feb 2025 10:13:39 +0800, jiebing chen wrote:
+> Add s4 audio base driver.
+> 
+> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+> ---
+> Changes in v2:
+> - remove tdm pad control and change tocodec base on g12a
+> - change hifipll rate to support 24bit
+> - add s4 audio clock
+> - Link to v1: https://lore.kernel.org/r/20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com
+> 
+> ---
+> jiebing chen (5):
+>       dt-bindings: clock: axg-audio: Add mclk and sclk pad for s4
+>       dt-bindings: Asoc: axg-audio: Add s4 audio tocodec
+>       ASoC: meson: s4:support the audio clk
+>       ASoC: meson: s4:support audio tocodec
+>       arm64: dts: amlogic: Add Amlogic S4 Audio
+> 
+>  .../bindings/clock/amlogic,axg-audio-clkc.yaml     |  18 +
+>  .../bindings/sound/amlogic,g12a-toacodec.yaml      |   1 +
+>  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 219 +++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 370 ++++++++++++++++++-
+>  drivers/clk/meson/axg-audio.c                      | 410 ++++++++++++++++++++-
+>  drivers/clk/meson/axg-audio.h                      |   4 +
+>  include/dt-bindings/clock/axg-audio-clkc.h         |  11 +
+>  sound/soc/meson/axg-card.c                         |   3 +-
+>  sound/soc/meson/g12a-toacodec.c                    |  64 ++++
+>  9 files changed, 1095 insertions(+), 5 deletions(-)
+> ---
+> base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
+> change-id: 20250110-audio_drvier-07a5381c494b
+> 
+> Best regards,
+> --
+> jiebing chen <jiebing.chen@amlogic.com>
+> 
+> 
+> 
 
-diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-index be2e3a5f83363b07cdcec2601acf15780ff24892..7cb21fc223b063cb93812643f02f192343981ed8 100644
---- a/drivers/clk/meson/Kconfig
-+++ b/drivers/clk/meson/Kconfig
-@@ -106,7 +106,7 @@ config COMMON_CLK_AXG_AUDIO
- 	select COMMON_CLK_MESON_SCLK_DIV
- 	select COMMON_CLK_MESON_CLKC_UTILS
- 	select REGMAP_MMIO
--	select RESET_CONTROLLER
-+	imply RESET_MESON_AUX
- 	help
- 	  Support for the audio clock controller on AmLogic A113D devices,
- 	  aka axg, Say Y if you want audio subsystem to work.
-diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-index 9df627b142f89788966ede0262aaaf39e13f0b49..3948f5d0faca372dd5cc4ed6dc95f9c89fe5bae8 100644
---- a/drivers/clk/meson/axg-audio.c
-+++ b/drivers/clk/meson/axg-audio.c
-@@ -4,6 +4,7 @@
-  * Author: Jerome Brunet <jbrunet@baylibre.com>
-  */
- 
-+#include <linux/auxiliary_bus.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/init.h>
-@@ -12,7 +13,6 @@
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
- #include <linux/reset.h>
--#include <linux/reset-controller.h>
- #include <linux/slab.h>
- 
- #include "meson-clkc-utils.h"
-@@ -1678,84 +1678,6 @@ static struct clk_regmap *const sm1_clk_regmaps[] = {
- 	&sm1_earcrx_dmac_clk,
- };
- 
--struct axg_audio_reset_data {
--	struct reset_controller_dev rstc;
--	struct regmap *map;
--	unsigned int offset;
--};
--
--static void axg_audio_reset_reg_and_bit(struct axg_audio_reset_data *rst,
--					unsigned long id,
--					unsigned int *reg,
--					unsigned int *bit)
--{
--	unsigned int stride = regmap_get_reg_stride(rst->map);
--
--	*reg = (id / (stride * BITS_PER_BYTE)) * stride;
--	*reg += rst->offset;
--	*bit = id % (stride * BITS_PER_BYTE);
--}
--
--static int axg_audio_reset_update(struct reset_controller_dev *rcdev,
--				unsigned long id, bool assert)
--{
--	struct axg_audio_reset_data *rst =
--		container_of(rcdev, struct axg_audio_reset_data, rstc);
--	unsigned int offset, bit;
--
--	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
--
--	regmap_update_bits(rst->map, offset, BIT(bit),
--			assert ? BIT(bit) : 0);
--
--	return 0;
--}
--
--static int axg_audio_reset_status(struct reset_controller_dev *rcdev,
--				unsigned long id)
--{
--	struct axg_audio_reset_data *rst =
--		container_of(rcdev, struct axg_audio_reset_data, rstc);
--	unsigned int val, offset, bit;
--
--	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
--
--	regmap_read(rst->map, offset, &val);
--
--	return !!(val & BIT(bit));
--}
--
--static int axg_audio_reset_assert(struct reset_controller_dev *rcdev,
--				unsigned long id)
--{
--	return axg_audio_reset_update(rcdev, id, true);
--}
--
--static int axg_audio_reset_deassert(struct reset_controller_dev *rcdev,
--				unsigned long id)
--{
--	return axg_audio_reset_update(rcdev, id, false);
--}
--
--static int axg_audio_reset_toggle(struct reset_controller_dev *rcdev,
--				unsigned long id)
--{
--	int ret;
--
--	ret = axg_audio_reset_assert(rcdev, id);
--	if (ret)
--		return ret;
--
--	return axg_audio_reset_deassert(rcdev, id);
--}
--
--static const struct reset_control_ops axg_audio_rstc_ops = {
--	.assert = axg_audio_reset_assert,
--	.deassert = axg_audio_reset_deassert,
--	.reset = axg_audio_reset_toggle,
--	.status = axg_audio_reset_status,
--};
--
- static struct regmap_config axg_audio_regmap_cfg = {
- 	.reg_bits	= 32,
- 	.val_bits	= 32,
-@@ -1766,8 +1688,7 @@ struct audioclk_data {
- 	struct clk_regmap *const *regmap_clks;
- 	unsigned int regmap_clk_num;
- 	struct meson_clk_hw_data hw_clks;
--	unsigned int reset_offset;
--	unsigned int reset_num;
-+	const char *rst_drvname;
- 	unsigned int max_register;
- };
- 
-@@ -1775,7 +1696,7 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	const struct audioclk_data *data;
--	struct axg_audio_reset_data *rst;
-+	struct auxiliary_device *auxdev;
- 	struct regmap *map;
- 	void __iomem *regs;
- 	struct clk_hw *hw;
-@@ -1834,22 +1755,15 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	/* Stop here if there is no reset */
--	if (!data->reset_num)
--		return 0;
--
--	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
--	if (!rst)
--		return -ENOMEM;
--
--	rst->map = map;
--	rst->offset = data->reset_offset;
--	rst->rstc.nr_resets = data->reset_num;
--	rst->rstc.ops = &axg_audio_rstc_ops;
--	rst->rstc.of_node = dev->of_node;
--	rst->rstc.owner = THIS_MODULE;
-+	/* Register auxiliary reset driver when applicable */
-+	if (data->rst_drvname) {
-+		auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
-+							data->rst_drvname, NULL, 0);
-+		if (!auxdev)
-+			return -ENODEV;
-+	}
- 
--	return devm_reset_controller_register(dev, &rst->rstc);
-+	return 0;
- }
- 
- static const struct audioclk_data axg_audioclk_data = {
-@@ -1869,8 +1783,7 @@ static const struct audioclk_data g12a_audioclk_data = {
- 		.hws = g12a_audio_hw_clks,
- 		.num = ARRAY_SIZE(g12a_audio_hw_clks),
- 	},
--	.reset_offset = AUDIO_SW_RESET,
--	.reset_num = 26,
-+	.rst_drvname = "rst-g12a",
- 	.max_register = AUDIO_CLK_SPDIFOUT_B_CTRL,
- };
- 
-@@ -1881,8 +1794,7 @@ static const struct audioclk_data sm1_audioclk_data = {
- 		.hws = sm1_audio_hw_clks,
- 		.num = ARRAY_SIZE(sm1_audio_hw_clks),
- 	},
--	.reset_offset = AUDIO_SM1_SW_RESET0,
--	.reset_num = 39,
-+	.rst_drvname = "rst-sm1",
- 	.max_register = AUDIO_EARCRX_DMAC_CLK_CTRL,
- };
- 
 
--- 
-2.47.2
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com:
+
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@740: compatible: 'oneOf' conditional failed, one must be fixed:
+	['amlogic,s4-toacodec'] is too short
+	'amlogic,g12a-toacodec' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,g12a-toacodec.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: sound: 'anyOf' conditional failed, one must be fixed:
+	'clocks' is a required property
+	'#clock-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+
+
+
+
 
 
 _______________________________________________
