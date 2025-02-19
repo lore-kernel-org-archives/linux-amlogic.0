@@ -4,105 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60130C021AA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2025 09:23:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D74FEC021AA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2025 09:31:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fnNuXJ9srR8w/QALw+IUM3A7DD4uCyly84a210Z03jY=; b=bsttboZf1r7bWy
-	oARZms21a/xLU9ypNaWWy9imVKVNCIsWRoCfq7FMvgPnWlPqSeqvNfFR7Od5CxtHtN0PfdGdvJNtX
-	K87/0OGT1HShKXY+2fS8MTHi2vTPpAl3qmIY7yml7Pz4ooqQMyLfWLVbcBftMbJrXBVGcsEP6TRs4
-	o9vGrdZFaR06Pmi2+2PpH9cXHqLfa73pspUkPYF2Hn5svcaR3QxNfaBl9LC1kBzbf5dUDwjuyWmSt
-	m3pOVEHeKTXnStPgqvuUITe9lKgoEpBHFavXwCpwtWPDeXIAfjU0FXKP/1IPMcOZ5aD+6B1OS5gLw
-	gQf13WFDU4jNjHquXIVw==;
+	List-Owner; bh=DsCmn2OL9jf/T7ZZLQxgVHE7uA+5XEyvFNqodQnK6Ng=; b=k/0MplW/SM7B3y
+	+MFrJoVw/HS2qY4sixTJ5+KyDVDVSpexrb2SMMWy0LkiG33YYzhvYbOpjb8MuyOVW/6czizqaNbH8
+	1sRCB39wykQnVrbieT2/2fdUyd3IiuBOfwNCnZ01cDivAvLW3TCuse88feh7d4/4TTnzNjRElUOtz
+	gavyAfyd/ASHx2vsGwbhl9OC/0ezykCgSZGSAmBrpfNOOC8b7D+36ls/wIDavCVyNpCX7V7Oa1zvl
+	ihzQ5SQj8EvC7uSSkQeMdhch0y8oJyfuvdWlyP4Roq+ZsoSCa3wJib8hcBe0LGS55AjmzFUQi4aQo
+	1L+EqfDGTNQ0liYyDvJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkgJ6-0000000BpMv-2v9Q;
-	Wed, 19 Feb 2025 09:23:52 +0000
-Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
+	id 1tkgQM-0000000BsG6-3Vhw;
+	Wed, 19 Feb 2025 09:31:22 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkg1u-0000000BjNm-3oID
+	id 1tkgCi-0000000Bmz3-2B0w
 	for linux-amlogic@lists.infradead.org;
-	Wed, 19 Feb 2025 09:06:09 +0000
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-54527a7270eso5038454e87.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2025 01:06:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1739955965; x=1740560765; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JParjzdc5yBYoG0m5UmXTy5mjDiWwZLgHUFOravZSiI=;
-        b=cExsSjyCLOJ2ndO1WnWmRyfWX4Mkd+w4vshHQFbnnpvxP2h1qz8dCnllRRaSHnMuOI
-         SqGcdBVeVHE7Wr0Jn+x7FsDhjEOI2WSxmm6QeICS7IGdGzYlDjdd7hl8DrwzyoQ6rOQx
-         Y31pmLCQpW3BDao89Rx8QGtGnBDqPes97Qi9+PwZa24hJ6hHfYkflTUnlOvnobZThb3x
-         c/O1LyafzS83sVocniKdSYj/zOTSDQuamAGgvK8tk3Km/JIE4hnSbE6LMb/OuV+1P15J
-         0oOGvKzI/ycT2scR4quXvFtx+3+kSUKyEK/BjT4isSjHG9SCElOsGB8MVkqFl/5SFzDO
-         MG8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1739955965; x=1740560765;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JParjzdc5yBYoG0m5UmXTy5mjDiWwZLgHUFOravZSiI=;
-        b=V8pqblOMIJTka2pSEpDVfwtJu+1CnyclTaJXG2qWQ1JwVwIzb66WHvqwNyW4Dq8YFu
-         IoFH1OYr2LczyjcWs+ALSWHjSjLYaVjSSUQVNb5Lt8LBdhK+ikUvyS2yC7CMjV1oMKp4
-         MhcFgowP/Bp+AHxpS96w7X+Fm2oOhA/Zsa+PpMOipYUza3xGyWn1raMIHHhpCVW60sqn
-         MqDcRco4+xQJoUmyYG9wq2+U/8VAUhZvFQWitKr2mQ7a2ge2OnQsAT53NygbPGk/Z+J5
-         pDBDExIpTDCvqAfwm3QNc2UVgczmXi58/oJTdxgHJTcPlJRQ899CeU541oMkjVBvhdwO
-         LqhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUiO1tFxsKVp09jZ+WJHKj7w5hgtGVLczpI0g4SKT5GeHEH4U6tRkGLDzc3B6D7S5WNqC9YQN7Dcj+ua5jg@lists.infradead.org
-X-Gm-Message-State: AOJu0YxQMkMCk73dvZBQZ9/av+lAoAHwSmoZGvnC4c7quS1xKBvgDJM0
-	jpFuCnzdVJ9oc+QGbIOzrQq+IrhM7uXrTYY2rpIMXAM41zu09izZz68jad/tOKo=
-X-Gm-Gg: ASbGncumHHMt25IZv2b7G4PIiuaN+naeH2ZbTvHsecK97lySO/3gc5I7jNon14QaCUK
-	jIjvwEQUYCK6glXWGjJKMsPJ1lepwq86becNY96rZtzmBOBRsvGbb+V9t4zgsIG5N3ej1ZW0in1
-	BpgeDr7yZgum/saaXPMCi0yzir9JcMztO+xXEr+TBakWxGbbcI+PXyDOrf0JATmZLwxM+5xRBxd
-	VTo/nA+i5S7x9lq3oLT9suPqck+gZfS6ehqNl4KEenQBghoNt6j3sqIJIO1662gMRjCeOrTmXJ+
-	ebbYOsmFDGa/VpmxmoLCZ0qhnlScJ0qcLEWshFRmCkFJae626hyTRvsLiEwN651pIi3qdeI=
-X-Google-Smtp-Source: AGHT+IHm7rrZGF7gWE8rLuZPX4nvDlV3DcFc5Uk1QwC4R6ncjGo7U2SoOER3uymDvhu6BZaa/4okgQ==
-X-Received: by 2002:a05:6512:3a94:b0:545:10bc:20ca with SMTP id 2adb3069b0e04-5452fe583c4mr6368433e87.24.1739955964491;
-        Wed, 19 Feb 2025 01:06:04 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54530df9016sm1454714e87.36.2025.02.19.01.06.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2025 01:06:04 -0800 (PST)
-Date: Wed, 19 Feb 2025 11:06:02 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Danilo Krummrich <dakr@kernel.org>, Conor Dooley <conor.dooley@microchip.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Douglas Anderson <dianders@chromium.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Gregory CLEMENT <gregory.clement@bootlin.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org, 
-	platform-driver-x86@vger.kernel.org, linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v4 1/8] driver core: auxiliary bus: add device creation
- helpers
-Message-ID: <crtrciitrlqkxh5mxvnbdjy6zoxny5onse7xgbw7biozg6myux@grp3ketgl2uh>
+	Wed, 19 Feb 2025 09:17:17 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tkgBq-00054h-Ak; Wed, 19 Feb 2025 10:16:22 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tkgBp-001jq7-2H;
+	Wed, 19 Feb 2025 10:16:21 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tkgBp-0002qA-1n;
+	Wed, 19 Feb 2025 10:16:21 +0100
+Message-ID: <89d52c01503e2dbd2e23cce1ff9eb037e59eec5a.camel@pengutronix.de>
+Subject: Re: [PATCH v4 6/8] reset: eyeq: drop device_set_of_node_from_dev()
+ done by parent
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Dave Ertman <david.m.ertman@intel.com>, Ira
+ Weiny <ira.weiny@intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Danilo
+ Krummrich <dakr@kernel.org>, Conor Dooley <conor.dooley@microchip.com>,
+ Daire McNamara <daire.mcnamara@microchip.com>, Douglas Anderson
+ <dianders@chromium.org>,  Andrzej Hajda <andrzej.hajda@intel.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,  Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Hans de Goede
+ <hdegoede@redhat.com>, Ilpo =?ISO-8859-1?Q?J=E4rvinen?=
+ <ilpo.jarvinen@linux.intel.com>,  Bryan O'Donoghue
+ <bryan.odonoghue@linaro.org>, Vladimir Kondratiev
+ <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT
+ <gregory.clement@bootlin.com>, =?ISO-8859-1?Q?Th=E9o?= Lebrun
+ <theo.lebrun@bootlin.com>,  Michael Turquette <mturquette@baylibre.com>,
+ Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org, 
+ linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, imx@lists.linux.dev,
+  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Date: Wed, 19 Feb 2025 10:16:21 +0100
+In-Reply-To: <20250218-aux-device-create-helper-v4-6-c3d7dfdea2e6@baylibre.com>
 References: <20250218-aux-device-create-helper-v4-0-c3d7dfdea2e6@baylibre.com>
- <20250218-aux-device-create-helper-v4-1-c3d7dfdea2e6@baylibre.com>
+	 <20250218-aux-device-create-helper-v4-6-c3d7dfdea2e6@baylibre.com>
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20250218-aux-device-create-helper-v4-1-c3d7dfdea2e6@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250219_010606_945493_91DBCEB8 
-X-CRM114-Status: GOOD (  23.58  )
+X-CRM114-CacheID: sfid-20250219_011716_566605_2EFF3B78 
+X-CRM114-Status: UNSURE (   9.24  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,104 +99,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Feb 18, 2025 at 08:29:46PM +0100, Jerome Brunet wrote:
-> Add helper functions to create a device on the auxiliary bus.
-> 
-> This is meant for fairly simple usage of the auxiliary bus, to avoid having
-> the same code repeated in the different drivers.
-> 
-> Suggested-by: Stephen Boyd <sboyd@kernel.org>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/base/auxiliary.c      | 108 ++++++++++++++++++++++++++++++++++++++++++
->  include/linux/auxiliary_bus.h |  17 +++++++
->  2 files changed, 125 insertions(+)
-> 
-> diff --git a/drivers/base/auxiliary.c b/drivers/base/auxiliary.c
-> index afa4df4c5a3f371b91d8dd8c4325495d32ad1291..a6d46c2759be81a0739f07528d5959c2a76eb8a8 100644
-> --- a/drivers/base/auxiliary.c
-> +++ b/drivers/base/auxiliary.c
-> @@ -385,6 +385,114 @@ void auxiliary_driver_unregister(struct auxiliary_driver *auxdrv)
->  }
->  EXPORT_SYMBOL_GPL(auxiliary_driver_unregister);
->  
-> +static void auxiliary_device_release(struct device *dev)
-> +{
-> +	struct auxiliary_device *auxdev = to_auxiliary_dev(dev);
-> +
-> +	kfree(auxdev);
-> +}
-> +
-> +/**
-> + * auxiliary_device_create - create a device on the auxiliary bus
-> + * @dev: parent device
-> + * @modname: module name used to create the auxiliary driver name.
-> + * @devname: auxiliary bus device name
-> + * @platform_data: auxiliary bus device platform data
-> + * @id: auxiliary bus device id
-> + *
-> + * Helper to create an auxiliary bus device.
-> + * The device created matches driver 'modname.devname' on the auxiliary bus.
-> + */
-> +struct auxiliary_device *auxiliary_device_create(struct device *dev,
-> +						 const char *modname,
-> +						 const char *devname,
-> +						 void *platform_data,
-> +						 int id)
-> +{
-> +	struct auxiliary_device *auxdev;
-> +	int ret;
-> +
-> +	auxdev = kzalloc(sizeof(*auxdev), GFP_KERNEL);
-> +	if (!auxdev)
-> +		return NULL;
-> +
-> +	auxdev->id = id;
-> +	auxdev->name = devname;
-> +	auxdev->dev.parent = dev;
-> +	auxdev->dev.platform_data = platform_data;
-> +	auxdev->dev.release = auxiliary_device_release;
-> +	device_set_of_node_from_dev(&auxdev->dev, dev);
-> +
-> +	ret = auxiliary_device_init(auxdev);
-> +	if (ret) {
-> +		kfree(auxdev);
-> +		return NULL;
-> +	}
-> +
-> +	ret = __auxiliary_device_add(auxdev, modname);
-> +	if (ret) {
-
-This loses possible error return values from __auxiliary_device_add().
-I'd suggest to return ERR_PTR(ret) here and in the
-auxiliary_device_init() chunks and ERR_PTR(-ENOMEM) in case of kzalloc()
-failure.
-
-> +		/*
-> +		 * It may look odd but auxdev should not be freed here.
-> +		 * auxiliary_device_uninit() calls device_put() which call
-> +		 * the device release function, freeing auxdev.
-> +		 */
-> +		auxiliary_device_uninit(auxdev);
-> +		return NULL;
-> +	}
-> +
-> +	return auxdev;
-> +}
-> +EXPORT_SYMBOL_GPL(auxiliary_device_create);
-> +
-
--- 
-With best wishes
-Dmitry
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRGksIDIwMjUtMDItMTggYXQgMjA6MjkgKzAxMDAsIEplcm9tZSBCcnVuZXQgd3JvdGU6Cj4g
+RnJvbTogVGjDqW8gTGVicnVuIDx0aGVvLmxlYnJ1bkBib290bGluLmNvbT4KPiAKPiBPdXIgcGFy
+ZW50IGRyaXZlciAoY2xrLWV5ZXEpIG5vdyBkb2VzIHRoZQo+IAlkZXZpY2Vfc2V0X29mX25vZGVf
+ZnJvbV9kZXYoZGV2LCBkZXYtPnBhcmVudCkKPiBjYWxsIHRocm91Z2ggdGhlIG5ld2x5IGludHJv
+ZHVjZWQgZGV2bV9hdXhpbGlhcnlfZGV2aWNlX2NyZWF0ZSgpIGhlbHBlci4KPiAKPiBEb2luZyBp
+dCBhZ2FpbiBpbiB0aGUgcmVzZXQtZXllcSBwcm9iZSB3b3VsZCBiZSByZWR1bmRhbnQuCj4gRHJv
+cCBib3RoIHRoZSBXQVJOX09OKCkgYW5kIHRoZSBkZXZpY2Vfc2V0X29mX25vZGVfZnJvbV9kZXYo
+KSBjYWxsLgo+IEFsc28gZml4IHRoZSBmb2xsb3dpbmcgY29tbWVudCB0aGF0IHRhbGtzIGFib3V0
+ICJvdXIgbmV3Zm91bmQgT0Ygbm9kZSIuCj4gCj4gU2lnbmVkLW9mZi1ieTogVGjDqW8gTGVicnVu
+IDx0aGVvLmxlYnJ1bkBib290bGluLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBKZXJvbWUgQnJ1bmV0
+IDxqYnJ1bmV0QGJheWxpYnJlLmNvbT4KClJldmlld2VkLWJ5OiBQaGlsaXBwIFphYmVsIDxwLnph
+YmVsQHBlbmd1dHJvbml4LmRlPgoKcmVnYXJkcwpQaGlsaXBwCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAps
+aW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
