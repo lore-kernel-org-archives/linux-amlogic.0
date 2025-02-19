@@ -4,67 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5396C021AA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2025 21:50:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 505FAC021B0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2025 22:24:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6e5UK5OeHW/EL06jdFvdOZptKBeZb9RXjFr37EZOE6k=; b=dxj0a8fVI6+ppp
-	oxF1Mhrw5nKALpEzwXyERHdcyCddUX1Lwr8VItt1h0n/fBieNtLmxJ/suSf5FHygtUOeDiFK3GWAU
-	dLpDYoHKUVWWXwLyBzPHsT/HtjsKAuzyXM9vSwzuZQfSoggcDDXQ61dk0eGyHqKOgbwNB93IA7TFL
-	9fjMDCw9sBausQjUTRKFPEHGDE50NMsm41OrBmGlqSpKMxQI0QRIPMQCsoo9z1kTnzZ+Ip7TgkUfN
-	D2l/mL94+/28ONu2mJNd74U6fzxGgK0pbl/MLiIylYhVH8aEe1XpWjmp7DkQN/WCNaYEFIW+q3EHk
-	dxig3Q+Jo1UyxiBOi0qA==;
+	List-Owner; bh=Wx9/haM1xzmJsMxXpGfk5cMO97XkHVIXcI4HKeJqZLE=; b=HUh0luoaEMGmyd
+	r8angg5mGfp30ziRpwtKmKOcrRffEsth1CGCUErQeklupuH4UcYfLemUNyJ+q+6TpBSojTGnTuTiq
+	4b4A/XZUfQ0hoHENQ58+NI4oLWpstnf5o3TCPgC03BuTNVSdT4hw475nPU+C/rqXz83d+Bek146us
+	vOuBv3+ZWjP/iW54qZ1j4ME9V0I5JmvXMvjULtP89W0fTKJDRXjxxU56SQZJaFqiw3rmFp/4JXFgf
+	J3KrhAF1OL8vOHwS/RGELf5mYnNmMp8nOxw3aSQu+YyyduI7uTXB2DY+4I30dExSvat6h9HprOh9S
+	zjlJWJkcgJsZL8jUaN3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkrx9-0000000FHyL-3sV4;
-	Wed, 19 Feb 2025 21:49:59 +0000
-Received: from tor.source.kernel.org ([2600:3c04::f03c:95ff:fe5e:7468])
+	id 1tksUM-0000000FQKy-2gTs;
+	Wed, 19 Feb 2025 22:24:18 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkrx7-0000000FHxU-1Yr6;
-	Wed, 19 Feb 2025 21:49:58 +0000
+	id 1tksTW-0000000FQ89-1V0v;
+	Wed, 19 Feb 2025 22:23:27 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3FA99611D4;
-	Wed, 19 Feb 2025 21:49:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A79EC4CEE6;
-	Wed, 19 Feb 2025 21:49:56 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 38DE161202;
+	Wed, 19 Feb 2025 22:23:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A904C4CED1;
+	Wed, 19 Feb 2025 22:23:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740001796;
-	bh=V1p1tT7UNLn3zJwu+41I707JUQAwN9RLXALKhZOBi0Q=;
+	s=k20201202; t=1740003805;
+	bh=jJj74kq2dXg5VOc0yCCKcirAapeCmvuLU0B0w4KuQQg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SSwWSClUsLcb50H6wcw8uNxRz4rkMZZ7OBldjZF6ML75IG6C4tywp6GErrMbtAl46
-	 yzRrDVY0v2WqoYCpEpicEw6QkYa7Lu7gbSIX0Is6cqSJSAkfEGvdEc1g4So+PjNm+b
-	 pTADXkCwNmoRm7Y1qGn2AxsxIKxD4V9pv9Y6uDZmTq6WulZMyKUrDj0VDjYo0zGwA4
-	 P8KLsiBrGvobF2g4LZP8mjqO5JhzeQVm3RTid+v+xbTgjaM2+6ek2UCfJHpfK/i/55
-	 zKPVWsQ7+8W9GeXj9Zr2I3xG2d7DNmASWyAkIFH9wenBhfe47IqR02i0uLT2sTmMSo
-	 qrw2tmgYHvCAQ==
-Date: Wed, 19 Feb 2025 15:49:55 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
+	b=JT9G67YHTPyWuV4c8g3Dviag3iI5OsJ0Aw1swxfwhD88uWVwhvFNF5T7AiEacq/Xi
+	 nQZyxf6GXzQTeqO373fjlM0MKOMoYBh63Pxd4nS024yIv1aGQul5wS7xo8Oeq4hJp2
+	 ImuoR0boWN/6Kj3u9lhZ/44GAByjDb/sTSvnkgx1TNbRziXwVTSnRDRlWbAOdXETru
+	 XRiTlXMxxE8VrxLaNYncx9TBcGEbyhxdpld06fKIuauccThdIJST7m/GbAZRm8gHF0
+	 hAp5NnxaQ04f13X1+NdAPGAvsiekKLplm9a9XKlb7hHlymIFAMjSqWBuLCyRJubHfK
+	 NwqEajbwKENgA==
+Date: Wed, 19 Feb 2025 16:23:23 -0600
+From: Rob Herring <robh@kernel.org>
 To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: mmc-slot: Make compatible
- property optional
-Message-ID: <174000172538.3013190.16324788737757814573.robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] dt-bindings: mmc: atmel,hsmci: Convert to json
+ schema
+Message-ID: <20250219222323.GA3013450-robh@kernel.org>
 References: <20250212-mmc-slot-v3-0-2bf288207040@microchip.com>
- <20250212-mmc-slot-v3-1-2bf288207040@microchip.com>
+ <20250212-mmc-slot-v3-2-2bf288207040@microchip.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250212-mmc-slot-v3-1-2bf288207040@microchip.com>
+In-Reply-To: <20250212-mmc-slot-v3-2-2bf288207040@microchip.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250219_134957_471667_A98B0F83 
-X-CRM114-Status: GOOD (  11.31  )
+X-CRM114-CacheID: sfid-20250219_142326_453384_EC408624 
+X-CRM114-Status: GOOD (  14.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,29 +81,85 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Wed, 12 Feb 2025 14:52:10 +0530, Dharma Balasubiramani wrote:
-> The compatible property is required for some vendor-specific device trees, such
-> as Amlogic's meson-mx-sdio, but is unnecessary for others, like Microchip's
-> DTS. To resolve unintended warnings for configurations that do not require it,
-> remove compatible from the required properties in mmc-slot.yaml.
-
-Please rewrap your commit message at the right length. checkpatch.pl 
-will tell you this so I don't have to.
-
-> 
-> Since meson-mx-sdio still requires compatible, explicitly add it to its
-> required list in amlogic,meson-mx-sdio.yaml.
+On Wed, Feb 12, 2025 at 02:52:11PM +0530, Dharma Balasubiramani wrote:
+> Convert atmel,hsmci documentation to yaml format. The new file will inherit
+> from mmc-controller.yaml.
 > 
 > Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 > ---
->  Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml | 3 +++
->  Documentation/devicetree/bindings/mmc/mmc-slot.yaml              | 1 -
->  2 files changed, 3 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/mmc/atmel,hsmci.yaml       | 106 +++++++++++++++++++++
+>  .../devicetree/bindings/mmc/atmel-hsmci.txt        |  73 --------------
+>  2 files changed, 106 insertions(+), 73 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
+> new file mode 100644
+> index 000000000000..feaa98e44955
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
+> @@ -0,0 +1,106 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/atmel,hsmci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel High-Speed MultiMedia Card Interface (HSMCI)
+> +
+> +description:
+> +  The Atmel HSMCI controller provides an interface for MMC, SD, and SDIO memory
+> +  cards.
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Aubin Constans <aubin.constans@microchip.com>
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml
+> +
+> +properties:
+> +  compatible:
+> +    const: atmel,hsmci
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    maxItems: 1
+> +
+> +  dma-names:
+> +    const: rxtx
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: mci_clk
+> +
+> +  "#address-cells":
+> +    const: 1
+> +    description: Used for slot IDs.
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^slot@[0-9]+$":
+
+If reg can only be 0 or 1, then allowing 2-<infinity> is not valid.
+
+Otherwise,
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
+> +    $ref: mmc-slot.yaml
+> +    description: A slot node representing an MMC, SD, or SDIO slot.
+> +
+> +    properties:
+> +      reg:
+> +        enum: [0, 1]
 
 _______________________________________________
 linux-amlogic mailing list
