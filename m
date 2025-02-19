@@ -4,78 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 438CCC021AA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2025 07:36:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60130C021AA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2025 09:23:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GV9IUZl8QR3jUodd4fIlzCFK98UvCtvnF5Fdg5hgAZA=; b=nM3UKOHRDn6tWj
-	Xaecd7KsLPc8wmOeIqdApoqtKyI8a6IlxohdHLi+S8rc/D67WY+GF2OKrlMEv1bfzvd3zVtWQvmHW
-	R9qMeJIAEuZ0/DRnp9TLvF6eFk/zMQnhLuUmBvUyoqNkNSPIOReH9v+lRHY3Z9yMKYiUAuNxgdQj/
-	ri9ZD3YQb8WsEWjnJOgctbHLsld3QwKGEWMkdnrKMOfmW3N1Wq/vmAmvF4xwG6WCeaTyQHSgSmnM+
-	nm8DOSb2Ti6fOLLbINWncd0lytDyG5DlNw3qQrJ1P5QtYcHGkHOcOpUtoNETEphpSJe/q1pG+TU2l
-	ido1Sm1NvlHzoYhPwIww==;
+	List-Owner; bh=fnNuXJ9srR8w/QALw+IUM3A7DD4uCyly84a210Z03jY=; b=bsttboZf1r7bWy
+	oARZms21a/xLU9ypNaWWy9imVKVNCIsWRoCfq7FMvgPnWlPqSeqvNfFR7Od5CxtHtN0PfdGdvJNtX
+	K87/0OGT1HShKXY+2fS8MTHi2vTPpAl3qmIY7yml7Pz4ooqQMyLfWLVbcBftMbJrXBVGcsEP6TRs4
+	o9vGrdZFaR06Pmi2+2PpH9cXHqLfa73pspUkPYF2Hn5svcaR3QxNfaBl9LC1kBzbf5dUDwjuyWmSt
+	m3pOVEHeKTXnStPgqvuUITe9lKgoEpBHFavXwCpwtWPDeXIAfjU0FXKP/1IPMcOZ5aD+6B1OS5gLw
+	gQf13WFDU4jNjHquXIVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tked2-0000000BHYx-07Fy;
-	Wed, 19 Feb 2025 07:36:20 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tkgJ6-0000000BpMv-2v9Q;
+	Wed, 19 Feb 2025 09:23:52 +0000
+Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkeW4-0000000BFQf-2gPd;
-	Wed, 19 Feb 2025 07:29:10 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id BC9BA5C569C;
-	Wed, 19 Feb 2025 07:28:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 477A6C4CEEF;
-	Wed, 19 Feb 2025 07:29:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1739950147;
-	bh=qXZhNxUy9y5s5LhZ9M7FyoFK7Zgj7Uh6fOjZphxmzps=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=IwAQRb47TVbE89/CUVHMa/H2/v7L79qjxgOKjsv5/kMtp4N0LsuWpUKSCSiVRinW7
-	 xOdYmFy4PlxXAWQ3b9d+ikANpcAuvpSMsiu0sdvvjEKUR7LSPn/STA8u/3GqIaihBN
-	 q1cmKP4sv85SeLCVEkZRqITObNjEvyIDubQsOiPmvd2pQvl3VWlcFR20HDkl+SlZ95
-	 YsXGkhnEQotPrul+5zfC9LDthPIlJgcQGHU7up2yW8UgU5pjhF3OhHKJA61WMBp+91
-	 24iN36OSSn35tfN5jqDxNtimZFpJ2EpMak8f4eX7euw8B0B90ejW/R/bz5YWJF5Zq5
-	 lGFQbfUst3XmQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38589C021AB;
-	Wed, 19 Feb 2025 07:29:07 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 19 Feb 2025 15:29:06 +0800
-Subject: [PATCH 4/4] arm64: dts: Add gpio_intc node for Amlogic-A5 SoCs
+	id 1tkg1u-0000000BjNm-3oID
+	for linux-amlogic@lists.infradead.org;
+	Wed, 19 Feb 2025 09:06:09 +0000
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-54527a7270eso5038454e87.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 19 Feb 2025 01:06:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1739955965; x=1740560765; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JParjzdc5yBYoG0m5UmXTy5mjDiWwZLgHUFOravZSiI=;
+        b=cExsSjyCLOJ2ndO1WnWmRyfWX4Mkd+w4vshHQFbnnpvxP2h1qz8dCnllRRaSHnMuOI
+         SqGcdBVeVHE7Wr0Jn+x7FsDhjEOI2WSxmm6QeICS7IGdGzYlDjdd7hl8DrwzyoQ6rOQx
+         Y31pmLCQpW3BDao89Rx8QGtGnBDqPes97Qi9+PwZa24hJ6hHfYkflTUnlOvnobZThb3x
+         c/O1LyafzS83sVocniKdSYj/zOTSDQuamAGgvK8tk3Km/JIE4hnSbE6LMb/OuV+1P15J
+         0oOGvKzI/ycT2scR4quXvFtx+3+kSUKyEK/BjT4isSjHG9SCElOsGB8MVkqFl/5SFzDO
+         MG8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739955965; x=1740560765;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JParjzdc5yBYoG0m5UmXTy5mjDiWwZLgHUFOravZSiI=;
+        b=V8pqblOMIJTka2pSEpDVfwtJu+1CnyclTaJXG2qWQ1JwVwIzb66WHvqwNyW4Dq8YFu
+         IoFH1OYr2LczyjcWs+ALSWHjSjLYaVjSSUQVNb5Lt8LBdhK+ikUvyS2yC7CMjV1oMKp4
+         MhcFgowP/Bp+AHxpS96w7X+Fm2oOhA/Zsa+PpMOipYUza3xGyWn1raMIHHhpCVW60sqn
+         MqDcRco4+xQJoUmyYG9wq2+U/8VAUhZvFQWitKr2mQ7a2ge2OnQsAT53NygbPGk/Z+J5
+         pDBDExIpTDCvqAfwm3QNc2UVgczmXi58/oJTdxgHJTcPlJRQ899CeU541oMkjVBvhdwO
+         LqhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUiO1tFxsKVp09jZ+WJHKj7w5hgtGVLczpI0g4SKT5GeHEH4U6tRkGLDzc3B6D7S5WNqC9YQN7Dcj+ua5jg@lists.infradead.org
+X-Gm-Message-State: AOJu0YxQMkMCk73dvZBQZ9/av+lAoAHwSmoZGvnC4c7quS1xKBvgDJM0
+	jpFuCnzdVJ9oc+QGbIOzrQq+IrhM7uXrTYY2rpIMXAM41zu09izZz68jad/tOKo=
+X-Gm-Gg: ASbGncumHHMt25IZv2b7G4PIiuaN+naeH2ZbTvHsecK97lySO/3gc5I7jNon14QaCUK
+	jIjvwEQUYCK6glXWGjJKMsPJ1lepwq86becNY96rZtzmBOBRsvGbb+V9t4zgsIG5N3ej1ZW0in1
+	BpgeDr7yZgum/saaXPMCi0yzir9JcMztO+xXEr+TBakWxGbbcI+PXyDOrf0JATmZLwxM+5xRBxd
+	VTo/nA+i5S7x9lq3oLT9suPqck+gZfS6ehqNl4KEenQBghoNt6j3sqIJIO1662gMRjCeOrTmXJ+
+	ebbYOsmFDGa/VpmxmoLCZ0qhnlScJ0qcLEWshFRmCkFJae626hyTRvsLiEwN651pIi3qdeI=
+X-Google-Smtp-Source: AGHT+IHm7rrZGF7gWE8rLuZPX4nvDlV3DcFc5Uk1QwC4R6ncjGo7U2SoOER3uymDvhu6BZaa/4okgQ==
+X-Received: by 2002:a05:6512:3a94:b0:545:10bc:20ca with SMTP id 2adb3069b0e04-5452fe583c4mr6368433e87.24.1739955964491;
+        Wed, 19 Feb 2025 01:06:04 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54530df9016sm1454714e87.36.2025.02.19.01.06.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Feb 2025 01:06:04 -0800 (PST)
+Date: Wed, 19 Feb 2025 11:06:02 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Danilo Krummrich <dakr@kernel.org>, Conor Dooley <conor.dooley@microchip.com>, 
+	Daire McNamara <daire.mcnamara@microchip.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Douglas Anderson <dianders@chromium.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	Gregory CLEMENT <gregory.clement@bootlin.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+	platform-driver-x86@vger.kernel.org, linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v4 1/8] driver core: auxiliary bus: add device creation
+ helpers
+Message-ID: <crtrciitrlqkxh5mxvnbdjy6zoxny5onse7xgbw7biozg6myux@grp3ketgl2uh>
+References: <20250218-aux-device-create-helper-v4-0-c3d7dfdea2e6@baylibre.com>
+ <20250218-aux-device-create-helper-v4-1-c3d7dfdea2e6@baylibre.com>
 MIME-Version: 1.0
-Message-Id: <20250219-irqchip-gpio-a4-a5-v1-4-3c8e44ae42df@amlogic.com>
-References: <20250219-irqchip-gpio-a4-a5-v1-0-3c8e44ae42df@amlogic.com>
-In-Reply-To: <20250219-irqchip-gpio-a4-a5-v1-0-3c8e44ae42df@amlogic.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Heiner Kallweit <hkallweit1@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1739950145; l=835;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=+kt3Jevc/8KR/ZsMbFbD2TjHFreHkm3hzIePStnSOmI=;
- b=Gz9eY74qdMAmL/N5DpslVabeRg+4GyurES08b0DsfIFa/n5AEP23l0Kun+CdM1YiQ5gwEEne8
- U8l3Dzz6wOUCDOuZjeaqIvSavN0786zN6rka1xBcyneQwByrsSmIsFX
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <20250218-aux-device-create-helper-v4-1-c3d7dfdea2e6@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250218_232908_740993_4A2FD1DF 
-X-CRM114-Status: UNSURE (   8.72  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250219_010606_945493_91DBCEB8 
+X-CRM114-Status: GOOD (  23.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,46 +114,102 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Tue, Feb 18, 2025 at 08:29:46PM +0100, Jerome Brunet wrote:
+> Add helper functions to create a device on the auxiliary bus.
+> 
+> This is meant for fairly simple usage of the auxiliary bus, to avoid having
+> the same code repeated in the different drivers.
+> 
+> Suggested-by: Stephen Boyd <sboyd@kernel.org>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/base/auxiliary.c      | 108 ++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/auxiliary_bus.h |  17 +++++++
+>  2 files changed, 125 insertions(+)
+> 
+> diff --git a/drivers/base/auxiliary.c b/drivers/base/auxiliary.c
+> index afa4df4c5a3f371b91d8dd8c4325495d32ad1291..a6d46c2759be81a0739f07528d5959c2a76eb8a8 100644
+> --- a/drivers/base/auxiliary.c
+> +++ b/drivers/base/auxiliary.c
+> @@ -385,6 +385,114 @@ void auxiliary_driver_unregister(struct auxiliary_driver *auxdrv)
+>  }
+>  EXPORT_SYMBOL_GPL(auxiliary_driver_unregister);
+>  
+> +static void auxiliary_device_release(struct device *dev)
+> +{
+> +	struct auxiliary_device *auxdev = to_auxiliary_dev(dev);
+> +
+> +	kfree(auxdev);
+> +}
+> +
+> +/**
+> + * auxiliary_device_create - create a device on the auxiliary bus
+> + * @dev: parent device
+> + * @modname: module name used to create the auxiliary driver name.
+> + * @devname: auxiliary bus device name
+> + * @platform_data: auxiliary bus device platform data
+> + * @id: auxiliary bus device id
+> + *
+> + * Helper to create an auxiliary bus device.
+> + * The device created matches driver 'modname.devname' on the auxiliary bus.
+> + */
+> +struct auxiliary_device *auxiliary_device_create(struct device *dev,
+> +						 const char *modname,
+> +						 const char *devname,
+> +						 void *platform_data,
+> +						 int id)
+> +{
+> +	struct auxiliary_device *auxdev;
+> +	int ret;
+> +
+> +	auxdev = kzalloc(sizeof(*auxdev), GFP_KERNEL);
+> +	if (!auxdev)
+> +		return NULL;
+> +
+> +	auxdev->id = id;
+> +	auxdev->name = devname;
+> +	auxdev->dev.parent = dev;
+> +	auxdev->dev.platform_data = platform_data;
+> +	auxdev->dev.release = auxiliary_device_release;
+> +	device_set_of_node_from_dev(&auxdev->dev, dev);
+> +
+> +	ret = auxiliary_device_init(auxdev);
+> +	if (ret) {
+> +		kfree(auxdev);
+> +		return NULL;
+> +	}
+> +
+> +	ret = __auxiliary_device_add(auxdev, modname);
+> +	if (ret) {
 
-Add GPIO interrupt controller device.
+This loses possible error return values from __auxiliary_device_add().
+I'd suggest to return ERR_PTR(ret) here and in the
+auxiliary_device_init() chunks and ERR_PTR(-ENOMEM) in case of kzalloc()
+failure.
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-index 17a6316de891..32ed1776891b 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -48,3 +48,15 @@ pwrc: power-controller {
- 		};
- 	};
- };
-+
-+&apb {
-+	gpio_intc: interrupt-controller@4080 {
-+		compatible = "amlogic,a5-gpio-intc",
-+			     "amlogic,meson-gpio-intc";
-+		reg = <0x0 0x4080 0x0 0x20>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		amlogic,channel-interrupts =
-+			<10 11 12 13 14 15 16 17 18 19 20 21>;
-+	};
-+};
+> +		/*
+> +		 * It may look odd but auxdev should not be freed here.
+> +		 * auxiliary_device_uninit() calls device_put() which call
+> +		 * the device release function, freeing auxdev.
+> +		 */
+> +		auxiliary_device_uninit(auxdev);
+> +		return NULL;
+> +	}
+> +
+> +	return auxdev;
+> +}
+> +EXPORT_SYMBOL_GPL(auxiliary_device_create);
+> +
 
 -- 
-2.37.1
-
-
+With best wishes
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
