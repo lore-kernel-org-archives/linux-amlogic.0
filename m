@@ -4,46 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AA85C021AA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2025 13:19:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEC8BC021AA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2025 16:41:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KSeDIe3GS2xY3rqh7kODSi2kJzV7jyHd7enAjgkRfvw=; b=fGEBRlpE7AVHWp
-	VyqN3FsKnJrfvQFCZt3AsmfVzu/zlqMfu0zppvsSEh6PlKwl49MolHNDZXMmBfwBAQCZIR98SEF/v
-	llXr8wrmnAOv8tX3a0nl9Kxh2eiLBzCJ30ke+hg+oLyHBXEnUX8NkB8K+nMGSrRI4OGOxN4EGQCDc
-	xf0nU7KYoCWt4O4f4zOSFpR4bIFL8yXK56zDDkfvjHHPsaoxqWUBmUjUqkPgBA1t2h3en85sFpCd6
-	3jv+nNq/JJMhJopFBzQ4kHd70wNKaHhVcrL4dibWLzJcyy5kbeWRg7wH6Ma5E3p35AFLMJIEvRVjc
-	bYai1pCUFQ9kH4cgVg3Q==;
+	List-Owner; bh=PI4h4OhQ5FUa6tp+eYwJRdYBaw6j/CPSdd9eJ/ZkBOI=; b=AjjFCcHzg5jt6u
+	ujAJt4A04UYYpP35mLRTabUWEKMQWc2RUbWTeuUAjxI6GYXtn9oNMOLTnCoYZ6Ug7xL4Kp3hsyNCe
+	aaWCUWLnxUtWkSGb92RB2cIRCDYZA7YBBcXhDamYUtFhMpUOW5pkenJfwjg7Pg75e5C3vOMv15SHf
+	zHj4YhMweWoj7HqtDBovludQtzn+MUHmd83GpxRJQgWVHrP38rOh9TZlIykUfkWCF1T5vLo/FwmRJ
+	kDxOrY17HSKj6jC9OXo3o8VvjtvN/jQhpBfICr0GBnhA7BUzE6+HPutAGT/z8bRJA7DJM/QzF0xNR
+	qb6y02rMLd4LmV0wFxuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkjz9-0000000CuYo-0dfJ;
-	Wed, 19 Feb 2025 13:19:31 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1tkn8P-0000000DsQr-3GCX;
+	Wed, 19 Feb 2025 16:41:17 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tkjz6-0000000CuXt-2hCm;
-	Wed, 19 Feb 2025 13:19:29 +0000
+	id 1tkkwc-0000000DFl8-24V8;
+	Wed, 19 Feb 2025 14:20:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=mWbzEFFsbCei+Jsuh9cPPDwwtCpa1GZNCwDSFbiDwXo=; b=irZ5rRhZQ2JppQrRFwhByPVOuG
+	PuzQUCY1wKQ+TrvlvHIoY+RLPtHbt6BWIdNxG3aIBXADQu9DkiohTaz4ZE+XbhrCHtPnbjki7zicM
+	+QTMFDxTyEbold2KHlyENMeFbFC8Bdfbc4QIkJ8y8FkFBRp2BK+bCcc19XmeDeJDWk3C6UZ+2cHb9
+	y9EIP6sgQNcyGvEkRVEFJvedAlrBpGh7xVd+FX6vTMR0wXUmgRK1dU61JSuK2qNivoTegsnBxo35n
+	t+ZYpaDd7MXlaAwNb4cup9gZuphhxYRG3H/MS1hUXUUWZz9TJWurZqI87QxF3L8wjtz2kiUk4JNGP
+	W56DRzVw==;
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1tkkwY-00000002BML-1rW4;
+	Wed, 19 Feb 2025 14:20:57 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 39EF6A426F9;
-	Wed, 19 Feb 2025 13:17:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26083C4CED1;
-	Wed, 19 Feb 2025 13:19:26 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id A59075C5998;
+	Wed, 19 Feb 2025 14:20:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05A12C4CED1;
+	Wed, 19 Feb 2025 14:20:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1739971166;
-	bh=RcuQPWBAOebggXpc49oXCroXSGfFXw0R3wUoVFgSYw0=;
+	s=korg; t=1739974851;
+	bh=jOlrkiD0YDVnxiss19yqwIELdl/2yHZAb820zbK7+Y4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TZH/bQk4qL6+2tnUJqqWBkPPTthw5gu9C17UymFAIupjP536vP5/A2uuLTBTsi5EM
-	 G6Cwv45NY3dyN2GbwkOU/ec7M/aKurvYZOZohZZHB3xEdjNwkIGxGcUW3qgOJrXUR0
-	 jXyHDhQTIbUsWIurk+PCF0wp5cC3JQAlgnZOUB20=
-Date: Wed, 19 Feb 2025 14:19:23 +0100
+	b=eIwtcQJFf0s+4hIHMz0Xth5Km8xhl2Lj7ZaQuf7QLCMOqOAThRQfWtj3OOU8+Ik2C
+	 CytUQ7xJ4zfZOAOJvCrqBSZxlDw0azh39huA2Zuu5ZtJlOIL5m02V31EfAhhq1xWd3
+	 QyVWZb0x+NzZ+cKpwIfGziYdpiVNagt0okrwp+Cw=
+Date: Wed, 19 Feb 2025 15:20:48 +0100
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Dave Ertman <david.m.ertman@intel.com>,
-	Ira Weiny <ira.weiny@intel.com>,
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>,
 	"Rafael J. Wysocki" <rafael@kernel.org>,
 	Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
 	Danilo Krummrich <dakr@kernel.org>,
@@ -83,18 +95,15 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	linux-amlogic@lists.infradead.org
 Subject: Re: [PATCH v4 1/8] driver core: auxiliary bus: add device creation
  helpers
-Message-ID: <2025021937-trodden-snowdrop-99be@gregkh>
+Message-ID: <2025021938-swan-facedown-e96a@gregkh>
 References: <20250218-aux-device-create-helper-v4-0-c3d7dfdea2e6@baylibre.com>
  <20250218-aux-device-create-helper-v4-1-c3d7dfdea2e6@baylibre.com>
- <crtrciitrlqkxh5mxvnbdjy6zoxny5onse7xgbw7biozg6myux@grp3ketgl2uh>
- <2025021922-spongy-swirl-0746@gregkh>
- <eskvhtljnrkhm6vmqy52gkweexj3tcethejeywcoib4la72jcl@ojuqcazpvht4>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <eskvhtljnrkhm6vmqy52gkweexj3tcethejeywcoib4la72jcl@ojuqcazpvht4>
+In-Reply-To: <20250218-aux-device-create-helper-v4-1-c3d7dfdea2e6@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250219_051928_831487_97F18C9B 
-X-CRM114-Status: GOOD (  31.21  )
+X-CRM114-CacheID: sfid-20250219_142054_747792_8A0C9676 
+X-CRM114-Status: GOOD (  10.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,111 +120,17 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Feb 19, 2025 at 02:08:22PM +0200, Dmitry Baryshkov wrote:
-> On Wed, Feb 19, 2025 at 11:13:14AM +0100, Greg Kroah-Hartman wrote:
-> > On Wed, Feb 19, 2025 at 11:06:02AM +0200, Dmitry Baryshkov wrote:
-> > > On Tue, Feb 18, 2025 at 08:29:46PM +0100, Jerome Brunet wrote:
-> > > > Add helper functions to create a device on the auxiliary bus.
-> > > > 
-> > > > This is meant for fairly simple usage of the auxiliary bus, to avoid having
-> > > > the same code repeated in the different drivers.
-> > > > 
-> > > > Suggested-by: Stephen Boyd <sboyd@kernel.org>
-> > > > Cc: Arnd Bergmann <arnd@arndb.de>
-> > > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > > > ---
-> > > >  drivers/base/auxiliary.c      | 108 ++++++++++++++++++++++++++++++++++++++++++
-> > > >  include/linux/auxiliary_bus.h |  17 +++++++
-> > > >  2 files changed, 125 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/base/auxiliary.c b/drivers/base/auxiliary.c
-> > > > index afa4df4c5a3f371b91d8dd8c4325495d32ad1291..a6d46c2759be81a0739f07528d5959c2a76eb8a8 100644
-> > > > --- a/drivers/base/auxiliary.c
-> > > > +++ b/drivers/base/auxiliary.c
-> > > > @@ -385,6 +385,114 @@ void auxiliary_driver_unregister(struct auxiliary_driver *auxdrv)
-> > > >  }
-> > > >  EXPORT_SYMBOL_GPL(auxiliary_driver_unregister);
-> > > >  
-> > > > +static void auxiliary_device_release(struct device *dev)
-> > > > +{
-> > > > +	struct auxiliary_device *auxdev = to_auxiliary_dev(dev);
-> > > > +
-> > > > +	kfree(auxdev);
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * auxiliary_device_create - create a device on the auxiliary bus
-> > > > + * @dev: parent device
-> > > > + * @modname: module name used to create the auxiliary driver name.
-> > > > + * @devname: auxiliary bus device name
-> > > > + * @platform_data: auxiliary bus device platform data
-> > > > + * @id: auxiliary bus device id
-> > > > + *
-> > > > + * Helper to create an auxiliary bus device.
-> > > > + * The device created matches driver 'modname.devname' on the auxiliary bus.
-> > > > + */
-> > > > +struct auxiliary_device *auxiliary_device_create(struct device *dev,
-> > > > +						 const char *modname,
-> > > > +						 const char *devname,
-> > > > +						 void *platform_data,
-> > > > +						 int id)
-> > > > +{
-> > > > +	struct auxiliary_device *auxdev;
-> > > > +	int ret;
-> > > > +
-> > > > +	auxdev = kzalloc(sizeof(*auxdev), GFP_KERNEL);
-> > > > +	if (!auxdev)
-> > > > +		return NULL;
-> > > > +
-> > > > +	auxdev->id = id;
-> > > > +	auxdev->name = devname;
-> > > > +	auxdev->dev.parent = dev;
-> > > > +	auxdev->dev.platform_data = platform_data;
-> > > > +	auxdev->dev.release = auxiliary_device_release;
-> > > > +	device_set_of_node_from_dev(&auxdev->dev, dev);
-> > > > +
-> > > > +	ret = auxiliary_device_init(auxdev);
-> > > > +	if (ret) {
-> > > > +		kfree(auxdev);
-> > > > +		return NULL;
-> > > > +	}
-> > > > +
-> > > > +	ret = __auxiliary_device_add(auxdev, modname);
-> > > > +	if (ret) {
-> > > 
-> > > This loses possible error return values from __auxiliary_device_add().
-> > 
-> > Why does that really matter?
+On Tue, Feb 18, 2025 at 08:29:46PM +0100, Jerome Brunet wrote:
+> Add helper functions to create a device on the auxiliary bus.
 > 
-> At the very least the caller (or caller of a caller) can call
-> dev_err_probe() or dev_err("%pe"). With the current implementation as
-> everybody maps NULL to -ENOMEM the error message will be cryptic.
+> This is meant for fairly simple usage of the auxiliary bus, to avoid having
+> the same code repeated in the different drivers.
 > 
-> Or just having a cryptic value in the logs.
+> Suggested-by: Stephen Boyd <sboyd@kernel.org>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-So all you can get here could be:
-	-ENOMEM - memory couldn't be allocated somewhere
-	-EINVAL - wrong parameters sent to auxiliary_device_init() or __auxiliary_device_add()
-	-EEXIST - duplicate name
-
-And if -EEXIST happens, you will get a kernel log splat from sysfs
-showing you that something went wrong.
-
-So while I understand the need to be specific here in reporting the
-exact error, I fail to understand how it really matters at all.  A
-driver writer really only wants to know "did it work?" and have a simple
-way to test it.
-
-IS_ERR_OR_NULL() and then getting the error using PTR_ERR() is rough and
-feels like boilerplate code that everyone gets wrong (how many times do
-people accidentally only check for NULL?).
-
-Anyway, I'm for simple apis, and NULL or valid pointer seems simple to
-me.
-
-thanks,
-
-greg k-h
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 _______________________________________________
 linux-amlogic mailing list
