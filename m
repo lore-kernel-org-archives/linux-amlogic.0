@@ -4,67 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 505FAC021B0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Feb 2025 22:24:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14A38C021B0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Feb 2025 03:15:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Wx9/haM1xzmJsMxXpGfk5cMO97XkHVIXcI4HKeJqZLE=; b=HUh0luoaEMGmyd
-	r8angg5mGfp30ziRpwtKmKOcrRffEsth1CGCUErQeklupuH4UcYfLemUNyJ+q+6TpBSojTGnTuTiq
-	4b4A/XZUfQ0hoHENQ58+NI4oLWpstnf5o3TCPgC03BuTNVSdT4hw475nPU+C/rqXz83d+Bek146us
-	vOuBv3+ZWjP/iW54qZ1j4ME9V0I5JmvXMvjULtP89W0fTKJDRXjxxU56SQZJaFqiw3rmFp/4JXFgf
-	J3KrhAF1OL8vOHwS/RGELf5mYnNmMp8nOxw3aSQu+YyyduI7uTXB2DY+4I30dExSvat6h9HprOh9S
-	zjlJWJkcgJsZL8jUaN3g==;
+	List-Owner; bh=N+c0X47FvmBjKU9ztolLFFSgu9ikUHUJPmVg8aqLttw=; b=KE1jYyYRCfVP9r
+	wl+KYYNa2x+GvHp/SljmKC/YDXL3eVdfkMxktJdtOm/RR7kei6V+DQbE/P3vBkXTsSNxACNpi/maZ
+	MjKhcCbbZ9QdzyQIez5P1Z2D3Aptxzy/JX92Zvb9mTA/2hLatJwJ4CjR5ScmqhgDpEtzUdCA+zXn5
+	7JkL/oL34X7cmhAkbUdM2gCzXwuBPCRDZv+TFUF6aTamJyqPUQffIwrq5CueVg5tx9/c1HA1TX5O7
+	5S0UoY6KfhsaUjVSWoVjPv1n0LGimAKCJOweKlktZYdzF3UxmtXuPH9I3oup8KsSIdrsfEpH0WCet
+	WgAuPpKlEKY4K24z7BAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tksUM-0000000FQKy-2gTs;
-	Wed, 19 Feb 2025 22:24:18 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1tkx24-0000000GVuj-1cCe;
+	Thu, 20 Feb 2025 03:15:24 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tksTW-0000000FQ89-1V0v;
-	Wed, 19 Feb 2025 22:23:27 +0000
+	id 1tkwx5-0000000GUOY-2rgu;
+	Thu, 20 Feb 2025 03:10:17 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 38DE161202;
-	Wed, 19 Feb 2025 22:23:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A904C4CED1;
-	Wed, 19 Feb 2025 22:23:25 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 564595C5D4B;
+	Thu, 20 Feb 2025 03:09:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 298CEC4CED1;
+	Thu, 20 Feb 2025 03:10:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740003805;
-	bh=jJj74kq2dXg5VOc0yCCKcirAapeCmvuLU0B0w4KuQQg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JT9G67YHTPyWuV4c8g3Dviag3iI5OsJ0Aw1swxfwhD88uWVwhvFNF5T7AiEacq/Xi
-	 nQZyxf6GXzQTeqO373fjlM0MKOMoYBh63Pxd4nS024yIv1aGQul5wS7xo8Oeq4hJp2
-	 ImuoR0boWN/6Kj3u9lhZ/44GAByjDb/sTSvnkgx1TNbRziXwVTSnRDRlWbAOdXETru
-	 XRiTlXMxxE8VrxLaNYncx9TBcGEbyhxdpld06fKIuauccThdIJST7m/GbAZRm8gHF0
-	 hAp5NnxaQ04f13X1+NdAPGAvsiekKLplm9a9XKlb7hHlymIFAMjSqWBuLCyRJubHfK
-	 NwqEajbwKENgA==
-Date: Wed, 19 Feb 2025 16:23:23 -0600
-From: Rob Herring <robh@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: mmc: atmel,hsmci: Convert to json
- schema
-Message-ID: <20250219222323.GA3013450-robh@kernel.org>
-References: <20250212-mmc-slot-v3-0-2bf288207040@microchip.com>
- <20250212-mmc-slot-v3-2-2bf288207040@microchip.com>
+	s=k20201202; t=1740021014;
+	bh=pD8ROzU5v7v1zdafWRXLtlZbryQ4ts3yYyJZ3srYQyg=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=G2oaMXVKsFb+JmWdJyesdE7HFJck9SKKH6+yl1iffdn7Jn4KoKlMyY5tsuvzOoKfl
+	 OsGvNE+vA6UPc8O9po9+irs/OY7dLy3a2YC1sEwltFWfEwFy9IylUSo+hsyDTe6Bmi
+	 HLsOqePxhNr53LF6jAyzP6+YTdameuuAUsJkDqKhWjSuJmtZvtsSdnp5NVZo7BiCzy
+	 bpPtC4jh3fChd4AXeeA2BTYgwMFz0iyO/oxtKLkEux9FsKW5pJCA9McLZ9gELXtsTD
+	 RWeVMDNzJmuWDYCyhdWyVIUUPKPDe28OJVUyO2WsK3cFb4y2B9QZ/cxj7s8EPlHxS+
+	 ozc6TvNglFVaw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EAFAA380AAEC;
+	Thu, 20 Feb 2025 03:10:45 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20250212-mmc-slot-v3-2-2bf288207040@microchip.com>
+Subject: Re: [PATCH net-next 0/3] net: stmmac: further cleanups
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <174002104449.825980.800457478148266618.git-patchwork-notify@kernel.org>
+Date: Thu, 20 Feb 2025 03:10:44 +0000
+References: <Z7Rf2daOaf778TOg@shell.armlinux.org.uk>
+In-Reply-To: <Z7Rf2daOaf778TOg@shell.armlinux.org.uk>
+To: Russell King (Oracle) <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, alexandre.torgue@foss.st.com,
+ andrew+netdev@lunn.ch, wens@csie.org, davem@davemloft.net, drew@pdp7.com,
+ kernel@esmil.dk, edumazet@google.com, festevam@gmail.com, wefu@redhat.com,
+ guoren@kernel.org, imx@lists.linux.dev, kuba@kernel.org,
+ jan.petrous@oss.nxp.com, jernej.skrabec@gmail.com, jbrunet@baylibre.com,
+ khilman@baylibre.com, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-sunxi@lists.linux.dev, martin.blumenstingl@googlemail.com,
+ mcoquelin.stm32@gmail.com, minda.chen@starfivetech.com,
+ neil.armstrong@linaro.org, nobuhiro1.iwamatsu@toshiba.co.jp, s32@nxp.com,
+ pabeni@redhat.com, kernel@pengutronix.de, samuel@sholland.org,
+ s.hauer@pengutronix.de, shawnguo@kernel.org, vkoul@kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250219_142326_453384_EC408624 
-X-CRM114-Status: GOOD (  14.39  )
+X-CRM114-CacheID: sfid-20250219_191015_776981_165FD021 
+X-CRM114-Status: UNSURE (   9.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,85 +85,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Feb 12, 2025 at 02:52:11PM +0530, Dharma Balasubiramani wrote:
-> Convert atmel,hsmci documentation to yaml format. The new file will inherit
-> from mmc-controller.yaml.
+Hello:
+
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Tue, 18 Feb 2025 10:24:25 +0000 you wrote:
+> Hi,
 > 
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-> ---
->  .../devicetree/bindings/mmc/atmel,hsmci.yaml       | 106 +++++++++++++++++++++
->  .../devicetree/bindings/mmc/atmel-hsmci.txt        |  73 --------------
->  2 files changed, 106 insertions(+), 73 deletions(-)
+> This small series does further cleanups to the stmmac driver:
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
-> new file mode 100644
-> index 000000000000..feaa98e44955
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
-> @@ -0,0 +1,106 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/atmel,hsmci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Atmel High-Speed MultiMedia Card Interface (HSMCI)
-> +
-> +description:
-> +  The Atmel HSMCI controller provides an interface for MMC, SD, and SDIO memory
-> +  cards.
-> +
-> +maintainers:
-> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
-> +  - Aubin Constans <aubin.constans@microchip.com>
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml
-> +
-> +properties:
-> +  compatible:
-> +    const: atmel,hsmci
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    maxItems: 1
-> +
-> +  dma-names:
-> +    const: rxtx
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: mci_clk
-> +
-> +  "#address-cells":
-> +    const: 1
-> +    description: Used for slot IDs.
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^slot@[0-9]+$":
+> 1. Name priv->pause to indicate that it's a timeout and clarify the
+> units of the "pause" module parameter
+> 2. Remove useless priv->flow_ctrl member and deprecate the useless
+> "flow_ctrl" module parameter
+> 3. Fix long-standing signed-ness issue with "speed" passed around the
+> driver from the mac_link_up method.
+> 
+> [...]
 
-If reg can only be 0 or 1, then allowing 2-<infinity> is not valid.
+Here is the summary with links:
+  - [net-next,1/3] net: stmmac: clarify priv->pause and pause module parameter
+    https://git.kernel.org/netdev/net-next/c/ff1a9b2e311f
+  - [net-next,2/3] net: stmmac: remove useless priv->flow_ctrl
+    https://git.kernel.org/netdev/net-next/c/bc9d75b0aaed
+  - [net-next,3/3] net: stmmac: "speed" passed to fix_mac_speed is an int
+    https://git.kernel.org/netdev/net-next/c/ac9a8587edc7
 
-Otherwise,
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +    $ref: mmc-slot.yaml
-> +    description: A slot node representing an MMC, SD, or SDIO slot.
-> +
-> +    properties:
-> +      reg:
-> +        enum: [0, 1]
 
 _______________________________________________
 linux-amlogic mailing list
