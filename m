@@ -4,80 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1847C021B5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2025 08:50:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE863C021B5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2025 09:10:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=aaNvhGOJRVKbW6cVyfC8z49/0zpuWovzel2SrrmTiSc=; b=xJYeJGORPOI2mM91FSu9nq+DmE
-	GCAOGQgG6iz2TBUpEkxBv5kF/O7StjJUElSfr639EpEUDAk4eLGJnwId6UM4GTsXsc//MvH7RzUlE
-	9EwQGhAAbScFWN6ijrznYTzEKLFyEUM5U/NdsSaxWUNPcX+M+U4N6ibQ3Xu58noiaUg/lPTneQzKZ
-	UHf7I+Y0R7jxm7yYRgCdXiqZFLD/PbZ8m6IHHKEcvPh9CPiRp2UqLQGSQAbpLGipKy9yO4bLNAIuI
-	exdzQzp94OVdQKbGHK+Quqgyx0Mztq6L7ekHkqXCMf8AoOhct7IYdIweCW4cjKnCGLmXKN+LXcYJk
-	4mKFxnhw==;
+	bh=mGYCqMat04wfpw5IpCa6D8OSLJ2y/hxX4ubddt1IX9g=; b=xtiv+S3HmwV+bFbrQ4nLIsBUmT
+	HPCRrBSNn5NeOkeo+jf0SdB8ydX4y6qI+4r/KSJ5vnTn25qFiNEgl4FAFJvnasEl58lAXGqvVeJU9
+	fPWflRRKXxWYJ1NeCGtn9MVMVmq0kVuJ2EGcg/VyIVAGOoBZIxKFks26n4gE8JVls2FLBrGf4bdmU
+	OjPblPRnbnRCYHj8YZF81eae8AOfZqttjPFYm2KuPcJQvZ9muIhrQRmy/mxyDChoaBO4r3nFt7m0q
+	c98HDRbCb6aWwih4Aj+cOC7i04AqfeSWxw+RnQafMQafiANq4rVClzB6meUP3N2oTwmn8rdop6RLt
+	tTm7I16w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmUAG-0000000ClXp-1jO3;
-	Mon, 24 Feb 2025 08:50:12 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1tmUU7-0000000CqC3-0KGI;
+	Mon, 24 Feb 2025 09:10:43 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmTzW-0000000CjDw-157R
+	id 1tmUC9-0000000Clvk-2kOv
 	for linux-amlogic@lists.infradead.org;
-	Mon, 24 Feb 2025 08:39:08 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4399ee18a57so23588875e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 24 Feb 2025 00:39:05 -0800 (PST)
+	Mon, 24 Feb 2025 08:52:11 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-439ac3216dcso21772775e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 24 Feb 2025 00:52:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740386344; x=1740991144; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1740387128; x=1740991928; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sK3C+y9SW9Coh39Uk8y+GEOLM7p3ebzwSbAot9WE95s=;
-        b=lPp0hkFikX2Ve+Y2RK68AkhTc+38kwNWek0WRO9cW4mI6RzWTTo0nzE7boocRtqjdb
-         YUUyeMleB8fngY804Dnso0uGSHVvvgg2J7IZOjKaQQk0/YuVUGnaGWoCYbWrrM8FYkrX
-         g0ZoXhZmbEOc4uQg9yK6tCHLKXTZpOqSZ8HZXqaVxQWtBY5PmT2k6tvozI6AxZil+nlf
-         +29Iby4xqJzKcgziCuXplJC5j1jhIARBbzOFuebzuPE2bWDRA9JvjI6ISux1wiaXfJmE
-         39zbo4YJOhYwBAPoBms9owJCuY8NWXIX04OhVs3+Ghzkq+TxhCGWwl9M5rcboV0UXQBN
-         C4XQ==
+        bh=rfttPucZes4uslCtilxnixZCmYMBBrCsgPvpifvl92U=;
+        b=CzFDo9DAUH0A2tUtR/aqrON+AZNavftiDfiCKPUkmvlmt138kNi0M7mm6b4u4Jxs8J
+         2NRW3/fedRCGZHIKkvtwwB9ahaHoZ9Q3+eGdsFjpW0KoRa+IxEc6FD5VD7pS4IECP1uT
+         f2U2CZ9DDDvloYBT8suUbaWZEwssnwpkaDkuY/+q3nkqBTqKyH7W3ALWga7JaA6Tz496
+         UeZprlp8PxmPAl1ZfXHC/SZjG6b8dz12MCDJvhrJ+NLCSWbFLXm+rgEq894XAawxKsnR
+         TX1KN+o6wUo2AhrR+LELW3EQe3lq/iw2lIMI7Addxu7HOxKq4b1a/G/PdpRnZsFL1bJY
+         Yopg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740386344; x=1740991144;
+        d=1e100.net; s=20230601; t=1740387128; x=1740991928;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=sK3C+y9SW9Coh39Uk8y+GEOLM7p3ebzwSbAot9WE95s=;
-        b=MaFZ0pGlLYKxNs2gZ0D7MVYHh1ePxZy6BD4nrmF/QE2jzIqJLD5aUUtVeZtSQiyhWW
-         S5gFWaPlJYICX3yt3uwnFa50ICpi27+pKPiwCTLWrm7iwMvTukbXbaG4C+9VjqK4kF+W
-         WYrNvIhWHbxCJfeLkoBOF9uD/cX3K78ArLGW8F+ieDv4Swe0O7oUrEc1dPeyeo50TMcE
-         J43m+EwRQbsVOqjW1xVESMHSaJIcKjM0scNnoKRpEO3D/+15vvGCieFU9J5lS7vlvAh8
-         RzuK7Ld2ix8g1eKCRonq4FxDYXFLYDehUwhEjyf1lT7NVLNzDIjOw95LLvT99Bxsh6rr
-         lGXw==
-X-Forwarded-Encrypted: i=1; AJvYcCWE+x1ildSaGrufonk5ESRf8jYcglctGzYfZzwHO1bScItzplFZPqRdNr2AQ+IYr34RLp1cfUpxbBhqIQK/@lists.infradead.org
-X-Gm-Message-State: AOJu0YzvKTmbiBPsI2RFjVbLoQXNJ/hBwSHMbExNNezi3MDeoVCTsM5A
-	K3VJzqL1GSIYG4zlFltv3nMg5AcOzGJJvcg5wYLXB1xiktUEnr8b6SzLiag4Jys=
-X-Gm-Gg: ASbGncvcltPPdd/QxB1vUd4o4A0Ae0rjQGP4Q1Bh4pNOkow8gU8p8PNh4WWSiNI9VHx
-	njdFFWq7eEDSVhGh1F2NhhuEpClH6BWW6er20dVp8Dsw/iKzPRo3k0SnxKZQ7AoJrGWiNy0G6gw
-	+LfVR98ZnwqXK567bHb24P9boOsUpUfyqrhOrcyVCMd2wJ7wNU+0Hid1ftSBYg1JN7p5IE/ie22
-	cFQXVwPeaUEvsnIfJ+z6Lfwq1FTPOMOM8W3ULcoHcdK5CY3J9wnAkkeoUVLOc95YeVbcykyOzWw
-	KsfNuDDUN8leWvpyKd/eIJ4/a0d5G+O8V9W+5Ep00pyBGT49cY8M6PKsTpEyKamPIkH9XeWrxLv
-	+xQ8=
-X-Google-Smtp-Source: AGHT+IEEJX6T6GgItatrLUOO4eq1TE6WCfNa/DqbWsLOIOCWLzZKyFG0bwOQ4opt5Ug5hrQOAM7F1w==
-X-Received: by 2002:a05:600c:54ea:b0:439:871d:d4c0 with SMTP id 5b1f17b1804b1-439a2eb09f6mr130885245e9.3.1740386344324;
-        Mon, 24 Feb 2025 00:39:04 -0800 (PST)
+        bh=rfttPucZes4uslCtilxnixZCmYMBBrCsgPvpifvl92U=;
+        b=vDfqIrvSUgMoV1OOUQMvG+OnbkOzrvkHyzt/jbDmmJLfuoKNx18sHCIhsb4p89FPOm
+         gLa9GfYF/O5tT3yapdQz2K1FIqev2FQp4HdqqDO3lhTT7c7bhSRdyTRXUFuOqkUhCPW3
+         wJU/KMbTkVmVnTVW0dCbBn+gEbU6Q6oHkhSazUxJx5BVAgARkb7e1+0UW5OlVCHXuZa4
+         24QeJJWrbsXROEp1lejRvhHRwvUfbRUI49nEx2raeeRUAwxKEitQN6jx4B/+KFWPX5gO
+         nClEvoKVFQ2+TDhXJW9VaogYBMHPjr0BWVYPPaLt2znYKN+2wIhA4iuqRCh8DnUUavxD
+         7lKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUQVHWp9R/rWORb/8CnZaBDWvdRq8o0ZY+ZvDEnCOmxHLCCQ2e/y4JpbGo0SfSJoyQHvV7NeslqjfSOX+eX@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzqh1hvpBM7/9ISjDr2QdcNWf1rO83m+61fwVwMxpjdbRWLK37e
+	sgvk+Y16f87InnplvlFSXQkWl5aZG574qLJwjCJ8ucFKZPQlNlIR2/hZRxjZTHU=
+X-Gm-Gg: ASbGncvK4LDb8HgmNI4Il4D2GxuxqG67Bfo1XdaSvOQDR3tcZ5xtV449jQ+1L9F24bQ
+	9+A4Juld1Oufv1pfOBZTnZ6lVjz5IXPKgnphKVd/F7A8N6b6w36AmowXvUqGkKIGXKyvNsu9DKf
+	dfFELX7KACQezrm+4zYPoepBU0mjrmPW2N9VZa7UApKuXk30AHhD8zPIQIdLXFyImKUGIh28QXi
+	XTXGNdwLDvtEoJ3b/iRIJpJLILZmdcSVDPEJvrO28TBh1Hdt4bbYZJQ7x7wU4vap9z+xEIRepyw
+	Fmz0Hf9f/2FotjbsqK0NDmIpck7H2BrH14IJzdp9ECkKkUleu4+vtjeVp2I3XtsJZZMkMY5z/u1
+	Bf/k=
+X-Google-Smtp-Source: AGHT+IGc4DlL71WulAAnKcQ9CzF1y/33BchgEuu9bZ5o2bSiiIB3/0bTM2b5M5+480mvGS24HXxp7w==
+X-Received: by 2002:a05:600c:19ce:b0:439:a1c7:7b2d with SMTP id 5b1f17b1804b1-439aeae05fbmr98203575e9.4.1740387128219;
+        Mon, 24 Feb 2025 00:52:08 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:825b:5392:ef70:cc0b? ([2a01:e0a:982:cbb0:825b:5392:ef70:cc0b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439b02ce4e9sm100644875e9.4.2025.02.24.00.39.03
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-439b02ce65dsm99552155e9.1.2025.02.24.00.52.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Feb 2025 00:39:03 -0800 (PST)
-Message-ID: <92321fed-28b3-454e-b187-7ecfe4ce27ae@linaro.org>
-Date: Mon, 24 Feb 2025 09:39:03 +0100
+        Mon, 24 Feb 2025 00:52:07 -0800 (PST)
+Message-ID: <794bf229-df4a-41f3-a8a4-8b1362eb7f04@linaro.org>
+Date: Mon, 24 Feb 2025 09:52:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/2] drm/meson: vclk: revert and re-fix vclk calculations
-To: Christian Hewitt <christianshewitt@gmail.com>,
+Subject: Re: [PATCH 2/2] drm/meson: vclk: fix precision in vclk calculations
+To: kernel test robot <lkp@intel.com>,
+ Christian Hewitt <christianshewitt@gmail.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
@@ -86,7 +87,9 @@ To: Christian Hewitt <christianshewitt@gmail.com>,
  Jernej Skrabec <jernej.skrabec@gmail.com>, dri-devel@lists.freedesktop.org,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20250110074458.3624094-1-christianshewitt@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev
+References: <20250110074458.3624094-3-christianshewitt@gmail.com>
+ <202501210513.GCec6kts-lkp@intel.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -113,10 +116,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250110074458.3624094-1-christianshewitt@gmail.com>
+In-Reply-To: <202501210513.GCec6kts-lkp@intel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250224_003906_383459_F8E81AC3 
-X-CRM114-Status: GOOD (  12.30  )
+X-CRM114-CacheID: sfid-20250224_005209_702975_1A7A0ACB 
+X-CRM114-Status: GOOD (  11.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,33 +137,43 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/01/2025 08:44, Christian Hewitt wrote:
-> Patch 1 reverts a previous fix for loss of HDMI sync when playing YUV420
-> @ 59.94 media. The patch does resolve a calculation issue. It also makes
-> all fractional rates invalid which is a bigger problem.
+Hi,
+
+On 20/01/2025 22:56, kernel test robot wrote:
+> Hi Christian,
 > 
-> Patch 2 provides a proper fix after I figured out the actual root cause
-> of the original problem. This time the maths checks out.
+> kernel test robot noticed the following build errors:
 > 
-> Apologies to the stable team as the original patch has been applied to
-> a wide range of older and LTS kernels (as far as 5.10). Please let me
-> know if combining the two patches into a single 'fix the previous fix'
-> patch would be preferred?
+> [auto build test ERROR on linus/master]
+> [also build test ERROR on v6.13 next-20250120]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
 > 
-> Christian
+> url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Hewitt/Revert-drm-meson-vclk-fix-calculation-of-59-94-fractional-rates/20250110-154701
+> base:   linus/master
+> patch link:    https://lore.kernel.org/r/20250110074458.3624094-3-christianshewitt%40gmail.com
+> patch subject: [PATCH 2/2] drm/meson: vclk: fix precision in vclk calculations
+> config: arm-randconfig-r072-20250118 (https://download.01.org/0day-ci/archive/20250121/202501210513.GCec6kts-lkp@intel.com/config)
+> compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project c23f2417dc5f6dc371afb07af5627ec2a9d373a0)
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250121/202501210513.GCec6kts-lkp@intel.com/reproduce)
 > 
-> Christian Hewitt (2):
->    Revert "drm/meson: vclk: fix calculation of 59.94 fractional rates"
->    drm/meson: vclk: fix precision in vclk calculations
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202501210513.GCec6kts-lkp@intel.com/
 > 
->   drivers/gpu/drm/meson/meson_encoder_hdmi.c | 42 +++++++++++-----------
->   drivers/gpu/drm/meson/meson_vclk.c         |  7 ++--
->   2 files changed, 25 insertions(+), 24 deletions(-)
+> All errors (new ones prefixed by >>, old ones prefixed by <<):
+> 
+> WARNING: modpost: missing MODULE_DESCRIPTION() in arch/arm/probes/kprobes/test-kprobes.o
+> WARNING: modpost: missing MODULE_DESCRIPTION() in lib/slub_kunit.o
+> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/gpib/fmh_gpib/fmh_gpib.o
+>>> ERROR: modpost: "__aeabi_uldivmod" [drivers/gpu/drm/meson/meson-drm.ko] undefined!
 > 
 
-LGTM
+Please use do_div() when dividing 64bit numbers to please 32-bit platforms.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
