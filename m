@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 849A8C021B2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2025 02:53:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05BD7C021B3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Feb 2025 02:54:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References:Message-ID
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rXG8i/Aet3NhVMtGqAWSVewYX7isyeQiFbQt/LniDoo=; b=Gseuo5vyWfjKgk
-	AQJbyLUf0ESQUJnPLrbD9AbyadWpxCh7Uf8OsdpN4epv3WNVYZL8ec47SDihN+VGTSZRudD48fOe3
-	QzzxbMGzhksI9ob/cTxWQSuONmYLK8zS/Xv3caCucxg48O4+yvfqNgOU6Z9ICOq3+c+5bZA8DCQKE
-	Q4a9cCtsjBDgJLF350cqWk9N9V/t+2F3sJ+RT3iKQYAMODCgZQ0Fv9hMjloefFZU+MuJIgr8WL+oV
-	F7uskpqfRCZt+OrrwFvRoWiGkJdHRHwSQDmjzOL/lbQeDp9dPmMkJX71cmU6AzwK7ec+s+939sxlU
-	+OmQqGwMEreoRl7Quu1g==;
+	List-Owner; bh=+5Da9W26Da9+FVloUyXWwuBHxcBVu+aesCEAs8tg4Us=; b=ZhESUcSta+oVOJ
+	+ZIgwdioo9OQrGbWe3L62hejWez8xrXy8PuljhcFTK4WOkB92m5aeq14WEdSyof0Cfwo7mTE/xiGh
+	fkj0Mn/UuoE9gv+jPdA+mq3TJ/5BhccmR0gFcTeTu4GwL/2HRSIwjB/DGx8lLKmW/xoYjEphBRyjq
+	GKUvIK/D0DL/28BemaNVUXaX8/Frao+n+LhOF6Wm9oRNi8o1KOy/as/ZXmkpMFfMVgABuEdQHVOaH
+	aPvDKtUmarHj8uDX4ThhP7zxm/DfSey04nfaEWDVrpjgD+iNFK5H6hCW9oO1HLRO12uXcxipazvkp
+	JCC9EXttTjeeCWl3YbuA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmOac-0000000CBl2-0mGG;
-	Mon, 24 Feb 2025 02:53:02 +0000
+	id 1tmOc9-0000000CBxH-0zIY;
+	Mon, 24 Feb 2025 02:54:37 +0000
 Received: from esa.microchip.iphmx.com ([68.232.153.233])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tmOaZ-0000000CBkB-3aCq;
-	Mon, 24 Feb 2025 02:53:01 +0000
+	id 1tmOab-0000000CBkB-0fK5;
+	Mon, 24 Feb 2025 02:53:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1740365579; x=1771901579;
+  t=1740365580; x=1771901580;
   h=from:date:subject:mime-version:content-transfer-encoding:
    message-id:references:in-reply-to:to:cc;
-  bh=J9123hZZrTlIOXBBpLmo8l+k5NrzmEjd/ByKPLqak5s=;
-  b=c75FApAVcrBQLH1C1u1ZCbCsWC00C64+9P870MMcF9OuSBgEnsDt5moB
-   qwmFJCFe7IZHGvFWrXrCltIK5CXoszqqPb+zWeSOZ2mf9pqlxJzySuwS2
-   ps0p/HGNv7VpdBBl+IASyLKz/cwsvyhM8MMm07Yk5I68APgtRrdrCak6D
-   xhMqFGN+3ARKmUGJ+g8pqBkHZFfwjcC3h+yVlawsdPXgW8d7FRkFu55k3
-   6eaZvJ66ORTG6HivaV3EgtH+JPn+WLzsauoVXeB5KQ7H1YtNFd3V6Y1dw
-   COfODN8UTOK874iBCGfjaWsehCkFIhQdcYnLtJWD7Gce9O7sBhBREuR8N
-   A==;
+  bh=3eVMKywF0GaSEC41UUuoCtEBQjw9Zj8/cE5TkbR4uxs=;
+  b=MNs+Wu3LcsWcuwyxTUqL965Tc3+U+55TvgwIOt4o7ucIe+ZQz3lUuuqJ
+   +FGcSw0al41fTJUl4dsyq3lWORXHThPcarktYs5Zpg83YXt2HJkRxQShM
+   YTpP7H7DOlr7Mmj+Fr6f/q82zkpHUUSFzrS+IJKf2/3cYxZeL1tLM/fCJ
+   LBh5HBscKGprS8bvl5rwIiAJvMdHTOvpqKWlv/laGT7ir9fdWKN53qhpx
+   OftQFNCEWjPnuRBC7mHUlSljcwqmsJ0N2OD0cJjh0CiJSwXa4Hsy3Guwd
+   yyqoC5XQldlnZmtUetX9IWB0H6L1bS1Z6iKHUR+1GfJ49IbQlGjv06bKm
+   g==;
 X-CSE-ConnectionGUID: 6rVg96LVQkmrqYQWG6Firw==
-X-CSE-MsgGUID: 1zih4FZmSx+QgG3aHGhnsA==
+X-CSE-MsgGUID: Zw74jTgxQ/y0pQphYJJidw==
 X-IronPort-AV: E=Sophos;i="6.13,309,1732604400"; 
-   d="scan'208";a="42149827"
+   d="scan'208";a="42149828"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Feb 2025 19:52:57 -0700
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Feb 2025 19:52:58 -0700
 Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
  chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 23 Feb 2025 19:52:40 -0700
+ 15.1.2507.35; Sun, 23 Feb 2025 19:52:44 -0700
 Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
  (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Sun, 23 Feb 2025 19:52:35 -0700
+ Transport; Sun, 23 Feb 2025 19:52:40 -0700
 From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Mon, 24 Feb 2025 08:22:27 +0530
-Subject: [PATCH v4 1/2] dt-bindings: mmc: mmc-slot: Make compatible
- property optional
+Date: Mon, 24 Feb 2025 08:22:28 +0530
+Subject: [PATCH v4 2/2] dt-bindings: mmc: atmel,hsmci: Convert to json
+ schema
 MIME-Version: 1.0
-Message-ID: <20250224-mmc-slot-v4-1-231620a31e88@microchip.com>
+Message-ID: <20250224-mmc-slot-v4-2-231620a31e88@microchip.com>
 References: <20250224-mmc-slot-v4-0-231620a31e88@microchip.com>
 In-Reply-To: <20250224-mmc-slot-v4-0-231620a31e88@microchip.com>
 To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
@@ -71,17 +71,16 @@ CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, Dharma Balasubiramani
 	<dharma.b@microchip.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1740365548; l=1669;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1740365548; l=4816;
  i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
- bh=J9123hZZrTlIOXBBpLmo8l+k5NrzmEjd/ByKPLqak5s=;
- b=iDQoQc5oZ8QR9avJPK5QkY2uuNY3zyCIOqDnd0geowgfmnyOkIzbvtD2WwO1bpiOqrNyHdy6+
- FGdvWNIhq7LB1aK78lpkwa21FvcUe+3Z/3M9DeOVdjaWKx4mtFRlxWz
+ bh=3eVMKywF0GaSEC41UUuoCtEBQjw9Zj8/cE5TkbR4uxs=;
+ b=SrErEyLdwcdKKkfZs5W5zETReahLtwrZI3FgSRMZnEK2OWsy7Jdn9NMpYCITs8wJKEtVderMQ
+ bvgZlFpSqVKA4nEmIBY5v0T26CXoqDTwft7jmuDrn8VO7m792NdCHjv
 X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
  pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250223_185300_086046_9B93E713 
-X-CRM114-Status: UNSURE (   9.31  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250223_185301_212694_D05E0AEF 
+X-CRM114-Status: GOOD (  14.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,48 +97,207 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The compatible property is required for some vendor-specific device trees,
-such as Amlogic's meson-mx-sdio, but is unnecessary for others, like
-Microchip's DTS. To resolve unintended warnings for configurations that do
-not require it, remove compatible from the required properties in
-mmc-slot.yaml.
-
-Since meson-mx-sdio still requires compatible, explicitly add it to its
-required list in amlogic,meson-mx-sdio.yaml.
+Convert atmel,hsmci documentation to yaml format. The new file will inherit
+from mmc-controller.yaml.
 
 Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml | 3 +++
- Documentation/devicetree/bindings/mmc/mmc-slot.yaml              | 1 -
- 2 files changed, 3 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/mmc/atmel,hsmci.yaml       | 106 +++++++++++++++++++++
+ .../devicetree/bindings/mmc/atmel-hsmci.txt        |  73 --------------
+ 2 files changed, 106 insertions(+), 73 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
-index 022682a977c6..0d4d9ca6a8d9 100644
---- a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
-+++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
-@@ -60,6 +60,9 @@ patternProperties:
-       bus-width:
-         enum: [1, 4]
- 
-+    required:
-+      - compatible
+diff --git a/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
+new file mode 100644
+index 000000000000..151b414b9d27
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
+@@ -0,0 +1,106 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/atmel,hsmci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-     unevaluatedProperties: false
- 
- required:
-diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
-index 1f0667828063..ca3d0114bfc6 100644
---- a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
-@@ -29,7 +29,6 @@ properties:
-     maxItems: 1
- 
- required:
--  - compatible
-   - reg
- 
- unevaluatedProperties: false
++title: Atmel High-Speed MultiMedia Card Interface (HSMCI)
++
++description:
++  The Atmel HSMCI controller provides an interface for MMC, SD, and SDIO memory
++  cards.
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++  - Aubin Constans <aubin.constans@microchip.com>
++
++allOf:
++  - $ref: mmc-controller.yaml
++
++properties:
++  compatible:
++    const: atmel,hsmci
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    const: rxtx
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: mci_clk
++
++  "#address-cells":
++    const: 1
++    description: Used for slot IDs.
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "slot@[0-2]$":
++    $ref: mmc-slot.yaml
++    description: A slot node representing an MMC, SD, or SDIO slot.
++
++    properties:
++      reg:
++        enum: [0, 1]
++
++    required:
++      - reg
++      - bus-width
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - "#address-cells"
++  - "#size-cells"
++
++anyOf:
++  - required:
++      - slot@0
++  - required:
++      - slot@1
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/clock/at91.h>
++    mmc@f0008000 {
++      compatible = "atmel,hsmci";
++      reg = <0xf0008000 0x600>;
++      interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
++      clocks = <&mci0_clk>;
++      clock-names = "mci_clk";
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      slot@0 {
++        reg = <0>;
++        bus-width = <4>;
++        cd-gpios = <&pioD 15 0>;
++        cd-inverted;
++      };
++
++      slot@1 {
++        reg = <1>;
++        bus-width = <4>;
++      };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt b/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt
+deleted file mode 100644
+index 07ad02075a93..000000000000
+--- a/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt
++++ /dev/null
+@@ -1,73 +0,0 @@
+-* Atmel High Speed MultiMedia Card Interface
+-
+-This controller on atmel products provides an interface for MMC, SD and SDIO
+-types of memory cards.
+-
+-This file documents differences between the core properties described
+-by mmc.txt and the properties used by the atmel-mci driver.
+-
+-1) MCI node
+-
+-Required properties:
+-- compatible: should be "atmel,hsmci"
+-- #address-cells: should be one. The cell is the slot id.
+-- #size-cells: should be zero.
+-- at least one slot node
+-- clock-names: tuple listing input clock names.
+-	Required elements: "mci_clk"
+-- clocks: phandles to input clocks.
+-
+-The node contains child nodes for each slot that the platform uses
+-
+-Example MCI node:
+-
+-mmc0: mmc@f0008000 {
+-	compatible = "atmel,hsmci";
+-	reg = <0xf0008000 0x600>;
+-	interrupts = <12 4>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	clock-names = "mci_clk";
+-	clocks = <&mci0_clk>;
+-
+-	[ child node definitions...]
+-};
+-
+-2) slot nodes
+-
+-Required properties:
+-- reg: should contain the slot id.
+-- bus-width: number of data lines connected to the controller
+-
+-Optional properties:
+-- cd-gpios: specify GPIOs for card detection
+-- cd-inverted: invert the value of external card detect gpio line
+-- wp-gpios: specify GPIOs for write protection
+-
+-Example slot node:
+-
+-slot@0 {
+-	reg = <0>;
+-	bus-width = <4>;
+-	cd-gpios = <&pioD 15 0>
+-	cd-inverted;
+-};
+-
+-Example full MCI node:
+-mmc0: mmc@f0008000 {
+-	compatible = "atmel,hsmci";
+-	reg = <0xf0008000 0x600>;
+-	interrupts = <12 4>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	slot@0 {
+-		reg = <0>;
+-		bus-width = <4>;
+-		cd-gpios = <&pioD 15 0>
+-		cd-inverted;
+-	};
+-	slot@1 {
+-		reg = <1>;
+-		bus-width = <4>;
+-	};
+-};
 
 -- 
 2.43.0
