@@ -4,81 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EBC3C19F32
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Feb 2025 19:37:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19501C197BF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Feb 2025 20:08:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
+	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hixo4zz+tc84x7F8nQm74mtrJbmMAF2/xlgbWhQQ/1M=; b=t8Po7RtylqNnRy
-	0d6NK+HHxo3Urs4ugrtfL8hWpC+Y0v8OwR/Bmzv/Xeg7ifuYADrjDDu2arexGAcc5EiqqIQkH1Ogj
-	DhoIy04XbW0kBttUijGOyAHnUyJESPQdd103SgMuJLX6FwelvtAU33hX+EoPtkgx4V8QPTToxpZgK
-	tIa/609Kx/SdJYIkiZUJ7s3K/A6Ku4Yn14sITpebESGbwPJNe5BYhZYEMTZIwyEoR0N4ummAzV5kW
-	Al1wvHv2VJPlK5mAYUaTIHL0wZaDIxtBKHrMCO385csgMLDyFiqLnuH+ikpJAZ5XzCMS/nrmyvRpW
-	SlCwyQWIc/gIGR7OMX4Q==;
+	List-Owner; bh=OrqZzk6AyZr4GIaJdIW3vInNiuM540q9UrlLICoGKlg=; b=Yss7QzFLQTOX9u
+	ZjIZOqnctAXjDFwIs7MZRWIeLX+XOt0d9h9dkpxJQmFrEJYLrAFt9DQMrzcJKKHerp9YzWZb7eh65
+	BuoH8VbZkBeGPcTwy7AKlPxJJCwkMT77FFrJvnqnigGgdpG4EECnXQ0B2wvPieiaoAqXRbAZv6Nzr
+	NfvYJcrU6A9zWrdzC1SSq+EyW8zSUfODPlI1sME0lHsqEulzibUz0yXt3D1zS60BwUEY69xAlVBuy
+	8lYRWGl8T8FNbIFCouXI9RnzIk/1LSurw4n0lQ6rFCmPEqs5nZo1HQP0Wu9qXjcfNKbW3rDgT+WaH
+	FrpWAhGv6tctOO+W5LSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tnjhH-00000008U0L-2k7y;
-	Thu, 27 Feb 2025 19:37:27 +0000
-Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	id 1tnkAs-00000008jL1-2qW8;
+	Thu, 27 Feb 2025 20:08:02 +0000
+Received: from tor.source.kernel.org ([2600:3c04::f03c:95ff:fe5e:7468])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tnfJH-00000007q4Q-1NGN;
-	Thu, 27 Feb 2025 14:56:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=JZ0rC//sE06hPYVngKetF+Xs1DKrHPyHj2XylN4/E1I=; b=ZH5nw2HmODeAQoGF5DwatfyRge
-	+AUj4ZofsP5hrrQshUdx0NTfcOTcd0tqxPCrtp8XyTAidSTzSozayjo2LiC0BN9fB8BWk8CY8ZHKs
-	11tHep8i8RET06cu+C1Bi7sMZ4F9/O2toXvO+0tdoGMg8QPJYBQOe1FYgQW3zvab1IPI363kK57TP
-	kPC3nL/5VU1GGO8Ur+zAH0nT0pp3kB16gwYYMR2YEUHWeZalIO3BovKycBe+bkMg3XKVwynxoSw1v
-	E+IAuGrytIT/0lY/KRfWfujqysevSnma6znK3JlmuO0u3z0kPf/CWLKPTpBHhN6DWuHYCmnEWKPJJ
-	J6IIAaYQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:57152)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tnfJ8-0007Un-1W;
-	Thu, 27 Feb 2025 14:56:14 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tnfJ5-0008Dz-0M;
-	Thu, 27 Feb 2025 14:56:11 +0000
-Date: Thu, 27 Feb 2025 14:56:10 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	Paolo Abeni <pabeni@redhat.com>
-Subject: Re: [PATCH net-next 10/11] net: stmmac: meson: switch to use
- set_clk_tx_rate() hook
-Message-ID: <Z8B9Cie3nFVY7mMS@shell.armlinux.org.uk>
-References: <Z8AtX-wyPal1auVO@shell.armlinux.org.uk>
- <E1tna0z-0052tN-O1@rmk-PC.armlinux.org.uk>
- <2198e689-ed38-4842-9964-dca42468088a@linaro.org>
- <Z8B4OSbY954Zy37S@shell.armlinux.org.uk>
- <f21edb2c-e49d-4448-a25d-fb75f44c902a@linaro.org>
+	id 1tnkAr-00000008jKq-2xtm;
+	Thu, 27 Feb 2025 20:08:01 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 6371161F45;
+	Thu, 27 Feb 2025 20:07:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6027BC4CEE4;
+	Thu, 27 Feb 2025 20:08:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740686880;
+	bh=qzrV7ojG37Gb87LwnmyFT03tAi+5cM0gi1gFMUwOnSg=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=Wm+jiQVETdhzpdKjuXSx8EyQpLWsIwCCInB8UTvsDaXula4vn5SYpUL5wwmhljKYr
+	 C0rHLXmqRLLjwjKbOREYhyU5K9Fz9lXhwAa7/LrK3OwAqH+j8xfOCpWfqRzehfqBc1
+	 sVpKg2zTHC/fLVyF074bYCUrKyFhvvqYV/aTn3JDEz/Ihj5+LpVSfkRzPxphdgKQyh
+	 nbUTymGW+3kWJBqEkg5qhIBxenfGpCrI4E5JjQ+R6tSh3bM8XoXfc4se4uqdPU1sEJ
+	 KnS93UaP8pCdIeJKQYXl5pGBLEHVTc/dVA+Kq2YOw7DrsnQesOyaEiUf1JeG6NAX3s
+	 tgNrI/NMjC+tQ==
+Message-ID: <250d7040fac61c408d648996e275aedc.sboyd@kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <f21edb2c-e49d-4448-a25d-fb75f44c902a@linaro.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250227_065623_364007_4A083480 
-X-CRM114-Status: GOOD (  21.01  )
+In-Reply-To: <1jjz9bg0pg.fsf@starbuckisacylon.baylibre.com>
+References: <20250120-amlogic-clk-drop-clk-regmap-tables-v3-0-126244146947@baylibre.com> <20250120-amlogic-clk-drop-clk-regmap-tables-v3-1-126244146947@baylibre.com> <508a5ee6c6b365e8d9cdefd5a9eec769.sboyd@kernel.org> <1jjz9bg0pg.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH v3 1/4] clk: add a clk_hw helpers to get the clock device or device_node
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Thu, 27 Feb 2025 12:07:57 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,46 +67,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Feb 27, 2025 at 03:38:53PM +0100, Neil Armstrong wrote:
-> On 27/02/2025 15:35, Russell King (Oracle) wrote:
-> > On Thu, Feb 27, 2025 at 03:18:22PM +0100, Neil Armstrong wrote:
-> > > Hi,
-> > > 
-> > > On 27/02/2025 10:17, Russell King (Oracle) wrote:
-> > > > Switch from using the fix_mac_speed() hook to set_clk_tx_rate() to
-> > > > manage the transmit clock.
-> > > > 
-> > > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> > > > ---
-> > > >    drivers/net/ethernet/stmicro/stmmac/dwmac-meson.c | 9 ++++++---
-> > > >    1 file changed, 6 insertions(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson.c
-> > > > index b115b7873cef..07c504d07604 100644
-> > > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson.c
-> > > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson.c
-> > > > @@ -22,9 +22,10 @@ struct meson_dwmac {
-> > > >    	void __iomem	*reg;
-> > > >    };
-> > > > -static void meson6_dwmac_fix_mac_speed(void *priv, int speed, unsigned int mode)
-> > > > +static int meson6_dwmac_set_clk_tx_rate(void *bsp_priv, struct clk *clk_tx_i,
-> > > > +					phy_interface_t interface, int speed)
-> > > 
-> > > You can keep priv as first argument name and remove the next changes
-> > 
-> > I *can* but I don't want to. Inside the bulk of the stmmac driver,
-> > "priv" is used with struct stmmac_priv. "plat_dat" is used with
-> > struct plat_stmmacenet_data.
+Quoting Jerome Brunet (2025-02-27 02:07:39)
+> On Wed 26 Feb 2025 at 17:01, Stephen Boyd <sboyd@kernel.org> wrote:
 > 
-> Right, it's still an unrelated change in this case.
+> > Quoting Jerome Brunet (2025-01-20 09:15:30)
+> >> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> >> index 9b45fa005030f56e1478b9742715ebcde898133f..9818f87c1c56ab9a3782c2fd55d3f602041769c3 100644
+> >> --- a/drivers/clk/clk.c
+> >> +++ b/drivers/clk/clk.c
+> >> @@ -365,6 +365,39 @@ const char *clk_hw_get_name(const struct clk_hw *hw)
+[...]
+> >> + * Return: the struct device associated with the clock, or NULL if there
+> >> + * is none.
+> >> + */
+> >> +struct device *clk_hw_get_dev(const struct clk_hw *hw)
+> >> +{
+> >> +       return hw->core->dev;
+> >
+> > Maybe we should increment the device refcount and require callers to
+> > put_device(). Now's our chance to make the change!
+> 
+> I'm afraid this would lead to a lot of boilerplate code and mis-management,
+> especially in the clock ops.
 
-This is a new method, even though it happens to have mostly the same
-body. All instances of this new method use "bsp_priv" for this argument,
-therefore it is consistent.
+Don't we have __release() helpers? Not sure what boilerplate you're
+talking about.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> 
+> Would it be better if clock core took care of that, at least for the ops
+> part ? I mean incrementing and decrementing the ref count based on the
+> clk_hw registration. That would make things a lot easier for clock
+> users.
+
+Meh, I don't know. We've been assuming that the device is present
+because the driver will be unbound and the clks unregistered before the
+device can disappear. Nothing enforces that though so things could go
+wrong if we have a bug somewhere vs. knowing for sure that the refcount
+is incremented here. What you're suggesting is a bigger change, pushing
+down the reference counting so that as long as the clk is registered the
+device is known to be valid.
+
+Looking into the crystal ball of the future shows me that this will get
+wrapped in rust and at that point we'll be sharing the reference (likely
+not mutable) with the caller. If we do proper reference counting at the
+start that will make it easier to convert code, but it probably doesn't
+matter much because any rust clk provider would use the rust wrapper
+where we could handle the refcount logic.
+
+> 
+> If the consumer of the API uses it for something that may outlive the
+> clk_hw, then it is up to it to properly increment the ref count since it
+> is clearly not clock stuff.
+
+Sure. I'm fine to not change anything. Mostly thinking out loud.
 
 _______________________________________________
 linux-amlogic mailing list
