@@ -4,83 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3BC7C021BE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Feb 2025 08:02:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DF8EC1B087
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Feb 2025 09:16:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0USCYLK2hvdnQgKW8u/PwtPi0LgG9hpeLm9k7RffVqg=; b=NX1PlThUszKr4J
-	PjM1UdvT/6DGp4IC7LzI07pGagSF7gybRTjbfi/eiEjKKYGpgWgUWt3JH7pJjiX7TPtU1pyXmOVfY
-	Ci4/REnX7rXFYsTSPQJwYD8RA99KT298XrOIP/2mde+Naq+oKX7o68kRvI9CrDIM3q/CCjJGoF86L
-	wLQT15qiTQYh0HJYYTA3drDxcx61jUv8wNJhkuIDijLC+567KBAErx0UpQnrek0mcA6iwKFryuh77
-	M/I1ZHWp2Ukqj+x5PO+HPTynCAmAV5ylhZQoUgeddhsBs6d7cQnbvfiabUtKJ5QC3eTYjB8y6w1GN
-	AcLpKkdawYWzpK3O1Gkg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=1v6iyS/JYjQHbVD3V9WCSD57vXWEa6WXeiOdyOG4STM=; b=vOMm6DKpgU7HlT
+	aFqB60hXYOVwPc9WQxkF+1nNXybMuwHq7xDPITvZWT80xh2eviDuSF+JShsvOYyTEqJ/FNBGYBcLE
+	y1TE/BPzO1WbMyXB/IOGQGMesZghTLkUKMwdyynn19Ol5CKFctVkWLq7rOlEun+Swdl/FhnRq5EG1
+	t5qfQwKhdNabHe9mbokJPHGYzIDG4sqg8pKTV13xzu1lpnJCbm0MqHkt1AEggknIm1+7JDjbkeM8f
+	Pw/z1YH2EsVugSQFE7P6zZO1IKL7MgOMFFiHComQjSK0zTyNhq32yxj1z91ctfcwO6q9ZZAhOjZNd
+	40PfExiwOjyBFwRh+dYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tnYqj-00000006cnM-2aDH;
-	Thu, 27 Feb 2025 08:02:29 +0000
-Received: from mgamail.intel.com ([198.175.65.14])
+	id 1tna0c-00000006pcZ-0izl;
+	Thu, 27 Feb 2025 09:16:46 +0000
+Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tnYpA-00000006cXK-1Ds8;
-	Thu, 27 Feb 2025 08:00:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1740643253; x=1772179253;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GERZIpGTfivi/XxhhXMCRz1fUPVlachQDluzBuUuNF0=;
-  b=VogtjN9uefWOjw0DGUlqS6rho6BWtJGOAcRDzWmlWQp1CRQfmeW2ziS5
-   8PWEA3yjmWzDsrACqDkXkbsZMXDXmUvfF2vtT6QWbSoVMUNhzmSXPrRdy
-   3fhT/gXlSGttT8vxpBS3exLZIKzfHM8SPC5+m56y5SyCrWokPHBWDHHF3
-   RkYNJaBbqpsYCIcS+BZGMt1FbvAFIGd6fxHPw+La5ysN6kfTDZc0I8p2T
-   hXNqO9KHgHn+kivmFHgkcsopsdsuTfAC6F/FNGLcNilEyYk/CrZDR7UK4
-   ydcfkaGXKIDesJ+VD3lLNgZXY/Y3UsyDW6nYXf5yofOqlvsHrMXNpVhzE
-   Q==;
-X-CSE-ConnectionGUID: PeQS9KK3RASmhWA/dTpS4A==
-X-CSE-MsgGUID: 4mKrJWk0SLi9kiTxBRrBBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="45300310"
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
-   d="scan'208";a="45300310"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 00:00:50 -0800
-X-CSE-ConnectionGUID: Mi5AFG9QStWCHdsceajeag==
-X-CSE-MsgGUID: 0dQJGJDzR1O3bz8fqtjv/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
-   d="scan'208";a="122067414"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 27 Feb 2025 00:00:46 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tnYoX-000D38-20;
-	Thu, 27 Feb 2025 08:00:34 +0000
-Date: Thu, 27 Feb 2025 15:59:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
+	id 1tna0Z-00000006pbx-3DTW;
+	Thu, 27 Feb 2025 09:16:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=mYBSB07Y1Lcf9/eRz7dCZu8qEiXLm/2Bh2FG5QcVSNc=; b=wnuAID+7ZSTSMWHQ59mO8ZAM3B
+	CXzkqOUzdgxZnDMtHa4II8PYjkSxTM7m1LNXr33U19kuK1ae5zZKuUp3tg2uL5Ey90GFmzIglLjBO
+	CbtRR2ZE3plQksGYIyWZUm/A7QIB63d11CBuuuzUJFuycBdiv8VyUBZY8y8Dh95PoSxSQon3s8Qs0
+	p5s2hsxSoqBzXgzpPvt/6HSRLbUB2G5FTWfhZqJava+whQzY3B9gHiYfZXqENo0+aQjBgTReH4g9Q
+	XIdkxeCxPK/Fu7I9PJz30wNkp87HakU8lrEPt7BRMQLkZpVegwZigbgwwbf2ZAekiD2uYTXMWYoKD
+	XUwNPFjA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55760)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tna0G-0006b7-14;
+	Thu, 27 Feb 2025 09:16:24 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tna07-000818-23;
+	Thu, 27 Feb 2025 09:16:15 +0000
+Date: Thu, 27 Feb 2025 09:16:15 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Drew Fustini <drew@pdp7.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Eric Dumazet <edumazet@google.com>,
+	Fabio Estevam <festevam@gmail.com>, Fu Wei <wefu@redhat.com>,
+	Guo Ren <guoren@kernel.org>, imx@lists.linux.dev,
+	Jakub Kicinski <kuba@kernel.org>,
+	Jan Petrous <jan.petrous@oss.nxp.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Kevin Hilman <khilman@baylibre.com>,
 	linux-amlogic@lists.infradead.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH v2 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
-Message-ID: <202502271527.emvNC71m-lkp@intel.com>
-References: <20250226-irqchip-gpio-a4-a5-v2-2-c55b1050cb55@amlogic.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>, netdev@vger.kernel.org,
+	Paolo Abeni <pabeni@redhat.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: [PATCH net-next 00/11] net: stmmac: cleanup transmit clock setting
+Message-ID: <Z8AtX-wyPal1auVO@shell.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250226-irqchip-gpio-a4-a5-v2-2-c55b1050cb55@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250227_000052_378770_0CC7E95C 
-X-CRM114-Status: GOOD (  10.96  )
+X-CRM114-CacheID: sfid-20250227_011644_079157_B49539C4 
+X-CRM114-Status: GOOD (  10.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,54 +98,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Xianwei,
+Hi,
 
-kernel test robot noticed the following build warnings:
+A lot of stmmac platform code which sets the transmit clock is very
+similar - they decode the speed to the clock rate (125, 25 or 2.5 MHz)
+and then set a clock to that rate.
 
-[auto build test WARNING on 953913df9c3ab6f496c6facd5aa7fc9f2f847ac2]
+The DWMAC core appears to have a clock input for the transmit section
+called clk_tx_i which requires this rate.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-interrupt-controller-Add-support-for-Amlogic-A4-and-A5-SoCs/20250226-135013
-base:   953913df9c3ab6f496c6facd5aa7fc9f2f847ac2
-patch link:    https://lore.kernel.org/r/20250226-irqchip-gpio-a4-a5-v2-2-c55b1050cb55%40amlogic.com
-patch subject: [PATCH v2 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
-config: arc-randconfig-001-20250227 (https://download.01.org/0day-ci/archive/20250227/202502271527.emvNC71m-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250227/202502271527.emvNC71m-lkp@intel.com/reproduce)
+This series moves the code which sets this clock into the core stmmac
+code.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202502271527.emvNC71m-lkp@intel.com/
+Patch 1 adds a hook that platforms can use to configure the clock rate.
+Patch 2 adds a generic implementation.
+The remainder of the patches convert the glue code for various platforms
+to use this new infrastructure.
 
-All warnings (new ones prefixed by >>):
+Changes since RFC: fix build errors, add Thierry Reding's r-b. More
+platform glue conversions.
 
->> drivers/irqchip/irq-meson-gpio.c:58:12: warning: 'meson_ao_gpio_irq_set_type' declared 'static' but never defined [-Wunused-function]
-      58 | static int meson_ao_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +58 drivers/irqchip/irq-meson-gpio.c
-
-    45	
-    46	struct meson_gpio_irq_controller;
-    47	static void meson8_gpio_irq_sel_pin(struct meson_gpio_irq_controller *ctl,
-    48					    unsigned int channel, unsigned long hwirq);
-    49	static void meson_gpio_irq_init_dummy(struct meson_gpio_irq_controller *ctl);
-    50	static void meson_a1_gpio_irq_sel_pin(struct meson_gpio_irq_controller *ctl,
-    51					      unsigned int channel,
-    52					      unsigned long hwirq);
-    53	static void meson_a1_gpio_irq_init(struct meson_gpio_irq_controller *ctl);
-    54	static int meson8_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
-    55					    unsigned int type, u32 *channel_hwirq);
-    56	static int meson_s4_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
-    57					      unsigned int type, u32 *channel_hwirq);
-  > 58	static int meson_ao_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
-    59					      unsigned int type, u32 *channel_hwirq);
-    60	
+ .../ethernet/stmicro/stmmac/dwmac-dwc-qos-eth.c    | 10 +----
+ drivers/net/ethernet/stmicro/stmmac/dwmac-imx.c    | 21 ++++++++++-
+ .../net/ethernet/stmicro/stmmac/dwmac-intel-plat.c | 24 ++----------
+ .../net/ethernet/stmicro/stmmac/dwmac-ipq806x.c    |  9 +++--
+ drivers/net/ethernet/stmicro/stmmac/dwmac-meson.c  |  9 +++--
+ drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c     | 10 +++--
+ drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c    | 22 ++---------
+ .../net/ethernet/stmicro/stmmac/dwmac-starfive.c   | 26 ++-----------
+ drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c  | 18 +++++----
+ drivers/net/ethernet/stmicro/stmmac/stmmac.h       |  2 +
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c  | 43 ++++++++++++++++++++++
+ include/linux/stmmac.h                             |  4 ++
+ 12 files changed, 108 insertions(+), 90 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
 _______________________________________________
 linux-amlogic mailing list
