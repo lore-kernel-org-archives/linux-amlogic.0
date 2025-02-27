@@ -4,56 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DFA5C197BF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Feb 2025 22:56:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F79FC19F32
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Feb 2025 23:07:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=C+Q3WT3Lflfk1z+e/rrcX5bvwBcunEN3SyPOMfN9Esw=; b=YDVpTcMdS9iwHX
-	XRWr/rM68TXPFdR04wiMfDWedcSIo6eB3B0XbHtS5SD8pcjeZugJEcWIg9FUo7ml2FzUhfG8eCj2x
-	g4VUm/0GuMoYOYeRXJd1Dvrb+AumhrRWADKN//d1vy6Hr+ZO8Z59USHsXM7hNFmwWLJRfk9SDXrne
-	++BYNNfASdXBjDaNO1v8DRXYaEudbm8NZ8RB6QrCMoD+8b8BatrWqii2PEy407v1iqjSrRRzpeROb
-	NpHYXBUNmPDSJ3qs2+al1cb24lFWAk5eyRZC+s7KwiDrsIaITJ/wuLiQ6eVxoklqZQVgkeqmeAa2Q
-	Bh3HxQ5hfu152C0zcWnQ==;
+	List-Owner; bh=yp2SO58lYLleyBlyb/OTtVqDpV0QMUtrXBuEa2RZvEE=; b=DCec09Aob9nIsM
+	L2UFvbTQLCqbzOgU9xrjI3vkYApjCWfXcSuSPS4jzPBCUZF/7wcXnTRb0Ru+DcRg4tuDzGtaK1BIN
+	MXwqqSJxjXdkLD2dvE4aKZCEbpM3hZwNwFYYH7imeWpA2TkRnstEsQS8mBbZ5nxB+1O+o2GGkgFpW
+	6OVU+MNXHZhYIMR+98zMTLAJqet9KOjIzxTXAmzU3bdqUmOZ4MIUuebnx3SvU0gSemJzbzZvjd49B
+	YcqoVMFPU0t1EG2q8Bsp16YSEJlDC+tjvtJaPhNou6mX5S2ubWzmoZ7KrszN5Dgu8Gr0zVsiUz4l8
+	lHQzdiXuWKTBeEpRYSew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tnmnz-000000095oV-26YM;
-	Thu, 27 Feb 2025 22:56:35 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1tnmyR-000000097T4-3rP0;
+	Thu, 27 Feb 2025 23:07:23 +0000
+Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tnmmV-000000095f8-325M;
-	Thu, 27 Feb 2025 22:55:05 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 452F65C4609;
-	Thu, 27 Feb 2025 22:52:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA2C7C4CEE5;
-	Thu, 27 Feb 2025 22:55:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740696902;
-	bh=9M9wgjf5Eku3KGzfU/Spz3evA/7ijTJ6zhkFNKmluts=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=iGTUEjAdoa+AEcKSIz7YTUkqwuibJdq7HdrpnSPAot2i4LDqimrqFLjnOY3uop015
-	 OBNS6/3/hyivaNYzAl+skCbD+IFjwVOQ9YaN0sn21wKiCJhlpGv3LDjpSYRqto+zSi
-	 R1kjqxgi5Ho1UoJyB9KJqBCvUdC3QsCmo9LHGD8SD5GXABdTWl/wOk/aITHLlX7KvH
-	 sKHoltNlmYJaGqhGMV8PRFwb+k1DlBY/orWCp7ERwPK5DJTAXLPRvpqmBqvaNo7vY4
-	 95lDTV84TZ6ggRUWc7y6ESsHgacRmawXtXfC50WyUo6326L5mH6lAqjfLnn1ReIf7k
-	 1CNGnQiJvj16w==
-Message-ID: <5109de7fe1a1a8467118daf80c7b7f8a.sboyd@kernel.org>
+	id 1tnmyO-000000097QF-3XpK
+	for linux-amlogic@lists.infradead.org;
+	Thu, 27 Feb 2025 23:07:22 +0000
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-30b909f0629so3909811fa.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 27 Feb 2025 15:07:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1740697639; x=1741302439; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=frw/Kxp/v2+PP+mGe/xu93cFHbH9YYmz+7s+Ghe+Vqk=;
+        b=cQutJJx0t/CKjGHEGBApDcCNak8ggrM4JETKZACyZA7iygT8G/X6Oj7huDoGH53EIa
+         4FfVbm/NWma6OEFrhTyGBOnUmP1+v97MZv0nqrYSyt3rf7FqK15dkyRVdcE/G7DgvfTA
+         DosA453jAoxNxPB76CFfXv7lZFketiEud/XGquxLRy8c2MxLmZ3Ii0cpj2kP7E76szWy
+         B2mDKvVGY/AXERXJIYVQcPX+ShHSRHNcRY0Q6QMZg5mdYZmlkIgHOAz6uDGOdB+7CAmK
+         QRuPaP5MAcAUPtKEKt/7leRMk5XfjgnhrFUqNh+7HyT1OREA2HHDTTiTFkGS1UtKVOo9
+         8Xyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740697639; x=1741302439;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=frw/Kxp/v2+PP+mGe/xu93cFHbH9YYmz+7s+Ghe+Vqk=;
+        b=FdS8ph7nB1i/M6vPszZzsO5wGkUpfUFXAdFJzdI9QThXXH5GS34TKELf2QtDXf7gw7
+         h2eUz20wlbIoAl1EOzpdCftmop0ZLGBcVOM5jZKwoU86ZXE+yk/dRg8/CoSCxvR9/kZd
+         Rmwy+r4ynmcTOr1N6f9/qt0zW4JJ5MrYOQncME6enDNHYU60bUPkxsUepzI0XR0rVxl1
+         NAOKwc0btvoy7+1D6zHl8U5t/R2ADtqK9AMXCIPuPRFGx4407pQmQ+E2hQEiMKeg8VRF
+         MpEiE6v+5NK1RN+87QvyiWlWYzas+1eWpPYlvcS97PCs3PsiujBth6czVg9u2JYNq6O3
+         ku6w==
+X-Forwarded-Encrypted: i=1; AJvYcCVV7oNkXJVDYAeg/HfK2xwCPe83Q8oZBGbGMAxX9NjjpIgWof6NGhGcpJovr7W7mJfy07f78JyM1AaT0kNn@lists.infradead.org
+X-Gm-Message-State: AOJu0YyJ+J8VeUSTwAUbzJgvaFc/MGZ1ndo6Tv5O3GN5pzbQp8YATEvj
+	YvWZ/cRdueAnPRq8tDC7fXOHnpmlkETEUEAd5tHokvGkbQbn5XdEEqxesGaGlKAdKRSYvqmGHIg
+	eTEw2IfFLwAfNLBz2eLOewVTaTvSqGKbU9SmmHA==
+X-Gm-Gg: ASbGncvkcqusKPJQpoGW9PZ30BFzH2Bct4/AlBQPnAvRG1BdXzUEIRTiYkArtCKzYy0
+	dhFtUKSj63uMbaMk2HZ6Mya+92i3CO1+ShOqzJ4ylrRgzrbDGIyhUnI67vWJpyW7d0aJ9A/4zPm
+	9+xOgGtHk=
+X-Google-Smtp-Source: AGHT+IFufz181XNYlSjaAjssVbP9sbOQz0B9cNRA45vok7xAon3DLgbajO4WEtqa7uIwsizRpA7u/lhxgF69lTQZ82w=
+X-Received: by 2002:a05:651c:2105:b0:30a:2a8a:e4d0 with SMTP id
+ 38308e7fff4ca-30b90a8247cmr3926491fa.17.1740697639007; Thu, 27 Feb 2025
+ 15:07:19 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1j4j205ark.fsf@starbuckisacylon.baylibre.com>
-References: <20241220-amlogic-clk-drop-clk-regmap-tables-v1-0-96dd657cbfbd@baylibre.com> <20241220-amlogic-clk-drop-clk-regmap-tables-v1-2-96dd657cbfbd@baylibre.com> <9f1d69ebe1ddce5dfc170e986c9213f2.sboyd@kernel.org> <1ja5cp8f87.fsf@starbuckisacylon.baylibre.com> <88fe909ab182d1f17f6ef18161c7f064.sboyd@kernel.org> <1jfrlwb69r.fsf@starbuckisacylon.baylibre.com> <ed20c67e7d1a91d7fd8b921f156f56fb.sboyd@kernel.org> <1jmsg2adgu.fsf@starbuckisacylon.baylibre.com> <697b634770d789ef8ff0e05cec9465f5.sboyd@kernel.org> <1j4j205ark.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [PATCH 2/3] clk: amlogic: drop clk_regmap tables
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-To: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 27 Feb 2025 14:55:00 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+References: <20250212-amlogic-pinctrl-v5-0-282bc2516804@amlogic.com>
+In-Reply-To: <20250212-amlogic-pinctrl-v5-0-282bc2516804@amlogic.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 28 Feb 2025 00:07:07 +0100
+X-Gm-Features: AQ5f1JqjsVFh7X8JQClBDzM8iluOtRQbPulUgXhGdh38CQTozMVRauwBZfmmZkc
+Message-ID: <CACRpkdZg-9Zr3f7zG36x7jGvT46FRfRJ40khNZDdYb01-BGigw@mail.gmail.com>
+Subject: Re: [PATCH v5 0/5] Pinctrl: Add Amlogic pinctrl driver
+To: xianwei.zhao@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250227_145503_849863_D20DE2C4 
-X-CRM114-Status: GOOD (  22.77  )
+X-CRM114-CacheID: sfid-20250227_150720_883453_978B7ED5 
+X-CRM114-Status: UNSURE (   7.02  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,82 +95,20 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2025-01-15 07:58:55)
-> 
-> I'd like to register controller init hook to apply on all the clocks of
-> a particular type. The reason to do that is to drop the big clk_regmap
-> table that are a pain to maintain (in addition to be ugly). I hoped it
-> would also save a bit of memory.
-> 
-> The solutions we've been discussing so far feels like we are moving
-> around the problem, recreating the memory saved somewhere else,
-> perhaps in a more complicated way. I'd like to find something more
-> convinient to use, which does not scale the memory used with the number
-> of clock registered. The point is not a different hook for clk_hw after
-> all.
-
-What are the goals?
-
- 1. Drop clk_regmap table
- 2. Reduce memory
- 3. ??
-
-> 
-> Here is an idea, how about list of hook identified by ops and controller ?
-> 
-> The node would look like this
-> 
-> struct clk_type_init_node {
->        struct list_head         entry;
->        
->        struct device_node       *of_node;
->        struct device            *dev;
->        const struct clk_ops     *ops;
-> 
->        int (*init_hook)(struct clk_hw *hw);
-> };
-> 
-> The change would be minimal in core CCF, just searching the list for a
-> match in clk_register. On most platform the list would be empty so there
-> is virtually no penalty when it is not used.
-> 
-> From the controller, the usage would be very simple, just calling a
-> function before registering the clocks, something like:
-> 
-> int clk_type_register_dev_hook(struct device *dev,
->                                const struct clk_ops *ops,
->                                int (*init_hook)(struct clk_hw *hw))
-> 
-> or the 'of_node' equivalent.
-
-Why can't we register the clk at the same time? I don't understand why
-we want to search a list to match something up to what could be another
-argument to the clk registration API. Isn't this the same as 
-
- clk_hw_register_data(struct device *dev, struct clk_hw *hw, const struct clk_register_data *data)
-
-Why is that hard to maintain? Is that because the clk driver is
-registering various different types of clks and it wants to do different
-stuff depending on the type of clk? Why wouldn't wrapping the clk_ops
-in another struct and then using container_of to find the custom clk_ops
-not work there?
-
-> 
-> I admit this is heavily inspired by how devres works :) but it does solve
-> the early clock controller problem and does not scale with the number of
-> clock registered.
-> 
-
-I don't know if devres is a good model. It's about tracking allocations
-and things to undo later, not really to track things to do when called
-initially.
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgWGlhbndlaSwKCkkgYXBwbGllZCBwYXRjaGVzIDEsIDIsIDMgYW5kIDUgdG8gdGhlIHBpbmN0
+cmwgdHJlZSBvbiB0aGlzCmltbXV0YWJsZSBicmFuY2g6Cmh0dHBzOi8vd2ViLmdpdC5rZXJuZWwu
+b3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9saW51c3cvbGludXgtcGluY3RybC5naXQvbG9n
+Lz9oPWliLWFtbG9naWMtYTQKCk9uIFdlZCwgRmViIDEyLCAyMDI1IGF0IDY6MjTigK9BTSBYaWFu
+d2VpIFpoYW8gdmlhIEI0IFJlbGF5CjxkZXZudWxsK3hpYW53ZWkuemhhby5hbWxvZ2ljLmNvbUBr
+ZXJuZWwub3JnPiB3cm90ZToKCj4gICAgICAgYXJtNjQ6IGR0czogYW1sb2dpYzogYTQ6IGFkZCBw
+aW5jdHJsIG5vZGUKClBsZWFzZSBmdW5uZWwgdGhpcyBwYXRjaCB0aHJvdWdoIHRoZSBTb0MgdHJl
+ZS4KCklmIHRoZXJlIGFyZSBkZXBlbmRlbmNpZXMsIHRoZXkgY2FuIGJlIHB1bGxlZCBpbiBmcm9t
+IHRoZSBpbW11dGFibGUKYnJhbmNoLgoKWW91cnMsCkxpbnVzIFdhbGxlaWoKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
+ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
+cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
