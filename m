@@ -4,53 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A243DC021B8
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Feb 2025 01:01:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3BC7C021BE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Feb 2025 08:02:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=km3DfUBZd8l7SAUKCTeIScd3ZIH9+Cvq1FClaIHVtPE=; b=X+wQ2IgyR/TTkf
-	x0bcqC57Fx2nUnjhXwtSmjnkdMm6IWekVZhvu2sQb2stftjfuqy4fxLOoK/sMHlbDCSfZ6C0+TjAg
-	ZBg+tKIHCY10TtJiSKsRy84IMHiYSzGN5bNHNB6YMcqE4wOFQpXTaKndlAw8Ro8ZEAm5q8FxhUBPh
-	lBqOI9dLyTbZ4ZWW/zRnoENQdyqVfnbdG+/hX3v+e1mBmzRrOVWK5tYbu6bvPFEqjOHYDcM7Xh4N0
-	qygGJxuse5bue+PEBsC6mXiaR42bVs89rG2tKS+3aR8dBsNHnVHiAaovT9/EnJRyhenDp150xnsWm
-	FLKY7+69WdQa5aBX4hBw==;
+	List-Owner; bh=0USCYLK2hvdnQgKW8u/PwtPi0LgG9hpeLm9k7RffVqg=; b=NX1PlThUszKr4J
+	PjM1UdvT/6DGp4IC7LzI07pGagSF7gybRTjbfi/eiEjKKYGpgWgUWt3JH7pJjiX7TPtU1pyXmOVfY
+	Ci4/REnX7rXFYsTSPQJwYD8RA99KT298XrOIP/2mde+Naq+oKX7o68kRvI9CrDIM3q/CCjJGoF86L
+	wLQT15qiTQYh0HJYYTA3drDxcx61jUv8wNJhkuIDijLC+567KBAErx0UpQnrek0mcA6iwKFryuh77
+	M/I1ZHWp2Ukqj+x5PO+HPTynCAmAV5ylhZQoUgeddhsBs6d7cQnbvfiabUtKJ5QC3eTYjB8y6w1GN
+	AcLpKkdawYWzpK3O1Gkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tnSH0-00000005rvH-308j;
-	Thu, 27 Feb 2025 01:01:10 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1tnYqj-00000006cnM-2aDH;
+	Thu, 27 Feb 2025 08:02:29 +0000
+Received: from mgamail.intel.com ([198.175.65.14])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tnSGy-00000005rv2-3Scn;
-	Thu, 27 Feb 2025 01:01:08 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id DD99861223;
-	Thu, 27 Feb 2025 01:00:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80005C4CED6;
-	Thu, 27 Feb 2025 01:01:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740618067;
-	bh=Az777yEEvc7WNpZb40fbFEenMSc4zBZXmQAQcH1+SrQ=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=UEoozr8165xSjeMQKQpHvilejSkF7ea3Evo63RS/b9hp3roHeAtHLM3EhZvbJAqZc
-	 ogsNHvfZkdDdUo512fRWHvJyCZ8xuJidSuDJ8U4BZDu2QuwJMdEiObzsSk6Jr8ZQsi
-	 j20E00sXJMW+XIbcf0hVNWofIDMzYCp8IYWI476UjJIgk/5Ni3sLFuTf87hiIPlyoM
-	 9xAU/STIgTuk1r4tMsLVY6Hg8RZfMh7lp3EnonkYI8keB5Oe/z+RID4RP6Minkwt27
-	 lG2OAX/8r5aaEpo8/h+fwQFAhUVFfyZFKQM7gzfN4xNShYb2XV6D7arhChHX/q0pos
-	 8rh0QumR10lFQ==
-Message-ID: <508a5ee6c6b365e8d9cdefd5a9eec769.sboyd@kernel.org>
+	id 1tnYpA-00000006cXK-1Ds8;
+	Thu, 27 Feb 2025 08:00:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1740643253; x=1772179253;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GERZIpGTfivi/XxhhXMCRz1fUPVlachQDluzBuUuNF0=;
+  b=VogtjN9uefWOjw0DGUlqS6rho6BWtJGOAcRDzWmlWQp1CRQfmeW2ziS5
+   8PWEA3yjmWzDsrACqDkXkbsZMXDXmUvfF2vtT6QWbSoVMUNhzmSXPrRdy
+   3fhT/gXlSGttT8vxpBS3exLZIKzfHM8SPC5+m56y5SyCrWokPHBWDHHF3
+   RkYNJaBbqpsYCIcS+BZGMt1FbvAFIGd6fxHPw+La5ysN6kfTDZc0I8p2T
+   hXNqO9KHgHn+kivmFHgkcsopsdsuTfAC6F/FNGLcNilEyYk/CrZDR7UK4
+   ydcfkaGXKIDesJ+VD3lLNgZXY/Y3UsyDW6nYXf5yofOqlvsHrMXNpVhzE
+   Q==;
+X-CSE-ConnectionGUID: PeQS9KK3RASmhWA/dTpS4A==
+X-CSE-MsgGUID: 4mKrJWk0SLi9kiTxBRrBBg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="45300310"
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
+   d="scan'208";a="45300310"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2025 00:00:50 -0800
+X-CSE-ConnectionGUID: Mi5AFG9QStWCHdsceajeag==
+X-CSE-MsgGUID: 0dQJGJDzR1O3bz8fqtjv/Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; 
+   d="scan'208";a="122067414"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+  by fmviesa004.fm.intel.com with ESMTP; 27 Feb 2025 00:00:46 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tnYoX-000D38-20;
+	Thu, 27 Feb 2025 08:00:34 +0000
+Date: Thu, 27 Feb 2025 15:59:28 +0800
+From: kernel test robot <lkp@intel.com>
+To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH v2 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
+Message-ID: <202502271527.emvNC71m-lkp@intel.com>
+References: <20250226-irqchip-gpio-a4-a5-v2-2-c55b1050cb55@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <20250120-amlogic-clk-drop-clk-regmap-tables-v3-1-126244146947@baylibre.com>
-References: <20250120-amlogic-clk-drop-clk-regmap-tables-v3-0-126244146947@baylibre.com> <20250120-amlogic-clk-drop-clk-regmap-tables-v3-1-126244146947@baylibre.com>
-Subject: Re: [PATCH v3 1/4] clk: add a clk_hw helpers to get the clock device or device_node
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 26 Feb 2025 17:01:05 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+Content-Disposition: inline
+In-Reply-To: <20250226-irqchip-gpio-a4-a5-v2-2-c55b1050cb55@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250227_000052_378770_0CC7E95C 
+X-CRM114-Status: GOOD (  10.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,230 +97,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2025-01-20 09:15:30)
-> Add helpers to get the device or device_node associated with clk_hw.
-> 
-> This can be used by clock drivers to access various device related
-> functionality such as devres, dev_ prints, etc ...
-> 
-> Add test for these new helpers in clk-test.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
+Hi Xianwei,
 
-Thanks for adding tests!
+kernel test robot noticed the following build warnings:
 
-> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> index 9b45fa005030f56e1478b9742715ebcde898133f..9818f87c1c56ab9a3782c2fd55d3f602041769c3 100644
-> --- a/drivers/clk/clk.c
-> +++ b/drivers/clk/clk.c
-> @@ -365,6 +365,39 @@ const char *clk_hw_get_name(const struct clk_hw *hw)
->  }
->  EXPORT_SYMBOL_GPL(clk_hw_get_name);
->  
-> +/**
-> + * clk_hw_get_dev - get device from an hardware clock.
+[auto build test WARNING on 953913df9c3ab6f496c6facd5aa7fc9f2f847ac2]
 
-Please add () to indicate function.
+url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-interrupt-controller-Add-support-for-Amlogic-A4-and-A5-SoCs/20250226-135013
+base:   953913df9c3ab6f496c6facd5aa7fc9f2f847ac2
+patch link:    https://lore.kernel.org/r/20250226-irqchip-gpio-a4-a5-v2-2-c55b1050cb55%40amlogic.com
+patch subject: [PATCH v2 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
+config: arc-randconfig-001-20250227 (https://download.01.org/0day-ci/archive/20250227/202502271527.emvNC71m-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250227/202502271527.emvNC71m-lkp@intel.com/reproduce)
 
-> + * @hw: the clk_hw pointer to get the struct device from
-> + *
-> + * This is a helper to get the struct device associated with a hardware
-> + * clock. Some clocks, such as the ones registered from an early clock
-> + * controller, may not be associated with any struct device.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202502271527.emvNC71m-lkp@intel.com/
 
-Maybe write out that an 'early clock controller' is one that registers
-clks with CLK_OF_DECLARE() or otherwise didn't pass a device pointer
-while registering the clk.
+All warnings (new ones prefixed by >>):
 
-> + *
-> + * Return: the struct device associated with the clock, or NULL if there
-> + * is none.
-> + */
-> +struct device *clk_hw_get_dev(const struct clk_hw *hw)
-> +{
-> +       return hw->core->dev;
+>> drivers/irqchip/irq-meson-gpio.c:58:12: warning: 'meson_ao_gpio_irq_set_type' declared 'static' but never defined [-Wunused-function]
+      58 | static int meson_ao_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
+         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Maybe we should increment the device refcount and require callers to
-put_device(). Now's our chance to make the change!
 
-> +}
-> +EXPORT_SYMBOL_GPL(clk_hw_get_dev);
-> +
-> +/**
-> + * clk_hw_get_of_node - get device_node from an hardware clock.
+vim +58 drivers/irqchip/irq-meson-gpio.c
 
-'from a hardware' and remove the period.
+    45	
+    46	struct meson_gpio_irq_controller;
+    47	static void meson8_gpio_irq_sel_pin(struct meson_gpio_irq_controller *ctl,
+    48					    unsigned int channel, unsigned long hwirq);
+    49	static void meson_gpio_irq_init_dummy(struct meson_gpio_irq_controller *ctl);
+    50	static void meson_a1_gpio_irq_sel_pin(struct meson_gpio_irq_controller *ctl,
+    51					      unsigned int channel,
+    52					      unsigned long hwirq);
+    53	static void meson_a1_gpio_irq_init(struct meson_gpio_irq_controller *ctl);
+    54	static int meson8_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
+    55					    unsigned int type, u32 *channel_hwirq);
+    56	static int meson_s4_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
+    57					      unsigned int type, u32 *channel_hwirq);
+  > 58	static int meson_ao_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
+    59					      unsigned int type, u32 *channel_hwirq);
+    60	
 
-> + * @hw: the clk_hw pointer to get the struct device_node from
-> + *
-> + * This is a helper to get the struct device_node associated with an
-> + * hardware clock.
-> + *
-> + * Return: the struct device_node associated with the clock, or NULL
-> + * if there is none.
-> + */
-
-Can you put the kernel-doc in the header prototype? I want to move all
-the comments there so we can include the header in the rst doc file with
-the header 'clk provider API' or something like that.
-
-> +struct device_node *clk_hw_get_of_node(const struct clk_hw *hw)
-> +{
-> +       return hw->core->of_node;
-
-Maybe we should increment the of_node refcount and require callers to
-of_node_put(). Now's our chance to make the change!
-
-> +}
-> +EXPORT_SYMBOL_GPL(clk_hw_get_of_node);
-> +
->  struct clk_hw *__clk_get_hw(struct clk *clk)
->  {
->         return !clk ? NULL : clk->core->hw;
-> diff --git a/drivers/clk/clk_test.c b/drivers/clk/clk_test.c
-> index f08feeaa3750bc86859294650de298762dea690a..4dcdde283598b7f940c653ebc0d5a5f4c27637a2 100644
-> --- a/drivers/clk/clk_test.c
-> +++ b/drivers/clk/clk_test.c
-> @@ -3077,6 +3084,80 @@ static struct kunit_suite clk_register_clk_parent_data_device_suite = {
->         .test_cases = clk_register_clk_parent_data_device_test_cases,
->  };
->  
-> +static void clk_register_dummy_device_driver(struct kunit *test)
-> +{
-> +       static const struct of_device_id match_table[] = {
-> +               { .compatible = "test,clk-dummy-device" },
-> +               { }
-> +       };
-> +
-> +       clk_register_of_device_driver(test, match_table);
-> +}
-> +
-> +/*
-> + * Test that a clk registered with a struct device can provide back the
-> + * struct device it was registered with.
-> + */
-> +static void clk_hw_get_dev_test(struct kunit *test)
-
-The name of the test can tell us what it expects:
-
-	clk_hw_get_dev_with_dev_gets_dev()
-	clk_hw_get_dev_null_dev_gets_null()
-	clk_hw_get_dev_with_node_gets_null() # this one uses of_clk_hw_register()
-	clk_hw_get_of_node_with_dev_gets_node() # this one uses clk_hw_register()
-	clk_hw_get_of_node_with_node_gets_node()
-	clk_hw_get_of_node_null_node_gets_null()
-
-I put some more test names. If we use gen params we can have spaces in
-the name.
-
-> +{
-> +       struct clk_register_device_ctx *ctx;
-> +
-> +       ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
-> +       KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx);
-> +       test->priv = ctx;
-> +
-> +       clk_register_dummy_device_driver(test);
-> +       ctx->hw.init = CLK_HW_INIT_NO_PARENT("test_get_dev",
-> +                                            &clk_dummy_rate_ops, 0);
-> +
-> +       KUNIT_ASSERT_EQ(test, 0, clk_hw_register_kunit(test, ctx->dev, &ctx->hw));
-
-Please put a newline between the assertions and the expectation. That
-makes it easier to see at a glance what's expected by the test.
-
-> +       KUNIT_EXPECT_PTR_EQ(test, ctx->dev, clk_hw_get_dev(&ctx->hw));
-> +}
-> +
-> +/*
-> + * Test that a clk registered with a struct device_node can provide back the
-> + * struct device_node it was registered with.
-> + */
-> +static void clk_hw_get_of_node_test(struct kunit *test)
-> +{
-> +       struct device_node *np;
-> +       struct clk_hw *hw;
-> +
-> +       hw = kunit_kzalloc(test, sizeof(*hw), GFP_KERNEL);
-> +       KUNIT_ASSERT_NOT_ERR_OR_NULL(test, hw);
-> +
-> +       np = of_find_compatible_node(NULL, NULL, "test,clk-dummy-device");
-> +       hw->init = CLK_HW_INIT_NO_PARENT("test_get_of_node",
-> +                                        &clk_dummy_rate_ops, 0);
-> +       of_node_put_kunit(test, np);
-> +
-> +       KUNIT_ASSERT_EQ(test, 0, of_clk_hw_register_kunit(test, np, hw));
-
-The stuff before the expectation should likely go to the init function.
-Or it can use the genparams stuff so we can set some struct members to
-indicate if the pointer should be NULL or not and then twist through the
-code a couple times.
-
-> +       KUNIT_EXPECT_PTR_EQ(test, np, clk_hw_get_of_node(hw));
-> +}
-> +
-> +static struct kunit_case clk_hw_test_cases[] = {
-> +       KUNIT_CASE(clk_hw_get_dev_test),
-> +       KUNIT_CASE(clk_hw_get_of_node_test),
-
-Please add tests for the absence of the pointers.
-
-> +       {}
-> +};
-> +
-> +static int clk_hw_test_init(struct kunit *test)
-> +{
-> +       KUNIT_ASSERT_EQ(test, 0,
-> +                       of_overlay_apply_kunit(test, kunit_clk_dummy_device));
-> +
-> +       return 0;
-> +}
-> +
-> +/*
-> + * Test suite to verify the sanity clk_hw helper functions.
-
-Test suite to verify clk_hw_get_dev() and clk_hw_get_of_node().
-
-> + */
-> +static struct kunit_suite clk_hw_test_suite = {
-
-A better name is clk_hw_get_dev_of_node_suite
-
-> +       .name = "clk_hw_test_suite",
-
-Same, clk_hw_get_dev_of_node_suite.
-
-> +       .init = clk_hw_test_init,
-> +       .test_cases = clk_hw_test_cases,
-> +};
-> +
->  struct clk_assigned_rates_context {
->         struct clk_dummy_context clk0;
->         struct clk_dummy_context clk1;
-> diff --git a/drivers/clk/kunit_clk_dummy_device.dtso b/drivers/clk/kunit_clk_dummy_device.dtso
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..5cc89aa11264428b09e47fd29c5f9ecfb8c32fdd
-> --- /dev/null
-> +++ b/drivers/clk/kunit_clk_dummy_device.dtso
-
-Ideally the name of the file gives a clue to the name of the test suite that
-uses it. Perhaps kunit_clk_hw_get_dev_of_node.dtso is better.
-
-> @@ -0,0 +1,10 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&{/} {
-> +       kunit-clock-controller {
-> +               compatible = "test,clk-dummy-device";
-
-Maybe "test,clk-hw-get-dev-node".
-
-> +               #clock-cells = <0>;
-> +       };
-> +};
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
