@@ -4,97 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA635C19776
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Feb 2025 14:34:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6884BC19776
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Feb 2025 14:45:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aranpZdSt1cw12y5/jrCsTV+SO1rjCNIp6bxUFqMqX0=; b=i2Pq90VFasiUvL
-	fJhvcNwaPNE+dPQ9qxv/Uz04+wIGDSl9MzY8g7aii0tXjKkHC6TRJSMJCzpogb6MhkkYcvwuVrE0M
-	9gVy5vAN4/xV8C00Sh3Ie6o4B4gK4j9iQrIXbtyaVtF5BbdeiyT7klIgQwJqMlp1bHA7ynA+bXc+I
-	VIFg/8JnBvNse2wQ4rOvD+Rmm6AxDyRWjaPZ32Dg/TIoGkm8uTBuH8/1Ngq2TiRi3Gfs7jRHVwknP
-	axo0DzUYdkOzzC3SUfydVvGdnUD8jDVIixxB8CcB2aJTbWCZu7Dzei+BGzGDOzj7Y6LJbpNq2LiCn
-	9AucRmAJ//kynNdkaHkA==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=DTSqsCBJvN/d6sTKhO2RLenh4vFLyoAcfUVf+GMBCZo=; b=N1I4NU0sz5xuGSuNUCC5x3LpzO
+	iSlSuHqppVWR03/enxiiRhCdG0YU3ySZcHbETn0UVdrLHtHmVlvTG0e3jL7P5lmJX8AQhXcg+MS9F
+	zdcNAOSwFMxSvP5umsVteXg6e25UU9g6SFTNlMeakCb963CyuDVJIpozp5q538BHZzPdGKt8/iwUL
+	c8oRkzDUd0qhpk5obhwRclYeWKNv6gG7wzin4YPYkXooy8Wbyj95VgM3zvjgfkhVyr63vPVnu4hq5
+	irA4OHc/qQoDZBqkdzIglUAJK3tcH54UkmflVC42NVmI3iq/sw4KUvN2AXUtVpSz/PPULABfdXz69
+	wXw/O/lw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1to1Rn-0000000BHhX-2iF1;
-	Fri, 28 Feb 2025 14:34:39 +0000
-Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
+	id 1to1cZ-0000000BJyh-1cpM;
+	Fri, 28 Feb 2025 14:45:47 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1to11Z-0000000BBE3-1lHt
-	for linux-amlogic@lists.infradead.org;
-	Fri, 28 Feb 2025 14:07:34 +0000
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5deb1266031so3679101a12.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 28 Feb 2025 06:07:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1740751652; x=1741356452; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=J1wrjOZ25AMEbbC5RG2Bl34Xp7n5uiu5eMlW7fz5kxo=;
-        b=YZeC+M6Me/z7YSpmh9nb/WtaJiOnbiAHHqVPoMHfTiaJimq7IBVjsEOfyOlzSke1vz
-         CTJxfsyDshy97kPS1Sn5UpjhVWLxNp9CsQb9UR5faqU75+o6H9UHJxngthiTcq5kCrub
-         N6Bzqt3DdKyWyqladqyu8NT4r/sdUyn4K5PmHhmJNoUtg19RMj7K+yidAJ6ej76WKjkY
-         /F8xvTz/As3Ai4brgJBwXo8i0mzQE1qCsOPn5FCWD9J6rO7eXCTe01/jWwlkGOnWsJrq
-         YBxVWbhAMcUjnmxcqNkQhkQcKEf4UG4nw9xC/RAlbJmyUOCqaNlPgPKCKKW+zsoBBWgI
-         CdRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1740751652; x=1741356452;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J1wrjOZ25AMEbbC5RG2Bl34Xp7n5uiu5eMlW7fz5kxo=;
-        b=CoH9/hOmkONsd9YnXge3iUSHc/BXGCZWVVqNG74sQ0K/T2zcG9YEHkSMr7LdVB5Ajr
-         g/QdT74clYuEcYK5XLKgKA0XXc+e9qsHxfU/0eS5nNDDblyUjMJlQ51cwRHB+uoNinS1
-         ENn7AoZFXzaDX7av3IU0MwvX4B0OYlqpo3K7SjpbgnxXpF5EbSP5ZudZsnWWcaMHZ+dg
-         ++QNTg06lGtdqYljVWjB/Fe5zq/TLr1BROiwWFp9PZughRieASfLs7EW9X3/tXEVDIog
-         7US/tLDERkGs6O0Z5gnp2TNp7IbJtzVzb4Ob1dYPyjToTBdaXFUO93y6pJACIMDyD6BH
-         F0zw==
-X-Forwarded-Encrypted: i=1; AJvYcCVZv7PGWn8b0hva89qVYajY0D8+J/TjWeG88ywsrvmtFDcMd8LU/6LdBTg3lA3DlZ5erjfurW8OCdKE3KqW@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy7pYQlNJJ6DsxYOsaEC/B6a5HU6bEEWLlxSuDlzDzZwhboBTUY
-	8dUjpoNGW0maurrZmOozOUmSkpnogcZGUJkTA9TwONap4ukhYcI55b4QUa5dwvk=
-X-Gm-Gg: ASbGncshrmQLgmym+6qYA7vY/f3rwkFs7vA0sqgsHEviQnN5cV+2van2uJInyCgzpwP
-	PMi1efR5ImqpbCvsv3DWKyoXqt3Gg9OTdvdfzst0F/c/LXzxOvCJPevA9TUfOJCoKJpx0OBFj73
-	UfJDx9CnVkCXZsDoiAUITJF+yxW7yyUvgw0+WjqAyXZuL/Yo0QpfhhEeKuXmtlpiKAtvD3x8e7T
-	Bbqi4H3EH4ujxZ+jZZSZoqgInPYp6bP6xpvMkg47llTJywbmb2aim0R3SFhzfEIDfjNPdWANZJK
-	ti3RQxY+XmZs1cRagAMtgzm1gt8+RJ5FmtVq7kWF52hJRshNq6UP9pD/ayRlm86dOKZjh2eFP0y
-	pVOip15AxsQ==
-X-Google-Smtp-Source: AGHT+IH8oBqlrNujitdioxAVXjdPgLAryRZxpXTnrztyLFYptlh+GD/CB4rbFiDA0RhEFxZK1lBu3A==
-X-Received: by 2002:a05:6402:35c6:b0:5dc:c943:7b6 with SMTP id 4fb4d7f45d1cf-5e4d6ad4a6amr2900190a12.3.1740751651952;
-        Fri, 28 Feb 2025 06:07:31 -0800 (PST)
-Received: from puffmais.c.googlers.com (30.171.91.34.bc.googleusercontent.com. [34.91.171.30])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e4c3fb51f9sm2550839a12.55.2025.02.28.06.07.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Feb 2025 06:07:31 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Fri, 28 Feb 2025 14:07:30 +0000
-Subject: [PATCH 17/18] rtc: max77686: use dev_err_probe() where appropriate
+	id 1to1HU-0000000BFUE-1LWm;
+	Fri, 28 Feb 2025 14:24:01 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id ADCD25C64E7;
+	Fri, 28 Feb 2025 14:21:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BC3DC4CED6;
+	Fri, 28 Feb 2025 14:23:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1740752639;
+	bh=Z7Ql+u5YzWqD85Qt5XHh+UJpa/CVhj/NNrypB2fEbOE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=vCqUrCKWlROX8qqb+alRvT9d1dHuXdSRM7IJ8P5HQF/P161M4IVJfrXPHgBMd/HIE
+	 R4NLkwfue3o+ZAfjnp7Z4UqzOSQdfJFSaTnRWC5gK7WAtRPcMPJwOhnNA//QtkkFlN
+	 Eme9Zd9QA8vqnyPSKDi4s1c+XKYqnG3f/KRFlotQs+C77uLWh95eDHGMsYDxJroyHh
+	 uqvy4a5u0JB5VoyDsry3RGgqdir0wKjBXHehEjxB+9364DRAWGdTkJ3vm2NLOppiy5
+	 d4+FIdQDoVrWauwVSQ6xiJC9loR3ebCWeq1C+g8fv6uGbhhZ2PxyQ0DpVubK5YtHc9
+	 zfS4wV68oomwQ==
+Date: Fri, 28 Feb 2025 08:23:57 -0600
 MIME-Version: 1.0
-Message-Id: <20250228-rtc-cleanups-v1-17-b44cec078481@linaro.org>
-References: <20250228-rtc-cleanups-v1-0-b44cec078481@linaro.org>
-In-Reply-To: <20250228-rtc-cleanups-v1-0-b44cec078481@linaro.org>
-To: Chanwoo Choi <cw00.choi@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Hans Ulli Kroll <ulli.kroll@googlemail.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+ linux-amlogic@lists.infradead.org, Jaroslav Kysela <perex@perex.cz>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-sound@vger.kernel.org, zhe.wang@amlogic.com, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- =?utf-8?q?T=C3=B3th_J=C3=A1nos?= <gomba007@gmail.com>, 
- Dianlong Li <long17.cool@163.com>
-Cc: linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org, 
- linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-amlogic@lists.infradead.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.2
+ jian.xu@amlogic.com, Liam Girdwood <lgirdwood@gmail.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
+ linux-clk@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ shuai.li@amlogic.com, linux-kernel@vger.kernel.org, 
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>
+To: jiebing chen <jiebing.chen@amlogic.com>
+In-Reply-To: <20250228-audio_drvier-v3-0-dbfd30507e4c@amlogic.com>
+References: <20250228-audio_drvier-v3-0-dbfd30507e4c@amlogic.com>
+Message-Id: <174075232847.2756181.14032687393614819238.robh@kernel.org>
+Subject: Re: [PATCH v3 0/6] Add support for S4 audio
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250228_060733_452385_76F31734 
-X-CRM114-Status: GOOD (  11.26  )
+X-CRM114-CacheID: sfid-20250228_062400_471064_31D53528 
+X-CRM114-Status: GOOD (  16.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,51 +76,109 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-ZGV2X2Vycl9wcm9iZSgpIGV4aXN0cyB0byBzaW1wbGlmeSBjb2RlIGFuZCBoYXJtb25pc2UgZXJy
-b3IgbWVzc2FnZXMsCnRoZXJlJ3Mgbm8gcmVhc29uIG5vdCB0byB1c2UgaXQgaGVyZS4KClNpZ25l
-ZC1vZmYtYnk6IEFuZHLDqSBEcmFzemlrIDxhbmRyZS5kcmFzemlrQGxpbmFyby5vcmc+Ci0tLQog
-ZHJpdmVycy9ydGMvcnRjLW1heDc3Njg2LmMgfCAyOSArKysrKysrKysrKystLS0tLS0tLS0tLS0t
-LS0tLQogMSBmaWxlIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKyksIDE3IGRlbGV0aW9ucygtKQoK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvcnRjL3J0Yy1tYXg3NzY4Ni5jIGIvZHJpdmVycy9ydGMvcnRj
-LW1heDc3Njg2LmMKaW5kZXggNmIwZDAyYjQ0YzgwOTc0NTNmNzA0Y2JlYzlmMDI1ODBmYjg2OWNh
-My4uNjllYTNjZTc1YjVhNTQyNmQ0YTU2Yjk3OTc3M2JlNzFjNGVlNzU2MiAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ydGMvcnRjLW1heDc3Njg2LmMKKysrIGIvZHJpdmVycy9ydGMvcnRjLW1heDc3Njg2
-LmMKQEAgLTcwNCwxMCArNzA0LDkgQEAgc3RhdGljIGludCBtYXg3NzY4Nl9pbml0X3J0Y19yZWdt
-YXAoc3RydWN0IG1heDc3Njg2X3J0Y19pbmZvICppbmZvKQogCX0KIAogCWluZm8tPnJlZ21hcCA9
-IGRldl9nZXRfcmVnbWFwKHBhcmVudCwgTlVMTCk7Ci0JaWYgKCFpbmZvLT5yZWdtYXApIHsKLQkJ
-ZGV2X2VycihpbmZvLT5kZXYsICJGYWlsZWQgdG8gZ2V0IHJ0YyByZWdtYXBcbiIpOwotCQlyZXR1
-cm4gLUVOT0RFVjsKLQl9CisJaWYgKCFpbmZvLT5yZWdtYXApCisJCXJldHVybiBkZXZfZXJyX3By
-b2JlKGluZm8tPmRldiwgLUVOT0RFViwKKwkJCQkgICAgICJGYWlsZWQgdG8gZ2V0IHJ0YyByZWdt
-YXBcbiIpOwogCiAJaWYgKGluZm8tPmRydl9kYXRhLT5ydGNfaTJjX2FkZHIgPT0gTUFYNzc2ODZf
-SU5WQUxJRF9JMkNfQUREUikgewogCQlpbmZvLT5ydGNfcmVnbWFwID0gaW5mby0+cmVnbWFwOwpA
-QCAtNzE2LDI4ICs3MTUsMjQgQEAgc3RhdGljIGludCBtYXg3NzY4Nl9pbml0X3J0Y19yZWdtYXAo
-c3RydWN0IG1heDc3Njg2X3J0Y19pbmZvICppbmZvKQogCiAJY2xpZW50ID0gZGV2bV9pMmNfbmV3
-X2R1bW15X2RldmljZShpbmZvLT5kZXYsIHBhcmVudF9pMmMtPmFkYXB0ZXIsCiAJCQkJCSAgIGlu
-Zm8tPmRydl9kYXRhLT5ydGNfaTJjX2FkZHIpOwotCWlmIChJU19FUlIoY2xpZW50KSkgewotCQlk
-ZXZfZXJyKGluZm8tPmRldiwgIkZhaWxlZCB0byBhbGxvY2F0ZSBJMkMgZGV2aWNlIGZvciBSVENc
-biIpOwotCQlyZXR1cm4gUFRSX0VSUihjbGllbnQpOwotCX0KKwlpZiAoSVNfRVJSKGNsaWVudCkp
-CisJCXJldHVybiBkZXZfZXJyX3Byb2JlKGluZm8tPmRldiwgUFRSX0VSUihjbGllbnQpLAorCQkJ
-CSAgICAgIkZhaWxlZCB0byBhbGxvY2F0ZSBJMkMgZGV2aWNlIGZvciBSVENcbiIpOwogCiAJaW5m
-by0+cnRjX3JlZ21hcCA9IGRldm1fcmVnbWFwX2luaXRfaTJjKGNsaWVudCwKIAkJCQkJCWluZm8t
-PmRydl9kYXRhLT5yZWdtYXBfY29uZmlnKTsKLQlpZiAoSVNfRVJSKGluZm8tPnJ0Y19yZWdtYXAp
-KSB7Ci0JCXJldCA9IFBUUl9FUlIoaW5mby0+cnRjX3JlZ21hcCk7Ci0JCWRldl9lcnIoaW5mby0+
-ZGV2LCAiRmFpbGVkIHRvIGFsbG9jYXRlIFJUQyByZWdtYXA6ICVkXG4iLCByZXQpOwotCQlyZXR1
-cm4gcmV0OwotCX0KKwlpZiAoSVNfRVJSKGluZm8tPnJ0Y19yZWdtYXApKQorCQlyZXR1cm4gZGV2
-X2Vycl9wcm9iZShpbmZvLT5kZXYsIFBUUl9FUlIoaW5mby0+cnRjX3JlZ21hcCksCisJCQkJICAg
-ICAiRmFpbGVkIHRvIGFsbG9jYXRlIFJUQyByZWdtYXBcbiIpOwogCiBhZGRfcnRjX2lycToKIAly
-ZXQgPSByZWdtYXBfYWRkX2lycV9jaGlwKGluZm8tPnJ0Y19yZWdtYXAsIGluZm8tPnJ0Y19pcnEs
-CiAJCQkJICBJUlFGX09ORVNIT1QgfCBJUlFGX1NIQVJFRCwKIAkJCQkgIDAsIGluZm8tPmRydl9k
-YXRhLT5ydGNfaXJxX2NoaXAsCiAJCQkJICAmaW5mby0+cnRjX2lycV9kYXRhKTsKLQlpZiAocmV0
-IDwgMCkgewotCQlkZXZfZXJyKGluZm8tPmRldiwgIkZhaWxlZCB0byBhZGQgUlRDIGlycSBjaGlw
-OiAlZFxuIiwgcmV0KTsKLQkJcmV0dXJuIHJldDsKLQl9CisJaWYgKHJldCA8IDApCisJCXJldHVy
-biBkZXZfZXJyX3Byb2JlKGluZm8tPmRldiwgcmV0LAorCQkJCSAgICAgIkZhaWxlZCB0byBhZGQg
-UlRDIGlycSBjaGlwXG4iKTsKIAogCXJldHVybiAwOwogfQoKLS0gCjIuNDguMS43MTEuZzJmZWFi
-YWIyNWEtZ29vZwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
-ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
-LWFtbG9naWMK
+
+On Fri, 28 Feb 2025 16:04:08 +0800, jiebing chen wrote:
+> Add s4 audio base driver.
+> 
+> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+> ---
+> Changes in v3:
+> - remove g12a tocodec switch event
+> - Modify the incorrect title for dt-bindings
+> - Link to v2: https://lore.kernel.org/r/20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com
+> 
+> Changes in v2:
+> - remove tdm pad control and change tocodec base on g12a
+> - change hifipll rate to support 24bit
+> - add s4 audio clock
+> - Link to v1: https://lore.kernel.org/r/20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com
+> 
+> ---
+> jiebing chen (6):
+>       dt-bindings: clock: meson: Add audio power domain for s4 soc
+>       dt-bindings: clock: axg-audio: Add mclk and sclk pad clock ids
+>       dt-bindings: Asoc: axg-audio: Add s4 audio tocodec
+>       clk: meson: axg-audio: Add the mclk pad div for s4
+>       ASoC: meson: s4: Add s4 tocodec driver
+>       arm64: dts: amlogic: Add Amlogic S4 Audio
+> 
+>  .../bindings/clock/amlogic,axg-audio-clkc.yaml     |  18 +
+>  .../bindings/sound/amlogic,g12a-toacodec.yaml      |   1 +
+>  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 219 +++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 371 ++++++++++++++++++-
+>  drivers/clk/meson/axg-audio.c                      | 410 ++++++++++++++++++++-
+>  drivers/clk/meson/axg-audio.h                      |   4 +
+>  include/dt-bindings/clock/axg-audio-clkc.h         |  11 +
+>  sound/soc/meson/g12a-toacodec.c                    |  51 +++
+>  8 files changed, 1081 insertions(+), 4 deletions(-)
+> ---
+> base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
+> change-id: 20250110-audio_drvier-07a5381c494b
+> 
+> Best regards,
+> --
+> jiebing chen <jiebing.chen@amlogic.com>
+> 
+> 
+> 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250228-audio_drvier-v3-0-dbfd30507e4c@amlogic.com:
+
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: sound: 'anyOf' conditional failed, one must be fixed:
+	'clocks' is a required property
+	'#clock-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+
+
+
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
