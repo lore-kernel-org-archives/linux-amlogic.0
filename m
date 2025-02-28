@@ -4,115 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58F3BC282C6
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Feb 2025 17:34:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36523C282D0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Feb 2025 18:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RK2PqebX3v34/3Li+T9Vm5sWSIjfnLMu33r9J2cpYLk=; b=KZapKCpzFm1Ahg
-	1uIFC0emMPswsua7y9XrLnvvI4G6p0mt3MbmXi2vQDZfJV4yRkcteDRLmsj8FhIWJKnuUqpxABl2p
-	4L4QiP5cLYQrausE3f054NSfrcZ35iRWpMrKL3wWutaM5WP9iBk7TZsliRgT5nu62n3BHUfF0+R2r
-	t/6J8I14gXouaRelUqFyx0IJcg68zbGENI8ot+DRSH5EGp2vEzoB9FDJXghU/z/F2PZJmb0phlwmL
-	HT/Aly2aXYEVasbl3rcoxLu9YmjHycaAeDG3dxLC3GMHbgpWrFGvFVuD1V9BLqEoPh05Og8wIXrvx
-	X0bv1BQAFPdhdqJJv1Gg==;
+	List-Owner; bh=ylb5nxjvBUcOAubQuhvYJUD1e4Sn/bjLZMVD+Mi0o/k=; b=IfCzUqio+Td1jv
+	OQewnb+8PYLADQVS7Hu61h0korcKKb79LymL229SEVIyfqXbXOjYYxgbUTIJGy8ef4SkLB52aU1Xp
+	EU1PESbGGtZHjbtgTd6Oh+S+WtKQKvKytyrkJIui0rIsF4EZeSQjofPD4zAV4cnIRWoaIDWGOgRgx
+	UDK0PQvUUbzZlKnFoWyKgG0N2mZpf+gk3Ezxsk4bLnaSg9EWFq6y03xL5poniaX3SePuebQiHJgVQ
+	9zVtOGSpF9oBEC/Rpk2QRbU/8/rIxWaE2uNkzqqJk45hJrTPE96NpdU1Nk2k+r36EIPDnPojZa8Fw
+	p/knM3ByGkFkQZbfGEQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1to4G3-0000000Bycb-0dqo;
-	Fri, 28 Feb 2025 17:34:43 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1to5Pw-0000000CEMn-1rY5;
+	Fri, 28 Feb 2025 18:49:00 +0000
+Received: from tor.source.kernel.org ([2600:3c04::f03c:95ff:fe5e:7468])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1to4Cj-0000000Bxnn-2dqp;
-	Fri, 28 Feb 2025 17:31:18 +0000
+	id 1to57a-0000000C951-2QYl;
+	Fri, 28 Feb 2025 18:30:02 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 6855D5C6804;
-	Fri, 28 Feb 2025 17:28:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2684FC4CED6;
-	Fri, 28 Feb 2025 17:31:08 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3C35461FC3;
+	Fri, 28 Feb 2025 18:29:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 917B1C4CEED;
+	Fri, 28 Feb 2025 18:30:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740763874;
-	bh=qbWQBw/uFqQPwpcYNMFggUmUDTmFcLh0DbcUnSSTCuA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BLtJWd/c1bfEyU1HO9uRG+96bn5uoeZFvNoz/ITIoZVr2bPrfVd/obe/e+BjHjPjw
-	 rImRgi3N4f381K4clFXIxdYFPPEl1Yu1WvYMwgQOJZFtFSOKtxwyYAHU9Z7Q/et0am
-	 DHYVrTaTNb3FrTH6miqiIDSrkHeLlJ0lXUTJ8Y7Rv79nepG2UsyIVpzgPZ0hOyxgY3
-	 14M7b6EFOXK6/06VuTXF+6Ai01GbUaupJYuouxn+BZi/fooM6EZalDdPHS6NS/HTK4
-	 h8q4sGCMpmv9O3mSRX6y6C2ScWlYppd9CHT1SXBRN5K0GSqmPa/gShJxlsTAfV4RB5
-	 N1Urg97vMGssg==
-Message-ID: <aff5a71f-ed87-4a3d-b7bd-8d96bcd19a13@kernel.org>
-Date: Fri, 28 Feb 2025 18:31:05 +0100
+	s=k20201202; t=1740767401;
+	bh=OilwAZ5RXV38zTb+M44/89NDdAfBWpMVpgBj9F3ie5M=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=qko06JpBaB0Mhqay9/mFCbAZRqjBKioIFBIjsaLX69CFiooIOK6cQTIib8VidkwDa
+	 6920EKQBFWvPxU/KaDSCCQeUmtMyIhUFxJ4SaiAw+TBD9dSJ0sDdr0AIc+oDoyea1u
+	 Cc0CV4QGr2nGWBKrENwhuXlvL4dMSg7D60RJwDn6Ay2EiIGoH5Re4bbPE/fUduBWAl
+	 ED/lJ4r/dxbL76l1rHW5blvs99gEzk0NkQhN1AmHpo1/2Viw687dTXHMY1839QATdA
+	 CihdYAaDCONwhLA+EZWj70TPPMYxNRubEUWc1r8VX0g5dC2CXgcB4OQ0nXMhkcf+XD
+	 ym4ylURLCwE1w==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB9B4380CFF1;
+	Fri, 28 Feb 2025 18:30:34 +0000 (UTC)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/18] rtc: s5m: drop needless struct s5m_rtc_info::i2c
- member
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Chanwoo Choi <cw00.choi@samsung.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
- Hans Ulli Kroll <ulli.kroll@googlemail.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- =?UTF-8?B?VMOzdGggSsOhbm9z?= <gomba007@gmail.com>,
- Dianlong Li <long17.cool@163.com>
-Cc: linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-amlogic@lists.infradead.org
-References: <20250228-rtc-cleanups-v1-0-b44cec078481@linaro.org>
- <20250228-rtc-cleanups-v1-2-b44cec078481@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250228-rtc-cleanups-v1-2-b44cec078481@linaro.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250228_093117_789430_B400B927 
-X-CRM114-Status: UNSURE (   7.80  )
-X-CRM114-Notice: Please train this message.
+Subject: Re: [PATCH net-next 00/11] net: stmmac: cleanup transmit clock setting
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <174076743376.2237263.14950662798271470831.git-patchwork-notify@kernel.org>
+Date: Fri, 28 Feb 2025 18:30:33 +0000
+References: <Z8AtX-wyPal1auVO@shell.armlinux.org.uk>
+In-Reply-To: <Z8AtX-wyPal1auVO@shell.armlinux.org.uk>
+To: Russell King (Oracle) <linux@armlinux.org.uk>
+Cc: andrew@lunn.ch, hkallweit1@gmail.com, alexandre.torgue@foss.st.com,
+ andrew+netdev@lunn.ch, davem@davemloft.net, drew@pdp7.com, kernel@esmil.dk,
+ edumazet@google.com, festevam@gmail.com, wefu@redhat.com, guoren@kernel.org,
+ imx@lists.linux.dev, kuba@kernel.org, jan.petrous@oss.nxp.com,
+ jbrunet@baylibre.com, khilman@baylibre.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ martin.blumenstingl@googlemail.com, mcoquelin.stm32@gmail.com,
+ minda.chen@starfivetech.com, neil.armstrong@linaro.org,
+ netdev@vger.kernel.org, pabeni@redhat.com, kernel@pengutronix.de,
+ s.hauer@pengutronix.de, shawnguo@kernel.org
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,21 +74,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjgvMDIvMjAyNSAxNTowNywgQW5kcsOpIERyYXN6aWsgd3JvdGU6Cj4gV2hlbiB0aGlzIGRy
-aXZlciB3YXMgY29udmVydGVkIHRvIHVzaW5nIHRoZSBkZXZyZXMgbWFuYWdlZCBpMmMgZGV2aWNl
-Cj4gaW4gY29tbWl0IDdkYjdhZDA4MTdmZSAoInJ0YzogczVtOiB1c2UgZGV2bV9pMmNfbmV3X2R1
-bW15X2RldmljZSgpIiksCj4gc3RydWN0IHM1bV9ydGNfaW5mbzo6aTJjIGJlY2FtZSBlc3NlbnRp
-YWxseSB1bnVzZWQuCj4gCj4gV2UgY2FuIGRyb3AgaXQgZnJvbSB0aGUgc3RydWN0dXJlIGFuZCBq
-dXN0IHVzZSBhIGxvY2FsIHRlbXBvcmFyeQo+IHZhcmlhYmxlLCByZWR1Y2luZyBydW50aW1lIG1l
-bW9yeSBjb25zdW1wdGlvbiBieSBhIGZldyBieXRlcy4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBBbmRy
-w6kgRHJhc3ppayA8YW5kcmUuZHJhc3ppa0BsaW5hcm8ub3JnPgoKUmV2aWV3ZWQtYnk6IEtyenlz
-enRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4KCkJlc3QgcmVn
-YXJkcywKS3J6eXN6dG9mCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1hbWxvZ2ljCg==
+Hello:
+
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Thu, 27 Feb 2025 09:16:15 +0000 you wrote:
+> Hi,
+> 
+> A lot of stmmac platform code which sets the transmit clock is very
+> similar - they decode the speed to the clock rate (125, 25 or 2.5 MHz)
+> and then set a clock to that rate.
+> 
+> The DWMAC core appears to have a clock input for the transmit section
+> called clk_tx_i which requires this rate.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,01/11] net: stmmac: provide set_clk_tx_rate() hook
+    https://git.kernel.org/netdev/net-next/c/dea5c8ec20be
+  - [net-next,02/11] net: stmmac: provide generic implementation for set_clk_tx_rate method
+    https://git.kernel.org/netdev/net-next/c/12bce6d5404e
+  - [net-next,03/11] net: stmmac: dwc-qos: use generic stmmac_set_clk_tx_rate()
+    https://git.kernel.org/netdev/net-next/c/17c24f6dc641
+  - [net-next,04/11] net: stmmac: starfive: use generic stmmac_set_clk_tx_rate()
+    https://git.kernel.org/netdev/net-next/c/c81eb3da0be8
+  - [net-next,05/11] net: stmmac: s32: use generic stmmac_set_clk_tx_rate()
+    https://git.kernel.org/netdev/net-next/c/36fa8c960720
+  - [net-next,06/11] net: stmmac: intel: use generic stmmac_set_clk_tx_rate()
+    https://git.kernel.org/netdev/net-next/c/61356fb1b0d6
+  - [net-next,07/11] net: stmmac: imx: use generic stmmac_set_clk_tx_rate()
+    https://git.kernel.org/netdev/net-next/c/b693ce4f2704
+  - [net-next,08/11] net: stmmac: rk: switch to use set_clk_tx_rate() hook
+    https://git.kernel.org/netdev/net-next/c/c8caf6100f6d
+  - [net-next,09/11] net: stmmac: ipq806x: switch to use set_clk_tx_rate() hook
+    https://git.kernel.org/netdev/net-next/c/ca723519c28b
+  - [net-next,10/11] net: stmmac: meson: switch to use set_clk_tx_rate() hook
+    https://git.kernel.org/netdev/net-next/c/2a7d55f901a5
+  - [net-next,11/11] net: stmmac: thead: switch to use set_clk_tx_rate() hook
+    https://git.kernel.org/netdev/net-next/c/945db208fbe7
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
