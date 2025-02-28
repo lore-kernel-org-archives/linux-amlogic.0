@@ -4,65 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36523C282D0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Feb 2025 18:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C245C282C5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Feb 2025 22:01:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
-	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ylb5nxjvBUcOAubQuhvYJUD1e4Sn/bjLZMVD+Mi0o/k=; b=IfCzUqio+Td1jv
-	OQewnb+8PYLADQVS7Hu61h0korcKKb79LymL229SEVIyfqXbXOjYYxgbUTIJGy8ef4SkLB52aU1Xp
-	EU1PESbGGtZHjbtgTd6Oh+S+WtKQKvKytyrkJIui0rIsF4EZeSQjofPD4zAV4cnIRWoaIDWGOgRgx
-	UDK0PQvUUbzZlKnFoWyKgG0N2mZpf+gk3Ezxsk4bLnaSg9EWFq6y03xL5poniaX3SePuebQiHJgVQ
-	9zVtOGSpF9oBEC/Rpk2QRbU/8/rIxWaE2uNkzqqJk45hJrTPE96NpdU1Nk2k+r36EIPDnPojZa8Fw
-	p/knM3ByGkFkQZbfGEQA==;
+	List-Owner; bh=AJS8R0MfQjiBJMNP+nba0nEmw89QSPj6M8gn32+4aSY=; b=BMb/djUz6eiRsf
+	/m+bT+THf7wd+JvkFv0LXmAzkXGC0GYu+orGaIK/4DYgusdL6KCSxm0dYDnRr3o1vQjclZpwMAbM6
+	FRmO2q+JVvdtwCq6cwhRqfr9Os0oFr0NExM+zQiv0Y0OydHJr3d47mzUlLh4d1j2m7dJYrA10dfXj
+	poyZVmWT3QRfkfzX2uDSQyr+Aio+TGfsSDKy9dddDqfRBo4wVgId9qUxyqt+o22dTFnsZHs+qmaBG
+	0yHO4TUJt2K9bE8cTaNUzAFuYwmdiFrOiFvlQZWOGlBJJ2S112LMPr8agMPRI8/bwgHBnYwxwnIJz
+	mgdvKWW1Rh5iIn99e2cQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1to5Pw-0000000CEMn-1rY5;
-	Fri, 28 Feb 2025 18:49:00 +0000
-Received: from tor.source.kernel.org ([2600:3c04::f03c:95ff:fe5e:7468])
+	id 1to8Po-0000000Cneb-04W2;
+	Fri, 28 Feb 2025 22:01:04 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1to57a-0000000C951-2QYl;
-	Fri, 28 Feb 2025 18:30:02 +0000
+	id 1to8GM-0000000CmJV-2pf1;
+	Fri, 28 Feb 2025 21:51:19 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3C35461FC3;
-	Fri, 28 Feb 2025 18:29:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 917B1C4CEED;
-	Fri, 28 Feb 2025 18:30:01 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id EC0105C6542;
+	Fri, 28 Feb 2025 21:49:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D6AAC4CED6;
+	Fri, 28 Feb 2025 21:51:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1740767401;
-	bh=OilwAZ5RXV38zTb+M44/89NDdAfBWpMVpgBj9F3ie5M=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=qko06JpBaB0Mhqay9/mFCbAZRqjBKioIFBIjsaLX69CFiooIOK6cQTIib8VidkwDa
-	 6920EKQBFWvPxU/KaDSCCQeUmtMyIhUFxJ4SaiAw+TBD9dSJ0sDdr0AIc+oDoyea1u
-	 Cc0CV4QGr2nGWBKrENwhuXlvL4dMSg7D60RJwDn6Ay2EiIGoH5Re4bbPE/fUduBWAl
-	 ED/lJ4r/dxbL76l1rHW5blvs99gEzk0NkQhN1AmHpo1/2Viw687dTXHMY1839QATdA
-	 CihdYAaDCONwhLA+EZWj70TPPMYxNRubEUWc1r8VX0g5dC2CXgcB4OQ0nXMhkcf+XD
-	 ym4ylURLCwE1w==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB9B4380CFF1;
-	Fri, 28 Feb 2025 18:30:34 +0000 (UTC)
+	s=k20201202; t=1740779477;
+	bh=MpxAPzTlZ5GUX0OOzjchOn8f8pXXh+0IM+v+xJd4WWk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TFJExWtH2LCBe7zjInr9DuNEQHLDHXLiJBc3/HwBevOdhVxqXOryyZLBeVOEU1/O3
+	 Fse/CqUmQ2d/liVgpd2ZXuqL6ntJ5N1aNoevYQBSUczjhsGZdz8UWsCCb9sCOZ64Ia
+	 V3v75TzQM6ILLwp/YzYnXPrgWnrw2X+BNXymwVyUjdSsNkMNxcynq7pekl8uGa61rp
+	 YUluNc1Ho4kqxCSXsuPfa6GilbamXY8OCXa+uFQcgJE5nAtyz4cbfZSri/9CDpWXI+
+	 V1RFBZPCwaa4VMS43U6SMlg50kUWi4gkaeLQRKgYb49aZ5PfMcn2A7OjjMEkuClObu
+	 XAwNgq0DExw/g==
+Date: Fri, 28 Feb 2025 15:51:15 -0600
+From: Rob Herring <robh@kernel.org>
+To: jiebing chen <jiebing.chen@amlogic.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
+Subject: Re: [PATCH v3 1/6] dt-bindings: clock: meson: Add audio power domain
+ for s4 soc
+Message-ID: <20250228215115.GA3756522-robh@kernel.org>
+References: <20250228-audio_drvier-v3-0-dbfd30507e4c@amlogic.com>
+ <20250228-audio_drvier-v3-1-dbfd30507e4c@amlogic.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next 00/11] net: stmmac: cleanup transmit clock setting
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <174076743376.2237263.14950662798271470831.git-patchwork-notify@kernel.org>
-Date: Fri, 28 Feb 2025 18:30:33 +0000
-References: <Z8AtX-wyPal1auVO@shell.armlinux.org.uk>
-In-Reply-To: <Z8AtX-wyPal1auVO@shell.armlinux.org.uk>
-To: Russell King (Oracle) <linux@armlinux.org.uk>
-Cc: andrew@lunn.ch, hkallweit1@gmail.com, alexandre.torgue@foss.st.com,
- andrew+netdev@lunn.ch, davem@davemloft.net, drew@pdp7.com, kernel@esmil.dk,
- edumazet@google.com, festevam@gmail.com, wefu@redhat.com, guoren@kernel.org,
- imx@lists.linux.dev, kuba@kernel.org, jan.petrous@oss.nxp.com,
- jbrunet@baylibre.com, khilman@baylibre.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- martin.blumenstingl@googlemail.com, mcoquelin.stm32@gmail.com,
- minda.chen@starfivetech.com, neil.armstrong@linaro.org,
- netdev@vger.kernel.org, pabeni@redhat.com, kernel@pengutronix.de,
- s.hauer@pengutronix.de, shawnguo@kernel.org
+Content-Disposition: inline
+In-Reply-To: <20250228-audio_drvier-v3-1-dbfd30507e4c@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250228_135118_757053_FA3FA2EB 
+X-CRM114-Status: GOOD (  13.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,53 +86,70 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Thu, 27 Feb 2025 09:16:15 +0000 you wrote:
-> Hi,
+On Fri, Feb 28, 2025 at 04:04:09PM +0800, jiebing chen wrote:
+> Audio power domain found on S4 device. It need to enable before audio work.
 > 
-> A lot of stmmac platform code which sets the transmit clock is very
-> similar - they decode the speed to the clock rate (125, 25 or 2.5 MHz)
-> and then set a clock to that rate.
+> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+> ---
+>  .../bindings/clock/amlogic,axg-audio-clkc.yaml         | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> The DWMAC core appears to have a clock input for the transmit section
-> called clk_tx_i which requires this rate.
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> index fd7982dd4ceab82389167079c2258a9acff51a76..364783c6f7572b09d57de2b35d33adb7bcf7db18 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> @@ -21,6 +21,7 @@ properties:
+>        - amlogic,axg-audio-clkc
+>        - amlogic,g12a-audio-clkc
+>        - amlogic,sm1-audio-clkc
+> +      - amlogic,s4-audio-clkc
+>  
+>    '#clock-cells':
+>      const: 1
+> @@ -100,6 +101,9 @@ properties:
+>    resets:
+>      description: internal reset line
+>  
+> +  power-domains:
+> +    description: audio controller power
+
+You have to define how many (maxItems).
+
+> +
+>  required:
+>    - compatible
+>    - '#clock-cells'
+> @@ -116,12 +120,26 @@ allOf:
+>              enum:
+>                - amlogic,g12a-audio-clkc
+>                - amlogic,sm1-audio-clkc
+> +              - amlogic,s4-audio-clkc
+>      then:
+>        required:
+>          - '#reset-cells'
+>      else:
+>        properties:
+>          '#reset-cells': false
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,s4-audio-clkc
+> +    then:
+> +      required:
+> +        - power-domains
+> +
+> +    else:
+> +      properties:
+> +        power-domains: false
+>  
+>  additionalProperties: false
+>  
 > 
-> [...]
-
-Here is the summary with links:
-  - [net-next,01/11] net: stmmac: provide set_clk_tx_rate() hook
-    https://git.kernel.org/netdev/net-next/c/dea5c8ec20be
-  - [net-next,02/11] net: stmmac: provide generic implementation for set_clk_tx_rate method
-    https://git.kernel.org/netdev/net-next/c/12bce6d5404e
-  - [net-next,03/11] net: stmmac: dwc-qos: use generic stmmac_set_clk_tx_rate()
-    https://git.kernel.org/netdev/net-next/c/17c24f6dc641
-  - [net-next,04/11] net: stmmac: starfive: use generic stmmac_set_clk_tx_rate()
-    https://git.kernel.org/netdev/net-next/c/c81eb3da0be8
-  - [net-next,05/11] net: stmmac: s32: use generic stmmac_set_clk_tx_rate()
-    https://git.kernel.org/netdev/net-next/c/36fa8c960720
-  - [net-next,06/11] net: stmmac: intel: use generic stmmac_set_clk_tx_rate()
-    https://git.kernel.org/netdev/net-next/c/61356fb1b0d6
-  - [net-next,07/11] net: stmmac: imx: use generic stmmac_set_clk_tx_rate()
-    https://git.kernel.org/netdev/net-next/c/b693ce4f2704
-  - [net-next,08/11] net: stmmac: rk: switch to use set_clk_tx_rate() hook
-    https://git.kernel.org/netdev/net-next/c/c8caf6100f6d
-  - [net-next,09/11] net: stmmac: ipq806x: switch to use set_clk_tx_rate() hook
-    https://git.kernel.org/netdev/net-next/c/ca723519c28b
-  - [net-next,10/11] net: stmmac: meson: switch to use set_clk_tx_rate() hook
-    https://git.kernel.org/netdev/net-next/c/2a7d55f901a5
-  - [net-next,11/11] net: stmmac: thead: switch to use set_clk_tx_rate() hook
-    https://git.kernel.org/netdev/net-next/c/945db208fbe7
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+> -- 
+> 2.43.0
+> 
 
 _______________________________________________
 linux-amlogic mailing list
