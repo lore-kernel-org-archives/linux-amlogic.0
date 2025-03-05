@@ -4,68 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83512C19F32
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Mar 2025 10:33:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E12C6C19F32
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Mar 2025 10:35:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=s4uwUNqu7TDXiRfKj7+vlw9sMbT3B0CuthWEGIe7EEs=; b=x/C4O/2y/RtHFg
-	Pjk7o+NHg3BYQYnds8+sFVpi05vC7SKC17Q71tF72m8uZH/O8LoEeXbbAFjhzSDVKr/zgXnk5zsWf
-	hVebLF9bQleFWoWCF2rSzY8gtB6jJ25u+8vCgxl66uBj5bhMarZOgKQ5+1F6+hKqCWFFTxlUVje4B
-	6RwGgiNr5g0RyjB5iiOutGKXCNnvp4lyHllwtI8krQTdxaPz2pHag7Ya1rQD9x0I4HPHciHTNLcde
-	ck4OugU6N/nGzxeA8G2GitNc0C7H9gVpBtPjW3boQ018T9L4/KVAlAWzCiIc0drctVzocK6vvHl4g
-	iQjM5wcwjABffUijHSEw==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=U005UKd2KEY94iwlmNe8VshfQd8+Kh1dyznhAGs1dZM=; b=fbITkm4izIznxq
+	DI2ENk4VrFqJIBxF7B3pGFLXrSIFvtcZB84tzUHdaGLvTsCwusoKzmzwXfV+C4JGJn53ShsH19xkh
+	DTLlfc52v2dcg35Lq7DBiPed7aZwm2o8ROtN2MPVhmCf7qN/Y1+LVaFkxz4Kz0DwGAJDuWaKzsrVB
+	9zM+CV07Zxxjcuvj08LPNoiac7qWFFEDIvOVcS7iGXKSiZBwKplJmERDEdLrSVU7imsTJlAKFevrP
+	P+TTckqJkhsrSBu2v4tzbu9HYM1xbTPRRxZJMk52vQ5arR8XcfeXs+5ac/pYPX3Eo7bGindXCwqqB
+	lDX474LJJBFXVY4nwV+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tpm4X-00000007hUw-1qEG;
-	Wed, 05 Mar 2025 10:33:53 +0000
+	id 1tpm66-00000007hqx-2mu2;
+	Wed, 05 Mar 2025 10:35:30 +0000
 Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tplam-00000007bXy-05Ft;
+	id 1tplam-00000007bXz-0xut;
 	Wed, 05 Mar 2025 10:03:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Reply-To:Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Content-ID:Content-Description;
-	bh=KDb3hqU7jJKVLjFq2h/8fMER9K8L+cMIXZuQDwjMPck=; b=jbf4IF/mu2OEHCqYK2zejFsPKz
-	P/Gg6Q7rRgV2zoxY5UiuSj2dIfVEKhdSP9TphZ/vjT+EPm2XWcYTRCfQZt5bXfpSKza8rwfoeggl/
-	yxZVJgnphEDa0vA2BdHNgYSqeXgEnO3syG9euJ9Ag49iBkwEcoddP/eKHiD5z4lwFsGVgCLGzjOQx
-	D5j8c3VTEUVBN41X1Oq3pXxErjKNbY3Wl6VfBvLyuleFwg98dEScOQYWJyCf6mLQQIkh+B9ETQQ64
-	qOqNIC/uFtJFKdQu2ENIZ+hd4QsekPSdDgwP+tKFCgfQRg2FDXigL+LbHlKnHhWYj872StAGtJ5tE
-	fCwB/gwA==;
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	d=infradead.org; s=casper.20170209; h=Reply-To:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Sender:Content-ID:Content-Description:In-Reply-To:References;
+	bh=i9viZYqeMX/aeCk2MVnU/RK+AW7R5iqtLpSVqk7yiGU=; b=wYxm8pL5QCXGYJ3wnzWXDVLhbs
+	CkB2587WdUm/2XqlyVMpXeLpOeW4UGtruBT8TqHGc6HAC2icsSdZreZ+ucW34EmDe3j0T+tykNh8q
+	ygujUw4Jpao3Jr3vybAgkBG9qE+epMRbWsj4e39W6kpmWO5KWzD3mse/7Q0U/KbskLWYfvvyrU2u2
+	2xh7K4mVSN/OVPzXKMwcMlVm4X3kmr8YkW2XmmGHz4o4dXOQ+SZ7JwPG1OE/TF9+oOx/7NTRZR3x9
+	PwA5SgXrO8EWkK2lw5BkizlaVkOPPlANWHAS6/uqlcA2K0pEW9OSiazk97e/b3ww3JnwiOdAGW2mg
+	b7anRjXQ==;
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by casper.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tplah-00000005FkC-2YmV;
+	id 1tplah-00000005Fk8-2Yhb;
 	Wed, 05 Mar 2025 10:03:07 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id DAF55A4514F;
-	Wed,  5 Mar 2025 09:57:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 464B4C4CEE9;
+	by dfw.source.kernel.org (Postfix) with ESMTP id AF5A65C674D;
+	Wed,  5 Mar 2025 10:00:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1EAC5C4CEE8;
 	Wed,  5 Mar 2025 10:02:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1741168979;
-	bh=PniLbk2hKDobEfmisijscUi423JhyWI4OpVr06F9f6o=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Lr2nwsWQjAe4cS/eWfy+cqMUNjkjpefNopzCGVPIP8zvEDjOn+bDMcdpmsnnMj8aK
-	 ip9tiLmsyh3rALrLHjkeWL3JIHvuPQqjFe6wNeulWISTclXbCx9T96bCd3gT0CFUsi
-	 iBxVdiQG85e4hNRDSVBmgu7CiTpVMTcIokeqMc7s1+hRo+BwciarhB3Eead/IeJM/q
-	 m4jss4k4f1k81gEg5rZ/z7Dw9i83GmCwkLl5oE72ntj8R3a8xjYiWAK+LAjV0O1C3J
-	 5yKrUouWB94QtHVHORN3AUIJBIL4ZiuP48AJS03WNIU0rYDGO44Ou12gO01HC7EaLh
-	 yfL5sZSIwr1Hg==
+	bh=1g440IuVdvferMaa49XKcEufmSsf3xpIra5Mss3ih/M=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=LaDPFs9wiyXd+cQgs4520fdnBGhhAjV20d6LnUj+PqKEniG1pw4GarBt2FldqrVQJ
+	 +lYJPOEccq9GFKKadnvVMW87DwwQUPRnyko2hzfautgdcM6tLp3ZdJbEVAMKb/D1/f
+	 aa6Yem9sqmNQGSZZ1DCQB5Qj5XUYjare8q+lfKv/QqktC1fxnw3/X3iPuSXk3EP/Lz
+	 hAGJ1C2jsqJCkx40nqjzgfBnqfUkqnl8cJfuiX+qbXHXFzAweh/19tMd76k+89DGgE
+	 0DiWy3DKpLMJSVdSFqVLSO22IDRPoayv0WWi6Y0xFimC4JmSa35fYx2UePIB4dNp2n
+	 iAj8ZMXneFh+g==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E558C282D9;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 05484C282DC;
 	Wed,  5 Mar 2025 10:02:59 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 05 Mar 2025 18:02:56 +0800
-Subject: [PATCH v3 1/4] dt-bindings: interrupt-controller: Add support for
- Amlogic A4 and A5 SoCs
+Subject: [PATCH v3 0/4] Add GPIO interrupt support for Amlogic A4 and A5
+ SoCs
+Date: Wed, 05 Mar 2025 18:02:55 +0800
+Message-Id: <20250305-irqchip-gpio-a4-a5-v3-0-1eec70352fea@amlogic.com>
 MIME-Version: 1.0
-Message-Id: <20250305-irqchip-gpio-a4-a5-v3-1-1eec70352fea@amlogic.com>
-References: <20250305-irqchip-gpio-a4-a5-v3-0-1eec70352fea@amlogic.com>
-In-Reply-To: <20250305-irqchip-gpio-a4-a5-v3-0-1eec70352fea@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAFAhyGcC/23NQQ6CMBCF4auQrh3Tlg5BV97DuChDgUnEYmsaD
+ eHuFlaasPxfMt/MIrrALopzMYvgEkf2jxzloRA02EfvgNvcQkttlFYlcHjSwBP0E3uwBixCLQm
+ lVQYrMiIfTsF1/N7Q6y33wPHlw2f7kdS6rhxKrU57XFIgoaTaGWOd0W13sePd90xH8qNYwaR/E
+ F3tIjojhNgoiZIaxH9kWZYvB3S4ZfsAAAA=
 To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -77,19 +79,19 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741168977; l=1783;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741168977; l=1486;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=OtlX8UcJ+H1FILMyJjS4Bk1MwFvAcPTPGY/5f/EGqhc=;
- b=4wZeRoU6l7Aj8hPhoOsLF5THFXD8UqzSXyDROQXOoEDx/vXtMbkGDyO5kuYWx1z6El7eCqUl9
- 3vjbfPxwPt1Bxr853P4Cj7wfw/2NEhT2n7CLT6izVvjs4qUVMVGnvDa
+ bh=1g440IuVdvferMaa49XKcEufmSsf3xpIra5Mss3ih/M=;
+ b=v148/pWMVfxrubeqy83sCyRkyelbM2gzK8tehnIW/gbWJObeuEoCq0Zbc/PIJGm6f6FC/EJx/
+ AAG597zMpDNCrYpX6lGmZxdULCQv8lP/YooM/tKmazoT/14nKoPXuVZ
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
  auth_id=107
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250305_100303_799325_006A8089 
-X-CRM114-Status: UNSURE (   7.84  )
+X-CRM114-CacheID: sfid-20250305_100303_905011_7010DC17 
+X-CRM114-Status: UNSURE (   8.78  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,65 +110,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-Update dt-binding document for GPIO interrupt controller
-of Amlogic A4 and A5 SoCs
+This patch adds GPIO interrupt support for Amlogic A4 and A5 SoCs
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- .../amlogic,meson-gpio-intc.yaml                    | 21 +++++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
+Changes in v3:
+- Fix warning when run 'make ARCH=arm64 dtbs_check'.
+- Fix warning when run 'make ARCH=arm64 Image W=1'.
+- Rebase file amlogic-a4.dtsi.
+- Link to v2: https://lore.kernel.org/r/20250226-irqchip-gpio-a4-a5-v2-0-c55b1050cb55@amlogic.com
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-index a93744763787..3c5853c71efa 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
-@@ -35,6 +35,9 @@ properties:
-               - amlogic,meson-sm1-gpio-intc
-               - amlogic,meson-a1-gpio-intc
-               - amlogic,meson-s4-gpio-intc
-+              - amlogic,a4-gpio-intc
-+              - amlogic,a4-gpio-ao-intc
-+              - amlogic,a5-gpio-intc
-               - amlogic,c3-gpio-intc
-               - amlogic,t7-gpio-intc
-           - const: amlogic,meson-gpio-intc
-@@ -49,8 +52,6 @@ properties:
- 
-   amlogic,channel-interrupts:
-     description: Array with the upstream hwirq numbers
--    minItems: 8
--    maxItems: 12
-     $ref: /schemas/types.yaml#/definitions/uint32-array
- 
- required:
-@@ -60,6 +61,22 @@ required:
-   - "#interrupt-cells"
-   - amlogic,channel-interrupts
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: amlogic,a4-gpio-ao-intc
-+then:
-+  properties:
-+    amlogic,channel-interrupts:
-+      minItems: 2
-+      maxItems: 12
-+else:
-+  properties:
-+    amlogic,channel-interrupts:
-+      minItems: 8
-+      maxItems: 12
-+
- additionalProperties: false
- 
- examples:
+Changes in v2:
+- Use if/then instead of direct modification minimum value for property 'amlogic,channel-interrupts'.
+- Add register offsets to the parameter structure to reduce definition of a function.
+- Link to v1: https://lore.kernel.org/r/20250219-irqchip-gpio-a4-a5-v1-0-3c8e44ae42df@amlogic.com
 
+---
+Xianwei Zhao (4):
+      dt-bindings: interrupt-controller: Add support for Amlogic A4 and A5 SoCs
+      irqchip: Add support for Amlogic A4 and A5 SoCs
+      arm64: dts: Add gpio_intc node for Amlogic A4 SoCs
+      arm64: dts: Add gpio_intc node for Amlogic A5 SoCs
+
+ .../amlogic,meson-gpio-intc.yaml                   | 21 ++++++++++--
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 19 ++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 12 +++++++
+ drivers/irqchip/irq-meson-gpio.c                   | 40 +++++++++++++++++++---
+ 4 files changed, 85 insertions(+), 7 deletions(-)
+---
+base-commit: 73e4ffb27bb8a093d557bb2dac1a271474cca99c
+change-id: 20241213-irqchip-gpio-a4-a5-80c50a1456c4
+
+Best regards,
 -- 
-2.37.1
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
 
