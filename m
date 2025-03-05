@@ -4,91 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40AE5C19F32
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Mar 2025 12:48:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C73CC19F32
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Mar 2025 14:57:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=76QT/wjxho9xPCz7hAonr4U6tZDxxoe9WMRmiEITzJg=; b=ym0trs++msWO5b
-	76Mne05ZSl/scn/O2XCdlvi4IXwDR0gLLvZRuXe9vT3J87hJHKc50d+0qlwI960+7I39iEC4+6g0K
-	lPj28SI7VRFL2tBfdgl3B05APCxVdNNU4dBh1x2zdW/5j57FpXdXRjnx8CrUUX9NUg68oktpP6ahR
-	NSnZXoeYHJ+gpuG5Sua81rcD+6rCLfuXQ0t7Z5lZCZ/xANLBfyouiNrlJOkGHBCcXborEzG8m2Oe9
-	KpumBFeweF4sXYDzZqhICKJp4bnhzy4OBLI9JMLWYn+4ESrUrFqDGxetjeMri3T/LY+EOZw4V7li5
-	+nMytSmIey4h7Qwq7/uA==;
+	List-Owner; bh=NJUauEdeRt+Gf98YLCKkfXccpNEVqmqcTheMUYKNxPE=; b=CO+CV35m/GWKH/
+	C5ue+IGq3Epf8L1CCjPBaC6PnEVo8eqPtF3Lw8yT38nDhD++2wzS3XvFdBsBfvhfphvH4ci7DKV2r
+	bDLl/vH5iBzzABwnIMuUKX4MJXt+VQ7jmir2APgG5abZ6vINtJiO6EsQp6PFa9LeYRxDLytk2K8OT
+	Sh9Z/B0BozipMnES77MCYwBgB3bMp9813Z3HLAz/xm9zbFhYpcFEJOJ1aFQE0qE99+Yoro9kpEo+e
+	NdHgwKjrN57dz7xGwepRahjYz+ecA+sFKKFDzuOzPX0e2IW/zclDnj1VMXRttF3ewHVOz3fFbDxSg
+	dsXZynw+3I6hG4BkSgYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tpoAy-000000084KF-3GxA;
-	Wed, 05 Mar 2025 12:48:40 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1tpqBI-00000008RLC-0mCZ;
+	Wed, 05 Mar 2025 14:57:08 +0000
+Received: from mail-yw1-x112f.google.com ([2607:f8b0:4864:20::112f])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tplam-00000007bY4-3ND1;
-	Wed, 05 Mar 2025 10:03:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Reply-To:Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Content-ID:Content-Description;
-	bh=YdXsyBroVtxOiCChzxYnjkvE2624zzxFlW3yPNiZgmk=; b=P1hUUfYe17vXaL1LkWtAPWJheG
-	v+GllNrz8NFMjkxgvMjV5QBt01QnuW08s+ppL489R1vacKC9Ld1guhH5tcER6GUVN4Jbx1EJTxoLi
-	tAuOu1b+9u6YhDZYp4FFvmvrw5VsJu39tG7bJ7sUINt7bZ5gwM5kGoVVk+pZzrMWBTFG2H4F7Cne0
-	sTr2v9Z4LWBGc1xKrAgzjvcAYLl3aUzGkA2ekiGAmxgZMQ0heUf3LJ/xnmi99UCAdEm4jrDyrV99x
-	+T7zZumTvKVTDFCw3CqOjcU0/KvIMI+V6VkAPdohmGo3kbZlJj3yooxIz0jQ0jicc48waxiCsLDiE
-	eGD3gfiA==;
-Received: from dfw.source.kernel.org ([139.178.84.217])
-	by casper.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tplah-00000005Fl4-2ZKv;
-	Wed, 05 Mar 2025 10:03:07 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 1FE605C6799;
-	Wed,  5 Mar 2025 10:00:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4FEA8C4CEEC;
-	Wed,  5 Mar 2025 10:02:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741168979;
-	bh=SDXYki0laFuI9oisJo2JS7KfAgbZ/wVI+Fa3655OeE4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=RKjVOTx9HnrnxCqCrZFc/ZMmHUnROGva1akGWb/fyCIrnf4BkQKGJqQYHnCf5Yq8a
-	 R244M/H/47XW5bc3qYUMpK7oJPDARIpxpVpvtZ+HVUYtr2qL3FoXCC/6otKIIlMWIW
-	 WFG+uYdFF51QNHSXAe6ZrCPLfQQyqMKAG4BiZk3AvDNVmhnf+8p9Z9b+KtZS0rb+uu
-	 OvpbMFWepc+0SMuUm4x5ZMtp6N08/JZJqwaNylCI8d054+0Kva4NjPe9cG5WReUt5a
-	 UkTPRt/R5IyyF5Ow/Hph+rewkSFiyN2MEV4CwDhUe1GClMrN+FD/zMtUqKMpFRdo5R
-	 HSOrmZV8EXmhg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 457BCC282EC;
-	Wed,  5 Mar 2025 10:02:59 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 05 Mar 2025 18:02:57 +0800
-Subject: [PATCH v3 2/4] irqchip: Add support for Amlogic A4 and A5 SoCs
+	id 1tpq8L-00000008Ql2-3gAq
+	for linux-amlogic@lists.infradead.org;
+	Wed, 05 Mar 2025 14:54:07 +0000
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-6fead015247so1419587b3.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 05 Mar 2025 06:54:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1741186445; x=1741791245; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VeNLwaFo16zfbUMvLDVk5OOLd3X39XkqYnX5zvlPNF0=;
+        b=cv8P0dV3jNnmoS8motO1S7t8kB3faNffTXuS9rLLIQoredbffOZGR+ya1AoSAbiOhP
+         3jbMCIr9xd2rbvXpTMT0PsQ+Rp7n0SuNlj8Yb3XRwVWqGfF4gnh9fnSQYYvzTECszYLa
+         AyPol4xD/TlX+1xqUJg82qqvyY/mzH26fxcxFQnZQ1q0UrS27z3QqTURgVrFisaKhycV
+         G4uL86CvgihB92zK7l4WOe/GMKtuDitRHVrbCz92Z3tIowxukOjvMCUB/vsDihCmne/d
+         7QEaN17qG6Jr/M9z/q+wAXKB6UjhUOWlAMcmYNNCstabpfE0+FknrbpDGoUtz/6GgMaI
+         BanQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741186445; x=1741791245;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VeNLwaFo16zfbUMvLDVk5OOLd3X39XkqYnX5zvlPNF0=;
+        b=vvZDGb+luhjfi5fH0k+4UaRGLasKrTMM5JCKBN6LqXJSmuXh9lgcAq9kNfpBM6Nk2w
+         rZgqiIgJ7QlCDh3REHDhJd2nPHQ9qkt7YO/PHgBtBCfbErcv4MSJOJFS6gKWNaob5XmW
+         JScR3Tt6gKqVSnZ0Tn/MtOy2dRKCDD8F7uzhgM7ws42tKbWEqFi0jtw84R4u70Zo5N8c
+         0ORuFBv7T80kMssgPPpwkQLSS7dk7zKp8Er0ajasEFaXG70Y+a7p6+mqWWVPnrAjC58J
+         mJSOK03a1HJESM41kW/GaBn9czvStIj1a8ZR1+TKVMs08nhJibhW1YhiKcrgu3ojArqO
+         u2BA==
+X-Forwarded-Encrypted: i=1; AJvYcCWqzRHYFwMM2Amfo48tairPKRPIJQ4rYnIXwy4BbXMeXJCeImY29g5a6A3Mi2qB61PBeslX3JwfsIdVDeym@lists.infradead.org
+X-Gm-Message-State: AOJu0YyQDl/S9iR3f3QdNFNXMktjDaLIamqqgZpcDqaMAd79FfC8SqfB
+	9hHDw9C4+FdF+PkW6uP2pqC+jSnrziYddr2ZsQkV8BlhiABhKFbqJsQ3OiY/10m6tk4cj9HPWRU
+	BLVUdB92x3PYA38ttAMsF0jw7zT0n5BfkqpvCXQ==
+X-Gm-Gg: ASbGncuMHvSHSbmsg1995L4QRmunEBm+QrENhTIBzEnZDaOu6avWiUDJf0h1CHiM3Jc
+	81Rn5Xfws1T5F6ZVdEBglhAZ2o3b2B0Uxf8CyijBDyyrTv5m5lmOpVZ/+6j0qDSLnVmxhn0q6mJ
+	XB2m3tilRFT3JslQNAfgip3b0Fcpg=
+X-Google-Smtp-Source: AGHT+IHaRzLfs4e0s/mjCkKbOX/Qq8AuRys4/xKKYjDcoyyp0XIFqNuIteg7ybYGY5j3p+l87FS/VuOkxSFDK6iD0FQ=
+X-Received: by 2002:a05:690c:3749:b0:6fb:b78a:c0e5 with SMTP id
+ 00721157ae682-6fda310bbf6mr42777697b3.28.1741186444835; Wed, 05 Mar 2025
+ 06:54:04 -0800 (PST)
 MIME-Version: 1.0
-Message-Id: <20250305-irqchip-gpio-a4-a5-v3-2-1eec70352fea@amlogic.com>
-References: <20250305-irqchip-gpio-a4-a5-v3-0-1eec70352fea@amlogic.com>
-In-Reply-To: <20250305-irqchip-gpio-a4-a5-v3-0-1eec70352fea@amlogic.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Heiner Kallweit <hkallweit1@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741168977; l=4769;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=kxWw0sVkF3Y4vrdf+8eU2fFvSg6xzPNRqpAoVmLbb5M=;
- b=rVa/stdYvMYvS9pSybzKT1WIVj/uULVGyykV3/Hl6KDis++6xxX6EevKHzzayvvTXbDhbfTck
- B51U9HUUYOIDTewQKMKIqr0hHqANEDtV/fKr5448RgpvvpUW3kgYVRC
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+References: <20250303-fix-t7-pwrc-v1-1-b563612bcd86@amlogic.com>
+In-Reply-To: <20250303-fix-t7-pwrc-v1-1-b563612bcd86@amlogic.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 5 Mar 2025 15:53:29 +0100
+X-Gm-Features: AQ5f1JpdUfHmjKXFkOL_14EaaLzX4OU9jP-SAbgoA1LHg0Ze3bkxnPXr7Krf_aI
+Message-ID: <CAPDyKFoTBt4g=M1rHrZEPLO1y61csy3_cHfJDANPbvV+bH+YXw@mail.gmail.com>
+Subject: Re: [PATCH] pmdomain: amlogic: fix T7 ISP secpower
+To: xianwei.zhao@amlogic.com
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-pm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250305_100303_916981_F8226475 
-X-CRM114-Status: GOOD (  13.72  )
+X-CRM114-CacheID: sfid-20250305_065405_917093_FBFC07DC 
+X-CRM114-Status: GOOD (  15.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,157 +91,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Mon, 3 Mar 2025 at 10:06, Xianwei Zhao via B4 Relay
+<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
+>
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>
+> ISP and MIPI_ISP, these two have a parent-child relationship,
+> ISP depends on MIPI_ISP.
+>
+> Fixes: ca75e4b214c6 ("pmdomain: amlogic: Add support for T7 power domains controller")
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-The Amlogic A4 SoCs support 12 GPIO IRQ lines and 2 AO GPIO IRQ lines,
-A5 SoCs support 12 GPIO IRQ lines, details are as below.
+Applied for fixes and by adding a stable tag, thanks!
 
-A4 IRQ Number:
-- 72:55   18 pins on bank T
-- 54:32   23 pins on bank X
-- 31:16   16 pins on bank D
-- 15:14    2 pins on bank E
-- 13:0    14 pins on bank B
-
-A4 AO IRQ Number:
-- 7       1 pin  on bank TESTN
-- 6:0     7 pins on bank AO
-
-A5 IRQ Number:
-- 98      1 pin  on bank TESTN
-- 97:82   16 pins on bank Z
-- 81:62   20 pins on bank X
-- 61:48   14 pins on bank T
-- 47:32   16 pins on bank D
-- 31:27    5 pins on bank H
-- 26:25    2 pins on bank E
-- 24:14   11 pins on bank C
-- 13:0    14 pins on bank B
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- drivers/irqchip/irq-meson-gpio.c | 40 +++++++++++++++++++++++++++++++++++-----
- 1 file changed, 35 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index cd789fa51519..1cc12f5b52d5 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -26,8 +26,6 @@
- 
- /* use for A1 like chips */
- #define REG_PIN_A1_SEL	0x04
--/* Used for s4 chips */
--#define REG_EDGE_POL_S4	0x1c
- 
- /*
-  * Note: The S905X3 datasheet reports that BOTH_EDGE is controlled by
-@@ -72,6 +70,7 @@ struct meson_gpio_irq_params {
- 	bool support_edge_both;
- 	unsigned int edge_both_offset;
- 	unsigned int edge_single_offset;
-+	unsigned int edge_pol_reg;
- 	unsigned int pol_low_offset;
- 	unsigned int pin_sel_mask;
- 	struct irq_ctl_ops ops;
-@@ -105,6 +104,18 @@ struct meson_gpio_irq_params {
- 	.pin_sel_mask = 0x7f,					\
- 	.nr_channels = 8,					\
- 
-+#define INIT_MESON_A4_AO_COMMON_DATA(irqs)			\
-+	INIT_MESON_COMMON(irqs, meson_a1_gpio_irq_init,		\
-+			  meson_a1_gpio_irq_sel_pin,		\
-+			  meson_s4_gpio_irq_set_type)		\
-+	.support_edge_both = true,				\
-+	.edge_both_offset = 0,					\
-+	.edge_single_offset = 12,				\
-+	.edge_pol_reg = 0x8,					\
-+	.pol_low_offset = 0,					\
-+	.pin_sel_mask = 0xff,					\
-+	.nr_channels = 2,					\
-+
- #define INIT_MESON_S4_COMMON_DATA(irqs)				\
- 	INIT_MESON_COMMON(irqs, meson_a1_gpio_irq_init,		\
- 			  meson_a1_gpio_irq_sel_pin,		\
-@@ -112,6 +123,7 @@ struct meson_gpio_irq_params {
- 	.support_edge_both = true,				\
- 	.edge_both_offset = 0,					\
- 	.edge_single_offset = 12,				\
-+	.edge_pol_reg = 0x1c,					\
- 	.pol_low_offset = 0,					\
- 	.pin_sel_mask = 0xff,					\
- 	.nr_channels = 12,					\
-@@ -146,6 +158,18 @@ static const struct meson_gpio_irq_params a1_params = {
- 	INIT_MESON_A1_COMMON_DATA(62)
- };
- 
-+static const struct meson_gpio_irq_params a4_params = {
-+	INIT_MESON_S4_COMMON_DATA(81)
-+};
-+
-+static const struct meson_gpio_irq_params a4_ao_params = {
-+	INIT_MESON_A4_AO_COMMON_DATA(8)
-+};
-+
-+static const struct meson_gpio_irq_params a5_params = {
-+	INIT_MESON_S4_COMMON_DATA(99)
-+};
-+
- static const struct meson_gpio_irq_params s4_params = {
- 	INIT_MESON_S4_COMMON_DATA(82)
- };
-@@ -168,6 +192,9 @@ static const struct of_device_id meson_irq_gpio_matches[] __maybe_unused = {
- 	{ .compatible = "amlogic,meson-sm1-gpio-intc", .data = &sm1_params },
- 	{ .compatible = "amlogic,meson-a1-gpio-intc", .data = &a1_params },
- 	{ .compatible = "amlogic,meson-s4-gpio-intc", .data = &s4_params },
-+	{ .compatible = "amlogic,a4-gpio-ao-intc", .data = &a4_ao_params },
-+	{ .compatible = "amlogic,a4-gpio-intc", .data = &a4_params },
-+	{ .compatible = "amlogic,a5-gpio-intc", .data = &a5_params },
- 	{ .compatible = "amlogic,c3-gpio-intc", .data = &c3_params },
- 	{ .compatible = "amlogic,t7-gpio-intc", .data = &t7_params },
- 	{ }
-@@ -358,16 +385,19 @@ static int meson_s4_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
- {
- 	u32 val = 0;
- 	unsigned int idx;
-+	const struct meson_gpio_irq_params *params;
-+
-+	params = ctl->params;
- 
- 	idx = meson_gpio_irq_get_channel_idx(ctl, channel_hwirq);
- 
- 	type &= IRQ_TYPE_SENSE_MASK;
- 
--	meson_gpio_irq_update_bits(ctl, REG_EDGE_POL_S4, BIT(idx), 0);
-+	meson_gpio_irq_update_bits(ctl, params->edge_pol_reg, BIT(idx), 0);
- 
- 	if (type == IRQ_TYPE_EDGE_BOTH) {
- 		val |= BIT(ctl->params->edge_both_offset + idx);
--		meson_gpio_irq_update_bits(ctl, REG_EDGE_POL_S4,
-+		meson_gpio_irq_update_bits(ctl, params->edge_pol_reg,
- 					   BIT(ctl->params->edge_both_offset + idx), val);
- 		return 0;
- 	}
-@@ -378,7 +408,7 @@ static int meson_s4_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
- 	if (type & (IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING))
- 		val |= BIT(ctl->params->edge_single_offset + idx);
- 
--	meson_gpio_irq_update_bits(ctl, REG_EDGE_POL,
-+	meson_gpio_irq_update_bits(ctl, params->edge_pol_reg,
- 				   BIT(idx) | BIT(12 + idx), val);
- 	return 0;
- };
-
--- 
-2.37.1
+Kind regards
+Uffe
 
 
+> ---
+>  drivers/pmdomain/amlogic/meson-secure-pwrc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/pmdomain/amlogic/meson-secure-pwrc.c b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+> index 42ce41a2fe3a..ff76ea36835e 100644
+> --- a/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+> +++ b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+> @@ -221,7 +221,7 @@ static const struct meson_secure_pwrc_domain_desc t7_pwrc_domains[] = {
+>         SEC_PD(T7_VI_CLK2,      0),
+>         /* ETH is for ethernet online wakeup, and should be always on */
+>         SEC_PD(T7_ETH,          GENPD_FLAG_ALWAYS_ON),
+> -       SEC_PD(T7_ISP,          0),
+> +       TOP_PD(T7_ISP,          0, PWRC_T7_MIPI_ISP_ID),
+>         SEC_PD(T7_MIPI_ISP,     0),
+>         TOP_PD(T7_GDC,          0, PWRC_T7_NIC3_ID),
+>         TOP_PD(T7_DEWARP,       0, PWRC_T7_NIC3_ID),
+>
+> ---
+> base-commit: 73e4ffb27bb8a093d557bb2dac1a271474cca99c
+> change-id: 20250303-fix-t7-pwrc-f33650b190ef
+>
+> Best regards,
+> --
+> Xianwei Zhao <xianwei.zhao@amlogic.com>
+>
+>
 
 _______________________________________________
 linux-amlogic mailing list
