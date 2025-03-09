@@ -4,87 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 154C2C28B28
-	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Mar 2025 18:55:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32782C28B28
+	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Mar 2025 19:20:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ds7p+oK7r+oPxL0Fbx21VnqW3qoCM1VDxvsnohULd7Q=; b=xD9rbwFFxxxPig
-	dynmyxRlT7mX9jvU3MQoMhffFkBn5XC+CQa3amSEi+nKNKg7LerrYWaztFSLWml1MufjEMB/QJlg/
-	cl/0jWuGxRGHUylSSRVGB+0U9jzxyVyH3vTPowk9wT6RXz4jwM5cEn1BkzI0uqYkgMzdU/DXM2T10
-	zrBSleTuYvNfTWxC8UjoNERS3BAQB/FRr5lnA5I2sacJIxQLzgE+EoTDwtSUFCwFG8LP2ZWNOhOaV
-	FfY+rhgvoeNQUD7giGX9ROcBxlGriGYLQyCURCPckKGfecDHQ13S08KMFEgGMxWpFbpMHTR5Ty23e
-	3Mv5SYUHPIxsX//7MWgw==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=yUmMZ6G38vlWdn7Cj3shvsT5cYDHTrB2b2brIOfcRR8=; b=Wu8M6AO+j1KuInwV5iswqvX/2P
+	6qyY9oOb5ih4fgRmnXu301PV+lmNtzUlL+8eV9SELyyzHIJHzwFPP+FCSqG6N70+xtf3c2+I63Hxy
+	cj23/ZCjxAztNn05+M9c48SfnvtVUIsCVHahbKrRwsQG98IWOvKG1+hwhc8C+phZ+G9MEHlk99pPO
+	BuKdKFiM02NgU+tty545sypGjtK30vfgmh6G2i4TfMnOSKlS6k3lQTULpDFUTUcB5tXXOL7ZjD2TS
+	zltBX+BNjl0GE+TDxSgVthDxTJhg9lIQGxV5HOcQC2jqXMUbDiaFioGAA+9ZBnfyUZbRvHcNwi+Xj
+	r+7RzYFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1trLno-000000010qz-3LW8;
-	Sun, 09 Mar 2025 18:55:08 +0000
-Received: from mx1.sberdevices.ru ([37.18.73.165])
+	id 1trMCH-000000013Pv-192d;
+	Sun, 09 Mar 2025 19:20:25 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1trLHL-00000000xS4-2k5a;
-	Sun, 09 Mar 2025 18:21:39 +0000
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 2CD0D100008;
-	Sun,  9 Mar 2025 21:21:34 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2CD0D100008
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1741544494;
-	bh=mgADVFm35fjqdsjh2H21jJh+/8meBttbKXxeyoaClCk=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=Mu/vQFRmlO3dBUzdJ2O4tHEvycuVl61PL+RzFbgH/ZVOjI+M2CbhAU79bjZicb4SE
-	 GIuKrxcsvGBlgQoaTmwBPOEZ6IOR1bzDcDLytNOhti5UYWl2RkeY4iqwKUWcAP334H
-	 LtEd4eY2f0CGqCWKJ4/IcTGLUSY62af7FtJub9Xt0Z42u/F3tHPsqVu+7/NYiVKdnn
-	 0PUyBJXmjoABAniiA0ecclzoK9DBgRvdGQ9sdUQC6LzgIU3bqU7PxfkwZorhQVDw6z
-	 iQv0FB4HoGr/RYQhsw3m+FKsK5JNHeXcA7rVKaCojcWX81XIWeOXoJA4RjtVdY00d4
-	 7GrCdGFGYUm1w==
-Received: from smtp.sberdevices.ru (p-exch-cas-a-m1.sberdevices.ru [172.24.201.216])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Sun,  9 Mar 2025 21:21:34 +0300 (MSK)
-From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Conor Dooley
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, Jerome Brunet
-	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-sound@vger.kernel.org>, Mark Brown
-	<broonie@kernel.org>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, Rob
- Herring <robh@kernel.org>
-Subject: [PATCH v2 3/6] ASoC: dt-bindings: meson: axg-pdm: claim support of A1 SoC family
-Date: Sun, 9 Mar 2025 21:21:24 +0300
-Message-ID: <20250309182127.1322890-4-jan.dakinevich@salutedevices.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250309182127.1322890-1-jan.dakinevich@salutedevices.com>
-References: <20250309182127.1322890-1-jan.dakinevich@salutedevices.com>
+	id 1trMCF-000000013PU-2QQw;
+	Sun, 09 Mar 2025 19:20:24 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 410F55C03BF;
+	Sun,  9 Mar 2025 19:18:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E888C4CEE3;
+	Sun,  9 Mar 2025 19:20:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741548020;
+	bh=e9jsJPt3rxxt3JCEOy0V44SWUpK7aFmyt5qQ6Jg4yuI=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=mQRPYnG/R19rXJOvfwcg1loO2ZcuHcn7/zzqPCFWhG7rbiDSSWuuLoT8EI9MGh32f
+	 dKojFFNvmLUoPKXyMwvCdPpKwQOZH/1ciEX8hPyca+jH6mCU+A3h+SyIRQcaip81OY
+	 siQEQZkumEopv3WznCepdxrg7W+X8GmzC+9mlQ8lYszvYMqpVqniHQDWWqhoR2eFiM
+	 3JD0S2uHfnMKZAeLI5I/Rf44fX9msXD46afS6T2Bk6e6kUCtgbPs0eHEV+glJ84l4z
+	 w6x9tXDz20DwqE9K9ef3Ju8yoMown3kyFe9ewRL+mhSX8+etRm17kM4KS24NPyoBUQ
+	 iTCL+oH87Jc2g==
+Date: Sun, 09 Mar 2025 14:20:18 -0500
 MIME-Version: 1.0
-X-Originating-IP: [172.28.64.252]
-X-ClientProxiedBy: p-i-exch-a-m2.sberdevices.ru (172.24.196.120) To
- p-exch-cas-a-m1.sberdevices.ru (172.24.201.216)
-X-KSMG-Rule-ID: 1
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 191599 [Mar 09 2025]
-X-KSMG-AntiSpam-Version: 6.1.1.11
-X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 51 0.3.51 68896fb0083a027476849bf400a331a2d5d94398, {Tracking_smtp_not_equal_from}, sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, FromAlignment: n
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2025/03/09 17:28:00 #27692143
-X-KSMG-AntiVirus-Status: Clean, skipped
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, Takashi Iwai <tiwai@suse.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-sound@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-kernel@vger.kernel.org
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <20250309181630.1322745-3-jan.dakinevich@salutedevices.com>
+References: <20250309181630.1322745-1-jan.dakinevich@salutedevices.com>
+ <20250309181630.1322745-3-jan.dakinevich@salutedevices.com>
+Message-Id: <174154801891.2046627.7087067779247838486.robh@kernel.org>
+Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: meson: t9015: add support
+ for A1 SoC family
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250309_112136_091350_59CF572C 
-X-CRM114-Status: GOOD (  10.44  )
+X-CRM114-CacheID: sfid-20250309_122023_730695_B113BE2A 
+X-CRM114-Status: GOOD (  11.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,27 +81,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add "amlogic,a1-pdm" compatible string alias to "amlogic,axg-pdm".
 
-Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
----
- Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On Sun, 09 Mar 2025 21:16:29 +0300, Jan Dakinevich wrote:
+> Add support for internal audio codec found A1 SoC family. On this SoC
+> the component supports capturing from ADC and has specific configuration
+> of input/output lines.
+> 
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> ---
+>  .../bindings/sound/amlogic,t9015.yaml         | 69 +++++++++++++++++--
+>  1 file changed, 65 insertions(+), 4 deletions(-)
+> 
 
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
-index df21dd72fc65..9b6cd9f03a0c 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.yaml
-@@ -16,6 +16,7 @@ properties:
-           - enum:
-               - amlogic,g12a-pdm
-               - amlogic,sm1-pdm
-+              - amlogic,a1-pdm
-           - const: amlogic,axg-pdm
-       - const: amlogic,axg-pdm
- 
--- 
-2.34.1
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml: allOf:1:else: 'anyOf' conditional failed, one must be fixed:
+	'lineout-left' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml: allOf:1:else: 'anyOf' conditional failed, one must be fixed:
+	'lineout-right' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml: allOf:1:else: 'anyOf' conditional failed, one must be fixed:
+	'linein-left' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml: allOf:1:else: 'anyOf' conditional failed, one must be fixed:
+	'linein-right' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml: allOf:1:else: 'anyOf' conditional failed, one must be fixed:
+	'micbias' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250309181630.1322745-3-jan.dakinevich@salutedevices.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
 _______________________________________________
