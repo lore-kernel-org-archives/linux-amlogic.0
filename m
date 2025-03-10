@@ -4,64 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87B6EC282DE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Mar 2025 08:09:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17AF0C282DE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Mar 2025 12:17:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pjl77MwxO1R9uF+NbL3I2/Nuv+Uk7Ev7WSCpSgQrIrs=; b=N89K3qPs5TZdaF
-	GrKJmjDGeybLM30/nzq/dVPB8nr2hXrq9+1j4q8U9Pgh7DD0kDQ5VAvBnVYVkQAPcRs70gIRUpRbV
-	GA4ydIE5/fXjpk8RXY3gF4XyDAWMYfDIgpKqUHK7EWgRRPAAhfJFAYYrjHEi4jjEhhdfq96fDDZYJ
-	9PLRZIYwVGX+ngT9m9shjS5+xKRTedicr98/1gtqqoAOTg6bBTRhlYr3lTBfLhV+R3yfvbRLWY9gD
-	bhi9VWn74EZWV1fATljLPD7OVw8kxMOcIbcvnBQ9G+0vuQ+2s59Kndj01c0VoiDrhvyzRPgoduN5u
-	0en5eEimxzySzNI5wJbw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=gzOeRLwQurMUf3W1emuxReuAqGGzQo9FtKbvr8+vDvQ=; b=2NSd/7sz3yG+0c
+	MJLX6bSm+DDwlFRhri/xt8S6uVnQvnQp1wsKbUTpr+k8oYYymLm/8aR/cYMlfx4fXAYwjj99F3K8J
+	WKge39UtmtDCQZ412xhoM3jfCogg8FxqvSeI/4WbvX+pUP0khMwDQ/zFtprHDK6ynclGy6GChqfUl
+	KIYOjfVctEkl5HrOCKa3jkHKDvrfdK4tkEnZWK8oWC/JmtJHQgD3NskNjhsHHvF8LsjUC3vyOrg+5
+	iyt5Yq4DoqNXtN7spww2uW3IMxHRs++7tZy1U82Pf1LaJfvcqvBQ/47AmjbOIhbNhjT5TEsvLxCr0
+	QuJM4JT5peRONRkpkwZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1trYCa-00000001r9S-3XbM;
-	Mon, 10 Mar 2025 08:09:32 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1trc43-00000002ZTM-43Qs;
+	Mon, 10 Mar 2025 12:16:59 +0000
+Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1trYCV-00000001r7d-1NYQ;
-	Mon, 10 Mar 2025 08:09:28 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 56B3AA44D25;
-	Mon, 10 Mar 2025 08:03:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 590AEC4CEE5;
-	Mon, 10 Mar 2025 08:09:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741594166;
-	bh=gwas8E4kvvAA/eUvbABEADodAjBCs+rgr6xiwge6OXE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a+66pxfoikf19N4ZasCwPfg8jAydGU3Gk+jsm+rgiOAD3usvsqyWDS7W6OzK4ss47
-	 JyaAG7IZNJHl3E0gHRNI0g0oUpdr0BeO/Wk1Cjtog4US8Elt69O3dllahJ8GrjQEcg
-	 agdKCJ3hR+sOwTGvnQDAtc14qdFAwk6nc14R6CZhVyGKL2vove7TKEvpPur9qy5cxc
-	 aEeH4JD80K987+bq+mfpRAecYzYAksY81JkSA9G9iuj7hCMpT3IRlA6xoK+oKOfY4K
-	 IaeN09ULdgMOrS/mNZ4BCZDZRZLQLVj7087aDkIuex3SOUqq1/Xu4EKUi39Ju24HEK
-	 64P5KU46tsj4Q==
-Date: Mon, 10 Mar 2025 09:09:22 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Jaroslav Kysela <perex@perex.cz>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
-	Mark Brown <broonie@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>
-Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: meson: t9015: add support for
- A1 SoC family
-Message-ID: <20250310-smiling-gerbil-of-whirlwind-8fa4a5@krzk-bin>
-References: <20250309181630.1322745-1-jan.dakinevich@salutedevices.com>
- <20250309181630.1322745-3-jan.dakinevich@salutedevices.com>
+	id 1trbwa-00000002XhQ-36NS;
+	Mon, 10 Mar 2025 12:09:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=PqVBOCxsxyp7wajKPgMinDlSlaZeZV6g0DWdsy2a0XY=; b=FO2AjppqJGF5ifVgbYsiWDAgyW
+	IwfC5BRAdftqY9sbhjmf+MCfwuMrOOWTovki9FgpdbT2bLnlNmiz0LtHC68eHtgmam9Wy+vbVjPrL
+	3QfLr390Qbk4K1lziDcNf9StX1h5Uga4B3FfQdbIf8jBoVzjqb+d4/ilQW3EPl4onGnYF04G7CjzP
+	0ifaNoJ5/39nZYbt3L9NS3FoUhz20xmYGGZpZclGuYLr2+wlpoE+Uje6uyPNRlytqngG+BcrKsyAR
+	CdKvD+S0XX1WcQwOFelY6/QOD0LA8D4USDJSAxn/F1cAqNLnhxVMW2/HWWInM/3sY0vDH9FRPrZ6U
+	3VId71fg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:48000)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1trbwK-0002XX-2w;
+	Mon, 10 Mar 2025 12:09:01 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1trbwE-0002Rn-1T;
+	Mon, 10 Mar 2025 12:08:54 +0000
+Date: Mon, 10 Mar 2025 12:08:54 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>, netdev@vger.kernel.org,
+	Paolo Abeni <pabeni@redhat.com>,
+	Samuel Holland <samuel@sholland.org>, Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH net-next 0/9] net: stmmac: remove unnecessary
+ of_get_phy_mode() calls
+Message-ID: <Z87WVk0NzMUyaxDj@shell.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250309181630.1322745-3-jan.dakinevich@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250310_010927_496119_1CED452A 
-X-CRM114-Status: GOOD (  14.56  )
+X-CRM114-CacheID: sfid-20250310_050916_775226_8B94CA77 
+X-CRM114-Status: UNSURE (   8.76  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,137 +97,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Mar 09, 2025 at 09:16:29PM +0300, Jan Dakinevich wrote:
-> Add support for internal audio codec found A1 SoC family. On this SoC
-> the component supports capturing from ADC and has specific configuration
-> of input/output lines.
-> 
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> ---
->  .../bindings/sound/amlogic,t9015.yaml         | 69 +++++++++++++++++--
->  1 file changed, 65 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
-> index 5f5cccdbeb34..962795470601 100644
-> --- a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
-> +++ b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
-> @@ -9,9 +9,6 @@ title: Amlogic T9015 Internal Audio DAC
->  maintainers:
->    - Jerome Brunet <jbrunet@baylibre.com>
->  
-> -allOf:
-> -  - $ref: dai-common.yaml#
-> -
->  properties:
->    $nodename:
->      pattern: "^audio-controller@.*"
-> @@ -21,7 +18,9 @@ properties:
->  
->    compatible:
->      items:
-> -      - const: amlogic,t9015
-> +      - enum:
-> +          - amlogic,t9015
-> +          - amlogic,t9015-a1
->  
->    clocks:
->      items:
-> @@ -43,6 +42,17 @@ properties:
->  
->    sound-name-prefix: true
->  
-> +  lineout-left:
+Hi,
 
-Missing vendor prefix.
+This series removes unnecessary of_get_phy_mode() calls from the stmmac
+glue drivers. stmmac_probe_config_dt() / devm_stmmac_probe_config_dt()
+already gets the interface mode using device_get_phy_mode() and stores
+it in plat_dat->phy_interface.
 
-> +    $ref: /schemas/types.yaml#/definitions/string
+Therefore, glue drivers using of_get_phy_mode() are just duplicating
+the work that has already been done.
 
-enum with values
+This series adjusts the glue drivers to remove their usage of
+of_get_phy_mode().
 
-> +  lineout-right:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +  linein-left:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +  linein-right:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +  micbias:
+ drivers/net/ethernet/stmicro/stmmac/dwmac-anarion.c    | 18 ++++++++----------
+ drivers/net/ethernet/stmicro/stmmac/dwmac-ipq806x.c    | 12 ++++--------
+ drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c   |  8 +-------
+ drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c    |  6 +-----
+ .../net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c    |  4 +---
+ drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c         |  2 +-
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sti.c        | 12 ++++--------
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c      |  8 +-------
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sunxi.c      |  6 +-----
+ 9 files changed, 22 insertions(+), 54 deletions(-)
 
-use proper unit suffix name, e.g. microvolt
-
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +
->  required:
->    - "#sound-dai-cells"
->    - compatible
-> @@ -52,6 +62,57 @@ required:
->    - resets
->    - AVDD-supply
->  
-> +
-
-Only one blank line
-
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: amlogic,t9015-a1
-> +    then:
-> +      properties:
-> +        lineout-left:
-> +          items:
-
-You do not have multiple items here, drop.
-
-> +            - enum:
-> +                - none
-> +                - right
-> +                - left-inverted
-> +        lineout-right:
-> +          items:
-> +            - enum:
-> +                - none
-> +                - left
-> +                - right-inverted
-> +        linein-left:
-> +          items:
-> +            - enum:
-> +                - none
-> +                - differential
-> +                - positive
-> +                - negative
-> +        linein-right:
-> +          items:
-> +            - enum:
-> +                - none
-> +                - differential
-> +                - positive
-> +                - negative
-
-All these go to the top level.
-
-> +        micbias:
-> +          items:
-> +            - enum:
-> +                - 2.0V
-> +                - 2.1V
-> +                - 2.3V
-> +                - 2.5V
-> +                - 2.8V
-> +    else:
-> +      lineout-left: false
-> +      lineout-right: false
-> +      linein-left: false
-> +      linein-right: false
-> +      micbias: false
-
-This is correct.
-
-Best regards,
-Krzysztof
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
 _______________________________________________
 linux-amlogic mailing list
