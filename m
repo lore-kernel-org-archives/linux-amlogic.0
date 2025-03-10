@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 232C2C28B2E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Mar 2025 12:22:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ACAFC282DE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Mar 2025 12:23:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:MIME-Version:Subject:Cc
 	:To:From:References:In-Reply-To:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=loqqiS40ZoM06NZaIclm1qOpET9xpToKqSPXki93yVk=; b=TI0DSL38bW6PYr
-	rNjdWbeHzDc8ObETeyE3gXsWfNcwprYia0JAv/JGgHqT/L0hfk0qmq0nhS9ZzjIOTu/tK3e84zl1H
-	uDhsfHc+bTNMym5L15od1b3ZUro2JxjIFdaqP6NYJ79FKARle4nGEzKyX7U2mwvh24RzGQpbhvBPy
-	/hEbufuK/GmSGZhpb8jh100dYJdOx0axYxEPE+gX1h3icdxCkBR3Xt0dmTex3znai/g9546fX+6mO
-	2Vp/FfCXydtfS9Ycz+T6GORlRzhQ7DnLShj2QiKUIrkSQcRew0Gr+FoUz1nrKdRWqvPzvEo4reURz
-	8lj/RTbzBrXgBPoCGRkw==;
+	List-Owner; bh=MjrSuDM8EQMZZ3KOx8kipFORTZqBiDs7f3T39rcsOj4=; b=3BtdpMHaNYdS6Y
+	IPUDigv2ax1oVfTqPdutxYnY2spqO/MVLpTkSD0WNv6OjrmOYLklBiFwryyg9kqp7NeGxwaE39LLS
+	iMdgH/GblaJsD3bpOASgBypJGD7u5pZcXJi3CRRc0vFxEIC3muixRiBLaCnlITkCnXj9Am8fOE4hB
+	UCD1On3m5oNIkwqLKjAEuBYqCEoSik3VnrxbPV1YETJF3nMfh6rZ3NQYhpbuLn2odO12C2XJ6N7XT
+	pMljwlh4epsYK72LzVcUKNnKo+ZHC70ela4lGAp5weip3NvCK5jdj5WAjYQK5FzSM57AUgl9ccnUG
+	y1BG0ife55LIO94gj++A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1trc8u-00000002akf-0Q2d;
-	Mon, 10 Mar 2025 12:22:00 +0000
+	id 1trcAb-00000002b32-1biN;
+	Mon, 10 Mar 2025 12:23:45 +0000
 Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1trbyR-00000002Y7z-2ji6;
-	Mon, 10 Mar 2025 12:11:12 +0000
+	id 1trbyZ-00000002YB2-3L7q;
+	Mon, 10 Mar 2025 12:11:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
 	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
 	In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
 	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=aWTmdggI1wrqKzQN44F171C0Oq8MU3PXDbUpFboH5dg=; b=es/Rpd3PwEPJxZRKiCIjjDwd9k
-	ehkjloYok5y0PwNlCriZSGPf90QjawDiKF/SWpXsE42pv5JUCh1XXAp2Msn5v+SHGER1Q75vIEd4u
-	dTwo/dhf1bhq0lwMJAZhEfaJsYvH9+jVBuOvEhNA433CkL/MwvGdftcvJtqeiiJ0ZK08OaNYXACMc
-	+/dqDn6FwCXr18QuphazWCwzR+QihwgTjRE9frL0UQSXYk5XQQ2NKJYSprvFr3kp7hfL1qBWrzvWv
-	8zzbipbZD2mD2EC1gZ5YFTKpIrAsKS+ozt9izFaiCN/9joCwkckAhMthVxcCBMp7FkiBzjDCitGEg
-	eBo7RCOw==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:58186 helo=rmk-PC.armlinux.org.uk)
+	bh=ARCXnqS38tZ6SrvZyY4r4LsmND+qBD6vwra/0tog6Ok=; b=A4QTFwP92MvvwiC1CwF600PCv2
+	pKuDyEuS43X1T9u2nX1zkmEPe/IAk1zy/FiBCClxg/q5F+J5+cZSr3w49TGekynnqUZ4kk6QRhQtQ
+	EuZ/5HAwyvRRpGXtzWLgQ9ZTaZnvpKHlS4Rs3CkKAKB+OEIO4sIWOL/2QZEOHwtdcdybCzxyrC4Q2
+	eaeVYKeOgU1oimksoG2uoHyzniS+296SZSNylUWGQg9K/DVkMxcirnghCdqaH2YH6UzUs2e8rPwXF
+	ZN0ehYTDxAKEVWdYhHjRF/Yu+6Igix0GaqFM8QJchXFjfTanR7clqfryFDAgGwByM7jhHgEY98nUS
+	N5Rn86Gg==;
+Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:58196 helo=rmk-PC.armlinux.org.uk)
 	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <rmk@armlinux.org.uk>)
-	id 1trbyB-0002Yr-2g;
-	Mon, 10 Mar 2025 12:10:55 +0000
+	id 1trbyG-0002ZB-2u;
+	Mon, 10 Mar 2025 12:11:01 +0000
 Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
 	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1trbxq-005qYG-2E; Mon, 10 Mar 2025 12:10:34 +0000
+	id 1trbxv-005qYM-5m; Mon, 10 Mar 2025 12:10:39 +0000
 In-Reply-To: <Z87WVk0NzMUyaxDj@shell.armlinux.org.uk>
 References: <Z87WVk0NzMUyaxDj@shell.armlinux.org.uk>
 From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
@@ -76,14 +76,14 @@ Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
 	Paolo Abeni <pabeni@redhat.com>,
 	Samuel Holland <samuel@sholland.org>,
 	Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH net-next 4/9] net: stmmac: ipq806x: remove of_get_phy_mode()
+Subject: [PATCH net-next 5/9] net: stmmac: meson8b: remove of_get_phy_mode()
 MIME-Version: 1.0
 Content-Disposition: inline
-Message-Id: <E1trbxq-005qYG-2E@rmk-PC.armlinux.org.uk>
-Date: Mon, 10 Mar 2025 12:10:34 +0000
+Message-Id: <E1trbxv-005qYM-5m@rmk-PC.armlinux.org.uk>
+Date: Mon, 10 Mar 2025 12:10:39 +0000
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250310_051111_687443_89EA1EA0 
-X-CRM114-Status: GOOD (  12.34  )
+X-CRM114-CacheID: sfid-20250310_051119_833514_3BBFD053 
+X-CRM114-Status: GOOD (  10.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,47 +104,30 @@ devm_stmmac_probe_config_dt() already gets the PHY mode from firmware,
 which is stored in plat_dat->phy_interface. Therefore, we don't need to
 get it in platform code.
 
-Pass plat_dat into ipq806x_gmac_of_parse(), and set gmac->phy_mode from
-plat_dat->phy_interface.
+Set dwmac->phy_mode from plat_dat->phy_interface.
 
 Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-ipq806x.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-ipq806x.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-ipq806x.c
-index 0a9c137cc4e6..ca4035cbb55b 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-ipq806x.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-ipq806x.c
-@@ -211,16 +211,12 @@ static int ipq806x_gmac_set_speed(struct ipq806x_gmac *gmac, int speed)
- 	return 0;
- }
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+index 9c2d62d133ad..a50782994b97 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+@@ -417,11 +417,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+ 		return PTR_ERR(dwmac->regs);
  
--static int ipq806x_gmac_of_parse(struct ipq806x_gmac *gmac)
-+static int ipq806x_gmac_of_parse(struct ipq806x_gmac *gmac,
-+				 struct plat_stmmacenet_data *plat_dat)
- {
- 	struct device *dev = &gmac->pdev->dev;
--	int ret;
- 
--	ret = of_get_phy_mode(dev->of_node, &gmac->phy_mode);
+ 	dwmac->dev = &pdev->dev;
+-	ret = of_get_phy_mode(pdev->dev.of_node, &dwmac->phy_mode);
 -	if (ret) {
--		dev_err(dev, "missing phy mode property\n");
--		return -EINVAL;
+-		dev_err(&pdev->dev, "missing phy-mode property\n");
+-		return ret;
 -	}
-+	gmac->phy_mode = plat_dat->phy_interface;
++	dwmac->phy_mode = plat_dat->phy_interface;
  
- 	if (of_property_read_u32(dev->of_node, "qcom,id", &gmac->id) < 0) {
- 		dev_err(dev, "missing qcom id property\n");
-@@ -398,7 +394,7 @@ static int ipq806x_gmac_probe(struct platform_device *pdev)
- 
- 	gmac->pdev = pdev;
- 
--	err = ipq806x_gmac_of_parse(gmac);
-+	err = ipq806x_gmac_of_parse(gmac, plat_dat);
- 	if (err) {
- 		dev_err(dev, "device tree parsing error\n");
- 		return err;
+ 	/* use 2ns as fallback since this value was previously hardcoded */
+ 	if (of_property_read_u32(pdev->dev.of_node, "amlogic,tx-delay-ns",
 -- 
 2.30.2
 
