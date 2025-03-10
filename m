@@ -4,85 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71D03C28B28
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Mar 2025 02:04:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87B6EC282DE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Mar 2025 08:09:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dD7WuaVdBgp9RyRsdnogawwbF2ef0VevjyGg1USIfaI=; b=Bf79tw5XVHuqua
-	1YRfyyiMTOINB78xnmukuqW1U/QGi3N61zMOTnQuSowIrx48sztU/7k43vnokx4O8w48yqyByV4Hb
-	v65/HfR4UDCpoBz5ijnTX0rZTlG7hPSvhQkqwDzR7JFcJR//9YmxHm4aE7Bux+WI7yyK6etKXOTg7
-	DN/t4iygQae66Kzy44KuQa4WgoY+vx1B/hf1RcGT6Y2tBML6JOfzY9956VKBXsV25IF0gt8XrkslE
-	dZPdBtuNfuFOLQwGdy6dCZBtrYVyeJ4VwYjo6xBuavth7znQWG9JBLihzSwCO5NV3BHQkIf3Dq7UT
-	0X7gQjSgv67DcDwJZ3EQ==;
+	List-Owner; bh=pjl77MwxO1R9uF+NbL3I2/Nuv+Uk7Ev7WSCpSgQrIrs=; b=N89K3qPs5TZdaF
+	GrKJmjDGeybLM30/nzq/dVPB8nr2hXrq9+1j4q8U9Pgh7DD0kDQ5VAvBnVYVkQAPcRs70gIRUpRbV
+	GA4ydIE5/fXjpk8RXY3gF4XyDAWMYfDIgpKqUHK7EWgRRPAAhfJFAYYrjHEi4jjEhhdfq96fDDZYJ
+	9PLRZIYwVGX+ngT9m9shjS5+xKRTedicr98/1gtqqoAOTg6bBTRhlYr3lTBfLhV+R3yfvbRLWY9gD
+	bhi9VWn74EZWV1fATljLPD7OVw8kxMOcIbcvnBQ9G+0vuQ+2s59Kndj01c0VoiDrhvyzRPgoduN5u
+	0en5eEimxzySzNI5wJbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1trSUk-00000001Ph6-3wn9;
-	Mon, 10 Mar 2025 02:03:55 +0000
-Received: from mgamail.intel.com ([192.198.163.11])
+	id 1trYCa-00000001r9S-3XbM;
+	Mon, 10 Mar 2025 08:09:32 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1trSUh-00000001Pgb-3p5k;
-	Mon, 10 Mar 2025 02:03:53 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741572232; x=1773108232;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6CykNk9cUToWOqSzi+0FSLKdtYh2ymFzaVs96PibQ6M=;
-  b=bVOnBdhhHR3fLgAUAoxH2rDH8/4BS8UwCRvnhjaX5qMo1hL86QRktfKS
-   FxIcl603aNrBvLmRPcB3xccrcRYkNp0QjHluYkM8KBQcPR3sCSGEPlEA0
-   ZhGIKncuuDPoNIRRviehtnAp6iPqedMz3ZxgDu64raUJ0Of7+il+VG7oG
-   Kwwhd530B/TVPhQ8bYiQvIpfU95+VWdafQfM+ytqHUgbx739FnF/hrL6x
-   LZV1OiEC5kcaOxLtarOwY7RRj0C9Tkpy066L5hVuZTCyvw6fqsrULRgJP
-   wW+iVXRSdLjTtIkaMt1WLG9xD7eK/bAn47VsFYiBtnqllucUyErHYVly0
-   w==;
-X-CSE-ConnectionGUID: SIChJAB0TpOAKda74Ayk/w==
-X-CSE-MsgGUID: WXY5Yb58SBiqKLGWL5VhZQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="53193569"
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
-   d="scan'208";a="53193569"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2025 19:03:50 -0700
-X-CSE-ConnectionGUID: BjxoIDHuSPq56c0P2KxA4Q==
-X-CSE-MsgGUID: que1fRfzQBqTdfIlhlvZOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; 
-   d="scan'208";a="124456649"
-Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
-  by fmviesa005.fm.intel.com with ESMTP; 09 Mar 2025 19:03:17 -0700
-Received: from kbuild by a4747d147074 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1trSU6-0003hE-2M;
-	Mon, 10 Mar 2025 02:03:14 +0000
-Date: Mon, 10 Mar 2025 10:02:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Jaroslav Kysela <perex@perex.cz>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v2 2/4] ASoC: meson: g12a-toacodec: drop the definition
- of bits
-Message-ID: <202503100909.xnqNYW9u-lkp@intel.com>
-References: <20250309181600.1322701-3-jan.dakinevich@salutedevices.com>
+	id 1trYCV-00000001r7d-1NYQ;
+	Mon, 10 Mar 2025 08:09:28 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 56B3AA44D25;
+	Mon, 10 Mar 2025 08:03:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 590AEC4CEE5;
+	Mon, 10 Mar 2025 08:09:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741594166;
+	bh=gwas8E4kvvAA/eUvbABEADodAjBCs+rgr6xiwge6OXE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a+66pxfoikf19N4ZasCwPfg8jAydGU3Gk+jsm+rgiOAD3usvsqyWDS7W6OzK4ss47
+	 JyaAG7IZNJHl3E0gHRNI0g0oUpdr0BeO/Wk1Cjtog4US8Elt69O3dllahJ8GrjQEcg
+	 agdKCJ3hR+sOwTGvnQDAtc14qdFAwk6nc14R6CZhVyGKL2vove7TKEvpPur9qy5cxc
+	 aEeH4JD80K987+bq+mfpRAecYzYAksY81JkSA9G9iuj7hCMpT3IRlA6xoK+oKOfY4K
+	 IaeN09ULdgMOrS/mNZ4BCZDZRZLQLVj7087aDkIuex3SOUqq1/Xu4EKUi39Ju24HEK
+	 64P5KU46tsj4Q==
+Date: Mon, 10 Mar 2025 09:09:22 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Jaroslav Kysela <perex@perex.cz>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
+	Mark Brown <broonie@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>
+Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: meson: t9015: add support for
+ A1 SoC family
+Message-ID: <20250310-smiling-gerbil-of-whirlwind-8fa4a5@krzk-bin>
+References: <20250309181630.1322745-1-jan.dakinevich@salutedevices.com>
+ <20250309181630.1322745-3-jan.dakinevich@salutedevices.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250309181600.1322701-3-jan.dakinevich@salutedevices.com>
+In-Reply-To: <20250309181630.1322745-3-jan.dakinevich@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250309_190352_011107_A31A48BF 
-X-CRM114-Status: GOOD (  17.43  )
+X-CRM114-CacheID: sfid-20250310_010927_496119_1CED452A 
+X-CRM114-Status: GOOD (  14.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,113 +78,137 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jan,
+On Sun, Mar 09, 2025 at 09:16:29PM +0300, Jan Dakinevich wrote:
+> Add support for internal audio codec found A1 SoC family. On this SoC
+> the component supports capturing from ADC and has specific configuration
+> of input/output lines.
+> 
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> ---
+>  .../bindings/sound/amlogic,t9015.yaml         | 69 +++++++++++++++++--
+>  1 file changed, 65 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+> index 5f5cccdbeb34..962795470601 100644
+> --- a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+> @@ -9,9 +9,6 @@ title: Amlogic T9015 Internal Audio DAC
+>  maintainers:
+>    - Jerome Brunet <jbrunet@baylibre.com>
+>  
+> -allOf:
+> -  - $ref: dai-common.yaml#
+> -
+>  properties:
+>    $nodename:
+>      pattern: "^audio-controller@.*"
+> @@ -21,7 +18,9 @@ properties:
+>  
+>    compatible:
+>      items:
+> -      - const: amlogic,t9015
+> +      - enum:
+> +          - amlogic,t9015
+> +          - amlogic,t9015-a1
+>  
+>    clocks:
+>      items:
+> @@ -43,6 +42,17 @@ properties:
+>  
+>    sound-name-prefix: true
+>  
+> +  lineout-left:
 
-kernel test robot noticed the following build warnings:
+Missing vendor prefix.
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on linus/master v6.14-rc5 next-20250307]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +    $ref: /schemas/types.yaml#/definitions/string
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jan-Dakinevich/ASoC-meson-codec-glue-add-support-for-capture-stream/20250310-022013
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20250309181600.1322701-3-jan.dakinevich%40salutedevices.com
-patch subject: [PATCH v2 2/4] ASoC: meson: g12a-toacodec: drop the definition of bits
-config: i386-buildonly-randconfig-005-20250310 (https://download.01.org/0day-ci/archive/20250310/202503100909.xnqNYW9u-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250310/202503100909.xnqNYW9u-lkp@intel.com/reproduce)
+enum with values
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503100909.xnqNYW9u-lkp@intel.com/
+> +  lineout-right:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +  linein-left:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +  linein-right:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +  micbias:
 
-All warnings (new ones prefixed by >>):
+use proper unit suffix name, e.g. microvolt
 
->> sound/soc/meson/g12a-toacodec.c:83:11: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((mclk_sel), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (mclk_sel)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
-      83 |                                       FIELD_PREP(mclk_sel, mux));
-         |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:115:3: note: expanded from macro 'FIELD_PREP'
-     115 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:72:53: note: expanded from macro '__BF_FIELD_CHECK'
-      72 |                 BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
-      73 |                                  __bf_cast_unsigned(_reg, ~0ull),       \
-         |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      74 |                                  _pfx "type of reg too small for mask"); \
-         |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:39:58: note: expanded from macro 'BUILD_BUG_ON_MSG'
-      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-         |                                     ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
-   include/linux/compiler_types.h:542:22: note: expanded from macro 'compiletime_assert'
-     542 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |         ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/compiler_types.h:530:23: note: expanded from macro '_compiletime_assert'
-     530 |         __compiletime_assert(condition, msg, prefix, suffix)
-         |         ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/compiler_types.h:522:9: note: expanded from macro '__compiletime_assert'
-     522 |                 if (!(condition))                                       \
-         |                       ^~~~~~~~~
-   1 warning generated.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +
+>  required:
+>    - "#sound-dai-cells"
+>    - compatible
+> @@ -52,6 +62,57 @@ required:
+>    - resets
+>    - AVDD-supply
+>  
+> +
 
+Only one blank line
 
-vim +83 sound/soc/meson/g12a-toacodec.c
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: amlogic,t9015-a1
+> +    then:
+> +      properties:
+> +        lineout-left:
+> +          items:
 
-    42	
-    43	static int g12a_toacodec_mux_put_enum(struct snd_kcontrol *kcontrol,
-    44					      struct snd_ctl_elem_value *ucontrol)
-    45	{
-    46		struct snd_soc_component *component =
-    47			snd_soc_dapm_kcontrol_component(kcontrol);
-    48		struct g12a_toacodec *priv = snd_soc_component_get_drvdata(component);
-    49		struct snd_soc_dapm_context *dapm =
-    50			snd_soc_dapm_kcontrol_dapm(kcontrol);
-    51		struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
-    52		unsigned int mclk_sel = GENMASK(2, 0);
-    53		unsigned int mux, reg;
-    54	
-    55		if (ucontrol->value.enumerated.item[0] >= e->items)
-    56			return -EINVAL;
-    57	
-    58		mux = snd_soc_enum_item_to_val(e, ucontrol->value.enumerated.item[0]);
-    59		regmap_field_read(priv->field_dat_sel, &reg);
-    60	
-    61		if (mux == reg)
-    62			return 0;
-    63	
-    64		/* Force disconnect of the mux while updating */
-    65		snd_soc_dapm_mux_update_power(dapm, kcontrol, 0, NULL, NULL);
-    66	
-    67		regmap_field_write(priv->field_dat_sel, mux);
-    68		regmap_field_write(priv->field_lrclk_sel, mux);
-    69		regmap_field_write(priv->field_bclk_sel, mux);
-    70	
-    71		/*
-    72		 * FIXME:
-    73		 * On this soc, the glue gets the MCLK directly from the clock
-    74		 * controller instead of going the through the TDM interface.
-    75		 *
-    76		 * Here we assume interface A uses clock A, etc ... While it is
-    77		 * true for now, it could be different. Instead the glue should
-    78		 * find out the clock used by the interface and select the same
-    79		 * source. For that, we will need regmap backed clock mux which
-    80		 * is a work in progress
-    81		 */
-    82		snd_soc_component_update_bits(component, e->reg, mclk_sel,
-  > 83					      FIELD_PREP(mclk_sel, mux));
-    84	
-    85		snd_soc_dapm_mux_update_power(dapm, kcontrol, mux, e, NULL);
-    86	
-    87		return 1;
-    88	}
-    89	
+You do not have multiple items here, drop.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +            - enum:
+> +                - none
+> +                - right
+> +                - left-inverted
+> +        lineout-right:
+> +          items:
+> +            - enum:
+> +                - none
+> +                - left
+> +                - right-inverted
+> +        linein-left:
+> +          items:
+> +            - enum:
+> +                - none
+> +                - differential
+> +                - positive
+> +                - negative
+> +        linein-right:
+> +          items:
+> +            - enum:
+> +                - none
+> +                - differential
+> +                - positive
+> +                - negative
+
+All these go to the top level.
+
+> +        micbias:
+> +          items:
+> +            - enum:
+> +                - 2.0V
+> +                - 2.1V
+> +                - 2.3V
+> +                - 2.5V
+> +                - 2.8V
+> +    else:
+> +      lineout-left: false
+> +      lineout-right: false
+> +      linein-left: false
+> +      linein-right: false
+> +      micbias: false
+
+This is correct.
+
+Best regards,
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
