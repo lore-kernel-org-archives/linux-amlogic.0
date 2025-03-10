@@ -4,49 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F672C282DE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Mar 2025 12:32:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 084A9C28B2E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Mar 2025 12:33:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:MIME-Version:Subject:Cc
 	:To:From:References:In-Reply-To:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kORjjZ+BEu0DTHblGifvKsbHb82BIHvi5cOlI0lQc94=; b=M1s8BBlHdE2Baz
-	2oWS7ufAADQoHxfW56KHxqGz7+9SZvWXByDRSxlaR8XZYPIZFpI95pAPZHm11vE+vbn+AiMc6RJF0
-	zXm8xmdfFJspyRDBVw+8RtOnoW5zC2yysBPDS3ldmYE+TA+taOOl/FUGZ9f/XWVvcsACmH+fYmtz6
-	EsF//mA16mazdb+S5U91sdZybjVOpXYGVS86ZhlTLr+AMy8ZoE+/Gai/AVshUIdR4flGSu7G9sBX7
-	kgOV9eyeZJ3V5L5FkXdoWbnFIMn9LpnOK5UN7HDa650hj+rUqALWKfEyk1XArcSdHJalo5S6t4cr2
-	c2Pqe+cYd469nmvAw1Vg==;
+	List-Owner; bh=+48u0lhIVJa205Q0uNeICMUhXzn1wYpYGuviT05Zfts=; b=lxO32jb+S9BlAY
+	aMv53+vDKJik72+5KNvjWyFKjuke61gxJvXBNjz0etYFFXyZkLomR8CGP+uPgR3KJVN4jEEEGOP5i
+	7WMflflURwaXroVrNz0Zy4RWblzs8OJpfZ+3/R4m0XvBegpR+djDtEjvQFit+lFgkS7LGZtjhyc3h
+	py7+qnm608H6EX7pYV7pRNWcWvBUqqw8FEBN65N05mJ+hZVSDBtXnL6u6VoQCxwzBH9wWvc8q7xKq
+	i8nsipsQCkSxmnzSnW867g6Qcc78ScGzg+XOmYsKu8giICnmOIptT0Bxy5jskaSZeP4+iIekGu/M4
+	vFqvGbGaLV4HuT3Zl2Ng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1trcId-00000002dQy-1SAq;
-	Mon, 10 Mar 2025 12:32:03 +0000
-Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	id 1trcKE-00000002dnY-2buT;
+	Mon, 10 Mar 2025 12:33:42 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1trbyr-00000002YLO-085X;
-	Mon, 10 Mar 2025 12:11:38 +0000
+	id 1trbyu-00000002YNq-1N5R;
+	Mon, 10 Mar 2025 12:11:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Date:Sender:Message-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
+	In-Reply-To:Reply-To:Content-ID:Content-Description;
+	bh=mt2YgBWZEUT0iG0aW0svGoQUDQefZBeHbVh7XZ/Ckxo=; b=GMJKZLDbfFesO3ESbAXTfO/nkq
+	WBTKej3Xvgm0A8sWAlXTK8jwARjAliR/oEaRGXROppq7OHBTRV+TyyAOSnZOmzCwAFvpwLUOZQbFC
+	iiR4qNk//BTRt7wub18WMthJKwH5ORQ5fioR0meKKIe/m2OVqzL0dsUR+HZkyQXnnEibx4PodSi6x
+	oTOT9Ig7d0YFhf6DPPP04dbad2LB8GbEqmZhMvuuekitlw5JtdhoAbgoP6ptjaWrZa1pMrYxxQMO2
+	gLYbSTl8sOdQwV2W6dy9Z8DtgMWekDmFcquo849Pqo1mM06DlojtKTtvjV8eHIrw3bzZ0LOGgKqE+
+	1XL9Sr6g==;
+Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by desiato.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
+	id 1trbyr-00000001r5X-1rX5;
+	Mon, 10 Mar 2025 12:11:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
 	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
 	In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
 	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Lap+NCEO3qkAh4Z8F8rLb4aXPBqWoPmq7PJXAQzXCzE=; b=en/7KjNlhPw2h6/OaP67ZMJlvG
-	jyBTLtO0dum9hUUbT4F44LiQ9RzEHPfMZXMUb0Feu+XWrVjauiYEuOAvEFSNQS+Ey9UZtQvWD4g0p
-	/Rp2W9FJFVw1JGGAjQnyKqkpvD6mYpa+oxf4Ygh/uM8ZLdmXX/A6i1vfcXeg86NwI2ELVRRKfXr7a
-	h7jDK/51D4OTJsZTBEhg6UUmqvLviQnKfkmpvIjqnzUrfrkfJvrPzJHVpC7Hv3VMnA599t7vfkk/4
-	IB3B9QprwzUpdYHtHYO3h0Qnrbq3mUvgzPbY2QIQSKm4gRwOKWLcdOfL5UTtXX6V+i5Df5+zkZbfX
-	P/2i7x8w==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:54304 helo=rmk-PC.armlinux.org.uk)
+	bh=mt2YgBWZEUT0iG0aW0svGoQUDQefZBeHbVh7XZ/Ckxo=; b=cfsfbkHnMPo81oyupsD05mhfb0
+	i16j/27Y/Yb4O/djV8MbdjiVMADgjxVT4cCbQGEwemaKPGpBnfHD2pxYjOLrxSCoNhET+1BqM02ng
+	ikDvTiTI5FBSYLPSFnwlxEk9VHrHQPWGsafXOBrMYeW1MPaFez2CyPIKU4Nsd3jmhWLe7ut7XO77o
+	dn134AYTko5CGT5ME6WW/YR/quKXuzZ/BcD/aPHDhtnEFLgwTtyU5opaPuOPKVWFS2ECIw+SeaUWo
+	znwuWwELLyLyuaE77Jcs0nDceavWVcxkB9Iqu26KnSeaMA/86EHFJAnkyYzOTKSPRLLqB++mcctcM
+	T3sTN3jA==;
+Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:46328 helo=rmk-PC.armlinux.org.uk)
 	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <rmk@armlinux.org.uk>)
-	id 1trbyc-0002aV-2d;
-	Mon, 10 Mar 2025 12:11:23 +0000
+	id 1trbyS-0002Zq-25;
+	Mon, 10 Mar 2025 12:11:12 +0000
 Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
 	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1trbyF-005qYl-Lu; Mon, 10 Mar 2025 12:10:59 +0000
+	id 1trby5-005qYY-Dp; Mon, 10 Mar 2025 12:10:49 +0000
 In-Reply-To: <Z87WVk0NzMUyaxDj@shell.armlinux.org.uk>
 References: <Z87WVk0NzMUyaxDj@shell.armlinux.org.uk>
 From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
@@ -76,14 +90,14 @@ Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
 	Paolo Abeni <pabeni@redhat.com>,
 	Samuel Holland <samuel@sholland.org>,
 	Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH net-next 9/9] net: stmmac: sunxi: remove of_get_phy_mode()
+Subject: [PATCH net-next 7/9] net: stmmac: sti: remove of_get_phy_mode()
 MIME-Version: 1.0
 Content-Disposition: inline
-Message-Id: <E1trbyF-005qYl-Lu@rmk-PC.armlinux.org.uk>
-Date: Mon, 10 Mar 2025 12:10:59 +0000
+Message-Id: <E1trby5-005qYY-Dp@rmk-PC.armlinux.org.uk>
+Date: Mon, 10 Mar 2025 12:10:49 +0000
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250310_051137_078168_7DCBF113 
-X-CRM114-Status: GOOD (  10.04  )
+X-CRM114-CacheID: sfid-20250310_121137_589700_15B7189A 
+X-CRM114-Status: GOOD (  11.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,30 +118,51 @@ devm_stmmac_probe_config_dt() already gets the PHY mode from firmware,
 which is stored in plat_dat->phy_interface. Therefore, we don't need to
 get it in platform code.
 
-Set gmac->interface from plat_dat->phy_interface.
+Pass plat_dat into sti_dwmac_parse_data(), and set dwmac->interface
+from plat_dat->phy_interface.
 
 Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-sunxi.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sti.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sunxi.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sunxi.c
-index 1b1ce2888b2e..9f098ff0ff05 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sunxi.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sunxi.c
-@@ -116,11 +116,7 @@ static int sun7i_gmac_probe(struct platform_device *pdev)
- 	if (!gmac)
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sti.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sti.c
+index 13b9c2a51fce..be57c6c12c1c 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sti.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sti.c
+@@ -185,7 +185,8 @@ static int sti_dwmac_set_mode(struct sti_dwmac *dwmac)
+ }
+ 
+ static int sti_dwmac_parse_data(struct sti_dwmac *dwmac,
+-				struct platform_device *pdev)
++				struct platform_device *pdev,
++				struct plat_stmmacenet_data *plat_dat)
+ {
+ 	struct resource *res;
+ 	struct device *dev = &pdev->dev;
+@@ -204,12 +205,7 @@ static int sti_dwmac_parse_data(struct sti_dwmac *dwmac,
+ 	if (IS_ERR(regmap))
+ 		return PTR_ERR(regmap);
+ 
+-	err = of_get_phy_mode(np, &dwmac->interface);
+-	if (err && err != -ENODEV) {
+-		dev_err(dev, "Can't get phy-mode\n");
+-		return err;
+-	}
+-
++	dwmac->interface = plat_dat->phy_interface;
+ 	dwmac->regmap = regmap;
+ 	dwmac->gmac_en = of_property_read_bool(np, "st,gmac_en");
+ 	dwmac->ext_phyclk = of_property_read_bool(np, "st,ext-phyclk");
+@@ -268,7 +264,7 @@ static int sti_dwmac_probe(struct platform_device *pdev)
+ 	if (!dwmac)
  		return -ENOMEM;
  
--	ret = of_get_phy_mode(dev->of_node, &gmac->interface);
--	if (ret && ret != -ENODEV) {
--		dev_err(dev, "Can't get phy-mode\n");
--		return ret;
--	}
-+	gmac->interface = plat_dat->phy_interface;
- 
- 	gmac->tx_clk = devm_clk_get(dev, "allwinner_gmac_tx");
- 	if (IS_ERR(gmac->tx_clk)) {
+-	ret = sti_dwmac_parse_data(dwmac, pdev);
++	ret = sti_dwmac_parse_data(dwmac, pdev, plat_dat);
+ 	if (ret) {
+ 		dev_err(&pdev->dev, "Unable to parse OF data\n");
+ 		return ret;
 -- 
 2.30.2
 
