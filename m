@@ -4,190 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5D6EC282DE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Mar 2025 15:08:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46F5EC282DE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Mar 2025 17:18:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=55QepX6YY3I2oqNxBbXTK0py2vPdrsszKwZG5wK5NTM=; b=KiThPezGBvwMee
-	1QGbBd+kXrz/g5GBDrz1WS2QPsRaND/VlXlZg13rFULbMbYAol2d0gtJQPlsc6OZRK7atskzDiEDm
-	378MJlfww7PwzAHYEn3/UMyybN/Kc5MAbVlo8U3tyxkzwllW3u71NF+sw3yvH3bv93KwopMHyM+q3
-	kuU9m6ph5XZ+YD2KPag1i6ZQXgVykb/zGLL0C3bIef1O+yXTHtZFsBELUsHjkU4aebT5fsEHyDKPe
-	mkWiFXny7vuIf0waxU6B5lirvmCyZ5AGgswXL6ga0r1ovNr3Yr3R7UZqgsTJdBrTOEBM7qI9Nhm6L
-	TXY2dc9IkXh3ihioTZVA==;
+	List-Owner; bh=vRIfastdbBRS6yNCiX5LNYnYQHXunoHY6POL99j7lsA=; b=LecKcZqvt4LKz0
+	T91xMBaAbFJ/jLEbENni6Im72WbAakV0a30+J4ewP8cu7zShenLmkhOdFSPCHmNOQwzczkJjHo8lo
+	tDEV0LQaD+6C9YAnb/yFQHfqvo9rLL5FX0p+TvfugK5Q3hTJUw+h5W6K6OKQO1JJBNt73MoG2qJWA
+	wbrsD0sjxuczlEMcrtqwsDmcvowCwipAkkypAxIaZsmOjHfYbEZiVe1qV0/2qA+bY+I237yWFn473
+	hPeYZ++8/YcwaNSRyHCddq+Ndsqrger7bQcX9svGjMplWrJo0udK8nN0YJbz1sPruMcgKsfiM2sVY
+	Bwz+qKQXF/wYyTrPer7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1trejc-000000036RY-0A2k;
-	Mon, 10 Mar 2025 15:08:04 +0000
-Received: from mgamail.intel.com ([192.198.163.8])
+	id 1trglI-00000003TmF-0L8x;
+	Mon, 10 Mar 2025 17:17:56 +0000
+Received: from mgamail.intel.com ([192.198.163.13])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1trdPj-00000002pUf-2nRv;
-	Mon, 10 Mar 2025 13:43:28 +0000
+	id 1trgee-00000003Sdz-1XRu;
+	Mon, 10 Mar 2025 17:11:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1741614207; x=1773150207;
+  t=1741626664; x=1773162664;
   h=date:from:to:cc:subject:message-id:references:
-   in-reply-to:mime-version;
-  bh=xFhhZi3d057iC3S7Vm8ag5NDJ9S7hMpaSK8HIW8jUcI=;
-  b=HubLfhvePU+6GIiDgUNY1q15wWtyRq9PT6enm+IJn20/+5coSqlOiwlB
-   7aGPOd6TZ0jH5Uhp8ZiFf9XLVm9nHmsTDGwRkoZj1ShTdLwJSney1WC/Q
-   osxlhN7ufKiPjA67QVwllsJfJu7JCID3YAwsQHOmFlT/Uiy9QufglGoFh
-   jraRDSK55FbX1XBVlLLahX3JxIbuIAGT6ZrsbZUyBMOSgxbFrkpw9lW/t
-   FdXmSvYcsdlSyDlM5Qc+QKXiGk3g3ZCfRlkmVnDN3ev56MYwcNWFVUjzJ
-   xESmUScHkZFAzVm8cjjYSuz2jSJg848VdFaHdmEKdDW8pX0+ha/DUKZ0Z
+   mime-version:in-reply-to;
+  bh=voNjo21o3BJ1yoO1GHLS+0pcetuEukpGtYife/kyYB8=;
+  b=LPKKrdw1zz3PD5NatTc/ffPR0m+c+NhU7rnz1lezwivPdX8w1BOJDxv1
+   ueWOH/l5cRIDtJ5Wf8dRiGTAEltHZEFydImmo2p8PQMdFfEkO9OcHJIrv
+   TBf3sHhqwNroZyKUxY1jIHyZoV0J/j/jddjzRkHj4Qpfyl3rrgKmmGchI
+   GZG2RpA2RA+2qD0JivGDB5TBz/2eNkcyMgKznOP1Lt4oDHbPfbhSGIM2Q
+   N8xND+bzUMKnA3fA52xtAJgaIzS9QELUr3KM14koGvErP3kkDaOdhL30u
+   Ioiu6UVLTVj2tDFg+NaWDEX84EK1y8nyYkBpefnAwJwYUGywN54n8RRYZ
    w==;
-X-CSE-ConnectionGUID: XXAykqtHQ3inZPIPMKzRHA==
-X-CSE-MsgGUID: RijHYxW1RH2a7pZjYK/xTA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="60159011"
+X-CSE-ConnectionGUID: t6y+PY1MQJeiNUG1QMeVLQ==
+X-CSE-MsgGUID: TeUGw4vmRfq9uwSJrc3WzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="45427064"
 X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; 
-   d="scan'208";a="60159011"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 06:43:22 -0700
-X-CSE-ConnectionGUID: eRJ/g0q5Q4aFXs/1A/Zk+w==
-X-CSE-MsgGUID: KZA3uYnUQay7aVkxwpXdOg==
+   d="scan'208";a="45427064"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 10:11:02 -0700
+X-CSE-ConnectionGUID: rcALvII3SWuG40FzH3koiw==
+X-CSE-MsgGUID: ZncTHJjsQEyr2ybwv6q34A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; 
-   d="scan'208";a="157199335"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
-  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2025 06:43:22 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Mon, 10 Mar 2025 06:43:21 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Mon, 10 Mar 2025 06:43:21 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 10 Mar 2025 06:43:21 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BuKua69m759q6xUAufIVgQG5oPH1ZR5hPvkvs19rHmkDo714VGw8a1iRfVP2H8jtVNdZD1hVCOuRt4y7ZyTmEb0Tp8yJ3bzRG8KvIP0r0g3KGAXl9Z7j327T8k0VvcCOrz9WtAJLjYVhmpK4+yTQ2kKbBq0znk3eUNJ5jEAznBTbzJhVdQ1glwJEw+OzMitrIQfBiCY1c8Qsy86Y3s9kfQGw8mDv2p6hefdBB6LtGvuP8rrk1Xzzu+NcJyCBUaOY1d8IfbMh6QUYQTEopMemNIjld79gS1Gf1NxrzLxOQiaBngjSppDgTLUDQiFqU4zkyA2OrUnEL1NJiRUnedy2WQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7oU7o6+ucZQ/I1gmGdjpyYcBr+AEX2cGpBtjwRsVKqs=;
- b=YBznrVXDaLoyz+Ki3tb/XdGnZ3SifelgmEfIUQ7QBS205MSTf5CDyRaDV1ri3xzTVDm5J0ek8+j5PsYyRQtWuJ7K73eLVQMrntthQvaXGNczr/HdRqgJGj06G+jyWFzO9FOFYi7+B24poF/dZwKxReTxuMtYvf+edH2lZeBmxxPyQxaQMNJTisfGEciJPHi+TxIrv91uxJQ/NcG1m/WWeX6LWD4TnXxS1L2qUhXBy1uEsTovepitlW8IkICwJZ1puq2eTo/5IllrLrHoj9fdCQLS7yKrbGIoVTcV6OkU+jLXCLmohJypLHx+aOmOu+AEkBZF60vsdPqqMO/SXGH7Lg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8665.namprd11.prod.outlook.com (2603:10b6:8:1b8::6) by
- SN7PR11MB7018.namprd11.prod.outlook.com (2603:10b6:806:2ad::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.26; Mon, 10 Mar
- 2025 13:42:50 +0000
-Received: from DS0PR11MB8665.namprd11.prod.outlook.com
- ([fe80::8e7e:4f8:f7e4:3955]) by DS0PR11MB8665.namprd11.prod.outlook.com
- ([fe80::8e7e:4f8:f7e4:3955%4]) with mapi id 15.20.8511.026; Mon, 10 Mar 2025
- 13:42:50 +0000
-Date: Mon, 10 Mar 2025 14:42:37 +0100
-From: Michal Kubiak <michal.kubiak@intel.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-CC: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn
-	<andrew+netdev@lunn.ch>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Chen-Yu Tsai <wens@csie.org>,
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-arm-msm@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>, <linux-sunxi@lists.linux.dev>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Matthias Brugger
-	<matthias.bgg@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, "Neil
- Armstrong" <neil.armstrong@linaro.org>, <netdev@vger.kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Samuel Holland <samuel@sholland.org>, Vinod Koul
-	<vkoul@kernel.org>
-Subject: Re: [PATCH net-next 0/9] net: stmmac: remove unnecessary
- of_get_phy_mode() calls
-Message-ID: <Z87sTf8ZzMIpjXEw@localhost.localdomain>
-References: <Z87WVk0NzMUyaxDj@shell.armlinux.org.uk>
-Content-Disposition: inline
-In-Reply-To: <Z87WVk0NzMUyaxDj@shell.armlinux.org.uk>
-X-ClientProxiedBy: MI2P293CA0014.ITAP293.PROD.OUTLOOK.COM
- (2603:10a6:290:45::13) To DS0PR11MB8665.namprd11.prod.outlook.com
- (2603:10b6:8:1b8::6)
+   d="scan'208";a="120070023"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa007.fm.intel.com with ESMTP; 10 Mar 2025 10:10:59 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1trgeT-0004W8-1G;
+	Mon, 10 Mar 2025 17:10:54 +0000
+Date: Tue, 11 Mar 2025 01:10:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v6 3/4] clk: meson: a1: add the audio clock controller
+ driver
+Message-ID: <202503110016.L1KdYGVj-lkp@intel.com>
+References: <20250309180940.1322531-4-jan.dakinevich@salutedevices.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8665:EE_|SN7PR11MB7018:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6999b34e-ae5d-401f-2d05-08dd5fd97345
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?lq+mIsSC7D3lWy9aHuGbzMWDD/yIRJes8iRx9D/QFAuR2zEA8jKsAvvJYjj6?=
- =?us-ascii?Q?0dpXkhn5MS00bLSpR/+s2hryEpcrqeyIrcCY+EEH9lTwpcJJAJVvJtW3aXlS?=
- =?us-ascii?Q?pfuvruGnwrsBejJsEqh+YeMUKOOSFgfvgNJxy41bouOXmqq0WCpfQQftrrSa?=
- =?us-ascii?Q?MyOALA1FPktYUwSo7THBhlRMLHj+3ABlFsFwro8UaG6a7rkCt1XHGQziFzyr?=
- =?us-ascii?Q?NZgkBzVN7rmtaPzaJMcNXAPDwc6IeWGGL+IhRagelykFo2X1dNaf91/hZrfd?=
- =?us-ascii?Q?+0cjTk9VEb69L5scd8e4LMq5ucU0pK0CJuDrQOm5tk09kMjleWnkppRRhwcQ?=
- =?us-ascii?Q?kAOf7dsz3VPEcERHXotW88HnPBtANvl9pnoJ4+8tRLTXi09jS/sNqctGa9JK?=
- =?us-ascii?Q?O03U8UT5l1ywb6VvNcraZswhXgWHl3vZ6rl8rAvp9suE74l2U52ZoOUKaOnw?=
- =?us-ascii?Q?o2CSP/ePwUzB3nEyCZJTPJVZNr5E+9vNo/+n/E223TfVLwmDYAazQb5iy0yB?=
- =?us-ascii?Q?gHRPoaMfXDBlaTs6nBjKMT4T9RZmc6BuhhCsJBrhpoblfCxllLVeRnSQJ40r?=
- =?us-ascii?Q?HiYUdH764HZJXJrr+gYZV3KBEuXf64Pr32wFMxtpvfboMavLXaervrTcxYt0?=
- =?us-ascii?Q?wbdNahvChYD9jbnUl2P2pt/n3KLnipv2ZPkRBKANz7QlIQZIhn18NJTdX/PA?=
- =?us-ascii?Q?a9qxwpw9RcqV+kwLOBp21wrea9kWfXoYc/1IrUWQd6uqPM+GM3Q+6uc/ZIVM?=
- =?us-ascii?Q?mtrcXC3A7AQIFdRQ9GQIIPvZcDhC6SuiC3rLg0dndDNVi5dwF4QynOIRUfSl?=
- =?us-ascii?Q?Ve3MZOBfdrfrh5UvScBY9YJ8RY5448dYYDX9uPRiOB3Pqk2acei6chRajGTF?=
- =?us-ascii?Q?odo5YRv2iWFBEicfKWq8mwFlyNyDXU6FiekJ+awenKTrPbKOIPDn7XgG7iR1?=
- =?us-ascii?Q?aSXSiDCLdbQQpZafqqqMeUH8FVpxH92BcC1U6lEtpq3bUxcPtYErGnDPJZmY?=
- =?us-ascii?Q?nZnPeSEcJCqHfHN8HiluPyV0VtP4K7yAnjOSDOtVZ/e+4y/YKjV1z8YBXe7O?=
- =?us-ascii?Q?D2uAfwVx/owYW/1SCSWZyFArcsAWS5KkqT7LxKIDeHmB4SBNLgMjfMYVzKzW?=
- =?us-ascii?Q?mg02fdIMZ/5GLgzy5y3XV8yc8ZAm08DorToQ+o2jVkbElIeM7WYkpJJWwGOX?=
- =?us-ascii?Q?5LPFmneD4Wi9luwU0/IDpgYD8tcBUw/FEiLi2LDXKCrHkpPaBGwDtl7UMPtO?=
- =?us-ascii?Q?kWzbmvT3m7h38PYYczeUCHCT5PzbcMgpsiOvZS5TrZcHGjFA0eJWn0gwhz2Y?=
- =?us-ascii?Q?6cbsDnCOJk1WA4R+1Ue5RjKg/Lp2qyxtk9DbnV8CRAM3LrG0KmpTktH7f51f?=
- =?us-ascii?Q?xFPJxRS37tWMbMyb1S396z0QB521?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR11MB8665.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Tm+GYb5W/Al/s3L1EXLkF6CFF+613siYRf3s8wwHp3hrYNbFA6euKCSGDuC4?=
- =?us-ascii?Q?uAm9Db9K8SKYVAEd+JHaip+Z4O7jcYpNMZBD+Z3Tk5UuWN/8lbc/rJMO+p1k?=
- =?us-ascii?Q?GhxRyT/Q/QH9jzC6lrwSEI3NzKVXKF7TOiXkIgDmWlkWdCv4UHuFDrGkM0OM?=
- =?us-ascii?Q?T2J1wQZGW42usCS033ir5Z2W2qw+WjnrRFN/9e316NhEbUWPN3PHRh9QAguz?=
- =?us-ascii?Q?EXeII7PDJ55gacfi0GUHP2lb27ZhE3abkRqQL83nRolBAMKIMsW9sRuA69B/?=
- =?us-ascii?Q?TI9IqakL4ejQ4fdqsAb41oAyG21mg9NpxkLTUfgE9kvMWCLP3i6/YEAS4Lqp?=
- =?us-ascii?Q?cG/Uy/aken/y1mW1fsaEFi3TWfBcflrCH0BEMVHY18JVqReNtDFPyXCPqRgB?=
- =?us-ascii?Q?rudL3KROAWhCQKBEqMUYdHGFy9E7p5CrzDAsU2YTt6jOJEbrDP3whpu51W4H?=
- =?us-ascii?Q?yCt8/gxWJr4PJAeD5LrZsMsqrjb5xt/UKqTpirz9VcBWfJMN2K1ZYQ5OcQnf?=
- =?us-ascii?Q?mpIUn/qsu9YnrHPQWfjQXAj3H1PBNVaoDVOukHsnepyRKQrIH60qBkOIe8Qp?=
- =?us-ascii?Q?/fnaMqKCR7GdfzFObrnpIG2aJ9d9AtKF15e33aovGN615CtA77SX5WQRa9bw?=
- =?us-ascii?Q?fhEDOPbIBuoVZeyHseN//wawITx+jmJekPpYyIBod1UCuRsgKrhgcJkqcIRO?=
- =?us-ascii?Q?K81gnq+yibKFdVxGogvaULaNvjUXjxOBDEJpFvpnG9HOHZ9mCmWajBQVj+oK?=
- =?us-ascii?Q?LYv54gGqWCEYidVjP0L1bsOEH8+jqdy+6uMdJR9jPg+RZ+UKkTVlQoUQaAj6?=
- =?us-ascii?Q?Y623nL1Wbr/lj8AKaQ5gwJ7bGUapx+SrvGwT20Jy4IMdlHqUdddJ4NCpPote?=
- =?us-ascii?Q?JqxsxLSi7dJ7ieMn8LbgA3lNnODhCdKWYQFBYKdyCRUeZv935w5eJbUbq8qN?=
- =?us-ascii?Q?gg0Jki244gpGelVCIOGO0yUhMLtAf2O88PYwm0PleBJ9euO+BPU6mt+CDG+k?=
- =?us-ascii?Q?/wH0vJLERQDUF18U5kiAVR2/J7GAP58XyW95gauSLvM8oZoU8NZ5kdyYvEUS?=
- =?us-ascii?Q?y4S/kIW2O9GWyUj5364wKqFq8fB62vzKwdB010GWCKoZcbyrSdjjC0eRZbqG?=
- =?us-ascii?Q?0CoWQywnZOxIgvnjLamFyjY/HnBC0RioJlz7kbH0hkyAiJiszfAzGPHr9zo0?=
- =?us-ascii?Q?oVK8riqrhH7s8MRnEKt7hQGy5MSGKQ3RV494D16EY4feXJkvQVv8B6Ju+ZIE?=
- =?us-ascii?Q?lxK4rdja5wBUQK4jkV8tUxOu6ChRsJcPSeiXnbYNCeXGIz17iySPh5REkl+u?=
- =?us-ascii?Q?4QAqoV38vwIhudoxNK1hJTvXwLTyQmHB1mIaSp6ThHwDf/cfV2XLaB7bGBuJ?=
- =?us-ascii?Q?76HrRmCvgX6iBTQjRXa+XtMdleuJdf786s5Fc29vCjhTqbqt6kTQlYl/EEz+?=
- =?us-ascii?Q?W8gCbYJ0ukPhKpIfsvAnLU902v2YhcS+MkcxAUpnmii8nlIx/g6QiFxKAT0X?=
- =?us-ascii?Q?oyJ+1/vy5+3788jb4c8tcQ6AkYCGVJtft3wbRwpkWOaOLxFkX0Q5HhHRApl/?=
- =?us-ascii?Q?e8b7N7kEqJB+uL2pypXqwVmpPtFRtpoOVSVNhsi+0QZS8CRNZX74ta5pdNNh?=
- =?us-ascii?Q?CA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6999b34e-ae5d-401f-2d05-08dd5fd97345
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8665.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2025 13:42:50.4561
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oHwGYexLAKde3deIVsfhEiGM1MxnzFNwu/QMQZf41U3FQ2vOvU1/uoIRFvQ58+ZXmlzaT6Pgh6uWbpF9IrPrUQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7018
-X-OriginatorOrg: intel.com
+Content-Disposition: inline
+In-Reply-To: <20250309180940.1322531-4-jan.dakinevich@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250310_064327_755872_90EB2EAD 
-X-CRM114-Status: GOOD (  11.04  )
+X-CRM114-CacheID: sfid-20250310_101104_417633_1818DE28 
+X-CRM114-Status: GOOD (  14.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -204,28 +98,119 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Mar 10, 2025 at 12:08:54PM +0000, Russell King (Oracle) wrote:
-> Hi,
-> 
-> This series removes unnecessary of_get_phy_mode() calls from the stmmac
-> glue drivers. stmmac_probe_config_dt() / devm_stmmac_probe_config_dt()
-> already gets the interface mode using device_get_phy_mode() and stores
-> it in plat_dat->phy_interface.
-> 
-> Therefore, glue drivers using of_get_phy_mode() are just duplicating
-> the work that has already been done.
-> 
-> This series adjusts the glue drivers to remove their usage of
-> of_get_phy_mode().
-> 
+Hi Jan,
 
-The series looks reasonable.
+kernel test robot noticed the following build errors:
 
-Thanks,
-Michal
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on robh/for-next krzk/for-next krzk-dt/for-next linus/master v6.14-rc6 next-20250307]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-For the series:
-Reviewed-by: Michal Kubiak <michal.kubiak@intel.com>
+url:    https://github.com/intel-lab-lkp/linux/commits/Jan-Dakinevich/clk-meson-axg-share-the-set-of-audio-helper-macros/20250310-022012
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20250309180940.1322531-4-jan.dakinevich%40salutedevices.com
+patch subject: [PATCH v6 3/4] clk: meson: a1: add the audio clock controller driver
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20250311/202503110016.L1KdYGVj-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250311/202503110016.L1KdYGVj-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503110016.L1KdYGVj-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/meson/a1-audio.c:807:11: error: call to undeclared function '__devm_auxiliary_device_create'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     807 |         auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
+         |                  ^
+   drivers/clk/meson/a1-audio.c:807:11: note: did you mean '__auxiliary_device_add'?
+   include/linux/auxiliary_bus.h:221:5: note: '__auxiliary_device_add' declared here
+     221 | int __auxiliary_device_add(struct auxiliary_device *auxdev, const char *modname);
+         |     ^
+>> drivers/clk/meson/a1-audio.c:807:9: error: incompatible integer to pointer conversion assigning to 'struct auxiliary_device *' from 'int' [-Wint-conversion]
+     807 |         auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
+         |                ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     808 |                                                 data->rst_drvname, NULL, 0);
+         |                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   2 errors generated.
+
+
+vim +/__devm_auxiliary_device_create +807 drivers/clk/meson/a1-audio.c
+
+   748	
+   749	static int a1_audio_clkc_probe(struct platform_device *pdev)
+   750	{
+   751		struct device *dev = &pdev->dev;
+   752		const struct a1_audio_data *data;
+   753		struct auxiliary_device *auxdev;
+   754		struct regmap *map;
+   755		void __iomem *base;
+   756		struct clk *clk;
+   757		unsigned int i;
+   758		int ret;
+   759	
+   760		data = device_get_match_data(dev);
+   761		if (!data)
+   762			return -EINVAL;
+   763	
+   764		clk = devm_clk_get_enabled(dev, "pclk");
+   765		if (IS_ERR(clk))
+   766			return PTR_ERR(clk);
+   767	
+   768		base = devm_platform_ioremap_resource(pdev, 0);
+   769		if (IS_ERR(base))
+   770			return PTR_ERR(base);
+   771	
+   772		map = devm_regmap_init_mmio(dev, base, &a1_audio_regmap_cfg);
+   773		if (IS_ERR(map))
+   774			return PTR_ERR(map);
+   775	
+   776		ret = device_reset(dev);
+   777		if (ret)
+   778			return ret;
+   779	
+   780		for (i = 0; i < data->hw_clks.num; i++) {
+   781			struct clk_hw *hw = data->hw_clks.hws[i];
+   782			struct clk_regmap *clk_regmap = to_clk_regmap(hw);
+   783	
+   784			if (!hw)
+   785				continue;
+   786	
+   787			clk_regmap->map = map;
+   788		}
+   789	
+   790		for (i = 0; i < data->hw_clks.num; i++) {
+   791			struct clk_hw *hw;
+   792	
+   793			hw = data->hw_clks.hws[i];
+   794			if (!hw)
+   795				continue;
+   796	
+   797			ret = devm_clk_hw_register(dev, hw);
+   798			if (ret)
+   799				return ret;
+   800		}
+   801	
+   802		ret = devm_of_clk_add_hw_provider(dev, meson_clk_hw_get,
+   803						  (void *)&data->hw_clks);
+   804		if (ret)
+   805			return ret;
+   806	
+ > 807		auxdev = __devm_auxiliary_device_create(dev, dev->driver->name,
+   808							data->rst_drvname, NULL, 0);
+   809		if (!auxdev)
+   810			return -ENODEV;
+   811	
+   812		return 0;
+   813	}
+   814	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
