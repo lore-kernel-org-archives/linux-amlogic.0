@@ -4,190 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 783C2C28B2E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Mar 2025 02:53:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92C3EC282DE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Mar 2025 03:08:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U0qbFNpaer21Xh2v2hdYk5TDO8iE/wOMM38LKk4umwE=; b=d2OKXFS0pdLTDL
-	VAzqC1WIOKi1KWyIRQmgUh7rUjwPkcLc32krfmdHNYDOmy17Oxppu2IfBqJB1mCMNNdpE/cNTCGrO
-	bSGuogNYwXx0zi3xa5m6OQNDlSbD2PfTWcMwR6Y2A3y2YYz1qxd9kGuOasX336ZVrZasgXl6G8voQ
-	cdGN4Q9dKvOFN4+qX43X8WEajx+IIOBO+LnGw58cX3/w5xJzcP0PO+JfheKcBJFQFi8X4cAvR6xba
-	xWPV6kmrnmdQNtVbmiWGZx6F9q8D8VpaG0ZDcjX779PjsDjJKBxXwF8u24VrL/UGMDLVDzXLihtAi
-	QDoGCvybwe9E4rmFWmUg==;
+	List-Owner; bh=0ELPP1cxHRbQ8kV71RlYudQF2BvKVrpK5HK0NXWEiLQ=; b=r4Mk5CMX5o+GBa
+	uNfM+pN7PFid2fv3hQWF9UaWeCOfxAwDuzXz9KNZSF8HtbhMBxpjYpT0NEbjXc4VBzuDLmNcLfHOA
+	O3AJyclHhpI3nyN/qVyqVIbeEHOZ1lTWa223/9u0pwVnoyw7A7ByLdU7o+gwkDlmtca6c3dbbg1JD
+	DCDAJGk/NS/Td2dO2JWqXOUyY42DOynNrXwwndvFOs8SEsqG1Fii49gfUoAJDq5qKsn2seZqIV1gj
+	iVFljvxD0mAlSvTK7cnBPqqK6M/XybKNL84wmn8yZeTxYHuG1zmkQN/YUcaFt1CzLzk6MbekQxyaf
+	bgv2j3wnFep/AUsAEPgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1trpjp-00000004Syc-0wGj;
-	Tue, 11 Mar 2025 02:53:01 +0000
-Received: from mo-csw1802.securemx.jp ([210.130.202.152] helo=mo-csw.securemx.jp)
+	id 1trpyr-00000004UJp-43fU;
+	Tue, 11 Mar 2025 03:08:33 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1trpjj-00000004Swt-1pA7;
-	Tue, 11 Mar 2025 02:52:59 +0000
-DKIM-Signature: v=1;a=rsa-sha256;c=relaxed/simple;d=toshiba.co.jp;h=From:To:CC
-	:Subject:Date:Message-ID:References:In-Reply-To:Content-Type:
-	Content-Transfer-Encoding:MIME-Version;i=nobuhiro1.iwamatsu@toshiba.co.jp;s=
-	key3.smx;t=1741661511;x=1742871111;bh=kOyMXra9tx1tiz15mH5EirzFVKukx7gMLdH5u3d
-	YsNE=;b=CepyYV5+aTHQ8hfuYC2XupdKKlftNwn5kYKg5jWfqwdBBPXHSrLViwwO1TLUp6Yox4iv2
-	+4TZtv7DBDPMi/ycEPtGChyYhk1QVGhvxSPti8KUuT9xD4ahs698RjzddLIFeA84OKCq0iujxUM2m
-	0yKM0RqV9ov/y3H9jjYKSDYWSTca7PzlrJjGDWOC1HCP/UrBSi1f/+uH4wNz2KByTlEI9PqlT7YNf
-	lqlBUqrLrqrglhiBpkenVdG7JcLaXH/B6zzwg8z2Qf0avE6lexxqECPWnuXOujb/DLeDWBHUjJbpA
-	Xm2lbVll4qqUD+75dSVT+J4tE1hJqOcME3SNvoSNIw==;
-Received: by mo-csw.securemx.jp (mx-mo-csw1802) id 52B2pmaD2906371; Tue, 11 Mar 2025 11:51:48 +0900
-X-Iguazu-Qid: 2yAbuzQy1XRZSQHHOT
-X-Iguazu-QSIG: v=2; s=0; t=1741661507; q=2yAbuzQy1XRZSQHHOT; m=nSx6m3gyVmsSceJkTgkJU4th1Rq2yCpeQUqzRA80AgI=
-Received: from imx12-a.toshiba.co.jp ([38.106.60.135])
-	by relay.securemx.jp (mx-mr1802) id 52B2pfFw1419632
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Tue, 11 Mar 2025 11:51:43 +0900
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eE5fK+hYesmD2Ef2aPUuVw7upfU5gRF/P2qMsmxJhSGE7Bwr3w1XcF85N66SXBXhgBj++Fwe+XZYA2Vd8AXZ6kWG/uEaw5aLwT0jhKbeDkVWEGFD8Xr1klqpgGfZS+M7l0LJs1BHNb25lZRluPrZETa73oB7rchrxU2KrVzdoZzf3q+uEfu+3C4yUc+tblnmSGVg/zws68f3NCJl4jYr+30VmyJCW67/yqUFdjCM4PWY6vlQkj+ceYleak7ub9dke9UZMWH/2NnZ5GfNOt1JAAta4M5XQBEc1XHAGtL/Dug7ZmYxcyM73tdu083NjOAmpGbyQCvG0s7KYuqWL6aVhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/ecrAQ0g+Q+kzOINfhj9FoHm6E+mIMSLrB4OWo0S6es=;
- b=ZaKxlW0W5HH54bPyjX1EVqV+sotu2YWU6cGXl4joa3+8hSPaZy2PWgaMR953Ui2WZkRz28UO76XiMdHqYizf8clrDlLRU28OVFfydH77Z43u/AGwSdOdtzEdJpZlMLEbVKwW7cwJzpDSXFHikt1RkB7Wi2/qWxXLiVMhu96Ib+tQSdWAe/nk1Z1DmPlHuR5PwAKiMK482Cu7FavRhiZ84btQ1ibJY9BTfC7T4VsCg72X4U3gkMp0F91hqzahKTqvcXzIJmgt9cMfX/k+TZILNtTItU8p/IArk01bb7mvkLIHn3jA3ureYPOAWBRZQUZ+C+SR4qdXAr1tMkCqWhOTiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=toshiba.co.jp; dmarc=pass action=none
- header.from=toshiba.co.jp; dkim=pass header.d=toshiba.co.jp; arc=none
-From: <nobuhiro1.iwamatsu@toshiba.co.jp>
-To: <prabhakar.csengg@gmail.com>, <andrew+netdev@lunn.ch>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <neil.armstrong@linaro.org>,
-        <khilman@baylibre.com>, <jbrunet@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>, <shawnguo@kernel.org>,
-        <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
-        <festevam@gmail.com>, <heiko@sntech.de>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@foss.st.com>, <matthias.bgg@gmail.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <vineetha.g.jaya.kumaran@intel.com>, <biao.huang@mediatek.com>,
-        <xiaoning.wang@nxp.com>, <linux-imx@nxp.com>,
-        <david.wu@rock-chips.com>, <christophe.roullier@foss.st.com>,
-        <rmk+kernel@armlinux.org.uk>, <netdev@vger.kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <imx@lists.linux.dev>,
-        <linux-rockchip@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: RE: [PATCH net-next] dt-bindings: net: Define interrupt constraints
- for DWMAC vendor bindings
-Thread-Topic: [PATCH net-next] dt-bindings: net: Define interrupt constraints
- for DWMAC vendor bindings
-Thread-Index: AQHbkIrfy9b5BBS/D0ihD4P7fHbQtbNtPxyg
-Date: Tue, 11 Mar 2025 02:51:37 +0000
-X-TSB-HOP2: ON
-Message-ID: <TY7PR01MB148181E9FA1336D0D3CE9275A92D12@TY7PR01MB14818.jpnprd01.prod.outlook.com>
-References: <20250309003301.1152228-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250309003301.1152228-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=toshiba.co.jp;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY7PR01MB14818:EE_|TY3PR01MB11931:EE_
-x-ms-office365-filtering-correlation-id: 301f50ff-8626-44e8-ccfa-08dd6047a45f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018|921020|95630200002;
-x-microsoft-antispam-message-info: =?iso-2022-jp?B?Mkt5WjdHa2dPa0tLNTZYdThxNzJvVjhlQ1MzQ1dTek00ajU3aHI5d0V3?=
- =?iso-2022-jp?B?ZHFNakxuK2l1bzJ3blVrV2pCTmU5Z1NHZHJlSFlNV0Q2a21lK3QxZ0s3?=
- =?iso-2022-jp?B?OE54cWFiTmtmYklIc0FFSWVOK1cwWWhrWkFwcHNzT1NKQnJwa08wcVRy?=
- =?iso-2022-jp?B?bHZuT2hXbEFFb3FGK2FBT0YxQkQ1dmFNWlZ2N0FYVmptWGVZdHN2S0hO?=
- =?iso-2022-jp?B?aEI4UXNvaWQ4ejZnRndIV0F2OUt0S1hHTlB0ZWx4SVIxZVR4NzNiTExE?=
- =?iso-2022-jp?B?RzErRUhzVU1UQmNXKzRxMlZBeTNZQlUzU3psWWo1NElCY0IwTGZMWGxs?=
- =?iso-2022-jp?B?VUcxRWN4NnRMV1pxQ283cVE5N3dWS2dKa1NuYVlnU2JUZFNJUTBCRVN1?=
- =?iso-2022-jp?B?VzVQSzhjUmhydEVkcXNQU2NaUk9Hb0ZMVTZVUUlGa2UrcUt6MTNZTHJ6?=
- =?iso-2022-jp?B?ZFBxZHF6bnVLbSt0TkhDR0lVd3lGSTk3Rll2dTNkZlFlekRWbkxVUU1X?=
- =?iso-2022-jp?B?VlZNeWZsTDBsRWFqMmtXM0NwY0huYVFEL2NJTmxXWkc1SXMzbVViMExO?=
- =?iso-2022-jp?B?bHQ5UTQwRkNZQlpOZTFaOVpGM3IwV2txVGRUYWJEVm95Z3oxMUlReENj?=
- =?iso-2022-jp?B?Y3V1QXN2cnB4aGYvYVAxdFBPVkxITUxZQjJOZDRtU25YZzAvWVJiR2xD?=
- =?iso-2022-jp?B?QnRZMzBRWTVma3JFVFZFcXdoWkJqSzRjNmkvaU5DSFFTN1Z3S3Q1N080?=
- =?iso-2022-jp?B?Zm85SCtZdXo1Rk1wc1hhbmpPcEFtdVdBVXBNREtQMGdWTWJxeXdwVndL?=
- =?iso-2022-jp?B?SEltbG9vaU9DSGVlN2lSTVo3RmlBTklOWnFGRFlWRXVtS0JhSU5kUnpN?=
- =?iso-2022-jp?B?ejc0MUh6NVBmSHdMUEZleUw5bTBNeVkrbFRudGgzVnBrZEZZbWhBVzFs?=
- =?iso-2022-jp?B?YnBkbHptbmp1ZEpVVDI4RjgyQzQ5K0U4N0ZnWjJyS2haWUpJYTRXN0Uy?=
- =?iso-2022-jp?B?MjlEZ1A5Q1I1c3VJU3oxQWlLYnFjQUVjcHBlZER4ZFNZSkd0cTE1Q1FK?=
- =?iso-2022-jp?B?ajF4elNSYWlBYmNwa29ieEdoNjVFU2FwNUlUeDhuejZRa2hiTzdkbkVX?=
- =?iso-2022-jp?B?bUxDeS9XUFlURytGSWM1Uis3dXhsTzV6TE9BNEdSRmJiWFh0cTZkekx1?=
- =?iso-2022-jp?B?dlNPbUVEZU9ibTFKU1FBeWViVEZlMStnSHNqNkRjRVRiYVpteEhWcGMr?=
- =?iso-2022-jp?B?VmpTWTdaU2RFbGN4dTFuNFcyM2lwQ2pLYVJmd2NPL0oxd2FLVWlERUhC?=
- =?iso-2022-jp?B?YmxiUEIrUlM2OWpJN2lTV2MzUGY1dHhPVVd4VFFReTNYc2Q1ak8xdjg3?=
- =?iso-2022-jp?B?SWdwNlZlVVhnZFpMVzNaNTFKc2ZUYkVrdWlHUmFRKzlsK3U3bkxwRWdy?=
- =?iso-2022-jp?B?emFyV3Z5cEY2a25wQ2lKSGF3MjhpaEhBbVpPUncrT3RKYU1WWlBObzZl?=
- =?iso-2022-jp?B?S1dYVUgrcVdMbGVKUW9WcDlzUm9RekdyWStia1doUVNhNTR6VnZRYmx3?=
- =?iso-2022-jp?B?UmE1aXhqd3NOOWo4Z0pnRjN2bTNRNmsrZUFOY0hjU0lsbEN6MHM0SVUx?=
- =?iso-2022-jp?B?byt3R0FHdmxIRzE3U1g1dVBzOStzYUVVUVVmaUVRa0VPd3RRK1loZXVa?=
- =?iso-2022-jp?B?L2QvMmlZejBXcUx2OXJnODZvS1hSeklYVy93eUpYTldxS2NxcVl2bFFy?=
- =?iso-2022-jp?B?emJjRDNMeEEvTVdBc3pjT1dlRm8rS3FubHdROG9PUDFWVnkrWGpNMWc4?=
- =?iso-2022-jp?B?OGdOWHIxVk8zV29Fa2xuKzk0OFp4QVIwMGZnSldJNm44dDhOS2dHcW1E?=
- =?iso-2022-jp?B?SHl6NkI1NzNySkx2dzliRVdtblVydTNtbnpmRzZNU2FKTDJVb3AyaXFz?=
- =?iso-2022-jp?B?RUM1ai91OUk3dUZUL290TnYzV2pEbGZOaUh3d1pHUkJ2bTNta2hWMllp?=
- =?iso-2022-jp?B?M1Bzb1J1Sy9EREFnRWFaaEhHblpRZFZuUzdlc1lMb3ZseCtPc3l5cEJx?=
- =?iso-2022-jp?B?bnlSRlFVcVNWblNvRG45RXl5T1p5V1A2cWw5MW96dlZlSnFZNHF0WkYx?=
- =?iso-2022-jp?B?RzlJWTNEMWZobDBFRlFLNG5DV3lOL1VmcURIeTlGOU96bVpUWXlSd1N3?=
- =?iso-2022-jp?B?RHJJPQ==?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:ja;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY7PR01MB14818.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018)(921020)(95630200002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-2022-jp?B?NmthQTJyT003Y3ZFS1BIckwwTVJJRWtYZXovVytBUXU1N1FnVDRlZWow?=
- =?iso-2022-jp?B?enUyTHRkSFppeVFORkE2blBLWUNNUTlkNWRSM1I2TFMxajZiVXFTc0hl?=
- =?iso-2022-jp?B?N3htYnMzTEduRmdpQ21VQkQvUzFHV3Y1TS9aQ1ZuVld6Z1U0WVRadTcr?=
- =?iso-2022-jp?B?QTZhVS8wOFc5bStTY2NXb0ZQQjJZSXJkNW9MaGs3RXBiOUtBU2pnd01z?=
- =?iso-2022-jp?B?NzJFMndJcXpTTlBRWnUrbHRweG5IN0dCR3Q2VS9jOVhDU0lhSUNIamVv?=
- =?iso-2022-jp?B?R3dGWVE3UllPMTR4U05aK2FUS3E3MVVqKzdTWlp0V1ZsbTNOR0pVZWZ4?=
- =?iso-2022-jp?B?UGl4d0RNS0tqdDdwakRCMXdtZERrbDBIOXpvNDBKTTVsaDc0cG9Jam1h?=
- =?iso-2022-jp?B?UlhVMzBRVmFmcnU2aXhnMktIVkVvNjc3WGtyUGFZaG5zLzNIakhYUHZt?=
- =?iso-2022-jp?B?SkZQN3ZUYnNMWEU0LzV1WExkcjMySEtjRUpOUTZWcjZxRzJsK0dtZFRO?=
- =?iso-2022-jp?B?enFVblZHVjlqTmJteGFLeDYyZzkzMkY2RjcrK3N4SnJoRVhjUkk1bUIv?=
- =?iso-2022-jp?B?bU0zMXRVS2VpUHdlalE2ZWw5TGlESVJiQktoY2JIRkNlRXIzWFBJemQz?=
- =?iso-2022-jp?B?T2Q1SDBDZDEwemkrcmgvaHVPSXhFOUxuZGJzM3luTjVGZTZaMzhQS1oy?=
- =?iso-2022-jp?B?YlZOL2p3UVI1VHhiV2J4U05Ja2Q5YXd5V1lMVUxhMktrK0hscjJWNity?=
- =?iso-2022-jp?B?S3dCY0RtT2FuVzlEWFpXL1cvazFCelV5QW8rWXREMlUrUm1YT0ZsbmFR?=
- =?iso-2022-jp?B?Y2EyZlJGNGVySTA2dyt4ZDd6QlA0STZIVi9LNUdTekZ6VVQ4b2pXRnZN?=
- =?iso-2022-jp?B?NHdFeVF2YkZaWW1sVjFlWE92ZjVaVkpVdERhVWpUS0NHdGg3Q1JGaXBH?=
- =?iso-2022-jp?B?dy9HUWFKeHQxY1dQYmpwczNYVmZuZitJODJ2UjFnU0JNVTJDdjd6N1ZS?=
- =?iso-2022-jp?B?QzhqQVNiM2ZaUGZlUVF3MVZBeWQ4YTNKWFVJY001Wmt3WnhGMm8zemlt?=
- =?iso-2022-jp?B?K1VkakdGWWx3cVZtYzNzTWxjaHhaOHdXL2JnOTF1U3JJRklpMDBCRVh0?=
- =?iso-2022-jp?B?WDZuN09EMzc2YnJ0S2U0WEtHeXJsNk95V1NrTVlRa2Q0aXp5WVZ4TjNh?=
- =?iso-2022-jp?B?QjVGL0tudGdoUldscVRCV1dtSEVyay9NbUY1RjBiaW5GWVBMdW1adXFU?=
- =?iso-2022-jp?B?Nml4UTJyQlFKQ2NLUzljOThrUW0wRzJJb1djNDBoUWFGb3BqQ2pUNGV3?=
- =?iso-2022-jp?B?UG9aMXI0eXl6TVpUUjJkcy9DQWw0V0Y2TXV4VXZ3azZkaVoyL3lwTEp3?=
- =?iso-2022-jp?B?SVNlODR5R2FYNG9RQ2xPL1VlcG8zb05xSjFNWjcxcmg4RUlBL3BqR2Ju?=
- =?iso-2022-jp?B?cXhrcDNmUWZDWU9vZEpJOWtsTHJTV2Zrd2ZjUjg3UzhxTmNpZW5HMGxE?=
- =?iso-2022-jp?B?ZGozYnJJcXJCWGpiQldYVWVqeWRSK2tJT2psMDFvSUpaSG9teDZqS3pE?=
- =?iso-2022-jp?B?WVhiYmJUWG5ZZGNrcDlSanl2NjdiMVNpSXV1VlR1aEZqbmRaWGowcVBI?=
- =?iso-2022-jp?B?OU5wQ2htbUZtdWJPekdvNlUvcTBELzJTNGZzUUEzUW1VZmJ2SVV3RXU1?=
- =?iso-2022-jp?B?UGVPVi91QzdROUU2ZVc1MlhUZDhLdDE5N1RzZTJqRzJVbG9Ba3MvSjZn?=
- =?iso-2022-jp?B?Vm1reGd5TmlVcmVreW5JYW55NEU0Y1FRRHhoQ25JVXlYUzV1emRKNEFT?=
- =?iso-2022-jp?B?OVpSUmJaeWo1bmUyblRqTjRscFovRnJVVStZTm5kc3ErZ04xTEhJL3Jh?=
- =?iso-2022-jp?B?Q0g5bEU5WUdVc3hpb0dmdExMdVYxMCtsTk1XYXFJcVFidmkzbnN6MzBH?=
- =?iso-2022-jp?B?MjhaT1F4OTZpWkY2emY5MHZLMDEzOThtU0JhQ1RqL1paN2tOTUJ6NEw3?=
- =?iso-2022-jp?B?eUVCVzRLUEhwTWJGQ1I1clVWMjR6T0NlSTdJTmkzT1IwbVNPaFBUM2cz?=
- =?iso-2022-jp?B?OWJtdVhzcGZjbys0NzJSM1RGdVpVUXNKeWN1eWM4SlJHblVEZXViVDk0?=
- =?iso-2022-jp?B?VzZRZWhTeUtrRkFtZ2JTdHl5YmJIbU5aN3pWRmRvQWRhVjd0aXpubGU0?=
- =?iso-2022-jp?B?L242OUMvWVhPWGlwTGVudkNpVWREUDg5ZFJxazNqeWZKaVRJckN1VzlQ?=
- =?iso-2022-jp?B?SzN5UlNEK2NBTVh5Y3ltSS9abUhZMDQyYmZ0REhTS284TWFML09uUkZV?=
- =?iso-2022-jp?B?aWtOdFgwd1ZoZmljWDFNYkJST0lGRHArMUE9PQ==?=
+	id 1trpyp-00000004UIK-3vTh;
+	Tue, 11 Mar 2025 03:08:33 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id A947BA467D7;
+	Tue, 11 Mar 2025 03:03:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6792DC4CEE5;
+	Tue, 11 Mar 2025 03:08:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741662510;
+	bh=par3qu1dv9Zw4UCxcBo6S18Zh0aWFYrWJBkvOV23iK8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=D1bmCMR0PuRu4iD7DrvFHHXSFeXT0UxAt+gcZnx32KkXiRXnaDRu0g6BkzMxqzNbZ
+	 o4/MXxDYVLXsqMJ+UrBncr9Ihj/BI0d4Gd7AOY+eFyVDFiQGNPZhu/IjwiWJwL0fga
+	 ylaU8KghWXyuPyXlZid2OLey+O4Ny/xGe7R7Mywms51UHu1N/LxDNglXC13JdnuiFP
+	 1neTD2CALL1IFa85FxCUipb1KNv5gnILjgRz/utl7P8rPlhFQS+7hvlfHLqfckCq1g
+	 xkeKlWgrY+yQ7sObdaoEvU5zm3lq6XycAoHI+uTYqtn2zJ/bOdRcRtHAZivGOuko9l
+	 nBnUs8jwpKMeA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54224C2BA1B;
+	Tue, 11 Mar 2025 03:08:30 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Tue, 11 Mar 2025 11:08:27 +0800
+Subject: [PATCH v5 1/4] dt-bindings: interrupt-controller: Add support for
+ Amlogic A4 and A5 SoCs
 MIME-Version: 1.0
-X-OriginatorOrg: toshiba.co.jp
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY7PR01MB14818.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 301f50ff-8626-44e8-ccfa-08dd6047a45f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2025 02:51:37.2972
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f109924e-fb71-4ba0-b2cc-65dcdf6fbe4f
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LJkWU0SXAJ01J31i0RVe49Fed6AkGM9zbgO1L1qUvXxW3KzKbnYQDJhBuoLtounV8zRx5hvnGNf3wSG7lFypCehKjCiTG9mxh4wa23DhFQkjIu9bdqnKnJYzLRy3v+xT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB11931
+Message-Id: <20250311-irqchip-gpio-a4-a5-v5-1-ca4cc276c18c@amlogic.com>
+References: <20250311-irqchip-gpio-a4-a5-v5-0-ca4cc276c18c@amlogic.com>
+In-Reply-To: <20250311-irqchip-gpio-a4-a5-v5-0-ca4cc276c18c@amlogic.com>
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Heiner Kallweit <hkallweit1@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1741662508; l=1799;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=fjbxGdq7kon/f2bPEXT1/XjxHPpGuBnxVJQe/5OSgX0=;
+ b=A8Z0IMKvUx4BuCPhe2tK+AUJQUh2m+5mdPfe5RM8p3xReYGa0bspT9eplSjqXhH/nFWlxwuJr
+ VdHnUZcfSOHDBTHQGGwJ6gtf3VsBQM42Eqr50eQGmy9tqAx/NiEdYf3
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250310_195256_136423_9BF0B7FE 
-X-CRM114-Status: GOOD (  12.66  )
+X-CRM114-CacheID: sfid-20250310_200832_116742_40AA37CF 
+X-CRM114-Status: UNSURE (   8.62  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -199,78 +89,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-2022-jp"
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-> -----Original Message-----
-> From: Prabhakar <prabhakar.csengg@gmail.com>
-> Sent: Sunday, March 9, 2025 9:33 AM
-> To: Andrew Lunn <andrew+netdev@lunn.ch>; David S. Miller
-> <davem@davemloft.net>; Eric Dumazet <edumazet@google.com>; Jakub
-> Kicinski <kuba@kernel.org>; Paolo Abeni <pabeni@redhat.com>; Rob Herring
-> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
-> <conor+dt@kernel.org>; Neil Armstrong <neil.armstrong@linaro.org>; Kevin
-> Hilman <khilman@baylibre.com>; Jerome Brunet <jbrunet@baylibre.com>;
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com>; Shawn Guo
-> <shawnguo@kernel.org>; Sascha Hauer <s.hauer@pengutronix.de>;
-> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
-> <festevam@gmail.com>; Heiko Stuebner <heiko@sntech.de>; Maxime
-> Coquelin <mcoquelin.stm32@gmail.com>; Alexandre Torgue
-> <alexandre.torgue@foss.st.com>; iwamatsu nobuhiro(岩松 信洋 ○ＤＩＴＣ
-> □ＤＩＴ○ＯＳＴ) <nobuhiro1.iwamatsu@toshiba.co.jp>; Matthias Brugger
-> <matthias.bgg@gmail.com>; AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com>; G. Jaya Kumaran
-> <vineetha.g.jaya.kumaran@intel.com>; Biao Huang
-> <biao.huang@mediatek.com>; Clark Wang <xiaoning.wang@nxp.com>; Linux
-> Team <linux-imx@nxp.com>; David Wu <david.wu@rock-chips.com>;
-> Christophe Roullier <christophe.roullier@foss.st.com>; Russell King (Oracle)
-> <rmk+kernel@armlinux.org.uk>; netdev@vger.kernel.org
-> Cc: devicetree@vger.kernel.org; linux-amlogic@lists.infradead.org;
-> linux-kernel@vger.kernel.org; imx@lists.linux.dev;
-> linux-rockchip@lists.infradead.org;
-> linux-stm32@st-md-mailman.stormreply.com;
-> linux-mediatek@lists.infradead.org; Prabhakar
-> <prabhakar.csengg@gmail.com>; Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Subject: [PATCH net-next] dt-bindings: net: Define interrupt constraints for
-> DWMAC vendor bindings
-> 
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> The `snps,dwmac.yaml` binding currently sets `maxItems: 3` for the
-> `interrupts` and `interrupt-names` properties, but vendor bindings selecting
-> `snps,dwmac.yaml` do not impose these limits.
-> 
-> Define constraints for `interrupts` and `interrupt-names` properties in
-> various DWMAC vendor bindings to ensure proper validation and consistency.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> Hi All,
-> 
-> Based on recent patch [0] which increases the interrupts to 11 and adds
-> `additionalItems: true` its good to have constraints to validate the schema. Ive
-> made the changes based on the DT binding doc and the users. Ive ran dt
-> binding checks to ensure the constraints are valid. Please let me know if you'd
-> like me to split this patch or if any of the constraints are incorrect, as I don't
-> have documentation for all of these platforms.
-> 
-> https://lore.kernel.org/all/20250308200921.1089980-2-prabhakar.mahadev-la
-> d.rj@bp.renesas.com/
-> 
-> Cheers, Prabhakar
-> ---
+Update dt-binding document for GPIO interrupt controller
+of Amlogic A4 and A5 SoCs
 
->  .../bindings/net/toshiba,visconti-dwmac.yaml           |  6 ++++++
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ .../interrupt-controller/amlogic,meson-gpio-intc.yaml | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
 
-Acked-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+index a93744763787..3d60d9e9e208 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+@@ -35,6 +35,9 @@ properties:
+               - amlogic,meson-sm1-gpio-intc
+               - amlogic,meson-a1-gpio-intc
+               - amlogic,meson-s4-gpio-intc
++              - amlogic,a4-gpio-intc
++              - amlogic,a4-gpio-ao-intc
++              - amlogic,a5-gpio-intc
+               - amlogic,c3-gpio-intc
+               - amlogic,t7-gpio-intc
+           - const: amlogic,meson-gpio-intc
+@@ -49,7 +52,7 @@ properties:
+ 
+   amlogic,channel-interrupts:
+     description: Array with the upstream hwirq numbers
+-    minItems: 8
++    minItems: 2
+     maxItems: 12
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+ 
+@@ -60,6 +63,20 @@ required:
+   - "#interrupt-cells"
+   - amlogic,channel-interrupts
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        const: amlogic,a4-gpio-ao-intc
++then:
++  properties:
++    amlogic,channel-interrupts:
++      maxItems: 2
++else:
++  properties:
++    amlogic,channel-interrupts:
++      minItems: 8
++
+ additionalProperties: false
+ 
+ examples:
 
-Best regards,
-  Nobuhiro
+-- 
+2.37.1
+
 
 
 _______________________________________________
