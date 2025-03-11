@@ -4,77 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D39EEC282DE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Mar 2025 03:15:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45D55C28B2E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Mar 2025 08:17:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ctGdj0CZ3DeD5bhxMmel7aSrfpH+WI13J6hqqXC/9SI=; b=kHsVcvOESkxifJ
-	W40B79ZgLzWQgcZlTw1klOakcMHUMqB68Fsa1q2Db7cs37c07WI2WQFgWbVf4qYK1U9zxunnRlIKT
-	YaytnY8L+6LDG9JJXX+73M0S14tS1QVvYiOWO3Z8e6tvmBIPRLCmjAUaawaAYQQROaIDM4zT3GxoV
-	wG8rmfN/dkTECUb1rgpT9mCVKhe7OP7cFtUwZSMOktGxTNj+qWgllcS7MOdneundF+oUSYG1E5Qn2
-	YJszqwjfLK5LQPXBdAAAdgyaHvYEwqIHoY+4caIfZ+3HNIK99GtaFIiDwmtAW6zf9Qtusu4OpLENl
-	dRmoRiZQ4qNvu7Gt9DVA==;
+	List-Owner; bh=6fLvAdBQyXqZPqtekKkhkNYwkb9rE5HNZMBik8M0eW4=; b=bbTAYy6FXZp57y
+	oG0sjyWOKygSiDZVRpeNplluJUSfpOORB7ZoulWJZ1CIzDQHJNTFX7OYyqSp5NF3jJZPqknkd5EzV
+	k9xLMiQhoss6i3JP/xT1gKJ+PU1RqIGtmm6w6ykb5/xLYFkWbMZVXzDZE84iEpoVzzZFkMcj2+jAL
+	tApojmleJNVqYQ165RcglSc5eBuw59rVEJToPJDj9f9tbgJ71I+DPYGshGg5QmDKmBWGH/qMmZVuI
+	hnVOT/IeWGBRufbvEFUIyuflBfFUrwY57+ZP6iRqutRaOxktTcJCdCfeWPY0T6fUKpHuKWB/hXNMK
+	RHvqs3pjFUNH+vwujwcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1trq5L-00000004VCm-09kt;
-	Tue, 11 Mar 2025 03:15:15 +0000
+	id 1trunS-00000004yxq-1z3v;
+	Tue, 11 Mar 2025 08:17:06 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1trpys-00000004UJs-2JkC;
-	Tue, 11 Mar 2025 03:08:35 +0000
+	id 1trunO-00000004yvX-13C1;
+	Tue, 11 Mar 2025 08:17:03 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 70E1D5C6800;
-	Tue, 11 Mar 2025 03:06:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 7DB32C4CEF2;
-	Tue, 11 Mar 2025 03:08:30 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id D01B55C54EC;
+	Tue, 11 Mar 2025 08:14:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70269C4CEE9;
+	Tue, 11 Mar 2025 08:17:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741662510;
-	bh=qch7huQ3IX9eDJtDp+CrMjmAYNzCX1pjwyDdnZ1GCVg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=CHSR2OzdOoAdvrrKqQO5FjjzhdKxCm8QzKQuyTFQKAuQOSTEBwtDcCkFo/TBKkJGN
-	 rHVMTv7dmUAj6LOcR8gg0d7yCD9FMd5t+3OB7BLQx02JGpLKPgClK8JhhuPqMDqIVA
-	 B9HlG8KTrq0Kubm0evZ9MuouEIqFqnf6+254K82eapqT2BHCiJQ0WYXZU15rm9Im81
-	 dYVSNeFUZ2twVIco3m+I21Y4ZiUe+bwXDvW18mRM1IMt2fQCJea6ebLDKV45gSz8YB
-	 j342GPV6nG9kUxwNmBAClxCd8SHLIx+t/Q2sjYfr9aHy41ziREeie2/60eGuh2NbZi
-	 uKetBR3XEa02Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 71126C35FF2;
-	Tue, 11 Mar 2025 03:08:30 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 11 Mar 2025 11:08:29 +0800
-Subject: [PATCH v5 3/4] arm64: dts: Add gpio_intc node for Amlogic A4 SoCs
+	s=k20201202; t=1741681021;
+	bh=qzksFsHwUZAZdl059Q9dYveJ5pvso9jFFjPVpDgEbd8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NZmENIUFu7jOuBLc8tK9jQIJs7hzrt5xOV43/NGKih9hZnUxXyagM4pLvsos+raNM
+	 fKt6PigNDT53PJSxWG0ljsBzAzp+Bx61h9G1ihZXaI6xeDnS/nHqNOvTTVY718b187
+	 I4sDfB/hJgaDg1apyDlhBld5DrWiAQYC1jU2x9jlKnvLmhKM6k8YCjbz+miSsZzUbj
+	 9tqNOteSSj3eUmLr2Uzjlyt8qOy+f2RBzbnrpGLt/AjcUnUJBgaoKKunCW78YXC9/C
+	 mT7Hk6mSpCHwSA+yNyeSlEnOsdnkBExitrlhXsGvWabUcivkHF2fX8n0gc11a5FPG0
+	 Pqbshzo1yKTcw==
+Date: Tue, 11 Mar 2025 09:16:57 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v6 2/4] dt-bindings: clock: axg-audio: document A1 SoC
+ audio clock controller driver
+Message-ID: <20250311-famous-adamant-teal-20b1cb@krzk-bin>
+References: <20250309180940.1322531-1-jan.dakinevich@salutedevices.com>
+ <20250309180940.1322531-3-jan.dakinevich@salutedevices.com>
 MIME-Version: 1.0
-Message-Id: <20250311-irqchip-gpio-a4-a5-v5-3-ca4cc276c18c@amlogic.com>
-References: <20250311-irqchip-gpio-a4-a5-v5-0-ca4cc276c18c@amlogic.com>
-In-Reply-To: <20250311-irqchip-gpio-a4-a5-v5-0-ca4cc276c18c@amlogic.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Heiner Kallweit <hkallweit1@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741662508; l=1190;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=QC+CPrCwcCU8cBlAO137f57knOzl0UVfLJyIMFfXkFY=;
- b=Cs5DBpjpy1VxnR38xHJII7hUOlQh1hWtY8LJq3DncHoPctoYxXNOH5huRq5Mszuc6WPxO836W
- rIDsS9KRPfVAxG1uMqLgX7g4yLH+XQuE1PnHCrp4kHD3s6Hh6IWvO/p
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <20250309180940.1322531-3-jan.dakinevich@salutedevices.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250310_200834_808197_C4036147 
-X-CRM114-Status: UNSURE (   7.99  )
+X-CRM114-CacheID: sfid-20250311_011702_345999_3F2A6C42 
+X-CRM114-Status: UNSURE (   6.19  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,55 +73,21 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Sun, Mar 09, 2025 at 09:09:38PM +0300, Jan Dakinevich wrote:
+> Add device tree bindings for A1 SoC audio clock and reset controllers.
 
-Add GPIO interrupt controller device.
+You sent multiple copies of similar series to which you got responses. I
+don't know anymore which should be ignored, which got my response, so
+just in case I will skip this one. Please implement received feedback
+(here or in some other series).
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-index efba8565af3c..fa80fa365f13 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-@@ -51,6 +51,25 @@ pwrc: power-controller {
- };
- 
- &apb {
-+	gpio_intc: interrupt-controller@4080 {
-+		compatible = "amlogic,a4-gpio-intc",
-+			     "amlogic,meson-gpio-intc";
-+		reg = <0x0 0x4080 0x0 0x20>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		amlogic,channel-interrupts =
-+			<10 11 12 13 14 15 16 17 18 19 20 21>;
-+	};
-+
-+	gpio_ao_intc: interrupt-controller@8e72c {
-+		compatible = "amlogic,a4-gpio-ao-intc",
-+			     "amlogic,meson-gpio-intc";
-+		reg = <0x0 0x8e72c 0x0 0x0c>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		amlogic,channel-interrupts = <140 141>;
-+	};
-+
- 	periphs_pinctrl: pinctrl {
- 		compatible = "amlogic,pinctrl-a4";
- 		#address-cells = <2>;
-
--- 
-2.37.1
-
+Best regards,
+Krzysztof
 
 
 _______________________________________________
