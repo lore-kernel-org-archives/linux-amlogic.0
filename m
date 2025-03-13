@@ -4,77 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7018FC282DE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Mar 2025 09:11:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1C95C282DE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Mar 2025 11:18:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EACCSokM6nNKh7t3ZKBhxIM3Awr58aEU8zJHh+bbbE4=; b=4f4J+Pfxi/zhrI
-	3V62lUmW6dXr6++r5dbwBZXQLsiG4BQpmG/ew9RZ1E+aQr42StXggSwTTzT8nEf4/tTvJBm0wd9B5
-	Ar5CqI6VEsoYYuuMgnHWU3j2BNfXkbQcYLZyPgeoBALTzFuR/1uR0/2YNPmV0bxU2GR/7rVc/CTO0
-	QYFRLzIX2fUiTh7PNWHVti7KAppt4yguKCTZcBhnG+7a1I4IBmTOgE4lBFJPZV37zE2lYpmx/0qyQ
-	6FGXRpAwIF9rhQj9dwHOZUmNBxOrxej7rvk0GOYOW26N7Oag3lRa78h9xir6z1nBNMCxJdY1AQxeb
-	+NIzmFAsLEruh+2kEiIw==;
+	List-Owner; bh=qCvz7S48/DOrZb2LtslSUo2ROOfz+GAj1UtRdBPv5Ok=; b=uWCw7dzD4Fy1Wb
+	0hZ8Hu4cREVKq2DX2WVlk3hGvfrPCmuqX23sECvcVAb+vkoTA4IPT70tATh26GIBKAxRmd0SEjfYE
+	SFVhRahRY2UUTmU1ssZ9xqoR3X9T0IYd788aQSUjLDxLTtUGxbqAf+lgffGLpjfLJ9gz3ii285FQ4
+	Z1j0k3qXioMzfFPKD6EjsrjhGTQdx9trvHD4wEV2XAnc5aLJy9lZODHH9opqszoA+ViXvFTDFjsAf
+	EQwg+fxKP+76yr2G3RQiYbBQLV/QI7/OQH88U4oBS+bVwOjY2I+/iN5tp+HXGtO78eDttzHnpBS1i
+	rNGE/8REyp9XxaI4m6HA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tsebK-0000000AgXI-1a6a;
-	Thu, 13 Mar 2025 09:11:38 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1tsgZd-0000000B0ws-25RU;
+	Thu, 13 Mar 2025 11:18:01 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tseWN-0000000AfPQ-3EVS;
-	Thu, 13 Mar 2025 09:06:34 +0000
+	id 1tsgRp-0000000Azo6-1DxN;
+	Thu, 13 Mar 2025 11:09:58 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 0E058A4656C;
-	Thu, 13 Mar 2025 09:00:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 63062C4CEF0;
-	Thu, 13 Mar 2025 09:06:28 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id C48D35C5BBB;
+	Thu, 13 Mar 2025 11:07:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38B53C4CEDD;
+	Thu, 13 Mar 2025 11:09:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741856788;
-	bh=YXiUli/WnPSiXJRM/EVl/O2uwm9SmmG+SyqZj8ttVLw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=HenPTuLbM1iACB9VGTK+amOxvGeph8CSVO7GVyZudDFpdzp8Q2pYFXDxbr2yBJ92c
-	 cMfNOP6mCi52+ii9BtvrfjBnRDA6CMWgY7kI0un+8/nL6JbsU4oDBG4stL/9MO1jpb
-	 rXHilE+bRaC5Q2yOg6kE5Bg+AO8wWm5r82V67dw7sktcu1vMrCEy3rPWdm7+lyMg26
-	 1Qpu9oXvlVTC8DewKcp/Dnvrf1tO0dCtvz63gqMFBCfE1cdBu0Xij8RAPGFB58e5+u
-	 bjAE0MTXCDB03X3jsTJVb032vD6FfNcgd2tP7S5nuDK4iMty7SQ72UjrddLTJGSXaX
-	 iRyK6rLpSb79A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E23AC28B2E;
-	Thu, 13 Mar 2025 09:06:28 +0000 (UTC)
-From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Date: Thu, 13 Mar 2025 17:05:36 +0800
-Subject: [PATCH v4 3/3] arm64: dts: amlogic: Add A5 Reset Controller
+	s=k20201202; t=1741864196;
+	bh=y5Rt/A3I0puk2tWJqwdD+VS9AYs8xTcIZQZ75uLi/aQ=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=OFpakx8qWuEP5hs9WCekvz25n4fnw63dd3zf1Hsha7Gk7+1cmshaz6E6oE8d6Ieh+
+	 tBzkhdDKSaYH1OgAoNK+7jfD0fdJN4xQ1W2eZZQZ9HelvNaxoDzMiG4MttBJXWwp8t
+	 OYQ48FdLg1Aw9IqOqJEj0BBUa8qX6V/9YjFqw9jvVKWW22JNwRMHhG8JnhrlhbaW6S
+	 29uLDOm+zyzCye6P/FtsnHmuM8tJKNGUgYdVxO1sAeEi7yoQhyS/YRufPMcwDeeXtg
+	 ax/RpzUJ7Toj8NLazkxeVIel3BUqwjK+RCDn16ltaxBF+hnLwAAfRjkh+iPS9k7Pz+
+	 SWDFtToOpr/aQ==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB6693806651;
+	Thu, 13 Mar 2025 11:10:31 +0000 (UTC)
 MIME-Version: 1.0
-Message-Id: <20250313-a4-a5-reset-v4-3-8076f684d6cf@amlogic.com>
-References: <20250313-a4-a5-reset-v4-0-8076f684d6cf@amlogic.com>
-In-Reply-To: <20250313-a4-a5-reset-v4-0-8076f684d6cf@amlogic.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Zelong Dong <zelong.dong@amlogic.com>, 
- Kelvin Zhang <kelvin.zhang@amlogic.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1741856786; l=3877;
- i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=ZFu/iq6Br16B1GmXZXg+n7u5XDIS+7iiJRB1TMYOhs4=;
- b=8WsA+Mm77eVUAT3YgjZQzAi9J3yuCVLHAYgwmSKS8l6fcCTikKBtv+PoxXMtrweg0qyrUt9n4
- 19h7CXmFbd3DXsUYHDxicwR7642QUCitxBuP0WfbwV/EQKeIIjb976U
-X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
- pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
-X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
- auth_id=148
-X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Subject: Re: [PATCH net-next] dt-bindings: net: Define interrupt constraints for
+ DWMAC vendor bindings
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <174186423076.1466791.15724461347771862891.git-patchwork-notify@kernel.org>
+Date: Thu, 13 Mar 2025 11:10:30 +0000
+References: <20250309003301.1152228-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250309003301.1152228-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, neil.armstrong@linaro.org, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, heiko@sntech.de, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, nobuhiro1.iwamatsu@toshiba.co.jp,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ vineetha.g.jaya.kumaran@intel.com, biao.huang@mediatek.com,
+ xiaoning.wang@nxp.com, linux-imx@nxp.com, david.wu@rock-chips.com,
+ christophe.roullier@foss.st.com, rmk+kernel@armlinux.org.uk,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-mediatek@lists.infradead.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250313_020632_000928_6E759752 
-X-CRM114-Status: GOOD (  11.77  )
+X-CRM114-CacheID: sfid-20250313_040957_382898_BD60E5EE 
+X-CRM114-Status: UNSURE (   7.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,154 +84,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: kelvin.zhang@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+Hello:
 
-Add the device node and related header file for Amlogic
-A5 reset controller.
+This patch was applied to netdev/net-next.git (main)
+by Paolo Abeni <pabeni@redhat.com>:
 
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-Link: https://lore.kernel.org/r/20240918074211.8067-4-zelong.dong@amlogic.com
-Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h | 95 ++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi    | 10 +++
- 2 files changed, 105 insertions(+)
+On Sun,  9 Mar 2025 00:33:01 +0000 you wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> The `snps,dwmac.yaml` binding currently sets `maxItems: 3` for the
+> `interrupts` and `interrupt-names` properties, but vendor bindings
+> selecting `snps,dwmac.yaml` do not impose these limits.
+> 
+> Define constraints for `interrupts` and `interrupt-names` properties in
+> various DWMAC vendor bindings to ensure proper validation and consistency.
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..cdf0f515962097c606e4c53badb19df7d21606ec
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
-@@ -0,0 +1,95 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#ifndef __DTS_AMLOGIC_A5_RESET_H
-+#define __DTS_AMLOGIC_A5_RESET_H
-+
-+/* RESET0 */
-+/*						0-3 */
-+#define RESET_USB				4
-+/*						5-7 */
-+#define RESET_USBPHY20				8
-+/*						9 */
-+#define RESET_USB2DRD				10
-+/*						11-31 */
-+
-+/* RESET1 */
-+#define RESET_AUDIO				32
-+#define RESET_AUDIO_VAD				33
-+/*                                              34 */
-+#define RESET_DDR_APB				35
-+#define RESET_DDR				36
-+/*						37-40 */
-+#define RESET_DSPA_DEBUG			41
-+/*                                              42 */
-+#define RESET_DSPA				43
-+/*						44-46 */
-+#define RESET_NNA				47
-+#define RESET_ETHERNET				48
-+/*						49-63 */
-+
-+/* RESET2 */
-+#define RESET_ABUS_ARB				64
-+#define RESET_IRCTRL				65
-+/*						66 */
-+#define RESET_TS_PLL				67
-+/*						68-72 */
-+#define RESET_SPICC_0				73
-+#define RESET_SPICC_1				74
-+#define RESET_RSA				75
-+
-+/*						76-79 */
-+#define RESET_MSR_CLK				80
-+#define RESET_SPIFC				81
-+#define RESET_SAR_ADC				82
-+/*						83-90 */
-+#define RESET_WATCHDOG				91
-+/*						92-95 */
-+
-+/* RESET3 */
-+/*						96-127 */
-+
-+/* RESET4 */
-+#define RESET_RTC				128
-+/*						129-131 */
-+#define RESET_PWM_AB				132
-+#define RESET_PWM_CD				133
-+#define RESET_PWM_EF				134
-+#define RESET_PWM_GH				135
-+/*						104-105 */
-+#define RESET_UART_A				138
-+#define RESET_UART_B				139
-+#define RESET_UART_C				140
-+#define RESET_UART_D				141
-+#define RESET_UART_E				142
-+/*						143*/
-+#define RESET_I2C_S_A				144
-+#define RESET_I2C_M_A				145
-+#define RESET_I2C_M_B				146
-+#define RESET_I2C_M_C				147
-+#define RESET_I2C_M_D				148
-+/*						149-151 */
-+#define RESET_SDEMMC_A				152
-+/*						153 */
-+#define RESET_SDEMMC_C				154
-+/*						155-159*/
-+
-+/* RESET5 */
-+/*						160-175 */
-+#define RESET_BRG_AO_NIC_SYS			176
-+#define RESET_BRG_AO_NIC_DSPA			177
-+#define RESET_BRG_AO_NIC_MAIN			178
-+#define RESET_BRG_AO_NIC_AUDIO			179
-+/*						180-183 */
-+#define RESET_BRG_AO_NIC_ALL			184
-+#define RESET_BRG_NIC_NNA			185
-+#define RESET_BRG_NIC_SDIO			186
-+#define RESET_BRG_NIC_EMMC			187
-+#define RESET_BRG_NIC_DSU			188
-+#define RESET_BRG_NIC_SYSCLK			189
-+#define RESET_BRG_NIC_MAIN			190
-+#define RESET_BRG_NIC_ALL			191
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-index 17a6316de8918f31f3f7625f2eda06a60664139a..b97e2f3091bf62f4bdaaebeaf5d1dfe695cfc6d5 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include "amlogic-a4-common.dtsi"
-+#include "amlogic-a5-reset.h"
- #include <dt-bindings/power/amlogic,a5-pwrc.h>
- / {
- 	cpus {
-@@ -48,3 +49,12 @@ pwrc: power-controller {
- 		};
- 	};
- };
-+
-+&apb {
-+	reset: reset-controller@2000 {
-+		compatible = "amlogic,a5-reset",
-+			     "amlogic,meson-s4-reset";
-+		reg = <0x0 0x2000 0x0 0x98>;
-+		#reset-cells = <1>;
-+	};
-+};
+Here is the summary with links:
+  - [net-next] dt-bindings: net: Define interrupt constraints for DWMAC vendor bindings
+    https://git.kernel.org/netdev/net-next/c/5a1dddd29444
 
+You are awesome, thank you!
 -- 
-2.37.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
 
