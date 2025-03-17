@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5FB1C282EC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Mar 2025 07:20:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30117C35FF3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Mar 2025 07:20:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PPfrkG0L0G9/XUbM/OHQYEfOL0i4CVoeiCgH33uVS80=; b=4x//afnDHe1Aye
-	/MkghcDth4nEjgWPccsMHoYcvkhny+yXoV3lR0X3DFt9ALCVOq7tnnkYApBfFjxnaTcSwbcy0nCCS
-	FhrsyfchDVlldoN+DS6F5Dxv6KJcWmuhFkUdrL3yNrJN/bIuCzKaHsvE2SXqxfoAHivHNLW2ZgyOr
-	o1XqPrukkC57zKfw5oLteqd+dmWpKhz9ypTTFCJEKjrhjHxUmcZ8P4zRBXGFwnd5mZ3eUstDnMrsT
-	5qAd1fHIfezcNbBVSs43z3wKMmKQrO/ejdJQwp2rrEVoh+yD4zIOmqN8bXL4rINlhbzLXlUtcpab/
-	4YW6xHe+olxyH7UHtmyQ==;
+	List-Owner; bh=xpN0pnakZYwUVm3BxiPuptJ5oGtllN6Gihc2mjaQyFo=; b=J++whfcoVcEh1J
+	T0nZuY9c1cEEo8HGY3bXy00L0C5vo2SY9X6N87goLELbYFJgMl1XAGZcR1dYR9AWxx3f2HkVZqju9
+	aiOiCZc18vixzONwgb2PyIl2jHiS4swQa+pWWU+5J+KbbYhHMe8Vigu9rg90lcWkLQ8BB+4sqeAwE
+	I5/BlkA6hkc6RfVorObzlzrfbh8eUQfPmgB020chBzvf5lhjKVCWjobZehIqypMf/cyqehEirUA3C
+	SZORWj09kGn3L0gCbs3SrfrfepcDDHKGYVqQaVl4OqboQlGOOAMDJVCiLZrcrrTO8gLWx+GidKJ8m
+	3End6xvK5AlaqdU8/JWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tu4lt-00000001Xd6-2Tx8;
-	Mon, 17 Mar 2025 07:20:25 +0000
+	id 1tu4lu-00000001Xdl-0BCx;
+	Mon, 17 Mar 2025 07:20:26 +0000
 Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tu4iW-00000001WmS-1JrT;
+	id 1tu4iW-00000001WmY-1SvA;
 	Mon, 17 Mar 2025 07:16:58 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 79466A46DB8;
-	Mon, 17 Mar 2025 07:11:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 75135C4AF09;
+	by nyc.source.kernel.org (Postfix) with ESMTP id 0CEA7A470ED;
+	Mon, 17 Mar 2025 07:11:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CC96BC4CEE3;
 	Mon, 17 Mar 2025 07:16:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1742195814;
-	bh=AtXdg7fv4Nvh7n+GmhWzaXo98BKNPF5xcm2CSeoK81Y=;
+	bh=D7WMmAq5LBFJic8CyDRquVvn3q42V/MGb5HMDNqQ27A=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QiYcquXhnB6J7dvuAwXo4q6mH7CBMF2bO75d2SOT9WH/NRbxBRv2GFg8cemgfkK0t
-	 M+IFAC1Vls72trWUCv/uyZFce5NJIx3NkpkaJq0n5+UaRzW4LrUigcGAZMJNWPiUdV
-	 q994nUkJb4scjDdGwmrXhVoB4OML2GA6T2V9lqVk+mpkxHtFV2jrw73+p9h/P4mCQp
-	 jG65k0WRJ1OOYnjbOxUEkorADk9k1XfnJz4BVbi1V4fs6y4tJlhjO/lwKQG8IiilHa
-	 z/e9pRWBU1iOPxFjQaXweb8zt8NoQJsqxPpQAXC6bt1cpDGIGWUp54+yQdpdX5tMOs
-	 l+hoXgWVSRZbw==
+	b=ZbcCiP//rEFhVYAwaOaqsysaKq2X8Uq7GiTk+8jCEED22qYwA6Y9+9jZoE8hWiUMO
+	 BIUIhRGd3Hz6D8VShdUK+BGJO9GsTb0TfVUn+Y6fH2aTBmJrED7HJQEavkygvy3yPP
+	 4PCn8LE1o0Zrz06bpJvyTMG+WueVm3WyCoBmxulpZzD61nCTcQ4rxDrQKH8MnE80io
+	 HAtxiG2AhdEqyyA9AuumbQVxyjPy2PSWiqMZ7bElEIyZp8SlF05jDdYCcC4GBnOwzC
+	 b9flXTx7ZfUmywidWH0Se3F4IzXJMzwBWRoDIhmiD3PZC+tikp1y+PpqzwEsSDrzw4
+	 DJUu+NFay6k1w==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B10FC35FF8;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BCCA9C35FF3;
 	Mon, 17 Mar 2025 07:16:54 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Mon, 17 Mar 2025 15:16:53 +0800
-Subject: [PATCH 2/7] dt-bindings: arm: amlogic: add S7 support
+Date: Mon, 17 Mar 2025 15:16:58 +0800
+Subject: [PATCH 7/7] arm64: dts: add support for S7D based Amlogic BM202
 MIME-Version: 1.0
-Message-Id: <20250317-s6-s7-basic-v1-2-d653384e41f3@amlogic.com>
+Message-Id: <20250317-s6-s7-basic-v1-7-d653384e41f3@amlogic.com>
 References: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
 In-Reply-To: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -62,20 +62,19 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742195812; l=998;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742195812; l=5083;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=SuYt3SPoeTkST/7nafCrM6pqpJlyHyKx8BG3DDj/KIA=;
- b=Apl3d1DPL3LCKBjCh3w+1SB/OltSWVfoAJK89P+JuF7UlqiWMsvhkKSRjlej6mZJz+XoLE/dE
- Dx023e0I0ubDS4+CB3oiimPfuxp40XlQVf9xgWxR4gjHlPALJs4i0vJ
+ bh=8HBKGThj61yCyT/nevxdLdrGJPynTVZ5IStBzZD4tJU=;
+ b=zMUWAkth54rtfWZJo8q97ktf7u0zaYTrr9GmYkz7XldWMUcbMRUAPf5U07/GRQiS51Fma6AJk
+ l1kVqCrewARAPDQF7z5AF7HP1ZcBtmNzV0QoT33jUGPUX01oTtG0PuM
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
  auth_id=107
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250317_001656_422668_F2EDAB67 
-X-CRM114-Status: UNSURE (   7.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250317_001656_583278_04358D45 
+X-CRM114-Status: GOOD (  13.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,33 +94,184 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Document the new S7 SoC/board device tree bindings.
-
-Amlogic S7 is an advanced application processor designed for
+Amlogic S7D is an advanced application processor designed for
 hybrid OTT/IP Set Top Box and high-end media box applications.
+
+Add basic support for the S7D based Amlogic BM202 board, Reusing
+S7 basic components: CPU, GIC, IRQ, Timer and UART.
+These are capable of booting up into the serial console.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/amlogic/Makefile               |  1 +
+ .../boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts | 41 +++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       | 99 ++++++++++++++++++++++
+ 3 files changed, 141 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 67423c838719..9a6e98b55685 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -243,6 +243,12 @@ properties:
-               - amlogic,bl209
-           - const: amlogic,s6
- 
-+      - description: Boards with the Amlogic S7 S805X3 SoC
-+        items:
-+          - enum:
-+              - amlogic,bp201
-+          - const: amlogic,s7
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 29e1c7b9ee31..8c16c22c7b8e 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c308l-aw419.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-s6-s905x5-bl209.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-s7-s805x3-bp201.dtb
++dtb-$(CONFIG_ARCH_MESON) += amlogic-s7d-s905x5m-bm202.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts b/arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts
+new file mode 100644
+index 000000000000..2933fcdbc8ef
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts
+@@ -0,0 +1,41 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2025 Amlogic, Inc. All rights reserved.
++ */
 +
-       - description: Boards with the Amlogic T7 A311D2 SoC
-         items:
-           - enum:
++/dts-v1/;
++
++#include "amlogic-s7d.dtsi"
++/ {
++	model = "Amlogic S905X5M BM202 Development Board";
++	compatible = "amlogic,bm202", "amlogic,s7d";
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		serial0 = &uart_b;
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		/* 36 MiB reserved for ARM Trusted Firmware */
++		secmon_reserved: secmon@5000000 {
++			compatible = "shared-dma-pool";
++			reg = <0x0 0x05000000 0x0 0x2400000>;
++			no-map;
++		};
++	};
++};
++
++&uart_b {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
+new file mode 100644
+index 000000000000..e1099bc1535d
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
+@@ -0,0 +1,99 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2025 Amlogic, Inc. All rights reserved.
++ */
++
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/gpio/gpio.h>
++
++/ {
++	cpus {
++		#address-cells = <2>;
++		#size-cells = <0>;
++
++		cpu0: cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x0>;
++			enable-method = "psci";
++		};
++
++		cpu1: cpu@100 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x100>;
++			enable-method = "psci";
++		};
++
++		cpu2: cpu@200 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x200>;
++			enable-method = "psci";
++		};
++
++		cpu3: cpu@300 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x300>;
++			enable-method = "psci";
++		};
++
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++	};
++
++	psci {
++		compatible = "arm,psci-1.0";
++		method = "smc";
++	};
++
++	xtal: xtal-clk {
++		compatible = "fixed-clock";
++		clock-frequency = <24000000>;
++		clock-output-names = "xtal";
++		#clock-cells = <0>;
++	};
++
++	soc {
++		compatible = "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		gic: interrupt-controller@fff01000 {
++			compatible = "arm,gic-400";
++			#interrupt-cells = <3>;
++			#address-cells = <0>;
++			interrupt-controller;
++			reg = <0x0 0xfff01000 0 0x1000>,
++			      <0x0 0xfff02000 0 0x0100>;
++			interrupts = <GIC_PPI 9 0xf04>;
++		};
++
++		apb: bus@fe000000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xfe000000 0x0 0x480000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
++
++			uart_b: serial@7a000 {
++				compatible = "amlogic,s7d-uart",
++					     "amlogic,meson-s4-uart";
++				reg = <0x0 0x7a000 0x0 0x18>;
++				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&xtal>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
++		};
++	};
++};
 
 -- 
 2.37.1
