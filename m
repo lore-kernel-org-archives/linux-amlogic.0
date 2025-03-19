@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98817C35FFF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Mar 2025 19:08:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 266B4C36000
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Mar 2025 19:11:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=sEyKt9lxRZRGqK0FvxiHVRj3tpYfXPXBvL+fUi04EC0=; b=PdwfmVq7NIJas5
-	kQQhwLBOukQAjfmd/b/zW6BQ+fowh6VZtq9YdKSnHO7hrXoAb8yKukM9pOUgiGwUHyXaEigoIYR1f
-	AraDSmx0zcFsjpB4kvl6e5Nwq8WrQWSHmsqDkHAsRpkwZWMHlQg767PznbDMgrM3lZO21eHAtAcdB
-	D49h9eNSXAHEcZTNQrXQzu8ucjpi0CW6Bj0l40P+vDrnZKwZJxjaoC/+ADT+NDpC0taPBKq9lHSQe
-	eDqWMw4KulPwk2tOmYPH6CPmwknxifX+xs34pH/EsyUvGIUuCF9kfobJ/pbbmc/9D0wO720yKaGje
-	JTyWIhXPHUVqdIsh5IWQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:Subject:To:
+	Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Mk8M0ALwaU5wL3uj648BFZJHkKhaz6mzSoNGCMUp44A=; b=jiU4n8D3/TwcQi
+	8GPXGjBkmNLvHH2f0k97bDxjzMbFJ4WKy53+9hgaxz7HgqmiOdIejmT6HhgvCWJ2Qc+CAHHwIrX+h
+	JIbwGCtYrqjPQXagBV8IOTBCI604XPtl5ayiiaRrWiBpc+2kvKl+09BW6j6kYk7QEmj3CeYgE/p9z
+	MUeWrBY++3F2rVAs0U/9hNj3HRF2ICskZCanycsB1zKL9PNb/uOzewkr6dXfmSt6xC5KRxIyD1Xg0
+	32ylPCeIXaJ7B9SvuVN4+mZOmiQjFmzHYFGzz6sW4TGmd4n2WHYDetmXrDy7677xpCkxuu1Q43WXe
+	qBtxZi6pv0eNNBrTM1lw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tuylv-00000009uhY-255S;
-	Wed, 19 Mar 2025 19:08:11 +0000
-Received: from out-179.mta0.migadu.com ([2001:41d0:1004:224b::b3])
+	id 1tuypG-00000009vCE-16lH;
+	Wed, 19 Mar 2025 19:11:38 +0000
+Received: from out-184.mta0.migadu.com ([2001:41d0:1004:224b::b8])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tuygx-00000009u0P-25Nc
-	for linux-amlogic@lists.infradead.org;
-	Wed, 19 Mar 2025 19:03:06 +0000
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+	id 1tuyk7-00000009uR3-0KjE;
+	Wed, 19 Mar 2025 19:06:20 +0000
+Mime-Version: 1.0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1742410971;
+	s=key1; t=1742411176;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=y0Eo0e6YOE9ilTmD+cbKmf0J9gx2iyifBh05aUNn6ks=;
-	b=HTFNVaXBvtCpqdADiDu6dLds+9rJtE3cC135zOWlGP8GMkavL7UwCTSERgmI1+N/YbR2zL
-	IEHVqcG0Ic2MFqL7auYiwTlyVD8keAw+htKk7GJuN4DzbNCH2Cko10va7mRpEuJaDmCwo3
-	zaUHPoRovRpxt8WQxgOMuey4tk5bJmHb0lrfFOTmNryDn3127qOtzJi4576EkBAMJNvUrn
-	LfZu6ckscoZdk0CAxEkR4QpLULUkEFdl9CKmeu09AUKlURN5rD48ONoLo7e0ltMKPghWBY
-	Z+9phY67o6B/BEwg1BX7rGu/6O6nXMGmA+Yfg7gufFmUAU55rA52nIYgKf9ArA==
-From: Ferass El Hafidi <funderscore@postmarketos.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH v5 0/2] Add support for Xiaomi Mi TV Stick
-Date: Wed, 19 Mar 2025 19:01:48 +0000
-Message-ID: <20250319190150.31529-2-funderscore@postmarketos.org>
-MIME-Version: 1.0
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jHQ3Ngz9cNLQIGQBw16DZBzL1L0whpDC6ssfPJFBJJM=;
+	b=r1g/wOmqJPq1TMuu/XCjqxm9Zku1seTSsX6OX+DmtuZzslvAmn8XspEXWuAWAnV8pZUH2b
+	8FpgGcss8pWSihofzHpqjjwfaxTyGbWOx9SRDo4EF7NAeCto+FkKzNlQbbn0kU7tclV5hC
+	HeiSHhvJwdc8dCNe8d1CnhwodWoodcY8B943c9p3133YtvVPO4DytPy6p2Yhy2HmDXubJN
+	4IrGwM6I6tFXhpo3nGHQGQVVmd8AA9hdYPtJeXPjeKhBGQzCETL0ojpWor9CNcLTvFZ4wm
+	ZpEKg0O+aoi4pjxU33Wy5dr5kuVw5furP+u32rKisVFNDCAwA4/MBsvSfWmkKQ==
+Date: Wed, 19 Mar 2025 19:05:50 +0000
+Message-Id: <D8KH7CDPMWDS.396O6X214BX59@postmarketos.org>
+To: "Ferass El Hafidi" <funderscore@postmarketos.org>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Kevin Hilman" <khilman@baylibre.com>, "Jerome
+ Brunet" <jbrunet@baylibre.com>, "Martin Blumenstingl"
+ <martin.blumenstingl@googlemail.com>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, <linux-amlogic@lists.infradead.org>
+Subject: Re: [PATCH v5 0/2] Add support for Xiaomi Mi TV Stick
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Ferass El Hafidi" <funderscore@postmarketos.org>
+References: <20250319190150.31529-2-funderscore@postmarketos.org>
+In-Reply-To: <20250319190150.31529-2-funderscore@postmarketos.org>
 X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250319_120303_678575_6852973F 
-X-CRM114-Status: GOOD (  16.35  )
+X-CRM114-CacheID: sfid-20250319_120619_258610_7EB9DF93 
+X-CRM114-Status: UNSURE (   9.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,91 +68,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>, Karl Chan <exxxxkc@getgoogleoff.me>, linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, funderscore@postmarketos.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>, Karl Chan <exxxxkc@getgoogleoff.me>, linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch series aims to add initial support for the Xiaomi Mi TV
-Stick.
+On Wed Mar 19, 2025 at 7:01 PM UTC, Ferass El Hafidi wrote:
+<snip>
+>
+> More information is available on the postmarketOS wiki page [6].
+>
 
-Xiaomi Mi TV Stick is a small Amlogic-based Android TV stick released in 
-2020, and known as `xiaomi-aquaman` internally (in the downstream kernel,
-u-boot, ...)
-Its specifications are as follows:
- * Amlogic S805Y SoC (believed to be mostly identical to S805X)
- * 8 GB eMMC
- * 1 GB of RAM
- * Wi-Fi + Bluetooth
- * Android TV 9, upgradable to Android TV 10
- * Google-certified
+Which would be https://wiki.postmarketos.org/wiki/Xiaomi_Mi_TV_Stick_(xiaomi-aquaman)
 
-There are multiple variants:
- * 1. Green PCB, manufactured in 2020, known UART pinout (helpfully 
-   labeled on the board)
- * 2. Blue PCB, not much documentation about it, presumably manufactured
-   between 2021 and 2023
- * 3. Green PCB, manufactured in 2023/2024, known UART pinout, some layout
-   changes compared to the 2020 variant
+Sorry, forgot to put the link.
 
-Among these variants, there are many boards using multiple different
-Wi-Fi chips.  Supporting all of them is out of scope for this patch
-series.  However, there has been some work identifying Wi-Fi/Bluetooth 
-since v4.  Some variants use a Realtek module while others use an
-Amlogic module.
+Regards.
 
-As of the time of writing this has only been tested on the 3rd variant.
-It is believed that software-wise all three work mostly the same (if we 
-don't count Wi-Fi/BT), but testing on the other variants would still be
-appreciated.  Sadly, booting Mainline linux is slightly more
-challenging on some versions of the original firmware.
-
-The devicetree is based on the Amlogic P241 DTS.
-
-Changes since v4 [1]:
- * add Acked-by from krzk
- * Wi-Fi on sd_emmc_b
-
-Changes since v3 [2]:
- * typo fix (`vbus-supply` in `&usb`)
-
-Changes since v2 [3]:
- * fix SoB/From mismatch
-
-Changes since v1 [4]:
- * remove useless nodes: cvbs-connector, ethmac, internal_phy, ir
- * add `amlogic,s805y` DT binding section
- * add S805Y dtsi: meson-gxl-s805y.dtsi
- * adjust DT `model` to "Xiaomi Mi TV Stick (Aquaman)"
- * explain the changes being done a bit more in the commit message for
-   the DT patch
- * drop `clocks` and `clock-names` from pwm_ef (background: [5])
- * change sound `model` to "XIAOMI-AQUAMAN"
-
-More information is available on the postmarketOS wiki page [6].
-
-[1]: https://lore.kernel.org/all/20250203174346.13737-1-funderscore@postmarketos.org/
-[2]: https://lore.kernel.org/all/20250203091453.15751-1-funderscore@postmarketos.org/
-[3]: https://lore.kernel.org/all/20250201193044.28856-1-funderscore@postmarketos.org/
-[4]: https://lore.kernel.org/all/20250131200319.19996-1-funderscore@postmarketos.org/
-[5]: https://lore.kernel.org/linux-amlogic/20241227212514.1376682-1-martin.blumenstingl@googlemail.com/
-
-
-Ferass El Hafidi (2):
-  dt-bindings: arm: amlogic: add S805Y and Mi TV Stick
-  arm64: dts: amlogic: add support for xiaomi-aquaman/Mi TV Stick
-
- .../devicetree/bindings/arm/amlogic.yaml      |   7 +
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../meson-gxl-s805y-xiaomi-aquaman.dts        | 292 ++++++++++++++++++
- .../boot/dts/amlogic/meson-gxl-s805y.dtsi     |  10 +
- 4 files changed, 310 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
-
--- 
-2.47.1
+> [1]: https://lore.kernel.org/all/20250203174346.13737-1-funderscore@postmarketos.org/
+> [2]: https://lore.kernel.org/all/20250203091453.15751-1-funderscore@postmarketos.org/
+> [3]: https://lore.kernel.org/all/20250201193044.28856-1-funderscore@postmarketos.org/
+> [4]: https://lore.kernel.org/all/20250131200319.19996-1-funderscore@postmarketos.org/
+> [5]: https://lore.kernel.org/linux-amlogic/20241227212514.1376682-1-martin.blumenstingl@googlemail.com/
+>
+>
+> Ferass El Hafidi (2):
+>   dt-bindings: arm: amlogic: add S805Y and Mi TV Stick
+>   arm64: dts: amlogic: add support for xiaomi-aquaman/Mi TV Stick
+>
+>  .../devicetree/bindings/arm/amlogic.yaml      |   7 +
+>  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+>  .../meson-gxl-s805y-xiaomi-aquaman.dts        | 292 ++++++++++++++++++
+>  .../boot/dts/amlogic/meson-gxl-s805y.dtsi     |  10 +
+>  4 files changed, 310 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
 
 
 _______________________________________________
