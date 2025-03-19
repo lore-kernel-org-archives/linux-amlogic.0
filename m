@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D55CC35FFB
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Mar 2025 19:31:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5615EC35FFB
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Mar 2025 19:33:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=c4jbCM6Cu8ibgBZGhvER8OTgq7FEhkDTzyHPGCm9A0Y=; b=vFTHYa6IycZHXM
-	Lh1ftYElocDSrVSG66JzjCnmBpaA5/Mrew/6yFKsB38EtxmGCNbihcje7HsqvSGn09G5s0tbIIGJs
-	NCk6S/4ZsIvI6UacHnI7FdN7MjkUp7dm/l4TP5PyL5UhG94y+Xgt7MCmbiXWT9Fv9noOf4zC50EH6
-	3l4Az6zluwuXJZz6UgRjClzI3QQS/4CQBdcQlbFJOEZ46k/xpDLVdUTzj2JbAb1zZ6YPMKJTwXD/l
-	+kfx6KcgQJaO2b7vf937yPdr5vcJPxmgcQzK3qf5+rTktwQGDULAva7+kbE1gRdMFcdTxszDx2hz6
-	b3WTX58IqkS7CI2m+S6A==;
+	List-Owner; bh=hZfyH+NwUp63oihxSXFPr6jVzuGwDHSRKnoHJcRRohs=; b=Bp18Ie9c51uBK6
+	MmJpMmTczjIZf7hbNj9I4d4Pt66DMwecrCZJJQauFXuO6XHICV73u6ir7eRchVzEouVNsuHqWQPAL
+	qCgbQpQbU36GStmFRipkmMd3WSMgVQ7cepyv32VX5CdLkDnUnwJEb+UAbSxip5UPMzwf04gQCPYM7
+	pz6OaPJ2d95hWtFPlquCIAl/BRf86ANUAIN7p2HwMWB+1Y95S9JEX9vTKj+safk0X5riZup2D0GK5
+	GUTrmnqBBINPkSPs2bWFyeo7Wwco63u7OjLm9GZ78Jt9/qCrA9myrZa7tYw0175FSNUmNh54gTcO8
+	rINISkGX+aWHhxrpsdEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tuz8M-00000009z0f-160y;
-	Wed, 19 Mar 2025 19:31:22 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1tuzA2-00000009zPw-1PSs;
+	Wed, 19 Mar 2025 19:33:06 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tuz8L-00000009yzo-04nd;
-	Wed, 19 Mar 2025 19:31:21 +0000
+	id 1tuz8k-00000009z7P-1Y9k;
+	Wed, 19 Mar 2025 19:31:47 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 125A568306;
-	Wed, 19 Mar 2025 19:31:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE7C2C4CEE4;
-	Wed, 19 Mar 2025 19:31:12 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id D68A15C5662;
+	Wed, 19 Mar 2025 19:29:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABC9CC4CEE9;
+	Wed, 19 Mar 2025 19:31:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742412680;
-	bh=CpfCtBcbiwBJ0pvVDr2LOLoj2GpLAXY2Jc7T3aqYATE=;
+	s=k20201202; t=1742412705;
+	bh=VODwfrt3KkmAokRohu16X/E2z/gn8CoM6Tx6tZBecgQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tLHA5bCEYAzsmdCwwKaCf6fUHZHdQpJrc4VNB9NQAPsckqR+KBod/BYx3UfCzJp5m
-	 cyIzLKyONGdzVgL355P6tEPJVDhG7wq2ja6eX66of4xmEolBgDiLzQ5pS6r3NAzjBw
-	 Dnj86XvJ2VqkY0wWFCjF/FfbjQgbPtaoPowbK/zYaRC0LAAiy0UWbAzrWqTMV+Gb3e
-	 Kiic1porYOBgID5Hw14r2Xm/kuGR/BkrylPKfwviCAIClMwC/UkJhWuBOAqUwgq0uv
-	 lHAO8kSc3ImQa6QoUb3dVQSgFQH9wE16XLtk/vu8o0DJiwaWxBgEgDQuPHshX+BhJK
-	 d5OetRRdl4yCg==
-Message-ID: <37f65ad0-69fa-4031-86da-8b07828aff34@kernel.org>
-Date: Wed, 19 Mar 2025 20:31:09 +0100
+	b=FRcNIWSbdFL6ogJKYQrak6++QXliKtGGMtBDVpGiltFURLpOVSvomSH3a+ZRn17vL
+	 exSOA9FVCudmB9omE2RjE8n+4/mbB0lrZkX/NpEiYH7awxdfpZZntktdXINEhoSYSO
+	 yuLTmyBrCSdva9QtFhkI8K15tyc1UmXhnNY77RjEFtEifY0HADzfchJQCxwZHWRJee
+	 kiJtwy/6PZP1wNEDPcW2xi9ffpJh2az7ftbPwSZ4ins6nlZ+ydZNAiaUPF2nkIS8Se
+	 6LqJSUCjPqvYdmQqqf7qFsZNl8M7xNB42I7YlKaS5THpGK8T+iT2/LH2ZUEXzKSdnB
+	 Oujpr5hTY7z1g==
+Message-ID: <7084e271-8546-4a49-9eb8-ee3f647c529a@kernel.org>
+Date: Wed, 19 Mar 2025 20:31:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] arm64: dts: amlogic: Add Amlogic S4 Audio
+Subject: Re: [PATCH v4 2/6] dt-bindings: clock: axg-audio: Add mclk and sclk
+ pad clock ids
 To: Jiebing Chen <jiebing.chen@amlogic.com>
 Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
  <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
@@ -60,9 +61,9 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
  linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
 References: <20250319-audio_drvier-v4-0-686867fad719@amlogic.com>
- <20250319-audio_drvier-v4-6-686867fad719@amlogic.com>
- <20250319-quizzical-coyote-of-assurance-d4c91d@krzk-bin>
- <9397d6d5-518d-4bd0-a34a-7a5f5e1201f1@amlogic.com>
+ <20250319-audio_drvier-v4-2-686867fad719@amlogic.com>
+ <20250319-daffy-classy-kangaroo-023e1f@krzk-bin>
+ <9ae73d75-9c59-4255-8924-b456c86cbc01@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,7 +109,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <9397d6d5-518d-4bd0-a34a-7a5f5e1201f1@amlogic.com>
+In-Reply-To: <9ae73d75-9c59-4255-8924-b456c86cbc01@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250319_123146_489851_1EA94E4A 
+X-CRM114-Status: GOOD (  16.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,126 +124,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/03/2025 11:38, Jiebing Chen wrote:
->>>   };
->>>
->>>   &pwm_ef {
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>> index 957577d986c0675a503115e1ccbc4387c2051620..83edafc2646438e3e6b1945fa1c4b327254a4131 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>> @@ -11,7 +11,11 @@
->>>   #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
->>>   #include <dt-bindings/power/meson-s4-power.h>
->>>   #include <dt-bindings/reset/amlogic,meson-s4-reset.h>
->>> -
->> Why?
-> 
-> The following files are included that the audio driver depends on
-
-Do you understand how emails work and patch review? I commented under
-your change, not unrelated code being there already.
-
-> 
-> it is same as sm1 chip
-> 
->>> +#include <dt-bindings/clock/axg-audio-clkc.h>
->>> +#include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
->>> +#include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
->>> +#include <dt-bindings/sound/meson-g12a-toacodec.h>
->>> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->> Old style was correct.
-> 
-> I didn't understand where you were referring to, I'm guessing that's 
-> what it was about
-
-Read your patch.
-
-
-> 
-> the following changes to tdmif_a
-> 
-> old:
-> 
-> clock-names = "mclk", "sclk", "lrclk";
-> 
-> new:
-> clock-names = "sclk", "lrclk","mclk";
-> it fix warning
-
-How is this related to the patch hunk?
-
-Do you understand how patch format works?
-
-
-...
-
->>>        timer {
->>>                compatible = "arm,armv8-timer";
->>>                interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->>> @@ -101,7 +135,6 @@ apb4: bus@fe000000 {
->>>                        #address-cells = <2>;
->>>                        #size-cells = <2>;
->>>                        ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->>> -
->> Why? What is happening in this patch - why are you changing so many
->> other pieces?
-
-You did not respond here, so I assume you will fix this and do intensive
-review before posting next version.
-
->>
->>>                        clkc_periphs: clock-controller@0 {
->>>                                compatible = "amlogic,s4-peripherals-clkc";
->>>                                reg = <0x0 0x0 0x0 0x49c>;
->>> @@ -134,6 +167,17 @@ clkc_pll: clock-controller@8000 {
->>>                                #clock-cells = <1>;
->>>                        };
->>>
->>> +                     acodec: audio-controller@1a000 {
->>> +                             compatible = "amlogic,t9015";
->>> +                             reg = <0x0 0x1A000 0x0 0x14>;
->>> +                             #sound-dai-cells = <0>;
->>> +                             sound-name-prefix = "ACODEC";
->>> +                             clocks = <&clkc_periphs CLKID_ACODEC>;
->>> +                             clock-names = "pclk";
->>> +                             resets = <&reset RESET_ACODEC>;
->>> +                             AVDD-supply = <&vddio_ao1v8>;
->>> +                     };
->>> +
->>>                        watchdog@2100 {
->>>                                compatible = "amlogic,s4-wdt", "amlogic,t7-wdt";
->>>                                reg = <0x0 0x2100 0x0 0x10>;
->>> @@ -850,3 +894,327 @@ emmc: mmc@fe08c000 {
->>>                };
->>>        };
->>>   };
->>> +
->>> +&apb4 {
->>> +     audio: bus@330000 {
->>> +             compatible = "simple-bus";
->>> +             reg = <0x0 0x330000 0x0 0x1000>;
->> That's not a simple bus in such case.
-> 
-> these code base on old dts like sm1/g12a, we didn't easily change any of 
-> the relevant properties
-> 
-> To be consistent with the previous one
-
-Still NAK.
-
-You cannot add bugs just to be consistent.
-
-
-Best regards,
-Krzysztof
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTkvMDMvMjAyNSAxMTowOSwgSmllYmluZyBDaGVuIHdyb3RlOgo+IAo+IOWcqCAyMDI1LzMv
+MTkgMTY6MjIsIEtyenlzenRvZiBLb3psb3dza2kg5YaZ6YGTOgo+PiBbWW91IGRvbid0IG9mdGVu
+IGdldCBlbWFpbCBmcm9tIGtyemtAa2VybmVsLm9yZy4gTGVhcm4gd2h5IHRoaXMgaXMgaW1wb3J0
+YW50IGF0IGh0dHBzOi8vYWthLm1zL0xlYXJuQWJvdXRTZW5kZXJJZGVudGlmaWNhdGlvbiBdCj4+
+Cj4+IFsgRVhURVJOQUwgRU1BSUwgXQo+Pgo+PiBPbiBXZWQsIE1hciAxOSwgMjAyNSBhdCAwMzow
+NDo0NVBNICswODAwLCBqaWViaW5nIGNoZW4gd3JvdGU6Cj4+PiBBZGQgY2xvY2sgSURzIGZvciB0
+aGUgbWNsayBwYWRzIGZvdW5kIG9uIHM0IFNvQ3MKPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBqaWVi
+aW5nIGNoZW4gPGppZWJpbmcuY2hlbkBhbWxvZ2ljLmNvbT4KPj4+IC0tLQo+Pj4gICBpbmNsdWRl
+L2R0LWJpbmRpbmdzL2Nsb2NrL2F4Zy1hdWRpby1jbGtjLmggfCAxMSArKysrKysrKysrKwo+PiBU
+aGlzIGJlbG9uZ3MgdG8gdGhlIGJpbmRpbmcgcGF0Y2gsIHVzdWFsbHkuCj4+Cj4+IEFueXdheSAt
+IGRvIG5vdCBhc2sgdXMgdG8gZG8gdGhlIHdvcmsgdHdpY2UuCj4+Cj4+IDxmb3JtIGxldHRlcj4K
+Pj4gVGhpcyBpcyBhIGZyaWVuZGx5IHJlbWluZGVyIGR1cmluZyB0aGUgcmV2aWV3IHByb2Nlc3Mu
+Cj4+Cj4+IEl0IGxvb2tzIGxpa2UgeW91IHJlY2VpdmVkIGEgdGFnIGFuZCBmb3Jnb3QgdG8gYWRk
+IGl0Lgo+Pgo+PiBJZiB5b3UgZG8gbm90IGtub3cgdGhlIHByb2Nlc3MsIGhlcmUgaXMgYSBzaG9y
+dCBleHBsYW5hdGlvbjoKPj4gUGxlYXNlIGFkZCBBY2tlZC1ieS9SZXZpZXdlZC1ieS9UZXN0ZWQt
+YnkgdGFncyB3aGVuIHBvc3RpbmcgbmV3Cj4+IHZlcnNpb25zIG9mIHBhdGNoc2V0LCB1bmRlciBv
+ciBhYm92ZSB5b3VyIFNpZ25lZC1vZmYtYnkgdGFnLCB1bmxlc3MKPj4gcGF0Y2ggY2hhbmdlZCBz
+aWduaWZpY2FudGx5IChlLmcuIG5ldyBwcm9wZXJ0aWVzIGFkZGVkIHRvIHRoZSBEVAo+PiBiaW5k
+aW5ncykuIFRhZyBpcyAicmVjZWl2ZWQiLCB3aGVuIHByb3ZpZGVkIGluIGEgbWVzc2FnZSByZXBs
+aWVkIHRvIHlvdQo+PiBvbiB0aGUgbWFpbGluZyBsaXN0LiBUb29scyBsaWtlIGI0IGNhbiBoZWxw
+IGhlcmUuIEhvd2V2ZXIsIHRoZXJlJ3Mgbm8KPj4gbmVlZCB0byByZXBvc3QgcGF0Y2hlcyAqb25s
+eSogdG8gYWRkIHRoZSB0YWdzLiBUaGUgdXBzdHJlYW0gbWFpbnRhaW5lcgo+PiB3aWxsIGRvIHRo
+YXQgZm9yIHRhZ3MgcmVjZWl2ZWQgb24gdGhlIHZlcnNpb24gdGhleSBhcHBseS4KPj4KPj4gUGxl
+YXNlIHJlYWQ6Cj4+IGh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y2LjEyLXJjMy9z
+b3VyY2UvRG9jdW1lbnRhdGlvbi9wcm9jZXNzL3N1Ym1pdHRpbmctcGF0Y2hlcy5yc3QjTDU3Nwo+
+Pgo+PiBJZiBhIHRhZyB3YXMgbm90IGFkZGVkIG9uIHB1cnBvc2UsIHBsZWFzZSBzdGF0ZSB3aHkg
+YW5kIHdoYXQgY2hhbmdlZC4KPj4gPC9mb3JtIGxldHRlcj4KPiAKPiB0aGFua3MgZm9yIHlvdXIg
+cmVtaW5kCgpBcmUgeW91IGdvaW5nIHRvIGRvIGFueXRoaW5nIG9yIHlvdSBhcmUgZ29pbmcgdG8g
+aWdub3JlIHVzPwoKQmVzdCByZWdhcmRzLApLcnp5c3p0b2YKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
