@@ -4,77 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F220C28B30
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Mar 2025 09:47:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7098BC36000
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Mar 2025 10:08:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6CdwApgRltaUubgy0FXg69Cz8OfdgRT9zNtKtkGEfyw=; b=evHo2K2ttxxPHf
-	64nJbfoe/sKnD1IqhYeyrndcUJtTL4iLNYHX2gfnSzJXm2AjHzV+sUhxB3etmS4em2IjsxWj0I2iA
-	TiMZY5gTVfzp4dxHJ7/lzqusyV3iu4qsDPpCl5IbfGWqvDW9f1hUpDM+7oW1OA3tGCJQFIg3KHz+V
-	JE5XegmbxYkQt/zcIwsfrUCGi5ieFGyXKMLScRtD0bKcTFdTa8tg8EMaS8WR0zj4QnlPHKNMShJ96
-	lopkKJSe/sUCu/wRsPcL0Jc8aFHwJBdcQwk5KGDeturwHhg+XixKOPYibn1x5yoxdTVbimA1yj2Az
-	zaAhCnHIJHmNbXP1ibXg==;
+	List-Owner; bh=eufVeP8GjJxER2gIahYRDxF3PAlIv0ldqsnVYxIkxJ8=; b=W9XYtZyGBLTSUC
+	2qJVkaWhyvF/oOfGQMSFq+ruT8Q8LWnXTJEqCYMDdPVMXNdW9PjP963s1xF/VkkF7OMoTTIXhARMt
+	ypOFhqHjtOh1Cg97NfalfbNSKllAA2OA7HasBdCUjhOGMk9qG43GJajug5KD/PfDHSHW7tzOfM3sh
+	kYyJSKE7syIDbGv24xBOVtwyvjxTKPFkH+PIE9tv6QqKWM9TcdgB9U/qXBTMCQcw1ytWYWSW//br+
+	120vZmXOW7wJQpuQGo4J+kIpbOwdEA0guZhCp1yEMtPE8kq8cP9koR1WObvqFMdbnRWfCi1yPoLm/
+	ad28D2nJrZNY2ZfI7OSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tvCVG-0000000Bjrg-0lYk;
-	Thu, 20 Mar 2025 09:47:54 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1tvCog-0000000BmWr-1Z1S;
+	Thu, 20 Mar 2025 10:07:58 +0000
+Received: from mgamail.intel.com ([192.198.163.12])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tvCQB-0000000Bj8b-3xJA;
-	Thu, 20 Mar 2025 09:42:42 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id B575143E29;
-	Thu, 20 Mar 2025 09:42:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 010A4C4CEE8;
-	Thu, 20 Mar 2025 09:42:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742463759;
-	bh=KVMP+KP4loWBPX8Ab8zvnYv5rM2SYyJlpChJv4S7Ph0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=mY9lf+wMvcsugdnmpe51JPmX72Ymdx/hbUUcqy9N3N5YOJW3e4yxkhTQrcfq+0cax
-	 NA5wThSwoE//jtXmRB7YAg2xdcvVER/9DntwxC9MD7Wb0t3thWQf54JEL6ndFbUG7P
-	 F3b/hbZioyDBvgqOKJ6d4VLO8rmEspZVV2EHnGZcrg8cJg3aTiDP6LT/aAOsLC/j0A
-	 O6H8xNn3GF/bO5o++OEykpX6Kv05ULPH39rWHPtcKcH+k6pPx+FyCOea+unDernvdj
-	 VOlOqXJwitW8X1dfwlMsSj8EMU655I2vMqbedPPrXIKtfqRhg70yyKJJw6rYftSMn7
-	 pbS8NeBIBM8Ug==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E70B5C36004;
-	Thu, 20 Mar 2025 09:42:38 +0000 (UTC)
-From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Date: Thu, 20 Mar 2025 17:42:09 +0800
-Subject: [PATCH v5 2/3] arm64: dts: amlogic: Add A4 Reset Controller
+	id 1tvCmy-0000000BmNW-1diE;
+	Thu, 20 Mar 2025 10:06:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742465172; x=1774001172;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1/W9ZnOxLtkGDumZwqSmDSGWKZan3W+vbsFUgU9wlvg=;
+  b=OvGsA3s15NJmPYXGkZNduJR885eQS8qGopYWUNmnEax1AX9keVb1/BPb
+   OPzYkyVJ4MvORdoc7M4wDGHTU1VRduwsGOQ8QRj7tV39l2zb0du2eoOFs
+   iA68UCRxGRb3aRCAM9j+SbyZHvUqO6kTVUs6apei6oTUpFeIRF7xWNlje
+   1TkzfD2syPhjH1YuK0Jcz/GUPlhcsuMPJCrQ+QlLUeKL2NYAAoD3x5OVi
+   EsJffXLf3ZiZaBmdx3OJal4WZtd7t1iaXk6olOg42e0gKWu0zqrA96ACH
+   MlCc1Z+CZHv+mNUN8vifuuOl/SxJV2XlvWGjiy+FDNLoFoZV2NYaIPnam
+   w==;
+X-CSE-ConnectionGUID: Q+bBUVnyRFKSpZny4t0qIg==
+X-CSE-MsgGUID: 3OSXVKndSjO/oLLypbw1sQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="47567615"
+X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; 
+   d="scan'208";a="47567615"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2025 03:06:09 -0700
+X-CSE-ConnectionGUID: Fs4yULOuRSeeEEGeFKebWw==
+X-CSE-MsgGUID: RfAYdKxjQ6Khx2MJlFA6HQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; 
+   d="scan'208";a="123511643"
+Received: from lkp-server02.sh.intel.com (HELO e98e3655d6d2) ([10.239.97.151])
+  by fmviesa010.fm.intel.com with ESMTP; 20 Mar 2025 03:06:04 -0700
+Received: from kbuild by e98e3655d6d2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tvCmo-0000Lr-0X;
+	Thu, 20 Mar 2025 10:06:02 +0000
+Date: Thu, 20 Mar 2025 18:05:57 +0800
+From: kernel test robot <lkp@intel.com>
+To: jiebing chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com,
+	jiebing chen <jiebing.chen@amlogic.com>
+Subject: Re: [PATCH v4 5/6] clk: meson: axg-audio: Add the mclk pad div for
+ s4 chip
+Message-ID: <202503201714.sI6HIkYs-lkp@intel.com>
+References: <20250319-audio_drvier-v4-5-686867fad719@amlogic.com>
 MIME-Version: 1.0
-Message-Id: <20250320-a4-a5-reset-v5-2-296f83bf733d@amlogic.com>
-References: <20250320-a4-a5-reset-v5-0-296f83bf733d@amlogic.com>
-In-Reply-To: <20250320-a4-a5-reset-v5-0-296f83bf733d@amlogic.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Zelong Dong <zelong.dong@amlogic.com>, 
- Kelvin Zhang <kelvin.zhang@amlogic.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742463756; l=3871;
- i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=zH5X8psdvMQvBp31WZm+TBpjs/7nrtzcnxMyMa/Bno8=;
- b=wjbX/xleJxuYs/ldvJ677IkJc8tgumu1s+lZ8LBMmgQsS1ztYmBTZTgMRJKk6GVZXGHq95oQ0
- A3rh1k9l1HRB1YigJav6oXwePrLqhA180bLSSAE0i69cAMzaqEtoREF
-X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
- pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
-X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
- auth_id=148
-X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <20250319-audio_drvier-v4-5-686867fad719@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250320_024240_040126_E1D9B864 
-X-CRM114-Status: GOOD (  12.42  )
+X-CRM114-CacheID: sfid-20250320_030612_472528_68C5A7A3 
+X-CRM114-Status: GOOD (  15.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,155 +98,169 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: kelvin.zhang@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+Hi jiebing,
 
-Add the device node and related header file for Amlogic
-A4 reset controller.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-Link: https://lore.kernel.org/r/20240918074211.8067-3-zelong.dong@amlogic.com
-Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h | 93 ++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi    |  8 +++
- 2 files changed, 101 insertions(+)
+[auto build test ERROR on 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab]
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..f6a4c90bab3cf7cfaa3c98c522bed5e455b73bd3
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
-@@ -0,0 +1,93 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#ifndef __DTS_AMLOGIC_A4_RESET_H
-+#define __DTS_AMLOGIC_A4_RESET_H
-+
-+/* RESET0 */
-+/*						0-3 */
-+#define RESET_USB				4
-+/*						5-6*/
-+#define RESET_U2PHY22				7
-+#define RESET_USBPHY20				8
-+#define RESET_U2PHY21				9
-+#define RESET_USB2DRD				10
-+#define RESET_U2H				11
-+#define RESET_LED_CTRL				12
-+/*						13-31 */
-+
-+/* RESET1 */
-+#define RESET_AUDIO				32
-+#define RESET_AUDIO_VAD				33
-+/*						34*/
-+#define RESET_DDR_APB				35
-+#define RESET_DDR				36
-+#define RESET_VOUT_VENC				37
-+#define RESET_VOUT				38
-+/*						39-47 */
-+#define RESET_ETHERNET				48
-+/*						49-63 */
-+
-+/* RESET2 */
-+#define RESET_DEVICE_MMC_ARB			64
-+#define RESET_IRCTRL				65
-+/*						66*/
-+#define RESET_TS_PLL				67
-+/*						68-72*/
-+#define RESET_SPICC_0				73
-+#define RESET_SPICC_1				74
-+/*						75-79*/
-+#define RESET_MSR_CLK				80
-+/*						81*/
-+#define RESET_SAR_ADC				82
-+/*						83-87*/
-+#define RESET_ACODEC				88
-+/*						89-90*/
-+#define RESET_WATCHDOG				91
-+/*						92-95*/
-+
-+/* RESET3 */
-+/*						96-127 */
-+
-+/* RESET4 */
-+/*						128-131 */
-+#define RESET_PWM_AB				132
-+#define RESET_PWM_CD				133
-+#define RESET_PWM_EF				134
-+#define RESET_PWM_GH				135
-+/*						136-137*/
-+#define RESET_UART_A				138
-+#define RESET_UART_B				139
-+/*						140*/
-+#define RESET_UART_D				141
-+#define RESET_UART_E				142
-+/*						143-144*/
-+#define RESET_I2C_M_A				145
-+#define RESET_I2C_M_B				146
-+#define RESET_I2C_M_C				147
-+#define RESET_I2C_M_D				148
-+/*						149-151*/
-+#define RESET_SDEMMC_A				152
-+/*						153*/
-+#define RESET_SDEMMC_C				154
-+/*						155-159*/
-+
-+/* RESET5 */
-+/*						160-175*/
-+#define RESET_BRG_AO_NIC_SYS			176
-+/*						177*/
-+#define RESET_BRG_AO_NIC_MAIN			178
-+#define RESET_BRG_AO_NIC_AUDIO			179
-+/*						180-183*/
-+#define RESET_BRG_AO_NIC_ALL			184
-+/*						185*/
-+#define RESET_BRG_NIC_SDIO			186
-+#define RESET_BRG_NIC_EMMC			187
-+#define RESET_BRG_NIC_DSU			188
-+#define RESET_BRG_NIC_CLK81			189
-+#define RESET_BRG_NIC_MAIN			190
-+#define RESET_BRG_NIC_ALL			191
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-index fa80fa365f13c4a93f5577f78bf2b3369cb91cb8..6537153b3026af1bf9d1df0a196619b716553cde 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include "amlogic-a4-common.dtsi"
-+#include "amlogic-a4-reset.h"
- #include <dt-bindings/power/amlogic,a4-pwrc.h>
- #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
- / {
-@@ -51,6 +52,13 @@ pwrc: power-controller {
- };
- 
- &apb {
-+	reset: reset-controller@2000 {
-+		compatible = "amlogic,a4-reset",
-+			     "amlogic,meson-s4-reset";
-+		reg = <0x0 0x2000 0x0 0x98>;
-+		#reset-cells = <1>;
-+	};
-+
- 	gpio_intc: interrupt-controller@4080 {
- 		compatible = "amlogic,a4-gpio-intc",
- 			     "amlogic,meson-gpio-intc";
+url:    https://github.com/intel-lab-lkp/linux/commits/jiebing-chen-via-B4-Relay/dt-bindings-clock-meson-Add-audio-power-domain-for-s4-soc/20250319-151110
+base:   6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
+patch link:    https://lore.kernel.org/r/20250319-audio_drvier-v4-5-686867fad719%40amlogic.com
+patch subject: [PATCH v4 5/6] clk: meson: axg-audio: Add the mclk pad div for s4 chip
+config: arm64-randconfig-001-20250320 (https://download.01.org/0day-ci/archive/20250320/202503201714.sI6HIkYs-lkp@intel.com/config)
+compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project 87916f8c32ebd8e284091db9b70339df57fd1e90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250320/202503201714.sI6HIkYs-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503201714.sI6HIkYs-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/meson/axg-audio.c:2228:34: error: cannot assign to variable 'aud_regmap_config' with const-qualified type 'const struct regmap_config'
+    2228 |                 aud_regmap_config.max_register = resource_size(res) - 4;
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+   drivers/clk/meson/axg-audio.c:2220:37: note: variable 'aud_regmap_config' declared const here
+    2220 |                 static const struct regmap_config aud_regmap_config = {
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+    2221 |                         .reg_bits = 32,
+         |                         ~~~~~~~~~~~~~~~
+    2222 |                         .val_bits = 32,
+         |                         ~~~~~~~~~~~~~~~
+    2223 |                         .reg_stride = 4,
+         |                         ~~~~~~~~~~~~~~~~
+    2224 |                 };
+         |                 ~
+   drivers/clk/meson/axg-audio.c:2229:26: error: cannot assign to variable 'aud_regmap_config' with const-qualified type 'const struct regmap_config'
+    2229 |                 aud_regmap_config.name =
+         |                 ~~~~~~~~~~~~~~~~~~~~~~ ^
+   drivers/clk/meson/axg-audio.c:2220:37: note: variable 'aud_regmap_config' declared const here
+    2220 |                 static const struct regmap_config aud_regmap_config = {
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+    2221 |                         .reg_bits = 32,
+         |                         ~~~~~~~~~~~~~~~
+    2222 |                         .val_bits = 32,
+         |                         ~~~~~~~~~~~~~~~
+    2223 |                         .reg_stride = 4,
+         |                         ~~~~~~~~~~~~~~~~
+    2224 |                 };
+         |                 ~
+   2 errors generated.
+
+
+vim +2228 drivers/clk/meson/axg-audio.c
+
+  2175	
+  2176	static int axg_audio_clkc_probe(struct platform_device *pdev)
+  2177	{
+  2178		struct device *dev = &pdev->dev;
+  2179		const struct audioclk_data *data;
+  2180		struct axg_audio_reset_data *rst;
+  2181		struct regmap *map;
+  2182		void __iomem *regs;
+  2183		struct clk_hw *hw;
+  2184		struct clk *clk;
+  2185		int ret, i;
+  2186	
+  2187		data = of_device_get_match_data(dev);
+  2188		if (!data)
+  2189			return -EINVAL;
+  2190	
+  2191		regs = devm_platform_ioremap_resource(pdev, 0);
+  2192		if (IS_ERR(regs))
+  2193			return PTR_ERR(regs);
+  2194	
+  2195		axg_audio_regmap_cfg.max_register = data->max_register;
+  2196		map = devm_regmap_init_mmio(dev, regs, &axg_audio_regmap_cfg);
+  2197		if (IS_ERR(map)) {
+  2198			dev_err(dev, "failed to init regmap: %ld\n", PTR_ERR(map));
+  2199			return PTR_ERR(map);
+  2200		}
+  2201	
+  2202		/* Get the mandatory peripheral clock */
+  2203		clk = devm_clk_get_enabled(dev, "pclk");
+  2204		if (IS_ERR(clk))
+  2205			return PTR_ERR(clk);
+  2206	
+  2207		ret = device_reset(dev);
+  2208		if (ret) {
+  2209			dev_err_probe(dev, ret, "failed to reset device\n");
+  2210			return ret;
+  2211		}
+  2212	
+  2213		/* Populate regmap for the regmap backed clocks */
+  2214		for (i = 0; i < data->regmap_clk_num; i++)
+  2215			data->regmap_clks[i]->map = map;
+  2216	
+  2217		/* some amlogic chip clock pad reg domian is different */
+  2218		if (audio_clock_pad_is_new_regmap(dev->of_node)) {
+  2219			struct resource *res;
+  2220			static const struct regmap_config aud_regmap_config = {
+  2221				.reg_bits = 32,
+  2222				.val_bits = 32,
+  2223				.reg_stride = 4,
+  2224			};
+  2225			regs = devm_platform_get_and_ioremap_resource(pdev, 1, &res);
+  2226			if (IS_ERR(regs))
+  2227				return PTR_ERR(regs);
+> 2228			aud_regmap_config.max_register = resource_size(res) - 4;
+  2229			aud_regmap_config.name =
+  2230				devm_kasprintf(dev, GFP_KERNEL, "%s-%s", dev->of_node->name, "pads");
+  2231			map = devm_regmap_init_mmio(dev, regs, &aud_regmap_config);
+  2232			/* Populate clk pad regmap for the regmap backed clocks */
+  2233			for (i = 0; i < data->regmap_clk_pads_num; i++)
+  2234				data->regmap_clks_pads[i]->map = map;
+  2235		}
+  2236		/* Take care to skip the registered input clocks */
+  2237		for (i = AUD_CLKID_DDR_ARB; i < data->hw_clks.num; i++) {
+  2238			const char *name;
+  2239	
+  2240			hw = data->hw_clks.hws[i];
+  2241			/* array might be sparse */
+  2242			if (!hw)
+  2243				continue;
+  2244	
+  2245			name = hw->init->name;
+  2246			ret = devm_clk_hw_register(dev, hw);
+  2247			if (ret) {
+  2248				dev_err(dev, "failed to register clock %s\n", name);
+  2249				return ret;
+  2250			}
+  2251		}
+  2252	
+  2253		ret = devm_of_clk_add_hw_provider(dev, meson_clk_hw_get, (void *)&data->hw_clks);
+  2254		if (ret)
+  2255			return ret;
+  2256	
+  2257		/* Stop here if there is no reset */
+  2258		if (!data->reset_num)
+  2259			return 0;
+  2260	
+  2261		rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
+  2262		if (!rst)
+  2263			return -ENOMEM;
+  2264	
+  2265		rst->map = map;
+  2266		rst->offset = data->reset_offset;
+  2267		rst->rstc.nr_resets = data->reset_num;
+  2268		rst->rstc.ops = &axg_audio_rstc_ops;
+  2269		rst->rstc.of_node = dev->of_node;
+  2270		rst->rstc.owner = THIS_MODULE;
+  2271	
+  2272		return devm_reset_controller_register(dev, &rst->rstc);
+  2273	}
+  2274	
 
 -- 
-2.37.1
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
