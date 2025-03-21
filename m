@@ -4,78 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9235BC28B30
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Mar 2025 02:24:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30942C36000
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Mar 2025 09:25:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=PaY+aU5Z9VsMYV9wV2CYDDpVUMrDjDnpPXBeP5xQxj0=; b=ZEB8t1qFlnBXCl
-	sajvJ6ateZ0WX/LskHiQjhPuu48ual+jBBAwnHJMus2gAb0wEwSkX1ZbA28jnirfRez16ck6an/QK
-	2CzlsJ1Fivw6IHgHioHST0qTRm1khXhlLLmnXQVNKdrnzROlmwJDX9KD3XAYLCBwBHOZ3g6GZFzv9
-	RXkH7qWQ6PT5t5VWKrwEqhTstNCIpvvqIiZL6fMyn0iyzLb6+bGZHAUFmrM8jM2SKpXWTz1V09jLJ
-	252tqSbTNoxSpWwBi+RXeDw4Zu2gCZdUNL6eaIl7oc/hkTTCn54Ec2FnqYUvU4+p9j8FBwlo7HCM9
-	K9Q6z1MZ6FV90N+/843A==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pTknnddmpf5MFln4sv9s2yeKUS1vG73t42OkXob4opw=; b=nAHgOGboLm+KTI
+	qSaQaksd1h7xkP9Djq56C0QnZb+SjIijwF6R7AP1PI4D8wnzq+wFp5U3sMhXGLFc6JjyztAKLVODt
+	6w2Bjkdh7RAkYPo9tDa/97XG3TB+MyrBXznN0Yw73RS5kX/7S/UDCQrvSRuVtj521SqGpfREq6h5V
+	bhgMu6zju3V03oNhjqyobO8yY1VRFqrgLLmqazGpgRxP0AZwXcty1dRoaOlfHJMcuBTm5M8rRHJBv
+	Vte5ohXFFW8YFbeiDfIINm2AQlvOlyUPcNDwCWP5rvU7lWhCKcE+PCfv2H8CHFcJK3mkhOf2sYZ8f
+	UBk9dth4ANGZZCsCbZhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1tvS3H-0000000Dgmq-1MBg;
-	Fri, 21 Mar 2025 02:24:03 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1tvYdN-0000000EMR9-0RiY;
+	Fri, 21 Mar 2025 09:25:45 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1tvS3E-0000000DgmR-1rQI;
-	Fri, 21 Mar 2025 02:24:01 +0000
+	id 1tvYdK-0000000EMQk-0lGv;
+	Fri, 21 Mar 2025 09:25:43 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 3D942A4894A;
-	Fri, 21 Mar 2025 02:18:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3BE08C4CEDD;
-	Fri, 21 Mar 2025 02:23:57 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id E48145C5F13;
+	Fri, 21 Mar 2025 09:23:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F3B8C4CEE3;
+	Fri, 21 Mar 2025 09:25:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742523837;
-	bh=8+YFngRA+RL4itCdSnDqokhyCF25uPzsqjoBvzUhdHI=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=PzHSf57qgUf0FB7TATdmiJPPa16kAxxbeQBubmAv6ILpPwJ122YZbqrk1X3sZm0P9
-	 uYTzERiVqmRIg4+ruKUo/315IOkh83+bjOW9WxlSh8ShgcGv86JYxt/sCiGZzffVgB
-	 D86c3m9ZcKJB1PvS91lDdps3G6VYd4TauQqJJs+4w4tF014A79xqGuc57R8YiyFjlW
-	 KY/y0CcrhSUgQDzfcxOXOy0b0nNEh5tyOXMBrAsGfGr0UGsHrC1D57jChsaAvbGssF
-	 kgtxtyGK8941NGmLaxtZ9awMirQ319DxPHgkR9fkgldMd3dfcsPfxVb+VRDzUU8oHR
-	 IZ1ETZ1yHTacg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24AA7C28B30;
-	Fri, 21 Mar 2025 02:23:57 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 21 Mar 2025 10:23:55 +0800
-Subject: [PATCH] arm64: dts: amlogic: a4: fix dtb compilation warning
- issues
+	s=k20201202; t=1742549140;
+	bh=xagWroqK2KjwExb/4QdLan+HJEEnc1v2heAo/kNeQMg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BkttSCfq/1bl1fNVgyDlJAQugUKukCU1N6GtHzthSFYhlSZyDtdMf0mLZJSvrCBeK
+	 Fu3UUKhXbXKYeepJSBP+57AAHISAOekEZZFyrFVlL8xevY2oVQ/VGFKvjJD2tsUtvK
+	 v1UgI41RlZjuibPCSNX7yS3kPXZ+ScOgNPruhTJ/0IaXSNZMVi5lA3mfJP31nTwiC3
+	 O8m60Aag4/w0PAXoFCNATGS89MDxWSYXoQl4TgmcTOF4HdyFOFH9EfSFCqOwVnniSK
+	 nQQYGTBDe+hZp5U0in6gPO9VKCGDk6CldliWv1icZbXmubvasT025r1bBxek4M+OH5
+	 5q+CAjoxHuQEQ==
+Message-ID: <e21f3e39-573d-4391-885a-2df7c2598d80@kernel.org>
+Date: Fri, 21 Mar 2025 10:25:34 +0100
 MIME-Version: 1.0
-Message-Id: <20250321-fix-a4-pinctrl-node-v1-1-5719f9f09932@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIALrN3GcC/x2MSQqAMAwAvyI5G6hacfmKeOgSNSBRWhGh+HeLx
- 4GZSRApMEUYiwSBbo58SIaqLMBtRlZC9pmhVnWrmqrDhR80Gk8Wd4Ud5fCEgzV28VqT6lvI5Rk
- oa/91mt/3A56PuNllAAAA
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: amlogic: a4: fix dtb compilation warning
+ issues
+To: xianwei.zhao@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742523835; l=4994;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=IChqhCiVUHKV/Al5PYyBFG4RW3XtS/W3OF9ZWLm5x5E=;
- b=m1lud64/wUROGiLfKAlu7eDbYTf4Y/RBj9k8nVltMlE3s359FZ3sUFC3hN+43NIu5AYW0uFlA
- lrPSd5xEnI7BMBENznF5Jnx4nBvPjA9G6DiGs92ZaYgeF6zaOd2etNW
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250321-fix-a4-pinctrl-node-v1-1-5719f9f09932@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250321-fix-a4-pinctrl-node-v1-1-5719f9f09932@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250320_192400_623841_75B27A9C 
-X-CRM114-Status: UNSURE (   8.40  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250321_022542_311629_75A305DE 
+X-CRM114-Status: GOOD (  13.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,189 +115,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 21/03/2025 03:23, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> 
+> When use command 'make ARCH=arm64 dtbs_check W=1' to compile dtb,
+> a warning message appears.
+> "Warning (simple_bus_reg): /soc/bus@fe000000/pinctrl:
+> missing or empty reg/ranges property"
+> 
+> Add the unit address to the pinctrl node to fix it.
+> 
+> Fixes: ce78f679e08c ("arm64: dts: amlogic: a4: add pinctrl node")
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 102 +++++++++++++++-------------
+>  1 file changed, 55 insertions(+), 47 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> index fa80fa365f13..582e0043024b 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> @@ -51,87 +51,52 @@ pwrc: power-controller {
+>  };
+>  
+>  &apb {
+> -	gpio_intc: interrupt-controller@4080 {
+> -		compatible = "amlogic,a4-gpio-intc",
+> -			     "amlogic,meson-gpio-intc";
+> -		reg = <0x0 0x4080 0x0 0x20>;
+> -		interrupt-controller;
+> -		#interrupt-cells = <2>;
+> -		amlogic,channel-interrupts =
+> -			<10 11 12 13 14 15 16 17 18 19 20 21>;
+> -	};
+> -
+> -	gpio_ao_intc: interrupt-controller@8e72c {
+> -		compatible = "amlogic,a4-gpio-ao-intc",
+> -			     "amlogic,meson-gpio-intc";
+> -		reg = <0x0 0x8e72c 0x0 0x0c>;
+> -		interrupt-controller;
+> -		#interrupt-cells = <2>;
+> -		amlogic,channel-interrupts = <140 141>;
+> -	};
 
-When use command 'make ARCH=arm64 dtbs_check W=1' to compile dtb,
-a warning message appears.
-"Warning (simple_bus_reg): /soc/bus@fe000000/pinctrl:
-missing or empty reg/ranges property"
 
-Add the unit address to the pinctrl node to fix it.
+Not related to the change you described in commit msg.
 
-Fixes: ce78f679e08c ("arm64: dts: amlogic: a4: add pinctrl node")
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 102 +++++++++++++++-------------
- 1 file changed, 55 insertions(+), 47 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-index fa80fa365f13..582e0043024b 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-@@ -51,87 +51,52 @@ pwrc: power-controller {
- };
- 
- &apb {
--	gpio_intc: interrupt-controller@4080 {
--		compatible = "amlogic,a4-gpio-intc",
--			     "amlogic,meson-gpio-intc";
--		reg = <0x0 0x4080 0x0 0x20>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		amlogic,channel-interrupts =
--			<10 11 12 13 14 15 16 17 18 19 20 21>;
--	};
--
--	gpio_ao_intc: interrupt-controller@8e72c {
--		compatible = "amlogic,a4-gpio-ao-intc",
--			     "amlogic,meson-gpio-intc";
--		reg = <0x0 0x8e72c 0x0 0x0c>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		amlogic,channel-interrupts = <140 141>;
--	};
--
--	periphs_pinctrl: pinctrl {
-+	periphs_pinctrl: pinctrl@4000 {
- 		compatible = "amlogic,pinctrl-a4";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
--		ranges;
-+		ranges = <0x0 0x0 0x0 0x4000 0x0 0x280>;
- 
--		gpiox: gpio@4100 {
--			reg = <0 0x4100 0 0x40>, <0 0x400c 0 0xc>;
-+		gpiox: gpio@100 {
-+			reg = <0 0x100 0 0x40>, <0 0xc 0 0xc>;
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_X<<8) 18>;
- 		};
- 
--		gpiot: gpio@4140 {
--			reg = <0 0x4140 0 0x40>, <0 0x402c 0 0xc>;
-+		gpiot: gpio@140 {
-+			reg = <0 0x140 0 0x40>, <0 0x2c 0 0xc>;
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_T<<8) 23>;
- 		};
- 
--		gpiod: gpio@4180 {
--			reg = <0 0x4180 0 0x40>, <0 0x4040 0 0x8>;
-+		gpiod: gpio@180 {
-+			reg = <0 0x180 0 0x40>, <0 0x40 0 0x8>;
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_D<<8) 16>;
- 		};
- 
--		gpioe: gpio@41c0 {
--			reg = <0 0x41c0 0 0x40>, <0 0x4048 0 0x4>;
-+		gpioe: gpio@1c0 {
-+			reg = <0 0x1c0 0 0x40>, <0 0x48 0 0x4>;
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_E<<8) 2>;
- 		};
- 
--		gpiob: gpio@4240 {
--			reg = <0 0x4240 0 0x40>, <0 0x4000 0 0x8>;
-+		gpiob: gpio@240 {
-+			reg = <0 0x240 0 0x40>, <0 0 0 0x8>;
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_B<<8) 14>;
- 		};
- 
--		gpioao: gpio@8e704 {
--			reg = <0 0x8e704 0 0x16>, <0 0x8e700 0 0x4>;
--			reg-names = "gpio", "mux";
--			gpio-controller;
--			#gpio-cells = <2>;
--			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
--		};
--
--		test_n: gpio@8e744 {
--			reg = <0 0x8e744 0 0x20>;
--			reg-names = "gpio";
--			gpio-controller;
--			#gpio-cells = <2>;
--			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
--		};
--
- 		func-uart-a {
- 			uart_a_default: group-uart-a-pins1 {
- 				pinmux = <AML_PINMUX(AMLOGIC_GPIO_X, 11, 1)>,
-@@ -186,4 +151,47 @@ uart_e_default: group-uart-e-pins {
- 			};
- 		};
- 	};
-+
-+	gpio_intc: interrupt-controller@4080 {
-+		compatible = "amlogic,a4-gpio-intc",
-+			     "amlogic,meson-gpio-intc";
-+		reg = <0x0 0x4080 0x0 0x20>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		amlogic,channel-interrupts =
-+			<10 11 12 13 14 15 16 17 18 19 20 21>;
-+	};
-+
-+	ao_pinctrl: pinctrl@8e700 {
-+		compatible = "amlogic,pinctrl-a4";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x0 0x0 0x0 0x8e700 0x0 0x80>;
-+
-+		gpioao: gpio@4 {
-+			reg = <0 0x4 0 0x16>, <0 0 0 0x4>;
-+			reg-names = "gpio", "mux";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
-+		};
-+
-+		test_n: gpio@44 {
-+			reg = <0 0x44 0 0x20>;
-+			reg-names = "gpio";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
-+		};
-+	};
-+
-+	gpio_ao_intc: interrupt-controller@8e72c {
-+		compatible = "amlogic,a4-gpio-ao-intc",
-+			     "amlogic,meson-gpio-intc";
-+		reg = <0x0 0x8e72c 0x0 0x0c>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		amlogic,channel-interrupts = <140 141>;
-+	};
-+
- };
-
----
-base-commit: 73a143e436311183186ab4b365a84c662f2c9651
-change-id: 20250317-fix-a4-pinctrl-node-9babfd44e085
 
 Best regards,
--- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
