@@ -4,87 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 090B2C36002
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Mar 2025 07:06:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57BA2C36002
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Mar 2025 07:07:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
 	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jKU1zg+3YLogosUtUwjPUFSRMYS0M6v8Kdiqkn40vIQ=; b=IEMb3j3dC9xxXv6kywAtO9HOGZ
-	TIE/HCPkzoDSgNzLLxODS/BAtF2Sy4XK4Gb67Js7Le8k99oSyrT7jjGQbbb5Iax9XZuWGFlEhZUVN
-	FFPSMmeNQoEdEdILARjOunv050Zjm4ROGAOo8hIghGBYszGIs953tylJQ7bVgD5UUKhgEP9qIBWaz
-	0KfaPjcuwqYysRnZ2nM3XrhfYQALie5T/AVFq72PRikbk+JRt1d9h6ONeYWkRy2D6Gss/dspgzxzB
-	RbU5BoXNhhyfb4O5di1T44IPbpEvgzMqLeZ332rc7hQg/KTQO//aTc/LA997ICcgasiPgdPiWuC7b
-	mKin8/lg==;
+	bh=QoWif3tXGDac+mQ6ofyDLi4pLbzvSPLDDu0ne5Vo87E=; b=0BuN3AgLyq5TtYHAMZrZNsV/C1
+	5ZIuDk+EiRuuZVLAZhAuhCNu91GP8of6+hvK4/gonLGybV+rRH2rnAqZeRCASN7yW5Rw981UGcX/l
+	IKFyoG/jOleO92rE+5Ulg07j75EUQZYGdmjVRo+hdnDTxKtmkZZw1NaZVnfxiG2gE3Sfe2dqB3adK
+	GoK97bRIlhPXUerCQIUScv3a3PA6EVXKgQiNJpH5Y0uRk6t1rceSatY641fZs8YSfQPUmhFtqEImi
+	0LKzd/KJK9BXAVyQnkCAiYc4FJdyL5FMMD+OhsbG3x+9bEsY0GBAQHZO/82Ujc69T4ehRrnLT8oKI
+	o6XAgrpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1twbsg-00000002Ogr-35vw;
-	Mon, 24 Mar 2025 07:05:54 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1twbuP-00000002Owh-3asu;
+	Mon, 24 Mar 2025 07:07:41 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1twbpq-00000002OPU-3jCf
+	id 1twbqg-00000002OUo-4Bmh
 	for linux-amlogic@lists.infradead.org;
-	Mon, 24 Mar 2025 07:03:00 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-43d2d952eb1so29695165e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 24 Mar 2025 00:02:58 -0700 (PDT)
+	Mon, 24 Mar 2025 07:03:52 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3995ff6b066so2240866f8f.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 24 Mar 2025 00:03:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742799777; x=1743404577; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1742799829; x=1743404629; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=xxmUD/FejQdyxymWW6D2EaGEGo6cGnFlUrvcW9z1uFY=;
-        b=UXcEJk0Kr+loqfYmHS0VTVcJTm/c4PieXVXoXpuIeG9a4+45BvvpRwVH73qIuj/06T
-         BHdGXJbB/gvpdScnWGfOAU8B61sp5fyuXUcAv/l71sKFKVDfB09d6aeR7YK90GBheXCl
-         zi7jVrq8el6ys4jOyooUCRqTT9EGyLL6jEAkpNshl6+M7/WtEcwS7CUp7VBZ56srMDQ9
-         sd8bQFNBz7bQPATep9imklGM2rtqrxV9JdKo+/wdxl7NdLnX61sE990/XHH4Zj0dNfC+
-         NQXPJ9AHprFnTcQAllpGqFdJIPz+bmvdTrgPryDx+wXgFDpVyoeyCfeXMHUpLU9uktD+
-         uVrA==
+        bh=evKoye4qr3e2esDEjAClgjzYt25iik3YDkZA93sVcVQ=;
+        b=LFjACb8lwZysxSb74+RiPxPmvXFF9ToLsa5jqCyOUXHFNstt+mXZ7udDGYU2UObfiy
+         VrNpVTkPgNzRVAND2Is3PuUHDaaYELwqQA2xxEbxYd1N/v1oztDDPgeTfoi7GrNHh/FG
+         vSc5NumEIqr/JZ7JlSai+VHUZqxpDcCdR78ElzXCRuXokGGRcpNccKeD/peakiXjcIdq
+         xzvLCZjEMZpaUPPKOiURY+zYOy+dgqlE9RBrjP969p232TEvij8otcvrmTBdy+O3/vHb
+         VPh+9AJsfhjYnGew5LNOiL7S/Id9RgZAM+4U2PstW3Sl9gDOuea4GjcbJjn0bidM3mNh
+         XY6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742799777; x=1743404577;
+        d=1e100.net; s=20230601; t=1742799829; x=1743404629;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=xxmUD/FejQdyxymWW6D2EaGEGo6cGnFlUrvcW9z1uFY=;
-        b=c0tKe9Y6qmPaYbTOzRJoBguYbRWiW+BDNErzDkOhnu4ZMZdiUnVmc78P69r523v+c1
-         zEkhaDFRItMS2gIh1mjeUz1vXasNwARmgnQZ8ocKjrRdP7IQ3JdIaWVMO50cTT7MbRgy
-         Vp+ZGPpEZ9Px4h8fiD4C7kKcWF9F64KxH5b2JWY6BArvXY7ZAMaFYNpZp0TeRXxpb9Qi
-         E6RSLDy/WQlp1rUpMkf2Y3UyDbpuGZNk619dMqe/t5UQeJzNj3/f7iibI69LfOuhKLIr
-         V0+ADSyP7QMJrWZmDsNhWMjWl2LRX3dJkYUW/RMfBaZvvNpTszWpv+W4rjZLsudttcbJ
-         1ByA==
-X-Forwarded-Encrypted: i=1; AJvYcCUpgP2jQF2O0UheF+njiyWcnlSm6udEdGDASO6tcslE1+rgAzBb6X7V1tpvRavyFNlrocHBrNVehCAgmneE@lists.infradead.org
-X-Gm-Message-State: AOJu0YzikAOcSHJokvblzVKXORNqbbR0qWITGjtk8cnl0EhUmZbQj6Ms
-	xZ458tuGr3FGP1QWnpCfKEycKP46OwjXCkH7qk9ud63AaW7CjWZstAQXh4vPEic=
-X-Gm-Gg: ASbGncukBRQEFc1QNfTIUIWIgyVHbbzwLUCPvmnfcGtrZLYQKenqlx2JMRhM6YWu52c
-	JjKkBm8sHARNwu2La10KVYj18GSIhjvSdIK9iU8BKykeg8kTR3GHl6UdWi//CqVk7eIXl/JXVHT
-	vNiYin7n2OPl8nsBdCI+BN0f2dJ8z1ZUHnEVTfw6tJUprwMCiGhxpjdlBEHxq4/UvcDM6ODeQ4K
-	7lpYsFQm88yjuNVcpHJcIHAJBjCntEaS059EWPo46mSKdm3MhyuDpSibC8yXvBdC23UI4YOJQOe
-	6+f3mVzLyiOGH6OVHXh6tTFv8+mABJAOhbLKsc7f8BwMZA46nxUP5opE18nMfGXbhgvwgcFftlW
-	Hwi3eUMCnpTuBx03T
-X-Google-Smtp-Source: AGHT+IEvnuv2O4FApGfvybSU5o3Rs8N1aGcC10DtuNPFGrxOLbDjQAe94Ll7vrnr/jictCvIm++FnA==
-X-Received: by 2002:a5d:5f4b:0:b0:391:4873:792f with SMTP id ffacd0b85a97d-3997f937b48mr11238511f8f.45.1742799777129;
-        Mon, 24 Mar 2025 00:02:57 -0700 (PDT)
+        bh=evKoye4qr3e2esDEjAClgjzYt25iik3YDkZA93sVcVQ=;
+        b=lBOXtGXpSOV0vvvWroFjDecqzWyWavHeQbk9LtG/ik7+GWd9/JGJ6xQS9ISUkxFkey
+         +XadBUuO2mazBj6GCt//mhD99fsoTLEOdMIO4Ti5g4VVyPNeKTFgonfILRtIyQYaXKxm
+         UkuL6Era2XMoBzE1VB4wl9IF171A9KpoJRjwLeYgaoA4BjCReGG3kGYXoVs5Nowbm6A2
+         HXd6kKr6d4GRQEQztiJeHMnOcN5ATClZJs2qzMLt64Pkvw5lUEmzunkUYPo+pSHJAxHd
+         G3wcoLV9OAHYRJAkdGkMJwP6NsXhmmtizJ17NzT+Jmgiq+oPzslrZMqbugcvW8FfH92m
+         5Hkw==
+X-Forwarded-Encrypted: i=1; AJvYcCXOOIO0poGo0FtRWP6dc8CMvmQIdEq4ajpLjMve9XibMge2WmL8By6iF/tRZLDt2TpBj0mLE4YwZQul4Tbu@lists.infradead.org
+X-Gm-Message-State: AOJu0Yyo2Sk9aLv6GpGADbLB/5nwgVI38FUoR7JpFcq98L6TIMG6MGcO
+	PGX/CFvCnzlqc2ubiuDcGW92wMGKxfUvUb+zB9d6LgUd8HymVby3DwST9/8oWj4=
+X-Gm-Gg: ASbGncs7WNi86mBB8Sksi6bqvzaEHnNhmvY9dFa0O5PrTt6wusOG3On/MQV8pJt4L5u
+	8ZHlz8bW45tMN1WHzunZI/hJTW/qnlUFCT3Xv7CYsw0tbfL0i4aUj0e+MsVH376/0THrHru2tv2
+	ityCeTzKD9T+TpK6xxtLvsyUJutKNPky4NFUXEbL3F8p394y9juNhkL3WUAbqJnOiBnGPmpjBFW
+	j65vy27XiROH9+zBTx7KHia15fulpN/LyE55XYJFIj5/Dw2Vw/cn/Jm89gO9MtvA/yeybfaRa7X
+	BQzDfxJD6kdXHxDp1CmqKKXoiLWxotTCjaUslmLt1cZmv0q6sHXuWdgAXeQ2O8lGZVpjQg3Na9d
+	EfenCCtZi122OljSo
+X-Google-Smtp-Source: AGHT+IFrItb54fv7OtyWO3JUfvqB/p+6ybKUl5+PzXmwRlD5DkQF8OviAn1ax7qXq3VcP+u5iINy8A==
+X-Received: by 2002:a5d:5f96:0:b0:391:2fe3:24ec with SMTP id ffacd0b85a97d-3997f91072amr9832062f8f.14.1742799829315;
+        Mon, 24 Mar 2025 00:03:49 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:a356:8d0:d4d:bb5f? ([2a01:e0a:3d9:2080:a356:8d0:d4d:bb5f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d4fd2798bsm112856625e9.20.2025.03.24.00.02.56
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9b5939sm10243311f8f.60.2025.03.24.00.03.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Mar 2025 00:02:56 -0700 (PDT)
-Message-ID: <f36875c5-73bb-4bf8-a59f-5df30043bbbe@linaro.org>
-Date: Mon, 24 Mar 2025 08:02:55 +0100
+        Mon, 24 Mar 2025 00:03:48 -0700 (PDT)
+Message-ID: <88dbbf6e-7886-4261-ac46-55738156a5fb@linaro.org>
+Date: Mon, 24 Mar 2025 08:03:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Subject: Re: [PATCH v5 2/2] arm64: dts: amlogic: add support for
  xiaomi-aquaman/Mi TV Stick
-To: Ferass El Hafidi <funderscore@postmarketos.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ferass El Hafidi <funderscore@postmarketos.org>
 References: <20250319190150.31529-2-funderscore@postmarketos.org>
  <20250319190150.31529-4-funderscore@postmarketos.org>
+ <CAFBinCArRO-F59tOv9m27f+DV+qhy69OGUunGOAbDdfOdd5_Xg@mail.gmail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -111,10 +109,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250319190150.31529-4-funderscore@postmarketos.org>
+In-Reply-To: <CAFBinCArRO-F59tOv9m27f+DV+qhy69OGUunGOAbDdfOdd5_Xg@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250324_000258_929469_891F4D87 
-X-CRM114-Status: GOOD (  20.92  )
+X-CRM114-CacheID: sfid-20250324_000351_033918_A75FA8A1 
+X-CRM114-Status: GOOD (  15.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,372 +125,42 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: neil.armstrong@linaro.org
-Cc: devicetree@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>, Karl Chan <exxxxkc@getgoogleoff.me>, linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Artur Weber <aweber.kernel@gmail.com>, devicetree@vger.kernel.org, Karl Chan <exxxxkc@getgoogleoff.me>, Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/03/2025 20:01, Ferass El Hafidi wrote:
-> Xiaomi Mi TV Stick is a small Amlogic-based Android TV stick released in
-> 2020.  It is known as `xiaomi-aquaman` internally.  Specifications:
->   * Amlogic S805Y SoC
->   * Android TV 9, upgradable to Android TV 10
->   * 8 GB eMMC
->   * 1 GB of RAM
->   * Wi-Fi + Bluetooth
-> 
-> The devicetree is based on p241's DT, with some changes to better match
-> the Mi TV Stick:
->   * there is no Ethernet port, no IR, no CVBS connector on the stick
->   * a white LED is present
->   * adjust memory to have 1 GB of RAM available
-> 
-> Signed-off-by: Ferass El Hafidi <funderscore@postmarketos.org>
-> ---
->   arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->   .../meson-gxl-s805y-xiaomi-aquaman.dts        | 292 ++++++++++++++++++
->   .../boot/dts/amlogic/meson-gxl-s805y.dtsi     |  10 +
->   3 files changed, 303 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 2fbda8419..0921707f1 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -49,6 +49,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-wetek-hub.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-wetek-play2.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-libretech-ac.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805y-xiaomi-aquaman.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-libretech-pc.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-mecool-kii-pro.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
-> new file mode 100644
-> index 000000000..42c692017
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
-> @@ -0,0 +1,292 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2025 Ferass El Hafidi <funderscore@postmarketos.org>
-> + * Heavily based on meson-gxl-s805x-p241.dtb:
-> + *  - Copyright (c) 2018 BayLibre, SAS.
-> + *    Author: Neil Armstrong <narmstrong@baylibre.com>
-> + *    Author: Jerome Brunet <jbrunet@baylibre.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/sound/meson-aiu.h>
-> +
-> +#include "meson-gxl-s805y.dtsi"
-> +
-> +/ {
-> +	compatible = "xiaomi,aquaman", "amlogic,s805y", "amlogic,meson-gxl";
-> +	model = "Xiaomi Mi TV Stick (aquaman)";
-> +
-> +	aliases {
-> +		serial0 = &uart_AO;
-> +		serial1 = &uart_A;
-> +	};
-> +
-> +	au2: analog-amplifier {
-> +		compatible = "simple-audio-amplifier";
-> +		sound-name-prefix = "AU2";
-> +		VCC-supply = <&vcc_5v>;
-> +		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	emmc_pwrseq: emmc-pwrseq {
-> +		compatible = "mmc-pwrseq-emmc";
-> +		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	hdmi-connector {
-> +		compatible = "hdmi-connector";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_connector_in: endpoint {
-> +				remote-endpoint = <&hdmi_tx_tmds_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-white {
-> +			color = <LED_COLOR_ID_WHITE>;
-> +			function = LED_FUNCTION_POWER;
-> +			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +			panic-indicator;
-> +		};
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x40000000>;
-> +	};
-> +
-> +	vddio_boot: regulator-vddio-boot {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDIO_BOOT";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +	};
-> +
-> +	vddao_3v3: regulator-vddao-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDAO_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	vddio_ao18: regulator-vddio-ao18 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDIO_AO18";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +	};
-> +
-> +	vcc_3v3: regulator-vcc-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	vcc_5v: regulator-vcc-5v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_5V";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +
-> +	emmc_pwrseq: emmc-pwrseq {
-> +		compatible = "mmc-pwrseq-emmc";
-> +		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	wifi32k: wifi32k {
-> +		compatible = "pwm-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-> +	};
-> +
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "ext_clock";
-> +	};
-> +
-> +	sound {
-> +		compatible = "amlogic,gx-sound-card";
-> +		model = "XIAOMI-AQUAMAN";
-> +		audio-aux-devs = <&au2>;
-> +		audio-widgets = "Line", "Lineout";
-> +		audio-routing = "AU2 INL", "ACODEC LOLN",
-> +				"AU2 INR", "ACODEC LORN",
-> +				"Lineout", "AU2 OUTL",
-> +				"Lineout", "AU2 OUTR";
-> +		clocks = <&clkc CLKID_MPLL0>,
-> +			 <&clkc CLKID_MPLL1>,
-> +			 <&clkc CLKID_MPLL2>;
-> +
-> +		assigned-clocks = <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>,
-> +				  <&clkc CLKID_MPLL2>;
-> +		assigned-clock-parents = <0>, <0>, <0>;
-> +		assigned-clock-rates = <294912000>,
-> +				       <270950400>,
-> +				       <393216000>;
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-> +			dai-format = "i2s";
-> +			mclk-fs = <256>;
-> +
-> +			codec-0 {
-> +				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-> +			};
-> +
-> +			codec-1 {
-> +				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-> +			};
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-> +
-> +			codec-0 {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +
-> +		dai-link-3 {
-> +			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-> +
-> +			codec-0 {
-> +				sound-dai = <&acodec>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&acodec {
-> +	AVDD-supply = <&vddio_ao18>;
-> +	status = "okay";
-> +};
-> +
-> +&aiu {
-> +	status = "okay";
-> +};
-> +
-> +&cec_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&ao_cec_pins>;
-> +	pinctrl-names = "default";
-> +	hdmi-phandle = <&hdmi_tx>;
-> +};
-> +
-> +&hdmi_tx {
-> +	status = "okay";
-> +	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-> +	pinctrl-names = "default";
-> +	hdmi-supply = <&vcc_5v>;
-> +};
-> +
-> +&hdmi_tx_tmds_port {
-> +	hdmi_tx_tmds_out: endpoint {
-> +		remote-endpoint = <&hdmi_connector_in>;
-> +	};
-> +};
-> +
-> +&saradc {
-> +	status = "okay";
-> +	vref-supply = <&vddio_ao18>;
-> +};
-> +
-> +/* Wireless SDIO Module (Amlogic W155S1 / Realtek RTL8821CS) */
-> +&sd_emmc_b {
-> +	status = "okay";
-> +	pinctrl-0 = <&sdio_pins>;
-> +	pinctrl-1 = <&sdio_clk_gate_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	max-frequency = <50000000>;
-> +
-> +	non-removable;
-> +	disable-wp;
-> +
-> +	/* WiFi firmware requires power to be kept while in suspend */
-> +	keep-power-in-suspend;
-> +
-> +	mmc-pwrseq = <&sdio_pwrseq>;
-> +
-> +	vmmc-supply = <&vddao_3v3>;
-> +	vqmmc-supply = <&vddio_boot>;
-> +
-> +	sdio: wifi@1 {
-> +		reg = <1>;
-> +	}
-> +};
-> +
-> +/* eMMC */
-> +&sd_emmc_c {
-> +	status = "okay";
-> +	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-> +	pinctrl-1 = <&emmc_clk_gate_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +
-> +	bus-width = <8>;
-> +	cap-mmc-highspeed;
-> +	max-frequency = <200000000>;
-> +	non-removable;
-> +	disable-wp;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +
-> +	mmc-pwrseq = <&emmc_pwrseq>;
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&vddio_boot>;
-> +};
-> +
-> +&pwm_ef {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_e_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +/*
-> + * This is connected to the Bluetooth module
-> + * Note: There's no driver for the Bluetooth module of some variants yet.
-> + */
-> +&uart_A {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-> +	pinctrl-names = "default";
-> +	uart-has-rtscts;
-> +};
-> +
-> +&uart_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_ao_a_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&usb {
-> +	status = "okay";
-> +	dr_mode = "otg";
-> +	vbus-supply = <&vcc_5v>;
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
-> new file mode 100644
-> index 000000000..49b29b71f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
-> @@ -0,0 +1,10 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2025 Ferass El Hafidi <funderscore@postmarketos.org>
-> + */
-> +
-> +#include "meson-gxl-s805x.dtsi"
-> +
-> +/ {
-> +	compatible = "amlogic,s805y", "amlogic,meson-gxl";
-> +};
-
-I get:
-Error: arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts:243.1-2 syntax error
-FATAL ERROR: Unable to parse input tree
-
-whil building, could you fix that ?
-
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTkvMDMvMjAyNSAyMzozNiwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPiBIZWxsbywK
+PiAKPiB0aGFua3MgZm9yIHlvdXIgY29udHJpYnV0aW9uIGFuZCBzb3JyeSBmb3IgdGhlIGxhdGUg
+cmVwbHkhCj4gCj4gT24gV2VkLCBNYXIgMTksIDIwMjUgYXQgODowMuKAr1BNIEZlcmFzcyBFbCBI
+YWZpZGkKPiA8ZnVuZGVyc2NvcmVAcG9zdG1hcmtldG9zLm9yZz4gd3JvdGU6Cj4gWy4uLl0KPj4g
+KyAgICAgICBhdTI6IGFuYWxvZy1hbXBsaWZpZXIgewo+PiArICAgICAgICAgICAgICAgY29tcGF0
+aWJsZSA9ICJzaW1wbGUtYXVkaW8tYW1wbGlmaWVyIjsKPj4gKyAgICAgICAgICAgICAgIHNvdW5k
+LW5hbWUtcHJlZml4ID0gIkFVMiI7Cj4+ICsgICAgICAgICAgICAgICBWQ0Mtc3VwcGx5ID0gPCZ2
+Y2NfNXY+Owo+PiArICAgICAgICAgICAgICAgZW5hYmxlLWdwaW9zID0gPCZncGlvIEdQSU9IXzUg
+R1BJT19BQ1RJVkVfSElHSD47Cj4+ICsgICAgICAgfTsKPiBJIGNvdWxkbid0IGZpbmQgYW55IHBp
+Y3R1cmVzIG9ubGluZSB0aGF0IHNob3cgYW4gYW5hbG9nIGF1ZGlvIG91dHB1dAo+ICh0eXBpY2Fs
+bHkgYSAzLjVtbSBzb2NrZXQpLgo+IENhbiB5b3UgY29uZmlybSB0aGF0IHRoaXMgaXMgcmVhbGx5
+IHByZXNlbnQ/Cj4gCj4gWy4uLl0KPj4gKyAgICAgICBzb3VuZCB7Cj4+ICsgICAgICAgICAgICAg
+ICBjb21wYXRpYmxlID0gImFtbG9naWMsZ3gtc291bmQtY2FyZCI7Cj4+ICsgICAgICAgICAgICAg
+ICBtb2RlbCA9ICJYSUFPTUktQVFVQU1BTiI7Cj4+ICsgICAgICAgICAgICAgICBhdWRpby1hdXgt
+ZGV2cyA9IDwmYXUyPjsKPj4gKyAgICAgICAgICAgICAgIGF1ZGlvLXdpZGdldHMgPSAiTGluZSIs
+ICJMaW5lb3V0IjsKPj4gKyAgICAgICAgICAgICAgIGF1ZGlvLXJvdXRpbmcgPSAiQVUyIElOTCIs
+ICJBQ09ERUMgTE9MTiIsCj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIkFVMiBJ
+TlIiLCAiQUNPREVDIExPUk4iLAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJM
+aW5lb3V0IiwgIkFVMiBPVVRMIiwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAi
+TGluZW91dCIsICJBVTIgT1VUUiI7Cj4gSWYgdGhlcmUncyBubyBhbmFsb2cgYXVkaW8gaW4vb3V0
+IHRoZW4gdGhpcyBzZWN0aW9uIGNhbiBiZSBjbGVhbmVkIHVwCj4gYXMgd2VsbCAtIHRvZ2V0aGVy
+IHdpdGggdGhlIHJlZmVyZW5jZXMgdG8gYWNvZGVjIGluIHRoZSBkYWktbGlua3MKPiBiZWxvdy4K
+PiAKPiBbLi4uXQo+PiArLyogV2lyZWxlc3MgU0RJTyBNb2R1bGUgKEFtbG9naWMgVzE1NVMxIC8g
+UmVhbHRlayBSVEw4ODIxQ1MpICovCj4+ICsmc2RfZW1tY19iIHsKPiBxdWVzdGlvbiB0byBOZWls
+OiBzaW5jZSB3ZSBrbm93IHRoYXQgdGhlcmUncyB0d28gYm9hcmQgdmFyaWFudHMgb3V0Cj4gdGhl
+cmUgKHdpdGggZGlmZmVyZW50IHdpZmkgY2hpcHNldHMpIC0gYXJlIGR0IG92ZXJsYXlzIGRvd24g
+dGhlIHJvYWQKPiBlbm91Z2ggKHRvIGVuYWJsZSBCbHVldG9vdGggLyB3aWZpIC0gZGVwZW5kaW5n
+IG9uIHRoZSBjaGlwc2V0IG9yIGJvYXJkCj4gcmV2aXNpb24pIG9yIGRvIHdlIG5lZWQgdG8gc3Bs
+aXQgdGhlIHdob2xlIC5kdHM/CgpQZXJoYXBzIHllcwoKTmVpbAoKPiAKPiAKPiBCZXN0IHJlZ2Fy
+ZHMsCj4gTWFydGluCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
+dXgtYW1sb2dpYwo=
