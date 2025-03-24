@@ -4,85 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57BA2C36002
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Mar 2025 07:07:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE5E3C36002
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Mar 2025 07:11:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=QoWif3tXGDac+mQ6ofyDLi4pLbzvSPLDDu0ne5Vo87E=; b=0BuN3AgLyq5TtYHAMZrZNsV/C1
-	5ZIuDk+EiRuuZVLAZhAuhCNu91GP8of6+hvK4/gonLGybV+rRH2rnAqZeRCASN7yW5Rw981UGcX/l
-	IKFyoG/jOleO92rE+5Ulg07j75EUQZYGdmjVRo+hdnDTxKtmkZZw1NaZVnfxiG2gE3Sfe2dqB3adK
-	GoK97bRIlhPXUerCQIUScv3a3PA6EVXKgQiNJpH5Y0uRk6t1rceSatY641fZs8YSfQPUmhFtqEImi
-	0LKzd/KJK9BXAVyQnkCAiYc4FJdyL5FMMD+OhsbG3x+9bEsY0GBAQHZO/82Ujc69T4ehRrnLT8oKI
-	o6XAgrpQ==;
+	bh=7Co4nAKoEZOj8bveeWF+nWQvdcmufT12u+jrHzX0p2U=; b=AZe5Lzs6rW8Og6ioavYTtfFLf/
+	3ztUwbBiYQA4k47hBb6J4F9vhuvnZlsWafrNw59tMbft75cuFzPC/dMU1c8t1mc77WB6Gh2aYDUBa
+	dPSHMqPwty+2Vc3m7IwoqjLHxEZKRXbBEqrMgi3xIbp2X1i1DqaewoZ8MIgchXJCc3djxBCfNjxzt
+	fbKLLH/z6H9BnWr65qxBjWHG4LUMbEXOzRH1wUwEiMP4SKCRAVkGyokMiA08evQ4qYdkZ82e91xsB
+	9BymXiU269UY9iGenYGcMJ/F8pI+V8ySy1UDXOhqh+xSvMXOvLTY1hRXLSQGuuh3UgcwCevJd1hZt
+	8hJ7AQhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98 #2 (Red Hat Linux))
-	id 1twbuP-00000002Owh-3asu;
-	Mon, 24 Mar 2025 07:07:41 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1twbxt-00000002PXx-2ej6;
+	Mon, 24 Mar 2025 07:11:17 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.98 #2 (Red Hat Linux))
-	id 1twbqg-00000002OUo-4Bmh
+	id 1twbtS-00000002OmS-2OvT
 	for linux-amlogic@lists.infradead.org;
-	Mon, 24 Mar 2025 07:03:52 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3995ff6b066so2240866f8f.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 24 Mar 2025 00:03:50 -0700 (PDT)
+	Mon, 24 Mar 2025 07:06:44 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-43cef035a3bso26893305e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 24 Mar 2025 00:06:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742799829; x=1743404629; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1742800001; x=1743404801; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=evKoye4qr3e2esDEjAClgjzYt25iik3YDkZA93sVcVQ=;
-        b=LFjACb8lwZysxSb74+RiPxPmvXFF9ToLsa5jqCyOUXHFNstt+mXZ7udDGYU2UObfiy
-         VrNpVTkPgNzRVAND2Is3PuUHDaaYELwqQA2xxEbxYd1N/v1oztDDPgeTfoi7GrNHh/FG
-         vSc5NumEIqr/JZ7JlSai+VHUZqxpDcCdR78ElzXCRuXokGGRcpNccKeD/peakiXjcIdq
-         xzvLCZjEMZpaUPPKOiURY+zYOy+dgqlE9RBrjP969p232TEvij8otcvrmTBdy+O3/vHb
-         VPh+9AJsfhjYnGew5LNOiL7S/Id9RgZAM+4U2PstW3Sl9gDOuea4GjcbJjn0bidM3mNh
-         XY6A==
+        bh=qnmDKnt+3x8rZ4oEZN/cwh/A9C0xUNyVpIFqNNgq/qA=;
+        b=HJRsUUfAL/XcgDexDbo2O9IJw2G4mjGCAVH9BKMD2KupYhTX7acmDTlPnNO2XKJuX2
+         5HTT7NJxCIr1hMMfwYwNIBMJtj8um1aP6dNSw2lUWy2Af7LcJvdZQCHnv8qjvdRkoJiH
+         U3BgeMSlTKqt50PyM7CTJN8XV4Dtf6mL0woZ7DL1rDrWWZSrzb+COhlBKNqz36qC9biO
+         HjeEjQn/dxTjoQilA6YVGscggTjMqLPxRRCY4qLDAZa8AZnZDx9nby7PipjPbyC+xYv2
+         gwQV4zLHAk+zOVCy408NIzUCIdyJfecC4q5fi4jcvVC11Yq3/sc23WniawnzgceM0/TI
+         Sjiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742799829; x=1743404629;
+        d=1e100.net; s=20230601; t=1742800001; x=1743404801;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=evKoye4qr3e2esDEjAClgjzYt25iik3YDkZA93sVcVQ=;
-        b=lBOXtGXpSOV0vvvWroFjDecqzWyWavHeQbk9LtG/ik7+GWd9/JGJ6xQS9ISUkxFkey
-         +XadBUuO2mazBj6GCt//mhD99fsoTLEOdMIO4Ti5g4VVyPNeKTFgonfILRtIyQYaXKxm
-         UkuL6Era2XMoBzE1VB4wl9IF171A9KpoJRjwLeYgaoA4BjCReGG3kGYXoVs5Nowbm6A2
-         HXd6kKr6d4GRQEQztiJeHMnOcN5ATClZJs2qzMLt64Pkvw5lUEmzunkUYPo+pSHJAxHd
-         G3wcoLV9OAHYRJAkdGkMJwP6NsXhmmtizJ17NzT+Jmgiq+oPzslrZMqbugcvW8FfH92m
-         5Hkw==
-X-Forwarded-Encrypted: i=1; AJvYcCXOOIO0poGo0FtRWP6dc8CMvmQIdEq4ajpLjMve9XibMge2WmL8By6iF/tRZLDt2TpBj0mLE4YwZQul4Tbu@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyo2Sk9aLv6GpGADbLB/5nwgVI38FUoR7JpFcq98L6TIMG6MGcO
-	PGX/CFvCnzlqc2ubiuDcGW92wMGKxfUvUb+zB9d6LgUd8HymVby3DwST9/8oWj4=
-X-Gm-Gg: ASbGncs7WNi86mBB8Sksi6bqvzaEHnNhmvY9dFa0O5PrTt6wusOG3On/MQV8pJt4L5u
-	8ZHlz8bW45tMN1WHzunZI/hJTW/qnlUFCT3Xv7CYsw0tbfL0i4aUj0e+MsVH376/0THrHru2tv2
-	ityCeTzKD9T+TpK6xxtLvsyUJutKNPky4NFUXEbL3F8p394y9juNhkL3WUAbqJnOiBnGPmpjBFW
-	j65vy27XiROH9+zBTx7KHia15fulpN/LyE55XYJFIj5/Dw2Vw/cn/Jm89gO9MtvA/yeybfaRa7X
-	BQzDfxJD6kdXHxDp1CmqKKXoiLWxotTCjaUslmLt1cZmv0q6sHXuWdgAXeQ2O8lGZVpjQg3Na9d
-	EfenCCtZi122OljSo
-X-Google-Smtp-Source: AGHT+IFrItb54fv7OtyWO3JUfvqB/p+6ybKUl5+PzXmwRlD5DkQF8OviAn1ax7qXq3VcP+u5iINy8A==
-X-Received: by 2002:a5d:5f96:0:b0:391:2fe3:24ec with SMTP id ffacd0b85a97d-3997f91072amr9832062f8f.14.1742799829315;
-        Mon, 24 Mar 2025 00:03:49 -0700 (PDT)
+        bh=qnmDKnt+3x8rZ4oEZN/cwh/A9C0xUNyVpIFqNNgq/qA=;
+        b=fc45bOHHMMkG8AE3AySMjkz1IjhsKOv6+FPke5M+YHnTwixRSmZsB2wDBC+K6CJyR2
+         M6pEaXya9YQPxIZggoE9FXdu6f2rjBVLnJQpr3gQV/sIn9bQLKvMLxM3fcvF/1cnkgqq
+         mgMdoTwBc3xSUlW/1fSQDvT8OhCViQNooTBWrKclNlX85UMD7Ot1nF8gHnbACpIJ0xgs
+         QAD4QTvONtBjuogAh0RJPE8DYuL2yTsRwvx06C0vlcHLwFgPpY7M9F/6q1+s71xeWfgS
+         j8FYwLTVm1lFx3NHkfc27+BdzKsOzQv5PkzRKND/WqFuSl5QIyGYfRwXTidN6FiAVRH9
+         Pwag==
+X-Forwarded-Encrypted: i=1; AJvYcCWUWKQrgn/dB/tMO981rh1/yW6WJ0Phq+CcKEYn1JUKIEt3IFjA8P7xr+JSE55R1B77uMmUSK0bkj83SCFC@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz016frg08M0LSZYmddo/QRyBI6V4c5BrQi+IXrGnXQTSR4SNBz
+	mXawPtmXdn2n5+hPOrHppt/g1F90caTOl53VsNpH121a2vxbVD5FziYFwhUeH/c=
+X-Gm-Gg: ASbGncsGzJu3HZu93q4YZe1QnzEmLi6QNXp2rJjtgW1e9Mo24KqyZ5S+wJCkoUTuOFN
+	L+Qs3jLnQcXIDZ8LMwa0UwGMAiDHZ4aYuE2Dm8RyGiNpHtyqy98zi+pxY7i4bHaQh3OHDmGR7wa
+	Kyb1bnDckuveyzNw+TidMrDznwRDW1XeAdrOMauJIGo3YsxvKi8LrE8alfF5ps3+SWmMnnOIeO7
+	xaP+wAbJYH6G0Tf2z8UB5ox6fcxJK+0TeoS0VX+EUcXdWWcvia22Ikw5lR3Ad7RuNOYPD85nWtd
+	x8iWXJhfFSG5yT0rH25lSJawDMXaRSV2PjIB5WuoLRyd9wG2d0KPKFC5ByKt3vh2HyIgW+ZNFbZ
+	VQiliZcsCOwrnQzgl5ffoDqSI2Js=
+X-Google-Smtp-Source: AGHT+IEb+RllboZvRFdgVsQATpGzqRiQIUj/XZMAGqa20bkDRnSgciaHkWRmRX6hFu38Os+eZIOsfw==
+X-Received: by 2002:a05:600c:34cc:b0:43c:efed:732c with SMTP id 5b1f17b1804b1-43d50a3c1d4mr97177875e9.28.1742800000709;
+        Mon, 24 Mar 2025 00:06:40 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:a356:8d0:d4d:bb5f? ([2a01:e0a:3d9:2080:a356:8d0:d4d:bb5f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9b5939sm10243311f8f.60.2025.03.24.00.03.48
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9957aasm10173629f8f.10.2025.03.24.00.06.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Mar 2025 00:03:48 -0700 (PDT)
-Message-ID: <88dbbf6e-7886-4261-ac46-55738156a5fb@linaro.org>
-Date: Mon, 24 Mar 2025 08:03:48 +0100
+        Mon, 24 Mar 2025 00:06:40 -0700 (PDT)
+Message-ID: <e01d48c6-287b-476a-b5ca-de670375561d@linaro.org>
+Date: Mon, 24 Mar 2025 08:06:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 2/2] arm64: dts: amlogic: add support for
- xiaomi-aquaman/Mi TV Stick
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Ferass El Hafidi <funderscore@postmarketos.org>
-References: <20250319190150.31529-2-funderscore@postmarketos.org>
- <20250319190150.31529-4-funderscore@postmarketos.org>
- <CAFBinCArRO-F59tOv9m27f+DV+qhy69OGUunGOAbDdfOdd5_Xg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] arm64: dts: amlogic: Add A4 Reset Controller
+To: kelvin.zhang@amlogic.com, Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Zelong Dong <zelong.dong@amlogic.com>
+References: <20250320-a4-a5-reset-v5-0-296f83bf733d@amlogic.com>
+ <20250320-a4-a5-reset-v5-2-296f83bf733d@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -109,10 +113,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <CAFBinCArRO-F59tOv9m27f+DV+qhy69OGUunGOAbDdfOdd5_Xg@mail.gmail.com>
+In-Reply-To: <20250320-a4-a5-reset-v5-2-296f83bf733d@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250324_000351_033918_A75FA8A1 
-X-CRM114-Status: GOOD (  15.16  )
+X-CRM114-CacheID: sfid-20250324_000642_629695_7BC5220A 
+X-CRM114-Status: GOOD (  14.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,42 +129,155 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: neil.armstrong@linaro.org
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Artur Weber <aweber.kernel@gmail.com>, devicetree@vger.kernel.org, Karl Chan <exxxxkc@getgoogleoff.me>, Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTkvMDMvMjAyNSAyMzozNiwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPiBIZWxsbywK
-PiAKPiB0aGFua3MgZm9yIHlvdXIgY29udHJpYnV0aW9uIGFuZCBzb3JyeSBmb3IgdGhlIGxhdGUg
-cmVwbHkhCj4gCj4gT24gV2VkLCBNYXIgMTksIDIwMjUgYXQgODowMuKAr1BNIEZlcmFzcyBFbCBI
-YWZpZGkKPiA8ZnVuZGVyc2NvcmVAcG9zdG1hcmtldG9zLm9yZz4gd3JvdGU6Cj4gWy4uLl0KPj4g
-KyAgICAgICBhdTI6IGFuYWxvZy1hbXBsaWZpZXIgewo+PiArICAgICAgICAgICAgICAgY29tcGF0
-aWJsZSA9ICJzaW1wbGUtYXVkaW8tYW1wbGlmaWVyIjsKPj4gKyAgICAgICAgICAgICAgIHNvdW5k
-LW5hbWUtcHJlZml4ID0gIkFVMiI7Cj4+ICsgICAgICAgICAgICAgICBWQ0Mtc3VwcGx5ID0gPCZ2
-Y2NfNXY+Owo+PiArICAgICAgICAgICAgICAgZW5hYmxlLWdwaW9zID0gPCZncGlvIEdQSU9IXzUg
-R1BJT19BQ1RJVkVfSElHSD47Cj4+ICsgICAgICAgfTsKPiBJIGNvdWxkbid0IGZpbmQgYW55IHBp
-Y3R1cmVzIG9ubGluZSB0aGF0IHNob3cgYW4gYW5hbG9nIGF1ZGlvIG91dHB1dAo+ICh0eXBpY2Fs
-bHkgYSAzLjVtbSBzb2NrZXQpLgo+IENhbiB5b3UgY29uZmlybSB0aGF0IHRoaXMgaXMgcmVhbGx5
-IHByZXNlbnQ/Cj4gCj4gWy4uLl0KPj4gKyAgICAgICBzb3VuZCB7Cj4+ICsgICAgICAgICAgICAg
-ICBjb21wYXRpYmxlID0gImFtbG9naWMsZ3gtc291bmQtY2FyZCI7Cj4+ICsgICAgICAgICAgICAg
-ICBtb2RlbCA9ICJYSUFPTUktQVFVQU1BTiI7Cj4+ICsgICAgICAgICAgICAgICBhdWRpby1hdXgt
-ZGV2cyA9IDwmYXUyPjsKPj4gKyAgICAgICAgICAgICAgIGF1ZGlvLXdpZGdldHMgPSAiTGluZSIs
-ICJMaW5lb3V0IjsKPj4gKyAgICAgICAgICAgICAgIGF1ZGlvLXJvdXRpbmcgPSAiQVUyIElOTCIs
-ICJBQ09ERUMgTE9MTiIsCj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIkFVMiBJ
-TlIiLCAiQUNPREVDIExPUk4iLAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJM
-aW5lb3V0IiwgIkFVMiBPVVRMIiwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAi
-TGluZW91dCIsICJBVTIgT1VUUiI7Cj4gSWYgdGhlcmUncyBubyBhbmFsb2cgYXVkaW8gaW4vb3V0
-IHRoZW4gdGhpcyBzZWN0aW9uIGNhbiBiZSBjbGVhbmVkIHVwCj4gYXMgd2VsbCAtIHRvZ2V0aGVy
-IHdpdGggdGhlIHJlZmVyZW5jZXMgdG8gYWNvZGVjIGluIHRoZSBkYWktbGlua3MKPiBiZWxvdy4K
-PiAKPiBbLi4uXQo+PiArLyogV2lyZWxlc3MgU0RJTyBNb2R1bGUgKEFtbG9naWMgVzE1NVMxIC8g
-UmVhbHRlayBSVEw4ODIxQ1MpICovCj4+ICsmc2RfZW1tY19iIHsKPiBxdWVzdGlvbiB0byBOZWls
-OiBzaW5jZSB3ZSBrbm93IHRoYXQgdGhlcmUncyB0d28gYm9hcmQgdmFyaWFudHMgb3V0Cj4gdGhl
-cmUgKHdpdGggZGlmZmVyZW50IHdpZmkgY2hpcHNldHMpIC0gYXJlIGR0IG92ZXJsYXlzIGRvd24g
-dGhlIHJvYWQKPiBlbm91Z2ggKHRvIGVuYWJsZSBCbHVldG9vdGggLyB3aWZpIC0gZGVwZW5kaW5n
-IG9uIHRoZSBjaGlwc2V0IG9yIGJvYXJkCj4gcmV2aXNpb24pIG9yIGRvIHdlIG5lZWQgdG8gc3Bs
-aXQgdGhlIHdob2xlIC5kdHM/CgpQZXJoYXBzIHllcwoKTmVpbAoKPiAKPiAKPiBCZXN0IHJlZ2Fy
-ZHMsCj4gTWFydGluCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
-YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
-dXgtYW1sb2dpYwo=
+On 20/03/2025 10:42, Kelvin Zhang via B4 Relay wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
+> 
+> Add the device node and related header file for Amlogic
+> A4 reset controller.
+> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> Link: https://lore.kernel.org/r/20240918074211.8067-3-zelong.dong@amlogic.com
+> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h | 93 ++++++++++++++++++++++++++
+>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi    |  8 +++
+>   2 files changed, 101 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..f6a4c90bab3cf7cfaa3c98c522bed5e455b73bd3
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
+> @@ -0,0 +1,93 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef __DTS_AMLOGIC_A4_RESET_H
+> +#define __DTS_AMLOGIC_A4_RESET_H
+> +
+> +/* RESET0 */
+> +/*						0-3 */
+> +#define RESET_USB				4
+> +/*						5-6*/
+> +#define RESET_U2PHY22				7
+> +#define RESET_USBPHY20				8
+> +#define RESET_U2PHY21				9
+> +#define RESET_USB2DRD				10
+> +#define RESET_U2H				11
+> +#define RESET_LED_CTRL				12
+> +/*						13-31 */
+> +
+> +/* RESET1 */
+> +#define RESET_AUDIO				32
+> +#define RESET_AUDIO_VAD				33
+> +/*						34*/
+> +#define RESET_DDR_APB				35
+> +#define RESET_DDR				36
+> +#define RESET_VOUT_VENC				37
+> +#define RESET_VOUT				38
+> +/*						39-47 */
+> +#define RESET_ETHERNET				48
+> +/*						49-63 */
+> +
+> +/* RESET2 */
+> +#define RESET_DEVICE_MMC_ARB			64
+> +#define RESET_IRCTRL				65
+> +/*						66*/
+> +#define RESET_TS_PLL				67
+> +/*						68-72*/
+> +#define RESET_SPICC_0				73
+> +#define RESET_SPICC_1				74
+> +/*						75-79*/
+> +#define RESET_MSR_CLK				80
+> +/*						81*/
+> +#define RESET_SAR_ADC				82
+> +/*						83-87*/
+> +#define RESET_ACODEC				88
+> +/*						89-90*/
+> +#define RESET_WATCHDOG				91
+> +/*						92-95*/
+> +
+> +/* RESET3 */
+> +/*						96-127 */
+> +
+> +/* RESET4 */
+> +/*						128-131 */
+> +#define RESET_PWM_AB				132
+> +#define RESET_PWM_CD				133
+> +#define RESET_PWM_EF				134
+> +#define RESET_PWM_GH				135
+> +/*						136-137*/
+> +#define RESET_UART_A				138
+> +#define RESET_UART_B				139
+> +/*						140*/
+> +#define RESET_UART_D				141
+> +#define RESET_UART_E				142
+> +/*						143-144*/
+> +#define RESET_I2C_M_A				145
+> +#define RESET_I2C_M_B				146
+> +#define RESET_I2C_M_C				147
+> +#define RESET_I2C_M_D				148
+> +/*						149-151*/
+> +#define RESET_SDEMMC_A				152
+> +/*						153*/
+> +#define RESET_SDEMMC_C				154
+> +/*						155-159*/
+> +
+> +/* RESET5 */
+> +/*						160-175*/
+> +#define RESET_BRG_AO_NIC_SYS			176
+> +/*						177*/
+> +#define RESET_BRG_AO_NIC_MAIN			178
+> +#define RESET_BRG_AO_NIC_AUDIO			179
+> +/*						180-183*/
+> +#define RESET_BRG_AO_NIC_ALL			184
+> +/*						185*/
+> +#define RESET_BRG_NIC_SDIO			186
+> +#define RESET_BRG_NIC_EMMC			187
+> +#define RESET_BRG_NIC_DSU			188
+> +#define RESET_BRG_NIC_CLK81			189
+> +#define RESET_BRG_NIC_MAIN			190
+> +#define RESET_BRG_NIC_ALL			191
+> +
+> +#endif
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> index fa80fa365f13c4a93f5577f78bf2b3369cb91cb8..6537153b3026af1bf9d1df0a196619b716553cde 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> @@ -4,6 +4,7 @@
+>    */
+>   
+>   #include "amlogic-a4-common.dtsi"
+> +#include "amlogic-a4-reset.h"
+>   #include <dt-bindings/power/amlogic,a4-pwrc.h>
+>   #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
+>   / {
+> @@ -51,6 +52,13 @@ pwrc: power-controller {
+>   };
+>   
+>   &apb {
+> +	reset: reset-controller@2000 {
+> +		compatible = "amlogic,a4-reset",
+> +			     "amlogic,meson-s4-reset";
+> +		reg = <0x0 0x2000 0x0 0x98>;
+> +		#reset-cells = <1>;
+> +	};
+> +
+>   	gpio_intc: interrupt-controller@4080 {
+>   		compatible = "amlogic,a4-gpio-intc",
+>   			     "amlogic,meson-gpio-intc";
+> 
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
