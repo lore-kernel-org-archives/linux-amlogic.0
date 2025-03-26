@@ -4,56 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBE8DC36005
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Mar 2025 21:57:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78177C28B30
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Mar 2025 05:17:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SszjAvacb/0cGUM1CfJIOpjMVDQr1MYJTMbL9NKUC9I=; b=rc5WML/RMejZkv
-	dTZ0gl6PGI705dhOtoqJ9Uwp6edR7GsJLUDopGxpA9YT7IIS3SOLpwYA3be5bHbWz6MB0CHUXT3q9
-	T4OKm/aKSFC8nV2Km4aJbzBbE72JGg6ylL4X1cGwAfA9FbSV9Fv+LQjnVeYIDt5VJJ1jiYklLueuF
-	w03Zw0HZgOmdWYbvst/5IZe3eGGaryBwYWeItKWbuHpM8UV+pVOyhFECWggAALEOc0kx/lBslaBAY
-	3uml+b5TOeo79U6iXSQvEILcWCyjxREDtkdjjM4Csdk/Im44S5q2Tc5E/YPLNzk60TvEOe+SsK61P
-	9il3fkURsebcLypzntOw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=y2GmubPVQa/EQrGhvYPGyoywaSDhv0llQasYeVo3iP4=; b=L4wRTawUaGIQgA
+	evCaJRdzWaZ2UjRFybymJDe3Q0XfTf+Nrh/6JKjDreXtJlcetw1cGLGqhgfskphSQVp5DxZP4F5KX
+	gcaS6pmRGXU/TLBsRFY/Ov40Ttq5a5/QcvV2Rk258SGWYuXZzSkAbAQ25yo73pGpW8doELv0rVas3
+	Qi64uzMLqokOlZ1m7ryqbX7uNJfcrLK88PB1DFhgiRkwIbsYeyRJUfogDSC0XJwcmAhPCoPr63V//
+	a6Ib9z7pPB640lKrea7iGvQ2Pd1KqOyFOiRPXlWHSnyu98sZ08o12zYHRNcXCu1XnSHjyajXlXtX1
+	yeLAMhq/Tiz9MYacz9aw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1txCGh-000000077NZ-3AaU;
-	Tue, 25 Mar 2025 21:57:07 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1txJ8n-00000007aVW-1rbG;
+	Wed, 26 Mar 2025 05:17:25 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1txCGf-000000077M4-2oHM;
-	Tue, 25 Mar 2025 21:57:07 +0000
+	id 1txJ8m-00000007aVC-1icx;
+	Wed, 26 Mar 2025 05:17:24 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id DEEEE43D31;
-	Tue, 25 Mar 2025 21:57:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09B47C4CEE4;
-	Tue, 25 Mar 2025 21:57:04 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 4EE9B6112F;
+	Wed, 26 Mar 2025 05:17:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4BD7AC4CEE2;
+	Wed, 26 Mar 2025 05:17:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742939824;
-	bh=dVbKSNw9IpYPnjB4Ud3V8KshkTL7MxnrLDQsyEYyjgs=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=U1XyMEmNYZIlwYioOLPxclfPhiC+yUspDrhkZq+hTqghQwVjwS0zv2BVZbh2GVg89
-	 9otj4z/5i+7itFygyS8sD2cfaHriu6bLgJ+l2P2O8hQcSU07nLPDrKt6M4tqEiyvTN
-	 ZztdVM9vFRbExjb0NzQBvOzxk1yXRP+VN0G1BYdUBCQSyPbstgBzS2TUHuWaR50a3y
-	 K+QkC1xQ9k0hM3kXBkBIHNSQwO3eKsLYojZ/rXqJ47GtUh8Vp5DMdu+XGaOkqmjQ5Z
-	 M+w1s7PRQfeXZQDUQ/oAR4FiAcUtlN+24cCvCuOOSvJv6Tf8GZYWBI4h/atfb8K5aF
-	 KzDUpJTwDMq2g==
-Message-ID: <4db0bf5937c6c2a480b89b11e841782c@kernel.org>
+	s=k20201202; t=1742966243;
+	bh=ButHpYnOi30uTPKUbQYml9fS8YtmCtfmAvQ1YRC9dGc=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=RmbfcyPlxUcupUBgbsyNT4fJVBJOAiXykRKvoeJyiWhGHOHAzTo5W6nf2LG3jvv5n
+	 Yzh0HRPL5JSJIYLwpYt2ulFSYmHsmE+hrsbdV40RsJenOoA6ylghhrKiZ36Uptf9Ol
+	 BmJkFYPMN5oJXtGmbpHP5PozJjtjS8RlNCkPjCShtMREB3RgAHVLUVmerMZJ6BX+9/
+	 0aVlAc7VX3VWflIDCkbyzQX+21DKYg5SmV5G01YOfqUEvdH65ryvkZIdY7K4G5bpmY
+	 oyeQlHBgjLvLq7v/9mNn40456vQYPoAZsRZChE2NVEBbaRzRCAHiyXbnGd8+QzSZ78
+	 +bFvz4IVmHxPw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3514FC28B30;
+	Wed, 26 Mar 2025 05:17:23 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Wed, 26 Mar 2025 13:17:16 +0800
+Subject: [PATCH] arm64: dts: amlogic: a4: add pinctrl node
 MIME-Version: 1.0
-In-Reply-To: <1jv7s21d8y.fsf@starbuckisacylon.baylibre.com>
-References: <20250120-amlogic-clk-drop-clk-regmap-tables-v3-0-126244146947@baylibre.com> <20250120-amlogic-clk-drop-clk-regmap-tables-v3-1-126244146947@baylibre.com> <508a5ee6c6b365e8d9cdefd5a9eec769.sboyd@kernel.org> <1jv7s21d8y.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [PATCH v3 1/4] clk: add a clk_hw helpers to get the clock device or device_node
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-To: Jerome Brunet <jbrunet@baylibre.com>
-Date: Tue, 25 Mar 2025 14:57:01 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250325_145705_748342_283147AD 
-X-CRM114-Status: GOOD (  26.99  )
+Message-Id: <20250326-pinctrl-node-a4-v1-1-8c30639480f6@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIANuN42cC/x2MQQqAIBAAvxJ7TjBLi74SHUy3WggVjQjEvyfBX
+ OYwkyFhJEwwNxkiPpTIuypd24A5tTuQka0OggvJeyFZIGfueDHnLTI9VJQarUQzmQ1qFSLu9P7
+ HZS3lA03gC7thAAAA
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742966241; l=5053;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=71qIP+ef+rZamoMp2uHsnRGLP/3xxQGVfKdovCE34Gg=;
+ b=VtxrAX3CV74cDeafGJLPn8y7m2o7qUtmyDz70JtDk8R1Zwv5Kpd1CE8gJAHcAZ8ZRpSSIPEkb
+ CTZNM18bRQcDo6ArOAFQk1qsKOX7m1daledgaQMtNgWGbZK92ilb2VF
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,71 +82,188 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2025-03-21 10:53:49)
-> On Wed 26 Feb 2025 at 17:01, Stephen Boyd <sboyd@kernel.org> wrote:
-> 
-> 
-> >> +static void clk_hw_get_of_node_test(struct kunit *test)
-> >> +{
-> >> +       struct device_node *np;
-> >> +       struct clk_hw *hw;
-> >> +
-> >> +       hw = kunit_kzalloc(test, sizeof(*hw), GFP_KERNEL);
-> >> +       KUNIT_ASSERT_NOT_ERR_OR_NULL(test, hw);
-> >> +
-> >> +       np = of_find_compatible_node(NULL, NULL, "test,clk-dummy-device");
-> >> +       hw->init = CLK_HW_INIT_NO_PARENT("test_get_of_node",
-> >> +                                        &clk_dummy_rate_ops, 0);
-> >> +       of_node_put_kunit(test, np);
-> >> +
-> >> +       KUNIT_ASSERT_EQ(test, 0, of_clk_hw_register_kunit(test, np, hw));
-> >
-> > The stuff before the expectation should likely go to the init function.
-> > Or it can use the genparams stuff so we can set some struct members to
-> > indicate if the pointer should be NULL or not and then twist through the
-> > code a couple times.
-> >
-> 
-> I'm trying to address all your comments but I'm starting to wonder if
-> this isn't going a bit too far ? The functions tested are one line
-> returns. Is it really worth all this ?
-> 
-> I do understand the idea for things that actually do something, such as
-> reparenting, setting rates or what not ... But this ? It feels like a
-> lot of test code for very little added value, don't you think ?
-> 
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Just so I understand, you're saying that this is always going to be a
-simple "getter" API that doesn't do much else? We're not _only_ testing
-the getter API, we're also testing the registration path that actually
-sets the device or of_node pointers for a clk. I'm not really thinking
-about the one line return functions here.
+Add pinctrl device to support Amlogic A4 and add uart pinconf.
 
-Writing tests is definitely a balancing act. I'd say we want to test the
-behavior of the API in relation to how a clk is registered and writing
-tests to show the intended usage is helpful to understand if we've
-thought of corner cases like the clk was registered with a device
-pointer that also has an of_node associated with it. (Did we remember to
-stash that of_node pointer too?) We have a bunch of clk registration
-APIs, and we want to make sure this getter API works with all of them.
-Note that we don't care about the clk flags or parent relation chains
-here, just that the device or of_node passed in to registration comes
-out the other side with the getter API.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+This commit is based on the Neil's suggestion, rebase the commit on top of
+https://web.git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/log/?h=for-next 
+which merges this commit:
+https://lore.kernel.org/all/20250212-amlogic-pinctrl-v5-4-282bc2516804@amlogic.com/
+with another one:
+https://lore.kernel.org/all/20250321-fix-a4-pinctrl-node-v1-1-5719f9f09932@amlogic.com/
+---
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 125 ++++++++++++++++++++++++++++
+ 1 file changed, 125 insertions(+)
 
-A little code duplication is OK, as long as the test is easy to
-understand. Maybe genparams stuff is going too far, I don't know, but at
-the least we want to make sure the clk registration APIs behave as
-expected when the getter API is used to get the device or of_node later.
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+index a06838552f21..c02fa5ee9fd2 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+@@ -5,6 +5,7 @@
+ 
+ #include "amlogic-a4-common.dtsi"
+ #include <dt-bindings/power/amlogic,a4-pwrc.h>
++#include <dt-bindings/pinctrl/amlogic,pinctrl.h>
+ / {
+ 	cpus {
+ 		#address-cells = <2>;
+@@ -50,6 +51,107 @@ pwrc: power-controller {
+ };
+ 
+ &apb {
++	periphs_pinctrl: pinctrl@4000 {
++		compatible = "amlogic,pinctrl-a4";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges = <0x0 0x0 0x0 0x4000 0x0 0x280>;
++
++		gpiox: gpio@100 {
++			reg = <0 0x100 0 0x40>, <0 0xc 0 0xc>;
++			reg-names = "gpio", "mux";
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_X<<8) 18>;
++		};
++
++		gpiot: gpio@140 {
++			reg = <0 0x140 0 0x40>, <0 0x2c 0 0xc>;
++			reg-names = "gpio", "mux";
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_T<<8) 23>;
++		};
++
++		gpiod: gpio@180 {
++			reg = <0 0x180 0 0x40>, <0 0x40 0 0x8>;
++			reg-names = "gpio", "mux";
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_D<<8) 16>;
++		};
++
++		gpioe: gpio@1c0 {
++			reg = <0 0x1c0 0 0x40>, <0 0x48 0 0x4>;
++			reg-names = "gpio", "mux";
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_E<<8) 2>;
++		};
++
++		gpiob: gpio@240 {
++			reg = <0 0x240 0 0x40>, <0 0 0 0x8>;
++			reg-names = "gpio", "mux";
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_B<<8) 14>;
++		};
++
++		func-uart-a {
++			uart_a_default: group-uart-a-pins1 {
++				pinmux = <AML_PINMUX(AMLOGIC_GPIO_X, 11, 1)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_X, 12, 1)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_X, 13, 1)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_X, 14, 1)>;
++			};
++
++			group-uart-a-pins2 {
++				pinmux = <AML_PINMUX(AMLOGIC_GPIO_D, 2, 3)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_D, 3, 3)>;
++				bias-pull-up;
++				drive-strength-microamp = <4000>;
++			};
++		};
++
++		func-uart-b {
++			uart_b_default: group-uart-b-pins {
++				pinmux = <AML_PINMUX(AMLOGIC_GPIO_E, 0, 3)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_E, 1, 3)>;
++				bias-pull-up;
++				drive-strength-microamp = <4000>;
++			};
++		};
++
++		func-uart-d {
++			uart_d_default: group-uart-d-pins1 {
++				pinmux = <AML_PINMUX(AMLOGIC_GPIO_T, 18, 4)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_T, 19, 4)>;
++				bias-pull-up;
++				drive-strength-microamp = <4000>;
++			};
++
++			group-uart-d-pins2 {
++				pinmux = <AML_PINMUX(AMLOGIC_GPIO_T, 7, 2)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_T, 8, 2)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_T, 9, 2)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_T, 10, 2)>;
++				bias-pull-up;
++				drive-strength-microamp = <4000>;
++			};
++		};
++
++		func-uart-e {
++			uart_e_default: group-uart-e-pins {
++				pinmux = <AML_PINMUX(AMLOGIC_GPIO_T, 14, 3)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_T, 15, 3)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_T, 16, 3)>,
++					 <AML_PINMUX(AMLOGIC_GPIO_T, 17, 3)>;
++				bias-pull-up;
++				drive-strength-microamp = <4000>;
++			};
++		};
++	};
++
+ 	gpio_intc: interrupt-controller@4080 {
+ 		compatible = "amlogic,a4-gpio-intc",
+ 			     "amlogic,meson-gpio-intc";
+@@ -60,6 +162,29 @@ gpio_intc: interrupt-controller@4080 {
+ 			<10 11 12 13 14 15 16 17 18 19 20 21>;
+ 	};
+ 
++	ao_pinctrl: pinctrl@8e700 {
++		compatible = "amlogic,pinctrl-a4";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges = <0x0 0x0 0x0 0x8e700 0x0 0x80>;
++
++		gpioao: gpio@4 {
++			reg = <0 0x4 0 0x16>, <0 0 0 0x4>;
++			reg-names = "gpio", "mux";
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
++		};
++
++		test_n: gpio@44 {
++			reg = <0 0x44 0 0x20>;
++			reg-names = "gpio";
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
++		};
++	};
++
+ 	gpio_ao_intc: interrupt-controller@8e72c {
+ 		compatible = "amlogic,a4-gpio-ao-intc",
+ 			     "amlogic,meson-gpio-intc";
 
-I've found this google chapter[1] useful for unit testing best
-practices. I recommend reading it if you haven't already.
+---
+base-commit: 23a708916ec7ab21c8c81d61bdb7cb933f6867d5
+change-id: 20250325-pinctrl-node-a4-a4667d5ec8cb
 
-[1] https://abseil.io/resources/swe-book/html/ch12.html
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
