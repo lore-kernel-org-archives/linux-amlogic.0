@@ -4,89 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4744EC3600C
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Mar 2025 19:18:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B357AC36011
+	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Mar 2025 10:19:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xDsUomhaq3q4vsG8GmcKmBYUsuoRjL8qggowAXjFILI=; b=Nqvt74c9QqS4TF
-	y+S3ZZ2zst+AcP13PUFr/ubRsH/On0XxRFk/5c9oR6khvDE/G25o2ahkxq9yX7AnBAlZUxz34CKKO
-	VZT+6z8tzKTTHxk7+EKA4Cvm/Acro2OQItxL7PULIB4xL5RYFgIj6n9fI0XQot5doznN5T17djDEv
-	wv63gnKuwKKWlaPjXgruFSwmrPy6PlULVwOUSuJV1glqZ3iwC41twQcb8vGnjo4IkrNw6YGLnIz5a
-	jBFezY7/hjj3fiL3k3MmWrjVygyrHfz2kSoHBFfCYNY3fM/1FJYhMNfH81exXs7NOhdtW2kSCKnwA
-	3JpwQPjp7/TJEhmT535A==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=xojXjoRnoSaLGzQFfcCJxQL+VZ1kwXSxZSoSjrm4EnQ=; b=tJCAj0mJvZLHZ4
+	L3SH9qKl2Bu/qwTWveSINmEOd30hMGpfny+Gc7dLoVbymnf+E9igP36WhwUOn7Q7pooQ5H3wl6TTg
+	wqg61/pWp7+F+xDehzf2U7v3oGuSYsMjFv2q1S6QzDj2B2UBkJC722B86/jJzIrMqug5yK+JAY6Jp
+	XQqHQlvuiwzai+b5fdKi5nBfe3BHTUbNfS6gxLbnhGNlYlRR6lxlk6gN+mgoMoH0rab3bIY6fLx0/
+	oGL3j5CpMLuji5N4uxTLmGXgf84lqRFC0PIxvTfpeCNOM3R2TzsCLJqZ2/rXvzlBM9aMKrezyVCso
+	hYkXfxiuFkvYL/TwcS4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tybhd-0000000FS5A-3CXS;
-	Sat, 29 Mar 2025 19:18:45 +0000
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+	id 1typlX-0000000G5FH-0Co2;
+	Sun, 30 Mar 2025 10:19:43 +0000
+Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tybWj-0000000FR8q-0ECm;
-	Sat, 29 Mar 2025 19:07:30 +0000
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5e673822f76so5389410a12.2;
-        Sat, 29 Mar 2025 12:07:28 -0700 (PDT)
+	id 1typlU-0000000G5Er-0mnH;
+	Sun, 30 Mar 2025 10:19:41 +0000
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-ac2dfdf3c38so645859766b.3;
+        Sun, 30 Mar 2025 03:19:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1743275247; x=1743880047; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5zCE82IEEUW3OgJQOexggjw77Krndyt+WM9SEFSCbzs=;
-        b=LV+P9S8rX5q5/j5izDyK/09/b2NfudSPngUwqBRtbCR7lTR3rXhzTxe4j1Y3ZBeq8V
-         tS9Fe01Z0sBzfBhJgkewyvWpkW3N9wBiAEApUgAipvQgI/E8NNbjRxpJmDGv6ebDYV3t
-         jjwRwxO0V5lKlf6itHnYT8dyFUUxsnOGaJ0FNhBioVnZq0TCgfwvT+N3+LupVwu5opCM
-         hxcOxz5FQr2st1vsu4SdJlleiHIXrB/EBGlTnyhcuz02se8rKwWAoT7KpvGOlzfmrOsE
-         gwqmQXhL7JhyFL3Yvcjh6jSlyjzAMoQXgFonoJ+/tqUwk2EGT7BhjW7xFS8tMpuwSqWx
-         nOGg==
+        d=googlemail.com; s=20230601; t=1743329978; x=1743934778; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IFZ3SyUnUFP6g3RoNH2rAWHWsI1Dx6a8W3EREPo/yvE=;
+        b=YFRaB4+XdWxts9PLbcAa78ytlPUbAJ65yMvXv+GLlDKvMMBr+u2hP5zLDNg+6GX8/F
+         aMcVcL/SXmFyjtxgC4IV/nZEIUEUTh4Qm/jSOBrPuELczYYGgsG2uH9X9Jjqg+DLa2CZ
+         nQH0xnFBfAUzcGs41GUXbETtIZr7cw0G8cTY3alJ+cSXSM3ZtHgB/zN61165ogXy+V7O
+         4Ump2jXQwhSshtG+j2AGTiHNKU5XKx6FOVEEBiZSySdGFWk9UqDgZKkCXpKOrNMnuiUt
+         Wf1X9MxytxGIeAb9H13xsWSepnAlMw8vEryehUaN2HftnFEEYu7HHkI+dL1Bk4PkGDuu
+         dKnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743275247; x=1743880047;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5zCE82IEEUW3OgJQOexggjw77Krndyt+WM9SEFSCbzs=;
-        b=THwli4fzSwjWYQZ46DOvLmBJiNkHjVy0BVtupNNt6Pes7e+sVHcmba5VyqlKWtBc3E
-         jF0qBajlhMplNHkraFUKq59Z17YS75nmfASnLFxVVzWux/qVhhfUsWLm324T2/3712Au
-         gfY3C3NUKDBOGIWirHEft6hyhusMZvEaqSO1klb8Waqc7bE3zgVhbeIysbcFyGnR8FBT
-         iB74CHzMWHc1wi1f2XEsTQrARF2fuyeK486hmTjGNbPHGF9rFmck55JD3n0YkeEWf4kp
-         MNDo0yYhYUQfqPdKyhqr4ZG3XCI4kGPEHpD08h8nQdrWI7Wfvj8r5swgT84OxZQi18Va
-         g9TA==
-X-Forwarded-Encrypted: i=1; AJvYcCUd3OWtwZd5Z7CMf+cCY0uA27XvBJQh7vK8IJaS56fUZlAjM1Wn29XjdDvgLryEqkaArNPuDDuDwB1tXUI269Ms@lists.infradead.org, AJvYcCXo7yMNJBZXNJvp8+HXL1mlzVjZRvw+NfcpwCZQ7aOsC0ODIyuBNIF+Qbfqf1H+TpjfAYzo0OaURX7Y@lists.infradead.org
-X-Gm-Message-State: AOJu0Yzq7iUKmP6l0vzhpb6CpR9OWvJ/Fq7UMtopbKE7HR2x5Nmx/H8d
-	XO1A5pdR0PCdGX1SvfW5AVDPiyXUZRLC+m0ML5/5qCZcs6TjMtUup1lDuA==
-X-Gm-Gg: ASbGncuGU/bCgHGJGEG0nEaqZ8YaA72B3QOvvnGHbUE8xVcFqzbYrJWPKCw973WDiY7
-	AfyhPWZ746DEFV1LjvLHRa1wHFixfs2syibxC4CGVSng2MB4qdGBxIrbwqsNjd8sTCIjGdTxvfQ
-	UO3+xtFenNN7Jhht8zsDPpB4u88iZfCjYbenh/8xuHCo5zFc10EhhqxxiSFMi3yIhztCPHsRSen
-	R/cR0cg1BEkpo5l+6pOjGG9YidHf9t3MUGFqQPxFG6skKj7RXGd2RlENON4EFmR7ljtpyB4tVS9
-	RQYI2Y6sZ897u6kH9zQkiJCck+oN8fAmNfXw+pv7CsnwrOaV8D85tSLhYqSoH9bSbelHQOIKnJ5
-	Pj6nihgBXI3GGFqx08/YUfTpfF/4pw9gJK5nMK2zphnXqb4tLcDNQaEBhDZHVGHx+tKvmtg==
-X-Google-Smtp-Source: AGHT+IEWt7Qj737jJHCaN2ZyByecAgGhDvAAdbgZl/B8p5LpJrELRizAUQQWktSqw+FFBr/8ZteT5g==
-X-Received: by 2002:a05:6402:2689:b0:5dc:c531:e5c0 with SMTP id 4fb4d7f45d1cf-5edfde2067bmr3759805a12.27.1743275246879;
-        Sat, 29 Mar 2025 12:07:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1743329978; x=1743934778;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IFZ3SyUnUFP6g3RoNH2rAWHWsI1Dx6a8W3EREPo/yvE=;
+        b=Vd1Vku5cXvIGtBAuukVC5B0tedg6fsMEklLRiQePbPCpBbFDg5xyrjlIywHC/SwCVQ
+         VLX/KWCUaoIC69t8wOkqfYuGtJ+2BgKiqPaor09wU+J1PwSttFheIypzRzLFtKesJ0Mw
+         oWdGGF3r/LRmKcuUPr9+jHc9X/0u5GjEtgTQQcvIwO3HBWlzgVzAceci0zCvkqyFCSTC
+         abbwtMmdi9IS1GqmFoYAcZokS6ysre6mg6xWll/t4tcf9VIMZLcqfGSQ1VbxPNe59fA6
+         gxTIqJW0NsKTdtDLnK51FwBqxDGu+QFO4K4yOhZS/IXC4sVB/qlGrW/RS4kZbr70VtSe
+         MOQw==
+X-Forwarded-Encrypted: i=1; AJvYcCVrZecVbLoWY83tLNLnYL1Cg9+khUVQZhVi8z5xdjsJiXzq4QXiUBDW8TIUsix90v6s5bfdAzGxbcJ88eO7byX9@lists.infradead.org
+X-Gm-Message-State: AOJu0YwZaC2MRjnIugAmdolGk3bdH9eHgtIwCJEIJ3bwRPcAPTheT42Y
+	BByuz5ezwHEU5TKwiCDvVlzrZjNrhcuJPA0E5bcchgpd6p9Osr9fDiatgw==
+X-Gm-Gg: ASbGncuPJ0+Iy3Jvs+uAVo6muWdMJQ9U8Q0fWfhdm9BFQ/Lg4m8XLa5R0/VQO6Ul2Yr
+	5SDmh9ZXYOWJ2MZ4LOSbUXBaWhXEoalYjeQClbcekXSUnDMZhBA6aZeybDtcQQxWTYyyjXWTNJG
+	hiRaPdmEz5RSlfNEOiA5j5YVdNZQ3/njuJjofmH5v9P+W9WbRZ8r5PuvgxRnS2LhO1jFmtH87s/
+	E2Sy6nz6RL/LprZH0Udtg92L1L1LcEll7VPAVsqOKVUV0R40ZoTMzsjy8+aWwnDjOwxYjKrnCmW
+	b8YFeAhNyeDQNxZZnS0DHbE1j2u2XMZOjSoZCjdONrdBZEzAf265nVcuQSObq67g3EUkQQsgcqO
+	Xch/ks7Ds9g8nLBjFN3BXw3JVAzu5Oijgluez2/lfb77It//FsnbxU1R/Tp4zUDtLYZ8FZSwkVg
+	BzLqtA
+X-Google-Smtp-Source: AGHT+IFzaM9D7vunf7JlSpNngmanlgLm7dWuOj8JtuMc99YkDjuuRnxWZlzBdqnKqounaNnHZZeR9g==
+X-Received: by 2002:a17:907:7eaa:b0:ac2:d1bd:3293 with SMTP id a640c23a62f3a-ac738a66928mr601365666b.19.1743329977947;
+        Sun, 30 Mar 2025 03:19:37 -0700 (PDT)
 Received: from localhost.localdomain (dynamic-2a02-3100-ad73-6800-0000-0000-0000-0e63.310.pool.telefonica.de. [2a02:3100:ad73:6800::e63])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5edc16aac05sm3275271a12.3.2025.03.29.12.07.24
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ac71922bb65sm459288866b.34.2025.03.30.03.19.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Mar 2025 12:07:25 -0700 (PDT)
+        Sun, 30 Mar 2025 03:19:37 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
-	linux-phy@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	kishon@kernel.org,
-	vkoul@kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v2 2/2] phy: amlogic: meson8b-usb2: Use the regmap_{clear,set}_bits helpers
-Date: Sat, 29 Mar 2025 20:07:12 +0100
-Message-ID: <20250329190712.858349-3-martin.blumenstingl@googlemail.com>
+	linux-iio@vger.kernel.org
+Subject: [PATCH v2 0/2] iio: adc: meson: add MPLL clock workaround for GXLX
+Date: Sun, 30 Mar 2025 12:19:20 +0200
+Message-ID: <20250330101922.1942169-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250329190712.858349-1-martin.blumenstingl@googlemail.com>
-References: <20250329190712.858349-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250329_120729_090712_EAD211E8 
-X-CRM114-Status: GOOD (  12.04  )
+X-CRM114-CacheID: sfid-20250330_031940_229301_A72D1B90 
+X-CRM114-Status: GOOD (  13.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,86 +90,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, lars@metafoo.de, robh@kernel.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, gnstark@salutedevices.com, krzk+dt@kernel.org, jic23@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-These require less code, reduce the chance of typos and overall make the
-intent clearer. No functional changes.
+Hello,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/phy/amlogic/phy-meson8b-usb2.c | 28 ++++++++++----------------
- 1 file changed, 11 insertions(+), 17 deletions(-)
+Amlogic GXLX SoCs seem to be mostly the same silicon as GXL. The only
+known differences are:
+- one less Mali-450 GPU core
+- no VP9 codec
+- and an odd one: the three MPLL clocks need a bit toggled in the SAR
+  ADC register space
 
-diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
-index d9c761b7c15c..a553231a9f7c 100644
---- a/drivers/phy/amlogic/phy-meson8b-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
-@@ -165,8 +165,7 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
- 		return ret;
- 	}
- 
--	regmap_update_bits(priv->regmap, REG_CONFIG, REG_CONFIG_CLK_32k_ALTSEL,
--			   REG_CONFIG_CLK_32k_ALTSEL);
-+	regmap_set_bits(priv->regmap, REG_CONFIG, REG_CONFIG_CLK_32k_ALTSEL);
- 
- 	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_REF_CLK_SEL_MASK,
- 			   FIELD_PREP(REG_CTRL_REF_CLK_SEL_MASK, 0x2));
-@@ -175,23 +174,20 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
- 			   FIELD_PREP(REG_CTRL_FSEL_MASK, 0x5));
- 
- 	/* reset the PHY */
--	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET,
--			   REG_CTRL_POWER_ON_RESET);
-+	regmap_set_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET);
- 	udelay(RESET_COMPLETE_TIME);
--	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET, 0);
-+	regmap_clear_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET);
- 	udelay(RESET_COMPLETE_TIME);
- 
--	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_SOF_TOGGLE_OUT,
--			   REG_CTRL_SOF_TOGGLE_OUT);
-+	regmap_set_bits(priv->regmap, REG_CTRL, REG_CTRL_SOF_TOGGLE_OUT);
- 
- 	if (priv->dr_mode == USB_DR_MODE_HOST) {
--		regmap_update_bits(priv->regmap, REG_DBG_UART,
--				   REG_DBG_UART_SET_IDDQ, 0);
-+		regmap_clear_bits(priv->regmap, REG_DBG_UART,
-+				  REG_DBG_UART_SET_IDDQ);
- 
- 		if (priv->match->host_enable_aca) {
--			regmap_update_bits(priv->regmap, REG_ADP_BC,
--					   REG_ADP_BC_ACA_ENABLE,
--					   REG_ADP_BC_ACA_ENABLE);
-+			regmap_set_bits(priv->regmap, REG_ADP_BC,
-+					REG_ADP_BC_ACA_ENABLE);
- 
- 			udelay(ACA_ENABLE_COMPLETE_TIME);
- 
-@@ -214,17 +210,15 @@ static int phy_meson8b_usb2_power_off(struct phy *phy)
- 	struct phy_meson8b_usb2_priv *priv = phy_get_drvdata(phy);
- 
- 	if (priv->dr_mode == USB_DR_MODE_HOST)
--		regmap_update_bits(priv->regmap, REG_DBG_UART,
--				   REG_DBG_UART_SET_IDDQ,
--				   REG_DBG_UART_SET_IDDQ);
-+		regmap_set_bits(priv->regmap, REG_DBG_UART,
-+				REG_DBG_UART_SET_IDDQ);
- 
- 	clk_disable_unprepare(priv->clk_usb);
- 	clk_disable_unprepare(priv->clk_usb_general);
- 	reset_control_rearm(priv->reset);
- 
- 	/* power off the PHY by putting it into reset mode */
--	regmap_update_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET,
--			   REG_CTRL_POWER_ON_RESET);
-+	regmap_set_bits(priv->regmap, REG_CTRL, REG_CTRL_POWER_ON_RESET);
- 
- 	return 0;
- }
+This series attempt to fix audio output (which relies on the MPLL
+clocks) on the GXLX boards. Unfortunately all we have is a downstream
+commit [0] without any further explanation (or anyone who wants to
+provide details on this). Since it's not clear if this is a gate, a
+reset or some other hardware fix: the driver side includes a warning
+for users to update their .dtb along with kernel images in case we
+ever figure out what these bits do and how to model them properly.
+
+
+Changes since v1 at [1]:
+- added Krzysztof's Acked-by to the dt-bindings patch (thank you)
+- added Neil's Reviewed-by (thank you!)
+- fixed meson_sar_adc_gxlx_param to be independent of future
+  to-be-upstreamed patches (fixes a build error)
+
+
+[0] https://github.com/khadas/linux/commit/d1d98f2ed8c83eb42af8880ed8e206aa402dd70a#diff-c5aaf54323ef93777c5083de37f933058ea8d0af79a1941e0b5a0667dc0f89b3
+[1] https://lore.kernel.org/linux-amlogic/20241231194207.2772750-1-martin.blumenstingl@googlemail.com/
+
+
+Martin Blumenstingl (2):
+  dt-bindings: iio: adc: amlogic,meson-saradc: Add GXLX SoC compatible
+  iio: adc: meson: add support for the GXLX SoC
+
+ .../iio/adc/amlogic,meson-saradc.yaml         |  1 +
+ drivers/iio/adc/meson_saradc.c                | 34 +++++++++++++++++++
+ 2 files changed, 35 insertions(+)
+
 -- 
 2.49.0
 
