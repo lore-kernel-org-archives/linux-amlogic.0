@@ -4,89 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D79B9C36018
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Mar 2025 07:04:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76350C36017
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Mar 2025 07:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2q5sXcj27Pi6m4+C1eFBcoHYzaF9OrIsV8luGYu6/x8=; b=FQ1OYN/CIu5M7+
-	C6oKXLAUMZBrSLGnteyqfQLQErn9hv59BB1uNYstJ7Uem3ZYOF1vLBSBDPgAKcXGP2uSeI4z8qqke
-	iVZC87D16ygIgjI6qssENJiG+0eNR2/LqF1tH0FTGSYNPe/BQOXwZtxZGn8X2spPR3rzrtAUeQEd+
-	W7RxcR8kG2f2do4dUZLUX0t5VDGoYdeAqdi7zMnSMKq7b5P/Y1FiLLA7YagHnmNLeV4Zb5+FXYR3f
-	H89hMKDZodQ/jjiDs8wS1GwLKgWp0Sn7moNNCD9JqblmLN5lZuqOXQetVGwFKW586zC3s8K2Y0s8k
-	etabChfJrr6a9TZYNZLA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=fftvGgaql84MeOdlaRmkdYnCz3+C0943hKJK28Y718A=; b=wtj3CgeoWUlKHE
+	5xl7zA1SkkitYnJUFiGANNN4Wju/XO9jmhGcW9xVA/1hYIwdiyndWFM6tXEmF6fQW4yaKfwhbeLH2
+	MeFqp3tgRVsEJI0BbNgPL0F4mxi8U9XPKN7spmQZms7XRWbORqNL5ik3AV8IeCKGkvjQCfLkyWvx8
+	6KZWJIkrbjIHSo45Qm0ycPFs6h9SY0D6hZuhpTtKXYdpAb+Db24uM9gOK/JScf70bHgljcnoE38bK
+	J+SptZfuSVHh79zPxl8GExVVFGXg6KCOgVev+TQXJOte/xca+QVuBIt42f1j6mkHKAIvM8qwLQ2dr
+	bA3x+Aou122baFvKN+4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tz9Bv-0000000H9rG-1DGn;
-	Mon, 31 Mar 2025 07:04:15 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1tz9qZ-0000000HFQ5-1i1b;
+	Mon, 31 Mar 2025 07:46:15 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tz99T-0000000H9Ux-2D4o
-	for linux-amlogic@lists.infradead.org;
-	Mon, 31 Mar 2025 07:01:45 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3914aba1ce4so3525273f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 31 Mar 2025 00:01:43 -0700 (PDT)
+	id 1tz9oq-0000000HF92-0vgm;
+	Mon, 31 Mar 2025 07:44:29 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4394345e4d5so25541705e9.0;
+        Mon, 31 Mar 2025 00:44:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743404502; x=1744009302; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oaZet+achYItbJKpiG/xx1boWkF1GMxAKa+bQtO4ts4=;
-        b=NcK1hr7ojFh8ASO2/8RFcAHls1YeBN4O0m+svIyxBcLbGqZVLZsKBd14tKrKxVX5JH
-         dOskF2lePlXRTLrCS3iwh4nA4K22uNXc9Pwp4vY3nehKhEhnBx1vKqkmfP1blaQmxCce
-         qmXhlYEV9srGoE52Esd923l6/f4H1kQTQ+ZHLfa49j8zAL16rUkX7cQbE4OXG1RE3F08
-         FM+Z65nKUuT75L2ysyJEUfIA9jWdTpLnJnfoZO2ShHH8dBUi3wS43/AgLXENQpghrcz0
-         deLvoA3M0Lifqf12IECe6gpWINLU+FHC/yKjipqiLdBGb1qsNPu9su+BuX1EPEEVLFEW
-         M1Gw==
+        d=gmail.com; s=20230601; t=1743407066; x=1744011866; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=B8L3gLHE0iXx8zQGDJ8LlLcTKVC/8dXUo9ajwXYWTFg=;
+        b=OxZ3CX5TswxXjBSbi9jUo+Cs/t+/43aqSFAvPTm/we8FcpkQlAt8TE0eOxqFD2Ydbr
+         CR+n1M97fnUSm5M59ap5aE8CJsf94kmhbBzyP1WHEY13yi2F/gT+wb5uymGAxS4PxHJp
+         zg9bbSWqLlkn5Mxt16f9mvqBvxxUaqZk9SYbvBc1frDBkZkX03LVz7CT6ppXc0d6Oa81
+         rLKnWKGuKia02DZ7n9I46MM50nyZtglbabWPwm0U2yEFaNdImSfS5gjD1FWPp3pJBkqm
+         wyuM5K6UpVmhwaUs44vp25QdF2rRtn/KrGeYYHBzIfrDjkrr6Tn/wlCs2zKrJlc7heEP
+         4Dhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743404502; x=1744009302;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oaZet+achYItbJKpiG/xx1boWkF1GMxAKa+bQtO4ts4=;
-        b=Nb9eU2NjYoFQgTlHApyklWvDM9CkYC6Ft5/1oaj23Y8UeNMZvUSNDAf2ocqHyhcAkt
-         qD0HVbKuF+N672qCzipG2S4Rn5jvw3H6IXT30Ugys0xjjpMNa71KmTcMBJfDKQVs7mcL
-         njKFSZTsfhkyW0RzBNRR5CgJv/eIhaW4V5t9gJBbQgRsx3JxDK+vHL9STPW27lUp1PbS
-         mbf6unXSOpgiy69HcSN/kJWPXhM94k39YhDM25bRROgh9YCJvXMOmdYpYnkkM/RO/per
-         7eO4Y7cAEUIJuiFs0UXTXr0kCbnBSk92iN+G7TWDy19oUSpdA8Ge6TzFIkK+00VqHSGV
-         bRYg==
-X-Forwarded-Encrypted: i=1; AJvYcCX0sx8mwSH/gYHjQNZoib1fESYD9LIgH2zndFrhvD3ALzhvE9f28RuW200Q4YOhsrFKBv6G1oEBAQkPXsyk@lists.infradead.org
-X-Gm-Message-State: AOJu0YwaE+9m65HTuMFBC9D91qD64ziXekCzSljURxJ6Lr1iffD9JIrQ
-	F7BCK0MtsLoKJmGMo05S6IBNmBbIDjSiPprWLTKw//odKW+bx+E4Cfy32FIrSjI=
-X-Gm-Gg: ASbGncswyatNTyWvz61ASpKS/GnpAK8PlMN/3m+afuoNhMTMtNWMqFYHI0crbugPI8V
-	VjqxfEPhogu3OIGM8W2UgxF42N6UEQSW0cHOIeh1TbahxRRlKpSJFTi0DijPrQ2+tC3mZObKfrS
-	lXDoy9pwuDbUgJU1XcYUNEDCMYIRL/yKKSmjQ9kDKyatyrO1bSFMVsvF0asqPRExFpYlHuy5IEe
-	ZkAq0ZdijsXb+ZgufIMjBpIZrT1+AL/lKa6KdSMjBJ4nvAVBOl+SSN2IViizhj2lCRgLSHqotPK
-	QoR4aBUoT5fbmx7rbw9pxCRPsG9tEyU6eCPVHUAJy8dsOdEE476npnAweSKeD9mcgg==
-X-Google-Smtp-Source: AGHT+IHddxB5k0FnXCNZBeNjRDemX9kB1JsqOq32EQuLUtsmc+/DgPdv1Z5DHh144VpkY69PlzIWUQ==
-X-Received: by 2002:a05:6000:420d:b0:391:2e31:c7e1 with SMTP id ffacd0b85a97d-39c120c8df3mr5450139f8f.4.1743404501733;
-        Mon, 31 Mar 2025 00:01:41 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d82e6ab48sm158442325e9.10.2025.03.31.00.01.40
+        d=1e100.net; s=20230601; t=1743407066; x=1744011866;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B8L3gLHE0iXx8zQGDJ8LlLcTKVC/8dXUo9ajwXYWTFg=;
+        b=CyJU1L8AVvr7qZ05shfXaxwDYri6HJdY7IMHrKiho7EnlmR0mjtj6inWEtW81QmkFO
+         P6SX+lZDaUJXYZi8zLldPFEaNyq64qj7UV7D+JCNgDYst9Cg12G1mIgLzHz1pozl+WEm
+         eetigqU54xrHjPq4Pmh6wS8gmu5zXChEf27c8VMPQfjEnbqMbO4ADu/Z6IbH5dKxCk4N
+         B3x7DSm+QT5NqpUqkEHaqZELy3amdCOHA2Pe46c69L3N512R3vukTJBGD6WOjkwXSqA5
+         2XDkMEMwy4LGru6LkGXE6PzqZCFlgjw34oAeIxStlIJ871tILVyNeCdWkfMDoCr/S9/A
+         5gew==
+X-Forwarded-Encrypted: i=1; AJvYcCVF6qjXieFJ506Dqylp3Q5aVY106Gbk489d/cAyhaxPHfR6F4Q2RE419jmACBZuTgbER5MFU25Q40d2FQa8@lists.infradead.org, AJvYcCX2b3ZCJzuc39AID938bA4KzznlimAXzPdyh5vkIdfINP5VUa+0n26IRxoTIJAp9S2jgKRMSncY+gSb6MNP0b2VcQ==@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzkub36BOtEKkFsxQTeoYTIuiFNtJxrEfX19GF6nia8tm3ENgaw
+	sq6rbUEut1pmcPM9eePKufp6iVRlsZG/BqjE9NpowMZgrSXtOC0x
+X-Gm-Gg: ASbGnctMuisHnTF7JM8TgfAYlM5NCN0r2EUmNf8HZOnYiJo8WIjlHcgvac2OZBjyLXk
+	cswqt+HzNqEl07fVlxFLYnhfhLAuKKIR5JTWW53m5X6IVzE6eJsKAd/ZbHFsW5Tc25kmP+KjPS/
+	6KX3LVvBogboNg5K2t6IMIDdMRhYPnJr1sPXx3jlnPWJYk+EMC3RaEGmVmMSQ0z8tR/hhyYwlgB
+	R7vlXsdxPF9hNMCSpXt3CXHI9BjdTihTqe/jaMBgKNfFGfzg9X21J795NMl9XKSqLnSDB8FRow5
+	gk3EGZkfVERId1PQXxuRW+3OvnG81kIQMztYqWkbjVMO5tCMeQ==
+X-Google-Smtp-Source: AGHT+IEU6fWpjT/iTPyqpawIrj8kideGZRhmNQegpvlEXo12tPGNrAQ7TR+EVkOdgUcKFpnGqAnuvw==
+X-Received: by 2002:a05:600c:5119:b0:43d:526:e0ce with SMTP id 5b1f17b1804b1-43db62bb97dmr49667695e9.21.1743407066132;
+        Mon, 31 Mar 2025 00:44:26 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c0b6588e9sm10812284f8f.14.2025.03.31.00.44.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Mar 2025 00:01:41 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20250330143254.3159519-1-christianshewitt@gmail.com>
-References: <20250330143254.3159519-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH] arm64: dts: amlogic: gxlx-s905l-p271: add saradc
- compatible
-Message-Id: <174340450091.221709.5889306683742068023.b4-ty@linaro.org>
-Date: Mon, 31 Mar 2025 09:01:40 +0200
+        Mon, 31 Mar 2025 00:44:25 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org,
+	Da Xue <da@libre.computer>
+Subject: [PATCH v2] net: mdio: mux-meson-gxl: set 28th bit in eth_reg2
+Date: Mon, 31 Mar 2025 07:44:20 +0000
+Message-Id: <20250331074420.3443748-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250331_000143_568064_98D56572 
-X-CRM114-Status: GOOD (  10.42  )
+X-CRM114-CacheID: sfid-20250331_004428_258880_DE323555 
+X-CRM114-Status: GOOD (  12.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,44 +108,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+From: Da Xue <da@libre.computer>
 
-On Sun, 30 Mar 2025 14:32:54 +0000, Christian Hewitt wrote:
-> Add the saradac node using the meson-gxlx-saradc compatible to ensure
-> MPLL clocks are poked and audio output is enabled on the p271 (S905L)
-> board.
-> 
-> 
+This bit is necessary to enable packets on the interface. Without this
+bit set, ethernet behaves as if it is working, but no activity occurs.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm64-dt)
+The vendor SDK sets this bit along with the PHY_ID bits. U-boot also
+sets this bit, but if u-boot is not compiled with networking support
+the interface will not work.
 
-[1/1] arm64: dts: amlogic: gxlx-s905l-p271: add saradc compatible
-      https://git.kernel.org/amlogic/c/cb99bb034123ef8b8dd533fc4c42164b049515a2
+Fixes: 9a24e1ff4326 ("net: mdio: add amlogic gxl mdio mux support");
+Signed-off-by: Da Xue <da@libre.computer>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+Resending on behalf of Da Xue who has email sending issues.
+Changes since v1 [0]:
+- Remove blank line between Fixes and SoB tags
+- Submit without mail server mangling the patch
+- Minor tweaks to subject line and commit message
+- CC to stable@vger.kernel.org
 
-These changes has been applied on the intermediate git tree [1].
+[0] https://patchwork.kernel.org/project/linux-amlogic/patch/CACqvRUbx-KsrMwCHYQS6eGXBohynD8Q1CQx=8=9VhqZi13BCQQ@mail.gmail.com/
 
-The v6.16/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+ drivers/net/mdio/mdio-mux-meson-gxl.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
+diff --git a/drivers/net/mdio/mdio-mux-meson-gxl.c b/drivers/net/mdio/mdio-mux-meson-gxl.c
+index 00c66240136b..fc5883387718 100644
+--- a/drivers/net/mdio/mdio-mux-meson-gxl.c
++++ b/drivers/net/mdio/mdio-mux-meson-gxl.c
+@@ -17,6 +17,7 @@
+ #define  REG2_LEDACT		GENMASK(23, 22)
+ #define  REG2_LEDLINK		GENMASK(25, 24)
+ #define  REG2_DIV4SEL		BIT(27)
++#define  REG2_RESERVED_28	BIT(28)
+ #define  REG2_ADCBYPASS		BIT(30)
+ #define  REG2_CLKINSEL		BIT(31)
+ #define ETH_REG3		0x4
+@@ -65,7 +66,7 @@ static void gxl_enable_internal_mdio(struct gxl_mdio_mux *priv)
+ 	 * The only constraint is that it must match the one in
+ 	 * drivers/net/phy/meson-gxl.c to properly match the PHY.
+ 	 */
+-	writel(FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
++	writel(REG2_RESERVED_28 | FIELD_PREP(REG2_PHYID, EPHY_GXL_ID),
+ 	       priv->regs + ETH_REG2);
+ 
+ 	/* Enable the internal phy */
 -- 
-Neil
-
+2.34.1
 
 _______________________________________________
 linux-amlogic mailing list
