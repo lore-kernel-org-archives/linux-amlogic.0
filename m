@@ -4,83 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D27ACC36017
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D79B9C36018
 	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Mar 2025 07:04:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:To:From:Reply-To:Content-ID:Content-Description:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IuKrFAP6WnHyVQ4WrGsMYocGAbE3+I/C5yTSRgQlS8o=; b=JcPmdhu+nnKD0G
-	D4Wvv9Mi/jsUun+PtGptClsLzmlfw2MQmoVReYmYFGs11PPsjxO6jH5xiqbL+yOhXaC6Da927yhS+
-	87rw1TiKSkqGnwKjEETE+EBcb98Zmpq8/8PSHKY8ckEDnrLDs3RuuQzL8qohwKzCaHsYfmYYm2d2i
-	n5e+gUMzi1o7vRpLDebJsk9jwE6IyMzCRpenx2KrI6k5i2tAwXv58CE53B8m/hgHyKnCBDAK6Y36t
-	0wLFWF0FHjsHk2U8tq1fUPCKLqCHZpv3t1Z/TOiizbqJWzY8rd2pzpTE8RrfD/O1OjKVvOJlE/u58
-	wFtKd8wPwVd6NEGmSyFg==;
+	List-Owner; bh=2q5sXcj27Pi6m4+C1eFBcoHYzaF9OrIsV8luGYu6/x8=; b=FQ1OYN/CIu5M7+
+	C6oKXLAUMZBrSLGnteyqfQLQErn9hv59BB1uNYstJ7Uem3ZYOF1vLBSBDPgAKcXGP2uSeI4z8qqke
+	iVZC87D16ygIgjI6qssENJiG+0eNR2/LqF1tH0FTGSYNPe/BQOXwZtxZGn8X2spPR3rzrtAUeQEd+
+	W7RxcR8kG2f2do4dUZLUX0t5VDGoYdeAqdi7zMnSMKq7b5P/Y1FiLLA7YagHnmNLeV4Zb5+FXYR3f
+	H89hMKDZodQ/jjiDs8wS1GwLKgWp0Sn7moNNCD9JqblmLN5lZuqOXQetVGwFKW586zC3s8K2Y0s8k
+	etabChfJrr6a9TZYNZLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tz9Bu-0000000H9rC-3zsx;
-	Mon, 31 Mar 2025 07:04:14 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1tz9Bv-0000000H9rG-1DGn;
+	Mon, 31 Mar 2025 07:04:15 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tz99S-0000000H9Uv-2Zyv
+	id 1tz99T-0000000H9Ux-2D4o
 	for linux-amlogic@lists.infradead.org;
-	Mon, 31 Mar 2025 07:01:44 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-43cfebc343dso30398205e9.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 31 Mar 2025 00:01:42 -0700 (PDT)
+	Mon, 31 Mar 2025 07:01:45 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3914aba1ce4so3525273f8f.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 31 Mar 2025 00:01:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743404501; x=1744009301; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1743404502; x=1744009302; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U0EIRXaMi7x8XYwlCWwiW2XCs1AbE7FrNvdFZNLIYyY=;
-        b=b2QttzZ4K6HC7SlpUnt1JEcvoMZRirwU27B8HGRWvfoFkbUmAKNayCZ+ilEr21cb8s
-         0om2VlnSWRjts+sUHq29zGJDrZqb0998O+7EP0Ly7IYU25qxPNO//SYhQcxvZBqbbxMo
-         5XTFG2tKtmK3Krm+hsANjIvBza2JPcMCapu/NYmaqPKFJd3wIGXmpnnjeNlMKSJDnlfx
-         35OlUI19+9kAy7C2/3Xb8q0CDlOjXVyq/6kgppnqGxVsJkeeKWnZZHIkDjikQXaqNJ+C
-         zWfEeJj8hl3mXbucBM7GOZWNmX05qiumRBpAjqMKMsmZq35puZWjCLmrjtfuofHKeejf
-         Q2eQ==
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oaZet+achYItbJKpiG/xx1boWkF1GMxAKa+bQtO4ts4=;
+        b=NcK1hr7ojFh8ASO2/8RFcAHls1YeBN4O0m+svIyxBcLbGqZVLZsKBd14tKrKxVX5JH
+         dOskF2lePlXRTLrCS3iwh4nA4K22uNXc9Pwp4vY3nehKhEhnBx1vKqkmfP1blaQmxCce
+         qmXhlYEV9srGoE52Esd923l6/f4H1kQTQ+ZHLfa49j8zAL16rUkX7cQbE4OXG1RE3F08
+         FM+Z65nKUuT75L2ysyJEUfIA9jWdTpLnJnfoZO2ShHH8dBUi3wS43/AgLXENQpghrcz0
+         deLvoA3M0Lifqf12IECe6gpWINLU+FHC/yKjipqiLdBGb1qsNPu9su+BuX1EPEEVLFEW
+         M1Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743404501; x=1744009301;
+        d=1e100.net; s=20230601; t=1743404502; x=1744009302;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=U0EIRXaMi7x8XYwlCWwiW2XCs1AbE7FrNvdFZNLIYyY=;
-        b=LbPi4ZTPmDiDPTrke8gHuZfTW45FT8MXjf0AyYzBFQPJQRpQqbSM8eGWLHWHv6vwDS
-         A4eMqhH7YeOECOZlc1UZnpkiVb7nINvCOF4wIVi2dFdQCeBzcPRx8dpqPqDCUkcVBqpM
-         hnpr3+nq78Lfzvp29l0qEE42ZVzKqBh3UJRCJtu0VmqUS2N+NtVDRjw0Jav2PJ0RWDfv
-         YF4sfveiQNH8Lzjh82AxSt3ilRTLkXrDR+0+0MqiRIjdNGAzdcDZay1IS89dwuI+11nR
-         6+tezxo2LmAPM0XiIb5Jv6ysKsgUWEMO9XBCP83yTmxtnLz5vBkCEmi5HUfWFhoxi30C
-         mWtQ==
-X-Gm-Message-State: AOJu0YzLQCJA2gwxTUovjatN4DdPw2QFguk0J1D3LcWkUPR7R+ukIVTm
-	gWCJ0bFJcboEV446BzVCC/mBxzidXlKDOjor+YghCQiiWXl8/QKcQzzzmD8LrVc=
-X-Gm-Gg: ASbGncvoDQJ4nwnAHExKpnes+JwRJu+NEnUyBZA4Vf0MYaNJ5+d8nsY/L1de/yaHbl/
-	Z5V3GOyHKXUlzv8HriNDrQW0X5N1ouaQwY8EwCcs+N8lQZ6T9PMe39nlj0/zyMsJZMjItEPOH3r
-	sh5l243iTfFJ7cDCn2hQZCYVUjgLDz2xFyYM7l4MRIX5e7kuUjLnbW/qi51fWenw97e4Ft1dQ/b
-	O1QquKXqfG6PgwfQKLh8V87qFjyaDwjGz9Gnp5xUmlq4i551sP8Kn9QzI0YMGH58RXxPn03xIUa
-	4vcqc4oQ4QzAYpsXS04hro5OEB24EUvPZ8PZ95dT9vxJjaz3CrzAWS3sawZ4uo+F2Q==
-X-Google-Smtp-Source: AGHT+IEeWSQJLYKN04bNEh+7lHsUNrdL5zsVbpE6bLIsWK5/LcK1CEV9vqu2gqFuUvmhYfQrRpRW/g==
-X-Received: by 2002:a05:6000:2183:b0:39c:1257:febb with SMTP id ffacd0b85a97d-39c1257ff09mr4622649f8f.59.1743404500748;
-        Mon, 31 Mar 2025 00:01:40 -0700 (PDT)
+        bh=oaZet+achYItbJKpiG/xx1boWkF1GMxAKa+bQtO4ts4=;
+        b=Nb9eU2NjYoFQgTlHApyklWvDM9CkYC6Ft5/1oaj23Y8UeNMZvUSNDAf2ocqHyhcAkt
+         qD0HVbKuF+N672qCzipG2S4Rn5jvw3H6IXT30Ugys0xjjpMNa71KmTcMBJfDKQVs7mcL
+         njKFSZTsfhkyW0RzBNRR5CgJv/eIhaW4V5t9gJBbQgRsx3JxDK+vHL9STPW27lUp1PbS
+         mbf6unXSOpgiy69HcSN/kJWPXhM94k39YhDM25bRROgh9YCJvXMOmdYpYnkkM/RO/per
+         7eO4Y7cAEUIJuiFs0UXTXr0kCbnBSk92iN+G7TWDy19oUSpdA8Ge6TzFIkK+00VqHSGV
+         bRYg==
+X-Forwarded-Encrypted: i=1; AJvYcCX0sx8mwSH/gYHjQNZoib1fESYD9LIgH2zndFrhvD3ALzhvE9f28RuW200Q4YOhsrFKBv6G1oEBAQkPXsyk@lists.infradead.org
+X-Gm-Message-State: AOJu0YwaE+9m65HTuMFBC9D91qD64ziXekCzSljURxJ6Lr1iffD9JIrQ
+	F7BCK0MtsLoKJmGMo05S6IBNmBbIDjSiPprWLTKw//odKW+bx+E4Cfy32FIrSjI=
+X-Gm-Gg: ASbGncswyatNTyWvz61ASpKS/GnpAK8PlMN/3m+afuoNhMTMtNWMqFYHI0crbugPI8V
+	VjqxfEPhogu3OIGM8W2UgxF42N6UEQSW0cHOIeh1TbahxRRlKpSJFTi0DijPrQ2+tC3mZObKfrS
+	lXDoy9pwuDbUgJU1XcYUNEDCMYIRL/yKKSmjQ9kDKyatyrO1bSFMVsvF0asqPRExFpYlHuy5IEe
+	ZkAq0ZdijsXb+ZgufIMjBpIZrT1+AL/lKa6KdSMjBJ4nvAVBOl+SSN2IViizhj2lCRgLSHqotPK
+	QoR4aBUoT5fbmx7rbw9pxCRPsG9tEyU6eCPVHUAJy8dsOdEE476npnAweSKeD9mcgg==
+X-Google-Smtp-Source: AGHT+IHddxB5k0FnXCNZBeNjRDemX9kB1JsqOq32EQuLUtsmc+/DgPdv1Z5DHh144VpkY69PlzIWUQ==
+X-Received: by 2002:a05:6000:420d:b0:391:2e31:c7e1 with SMTP id ffacd0b85a97d-39c120c8df3mr5450139f8f.4.1743404501733;
+        Mon, 31 Mar 2025 00:01:41 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d82e6ab48sm158442325e9.10.2025.03.31.00.01.39
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d82e6ab48sm158442325e9.10.2025.03.31.00.01.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Mar 2025 00:01:40 -0700 (PDT)
+        Mon, 31 Mar 2025 00:01:41 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: linux-amlogic@lists.infradead.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-In-Reply-To: <20250329185855.854186-1-martin.blumenstingl@googlemail.com>
-References: <20250329185855.854186-1-martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 0/7] dts: amlogic: enable UART RX and TX pull up by
- default
-Message-Id: <174340449998.221709.10827817044945834716.b4-ty@linaro.org>
-Date: Mon, 31 Mar 2025 09:01:39 +0200
+To: Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20250330143254.3159519-1-christianshewitt@gmail.com>
+References: <20250330143254.3159519-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: gxlx-s905l-p271: add saradc
+ compatible
+Message-Id: <174340450091.221709.5889306683742068023.b4-ty@linaro.org>
+Date: Mon, 31 Mar 2025 09:01:40 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250331_000142_711101_FD541601 
-X-CRM114-Status: GOOD (  13.22  )
+X-CRM114-CacheID: sfid-20250331_000143_568064_98D56572 
+X-CRM114-Status: GOOD (  10.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,7 +98,6 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, khilman@baylibre.com, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -100,33 +105,17 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Sat, 29 Mar 2025 19:58:48 +0100, Martin Blumenstingl wrote:
-> On the LibreELEC forum there have been reports that Odroid-C2 does not
-> boot when UART is left disconnected [0]. It turns out that this can be
-> solved by enabling the SoCs pull-up resistor on the UART RX and TX
-> pads [1].
-> It's not clear whether that specific Odroid-C2 board has a broken
-> resistor, the resistor is not populated (either by accident or on
-> purpose) or if there's another reason.
+On Sun, 30 Mar 2025 14:32:54 +0000, Christian Hewitt wrote:
+> Add the saradac node using the meson-gxlx-saradc compatible to ensure
+> MPLL clocks are poked and audio output is enabled on the p271 (S905L)
+> board.
 > 
-> [...]
+> 
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm64-dt)
 
-[1/7] ARM: dts: amlogic: meson8: enable UART RX and TX pull up by default
-      https://git.kernel.org/amlogic/c/cfd9d2466ed2891bacb6319bcf9af55f21d0263e
-[2/7] ARM: dts: amlogic: meson8b: enable UART RX and TX pull up by default
-      https://git.kernel.org/amlogic/c/7374b06e8099ce7345ff3afd4bb756dde25971c1
-[3/7] arm64: dts: amlogic: gxbb: enable UART RX and TX pull up by default
-      https://git.kernel.org/amlogic/c/b00fe005612080772fe4f00c61e2fcdd2dea18f0
-[4/7] arm64: dts: amlogic: gxl: enable UART RX and TX pull up by default
-      https://git.kernel.org/amlogic/c/bbeb3017f1596a0551ba0ee40866f8b4e0ca2d3e
-[5/7] arm64: dts: amlogic: g12: enable UART RX and TX pull up by default
-      https://git.kernel.org/amlogic/c/867c3760da4ebd760115f17eca0b4bd3b668941c
-[6/7] arm64: dts: amlogic: axg: enable UART RX and TX pull up by default
-      https://git.kernel.org/amlogic/c/48d5da715331f2fd5e17e64f9e75e74248223b66
-[7/7] arm64: dts: amlogic: a1: enable UART RX and TX pull up by default
-      https://git.kernel.org/amlogic/c/b85aae3714e65d7b92a6c2c28f62cf66393dfcac
+[1/1] arm64: dts: amlogic: gxlx-s905l-p271: add saradc compatible
+      https://git.kernel.org/amlogic/c/cb99bb034123ef8b8dd533fc4c42164b049515a2
 
 These changes has been applied on the intermediate git tree [1].
 
