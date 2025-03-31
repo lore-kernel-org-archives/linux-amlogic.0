@@ -4,113 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3453C36017
-	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Mar 2025 06:44:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D27ACC36017
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Mar 2025 07:04:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=TNumMhQfJGjvq0CAo3HjwpCV74OFATJOFktx2Fe2qqE=; b=UjWh+MfUHXMlnpzCpGOx46vyS3
-	htRxWdS5fXi6MWZ+fom9Ib2fFhc4F9kD4fq5aCO+Rp6a5sGzJHoZpY83DXhuSy+4R+McT/vVQL93w
-	z6kVO5qJcWYcVfcYhKf3CXBQRtwfCsj/CIFDncNksHLgBVKX+/5PX4rBN/onOUMZhcqnku3iFPGBp
-	eojBjOGEYwy8qvZiNFDokopJtDd8Dy57yLQYe3C6aEqeZvhLuSQK86QshJJXQeYRwxbVvT+4C6jbi
-	DQnOcb2HgDspQ5fxBVbd6OMYUTuEv7cLK99Sx29GA0Bi4d/RRtB1rM/COOjshkDNUDDckxcW/V2QS
-	PlUBudGA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=IuKrFAP6WnHyVQ4WrGsMYocGAbE3+I/C5yTSRgQlS8o=; b=JcPmdhu+nnKD0G
+	D4Wvv9Mi/jsUun+PtGptClsLzmlfw2MQmoVReYmYFGs11PPsjxO6jH5xiqbL+yOhXaC6Da927yhS+
+	87rw1TiKSkqGnwKjEETE+EBcb98Zmpq8/8PSHKY8ckEDnrLDs3RuuQzL8qohwKzCaHsYfmYYm2d2i
+	n5e+gUMzi1o7vRpLDebJsk9jwE6IyMzCRpenx2KrI6k5i2tAwXv58CE53B8m/hgHyKnCBDAK6Y36t
+	0wLFWF0FHjsHk2U8tq1fUPCKLqCHZpv3t1Z/TOiizbqJWzY8rd2pzpTE8RrfD/O1OjKVvOJlE/u58
+	wFtKd8wPwVd6NEGmSyFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tz8ss-0000000H7sD-1vFq;
-	Mon, 31 Mar 2025 06:44:34 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1tz9Bu-0000000H9rC-3zsx;
+	Mon, 31 Mar 2025 07:04:14 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tz8qV-0000000H7WC-149C
+	id 1tz99S-0000000H9Uv-2Zyv
 	for linux-amlogic@lists.infradead.org;
-	Mon, 31 Mar 2025 06:42:09 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3912c09be7dso2666937f8f.1
-        for <linux-amlogic@lists.infradead.org>; Sun, 30 Mar 2025 23:42:06 -0700 (PDT)
+	Mon, 31 Mar 2025 07:01:44 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-43cfebc343dso30398205e9.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 31 Mar 2025 00:01:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743403325; x=1744008125; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pSZWvc98awNxNS7sUp2CK9I3oZgb0IYq+6Zaom/DnwM=;
-        b=CsuatGshyUHFg6CPczwYepKIatcSJgd5PBKzWoH4N+ZGyZ9b4bicjlhXIe+D5jF4S/
-         AnRM4KbNTQxFNIfel2eCfL4kX5itxZSSBkg/ZTmHgAMdtW84FSKvd1jkeW78Kz6KOPSm
-         H8oQWhLADeuinUiFqqnNaEztU5OKjugH58AiHcDtLiPGYyGzOWzHPYLNxzT9X+SS9fIW
-         Q2NtcPjLmMvknUv5BiNEe8b+7RaoOgBZVP9ruCwsGV5pa8IhkAOTPmEvfMqJNrnESiLY
-         5KPK0FOUHenbH2g/SIZcNS6zwJ/frhk6X+MufmM7HqR9ES4id/ZPDtgPgZg/M2EkkpwL
-         PdZw==
+        d=linaro.org; s=google; t=1743404501; x=1744009301; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U0EIRXaMi7x8XYwlCWwiW2XCs1AbE7FrNvdFZNLIYyY=;
+        b=b2QttzZ4K6HC7SlpUnt1JEcvoMZRirwU27B8HGRWvfoFkbUmAKNayCZ+ilEr21cb8s
+         0om2VlnSWRjts+sUHq29zGJDrZqb0998O+7EP0Ly7IYU25qxPNO//SYhQcxvZBqbbxMo
+         5XTFG2tKtmK3Krm+hsANjIvBza2JPcMCapu/NYmaqPKFJd3wIGXmpnnjeNlMKSJDnlfx
+         35OlUI19+9kAy7C2/3Xb8q0CDlOjXVyq/6kgppnqGxVsJkeeKWnZZHIkDjikQXaqNJ+C
+         zWfEeJj8hl3mXbucBM7GOZWNmX05qiumRBpAjqMKMsmZq35puZWjCLmrjtfuofHKeejf
+         Q2eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743403325; x=1744008125;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=pSZWvc98awNxNS7sUp2CK9I3oZgb0IYq+6Zaom/DnwM=;
-        b=kb+yNyuDAsa04r0Fy+J98lZ5sd16yaCMbETVGbeETLLO/ZIMV/Iur1P4e7ubbbxsTq
-         QcimxheFayevSFHnV7db09xsvZoM0wlqVa6/9+TSU5PUD9eIy7yluN4a+salcTrX7neZ
-         3dPrMJsdStxjYbBz+LkZbYKV4CHlBx862kYj8OUEUdVJ6FJmoGvwbPit2NW13MZctd7R
-         D4WWVUkoELuvA5B6Z7/V7iQQ5vBzDAe0cXmElRGcvNNL9vgeZCRvb/3jGFsS8ju969DX
-         yFB6r00Nh5SlZqrOhWdv/VFOsMCvWIG5ONVOpdgxZRwFbk1FIF4MSKLSvEBJC5vUYuZB
-         fvdg==
-X-Forwarded-Encrypted: i=1; AJvYcCWsxpAjVhOgrBhzUREgYTghScsoo1pHNZ9LiAhIwy1p9kI4JVeM5tZKQ4k+8OCdAw4bswzTk8PnMTw/pycP@lists.infradead.org
-X-Gm-Message-State: AOJu0YyIc1WlssDfDzjqU49gon++bxar7an2atb/sbxSZu5Maiv4+I0f
-	sGe+fMOb0LyAU2np6qA7I10EYmQe/JsHq8ORdMWNup28Kotjf9zFpIEypaooF/8=
-X-Gm-Gg: ASbGncvWoKOVRGC4ViamK+jaZIFjsj+8CzhzI++p5nAsuX7/0R4+agZjcQIpEdw7WZ2
-	ADD++zBfXbM0pQppA52a+/SUDEm2yI98fsPoPyeWdGHBTqRfxvsme8zBEbrjU91HFvwaSEhBujP
-	bGXFfvN/fja7VjvQWlHBQYdRHCJXF/NkGsrgMDySg1gR1e2StC8p+NxhRDB8e3j6IRvP1qaT96O
-	KA77EGCzCerB/DQL/0NCtBczOK1Cq70DEylRuMAHQSqV/I/gdm0tm8F1WTsZ3Y0NwNw/FjFO8rN
-	MBJl/iw17DbcGyK41M+xuGQjbwbV60QD+kXLdLaikYCMDwefmws2qNntRAdJ350k3Teo1tvbskw
-	5knahiMcoL/TuUFMZSvEm7H6JxN8=
-X-Google-Smtp-Source: AGHT+IFaaiFJvSkuFgpzRjmFl4ky713HsFznh//e5XklchpgjCOz6VUhATdj7MkI4kwAKPb/DPGB1g==
-X-Received: by 2002:a05:6000:178c:b0:391:29f:4f87 with SMTP id ffacd0b85a97d-39c1211c8f4mr5516473f8f.49.1743403325590;
-        Sun, 30 Mar 2025 23:42:05 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:143:2e3d:45f1:fd2? ([2a01:e0a:3d9:2080:143:2e3d:45f1:fd2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d8fccf0a9sm111590335e9.17.2025.03.30.23.42.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Mar 2025 23:42:05 -0700 (PDT)
-Message-ID: <04c47466-b1a3-4eb2-8f28-95faa29ff45f@linaro.org>
-Date: Mon, 31 Mar 2025 08:42:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
+        d=1e100.net; s=20230601; t=1743404501; x=1744009301;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U0EIRXaMi7x8XYwlCWwiW2XCs1AbE7FrNvdFZNLIYyY=;
+        b=LbPi4ZTPmDiDPTrke8gHuZfTW45FT8MXjf0AyYzBFQPJQRpQqbSM8eGWLHWHv6vwDS
+         A4eMqhH7YeOECOZlc1UZnpkiVb7nINvCOF4wIVi2dFdQCeBzcPRx8dpqPqDCUkcVBqpM
+         hnpr3+nq78Lfzvp29l0qEE42ZVzKqBh3UJRCJtu0VmqUS2N+NtVDRjw0Jav2PJ0RWDfv
+         YF4sfveiQNH8Lzjh82AxSt3ilRTLkXrDR+0+0MqiRIjdNGAzdcDZay1IS89dwuI+11nR
+         6+tezxo2LmAPM0XiIb5Jv6ysKsgUWEMO9XBCP83yTmxtnLz5vBkCEmi5HUfWFhoxi30C
+         mWtQ==
+X-Gm-Message-State: AOJu0YzLQCJA2gwxTUovjatN4DdPw2QFguk0J1D3LcWkUPR7R+ukIVTm
+	gWCJ0bFJcboEV446BzVCC/mBxzidXlKDOjor+YghCQiiWXl8/QKcQzzzmD8LrVc=
+X-Gm-Gg: ASbGncvoDQJ4nwnAHExKpnes+JwRJu+NEnUyBZA4Vf0MYaNJ5+d8nsY/L1de/yaHbl/
+	Z5V3GOyHKXUlzv8HriNDrQW0X5N1ouaQwY8EwCcs+N8lQZ6T9PMe39nlj0/zyMsJZMjItEPOH3r
+	sh5l243iTfFJ7cDCn2hQZCYVUjgLDz2xFyYM7l4MRIX5e7kuUjLnbW/qi51fWenw97e4Ft1dQ/b
+	O1QquKXqfG6PgwfQKLh8V87qFjyaDwjGz9Gnp5xUmlq4i551sP8Kn9QzI0YMGH58RXxPn03xIUa
+	4vcqc4oQ4QzAYpsXS04hro5OEB24EUvPZ8PZ95dT9vxJjaz3CrzAWS3sawZ4uo+F2Q==
+X-Google-Smtp-Source: AGHT+IEeWSQJLYKN04bNEh+7lHsUNrdL5zsVbpE6bLIsWK5/LcK1CEV9vqu2gqFuUvmhYfQrRpRW/g==
+X-Received: by 2002:a05:6000:2183:b0:39c:1257:febb with SMTP id ffacd0b85a97d-39c1257ff09mr4622649f8f.59.1743404500748;
+        Mon, 31 Mar 2025 00:01:40 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d82e6ab48sm158442325e9.10.2025.03.31.00.01.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Mar 2025 00:01:40 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: linux-amlogic@lists.infradead.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+In-Reply-To: <20250329185855.854186-1-martin.blumenstingl@googlemail.com>
+References: <20250329185855.854186-1-martin.blumenstingl@googlemail.com>
 Subject: Re: [PATCH 0/7] dts: amlogic: enable UART RX and TX pull up by
  default
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-References: <20250329185855.854186-1-martin.blumenstingl@googlemail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250329185855.854186-1-martin.blumenstingl@googlemail.com>
+Message-Id: <174340449998.221709.10827817044945834716.b4-ty@linaro.org>
+Date: Mon, 31 Mar 2025 09:01:39 +0200
+MIME-Version: 1.0
+X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250330_234207_304136_5DADE8D5 
-X-CRM114-Status: GOOD (  17.94  )
+X-CRM114-CacheID: sfid-20250331_000142_711101_FD541601 
+X-CRM114-Status: GOOD (  13.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,14 +92,15 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
 Cc: devicetree@vger.kernel.org, khilman@baylibre.com, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29/03/2025 19:58, Martin Blumenstingl wrote:
+Hi,
+
+On Sat, 29 Mar 2025 19:58:48 +0100, Martin Blumenstingl wrote:
 > On the LibreELEC forum there have been reports that Odroid-C2 does not
 > boot when UART is left disconnected [0]. It turns out that this can be
 > solved by enabling the SoCs pull-up resistor on the UART RX and TX
@@ -138,52 +109,49 @@ On 29/03/2025 19:58, Martin Blumenstingl wrote:
 > resistor, the resistor is not populated (either by accident or on
 > purpose) or if there's another reason.
 > 
-> Testing on an SM1 X96-Air shows that pull-ups being enabled on UART
-> RX and TX is actually the default (either set in vendor u-boot or an
-> actual hardware default).
-> 
-> This series enables the UART RX and TX pull up resistors in the
-> default pin configuration on all supported SoCs.
-> 
-> Testing has been done on:
-> - GXBB Odroid-C1 on u-boot by a user in the LibreELEC forums [2]
-> - Meson8b Odroid-C1 on Linux (with vendor u-boot)
-> - SM1 X96-Air on Linux (with vendor u-boot)
-> 
-> Please include this early so the various CI systems can test these
-> patches.
-> 
-> 
-> [0] https://forum.libreelec.tv/thread/28586-odroid-c2-gxbb-s905-and-le-11-06-or-12-does-not-boot/?postID=195481#post195481
-> [1] https://forum.libreelec.tv/thread/28586-odroid-c2-gxbb-s905-and-le-11-06-or-12-does-not-boot/?postID=195667#post195667
-> [2] https://forum.libreelec.tv/thread/28586-odroid-c2-gxbb-s905-and-le-11-06-or-12-does-not-boot/?postID=195674#post195674
-> 
-> 
-> Martin Blumenstingl (7):
->    ARM: dts: amlogic: meson8: enable UART RX and TX pull up by default
->    ARM: dts: amlogic: meson8b: enable UART RX and TX pull up by default
->    arm64: dts: amlogic: gxbb: enable UART RX and TX pull up by default
->    arm64: dts: amlogic: gxl: enable UART RX and TX pull up by default
->    arm64: dts: amlogic: g12: enable UART RX and TX pull up by default
->    arm64: dts: amlogic: axg: enable UART RX and TX pull up by default
->    arm64: dts: amlogic: a1: enable UART RX and TX pull up by default
-> 
->   arch/arm/boot/dts/amlogic/meson8.dtsi             |  4 ++--
->   arch/arm/boot/dts/amlogic/meson8b.dtsi            |  4 ++--
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi         |  1 +
->   arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 12 ++++++------
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 10 +++++-----
->   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi       | 10 +++++-----
->   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 12 ++++++------
->   7 files changed, 27 insertions(+), 26 deletions(-)
-> 
+> [...]
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm64-dt)
 
-I'll apply them now so they can be tested on -next for this whole cycle.
+[1/7] ARM: dts: amlogic: meson8: enable UART RX and TX pull up by default
+      https://git.kernel.org/amlogic/c/cfd9d2466ed2891bacb6319bcf9af55f21d0263e
+[2/7] ARM: dts: amlogic: meson8b: enable UART RX and TX pull up by default
+      https://git.kernel.org/amlogic/c/7374b06e8099ce7345ff3afd4bb756dde25971c1
+[3/7] arm64: dts: amlogic: gxbb: enable UART RX and TX pull up by default
+      https://git.kernel.org/amlogic/c/b00fe005612080772fe4f00c61e2fcdd2dea18f0
+[4/7] arm64: dts: amlogic: gxl: enable UART RX and TX pull up by default
+      https://git.kernel.org/amlogic/c/bbeb3017f1596a0551ba0ee40866f8b4e0ca2d3e
+[5/7] arm64: dts: amlogic: g12: enable UART RX and TX pull up by default
+      https://git.kernel.org/amlogic/c/867c3760da4ebd760115f17eca0b4bd3b668941c
+[6/7] arm64: dts: amlogic: axg: enable UART RX and TX pull up by default
+      https://git.kernel.org/amlogic/c/48d5da715331f2fd5e17e64f9e75e74248223b66
+[7/7] arm64: dts: amlogic: a1: enable UART RX and TX pull up by default
+      https://git.kernel.org/amlogic/c/b85aae3714e65d7b92a6c2c28f62cf66393dfcac
 
-Thanks,
+These changes has been applied on the intermediate git tree [1].
+
+The v6.16/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
 Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
