@@ -4,82 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 651F6C36011
-	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Mar 2025 21:12:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01834C36017
+	for <linux-amlogic@archiver.kernel.org>; Mon, 31 Mar 2025 06:42:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EaJTJIxE/a3hY3ZJcCTTvM53k5ZSPNCQu8HtlYCJlgU=; b=myGVe5u8AscYQ5
-	nwi71d/0X2BizHP1e7qkqpFJKM8xCbnYAcgnalp5uSWALvLnMHSJpa2ETqMm/nJqSInziUgb7nuob
-	zJRWFQYewF3Gkg/PujFWQJ2J8hiRvesvtF/Wzp/D68P8ArY4UPD/zR763Sm17Wxn3Z9Fke+XgSoGP
-	elRDFgcxkayDUWNfuHPJf2YRF7s4Kwb7bU9d/9CfYEAMgho+S1qvLb+y53i+YGwXOuZAPwq3ocL6O
-	t7OGWh83vb2OOF+U7iCZS60wOsTKRfqO01lkPbRbEZZRjIij7bfnpUMCQperKUI6X7W86y9ZAV90L
-	iH8lXIJhHwyaQXfgSQLQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=bgk8R/2wgImofaIsNMqnkD08QDLwH8gKmc8+tw61T28=; b=sJS+62VgPk/VtkRbkiXdO7MJ+N
+	RAYo2pW7N9q1/JjmI15erpRnufGtLdclqWz6HtE0SUnxrOG4rGeH1DfoxZ0w2T8vzug9sjc9H0NO1
+	nuriSVD43P/b8BHoM3MsSVLmkZZpIRGhieGWkw4IdmVoLJIJfIx3rxeOGy1Y3pUUKPzHfzmaEHViP
+	ZgaaZCTs08U9bXwrfoZ8RGvfZI6Qusv9g9/Ey27LEZ511iwltN9vSiJyAUFSMgiKtS54xqWpmUduZ
+	/DP66ZU4Va56Fe9e4B9N4iiX5y1wivCkY1ndbUvXu7t0QDDDIVUI/muxWfBS6QUodqWKl3fsWAGIe
+	qobzOgcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tyzxD-0000000GhsN-1mW8;
-	Sun, 30 Mar 2025 21:12:27 +0000
-Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
+	id 1tz8rC-0000000H7gk-1Jh4;
+	Mon, 31 Mar 2025 06:42:50 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tyzvT-0000000GhWo-2zDP;
-	Sun, 30 Mar 2025 21:10:40 +0000
-Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-227a8cdd241so38909315ad.3;
-        Sun, 30 Mar 2025 14:10:39 -0700 (PDT)
+	id 1tz8pT-0000000H7J7-3dyl
+	for linux-amlogic@lists.infradead.org;
+	Mon, 31 Mar 2025 06:41:05 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-43bb6b0b898so35605375e9.1
+        for <linux-amlogic@lists.infradead.org>; Sun, 30 Mar 2025 23:41:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1743369039; x=1743973839; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Um1wOWHml/UzYVpawVxxwTUXJz9obh5pK6O3uqssEdc=;
-        b=cJXXyEhHhoLOG4bsjZ7a6CYBJo3/ss3Ac1x8pFsbuNfP1kFgp+C9cy+uqTAmVl4bfz
-         Ra7/b8DxwJ44hjUBu44v+IiZiFNfUGijMS3PN03oEyeno8IpBgckLg469aSEBKFjfxkE
-         Uw8IFdl7rytJXJS/fAzhCcwx/WiFY88NeFRAVUIxjxj8bnnXRr3RXyNPdyE3nFX1vI9V
-         I9YWaCFdyE/3OTNLBMrfkhRP/y3X1X6C+pVaGc9raQFxGn/y9jyx4iJC5mD+JLW89eTC
-         U+cel2WeyWYPZEcphiey8ofE56Bxx0dXG6+ONMN8JGP1+M/fk7H2V5NZvqbCwONyD0IY
-         O7rg==
+        d=linaro.org; s=google; t=1743403262; x=1744008062; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sGnhJIC759yJZtlti/ONE6+GpsFrfUcaeYqXQAyKOzg=;
+        b=IyvzEsk9WoiZuVlP7wJWZpKPjqJ7REIDV6+nxkip4jtzAA7+XIebf7EXLSUtnIBtpj
+         nVl6j7qLd5upTBEzeLSIv7QLJZuixeFudIxZPXIWulzaRv/XsaI31KVAc0iODPAJW6gH
+         EUiMpwqdzsJhIe4Uit9b0/Gta1L07fwy8+WPjKkI0Yti77Wg7XGYCCTAXjbLUxZpeheG
+         JUuTHZZ2JY17TBmwIrwGAI8et2KUwT4QXrm8HR5fyYaQhvATCDG2iQdyyY5IILommcV2
+         6tFJRjs7JKw0Mo9uqFhEZJkJKKaX3/Py7fZy685IsPNIiIbKKdaEpXiOrhqinA1ddTcn
+         pGig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743369039; x=1743973839;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Um1wOWHml/UzYVpawVxxwTUXJz9obh5pK6O3uqssEdc=;
-        b=SjbzxR4aa+uZ00Qzs+71dOxf1Ydflgp1wV4SztovUGlHj6SBuhbaikc3YWpUkANxu3
-         riXL7pTmTpfARdrtMuNspNd8zZXaBhaTN6vDrAn97Kr9/tonjpLaFz3B7NmlPS4+yy/e
-         8/vLdsUHEL2sImQp1bHIaRVzHDrOlql3gWVZqbc4FPvFcC79sq2HrmAOdVLpeLmT4gdx
-         acOhcrk4Cwk3d/qmxWFFf2SDkgfDICk1XEbEEfDboOWRbPGJwkX4Gm5AnhX9HwsSJQ3/
-         x9BZL96VCs/88I7PNvkACp5GEXDGb1oyJ207IFk3luJ8za+OGMh5i0VPtkDxeZKlyyL4
-         Nxaw==
-X-Forwarded-Encrypted: i=1; AJvYcCV52EOFUnw+mYvzbQCHkdHAXMZusQ33i3NzoS0fyZldTuXQf1djvxj5nuAt0kJ4Kl0KczRfZKIsHej7Ddy4@lists.infradead.org, AJvYcCXH7Cm52Tpdx7tLr1Ehr1uY4UMSiltNR+SO/zSyl3kewtPNFcFuJm9CfoJo8RlZhC1RIv3kmxfz/GEQQAZc2sKFNQ==@lists.infradead.org
-X-Gm-Message-State: AOJu0YyHAD9XFbm4fnvw2YXFB7BojhZB2W1LuullyrqcE5nBZHG7BYZ0
-	DYm3y8SncinkagrqUzKlzCWx+FFbxmHwt/TIH0Og8S87YTXiU8Cv6AqOgpYgRrC64qhGk5H4bZR
-	diZlw3crodcb/s34SlPUHtEzKuyU=
-X-Gm-Gg: ASbGncsESwidM/Fz5eWaYg4meLp3H2KYvXzh3WdZmWB7HzUlVNYQnvmCACEPR8UY9WP
-	qoPgBqrdLmRzh7FeWqSKeUCdkOB6pk7g9gv1BlHAdXTC2ophX/eMjDRZMnqyUbipeNjbRBFQw+A
-	G8SfX35ueHRGa1cGfHC5cU3SvvyGW0G4KuwLi2vet/enxmyXeuIZmFjiaJCMg=
-X-Google-Smtp-Source: AGHT+IGG8TQ/aML9NKHr9fatF2KsYLKFfgoL9nDkVZai2+M8OApdKY34UCov5OwIf2Xe/caQxnERpRKq31UEig1iKE4=
-X-Received: by 2002:a17:903:19ee:b0:224:10a2:cad5 with SMTP id
- d9443c01a7336-2292f942a6amr130079115ad.10.1743369038858; Sun, 30 Mar 2025
- 14:10:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1743403262; x=1744008062;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=sGnhJIC759yJZtlti/ONE6+GpsFrfUcaeYqXQAyKOzg=;
+        b=QEegH/0KWow305G1GxtWXdFaf51wE3vx5re5nPasEyRjnO4/1gJq6Y982kvKSCwX+s
+         D9vIB/r2pz8aAtmgUYt2gZxFILzsfeD3aPSoDw+NnISX96275Pj/hdTEGqQIoUvMV7cg
+         zboIqNNm/AhQIkzCHn2F/kdWDTc3wCopbtf+BYna6rB4MQ8Z1AvQaM4L5MOC73V5m4OU
+         UGiAPL0o4Lwem5eyB6fbeneIZoCzbSUgmdfrlBVEzMnXQ+/49bGn1OIbwvyGBW4s7She
+         sV6xbI+W5RJxWqYztfvAhoiYcRSbZ1QyyQY597XOpmVV0mq4orrzkkv9eZUwAf+HU1Y8
+         k81w==
+X-Forwarded-Encrypted: i=1; AJvYcCVZmlEA/BdcfGlQ/Pd69noNWp19YThjCumvql7hKzilRh9i1NY8xiD74QJO4x7BB5ga7qR6xof84ZvIqteE@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzft2qdnarQUOa6v3jbyAkYKFsM7xTy8Bxy6iaBH6R9e1mAJt7J
+	VK02xyBSuqjP1a75GPL9Bugdnm+GlSkBCV6BrSzuE01kYVBQWw65mehEclbMwFc=
+X-Gm-Gg: ASbGncuDeL54IWU4jEx0ApR2Ofc+iNdTdoRkJn0O3FmZHLrkVIeFgRAGo1GW7IcQ2Kp
+	wTW3gnZTqqfSohl9F0C61/fpWDEcir6nKJuKFNGUp2CpYjx5+QJ05aMVzCeTsJer9TnhqFA+9Wv
+	L/seYIvvozj4KB57MYS7uPgH/yascpOrHazttTQUBjtTO0xDxp6YGLEWyZ69kw165+vMTd+uapl
+	KNRI5bbA8L7OPLR6QxMeav/r6zM8YYgsdipuphqyqs497CujD/wQIQg7VBYjtRkw87xrp5SrQe0
+	gJ6dJpz/mzddYz5v+SpXlZWkcJC6pxRwCjXmxLPeCuMaaLK5rZcYdhPCv4ty296WMc9/BrwrX0K
+	hNH7XrVCvfME3t5mh
+X-Google-Smtp-Source: AGHT+IH5cRzNfuzcbg+vhCUwchxeuNmDNhE01WF7XDQIelmYWUn5sRs+QoiQmqXdq3AIDEZNp4hpcg==
+X-Received: by 2002:a05:600c:5494:b0:43d:7a:471f with SMTP id 5b1f17b1804b1-43db6252fa8mr75261725e9.18.1743403261690;
+        Sun, 30 Mar 2025 23:41:01 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:143:2e3d:45f1:fd2? ([2a01:e0a:3d9:2080:143:2e3d:45f1:fd2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d82dede5csm159075245e9.8.2025.03.30.23.41.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 30 Mar 2025 23:41:01 -0700 (PDT)
+Message-ID: <769e7524-c1fc-4364-a6e8-e0d0315f9514@linaro.org>
+Date: Mon, 31 Mar 2025 08:41:00 +0200
 MIME-Version: 1.0
-References: <20250323-fernsehfee-v1-0-2621341cd37a@posteo.net> <20250323-fernsehfee-v1-3-2621341cd37a@posteo.net>
-In-Reply-To: <20250323-fernsehfee-v1-3-2621341cd37a@posteo.net>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 30 Mar 2025 23:10:28 +0200
-X-Gm-Features: AQ5f1JpHPy4BrslsaR2BuaGOJO_CEScsXGIyscHyEtnp4vipG1FtG1_j-1eqkLs
-Message-ID: <CAFBinCD13CNuxRkrSoPXUMNQ9AJH7UV0gsOfdgeRKhkXsANgnw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: amlogic: Add TCU Fernsehfee 3.0
-To: j.ne@posteo.net
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH] pinctrl: meson: define the pull up/down resistor value as
+ 60 kOhm
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linus.walleij@linaro.org
+References: <20250329190132.855196-1-martin.blumenstingl@googlemail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250329190132.855196-1-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250330_141039_749908_B2090926 
-X-CRM114-Status: GOOD (  13.54  )
+X-CRM114-CacheID: sfid-20250330_234103_923214_BF6E1F82 
+X-CRM114-Status: GOOD (  15.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,49 +124,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmtzIGZvciB5b3VyIHBhdGNoIQoKT24gU3VuLCBNYXIgMjMsIDIwMjUgYXQgMTozOOKAr1BN
-IEouIE5ldXNjaMOkZmVyIHZpYSBCNCBSZWxheQo8ZGV2bnVsbCtqLm5lLnBvc3Rlby5uZXRAa2Vy
-bmVsLm9yZz4gd3JvdGU6ClsuLi5dCj4gKyAgICAgICAgICAgICAgIGV0aF9waHkwOiBldGhlcm5l
-dC1waHlAMCB7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgLyogSUMgUGx1cyBJUDEwMUEgKDB4
-MDI0MzBjNTQpICovCj4gKyAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDA+OwpEb2VzIHJl
-ZyA9IDwxPiBhbHNvIHdvcmsgb24geW91ciBib2FyZD8KMCBpcyB0aGUgYnJvYWRjYXN0IGFkZHJl
-c3MuIEl0J3MgdW5mb3J0dW5hdGVseSBzb21ldGhpbmcgdGhhdCB3ZSBzdGlsbApoYXZlIGluY29y
-cmVjdCBpbiBhIGxvdCBvZiAuZHRzIGZpbGVzLgoKWy4uLl0KPiArJmkyY19BTyB7Cj4gKyAgICAg
-ICBzdGF0dXMgPSAib2theSI7Cj4gKyAgICAgICBwaW5jdHJsLTAgPSA8JmkyY19hb19waW5zPjsK
-PiArICAgICAgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7Cj4gKwo+ICsgICAgICAgcG1pY0Az
-MiB7Cj4gKyAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAicmljb2gscm41dDYxOCI7Cj4gKyAg
-ICAgICAgICAgICAgIHJlZyA9IDwweDMyPjsKPiArICAgICAgICAgICAgICAgc3lzdGVtLXBvd2Vy
-LWNvbnRyb2xsZXI7CkhlcmUgSSdtIGEgYml0IHN1cnByaXNlZDoKQXJlbid0IHNvbWUgb2YgdGhl
-IG91dHB1dHMgdXNlZCB0byBkcml2ZSBWQ0NLIChDUFUgcG93ZXIgcmFpbCkgYW5kClZEREVFIChl
-dmVyeXRoaW5nIGVsc2UgcG93ZXIgcmFpbCwgd2hpY2ggYWxzbyBwb3dlcnMgdGhlIEdQVSk/Cgpb
-Li4uXQo+ICsmdXNiMSB7Cj4gKyAgICAgICBzdGF0dXMgPSAib2theSI7Cj4gKyAgICAgICBkcl9t
-b2RlID0gImhvc3QiOwo+ICsgICAgICAgLyoKPiArICAgICAgICAqIFRoaXMgYnVzIGZlYXR1cmVz
-IGEgUmVhbHRlayBSVEw4MTg4IDIuNEdIeiBXaUZpIG1vZHVsZSwgd2l0aCBhCj4gKyAgICAgICAg
-KiAzLjNWIHN1cHBseSB2b2x0YWdlIHRoYXQgbXVzdCBiZSBlbmFibGVkIGJlZm9yZSB1c2UuCj4g
-KyAgICAgICAgKi8KPiArICAgICAgIHZidXMtc3VwcGx5ID0gPCZ3aWZpXzN2Mz47CklmIHlvdSB3
-YW50IHRvIGdvIGZvciBwZXJmZWN0aW9uIHRoZW4geW91IGNhbiB1c2UKRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5kL3htb3MseHZmMzUwMC55YW1sIGFzCnJlZmVyZW5jZS4K
-SXQncyBhbHNvIGFuICJvbmJvYXJkIiBVU0IgZGV2aWNlIHdoaWNoIHJlcXVpcmVzIHRvZ2dsaW5n
-IGEgR1BJTyBhbmQgcmVndWxhdG9ycy4KVGhlIGRyaXZlciBzaWRlIGlzIHN1cGVyIGVhc3kgdG8g
-bWFuYWdlIGFzIGl0J3MgZ2VuZXJpYyAobWVhbmluZzogaXQKcGFyc2VzIGFueSBHUElPIGFuZCBy
-ZWd1bGF0b3IgYXMgbG9uZyBhcyB0aGUgVVNCIElEIGlzIHJlZ2lzdGVyZWQpOgpkcml2ZXJzL3Vz
-Yi9taXNjL29uYm9hcmRfdXNiX2Rldi5jCgpUaGF0IHdheSB5b3UgY2FuIGp1c3QgZGVzY3JpYmUg
-dGhlIFJUTDgxODggb24gdGhlIFVTQiBidXMgYW5kIGFzc2lnbgppdCdzIHZkMzMtc3VwcGx5IHdp
-dGhvdXQgaGF2aW5nIHRvIChhYil1c2UgdmJ1cy1zdXBwbHkgb2YgdGhlIFVTQgpjb250cm9sbGVy
-LgoKWy4uLl0KPiArICAgICAgICAgICAgICAgc2R4Y19jX3BpbnM6IHNkeGMtYyB7Cj4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgbXV4IHsKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IGdyb3VwcyA9ICJzZHhjX2QwX2MiLCAic2R4Y19kMTNfYyIsCj4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICJzZHhjX2Nsa19jIiwgInNkeGNfY21kX2MiLAo+ICsgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAic2R4Y19kNDdfYyI7Cj4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICBmdW5jdGlvbiA9ICJzZHhjX2MiOwo+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgYmlhc19wdWxsX3VwOwpUaGlzIGhhcyB0byBiZSBiaWFz
-LXB1bGwtdXAgKGRhc2hlcyBpbnN0ZWFkIG9mIHVuZGVyc2NvcmVzKS4KCgpCZXN0IHJlZ2FyZHMs
-Ck1hcnRpbgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
-b2dpYwo=
+On 29/03/2025 20:01, Martin Blumenstingl wrote:
+> The public datasheets of the following Amlogic SoCs describe a typical
+> resistor value for the built-in pull up/down resistor:
+> - Meson8/8b/8m2: not documented
+> - GXBB (S905): 60 kOhm
+> - GXL (S905X): 60 kOhm
+> - GXM (S912): 60 kOhm
+> - G12B (S922X): 60 kOhm
+> - SM1 (S905D3): 60 kOhm
+> 
+> The public G12B and SM1 datasheets additionally state min and max
+> values:
+> - min value: 50 kOhm for both, pull-up and pull-down
+> - max value for the pull-up: 70 kOhm
+> - max value for the pull-down: 130 kOhm
+> 
+> Use 60 kOhm in the pinctrl-meson driver as well so it's shown in the
+> debugfs output. It may not be accurate for Meson8/8b/8m2 but in reality
+> 60 kOhm is closer to the actual value than 1 Ohm.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>   drivers/pinctrl/meson/pinctrl-meson.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+> index 253a0cc57e39..e5a32a0532ee 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson.c
+> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
+> @@ -487,7 +487,7 @@ static int meson_pinconf_get(struct pinctrl_dev *pcdev, unsigned int pin,
+>   	case PIN_CONFIG_BIAS_PULL_DOWN:
+>   	case PIN_CONFIG_BIAS_PULL_UP:
+>   		if (meson_pinconf_get_pull(pc, pin) == param)
+> -			arg = 1;
+> +			arg = 60000;
+>   		else
+>   			return -EINVAL;
+>   		break;
+
+Nice finding !
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
