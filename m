@@ -4,92 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F1C1C369A1
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 11:41:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E44FC3601E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 11:57:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5GJMTkIP+V0QZvyeKrQaVOIdFRoe09u2BdH5nutBtiM=; b=xUHRbGqGq4aKKD
-	UnQLGG/brAKIIqMU5btnog+cxF7j2Zm0oO0ZU4AYe4O9PNqRacgJX7AM0hqRtz6HU1Vt4ONf2jglP
-	JVVjTmJCQPp7ghxw6aI0DirJqEyi9tsWg8Vc7aWGEJ9GzGXpTO4W2IwSDbppS2N2+Qlw0jlP8eoKh
-	Cge2aTUoDaHJJPxLmmWloMwf7d4NHgdiyP0Dkxc+j/wCR0YQAVnkTueGeZzoiU8qgrl6xDP7Shwo5
-	1CnIPl44rywDmk+C0Q2mRsGmNkyNR3sC7ysCgdwXdIwvZcR8JuE7EHmo/ZxNm6qv726N5WD9xypZY
-	lyJMlOx1UZzdHuMo12sQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ohOfUwIBKztGfrmnYWJSlxXmFGWiN52NJpyjn2h0cwg=; b=vGLuy+QRnQL5Rh
+	19KRhVJnTvt43dW3MOrrRFfugYExNJuXVr/FoFH3sJGGbnDbW2v9+elB9VIlOJth2pri2/c/WBSp2
+	gWjbhOcUAQNzTiSRMbxWSEtz5Qd4TMQ5cXfpfaiOU0ZBOhYJtns5qjxzYyTeLNEUSMLgXH8K2VHjg
+	jgyU+SMD8XQSuni2tFi2miSj+IIAOtfhkmUXucnvVBqaYGy6+OpvmPb6qiXcoyb8hYuQ/IHQ+nNYk
+	CeEYfp5luu4ee9u7nT4i0Dy13uS9nmuwhB1GNc7bIJNICxS1kFIycxeA1NVMxSaWVncDi5ZCyo9En
+	hdac8W5yELoCCwdz9GJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0fQH-0000000BZpS-01Gg;
-	Fri, 04 Apr 2025 11:41:21 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1u0ffU-0000000Bb6e-1UIE;
+	Fri, 04 Apr 2025 11:57:04 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0fKg-0000000BYr2-3RmD;
-	Fri, 04 Apr 2025 11:35:36 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1743766533;
-	bh=C2EbOJXZ4SFMszaSc0+T54wWbvFcCkJT7AbChKE5SOA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y3AOOlEtIhRpUcueVVGkPYW8bCRuNkUIytsushereC01TWMZH3/KeWeF/5RboaIAl
-	 78Klj2FgIPCFqwXtKWAIYom/8V3TetKbYBcKXAAjZmznbErK9Uy3Ej6xdDKrah2B/p
-	 sypEbyv/R5etYfGSVRah/b4dC1U5lEgPV/ktK5nL4S6SnHvfKwtEyH4AGpChDIJF4/
-	 IKpewUZwYX+a3pDV7RGc4L35inqoorMIUHzbP1wqQEJmYInIjjFGyc2UhPOUJ7aMHy
-	 Gu9migaijF/TNDu3DZCbDnQTP4lcm2KM93cy370gb/LJUB8t9ax8Po5mmy+5YX7DcU
-	 pI1ahFUleRAVQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 17B4917E0865;
-	Fri,  4 Apr 2025 13:35:31 +0200 (CEST)
-Message-ID: <1b590b23-d18f-43db-ab39-cee8433fd9f6@collabora.com>
-Date: Fri, 4 Apr 2025 13:35:30 +0200
+	id 1u0ffR-0000000Bb4s-1pIW
+	for linux-amlogic@lists.infradead.org;
+	Fri, 04 Apr 2025 11:57:02 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-43d0953d3e1so1678605e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 04 Apr 2025 04:57:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1743767820; x=1744372620; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9y9jtm3UdXwtwABizUC1WU+17uEhYP0YGv4IThPOMns=;
+        b=ldcTPsUNZeRUrkwj2B2Ugbj7nK0vcraw0QgYO7e98N+OBXaCO7VeSL/x77fawJcmsu
+         DuJFYsEaan5YPsilQzz13yyDED0C7kDz7RuPChQ2SzfQhy74nY9VJ1du5xn5QlOuWdDM
+         xWk2dIVwDzQeTPZWIFCYTOtGG1I+E4RAToXNUBUXbXA3dSRKZFupptBHQjqlaRFj9au4
+         1LpwEYMhxbilvGsR+N6OORym69Nn9lhZUyyUS/XuoFKd7Gam4oPR6XkaLf63ewUxI1r6
+         8XC/LyFsN1CbNMdMuf2XekRh3x902CcdVp2+IGKcWqRk0PZRq9AwcF6d257NCXbTiaiu
+         1F9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743767820; x=1744372620;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9y9jtm3UdXwtwABizUC1WU+17uEhYP0YGv4IThPOMns=;
+        b=K6oUeVqcf4KiHlJ6W6MYDi/gnaCDY7cJsN5WUO7kNAk8st80Fiu8JTUW+47/7QM0BG
+         kSbkBT6DU9oIeSwMm7gjo9D1wayMGyZYwZevVhNQM2XiDgBZxyf5ROX9z44ezWBOsFeM
+         QryqDm4sUiOxE45nu1t2U9DYnYPhI13DFMZvaX5O9H8CdbHOtaZev56vhdOHUuw4p5UT
+         XTSUZlQ4PAzvAUsO70VA+FPH5eMrAPeQoWAtRimEMWh7/PsT39Z7PdusSK4BYrq60RtY
+         DAMKFoAISSbdP5cBMRJcOaqWuk9A/bTn+XfojsXiOFykGYwE7znl9le+o0nyRxMUrevN
+         97ZQ==
+X-Gm-Message-State: AOJu0YwkXm2mNzH3FWoTD9rKHSs/9SNmWTvlpm50gCeUxzQphvSbWi31
+	pK5XcGrO+gvhjJaEs//z19L5xMzQ5yGrC20t12L+DZMBmQ0vxOWWiMDNNdepqO8=
+X-Gm-Gg: ASbGnct4INoBHLm9BpZsdVe0+DheCPjo5gNFT5SCFGTIMCUpTNWOaBy5wbEO0Re3nUr
+	DgVMBWwaNyYFmHpUwfrUTpQGisawOn7U05Qwo6gONmh9sRaLjzXVkUHKcwKR/4nTe3xC2ad8Cun
+	saSXKltyvRkT1nulVKCOJKtden4Y6m4J5QrQmygEu+f7q+KItiEirOkJ1H9zLbzztW72TrY6GN/
+	R6yresZr/Cc70N+8qI4d+L2go1jmoDfuNIUcqwIcdm3TOsbRjhdXzpU5nwHRpY9IZpo78H7DIis
+	tfqHphcErP09Bits4vDVPc6li1usiFUmOG1CxqMUcY9yqnfdDJpYW5Bvkb6e2Ss=
+X-Google-Smtp-Source: AGHT+IE3YMdROfy4Pz/lL2bVAErbCHUi9OQZGeJfx60uexq6ErgRMWHK+iTZDQBEUem01jamr5n43g==
+X-Received: by 2002:a05:600c:3ba2:b0:43b:cab3:1fd1 with SMTP id 5b1f17b1804b1-43ecf81ce08mr9264575e9.1.1743767819747;
+        Fri, 04 Apr 2025 04:56:59 -0700 (PDT)
+Received: from [192.168.1.26] ([178.197.198.86])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec364cb9asm43842815e9.31.2025.04.04.04.56.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Apr 2025 04:56:59 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/5] clk: Do not enable by default during compile testing
+Date: Fri, 04 Apr 2025 13:56:56 +0200
+Message-Id: <20250404-kconfig-defaults-clk-v1-0-4d2df5603332@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/19] dt-bindings: arm/cpus: Add power-domains
- constraints
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Vincenzo Frascino <vincenzo.frascino@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
- Conor Dooley <conor@kernel.org>, Nicolas Ferre
- <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
- imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-18-076be7171a85@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250403-dt-cpu-schema-v1-18-076be7171a85@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAAjJ72cC/x3MQQqAIBBA0avErBsws4iuEi1EZ2ooLLQiiO6et
+ HyL/x9IFIUS9MUDkS5JsoWMqizAzTZMhOKzQSvdKKMMLm4LLBN6YnuuR0K3LshWG+68aytTQ07
+ 3SCz3vx3G9/0AHeSjdWYAAAA=
+X-Change-ID: 20250404-kconfig-defaults-clk-fa24f8dc6143
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ =?utf-8?q?Emilio_L=C3=B3pez?= <emilio@elopez.com.ar>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250404_043535_007619_855573FF 
-X-CRM114-Status: UNSURE (   6.53  )
+X-CRM114-CacheID: sfid-20250404_045701_466511_BAC8FE8D 
+X-CRM114-Status: UNSURE (   6.64  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -102,19 +105,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Il 04/04/25 04:59, Rob Herring (Arm) ha scritto:
-> The "power-domains" and "power-domains-names" properties are missing any
-> constraints. Add the constraints and drop the generic descriptions.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Enabling the compile test should not cause automatic enabling of all
+drivers.
 
-For MediaTek:
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+No dependencies, can be picked by individual maintainers.
+
+Best regards,
+Krzysztof
+
+---
+Krzysztof Kozlowski (5):
+      clk: meson: Do not enable by default during compile testing
+      clk: nuvoton: Do not enable by default during compile testing
+      clk: stm32: Do not enable by default during compile testing
+      clk: sunxi-ng: Do not enable by default during compile testing
+      clk: sunxi: Do not enable by default during compile testing
+
+ drivers/clk/meson/Kconfig    | 16 +++++++--------
+ drivers/clk/nuvoton/Kconfig  |  4 ++--
+ drivers/clk/stm32/Kconfig    |  8 ++++----
+ drivers/clk/sunxi-ng/Kconfig | 48 ++++++++++++++++++++++----------------------
+ drivers/clk/sunxi/Kconfig    | 10 ++++-----
+ 5 files changed, 43 insertions(+), 43 deletions(-)
+---
+base-commit: 07951d09335e96138e0595208fcc66c35ce0447e
+change-id: 20250404-kconfig-defaults-clk-fa24f8dc6143
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 _______________________________________________
