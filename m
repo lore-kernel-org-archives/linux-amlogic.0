@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02A53C36010
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 11:37:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F82EC3601E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 11:39:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=K72/VAqMuTEowGDbFbiP052jUM+C17kEld9l4krxnIc=; b=xcXFG2lmPCxNka
-	KMSI26HlwLWIVabKwGrhTN8K2JkLNrkYpymr3gEkCgXWQA7JXL4fkJCZXq6HGxONZFZzSE9A2ij4t
-	+GPC1h8zw5Q/Vm0rKKf3NlRDcjlSaL3SwARXorTNCZVbPHFFsH7xX0ZiNOl4pcGOauO2HorJBkyYz
-	affKjKxRjRNj8YNLYNz4L/nrm4hhtQ0r59LwXCsUXWGzfSX93tQbqsM6oDAKlqcr9+Hw6KCRfCgKu
-	RixhaugmeOMW7vSEWh657Lyu1/Ep1hCi3jmtIu7fm/rUMY8PzMjmOh2L800R9I4FnbKBLbxM+LhAg
-	xwT0z4rbkeuk//omlKvA==;
+	List-Owner; bh=DFB96wF2gtvZ1KzqWXyVEcaQDExEzymHcp5V2udqVKU=; b=aARuTgGwGwcNKE
+	apIuE+rZV1znbYjZ02mxYXaalhTcCVsn5KQCQ1ednHNHU+yGCp/o1xohj2UqkmjWnXc9WKU7b04QE
+	sBHh52qXf8ssSolOTtDeerKXobdlJZXOCgojBB0047pjJBjFDp6ZeD57H9TJPOrCKDU/jO4EPFZ2h
+	G/vv4m/eVVrdvFjGM0+RQpLB52kPyRuNuNnMB09jbnC8tvEXVS10326fOYXDgRg0Wll0ZBNIt0DsQ
+	JAfDL9HVO6k/vos6McxB6J0i7LUGadmBkaoejCee/g0D6gMeNtEBDllZk/os+Lb8T64GeHZ5XiQG9
+	3ODsJhGLoOcwzjfik4DA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0fMh-0000000BZCL-40ZM;
-	Fri, 04 Apr 2025 11:37:39 +0000
+	id 1u0fOU-0000000BZUX-07Aw;
+	Fri, 04 Apr 2025 11:39:30 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0fHS-0000000BYOk-3oaZ;
-	Fri, 04 Apr 2025 11:32:16 +0000
+	id 1u0fHU-0000000BYQ0-3YhO;
+	Fri, 04 Apr 2025 11:32:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1743766333;
-	bh=Jw1FPz6DF2WaJMktgqsDpD5UOieABbNHs5cz1OQV7+Y=;
+	s=mail; t=1743766335;
+	bh=7ro02tI4QOXGzdStpWGlX+ZgeJtEMwipR1RCkON1Law=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LJPXaVbq60/Cb5k5MJ7zBEKHhcJ/RJ2XOeSUfeGVa9B6t5StSeJpF5Rh8VSpyV4OG
-	 6qvbZA+DJiPKvA8oZmtxELP2AOQ0sZld5CamuOMDVdPFj6a78TccHaPK4Tvrr486vK
-	 jdSaxZDfwi0ncvAB9XwcoOY+tv9gv16LHwc9o8cmvTeXa2UskaGu4S1VKAfK8nGrZE
-	 vct7UyFGwVmWVCvZDCSClpfCMUyShZvHciYs3+sipjVjXeruKaQXsGVaHfymqTd+Og
-	 mPFSiSQmlYOjLNoHLs/SMTb/qZ/5zrPp+oAQM2P0hEj8RVXesY8cFd5/XQBtMb6elN
-	 Yrr95JBG7PAJg==
+	b=DpZaC4Ang2pBxxjmTz68g2C7ibpYHZpQh6M1Vf54ldz6Gdj74ETP0av4qGoCb/ZLE
+	 Nd8AggnN0xOivQCv3RRa6fUi4tBVfF2x3DzzzOGG2grt8rNvhOOkHge7mFCFX+t6Za
+	 PVEwNsWgnGUJqEYiXE1bkFT7+QLm1lXuCtguq+z0aersqXj/R9Nwm7q/Lh60UJifPD
+	 fvkkpnRm7HihkIPmz7RoHJFMHc6n9qkvDcTDSk8+gNG2xtpCfoGo+Ve20jQIiWIbSZ
+	 OhtlgUsxflfecAZAqNlLv6M6uBpC9jDo/tSHTaNjFijVjLM1CyXO+HY82Ey/eXajOU
+	 E2bLKaqY9B3rA==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A836E17E0C50;
-	Fri,  4 Apr 2025 13:32:10 +0200 (CEST)
-Message-ID: <547daa6c-0ca9-44c0-9317-02e006926dc3@collabora.com>
-Date: Fri, 4 Apr 2025 13:32:09 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 27B6717E0FC3;
+	Fri,  4 Apr 2025 13:32:13 +0200 (CEST)
+Message-ID: <236b31a6-3602-4705-9d04-48bdff719cc2@collabora.com>
+Date: Fri, 4 Apr 2025 13:32:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 16/19] dt-bindings: Reference opp-v1 schema in CPU schemas
+Subject: Re: [PATCH 19/19] dt-bindings: cpufreq: Drop redundant Mediatek
+ binding
 To: "Rob Herring (Arm)" <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
@@ -82,13 +83,13 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
 References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-16-076be7171a85@kernel.org>
+ <20250403-dt-cpu-schema-v1-19-076be7171a85@kernel.org>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20250403-dt-cpu-schema-v1-16-076be7171a85@kernel.org>
+In-Reply-To: <20250403-dt-cpu-schema-v1-19-076be7171a85@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250404_043215_095734_44375424 
-X-CRM114-Status: UNSURE (   8.97  )
+X-CRM114-CacheID: sfid-20250404_043217_040514_C2125117 
+X-CRM114-Status: UNSURE (   7.59  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,14 +108,12 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 Il 04/04/25 04:59, Rob Herring (Arm) ha scritto:
-> The opp-v1 binding is only used in MIPS and arm32 CPU nodes, so add a
-> $ref to it in the CPU schemas and drop the "select".
-> 
-> As opp-v1 has long been deprecated, mark it as such.
+> The Mediatek CPUFreq binding document just describes properties from
+> the CPU node which the driver uses. This is redundant as all the
+> properties are described in the arm/cpus.yaml schema.
 > 
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-ARM//MediaTek:
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
