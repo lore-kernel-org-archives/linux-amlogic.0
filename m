@@ -4,91 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDDD5C3601A
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 14:10:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA260C36014
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 14:13:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=z5+j6+Ld1MC1v/qm7NziMh/mZNktPtk2sUGaRlBr0OQ=; b=JXiH0j2x0K4N6z
-	fP3bIQypdVUOkGLoYQyE8fSu3EX4lTQXsPuNQVTeNaRJqWPk0kAJjQtPLmTsj5qm39hRQtVkepMbX
-	F54+ac+oe5NYo0RnBvo3cVwO5596WQM+eU7C+EBVtdsUFnj/xUPi9NhXqXmm+yK3KY+Cx2bSDqPY8
-	kTOhieJmWBJa74T43Rdvd5esVTdzKcIvl8TlcMZjbRLDTyl/gZ6aA5Udptf583tMT5K+5OsQEzMtC
-	gTpyqHKH5WfHhTY2roQPMMTDvZVn5A+uzsfbxL009kNtJ+iwp6V012YY+/RkwgMRF6X8Ew2+PUx0S
-	T+nyihyFBYEaA5QuImbQ==;
+	List-Owner; bh=U3XWOtp9suoCoi0Qq0CE6kfiyyBgHxBPxZ2QV/hgIPs=; b=4etxxTOTouqqj/
+	AH0tXs4MsRjQI43KEHM4oDfn9VH836uPg48HlzRTeXO31aqOFwFLbKc1Sd9+zuMuWY2GUALwtgAV9
+	g6zpOIS/ANP46F1Q+20pLbITkEib3vVHXHNbKCqhhqL0lhmU6JSbbq6ofcCOSrwlJq/+HlwFZWdES
+	Ay0PT+cgCr6LTO2kaJ4CxMSXpLe/qWJZwU+Pb9u3CUG9/ZJKGIwog0baBWeDVA5U7qpQXc66g3Kp9
+	CR0EX0O6EvHCjMlGqeKW7Tax4vPfTWSMGU+0Ne1rb4N84FnQBTz4Fbc9zxB94myvr29eTYGzeiIQ3
+	RO0nH8vx+Pa/poI/jIew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0hkg-0000000Bwsq-1y9r;
-	Fri, 04 Apr 2025 14:10:34 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0hkf-0000000BwsV-0wIa;
-	Fri, 04 Apr 2025 14:10:33 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id EF34261136;
-	Fri,  4 Apr 2025 14:10:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC096C4CEEC;
-	Fri,  4 Apr 2025 14:10:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743775831;
-	bh=l2lzsNRrga+hAwlZPw2hZyVI7hOngQ48zjWgc72CGr4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=MhXqLqpa43mJjzUE+SiXJTbXwmVJ/HY6gBTctJU9FfRezIv1qLjartTS85rOgNg9a
-	 ZhN4HzOepVa85NDLlDWJODei3AOF6LINQBifXsj/9vcNkRNTNwOPyODWr//oY7SEXN
-	 pqbYfSz27XnI8DD+h0GaWdbcrDerOqpp+11Vuj4JYUOWKhgGITX67L3hbAOFtsPvzb
-	 xSZsVs/S+Pr54A87UysNCn/RkaXJaFv8XaW0L8BHyTXXNGj+g0awaZqTwq7UI8BMyg
-	 xtscO/vdTlk2M4zdjpWE5iml8FERUp0D7y1vv/91pL6IP0dkPhJrxNVtmC/K/73oRz
-	 naujA3WQObjpA==
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5e8be1c6ff8so3930499a12.1;
-        Fri, 04 Apr 2025 07:10:31 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUGDRh2xgauy5zgvxdxdXf3nkEq3lOYsxYlbgM0gKF98ef+nTYbpcI0IOXKcrFGz7ijVva1E5+n5lOT2PZJ@lists.infradead.org, AJvYcCVdjP2pieNiJ4kqYOcKWEj/vhTF16bxKWk1IIDZ5JMI4zrr81IZivcjRaWQyjlMTwXly6r4Dex6fKmbfDZ2r7w=@lists.infradead.org, AJvYcCW3uSgswGc+lCOC/MmALyuBQejAHDQpNZh/H2PpULYhcxipYfhq5xjvUiyDOxuMYMbSsCJZlIMYvwIDLwp1jWLq7A==@lists.infradead.org, AJvYcCW91qWSdDN8o/+GbxrnBSzS2EsHliUrEe8Eb1/7fNdum21cU212Tom2kRhCnCvGamEIx6ktDNLD/hMv5gFqFBE=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzuwECURqnE/iqLHH6tQzXtTy6tb28SgrjePgCrqSuyB9ZHTFtB
-	J7zHAHeIKkNoTgmUxC0ByJzZAoSQ8aefupuRHi8e7POlAFhlrHiPO3cTlnSoH7t/Ud0FeWk4id+
-	nAxsqEaUU/67txM/JvM6xBo70AQ==
-X-Google-Smtp-Source: AGHT+IGYXjl+q1G3Ghk1zMOjaKXndZfqYp9hiiK7OTWs/zAZNM/+0QVdqEQQ+zuW4YRtKHDm+WaT1WT3knVA25eifPc=
-X-Received: by 2002:a05:6402:3481:b0:5ed:921a:ded6 with SMTP id
- 4fb4d7f45d1cf-5f0b657862emr2694084a12.18.1743775830233; Fri, 04 Apr 2025
- 07:10:30 -0700 (PDT)
+	id 1u0hnX-0000000BxEE-3EuT;
+	Fri, 04 Apr 2025 14:13:31 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u0hnV-0000000BxDp-0Xpn;
+	Fri, 04 Apr 2025 14:13:30 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BAE311515;
+	Fri,  4 Apr 2025 07:13:27 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 909073F63F;
+	Fri,  4 Apr 2025 07:13:22 -0700 (PDT)
+Date: Fri, 4 Apr 2025 15:13:20 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+ <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Emilio =?UTF-8?B?TMOzcGV6?= <emilio@elopez.com.ar>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 4/5] clk: sunxi-ng: Do not enable by default during
+ compile testing
+Message-ID: <20250404151320.53c4698b@donnerap.manchester.arm.com>
+In-Reply-To: <20250404-kconfig-defaults-clk-v1-4-4d2df5603332@linaro.org>
+References: <20250404-kconfig-defaults-clk-v1-0-4d2df5603332@linaro.org>
+	<20250404-kconfig-defaults-clk-v1-4-4d2df5603332@linaro.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-6-076be7171a85@kernel.org> <Z-_K2XDEcbtcCMVM@linaro.org>
- <CAL_JsqJT-0gwvJnMb63izy6WwJpBVsswkauL8OMLCrF08q9HYQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqJT-0gwvJnMb63izy6WwJpBVsswkauL8OMLCrF08q9HYQ@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 4 Apr 2025 09:10:18 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJDkoj4d-aKvZ92kZ1mikqjJV4J4w=-3eNk3z6q6g0ssw@mail.gmail.com>
-X-Gm-Features: ATxdqUGgk50-VgqfiN2r-WHP1-0cyp1Dem4hGHbf6672N4-b5gggSNdLRbwnjDg
-Message-ID: <CAL_JsqJDkoj4d-aKvZ92kZ1mikqjJV4J4w=-3eNk3z6q6g0ssw@mail.gmail.com>
-Subject: Re: [PATCH 06/19] arm64: dts: qcom: msm8939: Fix CPU node
- "enable-method" property dependencies
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Vincenzo Frascino <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Viresh Kumar <vireshk@kernel.org>, 
-	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, 
-	Conor Dooley <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
-	Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org, 
-	imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250404_071329_307061_9FB75E0E 
+X-CRM114-Status: GOOD (  15.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,44 +69,203 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCBBcHIgNCwgMjAyNSBhdCA4OjE44oCvQU0gUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVs
-Lm9yZz4gd3JvdGU6Cj4KPiBPbiBGcmksIEFwciA0LCAyMDI1IGF0IDc6MDTigK9BTSBTdGVwaGFu
-IEdlcmhvbGQKPiA8c3RlcGhhbi5nZXJob2xkQGxpbmFyby5vcmc+IHdyb3RlOgo+ID4KPiA+IE9u
-IFRodSwgQXByIDAzLCAyMDI1IGF0IDA5OjU5OjI3UE0gLTA1MDAsIFJvYiBIZXJyaW5nIChBcm0p
-IHdyb3RlOgo+ID4gPiBUaGUgInFjb20sYWNjIiBhbmQgInFjb20sc2F3IiBwcm9wZXJ0aWVzIGFy
-ZW4ndCB2YWxpZCB3aXRoICJzcGluLXRhYmxlIgo+ID4gPiBlbmFibGUtbWV0aG9kIG5vciBhcmUg
-dGhleSB1c2VkIG9uIDY0LWJpdCBrZXJuZWxzLCBzbyB0aGV5IGNhbiBiZQo+ID4gPiBkcm9wcGVk
-Lgo+ID4gPgo+ID4KPiA+IFRoZSBib290bG9hZGVyIHdlIGN1cnJlbnRseSB1c2Ugb24gdGhlc2Ug
-ZGV2aWNlcyByZWFkcyB0aGVzZSBwcm9wZXJ0aWVzCj4gPiB0byBzZXQgdXAgdGhlIHNwaW4tdGFi
-bGUsIHNvIHJlbW92aW5nIHRoZXNlIHdpbGwgYnJlYWsgYm9vdGluZyBzZWNvbmRhcnkKPiA+IENQ
-VSBjb3Jlcy4KPiA+Cj4gPiBUaGUgbW90aXZhdGlvbiBmb3IgaW1wbGVtZW50aW5nIGl0IHRoYXQg
-d2F5IHdhcyB0aGF0IDMyLWJpdCB2cyA2NC1iaXQKPiA+IGtlcm5lbCBzaG91bGRuJ3QgYmUgcmVs
-ZXZhbnQgZm9yIHRoZSBkZXNjcmliaW5nIHRoZSBoYXJkd2FyZSBibG9ja3MgaW4KPiA+IHRoZSBk
-ZXZpY2UgdHJlZS4gVGhlIGNvZGUgaW4gdGhlIGJvb3Rsb2FkZXIgaXMgZ2VuZXJpYyBhbmQgaGFu
-ZGxlcwo+ID4gZGlmZmVyZW50IFNvQ3MgKGUuZy4gbXNtODkxNiB3aXRoIDQgY29yZXMgYW5kIG1z
-bTg5Mzkgd2l0aCA4IGNvcmVzLCB0aGUKPiA+IGVuYWJsZSBzZXF1ZW5jZXMgYXJlIGlkZW50aWNh
-bCkuCj4gPgo+ID4gQ2FuIHdlIGtlZXAgdGhpcyBpbiBzb21laG93PyBUbyBiZSBmYWlyLCBJJ20g
-bm90IHN1cmUgd2hhdCBwcm9wZXJ0eSB3ZQo+ID4gY291bGQgbWF0Y2ggb24gdG8gY2hlY2sgaWYg
-dGhlc2UgcHJvcGVydGllcyBhcmUgYWxsb3dlZCAuLi4KPgo+IFllcywgd2UgY2FuIGtlZXAgdGhl
-bS4gV2UnbGwgaGF2ZSB0byBhbGxvdyB0aGVtIHdpdGggInNwaW4tdGFibGUiIGFuZAo+ICJwc2Np
-IiBJIGd1ZXNzLgoKSSBjYW1lIHVwIHdpdGggc29tZXRoaW5nIGxpa2UgdGhpcyBpbnN0ZWFkOgoK
-LSBpZjoKICAjIDIgUXVhbGNvbW0gcGxhdGZvcm1zIGJvb3Rsb2FkZXJzIG5lZWQgcWNvbSxhY2Mg
-YW5kIHFjb20sc2F3IHlldCB1c2UKICAjICJzcGluLXRhYmxlIiBvciAicHNjaSIgZW5hYmxlLW1l
-dGhvZHMuIERpc2FsbG93aW5nIHRoZSBwcm9wZXJ0aWVzIGZvcgogICMgYWxsIG90aGVyIENQVXMg
-aXMgdGhlIGJlc3Qgd2UgY2FuIGRvIGFzIHRoZXJlJ3Mgbm90IGFueSB3YXkgdG8KICAjIGRpc3Rp
-bmd1aXNoIHRoZXNlIFF1YWxjb21tIHBsYXRmb3Jtcy4KICAgIHByb3BlcnRpZXM6CiAgICAgIGNv
-bXBhdGlibGU6CiAgICAgICAgbm90OgogICAgICAgICAgY29uc3Q6IGFybSxjb3J0ZXgtYTUzCiAg
-dGhlbjoKICAgIHByb3BlcnRpZXM6CiAgICAgIHFjb20sYWNjOiBmYWxzZQogICAgICBxY29tLHNh
-dzogZmFsc2UKCk5vdCBpZGVhbCBhcyB0aGVyZSBhcmUgbG90cyBvZiBBNTNzLCBidXQgYmV0dGVy
-IHRoYW4gZW5hYmxpbmcgZm9yCmV2ZXJ5IDY0LWJpdCBwbGF0Zm9ybS4KCgpBbHNvLCBpcyBhZGRp
-bmcgdGhlIGNwdS1yZWxlYXNlLWFkZHIgZmluZT8gSXQgY291bGQgdHJpcCB1cCBhCmJvb3Rsb2Fk
-ZXIgdGVzdHMgaWYgdGhlIHByb3BlcnR5IGlzIGFscmVhZHkgcHJlc2VudCBhbmQgZG9lc24ndCB1
-cGRhdGUKaXQgaW4gdGhhdCBjYXNlLgoKUm9iCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxv
-Z2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Fri, 04 Apr 2025 13:57:00 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+Hi 
+> Enabling the compile test should not cause automatic enabling of all
+> drivers.  Restrict the default to ARCH also for individual drivers, even
+> though their choice is not visible without selecting parent Kconfig
+> symbol, because otherwise selecting parent would select the child during
+> compile testing.
+
+so I remember we changed this to "default y", because there were some
+tricky problems with regards to RISC-V and ARM. See commits:
+
+commit 0ff347db4c97cc16b4e428dc1db550ba3628f1e2
+Author: Samuel Holland <samuel@sholland.org>
+Date:   Sat Dec 31 17:14:25 2022 -0600
+    clk: sunxi-ng: Move SoC driver conditions to dependencies
+
+and 
+
+commit a26dc096f683ca27ac5e68703bfd3098b4212abd
+Author: Samuel Holland <samuel@sholland.org>
+Date:   Sat Dec 31 17:14:24 2022 -0600
+    clk: sunxi-ng: Remove duplicate ARCH_SUNXI dependencies
+
+Don't remember what broke, exactly, but just wanted to give a heads up.
+
+Cheers,
+Andre
+
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  drivers/clk/sunxi-ng/Kconfig | 48 ++++++++++++++++++++++----------------------
+>  1 file changed, 24 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/clk/sunxi-ng/Kconfig b/drivers/clk/sunxi-ng/Kconfig
+> index 5830a9d87bf25d536ac787fe83669c64c8214952..8896fd052ef1784d60d488ab1498737c1405deb2 100644
+> --- a/drivers/clk/sunxi-ng/Kconfig
+> +++ b/drivers/clk/sunxi-ng/Kconfig
+> @@ -9,123 +9,123 @@ if SUNXI_CCU
+>  
+>  config SUNIV_F1C100S_CCU
+>  	tristate "Support for the Allwinner newer F1C100s CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUNIV || COMPILE_TEST
+>  
+>  config SUN20I_D1_CCU
+>  	tristate "Support for the Allwinner D1/R528/T113 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || RISCV || COMPILE_TEST
+>  
+>  config SUN20I_D1_R_CCU
+>  	tristate "Support for the Allwinner D1/R528/T113 PRCM CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || RISCV || COMPILE_TEST
+>  
+>  config SUN50I_A64_CCU
+>  	tristate "Support for the Allwinner A64 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on ARM64 || COMPILE_TEST
+>  
+>  config SUN50I_A100_CCU
+>  	tristate "Support for the Allwinner A100 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on ARM64 || COMPILE_TEST
+>  
+>  config SUN50I_A100_R_CCU
+>  	tristate "Support for the Allwinner A100 PRCM CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on ARM64 || COMPILE_TEST
+>  
+>  config SUN50I_H6_CCU
+>  	tristate "Support for the Allwinner H6 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on ARM64 || COMPILE_TEST
+>  
+>  config SUN50I_H616_CCU
+>  	tristate "Support for the Allwinner H616 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on ARM64 || COMPILE_TEST
+>  
+>  config SUN50I_H6_R_CCU
+>  	tristate "Support for the Allwinner H6 and H616 PRCM CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on ARM64 || COMPILE_TEST
+>  
+>  config SUN55I_A523_CCU
+>  	tristate "Support for the Allwinner A523/T527 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on ARM64 || COMPILE_TEST
+>  
+>  config SUN55I_A523_R_CCU
+>  	tristate "Support for the Allwinner A523/T527 PRCM CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on ARM64 || COMPILE_TEST
+>  
+>  config SUN4I_A10_CCU
+>  	tristate "Support for the Allwinner A10/A20 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN4I || MACH_SUN7I || COMPILE_TEST
+>  
+>  config SUN5I_CCU
+>  	bool "Support for the Allwinner sun5i family CCM"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN5I || COMPILE_TEST
+>  	depends on SUNXI_CCU=y
+>  
+>  config SUN6I_A31_CCU
+>  	tristate "Support for the Allwinner A31/A31s CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN6I || COMPILE_TEST
+>  
+>  config SUN6I_RTC_CCU
+>  	tristate "Support for the Allwinner H616/R329 RTC CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || ARM64 || RISCV || COMPILE_TEST
+>  
+>  config SUN8I_A23_CCU
+>  	tristate "Support for the Allwinner A23 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || COMPILE_TEST
+>  
+>  config SUN8I_A33_CCU
+>  	tristate "Support for the Allwinner A33 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || COMPILE_TEST
+>  
+>  config SUN8I_A83T_CCU
+>  	tristate "Support for the Allwinner A83T CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || COMPILE_TEST
+>  
+>  config SUN8I_H3_CCU
+>  	tristate "Support for the Allwinner H3 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || ARM64 || COMPILE_TEST
+>  
+>  config SUN8I_V3S_CCU
+>  	tristate "Support for the Allwinner V3s CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || COMPILE_TEST
+>  
+>  config SUN8I_DE2_CCU
+>  	tristate "Support for the Allwinner SoCs DE2 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || ARM64 || RISCV || COMPILE_TEST
+>  
+>  config SUN8I_R40_CCU
+>  	tristate "Support for the Allwinner R40 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || COMPILE_TEST
+>  
+>  config SUN9I_A80_CCU
+>  	tristate "Support for the Allwinner A80 CCU"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN9I || COMPILE_TEST
+>  
+>  config SUN8I_R_CCU
+>  	tristate "Support for Allwinner SoCs' PRCM CCUs"
+> -	default y
+> +	default ARCH_SUNXI
+>  	depends on MACH_SUN8I || ARM64 || COMPILE_TEST
+>  
+>  endif
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
