@@ -4,78 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1F65C36010
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 12:43:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BB92C36010
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 13:09:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0BuHSoms8oJiKsusvWVpuV5KWC+iCYBtXaB7XjIl6Rw=; b=Xm0n3yaO0fr5sw
-	PiE8INy62jYwcpZ6Mvk+4QarTpNufngAf4ouvT1Q9KErm7n79Ho3UNrtXVSsxbx1IR7VCx9bt2rJf
-	v3n16CaoqfxeXdU5Rr5dzC7siLsVsTDkZcq2VuwebYWXe5JXXCtFP2FjN7BpTdnEA8vaekgYkoR+n
-	4fslm3yajTXXgzu8JFSRdWmCoN6eDeNNqhRBxnV82d/SUL0ixuhKIeKiYalmLjD7ss8gpmrHNw/oq
-	ZuEvlLheClGBx1hnMfRhO7OAPUm7mjM6xiYVZ4tiMXHPVRFOi0fSapWUdAteCGX9ZFpnD+1f5cz2s
-	8RGi56+gT9Fs9fgB6QGw==;
+	List-Owner; bh=dgsTMus5MoGjVxiQ8ZRiefEuUl/xZgyRdhibmCEdmgY=; b=GHedt4B0FFn9gR
+	jHH2Eg8gpWriD9TYlrin4lp8PzhPOJiohuLYf2VttVMNoHcouOjSPAOnTK9wpSYZlqJkjdWJcr8o3
+	OzrA7SBwYjYIDsdoZD29bv84DGk24AqxPdyKkWE0XxMCYZeow4i7l+9DnkDU3+c8T0PjdTmpOKeih
+	k9QCuzWFDYZeSLI+33otFBEW0BHjdpZmkPS6gi80v1iG7IkyYMrdMHaWKuIrcU575C3AmsL5tb4Fa
+	ZSVqj32cHZ4x8A8VKIxVYBamuhsxcEwB/44oiiIvhR1XMxsLe2gbAISmuBS6aUjXEC9Fz/c0EGrDS
+	jZeUUes6/PKWXUJUnwcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0gOF-0000000BhsZ-0uZo;
-	Fri, 04 Apr 2025 12:43:19 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0gM9-0000000Bhhq-3tIK;
-	Fri, 04 Apr 2025 12:41:11 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 39AA31515;
-	Fri,  4 Apr 2025 05:41:02 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EF7A53F59E;
-	Fri,  4 Apr 2025 05:40:53 -0700 (PDT)
-Date: Fri, 4 Apr 2025 13:39:58 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Rafael
- J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Vincenzo Frascino
- <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, Sudeep
- Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd
- <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, Conor Dooley
- <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu
- Beznea <claudiu.beznea@tuxon.dev>, Steen Hegelund
- <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Heiko Stuebner <heiko@sntech.de>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
- imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 01/19] arm64: dts: allwinner: h5/h6: Drop spurious
- 'clock-latency-ns' properties
-Message-ID: <20250404133958.5361be95@donnerap.manchester.arm.com>
-In-Reply-To: <20250403-dt-cpu-schema-v1-1-076be7171a85@kernel.org>
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
-	<20250403-dt-cpu-schema-v1-1-076be7171a85@kernel.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	id 1u0gnb-0000000BluP-4BAL;
+	Fri, 04 Apr 2025 13:09:31 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u0gnZ-0000000Bltl-1el0;
+	Fri, 04 Apr 2025 13:09:30 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7C09945053;
+	Fri,  4 Apr 2025 13:09:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEA23C4CEF3;
+	Fri,  4 Apr 2025 13:09:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743772168;
+	bh=dXvLo65uum190+DYUNNlALy+j1eqU6jZE1YhXB2VRzw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=GDd3H0n4Z0vbzhOAKBtX4aBm2VvNF3+IHAlBZcY+prFuXi8cUpHIAmcgMJANZtdgc
+	 SadmKjqoeeP3emGC4LnYFxHT6I2Z5k4Qigi/ixTpN0IjDgoC2YwqzWaLtiFw6MVdWY
+	 R51uqx4Vo1nBKrHVzBG0y29dCta48Jc5BLa59kSTc1THSL1yXM0eoSE65ifw4Hc4m9
+	 SWymD+qBgYbMWGz01AIzxcp4EAbHrwklRmWGHBAZsGAPODfBKuc22jPpwnuD0PsKUb
+	 4WzCQ8fABsmztu+A1EYwZSW/Iy8dxRsSFMwWpTf8Ntbimo0rh1MzNq8RAHcck28ns7
+	 PlZqBwK10PG0Q==
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac7bd86f637so330850766b.1;
+        Fri, 04 Apr 2025 06:09:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV7u+haG7jWTke96wzQRe+lBxqYWPbA4ZkMn7koL/JeK3Y75WmnIbti3K+/KkdfGEC6qRbs3qZo9IS9+e5NGCY=@lists.infradead.org, AJvYcCWT2aCIi4i6lnO8VZqvp1K4QcmQhUt7T9p6DTtzz0gYhyUvUcS2qri+SoZZioprSVj6dhDaIyDU6UfvnY2wjPs=@lists.infradead.org, AJvYcCXBtgZn4aoQtMlQIC8njIuRSMCnTtZaa1t6tBIuQ5vETggp1AciE82i1QTzWp4dilPGX56tFpKvQud5QXudsxsaHA==@lists.infradead.org, AJvYcCXkgbPZv4c5kYQswuLbircMpqhFT9bZGBaVOkM+tmKU6y7cjxwj7Z7/q5E0h+xR7650hpcQirgbJ99La7ss@lists.infradead.org
+X-Gm-Message-State: AOJu0YxoiwQIC6OoAEhZgP52gNSDmS6osb9VDcGb0an8Sk6kqnQ7pHN/
+	1SRRLL2FCl5SpsFUsIGURpWfRcw9C7opMdU0eS1YDWxsEHOUe95Ri+Q6C7wfCsy9CsC0vMF6OsE
+	jlHL9f0P874c6muHiMUDX0BxqHA==
+X-Google-Smtp-Source: AGHT+IFIyAD0iksJ2rEYwVDKxfXp9paMa26qoweWItquite8ZOPf4g5g6GK5SE+pbTwu/1QEMoBYtzOxpeaG2eY6PCU=
+X-Received: by 2002:a17:907:6e8e:b0:ac2:d5d3:2b77 with SMTP id
+ a640c23a62f3a-ac7d2e1b9c5mr344142866b.8.1743772167150; Fri, 04 Apr 2025
+ 06:09:27 -0700 (PDT)
 MIME-Version: 1.0
+References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+ <20250403-dt-cpu-schema-v1-18-076be7171a85@kernel.org> <CAPDyKFrFRrPVJ_t0JrAE1VTbS02hwr=L-EHtqb7CQiWzB1MnQg@mail.gmail.com>
+In-Reply-To: <CAPDyKFrFRrPVJ_t0JrAE1VTbS02hwr=L-EHtqb7CQiWzB1MnQg@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 4 Apr 2025 08:09:15 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKygxhcQ=PZW84sfiW7BVXKF839vfNyxS9GwAXuqmN=8g@mail.gmail.com>
+X-Gm-Features: ATxdqUFqb3GyPW1xY4MYIKArvKkAjEGffj80G84cX0XvObx4_cAf9jnDsr6emp0
+Message-ID: <CAL_JsqKygxhcQ=PZW84sfiW7BVXKF839vfNyxS9GwAXuqmN=8g@mail.gmail.com>
+Subject: Re: [PATCH 18/19] dt-bindings: arm/cpus: Add power-domains constraints
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Vincenzo Frascino <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Viresh Kumar <vireshk@kernel.org>, 
+	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, 
+	Conor Dooley <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
+	Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org, 
+	imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250404_054110_063039_D3F5B162 
-X-CRM114-Status: GOOD (  13.16  )
+X-CRM114-CacheID: sfid-20250404_060929_474191_9EFD747A 
+X-CRM114-Status: GOOD (  15.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,110 +101,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 03 Apr 2025 21:59:22 -0500
-"Rob Herring (Arm)" <robh@kernel.org> wrote:
-
-Hi,
-
-> 'clock-latency-ns' is not a valid property for CPU nodes. It belongs in
-> OPP table (which has it). Drop them from the CPU nodes.
-
-Looks alright, only affects H5 and H6, and they indeed have it in their
--cpu-opp.dtsi:
-
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi | 4 ----
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 4 ----
->  2 files changed, 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-> index d3caf27b6a55..48802bf02f3b 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-> @@ -16,7 +16,6 @@ cpu0: cpu@0 {
->  			reg = <0>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  		};
->  
-> @@ -26,7 +25,6 @@ cpu1: cpu@1 {
->  			reg = <1>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  		};
->  
-> @@ -36,7 +34,6 @@ cpu2: cpu@2 {
->  			reg = <2>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  		};
->  
-> @@ -46,7 +43,6 @@ cpu3: cpu@3 {
->  			reg = <3>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  		};
->  	};
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> index 2301c59b41b1..73e8604315c5 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> @@ -27,7 +27,6 @@ cpu0: cpu@0 {
->  			reg = <0>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  			i-cache-size = <0x8000>;
->  			i-cache-line-size = <64>;
-> @@ -44,7 +43,6 @@ cpu1: cpu@1 {
->  			reg = <1>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  			i-cache-size = <0x8000>;
->  			i-cache-line-size = <64>;
-> @@ -61,7 +59,6 @@ cpu2: cpu@2 {
->  			reg = <2>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  			i-cache-size = <0x8000>;
->  			i-cache-line-size = <64>;
-> @@ -78,7 +75,6 @@ cpu3: cpu@3 {
->  			reg = <3>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  			i-cache-size = <0x8000>;
->  			i-cache-line-size = <64>;
-> 
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBBcHIgNCwgMjAyNSBhdCA1OjM34oCvQU0gVWxmIEhhbnNzb24gPHVsZi5oYW5zc29u
+QGxpbmFyby5vcmc+IHdyb3RlOgo+Cj4gT24gRnJpLCA0IEFwciAyMDI1IGF0IDA1OjA2LCBSb2Ig
+SGVycmluZyAoQXJtKSA8cm9iaEBrZXJuZWwub3JnPiB3cm90ZToKPiA+Cj4gPiBUaGUgInBvd2Vy
+LWRvbWFpbnMiIGFuZCAicG93ZXItZG9tYWlucy1uYW1lcyIgcHJvcGVydGllcyBhcmUgbWlzc2lu
+ZyBhbnkKPiA+IGNvbnN0cmFpbnRzLiBBZGQgdGhlIGNvbnN0cmFpbnRzIGFuZCBkcm9wIHRoZSBn
+ZW5lcmljIGRlc2NyaXB0aW9ucy4KPiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBSb2IgSGVycmluZyAo
+QXJtKSA8cm9iaEBrZXJuZWwub3JnPgo+ID4gLS0tCj4gPiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2FybS9jcHVzLnlhbWwgfCA4ICsrLS0tLS0tCj4gPiAgMSBmaWxlIGNoYW5n
+ZWQsIDIgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9jcHVzLnlhbWwgYi9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2NwdXMueWFtbAo+ID4gaW5kZXggNmY3NGVi
+ZmQzOGRmLi41YmQ1ODIyZGI4YWYgMTAwNjQ0Cj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvYXJtL2NwdXMueWFtbAo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL2FybS9jcHVzLnlhbWwKPiA+IEBAIC0zMTMsMTkgKzMxMywxNSBAQCBw
+cm9wZXJ0aWVzOgo+ID4gICAgICBtYXhJdGVtczogMQo+ID4KPiA+ICAgIHBvd2VyLWRvbWFpbnM6
+Cj4gPiAtICAgIGRlc2NyaXB0aW9uOgo+ID4gLSAgICAgIExpc3Qgb2YgcGhhbmRsZXMgYW5kIFBN
+IGRvbWFpbiBzcGVjaWZpZXJzLCBhcyBkZWZpbmVkIGJ5IGJpbmRpbmdzIG9mIHRoZQo+ID4gLSAg
+ICAgIFBNIGRvbWFpbiBwcm92aWRlciAoc2VlIGFsc28gLi4vcG93ZXJfZG9tYWluLnR4dCkuCj4g
+PiArICAgIG1heEl0ZW1zOiAxCj4KPiBUaGVyZSBhcmUgbW9yZSB0aGFuIG9uZSBpbiBzb21lIGNh
+c2VzLiBUaGUgbW9zdCBpcyBwcm9iYWJseSB0aHJlZSwgSSB0aGluay4KClVubGVzcyBJIG1pc3Nl
+ZCBpdCwgdGVzdGluZyBzYXlzIG90aGVyd2lzZS4gV2hhdCB3b3VsZCB0aGUgbmFtZXMgYmUgaWYK
+bW9yZSB0aGFuIDEgZW50cnk/CgpSb2IKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2xpbnV4LWFtbG9naWMK
