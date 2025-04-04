@@ -4,95 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9C8BC369A1
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 12:06:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4A89C3601E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 12:09:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VdynYR3+UzRbLSNTtL79Kihvj/IlCToqMrCXQey1Z8g=; b=5BSA6e17JFN43h
-	Y0AQYHr8+gWtcd+BhejnygnNjrQ7SuJl8oO+RU5Sin43fwixL5VYSTPMRlfx1gedoOj4RLqJJdQRk
-	3KPJq/aa7FdCgnH66EfqaXqtFHDVIjmRPBE5K1OFUZu1mHx03eVG/e26IbyIQcNkT/JADbrr3eubf
-	cOCBcW49x7yjnXoOdzbwFr0GsmCjR1hHzTsiHP894I/L8Eo9FRnEC3meM+NxvqeLkqOkBE/z+V6ZM
-	xnu3RQqH8BjE39jNlpAriiiXCH9/shaLI1DA+nyRGj3mgte0EmyV4760YJwahHCQtMuLhqo/hy36W
-	F/sy7f2vNPwwiLHMmUiw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=m5gHjevGMH0VU+kPo6hMRLrPcv8nhNJmioxGlfjpJ94=; b=OjRRjjzKh4NI2y
+	VfQPaWya9V2o4mVJ+UL4O9WpbgtSVSl13ySn7JYL0xibjs5jHqDXR49+qZfYegKDtJsehdGIXdaUB
+	4wMdu2NKQKZCkIZ9UtcDPrauiChSPiL6TGZxolgBCK4EM0E9hFlYd1DxqzY/+ZUVb3H2JMiqGXiV2
+	OgT7l7nEBYkss0sfvYB801Z9llyELkvHGOvKIiQg6i/i906vJ37vOnbb8/1YjeNjxNvMjDfNuWdmd
+	aVyDrhG+ywz8Tk8ExryDy/7K+doTzoEFDeRlJJxg/HvzF0ks4pPmXv6t/iRW8Gqe80IbVWAivxcXH
+	oNnQBB3eu/1JEIc0UWGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0foM-0000000Bd8F-36Gn;
-	Fri, 04 Apr 2025 12:06:14 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1u0frt-0000000BdnQ-2ReL;
+	Fri, 04 Apr 2025 12:09:53 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0ffa-0000000BbAv-21Q8
+	id 1u0ffp-0000000BbHi-0NeC
 	for linux-amlogic@lists.infradead.org;
-	Fri, 04 Apr 2025 11:57:11 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-43ceeb85ab2so1376505e9.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 04 Apr 2025 04:57:10 -0700 (PDT)
+	Fri, 04 Apr 2025 11:57:26 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-39973c72e8cso195060f8f.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 04 Apr 2025 04:57:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743767829; x=1744372629; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d106TqNSzkY12ISczNEwfjZ5zhpWhqK85bfmJ3moKtE=;
-        b=WhbiFZam+O4flKKumj3ZkIuA17feGKZkP9/SxKUNXUlQXn/JtmyQTo0ysJk0GWXyJV
-         GzAmfui0hRI2oaCMfswMdvuFU60T2J8aYySsbmuhD2BjvHFI5SqU+QxPF4GBao++9OBB
-         YrGS+XS7ZEnoKX2pl9SxFNyrl5V5I4aQrceYSUYg9n/CnrWYcr0YLOtYA2u5y+buqtRt
-         r2DC167mprbi3u8vEioRp5XF9FC/KOSeCxGoHcq6dQe67T4fFYTTjDbiyda6c2V1X1FI
-         7V+I39Z9+SsZxH3A15gn+yeQTEChMTt84CIS6adPSQuAd+rFzNkCBnsE6jBYFC62r+eu
-         LO3A==
+        d=linaro.org; s=google; t=1743767843; x=1744372643; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b3JdFQg9OP+vObOtg3YucUTBQsfmVEuB77cG86LXLR4=;
+        b=AlNe792o9IrCRdWfuMLsuTSIVATS60ceDbrok/n5MTEDRdH1O15sbI2kTlWAeffIIf
+         cr5qEai3Mw3b+94IPGHbe1N/1pv5ABr1nMGg6tLfqZExPco2j1/xaBR7V2U9ZZKQulli
+         ecs5F5mW0hoNUyZgUfEAXdztp18W5F2HjOCO+TIQu+1rBaU8RGY7vklAk+P7XAw8D41R
+         yFgeNnYXyjPrQRu1USnRk0Ev9FakRIGAu5qSmZvWIOyxfgH4ikHPw/euTitldYN6j91Y
+         jHoKVuHPs1y9r+VF9V17rCO87FrDhRpamAjhmwVF/0NOxI8RHTR32FXblwmctnf1ONJ2
+         i+2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743767829; x=1744372629;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=d106TqNSzkY12ISczNEwfjZ5zhpWhqK85bfmJ3moKtE=;
-        b=UTDJk24o9Oz8C1rChnUajXKea5b0hHwGt8lkI1aAO6V50ZyP6EXTvZuuGM5htGnc0Y
-         pCmkU1GJsugLUzycRQfoYDdOp1ev3jXmGNwVH/pFAIrzg/wNAggf42LSE4TUC5yGTjsP
-         pulllDzirvxHF7JzQbHpvvWL00zwHaVw+8vOE2JS5fpFeMpOtaAntucGusQ5MrrasZwI
-         6UY6dlCSWcs/xrGnKYrtWvloQRpdWWlnaGtqprIguou2yuRLeJPt0uPbaEYyVku+12TI
-         YeoNsO0zpeKwbaPZsuJ0FdPiaV1NV5xhJArOeMnO6WWb1LTi+LBy+RlX9OGY2ANin4JS
-         HgIw==
-X-Gm-Message-State: AOJu0YzyCsyT21FFuHoJFW6Wxu0qHDRhLmuzkd+3mVajXWaV2eIi6a5o
-	O8o0zfWMpCGM5K6dAWI4Q8LPznPTB/cb1nBEm2FmrEJ/q5f8nugT2ymojEEYkg8=
-X-Gm-Gg: ASbGncsEF6xAJzLBup3XevnjJ+6yGqARMmhC2n5bU9FJ7pKzhsldUENZsEluK5836dk
-	KkrEYJoyb5xk4+ZbN6HhSibjUFnTqcEFK9skI6oanwMhC4rM/I1CDt3vCRXGVy90OEiE0WZCEY2
-	qIdshlf7iCYQDQHwTYpQm2gefmuiA8AUUMiMi5U2Rk5RosTfmTJlpuvRl1H1R2lfIjiT+w7rI2N
-	yaFcEiIAezHdy4uauLVEhdRDEmL34D916Inc13oLm628YphryxDlaHVAG98prDNlvq8kj4fftL4
-	nPsRMktU5Pq9DcgUbS5KCBbYcR0Qm8E7EwDxrx30qv8DuwQ4Jjr7m0XV+BKWuSU=
-X-Google-Smtp-Source: AGHT+IFUn3Ncq3UJFAd17WQ9Pi1CnRMlttoznJGCzpSMvyRtLW9B9mLaVZY4lCtohUQhqeiWfvicpw==
-X-Received: by 2002:a05:600c:3592:b0:439:9ec5:dfa with SMTP id 5b1f17b1804b1-43ecfa18f83mr8121025e9.7.1743767829072;
-        Fri, 04 Apr 2025 04:57:09 -0700 (PDT)
-Received: from [192.168.1.26] ([178.197.198.86])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec364cb9asm43842815e9.31.2025.04.04.04.57.07
+        d=1e100.net; s=20230601; t=1743767843; x=1744372643;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b3JdFQg9OP+vObOtg3YucUTBQsfmVEuB77cG86LXLR4=;
+        b=QmcANDJZSjAj24ni2wxA3RoQwF/NNjGOfkS52lC8o/qUPCcNoKg9elHGAFdqvuC5Y/
+         MLJ6+sAjIhjHmDmDuk49RsfH4I+YRwKA7MqHeM71FWxuIGbi6JsZQq7RF8vgKf+QOKk7
+         BioFO5CgOmMR36t+Ix9e0ZHXaIlTYQh6nIxaQH4HGOFNV7uPrL9MAzVYc130lj7kLM3j
+         L7F09z2xWLQ3dLscw56Ej2BKgXIZLz8bBTKHHS+ic0zviAm/6uTljDD1Rcp+VxX5K4J7
+         yF6h34kZpX8Spq3iiYs4JYQL8539dpQZXUgsQsjRCnWcW61br9IE+k/6H0aWPCG5f91l
+         eDVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUFbvbNjc4qk2OKmlSIAIkBYrYcDTvrkL31Ml2HGMJrrjvR56FcLTpuSy1Ax+4pZkKlx5t75puzrc1yUOk5@lists.infradead.org
+X-Gm-Message-State: AOJu0YwrtnoyWxBBqntrVehxswjjBcwFFOrHmT2LAtyKsolaxD/ddewO
+	/x4wzG/sND6LWyQouy6CtU3p0VzQNyYVaNVom30Y4dzECX0wyVtAJLyCTTSucfE=
+X-Gm-Gg: ASbGnctEdOVL/t+X741Wjf7BbsDz0ObiT8bOPfyFrIJg0h/ZaMp4LhRrO7QwwKqoIi5
+	QB6lAU2rOAWiZrhhEHDF7wglg0no05pJQRxTLgjmlSctcdhwIiQlTmZSqoTt83gB4662uAMY09i
+	IGBW2FtkeCl9AhbFBQIacXct29FChS+6luS0r1GC2QXWrykaLT5D69OXYtGJCQfR3NSXxTKX1KV
+	bAOvOqLfCMEpL7PFt5A0fxloAwGfNGQnK1ynvLncHN97apnmt2U0oI6mp9HEju99XV6ImceHIO2
+	esIFslkmD8vv6ing2FZPrm4YmhDSQJD2G/XLgYC2ihwi++OcHWOOjA==
+X-Google-Smtp-Source: AGHT+IErSp1UfkWiyQZSYQ4Fs3U5j3CAQMjPo78hcc56nmGo8lsKvG80Q29kD9bY+/gtM61oyOPwyg==
+X-Received: by 2002:a05:600c:1c1c:b0:43d:fa59:bce9 with SMTP id 5b1f17b1804b1-43ecfa4d95bmr7235225e9.9.1743767843351;
+        Fri, 04 Apr 2025 04:57:23 -0700 (PDT)
+Received: from shite.. ([178.197.198.86])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c301ba2dfsm4209455f8f.60.2025.04.04.04.57.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Apr 2025 04:57:08 -0700 (PDT)
+        Fri, 04 Apr 2025 04:57:22 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Fri, 04 Apr 2025 13:57:01 +0200
-Subject: [PATCH 5/5] clk: sunxi: Do not enable by default during compile
- testing
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] pinctrl: meson: Do not enable by default during compile testing
+Date: Fri,  4 Apr 2025 13:57:18 +0200
+Message-ID: <20250404115719.309999-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Message-Id: <20250404-kconfig-defaults-clk-v1-5-4d2df5603332@linaro.org>
-References: <20250404-kconfig-defaults-clk-v1-0-4d2df5603332@linaro.org>
-In-Reply-To: <20250404-kconfig-defaults-clk-v1-0-4d2df5603332@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- =?utf-8?q?Emilio_L=C3=B3pez?= <emilio@elopez.com.ar>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250404_045710_558634_E7B98D04 
-X-CRM114-Status: GOOD (  10.50  )
+X-CRM114-CacheID: sfid-20250404_045725_128237_346FE46F 
+X-CRM114-Status: UNSURE (   9.81  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,56 +113,105 @@ compile testing.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/clk/sunxi/Kconfig | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/pinctrl/meson/Kconfig | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/clk/sunxi/Kconfig b/drivers/clk/sunxi/Kconfig
-index 1c4e543366ddb76c1669b577c1ac337dc1be616f..5e2f92bfe4120981ab68b175dce798ac8b3268b0 100644
---- a/drivers/clk/sunxi/Kconfig
-+++ b/drivers/clk/sunxi/Kconfig
-@@ -2,13 +2,13 @@
- menuconfig CLK_SUNXI
- 	bool "Legacy clock support for Allwinner SoCs"
- 	depends on (ARM && ARCH_SUNXI) || COMPILE_TEST
+diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+index 90639bc171f6..0315e224bce6 100644
+--- a/drivers/pinctrl/meson/Kconfig
++++ b/drivers/pinctrl/meson/Kconfig
+@@ -3,7 +3,7 @@ menuconfig PINCTRL_MESON
+ 	tristate "Amlogic SoC pinctrl drivers"
+ 	depends on ARCH_MESON || COMPILE_TEST
+ 	depends on OF
 -	default y
-+	default (ARM && ARCH_SUNXI)
- 
- if CLK_SUNXI
- 
- config CLK_SUNXI_CLOCKS
- 	bool "Legacy clock drivers"
++	default ARCH_MESON
+ 	select PINMUX
+ 	select PINCONF
+ 	select GENERIC_PINCONF
+@@ -17,25 +17,25 @@ config PINCTRL_MESON8
+ 	bool "Meson 8 SoC pinctrl driver"
+ 	depends on ARM
+ 	select PINCTRL_MESON8_PMX
 -	default y
-+	default ARCH_SUNXI
++	default ARCH_MESON
+ 
+ config PINCTRL_MESON8B
+ 	bool "Meson 8b SoC pinctrl driver"
+ 	depends on ARM
+ 	select PINCTRL_MESON8_PMX
+-	default y
++	default ARCH_MESON
+ 
+ config PINCTRL_MESON_GXBB
+ 	tristate "Meson gxbb SoC pinctrl driver"
+ 	depends on ARM64
+ 	select PINCTRL_MESON8_PMX
+-	default y
++	default ARCH_MESON
+ 
+ config PINCTRL_MESON_GXL
+ 	tristate "Meson gxl SoC pinctrl driver"
+ 	depends on ARM64
+ 	select PINCTRL_MESON8_PMX
+-	default y
++	default ARCH_MESON
+ 
+ config PINCTRL_MESON8_PMX
+ 	tristate
+@@ -44,7 +44,7 @@ config PINCTRL_MESON_AXG
+ 	tristate "Meson axg Soc pinctrl driver"
+ 	depends on ARM64
+ 	select PINCTRL_MESON_AXG_PMX
+-	default y
++	default ARCH_MESON
+ 
+ config PINCTRL_MESON_AXG_PMX
+ 	tristate
+@@ -53,24 +53,24 @@ config PINCTRL_MESON_G12A
+ 	tristate "Meson g12a Soc pinctrl driver"
+ 	depends on ARM64
+ 	select PINCTRL_MESON_AXG_PMX
+-	default y
++	default ARCH_MESON
+ 
+ config PINCTRL_MESON_A1
+ 	tristate "Meson a1 Soc pinctrl driver"
+ 	depends on ARM64
+ 	select PINCTRL_MESON_AXG_PMX
+-	default y
++	default ARCH_MESON
+ 
+ config PINCTRL_MESON_S4
+ 	tristate "Meson s4 Soc pinctrl driver"
+ 	depends on ARM64
+ 	select PINCTRL_MESON_AXG_PMX
+-	default y
++	default ARCH_MESON
+ 
+ config PINCTRL_AMLOGIC_A4
+ 	bool "AMLOGIC pincontrol"
+ 	depends on ARM64
+-	default y
++	default ARCH_MESON
  	help
- 	  Legacy clock drivers being used on older (A10, A13, A20,
- 	  A23, A31, A80) SoCs. These drivers are kept around for
-@@ -19,14 +19,14 @@ config CLK_SUNXI_CLOCKS
+ 	  This is the driver for the pin controller found on Amlogic SoCs.
  
- config CLK_SUNXI_PRCM_SUN6I
- 	bool "Legacy A31 PRCM driver"
+@@ -82,12 +82,12 @@ config PINCTRL_AMLOGIC_C3
+ 	tristate "Amlogic C3 SoC pinctrl driver"
+ 	depends on ARM64
+ 	select PINCTRL_MESON_AXG_PMX
 -	default y
-+	default ARCH_SUNXI
- 	help
- 	  Legacy clock driver for the A31 PRCM clocks. Those are
- 	  usually needed for the PMIC communication, mostly.
++	default ARCH_MESON
  
- config CLK_SUNXI_PRCM_SUN8I
- 	bool "Legacy sun8i PRCM driver"
+ config PINCTRL_AMLOGIC_T7
+ 	tristate "Amlogic T7 SoC pinctrl driver"
+ 	depends on ARM64
+ 	select PINCTRL_MESON_AXG_PMX
 -	default y
-+	default ARCH_SUNXI
- 	help
- 	  Legacy clock driver for the sun8i family PRCM clocks.
- 	  Those are usually needed for the PMIC communication,
-@@ -34,7 +34,7 @@ config CLK_SUNXI_PRCM_SUN8I
++	default ARCH_MESON
  
- config CLK_SUNXI_PRCM_SUN9I
- 	bool "Legacy A80 PRCM driver"
--	default y
-+	default ARCH_SUNXI
- 	help
- 	  Legacy clock driver for the A80 PRCM clocks. Those are
- 	  usually needed for the PMIC communication, mostly.
-
+ endif
 -- 
 2.45.2
 
