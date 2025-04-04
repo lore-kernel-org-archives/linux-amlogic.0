@@ -4,87 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B14CC369A1
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 12:43:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1F65C36010
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 12:43:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uPqqvkbKR9moqVgnSbKEgE1mykOCGqD0f8+ssXDavF0=; b=Ga8+PeYycf57Mm
-	AWT2x3wIuJhGuu+RB60nZsbLgwMadGUvS93Zvs9uNpY+c43Vapp3h2tziBO/WaiGoo/7wdGnGL80h
-	9u2TtCWfGAP4uCy4yV6jMYk8b9GL/IKPWMhtGvQlsC7gHuSaR/+g3Fi6BbYr8W6nsaD2DheZ7RZQF
-	wT57s93S75s9QPkm6Y/Sxx9euv65rNe/NBDoJx6waBrBpFQUEQ9o/SRFsdbVxeDidIPAZe2ZLA1vx
-	M+Ku0zu4Set9RqTj2Ekhqi0ujUPVRF/JqfxzBqWopW0iPAiqeQIpVtFLmnZaVbnRxxsTSdjApc72R
-	OjV3vuyLRlbBDxRRwxNQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0BuHSoms8oJiKsusvWVpuV5KWC+iCYBtXaB7XjIl6Rw=; b=Xm0n3yaO0fr5sw
+	PiE8INy62jYwcpZ6Mvk+4QarTpNufngAf4ouvT1Q9KErm7n79Ho3UNrtXVSsxbx1IR7VCx9bt2rJf
+	v3n16CaoqfxeXdU5Rr5dzC7siLsVsTDkZcq2VuwebYWXe5JXXCtFP2FjN7BpTdnEA8vaekgYkoR+n
+	4fslm3yajTXXgzu8JFSRdWmCoN6eDeNNqhRBxnV82d/SUL0ixuhKIeKiYalmLjD7ss8gpmrHNw/oq
+	ZuEvlLheClGBx1hnMfRhO7OAPUm7mjM6xiYVZ4tiMXHPVRFOi0fSapWUdAteCGX9ZFpnD+1f5cz2s
+	8RGi56+gT9Fs9fgB6QGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0gOE-0000000BhsV-3kGr;
-	Fri, 04 Apr 2025 12:43:18 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
-	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0gKw-0000000BhVF-3fwT
-	for linux-amlogic@lists.infradead.org;
-	Fri, 04 Apr 2025 12:39:56 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3912b75c0f2so189380f8f.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 04 Apr 2025 05:39:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743770393; x=1744375193; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZTU9ncN4gaPvvWv2/kPgQ7Y0Lxm8sALtBZAAIO+VFQ8=;
-        b=vzVrWUm6wr/Cno2Popi0wtqIYexiks6tPpbV2StsE0x3VM6b5knUGrtgHzulttkI/l
-         HO4wVaC3/cpWe2LxDZJiKXHa0hhHvLlgE0fnBXSE4l+DGsWodPlSUja/VBKnKiqNCKlX
-         0F23pTFLV1Ni5uRJmTl7cGMCjdYSEOCH+XlPsqKmT7KSDHxy+RWdBxHsZ8xx5mpUF9ks
-         eMOwiacU8ciOuWFf3vmu/gXGnVdlnXJFPM0JbgsjyE/131UKG0R5PrlfRgjCLvjh/Wr3
-         Q3UpOhXa9QgAuFqflJH7oep1dzhL6lVoTbrSH9AGYf10wOmpaDMavjLjvzL6HdCEYyRD
-         XNKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743770393; x=1744375193;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZTU9ncN4gaPvvWv2/kPgQ7Y0Lxm8sALtBZAAIO+VFQ8=;
-        b=Mm8yJQtDLNaGTNuymFoY3SnDG6jHWxCvev7mJsp4ppljwu1NmVV0og9IYnvqTXq1Uf
-         t/dnLpWJZSJXoeMnPmCzV6Y2hNLiUZbeEoV4sFZiVz2Y1/vhZzWR8Mf5bAsOj5tHtVLG
-         31ql+4OjrW/RiOngRcBRFUclBxSVNKWuwA1VHg1Rjdn3aDlruSAlGZoMGEho04scJ87x
-         Dbdzja6OipYVwKXHZQ5Xkf+vWqasN6xkqjFTs2q0hwypeq3iXZu+KTiThXu2Tzw8kxkj
-         ud49iiXGxOcO48EcjLaFMB1RSwXRyvy53DpEol78fd69U9n5mlB6u97VvfeuVtl9mBbi
-         BN3A==
-X-Forwarded-Encrypted: i=1; AJvYcCUmm+KziRXKz/FSprtm3z5s+sl2edvqkSijjcf5Bspi8G2nIKRl7m+xVgA9L4QRFeBLReBgOwSf4VoutHW8@lists.infradead.org
-X-Gm-Message-State: AOJu0YzqGEC6y5SGzvvzjhoTKgLrYffIDYqLCaT8BxXcFOU9WPgdqRM3
-	SizT49i7zj/p8O76a36tN/hxS7/4O7yCE8D8lencGwYkfLL+0/JztGM0lxLf0zw=
-X-Gm-Gg: ASbGnctCO2lMMt//hW/QdJJ4qjmIbNoqFIYYFZEVo7h+WzoV1gvlA8lucyIwIA5L5UZ
-	w5KPW0pRgtJGwvAJhNANQBQYm86pWAcC2uUui/C0KIZTgZ0iv/0fI3eVpKwaSSgR0in6fUDWFxX
-	Uk+lNisgOtnDHkBSnvx9zGJTRJg9UkOnzNkpx14mipLcz0Me5GB8lz6RW3GNJTRcW7r9AE7Fbhq
-	ES6aZ+a4eJgn8xlsOuKinU2ZeJIMwPp4Fc2l9dKugrH+kzaxPWW3vkTFkMFB5yl/I09u2eCPaKc
-	9AC4WK0gV31czcqpkFJensmmGQtsM9yaFW5ulowGG0RBQXnMu2EVdA==
-X-Google-Smtp-Source: AGHT+IFE/BNeQcKRRWZIPVRmYBmQ1t5nK5Wr5F4lJXYDnVHNSidWI2olRFDyeW5mBZo+ZjR5fCLwxA==
-X-Received: by 2002:a5d:5f44:0:b0:386:3a50:8c52 with SMTP id ffacd0b85a97d-39cb35a76e9mr962968f8f.7.1743770393235;
-        Fri, 04 Apr 2025 05:39:53 -0700 (PDT)
-Received: from shite.. ([178.197.198.86])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c3020d98bsm4261898f8f.76.2025.04.04.05.39.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Apr 2025 05:39:52 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] firmware: meson: Do not enable MESON_SM by default during compile testing
-Date: Fri,  4 Apr 2025 14:39:49 +0200
-Message-ID: <20250404123949.362652-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.45.2
+	id 1u0gOF-0000000BhsZ-0uZo;
+	Fri, 04 Apr 2025 12:43:19 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u0gM9-0000000Bhhq-3tIK;
+	Fri, 04 Apr 2025 12:41:11 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 39AA31515;
+	Fri,  4 Apr 2025 05:41:02 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EF7A53F59E;
+	Fri,  4 Apr 2025 05:40:53 -0700 (PDT)
+Date: Fri, 4 Apr 2025 13:39:58 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Rafael
+ J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Vincenzo Frascino
+ <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, Sudeep
+ Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd
+ <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, Conor Dooley
+ <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu
+ Beznea <claudiu.beznea@tuxon.dev>, Steen Hegelund
+ <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Heiko Stuebner <heiko@sntech.de>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
+ imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 01/19] arm64: dts: allwinner: h5/h6: Drop spurious
+ 'clock-latency-ns' properties
+Message-ID: <20250404133958.5361be95@donnerap.manchester.arm.com>
+In-Reply-To: <20250403-dt-cpu-schema-v1-1-076be7171a85@kernel.org>
+References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+	<20250403-dt-cpu-schema-v1-1-076be7171a85@kernel.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250404_053954_918304_C42B58F5 
-X-CRM114-Status: UNSURE (   8.86  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250404_054110_063039_D3F5B162 
+X-CRM114-Status: GOOD (  13.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,29 +92,102 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enabling the compile test should not cause automatic enabling of all
-drivers.
+On Thu, 03 Apr 2025 21:59:22 -0500
+"Rob Herring (Arm)" <robh@kernel.org> wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- drivers/firmware/meson/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi,
 
-diff --git a/drivers/firmware/meson/Kconfig b/drivers/firmware/meson/Kconfig
-index f2fdd3756648..179f5d46d8dd 100644
---- a/drivers/firmware/meson/Kconfig
-+++ b/drivers/firmware/meson/Kconfig
-@@ -5,7 +5,7 @@
- config MESON_SM
- 	tristate "Amlogic Secure Monitor driver"
- 	depends on ARCH_MESON || COMPILE_TEST
--	default y
-+	default ARCH_MESON
- 	depends on ARM64_4K_PAGES
- 	help
- 	  Say y here to enable the Amlogic secure monitor driver
--- 
-2.45.2
+> 'clock-latency-ns' is not a valid property for CPU nodes. It belongs in
+> OPP table (which has it). Drop them from the CPU nodes.
+
+Looks alright, only affects H5 and H6, and they indeed have it in their
+-cpu-opp.dtsi:
+
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi | 4 ----
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 4 ----
+>  2 files changed, 8 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
+> index d3caf27b6a55..48802bf02f3b 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
+> @@ -16,7 +16,6 @@ cpu0: cpu@0 {
+>  			reg = <0>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> -			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+>  		};
+>  
+> @@ -26,7 +25,6 @@ cpu1: cpu@1 {
+>  			reg = <1>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> -			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+>  		};
+>  
+> @@ -36,7 +34,6 @@ cpu2: cpu@2 {
+>  			reg = <2>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> -			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+>  		};
+>  
+> @@ -46,7 +43,6 @@ cpu3: cpu@3 {
+>  			reg = <3>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> -			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+>  		};
+>  	};
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> index 2301c59b41b1..73e8604315c5 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> @@ -27,7 +27,6 @@ cpu0: cpu@0 {
+>  			reg = <0>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> -			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+>  			i-cache-size = <0x8000>;
+>  			i-cache-line-size = <64>;
+> @@ -44,7 +43,6 @@ cpu1: cpu@1 {
+>  			reg = <1>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> -			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+>  			i-cache-size = <0x8000>;
+>  			i-cache-line-size = <64>;
+> @@ -61,7 +59,6 @@ cpu2: cpu@2 {
+>  			reg = <2>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> -			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+>  			i-cache-size = <0x8000>;
+>  			i-cache-line-size = <64>;
+> @@ -78,7 +75,6 @@ cpu3: cpu@3 {
+>  			reg = <3>;
+>  			enable-method = "psci";
+>  			clocks = <&ccu CLK_CPUX>;
+> -			clock-latency-ns = <244144>; /* 8 32k periods */
+>  			#cooling-cells = <2>;
+>  			i-cache-size = <0x8000>;
+>  			i-cache-line-size = <64>;
+> 
 
 
 _______________________________________________
