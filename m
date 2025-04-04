@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 425D0C3601E
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 10:31:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C60C9C3601E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Apr 2025 10:37:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hsF4bRvzqjvx5SLGp4HIp0XeY6X8K3EKw2CNyg3Erm0=; b=Qx05px39lcoYBn
-	3Z4sAjKNxZarRzCdqtClNYLcCybTKRaQe/mT6/tanwBB+D1l4WJ7OOIUsi+I+zizyndu7sTQzD8Xr
-	TGy9IPdsrzeD8d8xkjDr0G1R1Kg3EG/7rKEwBz0z05KesYAvrPWKcH1gcVN9raoclxXD6sXuNcIWZ
-	tkHYKfto/uQgwCle5mgQu/pujcOSW6Ax7eYlI5bjGfcYNhega+epdCbQ/ocIW0XMSE3PopidlYcxf
-	zySx68We42obPLhRv82/ODFRcndypz+ncboO3HwJ9640UyDfb3tujIMgTMJkD5rdZRO8pM4EIrOd9
-	MzflvtLP6GrJdkSLv1LA==;
+	List-Owner; bh=xXWkDvwnu6djtEn3N8m2pko4FTUtPqD+pz9QvS8eR9Q=; b=RmCSRjgQdXZi3W
+	GsqrfZYrWExdL68d4/1BbUr4hjWIMrVJCYZVw3469ZSkPlvqMJr2qhADKTcEc4f/z0+ut38W79mLm
+	ITeuIfGh29GHLggP8O4QcFzMkzYu+SgbfwDCE2HZupHkTD3OS5GsyLHTJgvd7Cq335jCRJP3/gj8d
+	iZ9o2itPO3nZmXkGX8i5JpyNn+A8SYPbezr6SEsgCiniTKTUZSOenEBDeB8UkjNHUjekPF+BhOKaQ
+	Vv+Trl6TjPXuklFnj/YNtQGAL/sIZerPoSkDQnQ6z6JIHet2RDw1EBrCmyYql3kt996pRGM1O/BhD
+	oUE/nO/d9zhZkrCFjTzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0eL2-0000000BQ2W-2aNu;
-	Fri, 04 Apr 2025 10:31:52 +0000
-Received: from mail-yw1-x1136.google.com ([2607:f8b0:4864:20::1136])
+	id 1u0eQE-0000000BRhi-2BPc;
+	Fri, 04 Apr 2025 10:37:14 +0000
+Received: from mail-yw1-x112c.google.com ([2607:f8b0:4864:20::112c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0eKy-0000000BQ06-0wRX
+	id 1u0eQA-0000000BRei-407m
 	for linux-amlogic@lists.infradead.org;
-	Fri, 04 Apr 2025 10:31:50 +0000
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-6ff1e375a47so19347337b3.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 04 Apr 2025 03:31:47 -0700 (PDT)
+	Fri, 04 Apr 2025 10:37:12 +0000
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-6ff1e375a47so19390357b3.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 04 Apr 2025 03:37:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743762707; x=1744367507; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1743763030; x=1744367830; darn=lists.infradead.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=p2d7X4LZ95qskY0j6wRpuQmYie6Gy7m1icDTnjrkreI=;
-        b=KfFBoSYQiBvBjQsyNSvaLo/Y6aynzfC7zxFxCmxE2tomWxfaTnNbgQ/dkTOmMeVRyg
-         spDaPHTSRXycBtcjJ0hL4BKvu3/p02og5SrnfXFvhNVFFrQzZPsLHBNQ89LNLVFsEu/g
-         NK8jfm8T7tIXHsAcKXFfU/8W+GB+xZ+LQVZQ0Hg5qhaQ5QizoiZ0uyvaA5fM3hSQSz8E
-         sbAm7CRDRdrIz/8IsHkxjybB+lMYnFQmhGLITpSWIX8QF1VbtT+9uyPp4PZwlGzpEqXm
-         WSqw+vkr75ZlKCxwLuVJDfvucx8BaiobeCuCPO9lcEsyNX22Qm8hDdUMY/8gDVdFpYUC
-         NiDw==
+        bh=s85N6LbGyDvlbfm+7fjpbjUdhdaXcYheIAW+0EJPQoQ=;
+        b=u6ULu3r5c4dCrT6PKJZD6OD/9MFLTlYRCvdoMImBqicSYktmGGjJMr0ltQUZXm0vJx
+         rfZXMMXkfI/mSsgjccviUM8DARthQWS2hdCHre/0xsF2718kReaR7lLflUInPl2LRbra
+         88Sl1mQON1GBUOIN6Eucl3yROxanrMR3ja/phqzke+nKSgE9lzkEPoEyX1Wwhqpn3hfA
+         GzyCWUxhVS06ZDziHSBqV2HzWtmQrycqL1pgA43JIRBMTltrxp3InB3ejnNvO5F7yLU0
+         DFedxWALbk6nY4CTBM9FKMYhjdFsOC2YlYc5JcYTaWGSoMv08fBhf6k2Ulsl5Mm4LKJY
+         J7Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743762707; x=1744367507;
+        d=1e100.net; s=20230601; t=1743763030; x=1744367830;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=p2d7X4LZ95qskY0j6wRpuQmYie6Gy7m1icDTnjrkreI=;
-        b=YPS2x65rr8au+CWD6Re+xWxLJNy0R0SPCwVn+ZoN1/REzh1dNeqikfwwohgMznkb6E
-         ROtmbAlzTPQi0CtAn2kvkV5AJ16y78GlX6/ayiq3XKJoSmXFBGkn66RAqKcFB9gAI4cF
-         GhiN1N5Y+jl0GXrzeCBVABuArVb+jIRcwMcpXuzaax3/77K2VBoXuimECeWq/tTNXgyl
-         qMkJxGa3ht/ZMDzMRh2mz1jubmx7tWG/pc+OYQaVnCGeb/9lPc/G/5b+c+2/py5PXaZz
-         iTFKZqrofJZD3aMPfhToaQY2NtiWwZ1wYBXOhvgGzJxY9RTj/XaLYLVnO6B/BtQVCT51
-         +NUA==
-X-Forwarded-Encrypted: i=1; AJvYcCUpxUITn8G6lq1gbtxgC/H/symkQKr8H1Q82B92d2VKibRWlbFiC831rhzHOJa+CwoDuSgJDh26JhBH6ixC@lists.infradead.org
-X-Gm-Message-State: AOJu0YyIHYGqsB8HkvA9a/CUeRhMUrLVXBmSxvgW6QwZxslHkmjKyCPZ
-	ExSBuqnmsl5s/C0UoMlmD+B7wiyKXK0OiVG1VyfuBBckcp6ywDBjeKnZemmfHrB1iWmcakw5QQB
-	7onjfB5yCHG7dkyv1cnvTZAGbJ5X0i9b6nyfNiw==
-X-Gm-Gg: ASbGnctYv2jhyDUX2yLBlRLqEIr/r2N+TUL3toTZQgXenVnqTVdDw795Gk2jCaDT4iu
-	1fzY4M62WH5XMr+FcbW8XvctznS0hUYu8VITbv/fS0whLs3EZQrwn7JBZ7fRMGDQjx+rqA865G5
-	llXwgXc8mF0apdjjQA6SsAPjxLnAuf3bXV+5eP2A==
-X-Google-Smtp-Source: AGHT+IHL6tNiMt83fP/8QoVhxPRtZTRBqTJ/Cw9tCME3kjDGJ0WhVAtLf3L7QrkxkDkyR8ahdAf3HNvn/ambJdKtSJE=
-X-Received: by 2002:a05:690c:9a0d:b0:702:d85:5347 with SMTP id
- 00721157ae682-703e16473e9mr44558927b3.36.1743762706998; Fri, 04 Apr 2025
- 03:31:46 -0700 (PDT)
+        bh=s85N6LbGyDvlbfm+7fjpbjUdhdaXcYheIAW+0EJPQoQ=;
+        b=FIyvOA6Q+S+c5UzaMQ+Vg5NTyVc8KTe5yWqnHYMFPNz71uMflWrRnpyIUznftJ1iWW
+         /t1Lm/EpcfrGzbK6PnZXojvnsF/afZlqF2w+4ZtEC5Z6LRWz0d+abdc3GaqC/HHsOcMk
+         d1Iexw8NZi91wCj3XHQItvXGc15ukGQlw5ss+7k0CKkhGwPszA+HRCoxpDnmL5tjXOKY
+         edWOGuDP3/EWJ8ylPze/bAnVM8boKyQz1DvDCRtAm/EEK+qYX2LChxdL/chn8Rckz/pS
+         i2Y66t5vrDjAtTRZduUflPKly1HMA8ln6F7zqwAxR7WdBbnRJMaNQ1A+6vT6UUgEZSD/
+         vFtw==
+X-Forwarded-Encrypted: i=1; AJvYcCVR5bHGTvo/iv6ZlxD01Bkxr7SK/B8vggjxT2oGboli2bi1LQdavQByGOyLf0l5cs2R5dr9sakMoYm1umps@lists.infradead.org
+X-Gm-Message-State: AOJu0YzETPpvkO6iYRWQVvYzC0b83uYNlQ4NzHRmdEFjAQhNuk4zmhVu
+	0UU/Gvb+rqRvhAPu7xYPV05EBtmKxyrLpYPyiLCfCBLdfyOBTn57w9DwiaLGq5T7bUr5JOGSLVw
+	pV4qKNiO1wB5wjsQtW96ZRwY/hR6aSTaD853nHw==
+X-Gm-Gg: ASbGncuVuj+RpC4LSOwsnX7Nsbs8gSOtxJM69Lw5N8/PkMWo7E1VOVbbQ2pgCHNhRo6
+	skIPQ6/oeq524X4p9suJCG8iH3glIW7NhefSPfEU3BBOJGSwR/7mFY4qcWx88NyhvB0ewemsQ1T
+	+s2ZVnNCYXR5fxBDsH0huuPEgcFnE=
+X-Google-Smtp-Source: AGHT+IGuuSb2kyra+w2zQGcM5KZ+95CLnIjAJJ+ZAGPbM9ApbFO7sbm4a8zwJjSrMRu7/2gU0ViAtYbSOKTRdRXJ4YY=
+X-Received: by 2002:a05:690c:4c11:b0:702:5689:356e with SMTP id
+ 00721157ae682-703e1546003mr46207307b3.12.1743763029893; Fri, 04 Apr 2025
+ 03:37:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org> <20250403-dt-cpu-schema-v1-9-076be7171a85@kernel.org>
-In-Reply-To: <20250403-dt-cpu-schema-v1-9-076be7171a85@kernel.org>
+References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org> <20250403-dt-cpu-schema-v1-18-076be7171a85@kernel.org>
+In-Reply-To: <20250403-dt-cpu-schema-v1-18-076be7171a85@kernel.org>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 4 Apr 2025 12:30:59 +0200
-X-Gm-Features: AQ5f1JoO4h1zt0Jv8N6Q3VB80QU6oNypKSnO1edlCmwT1znvOfAf3BOWzm_IC6U
-Message-ID: <CAPDyKFoEEp8AZ7aJ8-wwp8=n+T4gbij15oYaCNhF1Bd-E1nMbg@mail.gmail.com>
-Subject: Re: [PATCH 09/19] arm: dts: qcom: sdx55/sdx65: Fix CPU power-domain-names
+Date: Fri, 4 Apr 2025 12:36:33 +0200
+X-Gm-Features: AQ5f1JqCiMQtdQdQn1tCIXwltI0szojsJGdKxwputYjFQK19pJwwJrC7p_ihypo
+Message-ID: <CAPDyKFrFRrPVJ_t0JrAE1VTbS02hwr=L-EHtqb7CQiWzB1MnQg@mail.gmail.com>
+Subject: Re: [PATCH 18/19] dt-bindings: arm/cpus: Add power-domains constraints
 To: "Rob Herring (Arm)" <robh@kernel.org>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
@@ -98,8 +98,8 @@ Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 	imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
 	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250404_033148_271276_0778D636 
-X-CRM114-Status: GOOD (  18.87  )
+X-CRM114-CacheID: sfid-20250404_033711_001655_168B0161 
+X-CRM114-Status: GOOD (  16.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,68 +116,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 4 Apr 2025 at 05:02, Rob Herring (Arm) <robh@kernel.org> wrote:
+On Fri, 4 Apr 2025 at 05:06, Rob Herring (Arm) <robh@kernel.org> wrote:
 >
-> "rpmhpd" is not documented nor used anywhere. As the enable-method is
-> "psci" use "psci" for the power-domain name.
+> The "power-domains" and "power-domains-names" properties are missing any
+> constraints. Add the constraints and drop the generic descriptions.
 >
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 2 +-
->  arch/arm/boot/dts/qcom/qcom-sdx65.dtsi | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/arm/cpus.yaml | 8 ++------
+>  1 file changed, 2 insertions(+), 6 deletions(-)
 >
-> diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-> index 39530eb580ea..64d9858b4248 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-> @@ -57,7 +57,7 @@ cpu0: cpu@0 {
->                         enable-method = "psci";
->                         clocks = <&apcs>;
->                         power-domains = <&rpmhpd SDX55_CX>;
-> -                       power-domain-names = "rpmhpd";
-> +                       power-domain-names = "psci";
+> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+> index 6f74ebfd38df..5bd5822db8af 100644
+> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+> @@ -313,19 +313,15 @@ properties:
+>      maxItems: 1
+>
+>    power-domains:
+> -    description:
+> -      List of phandles and PM domain specifiers, as defined by bindings of the
+> -      PM domain provider (see also ../power_domain.txt).
+> +    maxItems: 1
 
-As I understand it, this isn't for cpu-power-mgmt but for
-cpu-performance-scaling.
+There are more than one in some cases. The most is probably three, I think.
 
-I have been thinking of adding a common power-domain-name for this,
-but never reached to do it. I think the last one we added was the
-Airoha SoC [1] which uses "perf", which seems to be the most common
-one. Still I don't see that being documented.
-
->                         operating-points-v2 = <&cpu_opp_table>;
->                 };
->         };
-> diff --git a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-> index 6b23ee676c9e..bfd04e53c5a8 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-> @@ -58,7 +58,7 @@ cpu0: cpu@0 {
->                         enable-method = "psci";
->                         clocks = <&apcs>;
->                         power-domains = <&rpmhpd SDX65_CX_AO>;
-> -                       power-domain-names = "rpmhpd";
-> +                       power-domain-names = "psci";
-
-Ditto.
-
->                         operating-points-v2 = <&cpu_opp_table>;
->                 };
->         };
+>
+>    power-domain-names:
+>      description:
+> -      A list of power domain name strings sorted in the same order as the
+> -      power-domains property.
+> -
+>        For PSCI based platforms, the name corresponding to the index of the PSCI
+>        PM domain provider, must be "psci". For SCMI based platforms, the name
+>        corresponding to the index of an SCMI performance domain provider, must be
+>        "perf".
+> +    enum: [ psci, perf, cpr ]
+>
+>    resets:
+>      maxItems: 1
 >
 > --
 > 2.47.2
 >
 >
 
+Other than above, feel free to add:
+
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+
 Kind regards
 Uffe
-
-[1]
-drivers/cpufreq/airoha-cpufreq.c
-Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
-drivers/pmdomain/mediatek/airoha-cpu-pmdomain.c
 
 _______________________________________________
 linux-amlogic mailing list
