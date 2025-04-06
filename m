@@ -4,104 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E0AEC36010
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Apr 2025 14:42:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D659C36002
+	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Apr 2025 20:33:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=f8Y2rC5INnMfo0z+n7oNwcGMICMHjXCkl+rt4+uRvYs=; b=HYTXS1qdfv7IG8
-	EJofwWCQ8jn029CWQ+lxbWIRYj4iTdvm+Y5YPVbwTIfTzDe/lAHxxpgwMaH7rb0DuqkQfoMxBajwf
-	dvcWGPhf7b2ZM3nRA4FDKzYRK8YhIII9lTf01DkHHsaNsTADmFSIn8Ck78te2JGctH9R8hmp8m+nr
-	MVWMAROIxAHs9nTYE8Es15kl/ECO3QNN3/LAkz5pUd2a6/c/jr3UHbnDhFB95VqnNoYYoZ1wum/YA
-	JqwMf6FV0xl9edYeWMUvGMN3iacGSuuqzHMJpCnaYpd2O7FF43kFlJGmNx13HQhThraKBBqhRMDZy
-	u8sRmURwyXZqtskLbY4g==;
+	List-Owner; bh=kHyOUcdCUlnT6cXnp6MARGPxPs4FeilhStvlWGJOwb0=; b=xDQsEk2tfmOQTc
+	sr0broxxKNfvG7vkLRcxaZgnz1Sb8EWTyQbiHwjXzisT5T5S9J2GCkYF/NPyB5w3UosDje6t8zuFG
+	rnfa9kOLuFsa60tQXERCNR6CjADAGq5ri+YX6YihvjsqIOSRLzDINtPjDYD7VH7Zrh7wHtnejoEn/
+	hGt/4kH/eZDjMeI1/nm2E0KQ3UefQ104pGKyY00nbI3IH3is3asDjx3hleMNqz0e1Ec9ul+RIvA0Z
+	rzs+Psq0xZJ+1NioHsRF5T5ns5UV9+QCwYfLhggciT0SmyJi4KbX6/Et39R4jvIfmFubVvnu0IkGy
+	XUw5ajAPm/IBKX/D2P0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u14jF-0000000E512-2zmo;
-	Sat, 05 Apr 2025 14:42:37 +0000
-Received: from mout02.posteo.de ([185.67.36.66])
+	id 1u1WgK-0000000FmUh-3oje;
+	Sun, 06 Apr 2025 20:33:28 +0000
+Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u14jC-0000000E4xK-3nJX
-	for linux-amlogic@lists.infradead.org;
-	Sat, 05 Apr 2025 14:42:36 +0000
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 1C50C240103
-	for <linux-amlogic@lists.infradead.org>; Sat,  5 Apr 2025 16:42:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
-	t=1743864149; bh=XfnEVi3ovC/zw6g3a+nScy1RtngEkEo5Aoq+dlPJPpk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:
-	 Content-Transfer-Encoding:Content-Type:Autocrypt:OpenPGP:From;
-	b=bRlW4EuBgLbc/jsNHZ5F3N0Sbs0CvK78rZhhhEhFCKqaJm4AXeCP1eWWCbQ0oJaiR
-	 Hfy47+nBka6NZihRmk2UKn9kw3G/8E1j/cnVv7l9kwGKm92znKHUyDr2Hw0j7qEorl
-	 Dz7MJz0RG/jxDlhuPw+zV+461Tv+dycYeseZRxC5cqHaZDrShmLu3Kf11cbLmBRQKi
-	 bpoQfor80eyOVU2QAjUUMU+jgscSpWhu27ywfurWH3I1fDe8xmzcEbbJgjz5jFd3dF
-	 UUnOvqHt+boU80ZU9zcqgpKNry75+8vCXg+f3NWPNRDJtqlGdEGuZJMT79WHXVuXN4
-	 Q/wErnC708HhA==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4ZVJ8s527hz9rxK;
-	Sat,  5 Apr 2025 16:42:21 +0200 (CEST)
-From: Alexander Reimelt <alexander.reimelt@posteo.de>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- "Rob Herring (Arm)" <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Vincenzo Frascino <vincenzo.frascino@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
- Conor Dooley <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
- imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 07/19] arm64: dts: qcom: msm8992-lg-h815: Fix CPU node
- "enable-method" property dependencies
-Date: Sat, 05 Apr 2025 14:42:21 +0000
-Message-ID: <4999945.OV4Wx5bFTl@stinkpad>
-In-Reply-To: <d3592f32-e29c-4b40-b045-7267795a9617@oss.qualcomm.com>
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <470e2155-7145-44ab-9d6d-117a2d98d7f8@oss.qualcomm.com>
- <d3592f32-e29c-4b40-b045-7267795a9617@oss.qualcomm.com>
+	id 1u1WeW-0000000FmM4-02lF;
+	Sun, 06 Apr 2025 20:31:37 +0000
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-22409077c06so45057985ad.1;
+        Sun, 06 Apr 2025 13:31:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1743971495; x=1744576295; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+JgDkSkEEcDLTsZdbQJiXeVweECmbECSQZoVfGZG0Ts=;
+        b=NDR/aZrngw5aR04IHLAkINC1bgA2F/3zFq1tcDL7oWd2gQURpVDz+pNJhKFWDJutFa
+         VuHqYM5Ta4hTVUWSa+th6dXr2igo167aYnysr1wu4Htx3mAdwBKY4Qw+ZicpLIdFb00e
+         JCtBipmO+pR1ZzozzNCc1jok7Jj9YCAwblXq/nvDtMlqIWIw5ETST/mdxF/HL+kOLq1a
+         dTZ4I3O3oaRO0xicVUXmBghhULlEmt3tjiI5/5fW70C6knNnHwjEzZKSecu93NsYlEpu
+         EgnktFUy4a8C+i+9W6m7qab/nvCDR4eAeaoFsqFENZ6/kAVN+LY4/EJgZaJ0My2HJ4b/
+         /9bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743971495; x=1744576295;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+JgDkSkEEcDLTsZdbQJiXeVweECmbECSQZoVfGZG0Ts=;
+        b=GOSpfQg1DPKnCMge6Xa5fwpQHjdpD9RbTrDPK2bnrDYMCo8nSbpp34nb4euTT1lRdk
+         oxxYDofaA8qj8NZFdhV0miw5QrEyYrkn1UXc/gdXS5gs7iHRBzLnn4mVtX0GP6/B0sEJ
+         btHH5nZyecaJLJ90WQEyabJUAZTGKNmuZbNDvTM8I+orM4Tgr3+gthdxW87oGLIkQsBT
+         nZa3DFTto3Ll9OOgC7sdUti4XHpXuyhg5JPfTf51jBNlNbPxkVn0FQjvLI4ZLt2MS+26
+         jEfDVPGjggKSgzAqDuRraKVnyl5JdJm7u1th7OccBBXzJsKQHcKnV0A2ZDo/jgjpCyX4
+         cyAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwOyBzoKjt7+BvMBjpZcSUZTRGJ0CSiOUSD6mlr2exYdJzilhcWBIOVsq8MOkoRZLpJYANk2JReHN8Dn3Y@lists.infradead.org, AJvYcCX7m/S93Pu5xmsAf15wWUNH+2TvhMH2BGH9MG/7i7D+7psYlZQIaYZLFitkqr0btqTXdpXZeUsj7MW8HidQFa8YFw==@lists.infradead.org
+X-Gm-Message-State: AOJu0YxNVQs/Jfkm3l+D9gn/X1LvvqQMum4Mk11CV+HQx5UQxFyGJja+
+	cbWkKzJViz7H4LMQzjGaStSIiV4KuEYG6+IshV1Fv5eeAgE5Ft4xhfbLWZArnSzvDdh11Dumi8f
+	DipXwzm9oK/ZBV3Ae7yZ6xyRTq3g=
+X-Gm-Gg: ASbGnctGjbeL9WbhNvNpdCjRdW+br/7AekYaqXDjxFxsOPaEGDwd6XfnlTLbPZIuior
+	bZ7fjk201CRU0w6WY/7D4x7GWEYNHe8vagKa7Ffh3cnJv7R2YcWwFfaAwJVZ1ZxraFdLSqs1OjX
+	uf6FT/DEilb47iZ93bpZPez8+8S+hzVSf6HYBo/P90
+X-Google-Smtp-Source: AGHT+IExK3rgstJKKKtoG9Q+crnhTsYrlTj7SKtkXlz2UX4GnZK54G+TsdpXNABvaY1e4/m9JtjPFbBfqcIQ/eTpRDo=
+X-Received: by 2002:a17:90b:5448:b0:2f6:be57:49d2 with SMTP id
+ 98e67ed59e1d1-306a6179aa1mr15876246a91.17.1743971494658; Sun, 06 Apr 2025
+ 13:31:34 -0700 (PDT)
 MIME-Version: 1.0
-Autocrypt: addr=alexander.reimelt@posteo.de;
-  keydata=xjMEZg0fSRYJKwYBBAHaRw8BAQdAIcaNTdj3NWDe5HQPCUs6oYyQygAJWP9LCzhr+C7RwMrNG2Fs
-  ZXhhbmRlci5yZWltZWx0QHBvc3Rlby5kZcKZBBMWCgBBFiEEM+Wy6sI/mP5S0zIFHqi3OKk8uRIF
-  AmYNH0kCGwMFCQWjo9cFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQHqi3OKk8uRJ8ogD9
-  EVg4zgfmC2SqXCgms6LETAzVX4CrAS8yMhyd7Md921cA/R8lhm9B96RYgA7MvFPFJb1T6JFY75Jg
-  QLXrtIE5llwHzjgEZg0fSRIKKwYBBAGXVQEFAQEHQBGDuxZLOTvppxyM4G18fSR6xzT0xkkPOia7
-  Bh6L1vAAAwEIB8J+BBgWCgAmFiEEM+Wy6sI/mP5S0zIFHqi3OKk8uRIFAmYNH0kCGwwFCQWjo9cA
-  CgkQHqi3OKk8uRIa1wD8CZDdCAKXstgXY96eeSSP7MecEF5TBdmWOiVgjlEIpoEA/RnGuDaj06B1
-  F51wyGAjYXSmn5qFoNHu3yXyLUkFz1ME
-OpenPGP: url=https://posteo.de/keys/alexander.reimelt@posteo.de.asc
+References: <20250404123949.362652-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250404123949.362652-1-krzysztof.kozlowski@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 6 Apr 2025 22:31:23 +0200
+X-Gm-Features: ATxdqUE1UrOGrlQFeIQJTFzofnatItzhBtfjuCm7JYGAi3H-c4k4SlKtOVMPYWc
+Message-ID: <CAFBinCDkH8dMUpzbHy2kM6ZtUOfjRmHQzHxSMFeZeSNzjivG-Q@mail.gmail.com>
+Subject: Re: [PATCH] firmware: meson: Do not enable MESON_SM by default during
+ compile testing
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250405_074235_224195_E0293B47 
-X-CRM114-Status: GOOD (  13.00  )
+X-CRM114-CacheID: sfid-20250406_133136_157272_2AB6812A 
+X-CRM114-Status: UNSURE (   6.35  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,33 +91,17 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> On 4/4/25 10:30 PM, Konrad Dybcio wrote:
-> > On 4/4/25 4:59 AM, Rob Herring (Arm) wrote:
-> >> The "spin-table" enable-method requires "cpu-release-addr" property,
-> >> so add a dummy entry. It is assumed the bootloader will fill in the
-> >> correct values.
-> >> 
-> >> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> >> ---
-> > 
-> > This looks good to me without knowing any better about the specifics
-> > of this device..
-> > 
-> > +Alexander - does the bootloader you use take care of this? Otherwise
-> > we can just do what Sony devices do and stop on removing the psci node
-
-I currently can't test this, but the bootloader (lk2nd) will set it.
-
-Alexander
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBBcHIgNCwgMjAyNSBhdCAyOjM54oCvUE0gS3J6eXN6dG9mIEtvemxvd3NraQo8a3J6
+eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPiB3cm90ZToKPgo+IEVuYWJsaW5nIHRoZSBjb21w
+aWxlIHRlc3Qgc2hvdWxkIG5vdCBjYXVzZSBhdXRvbWF0aWMgZW5hYmxpbmcgb2YgYWxsCj4gZHJp
+dmVycy4KPgo+IFNpZ25lZC1vZmYtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5r
+b3psb3dza2lAbGluYXJvLm9yZz4KUmV2aWV3ZWQtYnk6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1h
+cnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5jb20+CgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
+eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
