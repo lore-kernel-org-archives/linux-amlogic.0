@@ -4,87 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFED3C36010
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Apr 2025 16:27:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D17A4C36018
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Apr 2025 17:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jEFfJMFVOEuOHJRHGIxOMINE05fibBfpgS+BccTtcrk=; b=aEPv1k/1ShHB54
-	nOE3sQd9Vmn01hKnoy5ztnwwHhVMEbCb5uRsaXvfKVQ5TsuGnkO5KAz0zWpN7gbArlJHjjsGnWK3d
-	xktI9nIyFzET2VKKXkKbYrEFJWEZNfXEr8PIHq6O1Qenvgu4H7z2tTSE9CEAjwCfMbQvkSwQ8hx5X
-	4uKFq1fXzqAC6OFMKXMdgxu8UXFl3N7qTM8MD+8edHwlx7pL5R8XOgXooS/CSU5C6ei8LK8jXf5XP
-	f3xxHsdmFQG8lEOyOxEfXjI4+gNEOP6TWb57uYOXqMbn/BPguewJOIQ8zUmSJ5TqNaYcxUFr7bLD0
-	qkhrt8rdx6AQtxviOM9A==;
+	List-Owner; bh=V5lG/D7ZLg31DOfyXefxF6HIepDQkwf6k4nvPxFBZao=; b=fM2RxJMwuV+qL4
+	ldbgfyCqykNh5o31nRyXgipSLYrh6KLdqOI3XoDUCTOkeeGsWoJJ0Hp/9V4A250h1TOhr1yNJkSpe
+	tfXgIin9a50PUWquejnpMR5eqid/Qm4RPpVKFBO5SecXYM7Pe5x2Alza44aIk3OH9q9aOVU7g6G+X
+	74OVuOe9ZZ1WmcLJkTvWN+EuzvidC6C9nEoU0LEOdyOYa5u1Q/EuI5NgQb2JqeuUCoKrCqU3N+Gt7
+	AO/2yruzsHxxLL3/ghONXRdMbfnsqcjjoXLAUdX6kzMNCaDc6MGnxj5ZhuabKpQg8vA0s3IXdzCsB
+	dHNJzfJdhLpdWCue3S3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1pKD-00000001B0r-2ROG;
-	Mon, 07 Apr 2025 16:27:53 +0000
-Received: from relay9-d.mail.gandi.net ([217.70.183.199])
+	id 1u1ps4-00000001JR1-3CGH;
+	Mon, 07 Apr 2025 17:02:52 +0000
+Received: from mail-yw1-x1131.google.com ([2607:f8b0:4864:20::1131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1nPx-00000000ihC-3KIX;
-	Mon, 07 Apr 2025 14:25:43 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1AB77442B9;
-	Mon,  7 Apr 2025 14:25:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744035940;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ebgCpKb0JBnNyBzMJIKOLuwJd1meFjjT61fyzD63fBQ=;
-	b=lM7vJvKvBKYwHDIqNg9m3hu0vb4jPOkECMiAsXsESARSvZnpOjIAjGzvaM/5i+nq9n2SBO
-	YtBRrm574LAiOzMnAO9HrNMZCkEiSROPGlWsfHDWPfz7V3XlGeVEkBKILnpY1GccdFEMi8
-	sRYEC1xRJvmvyR14c6t/p5Qf/OjP2RRZLItT+jnl8JtWHtkU+g+ofusmSAsKDsQwH4/BCi
-	a7nm6y0DFtMvOvar/IHOpkQaeTruncyAbMr4BIib0lywGqvCIiy+subPgADw/GmsCc1woM
-	oXvYIgNRYfImNH0cyIFRsSap2efDKkLC44W4+1kLi78zA+IKX+2yFUMWLh2W3g==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Mon, 07 Apr 2025 16:23:46 +0200
-Subject: [PATCH 31/34] drm/bridge: imx8*-ldb: convert to
- devm_drm_bridge_alloc() API
+	id 1u1pBS-000000018ip-0pVm
+	for linux-amlogic@lists.infradead.org;
+	Mon, 07 Apr 2025 16:18:51 +0000
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-6ff2adbba3fso42154997b3.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 07 Apr 2025 09:18:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744042728; x=1744647528; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JX/CsfcApiydwjMPAUinCGMDhAd2IhhoMg3Tp/JQvVw=;
+        b=oJ9bRUWpFQqqHvzv2fX2C/ICShQuj6Clyx0W4eF1N2rYwyC+e8Fk8lpKdG/tVBGPtf
+         OJiK+iPj56y0RCAK+ob7dp6nXgZ3ltSWEDh622sbPnZaW84lyIk05UjurnzJqesLDk6d
+         vPLvhPEu3DfmmdWLQFRzfBhzLOwPJcwUIBXef3ZCi3Y4L3IWX4mbt6/k+LRSHorIiuyH
+         sIojEVW/yGadbSSSAewpb7BH0hGeO+gAWOcE6vzVubpYUZnNwgqS3js2RozcSBykoe0t
+         ZktL1uucYTAFcLCU2+yDPcPnzFwjomckUrKqEohCZZmQ8ixdbOV/ZWUaLY5wvivNoftN
+         QIZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744042728; x=1744647528;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JX/CsfcApiydwjMPAUinCGMDhAd2IhhoMg3Tp/JQvVw=;
+        b=XTVf2KrH+t4H03E6XSCcaU4hFzCkk22KlEeyn/EVIzpbGl42HMYEFbVa7oE3Omt7d4
+         DjLi3+n9XU6fwe3rosOolgwRlR2B7yF1EWe/JvPLGIAXgF3MxM2uPzj2+FwdrlAQSrBW
+         O20zFiB33qHYcBji/iCNmlcNB1WX3Uu8NfB02czC7tSgnFLGcFGWzRbWcWekiwwyylwB
+         fGiXJU8m15yzwIDMgQaDQCt+j+x5nYPisIr7IiI0qH3sVxOulN2uik7Lsm4tga95QEpa
+         nFOafFDdQfbRS6J8ha+k52fYL7C5NwwGnC0soOofIp5l/qphF9jPUrvCwIDB5e/RdP63
+         zgwA==
+X-Forwarded-Encrypted: i=1; AJvYcCVDfJR56DN1QVuNuWF9cz6NDtQdbigCO5+dDhIV8iGXIDYCIRWUvSlmFQpqmLHJgAnuPRaFMq361G0BSaWC@lists.infradead.org
+X-Gm-Message-State: AOJu0YxbNmmg886L30kQBt4m7AS+0YyIhfjXoHNKRsoFUSqYuRJ2q5vn
+	PnBhKD5Kl8tH97sjpiD9IuYXM9hy74mIPY2YdbG2GniuGXMs5Llek2YfrQXAyML0YKqxfChp9N0
+	YJQB7wasRxDT7UMoH3Oi13JBb8YrpZU56aI5hZg==
+X-Gm-Gg: ASbGncvJZIgC3uAya5AHOEZAvh6kJhWvFyriuEfxQyhHSs5UxCHkmkSRqtLcoBMrJ2R
+	tcg6qP2Mj8hGJRTMA7oJ3dfAJJciTu4hgZ2x20fnZWD3YwIaRLlzgJnc/wCmBUUeuVSE2FPtMZc
+	Ktghg+H/5irVx6erhLXNplwNSnPmg=
+X-Google-Smtp-Source: AGHT+IHKMX4Ob6QTTm80PFpdHe5OW6JJqpgeMbRrvzhWKoI17ZKitrO/G0aPEV6gKHvE71Av+QnfoRhbc/Xsg7bIvR4=
+X-Received: by 2002:a05:690c:640b:b0:6fb:1c5a:80ea with SMTP id
+ 00721157ae682-703f42fc252mr178401657b3.32.1744042728667; Mon, 07 Apr 2025
+ 09:18:48 -0700 (PDT)
 MIME-Version: 1.0
-Message-Id: <20250407-drm-bridge-convert-to-alloc-api-v1-31-42113ff8d9c0@bootlin.com>
-References: <20250407-drm-bridge-convert-to-alloc-api-v1-0-42113ff8d9c0@bootlin.com>
-In-Reply-To: <20250407-drm-bridge-convert-to-alloc-api-v1-0-42113ff8d9c0@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Jagan Teki <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Douglas Anderson <dianders@chromium.org>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Anusha Srivatsa <asrivats@redhat.com>, 
- Paul Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, 
- =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, asahi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-renesas-soc@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- freedreno@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Liu Ying <victor.liu@nxp.com>
-X-Mailer: b4 0.14.2
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtddtgedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepnfhutggrucevvghrvghsohhlihcuoehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeiieeuvdfftefgueduleehueetgffgjeeitedtteetkeeuueeuueekveevvdeuveenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedvieenucfrrghrrghmpehinhgvthepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgdphhgvlhhopegludelvddrudeikedrudejkedrjeehngdpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeegvddprhgtphhtthhopehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhigqdhmvgguihgrthgvkheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehshhgrfihnghhuoheskhgvr
- hhnvghlrdhorhhgpdhrtghpthhtohepjfhuihdrrfhusehgvghhvggrlhhthhgtrghrvgdrtghomhdprhgtphhtthhopehkvghrnhgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopehrfhhoshhssehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhm
-X-GND-Sasl: luca.ceresoli@bootlin.com
+References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+ <20250403-dt-cpu-schema-v1-18-076be7171a85@kernel.org> <CAPDyKFrFRrPVJ_t0JrAE1VTbS02hwr=L-EHtqb7CQiWzB1MnQg@mail.gmail.com>
+ <20250407-aloof-fox-of-relaxation-62963a@sudeepholla> <CAL_Jsq+6GG3j3_S94SYLwdGN7x8fjf5WuGL4uHfmgW-fFb=dKQ@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+6GG3j3_S94SYLwdGN7x8fjf5WuGL4uHfmgW-fFb=dKQ@mail.gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 7 Apr 2025 18:18:12 +0200
+X-Gm-Features: ATxdqUF_J2qNh9UdMVJ6Dqqt88GUYfovrcMe53xm4tXJ8-94vrSIdDD4MBgiib8
+Message-ID: <CAPDyKFpX7aqcme9c=TZ3JT_DssRatvXPFWSNN-3k5K8pUZvgeg@mail.gmail.com>
+Subject: Re: [PATCH 18/19] dt-bindings: arm/cpus: Add power-domains constraints
+To: Rob Herring <robh@kernel.org>
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Vincenzo Frascino <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+	zhouyanjie@wanyeetech.com, Conor Dooley <conor@kernel.org>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon <daniel.machon@microchip.com>, 
+	UNGLinuxDriver@microchip.com, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org, 
+	imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250407_072541_970761_668D0393 
-X-CRM114-Status: GOOD (  19.43  )
+X-CRM114-CacheID: sfid-20250407_091850_241723_4277C988 
+X-CRM114-Status: GOOD (  18.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,274 +115,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is the new API for allocating DRM bridges.
-
-These two drivers are tangled together by the ldb_add_bridge_helper(), so
-they are converted at once.
-
-They also have a similar design, each embedding an array of channels in
-their main struct, and each channel embeds a drm_bridge. This prevents
-dynamic, refcount-based deallocation of the bridges.
-
-To make the new, dynamic bridge allocation possible:
-
- * change the array of channels into an array of channel pointers
- * allocate each channel using devm_drm_bridge_alloc()
- * adapt ldb_add_bridge_helper() to not set the funcs pointer
-   (now done by devm_drm_bridge_alloc())
- * adapt the code wherever using the channels
-
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
----
-
-Cc: Liu Ying <victor.liu@nxp.com>
----
- drivers/gpu/drm/bridge/imx/imx-ldb-helper.c |  4 +---
- drivers/gpu/drm/bridge/imx/imx-ldb-helper.h |  3 +--
- drivers/gpu/drm/bridge/imx/imx8qm-ldb.c     | 32 ++++++++++++++++++-----------
- drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c    | 20 ++++++++++++------
- 4 files changed, 36 insertions(+), 23 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
-index 61347f6ec33d906264f7e06902b0d915d263f3f8..6149ba141a389a04b3c347a67f13e049328c07ff 100644
---- a/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
-+++ b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
-@@ -190,8 +190,7 @@ int ldb_find_next_bridge_helper(struct ldb *ldb)
- }
- EXPORT_SYMBOL_GPL(ldb_find_next_bridge_helper);
- 
--void ldb_add_bridge_helper(struct ldb *ldb,
--			   const struct drm_bridge_funcs *bridge_funcs)
-+void ldb_add_bridge_helper(struct ldb *ldb)
- {
- 	struct ldb_channel *ldb_ch;
- 	int i;
-@@ -203,7 +202,6 @@ void ldb_add_bridge_helper(struct ldb *ldb,
- 			continue;
- 
- 		ldb_ch->bridge.driver_private = ldb_ch;
--		ldb_ch->bridge.funcs = bridge_funcs;
- 		ldb_ch->bridge.of_node = ldb_ch->np;
- 
- 		drm_bridge_add(&ldb_ch->bridge);
-diff --git a/drivers/gpu/drm/bridge/imx/imx-ldb-helper.h b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.h
-index 38a8a54b37a60e1be942aaa60b1d1bc375a7a131..de187e3269996d284ecad451dd857271056812e1 100644
---- a/drivers/gpu/drm/bridge/imx/imx-ldb-helper.h
-+++ b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.h
-@@ -88,8 +88,7 @@ int ldb_init_helper(struct ldb *ldb);
- 
- int ldb_find_next_bridge_helper(struct ldb *ldb);
- 
--void ldb_add_bridge_helper(struct ldb *ldb,
--			   const struct drm_bridge_funcs *bridge_funcs);
-+void ldb_add_bridge_helper(struct ldb *ldb);
- 
- void ldb_remove_bridge_helper(struct ldb *ldb);
- 
-diff --git a/drivers/gpu/drm/bridge/imx/imx8qm-ldb.c b/drivers/gpu/drm/bridge/imx/imx8qm-ldb.c
-index 524aac751359f5cd377807508cbeeb6a597529e1..47aa65938e6a521cd6f111535f6feb3920a0dfb7 100644
---- a/drivers/gpu/drm/bridge/imx/imx8qm-ldb.c
-+++ b/drivers/gpu/drm/bridge/imx/imx8qm-ldb.c
-@@ -47,7 +47,7 @@ struct imx8qm_ldb_channel {
- struct imx8qm_ldb {
- 	struct ldb base;
- 	struct device *dev;
--	struct imx8qm_ldb_channel channel[MAX_LDB_CHAN_NUM];
-+	struct imx8qm_ldb_channel *channel[MAX_LDB_CHAN_NUM];
- 	struct clk *clk_pixel;
- 	struct clk *clk_bypass;
- 	int active_chno;
-@@ -107,7 +107,7 @@ static int imx8qm_ldb_bridge_atomic_check(struct drm_bridge *bridge,
- 
- 	if (is_split) {
- 		imx8qm_ldb_ch =
--			&imx8qm_ldb->channel[imx8qm_ldb->active_chno ^ 1];
-+			imx8qm_ldb->channel[imx8qm_ldb->active_chno ^ 1];
- 		imx8qm_ldb_set_phy_cfg(imx8qm_ldb, di_clk, is_split, true,
- 				       phy_cfg);
- 		ret = phy_validate(imx8qm_ldb_ch->phy, PHY_MODE_LVDS, 0, &opts);
-@@ -158,7 +158,7 @@ imx8qm_ldb_bridge_mode_set(struct drm_bridge *bridge,
- 
- 	if (is_split) {
- 		imx8qm_ldb_ch =
--			&imx8qm_ldb->channel[imx8qm_ldb->active_chno ^ 1];
-+			imx8qm_ldb->channel[imx8qm_ldb->active_chno ^ 1];
- 		imx8qm_ldb_set_phy_cfg(imx8qm_ldb, di_clk, is_split, true,
- 				       phy_cfg);
- 		ret = phy_configure(imx8qm_ldb_ch->phy, &opts);
-@@ -226,13 +226,13 @@ static void imx8qm_ldb_bridge_atomic_enable(struct drm_bridge *bridge,
- 	}
- 
- 	if (is_split) {
--		ret = phy_power_on(imx8qm_ldb->channel[0].phy);
-+		ret = phy_power_on(imx8qm_ldb->channel[0]->phy);
- 		if (ret)
- 			DRM_DEV_ERROR(dev,
- 				      "failed to power on channel0 PHY: %d\n",
- 				      ret);
- 
--		ret = phy_power_on(imx8qm_ldb->channel[1].phy);
-+		ret = phy_power_on(imx8qm_ldb->channel[1]->phy);
- 		if (ret)
- 			DRM_DEV_ERROR(dev,
- 				      "failed to power on channel1 PHY: %d\n",
-@@ -261,12 +261,12 @@ static void imx8qm_ldb_bridge_atomic_disable(struct drm_bridge *bridge,
- 	ldb_bridge_disable_helper(bridge);
- 
- 	if (is_split) {
--		ret = phy_power_off(imx8qm_ldb->channel[0].phy);
-+		ret = phy_power_off(imx8qm_ldb->channel[0]->phy);
- 		if (ret)
- 			DRM_DEV_ERROR(dev,
- 				      "failed to power off channel0 PHY: %d\n",
- 				      ret);
--		ret = phy_power_off(imx8qm_ldb->channel[1].phy);
-+		ret = phy_power_off(imx8qm_ldb->channel[1]->phy);
- 		if (ret)
- 			DRM_DEV_ERROR(dev,
- 				      "failed to power off channel1 PHY: %d\n",
-@@ -412,7 +412,7 @@ static int imx8qm_ldb_get_phy(struct imx8qm_ldb *imx8qm_ldb)
- 	int i, ret;
- 
- 	for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
--		imx8qm_ldb_ch = &imx8qm_ldb->channel[i];
-+		imx8qm_ldb_ch = imx8qm_ldb->channel[i];
- 		ldb_ch = &imx8qm_ldb_ch->base;
- 
- 		if (!ldb_ch->is_available)
-@@ -448,6 +448,14 @@ static int imx8qm_ldb_probe(struct platform_device *pdev)
- 	if (!imx8qm_ldb)
- 		return -ENOMEM;
- 
-+	for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
-+		imx8qm_ldb->channel[i] =
-+			devm_drm_bridge_alloc(dev, struct imx8qm_ldb_channel, base.bridge,
-+					      &imx8qm_ldb_bridge_funcs);
-+		if (IS_ERR(imx8qm_ldb->channel[i]))
-+			return PTR_ERR(imx8qm_ldb->channel[i]);
-+	}
-+
- 	imx8qm_ldb->clk_pixel = devm_clk_get(dev, "pixel");
- 	if (IS_ERR(imx8qm_ldb->clk_pixel)) {
- 		ret = PTR_ERR(imx8qm_ldb->clk_pixel);
-@@ -473,7 +481,7 @@ static int imx8qm_ldb_probe(struct platform_device *pdev)
- 	ldb->ctrl_reg = 0xe0;
- 
- 	for (i = 0; i < MAX_LDB_CHAN_NUM; i++)
--		ldb->channel[i] = &imx8qm_ldb->channel[i].base;
-+		ldb->channel[i] = &imx8qm_ldb->channel[i]->base;
- 
- 	ret = ldb_init_helper(ldb);
- 	if (ret)
-@@ -499,12 +507,12 @@ static int imx8qm_ldb_probe(struct platform_device *pdev)
- 		}
- 
- 		imx8qm_ldb->active_chno = 0;
--		imx8qm_ldb_ch = &imx8qm_ldb->channel[0];
-+		imx8qm_ldb_ch = imx8qm_ldb->channel[0];
- 		ldb_ch = &imx8qm_ldb_ch->base;
- 		ldb_ch->link_type = pixel_order;
- 	} else {
- 		for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
--			imx8qm_ldb_ch = &imx8qm_ldb->channel[i];
-+			imx8qm_ldb_ch = imx8qm_ldb->channel[i];
- 			ldb_ch = &imx8qm_ldb_ch->base;
- 
- 			if (ldb_ch->is_available) {
-@@ -525,7 +533,7 @@ static int imx8qm_ldb_probe(struct platform_device *pdev)
- 	platform_set_drvdata(pdev, imx8qm_ldb);
- 	pm_runtime_enable(dev);
- 
--	ldb_add_bridge_helper(ldb, &imx8qm_ldb_bridge_funcs);
-+	ldb_add_bridge_helper(ldb);
- 
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c b/drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c
-index d4f3492ca5abf65a3327d7fa62214832946eb218..5d272916e200980f7253a032701dcd990e0e34f2 100644
---- a/drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c
-+++ b/drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c
-@@ -44,7 +44,7 @@ struct imx8qxp_ldb_channel {
- struct imx8qxp_ldb {
- 	struct ldb base;
- 	struct device *dev;
--	struct imx8qxp_ldb_channel channel[MAX_LDB_CHAN_NUM];
-+	struct imx8qxp_ldb_channel *channel[MAX_LDB_CHAN_NUM];
- 	struct clk *clk_pixel;
- 	struct clk *clk_bypass;
- 	struct drm_bridge *companion;
-@@ -410,7 +410,7 @@ static const struct drm_bridge_funcs imx8qxp_ldb_bridge_funcs = {
- static int imx8qxp_ldb_set_di_id(struct imx8qxp_ldb *imx8qxp_ldb)
- {
- 	struct imx8qxp_ldb_channel *imx8qxp_ldb_ch =
--			 &imx8qxp_ldb->channel[imx8qxp_ldb->active_chno];
-+			 imx8qxp_ldb->channel[imx8qxp_ldb->active_chno];
- 	struct ldb_channel *ldb_ch = &imx8qxp_ldb_ch->base;
- 	struct device_node *ep, *remote;
- 	struct device *dev = imx8qxp_ldb->dev;
-@@ -456,7 +456,7 @@ imx8qxp_ldb_check_chno_and_dual_link(struct ldb_channel *ldb_ch, int link)
- static int imx8qxp_ldb_parse_dt_companion(struct imx8qxp_ldb *imx8qxp_ldb)
- {
- 	struct imx8qxp_ldb_channel *imx8qxp_ldb_ch =
--			 &imx8qxp_ldb->channel[imx8qxp_ldb->active_chno];
-+			 imx8qxp_ldb->channel[imx8qxp_ldb->active_chno];
- 	struct ldb_channel *ldb_ch = &imx8qxp_ldb_ch->base;
- 	struct ldb_channel *companion_ldb_ch;
- 	struct device_node *companion;
-@@ -586,6 +586,14 @@ static int imx8qxp_ldb_probe(struct platform_device *pdev)
- 	if (!imx8qxp_ldb)
- 		return -ENOMEM;
- 
-+	for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
-+		imx8qxp_ldb->channel[i] =
-+			devm_drm_bridge_alloc(dev, struct imx8qxp_ldb_channel, base.bridge,
-+					      &imx8qxp_ldb_bridge_funcs);
-+		if (IS_ERR(imx8qxp_ldb->channel[i]))
-+			return PTR_ERR(imx8qxp_ldb->channel[i]);
-+	}
-+
- 	imx8qxp_ldb->clk_pixel = devm_clk_get(dev, "pixel");
- 	if (IS_ERR(imx8qxp_ldb->clk_pixel)) {
- 		ret = PTR_ERR(imx8qxp_ldb->clk_pixel);
-@@ -611,7 +619,7 @@ static int imx8qxp_ldb_probe(struct platform_device *pdev)
- 	ldb->ctrl_reg = 0xe0;
- 
- 	for (i = 0; i < MAX_LDB_CHAN_NUM; i++)
--		ldb->channel[i] = &imx8qxp_ldb->channel[i].base;
-+		ldb->channel[i] = &imx8qxp_ldb->channel[i]->base;
- 
- 	ret = ldb_init_helper(ldb);
- 	if (ret)
-@@ -627,7 +635,7 @@ static int imx8qxp_ldb_probe(struct platform_device *pdev)
- 	}
- 
- 	for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
--		imx8qxp_ldb_ch = &imx8qxp_ldb->channel[i];
-+		imx8qxp_ldb_ch = imx8qxp_ldb->channel[i];
- 		ldb_ch = &imx8qxp_ldb_ch->base;
- 
- 		if (ldb_ch->is_available) {
-@@ -660,7 +668,7 @@ static int imx8qxp_ldb_probe(struct platform_device *pdev)
- 	platform_set_drvdata(pdev, imx8qxp_ldb);
- 	pm_runtime_enable(dev);
- 
--	ldb_add_bridge_helper(ldb, &imx8qxp_ldb_bridge_funcs);
-+	ldb_add_bridge_helper(ldb);
- 
- 	return 0;
- }
-
--- 
-2.49.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gTW9uLCA3IEFwciAyMDI1IGF0IDE0OjQ5LCBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3Jn
+PiB3cm90ZToKPgo+IE9uIE1vbiwgQXByIDcsIDIwMjUgYXQgNzozMOKAr0FNIFN1ZGVlcCBIb2xs
+YSA8c3VkZWVwLmhvbGxhQGFybS5jb20+IHdyb3RlOgo+ID4KPiA+IE9uIEZyaSwgQXByIDA0LCAy
+MDI1IGF0IDEyOjM2OjMzUE0gKzAyMDAsIFVsZiBIYW5zc29uIHdyb3RlOgo+ID4gPiBPbiBGcmks
+IDQgQXByIDIwMjUgYXQgMDU6MDYsIFJvYiBIZXJyaW5nIChBcm0pIDxyb2JoQGtlcm5lbC5vcmc+
+IHdyb3RlOgo+ID4gPiA+Cj4gPiA+ID4gVGhlICJwb3dlci1kb21haW5zIiBhbmQgInBvd2VyLWRv
+bWFpbnMtbmFtZXMiIHByb3BlcnRpZXMgYXJlIG1pc3NpbmcgYW55Cj4gPiA+ID4gY29uc3RyYWlu
+dHMuIEFkZCB0aGUgY29uc3RyYWludHMgYW5kIGRyb3AgdGhlIGdlbmVyaWMgZGVzY3JpcHRpb25z
+Lgo+ID4gPiA+Cj4gPiA+ID4gU2lnbmVkLW9mZi1ieTogUm9iIEhlcnJpbmcgKEFybSkgPHJvYmhA
+a2VybmVsLm9yZz4KPiA+ID4gPiAtLS0KPiA+ID4gPiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL2FybS9jcHVzLnlhbWwgfCA4ICsrLS0tLS0tCj4gPiA+ID4gIDEgZmlsZSBjaGFu
+Z2VkLCAyIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCj4gPiA+ID4KPiA+ID4gPiBkaWZm
+IC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9jcHVzLnlhbWwg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2NwdXMueWFtbAo+ID4gPiA+
+IGluZGV4IDZmNzRlYmZkMzhkZi4uNWJkNTgyMmRiOGFmIDEwMDY0NAo+ID4gPiA+IC0tLSBhL0Rv
+Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vY3B1cy55YW1sCj4gPiA+ID4gKysr
+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9jcHVzLnlhbWwKPiA+ID4g
+PiBAQCAtMzEzLDE5ICszMTMsMTUgQEAgcHJvcGVydGllczoKPiA+ID4gPiAgICAgIG1heEl0ZW1z
+OiAxCj4gPiA+ID4KPiA+ID4gPiAgICBwb3dlci1kb21haW5zOgo+ID4gPiA+IC0gICAgZGVzY3Jp
+cHRpb246Cj4gPiA+ID4gLSAgICAgIExpc3Qgb2YgcGhhbmRsZXMgYW5kIFBNIGRvbWFpbiBzcGVj
+aWZpZXJzLCBhcyBkZWZpbmVkIGJ5IGJpbmRpbmdzIG9mIHRoZQo+ID4gPiA+IC0gICAgICBQTSBk
+b21haW4gcHJvdmlkZXIgKHNlZSBhbHNvIC4uL3Bvd2VyX2RvbWFpbi50eHQpLgo+ID4gPiA+ICsg
+ICAgbWF4SXRlbXM6IDEKPiA+ID4KPiA+ID4gVGhlcmUgYXJlIG1vcmUgdGhhbiBvbmUgaW4gc29t
+ZSBjYXNlcy4gVGhlIG1vc3QgaXMgcHJvYmFibHkgdGhyZWUsIEkgdGhpbmsuCj4gPiA+Cj4gPgo+
+ID4gKzEsIHRoZXJlIGFyZSB1c2VycyB1c2luZyAicGVyZiIgYW5kICJwc2NpIiB0b2dldGhlciBu
+b3cuCj4KPiBXaGVyZT8gVGhhdCdzIGp1c3Qgd3JvbmcuCgpGb3IgU0NNSSBmb3IgZXhhbXBsZSwg
+YnV0IG90aGVyIFFDIHBsYXRmb3JtcyB1c2UgaXQgdG9vLgoKInBzY2kiIGlzIGZvciBDUFUgcG93
+ZXIgbWFuYWdlbWVudCAtIHdlIGRpc2N1c3NlZCB0aGUgYmFkIG5hbWUgInBzY2kiCmJlZm9yZSwg
+YnV0IGFzIGl0J3MgYWxyZWFkeSB3aWRlbHkgZGVwbG95ZWQgbWF5YmUgbGVhdmUgaXQgYXMgaXM/
+IEEKYmV0dGVyIG5hbWUgd291bGQgYmUgInBvd2VyIiwgb3Igc29tZXRoaW5nIGFsb25nIHRob3Nl
+IGxpbmVzLgoicGVyZiIgaXMgZm9yIENQVSBwZXJmb3JtYW5jZSBzY2FsaW5nLgoKS2luZCByZWdh
+cmRzClVmZmUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFk
+Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
+bG9naWMK
