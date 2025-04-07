@@ -4,82 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4895C36010
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Apr 2025 09:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AEC6C3601E
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Apr 2025 12:44:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ghQBaScfqFur9XFtlqnBNIPgxGwhIHH32m+w5HpLTyI=; b=StA9ApsKusFx9N
-	XGv2abKfVPBBISwYn57Y5PCLxelC+EdPQWghwBhgWpcrY9zuJ97bOx/ugAVcVeKZzjj42ZLS66pOP
-	/fXvToES4HzHWj4qxUYrSYMX9CwRY/dUSkoSUpoaTEI2pAOWGeWh0p2FuA4hSOp6FC8vw/a16MhNF
-	/K3503lMKCYZ+S7Y7uhGOOU/ILJVobMinVw655scWRUhonEx5UtkhR3MdZmAA2ohdIJN3yJlAb7q2
-	yTQzKa2MPrvRbjko7MWYYQxy50QUsgJsji3cRBIJOlhI2prsvKWig7yXFk3h6NjLfnLtyjsOOwvNX
-	6/OA+BlkJRJ+eGG1Vh2Q==;
+	List-Owner; bh=cvLA4a4cl6cr9rs9Ox0N2SKKH6wWyOlGNfTzXPlAMBI=; b=bn3TCBf2JEOSxf
+	t8UIJjIX7H5L5HgxO4z8+ZjQbg7L0xqZyoJfWPyq+cvZ1yw0bPYP4H3htxsRqdMjSOGtOzGuasQRR
+	uYc+XlkhpZ1IXSCUr6eH0NZ6dd7eDliXkb+E/SDLzlby/AGw9K8XC4rogrx2vaBbTJsJZKfi7NpGm
+	cEDKujNQ+EOteWbpL/OBLnEo5dbk7V00EcAdJRuaaOyaff6XG8vLeKOzFEsnxkM0NFk4VtSshZbZg
+	NRJEKsgWct8wizzZQj45Pi8HYIRTTv5ce3usyTGqWKeHFfy1kYJSI9FsbU5Fid/BDTW4uhuKjaGDE
+	A9u+XFuwDxfYY2MLIhtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1ivy-0000000HDWb-3g4l;
-	Mon, 07 Apr 2025 09:38:26 +0000
-Received: from mail-qt1-x833.google.com ([2607:f8b0:4864:20::833])
-	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1isr-0000000HDAA-1G1L;
-	Mon, 07 Apr 2025 09:35:14 +0000
-Received: by mail-qt1-x833.google.com with SMTP id d75a77b69052e-477296dce76so37063211cf.3;
-        Mon, 07 Apr 2025 02:35:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744018512; x=1744623312; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=g172mJCzRlzwf53qGkvLIRDbowmzXfpFnIIJlJG7WRw=;
-        b=DZQLqpR/qJJVeXCpIuEF/r7GmjNmPjpx6qL1J0u7GQyizZ0Jwjzvj+USRDHRDHuG92
-         6SukX3ljyQW1wAyW4V6itqqWKh6P2I1gYTUmTkBXJRoNL0azG+px61Ukod5oeKB/M6RF
-         vFkLNtz/fWZvq6KbMKd+iLfXmxHmhxs7/I2aDUc35UgXymvtmqVWBmwZbQy1YD9M+Lf+
-         p2+5afC0VM2AUwCs1kEKSC2SdICTtaiG5tQqcVrUhMupy7ib0i3POEd2meEh2ysocs7x
-         CVSKLvtCjD1ImUVaDAPwCmnIIi0JGxGevhiqCFuvB/XRWv7KVTr3kzRp0lhYKLKipJuq
-         jM2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744018512; x=1744623312;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=g172mJCzRlzwf53qGkvLIRDbowmzXfpFnIIJlJG7WRw=;
-        b=WXfe2g0PFNNqWtutJQiE8x0Y+BGCG0BxlT8E3hg2PBuEXXZFm0IYLV1ZhLnk6j0Pkk
-         mZvWiUvBlHFAG+DTb3d+CZo8hVzaPDH2UbqmqHBGnI9Qx+wGMAY8UWjhQGSK/Mi9gpF9
-         DLYAb01ArhhYPi+5Uu4Cnb3fkOrHBkXT6cygAzbIRmAPSk4RXLhs9HzULJK1WtMUyzW0
-         w9wVOvh+9zr3gzoX51xiDhdED8WJeBzCDVLB4cjo2iaVxrFY+y5vNozv80okHnmWHX0W
-         jQ5gpKbakcW9FFxcHQ0xTq8Dmq/20T4SgJUApZbcbA1aNt7SNk91DbUYmGDVypsoXb54
-         g9YA==
-X-Forwarded-Encrypted: i=1; AJvYcCVPNYb7OLHK6UZPHHBm3jPzxDLfYRyMC/aCfa9FP9/CkD4WKpaByT7058l44rW7wIwJZC4RHXKtgUjhrdRR4xc1@lists.infradead.org, AJvYcCWfsnQ1w+MkzEbdKn1ITrEcqarXAXnJSI8uYcEff0abCW7dxgteQvj8Q8cVGn/C+/p8XKH8JA8sRBvu@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyh4uSq7LRu78Wwk0zPAH7aGsNMqjPqe7vIw7hXXtaM2uJmizz2
-	TjZvn/pxMLo/4c5kzrmNjwbkV2rN74HSBkmHYmVDrXcXRfyJHxA935kPZHLRceb4pQOInuIoGZR
-	uUEmO091Od02ijjn9wJzGNrh6Py8=
-X-Gm-Gg: ASbGncuVZ9FN4h1VtdUWPpVmaf0h3NtYj0dIBxP5ZGoGlxbUmVmWYQYCQNRq0vLV6Ku
-	4mwepTM06Dp5o8Br6kFbuOF7XFBA8XIczIr7f9xx3A/tNK637UveYsmUo4GKS9Q74aKPpUqj10A
-	wuo2HC92CvznpF/ETyXobYaDp8Xw==
-X-Google-Smtp-Source: AGHT+IGhTrrSc6uVMmD7MMBQ7qTCrg2uDZuofOTM4+WVDylk/fH4UUQjWOWK0q8EfUy00jeuyFyYxrPKBAte+ZhzSKQ=
-X-Received: by 2002:a05:622a:1a0d:b0:476:8ee8:d8a2 with SMTP id
- d75a77b69052e-47930f77cecmr118271881cf.4.1744018511946; Mon, 07 Apr 2025
- 02:35:11 -0700 (PDT)
+	id 1u1lqL-00000000Kha-2VHk;
+	Mon, 07 Apr 2025 12:44:49 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u1lak-00000000F9M-1ZSZ;
+	Mon, 07 Apr 2025 12:28:43 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 602A7106F;
+	Mon,  7 Apr 2025 05:28:42 -0700 (PDT)
+Received: from bogus (unknown [10.57.41.33])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8566B3F694;
+	Mon,  7 Apr 2025 05:28:31 -0700 (PDT)
+Date: Mon, 7 Apr 2025 13:28:28 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Vincenzo Frascino <vincenzo.frascino@arm.com>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
+	Conor Dooley <conor@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-mips@vger.kernel.org, imx@lists.linux.dev,
+	linux-rockchip@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 14/19] dt-bindings: arm/cpus: Add schemas for
+ "enable-method" dependencies
+Message-ID: <20250407-shapeless-cordial-gazelle-db23ac@sudeepholla>
+References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+ <20250403-dt-cpu-schema-v1-14-076be7171a85@kernel.org>
 MIME-Version: 1.0
-References: <20250329190712.858349-1-martin.blumenstingl@googlemail.com> <20250329190712.858349-3-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20250329190712.858349-3-martin.blumenstingl@googlemail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 7 Apr 2025 15:04:49 +0530
-X-Gm-Features: ATxdqUFGuroWUppSQpVAV3779ZjDlCQcJ6dl21DBRUh7mRzwMlpd85_9x7QbSys
-Message-ID: <CANAwSgS5rpR6mbE0tHqx3Q8_KjOo3F3nAKQhAdxzOLvQ8-sk5g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] phy: amlogic: meson8b-usb2: Use the
- regmap_{clear,set}_bits helpers
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-phy@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kishon@kernel.org, vkoul@kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>
+Content-Disposition: inline
+In-Reply-To: <20250403-dt-cpu-schema-v1-14-076be7171a85@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250407_023513_335472_45714B76 
-X-CRM114-Status: UNSURE (   7.86  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250407_052842_454476_C009E5B6 
+X-CRM114-Status: GOOD (  10.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,21 +102,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+On Thu, Apr 03, 2025 at 09:59:35PM -0500, Rob Herring (Arm) wrote:
+> Replace the prose for properties dependent on specific "enable-method"
+> values with schemas defining the same requirements.
+> 
+> Both "qcom,acc" and "qcom,saw" properties appear to be required for any
+> of the Qualcomm enable-method values, so the schema is a bit simpler
+> than what the text said. The references to arm/msm/qcom,saw2.txt and
+> arm/msm/qcom,kpss-acc.txt are out of date, so just drop them.
+> 
 
-On Sun, 30 Mar 2025 at 00:48, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> These require less code, reduce the chance of typos and overall make the
-> intent clearer. No functional changes.
->
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
-Reviewed-by: Anand Moon <linux.amoon@gmail.com>
+For all the bindings changes(14-19/19,)
 
-Thanks
--Anand
+Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
+
+-- 
+Regards,
+Sudeep
 
 _______________________________________________
 linux-amlogic mailing list
