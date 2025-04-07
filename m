@@ -4,111 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10637C369A1
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Apr 2025 18:50:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2FF2C369A4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Apr 2025 18:50:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:Message-ID:In-Reply-To:Subject:cc:To:Date:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gvrRQvBJctRbLYqECx+uN70VSq4nCep5fMsVZHicCF0=; b=hXpnX4yWsnz7GkNTi3PcOb8JBK
-	QWcwJ+HpRJxCo2uXvRtXqpg4V1nezG+iXJabejNynWPAwtLgHdCf54xfi3fnujz2GdBlilkBL1efv
-	qrh35a13zTAmFD3eUtURm3qY6CL6uYswDr417nZEq5MIWa+xWBKTZHRTXn1OdynEro23p8hwPcaVT
-	R+3XbQ3FpbZYPvE9rhEkwJwemItUiLkDHK22uS+0e4hCFo7QSQ/Es+whpuQbInKMUOEAlkN569G/V
-	dDxXwLf0QVyh942G4ehMCRfFQ1wgUyeY5eC2Rc8KKWScr1s/Kr6WmmkLql59gIYDVYsrJ3ZUsroG0
-	Dc/AB2Jg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pQS9m0LRC/xGVv9qBNguizDq46RagEWTkqfqvHkRoPE=; b=dtFTTHTO03O8dW
+	FRZwKPRM52CelKb2B6w6bjV4UeDQPr/Jq4Py9BaBIDoiM2vzLQDlePaelLyjTQwVWeV3QJVSD1M2a
+	S8NeTaVy+vK7dq8h6N1RJe08JTTQcCBiAVGdvf/HXrVzzBEpbEz98OBzWKjnlAZuuAwdidVd1VhFF
+	CciT2CZgaCAYnyQM7reBpRIu3FI4YuFTlPP6lYUPWCmPnuTcrhFkuSdmnbsiYW+vfmfQIR3xI5Y/9
+	xxi53qnX0QIbx9IPevBftTBCHBsEBWmOdbCA8eyFpdljRTVkzdaC9gdn8PC0ig863WU5BVjUNDH7c
+	GxotPXSLcdJBL+8Cvqng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1rYa-00000001dGA-2hRE;
-	Mon, 07 Apr 2025 18:50:52 +0000
+	id 1u1rYd-00000001dM9-2Scn;
+	Mon, 07 Apr 2025 18:50:55 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1pd6-00000001Gov-1kYi;
-	Mon, 07 Apr 2025 16:47:24 +0000
+	id 1u1pgV-00000001HG2-2Lx1;
+	Mon, 07 Apr 2025 16:50:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:MIME-Version:References:
-	Message-ID:In-Reply-To:Subject:cc:To:Date:From:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=fcEmP8BWR9G6jF7SFswjkfMRfPbz6AuZJB2v6MIMGzY=; b=RDLa366e7pfEavfl0soKISCI4K
-	2DKfURBuxad42nrYy8swXY7tliKg0O4TXDzrYaTDfMmTr7EsVRZQ9ORzLtnSjTei3LApc8Nu2wvkd
-	L/lRRGtpi8Kebp3Ef+pXvZuu91eMMKS66bvmr1ID6MgU/MFItUFiapZicLiUBDo08CVQGqdpp5uk3
-	j4km0GiaM8HF7JzN+xrfogUFblT08spRSFWC9be+PABQKAjszKXZwYPGTuWKx+FC2Jc+UjBFlYwoI
-	t95pHJFJhqoheBWvMWI1z8JtEbACBKlHj7e60Phpg0I1jfrO2VdNYUobrbrY49tzB3kJ0KGCtcB6Y
-	S27u35Qg==;
-Received: from mgamail.intel.com ([198.175.65.16])
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:MIME-Version:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=6OrvsvEYA+XXB2xdTLTpIAwjv43X6JKiVZsB2NNpFGM=; b=SdsvFv6JTyqowC2RqDU4pOeOJL
+	/bZnRo43dmp+OU5D6lYdtC/AVXB8au06J684P2SiV5rQFB9ikUFzx/6WWZsXbbtTx0sRtKySuf5SU
+	kVwBa+zg7ZFU5iTpkMZOk5ymsDjjD4zjHaZIgCDtOOLlTfnylftNNU38y6n1Jn68m9KEHVBWBRi8i
+	Z4WnxHwKPNSt0S3/2eakTVvBut3G8zr88vYidRgMqd0d4AredKAKD3ObMQIC1I33bjfbk1Fn8t061
+	3Ij7QltmzYxHXac3ctDbDqFaOGaEJAVIEb26kanSCOekz/SLhCdPhngDv5nexC3odpl7kxpnKSOEl
+	N++4RJtA==;
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by desiato.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1pd3-000000084RE-0BO9;
-	Mon, 07 Apr 2025 16:47:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744044441; x=1775580441;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=d/9rF2v6gxz+aVjjloTd50bAqLAn569sdN/hKyUhniA=;
-  b=StNe33wtqmNTXyRn0mk9qeP1sByARAW2sZdHEto/aidbogWuI0Kt1Q3q
-   IOYSBUVG6bUHvDUbRhMqFMjKo7Yaocg+CzGrxarCzBhw7Tq5lXbRAhC4d
-   ZvZjGMfA0PsMTRM1vzUXGWvHwbZP//Mhp1l4y173vd1OBQtafs7WCkn/d
-   5VETtfELPESGZ9jV4QWuaPo34uwEDW2eDfakSlpJDq0k2mQFgK7zgj+eS
-   mb4ubfmVbO6xW3Y81KG3WppRsXDzIpy8YGVPVACIiaQamE2DnU6ywvW3y
-   QQQy/tkP4jZUpzzKezeljXwICHj4sv/hnmGefsEAzV22LvtX3HYbDBI9Q
-   Q==;
-X-CSE-ConnectionGUID: HViCMrgGQY6urprMpRR+2Q==
-X-CSE-MsgGUID: fIJTYMMXRNCl9h+Sabfv1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45533295"
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; 
-   d="scan'208";a="45533295"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Apr 2025 09:47:13 -0700
-X-CSE-ConnectionGUID: dEMeJzZ7RJaZ+YDO48bYaw==
-X-CSE-MsgGUID: yioqSJnkQC+IzOwpsUAeHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; 
-   d="scan'208";a="127767783"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.229])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Apr 2025 09:47:02 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Mon, 7 Apr 2025 19:46:59 +0300 (EEST)
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-    Maxime Ripard <mripard@kernel.org>, 
-    Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-    Simona Vetter <simona@ffwll.ch>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-    Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-    Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-    Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-    Jagan Teki <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, 
-    Sascha Hauer <s.hauer@pengutronix.de>, 
-    Pengutronix Kernel Team <kernel@pengutronix.de>, 
-    Fabio Estevam <festevam@gmail.com>, 
-    Douglas Anderson <dianders@chromium.org>, 
-    Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-    Krzysztof Kozlowski <krzk@kernel.org>, 
-    Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-    Anusha Srivatsa <asrivats@redhat.com>, 
-    Paul Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, 
-    =?ISO-8859-15?Q?Herv=E9_Codina?= <herve.codina@bootlin.com>, 
-    Hui Pu <Hui.Pu@gehealthcare.com>, 
-    Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-    dri-devel@lists.freedesktop.org, asahi@lists.linux.dev, 
-    LKML <linux-kernel@vger.kernel.org>, chrome-platform@lists.linux.dev, 
-    imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-    linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-    linux-renesas-soc@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-    linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-    freedreno@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com, 
-    Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-    Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH 02/34] platform: arm64: acer-aspire1-ec: convert to
- devm_drm_bridge_alloc() API
-In-Reply-To: <20250407-drm-bridge-convert-to-alloc-api-v1-2-42113ff8d9c0@bootlin.com>
-Message-ID: <a9000632-a6d1-d369-c317-9ee73aa645dc@linux.intel.com>
-References: <20250407-drm-bridge-convert-to-alloc-api-v1-0-42113ff8d9c0@bootlin.com> <20250407-drm-bridge-convert-to-alloc-api-v1-2-42113ff8d9c0@bootlin.com>
+	id 1u1pgS-000000084cJ-1aWz;
+	Mon, 07 Apr 2025 16:50:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 6655C49FA6;
+	Mon,  7 Apr 2025 16:50:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAB5FC4AF10;
+	Mon,  7 Apr 2025 16:50:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744044650;
+	bh=9rKDfEvc7K+7LzU7nTcuoqeYfX0y7c5G08Njz5uF/Vo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Sp9MSWDJaaAqP1q2SYIWKIo2g5ROm+6P5tR7LFd8E50X8gK4zuhxBadi53VkyP+Ic
+	 Mjsmlr7jxLIM1qBo59vxeEqPR6FZPe9YVLx4CPyU2A4DHmeFfsEwHB8BxVshIFEmeC
+	 12MMo2b3egIrNo05eXUirOJt6tvZCoIHerm6NWQWppuvtrt7Sdv8HQefioWs1cgwOv
+	 mkQpF5mP4YM/Mqvyo83b7cKwtpLn0eBZTzXGJBE6sjFWjRkVl9Js0s32ghUeE+0pJ2
+	 vKcR/Tzpjum/ZIgOGGfWTmbdDSesqQEtB6FpedtzQIqOmygCuQe1BApOBiIe8k3tMk
+	 ZEfSj8h17KEtg==
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5edc07c777eso5986597a12.3;
+        Mon, 07 Apr 2025 09:50:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUL95JFS3q6Il1E1xYKws+l+u5pYtV7PW2mFx+hOTTkBVmXFxfQ7t+W0ytEGWlk21Iwh0+X5Umn9fMyXs5/@lists.infradead.org, AJvYcCW6aM7hPzWGI01jUr5PsI/wa0vrhMv9Rd6WUbbLcs8YFMsr7XiN+DgsZOgp0/n3WrZMJMpUISH1Ll4GOXmz2+ZJnw==@lists.infradead.org, AJvYcCWKR7e0NsXM1rhR76SlacnAOdVOPwwBCavz3lbnoKzgz88RMlIMeI5ao2PxEuophTzou8Di+cWV4/g/2Jd9siI=@lists.infradead.org, AJvYcCXPfmge4uHex2/N0jaRxHDa/vNtUnNZ8B0s1sxZ/cezS/du89lhEHHcDMc3i5QxTojMTYiS654l7PFl8uFWNb4=@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw28fLRSltbGjJpkMmEm8BZ038uC1snBgStlnbFLcpxWnt0E4C1
+	Wq/aZVGa74d6N6rDovFuL9sEUdQKo4QU16PyMpzKpT6TK8ySSxNuQvgo3vwSj18etYIC93xZAZ3
+	Q+D5G20mf/tUV7UavriKUPqTn6g==
+X-Google-Smtp-Source: AGHT+IEYKsKGhFSJY/Ew6wLedApBd8mm5Tfxxs3oUxIJoVcHTWnGkb+RbDSqCHxLGxft/yGwgIdnVVemND8kyOfPXZI=
+X-Received: by 2002:a05:6402:26ca:b0:5e7:c779:85db with SMTP id
+ 4fb4d7f45d1cf-5f0db7fc898mr8148611a12.4.1744044649254; Mon, 07 Apr 2025
+ 09:50:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-1316811861-1744044419=:936"
+References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+ <20250403-dt-cpu-schema-v1-18-076be7171a85@kernel.org> <CAPDyKFrFRrPVJ_t0JrAE1VTbS02hwr=L-EHtqb7CQiWzB1MnQg@mail.gmail.com>
+ <CAL_JsqKygxhcQ=PZW84sfiW7BVXKF839vfNyxS9GwAXuqmN=8g@mail.gmail.com> <CAPDyKFoHQdHED0hHUR7VKin0XG6SVnYXuvPjB=Xe+1o2hpiPJA@mail.gmail.com>
+In-Reply-To: <CAPDyKFoHQdHED0hHUR7VKin0XG6SVnYXuvPjB=Xe+1o2hpiPJA@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 7 Apr 2025 11:50:37 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+Oa7MvVO7Y-RG+qrY2e86B_q0XGq1LWoy5Mq+G72ZHzQ@mail.gmail.com>
+X-Gm-Features: ATxdqUFxTokrKuT9iYBdxHBpsv0NfQo4Eim7mTXXSg7aEaclQFxJWUQS1crmjko
+Message-ID: <CAL_Jsq+Oa7MvVO7Y-RG+qrY2e86B_q0XGq1LWoy5Mq+G72ZHzQ@mail.gmail.com>
+Subject: Re: [PATCH 18/19] dt-bindings: arm/cpus: Add power-domains constraints
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Vincenzo Frascino <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Viresh Kumar <vireshk@kernel.org>, 
+	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, 
+	Conor Dooley <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
+	Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org, 
+	imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250407_174721_486170_7343113B 
-X-CRM114-Status: GOOD (  15.42  )
+X-CRM114-CacheID: sfid-20250407_175052_836112_0F8BB617 
+X-CRM114-Status: GOOD (  20.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,94 +116,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323328-1316811861-1744044419=:936
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-
-On Mon, 7 Apr 2025, Luca Ceresoli wrote:
-
-> This is the new API for allocating DRM bridges.
->=20
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
->=20
-> ---
->=20
-> Cc: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-> Cc: "Ilpo J=C3=A4rvinen" <ilpo.jarvinen@linux.intel.com>
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> ---
->  drivers/platform/arm64/acer-aspire1-ec.c | 7 +++----
->  1 file changed, 3 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/platform/arm64/acer-aspire1-ec.c b/drivers/platform/=
-arm64/acer-aspire1-ec.c
-> index 958fe1bf5f85bb69ac7962f217de9f0b40cde9a1..438532a047e68799ac53a16a4=
-c813fc16be997b9 100644
-> --- a/drivers/platform/arm64/acer-aspire1-ec.c
-> +++ b/drivers/platform/arm64/acer-aspire1-ec.c
-> @@ -452,9 +452,9 @@ static int aspire_ec_probe(struct i2c_client *client)
->  =09int ret;
->  =09u8 tmp;
-> =20
-> -=09ec =3D devm_kzalloc(dev, sizeof(*ec), GFP_KERNEL);
-> -=09if (!ec)
-> -=09=09return -ENOMEM;
-> +=09ec =3D devm_drm_bridge_alloc(dev, struct aspire_ec, bridge, &aspire_e=
-c_bridge_funcs);
-> +=09if (IS_ERR(ec))
-> +=09=09return PTR_ERR(ec);
-> =20
->  =09ec->client =3D client;
->  =09i2c_set_clientdata(client, ec);
-> @@ -497,7 +497,6 @@ static int aspire_ec_probe(struct i2c_client *client)
->  =09fwnode =3D device_get_named_child_node(dev, "connector");
->  =09if (fwnode) {
->  =09=09INIT_WORK(&ec->work, aspire_ec_bridge_update_hpd_work);
-> -=09=09ec->bridge.funcs =3D &aspire_ec_bridge_funcs;
->  =09=09ec->bridge.of_node =3D to_of_node(fwnode);
->  =09=09ec->bridge.ops =3D DRM_BRIDGE_OP_HPD;
->  =09=09ec->bridge.type =3D DRM_MODE_CONNECTOR_USB;
-
-Hi Luca,
-
-It took a while to locate where the code for the new helper is. I suggest=
-=20
-if you need send another version of the series directly linking to the=20
-commit in the cover letter so that it won't take multiple hoops to find it=
-=20
-if one wants to review the code and is not having all drm trees easily at=
-=20
-hand. Here it is for the benefit of other pdx86 people:
-
-https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/0cc6aadd7fc1e629b71=
-5ea3d1ba537ef2da95eec
-
-
-Acked-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
-
-I assume you want this to go through the drm tree where the helper already=
-=20
-is?
-
---=20
- i.
-
---8323328-1316811861-1744044419=:936
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---8323328-1316811861-1744044419=:936--
-
+T24gTW9uLCBBcHIgNywgMjAyNSBhdCAxMToyM+KAr0FNIFVsZiBIYW5zc29uIDx1bGYuaGFuc3Nv
+bkBsaW5hcm8ub3JnPiB3cm90ZToKPgo+IE9uIEZyaSwgNCBBcHIgMjAyNSBhdCAxNTowOSwgUm9i
+IEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4gd3JvdGU6Cj4gPgo+ID4gT24gRnJpLCBBcHIgNCwg
+MjAyNSBhdCA1OjM34oCvQU0gVWxmIEhhbnNzb24gPHVsZi5oYW5zc29uQGxpbmFyby5vcmc+IHdy
+b3RlOgo+ID4gPgo+ID4gPiBPbiBGcmksIDQgQXByIDIwMjUgYXQgMDU6MDYsIFJvYiBIZXJyaW5n
+IChBcm0pIDxyb2JoQGtlcm5lbC5vcmc+IHdyb3RlOgo+ID4gPiA+Cj4gPiA+ID4gVGhlICJwb3dl
+ci1kb21haW5zIiBhbmQgInBvd2VyLWRvbWFpbnMtbmFtZXMiIHByb3BlcnRpZXMgYXJlIG1pc3Np
+bmcgYW55Cj4gPiA+ID4gY29uc3RyYWludHMuIEFkZCB0aGUgY29uc3RyYWludHMgYW5kIGRyb3Ag
+dGhlIGdlbmVyaWMgZGVzY3JpcHRpb25zLgo+ID4gPiA+Cj4gPiA+ID4gU2lnbmVkLW9mZi1ieTog
+Um9iIEhlcnJpbmcgKEFybSkgPHJvYmhAa2VybmVsLm9yZz4KPiA+ID4gPiAtLS0KPiA+ID4gPiAg
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9jcHVzLnlhbWwgfCA4ICsrLS0t
+LS0tCj4gPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25z
+KC0pCj4gPiA+ID4KPiA+ID4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL2FybS9jcHVzLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvYXJtL2NwdXMueWFtbAo+ID4gPiA+IGluZGV4IDZmNzRlYmZkMzhkZi4uNWJkNTgyMmRiOGFm
+IDEwMDY0NAo+ID4gPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9h
+cm0vY3B1cy55YW1sCj4gPiA+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL2FybS9jcHVzLnlhbWwKPiA+ID4gPiBAQCAtMzEzLDE5ICszMTMsMTUgQEAgcHJvcGVydGll
+czoKPiA+ID4gPiAgICAgIG1heEl0ZW1zOiAxCj4gPiA+ID4KPiA+ID4gPiAgICBwb3dlci1kb21h
+aW5zOgo+ID4gPiA+IC0gICAgZGVzY3JpcHRpb246Cj4gPiA+ID4gLSAgICAgIExpc3Qgb2YgcGhh
+bmRsZXMgYW5kIFBNIGRvbWFpbiBzcGVjaWZpZXJzLCBhcyBkZWZpbmVkIGJ5IGJpbmRpbmdzIG9m
+IHRoZQo+ID4gPiA+IC0gICAgICBQTSBkb21haW4gcHJvdmlkZXIgKHNlZSBhbHNvIC4uL3Bvd2Vy
+X2RvbWFpbi50eHQpLgo+ID4gPiA+ICsgICAgbWF4SXRlbXM6IDEKPiA+ID4KPiA+ID4gVGhlcmUg
+YXJlIG1vcmUgdGhhbiBvbmUgaW4gc29tZSBjYXNlcy4gVGhlIG1vc3QgaXMgcHJvYmFibHkgdGhy
+ZWUsIEkgdGhpbmsuCj4gPgo+ID4gVW5sZXNzIEkgbWlzc2VkIGl0LCB0ZXN0aW5nIHNheXMgb3Ro
+ZXJ3aXNlLiBXaGF0IHdvdWxkIHRoZSBuYW1lcyBiZSBpZgo+ID4gbW9yZSB0aGFuIDEgZW50cnk/
+Cj4KPiAicHNjaSIsICJwZXJmIiwgImNwciIsIGV0Ywo+Cj4gVGhlICJwc2NpIiBpcyBhbHdheXMg
+Zm9yIENQVSBwb3dlciBtYW5hZ2VtZW50LCB0aGUgb3RoZXIgaXMgZm9yIENQVQo+IHBlcmZvcm1h
+bmNlIHNjYWxpbmcgKHdoaWNoIG1heSBiZSBtb3JlIHRoYW4gb25lIHBvd2VyLWRvbWFpbiBpbiBz
+b21lCj4gY2FzZXMpLgo+Cj4gSSB3b3VsZCBzdWdnZXN0IGNoYW5naW5nIHRoaXMgdG8gIm1heEl0
+ZW1zOiAzIi4gVGhhdCBzaG91bGQgYmUKPiBzdWZmaWNpZW50IEkgdGhpbmsuCgpBZ2FpbiwgbXkg
+dGVzdGluZyBzYXlzIDEgaXMgZW5vdWdoLiBTbyB3aGVyZSBpcyBhIC5kdHMgZmlsZSB3aXRoIDMg
+b3IgMj8KClJvYgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
+YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
+YW1sb2dpYwo=
