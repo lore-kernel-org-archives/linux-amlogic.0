@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6738FC3601A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Apr 2025 09:34:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4895C36010
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Apr 2025 09:38:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cP32aBX79HZGj0A9k9stk0WmzmS1BEiYv09jHK69Df4=; b=T7WGwvyFBihxRp
-	gSlipxOHxWkwPLLbO1+6Zzw4J9wJ9wvtrmhdcaxLya/yci9XouFf4sR850qsujlM0DGhfsHoLJIi/
-	sF4ns+mXZ7V/tbO/NATKgxnnb/L9MsUon0QG4LVZxsEa5qDkiK3In7zauuIJ93fxobiTyDJt+qumS
-	nrnB4zVO9lTnrOzHzXJwsCJLCQOu/xo6FxiHG8SyCIrmM7a0bc6YJKRmAG/jonyuDRTw0hayKXXuX
-	yutC2mPhgkvyGWOtyClmlB6Bir8EMqCaBwZ/NjIm/RU8uTH9K5FnQlCl5FxItpgzyw9hqwPf4jOP8
-	eV97ecZA3aQBg4BLiAtw==;
+	List-Owner; bh=ghQBaScfqFur9XFtlqnBNIPgxGwhIHH32m+w5HpLTyI=; b=StA9ApsKusFx9N
+	XGv2abKfVPBBISwYn57Y5PCLxelC+EdPQWghwBhgWpcrY9zuJ97bOx/ugAVcVeKZzjj42ZLS66pOP
+	/fXvToES4HzHWj4qxUYrSYMX9CwRY/dUSkoSUpoaTEI2pAOWGeWh0p2FuA4hSOp6FC8vw/a16MhNF
+	/K3503lMKCYZ+S7Y7uhGOOU/ILJVobMinVw655scWRUhonEx5UtkhR3MdZmAA2ohdIJN3yJlAb7q2
+	yTQzKa2MPrvRbjko7MWYYQxy50QUsgJsji3cRBIJOlhI2prsvKWig7yXFk3h6NjLfnLtyjsOOwvNX
+	6/OA+BlkJRJ+eGG1Vh2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1isV-0000000HD4K-3hMO;
-	Mon, 07 Apr 2025 09:34:51 +0000
-Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
+	id 1u1ivy-0000000HDWb-3g4l;
+	Mon, 07 Apr 2025 09:38:26 +0000
+Received: from mail-qt1-x833.google.com ([2607:f8b0:4864:20::833])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1isT-0000000HD3m-2WkC;
-	Mon, 07 Apr 2025 09:34:50 +0000
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-ac2bb7ca40bso383834666b.3;
-        Mon, 07 Apr 2025 02:34:49 -0700 (PDT)
+	id 1u1isr-0000000HDAA-1G1L;
+	Mon, 07 Apr 2025 09:35:14 +0000
+Received: by mail-qt1-x833.google.com with SMTP id d75a77b69052e-477296dce76so37063211cf.3;
+        Mon, 07 Apr 2025 02:35:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744018488; x=1744623288; darn=lists.infradead.org;
+        d=gmail.com; s=20230601; t=1744018512; x=1744623312; darn=lists.infradead.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MwrRsdM3aIoWT2MJF4GXjYqn1+Hiyvia31/nPwS1dl8=;
-        b=fFAL871p09EtmT0bAjNFkb/n+XithPCqXYNjHaJpJEz10uBt71nX5Af17hZGUZoqP4
-         CsMCeVj/2ldJGqeKD32+jNUb0LI4ITwqg3k9S53nQ8szCepAldfmFrbFsq9D9QMUtm+/
-         /vZAVwbKnxZOuuQGIBQ6F2JnantbWNJ91Zp70ONH452qeb1IbGE++gxUKMUbaQXC8Uxv
-         VJT6yO5Kfw/qibHyc8kZuN5cV/jftMp7PLWGnYM6GTR8WomCLtpXnlEe55OluHnAgBB3
-         sZoPC8H5H0JsC9x3xCGPvfEcnvp2TYIOVVApARgQ/2o4RFtAh8j6OXcyYOK9Pw4CRo4B
-         y3Vw==
+        bh=g172mJCzRlzwf53qGkvLIRDbowmzXfpFnIIJlJG7WRw=;
+        b=DZQLqpR/qJJVeXCpIuEF/r7GmjNmPjpx6qL1J0u7GQyizZ0Jwjzvj+USRDHRDHuG92
+         6SukX3ljyQW1wAyW4V6itqqWKh6P2I1gYTUmTkBXJRoNL0azG+px61Ukod5oeKB/M6RF
+         vFkLNtz/fWZvq6KbMKd+iLfXmxHmhxs7/I2aDUc35UgXymvtmqVWBmwZbQy1YD9M+Lf+
+         p2+5afC0VM2AUwCs1kEKSC2SdICTtaiG5tQqcVrUhMupy7ib0i3POEd2meEh2ysocs7x
+         CVSKLvtCjD1ImUVaDAPwCmnIIi0JGxGevhiqCFuvB/XRWv7KVTr3kzRp0lhYKLKipJuq
+         jM2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744018488; x=1744623288;
+        d=1e100.net; s=20230601; t=1744018512; x=1744623312;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MwrRsdM3aIoWT2MJF4GXjYqn1+Hiyvia31/nPwS1dl8=;
-        b=GqYZpp7iYMDt6RaIDufBmoLuc7b9SpziTvSbaPVdG3R3UUmlRXS+2sSpTusAFSNvON
-         ZI9wZriUaBIjbrB4BvgwbESs44oZnADN4WhnjIMVnrEnsQgOcyrUuqRwItNS6ylH8FEZ
-         QPmI9aBn+I1FO4PzDNuO/hstEUqDgaxuEEKu9bCEJHBpbTALirBOy0ilM10uHo7PSFJX
-         vFLdxXZmBSZCOdZpglrsogEPaxMN2lIlJNu3GHE8/ph0N0CfGBC/dWxVZf44W7vuZICt
-         CLj8Gi8Bhn9JhS2ePSm/sl5orQgdMdXFhBnLwats++wpAlRUUf+SkUu4IqkEQ0Z0dBXK
-         ZbqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUo4EnQuT9+LY1pVdLv3kJfqhRhe88D7ULU3WjBrFjw0p7Y1+UQjB29Uh0hTE5F3Ha36BrbhtgQazdaLb/mu6x3@lists.infradead.org, AJvYcCUtLZGgG8e3oxOwc6SS8HiXKsOgi0wgkoaPXkcZDPRVNz6MpuvHLTKplopnNhxFFAMjSdIZwFTYyiQt@lists.infradead.org
-X-Gm-Message-State: AOJu0YwCmXSr7aMm00tOtsSGwcAr01EEvjxdjNQkSQLqfdiKVK4VCqg5
-	xOm6Y5IGmpd1xcL8IN1vhz9KjV8/TxLVnRKwRE7q9wj1H5XdsDr7oG8BZxY2hG8nQ2T7gk1Wlfs
-	Lu4BFrGBXPyDghc9NcVYkgCHqRCyz3Xsz
-X-Gm-Gg: ASbGncv6xq8jMQ6fJZXLObwphSw45Lx9Aq2WLSNLrtlLGftRLTw4gaMbb5SsBv75ByV
-	vX0syZVwWkvl71EVV8SL3Vqdfe7pVvYw1b09Y+eA9I4jLgUZeYEkXxzDsMrIxteVqMSZedS2X+y
-	0faE3Sb0DpoXxr42cBRmKc4NpAtfGiK8W8vJw7
-X-Google-Smtp-Source: AGHT+IHn/mX6ZYCompw3Is2f0TauL4C1VFhf8kSEN7pGoldfJnQSRw1eyX++36PYytRGjJUyVlLNUtNmngJ1zFbUZH8=
-X-Received: by 2002:a17:907:7d8f:b0:ac3:f0a3:582e with SMTP id
- a640c23a62f3a-ac7d1c37ef1mr999770466b.41.1744018487455; Mon, 07 Apr 2025
- 02:34:47 -0700 (PDT)
+        bh=g172mJCzRlzwf53qGkvLIRDbowmzXfpFnIIJlJG7WRw=;
+        b=WXfe2g0PFNNqWtutJQiE8x0Y+BGCG0BxlT8E3hg2PBuEXXZFm0IYLV1ZhLnk6j0Pkk
+         mZvWiUvBlHFAG+DTb3d+CZo8hVzaPDH2UbqmqHBGnI9Qx+wGMAY8UWjhQGSK/Mi9gpF9
+         DLYAb01ArhhYPi+5Uu4Cnb3fkOrHBkXT6cygAzbIRmAPSk4RXLhs9HzULJK1WtMUyzW0
+         w9wVOvh+9zr3gzoX51xiDhdED8WJeBzCDVLB4cjo2iaVxrFY+y5vNozv80okHnmWHX0W
+         jQ5gpKbakcW9FFxcHQ0xTq8Dmq/20T4SgJUApZbcbA1aNt7SNk91DbUYmGDVypsoXb54
+         g9YA==
+X-Forwarded-Encrypted: i=1; AJvYcCVPNYb7OLHK6UZPHHBm3jPzxDLfYRyMC/aCfa9FP9/CkD4WKpaByT7058l44rW7wIwJZC4RHXKtgUjhrdRR4xc1@lists.infradead.org, AJvYcCWfsnQ1w+MkzEbdKn1ITrEcqarXAXnJSI8uYcEff0abCW7dxgteQvj8Q8cVGn/C+/p8XKH8JA8sRBvu@lists.infradead.org
+X-Gm-Message-State: AOJu0Yyh4uSq7LRu78Wwk0zPAH7aGsNMqjPqe7vIw7hXXtaM2uJmizz2
+	TjZvn/pxMLo/4c5kzrmNjwbkV2rN74HSBkmHYmVDrXcXRfyJHxA935kPZHLRceb4pQOInuIoGZR
+	uUEmO091Od02ijjn9wJzGNrh6Py8=
+X-Gm-Gg: ASbGncuVZ9FN4h1VtdUWPpVmaf0h3NtYj0dIBxP5ZGoGlxbUmVmWYQYCQNRq0vLV6Ku
+	4mwepTM06Dp5o8Br6kFbuOF7XFBA8XIczIr7f9xx3A/tNK637UveYsmUo4GKS9Q74aKPpUqj10A
+	wuo2HC92CvznpF/ETyXobYaDp8Xw==
+X-Google-Smtp-Source: AGHT+IGhTrrSc6uVMmD7MMBQ7qTCrg2uDZuofOTM4+WVDylk/fH4UUQjWOWK0q8EfUy00jeuyFyYxrPKBAte+ZhzSKQ=
+X-Received: by 2002:a05:622a:1a0d:b0:476:8ee8:d8a2 with SMTP id
+ d75a77b69052e-47930f77cecmr118271881cf.4.1744018511946; Mon, 07 Apr 2025
+ 02:35:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250329190712.858349-1-martin.blumenstingl@googlemail.com> <20250329190712.858349-2-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20250329190712.858349-2-martin.blumenstingl@googlemail.com>
+References: <20250329190712.858349-1-martin.blumenstingl@googlemail.com> <20250329190712.858349-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20250329190712.858349-3-martin.blumenstingl@googlemail.com>
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 7 Apr 2025 15:04:28 +0530
-X-Gm-Features: ATxdqUG9MXYiG2H6XFiLtd2u9HtZkKwkET88kA5iXy2mhg8cVJJJUyOTBzVFkt4
-Message-ID: <CANAwSgQHVmd1uaZpVmOJ1+ECwu1HQsKQwnCT2ysPBbi=16bbNQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] phy: amlogic: meson8b-usb2: Use FIELD_PREP instead
- of _SHIFT macros
+Date: Mon, 7 Apr 2025 15:04:49 +0530
+X-Gm-Features: ATxdqUFGuroWUppSQpVAV3779ZjDlCQcJ6dl21DBRUh7mRzwMlpd85_9x7QbSys
+Message-ID: <CANAwSgS5rpR6mbE0tHqx3Q8_KjOo3F3nAKQhAdxzOLvQ8-sk5g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] phy: amlogic: meson8b-usb2: Use the
+ regmap_{clear,set}_bits helpers
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: linux-amlogic@lists.infradead.org, linux-phy@lists.infradead.org, 
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	kishon@kernel.org, vkoul@kernel.org, 
 	Neil Armstrong <neil.armstrong@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250407_023449_639371_EB61DCEA 
-X-CRM114-Status: UNSURE (   7.97  )
+X-CRM114-CacheID: sfid-20250407_023513_335472_45714B76 
+X-CRM114-Status: UNSURE (   7.86  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -98,16 +98,15 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Martin,
 
-On Sun, 30 Mar 2025 at 00:47, Martin Blumenstingl
+On Sun, 30 Mar 2025 at 00:48, Martin Blumenstingl
 <martin.blumenstingl@googlemail.com> wrote:
 >
-> This simplifies the code by re-using the FIELD_PREP helper. No
-> functional changes inteded.
+> These require less code, reduce the chance of typos and overall make the
+> intent clearer. No functional changes.
 >
 > Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
-
 Reviewed-by: Anand Moon <linux.amoon@gmail.com>
 
 Thanks
