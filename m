@@ -4,121 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC7C7C369A1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Apr 2025 05:59:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A594C3600C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Apr 2025 07:08:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=v8gSNlEDiMl1z0KITh+oPiyZZANliCj8s6LMVyPMUgM=; b=adekmxpxUPPCie
-	tK4bdySbsMk7SnaUs2FbwO5YRT+5YvHNxyQUp/l5pwsjGldv/ilZRph8V0rtpqXDNDaXopcqZch0J
-	/MRq9OrnfLRJUBueQDUgWx/eFFVRCTpxTQD0KCctn1R9tdaj+rQf3qEDGSpZ5JTQB5iT4gr2VUxd8
-	K2vSoDxGjyQfFA5tQq3pjo7jR+h1Ef5EprePeZaUAtyBVgqr6T2sFkRLjsyJjLlBeKqfriR+EspDk
-	0mixEYPU9NGUaWznBjclP+H0AsWodFN/chp9HNhbr1OVIovWu+dRD0+nJ9AlcbZAnLmoMtqZtrWKT
-	dIfP4MWOT8ICEmmMoyug==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=orZ+t6z5sfAJmlyBXy1bCB+w7hVMJSjmew8Wj6HeGTQ=; b=xoYdWasZIR2Afs
+	GadHqN9yKTCbjnfZiu2zkEydL6womjHyiojy0PKDAXgt8pimnf5x3ioJVwmMHNg4vnSQTSJM3/kgD
+	zFsIXxhvrNAbl28A1eX+omIw6BJR8rjrBkKAz5cp3PtWWEAtAEnVHxIU6E2qBKVqBFhU95CCGRYUV
+	odpgnxXUFMuucg4TWVSiB6iXrfDTL/KfM3lD40r3WhUiPK2SqiVERVsYYX6VXrLMq3uuAeAIVqhEv
+	L1uzij32czegFcDDSFfQ2gHTyU/kJOhmMakBv0b/nWk+xPOsW0Pgd6HxB1rrjf0v6lUSF3jhsrrRN
+	FPaebYtrNgJsLYb7h/yw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u21zM-00000002pTC-2oWS;
-	Tue, 08 Apr 2025 05:59:12 +0000
-Received: from mail-pj1-x1031.google.com ([2607:f8b0:4864:20::1031])
+	id 1u234O-000000030VK-0pjb;
+	Tue, 08 Apr 2025 07:08:28 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u21xZ-00000002pCx-2Usf
-	for linux-amlogic@lists.infradead.org;
-	Tue, 08 Apr 2025 05:57:24 +0000
-Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-301c4850194so4039738a91.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 07 Apr 2025 22:57:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744091841; x=1744696641; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ntWAqYw/FbTf3Hq91IVHWRfD1c0otTEdS+CQ7J427hE=;
-        b=vnl9bLzttUyq4vUKC12DPjrZN9M3f2YwuTNQhCKsrASenvp4GM8O+Nm72lrm7uhekZ
-         N1KgR8e2sT5FQY998Y2DG6Wm/+DsQdffFuhJmxq43iyDct/kDkL7R9vJKxLe+VXtE5Pv
-         wEDQp1Q1YFxzPnBrtMbDbxFQGQQrRRHTLKUZY8I2De/1HP8DBtGTNj3CKy9j/1Sndv2b
-         V0d3N6IiVkYaB5Zr+V1HJz9QKDPLYdSny8uwr1T7lH8EiSWr+gKPkPDYB7gTtEPkkZF/
-         iowyA/M8pRwsuNQIfJ85dKIWn1mMSLllmM2JvmknfpsWsLBQVUqTbniwEYO6UIeWEjLI
-         kohA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744091841; x=1744696641;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ntWAqYw/FbTf3Hq91IVHWRfD1c0otTEdS+CQ7J427hE=;
-        b=gV65GM6OvoeHF+dGyNpCasBV9KlPmchM2telGxrnIzyMBZEawaM49QSnpJ+1Cw5Yyl
-         mQjiTHJSPAXkNvPghJoDsvloqbmvTX86Dav9kQkC3kPXT5T6pdedQ5h+FlCmtsNkDkiD
-         Ok4D7s0IySI0bA4xkIln6e/oBhz47uovDaiNjQNaRJuwFm+ZqwnQs/TrnSl4DHrWF5jt
-         P9zOojWMIuTTOeWtDXIb9oOcTD8L9dOS6NkRIVCKA7I5Aq1Ug8bGDOtmL7eSbqmFqHxh
-         4pUCZkNTsljHq6uRkGLNmAN1gPNefEGLzntx4T3SmumH+jEicBI3+oL6ZQDrsZeH0G26
-         MD/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU55pFjcORRuoEdH6IeKu8agh3RRdqMgXArbeW5vzb/n3DMJ3g5ym5Y0X44380W9oJlTHCN2exTLKJW6KFp@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw/HVMVjajVPJPYikfAku6iFbzoqevQKGdX1DRGAsPYp9arFp6i
-	C9pQiSO42JKMy1jBPhcuu9UF6ZkLeUq471s9Rf3WjpZ9yg/m1u6uyTNX1837WW8=
-X-Gm-Gg: ASbGncvsSDcniO9qI2pNbI/5dR36noc3UDtrgXIPLZtHY7ECALnr3YxEuer+d4aYCyE
-	omTEj+wGGqdKgF35yUP8yAokl/nj+9wbifspKVxgssbkFnp/1iifubJdmRknjap8wbUv47/lwsT
-	1v3prtG5zC5AJkzFGvdl+md6frAEzDiEltAc6kdC4MiTccI+b8DUrH/pzrpVvwDLSkv0TpRVH92
-	aJR6xh/TctJ699B4YeNsZ/hv0kdKOq81kdieqIlSYAbPKcaT8/0US/pMIIxHjQCTUN6AsptD9rf
-	q0+6guCW/xOCKJgFei031SuAis80abj2xDAYHD3xkHvHIw==
-X-Google-Smtp-Source: AGHT+IHa7mNtQoh2kE0P3zD2ru6aZMt+A87LdNqpNKujZXMzxAW0s8D/vDJRFgVZKF/JyFi3WYplYw==
-X-Received: by 2002:a17:90b:2d08:b0:2ee:9b09:7d3d with SMTP id 98e67ed59e1d1-306a4894cd0mr18110280a91.19.1744091840732;
-        Mon, 07 Apr 2025 22:57:20 -0700 (PDT)
-Received: from localhost ([122.172.83.32])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30588a3140asm10075622a91.29.2025.04.07.22.57.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Apr 2025 22:57:20 -0700 (PDT)
-Date: Tue, 8 Apr 2025 11:27:18 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
-	Conor Dooley <conor@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-mips@vger.kernel.org, imx@lists.linux.dev,
-	linux-rockchip@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 00/19] Arm cpu schema clean-ups
-Message-ID: <20250408055718.4azlqljvo4qxhnu5@vireshk-i7>
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+	id 1u2308-00000002zaR-1Z6F;
+	Tue, 08 Apr 2025 07:04:05 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 1BB3243CC7;
+	Tue,  8 Apr 2025 07:04:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9EA90C4CEE9;
+	Tue,  8 Apr 2025 07:04:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744095843;
+	bh=fdd64doT3ZUCmvsoRtRL1uM7nadg2Erx2MdHF1BDcyY=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=r6BWOmxVRabHmMcraz60OK43gNEsbPHAshAOQsFAMGDo6z2beXBxh+Bp+vmx9uT9/
+	 K0qGl4HdZiR61ycc53ENHsM7vWBY3aZ3YT5sO5vuJsm2xqT8DU5Lt17qr1DVUCH6HE
+	 VR2GNNuSTGsl9zNObAuxnFyj8RL4aG/+9HRdPYi5o8HTshpJy4HncIYretMe4/iHCH
+	 aGzwuv4MlVOyTpmcbJ7OB0lNsGDZSsIN6mzREaqDRobUuVyif7QTivVqPqA3Kj+t6K
+	 BAsrJqIFMP18rutfdIHu3H9oVizvzpSc5kOcgChIVING4HEgLuKCQvf6T/q0dioq9p
+	 2sufQcw6bWLsg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B2A6C3600C;
+	Tue,  8 Apr 2025 07:04:03 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Tue, 08 Apr 2025 15:04:01 +0800
+Subject: [PATCH] spi: meson-spicc: add DMA support
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+Message-Id: <20250408-spi-dma-v1-1-3c38be62c09c@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAGDK9GcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDEwML3eKCTN2U3ETdZBNLyzRTM4MUI0tTJaDqgqLUtMwKsEnRsbW1ACx
+ sJVRZAAAA
+To: Mark Brown <broonie@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Sunny Luo <sunny.luo@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744095841; l=11051;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=HoQngfucDhq8Rc3lBesyjBYIgN9TUaxT6bDfj5vDpZY=;
+ b=LCuBOKvTVtOq4fONF3GKDsl2aycldIHGZMpCbjNdsFyagqAM/E+wFfih8p3Iox5DlC9SGMYLi
+ d/7sAJuvOhMALJT8Jgwwu4th7/+vvSOf9hzMx0+YIM3QdRLEsIkGfku
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250407_225721_633933_15D072EA 
-X-CRM114-Status: UNSURE (   6.92  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250408_000404_460308_6A46C262 
+X-CRM114-Status: GOOD (  27.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,19 +84,349 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 03-04-25, 21:59, Rob Herring (Arm) wrote:
->  .../bindings/cpufreq/cpufreq-mediatek.txt          | 250 ---------------------
->  Documentation/devicetree/bindings/opp/opp-v1.yaml  |  18 +-
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+Add DMA support for spicc driver.
 
+DMA works if the transfer meets the following conditions:
+1. 64 bits per word;
+2. The transfer length must be multiples of the dma_burst_len,
+   and the dma_burst_len should be one of 8,7...2,
+   otherwise, it will be split into several SPI bursts.
+
+Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ drivers/spi/spi-meson-spicc.c | 243 ++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 232 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
+index df74ad5060f8..81e263bceba9 100644
+--- a/drivers/spi/spi-meson-spicc.c
++++ b/drivers/spi/spi-meson-spicc.c
+@@ -21,6 +21,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/reset.h>
+ #include <linux/pinctrl/consumer.h>
++#include <linux/dma-mapping.h>
+ 
+ /*
+  * The Meson SPICC controller could support DMA based transfers, but is not
+@@ -33,6 +34,20 @@
+  * - CS management is dumb, and goes UP between every burst, so is really a
+  *   "Data Valid" signal than a Chip Select, GPIO link should be used instead
+  *   to have a CS go down over the full transfer
++ *
++ * DMA achieves a transfer with one or more SPI bursts, each SPI burst is made
++ * up of one or more DMA bursts. The DMA burst implementation mechanism is,
++ * For TX, when the number of words in TXFIFO is less than the preset
++ * reading threshold, SPICC starts a reading DMA burst, which reads the preset
++ * number of words from TX buffer, then writes them into TXFIFO.
++ * For RX, when the number of words in RXFIFO is greater than the preset
++ * writing threshold, SPICC starts a writing request burst, which reads the
++ * preset number of words from RXFIFO, then write them into RX buffer.
++ * DMA works if the transfer meets the following conditions,
++ * - 64 bits per word
++ * - The transfer length in word must be multiples of the dma_burst_len, and
++ *   the dma_burst_len should be one of 8,7...2, otherwise, it will be split
++ *   into several SPI bursts by this driver
+  */
+ 
+ #define SPICC_MAX_BURST	128
+@@ -128,6 +143,29 @@
+ 
+ #define SPICC_DWADDR	0x24	/* Write Address of DMA */
+ 
++#define SPICC_LD_CNTL0	0x28
++#define VSYNC_IRQ_SRC_SELECT		BIT(0)
++#define DMA_EN_SET_BY_VSYNC		BIT(2)
++#define XCH_EN_SET_BY_VSYNC		BIT(3)
++#define DMA_READ_COUNTER_EN		BIT(4)
++#define DMA_WRITE_COUNTER_EN		BIT(5)
++#define DMA_RADDR_LOAD_BY_VSYNC		BIT(6)
++#define DMA_WADDR_LOAD_BY_VSYNC		BIT(7)
++#define DMA_ADDR_LOAD_FROM_LD_ADDR	BIT(8)
++
++#define SPICC_LD_CNTL1	0x2c
++#define DMA_READ_COUNTER		GENMASK(15, 0)
++#define DMA_WRITE_COUNTER		GENMASK(31, 16)
++#define DMA_BURST_LEN_DEFAULT		8
++#define DMA_BURST_COUNT_MAX		0xffff
++#define SPI_BURST_LEN_MAX	(DMA_BURST_LEN_DEFAULT * DMA_BURST_COUNT_MAX)
++
++enum {
++	DMA_TRIG_NORMAL = 0,
++	DMA_TRIG_VSYNC,
++	DMA_TRIG_LINE_N,
++};
++
+ #define SPICC_ENH_CTL0	0x38	/* Enhanced Feature */
+ #define SPICC_ENH_CLK_CS_DELAY_MASK	GENMASK(15, 0)
+ #define SPICC_ENH_DATARATE_MASK		GENMASK(23, 16)
+@@ -171,6 +209,9 @@ struct meson_spicc_device {
+ 	struct pinctrl			*pinctrl;
+ 	struct pinctrl_state		*pins_idle_high;
+ 	struct pinctrl_state		*pins_idle_low;
++	dma_addr_t			tx_dma;
++	dma_addr_t			rx_dma;
++	bool				using_dma;
+ };
+ 
+ #define pow2_clk_to_spicc(_div) container_of(_div, struct meson_spicc_device, pow2_div)
+@@ -202,6 +243,155 @@ static void meson_spicc_oen_enable(struct meson_spicc_device *spicc)
+ 	writel_relaxed(conf, spicc->base + SPICC_ENH_CTL0);
+ }
+ 
++static int meson_spicc_dma_map(struct meson_spicc_device *spicc,
++			       struct spi_transfer *t)
++{
++	struct device *dev = spicc->host->dev.parent;
++
++	if (!(t->tx_buf && t->rx_buf))
++		return -EINVAL;
++
++	t->tx_dma = dma_map_single(dev, (void *)t->tx_buf, t->len, DMA_TO_DEVICE);
++	if (dma_mapping_error(dev, t->tx_dma))
++		return -ENOMEM;
++
++	t->rx_dma = dma_map_single(dev, t->rx_buf, t->len, DMA_FROM_DEVICE);
++	if (dma_mapping_error(dev, t->rx_dma))
++		return -ENOMEM;
++
++	spicc->tx_dma = t->tx_dma;
++	spicc->rx_dma = t->rx_dma;
++
++	return 0;
++}
++
++static void meson_spicc_dma_unmap(struct meson_spicc_device *spicc,
++				  struct spi_transfer *t)
++{
++	struct device *dev = spicc->host->dev.parent;
++
++	if (t->tx_dma)
++		dma_unmap_single(dev, t->tx_dma, t->len, DMA_TO_DEVICE);
++	if (t->rx_dma)
++		dma_unmap_single(dev, t->rx_dma, t->len, DMA_FROM_DEVICE);
++}
++
++/*
++ * According to the remain words length, calculate a suitable spi burst length
++ * and a dma burst length for current spi burst
++ */
++static u32 meson_spicc_calc_dma_len(struct meson_spicc_device *spicc,
++				    u32 len, u32 *dma_burst_len)
++{
++	u32 i;
++
++	if (len <= spicc->data->fifo_size) {
++		*dma_burst_len = len;
++		return len;
++	}
++
++	*dma_burst_len = DMA_BURST_LEN_DEFAULT;
++
++	if (len == (SPI_BURST_LEN_MAX + 1))
++		return SPI_BURST_LEN_MAX - DMA_BURST_LEN_DEFAULT;
++
++	if (len >= SPI_BURST_LEN_MAX)
++		return SPI_BURST_LEN_MAX;
++
++	for (i = DMA_BURST_LEN_DEFAULT; i > 1; i--)
++		if ((len % i) == 0) {
++			*dma_burst_len = i;
++			return len;
++		}
++
++	i = len % DMA_BURST_LEN_DEFAULT;
++	len -= i;
++
++	if (i == 1)
++		len -= DMA_BURST_LEN_DEFAULT;
++
++	return len;
++}
++
++static void meson_spicc_setup_dma(struct meson_spicc_device *spicc, u8 trig)
++{
++	unsigned int len;
++	unsigned int dma_burst_len, dma_burst_count;
++	unsigned int count_en = 0;
++	unsigned int txfifo_thres = 0;
++	unsigned int read_req = 0;
++	unsigned int rxfifo_thres = 31;
++	unsigned int write_req = 0;
++	unsigned int ld_ctr1 = 0;
++
++	writel_relaxed(spicc->tx_dma, spicc->base + SPICC_DRADDR);
++	writel_relaxed(spicc->rx_dma, spicc->base + SPICC_DWADDR);
++
++	/* Set the max burst length to support a transmission with length of
++	 * no more than 1024 bytes(128 words), which must use the CS management
++	 * because of some strict timing requirements
++	 */
++	writel_bits_relaxed(SPICC_BURSTLENGTH_MASK, SPICC_BURSTLENGTH_MASK,
++			    spicc->base + SPICC_CONREG);
++
++	len = meson_spicc_calc_dma_len(spicc, spicc->xfer_remain,
++				       &dma_burst_len);
++	spicc->xfer_remain -= len;
++	dma_burst_count = DIV_ROUND_UP(len, dma_burst_len);
++	dma_burst_len--;
++
++	if (trig == DMA_TRIG_LINE_N)
++		count_en |= VSYNC_IRQ_SRC_SELECT;
++
++	if (spicc->tx_dma) {
++		spicc->tx_dma += len;
++		count_en |= DMA_READ_COUNTER_EN;
++		if (trig == DMA_TRIG_VSYNC || trig == DMA_TRIG_LINE_N)
++			count_en |= DMA_RADDR_LOAD_BY_VSYNC
++				    | DMA_ADDR_LOAD_FROM_LD_ADDR;
++		txfifo_thres = spicc->data->fifo_size - dma_burst_len;
++		read_req = dma_burst_len;
++		ld_ctr1 |= FIELD_PREP(DMA_READ_COUNTER, dma_burst_count);
++	}
++
++	if (spicc->rx_dma) {
++		spicc->rx_dma += len;
++		count_en |= DMA_WRITE_COUNTER_EN;
++		if (trig == DMA_TRIG_VSYNC || trig == DMA_TRIG_LINE_N)
++			count_en |= DMA_WADDR_LOAD_BY_VSYNC
++				    | DMA_ADDR_LOAD_FROM_LD_ADDR;
++		rxfifo_thres = dma_burst_len;
++		write_req = dma_burst_len;
++		ld_ctr1 |= FIELD_PREP(DMA_WRITE_COUNTER, dma_burst_count);
++	}
++
++	writel_relaxed(count_en, spicc->base + SPICC_LD_CNTL0);
++	writel_relaxed(ld_ctr1, spicc->base + SPICC_LD_CNTL1);
++	writel_relaxed(((trig == DMA_TRIG_NORMAL) ? SPICC_DMA_ENABLE : 0)
++		    | SPICC_DMA_URGENT
++		    | FIELD_PREP(SPICC_TXFIFO_THRESHOLD_MASK, txfifo_thres)
++		    | FIELD_PREP(SPICC_READ_BURST_MASK, read_req)
++		    | FIELD_PREP(SPICC_RXFIFO_THRESHOLD_MASK, rxfifo_thres)
++		    | FIELD_PREP(SPICC_WRITE_BURST_MASK, write_req),
++		    spicc->base + SPICC_DMAREG);
++}
++
++static void meson_spicc_dma_irq(struct meson_spicc_device *spicc)
++{
++	if (readl_relaxed(spicc->base + SPICC_DMAREG) & SPICC_DMA_ENABLE)
++		return;
++
++	if (spicc->xfer_remain) {
++		meson_spicc_setup_dma(spicc, DMA_TRIG_NORMAL);
++	} else {
++		writel_bits_relaxed(SPICC_SMC, 0, spicc->base + SPICC_CONREG);
++		writel_relaxed(0, spicc->base + SPICC_INTREG);
++		writel_relaxed(0, spicc->base + SPICC_DMAREG);
++		meson_spicc_dma_unmap(spicc, spicc->xfer);
++		complete(&spicc->done);
++	}
++}
++
+ static inline bool meson_spicc_txfull(struct meson_spicc_device *spicc)
+ {
+ 	return !!FIELD_GET(SPICC_TF,
+@@ -293,6 +483,11 @@ static irqreturn_t meson_spicc_irq(int irq, void *data)
+ 
+ 	writel_bits_relaxed(SPICC_TC, SPICC_TC, spicc->base + SPICC_STATREG);
+ 
++	if (spicc->using_dma) {
++		meson_spicc_dma_irq(spicc);
++		return IRQ_HANDLED;
++	}
++
+ 	/* Empty RX FIFO */
+ 	meson_spicc_rx(spicc);
+ 
+@@ -426,9 +621,6 @@ static int meson_spicc_transfer_one(struct spi_controller *host,
+ 
+ 	meson_spicc_reset_fifo(spicc);
+ 
+-	/* Setup burst */
+-	meson_spicc_setup_burst(spicc);
+-
+ 	/* Setup wait for completion */
+ 	reinit_completion(&spicc->done);
+ 
+@@ -442,11 +634,40 @@ static int meson_spicc_transfer_one(struct spi_controller *host,
+ 	/* Increase it twice and add 200 ms tolerance */
+ 	timeout += timeout + 200;
+ 
+-	/* Start burst */
+-	writel_bits_relaxed(SPICC_XCH, SPICC_XCH, spicc->base + SPICC_CONREG);
++	if (xfer->bits_per_word == 64) {
++		int ret;
+ 
+-	/* Enable interrupts */
+-	writel_relaxed(SPICC_TC_EN, spicc->base + SPICC_INTREG);
++		/* must tx */
++		if (!xfer->tx_buf)
++			return -EINVAL;
++
++		/* dma_burst_len 1 can't trigger a dma burst */
++		if (xfer->len < 16)
++			return -EINVAL;
++
++		ret = meson_spicc_dma_map(spicc, xfer);
++		if (ret) {
++			meson_spicc_dma_unmap(spicc, xfer);
++			dev_err(host->dev.parent, "dma map failed\n");
++			return ret;
++		}
++
++		spicc->using_dma = true;
++		spicc->xfer_remain = DIV_ROUND_UP(xfer->len, spicc->bytes_per_word);
++		meson_spicc_setup_dma(spicc, DMA_TRIG_NORMAL);
++		writel_relaxed(SPICC_TE_EN, spicc->base + SPICC_INTREG);
++		writel_bits_relaxed(SPICC_SMC, SPICC_SMC, spicc->base + SPICC_CONREG);
++	} else {
++		spicc->using_dma = false;
++		/* Setup burst */
++		meson_spicc_setup_burst(spicc);
++
++		/* Start burst */
++		writel_bits_relaxed(SPICC_XCH, SPICC_XCH, spicc->base + SPICC_CONREG);
++
++		/* Enable interrupts */
++		writel_relaxed(SPICC_TC_EN, spicc->base + SPICC_INTREG);
++	}
+ 
+ 	if (!wait_for_completion_timeout(&spicc->done, msecs_to_jiffies(timeout)))
+ 		return -ETIMEDOUT;
+@@ -853,10 +1074,10 @@ static int meson_spicc_probe(struct platform_device *pdev)
+ 	host->num_chipselect = 4;
+ 	host->dev.of_node = pdev->dev.of_node;
+ 	host->mode_bits = SPI_CPHA | SPI_CPOL | SPI_CS_HIGH | SPI_LOOP;
+-	host->bits_per_word_mask = SPI_BPW_MASK(32) |
+-				   SPI_BPW_MASK(24) |
+-				   SPI_BPW_MASK(16) |
+-				   SPI_BPW_MASK(8);
++	/* DMA works at 64 bits, but it is invalidated by the spi core,
++	 * clr the mask to avoid the spi core validation check
++	 */
++	host->bits_per_word_mask = 0;
+ 	host->flags = (SPI_CONTROLLER_MUST_RX | SPI_CONTROLLER_MUST_TX);
+ 	host->min_speed_hz = spicc->data->min_speed_hz;
+ 	host->max_speed_hz = spicc->data->max_speed_hz;
+
+---
+base-commit: 49807ed87851916ef655f72e9562f96355183090
+change-id: 20250408-spi-dma-c499f560d295
+
+Best regards,
 -- 
-viresh
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
