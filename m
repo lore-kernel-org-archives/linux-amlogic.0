@@ -4,79 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35B76C369A1
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Apr 2025 07:48:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DE44C3600C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Apr 2025 07:50:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WCsVBZ2SBOXzCy445WJisZQKzePeiMWp5t61/QU+46M=; b=TbFyav1j40CWoeu53iiEhVsk48
-	x0J1o2bITTwkVENj8zu2t2khfEbIXUkBuwjbR77F412hHKBQaNuLE5EKgB0VF2qRApeMwWuY8ngCE
-	9b+dlhhOwV2FAD1J9uFXhe0XeAbWk/ioA1yNsJkMzXObIQEvb2GLABmc0exLIbs+d/kNgBNBFWbVh
-	zD3LesnzF+aAafxBjH2WEwZf+MgH6BCKhADACAoG1vHl+nbjCoGCtoCl+39goKnJMxdR0oyivSqTp
-	A5kNIqhDXQx49iEyXqO8duQTxMl2DHNHzP0duM20QuXbAtBIOV0WiyLi9Qq6yCigoW/SIYLvVNoFk
-	a+pVqiKw==;
+	bh=/GM1nglS/UllWKtgFhnPnnM2K1MPP6fGpucCDZ+0wHY=; b=GD6EbG10NMv9/rflHmDVevvZof
+	T7+b1gnN/cOdu5fviko1wZgSXO8pdRFzbNQU8vwQbP9Xi62LymRWibZCv9lb8ASL8+XdMLcCk5jn/
+	zUisw4IWu2cJ6XBZDSxdgF9e4LxA29JTwUahP/0CAxfRlWEimzJmlLDAXhSYyCWxYUyevtuJ/YcCe
+	aD9rtAV2kBdawk+2YOM5kN6zaQBiMJEaICCKIyvRmJs0m6e/EhRJzCmGIc77/b/B5SEiX/pnb6BoQ
+	2HgXYKLRsAgr0UBgAtc1Tb9WuAEL492KW2Qd+0XeicrA+3GsbNxSdIZcShWn/GvoGoQ07OIp+M8GB
+	HCjiHZAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u23h3-00000003930-3n0R;
-	Tue, 08 Apr 2025 07:48:25 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1u23io-000000039KU-0G8R;
+	Tue, 08 Apr 2025 07:50:14 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u23aS-000000037Su-15vU
+	id 1u23am-000000037Zp-3k7u
 	for linux-amlogic@lists.infradead.org;
-	Tue, 08 Apr 2025 07:41:37 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3913d129c1aso3561657f8f.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 08 Apr 2025 00:41:35 -0700 (PDT)
+	Tue, 08 Apr 2025 07:42:00 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-43d07ca6a80so26582975e9.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 08 Apr 2025 00:41:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744098095; x=1744702895; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1744098115; x=1744702915; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XXt1VUtxJKVhenaGxKn/M7BRvobuDoOHV9yLu3KSCFE=;
-        b=huz/T4n60O62zfXQ5ekWx/5gt/5fs7MswK+hejOyY3euQ0CwJt3n+YowPaVOfBbBEp
-         dJEeDVCuwvZ9Po6UwH6WwR61yNo8QEOiK+4+Kx8D7bg0TSdR9XROdHw3f1xn+88SdUjT
-         FKp37tI7IHnt2aBT+Onji2I4z+TyFdQ4blHGhocd5Cvo+DPJxtw+XQ2RiLro10yh/8lu
-         1p++S7Ve9jJXwmWTzVM4nkV6i0DooOiJMBXdrub6c376rGFc7/edvpnWYb2rwUpVjeJ7
-         lJmhgIun9CihMydKij65EKz+KxuAS10qTSTYIky1lTkp/Ny7pKVgTg12fRObhUjQ3ih0
-         96uA==
+        bh=tQBx3vMQCN7LC3XtCmwPt8309d/psSSD/2A8vw8TijU=;
+        b=wgDGw/9DQ9KSsdXN0DSBKHzXM4uN7UVJD+N0RZzLCxJQDKkn7ZgJ7Izp6OIrltdhEm
+         gOV+7xq8wu1LyYuM+8ZTR0WSI+X45sIJ1Lao3b5vBsBT6KSxCW8KDXqgUBFwXsEn1jYf
+         dZcCbrj30C9Ykc3f0FjjyKJG9cojIgqLJUbiVoaQmXFRsYQHVTWYZstyTwFrmCnr2O+1
+         cVOPDUX7wvjDz3SyvJRxYmkOlr8Z2UlgnuXc7eq9bxN5ksc8j3jzH24pENNe/uAvhQLs
+         Hktt9rl67UD30fap5hPNDHW3B9ZXEZHls219iHGcZw4gG7x1CNL1oCoFgTT4xCwMrKO4
+         u7lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744098095; x=1744702895;
+        d=1e100.net; s=20230601; t=1744098115; x=1744702915;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=XXt1VUtxJKVhenaGxKn/M7BRvobuDoOHV9yLu3KSCFE=;
-        b=lzchzZTWIIqBIzWCrR8FNVLnpxinwdm3h71D/mcrdkraWxRqOTcVmEv1wG/6a4yDbr
-         fU3udSt47rf3rl6yeXaWkqoVjDUmT27HenA0IRydpselO89hvFsStvrZ8jlfVnCeQOvY
-         45HN/FvNmjw/AO7FB45piKkQw7IjKozZgYgU0dBfAXbU8Z8SJB8D4Xp+S9X8u/6Qy+8N
-         0A/7BokIxlt5gRmewye93ik2ktptFo4z3oclB5lF4SzKhY/5sDR21oYF9wBjDaWyN42W
-         64J5nxDEzhpy75FVUVwFJc5xg+WhsIGQHzxfx07TJGaLXvQG8Qy2/+21bCsLWrFqoeg1
-         XdUA==
-X-Forwarded-Encrypted: i=1; AJvYcCU80IOVuCnguOvgyVOSScG/+HzWr/Zh/N7YBh1LLI0oGFO0ltqNe/a7/wNPcaF58wLKDBH81ylqgqHgDm3f@lists.infradead.org
-X-Gm-Message-State: AOJu0YwanrzqdyGDHVh5aREXhjzbhZjlZK3EmgcbhyEkRi87s9LSSKWS
-	GKkIq3dhLGx6VOuJKIvFt+kf+wau05VpmY2/DjFG0XQioyMx8UBSCPQq0w6kbsI=
-X-Gm-Gg: ASbGncvL9JoO+b7kXMaae8UWjsGYCHs5IQiAhUW+hbRzvyAsh3UYfoqn1s3otuUkmcW
-	JNO5UmF5oVEAgqz9/kMSBuv9vEq/iiU9JA53r4W0DskTqwzzTkehmKNfe0U95n+fC7vIJfh8bWn
-	c8/CG40rM1KS8cFFk7npPBRyNULf0V4VMFwqojLxb8ipBHFif6IWooc9C6bVQQzJ8w9Uo13hQRN
-	pry7D1QwcxH5PgEqSMKDkC9ysLm1bcQkxI5EBOUzj7l2ELwW3z/4pc/p/trMCYVQv6vu6cVvS3F
-	Kcm5hWGNAG4daCWhnsqcAlQT3mZoStgwmuG2EQuPxb8zZiD+/XPllqcA9GMBvaaKF7QBmgdO0nD
-	ePkZ0ChwOxTfrIamDvRyMhg==
-X-Google-Smtp-Source: AGHT+IGwV0LdqrELIcKaYg5qGdauKUw5ISrN3fxgvRHpkZn+vvc+/FEZS7JUbltTES57GokFyHQFlA==
-X-Received: by 2002:a05:6000:2cc:b0:391:952:c74a with SMTP id ffacd0b85a97d-39d820aca79mr1827989f8f.8.1744098094642;
-        Tue, 08 Apr 2025 00:41:34 -0700 (PDT)
+        bh=tQBx3vMQCN7LC3XtCmwPt8309d/psSSD/2A8vw8TijU=;
+        b=UJkJEJKPwhQ83xANydEuyHiCTNJIxQTw8wHqsMcbvjDszvxVRFbDlHz3X9jWa4SjQ2
+         C6jwZAYA67IOUnx1Zz1SR09yGYNbcEFJBETJuhCCrHHEh6ZVM6tzeBN908wqsPwqF7Hn
+         1Rt3A9ODOoL5GtMJAIxm2WnE/Z9pw82a/Cvaj92iDSfWLgowRWFUgRD8350XFEHz+W7z
+         DgzvRnAWDq04XGX0ee8KFuKSgBYmbpQB8Bbp7Yn1bcIMWckExLKm65x5Toq7xLZiuOjj
+         2xVLldl60EnjHDt/9xpw11nzt1HBk814mZy3ZlIwho8KYp5IEe5YFUTt4sgAtZCoEVAt
+         uEpg==
+X-Forwarded-Encrypted: i=1; AJvYcCW80q9G7j/xMS5enCEXJNPhpU0LYNNvR9eXiBrp/cvid0WG0cpLJ4aqBDd97fOIUdpVXy+Chkw7zUCRD7jR@lists.infradead.org
+X-Gm-Message-State: AOJu0YxzFRk7bH0ta+Wbvqo5IRm9y/LBPymz8UNjMKEbf3UEb/PeGfUr
+	qy1xOioHW93oaYoQJfOmUkJ0Ry0ECBac1/4JQfq14rKlntn+L3gppXSWe8f9vwM=
+X-Gm-Gg: ASbGncuaq/m5tUe0+QsiFTn6U9jWA8Foh21v4C5lH9T3Fhv2TpSyeP7An1SaMo2yKTC
+	/Fg6TkFQw9muYuMtOdM4zNVfknWgcgEqH2Czf/Qc3HsX41Fz+DqQjr1lxuQmpFt5nCq64EIGRg9
+	wm7mmFH/Pgf8UKojPjS0nDALrD4zxUHh3DEkv23HIIp3XXsD0X3XRcwRU1Msz1k7VNYFyCvDGDX
+	rCRji/6HWR1pT6q3N4A8VDik0Sc6jtUaMFBi1PhUqdjQmAm9iCyE6AWRxeADn+jY6ukwSDwafn0
+	bZAonw5Z14Bz/tAlnz25nFYbSJfbJzC95y8SipnEGwztLUqfsPgEuGTXBa3g0WZ7hlMfEJGf+my
+	r1/qoXcShPnxuJ0Ygc8N6Pg==
+X-Google-Smtp-Source: AGHT+IFByldQ5+nIkIPUYqBDt+YbeQyC/TXD+J4hkwGfx+xeCVHaOyZ6wcecOFkR7gObrVdmBOHTrg==
+X-Received: by 2002:a5d:648b:0:b0:39a:d336:16 with SMTP id ffacd0b85a97d-39cb35aa6ffmr13189979f8f.34.1744098114336;
+        Tue, 08 Apr 2025 00:41:54 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:3daa:5b6d:6ccb:4c71? ([2a01:e0a:3d9:2080:3daa:5b6d:6ccb:4c71])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c300968c4sm14179491f8f.9.2025.04.08.00.41.33
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c30096b9csm14163670f8f.13.2025.04.08.00.41.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Apr 2025 00:41:34 -0700 (PDT)
-Message-ID: <a5c44052-1873-4df3-ae2b-ffe21246c16b@linaro.org>
-Date: Tue, 8 Apr 2025 09:41:33 +0200
+        Tue, 08 Apr 2025 00:41:54 -0700 (PDT)
+Message-ID: <1b0f322d-94b7-4ba5-8423-eecd835db07a@linaro.org>
+Date: Tue, 8 Apr 2025 09:41:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 05/10] pinctrl: meson: use new GPIO line value setter
+Subject: Re: [PATCH 06/10] pinctrl: amlogic-a4: use new GPIO line value setter
  callbacks
 To: Bartosz Golaszewski <brgl@bgdev.pl>,
  Ludovic Desroches <ludovic.desroches@microchip.com>,
@@ -92,7 +92,7 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
  Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 References: <20250408-gpiochip-set-rv-pinctrl-part1-v1-0-c9d521d7c8c7@linaro.org>
- <20250408-gpiochip-set-rv-pinctrl-part1-v1-5-c9d521d7c8c7@linaro.org>
+ <20250408-gpiochip-set-rv-pinctrl-part1-v1-6-c9d521d7c8c7@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -119,10 +119,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250408-gpiochip-set-rv-pinctrl-part1-v1-5-c9d521d7c8c7@linaro.org>
+In-Reply-To: <20250408-gpiochip-set-rv-pinctrl-part1-v1-6-c9d521d7c8c7@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250408_004136_306117_F90B15C3 
-X-CRM114-Status: GOOD (  14.53  )
+X-CRM114-CacheID: sfid-20250408_004156_947854_4BA12E93 
+X-CRM114-Status: GOOD (  14.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,34 +149,41 @@ On 08/04/2025 09:17, Bartosz Golaszewski wrote:
 > 
 > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
->   drivers/pinctrl/meson/pinctrl-meson.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
+>   drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-> index 253a0cc57e39..e7485c82089c 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
-> @@ -580,9 +580,9 @@ static int meson_gpio_direction_output(struct gpio_chip *chip, unsigned gpio,
->   					      gpio, value);
+> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+> index ee7bbc72f9b3..a76f266b4b94 100644
+> --- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+> @@ -806,15 +806,15 @@ static int aml_gpio_direction_output(struct gpio_chip *chip, unsigned int gpio,
+>   				  value ? BIT(bit) : 0);
 >   }
 >   
-> -static void meson_gpio_set(struct gpio_chip *chip, unsigned gpio, int value)
-> +static int meson_gpio_set(struct gpio_chip *chip, unsigned int gpio, int value)
+> -static void aml_gpio_set(struct gpio_chip *chip, unsigned int gpio, int value)
+> +static int aml_gpio_set(struct gpio_chip *chip, unsigned int gpio, int value)
 >   {
-> -	meson_pinconf_set_drive(gpiochip_get_data(chip), gpio, value);
-> +	return meson_pinconf_set_drive(gpiochip_get_data(chip), gpio, value);
+>   	struct aml_gpio_bank *bank = gpiochip_get_data(chip);
+>   	unsigned int bit, reg;
+>   
+>   	aml_gpio_calc_reg_and_bit(bank, AML_REG_OUT, gpio, &reg, &bit);
+>   
+> -	regmap_update_bits(bank->reg_gpio, reg, BIT(bit),
+> -			   value ? BIT(bit) : 0);
+> +	return regmap_update_bits(bank->reg_gpio, reg, BIT(bit),
+> +				  value ? BIT(bit) : 0);
 >   }
 >   
->   static int meson_gpio_get(struct gpio_chip *chip, unsigned gpio)
-> @@ -616,7 +616,7 @@ static int meson_gpiolib_register(struct meson_pinctrl *pc)
->   	pc->chip.direction_input = meson_gpio_direction_input;
->   	pc->chip.direction_output = meson_gpio_direction_output;
->   	pc->chip.get = meson_gpio_get;
-> -	pc->chip.set = meson_gpio_set;
-> +	pc->chip.set_rv = meson_gpio_set;
->   	pc->chip.base = -1;
->   	pc->chip.ngpio = pc->data->num_pins;
->   	pc->chip.can_sleep = false;
+>   static int aml_gpio_get(struct gpio_chip *chip, unsigned int gpio)
+> @@ -832,7 +832,7 @@ static const struct gpio_chip aml_gpio_template = {
+>   	.request		= gpiochip_generic_request,
+>   	.free			= gpiochip_generic_free,
+>   	.set_config		= gpiochip_generic_config,
+> -	.set			= aml_gpio_set,
+> +	.set_rv			= aml_gpio_set,
+>   	.get			= aml_gpio_get,
+>   	.direction_input	= aml_gpio_direction_input,
+>   	.direction_output	= aml_gpio_direction_output,
 > 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
