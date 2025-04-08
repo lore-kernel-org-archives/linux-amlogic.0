@@ -4,107 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79568C369A4
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Apr 2025 13:15:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F968C369A2
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Apr 2025 14:29:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rtqkTelXRMmvfuEQxLFJmTGUQLGENqQxjKvyfCjth4o=; b=c02CxnQLmglJkt
-	vvJlic7ChMhIMM+zihlRT57Y0CTV3BLFC5mr9m//c3yDPQi8Bi3uPyj21QoZB72D2+HdUwfT0I3OW
-	CnEgcpEdOgTOn1S542J6qAgm3zoPL82yVk1r1k5+zdq6mdu14DcoaS0/hQhrEsOzaNcIItYge2J3Q
-	zMinXARCXAKgplGCurNBqjRG8H4kO6aRAb9Hj5VlvCe/kUXPMOXZ9AD9LFDuP6SEi8PDvinFBJO0E
-	oVbI7w9CTKQht/1YwiiQG1L9VAQG9jqCxfXBwkIUorxWn/RmLdbOfS8lrrFhYTO5X7+KoygI+D1pw
-	ZtDCgB+VcsUMLv5CnCEA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=94+P5pwM5u/1o6/d5OXFLIgA7eMTp3yu8Ewl/gNWvUI=; b=Eh6A7za8kdAwWqf1mP3GwhNvSZ
+	i3DC+9KJGyGSjH2iHjZ+swPdesHjlOwJQGtwBtEnG3WmPV2lvhO7FDM0ZjxZ18KwSwRqQCenjk4am
+	JxgknhKkry4u9Dqf0j6hqEdYZl734iTY5S8keByZcz4Lxvvq9OW0iN7rVOUqAHdoI2sFL+Fz2rnzi
+	NWaD6sMhOrSaZFbuictDkaNevZ2WeIfCUTUTcrPqfNiRfYan2ceInMd7FjdYgbKYuyFZt7DuB7u2/
+	W5iPFJ3VHeHwS2BRN0AJgN7XJmdKPlauATEj1W+Ek03Vv+FXHmD5UoOpJXu9tRH1sKdvtJ+i87fLh
+	fQFPwsXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u28nb-0000000492n-1iZM;
-	Tue, 08 Apr 2025 13:15:31 +0000
-Received: from mail-yw1-x1132.google.com ([2607:f8b0:4864:20::1132])
+	id 1u29xX-00000004OAb-0WPR;
+	Tue, 08 Apr 2025 14:29:51 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u27tg-00000003xmJ-49VF
+	id 1u29vV-00000004NVM-33Ha
+	for linux-amlogic@bombadil.infradead.org;
+	Tue, 08 Apr 2025 14:27:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:In-Reply-To:References:Cc:To:Subject:Reply-To:From:MIME-Version:Date:
+	Message-ID:Sender:Content-ID:Content-Description;
+	bh=F6HfW0vkjtlkAm7uksKgsKqVu9qIf8mOl8bnZ7ef7cg=; b=pcj3DWdWHnsxNskiwyVZkMg396
+	mhW8qpHrNBz+1WYhsNMbAeMvc+JxaRwsKYQjAHyOAGb42qfgQH2Pq9w1DwtQQhPyuCygOf9fr8+Ij
+	S7hYUDvpJ0Yq+Ek8DGGXVJDESeMt/djllCiqbBVY8Ijj2g9yNJL9ofStH0r65pmiKaRE30rqsdV9a
+	MRxhp4uMs24PcxiQllDKDO80Un7UOoyjGFasDrwXk9voe4szGy6w93YD4RsElZxMS4J43pzcPNzIw
+	ZNpvX/WhTMmRsMML8MLaiHVEkU675pI4mO+Q+LlNwBLb1CtG491wIVwW9sBKOOPpYBoBAkCQFqEar
+	qEjxkmTg==;
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	by desiato.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u29vS-00000008Jvd-2OJU
 	for linux-amlogic@lists.infradead.org;
-	Tue, 08 Apr 2025 12:17:47 +0000
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-6ff1e375a47so51932087b3.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 08 Apr 2025 05:17:44 -0700 (PDT)
+	Tue, 08 Apr 2025 14:27:44 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-43cfecdd8b2so44389805e9.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 08 Apr 2025 07:27:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744114663; x=1744719463; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XgQfANebtdqnI5c6U+NPo92x9wLAySpUrYEpuKhqRpM=;
-        b=aL3WhV6qI4pDtIFufwSuHLMYAwqdBBammaQbOZXuC1bVcmSE7b4+7GK7Saa3IcmRrl
-         BCTnPcpbOOo6i18MeJci06xc5JzOxGq/8AVBGv6zOqZBmwC4De6Tp0N5wNgpnTA5uqRt
-         eygzOT/YVX0wJy+xR9bH+YEUr2jSbn82uqSR/fZ7ZO5+bWA1YO9vyly2gB4n9hneTMNf
-         Ynczyrs97ixYvFlsxuXj0XbTTCLjtqzflJgcAcj6D+rdSfHSsUKyNKKcxNFDLFU/0UZS
-         5PWCwQZALVZgP8Kp9Kh/liHa8rNj2QndhP0JeESv6m60hCE173Gzl53eYHnvK7zvM8DB
-         3k1g==
+        d=linaro.org; s=google; t=1744122460; x=1744727260; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F6HfW0vkjtlkAm7uksKgsKqVu9qIf8mOl8bnZ7ef7cg=;
+        b=vGybNqhmbby6gM9mPhNcOCl+BjcSwqfW2NVQAoKAm+vcqxVqHreQJaSA/ShRVScniO
+         eUZovLngOR1gwRP0DunN0H8LzMM3cweEY8ic4VNjND1dVsl1NR2yjzK1H/uaypKXpJ/r
+         OEwK1anSzY5HfSMZks11J+pshAeuN7KoSINgp9skr89+lZsuzw8BRYgYe3zNxGnxcV3+
+         00LHjkSqdJSUH6BF9Qvk6I/ACkZR71mZ92V2gmjQ/FGDD/E9EnmAk3rJjH22NDQF1HBK
+         FZNqqG5jwjBpaYU1WcEvRVW8HIMDr8OInHwwBUMqmbjVvrygLwwkeJxDxh+8f6G5L/Th
+         yoOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744114663; x=1744719463;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XgQfANebtdqnI5c6U+NPo92x9wLAySpUrYEpuKhqRpM=;
-        b=LIr9Y4TO+fZjV35U+7D80yd2DsZTguLui7G1rs0qZ6+dCJw8cks5B42z+SkBmNFO41
-         Q9wZVxIYAQwSOuTAh10LTquwBEIURI+vzXYpRi5a8NSWlbkdz1nosddquRStSp1pFIgF
-         Bw0kxY1a3/3emknF8NDX/oT+VXaSj5aaLZ0zMdPU7fMGq339bhP3zk3BZ44OTN3DM8Qe
-         yzjb6c+Q3hzxViNpoLN/pcbpkS3q3lDtK2naxz5AP9SMUA7Q/eykDZIXVNEMSfMI04Z/
-         YXggcd++0rtoMb4bvQalh2TQgRWynyNo3mFw8M8iyDfHGBpc0/zOLQZVx7OHjHNAcran
-         l7HA==
-X-Forwarded-Encrypted: i=1; AJvYcCU0VIUVYzCQsN4Tun91QCH1jsT2ddUX+4QDbNmRfQBsQgcgP+B93kY+qK5CVypwUUhIwnmG/v3/8NIAhvP1@lists.infradead.org
-X-Gm-Message-State: AOJu0YwDlMb/+SORzrjnxGcV3Fx2RjGjOUtsJgo7wztgnyOizmDJ76q3
-	JivVxsWIxmd+n/kr22Z4ZvDfHb0kB2nZTFkjCY9HevjQChc3bv+Tpv9mn+mZZDptul53EfaWxe9
-	mgyMkAdnyNjD1jnIY6OpMcFH7eTuahEKt9KPZKg==
-X-Gm-Gg: ASbGnctXZyuU2Dzx912CtWDf9b0vm4mX9rWM7KCL2dAK5SGL0eeIGF4/aiHfpSK0JwO
-	PWqeEVB0z/s0oP4BkulEQHn3ccHEtoyzystKA4DzZSYAhoxxaBmn4+Gq1GL6V+pom3BqkFdEMbn
-	DjFiFx0wJrU5yH8/d7aDnCZnelN5Q=
-X-Google-Smtp-Source: AGHT+IE9ys53OzSUdrwDVzPrCpJ3j0rVw9UiRXdXpPHOiJneCGTZtJTMxzg8Xq2rdR9GYtx0ZTNP05CFJHjGpzcayc8=
-X-Received: by 2002:a05:690c:67c4:b0:6ff:28b2:50e1 with SMTP id
- 00721157ae682-703e14ffd3dmr297170407b3.2.1744114663553; Tue, 08 Apr 2025
- 05:17:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1744122460; x=1744727260;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=F6HfW0vkjtlkAm7uksKgsKqVu9qIf8mOl8bnZ7ef7cg=;
+        b=cGl3o0ZkeMVgeOwABFzmoodAog4mHZZX++gCv2QKbVZumQCC5EQlpGixI1fRbYQ156
+         1WcSk6JNtqjMrHK9xMcV1CDP9cGXSZaa2VlAPdYYSmExcRlJtVAJlgbsMAi4rCObyhQL
+         5CvLcDMSFss+/B2rIHz8+x1aHdtsgPSaVw4cFX1badEGri8AzXsN9bYNEVA2ArMD+CFL
+         /RxvQ0iPNQxnBKhiz560fgkSYMSc6ysCxC0mfZhxxWMzYnKLktOzBLEXP8+dbzrY4ex0
+         Jl7BcB3gYSjYsdF8G7kurY2GGDYzpFILBGOiNrGLcI3yrhWdK99UxjYCbTTXM1g5IcMs
+         6FeA==
+X-Forwarded-Encrypted: i=1; AJvYcCX3/ucEbOYataOJ0/3WmtDeYdPhm3jiXcAfJXHlx120J/6e1ownNOSgRAfHxAyIqF83sFvN3NRor1NAAljC@lists.infradead.org
+X-Gm-Message-State: AOJu0YyUtYvFkETHVdTFBm7rEox0vpq9UxPGv3DPcELly8F1cFiHJ0dr
+	vo0UByZblH1YeLKW0HGgaPk0o5uMDyxGywN4HVoH+c3W26pFjyUAK2wCjMpbrVI=
+X-Gm-Gg: ASbGnctyFKlHY1HtvVcCyvaRlmV5m5EfxZmdiyS9Qo4Fjc2EcpDjToXfAy6fZUA/RxL
+	OSmDT56iGG6P5cKpTWEOV1h4wVeYtz8t5TV1MkCUOXHs7yu5w6A7GC/naA6pL2a9wytmNCAHko4
+	BpxrNMkHnQs6xlX4/rMv5BFW91SvisQLV26zf2UKP78K4rdcGipjsv181p7V7ax7wWDaZnMplE4
+	LVqESuQNZR9E3lyoR79F8mpnNfbX9Qh1EG5JJZgtaEHIgr80I9aD93w4/gAKIjbkTyibrKQj3LT
+	NHgILt2hYIG3o3FhTewPQlzURuy3xtyIY969ua7uwsupILQgvtoe18RpOuF9U1jHoLejWPKfkCo
+	2lnk1O6QIX0UGQllpriMC0A==
+X-Google-Smtp-Source: AGHT+IEFzSlrXkuwJ4BeZNVJDc79m98CBMUnaDEEBTa0PE1ADYZ4JU0DGBnfFovWynU4GuvtS6T8sQ==
+X-Received: by 2002:a05:600c:5346:b0:43c:f597:d582 with SMTP id 5b1f17b1804b1-43eda5d8460mr90477265e9.1.1744122460377;
+        Tue, 08 Apr 2025 07:27:40 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:3daa:5b6d:6ccb:4c71? ([2a01:e0a:3d9:2080:3daa:5b6d:6ccb:4c71])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec3429f67sm169744825e9.7.2025.04.08.07.27.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Apr 2025 07:27:40 -0700 (PDT)
+Message-ID: <ba7e31ff-5744-4409-921f-e2014f23151b@linaro.org>
+Date: Tue, 8 Apr 2025 16:27:39 +0200
 MIME-Version: 1.0
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-18-076be7171a85@kernel.org> <CAPDyKFrFRrPVJ_t0JrAE1VTbS02hwr=L-EHtqb7CQiWzB1MnQg@mail.gmail.com>
- <CAL_JsqKygxhcQ=PZW84sfiW7BVXKF839vfNyxS9GwAXuqmN=8g@mail.gmail.com>
- <CAPDyKFoHQdHED0hHUR7VKin0XG6SVnYXuvPjB=Xe+1o2hpiPJA@mail.gmail.com> <CAL_Jsq+Oa7MvVO7Y-RG+qrY2e86B_q0XGq1LWoy5Mq+G72ZHzQ@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+Oa7MvVO7Y-RG+qrY2e86B_q0XGq1LWoy5Mq+G72ZHzQ@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 8 Apr 2025 14:17:07 +0200
-X-Gm-Features: ATxdqUE7frfhfuxoKUlf3DinAq4W783EiniruawsYcgTKF9-ms73Ag05S_dZWTY
-Message-ID: <CAPDyKFoKdj-Y4-dCwYRG7TLdS1HcSH=i9EN-b9Cpyo50kMmC5Q@mail.gmail.com>
-Subject: Re: [PATCH 18/19] dt-bindings: arm/cpus: Add power-domains constraints
-To: Rob Herring <robh@kernel.org>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Vincenzo Frascino <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Viresh Kumar <vireshk@kernel.org>, 
-	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, 
-	Conor Dooley <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
-	Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org, 
-	imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 08/10] pinctrl: sx150x: use new GPIO line value setter
+ callbacks
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Xianwei Zhao <xianwei.zhao@amlogic.com>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20250408-gpiochip-set-rv-pinctrl-part1-v1-0-c9d521d7c8c7@linaro.org>
+ <20250408-gpiochip-set-rv-pinctrl-part1-v1-8-c9d521d7c8c7@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250408-gpiochip-set-rv-pinctrl-part1-v1-8-c9d521d7c8c7@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250408_051745_045506_D6D2F0D6 
-X-CRM114-Status: GOOD (  25.11  )
+X-CRM114-CacheID: sfid-20250408_152742_846641_5763F81F 
+X-CRM114-Status: GOOD (  18.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,64 +149,86 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-KyBTdGVwaGFuIEdlcmhvbGQKCk9uIE1vbiwgNyBBcHIgMjAyNSBhdCAxODo1MCwgUm9iIEhlcnJp
-bmcgPHJvYmhAa2VybmVsLm9yZz4gd3JvdGU6Cj4KPiBPbiBNb24sIEFwciA3LCAyMDI1IGF0IDEx
-OjIz4oCvQU0gVWxmIEhhbnNzb24gPHVsZi5oYW5zc29uQGxpbmFyby5vcmc+IHdyb3RlOgo+ID4K
-PiA+IE9uIEZyaSwgNCBBcHIgMjAyNSBhdCAxNTowOSwgUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVs
-Lm9yZz4gd3JvdGU6Cj4gPiA+Cj4gPiA+IE9uIEZyaSwgQXByIDQsIDIwMjUgYXQgNTozN+KAr0FN
-IFVsZiBIYW5zc29uIDx1bGYuaGFuc3NvbkBsaW5hcm8ub3JnPiB3cm90ZToKPiA+ID4gPgo+ID4g
-PiA+IE9uIEZyaSwgNCBBcHIgMjAyNSBhdCAwNTowNiwgUm9iIEhlcnJpbmcgKEFybSkgPHJvYmhA
-a2VybmVsLm9yZz4gd3JvdGU6Cj4gPiA+ID4gPgo+ID4gPiA+ID4gVGhlICJwb3dlci1kb21haW5z
-IiBhbmQgInBvd2VyLWRvbWFpbnMtbmFtZXMiIHByb3BlcnRpZXMgYXJlIG1pc3NpbmcgYW55Cj4g
-PiA+ID4gPiBjb25zdHJhaW50cy4gQWRkIHRoZSBjb25zdHJhaW50cyBhbmQgZHJvcCB0aGUgZ2Vu
-ZXJpYyBkZXNjcmlwdGlvbnMuCj4gPiA+ID4gPgo+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogUm9i
-IEhlcnJpbmcgKEFybSkgPHJvYmhAa2VybmVsLm9yZz4KPiA+ID4gPiA+IC0tLQo+ID4gPiA+ID4g
-IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vY3B1cy55YW1sIHwgOCArKy0t
-LS0tLQo+ID4gPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDYgZGVsZXRp
-b25zKC0pCj4gPiA+ID4gPgo+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9hcm0vY3B1cy55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL2FybS9jcHVzLnlhbWwKPiA+ID4gPiA+IGluZGV4IDZmNzRlYmZkMzhkZi4uNWJk
-NTgyMmRiOGFmIDEwMDY0NAo+ID4gPiA+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL2FybS9jcHVzLnlhbWwKPiA+ID4gPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9hcm0vY3B1cy55YW1sCj4gPiA+ID4gPiBAQCAtMzEzLDE5ICszMTMs
-MTUgQEAgcHJvcGVydGllczoKPiA+ID4gPiA+ICAgICAgbWF4SXRlbXM6IDEKPiA+ID4gPiA+Cj4g
-PiA+ID4gPiAgICBwb3dlci1kb21haW5zOgo+ID4gPiA+ID4gLSAgICBkZXNjcmlwdGlvbjoKPiA+
-ID4gPiA+IC0gICAgICBMaXN0IG9mIHBoYW5kbGVzIGFuZCBQTSBkb21haW4gc3BlY2lmaWVycywg
-YXMgZGVmaW5lZCBieSBiaW5kaW5ncyBvZiB0aGUKPiA+ID4gPiA+IC0gICAgICBQTSBkb21haW4g
-cHJvdmlkZXIgKHNlZSBhbHNvIC4uL3Bvd2VyX2RvbWFpbi50eHQpLgo+ID4gPiA+ID4gKyAgICBt
-YXhJdGVtczogMQo+ID4gPiA+Cj4gPiA+ID4gVGhlcmUgYXJlIG1vcmUgdGhhbiBvbmUgaW4gc29t
-ZSBjYXNlcy4gVGhlIG1vc3QgaXMgcHJvYmFibHkgdGhyZWUsIEkgdGhpbmsuCj4gPiA+Cj4gPiA+
-IFVubGVzcyBJIG1pc3NlZCBpdCwgdGVzdGluZyBzYXlzIG90aGVyd2lzZS4gV2hhdCB3b3VsZCB0
-aGUgbmFtZXMgYmUgaWYKPiA+ID4gbW9yZSB0aGFuIDEgZW50cnk/Cj4gPgo+ID4gInBzY2kiLCAi
-cGVyZiIsICJjcHIiLCBldGMKPiA+Cj4gPiBUaGUgInBzY2kiIGlzIGFsd2F5cyBmb3IgQ1BVIHBv
-d2VyIG1hbmFnZW1lbnQsIHRoZSBvdGhlciBpcyBmb3IgQ1BVCj4gPiBwZXJmb3JtYW5jZSBzY2Fs
-aW5nICh3aGljaCBtYXkgYmUgbW9yZSB0aGFuIG9uZSBwb3dlci1kb21haW4gaW4gc29tZQo+ID4g
-Y2FzZXMpLgo+ID4KPiA+IEkgd291bGQgc3VnZ2VzdCBjaGFuZ2luZyB0aGlzIHRvICJtYXhJdGVt
-czogMyIuIFRoYXQgc2hvdWxkIGJlCj4gPiBzdWZmaWNpZW50IEkgdGhpbmsuCj4KPiBBZ2Fpbiwg
-bXkgdGVzdGluZyBzYXlzIDEgaXMgZW5vdWdoLiBTbyB3aGVyZSBpcyBhIC5kdHMgZmlsZSB3aXRo
-IDMgb3IgMj8KClJpZ2h0ISBJIGFzc3VtZSB0aG9zZSB3aXRoIDMgb3IgMiBqdXN0IGhhdmVuJ3Qg
-bWFkZSBpdCB1cHN0cmVhbSB5ZXQsCmJ1dCBzdXJlIHRoZXkgYXJlIGNhc2VzLiBJZiB5b3UgcHJl
-ZmVyIHRvIHVwZGF0ZSB0aGUgYmluZGluZyBsYXRlciwKdGhhdCdzIGZpbmUgYnkgbWUsIGJ1dCBJ
-IGp1c3Qgd2FudGVkIHRvIGF2b2lkIHVubmVjZXNzYXJ5IGNodXJucyBmb3IKeW91LgoKRm9yIGV4
-YW1wbGUsIG1zbTg5MTYgc2VlbXMgdG8gYmUgb25lIGNhc2UgdGhhdCBhbHJlYWR5IHVzZXMgInBz
-Y2kiLApidXQgcmVxdWlyZXMgYW4gYWRkaXRpb25hbCB0d28gcG93ZXItZG9tYWlucyBmb3IgcGVy
-Zm9ybWFuY2Utc2NhbGluZy4KQXQgbGVhc3QgYWNjb3JkaW5nIHRvIGVhcmxpZXIgZGlzY3Vzc2lv
-bnMgWzFdIHdpdGggU3RlcGhhbiBHZXJob2xkLgoKTW9yZW92ZXIsIGl0J3MgcGVyZmVjdGx5IGZp
-bmUgdG8gYWxzbyBkZXNjcmliZSBDUFUncyBpZGxlLXN0YXRlcyBieQp1c2luZyB0aGUgcG93ZXIt
-ZG9tYWlucy9kb21haW4taWRsZS1zdGF0ZXMgRFQgYmluZGluZ3MsIGFjY29yZGluZyB0bwp0aGUg
-YmluZGluZ3MgZm9yIFBTQ0kgWzJdIChubyBtYXR0ZXIgb2YgUFNDSSBPU0kvUEMgbW9kZSkuIElu
-IG90aGVyCndvcmRzLCBmb3IgYWxsIHRob3NlIHRoYXQgb25seSBoYXZlIGEgInBlcmYiIG9yICJj
-cHIiIHBvd2VyLWRvbWFpbgp0b2RheSAob3Igd2hhdGV2ZXIgbmFtZSBpcyB1c2VkIGZvciB0aGUg
-cGVyZm9ybWFuY2Utc2NhbGluZyBkb21haW4pLAp0aG9zZSBjb3VsZCBlYXNpbHkgYWRkIGEgInBz
-Y2kiIHBvd2VyLWRvbWFpbiB0b28sIGRlcGVuZGluZyBvbiBob3cKdGhleSBjaG9vc2UgdG8gZGVz
-Y3JpYmUgdGhpbmdzIGluIERULgoKS2luZCByZWdhcmRzClVmZmUKClsxXQpodHRwczovL2xvcmUu
-a2VybmVsLm9yZy9hbGwvWlJjQzJJUlJ2NmR0S1k2NUBnZXJob2xkLm5ldC8KWzJdCkRvY3VtZW50
-YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vcHNjaS55YW1sCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
-dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On 08/04/2025 09:17, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> struct gpio_chip now has callbacks for setting line values that return
+> an integer, allowing to indicate failures. Convert the driver to using
+> them.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>   drivers/pinctrl/pinctrl-sx150x.c | 23 ++++++++++++-----------
+>   1 file changed, 12 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/pinctrl/pinctrl-sx150x.c b/drivers/pinctrl/pinctrl-sx150x.c
+> index 98262b8ce43a..d3a12c1c0de2 100644
+> --- a/drivers/pinctrl/pinctrl-sx150x.c
+> +++ b/drivers/pinctrl/pinctrl-sx150x.c
+> @@ -432,24 +432,25 @@ static int sx150x_gpio_oscio_set(struct sx150x_pinctrl *pctl,
+>   			    (value ? 0x1f : 0x10));
+>   }
+>   
+> -static void sx150x_gpio_set(struct gpio_chip *chip, unsigned int offset,
+> -			    int value)
+> +static int sx150x_gpio_set(struct gpio_chip *chip, unsigned int offset,
+> +			   int value)
+>   {
+>   	struct sx150x_pinctrl *pctl = gpiochip_get_data(chip);
+>   
+>   	if (sx150x_pin_is_oscio(pctl, offset))
+> -		sx150x_gpio_oscio_set(pctl, value);
+> -	else
+> -		__sx150x_gpio_set(pctl, offset, value);
+> +		return sx150x_gpio_oscio_set(pctl, value);
+> +
+> +	return __sx150x_gpio_set(pctl, offset, value);
+>   }
+>   
+> -static void sx150x_gpio_set_multiple(struct gpio_chip *chip,
+> -				     unsigned long *mask,
+> -				     unsigned long *bits)
+> +static int sx150x_gpio_set_multiple(struct gpio_chip *chip,
+> +				    unsigned long *mask,
+> +				    unsigned long *bits)
+>   {
+>   	struct sx150x_pinctrl *pctl = gpiochip_get_data(chip);
+>   
+> -	regmap_write_bits(pctl->regmap, pctl->data->reg_data, *mask, *bits);
+> +	return regmap_write_bits(pctl->regmap, pctl->data->reg_data, *mask,
+> +				 *bits);
+>   }
+>   
+>   static int sx150x_gpio_direction_input(struct gpio_chip *chip,
+> @@ -1175,7 +1176,7 @@ static int sx150x_probe(struct i2c_client *client)
+>   	pctl->gpio.direction_input = sx150x_gpio_direction_input;
+>   	pctl->gpio.direction_output = sx150x_gpio_direction_output;
+>   	pctl->gpio.get = sx150x_gpio_get;
+> -	pctl->gpio.set = sx150x_gpio_set;
+> +	pctl->gpio.set_rv = sx150x_gpio_set;
+>   	pctl->gpio.set_config = gpiochip_generic_config;
+>   	pctl->gpio.parent = dev;
+>   	pctl->gpio.can_sleep = true;
+> @@ -1190,7 +1191,7 @@ static int sx150x_probe(struct i2c_client *client)
+>   	 * would require locking that is not in place at this time.
+>   	 */
+>   	if (pctl->data->model != SX150X_789)
+> -		pctl->gpio.set_multiple = sx150x_gpio_set_multiple;
+> +		pctl->gpio.set_multiple_rv = sx150x_gpio_set_multiple;
+>   
+>   	/* Add Interrupt support if an irq is specified */
+>   	if (client->irq > 0) {
+> 
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
