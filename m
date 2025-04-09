@@ -4,150 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7518C36002
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Apr 2025 18:35:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E79BC36002
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Apr 2025 22:00:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1yXJuYqefEBbdPAwxOolaXwzpgh35sFDEBuxNCVAn0g=; b=jxi7oDgKpmPu1u
-	luFMR5iRpgaxy6WxXqeZuMxxsrqkKpaxJXUXW7f0mHhOqj+bS6WEV5H+vQy3HQMcoi7GmZk/7U4HD
-	6kP38Vl686uEHA+TBD0XW9fDTmddfVWDWvhnyJby3rYVOfUdJ9Z/PsRncuEGQQIjzkh+5Vzo0nfxM
-	7jcHBwFwghFMGA5FmS2xRDPBJMtnGbi8uZaWz/wZkwPoSuKhUGKAYp4TW67e+uFZP0bvI7HTveEOx
-	2cXWr3ONmbMmGP8IGoqzE0nMyxwhQxrwxtcl2OUSpTIN3VWyCnmS/yr7nC3famQWzKZihApkHhRm5
-	5bU+YC3mzAA+xXZ/7Uwg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=p+kYlRpct98C0F3O0JMbtBgqkkZw7Mja35FyrYptePw=; b=VomVHsHTfL7Lg2
+	61ydAWctF+vtwLRulurtl+6qsMHey59D/FhX1P7OdVRe2WW5kUoMUGrVSx2JyWCz/0dMwH2zTU8JC
+	6h9Rg8obtFc7/BZwzspz4bJ6ODDcpArGL0qOgwg7WRT0/CJriworvallX/Xr8nTBcJJtRtEOfAn1K
+	CUH/ULNFkBuHFq1JqrLAKXnlmGtB4fhQ6776tYpKSfX8SrVIalZYVwQoTkPriVBu/ZRP5KnfCb5un
+	olDcI5zrUj+lUQWPKrr3FgC1Yuyd78OZIEOtmgVJWJW75ImpcMVJmwpzZibAyQoGQntrec1IsFQu4
+	WSiDU12178NWLZ/HMJcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2aGw-00000008Bvp-35b7;
-	Wed, 09 Apr 2025 18:35:38 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1u2dSj-00000008ex9-3Dzf;
+	Wed, 09 Apr 2025 22:00:01 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2aGv-00000008Buc-00m6
-	for linux-amlogic@lists.infradead.org;
-	Wed, 09 Apr 2025 18:35:38 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539HGJPC010463
-	for <linux-amlogic@lists.infradead.org>; Wed, 9 Apr 2025 18:35:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	h3tN8Xg2pRwFhKBUhJyoFYaiPiYIFv7y7hpbU+APvsA=; b=BEcxr57EUiJY5Zym
-	kVNSxVwdl1/G+WnKZuK+rrrBokydGO/Oh3UpLZWk4kL3VGv2SmZR3i/K6wuf2YOI
-	MpodShpD7Ukn+eqF+kTxaEAW5tLuv0RTNDEG9lR31fCxF4wwsbIh54Tb+rDBzvkY
-	R02dOpwLQyR09UacSpshxRb/Aa1t9Sa0cqYNVnm+UUMJN9lkCsaHQecEQDnqKyfr
-	M9Tj2Ei9EZY3qDpuDSHjXEdH5VGK/kupDdwYPBVBtsL4/Cr+/793ixrAqiOXu9ea
-	C2RawlFXomCZxJWIpKE0WahyzSIVh5Ehs76kZRSWUp/xi6CvdT3uLQ6bdG2ibQCP
-	I2IDfQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twftm84x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Wed, 09 Apr 2025 18:35:35 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c76062c513so41485a.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 09 Apr 2025 11:35:35 -0700 (PDT)
+	id 1u2dE9-00000008cLy-0OUr;
+	Wed, 09 Apr 2025 21:44:58 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-ac289147833so28674166b.2;
+        Wed, 09 Apr 2025 14:44:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1744235095; x=1744839895; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3NPai227aDJvUuV8kWoPsqKGMzOpGvfzdkovhg7o0R8=;
+        b=KJqxhRLWhE8IOfm/FnAJpu3ULyf61JpXOwljyd7RJnx2FEyPLAGf4emWKgDUx1pY+s
+         6AiAkEBu86nwhaLIeHDim6VoD+fuEFxUaahSNA8EheHRK1eAmPj0FmT/EUEiConAfHqv
+         74XJwI6QkyAloAhgUI+pDb3RFV1YzVEFMDAGHq25+u0O9NOaaToMesI6h/yHier9aHVb
+         BQshrN84vFf6Lcp+FxNJkHW4xrA6eg++2vWGGN/lFCUeGGruMiZjiNSiqzpoK85BU9eg
+         +DrSiigst4/pezgOCfDnySv7lusxIvM0yFiJ1u/IWVsMJYcOvvyTKRQHPKupD2Q0N+WS
+         DWVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744223734; x=1744828534;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h3tN8Xg2pRwFhKBUhJyoFYaiPiYIFv7y7hpbU+APvsA=;
-        b=L9MeD1FjCVVcqT3QutWKUTNYwbSMv04ERfthotzNsIM3IpcgospaLpgugygZCStu2l
-         FAlUQrH7TRW/AHM4uqv5bN/EVkBsDEgvLrkThl9yliQd87e+reN/JpKHPAJOdrKsb0h0
-         HJKKs2MgPqedxMivxHGvIs3eonLl0Xh3BMM9xamBOPqk0nrNOC7X2RYMzoWc53JrfgVA
-         IBTbzieyAWeu/+jfTmEN+9mfJcgBj+9fmI4eNjzbX4zkQp609g/K9/YidzRcLdNC5cts
-         UN3TK8Ryj4gsac9OsLiieqRrEw8bfzCvxS+Z36e8RiIfoCmJVu3bvt5/XPmgEOXHoPhi
-         P51A==
-X-Forwarded-Encrypted: i=1; AJvYcCW84gNSBPi/zx9wEswlUjJbBVd0xOTI0qiR1epu3wIqY+nA7DruE09GBRVq762aGcQjdZ4Dd2Hd4jsKMwkQ@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz2KpfHubiQ+v/2s07HjdYaGDSmhze8t4o1Nf6R9tMEjwMp9CxU
-	OI6igwLfH+JD/b1LhPQcDo/Eveo7IZok++Vsvn9PTOROX2rqMsYnDbTYLCdUFZG2+7zO6NfmwSb
-	866RPYRuOAaQK6J9q+pXQskM5NiqtyexUbyEyP+fS6bxODt175c6Md78YhQz94nNAnPwebg==
-X-Gm-Gg: ASbGncuuSWinG8SDHPUZvq8/yoUC5PAIeIWv7wnHZPdaDNO+X5Ose0PtvcTdDVXgc62
-	INMpc/6WuzY/Wf9mX+V8YmW8lBlaCFPhmro+i+Sdbz+Q+h2/sdnwiCpKFkPiWIk81d33wZZ736e
-	TV9qK7S5y6aMdgbPYpyiOsCN2g0Z1GmBm1iYbPeCB1kusEhAaomQkC/r/FUiaaGIsV76qKsySQd
-	CkGQRYqpSBOKKijq4eXItKMpm1WuEdikH72lrLSwZ/axwRe2GIBSg2A3LO9zRieUKz9G0jxb0Pq
-	eBZmzHRanjnx0GtiQoO6MYJh11e+Sa2oiqGnMoYAqpC8O4AeU2CWU1VjRGwpCZZ1Mg==
-X-Received: by 2002:a05:620a:319f:b0:7c3:c4ba:d8a6 with SMTP id af79cd13be357-7c79cc4fb3amr237221185a.14.1744223734644;
-        Wed, 09 Apr 2025 11:35:34 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFP4Nhv309/CRScfglwzxDlYjCREIsnQLZ9iN6mVMw3ZcNyjL93Zpdnb8GcZSJKHfk6DuunWg==
-X-Received: by 2002:a05:620a:319f:b0:7c3:c4ba:d8a6 with SMTP id af79cd13be357-7c79cc4fb3amr237218585a.14.1744223734222;
-        Wed, 09 Apr 2025 11:35:34 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1bb3167sm134011966b.21.2025.04.09.11.35.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Apr 2025 11:35:33 -0700 (PDT)
-Message-ID: <66f8d957-f7a5-4aec-b8e7-5bcc7ff7f569@oss.qualcomm.com>
-Date: Wed, 9 Apr 2025 20:35:29 +0200
+        d=1e100.net; s=20230601; t=1744235095; x=1744839895;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3NPai227aDJvUuV8kWoPsqKGMzOpGvfzdkovhg7o0R8=;
+        b=ZS46zyNCdUXGxTAQv1D6f4QPu6cvq/tE0d/gDRBAitM+1y6HhYu3UyCVF4O0rL/YZu
+         4ClyrINvuZart69OmPw4LFc5zJYuCu/+eXf7rf0QhLajx1p3F2qeAwiZDSwhYAhrjRBq
+         Syg+YbbPpW2Uqk0fUirc5nbieNQVF5PUhlDgzEp28+b/PgoVRR3lpmZ2FfnvMoayOMWR
+         15nhoagjmnYJqFdS9/HSqjTm+ST5uUwg50yQjtgIa+2CXmgsR2lYixHYVA4mDyJXtQo1
+         qPOcSGzuW2ykb3NKyJ+y/1Hhw2UonBARBXN1PjwD1XFYV0Mks4E9ZUc4RnU+hO8lAHgL
+         8D2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUvuzcx6yEgNev7bUxl4o7158IYYxMvZL+hcMePEXr4jZdlHQHyc20kLsymcxNP6U+m39B//2cbPPwHrkZCnzXa@lists.infradead.org
+X-Gm-Message-State: AOJu0YxsHdbWcKuINCmFObssNV4M4IU2Cabmlc0FGFly0+5fA+TtXWuv
+	pnIrvykT36lEs1mnBicxSsc0pYWd1X0BrnyiByH03XmNjpzo/pTusKMyNA==
+X-Gm-Gg: ASbGnctywfXFtctPwwjBZFWivS7UVWzVSIsjp0CwmhR+UeFNRYbRY7iz5kEL4eTH2IC
+	b1ErNtbEaouJ3o7+aJbcP89WWCN8tSHECG020L7ccdVJL6WyhawpHypDpdIBrl7z3A0mSqsRcyb
+	/MtbyiUE3aXFISUnkG2ObUhLAsqUsOeg/AwH2tr1V/r/hANk3OcCle8TDEqYcoHtUxzwoTTK+dX
+	oj8CpROjdtAyZowkwIE8kmyx+fB+WzfFMlmh4Bd1hbxM4yHJvtddP7wQseuaXbIGpu+nnkTKfVC
+	F6vriSukitTKR1bzJHDq5ByF9UyI7ZisHHGsZt6v683iRp0XeHbOYMAwHWvMrz3WRLJe+3ZUP+0
+	hkdUBBYy3W7efHxfXTULEPLNswUZZD3sr3RbA0FEceSyO2xjkbc73qWQ/M1VG9u+CYQ==
+X-Google-Smtp-Source: AGHT+IGgAEroUeLQh0oYmzC+aJfi7NMR07UxELr9MmrtZo+ueWdUduUVZpBbInA6JPzZpHd/qY/X8w==
+X-Received: by 2002:a17:907:868c:b0:ac3:3f11:b49d with SMTP id a640c23a62f3a-acabcb2f4b5mr27658666b.0.1744235094553;
+        Wed, 09 Apr 2025 14:44:54 -0700 (PDT)
+Received: from localhost.localdomain (dynamic-2a02-3100-b3fc-b700-0000-0000-0000-0e63.310.pool.telefonica.de. [2a02:3100:b3fc:b700::e63])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-acaa1be9152sm153577866b.42.2025.04.09.14.44.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 14:44:53 -0700 (PDT)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org,
+	dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	jbrunet@baylibre.com,
+	neil.armstrong@linaro.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Furkan Kardame <f.kardame@manjaro.org>
+Subject: [PATCH] drm/meson: fix resource cleanup in meson_drv_bind_master() on error
+Date: Wed,  9 Apr 2025 23:44:22 +0200
+Message-ID: <20250409214422.1751825-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/19] arm: dts: qcom: sdx55/sdx65: Fix CPU
- power-domain-names
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        "Rafael J. Wysocki"
- <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Vincenzo Frascino <vincenzo.frascino@arm.com>,
-        Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
-        Conor Dooley <conor@kernel.org>,
-        Nicolas Ferre
- <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Daniel Machon <daniel.machon@microchip.com>,
-        UNGLinuxDriver@microchip.com, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-mips@vger.kernel.org, imx@lists.linux.dev,
-        linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-9-076be7171a85@kernel.org>
- <03011a33-174b-4027-bdd2-043aa685380b@oss.qualcomm.com>
- <CAPDyKFoZ7NfN+pkCPnusvTOEaxbQhr=1FJqzdDGrLcKAzBpGyQ@mail.gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <CAPDyKFoZ7NfN+pkCPnusvTOEaxbQhr=1FJqzdDGrLcKAzBpGyQ@mail.gmail.com>
-X-Authority-Analysis: v=2.4 cv=B5+50PtM c=1 sm=1 tr=0 ts=67f6bdf8 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=OWbFrMhi_jq_UiG4ISsA:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-GUID: Nx1PayF99rZwvdVL96hKADuwxRC5v3q7
-X-Proofpoint-ORIG-GUID: Nx1PayF99rZwvdVL96hKADuwxRC5v3q7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-09_06,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=832
- suspectscore=0 malwarescore=0 bulkscore=0 phishscore=0 spamscore=0
- priorityscore=1501 adultscore=0 impostorscore=0 lowpriorityscore=0
- mlxscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504090122
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250409_113537_041751_90F10100 
-X-CRM114-Status: GOOD (  17.16  )
+X-CRM114-CacheID: sfid-20250409_144457_134361_8C7CF85F 
+X-CRM114-Status: GOOD (  14.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -164,37 +100,146 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 4/7/25 6:27 PM, Ulf Hansson wrote:
-> On Fri, 4 Apr 2025 at 22:41, Konrad Dybcio
-> <konrad.dybcio@oss.qualcomm.com> wrote:
->>
->> On 4/4/25 4:59 AM, Rob Herring (Arm) wrote:
->>> "rpmhpd" is not documented nor used anywhere. As the enable-method is
->>> "psci" use "psci" for the power-domain name.
->>>
->>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->>> ---
->>
->> "psci" is what we want here, but these platforms require some more
->> massaging..
-> 
-> So this isn't for CPU performance scaling?
+meson_drv_bind_master() does not free resources in the order they are
+allocated. This can lead to crashes such as:
+    Unable to handle kernel NULL pointer dereference at virtual address 00000000000000c8
+    [...]
+    Hardware name: Beelink GT-King Pro (DT)
+    pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+    pc : meson_dw_hdmi_unbind+0x10/0x24 [meson_dw_hdmi]
+    lr : component_unbind+0x38/0x60
+    [...]
+    Call trace:
+     meson_dw_hdmi_unbind+0x10/0x24 [meson_dw_hdmi]
+     component_unbind+0x38/0x60
+     component_unbind_all+0xb8/0xc4
+     meson_drv_bind_master+0x1ec/0x514 [meson_drm]
+     meson_drv_bind+0x14/0x20 [meson_drm]
+     try_to_bring_up_aggregate_device+0xa8/0x160
+     __component_add+0xb8/0x1a8
+     component_add+0x14/0x20
+     meson_dw_hdmi_probe+0x1c/0x28 [meson_dw_hdmi]
+     platform_probe+0x68/0xdc
+     really_probe+0xc0/0x39c
+     __driver_probe_device+0x7c/0x14c
+     driver_probe_device+0x3c/0x120
+     __driver_attach+0xc4/0x200
+     bus_for_each_dev+0x78/0xd8
+     driver_attach+0x24/0x30
+     bus_add_driver+0x110/0x240
+     driver_register+0x68/0x124
+     __platform_driver_register+0x24/0x30
+     meson_dw_hdmi_platform_driver_init+0x20/0x1000 [meson_dw_hdmi]
+     do_one_initcall+0x50/0x1bc
+     do_init_module+0x54/0x1fc
+     load_module+0x788/0x884
+     init_module_from_file+0x88/0xd4
+     __arm64_sys_finit_module+0x248/0x340
+     invoke_syscall+0x48/0x104
+     el0_svc_common.constprop.0+0x40/0xe0
+     do_el0_svc+0x1c/0x28
+     el0_svc+0x30/0xcc
+     el0t_64_sync_handler+0x120/0x12c
+     el0t_64_sync+0x190/0x194
 
-Nope!
+Clean up resources in the error path in the same order and under the
+same conditions as they were allocated to fix this.
 
-> 
->>
->> These SoCs don't seem to have any PSCI idle states (deeper than WFI)
->> described, which is no bueno, as they support some..
-> 
-> If PSCI PC mode is the only supported CPU suspend mode, we don't need
-> the power-domain topology to be described in DT as it's optional to
-> use.
-> 
-> Is this a PC or OSI based platform?
-Unfortunately it seems like only PC mode is implemented.
+Reported-by: Furkan Kardame <f.kardame@manjaro.org>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+This issue was reported off-list so I'm unable to provide a link to the
+report.
 
-Konrad
+I'm not sure which Fixes tag fits best. My preference so far is
+Fixes: 6a044642988b ("drm/meson: fix unbind path if HDMI fails to bind")
+but I'll happily take other suggestions as well.
+
+
+ drivers/gpu/drm/meson/meson_drv.c | 31 +++++++++++++++++--------------
+ 1 file changed, 17 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index 81d2ee37e773..031686fd4104 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -314,35 +314,35 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 			dev_err(drm->dev, "Couldn't bind all components\n");
+ 			/* Do not try to unbind */
+ 			has_components = false;
+-			goto exit_afbcd;
++			goto cvbs_encoder_remove;
+ 		}
+ 	}
+ 
+ 	ret = meson_encoder_hdmi_probe(priv);
+ 	if (ret)
+-		goto exit_afbcd;
++		goto unbind_components;
+ 
+ 	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+ 		ret = meson_encoder_dsi_probe(priv);
+ 		if (ret)
+-			goto exit_afbcd;
++			goto hdmi_encoder_remove;
+ 	}
+ 
+ 	ret = meson_plane_create(priv);
+ 	if (ret)
+-		goto exit_afbcd;
++		goto dsi_encoder_remove;
+ 
+ 	ret = meson_overlay_create(priv);
+ 	if (ret)
+-		goto exit_afbcd;
++		goto dsi_encoder_remove;
+ 
+ 	ret = meson_crtc_create(priv);
+ 	if (ret)
+-		goto exit_afbcd;
++		goto dsi_encoder_remove;
+ 
+ 	ret = request_irq(priv->vsync_irq, meson_irq, 0, drm->driver->name, drm);
+ 	if (ret)
+-		goto exit_afbcd;
++		goto dsi_encoder_remove;
+ 
+ 	drm_mode_config_reset(drm);
+ 
+@@ -360,6 +360,16 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 
+ uninstall_irq:
+ 	free_irq(priv->vsync_irq, drm);
++dsi_encoder_remove:
++	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
++		meson_encoder_dsi_remove(priv);
++hdmi_encoder_remove:
++	meson_encoder_hdmi_remove(priv);
++unbind_components:
++	if (has_components)
++		component_unbind_all(dev, drm);
++cvbs_encoder_remove:
++	meson_encoder_cvbs_remove(priv);
+ exit_afbcd:
+ 	if (priv->afbcd.ops)
+ 		priv->afbcd.ops->exit(priv);
+@@ -374,13 +384,6 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ free_drm:
+ 	drm_dev_put(drm);
+ 
+-	meson_encoder_dsi_remove(priv);
+-	meson_encoder_hdmi_remove(priv);
+-	meson_encoder_cvbs_remove(priv);
+-
+-	if (has_components)
+-		component_unbind_all(dev, drm);
+-
+ 	return ret;
+ }
+ 
+-- 
+2.49.0
+
 
 _______________________________________________
 linux-amlogic mailing list
