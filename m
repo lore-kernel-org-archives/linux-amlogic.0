@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DD33C369A6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 13:41:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 287E9C3601E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 13:43:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QJsEN//+yPWR5QAgimtISNr4TUYPS12HHB79agP3UzY=; b=JGwP3XH83+e30i
-	Nvw9o187EPVDpjROz05nbMFnrpc8BkoKo++/DdDrOTIU1XC2AAcgsewyHrKPT2IUvZXyi7iWciV4m
-	lfxvXKiXlyC082GF7RErde/StvyXDWivvdHq7hurie9GSGYkmooup64LAf3MogCTJkoFx/3hrqTQY
-	wCAzvOi0ObgAJYiJCRDaKAYBsZQjMa7tq9UVIW9nZFBY6qFz0tdKm4tndrUkZwdMsm+4ArZVkQAWO
-	5KlLyi1ad0KyIdxRBmJXzH8jRhW1wY1mkoxB36IPmtUAi63dGLkpHxTvEeTVGOEF67o4bdOl78pCO
-	+gthhmzVYA223HzBVYPg==;
+	List-Owner; bh=QP2BFkd0GFrKmok3jnG5a5kAwidAB1PZJZ1t47NYCjA=; b=WFePqNvAXeVtKW
+	vPZDOhy6c+k5I6aaxdpLGC2CxsNW9Fz2q//Yxb42k7Z2UewnymqDSt6dwfjzllxxfTy4Gf5wLzRxr
+	81hpufpddy/EVXfIrr1FYMVa8oCSjbGl8dIrS3m2UkjqleOn1G+t76DET4IXp4bNmk5P66fG9bdi4
+	Iq0Fb/xN3JQKRAsGzvg+ZlKQncpfVPWAxUY12d7Sm/SczfoLIpsFbMAK3wPsQI1QZCrXrV3Y4JOqJ
+	fOlOqSiMwbYdEuQZspcTqGE4Oiy8lLrKAjFEI08XzA3jqFECKbSjOSxYyaYfBXUqz7Rqr//TLMXdC
+	8HlgTFf3dmnXcQ6XmPdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2sA0-0000000Ai2I-3HpM;
-	Thu, 10 Apr 2025 13:41:40 +0000
-Received: from mail-pg1-x52f.google.com ([2607:f8b0:4864:20::52f])
+	id 1u2sBr-0000000AiTu-2Ziy;
+	Thu, 10 Apr 2025 13:43:35 +0000
+Received: from mail-pl1-x632.google.com ([2607:f8b0:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2s2f-0000000AgSC-1bVv;
-	Thu, 10 Apr 2025 13:34:06 +0000
-Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-b03bc416962so521754a12.0;
-        Thu, 10 Apr 2025 06:34:05 -0700 (PDT)
+	id 1u2s2k-0000000AgSl-32ap;
+	Thu, 10 Apr 2025 13:34:11 +0000
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-226185948ffso7990835ad.0;
+        Thu, 10 Apr 2025 06:34:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744292044; x=1744896844; darn=lists.infradead.org;
+        d=gmail.com; s=20230601; t=1744292050; x=1744896850; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ppfroywA/WF+8dvpxb3LW0A1l9sdjedjaaEGMEvs0rQ=;
-        b=TQlR7u5+45u80st/vy5xolMwPF9/Ow/bF9d9oxBquwxBulCmlh6On7LfcmRVf5AReE
-         dJOdL4Ca0mhkTiIQ8dKBkTUiDQBAhJ/eoVzM9TQTtTqa/yMN80WxN+7UCacTcpcYdoNm
-         xTTi/9tVBXN7laGTcmlfxXoahYe10TwmFk/1UcLXDl347TCs710L/qEN8J/AEbkYpFt8
-         L8Mb924scFhFJgHfd/Kz6dXRUpUcGAfCjwzQugtXRzjsdLi1LEWE8NnVuT2LD5p8RTbk
-         QApZCyzqLLWMwx7af+tDtjoabEGUsUbOf1AKtNoFbZ5OJg+oT1dg6jW63szjCQ2QRCC4
-         1KHQ==
+        bh=ie2WYSBT3Vb3/RLr/kVYn30UdEBVb+2bXcwDKP51ids=;
+        b=Z0uTLtKMfp2KJZCjgE2Z0HIRDLx8rDn/RvDEKQcHLCiAuGdz3KxBiw2nzuF2DrN0fe
+         RVJA34PitYCZjKKFGDmtlFHJVs5guHguTxEI840e6HbDYpdZ2FCE1xwNO0q5PD6j4AG6
+         c3cI7CcjU2YIfQaq+lftDucrOzgTqz9yQTdNf7lUAnZCUVkwk5lOi9ztke3tFBXp5/72
+         PJsjf/DLrUoaQiAKQMIY1XBeZCABTmZG0mm8ntpE0HIVkwTjVJaeeK6O9tQ/cQHdrmJT
+         KwubOPpCLr6EYmXrpxlKJwpT31IyUNq+30REiH0VtEtl5iu4wOXscrFNHkXbITJMrHPc
+         mkeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744292044; x=1744896844;
+        d=1e100.net; s=20230601; t=1744292050; x=1744896850;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ppfroywA/WF+8dvpxb3LW0A1l9sdjedjaaEGMEvs0rQ=;
-        b=FC2Is+2+4Fj/KOu2KZhdDFd1L4E49Xikubs6mgepaZM/vc8xYBCP+wYSNE8C+rmcP+
-         qeSS5J4HrDz2ZmBiLsZurggpPbnY6SXbiUSoYEHbpOcDUB5pW49Lmaq2EhEA9wCuc0A/
-         qON1r4ZgLq623+V22la7fUaXMsLJ/wiJOcneS3GEt6eCArvw7i/J/siHnSAhnLSyxymc
-         m0g+5ISA1ePuWjE04VcM4CgFDy9NX4Ls4jKR3IyDAIoGgTs/CrXTPfJHbdFjolko2Mmx
-         mqleMSTPbzMSfx+iCUj6D1muQSI5Xh/kbOjMIK8q4gzsMx3n5OdoN7BgicYPv2vvE4gL
-         4DIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV1V6rksMQLN2zK2gUbYp7DizIyv8JOEMywHP33Viidqb6qP9589JXxGnYYDBJfWEg0AarTSRfsUMTTVBUZ@lists.infradead.org, AJvYcCVsQ8FHMVXbZY+W8vqC1KVBoar0NDkaBB+N4t1xNTfjB5UXnny8bTMuIgSaKJbko9j2dbpyZXGPkIW+@lists.infradead.org, AJvYcCWytRJHpDBPNp2T6xlFQgnqzCMvIs1W2AwaHHRNqIWtVBFfrLHDrDUrEaheYnqAh1SW5fJ3duPOQEc7MlkanUV+Ew==@lists.infradead.org
-X-Gm-Message-State: AOJu0YwHKoHj4G+MTv3GGUXPXxjDQEJQwunU8sx4SvcYiDOTACXjsMP5
-	TlU4DkSxdQO/HVeYgDUICkrN7AXuJ/mnJlT9N8UNwu4hrkIddCbl
-X-Gm-Gg: ASbGncuHS42a3ybPsKHr11BhYy//ViZm3tOiUBbzI7bGxPBQ1e3lZrUtG4+9JmqHSA0
-	wu+hlzAfvCbE5wbjy10euOknWU6/PkGPUY40R/1ELcQdgFg6M7bxh668RWtBZZZ174g6i9ywzZu
-	ka39kW5XrZT66Myr2vkklXUMAPxnlNfsxIgc2VToMtw8lBZb1zaz4M8qMehCoQjhaTos2CVKZKQ
-	aHIB8ylog0cWSy4KNB7Ig+JBfjwf939CFop9t98WZxOGbJoXSW6nEmoh/F9OkP3ocFDAKgGd7av
-	TGQewu+efazzGk4A3h4VGIPK79C0wQfUxV+/2ulbOauMJsTwFtazBIg=
-X-Google-Smtp-Source: AGHT+IEx7fjFPOwJFBqQcxYwcNEjjXqC0n7A40gc7RBPd72Er1kad1UbyK8eNmLCNZzCP+fmYv0iMg==
-X-Received: by 2002:a17:902:db01:b0:216:53fa:634f with SMTP id d9443c01a7336-22b42c44052mr47156885ad.48.1744292044230;
-        Thu, 10 Apr 2025 06:34:04 -0700 (PDT)
+        bh=ie2WYSBT3Vb3/RLr/kVYn30UdEBVb+2bXcwDKP51ids=;
+        b=E1AkkoEy6invfKRo2EqPBGg6GTjUzC32ikxnI3E5TOtTvBggR+0M+Wm8SjQer57t4x
+         hnAUFG2yfPftNt1VS8lP3oJJ2zEkD8kBazrAQIzluLkAcZdo0OO3tymmqcwHP+yjCoi1
+         omeRuljI8FNReq2GEEWovUAwtGB9HNAPVjvI6DagSeA1xch6oeKe0mYNREkNJCUjtpK+
+         hDPlqqRV89x4Ba2GJSct7HaK9aPQcUrnNNoRGk/BgcFtPLF/3+W8HODj2w+OizsH15E1
+         QDeIb+vDF65pkzjKKrus0LbohTMu39qcl5eQJJUyQL+OoCcerb8crQTvJLXruvOU5nMe
+         W1Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCW+NLLujsZzxCn77DSss8oUJEB+zNsy4uP/G7z98avrR69XePCO8aoQuCxqCxt3tyCN3CQjy/rF/wxgWDH3@lists.infradead.org, AJvYcCW9CbNZoK7av/92zaribcsJKEde5e9yc44wBKI37DiyEs7vvOzg99gRqQQCw5xOjvVHkV5eEpIxA8He@lists.infradead.org, AJvYcCXsiWlf+oBBCAPL2JVPVOfdVW+0+AHxj58602e+pjkuorve78s6Zz1Ni2MeKKQxz32WjMqr9yQ5y0aTG+sfvZ47xw==@lists.infradead.org
+X-Gm-Message-State: AOJu0YxYfV5PxHMf5ATl30ArZ+avraK2oZdvcSgBhnNRPvr3jswfXv5n
+	gmcyBM88wq8XHqjGnvywxrhbFS7DaGG352sEonAqMFyOC+1PxWES
+X-Gm-Gg: ASbGncvv693ACKDOHlCatYbg8pA399UqH2U2YTJensWLqPSnVnc1Ygcvtfe18EjzTXa
+	Tfi8ICftgIllpIxRI9Px5em7ffeu3D7i9L8OcObQdBCyxAQdetjOtDvY6UqAZR46PBO+A/Pz++P
+	86ESlAANIcl3qmrA1ZSu/t6S+i32h21TdtY8HIQW0OYWM1RZGK+zSIx2SnVu5RBJGjTLzvQVnoR
+	Rpoj2k5MZbv0/aC+FSYK36W+9MUcIgjI4OeMVHx/tJe8WDQCPfaXdS+DeNaLyNBBwC/Dlbm6NmB
+	SUSyb+92PWrJZXQJnn8/+O7aZ6N8t6h29/NFaWc1/wZkSYVp52uzvA8=
+X-Google-Smtp-Source: AGHT+IFebE9GR8x4kSqiJ5cenp/8FxgShjyDitPJ8W8qx7xYFtufybCnsYQR0VTIIrJFw2c46H3Qfg==
+X-Received: by 2002:a17:902:d2ca:b0:224:c46:d167 with SMTP id d9443c01a7336-22b2edceda8mr42616955ad.16.1744292049826;
+        Thu, 10 Apr 2025 06:34:09 -0700 (PDT)
 Received: from localhost.localdomain ([103.221.69.50])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7cb0400sm30121475ad.160.2025.04.10.06.34.00
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7cb0400sm30121475ad.160.2025.04.10.06.34.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 06:34:03 -0700 (PDT)
+        Thu, 10 Apr 2025 06:34:09 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Vinod Koul <vkoul@kernel.org>,
 	Kishon Vijay Abraham I <kishon@kernel.org>,
@@ -79,16 +79,16 @@ To: Vinod Koul <vkoul@kernel.org>,
 	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
 	linux-kernel@vger.kernel.org (open list)
 Cc: Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH v1 3/6] phy: amlogic: phy-meson-axg-mipi-pcie-analog: Simplify error handling with dev_err_probe()
-Date: Thu, 10 Apr 2025 19:03:18 +0530
-Message-ID: <20250410133332.294556-4-linux.amoon@gmail.com>
+Subject: [PATCH v1 4/6] phy: amlogic: phy-meson-axg-mipi-dphy: Simplify error handling with dev_err_probe()
+Date: Thu, 10 Apr 2025 19:03:19 +0530
+Message-ID: <20250410133332.294556-5-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250410133332.294556-1-linux.amoon@gmail.com>
 References: <20250410133332.294556-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250410_063405_419545_7EA98A5F 
-X-CRM114-Status: GOOD (  11.94  )
+X-CRM114-CacheID: sfid-20250410_063410_760165_A0CBD138 
+X-CRM114-Status: GOOD (  11.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,37 +110,30 @@ reason when waiting for the resource to come up.
 
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c | 10 +++-------
+ drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c | 10 +++-------
  1 file changed, 3 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
-index ae898f93f97b2..c0ba2852dbb8e 100644
---- a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
-+++ b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
-@@ -200,7 +200,6 @@ static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
- 	struct phy_axg_mipi_pcie_analog_priv *priv;
- 	struct device_node *np = dev->of_node, *parent_np;
- 	struct regmap *map;
--	int ret;
+diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c b/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
+index 08a86962d9492..c4a56b9d32897 100644
+--- a/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
++++ b/drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c
+@@ -377,13 +377,9 @@ static int phy_meson_axg_mipi_dphy_probe(struct platform_device *pdev)
+ 		return ret;
  
- 	priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -219,12 +218,9 @@ static int phy_axg_mipi_pcie_analog_probe(struct platform_device *pdev)
- 	priv->regmap = map;
- 
- 	priv->phy = devm_phy_create(dev, np, &phy_axg_mipi_pcie_analog_ops);
--	if (IS_ERR(priv->phy)) {
--		ret = PTR_ERR(priv->phy);
+ 	phy = devm_phy_create(dev, NULL, &phy_meson_axg_mipi_dphy_ops);
+-	if (IS_ERR(phy)) {
+-		ret = PTR_ERR(phy);
 -		if (ret != -EPROBE_DEFER)
 -			dev_err(dev, "failed to create PHY\n");
+-
 -		return ret;
 -	}
-+	if (IS_ERR(priv->phy))
-+		return dev_err_probe(dev, PTR_ERR(priv->phy),
++	if (IS_ERR(phy))
++		return dev_err_probe(dev, PTR_ERR(phy),
 +				     "failed to create PHY\n");
  
- 	phy_set_drvdata(priv->phy, priv);
- 	dev_set_drvdata(dev, priv);
+ 	phy_set_drvdata(phy, priv);
+ 
 -- 
 2.49.0
 
