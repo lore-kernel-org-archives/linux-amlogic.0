@@ -4,116 +4,129 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2EF1C3601E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 07:12:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 257E1C369A4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 07:53:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nAghl5tBjM4cf7lK1fy53vN/Yb5DOKFscMsnGAjvi3M=; b=WWB8EospNroxgn
-	LmPjCUScWMGLn3+Le2DS+gH2+joQA4CD/F18tNYLXEPHNUVsQW1m9yhFquWkOpFnNHUeHWdHEpNF+
-	/N+Xppj9IzBOeclSL+qC7MJ/GfbDQidQOAQ/XjPzPAhecMkSw2vWa+GPXLdfVJ4tzrE7ERqoBzXdO
-	NvyLdGv9nC2bPKWUvHqt7bMBUdeliafgp85qzhnfeE09CEhmhfrOUKOLUuSNyL1qZrewQFJVRv1Vt
-	vMEGwpYjpK5+CPiHfZjTaK15eM6Ve/fiDujWY6tM4uRM4xVw2gDYuSh6qELLg6KMtK9vuZ9lockJU
-	5f3NqmGJh+XTQ6HL2x2g==;
+	List-Owner; bh=eUkZwVKmAPPwg9b9xUs8Xw+/FopA3CJjsIqI6pDisSY=; b=RXKKS7vKzSI6n6
+	kUQ5+vEgq5zM4DI2lhUa82LmY5XGJ5skhGzwkJCIsePeDoGs8mrD83gKhQi5b7LpAYAqap/JyRN9F
+	Rf3Pcn+k2yOHnKiJA+77SBgp+2oDPzyJanRctUrnopc0jebo0o6Cyo2nJkBI0i/pdGPW/i8ck7lWQ
+	7mvuK1M6eZihBfrHuGWlY38YUIvwmQ1psdgyeRsKm04H9PvlaIQOT2bDIgAA285w897D/aJgICQME
+	7RkTOooRV9F7lzoosjjI7S4ZeSSJnML+t2RtEFlg9AR2fSqc4f3XcYimLepJ3PLb1NFxXC9azb92y
+	4Ra3ZGkihB8+P9e1I77A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2m4w-00000009UR9-28JP;
-	Thu, 10 Apr 2025 07:12:02 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1u2mid-00000009dCS-2iI3;
+	Thu, 10 Apr 2025 07:53:03 +0000
+Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2ldm-00000009PVU-0PpU;
-	Thu, 10 Apr 2025 06:43:59 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-43d04ea9d9aso1895475e9.3;
-        Wed, 09 Apr 2025 23:43:57 -0700 (PDT)
+	id 1u2m42-00000009UBl-2Jps
+	for linux-amlogic@lists.infradead.org;
+	Thu, 10 Apr 2025 07:11:09 +0000
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-ac289147833so94265266b.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 10 Apr 2025 00:11:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744267437; x=1744872237; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YV128qhGuAyvX2XLDTOXX2NTQVmvho5pgSBUUl0uM3I=;
-        b=WAjDAjoY26qldf6iW0wQQkbkU4K8v6tO1nei1I3ylypxoedCNKxR0jh8eFvtcbrKMZ
-         2mQbIMo5um9iYJmhSiJMT6jNmzJ92b43rBJAn2y8tGPkr0Maext+1X7/UhT4Nst7bR/+
-         Avg4y9J/60DR+U/gosC5Sc0SadXARHMMlpsmlcLdGxuPhSdzmDiTGedXsdjX6RBVCIE0
-         3ruxe7BlbG3oB7d0YqglfAI3vcxDcheb+M0cwIyRxCdj91YDBt2p1W/Mf3Dvl3FkqkqN
-         2XMPEBEpPUID35q7IYzYKTG2+gsa+4TbaPCUw5awiXVXnAWvbihtDq928fPBrUy+U1SZ
-         LEwQ==
+        d=linaro.org; s=google; t=1744269064; x=1744873864; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3OcYzRuci4DVDvTV5wL2NFanwr7+BVH3bP+rdckE45M=;
+        b=yUs/O4dwK1DNXbpsQedSsErMEAN7SOtI0a8OqOXOE27FikQyIKhlT5d4gLKHT0jv8g
+         gd0FnHwqeCJM3uZwlLzoXzvTXhoLa5wHnMMcKa3zjwkvIlcyMcE/6c4HnVbBtaANv9Iv
+         p2JRdNmVeP8QXfq9q4A1gWLATNzuFmV56HPSS3BJiB5s9jR/UnF5n9OYy1mk5WA9XRov
+         9aNPYipgq+GSW4clzCpRR9NFyuDDN4nqgJuJ8Ivzo0GPoizF24hO7SnUQBCL0J1y3mbU
+         wWreQZ4/SCTEKGhq20/+i91oRaxoa8ORn0QpK/0AkxeeXTe62a0LBJhVJOMqG2kbV+0n
+         LLgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744267437; x=1744872237;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YV128qhGuAyvX2XLDTOXX2NTQVmvho5pgSBUUl0uM3I=;
-        b=WoANAZGbidbqk7XpQPoOFv6Hzkph9pvsTlTSyaPwc518agVmOAHBOO7vVaBIquV5yC
-         ZmM5EKWMgHxB0Z7wzCbTRXKNNm0QQDJvwupKroRt4SAcHzO6/WAW5IRyZavS1gBjwAQ9
-         GTdlVqeMbLt+3k+vMqvAXSCT0nVh4mZxGFADWTw4VVREMPuHbDgFhGSR6iJ2WD8XakHo
-         J3UYmdDeOzcG2wdgkm9yFrsw4ACgtq+W/OyoCMVi8bCnxVE43PPCyX4BwgLC5snaB6BR
-         aAxU6U40pImNq1jDYB4Usk8l5ReN41h+E62KsGKLf6J/88R7zc1Ao7avVAMfZYgxZ2pn
-         0B5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUwb0cHGnE2zhBimh2xVfS5U4ZuWsyPrCbcDAJJ41MOh4ge8Q3bOZh9cotIt1HLEzM+o+auT7BqCvkLz31dlvRVpw==@lists.infradead.org, AJvYcCVcsv89ozJTjZhJBlVIjxvaz9jBsYw1T9vZo7quD1Q8HuSehGCtYQ5gSo8dM3DVsyTtALJxTBMNPOq/zUDJVrQ=@lists.infradead.org, AJvYcCVuJfbFJq2PbT98aoj3xyL/3gpHUmOdwOdRjWUle9CXdL1dNUHnhb+p84qJ/twi1OGgLP/FSNYzvjp+mC67@lists.infradead.org, AJvYcCWPRupjcCOca7L7OEZycUTaALTRyePtJqVDLsCZg7FoShUA86bohDYj5PfnFQxfQMT2pInD8EcY3Jsjv54MVZo=@lists.infradead.org
-X-Gm-Message-State: AOJu0YzF1X7t8tBkRKqSur5jx2KDSuieBartv+uzwaDbXu/6EJajQMRx
-	JYaYBhEQaEzFOKcIyw7mtOiz5B8Wm6j2Ew90Drx269aVMxFCoT2X
-X-Gm-Gg: ASbGnct3TknRp0Qmzxz7FuOwyvy9Q1Mj6RYXrdA2w7zA2qShM58/MiY2ZXA027KAFGn
-	F9VoU6tieMUh24NXaqstrLzuh0kUdb90DEIwQ3nx/g1JsaCwPFpGFn8YCkCTDzlrGUT9bJ+zBv0
-	t9k+c5bvHdc9IHtyD21pdD90AXiVQ6w9Z5rf0AxGAmHNZ1tSa3g2UB4W72a1eQJYsdheG4cUufF
-	itqb1kbKNFHUtH+38uflUn+lL/nJCt9tJQMg19NT1lwp3YHSzlvTlk15acMESHFbYUCS+aKpbF5
-	m+QUlDmCoFT4q0c3+woCk5ZRzMbDqOiIEnig8nLdEMoFs6/WFgZmngAg1Pk4dF4ou7XfKIm/kBa
-	fTjatvZYbhNSVPX9m
-X-Google-Smtp-Source: AGHT+IEL1gPJzOAzRp7flPkyN4Ef+Ndtjxrjlvobznu4GMFiYPht20jH1k+dVvg8c3EBb+I0DiJViw==
-X-Received: by 2002:a05:600c:3512:b0:43c:f689:dd with SMTP id 5b1f17b1804b1-43f2d7e9229mr11997625e9.19.1744267436516;
-        Wed, 09 Apr 2025 23:43:56 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f207cb692sm46662105e9.40.2025.04.09.23.43.54
+        d=1e100.net; s=20230601; t=1744269064; x=1744873864;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3OcYzRuci4DVDvTV5wL2NFanwr7+BVH3bP+rdckE45M=;
+        b=dohVOyFI5KerxleJNjgBqk7KmQGs4ugIiKHkKfhMheGzbV6jHwTdAA7Vtcf392cLCa
+         mbKzk+g07ze3W6ehoeE91f4bo0nde3c4cuZ3tRcOEFbVz3+ZI6n4JwAoriiH3zcYjtEF
+         +TOrRjWamuZeoUGmnqVA82UCXjXHNij8eaS41AQsQgIjlhT28pEFeFilfkKpBICA9WZP
+         4+7BtjEC8qRWX/3jSOISgt4c4U/ih3qQbL8fQDmzTPnVUdK8G64FMkJ7/nxCZ8MQtm0Z
+         JWE7rFI6b++C0yo3y5Cksumy/fnGnQuzBgdm56w0HDcvg9PP1DEgnJh6fDMS3OyaUxAL
+         a0HA==
+X-Forwarded-Encrypted: i=1; AJvYcCVaCUb7KlkJ1PXvemH8KnEgOXjN3RYINHYMb8dl+KPtg2YzvFYguz4bsOWPxyP5O0+7yhrAXDIOz2hKMJ3A@lists.infradead.org
+X-Gm-Message-State: AOJu0YzdV/9bblal2NXYf1tz7anFH5NvDA2Ly4UH01+WwMlCnl1mFL/R
+	yBMwHU4jv1ZpUc+ndHo/Ow1l8ZIkB9434nBWA49OpNb7UIFG34wA1Towh30ZSIY=
+X-Gm-Gg: ASbGncs6mUSLuoY6CfFYcH2QIFO3E7QcNXPfoEUMBBNy8MjG0rTRZ8tcOAy84ux3sWe
+	0wMXd2gbi/FRr1yifhmxzQBkC0Y2K+e/QWBgZoZ0rX8N+/U+jmGYmbkVaBdjJ/cPeu1FMqt8WKM
+	yTElsc0lCkS1MctVdMWHv/0U5D1unHeyj+/zigKpfYsdqSqBff9cwlwwVOQyFHjf0eoVBRcWYO6
+	xoqD4p8/BvNRHEgcA2TCj9UyJ/UUlQlzdqe3ZOU+6LYL+KGcLo2oAlDasjira52Q3X7aU5gWhU1
+	22C2M8gyRZYdyqimlZzJ8L2xIMAN+AEhZsuo5E7Rl/61Y196iRA=
+X-Google-Smtp-Source: AGHT+IETfspJRi9jQhAHy7G+NAIq/HN8GQhfewV/oWn/J+Tx4X7F7gfIyNI7Jkc9sjEejt3cHqWuJA==
+X-Received: by 2002:a17:907:da0:b0:aca:a1d7:a830 with SMTP id a640c23a62f3a-acabd185e69mr120878666b.13.1744269064280;
+        Thu, 10 Apr 2025 00:11:04 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:ef30:ae8a:4fb8:9c71:6be])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1cb3fcdsm219989266b.107.2025.04.10.00.11.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Apr 2025 23:43:56 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Vincenzo Frascino <vincenzo.frascino@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
- Conor Dooley <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
- imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 01/19] arm64: dts: allwinner: h5/h6: Drop spurious
- 'clock-latency-ns' properties
-Date: Thu, 10 Apr 2025 08:43:52 +0200
-Message-ID: <4999502.31r3eYUQgx@jernej-laptop>
-In-Reply-To: <20250403-dt-cpu-schema-v1-1-076be7171a85@kernel.org>
+        Thu, 10 Apr 2025 00:11:03 -0700 (PDT)
+Date: Thu, 10 Apr 2025 09:10:57 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+	"Rob Herring (Arm)" <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Vincenzo Frascino <vincenzo.frascino@arm.com>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
+	Conor Dooley <conor@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-mips@vger.kernel.org, imx@lists.linux.dev,
+	linux-rockchip@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH 09/19] arm: dts: qcom: sdx55/sdx65: Fix CPU
+ power-domain-names
+Message-ID: <Z_dvAT7LdR7xbH45@linaro.org>
 References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-1-076be7171a85@kernel.org>
+ <20250403-dt-cpu-schema-v1-9-076be7171a85@kernel.org>
+ <03011a33-174b-4027-bdd2-043aa685380b@oss.qualcomm.com>
+ <CAPDyKFoZ7NfN+pkCPnusvTOEaxbQhr=1FJqzdDGrLcKAzBpGyQ@mail.gmail.com>
+ <66f8d957-f7a5-4aec-b8e7-5bcc7ff7f569@oss.qualcomm.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <66f8d957-f7a5-4aec-b8e7-5bcc7ff7f569@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250409_234358_139252_B30C5FCD 
-X-CRM114-Status: UNSURE (   6.59  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250410_001106_726767_F41942F1 
+X-CRM114-Status: GOOD (  21.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,18 +138,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RG5lIHBldGVrLCA0LiBhcHJpbCAyMDI1IG9iIDA0OjU5OjIyIFNyZWRuamVldnJvcHNraSBwb2xl
-dG5pIMSNYXMgamUgUm9iIEhlcnJpbmcgKEFybSkgbmFwaXNhbChhKToKPiAnY2xvY2stbGF0ZW5j
-eS1ucycgaXMgbm90IGEgdmFsaWQgcHJvcGVydHkgZm9yIENQVSBub2Rlcy4gSXQgYmVsb25ncyBp
-bgo+IE9QUCB0YWJsZSAod2hpY2ggaGFzIGl0KS4gRHJvcCB0aGVtIGZyb20gdGhlIENQVSBub2Rl
-cy4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBSb2IgSGVycmluZyAoQXJtKSA8cm9iaEBrZXJuZWwub3Jn
-PgoKQWNrZWQtYnk6IEplcm5laiBTa3JhYmVjIDxqZXJuZWouc2tyYWJlY0BnbWFpbC5jb20+CgpC
-ZXN0IHJlZ2FyZHMsCkplcm5lagoKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
-aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
-dGluZm8vbGludXgtYW1sb2dpYwo=
+On Wed, Apr 09, 2025 at 08:35:29PM +0200, Konrad Dybcio wrote:
+> On 4/7/25 6:27 PM, Ulf Hansson wrote:
+> > On Fri, 4 Apr 2025 at 22:41, Konrad Dybcio
+> > <konrad.dybcio@oss.qualcomm.com> wrote:
+> >>
+> >> On 4/4/25 4:59 AM, Rob Herring (Arm) wrote:
+> >>> "rpmhpd" is not documented nor used anywhere. As the enable-method is
+> >>> "psci" use "psci" for the power-domain name.
+> >>>
+> >>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> >>> ---
+> >>
+> >> "psci" is what we want here, but these platforms require some more
+> >> massaging..
+> > 
+> > So this isn't for CPU performance scaling?
+> 
+> Nope!
+> 
+
+Huh, this is definitely "perf" (= cpufreq) and not "psci" (= cpuidle).
+If you run blame on this line you get to:
+
+commit 0ec7bde7b590f8efa5823df3b52b32dd373060ff
+Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Date:   Thu Apr 8 22:34:45 2021 +0530
+
+    ARM: dts: qcom: sdx55: Add CPUFreq support
+
+    Add CPUFreq support to SDX55 platform using the cpufreq-dt driver.
+    There is no dedicated hardware block available on this platform to
+    carry on the CPUFreq duties. Hence, it is accomplished using the CPU
+    clock and regulators tied together by the operating points table.
+
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0ec7bde7b590f8efa5823df3b52b32dd373060ff
+
+The OPP table looks like it's supposed to set SDX55_CX performance
+states according to the chosen CPU frequency. MSM8909 has a similar
+setup where the CPU is supplied directly by VDDCX and we describe that
+with "perf" too [1].
+
+What I don't understand is why the name "rpmhpd" does not appear
+in any driver. The MSM8909 setup goes via qcom-cpufreq-nvmem, where
+"perf" is directly assigned for cpufreq scaling. I can only think of two
+possible reasons:
+
+ - The power domain is implicitly attached to the OPP table(?), because
+   there is just a single power domain defined on the CPU, or
+
+ - This was never working correctly.
+
+For both cases, I think it would be best to change the power domain name
+to "perf" like Uffe suggested.
+
+Thanks,
+Stephan
+
+[1]: https://lore.kernel.org/linux-pm/20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com/
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
