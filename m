@@ -4,129 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 257E1C369A4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 07:53:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B510C3601E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 07:54:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eUkZwVKmAPPwg9b9xUs8Xw+/FopA3CJjsIqI6pDisSY=; b=RXKKS7vKzSI6n6
-	kUQ5+vEgq5zM4DI2lhUa82LmY5XGJ5skhGzwkJCIsePeDoGs8mrD83gKhQi5b7LpAYAqap/JyRN9F
-	Rf3Pcn+k2yOHnKiJA+77SBgp+2oDPzyJanRctUrnopc0jebo0o6Cyo2nJkBI0i/pdGPW/i8ck7lWQ
-	7mvuK1M6eZihBfrHuGWlY38YUIvwmQ1psdgyeRsKm04H9PvlaIQOT2bDIgAA285w897D/aJgICQME
-	7RkTOooRV9F7lzoosjjI7S4ZeSSJnML+t2RtEFlg9AR2fSqc4f3XcYimLepJ3PLb1NFxXC9azb92y
-	4Ra3ZGkihB8+P9e1I77A==;
+	List-Owner; bh=b5xmferro7MxBKm8emCcPpXG4bDTqLDbZmO11wyAMEo=; b=NpkdOPaLqlVQBj
+	2D7mk3q+ZyZozTSyjSITfppv8FTlws1eIeJ7zuLTeHM3lvcCHwxDLw2YEkIlq92ksj5g5nbXU+IvN
+	b6wGLX/7Z4CVCOQSDEcj3NUrAXsQohGnnTCG5MZRx/4jd6HyGc/1k8r0k35ji+gPD5WQmngs0K5X2
+	Q+4AQBvHSA2nk7pXhgd6vBG8tNFVvD/cW8clLX+W11qBuS26e5MEF2nq7ENHmFOEQV/QqNqQjCSzk
+	oNalaPBOrPQ3+AiXcgUKUeELpo/V16zHnL54gKbMD+gcJkUhPxefRMUsYF4VymxBHb381UHSPZrkO
+	ig3/1GZXc0fC54u//d2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2mid-00000009dCS-2iI3;
-	Thu, 10 Apr 2025 07:53:03 +0000
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
+	id 1u2mkQ-00000009dk8-0PYz;
+	Thu, 10 Apr 2025 07:54:54 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2m42-00000009UBl-2Jps
+	id 1u2m90-00000009VRa-000V
 	for linux-amlogic@lists.infradead.org;
-	Thu, 10 Apr 2025 07:11:09 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-ac289147833so94265266b.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 10 Apr 2025 00:11:05 -0700 (PDT)
+	Thu, 10 Apr 2025 07:16:15 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-43cf3192f3bso4844235e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 10 Apr 2025 00:16:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744269064; x=1744873864; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3OcYzRuci4DVDvTV5wL2NFanwr7+BVH3bP+rdckE45M=;
-        b=yUs/O4dwK1DNXbpsQedSsErMEAN7SOtI0a8OqOXOE27FikQyIKhlT5d4gLKHT0jv8g
-         gd0FnHwqeCJM3uZwlLzoXzvTXhoLa5wHnMMcKa3zjwkvIlcyMcE/6c4HnVbBtaANv9Iv
-         p2JRdNmVeP8QXfq9q4A1gWLATNzuFmV56HPSS3BJiB5s9jR/UnF5n9OYy1mk5WA9XRov
-         9aNPYipgq+GSW4clzCpRR9NFyuDDN4nqgJuJ8Ivzo0GPoizF24hO7SnUQBCL0J1y3mbU
-         wWreQZ4/SCTEKGhq20/+i91oRaxoa8ORn0QpK/0AkxeeXTe62a0LBJhVJOMqG2kbV+0n
-         LLgg==
+        d=tuxon.dev; s=google; t=1744269371; x=1744874171; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zmLueEOSOx1TOZ/xE11puxSYTKnDaeqcR4nW9ehtutQ=;
+        b=TtgZhPVv+Uyxjc9Z47zOcAsnhdZM7K6DYu4E2L/NIvLhFco+V4NkL47wflk9dRVh79
+         x+9pZZSekx9ZEcCD/SeJCIP3lQsZew2yX/rC5EpTZnULdJRPCp66K/k/Y5faAntdnzkY
+         15LAXTOnzyzdoM1elS8EMAhNoPFuiR/UjyuJwIYWbiTybB/rTDq7dmEHKmR6QV47rJky
+         t2QaQqY0KW2vFFc2ccoNJVf0lyZLJhZshby+Wz2N+ZkRf75YXKV/8+Mr+la5bQoLdkOT
+         q1oRmQS1Jty++DNUmukaPTcXmCQNTFEcHXQ3za0aqonqeySuhjF3OVAGDEwxvC9gFQjk
+         603Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744269064; x=1744873864;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3OcYzRuci4DVDvTV5wL2NFanwr7+BVH3bP+rdckE45M=;
-        b=dohVOyFI5KerxleJNjgBqk7KmQGs4ugIiKHkKfhMheGzbV6jHwTdAA7Vtcf392cLCa
-         mbKzk+g07ze3W6ehoeE91f4bo0nde3c4cuZ3tRcOEFbVz3+ZI6n4JwAoriiH3zcYjtEF
-         +TOrRjWamuZeoUGmnqVA82UCXjXHNij8eaS41AQsQgIjlhT28pEFeFilfkKpBICA9WZP
-         4+7BtjEC8qRWX/3jSOISgt4c4U/ih3qQbL8fQDmzTPnVUdK8G64FMkJ7/nxCZ8MQtm0Z
-         JWE7rFI6b++C0yo3y5Cksumy/fnGnQuzBgdm56w0HDcvg9PP1DEgnJh6fDMS3OyaUxAL
-         a0HA==
-X-Forwarded-Encrypted: i=1; AJvYcCVaCUb7KlkJ1PXvemH8KnEgOXjN3RYINHYMb8dl+KPtg2YzvFYguz4bsOWPxyP5O0+7yhrAXDIOz2hKMJ3A@lists.infradead.org
-X-Gm-Message-State: AOJu0YzdV/9bblal2NXYf1tz7anFH5NvDA2Ly4UH01+WwMlCnl1mFL/R
-	yBMwHU4jv1ZpUc+ndHo/Ow1l8ZIkB9434nBWA49OpNb7UIFG34wA1Towh30ZSIY=
-X-Gm-Gg: ASbGncs6mUSLuoY6CfFYcH2QIFO3E7QcNXPfoEUMBBNy8MjG0rTRZ8tcOAy84ux3sWe
-	0wMXd2gbi/FRr1yifhmxzQBkC0Y2K+e/QWBgZoZ0rX8N+/U+jmGYmbkVaBdjJ/cPeu1FMqt8WKM
-	yTElsc0lCkS1MctVdMWHv/0U5D1unHeyj+/zigKpfYsdqSqBff9cwlwwVOQyFHjf0eoVBRcWYO6
-	xoqD4p8/BvNRHEgcA2TCj9UyJ/UUlQlzdqe3ZOU+6LYL+KGcLo2oAlDasjira52Q3X7aU5gWhU1
-	22C2M8gyRZYdyqimlZzJ8L2xIMAN+AEhZsuo5E7Rl/61Y196iRA=
-X-Google-Smtp-Source: AGHT+IETfspJRi9jQhAHy7G+NAIq/HN8GQhfewV/oWn/J+Tx4X7F7gfIyNI7Jkc9sjEejt3cHqWuJA==
-X-Received: by 2002:a17:907:da0:b0:aca:a1d7:a830 with SMTP id a640c23a62f3a-acabd185e69mr120878666b.13.1744269064280;
-        Thu, 10 Apr 2025 00:11:04 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:ae8a:4fb8:9c71:6be])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1cb3fcdsm219989266b.107.2025.04.10.00.11.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 00:11:03 -0700 (PDT)
-Date: Thu, 10 Apr 2025 09:10:57 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
-	Conor Dooley <conor@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-mips@vger.kernel.org, imx@lists.linux.dev,
-	linux-rockchip@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH 09/19] arm: dts: qcom: sdx55/sdx65: Fix CPU
- power-domain-names
-Message-ID: <Z_dvAT7LdR7xbH45@linaro.org>
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-9-076be7171a85@kernel.org>
- <03011a33-174b-4027-bdd2-043aa685380b@oss.qualcomm.com>
- <CAPDyKFoZ7NfN+pkCPnusvTOEaxbQhr=1FJqzdDGrLcKAzBpGyQ@mail.gmail.com>
- <66f8d957-f7a5-4aec-b8e7-5bcc7ff7f569@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1744269372; x=1744874172;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zmLueEOSOx1TOZ/xE11puxSYTKnDaeqcR4nW9ehtutQ=;
+        b=DacyiDuSfMq3MAHmAFcS6Hy0324tfwjVfrdHuT6snl2n6MzKTPFg9x6OcI9IG06vmb
+         UES581H1jb1diXLog0r45CLPs1yRhPv2csvLrTVviZmwO9nRSvv7yAwSFHxu1LZbGRsO
+         0jFsLPmz5ApoTgL0A0hda9R9Syys4w2oJ4mc2Vp6u9bcS8lxeNdvVbaoE8rbEelGgoW5
+         uQKdSRWj57QPau0Vp7bAOuvzypswmIkRBEP3q/8s0q+OJ6H8OWwCLTkq7y8Zezsp9QkA
+         oYzHg7ZHo6QAXNr5tzAtGy6OMh5gH9gwtzhAMWYTZ2f89c5YknfgDj7Pq5Mcez+os1Wq
+         DLlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXL6Hc1s9FmzW0GWD1dWtj0BJWbAguDSRs+mvOLvYnYJGNLP2Lt2Rbb/FtMxidLh6TwrkxRBbaZDV5D0Gwg@lists.infradead.org
+X-Gm-Message-State: AOJu0YxrrkWTLzQwBI3Eq4ZfnRkcXEf1QVK80PEiY6vcSkcBeTMPqbjf
+	G1dVSdcVg9GrvEvOvXY9+JZp0RDhl9tPDtiU/GCWPSbsY+NKJiQmqVUvRUDjb14=
+X-Gm-Gg: ASbGncvFLIUPoaaokYv4ODHuS3R++1bVCfmnAkHxMu2sScNMFm+Si48Hu+vMRUrZdec
+	ohHjDM0/3XMBPnRm5BE/lA0VAlwpFF0HbY+rjQG51/+1S0kz3UQvIHImVBoaJ+nJZ0rqXxqL1z0
+	Wtz+IXYYNgR+nZC0orOTudQHF7q6b7QXc6H70kqcfVRk4VDsnNfNUO0vAtvw0T7ce/G4N+QcAil
+	zLYOw5sXwQK5r4X84InefTUrte1i7bicUb6QnzYlnHdCwF/Jalw2nm67LWXwV7sVaBhldVTaXKa
+	5YBRH0x/OuofSsmyulUgK7yFytAlQVAUQyhp4xYoVc9sorN2P6vXlO21/W8=
+X-Google-Smtp-Source: AGHT+IEz5IG00lmAVwHCdXdSnJ2Z0KQTlp+V18IFUkzrkAAyElIVx0JjEnVPmuw7GvI+SO1ZUwQhPQ==
+X-Received: by 2002:a05:600c:4ec9:b0:43c:ea1a:720c with SMTP id 5b1f17b1804b1-43f2ff0540fmr11919285e9.18.1744269371500;
+        Thu, 10 Apr 2025 00:16:11 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.57])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f2066d069sm45329215e9.17.2025.04.10.00.16.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Apr 2025 00:16:10 -0700 (PDT)
+Message-ID: <b8f356b8-b242-41da-a654-d937a354fc1e@tuxon.dev>
+Date: Thu, 10 Apr 2025 10:16:07 +0300
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <66f8d957-f7a5-4aec-b8e7-5bcc7ff7f569@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/10] pinctrl: at91-pio4: use new GPIO line value setter
+ callbacks
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Xianwei Zhao <xianwei.zhao@amlogic.com>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20250408-gpiochip-set-rv-pinctrl-part1-v1-0-c9d521d7c8c7@linaro.org>
+ <20250408-gpiochip-set-rv-pinctrl-part1-v1-1-c9d521d7c8c7@linaro.org>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <20250408-gpiochip-set-rv-pinctrl-part1-v1-1-c9d521d7c8c7@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250410_001106_726767_F41942F1 
-X-CRM114-Status: GOOD (  21.50  )
+X-CRM114-CacheID: sfid-20250410_001614_041286_3CD0B154 
+X-CRM114-Status: UNSURE (   6.30  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,64 +112,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Apr 09, 2025 at 08:35:29PM +0200, Konrad Dybcio wrote:
-> On 4/7/25 6:27 PM, Ulf Hansson wrote:
-> > On Fri, 4 Apr 2025 at 22:41, Konrad Dybcio
-> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>
-> >> On 4/4/25 4:59 AM, Rob Herring (Arm) wrote:
-> >>> "rpmhpd" is not documented nor used anywhere. As the enable-method is
-> >>> "psci" use "psci" for the power-domain name.
-> >>>
-> >>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> >>> ---
-> >>
-> >> "psci" is what we want here, but these platforms require some more
-> >> massaging..
-> > 
-> > So this isn't for CPU performance scaling?
+
+
+On 08.04.2025 10:17, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Nope!
+> struct gpio_chip now has callbacks for setting line values that return
+> an integer, allowing to indicate failures. Convert the driver to using
+> them.
 > 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Huh, this is definitely "perf" (= cpufreq) and not "psci" (= cpuidle).
-If you run blame on this line you get to:
-
-commit 0ec7bde7b590f8efa5823df3b52b32dd373060ff
-Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Date:   Thu Apr 8 22:34:45 2021 +0530
-
-    ARM: dts: qcom: sdx55: Add CPUFreq support
-
-    Add CPUFreq support to SDX55 platform using the cpufreq-dt driver.
-    There is no dedicated hardware block available on this platform to
-    carry on the CPUFreq duties. Hence, it is accomplished using the CPU
-    clock and regulators tied together by the operating points table.
-
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0ec7bde7b590f8efa5823df3b52b32dd373060ff
-
-The OPP table looks like it's supposed to set SDX55_CX performance
-states according to the chosen CPU frequency. MSM8909 has a similar
-setup where the CPU is supplied directly by VDDCX and we describe that
-with "perf" too [1].
-
-What I don't understand is why the name "rpmhpd" does not appear
-in any driver. The MSM8909 setup goes via qcom-cpufreq-nvmem, where
-"perf" is directly assigned for cpufreq scaling. I can only think of two
-possible reasons:
-
- - The power domain is implicitly attached to the OPP table(?), because
-   there is just a single power domain defined on the CPU, or
-
- - This was never working correctly.
-
-For both cases, I think it would be best to change the power domain name
-to "perf" like Uffe suggested.
-
-Thanks,
-Stephan
-
-[1]: https://lore.kernel.org/linux-pm/20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com/
+Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 
 _______________________________________________
 linux-amlogic mailing list
