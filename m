@@ -4,91 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A2FDC3601E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 13:47:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787EAC3601E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 13:49:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=F2EwodnOWghWDcP/3sYh8EWPGG7ecuFd1CKcEfHLkEs=; b=P2Wx2Ow2SmllHO
-	1nDEtEaHeviwOZX27X+s5mpbF0bfwm5SvFdK5QjJm4NWakxxlTR4d00Ba+rL4k6LDgkBJejnUv1Pw
-	Ji/QB12xTJyjHzzllwZT2pG5pFYgeZ4zkOKVuyDVGfsXWewUevTPDdouy+25UsEUShHuaCQEOwpV+
-	jpEQcvj4/xbTRTZC1SypnyKj390ekdfp0TzYN3ICDsPfFYE1cRik+XgRgeUsyNuMAksWeKA/xSiYF
-	Xyk5JlqsBZbhqNovBGMolmOuKfpoNRIU/mHE2dQ+ai/Eu/eT9fy2pRRvhR84MqOUPtOW5XbNcHoXV
-	+QiKUbfaaetlZ+A0/AeQ==;
+	List-Owner; bh=kV6tgqCvvooqWVcVQ9Xmgzvsj02ctGXho/6eQjOx1vI=; b=O5s8hDPTSGMcWa
+	+yIBmH41pErtvfrSbnOQaFzphGDSSe8g3SFAwq/T2VhOET0xWtri4Vv5H6QqfSOAeuosgX4gzpN18
+	sEBjSUgBRV4eQq0UXpJjgh7oGliKjXEQ9TNHPRBIX4uPl3+ZiY3k4ssMomVRm+23/vPoJ+t9i0s0p
+	BheyJyKfpxvu2qpLba6ebTTyq3nwNR7575mmR/NhXvrwI4phzmKD7pJwTGU6eIOmpiEGmygAyIyOP
+	bx/zNlO2MYsugXjXQFVfSo2EG0UvouHlwJtwbj7W9SjH8emc91SsyQpfuERdQfoiz1SF9iOiNNvie
+	bc3GYd9Gj0kRwXe21uAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2sFN-0000000AjGI-1DqJ;
-	Thu, 10 Apr 2025 13:47:13 +0000
-Received: from mail-pl1-x62a.google.com ([2607:f8b0:4864:20::62a])
+	id 1u2sH8-0000000Ajbh-3yog;
+	Thu, 10 Apr 2025 13:49:02 +0000
+Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2s2v-0000000AgWx-2qRz;
-	Thu, 10 Apr 2025 13:34:23 +0000
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-2254e0b4b79so10495835ad.2;
-        Thu, 10 Apr 2025 06:34:21 -0700 (PDT)
+	id 1u2sEl-0000000Aj5X-27oH;
+	Thu, 10 Apr 2025 13:46:37 +0000
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5efe8d9eb1eso1561167a12.0;
+        Thu, 10 Apr 2025 06:46:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744292061; x=1744896861; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=snDm+R9HSu34qLr874FxLnOvyHahTzryBYCxyI70mec=;
-        b=UEzqj60Zh+PhpdILO3rFtG8tkeg98HbFt65EGvFdk3H2mx2GYxM5zt11Iui5aHO9X1
-         99S0WwdtUT1CSYjhfEQGeANf5Kjnadwt1dG5a1IzF/OLWZ0BLpw+cLS2KRdxLOwpSZzv
-         YYq8I+s6AKXCy9gAWfS243ZigxPtFt07rd/JgTlsVDQDY+5EPyv9yMK3SYL/bu+S5zub
-         mDXzGUWF8SS5q4ybHcL6x1DfWVkObnQrt17Pa1W/+0SdRnZIk5VpXa+6bDCi5IUxe5HX
-         U64VSmcfvWn5CgkP0bqgu+Yz1ywpLcxqDlhAO34RllsB90gQsuFVakASwQrTSzNs6u1+
-         2bkA==
+        d=gmail.com; s=20230601; t=1744292793; x=1744897593; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=s3Tv77bW0aU9RBMscUYQTaZLK3cWTZ2jDWR8IUulQ9A=;
+        b=QZGoP0XRLOGUvSkPutb2vbXyb+mfs5SKV0o1M4E2MRSs31xEsTfJkWeuUgJBN7UFDy
+         q+9dGKwdnpXApifwzuLJ96JVmVnz9qsUlShnKOTkPspuaFt9CDEMxnfLfk3HVTMiBUZE
+         kVFvN/vnJUadrtVvUjItf/8sBt7elRaYOKNNhy9IQde8ni+QGkAd/krb64GhLXoxfGn2
+         b5p5ADIdmg8RkzWJPj8z0KjOVtOOt2DfKnJ23tvdS+K42DUMbikAnpqEU8Cft7d0VwEn
+         RQ7xBhLYk8CbGWBQVYWEih4fxWcFoJbP8gSupq6fTdQddjYv0c5Ly1+LQe6z+iIIAezI
+         1g8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744292061; x=1744896861;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=snDm+R9HSu34qLr874FxLnOvyHahTzryBYCxyI70mec=;
-        b=qkkfuFG2qH8venFjfqzjyQa9Zo74Aw2qYfgUfR4M4AbwoNzAvpfqpgA0KU9UsPJDBj
-         NDaLWKOiYYPTgBATb0oVxJe+N3yqqiCTdxVYCVNpduG1E2fE5o194HKchsAIzLwr1kXI
-         zqyyHwb4bOKDqWRK+BtnmoMXlcjOHui0EOcj+NTwdO5D+Jc0gvbzCSkF9+o/s98iywpM
-         B4oZqeepwyEHPd3O7zCUDG9MNfASc863CBQuOI2tzjgIX7Gzn4cmTwia0i1tCrrJvaBk
-         2VphbyFKrYU14WxV3+1OAidLVNuDTeuzzi7AHJLXCIlL39rUPN7dGMy3fKwsiUXTNBRy
-         8wQg==
-X-Forwarded-Encrypted: i=1; AJvYcCW7qA6aStfpIKUiWLLf/yMuGtXkZmp/zrQN1aLBLxwZggzIvZay2u00XmM2k2r1P5dFqBD7nnXofarO@lists.infradead.org, AJvYcCWHUNzTWSoyBY99r1/dt5e3GWav+kE6NJUE9XgabSPnCibY/NjdaEPmmAdLIR3kGi1misSLZhz8xNcvZ5FJ8mqsvA==@lists.infradead.org, AJvYcCXxF9ydFeNp7Z9OxHVxDnjXZGDe8FdyKsipVi6ApI+k4t39tXTs1sHDVqcV++qmscuySEuZRpgQ+k0uVZ2y@lists.infradead.org
-X-Gm-Message-State: AOJu0YxrmehVFkTvui71DlhmECMHayFx4dAWpyVt6vgXsppfFu3E9teF
-	KQEVubDFjFZTWGKKqQeGqvAZ9m3eL/3n7r2zdDIzN0naFUuPX6yL
-X-Gm-Gg: ASbGncu/SehULYC54JmdHi2YGpUBaegnwsysnx2qZPth5vefxo4LvDMLbn1QEvATAlV
-	6eQ8WReAHZpGQN5LDxulVhH0o3CZkn2fqmh/vANZSB7CteO2gRzty60Qjvw9HypeP0y8dIzhWfu
-	MYqcztdFzdie7By0uJYNQy6sJEp83IHKn1ipTqj6Igqpxsxk/BktveUGa9I7KFlaBePhQrntfzR
-	a43FvhO0ONOZnJkGmf/5crnXDxn76eTIQKZs8pXGBV0V3elbuk9fT9Q6fB5Kd9VQ8DCdQI8YgfA
-	IA99IlTCwYCPQnmohqPPRA38fiS+gM7pbT2dJGrQ97Q95YLh2OYvxes=
-X-Google-Smtp-Source: AGHT+IG8FTT4kfyWPBOyAb7OIrEAVZZGG4LdxWb3S85G2ZZGHkha/cC8RTwaJM0VFBFY0ZFSfbmjFw==
-X-Received: by 2002:a17:902:e748:b0:229:1cef:4c83 with SMTP id d9443c01a7336-22be02d9318mr30954625ad.4.1744292060733;
-        Thu, 10 Apr 2025 06:34:20 -0700 (PDT)
-Received: from localhost.localdomain ([103.221.69.50])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7cb0400sm30121475ad.160.2025.04.10.06.34.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 06:34:20 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-phy@lists.infradead.org (open list:GENERIC PHY FRAMEWORK),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
-	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Cc: Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH v1 6/6] phy: amlogic: phy-meson-axg-pcie: Fix PHY creation order in axg-pcie probe
-Date: Thu, 10 Apr 2025 19:03:21 +0530
-Message-ID: <20250410133332.294556-7-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250410133332.294556-1-linux.amoon@gmail.com>
-References: <20250410133332.294556-1-linux.amoon@gmail.com>
+        d=1e100.net; s=20230601; t=1744292793; x=1744897593;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s3Tv77bW0aU9RBMscUYQTaZLK3cWTZ2jDWR8IUulQ9A=;
+        b=P2BCOIggu+EsmVbW49korTEi9xgE16HM+7gSDeOIgcXIdp2l9S1k4Ccwe7YD1YX2s2
+         +o8EJuoNsZq0HIQUIVyMrqbEETcLhbOtdfPL4wHcTgi+5XsPlTKXaTHQzeWw2JD6P3ta
+         KVjxTAp2c/SjOrAuuY2R0zZ2O8+XqJauRc8iecPrXD6eMJrqZzGTcVGPJja2Z3IZhCu9
+         h1AG+peWL3p0ilvW1TY1iX6pB+I1Nd+KvH1PJQ1ioRuFmQuUw0aseborZAhU2y/1Ouvj
+         ZlHuL3C7vocEIo+XtlhK2rQVp2q7MWtA7x8Hl5e+5GaBmw2EbMytzjfp5yMD68Zqvjri
+         LwIA==
+X-Forwarded-Encrypted: i=1; AJvYcCWm3M90BBSz1RIjc8UAsCVRzm57Ak4RrvjjXfY1zlPz+NVNr9lvLB8PP5MH1Zj48qy1CKwDsK8CtK/LkViUreYo@lists.infradead.org
+X-Gm-Message-State: AOJu0YzGLXnM9CMy0/PjuexFj5OP2LKojE1PtK15DedQ+UeaHdY5P0t9
+	67VbT8glgtfkfbrrCtEPd3l8B0HqNjui/e+L/ZiEZia2sdLVd7rBHpycmBw5swGhClZndHqEiA4
+	+1n6349knC56f0c9QoWxVwGqFQnc=
+X-Gm-Gg: ASbGnctY7cVzzjMsnJMdrTAorjGTBUMz3lfRp1P7psqOl3U/pn8ov8hExbfuHOtRwuw
+	fQh0AJISd16NnEFA5S50KEiOFgT8Bu4vUM1iKbamJr1yqikLFueMaddozCK0YDheKxg/lI+3Z4M
+	GBVxcgReSjhyYkyG/hRx17cA==
+X-Google-Smtp-Source: AGHT+IHiZFDgujiOG3UnHGeTx0KUPl+GHBXPb9fdrtmfKTuXg91n647EErsdZP3zN0Q/Y37TV62Z4t7VfBh5GpvARCI=
+X-Received: by 2002:a05:6402:268b:b0:5e5:334e:86d9 with SMTP id
+ 4fb4d7f45d1cf-5f32a138efdmr2440544a12.13.1744292793246; Thu, 10 Apr 2025
+ 06:46:33 -0700 (PDT)
 MIME-Version: 1.0
+References: <20250409214422.1751825-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20250409214422.1751825-1-martin.blumenstingl@googlemail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 10 Apr 2025 19:16:16 +0530
+X-Gm-Features: ATxdqUEdXHiyPPzlQQzx8sGDVrj8q4dzBzZE7dD5ZZvqIMWxRPwWGuOzBSchz3Y
+Message-ID: <CANAwSgTp26r-xeiSDkdX21Sp3RQtfh42JV4fCgirLkHZYuGD-Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/meson: fix resource cleanup in meson_drv_bind_master()
+ on error
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	jbrunet@baylibre.com, neil.armstrong@linaro.org, 
+	Furkan Kardame <f.kardame@manjaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250410_063421_718121_17F65C3A 
-X-CRM114-Status: GOOD (  13.75  )
+X-CRM114-CacheID: sfid-20250410_064635_544535_82CB8B3C 
+X-CRM114-Status: GOOD (  16.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,47 +95,87 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Reorder the PHY creation in the axg-pcie probe function to ensure all
-the resource is mapped before creating the PHY. This change addresses
-the issue where the PHY creation was attempted before
-mapping the necessary resources, potentially causing failures.
+Hi Martin,
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- drivers/phy/amlogic/phy-meson-axg-pcie.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+On Thu, 10 Apr 2025 at 03:30, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> meson_drv_bind_master() does not free resources in the order they are
+> allocated. This can lead to crashes such as:
+>     Unable to handle kernel NULL pointer dereference at virtual address 00000000000000c8
+>     [...]
+>     Hardware name: Beelink GT-King Pro (DT)
+>     pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+>     pc : meson_dw_hdmi_unbind+0x10/0x24 [meson_dw_hdmi]
+>     lr : component_unbind+0x38/0x60
+>     [...]
+>     Call trace:
+>      meson_dw_hdmi_unbind+0x10/0x24 [meson_dw_hdmi]
+>      component_unbind+0x38/0x60
+>      component_unbind_all+0xb8/0xc4
+>      meson_drv_bind_master+0x1ec/0x514 [meson_drm]
+>      meson_drv_bind+0x14/0x20 [meson_drm]
+>      try_to_bring_up_aggregate_device+0xa8/0x160
+>      __component_add+0xb8/0x1a8
+>      component_add+0x14/0x20
+>      meson_dw_hdmi_probe+0x1c/0x28 [meson_dw_hdmi]
+>      platform_probe+0x68/0xdc
+>      really_probe+0xc0/0x39c
+>      __driver_probe_device+0x7c/0x14c
+>      driver_probe_device+0x3c/0x120
+>      __driver_attach+0xc4/0x200
+>      bus_for_each_dev+0x78/0xd8
+>      driver_attach+0x24/0x30
+>      bus_add_driver+0x110/0x240
+>      driver_register+0x68/0x124
+>      __platform_driver_register+0x24/0x30
+>      meson_dw_hdmi_platform_driver_init+0x20/0x1000 [meson_dw_hdmi]
+>      do_one_initcall+0x50/0x1bc
+>      do_init_module+0x54/0x1fc
+>      load_module+0x788/0x884
+>      init_module_from_file+0x88/0xd4
+>      __arm64_sys_finit_module+0x248/0x340
+>      invoke_syscall+0x48/0x104
+>      el0_svc_common.constprop.0+0x40/0xe0
+>      do_el0_svc+0x1c/0x28
+>      el0_svc+0x30/0xcc
+>      el0t_64_sync_handler+0x120/0x12c
+>      el0t_64_sync+0x190/0x194
+>
+> Clean up resources in the error path in the same order and under the
+> same conditions as they were allocated to fix this.
+>
+> Reported-by: Furkan Kardame <f.kardame@manjaro.org>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+> This issue was reported off-list so I'm unable to provide a link to the
+> report.
+>
+> I'm not sure which Fixes tag fits best. My preference so far is
+> Fixes: 6a044642988b ("drm/meson: fix unbind path if HDMI fails to bind")
+> but I'll happily take other suggestions as well.
+>
+Thanks for this Fix.
 
-diff --git a/drivers/phy/amlogic/phy-meson-axg-pcie.c b/drivers/phy/amlogic/phy-meson-axg-pcie.c
-index 54baf7b8930e1..14dee73f9cb57 100644
---- a/drivers/phy/amlogic/phy-meson-axg-pcie.c
-+++ b/drivers/phy/amlogic/phy-meson-axg-pcie.c
-@@ -136,11 +136,6 @@ static int phy_axg_pcie_probe(struct platform_device *pdev)
- 	if (!priv)
- 		return -ENOMEM;
- 
--	priv->phy = devm_phy_create(dev, np, &phy_axg_pcie_ops);
--	if (IS_ERR(priv->phy))
--		return dev_err_probe(dev, PTR_ERR(priv->phy),
--				     "failed to create PHY\n");
--
- 	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
-@@ -158,6 +153,11 @@ static int phy_axg_pcie_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->analog))
- 		return PTR_ERR(priv->analog);
- 
-+	priv->phy = devm_phy_create(dev, np, &phy_axg_pcie_ops);
-+	if (IS_ERR(priv->phy))
-+		return dev_err_probe(dev, PTR_ERR(priv->phy),
-+				     "failed to create PHY\n");
-+
- 	phy_set_drvdata(priv->phy, priv);
- 	dev_set_drvdata(dev, priv);
- 	pphy = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
--- 
-2.49.0
+Reviewed-by: Anand Moon <linux.amoon@gmail.com>
+Tested-by: Anand Moon <linux.amoon@gmail.com>
 
+I have tested with the following script on AML-S905X-CC
+---------
+#! /bin/bash
+set +x
+
+cd /sys/bus/platform/drivers/meson-drm/
+for i in $(seq 1 10); do
+        echo "========================" $i
+        echo d0100000.vpu > unbind
+        /usr/bin/sleep 1
+        echo d0100000.vpu > bind
+        /usr/bin/sleep 1
+done
+
+Thanks
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
