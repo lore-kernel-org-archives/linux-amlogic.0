@@ -4,81 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787EAC3601E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 13:49:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74E85C3601E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 14:11:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kV6tgqCvvooqWVcVQ9Xmgzvsj02ctGXho/6eQjOx1vI=; b=O5s8hDPTSGMcWa
-	+yIBmH41pErtvfrSbnOQaFzphGDSSe8g3SFAwq/T2VhOET0xWtri4Vv5H6QqfSOAeuosgX4gzpN18
-	sEBjSUgBRV4eQq0UXpJjgh7oGliKjXEQ9TNHPRBIX4uPl3+ZiY3k4ssMomVRm+23/vPoJ+t9i0s0p
-	BheyJyKfpxvu2qpLba6ebTTyq3nwNR7575mmR/NhXvrwI4phzmKD7pJwTGU6eIOmpiEGmygAyIyOP
-	bx/zNlO2MYsugXjXQFVfSo2EG0UvouHlwJtwbj7W9SjH8emc91SsyQpfuERdQfoiz1SF9iOiNNvie
-	bc3GYd9Gj0kRwXe21uAA==;
+	List-Owner; bh=OTTkWO2Gvyxp6Eu8qyAlClQI0w2dksX5TE4aiWlOZ4w=; b=0pRiE2nW2Bm5DJ
+	1cc1013StUn//vqbbnpx1TO9TMizQ8KeWIu/amRDAdAUDIIObdZfx7kO3lWKx05ZrCgSRDA3M0c84
+	TDO8Yu/a2pDaCzSFi+nOUu/MrxsP4y/ntdAR6fu5GnWGTomjp0U94hJw3o0LJxjPMSsjpwPD49Dsm
+	a7LklZ4I12YalpRZ4LA5LEoGJNmHU2Nd6SmE51J1NVSfwo8+rV8aLidMMOWrSl/Gcdcsy+LZn7I3b
+	CmojwvFkTQPdyjX5UkZYJyOE/WZqU0ss1PzLo4xGXZu1NYGynXSe0hDzLtF4a+0UH2dWWBJeWgPht
+	Onzo8pSKS3n/QCdfX++g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2sH8-0000000Ajbh-3yog;
-	Thu, 10 Apr 2025 13:49:02 +0000
-Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
+	id 1u2sd1-0000000AnA9-2Dw2;
+	Thu, 10 Apr 2025 14:11:39 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2sEl-0000000Aj5X-27oH;
-	Thu, 10 Apr 2025 13:46:37 +0000
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5efe8d9eb1eso1561167a12.0;
-        Thu, 10 Apr 2025 06:46:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744292793; x=1744897593; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=s3Tv77bW0aU9RBMscUYQTaZLK3cWTZ2jDWR8IUulQ9A=;
-        b=QZGoP0XRLOGUvSkPutb2vbXyb+mfs5SKV0o1M4E2MRSs31xEsTfJkWeuUgJBN7UFDy
-         q+9dGKwdnpXApifwzuLJ96JVmVnz9qsUlShnKOTkPspuaFt9CDEMxnfLfk3HVTMiBUZE
-         kVFvN/vnJUadrtVvUjItf/8sBt7elRaYOKNNhy9IQde8ni+QGkAd/krb64GhLXoxfGn2
-         b5p5ADIdmg8RkzWJPj8z0KjOVtOOt2DfKnJ23tvdS+K42DUMbikAnpqEU8Cft7d0VwEn
-         RQ7xBhLYk8CbGWBQVYWEih4fxWcFoJbP8gSupq6fTdQddjYv0c5Ly1+LQe6z+iIIAezI
-         1g8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744292793; x=1744897593;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s3Tv77bW0aU9RBMscUYQTaZLK3cWTZ2jDWR8IUulQ9A=;
-        b=P2BCOIggu+EsmVbW49korTEi9xgE16HM+7gSDeOIgcXIdp2l9S1k4Ccwe7YD1YX2s2
-         +o8EJuoNsZq0HIQUIVyMrqbEETcLhbOtdfPL4wHcTgi+5XsPlTKXaTHQzeWw2JD6P3ta
-         KVjxTAp2c/SjOrAuuY2R0zZ2O8+XqJauRc8iecPrXD6eMJrqZzGTcVGPJja2Z3IZhCu9
-         h1AG+peWL3p0ilvW1TY1iX6pB+I1Nd+KvH1PJQ1ioRuFmQuUw0aseborZAhU2y/1Ouvj
-         ZlHuL3C7vocEIo+XtlhK2rQVp2q7MWtA7x8Hl5e+5GaBmw2EbMytzjfp5yMD68Zqvjri
-         LwIA==
-X-Forwarded-Encrypted: i=1; AJvYcCWm3M90BBSz1RIjc8UAsCVRzm57Ak4RrvjjXfY1zlPz+NVNr9lvLB8PP5MH1Zj48qy1CKwDsK8CtK/LkViUreYo@lists.infradead.org
-X-Gm-Message-State: AOJu0YzGLXnM9CMy0/PjuexFj5OP2LKojE1PtK15DedQ+UeaHdY5P0t9
-	67VbT8glgtfkfbrrCtEPd3l8B0HqNjui/e+L/ZiEZia2sdLVd7rBHpycmBw5swGhClZndHqEiA4
-	+1n6349knC56f0c9QoWxVwGqFQnc=
-X-Gm-Gg: ASbGnctY7cVzzjMsnJMdrTAorjGTBUMz3lfRp1P7psqOl3U/pn8ov8hExbfuHOtRwuw
-	fQh0AJISd16NnEFA5S50KEiOFgT8Bu4vUM1iKbamJr1yqikLFueMaddozCK0YDheKxg/lI+3Z4M
-	GBVxcgReSjhyYkyG/hRx17cA==
-X-Google-Smtp-Source: AGHT+IHiZFDgujiOG3UnHGeTx0KUPl+GHBXPb9fdrtmfKTuXg91n647EErsdZP3zN0Q/Y37TV62Z4t7VfBh5GpvARCI=
-X-Received: by 2002:a05:6402:268b:b0:5e5:334e:86d9 with SMTP id
- 4fb4d7f45d1cf-5f32a138efdmr2440544a12.13.1744292793246; Thu, 10 Apr 2025
- 06:46:33 -0700 (PDT)
+	id 1u2scy-0000000An9F-38US;
+	Thu, 10 Apr 2025 14:11:38 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 34EFA49FCA;
+	Thu, 10 Apr 2025 14:11:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D95C1C4CEE9;
+	Thu, 10 Apr 2025 14:11:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744294295;
+	bh=rco72FMDY4JgO03QNoKdCEdvvo+YwCaCCrx/8pDGOPE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=eQ7IoFkt+osTTj0Vi2+kpNtwDFjpZvXxiewz37bA8FBL4ZFA+CuGaUhIkcbbXR0k6
+	 29Fy2FHt0RumRcvkuDYPQqmLh45tYMCsTeWcx/7yRedEvadWGSNT3qNQCaOEPWaIhi
+	 sQ4M/3koFKQMQtD/p3dgWNUi+TktHMSbsFTetAE7iQAOPr1kFNMDHElpUIfORI75ih
+	 Y1mz/jaogtjNAchtXKtaHV3jAfPhlwYK8l+Ev9ql2/fTarC9pdP6vCO+1LVsL1mN4F
+	 wm3PLW30ItliFoXF10R7DtPFDDPMghDP0rRQVzEYt78nRT0N33cKXJqOrMXX+rXwSW
+	 sXJVlxGKmrCOQ==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5e6f4b3ebe5so1404872a12.0;
+        Thu, 10 Apr 2025 07:11:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUvGqZCx+/BcPIUjsrPCDRSYf0mTQPwKgMCSHk6QHiff/P78LbyDPY988s3+Yx8LdIp5Dn637wGsr9morCooRMTOA==@lists.infradead.org, AJvYcCV4J7Ac8+ur58JrdebXfYQseGluMpSGdWJOdmmoSUn7eGiCEoW74zD+h3Xk0qY2KldGWE17yuN/DwGawNHIuKs=@lists.infradead.org, AJvYcCVN8BKnb2mYOBKHcNuaSVZ0wMaLpcfR6OoPbpPS009SvFFfk1/CrkS5NOqYdZhfsbJcULukJtV9YvmvHzgpzCM=@lists.infradead.org, AJvYcCX37UvDzaUBiY7w4zipclNpoYApVUUkZFw0vk1gDEisPDgfL97d3GhX+5xhTknHk1+DQgadGm37tzt4LyqX@lists.infradead.org
+X-Gm-Message-State: AOJu0YzSAgyoueBCogmFEA+J8E0+vw+/5b81btwH7U0fwOkEDTIq/+tD
+	t72g6xj38aqSAt85ErrvcJ5Fy3jdW9QqZtoROFg/rISukB4KVgsGLgKbbYyrVKUnTTA3UNiz2PV
+	3fFBunQSi4jFZ5JiSfq1ytZYW6w==
+X-Google-Smtp-Source: AGHT+IGlh97um6SMQiGxBgsgdbsviDx65SZRgGYwOH79oWcJKJOpcvjinlVEV2oCvrCbvL9uHlFPqdqxcM1fMXmRyBY=
+X-Received: by 2002:a05:6402:42c3:b0:5e4:d2c9:455c with SMTP id
+ 4fb4d7f45d1cf-5f3292682cfmr2701509a12.10.1744294294406; Thu, 10 Apr 2025
+ 07:11:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250409214422.1751825-1-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20250409214422.1751825-1-martin.blumenstingl@googlemail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 10 Apr 2025 19:16:16 +0530
-X-Gm-Features: ATxdqUEdXHiyPPzlQQzx8sGDVrj8q4dzBzZE7dD5ZZvqIMWxRPwWGuOzBSchz3Y
-Message-ID: <CANAwSgTp26r-xeiSDkdX21Sp3RQtfh42JV4fCgirLkHZYuGD-Q@mail.gmail.com>
-Subject: Re: [PATCH] drm/meson: fix resource cleanup in meson_drv_bind_master()
- on error
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	jbrunet@baylibre.com, neil.armstrong@linaro.org, 
-	Furkan Kardame <f.kardame@manjaro.org>
+References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+ <20250403-dt-cpu-schema-v1-14-076be7171a85@kernel.org> <174377856145.1313232.11316769002552655294.robh@kernel.org>
+In-Reply-To: <174377856145.1313232.11316769002552655294.robh@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 10 Apr 2025 09:11:22 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKiduJBRBuRS364_bSjEfC_cvgyicZX1BwvNyb1+GVc3w@mail.gmail.com>
+X-Gm-Features: ATxdqUEvfSUaWUzPsxy3ohcumibpamjDRmILBf-6gs6fjUtKKg1MwCu-Qt45NOQ
+Message-ID: <CAL_JsqKiduJBRBuRS364_bSjEfC_cvgyicZX1BwvNyb1+GVc3w@mail.gmail.com>
+Subject: Re: [PATCH 14/19] dt-bindings: arm/cpus: Add schemas for
+ "enable-method" dependencies
+To: "Rob Herring (Arm)" <robh@kernel.org>, Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>, 
+	linux-rockchip@lists.infradead.org, 
+	Daniel Machon <daniel.machon@microchip.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, UNGLinuxDriver@microchip.com, 
+	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, linux-sunxi@lists.linux.dev, 
+	Liviu Dudau <liviu.dudau@arm.com>, linux-arm-kernel@lists.infradead.org, 
+	Fabio Estevam <festevam@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Stephen Boyd <sboyd@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Vincenzo Frascino <vincenzo.frascino@arm.com>, linux-renesas-soc@vger.kernel.org, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Viresh Kumar <vireshk@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, zhouyanjie@wanyeetech.com, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Heiko Stuebner <heiko@sntech.de>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, linux-pm@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>, 
+	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
+	Samuel Holland <samuel@sholland.org>, Sudeep Holla <sudeep.holla@arm.com>, Nishanth Menon <nm@ti.com>, 
+	devicetree@vger.kernel.org, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	linux-arm-msm@vger.kernel.org, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	linux-amlogic@lists.infradead.org, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Steen Hegelund <Steen.Hegelund@microchip.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250410_064635_544535_82CB8B3C 
-X-CRM114-Status: GOOD (  16.54  )
+X-CRM114-CacheID: sfid-20250410_071136_823470_AE96B416 
+X-CRM114-Status: GOOD (  14.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,94 +102,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
-
-On Thu, 10 Apr 2025 at 03:30, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> meson_drv_bind_master() does not free resources in the order they are
-> allocated. This can lead to crashes such as:
->     Unable to handle kernel NULL pointer dereference at virtual address 00000000000000c8
->     [...]
->     Hardware name: Beelink GT-King Pro (DT)
->     pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->     pc : meson_dw_hdmi_unbind+0x10/0x24 [meson_dw_hdmi]
->     lr : component_unbind+0x38/0x60
->     [...]
->     Call trace:
->      meson_dw_hdmi_unbind+0x10/0x24 [meson_dw_hdmi]
->      component_unbind+0x38/0x60
->      component_unbind_all+0xb8/0xc4
->      meson_drv_bind_master+0x1ec/0x514 [meson_drm]
->      meson_drv_bind+0x14/0x20 [meson_drm]
->      try_to_bring_up_aggregate_device+0xa8/0x160
->      __component_add+0xb8/0x1a8
->      component_add+0x14/0x20
->      meson_dw_hdmi_probe+0x1c/0x28 [meson_dw_hdmi]
->      platform_probe+0x68/0xdc
->      really_probe+0xc0/0x39c
->      __driver_probe_device+0x7c/0x14c
->      driver_probe_device+0x3c/0x120
->      __driver_attach+0xc4/0x200
->      bus_for_each_dev+0x78/0xd8
->      driver_attach+0x24/0x30
->      bus_add_driver+0x110/0x240
->      driver_register+0x68/0x124
->      __platform_driver_register+0x24/0x30
->      meson_dw_hdmi_platform_driver_init+0x20/0x1000 [meson_dw_hdmi]
->      do_one_initcall+0x50/0x1bc
->      do_init_module+0x54/0x1fc
->      load_module+0x788/0x884
->      init_module_from_file+0x88/0xd4
->      __arm64_sys_finit_module+0x248/0x340
->      invoke_syscall+0x48/0x104
->      el0_svc_common.constprop.0+0x40/0xe0
->      do_el0_svc+0x1c/0x28
->      el0_svc+0x30/0xcc
->      el0t_64_sync_handler+0x120/0x12c
->      el0t_64_sync+0x190/0x194
->
-> Clean up resources in the error path in the same order and under the
-> same conditions as they were allocated to fix this.
->
-> Reported-by: Furkan Kardame <f.kardame@manjaro.org>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
-> This issue was reported off-list so I'm unable to provide a link to the
-> report.
->
-> I'm not sure which Fixes tag fits best. My preference so far is
-> Fixes: 6a044642988b ("drm/meson: fix unbind path if HDMI fails to bind")
-> but I'll happily take other suggestions as well.
->
-Thanks for this Fix.
-
-Reviewed-by: Anand Moon <linux.amoon@gmail.com>
-Tested-by: Anand Moon <linux.amoon@gmail.com>
-
-I have tested with the following script on AML-S905X-CC
----------
-#! /bin/bash
-set +x
-
-cd /sys/bus/platform/drivers/meson-drm/
-for i in $(seq 1 10); do
-        echo "========================" $i
-        echo d0100000.vpu > unbind
-        /usr/bin/sleep 1
-        echo d0100000.vpu > bind
-        /usr/bin/sleep 1
-done
-
-Thanks
--Anand
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBBcHIgNCwgMjAyNSBhdCA5OjU24oCvQU0gUm9iIEhlcnJpbmcgKEFybSkgPHJvYmhA
+a2VybmVsLm9yZz4gd3JvdGU6Cj4KPgo+IE9uIFRodSwgMDMgQXByIDIwMjUgMjE6NTk6MzUgLTA1
+MDAsIFJvYiBIZXJyaW5nIChBcm0pIHdyb3RlOgo+ID4gUmVwbGFjZSB0aGUgcHJvc2UgZm9yIHBy
+b3BlcnRpZXMgZGVwZW5kZW50IG9uIHNwZWNpZmljICJlbmFibGUtbWV0aG9kIgo+ID4gdmFsdWVz
+IHdpdGggc2NoZW1hcyBkZWZpbmluZyB0aGUgc2FtZSByZXF1aXJlbWVudHMuCj4gPgo+ID4gQm90
+aCAicWNvbSxhY2MiIGFuZCAicWNvbSxzYXciIHByb3BlcnRpZXMgYXBwZWFyIHRvIGJlIHJlcXVp
+cmVkIGZvciBhbnkKPiA+IG9mIHRoZSBRdWFsY29tbSBlbmFibGUtbWV0aG9kIHZhbHVlcywgc28g
+dGhlIHNjaGVtYSBpcyBhIGJpdCBzaW1wbGVyCj4gPiB0aGFuIHdoYXQgdGhlIHRleHQgc2FpZC4g
+VGhlIHJlZmVyZW5jZXMgdG8gYXJtL21zbS9xY29tLHNhdzIudHh0IGFuZAo+ID4gYXJtL21zbS9x
+Y29tLGtwc3MtYWNjLnR4dCBhcmUgb3V0IG9mIGRhdGUsIHNvIGp1c3QgZHJvcCB0aGVtLgo+ID4K
+PiA+IFNpZ25lZC1vZmYtYnk6IFJvYiBIZXJyaW5nIChBcm0pIDxyb2JoQGtlcm5lbC5vcmc+Cj4g
+PiAtLS0KPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2NwdXMueWFt
+bCB8IDgyICsrKysrKysrKysrKysrKy0tLS0tLS0tLS0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNDkg
+aW5zZXJ0aW9ucygrKSwgMzMgZGVsZXRpb25zKC0pCj4gPgo+Cj4gTXkgYm90IGZvdW5kIGVycm9y
+cyBydW5uaW5nICdtYWtlIGR0X2JpbmRpbmdfY2hlY2snIG9uIHlvdXIgcGF0Y2g6Cj4KPiB5YW1s
+bGludCB3YXJuaW5ncy9lcnJvcnM6Cj4KPiBkdHNjaGVtYS9kdGMgd2FybmluZ3MvZXJyb3JzOgo+
+IC9idWlsZHMvcm9iaGVycmluZy9kdC1yZXZpZXctY2kvbGludXgvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3NvYy9xY29tL3Fjb20sc2F3Mi5leGFtcGxlLmR0YjogY3B1QDA6ICdx
+Y29tLGFjYycgaXMgYSByZXF1aXJlZCBwcm9wZXJ0eQo+ICAgICAgICAgZnJvbSBzY2hlbWEgJGlk
+OiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9hcm0vY3B1cy55YW1sIwoKQW55IFFjb20g
+Zm9sa3Mgd2FudCB0byB0ZWxsIG1lIHdoZXRoZXIgYm90aCBxY29tLGFjYyBhbmQgcWNvbSxzYXcg
+YXJlCnJlcXVpcmVkIG9yIG5vdD8gQWxsIHRoZSBhY3R1YWwgdXNlcnMgaGF2ZSBib3RoLgoKUm9i
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
+bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
+cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
