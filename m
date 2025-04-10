@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26A60C3601E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 16:47:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7345BC369A2
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 16:49:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=+E7XzyeLb2e6bNOwfhmqFyuAfyHgUxHT4SuPT/JLoLw=; b=kyfm40snk8vBtZ
-	gKhgcQKU6UOsTmj8KsehX3d/I70mpllikjbsmIGuS1QGQKUWEkjUbrEx/6ACF+S2mvN0tvAf7wk88
-	LvP5SyrJIxGnms1CBB0yS1vOM14fLdy2KcYSEyzBi6OXzUz49PhF9Z+ZxL/X+6l3Y5+Jt4E6ESaq7
-	XOlt+Lo21vOUTOyzrh2yrxEeYr8c2QEHL4tKKrw0XkZx+7NgWjAnic2R72jtal/uYITLdMiaG8bbT
-	w+mE4DCjbsDLlCw+zUxnjbHls9uHcVKdMTi7GQ4VO0UlSdDxSOVTUO+WlnRDxNKCU9nRe4ndCRHu6
-	a8oYMJmhkZ65NqlbBE6Q==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=AvVymfx6IEJ7FxFwKoggcSe5iLuoGO2GUwXV+pF54Z8=; b=cqgdq+kZ5LFWML
+	+oNbbb/TXKIXEXrzuGczJ31/6wChUmc8Bo9VOd8q3SxCTzGYWXkN1XDJBdijrdrJtwtZq4C7cbPKu
+	FW1XJAi7xK+EsiXL+E6+rkl3y2MgncSsn44zVnKbk9KHq8TkVx2G0GcUwYiAd2Z0czHiDxK9ttihg
+	FidLVQGugILWJBUW8spTCrEAqe1ilZj5oxArJKo/X7259D3pvZZOC3BitgrjqWV0sxnODid8+Ef8d
+	A7j1Liwbh/3YJcMnm++vnOmVVPPddj403tubSWN7tt8YoWPrmxwIgpi8eBB9GWk390ksFUplZAMPh
+	OrdmIiXGSU7S11FueAVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2v3y-0000000BG3e-0itq;
-	Thu, 10 Apr 2025 16:47:38 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1u2v5k-0000000BGR4-1iws;
+	Thu, 10 Apr 2025 16:49:28 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2u83-0000000B4xE-0znX;
-	Thu, 10 Apr 2025 15:47:48 +0000
+	id 1u2u85-0000000B4y2-35Ns;
+	Thu, 10 Apr 2025 15:47:51 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id ABAF8A4A8D9;
-	Thu, 10 Apr 2025 15:42:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB0FEC4CEDD;
-	Thu, 10 Apr 2025 15:47:45 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id B54AA4A44B;
+	Thu, 10 Apr 2025 15:47:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33747C4CEE9;
+	Thu, 10 Apr 2025 15:47:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744300065;
-	bh=2mdsfkUrMw7toePmD1v5/yrWX5YIRl5Nl5Vw/xMU/bw=;
-	h=From:Subject:Date:To:Cc:From;
-	b=L5+nLP7pd0oYgpafFrGoh0LoKCQ7lZ4hWRGZn8JABxcQWp3JDeYtvBix05xdM46Zh
-	 XpnLYthUadlqId0gsGWKaxqhLe/29kANzcoWa+rQrClokZLIPB3QGnmMNjmDMO2iql
-	 ltjul4+3LYS+YE+T6+FAIEe6+CmxqlNXD/zCQ1ZarWRoln8g/OplEPGkzty5mR23AK
-	 u/l1eF6ElFcEFQf1jOnx73ArjmRIf/wmr/xqbAtIF/9m7RfrBF+Y4Z6RPxU9Ml3e4Q
-	 B2frUcAk9HQfXVGsc1xqTnTMcK3l7Re3GEafraAraVMynKyonxEgKoKm0+R+VwL4jE
-	 f5+7zRNE93dhg==
+	s=k20201202; t=1744300067;
+	bh=17E6AqFYyreXuXiCUMrel7kiiXcdT5b24ICEL4rFA+A=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=EO3eS51Ey9S8GJDcQAD6Rr1t3w6p6SAFWhoWkQ3W2bG6/AQW4FOhZwWpfKl+Wa2CX
+	 rjHhnrPIfNDzvsNPhaHlwKdZoeWSmw4nX1LiK+OVHzZwvwGzoEcL5T6BrmVVYaChhw
+	 P89evcQIT5K7fAHjnq9wbIjJ7jWx+ciBKRTcDqM2aZmRBv/n3LnYH+n9JuvVJQap9w
+	 3F9BCpDxC9gZjNGhRtDyqme2YIWauF1tC7B4P4JU0v2WqsTaDPyhu83pmJz++H32z/
+	 4GL746Vd9s/tc+V5Y4TK6nVcNQK/xh15HP+fsn0Oks0zVeOoxrV/b/vl3RxLG+kHyZ
+	 8GAJNzuFYqX6A==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Subject: [PATCH v2 00/17] Arm cpu schema clean-ups
-Date: Thu, 10 Apr 2025 10:47:21 -0500
-Message-Id: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
+Date: Thu, 10 Apr 2025 10:47:22 -0500
+Subject: [PATCH v2 01/17] arm64: dts: allwinner: h5/h6: Drop spurious
+ 'clock-latency-ns' properties
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAAro92cC/3XMQQ7CIBCF4as0s3YMYAu1K+9hukA6LUSFBmqja
- bi72L3L/yXv2yBRdJSgqzaItLrkgi8hDhUYq/1E6IbSIJhoWM1OOCxo5hcmY+mpsW5JSqNGqc8
- MymeONLr37l370talJcTPzq/8t/6TVo4MmZI3Ulxx3TaXO0VPj2OIE/Q55y8lONpOqwAAAA==
-X-Change-ID: 20250403-dt-cpu-schema-48e66c7f6a90
+Message-Id: <20250410-dt-cpu-schema-v2-1-63d7dc9ddd0a@kernel.org>
+References: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
+In-Reply-To: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
 To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
  Jernej Skrabec <jernej.skrabec@gmail.com>, 
@@ -83,15 +82,12 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org, 
  linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- Andre Przywara <andre.przywara@arm.com>, 
- =?utf-8?q?Philippe_Mathieu-Daud=C3=A9?= <philmd@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Sudeep Holla <sudeep.holla@arm.com>, Viresh Kumar <viresh.kumar@linaro.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>
+ Andre Przywara <andre.przywara@arm.com>
 X-Mailer: b4 0.15-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250410_084747_411740_4C0EEF3E 
-X-CRM114-Status: GOOD (  13.58  )
+X-CRM114-CacheID: sfid-20250410_084749_828395_AF5B3BC5 
+X-CRM114-Status: UNSURE (   9.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,155 +104,92 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Arm cpu.yaml schema fails to restrict allowed properties in 'cpu' 
-nodes. The result, not surprisely, is a number of additional properties 
-and errors in .dts files. This series resolves those issues.
+'clock-latency-ns' is not a valid property for CPU nodes. It belongs in
+OPP table (which has it). Drop them from the CPU nodes.
 
-There's still more properties in arm32 DTS files which I have not 
-documented. Mostly yet more supply names and "fsl,soc-operating-points". 
-What's a few more warnings on the 10000s of warnings...
-
-The .dts files can be taken by the respective SoC maintainers. I will 
-take the binding changes.
-
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
-v2:
- - Drop applied "arm64: dts: morello: Fix-up cache nodes"
- - Rework enable-method schema
- - Drop "arm: dts: qcom: msm8916: Move "qcom,acc" and "qcom,saw" to 32-bit .dtsi"
- - Keep qcom,saw and qcom,acc properties on msm8939
- - Fix qcom,saw2.yaml example
- - Fix power-domain-names to be "perf" on qcom sdx55/65
+ arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi | 4 ----
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 4 ----
+ 2 files changed, 8 deletions(-)
 
-Link to v1: 
-https://lore.kernel.org/all/20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org/
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
+index d3caf27b6a55..48802bf02f3b 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
+@@ -16,7 +16,6 @@ cpu0: cpu@0 {
+ 			reg = <0>;
+ 			enable-method = "psci";
+ 			clocks = <&ccu CLK_CPUX>;
+-			clock-latency-ns = <244144>; /* 8 32k periods */
+ 			#cooling-cells = <2>;
+ 		};
+ 
+@@ -26,7 +25,6 @@ cpu1: cpu@1 {
+ 			reg = <1>;
+ 			enable-method = "psci";
+ 			clocks = <&ccu CLK_CPUX>;
+-			clock-latency-ns = <244144>; /* 8 32k periods */
+ 			#cooling-cells = <2>;
+ 		};
+ 
+@@ -36,7 +34,6 @@ cpu2: cpu@2 {
+ 			reg = <2>;
+ 			enable-method = "psci";
+ 			clocks = <&ccu CLK_CPUX>;
+-			clock-latency-ns = <244144>; /* 8 32k periods */
+ 			#cooling-cells = <2>;
+ 		};
+ 
+@@ -46,7 +43,6 @@ cpu3: cpu@3 {
+ 			reg = <3>;
+ 			enable-method = "psci";
+ 			clocks = <&ccu CLK_CPUX>;
+-			clock-latency-ns = <244144>; /* 8 32k periods */
+ 			#cooling-cells = <2>;
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+index 2301c59b41b1..73e8604315c5 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+@@ -27,7 +27,6 @@ cpu0: cpu@0 {
+ 			reg = <0>;
+ 			enable-method = "psci";
+ 			clocks = <&ccu CLK_CPUX>;
+-			clock-latency-ns = <244144>; /* 8 32k periods */
+ 			#cooling-cells = <2>;
+ 			i-cache-size = <0x8000>;
+ 			i-cache-line-size = <64>;
+@@ -44,7 +43,6 @@ cpu1: cpu@1 {
+ 			reg = <1>;
+ 			enable-method = "psci";
+ 			clocks = <&ccu CLK_CPUX>;
+-			clock-latency-ns = <244144>; /* 8 32k periods */
+ 			#cooling-cells = <2>;
+ 			i-cache-size = <0x8000>;
+ 			i-cache-line-size = <64>;
+@@ -61,7 +59,6 @@ cpu2: cpu@2 {
+ 			reg = <2>;
+ 			enable-method = "psci";
+ 			clocks = <&ccu CLK_CPUX>;
+-			clock-latency-ns = <244144>; /* 8 32k periods */
+ 			#cooling-cells = <2>;
+ 			i-cache-size = <0x8000>;
+ 			i-cache-line-size = <64>;
+@@ -78,7 +75,6 @@ cpu3: cpu@3 {
+ 			reg = <3>;
+ 			enable-method = "psci";
+ 			clocks = <&ccu CLK_CPUX>;
+-			clock-latency-ns = <244144>; /* 8 32k periods */
+ 			#cooling-cells = <2>;
+ 			i-cache-size = <0x8000>;
+ 			i-cache-line-size = <64>;
 
-Signed-off-by: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Chen-Yu Tsai <wens@csie.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-To: Samuel Holland <samuel@sholland.org>
-To: Conor Dooley <conor@kernel.org>
-To: Nicolas Ferre <nicolas.ferre@microchip.com>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-To: Steen Hegelund <Steen.Hegelund@microchip.com>
-To: Daniel Machon <daniel.machon@microchip.com>
-To: UNGLinuxDriver@microchip.com
-To: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-To: Shawn Guo <shawnguo@kernel.org>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-To: Pengutronix Kernel Team <kernel@pengutronix.de>
-To: Fabio Estevam <festevam@gmail.com>
-To: Heiko Stuebner <heiko@sntech.de>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Magnus Damm <magnus.damm@gmail.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Andy Gross <agross@kernel.org>
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Viresh Kumar <vireshk@kernel.org>
-To: Nishanth Menon <nm@ti.com>
-To: Stephen Boyd <sboyd@kernel.org>
-To: zhouyanjie@wanyeetech.com
-To: Matthias Brugger <matthias.bgg@gmail.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> 
-To: Stephan Gerhold <stephan.gerhold@linaro.org> 
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-sunxi@lists.linux.dev
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-arm-msm@vger.kernel.org
-Cc: imx@lists.linux.dev
-Cc: linux-rockchip@lists.infradead.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-renesas-soc@vger.kernel.org
-Cc: linux-mips@vger.kernel.org
-Cc: linux-pm@vger.kernel.org
-Cc: linux-mediatek@lists.infradead.org
-
----
-Rob Herring (Arm) (17):
-      arm64: dts: allwinner: h5/h6: Drop spurious 'clock-latency-ns' properties
-      arm64: dts: broadcom: bcm2712: Use "l2-cache" for L2 cache node names
-      arm64: dts: microchip: sparx5: Fix CPU node "enable-method" property dependencies
-      arm64: dts: qcom: qdu1000: Fix qcom,freq-domain
-      arm64: dts: qcom: msm8939: Fix CPU node "enable-method" property dependencies
-      arm64: dts: qcom: msm8992-lg-h815: Fix CPU node "enable-method" property dependencies
-      arm: dts: qcom: sdx55/sdx65: Fix CPU power-domain-names
-      arm/arm64: dts: imx: Drop redundant CPU "clock-latency"
-      arm: dts: qcom: ipq4019: Drop redundant CPU "clock-latency"
-      arm: dts: rockchip: Drop redundant CPU "clock-latency"
-      arm64: dts: amlogic: Drop redundant CPU "clock-latency"
-      dt-bindings: arm/cpus: Add schemas for "enable-method" dependencies
-      dt-bindings: arm/cpus: Re-wrap 'description' entries
-      dt-bindings: Reference opp-v1 schema in CPU schemas
-      dt-bindings: arm/cpus: Add missing properties
-      dt-bindings: arm/cpus: Add power-domains constraints
-      dt-bindings: cpufreq: Drop redundant Mediatek binding
-
- Documentation/devicetree/bindings/arm/cpus.yaml    | 229 +++++++++++--------
- .../bindings/cpufreq/cpufreq-mediatek.txt          | 250 ---------------------
- Documentation/devicetree/bindings/mips/cpus.yaml   |   3 +-
- Documentation/devicetree/bindings/opp/opp-v1.yaml  |  18 +-
- .../devicetree/bindings/soc/qcom/qcom,saw2.yaml    |   3 +-
- arch/arm/boot/dts/nxp/imx/imx7s.dtsi               |   1 -
- arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi           |   4 -
- arch/arm/boot/dts/qcom/qcom-sdx55.dtsi             |   2 +-
- arch/arm/boot/dts/qcom/qcom-sdx65.dtsi             |   2 +-
- arch/arm/boot/dts/rockchip/rk3128.dtsi             |   8 +-
- arch/arm/boot/dts/rockchip/rk3188.dtsi             |   1 -
- arch/arm/boot/dts/rockchip/rk322x.dtsi             |   1 -
- arch/arm/boot/dts/rockchip/rk3288.dtsi             |   5 +-
- arch/arm/boot/dts/rockchip/rv1108.dtsi             |   1 -
- arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi       |   4 -
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi       |   4 -
- arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts  |   4 -
- .../boot/dts/amlogic/meson-g12a-radxa-zero.dts     |   4 -
- arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts  |   4 -
- arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts    |   4 -
- arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts |   4 -
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi        |   1 +
- .../dts/amlogic/meson-g12b-a311d-libretech-cc.dts  |   6 -
- arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi  |   2 +
- .../boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi  |   6 -
- .../boot/dts/amlogic/meson-g12b-bananapi.dtsi      |   6 -
- .../boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi   |   6 -
- .../dts/amlogic/meson-g12b-odroid-go-ultra.dts     |   6 -
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi |   6 -
- .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    |   6 -
- arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi  |   2 +
- arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi   |   6 -
- arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi   |   4 -
- .../arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi |   4 -
- .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    |   4 -
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi  |   4 -
- .../dts/amlogic/meson-sm1-s905d3-libretech-cc.dts  |   4 -
- arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts   |   4 -
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         |   1 +
- arch/arm64/boot/dts/broadcom/bcm2712.dtsi          |   8 +-
- arch/arm64/boot/dts/freescale/imx8mm.dtsi          |   4 -
- arch/arm64/boot/dts/freescale/imx8mn.dtsi          |   4 -
- arch/arm64/boot/dts/freescale/imx8mp.dtsi          |   4 -
- arch/arm64/boot/dts/freescale/imx8mq.dtsi          |   4 -
- .../boot/dts/microchip/sparx5_pcb_common.dtsi      |   2 +
- arch/arm64/boot/dts/qcom/msm8939.dtsi              |   8 +
- arch/arm64/boot/dts/qcom/msm8992-lg-h815.dts       |   6 +
- arch/arm64/boot/dts/qcom/qdu1000.dtsi              |   8 +-
- 48 files changed, 202 insertions(+), 480 deletions(-)
----
-base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
-change-id: 20250403-dt-cpu-schema-48e66c7f6a90
-
-Best regards,
 -- 
-Rob Herring (Arm) <robh@kernel.org>
+2.47.2
 
 
 _______________________________________________
