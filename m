@@ -4,133 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1C62C369AA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 12:48:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1574C3601E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Apr 2025 13:36:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9BigMRH21sPfAC5zTMP2JuS9zmkiQidD8dfO4qgP3sY=; b=manFLuumK4tywv
-	KbTSzwUTJTtqFNtAk4kh+YNWDb2sD6cAth9Db/xGI/D9kxArFa9kiAEY+c3Au7gqydc+oGmMBksO0
-	Kxt7OiqZKOQwwXsvOSe9z6CST4wwOurKwIxETpDTe0GVZesSFmSfUnCSpjf5zuexwaj8qhNXM1dFK
-	65WP9ahttOHMaiRusOHJiZPAA72MvJPz8ALxGwg1YP7JfPFEWTHuNDM9NeEBlUcq4Jmq/XBxIZSzI
-	OIAfwXRT/IvTWsxFBtgSqywm4HlvYreh868jtDSqPJkg23bRPIv43S+ntE7GelvYgjAqqb3ZPV0be
-	TfBpIaKGaNOofuGXkt/g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=vwXaMonE6gqp9NIGeSN6qUEE6u2yRRS8pLos/RHjK8A=; b=rBG/cZTJIhjfWE
+	Cm2H93jP3HnqjPqAqt3d6CAXY8Daq/0jHCZDbvXMPcg0Ol3dafPGagOyeBRVD4jj0mttExkLuBPKE
+	6vgROx3K5qv7cE/GkoToxSx0jOvlWgxH2fNpmdx4wdQT6DEUEbIIri6sbI0fu5ZQ2RXcOjzK8DSJ+
+	q8DThUsPv8WUAo8HJ9/1I1tHXPM17ycD+FEnIuaCTMQbeUQVclv0dImXVH8wWGN1ZiEEvsQE2fz+P
+	PApmpFL57W5sIaElW0veNS3UoDp5ZgrgAO+NPDisw4B7yqRZ6VsGj1Q2fw+yFFdL02gWH3jm6clJg
+	OqBaKLeg3rcc1LpjovYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2rKb-0000000AYsd-1rjw;
-	Thu, 10 Apr 2025 12:48:33 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1u2s4e-0000000AguN-3ViL;
+	Thu, 10 Apr 2025 13:36:08 +0000
+Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2r9Y-0000000AWYF-2GsQ
-	for linux-amlogic@bombadil.infradead.org;
-	Thu, 10 Apr 2025 12:37:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=9VoKRS+yOUVccmHWqHCUYdtGt2QnJX1Av3s20gfz76g=; b=Z7fiKbC06AJg4XNqwP5B39mdNm
-	XmOQI16VVK3pSs5yP0uS4xQBPUV5H4z4YoIHLWqEwRoThwv6AL1ehZs9AHshM8wvADNzLFno11w6g
-	KVP51L17lxswMRY/o+Fdd/vww3S0o6gUrDkYhHqkPUjKnSXqNd+b5iqjNsFQHkWBsZwYHONyT1/IF
-	QIZeYvI29CXvPpDX8fyPgxaZZYypPaSj+3taxRH3UM9JvUYs9PHwePfEWA0lvw181ooWxwiis3xFK
-	JNnNbrB69kLiq2pfmqWRIzXSFa8Hte1kWpRWGR/ndaCG+zvkuBdL/JKDcV/IGiefAobQSg9BfNarj
-	21ghNJtw==;
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
-	by desiato.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u2r9V-00000008og8-0jyA
-	for linux-amlogic@lists.infradead.org;
-	Thu, 10 Apr 2025 12:37:07 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-43cf3192f3bso7814755e9.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 10 Apr 2025 05:37:04 -0700 (PDT)
+	id 1u2s2O-0000000AgOf-2Xqq;
+	Thu, 10 Apr 2025 13:33:49 +0000
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-227d6b530d8so7155375ad.3;
+        Thu, 10 Apr 2025 06:33:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744288623; x=1744893423; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9VoKRS+yOUVccmHWqHCUYdtGt2QnJX1Av3s20gfz76g=;
-        b=Bhog0H53I+LmfUtN/sVi+m0X2iFw2u8kqg7iir1jXBMJqgsKSo8sDwbeymWprDF9cx
-         lQCl1l26bO6FUk4PXoZNBxOf0Z7GY2qiW8kt9sB0jqpgpJebO941eIyhwZJTT6qWWorS
-         mZVvIg8/FKC4eD+c2VT+zeyBmgFDiamj+zhkzb05Fraw6i23+y/cPO/PZAKX4eKXD23i
-         bM1dC0UtUofMuCldWtMlhujI8vHgztO7Fw2txpVFtGNarNU4uKBxExvaQihfkaM7mZYU
-         24n/yDoTkv3qHsZER0PgrirqnAW+Zd1pkQmRMVPIKwTqYhgdsV1+LNoecEd2j3nW9m/b
-         dbqg==
+        d=gmail.com; s=20230601; t=1744292028; x=1744896828; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JLyUxHiWG+Qb25pc2VnBWbaaEbMsWfKxOQ5/RWGEgSw=;
+        b=I1awk4DDIRualUxXwO3wuAYVa+P180XSYJAcKXBtEm+PQ/+i4Tud8StQwiqdESALLh
+         ZVs0zPdUuEUZJRI8Mpuusms/lkeymdEdCDZrR/VnBP7iipT8tWM3+lQUB+DSqiNYn/7J
+         Z///gEHIaUJ+Hh+zuOmVAeymyoDEy6ujwaxZn14iM0YgokrD5qCd9hby9DQiY4qEHnO1
+         ZkPCrKTEY1s6cCs3rPoz71bZHlGKMFaVs+WR9fE/OsCZ+26VAiH30lsv+QnWDLvDR1gQ
+         ucXTH/xKTkp+ubKS/E0z7GKmQXlS+QXC8577d25PUaYS91IIP7KCC8pzghlvAL+DRiNJ
+         8n7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744288623; x=1744893423;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9VoKRS+yOUVccmHWqHCUYdtGt2QnJX1Av3s20gfz76g=;
-        b=cs2dNuxn2519hgpBeCc+3Zz/qJMjAVXmjZABN5sWH2hbgLA9X93/ON+ATN0G1TVDHe
-         0kMZ1BT+3xfoMMcZWOEb/Iw8bPkVs+3FjLBok8jRkuFQcmt7znBhO8RbM/RA4FSe0kb4
-         1QItkJhgInZ2c7dLlLLwK5m5Us5ciMhM0wmSArzqEKZxd8fbLn7phKb0A0w56iqEOeSm
-         dWGxD7W+K4HehO4Zjhv83MBIRfIIYI2klgPtrZpjmqmItlj/xAuGac7KULV590xDcYuS
-         I9AADFnAAqozAsA3pqWucgWFEX60q29F4Ni13iSyllfTe6htwoSd0KmZx7KgAd8RofN7
-         JNuA==
-X-Forwarded-Encrypted: i=1; AJvYcCVlrOR+IhnlOrcFyzaxtUERR+hD2NOrrBqgHPsKswYySE+f1yCdb6OHmr5kzQWeGYcw/kTADS5SWZSM9XxR@lists.infradead.org
-X-Gm-Message-State: AOJu0YyB83airNWwMJepsuV3fbWji1mK9It7V5h7eOJjeCgG3ASou84I
-	Ix9Y53I4jvrtpTkuLf9MK0D7igPvGNXMCwOJhrioyVo4Kv5BksF+BlyezeldtR8=
-X-Gm-Gg: ASbGncuHM06gNQVLvfUOFVaCPZoSXxRHAOhPqsE0rGIMKkWrMu0DHehJBepppeCNjkP
-	XK5fqMapKAVgViBNQ9rAZ55xyfFw/WsXepEMOTTYWu61cF4li3ObTst8naVJIg8oLvVBTcrVzJp
-	VVZ0zfqEmVhYm7ww4Mf20nbI8MxaRt1Nu//H9mHdgpHtslNO1d6RP1Ri2dVRosfhtYIYCHlIH58
-	AsvUFC/XfG1oVz1V0qZgXflEOrR9JpGbbVxBoB4DslfdwRrTw7QU/Z/2sh+vowNuNwj7O6P9jVL
-	FLPxIf/RqhKnpepiCubQt5umSPf83+wySTLiDTr3znVBqPhSIRpujgI47Q5RCcGzm9wVkhvjw0E
-	B4Sins+iMHsqjDg==
-X-Google-Smtp-Source: AGHT+IGMoIZKu18tKxGlE0nCM035PBeR69RdqmMHuq8h1Eu58CnOlQWvz4UQddkUAElDY1GsfzU8ew==
-X-Received: by 2002:a05:600c:348a:b0:43c:fdbe:4398 with SMTP id 5b1f17b1804b1-43f2fdceccfmr22721935e9.6.1744288622955;
-        Thu, 10 Apr 2025 05:37:02 -0700 (PDT)
-Received: from [192.168.69.238] (88-187-86-199.subs.proxad.net. [88.187.86.199])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f207cb88asm53015095e9.37.2025.04.10.05.37.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Apr 2025 05:37:02 -0700 (PDT)
-Message-ID: <20de7ce7-1cfc-40bb-9457-84e462cf4483@linaro.org>
-Date: Thu, 10 Apr 2025 14:37:00 +0200
+        d=1e100.net; s=20230601; t=1744292028; x=1744896828;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JLyUxHiWG+Qb25pc2VnBWbaaEbMsWfKxOQ5/RWGEgSw=;
+        b=q6tpeG2jTr4+rEysPBFc5k6eDxoNn5UvHA8aCj+mluD3eaEauNgx5FhX6dJERPbZSf
+         WTwruVmWCPoKBKWdgyxCQ7JQtIwXo+Piog/uxB9/ZEOtHPDsGfvdlIhqjwfRtrU/lz0q
+         6SfqkR0sfUvxQwgj3OwS3GgD+jURhheiW3m4xNsWxmtuX3GNocoOhHQ+imaIEU0+Sik0
+         5a4y4DCbqHKkjL41z/JmJ8KFokY2INfgePd1KveTzkMAv/+AKiiVJEPWmOnLdd69+la1
+         4pXY65QoMGx1+V3tzgvjQPehkgJEbWp6SkDlvDXtPNcGbY75KxfLBKdi5t0lfwZdZqtB
+         QtEA==
+X-Forwarded-Encrypted: i=1; AJvYcCURRDkNVo0gd9fSXkVRGjlwEVgoZCnjBPCUhyWtwq3hW2eUwbfadh0B+v2WpRTu4+xv5JvWARLoNlnznITA@lists.infradead.org, AJvYcCVszH+/QLQZSI/h6Bvw48zMjVg6KCW+wuQBt1EDD/bmMgE5YnTQkkL9eG2OeNXsO3Sn3vU+GQ2PbUpQ@lists.infradead.org, AJvYcCX2McIFNgYZ5sq0QfEuLs7ff++FH66SLbbU8otJGlWwFPJh3mwl/QZwhIHMEgkplWvq0Lim+5QSJ1oU4/3C8khU8g==@lists.infradead.org
+X-Gm-Message-State: AOJu0YxiJHyM1UTfdwOvVI0ZAdxMQ/CT8ponuMiwS1WqwSssZjX7KSFu
+	ob4Jwe1+H3hgR+3DdcE8F2dKTix2BtJYDsLkFwnLvORBpv/9SQy1Qzw1Hg==
+X-Gm-Gg: ASbGncvH0msBdTc0Jtiq9jwZeHpD1psKwnA11xOeJWVTXDtHE3/XmlKgXOLV0TEdzvR
+	g9OcWIwPpfKI0wH2dMgTeEJJG5egg7ToASsFwcUbAM2Udnl3hbohztcheoShy4LnLP78b280oCv
+	1cGc/QjyDpMK9QEScb3i7gYOGfi36pUu2bC1ruuv4hxQbs0y7eluBbwO/inaCLku88IB4GgOgVv
+	Vx181uJhWpPhMKZtG5YoknnyFQVsMZLKzSEkcS7awXvJdLlufUV3iFiOchGyyE50OirHQB6GiNN
+	9yINOtBCbVaTSwbwlX/hcMTBzF0tG2vdr+qlFCKPnYBmdniPUd4iZrE=
+X-Google-Smtp-Source: AGHT+IGKx5ChlwcV+OyphM7aWOQy1ODyOjgSEu2ev4g++EZQWZ+gpROGMOj8P4ESA2R8jvzGplRRiw==
+X-Received: by 2002:a17:902:ea0e:b0:21a:8300:b9ce with SMTP id d9443c01a7336-22b42c511bcmr35919265ad.49.1744292027773;
+        Thu, 10 Apr 2025 06:33:47 -0700 (PDT)
+Received: from localhost.localdomain ([103.221.69.50])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7cb0400sm30121475ad.160.2025.04.10.06.33.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Apr 2025 06:33:47 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-phy@lists.infradead.org (open list:GENERIC PHY FRAMEWORK),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
+	linux-kernel@vger.kernel.org (open list)
+Cc: Anand Moon <linux.amoon@gmail.com>
+Subject: [PATCH v1 0/6] Messon: Simplify error handling with dev_err_probe()
+Date: Thu, 10 Apr 2025 19:03:15 +0530
+Message-ID: <20250410133332.294556-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/19] arm64: dts: morello: Fix-up cache nodes
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Vincenzo Frascino <vincenzo.frascino@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
- Conor Dooley <conor@kernel.org>, Nicolas Ferre
- <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
- imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-3-076be7171a85@kernel.org>
-Content-Language: en-US
-From: =?UTF-8?Q?Philippe_Mathieu-Daud=C3=A9?= <philmd@linaro.org>
-In-Reply-To: <20250403-dt-cpu-schema-v1-3-076be7171a85@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250410_133705_372583_E72DCEC8 
-X-CRM114-Status: GOOD (  10.75  )
+X-CRM114-CacheID: sfid-20250410_063348_646301_8A7042BC 
+X-CRM114-Status: UNSURE (   9.51  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,22 +98,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gNC80LzI1IDA0OjU5LCBSb2IgSGVycmluZyAoQXJtKSB3cm90ZToKPiBUaGVyZSdzIG5vIG5l
-ZWQgaW5jbHVkZSB0aGUgQ1BVIG51bWJlciBpbiB0aGUgTDIgY2FjaGUgbm9kZSBuYW1lcyBhcwo+
-IHRoZSBuYW1lcyBhcmUgbG9jYWwgdG8gdGhlIENQVSBub2Rlcy4gVGhlIGRvY3VtZW50ZWQgbm9k
-ZSBuYW1lIGlzCj4gYWxzbyBqdXN0ICJsMi1jYWNoZSIuCj4gCj4gVGhlIEwzIGNhY2hlIGlzIG5v
-dCBwYXJ0IG9mIGNwdUAwL2wyLWNhY2hlIGFzIGl0IGlzIHNoYXJlZCBhbW9uZyBhbGwKPiBjb3Jl
-cy4gTW92ZSBpdCB0byAvY3B1cyBub2RlIHdoaWNoIGlzIHRoZSB0eXBpY2FsIHBsYWNlIGZvciBz
-aGFyZWQKPiBjYWNoZXMuCj4gCj4gU2lnbmVkLW9mZi1ieTogUm9iIEhlcnJpbmcgKEFybSkgPHJv
-YmhAa2VybmVsLm9yZz4KPiAtLS0KPiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvYXJtL21vcmVsbG8u
-ZHRzaSB8IDIyICsrKysrKysrKysrLS0tLS0tLS0tLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAxMSBp
-bnNlcnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkKClJldmlld2VkLWJ5OiBQaGlsaXBwZSBNYXRo
-aWV1LURhdWTDqSA8cGhpbG1kQGxpbmFyby5vcmc+CgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
-YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
-aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi All,
+
+Use dev_err_probe() for phy resources to indicate the deferral
+reason when waiting for the resource to come up.
+
+Note: The following patch for RTC:
+
+phy: amlogic: phy-meson-axg-pcie: Fix PHY creation order in axg-pcie probe
+
+has not been tested as I do not have access to the Amlogic AGX hardware.
+However, I have made improvements to this change based on my understanding
+of other code.
+
+Thanks
+-Anand
+
+Anand Moon (6):
+  phy: amlogic: phy-meson-gxl-usb2: Simplify error handling with
+    dev_err_probe()
+  phy: amlogic: phy-meson-g12a-usb2: Simplify error handling with
+    dev_err_probe()
+  phy: amlogic: phy-meson-axg-mipi-pcie-analog: Simplify error handling
+    with dev_err_probe()
+  phy: amlogic: phy-meson-axg-mipi-dphy: Simplify error handling with
+    dev_err_probe()
+  phy: amlogic: phy-meson-axg-pcie: Simplify error handling with
+    dev_err_probe()
+  phy: amlogic: phy-meson-axg-pcie: Fix PHY creation order in axg-pcie
+    probe
+
+ drivers/phy/amlogic/phy-meson-axg-mipi-dphy.c      | 10 +++-------
+ .../phy/amlogic/phy-meson-axg-mipi-pcie-analog.c   | 10 +++-------
+ drivers/phy/amlogic/phy-meson-axg-pcie.c           | 14 +++++---------
+ drivers/phy/amlogic/phy-meson-g12a-usb2.c          | 10 +++-------
+ drivers/phy/amlogic/phy-meson-gxl-usb2.c           | 11 +++--------
+ 5 files changed, 17 insertions(+), 38 deletions(-)
+
+
+base-commit: 3b07108ada81a8ebcebf1fe61367b4e436c895bd
+-- 
+2.49.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
