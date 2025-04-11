@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4993CC369A8
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Apr 2025 12:58:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85977C36010
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Apr 2025 12:58:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lDniQ1TDR5rj9UmTvnw2fYd61h3bxTk/7ETque0nv6Q=; b=4eGGSPVKD5HFLu
-	2LeSPBFTumjxewh0p9z3Xsj5RnSfmPN/SnMEgtOSUYybDf8VQBAqulZwO19F4ifwETt/Mvtkbq0OM
-	Geti7/aJVIJt/vmMlBZC+D+sB4tvSGyQNoTYm2btDhAGE0JO19KxApMk8Ux8BQaVRDZXTuLX3Ig1p
-	rG80ViZwibP/iF2uPkZ/7SlONIZvmpBtDPqEdbcR/TtCZBzepyX1+7Tjq3Z2ABg+DxlogD/I6husk
-	B/c3I9leM+CW3GvHXzceEgJEfwYZ8Q+v4oGUzCADg3XCJ0FaUVFcoBnQ8PCYlkdd1TKThZ7p2h1GK
-	dflD1oQPZA6HUzrp03nA==;
+	List-Owner; bh=z8Bb50lLJ1135ZhJdmdY088G2idFKd9ACptbAYyC/hE=; b=ohdf/T6tr6zG0P
+	nXfqERtPGU0hqLOqqfN4BXYzNW6ar9hsUnZ7EBt8seLL4+UV8SYjRJZBfUNwn0KQfPbZJowiJh5Fz
+	E4u2pFmCQrErdYDWF/KLs54VWQVPcdWDrWwyAdCJrUB6hcyb26CLDWjFsv1Q9icz51Nl9gMV3WNOe
+	bJYpZaIRVxfGTlviYLhMJvV3rJzTFzB/pk5Y10zSoBJ4+mP04WbyMeJmL/k/Bewjo4WT7J5d0RSWN
+	DyiusO1dXQsL/gCThWWWLdS4DywGiceG1KMCKuOA9ZteHX9GCd9bWl0Z1oRP7wfkvOtqZ6UD/67wK
+	Jz4nwoduFKzk9mTBi5IQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u3Dxp-0000000DpXL-0jp4;
+	id 1u3Dxp-0000000DpXW-3TaG;
 	Fri, 11 Apr 2025 12:58:33 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u3Dih-0000000DmYL-3ozH;
-	Fri, 11 Apr 2025 12:42:55 +0000
+	id 1u3Dii-0000000DmYM-01gj;
+	Fri, 11 Apr 2025 12:42:56 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1115A68463;
+	by tor.source.kernel.org (Postfix) with ESMTP id 3B5C968468;
 	Fri, 11 Apr 2025 12:42:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9E405C4CEEA;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E129CC4CEF1;
 	Fri, 11 Apr 2025 12:42:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744375374;
-	bh=7uMNt1krg1bqV29C3TK9qHsnV2Y5y0mXablLbhELmf4=;
+	s=k20201202; t=1744375375;
+	bh=n5t9S/zfdn2sjzX6jKfzjJ32mjUx+JHVTNIPVpou6LI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=fd6/KRVS1TsaHEbnpAnf2soFDA4rUrqM0Q0vmotIVDvTB4KjZ63xavZ8TxtPzIXaD
-	 pLOVISMd4vD/uk8+MGGoJn5v3/fo9cI5zVh6eZrJ1w0j42vw4AhvML69eSITqcE+hj
-	 azHSd3GN5rQu46YHxrBSMsza8nxOE53KOxyjazmyzFo6b+MFJsMk4m6CudeYgWVFxK
-	 ojAZUlaR5GMARpJ+bWnXOCdB3UfgZpq8D+svNL64uLJED8T3SxzT7o8eYQfSTKkNBw
-	 HOUkPDniEFYWK0pLgRsDAxwH1BT2pVAxBxmK3YMWDzYL5p3xqVHsBYB7pKu9NAFm6Z
-	 xOT1KQ7fgIrdQ==
+	b=Q9lrNNfHmilj00uobN17gWbFj7cuRw+UAtakzDDMtZogqIsSKUqFUIx3eEepLRfwu
+	 GZO9XYWsIZgDnKrXufYGMRFsUBEFdujFETrnhXtGGTx8PqUfq5gxzz20gmyzPBkmxZ
+	 gpDZVSSQDvw3dvyZizPLjmsGa7wKCM/3xVdLd3HfT6Ou47JMQWf/rSPTb8L05s8vEd
+	 Rzhdq4KNnl1CIaTyJHegS4LRJkdK+S1qaLJm5M4E3ionppzsk2TbNckKuvuDnM2j6B
+	 xSzAXu8xx3v2iw1Rjv8dtRgpFdOQcHVZvWEaUGZzQ6NZ+OCLSL38brwJ6zLjjuFaPP
+	 TRnK0+UUIEBzw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D3E0C369AC;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D6B4EC369A8;
 	Fri, 11 Apr 2025 12:42:54 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Fri, 11 Apr 2025 20:42:44 +0800
-Subject: [PATCH 2/7] dt-bindings: soc: amlogic: C3 supports clk-measure
+Date: Fri, 11 Apr 2025 20:42:46 +0800
+Subject: [PATCH 4/7] soc: amlogic: clk-measure: Add support for C3
 MIME-Version: 1.0
-Message-Id: <20250411-clk-measure-v1-2-cb46a78d019a@amlogic.com>
+Message-Id: <20250411-clk-measure-v1-4-cb46a78d019a@amlogic.com>
 References: <20250411-clk-measure-v1-0-cb46a78d019a@amlogic.com>
 In-Reply-To: <20250411-clk-measure-v1-0-cb46a78d019a@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -60,11 +60,11 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744375372; l=828;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744375372; l=6642;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=R+VgfvEaPoAKSQB5hn3wQA0opSipq/Yo223lp8X4HAc=;
- b=7xdBRMtyfW2OTwf09OOs3HozL9VTvwFUEDptXFUHha3noZ/r6nUSO8mWRz+q8JXRYnEpxc1Bx
- IHf08TbR3j7Buz5fiFIKwY5dqELdrl7Ap98uMszISFjBMdF9fsaIloU
+ bh=L9md6qqXJ5QGcx1nSe1cJoMiNoD+ixqwC9sxrOdsQHk=;
+ b=t7hS9G47AGDeQjttw08J1JVBY/bkT5wI2BgfjWKJye3g6Jc0FOYkaPYSRlB9oECHa/YCjVq0M
+ FSwVVhs3yVyCsh5ccbiTl5aERWYJQfs6eFK++T2/Z0HvbMPXEiOp1RW
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
@@ -89,25 +89,196 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-C3 adds support for clk-measure.
+Add the clk-measurer clocks IDs for the Amlogic C3 SoC family.
 
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- .../devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml    | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/soc/amlogic/meson-clk-measure.c | 158 ++++++++++++++++++++++++++++++++
+ 1 file changed, 158 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-index 77c281153010..275afe7fe374 100644
---- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-+++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-@@ -22,6 +22,7 @@ properties:
-       - amlogic,meson-axg-clk-measure
-       - amlogic,meson-g12a-clk-measure
-       - amlogic,meson-sm1-clk-measure
-+      - amlogic,c3-clk-measure
+diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
+index 30387d26307c..c6daddb8f1b8 100644
+--- a/drivers/soc/amlogic/meson-clk-measure.c
++++ b/drivers/soc/amlogic/meson-clk-measure.c
+@@ -497,6 +497,146 @@ static const struct meson_msr_id clk_msr_sm1[] = {
+ 	CLK_MSR_ID(127, "csi2_data"),
+ };
  
-   reg:
-     maxItems: 1
++static const struct meson_msr_id clk_msr_c3[] = {
++	CLK_MSR_ID(0,	"sys_clk"),
++	CLK_MSR_ID(1,	"axi_clk"),
++	CLK_MSR_ID(2,	"rtc_clk"),
++	CLK_MSR_ID(3,	"p20_usb2_ckout"),
++	CLK_MSR_ID(4,	"eth_mpll_test"),
++	CLK_MSR_ID(5,	"sys_pll"),
++	CLK_MSR_ID(6,	"cpu_clk_div16"),
++	CLK_MSR_ID(7,	"ts_pll"),
++	CLK_MSR_ID(8,	"fclk_div2"),
++	CLK_MSR_ID(9,	"fclk_div2p5"),
++	CLK_MSR_ID(10,	"fclk_div3"),
++	CLK_MSR_ID(11,	"fclk_div4"),
++	CLK_MSR_ID(12,	"fclk_div5"),
++	CLK_MSR_ID(13,	"fclk_div7"),
++	CLK_MSR_ID(15,	"fclk_50m"),
++	CLK_MSR_ID(16,	"sys_oscin32k_i"),
++	CLK_MSR_ID(17,	"mclk_pll"),
++	CLK_MSR_ID(19,	"hifi_pll"),
++	CLK_MSR_ID(20,	"gp0_pll"),
++	CLK_MSR_ID(21,	"gp1_pll"),
++	CLK_MSR_ID(22,	"eth_mppll_50m_ckout"),
++	CLK_MSR_ID(23,	"sys_pll_div16"),
++	CLK_MSR_ID(24,	"ddr_dpll_pt_clk"),
++	CLK_MSR_ID(26,	"nna_core"),
++	CLK_MSR_ID(27,	"rtc_sec_pulse_out"),
++	CLK_MSR_ID(28,	"rtc_osc_clk_out"),
++	CLK_MSR_ID(29,	"debug_in_clk"),
++	CLK_MSR_ID(30,	"mod_eth_phy_ref_clk"),
++	CLK_MSR_ID(31,	"mod_eth_tx_clk"),
++	CLK_MSR_ID(32,	"eth_125m"),
++	CLK_MSR_ID(33,	"eth_rmii"),
++	CLK_MSR_ID(34,	"co_clkin_to_mac"),
++	CLK_MSR_ID(36,	"co_rx_clk"),
++	CLK_MSR_ID(37,	"co_tx_clk"),
++	CLK_MSR_ID(38,	"eth_phy_rxclk"),
++	CLK_MSR_ID(39,	"eth_phy_plltxclk"),
++	CLK_MSR_ID(40,	"ephy_test_clk"),
++	CLK_MSR_ID(66,	"vapb"),
++	CLK_MSR_ID(67,	"ge2d"),
++	CLK_MSR_ID(68,	"dewarpa"),
++	CLK_MSR_ID(70,	"mipi_dsi_meas"),
++	CLK_MSR_ID(71,	"dsi_phy"),
++	CLK_MSR_ID(79,	"rama"),
++	CLK_MSR_ID(94,	"vc9000e_core"),
++	CLK_MSR_ID(95,	"vc9000e_sys"),
++	CLK_MSR_ID(96,	"vc9000e_aclk"),
++	CLK_MSR_ID(97,	"hcodec"),
++	CLK_MSR_ID(106,	"deskew_pll_clk_div32_out"),
++	CLK_MSR_ID(107,	"mipi_csi_phy_clk_out[0]"),
++	CLK_MSR_ID(108,	"mipi_csi_phy_clk_out[1]"),
++	CLK_MSR_ID(110,	"spifc"),
++	CLK_MSR_ID(111,	"saradc"),
++	CLK_MSR_ID(112,	"ts"),
++	CLK_MSR_ID(113,	"sd_emmc_c"),
++	CLK_MSR_ID(114,	"sd_emmc_b"),
++	CLK_MSR_ID(115,	"sd_emmc_a"),
++	CLK_MSR_ID(116,	"gpio_msr_clk"),
++	CLK_MSR_ID(117,	"spicc_b"),
++	CLK_MSR_ID(118,	"spicc_a"),
++	CLK_MSR_ID(122,	"mod_audio_pdm_dclk_o"),
++	CLK_MSR_ID(124,	"o_earcrx_dmac_clk"),
++	CLK_MSR_ID(125,	"o_earcrx_cmdc_clk"),
++	CLK_MSR_ID(126,	"o_earctx_dmac_clk"),
++	CLK_MSR_ID(127,	"o_earctx_cmdc_clk"),
++	CLK_MSR_ID(128,	"o_tohdmitx_bclk"),
++	CLK_MSR_ID(129,	"o_tohdmitx_mclk"),
++	CLK_MSR_ID(130,	"o_tohdmitx_spdif_clk"),
++	CLK_MSR_ID(131,	"o_toacodec_bclk"),
++	CLK_MSR_ID(132,	"o_toacodec_mclk"),
++	CLK_MSR_ID(133,	"o_spdifout_b_mst_clk"),
++	CLK_MSR_ID(134,	"o_spdifout_mst_clk"),
++	CLK_MSR_ID(135,	"o_spdifin_mst_clk"),
++	CLK_MSR_ID(136,	"o_audio_mclk"),
++	CLK_MSR_ID(137,	"o_vad_clk"),
++	CLK_MSR_ID(138,	"o_tdmout_d_sclk"),
++	CLK_MSR_ID(139,	"o_tdmout_c_sclk"),
++	CLK_MSR_ID(140,	"o_tdmout_b_sclk"),
++	CLK_MSR_ID(141,	"o_tdmout_a_sclk"),
++	CLK_MSR_ID(142,	"o_tdminb_1b_sclk"),
++	CLK_MSR_ID(143,	"o_tdmin_1b_sclk"),
++	CLK_MSR_ID(144,	"o_tdmin_d_sclk"),
++	CLK_MSR_ID(145,	"o_tdmin_c_sclk"),
++	CLK_MSR_ID(146,	"o_tdmin_b_sclk"),
++	CLK_MSR_ID(147,	"o_tdmin_a_sclk"),
++	CLK_MSR_ID(148,	"o_resampleb_clk"),
++	CLK_MSR_ID(149,	"o_resamplea_clk"),
++	CLK_MSR_ID(150,	"o_pdmb_sysclk"),
++	CLK_MSR_ID(151,	"o_pdmb_dclk"),
++	CLK_MSR_ID(152,	"o_pdm_sysclk"),
++	CLK_MSR_ID(153,	"o_pdm_dclk"),
++	CLK_MSR_ID(154,	"c_alockerb_out_clk"),
++	CLK_MSR_ID(155,	"c_alockerb_in_clk"),
++	CLK_MSR_ID(156,	"c_alocker_out_clk"),
++	CLK_MSR_ID(157,	"c_alocker_in_clk"),
++	CLK_MSR_ID(158,	"audio_mst_clk[34]"),
++	CLK_MSR_ID(159,	"audio_mst_clk[35]"),
++	CLK_MSR_ID(160,	"pwm_n"),
++	CLK_MSR_ID(161,	"pwm_m"),
++	CLK_MSR_ID(162,	"pwm_l"),
++	CLK_MSR_ID(163,	"pwm_k"),
++	CLK_MSR_ID(164,	"pwm_j"),
++	CLK_MSR_ID(165,	"pwm_i"),
++	CLK_MSR_ID(166,	"pwm_h"),
++	CLK_MSR_ID(167,	"pwm_g"),
++	CLK_MSR_ID(168,	"pwm_f"),
++	CLK_MSR_ID(169,	"pwm_e"),
++	CLK_MSR_ID(170,	"pwm_d"),
++	CLK_MSR_ID(171,	"pwm_c"),
++	CLK_MSR_ID(172,	"pwm_b"),
++	CLK_MSR_ID(173,	"pwm_a"),
++	CLK_MSR_ID(174,	"AU_DAC1_CLK_TO_GPIO"),
++	CLK_MSR_ID(175,	"AU_ADC_CLK_TO_GPIO"),
++	CLK_MSR_ID(176,	"rng_ring_osc_clk[0]"),
++	CLK_MSR_ID(177,	"rng_ring_osc_clk[1]"),
++	CLK_MSR_ID(178,	"rng_ring_osc_clk[2]"),
++	CLK_MSR_ID(179,	"rng_ring_osc_clk[3]"),
++	CLK_MSR_ID(180,	"sys_cpu_ring_osc_clk[0]"),
++	CLK_MSR_ID(181,	"sys_cpu_ring_osc_clk[1]"),
++	CLK_MSR_ID(182,	"sys_cpu_ring_osc_clk[2]"),
++	CLK_MSR_ID(183,	"sys_cpu_ring_osc_clk[3]"),
++	CLK_MSR_ID(184,	"sys_cpu_ring_osc_clk[4]"),
++	CLK_MSR_ID(185,	"sys_cpu_ring_osc_clk[5]"),
++	CLK_MSR_ID(186,	"sys_cpu_ring_osc_clk[6]"),
++	CLK_MSR_ID(187,	"sys_cpu_ring_osc_clk[7]"),
++	CLK_MSR_ID(188,	"sys_cpu_ring_osc_clk[8]"),
++	CLK_MSR_ID(189,	"sys_cpu_ring_osc_clk[9]"),
++	CLK_MSR_ID(190,	"sys_cpu_ring_osc_clk[10]"),
++	CLK_MSR_ID(191,	"sys_cpu_ring_osc_clk[11]"),
++	CLK_MSR_ID(192,	"am_ring_osc_clk_out[12](dmc)"),
++	CLK_MSR_ID(193,	"am_ring_osc_clk_out[13](rama)"),
++	CLK_MSR_ID(194,	"am_ring_osc_clk_out[14](nna)"),
++	CLK_MSR_ID(195,	"am_ring_osc_clk_out[15](nna)"),
++	CLK_MSR_ID(200,	"rng_ring_osc_clk_1[0]"),
++	CLK_MSR_ID(201,	"rng_ring_osc_clk_1[1]"),
++	CLK_MSR_ID(202,	"rng_ring_osc_clk_1[2]"),
++	CLK_MSR_ID(203,	"rng_ring_osc_clk_1[3]"),
++
++};
++
+ static int meson_measure_id(struct meson_msr_id *clk_msr_id,
+ 			    unsigned int duration)
+ {
+@@ -729,6 +869,20 @@ static const struct meson_msr_data clk_msr_sm1_data = {
+ 	},
+ };
+ 
++static const struct meson_msr_data clk_msr_c3_data = {
++	.msr_table = (void *)clk_msr_c3,
++	.msr_count = ARRAY_SIZE(clk_msr_c3),
++	.reg = {
++		.reg0 = 0x0,
++		.reg1 = 0x4,
++		.reg2 = 0x8,
++		.reg3 = 0xc,
++		.reg4 = 0x10,
++		.reg5 = 0x14,
++		.duty = 0x18,
++	},
++};
++
+ static const struct of_device_id meson_msr_match_table[] = {
+ 	{
+ 		.compatible = "amlogic,meson-gx-clk-measure",
+@@ -754,6 +908,10 @@ static const struct of_device_id meson_msr_match_table[] = {
+ 		.compatible = "amlogic,meson-sm1-clk-measure",
+ 		.data = &clk_msr_sm1_data,
+ 	},
++	{
++		.compatible = "amlogic,c3-clk-measure",
++		.data = &clk_msr_c3_data,
++	},
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, meson_msr_match_table);
 
 -- 
 2.42.0
