@@ -4,121 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D46EC36010
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Apr 2025 08:43:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C51FC369A8
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Apr 2025 08:45:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1dm/aLtMA+670DNBk4zGQgM7O/z83cntZSUK+iGedOY=; b=KkJKRzfbsuY+7ejar8IDluQgKc
-	cxr+A7nI/cPkPJ1/hvQuAXa+IVWpjWzvr1otDtcm8BDT9VGoKWR96SX56mspB6xjuHjvR4QOCvGNg
-	frL+fLq3Gjd0eT3oC3ch4RqqdNPtoHIUpMohcALqYAMP0ywxf1BZT2euuXg+bZuLzUMy7lu3awJrv
-	mFAX7jAI0oCLHbZBFdyEHER8NACc3VuTCDIbj0qw2qSBqWWja+wNDT6F1N0Wx8tSZbcTF9RTUicbU
-	1vrSk547rrRIVfVVKs0+P+Qb1/AkmCsSY/7FdwXoGxLJj8kdmXgcHnOqwDJ57h5WgxRMNIRVGtRv3
-	2RtN95aw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=91WZIcWaPC7LErWchNgiIAQaIfAiF1+9U/aGmnMYvDY=; b=kPdhqMaknrPOGT
+	YiURbvZm+mHs5zLFM8IdAVw3b6L05akwwaou+d5eWsKUSJA/GDxYguyAKJZ+hImLxqhiN9B32+qIc
+	G6Kp3Ctt82CpR8hXeLf2GHMVfZWopRW79WWwz5M+Yt/7bEyHWxlbXccaVAm1cvhQKdwqxskQU8hvU
+	1PDfwSwbkTcmaRJMxYNMldCjZXYIvQwtjf96GsraAUVy9iZ6sRvwOpWDHcJ5o5/tk0orpbJ4ZbmPL
+	CB0WHIQTEMeT0DxZz0olfhkBIXoQMTtZC21+JSBciRf8Ck7Hft2CBpfnn4y9v281Pf6kXiZgfA4vD
+	0fkos3te4Nr0B7i6yBMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u39z9-0000000D4DD-1hhh;
-	Fri, 11 Apr 2025 08:43:39 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1u3A0w-0000000D4rj-3SOH;
+	Fri, 11 Apr 2025 08:45:30 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u39ox-0000000D1xL-2mUf
+	id 1u39tb-0000000D2wV-1w9D
 	for linux-amlogic@lists.infradead.org;
-	Fri, 11 Apr 2025 08:33:08 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-43cf05f0c3eso12413475e9.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 11 Apr 2025 01:33:07 -0700 (PDT)
+	Fri, 11 Apr 2025 08:37:57 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-39c1efc457bso1046811f8f.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 11 Apr 2025 01:37:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744360386; x=1744965186; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EK9rCz5R2JGRLR/abCueMGVjM/KpF6kJW3tcRtlcRvM=;
-        b=mMZ+nxhEHzzuUzhtvUijFVytlRuOaCcn33qpBf1IdRanBiP5CWziMyBZfbx1PLUMo6
-         2NmGfLZ5RUDM9oi6RpEcmjNt7H1OTZ0blrhU9yjNWOYZa59V2KtBiLveEONFc21P78X7
-         0QI61IwGpigP4ezahdigqTHdO1+pVPMvhz5iuFW+9FGUFw4muyHVFWpiwHGJQMWk8obb
-         Em+wB2m1hbRKZag/e7BOM5kP2w8xhZlk6DuTFLHlW+Y+MlXudG1QkNIz9Z0U4G38oIcK
-         Tr6j4ZUqd4dHrw7MzQNGCjAVbQ949HPe+Egw9Y4h3C6YorUD+L0E9hA1gOrZso6Owrj9
-         P58A==
+        d=linaro.org; s=google; t=1744360674; x=1744965474; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wH2ZPuzfR/sU9gtELQf1xx9ouW+DErODBwUT5LwG1mM=;
+        b=BQWlgrFSgWRUBRGUslckluPHmvlJVh3JY5tyfIJbKv1/BK2T0YEWMRV67A7Fs4X3ab
+         xrFkLQHz6sytNnTHT5e627Ej2z2nw1HzgGHuft+Ln80d9/G1Tz9faUe5xY1kJFBrdR4J
+         tbIpTkffOt1Kf3y304aOMVIUhsH37wg/SzBzGQx8/tDh0IfsfgUTMmXJ1PBZbiX+Fm7E
+         CF5Oz3PLOuBZ7I7oS2OqnnOqMpP5zVSah5tNvS7pPcUJe5Oyu3XZ641jJNuC5cqPFYQ8
+         RjqefK5BO61lFAhtvVUvKYmtZlV+fUx9Xb/DVm2FNbLPkA+h9tFOj+2p78h/8+JDmtTW
+         2oGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744360386; x=1744965186;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=EK9rCz5R2JGRLR/abCueMGVjM/KpF6kJW3tcRtlcRvM=;
-        b=L5N9wmnrIXLjNXK7gZEgdsBdFwlw8I1jaGPukQh/W61tMuCB1S3RjQjj29vbM0T1BR
-         F2+L5kvgItyXb7WqlO8yksJESRplpwlkvOUPvRoddo5bhDNCYMyfQWGse1zNsOCVUodG
-         2jbw9TC1F3szdIHFyA/weILrtBECvFhGhYEe4Bzl4+Ak8lbEcYG5y4obs0g1TVP+sx9D
-         PXIOvFV3TPMWy/6uk/vo/ilPw+THHmkoBrwYqR6FE1dh5GdEdLM5qLWnEh6xWt/RO33I
-         nh+OJw+EdwAb+w7mbHtZ8O0BDnCbwXATd5g71CnM2QptlrJPSlvbaX92sz3OJ6euN2+Q
-         O56g==
-X-Forwarded-Encrypted: i=1; AJvYcCVfhhg4QH8YkG07jthbX1oL1brimNvVpKKrruaXn4l5me3ZzexTqxAdK5DKxyaEXyxIPd2XVnSZZ8OLhOrO@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyq/iEYUmAR47gdEq48R7Meb1WFoWlFsqkrfSjD2kJMkfmEnX+h
-	jADUUzuj0fZJnAdxNvsDaXMncN+NdUnd5ak79gyRq/wlE9Wj1IkEY7K21hQk0e0=
-X-Gm-Gg: ASbGncsrl3ikcrMIOWeMHUW9gPpITz/D2zlZ9VBgNcM0ESmXp/bU0CsF9AaFzeVgKSx
-	Dq8ZGiM5FZz8PbPinCCizyoHtfV7SsHxJg9B+FAGSjPWu/GmOEtrSJcO2wuUXLVF9rbuleonbsP
-	1OPCqI6EJm0xNdvdcNsla6wEpt0h5tC2kl2nG/jwurwHHyZ5c+sWs3gCfkLQ34FQo1+9feSzv3k
-	XKLZDu/e2SqY6uQlphtcNVX7m1jRjqpyVe04uOeCqUO2lVi4L/OkjfCdbzBRKqrTHTWKXp8HS1i
-	MToGP7/BP28xvyXkLN2Dz/uwYqHKO5gJIjOu8Urm3Op4XSmmMQJZEpY7ciVY8EiPnQIxKpjOeTk
-	Z613A0WPaKcQNu2MliQ==
-X-Google-Smtp-Source: AGHT+IHlLQ8VnWkMNxW6NJ/2XfY1PSwDp+GZZTngXF4ukLUEAUWIscJaYqmOWxV7FEHDv1xafn6WCA==
-X-Received: by 2002:a05:6000:144b:b0:390:f2f1:2a17 with SMTP id ffacd0b85a97d-39eaaed2b6fmr1302713f8f.53.1744360385924;
-        Fri, 11 Apr 2025 01:33:05 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:f77b:949e:1d61:69a8? ([2a01:e0a:3d9:2080:f77b:949e:1d61:69a8])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae96c074sm1290725f8f.28.2025.04.11.01.33.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 01:33:05 -0700 (PDT)
-Message-ID: <8e8aff0f-36cf-42cf-88a4-a9e3a646b73b@linaro.org>
-Date: Fri, 11 Apr 2025 10:33:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+        d=1e100.net; s=20230601; t=1744360674; x=1744965474;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wH2ZPuzfR/sU9gtELQf1xx9ouW+DErODBwUT5LwG1mM=;
+        b=mJqC+7oKMXPK5Kc1fbx4mFlkgR+WUyGs6cZ74zml4E9abtQ8n7z1xMcJOo88GX4nJ6
+         G2fD1y0ru3XQguOMGDTxNDzxDE4KUCL8mvnEQ1u5vLWoJ1BvGNLErCocQmssdYr6UWeH
+         h2Sh5iCjEXcB1YO4XhiaV1aQXKaR6LSgczZCpykq+UDOr4KiEejOaReawYdAcEfwv+zT
+         yjKJfqF2ooVEHvj9+k9F1gLrq96YOJELMt3bdGiX+AABATQh/w6S5dkraJ+hnQDQB2zU
+         RRngAKklX3FxvoEQ9NiDX/FvvzMSF5X+teNHqIU9RdReb9NrSK3+P5i2Cqd/CrqcLVZy
+         ahkg==
+X-Forwarded-Encrypted: i=1; AJvYcCVuHEyVUMLWFNeFG++UHjVEPmsr5F8+BYaef9RQxms/Aktwly1GcmQtQ8w/lmaEo6PvQUVaNKnUSqtncvbl@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzdlln+evbJDYbfiPNkcVkG+nY2g7jVQUW2jbUwNXyZzJTmQ6eH
+	g8riafx8I9qyZ26sN9+Z6oq0nydlQ4x27hKtBlHIsPW/4tAfCjlkl5b87rVFoiA=
+X-Gm-Gg: ASbGncufWMr8WXOtT09xXMTwwjfsqpjzM0i7TA+XtN46TYMqEysQ1ZMZBF9Y6R9Vq5U
+	rrmDMUHJ3myEWuBoC8yF6cy+6msYzTr9nYwrxgSmK+jOPP5fbWgCrIgp4TDGDvTldNg3m4CE77B
+	ny/Lc7rKuo7iqPM97oeEwZkQ+M/4546FNIgF5OxilYwgltc2bXseSdu8Eijd+nlNnOmy1MtjsHz
+	XSX1Av8tmEO3ODvQcYuVgIUschFz+b+Ew7oA+/3yqWC1iSDx/X0DIgqMKZcWiFYl2qV3AqWsKnn
+	o1PZzM37eVGz5vVSxRvnbz/FVGRxEMX0WAUyqC7bYZ1mAny5AYKwpekVFbSGaA==
+X-Google-Smtp-Source: AGHT+IESQEmfqjjVD+jC6dd63FDfAGrpItTMGFb0BJ+4OP4VGIDucBWUqxZDD69YlSOe5qeibdfp9g==
+X-Received: by 2002:a05:6000:2c5:b0:38f:3224:65ff with SMTP id ffacd0b85a97d-39ea51ecb8bmr1357243f8f.5.1744360673907;
+        Fri, 11 Apr 2025 01:37:53 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae9777a0sm1326282f8f.43.2025.04.11.01.37.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Apr 2025 01:37:53 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v1 6/6] phy: amlogic: phy-meson-axg-pcie: Fix PHY creation
- order in axg-pcie probe
-To: Anand Moon <linux.amoon@gmail.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
- "moderated list:ARM/Amlogic Meson SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson SoC support"
- <linux-amlogic@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250410133332.294556-1-linux.amoon@gmail.com>
- <20250410133332.294556-7-linux.amoon@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250410133332.294556-7-linux.amoon@gmail.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Conor Dooley <conor@kernel.org>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Steen Hegelund <Steen.Hegelund@microchip.com>, 
+ Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Andy Gross <agross@kernel.org>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, 
+ Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Stephan Gerhold <stephan.gerhold@linaro.org>, 
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, imx@lists.linux.dev, 
+ linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org, 
+ linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ Andre Przywara <andre.przywara@arm.com>, 
+ =?utf-8?q?Philippe_Mathieu-Daud=C3=A9?= <philmd@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Sudeep Holla <sudeep.holla@arm.com>, Viresh Kumar <viresh.kumar@linaro.org>, 
+ Ulf Hansson <ulf.hansson@linaro.org>
+In-Reply-To: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
+References: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
+Subject: Re: (subset) [PATCH v2 00/17] Arm cpu schema clean-ups
+Message-Id: <174436067236.3436338.6767561918297500530.b4-ty@linaro.org>
+Date: Fri, 11 Apr 2025 10:37:52 +0200
+MIME-Version: 1.0
+X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250411_013307_700549_C3783C24 
-X-CRM114-Status: GOOD (  13.80  )
+X-CRM114-CacheID: sfid-20250411_013755_509400_598032B4 
+X-CRM114-Status: GOOD (  12.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,53 +128,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/04/2025 15:33, Anand Moon wrote:
-> Reorder the PHY creation in the axg-pcie probe function to ensure all
-> the resource is mapped before creating the PHY. This change addresses
-> the issue where the PHY creation was attempted before
-> mapping the necessary resources, potentially causing failures.
-> 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
->   drivers/phy/amlogic/phy-meson-axg-pcie.c | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/phy/amlogic/phy-meson-axg-pcie.c b/drivers/phy/amlogic/phy-meson-axg-pcie.c
-> index 54baf7b8930e1..14dee73f9cb57 100644
-> --- a/drivers/phy/amlogic/phy-meson-axg-pcie.c
-> +++ b/drivers/phy/amlogic/phy-meson-axg-pcie.c
-> @@ -136,11 +136,6 @@ static int phy_axg_pcie_probe(struct platform_device *pdev)
->   	if (!priv)
->   		return -ENOMEM;
->   
-> -	priv->phy = devm_phy_create(dev, np, &phy_axg_pcie_ops);
-> -	if (IS_ERR(priv->phy))
-> -		return dev_err_probe(dev, PTR_ERR(priv->phy),
-> -				     "failed to create PHY\n");
-> -
->   	base = devm_platform_ioremap_resource(pdev, 0);
->   	if (IS_ERR(base))
->   		return PTR_ERR(base);
-> @@ -158,6 +153,11 @@ static int phy_axg_pcie_probe(struct platform_device *pdev)
->   	if (IS_ERR(priv->analog))
->   		return PTR_ERR(priv->analog);
->   
-> +	priv->phy = devm_phy_create(dev, np, &phy_axg_pcie_ops);
-> +	if (IS_ERR(priv->phy))
-> +		return dev_err_probe(dev, PTR_ERR(priv->phy),
-> +				     "failed to create PHY\n");
-> +
->   	phy_set_drvdata(priv->phy, priv);
->   	dev_set_drvdata(dev, priv);
->   	pphy = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+Hi,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Thu, 10 Apr 2025 10:47:21 -0500, Rob Herring (Arm) wrote:
+> The Arm cpu.yaml schema fails to restrict allowed properties in 'cpu'
+> nodes. The result, not surprisely, is a number of additional properties
+> and errors in .dts files. This series resolves those issues.
+> 
+> There's still more properties in arm32 DTS files which I have not
+> documented. Mostly yet more supply names and "fsl,soc-operating-points".
+> What's a few more warnings on the 10000s of warnings...
+> 
+> [...]
+
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm64-dt)
+
+[11/17] arm64: dts: amlogic: Drop redundant CPU "clock-latency"
+        https://git.kernel.org/amlogic/c/4bc28af2da876531e5183d25ae807e608c816d18
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.16/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
