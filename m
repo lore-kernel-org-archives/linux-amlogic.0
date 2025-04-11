@@ -4,142 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37A7EC369A2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Apr 2025 09:19:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91D08C369A8
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Apr 2025 11:31:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bOZtD9hX1a+bbk0K4t5IIbx4xwrRpYFrawKMZv8jXX8=; b=XRe+g5CxHu5wfS
-	epIJivQcWOd/dxNwk90Eq+pqczpqCsFxRwNbjTGxXS9uyCKFzgciPUdkOzc5EuNpig6dybgUzdD8M
-	LzAhPtZ6lgp09sqaBaZvBUvRACwncfBWQXIjLSRZEpD4wSmtSs0rJLZMmoaX1K2O7iBzNTkFXNC6d
-	XgqTldE6gti8ztu87+QsaTsiq76vbKNU3fDpKoMUyBofT0ddPtOtXhTJwYoj1C7uyOvIM/o9k2IWQ
-	xyiYMiu76nhSBdmmVEh+YSkgslvWswl7hYDpnK/cAzvcMZbtfzkaGNClYxy7jPklgz8a2jL8QbJQu
-	tBDqieBST6SlAly4ohdQ==;
+	List-Owner; bh=4uyjqtRns4fxCj4HRJL8Gvm/l0uz5jZi49cd74lIHAY=; b=Vo3RPRZQH5o+pt
+	sQkhmQuxQTSG9P+uwUpm2AB09syGmAvHfdLig6bFUILSirNt74hTlMP3LyRgXpoHYyY9S/U2v0Q6t
+	07lCFWASFO3vc7u/8yMD2kbbYpM1ZAouhNNk9D2DOFcZmMEjTJvUbvs13AhP0sr86EumYwdRLyZrc
+	nUQ4mucTGJ6Gksvqd9xKZSR/VRepDmIWKnlBy6/rfMox2uc0XwtUA5h+FdmBED0e9cISYNCbHryL9
+	cT499ytKRonRFYcx2G++G/t+sFgfLaUzIMB9asPXzOzh3CVmVJH28AtRNoKfalNngEsfMKfdURaX4
+	zAqZ0iL//OmVp8L4RDIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u3AYB-0000000DBEN-3Mvq;
-	Fri, 11 Apr 2025 09:19:51 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1u3Cbp-0000000DZbZ-29R7;
+	Fri, 11 Apr 2025 11:31:45 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u3AV5-0000000DAGv-1p6G
-	for linux-amlogic@lists.infradead.org;
-	Fri, 11 Apr 2025 09:16:41 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53B1EwNJ006985
-	for <linux-amlogic@lists.infradead.org>; Fri, 11 Apr 2025 09:16:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ufhmds+kkSlO2rSMDq46DFe1lGxthqem6KM44BdOhnI=; b=MfRWrUpWHKOXgxYd
-	tlO/p2GZIa8GpGmxViFMmae42WC/Sm1LQQSfsr1NCsUoMXDIaJcLbGKAHmC/vmO9
-	mGCfteziXR1g/s5n4OXVCfBnlE+djitVvKKVaO0PNb1yjIvOk4sXsZyteZl/MXRU
-	0u74+JzCVDzaGwOwQK7IzLVuZqj2WT82Y6ZZdVDBWMoTUSpTGWgMQ5JlvvhiEuf2
-	Dn04zgeuEvj9ASmeFiha/ItVQzLRwcsdtbbXHHOkdsh+X6zRW5qmMas5wY2VLWDj
-	jMR8zbMd2spdPqvT3hrO77tyq2fJSup339513IQbyZBJVJJou3eIdlBUHZjZCLEV
-	8A6aGg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45xeh3jw5n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Fri, 11 Apr 2025 09:16:38 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c54be4b03aso42620685a.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 11 Apr 2025 02:16:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744362997; x=1744967797;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ufhmds+kkSlO2rSMDq46DFe1lGxthqem6KM44BdOhnI=;
-        b=dPGwzsdzvujhKid/OoqNY0qOFWJzvP058HfUe1graG0Az/6fMVaI1UsTVVEno/rzzx
-         1m0PMXJNrroH02Ri9XbWYOxeHkAlP1PI02QFIqdveFLP89F+GSaiNbICyBWeT0oHGwq/
-         5ChmN0AGlNet7NS9d0zgG2L7+hap+ptlzPeoIElSdIzaCdUX675EV0HKcHC2pK/gvObf
-         wXk2VG+WL1hGf6ZoqjSMpI3LML479+5o9pnqbqsbnEuzRXuWrLOn3TXPOD1VrsGQbZzr
-         4fJetgnIp53JWydrePs0UH1OlLkrhbIoaMmJ17HtFTks/Ubf5wvSAEhgeOInUSVdaaIX
-         FOWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVnFuPl1jn/bRUHe3GLSPgiT3Hu62QmG6ugozywo+/wlrPbmBeGOy+Wu76d4rRpe67BDeRWCZRY2W9qnSn@lists.infradead.org
-X-Gm-Message-State: AOJu0Ywuo61V/I+y/aFP5X0DFg9d5Hpa3tA0fJP5/QR8m8P7+NGZY+t5
-	FAgnKN3OCJ4hV6Nt+lPIp36g6eeixmTu1uVqIISpZj8uN1xyhZ8GJrlHQ4z7TPJOOS9WZD2xCBk
-	tk1NZqYWyfJ8HddOv2visb6PMKtwGNMBQyl3mBvhwUdzod1RG1o+FL5tRgGkqacg/ip4n5Q==
-X-Gm-Gg: ASbGncuOk1HBjGhSgxLVohNwS1S9aYErClj8o815yOAVguxuF9aBZG3bfa80TPb/zqn
-	b7Nw4MHa01agnvWOFxd7wEJLjFYHI4FD476L724NrCoUvd4OrsqsvuCZCrdaNSokuEcRpDHnrsg
-	BBhZM0LRdadyVH+9jlR2MmTea6+MUtkH/L+nt6HvMyJYC4ngBOqbNodadnxnoWfmIFxjIPq8Wxg
-	1w5NnFBRKmr8toW4AHJeBO9C03W+TVdmCcHIvxIHJZu7GLo77LYUdJQcNvOGmEvqb2qqME9hhEt
-	lV3mCgPr51g6HVL8jGgL5DG1c0NrGUGznvgfCV0Sxdf3ZaX50d54TfYuWT9PEvW65w==
-X-Received: by 2002:a05:620a:24d3:b0:7c3:c340:70bf with SMTP id af79cd13be357-7c7b1af7826mr48640785a.14.1744362997422;
-        Fri, 11 Apr 2025 02:16:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFk9dXYbzUf6tHquMMviOk/dVPcbI1gX6P3/o7uHdR9WHzJEGAa5g8BLBffgulwxemVb9V1bw==
-X-Received: by 2002:a05:620a:24d3:b0:7c3:c340:70bf with SMTP id af79cd13be357-7c7b1af7826mr48635885a.14.1744362997070;
-        Fri, 11 Apr 2025 02:16:37 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1be9632sm424190666b.66.2025.04.11.02.16.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 02:16:36 -0700 (PDT)
-Message-ID: <d4f29833-a9c3-4942-a333-8ca4e7a8bd97@oss.qualcomm.com>
-Date: Fri, 11 Apr 2025 11:16:31 +0200
+	id 1u3CY6-0000000DYfu-2CZc;
+	Fri, 11 Apr 2025 11:27:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 7DC8B68459;
+	Fri, 11 Apr 2025 11:27:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 12044C4CEE7;
+	Fri, 11 Apr 2025 11:27:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744370873;
+	bh=nSJeRVzzaivIB88gKQyatucRpKgXoP8b+63uudU5lDw=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=Y6RO9GXLFty+I45/ekuqeT3TkgFJGgJcE99zEuxeiu/BiEWSREtHg5QuIDfAntojZ
+	 DazL/mpYZLvGCLA7EHVQ0bj8S/VRHn8MJtasaRbWpyW9EyoCiDVqrxQI1oa3JdzCxx
+	 tuO2x7WxqbgkhTspP247dKGWo31RmofEsL2vYnuAVmx98jBQedmvdYA5U+OpvSiIoq
+	 W2DnM+sRaxxglgxJD8hSnqJaOeOyJTvlAbHPiBHyTlIsVarqySO2mQSbvuOeB1YVEV
+	 rs4HLQ7lfjzvtNaM01XIbpdZ+xsQ1tbv79a2MKiRg02KKqzBj3u6fmZnhePs4hM1d8
+	 IfImtBzEpnsmA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 007CEC369AC;
+	Fri, 11 Apr 2025 11:27:53 +0000 (UTC)
+From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
+Date: Fri, 11 Apr 2025 19:27:51 +0800
+Subject: [PATCH v5 2/3] arm64: dts: amlogic: Add A4 Reset Controller
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/17] arm: dts: qcom: sdx55/sdx65: Fix CPU
- power-domain-names
-To: "Rob Herring (Arm)" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>, Conor Dooley <conor@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Daniel Machon <daniel.machon@microchip.com>,
-        UNGLinuxDriver@microchip.com, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, imx@lists.linux.dev,
-        linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
- <20250410-dt-cpu-schema-v2-7-63d7dc9ddd0a@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250410-dt-cpu-schema-v2-7-63d7dc9ddd0a@kernel.org>
-X-Authority-Analysis: v=2.4 cv=VbH3PEp9 c=1 sm=1 tr=0 ts=67f8ddf6 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=yZJRhKYQK8xzFtgzSFMA:9 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: 5kf1-Zm8EoItIr4AYm3oKQl3FvhA9WcK
-X-Proofpoint-ORIG-GUID: 5kf1-Zm8EoItIr4AYm3oKQl3FvhA9WcK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-11_03,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 impostorscore=0 suspectscore=0 adultscore=0 spamscore=0
- clxscore=1015 malwarescore=0 priorityscore=1501 bulkscore=0 mlxscore=0
- mlxlogscore=958 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504110057
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250411_021639_596226_38433E9C 
-X-CRM114-Status: GOOD (  10.10  )
+Message-Id: <20250411-a4-a5-reset-v5-2-24812538dce6@amlogic.com>
+References: <20250411-a4-a5-reset-v5-0-24812538dce6@amlogic.com>
+In-Reply-To: <20250411-a4-a5-reset-v5-0-24812538dce6@amlogic.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Zelong Dong <zelong.dong@amlogic.com>, 
+ Kelvin Zhang <kelvin.zhang@amlogic.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744370870; l=3908;
+ i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
+ bh=oF2MZH3lmYKfr/9G4rTMkISCrbGCYT5binySnJgFGrM=;
+ b=A2QGLQYcs37msHVMzUNvooic7mkC7zLC/nalb8cuf0yjqhKGflkHBxr5xfi1B+zW7P00FtJsS
+ O8JETqqEVlzC/jyWe0Iw9tQ5miOxs+nsCNANkmlZYtEkJW+KnR0FmVl
+X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
+ pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
+X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
+ auth_id=148
+X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,21 +83,156 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: kelvin.zhang@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 4/10/25 5:47 PM, Rob Herring (Arm) wrote:
-> "rpmhpd" is not documented nor used anywhere. The power-domain is used
-> for performance scaling (cpufreq), so "perf" is the correct name to use.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
+From: Zelong Dong <zelong.dong@amlogic.com>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Add the device node and related header file for Amlogic
+A4 reset controller.
 
-Konrad
+Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+Link: https://lore.kernel.org/r/20240918074211.8067-3-zelong.dong@amlogic.com
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+---
+ arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h | 93 ++++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi    |  8 +++
+ 2 files changed, 101 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..f6a4c90bab3cf7cfaa3c98c522bed5e455b73bd3
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
+@@ -0,0 +1,93 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
++ */
++
++#ifndef __DTS_AMLOGIC_A4_RESET_H
++#define __DTS_AMLOGIC_A4_RESET_H
++
++/* RESET0 */
++/*						0-3 */
++#define RESET_USB				4
++/*						5-6*/
++#define RESET_U2PHY22				7
++#define RESET_USBPHY20				8
++#define RESET_U2PHY21				9
++#define RESET_USB2DRD				10
++#define RESET_U2H				11
++#define RESET_LED_CTRL				12
++/*						13-31 */
++
++/* RESET1 */
++#define RESET_AUDIO				32
++#define RESET_AUDIO_VAD				33
++/*						34*/
++#define RESET_DDR_APB				35
++#define RESET_DDR				36
++#define RESET_VOUT_VENC				37
++#define RESET_VOUT				38
++/*						39-47 */
++#define RESET_ETHERNET				48
++/*						49-63 */
++
++/* RESET2 */
++#define RESET_DEVICE_MMC_ARB			64
++#define RESET_IRCTRL				65
++/*						66*/
++#define RESET_TS_PLL				67
++/*						68-72*/
++#define RESET_SPICC_0				73
++#define RESET_SPICC_1				74
++/*						75-79*/
++#define RESET_MSR_CLK				80
++/*						81*/
++#define RESET_SAR_ADC				82
++/*						83-87*/
++#define RESET_ACODEC				88
++/*						89-90*/
++#define RESET_WATCHDOG				91
++/*						92-95*/
++
++/* RESET3 */
++/*						96-127 */
++
++/* RESET4 */
++/*						128-131 */
++#define RESET_PWM_AB				132
++#define RESET_PWM_CD				133
++#define RESET_PWM_EF				134
++#define RESET_PWM_GH				135
++/*						136-137*/
++#define RESET_UART_A				138
++#define RESET_UART_B				139
++/*						140*/
++#define RESET_UART_D				141
++#define RESET_UART_E				142
++/*						143-144*/
++#define RESET_I2C_M_A				145
++#define RESET_I2C_M_B				146
++#define RESET_I2C_M_C				147
++#define RESET_I2C_M_D				148
++/*						149-151*/
++#define RESET_SDEMMC_A				152
++/*						153*/
++#define RESET_SDEMMC_C				154
++/*						155-159*/
++
++/* RESET5 */
++/*						160-175*/
++#define RESET_BRG_AO_NIC_SYS			176
++/*						177*/
++#define RESET_BRG_AO_NIC_MAIN			178
++#define RESET_BRG_AO_NIC_AUDIO			179
++/*						180-183*/
++#define RESET_BRG_AO_NIC_ALL			184
++/*						185*/
++#define RESET_BRG_NIC_SDIO			186
++#define RESET_BRG_NIC_EMMC			187
++#define RESET_BRG_NIC_DSU			188
++#define RESET_BRG_NIC_CLK81			189
++#define RESET_BRG_NIC_MAIN			190
++#define RESET_BRG_NIC_ALL			191
++
++#endif
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+index c02fa5ee9fd22285ebad2ef52939e2fc4c4dd019..563bc2e662fac5f2ec3d0b9cc3fca0de39ec0553 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include "amlogic-a4-common.dtsi"
++#include "amlogic-a4-reset.h"
+ #include <dt-bindings/power/amlogic,a4-pwrc.h>
+ #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
+ / {
+@@ -51,6 +52,13 @@ pwrc: power-controller {
+ };
+ 
+ &apb {
++	reset: reset-controller@2000 {
++		compatible = "amlogic,a4-reset",
++			     "amlogic,meson-s4-reset";
++		reg = <0x0 0x2000 0x0 0x98>;
++		#reset-cells = <1>;
++	};
++
+ 	periphs_pinctrl: pinctrl@4000 {
+ 		compatible = "amlogic,pinctrl-a4";
+ 		#address-cells = <2>;
+
+-- 
+2.37.1
+
+
 
 _______________________________________________
 linux-amlogic mailing list
