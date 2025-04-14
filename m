@@ -4,75 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6DA1C3601E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Apr 2025 06:30:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7559C3601E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Apr 2025 07:16:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=4HULF5U6MDhTua7sYXnNd//KMeolzLca6ZiD7usSwR4=; b=ujOVOuqXQXUjAD
-	MStHOsBzcnJ0r3p38ZXjAOJSBTosf30qc0YCgxSjnDIJchLxyzLeV6sMA4rCPV4c4zgVi2VcQuBwA
-	xU3DtjhSgc9f8exx/Qj8NjFj3KHfS6CLg1lPH18s9eOL+IkIAaWVLZbiuVUZaYjgAE/1PUt0Aoud5
-	OSt3NNgKBf2luhuUBA8X5VvA1HZBC91xaCQbS37MTMIvGguAqt7QxMASZVq+w+e8K4WSmANJMNPT+
-	qmUu9KEOYcAsg7docm+RU7wsr5D72GpRyI5JurJcw1paNIonGwbqIv0MVhO7EDzHw4gVcGVjgrpE9
-	lDev1e2ha5lws2c1AIYw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=iyTX3iB/rr+AG4t89iiWcT+Go2JaP/mTCUIytJARuto=; b=yaibwglWgqqwRrEk5Uc1ucOlxz
+	5gZdDQQ237LPQgRrjp0+HtdARpqLiJftnvgaUuUUKzwteIu8dXs5p6aY6CdnMlWN8s5dV/HV8tIBW
+	Whc5JjvyhDfcH2dYRj+8EHR7M0okp93R9HzToFbDGANAr8cxLlPSOhjdesyxA1+8+op8l+hgPFo4P
+	rMClMEM0/tjlCNfVKwwzQNawnn/pmUk3S9BVskZSgvi7478QcDCwBm5YnhLdWQYW/b7BwR6LXvtOl
+	2axM738H6PIbvXm7dsFotBlwOLP3hQJ8ruRjNwFYwNvTCqbuHY5rV1zXHqZj9aEVg7NvRKf4ztH1T
+	DJDmnjyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4DKp-00000000ndb-25S2;
-	Mon, 14 Apr 2025 06:30:23 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1u4E3D-00000000u6R-1mmL;
+	Mon, 14 Apr 2025 07:16:15 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4DKn-00000000nd5-27Xm;
-	Mon, 14 Apr 2025 06:30:23 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 511BB447C3;
-	Mon, 14 Apr 2025 06:30:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 167CCC4CEE2;
-	Mon, 14 Apr 2025 06:30:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744612219;
-	bh=CK7oamQ/u7YicjK4ooDvIecsdbM7b6TnJ4HdPk294E0=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=eosYtut7kZvnX9UEia962gbtjSvlvfbfQYXF3ApBpo2dvL0VE4ae7KvFlP0pXu7BH
-	 zA8MrzvDIEteRb5ZMBoy19mUwMCsMbUmOEcKTJOEp7xR8qC0pLlWto9+fLXb4SM2bn
-	 /EeyjgMqUK4nMNy4orI1Vq0qjMLXaf5pcHdfhaurJORUGkTauXAZs18EOv+OmuXrYx
-	 z5p91eFemAyjH0lOMIMOTpIQTvyKahd9mE9BkQFNTorkKrtODeGxlI8vhsGSzvKSOP
-	 GweVZfipcKSHRflXl4NKtfh/vLUpJZMkjci6WN8Zmu/x5wawsepmZNFahsauISr6dr
-	 EKaBbrsu940KQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AA04C3601E;
-	Mon, 14 Apr 2025 06:30:18 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Mon, 14 Apr 2025 14:30:16 +0800
-Subject: [PATCH v2] spi: meson-spicc: add DMA support
+	id 1u4E3A-00000000u5g-3tra
+	for linux-amlogic@lists.infradead.org;
+	Mon, 14 Apr 2025 07:16:14 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3995ff6b066so2043486f8f.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 14 Apr 2025 00:16:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744614971; x=1745219771; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A4BBxO2Q/J6IMxfz+uEtm4Q1azghcdwE0iVwsVnnKvk=;
+        b=FzPZaujOFPIqR/IDGIW3TWixzRk80Ja4OFd6KHDGS+wCY6jvyXed8qSOLF9oKTROuS
+         JdkDbEP1bp7730Pd6ChrCf4uOEmrR894HWTkKNXP1TsyOcU/9lxWXucG0P81S4ejwxJf
+         1jzQ36bC+LShNCNVs0wUZiO3ltn6vlSHgA69QGnMJH4gfqyLFiFPJfEMyLysWXTP9ljq
+         5cRKNmb17XauI93F0pOYH02wE5ta3iTRHUHyHLUvx5inCQMTzqEVbhqxyj7Sdz1tpYCS
+         BuezD/iHf5P+cyeLAHkKFiMJWHi58fS0jt+R9AJrKWjg14jzBINSibrmpWGJ2Sb1W/ot
+         mgZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744614971; x=1745219771;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=A4BBxO2Q/J6IMxfz+uEtm4Q1azghcdwE0iVwsVnnKvk=;
+        b=AqylPwmiAF9/YG39Qz8SyxpKIrhTdYMndwdBPrPe0LmApzAs7bgP5c3W7UwzZcd9ez
+         hdeZFECQH88Ue2pH8eNzLCm7E7OzK1e/wyKhrFaX7wZFkKpiNkwIEU44b6CQ5Gyh9iX4
+         fz6oJ1xAoeIznhHA2pIX/GgrDtFHCTxFpympQTJi4me/1L3PMx1pj3qTriQTflJ3yJgr
+         s/RWfKoLb/cjIVEkpX1iTNqV6c4Dqm178046GtmmD+VEoojb4S7rFZAdsRUf1wSElVZ+
+         FWa/5dX/ojeT2NBIWOxxrNNQSiYW+kLf00dwzsrNf+xXBbMw9/+wEA8puZV8piDgIsUm
+         hVKw==
+X-Forwarded-Encrypted: i=1; AJvYcCVd7uCj74SSXqobp2SDu8gsgM09+cyoY19JtkHWU+VYJaOsLrdawCuVNxbb/FRHZuxTV1nR6RJqQKUgmeyZ@lists.infradead.org
+X-Gm-Message-State: AOJu0YyDOC4ims62zzFKckbgbc0NpioheFFp/95/18uNa6VJdK7sNZDR
+	5D4bts0hKHNg9TuGRwJ2hDI8C0OAf7Ex4yRmNpNW12x3H4CUvAsqWLO1bxT2Lm4=
+X-Gm-Gg: ASbGncuZY+px54e/jNuLiyOPIsXzqofWtL2YDiNgZAkfVgdV9yQyj0khGMTQg66y9fN
+	lEqVuG85v4w6Ii8nEyTSJe/r+KDXvjx0tJhWL/GGww0Bxf2xJ29Ffkbe2c48kUuZhhikz/Ks1Fz
+	xdZ3upiQb/u4mrGCeQy8O8DB3dBPvP8RH3A6NSwvy6rBJmgndXJc/rcWHItkTZ/ui1YRKQOUlPP
+	ZeLQmYu5n7vNjeT/bjVM/E0bs/H1etyKiLCFspiszvOIJ/feVhQqcGHnimJ8bPImnFwTDep4mHN
+	UgE6IkZJzNAgCVZGpLn4gFQZMfG3tXjJxP4YCnXX18G3on14mJ56wXXFnj+5aBaINxIeBvw7E85
+	lNJFwfF0A7B7AxW7DEA==
+X-Google-Smtp-Source: AGHT+IFk/4b/d6EUYjjExv4IiKLoJZUz+hd9IYDUnYI9Yd0PRlZMBINesye58HTjAx7nVixJNpR1PA==
+X-Received: by 2002:a05:6000:144e:b0:39c:1f11:ead with SMTP id ffacd0b85a97d-39ea5213077mr9016322f8f.26.1744614970477;
+        Mon, 14 Apr 2025 00:16:10 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:bf8a:3473:5c13:9743? ([2a01:e0a:3d9:2080:bf8a:3473:5c13:9743])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae96c614sm10221879f8f.27.2025.04.14.00.16.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Apr 2025 00:16:10 -0700 (PDT)
+Message-ID: <576f0726-d238-4c37-8dc2-481df67f8fec@linaro.org>
+Date: Mon, 14 Apr 2025 09:16:09 +0200
 MIME-Version: 1.0
-Message-Id: <20250414-spi-dma-v2-1-84bbd92fa469@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAHer/GcC/2XMQQ6DIBCF4auYWZcGUIx05T0aF3RAnaSIgYa0M
- dy91G2X/8vLd0BykVyCW3NAdJkSha2GvDSAq9kWx8jWBsml4h0fWNqJWW8YdlrPqudWagX1vUc
- 30/uU7lPtldIrxM8JZ/Fb/40smGAttsPD9RK5xtH4Z1gIrxg8TKWULy0/7OKgAAAA
-To: Mark Brown <broonie@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Sunny Luo <sunny.luo@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744612216; l=11623;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=K38dd2ROpHs/4tx+cPKZN+kqAxqsqkokJqx1gtC9UE4=;
- b=yjkWJQQx46rMxvB39CFR/EFq0onm4aWZfuR124a+5MYQMTj+Lep/QfaMIHEtj3RADwnBN9Z5v
- UVmjvqMRqSmCXqrVtI+2r9iZoPxGXMG5kDgAd9mHmOW6O2bb6JO1wWT
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH] spi: meson-spicc: add DMA support
+To: Da Xue <da@lessconfused.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Mark Brown <broonie@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Sunny Luo <sunny.luo@amlogic.com>
+References: <20250408-spi-dma-v1-1-3c38be62c09c@amlogic.com>
+ <c29a8c28-996c-4e94-b0a1-0e4a37f0bebb@linaro.org>
+ <aebccc51-14a2-40be-8d9e-20a55ce94459@amlogic.com>
+ <d9d81cb4-12b4-4db3-becb-4578548986b2@linaro.org>
+ <c9f0ca5f-17c4-474f-8370-fc0c83ac9093@amlogic.com>
+ <CACdvmAg5px00er9TUd6_Nhr1GoSf=6LK6vSWOB-YcC1Ve0NRQQ@mail.gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <CACdvmAg5px00er9TUd6_Nhr1GoSf=6LK6vSWOB-YcC1Ve0NRQQ@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250413_233021_600601_EE753195 
-X-CRM114-Status: GOOD (  31.12  )
+X-CRM114-CacheID: sfid-20250414_001612_989275_1697C142 
+X-CRM114-Status: GOOD (  19.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,356 +131,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-Add DMA support for spicc driver.
-
-DMA works if the transfer meets the following conditions:
-1. 64 bits per word;
-2. The transfer length must be multiples of the dma_burst_len,
-   and the dma_burst_len should be one of 8,7...2,
-   otherwise, it will be split into several SPI bursts.
-
-Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
-Changes in v2:
-- Make formatting adjustments and code optimizations according to Neil's suggestions.
-- Remove two special DMA trigger modes that are not fully implemented.
-- Link to v1: https://lore.kernel.org/r/20250408-spi-dma-v1-1-3c38be62c09c@amlogic.com
----
- drivers/spi/spi-meson-spicc.c | 241 ++++++++++++++++++++++++++++++++++++++----
- 1 file changed, 220 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index df74ad5060f8..6b9137307533 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -21,18 +21,26 @@
- #include <linux/interrupt.h>
- #include <linux/reset.h>
- #include <linux/pinctrl/consumer.h>
-+#include <linux/dma-mapping.h>
- 
- /*
-- * The Meson SPICC controller could support DMA based transfers, but is not
-- * implemented by the vendor code, and while having the registers documentation
-- * it has never worked on the GXL Hardware.
-- * The PIO mode is the only mode implemented, and due to badly designed HW :
-- * - all transfers are cutted in 16 words burst because the FIFO hangs on
-- *   TX underflow, and there is no TX "Half-Empty" interrupt, so we go by
-- *   FIFO max size chunk only
-- * - CS management is dumb, and goes UP between every burst, so is really a
-- *   "Data Valid" signal than a Chip Select, GPIO link should be used instead
-- *   to have a CS go down over the full transfer
-+ * There are two modes for data transmission: PIO and DMA.
-+ * When bits_per_word is 8, 16, 24, or 32, data is transferred using PIO mode.
-+ * When bits_per_word is 64, DMA mode is used by default.
-+ *
-+ * DMA achieves a transfer with one or more SPI bursts, each SPI burst is made
-+ * up of one or more DMA bursts. The DMA burst implementation mechanism is,
-+ * For TX, when the number of words in TXFIFO is less than the preset
-+ * reading threshold, SPICC starts a reading DMA burst, which reads the preset
-+ * number of words from TX buffer, then writes them into TXFIFO.
-+ * For RX, when the number of words in RXFIFO is greater than the preset
-+ * writing threshold, SPICC starts a writing request burst, which reads the
-+ * preset number of words from RXFIFO, then write them into RX buffer.
-+ * DMA works if the transfer meets the following conditions,
-+ * - 64 bits per word
-+ * - The transfer length in word must be multiples of the dma_burst_len, and
-+ *   the dma_burst_len should be one of 8,7...2, otherwise, it will be split
-+ *   into several SPI bursts by this driver
-  */
- 
- #define SPICC_MAX_BURST	128
-@@ -128,6 +136,23 @@
- 
- #define SPICC_DWADDR	0x24	/* Write Address of DMA */
- 
-+#define SPICC_LD_CNTL0	0x28
-+#define VSYNC_IRQ_SRC_SELECT		BIT(0)
-+#define DMA_EN_SET_BY_VSYNC		BIT(2)
-+#define XCH_EN_SET_BY_VSYNC		BIT(3)
-+#define DMA_READ_COUNTER_EN		BIT(4)
-+#define DMA_WRITE_COUNTER_EN		BIT(5)
-+#define DMA_RADDR_LOAD_BY_VSYNC		BIT(6)
-+#define DMA_WADDR_LOAD_BY_VSYNC		BIT(7)
-+#define DMA_ADDR_LOAD_FROM_LD_ADDR	BIT(8)
-+
-+#define SPICC_LD_CNTL1	0x2c
-+#define DMA_READ_COUNTER		GENMASK(15, 0)
-+#define DMA_WRITE_COUNTER		GENMASK(31, 16)
-+#define DMA_BURST_LEN_DEFAULT		8
-+#define DMA_BURST_COUNT_MAX		0xffff
-+#define SPI_BURST_LEN_MAX	(DMA_BURST_LEN_DEFAULT * DMA_BURST_COUNT_MAX)
-+
- #define SPICC_ENH_CTL0	0x38	/* Enhanced Feature */
- #define SPICC_ENH_CLK_CS_DELAY_MASK	GENMASK(15, 0)
- #define SPICC_ENH_DATARATE_MASK		GENMASK(23, 16)
-@@ -171,6 +196,9 @@ struct meson_spicc_device {
- 	struct pinctrl			*pinctrl;
- 	struct pinctrl_state		*pins_idle_high;
- 	struct pinctrl_state		*pins_idle_low;
-+	dma_addr_t			tx_dma;
-+	dma_addr_t			rx_dma;
-+	bool				using_dma;
- };
- 
- #define pow2_clk_to_spicc(_div) container_of(_div, struct meson_spicc_device, pow2_div)
-@@ -202,6 +230,148 @@ static void meson_spicc_oen_enable(struct meson_spicc_device *spicc)
- 	writel_relaxed(conf, spicc->base + SPICC_ENH_CTL0);
- }
- 
-+static int meson_spicc_dma_map(struct meson_spicc_device *spicc,
-+			       struct spi_transfer *t)
-+{
-+	struct device *dev = spicc->host->dev.parent;
-+
-+	if (!(t->tx_buf && t->rx_buf))
-+		return -EINVAL;
-+
-+	t->tx_dma = dma_map_single(dev, (void *)t->tx_buf, t->len, DMA_TO_DEVICE);
-+	if (dma_mapping_error(dev, t->tx_dma))
-+		return -ENOMEM;
-+
-+	t->rx_dma = dma_map_single(dev, t->rx_buf, t->len, DMA_FROM_DEVICE);
-+	if (dma_mapping_error(dev, t->rx_dma))
-+		return -ENOMEM;
-+
-+	spicc->tx_dma = t->tx_dma;
-+	spicc->rx_dma = t->rx_dma;
-+
-+	return 0;
-+}
-+
-+static void meson_spicc_dma_unmap(struct meson_spicc_device *spicc,
-+				  struct spi_transfer *t)
-+{
-+	struct device *dev = spicc->host->dev.parent;
-+
-+	if (t->tx_dma)
-+		dma_unmap_single(dev, t->tx_dma, t->len, DMA_TO_DEVICE);
-+	if (t->rx_dma)
-+		dma_unmap_single(dev, t->rx_dma, t->len, DMA_FROM_DEVICE);
-+}
-+
-+/*
-+ * According to the remain words length, calculate a suitable spi burst length
-+ * and a dma burst length for current spi burst
-+ */
-+static u32 meson_spicc_calc_dma_len(struct meson_spicc_device *spicc,
-+				    u32 len, u32 *dma_burst_len)
-+{
-+	u32 i;
-+
-+	if (len <= spicc->data->fifo_size) {
-+		*dma_burst_len = len;
-+		return len;
-+	}
-+
-+	*dma_burst_len = DMA_BURST_LEN_DEFAULT;
-+
-+	if (len == (SPI_BURST_LEN_MAX + 1))
-+		return SPI_BURST_LEN_MAX - DMA_BURST_LEN_DEFAULT;
-+
-+	if (len >= SPI_BURST_LEN_MAX)
-+		return SPI_BURST_LEN_MAX;
-+
-+	for (i = DMA_BURST_LEN_DEFAULT; i > 1; i--)
-+		if ((len % i) == 0) {
-+			*dma_burst_len = i;
-+			return len;
-+		}
-+
-+	i = len % DMA_BURST_LEN_DEFAULT;
-+	len -= i;
-+
-+	if (i == 1)
-+		len -= DMA_BURST_LEN_DEFAULT;
-+
-+	return len;
-+}
-+
-+static void meson_spicc_setup_dma(struct meson_spicc_device *spicc)
-+{
-+	unsigned int len;
-+	unsigned int dma_burst_len, dma_burst_count;
-+	unsigned int count_en = 0;
-+	unsigned int txfifo_thres = 0;
-+	unsigned int read_req = 0;
-+	unsigned int rxfifo_thres = 31;
-+	unsigned int write_req = 0;
-+	unsigned int ld_ctr1 = 0;
-+
-+	writel_relaxed(spicc->tx_dma, spicc->base + SPICC_DRADDR);
-+	writel_relaxed(spicc->rx_dma, spicc->base + SPICC_DWADDR);
-+
-+	/* Set the max burst length to support a transmission with length of
-+	 * no more than 1024 bytes(128 words), which must use the CS management
-+	 * because of some strict timing requirements
-+	 */
-+	writel_bits_relaxed(SPICC_BURSTLENGTH_MASK, SPICC_BURSTLENGTH_MASK,
-+			    spicc->base + SPICC_CONREG);
-+
-+	len = meson_spicc_calc_dma_len(spicc, spicc->xfer_remain,
-+				       &dma_burst_len);
-+	spicc->xfer_remain -= len;
-+	dma_burst_count = DIV_ROUND_UP(len, dma_burst_len);
-+	dma_burst_len--;
-+
-+	if (spicc->tx_dma) {
-+		spicc->tx_dma += len;
-+		count_en |= DMA_READ_COUNTER_EN;
-+		txfifo_thres = spicc->data->fifo_size - dma_burst_len;
-+		read_req = dma_burst_len;
-+		ld_ctr1 |= FIELD_PREP(DMA_READ_COUNTER, dma_burst_count);
-+	}
-+
-+	if (spicc->rx_dma) {
-+		spicc->rx_dma += len;
-+		count_en |= DMA_WRITE_COUNTER_EN;
-+		rxfifo_thres = dma_burst_len;
-+		write_req = dma_burst_len;
-+		ld_ctr1 |= FIELD_PREP(DMA_WRITE_COUNTER, dma_burst_count);
-+	}
-+
-+	writel_relaxed(count_en, spicc->base + SPICC_LD_CNTL0);
-+	writel_relaxed(ld_ctr1, spicc->base + SPICC_LD_CNTL1);
-+	writel_relaxed(SPICC_DMA_ENABLE
-+		    | SPICC_DMA_URGENT
-+		    | FIELD_PREP(SPICC_TXFIFO_THRESHOLD_MASK, txfifo_thres)
-+		    | FIELD_PREP(SPICC_READ_BURST_MASK, read_req)
-+		    | FIELD_PREP(SPICC_RXFIFO_THRESHOLD_MASK, rxfifo_thres)
-+		    | FIELD_PREP(SPICC_WRITE_BURST_MASK, write_req),
-+		    spicc->base + SPICC_DMAREG);
-+}
-+
-+static irqreturn_t meson_spicc_dma_irq(struct meson_spicc_device *spicc)
-+{
-+	if (readl_relaxed(spicc->base + SPICC_DMAREG) & SPICC_DMA_ENABLE)
-+		return IRQ_HANDLED;
-+
-+	if (spicc->xfer_remain) {
-+		meson_spicc_setup_dma(spicc);
-+	} else {
-+		writel_bits_relaxed(SPICC_SMC, 0, spicc->base + SPICC_CONREG);
-+		writel_relaxed(0, spicc->base + SPICC_INTREG);
-+		writel_relaxed(0, spicc->base + SPICC_DMAREG);
-+		meson_spicc_dma_unmap(spicc, spicc->xfer);
-+		complete(&spicc->done);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
- static inline bool meson_spicc_txfull(struct meson_spicc_device *spicc)
- {
- 	return !!FIELD_GET(SPICC_TF,
-@@ -293,6 +463,9 @@ static irqreturn_t meson_spicc_irq(int irq, void *data)
- 
- 	writel_bits_relaxed(SPICC_TC, SPICC_TC, spicc->base + SPICC_STATREG);
- 
-+	if (spicc->using_dma)
-+		return meson_spicc_dma_irq(spicc);
-+
- 	/* Empty RX FIFO */
- 	meson_spicc_rx(spicc);
- 
-@@ -426,9 +599,6 @@ static int meson_spicc_transfer_one(struct spi_controller *host,
- 
- 	meson_spicc_reset_fifo(spicc);
- 
--	/* Setup burst */
--	meson_spicc_setup_burst(spicc);
--
- 	/* Setup wait for completion */
- 	reinit_completion(&spicc->done);
- 
-@@ -442,11 +612,36 @@ static int meson_spicc_transfer_one(struct spi_controller *host,
- 	/* Increase it twice and add 200 ms tolerance */
- 	timeout += timeout + 200;
- 
--	/* Start burst */
--	writel_bits_relaxed(SPICC_XCH, SPICC_XCH, spicc->base + SPICC_CONREG);
-+	if (xfer->bits_per_word == 64) {
-+		int ret;
-+
-+		/* dma_burst_len 1 can't trigger a dma burst */
-+		if (xfer->len < 16)
-+			return -EINVAL;
-+
-+		ret = meson_spicc_dma_map(spicc, xfer);
-+		if (ret) {
-+			meson_spicc_dma_unmap(spicc, xfer);
-+			dev_err(host->dev.parent, "dma map failed\n");
-+			return ret;
-+		}
-+
-+		spicc->using_dma = true;
-+		spicc->xfer_remain = DIV_ROUND_UP(xfer->len, spicc->bytes_per_word);
-+		meson_spicc_setup_dma(spicc);
-+		writel_relaxed(SPICC_TE_EN, spicc->base + SPICC_INTREG);
-+		writel_bits_relaxed(SPICC_SMC, SPICC_SMC, spicc->base + SPICC_CONREG);
-+	} else {
-+		spicc->using_dma = false;
-+		/* Setup burst */
-+		meson_spicc_setup_burst(spicc);
- 
--	/* Enable interrupts */
--	writel_relaxed(SPICC_TC_EN, spicc->base + SPICC_INTREG);
-+		/* Start burst */
-+		writel_bits_relaxed(SPICC_XCH, SPICC_XCH, spicc->base + SPICC_CONREG);
-+
-+		/* Enable interrupts */
-+		writel_relaxed(SPICC_TC_EN, spicc->base + SPICC_INTREG);
-+	}
- 
- 	if (!wait_for_completion_timeout(&spicc->done, msecs_to_jiffies(timeout)))
- 		return -ETIMEDOUT;
-@@ -545,6 +740,14 @@ static int meson_spicc_setup(struct spi_device *spi)
- 	if (!spi->controller_state)
- 		spi->controller_state = spi_controller_get_devdata(spi->controller);
- 
-+	/* DMA works at 64 bits, the rest works on PIO */
-+	if (spi->bits_per_word != 8 &&
-+	    spi->bits_per_word != 16 &&
-+	    spi->bits_per_word != 24 &&
-+	    spi->bits_per_word != 32 &&
-+	    spi->bits_per_word != 64)
-+		return -EINVAL;
-+
- 	return 0;
- }
- 
-@@ -853,10 +1056,6 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 	host->num_chipselect = 4;
- 	host->dev.of_node = pdev->dev.of_node;
- 	host->mode_bits = SPI_CPHA | SPI_CPOL | SPI_CS_HIGH | SPI_LOOP;
--	host->bits_per_word_mask = SPI_BPW_MASK(32) |
--				   SPI_BPW_MASK(24) |
--				   SPI_BPW_MASK(16) |
--				   SPI_BPW_MASK(8);
- 	host->flags = (SPI_CONTROLLER_MUST_RX | SPI_CONTROLLER_MUST_TX);
- 	host->min_speed_hz = spicc->data->min_speed_hz;
- 	host->max_speed_hz = spicc->data->max_speed_hz;
-
----
-base-commit: 49807ed87851916ef655f72e9562f96355183090
-change-id: 20250408-spi-dma-c499f560d295
-
-Best regards,
--- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTQvMDQvMjAyNSAwNTo1NiwgRGEgWHVlIHdyb3RlOgo+IE9uIFN1biwgQXByIDEzLCAyMDI1
+IGF0IDExOjE04oCvUE0gWGlhbndlaSBaaGFvIDx4aWFud2VpLnpoYW9AYW1sb2dpYy5jb20+IHdy
+b3RlOgo+Pgo+PiBIaSBOZWlsLAo+PiAgICAgIFRoYW5rcyBmb3IgeW91ciByZXBseS4KPj4KPj4g
+T24gMjAyNS80LzkgMjA6MzUsIG5laWwuYXJtc3Ryb25nQGxpbmFyby5vcmcgd3JvdGU6Cj4+Pgo+
+Pj4gSGksCj4+Pgo+Pj4gT24gMDkvMDQvMjAyNSAwMzo0OSwgWGlhbndlaSBaaGFvIHdyb3RlOgo+
+Pj4+IEhpIE5laWwsCj4+Pj4gICAgICBUaGFua3MgZm9yIHlvdXIgcmVwbHkuCj4+Pj4KPj4+PiBP
+biAyMDI1LzQvOCAxNTo0MSwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4+Pj4+IFsgRVhURVJOQUwg
+RU1BSUwgXQo+Pj4+Pgo+Pj4+PiBIaSwKPj4+Pj4KPj4+Pj4gT24gMDgvMDQvMjAyNSAwOTowNCwg
+WGlhbndlaSBaaGFvIHZpYSBCNCBSZWxheSB3cm90ZToKPj4+Pj4+IEZyb206IFhpYW53ZWkgWmhh
+byA8eGlhbndlaS56aGFvQGFtbG9naWMuY29tPgo+Pj4+Pj4KPj4+Pj4+IEFkZCBETUEgc3VwcG9y
+dCBmb3Igc3BpY2MgZHJpdmVyLgo+Pj4+Pj4KPj4+Pj4+IERNQSB3b3JrcyBpZiB0aGUgdHJhbnNm
+ZXIgbWVldHMgdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOgo+Pj4+Pj4gMS4gNjQgYml0cyBwZXIg
+d29yZDsKPj4+Pj4+IDIuIFRoZSB0cmFuc2ZlciBsZW5ndGggbXVzdCBiZSBtdWx0aXBsZXMgb2Yg
+dGhlIGRtYV9idXJzdF9sZW4sCj4+Pj4+PiAgICAgIGFuZCB0aGUgZG1hX2J1cnN0X2xlbiBzaG91
+bGQgYmUgb25lIG9mIDgsNy4uLjIsCj4+Pj4+PiAgICAgIG90aGVyd2lzZSwgaXQgd2lsbCBiZSBz
+cGxpdCBpbnRvIHNldmVyYWwgU1BJIGJ1cnN0cy4KPj4+Pj4+Cj4+Pj4+PiBTaWduZWQtb2ZmLWJ5
+OiBTdW5ueSBMdW8gPHN1bm55Lmx1b0BhbWxvZ2ljLmNvbT4KPj4+Pj4+IFNpZ25lZC1vZmYtYnk6
+IFhpYW53ZWkgWmhhbyA8eGlhbndlaS56aGFvQGFtbG9naWMuY29tPgo+Pj4+Pj4gLS0tCj4+Pj4+
+PiAgICBkcml2ZXJzL3NwaS9zcGktbWVzb24tc3BpY2MuYyB8IDI0Mwo+Pj4+Pj4gKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tCj4+Pj4+PiAgICAxIGZpbGUgY2hhbmdl
+ZCwgMjMyIGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygtKQo+Pj4+Pj4KPj4+Pj4+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL3NwaS9zcGktbWVzb24tc3BpY2MuYwo+Pj4+Pj4gYi9kcml2ZXJzL3Nw
+aS9zcGktbWVzb24tc3BpY2MuYwo+Pj4+Pj4gaW5kZXggZGY3NGFkNTA2MGY4Li44MWUyNjNiY2Vi
+YTkgMTAwNjQ0Cj4+Pj4+PiAtLS0gYS9kcml2ZXJzL3NwaS9zcGktbWVzb24tc3BpY2MuYwo+Pj4+
+Pj4gKysrIGIvZHJpdmVycy9zcGkvc3BpLW1lc29uLXNwaWNjLmMKPj4+Pj4+IEBAIC0yMSw2ICsy
+MSw3IEBACj4+Pj4+PiAgICAjaW5jbHVkZSA8bGludXgvaW50ZXJydXB0Lmg+Cj4+Pj4+PiAgICAj
+aW5jbHVkZSA8bGludXgvcmVzZXQuaD4KPj4+Pj4+ICAgICNpbmNsdWRlIDxsaW51eC9waW5jdHJs
+L2NvbnN1bWVyLmg+Cj4+Pj4+PiArI2luY2x1ZGUgPGxpbnV4L2RtYS1tYXBwaW5nLmg+Cj4+Pj4+
+Pgo+Pj4+Pj4gICAgLyoKPj4+Pj4+ICAgICAqIFRoZSBNZXNvbiBTUElDQyBjb250cm9sbGVyIGNv
+dWxkIHN1cHBvcnQgRE1BIGJhc2VkIHRyYW5zZmVycywKPj4+Pj4+IGJ1dCBpcyBub3QKPj4+Pj4+
+IEBAIC0zMyw2ICszNCwyMCBAQAo+Pj4+Pj4gICAgICogLSBDUyBtYW5hZ2VtZW50IGlzIGR1bWIs
+IGFuZCBnb2VzIFVQIGJldHdlZW4gZXZlcnkgYnVyc3QsIHNvIGlzCj4+Pj4+PiByZWFsbHkgYQo+
+Pj4+Pj4gICAgICogICAiRGF0YSBWYWxpZCIgc2lnbmFsIHRoYW4gYSBDaGlwIFNlbGVjdCwgR1BJ
+TyBsaW5rIHNob3VsZCBiZQo+Pj4+Pj4gdXNlZCBpbnN0ZWFkCj4+Pj4+PiAgICAgKiAgIHRvIGhh
+dmUgYSBDUyBnbyBkb3duIG92ZXIgdGhlIGZ1bGwgdHJhbnNmZXIKPj4+Pj4+ICsgKgo+Pj4+Pj4g
+KyAqIERNQSBhY2hpZXZlcyBhIHRyYW5zZmVyIHdpdGggb25lIG9yIG1vcmUgU1BJIGJ1cnN0cywg
+ZWFjaCBTUEkKPj4+Pj4+IGJ1cnN0IGlzIG1hZGUKPj4+Pj4+ICsgKiB1cCBvZiBvbmUgb3IgbW9y
+ZSBETUEgYnVyc3RzLiBUaGUgRE1BIGJ1cnN0IGltcGxlbWVudGF0aW9uCj4+Pj4+PiBtZWNoYW5p
+c20gaXMsCj4+Pj4+PiArICogRm9yIFRYLCB3aGVuIHRoZSBudW1iZXIgb2Ygd29yZHMgaW4gVFhG
+SUZPIGlzIGxlc3MgdGhhbiB0aGUgcHJlc2V0Cj4+Pj4+PiArICogcmVhZGluZyB0aHJlc2hvbGQs
+IFNQSUNDIHN0YXJ0cyBhIHJlYWRpbmcgRE1BIGJ1cnN0LCB3aGljaCByZWFkcwo+Pj4+Pj4gdGhl
+IHByZXNldAo+Pj4+Pj4gKyAqIG51bWJlciBvZiB3b3JkcyBmcm9tIFRYIGJ1ZmZlciwgdGhlbiB3
+cml0ZXMgdGhlbSBpbnRvIFRYRklGTy4KPj4+Pj4+ICsgKiBGb3IgUlgsIHdoZW4gdGhlIG51bWJl
+ciBvZiB3b3JkcyBpbiBSWEZJRk8gaXMgZ3JlYXRlciB0aGFuIHRoZQo+Pj4+Pj4gcHJlc2V0Cj4+
+Pj4+PiArICogd3JpdGluZyB0aHJlc2hvbGQsIFNQSUNDIHN0YXJ0cyBhIHdyaXRpbmcgcmVxdWVz
+dCBidXJzdCwgd2hpY2gKPj4+Pj4+IHJlYWRzIHRoZQo+Pj4+Pj4gKyAqIHByZXNldCBudW1iZXIg
+b2Ygd29yZHMgZnJvbSBSWEZJRk8sIHRoZW4gd3JpdGUgdGhlbSBpbnRvIFJYIGJ1ZmZlci4KPj4+
+Pj4+ICsgKiBETUEgd29ya3MgaWYgdGhlIHRyYW5zZmVyIG1lZXRzIHRoZSBmb2xsb3dpbmcgY29u
+ZGl0aW9ucywKPj4+Pj4+ICsgKiAtIDY0IGJpdHMgcGVyIHdvcmQKPj4+Pj4+ICsgKiAtIFRoZSB0
+cmFuc2ZlciBsZW5ndGggaW4gd29yZCBtdXN0IGJlIG11bHRpcGxlcyBvZiB0aGUKPj4+Pj4+IGRt
+YV9idXJzdF9sZW4sIGFuZAo+Pj4+Pj4gKyAqICAgdGhlIGRtYV9idXJzdF9sZW4gc2hvdWxkIGJl
+IG9uZSBvZiA4LDcuLi4yLCBvdGhlcndpc2UsIGl0IHdpbGwKPj4+Pj4+IGJlIHNwbGl0Cj4+Pj4+
+PiArICogICBpbnRvIHNldmVyYWwgU1BJIGJ1cnN0cyBieSB0aGlzIGRyaXZlcgo+Pj4+Pgo+Pj4+
+PiBGaW5lLCBidXQgdGhlbiBhbHNvIHJlcGhyYXNlIHRoZSBwcmV2aW91cyBwYXJhZ3JhcGggc2lu
+Y2UgeW91J3JlCj4+Pj4+IGFkZGluZyBETUEuCj4+Pj4+Cj4+Pj4gV2lsbCBkby4KPj4+Pgo+Pj4+
+PiBDb3VsZCB5b3UgcHJlY2lzZSBvbiB3aGljaCBwbGF0Zm9ybSB5b3UgdGVzdGVkIHRoZSBETUEg
+Pwo+Pj4+Pgo+Pj4+Cj4+Pj4gYXEyMjIoUzQpCj4+Pgo+Pj4gV2lsbCB5b3UgYmUgYWJsZSB0byB0
+ZXN0IG9uIG90aGVyIHBsYXRmb3JtcyA/Cj4+Pgo+Pgo+PiBJIHRlc3RlZCBpdCBvbiBvdGhlciBw
+bGF0Zm9ybXMgb3ZlciB0aGUgbGFzdCBmZXcgZGF5cy4gRzEyQSBhbmQgQzMgYW5kCj4+IFQ3KFQ3
+IENMT0NLIHVzZSBsb2NhbCBzb3VyY2UpLgo+Pgo+PiBNeSBib2FyZCBTUEkgZG9lcyBub3QgY29u
+bmVjdCBwZXJpcGhlcmFscyBhbmQgaXMgdGVzdGVkIHRocm91Z2ggYQo+PiBoYXJkd2FyZSBsb29w
+Lgo+IAo+IEkgY2FuIHRlc3QgaXQgb24gR1hMIGFuZCBTTTEgaW4gdGhlIG5leHQgdHdvIHdlZWtz
+IGFnYWluc3QgYSBTUEkKPiBkaXNwbGF5IGFuZCBzb21lIFdTMjgxMkIgTENEcy4KCldvdWxkIGJl
+IGdyZWF0LCB0aHggIQoKTmVpbAoKPiAKPj4gY21kOgo+PiBzcGlfdGVzdCAtRCAvZGV2L3NwaWRl
+djAuMCAtdiAtcyA1MDAwMDAwIC1iIDY0IC1sCj4+Cj4+Pj4KPj4+Pj4+ICAgICAqLwo+Pj4+Pj4K
+PHNuaXA+CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
+b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
+b2dpYwo=
