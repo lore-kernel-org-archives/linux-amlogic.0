@@ -4,97 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 711CBC369B2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Apr 2025 17:02:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CAEFC369B2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Apr 2025 02:46:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9ux8ywavhCCUUPyA92dUrTpqzxSn+QHG5yf73722H6A=; b=ulIzZumOZ5/cXqjVIfcuu8uwkU
-	rWYSlG/4oYAEHTWNXtfCyFy8asDwcAS6hEJtflv5/cLw+uWL0Ri6wMZIk/DR0GKTzSZQ9ef8qYZgs
-	NeVvHe5v70dz6gnfh/BHMZusN0dERM77Me0iZAyBzQnFWisdb7VOo3JEVqbs1irA2/r73GjS/6FPd
-	mA0807JKuYfSV1AA0jeDWWqOK/FuZUS61TGT0srLgFbrtZFFkMKTah2QOAd+oCNEtj1iHeCytOiei
-	69jo+hFe43G2FJY+cY5HUJKimS248ub88w3AndEAmvoBGB2HRiriMLl2gWDVnTWxjF6EQxpxs4FKj
-	otV0YTLg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=+2UjhpRJ2OHSwEn9G1Zrl0pMVaIgoIzU6b33InaBU08=; b=A58TAiMHQEZs3T
+	r7g8fQD/9UP50ll2nXEndJshzXHT7XNLZ0/7FRkJIlCryaamADS01AVFnxirjjC8khUrrNjT4kV0q
+	yCaPABRWeKr3fd+cXKF6jdN+wOsoeMHgO50rps71xYtivmqGcyqabKal//jb5Ve9B+y5NUqQrV7WQ
+	/tjvC4BMS+bMPSzJ6YuXiITSpY4Hy9EKdI78X/MJc0FsGSt3gyY9fv+V2h09ACUDbLUjx0izTRTUb
+	k9rsUkwSCVrBceUhBNX0gS7U4AyT/xcslPZvUrboOwd8Qy0TgjadiJZ2A2Wozlsoy2vPUPpv/JN1N
+	VfzmJ+fnvmBOo4HrGYFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4NCq-00000002sLk-28t7;
-	Mon, 14 Apr 2025 17:02:48 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1u4WJG-00000004DUE-07Az;
+	Tue, 15 Apr 2025 02:46:02 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4NCn-00000002sL1-46LI;
-	Mon, 14 Apr 2025 17:02:47 +0000
+	id 1u4WJC-00000004DRG-3Lrk;
+	Tue, 15 Apr 2025 02:46:00 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 461C4A4A0C4;
-	Mon, 14 Apr 2025 16:57:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BD4FC4CEEB;
-	Mon, 14 Apr 2025 17:02:35 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 184515C48CE;
+	Tue, 15 Apr 2025 02:43:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B5A92C4CEEA;
+	Tue, 15 Apr 2025 02:45:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744650164;
-	bh=KqFT3PKAxBM7aneYNA4QM0R7Gd1DemUhbyEfOOJZdwc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=haXXUUQ5j7/xdMK6YjwHt6lr9C50Nl/g7bFmEYMZvNiz+gF0wIYn0k0JlsN7AgIIr
-	 4iu+74zlC0pGVbnny4GpZcvFCtRv7UbXiLj/Jktoz55Xw4OI0gFEF9IMr5JRkbS89a
-	 FWUp+fMSf5UkmLfyLJ4Oh8mMhzRX4zRBtIyxizLmg1yK8LXnD6fzQ4a/5VdOID9XcX
-	 dE75rVIJSiBbQRqIjkmlXD+Sz1tODj0aRj329Hqs8wN3tRMUOekPmkiQJuBXhlIRBs
-	 zzEUQdKKdZxKbNiIRzd4lVHI7DTVE6ie+lpUtXY7UaT3cQKWd5+rfYxv5sIPEdod6N
-	 ZZHwk4psw8ppw==
-Date: Mon, 14 Apr 2025 18:02:33 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, imx@lists.linux.dev,
-	linux-rockchip@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 03/17] arm64: dts: microchip: sparx5: Fix CPU node
- "enable-method" property dependencies
-Message-ID: <20250414-fragile-same-9cd06114cd85@spud>
-References: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
- <20250410-dt-cpu-schema-v2-3-63d7dc9ddd0a@kernel.org>
- <20250411-ebay-exerciser-392c42daf5ba@spud>
- <CAL_JsqJza-bufzjZ415THyDDQaOfk8F+JRFvFxzNwObG=NKVJQ@mail.gmail.com>
+	s=k20201202; t=1744685157;
+	bh=oEyawwJ67t4F2O0m4uUa8lz1QQdbkKkB8kGfM2EgBQw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=JeSYPZSvuUz2kVFu+Nt8tVZjEwB1lkOlnAyqgDHf7OuEGkrCyJZxXvzl+vg6JFLKn
+	 7Btcx0LpplxhYmGyETdt6uYy9wGPP/MVzWOxA2uOSUypgaruNw4JmUHrvFPVNRopMR
+	 ZFt6BPOPrhiePHg3QfrOUEx7bz5PaCy2wB1jl0E7tWttAcCSBSnQss0wRpW44xCm1C
+	 0bN0UNXX3HxCDrF1nTxigXKgs+NNlw5WKJ6Q3O5185r+HWw5iyQ6Q/jWaLpn2/Tuu1
+	 wP2+dcdqg55guaizXek9YGeAjIJi7Orkyk97pgl/HgeOPxN8YM1ltZ63KOfKGAzwuy
+	 y5UIvpuKM8WcA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F917C369B2;
+	Tue, 15 Apr 2025 02:45:57 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/7] soc: amlogic: clk-measure: Add clk-measure support
+ for C3 and S4
+Date: Tue, 15 Apr 2025 10:45:23 +0800
+Message-Id: <20250415-clk-measure-v3-0-9b8551dd33b4@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJza-bufzjZ415THyDDQaOfk8F+JRFvFxzNwObG=NKVJQ@mail.gmail.com>
+X-B4-Tracking: v=1; b=H4sIAEPI/WcC/23MQQ7CIBCF4as0rMUMUKh15T2MC0rHdqItBpRom
+ t5d2pUal+8l3z+xiIEwsn0xsYCJIvkxD7UpmOvt2CGnNm8mQWooheDueuED2vgIyFulnLaNkcb
+ ULItbwDM919rxlHdP8e7Da40nsbz/O0lw4K4pja12LYjaHuxw9R25rfMDW0pJfuryW8usjYaqM
+ jWAVj96nuc3PBEy3eYAAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744685155; l=1405;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=oEyawwJ67t4F2O0m4uUa8lz1QQdbkKkB8kGfM2EgBQw=;
+ b=IoVhOIKXt2iTmxOh8pMHEPW25r6XKeC7qPnpkj89JQVoY9Iv7zua6Kz2dvzktcyZba3m4ohNl
+ wK1EXJZO4nRAfTbS+nbRG3/xqfa4dLrjR3BB29J2HPj+eDgcliXGYGY
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250414_100246_147340_ED1ACF19 
-X-CRM114-Status: GOOD (  19.89  )
+X-CRM114-CacheID: sfid-20250414_194558_926414_4B18B00B 
+X-CRM114-Status: UNSURE (   7.04  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,71 +88,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2226290819732259269=="
+Reply-To: chuan.liu@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Add clk-measure support for C3/S4 SoCs.
 
---===============2226290819732259269==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pt+1yttKuNYLWgzQ"
-Content-Disposition: inline
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+---
+Changes in v3:
+- Change struct msr_reg_offset to const.
+- Link to v2: https://lore.kernel.org/r/20250414-clk-measure-v2-0-65077690053a@amlogic.com
 
+Changes in v2:
+- 1 Rename the clk-measure register.
+- 2 Remove unused registers.
+- 3 Share reg_offset across multiple chips.
+- Link to v1: https://lore.kernel.org/r/20250411-clk-measure-v1-0-cb46a78d019a@amlogic.com
 
---pt+1yttKuNYLWgzQ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+---
+Chuan Liu (7):
+      soc: amlogic: clk-measure: Define MSR_CLK's register offset separately
+      dt-bindings: soc: amlogic: C3 supports clk-measure
+      dt-bindings: soc: amlogic: S4 supports clk-measure
+      soc: amlogic: clk-measure: Add support for C3
+      soc: amlogic: clk-measure: Add support for S4
+      arm64: dts: amlogic: C3: Add clk-measure controller node
+      arm64: dts: amlogic: S4: Add clk-measure controller node
 
-On Fri, Apr 11, 2025 at 03:26:50PM -0500, Rob Herring wrote:
-> On Fri, Apr 11, 2025 at 11:22=E2=80=AFAM Conor Dooley <conor@kernel.org> =
-wrote:
-> >
-> > On Thu, Apr 10, 2025 at 10:47:24AM -0500, Rob Herring (Arm) wrote:
-> > > The "spin-table" enable-method requires "cpu-release-addr" property,
-> > > so add a dummy entry. It is assumed the bootloader will fill in the
-> > > correct values.
-> > >
-> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > > Reviewed-by: Daniel Machon <daniel.machon@microchip.com>
-> > > Tested-by: Daniel Machon <daniel.machon@microchip.com>
-> >
-> > This is already applied, guess I forgot to merge it into the branch that
-> > appears in linux next. I'll do that now..
->=20
-> Sometimes I check next, but in this case I just looked at replies for
-> which there were none. I dislike submitting dts changes because it's a
-> range of AWOL maintainers, only applying around some rcN (so up to 2
-> months later), silently applying, and applied but never in linux-next
-> (until in soc tree).
+ .../soc/amlogic/amlogic,meson-gx-clk-measure.yaml  |   2 +
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        |   5 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |   5 +
+ drivers/soc/amlogic/meson-clk-measure.c            | 375 ++++++++++++++++++++-
+ 4 files changed, 372 insertions(+), 15 deletions(-)
+---
+base-commit: 37021be47d02d2913d6767795a6f4c72b4e63a4f
+change-id: 20250411-clk-measure-d33c5ab62669
 
-Let's add "send the b4 ty email" to the list of things that I did not
-do, but thought that I had done.
-
---pt+1yttKuNYLWgzQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/0/qQAKCRB4tDGHoIJi
-0llIAQCfeSIfGZefusGStXxy21uaJUGlki/H/XzQ1dq4t278oAD9GMv/CXNEj8CG
-oPoSllLdscFoA/5qVRjJh0erPiNF8gA=
-=q+yA
------END PGP SIGNATURE-----
-
---pt+1yttKuNYLWgzQ--
+Best regards,
+-- 
+Chuan Liu <chuan.liu@amlogic.com>
 
 
---===============2226290819732259269==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============2226290819732259269==--
-
