@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2821C369B2
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Apr 2025 02:51:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90DBDC369B2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Apr 2025 02:53:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5QcWx1A0gWdzpSUTCWuzgJzHw31SGp5JWuCm91P/mKI=; b=jxYILzoSZgmttv
-	3vlI/cfwMZfwMij4qAlZ0Z38KfjMh0pr39/Si9DfqomswKqGURdpwhQr/SVFkR8sAfOuVTO6fygvJ
-	E6XLcp5UXYPiXkivsJDpZzxcGsvauWS6wyJ1eKYENVtiCwMWLsLQ/gnkXYY5UYOhWoWnYDaMD4EU+
-	xLymDzPOHCFwOzewyOkLL7nTJtQ020aT+sbB27txd3oEO6PG9ejo+Mb6+z6OHOTLahuH2zekez9RI
-	Yx8EICdjzSOj1sTMWvIFGd9oqibGLTXWgFD6St/p7i3Y6juE9fDDNg8MJ037kUPH6luT1EVTkQgUO
-	jZveC4Qeey6AIhwJV+Xw==;
+	List-Owner; bh=/H0/ARw58DxjhMPcNbgAIpHNKT1bKZ9Y0sqgY5+uPtg=; b=SSHexlS5NW9OiR
+	SEpVcnhq92H+sW5gDfFVnW3IrNuwvZ4hYLXH84djBB2e5G2JeCw4Es69c1mXdlbvrpjKkF2ud2vGi
+	d18sEDa7kxhKpsjcS5Q3i/0kQs7gbZioyJXLL/wXBzzsE/WLLxMmZtEXLc5EvaUlwU/MaQySyezFK
+	DgqtHq5AemcmygPoUBQ1Bmq9u20Sn9XIZORIscoiDE5JEq/vxYMlTg5XunWfoxYYAUAjT0xmqOy+O
+	bOX7RfqttlfxZinSYuzMizyXVsivWnbAanEeHRJX8HFE6Ee3riAtBvalblBR8Plo/teUhJXOTRpMj
+	6zGk3XFZul52uFVWrC8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4WOd-00000004Eye-1Ohj;
-	Tue, 15 Apr 2025 02:51:35 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1u4WQR-00000004FS4-3DOQ;
+	Tue, 15 Apr 2025 02:53:27 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4WJD-00000004DRb-1mA8;
+	id 1u4WJD-00000004DRa-1uEX;
 	Tue, 15 Apr 2025 02:46:01 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 759214A5C8;
+	by sea.source.kernel.org (Postfix) with ESMTP id 4A5EE4A2A1;
 	Tue, 15 Apr 2025 02:45:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3364BC4CEFD;
-	Tue, 15 Apr 2025 02:45:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DE3C5C4CEEB;
+	Tue, 15 Apr 2025 02:45:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744685158;
-	bh=eNT2DnaFtau75otXvoSolGN5m1XSsI2mM3CYJJA0yaE=;
+	s=k20201202; t=1744685157;
+	bh=uMxf6PyjUiBPhkaKa+YXG1JpcOgoPD6r+dpLZyFYDyU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=caNP6SHesjBv9W8pk7XtNpw0ohOioGZ+mdNkqa4qtGPF9db3jjJKrm49BQU7qjqDS
-	 cvkBrQS9NcBf45axdnFHKcLBL83dx8qJuG+3NzLsWbB5aSym7JsCyOfnDv7voSNbP3
-	 YU6eZiqkJpwk11T3yfK+JpdI7T25GTWrwOWYWpMJiwQrMwCwDYimjyP1KQFbTtLlli
-	 G/Dio0DVgBi4NREH6fwHR55G750UpRW6JWI4U/t7QhQ54KCY9E32BADfwQ3er3sMk2
-	 ZPQbiwD+22rv/jjb3R2yrCM4PisAE57F3pGFq2VF3KK5oNdSfF5UEJ4gu8RtD7tDYo
-	 syuxRO6PsFdCA==
+	b=mmJVinlg+Yvcj+cvNnDyPnPCW2jXJlX3cuJcDCioPLiF3Ts/3lQAaX5EDNwD1H3fT
+	 DRDG69vBR9ZVAn3QLwB1cek/y2aqyTxzroE2U8xPlvedzQJc1cHK5npC8qM2ERCZdP
+	 0NBhE3e52ZQYGE3UE5EwbnJILGfraXM8VM0Tu1V7AHpYSZFu3GSOxqLmhT27dfNBQS
+	 fU1t9HnVCGcVN3yBbEKw/7tkRxCVkvy8CgLngFHJjWJLKRdlVGjH6wZYb6IT41Eka7
+	 4jpg0aHodqzwBRTz+bvtOohXwd7fQp9TSUYRUgsHTo/g/2IX3rLPPwKI7Q/HvbkzRY
+	 2aTL3eBdocHlA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 25514C369BC;
-	Tue, 15 Apr 2025 02:45:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5817C369B9;
+	Tue, 15 Apr 2025 02:45:57 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Tue, 15 Apr 2025 10:45:30 +0800
-Subject: [PATCH v3 7/7] arm64: dts: amlogic: S4: Add clk-measure controller
- node
+Date: Tue, 15 Apr 2025 10:45:25 +0800
+Subject: [PATCH v3 2/7] dt-bindings: soc: amlogic: C3 supports clk-measure
 MIME-Version: 1.0
-Message-Id: <20250415-clk-measure-v3-7-9b8551dd33b4@amlogic.com>
+Message-Id: <20250415-clk-measure-v3-2-9b8551dd33b4@amlogic.com>
 References: <20250415-clk-measure-v3-0-9b8551dd33b4@amlogic.com>
 In-Reply-To: <20250415-clk-measure-v3-0-9b8551dd33b4@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,19 +60,19 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744685155; l=824;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744685155; l=875;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=A6JIk28+NZPU2Eh+mMPRGxQPj1l3aQ0UYp+1TpAudD4=;
- b=X1Y5uuDxGW5jE7qTJI6N3V35nAflYKrcp+V2LQetx3I7xN7FJz/iQVMpKRESAiGNPuMPSeQhJ
- YEBjd2Ixq4YCik4Xi8I0Xk8zBt94QEqzZ7a6GdEQDu993zCLwiOYDS5
+ bh=P5KRner9ELHl3o409yiGCGnkva5HFExJ3rMn3+oG1ko=;
+ b=uMAB9xx7E431TayRAue3yuobamxsychqlDaQKgfjp5C+LsrdIFynUExHqnWcAPkJpRnP507/S
+ HB0rtVEChGQDNMWcDPOC9X3c6YJfRKLOPTDsY6lQyP593/Uzqy/mSWQ
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250414_194559_503109_CA50305D 
-X-CRM114-Status: UNSURE (   7.68  )
+X-CRM114-CacheID: sfid-20250414_194559_512844_3AAE64F2 
+X-CRM114-Status: UNSURE (   7.47  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,30 +93,26 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-Add the clk-measure controller node for S4 SoC family.
+C3 adds support for clk-measure.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml    | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 957577d986c0..9d99ed2994df 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -629,6 +629,11 @@ internal_ephy: ethernet-phy@8 {
- 				};
- 			};
+diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
+index 77c281153010..275afe7fe374 100644
+--- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
++++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
+@@ -22,6 +22,7 @@ properties:
+       - amlogic,meson-axg-clk-measure
+       - amlogic,meson-g12a-clk-measure
+       - amlogic,meson-sm1-clk-measure
++      - amlogic,c3-clk-measure
  
-+			clk_msr: clock-measure@48000 {
-+				compatible = "amlogic,s4-clk-measure";
-+				reg = <0x0 0x48000 0x0 0x1c>;
-+			};
-+
- 			spicc0: spi@50000 {
- 				compatible = "amlogic,meson-g12a-spicc";
- 				reg = <0x0 0x50000 0x0 0x44>;
+   reg:
+     maxItems: 1
 
 -- 
 2.42.0
