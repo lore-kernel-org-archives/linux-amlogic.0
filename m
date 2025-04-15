@@ -4,105 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 976D7C369B8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Apr 2025 03:02:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D4E5C369AB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Apr 2025 04:31:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KNUDClr4Cw7S/7bZ9xYEYmpiPd+oWUL8qAepq2hgJdU=; b=Voytn8Z+u1W1JC
-	gfT81XmBcMFOJB8vXHrTNs1dnyDe+iVTGgQS7i0y5tMFTISt2UGxbxsas15BAeLfo59J1E/DyBWJ1
-	xmfVgVzHtJ4EGzBC0yTo8Tao1XGv+T0RIO4Dg+1S/3dza4QWzDcD8vVSmgWY7X5Oy2LY7uJTriDG+
-	YFdHGVQn4+dyxGmDADSqTlIdi48SiRmriyZsV1XuAIKxPdLJJQ731ZIXtHkEoEIiHf3AITaBfIEcU
-	76Y5AKfol8oswbVkXffj06THZ7uJhEUia/1pMO3MbqiFLoffkcvHM5r2GWXC/ks5KNG52rglcXvJy
-	3x+NlWKL1oKKpgCjhjNQ==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=NZObfXdKDLG3bFR8V91pYIyxISS/KynnKgdh2wfZjS8=; b=h+f/6XjqyNceHynA0C+OsXn6cO
+	WoFTL6zGOsUh2+FoIaU39BqVG/o3CUF57Lc1At7+p+AV4aZ+27J5xnmRm66QiY3YzxnTNy5neEpkr
+	scJB/qY1tZ220cQGlNuBcZUqktc1CY3KAo8agl2hPiGaw91pcaWE1g9o6u8xMpafgO1tLbW3XxZ9Y
+	vrbg2E+3lYeUEnsue9Dm0fW6p0LSoO+qAWoiE1Vvn3stSjxGdcK59c8uP0b2GAzW7NwH82xKhpc4L
+	wUeBN6Eut+GCSmAvrjUx0sDfGolL15AGPA6Gp39cagMx3AvItOh1X649N6EjXThelnstBWZN3pkFu
+	7RjYn/ug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4WZN-00000004GeB-10Gg;
-	Tue, 15 Apr 2025 03:02:41 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1u4Xx6-00000004RVk-3tld;
+	Tue, 15 Apr 2025 04:31:16 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4WPr-00000004FJp-33dh;
-	Tue, 15 Apr 2025 02:52:51 +0000
+	id 1u4Xx4-00000004RUz-1q84;
+	Tue, 15 Apr 2025 04:31:16 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id AD1FD61136;
-	Tue, 15 Apr 2025 02:52:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDD8BC4CEF0;
-	Tue, 15 Apr 2025 02:52:46 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 2B25EA4116A;
+	Tue, 15 Apr 2025 04:25:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD9C5C4CEDD;
+	Tue, 15 Apr 2025 04:31:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744685570;
-	bh=S7Tbw1ancnS17xgUm3xXxIxS9F8JptfwmG5wu66abzI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=J/FGjbrP7Ps3XNUKwsWzzHkZY95xSQCDX8olOmOvxlT1iR8OfpXsqVRk2+I8BhfvM
-	 jNKv/vl+F5DfRRUqSLuijvoU9lChcs+FYUWw5x5OB+/i6kjOMgcgpmQkbYb5L71jyZ
-	 zQjmeo69gXP6+BKQ7Oq6R1gyNQzC4Z+oxPciHVYcYnYiPQ2sX1/mzJ2zjyqHZ35T7U
-	 EAJwKKed5e8zZcYJyGBEdRcd7hP+xq60hv5l0SlXbh6uO7hp+IP45/wSfpNiUNUNNv
-	 hMREt00OicERarFeGV8p4FADAYRtbGx7z4sB8NJH0edzPYWnPRx13Sexa78HuowgtJ
-	 M1HqL+QTLN+qA==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	zhouyanjie@wanyeetech.com,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	"Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-rockchip@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Andre Przywara <andre.przywara@arm.com>,
-	=?UTF-8?q?Philippe=20Mathieu-Daud=C3=A9?= <philmd@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: (subset) [PATCH v2 00/17] Arm cpu schema clean-ups
-Date: Mon, 14 Apr 2025 21:52:40 -0500
-Message-ID: <174468553423.331095.11490981905578175154.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
-References: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
+	s=k20201202; t=1744691472;
+	bh=QPgVVKuU1xj//lpxR3vKuQSHeE3ZGj5RVnWlnXSdGpM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Frp36u5+K94T2+XAXJtNTV0SuENecU+W9JPeS0AqcLevLFtMEFhZ3nL//VYEPV2AM
+	 TMph+9J3LseE8S/djkN2cVjPZPJ2M1dQJ3C+p8AgzS88F4/sJJi/ArOqaS056dVnQ9
+	 JsrYvfgzetQ0IgFJKA7vwstnzf5xfMULKjFgeWxFGj0FQ7u77qTqQBh8Pwo9cdGEnR
+	 Hsuq7wlbwiEDZNVjtzuKcpUNY9WhPEP7mxeyD688pOViQRom4ROlzcJ3+ptHere9kS
+	 i4IEKO5aYEEe8A2vzMOkjfUa5BERhpkGfgjBXKDGKfGkLJ2H9biPfCfYsDz32Dv02S
+	 8CllWWqY9PuRQ==
+Date: Mon, 14 Apr 2025 23:31:11 -0500
 MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+To: Chuan Liu <chuan.liu@amlogic.com>
+In-Reply-To: <20250415-clk-measure-v3-2-9b8551dd33b4@amlogic.com>
+References: <20250415-clk-measure-v3-0-9b8551dd33b4@amlogic.com>
+ <20250415-clk-measure-v3-2-9b8551dd33b4@amlogic.com>
+Message-Id: <174469147098.2812651.9702380390890809479.robh@kernel.org>
+Subject: Re: [PATCH v3 2/7] dt-bindings: soc: amlogic: C3 supports
+ clk-measure
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250414_213114_542261_6B633743 
+X-CRM114-Status: GOOD (  10.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,25 +79,49 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Thu, 10 Apr 2025 10:47:21 -0500, Rob Herring (Arm) wrote:
-> The Arm cpu.yaml schema fails to restrict allowed properties in 'cpu'
-> nodes. The result, not surprisely, is a number of additional properties
-> and errors in .dts files. This series resolves those issues.
+On Tue, 15 Apr 2025 10:45:25 +0800, Chuan Liu wrote:
+> C3 adds support for clk-measure.
 > 
-> There's still more properties in arm32 DTS files which I have not
-> documented. Mostly yet more supply names and "fsl,soc-operating-points".
-> What's a few more warnings on the 10000s of warnings...
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> ---
+>  .../devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml    | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> [...]
 
-Applied, thanks!
+My bot found errors running 'make dt_binding_check' on your patch:
 
-[07/17] arm: dts: qcom: sdx55/sdx65: Fix CPU power-domain-names
-        commit: ae33b874fc81bfb60bdda5a350c0635f98e6d747
+yamllint warnings/errors:
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml: maintainers:0: 'Frank Li' does not match '@'
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+
+doc reference errors (make refcheckdocs):
+Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`rt_link<../../networking/netlink_spec/rt_link>`
+Warning: Documentation/arch/powerpc/cxl.rst references a file that doesn't exist: Documentation/ABI/testing/sysfs-class-cxl
+Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+Warning: lib/Kconfig.debug references a file that doesn't exist: Documentation/dev-tools/fault-injection/fault-injection.rst
+Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`rt_link<../../networking/netlink_spec/rt_link>`
+Documentation/arch/powerpc/cxl.rst: Documentation/ABI/testing/sysfs-class-cxl
+MAINTAINERS: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+lib/Kconfig.debug: Documentation/dev-tools/fault-injection/fault-injection.rst
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250415-clk-measure-v3-2-9b8551dd33b4@amlogic.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
 _______________________________________________
 linux-amlogic mailing list
