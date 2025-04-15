@@ -4,77 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1AD9C369B8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Apr 2025 02:57:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 976D7C369B8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Apr 2025 03:02:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/0tuG8XVLRmPXrvLz3HX+rMxdi2pOa4YSv0tHl7ZnoQ=; b=DX+xo3XOKXUqVO
-	cUD2UFSbSw2LQcfh3iV1frUwA4Q6OLI555PJUj9O3AA13q7mnis6HqJWKxf4uRNeGYqbtxDa5sygs
-	9E1KEA/Dm3cReyhx/LP31Og2jtTv9iLcUEoC46Wi1TfpYM2WbzSoBi6qBWJZc0vGYW27bC0gL/gy6
-	brCzoCagt0CR5Uo68F3HgK/tCpbVsDBLBku44gaaifQ8SsVcBkPrLNXHjc8Pz1roajTShKDsn2Uib
-	lXzbX+Gep+s1eZ+PI4cXRW3gJ1ULl2t1tk6aIa4jS7Msjkca4wVrDdnDW+8cAIZv1An5z5kX9RVPi
-	O6Pkj3+NqQlkIdDGjXTQ==;
+	List-Owner; bh=KNUDClr4Cw7S/7bZ9xYEYmpiPd+oWUL8qAepq2hgJdU=; b=Voytn8Z+u1W1JC
+	gfT81XmBcMFOJB8vXHrTNs1dnyDe+iVTGgQS7i0y5tMFTISt2UGxbxsas15BAeLfo59J1E/DyBWJ1
+	xmfVgVzHtJ4EGzBC0yTo8Tao1XGv+T0RIO4Dg+1S/3dza4QWzDcD8vVSmgWY7X5Oy2LY7uJTriDG+
+	YFdHGVQn4+dyxGmDADSqTlIdi48SiRmriyZsV1XuAIKxPdLJJQ731ZIXtHkEoEIiHf3AITaBfIEcU
+	76Y5AKfol8oswbVkXffj06THZ7uJhEUia/1pMO3MbqiFLoffkcvHM5r2GWXC/ks5KNG52rglcXvJy
+	3x+NlWKL1oKKpgCjhjNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4WU1-00000004G83-1vtK;
-	Tue, 15 Apr 2025 02:57:09 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1u4WZN-00000004GeB-10Gg;
+	Tue, 15 Apr 2025 03:02:41 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u4WJD-00000004DRV-1m3t;
-	Tue, 15 Apr 2025 02:46:01 +0000
+	id 1u4WPr-00000004FJp-33dh;
+	Tue, 15 Apr 2025 02:52:51 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 3BBDEA41490;
-	Tue, 15 Apr 2025 02:40:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2118DC4CEF9;
-	Tue, 15 Apr 2025 02:45:58 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id AD1FD61136;
+	Tue, 15 Apr 2025 02:52:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDD8BC4CEF0;
+	Tue, 15 Apr 2025 02:52:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744685158;
-	bh=EopiHNkPR1CFk53P+qfQdgoA0cAjgXrR1L67F8XEVbc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=gTWnUizBefWJTKYR2DIYa8m2pLfxUFwjfh+8cUCyjfFRlczeTAciVl8rOe8jf7wMI
-	 /7xnjHnmdKrjT1PZVHsFSUj1RNB04jsqr6miHi2vuW/mHZxiCF79HjiqoqLFsCDPBd
-	 GVE6zIb3mH0z0rZLpXhwD0eGgerfEkOVamH7Kzqtc0mDbPH1CXzZlVlZq7rflAIjpf
-	 wIBlW8VxHEujTfYtsnt+WOl/yrbDLEn7vQdthZVb0ED+ttJaCI6o2WxylhW5VvCK6i
-	 GtvueIyE2DHmPCqXszPoo03B97URUj0Gl3xFoVJJ/rk75mnza/3q+DdFzq6IRA/pUA
-	 Q0b/ZzBLrOjFw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15963C369B4;
-	Tue, 15 Apr 2025 02:45:58 +0000 (UTC)
-From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Tue, 15 Apr 2025 10:45:29 +0800
-Subject: [PATCH v3 6/7] arm64: dts: amlogic: C3: Add clk-measure controller
- node
+	s=k20201202; t=1744685570;
+	bh=S7Tbw1ancnS17xgUm3xXxIxS9F8JptfwmG5wu66abzI=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=J/FGjbrP7Ps3XNUKwsWzzHkZY95xSQCDX8olOmOvxlT1iR8OfpXsqVRk2+I8BhfvM
+	 jNKv/vl+F5DfRRUqSLuijvoU9lChcs+FYUWw5x5OB+/i6kjOMgcgpmQkbYb5L71jyZ
+	 zQjmeo69gXP6+BKQ7Oq6R1gyNQzC4Z+oxPciHVYcYnYiPQ2sX1/mzJ2zjyqHZ35T7U
+	 EAJwKKed5e8zZcYJyGBEdRcd7hP+xq60hv5l0SlXbh6uO7hp+IP45/wSfpNiUNUNNv
+	 hMREt00OicERarFeGV8p4FADAYRtbGx7z4sB8NJH0edzPYWnPRx13Sexa78HuowgtJ
+	 M1HqL+QTLN+qA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Andy Gross <agross@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Viresh Kumar <vireshk@kernel.org>,
+	Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	zhouyanjie@wanyeetech.com,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	"Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-rockchip@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Andre Przywara <andre.przywara@arm.com>,
+	=?UTF-8?q?Philippe=20Mathieu-Daud=C3=A9?= <philmd@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: (subset) [PATCH v2 00/17] Arm cpu schema clean-ups
+Date: Mon, 14 Apr 2025 21:52:40 -0500
+Message-ID: <174468553423.331095.11490981905578175154.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
+References: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
 MIME-Version: 1.0
-Message-Id: <20250415-clk-measure-v3-6-9b8551dd33b4@amlogic.com>
-References: <20250415-clk-measure-v3-0-9b8551dd33b4@amlogic.com>
-In-Reply-To: <20250415-clk-measure-v3-0-9b8551dd33b4@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Chuan Liu <chuan.liu@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744685155; l=834;
- i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=AKlPTU8xGIGqlFdU3xVKc7rvyc2ZehKyhODovUNRMo8=;
- b=xRl0UutH0q4YaOvedHCl+vBzUekFHFCb6eNZCJrSl64c0mIqDdsgPBF8Kya2VzubX1w0FPjju
- IjvPZr1CYt8B7+UphyE2a8QFI2wcyifCiIg7WSXG3mLRe4mrYOk2BsO
-X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
- pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
-X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
- auth_id=203
-X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250414_194559_559619_D9A803E9 
-X-CRM114-Status: UNSURE (   7.79  )
-X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,43 +114,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: chuan.liu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Chuan Liu <chuan.liu@amlogic.com>
 
-Add the clk-measure controller node for C3 SoC family.
+On Thu, 10 Apr 2025 10:47:21 -0500, Rob Herring (Arm) wrote:
+> The Arm cpu.yaml schema fails to restrict allowed properties in 'cpu'
+> nodes. The result, not surprisely, is a number of additional properties
+> and errors in .dts files. This series resolves those issues.
+> 
+> There's still more properties in arm32 DTS files which I have not
+> documented. Mostly yet more supply names and "fsl,soc-operating-points".
+> What's a few more warnings on the 10000s of warnings...
+> 
+> [...]
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-index fd0e557eba06..cb9ea3ca6ee0 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-@@ -760,6 +760,11 @@ internal_ephy: ethernet_phy@8 {
- 				};
- 			};
- 
-+			clk_msr: clock-measure@48000 {
-+				compatible = "amlogic,c3-clk-measure";
-+				reg = <0x0 0x48000 0x0 0x1c>;
-+			};
-+
- 			spicc0: spi@50000 {
- 				compatible = "amlogic,meson-g12a-spicc";
- 				reg = <0x0 0x50000 0x0 0x44>;
+[07/17] arm: dts: qcom: sdx55/sdx65: Fix CPU power-domain-names
+        commit: ae33b874fc81bfb60bdda5a350c0635f98e6d747
 
+Best regards,
 -- 
-2.42.0
-
-
+Bjorn Andersson <andersson@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
