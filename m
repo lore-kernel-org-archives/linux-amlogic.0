@@ -4,123 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3291DC369C4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Apr 2025 12:35:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EB8EC369C7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Apr 2025 22:37:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Kx5IvX8bZ6wyUvkExevm4/a2ilj04gNFTfXSORIBTyA=; b=SzZWrh1RKFAdE0
-	ABnUTiZppc05IfV2NMnFH3+XewrGpuz3BIE5+E30tMLWzCxsKIgvnu6Leho+yHUwLiLxePPRPJStW
-	AWXh2AZW6BjG6HPlwBhFOEwl8Rt5kRgXNqPGkRIw6fOP7FqfBmcbL91JwGFBbcLCTqf9ss8XRiETq
-	MQTeouENNxtvArkYpPfKbUuNRyPc8La+NFJ+TuyebavB6QTC4+V3OplohUHkZYlVrrwBOJh1pNsq4
-	yMqY92ptgyAXaPbcG/swxSBaGeD2y4ub4565Ok84vxA82wzAin4Tm8xMwlmYaRVySePxfV/V44UYt
-	d6il3vc34/KySkIDUnew==;
+	List-Owner; bh=LIn12A/8BXFd05Sg3b2SXZdGO271l931FB0PJaSsrOs=; b=n913zy6d7MHoXF
+	yun4gsOtvjX1YuW8t2auHzCPt7HMjusMMEXvj/biFrIV+f4PBi5P1CRbS1OPzEyGHx/jmiLrF2GlF
+	lrPIMut1hfJbSUkXDUqwiTll8WpKoD8o9adyq5vNHn/9jA3tmkSEmukNRM5aQNneFb33EAxOKOTsC
+	itdHUPDOkXMkPOU/mr0ZiB5f/67xwXJkaGSQ/Z263qlpv9v8AkYQ8/ncKZO8coH9f2DA0dVEmif+d
+	LdsTporkElTmW0q0JxoHG5K1v7aF+gZBHZEHZERvV8KsJsdtJ3GM+AXhYy/GwqGLTZb7mXDbItYHU
+	ESOjLsPdLscnW8pRNdeg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u51yi-00000009X8z-20bM;
-	Wed, 16 Apr 2025 12:34:56 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1u5BNb-0000000B3cw-0R9y;
+	Wed, 16 Apr 2025 22:37:15 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u51vg-00000009WTK-0j3B;
-	Wed, 16 Apr 2025 12:31:49 +0000
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B0841D21;
-	Wed, 16 Apr 2025 14:29:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1744806583;
-	bh=UaYSwtDIOR2KEFn7Bxifq9gF3Xa/uzc4yutRRCguLc0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VrRiyVBy3dHHM9xMgih7iENisph7dICEf+Mz9mPyQSdyc2vBKgn4heu7T8Ndpq5GK
-	 P3LNuPe/FuGXnqQ1oXaiHlFZFRSRqE+BW7ZAoBxyF8WLCzpwat9H8kFyxWSUGwSEwO
-	 nbIsrZGOa7CI4yG2HJGiJ9Zl19t6H5MuEw0XTn4s=
-Message-ID: <6b699329-8ed4-4be6-81bb-17b4bf800d34@ideasonboard.com>
-Date: Wed, 16 Apr 2025 15:31:41 +0300
+	id 1u5BNZ-0000000B3cg-2i3X;
+	Wed, 16 Apr 2025 22:37:13 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 6D3B66156A;
+	Wed, 16 Apr 2025 22:36:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36CBCC4CEE2;
+	Wed, 16 Apr 2025 22:37:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744843032;
+	bh=GdvsN1LtIHMY8zJSroI+9TWLVN4zqOg8OLguK4T3YjA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZClOAeIM863a5cHtZdWqGyG/lFZkKazWfOYJgO2WTst8ltDgkE9vnjhpEYrBZLHIe
+	 C3pO+37q5MOe5PHcz02RW3JmIudnwBydcFQpofXfAhdeU/1yQ7sVWog0OpOIbCXavF
+	 2NmAncXKuOlvIqQ6EHSXOFpbZVeiAEGY92cv6RK6NKNo5VrOWUXtZ8LuZqUm2pe9pp
+	 hwytpPlUSzl/cgKgjiGN//rCk5vjCi6qd7puCiw47a+cR1NiuZ9MXB2F9shwJwsVZT
+	 G99jaqyYHUVZPwSz2sCWrhPMOtPhOMUR6PTdwn2boubTP7LQvijpzr9UBDOerornaZ
+	 VyNtIsoMCcktg==
+Date: Wed, 16 Apr 2025 15:37:06 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Ludovic Desroches <ludovic.desroches@microchip.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 07/10] pinctrl: sx150x: enable building modules with
+ COMPILE_TEST=y
+Message-ID: <20250416223706.GA3230303@ax162>
+References: <20250408-gpiochip-set-rv-pinctrl-part1-v1-0-c9d521d7c8c7@linaro.org>
+ <20250408-gpiochip-set-rv-pinctrl-part1-v1-7-c9d521d7c8c7@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 29/34] drm: zynqmp_dp: convert to devm_drm_bridge_alloc()
- API
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Anusha Srivatsa <asrivats@redhat.com>,
- Paul Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>,
- =?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>,
- Hui Pu <Hui.Pu@gehealthcare.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- dri-devel@lists.freedesktop.org, asahi@lists.linux.dev,
- linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-renesas-soc@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
- Michal Simek <michal.simek@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Jagan Teki <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Douglas Anderson
- <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20250407-drm-bridge-convert-to-alloc-api-v1-0-42113ff8d9c0@bootlin.com>
- <20250407-drm-bridge-convert-to-alloc-api-v1-29-42113ff8d9c0@bootlin.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20250407-drm-bridge-convert-to-alloc-api-v1-29-42113ff8d9c0@bootlin.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250416_053148_500089_83C5D96B 
-X-CRM114-Status: GOOD (  17.88  )
+Content-Disposition: inline
+In-Reply-To: <20250408-gpiochip-set-rv-pinctrl-part1-v1-7-c9d521d7c8c7@linaro.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,66 +77,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Bartosz,
 
-On 07/04/2025 17:23, Luca Ceresoli wrote:
-> This is the new API for allocating DRM bridges.
+On Tue, Apr 08, 2025 at 09:17:44AM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> This driver has a peculiar structure. zynqmp_dpsub.c is the actual driver,
-> which delegates to a submodule (zynqmp_dp.c) the allocation of a
-> sub-structure embedding the drm_bridge and its initialization, however it
-> does not delegate the drm_bridge_add(). Hence, following carefully the code
-> flow, it is correct to change the allocation function and .funcs assignment
-> in the submodule, while the drm_bridge_add() is not in that submodule.
+> Increase the build coverage by enabling the sx150x modules with
+> COMPILE_TEST=y.
 > 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
+>  drivers/pinctrl/Kconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Michal Simek <michal.simek@amd.com>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> ---
->   drivers/gpu/drm/xlnx/zynqmp_dp.c | 7 +++----
->   1 file changed, 3 insertions(+), 4 deletions(-)
+> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
+> index 464cc9aca157..94eb41bb9cf2 100644
+> --- a/drivers/pinctrl/Kconfig
+> +++ b/drivers/pinctrl/Kconfig
+> @@ -541,7 +541,7 @@ config PINCTRL_STMFX
+>  
+>  config PINCTRL_SX150X
+>  	bool "Semtech SX150x I2C GPIO expander pinctrl driver"
+> -	depends on I2C=y
+> +	depends on I2C=y || COMPILE_TEST
+>  	select PINMUX
+>  	select PINCONF
+>  	select GENERIC_PINCONF
 > 
-> diff --git a/drivers/gpu/drm/xlnx/zynqmp_dp.c b/drivers/gpu/drm/xlnx/zynqmp_dp.c
-> index 11d2415fb5a1f7fad03421898331289f2295d68b..de22b6457a78a7a2110f9f308d0b5a8700544010 100644
-> --- a/drivers/gpu/drm/xlnx/zynqmp_dp.c
-> +++ b/drivers/gpu/drm/xlnx/zynqmp_dp.c
-> @@ -2439,9 +2439,9 @@ int zynqmp_dp_probe(struct zynqmp_dpsub *dpsub)
->   	struct zynqmp_dp *dp;
->   	int ret;
->   
-> -	dp = kzalloc(sizeof(*dp), GFP_KERNEL);
-> -	if (!dp)
-> -		return -ENOMEM;
-> +	dp = devm_drm_bridge_alloc(&pdev->dev, struct zynqmp_dp, bridge, &zynqmp_dp_bridge_funcs);
-> +	if (IS_ERR(dp))
-> +		return PTR_ERR(dp);
->   
->   	dp->dev = &pdev->dev;
->   	dp->dpsub = dpsub;
-> @@ -2488,7 +2488,6 @@ int zynqmp_dp_probe(struct zynqmp_dpsub *dpsub)
->   
->   	/* Initialize the bridge. */
->   	bridge = &dp->bridge;
-> -	bridge->funcs = &zynqmp_dp_bridge_funcs;
->   	bridge->ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID
->   		    | DRM_BRIDGE_OP_HPD;
->   	bridge->type = DRM_MODE_CONNECTOR_DisplayPort;
+> -- 
+> 2.45.2
 > 
 
-To add to my last mail, this clearly cannot be right, as it changes 
-kzalloc call to devm_* call, without removing the kfree()s...
+This appears to break allmodconfig with
 
-  Tomi
+  ld.lld: error: undefined symbol: i2c_get_match_data
+  >>> referenced by pinctrl-sx150x.c
+  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_probe) in archive vmlinux.a
 
+  ld.lld: error: undefined symbol: i2c_smbus_write_byte_data
+  >>> referenced by pinctrl-sx150x.c
+  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_probe) in archive vmlinux.a
+  >>> referenced by pinctrl-sx150x.c
+  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_probe) in archive vmlinux.a
+  >>> referenced by pinctrl-sx150x.c
+  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_regmap_reg_write) in archive vmlinux.a
+
+  ld.lld: error: undefined symbol: i2c_smbus_read_byte_data
+  >>> referenced by pinctrl-sx150x.c
+  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_regmap_reg_read) in archive vmlinux.a
+
+  ld.lld: error: undefined symbol: i2c_register_driver
+  >>> referenced by pinctrl-sx150x.c
+  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_init) in archive vmlinux.a
+  make[4]: *** [scripts/Makefile.vmlinux:91: vmlinux] Error 1
+
+I don't think this change makes much sense in light of this error,
+unless the driver was converted to tristate.
+
+Cheers,
+Nathan
 
 _______________________________________________
 linux-amlogic mailing list
