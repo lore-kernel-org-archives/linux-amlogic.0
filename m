@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 128AAC369BD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Apr 2025 12:29:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3291DC369C4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Apr 2025 12:35:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=o1T8TuP7hE2x0zz2FnvXtiVz4M2a1NaeOoF7MCe6wH0=; b=cwHny/ScOBLpPT
-	jpG/MsmPml3VYLFS+5NVNcrkHwGHz5jOaopU2WbTi7V1/p5PHKQuaUI46le2/YRVAKEsUegF6hoEL
-	dKOdPfA76Jtcx/lgOZNWdEbIdbB5qheyXBx1N1iIxhiBD+2iw3SHnd8eEJzLcH/9/EUD4ubqtWEF1
-	yblp8gIpDeOrS98T7ghNAnPFrMZVzIwzEh4ju3KB2jD09wCWNTIt0jgdGnNvnpoeylXdAfQLCtWV7
-	zHkd3HqHOMXhMQQ+smlLgMMeoUklyJKtktZ5c3jEZIEnZMxRPBcTOmP2q1gxdJgP9QICartmw6E++
-	AFys8ZJp90WqvA5HRXmw==;
+	List-Owner; bh=Kx5IvX8bZ6wyUvkExevm4/a2ilj04gNFTfXSORIBTyA=; b=SzZWrh1RKFAdE0
+	ABnUTiZppc05IfV2NMnFH3+XewrGpuz3BIE5+E30tMLWzCxsKIgvnu6Leho+yHUwLiLxePPRPJStW
+	AWXh2AZW6BjG6HPlwBhFOEwl8Rt5kRgXNqPGkRIw6fOP7FqfBmcbL91JwGFBbcLCTqf9ss8XRiETq
+	MQTeouENNxtvArkYpPfKbUuNRyPc8La+NFJ+TuyebavB6QTC4+V3OplohUHkZYlVrrwBOJh1pNsq4
+	yMqY92ptgyAXaPbcG/swxSBaGeD2y4ub4565Ok84vxA82wzAin4Tm8xMwlmYaRVySePxfV/V44UYt
+	d6il3vc34/KySkIDUnew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u51tB-00000009W1l-3BT5;
-	Wed, 16 Apr 2025 12:29:13 +0000
+	id 1u51yi-00000009X8z-20bM;
+	Wed, 16 Apr 2025 12:34:56 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u51qT-00000009VOZ-2EV6;
-	Wed, 16 Apr 2025 12:26:27 +0000
+	id 1u51vg-00000009WTK-0j3B;
+	Wed, 16 Apr 2025 12:31:49 +0000
 Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 18B80446;
-	Wed, 16 Apr 2025 14:24:17 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B0841D21;
+	Wed, 16 Apr 2025 14:29:41 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1744806259;
-	bh=zZyoUoQs57ugcr6pi7AFEtiMgwqRDtvhMHoc4UZWdWY=;
+	s=mail; t=1744806583;
+	bh=UaYSwtDIOR2KEFn7Bxifq9gF3Xa/uzc4yutRRCguLc0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JAF4hkeCioakqnxQz9bTUPttghD/RANLFweNIr16lzd8pBObABa768eAO0Ei9TL72
-	 7cO7bfN79c4QAdYcmgkJgHS8kooHXkT81GJvZaMYZgJWIFvPnZjQhsTBa/3cZFLcSN
-	 tTqDr7CfXSzOZtaSh9msG9GiqvphRDXZnigsfMjA=
-Message-ID: <f5880400-ab7b-4cae-81e4-893ce34a0460@ideasonboard.com>
-Date: Wed, 16 Apr 2025 15:26:17 +0300
+	b=VrRiyVBy3dHHM9xMgih7iENisph7dICEf+Mz9mPyQSdyc2vBKgn4heu7T8Ndpq5GK
+	 P3LNuPe/FuGXnqQ1oXaiHlFZFRSRqE+BW7ZAoBxyF8WLCzpwat9H8kFyxWSUGwSEwO
+	 nbIsrZGOa7CI4yG2HJGiJ9Zl19t6H5MuEw0XTn4s=
+Message-ID: <6b699329-8ed4-4be6-81bb-17b4bf800d34@ideasonboard.com>
+Date: Wed, 16 Apr 2025 15:31:41 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 29/34] drm: zynqmp_dp: convert to devm_drm_bridge_alloc()
@@ -69,8 +69,7 @@ Cc: Anusha Srivatsa <asrivats@redhat.com>,
  Fabio Estevam <festevam@gmail.com>, Douglas Anderson
  <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
  Krzysztof Kozlowski <krzk@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- "Sagar, Vishal" <vishal.sagar@amd.com>
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 References: <20250407-drm-bridge-convert-to-alloc-api-v1-0-42113ff8d9c0@bootlin.com>
  <20250407-drm-bridge-convert-to-alloc-api-v1-29-42113ff8d9c0@bootlin.com>
 Content-Language: en-US
@@ -120,8 +119,8 @@ Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
  3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
 In-Reply-To: <20250407-drm-bridge-convert-to-alloc-api-v1-29-42113ff8d9c0@bootlin.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250416_052626_036681_2D8E103C 
-X-CRM114-Status: GOOD (  20.04  )
+X-CRM114-CacheID: sfid-20250416_053148_500089_83C5D96B 
+X-CRM114-Status: GOOD (  17.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -188,75 +187,8 @@ On 07/04/2025 17:23, Luca Ceresoli wrote:
 >   	bridge->type = DRM_MODE_CONNECTOR_DisplayPort;
 > 
 
-I haven't had time to look at this more, but jfyi: I got this when 
-unloading modules, but it doesn't seem to happen every time:
-
-[  103.010533] ------------[ cut here ]------------
-[  103.015415] refcount_t: underflow; use-after-free.
-[  103.020657] WARNING: CPU: 2 PID: 392 at lib/refcount.c:28 
-refcount_warn_saturate+0xf4/0x148
-[  103.029056] Modules linked in: zynqmp_dpsub(-) display_connector 
-drm_display_helper drm_dma_helper drm_kms_helper drm drm_p
-anel_orientation_quirks
-[  103.042437] CPU: 2 UID: 0 PID: 392 Comm: rmmod Not tainted 
-6.15.0-rc2+ #3 PREEMPT
-[  103.050035] Hardware name: ZynqMP ZCU106 RevA (DT)
-[  103.054836] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS 
-BTYPE=--)
-[  103.061814] pc : refcount_warn_saturate+0xf4/0x148
-[  103.066632] lr : refcount_warn_saturate+0xf4/0x148
-[  103.071441] sp : ffff800083b5bbb0
-[  103.074766] x29: ffff800083b5bbb0 x28: ffff000806b23780 x27: 
-0000000000000000
-[  103.081953] x26: 0000000000000000 x25: 0000000000000000 x24: 
-ffff000801a68400
-[  103.089141] x23: ffff800081311a20 x22: ffff800083b5bc38 x21: 
-ffff000801a68010
-[  103.096329] x20: ffff0008040676c0 x19: ffff000804067240 x18: 
-0000000000000006
-[  103.103517] x17: 2e30303030303464 x16: 662d7968703a7968 x15: 
-ffff800083b5b5a0
-[  103.110705] x14: 0000000000000000 x13: 00000000000c0000 x12: 
-0000000000000000
-[  103.117892] x11: ffff80008163d6bc x10: 0000000000000028 x9 : 
-ffff800080ead38c
-[  103.125080] x8 : ffff800083b5b908 x7 : 0000000000000000 x6 : 
-ffff800083b5b9c0
-[  103.132268] x5 : ffff800083b5b948 x4 : 0000000000000001 x3 : 
-00000000000000db
-[  103.139455] x2 : 0000000000000000 x1 : 0000000000000000 x0 : 
-ffff000806b23780
-[  103.146644] Call trace:
-[  103.149102]  refcount_warn_saturate+0xf4/0x148 (P)
-[  103.153918]  drm_bridge_put.part.0+0x88/0xa0 [drm]
-[  103.159188]  drm_bridge_put_void+0x1c/0x38 [drm]
-[  103.164231]  devm_action_release+0x1c/0x30
-[  103.168354]  release_nodes+0x68/0xa8
-[  103.171957]  devres_release_all+0x98/0xf0
-[  103.175993]  device_unbind_cleanup+0x20/0x70
-[  103.180291]  device_release_driver_internal+0x208/0x250
-[  103.185542]  driver_detach+0x54/0xa8
-[  103.189145]  bus_remove_driver+0x78/0x108
-[  103.193181]  driver_unregister+0x38/0x70
-[  103.197131]  platform_driver_unregister+0x1c/0x30
-[  103.201862]  zynqmp_dpsub_driver_exit+0x18/0x1100 [zynqmp_dpsub]
-[  103.207931]  __arm64_sys_delete_module+0x1a8/0x2d0
-[  103.212748]  invoke_syscall+0x50/0x120
-[  103.216524]  el0_svc_common.constprop.0+0x48/0xf0
-[  103.221256]  do_el0_svc+0x24/0x38
-[  103.224598]  el0_svc+0x48/0x128
-[  103.227766]  el0t_64_sync_handler+0x10c/0x138
-[  103.232150]  el0t_64_sync+0x1a4/0x1a8
-[  103.235841] irq event stamp: 7936
-[  103.239173] hardirqs last  enabled at (7935): [<ffff8000800aaf78>] 
-finish_task_switch.isra.0+0xb0/0x2a0
-[  103.248600] hardirqs last disabled at (7936): [<ffff800080eaac74>] 
-el1_dbg+0x24/0x90
-[  103.256369] softirqs last  enabled at (7930): [<ffff800080066f98>] 
-handle_softirqs+0x4a0/0x4c0
-[  103.265007] softirqs last disabled at (7905): [<ffff800080010224>] 
-__do_softirq+0x1c/0x28
-[  103.273211] ---[ end trace 0000000000000000 ]---
+To add to my last mail, this clearly cannot be right, as it changes 
+kzalloc call to devm_* call, without removing the kfree()s...
 
   Tomi
 
