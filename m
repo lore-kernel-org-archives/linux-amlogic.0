@@ -4,91 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81D88C369B2
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Apr 2025 07:44:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2774DC369B2
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Apr 2025 13:21:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mdwW3GOvkzw+VjheXNCU+stdcPKGOeTIFP5oCgztwGE=; b=irehd+vEFsBGnW
-	x1pSZ3klbl5zZJ2RbOuh5qnTOcj0TIXlOOsZJ+CMXebM+ODmIFgleoGT6CZkKNpFFDlc60gVGxQII
-	bI9u2F2vT/pc29mGNhRAHw2oV/hhL/qbOXkvEM3x71a9olExBuytKNl9fX9Qk9mrsjZW0sdHEAPnt
-	bSA6gMDbx6acpEFNbfICEhJmzcMgtglZOSQn287XXlymvW4KFJwgQhLjOIj8vuld4DoeFhXxyCvd7
-	H7Jb50eDbKfdIycBFpSFKxBNnUhrP1Ze9A20e3rSF/uY6DMU8X450oTdNuNJBJpLRY4Euy6IaBJWU
-	p1m2vgVVSElrRJZdit3w==;
+	List-Owner; bh=s3lesuVEGQ8o1QixY3cMM9uJ8iI/yHRL8J5XOrqViyU=; b=nh+LTsmy7Xln/X
+	4uyno4vSqiWlQYkhXN8HfYMWYyZKdpUycZIfcKXho1Z7dAQfnN5AmXeAM2pCmPMKTaBx5UT2g4HGh
+	7cxlzf462Qbt971YnHxcfNyapMrbsdlETIDt84xCZRyFEbHC9mw53oEZFLDpRWkXJ01AeZRU1Z4JX
+	1gXUT6Bd9xUBn4HFNxJk00FORjDkyBFgi+0rNQwWdtqDZJVH4O18TBFb5KbPf2ieDTRZDtz22E7dM
+	5qtfn0xOQqZFRC8tGSPvEouIEUl3BrshCKcrj2yP7dGtVLXJiJi4czm/XnhlXStqSpp6ICxYGQUvt
+	kpDOl/ClEizPpwkDXCVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u5Jv5-0000000C9Nb-2eVN;
-	Thu, 17 Apr 2025 07:44:23 +0000
-Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
+	id 1u5PAo-0000000D7a6-1vfF;
+	Thu, 17 Apr 2025 13:20:58 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u5JtE-0000000C9AA-0ITA
-	for linux-amlogic@lists.infradead.org;
-	Thu, 17 Apr 2025 07:42:29 +0000
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-30effbfaf4aso4278801fa.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 17 Apr 2025 00:42:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744875746; x=1745480546; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l9yxI+Mba9CUaTNrgCthTIf1TjoMCLU0SYdNd1ClZ+0=;
-        b=gNp9ipHUsWot6aFeTtt032914AYndjs1S2Ve1bXu/kafY/+0lkzRYbAEUoEJ+A5ceY
-         u8qCSjYUtRJjzcsWcBQdrePXwZmxEvepuOKeBbCP8Hx64ARAC5sQKenMheRpRtkmgGyj
-         ak1Fh47mF3e8f2L23EowxvzaN5PTWmjtqrAj1sGXRNtNbcHX2Qkuv2pzDjYatc/roFgE
-         iY1Zb0oG8+YAX+fcxAo9xyKP/3j8tBb6hpO+qWofHnchdARWMOPl8ka8BkmIhyX3QWot
-         FfmPjOGfJjpkyQ3hEEybTX4OdD6Ncw6rayfXzx+E+dj/gQVy4/OJuSOGgmoyoP0KFJFs
-         7wOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744875746; x=1745480546;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l9yxI+Mba9CUaTNrgCthTIf1TjoMCLU0SYdNd1ClZ+0=;
-        b=nwjuLc9NYsODZ6fMwv0kdzyIg8dV29ce32r48VwFN93qFVJC82WV/LQPr00hf45Pzc
-         cilxhWh4yJsDilrIYi1m4wRl96bwc44hHKaHZ5rtUE4Y+X1G5EwSm/aDjTTfRSKTRsBb
-         EWxwL1Td4x5jamk8uf+HL9viNXTKf/76fCDz2iobBT+FOa8LS+Mm2aooyCXIwJ1GfXV6
-         UevurXF619lq0kG3Q+zgadMtbDwXp0wW/IgUVK8WCBtUBE57n9Ozqs3Yz54w1NeyY1Ld
-         NFrcqccDknE/+9X7FvHKAL6VlvRf3Xoyt9d1biszWwz6oPruVwEY9lbPLI8azR7OuLue
-         cdhw==
-X-Forwarded-Encrypted: i=1; AJvYcCW4TClunzBsYpxhqpUqICfIDh/9lrIZh3v4jZ1H9HU1EHb40ym/T7H5l7nM4/xCErjemFh8ByaX1Qxg2OV7@lists.infradead.org
-X-Gm-Message-State: AOJu0YzRiNfRB2PbENqsv/lqDxY5k+FDjo/BhYk6EyW/3ncH3A5OqRCZ
-	l0NMTXdTunZ6JrvDYyU2SJA+zEhguPJ/x6T4o2PKL3ghvoVZKyCyccJFSHotj8339W8eUBsZSiy
-	v4aNHJGSyV9Xea6cY1AUUeTT/4IFBRyr726OUOQ==
-X-Gm-Gg: ASbGncvB+WeMwyUQGj3kv7e8Nr3qDOs8L+zbvyI/4bf2JkymvYUx5sDRpgyGC9W2/Va
-	QuppCDpFgOicdOggH9095MzX3HpIJnTVOXI9sfvaZtJAP9EJZ7TrAM2mXTQxJJJAM2O9QGygrUr
-	inH8+vVTZyh3Xivs5Ph+TaHA==
-X-Google-Smtp-Source: AGHT+IGS1IRdJZGaZOGBt2o7TAzE4ajC3kXe2lrY8hS5Zx1+HVIOORQPGpXWTLFIUHBjt1Qe5pOZPC9xWwoJZ+1T0rQ=
-X-Received: by 2002:a2e:ab19:0:b0:30b:a20b:eccc with SMTP id
- 38308e7fff4ca-3107f6bde0emr19717881fa.11.1744875746101; Thu, 17 Apr 2025
- 00:42:26 -0700 (PDT)
+	id 1u5PAX-0000000D7LB-1Nbd;
+	Thu, 17 Apr 2025 13:20:42 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 752C05C52C7;
+	Thu, 17 Apr 2025 13:18:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 153EAC4CEEA;
+	Thu, 17 Apr 2025 13:20:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744896040;
+	bh=n/8uGpNsdYKNqMW7uwcOgz9sLAMdb7HkWpu8m8iysi8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K7ppWavk6lr4JAY5bawvUBCnzuQcrTunyBN/tnKILpTtYSccMY0mTT9vFvhNRTrRu
+	 wzs8yoWkHFf58L/OJARbE2FnbdpoXe5ngV8TYcbTVK1JUjJp46ONdw9qkYKnWE8Pb0
+	 2fY90QaG1heFMmwZ1Qb23/FLufKI8jX3E4Wp1CVyZBGpEblySKuzw3roxIzDnQsVcY
+	 twKsp6njYzsOfv/YidoyE82JDAsKqpWySPCRe1whhrwR7B9LqkzLMFZkjLx6nN1RHQ
+	 SmcLOF1qP6trPHywxG3HOQWlbiKs3ZlZK3uWc4iNl7cdn0aj+Fhmi2a9c49JNkKsam
+	 rTialmrbSX3pA==
+Date: Thu, 17 Apr 2025 14:20:34 +0100
+From: Will Deacon <will@kernel.org>
+To: Anand Moon <linux.amoon@gmail.com>, robin.murphy@arm.com
+Cc: Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	"open list:AMLOGIC DDR PMU DRIVER" <linux-amlogic@lists.infradead.org>,
+	"moderated list:ARM PMU PROFILING AND DEBUGGING" <linux-arm-kernel@lists.infradead.org>,
+	"open list:ARM PMU PROFILING AND DEBUGGING" <linux-perf-users@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] perf/amlogic: Replace smp_processor_id() with
+ raw_smp_processor_id() in meson_ddr_pmu_create()
+Message-ID: <20250417132033.GA12863@willie-the-truck>
+References: <20250407063206.5211-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
-References: <20250408-gpiochip-set-rv-pinctrl-part1-v1-0-c9d521d7c8c7@linaro.org>
- <20250408-gpiochip-set-rv-pinctrl-part1-v1-7-c9d521d7c8c7@linaro.org>
- <20250416223706.GA3230303@ax162> <CACMJSevPHdo9ZGaOyGV8rrhJHTN4+-0UB0+sz=Z5jc_eZybjcA@mail.gmail.com>
-In-Reply-To: <CACMJSevPHdo9ZGaOyGV8rrhJHTN4+-0UB0+sz=Z5jc_eZybjcA@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 17 Apr 2025 09:42:14 +0200
-X-Gm-Features: ATxdqUEL04h0FlK145WkXx_Q9dTs068nZ1YOBn95bqrfuRW3dCGJeGM7IpJjU74
-Message-ID: <CACRpkdY5KJzCk1sfznG6DFMmX9T=pu=im_a6jTeAT68pO9SBAQ@mail.gmail.com>
-Subject: Re: [PATCH 07/10] pinctrl: sx150x: enable building modules with COMPILE_TEST=y
-To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: Nathan Chancellor <nathan@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Ludovic Desroches <ludovic.desroches@microchip.com>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Xianwei Zhao <xianwei.zhao@amlogic.com>, Patrick Rudolph <patrick.rudolph@9elements.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
+Content-Disposition: inline
+In-Reply-To: <20250407063206.5211-1-linux.amoon@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250417_004228_108611_02895E59 
-X-CRM114-Status: UNSURE (   6.63  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250417_062041_453297_A980285A 
+X-CRM114-Status: GOOD (  18.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,17 +76,86 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVGh1LCBBcHIgMTcsIDIwMjUgYXQgODo0MuKAr0FNIEJhcnRvc3ogR29sYXN6ZXdza2kKPGJh
-cnRvc3ouZ29sYXN6ZXdza2lAbGluYXJvLm9yZz4gd3JvdGU6Cgo+IE1ha2VzIHNlbnNlLiBMaW51
-czogQ2FuIHlvdSBqdXN0IGRyb3AgdGhpcyBvciBkbyB5b3UgcHJlZmVyIGEgZm9ybWFsIHJldmVy
-dD8KCkkganVzdCBkcm9wcGVkIGl0LCBubyBwcm9ibGVtLgoKSSdtIGFtYXplZCB0aGVyZSB3YXMg
-bm90IG1vcmUgZmFsbG91dCBmcm9tIHRoZSBwYXRjaGVzCnNvIGFsbCBpcyBnb29kIQoKWW91cnMs
-CkxpbnVzIFdhbGxlaWoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+On Mon, Apr 07, 2025 at 12:02:03PM +0530, Anand Moon wrote:
+> The Amlogic DDR PMU driver meson_ddr_pmu_create() function incorrectly uses
+> smp_processor_id(), which assumes disabled preemption. This leads to kernel
+> warnings during module loading because meson_ddr_pmu_create() can be called
+> in a preemptible context.
+> 
+> Following kernel warning and stack trace:
+> [   31.745138] [   T2289] BUG: using smp_processor_id() in preemptible [00000000] code: (udev-worker)/2289
+> [   31.745154] [   T2289] caller is debug_smp_processor_id+0x28/0x38
+> [   31.745172] [   T2289] CPU: 4 UID: 0 PID: 2289 Comm: (udev-worker) Tainted: GW 6.14.0-0-MANJARO-ARM #1 59519addcbca6ba8de735e151fd7b9e97aac7ff0
+> [   31.745181] [   T2289] Tainted: [W]=WARN
+> [   31.745183] [   T2289] Hardware name: Hardkernel ODROID-N2Plus (DT)
+> [   31.745188] [   T2289] Call trace:
+> [   31.745191] [   T2289]  show_stack+0x28/0x40 (C)
+> [   31.745199] [   T2289]  dump_stack_lvl+0x4c/0x198
+> [   31.745205] [   T2289]  dump_stack+0x20/0x50
+> [   31.745209] [   T2289]  check_preemption_disabled+0xec/0xf0
+> [   31.745213] [   T2289]  debug_smp_processor_id+0x28/0x38
+> [   31.745216] [   T2289]  meson_ddr_pmu_create+0x200/0x560 [meson_ddr_pmu_g12 8095101c49676ad138d9961e3eddaee10acca7bd]
+> [   31.745237] [   T2289]  g12_ddr_pmu_probe+0x20/0x38 [meson_ddr_pmu_g12 8095101c49676ad138d9961e3eddaee10acca7bd]
+> [   31.745246] [   T2289]  platform_probe+0x98/0xe0
+> [   31.745254] [   T2289]  really_probe+0x144/0x3f8
+> [   31.745258] [   T2289]  __driver_probe_device+0xb8/0x180
+> [   31.745261] [   T2289]  driver_probe_device+0x54/0x268
+> [   31.745264] [   T2289]  __driver_attach+0x11c/0x288
+> [   31.745267] [   T2289]  bus_for_each_dev+0xfc/0x160
+> [   31.745274] [   T2289]  driver_attach+0x34/0x50
+> [   31.745277] [   T2289]  bus_add_driver+0x160/0x2b0
+> [   31.745281] [   T2289]  driver_register+0x78/0x120
+> [   31.745285] [   T2289]  __platform_driver_register+0x30/0x48
+> [   31.745288] [   T2289]  init_module+0x30/0xfe0 [meson_ddr_pmu_g12 8095101c49676ad138d9961e3eddaee10acca7bd]
+> [   31.745298] [   T2289]  do_one_initcall+0x11c/0x438
+> [   31.745303] [   T2289]  do_init_module+0x68/0x228
+> [   31.745311] [   T2289]  load_module+0x118c/0x13a8
+> [   31.745315] [   T2289]  __arm64_sys_finit_module+0x274/0x390
+> [   31.745320] [   T2289]  invoke_syscall+0x74/0x108
+> [   31.745326] [   T2289]  el0_svc_common+0x90/0xf8
+> [   31.745330] [   T2289]  do_el0_svc+0x2c/0x48
+> [   31.745333] [   T2289]  el0_svc+0x60/0x150
+> [   31.745337] [   T2289]  el0t_64_sync_handler+0x80/0x118
+> [   31.745341] [   T2289]  el0t_64_sync+0x1b8/0x1c0
+> 
+> Changes replaces smp_processor_id() with raw_smp_processor_id() to
+> ensure safe CPU ID retrieval in preemptible contexts.
+> 
+> Cc: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> Fixes: 2016e2113d35 ("perf/amlogic: Add support for Amlogic meson G12 SoC DDR PMU driver")
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+>  drivers/perf/amlogic/meson_ddr_pmu_core.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/perf/amlogic/meson_ddr_pmu_core.c b/drivers/perf/amlogic/meson_ddr_pmu_core.c
+> index 07446d784a1a..c1e755c356a3 100644
+> --- a/drivers/perf/amlogic/meson_ddr_pmu_core.c
+> +++ b/drivers/perf/amlogic/meson_ddr_pmu_core.c
+> @@ -511,7 +511,7 @@ int meson_ddr_pmu_create(struct platform_device *pdev)
+>  
+>  	fmt_attr_fill(pmu->info.hw_info->fmt_attr);
+>  
+> -	pmu->cpu = smp_processor_id();
+> +	pmu->cpu = raw_smp_processor_id();
+>  
+>  	name = devm_kasprintf(&pdev->dev, GFP_KERNEL, DDR_PERF_DEV_NAME);
+>  	if (!name)
+
+
+Bah, this follows what the other drivers are doing but I continue to
+dislike the races we have between CPU hotplug and perf PMU registration.
+
+Robin -- did you have a crack at fixing that or did I dream it?
+
+Will
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
