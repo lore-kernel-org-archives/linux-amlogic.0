@@ -4,68 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EB8EC369C7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Apr 2025 22:37:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DB3FC369B2
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Apr 2025 06:50:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LIn12A/8BXFd05Sg3b2SXZdGO271l931FB0PJaSsrOs=; b=n913zy6d7MHoXF
-	yun4gsOtvjX1YuW8t2auHzCPt7HMjusMMEXvj/biFrIV+f4PBi5P1CRbS1OPzEyGHx/jmiLrF2GlF
-	lrPIMut1hfJbSUkXDUqwiTll8WpKoD8o9adyq5vNHn/9jA3tmkSEmukNRM5aQNneFb33EAxOKOTsC
-	itdHUPDOkXMkPOU/mr0ZiB5f/67xwXJkaGSQ/Z263qlpv9v8AkYQ8/ncKZO8coH9f2DA0dVEmif+d
-	LdsTporkElTmW0q0JxoHG5K1v7aF+gZBHZEHZERvV8KsJsdtJ3GM+AXhYy/GwqGLTZb7mXDbItYHU
-	ESOjLsPdLscnW8pRNdeg==;
+	List-Owner; bh=puGTZpg7cbfJ5hbGXQnM+O3yRvP8p2j366Wfjf8+wZI=; b=GbD2JP57qFQAjg
+	KkDxMGnWxUCcNxRhATwOZfoooFX7e4cjwIyHlplyd4MF7MoeXFgryHgR1lVl4dnAibLYO87HKDOm7
+	LSMlhqMgL+h7xPsjrF1rxTTS9nNRAOc4B6Ue2nEHTczNL5VA5ouDip/0aUFPh848ThQ7XiCfxPtct
+	IOttWvJcxBCu/J9uTrt4FB4A0UuQg3pAIzn5zscWQ+6FvHQ4+/qg8SKAxNhPPMG/RTaRrYlR/EwiB
+	eZO+cXCr8CCOkVY7h9vrXGRLP/W2GiQcWhXJbZf5KEP/Dws9qfCp356vXPVqjQ8jeXKMTuNLZyATn
+	8673y0ssKQaTPFpYM7Xw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u5BNb-0000000B3cw-0R9y;
-	Wed, 16 Apr 2025 22:37:15 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1u5J53-0000000BxIk-1IR1;
+	Thu, 17 Apr 2025 06:50:37 +0000
+Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u5BNZ-0000000B3cg-2i3X;
-	Wed, 16 Apr 2025 22:37:13 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6D3B66156A;
-	Wed, 16 Apr 2025 22:36:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36CBCC4CEE2;
-	Wed, 16 Apr 2025 22:37:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744843032;
-	bh=GdvsN1LtIHMY8zJSroI+9TWLVN4zqOg8OLguK4T3YjA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZClOAeIM863a5cHtZdWqGyG/lFZkKazWfOYJgO2WTst8ltDgkE9vnjhpEYrBZLHIe
-	 C3pO+37q5MOe5PHcz02RW3JmIudnwBydcFQpofXfAhdeU/1yQ7sVWog0OpOIbCXavF
-	 2NmAncXKuOlvIqQ6EHSXOFpbZVeiAEGY92cv6RK6NKNo5VrOWUXtZ8LuZqUm2pe9pp
-	 hwytpPlUSzl/cgKgjiGN//rCk5vjCi6qd7puCiw47a+cR1NiuZ9MXB2F9shwJwsVZT
-	 G99jaqyYHUVZPwSz2sCWrhPMOtPhOMUR6PTdwn2boubTP7LQvijpzr9UBDOerornaZ
-	 VyNtIsoMCcktg==
-Date: Wed, 16 Apr 2025 15:37:06 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Ludovic Desroches <ludovic.desroches@microchip.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 07/10] pinctrl: sx150x: enable building modules with
- COMPILE_TEST=y
-Message-ID: <20250416223706.GA3230303@ax162>
-References: <20250408-gpiochip-set-rv-pinctrl-part1-v1-0-c9d521d7c8c7@linaro.org>
- <20250408-gpiochip-set-rv-pinctrl-part1-v1-7-c9d521d7c8c7@linaro.org>
+	id 1u5Iwz-0000000BwGS-3rUS
+	for linux-amlogic@lists.infradead.org;
+	Thu, 17 Apr 2025 06:42:19 +0000
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-aaee2c5ee6eso42150466b.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 16 Apr 2025 23:42:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744872136; x=1745476936; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dhOBMdnj48blKw6YV7gc/9oneYA+xqS2pjcS4PzI4lw=;
+        b=iLkvKM1FbOYZo+OPz7npspl32e9ni3DDGqAPC4qo+A93FYnw+TqhSNg8qzPMXZv9+8
+         BrbSQgOZgOKA1KUjNGaXve4N8ourYhR9eYsj21SExO0uIReruw+KstBVm+r+E8PgJTkM
+         Oyo73fk41ARwi6DI+DWCoCtUIuCf9v2Tbz4/4BHeGlsW/ZMhLgDn97xFp07S/q2ejjDa
+         3zupc6WnKQXvotqXvA4jseqWavcHvCm/Xc4sa1qZxkXRjgRcOkfroBEO389InyQtNFi7
+         2jG6fIXgw/TwGWEkhkDRZyXMyOQ6MqkwYVyl0qLhymSJsFZn4VLgo7DbQ8vDPixBE4fV
+         6r9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744872136; x=1745476936;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dhOBMdnj48blKw6YV7gc/9oneYA+xqS2pjcS4PzI4lw=;
+        b=ChuqoLe9NzwA9T1734EqFiLHA8ez9xQlIB0WasZZNQo5DNRDWO3/HcZRB9q/L1Dw1j
+         9Aollj2UuKdsS7mgKomXS8nATGy7B9Ar/yc5YSqrMdBik8ffISwzHblooYkT+ix2kNvr
+         P9R+VkrBNZaFeL2Gvdwi1DN6YiukhEKa1vEGqfVU2IFiLxbtiGJL6vzyth2RpUO9BReP
+         0H+GKcn/qX9TONW6Ti6LffZ3wb/zQZD6RKqKbOH/Nk8LEpIzNImrJq140a87GxptaNoQ
+         ScYIma6+VkI0tqyC8pKpmqJHx6cNplF1cVYMZu2GBU1qMV89x9Yb+8SiQXKVdRr/nUl9
+         ESeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVUSMCdt36hNBWz7AgvhVtvaPfFbqvIT0WwouFVMkYU+7YAnzdWtkNqI6wfl9+QK5N6wfcxYBErkaPiEJbp@lists.infradead.org
+X-Gm-Message-State: AOJu0YzPI9A8zeYNcXe3xuHYY8ZItjfLSDIKByaLxyWo6HIUJz0w9DGw
+	oe/7b+lfS/OYoAcrqhkYrnp8j/xUMziaVxKf4J/eaKnzK78kkVE3Xc8qgXt845cskdxQ53xnVjt
+	7ozaGU38fE5gxtP2OnX9N2/4uwKBD5rb0p2kWSQ==
+X-Gm-Gg: ASbGnctTUvj91Dez7XT09hBaMZy9oDqSugB6Qo09EqZtRBVJKX0BzWN5bM50Bkacoo1
+	FNQ4t2BdhQAKzA8dcELKAhUQO8dh0ffJTdtsfFgbCbC4kiZIPjnjuWMI8HCxTW4dGxH3jmJMDe2
+	g8nyYyXl9LD+CPuO1vgOutF4azXP75yqHTXEANSLD0t+f1f8Pr/fgRSQ==
+X-Google-Smtp-Source: AGHT+IHwQmW4uLoxd4O86s85PWQDVE6I5QgHoOdxvS68frFgXriQWYv526JyoVIGGquD0xEBBdrZTykIPd6kRqLVJVs=
+X-Received: by 2002:a17:907:2cc4:b0:abf:4bde:51b1 with SMTP id
+ a640c23a62f3a-acb4298011emr405993166b.21.1744872136202; Wed, 16 Apr 2025
+ 23:42:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20250408-gpiochip-set-rv-pinctrl-part1-v1-7-c9d521d7c8c7@linaro.org>
+References: <20250408-gpiochip-set-rv-pinctrl-part1-v1-0-c9d521d7c8c7@linaro.org>
+ <20250408-gpiochip-set-rv-pinctrl-part1-v1-7-c9d521d7c8c7@linaro.org> <20250416223706.GA3230303@ax162>
+In-Reply-To: <20250416223706.GA3230303@ax162>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Date: Thu, 17 Apr 2025 08:42:05 +0200
+X-Gm-Features: ATxdqUEdk8B4qOm49Z3JjfkRT6lA8RuMaY_llvKtObT7Pr4tgUtNyFqCuqU8FYk
+Message-ID: <CACMJSevPHdo9ZGaOyGV8rrhJHTN4+-0UB0+sz=Z5jc_eZybjcA@mail.gmail.com>
+Subject: Re: [PATCH 07/10] pinctrl: sx150x: enable building modules with COMPILE_TEST=y
+To: Nathan Chancellor <nathan@kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Ludovic Desroches <ludovic.desroches@microchip.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Xianwei Zhao <xianwei.zhao@amlogic.com>, Patrick Rudolph <patrick.rudolph@9elements.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250416_234217_965163_D185FA23 
+X-CRM114-Status: GOOD (  20.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,65 +101,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Bartosz,
+On Thu, 17 Apr 2025 at 00:37, Nathan Chancellor <nathan@kernel.org> wrote:
+>
+> Hi Bartosz,
+>
+> On Tue, Apr 08, 2025 at 09:17:44AM +0200, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Increase the build coverage by enabling the sx150x modules with
+> > COMPILE_TEST=y.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
+> >  drivers/pinctrl/Kconfig | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
+> > index 464cc9aca157..94eb41bb9cf2 100644
+> > --- a/drivers/pinctrl/Kconfig
+> > +++ b/drivers/pinctrl/Kconfig
+> > @@ -541,7 +541,7 @@ config PINCTRL_STMFX
+> >
+> >  config PINCTRL_SX150X
+> >       bool "Semtech SX150x I2C GPIO expander pinctrl driver"
+> > -     depends on I2C=y
+> > +     depends on I2C=y || COMPILE_TEST
+> >       select PINMUX
+> >       select PINCONF
+> >       select GENERIC_PINCONF
+> >
+> > --
+> > 2.45.2
+> >
+>
+> This appears to break allmodconfig with
+>
+>   ld.lld: error: undefined symbol: i2c_get_match_data
+>   >>> referenced by pinctrl-sx150x.c
+>   >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_probe) in archive vmlinux.a
+>
+>   ld.lld: error: undefined symbol: i2c_smbus_write_byte_data
+>   >>> referenced by pinctrl-sx150x.c
+>   >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_probe) in archive vmlinux.a
+>   >>> referenced by pinctrl-sx150x.c
+>   >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_probe) in archive vmlinux.a
+>   >>> referenced by pinctrl-sx150x.c
+>   >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_regmap_reg_write) in archive vmlinux.a
+>
+>   ld.lld: error: undefined symbol: i2c_smbus_read_byte_data
+>   >>> referenced by pinctrl-sx150x.c
+>   >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_regmap_reg_read) in archive vmlinux.a
+>
+>   ld.lld: error: undefined symbol: i2c_register_driver
+>   >>> referenced by pinctrl-sx150x.c
+>   >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_init) in archive vmlinux.a
+>   make[4]: *** [scripts/Makefile.vmlinux:91: vmlinux] Error 1
+>
+> I don't think this change makes much sense in light of this error,
+> unless the driver was converted to tristate.
+>
+> Cheers,
+> Nathan
 
-On Tue, Apr 08, 2025 at 09:17:44AM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Increase the build coverage by enabling the sx150x modules with
-> COMPILE_TEST=y.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
->  drivers/pinctrl/Kconfig | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-> index 464cc9aca157..94eb41bb9cf2 100644
-> --- a/drivers/pinctrl/Kconfig
-> +++ b/drivers/pinctrl/Kconfig
-> @@ -541,7 +541,7 @@ config PINCTRL_STMFX
->  
->  config PINCTRL_SX150X
->  	bool "Semtech SX150x I2C GPIO expander pinctrl driver"
-> -	depends on I2C=y
-> +	depends on I2C=y || COMPILE_TEST
->  	select PINMUX
->  	select PINCONF
->  	select GENERIC_PINCONF
-> 
-> -- 
-> 2.45.2
-> 
+Makes sense. Linus: Can you just drop this or do you prefer a formal revert?
 
-This appears to break allmodconfig with
-
-  ld.lld: error: undefined symbol: i2c_get_match_data
-  >>> referenced by pinctrl-sx150x.c
-  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_probe) in archive vmlinux.a
-
-  ld.lld: error: undefined symbol: i2c_smbus_write_byte_data
-  >>> referenced by pinctrl-sx150x.c
-  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_probe) in archive vmlinux.a
-  >>> referenced by pinctrl-sx150x.c
-  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_probe) in archive vmlinux.a
-  >>> referenced by pinctrl-sx150x.c
-  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_regmap_reg_write) in archive vmlinux.a
-
-  ld.lld: error: undefined symbol: i2c_smbus_read_byte_data
-  >>> referenced by pinctrl-sx150x.c
-  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_regmap_reg_read) in archive vmlinux.a
-
-  ld.lld: error: undefined symbol: i2c_register_driver
-  >>> referenced by pinctrl-sx150x.c
-  >>>               drivers/pinctrl/pinctrl-sx150x.o:(sx150x_init) in archive vmlinux.a
-  make[4]: *** [scripts/Makefile.vmlinux:91: vmlinux] Error 1
-
-I don't think this change makes much sense in light of this error,
-unless the driver was converted to tristate.
-
-Cheers,
-Nathan
+Bart
 
 _______________________________________________
 linux-amlogic mailing list
