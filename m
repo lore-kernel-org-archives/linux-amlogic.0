@@ -4,81 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE04AC369C9
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Apr 2025 21:32:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D408FC369CF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Apr 2025 21:35:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PP2WAxek6V7hArur2dOztdQKV8LxLrtoERvJS/oDcLo=; b=YSIMjmCk/CUCfc
-	fCmuhJkNtw+Y3T36ds7TGtVo8flm6ZOfa7zlaOdGEgBIBsB8IixVUdyHiMaHFT0JjsxslLSWI1onq
-	KqNDWY3znhuhStYNC1e6tfs2rztpFnlCbO0yEsFtE94gnoiYk4YnxBZ4YgyvNvfE613UFH3BVYZH7
-	xz7Nhx1go2XP4E5kyVuSyG1hyHjOiAd8bKqkumENc5AWwlcZpa+QrCb09AmYQOQJEGkkS/daDASvw
-	wvomfpXjdx1oQbP2qv3lO4p7CHUe3fZr6PhVbYfKIDYU0F+keun0roaDipTCPF4HW2ZbKmcx9Y3ZJ
-	cTtDcRySMZunTluMCcog==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=PlQ2vTsNjgwqjCI2R2+U5x04hYS0upA916Rbgwkl7+M=; b=zMfZQMwCd3K8Sh
+	opaC4j69O5C5gcfXFz5en+QERuxYwVRrSsJ+TdVphgmRdl9mkIBBmNk87Mnr2uDU07XxoVo3wgZKh
+	4yw86znEAgtMm/r1TQ1ciWmW8tkTFPfssNtyuZil3Dyj7XnbH7eUufZ+JYzS5tUveNJDBqxejR0Mg
+	iPZv3cowHSGJlUJCo2SrrkMui8UivHZp9TNgRzrh2gz+BMHaRxdwj5cUhLaHHlRwu3jRYsFXhSZEt
+	bIees5Jkue7lJUEfVcHBqR8Tk8a0XJT5mB9VRtXoe0/F2tUc/UcqatZoBiOxOLAmv6lQOFmg+NRCK
+	dvsjbxxQxSO/BWu1V3mg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u6Fno-00000001pcn-0Hpf;
-	Sat, 19 Apr 2025 21:32:44 +0000
-Received: from mail-pl1-x62b.google.com ([2607:f8b0:4864:20::62b])
+	id 1u6Fq0-00000001ptI-0adx;
+	Sat, 19 Apr 2025 21:35:00 +0000
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u6Fnl-00000001pcI-012j;
-	Sat, 19 Apr 2025 21:32:42 +0000
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-224191d92e4so30127025ad.3;
-        Sat, 19 Apr 2025 14:32:39 -0700 (PDT)
+	id 1u6Fpx-00000001psg-2iIW;
+	Sat, 19 Apr 2025 21:34:58 +0000
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5f4b7211badso4191875a12.2;
+        Sat, 19 Apr 2025 14:34:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1745098358; x=1745703158; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NOpxvDT2hzdXC/Lk44TDPK4RjDKnxL5gg9PE5JOWs0E=;
-        b=lo+DGzdGTycWGGIunvTmAiSYEp9CK5MT119jW680ujPfdkzU2Be2588jP0/B5w44wo
-         1Fop0uijbLI+/yyyKgU3RieMXS1YTffvi1zQIb1sGoib1EEyssClA4RZXQOmJO2q7QjL
-         FOrM7YxdR0/qHHHajYoQgjoon+KYHpStAMcmMZFTAGhrsLdkk611DJt9tzb4baaI3SkI
-         3L3/YdspA2gAO2i5lFcXAG4R1igSlwIYdi/ytC9IK5wC9mqxuV0kN32R70FTL9Ml90qp
-         XcL+xiGRHppniYHOj3ROQg/SEWGUsWFUU6lOnnw/wq3NZY8yp/xUK8wTRUL7EaODrZ++
-         GbaA==
+        d=googlemail.com; s=20230601; t=1745098496; x=1745703296; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wxYKThiSP5CpC8ECIauIBDHNEvnQh43dWazKFIWJZDU=;
+        b=fKnz6XvrmQcMnjKQZL3mxXk5zMFEkZO65vHRRBmZBRSbWIPaKQpTU3OPjBbQjWEgUx
+         3xtfgXZQvuKwxgceTnsW4t/2aRgtTBN4xI1xrC9X01Q4glpAmSveTZEUdD6c2MGYxEhU
+         Q3gh44hBRd1TEAUptTvVNGypo7CNw6WJ9wZNrJA1vS9cWmphqI8aJDrz0OC6BeQV6q7r
+         MnV09apD/9Fgo7sA8q/8QZVGVtVbTC/ScaqRYhkathl1rdSfhkbd1Jpu1bczRhTkvzGM
+         XgATd0tkOyksJF6drmzixtLWdURuD2/PSuOfZyIzXirL+yQ8/7RL5EYZijRhm0PoaUGH
+         Kc1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745098358; x=1745703158;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NOpxvDT2hzdXC/Lk44TDPK4RjDKnxL5gg9PE5JOWs0E=;
-        b=Ez4DiP358LIdT4z/YHVPDsQ0PnSB0QOIkXMKiWT+tzA+c16X1Te/SYmCR0CT7LRPF3
-         SVwNYc2iTRNyzV5Bwa6Qp8MWney0Qs4PPM0YVdVoHRc0e/WyCT8QgRzn4KJhIujHPJQ3
-         +RKoDob4saTeYjN6Bu0ivLC7uF0iRMf31eOlIaYyV2mzxWrAKhUlmfKFtGHBFlTR6Ace
-         UKLAAn+31rUJSkv902oPaBtrAuIh4C1R7kDM8eLO8L2zCsyT7IH8RFV8q62YDmuzwdoJ
-         BzmTNcNoGFZnZt8RFkYHdwxq7Y70vkg8VUj9ugvxEbGQLTusTStJiExEoZIaSR9pJPvI
-         5aVA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqXhZrb3VraPrsp5+xMH2zPAlNEwDnJXU942Av1rLiIxQ23q2EJMFkgW60hSNC6m7Ysukr19T6ObnTlwkYx7o4@lists.infradead.org
-X-Gm-Message-State: AOJu0YwUwh572z2usKzvZSUUErl8OurrzKULYqEr02F53/4+Hb6pPZQV
-	ktT/vH2mjAwFc6kuMk3LiHxPDHX4g+ra6Jj5OXT3OH3SuPxXO4KDujz0XMzOTIQ5e2zNY7VHALN
-	/yHLklyOms1eFmVoyiy22sjbAklw=
-X-Gm-Gg: ASbGncso9mRqRXa/SxMiwuGpSOSWsOoY2jLELvKa+/KkZ3y6sYBYLQiykgX/XsaPVn0
-	hZq6wxUFtRvdr4Zsmjmc1hClb671kcxSiaxrvDVzjla1SMoSX6YOGY14sIv3+LnuZZy8aSHEkxy
-	uY9KnBe9Mc1iueurXdypp5QSlcvEF8E3ypygeU
-X-Google-Smtp-Source: AGHT+IGLlR8UcPQM775uZfby4awG21f1XTwAj2dFL/MhOfyAEZBG0daUZpkUnTjuqdZFSKrcnfs7NqueiXGk5h+tOx0=
-X-Received: by 2002:a17:903:98f:b0:224:f12:3746 with SMTP id
- d9443c01a7336-22c535aca10mr96258145ad.30.1745098358068; Sat, 19 Apr 2025
- 14:32:38 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250409214422.1751825-1-martin.blumenstingl@googlemail.com> <001d01dbaa48$ead66d10$c0834730$@martijnvandeventer.nl>
-In-Reply-To: <001d01dbaa48$ead66d10$c0834730$@martijnvandeventer.nl>
+        d=1e100.net; s=20230601; t=1745098496; x=1745703296;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wxYKThiSP5CpC8ECIauIBDHNEvnQh43dWazKFIWJZDU=;
+        b=NDBtq4ZZaFM80HSVKV/dfNtYBCr4SzV01im/5cXeWnTzXWmH+pki1WFhdOXM430SNJ
+         7/8JaQwIY6JWF2SuACxiv5V+X+LwVB5UrvYOTrEwZmFbQQqLKvCyKxxb3s/3w4otneev
+         jTdi/fBQFzOehKWw3xIUfiI3gHJ2DQ+y0OQtQIWQh6hpInrlSJXF8SHWmMagAL4I3x/F
+         VonshtoqgPvUZ7Uh6Dwg3GBQ+tOH7h0sKY592rDLuD4hk8QbQr2pEDzKBvD/G/BwQuVT
+         NCJRSh/S/FGYu1ZW0v03ECC+sZAevqhtYtUW8UlgX+jZcZU2GjtfzdHvHybpFNHZRTSm
+         s+ew==
+X-Forwarded-Encrypted: i=1; AJvYcCU5pDDUVkgg7U4FpZQP8m7dqeFhmFTDMB+YLUi5RagI2xk/zPKFt/bX1oJqF+0JsADqhZPTgtNoT8t2tp5Y@lists.infradead.org, AJvYcCWSzSV8DttaGLK33VQJS0XJSw6KabjUDNHIsNi1vVB5OttLj5zCHiFKkBCei1juJ+HEP8JIApfsL6GX7u5wIvet3Q==@lists.infradead.org
+X-Gm-Message-State: AOJu0YycGLSWTn6Y5VBDWwXoLWn3B/dT9eBJGNoyQJx10gSOYRo/n+2E
+	fXjIeaWC4q5rPQOWZsnQhm3WnfdVLNOQvaBt0CT2X1VXp7uWQRCH
+X-Gm-Gg: ASbGncvX/9UXb0BQOoLf0NdFC/FI/+dHRE4ciJXwVSPWaTgUn0fKGpxx0P+xTjuWBJ6
+	tiGM13S8sBBpT0Pim8YKf3hkm9iX40ffjU3vSonOVW5KZXEiD/q++peb4dnueX1t+nSUOwB09n1
+	7nA3FlWBy/Yes5QakSQ9xyO14GW6gmGDO/naSDhDES03Pw6cb1UOrTvyWoOKX5RGBfCynrVosTL
+	3HO3h3wDQ0bBpUaYo55YHL+sUB8+Q3R2rx+sicYSqslrDlsM6WCO12FgCT73Z1M4MxubOpBEn5U
+	V63+SDppS3fTigJwIP9rpfCPfORjQkuOvcehl962nLNQjMJEOb0hqOs9OhFG4Xx/KiSUPGM/dFE
+	5aAWIDwVHcQaNTcJ4wDa5WHRREdi0KC8DoBHcN86C7g+dqaVklwp7johy/1elYbeJaA==
+X-Google-Smtp-Source: AGHT+IFu9MAPI6bhOcadFv7sdrdXp++L30ws8oMOqAOpHPkw1HcqkypIEaEE/ckknmH+OoGsiLtYkw==
+X-Received: by 2002:a05:6402:5204:b0:5e5:edf8:88f2 with SMTP id 4fb4d7f45d1cf-5f628603ad4mr4778873a12.23.1745098495728;
+        Sat, 19 Apr 2025 14:34:55 -0700 (PDT)
+Received: from localhost.localdomain (dynamic-2a02-3100-b1ff-f000-0000-0000-0000-0e63.310.pool.telefonica.de. [2a02:3100:b1ff:f000::e63])
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5f625852a55sm2660022a12.66.2025.04.19.14.34.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Apr 2025 14:34:54 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 19 Apr 2025 23:32:27 +0200
-X-Gm-Features: ATxdqUEyKysz5d6KQERLrTW5mLuoTSOc_4gWR0BkMuxJYXGSMde_moYAT3tKcVQ
-Message-ID: <CAFBinCDtMG1qKM9aax7RBpN+dw7c5MVOoTrX+PzXF1QQBOg_Lg@mail.gmail.com>
-Subject: Re: [PATCH] drm/meson: fix resource cleanup in meson_drv_bind_master()
- on error
-To: linux@martijnvandeventer.nl, neil.armstrong@linaro.org
-Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	jbrunet@baylibre.com, Furkan Kardame <f.kardame@manjaro.org>
+To: linux-sound@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH] ASoC: meson: meson-card-utils: use of_property_present() for DT parsing
+Date: Sat, 19 Apr 2025 23:34:48 +0200
+Message-ID: <20250419213448.59647-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.49.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250419_143241_061951_FE3AA9FA 
-X-CRM114-Status: GOOD (  22.56  )
+X-CRM114-CacheID: sfid-20250419_143457_687512_8350090B 
+X-CRM114-Status: GOOD (  15.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,45 +89,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-kernel@vger.kernel.org, stable@vger.kernel.org, lgirdwood@gmail.com, broonie@kernel.org, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTWFydGlqbiwgSGkgTmVpbCwKCk9uIFRodSwgQXByIDEwLCAyMDI1IGF0IDg6NDbigK9QTSA8
-bGludXhAbWFydGlqbnZhbmRldmVudGVyLm5sPiB3cm90ZToKPgo+IEhpIE1hcnRpbiwKPgo+IFRo
-YW5rIHlvdSBmb3IgdGhlIHBhdGNoLgo+Cj4gSSBlbmNvdW50ZXJlZCB0aGlzIGlzc3VlIHNvbWUg
-dGltZSBhZ28gYXMgd2VsbCBhbmQgaGFkIGEgcG9zc2libGUgZml4IGluIG15IHRyZWUgKHNlZQo+
-IGJlbG93KS4KPiBNeSBhcG9sb2dpZXMgZm9yIG5vdCB1cHN0cmVhbWluZyBpdCBlYXJsaWVyLgpO
-byB3b3JyaWVzLCB3ZSdyZSBhbGwgYnVzeSB3aXRoIGJvdGgsIG9mZmxpbmUgYW5kIG9ubGluZSBs
-aWZlIDstKQoKPiBXaGlsZSBteSBmaXggaXMgbm90IGFzIHN5bW1ldHJpYyBhcyB5b3Vyc+KAlEkg
-bGlrZSBzeW1tZXRyeeKAlGl0IGlzIHNvbWV3aGF0IHNpbXBsZXIuIEl0Cj4gZGlkIG1ha2UgdGhl
-IGFzc3VtcHRpb24gdGhhdCBvbmx5ICBjYWxsaW5nIGNvbXBvbmVudF91bmJpbmRfYWxsKCkgd2Fz
-IGF0IGZhdWx0IGFuZCB0aGUgdGhlIHJlc3Qgb2YgdGhlCj4gY29kZSB3YXMgY29ycmVjdC4gVGhl
-cmVmb3JlLCBjYWxsaW5nIG9uZSBvZiB0aGUgZm9sbG93aW5nIGZ1bmN0aW9uczoKPiBtZXNvbl9l
-bmNvZGVyX2RzaV9yZW1vdmUoKQo+IG1lc29uX2VuY29kZXJfaGRtaV9yZW1vdmUoKQo+IG1lc29u
-X2VuY29kZXJfY3Zic19yZW1vdmUoKQo+IGluIGNhc2UgdGhlaXIgY291bnRlcnBhcnQgd2FzIG5v
-dCBjYWxsZWQsIHNob3VsZCBub3QgcmVzdWx0IGluIGFueSBpc3N1ZXMuCj4KPiBJIGp1c3QgdmVy
-aWZpZWQsIGFuZCwgYXMgZmFyIGFzIEkgdW5kZXJzdGFuZCwgYWxsIG9mIHRoZXNlIGZ1bmN0aW9u
-cyBkbyBhIGNoZWNrIHRvIGNvbmZpcm0KPiB3aGV0aGVyIHRoZSBlbmNvZGVyIHdhcyBpbml0aWFs
-aXplZCBiZWZvcmUgcHJvY2VlZGluZyB3aXRoIGNsZWFudXAuClllcCwgdGhhdCBzZWVtcyB0byBi
-ZSB0aGUgY2FzZSByaWdodCBub3cuCk5laWwsIHdvdWxkIHlvdSBsaWtlIE1hcnRpam4ncyBtb3Jl
-IHNpbXBsZSBhcHByb2FjaCB3aXRoIGEgRml4ZXMgdGFnCmFuZCBiYWNrcG9ydCB0aGF0PwpUaGVu
-IEknZCBzZW5kIG15IHBhdGNoIGFzIGEgc21hbGwgY2xlYW51cCB3aGljaCBkb2Vzbid0IGhhdmUg
-dG8gYmUKYmFja3BvcnRlZC4gT3RoZXJ3aXNlIEknZCBzcGluIGEgdjIgd2l0aCBhIGZpeCBmb3Ig
-dGhlIGlzc3VlIHRoYXQKTWFydGlqbiBmb3VuZCAoYW5kIGluY2x1ZGluZyBBbmFuZCdzIFJldmll
-d2VkL1Rlc3RlZC1ieSk/CgpbLi4uXQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9t
-ZXNvbi9tZXNvbl9kcnYuYwo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHJ2LmMK
-PiA+IGluZGV4IDgxZDJlZTM3ZTc3My4uMDMxNjg2ZmQ0MTA0IDEwMDY0NAo+ID4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL21lc29uL21lc29uX2Rydi5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-bWVzb24vbWVzb25fZHJ2LmMKPiA+IEBAIC0zMTQsMzUgKzMxNCwzNSBAQCBzdGF0aWMgaW50IG1l
-c29uX2Rydl9iaW5kX21hc3RlcihzdHJ1Y3QgZGV2aWNlCj4gPiAqZGV2LCBib29sIGhhc19jb21w
-b25lbnRzKQo+ID4gICAgICAgICAgICAgICAgICAgICAgIGRldl9lcnIoZHJtLT5kZXYsICJDb3Vs
-ZG4ndCBiaW5kIGFsbAo+ID4gY29tcG9uZW50c1xuIik7Cj4gPiAgICAgICAgICAgICAgICAgICAg
-ICAgLyogRG8gbm90IHRyeSB0byB1bmJpbmQgKi8KPiA+ICAgICAgICAgICAgICAgICAgICAgICBo
-YXNfY29tcG9uZW50cyA9IGZhbHNlOwo+Cj4gQWJvdmUgdHdvIGxpbmVzIGFyZSBubyBsb25nZXIg
-dXNlZCwgc28gY2FuIGJlIHJlbW92ZWQuCldlbGwgc3BvdHRlZCwgdGhhbmsgeW91IQoKCkJlc3Qg
-cmVnYXJkcywKTWFydGluCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1hbWxvZ2ljCg==
+Commit c141ecc3cecd ("of: Warn when of_property_read_bool() is used on
+non-boolean properties") added a warning when trying to parse a property
+with a value (boolean properties are defined as: absent = false, present
+without any value = true). This causes a warning from meson-card-utils.
+
+meson-card-utils needs to know about the existence of the
+"audio-routing" and/or "audio-widgets" properties in order to properly
+parse them. Switch to of_property_present() in order to silence the
+following warning messages during boot:
+  OF: /sound: Read of boolean property 'audio-routing' with a value.
+  OF: /sound: Read of boolean property 'audio-widgets' with a value.
+
+Fixes: 7864a79f37b5 ("ASoC: meson: add axg sound card support")
+Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+Cc: stable@vger.kernel.org
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ sound/soc/meson/meson-card-utils.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
+index cfc7f6e41ab5..68531183fb60 100644
+--- a/sound/soc/meson/meson-card-utils.c
++++ b/sound/soc/meson/meson-card-utils.c
+@@ -231,7 +231,7 @@ static int meson_card_parse_of_optional(struct snd_soc_card *card,
+ 						    const char *p))
+ {
+ 	/* If property is not provided, don't fail ... */
+-	if (!of_property_read_bool(card->dev->of_node, propname))
++	if (!of_property_present(card->dev->of_node, propname))
+ 		return 0;
+ 
+ 	/* ... but do fail if it is provided and the parsing fails */
+-- 
+2.49.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
