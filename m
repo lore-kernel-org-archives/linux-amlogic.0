@@ -4,80 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D408FC369CF
-	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Apr 2025 21:35:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76678C369CF
+	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Apr 2025 09:32:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=PlQ2vTsNjgwqjCI2R2+U5x04hYS0upA916Rbgwkl7+M=; b=zMfZQMwCd3K8Sh
-	opaC4j69O5C5gcfXFz5en+QERuxYwVRrSsJ+TdVphgmRdl9mkIBBmNk87Mnr2uDU07XxoVo3wgZKh
-	4yw86znEAgtMm/r1TQ1ciWmW8tkTFPfssNtyuZil3Dyj7XnbH7eUufZ+JYzS5tUveNJDBqxejR0Mg
-	iPZv3cowHSGJlUJCo2SrrkMui8UivHZp9TNgRzrh2gz+BMHaRxdwj5cUhLaHHlRwu3jRYsFXhSZEt
-	bIees5Jkue7lJUEfVcHBqR8Tk8a0XJT5mB9VRtXoe0/F2tUc/UcqatZoBiOxOLAmv6lQOFmg+NRCK
-	dvsjbxxQxSO/BWu1V3mg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Owner; bh=oH3ZRrFAi7H1y7TT2eiFbdHdvlkrqDZRqbUGTGmABvM=; b=xSpk5/2fqWkyTS
+	m0jMtby+aHaN5mI5a2ozOOMU2KLyNwBdceo0ZvImw2Kk/PquMmA5pUIMnikqL/ri2aaXhOhkeRtux
+	EAWfWX+iCMq6Ae/ipO2MOr6KxRF39dz3KOQVlbsK94QmYUlztcnN2YpK3YeOhAblFCxScFTH7Tb9v
+	IfHgQAko0B59GvSrOI3zI0/MJ+6hD960kG6g4/NQIlE+XUqp4/h5qH0FpiWfhh2ROQsS/few7+P0O
+	1BbMGOToifmdUNV7wrZg5KeVLONKE8jDWQfd3Xxo5EM79niIZByXowufz9YtWsXSucWZSCQqL0iEj
+	qO/YKEwRKX7suPSGzOkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u6Fq0-00000001ptI-0adx;
-	Sat, 19 Apr 2025 21:35:00 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1u6R2T-00000002P0t-2zM2;
+	Sun, 20 Apr 2025 09:32:37 +0000
+Received: from mail.ispras.ru ([83.149.199.84])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u6Fpx-00000001psg-2iIW;
-	Sat, 19 Apr 2025 21:34:58 +0000
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5f4b7211badso4191875a12.2;
-        Sat, 19 Apr 2025 14:34:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1745098496; x=1745703296; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wxYKThiSP5CpC8ECIauIBDHNEvnQh43dWazKFIWJZDU=;
-        b=fKnz6XvrmQcMnjKQZL3mxXk5zMFEkZO65vHRRBmZBRSbWIPaKQpTU3OPjBbQjWEgUx
-         3xtfgXZQvuKwxgceTnsW4t/2aRgtTBN4xI1xrC9X01Q4glpAmSveTZEUdD6c2MGYxEhU
-         Q3gh44hBRd1TEAUptTvVNGypo7CNw6WJ9wZNrJA1vS9cWmphqI8aJDrz0OC6BeQV6q7r
-         MnV09apD/9Fgo7sA8q/8QZVGVtVbTC/ScaqRYhkathl1rdSfhkbd1Jpu1bczRhTkvzGM
-         XgATd0tkOyksJF6drmzixtLWdURuD2/PSuOfZyIzXirL+yQ8/7RL5EYZijRhm0PoaUGH
-         Kc1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745098496; x=1745703296;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wxYKThiSP5CpC8ECIauIBDHNEvnQh43dWazKFIWJZDU=;
-        b=NDBtq4ZZaFM80HSVKV/dfNtYBCr4SzV01im/5cXeWnTzXWmH+pki1WFhdOXM430SNJ
-         7/8JaQwIY6JWF2SuACxiv5V+X+LwVB5UrvYOTrEwZmFbQQqLKvCyKxxb3s/3w4otneev
-         jTdi/fBQFzOehKWw3xIUfiI3gHJ2DQ+y0OQtQIWQh6hpInrlSJXF8SHWmMagAL4I3x/F
-         VonshtoqgPvUZ7Uh6Dwg3GBQ+tOH7h0sKY592rDLuD4hk8QbQr2pEDzKBvD/G/BwQuVT
-         NCJRSh/S/FGYu1ZW0v03ECC+sZAevqhtYtUW8UlgX+jZcZU2GjtfzdHvHybpFNHZRTSm
-         s+ew==
-X-Forwarded-Encrypted: i=1; AJvYcCU5pDDUVkgg7U4FpZQP8m7dqeFhmFTDMB+YLUi5RagI2xk/zPKFt/bX1oJqF+0JsADqhZPTgtNoT8t2tp5Y@lists.infradead.org, AJvYcCWSzSV8DttaGLK33VQJS0XJSw6KabjUDNHIsNi1vVB5OttLj5zCHiFKkBCei1juJ+HEP8JIApfsL6GX7u5wIvet3Q==@lists.infradead.org
-X-Gm-Message-State: AOJu0YycGLSWTn6Y5VBDWwXoLWn3B/dT9eBJGNoyQJx10gSOYRo/n+2E
-	fXjIeaWC4q5rPQOWZsnQhm3WnfdVLNOQvaBt0CT2X1VXp7uWQRCH
-X-Gm-Gg: ASbGncvX/9UXb0BQOoLf0NdFC/FI/+dHRE4ciJXwVSPWaTgUn0fKGpxx0P+xTjuWBJ6
-	tiGM13S8sBBpT0Pim8YKf3hkm9iX40ffjU3vSonOVW5KZXEiD/q++peb4dnueX1t+nSUOwB09n1
-	7nA3FlWBy/Yes5QakSQ9xyO14GW6gmGDO/naSDhDES03Pw6cb1UOrTvyWoOKX5RGBfCynrVosTL
-	3HO3h3wDQ0bBpUaYo55YHL+sUB8+Q3R2rx+sicYSqslrDlsM6WCO12FgCT73Z1M4MxubOpBEn5U
-	V63+SDppS3fTigJwIP9rpfCPfORjQkuOvcehl962nLNQjMJEOb0hqOs9OhFG4Xx/KiSUPGM/dFE
-	5aAWIDwVHcQaNTcJ4wDa5WHRREdi0KC8DoBHcN86C7g+dqaVklwp7johy/1elYbeJaA==
-X-Google-Smtp-Source: AGHT+IFu9MAPI6bhOcadFv7sdrdXp++L30ws8oMOqAOpHPkw1HcqkypIEaEE/ckknmH+OoGsiLtYkw==
-X-Received: by 2002:a05:6402:5204:b0:5e5:edf8:88f2 with SMTP id 4fb4d7f45d1cf-5f628603ad4mr4778873a12.23.1745098495728;
-        Sat, 19 Apr 2025 14:34:55 -0700 (PDT)
-Received: from localhost.localdomain (dynamic-2a02-3100-b1ff-f000-0000-0000-0000-0e63.310.pool.telefonica.de. [2a02:3100:b1ff:f000::e63])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5f625852a55sm2660022a12.66.2025.04.19.14.34.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Apr 2025 14:34:54 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-sound@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH] ASoC: meson: meson-card-utils: use of_property_present() for DT parsing
-Date: Sat, 19 Apr 2025 23:34:48 +0200
-Message-ID: <20250419213448.59647-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.49.0
+	id 1u6R2Q-00000002P0M-1N0X;
+	Sun, 20 Apr 2025 09:32:36 +0000
+Received: from localhost (unknown [10.10.165.8])
+	by mail.ispras.ru (Postfix) with ESMTPSA id ABE754076726;
+	Sun, 20 Apr 2025 09:32:26 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.ispras.ru ABE754076726
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ispras.ru;
+	s=default; t=1745141546;
+	bh=fWQY42eWCmlkXVWhry1af/CWnxEZndFo/0hIOaKShAU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=AS5dK+IKYudFHNvytmLk+fqj7yxTBZjUdVJCcuHfpJwstkabClzSTiwtPwAfKq/Ni
+	 1uTL0d3nV+qGrUEpkz09E1oWlkkcgtdcDsX8bZzKHIUDIwRKpfFhQISndwdTZ2QQpQ
+	 +kYUP272fI7LfR9Y2z3cZgPezv/ClCT/kEpObEJA=
+Date: Sun, 20 Apr 2025 12:32:26 +0300
+From: Fedor Pchelkin <pchelkin@ispras.ru>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+	linux@martijnvandeventer.nl, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com, neil.armstrong@linaro.org, 
+	Furkan Kardame <f.kardame@manjaro.org>, Anastasia Belova <abelova@astralinux.ru>
+Subject: Re: [PATCH] drm/meson: fix resource cleanup in
+ meson_drv_bind_master() on error
+Message-ID: <mpoae5tfugsnvdyv5yzmiifr242mc62gouqqvql7ucjtdxo7b2@7y4plckbcdbn>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20250409214422.1751825-1-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250419_143457_687512_8350090B 
-X-CRM114-Status: GOOD (  15.02  )
+X-CRM114-CacheID: sfid-20250420_023234_859936_07905467 
+X-CRM114-Status: GOOD (  10.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,48 +64,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-kernel@vger.kernel.org, stable@vger.kernel.org, lgirdwood@gmail.com, broonie@kernel.org, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Commit c141ecc3cecd ("of: Warn when of_property_read_bool() is used on
-non-boolean properties") added a warning when trying to parse a property
-with a value (boolean properties are defined as: absent = false, present
-without any value = true). This causes a warning from meson-card-utils.
+Martin Blumenstingl wrote:
+> @@ -360,6 +360,16 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  
+>  uninstall_irq:
+>  	free_irq(priv->vsync_irq, drm);
+> +dsi_encoder_remove:
+> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+> +		meson_encoder_dsi_remove(priv);
+> +hdmi_encoder_remove:
+> +	meson_encoder_hdmi_remove(priv);
+> +unbind_components:
+> +	if (has_components)
+> +		component_unbind_all(dev, drm);
 
-meson-card-utils needs to know about the existence of the
-"audio-routing" and/or "audio-widgets" properties in order to properly
-parse them. Switch to of_property_present() in order to silence the
-following warning messages during boot:
-  OF: /sound: Read of boolean property 'audio-routing' with a value.
-  OF: /sound: Read of boolean property 'audio-widgets' with a value.
+As 6a044642988b ("drm/meson: fix unbind path if HDMI fails to bind")
+states, it seems invalid to call component_unbind_all() before
+drm_dev_put(). Wouldn't this patch reintroduce the problem here?
 
-Fixes: 7864a79f37b5 ("ASoC: meson: add axg sound card support")
-Tested-by: Christian Hewitt <christianshewitt@gmail.com>
-Cc: stable@vger.kernel.org
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- sound/soc/meson/meson-card-utils.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+In that sense the diff proposed by Martijn <linux@martijnvandeventer.nl>
+behaves more correctly.
 
-diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-index cfc7f6e41ab5..68531183fb60 100644
---- a/sound/soc/meson/meson-card-utils.c
-+++ b/sound/soc/meson/meson-card-utils.c
-@@ -231,7 +231,7 @@ static int meson_card_parse_of_optional(struct snd_soc_card *card,
- 						    const char *p))
- {
- 	/* If property is not provided, don't fail ... */
--	if (!of_property_read_bool(card->dev->of_node, propname))
-+	if (!of_property_present(card->dev->of_node, propname))
- 		return 0;
- 
- 	/* ... but do fail if it is provided and the parsing fails */
--- 
-2.49.0
 
+I've also found this thread [1] with another error path fixing patch. It
+was suggested to improve that fix with managed drm device [2] interfaces but
+AFAICS using devm_drm_dev_alloc() will reintroduce the problem mentioned
+in 6a044642988b, too.
+
+I think [1] should be applied as well with Martijn's patch?
+
+[1]: https://lore.kernel.org/dri-devel/20240809124725.17956-1-abelova@astralinux.ru/T/#u
+[2]: https://lore.kernel.org/dri-devel/20240828110421.14956-1-abelova@astralinux.ru/T/#u
+
+
+Thanks!
+
+> +cvbs_encoder_remove:
+> +	meson_encoder_cvbs_remove(priv);
+>  exit_afbcd:
+>  	if (priv->afbcd.ops)
+>  		priv->afbcd.ops->exit(priv);
+> @@ -374,13 +384,6 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  free_drm:
+>  	drm_dev_put(drm);
+>  
+> -	meson_encoder_dsi_remove(priv);
+> -	meson_encoder_hdmi_remove(priv);
+> -	meson_encoder_cvbs_remove(priv);
+> -
+> -	if (has_components)
+> -		component_unbind_all(dev, drm);
+> -
+>  	return ret;
+>  }
+>  
+> -- 
+> 2.49.0
 
 _______________________________________________
 linux-amlogic mailing list
