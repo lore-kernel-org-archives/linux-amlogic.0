@@ -4,83 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A62B8C369D7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Apr 2025 07:40:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D565C369CB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Apr 2025 08:31:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=n1ost0g2CUccUglSoFOkQ7GGHxsk4VK/itkwJr8xDYM=; b=TRkv88sNO+H1CIHiyokd50AUsT
-	lgHrB01FjKD0r2sQfiDAccxBEeOaKUtVfgyGUvVDEra0j5TGz5mjw+VjJZ9dJGaG13X7hE0BZqSEN
-	zjjkHL4h9UzuC2m3Dzz9laimlv1W8IhAN0eOm0yqaGjEB9HZU7+Ct7XCji0hiRRCeq0evbqWg6cEp
-	VFsXsAela+3xzvwJbMSifMDNXBCv7/fZUKk3Q/JE/oa97jDI5IhrdQgfn38mSKELYzJFrVztsz/u/
-	dXyoZbvk0/R1oBv6QSnF6Q+tOCP9lYgwoixtZ5rv1Z5dsGNSs63MJfY8lPw0vYL5+Kah71j++aVMg
-	yWnpKHdg==;
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=d1U2krYvzoV5X2CU8EmZY9m5N1W+8bnGuzk1gQPMONM=; b=n2XRSC2PvHAvvh
+	PpAmsbYVvG9dAA2KPrXQEf+1hRezm/RpGxbl6TuUSoGwRNjmDvWGLu1LazBQpY0blh7X+ji6z3dUX
+	JNNWmbhFOPDHL47mntSSx09rs2oSlbx+++2sN9soc+Da301Jzy6A/2HvIHgstEpVsNBhMXF94YacI
+	uMA+7Ny4A43duol00YCjQYZO83I6PEPGRZjV2rV8bFSH5lkc1P8/dWxcSUfb1M8VVfT1ShiSlqw54
+	5uJMVxBzz5jbP/SDldGy9uRYWUxCB/lO+5NkCJ9zV2+hmAzteGfmEKNQNExt+0xQhiIAD5LoGLJsl
+	/OW6+3RUVADbsMIpvLdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u78Eu-000000069gQ-23Mm;
-	Tue, 22 Apr 2025 07:40:20 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1u792k-00000006Jxg-0HzE;
+	Tue, 22 Apr 2025 08:31:50 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u77ew-000000063Zm-1i8g
+	id 1u77yi-000000066SR-26r3
 	for linux-amlogic@lists.infradead.org;
-	Tue, 22 Apr 2025 07:03:11 +0000
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3912d2c89ecso4162656f8f.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 22 Apr 2025 00:03:10 -0700 (PDT)
+	Tue, 22 Apr 2025 07:23:37 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3913b539aabso2848656f8f.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 22 Apr 2025 00:23:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745305389; x=1745910189; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1745306615; x=1745911415; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :content-language:references:cc:to:from:subject:reply-to:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+EW9WOjwKhGKY0mSAGuVe1/yMsQLEVZGpaUvajrqIQo=;
-        b=KUVMmote8VRrPOk4KL7d02syplwajQc0p+BqADKguXqI1JvbhGyM+3kBSYHkChiX05
-         Pmyy8idXT2tKl/n5Wfm7D2cZjN5LfVujqUMF/eA5lSt4hDTR24E/ujNhNwnkMYifBzmC
-         nyAmstq0vFTCK/ZFKA/bAot144vnEzh5do+SSS9VxIGpCRjQlhhRZo3r8k/Atg4MY3ez
-         i2+LzUZNRG3hAeTgGVJdaEF1xNL9149GaTpgs5ocfj4t/7LCRRo1FHBZNKDZO+j4jXu9
-         kzZO4nPP6M+jzcDVIfTNhCg5aZ2c2a7BE5ShifffOyCf2ZaWgo73TKzKBMv09g6XKsyW
-         9tOA==
+        bh=lH46hfoNIJY5qCmuJzlF3d7GkHG348kgpWLaJA6DDWM=;
+        b=L0xw77IySOGzsVVkRyQLEhmMMmoSt71cmi17a/BJMCze2eCY0cSGszGBWLMuaove2u
+         5Lk7yfwW1m+6H3U0tQXrSLVGpexuiZDqz/ikGuTU5CiSiNZdB15pOSm3r1h/rv/Ojrrq
+         neX/Or+0qI7GEaNZoajwWzAYUKIpET6w6TvR0+2Eicn5jZbjeXgbW1Qs91cwmuPjU23Q
+         /LHKVoZ+W6M+5Xkhc1S410nFWJu+1VB1kuYUneWUXkAhId49IJIGhSS7eGURge8/cua4
+         noQo6ICFiECg+5GMyVXVMYnbqRwdRbQmqbcpjxAbXD6VGInX/ux1vKTx3GIWZZje489f
+         0ajQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745305389; x=1745910189;
+        d=1e100.net; s=20230601; t=1745306615; x=1745911415;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :content-language:references:cc:to:from:subject:reply-to:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=+EW9WOjwKhGKY0mSAGuVe1/yMsQLEVZGpaUvajrqIQo=;
-        b=W32qW9MiDi/rLZ/A0Oj7n648MmznB4r3RRQUV0qxCWgE5ZCCrpwUKMQXpt4xgWIJ1U
-         r075+Mj7ioQRJYAm/5lmjPcDWDyfo4UjLC9cpsMNfqL6PtbgB0feq1ApCVHSfL4Ydkk4
-         4BSwBwZvhJI9WMw0JTc4+0rfQ+6OUOTcd4zlDcj6rXFE9GLTlAhUWAl+qHjaO9z9XV64
-         rVnz/uLyCZcQ+Z8J44wXlo/duldHCR4xlJnOehOV+u6SZWkq4KecEYRiGsX7JXqZqJHt
-         S7DrCJaBAnTssTKrauBlPUvK8PxB6C7ZOa4LXC/mZ31YEu8lF93hwqVXzQekHa4DUVHp
-         5eHg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOIHJ+lWOArSMZsPdLL0Fcce/Dqq5G7FMWKMjPfdqQtrDDMP/uH3+B9NR1n3XChlX3Hv0JduKOJjp+sYbA@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw5WWeKTnPYPsVe6iFREH7UTmgphNl1mD/P3L9Erxi+MS1YI4Qu
-	hySOpUDzpBU16gmA8WX21RjiCZpkdu5q17EenZtdiPi73inoJO5KAVORCDa8PJ4=
-X-Gm-Gg: ASbGncvv0JExsPqwJKlZ75rRsHsQ9skG1yld5Ye43gkFm9+omXYmVwFweZOjqv8qRm7
-	OFFwYcbUZn9qioyCRqUaVfiLLlhynRobHd2AkkchlSds5JCnReOPD7YuoR0gXy/Zmckuj7VBMfk
-	efgRlstPdWK3hHf+a3enlflNigHmTSeVoQQA9s2B7rX+2ela0cg9xZ3BbKCWLXoRHgI1en5C9DY
-	K+K5+4vHh9kKZO+DyjEzhiHyFyUbD9RWnCvSEcqdMChy5Li+BODd3Gkw5HfsKSB7G7mfyTxhS8E
-	ag4bAU/9csmnBSUYNQNzsYoZkNrzsSPK1fFim0mFsP81EQhGxhV7LkywShPVwhwoMAnSHVnLTdc
-	DQRYGE8551gWvasF8DA==
-X-Google-Smtp-Source: AGHT+IE3A44CHRZT4LFqIN9Z4MWfOqywDl3gBVdthcSxAs8gC51/XERlOdOoQsF0+0M1L1XTm+SLEQ==
-X-Received: by 2002:a5d:6da6:0:b0:39e:cbd2:9129 with SMTP id ffacd0b85a97d-39efba2acd7mr10294748f8f.10.1745305388778;
-        Tue, 22 Apr 2025 00:03:08 -0700 (PDT)
+        bh=lH46hfoNIJY5qCmuJzlF3d7GkHG348kgpWLaJA6DDWM=;
+        b=pCHP6oa69e/1ZODRdq1bc5bbIdpfltl+9ZrdonD782AEVTcFFuuAWNpPfdRYKsE79n
+         zCXzcJlAlOKn57L7PnfzycAxeLgHd3KNcIO4lcHCDyG0D1Z5gmLMjQAnwX2lF23/K29A
+         NFoqlTXRu/1SXFZABMfy2Oi/ndli5sgi+D2igdsF6Ddwd8YH6Sfyqt9jpyZDgAjCEeCG
+         wYAbSjHVMQjU1lE1TRNY8uoQOGpwrPOsKgwhsYHO+nirc4/UebAWFWOjgW2R+w/gmTKE
+         lokjUQj/J0DXdhjRlqTYHhqGsCpDa6rw73hvuv6KDIp1M+BeJ1r1IuemY0r54oWOh4+i
+         eVXg==
+X-Gm-Message-State: AOJu0YyDVszMi4S58gHVKigxvGdju8PJzEZCVO0Qk+6iWCRmwkcEeTXL
+	oJkC+NcHLVXicUFYVuq9iIl0sc62G5SzZ6mi7LQnvpeOWnxHof9mkIxGTt6pB6o=
+X-Gm-Gg: ASbGnctxnTpV1ON13diUljY1f6+2mNs/hBVnyyvP5HAvX39tBGUGxJKw0AktRiW5c8G
+	1LmtEs58lm/JI2KASgyVKvGJpiEVwFzLlPUKjx7WffyOXs1iJs7VXaISJjZHOiSunpeSqgSLZYD
+	aeLaxL0dWsgXeLnK+pyXFx08up9aeEqv3aORZ3dJZFcBPY9tXyChxxuiWoYC/5oakjLcLsQVe8a
+	tKHoDHy9FWmyIX0Sr0+6RGqKxvwRVBV/r4gO0IlH8KFjF7yhNPGxAsjqL02AWfepQa/g231Z8cB
+	BS4Hfjtn4ZLBmiDJmZIXHMnEMAF1ywF+qusfQ61fy/Pv0NU9ht4Q8zsPCG7Gvgw1wrFeTBuBHq3
+	POCNSsg8areQiVIaGEA==
+X-Google-Smtp-Source: AGHT+IGywozzMisXwYOT/E5KYtUsJDT/HnunTc8XE7Knara8DcfAQ+yJD6UJRsAe6X3X6bs1me8xhw==
+X-Received: by 2002:a5d:5f4c:0:b0:39e:f89b:85d3 with SMTP id ffacd0b85a97d-39efb9538afmr11846283f8f.0.1745306615026;
+        Tue, 22 Apr 2025 00:23:35 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:b137:7670:8eb9:746f? ([2a01:e0a:3d9:2080:b137:7670:8eb9:746f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa4a4c37sm14496017f8f.98.2025.04.22.00.03.08
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39efa43bf20sm13981589f8f.48.2025.04.22.00.23.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Apr 2025 00:03:08 -0700 (PDT)
-Message-ID: <b88bfe5a-9256-4de0-822b-b22d74dfdec0@linaro.org>
-Date: Tue, 22 Apr 2025 09:03:04 +0200
+        Tue, 22 Apr 2025 00:23:34 -0700 (PDT)
+Message-ID: <7c7b3e81-bc46-417b-a3f4-2d48f2d3638d@linaro.org>
+Date: Tue, 22 Apr 2025 09:23:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH RFC v2 0/2] drm/meson: vclk: revert and re-fix vclk
- calculations
+Subject: Re: [PATCH] drm/meson: fix resource cleanup in
+ meson_drv_bind_master() on error
+From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org
-References: <20250421201300.778955-1-martin.blumenstingl@googlemail.com>
+ linux@martijnvandeventer.nl
+Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ jbrunet@baylibre.com, Furkan Kardame <f.kardame@manjaro.org>
+References: <20250409214422.1751825-1-martin.blumenstingl@googlemail.com>
+ <001d01dbaa48$ead66d10$c0834730$@martijnvandeventer.nl>
+ <CAFBinCDtMG1qKM9aax7RBpN+dw7c5MVOoTrX+PzXF1QQBOg_Lg@mail.gmail.com>
+ <09b7c34d-82c7-40fc-bb51-38d0fd925d38@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -107,10 +112,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250421201300.778955-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <09b7c34d-82c7-40fc-bb51-38d0fd925d38@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250422_000310_466635_7FE9A84C 
-X-CRM114-Status: GOOD (  14.11  )
+X-CRM114-CacheID: sfid-20250422_002336_546356_556E9078 
+X-CRM114-Status: GOOD (  17.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,52 +128,53 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: neil.armstrong@linaro.org
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/04/2025 22:12, Martin Blumenstingl wrote:
-> This is a successor of a previous patchset by Christian [0]
-> 
-> Patch 1 reverts a previous fix for loss of HDMI sync when playing YUV420
-> @ 59.94 media. The patch does resolve a calculation issue. It also makes
-> all fractional rates invalid which is a bigger problem.
-> 
-> Patch 2 changes the whole drm/meson driver to use Hz as unit for clocks/
-> frequencies. And importantly it uses the relevant 64-bit maths helpers so
-> the code can still be compiled using for 32-bit ARM.
-> Maxime previously suggested using drm_hdmi_compute_mode_clock(). That's
-> still something to implement with future patches.
-> 
-> Neil, I'd like to hear your feedback on this approach.
-> 
-> 
-> [0] https://lore.kernel.org/linux-amlogic/20250110074458.3624094-1-christianshewitt@gmail.com/
-> 
-> 
-> Christian Hewitt (1):
->    Revert "drm/meson: vclk: fix calculation of 59.94 fractional rates"
-> 
-> Martin Blumenstingl (1):
->    drm/meson: use unsigned long long / Hz for frequency types
-> 
->   drivers/gpu/drm/meson/meson_drv.c          |   2 +-
->   drivers/gpu/drm/meson/meson_drv.h          |   2 +-
->   drivers/gpu/drm/meson/meson_encoder_hdmi.c |  29 +--
->   drivers/gpu/drm/meson/meson_vclk.c         | 195 +++++++++++----------
->   drivers/gpu/drm/meson/meson_vclk.h         |  13 +-
->   5 files changed, 126 insertions(+), 115 deletions(-)
-> 
-
-Thanks for re-spinning, will apply.
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Thanks !
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjIvMDQvMjAyNSAwOTowNCwgbmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZyB3cm90ZToKPiBP
+biAxOS8wNC8yMDI1IDIzOjMyLCBNYXJ0aW4gQmx1bWVuc3RpbmdsIHdyb3RlOgo+PiBIaSBNYXJ0
+aWpuLCBIaSBOZWlsLAo+Pgo+PiBPbiBUaHUsIEFwciAxMCwgMjAyNSBhdCA4OjQ24oCvUE0gPGxp
+bnV4QG1hcnRpam52YW5kZXZlbnRlci5ubD4gd3JvdGU6Cj4+Pgo+Pj4gSGkgTWFydGluLAo+Pj4K
+Pj4+IFRoYW5rIHlvdSBmb3IgdGhlIHBhdGNoLgo+Pj4KPj4+IEkgZW5jb3VudGVyZWQgdGhpcyBp
+c3N1ZSBzb21lIHRpbWUgYWdvIGFzIHdlbGwgYW5kIGhhZCBhIHBvc3NpYmxlIGZpeCBpbiBteSB0
+cmVlIChzZWUKPj4+IGJlbG93KS4KPj4+IE15IGFwb2xvZ2llcyBmb3Igbm90IHVwc3RyZWFtaW5n
+IGl0IGVhcmxpZXIuCj4+IE5vIHdvcnJpZXMsIHdlJ3JlIGFsbCBidXN5IHdpdGggYm90aCwgb2Zm
+bGluZSBhbmQgb25saW5lIGxpZmUgOy0pCj4+Cj4+PiBXaGlsZSBteSBmaXggaXMgbm90IGFzIHN5
+bW1ldHJpYyBhcyB5b3Vyc+KAlEkgbGlrZSBzeW1tZXRyeeKAlGl0IGlzIHNvbWV3aGF0IHNpbXBs
+ZXIuIEl0Cj4+PiBkaWQgbWFrZSB0aGUgYXNzdW1wdGlvbiB0aGF0IG9ubHnCoCBjYWxsaW5nIGNv
+bXBvbmVudF91bmJpbmRfYWxsKCkgd2FzIGF0IGZhdWx0IGFuZCB0aGUgdGhlIHJlc3Qgb2YgdGhl
+Cj4+PiBjb2RlIHdhcyBjb3JyZWN0LiBUaGVyZWZvcmUsIGNhbGxpbmcgb25lIG9mIHRoZSBmb2xs
+b3dpbmcgZnVuY3Rpb25zOgo+Pj4gbWVzb25fZW5jb2Rlcl9kc2lfcmVtb3ZlKCkKPj4+IG1lc29u
+X2VuY29kZXJfaGRtaV9yZW1vdmUoKQo+Pj4gbWVzb25fZW5jb2Rlcl9jdmJzX3JlbW92ZSgpCj4+
+PiBpbiBjYXNlIHRoZWlyIGNvdW50ZXJwYXJ0IHdhcyBub3QgY2FsbGVkLCBzaG91bGQgbm90IHJl
+c3VsdCBpbiBhbnkgaXNzdWVzLgo+Pj4KPj4+IEkganVzdCB2ZXJpZmllZCwgYW5kLCBhcyBmYXIg
+YXMgSSB1bmRlcnN0YW5kLCBhbGwgb2YgdGhlc2UgZnVuY3Rpb25zIGRvIGEgY2hlY2sgdG8gY29u
+ZmlybQo+Pj4gd2hldGhlciB0aGUgZW5jb2RlciB3YXMgaW5pdGlhbGl6ZWQgYmVmb3JlIHByb2Nl
+ZWRpbmcgd2l0aCBjbGVhbnVwLgo+PiBZZXAsIHRoYXQgc2VlbXMgdG8gYmUgdGhlIGNhc2Ugcmln
+aHQgbm93Lgo+PiBOZWlsLCB3b3VsZCB5b3UgbGlrZSBNYXJ0aWpuJ3MgbW9yZSBzaW1wbGUgYXBw
+cm9hY2ggd2l0aCBhIEZpeGVzIHRhZwo+PiBhbmQgYmFja3BvcnQgdGhhdD8KPj4gVGhlbiBJJ2Qg
+c2VuZCBteSBwYXRjaCBhcyBhIHNtYWxsIGNsZWFudXAgd2hpY2ggZG9lc24ndCBoYXZlIHRvIGJl
+Cj4+IGJhY2twb3J0ZWQuIE90aGVyd2lzZSBJJ2Qgc3BpbiBhIHYyIHdpdGggYSBmaXggZm9yIHRo
+ZSBpc3N1ZSB0aGF0Cj4+IE1hcnRpam4gZm91bmQgKGFuZCBpbmNsdWRpbmcgQW5hbmQncyBSZXZp
+ZXdlZC9UZXN0ZWQtYnkpPwo+IAo+IFBsZWFzZSBzZW5kIGEgZm9sbG93LXVwLCBJJ2xsIGFwcGx5
+IHRoaXMgb25lIHRvZGF5Lgo+IAoKWWVhaCBmaW5hbGx5IHBsZWFzZSBzcGxpdCB0aGlzIGluIHR3
+bzoKLSBwYXRjaCAxIHRoYXQgY2FuIGJlIGJhY2twb3J0ZWQKLSBwYXRjaCAyIHJlbWFpbmluZyBj
+aGFuZ2VzCgpUaGFua3MsCk5laWwKCj4gVGhhbmtzLAo+IE5laWwKPiAKPj4KPj4gWy4uLl0KPj4+
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2Rydi5jCj4+Pj4gYi9k
+cml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHJ2LmMKPj4+PiBpbmRleCA4MWQyZWUzN2U3NzMu
+LjAzMTY4NmZkNDEwNCAxMDA2NDQKPj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVz
+b25fZHJ2LmMKPj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHJ2LmMKPj4+
+PiBAQCAtMzE0LDM1ICszMTQsMzUgQEAgc3RhdGljIGludCBtZXNvbl9kcnZfYmluZF9tYXN0ZXIo
+c3RydWN0IGRldmljZQo+Pj4+ICpkZXYsIGJvb2wgaGFzX2NvbXBvbmVudHMpCj4+Pj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2X2Vycihkcm0tPmRldiwg
+IkNvdWxkbid0IGJpbmQgYWxsCj4+Pj4gY29tcG9uZW50c1xuIik7Cj4+Pj4gwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLyogRG8gbm90IHRyeSB0byB1bmJpbmQg
+Ki8KPj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBoYXNf
+Y29tcG9uZW50cyA9IGZhbHNlOwo+Pj4KPj4+IEFib3ZlIHR3byBsaW5lcyBhcmUgbm8gbG9uZ2Vy
+IHVzZWQsIHNvIGNhbiBiZSByZW1vdmVkLgo+PiBXZWxsIHNwb3R0ZWQsIHRoYW5rIHlvdSEKPj4K
+Pj4KPj4gQmVzdCByZWdhcmRzLAo+PiBNYXJ0aW4KPiAKCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
+eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
