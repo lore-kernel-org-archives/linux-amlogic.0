@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4F43C369D5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Apr 2025 19:43:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9590FC369D5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Apr 2025 19:44:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=v5RuywGCJv1cc7WTdiX5936eKVofMnrxx68TN6W1ZFU=; b=0tTYL1V1xsje8a
-	qiG392ZROSPKvazR0rQMCoLuTlSSXUA6l19krXOHaMynLys2C9CpqUH0IDbHOBOGRpkPX7yaoLYe/
-	++BEbdaQCwzLrNGSHkoDMO7grCYj/Y8quDbF5CVPEjAbeiGu6h9EgmipphIcDVJBQHwep2sZKYgOc
-	4PG+imxRYBn1hs54Y2Qeil7IQc+UKD8AMo7XbzVvv6PapgaGqE2pWA0cI+m1XMOXNdwcnXlGr6YsP
-	fgG9qMxlfO0TChFOwBOk155YNBWYo2nhr8SspLFsEhmedgFXCjyMtubgbG28LsF3L3LKjgw0vZMLx
-	soJeYjGWBULfcX1xWuaw==;
+	List-Owner; bh=iZXFrFSTB4C0rbKrSzPEIbWeWF/e+F2XDfQXWzHUT0Q=; b=Bz9oe/1zzecL5M
+	+d5a0AiZHZPBGdjXErovGpjVcFiiV71u2dc5kiEMMqmUKq7QSxSyExQmelELd8tLXSqHn6ZEwnq1i
+	iDDsto0TvVSckd3S1LqBD2flWxmA8Ew97zrNzqHK6V68QI4guA/692MTcgMPKPUpCNXIseLuSTJXA
+	NpjXsH91lMLymlY4+wx19pu9szg71bFbnym/3eN3xzEguhbgblIoLaZGfJgSFI/FZRce/kO+z7smO
+	Y1fCSgrrVNLxmhGAXhSYxGj+EAwLzMWoKjEwm9YLxeF8DwiqeKW5dQ2JRAYjGMq1rXLBGftZH/Knj
+	NhrmKGmB+AA9Ga06IBzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u82TN-0000000FE1M-2aD7;
-	Thu, 24 Apr 2025 19:43:01 +0000
-Received: from relay4-d.mail.gandi.net ([217.70.183.196])
+	id 1u82VB-0000000FECV-48jF;
+	Thu, 24 Apr 2025 19:44:53 +0000
+Received: from relay4-d.mail.gandi.net ([2001:4b98:dc4:8::224])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u81oY-0000000F6Wx-2yxG;
-	Thu, 24 Apr 2025 19:00:52 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DF9C243B6C;
-	Thu, 24 Apr 2025 19:00:42 +0000 (UTC)
+	id 1u81on-0000000F6bS-3trx;
+	Thu, 24 Apr 2025 19:01:07 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7A1BE43B79;
+	Thu, 24 Apr 2025 19:00:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1745521249;
+	t=1745521263;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Au0mQLhtD+SC9FQejYqXmeWmtMq3lmMU5k6WXMVlQsE=;
-	b=VHSCothUYa+yZ/DE6uuYEYLJ7T3s0WHVFO+lyJTVoBzsiyjzypVZzztD+UjQ3bmFZ6xN3B
-	t/AiBRIElFxJ0Gz38++StdPb3FfWmhFX5HgDwdPjCXB9TQVb0HeTXcNzgQ8/HC40BRoXRH
-	bCpLf8wJ+OS8SDPpryWsg7yuU6G9Ez2QJ5QC9xQZ0puOhLihFw4yw1FIzD/8j5Lrkn1zoB
-	A6jcrZGwq9wiJtIF4WbC95OHhBYp+sitFtRX6xgczNEU4L4s34Vmy1sD6YgpwwkwrbRWbO
-	HOtLwQwMVklekOrjBsK/n6rDvCBu1d//KUKKeDrM1ngiip1FEUnM/VVAuYkv2g==
+	bh=KOcho37MvrVhiA5dQkVJX8FlRBRSDHiJRf+zEmA1rlY=;
+	b=g1r8+lR75BILuX/h2jyNQ8ZdU7XNQTBhAGYf7L/DICym+nMkLhdqblJBO1iyhrCl1ztRvS
+	KBJnU8b5He5cXQruyxT/422xyr4fP/+DNv/W169SHYgBCX0daOZTFcLE6CoSpIa2ODu234
+	+IBUyQ86avR/i1e8HAO4aqh1uMhGvyGl48Xj69C7vAqJyq7bmFcmk3HRcJ6ff9swuRD5Nl
+	DrSKZFaK9XgbC/EiGQmkhWmwY1W+hK4eXE++3IK/fw76a9JLFJh/6oZeVASdnMYFK9lrkA
+	st+miVeJoDdqcJlJNkly+tbRknfhXPkegVSt8xT0UuaP78ConW/b1y8byun+dw==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Thu, 24 Apr 2025 20:59:30 +0200
-Subject: [PATCH v2 23/34] drm/omap: dss: sdi: convert to
+Date: Thu, 24 Apr 2025 20:59:31 +0200
+Subject: [PATCH v2 24/34] drm/omap: dss: venc: convert to
  devm_drm_bridge_alloc() API
 MIME-Version: 1.0
-Message-Id: <20250424-drm-bridge-convert-to-alloc-api-v2-23-8f91a404d86b@bootlin.com>
+Message-Id: <20250424-drm-bridge-convert-to-alloc-api-v2-24-8f91a404d86b@bootlin.com>
 References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
 In-Reply-To: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -74,18 +74,16 @@ Cc: Anusha Srivatsa <asrivats@redhat.com>,
  linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
  freedreno@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com, 
  Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- "Rob Herring (Arm)" <robh@kernel.org>, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
  Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 X-Mailer: b4 0.14.2
 X-GND-State: clean
 X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvhedtvdehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepnfhutggrucevvghrvghsohhlihcuoehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeiieeuvdfftefgueduleehueetgffgjeeitedtteetkeeuueeuueekveevvdeuveenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegrgeeivdemudgsuggumeeluddtudemvdelgehfnecuvehluhhsthgvrhfuihiivgepvddtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemrgegiedvmedusgguugemledutddumedvleegfhdphhgvlhhopegludelvddrudeikedrudejkedruddukegnpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepgedvpdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepjhgrghgrnhesrghmrghruhhlrghsohhluhhtihhonhhsrdgtohhmpdhrt
- ghpthhtohepihhmgieslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopefnrghurhgvnhhtrdhpihhntghhrghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtoheplhhinhhugidqmhgvughirghtvghksehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvhedtvdehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepnfhutggrucevvghrvghsohhlihcuoehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeiieeuvdfftefgueduleehueetgffgjeeitedtteetkeeuueeuueekveevvdeuveenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegrgeeivdemudgsuggumeeluddtudemvdelgehfnecuvehluhhsthgvrhfuihiivgepvddunecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemrgegiedvmedusgguugemledutddumedvleegfhdphhgvlhhopegludelvddrudeikedrudejkedruddukegnpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepgedtpdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepjhgrghgrnhesrghmrghruhhlrghsohhluhhtihhonhhsrdgtohhmpdhrt
+ ghpthhtohepihhmgieslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepnfgruhhrvghnthdrphhinhgthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehlihhnuhigqdhmvgguihgrthgvkheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehfrhgvvggurhgvnhhosehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
 X-GND-Sasl: luca.ceresoli@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250424_120050_882986_17D8A1FE 
-X-CRM114-Status: GOOD (  13.81  )
+X-CRM114-CacheID: sfid-20250424_120106_171572_201A109D 
+X-CRM114-Status: GOOD (  13.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,81 +110,86 @@ Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 ---
 
-Cc: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 ---
- drivers/gpu/drm/omapdrm/dss/sdi.c | 25 ++++++++-----------------
- 1 file changed, 8 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/omapdrm/dss/venc.c | 23 ++++++++---------------
+ 1 file changed, 8 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/omapdrm/dss/sdi.c b/drivers/gpu/drm/omapdrm/dss/sdi.c
-index e78826e4b560a2b9af2d8a5a38e181bd3e44d250..df4cbc683e2ca27ef5fc45f79b77dcdcd9ca529a 100644
---- a/drivers/gpu/drm/omapdrm/dss/sdi.c
-+++ b/drivers/gpu/drm/omapdrm/dss/sdi.c
-@@ -284,7 +284,6 @@ static const struct drm_bridge_funcs sdi_bridge_funcs = {
+diff --git a/drivers/gpu/drm/omapdrm/dss/venc.c b/drivers/gpu/drm/omapdrm/dss/venc.c
+index 50349518eda1630400529caf27ca4469bb09fc82..9b5d53dc361e654a2e4009c3c81b726f9ef76ced 100644
+--- a/drivers/gpu/drm/omapdrm/dss/venc.c
++++ b/drivers/gpu/drm/omapdrm/dss/venc.c
+@@ -664,7 +664,6 @@ static const struct drm_bridge_funcs venc_bridge_funcs = {
  
- static void sdi_bridge_init(struct sdi_device *sdi)
+ static void venc_bridge_init(struct venc_device *venc)
  {
--	sdi->bridge.funcs = &sdi_bridge_funcs;
- 	sdi->bridge.of_node = sdi->pdev->dev.of_node;
- 	sdi->bridge.type = DRM_MODE_CONNECTOR_LVDS;
- 
-@@ -344,21 +343,19 @@ int sdi_init_port(struct dss_device *dss, struct platform_device *pdev,
- 	u32 datapairs;
+-	venc->bridge.funcs = &venc_bridge_funcs;
+ 	venc->bridge.of_node = venc->pdev->dev.of_node;
+ 	venc->bridge.ops = DRM_BRIDGE_OP_MODES;
+ 	venc->bridge.type = DRM_MODE_CONNECTOR_SVIDEO;
+@@ -809,9 +808,9 @@ static int venc_probe(struct platform_device *pdev)
+ 	struct venc_device *venc;
  	int r;
  
--	sdi = kzalloc(sizeof(*sdi), GFP_KERNEL);
--	if (!sdi)
+-	venc = kzalloc(sizeof(*venc), GFP_KERNEL);
+-	if (!venc)
 -		return -ENOMEM;
-+	sdi = devm_drm_bridge_alloc(&pdev->dev, struct sdi_device, bridge, &sdi_bridge_funcs);
-+	if (IS_ERR(sdi))
-+		return PTR_ERR(sdi);
++	venc = devm_drm_bridge_alloc(&pdev->dev, struct venc_device, bridge, &venc_bridge_funcs);
++	if (IS_ERR(venc))
++		return PTR_ERR(venc);
  
- 	ep = of_graph_get_next_port_endpoint(port, NULL);
--	if (!ep) {
--		r = 0;
+ 	venc->pdev = pdev;
+ 
+@@ -824,26 +823,24 @@ static int venc_probe(struct platform_device *pdev)
+ 	venc->config = &venc_config_pal_trm;
+ 
+ 	venc->base = devm_platform_ioremap_resource(pdev, 0);
+-	if (IS_ERR(venc->base)) {
+-		r = PTR_ERR(venc->base);
 -		goto err_free;
 -	}
-+	if (!ep)
-+		return 0;
++	if (IS_ERR(venc->base))
++		return PTR_ERR(venc->base);
  
- 	r = of_property_read_u32(ep, "datapairs", &datapairs);
- 	of_node_put(ep);
- 	if (r) {
- 		DSSERR("failed to parse datapairs\n");
--		goto err_free;
-+		return r;
- 	}
- 
- 	sdi->datapairs = datapairs;
-@@ -372,19 +369,14 @@ int sdi_init_port(struct dss_device *dss, struct platform_device *pdev,
- 		r = PTR_ERR(sdi->vdds_sdi_reg);
+ 	venc->vdda_dac_reg = devm_regulator_get(&pdev->dev, "vdda");
+ 	if (IS_ERR(venc->vdda_dac_reg)) {
+ 		r = PTR_ERR(venc->vdda_dac_reg);
  		if (r != -EPROBE_DEFER)
- 			DSSERR("can't get VDDS_SDI regulator\n");
+ 			DSSERR("can't get VDDA_DAC regulator\n");
 -		goto err_free;
 +		return r;
  	}
  
- 	r = sdi_init_output(sdi);
+ 	r = venc_get_clocks(venc);
  	if (r)
 -		goto err_free;
 +		return r;
  
- 	return 0;
--
+ 	r = venc_probe_of(venc);
+ 	if (r)
+-		goto err_free;
++		return r;
+ 
+ 	pm_runtime_enable(&pdev->dev);
+ 
+@@ -861,8 +858,6 @@ static int venc_probe(struct platform_device *pdev)
+ 	venc_uninit_output(venc);
+ err_pm_disable:
+ 	pm_runtime_disable(&pdev->dev);
 -err_free:
--	kfree(sdi);
+-	kfree(venc);
+ 	return r;
+ }
+ 
+@@ -875,8 +870,6 @@ static void venc_remove(struct platform_device *pdev)
+ 	venc_uninit_output(venc);
+ 
+ 	pm_runtime_disable(&pdev->dev);
 -
--	return r;
+-	kfree(venc);
  }
  
- void sdi_uninit_port(struct device_node *port)
-@@ -395,5 +387,4 @@ void sdi_uninit_port(struct device_node *port)
- 		return;
- 
- 	sdi_uninit_output(sdi);
--	kfree(sdi);
- }
+ static __maybe_unused int venc_runtime_suspend(struct device *dev)
 
 -- 
 2.49.0
