@@ -4,57 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19B3FC369D1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Apr 2025 13:14:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C05BEC369C2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Apr 2025 15:31:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Qt79fD4kHWaoeUnXY0/JwZAy/52/xVFDZcBcuIRi7lE=; b=GSIHG0kOei+jVN
-	upIioNcdBHl8NPs8Iq1/AgqaV0WRoHsxp/aRnzPZOQhDzZepInvWDRHn2MJ5hp8TlYOyWCEAcddc+
-	y4eTDOaXvberq5CwuOvRWFNulnxCnIxXwPGUKcq/Q8vS5zPgIL8R2qcGso9quey9+MeM5LnA2J2/o
-	ENYTTttBmMQ3qswG2bSTEIwdIuJmsmQvqnhPALnc6u5KutzLHguLiLDg4clb58mf3fQC8zjX43n4u
-	nLjA0ZtacyVeu0p/T7Ov/IvFNERLCeyupTqTX/EoWBW8mQCePxTEkJ8FFpVKfCBiffCoRJkOemn42
-	mRpHq4zUTJjZQiJnQ3tQ==;
+	List-Owner; bh=W8eypPIQLirhJi4oQKxqfbbj+aDbc9m8W9IQFRmizgM=; b=RKuDbUUYU6T900
+	gH0PWDksmZb0Le1mlASE3p12SIdDGMz1YLhA69YBXFhrn0aJYLpTLRkfy4G7HvpJ0rCk31a/ZWTW3
+	7ojVfZ6HE5+/jSTvt2HrIqY6CK+G/3lLU60eprIK7eHxcsKVRQ8426sRyjJejRjbcKJYDa4QbAA4B
+	epRZvuXusT084bhay9yGwcx2MBvqeq4pJE/UhPxno9Md6msCbl8dpgmxgLDHgOBfq+8GbFamt4JfM
+	RZRKhX396+Ixx/jEY0FAjCal+ZyP7PlWYWKj1Ac7S8QJT0F9+fs9irso3BH2VqzrgaYWn5VC6UaPD
+	YotUHkZBTurD4NkHiV6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8Isa-0000000HEnH-2Tfz;
-	Fri, 25 Apr 2025 13:14:08 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1u8L1U-000000003D4-23Ha;
+	Fri, 25 Apr 2025 15:31:28 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8Hzj-0000000H66P-2T73;
-	Fri, 25 Apr 2025 12:17:28 +0000
+	id 1u8JOg-0000000HL5e-1oua;
+	Fri, 25 Apr 2025 13:47:18 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3D3DE4A9C0;
-	Fri, 25 Apr 2025 12:17:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A7D8C4CEEB;
-	Fri, 25 Apr 2025 12:17:24 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id DC61A6847B;
+	Fri, 25 Apr 2025 13:46:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C85DC4CEE4;
+	Fri, 25 Apr 2025 13:47:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1745583446;
-	bh=doZ6qDg+DbMAdbR2WmMDGL0y6rqGhwvvHGOPXHeICvg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=hrTQkfhREHEQrTBngdq4FzGBs04WnOfpesHXqkZTIgR5zS4fORwuqnvaT6O5cPQk1
-	 FQ/bAruUnUvTU6+wBMhsEDFibK930AulpcpVNgDoP1X0WYMBGO87/dgoea+WS9+W68
-	 FkmTJocHck5b/A64LFtSk63boY49y1SeNDq0pMzqPT58J3f+1xy0BucuCJDi1XR6l/
-	 NGNUQmrgQwYXcEUgmZKigoP4uwXFghthd84y+0jVPlQmdSmfmmB52EVxEC3yAMlLua
-	 6/i1yjsF1OYsfAaK9zIU8j8KR6K0tl55vKjBBJZ1GKwSMiI8SC3TxzwjvtCGRCJnvO
-	 eiOexV9/w5brw==
-From: Mark Brown <broonie@kernel.org>
-To: linux-sound@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-In-Reply-To: <20250419213448.59647-1-martin.blumenstingl@googlemail.com>
-References: <20250419213448.59647-1-martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH] ASoC: meson: meson-card-utils: use
- of_property_present() for DT parsing
-Message-Id: <174558344482.35587.18106901736438016481.b4-ty@kernel.org>
-Date: Fri, 25 Apr 2025 13:17:24 +0100
+	s=k20201202; t=1745588837;
+	bh=qi5h6vjHGkHHkMx48KdWOPGfCyT72085egpIwqt06EU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QVkHX+kql50+epGydmhjz+95MQSE8WEDlV87c70IY7HI4V1UG99qCiZRm1luxGYeO
+	 BVUaapBHvKfebXlGIwSGgPRO1pnmU00p2MUxCjvBFZEvNQ0Wke+4d9nmwMNwSkqjeK
+	 7DvdYe2JdWwvsenW+3ms5MsvBk4A7gUXIGS614Xh0d3FeRP9g+JidG4w5MUU5wef+B
+	 u7JuJ2bVjV1wS5LpFglBj3eelV/u0rhDOWAQqec5PEBdJELIg64PiO6k90NX4ZRriR
+	 drDucaxBTBnQHYnuTN84bbCm6mX7qLCkKbxUde4DshAfnex+OCWaQYmKoHHZgOyCvw
+	 eF4uPsyzoOzqA==
+Date: Fri, 25 Apr 2025 15:47:10 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Hans Zhang <18255117159@163.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+	heiko@sntech.de, thomas.petazzoni@bootlin.com,
+	manivannan.sadhasivam@linaro.org, yue.wang@amlogic.com,
+	pali@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
+	jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] PCI: Configure root port MPS to hardware maximum
+ during host probing
+Message-ID: <aAuSXhmRiKQabjLO@ryzen>
+References: <20250425095708.32662-1-18255117159@163.com>
+ <20250425095708.32662-2-18255117159@163.com>
+ <aAtikPOYlGeJCsiA@ryzen>
+ <a4963173-dd9a-4341-b7f9-5fdb9485233a@163.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.15-dev-c25d1
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250425_051727_654856_FE4C0BB5 
-X-CRM114-Status: GOOD (  13.62  )
+Content-Disposition: inline
+In-Reply-To: <a4963173-dd9a-4341-b7f9-5fdb9485233a@163.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,55 +74,115 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org, lgirdwood@gmail.com, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 19 Apr 2025 23:34:48 +0200, Martin Blumenstingl wrote:
-> Commit c141ecc3cecd ("of: Warn when of_property_read_bool() is used on
-> non-boolean properties") added a warning when trying to parse a property
-> with a value (boolean properties are defined as: absent = false, present
-> without any value = true). This causes a warning from meson-card-utils.
+Hello Hans,
+
+On Fri, Apr 25, 2025 at 06:56:53PM +0800, Hans Zhang wrote:
 > 
-> meson-card-utils needs to know about the existence of the
-> "audio-routing" and/or "audio-widgets" properties in order to properly
-> parse them. Switch to of_property_present() in order to silence the
-> following warning messages during boot:
->   OF: /sound: Read of boolean property 'audio-routing' with a value.
->   OF: /sound: Read of boolean property 'audio-widgets' with a value.
+> But I discovered a problem:
 > 
-> [...]
+> 0001:90:00.0 PCI bridge: Device 1f6c:0001 (prog-if 00 [Normal decode])
+>          ......
+>          Capabilities: [c0] Express (v2) Root Port (Slot-), MSI 00
+>                  DevCap: MaxPayload 512 bytes, PhantFunc 0
+>                          ExtTag- RBE+
+>                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
+>                          RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
+>                          MaxPayload 512 bytes, MaxReadReq 1024 bytes
+> 
+> 
+> 
+> 			Should the DevCtl MaxPayload be 256B?
+> 
+> But I tested that the file reading and writing were normal. Is the display
+> of 512B here what we expected?
+> 
+> Root Port 0003:30:00.0 has the same problem. May I ask what your opinion is?
+> 
+> 
+> 		......
+> 0001:91:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd
+> NVMe SSD Controller PM9A1/PM9A3/980PRO (prog-if 02 [NVM Express])
+>          ......
+>          Capabilities: [70] Express (v2) Endpoint, MSI 00
+>                  DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s
+> unlimited, L1 unlimited
+>                          ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset+
+> SlotPowerLimit 0W
+>                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
+>                          RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
+> FLReset-
+>                          MaxPayload 256 bytes, MaxReadReq 512 bytes
+> 		......
 
-Applied to
+Here we see that the bridge has a higher DevCtl.MPS than the DevCap.MPS of
+the endpoint.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Let me quote Bjorn from the previous mail thread:
 
-Thanks!
+"""
+  - I don't think it's safe to set MPS higher in all cases.  If we set
+    the Root Port MPS=256, and an Endpoint only supports MPS=128, the
+    Endpoint may do a 256-byte DMA read (assuming its MRRS>=256).  In
+    that case the RP may respond with a 256-byte payload the Endpoint
+    can't handle.
+"""
 
-[1/1] ASoC: meson: meson-card-utils: use of_property_present() for DT parsing
-      commit: 171eb6f71e9e3ba6a7410a1d93f3ac213f39dae2
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+I think the problem with this patch is that pcie_write_mps() call in
+pci_host_probe() is done after the pci_scan_root_bus_bridge() call in
+pci_host_probe().
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+So pci_configure_mps() (called by pci_configure_device()),
+which does the limiting of the bus to what the endpoint supports,
+is actually called before the pcie_write_mps() call added by this patch
+(which increases DevCtl.MPS for the bridge).
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
 
-Thanks,
-Mark
+So I think the code added in this patch needs to be executed before
+pci_configure_device() is done for the EP.
 
+It appears that pci_configure_device() is called for each device
+during scan, first for the bridges and then for the EPs.
+
+So I think something like this should work (totally untested):
+
+--- a/drivers/pci/probe.c
++++ b/drivers/pci/probe.c
+@@ -45,6 +45,8 @@ struct pci_domain_busn_res {
+        int domain_nr;
+ };
+ 
++static void pcie_write_mps(struct pci_dev *dev, int mps);
++
+ static struct resource *get_pci_domain_busn_res(int domain_nr)
+ {
+        struct pci_domain_busn_res *r;
+@@ -2178,6 +2180,11 @@ static void pci_configure_mps(struct pci_dev *dev)
+                return;
+        }
+ 
++       if (pci_pcie_type(dev) == PCI_EXP_TYPE_ROOT_PORT &&
++           pcie_bus_config != PCIE_BUS_TUNE_OFF) {
++               pcie_write_mps(dev, 128 << dev->pcie_mpss);
++       }
++
+        if (!bridge || !pci_is_pcie(bridge))
+                return;
+
+
+
+But we would probably need to move some code to avoid the
+forward declaration.
+
+
+Kind regards,
+Niklas
 
 _______________________________________________
 linux-amlogic mailing list
