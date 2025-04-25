@@ -4,119 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 442C8C369C2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Apr 2025 13:11:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19B3FC369D1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Apr 2025 13:14:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gZTgJxHZOsvl16QNAhh5dBf/OdKvwsuAbGAZvfba6+Y=; b=yZOLuNjK2vdZKmnJZHxL7hsggK
-	WtzCUTO7G7jIyxnPMmUZdaCLofQnZRXUHuUlWsk1B64C18mw8sACD5k4/E8fxdAxIxUlviYVZmr2b
-	gwz3ijbcN3r2uY/gapROTEee967KIyYuyMypFLYxPlIRTVooTYlweM902pMejjFK8AJUtlzArcqi/
-	qHf3aOI+rj+D1hLn9pdoew4g8pcVzL/atTqjDM1MpPhh0/8hlPRcPkYX5eCi62+MrazvA0njLiSkA
-	IAHsz2jdRQCli48J4CYD5jNOF6Xlb5homAw2BY4kFHdyLVoXOm0FfQI5JvuKOL/oY5Laivpo6rUDc
-	GfAYf0+w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Qt79fD4kHWaoeUnXY0/JwZAy/52/xVFDZcBcuIRi7lE=; b=GSIHG0kOei+jVN
+	upIioNcdBHl8NPs8Iq1/AgqaV0WRoHsxp/aRnzPZOQhDzZepInvWDRHn2MJ5hp8TlYOyWCEAcddc+
+	y4eTDOaXvberq5CwuOvRWFNulnxCnIxXwPGUKcq/Q8vS5zPgIL8R2qcGso9quey9+MeM5LnA2J2/o
+	ENYTTttBmMQ3qswG2bSTEIwdIuJmsmQvqnhPALnc6u5KutzLHguLiLDg4clb58mf3fQC8zjX43n4u
+	nLjA0ZtacyVeu0p/T7Ov/IvFNERLCeyupTqTX/EoWBW8mQCePxTEkJ8FFpVKfCBiffCoRJkOemn42
+	mRpHq4zUTJjZQiJnQ3tQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8IqF-0000000HENB-1ema;
-	Fri, 25 Apr 2025 13:11:43 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1u8Isa-0000000HEnH-2Tfz;
+	Fri, 25 Apr 2025 13:14:08 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8Hid-0000000H2qw-0Pki
-	for linux-amlogic@lists.infradead.org;
-	Fri, 25 Apr 2025 11:59:48 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-43cf628cb14so24475525e9.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 25 Apr 2025 04:59:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1745582385; x=1746187185; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1BMXqgQl7jfC6H77AGknLL1fmdPdkIRiy2JGqphh2TI=;
-        b=w6bHL1CMyn0EVVsCmZdJvS+q1PphbeqsFAMXIs2IMS6CJgXDfZ8iOa6Ui33BHOGcjL
-         ywaiDnOlDb+o9AiTbj0B0x82wOnMMT36a7kRc+VmO0ZZR38esp3sj/LdT2LFMLHz0xre
-         UOz9erjjejzxkwMumj/HiIq3U9O8R6jLe0j7JItrmFahjmpwoJCe7jO4Y/H2OZ/H0BKl
-         WdOxgD5Sm94UJrGXZR0ZQ30ILxt0N8NKELFNGJAeI+T5CrlgX40SUVaMZqTTYrljOjFD
-         so7T1tPtcxnj/JTlw/BmXdRBx1noACt85Otii5wjlYB36ZxJ/7qKcgjdsfQRdSQD8RXf
-         Wn/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745582385; x=1746187185;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=1BMXqgQl7jfC6H77AGknLL1fmdPdkIRiy2JGqphh2TI=;
-        b=dVEwe0I3T7t8MedPBeBKQ31ma+ZWevQhszBeUXdjjHjL5eE4IpynzXc3VACXo63XyD
-         QofxMN/udApn+5GmQtusH7A1++dYMT0JduAVZBN8/LSGSukX1Tcy83xVf/kdnrqUZJyp
-         VSBFsaG3liLzJlUtwaJ70logfWr7D2JKKVRNNC7xmnifqC9IdBEcevk2pVN+XAOdmTYs
-         F0lLj2fKs4twAHZmD/N+rtARZQXpMosCJ3bOANUr04rwR+phv3UWBQQneONWo/DilZ8k
-         2vtlhFL/1bauBIH424gVNAqGE2urPXsGbHKuPVAt+FP8vGoirpBqqQuyaALFDg7EWAVt
-         HrAg==
-X-Forwarded-Encrypted: i=1; AJvYcCUteoYr9Q1nxBUfizWuEAf3U0+3EzzRS0ustHNZ0FoKPTj7BglkXgLK1YWQuzQ+UCZqnjvcLfTWHQcQV5sj@lists.infradead.org
-X-Gm-Message-State: AOJu0YxG+Pp9dyuXyvZKMinhq6R91WX4ZxvTqaxChK62gvDAAhNxwwZl
-	Pd+0Jrw/d3pxpD2oKM9OB93dPraG7iz5AJM/bkzEBOGDXmkx/J7LoQ8T09dh/2k=
-X-Gm-Gg: ASbGncsiybnOaZngLcp4pvgB/QudXfKJXvvUX9M6jrTEYXp1b5EYtiANTndG6tpDLDR
-	WJaq3aoGWnwx8UVSASDa7lloHQUQbE2NDu7hjbwj1tJ1ldo6aySDRX5wfURG0fTZjspsEWPsPCq
-	UYPB5tiedhCemcGeFlzAJOBlYk4XFrqFooCBRtw87zxydQQoKmAgK3ls+sG5xm48pgmmmwhMeJ+
-	x8qLPA45U8TnYgx/3Yxw2YNV32se1lsqBmXjkkdI25XVuxBZ2aXAcFmLS80Jl/08qsx7jxS/LNa
-	aGgnF7WjTj0iAsjVvVnKsISn4M5WhOKlaBguY080v9DwCVKZn7xnhnUEPBp0fEkWoj0MXPVXYNP
-	h6bNjI/HhZcWtNC0=
-X-Google-Smtp-Source: AGHT+IFUziGPo9gQMFmCnZNYEF+uivB8dimTgfWb3U4m2/eIphhsJOITXlVU1qUIZpOSQaR9a2Vnog==
-X-Received: by 2002:a05:600c:c88:b0:439:5f04:4f8d with SMTP id 5b1f17b1804b1-440a6693e9fmr16619325e9.12.1745582384889;
-        Fri, 25 Apr 2025 04:59:44 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:d16:61ed:6880:1168? ([2a01:e0a:3d9:2080:d16:61ed:6880:1168])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-440a530a6e9sm22682585e9.16.2025.04.25.04.59.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Apr 2025 04:59:44 -0700 (PDT)
-Message-ID: <e6752451-4492-4ae2-9bad-3865c4945dbe@linaro.org>
-Date: Fri, 25 Apr 2025 13:59:43 +0200
+	id 1u8Hzj-0000000H66P-2T73;
+	Fri, 25 Apr 2025 12:17:28 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 3D3DE4A9C0;
+	Fri, 25 Apr 2025 12:17:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A7D8C4CEEB;
+	Fri, 25 Apr 2025 12:17:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745583446;
+	bh=doZ6qDg+DbMAdbR2WmMDGL0y6rqGhwvvHGOPXHeICvg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=hrTQkfhREHEQrTBngdq4FzGBs04WnOfpesHXqkZTIgR5zS4fORwuqnvaT6O5cPQk1
+	 FQ/bAruUnUvTU6+wBMhsEDFibK930AulpcpVNgDoP1X0WYMBGO87/dgoea+WS9+W68
+	 FkmTJocHck5b/A64LFtSk63boY49y1SeNDq0pMzqPT58J3f+1xy0BucuCJDi1XR6l/
+	 NGNUQmrgQwYXcEUgmZKigoP4uwXFghthd84y+0jVPlQmdSmfmmB52EVxEC3yAMlLua
+	 6/i1yjsF1OYsfAaK9zIU8j8KR6K0tl55vKjBBJZ1GKwSMiI8SC3TxzwjvtCGRCJnvO
+	 eiOexV9/w5brw==
+From: Mark Brown <broonie@kernel.org>
+To: linux-sound@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+In-Reply-To: <20250419213448.59647-1-martin.blumenstingl@googlemail.com>
+References: <20250419213448.59647-1-martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH] ASoC: meson: meson-card-utils: use
+ of_property_present() for DT parsing
+Message-Id: <174558344482.35587.18106901736438016481.b4-ty@kernel.org>
+Date: Fri, 25 Apr 2025 13:17:24 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/2] PCI: Remove redundant MPS configuration
-To: Hans Zhang <18255117159@163.com>, lpieralisi@kernel.org, kw@linux.com,
- bhelgaas@google.com, heiko@sntech.de, thomas.petazzoni@bootlin.com,
- manivannan.sadhasivam@linaro.org, yue.wang@Amlogic.com
-Cc: pali@kernel.org, robh@kernel.org, jingoohan1@gmail.com,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20250425095708.32662-1-18255117159@163.com>
- <20250425095708.32662-3-18255117159@163.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250425095708.32662-3-18255117159@163.com>
+X-Mailer: b4 0.15-dev-c25d1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250425_045947_154840_AAB7942D 
-X-CRM114-Status: GOOD (  15.17  )
+X-CRM114-CacheID: sfid-20250425_051727_654856_FE4C0BB5 
+X-CRM114-Status: GOOD (  13.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,86 +66,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: neil.armstrong@linaro.org
+Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org, lgirdwood@gmail.com, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/04/2025 11:57, Hans Zhang wrote:
-> With the PCI core now centrally configuring root port MPS to
-> hardware-supported maximums (via 128 << pcie_mpss) during host probing,
-> platform-specific MPS adjustments are redundant. This patch removes the
-> custom the configuration of the max payload logic to align with the
-> standardized initialization flow.
+On Sat, 19 Apr 2025 23:34:48 +0200, Martin Blumenstingl wrote:
+> Commit c141ecc3cecd ("of: Warn when of_property_read_bool() is used on
+> non-boolean properties") added a warning when trying to parse a property
+> with a value (boolean properties are defined as: absent = false, present
+> without any value = true). This causes a warning from meson-card-utils.
 > 
-> By eliminating redundant code, this change prevents conflicts with global
-> PCIe hierarchy tuning policies and reduces maintenance overhead. The Meson
-> driver now fully relies on the core PCI framework for MPS configuration,
-> ensuring consistency across the PCIe topology while preserving
-> hardware-specific MRRS handling.
+> meson-card-utils needs to know about the existence of the
+> "audio-routing" and/or "audio-widgets" properties in order to properly
+> parse them. Switch to of_property_present() in order to silence the
+> following warning messages during boot:
+>   OF: /sound: Read of boolean property 'audio-routing' with a value.
+>   OF: /sound: Read of boolean property 'audio-widgets' with a value.
 > 
-> Signed-off-by: Hans Zhang <18255117159@163.com>
-> ---
->   drivers/pci/controller/dwc/pci-meson.c | 17 -----------------
->   drivers/pci/controller/pci-aardvark.c  |  2 --
->   2 files changed, 19 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> index db9482a113e9..126f38ed453d 100644
-> --- a/drivers/pci/controller/dwc/pci-meson.c
-> +++ b/drivers/pci/controller/dwc/pci-meson.c
-> @@ -261,22 +261,6 @@ static int meson_size_to_payload(struct meson_pcie *mp, int size)
->   	return fls(size) - 8;
->   }
->   
-> -static void meson_set_max_payload(struct meson_pcie *mp, int size)
-> -{
-> -	struct dw_pcie *pci = &mp->pci;
-> -	u32 val;
-> -	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> -	int max_payload_size = meson_size_to_payload(mp, size);
-> -
-> -	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-> -	val &= ~PCI_EXP_DEVCTL_PAYLOAD;
-> -	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
-> -
-> -	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-> -	val |= PCIE_CAP_MAX_PAYLOAD_SIZE(max_payload_size);
-> -	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
-> -}
-> -
->   static void meson_set_max_rd_req_size(struct meson_pcie *mp, int size)
->   {
->   	struct dw_pcie *pci = &mp->pci;
-> @@ -381,7 +365,6 @@ static int meson_pcie_host_init(struct dw_pcie_rp *pp)
->   
->   	pp->bridge->ops = &meson_pci_ops;
->   
-> -	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
->   	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
+> [...]
 
-Seems you can also remove meson_set_max_rd_req_size() since it's
-done by pcie_write_mrrs()
+Applied to
 
-Neil
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
->   
->   	return 0;
-> diff --git a/drivers/pci/controller/pci-aardvark.c b/drivers/pci/controller/pci-aardvark.c
-> index a29796cce420..d8852892994a 100644
-> --- a/drivers/pci/controller/pci-aardvark.c
-> +++ b/drivers/pci/controller/pci-aardvark.c
-> @@ -549,9 +549,7 @@ static void advk_pcie_setup_hw(struct advk_pcie *pcie)
->   	reg = advk_readl(pcie, PCIE_CORE_PCIEXP_CAP + PCI_EXP_DEVCTL);
->   	reg &= ~PCI_EXP_DEVCTL_RELAX_EN;
->   	reg &= ~PCI_EXP_DEVCTL_NOSNOOP_EN;
-> -	reg &= ~PCI_EXP_DEVCTL_PAYLOAD;
->   	reg &= ~PCI_EXP_DEVCTL_READRQ;
-> -	reg |= PCI_EXP_DEVCTL_PAYLOAD_512B;
->   	reg |= PCI_EXP_DEVCTL_READRQ_512B;
->   	advk_writel(pcie, reg, PCIE_CORE_PCIEXP_CAP + PCI_EXP_DEVCTL);
->   
+Thanks!
+
+[1/1] ASoC: meson: meson-card-utils: use of_property_present() for DT parsing
+      commit: 171eb6f71e9e3ba6a7410a1d93f3ac213f39dae2
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
 _______________________________________________
