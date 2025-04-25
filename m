@@ -4,67 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F989C369C2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Apr 2025 12:22:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 442C8C369C2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Apr 2025 13:11:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rgM3R0MU6vEh0Bng/e/iwO9/8Wq8Rs9DJaThN3JVs+0=; b=Fp9I7e6qiwXbCC
-	eWCTSt2bdcGr9J1M9NxH3okzYzblEiJGLZ1IuhY5H4Zo8rjCH3mEhQ8VxwuZT+pjOPYYXd+bNzBkR
-	MM+XiCHWOWHX/85tkVIYMeDLA1ChSPOerHox/+S/OYj+LQn+R0cstAJQ1oXxnbOiGp8SVRZf5nVyP
-	dyRRZSSp3J+MLyexprSmbv3BcyyBaZDEyv3Gguzyk2k3o4tbA+P9tKkBr1EwPNlMWXAhlbextYkmS
-	OOR3+FSv7ZeGfiQCvgpiTD2SA8l5OgbcQGXhpGXFTF5GQdIUKJYvXankAuAeZXUTUqz5qtFQztJwu
-	ENaq2t7gU1uilzrGMjcw==;
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=gZTgJxHZOsvl16QNAhh5dBf/OdKvwsuAbGAZvfba6+Y=; b=yZOLuNjK2vdZKmnJZHxL7hsggK
+	WtzCUTO7G7jIyxnPMmUZdaCLofQnZRXUHuUlWsk1B64C18mw8sACD5k4/E8fxdAxIxUlviYVZmr2b
+	gwz3ijbcN3r2uY/gapROTEee967KIyYuyMypFLYxPlIRTVooTYlweM902pMejjFK8AJUtlzArcqi/
+	qHf3aOI+rj+D1hLn9pdoew4g8pcVzL/atTqjDM1MpPhh0/8hlPRcPkYX5eCi62+MrazvA0njLiSkA
+	IAHsz2jdRQCli48J4CYD5jNOF6Xlb5homAw2BY4kFHdyLVoXOm0FfQI5JvuKOL/oY5Laivpo6rUDc
+	GfAYf0+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8I4b-0000000H72V-0Ak9;
-	Fri, 25 Apr 2025 12:22:29 +0000
-Received: from m16.mail.163.com ([117.135.210.2])
-	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8GkL-0000000GqGa-413o;
-	Fri, 25 Apr 2025 10:57:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:From:
-	Content-Type; bh=nli07KgLUrDYMWH1Lc6yMKqrWlicadkP3LHn0B363Ng=;
-	b=QK67PW4FjfSzrmfyXNv5GmvlkVPoZEf2davAV77hrwJvc+qVVB1LzVsDPWl8vz
-	p6/EwY+XU+RSGhim+vaB3ppkMRytTNQrWT/BipxTXBhDRmekRXwrvClHv5dDlPaU
-	SI21SaaGPJ2Ule5IuvpoUNSfCKl4KLveY51UECCuqwoL0=
-Received: from [192.168.142.52] (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wCH5yx1agto6+qPCQ--.28259S2;
-	Fri, 25 Apr 2025 18:56:55 +0800 (CST)
-Message-ID: <a4963173-dd9a-4341-b7f9-5fdb9485233a@163.com>
-Date: Fri, 25 Apr 2025 18:56:53 +0800
+	id 1u8IqF-0000000HENB-1ema;
+	Fri, 25 Apr 2025 13:11:43 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1u8Hid-0000000H2qw-0Pki
+	for linux-amlogic@lists.infradead.org;
+	Fri, 25 Apr 2025 11:59:48 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-43cf628cb14so24475525e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 25 Apr 2025 04:59:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745582385; x=1746187185; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1BMXqgQl7jfC6H77AGknLL1fmdPdkIRiy2JGqphh2TI=;
+        b=w6bHL1CMyn0EVVsCmZdJvS+q1PphbeqsFAMXIs2IMS6CJgXDfZ8iOa6Ui33BHOGcjL
+         ywaiDnOlDb+o9AiTbj0B0x82wOnMMT36a7kRc+VmO0ZZR38esp3sj/LdT2LFMLHz0xre
+         UOz9erjjejzxkwMumj/HiIq3U9O8R6jLe0j7JItrmFahjmpwoJCe7jO4Y/H2OZ/H0BKl
+         WdOxgD5Sm94UJrGXZR0ZQ30ILxt0N8NKELFNGJAeI+T5CrlgX40SUVaMZqTTYrljOjFD
+         so7T1tPtcxnj/JTlw/BmXdRBx1noACt85Otii5wjlYB36ZxJ/7qKcgjdsfQRdSQD8RXf
+         Wn/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745582385; x=1746187185;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=1BMXqgQl7jfC6H77AGknLL1fmdPdkIRiy2JGqphh2TI=;
+        b=dVEwe0I3T7t8MedPBeBKQ31ma+ZWevQhszBeUXdjjHjL5eE4IpynzXc3VACXo63XyD
+         QofxMN/udApn+5GmQtusH7A1++dYMT0JduAVZBN8/LSGSukX1Tcy83xVf/kdnrqUZJyp
+         VSBFsaG3liLzJlUtwaJ70logfWr7D2JKKVRNNC7xmnifqC9IdBEcevk2pVN+XAOdmTYs
+         F0lLj2fKs4twAHZmD/N+rtARZQXpMosCJ3bOANUr04rwR+phv3UWBQQneONWo/DilZ8k
+         2vtlhFL/1bauBIH424gVNAqGE2urPXsGbHKuPVAt+FP8vGoirpBqqQuyaALFDg7EWAVt
+         HrAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUteoYr9Q1nxBUfizWuEAf3U0+3EzzRS0ustHNZ0FoKPTj7BglkXgLK1YWQuzQ+UCZqnjvcLfTWHQcQV5sj@lists.infradead.org
+X-Gm-Message-State: AOJu0YxG+Pp9dyuXyvZKMinhq6R91WX4ZxvTqaxChK62gvDAAhNxwwZl
+	Pd+0Jrw/d3pxpD2oKM9OB93dPraG7iz5AJM/bkzEBOGDXmkx/J7LoQ8T09dh/2k=
+X-Gm-Gg: ASbGncsiybnOaZngLcp4pvgB/QudXfKJXvvUX9M6jrTEYXp1b5EYtiANTndG6tpDLDR
+	WJaq3aoGWnwx8UVSASDa7lloHQUQbE2NDu7hjbwj1tJ1ldo6aySDRX5wfURG0fTZjspsEWPsPCq
+	UYPB5tiedhCemcGeFlzAJOBlYk4XFrqFooCBRtw87zxydQQoKmAgK3ls+sG5xm48pgmmmwhMeJ+
+	x8qLPA45U8TnYgx/3Yxw2YNV32se1lsqBmXjkkdI25XVuxBZ2aXAcFmLS80Jl/08qsx7jxS/LNa
+	aGgnF7WjTj0iAsjVvVnKsISn4M5WhOKlaBguY080v9DwCVKZn7xnhnUEPBp0fEkWoj0MXPVXYNP
+	h6bNjI/HhZcWtNC0=
+X-Google-Smtp-Source: AGHT+IFUziGPo9gQMFmCnZNYEF+uivB8dimTgfWb3U4m2/eIphhsJOITXlVU1qUIZpOSQaR9a2Vnog==
+X-Received: by 2002:a05:600c:c88:b0:439:5f04:4f8d with SMTP id 5b1f17b1804b1-440a6693e9fmr16619325e9.12.1745582384889;
+        Fri, 25 Apr 2025 04:59:44 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:d16:61ed:6880:1168? ([2a01:e0a:3d9:2080:d16:61ed:6880:1168])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-440a530a6e9sm22682585e9.16.2025.04.25.04.59.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Apr 2025 04:59:44 -0700 (PDT)
+Message-ID: <e6752451-4492-4ae2-9bad-3865c4945dbe@linaro.org>
+Date: Fri, 25 Apr 2025 13:59:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] PCI: Configure root port MPS to hardware maximum
- during host probing
-To: Niklas Cassel <cassel@kernel.org>
-Cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
- heiko@sntech.de, thomas.petazzoni@bootlin.com,
- manivannan.sadhasivam@linaro.org, yue.wang@amlogic.com, pali@kernel.org,
- neil.armstrong@linaro.org, robh@kernel.org, jingoohan1@gmail.com,
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 2/2] PCI: Remove redundant MPS configuration
+To: Hans Zhang <18255117159@163.com>, lpieralisi@kernel.org, kw@linux.com,
+ bhelgaas@google.com, heiko@sntech.de, thomas.petazzoni@bootlin.com,
+ manivannan.sadhasivam@linaro.org, yue.wang@Amlogic.com
+Cc: pali@kernel.org, robh@kernel.org, jingoohan1@gmail.com,
  khilman@baylibre.com, jbrunet@baylibre.com,
  martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org
 References: <20250425095708.32662-1-18255117159@163.com>
- <20250425095708.32662-2-18255117159@163.com> <aAtikPOYlGeJCsiA@ryzen>
-Content-Language: en-US
-From: Hans Zhang <18255117159@163.com>
-In-Reply-To: <aAtikPOYlGeJCsiA@ryzen>
-X-CM-TRANSID: _____wCH5yx1agto6+qPCQ--.28259S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3WFy8Jw4fXr47ury3ZFyrZwb_yoW3Xw17pF
-	W2qF42yF4kJF43Ka97tF18uFWjq3ZY9FW3JFsxJr1qv3Z3u3Z5C3sFkFyFq3y7Jr9Yvr1U
-	taykJ340vFs8JaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jzmhwUUUUU=
-X-Originating-IP: [222.71.101.198]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbBDws6o2gLX6dyxAABsx
+ <20250425095708.32662-3-18255117159@163.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250425095708.32662-3-18255117159@163.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250425_035730_362218_D86AC883 
-X-CRM114-Status: GOOD (  20.56  )
+X-CRM114-CacheID: sfid-20250425_045947_154840_AAB7942D 
+X-CRM114-Status: GOOD (  15.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,211 +128,86 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: neil.armstrong@linaro.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 2025/4/25 18:23, Niklas Cassel wrote:
-> On Fri, Apr 25, 2025 at 05:57:07PM +0800, Hans Zhang wrote:
->> Current PCIe initialization logic may leave root ports operating with
->> non-optimal Maximum Payload Size (MPS) settings. While downstream device
->> configuration is handled during bus enumeration, root port MPS values
->> inherited from firmware or hardware defaults might not utilize the full
->> capabilities supported by the controller hardware. This can result in
->> suboptimal data transfer efficiency across the PCIe hierarchy.
->>
->> During host controller probing phase, when PCIe bus tuning is enabled,
->> the implementation now configures root port MPS settings to their
->> hardware-supported maximum values. By iterating through bridge devices
->> under the root bus and identifying PCIe root ports, each port's MPS is set
->> to 128 << pcie_mpss to match the device's maximum supported payload size.
->> The Max Read Request Size (MRRS) is subsequently adjusted through existing
->> companion logic to maintain compatibility with PCIe specifications.
->>
->> Explicit initialization at host probing stage ensures consistent PCIe
->> topology configuration before downstream devices perform their own MPS
->> negotiations. This proactive approach addresses platform-specific
->> requirements where controller drivers depend on properly initialized root
->> port settings, while maintaining backward compatibility through
->> PCIE_BUS_TUNE_OFF conditional checks. Hardware capabilities are fully
->> utilized without altering existing device negotiation behaviors.
->>
->> Signed-off-by: Hans Zhang <18255117159@163.com>
+On 25/04/2025 11:57, Hans Zhang wrote:
+> With the PCI core now centrally configuring root port MPS to
+> hardware-supported maximums (via 128 << pcie_mpss) during host probing,
+> platform-specific MPS adjustments are redundant. This patch removes the
+> custom the configuration of the max payload logic to align with the
+> standardized initialization flow.
 > 
-> Perhaps Mani deserves a Suggested-by tag?
+> By eliminating redundant code, this change prevents conflicts with global
+> PCIe hierarchy tuning policies and reduces maintenance overhead. The Meson
+> driver now fully relies on the core PCI framework for MPS configuration,
+> ensuring consistency across the PCIe topology while preserving
+> hardware-specific MRRS handling.
 > 
-
-Dear Niklas,
-
-Thank you very much for your reply. Ok. Sorry, I missed it. I 'm going 
-to add Suggested-by tag.
-
+> Signed-off-by: Hans Zhang <18255117159@163.com>
+> ---
+>   drivers/pci/controller/dwc/pci-meson.c | 17 -----------------
+>   drivers/pci/controller/pci-aardvark.c  |  2 --
+>   2 files changed, 19 deletions(-)
 > 
->> ---
->>   drivers/pci/probe.c | 12 ++++++++++++
->>   1 file changed, 12 insertions(+)
->>
->> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
->> index 364fa2a514f8..3973c593fdcf 100644
->> --- a/drivers/pci/probe.c
->> +++ b/drivers/pci/probe.c
->> @@ -3206,6 +3206,7 @@ EXPORT_SYMBOL_GPL(pci_create_root_bus);
->>   int pci_host_probe(struct pci_host_bridge *bridge)
->>   {
->>   	struct pci_bus *bus, *child;
->> +	struct pci_dev *dev;
->>   	int ret;
->>   
->>   	pci_lock_rescan_remove();
->> @@ -3228,6 +3229,17 @@ int pci_host_probe(struct pci_host_bridge *bridge)
->>   	 */
->>   	pci_assign_unassigned_root_bus_resources(bus);
->>   
->> +	if (pcie_bus_config != PCIE_BUS_TUNE_OFF) {
->> +		/* Configure root ports MPS to be MPSS by default */
->> +		for_each_pci_bridge(dev, bus) {
->> +			if (pci_pcie_type(dev) != PCI_EXP_TYPE_ROOT_PORT)
->> +				continue;
->> +
->> +			pcie_write_mps(dev, 128 << dev->pcie_mpss);
->> +			pcie_write_mrrs(dev);
-> 
-> The comment says configure MPS, but the code also calls pcie_write_mrrs().
-> 
-> Should we update the comment or should we remove the call to pcie_write_mrrs()?
-> 
+> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+> index db9482a113e9..126f38ed453d 100644
+> --- a/drivers/pci/controller/dwc/pci-meson.c
+> +++ b/drivers/pci/controller/dwc/pci-meson.c
+> @@ -261,22 +261,6 @@ static int meson_size_to_payload(struct meson_pcie *mp, int size)
+>   	return fls(size) - 8;
+>   }
+>   
+> -static void meson_set_max_payload(struct meson_pcie *mp, int size)
+> -{
+> -	struct dw_pcie *pci = &mp->pci;
+> -	u32 val;
+> -	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> -	int max_payload_size = meson_size_to_payload(mp, size);
+> -
+> -	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
+> -	val &= ~PCI_EXP_DEVCTL_PAYLOAD;
+> -	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+> -
+> -	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
+> -	val |= PCIE_CAP_MAX_PAYLOAD_SIZE(max_payload_size);
+> -	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+> -}
+> -
+>   static void meson_set_max_rd_req_size(struct meson_pcie *mp, int size)
+>   {
+>   	struct dw_pcie *pci = &mp->pci;
+> @@ -381,7 +365,6 @@ static int meson_pcie_host_init(struct dw_pcie_rp *pp)
+>   
+>   	pp->bridge->ops = &meson_pci_ops;
+>   
+> -	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
+>   	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
 
-I have tested and found that the result is the same whether 
-pcie_write_mrrs() is called or not.
+Seems you can also remove meson_set_max_rd_req_size() since it's
+done by pcie_write_mrrs()
 
-> Note that even when calling pcie_write_mrrs(), it will not update MRRS for the
-> common case (pcie_bus_config == PCIE_BUS_DEFAULT).
+Neil
 
-But I discovered a problem:
-
-0001:90:00.0 PCI bridge: Device 1f6c:0001 (prog-if 00 [Normal decode])
-          ......
-          Capabilities: [c0] Express (v2) Root Port (Slot-), MSI 00
-                  DevCap: MaxPayload 512 bytes, PhantFunc 0
-                          ExtTag- RBE+
-                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
-                          RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
-                          MaxPayload 512 bytes, MaxReadReq 1024 bytes
-
-
-
-			Should the DevCtl MaxPayload be 256B?
-
-But I tested that the file reading and writing were normal. Is the 
-display of 512B here what we expected?
-
-Root Port 0003:30:00.0 has the same problem. May I ask what your opinion is?
-
-
-		......
-0001:91:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd
-NVMe SSD Controller PM9A1/PM9A3/980PRO (prog-if 02 [NVM Express])
-          ......
-          Capabilities: [70] Express (v2) Endpoint, MSI 00
-                  DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s
-unlimited, L1 unlimited
-                          ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset+
-SlotPowerLimit 0W
-                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
-                          RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
-FLReset-
-                          MaxPayload 256 bytes, MaxReadReq 512 bytes
-		......
-
-
-
-
-
-Several PCIe ports that I enabled.
-
-root@cix-localhost:~# cat /proc/version
-Linux version 6.15.0-rc2-00015-gced1536aaf04-dirty (hans@hans) ......
-root@cix-localhost:~# lspci
-0000:c0:00.0 PCI bridge: Device 1f6c:0001
-0000:c1:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd
-NVMe SSD Controller S4LV008[Pascal]
-0001:90:00.0 PCI bridge: Device 1f6c:0001
-0001:91:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd
-NVMe SSD Controller PM9A1/PM9A3/980PRO
-0003:30:00.0 PCI bridge: Device 1f6c:0001
-0003:31:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd.
-RTL8125 2.5GbE Controller (rev 05)root@cix-localhost:~# lspci -vvv
-0000:c0:00.0 PCI bridge: Device 1f6c:0001 (prog-if 00 [Normal decode])
-          ......
-          Capabilities: [c0] Express (v2) Root Port (Slot-), MSI 00
-                  DevCap: MaxPayload 512 bytes, PhantFunc 0
-                          ExtTag+ RBE+
-                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
-                          RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
-                          MaxPayload 512 bytes, MaxReadReq 1024 bytes
-		......
-0000:c1:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd
-NVMe SSD Controller S4LV008[Pascal] (prog-if 02 [NVM Express])
-          ......
-          Capabilities: [70] Express (v2) Endpoint, MSI 00
-                  DevCap: MaxPayload 512 bytes, PhantFunc 0, Latency L0s
-unlimited, L1 unlimited
-                          ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset+
-SlotPowerLimit 0W
-                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
-                          RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
-FLReset-
-                          MaxPayload 512 bytes, MaxReadReq 512 bytes
-		......
-0001:90:00.0 PCI bridge: Device 1f6c:0001 (prog-if 00 [Normal decode])
-          ......
-          Capabilities: [c0] Express (v2) Root Port (Slot-), MSI 00
-                  DevCap: MaxPayload 512 bytes, PhantFunc 0
-                          ExtTag- RBE+
-                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
-                          RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
-                          MaxPayload 512 bytes, MaxReadReq 1024 bytes
-		......
-0001:91:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd
-NVMe SSD Controller PM9A1/PM9A3/980PRO (prog-if 02 [NVM Express])
-          ......
-          Capabilities: [70] Express (v2) Endpoint, MSI 00
-                  DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s
-unlimited, L1 unlimited
-                          ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset+
-SlotPowerLimit 0W
-                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
-                          RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
-FLReset-
-                          MaxPayload 256 bytes, MaxReadReq 512 bytes
-		......
-0003:30:00.0 PCI bridge: Device 1f6c:0001 (prog-if 00 [Normal decode])
-          ......
-          Capabilities: [c0] Express (v2) Root Port (Slot-), MSI 00
-                  DevCap: MaxPayload 512 bytes, PhantFunc 0
-                          ExtTag- RBE+
-                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
-                          RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
-                          MaxPayload 512 bytes, MaxReadReq 1024 bytes
-		......
-0003:31:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd.
-RTL8125 2.5GbE Controller (rev 05)
-          ......
-          Capabilities: [70] Express (v2) Endpoint, MSI 01
-                  DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s
-<512ns, L1 <64us
-                          ExtTag- AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
-SlotPowerLimit 0W
-                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
-                          RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop-
-                          MaxPayload 256 bytes, MaxReadReq 4096 bytes
-          ......
-
-Best regards,
-Hans
+>   
+>   	return 0;
+> diff --git a/drivers/pci/controller/pci-aardvark.c b/drivers/pci/controller/pci-aardvark.c
+> index a29796cce420..d8852892994a 100644
+> --- a/drivers/pci/controller/pci-aardvark.c
+> +++ b/drivers/pci/controller/pci-aardvark.c
+> @@ -549,9 +549,7 @@ static void advk_pcie_setup_hw(struct advk_pcie *pcie)
+>   	reg = advk_readl(pcie, PCIE_CORE_PCIEXP_CAP + PCI_EXP_DEVCTL);
+>   	reg &= ~PCI_EXP_DEVCTL_RELAX_EN;
+>   	reg &= ~PCI_EXP_DEVCTL_NOSNOOP_EN;
+> -	reg &= ~PCI_EXP_DEVCTL_PAYLOAD;
+>   	reg &= ~PCI_EXP_DEVCTL_READRQ;
+> -	reg |= PCI_EXP_DEVCTL_PAYLOAD_512B;
+>   	reg |= PCI_EXP_DEVCTL_READRQ_512B;
+>   	advk_writel(pcie, reg, PCIE_CORE_PCIEXP_CAP + PCI_EXP_DEVCTL);
+>   
 
 
 _______________________________________________
