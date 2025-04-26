@@ -4,69 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0939AC369CB
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Apr 2025 16:37:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FA56C369D3
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Apr 2025 23:07:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xCk3j+AA1jDQPRfELpnZpZdfE7e5x4b8b7xlNSxneHQ=; b=2IXIfcCaYc3poU
-	vcxpy6nRCzmqZj0CT1pGXb9Y/kqPvfD3lkpXLGw+38tBYB+vKJfSxySNLe1fXpr529Z8rnmCwlbkj
-	3j9vsvDAqAEP9+u3tfqYsUPuIAZPRbJvX3DJamaPwEy1yQVMre3pEHfeDyjvHCoiDj8/210xzDPyo
-	/IPRL0auP2X2rSurR3WM5Ga2aL0dTGCVNTk3wZDNhz/sYJ8l+5dveCdLiu21BnGueE2MciTFbe8No
-	INeFSVrwTSAYieaviUqTCgDqzhYbcdXarlkiehGlG7GGofglPSuii6sDBnZEiwGvgkDPt0xF39V02
-	Enb7iUOezkVc3q0cJ5Yw==;
+	List-Owner; bh=2ZmZbnjNPeRBxmfDnvE+XL00diG4OnggJAF5tJrQ0PU=; b=WRAB0AGahgr7bZ
+	cr2yGYoWlfU699XhggST1WF8m8jeCGle5UrUQF7VEuVk0aN/wAsgQph8N91mVeNHtfJ2YVx3760F3
+	hFedidIeLyVKbLu28J4cU584D+lUC37TBZ0LfZm2/U6V0Bpr9CAKEjuUlohsYp/r7qaRFWCzE6tPH
+	eydXTksXkskU0TDd70eD03Bj2nMOLM5LFLtES9pyEexyBiYMhuI2+5qapWfR22EHFRdDnQ1xsDl00
+	J5VXLeSN/VkyaeOzCsO1mMuXvMRZMt5TOzH8arDuvyIZvOmzJPhSX1bC4RDyxGYJGylK0jrIdqPE3
+	PK0j1UlQ4m1cDxAwPErA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8iX6-00000002IJL-02GK;
-	Sat, 26 Apr 2025 16:37:40 +0000
-Received: from m16.mail.163.com ([220.197.31.3])
-	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8hLg-00000002Dr0-1G9M;
-	Sat, 26 Apr 2025 15:21:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:From:
-	Content-Type; bh=vUM7vf0vXe7N2oH0oe3DEg8G2pM3KxBEYmjLGlpyeQI=;
-	b=XykLgF22/iL6/iZpwTQ6uMB0pT5VlkDM8hPhc+/Hec6fOqHV/1C9/xveBE9CIU
-	S7ZITsIp5u5cX2ute/9ADqyEhp6H5yR2epcbwdWq8/06amgxvZY5fK1fOj0+Abkv
-	eE611yM3hVj/g2JXM2zmId9J3jmagbkF+/sGJF9BoIR/g=
-Received: from [192.168.71.89] (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wCX+C2_+Qxo0RWfCg--.59461S2;
-	Sat, 26 Apr 2025 23:20:33 +0800 (CST)
-Message-ID: <4e5a60dc-fb0b-413e-9ed9-82f926abd023@163.com>
-Date: Sat, 26 Apr 2025 23:20:32 +0800
+	id 1u8ocZ-00000002btg-465Y;
+	Sat, 26 Apr 2025 23:07:43 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
+	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1u8nQU-00000002Y26-0GVY;
+	Sat, 26 Apr 2025 21:51:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=gsIFs9lsBStWNO+SAUv4QwVqUpvjBQFP3/IMyXHCh3E=; b=Sye5YV7NL9CEcB/oGe1RyoXudx
+	aQYeOWLye+efnOo9sycbe8k309HBPzOVgvdQeo7HNweqWmNTst6ZB+Irt2iOpJ8H/1NEffnDdZR7y
+	TgLUNbnl1tGVC9edgLpJsjdDVz9KATV22vbIJusuOkzh1BWrOv7meFHgBVd8ujMMJ+0j7j8QOsMFT
+	EaVNMgrPlDgJ5350yiF+vMLKUHddKZe2QwTRTqSExdrfjcOz00BjshTrcn2E3x+2zTVtu8CGZOGJ8
+	IWKhx20FVgecrDUhL9+p2gnRdZPAeOCOKgn7rscJFg5hpC/ZUW15rDktJhz+soODfF7KqtIQUePdJ
+	PSy0q48w==;
+Received: from i53875aba.versanet.de ([83.135.90.186] helo=phil..)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1u8nLv-0001OR-UY; Sat, 26 Apr 2025 23:46:28 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Andy Gross <agross@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Viresh Kumar <vireshk@kernel.org>,
+	Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	zhouyanjie@wanyeetech.com,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	"Rob Herring (Arm)" <robh@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-rockchip@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Andre Przywara <andre.przywara@arm.com>,
+	=?UTF-8?q?Philippe=20Mathieu-Daud=C3=A9?= <philmd@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: (subset) [PATCH v2 00/17] Arm cpu schema clean-ups
+Date: Sat, 26 Apr 2025 23:46:17 +0200
+Message-ID: <174570370139.31943.759075106630349490.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
+References: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] PCI: Remove redundant MPS configuration
-To: =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
- heiko@sntech.de, thomas.petazzoni@bootlin.com,
- manivannan.sadhasivam@linaro.org, yue.wang@Amlogic.com,
- neil.armstrong@linaro.org, robh@kernel.org, jingoohan1@gmail.com,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20250425095708.32662-1-18255117159@163.com>
- <20250425095708.32662-3-18255117159@163.com>
- <20250425181345.bybgcht5tweyg43k@pali>
- <5e2844cc-8359-4b87-a8ce-eb5ebb85f8ff@163.com>
- <20250426150650.c63x62ugtnwx5nzy@pali>
-Content-Language: en-US
-From: Hans Zhang <18255117159@163.com>
-In-Reply-To: <20250426150650.c63x62ugtnwx5nzy@pali>
-X-CM-TRANSID: _____wCX+C2_+Qxo0RWfCg--.59461S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Ary3JFW8ZF1kKr1xXw4UXFb_yoW8Kr1Upw
-	45JFs3JF4qqF15uF1Iqa1vgr1ftasIyr15Wws8GrW7AasIq3srtFy2yr45CasrXwn7CF12
-	va42qFWSyFsxtaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UPR6cUUUUU=
-X-Originating-IP: [124.79.128.52]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiWwo7o2gM8qeGtQABsK
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250426_082149_108194_DDA2B210 
-X-CRM114-Status: GOOD (  15.62  )
+X-CRM114-CacheID: sfid-20250426_145110_098937_85BE6165 
+X-CRM114-Status: GOOD (  10.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,51 +119,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpPbiAyMDI1LzQvMjYgMjM6MDYsIFBhbGkgUm9ow6FyIHdyb3RlOgo+IE9uIFNhdHVyZGF5IDI2
-IEFwcmlsIDIwMjUgMjM6MDI6MDggSGFucyBaaGFuZyB3cm90ZToKPj4gT24gMjAyNS80LzI2IDAy
-OjEzLCBQYWxpIFJvaMOhciB3cm90ZToKPj4+IE9uIEZyaWRheSAyNSBBcHJpbCAyMDI1IDE3OjU3
-OjA4IEhhbnMgWmhhbmcgd3JvdGU6Cj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL2NvbnRy
-b2xsZXIvcGNpLWFhcmR2YXJrLmMgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaS1hYXJkdmFy
-ay5jCj4+Pj4gaW5kZXggYTI5Nzk2Y2NlNDIwLi5kODg1Mjg5Mjk5NGEgMTAwNjQ0Cj4+Pj4gLS0t
-IGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2ktYWFyZHZhcmsuYwo+Pj4+ICsrKyBiL2RyaXZl
-cnMvcGNpL2NvbnRyb2xsZXIvcGNpLWFhcmR2YXJrLmMKPj4+PiBAQCAtNTQ5LDkgKzU0OSw3IEBA
-IHN0YXRpYyB2b2lkIGFkdmtfcGNpZV9zZXR1cF9odyhzdHJ1Y3QgYWR2a19wY2llICpwY2llKQo+
-Pj4+ICAgIAlyZWcgPSBhZHZrX3JlYWRsKHBjaWUsIFBDSUVfQ09SRV9QQ0lFWFBfQ0FQICsgUENJ
-X0VYUF9ERVZDVEwpOwo+Pj4+ICAgIAlyZWcgJj0gflBDSV9FWFBfREVWQ1RMX1JFTEFYX0VOOwo+
-Pj4+ICAgIAlyZWcgJj0gflBDSV9FWFBfREVWQ1RMX05PU05PT1BfRU47Cj4+Pj4gLQlyZWcgJj0g
-flBDSV9FWFBfREVWQ1RMX1BBWUxPQUQ7Cj4+Pj4gICAgCXJlZyAmPSB+UENJX0VYUF9ERVZDVExf
-UkVBRFJROwo+Pj4+IC0JcmVnIHw9IFBDSV9FWFBfREVWQ1RMX1BBWUxPQURfNTEyQjsKPj4+PiAg
-ICAJcmVnIHw9IFBDSV9FWFBfREVWQ1RMX1JFQURSUV81MTJCOwo+Pj4+ICAgIAlhZHZrX3dyaXRl
-bChwY2llLCByZWcsIFBDSUVfQ09SRV9QQ0lFWFBfQ0FQICsgUENJX0VYUF9ERVZDVEwpOwo+Pj4+
-IC0tIAo+Pj4+IDIuMjUuMQo+Pj4+Cj4+Pgo+Pj4gUGxlYXNlIGRvIG5vdCByZW1vdmUgdGhpcyBj
-b2RlLiBJdCBpcyByZXF1aXJlZCBwYXJ0IG9mIHRoZQo+Pj4gaW5pdGlhbGl6YXRpb24gb2YgdGhl
-IGFhcmR2YXJrIFBDSSBjb250cm9sbGVyIGF0IHRoZSBzcGVjaWZpYyBwaGFzZSwKPj4+IGFzIGRl
-ZmluZWQgaW4gdGhlIEFybWFkYSAzNzAwIEZ1bmN0aW9uYWwgU3BlY2lmaWNhdGlvbi4KPj4KPj4g
-SGkgUGFsaSwKPj4KPj4gVGhpcyBzZXJpZXMgb2YgcGF0Y2hlcyBpcyBkaXNjdXNzaW5nIHRoZSBp
-bml0aWFsaXphdGlvbiBvZiBEZXZDdGwuTVBTIGJ5IHRoZQo+PiBSb290IFBvcnQuIFBsZWFzZSBs
-b29rIGF0IHRoZSBmaXJzdCBwYXRjaCBJIHN1Ym1pdHRlZC4gSWYgdGhlcmUgaXMgYQo+PiByZWFz
-b25hYmxlIG1ldGhvZCBpbiB0aGUgZW5kLCBEZXZDdGwuTVBTIHdpbGwgYWxzbyBiZSBjb25maWd1
-cmVkCj4+IHN1Y2Nlc3NmdWxseS4KPiAKPiBUaGlzIGRvZXMgbm90IG1hdHRlciB3aGF0IHdvdWxk
-IGJlIGNvbmZpZ3VyZWQgaW4gRGV2Q3RsLk1QUyBhdCB0aGUgZW5kLgo+IAo+PiBUaGUgUENJZSBt
-YWludGFpbmVyIHdpbGwgZ2l2ZSB0aGUgcmV2aWV3IG9waW5pb25zLiBQbGVhc2UgcmVzdAo+PiBh
-c3N1cmVkIHRoYXQgaXQgd2lsbCBub3QgYWZmZWN0IHRoZSBmdW5jdGlvbnMgb2YgdGhlIGFhcmR2
-YXJrIFBDSQo+PiBjb250cm9sbGVyLgo+IAo+IFRoaXMgcGF0Y2ggaXMgbW9kaWZ5aW5nIGluaXRp
-YWxpemF0aW9uIG9mIHRoZSBhYXJkdmFyayBQQ0llIGNvbnRyb2xsZXIKPiBhbmQgaXMgcmVtb3Zp
-bmcgdGhlIG1hbmRhdG9yeSBzdGVwIG9mIHRoZSBjb250cm9sbGVyIGNvbmZpZ3VyYXRpb24gYXMK
-PiByZXF1aXJlZCBhbmQgZGVmaW5lZCBpbiB0aGUgQXJtYWRhIDM3MDAgRnVuY3Rpb25hbCBTcGVj
-aWZpY2F0aW9uLgo+IEl0IHNheXMgZXhhY3RseSBpbiB3aGljaCBvcmRlciBhbmQgd2hpY2ggdmFs
-dWVzIHRvIHdoaWNoIHJlZ2lzdGVycyBoYXMKPiB0byBiZSB3cml0dGVuLgoKSGkgUGFsaSwKCklz
-IHRoZSBtYXhpbXVtIE1QUyBzdXBwb3J0ZWQgYnkgQXJtYWRhIDM3MDAgNTEyIGJ5dGVzPyBXaGF0
-IGFyZSB0aGUgCmRlZmF1bHQgdmFsdWVzIG9mIERldkNhcC5NUFMgYW5kIERldkN0bC5NUFM/CgpC
-ZWNhdXNlIHRoZSBkZWZhdWx0IHZhbHVlIG9mIERldkN0bC5NUFMgaXMgbm90IDUxMiBieXRlcywg
-aXQgbmVlZHMgdG8gYmUgCmNvbmZpZ3VyZWQgaGVyZSwgcmlnaHQ/CgpJZiBpdCdzIG15IGd1ZXNz
-LCBSSzM1ODggYWxzbyBoYXMgdGhlIHNhbWUgcmVxdWlyZW1lbnRzIGFzIHlvdSwganVzdCAKbGlr
-ZSB0aGUgZmlyc3QgcGF0Y2ggSSBzdWJtaXR0ZWQuCgpCZXN0IHJlZ2FyZHMsCkhhbnMKCgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dp
-YyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
-aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+On Thu, 10 Apr 2025 10:47:21 -0500, Rob Herring (Arm) wrote:
+> The Arm cpu.yaml schema fails to restrict allowed properties in 'cpu'
+> nodes. The result, not surprisely, is a number of additional properties
+> and errors in .dts files. This series resolves those issues.
+> 
+> There's still more properties in arm32 DTS files which I have not
+> documented. Mostly yet more supply names and "fsl,soc-operating-points".
+> What's a few more warnings on the 10000s of warnings...
+> 
+> [...]
+
+Applied, thanks!
+
+[10/17] arm: dts: rockchip: Drop redundant CPU "clock-latency"
+        commit: 709a25f7a433d53dc9f0daf7cf5657f0671c5026
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
