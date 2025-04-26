@@ -4,91 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42B1CC369C2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Apr 2025 20:32:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46D38C369D8
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Apr 2025 15:05:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=pNNDAA0DmqnbwaMnwDwalMPgg2uOo6I/Lj7yUrmwzKE=; b=cyhDH/kzvRB8/c
-	6edvRh+dM0NmjrsGJlzB+e0eKcCl7M3INi9NwJDGMx6H0WUKSSlqfBNo8RGZo4djN7kyJp8ZG6AhG
-	K9gOzWUDj5YgdGvShWPCE37zKegOSmHdYNNDklzeiWdumzaSWHzPlihqSmlbzcrQOG7GSJkMYR54t
-	JqauG+EnDAHaSF1ZA1O4IxonLR83/wSFao8qG71rM9di9e6yd4YPOVoHif3i83qwRRK+iSg7+nYgf
-	rxTTZcfk2N/dU00NbJr98QGVb8AEFr8Hh5ihvEeM8W6eonI5IhIAjCZ7KyUvIE0nAzi1TiZrscDIh
-	VyrYrvfPWt9n8pfcmFgQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mn6IpMXIMmPiTuEVSSvonNh3I2kdHI+Y6hcaUr3F/XY=; b=I0Cn2aqhMTcIYF
+	9vIn6H1W+gRxBTFoI4i7YY3JSlhu6Hro2RB0voPKSiHhoPqRx0/RubA1QgcflgtGyc8axiW/VR/ku
+	NUTVzDhD1I6J1RLzdrHrjR++7cJMe2VvdBpqsTNalAp+uuVQVrOePh6swILndMDWGJ2QBB+UqqTP4
+	n4OAE3q1N7XZRmNyMJrdXbPJ/YL76J982WV+iaND2N334sIGLrw+QI/zMPhyrGQbPqQhh7Bf5u3OY
+	y2W3l8yWQ3lfN4d53j8Y45VrPLieSlqheXsE3yny/bYp22WZ4BOsRhJD/jDOLObLcjJubqfTkNUGB
+	wpHi2+QeX0jZy+75v3SA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8Pig-00000000o0T-3IrJ;
-	Fri, 25 Apr 2025 20:32:22 +0000
-Received: from mail-qk1-x72d.google.com ([2607:f8b0:4864:20::72d])
-	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u8Phh-00000000nsi-0Ayn
-	for linux-amlogic@lists.infradead.org;
-	Fri, 25 Apr 2025 20:31:22 +0000
-Received: by mail-qk1-x72d.google.com with SMTP id af79cd13be357-7c546334bdeso251590085a.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 25 Apr 2025 13:31:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=libre.computer; s=google; t=1745613080; x=1746217880; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GF1xjuBmQCLqhbqJW9dfNwD3/0r4qJdVkbILuVmlmn8=;
-        b=FwlwR5m/WwmgNyplais4t5w+swHqiHsI8sNn/vzZMskqx0OY5vKhKHgcRCKtQvDV9z
-         YrFgOlwWQYT6Xlap6lnqPkUI15gqnE9I2YbqLne/8qovJM9jYls821mNWm7bW3Y1nMVO
-         ZCgiGubdUM1g7PERG3neaYkafNDcKKo16n+Q0ZHW9NtAuVF9d/cH04jhuu5CuWTbG6fZ
-         V6gKhUGF5Yo4IhAYTTaCxSDdmiwXHchgSAmBaTWJqO1b4gshJU8RinYvGw0ehySeCJhd
-         nfk1euyEv3AWvOP5XB/j3j9bmiN3P5knByLMOxj6q0GFjSkhUks/VUQeQvOWN75hBn61
-         kDZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745613080; x=1746217880;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GF1xjuBmQCLqhbqJW9dfNwD3/0r4qJdVkbILuVmlmn8=;
-        b=tp1M7Dzx1CO5CEegHpJ6+jFyYypiXo9/J7B8UiQQDlJzKEKnd7yvQPVXWKVrzSdp4p
-         UapfZ7hCaSEXnlSj/q27QaC/h+cvoq3FR3Bwpt77cRxow4bKNPnOhFoi/X3k4PSS4nIr
-         QR/FYjYQCDHsX6EYMdIv9glosiYioZ/ZTFPz5O1vnRmQYCfB9mrkvWkpHXwPyupEC1Lz
-         PjB7vB8txzxLTEzq6WemZPjSfnt1DXOnUUs2YSwJD17VLOKPGHIJfU7XE2gyEScitVcM
-         JlnLGxkkL0NBngOpjZtM5pGI/YQVuRrk1dtuA7OFrm24+MXIRdZuvokwFaQL0eVoTTtG
-         PQWg==
-X-Forwarded-Encrypted: i=1; AJvYcCXWxogEcrz2+oK4OzHA4n8jyzQLRsNpUKCC81Wt8EB9xBNHUGGRcr/Trr8+QF7k56Q+TuhEJBNb5/tStoOr@lists.infradead.org
-X-Gm-Message-State: AOJu0YwjI4b5/YugFNwN47jFaYJm1DOQLNwqDJwLA8G/2HPSPnEcbPi8
-	GNiYZtrkeRv2JzrGMlWqZglhYWf/y3QEDOhvL7t1YVz2yrUmzLzRnWZvLB/FYg==
-X-Gm-Gg: ASbGncsH8mt5XY2B6zeU+9xJacd8XBZjnV2Jux9SgdIYfN8wpTmUf5JbiQktaefUy0z
-	fLIBp6jIKxN/tcdib5cVa8BG1z17akK5zCDYDCS6uz+o7kS+skp2L/o1I+HG3tTcbQKSxzcPPmn
-	DyzammFCnVB9wzv4JJLf/rmhxOtLO8qo7fI6arrdb/hzCaVwfZc6a3Cv29slKLyGQq/5Ax3wMwh
-	XNAhe4FS54pQqWKqod0Ql9UEskzhkI5Hny+fZ7LRSKl9xtFX1O24QVXwtd2z71qk5HgsBDQ6CLg
-	XkOPq6C2mIOjtlEZuLzy9OWoqcIqayDvDMQN
-X-Google-Smtp-Source: AGHT+IExy7byNjnzr61Qn1ql3vlbeCJFkmt8dfGkcDuwiloO0OM0ew357yO9XtgDpkXGc3h67FnjWA==
-X-Received: by 2002:a05:620a:27d6:b0:7c5:56c0:a8 with SMTP id af79cd13be357-7c9668634b0mr182306685a.1.1745613079619;
-        Fri, 25 Apr 2025 13:31:19 -0700 (PDT)
-Received: from localhost ([2607:fb91:bdd9:47ad:b39:2164:cbe2:1695])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c958ce4e97sm263041685a.65.2025.04.25.13.31.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 13:31:19 -0700 (PDT)
-From: Da Xue <da@libre.computer>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Da Xue <da@libre.computer>
-Subject: [PATCH] arm64: dts: amlogic: gxl: set i2c bias to pull-up
-Date: Fri, 25 Apr 2025 16:31:18 -0400
-Message-Id: <20250425203118.1444481-1-da@libre.computer>
-X-Mailer: git-send-email 2.39.5
+	id 1u8h5Q-00000002Cen-0j1B;
+	Sat, 26 Apr 2025 15:05:00 +0000
+Received: from m16.mail.163.com ([117.135.210.2])
+	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1u8h3W-00000002CRa-2CYl;
+	Sat, 26 Apr 2025 15:03:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:From:
+	Content-Type; bh=2NTP26rZSO4aLxowU1tMWp58BMiXt/URHc+KIhHuxrE=;
+	b=MTNfI1bjj/6sOwjhpxl6bkmPC/+LTUKOPSiUAIeVV8nKWRz27uFqb1sJ+lDGtQ
+	63MoHFbayfTFrFSrFK+NANLTRI56wf+0T1ppXgIdKpVkRgIFTswtZJ8DfmcNUM85
+	eMNUYZOx0YDL/JumkNNFBNzS8YHXDrsFhuJdclLcPClrM=
+Received: from [192.168.71.89] (unknown [])
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wBXbM5v9QxolMNQCw--.59638S2;
+	Sat, 26 Apr 2025 23:02:08 +0800 (CST)
+Message-ID: <5e2844cc-8359-4b87-a8ce-eb5ebb85f8ff@163.com>
+Date: Sat, 26 Apr 2025 23:02:08 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] PCI: Remove redundant MPS configuration
+To: =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+ heiko@sntech.de, thomas.petazzoni@bootlin.com,
+ manivannan.sadhasivam@linaro.org, yue.wang@Amlogic.com,
+ neil.armstrong@linaro.org, robh@kernel.org, jingoohan1@gmail.com,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20250425095708.32662-1-18255117159@163.com>
+ <20250425095708.32662-3-18255117159@163.com>
+ <20250425181345.bybgcht5tweyg43k@pali>
+Content-Language: en-US
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <20250425181345.bybgcht5tweyg43k@pali>
+X-CM-TRANSID: _____wBXbM5v9QxolMNQCw--.59638S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7ZryUGr4UtrWfAw1rGF18Grg_yoW8Wr4xpa
+	13XFs3JF4Fqr15uF17Ja10gr1fXasIkFy5Xws8GFW3Za4aqw1UGFy2krs0kasrXr4v9F17
+	Za42v3ySyanxtaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UmYL9UUUUU=
+X-Originating-IP: [124.79.128.52]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbBDxM6o2gLzK+LogABst
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250425_133121_206750_CEE7C0A1 
-X-CRM114-Status: UNSURE (   9.75  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250426_080302_958063_69DE318A 
+X-CRM114-Status: GOOD (  10.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,75 +76,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-GXL I2C pins need internal pull-up enabled to operate if there
-is no external resistor. The pull-up is 60kohms per the datasheet.
-
-We should set the bias when i2c pinmux is enabled.
-
-Signed-off-by: Da Xue <da@libre.computer>
----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 2dc2fdaecf9f..aed8dbfbb64d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -214,7 +214,7 @@ mux {
- 				groups = "i2c_sck_ao",
- 				       "i2c_sda_ao";
- 				function = "i2c_ao";
--				bias-disable;
-+				bias-pull-up;
- 			};
- 		};
- 
-@@ -576,7 +576,7 @@ mux {
- 				groups = "i2c_sck_a",
- 				     "i2c_sda_a";
- 				function = "i2c_a";
--				bias-disable;
-+				bias-pull-up;
- 			};
- 		};
- 
-@@ -585,7 +585,7 @@ mux {
- 				groups = "i2c_sck_b",
- 				      "i2c_sda_b";
- 				function = "i2c_b";
--				bias-disable;
-+				bias-pull-up;
- 			};
- 		};
- 
-@@ -594,7 +594,7 @@ mux {
- 				groups = "i2c_sck_c",
- 				      "i2c_sda_c";
- 				function = "i2c_c";
--				bias-disable;
-+				bias-pull-up;
- 			};
- 		};
- 
-@@ -603,7 +603,7 @@ mux {
- 				groups = "i2c_sck_c_dv19",
- 				      "i2c_sda_c_dv18";
- 				function = "i2c_c";
--				bias-disable;
-+				bias-pull-up;
- 			};
- 		};
- 
--- 
-2.39.5
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAyMDI1LzQvMjYgMDI6MTMsIFBhbGkgUm9ow6FyIHdyb3RlOgo+IE9uIEZyaWRheSAyNSBB
+cHJpbCAyMDI1IDE3OjU3OjA4IEhhbnMgWmhhbmcgd3JvdGU6Cj4+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL3BjaS9jb250cm9sbGVyL3BjaS1hYXJkdmFyay5jIGIvZHJpdmVycy9wY2kvY29udHJvbGxl
+ci9wY2ktYWFyZHZhcmsuYwo+PiBpbmRleCBhMjk3OTZjY2U0MjAuLmQ4ODUyODkyOTk0YSAxMDA2
+NDQKPj4gLS0tIGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2ktYWFyZHZhcmsuYwo+PiArKysg
+Yi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaS1hYXJkdmFyay5jCj4+IEBAIC01NDksOSArNTQ5
+LDcgQEAgc3RhdGljIHZvaWQgYWR2a19wY2llX3NldHVwX2h3KHN0cnVjdCBhZHZrX3BjaWUgKnBj
+aWUpCj4+ICAgCXJlZyA9IGFkdmtfcmVhZGwocGNpZSwgUENJRV9DT1JFX1BDSUVYUF9DQVAgKyBQ
+Q0lfRVhQX0RFVkNUTCk7Cj4+ICAgCXJlZyAmPSB+UENJX0VYUF9ERVZDVExfUkVMQVhfRU47Cj4+
+ICAgCXJlZyAmPSB+UENJX0VYUF9ERVZDVExfTk9TTk9PUF9FTjsKPj4gLQlyZWcgJj0gflBDSV9F
+WFBfREVWQ1RMX1BBWUxPQUQ7Cj4+ICAgCXJlZyAmPSB+UENJX0VYUF9ERVZDVExfUkVBRFJROwo+
+PiAtCXJlZyB8PSBQQ0lfRVhQX0RFVkNUTF9QQVlMT0FEXzUxMkI7Cj4+ICAgCXJlZyB8PSBQQ0lf
+RVhQX0RFVkNUTF9SRUFEUlFfNTEyQjsKPj4gICAJYWR2a193cml0ZWwocGNpZSwgcmVnLCBQQ0lF
+X0NPUkVfUENJRVhQX0NBUCArIFBDSV9FWFBfREVWQ1RMKTsKPj4gICAKPj4gLS0gCj4+IDIuMjUu
+MQo+Pgo+IAo+IFBsZWFzZSBkbyBub3QgcmVtb3ZlIHRoaXMgY29kZS4gSXQgaXMgcmVxdWlyZWQg
+cGFydCBvZiB0aGUKPiBpbml0aWFsaXphdGlvbiBvZiB0aGUgYWFyZHZhcmsgUENJIGNvbnRyb2xs
+ZXIgYXQgdGhlIHNwZWNpZmljIHBoYXNlLAo+IGFzIGRlZmluZWQgaW4gdGhlIEFybWFkYSAzNzAw
+IEZ1bmN0aW9uYWwgU3BlY2lmaWNhdGlvbi4KCkhpIFBhbGksCgpUaGlzIHNlcmllcyBvZiBwYXRj
+aGVzIGlzIGRpc2N1c3NpbmcgdGhlIGluaXRpYWxpemF0aW9uIG9mIERldkN0bC5NUFMgYnkgCnRo
+ZSBSb290IFBvcnQuIFBsZWFzZSBsb29rIGF0IHRoZSBmaXJzdCBwYXRjaCBJIHN1Ym1pdHRlZC4g
+SWYgdGhlcmUgaXMgYSAKcmVhc29uYWJsZSBtZXRob2QgaW4gdGhlIGVuZCwgRGV2Q3RsLk1QUyB3
+aWxsIGFsc28gYmUgY29uZmlndXJlZCAKc3VjY2Vzc2Z1bGx5LiBUaGUgUENJZSBtYWludGFpbmVy
+IHdpbGwgZ2l2ZSB0aGUgcmV2aWV3IG9waW5pb25zLiBQbGVhc2UgCnJlc3QgYXNzdXJlZCB0aGF0
+IGl0IHdpbGwgbm90IGFmZmVjdCB0aGUgZnVuY3Rpb25zIG9mIHRoZSBhYXJkdmFyayBQQ0kgCmNv
+bnRyb2xsZXIuCgpSb2NrY2hpcCdzIFJLMzU4OCBhbHNvIGhhcyB0aGUgc2FtZSBwcm9ibGVtLgoK
+Cmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC1wY2kvcGF0Y2gvMjAy
+NTA0MTYxNTE5MjYuMTQwMjAyLTEtMTgyNTUxMTcxNTlAMTYzLmNvbS8KCkJlc3QgcmVnYXJkcywK
+SGFucwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxp
+bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9y
+ZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
+aWMK
