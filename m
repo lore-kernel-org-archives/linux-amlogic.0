@@ -4,93 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A15BCC369DC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Apr 2025 19:07:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F8C3C3ABA5
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Apr 2025 19:09:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=kS+jSZtVpE54Ie+WIOi2Jex94rt8cbCmDHIVw0bU0e8=; b=yhxtoAYWuWOjde
-	X7oD8TlXN3Eb9ujy2ANJmkk4yI0Vau4udIm/CoayHQPkYJSX9566HTlvDH1JyEqzs1iuyxVSRlZhn
-	sKdvMCOjrSYDwM8KaW6tc3CSAFlDdB86YCJsK0ZJzVPFs847Y6Jpseb90ITkEAdWQIsLi2+EArtAX
-	R/0YsqN9ZNjm5LlRxam7ltwNKrVjOdgQI6wGsA4FxYalUHoQjrz2VSYBXCy8iZ2iuMbVIheVvzFu7
-	FZZmuFts3EewCop1otbx7fH3LnSFeazHUAUtLUwlBBq3HhFgoiObGa+a7RO/Ij8zgoQeiyo4JfqoU
-	VZ2K8U7afhGyt/a16LAg==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=sib0WuSnqdN0BoZm5DnxyRdNTlDuXJztBaaLX9W9LsI=; b=tzcOFLlER+5X2z
+	lByg5SMkjcIA3ASnmMYry1ztDhEPBzPUNxmLt+8WGf32QyrWWvFzPxIk4Pg8T0Vvy0o/arihwmM8J
+	mM9om/LrogIIV0DsiIghnG+J9k6tjv3fZMvZmLlT5HNQIs0R5Bk2amwrS6Sq3qsAe3bUxgrPFrDQo
+	v51HCAHy7G7TEXdCYMVTsvg9iHFMCjBvT6hr26Zps0LCeKI26K18QSl3cLXdC5ZpzFRwlc1h7D5+5
+	8jK4scFyu6D1E/hmpEZMJ10tr64RleEZH/+3x7hQGGtfXmZ0uTF7my/KaHZafrrPYVtEQVbPJNRB1
+	FxYSm9Na8UrPtCGKkAWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u9qIs-0000000Ad1l-1P5t;
-	Tue, 29 Apr 2025 19:07:38 +0000
-Received: from mail-pg1-x52c.google.com ([2607:f8b0:4864:20::52c])
+	id 1u9qL3-0000000AdBL-1cUs;
+	Tue, 29 Apr 2025 19:09:53 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u9qIp-0000000Ad1A-2kPG;
-	Tue, 29 Apr 2025 19:07:37 +0000
-Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-b0da25f5216so4108606a12.1;
-        Tue, 29 Apr 2025 12:07:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745953654; x=1746558454; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FgKUcja9BPz39tql1rKCDciihi1+kZS80pJsQPdYXJw=;
-        b=mJbjb9QYGpJNCy+bGnplR/ASC3NaOXwbFnVW94rvsMXxfmG84IFZ/nWOFWxAljNOSO
-         I/45l6lyLstx2XBfKxmV79b1UtarJ3otqH4iRRC5n42DZZNgUcxdvSJv9nmEjBw2vClV
-         KzIHekJWnOBb1HNmwCifzFgwFaXW3twzXDMXugM8GNgNYTD+li3hDKGpfDNsnLBNEO4W
-         IFjYhpH52AlwWtmLSsnUjCEDAeSIwT/bj7ZlK8+TVzrAWu6liMXMj6OajG/ExIQIcBHZ
-         At+BNb9bmyxVJhhp/JU9rk8DD60yrDybL95mICs9CYpR0G96/YzJNug25utvP2zmlHEY
-         qXWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745953654; x=1746558454;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FgKUcja9BPz39tql1rKCDciihi1+kZS80pJsQPdYXJw=;
-        b=ppndNfiGq1vx9lC+FKgbUXzdhJC969WJRwYVyg2msvWt3LkEaVRg8UbG6LWnDXsDp6
-         y7MJsSwDysO6f6vM2nrjE1kqHPHx63vYK0V+5za73Nod/3AKxcS3Mac0kjYndiCZ5IkL
-         iOXkKsDnnPTSsfevTCvhHvLo+IimBx36mYBWVxlcCc+6dhNVVpGoNc5ycdIb+9onsSa8
-         XFmuUylvKXmwipRYBs2PH3Sjnha+kEkc25IK8m1EfCI1LgYJocr9APzKyg8bRgcHxypB
-         D9sxvIZPIjDf4wtQv6WSNagcF/hMqjRhVSCV1MTbbwmwDbsEfZBm/JnUPBbH6FMNlORo
-         G1hw==
-X-Forwarded-Encrypted: i=1; AJvYcCV6FH1g6I1X9VfRYtY4ntUQloR6DSkndr4WlG6NwWaGZZLWfGcDE6Zgfn4xLKrO6meC0xQ9mLn11CBMFGOd@lists.infradead.org, AJvYcCWiuvPSNN0w2X7IUV5y0bhdWnO8BzqlEYMyBBNjRqHJnHP0r8U8HebLCkjNlTAtmXpTmJEDO8sXgFCCoQbfj8XMgA==@lists.infradead.org
-X-Gm-Message-State: AOJu0YzVkPPWaHQLOqi8QeN3Crj8bOPEM5iKfKbeGHcC/W8Cg8Hyz3D/
-	9zbCw7BOK/PfvfYrMmZF8aARnnkr1ptyDzSq+h81QEb3UhpFjUeK
-X-Gm-Gg: ASbGncuppuT5UHS2m/7llPUZ2VDzMMZ+WVBfMELWrUMyvxr6UHAVqtibMA5P2P73iVm
-	P2POy7+2tAZYMD4oVS1u+mUTfsTQ5308apaazLmlNN3e94HT+/YDMpNP7LDJxBeM3KQSV4iND0o
-	lpyBWeYrBxBqTqYJBrcd/+Ad+hpBiBzYkYF+GW0d8Ok+1IlDAJ5n0mr0xUAzoIjvXdVa55r8tmU
-	Nc5ijN63fJ3JDlSgwyo/NXlCtzbdnI2kjbE9DELxB4i0edIQBmNaSp1/4y+hMR7bUOdKsAdenQ7
-	c/7Fy7lnILPl+7GO5uXJFeRSRhRy+kr+QhMO9k/UTWy1Q51gmLLoGado3SUP8EWELfe/C+zomqR
-	d/U//
-X-Google-Smtp-Source: AGHT+IF2ts+XG616nJO7RIcanOzyRNljW8qvmYtbI5nighVo0d3L81pz0OXCcq1V+31tmdYRgsHXjw==
-X-Received: by 2002:a05:6a20:3956:b0:1f5:97c3:41b9 with SMTP id adf61e73a8af0-20a8754d547mr149066637.5.1745953653871;
-        Tue, 29 Apr 2025 12:07:33 -0700 (PDT)
-Received: from vaxr-ASUSPRO-D840MB-M840MB.. ([2001:288:7001:2703:bc46:d693:1404:6ff])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74039a5ea3bsm15101b3a.135.2025.04.29.12.07.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Apr 2025 12:07:33 -0700 (PDT)
-From: I Hsin Cheng <richard120310@gmail.com>
-To: neil.armstrong@linaro.org
-Cc: maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	dri-devel@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	skhan@linuxfoundation.org,
-	I Hsin Cheng <richard120310@gmail.com>
-Subject: [PATCH] drm/meson: Cast mode->clock to unsigned long long
-Date: Wed, 30 Apr 2025 03:07:24 +0800
-Message-ID: <20250429190724.330883-1-richard120310@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	id 1u9qL2-0000000AdAq-14FH;
+	Tue, 29 Apr 2025 19:09:52 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 252E568469;
+	Tue, 29 Apr 2025 19:09:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C66BC4CEE3;
+	Tue, 29 Apr 2025 19:09:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1745953791;
+	bh=Fj8Qwh7Oglt89U7CUjfhi1ViJF/tP8Mruv6gVmeBzPg=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=lryuYrrmUsoDN64rRhIQZsAD/VNGrOdczSxzGkxhMeKAlUiAGK8QTadyyTpuXb/TV
+	 tfHZpwOJEobn/m2qv16SIwL3YLt5dVEkh7eCUBKl0eACtBxTM1KsaYTrTwx81Q7ktA
+	 9IpA6PZfZ6LenIINM7J19yOwCyKMQDXiGRUfYOZ8ZKZEufpr0yCBke2XkxMt5omi8I
+	 vATm2tXosgQ2gAG2HiRnmitKo/xOPHDCreA9Rtk93suM/W44p626R/NgXbqswfftZC
+	 hPu8bV+Wy9dseac/ADH9Q8cFMzjCT7YkGAdtuqg0GAhxZYd6MBvEtbaOiSw+AmMvej
+	 xriR+W6ABymlA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33C623822D4C;
+	Tue, 29 Apr 2025 19:10:31 +0000 (UTC)
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250429_120735_690263_42764C0A 
-X-CRM114-Status: GOOD (  10.19  )
+Subject: Re: [PATCH v3] net: mdio: mux-meson-gxl: set reversed bit when using
+ internal phy
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <174595383001.1770515.9085640338016632104.git-patchwork-notify@kernel.org>
+Date: Tue, 29 Apr 2025 19:10:30 +0000
+References: <20250425192009.1439508-1-da@libre.computer>
+In-Reply-To: <20250425192009.1439508-1-da@libre.computer>
+To: Da Xue <da@libre.computer>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,45 +64,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: andrew@lunn.ch, neil.armstrong@linaro.org, martin.blumenstingl@googlemail.com, khilman@baylibre.com, linux@armlinux.org.uk, stable@vger.kernel.org, linux-kernel@vger.kernel.org, edumazet@google.com, netdev@vger.kernel.org, jbrunet@baylibre.com, kuba@kernel.org, linux-amlogic@lists.infradead.org, pabeni@redhat.com, davem@davemloft.net, linux-arm-kernel@lists.infradead.org, hkallweit1@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Coverity scan reported the usage of "mode->clock * 1000" may lead to
-integer overflow. Cast the type of "mode->clock" to "unsigned long long"
-when utilizing it to avoid potential integer overflow issue.
+Hello:
 
-Link: https://scan5.scan.coverity.com/#/project-view/10074/10063?selectedIssue=1646759
-Signed-off-by: I Hsin Cheng <richard120310@gmail.com>
----
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This patch was applied to netdev/net.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index 7752d8ac85f0..fe3d3ff7c432 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -75,7 +75,7 @@ static void meson_encoder_hdmi_set_vclk(struct meson_encoder_hdmi *encoder_hdmi,
- 	unsigned long long venc_freq;
- 	unsigned long long hdmi_freq;
- 
--	vclk_freq = mode->clock * 1000;
-+	vclk_freq = (unsigned long long) mode->clock * 1000;
- 
- 	/* For 420, pixel clock is half unlike venc clock */
- 	if (encoder_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
-@@ -123,7 +123,7 @@ static enum drm_mode_status meson_encoder_hdmi_mode_valid(struct drm_bridge *bri
- 	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
- 	struct meson_drm *priv = encoder_hdmi->priv;
- 	bool is_hdmi2_sink = display_info->hdmi.scdc.supported;
--	unsigned long long clock = mode->clock * 1000;
-+	unsigned long long clock = (unsigned long long) mode->clock * 1000;
- 	unsigned long long phy_freq;
- 	unsigned long long vclk_freq;
- 	unsigned long long venc_freq;
+On Fri, 25 Apr 2025 15:20:09 -0400 you wrote:
+> This bit is necessary to receive packets from the internal PHY.
+> Without this bit set, no activity occurs on the interface.
+> 
+> Normally u-boot sets this bit, but if u-boot is compiled without
+> net support, the interface will be up but without any activity.
+> 
+> The vendor SDK sets this bit along with the PHY_ID bits.
+> 
+> [...]
+
+Here is the summary with links:
+  - [v3] net: mdio: mux-meson-gxl: set reversed bit when using internal phy
+    https://git.kernel.org/netdev/net/c/b23285e93bef
+
+You are awesome, thank you!
 -- 
-2.43.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
 _______________________________________________
