@@ -4,74 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A087C3ABA5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Apr 2025 20:01:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E50C9C369DC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Apr 2025 21:03:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=fx53OdeW5kF+1YZ4P4Yfw1Wu1m5MdgMgo/C5oHSc/H4=; b=0Rm
-	nEGwUtt18ixD5LTraSslgB+WH/HuPNv/EocBrmNjHhZDguYdD/odfwYToD5GLGkJTs/2MXqPHZxOh
-	ysEcd0c5W6QxwOTyAgz4OVlBtOWWCzbmut4bNWndwUKCeeAhLZk3zSGCqgQDLi/tHiJWh5C+VwaIT
-	brzD/vR5B55WiSmVeCQ7JDalyQIQuM8w+rU/DTcjVcIE5B3RyfSlgiaLpXJLXNb6jmlvmHWk/uwUH
-	lUywRLuoGXywNVbpTCa/Iz6ox1zcNHrAdRnTiMhQqs3dzwQsMOIDSSXqj0FxawBkr+OtmY8kyedTj
-	SvKDgOxCSBfaKeHI5DDGf2Y6sm8CvLg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=WXruI0piNBpFl3Tkz3bV2U2Ns+az+2SxSOGsTdCs/rU=; b=OborLHIpju51UU
+	RYarNQfKLRgNbem46uI+v+ZEsjBAmK/hrnu4kxX5TnWotsmz5sZioicmxXO7FuvXfprpfsNbxn8sh
+	mdZeg5z+G7j4w5KTlBQZl+Fv/aSyWz4dZEQwrLT2ITcl/yjTiva0o6/Wvk/JQmd/icV0tyaap1sB9
+	OUqtrYM3hBfUWCuwcKRikMsnl3Nwz8Ca3/UF6nsK2qq6pwuucYuW+TH/epREgv9+wrOv8JCC1zrPB
+	4gBjIHSFgVjzV6hhLJ3z4arsBxk/KP9f8+Weg7X0AX0bQ1TUvvA9809vJXYyX1xyPYm6lCP+MDFjq
+	cP0TEBfLSG6GYnyEd5pQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u9r8n-0000000Ahb0-2ItY;
-	Tue, 29 Apr 2025 20:01:17 +0000
-Received: from mail-ot1-x329.google.com ([2607:f8b0:4864:20::329])
+	id 1u9s6l-0000000Aorz-0cNC;
+	Tue, 29 Apr 2025 21:03:15 +0000
+Received: from smtp-16.smtpout.orange.fr ([80.12.242.16] helo=smtp.smtpout.orange.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u9qB0-0000000AbqC-2xbB
-	for linux-amlogic@lists.infradead.org;
-	Tue, 29 Apr 2025 18:59:31 +0000
-Received: by mail-ot1-x329.google.com with SMTP id 46e09a7af769-7306482f958so2560297a34.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 29 Apr 2025 11:59:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745953169; x=1746557969; darn=lists.infradead.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=vARjMvB0nhfVGjca7tGswogB5me6RdvGPdOvlgaJ5U4=;
-        b=l7JthmfGQzUJ7bNDVJMOa1vxJXHVYdIlH88RwlB1qY+kLHu78O53YcbZD0xgMiWaWh
-         utmg1XlNLqy1rJ3+ZbEeoDGBSJGG/0EyM4/Bt0yj5Lzd6GXwWxksL6JLNkBilKY/LgAI
-         LlnWb43r5HuvOskFX2Wtmvalb/4ABmB9z/82azMIHrKklK84w9n8e9rDvacO4o34BmIW
-         WRXdAVVZ/+cjclV0J7QWpyAqINEecNDlYGAVlIVJDE9mf7b3dyiU6Z914c0Wh6wi9wrV
-         BhfTHmBrU4P7MHCjk3prVnNQl8lJOT8Y64PlUvzHxGuX0INFy0IUCE2s6HTiZOEzlLeG
-         5now==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745953169; x=1746557969;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vARjMvB0nhfVGjca7tGswogB5me6RdvGPdOvlgaJ5U4=;
-        b=m+4G7K84SyqhtTokIz73aM/s+4nhph+bosHwVhwvaTmjnomSqXxdXCp2Wn25rh0vfz
-         6tCbwtPxufVTLWOez8qr+JrlnoYIwzfM6geM6OZWWRYZv5R87OD2RP8YObOqvmOIaIrU
-         W0ob/1S4hzOpxxq6uVNboDf/x2cIzuSUBYLbaeVS/9G18ry2Gc36nAlq7nwP9lyGBvZd
-         RQssYHLGcEqTOGNPNDN1QMzLpTEIYgPu+3NJT9kdHQ+J83nlLLr1by6cPi4BlmoBqwqO
-         3CmMFMNIQRRAC8U0kRG0gns3da3L+vFvy345327LD7JsLFrUUziG66pIdVO3pPmjySdq
-         76Vg==
-X-Gm-Message-State: AOJu0Yw1TA1Nvpl+62LhEvfz333SGci9P0SYD/nUFrmiphTCHRdYZ6iF
-	BsvHt5yfQfJERq7HZEl1gPfXQw6d5Slc6YB5hE1wqcDmwQhCNfYk4VXujnxq1MvifXXsm50K9sg
-	ujatGnfXgb2tWUFINfWQ34PZzXleOLyXK
-X-Gm-Gg: ASbGncvTT5ka6s5vXaPIPr8d4iGbiVugxvVWz3pE3m7qIXTHXMLA5Dzej1Qts3CRzqD
-	bE7kxKY5G4xFZhg7Gw+OOEFvOwdLk/bwBe8ak/p9Ozss7z+lGkKBlgv7NoaLT+EuQqpEAojyodI
-	UtYF0BDh5QnjdNV0AWBDCX
-X-Google-Smtp-Source: AGHT+IHKPy653i1WsXkjEKOzWRnacuJGeI2uFUr7XM3bgWJQAQPQf4jutjOzzufU3INWsROSGsmzn8iB8sAqE7/X3qY=
-X-Received: by 2002:a05:6870:168f:b0:2d4:c19a:94e5 with SMTP id
- 586e51a60fabf-2da6a3a11f8mr87140fac.39.1745953169401; Tue, 29 Apr 2025
- 11:59:29 -0700 (PDT)
+	id 1u9s3q-0000000AoSY-0OOn;
+	Tue, 29 Apr 2025 21:00:15 +0000
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id 9s3FuK4cRBfs49s3IuBIq6; Tue, 29 Apr 2025 22:59:45 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1745960385;
+	bh=+TozBWijXodrVUon6QJfDncNinfpv/1bQpJAQR3zwHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=aWaj4RCVHvwG0spz2veNVZYCrnM6nLNlGyfl8IqfdPa1TCsIeGu92xkP3nKUnmZQB
+	 iE1ph39mdxBnpKYPgISulUUnSjatciPB0VOhhu3UNseGODeeaScNQyfQeUfXr6H9Ab
+	 FdBUB3/lGF1wyxzCqhKt3KXO3s2C/t2kf/FAGdvsKF0loerODbMjXLxJDboeF7CeM7
+	 yKqywcqMZ4qhiiMNCQCA0fagB9UG2+pxtuf271dJ9FEsnogOhvQeSw5TtBXDmtzSro
+	 lSt2giOKSgCeWaTRAZW5BfagcjN7hoXWIgzEGRlyQQQWxpmR1h/9qZZxNtrhxooW0+
+	 T7s3gEoxwIQrQ==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Tue, 29 Apr 2025 22:59:45 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <d5a8e781-6936-4c83-83d1-92daa2da8ca2@wanadoo.fr>
+Date: Tue, 29 Apr 2025 23:00:01 +0200
 MIME-Version: 1.0
-From: Jeff Sacksteder <jsacksteder@gmail.com>
-Date: Tue, 29 Apr 2025 14:59:18 -0400
-X-Gm-Features: ATxdqUHQXBWa-E2j5lzfSVWBPbe54b-mXZUfoq0VX6UUjxTGl6n7ErXr9mD8zV0
-Message-ID: <CAOgeiBY9nLNS8==Z_d4PQQ-Quyp89dSD83ZmuGHOMkFXmd=AWQ@mail.gmail.com>
-Subject: AML-S905X-CC-V2 emmc issue
-To: linux-amlogic@lists.infradead.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/meson: Cast mode->clock to unsigned long long
+To: I Hsin Cheng <richard120310@gmail.com>, neil.armstrong@linaro.org
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, skhan@linuxfoundation.org
+References: <20250429190724.330883-1-richard120310@gmail.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20250429190724.330883-1-richard120310@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250429_115930_744780_41F8517E 
-X-CRM114-Status: UNSURE (   7.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250429_140014_273555_553DCB28 
+X-CRM114-Status: GOOD (  12.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,37 +73,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-I'm having a problem trying to install Alpine Linux on to a Libre
-Computing Sweet Potato AML-S905X-CC-V2 and I need some clairification,
-if someone has been down this road already.
-
-The sd card is detected, but the optional emmc module is not(per dmesg
-and /dev/mmc*).
-
-The suggested distros Libre suggests work correctly, so I know the
-hardware is good.
-
-I don't know if they have magic patches, so looking for clues
-elsewhere, the current Gentoo image for Arm correctly detects both
-devices.
-
-The first obvious difference I find vs Alpine is that they include
-PWRSEQ_EMMC compiled as a module, while Alpine does not configure that
-option at all. My operating theory is that this hardware needs some
-bring-up power negotiation before it is available.
-
-However, since I don't have a cross-compile environment available, and
-it takes 35 hrs to build a kernel, and the Alpine build process is
-convoluted and weird to me, I would really like to know if that single
-option is the solution. Otherwise I face multiple 35 hr cycles of
-building and testing.
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+TGUgMjkvMDQvMjAyNSDDoCAyMTowNywgSSBIc2luIENoZW5nIGEgw6ljcml0wqA6Cj4gQ292ZXJp
+dHkgc2NhbiByZXBvcnRlZCB0aGUgdXNhZ2Ugb2YgIm1vZGUtPmNsb2NrICogMTAwMCIgbWF5IGxl
+YWQgdG8KPiBpbnRlZ2VyIG92ZXJmbG93LiBDYXN0IHRoZSB0eXBlIG9mICJtb2RlLT5jbG9jayIg
+dG8gInVuc2lnbmVkIGxvbmcgbG9uZyIKPiB3aGVuIHV0aWxpemluZyBpdCB0byBhdm9pZCBwb3Rl
+bnRpYWwgaW50ZWdlciBvdmVyZmxvdyBpc3N1ZS4KPiAKPiBMaW5rOiBodHRwczovL3NjYW41LnNj
+YW4uY292ZXJpdHkuY29tLyMvcHJvamVjdC12aWV3LzEwMDc0LzEwMDYzP3NlbGVjdGVkSXNzdWU9
+MTY0Njc1OQo+IFNpZ25lZC1vZmYtYnk6IEkgSHNpbiBDaGVuZyA8cmljaGFyZDEyMDMxMEBnbWFp
+bC5jb20+Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZW5jb2Rlcl9oZG1p
+LmMgfCA0ICsrLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRp
+b25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9lbmNv
+ZGVyX2hkbWkuYyBiL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9lbmNvZGVyX2hkbWkuYwo+
+IGluZGV4IDc3NTJkOGFjODVmMC4uZmUzZDNmZjdjNDMyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9tZXNvbi9tZXNvbl9lbmNvZGVyX2hkbWkuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9tZXNvbi9tZXNvbl9lbmNvZGVyX2hkbWkuYwo+IEBAIC03NSw3ICs3NSw3IEBAIHN0YXRpYyB2
+b2lkIG1lc29uX2VuY29kZXJfaGRtaV9zZXRfdmNsayhzdHJ1Y3QgbWVzb25fZW5jb2Rlcl9oZG1p
+ICplbmNvZGVyX2hkbWksCj4gICAJdW5zaWduZWQgbG9uZyBsb25nIHZlbmNfZnJlcTsKPiAgIAl1
+bnNpZ25lZCBsb25nIGxvbmcgaGRtaV9mcmVxOwo+ICAgCj4gLQl2Y2xrX2ZyZXEgPSBtb2RlLT5j
+bG9jayAqIDEwMDA7Cj4gKwl2Y2xrX2ZyZXEgPSAodW5zaWduZWQgbG9uZyBsb25nKSBtb2RlLT5j
+bG9jayAqIDEwMDA7CgpIaSwKCm1heWJlLCB1c2luZyAxMDAwVUxMIGluc3RlYWQgd291bGQgZG8g
+dGhlIHNhbWUsIGJ1dCB3b3VsZCBiZSBsZXNzIHZlcmJvc2U/CgpDSgoKPiAgIAo+ICAgCS8qIEZv
+ciA0MjAsIHBpeGVsIGNsb2NrIGlzIGhhbGYgdW5saWtlIHZlbmMgY2xvY2sgKi8KPiAgIAlpZiAo
+ZW5jb2Rlcl9oZG1pLT5vdXRwdXRfYnVzX2ZtdCA9PSBNRURJQV9CVVNfRk1UX1VZWVZZWThfMF81
+WDI0KQo+IEBAIC0xMjMsNyArMTIzLDcgQEAgc3RhdGljIGVudW0gZHJtX21vZGVfc3RhdHVzIG1l
+c29uX2VuY29kZXJfaGRtaV9tb2RlX3ZhbGlkKHN0cnVjdCBkcm1fYnJpZGdlICpicmkKPiAgIAlz
+dHJ1Y3QgbWVzb25fZW5jb2Rlcl9oZG1pICplbmNvZGVyX2hkbWkgPSBicmlkZ2VfdG9fbWVzb25f
+ZW5jb2Rlcl9oZG1pKGJyaWRnZSk7Cj4gICAJc3RydWN0IG1lc29uX2RybSAqcHJpdiA9IGVuY29k
+ZXJfaGRtaS0+cHJpdjsKPiAgIAlib29sIGlzX2hkbWkyX3NpbmsgPSBkaXNwbGF5X2luZm8tPmhk
+bWkuc2NkYy5zdXBwb3J0ZWQ7Cj4gLQl1bnNpZ25lZCBsb25nIGxvbmcgY2xvY2sgPSBtb2RlLT5j
+bG9jayAqIDEwMDA7Cj4gKwl1bnNpZ25lZCBsb25nIGxvbmcgY2xvY2sgPSAodW5zaWduZWQgbG9u
+ZyBsb25nKSBtb2RlLT5jbG9jayAqIDEwMDA7Cj4gICAJdW5zaWduZWQgbG9uZyBsb25nIHBoeV9m
+cmVxOwo+ICAgCXVuc2lnbmVkIGxvbmcgbG9uZyB2Y2xrX2ZyZXE7Cj4gICAJdW5zaWduZWQgbG9u
+ZyBsb25nIHZlbmNfZnJlcTsKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9saW51eC1hbWxvZ2ljCg==
