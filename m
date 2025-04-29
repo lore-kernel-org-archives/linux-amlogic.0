@@ -4,104 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32BC0C369CB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Apr 2025 07:09:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B851C369DC
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Apr 2025 08:45:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=h9wYtu+kqeoyZO6ik8+AZPyimURCEn4Iqkb5fmjICZ0=; b=PfJ6szAlZ/mS8j
-	//3yrWy78yY/aFVSn32cT6ZLCHb7k3vsAwpGNfT4UNGmo2N4+QG0sFoHw8FjP7VGjuiJNN2GGQ8ep
-	4Bvrv9SPiQ2YqeICxnx1le8dj/9UgSSJSK05m2Y6nbL1BkjGwzZxIJI1234aTCPzAylSGMeVvZO7C
-	hrVY89iJ7W2wT9J5d9J2QbhOI67AzjQnKYR1gnGWFGUkJ7btx0mlYaPt5P3uqXoeM4WFr5YZpE1dY
-	BHzSo/YRXDpcxXMFUOFL/9f1q5Y4SJQP+An39I8Xfal+/sUWadrA4NyCmkaXJZx2I3ICDwYLSJzXr
-	NQmuRdTngmC1BcOPUE2A==;
+	List-Owner; bh=YXDMacPuQSxb77/xkrTa9a2WyUuTcNDj3W5JgeR+YTc=; b=MdgNQIK/Mu9QTr
+	/Lv2jL7JLEwNw28BP2gFSdqgzrWTwiHsQ3Gm59S6s1FNapIhHNe25jfUaeciuxt75KlZIHA8a5v/6
+	gnqyotZl5utv+1XjWykWuOLHWNq7/b2ypbXTvKnf/bT24YyQnHHhlkYJ0JfjTHAh0Y9pFm3L6D9RA
+	GECZOtmk1wqkOQBaVXzWMnB7ynDTmE32htlg1cDEzrrn7NhtdEI9TtaSj/EixSQueNDYs0ksIDcdF
+	p2pvNtgfkfdrGuF2VaBBiYjog4pP+QJmrWaizAzbBPw9ClGeo9UsSJJpUFa223etEnvCDbRW2zzWW
+	PIXt81kxm6gBiPmrKBUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u9f5J-00000008hTG-3DDC;
-	Tue, 29 Apr 2025 07:08:53 +0000
-Received: from relay5-d.mail.gandi.net ([2001:4b98:dc4:8::225])
+	id 1u9gat-00000008zCx-3KGL;
+	Tue, 29 Apr 2025 08:45:35 +0000
+Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u9f4f-00000008hJM-496b;
-	Tue, 29 Apr 2025 07:08:16 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 22CA543A5D;
-	Tue, 29 Apr 2025 07:08:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1745910488;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kd3lI03kG0Wm60ssPsZRZZBpZE8tAduMDQ2Hf34LlN8=;
-	b=fcJKYscBr/b/jTAU/vdTWM1YVAZaQiKZf9U4AtTZtpc5ho823NHoDeZMuLwHQVD5ogMz4d
-	l4pHVstABt7F5anu7rX+Is4pzCVclLJyVW2RUnk7sXHFitWtcyzJ1ZDZppcaYxqIMmzxD2
-	Sfc1sxFBGdTgBwDEHAPbC2rd0KV+kllYzYprQVDyppacSAp3Fkyy+/iDCZutuZh3ARu+US
-	34h4mqj6xj55AWEBMBTArFMS0lwr+TdUdaA1KbDVw07BZOaEQry3xl1MPhcnU/8hzfGqQG
-	6tTsndglheT+XJYQtJe0j1GjXXfJp3D7sz7UMZVYzpF8m9ZxqhKhClOsZxv+aQ==
-Date: Tue, 29 Apr 2025 09:07:59 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
- <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Douglas Anderson
- <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, Anusha Srivatsa <asrivats@redhat.com>, Paul
- Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui
- Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
- asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
- chrome-platform@lists.linux.dev, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, Adam Ford <aford173@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>, Aleksandr Mishin
- <amishin@t-argos.ru>, Andy Yan <andy.yan@rock-chips.com>, AngeloGioacchino
- Del Regno <angelogioacchino.delregno@collabora.com>, Benson Leung
- <bleung@chromium.org>, Biju Das <biju.das.jz@bp.renesas.com>, Christoph
- Fritz <chf.fritz@googlemail.com>, Cristian Ciocaltea
- <cristian.ciocaltea@collabora.com>, Detlev Casanova
- <detlev.casanova@collabora.com>, Dharma Balasubiramani
- <dharma.b@microchip.com>, Guenter Roeck <groeck@chromium.org>, Heiko
- Stuebner <heiko@sntech.de>, Jani Nikula <jani.nikula@intel.com>, Janne
- Grunau <j@jannau.net>, Jerome Brunet <jbrunet@baylibre.com>, Jesse Van
- Gavere <jesseevg@gmail.com>, Kevin Hilman <khilman@baylibre.com>, Kieran
- Bingham <kieran.bingham+renesas@ideasonboard.com>, Manikandan Muralidharan
- <manikandan.m@microchip.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Matthias Brugger
- <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Phong LE
- <ple@baylibre.com>, Sasha Finkelstein <fnkl.kernel@gmail.com>, Sugar Zhang
- <sugar.zhang@rock-chips.com>, Sui Jingfeng <sui.jingfeng@linux.dev>, Tomi
- Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Vitalii Mordan
- <mordan@ispras.ru>
-Subject: Re: [PATCH v2 01/34] drm: convert many bridge drivers from
- devm_kzalloc() to devm_drm_bridge_alloc() API
-Message-ID: <20250429090759.3a6e87bc@booty>
-In-Reply-To: <810dc089-4789-4efb-a88f-4ab8da1519d4@nxp.com>
-References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
-	<20250424-drm-bridge-convert-to-alloc-api-v2-1-8f91a404d86b@bootlin.com>
-	<810dc089-4789-4efb-a88f-4ab8da1519d4@nxp.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	id 1u9gWL-00000008yXQ-3XYc
+	for linux-amlogic@lists.infradead.org;
+	Tue, 29 Apr 2025 08:40:55 +0000
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-30f30200b51so64896281fa.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 29 Apr 2025 01:40:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1745916052; x=1746520852; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KyAtXWPUARsz+iDauIm3noZwAgvzeeeL/6Xih7T8GDE=;
+        b=AKfDRRjgvVLEd8BjDO8BEft0/sbUc+IYaqPUP1cMuuXzKXB0dFRYFWKbDicFXjlJz1
+         LBU96/EExesDIHuhjZN2s+Ksk9mhBno0rILWjs2TkvzbR45Tc5ujnWTd04+sbVbTqTlp
+         CizMEU0/72KTvShFHYi1EjrW3cvgLsv7ZN3QPFdAUvUu00Gdv8mUvnvmAQ8k8BPJFFDm
+         9gCOwlUf9CyE4wtBrNepGr3gECOKQUgbNOVinIuCfMfT8f+/ZocrfSvljFEt2czU5agH
+         DVtlgZmdyIxEo0jjq+4RjhiksyjmecoShrM7H/UI4C9lQ5BBZmO5qL7eGMV/sCB2+yvB
+         CTxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745916052; x=1746520852;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KyAtXWPUARsz+iDauIm3noZwAgvzeeeL/6Xih7T8GDE=;
+        b=Mf9XGFt5QmBR0oASjH0SxfPlabVP5vZlR+erKdvIfnvAeAVfNu5QAb7A0iEdwczgQG
+         2H7wt0ym0ePsGqpjNjHE2aDsxWegcCawDliT8HHfTB2881UzZd6j0IUymmofMo/x3iZm
+         yyff8U9uwgDloPWppe0RqDbpEy4Ttbq06Q7zf9TIRMaAx7QojlGQiCVg0rdjqj4Z7wqN
+         IXX8nSndCxOyilgKKPCTb89poZwTCBtdKzjRY0N4ge1J11wZ+c4uUqUPyObsF4VDoFxt
+         lnuElKjZqGPnitbg1xZVLd92WdRtYYj4J7GmuaQ7w2Kb79MLR/G9gwr1UcrMZW3dcbN9
+         jteQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+ILZK9hS6E7DRNLc4Vidb3TTQYJHypJEye31C3wrpYKtoSzrohNOIQuPXJmZgbC0HBZDfCwkC8B7wrnO1@lists.infradead.org
+X-Gm-Message-State: AOJu0Ywm64oE65tPJwqn4ACkhZz4t1dlIXqkwDNLW7BhGSQJJmS/mv8n
+	g2MSuCbEP2ZLjGRuCGwY2DY27yM/KeXcefTkJJKnZPnVRihmVVd7b7txASeYo45IZ3J3pGkZwDZ
+	u7qTKcHacEJKQ0Y0HrFN/9o603CTF1hy5LHsW6A==
+X-Gm-Gg: ASbGnctPhou2DdrehP8OyJcn6WqebgY787nksHLgRKRkp9N2X+/gKpI5M1QUizI/z3E
+	0HRWEjA23XpJ97v/0KsM+151GdaBK+6HjsQezx3v8GXBCAKMj3zL2fcgpsR9WJhDaf/FGF8B5NA
+	ay2iBAXH8TKTDQPqqneoDAbA==
+X-Google-Smtp-Source: AGHT+IEUiqYB296CVrwZ+xxBw7BC+pTcJa/x+6Bu5GNB2EvNhnBwa7BLSUJNRUMp+Ehtf1mLBoE9JSmzpMhMYJBukms=
+X-Received: by 2002:a2e:bc0b:0:b0:30d:894a:a538 with SMTP id
+ 38308e7fff4ca-31d34b6c243mr8766341fa.21.1745916052135; Tue, 29 Apr 2025
+ 01:40:52 -0700 (PDT)
 MIME-Version: 1.0
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvieefudelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeelffefgfehhfdtvdefueefieevkefggfelkeeiudetkeektedvhedukefgvddvnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgdphhgvlhhopegsohhothihpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepieekpdhrtghpthhtohepvhhitghtohhrrdhlihhusehngihprdgtohhmpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehmrhhiphgrrhgusehkv
- ghrnhgvlhdrohhrghdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghnughriigvjhdrhhgrjhgurgesihhnthgvlhdrtghomhdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhg
-X-GND-Sasl: luca.ceresoli@bootlin.com
+References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
+ <20250424-drm-bridge-convert-to-alloc-api-v2-15-8f91a404d86b@bootlin.com>
+In-Reply-To: <20250424-drm-bridge-convert-to-alloc-api-v2-15-8f91a404d86b@bootlin.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 29 Apr 2025 10:40:41 +0200
+X-Gm-Features: ATxdqUEhPh2HxY_cKMawBJnfuogL8n7jPhFvg8U9jTR5km8hYrNkb1VPdIYXtGQ
+Message-ID: <CACRpkdZt8zem0hFUiq3-Z1feNZHRh3R=Y0cEtK=pVt=bJ9Qf1g@mail.gmail.com>
+Subject: Re: [PATCH v2 15/34] drm/mcde: convert to devm_drm_bridge_alloc() API
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Jagan Teki <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Douglas Anderson <dianders@chromium.org>, 
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Anusha Srivatsa <asrivats@redhat.com>, Paul Kocialkowski <paulk@sys-base.io>, 
+	Dmitry Baryshkov <lumag@kernel.org>, Hui Pu <Hui.Pu@gehealthcare.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org, 
+	asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	chrome-platform@lists.linux.dev, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
+	linux-stm32@st-md-mailman.stormreply.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250429_000814_768614_394AB070 
-X-CRM114-Status: GOOD (  17.11  )
+X-CRM114-CacheID: sfid-20250429_014053_883982_1BD63EF8 
+X-CRM114-Status: UNSURE (   7.80  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,61 +108,16 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Liu,
-
-On Tue, 29 Apr 2025 10:19:27 +0800
-Liu Ying <victor.liu@nxp.com> wrote:
-
-[...]
-
-> > diff --git a/drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c b/drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c
-> > index f072c6ed39ef183b10518b43bd6d979bc89e36f9..8069c4881e9058f5462f99116799b589bd52b19e 100644
-> > --- a/drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c
-> > +++ b/drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c
-> > @@ -59,9 +59,10 @@ struct drm_bridge *devm_imx_drm_legacy_bridge(struct device *dev,
-> >  	struct imx_legacy_bridge *imx_bridge;
-> >  	int ret;
-> >  
-> > -	imx_bridge = devm_kzalloc(dev, sizeof(*imx_bridge), GFP_KERNEL);
-> > -	if (!imx_bridge)
-> > -		return ERR_PTR(-ENOMEM);
-> > +	imx_bridge = devm_drm_bridge_alloc(dev, struct imx_legacy_bridge,
-> > +					   base, &imx_legacy_bridge_funcs);
-> > +	if (IS_ERR(imx_bridge))
-> > +		return PTR_ERR(imx_bridge);
-> >  
-> >  	ret = of_get_drm_display_mode(np,
-> >  				      &imx_bridge->mode,
-> > @@ -71,8 +72,6 @@ struct drm_bridge *devm_imx_drm_legacy_bridge(struct device *dev,
-> >  		return ERR_PTR(ret);
-> >  
-> >  	imx_bridge->mode.type |= DRM_MODE_TYPE_DRIVER;
-> > -  
-> 
-> Nit: Can you please leave this blank line undeleted?  And I see similar
-> situations where lines are unnecessarily deleted by this patch, so this applies
-> to the entire patch.
-
-I agree some empty lines removals are not nice in this patch. However I
-have no idea how to avoid that with spatch, so I'd have to redo [a part
-of] the changes manually to avoid it. :-(
-
-Anyway, those I spotted look quite innocuous. So I'll assume it is "OK
-enough" as is, unless there are strong requests to do differently.
-
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVGh1LCBBcHIgMjQsIDIwMjUgYXQgOTowMOKAr1BNIEx1Y2EgQ2VyZXNvbGkgPGx1Y2EuY2Vy
+ZXNvbGlAYm9vdGxpbi5jb20+IHdyb3RlOgoKPiBUaGlzIGlzIHRoZSBuZXcgQVBJIGZvciBhbGxv
+Y2F0aW5nIERSTSBicmlkZ2VzLgo+Cj4gU2lnbmVkLW9mZi1ieTogTHVjYSBDZXJlc29saSA8bHVj
+YS5jZXJlc29saUBib290bGluLmNvbT4KClJldmlld2VkLWJ5OiBMaW51cyBXYWxsZWlqIDxsaW51
+cy53YWxsZWlqQGxpbmFyby5vcmc+CgpZb3VycywKTGludXMgV2FsbGVpagoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
+IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
