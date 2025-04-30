@@ -4,102 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86FCAC3ABAD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Apr 2025 11:31:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ED16C3ABB7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Apr 2025 11:53:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=R/dTy5Rmx+CN2XAqpyVtOUDQHuwL2tClfP4nxwKNLOM=; b=xmDuY5DbXWT55WzFvu4yIE+2md
-	ObCSaOtQF8p6nc/eBSXw61fHfY+xhl6/RbymVvXuTOQCD+XoYx3UpJe916ToUwymf5JX7yagrGwpS
-	z2NDvMYGzkJ1/L2BKDPMKo0nmNVSKiQ2o64MWQ8dcUsKPwmZevnW1Fk3AWQWTcp9rP7A3OLoqqnmM
-	TocCTzi9wSZBxAltm/be8Yy1dNSgqykJTMRQnLE1Cb99B2cl595cIyr+C9HTpcoTIFcozBqCVroCp
-	FCmpkMDs8X2P3s4KKm6mXawTWB42r51qnMl/TX6cvsKcehlT7PvTJyL7K4YctnvjWsRVMW37ikvvY
-	jUsWlv5g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:Subject:To:
+	Message-Id:Date:Mime-Version:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pHT0Gp9yZVHoFgDhbWDHeMqjeYhxNjSLnC7jlCxMw5k=; b=fS3hQAinxAsEUc
+	yvLOlIruUEhxtpV92BW34YrYMlHoLRucE9Aht8MGwWFzRbK7Yot/oLfKdUf9yqjA7d6eXCLPlqwFZ
+	rAK31W7r9uIrIXU+JQhVIBbKt8K27Wvg/YP5hALIkynIbLIibLUTNOKTtiCPqmR61AzBlGxzpVb60
+	kaCdKZuwFWzXPPkqdpv6l9If//cu/Tc6K0Qubght71gID2w+yW0m2rx9dm+AEeLtWoj2AS6pPzxn2
+	fgPxapuRuY3zlVRaVIk72NpaA4W3ZCZtjss0jRMN8OkmBYcuCjcKmzxZkrnh4jLys2v1gT18Rohgw
+	mALBeAiuI/pBzpZ+tmbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uA5eq-0000000CgyN-0X8f;
-	Wed, 30 Apr 2025 11:31:20 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1uA60U-0000000Cjv4-11nv;
+	Wed, 30 Apr 2025 11:53:42 +0000
+Received: from out-180.mta1.migadu.com ([95.215.58.180])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uA4qX-0000000CYwb-1u5s;
-	Wed, 30 Apr 2025 10:39:21 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id E379168430;
-	Wed, 30 Apr 2025 10:38:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B910BC4CEE9;
-	Wed, 30 Apr 2025 10:39:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746009560;
-	bh=pa/oq7Iq9DFQzLAcYNPUeUzLf26wbsIriyzXBSer2gM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ba2+wqLpY4w4Dwob5uYJx95CKmUelGELftsNTS3eHspzZ58Ikjl7LtL2k/WEVojg3
-	 6RNboZgAoPsRSceBSrJQ4gI0KI+kLh/x/+zVe369vcEYvsrJcpw+MaLGq1dvO0dhzT
-	 UXRNIHNfOndCAVL8bp8Vk+mUt5Z7AOA9GNYnov13fOSdNL5ZdZ+HunWP8UpY2BZFVS
-	 kcUcVI8My66bOlI48dIaW0RnArzM3AEdSf4RJwXFrBtI9GNBMwHbLfcRwpMdomOayN
-	 rqMkzFB+G2QvvC7JpYRvfRaEQX3MjkSQYncUy0phaJL6pWidajSYs2KXlz01S2iNTQ
-	 1tZFXEK+iUgRg==
-Date: Wed, 30 Apr 2025 12:39:17 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Louis Chauvet <louis.chauvet@bootlin.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Jagan Teki <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Douglas Anderson <dianders@chromium.org>, 
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Anusha Srivatsa <asrivats@redhat.com>, 
-	Paul Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Hui Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	dri-devel@lists.freedesktop.org, asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	chrome-platform@lists.linux.dev, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-renesas-soc@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
-	linux-stm32@st-md-mailman.stormreply.com, Adam Ford <aford173@gmail.com>, 
-	Adrien Grassein <adrien.grassein@gmail.com>, Aleksandr Mishin <amishin@t-argos.ru>, 
-	Andy Yan <andy.yan@rock-chips.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Benson Leung <bleung@chromium.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Christoph Fritz <chf.fritz@googlemail.com>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Detlev Casanova <detlev.casanova@collabora.com>, 
-	Dharma Balasubiramani <dharma.b@microchip.com>, Guenter Roeck <groeck@chromium.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Jani Nikula <jani.nikula@intel.com>, Janne Grunau <j@jannau.net>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Jesse Van Gavere <jesseevg@gmail.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Liu Ying <victor.liu@nxp.com>, Manikandan Muralidharan <manikandan.m@microchip.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Phong LE <ple@baylibre.com>, 
-	Sasha Finkelstein <fnkl.kernel@gmail.com>, Sugar Zhang <sugar.zhang@rock-chips.com>, 
-	Sui Jingfeng <sui.jingfeng@linux.dev>, Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
-	Vitalii Mordan <mordan@ispras.ru>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Hans de Goede <hdegoede@redhat.com>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, "Rob Herring (Arm)" <robh@kernel.org>, 
-	Hsin-Te Yuan <yuanhsinte@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
-	Xin Ji <xji@analogixsemi.com>, Aradhya Bhatia <a-bhatia1@ti.com>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Ian Ray <ian.ray@ge.com>, 
-	Martyn Welch <martyn.welch@collabora.co.uk>, Peter Senna Tschudin <peter.senna@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Herve Codina <herve.codina@bootlin.com>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>, 
-	Kyungmin Park <kyungmin.park@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Bjorn Andersson <quic_bjorande@quicinc.com>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, Helge Deller <deller@gmx.de>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: (subset) [PATCH v2 00/34] drm: convert all bridges to
- devm_drm_bridge_alloc()
-Message-ID: <20250430-scorpion-of-majestic-argument-7f59b4@houat>
-References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
- <174591887152.961603.7706063017853945511.b4-ty@bootlin.com>
- <sdiwpe7nnhud3fvkgijjbfyenlwpchbxgehyxmsy7c5loo257h@hkfcawkjrlhd>
- <efcf3798-9ac1-42a7-8a12-24d931cbf771@bootlin.com>
-MIME-Version: 1.0
-In-Reply-To: <efcf3798-9ac1-42a7-8a12-24d931cbf771@bootlin.com>
+	id 1uA5XF-0000000CfQ7-3axF
+	for linux-amlogic@lists.infradead.org;
+	Wed, 30 Apr 2025 11:23:32 +0000
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1746012205;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oM2zbKt1/qIyxTawQZGhnPddYmnxVZavyO2Gp5Yz0XY=;
+	b=HhGTIWj0Px6eu36xrjuDQqwaSQPd30dlubr8MyZ2r/dpTxjpgXJ3pWRBsOZ6AQhTW1hX2M
+	2i7v22zl0cbkb64JTNhnEWNxg4A/mA3iyfv3RpmYm9q6gh1B7gE6aqcrGFnbBO9VK1lDcm
+	tT0jq1uuKUhjuq2ut2FxuoRcJ+Trp/uCU/QOlmGGpFDHoN6L0ijUlZyXfPYCnDJNZIoy5K
+	0HY+UPWh5ZIm2cyakQJJPUjIVCUwNcTKTUL6n/zYXnOzujiBkAlC78uPlD2/i6N3iCjNKg
+	UephXnYM41ynRjMrBfzPIuKZOp8pPOh8ScHtsmUPKlwu3J6ot4FUFa3ekm3m3A==
+Date: Wed, 30 Apr 2025 11:22:59 +0000
+Message-Id: <D9JXNU6TFEYQ.3T8YQVP6V6LOR@postmarketos.org>
+To: "Jeff Sacksteder" <jsacksteder@gmail.com>,
+ <linux-amlogic@lists.infradead.org>
+Subject: Re: AML-S905X-CC-V2 emmc issue
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Ferass El Hafidi" <funderscore@postmarketos.org>
+References: <CAOgeiBY9nLNS8==Z_d4PQQ-Quyp89dSD83ZmuGHOMkFXmd=AWQ@mail.gmail.com>
+In-Reply-To: <CAOgeiBY9nLNS8==Z_d4PQQ-Quyp89dSD83ZmuGHOMkFXmd=AWQ@mail.gmail.com>
+X-Migadu-Flow: FLOW_OUT
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250430_042330_589028_0F786434 
+X-CRM114-Status: GOOD (  17.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,106 +64,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2666563751213981079=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
---===============2666563751213981079==
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="n3uft3wwvexxpcog"
-Content-Disposition: inline
+On Tue Apr 29, 2025 at 6:59 PM UTC, Jeff Sacksteder wrote:
+> I'm having a problem trying to install Alpine Linux on to a Libre
+> Computing Sweet Potato AML-S905X-CC-V2 and I need some clairification,
+> if someone has been down this road already.
+>
+> The sd card is detected, but the optional emmc module is not(per dmesg
+> and /dev/mmc*).
+>
+> The suggested distros Libre suggests work correctly, so I know the
+> hardware is good.
+>
+> I don't know if they have magic patches, so looking for clues
+> elsewhere, the current Gentoo image for Arm correctly detects both
+> devices.
+>
+> The first obvious difference I find vs Alpine is that they include
+> PWRSEQ_EMMC compiled as a module, while Alpine does not configure that
+> option at all. My operating theory is that this hardware needs some
+> bring-up power negotiation before it is available.
+>
+> However, since I don't have a cross-compile environment available, and
+> it takes 35 hrs to build a kernel, and the Alpine build process is
+> convoluted and weird to me, I would really like to know if that single
+> option is the solution. Otherwise I face multiple 35 hr cycles of
+> building and testing.
 
+Last time I tried Alpine's linux-edge kernel (was on an S905 board), my SD 
+card was not being detected correctly either.  I also suspect missing
+things in the kernel's config.  For reference, this is the kconfig
+postmarketOS uses:
 
---n3uft3wwvexxpcog
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: (subset) [PATCH v2 00/34] drm: convert all bridges to
- devm_drm_bridge_alloc()
-MIME-Version: 1.0
+https://gitlab.postmarketos.org/postmarketOS/pmaports/-/blob/4c0787f38f74a089f1140f85ba980da91fc48016/device/testing/linux-postmarketos-amlogic/config-postmarketos-amlogic.aarch64
 
-On Wed, Apr 30, 2025 at 10:21:48AM +0200, Louis Chauvet wrote:
->=20
->=20
-> Le 29/04/2025 =E0 16:42, Dmitry Baryshkov a =E9crit=A0:
-> > On Tue, Apr 29, 2025 at 11:27:51AM +0200, Louis Chauvet wrote:
-> > >=20
-> > > On Thu, 24 Apr 2025 20:59:07 +0200, Luca Ceresoli wrote:
-> > > > devm_drm_bridge_alloc() [0] is the new API to allocate and initiali=
-ze a DRM
-> > > > bridge, and the only one supported from now on. It is also necessar=
-y for
-> > > > implementing reference counting and thus needed to support removal =
-of
-> > > > bridges from a still existing DRM pipeline without use-after-free.
-> > > >=20
-> > > > This series converts all DRM bridges to the new API.
-> > > >=20
-> > > > [...]
-> > >=20
-> > > Applied, thanks!
-> > >=20
-> >=20
-> > [...]
-> >=20
-> > > [16/34] drm/msm/dp: convert to devm_drm_bridge_alloc() API
-> > >          commit: b2aabe5c6b65516d88214aba4b12ce2ca78bac6c
-> > > [17/34] drm/msm/dsi: convert to devm_drm_bridge_alloc() API
-> > >          commit: fffc8847743e45604c4478f554d628481b985556
-> > > [18/34] drm/msm/hdmi: convert to devm_drm_bridge_alloc() API
-> > >          commit: e11532be87e437648521a8ed5358c56df11933b4
-> >=20
-> > Why? These drivers are explicitly handled outside of drm-misc. Please be
-> > more careful next time.
-> >=20
->=20
-> Sorry, I was not aware that msm also have his own repository.
->=20
-> TBH, I was not aware that other repositories existed for drm (I should ha=
-ve
-> looked at MAINTAINERS, it is totally my fault). DIM and doc[1] only list
-> drm, drm-misc, drm-xe, drm-intel, so I just tough "intel is special", not
-> "drm is divided in many repositories".
+No patches are required to get the module working.
 
-It's mentioned in the drm-misc section:
+When I tested it, the eMMC module works perfectly fine on all my Libre
+Computer boards (alta, solitude, lepotato, lafrite).  I've no doubt it
+should work on sweetpotato as well.
 
-https://drm.pages.freedesktop.org/maintainer-tools/repositories/drm-misc.ht=
-ml
-
-> This repository consists mostly of the core drm code as well as DRM
-> drivers that do not have a dedicated repository.
-
-Feel free to send a patch to improve the doc. If you missed it, someone
-else will.
-
-Maxime
-
---n3uft3wwvexxpcog
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaBH91QAKCRAnX84Zoj2+
-dtaAAYD+vw3ijG0Npi7DNS7E4rH/Y/pmL5jn26rshJDKKon86xXDKPf7qxcxUMUk
-GcIwPpABfiK4x23dgB5GWaHnby7RQQrps8EcAVNJ5CjGxA14hgs3XZLzSy+6xbQn
-WiWn0Tn6mA==
-=/a61
------END PGP SIGNATURE-----
-
---n3uft3wwvexxpcog--
-
-
---===============2666563751213981079==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Cheers.
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============2666563751213981079==--
-
