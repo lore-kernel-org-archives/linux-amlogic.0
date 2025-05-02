@@ -4,65 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E2D6C3ABAC
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 May 2025 15:41:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75840C3ABAA
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 May 2025 18:56:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=+yworO1DuFlxWhZu/bPm+JRMQA1pMva828e/qwjbREQ=; b=vl466dOddyEwai
-	i1oz8ISQFsWEufO3CHupLQqaWktz6e3bqgmi5Qr2GqR77AJp10cDcTkDsIAfGI/vDOOs6chkGpU/t
-	pv4sPPa4EhERpPdRfZDIVxxt3tGVHr/CASG29+3LURcpvza0UzECFPmtwO6i51in+plNSqGyhImFW
-	tBL0oBZPt2FP710LsPU/xeG2ti8iwGPqgM0lmsYHz02TYaT2gZdBkmxxI/mp5xcYF/YrqV5oCAGqN
-	Xj7JNP/bWo8CHfOsxp46haCgr/Jitr907ezPF5v9g8THzDvLevX/O05emdMEzgPmvwYrD937gh4m5
-	sJKYHaw935wDC9dq6mYg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/svHHSrXu5s9eK+T2lnFk2lPEPzyOW7FuAAC4YG68KI=; b=uDw5S/VKe0i/lc
+	OLvVQRsihk+VKvhwA16kMzi9Z0nEFrb1O/nbVlpi5fRAZ500kFR4FeYavPlCmKP95cHeJdaKE3ETS
+	bDgSxrTbKWNorzXbSPZYnRuCQNgfryG3WL0M/nSbgRYcNsE+5UYeYefmUf/dcg5pGdbiN2gTk3y/B
+	GiGWW0/2HcMgxPvCeNsgOKa2c009d0pD64Az7AwfhbqiFh06AQ4BECnOaBEBM5NPtcDj6W6mtm710
+	VE8E+5Y28g8tQsQcVE+Ocq6ymfP0dC2LnA9zcZaTaSWssEbtI3ti3+q/etvHtCVnvtRL/Hw60Y/vx
+	9iN/nMo12SWNtAaXPUiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uAsWB-00000002MzS-3M6Y;
-	Fri, 02 May 2025 15:41:39 +0000
-Received: from smtp-73.smtpout.orange.fr ([80.12.242.73] helo=smtp.smtpout.orange.fr)
+	id 1uAvZ4-00000002o71-2l9B;
+	Fri, 02 May 2025 18:56:50 +0000
+Received: from out-183.mta0.migadu.com ([2001:41d0:1004:224b::b7])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uAsNS-00000002Lb9-189D;
-	Fri, 02 May 2025 15:32:39 +0000
-Received: from localhost.localdomain ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id AsNKucfiRU6wKAsNNuiUsf; Fri, 02 May 2025 17:32:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1746199955;
-	bh=+hpk8cr126p7YYLv2U+Rh60U/JKvVKpYQL3YqdP60hg=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=WyZhZN1R+jxM5SFehLWOWGPihwRkEGdeRNXJINrq5NSgjMWDa4P5UgurXfxgdi2z2
-	 Rtl18Y4xExXTUZgG8s4mr0S3wVmtyIvbQhz0btegHbAT17FGXRg0BhnHP+FtiFaREY
-	 +wFE5qLhC2AgUlhCp4VKPiv6MTu32slh7VCC6f3loQZ6kg5MWL0gxHNaYrhC4zwQOv
-	 3lqy0Ls5AfdLnovkX3c5YS/EjSzS4ywRpLZDMQOEGkjLPhruy30tCUJTRO+M1hnToF
-	 E8HirI7HQc8Q8pYcFnO/HC+ifTxnFUsBEwTBEKeXmp26lpyeQS1eBQPj96cj5W9fo+
-	 mbezbb54/O+jA==
-X-ME-Helo: localhost.localdomain
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Fri, 02 May 2025 17:32:35 +0200
-X-ME-IP: 90.11.132.44
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-kernel@vger.kernel.org,
-	kernel-janitors@vger.kernel.org,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH] pmdomain: amlogic: Constify some structures
-Date: Fri,  2 May 2025 17:32:19 +0200
-Message-ID: <edc560afe2a8763c93341d161daeb8b33ba606c6.1746199917.git.christophe.jaillet@wanadoo.fr>
-X-Mailer: git-send-email 2.49.0
+	id 1uAvZ1-00000002o5r-16bg
+	for linux-amlogic@lists.infradead.org;
+	Fri, 02 May 2025 18:56:49 +0000
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1746212204;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pAv9LHzPhDuEDnPtN4vBSHMXl+c54VL0gQuDxBYtkT0=;
+	b=Fq0JpV6Dz1DZX3LY2L5FoSzPdL26JnzXANesMQqrgN0ZRtV3Q4oXbMcVWbhfJkzO3DhOHX
+	/G4O/5l/0mVdINaSUK49Mg1H9mt9CSCagWRG6vk4BA5jdPYqczu9iFz8ZCmrqiMP+uSotO
+	l/NMQxF50SZrVJY2LST0QRJeixmPi5iNAsPFaNfHv8lYMbKYtb4fXXk0o9zm8qwdPpot6f
+	pQIwligPkrelrGKwMuHxBxKKbsBcLVPUt8pxmTrHPeaRbmo6h2FrqiuP67RXSXpXi/XXt0
+	LAvIyvpBTOLf1wRvzSc4rhY/6+xEYtcV8KCt8/c4F/UNgqXJE1kAC/6izxBORQ==
+From: Ferass El Hafidi <funderscore@postmarketos.org>
+Date: Fri, 02 May 2025 18:56:06 +0000
+Subject: [PATCH v6 2/2] arm64: dts: amlogic: add support for
+ xiaomi-aquaman/Mi TV Stick
 MIME-Version: 1.0
+Message-Id: <20250502-aquaman-v6-2-f1af347d9709@postmarketos.org>
+References: <20250502-aquaman-v6-0-f1af347d9709@postmarketos.org>
+In-Reply-To: <20250502-aquaman-v6-0-f1af347d9709@postmarketos.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Ferass El Hafidi <funderscore@postmarketos.org>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8298;
+ i=funderscore@postmarketos.org; h=from:subject:message-id;
+ bh=okoZzeFXWvall2TucRORWIwb0RbaqeyVRbDXmyDqWno=;
+ b=owEBbQKS/ZANAwAIAYSvy9DXiZoDAcsmYgBoFRVR0fOv7YEmV0Bi7PIAMKJuDU+yswvGiTcPa
+ lEyQ2Hu1eqJAjMEAAEIAB0WIQQDAbw3+1VcrP15i+6Er8vQ14maAwUCaBUVUQAKCRCEr8vQ14ma
+ A97jD/0T23Mx6nmpCLVCyT9gNQMgLiAd9pdFbPQxN8a4kJ8J90BZxcTQgGiLsWmw9bepU/ESB5Q
+ MprBzeRqrp51ZXKoihasVCU/8MsPrjdsWfxE8sQ5RacT5sduV5WWJUyWmpXb2jLIcRs+VArQFKX
+ YMQQ29xRzVlqFyyUU2J9QHAbh5lZ53L+bqUQM7TffuJCNIhwkDqZhqpznWslimZVZgmz6VOHdTJ
+ caihELDPdZQbb0TC0T47iVzKuWD6sQ0IQlCGURmXlSo4Pd6Jhz7G+/a3Uj/PEGkQbzTksJkQ/KR
+ 6qSZuMG1VSm3wwDvqtdQ6r1ruUO2J9gnnQqDulCaTfT9qkvCbFsCO37L8E848iL3QIAXY2sGU0I
+ JXXQ+1n5pmKCwQ/aJb9OExj+2U4+0uWHEddnGoPkBweb0UCS4jWujqxPe6eNDV4Ph2UQI72N1eG
+ un+8VjrSyGvBKMrBf89wdaf+EettbUQzMhVftBqnR240GsAFhWCJ9rJ87j9v5ch/WOmawSW8HJX
+ iC7PAdu0R772hkrAtcuiBENM6pZatcUbR6mEFyMZQeyEw/SE2hM/EwvfFEJddUdDJdosZp+oVgm
+ ucxyUwImchkArfj35EjovatO3AqyWXXF4nNPdVsYOqok6k0lqqYdd5vCx/qDs0YqstKMMNrHus6
+ h7+5HDvUz/Xmv5w==
+X-Developer-Key: i=funderscore@postmarketos.org; a=openpgp;
+ fpr=0301BC37FB555CACFD798BEE84AFCBD0D7899A03
+X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250502_083238_577099_B04F16B5 
-X-CRM114-Status: GOOD (  13.67  )
+X-CRM114-CacheID: sfid-20250502_115647_970841_9DD098C5 
+X-CRM114-Status: GOOD (  14.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,282 +94,324 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Most structures in this driver are not modified.
+Xiaomi Mi TV Stick is a small Amlogic-based Android TV stick released in
+2020.  It is known as `xiaomi-aquaman` internally.  Specifications:
+ * Amlogic S805Y SoC
+ * Android TV 9, upgradable to Android TV 10
+ * 8 GB eMMC
+ * 1 GB of RAM
+ * Wi-Fi + Bluetooth
 
-Constifying these structures moves some data to a read-only section, so
-increase overall security, especially when the structure holds some
-function pointers. (This is the case for see meson_ee_pwrc_domain_desc)
+The devicetree is based on p241's DT, with some changes to better match
+the Mi TV Stick:
+ * there is no Ethernet port, no IR, no CVBS connector on the stick
+ * a white LED is present
+ * adjust memory to have 1 GB of RAM available
 
-On a x86_64, with allmodconfig, as an example:
-Before:
-======
-   text	   data	    bss	    dec	    hex	filename
-   8924	   3832	      0	  12756	   31d4	drivers/pmdomain/amlogic/meson-ee-pwrc.o
-
-After:
-=====
-   text	   data	    bss	    dec	    hex	filename
-  12396	    336	      0	  12732	   31bc	drivers/pmdomain/amlogic/meson-ee-pwrc.o
-
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Signed-off-by: Ferass El Hafidi <funderscore@postmarketos.org>
 ---
-Compile tested-only.
----
- drivers/pmdomain/amlogic/meson-ee-pwrc.c | 78 ++++++++++++------------
- 1 file changed, 39 insertions(+), 39 deletions(-)
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts | 262 +++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi   |  10 +
+ 3 files changed, 273 insertions(+)
 
-diff --git a/drivers/pmdomain/amlogic/meson-ee-pwrc.c b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-index fbb2b4103930..55c8c9f66a1b 100644
---- a/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-+++ b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-@@ -69,27 +69,27 @@ struct meson_ee_pwrc_domain_desc {
- 	char *name;
- 	unsigned int reset_names_count;
- 	unsigned int clk_names_count;
--	struct meson_ee_pwrc_top_domain *top_pd;
-+	const struct meson_ee_pwrc_top_domain *top_pd;
- 	unsigned int mem_pd_count;
--	struct meson_ee_pwrc_mem_domain *mem_pd;
-+	const struct meson_ee_pwrc_mem_domain *mem_pd;
- 	bool (*is_powered_off)(struct meson_ee_pwrc_domain *pwrc_domain);
- };
- 
- struct meson_ee_pwrc_domain_data {
- 	unsigned int count;
--	struct meson_ee_pwrc_domain_desc *domains;
-+	const struct meson_ee_pwrc_domain_desc *domains;
- };
- 
- /* TOP Power Domains */
- 
--static struct meson_ee_pwrc_top_domain gx_pwrc_vpu = {
-+static const struct meson_ee_pwrc_top_domain gx_pwrc_vpu = {
- 	.sleep_reg = GX_AO_RTI_GEN_PWR_SLEEP0,
- 	.sleep_mask = BIT(8),
- 	.iso_reg = GX_AO_RTI_GEN_PWR_SLEEP0,
- 	.iso_mask = BIT(9),
- };
- 
--static struct meson_ee_pwrc_top_domain meson8_pwrc_vpu = {
-+static const struct meson_ee_pwrc_top_domain meson8_pwrc_vpu = {
- 	.sleep_reg = MESON8_AO_RTI_GEN_PWR_SLEEP0,
- 	.sleep_mask = BIT(8),
- 	.iso_reg = MESON8_AO_RTI_GEN_PWR_SLEEP0,
-@@ -104,20 +104,20 @@ static struct meson_ee_pwrc_top_domain meson8_pwrc_vpu = {
- 		.iso_mask = BIT(__bit), 			\
- 	}
- 
--static struct meson_ee_pwrc_top_domain sm1_pwrc_vpu = SM1_EE_PD(8);
--static struct meson_ee_pwrc_top_domain sm1_pwrc_nna = SM1_EE_PD(16);
--static struct meson_ee_pwrc_top_domain sm1_pwrc_usb = SM1_EE_PD(17);
--static struct meson_ee_pwrc_top_domain sm1_pwrc_pci = SM1_EE_PD(18);
--static struct meson_ee_pwrc_top_domain sm1_pwrc_ge2d = SM1_EE_PD(19);
-+static const struct meson_ee_pwrc_top_domain sm1_pwrc_vpu = SM1_EE_PD(8);
-+static const struct meson_ee_pwrc_top_domain sm1_pwrc_nna = SM1_EE_PD(16);
-+static const struct meson_ee_pwrc_top_domain sm1_pwrc_usb = SM1_EE_PD(17);
-+static const struct meson_ee_pwrc_top_domain sm1_pwrc_pci = SM1_EE_PD(18);
-+static const struct meson_ee_pwrc_top_domain sm1_pwrc_ge2d = SM1_EE_PD(19);
- 
--static struct meson_ee_pwrc_top_domain g12a_pwrc_nna = {
-+static const struct meson_ee_pwrc_top_domain g12a_pwrc_nna = {
- 	.sleep_reg = GX_AO_RTI_GEN_PWR_SLEEP0,
- 	.sleep_mask = BIT(16) | BIT(17),
- 	.iso_reg = GX_AO_RTI_GEN_PWR_ISO0,
- 	.iso_mask = BIT(16) | BIT(17),
- };
- 
--static struct meson_ee_pwrc_top_domain g12a_pwrc_isp = {
-+static const struct meson_ee_pwrc_top_domain g12a_pwrc_isp = {
- 	.sleep_reg = GX_AO_RTI_GEN_PWR_SLEEP0,
- 	.sleep_mask = BIT(18) | BIT(19),
- 	.iso_reg = GX_AO_RTI_GEN_PWR_ISO0,
-@@ -154,39 +154,39 @@ static struct meson_ee_pwrc_top_domain g12a_pwrc_isp = {
- 	{ __reg, BIT(14) },					\
- 	{ __reg, BIT(15) }
- 
--static struct meson_ee_pwrc_mem_domain axg_pwrc_mem_vpu[] = {
-+static const struct meson_ee_pwrc_mem_domain axg_pwrc_mem_vpu[] = {
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
- 	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
- };
- 
--static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_vpu[] = {
-+static const struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_vpu[] = {
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG2),
- 	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
- };
- 
--static struct meson_ee_pwrc_mem_domain gxbb_pwrc_mem_vpu[] = {
-+static const struct meson_ee_pwrc_mem_domain gxbb_pwrc_mem_vpu[] = {
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
- 	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
- };
- 
--static struct meson_ee_pwrc_mem_domain meson_pwrc_mem_eth[] = {
-+static const struct meson_ee_pwrc_mem_domain meson_pwrc_mem_eth[] = {
- 	{ HHI_MEM_PD_REG0, GENMASK(3, 2) },
- };
- 
--static struct meson_ee_pwrc_mem_domain meson8_pwrc_audio_dsp_mem[] = {
-+static const struct meson_ee_pwrc_mem_domain meson8_pwrc_audio_dsp_mem[] = {
- 	{ HHI_MEM_PD_REG0, GENMASK(1, 0) },
- };
- 
--static struct meson_ee_pwrc_mem_domain meson8_pwrc_mem_vpu[] = {
-+static const struct meson_ee_pwrc_mem_domain meson8_pwrc_mem_vpu[] = {
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
- 	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
- };
- 
--static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_vpu[] = {
-+static const struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_vpu[] = {
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
- 	VPU_MEMPD(HHI_VPU_MEM_PD_REG2),
-@@ -198,28 +198,28 @@ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_vpu[] = {
- 	VPU_HHI_MEMPD(HHI_MEM_PD_REG0),
- };
- 
--static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_nna[] = {
-+static const struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_nna[] = {
- 	{ HHI_NANOQ_MEM_PD_REG0, 0xff },
- 	{ HHI_NANOQ_MEM_PD_REG1, 0xff },
- };
- 
--static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_usb[] = {
-+static const struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_usb[] = {
- 	{ HHI_MEM_PD_REG0, GENMASK(31, 30) },
- };
- 
--static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_pcie[] = {
-+static const struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_pcie[] = {
- 	{ HHI_MEM_PD_REG0, GENMASK(29, 26) },
- };
- 
--static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_ge2d[] = {
-+static const struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_ge2d[] = {
- 	{ HHI_MEM_PD_REG0, GENMASK(25, 18) },
- };
- 
--static struct meson_ee_pwrc_mem_domain axg_pwrc_mem_audio[] = {
-+static const struct meson_ee_pwrc_mem_domain axg_pwrc_mem_audio[] = {
- 	{ HHI_MEM_PD_REG0, GENMASK(5, 4) },
- };
- 
--static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
-+static const struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
- 	{ HHI_MEM_PD_REG0, GENMASK(5, 4) },
- 	{ HHI_AUDIO_MEM_PD_REG0, GENMASK(1, 0) },
- 	{ HHI_AUDIO_MEM_PD_REG0, GENMASK(3, 2) },
-@@ -235,12 +235,12 @@ static struct meson_ee_pwrc_mem_domain sm1_pwrc_mem_audio[] = {
- 	{ HHI_AUDIO_MEM_PD_REG0, GENMASK(27, 26) },
- };
- 
--static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_nna[] = {
-+static const struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_nna[] = {
- 	{ G12A_HHI_NANOQ_MEM_PD_REG0, GENMASK(31, 0) },
- 	{ G12A_HHI_NANOQ_MEM_PD_REG1, GENMASK(31, 0) },
- };
- 
--static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_isp[] = {
-+static const struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_isp[] = {
- 	{ G12A_HHI_ISP_MEM_PD_REG0, GENMASK(31, 0) },
- 	{ G12A_HHI_ISP_MEM_PD_REG1, GENMASK(31, 0) },
- };
-@@ -270,14 +270,14 @@ static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_isp[] = {
- 
- static bool pwrc_ee_is_powered_off(struct meson_ee_pwrc_domain *pwrc_domain);
- 
--static struct meson_ee_pwrc_domain_desc axg_pwrc_domains[] = {
-+static const struct meson_ee_pwrc_domain_desc axg_pwrc_domains[] = {
- 	[PWRC_AXG_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, axg_pwrc_mem_vpu,
- 				     pwrc_ee_is_powered_off, 5, 2),
- 	[PWRC_AXG_ETHERNET_MEM_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
- 	[PWRC_AXG_AUDIO_ID] = MEM_PD("AUDIO", axg_pwrc_mem_audio),
- };
- 
--static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
-+static const struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
- 	[PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, g12a_pwrc_mem_vpu,
- 				     pwrc_ee_is_powered_off, 11, 2),
- 	[PWRC_G12A_ETH_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
-@@ -287,13 +287,13 @@ static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
- 				    pwrc_ee_is_powered_off),
- };
- 
--static struct meson_ee_pwrc_domain_desc gxbb_pwrc_domains[] = {
-+static const struct meson_ee_pwrc_domain_desc gxbb_pwrc_domains[] = {
- 	[PWRC_GXBB_VPU_ID]  = VPU_PD("VPU", &gx_pwrc_vpu, gxbb_pwrc_mem_vpu,
- 				     pwrc_ee_is_powered_off, 12, 2),
- 	[PWRC_GXBB_ETHERNET_MEM_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
- };
- 
--static struct meson_ee_pwrc_domain_desc meson8_pwrc_domains[] = {
-+static const struct meson_ee_pwrc_domain_desc meson8_pwrc_domains[] = {
- 	[PWRC_MESON8_VPU_ID]  = VPU_PD("VPU", &meson8_pwrc_vpu,
- 				       meson8_pwrc_mem_vpu,
- 				       pwrc_ee_is_powered_off, 0, 1),
-@@ -303,7 +303,7 @@ static struct meson_ee_pwrc_domain_desc meson8_pwrc_domains[] = {
- 						meson8_pwrc_audio_dsp_mem),
- };
- 
--static struct meson_ee_pwrc_domain_desc meson8b_pwrc_domains[] = {
-+static const struct meson_ee_pwrc_domain_desc meson8b_pwrc_domains[] = {
- 	[PWRC_MESON8_VPU_ID]  = VPU_PD("VPU", &meson8_pwrc_vpu,
- 				       meson8_pwrc_mem_vpu,
- 				       pwrc_ee_is_powered_off, 11, 1),
-@@ -313,7 +313,7 @@ static struct meson_ee_pwrc_domain_desc meson8b_pwrc_domains[] = {
- 						meson8_pwrc_audio_dsp_mem),
- };
- 
--static struct meson_ee_pwrc_domain_desc sm1_pwrc_domains[] = {
-+static const struct meson_ee_pwrc_domain_desc sm1_pwrc_domains[] = {
- 	[PWRC_SM1_VPU_ID]  = VPU_PD("VPU", &sm1_pwrc_vpu, sm1_pwrc_mem_vpu,
- 				    pwrc_ee_is_powered_off, 11, 2),
- 	[PWRC_SM1_NNA_ID]  = TOP_PD("NNA", &sm1_pwrc_nna, sm1_pwrc_mem_nna,
-@@ -576,32 +576,32 @@ static void meson_ee_pwrc_shutdown(struct platform_device *pdev)
- 	}
- }
- 
--static struct meson_ee_pwrc_domain_data meson_ee_g12a_pwrc_data = {
-+static const struct meson_ee_pwrc_domain_data meson_ee_g12a_pwrc_data = {
- 	.count = ARRAY_SIZE(g12a_pwrc_domains),
- 	.domains = g12a_pwrc_domains,
- };
- 
--static struct meson_ee_pwrc_domain_data meson_ee_axg_pwrc_data = {
-+static const struct meson_ee_pwrc_domain_data meson_ee_axg_pwrc_data = {
- 	.count = ARRAY_SIZE(axg_pwrc_domains),
- 	.domains = axg_pwrc_domains,
- };
- 
--static struct meson_ee_pwrc_domain_data meson_ee_gxbb_pwrc_data = {
-+static const struct meson_ee_pwrc_domain_data meson_ee_gxbb_pwrc_data = {
- 	.count = ARRAY_SIZE(gxbb_pwrc_domains),
- 	.domains = gxbb_pwrc_domains,
- };
- 
--static struct meson_ee_pwrc_domain_data meson_ee_m8_pwrc_data = {
-+static const struct meson_ee_pwrc_domain_data meson_ee_m8_pwrc_data = {
- 	.count = ARRAY_SIZE(meson8_pwrc_domains),
- 	.domains = meson8_pwrc_domains,
- };
- 
--static struct meson_ee_pwrc_domain_data meson_ee_m8b_pwrc_data = {
-+static const struct meson_ee_pwrc_domain_data meson_ee_m8b_pwrc_data = {
- 	.count = ARRAY_SIZE(meson8b_pwrc_domains),
- 	.domains = meson8b_pwrc_domains,
- };
- 
--static struct meson_ee_pwrc_domain_data meson_ee_sm1_pwrc_data = {
-+static const struct meson_ee_pwrc_domain_data meson_ee_sm1_pwrc_data = {
- 	.count = ARRAY_SIZE(sm1_pwrc_domains),
- 	.domains = sm1_pwrc_domains,
- };
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 8c16c22c7b8ebc5b1884675fc93182591b394dc2..15e7901c126876964b858d2afaaaa5a5c86f1c22 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -52,6 +52,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-wetek-hub.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-wetek-play2.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-libretech-ac.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805y-xiaomi-aquaman.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-libretech-pc.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-mecool-kii-pro.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
+new file mode 100644
+index 0000000000000000000000000000000000000000..cac15b89c573924f84877deeb2c31b20b0c3cae6
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
+@@ -0,0 +1,262 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2025 Ferass El Hafidi <funderscore@postmarketos.org>
++ * Heavily based on meson-gxl-s805x-p241.dtb:
++ *  - Copyright (c) 2018 BayLibre, SAS.
++ *    Author: Neil Armstrong <narmstrong@baylibre.com>
++ *    Author: Jerome Brunet <jbrunet@baylibre.com>
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
++#include <dt-bindings/sound/meson-aiu.h>
++
++#include "meson-gxl-s805y.dtsi"
++
++/ {
++	compatible = "xiaomi,aquaman", "amlogic,s805y", "amlogic,meson-gxl";
++	model = "Xiaomi Mi TV Stick (aquaman)";
++
++	aliases {
++		serial0 = &uart_AO;
++		serial1 = &uart_A;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
++	};
++
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&hdmi_tx_tmds_out>;
++			};
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led-white {
++			color = <LED_COLOR_ID_WHITE>;
++			function = LED_FUNCTION_POWER;
++			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++			panic-indicator;
++		};
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>;
++	};
++
++	vddio_boot: regulator-vddio-boot {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_BOOT";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	vddao_3v3: regulator-vddao-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	vddio_ao18: regulator-vddio-ao18 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_AO18";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	vcc_3v3: regulator-vcc-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	vcc_5v: regulator-vcc-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
++	};
++
++	wifi32k: wifi32k {
++		compatible = "pwm-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
++	};
++
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
++		clocks = <&wifi32k>;
++		clock-names = "ext_clock";
++	};
++
++	sound {
++		compatible = "amlogic,gx-sound-card";
++		model = "XIAOMI-AQUAMAN";
++		clocks = <&clkc CLKID_MPLL0>,
++			 <&clkc CLKID_MPLL1>,
++			 <&clkc CLKID_MPLL2>;
++
++		assigned-clocks = <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>,
++				  <&clkc CLKID_MPLL2>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++
++		dai-link-0 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
++			dai-format = "i2s";
++			mclk-fs = <256>;
++
++			codec-0 {
++				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
++			};
++		};
++
++		dai-link-2 {
++			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
++};
++
++&aiu {
++	status = "okay";
++};
++
++&cec_AO {
++	status = "okay";
++	pinctrl-0 = <&ao_cec_pins>;
++	pinctrl-names = "default";
++	hdmi-phandle = <&hdmi_tx>;
++};
++
++&hdmi_tx {
++	status = "okay";
++	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
++	pinctrl-names = "default";
++	hdmi-supply = <&vcc_5v>;
++};
++
++&hdmi_tx_tmds_port {
++	hdmi_tx_tmds_out: endpoint {
++		remote-endpoint = <&hdmi_connector_in>;
++	};
++};
++
++&saradc {
++	status = "okay";
++	vref-supply = <&vddio_ao18>;
++};
++
++/* Wireless SDIO Module (Amlogic W155S1 / Realtek RTL8821CS) */
++&sd_emmc_b {
++	status = "okay";
++	pinctrl-0 = <&sdio_pins>;
++	pinctrl-1 = <&sdio_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <50000000>;
++
++	non-removable;
++	disable-wp;
++
++	/* WiFi firmware requires power to be kept while in suspend */
++	keep-power-in-suspend;
++
++	mmc-pwrseq = <&sdio_pwrseq>;
++
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddio_boot>;
++
++	sdio: wifi@1 {
++		reg = <1>;
++	};
++};
++
++/* eMMC */
++&sd_emmc_c {
++	status = "okay";
++	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
++	pinctrl-1 = <&emmc_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <8>;
++	cap-mmc-highspeed;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++
++	mmc-pwrseq = <&emmc_pwrseq>;
++	vmmc-supply = <&vcc_3v3>;
++	vqmmc-supply = <&vddio_boot>;
++};
++
++&pwm_ef {
++	status = "okay";
++	pinctrl-0 = <&pwm_e_pins>;
++	pinctrl-names = "default";
++};
++
++/*
++ * This is connected to the Bluetooth module
++ * Note: There's no driver for the Bluetooth module of some variants yet.
++ */
++&uart_A {
++	status = "okay";
++	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
++	pinctrl-names = "default";
++	uart-has-rtscts;
++};
++
++&uart_AO {
++	status = "okay";
++	pinctrl-0 = <&uart_ao_a_pins>;
++	pinctrl-names = "default";
++};
++
++&usb {
++	status = "okay";
++	dr_mode = "otg";
++	vbus-supply = <&vcc_5v>;
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
+new file mode 100644
+index 0000000000000000000000000000000000000000..49b29b71f732000070a0f67b2041c87db438475b
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
+@@ -0,0 +1,10 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2025 Ferass El Hafidi <funderscore@postmarketos.org>
++ */
++
++#include "meson-gxl-s805x.dtsi"
++
++/ {
++	compatible = "amlogic,s805y", "amlogic,meson-gxl";
++};
+
 -- 
 2.49.0
 
