@@ -4,81 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90E35C3ABAA
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 May 2025 19:00:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33A33C369D9
+	for <linux-amlogic@archiver.kernel.org>; Sat,  3 May 2025 08:46:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QzAzsKGHI70ZI4jKyKWui8vzQDAW6iVujNYCfCOkL0E=; b=tPIxdwMYaWIyb+
-	B233rO0k+lx6baS5fuCKMpoop3Rsa5Kgb8OB244j6Z6TBEAO2RT8yc0b6SY61TlfsUR60KTp3xRmi
-	qUvCty1cnTr+1s2Wbel9qo33nA/7/1rP5tMTy653z9yawyXgMo5g+KLITHgEurRdLNkM0OvmXC7Fs
-	N3vEYzNhAGVxM/F/eRp5bPpt/SEmCMzReZSXJMzcIeSi2mQBLkYXBmz+SQP/e2AtLvzg8atKbThpA
-	wkpahHUC5v2On45VddUdswrR2Tzlv/MfHR7IN1jf3z1BFLO9JDALUhR3FcVJDtH7UyTJhxkke8Z0j
-	bYoVlKfGVkJ2boMDin+A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=comwpt4wP+25DrYr5a7Ie6ScBJ+0HSOCbk0AGJtmutQ=; b=dqUy8cX6+Um4qN
+	wVJjdyVBJfFgudUZ2vGJ5U6BywD15LAS+6w4KSS7h3DOiLieOvlpFi3zVMjWWVZuvLP+mVp6FPAou
+	vTGIO41H/trv2nrIEk4xJ5+j9HpUOY4xWFhjBcd5Uv6sSa1JZzY7BGAfu9/QQHPR79DIX2x1Mmgh/
+	mldLF5TXsCz68bo3DzZk4fqMLxNoYofbgF740fFepiurgBpZo7IXeE/U6mGklCXfY63mcnkij1T93
+	6Y88dEvddOfEEjUMIH1/BpMzPTOdL2K4yIrj4NPZPG4k5JIhtWrGZ+Qx4v8LT3hgLeObvvK01dEBG
+	cn2rVOfKYqYyuYY/sAFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uAvcw-00000002ooT-1fSE;
-	Fri, 02 May 2025 19:00:50 +0000
-Received: from out-172.mta0.migadu.com ([91.218.175.172])
+	id 1uB8WI-00000003esN-4AmD;
+	Sat, 03 May 2025 08:46:50 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uAvZ8-00000002o7u-3vv6
-	for linux-amlogic@lists.infradead.org;
-	Fri, 02 May 2025 18:56:56 +0000
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1746212203;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7ApIzObDd4nyzZE76GeFoWuehixdxnhUAd8DIc0B6Jw=;
-	b=n32iTJD5oBpZCgPWtz3amPLjMHCeET/z4qWCwqpNar9RWnPtd1NRXePBIMSjj2XxSIFZMj
-	fjS/QUVJE75HsiyvrYcTGZYrIfR8hXdbL15sBepwvAWDFXorHTP8eyFWoEbDLsGGzfgAQb
-	VdCPVxK/r/sNk0i/s/mfOiOZRhQ1+bE92TQ8JG86+16+3e1eW4++iY1VguChF2ZMJ2/Xx5
-	68mWEzFP+L6XfFlydIplJ85idCdmSxJuW+pZnuV+wcF5agdBxzaQGeSawjZyUF2ly91UuV
-	b0ADllQssfAguC3K/gJPDlX1metdJPgunwh3kZPYuipGYC+7WFUJpHB0+ty/1g==
-From: Ferass El Hafidi <funderscore@postmarketos.org>
-Date: Fri, 02 May 2025 18:56:05 +0000
-Subject: [PATCH v6 1/2] dt-bindings: arm: amlogic: add S805Y and Mi TV
- Stick
+	id 1uB8UM-00000003elD-3Xdt;
+	Sat, 03 May 2025 08:44:51 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-43cebe06e9eso15255425e9.3;
+        Sat, 03 May 2025 01:44:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746261889; x=1746866689; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FIyhDFD2ShaUnQ5aPpqXckNI3ybWXEGGWfQs3+aXXb8=;
+        b=FNlJ79hM7MYnqU/vBNfjSxwuH8hue+u0kaFWWF2dJWTyC8J+mb3pz8YPIGRRtB7eNy
+         yD3ByqcYfLkeoeM+9XTmTutNWyDQnX4rZ7gPm4EmtN/YWnjpOlQhdc+7MmBOPVmxn9x1
+         Z5VZNdDXde9gSHcuZ0mpSUObvnbPXmFMpUUxuMhb6Akge/h41iaqO6y2vkzkETUCMANQ
+         T9tH7ACuOhMhy2kTC+QB+Rt2W4Qfy49utOecak8dsyqxjBUMksJZeVuHqPKVTFzWPZ+0
+         LaqT2cK2BCSFUQcCQpTv6b8U9R4nJF3cEFz/YFzABwN4CmCybKsjWnOy5gJzwN8aph2w
+         Neig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746261889; x=1746866689;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FIyhDFD2ShaUnQ5aPpqXckNI3ybWXEGGWfQs3+aXXb8=;
+        b=WQ0KWN6OaDEtIr6KPi20DcIDq70Kay1X5TPIVKJ8SJF0AOcdknlNCEwSCWH5BXupP+
+         EXompLufDjWHT5R1HvmAV3Z7F82sIxSYL+TqUd0nrqQYpsmacs3gN+H9w5HCMjVBT+RU
+         ZEE/m5N5FIC2qzp7DSZaqjkzOkZLBFKVMtp1VIfwUdPs9zzfTWgCOT2DjQKVW46rgcVu
+         0Zk2hJ1xzS8EbXrgQw7etcBE5+TUFdRpgpHzO8+oqUKiuF2dSJEmB0q87F/PdCPsudeb
+         YP9WkCUPbU0AnAZ2mr5/YrCzc7CH1JEBn1YhWcmr28p+Eh0VW3p+OKKbeCWQBe9H1TBe
+         xyeg==
+X-Forwarded-Encrypted: i=1; AJvYcCUIcWLDY4obPYl9mF+IV0g/lMqLJcM51jej4Vn1inmN1/ZzfmDp8u8DfGfeKbGBDJ9y/A20t7gEM9urM65P@lists.infradead.org, AJvYcCXItxOjpKMUGyQAKDdUSxsU12XrCjiFUaAjLYCDQeQt7YRydZ9lryPdTmWfD3Oh0voSbR8EpB8mZCMj4hceUsqvfQ==@lists.infradead.org
+X-Gm-Message-State: AOJu0YyiNjjlKDv0iuSL1xaQ299LAbmwCq3AgYJA+al8iyMLSKPNtnlV
+	YUMGBFjjwARiM5a/zflHZYD/GN8ZEX2lvbWIS/j5z87Qwefgvyq1
+X-Gm-Gg: ASbGncvox4ibFSlZU3FsknU6y+Pa3k2EJbClkGelkCNKjedW3TcZsfQmE3wS+DvQRDb
+	RcMiTv9W+T/8zB6wXxNjV16pK9E94OBtUSFqOxDYKrctHKqklb9dwWVcTVJ0BfPJ+s919eHjmTY
+	eW9P3ra1kjyMqFU4/K7Zm/lSxjFXgES9O/V9lcm87J6Y8gcDhocLoZ9V/m2vaffckhoxoSQ7E1V
+	VjtwvtW9JXAvT2ZdIkwvm6bw7IcIv7vC1YzzxMtMq+j25sbdXhbxOluPzWMWnr8+kydd8YAyCA/
+	yLZl/l6z7Y0GGqhJa/VwTtgeqn2UmrB18nIgxQGUksEIPg==
+X-Google-Smtp-Source: AGHT+IGHW91E9x7iKdlAm0GzfPNQ5njfrFDGWCgFzsQFKF/kcqFtWAJemLt2n3WbhqAF87oSE1YCNw==
+X-Received: by 2002:a05:600c:8210:b0:440:94a2:95b8 with SMTP id 5b1f17b1804b1-441c48dc3edmr3167525e9.16.1746261888396;
+        Sat, 03 May 2025 01:44:48 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2ad78f6sm115007475e9.2.2025.05.03.01.44.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 03 May 2025 01:44:47 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org,
+	Emanuel Strobel <emanuel.strobel@yahoo.com>
+Subject: [PATCH] arm64: dts: amlogic: dreambox: fix missing clkc_audio node
+Date: Sat,  3 May 2025 08:44:43 +0000
+Message-Id: <20250503084443.3704866-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Message-Id: <20250502-aquaman-v6-1-f1af347d9709@postmarketos.org>
-References: <20250502-aquaman-v6-0-f1af347d9709@postmarketos.org>
-In-Reply-To: <20250502-aquaman-v6-0-f1af347d9709@postmarketos.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Ferass El Hafidi <funderscore@postmarketos.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1247;
- i=funderscore@postmarketos.org; h=from:subject:message-id;
- bh=JwOXtPS7BSEnD2nL1tGht0Ft29x7XdscNbGf2At+3tI=;
- b=owEBbQKS/ZANAwAIAYSvy9DXiZoDAcsmYgBoFRVRivrcQ5h28FcP2PqARQ6nd480JCseyXuYI
- bGZng2qFTqJAjMEAAEIAB0WIQQDAbw3+1VcrP15i+6Er8vQ14maAwUCaBUVUQAKCRCEr8vQ14ma
- A/LHD/95OO9OVFAXb6dFZJxD1L0+y3U86mLY/RhOWX1Nha4y12J+k10AEPzw5OKCLGnRCbb/xi7
- f84hJFm3sxgnWVhptJHlAzX3DVWe09WT2MDamnWA4TMUE9KKV4IW8VZjJ1EaI2hwbuy8ie+p93q
- ruAKT7QZQJOlCfVrOiWC3YiB8/8nJ/oLFqqNdnXmi9Ywrke1EGG52gFuRZoFyGIGELE9n/ZwdVY
- zywwkH8HOLSWDESBfXayzKwdE89bypV4rtoerfHgTnl3Uekdv8Q7gFg6QuWwK+yI6IDpddE+fBv
- OTXr8WLGDEUCQrfEisith/+USeihlVTs4zLMPnAYVpXgcz5Kr1Voi8kJvQaXcVmZnt9wXQNhZXe
- SC595o0d1jmqy8O/yG2nMh9FJRjuIYNM4rYIqAqeuiSUMzqI/gOiAGFRFF6lOe7qiHCWk0Bn/MF
- j6FgMJPnDHLwFIm7mcNBJ78c53uFVje2K4ZTXREoT1ZJoDN8CbUZXzeTnViPoLbAumaYISRomtP
- UYL4405L/TMjImsb2ld1pzF8Y24wQeImPjxLQHcPsbTM2GF9d+bYX3q3BG/ja05fOydcd8eg4VO
- t9QEWLavgnYW78365i5dj1DE/4Nk94QKvjCyfItzyb7amjcYzk+dDDuR6aZDyNkKDZClxsi8x8M
- zaGWT8GY/kwfHkw==
-X-Developer-Key: i=funderscore@postmarketos.org; a=openpgp;
- fpr=0301BC37FB555CACFD798BEE84AFCBD0D7899A03
-X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250502_115655_126033_5F7E913B 
-X-CRM114-Status: UNSURE (   6.50  )
+X-CRM114-CacheID: sfid-20250503_014450_877921_193C5EE3 
+X-CRM114-Status: UNSURE (   8.79  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,38 +105,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for the Amlogic S805Y SoC and the Xiaomi Mi TV Stick (aka.
-xiaomi-aquaman).  The S805Y is very similar to the S805X, with just a
-few minor differences.
+Add the clkc_audio node to fix audio support on Dreambox One/Two.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Ferass El Hafidi <funderscore@postmarketos.org>
+Fixes: 83a6f4c62cb1 ("arm64: dts: meson: add initial support for Dreambox One/Two")
+CC: <stable@vger.kernel.org>
+Suggested-by: Emanuel Strobel <emanuel.strobel@yahoo.com>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- Documentation/devicetree/bindings/arm/amlogic.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 0c84c56855bad5b924e6da1da374fdb611c2087d..befc51765f9cc28e11bc12ea958bd2981d638cab 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -73,6 +73,13 @@ properties:
-           - const: amlogic,s805x
-           - const: amlogic,meson-gxl
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
+index de35fa2d7a6d..8e3e3354ed67 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
+@@ -116,6 +116,10 @@ &arb {
+ 	status = "okay";
+ };
  
-+      - description: Boards with the Amlogic Meson GXL S805Y SoC
-+        items:
-+          - enum:
-+              - xiaomi,aquaman
-+          - const: amlogic,s805y
-+          - const: amlogic,meson-gxl
++&clkc_audio {
++	status = "okay";
++};
 +
-       - description: Boards with the Amlogic Meson GXL S905W SoC
-         items:
-           - enum:
-
+ &frddr_a {
+ 	status = "okay";
+ };
 -- 
-2.49.0
+2.34.1
 
 
 _______________________________________________
