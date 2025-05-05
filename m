@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 547BDC3ABB0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 13:21:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BEECC3ABB6
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 13:21:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=M0rhbB7d4/18phq+Czx3YfF6rwor+p8bLZxH7WEae6o=; b=3+XgtCOIELMxsW
-	2rZAYSGMcxhkeZvIDAmY5jnQX/ELanUb+eDao4HDXzU/xzjD/Mm9ZSXydURqu8lPlmG8T2YaQZndl
-	91KP8JAlCz/rcCR8CYAfBzMPwuhBEwbS/R/LZwo77Z9OLV/xGcoKcqYycHNSQ+4okQGVI78jMltMU
-	i8GiKGHUqG6UHiWXnPocDTXbcFJzitA9qM/Q/rIrq+8kECzYg9z2NGGAe2GQ5Bf0NEsDKiDAUacEn
-	+rNG0R9u63k+ak7wdC7dM0RiId+EZI/lKK89lfDG11gTUtbVMqe3qQGhlPxkGuuCduLRuqfjpl1n4
-	O2OlUIVQxdFROspedVhQ==;
+	List-Owner; bh=/MYw6S3NHc9fSCIXX54curXCpF+GdDGTtNfE6f96hxw=; b=SjbTtf9Eqj2V2K
+	M7oXPjFeLdjKnaoAlu2HaLfP2PeNttxtg+KFlQ7/YKR6Vmjw/Unc3zhxH++qq2wu9BOxMx82XsAiO
+	u83Nw8KmJ5n+N9d085Mw2MEZfzSInlMB5Rjy2S8/q7QRWbyK1kHfyJisd9zSGHCuLUxmFWbwnNvEj
+	IvZ34RjXofmTEH/tYlfM/wGmKEnUq5f7CY7Qv0Dr9/Yo/EGT8o5B1Gjx9NmJTusTovcDrCoH0IjN1
+	xgkShh8FCFu69EhUrtcy+tx2nHuy9CoDBPL+D2LR0DvrxT1YE7KLlY9vTS9lJMZQ1VfhV4AnbnqE6
+	muMnmYH0W81WP6sXN4KA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBvkb-00000007Ru3-2JgJ;
-	Mon, 05 May 2025 13:20:53 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1uBvkc-00000007RuQ-1wHg;
+	Mon, 05 May 2025 13:20:54 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBv5j-00000007M5S-3iYR
+	id 1uBv5k-00000007M6e-3J5E
 	for linux-amlogic@lists.infradead.org;
-	Mon, 05 May 2025 12:38:41 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-39141ffa9fcso4675199f8f.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 05 May 2025 05:38:39 -0700 (PDT)
+	Mon, 05 May 2025 12:38:44 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso18571635e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 May 2025 05:38:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746448718; x=1747053518; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1746448719; x=1747053519; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Rl6spdFCta6JXs9NjzJlT+z8o2YUBT0Kre+VTf+/vXs=;
-        b=famqxPv5yX/XHUOl89qwuYn6pcnjFxLQG1Ctr9J54VwPslaWjMZQD+TUo8te+NPM9l
-         m5FCSYKN2IxJSZcGEI8kr/mlJzuJkzfzv79+/JF9rwstdkAbluf5XAI8TsPAJfnBrYta
-         848fxKhfSJFljlwU9StWXpjU7qhyKS1SPjpUOrELk6yU60bSO5lPtDmvYRojWWTJH1Zu
-         CJUKWSn6y1O8FBtvo+Yx4FcNEZXtrWjq3dMKPC34wcaVoGMoYRfGL4iOB3qPIxcOqqv6
-         86RBrEmX5ipd+zPzDCERcnm8nnLZvLumTW3KE2F7pGLsdsMli3yBJiCg2TivE90jv5jP
-         YBXw==
+        bh=yJ00OPYdqSJ+4uv8ctKPBsBBA32+QMJJaxQcYWfzOmY=;
+        b=aUhw+970idHl2P/kEVzKSvK6wCx5AoHqpn78RwAtHe0o7nVP05mbpB5eitGRuW8c6v
+         Wuux7rAOhxrBEUAdnGbapPgQUdkCg461CkJ4ZOZ2OfOSikNCFIoQS4fGkdecHkk/9zSe
+         hbY+vDXlxO4PajLxqE0UNeCFA10d1KkoWlW3KPuc3woomFMrxwVIC/PMf1Kq84PK8F92
+         qL/v5dmhgdo0N7LWeHcu6SW1Bx3tVBuTKWRzzEdqk2NeQYJKgmZyzXeM6uVQejcwmofS
+         o5/YOlrYTm55Wh2aAOylBZ6RjUjtlPasHSpJwrdFxV/4+t5w7RULH9xsU0zr5c56N7On
+         EoSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746448718; x=1747053518;
+        d=1e100.net; s=20230601; t=1746448719; x=1747053519;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Rl6spdFCta6JXs9NjzJlT+z8o2YUBT0Kre+VTf+/vXs=;
-        b=WplgtJQ9xA68Iy8qpLsDSEUFsgmp5Xo/oMPAlnN7IiiwfJTlMa11Itcdy+lZsbMvia
-         gS8/4tP2jvphInVSKn+imQtNaopPcM7Z73a6R6AlvqsMwPi/6cuqnOZTWNBqB7uXABrC
-         HNzfeL4fQ+9Hc+8UjqGXjUlJthgn/CMxaVrPOSpClJqJ3UCcrt3x8FOnWDqUYZsxYbpx
-         hXRTx7/aPOoYZTxVgdhxgBqY+Ay6mEzXPQPGdsaU9juHiGxgicdzp36+Dj7L0mIzCfqW
-         DXX5cEK20hfDyHSyX1Y4msjVqwGP2vmd8hhpEJDT5RIFutUgNHfCeeYz3STxqVeYXyIF
-         1CKA==
-X-Forwarded-Encrypted: i=1; AJvYcCWY+Bn5dojICCcM9v8p4NbEoKGAC4yFjA4n2pyGtpZWJZoXWTmkE4AU0DHZSJszYLlzthoOWAtTJ/1BjJ9A@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy7WgLNkzrMEirkz+0/bAqXghDnzzbxtzJyGvNvpKT5BBL2Zo8q
-	MMFZbggTCFgxr9NXLmbU/i/HZnW8YBHBDTEkWElNFGY1lFZqgE2W5OtnPPOuhLc=
-X-Gm-Gg: ASbGnctxT74+zFMM+kE/Yz6Pfsfk/U76p3GLSnjBVeehTNrdeiF906YbnvIS64tbQUB
-	Zyt8larPCg5pXqt+wr4wi4i5LET2wE7azsIN3TBL+j3y2ZTatji3WTRkVzRey0iWwkWJ2x7kznk
-	nnU2UMDHWj6XRmAXhOUg2BGEzskcYgXzei9KgFuxJrObfCm535nHwTAnO3B4xN9HnyPmE9U/OVf
-	jKDyEZmw/XgyrB7mVS+I34iyZm4sMyN1ZS18hMg2Wkmb7CysYm1NBqpfq7AOsRWiwjFBhodeXQ7
-	GWkOjGbR3fPVmETpprXR30n9KD4YXjLroJPolcp9w9P7VVfZDVvUd3H098anfg==
-X-Google-Smtp-Source: AGHT+IEPB1W6TKe5pDLjaw9rUkL1i4ZzERHI8wMQEDvQTkA9//qDganu2o1wcLoboBW4dB3iaby3zw==
-X-Received: by 2002:a05:6000:1869:b0:3a0:8c45:d41b with SMTP id ffacd0b85a97d-3a09ceafb06mr6167004f8f.20.1746448717806;
-        Mon, 05 May 2025 05:38:37 -0700 (PDT)
+        bh=yJ00OPYdqSJ+4uv8ctKPBsBBA32+QMJJaxQcYWfzOmY=;
+        b=STUN6Fhfrqy3aooCFZQTwnOds44sdmMavVBoc3f2FBzzXtl/KCKejpeFm1+RlGcmDZ
+         a6/vR09Avl2TKGEKU9aJQXhketbjvMNdXUxK3fnlPCVBFrbd2Mg5GIZF09dWz/IlCf/H
+         5u24COlDtWl3pnAyDVScLLcVQYQHGYjw68AvyTt4Y4wXS7Fi3VIqjHWfkTUk+DB9vGe1
+         UXQwzqvREAfB1ppAaIekfG/aA3yh+ydm7RWvwWdcj5PEKow9I5biX64fZoMrVzar8Pd5
+         l4Hr9vxZiCxe8ezglys3w+5f01yJRy5Gq6R3Z4X6WlpEZpNPzCnK1GdByBF/53nUmCvd
+         CQcg==
+X-Forwarded-Encrypted: i=1; AJvYcCVmIvkR6StQ/a51lqQcr5B3lwGt5X+DWg+48Hdg8RaU8MVPWg3VqZGIZPxffkeTtcezF69dK3c1MJOPisKa@lists.infradead.org
+X-Gm-Message-State: AOJu0YwK+FslMd0bCfoo1gzhchRFA8UVXrOgGcuiHys++yol1nITorAk
+	wdpwSawolVGgkzmV3oVU/+q8OlVYGLS4llbiBFvCDt+rLrAUg6XWSM5kE5711DI=
+X-Gm-Gg: ASbGncuCd+08x9SR/n/6oBUdmzMevzD3WvVMRUyTUXoZmRTR/Mjreg4AgUt+zXUI0jh
+	Vb3zAaOjJJWbnOXENrRNWueH+F2ufhtGPuhu4ToFjbT0+AyY9Y4lBV5aBOBlkE/r2HAoSF9ZbfW
+	gZmp9YB5j2Yecxw736O28pKyf7dfOmmXgJGXVbfeNMl/Uf39ViyqIWJoaLgwhNmkL7tsK0wXSHp
+	L57LGC8sFt4L6xlJ2q2Rbaj/v1q6oWsnWxyrusZyHvlmljilmhjncAudKlEp4ABy3FnWnfRkuYJ
+	80/bSiVxHlVdcN+FHSiVluLBVGUSr3kfN851mAh0pqJkMyR0R73YKF7NcF2iBA==
+X-Google-Smtp-Source: AGHT+IFy0/5CsAjAmtPJtG69bk3HYaRizPcxz8kBiV82Sd4ZPLYii45oNaazucMgx7OuBmnSByg2GA==
+X-Received: by 2002:a5d:5c84:0:b0:39c:3107:c503 with SMTP id ffacd0b85a97d-3a09ceba798mr6003167f8f.31.1746448718752;
+        Mon, 05 May 2025 05:38:38 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae0bf6sm10416625f8f.18.2025.05.05.05.38.37
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae0bf6sm10416625f8f.18.2025.05.05.05.38.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 May 2025 05:38:37 -0700 (PDT)
+        Mon, 05 May 2025 05:38:38 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -79,16 +79,16 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Zelong Dong <zelong.dong@amlogic.com>, 
  Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20250320-a4-a5-reset-v5-0-296f83bf733d@amlogic.com>
-References: <20250320-a4-a5-reset-v5-0-296f83bf733d@amlogic.com>
-Subject: Re: [PATCH v5 0/3] Add support for Amlogic A4/A5 Reset
-Message-Id: <174644871707.1393229.7222540687542026901.b4-ty@linaro.org>
-Date: Mon, 05 May 2025 14:38:37 +0200
+In-Reply-To: <20250411-a4-a5-reset-v6-0-89963278c686@amlogic.com>
+References: <20250411-a4-a5-reset-v6-0-89963278c686@amlogic.com>
+Subject: Re: (subset) [PATCH v6 0/3] Add support for Amlogic A4/A5 Reset
+Message-Id: <174644871803.1393229.3140979499225174795.b4-ty@linaro.org>
+Date: Mon, 05 May 2025 14:38:38 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250505_053839_961064_9577B273 
-X-CRM114-Status: GOOD (  11.47  )
+X-CRM114-CacheID: sfid-20250505_053840_947324_0CCE4EF9 
+X-CRM114-Status: GOOD (  11.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,21 +107,19 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Thu, 20 Mar 2025 17:42:07 +0800, Kelvin Zhang wrote:
+On Fri, 11 Apr 2025 19:38:14 +0800, Kelvin Zhang wrote:
 > Add dt-binding compatibles and device nodes for Amlogic A4/A5 reset.
 > 
 > Imported from f20240918074211.8067-1-zelong.dong@amlogic.com
 > 
-> Changes in v5:
-> - Rebasing on top of the latest upstream changes.
-> - Link to v4: https://lore.kernel.org/r/20250313-a4-a5-reset-v4-0-8076f684d6cf@amlogic.com
+> Changes in v6:
+> - Rebased onto the latest v6.16/arm64-dt.
+> - Link to v5: https://lore.kernel.org/r/20250320-a4-a5-reset-v5-0-296f83bf733d@amlogic.com
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm64-dt)
 
-[1/3] dt-bindings: reset: Add compatible for Amlogic A4/A5 Reset Controller
-      (no commit info)
 [2/3] arm64: dts: amlogic: Add A4 Reset Controller
       https://git.kernel.org/amlogic/c/946b51882b84f0cbec2acd203467866a7378abac
 [3/3] arm64: dts: amlogic: Add A5 Reset Controller
