@@ -4,122 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8F40C3ABB0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 12:36:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC143C3ABB9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 12:38:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=mHnR0jx96bret6NemxETMZTgQgQggufXV15zXrp0oMo=; b=Hi2P7S9C2j05jLHWzxJR+qIfVw
-	cuUoDo3AKZxVRU0+zk+syWNwRyxHQOkrbMSlrLxopQeNkScn2AaMiCc0+TX1UeN9t3lm9bObe8fgT
-	dYpb2d9KscFg13Qsq7j5hVm2dwcUZqQ/Ua9IFlJrUdLWBD6OO7RFiOAfNyNZcLT4lSpqGIrimvEHj
-	3725pcBDlpnlZq38H6vHrEmoLatXL8vS3fxJZ7SveAjdDc0JXTwJf7WOgnNsN/QF5xsILPtYjUdG9
-	gWmdnUhhshltcycW72kvAjvCNzwORcxV7EyWIptkXB15T/5rrB8EbOiIzOZiYnCuzGmrrXh9dWGOO
-	+TloqWSw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0U1qdNiqt7ZkwZqFRaaZ1+sz+/VnEZB7uWaegJuG80M=; b=2lgHBWaoEJcxqh
+	AYTXZmdm4YUEBVLt26QJDlzK02Qt1WPZmEe8e5EehUZw8w4QifOIMKsn2tFlM+5vPvAjiaqBdRmtq
+	Vonm60P2UmUHfPh+Ea+RpTft0eW82dQ8GEYfBhZnL6cropHIInoWXyV9/0kE4HVWNPBLKlY43cQWB
+	JnSfjGopEFqmt7ZwP17ftf7ikF3REvNbTKwZSPAAtTYc6HHchOGGaJP2BML956v328lVYNgRSIHrU
+	V6GqM+j0yhRchKFGgeI+rvXOOf6HVVw6r8lGZFHiA9ND6jl0t7vDdpUemtS/RprnUqghxCCOrBi16
+	YlvA2OLTx5X5pdLNBcaA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBv37-00000007KnJ-43sS;
-	Mon, 05 May 2025 12:35:57 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1uBv59-00000007LQF-0ogY;
+	Mon, 05 May 2025 12:38:03 +0000
+Received: from relay9-d.mail.gandi.net ([2001:4b98:dc4:8::229])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBuxS-00000007Jwx-0DDu
-	for linux-amlogic@lists.infradead.org;
-	Mon, 05 May 2025 12:30:07 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-441c99459e9so7932695e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 05 May 2025 05:30:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746448204; x=1747053004; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t0GjryULo4v09EAImrhm7s0nrCH1vBTnHzkq05ckM1c=;
-        b=ro+IRsSU1ccJ/a/3lpl/pJLq226PL4efYVuHf36k24iCMM4Oi8i/RQOzQBHLV16d0t
-         zPpdHnD8FvBqt3WxUykWhkxnV5bK+0eI0avlzQkqCkbhTJDqj/g0DKuTzm7L1kRDR5fn
-         SD+JBX8LYggi9Daht2rmEhNDgRTxY3T3+Bp7Za1vAw4vk013C0Ab00YE/GlO/Ucf8t9q
-         tME8UbyhAoxAuJlEM03R8WxsJrbnETZJ9JHZ3pY1UWqwVDnQ+MGQkwUhjVOsR1+MuCDJ
-         JtU0jYYe9gPi7N5eiwqCge0ucNC7OhBwdLoBpLFn3wUqSkANQUYU6VjADTN76+MzijWY
-         CsYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746448204; x=1747053004;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=t0GjryULo4v09EAImrhm7s0nrCH1vBTnHzkq05ckM1c=;
-        b=hT4qDyFWiwtc6kfsfaEWK2c2cljVabW3mhokld+5Yt9uybS3hH7t5VZrWsKnDP/MMw
-         HmylpM3CUw4p/OVV9xaOAv8ValOT5rJQNXqz2Kk9V0NOtQ7+WZkIv3J+ZUmdrfDIAQHn
-         ip3LlPH3WBtiexzgXEwsu8M7x2zSu6Hp/qDP2KJ7mXcm12vVNQAtFp/H4lmAcTBnIgb2
-         Xz/i7qHLRCoq8XCcKp/mawb1MMV2fbn/Fla23QirACNVSERCI3D6KvhAKoT/luQN+fqZ
-         01m3p8sIdhpZk6u+d43rJQ3i1axfo0DhMdJXfRmV26h4vrPXF8qFfX9DhtfAfPQUWNlz
-         /btw==
-X-Forwarded-Encrypted: i=1; AJvYcCUe5MlngIm7P6vYmt6EZVX0qXDUEDO+urnJP9fnnMLqoa8R3gRoHrvIP7Wxdtb6a0D7Dq2Di6ZoOsIDE7rV@lists.infradead.org
-X-Gm-Message-State: AOJu0YzVCzXj2Vks9D1/GXNbIURS0r5AY1GKA3d2rpFoMMnzaApFjSTg
-	zcJcErpfFs284Jtfzu42s4EyXq7uygHJPrGHVT0gt8J/FbHCuzwPIajTKbHorEY=
-X-Gm-Gg: ASbGncuePIni/v/sVNIHtc+RYktn8f5PoSzAxlgPsoXJ7oGjMqJka0ndANbBNBghtuh
-	YEeQyoAxRVXdM78Mwcug7qsXKxtv6qIqhdGpaXoaHQ1hI7IngCna+aVu6mZG/To6WAVdT4Hapza
-	n9ftkyeno6//KVNaM+redsdTBdBCeQj2/ogIZE1XW6vF3ZCsP+Uwbu9dF2rfJE8EcK/mRRsiiCB
-	Ih/GNsmH2C5ZE+K2jmltwns6Odbi3Ii1SnODypT/JDFQPWW97wAWb09Yxb9AtPQ5DRFzzIFLBNs
-	njRKI+Tid2aVkNZ9u1rij3JfRhcR4b6X7jUW3ipLl2v48bcGXiNuga3gl4B40SQJzUjb9yZwpKq
-	PYvDirVdz3aMK8eTEsw==
-X-Google-Smtp-Source: AGHT+IEXaFpXxqRcmFqcdi7rW9veV7mUOW9LMRdHD1faNwTOAtntg/32GzuRuVivniydhFYII1GnXQ==
-X-Received: by 2002:a05:600c:19c6:b0:43c:e9f7:d6a3 with SMTP id 5b1f17b1804b1-441bbec2a80mr104674185e9.13.1746448204392;
-        Mon, 05 May 2025 05:30:04 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3? ([2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441bc83d471sm108852165e9.26.2025.05.05.05.30.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 May 2025 05:30:03 -0700 (PDT)
-Message-ID: <5bb02494-e974-4d2f-a00f-417312b73bc1@linaro.org>
-Date: Mon, 5 May 2025 14:30:02 +0200
+	id 1uBuzW-00000007KEm-05GJ;
+	Mon, 05 May 2025 12:32:16 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B6D95439CF;
+	Mon,  5 May 2025 12:32:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746448330;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=t8GmbzWzwjKBF6Grm3MhKIQ4eVv3NPu5Y9A5XIPvDcA=;
+	b=hjAbYQVeSBenLJHyzNnH+29VE8aQu5NdvGcBu901d4KAVGGIH73+xJRtOkMBvPMxod408f
+	46cJ1FSSVEaihm6e4YRyxwK6H9vqKbZsH6FeNdjG6qHuFuPEj6MXQaHOvyeCuws3FaQ4ZJ
+	tyEO3Rm3oNF8VG/6gKRuTcpBY8uLXdkn1k8zdS9iBbYepUeyI1mPnliHP5HbYAMf8SxYgc
+	gh87HvhVyGIZKypBQt9lGmUGqhDD0V6ogc/9QAW1FprShOP2PTeLVdqhZJSU2GFelqS2IN
+	VCutWhQebpQ3qtFA8QsGOMpeGLhJbitY4xZjYFl5bgwg7lvllwMgOkM9Yioomg==
+Date: Mon, 5 May 2025 14:31:58 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Inki Dae <inki.dae@samsung.com>, Kyungmin Park
+ <kyungmin.park@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Alim
+ Akhtar <alim.akhtar@samsung.com>, Maxime Ripard <mripard@kernel.org>, Louis
+ Chauvet <louis.chauvet@bootlin.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
+ <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Douglas Anderson
+ <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
+ Kozlowski <krzk@kernel.org>, Anusha Srivatsa <asrivats@redhat.com>, Paul
+ Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui
+ Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ chrome-platform@lists.linux.dev, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com, Adam Ford <aford173@gmail.com>,
+ Adrien Grassein <adrien.grassein@gmail.com>, Aleksandr Mishin
+ <amishin@t-argos.ru>, Andy Yan <andy.yan@rock-chips.com>, AngeloGioacchino
+ Del Regno <angelogioacchino.delregno@collabora.com>, Benson Leung
+ <bleung@chromium.org>, Biju Das <biju.das.jz@bp.renesas.com>, Christoph
+ Fritz <chf.fritz@googlemail.com>, Cristian Ciocaltea
+ <cristian.ciocaltea@collabora.com>, Detlev Casanova
+ <detlev.casanova@collabora.com>, Dharma Balasubiramani
+ <dharma.b@microchip.com>, Guenter Roeck <groeck@chromium.org>, Heiko
+ Stuebner <heiko@sntech.de>, Jani Nikula <jani.nikula@intel.com>, Janne
+ Grunau <j@jannau.net>, Jerome Brunet <jbrunet@baylibre.com>, Jesse Van
+ Gavere <jesseevg@gmail.com>, Kevin Hilman <khilman@baylibre.com>, Kieran
+ Bingham <kieran.bingham+renesas@ideasonboard.com>, Liu Ying
+ <victor.liu@nxp.com>, Manikandan Muralidharan <manikandan.m@microchip.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Phong LE
+ <ple@baylibre.com>, Sasha Finkelstein <fnkl.kernel@gmail.com>, Sugar Zhang
+ <sugar.zhang@rock-chips.com>, Sui Jingfeng <sui.jingfeng@linux.dev>, Tomi
+ Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Vitalii Mordan
+ <mordan@ispras.ru>, Ilpo =?UTF-8?B?SsOkcnZpbmVu?=
+ <ilpo.jarvinen@linux.intel.com>, Bryan O'Donoghue
+ <bryan.odonoghue@linaro.org>, Hans de Goede <hdegoede@redhat.com>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>, "Rob
+ Herring (Arm)" <robh@kernel.org>, Hsin-Te Yuan <yuanhsinte@chromium.org>,
+ Pin-yen Lin <treapking@chromium.org>, Xin Ji <xji@analogixsemi.com>,
+ Aradhya Bhatia <a-bhatia1@ti.com>, Tomi Valkeinen
+ <tomi.valkeinen@ideasonboard.com>, Ian Ray <ian.ray@ge.com>, Martyn Welch
+ <martyn.welch@collabora.co.uk>, Peter Senna Tschudin
+ <peter.senna@gmail.com>, Russell King <linux@armlinux.org.uk>, Herve Codina
+ <herve.codina@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Bjorn Andersson
+ <quic_bjorande@quicinc.com>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Rob Clark <robdclark@gmail.com>
+Subject: Re: (subset) [PATCH v2 00/34] drm: convert all bridges to
+ devm_drm_bridge_alloc()
+Message-ID: <20250505143158.75541d7c@booty>
+In-Reply-To: <9afd098c-edd3-44fa-8efe-99f2e9c9a525@oss.qualcomm.com>
+References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
+	<174591887152.961603.7706063017853945511.b4-ty@bootlin.com>
+	<832a9db0-cf8a-4d35-8a98-08053fbd6723@bootlin.com>
+	<20250430-arrogant-marmoset-of-justice-92ced3@houat>
+	<20250505130648.22ec8716@booty>
+	<9afd098c-edd3-44fa-8efe-99f2e9c9a525@oss.qualcomm.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v6 1/3] dt-bindings: reset: Add compatible for Amlogic
- A4/A5 Reset Controller
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Zelong Dong <zelong.dong@amlogic.com>,
- Conor Dooley <conor.dooley@microchip.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Rob Herring <robh@kernel.org>, kelvin.zhang@amlogic.com
-References: <20250411-a4-a5-reset-v6-0-89963278c686@amlogic.com>
- <20250411-a4-a5-reset-v6-1-89963278c686@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250411-a4-a5-reset-v6-1-89963278c686@amlogic.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkeduuddtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptdeljeejuddvudetffdtudelfedugfduledtueffuedufefgudegkeegtdeihedunecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvpdhhvghlohepsghoohhthidpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeelgedprhgtphhtthhopegumhhithhrhidrsggrrhihshhhkhhovhesohhsshdrqhhurghltghomhhmrdgtohhmpdhrtghpthhtohepihhnkhhirdgurggvsehsrghmshhunhhgrdgtohhmpdhrtghpt
+ hhtohepkhihuhhnghhmihhnrdhprghrkhesshgrmhhsuhhnghdrtghomhdprhgtphhtthhopehsfidtfeduvddrkhhimhesshgrmhhsuhhnghdrtghomhdprhgtphhtthhopegrlhhimhdrrghkhhhtrghrsehsrghmshhunhhgrdgtohhmpdhrtghpthhtohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhm
+X-GND-Sasl: luca.ceresoli@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250505_053006_122171_542F4BFF 
-X-CRM114-Status: GOOD (  13.76  )
+X-CRM114-CacheID: sfid-20250505_053214_599567_F3549B67 
+X-CRM114-Status: GOOD (  25.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,73 +132,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Philipp,
+Hi Dmitry,
 
-On 11/04/2025 13:38, Kelvin Zhang via B4 Relay wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
+On Mon, 5 May 2025 14:58:58 +0300
+Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
+
+> On 05/05/2025 14:06, Luca Ceresoli wrote:
+> > Inki, Kyungmin, Seung-Woo, Alim,
+> > 
+> > On Wed, 30 Apr 2025 10:08:14 +0200
+> > Maxime Ripard <mripard@kernel.org> wrote:
+> >   
+> >> Inki, Kyungmin, Seung-Woo, sorry for the mishap. Do you agree with the
+> >> following patch, and it going through drm-misc?
+> >>
+> >> https://lore.kernel.org/dri-devel/20250424-drm-bridge-convert-to-alloc-api-v2-14-8f91a404d86b@bootlin.com/
+> >>
+> >> If not, we'll revert.  
+> > 
+> > Did you have a chance to have a look at the patch mentioned by Maxime?
+> > 
+> > It was applied to drm-misc-next by mistake. Not your mistake of course,
+> > but now it's there so if you don't reply anything it will have to be
+> > reverted, and then sent again to go through all the review process to
+> > be hopefully re-applied in the future.
+> > 
+> > If you agree with keeping it in drm-misc-next, that would be less noise
+> > for everybody.
+> > 
+> > I'm going to send v3 very soon, so it would be good to decide what to
+> > do before that.  
 > 
-> Add compatibles for Amlogic A4 and A5 reset controllers,
-> which fall back to 'amlogic,meson-s4-reset'.
-> 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Link: https://lore.kernel.org/r/20240918074211.8067-2-zelong.dong@amlogic.com
-> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
-> ---
->   .../bindings/reset/amlogic,meson-reset.yaml        | 22 ++++++++++++++--------
->   1 file changed, 14 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> index 695ef38a7bb346c92b4cf428e7615d45682c940a..150e95c0d9bed74c7045942610a311114a257889 100644
-> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> @@ -12,14 +12,20 @@ maintainers:
->   
->   properties:
->     compatible:
-> -    enum:
-> -      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
-> -      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
-> -      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
-> -      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
-> -      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-> -      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
-> -      - amlogic,t7-reset
-> +    oneOf:
-> +      - enum:
-> +          - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
-> +          - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
-> +          - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
-> +          - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
-> +          - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-> +          - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
-> +          - amlogic,t7-reset
-> +      - items:
-> +          - enum:
-> +              - amlogic,a4-reset
-> +              - amlogic,a5-reset
-> +          - const: amlogic,meson-s4-reset
->   
->     reg:
->       maxItems: 1
-> 
+> For the record: even though I'm not happy with msm-related patches going 
+> through drm-misc without additional ack from our side, I think reverting 
+> those and reapplying them later will create a bigger mess. So, I'm fine 
+> with keeping drm/msm/* bridged patches in.
 
-Do you plan to take this change ?
+That was my understanding of your previous e-mail, but thanks for
+having made it explicit.
 
-It has been laying around on the list for a while now, I plan
-to apply it in my amlogic/drivers tree at the end of the week.
+Luca
 
-Thanks,
-Neil
-
-
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
