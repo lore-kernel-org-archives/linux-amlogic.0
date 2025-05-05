@@ -4,73 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01147C3ABAA
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 06:23:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FFD6C369C2
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 07:10:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=vZz7Br+Z+5kbDYH7zZGv//iyzWy4B3r2v41fhrinK0w=; b=dx1/KUCJgMeeWX2GWaCCu97wS7
-	fYk7kKBaxOFUIA3bfLD1jqNzIzBCZ+OOC49mhAz1MNtWvVRD4o5H0DqIxwTKddeNpNwh8iNLd83rC
-	6oyAM6Xh6jFdrjP6RgKryzH4Y9u20/vjy8/ZRelKceWrc2B73uKInrffFnXR+OFRwtDwDQjvng9vN
-	mK/fT0JUHC5nSZOYnJ3VGeWQVoGmon5vk2U/4TmCgcehjP1O6J0mhBoF/F2Lld6p9zSKLksgjsv+n
-	Szfaxp6J4IEmeRKmPS8uTHmeaKVQGwEssg9VT6+/61wSvgqYFQJ2LGw7c+8XPW7QReycQyyXccQSE
-	NySbXfdA==;
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Cc:References:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=NqnNTTDhvTu/U6haO+FovtL9V0F46dQrM1PU4UwOTEA=; b=nMwd7Bhq2rwGjjElF4XBn8lJD8
+	BfEMzBayONyfFBbofG1v8ysR8VM1usQ+9rntKrLxc9F4ZFEF50qp4F420vspczqHjanEet69C9KEU
+	81B00n1qInWwIp2ZsBC7fKSHKsYqtxiu/pTCCYrvTnVh/qlN3LruNikmGNTI3WmYYk1AFEIk1NhVb
+	b/3SFbYVep9ONP/hAZZ4lprQ0cR7I1Q/cXrBBk0tPQ+B5Ts1NmkvkW2LCDUJ6hKnUlrCVi5XMgtuO
+	OBia17s9Z9XiCUnbXo1xn4ubeTmdFhxH8wUcjEi+LqaWpYVsZdjQfFrcyeGJJAgzaXnxxKDJ/4vdJ
+	d8X6vfEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBpEi-00000006Vyl-05JP;
-	Mon, 05 May 2025 06:23:32 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1uBpyA-00000006bmf-4AM7;
+	Mon, 05 May 2025 07:10:30 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBpEh-00000006VyT-0bHD;
-	Mon, 05 May 2025 06:23:31 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id ACAA06112E;
-	Mon,  5 May 2025 06:22:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 076EFC4CEE4;
-	Mon,  5 May 2025 06:23:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746426209;
-	bh=blz46dfKcTkqUU1mdHuxtQzWM8gPcsEOF9yJwSPZQjo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=koamshTJSZ1WF/eCcwZGiyDpkwsaCADLfvS3QwjV5PotkB/YOwWC8XyuJVSsdLCIk
-	 /4Jtd7bMz2vmYsMNWmf/X4Sis4kqCPIcH2Wo9nzKbUDCdEWEjPm99kDdRKffgOIfVC
-	 GO8aK9v8GOt73LRnb9Tey6JAPxRlvzcCyhCmmdVLeIQZNUJGxNU4jtNLGVqIHj+dbm
-	 MEpwGnq7vCW5rHYuMgB1xOP/tAAjfa3OIH4mb6zlf/o2UpzxgLckv3VDuOX+zXChXs
-	 TEqMARo/LYFzdXeUg1+VrFmrPwI3ZjNDFpR2bMvYWKsJuqvZsxTYKkHx5l6dtCp9Kp
-	 s2eAL5PrUzyBg==
-Date: Mon, 5 May 2025 08:23:26 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki <jagan@amarulasolutions.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Douglas Anderson <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Anusha Srivatsa <asrivats@redhat.com>, 
-	Paul Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Hui Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	dri-devel@lists.freedesktop.org, asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	chrome-platform@lists.linux.dev, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-renesas-soc@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 34/34] drm/bridge: panel: convert to
- devm_drm_bridge_alloc() API
-Message-ID: <20250505-beneficial-fossa-of-weather-67c676@houat>
-References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
- <20250424-drm-bridge-convert-to-alloc-api-v2-34-8f91a404d86b@bootlin.com>
- <20250428-wild-condor-of-defiance-cadf60@houat>
- <20250428172516.79058e22@booty>
+	id 1uBpvG-00000006bQL-3i8B
+	for linux-amlogic@lists.infradead.org;
+	Mon, 05 May 2025 07:07:32 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-39c13fa05ebso2327322f8f.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 May 2025 00:07:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746428848; x=1747033648; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt:cc
+         :content-language:references:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BAcvdE2xY/zpD3KTmU7HwvxmS2gSLmyMDAFLT80zCwA=;
+        b=AkBWCkS+IfEzfhlmrccgVkcibIN7449rmFT87IJMlYZaa0WwKnXPvX7lOIEPsBvBDF
+         m4lb8B2ttRUNOXao0Yvdpwc1SWJSfKQj4dd52O33Z0ZfQGuHyRnQCoYvamuQJ92HRHap
+         9nJh8evrdVdvkcZLWhOBW9N+jQv1QBCsJbgyUF5KGAZoACz2egDBrmKUQgOO+NkK1wZq
+         lBz+dkHEZyLbLS58GL2Tu9di/zuIIUXDMzzO81Km8PuIoIUMMUG/pxwkrcZCOgd2H2bB
+         Pw/XFkqx6sWoegcG9zLUiYc3YO4Xmxzq1XvjpCpiFH/h8Bd0FgRNh9ppDTp2zUDpU7iO
+         vbYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746428848; x=1747033648;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt:cc
+         :content-language:references:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=BAcvdE2xY/zpD3KTmU7HwvxmS2gSLmyMDAFLT80zCwA=;
+        b=a5VONZnaPcHeuRK4XHvUjwZyw5LdVthIXbSuAmb9unBd6GB9Ym3FHcqWcpPAZu1+LH
+         RYmJho4FoKgqepSIxL/pmttTZ+Hu2dfHASk9kVJFa1BtdqZr8gLtQ9cla0TdtfhbWvol
+         2NIhYnyVt0mjqF7XLKbpYV+7O+FIVar7vIf7MdcpVn7SzyS1kZkVIFZnGklI/tVkxI2L
+         3FHmwGCyXnjDoPTfoYjnu7unvyw5ycLveIMDtMdr/EBCHcz9QEb3HcJC2Om+U4KbL2Yf
+         qXpD2h+PAhrJjL2yen8vAXU0VLlAhaqHjm6lzgkLRHFVUrT+sHTACXyC2VoXrPfZp0Ct
+         GKqw==
+X-Forwarded-Encrypted: i=1; AJvYcCWWqU395M1QPVGmAGh1vDR68oUfOGEaLtDQwrRs/Q9aE0YOVIz+XPlPoQsQ+onWtfpS0gOhcClkbOPeQuZv@lists.infradead.org
+X-Gm-Message-State: AOJu0YyE5usxj0ufyCb3sE/c+M+Rn4q63WwvxjcVSIIRVfVx6rIFduyv
+	9Xyyr0KWSLwJERc3+luUKba7iYpapR6K9fFyYNDngRuE9O8sCCpy1xbGKrOlx5lEjD5//B8z7QQ
+	U
+X-Gm-Gg: ASbGncucG+nvU+SDVhrQGqhMGXzq+JL7KGsxK3xBBDb+iFBdkSXKWPJYRGt+ZsJcQKY
+	VKC1s4n+sMZBEwaQK222Nr/wORs9oaqGo6IAmcCYl8mUbt77PtGiU0wheq1yOn2ZnfMpx07xeZ9
+	ZS+yM/Y3LNSJY1ymR8HjdnM9bEe9AV/iYHpZ8yc3LBu121T09XsemUdW5Kq046ucz2KON0vnyEo
+	tHBs57TvVrAjeWY1Fn4snajAyK9bH9ZHzP0kRsXrgDwBxLQyjzr6ZbkZCO6+kYKAxLiSOSYzwl7
+	5iEmwE7C0DY7+zkgMbAEXN+6TwL/mPMbtM/8kxqju2EZte4FcMSndQooVOWM4nK1lpmpol4j7BQ
+	E6SGirCZVCq+5k3Y29bubrylOnjMJ
+X-Google-Smtp-Source: AGHT+IHydklTwgvkH9q6GqOTfYh+FoH8zbjEJ/ifB4D6ubYun8TosSrDO7fZcpMAINEvL9rzwviU+w==
+X-Received: by 2002:a05:6000:400e:b0:39a:ca04:3dff with SMTP id ffacd0b85a97d-3a09fdbb907mr4641524f8f.40.1746428848634;
+        Mon, 05 May 2025 00:07:28 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3? ([2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b16f00sm9251942f8f.84.2025.05.05.00.07.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 May 2025 00:07:28 -0700 (PDT)
+Message-ID: <f073dad7-337e-499a-8cb5-9dae0842de17@linaro.org>
+Date: Mon, 5 May 2025 09:07:28 +0200
 MIME-Version: 1.0
-In-Reply-To: <20250428172516.79058e22@booty>
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Subject: Re: Odroid n2+ usb broken on reboot
+To: Wayne Schroeder <raz@chewies.net>, u-boot@lists.denx.de
+References: <CAEUiLubXaPGZsE6y_X6mBTD1ZK-2w82fbRD5z8+MKvDZtZKOtA@mail.gmail.com>
+Content-Language: en-US, fr
+Cc: "u-boot-amlogic@groups.io" <u-boot-amlogic@groups.io>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <CAEUiLubXaPGZsE6y_X6mBTD1ZK-2w82fbRD5z8+MKvDZtZKOtA@mail.gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250505_000730_941970_B998E357 
+X-CRM114-Status: GOOD (  16.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,115 +123,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8814023079623760428=="
+Reply-To: neil.armstrong@linaro.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
---===============8814023079623760428==
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="fxb23j2izsboyssh"
-Content-Disposition: inline
++CC u-boot-amlogic@groups.io
++CC linux-amlogic@lists.infradead.org
 
+On 05/05/2025 00:34, Wayne Schroeder wrote:
+> Hello.  I am not sure if this is a bug, or even related to u-boot, but I am
+> reporting it here because it was easiest to resolve via a u-boot change.
+> 
+> I am using u-boot-2025.04 (source) with a mainline linux from Arch Linux
+> Arm.
+> Linux alarm 6.14.4-1-aarch64-ARCH #1 SMP PREEMPT_DYNAMIC Sat Apr 26
+> 13:02:01 MDT 2025 aarch64 GNU/Linux
+> 
+> On my odroid-n2+, the USB ports work on the first boot after power.  If I
+> run shutdown -r now, or hit ctl-alt-del and otherwise reboot the system,
+> the usb ports do not function at the next or subsequent boot up.
 
---fxb23j2izsboyssh
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 34/34] drm/bridge: panel: convert to
- devm_drm_bridge_alloc() API
-MIME-Version: 1.0
+I think it's a very long term issue, USB lacks a proper reset at probe on
+warm reset, does USB still work from U-Boot after the reboot ?
 
-On Mon, Apr 28, 2025 at 05:25:16PM +0200, Luca Ceresoli wrote:
-> Hi Maxime,
->=20
-> On Mon, 28 Apr 2025 13:39:23 +0200
-> Maxime Ripard <mripard@kernel.org> wrote:
->=20
-> > On Thu, Apr 24, 2025 at 10:05:49PM +0200, Luca Ceresoli wrote:
-> > > This is the new API for allocating DRM bridges.
-> > >=20
-> > > The devm lifetime management of this driver is peculiar. The underlyi=
-ng
-> > > device for the panel_bridge is the panel, and the devm lifetime is ti=
-ed the
-> > > panel device (panel->dev). However the panel_bridge allocation is not
-> > > performed by the panel driver, but rather by a separate entity (typic=
-ally
-> > > the previous bridge in the encoder chain).
-> > >=20
-> > > Thus when that separate entoty is destroyed, the panel_bridge is not
-> > > removed automatically by devm, so it is rather done explicitly by cal=
-ling
-> > > drm_panel_bridge_remove(). This is the function that does devm_kfree(=
-) the
-> > > panel_bridge in current code, so update it as well to put the bridge
-> > > reference instead.
-> > >=20
-> > > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com> =20
-> >=20
-> > This looks fine, but we need a TODO entry to clean this up later on, and
-> > a comment on devm_drm_put_bridge that this is inherently unsafe and
-> > must not be used.
->=20
-> Ah, I see, OK.
->=20
-> Quick draft:
->=20
->  /**
->   * devm_drm_put_bridge - Release a bridge reference obtained via devm
->   * @dev: device that got the bridge via devm
->   * @bridge: pointer to a struct drm_bridge obtained via devm
->   *
->   * Same as drm_bridge_put() for bridge pointers obtained via devm functi=
-ons
->   * such as devm_drm_bridge_alloc().
-> + *
-> + * This function is a temporary workaround and MUST NOT be used. Manual
-> + * handling of bridge lifetime is inherently unsafe.
->   */
+> 
+> My apologies if this is not applicable to u-boot because it is a linux
+> issue--I am not sure what the source of the issue is, but adjusting the
+> u-boot .config after make odroid-n2_defconfig resolved the issue entirely.
+> 
+> I am booting via extlinux/extlinux.conf and have adjusted my
+> CONFIG_BOOTCOMMAND before build to execute a usb reset prior to the
+> existing run distro_bootcmd.
+> 
+> CONFIG_BOOTCOMMAND="usb reset; run distro_bootcmd"
 
-That part looks good to me
+I'm pretty sure there's driver callbacks we should implement to do the
+same here, I need to check.
 
-> and:
->=20
-> -	devm_kfree(panel_bridge->panel->dev, bridge);
-> +       /* TODO remove this after reworking panel_bridge lifetime */
-> +	devm_drm_put_bridge(panel_bridge->panel->dev, bridge);
->  }
->=20
-> Does it look good enough?
+> 
+> This has allowed me to reboot the system and successfully have access to
+> the USB devices such as my keyboard, mouse, and root file system on USB3
+> SSD.
+> 
+> Thanks!
+> 
+> Wayne
 
-That too, but I was talking about an entry in
-https://www.kernel.org/doc/html/latest/gpu/todo.html
-
-Maxime
-
---fxb23j2izsboyssh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaBhZWgAKCRAnX84Zoj2+
-dmbVAX4gMY0F9VXdFsIIKKBjn5Ev2tMwW+uv6doEaqoNJIEat9dVa/bvOYl9n6tm
-ZNZ29HABeQEtltAKrypsuFB4FFzNPiZADC9MB5moran2psvsF2a1chXqCjrK2xyp
-FQXpVqx4qw==
-=pRS+
------END PGP SIGNATURE-----
-
---fxb23j2izsboyssh--
-
-
---===============8814023079623760428==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8814023079623760428==--
-
