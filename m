@@ -4,91 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BEECC3ABB6
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 13:21:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BA27C3ABBC
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 13:21:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/MYw6S3NHc9fSCIXX54curXCpF+GdDGTtNfE6f96hxw=; b=SjbTtf9Eqj2V2K
-	M7oXPjFeLdjKnaoAlu2HaLfP2PeNttxtg+KFlQ7/YKR6Vmjw/Unc3zhxH++qq2wu9BOxMx82XsAiO
-	u83Nw8KmJ5n+N9d085Mw2MEZfzSInlMB5Rjy2S8/q7QRWbyK1kHfyJisd9zSGHCuLUxmFWbwnNvEj
-	IvZ34RjXofmTEH/tYlfM/wGmKEnUq5f7CY7Qv0Dr9/Yo/EGT8o5B1Gjx9NmJTusTovcDrCoH0IjN1
-	xgkShh8FCFu69EhUrtcy+tx2nHuy9CoDBPL+D2LR0DvrxT1YE7KLlY9vTS9lJMZQ1VfhV4AnbnqE6
-	muMnmYH0W81WP6sXN4KA==;
+	List-Owner; bh=UxhYdHMP+mi+9hGj6TAJWtIXBHTijVGk41W2GA7bvpo=; b=cEUGMLWvhl4V54
+	fcnl1UoxZDE2NUyvg3fTpQpo/zkZSNs096nh00KgMxAfDXTfXB523jT6dww5INvQMl41L/lZV+pGh
+	fHces/jW3C8EmPnuQ7W3KflYixVsqNSd28J3O6Ua+iKwi8vCOwvSM6G3AGy25A3Fs6JoezPVjs+vy
+	MZGxgzuCNyzHjpgycSiQpnQwvgy5oYq8NTmGsmS1+g/T3gSU1gjO7H1zhHsUEhjyzg4daItn1+ppt
+	EaFQBDDTzrbqZHWAw2aNMAT4yW6BpY05osoBLH+lk2r/lGcxOhaCqOHWuHy79Nz8xEZ4hvrrYIsvF
+	Eg/HI/8nGS/iOVi7hhZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBvkc-00000007RuQ-1wHg;
-	Mon, 05 May 2025 13:20:54 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1uBvkh-00000007RzQ-3MVF;
+	Mon, 05 May 2025 13:20:59 +0000
+Received: from metis.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::104])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBv5k-00000007M6e-3J5E
+	id 1uBvKE-00000007Oqc-0P4P
 	for linux-amlogic@lists.infradead.org;
-	Mon, 05 May 2025 12:38:44 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso18571635e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 05 May 2025 05:38:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746448719; x=1747053519; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yJ00OPYdqSJ+4uv8ctKPBsBBA32+QMJJaxQcYWfzOmY=;
-        b=aUhw+970idHl2P/kEVzKSvK6wCx5AoHqpn78RwAtHe0o7nVP05mbpB5eitGRuW8c6v
-         Wuux7rAOhxrBEUAdnGbapPgQUdkCg461CkJ4ZOZ2OfOSikNCFIoQS4fGkdecHkk/9zSe
-         hbY+vDXlxO4PajLxqE0UNeCFA10d1KkoWlW3KPuc3woomFMrxwVIC/PMf1Kq84PK8F92
-         qL/v5dmhgdo0N7LWeHcu6SW1Bx3tVBuTKWRzzEdqk2NeQYJKgmZyzXeM6uVQejcwmofS
-         o5/YOlrYTm55Wh2aAOylBZ6RjUjtlPasHSpJwrdFxV/4+t5w7RULH9xsU0zr5c56N7On
-         EoSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746448719; x=1747053519;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yJ00OPYdqSJ+4uv8ctKPBsBBA32+QMJJaxQcYWfzOmY=;
-        b=STUN6Fhfrqy3aooCFZQTwnOds44sdmMavVBoc3f2FBzzXtl/KCKejpeFm1+RlGcmDZ
-         a6/vR09Avl2TKGEKU9aJQXhketbjvMNdXUxK3fnlPCVBFrbd2Mg5GIZF09dWz/IlCf/H
-         5u24COlDtWl3pnAyDVScLLcVQYQHGYjw68AvyTt4Y4wXS7Fi3VIqjHWfkTUk+DB9vGe1
-         UXQwzqvREAfB1ppAaIekfG/aA3yh+ydm7RWvwWdcj5PEKow9I5biX64fZoMrVzar8Pd5
-         l4Hr9vxZiCxe8ezglys3w+5f01yJRy5Gq6R3Z4X6WlpEZpNPzCnK1GdByBF/53nUmCvd
-         CQcg==
-X-Forwarded-Encrypted: i=1; AJvYcCVmIvkR6StQ/a51lqQcr5B3lwGt5X+DWg+48Hdg8RaU8MVPWg3VqZGIZPxffkeTtcezF69dK3c1MJOPisKa@lists.infradead.org
-X-Gm-Message-State: AOJu0YwK+FslMd0bCfoo1gzhchRFA8UVXrOgGcuiHys++yol1nITorAk
-	wdpwSawolVGgkzmV3oVU/+q8OlVYGLS4llbiBFvCDt+rLrAUg6XWSM5kE5711DI=
-X-Gm-Gg: ASbGncuCd+08x9SR/n/6oBUdmzMevzD3WvVMRUyTUXoZmRTR/Mjreg4AgUt+zXUI0jh
-	Vb3zAaOjJJWbnOXENrRNWueH+F2ufhtGPuhu4ToFjbT0+AyY9Y4lBV5aBOBlkE/r2HAoSF9ZbfW
-	gZmp9YB5j2Yecxw736O28pKyf7dfOmmXgJGXVbfeNMl/Uf39ViyqIWJoaLgwhNmkL7tsK0wXSHp
-	L57LGC8sFt4L6xlJ2q2Rbaj/v1q6oWsnWxyrusZyHvlmljilmhjncAudKlEp4ABy3FnWnfRkuYJ
-	80/bSiVxHlVdcN+FHSiVluLBVGUSr3kfN851mAh0pqJkMyR0R73YKF7NcF2iBA==
-X-Google-Smtp-Source: AGHT+IFy0/5CsAjAmtPJtG69bk3HYaRizPcxz8kBiV82Sd4ZPLYii45oNaazucMgx7OuBmnSByg2GA==
-X-Received: by 2002:a5d:5c84:0:b0:39c:3107:c503 with SMTP id ffacd0b85a97d-3a09ceba798mr6003167f8f.31.1746448718752;
-        Mon, 05 May 2025 05:38:38 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae0bf6sm10416625f8f.18.2025.05.05.05.38.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 May 2025 05:38:38 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Kelvin Zhang <kelvin.zhang@amlogic.com>
+	Mon, 05 May 2025 12:53:39 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uBvKB-0001yX-6r; Mon, 05 May 2025 14:53:35 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uBvKA-001ESr-2Q;
+	Mon, 05 May 2025 14:53:34 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uBvKA-000Jb9-27;
+	Mon, 05 May 2025 14:53:34 +0200
+Message-ID: <168c0dc2b1a9ebabbfd993e3a516dbf96d809f47.camel@pengutronix.de>
+Subject: Re: [PATCH v6 1/3] dt-bindings: reset: Add compatible for Amlogic
+ A4/A5 Reset Controller
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Zelong Dong <zelong.dong@amlogic.com>, 
- Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20250411-a4-a5-reset-v6-0-89963278c686@amlogic.com>
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, Zelong
+ Dong <zelong.dong@amlogic.com>, Conor Dooley <conor.dooley@microchip.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Kevin Hilman
+ <khilman@baylibre.com>, Rob Herring <robh@kernel.org>,
+ kelvin.zhang@amlogic.com
+Date: Mon, 05 May 2025 14:53:34 +0200
+In-Reply-To: <5bb02494-e974-4d2f-a00f-417312b73bc1@linaro.org>
 References: <20250411-a4-a5-reset-v6-0-89963278c686@amlogic.com>
-Subject: Re: (subset) [PATCH v6 0/3] Add support for Amlogic A4/A5 Reset
-Message-Id: <174644871803.1393229.3140979499225174795.b4-ty@linaro.org>
-Date: Mon, 05 May 2025 14:38:38 +0200
+	 <20250411-a4-a5-reset-v6-1-89963278c686@amlogic.com>
+	 <5bb02494-e974-4d2f-a00f-417312b73bc1@linaro.org>
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250505_053840_947324_0CCE4EF9 
-X-CRM114-Status: GOOD (  11.06  )
+X-CRM114-CacheID: sfid-20250505_055338_129258_B062CC17 
+X-CRM114-Status: GOOD (  17.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,50 +85,73 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Neil,
 
-On Fri, 11 Apr 2025 19:38:14 +0800, Kelvin Zhang wrote:
-> Add dt-binding compatibles and device nodes for Amlogic A4/A5 reset.
+On Mo, 2025-05-05 at 14:30 +0200, Neil Armstrong wrote:
+> Hi Philipp,
 > 
-> Imported from f20240918074211.8067-1-zelong.dong@amlogic.com
+> On 11/04/2025 13:38, Kelvin Zhang via B4 Relay wrote:
+> > From: Zelong Dong <zelong.dong@amlogic.com>
+> > 
+> > Add compatibles for Amlogic A4 and A5 reset controllers,
+> > which fall back to 'amlogic,meson-s4-reset'.
+> > 
+> > Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > Link: https://lore.kernel.org/r/20240918074211.8067-2-zelong.dong@amlogic.com
+> > Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+> > ---
+> >   .../bindings/reset/amlogic,meson-reset.yaml        | 22 ++++++++++++++--------
+> >   1 file changed, 14 insertions(+), 8 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> > index 695ef38a7bb346c92b4cf428e7615d45682c940a..150e95c0d9bed74c7045942610a311114a257889 100644
+> > --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> > +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> > @@ -12,14 +12,20 @@ maintainers:
+> >   
+> >   properties:
+> >     compatible:
+> > -    enum:
+> > -      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> > -      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> > -      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> > -      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+> > -      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+> > -      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+> > -      - amlogic,t7-reset
+> > +    oneOf:
+> > +      - enum:
+> > +          - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> > +          - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> > +          - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> > +          - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+> > +          - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+> > +          - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+> > +          - amlogic,t7-reset
+> > +      - items:
+> > +          - enum:
+> > +              - amlogic,a4-reset
+> > +              - amlogic,a5-reset
+> > +          - const: amlogic,meson-s4-reset
+> >   
+> >     reg:
+> >       maxItems: 1
+> > 
 > 
-> Changes in v6:
-> - Rebased onto the latest v6.16/arm64-dt.
-> - Link to v5: https://lore.kernel.org/r/20250320-a4-a5-reset-v5-0-296f83bf733d@amlogic.com
-> 
-> [...]
+> Do you plan to take this change ?
+>
+> It has been laying around on the list for a while now, I plan
+> to apply it in my amlogic/drivers tree at the end of the week.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm64-dt)
+I thought you'd pick it up together with the dts patches [1].
 
-[2/3] arm64: dts: amlogic: Add A4 Reset Controller
-      https://git.kernel.org/amlogic/c/946b51882b84f0cbec2acd203467866a7378abac
-[3/3] arm64: dts: amlogic: Add A5 Reset Controller
-      https://git.kernel.org/amlogic/c/f0911f29478992f37e91c208fe44c2ea5b378b61
+[1] https://lore.kernel.org/all/a5d9b775dd860d8f2bbf174300a2e3161b654035.camel@pengutronix.de/
 
-These changes has been applied on the intermediate git tree [1].
 
-The v6.16/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+regards
+Philipp
 
 _______________________________________________
 linux-amlogic mailing list
