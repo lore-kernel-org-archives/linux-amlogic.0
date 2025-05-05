@@ -4,86 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09777C3ABB0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 15:20:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABC88C3ABBC
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 18:43:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pFGP038kWCCLMQkuhshlJVWtZ/zlnZsQIWO5UQFgJCU=; b=focdCsRdv32RDV
-	paO5RNCDdvStX/+FqjjSPCIad6CpD5IsII9rnJERgaGIOJBNn6+Xi8skgF3U2RyM+xhnxwqvo3i1O
-	A1Vy42xV8f9NDPUnbQrz1UkQVXCoJPOn4pouNhuGVADWa9WHUstJ47mkD8enAI5W0y28xh7SN2/jC
-	21JGwpNUX1UU+ka418r9+V197V3mzglh8tN4dhpLMmO5U7y5ZjB2ezzHg+8Ow28Vq11X4X6b5WSft
-	+5L1iZk78U/ql0MHsppJQrqC6Th1yfSUAde4g0c5jPV6HWg/CkBvsVAj/XWqL9Ke49aXPo4pxyRgo
-	QaPKWxmqYrY++G+Eh4fw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=8fBs2+9KtJM3YuQVPPoEQADJJfPGkoOgOmT7MYeer+o=; b=oJF48JJllnZMjh
+	NZ7NU8tafFyqo3kV0YIcPpUmgxLl5hkDQ2UZ1zasPWdzBHmz2Jp2C1MVJweTevsxrmt5Y6k7TVqJ4
+	MODf9wq1kWBJbZl+XP5569miUty5+iz0z6rgLegaiU0Hh/j2B8RAOeY78dUzqzB2Vi6M1u41SMwFJ
+	PW5Tmcmc/lmtOC2el0ZBmd0uyZ95sHcIm2c6NmBftWwonE49zdvXBGp0sCFKbVRf40rMK143Ye6Wx
+	/Eoeep02ld6umB0ciJj5vQG6XibnTJL5F9cs5+SyD1LmtYp7OqT6Bzf02ZQQyFyVKVBcIeHlsOC7Q
+	wxtxgaVoE5p1fVNaLH0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBxcW-00000007o1l-24pJ;
-	Mon, 05 May 2025 15:20:40 +0000
-Received: from relay9-d.mail.gandi.net ([217.70.183.199])
+	id 1uC0n7-00000008JhX-3cle;
+	Mon, 05 May 2025 18:43:49 +0000
+Received: from mail-pf1-x432.google.com ([2607:f8b0:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBxcS-00000007o0E-1qAy;
-	Mon, 05 May 2025 15:20:38 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 389214398E;
-	Mon,  5 May 2025 15:20:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746458432;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=u9TG3OmSzS8fUS1eTfStK5VQAKwBeZ4see00hs7EtDk=;
-	b=IsYdCFfoHd/qOi+gYYbWTZx9rAYgOwGSN0Eo0YXJnG9B/edlJPMStRCvc+FLKq4wqI/fPT
-	1o0tp81lbGpBiMxcF7EkxBNQLTJ4AW8TE1s3h+3Ao+ryG1FR1N7lvwzYWEpMgHLMK1rp98
-	XLYJTZyxXDkzfobqUvTulr2czf0EOlP64GFNT5AXkWvxB73odvQWCI/huAFffxIc01O/x+
-	jInLvozRhnoxnrD5dAmxc9jlW2nmyCQlvuE4hqgOHFPF/9cYlCwYazKn2p5pp5dpHdAi5j
-	SFvCWFSAfDRERL7wOxHamZgj6g3QGMXJO/fr/76NFpGY1qnmq1cAlxnaFpAo5A==
-Date: Mon, 5 May 2025 17:20:27 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
- <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Douglas Anderson
- <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, Anusha Srivatsa <asrivats@redhat.com>, Paul
- Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui
- Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
- asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
- chrome-platform@lists.linux.dev, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 34/34] drm/bridge: panel: convert to
- devm_drm_bridge_alloc() API
-Message-ID: <20250505172027.25af7721@booty>
-In-Reply-To: <20250505-beneficial-fossa-of-weather-67c676@houat>
-References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
-	<20250424-drm-bridge-convert-to-alloc-api-v2-34-8f91a404d86b@bootlin.com>
-	<20250428-wild-condor-of-defiance-cadf60@houat>
-	<20250428172516.79058e22@booty>
-	<20250505-beneficial-fossa-of-weather-67c676@houat>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	id 1uC0n4-00000008JgW-2nu3;
+	Mon, 05 May 2025 18:43:48 +0000
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-7399838db7fso4990177b3a.0;
+        Mon, 05 May 2025 11:43:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746470626; x=1747075426; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yQzbmjudt+hJvG7n8NMoirGU7KRPkcRToJ0JJSw35CU=;
+        b=RxO3sukTxymLh/gJGeh9dE/VCeiij0i3xv6TOVr2k94LzAh4nksTKVwEe0dd+m7z1n
+         +4uQOkh9C6Tsv16Q7NV744MkTyp9popPgX0XKfxuIgf0zu0FuVEqsJutNrYTMc1hwaud
+         hGyAyr/x46JyiadcOv5RaGbJ/ZYykWRTjRE6FIf9MSW/xhjK6MO9EmWwvvgagj0U5sAV
+         6vqjwOdjWD49gGjmqgPDpxUL1NXY9kxzsFr2soay7YKA0zTYVOgnrM9rdT901B/DKF2q
+         vHeqzbF1+jDwAajL/ag90x0yYcSb8LBzON3a2awV/Vm8f0D0DPmHCGxzwm6v4Q3ThOB1
+         mB3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746470626; x=1747075426;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yQzbmjudt+hJvG7n8NMoirGU7KRPkcRToJ0JJSw35CU=;
+        b=PJEpX9poX1BucNb+47ULp0Te1/63E6qZjGpIc0SMzT2Wk7NA6cFsQt0iO6oC1Qw1mq
+         qlKoom72fdYv4HZk5ECV5jz/SxBmCg+U+xi/uySyJdEk3vcRpxXssTH7hEH+/6pjQYNR
+         rUV/kS9I1OkkjNSLFXpZQ2QNjL++UVhNldJxPJlb0aByfhqrZMpCGomxjwH7g+mKqUK2
+         PB7iRVA0Kw2R+CI11Ac8PgN3/4LmBdUhQM4+1q0ZVtZfjYZpWMOj9y+5oDPpzO2HX7SW
+         D5/gs2NpAuZlhfxIeaovaRACfkXDB1g+E81FYHj1nw/+cofS8RcBN7k49vU4na2EFtS5
+         vvRw==
+X-Forwarded-Encrypted: i=1; AJvYcCVTC44eydzN/fO5RuQ5I8leqK2sCXbY6QzPr8ncESyL5EpXRTsyfgYd1ucV3XXBUSGsyI0EfzjcD4pJuydCH5g47Q==@lists.infradead.org, AJvYcCX1I64nqUOU+3/MngQaR/yOUIdHMJUAlj7RGCmkTXqYhPsGKc7URtEfdhahLn4kO8QNzbx9COWN/G6nsKr+@lists.infradead.org
+X-Gm-Message-State: AOJu0YyxbgTMZ8Bkyku0nb8DLEmx2DZ0SPLLIUjx8WVSwognfpPgfkoH
+	hWGKsr3nXrfqiwT+h797M2vdKwqAu0OL+UisryqGNDEETkijp60i
+X-Gm-Gg: ASbGncumqtUwxR6Pd79kusrmLry4l4kOItuyQs7+pcqQiu7qbxB1mKH+LmcwtF7sfWH
+	Q4FqJkx9esly+Zhw+s6XRjKq7Cdnwrz/XW5+XE42QA1iDJI+IwoWTNdOTV08mNjEdC133f7eQGR
+	TwTCeEbNya/dqr8FttzVzueT1wRA0vqKaG9zkQONlaym2gas3AK4FHheCMi3k5usWFk7hxbyh7P
+	uTR5sXufxBe3OC4HR6PD9q1DUxJDigoChjhcttB6yroX8w83+1SFUU3LyK6/D4h5NAKcNiigVOu
+	1GP3AyzkcXP4wpTEohO3UH71RIKJ0MpNB/L1MLf+V+acKw1PFT2RAgNpyV7Ao0TGJDOtkA==
+X-Google-Smtp-Source: AGHT+IGMBauXSP9NfIaQaM7+UUg7ZcaSiDMXtLxYknxQzEukhYbTe1ekmAy1F/1+blL1smz9X2PsTg==
+X-Received: by 2002:a05:6a00:1308:b0:73d:f9d2:9c64 with SMTP id d2e1a72fcca58-74090eb4df2mr813280b3a.10.1746470625673;
+        Mon, 05 May 2025 11:43:45 -0700 (PDT)
+Received: from vaxr-ASUSPRO-D840MB-M840MB.. ([2001:288:7001:2703:afa:5db4:54e4:f59c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7405902167csm7433788b3a.98.2025.05.05.11.43.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 May 2025 11:43:45 -0700 (PDT)
+From: I Hsin Cheng <richard120310@gmail.com>
+To: neil.armstrong@linaro.org
+Cc: maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	christophe.jaillet@wanadoo.fr,
+	skhan@linuxfoundation.org,
+	dri-devel@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	I Hsin Cheng <richard120310@gmail.com>
+Subject: [PATCH v2] drm/meson: Use 1000ULL when operating with mode->clock
+Date: Tue,  6 May 2025 02:43:38 +0800
+Message-ID: <20250505184338.678540-1-richard120310@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkedugeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptdeljeejuddvudetffdtudelfedugfduledtueffuedufefgudegkeegtdeihedunecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvpdhhvghlohepsghoohhthidpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefkedprhgtphhtthhopehmrhhiphgrrhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhto
- hepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehrfhhoshhssehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: luca.ceresoli@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250505_082037_095102_56C8040A 
-X-CRM114-Status: GOOD (  28.96  )
+X-CRM114-CacheID: sfid-20250505_114346_703916_798AFF54 
+X-CRM114-Status: GOOD (  14.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,96 +107,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 5 May 2025 08:23:26 +0200
-Maxime Ripard <mripard@kernel.org> wrote:
+Coverity scan reported the usage of "mode->clock * 1000" may lead to
+integer overflow. Use "1000ULL" instead of "1000"
+when utilizing it to avoid potential integer overflow issue.
 
-> On Mon, Apr 28, 2025 at 05:25:16PM +0200, Luca Ceresoli wrote:
-> > Hi Maxime,
-> > 
-> > On Mon, 28 Apr 2025 13:39:23 +0200
-> > Maxime Ripard <mripard@kernel.org> wrote:
-> >   
-> > > On Thu, Apr 24, 2025 at 10:05:49PM +0200, Luca Ceresoli wrote:  
-> > > > This is the new API for allocating DRM bridges.
-> > > > 
-> > > > The devm lifetime management of this driver is peculiar. The underlying
-> > > > device for the panel_bridge is the panel, and the devm lifetime is tied the
-> > > > panel device (panel->dev). However the panel_bridge allocation is not
-> > > > performed by the panel driver, but rather by a separate entity (typically
-> > > > the previous bridge in the encoder chain).
-> > > > 
-> > > > Thus when that separate entoty is destroyed, the panel_bridge is not
-> > > > removed automatically by devm, so it is rather done explicitly by calling
-> > > > drm_panel_bridge_remove(). This is the function that does devm_kfree() the
-> > > > panel_bridge in current code, so update it as well to put the bridge
-> > > > reference instead.
-> > > > 
-> > > > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>    
-> > > 
-> > > This looks fine, but we need a TODO entry to clean this up later on, and
-> > > a comment on devm_drm_put_bridge that this is inherently unsafe and
-> > > must not be used.  
-> > 
-> > Ah, I see, OK.
-> > 
-> > Quick draft:
-> > 
-> >  /**
-> >   * devm_drm_put_bridge - Release a bridge reference obtained via devm
-> >   * @dev: device that got the bridge via devm
-> >   * @bridge: pointer to a struct drm_bridge obtained via devm
-> >   *
-> >   * Same as drm_bridge_put() for bridge pointers obtained via devm functions
-> >   * such as devm_drm_bridge_alloc().
-> > + *
-> > + * This function is a temporary workaround and MUST NOT be used. Manual
-> > + * handling of bridge lifetime is inherently unsafe.
-> >   */  
-> 
-> That part looks good to me
-> 
-> > and:
-> > 
-> > -	devm_kfree(panel_bridge->panel->dev, bridge);
-> > +       /* TODO remove this after reworking panel_bridge lifetime */
-> > +	devm_drm_put_bridge(panel_bridge->panel->dev, bridge);
-> >  }
-> > 
-> > Does it look good enough?  
-> 
-> That too, but I was talking about an entry in
-> https://www.kernel.org/doc/html/latest/gpu/todo.html
+Link: https://scan5.scan.coverity.com/#/project-view/10074/10063?selectedIssue=1646759
+Signed-off-by: I Hsin Cheng <richard120310@gmail.com>
+---
+Changelog:
 
-Ah, sure!
+v1 -> v2:
+	- Use 1000ULL instead of casting the type of "mode->clock"
+	- Refine commit title and message
+	- Fix the issue for the evaluation inside drm_mode_status
+	  meson_encoder_hdmi_mode_valid() as well
 
-I queued this for v3, if you have better suggestions don't hesitate to
-let me know:
+Christophe,
+Thanks for your review and your suggestion, I think I should add a tag
+for you,too, but I'm not sure what should I add, if you would be so kind
+please let me know how should I tag you in the patch.
 
------8<-----
+Best regards,
+I Hsin Cheng
+---
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Remove devm_drm_put_bridge()
-----------------------------
-
-Due to how the panel bridge handles the drm_bridge object lifetime, special
-care must be taken to dispose of the drm_bridge object when the
-panel_bridge is removed. This is currently managed using
-devm_drm_put_bridge(), but that is an unsafe, temporary workaround. To fix
-that, the DRM panel lifetime needs to be reworked. After the rework is
-done, remove devm_drm_put_bridge() and the TODO in drm_panel_bridge_remove().
-
-Contact: Maxime Ripard <mripard@kernel.org>,
-         Luca Ceresoli <luca.ceresoli@bootlin.com>
-
-Level: Intermediate
-
------8<-----
-
-Luca
-
+diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+index 7752d8ac85f0..c08fa93e50a3 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+@@ -75,7 +75,7 @@ static void meson_encoder_hdmi_set_vclk(struct meson_encoder_hdmi *encoder_hdmi,
+ 	unsigned long long venc_freq;
+ 	unsigned long long hdmi_freq;
+ 
+-	vclk_freq = mode->clock * 1000;
++	vclk_freq = mode->clock * 1000ULL;
+ 
+ 	/* For 420, pixel clock is half unlike venc clock */
+ 	if (encoder_hdmi->output_bus_fmt == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
+@@ -123,7 +123,7 @@ static enum drm_mode_status meson_encoder_hdmi_mode_valid(struct drm_bridge *bri
+ 	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
+ 	struct meson_drm *priv = encoder_hdmi->priv;
+ 	bool is_hdmi2_sink = display_info->hdmi.scdc.supported;
+-	unsigned long long clock = mode->clock * 1000;
++	unsigned long long clock = mode->clock * 1000ULL;
+ 	unsigned long long phy_freq;
+ 	unsigned long long vclk_freq;
+ 	unsigned long long venc_freq;
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.43.0
+
 
 _______________________________________________
 linux-amlogic mailing list
