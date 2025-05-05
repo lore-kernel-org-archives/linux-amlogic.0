@@ -4,123 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC143C3ABB9
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 12:38:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3A9BC3ABB0
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 12:38:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0U1qdNiqt7ZkwZqFRaaZ1+sz+/VnEZB7uWaegJuG80M=; b=2lgHBWaoEJcxqh
-	AYTXZmdm4YUEBVLt26QJDlzK02Qt1WPZmEe8e5EehUZw8w4QifOIMKsn2tFlM+5vPvAjiaqBdRmtq
-	Vonm60P2UmUHfPh+Ea+RpTft0eW82dQ8GEYfBhZnL6cropHIInoWXyV9/0kE4HVWNPBLKlY43cQWB
-	JnSfjGopEFqmt7ZwP17ftf7ikF3REvNbTKwZSPAAtTYc6HHchOGGaJP2BML956v328lVYNgRSIHrU
-	V6GqM+j0yhRchKFGgeI+rvXOOf6HVVw6r8lGZFHiA9ND6jl0t7vDdpUemtS/RprnUqghxCCOrBi16
-	YlvA2OLTx5X5pdLNBcaA==;
+	List-Owner; bh=y8qC0NVVICWP+5ydDj/EVwnLLZCAdeAUrTYYbgwzAlQ=; b=nIiq0ovQ+WhTvg
+	l4pG6kS+KzaE4nIkXZpA4tThbKAA3rZ8ez/igYRFvOfeeupAZJapw65OiYk2McWTm1t5jsYOCmK3Y
+	l9td7GRbxaUgvlP+UgdS5dfev48imT5Fhp/DWLwSL47uQT/dgECGmvPyZU2XKHUmfnKIX7/h5UXmo
+	JCLibWoPB6sNjGmgrjs/D8Gl+QAuEecoz7WZ/Vgy1lXVvSDCbHlnL8lVbLX7DIPK1XVPXBsXP12KX
+	RaZFq+tTXOznVVdQjJIv27P5yi3aQZo3Iz5BmC9dm1rdZVDg+OI4RtD6nMi7g0I2hDHL/90gwId6z
+	1LnkQPSf62/WNtG46/2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBv59-00000007LQF-0ogY;
-	Mon, 05 May 2025 12:38:03 +0000
-Received: from relay9-d.mail.gandi.net ([2001:4b98:dc4:8::229])
+	id 1uBv5f-00000007M0Z-47Ta;
+	Mon, 05 May 2025 12:38:36 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBuzW-00000007KEm-05GJ;
-	Mon, 05 May 2025 12:32:16 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B6D95439CF;
-	Mon,  5 May 2025 12:32:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746448330;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=t8GmbzWzwjKBF6Grm3MhKIQ4eVv3NPu5Y9A5XIPvDcA=;
-	b=hjAbYQVeSBenLJHyzNnH+29VE8aQu5NdvGcBu901d4KAVGGIH73+xJRtOkMBvPMxod408f
-	46cJ1FSSVEaihm6e4YRyxwK6H9vqKbZsH6FeNdjG6qHuFuPEj6MXQaHOvyeCuws3FaQ4ZJ
-	tyEO3Rm3oNF8VG/6gKRuTcpBY8uLXdkn1k8zdS9iBbYepUeyI1mPnliHP5HbYAMf8SxYgc
-	gh87HvhVyGIZKypBQt9lGmUGqhDD0V6ogc/9QAW1FprShOP2PTeLVdqhZJSU2GFelqS2IN
-	VCutWhQebpQ3qtFA8QsGOMpeGLhJbitY4xZjYFl5bgwg7lvllwMgOkM9Yioomg==
-Date: Mon, 5 May 2025 14:31:58 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Inki Dae <inki.dae@samsung.com>, Kyungmin Park
- <kyungmin.park@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, Alim
- Akhtar <alim.akhtar@samsung.com>, Maxime Ripard <mripard@kernel.org>, Louis
- Chauvet <louis.chauvet@bootlin.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
- <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Douglas Anderson
- <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, Anusha Srivatsa <asrivats@redhat.com>, Paul
- Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui
- Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
- asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
- chrome-platform@lists.linux.dev, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, Adam Ford <aford173@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>, Aleksandr Mishin
- <amishin@t-argos.ru>, Andy Yan <andy.yan@rock-chips.com>, AngeloGioacchino
- Del Regno <angelogioacchino.delregno@collabora.com>, Benson Leung
- <bleung@chromium.org>, Biju Das <biju.das.jz@bp.renesas.com>, Christoph
- Fritz <chf.fritz@googlemail.com>, Cristian Ciocaltea
- <cristian.ciocaltea@collabora.com>, Detlev Casanova
- <detlev.casanova@collabora.com>, Dharma Balasubiramani
- <dharma.b@microchip.com>, Guenter Roeck <groeck@chromium.org>, Heiko
- Stuebner <heiko@sntech.de>, Jani Nikula <jani.nikula@intel.com>, Janne
- Grunau <j@jannau.net>, Jerome Brunet <jbrunet@baylibre.com>, Jesse Van
- Gavere <jesseevg@gmail.com>, Kevin Hilman <khilman@baylibre.com>, Kieran
- Bingham <kieran.bingham+renesas@ideasonboard.com>, Liu Ying
- <victor.liu@nxp.com>, Manikandan Muralidharan <manikandan.m@microchip.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Matthias Brugger
- <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Phong LE
- <ple@baylibre.com>, Sasha Finkelstein <fnkl.kernel@gmail.com>, Sugar Zhang
- <sugar.zhang@rock-chips.com>, Sui Jingfeng <sui.jingfeng@linux.dev>, Tomi
- Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Vitalii Mordan
- <mordan@ispras.ru>, Ilpo =?UTF-8?B?SsOkcnZpbmVu?=
- <ilpo.jarvinen@linux.intel.com>, Bryan O'Donoghue
- <bryan.odonoghue@linaro.org>, Hans de Goede <hdegoede@redhat.com>, Uwe
- =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>, "Rob
- Herring (Arm)" <robh@kernel.org>, Hsin-Te Yuan <yuanhsinte@chromium.org>,
- Pin-yen Lin <treapking@chromium.org>, Xin Ji <xji@analogixsemi.com>,
- Aradhya Bhatia <a-bhatia1@ti.com>, Tomi Valkeinen
- <tomi.valkeinen@ideasonboard.com>, Ian Ray <ian.ray@ge.com>, Martyn Welch
- <martyn.welch@collabora.co.uk>, Peter Senna Tschudin
- <peter.senna@gmail.com>, Russell King <linux@armlinux.org.uk>, Herve Codina
- <herve.codina@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Bjorn Andersson
- <quic_bjorande@quicinc.com>, Marijn Suijten
- <marijn.suijten@somainline.org>, Rob Clark <robdclark@gmail.com>
-Subject: Re: (subset) [PATCH v2 00/34] drm: convert all bridges to
- devm_drm_bridge_alloc()
-Message-ID: <20250505143158.75541d7c@booty>
-In-Reply-To: <9afd098c-edd3-44fa-8efe-99f2e9c9a525@oss.qualcomm.com>
-References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
-	<174591887152.961603.7706063017853945511.b4-ty@bootlin.com>
-	<832a9db0-cf8a-4d35-8a98-08053fbd6723@bootlin.com>
-	<20250430-arrogant-marmoset-of-justice-92ced3@houat>
-	<20250505130648.22ec8716@booty>
-	<9afd098c-edd3-44fa-8efe-99f2e9c9a525@oss.qualcomm.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	id 1uBv3b-00000007Kzo-16gC
+	for linux-amlogic@lists.infradead.org;
+	Mon, 05 May 2025 12:36:31 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-39149bccb69so3348401f8f.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 May 2025 05:36:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746448585; x=1747053385; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Pms5fvQ0dnJoBWv+1H4MBoKeVfIfZlhVgzVaTxFBOSc=;
+        b=y5MSRrvBuKbubR9pkylwuxJs4Vjn7RTzpqFPZRp7dvyxHxJS/ogJzrqsnWrs80k2FW
+         uRRZ9VGEVJTbiEQ291AJT96mySdL1wy1vjiu5hdObsB2oUrE1Xuh44yDo/4J9QstMV0b
+         zP3JZh07L3BKbLkyaHBFbb67WnCMZW7pieCl/T+8Vi7wVZGyvUYLoor4imAgZW7KbmIV
+         9Px9cGicjcgl+hwFRdIMV8mA/qWbyvQPMsc0RU0uJP863ct5FZ1ZZ4OISp6lkA/YvMUZ
+         FDPP1Q6CbPaaae5S3Qxr2yAlxR8QZBrMLlHthkvWVju43WSOr82zE25PxWkVtxCv46OZ
+         +8og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746448585; x=1747053385;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Pms5fvQ0dnJoBWv+1H4MBoKeVfIfZlhVgzVaTxFBOSc=;
+        b=r/RyQbV7RyNY0ZF1YvMo3kODovQr1hPKF5fPgjIJOcgcvry+7KnjjchiDgQQ7gzwXn
+         rrAK81E/ilYBYcPm5AWji9xrn3l2SV5mdgvIdf70IN0P/kaK8OsA22HSGHbGaWZFhgDr
+         6RT9mZ7CLHxBN+Yho2TFiHEBsTFTmbqFQ2bePIM0WcBTAKrI8V61xMuiXKUijGMwYavr
+         +NqIPfA3NrDNwkKZ3l2Ux310txMVm9dIJ/L3EORiVxax2QV/3yt4gezOdvRh6SzjnvHq
+         x6jUnqEtwt9Tew0n9+BRLQauRMQkm7EkuQovSH9m7BVCyGZtJmk/13euCzrt4NUqmoym
+         PykQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUP+nBk1zhpi0Qv5E6NkQ+M9JSbP4qPkZ/QByRmQJ+6ab683Gn+47cZ/f078kqK4DR+KcDYBcs0oqcfR/Go@lists.infradead.org
+X-Gm-Message-State: AOJu0YyMDZ5qE3AZ5oW3uA8Z5H7XjcHdZxIzMmCcAavrof95QafvddcM
+	zW6oiG/+zEtLVSg/SN54vjp3nbSHUW62kMfYuxeGvqqwACS+Wc7JTuoR1sEeUxo=
+X-Gm-Gg: ASbGncuQxnb/xfe0AI++gsf5qfjlC9wtM3Wp+H7cOkPUjyCXmspwuM7ebmyxkcMXmfT
+	6fdJgOoxbAiOChNvfsufNttdLXH50gzuk1URDkpidLSFkq1v8K926+oMy6L7F0WbTdd3ijRJSjt
+	BL6CuqqZObJMBZlGu0ObTECPXnWohi2iiqRbym4i5Qa1CdxPqCUFlEdNAEtfeRllPw/QiVm1oBD
+	Udmq5eZY4dzgYAzfLhluB71hF1wke11XmFRqWJWMpJWxpRKm9TmvSIcTM6Tx3F5EBTPAa9US8rK
+	dNpfZO6lqOhP4Y72UOArE8tBQnzIdVFpP4oqC/khPvgliLp7RC2xEIhE2yx78/Y/FUS+cd+r
+X-Google-Smtp-Source: AGHT+IGsEliGJnwJASNNzDOIlUfeubpmj2r4ysjGNDPlKRJUSM2MTHWLJu/fnMkKxMkulAhjanR1Kg==
+X-Received: by 2002:a05:6000:1a8a:b0:39c:d05:3779 with SMTP id ffacd0b85a97d-3a09cf4d5admr5929318f8f.49.1746448585435;
+        Mon, 05 May 2025 05:36:25 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae0cefsm10434442f8f.15.2025.05.05.05.36.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 May 2025 05:36:24 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Christian Hewitt <christianshewitt@gmail.com>
+Cc: stable@vger.kernel.org, Emanuel Strobel <emanuel.strobel@yahoo.com>
+In-Reply-To: <20250503084443.3704866-1-christianshewitt@gmail.com>
+References: <20250503084443.3704866-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: dreambox: fix missing clkc_audio
+ node
+Message-Id: <174644858455.1377517.9885445879892405270.b4-ty@linaro.org>
+Date: Mon, 05 May 2025 14:36:24 +0200
 MIME-Version: 1.0
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkeduuddtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptdeljeejuddvudetffdtudelfedugfduledtueffuedufefgudegkeegtdeihedunecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvpdhhvghlohepsghoohhthidpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeelgedprhgtphhtthhopegumhhithhrhidrsggrrhihshhhkhhovhesohhsshdrqhhurghltghomhhmrdgtohhmpdhrtghpthhtohepihhnkhhirdgurggvsehsrghmshhunhhgrdgtohhmpdhrtghpt
- hhtohepkhihuhhnghhmihhnrdhprghrkhesshgrmhhsuhhnghdrtghomhdprhgtphhtthhopehsfidtfeduvddrkhhimhesshgrmhhsuhhnghdrtghomhdprhgtphhtthhopegrlhhimhdrrghkhhhtrghrsehsrghmshhunhhgrdgtohhmpdhrtghpthhtohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhm
-X-GND-Sasl: luca.ceresoli@bootlin.com
+X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250505_053214_599567_F3549B67 
-X-CRM114-Status: GOOD (  25.10  )
+X-CRM114-CacheID: sfid-20250505_053627_329315_9BFD8CEB 
+X-CRM114-Status: UNSURE (   9.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -137,51 +105,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Dmitry,
+Hi,
 
-On Mon, 5 May 2025 14:58:58 +0300
-Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
-
-> On 05/05/2025 14:06, Luca Ceresoli wrote:
-> > Inki, Kyungmin, Seung-Woo, Alim,
-> > 
-> > On Wed, 30 Apr 2025 10:08:14 +0200
-> > Maxime Ripard <mripard@kernel.org> wrote:
-> >   
-> >> Inki, Kyungmin, Seung-Woo, sorry for the mishap. Do you agree with the
-> >> following patch, and it going through drm-misc?
-> >>
-> >> https://lore.kernel.org/dri-devel/20250424-drm-bridge-convert-to-alloc-api-v2-14-8f91a404d86b@bootlin.com/
-> >>
-> >> If not, we'll revert.  
-> > 
-> > Did you have a chance to have a look at the patch mentioned by Maxime?
-> > 
-> > It was applied to drm-misc-next by mistake. Not your mistake of course,
-> > but now it's there so if you don't reply anything it will have to be
-> > reverted, and then sent again to go through all the review process to
-> > be hopefully re-applied in the future.
-> > 
-> > If you agree with keeping it in drm-misc-next, that would be less noise
-> > for everybody.
-> > 
-> > I'm going to send v3 very soon, so it would be good to decide what to
-> > do before that.  
+On Sat, 03 May 2025 08:44:43 +0000, Christian Hewitt wrote:
+> Add the clkc_audio node to fix audio support on Dreambox One/Two.
 > 
-> For the record: even though I'm not happy with msm-related patches going 
-> through drm-misc without additional ack from our side, I think reverting 
-> those and reapplying them later will create a bigger mess. So, I'm fine 
-> with keeping drm/msm/* bridged patches in.
+> 
 
-That was my understanding of your previous e-mail, but thanks for
-having made it explicit.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.15/fixes)
 
-Luca
+[1/1] arm64: dts: amlogic: dreambox: fix missing clkc_audio node
+      https://git.kernel.org/amlogic/c/0f67578587bb9e5a8eecfcdf6b8a501b5bd90526
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.15/fixes branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
