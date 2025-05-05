@@ -4,91 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67CB6C3ABB0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 12:48:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 725E0C3ABAA
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 May 2025 13:21:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dCrFYxNkjt5X6M/A82zbrWp1ksbNueg0JsThfUOCCpM=; b=dYAL1u29p3E14e
-	6bObXHjLaZmxy0abx3Kf1q9oTPwRBa4hjdtw82lwupOBYRbVjC2roAeg4YkVMtj6Z5PEizkZ8X4DM
-	JZ//w18sQGDRtgmiNI6MHekg7vz2agvaXHOYS5fj1WBEdfmYPUmj5RX9iwIqN2H3+wUlaIyrpK2zY
-	ZyzB+/96pW17gOloU5DaFfBceJeWsUoAHJXxqR91J/BO/GG94931XudFkCtMlFk/H4vdvMYH+Oj1i
-	8o6idKLWFhntNLXTf1+KSf5eca3400Bh6uFgwAXwJRmBQozCnF+8xGFnYpN/yc2pGmlRqJt8l+5X+
-	f6E3ehCcRn4s9DG8gY5A==;
+	List-Owner; bh=zeFFhwH/C26zaAkR2+ztz6iOcdXlFxIMy3AKLbAd3yc=; b=bkBKqcrkV8R2eE
+	al+B/uYXog5M15QYblOAl3zA11kybB9G7kjuhZigt596P180Cwu5OLjOb13T+2551dcLL784YPl/9
+	ZSYwnak6mvX4qTSELygk9+5YeyYfJCGAFuYtAAaTt+4rPnAVrT9JAFxgthKifcQLosA5aVJ7vkgQT
+	odfBvIGvuA4j09DCL/dpcYA8dGiVptjuWS/MOeKLaugOwdPhNuZbeQkFhSp+GBHdiCt1ob3quu9/o
+	M/5sPSgmxWukUQCmmSqvPoElRHHxMvGVPZov/yV/Nsq68gUGBk3BnOAJmcC/OWYUJYEM9qiSSNXfz
+	18bFNi1GQ7gU8YPlEHqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBvFN-00000007O7j-2hwA;
-	Mon, 05 May 2025 12:48:37 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1uBvke-00000007RvV-3sXm;
+	Mon, 05 May 2025 13:20:56 +0000
+Received: from mail-pl1-x635.google.com ([2607:f8b0:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uBv3n-00000007L3b-0MJT
-	for linux-amlogic@lists.infradead.org;
-	Mon, 05 May 2025 12:36:46 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-43d04ea9d9aso19185545e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 05 May 2025 05:36:38 -0700 (PDT)
+	id 1uBvAA-00000007NRM-0Vli;
+	Mon, 05 May 2025 12:43:15 +0000
+Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-227c7e57da2so38285145ad.0;
+        Mon, 05 May 2025 05:43:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746448597; x=1747053397; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iJalLmswOZQ1+I3caNB5vdR1vqtjSyhFatNldwOqsTo=;
-        b=dOhvziZKRl2qiLMpQPpk8D5/EZRwi4VVhiUidqhtxAph2d5Mv3e8Mt1V+FFPuJ89MQ
-         S5m5oJ16AbKWSRW4Cz/9t7bskHf4guOhszxTQapzDG2ac/vZutjz2pQzAz11U5ULHWlC
-         3D3gqQK6sgVdZGlPulTSwDQKcGk90YlUHMzvU4yAm39skcJWT+a6GBt9aj5HQb704g60
-         YGwVGODl2bHBIdi5zyfs2UycHt24IXv8D1NwN8wbFkqJSrhHoRopihC6M4bI2LgQs1qd
-         KLA9d+S6SrDIeL+BL0lA7MeWJnNBg0OcXFgloJNKjbEHNTANniYB7ubnKZmUIc14qE3G
-         MJRQ==
+        d=gmail.com; s=20230601; t=1746448993; x=1747053793; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=itsdfpxgqr9T28YDfLuBCV4kCGXrZvdi4BFAEN1n0j4=;
+        b=lw+vf9yCgcFIEf33ia8RNdRtqSCpjgeZ9erAIz2Ow9/k5LMZIL2DxYU4BCzsgY5Pm/
+         AnWF+i1eRj6CGzPPYzTOr9tm0d8S0xIEQzQcY+0VCso3I+ijaLHDayQRm1CWpEMI5KFW
+         JmLwQC7xNNwWhuuHboqdpETxXhb+EVrfAV8GxXHEsFYyOGyHoRPeyCyY/oMtOa2s7etm
+         pAnEkyKVFfaAZCT40katRGQpE0gvr9SgpRpKjr2vCeZWmvhB67YdD1am5Adhv2FoPjXq
+         4GS8SFdjAUJl3i/pzDoL5izmLltsR7kU3ekD7En/ZH7iLJc8X8tcJbXNQXH3oSwJ/4u8
+         5T3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746448597; x=1747053397;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iJalLmswOZQ1+I3caNB5vdR1vqtjSyhFatNldwOqsTo=;
-        b=EgNsBugslB+YbHDjHx7TaDero/vMwQMzsow6y6EmRql77UWC5lI+rOIUrcrEFjk21q
-         Yf4P6vQYC12Uu/2Gx5jV3Ig/CAuOd4Gc7ESdeBluo9ZQjlD13ea+SuSoq0/7BBuhFQq8
-         kCflgjAa3a2wmaOn+6sOzGuC6OKObcEdjLbf29B71r8gy36qyZ1eYq8smbju9H3A52Ej
-         x2aCtNO9a4KXHoFww7lvulsAKKK+N1je+PV5GXZecd5r9+0QnnXQ+6tBABdKNHB8gIHv
-         7CG7O06DrI+9J51Aumy1wxrM6MDAEsOgoTxcjrjHx3QT/4LnK1lXOPxu4HRtGtUR7Khn
-         EQ3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVDfixPHDOsDQtq8vqDP6ofiu0d79kJopiq8Uv833S9wWWRH1d4AgSACzPYaoAw3Q9DmMVdfq1ieFLu78A0@lists.infradead.org
-X-Gm-Message-State: AOJu0YyC5wlaoc5G5MjX8ThIrUPOgk1s5PTnqIH8uGY5IPysvQJROKA3
-	Fx64nKfgE25NcOkPSUQRJt/xDsU7vWzHMRsQzpzsW5hMvDLONKgXc0Xm6I/qbglYXdXa6UqkKV8
-	p
-X-Gm-Gg: ASbGncsnyd2Gom9l9+vSh+T4NNoyhAIpQoeu+7cIPlhUdPgzgJb9vWIcZoxvYdw8zLE
-	k7CJp1SIJ4T5fCc7aFW2T6+GAh5qCzi9Bck97SGJbRHEG54WcaRjZnZ1BYEGVlgMqBMfLK/oErU
-	OIr/X54Hr2LQRuGWRPIngjlod+mDjhqwYah+88gmdMXd6MsHtdolB1WcQgQNzCztkVSR/NyD8Zn
-	t70jfQMp9Ag/1qYvom7/KZmBRssKwl8mRvKZIj3A0I2ot6S2fokiGzrNiv8cl2nEvdupnhg0RrR
-	2dusPcmjdz58o7VTzVHvHZzmZm7sllb2+w9CJflZ12gCDa0FwSpSl9D3aZBEU3imUs4q+vaL
-X-Google-Smtp-Source: AGHT+IGrYbfIV/5LAwd8x3Ag4BU1h2NQrpJczDWD3n86c2dPS4oVyLjVkTxVfPE08xsZ/bSn/VTNWw==
-X-Received: by 2002:a05:600c:3545:b0:43d:9d5:474d with SMTP id 5b1f17b1804b1-441c47d3cbamr52857685e9.0.1746448597366;
-        Mon, 05 May 2025 05:36:37 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b8a286c4sm131072725e9.25.2025.05.05.05.36.36
+        d=1e100.net; s=20230601; t=1746448993; x=1747053793;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=itsdfpxgqr9T28YDfLuBCV4kCGXrZvdi4BFAEN1n0j4=;
+        b=S1ixCrRT169yiO2ghAV3sDnCUWn5M3HxdOGnx61l5LwFq8BE0TGwD008x6311t6lPO
+         GSvnwHIBOoB6RsS3aNmssAummV7RptaSxNDrF3LPPTs3yoBKEqHgjLI58GtT12oc67qf
+         /b6jSzoOHHc9lWLrxcgvOlAyE2LLe7pbTlMBBKdTs7kF8b8ZlJM290cQHLZGPeK5j2CT
+         41Fsl/l4QfzAgGErxH7Ju4UAogD/bg2PAtBI5WwMqAP81hWSt5Y12ZYmUow0j21Da7Q9
+         T6wC9btBCXsEXcyv/hxFlAno78Uj2SFWhyWy9i+Dc641HJTOV5o+q6N88+BqL1FPYi/q
+         FWPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVXkD4I7FoHaDipu1k/sXc4xyJ/f/6iMn9mjs+sIjYfFsX24MZdvDUXYp+IFXMCcSZren5mkOBiTmq69ghK@lists.infradead.org, AJvYcCXBrf2wdo50Ceoa2xCkd7d7amKoPSng2YRybOk5++J6tNnS2411qjORe6uHoOrT1Dj0y4ENseFJtwTtR4uUl6r3oA==@lists.infradead.org
+X-Gm-Message-State: AOJu0YxY59SI/wA8wRa8wK6sils6Y8AyO30VWnPykMYcQ1oizEmyXuih
+	/Ie+b4elzuVx8XxSWrqKAyJ7PiawW//foeHjYbW3Ml5bs0iE5Z+o
+X-Gm-Gg: ASbGnctV+UCPctBdSm3t0cVbss808diSI9g7TSObKR/h35bpqpYazfwSY3O+g/ovphh
+	U/HYrrwTbmr3SyQP48syCCnnKuP6EyQKPeYEkH3XrVs941I4MHhuUCaJ6LSvCEtNl7Jh9MKkwA2
+	9WhYPgEU05E67wB4BOgFbPL1opfMAwBSdtnjzulA5z5iiljSj+ZDI7XuUx5P66DTQSuCO8R7UzO
+	4vZlg4KQE+KnNJTT9UxDlwjOPFCubITxbAxYsGlzy4elCIJ3R+UGK4hrANF1zKzJwzZ8JgqgLSC
+	I6oEnSuQJUAsKEyHryc/N1HCdm1mKI0neihKWMIpd8Rw9ZFBqQfNAy018JVDL8ypzk8=
+X-Google-Smtp-Source: AGHT+IG2KkrrZuW4JZYAu2SgF1mIQ5x6uKuF20k8DiGK8/U7q4/P+FzZt88l6w+tkDWWksMwAnmVlg==
+X-Received: by 2002:a17:903:2f07:b0:21f:45d:21fb with SMTP id d9443c01a7336-22e1e8c1dcemr101041235ad.3.1746448992997;
+        Mon, 05 May 2025 05:43:12 -0700 (PDT)
+Received: from vaxr-BM6660-BM6360 ([2001:288:7001:2703:bd19:74c5:b39c:cda])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e194aa391sm41645485ad.154.2025.05.05.05.43.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 May 2025 05:36:36 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Ferass El Hafidi <funderscore@postmarketos.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250502-aquaman-v6-0-f1af347d9709@postmarketos.org>
-References: <20250502-aquaman-v6-0-f1af347d9709@postmarketos.org>
-Subject: Re: [PATCH v6 0/2] Add support for Xiaomi Mi TV Stick
-Message-Id: <174644859616.1377721.12603834364011282059.b4-ty@linaro.org>
-Date: Mon, 05 May 2025 14:36:36 +0200
+        Mon, 05 May 2025 05:43:12 -0700 (PDT)
+Date: Mon, 5 May 2025 20:43:06 +0800
+From: I Hsin Cheng <richard120310@gmail.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	neil.armstrong@linaro.org, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+	simona@ffwll.ch, khilman@baylibre.com, jbrunet@baylibre.com,
+	dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	skhan@linuxfoundation.org
+Subject: Re: [PATCH] drm/meson: Cast mode->clock to unsigned long long
+Message-ID: <aBiyWnKKGMpMYnJ1@vaxr-BM6660-BM6360>
+References: <20250429190724.330883-1-richard120310@gmail.com>
+ <d5a8e781-6936-4c83-83d1-92daa2da8ca2@wanadoo.fr>
+ <CAFBinCCL6OQrbQ_UY_nhnbodN2TquuKPk9unhp3YjpR5u=EXag@mail.gmail.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.14.2
+Content-Disposition: inline
+In-Reply-To: <CAFBinCCL6OQrbQ_UY_nhnbodN2TquuKPk9unhp3YjpR5u=EXag@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250505_053639_117528_6D05CBA8 
-X-CRM114-Status: GOOD (  13.51  )
+X-CRM114-CacheID: sfid-20250505_054314_171154_B7282D52 
+X-CRM114-Status: GOOD (  18.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,63 +99,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Fri, 02 May 2025 18:56:04 +0000, Ferass El Hafidi wrote:
-> This patch series aims to add initial support for the Xiaomi Mi TV
-> Stick.
-> 
-> Xiaomi Mi TV Stick is a small Amlogic-based Android TV stick released in
-> 2020, and known as `xiaomi-aquaman` internally (in the downstream kernel,
-> u-boot, ...)
-> Its specifications are as follows:
->  * Amlogic S805Y SoC (believed to be mostly identical to S805X)
->  * 8 GB eMMC
->  * 1 GB of RAM
->  * Wi-Fi + Bluetooth
->  * Android TV 9, upgradable to Android TV 10
->  * Google-certified
-> 
-> [...]
-
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm64-dt)
-
-[1/2] dt-bindings: arm: amlogic: add S805Y and Mi TV Stick
-      https://git.kernel.org/amlogic/c/4954ec9300cfe7ab6f1de1c93c56c236ac0a07e5
-[2/2] arm64: dts: amlogic: add support for xiaomi-aquaman/Mi TV Stick
-      https://git.kernel.org/amlogic/c/f5d4227c6dcab047579cca7b8e31a476ecdebf7b
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.16/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gU3VuLCBNYXkgMDQsIDIwMjUgYXQgMTE6MDY6MDZQTSArMDIwMCwgTWFydGluIEJsdW1lbnN0
+aW5nbCB3cm90ZToKPiBPbiBUdWUsIEFwciAyOSwgMjAyNSBhdCAxMTowMOKAr1BNIENocmlzdG9w
+aGUgSkFJTExFVAo+IDxjaHJpc3RvcGhlLmphaWxsZXRAd2FuYWRvby5mcj4gd3JvdGU6Cj4gPgo+
+ID4gTGUgMjkvMDQvMjAyNSDDoCAyMTowNywgSSBIc2luIENoZW5nIGEgw6ljcml0IDoKPiA+ID4g
+Q292ZXJpdHkgc2NhbiByZXBvcnRlZCB0aGUgdXNhZ2Ugb2YgIm1vZGUtPmNsb2NrICogMTAwMCIg
+bWF5IGxlYWQgdG8KPiA+ID4gaW50ZWdlciBvdmVyZmxvdy4gQ2FzdCB0aGUgdHlwZSBvZiAibW9k
+ZS0+Y2xvY2siIHRvICJ1bnNpZ25lZCBsb25nIGxvbmciCj4gPiA+IHdoZW4gdXRpbGl6aW5nIGl0
+IHRvIGF2b2lkIHBvdGVudGlhbCBpbnRlZ2VyIG92ZXJmbG93IGlzc3VlLgo+ID4gPgo+ID4gPiBM
+aW5rOiBodHRwczovL3NjYW41LnNjYW4uY292ZXJpdHkuY29tLyMvcHJvamVjdC12aWV3LzEwMDc0
+LzEwMDYzP3NlbGVjdGVkSXNzdWU9MTY0Njc1OQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBJIEhzaW4g
+Q2hlbmcgPHJpY2hhcmQxMjAzMTBAZ21haWwuY29tPgo+ID4gPiAtLS0KPiA+ID4gICBkcml2ZXJz
+L2dwdS9kcm0vbWVzb24vbWVzb25fZW5jb2Rlcl9oZG1pLmMgfCA0ICsrLS0KPiA+ID4gICAxIGZp
+bGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+ID4gPgo+ID4gPiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2VuY29kZXJfaGRtaS5jIGIv
+ZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2VuY29kZXJfaGRtaS5jCj4gPiA+IGluZGV4IDc3
+NTJkOGFjODVmMC4uZmUzZDNmZjdjNDMyIDEwMDY0NAo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vbWVzb24vbWVzb25fZW5jb2Rlcl9oZG1pLmMKPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L21lc29uL21lc29uX2VuY29kZXJfaGRtaS5jCj4gPiA+IEBAIC03NSw3ICs3NSw3IEBAIHN0YXRp
+YyB2b2lkIG1lc29uX2VuY29kZXJfaGRtaV9zZXRfdmNsayhzdHJ1Y3QgbWVzb25fZW5jb2Rlcl9o
+ZG1pICplbmNvZGVyX2hkbWksCj4gPiA+ICAgICAgIHVuc2lnbmVkIGxvbmcgbG9uZyB2ZW5jX2Zy
+ZXE7Cj4gPiA+ICAgICAgIHVuc2lnbmVkIGxvbmcgbG9uZyBoZG1pX2ZyZXE7Cj4gPiA+Cj4gPiA+
+IC0gICAgIHZjbGtfZnJlcSA9IG1vZGUtPmNsb2NrICogMTAwMDsKPiA+ID4gKyAgICAgdmNsa19m
+cmVxID0gKHVuc2lnbmVkIGxvbmcgbG9uZykgbW9kZS0+Y2xvY2sgKiAxMDAwOwo+ID4KPiA+IEhp
+LAo+ID4KPiA+IG1heWJlLCB1c2luZyAxMDAwVUxMIGluc3RlYWQgd291bGQgZG8gdGhlIHNhbWUs
+IGJ1dCB3b3VsZCBiZSBsZXNzIHZlcmJvc2U/Cj4gQWdyZWVkLCB0aGF0IHdvdWxkIG1ha2UgdGhl
+IGNvZGUgbW9yZSBzaW1pbGFyIHRvIGRybV9oZG1pX2NvbXB1dGVfbW9kZV9jbG9jaygpLgo+IFRo
+ZSBnb2FsIGlzIHRvIHN3aXRjaCB0byBkcm1faGRtaV9jb21wdXRlX21vZGVfY2xvY2soKSBtaWQt
+dGVybSBhbnl3YXlzLgoKSGksCgpUaGFua3MgZm9yIHlvdXIgcmV2aWV3IGFuZCBzdWdnZXN0aW9u
+cyAhCkknbGwgbWFrZSB0aGUgY29ycmVzcG9uZGluZyBjaGFuZ2VzIGFuZCBzZW5kIHYyLgoKQmVz
+dCByZWdhcmRzLApJIEhzaW4gQ2hlbmcKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2lj
+QGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9saW51eC1hbWxvZ2ljCg==
