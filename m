@@ -4,67 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B987EC3ABBF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 May 2025 22:41:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 803EAC3ABBF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 May 2025 02:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2sHYtXyWnercXb+gl7bE9csIY4i5uLlHA7upTZlwBsU=; b=J2z+A0R8bx1D7I
-	6Q4+Z18TYLtlk0nBFNEtKxS5pJo1ZGvJHoOSOI7HZeLPFyYNl2tlpUifo7cSHapJZctsucQXxcsLO
-	rOZ7iEhXXCLI//nLJy4Da3PJ7RCigQE2Oik8o6wOTOuXt4VKK/Xr39hA8VKQoxmuZvOYcrpk5TOS4
-	497dV1sDIvgvvE6EWJNTEmWyLihsPTV9OZpQKZeDVkTbVySRXTf316gl0JVSOKFMDYOXTZhwaIPrq
-	xRxeH+rCTaGXJKmjgAAX8HKGjaSGsYdoCwZZCwUZrlCUic8aDGsVF2v5uIy6CRzA/fNfmXk0TFDWy
-	UEZKLLNiYzSzjRs6ckFA==;
+	List-Owner; bh=WcHHlh6XVVFpDPdQCI9J4muwpMbgCZTN6N4Zeko+Wew=; b=iWZ8cDWCytVQRi
+	pFc5S/ykravSdNx0SMQSEJeGdgCYHcjzsRHswWqPPMlhSz26Ela4FTWzISMjb1FHM4y3b0oVJzWwI
+	7ZlYNHjK5OMYOtYpvm4nlhNvEgAW4q24mhfxbCvqoKNNk4dSH3Jr3OKFh1IG3IkhD47SFSJpHuqOc
+	o05z+xjtyZ/SzfCgJBWAx43La/lY1WuendBX5sJOaJsbo48H9X1ivqKSBILwH324TGrawYW8w3XeQ
+	QJL/GK2180Xqh7MGptMG9YQGPSBuIBRjEVLGtjPO3VNvMNwJ/tZrYpvqnlpfvF+TqlV9L/AQIZaAJ
+	w8YUtKOK7vca5GRDB+OA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uCQyK-0000000DcIt-0gBU;
-	Tue, 06 May 2025 22:41:08 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1uCUap-0000000Duvo-0l0G;
+	Wed, 07 May 2025 02:33:07 +0000
+Received: from relay6-d.mail.gandi.net ([2001:4b98:dc4:8::226])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uCMI7-0000000CsQz-1qIK;
-	Tue, 06 May 2025 17:41:16 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 31E27A4D75C;
-	Tue,  6 May 2025 17:41:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D5E3C4CEEB;
-	Tue,  6 May 2025 17:41:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746553273;
-	bh=addtd2tD+DOVZOCpE3AbYsDQUYIQPT10US31SZtt2d8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qQ13y8A2z2q3OM1MObsbWCM3zla4VJlDmuJTvyfkO9aLQ99ypDNhNEN5oIxX8/CF2
-	 L7PE7DWzOZPp8ZoJDpDZlpxNWTk5Ih4sWfsD84tNapMnA3Y2KOw5B9Y4QZvvndl1mh
-	 OaqinBL3jRrAXKDx1+2yyGAihpf5tY7CMaH3ajYjdYUoCrccekKFDzi+RY471N+O6g
-	 DLNKlwl5z4KVODs9zh9AM0Y9QIoVY2JiKb7Wvkg8siHRf9KFynN7ZtDScFTVNASztZ
-	 HHcK779OBDwABXOTxQ233HRRs0qXWSGtkHiFvT9ZytMwZVGnlGYVjBiQXW/Wq4izM5
-	 uuVjbbjUkI0dw==
-Received: by pali.im (Postfix)
-	id B53EE67E; Tue,  6 May 2025 19:41:10 +0200 (CEST)
-Date: Tue, 6 May 2025 19:41:10 +0200
-From: Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To: Hans Zhang <18255117159@163.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
-	heiko@sntech.de, manivannan.sadhasivam@linaro.org,
-	yue.wang@Amlogic.com, neil.armstrong@linaro.org, robh@kernel.org,
-	jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3 3/3] PCI: aardvark: Remove redundant MPS configuration
-Message-ID: <20250506174110.63ayeqc4scmwjj6e@pali>
-References: <20250506173439.292460-1-18255117159@163.com>
- <20250506173439.292460-4-18255117159@163.com>
+	id 1uCPCP-0000000DNbj-2cKY;
+	Tue, 06 May 2025 20:47:35 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DA1D1439D4;
+	Tue,  6 May 2025 20:47:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746564447;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=RriJ3sQZL+/jAERO13sfWtP2FOfOc3okEQg5B7FnAeQ=;
+	b=I68mv2SZI/aGxHCIIcxXbjxxCbHWE9FzDtUtW4PEabsIrho1orzLQHyqR3AJklkXW4/0dS
+	sHotiUtnhB37DGcdh4NYEpar2pikiAW6HTYv6TIrN84SPWuBG8+xkiYWGDI06C2IrQ6ogR
+	QEZfsdyh/gBXzyxBU6I46Qn7ke+tHyGu4UC1rv5tEOBv61wdugOUnlQfQ6wAbRndu7RuwR
+	e6tObBPlpuwkypnH5/quJLTO/9FUmfvGMJGlxu/nMapt7Mz08+7BIwiLIchjrKyUveptAn
+	jJ7yDtYArwX8GIIYPRKbfbYPujq44+9hObwSCtfPOkZ15Ae8r3K9ETKKDMJTLA==
+Date: Tue, 6 May 2025 22:47:20 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
+ <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Douglas Anderson
+ <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
+ Kozlowski <krzk@kernel.org>, Anusha Srivatsa <asrivats@redhat.com>, Paul
+ Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui
+ Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ chrome-platform@lists.linux.dev, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v2 30/34] drm/bridge: imx8qxp-pixel-combiner: convert to
+ devm_drm_bridge_alloc() API
+Message-ID: <20250506224720.5cbcf3e1@booty>
+In-Reply-To: <f71d18d2-4271-4bb9-b54f-0e5a585778f3@nxp.com>
+References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
+	<20250424-drm-bridge-convert-to-alloc-api-v2-30-8f91a404d86b@bootlin.com>
+	<553d62ed-976a-4e17-9678-cdc3d40ce4a7@nxp.com>
+	<20250430112944.1b39caab@booty>
+	<f71d18d2-4271-4bb9-b54f-0e5a585778f3@nxp.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20250506173439.292460-4-18255117159@163.com>
-User-Agent: NeoMutt/20180716
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkeegleejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeelffefgfehhfdtvdefueefieevkefggfelkeeiudetkeektedvhedukefgvddvnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgdphhgvlhhopegsohhothihpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfeelpdhrtghpthhtohepvhhitghtohhrrdhlihhusehngihprdgtohhmpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehmrhhiphgrrhgusehkv
+ ghrnhgvlhdrohhrghdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghnughriigvjhdrhhgrjhgurgesihhnthgvlhdrtghomhdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhg
+X-GND-Sasl: luca.ceresoli@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250506_104115_547359_BAAB7190 
-X-CRM114-Status: GOOD (  15.11  )
+X-CRM114-CacheID: sfid-20250506_134734_279164_59D938A8 
+X-CRM114-Status: GOOD (  49.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,50 +101,183 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wednesday 07 May 2025 01:34:39 Hans Zhang wrote:
-> The Aardvark PCIe controller enforces a fixed 512B payload size via
-> PCI_EXP_DEVCTL_PAYLOAD_512B, overriding hardware capabilities and PCIe
-> core negotiations.
-> 
-> Remove explicit MPS overrides (PCI_EXP_DEVCTL_PAYLOAD and
-> PCI_EXP_DEVCTL_PAYLOAD_512B). MPS is now determined by the PCI core
-> during device initialization, leveraging root port configurations and
-> device-specific capabilities.
-> 
-> Aligning Aardvark with the unified MPS framework ensures consistency,
-> avoids artificial constraints, and allows the hardware to operate at
-> its maximum supported payload size while adhering to PCIe specifications.
-> 
-> Signed-off-by: Hans Zhang <18255117159@163.com>
-> ---
->  drivers/pci/controller/pci-aardvark.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pci-aardvark.c b/drivers/pci/controller/pci-aardvark.c
-> index a29796cce420..d8852892994a 100644
-> --- a/drivers/pci/controller/pci-aardvark.c
-> +++ b/drivers/pci/controller/pci-aardvark.c
-> @@ -549,9 +549,7 @@ static void advk_pcie_setup_hw(struct advk_pcie *pcie)
->  	reg = advk_readl(pcie, PCIE_CORE_PCIEXP_CAP + PCI_EXP_DEVCTL);
->  	reg &= ~PCI_EXP_DEVCTL_RELAX_EN;
->  	reg &= ~PCI_EXP_DEVCTL_NOSNOOP_EN;
-> -	reg &= ~PCI_EXP_DEVCTL_PAYLOAD;
->  	reg &= ~PCI_EXP_DEVCTL_READRQ;
-> -	reg |= PCI_EXP_DEVCTL_PAYLOAD_512B;
->  	reg |= PCI_EXP_DEVCTL_READRQ_512B;
->  	advk_writel(pcie, reg, PCIE_CORE_PCIEXP_CAP + PCI_EXP_DEVCTL);
->  
-> -- 
-> 2.25.1
-> 
+Hello Liu,
 
-Please do not remove this code. It is required part of the
-initialization of the aardvark PCI controller at the specific phase,
-as defined in the Armada 3700 Functional Specification.
+thanks for your further feedback.
 
-There were reported more issues with those Armada PCIe controllers for
-which were already sent patches to mailing list in last 5 years. But
-unfortunately not all fixes were taken / applied yet.
+On Tue, 6 May 2025 10:24:18 +0800
+Liu Ying <victor.liu@nxp.com> wrote:
+
+> On 04/30/2025, Luca Ceresoli wrote:
+> > Hello Liu,  
+> 
+> Hi Luca,
+> 
+> > 
+> > On Tue, 29 Apr 2025 10:10:55 +0800
+> > Liu Ying <victor.liu@nxp.com> wrote:
+> >   
+> >> Hi,
+> >>
+> >> On 04/25/2025, Luca Ceresoli wrote:  
+> >>> This is the new API for allocating DRM bridges.
+> >>>
+> >>> This driver embeds an array of channels in the main struct, and each
+> >>> channel embeds a drm_bridge. This prevents dynamic, refcount-based
+> >>> deallocation of the bridges.
+> >>>
+> >>> To make the new, dynamic bridge allocation possible:
+> >>>
+> >>>  * change the array of channels into an array of channel pointers
+> >>>  * allocate each channel using devm_drm_bridge_alloc()
+> >>>  * adapt the code wherever using the channels
+> >>>
+> >>> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>  
+> > 
+> > [...]
+> >   
+> >>> @@ -345,8 +351,8 @@ static int imx8qxp_pc_bridge_probe(struct platform_device *pdev)
+> >>>  free_child:
+> >>>  	of_node_put(child);
+> >>>  
+> >>> -	if (i == 1 && pc->ch[0].next_bridge)
+> >>> -		drm_bridge_remove(&pc->ch[0].bridge);
+> >>> +	if (i == 1 && pc->ch[0]->next_bridge)    
+> >>
+> >> Since this patch makes pc->ch[0] and pc->ch[1] be allocated separately,
+> >> pc->ch[0] could be NULL if channel0 is not available, hence a NULL pointer
+> >> dereference here...  
+> > 
+> > See below for this.
+> >   
+> >>> +		drm_bridge_remove(&pc->ch[0]->bridge);
+> >>>  
+> >>>  	pm_runtime_disable(dev);
+> >>>  	return ret;
+> >>> @@ -359,7 +365,7 @@ static void imx8qxp_pc_bridge_remove(struct platform_device *pdev)
+> >>>  	int i;
+> >>>  
+> >>>  	for (i = 0; i < 2; i++) {
+> >>> -		ch = &pc->ch[i];
+> >>> +		ch = pc->ch[i];
+> >>>  
+> >>>  		if (!ch->is_available)    
+> >>
+> >> ...and here too.  
+> > 
+> > This is indeed a bug, I should have checked the pointer for being
+> > non-NULL.
+> > 
+> > Looking at that more closely, I think the is_available flag can be
+> > entirely removed now. The allocation itself (ch != NULL) now is
+> > equivalent. Do you think my reasoning is correct?
+> > 
+> > Ouch! After writing the previous paragraph I realized you proposed this
+> > a few lines below! OK, removing is_available. :)
+> > 
+> > [...]
+> >   
+> >> On top of this patch series, this issue doesn't happen if I apply the below
+> >> change:  
+> > 
+> > [...]
+> >   
+> >> @@ -351,7 +349,7 @@ static int imx8qxp_pc_bridge_probe(struct platform_device *pdev)
+> >>  free_child:
+> >>         of_node_put(child);
+> >>  
+> >> -       if (i == 1 && pc->ch[0]->next_bridge)
+> >> +       if (i == 1 && pc->ch[0])
+> >>                 drm_bridge_remove(&pc->ch[0]->bridge);  
+> > 
+> > Unrelated to this patch, but as I looked at it more in depth now, I'm
+> > not sure this whole logic is robust, even in the original code.
+> > 
+> > The 'i == 1' check here seems to mean "if some error happened when
+> > handling channel@1, that means channel@0 was successfully initialized,
+> > so let's clean up channel 0".
+> > 
+> > However my understanding of the bindings is that device tree is allowed
+> > to have the channel@1 node before the channel@0 node (or even channel@1
+> > without channel@0, but that's less problematic here).
+> > 
+> > In such case (channel@1 before channel@0), this would happen:
+> > 
+> >  1. alloc and init ch[1], all OK
+> >  2. alloc and init ch[0], an error happens
+> >     (e.g. of_graph_get_remote_node() fails)
+> > 
+> > So we'd reach the free_child: label, and we should call
+> > drm_bridge_remove() for ch[1]->bridge, but there's no code to do that.
+> > 
+> > To be robust in such a case, I think both channels need to be checked
+> > independently, as the status of one does not imply the status of the
+> > other. E.g.:
+> > 
+> >   for (i = 0; i < 2; i++)
+> >       if (pc->ch[i] && pc->ch[i]->next_bridge)
+> >           drm_bridge_remove(&pc->ch[i]->bridge);
+> > 
+> > (which is similar to what .remove() does after the changes discussed in
+> > this thread, and which I have queued for v3)
+> > 
+> > What's your opinion? Do you think I missed anything?  
+> 
+> The pixel combiner DT node would be added in imx8-ss-dc{0,1}.dtsi, please
+> see the case for imx8-ss-dc0.dtsi introduced by an in-flight patch[1].  As
+> channel@{0,1} child nodes always exist(DT overlay cannot effectively delete
+> any of them) and channel@0 always comes first, there is no problematic case.
+
+I'm not questioning what existing and future dts files (will) contain,
+and surely I don't see a good reason someone would write channel@1
+before channel@0.
+
+My point is:
+
+ - the bindings _allow_ channel1 before channel@0
+ - the error management code after the free_child label won't work
+   correctly if channel1 is before channel@0 in the device tree
+
+IOW the driver is not robust against all legal device tree descriptions,
+and it could be easily made robust using the example code in my
+previous e-mail (quoted a few lines above).
+
+If you agree about this I'll be happy to send a patch doing that change.
+If you think I'm wrong, I won't fight a battle. This topic is
+orthogonal to the change I'm introducing in this patch, and I can
+continue the conversion independently from this discussion.
+
+> > Thanks for taking the time to dig into this!  
+> 
+> After looking into this patch and patch 31(though I've already provided my A-b)
+> more closely, I think the imx8qxp_pc and imx8{qm,qxp}_ldb main structures
+> should have the same life time with the embedded DRM bridges, because for
+> example the clk_apb clock in struct imx8qxp_pc would be accessed by the
+> imx8qxp_pc_bridge_mode_set DRM bridge callback.  But, IIUC, your patches extend
+> the life time for the embedded channel/bridge structures only, but not for the
+> main structures.  What do you think ?
+
+I see you concern, but I'm sure the change I'm introducing is not
+creating the problem you are concerned about.
+
+The key aspect is that my patch is merely changing the lifetime of the
+_allocation_ of the drm_bridge, not its usage. On drm_bridge_remove()
+the bridge is removed from its encoder chain and it is completely not
+reachable, both before and after my patch. With my patch it is not
+freed immediately, but it's just a piece of "wasted" memory that is
+still allocated until elsewhere in the kernel there are pointers to it,
+to avoid use-after-free.
+
+With this explanation, do you think my patch is correct (after fixing
+the bug we already discussed of course)?
+
+Best regards,
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
