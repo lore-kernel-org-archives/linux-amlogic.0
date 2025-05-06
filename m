@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1629BC3ABC0
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 May 2025 03:46:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBB1AC3ABB6
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 May 2025 03:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oAXUeJbwZXCT6nkALjsiSGqi860GYUPj26X3ZBchm2Y=; b=mI2N8vbu/tpFyF
-	S/rBCizlNOgfVDsR4E6dN7OSuLM9i5M2j0xkRHegCNWkGEz5DY0gKab1C5Zn7vxBoWRdh6xU2wpHw
-	+bKqHzEHxry45euhU76b43CzXvWMX26fDnKgK/Dth0XzoYkvQZhHEZhQtzHuDO5YPTCBheCUh8wK5
-	njtTCXEpEKBEJD7PELNU8HLVACHxlrJwLEjEsmQFPLYETYybOOFPYmw+OEwAhyV3aTMSRO9HtcZqY
-	Yu4I/QkNAv4yfJG9R7lKnJsijCrFXmrP+xmWsA8NYnBzPei+rcu8vnlBzGIjQfG9cM3eE6fmTnsdX
-	aN7xO1T0unHPIKX35AdA==;
+	List-Owner; bh=daIOAAGlyg/eag0UnqaPSd4jgnP9vAJ2518ER0aNJtU=; b=bOkKjAiBWtjq91
+	xI5hChJfD6xY0s+DAcp5mgKChF3VvKDY55gsc6H5v2QyVq2Kcl7SUJQZsLbiAkhr0Szec85EQY5eO
+	bIq1BApM+7y8YABjLeDIvx5i8CwNv3VOBz3dvYqX8itngoYyiUiO7innJTal6eSDAgfFPMA0a9hSj
+	QBxAqJhBlu/fPo53c3Y9vfMmXzyHY7lDlv2jh9dQkBv9EcTFYTDifljv1CEW0SXkiH0Dx0+vWwjac
+	GyfmutCsmenLOFgu2bWrtvwVVxRZJGG+2rb43TQlZK06A9uBHBFTByZ81UOL6AlOd+nQDFzUHKsam
+	ACuIUotcZb9I8bAuGrLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uCVjj-0000000E6oj-1Lld;
-	Wed, 07 May 2025 03:46:23 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1uCVjk-0000000E6pK-0RXc;
+	Wed, 07 May 2025 03:46:24 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uCPyE-0000000DRJs-1ivn;
-	Tue, 06 May 2025 21:36:59 +0000
+	id 1uCPyc-0000000DRQg-1SX0;
+	Tue, 06 May 2025 21:37:22 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id B11C1A4AFC3;
-	Tue,  6 May 2025 21:36:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 205D9C4CEEE;
-	Tue,  6 May 2025 21:36:56 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id BE1986115D;
+	Tue,  6 May 2025 21:37:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E63CC4CEE4;
+	Tue,  6 May 2025 21:37:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746567417;
-	bh=1k5f6S15WEvZFIIAndx3JpAhTytTqx5CYGLFKaXK0Q4=;
+	s=k20201202; t=1746567441;
+	bh=/6dotfspmfvLZQl7LisUvq7pisMsJv9hVeR4uJ/vVSA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WGnlRfK5OjePuxU/kX0ROoYfCILPxOzE9wmm3CQ07DAH/YCszm4UlHZxHve605Sn0
-	 R06FhSrrurhiEIH5gaK0hR/E5R74YCg682J7RGjAVcvYhM6ZNi1Dw9lb/MqiAxcEJJ
-	 Gt1LYzTR03waqXEcCrf1pqu1Tt5UIbEvyu4BHiNrHI/x5RGX3WqZ0nlxnZUxQZw2ph
-	 J8U3p04HDd6k80s5QYnVFtdOYV9fN7k1yb/fTYUe4gw5aPvRiiaps5sAQIulstuTh2
-	 9S7YLmWzlgCQXQ7afDzTooU1P5w/6gXgAouCjjNGsY345J0h2hzG/EisSZ+DWoN7JU
-	 whhTS9cvpOSTQ==
+	b=u2AbNYMSYOYrfWqQ6O1px2QdfPrjmcK/cyLL4wiBweTgVid3OHvfgg6nsgLSBkthx
+	 k6LIy1nguMn4/aKj8homDQD7hGviz7DuVonqYdLB28ANcKFHqFPjlOMy7FrF3hcZP9
+	 A7Jn/8XVi2uGp3J4fMq3tt/f0uh3vyZqikght8/DCEgqjizjcWxsN04N2bQbv6Upn/
+	 ccxNeJI2QteEi+K0FkFJOrxRh4FePLr6FeVAu6OUNfdH8GKhnMpjjlJzBja413F7Pu
+	 dRGLUQPVUgB6stC7vNk+NTbq32v4n2c5OtI9yBfehmJMNpTtg2a5mpfPh0mqV8tOyx
+	 w5EK0HHIpsdog==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
@@ -53,19 +53,16 @@ Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 03/12] pinctrl: meson: define the pull up/down resistor value as 60 kOhm
-Date: Tue,  6 May 2025 17:36:38 -0400
-Message-Id: <20250506213647.2983356-3-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 2/6] pinctrl: meson: define the pull up/down resistor value as 60 kOhm
+Date: Tue,  6 May 2025 17:37:10 -0400
+Message-Id: <20250506213714.2983569-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250506213647.2983356-1-sashal@kernel.org>
-References: <20250506213647.2983356-1-sashal@kernel.org>
+In-Reply-To: <20250506213714.2983569-1-sashal@kernel.org>
+References: <20250506213714.2983569-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.89
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250506_143658_520759_05110610 
-X-CRM114-Status: GOOD (  12.88  )
+X-stable-base: Linux 6.1.137
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,10 +112,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index 524424ee6c4e7..5cc00fdc48d84 100644
+index 530f3f934e196..1f05f7f1a9aee 100644
 --- a/drivers/pinctrl/meson/pinctrl-meson.c
 +++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -486,7 +486,7 @@ static int meson_pinconf_get(struct pinctrl_dev *pcdev, unsigned int pin,
+@@ -487,7 +487,7 @@ static int meson_pinconf_get(struct pinctrl_dev *pcdev, unsigned int pin,
  	case PIN_CONFIG_BIAS_PULL_DOWN:
  	case PIN_CONFIG_BIAS_PULL_UP:
  		if (meson_pinconf_get_pull(pc, pin) == param)
