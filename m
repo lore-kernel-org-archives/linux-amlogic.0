@@ -4,91 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4428CC3ABBF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 May 2025 14:47:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5AAFC3ABC0
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 May 2025 15:33:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FXqMfk1MVVE55wmyHagW1GlC+Ncd6uYgwPOIGPf37vI=; b=LSIdBgEYFO7PpQ
-	KLg/NaP8BSD73kpC+SQZANjMY/Gfq6qdShcU+1kHb+V2Sw2YEIjtjrf7MTS4uXFvxMzv6m+hJS83r
-	X1E3xM4iX7S5oL9LC75C4iyn/steAR8pI+0D+RAn5poXd2g9tO8R64R82MZ9tMQ9epSUSZz1qVMyg
-	uUzzZdzyOqFgUBUM3KKLY0s3FHlHRD06QWRI/X1TWqcoHGcmDsqrng6AN/44xw+kOS2Q0em5idT1W
-	JfIFd5a5tKBYqv7vRta7zXqqbSFgaDrXqbnPuI/fFpke55LCBg/WmNyXpGCZtiy4OHh2gkM76Y/OC
-	LQTog3XL3xM0y3nY8BAg==;
+	List-Owner; bh=MMhLpd38i+CzA0X9xFrS2wc8NaHWvX0UTtRGJhXd8MM=; b=k+6X/mVaiyL5ci
+	HbE2iKUQ/G6pPN+HaUUEj/JcygONqTnG1iwsIQqCKp1bisjRyUklL0ne2GPDAW/jgKDKf8J1aVhnT
+	1Q+toX6O/Dmps24em6sYMO9F62Zyj9CbZ4FogMI3hn//PdSx6Aohb4DnxTqwV11MufprPs8lY/3t4
+	PbCJN9uY76VP0/kGKsT0AYVVdc+E0xK+VS+d3LlOTCq4C5oyCxyA38JWOck9Pq+0IWoyRDVEPgEvd
+	DqqIJPH/UQ7YLvjDcDzbaBuf0klpPLCpG5cl1Z5PMXwOASE8t5XYayjloRQaJHit3Wrsgc+wmgDHr
+	mQTyiAVD9Dr3FD3gwgSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uCg3D-0000000FqUO-1lBH;
-	Wed, 07 May 2025 14:47:11 +0000
-Received: from relay5-d.mail.gandi.net ([217.70.183.197])
+	id 1uCglW-0000000FzJs-49pk;
+	Wed, 07 May 2025 15:32:58 +0000
+Received: from m16.mail.163.com ([117.135.210.4])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uCfWT-0000000FiZo-2yJg;
-	Wed, 07 May 2025 14:13:24 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A7A8943A17;
-	Wed,  7 May 2025 14:13:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746627197;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZUkZFmqLpaya2SvixZMFXiK5vMoC/WgZVFpr9qlTBnY=;
-	b=adYesO7D1P7ynosW29lwbsjTgJFaCmVyHEon+flnFOa0BvpYbgiRnF+Xmpud0uAtagWCKR
-	3oskQarIGt0LOBcEzJnasoloDFldQLXTPGfiIhzFPFxQ44Bv9OhNB8OfgtRyxM7+9P43cR
-	EkU5M3wIV4eMfygkH8Z49lCMg02BGC3HtUgDaN8q7xI8pIpFMVELZovDj9NLGU/agK2QHw
-	g3CUt2Har990IGmx7V543phmv8Wv4XvzKKsAS8THOhfgcNBUADs19379Lxd8e7/I43vGMD
-	r3WqKePwg6IikvuHOAtVe8FiAWFIlf69nPFcMS8m4pDVEx1m0DuHF1UEztkH0g==
-Date: Wed, 7 May 2025 16:13:11 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
- <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Douglas Anderson
- <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, Anusha Srivatsa <asrivats@redhat.com>, Paul
- Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui
- Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
- asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
- chrome-platform@lists.linux.dev, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 30/34] drm/bridge: imx8qxp-pixel-combiner: convert to
- devm_drm_bridge_alloc() API
-Message-ID: <20250507161311.6e434f2f@booty>
-In-Reply-To: <430d497d-45a1-436d-91fd-635854f80c9f@nxp.com>
-References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
-	<20250424-drm-bridge-convert-to-alloc-api-v2-30-8f91a404d86b@bootlin.com>
-	<553d62ed-976a-4e17-9678-cdc3d40ce4a7@nxp.com>
-	<20250430112944.1b39caab@booty>
-	<f71d18d2-4271-4bb9-b54f-0e5a585778f3@nxp.com>
-	<20250506224720.5cbcf3e1@booty>
-	<a1abf31a-7a4a-4f8d-bf48-6b826aa01197@nxp.com>
-	<20250507091244.32865a71@booty>
-	<430d497d-45a1-436d-91fd-635854f80c9f@nxp.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	id 1uCgCH-0000000Frxd-4AAJ;
+	Wed, 07 May 2025 14:56:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:From:
+	Content-Type; bh=tNmFFnlLRbbea3bahp28nTfyzV1Xhe+xKP45jX8AMAY=;
+	b=DW2le85cvHbAy9SNvaybMrSBPDunRSVb5CcYqqAywCjz8Z/8jafn3bTFOlIyEi
+	BM2AtqF7+Ib74XnedGReayUxz/MTVTfZwXHuLvT4FlMeyDnn0O0MFoN+zFNl12Ec
+	ieqn4hQYr23XcKusyjn0FzupqJ0MeMXNLtPVhmVVv99rg=
+Received: from [192.168.71.93] (unknown [])
+	by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id _____wAXG1lgdBtou6IsFA--.12424S2;
+	Wed, 07 May 2025 22:55:29 +0800 (CST)
+Message-ID: <2ae86e9f-2a91-476a-b017-e0e20489d8da@163.com>
+Date: Wed, 7 May 2025 22:55:28 +0800
 MIME-Version: 1.0
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkeejtdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptdeljeejuddvudetffdtudelfedugfduledtueffuedufefgudegkeegtdeihedunecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvpdhhvghlohepsghoohhthidpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefledprhgtphhtthhopehvihgtthhorhdrlhhiuhesnhigphdrtghomhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhto
- hepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrgh
-X-GND-Sasl: luca.ceresoli@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] PCI: Configure root port MPS during host probing
+To: Niklas Cassel <cassel@kernel.org>
+Cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+ heiko@sntech.de, manivannan.sadhasivam@linaro.org, yue.wang@amlogic.com,
+ pali@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
+ jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20250506173439.292460-1-18255117159@163.com>
+ <20250506173439.292460-2-18255117159@163.com> <aBsN2_YG0RsH4RPA@ryzen>
+Content-Language: en-US
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <aBsN2_YG0RsH4RPA@ryzen>
+X-CM-TRANSID: _____wAXG1lgdBtou6IsFA--.12424S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7XFy3Xr1UJw1DJrWfAFyDGFg_yoWDuFcEv3
+	4Y9r47C3y8Xr90kw43ArZ8JrZxGanxZ3yjg348XrZay3s3Ar48A3s7K3WktF4Uu3WFvr17
+	Cw1UZF1xA39xujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU1eT5PUUUUU==
+X-Originating-IP: [124.79.128.52]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiWxBGo2gbb-2P7AAAss
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250507_071321_881376_2AE9A69E 
-X-CRM114-Status: GOOD (  39.32  )
+X-CRM114-CacheID: sfid-20250507_075634_467227_8E5E06EC 
+X-CRM114-Status: GOOD (  13.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,115 +74,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Liu,
 
-On Wed, 7 May 2025 18:16:28 +0800
-Liu Ying <victor.liu@nxp.com> wrote:
 
-[...]
-
-> >>>> After looking into this patch and patch 31(though I've already provided my A-b)
-> >>>> more closely, I think the imx8qxp_pc and imx8{qm,qxp}_ldb main structures
-> >>>> should have the same life time with the embedded DRM bridges, because for
-> >>>> example the clk_apb clock in struct imx8qxp_pc would be accessed by the
-> >>>> imx8qxp_pc_bridge_mode_set DRM bridge callback.  But, IIUC, your patches extend
-> >>>> the life time for the embedded channel/bridge structures only, but not for the
-> >>>> main structures.  What do you think ?    
-> >>>
-> >>> I see you concern, but I'm sure the change I'm introducing is not
-> >>> creating the problem you are concerned about.
-> >>>
-> >>> The key aspect is that my patch is merely changing the lifetime of the
-> >>> _allocation_ of the drm_bridge, not its usage. On drm_bridge_remove()
-> >>> the bridge is removed from its encoder chain and it is completely not
-> >>> reachable, both before and after my patch. With my patch it is not
-> >>> freed immediately, but it's just a piece of "wasted" memory that is
-> >>> still allocated until elsewhere in the kernel there are pointers to it,
-> >>> to avoid use-after-free.
-> >>>
-> >>> With this explanation, do you think my patch is correct (after fixing
-> >>> the bug we already discussed of course)?    
-> >>
-> >> I tend to say your patch is not correct because we'll eventually make sure
-> >> that removing a bridge module is safe when doing atomic commit,  
-> > 
-> > I think your sentence can be rephrased as "your patch is correct with
-> > the current code base where bridges are not (yet) removable, but there
-> > will be a problem when they start to actually be removable".
-> > 
-> > Is my understanding correct? If it is, I agree on that sentence.  
+On 2025/5/7 15:38, Niklas Cassel wrote:
+> On Wed, May 07, 2025 at 01:34:37AM +0800, Hans Zhang wrote:
 > 
-> Nope, I meant your patch should align the life times of the main structures
-> and the DRM bridges, for the sake of the kinda long term goal - remove bridge
-> driver module safely when doing atomic commit.
-
-Again, I don't think there is any bug introduced by this patch (once
-the NULL ptr deref bug we already discussed is fixed). No bridge can be
-removed as of now, with or without this patch.
-
-You concern that this patch would make things more complex in the
-future, when bridges will actually become removable and they could be
-during atomic updates. But about this...
-
-> > The work to have removable bridges is massive and non-trivial, so it
-> > will need to be tackled in steps. The grand plan [0] is:
-> > 
-> >  1. add refcounting to DRM bridges (struct drm_bridge)
-> >  2. handle gracefully atomic updates during bridge removal
-> >  3. avoid DSI host drivers to have dangling pointers to DSI devices 
-> >  4. finish the hotplug bridge work, removing the "always-disconnected"
-> >     connector, moving code to the core and potentially removing the
-> >     hotplug-bridge itself (this needs to be clarified as points 1-3 are
-> >     developed)  
+> (snip)
 > 
-> I'm busy with internal things these days and cannot look into the grand
-> plan and steps closely, sorry about that.
-
-...I'll wait until you have time to look into that more closely. There
-is just no way to understand this whole topic without some dedicated
-attention, which takes time unavoidably.
-
-In the meanwhile I am going to send v3 soon with the known bug fixed,
-so the best version is available to continue this discussion.
-
-> > I am at step 1 right now. Removal during atomic updates is step 2,
-> > ideas about how to implement that are already being discussed [1],
-> > there's a practical plan proposed by Maxime with the goal of reaching
-> > removable bridges without breaking things along the path.
-> > 
-> > [0] https://lore.kernel.org/lkml/20250206-hotplug-drm-bridge-v6-0-9d6f2c9c3058@bootlin.com/
-> > [1] https://lore.kernel.org/all/20250106-vigorous-talented-viper-fa49d9@houat/
-> >   
-> >> which means
-> >> the main structures should have the same life time with the DRM bridges.  
-> > 
-> > The word "lifetime" mean two things for bridges:
-> > 
-> >  * the time span during which memory is allocated for a struct
-> >    drm_bridge (along with the embedding struct)  
+>>   static void pci_configure_mps(struct pci_dev *dev)
+>>   {
+>>   	struct pci_dev *bridge = pci_upstream_bridge(dev);
+>> @@ -2178,6 +2209,10 @@ static void pci_configure_mps(struct pci_dev *dev)
+>>   		return;
+>>   	}
 > 
-> Note that with your patch set the imx8*-ldb drivers and this bridge driver
-> won't allocate the DRM bridge along with the embedding struct.
+> We should probably add a comment explaining why we are doing this here.
+> 
+> Perhaps something like:
+> 
+> /*
+>   * Unless MPS strategy is PCIE_BUS_TUNE_OFF (don't touch MPS at all),
+>   * start off by setting root ports' MPS to MPSS. Depending on the MPS
+>   * strategy, and the MPSS of the devices below the root port, the MPS
+>   * of the root port might get overriden later.
+>   */
+> 
+> 
 
-By "embedding struct" I mean the struct imx8qxp_pc_channel that embeds
-the struct drm_bridge. Sorry, I realize my wording was ambiguous.
+Dear Niklas,
 
-> This makes
-> me worry, because maybe these drivers are the only "special" ones in this
-> patch set and I don't want them to be "special" after your patch set is
-> applied.
+Thank you very much for your reply and suggestions.
+It will be added in the next version.
 
-Luca
+Best regards,
+Hans
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>> +	if (pci_pcie_type(dev) == PCI_EXP_TYPE_ROOT_PORT &&
+>> +	    pcie_bus_config != PCIE_BUS_TUNE_OFF)
+>> +		pcie_write_mps(dev, 128 << dev->pcie_mpss);
+>> +
+>>   	if (!bridge || !pci_is_pcie(bridge))
+>>   		return;
+>>   
+> 
+> 
+> Kind regards,
+> Niklas
+
 
 _______________________________________________
 linux-amlogic mailing list
