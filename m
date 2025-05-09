@@ -4,69 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8055C3ABC3
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 May 2025 15:20:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B77D0C3ABBC
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 May 2025 15:28:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9e32m8zKlAQO/07m71oesKEOApJ0MY9vF8mN2+xjUOw=; b=OXU/akmmtAcG3m
-	bCpxttF7EC8DNNzz5Z719mNpAjjFitZWKdlCL3Pz/W8RqiabEpHtFcmzXKK9kkNG9/8NV7laWyC7Q
-	LDLwBw9Ol8/LWO37cwKW/yfHkLilZpWiw8ukURwi8DauW33W6qbkEOmTwuKtS3K1bzUYXXCQYVnxG
-	YWywKF9khd61/ODZw8E+7sIC7VgTQBEWN++K4esdIynstXku5JsM7JvoqTrMJ1gr6wER9kBwdE1Sn
-	Dxk42UZ6amcY0oqNZ+1WWW93AePLXucVq/pWEKx6PPPC2Cqnt1RVnMMIwv4eH3JzfeCblbeT1TNAS
-	+4hABmsDp6o4/fc5fz1w==;
+	List-Owner; bh=FC9BuuOpG0i846SphX3RfYuhKluZPhz2uKDTsyR9fQU=; b=A/Xzv6D9WzMG93
+	yxTwKd6KIj7T9IcLdk+WxU6jO3lO3lh5atShX0xB+auX7Nxjq9eyszT7IU3bl/ciScluLzt1OSXQI
+	Nml4beX/wt0T9P5bXEgPdbljTHWoNxNOOnFYDy0U+isCDpaZ9CvgGybpTnma0q0g5aJ83CME7OEVN
+	mToloKyIB2L27HU/K/V+0Rtm4NT3b2u5d3LbrMV3rt45kOJ7p6onKj4y9ZVue2LHPJH5xQq0zEKAl
+	CUDKp9QtA4Vk0iMwWw+m8tdRi5wcisuatpGuwBqU6LWfcAH6pkI38S/ZP9ZDtvlY5U0s8gbukhujX
+	CViK4r7EMpmKm6+6/gHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uDPW6-000000043yo-13Qg;
-	Fri, 09 May 2025 15:20:02 +0000
-Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
+	id 1uDPdv-000000044vR-3fcL;
+	Fri, 09 May 2025 15:28:07 +0000
+Received: from relay4-d.mail.gandi.net ([2001:4b98:dc4:8::224])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uDOCE-00000003quB-0VfX;
-	Fri, 09 May 2025 13:55:27 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 621EEA4C10C;
-	Fri,  9 May 2025 13:55:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89330C4CEE4;
-	Fri,  9 May 2025 13:55:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746798925;
-	bh=zanW3F7mAvO6XEkfAZFP2dkzUCWKBlIKWgmDrP6XeXI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=AOa5gyxdyb4ttC0XaFpejwQesSEz++BrhTXJIKtRWZDmMFGZmLOb8w0IYwHX6Ikvg
-	 QYc+l0/chwr0HxfOgefWGLgqEOHPPzWKxZ37htmcnyEpLIKWsI0LJa+yJIXTS+W0R/
-	 BZwNb2tKLhCuDR/5WakQLxrB3f28gglb4Yn4Yxbc4ga+N3b4fRJyvS2VU90sDnSCSm
-	 MzePJ0HSMkIgu3bsRTrO2ZOxNG/igIL0RGLaDw7O+WQ8dc2gt3fdml3Ei4VkFu8yk/
-	 a8NeKOXAWFzJWt1mOPTVUH0y7THs72r5KAiOGOip2f1cGNZ4qIIVmfwCwPqKVPL/Bs
-	 KMdrP1xRtRGaQ==
-From: Will Deacon <will@kernel.org>
-To: Jiucheng Xu <jiucheng.xu@amlogic.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Anand Moon <linux.amoon@gmail.com>
-Cc: catalin.marinas@arm.com,
-	kernel-team@android.com,
-	Will Deacon <will@kernel.org>
-Subject: Re: [PATCH v1] perf/amlogic: Replace smp_processor_id() with raw_smp_processor_id() in meson_ddr_pmu_create()
-Date: Fri,  9 May 2025 14:55:16 +0100
-Message-Id: <174678939181.1772809.16015906779534499401.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20250407063206.5211-1-linux.amoon@gmail.com>
-References: <20250407063206.5211-1-linux.amoon@gmail.com>
+	id 1uDODB-00000003rAt-09jE;
+	Fri, 09 May 2025 13:56:26 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0767B43B67;
+	Fri,  9 May 2025 13:56:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746798983;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8OAt2vO9IIVZ90xYSq1hVs9pPdGQMmKkQVmvwVGbbu0=;
+	b=lOB9+4XhOUFg2zLxN02nnI36kVdluMS6fy7IDRi6jDK8CgPg/X/EiC2uODwEmyyrflCekl
+	V/yZclwj0LA5l7rhCiIHHrE2kcnTPHY/yYkddSCXKzEe5Jh2hSzC6y2gors6bVv7txVwXj
+	9cirC7/tbxYrytSLTGJ8p373qgreA691gUDj13Tj1gDzviAgxgQowN1+jaUp6BUGNezdcA
+	pBGEKopRfptdkMXgtGNR5wiml2JM2yAFy14WukJQENi44b1m0pGWel6x49QRO5BWIhrrZe
+	GQPdU2FD3Fy05nb3dLddiqyyMkd7yHRVyR5ob0wvQfyWj84p6SQDhXmDWe6NoQ==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Date: Fri, 09 May 2025 15:53:29 +0200
+Subject: [PATCH v3 03/22] drm/bridge: anx7625: convert to
+ devm_drm_bridge_alloc() API
 MIME-Version: 1.0
+Message-Id: <20250509-drm-bridge-convert-to-alloc-api-v3-3-b8bc1f16d7aa@bootlin.com>
+References: <20250509-drm-bridge-convert-to-alloc-api-v3-0-b8bc1f16d7aa@bootlin.com>
+In-Reply-To: <20250509-drm-bridge-convert-to-alloc-api-v3-0-b8bc1f16d7aa@bootlin.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Douglas Anderson <dianders@chromium.org>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Anusha Srivatsa <asrivats@redhat.com>, 
+ Paul Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Hui Pu <Hui.Pu@gehealthcare.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, asahi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-renesas-soc@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ "Rob Herring (Arm)" <robh@kernel.org>, 
+ Hsin-Te Yuan <yuanhsinte@chromium.org>, Jani Nikula <jani.nikula@intel.com>, 
+ Pin-yen Lin <treapking@chromium.org>, Sui Jingfeng <sui.jingfeng@linux.dev>, 
+ Xin Ji <xji@analogixsemi.com>
+X-Mailer: b4 0.14.2
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvledvjeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepnfhutggrucevvghrvghsohhlihcuoehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeiieeuvdfftefgueduleehueetgffgjeeitedtteetkeeuueeuueekveevvdeuveenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvpdhhvghloheplgduledvrdduieekrddujeekrdduudekngdpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeeghedprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhhonhgrsheskhifihgsohhordhsvgdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepihhmgieslhhishhts
+ hdrlhhinhhugidruggvvhdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphhtthhopehkvghrnhgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepthhrvggrphhkihhnghestghhrhhomhhiuhhmrdhorhhg
+X-GND-Sasl: luca.ceresoli@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250509_065526_289657_07A95C79 
-X-CRM114-Status: UNSURE (   8.50  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250509_065625_224264_0EC46AB3 
+X-CRM114-Status: GOOD (  10.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,65 +103,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 07 Apr 2025 12:02:03 +0530, Anand Moon wrote:
-> The Amlogic DDR PMU driver meson_ddr_pmu_create() function incorrectly uses
-> smp_processor_id(), which assumes disabled preemption. This leads to kernel
-> warnings during module loading because meson_ddr_pmu_create() can be called
-> in a preemptible context.
-> 
-> Following kernel warning and stack trace:
-> [   31.745138] [   T2289] BUG: using smp_processor_id() in preemptible [00000000] code: (udev-worker)/2289
-> [   31.745154] [   T2289] caller is debug_smp_processor_id+0x28/0x38
-> [   31.745172] [   T2289] CPU: 4 UID: 0 PID: 2289 Comm: (udev-worker) Tainted: GW 6.14.0-0-MANJARO-ARM #1 59519addcbca6ba8de735e151fd7b9e97aac7ff0
-> [   31.745181] [   T2289] Tainted: [W]=WARN
-> [   31.745183] [   T2289] Hardware name: Hardkernel ODROID-N2Plus (DT)
-> [   31.745188] [   T2289] Call trace:
-> [   31.745191] [   T2289]  show_stack+0x28/0x40 (C)
-> [   31.745199] [   T2289]  dump_stack_lvl+0x4c/0x198
-> [   31.745205] [   T2289]  dump_stack+0x20/0x50
-> [   31.745209] [   T2289]  check_preemption_disabled+0xec/0xf0
-> [   31.745213] [   T2289]  debug_smp_processor_id+0x28/0x38
-> [   31.745216] [   T2289]  meson_ddr_pmu_create+0x200/0x560 [meson_ddr_pmu_g12 8095101c49676ad138d9961e3eddaee10acca7bd]
-> [   31.745237] [   T2289]  g12_ddr_pmu_probe+0x20/0x38 [meson_ddr_pmu_g12 8095101c49676ad138d9961e3eddaee10acca7bd]
-> [   31.745246] [   T2289]  platform_probe+0x98/0xe0
-> [   31.745254] [   T2289]  really_probe+0x144/0x3f8
-> [   31.745258] [   T2289]  __driver_probe_device+0xb8/0x180
-> [   31.745261] [   T2289]  driver_probe_device+0x54/0x268
-> [   31.745264] [   T2289]  __driver_attach+0x11c/0x288
-> [   31.745267] [   T2289]  bus_for_each_dev+0xfc/0x160
-> [   31.745274] [   T2289]  driver_attach+0x34/0x50
-> [   31.745277] [   T2289]  bus_add_driver+0x160/0x2b0
-> [   31.745281] [   T2289]  driver_register+0x78/0x120
-> [   31.745285] [   T2289]  __platform_driver_register+0x30/0x48
-> [   31.745288] [   T2289]  init_module+0x30/0xfe0 [meson_ddr_pmu_g12 8095101c49676ad138d9961e3eddaee10acca7bd]
-> [   31.745298] [   T2289]  do_one_initcall+0x11c/0x438
-> [   31.745303] [   T2289]  do_init_module+0x68/0x228
-> [   31.745311] [   T2289]  load_module+0x118c/0x13a8
-> [   31.745315] [   T2289]  __arm64_sys_finit_module+0x274/0x390
-> [   31.745320] [   T2289]  invoke_syscall+0x74/0x108
-> [   31.745326] [   T2289]  el0_svc_common+0x90/0xf8
-> [   31.745330] [   T2289]  do_el0_svc+0x2c/0x48
-> [   31.745333] [   T2289]  el0_svc+0x60/0x150
-> [   31.745337] [   T2289]  el0t_64_sync_handler+0x80/0x118
-> [   31.745341] [   T2289]  el0t_64_sync+0x1b8/0x1c0
-> 
-> [...]
+This is the new API for allocating DRM bridges.
 
-Applied to will (for-next/perf), thanks!
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-[1/1] perf/amlogic: Replace smp_processor_id() with raw_smp_processor_id() in meson_ddr_pmu_create()
-      https://git.kernel.org/will/c/097469a2b0f1
+---
 
-Hopefully we can fix this properly when Robin moves the hotplug logic
-into perf core...
+Cc: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Pin-yen Lin <treapking@chromium.org>
+Cc: Sui Jingfeng <sui.jingfeng@linux.dev>
+Cc: Xin Ji <xji@analogixsemi.com>
+---
+ drivers/gpu/drm/bridge/analogix/anx7625.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-Cheers,
+diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+index 8a9079c2ed5c22565d0733ef899119e347947d21..0ac4a82c5a6e5e665d913674b664905a96c0d8e6 100644
+--- a/drivers/gpu/drm/bridge/analogix/anx7625.c
++++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+@@ -2596,7 +2596,6 @@ static int anx7625_link_bridge(struct drm_dp_aux *aux)
+ 		return ret;
+ 	}
+ 
+-	platform->bridge.funcs = &anx7625_bridge_funcs;
+ 	platform->bridge.of_node = dev->of_node;
+ 	if (!anx7625_of_panel_on_aux_bus(dev))
+ 		platform->bridge.ops |= DRM_BRIDGE_OP_EDID;
+@@ -2630,10 +2629,10 @@ static int anx7625_i2c_probe(struct i2c_client *client)
+ 		return -ENODEV;
+ 	}
+ 
+-	platform = devm_kzalloc(dev, sizeof(*platform), GFP_KERNEL);
+-	if (!platform) {
++	platform = devm_drm_bridge_alloc(dev, struct anx7625_data, bridge, &anx7625_bridge_funcs);
++	if (IS_ERR(platform)) {
+ 		DRM_DEV_ERROR(dev, "fail to allocate driver data\n");
+-		return -ENOMEM;
++		return PTR_ERR(platform);
+ 	}
+ 
+ 	pdata = &platform->pdata;
+
 -- 
-Will
+2.49.0
 
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
 
 _______________________________________________
 linux-amlogic mailing list
