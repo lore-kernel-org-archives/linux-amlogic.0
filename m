@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27E0EC3ABC3
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 May 2025 08:43:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 962F9C3ABCB
+	for <linux-amlogic@archiver.kernel.org>; Sat, 10 May 2025 08:44:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=102gCySxntzeC4H4qvGlS1eW0+TIpPkF01yrgqjCAs8=; b=NfRmq5Z7C9kahFpGJil7Y7L9Bg
-	hZRZSbMPzrM7os7JPFYmvaLgR/Fr5q/fU/ZzMct3Z+bhG4DCwJi/tqmQGCY3nllPVb/bTmb9gUmHX
-	cU/lbSHc6SM1+VK3rEE2rdRAvxhaI+WpMktaKPysg3xO3m4Hvtc6BkWi2u01T+NxyPE9nEISkmq2v
-	PzrSuHbUg4U5R/jSiI9/nkkTnvRPZubnkNQhucIXdfbuOSBE6Z4OKUQtgu5ftaCVqUgDH1udkRreD
-	zEmPrt50eurKyfANrC5FIiasuKGG3o+lMbj42ep1yGQa0oSPfRo+qd4wjOH1dJa46LOMBBVIRbVaN
-	ktRBXpHg==;
+	bh=AVLB2cXa67J3YNy96SbdEQ8BczjPXEQz2NS2/WKnkNg=; b=OYapXP3ybtmZbNTxdwPND0N1SW
+	wdmNcRMoABCEvnaJtbJwnAY7/w76iYzGG3KSvjirqZP2cL+cl7UNM9+BMrzhVKUNFL6Xtc1Nj9KAZ
+	ovWAcXxLq044tOE5HP7a8kEG1mtX6mtBaIBn3eB6EVZM7356/5SXFg0bLtbaPos4nG1493Pj2bJUN
+	mxn9oulvfqdbUqheGN9B/4g5JUUCHdIbvlyRgL1CUq+/L4cN6dof2lXWW6ZhEysyklHacqtxtzFRO
+	dgMBsagrWqrSDn5cJhefoF01l3spgw1VyqS0m5okG8Y2CByVXm8dK9mfr5xzDvh8Huv5chUDf0Z7o
+	xl2UTyWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uDfnv-00000005f63-06Ya;
-	Sat, 10 May 2025 08:43:31 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1uDfoS-00000005fER-0CcV;
+	Sat, 10 May 2025 08:44:04 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uDfnc-00000005f32-1PHD;
-	Sat, 10 May 2025 08:43:13 +0000
+	id 1uDfoP-00000005fDW-1aEs;
+	Sat, 10 May 2025 08:44:02 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 52B1D5C4773;
-	Sat, 10 May 2025 08:40:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D826C4CEE2;
-	Sat, 10 May 2025 08:43:09 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 63302450B0;
+	Sat, 10 May 2025 08:44:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83328C4CEE2;
+	Sat, 10 May 2025 08:43:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746866589;
-	bh=51h4v8E5HX2Z8DyPqAO8YziaTFLpGy++tmZ/wKkW2Gg=;
+	s=k20201202; t=1746866640;
+	bh=iZP0INqkNVJuqSHAtR4h42xNc68rjVjaWzE+UVHVyVQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=prhhrjtHTVZYa3NMgzkMx+yFeyGv1Ej7LXkKMfvn1HLib+GZltXt9dN5b0c8pVobc
-	 l0CFWH7xTMtVvBfeDBFl4X6BDG0P/7zTIzoGnlc77ycReUUSv6f0NgRhI2cECWcVPf
-	 T8mI/UBfT7yHnl1ucVKnxSiaz6ZvgjeybFnw5F4W3uiWBHHbBRSJEWx28KADwICKEn
-	 lEwq9Bb3VNf0SMsbsChFhvDwm4efl+wZ9phFvexc78Mn+urduaxTdOaAv8FiLkhXKV
-	 7IEV46qEV2F2DgepGhgs7Iw1LgX/vj7RmbML/FBsbd3npas6/eVE8OvUk0VGHYZAY2
-	 FilpEGUzfwuqA==
-Date: Sat, 10 May 2025 10:43:04 +0200
+	b=cf25X2DlYFqigNEHaUMVIeSZvZx5mMBMfSzlXZh6IR3yRDGG2JP2se3Xi0GUaRRXC
+	 RHAswulPL2o/Pu8CqhMFklkb261bJF7PuKzyTJBFfoQdYMudvn0NQ9MppKC/GoKCMT
+	 UxAlc4FeAi19ZF/qEhl2UFsXIhG5PhmX9ubf5wzszMnkQOKxcWJCVDZnJg851wO8U0
+	 kTWLIRMy5T1VyNl3f9SWXtOcnJjxbEyqha7GSa79N+AqWLSkNuhVXOE0FS2oMO1JRZ
+	 VThrHCnZwR6Rq0g0ELeJB3Pa5IH9mLfbpSLf18puH5eXsNJlQWdWUJPMr/VfA4P9d1
+	 m0M5pmefqYnvQ==
+Date: Sat, 10 May 2025 10:43:56 +0200
 From: Maxime Ripard <mripard@kernel.org>
 To: Luca Ceresoli <luca.ceresoli@bootlin.com>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -61,31 +61,21 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
 	linux-renesas-soc@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
 	linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
-	linux-stm32@st-md-mailman.stormreply.com, Manikandan Muralidharan <manikandan.m@microchip.com>, 
-	Adam Ford <aford173@gmail.com>, Adrien Grassein <adrien.grassein@gmail.com>, 
-	Aleksandr Mishin <amishin@t-argos.ru>, Andy Yan <andy.yan@rock-chips.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Benson Leung <bleung@chromium.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Christoph Fritz <chf.fritz@googlemail.com>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Detlev Casanova <detlev.casanova@collabora.com>, 
-	Dharma Balasubiramani <dharma.b@microchip.com>, Guenter Roeck <groeck@chromium.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Jani Nikula <jani.nikula@intel.com>, Janne Grunau <j@jannau.net>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Jesse Van Gavere <jesseevg@gmail.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Liu Ying <victor.liu@nxp.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Phong LE <ple@baylibre.com>, Sasha Finkelstein <fnkl.kernel@gmail.com>, 
-	Sugar Zhang <sugar.zhang@rock-chips.com>, Sui Jingfeng <sui.jingfeng@linux.dev>, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Vitalii Mordan <mordan@ispras.ru>
-Subject: Re: [PATCH v3 02/22] drm: convert many bridge drivers from
- devm_kzalloc() to devm_drm_bridge_alloc() API
-Message-ID: <4yeqvg3wnlr2bhb54zutgqpkehrodat5w5x4rr5qjlrc2ts3pz@gr2iosycclpl>
+	linux-stm32@st-md-mailman.stormreply.com, "Rob Herring (Arm)" <robh@kernel.org>, 
+	Hsin-Te Yuan <yuanhsinte@chromium.org>, Jani Nikula <jani.nikula@intel.com>, 
+	Pin-yen Lin <treapking@chromium.org>, Sui Jingfeng <sui.jingfeng@linux.dev>, 
+	Xin Ji <xji@analogixsemi.com>
+Subject: Re: [PATCH v3 03/22] drm/bridge: anx7625: convert to
+ devm_drm_bridge_alloc() API
+Message-ID: <3cccwtayrisa4x6gn4wvmd3unabionun7va3qlh7cmfxf4ukqd@vgwai2ralai7>
 References: <20250509-drm-bridge-convert-to-alloc-api-v3-0-b8bc1f16d7aa@bootlin.com>
- <20250509-drm-bridge-convert-to-alloc-api-v3-2-b8bc1f16d7aa@bootlin.com>
+ <20250509-drm-bridge-convert-to-alloc-api-v3-3-b8bc1f16d7aa@bootlin.com>
 MIME-Version: 1.0
-In-Reply-To: <20250509-drm-bridge-convert-to-alloc-api-v3-2-b8bc1f16d7aa@bootlin.com>
+In-Reply-To: <20250509-drm-bridge-convert-to-alloc-api-v3-3-b8bc1f16d7aa@bootlin.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250510_014312_491200_BD98B455 
-X-CRM114-Status: GOOD (  18.30  )
+X-CRM114-CacheID: sfid-20250510_014401_457687_A51E9BD1 
+X-CRM114-Status: UNSURE (   9.54  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,99 +87,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7353904808717860040=="
+Content-Type: multipart/mixed; boundary="===============3050514401808014253=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============7353904808717860040==
+--===============3050514401808014253==
 Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="mseix42f6fruwdv3"
+	protocol="application/pgp-signature"; boundary="42gmp23z7tcowblp"
 Content-Disposition: inline
 
 
---mseix42f6fruwdv3
+--42gmp23z7tcowblp
 Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 02/22] drm: convert many bridge drivers from
- devm_kzalloc() to devm_drm_bridge_alloc() API
+Subject: Re: [PATCH v3 03/22] drm/bridge: anx7625: convert to
+ devm_drm_bridge_alloc() API
 MIME-Version: 1.0
 
-On Fri, May 09, 2025 at 03:53:28PM +0200, Luca Ceresoli wrote:
-> devm_drm_bridge_alloc() is the new API to be used for allocating (and
-> partially initializing) a private driver struct embedding a struct
-> drm_bridge.
+On Fri, May 09, 2025 at 03:53:29PM +0200, Luca Ceresoli wrote:
+> This is the new API for allocating DRM bridges.
 >=20
-> For many drivers having a simple code flow in the probe function, this
-> commit does a mass conversion automatically with the following semantic
-> patch. The changes have been reviewed manually for correctness as well as
-> to find any false positives.
->=20
-> The patch has been applied with the explicit exclusion of bridge/panel.c,
-> handled by a separate patch.
->=20
-> After applying the semantic patch, manually fixed these issues:
->=20
->  - 4 drivers need ERR_CAST() instead of PTR_ERR() as the function calling
->    devm_drm_bridge_alloc() returns a pointer
->  - re-added empty lines and comments that the script had removed but that
->    should stay
->=20
->   @@
->   type T;
->   identifier C;
->   identifier BR;
->   expression DEV;
->   expression FUNCS;
->   @@
->   -T *C;
->   +T *C;
->    ...
->   (
->   -C =3D devm_kzalloc(DEV, ...);
->   -if (!C)
->   -    return -ENOMEM;
->   +C =3D devm_drm_bridge_alloc(DEV, T, BR, FUNCS);
->   +if (IS_ERR(C))
->   +     return PTR_ERR(C);
->   |
->   -C =3D devm_kzalloc(DEV, ...);
->   -if (!C)
->   -    return ERR_PTR(-ENOMEM);
->   +C =3D devm_drm_bridge_alloc(DEV, T, BR, FUNCS);
->   +if (IS_ERR(C))
->   +     return PTR_ERR(C);
->   )
->    ...
->   -C->BR.funcs =3D FUNCS;
->=20
-> Reviewed-by: Manikandan Muralidharan <manikandan.m@microchip.com> # micro=
-chip-lvds.c
-> Reviewed-by: Douglas Anderson <dianders@chromium.org> # parade-ps8640
-> Tested-by: Douglas Anderson <dianders@chromium.org> # parade-ps8640
 > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 Acked-by: Maxime Ripard <mripard@kernel.org>
 
-Maxime
-
---mseix42f6fruwdv3
+--42gmp23z7tcowblp
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaB8RkwAKCRAnX84Zoj2+
-dqBFAX9RE+B2jnCUcuUtKcNCTEZ8xNW143YQNM29MIx0Gy045sZ9DXgGmQ1PKcXr
-ax3IB2MBgKY7iHiKzY5LSG5f4DqrX/bF/QZAFTTE5/6Clb0TVt4RVPOdxBLJPjrA
-ibmLC8e5mA==
-=lhGP
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaB8RzAAKCRAnX84Zoj2+
+dln/AX40pKuqkRhkQVs6JCH/aLBJ1p4FH2jOlqJApLLs496lo7sUBly+1PuPiI35
+tNCYL7gBgKXxlSu1iZTnQQ03NSmiS7pU7xW+Lr1Yp4YkNPcG6zX8UJqs8WwQCQyQ
+xhT5uOOImg==
+=3aXy
 -----END PGP SIGNATURE-----
 
---mseix42f6fruwdv3--
+--42gmp23z7tcowblp--
 
 
---===============7353904808717860040==
+--===============3050514401808014253==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -200,5 +139,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============7353904808717860040==--
+--===============3050514401808014253==--
 
