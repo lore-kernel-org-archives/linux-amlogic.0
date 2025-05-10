@@ -4,37 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CCCFC3ABC9
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 May 2025 16:02:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA846C3ABC3
+	for <linux-amlogic@archiver.kernel.org>; Sat, 10 May 2025 16:04:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4aUzVNTNuHPFSbO5zRJ+pvK0SlnrsjzhvIVpsKuGE20=; b=TkOayx8SSA9NkH
-	HZsdBMaU+6/Gi/T6ZzjO0koDRpJEf/zPDUhiMrSkoNDjQwLK5z4ZtT5RmwepUNWekLgBXB0ddJUj1
-	/UXoBC5jrd7Zwau3ygQJMm0XNhzP98dRBU30phCofILkt8aGm69Gz3Kdk49Nc3/WlGFWURdrZURqT
-	l8Cw+GH9Y6LXDhOBaNct7vK7HrJ/rvvhE03U7nB7IVDhxvSLn/EOfzmZbFS3sZuHUKajEU0nMkP7u
-	YtDF3O0ynMA8FxvBC8+UsTHPQky3OPu8eUEk/1u0IFyhuoXEp/JWxmF6K/6U5vk8CNuBrTuPYrMHl
-	8TND9LWHhL/H/5C8o12w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=yEG/bzchZGRvTLRwroLMmyZ7S7s8T6gGzEk2owt1pKs=; b=oy3ZaNDvW+Ju1X
+	RU0flX33SghCF+t1KuDqTXSsNBHkYh+Hum707ZiTj1tk5/qzUgo7U/hUD/GqqO7KqunmoWIxRuwQf
+	QeoyXVxLVQ4Z2xG2nA6RDV6c9z5fK9QQbe4gNkOdcMWIPXqrjIIZwTcRL7DDdr+orri4K5iQ7tkGN
+	96BraR9K1CXs0X9x5kvVwUIHaZkqYuv49lotf8RMwS1f6yuoTaCj+nUn0sGDunKCXnYPO1na9scIr
+	mSaoZsHJDmZY1Rillmrbzt1RGMgMjHNEAJ4P9SbFPYFVhmcg+5y9THrZrP875LAcnFrsnd7icocD3
+	1U2dhlkY2CgSbW6n+BSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uDmef-000000068UG-3XZJ;
-	Sat, 10 May 2025 16:02:25 +0000
-Received: from m16.mail.163.com ([117.135.210.2])
+	id 1uDmgh-000000068hL-1M5I;
+	Sat, 10 May 2025 16:04:31 +0000
+Received: from m16.mail.163.com ([220.197.31.4])
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uDmZP-00000006825-0fGF;
-	Sat, 10 May 2025 15:57:00 +0000
+	id 1uDmZP-0000000681s-0rDi;
+	Sat, 10 May 2025 15:57:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=rt
-	Q9WMCTmJv+q//MSyeDx5RtHg7RmBudAr1AhWxe120=; b=GgdHW93tUx77vORi6x
-	qW3SWpBZzIQzA640G4HC/eJr+guTwrSZ56s/WKUQJ4dFtd25xbmMjYQJ8ySP9LTh
-	VIZDtAi6xtj9o13MDLozc2EkxpXhOt0YipS+diVVKeKB6pHv368tH+34QX35nWXX
-	LadrG+oUr7BxwmPcT4JV2lwCc=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=DE
+	u0ugbaD/EBsgXHrzA+saK2ZnHcC31tU43n92kMs3Q=; b=X2PmB14lcNS9bPpiGB
+	3NxGhEVTtE7UpB/dr22ViWJ840f8diVGc0uL0PU0EzKcJdSy3O1+x+ej4XuCeQDh
+	uFVzrWgi4RRBb+pDwTD9UAEPLkrKPeoPl3pN3ce3qimhaCI4m1bKX4IFkneu9N+X
+	liB8/omO2GJu96M9LrKtKTQUs=
 Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDXjxsYdx9ormDlAQ--.43845S3;
-	Sat, 10 May 2025 23:56:10 +0800 (CST)
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDXjxsYdx9ormDlAQ--.43845S2;
+	Sat, 10 May 2025 23:56:09 +0800 (CST)
 From: Hans Zhang <18255117159@163.com>
 To: lpieralisi@kernel.org,
 	kw@linux.com,
@@ -54,25 +54,23 @@ Cc: pali@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
-	Hans Zhang <18255117159@163.com>,
-	Niklas Cassel <cassel@kernel.org>
-Subject: [PATCH v4 1/2] PCI: Configure root port MPS during host probing
-Date: Sat, 10 May 2025 23:56:06 +0800
-Message-Id: <20250510155607.390687-2-18255117159@163.com>
+	Hans Zhang <18255117159@163.com>
+Subject: [PATCH v4 0/2] Configure root port MPS during host probing
+Date: Sat, 10 May 2025 23:56:05 +0800
+Message-Id: <20250510155607.390687-1-18255117159@163.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250510155607.390687-1-18255117159@163.com>
-References: <20250510155607.390687-1-18255117159@163.com>
 MIME-Version: 1.0
-X-CM-TRANSID: _____wDXjxsYdx9ormDlAQ--.43845S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxWw4xWw4rWF4kKr48uFW5GFg_yoWruw1rpa
-	y3XFWSyrZ7GF1fWan3Ja109r15trsav343trZxGw1ruw15AFy8KrWaya1rJas7GrZ7ZFyY
-	vr90qry8uan5ZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pEwZ25UUUUU=
+X-CM-TRANSID: _____wDXjxsYdx9ormDlAQ--.43845S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7JF4Dtw1fAFW7ur4rGry8Xwb_yoWDKwc_uF
+	WrCayDWw47AFyvyF1rKF4Syryjva97uryUW3WvqayakasxZr13Xana9FW2g3WrWFWSkFsx
+	Cr9xZrWfAr12vjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRdb1nUUUUUU==
 X-Originating-IP: [124.79.128.52]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiOhNJo2gfbZ-YXQABsC
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiOhhJo2gfbZ-YWwAAsO
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250510_085659_551765_929F32B8 
-X-CRM114-Status: GOOD (  16.83  )
+X-CRM114-CacheID: sfid-20250510_085659_624613_11A5D61D 
+X-CRM114-Status: UNSURE (   6.15  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,133 +87,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Current PCIe initialization logic may leave root ports operating with
-non-optimal Maximum Payload Size (MPS) settings. While downstream device
-configuration is handled during bus enumeration, root port MPS values
-inherited from firmware or hardware defaults might not utilize the full
-capabilities supported by the controller hardware. This can result is
-uboptimal data transfer efficiency across the PCIe hierarchy.
+1. PCI: Configure root port MPS during host probing
+2. PCI: dwc: Remove redundant MPS configuration
 
-During host controller probing phase, when PCIe bus tuning is enabled,
-the implementation now configures root port MPS settings to their
-hardware-supported maximum values. By iterating through bridge devices
-under the root bus and identifying PCIe root ports, each port's MPS is
-set to 128 << pcie_mpss to match the device's maximum supported payload
-size. The Max Read Request Size (MRRS) is subsequently adjusted through
-existing companion logic to maintain compatibility with PCIe
-specifications.
-
-Explicit initialization at host probing stage ensures consistent PCIe
-topology configuration before downstream devices perform their own MPS
-negotiations. This proactive approach addresses platform-specific
-requirements where controller drivers depend on properly initialized
-root port settings, while maintaining backward compatibility through
-PCIE_BUS_TUNE_OFF conditional checks. Hardware capabilities are fully
-utilized without altering existing device negotiation behaviors.
-
-Suggested-by: Niklas Cassel <cassel@kernel.org>
-Signed-off-by: Hans Zhang <18255117159@163.com>
 ---
- drivers/pci/probe.c | 72 ++++++++++++++++++++++++++-------------------
- 1 file changed, 41 insertions(+), 31 deletions(-)
+Changes for v4:
+- The patch [v4 1/2] add a comment to explain why it was done this way.
+- The patch [v4 2/2] have not been modified.
+- Drop patch [v3 3/3]. The Maintainer of the pci-aardvark.c file suggests
+  that this patch cannot be submitted. In addition, Mani also suggests
+  dropping this patch until this series of issues is resolved.
 
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index 364fa2a514f8..1f67c03d170a 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -2149,6 +2149,37 @@ int pci_setup_device(struct pci_dev *dev)
- 	return 0;
- }
- 
-+static void pcie_write_mps(struct pci_dev *dev, int mps)
-+{
-+	int rc;
-+
-+	if (pcie_bus_config == PCIE_BUS_PERFORMANCE) {
-+		mps = 128 << dev->pcie_mpss;
-+
-+		if (pci_pcie_type(dev) != PCI_EXP_TYPE_ROOT_PORT &&
-+		    dev->bus->self)
-+
-+			/*
-+			 * For "Performance", the assumption is made that
-+			 * downstream communication will never be larger than
-+			 * the MRRS.  So, the MPS only needs to be configured
-+			 * for the upstream communication.  This being the case,
-+			 * walk from the top down and set the MPS of the child
-+			 * to that of the parent bus.
-+			 *
-+			 * Configure the device MPS with the smaller of the
-+			 * device MPSS or the bridge MPS (which is assumed to be
-+			 * properly configured at this point to the largest
-+			 * allowable MPS based on its parent bus).
-+			 */
-+			mps = min(mps, pcie_get_mps(dev->bus->self));
-+	}
-+
-+	rc = pcie_set_mps(dev, mps);
-+	if (rc)
-+		pci_err(dev, "Failed attempting to set the MPS\n");
-+}
-+
- static void pci_configure_mps(struct pci_dev *dev)
- {
- 	struct pci_dev *bridge = pci_upstream_bridge(dev);
-@@ -2178,6 +2209,16 @@ static void pci_configure_mps(struct pci_dev *dev)
- 		return;
- 	}
- 
-+	/*
-+	 * Unless MPS strategy is PCIE_BUS_TUNE_OFF (don't touch MPS at all),
-+	 * start off by setting root ports' MPS to MPSS. Depending on the MPS
-+	 * strategy, and the MPSS of the devices below the root port, the MPS
-+	 * of the root port might get overridden later.
-+	 */
-+	if (pci_pcie_type(dev) == PCI_EXP_TYPE_ROOT_PORT &&
-+	    pcie_bus_config != PCIE_BUS_TUNE_OFF)
-+		pcie_write_mps(dev, 128 << dev->pcie_mpss);
-+
- 	if (!bridge || !pci_is_pcie(bridge))
- 		return;
- 
-@@ -2875,37 +2916,6 @@ static int pcie_find_smpss(struct pci_dev *dev, void *data)
- 	return 0;
- }
- 
--static void pcie_write_mps(struct pci_dev *dev, int mps)
--{
--	int rc;
--
--	if (pcie_bus_config == PCIE_BUS_PERFORMANCE) {
--		mps = 128 << dev->pcie_mpss;
--
--		if (pci_pcie_type(dev) != PCI_EXP_TYPE_ROOT_PORT &&
--		    dev->bus->self)
--
--			/*
--			 * For "Performance", the assumption is made that
--			 * downstream communication will never be larger than
--			 * the MRRS.  So, the MPS only needs to be configured
--			 * for the upstream communication.  This being the case,
--			 * walk from the top down and set the MPS of the child
--			 * to that of the parent bus.
--			 *
--			 * Configure the device MPS with the smaller of the
--			 * device MPSS or the bridge MPS (which is assumed to be
--			 * properly configured at this point to the largest
--			 * allowable MPS based on its parent bus).
--			 */
--			mps = min(mps, pcie_get_mps(dev->bus->self));
--	}
--
--	rc = pcie_set_mps(dev, mps);
--	if (rc)
--		pci_err(dev, "Failed attempting to set the MPS\n");
--}
--
- static void pcie_write_mrrs(struct pci_dev *dev)
- {
- 	int rc, mrrs;
+Changes for v3:
+- The new split is patch 2/3 and 3/3.
+- Modify the patch 1/3 according to Niklas' suggestion.
+
+Changes for v2:
+- According to the Maintainer's suggestion, limit the setting of MPS
+  changes to platforms with controller drivers.
+- Delete the MPS code set by the SOC manufacturer.
+---
+
+Hans Zhang (2):
+  PCI: Configure root port MPS during host probing
+  PCI: dwc: Remove redundant MPS configuration
+
+ drivers/pci/controller/dwc/pci-meson.c | 17 ------
+ drivers/pci/probe.c                    | 72 +++++++++++++++-----------
+ 2 files changed, 41 insertions(+), 48 deletions(-)
+
+
+base-commit: 01f95500a162fca88cefab9ed64ceded5afabc12
 -- 
 2.25.1
 
