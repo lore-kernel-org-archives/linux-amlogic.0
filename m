@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AE3DC3ABC3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 May 2025 14:30:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3DD3C3ABD7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 May 2025 14:57:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ok4BEFfE5MG002SsaQ7Tt8JBSeB1tIDFC4hYYtdP/lU=; b=kxH/fHpo911vhs
-	RZgWZNa4JMg91sQBZ2y6i8YNcfbvlKOLYwMeFHr5Fw7hUa7BjX58e5e963JW2gE7LWeqTma3tRveK
-	Ubi0a+d7TCwSYsYMJpAF89XuRRWGwQXJu34G6iJCkhUOQx2diXREmTAsFx8bYXVN7zjnm3H8aNCwF
-	DF4x417h7sIvnsSETHMBsxNSIRM7G8PVqF/XRqQDMLjtlWibPXs7jS3d+0oyDf+H59zIT6edRRuXb
-	f70Vepry5qdOQT7x9zNb+lk07DzqoFj8GITDJPq4NDj84s+2sKf6jPG84C0Wj32EtUuZtWKDHaInn
-	BI864/742odQT3TtINYw==;
+	List-Owner; bh=7Hny5udPeLZyE4WvjCXIqz2Mjh6cEhmZSlKj4Aq9qMk=; b=3aSOsd4aI6NIK9
+	3QMhOexkmjWBC03GB1ZC5R+vc0eQxdnt22GhaZNoEIGkJuKczdbtpytPJbAeN5cqikf2IJvs3b5J9
+	MfsYx2jl/mxPxvIfIQPpeHUAuK4bCnan3nOSqntbpPg/ccHReIWlnBOLQFRPlcSYbbJdzybuBMu4u
+	CQ1APAxZfJpYh5kou2uO/U02yX9NbLtaj0XznJ/KdBMfo1jzb3rWYsbPNcHhWxMVwUUn4kEK3UKLU
+	NDaAQRQ/GqsacRvJGUQeFaYcKWj7cYGBKcqRSPh6h8y7qUDtNbf2kBvV7oi80o1VwBc+QJI8Tdi8e
+	WmIHtinp2R/9YVtnjRLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uEqe0-0000000Cc86-31sV;
-	Tue, 13 May 2025 14:30:08 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
-	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uEqaj-0000000Cbgk-1bui;
-	Tue, 13 May 2025 14:26:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1747146402;
-	bh=qYsRr27KyrzorRZGruY/mzik8/noi2HJgHEFtl9lCDw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NaqflHUzrjEmu83Eqdfz5vLp3EilaB2O8KPNvY/sTINp3b2J4o5wHRZqljmqVRHPx
-	 TeVF5AcuzpPhIVekv8CFOpJOZ9DOfuwDUzBHhM/yXBOyG8bx/Zvr5nho2SVKiTx1ql
-	 /qNsZl1ujKNzhm96njzQwruku+sC32EX2KPdD5XeoG5tSvTdRCWR1cVBy7YuYY05mR
-	 Q75J20j6QqMg10Zbv486KCoDTgxHE/fTppHbI+92pKiCxTSeCDw4jczEDWxeoD4wU8
-	 2jBNrGQfXx8Jqu516PEzb6+Hqk7ZoYYyb3jnsY3FCmjHnDzionLtLxHko5F/rl2Hsr
-	 P/KZgNU5s1ZdA==
-Received: from [192.168.50.250] (unknown [171.76.80.110])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4A75C17E07E4;
-	Tue, 13 May 2025 16:26:40 +0200 (CEST)
-Message-ID: <714a719a-9e56-4158-a8ce-118b7ddb97b3@collabora.com>
-Date: Tue, 13 May 2025 19:56:29 +0530
+	id 1uEr43-0000000CgXt-0Zdy;
+	Tue, 13 May 2025 14:57:03 +0000
+Received: from m16.mail.163.com ([220.197.31.4])
+	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uEr1K-0000000Cg25-3RZR;
+	Tue, 13 May 2025 14:54:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=nXQDzb+tFFVU+4SLdENHkW/1SY6XdLMilSABvcCoeBU=;
+	b=M4t9yiWS6jQq9lz15VN6CVAutd+twdoSe9/gfmvn4tn9O3peNgeaTMQ/EcejzC
+	KEFcIIZ6IYe7GW1kjoyKFkMSD8kwDZqSOPo4tO5tOF4QO+EsyfmPBlZD8DhhkCr9
+	/4j2/u98y0120iF+3FSwZbK/zCM1HUC867PBfoJZz+UA8=
+Received: from [192.168.71.93] (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDXt+XpXCNoldCmBA--.8342S2;
+	Tue, 13 May 2025 22:53:30 +0800 (CST)
+Message-ID: <ade4c14a-ff20-4001-8eda-75fef15df62c@163.com>
+Date: Tue, 13 May 2025 22:53:29 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: amlogic: Synchronous Abort with v6.15-rc6
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>
-Cc: khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, sboyd@kernel.org,
- daniels <daniels@collabora.com>, Daniel Stone <daniel@fooishbar.org>,
- lumag@kernel.org, robdclark <robdclark@gmail.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <eb9281cc-de91-48a4-bbd6-f67ddc67a9dd@collabora.com>
- <b090cef6-5b9e-4149-872d-0316666f9e90@linaro.org>
+Subject: Re: [PATCH v4 1/2] PCI: Configure root port MPS during host probing
+To: Niklas Cassel <cassel@kernel.org>
+Cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+ heiko@sntech.de, manivannan.sadhasivam@linaro.org, yue.wang@amlogic.com,
+ pali@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
+ jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20250510155607.390687-1-18255117159@163.com>
+ <20250510155607.390687-2-18255117159@163.com> <aCL9CStLrGEY2MEH@ryzen>
 Content-Language: en-US
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <b090cef6-5b9e-4149-872d-0316666f9e90@linaro.org>
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <aCL9CStLrGEY2MEH@ryzen>
+X-CM-TRANSID: _____wDXt+XpXCNoldCmBA--.8342S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJF1rtrW7uFW3uw4rAFWkZwb_yoW8ur1Dpa
+	y8Xw4vyFZ7WryfG3WDAa109rWjqas5CF43JrZ8JryqqFn8C3WqqrWYka1Fqas7Grnayw1j
+	vw1jqry8uws0yFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UpKZXUUUUU=
+X-Originating-IP: [124.79.128.52]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiOhxMo2gjWD+jDQAAsL
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250513_072645_580363_74BC41A9 
-X-CRM114-Status: GOOD (  14.80  )
+X-CRM114-CacheID: sfid-20250513_075415_276946_1EDE6C7E 
+X-CRM114-Status: GOOD (  11.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,103 +74,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTmVpbCwKCk9uIDEzLzA1LzI1IDE1OjI1LCBuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnIHdy
-b3RlOgo+IEhpLAo+IAo+IE9uIDEzLzA1LzIwMjUgMTE6NDEsIFZpZ25lc2ggUmFtYW4gd3JvdGU6
-Cj4+IEhpLAo+Pgo+PiBUaGUgQW1sb2dpYyBNZXNvbiBHMTJCIChBMzExRCkgU29DIGJvYXJkICht
-ZXNvbi1nMTJiLWEzMTFkLWtoYWRhcy0gCj4+IHZpbTMpIGZhaWxzIHRvIGJvb3Qgd2l0aCB0aGUg
-Zm9sbG93aW5nIGxvZ3MsCj4+Cj4+IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy92aWdu
-ZXNocmFtYW4vbGludXgvLS9qb2JzLzc2MjEwMjAwCj4+Cj4+IDAyOjU4OjI3LjgxOTogU3RhcnRp
-bmcga2VybmVsIC4uLgo+PiAwMjo1ODoyNy44MTk6ICJTeW5jaHJvbm91cyBBYm9ydCIgaGFuZGxl
-ciwgZXNyIDB4OTYwMDAwMTAsIGZhciAweDUxMDAwZDgKPj4gMDI6NTg6MjcuODE5OiAiU3luY2hy
-b25vdXMgQWJvcnQiIGhhbmRsZXIsIGVzciAweDk2MDAwMDEwLCBmYXIgMHg1MTAwMGM4Cj4+IDAy
-OjU4OjI3LjgxOTogZWxyOiAwMDAwMDAwMDAxMDAyYTQ4IGxyIDogMDAwMDAwMDAwMTAwMmM4OCAo
-cmVsb2MpCj4+IDAyOjU4OjI3LjgxOTogZWxyOiAwMDAwMDAwMGYyZjI2YTQ4IGxyIDogMDAwMDAw
-MDBmMmYyNmM4OAo+PiAwMjo1ODoyNy44MTk6IHgwIDogMDAwMDAwMDAwNTBmZmZjMCB4MSA6IDAw
-MDAwMDAwMDEwMDQzODMKPj4gMDI6NTg6MjcuODE5OiB4MiA6IDAwMDAwMDAwZjJmNmEzNTggeDMg
-OiAwMDAwMDAwMDAwMDAwMDNmCj4+IDAyOjU4OjI3LjgxOTogeDQgOiAwMDAwMDAwMGY0ZmVmZmZj
-IHg1IDogMDAwMDAwMDAwMDAwMDAxMAo+PiAwMjo1ODoyNy44MTk6IHg2IDogMDAwMDAwMDBmNGU1
-YjAwMCB4NyA6IDAwMDAwMDAwMDUwZmZmYTAKPj4gMDI6NTg6MjcuODE5OiB4OCA6IDAwMDAwMDAw
-MDAwMDAwMDggeDkgOiAwMDAwMDAwMDAwMDAwMDAxCj4+IDAyOjU4OjI3LjgyMDogeDEwOiAwMDAw
-MDAwMDAwMDAwMDEwIHgxMTogMDAwMDAwMDAwMDAwMDAwNAo+PiAwMjo1ODoyNy44MjA6IHgxMjog
-MDAwMDAwMDBmNGZlZmMwMCB4MTM6IDAwMDAwMDAwMDAwMDAwMDAKPj4gMDI6NTg6MjcuODIwOiB4
-MTQ6IDAwMDAwMDAwZjRmZWZjMDAgeDE1OiAwMDAwMDAwMDAwMDAwMDAwCj4+IDAyOjU4OjI3Ljgy
-MDogeDE2OiAwMDAwMDAwMGYyZjZkMGUwIHgxNzogMDAwMDAwMDAwMGMwYzBjMAo+PiAwMjo1ODoy
-Ny44MjA6IHgxODogMDAwMDAwMDBmMGYyMWQ5MCB4MTk6IDAwMDAwMDAwMDUwZmZmYzAKPj4gMDI6
-NTg6MjcuODIwOiB4MjA6IDAwMDAwMDAwMDAwMDAwMDAgeDIxOiAwMDAwMDAwMDdmZmU5MDAwCj4+
-IDAyOjU4OjI3LjgyMDogeDIyOiAwMDAwMDAwMDAwMDAxNzEwIHgyMzogMDAwMDAwMDBmMGYwZThj
-MAo+PiAwMjo1ODoyNy44MjA6IHgyNDogMDAwMDAwMDAwMDAwMDAwMCB4MjU6IDAwMDAwMDAwMDAw
-MDAwMDAKPj4gMDI6NTg6MjcuODIwOiB4MjY6IDAwMDAwMDAwMDAwMDAwMDAgeDI3OiAwMDAwMDAw
-MDAwMDAwMDAwCj4+IDAyOjU4OjI3LjgyMDogeDI4OiAwMDAwMDAwMGYwZjRmNzkwIHgyOTogMDAw
-MDAwMDAwNTBmZmY2MAo+PiAwMjo1ODoyNy44MjA6IENvZGU6IGE5MDI1YmY1IGY5MDAxYmY3IGY5
-NDAwNjQxIDM2MDAwMTQxIChmOTQwODY2MykKPj4gMDI6NTg6MjcuODIwOiBSZXNldHRpbmcgQ1BV
-IC4uLgo+Pgo+IAo+IENvdWxkIHlvdSBib290IHdpdGggZWFybHljb24gZW5hYmxlZCB0byBhdCBs
-ZWFzdCBoYXZlIGEgY2x1ZSBvZiB3aGF0J3MgCj4gaGFwcGVuaW5nID8KClRoZXJlIGlzIGEgc3lu
-Y2hyb25vdXMgYWJvcnQgcmlnaHQgYWZ0ZXIgJ1N0YXJ0aW5nIGtlcm5lbC4uLicuIE1heWJlIAp0
-aGlzIHByZXZlbnRzIGFueSBlYXJseSBjb25zb2xlIGxvZ3MgZnJvbSBhcHBlYXJpbmcuCgpodHRw
-czovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvdmlnbmVzaHJhbWFuL2xpbnV4Ly0vam9icy83NjI0
-MzQ1NQoKMTM6NTQ6MDIuMDEzOiA9PiBzZXRlbnYgYm9vdGFyZ3MgJ2NvbnNvbGU9dHR5QU1MMCwx
-MTUyMDBuOCByb290PS9kZXYvbmZzIApydyAKbmZzcm9vdD0xOTIuMTY4LjIwMS4xOi92YXIvbGli
-L2xhdmEvZGlzcGF0Y2hlci90bXAvMTg2NDE2NjUvZXh0cmFjdC1uZnNyb290ZnMtaDJmanNtZGMs
-dGNwLGhhcmQsdjMgCmluaXQ9L2luaXQgcm9vdHdhaXQgdXNiY29yZS5xdWlya3M9MGJkYTo4MTUz
-OmsgZWFybHljb249bWVzb24sMHhmZjgwMzAwMCAKa2VlcF9ib290Y29uICBpcD1kaGNwJwoxMzo1
-NDowMi4wMTQ6ICQgYm9vdGkgMHgxMDgwMDAwIC0gMHgxMDAwMDAwCjEzOjU0OjAyLjAxNDogPT4g
-Ym9vdGkgMHgxMDgwMDAwIC0gMHgxMDAwMDAwCjEzOjU0OjAyLjAxNDogTW92aW5nIEltYWdlIGZy
-b20gMHgxMDgwMDAwIHRvIDB4MTIwMDAwMCwgZW5kPTUxNjAwMDAKMTM6NTQ6MDIuMDE0OiAjIyBG
-bGF0dGVuZWQgRGV2aWNlIFRyZWUgYmxvYiBhdCAwMTAwMDAwMAoxMzo1NDowMi4wMTQ6ICAgIEJv
-b3RpbmcgdXNpbmcgdGhlIGZkdCBibG9iIGF0IDB4MTAwMDAwMAoxMzo1NDowMi4wMTQ6IFdvcmtp
-bmcgRkRUIHNldCB0byAxMDAwMDAwCjEzOjU0OjAyLjAxNDogRVJST1I6IHJlc2VydmluZyBmZHQg
-bWVtb3J5IHJlZ2lvbiBmYWlsZWQgKGFkZHI9NTAwMDAwMCAKc2l6ZT0zMDAwMDAgZmxhZ3M9NCkK
-MTM6NTQ6MDIuMDE0OiAgICBMb2FkaW5nIERldmljZSBUcmVlIHRvIDAwMDAwMDAwN2ZmZTkwMDAs
-IGVuZCAKMDAwMDAwMDA3ZmZmZjU3YyAuLi4gT0sKMTM6NTQ6MDIuMDE0OiBXb3JraW5nIEZEVCBz
-ZXQgdG8gN2ZmZTkwMDAKMTM6NTQ6MDIuMDE0OiBTdGFydGluZyBrZXJuZWwgLi4uCjEzOjU0OjAy
-LjAxNDogIlN5bmNocm9ub3VzIEFib3J0IiBoYW5kbGVyLCBlc3IgMHg5NjAwMDAxMCwgZmFyIDB4
-NTEwMDBkOAoxMzo1NDowMi4wMTQ6ICJTeW5jaHJvbm91cyBBYm9ydCIgaGFuZGxlciwgZXNyIDB4
-OTYwMDAwMTAsIGZhciAweDUxMDAwYzgKMTM6NTQ6MDIuMDE0OiBlbHI6IDAwMDAwMDAwMDEwMDJh
-NDggbHIgOiAwMDAwMDAwMDAxMDAyYzg4IChyZWxvYykKMTM6NTQ6MDIuMDE0OiBlbHI6IDAwMDAw
-MDAwZjJmMjZhNDggbHIgOiAwMDAwMDAwMGYyZjI2Yzg4CjEzOjU0OjAyLjAxNDogeDAgOiAwMDAw
-MDAwMDA1MGZmZmMwIHgxIDogMDAwMDAwMDAwMTAwNDM4MwoxMzo1NDowMi4wMTQ6IHgyIDogMDAw
-MDAwMDBmMmY2YTM1OCB4MyA6IDAwMDAwMDAwMDAwMDAwM2YKMTM6NTQ6MDIuMDE0OiB4NCA6IDAw
-MDAwMDAwZjRmZWZmZmMgeDUgOiAwMDAwMDAwMDAwMDAwMDEwCjEzOjU0OjAyLjAxNDogeDYgOiAw
-MDAwMDAwMGY0ZTViMDAwIHg3IDogMDAwMDAwMDAwNTBmZmZhMAoxMzo1NDowMi4wMTQ6IHg4IDog
-MDAwMDAwMDAwMDAwMDAwOCB4OSA6IDAwMDAwMDAwMDAwMDAwMDEKMTM6NTQ6MDIuMDE0OiB4MTA6
-IDAwMDAwMDAwMDAwMDAwMTAgeDExOiAwMDAwMDAwMDAwMDAwMDA0CjEzOjU0OjAyLjAxNDogeDEy
-OiAwMDAwMDAwMGY0ZmVmYzAwIHgxMzogMDAwMDAwMDAwMDAwMDAwMAoxMzo1NDowMi4wMTQ6IHgx
-NDogMDAwMDAwMDBmNGZlZmMwMCB4MTU6IDAwMDAwMDAwMDAwMDAwMDAKMTM6NTQ6MDIuMDE0OiB4
-MTY6IDAwMDAwMDAwZjJmNmQwZTAgeDE3OiAwMDAwMDAwMDAwYzBjMGMwCjEzOjU0OjAyLjAxNDog
-eDE4OiAwMDAwMDAwMGYwZjIxZDkwIHgxOTogMDAwMDAwMDAwNTBmZmZjMAoxMzo1NDowMi4wMTQ6
-IHgyMDogMDAwMDAwMDAwMDAwMDAwMCB4MjE6IDAwMDAwMDAwN2ZmZTkwMDAKMTM6NTQ6MDIuMDE0
-OiB4MjI6IDAwMDAwMDAwMDAwMDE3MTAgeDIzOiAwMDAwMDAwMGYwZjBlOGMwCjEzOjU0OjAyLjAx
-NDogeDI0OiAwMDAwMDAwMDAwMDAwMDAwIHgyNTogMDAwMDAwMDAwMDAwMDAwMAoxMzo1NDowMi4w
-MTQ6IHgyNjogMDAwMDAwMDAwMDAwMDAwMCB4Mjc6IDAwMDAwMDAwMDAwMDAwMDAKMTM6NTQ6MDIu
-MDE0OiB4Mjg6IDAwMDAwMDAwZjBmNTY2YTAgeDI5OiAwMDAwMDAwMDA1MGZmZjYwCjEzOjU0OjAy
-LjAxNDogQ29kZTogYTkwMjViZjUgZjkwMDFiZjcgZjk0MDA2NDEgMzYwMDAxNDEgKGY5NDA4NjYz
-KQoxMzo1NDowMi4wMTQ6IFJlc2V0dGluZyBDUFUgLi4uCgpTdWNjZXNzZnVsIGxvZ3Mgd2l0aCB2
-Ni4xNC1yYzcsCmh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy92aWduZXNocmFtYW4vbGlu
-dXgvLS9qb2JzLzc2MjQ4MTQzCgo+IAo+IEJQSS1NMlMgKEEzMTFEKSBpcyBib290aW5nIGZpbmUg
-b24gdjYuMTUtcmMsIHNlZSBodHRwczovL2dpdGxhYi5jb20vIAo+IGFtbG9naWMtZm9zcy9hYmNk
-LWxpbnV4LXRlc3QvLS9qb2JzLzEwMDA0OTk3MDMyCj4gCj4gQnV0IHBlcmhhcHMgc29tZXRoaW5n
-IHNwZWNpZmljIHRvIHRoZSBWSU0zIGlzIGJyZWFraW5nLCBkbyB5b3UgY2hhbmdlIAo+IHRoZSBr
-ZXJuZWwgY29uZmlnIGZvciB0aGUgRFJNID8KClllcywgd2UgY2hhbmdlIHRoZSBjb25maWcuIFBs
-ZWFzZSBzZWUgdGhlIGNvbmZpZyB1c2VkIHRvIGJ1aWxkIHRoZSBrZXJuZWwsCmh0dHBzOi8vZ2l0
-bGFiLmZyZWVkZXNrdG9wLm9yZy92aWduZXNocmFtYW4vbGludXgvLS9qb2JzLzc2MjQzNDM5L2Fy
-dGlmYWN0cy9maWxlL2FydGlmYWN0cy90ZXN0aW5nOmFybTY0X2NvbmZpZwoKUmVnYXJkcywKVmln
-bmVzaAoKPiAKPiBOZWlsCj4gCj4gCj4+IFRoZSBib2FyZCBib290cyBzdWNjZXNzZnVsbHkgaW4g
-djYuMTQtcmM3LCBidXQgdGhlIGlzc3VlIGFwcGVhcnMgCj4+IHN0YXJ0aW5nIGZyb20gdjYuMTUt
-cmMxLiBUaGVzZSB0ZXN0cyB3ZXJlIHJ1biBpbiBkcm0tY2kuCj4+Cj4+IE9uIGJpc2VjdGluZyB0
-aGUga2VybmVsLCB0aGUgZmlyc3QgYmFkIGNvbW1pdCBpZGVudGlmaWVkIGJ5IGdpdCBiaXNjZXQg
-Cj4+IGlzLAo+Pgo+PiA1OWMzNTQxNmY0MjQ2YWVlNjZiNWY1NTIzZmRjOTUwYjgzMzI1ZDgyIGlz
-IHRoZSBmaXJzdCBiYWQgY29tbWl0Cj4+IGNvbW1pdCA1OWMzNTQxNmY0MjQ2YWVlNjZiNWY1NTIz
-ZmRjOTUwYjgzMzI1ZDgyCj4+IE1lcmdlOiA0NzI4NjNhYjJhY2EgZTk4OGFkY2I1ZGVlCj4+IEF1
-dGhvcjogTGludXMgVG9ydmFsZHMgPHRvcnZhbGRzQGxpbnV4LWZvdW5kYXRpb24ub3JnPgo+PiBE
-YXRlOsKgwqAgU2F0IE1hciAyOSAxNzoyMzozNCAyMDI1IC0wNzAwCj4+Cj4+IMKgwqDCoMKgIE1l
-cmdlIHRhZyAnY2xrLWZvci1saW51cycgb2YgZ2l0Oi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9s
-aW51eC8gCj4+IGtlcm5lbC9naXQvY2xrL2xpbnV4Cj4+Cj4+IFBsZWFzZSBjb3VsZCB5b3UgbG9v
-ayBpbnRvIHRoaXMgaXNzdWUuIFRoYW5rIHlvdS4KPj4KPj4gUmVnYXJkcywKPj4gVmlnbmVzaAo+
-IAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
-LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
-dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+
+On 2025/5/13 16:04, Niklas Cassel wrote:
+> On Sat, May 10, 2025 at 11:56:06PM +0800, Hans Zhang wrote:
+>> Current PCIe initialization logic may leave root ports operating with
+>> non-optimal Maximum Payload Size (MPS) settings. While downstream device
+>> configuration is handled during bus enumeration, root port MPS values
+>> inherited from firmware or hardware defaults might not utilize the full
+>> capabilities supported by the controller hardware. This can result is
+>> uboptimal data transfer efficiency across the PCIe hierarchy.
+>>
+>> During host controller probing phase, when PCIe bus tuning is enabled,
+>> the implementation now configures root port MPS settings to their
+>> hardware-supported maximum values. By iterating through bridge devices
+>> under the root bus and identifying PCIe root ports, each port's MPS is
+>> set to 128 << pcie_mpss to match the device's maximum supported payload
+>> size. The Max Read Request Size (MRRS) is subsequently adjusted through
+>> existing companion logic to maintain compatibility with PCIe
+>> specifications.
+>>
+>> Explicit initialization at host probing stage ensures consistent PCIe
+>> topology configuration before downstream devices perform their own MPS
+>> negotiations. This proactive approach addresses platform-specific
+>> requirements where controller drivers depend on properly initialized
+>> root port settings, while maintaining backward compatibility through
+>> PCIE_BUS_TUNE_OFF conditional checks. Hardware capabilities are fully
+>> utilized without altering existing device negotiation behaviors.
+>>
+>> Suggested-by: Niklas Cassel <cassel@kernel.org>
+>> Signed-off-by: Hans Zhang <18255117159@163.com>
+>> ---
+> 
+> Looks good to me, but since this I'm the one who suggested this specific
+> implementation, it would be good if someone else could review it as well.
+> 
+> Reviewed-by: Niklas Cassel <cassel@kernel.org>
+
+Dear Niklas,
+
+Thank you very much for your review and suggestions. Let's wait for 
+others' opinions.
+
+Best regards,
+Hans
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
