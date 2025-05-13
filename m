@@ -4,76 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B40FC3ABC9
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 May 2025 10:19:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 881A0C3ABD7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 May 2025 11:34:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
 	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=M3RtwBgu/C6H62aoL0vjiJVPIrdBBKOoxTgvYcMZalg=; b=M2fgCVO5JjXanp
-	kc9nd1GrOk7xJAydrgst/FbbHkYXwGKHnOQG/a3J5SXQ8jDqg0Dcg6HKJES5AkZ196dD00DMzqjE5
-	ViOFRn9yKEprpxM1J3M1qC83RC/fWpavkj83pPj0vOFTftX59xmw4REZ/m1t7ugpWpSkv0SHb63X3
-	UzAVIZsV6iAM471C5+gaSToOKwJIUAvtCrPDvIYNZ0zm7hfZgAv6Y0hxfdlbktAiEDY5DVRSailCx
-	+TW7Hl2PXkdALnpieWQYjc25ksk2och5qTqfIJt42l3iVMHHcnrg4NA30PumJD+UFXuOqHx0L1Jsp
-	JgQgwI0AxTb83PTWdm/g==;
+	List-Owner; bh=An7RtMLtSZ+Bi0AM4Y2gaPah8RZPat+45qNqAcP7OjU=; b=p6P77YcV5FUMcw
+	/HU7L+tuDY3FEmV7B/ok/+NkCWx3KkPibKvllE/n5mcW4qMkNkj16/jj9Qsw3ZZkuzVIAJfM0yzmu
+	LR8ourKam1kziGyze5H+UtdzsXrwW8lBfW/g6CkrHjoRhm0Lx2xS9bjlscbMXMRgvOpM1G6+x6mKP
+	cp107xO9Kgu4q+Ua7Vp7CBpYaGP5xU0w5LaGmh9MYHAw9/V61JAu8fBQeGSrY1ehVk6MKkR8778Ec
+	zhEs3GzVNaLINSPcshXxb6I6CFmpV7eTxu+S692YEMUtTQ4cbhYZr10rkLz8QTVcv5VQ/6WMWmr6n
+	yxSdD62wsf51Zveo5raw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uEmjI-0000000C4Xd-07My;
-	Tue, 13 May 2025 10:19:20 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1uEntc-0000000CGMm-3zja;
+	Tue, 13 May 2025 11:34:04 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uEmcS-0000000C2rD-2u6U
+	id 1uEmiZ-0000000C4Lx-3xKr
 	for linux-amlogic@lists.infradead.org;
-	Tue, 13 May 2025 10:12:18 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-442ed8a275fso2859635e9.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 13 May 2025 03:12:16 -0700 (PDT)
+	Tue, 13 May 2025 10:18:38 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-43cfba466b2so61669995e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 13 May 2025 03:18:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747131135; x=1747735935; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1747131514; x=1747736314; darn=lists.infradead.org;
         h=content-transfer-encoding:organization:autocrypt:content-language
          :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JJeqmvQf3UAL4kCovc4gGHXLVQH6Y8/QOMAb9LY1twk=;
-        b=nbu0V2apurhO1P+o/o9/VKmZ1KxqDfJhhr8b6pSuPETpVt7YnG8wZMNxUU4aq3mzN6
-         lLvnbqwkXR7SLodXcPAyFUr/H9NSJ8EGWwTd39tb6d8TVKaxjl0ovw4t+x9lUGMFxAPX
-         HkTNNDM0F9W8GD8dpRilv15B4+shuFLl6tFDhHaMu+1Wh7+3rhr3VAA+Aioorp/ceP+h
-         VZDvXcqqCAGwmhDtLtvW6xOLU8jKYMdsaX0Zxt+whDDUsaifpXYRAhxdN5zMjehmgK5K
-         4KQ5jn5630V9cUTGWHAVhH24U7tB8He/kqDNw2ByF2M09fi94V2dQgkN7iHWWMiTXygi
-         XkSA==
+        bh=XbgIPmxFtVM1BGwhXr/tVxdvgWwhEB3gww1YRaGjATo=;
+        b=lJ8/oRZVXAc3DxsK3G1g+n6CO6yGEsUUx01wGwNnEEfPp3CEfIOANSoCOLVvZKWp8P
+         e+UejYwkuZ+4Aax+Mn6UCzXeHR/0jupcvWx9LRPyLWAIRqqIwkdglh9epItk5bNq41bW
+         CX77tSjl8rKpFF+/Vn1yZu8eZdqotjFWom9Dp8ZNUZUKrVVRVDc/Gkn94ZwsipuFBqhg
+         D/E32FBf3GHhDAHIxkxWx+1vW5N/JSiEK3jlhiTtIgXmamR+g+gBCUaZ6vRZnzFoLSzW
+         7dsoCrs0RSHHpXfq4FzRECSgwg86x2dV/WkoqYP9NZOVfR1ccahviUS6EKDaPUpjqOZ2
+         25Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747131135; x=1747735935;
+        d=1e100.net; s=20230601; t=1747131514; x=1747736314;
         h=content-transfer-encoding:organization:autocrypt:content-language
          :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JJeqmvQf3UAL4kCovc4gGHXLVQH6Y8/QOMAb9LY1twk=;
-        b=EZ0e31xTxsKdqxc7dm4PZhzkPIOtrXm+GEPcTwrS7e0wtHYeIfMiCiOOI/O730bKXj
-         tsUK+b9rJzc+q09XFF+tEKZBr6WkWXDwMsWWeNxGCLcXwh/IcP0s/mdUilSqKFjCNv3A
-         22g2O/TyD1Gp5atZHZXfekRbkkYcol0euhwUv8drWyBgg8ZXHEP2AE+fpLUdVf977yc3
-         tCSvk3YafcsuHySyyB9KmAdHzbyOSzuUQySMIv62MDZkwecFwi09sW+LpjFt5IWxt11q
-         X4yuuo+wy3WCc+84uNGf0IDNPGIjgeeqJLyjHYsw3qrXeAObOZgPjoq/eS2+7xj3TZ3h
-         gh0w==
-X-Gm-Message-State: AOJu0YzphOe3c9Gk/ybEf9hnpUF9pUhWjlB/34WNCCCLjbbVntcDhcs6
-	E/kwF65tAIlBMlfMViMi13p3hUxKrC8VDkS8Lg0H/vrUYRN6CM3XOo6SZ2DGVds=
-X-Gm-Gg: ASbGncvZ9df4c46OcDpZQ2f34lF6YdUoSdCMT9nS1Vm6WkIUxkGphJJ7zkUmamY38FY
-	nKBUL4COU/hcIMXN/hvMnOQYq1yULU2+4BQInz5wTALCzA+MI4Cjf+XjYGiA3XwwPZf9GafNo8D
-	2g/WA2YAQNUl70g0mlR0bpanPZmTPnPsa5/elMJKjVLgBpZAcPd26UCc3vE9b7b8mBRRocxQxIJ
-	htH+pCMhS4uaEV/+OacDSB/jhfUF4dvme2oR9P+X9qAgBF9jEfgEMyffHcjzzmHo9auBWQIQVx8
-	dMXdqlnrb4Oh/Q9wz+N0RmdJSa9MvwSJgw2ZcRPaOWe8xU/aWZrhyQ3wMFcgCz+ywslXkNR0lGI
-	ktRJ6ImCiTi+r
-X-Google-Smtp-Source: AGHT+IGkA3sY3L4MfFT9frruBvb5if6+w/Gw4kde8Il5ntffLfGLugxuM3zv1UQFvt6KFoEpgM+QbQ==
-X-Received: by 2002:a05:600c:4e90:b0:442:e147:bea7 with SMTP id 5b1f17b1804b1-442e17571eemr76287125e9.29.1747131134966;
-        Tue, 13 May 2025 03:12:14 -0700 (PDT)
+        bh=XbgIPmxFtVM1BGwhXr/tVxdvgWwhEB3gww1YRaGjATo=;
+        b=taw4px5eixUvc2SIoZnJnWqxB/lS5Hya29n3e9l+veQMFNiZRC00NQBfvVhd8eArtI
+         EaWeIGXt8fFoM7vTrdrQuxtOVoM23Leo9AiUiywVgwN6b7IADfRThHQQWXMIHiaaaSam
+         EJPuvVF8V/cctYW0ndslKjmxsgdm+Mr9ljttXkJUkuoimGMFJXZks4SkNY9GJsELgE/4
+         j38I47Nvc53Pw8knSVDtXFfuTuyTZ5fS0HXbCthPDdnIuIQmwnvRs3LaqEbPMzvDBfnY
+         +9wVHNKeS9p/DOAP1tV2hWr5uZTechCiqqBPYvN03y2pQg8LGQNMB92AfaB2Ri0VATUt
+         Q0Yw==
+X-Gm-Message-State: AOJu0Yyeoc+2+XfyOTmsQzC7myhcQxnf7LI1CTqhwwkisul86mBymx+c
+	9t25+vH9smOHcISOL1jZNtalLTgmrhJirDfxEeFLfL5zWJ9dEGchGnAe9jS2ocs=
+X-Gm-Gg: ASbGncsXSq4favoWIrCnQEsjr/nPvqinL3pKBlKuvVnMDljs8groPGklSCa2WtbSnXk
+	p6Eh5n/PmEPNboM/Rpfc9JnxbirS21A0Mjk6ieTkSn1DOQYmmYpunWWney/Hz6Y9vadUa06G+CN
+	CorvY3fiZwHYxh8h/OFNpBAsHNvJvJoQHUEI0JGL/OwYD06XCDcwBTU+8rg405XFGE2GG+haE+R
+	rDA+muE5B1hXHeyWcH+dl2pjSfFlTMjMlKpZMW3zFJwC8Cwf54IKJUJZJRQKWgUHnsctWqOV+CL
+	2aiUOezYPHOg/Tmyl+kSM8AD9CtbQ8MqtbgHRPR8ErMI3+SCt1amxmBswESKoxZ1UiOdTC3pMwa
+	sNAFcbp3u8UMpsrgmg/BAm3Q=
+X-Google-Smtp-Source: AGHT+IELqlGYEyz0bgUWVEOHjILw2+jZZTXNzra6IJ+FQuqp14XzoRo/D2dnZ8V6LTyFM6eKT8E8lQ==
+X-Received: by 2002:a05:6000:2509:b0:3a2:133:b1b2 with SMTP id ffacd0b85a97d-3a20133b622mr9093752f8f.31.1747131514243;
+        Tue, 13 May 2025 03:18:34 -0700 (PDT)
 Received: from [10.61.1.139] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd3aeb6esm207550715e9.25.2025.05.13.03.12.14
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f57dde0esm15899431f8f.18.2025.05.13.03.18.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 May 2025 03:12:14 -0700 (PDT)
-Message-ID: <838c5305-5c5b-4232-b7fe-86598dc50ace@linaro.org>
-Date: Tue, 13 May 2025 12:12:13 +0200
+        Tue, 13 May 2025 03:18:33 -0700 (PDT)
+Message-ID: <5f7d3fa4-2d9d-450b-b384-abdd903284dc@linaro.org>
+Date: Tue, 13 May 2025 12:18:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic ARM DT updates for v6.16
+Subject: [GIT PULL] amlogic ARM64 DT updates for v6.16
 To: soc@kernel.org, arm@kernel.org
 Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Language: en-US, fr
@@ -103,9 +103,8 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250513_031216_732063_CB1DC542 
-X-CRM114-Status: UNSURE (   8.44  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250513_031835_995664_0926FDF2 
+X-CRM114-Status: GOOD (  12.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,44 +117,149 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpIZXJlJ3MgQVJNIER0IGNoYW5nZXMgZm9yIEFtbG9naWMgU29Dcywgc2V0dGluZyBwdWxs
-LXVwIGZvciBVQVJUIFJYL1RYIGxpbmVzIGJ5CmRlZmF1bHQgZm9yIGF2b2lkIGlzc3VlcyB3aXRo
-IGRlYnVnIGNvbm5lY3RvcnMsIGFuZCBpbnRyb2R1Y2luZyB0aGUgTWVzb244IGJhc2VkClRDVSBG
-ZXJuc2VoZmVlIDMuMCBib2FyZC4KClRoYW5rcywKTmVpbAoKVGhlIGZvbGxvd2luZyBjaGFuZ2Vz
-IHNpbmNlIGNvbW1pdCAwYWYyZjZiZTFiNDI4MTM4NWI2MThjYjg2YWQ5NDZlZGVkMDg5YWM4OgoK
-ICAgTGludXggNi4xNS1yYzEgKDIwMjUtMDQtMDYgMTM6MTE6MzMgLTA3MDApCgphcmUgYXZhaWxh
-YmxlIGluIHRoZSBHaXQgcmVwb3NpdG9yeSBhdDoKCiAgIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcv
-cHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L2FtbG9naWMvbGludXguZ2l0IHRhZ3MvYW1sb2dpYy1h
-cm0tZHQtZm9yLXY2LjE2Cgpmb3IgeW91IHRvIGZldGNoIGNoYW5nZXMgdXAgdG8gMmMxODc5YTQ0
-MDMxNWUwYjI5MmJiZmYwZmE2M2E3M2JkOGE1MmUzNDoKCiAgIEFSTTogZHRzOiBhbWxvZ2ljOiBt
-ZXNvbjgtZmVybnNlaGZlZTM6IERlc2NyaWJlIHJlZ3VsYXRvcnMgKDIwMjUtMDUtMDkgMTc6Mzc6
-MDUgKzAyMDApCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tCkFtbG9naWMgQVJNIERUIGZvciB2Ni4xNjoKLSBVQVJUIFJYL1RY
-IHB1bGwtdXAgcGluY29uZiBwcm9wZXJ0aWVzIGZvciBhbGwgU29DcwotIE5ldyBCb2FyZHM6CiAg
-IC0gTWVzb244IFRDVSBGZXJuc2VoZmVlIDMuMAoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpKLiBOZXVzY2jDpGZlciAoNCk6
-CiAgICAgICBkdC1iaW5kaW5nczogdmVuZG9yLXByZWZpeGVzOiBBZGQgVEMgVW50ZXJoYWx0dW5n
-c2VsZWt0cm9uaWsgQUcKICAgICAgIGR0LWJpbmRpbmdzOiBhcm06IGFtbG9naWM6IEFkZCBUQ1Ug
-RmVybnNlaGZlZSAzLjAgYm9hcmQKICAgICAgIEFSTTogZHRzOiBhbWxvZ2ljOiBBZGQgVENVIEZl
-cm5zZWhmZWUgMy4wCiAgICAgICBBUk06IGR0czogYW1sb2dpYzogbWVzb244LWZlcm5zZWhmZWUz
-OiBEZXNjcmliZSByZWd1bGF0b3JzCgpNYXJ0aW4gQmx1bWVuc3RpbmdsICgyKToKICAgICAgIEFS
-TTogZHRzOiBhbWxvZ2ljOiBtZXNvbjg6IGVuYWJsZSBVQVJUIFJYIGFuZCBUWCBwdWxsIHVwIGJ5
-IGRlZmF1bHQKICAgICAgIEFSTTogZHRzOiBhbWxvZ2ljOiBtZXNvbjhiOiBlbmFibGUgVUFSVCBS
-WCBhbmQgVFggcHVsbCB1cCBieSBkZWZhdWx0CgogIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9hcm0vYW1sb2dpYy55YW1sIHwgICAxICsKICAuLi4vZGV2aWNldHJlZS9iaW5kaW5n
-cy92ZW5kb3ItcHJlZml4ZXMueWFtbCAgICAgICB8ICAgMiArCiAgYXJjaC9hcm0vYm9vdC9kdHMv
-YW1sb2dpYy9NYWtlZmlsZSAgICAgICAgICAgICAgICAgfCAgIDEgKwogIGFyY2gvYXJtL2Jvb3Qv
-ZHRzL2FtbG9naWMvbWVzb244LWZlcm5zZWhmZWUzLmR0cyAgIHwgMzA2ICsrKysrKysrKysrKysr
-KysrKysrKwogIGFyY2gvYXJtL2Jvb3QvZHRzL2FtbG9naWMvbWVzb244LmR0c2kgICAgICAgICAg
-ICAgIHwgIDIyICstCiAgYXJjaC9hcm0vYm9vdC9kdHMvYW1sb2dpYy9tZXNvbjhiLmR0c2kgICAg
-ICAgICAgICAgfCAgIDQgKy0KICA2IGZpbGVzIGNoYW5nZWQsIDMzMiBpbnNlcnRpb25zKCspLCA0
-IGRlbGV0aW9ucygtKQogIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybS9ib290L2R0cy9hbWxv
-Z2ljL21lc29uOC1mZXJuc2VoZmVlMy5kdHMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
-aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Hi,
+
+Here's a quite large changeset for ARM64 based Amlogic SoC introducing pinctrl
+for the A4 SoCs with new bindings, UART RX/TX default pull-up to avoid issues
+with debug uart connectors, same for I2C on GXL based boards, finally SARADC
+support for the S905L board, clock measure support for the S4 & C3 SoCs and
+Reset support for A4 & A5 SoCs.
+The new Amlogic S6, S7 & S7D SoCs initial support are introduced with the
+corresponding Reference Boards.
+Finally the S805Y Mi TV stick, known as xiami-aquaman, support is added.
+
+Thanks,
+Neil
+
+The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
+
+   Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
+
+are available in the Git repository at:
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v6.16
+
+for you to fetch changes up to f0911f29478992f37e91c208fe44c2ea5b378b61:
+
+   arm64: dts: amlogic: Add A5 Reset Controller (2025-05-05 14:37:43 +0200)
+
+----------------------------------------------------------------
+Amlogic ARM64 DT for v6.16:
+- Amlogic A4 Pinctrl support
+- UART RX/TX pull-up pinconf properties for all SoCs
+- SARADC support for the S905L SoC variant
+- Drop clock-latency in CPU node
+- Amlogic clk measure support for S4 & C3 Socs
+- Amlogic S6/S7/S7D initial support
+- I2C default pull-up bias pinconf property on Amlogic GXL based boards
+- Amlogic A4 & A5 Reset Controller support
+- New Boards:
+   - Amlogic S6 BL209 Reference Board
+   - Amlogic S7 BP201 Reference Board
+   - Amlogic S7D BM202 Reference Board
+   - Amlogic S805Y xiaomi-aquaman/Mi TV Stick
+
+----------------------------------------------------------------
+Christian Hewitt (1):
+       arm64: dts: amlogic: gxlx-s905l-p271: add saradc compatible
+
+Chuan Liu (2):
+       arm64: dts: amlogic: C3: Add clk-measure controller node
+       arm64: dts: amlogic: S4: Add clk-measure controller node
+
+Da Xue (1):
+       arm64: dts: amlogic: gxl: set i2c bias to pull-up
+
+Ferass El Hafidi (2):
+       dt-bindings: arm: amlogic: add S805Y and Mi TV Stick
+       arm64: dts: amlogic: add support for xiaomi-aquaman/Mi TV Stick
+
+Martin Blumenstingl (5):
+       arm64: dts: amlogic: gxbb: enable UART RX and TX pull up by default
+       arm64: dts: amlogic: gxl: enable UART RX and TX pull up by default
+       arm64: dts: amlogic: g12: enable UART RX and TX pull up by default
+       arm64: dts: amlogic: axg: enable UART RX and TX pull up by default
+       arm64: dts: amlogic: a1: enable UART RX and TX pull up by default
+
+Rob Herring (Arm) (1):
+       arm64: dts: amlogic: Drop redundant CPU "clock-latency"
+
+Xianwei Zhao (7):
+       arm64: dts: amlogic: a4: add pinctrl node
+       dt-bindings: arm: amlogic: add S6 support
+       dt-bindings: arm: amlogic: add S7 support
+       dt-bindings: arm: amlogic: add S7D support
+       arm64: dts: add support for S6 based Amlogic BL209
+       arm64: dts: add support for S7 based Amlogic BP201
+       arm64: dts: add support for S7D based Amlogic BM202
+
+Zelong Dong (2):
+       arm64: dts: amlogic: Add A4 Reset Controller
+       arm64: dts: amlogic: Add A5 Reset Controller
+
+  Documentation/devicetree/bindings/arm/amlogic.yaml |  25 ++
+  arch/arm64/boot/dts/amlogic/Makefile               |   4 +
+  arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h     |  93 ++++++++
+  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 133 +++++++++++
+  arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h     |  95 ++++++++
+  arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        |   8 +
+  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        |   5 +
+  .../boot/dts/amlogic/amlogic-s6-s905x5-bl209.dts   |  42 ++++
+  arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        |  97 ++++++++
+  .../boot/dts/amlogic/amlogic-s7-s805x3-bp201.dts   |  41 ++++
+  arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        |  99 ++++++++
+  .../boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts |  41 ++++
+  arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       |  99 ++++++++
+  arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |   1 +
+  arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |  12 +-
+  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |  10 +-
+  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts  |   4 -
+  .../boot/dts/amlogic/meson-g12a-radxa-zero.dts     |   4 -
+  arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts  |   4 -
+  arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts    |   4 -
+  arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts |   4 -
+  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi        |   1 +
+  .../dts/amlogic/meson-g12b-a311d-libretech-cc.dts  |   6 -
+  arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi  |   2 +
+  .../boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi  |   6 -
+  .../boot/dts/amlogic/meson-g12b-bananapi.dtsi      |   6 -
+  .../boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi   |   6 -
+  .../dts/amlogic/meson-g12b-odroid-go-ultra.dts     |   6 -
+  arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi |   6 -
+  .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    |   6 -
+  arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi  |   2 +
+  arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi   |   6 -
+  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  10 +-
+  .../dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts | 262 +++++++++++++++++++++
+  arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi   |  10 +
+  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |  22 +-
+  .../boot/dts/amlogic/meson-gxlx-s905l-p271.dts     |   4 +
+  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |   5 +
+  arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi   |   4 -
+  .../arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi |   4 -
+  .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    |   4 -
+  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi  |   4 -
+  .../dts/amlogic/meson-sm1-s905d3-libretech-cc.dts  |   4 -
+  arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts   |   4 -
+  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         |   1 +
+  45 files changed, 1097 insertions(+), 119 deletions(-)
+  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-a4-reset.h
+  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
+  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-s6-s905x5-bl209.dts
+  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
+  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-s7-s805x3-bp201.dts
+  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
+  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts
+  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
+  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
+  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
