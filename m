@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D41EC3ABDD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 May 2025 07:10:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76444C3ABDA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 May 2025 07:12:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fYHv+lzamaQINpySyT0mxoG8GeXM0DWAQ82to2kcMjc=; b=mckWU0X3rboA9h
-	kopVaxs6KKQ35H3Jp4nyfkYL5EW3kga04swkaozE8/OkZNwSmeHrY/nu+LPbkCdt+85qpvUtKGFSi
-	tPimN4vn4D5VHJnHFRK1Lbwb6WhOdcY4PXArgYCuWvZwtUOLoCcZ0ju1Qy9wl0E6lDAdQapJYQwHx
-	s7EFdKCEINBRXRyDzxbuKaLaTkP2Tl0LALK0KJ145De8AJaV+1nxxMyaFhGfaT+Yd+/iH1+IoTivE
-	8pvFoxen7FkLq08dxQ1/j6GeKLWXG03tXtQ4WfsdaebFsmgRgrVTNABUXe1MgtNJLD4x/puKDo6Sw
-	GAUeIyP79cz9SZu6zb9w==;
+	List-Owner; bh=TBiZV7qcaFeqNhjum8OihjxNCfzL4/S6oJLvGLtJbGQ=; b=vAeAgI2VDe6+EB
+	3yaDEp3QFFt3Fmsqe2PL4zHv2qBgfZ8gCAggQZHzDkeLf4MyfVNKPdHyWFeEtSKIXkX+ra8Xpo8ll
+	htS+28DPguK1tH0Tlt/0fDvwSjRkzzEPjafOS3atsXAXV3HirUCt6Js75zo5SESd/7u3BQzpY18Qi
+	Us4weHxgYffZZpsEmb1y/K3hHPpZUPQ9NI4t+3TIgCKXsAicDJWF3kqOxeGXQPShr0GQ3cJ2fUxWz
+	6+PE49qLRtgOI9uYuiq10L1XR5zpPmA3X/2NGYxZyxhwHBOpMn3vvVvatDsR5AbOkvrNaauEzlUSq
+	UscCkUBn/BF672g8ssEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uF6Fb-0000000EG0O-0AYV;
-	Wed, 14 May 2025 07:09:59 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1uF6Hb-0000000EGDa-1g4H;
+	Wed, 14 May 2025 07:12:03 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uF67b-0000000EEb6-1mtu;
-	Wed, 14 May 2025 07:01:44 +0000
+	id 1uF67b-0000000EEb4-359v;
+	Wed, 14 May 2025 07:01:45 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id AEB7A43A2B;
-	Wed, 14 May 2025 07:01:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4C6A1C4CEEB;
+	by dfw.source.kernel.org (Postfix) with ESMTP id 368F35C5B9B;
+	Wed, 14 May 2025 06:59:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 30A6BC4CEE9;
 	Wed, 14 May 2025 07:01:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1747206102;
-	bh=RhXaG6D10XuprrM2uwXZ+yryGaiW6qQjUHpNKKnNco4=;
+	bh=byLh/bsiv/fh1hzyDOXgi4uR68X6jhJgLI5muBJNEqE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=eHwvoObsxQY3MpoRSkhPWgLKhUksDEdk1jl8Wa8VmcNU26EGdaEst84a7hA8auT8/
-	 SYLGSnnKnCZhzRpf24kMjECzayANSmpWVojht96wWY1xJe8maAq9edikem9yB8vpVn
-	 tgR9NxofW8wTLTeT64O4qACZNZZhg1r78MtvrCoWVQ3Q7PM3ELH+qvd/owQUIT7fo8
-	 55OXG/SV6zpaIl+YnHCJyOm9L6Nsw1sTU3CiKkIlcXGK2Oiiy2napiGFGvrnH530UK
-	 yqy9TrePmCrkTKCQPBfqmkko9YRzDnr4ZX1yPb3NIlAcv79HZm1lUMuoiAybuf/rQq
-	 k37yTgs4Qhx5Q==
+	b=otJpfrzN4sAQT2ytf8z6fW020uvqNP9h04UWaVVjgtgbv9mpVLikBN0rkvCwN318c
+	 Z0BL9wASYF5r9hPCB2l9JRn3b8WjWgXeYfWk9ZNPcHn8UDlxmFB2QZSq8dy6KDaX1p
+	 VxRoUXxw2qfXKA9R805Oc3BaieU+RLhqZ3hzDF6xdqhkLhIGb58Ux66Yry92kOTRhq
+	 mFyLv48vlCjqkODrxFM8r29SFKNp7bVJ1A2AsIK/Ra86nhNtedR7nGQ8q/gNhU1CZZ
+	 f+Y3W0JTAM+nYRlvtFN2ldmSpj0hDAD+c+r9rQxqYRa+tNyqIMARZ9/LeYwMFd1sLp
+	 uwYj04k7eihBg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C497C3ABDE;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E488C3ABDA;
 	Wed, 14 May 2025 07:01:42 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 14 May 2025 15:01:30 +0800
-Subject: [PATCH 3/8] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
- compatible string for S6
+Date: Wed, 14 May 2025 15:01:28 +0800
+Subject: [PATCH 1/8] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
+ compatible string for S7
 MIME-Version: 1.0
-Message-Id: <20250514-s6-s7-pinctrl-v1-3-39d368cad250@amlogic.com>
+Message-Id: <20250514-s6-s7-pinctrl-v1-1-39d368cad250@amlogic.com>
 References: <20250514-s6-s7-pinctrl-v1-0-39d368cad250@amlogic.com>
 In-Reply-To: <20250514-s6-s7-pinctrl-v1-0-39d368cad250@amlogic.com>
 To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
@@ -63,19 +63,19 @@ Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747206100; l=777;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747206100; l=857;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=SGs48wURMjraERop2ENTKoLj76g7oJ3ublU0QekYvzE=;
- b=rEqYoaagVtWnwccz+GPoTSGpAh94WJcq+4gnR1fgKV7VHyJeoiV4IoNKYrTVI+RfssOUFjmUS
- xZt7xPptmWPBGTOn3Rauo5rXQh3GVD6b7ou5ya83Rk7YLBhUHLgUG2I
+ bh=GTxtiAQGmCYOsgbEQ6EOKgzNKF5l16qDKM+F3b/U1zI=;
+ b=Tss7kkbHInMJD70OvuMcwhicWga68wC2NtehbOPKsGQ2z8FEc6GRKYVYIE88fkviKSXt9HCpG
+ 9Oe4CQ+Je/1AWPaRSy0cahmKIGRXxbF94t7lAUnZmL4+Dlvb1L4NChm
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
  auth_id=107
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250514_000143_493212_3DF491C5 
-X-CRM114-Status: UNSURE (   7.34  )
+X-CRM114-CacheID: sfid-20250514_000143_836015_D2747DE7 
+X-CRM114-Status: UNSURE (   8.74  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,25 +96,28 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Update dt-binding document for pinctrl of Amlogic S6 SoC.
+Update dt-binding document for pinctrl of Amlogic S7.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-index 96a7c5646c13..61a4685f9748 100644
+index c36b6fe377ad..8a6981e9f873 100644
 --- a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
 +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-@@ -17,6 +17,7 @@ properties:
+@@ -15,7 +15,9 @@ allOf:
+ properties:
+   compatible:
      oneOf:
-       - enum:
-           - amlogic,pinctrl-a4
-+          - amlogic,pinctrl-s6
-           - amlogic,pinctrl-s7
+-      - const: amlogic,pinctrl-a4
++      - enum:
++          - amlogic,pinctrl-a4
++          - amlogic,pinctrl-s7
        - items:
            - enum:
+               - amlogic,pinctrl-a5
 
 -- 
 2.37.1
