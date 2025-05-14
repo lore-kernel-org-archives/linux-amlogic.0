@@ -4,60 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05472C3ABD8
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 May 2025 13:59:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFFA8C3ABD8
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 May 2025 20:19:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=GNVA9Mo/bLL9cCdike51jh7FyFZUPxcblRKMhbI0CiI=; b=08sAcpihwSyqQ7+lN2gJ8vYQyd
-	pvWJf4631gxlHUXGXwp2QKAPyR4net+8y10N6L9fEAo40i6jAGw/Wggw5Jkc+8Iem6j95Keq7zQRW
-	a+p0Njd33u7Lo/m5oT9zlckO8ZzS9efTfQB8AVGRifY3QB3ttjicxsAE83uJME9a7zDNK8lj4GnQp
-	sSANXNSXG3svFh36gRSgzdPWAQjkwL3t9FL3NQr9td1Q+mWK1kR2u2wR9WXLD8faBi//kI6Jr+4hp
-	hGoqJND9wBl9Z7yeGoLc0GxGF2fmkr4cqJjk4JVGU7xMJRHm9PtLftcsfQ+HIVBuyOCgAabzHU2/w
-	9PcvzQsQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=HWh9Nv6G6BdBeXzftKJFaNV7zWXhWAtOl1KrV6vBLs4=; b=e765Fj5VSZGBKF
+	kdVlV7Wz+IBQaIvLqUgxvNFPc16LcyoMje96LxBc3xMsw+Mq0A3o+6UUD2V4q50v4g/aah7LltJOo
+	o3SCmr1QduwdEFVAAIHc7IzAap21njv/1ssdhx/aFcv85d1dos8xGLwZGew8B+QO2F7wRnhMfNUer
+	OxFwruC4rmrX/fB+N0NI+soM1t1JCuAdHeFCzQA+IgkBtdJQ5rCDhHXZclOv33m7qJTKmnO1tOugY
+	aniiWh5xy3bCn4vsoBHa1BQV33l8UVjLMM+K5cWyUUwfR9tF+vzJGCrHwOnuHFbm/1U/nShCQDBof
+	GnFMyZM7VRugnAsFWMGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFCds-0000000FLc7-3w5q;
-	Wed, 14 May 2025 13:59:28 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1uFIZT-0000000GGke-2jNC;
+	Wed, 14 May 2025 20:19:19 +0000
+Received: from mgamail.intel.com ([198.175.65.9])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFBtD-0000000FAat-1Wrl;
-	Wed, 14 May 2025 13:11:15 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id CB1E961155;
-	Wed, 14 May 2025 13:11:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54A83C4CEED;
-	Wed, 14 May 2025 13:11:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747228274;
-	bh=RMIUJ4PPQ4ztksuWTTjccEyOC4ctSkUxCvsZak+d20Y=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=sPfVpSmehjedO3NMxNnnHSljQ3eOjEPchdLZMDEzAjQQs3sC2cqnoBx3HGziV63ww
-	 gZC1R15YhL0bzL2gz4nZIspWlD757TdI9FJUZEpWNInpv0/u76BW5Wpygrt/gnrRJ/
-	 6Xql+1APuuhfOYWmLN1TlQuzlWhKMDlSqIcWR17Ig+ZJX2NBPvYyLB40VFRqMffF3R
-	 DnIMS0skU589z+LId7B3NAmnAFWRP7cVj8ExWbPJVT2viGjHTiAnlIOhh4SWQHh6eb
-	 VvCEKFSrkW19j8CNINvCQr2XdxMZDFCzt5VBHVTVIO4F2rPRj9qYAszo5jhGyXb/Zi
-	 B80zVGQtXtzVw==
-Date: Wed, 14 May 2025 08:11:12 -0500
+	id 1uFIZQ-0000000GGj0-1tYu;
+	Wed, 14 May 2025 20:19:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747253956; x=1778789956;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hYrU9RvV+4y2DHFLaQiCECHzjwEV+OkrnWnu8hwtrgU=;
+  b=bbGSPkzBkSZeM9UmzZ0OLtKj/hmX6PfJAzzNxaEVEXXwW6uiJhF9rGeN
+   5u5aVyqA33j/+v5akUMUdjWH3JYpvKos2qIjJRtChKXsO9KAKzc839hmv
+   9PPhTDlNSsAQ9EhAMsF3JrCzHUiSh/CMNuYPoo/hO0siADILeU/QDnBKA
+   4RtEs+I3mtXm534aEyI2bU59eTwqscx+72zaSgDI9JyjBacq1YgP5nK+4
+   p97X3fl5VhvvSuQH9cbDUugBjzgI+QNqzoYdLM584SVqcngq1RyEBU7TU
+   0+kynqUbcPofl+8lqi0QkBuz9x6KZ7ltcEzCbVaqVFMTS/mmOVY4O41Mg
+   Q==;
+X-CSE-ConnectionGUID: 4Bh+nJZcT1GsYVcIJUfEdA==
+X-CSE-MsgGUID: ngbVKdk+RG+/2YsYdVOLxw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="71677947"
+X-IronPort-AV: E=Sophos;i="6.15,289,1739865600"; 
+   d="scan'208";a="71677947"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 May 2025 13:19:14 -0700
+X-CSE-ConnectionGUID: aoXVi9WcQ9WWpZlstv9FhA==
+X-CSE-MsgGUID: c9k03sXERRO7riqhJkfvNw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,289,1739865600"; 
+   d="scan'208";a="169084389"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 14 May 2025 13:19:10 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uFIZH-000HWZ-2b;
+	Wed, 14 May 2025 20:19:07 +0000
+Date: Thu, 15 May 2025 04:18:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH 5/8] pinctrl: meson: support amlogic S6/S7/S7D SoC
+Message-ID: <202505150408.vMuuQH5G-lkp@intel.com>
+References: <20250514-s6-s7-pinctrl-v1-5-39d368cad250@amlogic.com>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20250514-s6-s7-pinctrl-v1-0-39d368cad250@amlogic.com>
-References: <20250514-s6-s7-pinctrl-v1-0-39d368cad250@amlogic.com>
-Message-Id: <174722778770.1826547.7211789941819434766.robh@kernel.org>
-Subject: Re: [PATCH 0/8] Add support for Amlogic S7/S7D/S6 pinctrl
+Content-Disposition: inline
+In-Reply-To: <20250514-s6-s7-pinctrl-v1-5-39d368cad250@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250514_131916_553842_8F8525BB 
+X-CRM114-Status: GOOD (  10.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,87 +98,95 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Xianwei,
 
-On Wed, 14 May 2025 15:01:27 +0800, Xianwei Zhao wrote:
-> In some Amlogic SoCs, to save register space or due to some
-> abnormal arrangements, two sets of pins share one mux register.
-> A group starting from pin0 is the main pin group, which acquires
-> the register address through DTS and has management permissions,
-> but the register bit offset is undetermined.
-> Another GPIO group as a subordinate group. Some pins mux use share
-> register and bit offset from bit0 . But this group do not have
-> register management permissions.
-> 
-> In SoC S7 and S7D, GPIOX(16~19) mux share with GPIOCC mux register.
-> 
-> In SoC S6, GPIOX(16~19) mux share with GPIOCC mux register, and GPIOD(6)
-> mux share with GPIOF mux register.
-> 
-> Add S7/S7D/S6 pinctrl compatible string and device node.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> Xianwei Zhao (8):
->       dt-bindings: pinctl: amlogic,pinctrl-a4: Add compatible string for S7
->       dt-bindings: pinctl: amlogic,pinctrl-a4: Add compatible string for S7D
->       dt-bindings: pinctl: amlogic,pinctrl-a4: Add compatible string for S6
->       pinctrl: meson: a4: remove special data processing
->       pinctrl: meson: support amlogic S6/S7/S7D SoC
->       dts: arm64: amlogic: add S7 pinctrl node
->       dts: arm64: amlogic: add S7D pinctrl node
->       dts: arm64: amlogic: add S6 pinctrl node
-> 
->  .../bindings/pinctrl/amlogic,pinctrl-a4.yaml       |   9 +-
->  arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        |  97 ++++++++++++++++++
->  arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        |  81 +++++++++++++++
->  arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       |  90 +++++++++++++++++
->  drivers/pinctrl/meson/pinctrl-amlogic-a4.c         | 111 ++++++++++++++++-----
->  5 files changed, 363 insertions(+), 25 deletions(-)
-> ---
-> base-commit: aa94665adc28f3fdc3de2979ac1e98bae961d6ca
-> change-id: 20250514-s6-s7-pinctrl-af1ebda88a4e
-> 
-> Best regards,
-> --
-> Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> 
-> 
+kernel test robot noticed the following build errors:
 
+[auto build test ERROR on aa94665adc28f3fdc3de2979ac1e98bae961d6ca]
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-pinctl-amlogic-pinctrl-a4-Add-compatible-string-for-S7/20250514-150438
+base:   aa94665adc28f3fdc3de2979ac1e98bae961d6ca
+patch link:    https://lore.kernel.org/r/20250514-s6-s7-pinctrl-v1-5-39d368cad250%40amlogic.com
+patch subject: [PATCH 5/8] pinctrl: meson: support amlogic S6/S7/S7D SoC
+config: arm64-randconfig-004-20250514 (https://download.01.org/0day-ci/archive/20250515/202505150408.vMuuQH5G-lkp@intel.com/config)
+compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250515/202505150408.vMuuQH5G-lkp@intel.com/reproduce)
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505150408.vMuuQH5G-lkp@intel.com/
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+All errors (new ones prefixed by >>):
 
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: using specified base-commit aa94665adc28f3fdc3de2979ac1e98bae961d6ca
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250514-s6-s7-pinctrl-v1-0-39d368cad250@amlogic.com:
-
-arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: bus@fe000000 (simple-bus): pinctrl:ranges: [[0, 0, 0, 16384, 0, 832]] is not of type 'boolean'
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm64/boot/dts/amlogic/amlogic-s6-s905x5-bl209.dtb: bus@fe000000 (simple-bus): pinctrl:ranges: [[0, 0, 0, 16384, 0, 832]] is not of type 'boolean'
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-arch/arm64/boot/dts/amlogic/amlogic-s7-s805x3-bp201.dtb: bus@fe000000 (simple-bus): pinctrl:ranges: [[0, 0, 0, 16384, 0, 832]] is not of type 'boolean'
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+>> drivers/pinctrl/meson/pinctrl-amlogic-a4.c:128:13: error: designator into flexible array member subobject
+     128 |         .multi_data[0] = {
+         |                    ^~~~~~~
+     129 |                 .m_bank_id = AMLOGIC_GPIO_CC,
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     130 |                 .m_bit_offs = 24,
+         |                 ~~~~~~~~~~~~~~~~~
+     131 |                 .sid = (AMLOGIC_GPIO_X << 8) + 16,
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     132 |                 .eid = (AMLOGIC_GPIO_X << 8) + 19,
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     133 |         },
+         |         ~
+   drivers/pinctrl/meson/pinctrl-amlogic-a4.c:69:19: note: initialized flexible array member 'multi_data' is here
+      69 |         struct multi_mux multi_data[];
+         |                          ^
+   drivers/pinctrl/meson/pinctrl-amlogic-a4.c:138:13: error: designator into flexible array member subobject
+     138 |         .multi_data[0] = {
+         |                    ^~~~~~~
+     139 |                 .m_bank_id = AMLOGIC_GPIO_CC,
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     140 |                 .m_bit_offs = 24,
+         |                 ~~~~~~~~~~~~~~~~~
+     141 |                 .sid = (AMLOGIC_GPIO_X << 8) + 16,
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     142 |                 .eid = (AMLOGIC_GPIO_X << 8) + 19,
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     143 |         },
+         |         ~
+   drivers/pinctrl/meson/pinctrl-amlogic-a4.c:69:19: note: initialized flexible array member 'multi_data' is here
+      69 |         struct multi_mux multi_data[];
+         |                          ^
+   drivers/pinctrl/meson/pinctrl-amlogic-a4.c:144:13: error: designator into flexible array member subobject
+     144 |         .multi_data[1] = {
+         |                    ^~~~~~~
+     145 |                 .m_bank_id = AMLOGIC_GPIO_F,
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     146 |                 .m_bit_offs = 4,
+         |                 ~~~~~~~~~~~~~~~~
+     147 |                 .sid = (AMLOGIC_GPIO_D << 8) + 6,
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     148 |                 .eid = (AMLOGIC_GPIO_D << 8) + 6,
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     149 |         },
+         |         ~
+   drivers/pinctrl/meson/pinctrl-amlogic-a4.c:69:19: note: initialized flexible array member 'multi_data' is here
+      69 |         struct multi_mux multi_data[];
+         |                          ^
+   3 errors generated.
 
 
+vim +128 drivers/pinctrl/meson/pinctrl-amlogic-a4.c
 
+   125	
+   126	const struct aml_pctl_data s7_priv_data = {
+   127		.number = 1,
+ > 128		.multi_data[0] = {
+   129			.m_bank_id = AMLOGIC_GPIO_CC,
+   130			.m_bit_offs = 24,
+   131			.sid = (AMLOGIC_GPIO_X << 8) + 16,
+   132			.eid = (AMLOGIC_GPIO_X << 8) + 19,
+   133		},
+   134	};
+   135	
 
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
