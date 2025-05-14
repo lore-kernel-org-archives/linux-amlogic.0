@@ -4,84 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E898C3ABD9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 May 2025 07:41:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88838C3ABD9
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 May 2025 07:54:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oMPJt84uPV8V5bcAhRsbPCMeWXdoOE+FYFioacx5m3o=; b=gB2te4oKaO2vH7
-	buICwVvV7hTHmgAnKVrh/piqr2KoUI5Et9KeeEMW/WqZtj+iYS78adhsCVWjkSEbJf2dKMlptnxQ9
-	4VGPneVPcZFuVUcWJ7CvKwPF1dgbpnCLs6TGYgC8bYmY+2ExVVZiiw2GJRIDcVL6PlXB/fssTwsFq
-	g+lrdbN7j6sSV9+8klBwdBx5wdnuY8JSIfZzA4X3tea6FLj5NNXsgnigpnRTgcuZsiF6S5vTxlR+w
-	EfslavwNLb4qgGwR7L9dGoOCABmFizQBrZ7XpFCfvo/+MtxxarS/0IDTRs+Q5/LzJ7IR1VFzaub/S
-	DxMgsrLAMaVzOfkCatTQ==;
+	List-Owner; bh=QEoAbfiBWq3Iqd7nftSu+NuOFzgO5zmWdEsWNuH4s54=; b=ijagr4HqRPPqtk
+	8wWCGJUmZZdpqAHhwbadP4X6iVDIV18wTKbdHae5dMMZzdXkMnsUewLCU/umbqsMIxc5MpL1LPQ1W
+	43A6cqRq47qSW6uxRZKKXXCh4SNhu/slGa5Y3LIlzHAEo0bi2jSmHToHI8GsUUSNqZyn0xRT0b65P
+	IkeKJe3Rqw3f7TYzAbBT1qkQcDATpeQFtjbc9RrF/8GCqExh2ja67hVFapqwlAq2Zpmc/IIJlU7FD
+	o+5a2+AaTvZOLcZqkKkZKH4rv2xLjSCxe89Ql3uTWq5uc2zCMjW0vMdFRr6ZpmL4dRJodZF9s5EUy
+	yiZD4ocxIhq3bRA2+U2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uF6kP-0000000ENL1-1JXh;
-	Wed, 14 May 2025 07:41:49 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1uF6wx-0000000EPAM-1dWb;
+	Wed, 14 May 2025 07:54:47 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uF6hv-0000000EMwA-2FHv
-	for linux-amlogic@bombadil.infradead.org;
-	Wed, 14 May 2025 07:39:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:MIME-Version:Message-ID:
-	Date:References:In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=ZVmGNhpPip+++PUOZC2sGERkflrjQCplFYAdCCvMfb8=; b=lZB3qCEaxL5pT5u1D3URKrb2SN
-	nAzWUgGxprHAbmSIo+znwobnWbSfQgsUfNgwUm5Rd7MIxJDoZUlmtQTwMzCODzcZkHtQQfhtnf+Ml
-	RGtNwJp1kEFCqrSaN3C4tLBxCXyIa1tIFQxes92A2fdBXIQyiBeb67N5Hx3SkNBMwrgG9rvk128oa
-	qH3Q1LNwSg3SMBEhGf6lM3MqlSArtz6J4PQ9HQPBvFvHRe4yLP0Fz/ATJh88nV3KjE37lmJgbGyde
-	eEyqYI+q7V2uRHulGIZKgj0Fnp30F3kuTgcH7V/11HBCLxNVeqazy8fVXQ2KU/PO1zK9Egi4wGZDy
-	QOlPgAeQ==;
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
-	by desiato.infradead.org with esmtps (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1uF6hr-0000000H6ge-23mr
+	id 1uF6uu-0000000EOzO-3sTD
 	for linux-amlogic@lists.infradead.org;
-	Wed, 14 May 2025 07:39:14 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3a108684f90so3941355f8f.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 14 May 2025 00:39:09 -0700 (PDT)
+	Wed, 14 May 2025 07:52:43 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-43d04dc73b7so69294295e9.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 14 May 2025 00:52:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747208349; x=1747813149; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747209159; x=1747813959; darn=lists.infradead.org;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZVmGNhpPip+++PUOZC2sGERkflrjQCplFYAdCCvMfb8=;
-        b=Z/z/TTMny6wNaXl+oRVqsEXQ57gjKpTB71Vd0G3MAeO8KQ3zT+r9Aj19XIWJfI2fdE
-         ViJ6x/gx9n6Rz5GvIcV0Sr+Rw0O+QOnBYascb/SyiJfCR0SREl/P3U+BV5VCp+ijzLh5
-         kEBRaWMjzAIXVZDhh9uZRixryNLVLgPOl37Bk00C2TOYLXViX7XHjtxWEJAhbkD2Zwes
-         BPMiqkuCKseZfLZLQe5FzWA8GpSqpFTj71J6Myd7WCNyqVsUKi/R9NMrcfX4EeG5aM2w
-         1jPsiGk2guuNZyjKaLgzOlFBMfNq5C+Rj0Ia+UjsVuxeDtx0J7lmdvGpC+f4n3uw/6JG
-         G31Q==
+        bh=rVrlBRpYwqk4W+SGGN+L3RT2rnm1k7V0dF4h4qOhZAY=;
+        b=Crgsuc85jS4VcAyBAUa9dLjnji9mq0GSa2WfKBUl4qft5wXNxd6rTP+qo7k+j0Rc1G
+         ibqu/ZoipKVUdBpLNPBARMuzJtP7oAQ/hXbhaPAi4JeaTFX0YqSTY11bEAaCad50sfSd
+         vg1x89p8Gj1emdIn0ptXbu3XCpgSMNuxest5NSO5JH4T6WK0VXtAMlFYyj3IS7DRw4gY
+         fze15IgyeVjdZvFVKzc15lwvSDhzcl/xx4B1+A6KiPkA/CO2myJta/vYFU2DD3i7ky7p
+         Q5p3tma0yDCZJeyUcWU1o8we1YwQRffMCdFUhH50iayvvfiLGsGBLFzA4+PJmS9CK02R
+         uImg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747208349; x=1747813149;
+        d=1e100.net; s=20230601; t=1747209159; x=1747813959;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZVmGNhpPip+++PUOZC2sGERkflrjQCplFYAdCCvMfb8=;
-        b=gFYDrj6hUl375AYAfotaIJxc7UwLAC6vHJipcmjuuD4htJ8NOP96RZqJoxCasBWdMI
-         vNXNPdTDjJxeURU/kCfg9uOmA6ZQwh+/opVXvOx7RAryqrGJRGkBIdVB6mQy1zDlU/NG
-         +IBsZlkMFQttPHcc11ALvN8bV3Xfg6r41OozP2E6YMdImM8faX1nA7yooRqPpGbMrWIR
-         mMcXqbxPhIetVedbl9hmN+OIMhlm5Agy8I/Z8jI8YPk4zbobM3rtI018j88s2BDJFc3j
-         nqC8PoJ3nPyLpT5XkLSpMcp9pfWAIhv7VYoHqH9iNsnjTsGAVvHk6/32Kra4EIhNLMQE
-         4wEg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOCnx6PugIut12l2PVM0Fhqp/5AUeYQghAsqnk7xik8o0f27eUUe4yQxvzNm9BAZte0hmPARDhTckxOo7b@lists.infradead.org
-X-Gm-Message-State: AOJu0YxBB7KjXkrc5kAKIWjBZKdjn48/2YxAX0WV4d8CVl/eUts3SfJv
-	yAvPRyaakRGX9NoDx7S5BTauBjqGyKSuB8Utsez6yWPVsGFUinc7Z+iSM+idMXo=
-X-Gm-Gg: ASbGncsqh4MDzlb/Mdt7GitIpj1o4vzXRceXTVJSm69jtNfo/vZn6gso8i7ul0rkyiG
-	4Ae8vHyl+tl1kA0JPiHbgPKUymCWZWeubYwMGwGc84ZKKBTh57uQy8iTHXbvX9mOg+JN5KST8b5
-	4qS8xCgOYbr3uXAEnBHz3pmfOgXz3TAj9DQ4j5icHjVoVq4thJQns0E+FBAMFK3z7/8pVZc+s0O
-	kyFJf+8Fbox6/Ln+8mblahnkcTO6/5Kznpu3d2jnTskJC3N55ie33yDJmGvPUD3Lojq022lIu+W
-	+BuJO+un5JW/dYAKz4C3emQ5iQ4greZHzlflwhcx+0EYmQpq9i0=
-X-Google-Smtp-Source: AGHT+IG7CrNBn/EFtls8jFCa6+Od8EZnVpuoJGdjw4zpKMEd5j+UzCgUpQFM4d3fwpyVX79bArzG+Q==
-X-Received: by 2002:a05:6000:4201:b0:3a0:ac96:bd41 with SMTP id ffacd0b85a97d-3a3496c4024mr1989692f8f.27.1747208348669;
-        Wed, 14 May 2025 00:39:08 -0700 (PDT)
+        bh=rVrlBRpYwqk4W+SGGN+L3RT2rnm1k7V0dF4h4qOhZAY=;
+        b=cPpSLxwTRoCg0NJyToNfdldhw9kYBdP4IFhSlfg+KLTQ5X5UoY+k5wUzZHsPWELh8s
+         updG/MvzF6mhBiEL8LvIJDYLNBSaeWiOU0n+57YhdCU0tm8P9xoIxGBXy7jd1ybSKJl9
+         KyFuVTBeKjFoVhX/1bf9EYcOg+HMcg8ue93w189i7va+aKHiVAz8c38lmdSnv/zrNSpw
+         t8zrSIjfnt6E70rB1r3EfcF3UHrgNOBwPjVxgu15nOHi5szAfGtdDQ6TqscFQ/IvQktg
+         EMp4wIT2SYUO3FeFIFEa3ZQ5Qvkmpvs2oYgrfFVlopw4MFBR7/72VDn3nEsZ/QNap0/D
+         Xinw==
+X-Forwarded-Encrypted: i=1; AJvYcCUAvIph00Oc6ciLE6KjoGGrhWEEaoT1976sDkvx1Rg/nU1drf8dDX3WY/C1/pyUypTdUQvlMXloGfk8WmbD@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz9tyCdUrLgEdxir9Zuwg6rf55gWdnmsBcIUbVbEe0aS7Ib3lR4
+	PNx5ljtWXOnvGt1MhyqViLxx3pzwjmgf0yD+3TjGnBDhGfj5/HAybHTrEhdc0h4=
+X-Gm-Gg: ASbGncul3+A+b/PyrJGTeU66eH4CcRuypjdDDep4AMHxFsuyjmsyG8DkkxF42fKOV1D
+	ArtE0C44bYQdJCNAh9trnLRPrI0sdI3Oq3A+xoAYMeYHlVhyL25tCu5Mk9tYpId6bqBVUC41p9L
+	/450iqmDI9Rawf5C4CRx2DwZZDqkzrp67TrPngvRoVI4bwvBFXwjAy0FJj6jXDtvQktBxcB0nen
+	DeBxb1CYSV9TAUYiWgGVuR/j5BoCiX86sPzlpv7zALsd7rGAHg3L83WJY4qvv086gXsrBwJO1gk
+	KTc1L10PLqZ1JzvUVH1dSZMDIVX5nb3H7Wee9AUaDAzKQOGzFZ4=
+X-Google-Smtp-Source: AGHT+IGXlJdaNiR1pjJcOTuOo6ZT4oDGuNtU34X00AthsNDVCEq05vev464VfPqE0fVJ37b+ezPkkw==
+X-Received: by 2002:a05:600c:6612:b0:43d:878c:7c40 with SMTP id 5b1f17b1804b1-442f20e1abdmr26129305e9.10.1747209158708;
+        Wed, 14 May 2025 00:52:38 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:3b94:a3ea:946a:aa90])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a1f5a2cf2bsm18503449f8f.80.2025.05.14.00.39.07
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-442f3369138sm19232755e9.8.2025.05.14.00.52.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 May 2025 00:39:08 -0700 (PDT)
+        Wed, 14 May 2025 00:52:38 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Jian Hu <jian.hu@amlogic.com>
 Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,  Chuan Liu
@@ -94,18 +79,19 @@ Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,  Chuan Liu
  <linux-amlogic@lists.infradead.org>,  linux-kernel
  <linux-kernel@vger.kernel.org>,  linux-arm-kernel
  <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 5/6] clk: meson: add MESON_PCLK_V2 for sys gate clock
-In-Reply-To: <20250509074825.1933254-6-jian.hu@amlogic.com> (Jian Hu's message
-	of "Fri, 9 May 2025 07:48:23 +0000")
+Subject: Re: [PATCH v3 4/6] clk: meson: t7: add support for the T7 SoC PLL
+ clock
+In-Reply-To: <20250509074825.1933254-5-jian.hu@amlogic.com> (Jian Hu's message
+	of "Fri, 9 May 2025 07:48:22 +0000")
 References: <20250509074825.1933254-1-jian.hu@amlogic.com>
-	<20250509074825.1933254-6-jian.hu@amlogic.com>
+	<20250509074825.1933254-5-jian.hu@amlogic.com>
 User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Wed, 14 May 2025 09:39:07 +0200
-Message-ID: <1jzfffy738.fsf@starbuckisacylon.baylibre.com>
+Date: Wed, 14 May 2025 09:52:37 +0200
+Message-ID: <1jtt5ny6gq.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250514_083911_997317_D91C5C8E 
-X-CRM114-Status: GOOD (  16.73  )
+X-CRM114-CacheID: sfid-20250514_005240_981074_C4A3BBA2 
+X-CRM114-Status: GOOD (  24.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,63 +110,1262 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Fri 09 May 2025 at 07:48, Jian Hu <jian.hu@amlogic.com> wrote:
 
-> A new MESON_PCLK_V2 macro is introduced for the sys gate clock. Its parent
-> is an SCMI clock. It belongs to another clock controller, and the parent
-> configuration is different from  that of MESON_PCLK. This avoids new macro
-> definition in the peripheral clock driver.
+> Add PLL clock controller driver for the Amlogic T7 SoC family.
 >
 > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
->  drivers/clk/meson/clk-regmap.h | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
+>  drivers/clk/meson/Kconfig  |   14 +
+>  drivers/clk/meson/Makefile |    1 +
+>  drivers/clk/meson/t7-pll.c | 1193 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 1208 insertions(+)
+>  create mode 100644 drivers/clk/meson/t7-pll.c
 >
-> diff --git a/drivers/clk/meson/clk-regmap.h b/drivers/clk/meson/clk-regmap.h
-> index e365312da54e..61b8fc2d875f 100644
-> --- a/drivers/clk/meson/clk-regmap.h
-> +++ b/drivers/clk/meson/clk-regmap.h
-
-This file is not meant for amlogic specific stuff. I know some found
-their way in regardless but that's being fixed
-
-> @@ -134,4 +134,28 @@ struct clk_regmap _name = {						\
->  
->  #define MESON_PCLK_RO(_name, _reg, _bit, _pname)	\
->  	__MESON_PCLK(_name, _reg, _bit, &clk_regmap_gate_ro_ops, _pname)
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index be2e3a5f8336..8bb4f26a86ed 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -202,4 +202,18 @@ config COMMON_CLK_S4_PERIPHERALS
+>  	help
+>  	  Support for the peripherals clock controller on Amlogic S805X2 and S905Y4
+>  	  devices, AKA S4. Say Y if you want S4 peripherals clock controller to work.
 > +
-> +#define __MESON_PCLK_V2(_name, _reg, _bit, _ops, _pname)		\
-> +struct clk_regmap _name = {						\
-> +	.data = &(struct clk_regmap_gate_data){				\
-> +		.offset = (_reg),					\
-> +		.bit_idx = (_bit),					\
-> +	},								\
-> +	.hw.init = &(struct clk_init_data) {				\
-> +		.name = #_name,						\
-> +		.ops = _ops,						\
-> +		.parent_data = &(const struct clk_parent_data) {	\
-> +			.fw_name = #_pname,				\
-> +		},							\
-> +		.num_parents = 1,					\
-> +		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),	\
-> +	},								\
+> +config COMMON_CLK_T7_PLL
+> +	tristate "Amlogic T7 SoC PLL controller support"
+> +	depends on ARM64
+> +	default y
+> +	select COMMON_CLK_MESON_REGMAP
+> +	select COMMON_CLK_MESON_CLKC_UTILS
+> +	select COMMON_CLK_MESON_PLL
+> +	imply COMMON_CLK_SCMI
+> +	help
+> +	  Support for the PLL clock controller on Amlogic A311D2 based
+> +	  device, AKA T7. PLLs are required by most peripheral to operate
+> +	  Say Y if you are a T7 based device.
+> +
+>  endmenu
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index bc56a47931c1..646257694c34 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -27,3 +27,4 @@ obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
+>  obj-$(CONFIG_COMMON_CLK_S4_PLL) += s4-pll.o
+>  obj-$(CONFIG_COMMON_CLK_S4_PERIPHERALS) += s4-peripherals.o
+> +obj-$(CONFIG_COMMON_CLK_T7_PLL) += t7-pll.o
+> diff --git a/drivers/clk/meson/t7-pll.c b/drivers/clk/meson/t7-pll.c
+> new file mode 100644
+> index 000000000000..d2ec45d5e783
+> --- /dev/null
+> +++ b/drivers/clk/meson/t7-pll.c
+> @@ -0,0 +1,1193 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +/*
+> + * Copyright (C) 2024 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+> +#include "clk-regmap.h"
+> +#include "clk-pll.h"
+> +#include "clk-mpll.h"
+> +#include "meson-clkc-utils.h"
+> +#include "meson-eeclk.h"
+> +#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
+> +
+> +#define ANACTRL_GP0PLL_CTRL0		0x00
+> +#define ANACTRL_GP0PLL_CTRL1		0x04
+> +#define ANACTRL_GP0PLL_CTRL2		0x08
+> +#define ANACTRL_GP0PLL_CTRL3		0x0c
+> +#define ANACTRL_GP0PLL_CTRL4		0x10
+> +#define ANACTRL_GP0PLL_CTRL5		0x14
+> +#define ANACTRL_GP0PLL_CTRL6		0x18
+> +#define ANACTRL_GP0PLL_STS		0x1c
+> +
+> +#define ANACTRL_GP1PLL_CTRL0		0x00
+> +#define ANACTRL_GP1PLL_CTRL1		0x04
+> +#define ANACTRL_GP1PLL_CTRL2		0x08
+> +#define ANACTRL_GP1PLL_CTRL3		0x0c
+> +#define ANACTRL_GP1PLL_STS		0x1c
+> +
+> +#define ANACTRL_HIFIPLL_CTRL0		0x00
+> +#define ANACTRL_HIFIPLL_CTRL1		0x04
+> +#define ANACTRL_HIFIPLL_CTRL2		0x08
+> +#define ANACTRL_HIFIPLL_CTRL3		0x0c
+> +#define ANACTRL_HIFIPLL_CTRL4		0x10
+> +#define ANACTRL_HIFIPLL_CTRL5		0x14
+> +#define ANACTRL_HIFIPLL_CTRL6		0x18
+> +#define ANACTRL_HIFIPLL_STS		0x1c
+> +
+> +#define ANACTRL_PCIEPLL_CTRL0		0x00
+> +#define ANACTRL_PCIEPLL_CTRL1		0x04
+> +#define ANACTRL_PCIEPLL_CTRL2		0x08
+> +#define ANACTRL_PCIEPLL_CTRL3		0x0c
+> +#define ANACTRL_PCIEPLL_CTRL4		0x10
+> +#define ANACTRL_PCIEPLL_CTRL5		0x14
+> +#define ANACTRL_PCIEPLL_STS		0x18
+> +
+> +#define ANACTRL_MPLL_CTRL0		0x00
+> +#define ANACTRL_MPLL_CTRL1		0x04
+> +#define ANACTRL_MPLL_CTRL2		0x08
+> +#define ANACTRL_MPLL_CTRL3		0x0c
+> +#define ANACTRL_MPLL_CTRL4		0x10
+> +#define ANACTRL_MPLL_CTRL5		0x14
+> +#define ANACTRL_MPLL_CTRL6		0x18
+> +#define ANACTRL_MPLL_CTRL7		0x1c
+> +#define ANACTRL_MPLL_CTRL8		0x20
+> +#define ANACTRL_MPLL_STS		0x24
+> +
+> +#define ANACTRL_HDMIPLL_CTRL0		0x00
+> +#define ANACTRL_HDMIPLL_CTRL1		0x04
+> +#define ANACTRL_HDMIPLL_CTRL2		0x08
+> +#define ANACTRL_HDMIPLL_CTRL3		0x0c
+> +#define ANACTRL_HDMIPLL_CTRL4		0x10
+> +#define ANACTRL_HDMIPLL_CTRL5		0x14
+> +#define ANACTRL_HDMIPLL_CTRL6		0x18
+> +#define ANACTRL_HDMIPLL_STS		0x1c
+> +
+> +#define ANACTRL_MCLK_PLL_CNTL0		0x00
+> +#define ANACTRL_MCLK_PLL_CNTL1		0x04
+> +#define ANACTRL_MCLK_PLL_CNTL2		0x08
+> +#define ANACTRL_MCLK_PLL_CNTL3		0x0c
+> +#define ANACTRL_MCLK_PLL_CNTL4		0x10
+> +#define ANACTRL_MCLK_PLL_STS		0x14
+> +
+> +static const struct pll_mult_range t7_media_pll_mult_range = {
+> +	.min = 125,
+> +	.max = 250,
+> +};
+> +
+> +static const struct reg_sequence t7_gp0_init_regs[] = {
+> +	{ .reg = ANACTRL_GP0PLL_CTRL1,  .def = 0x00000000 },
+> +	{ .reg = ANACTRL_GP0PLL_CTRL2,  .def = 0x00000000 },
+> +	{ .reg = ANACTRL_GP0PLL_CTRL3,  .def = 0x48681c00 },
+> +	{ .reg = ANACTRL_GP0PLL_CTRL4,  .def = 0x88770290 },
+> +	{ .reg = ANACTRL_GP0PLL_CTRL5,  .def = 0x3927200a },
+> +	{ .reg = ANACTRL_GP0PLL_CTRL6,  .def = 0x56540000 },
+> +};
+> +
+> +static struct clk_regmap t7_gp0_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_GP0PLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_GP0PLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_GP0PLL_CTRL0,
+> +			.shift   = 10,
+> +			.width   = 5,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_GP0PLL_STS,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = ANACTRL_GP0PLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.range = &t7_media_pll_mult_range,
+> +		.init_regs = t7_gp0_init_regs,
+> +		.init_count = ARRAY_SIZE(t7_gp0_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_gp0_pll_dco",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_gp0_pll = {
+> +	.data = &(struct clk_regmap_div_data){
+> +		.offset = ANACTRL_GP0PLL_CTRL0,
+> +		.shift = 16,
+> +		.width = 3,
+> +		.flags = CLK_DIVIDER_POWER_OF_TWO,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "t7_gp0_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_gp0_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +/*
+> + * The gp1 pll IP is different with gp0 pll, the PLL DCO range is
+> + * 1.6GHZ - 3.2GHZ, and the reg_sequence is short
+> + */
+> +static const struct pll_mult_range t7_gp1_pll_mult_range = {
+> +	.min = 67,
+> +	.max = 133,
+> +};
+> +
+> +static const struct reg_sequence t7_gp1_init_regs[] = {
+> +	{ .reg = ANACTRL_GP1PLL_CTRL1,  .def = 0x1420500f },
+> +	{ .reg = ANACTRL_GP1PLL_CTRL2,  .def = 0x00023001 },
+> +	{ .reg = ANACTRL_GP1PLL_CTRL3,  .def = 0x00000000 },
+> +};
+> +
+> +static struct clk_regmap t7_gp1_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_GP1PLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_GP1PLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_GP1PLL_CTRL0,
+> +			.shift   = 16,
+> +			.width   = 5,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_GP1PLL_STS,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = ANACTRL_GP1PLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.range = &t7_gp1_pll_mult_range,
+> +		.init_regs = t7_gp1_init_regs,
+> +		.init_count = ARRAY_SIZE(t7_gp1_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_gp1_pll_dco",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_gp1_pll = {
+> +	.data = &(struct clk_regmap_div_data){
+> +		.offset = ANACTRL_GP1PLL_CTRL0,
+> +		.shift = 12,
+> +		.width = 3,
+> +		.flags = CLK_DIVIDER_POWER_OF_TWO,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "t7_gp1_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_gp1_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct reg_sequence t7_hifi_init_regs[] = {
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x00000000 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00000000 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x6a285c00 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x65771290 },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL5, .def = 0x3927200a },
+> +	{ .reg = ANACTRL_HIFIPLL_CTRL6, .def = 0x56540000 }
+> +};
+> +
+> +static struct clk_regmap t7_hifi_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 10,
+> +			.width   = 5,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_HIFIPLL_STS,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.range = &t7_media_pll_mult_range,
+> +		.init_regs = t7_hifi_init_regs,
+> +		.init_count = ARRAY_SIZE(t7_hifi_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_hifi_pll_dco",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_hifi_pll = {
+> +	.data = &(struct clk_regmap_div_data){
+> +		.offset = ANACTRL_HIFIPLL_CTRL0,
+> +		.shift = 16,
+> +		.width = 2,
+> +		.flags = CLK_DIVIDER_POWER_OF_TWO,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "t7_hifi_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_hifi_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +/*
+> + * The T7 PCIE PLL is fined tuned to deliver a very precise
+> + * 100MHz reference clock for the PCIe Analog PHY, and thus requires
+> + * a strict register sequence to enable the PLL.
+> + */
+
+It looks to me like something we are dragging from soc to soc that could
+be folded in the regular PLL with some effort ... just saying.
+
+> +static const struct reg_sequence t7_pcie_pll_init_regs[] = {
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL0,	.def = 0x200c04c8 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL0,	.def = 0x300c04c8 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL1,	.def = 0x30000000 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL2,	.def = 0x00001100 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL3,	.def = 0x10058e00 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL4,	.def = 0x000100c0 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL5,	.def = 0x68000048 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL5,	.def = 0x68000068, .delay_us = 20 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL4,	.def = 0x008100c0, .delay_us = 20 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL0,	.def = 0x340c04c8 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL0,	.def = 0x140c04c8, .delay_us = 20 },
+> +	{ .reg = ANACTRL_PCIEPLL_CTRL2,	.def = 0x00001000 }
+> +};
+> +
+> +static struct clk_regmap t7_pcie_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_PCIEPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_PCIEPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_PCIEPLL_CTRL0,
+> +			.shift   = 10,
+> +			.width   = 5,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_PCIEPLL_CTRL0,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = ANACTRL_PCIEPLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.init_regs = t7_pcie_pll_init_regs,
+> +		.init_count = ARRAY_SIZE(t7_pcie_pll_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_pcie_pll_dco",
+> +		.ops = &meson_clk_pcie_pll_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor t7_pcie_pll_dco_div2 = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_pcie_pll_dco_div2",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_pcie_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_pcie_pll_od = {
+> +	.data = &(struct clk_regmap_div_data){
+> +		.offset = ANACTRL_PCIEPLL_CTRL0,
+> +		.shift = 16,
+> +		.width = 5,
+> +		.flags = CLK_DIVIDER_ONE_BASED |
+> +			 CLK_DIVIDER_ALLOW_ZERO,
+
+What's the behaviour of the divider on zero then ?
+
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_pcie_pll_od",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_pcie_pll_dco_div2.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor t7_pcie_pll = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_pcie_pll",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_pcie_pll_od.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor t7_mpll_prediv = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mpll_prediv",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static const struct reg_sequence t7_mpll0_init_regs[] = {
+> +	{ .reg = ANACTRL_MPLL_CTRL2, .def = 0x40000033 }
+> +};
+> +
+> +static struct clk_regmap t7_mpll0_div = {
+> +	.data = &(struct meson_clk_mpll_data){
+> +		.sdm = {
+> +			.reg_off = ANACTRL_MPLL_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 14,
+> +		},
+> +		.sdm_en = {
+> +			.reg_off = ANACTRL_MPLL_CTRL1,
+> +			.shift   = 30,
+> +			.width	 = 1,
+> +		},
+> +		.n2 = {
+> +			.reg_off = ANACTRL_MPLL_CTRL1,
+> +			.shift   = 20,
+> +			.width   = 9,
+> +		},
+> +		.ssen = {
+> +			.reg_off = ANACTRL_MPLL_CTRL1,
+> +			.shift   = 29,
+> +			.width	 = 1,
+> +		},
+> +		.init_regs = t7_mpll0_init_regs,
+> +		.init_count = ARRAY_SIZE(t7_mpll0_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mpll0_div",
+> +		.ops = &meson_clk_mpll_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mpll_prediv.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mpll0 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_MPLL_CTRL1,
+> +		.bit_idx = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mpll0",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) { &t7_mpll0_div.hw },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct reg_sequence t7_mpll1_init_regs[] = {
+> +	{ .reg = ANACTRL_MPLL_CTRL4,	.def = 0x40000033 }
+> +};
+> +
+> +static struct clk_regmap t7_mpll1_div = {
+> +	.data = &(struct meson_clk_mpll_data){
+> +		.sdm = {
+> +			.reg_off = ANACTRL_MPLL_CTRL3,
+> +			.shift   = 0,
+> +			.width   = 14,
+> +		},
+> +		.sdm_en = {
+> +			.reg_off = ANACTRL_MPLL_CTRL3,
+> +			.shift   = 30,
+> +			.width	 = 1,
+> +		},
+> +		.n2 = {
+> +			.reg_off = ANACTRL_MPLL_CTRL3,
+> +			.shift   = 20,
+> +			.width   = 9,
+> +		},
+> +		.ssen = {
+> +			.reg_off = ANACTRL_MPLL_CTRL3,
+> +			.shift   = 29,
+> +			.width	 = 1,
+> +		},
+> +		.init_regs = t7_mpll1_init_regs,
+> +		.init_count = ARRAY_SIZE(t7_mpll1_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mpll1_div",
+> +		.ops = &meson_clk_mpll_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mpll_prediv.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mpll1 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_MPLL_CTRL3,
+> +		.bit_idx = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mpll1",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) { &t7_mpll1_div.hw },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct reg_sequence t7_mpll2_init_regs[] = {
+> +	{ .reg = ANACTRL_MPLL_CTRL6, .def = 0x40000033 }
+> +};
+> +
+> +static struct clk_regmap t7_mpll2_div = {
+> +	.data = &(struct meson_clk_mpll_data){
+> +		.sdm = {
+> +			.reg_off = ANACTRL_MPLL_CTRL5,
+> +			.shift   = 0,
+> +			.width   = 14,
+> +		},
+> +		.sdm_en = {
+> +			.reg_off = ANACTRL_MPLL_CTRL5,
+> +			.shift   = 30,
+> +			.width	 = 1,
+> +		},
+> +		.n2 = {
+> +			.reg_off = ANACTRL_MPLL_CTRL5,
+> +			.shift   = 20,
+> +			.width   = 9,
+> +		},
+> +		.ssen = {
+> +			.reg_off = ANACTRL_MPLL_CTRL5,
+> +			.shift   = 29,
+> +			.width	 = 1,
+> +		},
+> +		.init_regs = t7_mpll2_init_regs,
+> +		.init_count = ARRAY_SIZE(t7_mpll2_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mpll2_div",
+> +		.ops = &meson_clk_mpll_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mpll_prediv.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mpll2 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_MPLL_CTRL5,
+> +		.bit_idx = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mpll2",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) { &t7_mpll2_div.hw },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct reg_sequence t7_mpll3_init_regs[] = {
+> +	{ .reg = ANACTRL_MPLL_CTRL8, .def = 0x40000033 }
+> +};
+> +
+> +static struct clk_regmap t7_mpll3_div = {
+> +	.data = &(struct meson_clk_mpll_data){
+> +		.sdm = {
+> +			.reg_off = ANACTRL_MPLL_CTRL7,
+> +			.shift   = 0,
+> +			.width   = 14,
+> +		},
+> +		.sdm_en = {
+> +			.reg_off = ANACTRL_MPLL_CTRL7,
+> +			.shift   = 30,
+> +			.width	 = 1,
+> +		},
+> +		.n2 = {
+> +			.reg_off = ANACTRL_MPLL_CTRL7,
+> +			.shift   = 20,
+> +			.width   = 9,
+> +		},
+> +		.ssen = {
+> +			.reg_off = ANACTRL_MPLL_CTRL7,
+> +			.shift   = 29,
+> +			.width	 = 1,
+> +		},
+> +		.init_regs = t7_mpll3_init_regs,
+> +		.init_count = ARRAY_SIZE(t7_mpll3_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mpll3_div",
+> +		.ops = &meson_clk_mpll_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mpll_prediv.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mpll3 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_MPLL_CTRL7,
+> +		.bit_idx = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mpll3",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) { &t7_mpll3_div.hw },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct reg_sequence t7_hdmi_init_regs[] = {
+> +	{ .reg = ANACTRL_HDMIPLL_CTRL1, .def = 0x00000000 },
+> +	{ .reg = ANACTRL_HDMIPLL_CTRL2, .def = 0x00000000 },
+> +	{ .reg = ANACTRL_HDMIPLL_CTRL3, .def = 0x6a28dc00 },
+> +	{ .reg = ANACTRL_HDMIPLL_CTRL4, .def = 0x65771290 },
+> +	{ .reg = ANACTRL_HDMIPLL_CTRL5, .def = 0x39272000 },
+> +	{ .reg = ANACTRL_HDMIPLL_CTRL6, .def = 0x56540000 }
+> +};
+> +
+> +static struct clk_regmap t7_hdmi_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_HDMIPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_HDMIPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 9,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_HDMIPLL_CTRL0,
+> +			.shift   = 10,
+> +			.width   = 5,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_HDMIPLL_CTRL0,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = ANACTRL_HDMIPLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.range = &t7_media_pll_mult_range,
+> +		.init_regs = t7_hdmi_init_regs,
+> +		.init_count = ARRAY_SIZE(t7_hdmi_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_hdmi_pll_dco",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_data = (const struct clk_parent_data []) {
+> +			{ .fw_name = "in0", }
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_hdmi_pll_od = {
+> +	.data = &(struct clk_regmap_div_data){
+> +		.offset = ANACTRL_HDMIPLL_CTRL0,
+> +		.shift = 16,
+> +		.width = 4,
+> +		.flags = CLK_DIVIDER_POWER_OF_TWO,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_hdmi_pll_od",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_hdmi_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_hdmi_pll = {
+> +	.data = &(struct clk_regmap_div_data){
+> +		.offset = ANACTRL_HDMIPLL_CTRL0,
+> +		.shift = 20,
+> +		.width = 2,
+> +		.flags = CLK_DIVIDER_POWER_OF_TWO,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_hdmi_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_hdmi_pll_od.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct pll_mult_range t7_mclk_pll_mult_range = {
+> +	.min = 67,
+> +	.max = 133,
+> +};
+> +
+> +static const struct reg_sequence t7_mclk_init_regs[] = {
+> +	{ .reg = ANACTRL_MCLK_PLL_CNTL1, .def = 0x1470500f },
+> +	{ .reg = ANACTRL_MCLK_PLL_CNTL2, .def = 0x00023041 },
+> +	{ .reg = ANACTRL_MCLK_PLL_CNTL3, .def = 0x18180000 },
+> +	{ .reg = ANACTRL_MCLK_PLL_CNTL4, .def = 0x00180303 },
+> +	{ .reg = ANACTRL_MCLK_PLL_CNTL2, .def = 0x00023001, .delay_us = 20 }
+
+What is this bit that you need to clear after the init sequence ?
+Any chance this maps to something the driver already has ? Doing init
+really belong on the init sequence - done at init only ?
+
+> +};
+> +
+> +static struct clk_regmap t7_mclk_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data){
+> +		.en = {
+> +			.reg_off = ANACTRL_MCLK_PLL_CNTL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = ANACTRL_MCLK_PLL_CNTL0,
+> +			.shift   = 0,
+> +			.width   = 8,
+> +		},
+> +		.n = {
+> +			.reg_off = ANACTRL_MCLK_PLL_CNTL0,
+> +			.shift   = 16,
+> +			.width   = 5,
+> +		},
+> +		.l = {
+> +			.reg_off = ANACTRL_MCLK_PLL_CNTL0,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = ANACTRL_MCLK_PLL_CNTL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.range = &t7_mclk_pll_mult_range,
+> +		.init_regs = t7_mclk_init_regs,
+> +		.init_count = ARRAY_SIZE(t7_mclk_init_regs),
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mclk_pll_dco",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +/* max div is 16 */
+> +static const struct clk_div_table t7_mclk_div[] = {
+> +	{ .val = 0, .div = 1 },
+> +	{ .val = 1, .div = 2 },
+> +	{ .val = 2, .div = 4 },
+> +	{ .val = 3, .div = 8 },
+> +	{ .val = 4, .div = 16 },
+> +	{ /* sentinel */ }
+> +};
+> +
+> +static struct clk_regmap t7_mclk_pre_od = {
+> +	.data = &(struct clk_regmap_div_data){
+> +		.offset = ANACTRL_MCLK_PLL_CNTL0,
+> +		.shift = 12,
+> +		.width = 3,
+> +		.table = t7_mclk_div,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mclk_pre_od",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mclk_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mclk_pll = {
+> +	.data = &(struct clk_regmap_div_data){
+> +		.offset = ANACTRL_MCLK_PLL_CNTL4,
+> +		.shift = 16,
+> +		.width = 5,
+> +		.flags = CLK_DIVIDER_ONE_BASED,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mclk_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mclk_pre_od.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mclk_0_sel = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = ANACTRL_MCLK_PLL_CNTL4,
+> +		.mask = 0x3,
+> +		.shift = 4,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mclk_0_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = (const struct clk_parent_data []) {
+> +			{ .hw = &t7_mclk_pll.hw },
+> +			{ .fw_name = "in1", },
+> +			{ .fw_name = "in2", },
+> +		},
+> +		.num_parents = 3,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor t7_mclk_0_div2 = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mclk_0_div2",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) { &t7_mclk_0_sel.hw },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mclk_0_pre = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_MCLK_PLL_CNTL4,
+> +		.bit_idx = 2,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "t7_mclk_0_pre",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mclk_0_div2.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mclk_0 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_MCLK_PLL_CNTL4,
+> +		.bit_idx = 0,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "t7_mclk_0",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mclk_0_pre.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mclk_1_sel = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = ANACTRL_MCLK_PLL_CNTL4,
+> +		.mask = 0x3,
+> +		.shift = 12,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mclk_1_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = (const struct clk_parent_data []) {
+> +			{ .hw = &t7_mclk_pll.hw },
+> +			{ .fw_name = "in1", },
+> +			{ .fw_name = "in2", },
+> +		},
+> +		.num_parents = 3,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor t7_mclk_1_div2 = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "t7_mclk_1_div2",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) { &t7_mclk_1_sel.hw },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mclk_1_pre = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_MCLK_PLL_CNTL4,
+> +		.bit_idx = 10,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "t7_mclk_1_pre",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mclk_1_div2.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_mclk_1 = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANACTRL_MCLK_PLL_CNTL4,
+> +		.bit_idx = 8,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "t7_mclk_1",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mclk_1_pre.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_hw *t7_gp0_hw_clks[] = {
+> +	[CLKID_GP0_PLL_DCO]		= &t7_gp0_pll_dco.hw,
+> +	[CLKID_GP0_PLL]			= &t7_gp0_pll.hw,
+> +};
+> +
+> +static struct clk_hw *t7_gp1_hw_clks[] = {
+> +	[CLKID_GP1_PLL_DCO]		= &t7_gp1_pll_dco.hw,
+> +	[CLKID_GP1_PLL]			= &t7_gp1_pll.hw,
+> +};
+> +
+> +static struct clk_hw *t7_hifi_hw_clks[] = {
+> +	[CLKID_HIFI_PLL_DCO]		= &t7_hifi_pll_dco.hw,
+> +	[CLKID_HIFI_PLL]		= &t7_hifi_pll.hw,
+> +};
+> +
+> +static struct clk_hw *t7_pcie_hw_clks[] = {
+> +	[CLKID_PCIE_PLL_DCO]		= &t7_pcie_pll_dco.hw,
+> +	[CLKID_PCIE_PLL_DCO_DIV2]	= &t7_pcie_pll_dco_div2.hw,
+> +	[CLKID_PCIE_PLL_OD]		= &t7_pcie_pll_od.hw,
+> +	[CLKID_PCIE_PLL]		= &t7_pcie_pll.hw,
+> +};
+> +
+> +static struct clk_hw *t7_mpll_hw_clks[] = {
+> +	[CLKID_MPLL_PREDIV]		= &t7_mpll_prediv.hw,
+> +	[CLKID_MPLL0_DIV]		= &t7_mpll0_div.hw,
+> +	[CLKID_MPLL0]			= &t7_mpll0.hw,
+> +	[CLKID_MPLL1_DIV]		= &t7_mpll1_div.hw,
+> +	[CLKID_MPLL1]			= &t7_mpll1.hw,
+> +	[CLKID_MPLL2_DIV]		= &t7_mpll2_div.hw,
+> +	[CLKID_MPLL2]			= &t7_mpll2.hw,
+> +	[CLKID_MPLL3_DIV]		= &t7_mpll3_div.hw,
+> +	[CLKID_MPLL3]			= &t7_mpll3.hw,
+> +};
+> +
+> +static struct clk_hw *t7_hdmi_hw_clks[] = {
+> +	[CLKID_HDMI_PLL_DCO]		= &t7_hdmi_pll_dco.hw,
+> +	[CLKID_HDMI_PLL_OD]		= &t7_hdmi_pll_od.hw,
+> +	[CLKID_HDMI_PLL]		= &t7_hdmi_pll.hw,
+> +};
+> +
+> +static struct clk_hw *t7_mclk_hw_clks[] = {
+> +	[CLKID_MCLK_PLL_DCO]		= &t7_mclk_pll_dco.hw,
+> +	[CLKID_MCLK_PRE]		= &t7_mclk_pre_od.hw,
+> +	[CLKID_MCLK_PLL]		= &t7_mclk_pll.hw,
+> +	[CLKID_MCLK_0_SEL]		= &t7_mclk_0_sel.hw,
+> +	[CLKID_MCLK_0_DIV2]		= &t7_mclk_0_div2.hw,
+> +	[CLKID_MCLK_0_PRE]		= &t7_mclk_0_pre.hw,
+> +	[CLKID_MCLK_0]			= &t7_mclk_0.hw,
+> +	[CLKID_MCLK_1_SEL]		= &t7_mclk_1_sel.hw,
+> +	[CLKID_MCLK_1_DIV2]		= &t7_mclk_1_div2.hw,
+> +	[CLKID_MCLK_1_PRE]		= &t7_mclk_1_pre.hw,
+> +	[CLKID_MCLK_1]			= &t7_mclk_1.hw,
+> +};
+> +
+> +static struct clk_regmap *const t7_gp0_regmaps[] = {
+> +	&t7_gp0_pll_dco,
+> +	&t7_gp0_pll,
+> +};
+> +
+> +static struct clk_regmap *const t7_gp1_regmaps[] = {
+> +	&t7_gp1_pll_dco,
+> +	&t7_gp1_pll,
+> +};
+> +
+> +static struct clk_regmap *const t7_hifi_regmaps[] = {
+> +	&t7_hifi_pll_dco,
+> +	&t7_hifi_pll,
+> +};
+> +
+> +static struct clk_regmap *const t7_pcie_regmaps[] = {
+> +	&t7_pcie_pll_dco,
+> +	&t7_pcie_pll_od,
+> +};
+> +
+> +static struct clk_regmap *const t7_mpll_regmaps[] = {
+> +	&t7_mpll0_div,
+> +	&t7_mpll0,
+> +	&t7_mpll1_div,
+> +	&t7_mpll1,
+> +	&t7_mpll2_div,
+> +	&t7_mpll2,
+> +	&t7_mpll3_div,
+> +	&t7_mpll3,
+> +};
+> +
+> +static struct clk_regmap *const t7_hdmi_regmaps[] = {
+> +	&t7_hdmi_pll_dco,
+> +	&t7_hdmi_pll_od,
+> +	&t7_hdmi_pll,
+> +};
+> +
+> +static struct clk_regmap *const t7_mclk_regmaps[] = {
+> +	&t7_mclk_pll_dco,
+> +	&t7_mclk_pre_od,
+> +	&t7_mclk_pll,
+> +	&t7_mclk_0_sel,
+> +	&t7_mclk_0_pre,
+> +	&t7_mclk_0,
+> +	&t7_mclk_1_sel,
+> +	&t7_mclk_1_pre,
+> +	&t7_mclk_1,
+> +};
+> +
+> +static const struct regmap_config t7_clkc_regmap_config = {
+> +	.reg_bits       = 32,
+> +	.val_bits       = 32,
+> +	.reg_stride     = 4,
+> +};
+> +
+> +static int amlogic_t7_pll_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	const struct meson_eeclkc_data *data;
+> +	void __iomem *base;
+> +	struct regmap *map;
+> +	int i, ret;
+> +
+> +	data = of_device_get_match_data(&pdev->dev);
+> +	if (!data)
+> +		return -EINVAL;
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	map = devm_regmap_init_mmio(dev, base, &t7_clkc_regmap_config);
+> +	if (IS_ERR(map))
+> +		return PTR_ERR(map);
+> +
+> +	/* Populate regmap for the regmap backed clocks */
+> +	for (i = 0; i < data->regmap_clk_num; i++)
+> +		data->regmap_clks[i]->map = map;
+> +
+> +	if (data->init_count)
+> +		regmap_multi_reg_write(map, data->init_regs,
+> +				       data->init_count);
+> +
+> +	/* Register clocks */
+> +	for (i = 0; i < data->hw_clks.num; i++) {
+> +		ret = devm_clk_hw_register(dev, data->hw_clks.hws[i]);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get, (void *)&data->hw_clks);
 > +}
-
-The proliferation of those macros has been going on for far too long,
-add using CLK_IGNORE_UNUSED inside is certainly a mistake I won't
-repeat.
-
-This will be part of more general clean-up that currently depends on a
-this [1] patch to go further. You'll have to be patient.
-
-[1]: https://lore.kernel.org/r/20250417-clk-hw-get-helpers-v1-0-7743e509612a@baylibre.com
-
 > +
-> +#define MESON_PCLK_V2(_name, _reg, _bit, _pname)	\
-> +	__MESON_PCLK_V2(_name, _reg, _bit, &clk_regmap_gate_ops, _pname)
+> +static const struct meson_eeclkc_data t7_gp0_data = {
+> +	.regmap_clks = t7_gp0_regmaps,
+> +	.regmap_clk_num = ARRAY_SIZE(t7_gp0_regmaps),
+> +	.hw_clks = {
+> +		.hws = t7_gp0_hw_clks,
+> +		.num = ARRAY_SIZE(t7_gp0_hw_clks),
+> +	},
+> +};
 > +
-> +#define MESON_PCLK_RO_V2(_name, _reg, _bit, _pname)	\
-> +	__MESON_PCLK_V2(_name, _reg, _bit, &clk_regmap_gate_ro_ops, _pname)
+> +static const struct meson_eeclkc_data t7_gp1_data = {
+> +	.regmap_clks = t7_gp1_regmaps,
+> +	.regmap_clk_num = ARRAY_SIZE(t7_gp1_regmaps),
+> +	.hw_clks = {
+> +		.hws = t7_gp1_hw_clks,
+> +		.num = ARRAY_SIZE(t7_gp1_hw_clks),
+> +	},
+> +};
 > +
->  #endif /* __CLK_REGMAP_H */
+> +static const struct meson_eeclkc_data t7_hifi_data = {
+> +	.regmap_clks = t7_hifi_regmaps,
+> +	.regmap_clk_num = ARRAY_SIZE(t7_hifi_regmaps),
+> +	.hw_clks = {
+> +		.hws = t7_hifi_hw_clks,
+> +		.num = ARRAY_SIZE(t7_hifi_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct meson_eeclkc_data t7_pcie_data = {
+> +	.regmap_clks = t7_pcie_regmaps,
+> +	.regmap_clk_num = ARRAY_SIZE(t7_pcie_regmaps),
+> +	.hw_clks = {
+> +		.hws = t7_pcie_hw_clks,
+> +		.num = ARRAY_SIZE(t7_pcie_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct reg_sequence mpll_init_regs[] = {
+> +	{ .reg = ANACTRL_MPLL_CTRL0, .def = 0x00000543 }
+> +};
+> +
+> +static const struct meson_eeclkc_data t7_mpll_data = {
+> +	.regmap_clks = t7_mpll_regmaps,
+> +	.regmap_clk_num = ARRAY_SIZE(t7_mpll_regmaps),
+> +	.init_regs = mpll_init_regs,
+> +	.init_count = ARRAY_SIZE(mpll_init_regs),
+> +	.hw_clks = {
+> +		.hws = t7_mpll_hw_clks,
+> +		.num = ARRAY_SIZE(t7_mpll_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct meson_eeclkc_data t7_hdmi_data = {
+> +	.regmap_clks = t7_hdmi_regmaps,
+> +	.regmap_clk_num = ARRAY_SIZE(t7_hdmi_regmaps),
+> +	.hw_clks = {
+> +		.hws = t7_hdmi_hw_clks,
+> +		.num = ARRAY_SIZE(t7_hdmi_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct meson_eeclkc_data t7_mclk_data = {
+> +	.regmap_clks = t7_mclk_regmaps,
+> +	.regmap_clk_num = ARRAY_SIZE(t7_mclk_regmaps),
+> +	.hw_clks = {
+> +		.hws = t7_mclk_hw_clks,
+> +		.num = ARRAY_SIZE(t7_mclk_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct of_device_id t7_pll_clkc_match_table[] = {
+> +	{
+> +		.compatible = "amlogic,t7-pll-gp0",
+> +		.data = &t7_gp0_data,
+> +	},
+> +	{
+
+	}, { please
+
+> +		.compatible = "amlogic,t7-pll-gp1",
+> +		.data = &t7_gp1_data,
+> +	},
+> +	{
+> +		.compatible = "amlogic,t7-pll-hifi",
+> +		.data = &t7_hifi_data,
+> +	},
+> +	{
+> +		.compatible = "amlogic,t7-pll-pcie",
+> +		.data = &t7_pcie_data,
+> +	},
+> +	{
+> +		.compatible = "amlogic,t7-mpll",
+> +		.data = &t7_mpll_data,
+> +	},
+> +	{
+> +		.compatible = "amlogic,t7-pll-hdmi",
+> +		.data = &t7_hdmi_data,
+> +	},
+> +	{
+> +		.compatible = "amlogic,t7-pll-mclk",
+> +		.data = &t7_mclk_data,
+> +	},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, t7_pll_clkc_match_table);
+> +
+> +static struct platform_driver t7_pll_clkc_driver = {
+> +	.probe = amlogic_t7_pll_probe,
+> +	.driver = {
+> +		.name = "t7-pll-clkc",
+> +		.of_match_table = t7_pll_clkc_match_table,
+> +	},
+> +};
+> +
+> +MODULE_DESCRIPTION("Amlogic T7 PLL Clock Controller driver");
+> +module_platform_driver(t7_pll_clkc_driver);
+> +MODULE_AUTHOR("Jian Hu <jian.hu@amlogic.com>");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("CLK_MESON");
 
 -- 
 Jerome
