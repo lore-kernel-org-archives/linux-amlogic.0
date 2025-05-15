@@ -4,52 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F00E5C2D0CD
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 May 2025 08:02:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48912C3DA4A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 May 2025 11:37:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=IYF9NOnoKLLfT7fJZI47Z85+z/fkGyR3jr7BfTTopaQ=; b=pI1TI6tEdJWYDc
-	FemQWPm49SaV7uOrcabQzf91Ix76M0riGl8+O5/wOleanzK1d8HP8OIeW3cKf4HADBYjmuMsxSpzA
-	/WtVTRG8J2WL2jF6has54FJ397IOQj64HvorcHsnFI4sG9SRK9VuEBiWxLUcJUCUuSAkzBYPjUEuv
-	+NwYzM0cqMOTtpP+5zNfIfWp9ZTXWs3N+WodGk151Sipt430HEyNDpYIh5QOyiWri9qHt83ATLXH5
-	a0etNKleXU5VyOmIzX6uQjRpMi6z0+2GkbnvN/i5Xpac6FgboPpq27/lKkRuZwiyi3Pv78qK5iLZI
-	l+s9PBMjXd+Qtwbs9ocg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=VfiLwmnIHSUi6QzIChxs8zTTWjGRKld1t/OijZMoSJk=; b=IOV844j07DT2qJ+udVFWVuGXn+
+	8W8StfDb2dhRWWYpCsGL6NVSrtNL+XG/p/YgOtjiHTVd499YyI90b0AxYrdoo0RVL0e8eY/rBUamr
+	XxJpSwlUk65u5zrTcHLt7UuAFW+VAv47f9FaFC3WkPw/+uDzIrgmHssbhjzCsMrOI8+LVwEIHbTQF
+	mYiu/Ltm3m2cs0q45/mulhWRlsInaANDoEiif12osECRip73CdMNASNNK6yemD7gRd4NYK8P22MP5
+	MFsKaxx5jqmbDLlJljvHXPSRyrGVNZxDTYmbLxJ+aLCK/ZkeuXVEY6iHdkvIoZxbqL64bzpAzlNyG
+	CzIUDSAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFTYD-0000000HRI1-0FEU;
-	Thu, 15 May 2025 08:02:45 +0000
-Received: from mail.growdeal.pl ([141.95.55.73])
+	id 1uFWtU-00000000QTc-2Mc3;
+	Thu, 15 May 2025 11:36:56 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFTW9-0000000HQvC-0Z3S
-	for linux-amlogic@lists.infradead.org;
-	Thu, 15 May 2025 08:00:39 +0000
-Received: by mail.growdeal.pl (Postfix, from userid 1002)
-	id DB7AE25005; Thu, 15 May 2025 07:56:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=growdeal.pl; s=mail;
-	t=1747295859; bh=nU0fzD5wnLwbt9yoUSBeMInFHzMm7DGirLXtUO2ZpV8=;
-	h=Date:From:To:Subject:From;
-	b=rI5iNzbbKiiqOh6EqszpLdnX1A6yNke1fSoTuxsrOop9X/DTVSXo687IWQVoOeXzS
-	 aDRtYPcOAQyULL0JMFfaCvjFG9f85zHfM7ZhU+tmtF2E9+QbYD2MKIP6j5rlhDJj18
-	 l1iETilmsRBXKEY2HURiGdt1mlNPUIWATGJAxh7i7Uhf2ujCeak6SC6rRhrO6SkOGX
-	 VKX3w16YjTYNFp34ctR5+DJWwWMmxysYhOaL02QMoD1gMJEvlMy/m2FMnXxwvt3yHS
-	 HhdP42pogZncCZ9GYK2wjqs/CdH6wYjRjvrbIVCtnr4KV9KdKGl3pWGp4Kgo4fVodH
-	 R+Js0jCtQNaww==
-Received: by mail.growdeal.pl for <linux-amlogic@lists.infradead.org>; Thu, 15 May 2025 07:55:57 GMT
-Message-ID: <20250515064500-0.1.2c.12jsc.0.i8t5v5t8am@growdeal.pl>
-Date: Thu, 15 May 2025 07:55:57 GMT
-From: =?UTF-8?Q?"Pawe=C5=82_Zajdlicz"?= <pawel.zajdlicz@growdeal.pl>
-To: <linux-amlogic@lists.infradead.org>
-Subject: Rekrutacja handlowca 
-X-Mailer: mail.growdeal.pl
+	id 1uFWtQ-00000000QRj-45Ae;
+	Thu, 15 May 2025 11:36:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 1102F5C06C1;
+	Thu, 15 May 2025 11:34:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C199C4CEE7;
+	Thu, 15 May 2025 11:36:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747309012;
+	bh=d0iYPHhQnVy87MCQwRN3B7QhsFl6v508aPjz5n96844=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=diy+xgGXws2so7XTt0geI45NZbeDB9FeFQQkr59mpDDi6FlTulL64KOnf3BrGm5EN
+	 SuEY+xu42reIjAkEoH6QUmfrqzCnQxzgdJ5CokVhiZEvT/nIpr3wjpiwDao2LEuqNQ
+	 txbJ7M3wjM4Y38Q57pIFOi0Gl0BWMAfc9M8kf5+O9x2FVdc0radAzY2pbPC+Xogb/d
+	 aiWBe/DmL4zim3RVsWfn+HOryuI4douSBP5Imcou9bAxwgc3jcGqwTUoLk+rKP+IJv
+	 xghHwYcgdmQ24UFMcIbptW/gPugz8bVqS9bPQ7m86+77tmC+Wtnqmn3sCrfe9c7PCr
+	 x9Ki1RzreVVvQ==
+Date: Thu, 15 May 2025 13:36:47 +0200
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: Devices not instantiating on Alta
+Message-ID: <aCXRzzCM1Wp-cV7a@finisterre.sirena.org.uk>
+References: <aCRQqRucgWMOjUPj@finisterre.sirena.org.uk>
+ <1jikm3y4zb.fsf@starbuckisacylon.baylibre.com>
+ <aCRY5_LOGKxO4pVz@finisterre.sirena.org.uk>
 MIME-Version: 1.0
+In-Reply-To: <aCRY5_LOGKxO4pVz@finisterre.sirena.org.uk>
+X-Cookie: Well begun is half done.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250515_010037_856764_479F451B 
-X-CRM114-Status: UNSURE (   0.65  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250515_043653_066750_5E26E715 
+X-CRM114-Status: GOOD (  19.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,17 +70,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============9148801864561459915=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-V2l0YW0sCgpDenkgbWFqxIUgUGHFhHN0d2EgYWt0dWFsbmllIHBvdHJ6ZWJ5IHogemFrcmVzdSBy
-ZWtydXRhY2ppIG9zw7NiIGRvIGR6aWHFgnUgaGFuZGxvd2Vnbz8gCgpQb21hZ2FteSBza3V0ZWN6
-bmllIHJla3J1dG93YcSHIG9zb2J5IG5hIHN0YW5vd2lza2EgUHJ6ZWRzdGF3aWNpZWxhIEhhbmRs
-b3dlZ28sIFNhbGVzIE1hbmFnZXJhLCBhIHRha8W8ZSBLYWRyeSBNYW5hZ2Vyc2tpZWogdyBvYnN6
-YXJ6ZSBzcHJ6ZWRhxbx5LgoKQ3p5IG1vxbxlbXkgcG9yb3ptYXdpYcSHPwoKClBvemRyYXdpYW0K
-UGF3ZcWCIFphamRsaWN6CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1hbWxvZ2ljCg==
+
+--===============9148801864561459915==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="QPa03CCj7lGwQrIp"
+Content-Disposition: inline
+
+
+--QPa03CCj7lGwQrIp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, May 14, 2025 at 10:48:45AM +0200, Mark Brown wrote:
+> On Wed, May 14, 2025 at 10:24:40AM +0200, Jerome Brunet wrote:
+> > On Wed 14 May 2025 at 10:13, Mark Brown <broonie@kernel.org> wrote:
+>=20
+> > > For the past few days in -next I've been seeing the reset controller =
+and
+> > > audio subsystem failing to probe on Alta, I *think* the audio is a kn=
+ock
+> > > on effect of the reset controller.  I didn't spot a smoking gun in the
+> > > log:
+>=20
+> > >      https://lava.sirena.org.uk/scheduler/job/1388164#L4875
+>=20
+> > Maybe I missed it but where can I get the -next sha1 used and associated
+> > config used for this test ? I'd like to give it a try.
+>=20
+> The SHA is in the job title at the top of the link (IIRC that log is for
+> yesterday's -next since today's isn't out yet but it's been at least
+> since Monday), the config is just a plain arm64 defconfig.
+
+Whatever was going on appears to have resolved itself in today's -next -
+everything is regstering OK and all my tests are passing again.
+
+--QPa03CCj7lGwQrIp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmgl0c4ACgkQJNaLcl1U
+h9DsgAf/TIKAXEqdahx+I8Ad/aN2JdESTlAS/bEvB6gX+eQpOlur2y/5q3/UxTYZ
+xiIOaA2udTknPFAhruuH1uQ+ahW0fGRfzImUCvNEri4Z/J3uT6Yfdjm3sWnGg4uc
+2th93gfSMgNW6EjI65jf+Wq4e46s7DzqrfxDHdYKrfWNARsMx2WgSCbkI06BUL6f
+NOlYuC0rKIskquj9pjjCMOEGJKg0se7KCmEO5pj9i2XxOXfpuGouCd74U2ubnJBE
+yUDG1RmqEhPQnoKyvOnDymrg7borSIWzSXOX0dn49ByV3Po1aUM3Jk3x+eRZclye
+3uxoAHxMGZQo1SkcD6g/sLoiTeFQPg==
+=ZGPK
+-----END PGP SIGNATURE-----
+
+--QPa03CCj7lGwQrIp--
+
+
+--===============9148801864561459915==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============9148801864561459915==--
+
