@@ -4,94 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A5CBC2D0CD
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 May 2025 13:08:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4780C3DA6D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 May 2025 13:18:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QL11GvBuZX2FwY9IhpbJRML1nnyjyPAbzE2W9WTe0pM=; b=r5TAEcc0MEBagD
-	eZb9WPkxgPEERaUENgp+rp1KmG7Le35EvWdkKvvB6TdFycAtuLRNhy4ZUW1UGyj9+55s0YIaDyw0e
-	0Pa9xhqcT1qXIWmKqILNznAUMtz2pmsqYfQfD4oBSJKW6up8HNzhez1UyStvpHaXu4w5iG20Drm3q
-	gaeacHfSpBvtJ7mjoSFDA6Gl4gxJQDw5+YN1dG7JIdpbV+HH7Hq3GbK7rT0FNcLVTcG+9CI7QCrdq
-	4SDVanbt5Fp4nRlowLgLNQYTwU6VMsYLo8SACr+s7dhPJBRyRfP4N3jZwGG29zt3dL/hwe2r9vj+U
-	w8EkvEDY0jAb3S3LfDXQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ayDptxA6C0BRhkTf+05EbljiuKqo7+0bYyMjZd/zkD0=; b=3iJFaeFTId67y1
+	AuJMpEIoAUPtR9TKsc3nxVGEQrSlAu7QNemcpkQmgzTwwV6Yc33luKksZy2kutpGKkfs8ewrOgHBk
+	+4yPmhdFRtbUxJrCLDnNmnGpG8Xcf23MY9oCbocfzhqaF+F3Kxe2gzOCy2IMoUEnL+uliVzbMUulY
+	WTcUWsFynk2d48slvfyO12JFNrYFxWg/Kl1zJq7kmBcJ9NTnzurDZkk8yBUnYL7OovEM7QqQpdfHj
+	E0wy4KkXuP78izfGSOGJA2G+LmE5yQbIqGhlcRSK41lv5tawS1POafnwTNkOqGJ/nYMT/u0fNurEI
+	MkX1psziOwcoA+Jcvl9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFYJX-00000000g7n-2b4g;
-	Thu, 15 May 2025 13:07:55 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1uFYTU-00000000hcS-1KTI;
+	Thu, 15 May 2025 13:18:12 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uFYB9-00000000ek6-0DQT
+	id 1uFYJB-00000000g4K-1Kkt
 	for linux-amlogic@lists.infradead.org;
-	Thu, 15 May 2025 12:59:17 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-43cf06eabdaso8563585e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 15 May 2025 05:59:14 -0700 (PDT)
+	Thu, 15 May 2025 13:07:34 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-440685d6afcso10053555e9.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 15 May 2025 06:07:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747313954; x=1747918754; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8Qawhlvmv36yrM5PLXHrynEKEEyc5YE0PdfccMvrE2Y=;
-        b=gnzYfAw2Q5Ft8eOQx7Ti8qgwOtJI/fYyd0X2C4214uSit838HV7Xl9MRgXyG5atKZw
-         K5iBj2K/d62xiCpdD2+1yubQTQTTWOsyqoCRC7ZeiE/uFwG/HqlRJlBlGs0g/NNztgYR
-         nB2pOXLuz8viniok9wTP3gobxTomMHFVH7uyhVc46yQZMs1Ia6d7FVsiV5y0hTjz8D3m
-         mSGnf9FBfx+3UG5PZa8IVtSZHJydlrJRYE1vPKD03rUGrfL9BaxWf3BDqhNV1mbGqlmW
-         M+sIvzGMC0G3FhvQwcof5iPlzxknT7b8JcocLr9fVRecbHG+uO5FkVPmV+rmzMvXtuqT
-         8xcg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747314451; x=1747919251; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=iDfRqwWfszcqhqCUOCGRTjujtzBxRWhvCOesR4XZCXc=;
+        b=2+0qe9Gx1COVVsWq9TxTEFm+8T/C8vVBkclfodVYTcvoM2+6KR1gJnadbaWpkeGrDD
+         0k9FIabVWL2SRlZelsX4MAvaHpwMdcT9xVZs8PJMhIsAoFZu92JdSGDFEXdJUkUU7q6t
+         Yb0FaFFhrfmpO4P8m7TIEw9i6qStxGmTgLgGXzZ/KEmHmd2cj8WhyBv3Q6q4UFWh+YmQ
+         1oOvuEpWF7UbCrQoIIZ5PSwXvjBobmoYcnHzKCSljoYKhPgkFaU8PvwoVNScDFYeoHSG
+         L4DjLTFGvHJZce2sbEt5ro1zFWaFpzo1wrnEgxjkS8Ron5txnGFiZyKVgQH8L7oRq4N0
+         ZU0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747313954; x=1747918754;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8Qawhlvmv36yrM5PLXHrynEKEEyc5YE0PdfccMvrE2Y=;
-        b=Vu9CooYbCc5ISDFWJ4BM0R2aqUzVweicyfEXHQmu51QGRH8RwbI7Jd3AaqD7DHAcpk
-         pYog88RAhxGj+m473aVwTSv3e+55/WTtRdw5p3nUXOgEqJz0bRu1tPFohn6xxu8OrI4I
-         vgvioFLu1AdBqX/8/0tmxSxIdY276sqJ0jzog+LI8jeD4T/pmZ8oz7BuJnI4Pe08HrUQ
-         jUA0zQMSXKzVYhQsLfwWW6CJUgnov9yXdVUXVF6tE8tbXSJOOxpN5l8S6FS5QLmQRZVr
-         ANMtPgsa1bEzwePJsb5Xui29DOUrxRn8yq49R9Ht/BuXKvTkp2Uo+6h0itzloj1EI1il
-         9ykw==
-X-Gm-Message-State: AOJu0Yx9o7vwelbS9scZUBY9W7xOPTBgFs85f3AqEe5t4sbok26bmQ/O
-	JdAuwdZi0r+pSCmoV+WYojTlmxWx1xZvYwLu5SN3Swk95ppw2ONbnhynpAvW5v0=
-X-Gm-Gg: ASbGncs1jYhgPoLXAGYZrlZJzJlhvkNtZ3ca9I/18lVxsIWK5lNa83JPT3U2Hd7qSxN
-	X3+7eBcpuI06xl+NbSMzcJx70aMNbytN43Vcfobj8iN7dTKa7DpOSqe9tksAUcgLduZyIPpIECJ
-	DoaA2F7cAO0M81fH2Uyt5NpgqLbh7KzLbx+JSWjLcn1OKq06jd0xmrrkaX/HFYbxGQHE1JOZo8E
-	LckYFMFpk2HS9uXUKuakhRErObjbzp23XrFi7lKTlQVhHBz7Mruv98uRmSYg6RAc+Id0o19aIQ6
-	+FejibsDbQNWgBDJCgo3vyeTfmsYiBkQiGTwC5gieTT1eczaYz8pa57UzB10PFKVOg==
-X-Google-Smtp-Source: AGHT+IFyeqD0A0IScg3QZihC1XrEVTucJipRcuMxEvf1pQxV8DR8pNFyFAx+gn85sF514EVzZ/V3/Q==
-X-Received: by 2002:a05:600c:3554:b0:442:e109:3032 with SMTP id 5b1f17b1804b1-442f970a9bfmr25956895e9.24.1747313953125;
-        Thu, 15 May 2025 05:59:13 -0700 (PDT)
-Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:82b8:c32f:4d8c:199e])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-442f39e8578sm71180475e9.29.2025.05.15.05.59.12
+        d=1e100.net; s=20230601; t=1747314451; x=1747919251;
+        h=mime-version:message-id:date:user-agent:subject:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iDfRqwWfszcqhqCUOCGRTjujtzBxRWhvCOesR4XZCXc=;
+        b=RvgmnP8F1KjQZGS5fm25P7/PHrqtlWiJl4kn45GYSwv3TQnPxaGheKgpVFeRX6TcoP
+         b8PwPDoXnYZVx7s7/d/Zl320MpcU+GCnqXCt7l3m0aWk2zQs8hcBXiAStYR78Jzu/5uY
+         Ajt9x7ZwGd+Ue2XVaHYJb0MjXOyDs3lzXCI+fne6gct3kWqxA3I00lFn7TpjTgiZMn8p
+         0ST9vM3Dp43Dn1TuXBTV9vVuRWqcrIGofPQnTTaXNHoXQa33abg5KNOMLaW8Jyjeiv8Z
+         4a+0Sc2oVJnQVO9cMzfOxeFI+7JM0DvcYH7pouf4vN6QV5sKCkvuBJ6WvPxDpI8v0gEh
+         2Iug==
+X-Forwarded-Encrypted: i=1; AJvYcCUDxn80N6h9RUZ6sM+adOZ3bi1F6NPpj0IodqrgBv7ljX4w1XlqaauVrgfGUauMfS/QE3cMGNeVDdDctsXQ@lists.infradead.org
+X-Gm-Message-State: AOJu0YwFoVgdhUolgmC3o2YKDWbms6gD+WIh/YONQZte3SAInzeYRRJ+
+	4slKp6S/I1U5crDKeewbmQWlM35gEGHdwDLwUpbHOXQ6YKtk09lcjBAYRazh48Y=
+X-Gm-Gg: ASbGnctZnNcsHMEMdvaMBR/oGio2W4Y0miQZZfNadhCdPNVXlcCUWWo0+Kfm95Iyb7i
+	X+kO32oDXjtPilifpniV5bmZ0F3d/HYZAgfDwzUsjpmlvtoECUDqtL0YV6Wsa1zvPb4e0kbUVy2
+	5C1IenITxJOuLobFixG8P/hCqQeISmBota8dcZ/4pSw3ZLEAAkEerk9+q5brCr9ZnvKjudKl2ha
+	e1PkO8k4wjOUS8SMaRQg29zDm1tnu+z64uLrwfPW7CdP2W/pnqsujw4fh/emAlumHw6P4UUjdBE
+	kNMXBNXeCZBFNV25VJtpcBlX/Jeg49dVbD/RT0FH1Q3KYxoff6pP2LEazi7IVQ==
+X-Google-Smtp-Source: AGHT+IFzTwr6XrgpHahEDEhk8qmO3Jyl7d4MjTwz9FJVl2SaaSHYZKmfUjsNvoEcZvjzAqzfyAW6CA==
+X-Received: by 2002:a05:600c:a014:b0:43c:f87c:24ce with SMTP id 5b1f17b1804b1-442f970aa63mr20565245e9.21.1747314451351;
+        Thu, 15 May 2025 06:07:31 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:82b8:c32f:4d8c:199e])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-442f3369293sm70577055e9.6.2025.05.15.06.07.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 May 2025 05:59:12 -0700 (PDT)
+        Thu, 15 May 2025 06:07:30 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- =?utf-8?q?Emilio_L=C3=B3pez?= <emilio@elopez.com.ar>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev
-In-Reply-To: <20250404-kconfig-defaults-clk-v1-0-4d2df5603332@linaro.org>
-References: <20250404-kconfig-defaults-clk-v1-0-4d2df5603332@linaro.org>
-Subject: Re: (subset) [PATCH 0/5] clk: Do not enable by default during
- compile testing
-Message-Id: <174731395227.3761659.8617180462546520115.b4-ty@baylibre.com>
-Date: Thu, 15 May 2025 14:59:12 +0200
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>, linux-clk <linux-clk@vger.kernel.org>,
+ linux-amlogic <linux-amlogic@lists.infradead.org>
+Subject: [GIT PULL] clk: meson: amlogic updates for v6.16
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Thu, 15 May 2025 15:07:29 +0200
+Message-ID: <1j4ixmxbse.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250515_055915_105683_5E7DF2AD 
-X-CRM114-Status: UNSURE (   3.92  )
+X-CRM114-CacheID: sfid-20250515_060733_355836_B21DA21B 
+X-CRM114-Status: UNSURE (   6.67  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,14 +96,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Applied to clk-meson (clk-meson-next), thanks!
 
-[1/5] clk: meson: Do not enable by default during compile testing
-      https://github.com/BayLibre/clk-meson/commit/0afce85ed26c
+Hi Stephen,
 
-Best regards,
---
+Here are the Amlogic clock updates for v6.16, just a couple of simple fixes.
+Please pull.
+
+Cheers
 Jerome
+
+The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
+
+  Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
+
+are available in the Git repository at:
+
+  https://github.com/BayLibre/clk-meson.git tags/clk-meson-v6.16-1
+
+for you to fetch changes up to 0afce85ed26c73860bb6e99a0657e1d90d533256:
+
+  clk: meson: Do not enable by default during compile testing (2025-05-15 14:44:50 +0200)
+
+----------------------------------------------------------------
+Amlogic clock updates for v6.16:
+
+* Fix G12 SPICC clock sources
+* Compile test Amlogic clocks only if ARCH_MESON is set
+
+----------------------------------------------------------------
+Da Xue (1):
+      clk: meson-g12a: add missing fclk_div2 to spicc
+
+Krzysztof Kozlowski (1):
+      clk: meson: Do not enable by default during compile testing
+
+ drivers/clk/meson/Kconfig | 16 ++++++++--------
+ drivers/clk/meson/g12a.c  |  1 +
+ 2 files changed, 9 insertions(+), 8 deletions(-)
 
 
 _______________________________________________
