@@ -4,95 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75F08C3ABDD
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 May 2025 09:27:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA081C3DA6D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 May 2025 09:38:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=T6FOrqZ/u6/gpqsg9+ULbdQO9mjtgS9n8HoFL9w/aI8=; b=NNwq1vD696VY2r
-	lcLV8mcynNiP3twDoYtTdBeYRqoXmf+yqInSZPkM4g+p++547xNzPZD4+mqsssTCD0uXm97Kear5b
-	i1upd8TlB5JfzwOQSD5da/vsv7m+ySDoOM2a/dd8D3VDbv6+rFgJw3qF8mGHzzQUB+FcZm6yhISbb
-	O0asrU0bJtinRlVs4NHaOQUBUyAUd7qi0S9tK30e4Y190zofvpnqKuFpqWGRghgnKNKbH6nmv9Lyk
-	yPAdF/sV9kJr+qZ2R1vQyApjF+z66EfSB73weE4GhDWsV1chrRjK4pBwTBEQcIgst5NM6pvLi256W
-	ah43G46iP/e5QEyp0Vug==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=lnRujDAkT0DiIwIAJQusJNOVEMQG0FacWD/Oota311c=; b=f5dLDrvjSVrWMy
+	S4Mk4M8zt3cFTLpSqMwadNUU1/2B618dXsdvnr5VGLZ7LlCB0DjoNvo/sTXxUs+9QUDPm67Ta8BLW
+	dCuil7O6X+jh6AWnGb1psGOLA4NHLx7srqLTSMW3K3RK7e+40axpuOD/kECgybXf3nIFEhE4qgBQy
+	bs65KzXb/oIURkBU5yilNdjxNuOdL8+/KoniFzFAf4Nu6qV4WWi9fj80XtGb95HBr89jj8ewGXAdE
+	Vac7p0jNcRE5xwV+krHsMyqKelZvrXtAci7fg6rzTreBKyGAD6+PJzqYzu3/NsbVb42/EroyWts9D
+	isSr1onLt4nt+gmfs5ug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHJFo-0000000CBss-31eO;
-	Tue, 20 May 2025 09:27:20 +0000
-Received: from mailgw.kylinos.cn ([124.126.103.232])
+	id 1uHJQB-0000000CDcc-3TJp;
+	Tue, 20 May 2025 09:38:03 +0000
+Received: from mail-pj1-x102b.google.com ([2607:f8b0:4864:20::102b])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHJ1A-0000000C92K-2liO;
-	Tue, 20 May 2025 09:12:14 +0000
-X-UUID: 80c4e580355a11f0b29709d653e92f7d-20250520
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45,REQID:c6c50a9b-851b-47c0-8a23-cef2bbc22566,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6493067,CLOUDID:d6772785fdb69d0add419fa33b60654c,BulkI
-	D:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3,IP:
-	nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
-	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 80c4e580355a11f0b29709d653e92f7d-20250520
-Received: from node4.com.cn [(10.44.16.170)] by mailgw.kylinos.cn
-	(envelope-from <aichao@kylinos.cn>)
-	(Generic MTA)
-	with ESMTP id 1683691209; Tue, 20 May 2025 17:12:07 +0800
-Received: from node4.com.cn (localhost [127.0.0.1])
-	by node4.com.cn (NSMail) with SMTP id E7D3A16003840;
-	Tue, 20 May 2025 17:12:06 +0800 (CST)
-X-ns-mid: postfix-682C4766-7593491691
-Received: from kylin-pc.. (unknown [172.25.130.133])
-	by node4.com.cn (NSMail) with ESMTPA id 3CA4216001CC7;
-	Tue, 20 May 2025 09:12:04 +0000 (UTC)
-From: Ai Chao <aichao@kylinos.cn>
-To: johannes@sipsolutions.net,
-	perex@perex.cz,
-	tiwai@suse.com,
-	shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com,
-	festevam@gmail.com,
-	nicoleotsuka@gmail.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	jbrunet@baylibre.com,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	srinivas.kandagatla@linaro.org,
-	kuninori.morimoto.gx@renesas.com,
-	zhangzekun11@huawei.com,
-	krzysztof.kozlowski@linaro.org,
-	ckeepax@opensource.cirrus.com,
-	drhodes@opensource.cirrus.com,
-	alexey.klimov@linaro.org
-Cc: linuxppc-dev@lists.ozlabs.org,
-	linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Ai Chao <aichao@kylinos.cn>
-Subject: [PATCH 6/6] ASoC: qcom: Use helper function for_each_child_of_node_scoped()
-Date: Tue, 20 May 2025 17:11:31 +0800
-Message-ID: <20250520091131.4150248-7-aichao@kylinos.cn>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250520091131.4150248-1-aichao@kylinos.cn>
-References: <20250520091131.4150248-1-aichao@kylinos.cn>
+	id 1uHJ7j-0000000CAWn-1coF;
+	Tue, 20 May 2025 09:19:00 +0000
+Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-30e7bfef364so3929801a91.1;
+        Tue, 20 May 2025 02:18:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747732738; x=1748337538; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TmB3VwzqmYYYrbvoIpxGgYUP5XtGUkR2yStXvoSAy5k=;
+        b=NeUSi9ms1wM74XFqE3jlqRRYzoOGwNWBPyOymH3LetqJNNB2/R6dS+4AjONVrAlP6d
+         42BSpDhEz1De9U7JeTendRidz3NkY7BZaTz2mGdzMmAk7i4JWGCL6wErhfvE7RpE5nZI
+         dHdLoW8DkUslt46C3AotBlORWDVbDFSFUCV0ItarNiJuklHMPet0uVcSi2j6zWaVRSvR
+         tcJpmQp6QTYLTR1xSJJMJq3cwmsEdki4DdHjH2qOK95Ge+507oFJ5PwRzv2XTeu8omdk
+         FaxKyHGIy/YRiM1/2QqjyPqUvKsMvrALlja2DZxz8KUd0kHUP4VZbn8Wp5HOulckDLFA
+         stwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747732738; x=1748337538;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TmB3VwzqmYYYrbvoIpxGgYUP5XtGUkR2yStXvoSAy5k=;
+        b=G1Z5hX5Z/xSjXFUHUxMwnxdObWy8W3OLFeQ8r6K32/XSJIAggh4pAb4ZWc44cIrQLJ
+         HV6XKUbYQTn0kPtyZ3ndRKIWcW6xR4wfVrGIeITcKHCF9hBLAq1ZyOENlOCZTWkE5Cg8
+         ks9ashKJmKoS+FArzauLub8uwz9N3Z9/p9zftXULyPeid/gXBC12FuEt5dq5wrY8anoy
+         6Bu6z2ci2nTq8jMS0OojmbN+C+R0Mx4+kxuvHWHElHFVLYtnU9AgOAUc+c+LoJ3NgUpo
+         uiKeG7m8OYsX1cUbd4zd+3kNfXtZb2oyQAS3+W1GmtPnJDN5CxCJE5VfxPiLbbK/q3Mz
+         wClQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWM0ub1xhbw2vtgfLgDKU8QoLFOfZYHHTldbZhspQa+fHinDNvPmjkffNyBVr9Ar+22icgYPNLQulwBGdEV@lists.infradead.org, AJvYcCXPIMw9tjSEkaGxkJ1Itu/eXYLTSxQNOHPzo6LJKE42mkOo/Zqc/NhswadxrPlkXNGLZ21N7P5bokU+t1sdZ84BMw==@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy51jljKZ3T3CamEZSY/y1Dfe946F2L8Vt6BUS2rQr2K0PDtekt
+	iKZxUKaPSiIgngnVUtf9vu5JbnM1jodOoYio0dEE06LPZtj8HEqdukhJ
+X-Gm-Gg: ASbGnctknRy91AyBEzSimoo9fBnFi3dacPHBwCtyv6LEdCqSgX3djvXFDNQ0+7DSJwp
+	y4bHaYU/n4y1aW4k9j5GxdhsSPQrbiBzeZ/az6l3uYO/769LYVWIw0UAjd3k/CbQF5+7543tfPj
+	VsguC8Q7P1ws+8E3ySmZJoVl37OC3v8LGh42aRwZWLMtDAfqT+dLrOz6ZWnDq6658jE2uhu2gO3
+	8FwJ7o3XbhmlfIgMOBZa+33TO1IjRydMRnxG9vyVZYr3RmSFMIC5jjCeB2MaSzKSIKaYtjNUmbh
+	6ui+h6sfA5QnHuvgotjOolrgiogERpfK0V3sjd0uT2UScNP+haZNGgko4mKKZmL9
+X-Google-Smtp-Source: AGHT+IE28a6scW2QVGOA23Pwnnww73CjLpUNOlALdPW4xW8rkWwlD+bLi3eSQOuZ/ve+uP2ennOZNQ==
+X-Received: by 2002:a17:90b:5603:b0:2fa:228d:5af2 with SMTP id 98e67ed59e1d1-30e7d53fa9cmr24165884a91.15.1747732738078;
+        Tue, 20 May 2025 02:18:58 -0700 (PDT)
+Received: from localhost.localdomain ([45.112.0.206])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30f36368ecbsm1216868a91.8.2025.05.20.02.18.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 May 2025 02:18:57 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
+	linux-kernel@vger.kernel.org (open list)
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	Wayne Schroeder <raz@chewies.net>
+Subject: [PATCH v1] arm64: dts: amlogic: Update USB hub power and reset properties
+Date: Tue, 20 May 2025 14:48:40 +0530
+Message-ID: <20250520091842.7504-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250520_021213_006605_EE366F3B 
-X-CRM114-Status: GOOD (  10.77  )
+X-CRM114-CacheID: sfid-20250520_021859_423919_16279BAE 
+X-CRM114-Status: GOOD (  13.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,82 +105,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The for_each_child_of_node_scoped() helper provides a scope-based
-clean-up functionality to put the device_node automatically, and
-as such, there is no need to call of_node_put() directly.
+Add missing reset-gpios property to the USB 2.0 hub node to
+ensure proper reset handling. Also update the vdd-supply for
+both USB 2.0 and 3.0 hubs to use the shared hub_5v regulator
+for consistent power management.
 
-Thus, use this helper to simplify the code.
-
-Signed-off-by: Ai Chao <aichao@kylinos.cn>
+Fixes: ccff36934137 ("arm64: dts: amlogic: Used onboard usb hub reset on odroid n2")
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- sound/soc/qcom/lpass-cpu.c       | 3 +--
- sound/soc/qcom/qdsp6/q6afe-dai.c | 3 +--
- sound/soc/qcom/qdsp6/q6asm-dai.c | 4 +---
- 3 files changed, 3 insertions(+), 7 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-index 242bc16da36d..62f49fe46273 100644
---- a/sound/soc/qcom/lpass-cpu.c
-+++ b/sound/soc/qcom/lpass-cpu.c
-@@ -1046,7 +1046,6 @@ static unsigned int of_lpass_cpu_parse_sd_lines(struct device *dev,
- static void of_lpass_cpu_parse_dai_data(struct device *dev,
- 					struct lpass_data *data)
- {
--	struct device_node *node;
- 	int ret, i, id;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 3bca8023638d..ad959f8bc1ac 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -42,7 +42,8 @@ hub_2_0: hub@1 {
+ 			compatible = "usb5e3,610";
+ 			reg = <1>;
+ 			peer-hub = <&hub_3_0>;
+-			vdd-supply = <&usb_pwr_en>;
++			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
++			vdd-supply = <&hub_5v>;
+ 		};
  
- 	/* Allow all channels by default for backwards compatibility */
-@@ -1056,7 +1055,7 @@ static void of_lpass_cpu_parse_dai_data(struct device *dev,
- 		data->mi2s_capture_sd_mode[id] = LPAIF_I2SCTL_MODE_8CH;
- 	}
+ 		/* 3.0 hub on port 4 */
+@@ -51,7 +52,7 @@ hub_3_0: hub@2 {
+ 			reg = <2>;
+ 			peer-hub = <&hub_2_0>;
+ 			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+-			vdd-supply = <&vcc_5v>;
++			vdd-supply = <&hub_5v>;
+ 		};
+ 	};
  
--	for_each_child_of_node(dev->of_node, node) {
-+	for_each_child_of_node_scoped(dev->of_node, node) {
- 		ret = of_property_read_u32(node, "reg", &id);
- 		if (ret || id < 0) {
- 			dev_err(dev, "valid dai id not found: %d\n", ret);
-diff --git a/sound/soc/qcom/qdsp6/q6afe-dai.c b/sound/soc/qcom/qdsp6/q6afe-dai.c
-index 7d9628cda875..64735f2adf8f 100644
---- a/sound/soc/qcom/qdsp6/q6afe-dai.c
-+++ b/sound/soc/qcom/qdsp6/q6afe-dai.c
-@@ -962,10 +962,9 @@ static const struct snd_soc_component_driver q6afe_dai_component = {
- static void of_q6afe_parse_dai_data(struct device *dev,
- 				    struct q6afe_dai_data *data)
- {
--	struct device_node *node;
- 	int ret;
- 
--	for_each_child_of_node(dev->of_node, node) {
-+	for_each_child_of_node_scoped(dev->of_node, node) {
- 		unsigned int lines[Q6AFE_MAX_MI2S_LINES];
- 		struct q6afe_dai_priv_data *priv;
- 		int id, i, num_lines;
-diff --git a/sound/soc/qcom/qdsp6/q6asm-dai.c b/sound/soc/qcom/qdsp6/q6asm-dai.c
-index a400c9a31fea..d7680dd3a3bb 100644
---- a/sound/soc/qcom/qdsp6/q6asm-dai.c
-+++ b/sound/soc/qcom/qdsp6/q6asm-dai.c
-@@ -1236,10 +1236,8 @@ static int of_q6asm_parse_dai_data(struct device *dev,
- {
- 	struct snd_soc_dai_driver *dai_drv;
- 	struct snd_soc_pcm_stream empty_stream;
--	struct device_node *node;
- 	int ret, id, dir, idx = 0;
- 
--
- 	pdata->num_dais = of_get_child_count(dev->of_node);
- 	if (!pdata->num_dais) {
- 		dev_err(dev, "No dais found in DT\n");
-@@ -1253,7 +1251,7 @@ static int of_q6asm_parse_dai_data(struct device *dev,
- 
- 	memset(&empty_stream, 0, sizeof(empty_stream));
- 
--	for_each_child_of_node(dev->of_node, node) {
-+	for_each_child_of_node_scoped(dev->of_node, node) {
- 		ret = of_property_read_u32(node, "reg", &id);
- 		if (ret || id >= MAX_SESSIONS || id < 0) {
- 			dev_err(dev, "valid dai id not found:%d\n", ret);
+
+base-commit: a5806cd506af5a7c19bcd596e4708b5c464bfd21
 -- 
-2.47.1
+2.49.0
 
 
 _______________________________________________
