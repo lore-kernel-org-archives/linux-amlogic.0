@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BE59C3ABDD
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 May 2025 09:25:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75F08C3ABDD
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 May 2025 09:27:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dMNtBoWT7HKBeh/y5jSvgQWoIWxRs2YNy1EYg8NtVec=; b=Bm4N3nWsAwb49e
-	af0dFBGFzENhqLTpF9izFgPypd7ad+kZ7CcX6+pPnV7qqRMoTjHJ/m3WwMEW+6DsJ29v1uJV01CX1
-	ekniIUo6W82o62GBr6fUURXhGmmXedHwKVLmprFhTJlSlhSqtBNNMFAAdfYzDn16tVs6WpOqeibe1
-	zBlOALX0sozA/+3R9YLPYyweWAXJHWGCmn8FW4U31SyXRcc/Yu7jpRCMz71AJA6mZQHp65TPUOMmq
-	zEZsYguGnnD1e/eW1//OWBvIbR+Q/tL6cVwDsp4yafXz3WNi8+CkCGikZw+TRoWmZolxXcneGlDoL
-	x2Itwl2dfS7f7rDTVb9Q==;
+	List-Owner; bh=T6FOrqZ/u6/gpqsg9+ULbdQO9mjtgS9n8HoFL9w/aI8=; b=NNwq1vD696VY2r
+	lcLV8mcynNiP3twDoYtTdBeYRqoXmf+yqInSZPkM4g+p++547xNzPZD4+mqsssTCD0uXm97Kear5b
+	i1upd8TlB5JfzwOQSD5da/vsv7m+ySDoOM2a/dd8D3VDbv6+rFgJw3qF8mGHzzQUB+FcZm6yhISbb
+	O0asrU0bJtinRlVs4NHaOQUBUyAUd7qi0S9tK30e4Y190zofvpnqKuFpqWGRghgnKNKbH6nmv9Lyk
+	yPAdF/sV9kJr+qZ2R1vQyApjF+z66EfSB73weE4GhDWsV1chrRjK4pBwTBEQcIgst5NM6pvLi256W
+	ah43G46iP/e5QEyp0Vug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHJDk-0000000CBaY-1Qxp;
-	Tue, 20 May 2025 09:25:12 +0000
+	id 1uHJFo-0000000CBss-31eO;
+	Tue, 20 May 2025 09:27:20 +0000
 Received: from mailgw.kylinos.cn ([124.126.103.232])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHJ17-0000000C91r-2fSc;
-	Tue, 20 May 2025 09:12:11 +0000
-X-UUID: 7eb6c0ec355a11f0b29709d653e92f7d-20250520
+	id 1uHJ1A-0000000C92K-2liO;
+	Tue, 20 May 2025 09:12:14 +0000
+X-UUID: 80c4e580355a11f0b29709d653e92f7d-20250520
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45,REQID:13616bc0-98fb-453e-810b-0199eb5b8d18,IP:0,U
+X-CID-O-INFO: VERSION:1.1.45,REQID:c6c50a9b-851b-47c0-8a23-cef2bbc22566,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:6493067,CLOUDID:980ae2365df82707056bbe9350351444,BulkI
+X-CID-META: VersionHash:6493067,CLOUDID:d6772785fdb69d0add419fa33b60654c,BulkI
 	D:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3,IP:
 	nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
 	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
 X-CID-BVR: 0
 X-CID-BAS: 0,_,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 7eb6c0ec355a11f0b29709d653e92f7d-20250520
+X-UUID: 80c4e580355a11f0b29709d653e92f7d-20250520
 Received: from node4.com.cn [(10.44.16.170)] by mailgw.kylinos.cn
 	(envelope-from <aichao@kylinos.cn>)
 	(Generic MTA)
-	with ESMTP id 650892054; Tue, 20 May 2025 17:12:03 +0800
+	with ESMTP id 1683691209; Tue, 20 May 2025 17:12:07 +0800
 Received: from node4.com.cn (localhost [127.0.0.1])
-	by node4.com.cn (NSMail) with SMTP id 6877816003840;
-	Tue, 20 May 2025 17:12:03 +0800 (CST)
-X-ns-mid: postfix-682C4763-2333681690
+	by node4.com.cn (NSMail) with SMTP id E7D3A16003840;
+	Tue, 20 May 2025 17:12:06 +0800 (CST)
+X-ns-mid: postfix-682C4766-7593491691
 Received: from kylin-pc.. (unknown [172.25.130.133])
-	by node4.com.cn (NSMail) with ESMTPA id 762BC16001CC7;
-	Tue, 20 May 2025 09:12:00 +0000 (UTC)
+	by node4.com.cn (NSMail) with ESMTPA id 3CA4216001CC7;
+	Tue, 20 May 2025 09:12:04 +0000 (UTC)
 From: Ai Chao <aichao@kylinos.cn>
 To: johannes@sipsolutions.net,
 	perex@perex.cz,
@@ -83,17 +83,16 @@ Cc: linuxppc-dev@lists.ozlabs.org,
 	linux-arm-msm@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Ai Chao <aichao@kylinos.cn>
-Subject: [PATCH 5/6] ASoC: imx-card: Use helper function for_each_child_of_node_scoped()
-Date: Tue, 20 May 2025 17:11:30 +0800
-Message-ID: <20250520091131.4150248-6-aichao@kylinos.cn>
+Subject: [PATCH 6/6] ASoC: qcom: Use helper function for_each_child_of_node_scoped()
+Date: Tue, 20 May 2025 17:11:31 +0800
+Message-ID: <20250520091131.4150248-7-aichao@kylinos.cn>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250520091131.4150248-1-aichao@kylinos.cn>
 References: <20250520091131.4150248-1-aichao@kylinos.cn>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250520_021209_976179_8AA3CA48 
-X-CRM114-Status: UNSURE (   8.68  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250520_021213_006605_EE366F3B 
+X-CRM114-Status: GOOD (  10.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,56 +117,72 @@ Thus, use this helper to simplify the code.
 
 Signed-off-by: Ai Chao <aichao@kylinos.cn>
 ---
- sound/soc/fsl/imx-card.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+ sound/soc/qcom/lpass-cpu.c       | 3 +--
+ sound/soc/qcom/qdsp6/q6afe-dai.c | 3 +--
+ sound/soc/qcom/qdsp6/q6asm-dai.c | 4 +---
+ 3 files changed, 3 insertions(+), 7 deletions(-)
 
-diff --git a/sound/soc/fsl/imx-card.c b/sound/soc/fsl/imx-card.c
-index 3686d468506b..bffdba4292b6 100644
---- a/sound/soc/fsl/imx-card.c
-+++ b/sound/soc/fsl/imx-card.c
-@@ -513,7 +513,6 @@ static int imx_card_parse_of(struct imx_card_data *data)
- 	struct device_node *platform = NULL;
- 	struct device_node *codec = NULL;
- 	struct device_node *cpu = NULL;
--	struct device_node *np;
- 	struct device *dev = card->dev;
- 	struct snd_soc_dai_link *link;
- 	struct dai_link_data *link_data;
-@@ -552,11 +551,10 @@ static int imx_card_parse_of(struct imx_card_data *data)
- 	link = card->dai_link;
- 	link_data = data->link_data;
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index 242bc16da36d..62f49fe46273 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -1046,7 +1046,6 @@ static unsigned int of_lpass_cpu_parse_sd_lines(struct device *dev,
+ static void of_lpass_cpu_parse_dai_data(struct device *dev,
+ 					struct lpass_data *data)
+ {
+-	struct device_node *node;
+ 	int ret, i, id;
  
--	for_each_child_of_node(dev->of_node, np) {
-+	for_each_child_of_node_scoped(dev->of_node, np) {
- 		dlc = devm_kzalloc(dev, 2 * sizeof(*dlc), GFP_KERNEL);
- 		if (!dlc) {
--			ret = -ENOMEM;
--			goto err_put_np;
-+			return -ENOMEM;
- 		}
+ 	/* Allow all channels by default for backwards compatibility */
+@@ -1056,7 +1055,7 @@ static void of_lpass_cpu_parse_dai_data(struct device *dev,
+ 		data->mi2s_capture_sd_mode[id] = LPAIF_I2SCTL_MODE_8CH;
+ 	}
  
- 		link->cpus	= &dlc[0];
-@@ -567,8 +565,8 @@ static int imx_card_parse_of(struct imx_card_data *data)
+-	for_each_child_of_node(dev->of_node, node) {
++	for_each_child_of_node_scoped(dev->of_node, node) {
+ 		ret = of_property_read_u32(node, "reg", &id);
+ 		if (ret || id < 0) {
+ 			dev_err(dev, "valid dai id not found: %d\n", ret);
+diff --git a/sound/soc/qcom/qdsp6/q6afe-dai.c b/sound/soc/qcom/qdsp6/q6afe-dai.c
+index 7d9628cda875..64735f2adf8f 100644
+--- a/sound/soc/qcom/qdsp6/q6afe-dai.c
++++ b/sound/soc/qcom/qdsp6/q6afe-dai.c
+@@ -962,10 +962,9 @@ static const struct snd_soc_component_driver q6afe_dai_component = {
+ static void of_q6afe_parse_dai_data(struct device *dev,
+ 				    struct q6afe_dai_data *data)
+ {
+-	struct device_node *node;
+ 	int ret;
  
- 		ret = of_property_read_string(np, "link-name", &link->name);
- 		if (ret) {
--			dev_err(card->dev, "error getting codec dai_link name\n");
--			goto err_put_np;
-+			return dev_err_probe(card->dev, ret,
-+					     "error getting codec dai_link name\n");
- 		}
+-	for_each_child_of_node(dev->of_node, node) {
++	for_each_child_of_node_scoped(dev->of_node, node) {
+ 		unsigned int lines[Q6AFE_MAX_MI2S_LINES];
+ 		struct q6afe_dai_priv_data *priv;
+ 		int id, i, num_lines;
+diff --git a/sound/soc/qcom/qdsp6/q6asm-dai.c b/sound/soc/qcom/qdsp6/q6asm-dai.c
+index a400c9a31fea..d7680dd3a3bb 100644
+--- a/sound/soc/qcom/qdsp6/q6asm-dai.c
++++ b/sound/soc/qcom/qdsp6/q6asm-dai.c
+@@ -1236,10 +1236,8 @@ static int of_q6asm_parse_dai_data(struct device *dev,
+ {
+ 	struct snd_soc_dai_driver *dai_drv;
+ 	struct snd_soc_pcm_stream empty_stream;
+-	struct device_node *node;
+ 	int ret, id, dir, idx = 0;
  
- 		cpu = of_get_child_by_name(np, "cpu");
-@@ -722,8 +720,7 @@ static int imx_card_parse_of(struct imx_card_data *data)
- 	of_node_put(cpu);
- 	of_node_put(codec);
- 	of_node_put(platform);
--err_put_np:
--	of_node_put(np);
-+
- 	return ret;
- }
+-
+ 	pdata->num_dais = of_get_child_count(dev->of_node);
+ 	if (!pdata->num_dais) {
+ 		dev_err(dev, "No dais found in DT\n");
+@@ -1253,7 +1251,7 @@ static int of_q6asm_parse_dai_data(struct device *dev,
  
+ 	memset(&empty_stream, 0, sizeof(empty_stream));
+ 
+-	for_each_child_of_node(dev->of_node, node) {
++	for_each_child_of_node_scoped(dev->of_node, node) {
+ 		ret = of_property_read_u32(node, "reg", &id);
+ 		if (ret || id >= MAX_SESSIONS || id < 0) {
+ 			dev_err(dev, "valid dai id not found:%d\n", ret);
 -- 
 2.47.1
 
