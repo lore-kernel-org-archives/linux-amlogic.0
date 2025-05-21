@@ -4,118 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AE37C2D0CD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 May 2025 14:31:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD9ECC54ED1
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 May 2025 23:44:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=P9IFmCwSY3UkjvNzLsPbpZkTpIiylFj68ZMXxwSGY98=; b=HfII4OwI1DJGPg
-	uI6HYbXF1Ahoq4q6H/gso2MhE3hPu0WpBUiJCDQ3/XFzkmbLNgI3QHjmYdcnLP7AzHrgPaBy7GM1F
-	FfKM5BZmIFFgg+7sn3j0yDuuV+JoP5p0Z1dZbu7nY16xMM97tHohNsPrVscEtrFdLEzsDsQoliUi7
-	JZjfrmkGqS9NY2VUxw6mbZp/1+c8qw0r5etAiTbVnjtHaRF5RgSyOvkeQqQ/LqU+y/sRNCU09CIdw
-	lfl3gYzqj8D+oO2bUU4NkMfMn3Zc6EGXShqYtR9twRdzA+cxmlWyQrejliQxR/eCQ0DJv1QAw2rZt
-	W7fhqJOnFq7WUOC/T7EQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:References:
+	In-Reply-To:Subject:Cc:To:From:Message-ID:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=/qL+CU8FMawJCh03L48zSyMrkOb6p06s6M9g3To3SUI=; b=tsUdh/wbZRt7oYhiBKRjETLthZ
+	bF5NQHad7Jxu+3PzDUpJcSa7MhPILLF8meVPsJDk0btJgSuK4SAf8qD3K2JNB7Hm7cGk2kq6KUaOA
+	HL5JLByfcLJdMhfnLgxgNmYq7j0oZGbw8INZRlLEBcR/DFXZ+lDokYE4AWXNE3f5cnSc/QJPSKHiH
+	JFAnO1CdY8IezEIWTjW28J1Whl5asyK+4swoiuxsARCp98m0btSnKWKaxX7OESaiOUzlgBbq1DkLt
+	tBiyH9sbBqaVadE7lOM1dw6Jj+32vEBpA+wnBWvnZrqsmoKvqH8qu+iTCdM1wp0qH/cSWKifp1UKc
+	mtBa7OtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHkTy-0000000G7Ib-09NB;
-	Wed, 21 May 2025 14:31:46 +0000
-Received: from relay4-d.mail.gandi.net ([2001:4b98:dc4:8::224])
+	id 1uHt6P-0000000H3eP-0VYE;
+	Wed, 21 May 2025 23:44:01 +0000
+Received: from mail-japaneastazlp170110002.outbound.protection.outlook.com ([2a01:111:f403:c405::2] helo=TYVP286CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHkL4-0000000G5uM-3gSN;
-	Wed, 21 May 2025 14:22:37 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8FD7443B3F;
-	Wed, 21 May 2025 14:22:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1747837350;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vyPpXbcuqSIPDBMFEqspo4iXigHvW7uXfydpRN7Xbhk=;
-	b=fYSLMVVsQYfpq0UfcQjtXHhEeq5bfCS6ZfFtSy9WALjrRzfOI1oCmQiRh9/p/2Tov1lqL6
-	6hd7ysvk/ltTNuZ3CAlJ8hxNJb1U4hh9oDe0vFEV7Qmtyyl2jnGS6vHAh+CJjT02k5hPnx
-	/8mrP78Ua2u8o332sEOuGFEL01a6KTHTgbKtJYOaO92+nm28+YzX+fKLT5azjlVWA6wd7P
-	QGZK2iH33WbGHOFi2Bk+4Ix+bA6ASPEQH4bi0kJlvRry4ViIVwFyHbkOYow1fiiPEcPty3
-	9UYIHe6MjbBN6AI7Wu+J/2jCVZHKny42qJOnl6aqWr/VeHDBSzrL8xxwzk+UAA==
-Date: Wed, 21 May 2025 16:22:16 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
- <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Douglas Anderson
- <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, Liu Ying <victor.liu@nxp.com>
-Cc: Anusha Srivatsa <asrivats@redhat.com>, Paul Kocialkowski
- <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui Pu
- <Hui.Pu@gehealthcare.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- dri-devel@lists.freedesktop.org, asahi@lists.linux.dev,
- linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-renesas-soc@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
- Louis Chauvet <louis.chauvet@bootlin.com>, Alim Akhtar
- <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>, Kyungmin Park
- <kyungmin.park@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Manikandan Muralidharan <manikandan.m@microchip.com>, Adam Ford
- <aford173@gmail.com>, Adrien Grassein <adrien.grassein@gmail.com>,
- Aleksandr Mishin <amishin@t-argos.ru>, Andy Yan <andy.yan@rock-chips.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Benson Leung <bleung@chromium.org>, Biju Das <biju.das.jz@bp.renesas.com>,
- Christoph Fritz <chf.fritz@googlemail.com>, Cristian Ciocaltea
- <cristian.ciocaltea@collabora.com>, Detlev Casanova
- <detlev.casanova@collabora.com>, Dharma Balasubiramani
- <dharma.b@microchip.com>, Guenter Roeck <groeck@chromium.org>, Heiko
- Stuebner <heiko@sntech.de>, Jani Nikula <jani.nikula@intel.com>, Janne
- Grunau <j@jannau.net>, Jerome Brunet <jbrunet@baylibre.com>, Jesse Van
- Gavere <jesseevg@gmail.com>, Kevin Hilman <khilman@baylibre.com>, Kieran
- Bingham <kieran.bingham+renesas@ideasonboard.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Matthias Brugger
- <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Phong LE
- <ple@baylibre.com>, Sasha Finkelstein <fnkl.kernel@gmail.com>, Sugar Zhang
- <sugar.zhang@rock-chips.com>, Sui Jingfeng <sui.jingfeng@linux.dev>, Tomi
- Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Vitalii Mordan
- <mordan@ispras.ru>, "Rob Herring (Arm)" <robh@kernel.org>, Hsin-Te Yuan
- <yuanhsinte@chromium.org>, Pin-yen Lin <treapking@chromium.org>, Xin Ji
- <xji@analogixsemi.com>, Aradhya Bhatia <a-bhatia1@ti.com>, Tomi Valkeinen
- <tomi.valkeinen@ideasonboard.com>, Ian Ray <ian.ray@gehealthcare.com>,
- Martyn Welch <martyn.welch@collabora.co.uk>, Peter Senna Tschudin
- <peter.senna@gmail.com>, Helge Deller <deller@gmx.de>, Kuninori Morimoto
- <kuninori.morimoto.gx@renesas.com>, Laurent Pinchart
- <laurent.pinchart+renesas@ideasonboard.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, Yannick Fertre
- <yannick.fertre@foss.st.com>, Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>, Michal Simek
- <michal.simek@amd.com>, Jonathan Corbet <corbet@lwn.net>,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 00/22] drm: convert all bridges to
- devm_drm_bridge_alloc()
-Message-ID: <20250521162216.79dd3290@booty>
-In-Reply-To: <20250509-drm-bridge-convert-to-alloc-api-v3-0-b8bc1f16d7aa@bootlin.com>
-References: <20250509-drm-bridge-convert-to-alloc-api-v3-0-b8bc1f16d7aa@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	id 1uHt6L-0000000H3cC-1Sg2;
+	Wed, 21 May 2025 23:44:00 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZoQ8hYYm7i/Qsu9zu0PhOr3wheGqedyHLrNEgZciuvxDb+QQdNHwE5ykzFl3gm9835Pxj8si3NWAvWvFectOBRtOrNrugprXv3120UcueEbooiBemvD2+q6J+XuPHLSCvMmOQZA76gN/f2UlOpDI5vkI/LMDRlBvH4bYzZlZqKHraj7Yx2Krzj5sLlCK2q+abAKEnUde6eBgNsK1nstZnJ4wnNynqiwxBiDB4dfyarQWiGqfkyRAPT4CVrDsSs4uSym3netxBXQZmt9YtCdjrHJ04oSio0lELZau0ApyHGjjBN/gghnymIqIoQLsTAUuB/v0pNf/RXyALI/IhT1fHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ONXpzbGBY9Gi6u+uI9TFzb0j8tUB+P2CZnn0mBEkYBg=;
+ b=BbvUlwJXTdMYsD57rCd4zXxetSeE5q6gaxgd7oVaUIkMTiMe+iobwSx4IRsCs6ZKpfiEcU4Xu7tAqsrUgPNzG6gbOHknKowKdGgx2S7mscursua0uA/GLeZKaKTSSGE1tuIJUcDZCn0hVnjX8V1JhoABK8CBo6oH57ejZrk7Y2cwe46Xs7kn678AXJJkTdQ0Ey5HMpyYV6SuBHPGbRcvglZmSn8VCRt5s+pc2LtmCpAQf6GNL2TMBt5q+y/HXe/4t77Oryg67U69YcGmJ81F9sdTX2LsOPOvfsgXlGdjizibkMc/2J5Fc9fb5R0nbiH+uXW+bYqrPFLf+TlWTauCIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ONXpzbGBY9Gi6u+uI9TFzb0j8tUB+P2CZnn0mBEkYBg=;
+ b=pBDVCEQH9rBx+fp+BbGNcsjRfnMF0RkMakFlJxOK50lm+mdYbUtHrKVNlMFggmWR4cIGd4sSY910LpBM9KFZELd26o/ryuJXmyTwcobNq8RKHl2uLx8f8EeoAogrZO3Lm7hhSq1WqRjunlMDpR3QT1om/luv+t+OuJUI9qDCj5I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TY4PR01MB15848.jpnprd01.prod.outlook.com
+ (2603:1096:405:2ad::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.20; Wed, 21 May
+ 2025 23:43:35 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%6]) with mapi id 15.20.8769.019; Wed, 21 May 2025
+ 23:43:35 +0000
+Message-ID: <87h61do7h5.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Ai Chao <aichao@kylinos.cn>
+Cc: johannes@sipsolutions.net,
+	perex@perex.cz,
+	tiwai@suse.com,
+	shengjiu.wang@gmail.com,
+	Xiubo.Lee@gmail.com,
+	festevam@gmail.com,
+	nicoleotsuka@gmail.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	jbrunet@baylibre.com,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	srinivas.kandagatla@linaro.org,
+	zhangzekun11@huawei.com,
+	krzysztof.kozlowski@linaro.org,
+	ckeepax@opensource.cirrus.com,
+	drhodes@opensource.cirrus.com,
+	alexey.klimov@linaro.org,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 3/6] ASoC: renesas: Use helper function for_each_child_of_node_scoped()
+In-Reply-To: <20250520091131.4150248-4-aichao@kylinos.cn>
+References: <20250520091131.4150248-1-aichao@kylinos.cn>
+	<20250520091131.4150248-4-aichao@kylinos.cn>
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Date: Wed, 21 May 2025 23:43:34 +0000
+X-ClientProxiedBy: TY4P301CA0016.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:405:2b1::19) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 MIME-Version: 1.0
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdeffedtucdltddurdegfedvrddttddmucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepheelfeevlefgkeekvdffveehudeihfdtjefhieehgfejveduieffgffhjeejleevnecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgpdhkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvpdhhvghlohepsghoohhthidpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeelhedprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhto
- hepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehrfhhoshhssehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: luca.ceresoli@bootlin.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TY4PR01MB15848:EE_
+X-MS-Office365-Filtering-Correlation-Id: 687c26d3-bcff-46ff-7ca8-08dd98c14d5d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|52116014|1800799024|7053199007|38350700014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+T7npJ4OnVuIHqC0goBlnJTCGto+uoD2by6LVCe7b0IWZio8zd8utqEsN1Fn?=
+ =?us-ascii?Q?OotPcODE5H/sOUd2RsuwAVds+GycRSH2UG8r4clcIRW5yC8VIkPyS5Fqui6q?=
+ =?us-ascii?Q?D4RPDqdpaf7AFROArRCz8Ux/uI6jnPJUYirm3ADg3jYyrjivKPX6qYihtyyE?=
+ =?us-ascii?Q?KufAJv6Hmb7+RlLZFDK1u620IE99fmyoldZDRs5/DnVNhzhtBhV4B8oaG0lg?=
+ =?us-ascii?Q?T1hZ/lO9U786NT+qJ3Hdc9VpFwq2bLdWM7Dw/0Mvx567FcpMe8iuVNeTy0mi?=
+ =?us-ascii?Q?S0h83h2Ky+Cidu+H9fwRP6IFj6a1E1hTSu7yibgNvMc7TfWiQrx8MIjNfkGQ?=
+ =?us-ascii?Q?5bMhd3yuhIko8qi091uezMh8zqubVgdwWbSIizd4iyevyMd36/62btox/Okw?=
+ =?us-ascii?Q?CVI6c6HEPhg3MJar4bC+BeF2fNtj+H3xnQnhG32u3y+4WSmFUbzY48jrBiqv?=
+ =?us-ascii?Q?IgVWnW09gq7qTwS5V67DJ/9jzqQ7g4sjVQXmNxaamiHdy4X6AweQ/YnRtoST?=
+ =?us-ascii?Q?zKTlmhe2VWjC7rgWa33U/QaKDqdQv4uFZH5WHabCqzzxpM07b6W8M6GBm2pL?=
+ =?us-ascii?Q?y4nQoaVlrT64BEWZXIj1kfRycH/VwaXtZlkUkeOWXeathJ829MN1y4g+GqL0?=
+ =?us-ascii?Q?wtddqV3A3LYCT83wXCGNhAGiW14LcFMOInnYxyc1AdbxBdAonRyjYR6hPb2W?=
+ =?us-ascii?Q?OspsI9W74SFUlmt0gKKrmnL97ORWEuTHNak5dtUHfBFi1oKPAwxvdTD+Wp3p?=
+ =?us-ascii?Q?a11eEpEhgX/E32st552NbmUIUhxUwHhhBWzqW0rn1LSnQy/rhvYKcbggOjkv?=
+ =?us-ascii?Q?Gsuz17beqvv4ruv+RxdJ1Vllu+YpgI5pXm4Cr5iy1biCTiubVwlWlQoMdoL6?=
+ =?us-ascii?Q?IXa3XvZJSUI0Hvxv9/m5acmgtQFFGtGUb+iJcA5vNRn+WLwcwSUO6iJHrRH7?=
+ =?us-ascii?Q?J91+uqIwYhRqEtPDjaoLcIL2wd/NugcmQHOIwRExrNlWqFDy0szT12TPPIdz?=
+ =?us-ascii?Q?7yax/flfSwEpZvQc1C7a0MH9gBvFKlVdE/H65N3oYGUHx8jtnDE95azwVWHM?=
+ =?us-ascii?Q?X5WN41GY+gsH7lQChd32YGaKmUsccrRE0+kaQ03zhiJ+s89MCX+GXOAVWUFq?=
+ =?us-ascii?Q?xtRZofMIllWelmv16mH8tSdHax3HsKU1fG0Dy8/ZRuIREyThbkSBpoDyHaRZ?=
+ =?us-ascii?Q?900gfJpVRyIsRmm/bcBoqFV5QTJK0hWGD8j4LBmgeyeWbC2MVtpsT75TMOdE?=
+ =?us-ascii?Q?vaIA+5OZW5hRK9MiucUwXf/BqdaEux4BfAc8QHzgXD24zbTExbYbfXy+bQDj?=
+ =?us-ascii?Q?di3bjSWZG0NCBFfonzScHTf9+FGzLkUHMTKCHuXGKxG5AJ8Y8cuytLtRlLrb?=
+ =?us-ascii?Q?PDupc82fO0EBJQ0iGD34IuPjUHJEhxkpBc3za8GzYownFOWRt5puQfO/MHRf?=
+ =?us-ascii?Q?cdYbTA954zzi23jWJwGn9g0JkCofI/WblEO7wvESlQ5IaYzPHZuiSg=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(52116014)(1800799024)(7053199007)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vJSoiNzNLK2iO4HGJ9CPD/1qSXGu3I9S9l2PbpvZ2p5jE+11zIhk/Gs8VBx9?=
+ =?us-ascii?Q?7sXnSlLvU2Z9p/utvJLnzJWdtOi2o3saHPiW77zloA3uT5ODXspny+wK+Q2a?=
+ =?us-ascii?Q?oSV2UqdfuMiTOVIkEaORilY4peZ7ztJoJpEdqIo8VImMcOUgZlYpvV7hc5yi?=
+ =?us-ascii?Q?bo5qc+54X6D+xFsfpcY5NKWIf90iavg5Ie2eg2Mr+DgU9BDOAWNsNQEV9IBU?=
+ =?us-ascii?Q?a93MG8mgiWJFWA9MKpmXpf43ZdAh446v8AmUYxhhDyPc1/AIuNwNNBEzDIJm?=
+ =?us-ascii?Q?owGfJxrRVdUNyasdg4VI96LUyt7HiDJjSytDPBXhKzBo3WkkOjtfD59nofFu?=
+ =?us-ascii?Q?hjHGTV8l/Qk78TNdZLt6sIneKPCdHKj2N/bVrRxojHcG1nT1qZ63CWrIy2x2?=
+ =?us-ascii?Q?3wnFj6slIKplChDOys/02ctXcqofeVNpTXqL1pB+TRR4+YwVqCNJgNEjDK1H?=
+ =?us-ascii?Q?4pylqNTm50BI19ZrnISNuauqD6FCfeD4t4bvqRwUiPxcgT9iWSB74B5NPKu2?=
+ =?us-ascii?Q?LUNGct6+BUglwQtKkVzLYIpD9EohHmGBHzeVEquWXoBQ7AiruauyNDktS08y?=
+ =?us-ascii?Q?W+X9ASIP5tpBlNxCSXR0BrAxokBK+QXDIEpaN+oK2XJx01P/9kEzPS0d13g/?=
+ =?us-ascii?Q?/eE3tE0bgeF7xvliiM50iRtiy7wohGWZ403Vr4VYOMdoG5YHYVBMdrTSIvJA?=
+ =?us-ascii?Q?BtXy9fZSKe1LXpe5Yan2uNYmWjYAc5YaiGqlL8QCQDwD2Na1ZbfSBXyXpt1g?=
+ =?us-ascii?Q?yK5ewbd7S2jywQU4ecoaHtm6Jixuu6CEE1kJ+1eIegq5cBN0eUdb2JBHZRlL?=
+ =?us-ascii?Q?bJZ0wOu/EEaQgIzoZEBuJyZz2/f9bR3x12KfHrBVmbhrczKZWafSShqFZmNf?=
+ =?us-ascii?Q?qqlbq+TJ6pHOwbyGhQI5083nwWxg52XTPUHT5TTUfUBamlmC1b2Xa80XDcoA?=
+ =?us-ascii?Q?PuzeXM9P+f4BAhYR6wrkD8dDsl+4K+H5Kzt5XuZ9T2bZtBdpmYk/xkVKt8v+?=
+ =?us-ascii?Q?QF6t4QASiclmmGPstsEdn0xjWu5yCw30J3Wr06pkAfDqzEfog7zdFpc2ZShl?=
+ =?us-ascii?Q?mMTomTilVB/bZtM7itmsGpqj+WSkBAe3+2olCmYJNNI+3i4S8PXIzBxUUvVV?=
+ =?us-ascii?Q?pr657Te9/F1nJWiw0iVReNHOgAH8iH+n/IMXeSfODLGJ4GM4dhfWjiSMq0gn?=
+ =?us-ascii?Q?a+CgwTOns9JXa+Q/RxZjCvqVwGazIXKpMAeQkAf+NG8QK1KDDDa90garL0Jp?=
+ =?us-ascii?Q?VZC104bU9PG9Eb5wFKrLuWI4EPXDxri7KLeXOsDIkUdPza21SJCA2UGtbDaT?=
+ =?us-ascii?Q?MxVyzj0sJY+h3yTClGQTu6lFaBktviinTR6Gyfn8umkhcdHCwkGRzb3fMRLM?=
+ =?us-ascii?Q?/GoUXrcb+dDDrV7IQQ9A1gNsiIzqiSwY6rrbDxVpskVHNEAtjjx+GEXex9/k?=
+ =?us-ascii?Q?Vx0Y+pxuDeeVwPxsnCOq2i6z84Bi/z7YRZWYYnx/4qvaksn3CM0fi9CyHUBQ?=
+ =?us-ascii?Q?gKsIPVchxeT7CBX18WuCSdYC9/dndFV8AyRm77yiwBVsjr4bQk4CygBW1P3s?=
+ =?us-ascii?Q?9xiaWkLm9KxLkspqsW9IAim//NhI3HRFFeSNC7ljwOURv4xTJOihveR3+reQ?=
+ =?us-ascii?Q?36SQmwKTbLgdrsPGwQZ/bRY=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 687c26d3-bcff-46ff-7ca8-08dd98c14d5d
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2025 23:43:35.2835
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jUozo0nshw0DYLot7+ii8LeStpGYjwq2GhCZZMLqhW40HjG910qwmbsZQ/gGg/cxPzUjQQZYMYWhSaJnG8lPhmeD7ME4Qol7VwdhWTwjvaeITCWRj3lUly6u+c0N8BOf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB15848
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250521_072235_524295_68C16154 
-X-CRM114-Status: GOOD (  21.65  )
+X-CRM114-CacheID: sfid-20250521_164357_384310_A95C54AD 
+X-CRM114-Status: GOOD (  11.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,112 +187,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Maxime, Shawn, Liu, all,
 
-On Fri, 09 May 2025 15:53:26 +0200
-Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+Hi Ai
 
-> devm_drm_bridge_alloc() [0] is the new API to allocate and initialize a DRM
-> bridge, and the only one supported from now on. It is the first milestone
-> towards removal of bridges from a still existing DRM pipeline without
-> use-after-free.
+Thank you for the patch
 
-I applied on drm-misc-next patches 3-17,20-21 as they match all the
-criteria:
- - At least a Acked-by (or R-by maintainers)
- - patch is for drm-misc
+> The for_each_child_of_node_scoped() helper provides a scope-based
+> clean-up functionality to put the device_node automatically, and
+> as such, there is no need to call of_node_put() directly.
+> 
+> Thus, use this helper to simplify the code.
+> 
+> Signed-off-by: Ai Chao <aichao@kylinos.cn>
+> ---
+(snip)
+> @@ -1270,16 +1263,15 @@ static int rsnd_dai_of_node(struct rsnd_priv *priv, int *is_graph)
+>  
+>  	of_node_put(node);
+>  
+> -	for_each_child_of_node(np, node) {
+> -		if (!of_node_name_eq(node, RSND_NODE_DAI))
+> +	for_each_child_of_node_scoped(np, ports) {
+> +		if (!of_node_name_eq(ports, RSND_NODE_DAI))
+>  			continue;
+>  
+> -		priv->component_dais[i] = of_get_child_count(node);
+> +		priv->component_dais[i] = of_get_child_count(ports);
+>  		nr += priv->component_dais[i];
+>  		i++;
+>  		if (i >= RSND_MAX_COMPONENT) {
+>  			dev_info(dev, "reach to max component\n");
+> -			of_node_put(node);
+>  			break;
+>  		}
+>  	}
 
-Being my very first commits to drm-misc, I tried to be careful, and
-double checked all the patches with Louis (thanks!).
+Here changes "node" to "ports", but please keep "node".
+Here is checking "node" instead of "ports".
 
-Here are the pending questions and plan for the remaining patches.
+Except this
 
->       Revert "drm/exynos: mic: convert to devm_drm_bridge_alloc() API"
+Acked-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-This reverts the commit applied my mistake:
-https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/91c5c7b5bb2dd09b43b025bce6d790d3c79f4518
+Thank you for your help !!
 
-Neither the  original patch nor the revert has been reviewed/acked.
-
-As the commit was a mistake, I'm applying the revert by the end of this
-week (i.e. on Friday) unless there are better instructions.
-
->       drm: convert many bridge drivers from devm_kzalloc() to devm_drm_bridge_alloc() API
-
-This patch affects multiple drivers. Running get_maintainers.pl
-points at Shawn Guo's repository. After reviewing the MAINTAINERS file,
-this looks like due to the 'N:' line in:
-
-ARM/FREESCALE IMX / MXC ARM ARCHITECTURE
-M:	Shawn Guo <shawnguo@kernel.org>
-M:	Sascha Hauer <s.hauer@pengutronix.de>
-R:	Pengutronix Kernel Team <kernel@pengutronix.de>
-...
-T:	git git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git
-N:	imx
-...
-
-(https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/MAINTAINERS?ref_type=heads#L2511-2528)
-
-Here 'imx' matches the 'drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c'
-file that is touched by the patch. That regexp appears overly generic to me.
-
-Shawn, can it be fixed by making it less generic?
-
-If not, can we at least add a band-aid 'X:' entry for
-drivers/gpu/drm/bridge/imx?
-
-I think the other matching entry is the one to consider:
-
-DRM DRIVERS FOR FREESCALE IMX BRIDGE
-M:	Liu Ying <victor.liu@nxp.com>
-L:	dri-devel@lists.freedesktop.org
-S:	Maintained
-F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
-F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-combiner.yaml
-F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-link.yaml
-F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pxl2dpi.yaml
-F:	drivers/gpu/drm/bridge/imx/
-
-(https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/MAINTAINERS?ref_type=heads#L7940-7948)
-
-However it does not list any trees. I _guess_ drm-misc applies here as
-a fallback as well as common sense.
-
-Liu, should this entry have a 'T:' line for drm/misc?
-
->       drm/bridge: imx8qxp-pixel-combiner: convert to devm_drm_bridge_alloc() API
-
-Not acked/reviewed, some discussion happened. I am resending it in v4,
-possibly with updates based on the discussion.
-
-But it has the same issue discussed above, with get_maintiners.pl
-pointing at Shawn Guo's tree, so in the future I'm assuming this goes
-to drm-misc unless there are news about that.
-
->       drm/bridge: tc358767: convert to devm_drm_bridge_alloc() API
-
-No feedback, resending in v4.
-
->       drm/todo: add entry to remove devm_drm_put_bridge()
-
-This involves documentation maintained on another tree. Where should it
-be applied? There are two matching entries in MAINTAINERS:
-
- * DRM DRIVERS -> the drm tree
- * DRM DRIVERS AND MISC GPU PATCHES -> the drm-misc tree
-
-To me it looks like the second is obviously the closest match as we are
-dealing with DRM bridges, so I'm applying this as well on Friday unless
-there are better instructions.
-
-Best regards,
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards
+---
+Kuninori Morimoto
 
 _______________________________________________
 linux-amlogic mailing list
