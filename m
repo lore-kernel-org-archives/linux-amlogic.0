@@ -4,85 +4,118 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E318C2D0CD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 May 2025 11:49:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AE37C2D0CD
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 May 2025 14:31:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aT/nu+Q0wS9DDNVR0n3+8Q/LJMCCR/f9lErzTG/2C7E=; b=0bi5UNS5+9UFQf
-	maW3/2DlwVBaU92EspbsYz3zJZAW/jYbDBYaaJqGwdGX6aRoG5LEnnyAteUWkzwdTTHCNj/0yYcJ0
-	sYjrNeXemaXVrCpQDCPrxEbIShJA6gAB2s0GorI13QeNIPXMFDsjkGs8wuGAiL1lQHvZT5su4joT8
-	xPJzdq3lB7+MRgWOx5E/Wdy63DJQ7Sp70W96zrdLfrK3MGfhKgk3r/PFN+EtHEMGRcPGadHA/YjbF
-	hV3ohLkfLZCxhWy8lRokSQNfQbDu28DHw78oepnrmlsG2t3DcMWtdByupynyXsuRMypLwgzFxMGvV
-	msyThP9/iasRwc+TxAbQ==;
+	List-Owner; bh=P9IFmCwSY3UkjvNzLsPbpZkTpIiylFj68ZMXxwSGY98=; b=HfII4OwI1DJGPg
+	uI6HYbXF1Ahoq4q6H/gso2MhE3hPu0WpBUiJCDQ3/XFzkmbLNgI3QHjmYdcnLP7AzHrgPaBy7GM1F
+	FfKM5BZmIFFgg+7sn3j0yDuuV+JoP5p0Z1dZbu7nY16xMM97tHohNsPrVscEtrFdLEzsDsQoliUi7
+	JZjfrmkGqS9NY2VUxw6mbZp/1+c8qw0r5etAiTbVnjtHaRF5RgSyOvkeQqQ/LqU+y/sRNCU09CIdw
+	lfl3gYzqj8D+oO2bUU4NkMfMn3Zc6EGXShqYtR9twRdzA+cxmlWyQrejliQxR/eCQ0DJv1QAw2rZt
+	W7fhqJOnFq7WUOC/T7EQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHhxC-0000000Fg5v-2wgK;
-	Wed, 21 May 2025 11:49:46 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1uHkTy-0000000G7Ib-09NB;
+	Wed, 21 May 2025 14:31:46 +0000
+Received: from relay4-d.mail.gandi.net ([2001:4b98:dc4:8::224])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHhqr-0000000FevP-3m7M;
-	Wed, 21 May 2025 11:43:15 +0000
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-6015f8d4b7dso2722917a12.1;
-        Wed, 21 May 2025 04:43:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747827792; x=1748432592; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qvXnpzfFDmYTCvRMWCiccKER6AnXrDuq79CLzj26e9w=;
-        b=AEhIG03UP7Th0szzn/Kqzpsq699JlDXkQinHSmTuEK4nfXWkDAChRngqmmI8qopJmz
-         z00c86VqaZrgUipUlAJIw9iGqpa8wvqr2dHVN8ESW/3GBSSy7t3tSUlPc0CAyb1E/WLc
-         4BLr3Md5Ea7KTyqVS0FYBxw22WZTE322Lmt5/+azKo/pF7nqFsK+nMibdyqolnU8dYTW
-         UM5BJevSOuy0Kzxb6yibFSy9pYKFiqyGE8rqppHGlqgKm1KNLagiipZRu+x8dxgJKv8n
-         qhw2km47Bx9KtdeINVdEkDWCGJctM1rLYWjRs6khst1lTtyMNrhcSfizK8GCdpef6zrC
-         Hw7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747827792; x=1748432592;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qvXnpzfFDmYTCvRMWCiccKER6AnXrDuq79CLzj26e9w=;
-        b=pyu9PLLtkTSx4s7DkbDd3/qd63ARGmsyX+RI8Voo4Nc3E0rBLBzhc2daWEacNkMs5e
-         ok2CTphsNCCWwLTKgEZ4qXwU7OXGIQTaY0wAFn/3N3WeFJAo+3ecaPNnrpQA0GpN5v9e
-         Z72/kgpRbLyD/ff8iZ0Rb4ILYaHOhRNQctPJeXyW4oac7PuNiZd2TQEzBvoXBL7N36Tu
-         O6ESUnSJC5xTnu8HmhD9Io2EeqAPGhuXe1uJPGEEXuAs++P3AkqRmpCOdqb9571TnqS8
-         r7h/iAwbGsPmRa6zDhUO4nOSecT1Ui85j/07Vzu76YwmsPPBdD4+3a/DV+8lV4r+nU88
-         g2mw==
-X-Forwarded-Encrypted: i=1; AJvYcCUvwGmdxg4FYJSwwuQBgb0GDke4QJKzKLhXi7E2dQOrjqfWfMs3I0nkSGNsXtu43/JWj4l0p1myMGQmZ+PrT3nBUg==@lists.infradead.org, AJvYcCW7HYyT1VzwF2xddNV38JK9ezgPPPM1vJUbmILBwiDhEyRZC5vgLclPQb8L8NpEYyyDgeWNBEPkz8Tdoi1l@lists.infradead.org
-X-Gm-Message-State: AOJu0YwWoe44FK/sWLQ/LlyY7jXTFn7WvidBbLiCNpNQHqnQ0d8Oe2O0
-	nOB7pdBWuH7ZATp+bNC5q4d9OqeDfdOpgFtSEZxhfRFEnFwyNMPtWWTuuFqCPUVHNOJf75COIM0
-	/NqnPGr1kGpozusAOyuNpQ9sbyn2jYZ4=
-X-Gm-Gg: ASbGncuPydo/1w3ww3KvrhBmqrNidqcS6YQZHK0lpPTgnujz2YOpWCdn1ZrVoKU8387
-	QSPHNRMFGgvnm1C2CMYcyBT5u6EqJKO0NFGdRm1KHqoe0PCfnZz2n0keEVkxWgZWjQ69IazrUmm
-	w1eSBlXk4LqVEQslycmhE0GGi0Lr3KvLI=
-X-Google-Smtp-Source: AGHT+IFDzNtI/CaK3q6Z0HD2sju7OyWLGycbvanWFVrufRUMz+SMpJuYify2HixyuAXGL6NwA/JUeCrr/7SUp+Trlwg=
-X-Received: by 2002:a17:907:9344:b0:ad5:23e3:48b6 with SMTP id
- a640c23a62f3a-ad52d5ba623mr1989900566b.45.1747827791526; Wed, 21 May 2025
- 04:43:11 -0700 (PDT)
+	id 1uHkL4-0000000G5uM-3gSN;
+	Wed, 21 May 2025 14:22:37 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8FD7443B3F;
+	Wed, 21 May 2025 14:22:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1747837350;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vyPpXbcuqSIPDBMFEqspo4iXigHvW7uXfydpRN7Xbhk=;
+	b=fYSLMVVsQYfpq0UfcQjtXHhEeq5bfCS6ZfFtSy9WALjrRzfOI1oCmQiRh9/p/2Tov1lqL6
+	6hd7ysvk/ltTNuZ3CAlJ8hxNJb1U4hh9oDe0vFEV7Qmtyyl2jnGS6vHAh+CJjT02k5hPnx
+	/8mrP78Ua2u8o332sEOuGFEL01a6KTHTgbKtJYOaO92+nm28+YzX+fKLT5azjlVWA6wd7P
+	QGZK2iH33WbGHOFi2Bk+4Ix+bA6ASPEQH4bi0kJlvRry4ViIVwFyHbkOYow1fiiPEcPty3
+	9UYIHe6MjbBN6AI7Wu+J/2jCVZHKny42qJOnl6aqWr/VeHDBSzrL8xxwzk+UAA==
+Date: Wed, 21 May 2025 16:22:16 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
+ <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Douglas Anderson
+ <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
+ Kozlowski <krzk@kernel.org>, Liu Ying <victor.liu@nxp.com>
+Cc: Anusha Srivatsa <asrivats@redhat.com>, Paul Kocialkowski
+ <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui Pu
+ <Hui.Pu@gehealthcare.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ dri-devel@lists.freedesktop.org, asahi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-renesas-soc@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
+ Louis Chauvet <louis.chauvet@bootlin.com>, Alim Akhtar
+ <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>, Kyungmin Park
+ <kyungmin.park@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Manikandan Muralidharan <manikandan.m@microchip.com>, Adam Ford
+ <aford173@gmail.com>, Adrien Grassein <adrien.grassein@gmail.com>,
+ Aleksandr Mishin <amishin@t-argos.ru>, Andy Yan <andy.yan@rock-chips.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Benson Leung <bleung@chromium.org>, Biju Das <biju.das.jz@bp.renesas.com>,
+ Christoph Fritz <chf.fritz@googlemail.com>, Cristian Ciocaltea
+ <cristian.ciocaltea@collabora.com>, Detlev Casanova
+ <detlev.casanova@collabora.com>, Dharma Balasubiramani
+ <dharma.b@microchip.com>, Guenter Roeck <groeck@chromium.org>, Heiko
+ Stuebner <heiko@sntech.de>, Jani Nikula <jani.nikula@intel.com>, Janne
+ Grunau <j@jannau.net>, Jerome Brunet <jbrunet@baylibre.com>, Jesse Van
+ Gavere <jesseevg@gmail.com>, Kevin Hilman <khilman@baylibre.com>, Kieran
+ Bingham <kieran.bingham+renesas@ideasonboard.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Phong LE
+ <ple@baylibre.com>, Sasha Finkelstein <fnkl.kernel@gmail.com>, Sugar Zhang
+ <sugar.zhang@rock-chips.com>, Sui Jingfeng <sui.jingfeng@linux.dev>, Tomi
+ Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Vitalii Mordan
+ <mordan@ispras.ru>, "Rob Herring (Arm)" <robh@kernel.org>, Hsin-Te Yuan
+ <yuanhsinte@chromium.org>, Pin-yen Lin <treapking@chromium.org>, Xin Ji
+ <xji@analogixsemi.com>, Aradhya Bhatia <a-bhatia1@ti.com>, Tomi Valkeinen
+ <tomi.valkeinen@ideasonboard.com>, Ian Ray <ian.ray@gehealthcare.com>,
+ Martyn Welch <martyn.welch@collabora.co.uk>, Peter Senna Tschudin
+ <peter.senna@gmail.com>, Helge Deller <deller@gmx.de>, Kuninori Morimoto
+ <kuninori.morimoto.gx@renesas.com>, Laurent Pinchart
+ <laurent.pinchart+renesas@ideasonboard.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, Yannick Fertre
+ <yannick.fertre@foss.st.com>, Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>, Michal Simek
+ <michal.simek@amd.com>, Jonathan Corbet <corbet@lwn.net>,
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 00/22] drm: convert all bridges to
+ devm_drm_bridge_alloc()
+Message-ID: <20250521162216.79dd3290@booty>
+In-Reply-To: <20250509-drm-bridge-convert-to-alloc-api-v3-0-b8bc1f16d7aa@bootlin.com>
+References: <20250509-drm-bridge-convert-to-alloc-api-v3-0-b8bc1f16d7aa@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20250521074535.16488-1-linux.amoon@gmail.com>
-In-Reply-To: <20250521074535.16488-1-linux.amoon@gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 21 May 2025 17:12:54 +0530
-X-Gm-Features: AX0GCFuRNEz_g2JELBFe7G_6vR4egqHEh4dmZX-9WFiiMW0PYC4vW84aMd81Mo8
-Message-ID: <CANAwSgTk3R6SMqsNcT7c2AVzQRAdk8Z2Rs0bK3VCsgivR6nLmA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: Update USB hub power and reset properties
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>
-Cc: Wayne Schroeder <raz@chewies.net>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdeffedtucdltddurdegfedvrddttddmucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepheelfeevlefgkeekvdffveehudeihfdtjefhieehgfejveduieffgffhjeejleevnecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgpdhkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvpdhhvghlohepsghoohhthidpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeelhedprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhto
+ hepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehrfhhoshhssehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: luca.ceresoli@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250521_044313_941712_A6C54388 
-X-CRM114-Status: GOOD (  20.57  )
+X-CRM114-CacheID: sfid-20250521_072235_524295_68C16154 
+X-CRM114-Status: GOOD (  21.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,68 +132,112 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+Hello Maxime, Shawn, Liu, all,
 
-On Wed, 21 May 2025 at 13:15, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Add missing reset-gpios property to the USB 2.0 hub node to
-> ensure proper reset handling. Also update the vdd-supply for
-> both USB 2.0 and 3.0 hubs to use the shared hub_5v regulator
-> for consistent power management. Remove usb2_phy1 phy-supply
-> since now it's managed by the hub reset control.
->
-> Fixes: ccff36934137 ("arm64: dts: amlogic: Used onboard usb hub reset on odroid n2")
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> v2: remove usb2_phy1 phy-supply since now it's managed by
-> the hub reset control.
-> ---
->  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 10 +++-------
->  1 file changed, 3 insertions(+), 7 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> index 3bca8023638d..d46b6aaef8fa 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> @@ -42,7 +42,8 @@ hub_2_0: hub@1 {
->                         compatible = "usb5e3,610";
->                         reg = <1>;
->                         peer-hub = <&hub_3_0>;
-> -                       vdd-supply = <&usb_pwr_en>;
-> +                       reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-> +                       vdd-supply = <&hub_5v>;
->                 };
->
->                 /* 3.0 hub on port 4 */
-> @@ -51,7 +52,7 @@ hub_3_0: hub@2 {
->                         reg = <2>;
->                         peer-hub = <&hub_2_0>;
->                         reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-> -                       vdd-supply = <&vcc_5v>;
-> +                       vdd-supply = <&hub_5v>;
->                 };
->         };
->
-> @@ -311,8 +312,3 @@ &toacodec {
->  &usb {
->         vbus-supply = <&usb_pwr_en>;
->  };
-> -
-> -&usb2_phy1 {
-> -       /* Enable the hub which is connected to this port */
-> -       phy-supply = <&hub_5v>;
-> -};
+On Fri, 09 May 2025 15:53:26 +0200
+Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
 
-This is breaking the bring-up of dwc2 in u-boot
-so could you consider V1 of the patch?
+> devm_drm_bridge_alloc() [0] is the new API to allocate and initialize a DRM
+> bridge, and the only one supported from now on. It is the first milestone
+> towards removal of bridges from a still existing DRM pipeline without
+> use-after-free.
 
-Thanks
--Anand
->
-> base-commit: 4a95bc121ccdaee04c4d72f84dbfa6b880a514b6
-> --
-> 2.49.0
->
+I applied on drm-misc-next patches 3-17,20-21 as they match all the
+criteria:
+ - At least a Acked-by (or R-by maintainers)
+ - patch is for drm-misc
+
+Being my very first commits to drm-misc, I tried to be careful, and
+double checked all the patches with Louis (thanks!).
+
+Here are the pending questions and plan for the remaining patches.
+
+>       Revert "drm/exynos: mic: convert to devm_drm_bridge_alloc() API"
+
+This reverts the commit applied my mistake:
+https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/91c5c7b5bb2dd09b43b025bce6d790d3c79f4518
+
+Neither the  original patch nor the revert has been reviewed/acked.
+
+As the commit was a mistake, I'm applying the revert by the end of this
+week (i.e. on Friday) unless there are better instructions.
+
+>       drm: convert many bridge drivers from devm_kzalloc() to devm_drm_bridge_alloc() API
+
+This patch affects multiple drivers. Running get_maintainers.pl
+points at Shawn Guo's repository. After reviewing the MAINTAINERS file,
+this looks like due to the 'N:' line in:
+
+ARM/FREESCALE IMX / MXC ARM ARCHITECTURE
+M:	Shawn Guo <shawnguo@kernel.org>
+M:	Sascha Hauer <s.hauer@pengutronix.de>
+R:	Pengutronix Kernel Team <kernel@pengutronix.de>
+...
+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git
+N:	imx
+...
+
+(https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/MAINTAINERS?ref_type=heads#L2511-2528)
+
+Here 'imx' matches the 'drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c'
+file that is touched by the patch. That regexp appears overly generic to me.
+
+Shawn, can it be fixed by making it less generic?
+
+If not, can we at least add a band-aid 'X:' entry for
+drivers/gpu/drm/bridge/imx?
+
+I think the other matching entry is the one to consider:
+
+DRM DRIVERS FOR FREESCALE IMX BRIDGE
+M:	Liu Ying <victor.liu@nxp.com>
+L:	dri-devel@lists.freedesktop.org
+S:	Maintained
+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-combiner.yaml
+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-link.yaml
+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pxl2dpi.yaml
+F:	drivers/gpu/drm/bridge/imx/
+
+(https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/MAINTAINERS?ref_type=heads#L7940-7948)
+
+However it does not list any trees. I _guess_ drm-misc applies here as
+a fallback as well as common sense.
+
+Liu, should this entry have a 'T:' line for drm/misc?
+
+>       drm/bridge: imx8qxp-pixel-combiner: convert to devm_drm_bridge_alloc() API
+
+Not acked/reviewed, some discussion happened. I am resending it in v4,
+possibly with updates based on the discussion.
+
+But it has the same issue discussed above, with get_maintiners.pl
+pointing at Shawn Guo's tree, so in the future I'm assuming this goes
+to drm-misc unless there are news about that.
+
+>       drm/bridge: tc358767: convert to devm_drm_bridge_alloc() API
+
+No feedback, resending in v4.
+
+>       drm/todo: add entry to remove devm_drm_put_bridge()
+
+This involves documentation maintained on another tree. Where should it
+be applied? There are two matching entries in MAINTAINERS:
+
+ * DRM DRIVERS -> the drm tree
+ * DRM DRIVERS AND MISC GPU PATCHES -> the drm-misc tree
+
+To me it looks like the second is obviously the closest match as we are
+dealing with DRM bridges, so I'm applying this as well on Friday unless
+there are better instructions.
+
+Best regards,
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
