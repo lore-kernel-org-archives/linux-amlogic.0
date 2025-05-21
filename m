@@ -4,78 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 047A9C2D0CD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 May 2025 03:36:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2997BC2D0CD
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 May 2025 07:48:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tIDKOlXquyJWNXcje6qulKKA1ueN4vhrAQIrhFLWQ54=; b=aD3mPYV6HrS3T3
-	GycKKSG/wMEYUZY19A6UGlBYw3rFfUoTgcxRaSSLb5gzcxwi5T4fC8QaX2vgJ6z0lppj7nIbTj5Mp
-	AgT4W4AQfllIWVaenh8aniQcMOB6bDTWWWp8E/Vu8SFZcUFukMXSKVJnu9LgIO9a7JxMKHmiG1CmU
-	FC13gJjpqmu1BrYbjXoviWtrY3r5DoRAUgFtZv7w3cwCSB5od2IGwbcD3UBUtK8+txsygvJ2faQki
-	shzZiTXMDPSxZqe+RKS1LOwGMP6tzenMUeXwgkgxH8Fo21MoQ0DPK/+1t8DFh4oVd0HEwffG6RUD/
-	ygmDbghgzWHu6X0jaG8w==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ka0Dq9u7NwKgRK52V79l8B8IfoagYOhMBzgZOlyAYqw=; b=q7yoIjNuSbTQVK
+	tK0LgworlDIukhx9/1i2m9mtKwTnAvsM8DiE3dtXul+HyJ+tTZaCSju/xCZDPLyD8rc/1H6KPv4GX
+	mV37Prm5SdYM6EMZltdrnZgXTPd4XhxFDL8V4ALDU42u31Hv7s7ZU3ccDDZg2VcTM/8YUBoYo41yS
+	daxsgcXgPLxLcf/KUY42zdodcG6SuHYlXui41HmXtd271D2L4nMvHlHppMh6tjqf7VyafG/Bjtdod
+	jBT+on25ixIVZheraDW+FkXqkTuziGfRs6AQksvQF4XmDRliKVKE58dOqKxhHREqxw8j/kfp4+ITB
+	SVLHz3YPK8auUpaBPDGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHaGB-0000000Eh39-34LQ;
-	Wed, 21 May 2025 03:36:51 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1uHeBE-0000000F66z-2yW2;
+	Wed, 21 May 2025 07:48:00 +0000
+Received: from mail-pf1-x429.google.com ([2607:f8b0:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHZzs-0000000EfLj-2W0p;
-	Wed, 21 May 2025 03:20:02 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4A5894A53E;
-	Wed, 21 May 2025 03:19:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2A6D1C4AF0F;
-	Wed, 21 May 2025 03:19:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747797598;
-	bh=Hxa2EX+nSJ0LzGazJMi3CxQ9ZJHR9/MQI2pW4yU8x+c=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=CAEbUwsGBufQfHmO6ggwX0hooCk461Fsi+g3S5FWozrbx6yH2GMwo2ZMANWmuWVyo
-	 zeUOrwA6j0YQUpsiVwbCBVJY2TgUcLLtdHb0/m8Nilq90JA/5FahHQxfymP1vokhf7
-	 KHCfpAZFC5hg5b6L6eEwqBuCgylLKMmDcIIXe+GS0pGT4Sdsuys9cXY55DdDrkp60V
-	 LAUD1dLj6TGnm9Ckh0u+0VMiDES1Ft89vnbQ5tFMJf8v+VT1/6Qo78uw/KmC3jflA3
-	 BERT30wL+v16SSrJ3usyvjxO6ouSIiFh/Ym2bN56Mvr1g1ab+hdltFhICxfpFUoaYq
-	 W87hfr+wi0BSQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 218FFC3ABC9;
-	Wed, 21 May 2025 03:19:58 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 21 May 2025 11:20:02 +0800
-Subject: [PATCH v2 8/8] dts: arm64: amlogic: add S6 pinctrl node
+	id 1uHe99-0000000F5rl-2KC9;
+	Wed, 21 May 2025 07:45:52 +0000
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-742af84818cso3867190b3a.1;
+        Wed, 21 May 2025 00:45:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747813550; x=1748418350; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nha0T5o4wDHhd/CGGXZ/m2HlO5ptB19/5BLoEUoqqes=;
+        b=L/RkteQhH8PHJIWZwBr3dJmPwoaW2RUViKyY2POnkx7yt9xlft1cCafiGnIhVRljw2
+         Du2lBiw37Qb9Iw8Bl4dagissbnTWfynkcxR1ccOkPxbWmz+zn/EB1jKAG6FCZ5nHL+uV
+         KkWFzohnILENxvP7r9ZVrArOfUrd4lbib8HCeiR5DPlOGBfOu7GUiCLrJ2lng7AZ/oau
+         CWkeWQ5Qebin8D3hn8fvXwgYF3N3GUfV2bKAS4ZN+dibgE4meQSqdu0SWvu6T18kG1bj
+         uEFVKxtQOn6XVC+ObWWnCXk2XN+QBvO/shnF28H0gNZmpBDoHrQqzdXHuiaD7vTcKA6A
+         z1jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747813550; x=1748418350;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nha0T5o4wDHhd/CGGXZ/m2HlO5ptB19/5BLoEUoqqes=;
+        b=DlxppV/3YmBChGMgP/k2ILElGaA1MGiBe4xGvCsZUKKzaNlYsqnQj8eoiKwzf6iQYU
+         A/HxF1qf3PH88l5JgU9A+eVz3ass54I4ll8z207/1GkUobCDiakH3rYxNWWH1TUq+KCk
+         W6g4jfaYeGL1tW3bHAs7gY/hj4C4dKO2afUKirhRcMk0ixo7q05ejyXgA3PzC9dgQ/uI
+         pM1yIiRawpRb7A0WGWDIhknR7iFD1LTK2EvncKRJxMvdOFXFIFdBKjI9rOuVq6SKjl4m
+         bMvxudU30qH8SinjzkLkutzrR2WGU9fsEaP/sebEmb/A8kL0J3l1OQFLIGqDZ0do1IGy
+         AdFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQ+NQwRmeMX/dbKocl6SM7hYt+RNHEEQTfDzjq+WzQbCGxzsdDziUPix1qGxuUUaGK6IVVqC8OU6UePWW9@lists.infradead.org, AJvYcCXWJWe7yqguSB1CNvn10+Ij5UNEcWLHQNJVpKLY2ccwbVYuzTvKyX4dgYqP2H6TWYxzLmwaKwgRMY7r0YosKYmVXA==@lists.infradead.org
+X-Gm-Message-State: AOJu0YwQuqrJWl/JlDnlEDyHJ2JXw6cKtzRrxJyts0iUmpdKx7jxaxW/
+	bFs/jcB+arYQ2MFOIhom9sj7on8mLUb3LbIvoPq/XuspCdzrhEvyDSFd
+X-Gm-Gg: ASbGncsMa96KHkccTdaB67MrqQSMdXzdpjUpqiootaA+e1FJ52UZPbX0ZCIBT9nCFCs
+	aGvSDWA6E0VLgO3LA+X4zyNRTdBTdlXygVFEUMgJKij2+3jlXH9ToE65iIwusVpmPAcI5Jglh81
+	EqH0aIs7ZywfQ3kiZ3jI65AfHuE3pBG32y/uaIIs4IZenIGWRKARsw/iYJ7HaFhSL/skNso/HBN
+	+nrCpA3kgzI/rUNngm40KIw2O2KROE9u/yB4zeLF9CMdUoBk5CzweCFx4Cw1kzkKpZbEdRuIBha
+	g85jCsxd+JGta0p7Rex+2HlR/cBCzCSo6ur34ERH9Og99HH+TOsf+BlG6EXL42y6
+X-Google-Smtp-Source: AGHT+IFLq4eF9bCe+UctUxF1+4yfDJzpMBHqdIf10YZab4gAoLecPeEe5Dr1MpuIPXvytZTQ6lNZKA==
+X-Received: by 2002:a05:6a00:4b10:b0:736:3c6a:be02 with SMTP id d2e1a72fcca58-742a97eb61emr26036368b3a.11.1747813550508;
+        Wed, 21 May 2025 00:45:50 -0700 (PDT)
+Received: from localhost.localdomain ([45.112.0.196])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a970c882sm9454464b3a.55.2025.05.21.00.45.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 May 2025 00:45:49 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
+	linux-kernel@vger.kernel.org (open list)
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	Wayne Schroeder <raz@chewies.net>
+Subject: [PATCH v2] arm64: dts: amlogic: Update USB hub power and reset properties
+Date: Wed, 21 May 2025 13:15:31 +0530
+Message-ID: <20250521074535.16488-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Message-Id: <20250521-s6-s7-pinctrl-v2-8-0ce5e3728404@amlogic.com>
-References: <20250521-s6-s7-pinctrl-v2-0-0ce5e3728404@amlogic.com>
-In-Reply-To: <20250521-s6-s7-pinctrl-v2-0-0ce5e3728404@amlogic.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747797595; l=3615;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=qrXyaWIhl6dY6RYbLmLL01WMo+S+QWiFeDMWvb8QD9A=;
- b=be2px7TJFHE12t97jPTpVsQBaIMxh//o3rr4yUfe+pD9PCQpkiDCcmv3ucVF+oPgziqUvDIMq
- bwcgD7WJak9AHWYjOvMozHXsy6dEaKGRLSlJq3VXaMIltnBeCIhAjNw
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250520_202000_720951_5F59B5FB 
-X-CRM114-Status: UNSURE (   9.90  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250521_004551_591436_14648DE9 
+X-CRM114-Status: GOOD (  14.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,140 +100,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Add missing reset-gpios property to the USB 2.0 hub node to
+ensure proper reset handling. Also update the vdd-supply for
+both USB 2.0 and 3.0 hubs to use the shared hub_5v regulator
+for consistent power management. Remove usb2_phy1 phy-supply
+since now it's managed by the hub reset control.
 
-Add pinctrl device to support Amlogic S6.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Fixes: ccff36934137 ("arm64: dts: amlogic: Used onboard usb hub reset on odroid n2")
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi | 97 +++++++++++++++++++++++++++++
- 1 file changed, 97 insertions(+)
+v2: remove usb2_phy1 phy-supply since now it's managed by
+the hub reset control.
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
-index a8c90245c42a..5f602f1170c0 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/amlogic,pinctrl.h>
- / {
- 	cpus {
- 		#address-cells = <2>;
-@@ -92,6 +93,102 @@ uart_b: serial@7a000 {
- 				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
-+
-+			periphs_pinctrl: pinctrl@4000 {
-+				compatible = "amlogic,pinctrl-s6";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges = <0x0 0x0 0x0 0x4000 0x0 0x340>;
-+
-+				gpioz: gpio@c0 {
-+					reg = <0 0xc0 0 0x20>, <0 0x18 0 0x8>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_Z<<8) 16>;
-+				};
-+
-+				gpiox: gpio@100 {
-+					reg = <0 0x100 0 0x30>, <0 0xc 0 0x8>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_X<<8) 20>;
-+				};
-+
-+				gpioh: gpio@140 {
-+					reg = <0 0x140 0 0x20>, <0 0x2c 0 0x8>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_H<<8) 9>;
-+				};
-+
-+				gpiod: gpio@180 {
-+					reg = <0 0x180 0 0x20>, <0 0x8 0 0x4>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_D<<8) 7>;
-+				};
-+
-+				gpiof: gpio@1a0 {
-+					reg = <0 0x1a0 0 0x20>, <0 0x20 0 0x4>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_F<<8) 5>;
-+				};
-+
-+				gpioe: gpio@1c0 {
-+					reg = <0 0x1c0 0 0x20>, <0 0x48 0 0x4>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_E<<8) 3>;
-+				};
-+
-+				gpioc: gpio@200 {
-+					reg = <0 0x200 0 0x20>, <0 0x24 0 0x4>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_C<<8) 8>;
-+				};
-+
-+				gpiob: gpio@240 {
-+					reg = <0 0x240 0 0x20>, <0 0x0 0 0x8>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_B<<8) 14>;
-+				};
-+
-+				gpioa: gpio@280 {
-+					reg = <0 0x280 0 0x20>, <0 0x40 0 0x8>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_A<<8) 16>;
-+				};
-+
-+				test_n: gpio@2c0 {
-+					reg = <0 0x2c0 0 0x20>;
-+					reg-names = "gpio";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges =
-+						<&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
-+				};
-+
-+				gpiocc: gpio@300 {
-+					reg = <0 0x300 0 0x20>, <0 0x14 0 0x4>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_CC<<8) 2>;
-+				};
-+			};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 3bca8023638d..d46b6aaef8fa 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -42,7 +42,8 @@ hub_2_0: hub@1 {
+ 			compatible = "usb5e3,610";
+ 			reg = <1>;
+ 			peer-hub = <&hub_3_0>;
+-			vdd-supply = <&usb_pwr_en>;
++			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
++			vdd-supply = <&hub_5v>;
+ 		};
+ 
+ 		/* 3.0 hub on port 4 */
+@@ -51,7 +52,7 @@ hub_3_0: hub@2 {
+ 			reg = <2>;
+ 			peer-hub = <&hub_2_0>;
+ 			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+-			vdd-supply = <&vcc_5v>;
++			vdd-supply = <&hub_5v>;
  		};
  	};
+ 
+@@ -311,8 +312,3 @@ &toacodec {
+ &usb {
+ 	vbus-supply = <&usb_pwr_en>;
  };
+-
+-&usb2_phy1 {
+-	/* Enable the hub which is connected to this port */
+-	phy-supply = <&hub_5v>;
+-};
 
+base-commit: 4a95bc121ccdaee04c4d72f84dbfa6b880a514b6
 -- 
-2.37.1
-
+2.49.0
 
 
 _______________________________________________
