@@ -4,121 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3E85C54E65
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 07:28:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C6B7C54E65
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 09:32:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=udRPM8d+iMfvlCyXSBrP90yZzndO4Pz278Oh+DUSsRw=; b=TSEXnal0W6Bewm
-	FlEuTFKKoIRMRktOFEbKYT6cg603dV2RaZcZ6lnFRwdr9a2WfsvUJeN8e3zwcrouW7k0J/1rmwPDM
-	lCO8xuGYJ42u0Fo18ri/AAC+mwtVsw0SOUXvmsL4ye7toUgR/6Jl4ZBdt7B1auBtAlBFwsNhMid9e
-	hzV1SUDMw374hQhXEE7nWrck9WTjlgiFonKRFEPInyAOcLxTEKYgETwvVoRRQaXen6q7+q+UgM5th
-	K3ioqiTr6WWKsMgzIN6+4Pr8d8iFP8jU5t2/QlKcKnWbUCTMLj12xVEx1GkvED3ujyKtZ0ylHZByt
-	pl5X3LHA/Ldo8v+Yq6fg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=J813iz0DhzsN+KAsVXYdktdaNY3uXZax6NvmLX4Ve/4=; b=KVbjGRldmCH1wT
+	2WyxTH/8aKY+kaj+ffA+0fikFZb04eelGsAAFhubBeOrgwPCw07hz9m+qa+xRxXYbmuhQ34bijnxo
+	AFO1PjAfBzKtEhwKWDCHUSsCWGpEgt7mQPm5PAdJPJIrqWzWY/f0dq9s17WxWmTMB6y7hwV0ApQi/
+	D9R9uXzShsfQ+sqiW6ZkPuKxbG2kLiwEoMFI4gxOH9A0apU7Eyjd4UBZ7SNiXziUUDyzvwaBroKog
+	+cFmCNu8vi414Za0mjkE7ILZ2qHC0OCEqrjFfolREhkOMkbazfOjVfdkJO5k8/dpFCPF38ZDpDLFt
+	InusQy74oUDLR9FiSTdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI0M9-000000008PA-36NG;
-	Thu, 22 May 2025 07:28:45 +0000
-Received: from relay8-d.mail.gandi.net ([217.70.183.201])
+	id 1uI2Hg-00000000W0w-1E3w;
+	Thu, 22 May 2025 09:32:16 +0000
+Received: from mail-ed1-f41.google.com ([209.85.208.41])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI0M5-000000008OJ-3lPp;
-	Thu, 22 May 2025 07:28:44 +0000
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A22DF43B77;
-	Thu, 22 May 2025 07:28:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1747898917;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4JY0tOi4vZjkrIAmVNhcdxDZ/2M98xTujKUJaASQzHI=;
-	b=Ib3yNxEs/5s44AFOE1RwGqaQ3/C/qZgn2d71AFEvZWt7k9cSiTL6woWNrw80/K+W6/Z/V7
-	kPpQoV2bzFWLRmpCywhJlPQUEg2FXlo+1nPIaf5l0cpBMiAzN9raixCTiTWtHG2MAT2dvw
-	sQ/zOcBmUvR5DU4gtyDa+MzbOlcDIse1XjwVI+yIroFSWP+dFmY21GxXL7/XktKyaWOIPe
-	yff37LPcs4+KyUCuNN9KOzfcxdlETTCBb1PO57HImPoi3YGPlPgcnozmejJeah9bwmPEng
-	p+dHgqDtnYmeAW4q5nFCbFmQTz/G7k6Pz/kBamcKo+eZpnfao0DUC72lv/PdQQ==
-Date: Thu, 22 May 2025 09:28:24 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
- <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Douglas Anderson
- <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, Anusha Srivatsa <asrivats@redhat.com>, Paul
- Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui
- Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
- asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
- chrome-platform@lists.linux.dev, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, Louis Chauvet
- <louis.chauvet@bootlin.com>, Alim Akhtar <alim.akhtar@samsung.com>, Inki
- Dae <inki.dae@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, Manikandan Muralidharan
- <manikandan.m@microchip.com>, Adam Ford <aford173@gmail.com>, Adrien
- Grassein <adrien.grassein@gmail.com>, Aleksandr Mishin
- <amishin@t-argos.ru>, Andy Yan <andy.yan@rock-chips.com>, AngeloGioacchino
- Del Regno <angelogioacchino.delregno@collabora.com>, Benson Leung
- <bleung@chromium.org>, Biju Das <biju.das.jz@bp.renesas.com>, Christoph
- Fritz <chf.fritz@googlemail.com>, Cristian Ciocaltea
- <cristian.ciocaltea@collabora.com>, Detlev Casanova
- <detlev.casanova@collabora.com>, Dharma Balasubiramani
- <dharma.b@microchip.com>, Guenter Roeck <groeck@chromium.org>, Heiko
- Stuebner <heiko@sntech.de>, Jani Nikula <jani.nikula@intel.com>, Janne
- Grunau <j@jannau.net>, Jerome Brunet <jbrunet@baylibre.com>, Jesse Van
- Gavere <jesseevg@gmail.com>, Kevin Hilman <khilman@baylibre.com>, Kieran
- Bingham <kieran.bingham+renesas@ideasonboard.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Matthias Brugger
- <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Phong LE
- <ple@baylibre.com>, Sasha Finkelstein <fnkl.kernel@gmail.com>, Sugar Zhang
- <sugar.zhang@rock-chips.com>, Sui Jingfeng <sui.jingfeng@linux.dev>, Tomi
- Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Vitalii Mordan
- <mordan@ispras.ru>, "Rob Herring (Arm)" <robh@kernel.org>, Hsin-Te Yuan
- <yuanhsinte@chromium.org>, Pin-yen Lin <treapking@chromium.org>, Xin Ji
- <xji@analogixsemi.com>, Aradhya Bhatia <a-bhatia1@ti.com>, Tomi Valkeinen
- <tomi.valkeinen@ideasonboard.com>, Ian Ray <ian.ray@gehealthcare.com>,
- Martyn Welch <martyn.welch@collabora.co.uk>, Peter Senna Tschudin
- <peter.senna@gmail.com>, Helge Deller <deller@gmx.de>, Kuninori Morimoto
- <kuninori.morimoto.gx@renesas.com>, Laurent Pinchart
- <laurent.pinchart+renesas@ideasonboard.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, Yannick Fertre
- <yannick.fertre@foss.st.com>, Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>, Michal Simek
- <michal.simek@amd.com>, Jonathan Corbet <corbet@lwn.net>,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 00/22] drm: convert all bridges to
- devm_drm_bridge_alloc()
-Message-ID: <20250522092824.421e766c@booty>
-In-Reply-To: <36ade269-a590-4243-889c-006f37d9ae6e@nxp.com>
-References: <20250509-drm-bridge-convert-to-alloc-api-v3-0-b8bc1f16d7aa@bootlin.com>
-	<20250521162216.79dd3290@booty>
-	<36ade269-a590-4243-889c-006f37d9ae6e@nxp.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	id 1uI2FZ-00000000VSO-3Xa3;
+	Thu, 22 May 2025 09:30:07 +0000
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-60179d8e65fso4577537a12.0;
+        Thu, 22 May 2025 02:30:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747906204; x=1748511004;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P9imWNVpcHY4/YQmn253SAWo0LBrDG5vEkbvmzjj06E=;
+        b=QSzGa6nV3PYUxYfuYOsSKI4I7/d+6rZIwd7sP3rEreTu0tSuE4y0OyrSV8pJ4Lo/BZ
+         saGcB3gXAgmK9xExCWmMd1fgdlEn5APwSbsh9wwPrUin7Zq6qXNK5l0vZNFzp3JZjmWU
+         MV1LFsLVGMZvFUpKAKwRzN5ZP0TarGxhz/lmrkyOxpUdVHfDOkWA8rlLbcywi2q6/RZD
+         1LoeJqQlNsDN6PujicUYAkzxWsq5kN5YXjRovZuF3Xj2EPFo/WJ0fD+FXP/LYqPJnktD
+         Q/gmsSe6A/e6amDeYmQEwkH2+waWOe9wWPhLDbWkbAwsTnCMgtomtN+tFO8N2EWKZHla
+         d25w==
+X-Forwarded-Encrypted: i=1; AJvYcCVWAlK770CoAyvtaYDrGdt+aFIJN5ekOZxgjFtI48FF221v1dkUD1Loq8yAbaz5qIxLODp9RCZHateaMkGu@lists.infradead.org, AJvYcCVWcpZoaCEtGCWsEbixFYrZOGLL/FbttBXAAWfjeLxfaYaZ16jUpO9UvsGZqH8/HKIq8F5fmWCGTrq2BYpqkVnLsw==@lists.infradead.org
+X-Gm-Message-State: AOJu0YyTVDyEsZf0FnCm74vhsBrvA7KQ2i8oI3ikvUq9UDPoN8m+7F3L
+	lS2vBUFgm+4UCZ1Oxd757bpQ1ZS9/tmXt2WBjsAiZAorVgxzR2d0sRsZ
+X-Gm-Gg: ASbGncvmivCaPsT39IAQoW59UbyRztPtPyiDA43DNJlix1DQgz0QDqJx6p0xX8AQJQ2
+	ESVfr/G6QYeyfKyz1aw2G6NS+/oojtO3r0pOVO1RA1dyTRhsqfJfazLK+pyuFbVf8CIEbfC0Z4A
+	hlY0bDW/m5M+F6KgbkyrjXn9gkj1Q0ENd17R7ysr50K+zkjH2rKd2L1cK5jvhCd+ntncTV3mpn0
+	OhrcvFfeDMky/clJlYSyd7u02vDsXtO5EpTkUxPdBjS7fU2BzPI/SqGtC8+Oz2H1vEUrmCf9k12
+	CPWXY0RkPI2cPm+fl0rWSDzxXwHrY3JTWqUMPsz6FtAbyVRB4iiXwICY2iXi2/UFmis1wrkWKmY
+	OHACs90ImT/RU
+X-Google-Smtp-Source: AGHT+IH6PGZyeMyvQHBRQvlVXtj8Ud+yS5Bla8HVE2j+rxlb85y3AIQhMi0Fu03PZQrmAkfqeb8vWg==
+X-Received: by 2002:a17:906:6a14:b0:ad2:2e5c:89c5 with SMTP id a640c23a62f3a-ad52d4c511cmr2217008666b.20.1747906203469;
+        Thu, 22 May 2025 02:30:03 -0700 (PDT)
+Received: from ramallet.home (cst-prg-46-162.cust.vodafone.cz. [46.135.46.162])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d4ca3bdsm1036951466b.160.2025.05.22.02.30.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 May 2025 02:30:03 -0700 (PDT)
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+To: linux-kernel@vger.kernel.org
+Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH] arm64: dts: amlogic: Enable the npu node for Alta and VIM3
+Date: Thu, 22 May 2025 11:29:40 +0200
+Message-ID: <20250522092940.3293889-1-tomeu@tomeuvizoso.net>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdehfeeiucdltddurdegfedvrddttddmucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepjeetffdtleehgefhffffudekhfdujeeuvdefhfetleeftefgffekjeetjedtvdevnecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgdphhgvlhhopegsohhothihpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepleehpdhrtghpthhtohepvhhitghtohhrrdhlihhusehngihprdgtohhmpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidri
- hhnthgvlhdrtghomhdprhgtphhtthhopehmrhhiphgrrhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghnughriigvjhdrhhgrjhgurgesihhnthgvlhdrtghomhdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhg
-X-GND-Sasl: luca.ceresoli@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250522_002842_200492_AF72A3D4 
-X-CRM114-Status: GOOD (  21.42  )
+X-CRM114-CacheID: sfid-20250522_023005_885394_A37D2391 
+X-CRM114-Status: UNSURE (   8.02  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,71 +94,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Liu,
+We now have support in Mesa and everything is ready in distros such as
+Debian.
 
-On Thu, 22 May 2025 11:20:17 +0800
-Liu Ying <victor.liu@nxp.com> wrote:
+Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts  | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts | 4 ++++
+ 2 files changed, 8 insertions(+)
 
-> > If not, can we at least add a band-aid 'X:' entry for
-> > drivers/gpu/drm/bridge/imx?
-> > 
-> > I think the other matching entry is the one to consider:
-> > 
-> > DRM DRIVERS FOR FREESCALE IMX BRIDGE
-> > M:	Liu Ying <victor.liu@nxp.com>
-> > L:	dri-devel@lists.freedesktop.org
-> > S:	Maintained
-> > F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
-> > F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-combiner.yaml
-> > F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-link.yaml
-> > F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pxl2dpi.yaml
-> > F:	drivers/gpu/drm/bridge/imx/
-> > 
-> > (https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/MAINTAINERS?ref_type=heads#L7940-7948)
-> > 
-> > However it does not list any trees. I _guess_ drm-misc applies here as
-> > a fallback as well as common sense.
-> > 
-> > Liu, should this entry have a 'T:' line for drm/misc?  
-> 
-> These bridge drivers also don't have a 'T:' line:
-> 
-> DRM DRIVER FOR CHIPONE ICN6211 MIPI-DSI to RGB CONVERTER BRIDGE
-> DRM DRIVER FOR PARADE PS8640 BRIDGE CHIP
-> DRM DRIVER FOR TI DLPC3433 MIPI DSI TO DMD BRIDGE
-> DRM DRIVER FOR TI SN65DSI86 BRIDGE CHIP
-> LONTIUM LT8912B MIPI TO HDMI BRIDGE
-> MEGACHIPS STDPXXXX-GE-B850V3-FW LVDS/DP++ BRIDGES
-> MICROCHIP SAM9x7-COMPATIBLE LVDS CONTROLLER
-> 
-> I think that they fallback to drm-misc since "DRM DRIVERS FOR BRIDGE CHIPS"
-> covers them.  I don't have strong opinion on adding a "T" line to them, at
-> least to "DRM DRIVERS FOR FREESCALE IMX BRIDGE".  Anyway, it would be good
-> to know comments from maintainers for "DRM DRIVERS FOR BRIDGE CHIPS" and
-> "DRM DRIVERS".
-
-I agree the fallback seems OK for this MAINTAINERS entry.
-
-The other entry (ARM/FREESCALE IMX / MXC ARM ARCHITECTURE) is another
-story.
-
-> >>       drm/bridge: imx8qxp-pixel-combiner: convert to devm_drm_bridge_alloc() API  
-> > 
-> > Not acked/reviewed, some discussion happened. I am resending it in v4,
-> > possibly with updates based on the discussion.  
-> 
-> I still think the main structures in imx8qxp-pixel-combiner.c and imx*-ldb.c
-> should have the same lifetime with the allocated bridges.  I added a new
-> comment on this driver in v2 just now.
-
-Thanks, let's continue the conversation there.
-
-Luca
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+index 124a80901084..9fd68195be3f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+@@ -39,3 +39,7 @@ &usb {
+ 	phy-names = "usb2-phy0", "usb2-phy1";
+ };
+  */
++
++&npu {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
+index adedc1340c78..8e9f7e0d4542 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
+@@ -117,3 +117,7 @@ &cpu103 {
+ &pwm_ab {
+ 	pinctrl-0 = <&pwm_a_e_pins>, <&pwm_b_x7_pins>;
+ };
++
++&npu {
++	status = "okay";
++};
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.49.0
+
 
 _______________________________________________
 linux-amlogic mailing list
