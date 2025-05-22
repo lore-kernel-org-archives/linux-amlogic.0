@@ -4,94 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 893CDC54E65
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 17:30:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CD0DC54E90
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 18:34:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9MFGRHeSpcLoEIlJVEPDO3ko+7jOSN/BecolBDpu4Sw=; b=ubaqqZeAEW/ciJ
-	yUW3N467oi973T+ljA3zpthXbUo6WZ6KflCMW6KjK4SpQm+1f9V1NtdXFvgS7sqvTr+A5k18mXTKQ
-	u93R07SfRdfRdbbPJGXRy8hz5OGnkGYsvsAYdKeRv2DUqzp9H8/Hd5sz3pV6O03k5XdS1YNArxq37
-	2IlBNBWOXwF4Ew+SS56SGiOCdgeq2DExMeIfDthwFDs4hB+mTTqPLqJseAI7oklgas+ApmHJBevyj
-	yRC7FU12hygBcCUFYexnCDjRuQGwFWtXk3/k/iz3O3u+f25kp0gcLvd/F0jkTWWGRSHeZvzHj5K8o
-	L2YUdoL+Y2KEtcK3gAxw==;
+	List-Owner; bh=W2qrSWKwnYEW1tvYj3y1hHzT52rzVGxf64i3IDvhNUk=; b=hrwbhWFGtbhq6Z
+	77yxYRfxkjSjs/OBZsWbs2m0oUrdLgLPJqGd2s6ZQ3xXEYw+cPY2fGQv6gdEA82V8a4l9+G0E4mms
+	PGTZfsd81jj7Cb/XUmUC43UbGUjXz5AEBQBnzz3uo/axIE32gHr5ojYXmZm8QETj+yukN4qsMdPhV
+	Z7KMx7C7diT6QTVUnhSW6qq2zaThIUAd7ItMo8qkxgVUyu5DinmJr1bFNNfnzxf3pTuyYoKt7iSft
+	6jfuQbamJ9oCuuakqiO2fwoS7HWeh+TmImpW5+ivUiVQcHWlZSTAzZKWcc58NUTlWLeCrmV0LVXXS
+	GaepfWsyhSTC/TtEu+gw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI9k3-00000001jzT-3ag1;
-	Thu, 22 May 2025 17:30:03 +0000
-Received: from mail-pf1-x42c.google.com ([2607:f8b0:4864:20::42c])
+	id 1uIAkK-00000001sPy-2SJ7;
+	Thu, 22 May 2025 18:34:24 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI9g8-00000001jXw-3WGR;
-	Thu, 22 May 2025 17:26:01 +0000
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-742c27df0daso4705842b3a.1;
-        Thu, 22 May 2025 10:26:00 -0700 (PDT)
+	id 1uIAiH-00000001s1n-3Kap
+	for linux-amlogic@lists.infradead.org;
+	Thu, 22 May 2025 18:32:18 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3a367b6ad08so679303f8f.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 22 May 2025 11:32:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747934760; x=1748539560; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R6zhe//+mK/YJYFppCQ8AQ0H2uErJNI3PakLy/YR+LI=;
-        b=kfAiriYAuEzC2penxnPEg7aQncnZ+6tLrOvkG7HtEzI6cu/y5UPAGmu+A2+U/DZKMM
-         8Lg+fKkAhTCs+HSqfFoZ6SroIKp9xd2xmR777KMhLJiJ90kE2ZRFO3WlDXuDIlouIXUB
-         Au6/Uq3P4lTWOqNpqubEN19N3W3yHhSQhW3E/iFqOQgxAauKkpGUny9LGVdpnhLuVVJ8
-         kmY67fdSXfHvEJGdJEvH6ewvdqBogl0MdUEczVPhMS332XLBQgB19CkVag8DvKXLzHqm
-         PhdItZTs6/pC3anKN108Xt4h5OPG8CBtjAtf5qQjgAi2Ks6wWZbGI/I9/tnHW+hOiUM6
-         8YFQ==
+        d=linaro.org; s=google; t=1747938736; x=1748543536; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=rOYkb8ARNGoWzGK6NIRQbMqEIL4sIWgyEMwNFCwUiPs=;
+        b=dWXuHU8NW7lq4Qjx/8p60NnPIer3KJD0ZNJQ9z504CT5hcoJxngM3J/twniLFSaX6z
+         8TDMGdYtH3EvmDo7riWYmh5onRO5Gl9OG0h1kZ6C0lO9pO0W4UOdUHJi674uIX7+LTSH
+         LMkekuELhbAmwik9GM23gxayIGEBISRlH33CYkGyCcsw75d+3+8/UA/t+k2RDwOeoId3
+         x19Gy/2eKH/5sYy4d6G3yvbToiUUpRRnI/ginHSirfHUlfBPDU+RNsBsnYCIFdc0Hh9R
+         jWJmw+9oangvWFIRjnJadTl5dbjmKcauBPrkZg6j/ZHRGS6U6oO9JmXsOAoK659MIWa7
+         5Fqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747934760; x=1748539560;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R6zhe//+mK/YJYFppCQ8AQ0H2uErJNI3PakLy/YR+LI=;
-        b=Pbtmx4IZJYSm3JmTibN2DGlaPmzbDkT7I8/SFvY6KRfy9nbyQGISig9wY7zuuta8zz
-         3IvxIgd+mQkIF2uAtMgxXyM8eAWxPSdbpThe9epvYkKNrmxzeaWFNXjbYAdOE/tEjdjw
-         jOPuMi1sFuaPsPOjSxApbrynZjcVMTj4sT3jc5IirXl8yzlO+eJRGXiiXBxrS0a2hwlS
-         dfOmg+KG3HRgUXzK2qVrMSkK6oblJ+w2WLGFqb9wsqWNnUcpOfPtkbCspR0y9rTmFtbb
-         H1//kDx62t25x2zheg5kJaYa3TfTc9YbGfqkx0qYC4RgicMASr+EiFa9ovwpyftz3+I7
-         TrVA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+9gJllFjBjS5TBReI8+k7iBMW9ZO/2/KWsiXo40ojroGQ+d1lQUT+8HlQMLWPgNspD2Xb+1GBMs7iWfz5b0arwg==@lists.infradead.org, AJvYcCXKZIfnbq0sHZJbQIeZMiMh99Oy0nYH+ji9yP/HzX+rjsFlIcBLTN4ZLO8Rb+UeMrCpozoOc3qmsXOPPCNN@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxp4OpVOSNxm0ga9PEkz1AJAleQbC8+UCs6CwBUnaYynHx8yYel
-	zfGjwuscOS7VHqqtnCiaHN/yKwppMOMuR36B7NtW77iNxdwP8+Z84is3
-X-Gm-Gg: ASbGncsxYH1caqnlxVJYZNg2gxNQOkhUCO1IN98q0HNLgSczb8Vqb6KZV6ICXp8A5O/
-	jqtB71MC0vL4voDXko/uo6AJCQLH7TVU4BOtVDWIrH5kiyGYy3fd9D269gDMGFp9L/Ys9HXNH7W
-	WglYAsgzgeGKL7sVvbQc5nM8wglvNGsT5WpA16jAlmFIDwWAfp1himfoM20OxVssWaVJwZb2C4G
-	dag/B8P2MeKRFXlwklBwBxCUo0RhiCfplUj4X3Dk0U+3Db7lKRdJfrspSy/xq0AMrVz6CClSFNP
-	7ZgKnQL1J943t25tMp/okl5GSGFutvF2mqOsoIswNjhhg3WjxskCvSd5mZG3CmPy
-X-Google-Smtp-Source: AGHT+IGXvr9532fhWigFZ8cMVaxNwepNz/118pYhgTKFbN3mZan6kqoTUhTAU3oKtR/8/PWsVK+lfA==
-X-Received: by 2002:a05:6a00:3694:b0:740:596b:eaf4 with SMTP id d2e1a72fcca58-742a98a31f4mr36947909b3a.16.1747934759815;
-        Thu, 22 May 2025 10:25:59 -0700 (PDT)
-Received: from localhost.localdomain ([45.112.0.196])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a982a08esm11471586b3a.112.2025.05.22.10.25.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 10:25:59 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
-	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	Wayne Schroeder <raz@chewies.net>
-Subject: [PATCH v3 2/2] arm64: dts: amlogic: Adjust USB PHY power supply references
-Date: Thu, 22 May 2025 22:55:32 +0530
-Message-ID: <20250522172535.302064-2-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250522172535.302064-1-linux.amoon@gmail.com>
-References: <20250522172535.302064-1-linux.amoon@gmail.com>
+        d=1e100.net; s=20230601; t=1747938736; x=1748543536;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rOYkb8ARNGoWzGK6NIRQbMqEIL4sIWgyEMwNFCwUiPs=;
+        b=UB0PHhKlnguTthsOMrIunYzWoEv9UnH2oEiFFRWEFLJjWGsqxitf2s081ts1VPPDc0
+         HZrfP5LBHYOJ59O+HMws/P6IIKl7KqmYa65OGkBiibyCx2lcwIxsDX0Bl6u0aL+ep5r6
+         9SJ7nlght7EEHf/DiH1wN4DwkfPMLq/39VRo5GJksFAEY5HQUgzyE2iSygkiE6VED9u+
+         E0qUYEfa4DOzy0D7IO3XwmSkcikz41H2UZoC+6CeSJEVbcZlOOgUWG3d2c+8HoaBOhqg
+         xgQCH1tdYq29ME2iPp/IH6UHL1jfFjxC3/cUBYJ3jE6rxBM4goU6urlZU/tJ1ePojOMX
+         B0QQ==
+X-Gm-Message-State: AOJu0YxldB8yRki26P2zWnpPHtQHomGlRAcD92rS6b+OT49QDAgRLaO8
+	WCV11obMqZnhp17Nbp8V0+Rd6wFYhDIy2xkKVdFEyK/jFOmlGGETApfdEBzH21MU7Dc=
+X-Gm-Gg: ASbGnctaPxiZh8GvmDMuZDEI8d/4mu6m7m9XukvHXBRuZ/NTWWeNYjzs4UjaUiTKuFm
+	l0teUKeVvB2k76GVR8miY5rh7PtT3VMf/zrmpChEm+PPkzFyQ+ZsYP+dPzrZANU9jYGLrNQQdBe
+	TgZ4ulIUVQbrrKgW/N9PgK1EXMeE4+HWecJINPR/N+EEeUZmosoPEoyMlS1i3HJpX/NyQeaSoXp
+	yfu7dyVnFS5lzS0NU5cny2sKNlb2436ycFoMQds0H0aEt8o0iBDmTXLTWUIJxQwWoawhVQNkHNQ
+	QNmgKWrJE4ZQYz+7K+RVmwL8keXLU+wjQqIZymn9gq14VGp34BkDio8DTfUuyg84Xcb3On+v+oq
+	KwlwIjA==
+X-Google-Smtp-Source: AGHT+IElOSB5BApnFcPON4k3G6fN+T3e6tCMODFfwlTj5KlbfM3fgpMePZRiUwP9/6DJMNlIdFOSPQ==
+X-Received: by 2002:a5d:404a:0:b0:3a3:62e1:a7dc with SMTP id ffacd0b85a97d-3a362e1ab39mr6921412f8f.1.1747938736169;
+        Thu, 22 May 2025 11:32:16 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.223.125])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a3ca066eb7sm5955103f8f.2.2025.05.22.11.32.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 May 2025 11:32:15 -0700 (PDT)
+Message-ID: <24905725-21ca-4408-9822-285f0a96b4da@linaro.org>
+Date: Thu, 22 May 2025 20:32:13 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] clk: nuvoton: Do not enable by default during compile
+ testing
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, Chen-Yu Tsai
+ <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Emilio_L=C3=B3pez?=
+ <emilio@elopez.com.ar>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev
+References: <20250404-kconfig-defaults-clk-v1-0-4d2df5603332@linaro.org>
+ <20250404-kconfig-defaults-clk-v1-2-4d2df5603332@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <20250404-kconfig-defaults-clk-v1-2-4d2df5603332@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250522_102600_873817_4B2653B3 
-X-CRM114-Status: GOOD (  14.20  )
+X-CRM114-CacheID: sfid-20250522_113217_841557_B3CA22B6 
+X-CRM114-Status: UNSURE (   9.54  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,52 +157,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-According to the Odroid-N2 schematics, the micro-USB phy is powered
-via a gpio-controlled regulator PWREN, updates the phy-supply to
-correctly assign the power supply for usb2_phy.
+On 04/04/2025 13:56, Krzysztof Kozlowski wrote:
+> Enabling the compile test should not cause automatic enabling of all
+> drivers.  Restrict the default to ARCH also for individual driver, even
+> though its choice is not visible without selecting parent Kconfig
+> symbol, because otherwise selecting parent would select the child during
+> compile testing.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  drivers/clk/nuvoton/Kconfig | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-Additionally, the USB3 combo port, which connects to the onboard
-4-port USB hub, is powered by the main VCC_5V rail. Updated the
-phy-supply to correctly assign vcc_5v for the USB controller node.
+Ping. Any Nuvoton maintainers are going to pick this up?
 
-These changes ensure accurate power supply configuration for
-USB components, improving hardware compatibility and power management.
-
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-new patch
----
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 +-
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index ad959f8bc1acd..9d63ab82302eb 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -310,7 +310,7 @@ &toacodec {
- };
- 
- &usb {
--	vbus-supply = <&usb_pwr_en>;
-+	phy-supply = <&vcc_5v>;
- };
- 
- &usb2_phy1 {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi
-index 7e8964bacfce7..b105a8ae2fec6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi
-@@ -437,5 +437,5 @@ &usb {
- };
- 
- &usb2_phy0 {
--	phy-supply = <&vcc_5v>;
-+	phy-supply = <&usb_pwr_en>;
- };
--- 
-2.49.0
-
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
