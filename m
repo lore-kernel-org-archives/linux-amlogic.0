@@ -4,93 +4,121 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E241C54F2E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 07:05:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3E85C54E65
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 07:28:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ev1i1U3HZoEcVqxrZGiJBenv8N/m1EgZNCMCeXMzywM=; b=murWUyfQ4/biLq
-	gwLV1SsyPFME5oeYOBiRg+oF/zMAPUjdX+yPlf5haIV6vkNrsDcytErQHBN1mbhwCw+gMGWtHMTJY
-	RACnqMQuyGzBX+awKnqyh1ubyVxDjkGvPmjxbRVjokRjfJ4NeyK2NACKe6PDGqHJ8bbLlWs2t4Fi0
-	FVMEKd2UDzOP8+CERp6sElw4KMAJhkkvaj7ELlwoqeFoAZ4RVRO6J6r3bJKl29du5RY83XwnH44To
-	57EvcbOu7t/c312+aQ0LLS2JqaRLvFIa27lxSpi/d05DGQsh2DD7umsszhktI/MxcCIBhXYNfhFFo
-	9hGWZS5poz92XCb/bSLw==;
+	List-Owner; bh=udRPM8d+iMfvlCyXSBrP90yZzndO4Pz278Oh+DUSsRw=; b=TSEXnal0W6Bewm
+	FlEuTFKKoIRMRktOFEbKYT6cg603dV2RaZcZ6lnFRwdr9a2WfsvUJeN8e3zwcrouW7k0J/1rmwPDM
+	lCO8xuGYJ42u0Fo18ri/AAC+mwtVsw0SOUXvmsL4ye7toUgR/6Jl4ZBdt7B1auBtAlBFwsNhMid9e
+	hzV1SUDMw374hQhXEE7nWrck9WTjlgiFonKRFEPInyAOcLxTEKYgETwvVoRRQaXen6q7+q+UgM5th
+	K3ioqiTr6WWKsMgzIN6+4Pr8d8iFP8jU5t2/QlKcKnWbUCTMLj12xVEx1GkvED3ujyKtZ0ylHZByt
+	pl5X3LHA/Ldo8v+Yq6fg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHzzM-000000004em-0io5;
-	Thu, 22 May 2025 07:05:12 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1uI0M9-000000008PA-36NG;
+	Thu, 22 May 2025 07:28:45 +0000
+Received: from relay8-d.mail.gandi.net ([217.70.183.201])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uHzw5-000000004DU-1dt8
-	for linux-amlogic@bombadil.infradead.org;
-	Thu, 22 May 2025 07:01:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=ijJ3EJvja7xwpJBLbbQjY/gRQGa0tThvp/yRO9wi1+g=; b=ZONl4E0MQ6QB8R50O3ZzKzV9Bx
-	zew52b9Od0dDE6AOsAFwJ3AAeKEKuwiuz32X1PrvCVIaQ0JV4lO3VFb3q5MmQS5tO7CfMMCf30/CF
-	ZFvHg664D1DMesds7gW3K6fln4HlmuWxcwtqj0ZmUVCExUNFBE1/qL9/nJyabgriCDcXXZ2jzDd+F
-	SF42q9hPRzZph12qomb6mIllh86PaAIxsd6T9f1KoB+zBn/g8w4lymmGB3q19qlmPy0T3npwymLsh
-	MYnnt9u+xmn0uiG9bnUzLBo1mjRS5xjXieOsPaGuljQhfhIOCos9FS6SQpcNKWXA12Nlg6G9eoiNy
-	Fjz7YPNw==;
-Received: from mail.loongson.cn ([114.242.206.163])
-	by desiato.infradead.org with esmtp (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1uHzw0-000000010ap-2y61
-	for linux-amlogic@lists.infradead.org;
-	Thu, 22 May 2025 07:01:48 +0000
-Received: from loongson.cn (unknown [223.64.69.3])
-	by gateway (Coremail) with SMTP id _____8BxlmnQyy5oIiP2AA--.4404S3;
-	Thu, 22 May 2025 15:01:36 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.69.3])
-	by front1 (Coremail) with SMTP id qMiowMBxHcXLyy5otXLnAA--.2923S4;
-	Thu, 22 May 2025 15:01:35 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	linux-mmc@vger.kernel.org,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH v2 36/36] mmc: meson-mx-sdio: Use devm_mmc_alloc_host() helper
-Date: Thu, 22 May 2025 15:01:22 +0800
-Message-ID: <5fab591b9c93964a3ea716b2bd6b706828f1196d.1747877176.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <cover.1747877175.git.zhoubinbin@loongson.cn>
-References: <cover.1747877175.git.zhoubinbin@loongson.cn>
+	id 1uI0M5-000000008OJ-3lPp;
+	Thu, 22 May 2025 07:28:44 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A22DF43B77;
+	Thu, 22 May 2025 07:28:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1747898917;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4JY0tOi4vZjkrIAmVNhcdxDZ/2M98xTujKUJaASQzHI=;
+	b=Ib3yNxEs/5s44AFOE1RwGqaQ3/C/qZgn2d71AFEvZWt7k9cSiTL6woWNrw80/K+W6/Z/V7
+	kPpQoV2bzFWLRmpCywhJlPQUEg2FXlo+1nPIaf5l0cpBMiAzN9raixCTiTWtHG2MAT2dvw
+	sQ/zOcBmUvR5DU4gtyDa+MzbOlcDIse1XjwVI+yIroFSWP+dFmY21GxXL7/XktKyaWOIPe
+	yff37LPcs4+KyUCuNN9KOzfcxdlETTCBb1PO57HImPoi3YGPlPgcnozmejJeah9bwmPEng
+	p+dHgqDtnYmeAW4q5nFCbFmQTz/G7k6Pz/kBamcKo+eZpnfao0DUC72lv/PdQQ==
+Date: Thu, 22 May 2025 09:28:24 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
+ <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Douglas Anderson
+ <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
+ Kozlowski <krzk@kernel.org>, Anusha Srivatsa <asrivats@redhat.com>, Paul
+ Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui
+ Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ chrome-platform@lists.linux.dev, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com, Louis Chauvet
+ <louis.chauvet@bootlin.com>, Alim Akhtar <alim.akhtar@samsung.com>, Inki
+ Dae <inki.dae@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, Manikandan Muralidharan
+ <manikandan.m@microchip.com>, Adam Ford <aford173@gmail.com>, Adrien
+ Grassein <adrien.grassein@gmail.com>, Aleksandr Mishin
+ <amishin@t-argos.ru>, Andy Yan <andy.yan@rock-chips.com>, AngeloGioacchino
+ Del Regno <angelogioacchino.delregno@collabora.com>, Benson Leung
+ <bleung@chromium.org>, Biju Das <biju.das.jz@bp.renesas.com>, Christoph
+ Fritz <chf.fritz@googlemail.com>, Cristian Ciocaltea
+ <cristian.ciocaltea@collabora.com>, Detlev Casanova
+ <detlev.casanova@collabora.com>, Dharma Balasubiramani
+ <dharma.b@microchip.com>, Guenter Roeck <groeck@chromium.org>, Heiko
+ Stuebner <heiko@sntech.de>, Jani Nikula <jani.nikula@intel.com>, Janne
+ Grunau <j@jannau.net>, Jerome Brunet <jbrunet@baylibre.com>, Jesse Van
+ Gavere <jesseevg@gmail.com>, Kevin Hilman <khilman@baylibre.com>, Kieran
+ Bingham <kieran.bingham+renesas@ideasonboard.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Phong LE
+ <ple@baylibre.com>, Sasha Finkelstein <fnkl.kernel@gmail.com>, Sugar Zhang
+ <sugar.zhang@rock-chips.com>, Sui Jingfeng <sui.jingfeng@linux.dev>, Tomi
+ Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Vitalii Mordan
+ <mordan@ispras.ru>, "Rob Herring (Arm)" <robh@kernel.org>, Hsin-Te Yuan
+ <yuanhsinte@chromium.org>, Pin-yen Lin <treapking@chromium.org>, Xin Ji
+ <xji@analogixsemi.com>, Aradhya Bhatia <a-bhatia1@ti.com>, Tomi Valkeinen
+ <tomi.valkeinen@ideasonboard.com>, Ian Ray <ian.ray@gehealthcare.com>,
+ Martyn Welch <martyn.welch@collabora.co.uk>, Peter Senna Tschudin
+ <peter.senna@gmail.com>, Helge Deller <deller@gmx.de>, Kuninori Morimoto
+ <kuninori.morimoto.gx@renesas.com>, Laurent Pinchart
+ <laurent.pinchart+renesas@ideasonboard.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, Yannick Fertre
+ <yannick.fertre@foss.st.com>, Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>, Michal Simek
+ <michal.simek@amd.com>, Jonathan Corbet <corbet@lwn.net>,
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 00/22] drm: convert all bridges to
+ devm_drm_bridge_alloc()
+Message-ID: <20250522092824.421e766c@booty>
+In-Reply-To: <36ade269-a590-4243-889c-006f37d9ae6e@nxp.com>
+References: <20250509-drm-bridge-convert-to-alloc-api-v3-0-b8bc1f16d7aa@bootlin.com>
+	<20250521162216.79dd3290@booty>
+	<36ade269-a590-4243-889c-006f37d9ae6e@nxp.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-CM-TRANSID: qMiowMBxHcXLyy5otXLnAA--.2923S4
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxXw4fGrW3ZFyDJw1kWF1fZrc_yoW5ZFy8pF
-	n7W3ZxKr48ur4Yg395Ja1Ut3Wjg3yjqay8WrWfWw1fWw4YkrWDtF92kFy0qF48ArykZ3Wx
-	GF4Yg3y8Aa4DXFcCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUm0b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AK
-	xVW0oVCq3wAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
-	Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Gryq
-	6s0DMcIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x
-	0EwIxGrwACjcxG6xCI17CEII8vrVW3JVW8Jr1lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IY
-	c2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxV
-	Aqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q
-	6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_tr0E3s1lIxAIcVC0I7IYx2IY6x
-	kF7I0E14v26r4UJVWxJr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE
-	14v26r4UJVWxJr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU0x
-	ZFpf9x07b-1v3UUUUU=
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdehfeeiucdltddurdegfedvrddttddmucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepjeetffdtleehgefhffffudekhfdujeeuvdefhfetleeftefgffekjeetjedtvdevnecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgdphhgvlhhopegsohhothihpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepleehpdhrtghpthhtohepvhhitghtohhrrdhlihhusehngihprdgtohhmpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidri
+ hhnthgvlhdrtghomhdprhgtphhtthhopehmrhhiphgrrhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghnughriigvjhdrhhgrjhgurgesihhnthgvlhdrtghomhdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhg
+X-GND-Sasl: luca.ceresoli@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250522_080145_697849_F6D267E5 
-X-CRM114-Status: UNSURE (   9.88  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250522_002842_200492_AF72A3D4 
+X-CRM114-Status: GOOD (  21.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,103 +135,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use new function devm_mmc_alloc_host() to simplify the code.
+Hello Liu,
 
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
----
- drivers/mmc/host/meson-mx-sdio.c | 20 ++++++++------------
- 1 file changed, 8 insertions(+), 12 deletions(-)
+On Thu, 22 May 2025 11:20:17 +0800
+Liu Ying <victor.liu@nxp.com> wrote:
 
-diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-index e0ae5a0c9670..b6cb475f1a5f 100644
---- a/drivers/mmc/host/meson-mx-sdio.c
-+++ b/drivers/mmc/host/meson-mx-sdio.c
-@@ -640,7 +640,7 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 	else if (IS_ERR(slot_pdev))
- 		return PTR_ERR(slot_pdev);
- 
--	mmc = mmc_alloc_host(sizeof(*host), &slot_pdev->dev);
-+	mmc = devm_mmc_alloc_host(&slot_pdev->dev, sizeof(*host));
- 	if (!mmc) {
- 		ret = -ENOMEM;
- 		goto error_unregister_slot_pdev;
-@@ -658,13 +658,13 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 	host->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(host->base)) {
- 		ret = PTR_ERR(host->base);
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 	}
- 
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq < 0) {
- 		ret = irq;
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 	}
- 
- 	ret = devm_request_threaded_irq(host->controller_dev, irq,
-@@ -672,28 +672,28 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 					meson_mx_mmc_irq_thread, IRQF_ONESHOT,
- 					NULL, host);
- 	if (ret)
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 
- 	host->core_clk = devm_clk_get(host->controller_dev, "core");
- 	if (IS_ERR(host->core_clk)) {
- 		ret = PTR_ERR(host->core_clk);
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 	}
- 
- 	host->parent_clk = devm_clk_get(host->controller_dev, "clkin");
- 	if (IS_ERR(host->parent_clk)) {
- 		ret = PTR_ERR(host->parent_clk);
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 	}
- 
- 	ret = meson_mx_mmc_register_clks(host);
- 	if (ret)
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 
- 	ret = clk_prepare_enable(host->core_clk);
- 	if (ret) {
- 		dev_err(host->controller_dev, "Failed to enable core clock\n");
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 	}
- 
- 	ret = clk_prepare_enable(host->cfg_div_clk);
-@@ -721,8 +721,6 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 	clk_disable_unprepare(host->cfg_div_clk);
- error_disable_core_clk:
- 	clk_disable_unprepare(host->core_clk);
--error_free_mmc:
--	mmc_free_host(mmc);
- error_unregister_slot_pdev:
- 	of_platform_device_destroy(&slot_pdev->dev, NULL);
- 	return ret;
-@@ -741,8 +739,6 @@ static void meson_mx_mmc_remove(struct platform_device *pdev)
- 
- 	clk_disable_unprepare(host->cfg_div_clk);
- 	clk_disable_unprepare(host->core_clk);
--
--	mmc_free_host(host->mmc);
- }
- 
- static const struct of_device_id meson_mx_mmc_of_match[] = {
+> > If not, can we at least add a band-aid 'X:' entry for
+> > drivers/gpu/drm/bridge/imx?
+> > 
+> > I think the other matching entry is the one to consider:
+> > 
+> > DRM DRIVERS FOR FREESCALE IMX BRIDGE
+> > M:	Liu Ying <victor.liu@nxp.com>
+> > L:	dri-devel@lists.freedesktop.org
+> > S:	Maintained
+> > F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
+> > F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-combiner.yaml
+> > F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-link.yaml
+> > F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pxl2dpi.yaml
+> > F:	drivers/gpu/drm/bridge/imx/
+> > 
+> > (https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/MAINTAINERS?ref_type=heads#L7940-7948)
+> > 
+> > However it does not list any trees. I _guess_ drm-misc applies here as
+> > a fallback as well as common sense.
+> > 
+> > Liu, should this entry have a 'T:' line for drm/misc?  
+> 
+> These bridge drivers also don't have a 'T:' line:
+> 
+> DRM DRIVER FOR CHIPONE ICN6211 MIPI-DSI to RGB CONVERTER BRIDGE
+> DRM DRIVER FOR PARADE PS8640 BRIDGE CHIP
+> DRM DRIVER FOR TI DLPC3433 MIPI DSI TO DMD BRIDGE
+> DRM DRIVER FOR TI SN65DSI86 BRIDGE CHIP
+> LONTIUM LT8912B MIPI TO HDMI BRIDGE
+> MEGACHIPS STDPXXXX-GE-B850V3-FW LVDS/DP++ BRIDGES
+> MICROCHIP SAM9x7-COMPATIBLE LVDS CONTROLLER
+> 
+> I think that they fallback to drm-misc since "DRM DRIVERS FOR BRIDGE CHIPS"
+> covers them.  I don't have strong opinion on adding a "T" line to them, at
+> least to "DRM DRIVERS FOR FREESCALE IMX BRIDGE".  Anyway, it would be good
+> to know comments from maintainers for "DRM DRIVERS FOR BRIDGE CHIPS" and
+> "DRM DRIVERS".
+
+I agree the fallback seems OK for this MAINTAINERS entry.
+
+The other entry (ARM/FREESCALE IMX / MXC ARM ARCHITECTURE) is another
+story.
+
+> >>       drm/bridge: imx8qxp-pixel-combiner: convert to devm_drm_bridge_alloc() API  
+> > 
+> > Not acked/reviewed, some discussion happened. I am resending it in v4,
+> > possibly with updates based on the discussion.  
+> 
+> I still think the main structures in imx8qxp-pixel-combiner.c and imx*-ldb.c
+> should have the same lifetime with the allocated bridges.  I added a new
+> comment on this driver in v2 just now.
+
+Thanks, let's continue the conversation there.
+
+Luca
+
 -- 
-2.47.1
-
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
