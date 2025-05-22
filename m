@@ -4,80 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C6B7C54E65
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 09:32:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D105C54E65
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 10:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=J813iz0DhzsN+KAsVXYdktdaNY3uXZax6NvmLX4Ve/4=; b=KVbjGRldmCH1wT
-	2WyxTH/8aKY+kaj+ffA+0fikFZb04eelGsAAFhubBeOrgwPCw07hz9m+qa+xRxXYbmuhQ34bijnxo
-	AFO1PjAfBzKtEhwKWDCHUSsCWGpEgt7mQPm5PAdJPJIrqWzWY/f0dq9s17WxWmTMB6y7hwV0ApQi/
-	D9R9uXzShsfQ+sqiW6ZkPuKxbG2kLiwEoMFI4gxOH9A0apU7Eyjd4UBZ7SNiXziUUDyzvwaBroKog
-	+cFmCNu8vi414Za0mjkE7ILZ2qHC0OCEqrjFfolREhkOMkbazfOjVfdkJO5k8/dpFCPF38ZDpDLFt
-	InusQy74oUDLR9FiSTdw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=nBamBOh4Ih8ZgS5dkH9oiFcBFSGo1SWs1xnRNYCnzEA=; b=EhZEOK10F1yt0YD/d4X69iXY/f
+	ItMZShArkEKfj3kLczHU9sBxDxHed6UFk2fmMEzSXX9PLqxBS7j3AiGz9IJba293YZsW9DpAOY71m
+	rSsKHuiiuZPt4vMWt9niQAnUFimtaLBJ08fUSOhWly8r/n/pWUfNW0NXoqLjPcTeuQeTa1wqmIFrc
+	A5PHekbZdUg1qNGE52S49c5jkvBnKx6ZhxQvcUpUp+iK6kbfVnTr3SrzJVbfCUj7JfCTz6XMt+WWm
+	+qfIu2tz9ZsO4ukh04TWl+SSiQYD1q5XrzjMh4MmgeFznaNT6HXlwfeGbOB5oktUc4nktCHnoVfVl
+	mXgoC4wQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI2Hg-00000000W0w-1E3w;
-	Thu, 22 May 2025 09:32:16 +0000
-Received: from mail-ed1-f41.google.com ([209.85.208.41])
+	id 1uI2jH-00000000bdV-21wr;
+	Thu, 22 May 2025 10:00:47 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI2FZ-00000000VSO-3Xa3;
-	Thu, 22 May 2025 09:30:07 +0000
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-60179d8e65fso4577537a12.0;
-        Thu, 22 May 2025 02:30:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747906204; x=1748511004;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P9imWNVpcHY4/YQmn253SAWo0LBrDG5vEkbvmzjj06E=;
-        b=QSzGa6nV3PYUxYfuYOsSKI4I7/d+6rZIwd7sP3rEreTu0tSuE4y0OyrSV8pJ4Lo/BZ
-         saGcB3gXAgmK9xExCWmMd1fgdlEn5APwSbsh9wwPrUin7Zq6qXNK5l0vZNFzp3JZjmWU
-         MV1LFsLVGMZvFUpKAKwRzN5ZP0TarGxhz/lmrkyOxpUdVHfDOkWA8rlLbcywi2q6/RZD
-         1LoeJqQlNsDN6PujicUYAkzxWsq5kN5YXjRovZuF3Xj2EPFo/WJ0fD+FXP/LYqPJnktD
-         Q/gmsSe6A/e6amDeYmQEwkH2+waWOe9wWPhLDbWkbAwsTnCMgtomtN+tFO8N2EWKZHla
-         d25w==
-X-Forwarded-Encrypted: i=1; AJvYcCVWAlK770CoAyvtaYDrGdt+aFIJN5ekOZxgjFtI48FF221v1dkUD1Loq8yAbaz5qIxLODp9RCZHateaMkGu@lists.infradead.org, AJvYcCVWcpZoaCEtGCWsEbixFYrZOGLL/FbttBXAAWfjeLxfaYaZ16jUpO9UvsGZqH8/HKIq8F5fmWCGTrq2BYpqkVnLsw==@lists.infradead.org
-X-Gm-Message-State: AOJu0YyTVDyEsZf0FnCm74vhsBrvA7KQ2i8oI3ikvUq9UDPoN8m+7F3L
-	lS2vBUFgm+4UCZ1Oxd757bpQ1ZS9/tmXt2WBjsAiZAorVgxzR2d0sRsZ
-X-Gm-Gg: ASbGncvmivCaPsT39IAQoW59UbyRztPtPyiDA43DNJlix1DQgz0QDqJx6p0xX8AQJQ2
-	ESVfr/G6QYeyfKyz1aw2G6NS+/oojtO3r0pOVO1RA1dyTRhsqfJfazLK+pyuFbVf8CIEbfC0Z4A
-	hlY0bDW/m5M+F6KgbkyrjXn9gkj1Q0ENd17R7ysr50K+zkjH2rKd2L1cK5jvhCd+ntncTV3mpn0
-	OhrcvFfeDMky/clJlYSyd7u02vDsXtO5EpTkUxPdBjS7fU2BzPI/SqGtC8+Oz2H1vEUrmCf9k12
-	CPWXY0RkPI2cPm+fl0rWSDzxXwHrY3JTWqUMPsz6FtAbyVRB4iiXwICY2iXi2/UFmis1wrkWKmY
-	OHACs90ImT/RU
-X-Google-Smtp-Source: AGHT+IH6PGZyeMyvQHBRQvlVXtj8Ud+yS5Bla8HVE2j+rxlb85y3AIQhMi0Fu03PZQrmAkfqeb8vWg==
-X-Received: by 2002:a17:906:6a14:b0:ad2:2e5c:89c5 with SMTP id a640c23a62f3a-ad52d4c511cmr2217008666b.20.1747906203469;
-        Thu, 22 May 2025 02:30:03 -0700 (PDT)
-Received: from ramallet.home (cst-prg-46-162.cust.vodafone.cz. [46.135.46.162])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d4ca3bdsm1036951466b.160.2025.05.22.02.30.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 02:30:03 -0700 (PDT)
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-To: linux-kernel@vger.kernel.org
-Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
+	id 1uI2jG-00000000bch-0Rfh;
+	Thu, 22 May 2025 10:00:46 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 83DE662A37;
+	Thu, 22 May 2025 10:00:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71D4BC4CEE4;
+	Thu, 22 May 2025 10:00:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747908045;
+	bh=MqopuUpYpRBwINTm0XZy4Btrri9/43yCJfmha+uoSws=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Cj2WJCiWjYkooKVwSF7qK5qxGnxD7tXSUsN1yjJeFEgcgg/J6VU0+CKvUu4K82JWn
+	 2J3EhgNsiuNcS9LFh7XQt48XPGkVjcypJmoCjd3JredBT6Tf1zRaByi+y03ZiPIrny
+	 h0ubB6YEsb0W3LPuq8M2xkXuqT4SDiCyiG5i+Xpqm3RTgyoKJsQL4BP6TAj40R2iYa
+	 Axe4uLW7riQND3IRZcX+WkMpXqU7DdzjKS3xKXaCU4OPIPZOI4EYUQLZwXrhuES5Wa
+	 rt4laTbjxh8v+1ny12wFiI7j5z3IAWAURoXdZxe/wBBitobPOfsXpEn5SczrUcBfHq
+	 xn3VT8iG9nKwA==
+Date: Thu, 22 May 2025 11:00:37 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Ai Chao <aichao@kylinos.cn>
+Cc: perex@perex.cz, tiwai@suse.com, johannes@sipsolutions.net,
+	kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
+	jbrunet@baylibre.com, neil.armstrong@linaro.org,
+	khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+	shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
+	nicoleotsuka@gmail.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	srinivas.kandagatla@linaro.org, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	linux-renesas-soc@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH] arm64: dts: amlogic: Enable the npu node for Alta and VIM3
-Date: Thu, 22 May 2025 11:29:40 +0200
-Message-ID: <20250522092940.3293889-1-tomeu@tomeuvizoso.net>
-X-Mailer: git-send-email 2.49.0
+	linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
+	kernel@pengutronix.de, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] ASoC: ppc: Use helper function
+ for_each_child_of_node_scoped()
+Message-ID: <6625e6b1-53a7-4357-99ab-bdf5810e6699@sirena.org.uk>
+Mail-Followup-To: Ai Chao <aichao@kylinos.cn>, perex@perex.cz,
+	tiwai@suse.com, johannes@sipsolutions.net,
+	kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
+	jbrunet@baylibre.com, neil.armstrong@linaro.org,
+	khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+	shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
+	nicoleotsuka@gmail.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	srinivas.kandagatla@linaro.org, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
+	kernel@pengutronix.de, linux-arm-msm@vger.kernel.org
+References: <20250522050300.519244-1-aichao@kylinos.cn>
+ <20250522050300.519244-2-aichao@kylinos.cn>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250522_023005_885394_A37D2391 
-X-CRM114-Status: UNSURE (   8.02  )
-X-CRM114-Notice: Please train this message.
+In-Reply-To: <20250522050300.519244-2-aichao@kylinos.cn>
+X-Cookie: Beware of dog.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,49 +88,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============7137262006057538846=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-We now have support in Mesa and everything is ready in distros such as
-Debian.
 
-Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
----
- arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts  | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts | 4 ++++
- 2 files changed, 8 insertions(+)
+--===============7137262006057538846==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dYBUrfbV055H0pXU"
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-index 124a80901084..9fd68195be3f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-@@ -39,3 +39,7 @@ &usb {
- 	phy-names = "usb2-phy0", "usb2-phy1";
- };
-  */
-+
-+&npu {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
-index adedc1340c78..8e9f7e0d4542 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
-@@ -117,3 +117,7 @@ &cpu103 {
- &pwm_ab {
- 	pinctrl-0 = <&pwm_a_e_pins>, <&pwm_b_x7_pins>;
- };
-+
-+&npu {
-+	status = "okay";
-+};
--- 
-2.49.0
 
+--dYBUrfbV055H0pXU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, May 22, 2025 at 01:02:54PM +0800, Ai Chao wrote:
+> The for_each_child_of_node_scoped() helper provides a scope-based
+> clean-up functionality to put the device_node automatically, and
+> as such, there is no need to call of_node_put() directly.
+>=20
+> Thus, use this helper to simplify the code.
+>=20
+> Signed-off-by: Ai Chao <aichao@kylinos.cn>
+> ---
+>  sound/ppc/tumbler.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+
+This is for ALSA, not ASoC (same for patch 2).
+
+--dYBUrfbV055H0pXU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmgu9cQACgkQJNaLcl1U
+h9CN3wf+PegrYTPlsVJy+enj/g4eJLMHrb+6cwhGIJ+rpuWUhYGaAAV3EeSH51g9
+RpUaPpzmbI1W9rHSufs3UHUUX+xeLAOCmoGQY3zHQDiXcB6kH7ZnVbFLcGCEQjbE
+63rKXX3DuoMTCyrERQSyyVztgwF4gtwM7/SpkrP6EF/IwRBHuR7PSbfudShqajl3
+JmjzCk+11NNoW4pgUBcsCdTuxGyEd5eGZWAT/b68XKAq8AbndHwwsY2X0OC28Ibu
+dCW1cX1s+NK6W/MErAM0B72wYF0HVOmzOT45F6UlMZVJqPDezTE8IB+oUmzSf+hv
+3t/hI5FgEmIU4rj4jwuBpqaSXrPi2Q==
+=1khQ
+-----END PGP SIGNATURE-----
+
+--dYBUrfbV055H0pXU--
+
+
+--===============7137262006057538846==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7137262006057538846==--
+
