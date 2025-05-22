@@ -4,68 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1282C54E90
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 10:06:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E161C54E90
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 12:39:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GEXVsC985NKfFuchgQjeO7iSSfanjKhLOulv02gpykY=; b=HS4RXmMg1kok0M
-	/EkifZbWkKo5DBpwwOXU4Jp80/wipfDaY8NjYkBpe6qvftexfk06NoRiMCaC9Mb+WRSj0zb/ggLQK
-	wGyBLn866x01e9x173MqstnyBMMpwB2xO9tMckW6Dzqn7MCbOqgqT2iR16toNBpXt1MFWl4PlsjF7
-	+xsWLgHVR4oweenWJ730K4gZecTghM2bkUSsbWO7UJG9WD1hgcsMTvuAFSCHCUyLKLNRyE8C1mjOj
-	8mIGB9Aw/5Iw7n/toOtCfdIdgkLkuvhzJZ8jNCtNniL7I/ghFLegIKcu8WO+yeQIBdhS+nB2hqH0T
-	1f6nLSjLhDcHs5bRM1kA==;
+	List-Owner; bh=KEgAOI79arix1+H16Ed/EAvLZHklot3TQP1wauyrGRU=; b=uyLMLC1Tmd/pfc
+	04iRT4KqdXKlGTHH54/nZ13Ynah1aFt2rIZSK+nOxYGyKB0z3AzbB4z7k5cU58VYNW+yHC5JAejlr
+	Qj+MLjW1wZaOb2T+DosE71o1aovSFkJzA3xEoCfDRXpkfs7xo3prlX403csa0Zi8Dr4Gn9TpN/eZa
+	P7j8/ocnLD91JYsTDvD4HDfq1zxDtN8ucuGT9VSwrNqPWQ4wvJjJ3JqJN4Vig2ioyM+XD9YP67CRq
+	aeVCsjDbAfPU/t8Jjl9+o6rweTn3Q7JK4sq2+sPklX0tof1q/BUPNoYTq5QPUHNBncHD4z8LtMGsv
+	LTFaChOUKz7UlkZbLkQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI2p6-00000000dER-0Ju5;
-	Thu, 22 May 2025 10:06:48 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
+	id 1uI5CM-000000010YJ-3kZb;
+	Thu, 22 May 2025 12:38:58 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI2mz-00000000cfK-1NMI;
-	Thu, 22 May 2025 10:04:38 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=BEvqtXUoRY2MtYTRcX5uBf01lX2zWH/6+T3j+WmGUyc=;
-	t=1747908275; x=1749117875; b=aRXyepbh7byJDomKoID211K8ZbaKbU9bicpNTQys7CY0mtT
-	CrNWsYmrV7aDE/+6BNmN8VjTH9wol/U3TRO8FOrQ7fduMcYz3vsJIGhPg8CVUTeJ7jVybACKdy2UV
-	uAn+FoohLtHErvtS4v+G9wti4XjO2YudyG/UxQGJ4E1vTgdMsM+HGv9LnJkCHMQNjZDLCeNabNANG
-	4qiiKHrNP38JoZhieHoh5Ifq5Iyd9fCuAoYOSqfkByRk8/fb2NI09m2cx62Hvj0nkj/GzMBSC6afp
-	REzlJdFbyvtCaja3Z1ogXrGuQn1Jf8VgQn+kgsYiBKmeBgVg2s1byO3Bw0jfqdfg==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.98.2)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1uI2mm-0000000GdCj-3E2p;
-	Thu, 22 May 2025 12:04:25 +0200
-Message-ID: <3fa189cfc0a52572008590efbf5f4ad05c81dbc6.camel@sipsolutions.net>
-Subject: Re: [PATCH v2 2/6] ASoC: aoa: Use helper function
+	id 1uI5BB-000000010Px-3bu0
+	for linux-amlogic@lists.infradead.org;
+	Thu, 22 May 2025 12:37:47 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54M7PXqn020943
+	for <linux-amlogic@lists.infradead.org>; Thu, 22 May 2025 12:37:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=RgX9Aci2OKy/LHgxiHnopths
+	wLGl49EW6vrJhQF5Sd4=; b=puIi8/YXySjnaRhqdPF6arFGXrN64CFKlgec9+hh
+	yazluQo/TWc0lbpIj5odU7MUowdsNeEbFfK5csRrlO3C0EEFxId7eNo2CawsvJnZ
+	PTIOa8jzHsTkAenPYyRBUnBPsa7pvvNLyvf7T6hWxZCFzVqh/eKEEgepS0VGDcna
+	G8U2mZR0m3OYEZFrFk78u0L+N7rS1Jpb6elMICfZ1AdRzNVMlKr5tA9RT+E4VNtX
+	Srz+XlZbxjppxFXyMzBSpx029AEjLf5t/3+r1XP/SXtTmp2gjk84m6fTsazCuRMt
+	Y5npPMV2il3EgMdInXJaV/+Yz9ulQ52+xwmoyVDXNrZcEQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf06fk4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Thu, 22 May 2025 12:37:45 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c9255d5e8cso1345348185a.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 22 May 2025 05:37:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747917464; x=1748522264;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RgX9Aci2OKy/LHgxiHnopthswLGl49EW6vrJhQF5Sd4=;
+        b=jqU6j6iWeTtrLL1CDHqu/L/LdMGCXT1Zr1eH4F4NZISYmvndXlw98LSAmFuSDABA8I
+         JfM+uH1PNGNNKG6gkn4ksQilR56XxpKMhOb9Zjo/HE1pea8+aL9pN4g5ByoKUWkSRShz
+         HSLKcs+YONfJi8naGO2bZqiw+9gRzxW05GO6qWofRXBzJWrnLrbeXX8jX1IHyK31zTKl
+         q3CRGqgOQyRCvHqdgKXeFya5ABZIN4Dut7ljyCE6IJitWOVD/R4v5AN/lw1WOpxu+rg2
+         JDFdFmFGV25KAwNN31ytGexyqHO/rHajBeKo9oT/tzAvEtWdnz6cdMG2XCUU+lSCzpIS
+         phZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUf/8K0U1vBs7U8VK0mXGrbJAEh+IlrJ5EWpp0CfIFkKn/s9DJWdwsxY3qer3e+b2ihBOpVDgMlPFTtV6KW@lists.infradead.org
+X-Gm-Message-State: AOJu0YyRvN56YMc3FJtp5AjsaEa+EW4jpzNYSBOAbgbovRSp6EWkd0ni
+	coD1tmCaQ5LtiRHUhHPYz9tXvgoeywwCOp5ENPdnGcloBS6fsiS22JEBU2wvCOePMib+lyanReq
+	GZK/XWwg8UnRqRm+La5CVvWaZI71RwFf25WznC776442tRKuvLHZizjxBVWL6XazF+GglWfEzPA
+	==
+X-Gm-Gg: ASbGncswUev8A2YFn+oeSiD0aGp1usl4jB6otxo0fgoOwo9xcV6fcgd1FQEiUdsb4ue
+	SyjRj2IwcEbqOrxS0bCbA2iiUwdctKEXoGqprocTQ7SJF572bZz+w/1IB/r/J10+F5K89Egvsts
+	DPlHl89OstWANo5AZTHmrJHyJrhjZp3t1Y9ifHGF7eLJyQKspUSoVMPyDEvwLoxZBrF9FHoVT1X
+	iSFYeYpyl6EB+qIhQ2X3lSdMCKUHNZdrQbjv84oayXcWbAa4n0cUMgBAcnKucW1ET+PeTc9+A4G
+	s+DS11A1O2lPboEdRgkoWS35gTctruXPUvKHsHr2j2n2e4l89e25gIX73VncNfOfRCnvWxn7tTM
+	=
+X-Received: by 2002:a05:620a:4013:b0:7ca:f447:c676 with SMTP id af79cd13be357-7cd467a017dmr3460592285a.43.1747917463782;
+        Thu, 22 May 2025 05:37:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEuK9ZYaNS9i+Q5elNYnjF85wlG4E7W2PQcAkgZfLcHHNu2rPiTZal61BKORpuvgC6jlMqV/w==
+X-Received: by 2002:a05:620a:4013:b0:7ca:f447:c676 with SMTP id af79cd13be357-7cd467a017dmr3460586985a.43.1747917463368;
+        Thu, 22 May 2025 05:37:43 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e702a289sm3392445e87.163.2025.05.22.05.37.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 May 2025 05:37:42 -0700 (PDT)
+Date: Thu, 22 May 2025 15:37:40 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Ai Chao <aichao@kylinos.cn>
+Cc: perex@perex.cz, tiwai@suse.com, johannes@sipsolutions.net,
+        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
+        broonie@kernel.org, jbrunet@baylibre.com, neil.armstrong@linaro.org,
+        khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+        shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        nicoleotsuka@gmail.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        srinivas.kandagatla@linaro.org, linux-sound@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
+        kernel@pengutronix.de, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 6/6] ASoC: qcom: Use helper function
  for_each_child_of_node_scoped()
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Ai Chao <aichao@kylinos.cn>, perex@perex.cz, tiwai@suse.com, 
-	kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com, broonie@kernel.org, 
-	jbrunet@baylibre.com, neil.armstrong@linaro.org, khilman@baylibre.com, 
-	martin.blumenstingl@googlemail.com, shengjiu.wang@gmail.com,
- Xiubo.Lee@gmail.com, 	festevam@gmail.com, nicoleotsuka@gmail.com,
- shawnguo@kernel.org, 	s.hauer@pengutronix.de, srinivas.kandagatla@linaro.org
-Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-renesas-soc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	imx@lists.linux.dev, kernel@pengutronix.de, linux-arm-msm@vger.kernel.org
-Date: Thu, 22 May 2025 12:04:23 +0200
-In-Reply-To: <20250522050300.519244-3-aichao@kylinos.cn>
+Message-ID: <jp6lxxm3httbz7ygu7bj3xju4l7jnnhvbpaicb36ju4hyxpb2o@4lhl7xzif6qo>
 References: <20250522050300.519244-1-aichao@kylinos.cn>
-	 <20250522050300.519244-3-aichao@kylinos.cn>
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+ <20250522050300.519244-7-aichao@kylinos.cn>
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Content-Disposition: inline
+In-Reply-To: <20250522050300.519244-7-aichao@kylinos.cn>
+X-Proofpoint-GUID: W4ceUjFQ_vnQMlGiBaHGYbptjlIwMInG
+X-Proofpoint-ORIG-GUID: W4ceUjFQ_vnQMlGiBaHGYbptjlIwMInG
+X-Authority-Analysis: v=2.4 cv=ZP3XmW7b c=1 sm=1 tr=0 ts=682f1a99 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=dt9VzEwgFbYA:10 a=rlxKSa1xbkCyiMC8iTsA:9 a=CjuIK1q_8ugA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDEyNyBTYWx0ZWRfXySt2OoS8TD4/
+ HWjIQ6x20YryX/664eaYBm/1wANbyRN3WqBoJoEgkv1YpaQwVNpTUlA5OwMpEDSEdJ8xR9c89Uz
+ njF0kDHQySCmzXHtkm566w55JQFZVyaNLSDM/39W0X29lZbTt78ZboIGaFI47U2AT6X2G1dZGKH
+ IMQJ2XbP8ZPyAvXfJYx6+/7iqwWUCWA8tosWV8rVzpmEeI5H8ATNcylyvFsLk+Km0kD2fndAbPb
+ 6L4g7dfu8z37teHMlsD1h1UkF9noJfwF0b3CauvKwoj5K1UvMJyfLfTpI99J10wV7F9H1Na/jHi
+ iz/MeaMoswCRUya3xaar0tzcLTX93e2+25Y/mw+6xGMoQPAUc6F7+wyHmbJHOm6bNCQVkqm6rIe
+ 3IXEZFfXmOT9AgywfLTIvQaAR0ejx3AJcnPYFgdaJJlK2Ri9/KzrxvdbepN+oxnmqlfhb56t
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-22_06,2025-05-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 mlxlogscore=954 suspectscore=0 bulkscore=0
+ impostorscore=0 phishscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505220127
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250522_030437_374970_ACC64920 
-X-CRM114-Status: UNSURE (   8.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250522_053745_913876_5E5009AF 
+X-CRM114-Status: GOOD (  23.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,24 +141,92 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 2025-05-22 at 13:02 +0800, Ai Chao wrote:
+On Thu, May 22, 2025 at 01:02:59PM +0800, Ai Chao wrote:
 > The for_each_child_of_node_scoped() helper provides a scope-based
 > clean-up functionality to put the device_node automatically, and
 > as such, there is no need to call of_node_put() directly.
+
+There are no calls to of_node_put() in the commit. So the commit message
+is incorrect / not-applicable.
+
 > 
 > Thus, use this helper to simplify the code.
+> 
+> Signed-off-by: Ai Chao <aichao@kylinos.cn>
+> ---
+>  sound/soc/qcom/lpass-cpu.c       | 3 +--
+>  sound/soc/qcom/qdsp6/q6afe-dai.c | 3 +--
+>  sound/soc/qcom/qdsp6/q6asm-dai.c | 4 +---
+>  3 files changed, 3 insertions(+), 7 deletions(-)
+> 
+> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+> index 242bc16da36d..62f49fe46273 100644
+> --- a/sound/soc/qcom/lpass-cpu.c
+> +++ b/sound/soc/qcom/lpass-cpu.c
+> @@ -1046,7 +1046,6 @@ static unsigned int of_lpass_cpu_parse_sd_lines(struct device *dev,
+>  static void of_lpass_cpu_parse_dai_data(struct device *dev,
+>  					struct lpass_data *data)
+>  {
+> -	struct device_node *node;
+>  	int ret, i, id;
+>  
+>  	/* Allow all channels by default for backwards compatibility */
+> @@ -1056,7 +1055,7 @@ static void of_lpass_cpu_parse_dai_data(struct device *dev,
+>  		data->mi2s_capture_sd_mode[id] = LPAIF_I2SCTL_MODE_8CH;
+>  	}
+>  
+> -	for_each_child_of_node(dev->of_node, node) {
+> +	for_each_child_of_node_scoped(dev->of_node, node) {
+>  		ret = of_property_read_u32(node, "reg", &id);
+>  		if (ret || id < 0) {
+>  			dev_err(dev, "valid dai id not found: %d\n", ret);
+> diff --git a/sound/soc/qcom/qdsp6/q6afe-dai.c b/sound/soc/qcom/qdsp6/q6afe-dai.c
+> index 7d9628cda875..64735f2adf8f 100644
+> --- a/sound/soc/qcom/qdsp6/q6afe-dai.c
+> +++ b/sound/soc/qcom/qdsp6/q6afe-dai.c
+> @@ -962,10 +962,9 @@ static const struct snd_soc_component_driver q6afe_dai_component = {
+>  static void of_q6afe_parse_dai_data(struct device *dev,
+>  				    struct q6afe_dai_data *data)
+>  {
+> -	struct device_node *node;
+>  	int ret;
+>  
+> -	for_each_child_of_node(dev->of_node, node) {
+> +	for_each_child_of_node_scoped(dev->of_node, node) {
+>  		unsigned int lines[Q6AFE_MAX_MI2S_LINES];
+>  		struct q6afe_dai_priv_data *priv;
+>  		int id, i, num_lines;
+> diff --git a/sound/soc/qcom/qdsp6/q6asm-dai.c b/sound/soc/qcom/qdsp6/q6asm-dai.c
+> index a400c9a31fea..d7680dd3a3bb 100644
+> --- a/sound/soc/qcom/qdsp6/q6asm-dai.c
+> +++ b/sound/soc/qcom/qdsp6/q6asm-dai.c
+> @@ -1236,10 +1236,8 @@ static int of_q6asm_parse_dai_data(struct device *dev,
+>  {
+>  	struct snd_soc_dai_driver *dai_drv;
+>  	struct snd_soc_pcm_stream empty_stream;
+> -	struct device_node *node;
+>  	int ret, id, dir, idx = 0;
+>  
+> -
+>  	pdata->num_dais = of_get_child_count(dev->of_node);
+>  	if (!pdata->num_dais) {
+>  		dev_err(dev, "No dais found in DT\n");
+> @@ -1253,7 +1251,7 @@ static int of_q6asm_parse_dai_data(struct device *dev,
+>  
+>  	memset(&empty_stream, 0, sizeof(empty_stream));
+>  
+> -	for_each_child_of_node(dev->of_node, node) {
+> +	for_each_child_of_node_scoped(dev->of_node, node) {
+>  		ret = of_property_read_u32(node, "reg", &id);
+>  		if (ret || id >= MAX_SESSIONS || id < 0) {
+>  			dev_err(dev, "valid dai id not found:%d\n", ret);
+> -- 
+> 2.47.1
+> 
 
-> -	for_each_child_of_node(dev->ofdev.dev.of_node, np) {
-> +	for_each_child_of_node_scoped(dev->ofdev.dev.of_node, np) {
->  		if (of_device_is_compatible(np, "i2sbus") ||
->  		    of_device_is_compatible(np, "i2s-modem")) {
->  			got += i2sbus_add_dev(dev, control, np);
-
-Given the structure of this code, this either fixes a leak, or is wrong.
-I really don't know which of those two it is, it's been decades, but
-either way it's not a change that simply "simplif[ies] the code".
-
-johannes
+-- 
+With best wishes
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
