@@ -4,127 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E161C54E90
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 12:39:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE5A8C54ED0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 15:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KEgAOI79arix1+H16Ed/EAvLZHklot3TQP1wauyrGRU=; b=uyLMLC1Tmd/pfc
-	04iRT4KqdXKlGTHH54/nZ13Ynah1aFt2rIZSK+nOxYGyKB0z3AzbB4z7k5cU58VYNW+yHC5JAejlr
-	Qj+MLjW1wZaOb2T+DosE71o1aovSFkJzA3xEoCfDRXpkfs7xo3prlX403csa0Zi8Dr4Gn9TpN/eZa
-	P7j8/ocnLD91JYsTDvD4HDfq1zxDtN8ucuGT9VSwrNqPWQ4wvJjJ3JqJN4Vig2ioyM+XD9YP67CRq
-	aeVCsjDbAfPU/t8Jjl9+o6rweTn3Q7JK4sq2+sPklX0tof1q/BUPNoYTq5QPUHNBncHD4z8LtMGsv
-	LTFaChOUKz7UlkZbLkQw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=hrIzH4dCSaCdisDRpe1IC4am5CRrXN72np1ZP1iIbgY=; b=Xol8kKUXjRGelFB8mPfbV8dtAd
+	tBwIVUeR5f8JCWGzYLxbUuz9aJnfQW1eBCyqAowDwmu5Q7Td8P41EU+gO2a/elR4v/IELgt8CkoFt
+	rTfvWAEn1vmjq8m+OFbt9vwysfMOZHJPuTpzehyDY9pOIWluE2m8SL9E/x5/tC5UaGgRkTz5peDDy
+	PL++if0f/AZCJFRtHm2XWhNHxx3JMQxYK1ocGBoMiLn9nYd9ZMdznJiIrweUco/kKm8jXH8hsdgtS
+	fyTZyQGKPDIRI/sa7bc85TCJOf4EFMSsbo1ISQrhNYGEn2mi5oCEQlPqz7X0PVfGTZbowU3P+buiR
+	E2YXORzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI5CM-000000010YJ-3kZb;
-	Thu, 22 May 2025 12:38:58 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1uI7zs-00000001SJy-1kgg;
+	Thu, 22 May 2025 15:38:16 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uI5BB-000000010Px-3bu0
-	for linux-amlogic@lists.infradead.org;
-	Thu, 22 May 2025 12:37:47 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54M7PXqn020943
-	for <linux-amlogic@lists.infradead.org>; Thu, 22 May 2025 12:37:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=RgX9Aci2OKy/LHgxiHnopths
-	wLGl49EW6vrJhQF5Sd4=; b=puIi8/YXySjnaRhqdPF6arFGXrN64CFKlgec9+hh
-	yazluQo/TWc0lbpIj5odU7MUowdsNeEbFfK5csRrlO3C0EEFxId7eNo2CawsvJnZ
-	PTIOa8jzHsTkAenPYyRBUnBPsa7pvvNLyvf7T6hWxZCFzVqh/eKEEgepS0VGDcna
-	G8U2mZR0m3OYEZFrFk78u0L+N7rS1Jpb6elMICfZ1AdRzNVMlKr5tA9RT+E4VNtX
-	Srz+XlZbxjppxFXyMzBSpx029AEjLf5t/3+r1XP/SXtTmp2gjk84m6fTsazCuRMt
-	Y5npPMV2il3EgMdInXJaV/+Yz9ulQ52+xwmoyVDXNrZcEQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf06fk4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Thu, 22 May 2025 12:37:45 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c9255d5e8cso1345348185a.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 22 May 2025 05:37:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747917464; x=1748522264;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RgX9Aci2OKy/LHgxiHnopthswLGl49EW6vrJhQF5Sd4=;
-        b=jqU6j6iWeTtrLL1CDHqu/L/LdMGCXT1Zr1eH4F4NZISYmvndXlw98LSAmFuSDABA8I
-         JfM+uH1PNGNNKG6gkn4ksQilR56XxpKMhOb9Zjo/HE1pea8+aL9pN4g5ByoKUWkSRShz
-         HSLKcs+YONfJi8naGO2bZqiw+9gRzxW05GO6qWofRXBzJWrnLrbeXX8jX1IHyK31zTKl
-         q3CRGqgOQyRCvHqdgKXeFya5ABZIN4Dut7ljyCE6IJitWOVD/R4v5AN/lw1WOpxu+rg2
-         JDFdFmFGV25KAwNN31ytGexyqHO/rHajBeKo9oT/tzAvEtWdnz6cdMG2XCUU+lSCzpIS
-         phZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUf/8K0U1vBs7U8VK0mXGrbJAEh+IlrJ5EWpp0CfIFkKn/s9DJWdwsxY3qer3e+b2ihBOpVDgMlPFTtV6KW@lists.infradead.org
-X-Gm-Message-State: AOJu0YyRvN56YMc3FJtp5AjsaEa+EW4jpzNYSBOAbgbovRSp6EWkd0ni
-	coD1tmCaQ5LtiRHUhHPYz9tXvgoeywwCOp5ENPdnGcloBS6fsiS22JEBU2wvCOePMib+lyanReq
-	GZK/XWwg8UnRqRm+La5CVvWaZI71RwFf25WznC776442tRKuvLHZizjxBVWL6XazF+GglWfEzPA
-	==
-X-Gm-Gg: ASbGncswUev8A2YFn+oeSiD0aGp1usl4jB6otxo0fgoOwo9xcV6fcgd1FQEiUdsb4ue
-	SyjRj2IwcEbqOrxS0bCbA2iiUwdctKEXoGqprocTQ7SJF572bZz+w/1IB/r/J10+F5K89Egvsts
-	DPlHl89OstWANo5AZTHmrJHyJrhjZp3t1Y9ifHGF7eLJyQKspUSoVMPyDEvwLoxZBrF9FHoVT1X
-	iSFYeYpyl6EB+qIhQ2X3lSdMCKUHNZdrQbjv84oayXcWbAa4n0cUMgBAcnKucW1ET+PeTc9+A4G
-	s+DS11A1O2lPboEdRgkoWS35gTctruXPUvKHsHr2j2n2e4l89e25gIX73VncNfOfRCnvWxn7tTM
-	=
-X-Received: by 2002:a05:620a:4013:b0:7ca:f447:c676 with SMTP id af79cd13be357-7cd467a017dmr3460592285a.43.1747917463782;
-        Thu, 22 May 2025 05:37:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEuK9ZYaNS9i+Q5elNYnjF85wlG4E7W2PQcAkgZfLcHHNu2rPiTZal61BKORpuvgC6jlMqV/w==
-X-Received: by 2002:a05:620a:4013:b0:7ca:f447:c676 with SMTP id af79cd13be357-7cd467a017dmr3460586985a.43.1747917463368;
-        Thu, 22 May 2025 05:37:43 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e702a289sm3392445e87.163.2025.05.22.05.37.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 05:37:42 -0700 (PDT)
-Date: Thu, 22 May 2025 15:37:40 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ai Chao <aichao@kylinos.cn>
-Cc: perex@perex.cz, tiwai@suse.com, johannes@sipsolutions.net,
-        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
-        broonie@kernel.org, jbrunet@baylibre.com, neil.armstrong@linaro.org,
-        khilman@baylibre.com, martin.blumenstingl@googlemail.com,
-        shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        nicoleotsuka@gmail.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        srinivas.kandagatla@linaro.org, linux-sound@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
-        kernel@pengutronix.de, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] ASoC: qcom: Use helper function
- for_each_child_of_node_scoped()
-Message-ID: <jp6lxxm3httbz7ygu7bj3xju4l7jnnhvbpaicb36ju4hyxpb2o@4lhl7xzif6qo>
-References: <20250522050300.519244-1-aichao@kylinos.cn>
- <20250522050300.519244-7-aichao@kylinos.cn>
+	id 1uI7MU-00000001Lh9-2mqw;
+	Thu, 22 May 2025 14:57:36 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 8BA2C5C5D5C;
+	Thu, 22 May 2025 14:55:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3816C4CEEA;
+	Thu, 22 May 2025 14:57:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747925853;
+	bh=5G+CU34zmKz9PE5a5J7jN90cu5Gxk5UtkArIIi8NlfY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s3wma8DglmgLQ+hMVFjvtfjc4AGN1CkhvK3aJgPdEeop7ZdSKHWrh+jFnDK9fS1Bt
+	 k4DPjLZirixi4RiNSCPaqTeQgbbYCGh34naxvV1r976lLS74g+aZn2NIJWPxU9Bk2h
+	 5lhBFpwnMYqpXLlbfQyJNLBIPkBOwrbgXjydFtJry7hB5vIcXzHiBLTIOBsTw60ofP
+	 Sbe3oHlRv+SrSkLUAyO4OvF2SWUXfIQoAWSdBVx6gLBXEtHN69lIJ+ngwI0pTb/j5i
+	 982RPFTGUmNJf2N7qI0n6pT07RfEnvluDICTfTYoG8Smrgr1WlqJE6p9LO4kvWBltm
+	 OmAchw1yswU2w==
+Date: Thu, 22 May 2025 16:57:30 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Douglas Anderson <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Liu Ying <victor.liu@nxp.com>, 
+	Anusha Srivatsa <asrivats@redhat.com>, Paul Kocialkowski <paulk@sys-base.io>, 
+	Dmitry Baryshkov <lumag@kernel.org>, Hui Pu <Hui.Pu@gehealthcare.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org, asahi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	freedreno@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com, 
+	Louis Chauvet <louis.chauvet@bootlin.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Inki Dae <inki.dae@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
+	Seung-Woo Kim <sw0312.kim@samsung.com>, Manikandan Muralidharan <manikandan.m@microchip.com>, 
+	Adam Ford <aford173@gmail.com>, Adrien Grassein <adrien.grassein@gmail.com>, 
+	Aleksandr Mishin <amishin@t-argos.ru>, Andy Yan <andy.yan@rock-chips.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Benson Leung <bleung@chromium.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Christoph Fritz <chf.fritz@googlemail.com>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Detlev Casanova <detlev.casanova@collabora.com>, 
+	Dharma Balasubiramani <dharma.b@microchip.com>, Guenter Roeck <groeck@chromium.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Jani Nikula <jani.nikula@intel.com>, Janne Grunau <j@jannau.net>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Jesse Van Gavere <jesseevg@gmail.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Phong LE <ple@baylibre.com>, 
+	Sasha Finkelstein <fnkl.kernel@gmail.com>, Sugar Zhang <sugar.zhang@rock-chips.com>, 
+	Sui Jingfeng <sui.jingfeng@linux.dev>, Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
+	Vitalii Mordan <mordan@ispras.ru>, "Rob Herring (Arm)" <robh@kernel.org>, 
+	Hsin-Te Yuan <yuanhsinte@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
+	Xin Ji <xji@analogixsemi.com>, Aradhya Bhatia <a-bhatia1@ti.com>, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Ian Ray <ian.ray@gehealthcare.com>, 
+	Martyn Welch <martyn.welch@collabora.co.uk>, Peter Senna Tschudin <peter.senna@gmail.com>, 
+	Helge Deller <deller@gmx.de>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>, 
+	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, Yannick Fertre <yannick.fertre@foss.st.com>, 
+	Alain Volmat <alain.volmat@foss.st.com>, Raphael Gallais-Pou <rgallaispou@gmail.com>, 
+	Michal Simek <michal.simek@amd.com>, Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 00/22] drm: convert all bridges to
+ devm_drm_bridge_alloc()
+Message-ID: <20250522-amphibian-shiny-chachalaca-cf05ba@houat>
+References: <20250509-drm-bridge-convert-to-alloc-api-v3-0-b8bc1f16d7aa@bootlin.com>
+ <20250521162216.79dd3290@booty>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20250522050300.519244-7-aichao@kylinos.cn>
-X-Proofpoint-GUID: W4ceUjFQ_vnQMlGiBaHGYbptjlIwMInG
-X-Proofpoint-ORIG-GUID: W4ceUjFQ_vnQMlGiBaHGYbptjlIwMInG
-X-Authority-Analysis: v=2.4 cv=ZP3XmW7b c=1 sm=1 tr=0 ts=682f1a99 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=rlxKSa1xbkCyiMC8iTsA:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDEyNyBTYWx0ZWRfXySt2OoS8TD4/
- HWjIQ6x20YryX/664eaYBm/1wANbyRN3WqBoJoEgkv1YpaQwVNpTUlA5OwMpEDSEdJ8xR9c89Uz
- njF0kDHQySCmzXHtkm566w55JQFZVyaNLSDM/39W0X29lZbTt78ZboIGaFI47U2AT6X2G1dZGKH
- IMQJ2XbP8ZPyAvXfJYx6+/7iqwWUCWA8tosWV8rVzpmEeI5H8ATNcylyvFsLk+Km0kD2fndAbPb
- 6L4g7dfu8z37teHMlsD1h1UkF9noJfwF0b3CauvKwoj5K1UvMJyfLfTpI99J10wV7F9H1Na/jHi
- iz/MeaMoswCRUya3xaar0tzcLTX93e2+25Y/mw+6xGMoQPAUc6F7+wyHmbJHOm6bNCQVkqm6rIe
- 3IXEZFfXmOT9AgywfLTIvQaAR0ejx3AJcnPYFgdaJJlK2Ri9/KzrxvdbepN+oxnmqlfhb56t
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-22_06,2025-05-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 mlxlogscore=954 suspectscore=0 bulkscore=0
- impostorscore=0 phishscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
- clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505220127
+In-Reply-To: <20250521162216.79dd3290@booty>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250522_053745_913876_5E5009AF 
-X-CRM114-Status: GOOD (  23.11  )
+X-CRM114-CacheID: sfid-20250522_075734_795607_667FB25D 
+X-CRM114-Status: GOOD (  36.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,99 +110,179 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============5731887287541740338=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, May 22, 2025 at 01:02:59PM +0800, Ai Chao wrote:
-> The for_each_child_of_node_scoped() helper provides a scope-based
-> clean-up functionality to put the device_node automatically, and
-> as such, there is no need to call of_node_put() directly.
 
-There are no calls to of_node_put() in the commit. So the commit message
-is incorrect / not-applicable.
+--===============5731887287541740338==
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="fe7madz4h5tk5u3n"
+Content-Disposition: inline
 
-> 
-> Thus, use this helper to simplify the code.
-> 
-> Signed-off-by: Ai Chao <aichao@kylinos.cn>
-> ---
->  sound/soc/qcom/lpass-cpu.c       | 3 +--
->  sound/soc/qcom/qdsp6/q6afe-dai.c | 3 +--
->  sound/soc/qcom/qdsp6/q6asm-dai.c | 4 +---
->  3 files changed, 3 insertions(+), 7 deletions(-)
-> 
-> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-> index 242bc16da36d..62f49fe46273 100644
-> --- a/sound/soc/qcom/lpass-cpu.c
-> +++ b/sound/soc/qcom/lpass-cpu.c
-> @@ -1046,7 +1046,6 @@ static unsigned int of_lpass_cpu_parse_sd_lines(struct device *dev,
->  static void of_lpass_cpu_parse_dai_data(struct device *dev,
->  					struct lpass_data *data)
->  {
-> -	struct device_node *node;
->  	int ret, i, id;
->  
->  	/* Allow all channels by default for backwards compatibility */
-> @@ -1056,7 +1055,7 @@ static void of_lpass_cpu_parse_dai_data(struct device *dev,
->  		data->mi2s_capture_sd_mode[id] = LPAIF_I2SCTL_MODE_8CH;
->  	}
->  
-> -	for_each_child_of_node(dev->of_node, node) {
-> +	for_each_child_of_node_scoped(dev->of_node, node) {
->  		ret = of_property_read_u32(node, "reg", &id);
->  		if (ret || id < 0) {
->  			dev_err(dev, "valid dai id not found: %d\n", ret);
-> diff --git a/sound/soc/qcom/qdsp6/q6afe-dai.c b/sound/soc/qcom/qdsp6/q6afe-dai.c
-> index 7d9628cda875..64735f2adf8f 100644
-> --- a/sound/soc/qcom/qdsp6/q6afe-dai.c
-> +++ b/sound/soc/qcom/qdsp6/q6afe-dai.c
-> @@ -962,10 +962,9 @@ static const struct snd_soc_component_driver q6afe_dai_component = {
->  static void of_q6afe_parse_dai_data(struct device *dev,
->  				    struct q6afe_dai_data *data)
->  {
-> -	struct device_node *node;
->  	int ret;
->  
-> -	for_each_child_of_node(dev->of_node, node) {
-> +	for_each_child_of_node_scoped(dev->of_node, node) {
->  		unsigned int lines[Q6AFE_MAX_MI2S_LINES];
->  		struct q6afe_dai_priv_data *priv;
->  		int id, i, num_lines;
-> diff --git a/sound/soc/qcom/qdsp6/q6asm-dai.c b/sound/soc/qcom/qdsp6/q6asm-dai.c
-> index a400c9a31fea..d7680dd3a3bb 100644
-> --- a/sound/soc/qcom/qdsp6/q6asm-dai.c
-> +++ b/sound/soc/qcom/qdsp6/q6asm-dai.c
-> @@ -1236,10 +1236,8 @@ static int of_q6asm_parse_dai_data(struct device *dev,
->  {
->  	struct snd_soc_dai_driver *dai_drv;
->  	struct snd_soc_pcm_stream empty_stream;
-> -	struct device_node *node;
->  	int ret, id, dir, idx = 0;
->  
-> -
->  	pdata->num_dais = of_get_child_count(dev->of_node);
->  	if (!pdata->num_dais) {
->  		dev_err(dev, "No dais found in DT\n");
-> @@ -1253,7 +1251,7 @@ static int of_q6asm_parse_dai_data(struct device *dev,
->  
->  	memset(&empty_stream, 0, sizeof(empty_stream));
->  
-> -	for_each_child_of_node(dev->of_node, node) {
-> +	for_each_child_of_node_scoped(dev->of_node, node) {
->  		ret = of_property_read_u32(node, "reg", &id);
->  		if (ret || id >= MAX_SESSIONS || id < 0) {
->  			dev_err(dev, "valid dai id not found:%d\n", ret);
-> -- 
-> 2.47.1
-> 
 
--- 
-With best wishes
-Dmitry
+--fe7madz4h5tk5u3n
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 00/22] drm: convert all bridges to
+ devm_drm_bridge_alloc()
+MIME-Version: 1.0
+
+On Wed, May 21, 2025 at 04:22:16PM +0200, Luca Ceresoli wrote:
+> Hello Maxime, Shawn, Liu, all,
+>=20
+> On Fri, 09 May 2025 15:53:26 +0200
+> Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+>=20
+> > devm_drm_bridge_alloc() [0] is the new API to allocate and initialize a=
+ DRM
+> > bridge, and the only one supported from now on. It is the first milesto=
+ne
+> > towards removal of bridges from a still existing DRM pipeline without
+> > use-after-free.
+>=20
+> I applied on drm-misc-next patches 3-17,20-21 as they match all the
+> criteria:
+>  - At least a Acked-by (or R-by maintainers)
+>  - patch is for drm-misc
+>=20
+> Being my very first commits to drm-misc, I tried to be careful, and
+> double checked all the patches with Louis (thanks!).
+>=20
+> Here are the pending questions and plan for the remaining patches.
+>=20
+> >       Revert "drm/exynos: mic: convert to devm_drm_bridge_alloc() API"
+>=20
+> This reverts the commit applied my mistake:
+> https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/91c5c7b5bb2dd09b4=
+3b025bce6d790d3c79f4518
+>=20
+> Neither the  original patch nor the revert has been reviewed/acked.
+>=20
+> As the commit was a mistake, I'm applying the revert by the end of this
+> week (i.e. on Friday) unless there are better instructions.
+
+Given the lack of answers, and that it looks correct to me, just leave
+it there. We can always revert later on if things turned out to be
+broken.
+
+> >       drm: convert many bridge drivers from devm_kzalloc() to devm_drm_=
+bridge_alloc() API
+>=20
+> This patch affects multiple drivers. Running get_maintainers.pl
+> points at Shawn Guo's repository. After reviewing the MAINTAINERS file,
+> this looks like due to the 'N:' line in:
+>=20
+> ARM/FREESCALE IMX / MXC ARM ARCHITECTURE
+> M:	Shawn Guo <shawnguo@kernel.org>
+> M:	Sascha Hauer <s.hauer@pengutronix.de>
+> R:	Pengutronix Kernel Team <kernel@pengutronix.de>
+> ...
+> T:	git git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git
+> N:	imx
+> ...
+>=20
+> (https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/MAIN=
+TAINERS?ref_type=3Dheads#L2511-2528)
+>=20
+> Here 'imx' matches the 'drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c'
+> file that is touched by the patch. That regexp appears overly generic to =
+me.
+
+I agree, or at least, we shouldn't wait for Shawn or Sasha...
+
+> Shawn, can it be fixed by making it less generic?
+>=20
+> If not, can we at least add a band-aid 'X:' entry for
+> drivers/gpu/drm/bridge/imx?
+>=20
+> I think the other matching entry is the one to consider:
+>=20
+> DRM DRIVERS FOR FREESCALE IMX BRIDGE
+> M:	Liu Ying <victor.liu@nxp.com>
+> L:	dri-devel@lists.freedesktop.org
+> S:	Maintained
+> F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
+> F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-com=
+biner.yaml
+> F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-lin=
+k.yaml
+> F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pxl2dpi.y=
+aml
+> F:	drivers/gpu/drm/bridge/imx/
+>=20
+> (https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/MAIN=
+TAINERS?ref_type=3Dheads#L7940-7948)
+
+=2E.. As long as Ying is fine with it, because it does look like they are
+the actual maintainer.
+
+> However it does not list any trees. I _guess_ drm-misc applies here as
+> a fallback as well as common sense.
+>=20
+> Liu, should this entry have a 'T:' line for drm/misc?
+>=20
+> >       drm/bridge: imx8qxp-pixel-combiner: convert to devm_drm_bridge_al=
+loc() API
+>=20
+> Not acked/reviewed, some discussion happened. I am resending it in v4,
+> possibly with updates based on the discussion.
+>=20
+> But it has the same issue discussed above, with get_maintiners.pl
+> pointing at Shawn Guo's tree, so in the future I'm assuming this goes
+> to drm-misc unless there are news about that.
+>=20
+> >       drm/bridge: tc358767: convert to devm_drm_bridge_alloc() API
+>=20
+> No feedback, resending in v4.
+>=20
+> >       drm/todo: add entry to remove devm_drm_put_bridge()
+>=20
+> This involves documentation maintained on another tree. Where should it
+> be applied? There are two matching entries in MAINTAINERS:
+>=20
+>  * DRM DRIVERS -> the drm tree
+>  * DRM DRIVERS AND MISC GPU PATCHES -> the drm-misc tree
+>=20
+> To me it looks like the second is obviously the closest match as we are
+> dealing with DRM bridges, so I'm applying this as well on Friday unless
+> there are better instructions.
+
+Yes, they should be applied to drm-misc.
+
+That being said, putting a two days timeout on *any* email is really
+over-the-top. I doubt you reply to any of your mail in such a short
+timeframe. We have rules for a reason, I'd expect you to follow them, no
+matter how frustrating the lack of answers can be.
+
+Maxime
+
+--fe7madz4h5tk5u3n
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaC87WgAKCRAnX84Zoj2+
+do0iAYDmirWaXC3jRPAWe+k6egrSRuRKSb9T+TBMm48WnW6SNhJrwyOYhX8DpsOL
+IHaDlR4BfiFZ6a345YL/OKfebcrONxA8UY50Y3/kmzH9OdWsvkfvJSWcHiCEeu26
+nklxCgQuzA==
+=mXOq
+-----END PGP SIGNATURE-----
+
+--fe7madz4h5tk5u3n--
+
+
+--===============5731887287541740338==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============5731887287541740338==--
+
