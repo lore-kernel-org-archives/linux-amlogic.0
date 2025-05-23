@@ -4,54 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4DEDC54ED1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 May 2025 22:47:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48F09C3DA6D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 May 2025 10:42:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Cc:From:Subject:References:
-	In-Reply-To:MIME-Version:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BFzHpGrQX8v3XOCrkq8ra2z2B88qD/HZ7YMMmAx2hUk=; b=wxfII9QRAbvxbB
-	zn6fKQwSwNRJq2/2liG861Mfkj4D/2EGHKhFfw+qsZWccR+6C+s94LNFp5D1Jks4MvU1rGk4qKWI/
-	2aWFDy29Q/M62dLugRwIdbzGKKR/VSEFTfQNHzqm6+Ek9uSOn01tRoUwhzRDzbcfehx4B2MygM2Ch
-	8S6loelmoRmtXqgcowGSOIdAD6oSDUDkgF0KLT/MYCYQZlx4Uj8+LvIXq3SLTwyaPUL2LmBfXpTec
-	+T/PMn4Zft80wPJa1aRZkNlPgFWtGJAdL6Z/2BEeRm6hJHaTAnl94a1fVpzMXJQV59rXwdeXS76N+
-	6YB3m+AAGTQiiq3+B/6A==;
+	List-Owner; bh=g0Em5apyJt8psZjFl5FQz6GbiUHCaiRW2qzMEZZpAd8=; b=Kf0LySReRNEp5v
+	UoFfb6A0oRPgz4M6FaTgUQIYb9hgqfnoVemts+ejRb9hInodYKVrMm3JszoA4BDhyFqFPrso+GxSc
+	gFatif7FzwZARqxQKDkSUpdTFF3I74KF7M84kXwHP3WTrmz30NbwnXuFk4aqYLs9MPlEsQgwXHSUe
+	wx/uf+TujvUz4K5qjF3lb3/FaJncId1iZ03g1bMaZBzfhfmMJNPUkkTXJxGtphJmqUkjrh3MF+3AX
+	gCNdNk2WUHVJGv6WJ2I7gOzKP9/ZL6TRED2r0T1syOs/rEr/4xjcbZcGhWDKnMAkhQ6DUv7x/tFNl
+	bVbUW/hE0xsz3FSMDerg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uIEhC-00000002Jz6-35qV;
-	Thu, 22 May 2025 22:47:26 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1uIPrV-00000003cjQ-0G15;
+	Fri, 23 May 2025 10:42:49 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uIEhB-00000002Jz0-0gzI
-	for linux-amlogic@lists.infradead.org;
-	Thu, 22 May 2025 22:47:25 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5E9ED62A53;
-	Thu, 22 May 2025 22:47:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00507C4CEE4;
-	Thu, 22 May 2025 22:47:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747954044;
-	bh=Nwm7dVrVcwQecgIp7pe2hz9KIDsJNlfePEB5EQevxY0=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=iXfRMcLnf0+6WqivvZPkWndHBUeYYkXjWHNlkOnA+NcHtSrPKOegdJXby5DZEqYj1
-	 OdvrkdJBwt1UBbBE/HYyUnse3WpRTAclaHHHFpdzXzLg2CBaYhLcS+VjXty0/KPfdD
-	 5HoewbHjS7pJ+7f+Yl1bg2HO/EpiUwE7nPCEiKp75zELzIeVgr9ttxP3apMXMoE3o7
-	 30urYOuG/B46c92vAPOaKM6CquImK4x4VPpOidTpfbRFseBVd/bhSBJ2TPY62PG5MH
-	 uY2SB3xWS3QvIfrbSXKiFiroWu7dlOvdRyoWAl0K1IsLtaV0PrlkOtDDQTchlNQRQw
-	 cnmyJ8WLOdASQ==
-Message-ID: <d8301387c508bbcf3be03faf7d3fd777@kernel.org>
+	id 1uIPpK-00000003cWq-2OcI;
+	Fri, 23 May 2025 10:40:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=K2JQO+uYU43rONsrKzctsDigqQZ79oxfKv9WnQ4M8rs=;
+	t=1747996831; x=1749206431; b=hZ7dZRInJ/Ma+5SrzqJlypknwP1EN0GbvkfKWYqdFNMwGov
+	guj66rx83b2i/Gt78g869SwRDEEqsZhotv0huSnTMZ/pt9NuMMb8GzXbDnplODz9+3viG6KScQN4D
+	SFLCkJqpMdK6wz8Xv80G/9sXBgGu00waf88Bw9fl0p2bFWXK8u0EDuqeuKWu4HXiGr1vJLMhlmJ2/
+	s6IzlQpzW1vmHoaE1cp83uszya6t2gSxKuNsEpvl/2c/aNJFze9Am34yD8YK//aehhHmRkHnEWAXR
+	nFz70S1ctrlh2kkcVgBlMA8rrnfhVm/Tk5gasyAAsDP0m6Y1/mGhOoZ8e/Jv8V8Q==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.98.2)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1uIPp5-00000001O1N-1Ky4;
+	Fri, 23 May 2025 12:40:19 +0200
+Message-ID: <7e708dcc98c6f0f615b1b87d190464cfe78be668.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 2/6] ASoC: aoa: Use helper function
+ for_each_child_of_node_scoped()
+From: Johannes Berg <johannes@sipsolutions.net>
+To: =?UTF-8?Q?=E8=89=BE=E8=B6=85?= <aichao@kylinos.cn>, perex
+ <perex@perex.cz>,  tiwai <tiwai@suse.com>, "kuninori.morimoto.gx"
+ <kuninori.morimoto.gx@renesas.com>, lgirdwood	 <lgirdwood@gmail.com>,
+ broonie <broonie@kernel.org>, jbrunet	 <jbrunet@baylibre.com>,
+ "neil.armstrong" <neil.armstrong@linaro.org>, khilman	
+ <khilman@baylibre.com>, "martin.blumenstingl"	
+ <martin.blumenstingl@googlemail.com>, "shengjiu.wang"
+ <shengjiu.wang@gmail.com>,  "Xiubo.Lee" <Xiubo.Lee@gmail.com>, festevam
+ <festevam@gmail.com>, nicoleotsuka <nicoleotsuka@gmail.com>,  shawnguo
+ <shawnguo@kernel.org>, "s.hauer" <s.hauer@pengutronix.de>,
+ "srinivas.kandagatla"	 <srinivas.kandagatla@linaro.org>
+Cc: linux-sound <linux-sound@vger.kernel.org>, linux-kernel	
+ <linux-kernel@vger.kernel.org>, linuxppc-dev
+ <linuxppc-dev@lists.ozlabs.org>,  linux-renesas-soc
+ <linux-renesas-soc@vger.kernel.org>, linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>,  linux-amlogic
+ <linux-amlogic@lists.infradead.org>, imx <imx@lists.linux.dev>, kernel
+ <kernel@pengutronix.de>,  linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Date: Fri, 23 May 2025 12:40:18 +0200
+In-Reply-To: <2aq0nyvyf7t-2aq4hsc7kp6@nsmail7.0.0--kylin--1>
+References: <2aq0nyvyf7t-2aq4hsc7kp6@nsmail7.0.0--kylin--1>
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-In-Reply-To: <1j4ixmxbse.fsf@starbuckisacylon.baylibre.com>
-References: <1j4ixmxbse.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [GIT PULL] clk: meson: amlogic updates for v6.16
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, linux-clk <linux-clk@vger.kernel.org>, linux-amlogic <linux-amlogic@lists.infradead.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 22 May 2025 15:47:21 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
+X-malware-bazaar: not-scanned
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250523_034034_607669_25B78958 
+X-CRM114-Status: UNSURE (   4.40  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,31 +89,16 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2025-05-15 06:07:29)
-> 
-> Hi Stephen,
-> 
-> Here are the Amlogic clock updates for v6.16, just a couple of simple fixes.
-> Please pull.
-> 
-> Cheers
-> Jerome
-> 
-> The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
-> 
->   Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
-> 
-> are available in the Git repository at:
-> 
->   https://github.com/BayLibre/clk-meson.git tags/clk-meson-v6.16-1
-> 
-> for you to fetch changes up to 0afce85ed26c73860bb6e99a0657e1d90d533256:
-> 
->   clk: meson: Do not enable by default during compile testing (2025-05-15 14:44:50 +0200)
-> 
-> ----------------------------------------------------------------
+Hi,
 
-Thanks. Pulled into clk-next
+[you should avoid HTML]
+
+> "simplifies the code" is no need to callof_node_put() .
+
+Fair. Except that's not what you _actually_ changed here. Like I said,
+either it's buggy before or after.
+
+johannes
 
 _______________________________________________
 linux-amlogic mailing list
