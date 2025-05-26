@@ -4,84 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE289C5AD49
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 May 2025 08:14:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20D61C54FB3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 May 2025 08:18:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=B7dYDSXG1ZMRcvxyTNrcuNzxb6pHhwymKvPgcEAnhSw=; b=1HN0rSjNB15UKy
-	1mR1CmnRS/wNs3X/13GXHUkvTSdi0im3FVimmfHRnBrPQ8ai3zZuGGNqodcDhU6MoGXsav6flWCuD
-	vo68JqcFa0kcS5hS3O4FjJfST/Na0CSk0AkF33XzpOdy0jPhW+DzDPtwcwTHdfYLKo46e3a20KvZX
-	aeSqUehqRgYzYuovL9aabGlLPdvTCMAgM0jfYhdN2Nx74pYXffsozaPUs1emsAcUmX4+HiPB9ZOeA
-	BIg0XbIc8JICVMnvFuwV9KcjAq+7qtz7h1HphvIUcRRt03yBPiU4hr97EnW7saAf3YJyO2bxUgJpA
-	F3cO+j8yXJ4VyWcQRAzw==;
+	List-Owner; bh=dH8BaAYLetpj/2kAw6+iJI8S2n9vyWrSqhwTSOKp1JM=; b=Bxu4sqBoBi/siN
+	Zljer6a9+8wcM2gOqBKmLzRquH94lrOCc7+ok4wA7YWnKwWKk9v8+ksoRwo1MKXgkOMAWEkXLms1S
+	ajQQ9Bm9yc/yEmU45bxUFVN50dKApyBKnuRcyxr1oQiB8g3GLWjm35peVHU9oMvj4tcpJZAz2nh9U
+	XrkFpC3YRFUCxqFg4/oYi6LemeDUJGRb/y7B0VjbbnLoRSGWKhBgVv+o4wov8Hgo5+WX68ygNADKG
+	AzvpLJuaKldi6D8rnkSR0V8/eQJmZYobQd6nyUjluJxLFvmB67e1h9Y4m8orwxWNxqpGqS9qtt4+W
+	WPcNTXa285Vc8rr/jBEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uJSyb-00000008MWI-2em3;
-	Mon, 26 May 2025 08:14:29 +0000
-Received: from mailgw.kylinos.cn ([124.126.103.232])
+	id 1uJT2n-00000008N1s-433J;
+	Mon, 26 May 2025 08:18:49 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uJSwr-00000008M6d-3cWa;
-	Mon, 26 May 2025 08:12:49 +0000
-X-UUID: 28f646603a0911f0b29709d653e92f7d-20250526
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45,REQID:429e306a-3d2a-428c-8e5d-381513c7b4c8,IP:10,
-	URL:0,TC:0,Content:0,EDM:0,RT:0,SF:-3,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:7
-X-CID-INFO: VERSION:1.1.45,REQID:429e306a-3d2a-428c-8e5d-381513c7b4c8,IP:10,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:-3,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:7
-X-CID-META: VersionHash:6493067,CLOUDID:556e8e9b46a75800489301288524277b,BulkI
-	D:250522180435BN613KC0,BulkQuantity:3,Recheck:0,SF:19|24|38|45|64|66|72|78
-	|80|81|82|83|102|841,TC:nil,Content:0|50,EDM:-3,IP:-2,URL:0,File:nil,RT:ni
-	l,Bulk:40,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,B
-	RR:0,BRE:0,ARC:0
-X-CID-BVR: 1,FCT
-X-CID-BAS: 1,FCT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_FSD,TF_CID_SPAM_FSI
-X-UUID: 28f646603a0911f0b29709d653e92f7d-20250526
-X-User: aichao@kylinos.cn
-Received: from [172.25.120.86] [(112.64.161.44)] by mailgw.kylinos.cn
-	(envelope-from <aichao@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_128_GCM_SHA256 128/128)
-	with ESMTP id 2080723570; Mon, 26 May 2025 16:12:26 +0800
-Message-ID: <eb1ddeb3-06b6-4ac5-b20a-06b92c7f1363@kylinos.cn>
-Date: Mon, 26 May 2025 16:12:22 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	id 1uJSxu-00000008MKO-2u79;
+	Mon, 26 May 2025 08:13:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=+itlrWYzfhQ7YhSm6Rwr1H/9x36GVhI08lVyKj97jHk=;
+	t=1748247226; x=1749456826; b=iCPb/AcHDU6xG2x4fpv6MMjLVYp219VtBpAxWy4oXe75HWE
+	n3V4EhYUOqImhZx0CH9FVoqMBysskPOjz5H12PUByFqzmrd0mZQ7wI5mKG1uYL7MW5ylnHuoU16Q7
+	o/n8foKno8h0UK6qJ1PLN/AyJb+wRmw9TyyFLl/MD5Qh9mRT8qrxrcju7sEcUD2NOM973DbrJtKgu
+	AUUbYpVHxltjFXq+7RVjCj4HUxzOFA2A4pfDvML4Fjw2qvdu/u8l8XtoDvQ2qolb0xmt4lfGhwC1+
+	aq2c3uGUz+XPZ1zQH/7CNJPSYBQxA3WyBDOZmVHLgUSH1QJ31arq88CmDTqYksXA==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.98.2)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1uJSxj-0000000DOyV-1Dst;
+	Mon, 26 May 2025 10:13:35 +0200
+Message-ID: <23aadbd78d3585c900c579c26f360011cf1ca830.camel@sipsolutions.net>
 Subject: Re: [PATCH v2 2/6] ASoC: aoa: Use helper function
  for_each_child_of_node_scoped()
-To: Johannes Berg <johannes@sipsolutions.net>, perex <perex@perex.cz>,
- tiwai <tiwai@suse.com>,
- "kuninori.morimoto.gx" <kuninori.morimoto.gx@renesas.com>,
- lgirdwood <lgirdwood@gmail.com>, broonie <broonie@kernel.org>,
- jbrunet <jbrunet@baylibre.com>, "neil.armstrong"
- <neil.armstrong@linaro.org>, khilman <khilman@baylibre.com>,
- "martin.blumenstingl" <martin.blumenstingl@googlemail.com>,
- "shengjiu.wang" <shengjiu.wang@gmail.com>, "Xiubo.Lee"
- <Xiubo.Lee@gmail.com>, festevam <festevam@gmail.com>,
- nicoleotsuka <nicoleotsuka@gmail.com>, shawnguo <shawnguo@kernel.org>,
- "s.hauer" <s.hauer@pengutronix.de>,
- "srinivas.kandagatla" <srinivas.kandagatla@linaro.org>
-Cc: linux-sound <linux-sound@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- linux-renesas-soc <linux-renesas-soc@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>, imx
- <imx@lists.linux.dev>, kernel <kernel@pengutronix.de>,
- linux-arm-msm <linux-arm-msm@vger.kernel.org>
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Ai Chao <aichao@kylinos.cn>, perex <perex@perex.cz>, tiwai
+ <tiwai@suse.com>,  "kuninori.morimoto.gx"
+ <kuninori.morimoto.gx@renesas.com>, lgirdwood <lgirdwood@gmail.com>,
+ broonie <broonie@kernel.org>, jbrunet	 <jbrunet@baylibre.com>,
+ "neil.armstrong" <neil.armstrong@linaro.org>, khilman	
+ <khilman@baylibre.com>, "martin.blumenstingl"	
+ <martin.blumenstingl@googlemail.com>, "shengjiu.wang"
+ <shengjiu.wang@gmail.com>,  "Xiubo.Lee" <Xiubo.Lee@gmail.com>, festevam
+ <festevam@gmail.com>, nicoleotsuka <nicoleotsuka@gmail.com>,  shawnguo
+ <shawnguo@kernel.org>, "s.hauer" <s.hauer@pengutronix.de>,
+ "srinivas.kandagatla"	 <srinivas.kandagatla@linaro.org>
+Cc: linux-sound <linux-sound@vger.kernel.org>, linux-kernel	
+ <linux-kernel@vger.kernel.org>, linuxppc-dev
+ <linuxppc-dev@lists.ozlabs.org>,  linux-renesas-soc
+ <linux-renesas-soc@vger.kernel.org>, linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>,  linux-amlogic
+ <linux-amlogic@lists.infradead.org>, imx <imx@lists.linux.dev>, kernel
+ <kernel@pengutronix.de>,  linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Date: Mon, 26 May 2025 10:13:33 +0200
+In-Reply-To: <eb1ddeb3-06b6-4ac5-b20a-06b92c7f1363@kylinos.cn>
 References: <2aq0nyvyf7t-2aq4hsc7kp6@nsmail7.0.0--kylin--1>
- <7e708dcc98c6f0f615b1b87d190464cfe78be668.camel@sipsolutions.net>
-Content-Language: en-US
-From: Ai Chao <aichao@kylinos.cn>
-In-Reply-To: <7e708dcc98c6f0f615b1b87d190464cfe78be668.camel@sipsolutions.net>
+	 <7e708dcc98c6f0f615b1b87d190464cfe78be668.camel@sipsolutions.net>
+	 <eb1ddeb3-06b6-4ac5-b20a-06b92c7f1363@kylinos.cn>
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+MIME-Version: 1.0
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250526_011242_206638_0DC77CE8 
-X-CRM114-Status: UNSURE (   4.31  )
+X-CRM114-CacheID: sfid-20250526_011346_729964_3693B560 
+X-CRM114-Status: UNSURE (   8.44  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,23 +86,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Johannes:
+On Mon, 2025-05-26 at 16:12 +0800, Ai Chao wrote:
+> Hi Johannes:
+> 
+> > > "simplifies the code" is no need to callof_node_put() .
+> > Fair. Except that's not what you _actually_ changed here. Like I said,
+> > either it's buggy before or after.
+> > 
+> In the function i2sbus_probe, it not return a struct device_node, so , I 
+> think function for_each_child_of_node_scoped is better than 
+> for_each_child_of_node.
 
->> "simplifies the code" is no need to callof_node_put() .
-> Fair. Except that's not what you _actually_ changed here. Like I said,
-> either it's buggy before or after.
->
-In the function i2sbus_probe, it not return a struct device_node, so , I 
-think function for_each_child_of_node_scoped is better than 
-for_each_child_of_node.
+You still haven't explained why it's even correct.
 
-Best regards,
-Ai Chao
+johannes
 
 _______________________________________________
 linux-amlogic mailing list
