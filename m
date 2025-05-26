@@ -4,78 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC08DC54FB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 May 2025 08:25:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96753C5AD49
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 May 2025 08:34:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=F4+8BF5lP34mUQrweieHmEJ95Q5HhNDazlfflPjVmX8=; b=GiDaBOjQD7WKJ6
-	Fy5Suww+LqIlLJHt6oGnQBfiSPMD2e1Lu6y4KOiYpxCZTMXbk5o+yHLc2v1QNXJpetjnCLlh00xwd
-	MVKWOd7s0xNWlXjw6ziagaLiZE14CMnGAOkk4ggDtf+JKXsIIGNsWy6BVfUreqzNen+8sTblUqRvG
-	sOFj+12TzU4Kk3XH4eeL6La+ZEcRAI6DACThcCDShhk0Z3s9jtR2LqBueNIngBzB7EwkvFd7cc/KL
-	ZRCPqw/5VsUkd5HeiSfz+7uh27vA8OVNmPnU4hRbOI+2I/flEUGcjR26kr0stwCX6b6IAmBHB+LRt
-	cLwBpD7HsXgj5Y6h+DJA==;
+	List-Owner; bh=ivtpDcyb/pvvr19j5jmlXctShcytsa045xhyDwX+8NA=; b=vFAfW0rJaZRh/H
+	de4nulmyIcyh3osSxuTKzSXgrGzha/eV6dDilS2io4VHaVPxW1R7n7RMXvcGykT2g2I1RZw3K9RIW
+	EknAn916mNC77kgGkv01ZJ50CXRGX0Ve5M04URmqiwHnMyeZpA93rkMfHL+e1sBZHhRNY6tX/bijC
+	5sGJb1SMnyvuMAtaNIcxE66Nwu0Sw0k5b6/RpBqvyFFmjl60vHgL2d3euD9ynRtUMadymyGdvMaQ8
+	aOL2/RwqQIctdaiVOcE2P6cguSC54nrMiOfYPAE87JnHk2uf9O+zvMcVhlp6hLW5/r1tSuvDM1nXm
+	Gcf+L4qjLmsySbqwgReA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uJT99-00000008Nqh-04zc;
-	Mon, 26 May 2025 08:25:23 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:242:246e::2] helo=sipsolutions.net)
+	id 1uJTHb-00000008OlQ-1Zf7;
+	Mon, 26 May 2025 08:34:07 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uJT5f-00000008NSf-2eeh;
-	Mon, 26 May 2025 08:21:48 +0000
+	id 1uJS8W-00000008GkH-46mC;
+	Mon, 26 May 2025 07:20:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=kQpQyzSLFXzcV+bV7PWjdFj0k9dCEFAnIJ2CmkjTnDY=;
-	t=1748247707; x=1749457307; b=bZJtLdu9wdlzfes1P4tf1N8zB0Y0OdW1LkOkqsFNKtJgXeN
-	PPT9Ih/o7Y7Qc5CyXlAEdSyUX6Nvqqh8YvRjUkSkXYJbZCDXbXnCZB/g0KacQegi5qsDwXRYM1VYq
-	gW8MsXVojQv2MkYLECSr2afTUkMcuH5VZHo49dtbNRv8VaeUcaZW5GDvRwUGO9bAVV8BNmfem1rnF
-	tczJP/ahY+V9QzmBgOmWFxb/YUWVJzJgv9uUqp+MB9A4t0EwpO9T5cqqifM5ozlFNQPhP318xNIsN
-	WqOgKwInJfbsghF2AX1e64+kMnhv8Gk2TroFLYdXmRO6sq9F0BuNFY//ZIOcqyJQ==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.98.2)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1uJT5X-0000000DQMg-1YY7;
-	Mon, 26 May 2025 10:21:39 +0200
-Message-ID: <b36908bf35a20f7196bec4fe22e392a015d9b7d1.camel@sipsolutions.net>
-Subject: Re: [PATCH v2 2/6] ASoC: aoa: Use helper function
- for_each_child_of_node_scoped()
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Ai Chao <aichao@kylinos.cn>, perex <perex@perex.cz>, tiwai
- <tiwai@suse.com>,  "kuninori.morimoto.gx"
- <kuninori.morimoto.gx@renesas.com>, lgirdwood <lgirdwood@gmail.com>,
- broonie <broonie@kernel.org>, jbrunet	 <jbrunet@baylibre.com>,
- "neil.armstrong" <neil.armstrong@linaro.org>, khilman	
- <khilman@baylibre.com>, "martin.blumenstingl"	
- <martin.blumenstingl@googlemail.com>, "shengjiu.wang"
- <shengjiu.wang@gmail.com>,  "Xiubo.Lee" <Xiubo.Lee@gmail.com>, festevam
- <festevam@gmail.com>, nicoleotsuka <nicoleotsuka@gmail.com>,  shawnguo
- <shawnguo@kernel.org>, "s.hauer" <s.hauer@pengutronix.de>,
- "srinivas.kandagatla"	 <srinivas.kandagatla@linaro.org>
-Cc: linux-sound <linux-sound@vger.kernel.org>, linux-kernel	
- <linux-kernel@vger.kernel.org>, linuxppc-dev
- <linuxppc-dev@lists.ozlabs.org>,  linux-renesas-soc
- <linux-renesas-soc@vger.kernel.org>, linux-arm-kernel
- <linux-arm-kernel@lists.infradead.org>,  linux-amlogic
- <linux-amlogic@lists.infradead.org>, imx <imx@lists.linux.dev>, kernel
- <kernel@pengutronix.de>,  linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Date: Mon, 26 May 2025 10:21:37 +0200
-In-Reply-To: <9ec008a8-b569-4ad1-9206-fe241fb1712d@kylinos.cn>
-References: <2aq0nyvyf7t-2aq4hsc7kp6@nsmail7.0.0--kylin--1>
-	 <7e708dcc98c6f0f615b1b87d190464cfe78be668.camel@sipsolutions.net>
-	 <eb1ddeb3-06b6-4ac5-b20a-06b92c7f1363@kylinos.cn>
-	 <23aadbd78d3585c900c579c26f360011cf1ca830.camel@sipsolutions.net>
-	 <9ec008a8-b569-4ad1-9206-fe241fb1712d@kylinos.cn>
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=QLkd7DkuwItmUeCsro4GRU7KY1n+af+fkKCtRJvc72M=; b=C9EsklqshQgYWys2W87LIn6xRy
+	CKGwRyMJZhxns+WlIfA+095HyIrfwyXNe/jK/tGS41AkaKhx7HpcrxmXd+LgLViN+Tlj5qFICWkwn
+	9oyVE/7HCfRN2piAwCrF3LOI+fpTRSmWtppypmhT4/dQ7l6H+uBOjYTM4N7ybiq/wdS7oD1p/bfGu
+	JI/Uo4YwkLvX3YrmzAWFGKhRIkp0etA83yfDu/YjsSYTOiIDJ3HML8AthfbQfrzu4hk/oySz/j4cp
+	xCXqvViKGY2hblU8MbsA9w3gBO84fRmpuUzoge1ZROWZFxl8KrvoO5OCju3EIi7Nb5qnCyoUbaoFk
+	SMjhuxOw==;
+Received: from relay9-d.mail.gandi.net ([2001:4b98:dc4:8::229])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uJS8T-00000001orP-0b7K;
+	Mon, 26 May 2025 07:20:39 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 16875442B5;
+	Mon, 26 May 2025 07:20:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1748244030;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QLkd7DkuwItmUeCsro4GRU7KY1n+af+fkKCtRJvc72M=;
+	b=ERsZFnNGGx1taTjFML/F7g48As15TWrVqpm7AQM6ITdhjMQXPkfTl1YTY624dt2A61ojKn
+	C4GrIy3LvMnZuQ3f48MHbrAItO9yt2FMHAqBFQBNWnAd4H+GlbFkLp+0Q5jpHR5ME8BtSC
+	rLb2TykZsJeBxh/2UPnUC+byagvOBWEHs+mzz5buaw+VAmwRzWbNg55alaA49c/WX7dEK/
+	fsh2zNr1ZhqaGyMrCEJNSdr/QBQDpvqqwK5PYQ+P4KU7TlWYdbGXAPWQsVfUnDZH7GHJxL
+	bRcPS+1N1hdPuMOBL2LrEIz8HJMPOUVPD7+c3bsfVFBouRX3auSsw6Kbri6nhA==
+Date: Mon, 26 May 2025 09:20:24 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jagan Teki
+ <jagan@amarulasolutions.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Douglas Anderson
+ <dianders@chromium.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Krzysztof
+ Kozlowski <krzk@kernel.org>, Anusha Srivatsa <asrivats@redhat.com>, Paul
+ Kocialkowski <paulk@sys-base.io>, Dmitry Baryshkov <lumag@kernel.org>, Hui
+ Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ chrome-platform@lists.linux.dev, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v2 30/34] drm/bridge: imx8qxp-pixel-combiner: convert to
+ devm_drm_bridge_alloc() API
+Message-ID: <20250526092024.48cae4ae@booty>
+In-Reply-To: <67252c36-8b31-4c40-9d89-4f502da4a087@nxp.com>
+References: <20250424-drm-bridge-convert-to-alloc-api-v2-0-8f91a404d86b@bootlin.com>
+ <20250424-drm-bridge-convert-to-alloc-api-v2-30-8f91a404d86b@bootlin.com>
+ <553d62ed-976a-4e17-9678-cdc3d40ce4a7@nxp.com>
+ <20250430112944.1b39caab@booty>
+ <f71d18d2-4271-4bb9-b54f-0e5a585778f3@nxp.com>
+ <20250506224720.5cbcf3e1@booty>
+ <67252c36-8b31-4c40-9d89-4f502da4a087@nxp.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdduieeltdculddtuddrgeefvddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepnfhutggrucevvghrvghsohhlihcuoehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefgfeetieeutdeifefggfegheelgeefiefgffeifeeujeehkeffgeehhfevfefhjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgpdhfrhgvvgguvghskhhtohhprdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgdphhgvlhhopegsohhothihpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfeelpdhrtghpthhtohepvhhitghtohhrrdhlihhusehngihprdgtohhmpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkh
+ hhorhhstheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehmrhhiphgrrhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghnughriigvjhdrhhgrjhgurgesihhnthgvlhdrtghomhdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhg
+X-GND-Sasl: luca.ceresoli@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250526_012147_803014_4221D91B 
-X-CRM114-Status: GOOD (  15.14  )
+X-CRM114-CacheID: sfid-20250526_082037_457679_AE2BA1CA 
+X-CRM114-Status: GOOD (  29.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,45 +112,92 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2025-05-26 at 16:20 +0800, Ai Chao wrote:
-> Hi Johannes:
-> > > Hi Johannes:
-> > > 
-> > > > > "simplifies the code" is no need to callof_node_put() .
-> > > > Fair. Except that's not what you _actually_ changed here. Like I said,
-> > > > either it's buggy before or after.
-> > > > 
-> > > In the function i2sbus_probe, it not return a struct device_node, so , I
-> > > think function for_each_child_of_node_scoped is better than
-> > > for_each_child_of_node.
-> > You still haven't explained why it's even correct.
-> > 
-> > johannes
-> 
-> The for_each_child_of_node() function is used to iterate over all child 
-> nodes of a device tree node.
-> During each iteration, it retrieves a pointer to the child node via 
-> of_get_next_child() and automatically increments the node's reference 
-> count (of_node_get()).
-> Each call to of_get_next_child() increases the reference count 
-> (refcount) of the returned child node, ensuring that the node is not 
-> freed while in use.
-> for_each_child_of_node() increments the child node's reference count in 
-> each iteration but does not decrement it automatically.
-> If of_node_put() is not called manually, the reference count will never 
-> reach zero, resulting in a memory leak of the node.
-
-Yes, good! Now show that you can apply what you've learned to the
-specific code (and changes) at hand.
-
-johannes
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8gTGl1LAoKT24gVGh1LCAyMiBNYXkgMjAyNSAxMTowMToxMyArMDgwMApMaXUgWWluZyA8
+dmljdG9yLmxpdUBueHAuY29tPiB3cm90ZToKCj4gT24gMDUvMDcvMjAyNSwgTHVjYSBDZXJlc29s
+aSB3cm90ZToKPiAKPiBbLi4uXQo+IAo+ID4+IEFmdGVyIGxvb2tpbmcgaW50byB0aGlzIHBhdGNo
+IGFuZCBwYXRjaCAzMSh0aG91Z2ggSSd2ZSBhbHJlYWR5IHByb3ZpZGVkIG15IEEtYikKPiA+PiBt
+b3JlIGNsb3NlbHksIEkgdGhpbmsgdGhlIGlteDhxeHBfcGMgYW5kIGlteDh7cW0scXhwfV9sZGIg
+bWFpbiBzdHJ1Y3R1cmVzCj4gPj4gc2hvdWxkIGhhdmUgdGhlIHNhbWUgbGlmZSB0aW1lIHdpdGgg
+dGhlIGVtYmVkZGVkIERSTSBicmlkZ2VzLCBiZWNhdXNlIGZvcgo+ID4+IGV4YW1wbGUgdGhlIGNs
+a19hcGIgY2xvY2sgaW4gc3RydWN0IGlteDhxeHBfcGMgd291bGQgYmUgYWNjZXNzZWQgYnkgdGhl
+Cj4gPj4gaW14OHF4cF9wY19icmlkZ2VfbW9kZV9zZXQgRFJNIGJyaWRnZSBjYWxsYmFjay4gIEJ1
+dCwgSUlVQywgeW91ciBwYXRjaGVzIGV4dGVuZAo+ID4+IHRoZSBsaWZlIHRpbWUgZm9yIHRoZSBl
+bWJlZGRlZCBjaGFubmVsL2JyaWRnZSBzdHJ1Y3R1cmVzIG9ubHksIGJ1dCBub3QgZm9yIHRoZQo+
+ID4+IG1haW4gc3RydWN0dXJlcy4gIFdoYXQgZG8geW91IHRoaW5rID8gIAo+ID4gCj4gPiBJIHNl
+ZSB5b3UgY29uY2VybiwgYnV0IEknbSBzdXJlIHRoZSBjaGFuZ2UgSSdtIGludHJvZHVjaW5nIGlz
+IG5vdAo+ID4gY3JlYXRpbmcgdGhlIHByb2JsZW0geW91IGFyZSBjb25jZXJuZWQgYWJvdXQuCj4g
+PiAKPiA+IFRoZSBrZXkgYXNwZWN0IGlzIHRoYXQgbXkgcGF0Y2ggaXMgbWVyZWx5IGNoYW5naW5n
+IHRoZSBsaWZldGltZSBvZiB0aGUKPiA+IF9hbGxvY2F0aW9uXyBvZiB0aGUgZHJtX2JyaWRnZSwg
+bm90IGl0cyB1c2FnZS4gT24gZHJtX2JyaWRnZV9yZW1vdmUoKQo+ID4gdGhlIGJyaWRnZSBpcyBy
+ZW1vdmVkIGZyb20gaXRzIGVuY29kZXIgY2hhaW4gYW5kIGl0IGlzIGNvbXBsZXRlbHkgbm90Cj4g
+PiByZWFjaGFibGUsIGJvdGggYmVmb3JlIGFuZCBhZnRlciBteSBwYXRjaC4gV2l0aCBteSBwYXRj
+aCBpdCBpcyBub3QgIAo+IAo+IGRybV9icmlkZ2VfcmVtb3ZlKCkgb25seSByZW1vdmVzIGEgYnJp
+ZGdlIGZyb20gdGhlIGdsb2JhbCBicmlkZ2VfbGlzdCBkZWZpbmVkCj4gaW4gZHJtX2JyaWRnZS5j
+LiAgZHJtX2JyaWRnZV9kZXRhY2goKSBpcyB0aGUgb25lIHdoaWNoIHJlbW92ZXMgYSBicmlkZ2Ug
+ZnJvbQo+IGl0J3MgZW5jb2RlciBjaGFpbi4gIEl0IGxvb2tzIGxpa2UgeW91IHdyb25nbHkgdGhv
+dWdodCBkcm1fYnJpZGdlX3JlbW92ZSgpCj4gaXMgZHJtX2JyaWRnZV9kZXRhY2goKS4KCkluZGVl
+ZCBteSBzZW50ZW5jZSB3YXMgaW5hY2N1cmF0ZSwgc29ycnkgYWJvdXQgdGhhdC4KCj4gU28sIGV2
+ZW4gaWYgZHJtX2JyaWRnZV9yZW1vdmUoKSBpcyBjYWxsZWQsIHRoZSByZW1vdmVkCj4gYnJpZGdl
+IGNvdWxkIHN0aWxsIGJlIGluIGl0J3MgZW5jb2RlciBjaGFpbiwgaGVuY2UgYW4gYXRvbWljIGNv
+bW1pdCBjb3VsZCBzdGlsbAo+IGFjY2VzcyB0aGUgYWxsb2NhdGVkIGJyaWRnZSh3aXRoIGxpZmV0
+aW1lIGV4dGVuZGVkKSBhbmQgdGhlIGNsb2NrX2FwYiBjbG9jawo+IGZvciBleGFtcGxlIGluIHN0
+cnVjdCBpbXg4cXhwX3BjIGNvdWxkIGFsc28gYmUgYWNjZXNzZWQuICBUaGF0J3Mgd2h5IEkgdGhp
+bmsKPiB0aGUgbWFpbiBzdHJ1Y3R1cmVzIHNob3VsZCBoYXZlIHRoZSBzYW1lIGxpZmV0aW1lIHdp
+dGggdGhlIGFsbG9jYXRlZCBicmlkZ2UuCgpBcyB0aGUgbG9uZy10ZXJtIGdvYWwgaXMgdG8gYWxs
+b3cgYnJpZGdlcyB0byBiZSBob3QtcmVtb3ZhYmxlLApkZWNvdXBsaW5nIHRoZSBsaWZldGltZSBv
+ZiB0aGUgdmFyaW91cyBjb21wb25lbnRzIGlzIGEgbmVjZXNzYXJ5IHN0ZXAuCkRlZmluaXRlbHkg
+aXQgd2lsbCBvcGVuIG90aGVyIGlzc3VlcywgYW5kIGVzcGVjaWFsbHkgdGhlIHJlbW92YWwgZHVy
+aW5nCmF0b21pYyB1cGRhdGVzLiBUaGlzIGhhcyBiZWVuIGRpc2N1c3NlZCBhbHJlYWR5LCBhbmQg
+dGhlcmUgaXMgYQpwcm9wb3NlZCBwbGFuIHRvIGhhbmRsZSBpdC4KCkZpcnN0LCBoZXJlIGlzIHRo
+ZSBncmFuZCBwbGFuIChtZW50aW9uZWQgaW4gdGhlIHYzIGNvdmVyIGxldHRlcik6CgogMS4g4p6c
+IGFkZCByZWZjb3VudGluZyB0byBEUk0gYnJpZGdlcyAoc3RydWN0IGRybV9icmlkZ2UpCiAyLiBo
+YW5kbGUgZ3JhY2VmdWxseSBhdG9taWMgdXBkYXRlcyBkdXJpbmcgYnJpZGdlIHJlbW92YWwKIDMu
+IGF2b2lkIERTSSBob3N0IGRyaXZlcnMgdG8gaGF2ZSBkYW5nbGluZyBwb2ludGVycyB0byBEU0kg
+ZGV2aWNlcwogNC4gZmluYWxseSwgbGV0IGJyaWRnZXMgYmUgcmVtb3ZhYmxlIChkZXBlbmRzIG9u
+IDErMiszKQoKV2UgYXJlIG5vdyBhdCBzdGVwIDEuIFlvdXIgY29uY2VybiwgYXMgSSB1bmRlcnN0
+YW5kIGl0LCB3aWxsIGJlCmFkZHJlc3NlZCBhdCBzdGVwIDIuIEJyaWRnZXMgd29uJ3QgYmUgcmVt
+b3ZhYmxlIHVudGlsIHN0ZXAgNCwgc28gdGhlCmN1cnJlbnQgY2hhbmdlcyBhcmUgbm90IGludHJv
+ZHVjaW5nIGEgbWlzYmVoYXZpb3IgYnV0IHJhdGhlciBwcmVwYXJpbmcKdGhlIGdyb3VuZCB3aXRo
+IGFsbCB0aGUgbmVjZXNzYXJ5IGluZnJhc3RydWN0dXJlIGNoYW5nZXMuCgpTdGVwIDIgd2FzIGRp
+c2N1c3NlZCBpbiB0aGUgcGFzdCBbMF0sIGFuZCB0aGUgaWRlYSBwcm9wb3NlZCBieSBNYXhpbWUK
+aXMgdG8gaW50cm9kdWNlIGEgImdvbmUiIG9yICJ1bnBsdWdnZWQiIGZsYWcgYW5kIGRybV9icmlk
+Z2VfZW50ZXIoKSAvCmRybV9icmlkZ2VfZXhpdCgpIGZ1bmN0aW9ucy4gVGhlIHByaW5jaXBsZSBp
+cyB0aGUgc2FtZSBhcyBzdHJ1Y3QKZHJtX2RldmljZS51bnBsdWdnZWQgYW5kIGRybV9kZXZfZW50
+ZXIvZXhpdCgpLgoKSW4gYSBudXRzaGVsbCB0aGUgaWRlYSBpczoKCiAtIGRybV9icmlkZ2UudW5w
+bHVnZ2VkIGlzIGluaXRpYWxpemVkIHRvIGZhbHNlCiAtIGRybV9icmlkZ2VfZW50ZXIoKSByZXR1
+cm5zIGZhbHNlIGlmIGRybV9icmlkZ2UudW5wbHVnZ2VkID09IHRydWUKIC0gYW55IGNvZGUgaG9s
+ZGluZyBhIHBvaW50ZXIgdG8gdGhlIGJyaWRnZSAoaW5jbHVkaW5nIHRoZSBicmlkZ2UgZHJpdmVy
+CiAgIGl0c2VsZikgYW5kIG9wZXJhdGluZyBvbiB0aGUgYnJpZGdlIChpbmNsdWRpbmcgcmVtb3Zh
+bCkgbmVlZHMgdG8gZG86CiAgICAgaWYgKGRybV9icmlkZ2VfZW50ZXIoKSkgewogICAgICAgICBk
+byBzb21ldGhpbmc7CiAgICAgICAgIGRybV9icmlkZ2VfZXhpdCgpOwogICAgIH0KIC0gd2hlbiB0
+aGUgYnJpZGdlIGlzIHJlbW92ZWQsIHRoZSBkcml2ZXIgcmVtb3ZhbCBmdW5jdGlvbiBzZXRzCiAg
+IGRldl9icmlkZ2UudW5wbHVnZ2VkID0gdHJ1ZQoKVGhlICJkbyBzb21ldGhpbmciIGFib3ZlIGlu
+Y2x1ZGVzIGFueSBhY2Nlc3MgdG8gZGV2aWNlIHJlc291cmNlcywKaW5jbHVkaW5nIGNsb2NrcyAo
+YW5kIGNsa19hcGIpLgoKSW4gb3RoZXIgd29yZHMsIHR3byBwaWVjZXMgb2YgY29kZSBjYW4gbm90
+IGFjY2VzcyB0aGUgYnJpZGdlIHN0cnVjdHVyZQphdCB0aGUgc2FtZSB0aW1lLiBUaGlzIGluY2x1
+ZGVzIGJyaWRnZSByZW1vdmFsIFZTIGFueSBhdG9taWMgb3BlcmF0aW9ucy4KCkRvIHlvdSB0aGlu
+ayB0aGlzIGFkZHJlc3NlcyB5b3VyIGNvbmNlcm4/CgoKRm9yIHlvdSB0byBoYXZlIGEgYmV0dGVy
+IHBpY3R1cmUgb2YgdGhlIHBhdGgsIGhlcmUncyBhbiBhZGRpdGlvbmFsCmNsYXJpZmljYXRpb24g
+YWJvdXQgZHJtX2JyaWRnZV9hdHRhY2gvZGV0YWNoKCkgYW5kCmRybV9icmlkZ2VfYWRkL3JlbW92
+ZSgpLiBBcyBwYXJ0IG9mIHN0ZXAgMSBvZiB0aGUgZ3JhbmQgcGxhbiwgYm90aCBvZgp0aGVtIHdp
+bGwgZHJtX2JyaWRnZV9nZXQvcHV0KCkgdGhlIGJyaWRnZSwgc28gdGhhdCBubyBicmlkZ2UgaXMg
+ZnJlZWQKaWYgaXQgaXMgZWl0aGVyIGluIHRoZSBnbG9iYWwgYnJpZGdlX2xpc3Qgb3IgaW4gYW55
+IGVuY29kZXIgY2hhaW4uCgpQYXRjaGVzIGZvciB0aGlzIGFyZSBhbHJlYWR5IGFwcHJvdmVkIGJ5
+IE1heGltZSBbMV1bMl0uIFRoZXkgY2Fubm90IGJlCmFwcGxpZWQgdW50aWwgYWxsIGJyaWRnZSBk
+cml2ZXJzIGhhdmUgYmVlbiBjb252ZXJ0ZWQgdG8gdGhlIG5ldwpkZXZtX2RybV9icmlkZ2VfYWxs
+b2MoKSBBUEksIHNvIHRoZXkgZGVwZW5kIG9uIHRoaXMgc2VyaWVzIHRvIGJlCmNvbXBsZXRlbHkg
+YXBwbGllZC4gV2UgYXJlIGdldHRpbmcgcHJldHR5IGNsb3NlOiBhcyBvZiBub3cgdGhlIGVudGly
+ZQpzZXJpZXMgaGFzIGJlZW4gYXBwbGllZCBleGNlcHQgZm9yIHRoaXMgYW5kIGFub3RoZXIgZHJp
+dmVyLgoKWzBdIGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1MDEyOTEyNTE1My4zNWQw
+NDg3YUBib290eS90LyN1ClsxXSBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0
+Y2gvNjQzMDk1LwpbMl0gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoLzY0
+MzA5Ni8KCkJlc3QgcmVnYXJkcywKTHVjYQoKLS0gCkx1Y2EgQ2VyZXNvbGksIEJvb3RsaW4KRW1i
+ZWRkZWQgTGludXggYW5kIEtlcm5lbCBlbmdpbmVlcmluZwpodHRwczovL2Jvb3RsaW4uY29tCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
+Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
+L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
