@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF33DC54F30
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 May 2025 05:28:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50FC2C54ED1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 May 2025 05:32:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e/9JwMqBtE0uSHlefw72AXfwhnoQ3k30Mr+aUmItzA4=; b=eKSb1Ffm4frCY5
-	Bz/H54Dc9tqX9A8ZGwG2/ppaW3KDGQ+aVJPa8csY0iDT77VB6tXQz+sp2NXKr4hAWYEHkaY7bTBCp
-	UpBxEbqvyqWIvTbxRVuhhdjWCSTnwNVHkRZQJkLPdfWTGVHW4rlSygBE1mz+x4uqT+SzJ+w8Yowxk
-	w0/v95Kwnxx59f5jtqCvojO1ZqB2dQbpb8kJ0Nxdqnvk+vgQ2A8whpyI46P/9kwEQZ9qf/tdthcxq
-	+qTnNSvHIWuFPAsSno5RIzv+ME6u3qEgLtzCL+4/chjv+9ImPJIdhPMQx4OThZJYxjRjNVVD/1ReY
-	jOeqz19vyIKwqiIchajQ==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=7i3xhlE5/ne58SZ4YsOelhvvqbCbTYOCY/HH5Vxpte8=; b=0kkxtqxpqTFWWv
+	9KY+7dBnqJzprsCmqyiQZQdfYb+814CqiUXjmBH+N9pdsr/UH6QTPrOEuqar3SvGPzfl1sI8Ptx1a
+	YcT8PMHtaevfFpeAMBJlnJtA/nuoR73/UqSfSX5tqtdiBXUlPK8xJ3DupQ9NCIg1t0aIrmbg/zFRk
+	DvyOX21OQE7G4+Gs/ysNo60s3LxNMU1351SbGH14TEcfsScIinm2RoIL3bsE0bBOdJ6RB2jqKmpOV
+	hTC+MxD7M+K56weA8k9/72qv5XvpACWA28fFtDk/GUbHQURqUbirxeo6w1ZeGaPKT+1rSPcjdX8Dy
+	9jMbYF8v/eMJRXt8l7lQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uJmqy-00000009vdO-2iBh;
-	Tue, 27 May 2025 05:27:56 +0000
+	id 1uJmvA-00000009w7S-2EDS;
+	Tue, 27 May 2025 05:32:16 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uJmmi-00000009v6S-3Brk;
+	id 1uJmmi-00000009v6R-3C35;
 	Tue, 27 May 2025 05:23:34 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 1E18F5C3B44;
-	Tue, 27 May 2025 05:21:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9ACDFC4CEF2;
+	by dfw.source.kernel.org (Postfix) with ESMTP id AEE565C1188;
+	Tue, 27 May 2025 05:21:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5B659C4CEEA;
 	Tue, 27 May 2025 05:23:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1748323410;
-	bh=qdbRA/Eml18oOkjntNDv57zIgV1Yf9jZpnL8r1ZIZcQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=HHLP1OTu0Nqzt6AgZc/0MCTqjHSxOYparoIYVvl9mQan1VqSGbTwXBBzCpoJeXTU5
-	 DD5ZMFs5WrrrVorTS3v6WnGbEVUl4E7UTeqSpBvwMdgEwzwtiFm07IQxKKjGaW83e8
-	 xAPQOgIR0h5vTD7cBukijVBLwPig8U4E4jz2+C8bb0YxvakrWuA/hLhHndyMiacR/5
-	 iIoswdFBwGir3o1h624bZxMMagdOUtuo5/V6laHYVuQtz0OEvVari2nr5bBBCTgByJ
-	 hnINdm67trOm0sywNlFD3mzam5qmXK8G5/scp55JSEFjk1VtYxNdxkWeI+eGkR307x
-	 RzxjUDOCdfLjQ==
+	bh=1GCpqYieVMUjZiRR1spl6SkovVlonsGalWojCmfHnU8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=q/Ij7YmJmUW1NjByELEaA0Mhr7SA8x58hy9khjNtNUva/VJuZBWHe/2SERMvkF4z2
+	 YidQ55mxZQ4bu8wTMwr2K8cIGLadB8uo+xDssW+ec+J7RUAmOhPTEm3x8i59lqeWSk
+	 GSEhFIcWiicRs72HKuG2/y5Y8/fQ9q+fK7oWhOV5r3Hx4/asWj66aO2VYVVr3MfpDH
+	 VrOwv84+pn1pdVBGZ6IxblTyQPyD55IPXOtBxHPktNJhmfpJ8JJ3565l818KnE89K0
+	 a07BRjcFudPuR70UryE/bUXXcp9DF5xjhaZ/KA4RnwGVC/n4gdbZA6v7fGXYfJsmBa
+	 dYpGHfW8hyCmw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9104AC5AD49;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 45F58C54ED1;
 	Tue, 27 May 2025 05:23:30 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 27 May 2025 13:23:32 +0800
-Subject: [PATCH v3 5/6] dts: arm64: amlogic: add S7D pinctrl node
+Subject: [PATCH v3 0/6] Add support for Amlogic S7/S7D/S6 pinctrl
+Date: Tue, 27 May 2025 13:23:27 +0800
+Message-Id: <20250527-s6-s7-pinctrl-v3-0-44f6a0451519@amlogic.com>
 MIME-Version: 1.0
-Message-Id: <20250527-s6-s7-pinctrl-v3-5-44f6a0451519@amlogic.com>
-References: <20250527-s6-s7-pinctrl-v3-0-44f6a0451519@amlogic.com>
-In-Reply-To: <20250527-s6-s7-pinctrl-v3-0-44f6a0451519@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAE9MNWgC/3WMyw6CMBQFf4V0bU1fQGXlfxgXtb3ATYCSljQaw
+ r9bWKmJyzk5MyuJEBAiaYqVBEgY0U8Z5KkgtjdTBxRdZiKYKFnJFY0VjTWdcbJLGKhpOTyc0do
+ oINmZA7T4PHq3e+Ye4+LD68gnvq//SolTRuXFyUpb4/LlasbBd2jP1o9kbyXx4Qv+64vsMwsly
+ FpoxdS3v23bGxChhL/sAAAA
 To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -62,20 +64,19 @@ Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748323408; l=3401;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748323408; l=2141;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=TkCzL2tpFVGFSar0wGinjtXWgNKBSbV+l775+YV5x9c=;
- b=EWY4VF4AYkuDz79BNUMWvs8VorMEmzWK1voY1ImWT594mZ5+4WrXL0vTyPnCbiVDQzHS6NsLp
- YcPi61WnNPYDzfYiH6ovpFbSUnu2ixNIVvFcAtS8I5mu8Ykl8GZCWKb
+ bh=1GCpqYieVMUjZiRR1spl6SkovVlonsGalWojCmfHnU8=;
+ b=wtHOhFlqk718sG5FN2taveblE9/ol8PL4CgX+7110oCYLvkhagcOQvvyZlh/2hYLAbg5nfqF6
+ kzUF/U7ytpjB39z+NSCAiwFHG+f+LreRrPkI6u1+I4Ox2xUJfSwIYWp
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
  auth_id=107
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250526_222332_888833_92F1760F 
-X-CRM114-Status: UNSURE (   9.28  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250526_222332_888885_584E5187 
+X-CRM114-Status: GOOD (  10.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,126 +94,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In some Amlogic SoCs, to save register space or due to some
+abnormal arrangements, two sets of pins share one mux register.
+A group starting from pin0 is the main pin group, which acquires
+the register address through DTS and has management permissions,
+but the register bit offset is undetermined.
+Another GPIO group as a subordinate group. Some pins mux use share
+register and bit offset from bit0 . But this group do not have
+register management permissions.
 
-Add pinctrl device to support Amlogic S7D.
+In SoC S7 and S7D, GPIOX(16~19) mux share with GPIOCC mux register.
+
+In SoC S6, GPIOX(16~19) mux share with GPIOCC mux register, and GPIOD(6)
+mux share with GPIOF mux register.
+
+Add S7/S7D/S6 pinctrl compatible string and device node.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi | 90 ++++++++++++++++++++++++++++
- 1 file changed, 90 insertions(+)
+Changes in v3:
+- Squash three submissons of bindings into one.
+- Link to v2: https://lore.kernel.org/r/20250521-s6-s7-pinctrl-v2-0-0ce5e3728404@amlogic.com
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
-index e1099bc1535d..c4d260d5bb58 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/amlogic,pinctrl.h>
- 
- / {
- 	cpus {
-@@ -94,6 +95,95 @@ uart_b: serial@7a000 {
- 				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
-+
-+			periphs_pinctrl: pinctrl@4000 {
-+				compatible = "amlogic,pinctrl-s7d",
-+					     "amlogic,pinctrl-s7";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges = <0x0 0x0 0x0 0x4000 0x0 0x340>;
-+
-+				gpioz: gpio@c0 {
-+					reg = <0 0xc0 0 0x20>, <0 0x18 0 0x8>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_Z<<8) 13>;
-+				};
-+
-+				gpiox: gpio@100 {
-+					reg = <0 0x100 0 0x30>, <0 0xc 0 0x8>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_X<<8) 20>;
-+				};
-+
-+				gpioh: gpio@140 {
-+					reg = <0 0x140 0 0x20>, <0 0x2c 0 0x8>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_H<<8) 12>;
-+				};
-+
-+				gpiod: gpio@180 {
-+					reg = <0 0x180 0 0x20>, <0 0x40 0 0x4>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_D<<8) 5>;
-+				};
-+
-+				gpioe: gpio@1c0 {
-+					reg = <0 0x1c0 0 0x20>, <0 0x48 0 0x4>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_E<<8) 2>;
-+				};
-+
-+				gpioc: gpio@200 {
-+					reg = <0 0x200 0 0x20>, <0 0x24 0 0x4>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_C<<8) 8>;
-+				};
-+
-+				gpiob: gpio@240 {
-+					reg = <0 0x240 0 0x20>, <0 0x0 0 0x8>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_B<<8) 14>;
-+				};
-+
-+				gpiodv: gpio@280 {
-+					reg = <0 0x280 0 0x20>, <0 0x8 0 0x4>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_DV<<8) 7>;
-+				};
-+
-+				test_n: gpio@2c0 {
-+					reg = <0 0x2c0 0 0x20>;
-+					reg-names = "gpio";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges =
-+						<&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
-+				};
-+
-+				gpiocc: gpio@300 {
-+					reg = <0 0x300 0 0x20>, <0 0x14 0 0x4>;
-+					reg-names = "gpio", "mux";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_CC<<8) 2>;
-+				};
-+			};
- 		};
- 	};
- };
+Changes in v2:
+- Add a unit address for pinctrl node.
+- Use pointer instead of flexible array to solve the problem tested by kernel test robot.
+- Link to v1: https://lore.kernel.org/r/20250514-s6-s7-pinctrl-v1-0-39d368cad250@amlogic.com
 
+---
+Xianwei Zhao (6):
+      dt-bindings: pinctl: amlogic,pinctrl-a4: Add compatible string for S7/S7D/S6
+      pinctrl: meson: a4: remove special data processing
+      pinctrl: meson: support amlogic S6/S7/S7D SoC
+      dts: arm64: amlogic: add S7 pinctrl node
+      dts: arm64: amlogic: add S7D pinctrl node
+      dts: arm64: amlogic: add S6 pinctrl node
+
+ .../bindings/pinctrl/amlogic,pinctrl-a4.yaml       |   9 +-
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        |  97 +++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        |  81 ++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       |  90 ++++++++++++++++
+ drivers/pinctrl/meson/pinctrl-amlogic-a4.c         | 118 ++++++++++++++++-----
+ 5 files changed, 370 insertions(+), 25 deletions(-)
+---
+base-commit: 176e917e010cb7dcc605f11d2bc33f304292482b
+change-id: 20250514-s6-s7-pinctrl-af1ebda88a4e
+
+Best regards,
 -- 
-2.37.1
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
 
