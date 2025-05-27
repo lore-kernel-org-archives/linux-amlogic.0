@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5074C54ED1
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 May 2025 08:36:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B902C54ED1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 May 2025 08:38:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NfDZBK95Hc1qNXy1kpmqOYoxyoHddr7lAXUVV450ENQ=; b=XPE+A3O1CACDbb
-	AkbDlyNa31YmgmGgi52JYbcj9Iea7QkyvwoDaG7c7kZbp55ZfNS21MXwZho5qRYdAGwrzchmkZ+Y4
-	2khe/XOFKhQ65wph1G+gHAZt/TLHyS72LguuNqjqgFummUCwFWHTfmUcEoAZSxeDakDVSAis7058o
-	Z/tGg3o8BeBBpPJGQZGUYdHBoDH16hmTSp0j2NA1/mIVhxAcpnrULvbrstsOpgUkR3Fct+vls+TyY
-	cyunBxmwf/T/tqT1bM3lDiwgwQIxtVhkSko2q2YOFlx9Sz46aNkSltfHJM0Zf35r4oQ/Mt+MrBOtz
-	blorAKkC81qeaa59t7Ig==;
+	List-Owner; bh=1snO1zNGZcd3KRGuwsmNcJ7b4GQP1BcGqLMdiooHCxk=; b=m4W2NfCGk1t8F8
+	B01nONK7iMHybzBiqWWJUhFO19hOks3W81uRX/H9kz+bnfnIt7WBnRR+dhACpa+g+qybmCUjAl/oO
+	fyjONmxheTSy0lexVVSTaiBLgkvyooso2bD8d3L/0aExjyD2bCdZw6GuPiMl0VKyLQ1F8VpfwK1vU
+	60EUWI4NPQot3VF6mQ6oSjGkr5jHfRUh7DJE94ey0B1YXQalCzuXLx+WF+BNDbWrPMV1VZeDtVv6F
+	TaRy4tXkii6N0UiCJeiXiWWuGAtzKjKaEnNAlSyPtQLLrgVQLa2ZqpXtHKPu8oI8obY37x5bf62eu
+	xZuxSxNb+ZYfb3JxoAeA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uJpnJ-0000000AGc3-0Qui;
-	Tue, 27 May 2025 08:36:21 +0000
+	id 1uJppP-0000000AGqD-0YpL;
+	Tue, 27 May 2025 08:38:31 +0000
 Received: from mailgw.kylinos.cn ([124.126.103.232])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uJpcj-0000000AFCr-0Gvl;
-	Tue, 27 May 2025 08:25:26 +0000
-X-UUID: 201b0f503ad411f0b29709d653e92f7d-20250527
+	id 1uJpcm-0000000AFDd-04qJ;
+	Tue, 27 May 2025 08:25:30 +0000
+X-UUID: 223956f23ad411f0b29709d653e92f7d-20250527
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45,REQID:d318de97-d3aa-4989-ba67-d9ca33c7b027,IP:0,U
+X-CID-O-INFO: VERSION:1.1.45,REQID:d5db8501-0ce9-4cde-b853-aec134198ab3,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:6493067,CLOUDID:82ea9aad143a8f52c9b55503f9bafb9c,BulkI
+X-CID-META: VersionHash:6493067,CLOUDID:960212652df79bafbda8332d2bf24c97,BulkI
 	D:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3,IP:
-	nil,URL:99|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:
-	0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+	nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
+	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
 X-CID-BVR: 0
 X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 201b0f503ad411f0b29709d653e92f7d-20250527
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 223956f23ad411f0b29709d653e92f7d-20250527
 Received: from node4.com.cn [(10.44.16.170)] by mailgw.kylinos.cn
 	(envelope-from <aichao@kylinos.cn>)
 	(Generic MTA)
-	with ESMTP id 1785457094; Tue, 27 May 2025 16:25:19 +0800
+	with ESMTP id 1451708132; Tue, 27 May 2025 16:25:23 +0800
 Received: from node4.com.cn (localhost [127.0.0.1])
-	by node4.com.cn (NSMail) with SMTP id 1D62416001F52;
-	Tue, 27 May 2025 16:25:19 +0800 (CST)
-X-ns-mid: postfix-683576EE-9087972686
+	by node4.com.cn (NSMail) with SMTP id B1BA616001F52;
+	Tue, 27 May 2025 16:25:22 +0800 (CST)
+X-ns-mid: postfix-683576F1-9270232691
 Received: from kylin-pc.. (unknown [172.25.130.133])
-	by node4.com.cn (NSMail) with ESMTPA id 9310616001F49;
-	Tue, 27 May 2025 08:25:16 +0000 (UTC)
+	by node4.com.cn (NSMail) with ESMTPA id D775C16001F49;
+	Tue, 27 May 2025 08:25:19 +0000 (UTC)
 From: Ai Chao <aichao@kylinos.cn>
 To: perex@perex.cz,
 	tiwai@suse.com,
@@ -77,18 +77,17 @@ Cc: linux-sound@vger.kernel.org,
 	imx@lists.linux.dev,
 	kernel@pengutronix.de,
 	linux-arm-msm@vger.kernel.org,
-	Ai Chao <aichao@kylinos.cn>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH v3 4/6] ASoC: meson: Use helper function for_each_child_of_node_scoped()
-Date: Tue, 27 May 2025 16:24:44 +0800
-Message-ID: <20250527082446.2265500-5-aichao@kylinos.cn>
+	Ai Chao <aichao@kylinos.cn>
+Subject: [PATCH v3 5/6] ASoC: imx-card: Use helper function for_each_child_of_node_scoped()
+Date: Tue, 27 May 2025 16:24:45 +0800
+Message-ID: <20250527082446.2265500-6-aichao@kylinos.cn>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250527082446.2265500-1-aichao@kylinos.cn>
 References: <20250527082446.2265500-1-aichao@kylinos.cn>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250527_012525_399443_4389A709 
-X-CRM114-Status: UNSURE (   8.41  )
+X-CRM114-CacheID: sfid-20250527_012528_357876_2F910E37 
+X-CRM114-Status: UNSURE (   8.14  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -110,93 +109,58 @@ The for_each_child_of_node_scoped() helper provides a scope-based
 clean-up functionality to put the device_node automatically, and
 as such, there is no need to call of_node_put() directly.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202505210557.EpJig9BQ-lkp@intel.com/
 Signed-off-by: Ai Chao <aichao@kylinos.cn>
 ---
- sound/soc/meson/axg-card.c         |  3 +--
- sound/soc/meson/meson-card-utils.c | 16 +++++-----------
- 2 files changed, 6 insertions(+), 13 deletions(-)
+ sound/soc/fsl/imx-card.c | 13 +++++--------
+ 1 file changed, 5 insertions(+), 8 deletions(-)
 
-diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
-index a2dfccb7990f..b4dca80e15e4 100644
---- a/sound/soc/meson/axg-card.c
-+++ b/sound/soc/meson/axg-card.c
-@@ -222,7 +222,6 @@ static int axg_card_parse_codecs_masks(struct snd_soc_card *card,
- 				       struct axg_dai_link_tdm_data *be)
- {
- 	struct axg_dai_link_tdm_mask *codec_mask;
+diff --git a/sound/soc/fsl/imx-card.c b/sound/soc/fsl/imx-card.c
+index 45e000f61ecc..f0bf4eb05329 100644
+--- a/sound/soc/fsl/imx-card.c
++++ b/sound/soc/fsl/imx-card.c
+@@ -513,7 +513,6 @@ static int imx_card_parse_of(struct imx_card_data *data)
+ 	struct device_node *platform = NULL;
+ 	struct device_node *codec = NULL;
+ 	struct device_node *cpu = NULL;
 -	struct device_node *np;
+ 	struct device *dev = card->dev;
+ 	struct snd_soc_dai_link *link;
+ 	struct dai_link_data *link_data;
+@@ -552,11 +551,10 @@ static int imx_card_parse_of(struct imx_card_data *data)
+ 	link = card->dai_link;
+ 	link_data = data->link_data;
  
- 	codec_mask = devm_kcalloc(card->dev, link->num_codecs,
- 				  sizeof(*codec_mask), GFP_KERNEL);
-@@ -231,7 +230,7 @@ static int axg_card_parse_codecs_masks(struct snd_soc_card *card,
+-	for_each_child_of_node(dev->of_node, np) {
++	for_each_child_of_node_scoped(dev->of_node, np) {
+ 		dlc = devm_kzalloc(dev, 2 * sizeof(*dlc), GFP_KERNEL);
+ 		if (!dlc) {
+-			ret = -ENOMEM;
+-			goto err_put_np;
++			return -ENOMEM;
+ 		}
  
- 	be->codec_masks = codec_mask;
+ 		link->cpus	= &dlc[0];
+@@ -567,8 +565,8 @@ static int imx_card_parse_of(struct imx_card_data *data)
  
--	for_each_child_of_node(node, np) {
-+	for_each_child_of_node_scoped(node, np) {
- 		snd_soc_of_get_slot_mask(np, "dai-tdm-slot-rx-mask",
- 					 &codec_mask->rx);
- 		snd_soc_of_get_slot_mask(np, "dai-tdm-slot-tx-mask",
-diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-index cfc7f6e41ab5..0750dece9e69 100644
---- a/sound/soc/meson/meson-card-utils.c
-+++ b/sound/soc/meson/meson-card-utils.c
-@@ -137,7 +137,6 @@ int meson_card_set_be_link(struct snd_soc_card *card,
- 			   struct device_node *node)
- {
- 	struct snd_soc_dai_link_component *codec;
--	struct device_node *np;
- 	int ret, num_codecs;
+ 		ret = of_property_read_string(np, "link-name", &link->name);
+ 		if (ret) {
+-			dev_err(card->dev, "error getting codec dai_link name\n");
+-			goto err_put_np;
++			return dev_err_probe(card->dev, ret,
++					     "error getting codec dai_link name\n");
+ 		}
  
- 	num_codecs = of_get_child_count(node);
-@@ -154,19 +153,17 @@ int meson_card_set_be_link(struct snd_soc_card *card,
- 	link->codecs = codec;
- 	link->num_codecs = num_codecs;
- 
--	for_each_child_of_node(node, np) {
-+	for_each_child_of_node_scoped(node, np) {
- 		ret = meson_card_parse_dai(card, np, codec);
--		if (ret) {
--			of_node_put(np);
-+		if (ret)
- 			return ret;
--		}
- 
- 		codec++;
- 	}
- 
- 	ret = meson_card_set_link_name(card, link, node, "be");
- 	if (ret)
--		dev_err(card->dev, "error setting %pOFn link name\n", np);
-+		dev_err(card->dev, "error setting %pOFn link name\n", node);
- 
+ 		cpu = of_get_child_by_name(np, "cpu");
+@@ -722,8 +720,7 @@ static int imx_card_parse_of(struct imx_card_data *data)
+ 	of_node_put(cpu);
+ 	of_node_put(codec);
+ 	of_node_put(platform);
+-err_put_np:
+-	of_node_put(np);
++
  	return ret;
  }
-@@ -198,7 +195,6 @@ static int meson_card_add_links(struct snd_soc_card *card)
- {
- 	struct meson_card *priv = snd_soc_card_get_drvdata(card);
- 	struct device_node *node = card->dev->of_node;
--	struct device_node *np;
- 	int num, i, ret;
  
- 	num = of_get_child_count(node);
-@@ -212,12 +208,10 @@ static int meson_card_add_links(struct snd_soc_card *card)
- 		return ret;
- 
- 	i = 0;
--	for_each_child_of_node(node, np) {
-+	for_each_child_of_node_scoped(node, np) {
- 		ret = priv->match_data->add_link(card, np, &i);
--		if (ret) {
--			of_node_put(np);
-+		if (ret)
- 			return ret;
--		}
- 
- 		i++;
- 	}
 -- 
 2.47.1
 
