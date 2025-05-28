@@ -4,85 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F701C5AE59
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 May 2025 07:33:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF49DC3ABB2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 May 2025 07:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lnQG3ornMh2LvogG4vO7tVr1i3bRq73aTY4UgXA3YTE=; b=p0Ecw1UE6Qd9ZD
-	OK+LNEw7SC35Jow/MT0auMuy/SkhKLfDKZlH1KqqJyLHuK61+S6V7ahHBxrDB75uxbbvzunbAE24z
-	Uj3k+pm7eV7xKmqQqEY5ZRzOYABOxvRWlosDmPyRdzqGXgpGMhf9S0TMFgKGVqW0qThEnYFLvv3bs
-	g1Bma98C9SQiY5EPH4j9dFZCBiAusiRc6v6ZEY6Oe9QEbSLy02oO3HBC+0zICFHMohbkfUdIgYZqb
-	cg6HHNoaEPx46rl6VN1t97e0NHKj24FnLjb2jhWFapkKcDzu1SHTROJ6R/79UNCRuSsZsgMEfLkbQ
-	+cr8vlsdPamrh7vP1YyA==;
+	List-Owner; bh=vOz4AikJOhhS4FPiUsSCOl1wxKCQb5K+irwBHVhggNE=; b=yjRSvaLbdzHVCu
+	K0w2A/DCM051qMaqkWdtxhqy10ckb0G9Pfd1bYFzRHLS1wOT9lbX5iJcdrZZPDNes7Yg3jraYqSvl
+	f1clOlf7hVFdolffeeN4ZYLHzD0Mk8BSoVgb0YXTOCPoCMSn9IM25l9gxnNCRiusCq7SsgpFF8jtT
+	HghEMbcTW88t/nJGZQFXZI3r7oj3N0MdAWab4dJZjcfDh4LLPvVVB/IGwqm4XpGJHWEsDBxE3GXQD
+	LLN5/1DKbyLB4kry0hp+NXmaEslMym5+rjImM0lar6kwRBYd9r+PLh48T064lVCbzppzfrac/EeVN
+	wCZ+cOTmcGcspoHdQrxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uKBIB-0000000CRUO-2SUU;
-	Wed, 28 May 2025 07:33:39 +0000
-Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
+	id 1uKBOo-0000000CSVH-1XSn;
+	Wed, 28 May 2025 07:40:30 +0000
+Received: from mail-vs1-f50.google.com ([209.85.217.50])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uKBI9-0000000CRTQ-03Ps;
-	Wed, 28 May 2025 07:33:38 +0000
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-ad51ef2424bso870952466b.0;
-        Wed, 28 May 2025 00:33:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748417615; x=1749022415; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6onlswMv8qjmQeq9ualmjWop3GYnwDgj7aBf1pQHqQo=;
-        b=EOJqZt2lp0gCtFM7n4t72Gvm3SmjOlMoIJ+sCQ+GyuApqGwvFXTESjt/cTkm0Y/qeH
-         ASUJqPS2oz8UAIA06pHkA+1eybeTyldoyA+YcdChUX5Njns0ZSW2fALq5Qtk4yJTTwg+
-         GcbnVFqN+82M/f+ym99+iuoW99m1+dAkxLRuSOwBoxI6MSHSmYntrw7F3XY2hMrty1G+
-         XTvbU4sp1uBGH5xrq20FkyyEYIrLlafG1IruzAlatQ9hPO3knacVf+JQfQQDeLe+bP6R
-         8WidR9KVude3oVXrXQABwD8f1HhkXWsp91R1BQCxOMNkM7RN2yMnTkcBG2V+UUEjOHXl
-         X2uA==
+	id 1uKBMT-0000000CS9K-1DLK;
+	Wed, 28 May 2025 07:38:06 +0000
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4e5962a0f20so376316137.1;
+        Wed, 28 May 2025 00:38:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748417615; x=1749022415;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6onlswMv8qjmQeq9ualmjWop3GYnwDgj7aBf1pQHqQo=;
-        b=YplYb0yxsq0AAsOl1Btmfh8eIl7NgEZ5/HYFxnPvvIKXxSP+FpdQqubDMFptbk+MQD
-         BZbVYQAEg1fJ56FHVVHcUvW2/uXKx5Hr70ojIeYKzDrCq4auisdv26Y7+IxnNuahnom6
-         jd0tfcOFGZrJDhZTLwrNTZWg5HTWBgHM34hdFw5GZQj9gFTtHucPoiKQhDfhuzbDN+or
-         6GjrXv5OEa1cXgU8bmQLlAsDy1CpO6l52w/KRJWi910ttbVzJZjXzjE0IZnNYbajmix8
-         UJUwlQl2amZ6OzqW6H2IPSIgkPadYbRwJonu8hU4ChFOp3wVigkHpJC/3RyR1fE2Zcgo
-         P3Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjjz297wScxa1dopBy+dPPAEdvbXyQlQOSxQCXj0QsdX6YEp5RjYty/6LcylXbgy3bIW9n/sQfFR0Qq2ZQx2LgfQ==@lists.infradead.org, AJvYcCWAGnlhhfzPfDhpkZjSL1DVW0E1+z6sbsPXnJkfgwQmVMJ4Jyp/qKfPfF+u2QO6lyMLiseWNpAgEEbJGIM0@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy2bL/s5/xezL6w5xyc8kShD82TgDu1ObYtSK3ev/RUKeDsuTP3
-	9M4ZGCboi7jZBjd7hfTQndIXPji88mJ6ixTcbHQZfM8YEnw7aGTW21AS/ltRdZpXWPj1Ar6y6PI
-	Vi5dbB8WG/9ixO0IB/P/L6fPhzQ3FRBc=
-X-Gm-Gg: ASbGnct/ODIVNvJMxpnazJtDFe8xatpHz3T11u+yiJh1t6MBDrZzBUipH+JKkZStZ8Z
-	6KohdoONtAOeHrnG4Yqf2jEycDU+cnODtnsEuKPyIAXpjO5pzU0roMRgF8W5Sustj+DRVjafBtV
-	1JGCxBrWX94xIbHPCYZ6fXiXawGM4k5mE=
-X-Google-Smtp-Source: AGHT+IF1fHMff8y//YavCY6qV37Mp44tGyDZLCVJ94/lgd4evp/huakNGNFGIncJfZaxREzO0BTmn3RMxhTEPInRqyk=
-X-Received: by 2002:a17:907:7252:b0:ad2:4fa0:88cd with SMTP id
- a640c23a62f3a-ad85b120626mr1097477166b.9.1748417614813; Wed, 28 May 2025
- 00:33:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1748417882; x=1749022682;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q0FIvnATmtkNNdXQbt1Fz7I3kCcVI6Dqou2JsI1LDaQ=;
+        b=WG4QOeN7Azm8d7p/swGivPoViQvLnOer0+w32aaiBbaoY4CbzFsstGfrY3ZRRz0cSk
+         E96nL6B4ZKXlwvTZNevt9FYDRhU4x0QtH5bq6xfHr5UrgZH9dvcIcpvYfWFT02vlZbA6
+         WGeB6xbNj8ag1KTMXiZjxiSVy+XrXt4QcK4V9Xhk53DlBzxT/vjjEoi/JVS/mX4qYvzt
+         Ih24vLmpX8s2mMlKplIYIagLVQUoG9kndNibtMJE66wZt8OphFFoyObxZB0h20S3l1fg
+         a9Hl4ux4oc5S4dw5eV2jmWw9dTaaraTCAg6L1DttGaURP/6wGBU2nPGaDVYwSh3R8s7j
+         /aFA==
+X-Forwarded-Encrypted: i=1; AJvYcCUzkkdt4ciSF34MQQZravGrn1RLt2DlbIr5kVW4DbK5SdbvLdnOapXxqicooKSlhW6cEgHdbYaVOMdlm7Er@lists.infradead.org, AJvYcCVR077wA5OVA8I6Cug1caDDTMJC80v4WO/XWn/fOdLzhnGawuYk6KCd5OeLlJZgTDsYNlnd2+pLMWb4CWaDqgSZ3g==@lists.infradead.org
+X-Gm-Message-State: AOJu0YxqQ2OL9ysFZgq5sN0cLBtOf/rLN4jZjwJ9k19ltgLmMVqU6vPj
+	y6gXsykRhcKSkHjniVsyGu96fGdC3MXJApnOFj++GcX4FqfmP1GNk4+yZ5gD/Jhx
+X-Gm-Gg: ASbGncvzrUkSgSrE96WKZhSlNoMwgn6tidk23JpRJW1Z1yq0KHbrFLu5RI31t1b4Aw+
+	QLG1P3vew5HNrgEGOyCzHwX7ptsQ438faIykKVHmNEKEQfMe0yde0nPgUimUDbld6SNwvffHUwK
+	ap6OG2a1eKJNT06XpilgjnUTZvo3VZaafBsBbQ6GzGF4A9GR+hkjmslOgQSm7dLEzXwhjG11QZq
+	JIz/TgUE+Md+CVj7stukDdtGvrLXOOyaWJhydspiBGO6HRNhkCjKEsDh2A3OP0S6p4SaVqUF3xx
+	qehYGlkUTdbFj/OPFnHOifGl6cfJ4GJC5mvT4Lv1y3EhikVVmPq9iSJxgvdJlW+aR2Hj5A5PJL5
+	bSAGVK4ioNVmfnA==
+X-Google-Smtp-Source: AGHT+IEFaPNRqPPi3MyCEZW9acytXY+IFhU/Y2eSjXj/1RN5oQ6LbWtjy5mQKVdaNjjkqDdI/hcgmQ==
+X-Received: by 2002:a05:6102:3f56:b0:4e2:aafe:1bde with SMTP id ada2fe7eead31-4e4240b0ed0mr12626131137.9.1748417881726;
+        Wed, 28 May 2025 00:38:01 -0700 (PDT)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87e1f03fcdbsm457424241.19.2025.05.28.00.38.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 May 2025 00:38:00 -0700 (PDT)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4e5962a0f20so376299137.1;
+        Wed, 28 May 2025 00:38:00 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVat/PUA1i79VIt01iHkoVdGMdUPxMSX6D4BddX7xQDwVsErxDtrFH8tyIq2mOHNPq/Fk86K0+nVD4nS4MKVFBazg==@lists.infradead.org, AJvYcCVrHJRkJEZkXeORKis/zRYecdMDN79HwN9ttF0udE6ssnKbtblke32yEWcvf5U/nyMaz3ojE6Ql6FO2qPpd@lists.infradead.org
+X-Received: by 2002:a05:6102:d87:b0:4e5:9731:6ded with SMTP id
+ ada2fe7eead31-4e597316ebfmr3313200137.6.1748417879962; Wed, 28 May 2025
+ 00:37:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250522172535.302064-1-linux.amoon@gmail.com> <174802762618.2701053.17389702773465611504.robh@kernel.org>
-In-Reply-To: <174802762618.2701053.17389702773465611504.robh@kernel.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 28 May 2025 13:03:17 +0530
-X-Gm-Features: AX0GCFuQMy8n1ZwrrUkMQP3W0riMpGcHItsAis2ldicF1OXrte5AN2N1gNz0rP4
-Message-ID: <CANAwSgQFbhG-VPwSsEZcMZq3VE8n14trr4uXp8MoMW3ML+vHDA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: amlogic: Update USB hub power and
- reset properties
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Wayne Schroeder <raz@chewies.net>, 
-	Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org, 
-	Jerome Brunet <jbrunet@baylibre.com>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20250527082446.2265500-1-aichao@kylinos.cn> <20250527082446.2265500-3-aichao@kylinos.cn>
+In-Reply-To: <20250527082446.2265500-3-aichao@kylinos.cn>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 28 May 2025 09:37:48 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV5ZhJrRiuEWLbU_gFcv40+izLpR0HN0EZU415s3QAkVg@mail.gmail.com>
+X-Gm-Features: AX0GCFve4Aj5WArc9KkplJVctpVO9pqz2wSMOeJzSTUgarGo2ZgOa2T8YLQGOCU
+Message-ID: <CAMuHMdV5ZhJrRiuEWLbU_gFcv40+izLpR0HN0EZU415s3QAkVg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] ALSA: aoa: Use helper function for_each_child_of_node_scoped()
+To: Ai Chao <aichao@kylinos.cn>
+Cc: perex@perex.cz, tiwai@suse.com, johannes@sipsolutions.net, 
+	kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com, broonie@kernel.org, 
+	jbrunet@baylibre.com, neil.armstrong@linaro.org, khilman@baylibre.com, 
+	martin.blumenstingl@googlemail.com, shengjiu.wang@gmail.com, 
+	Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, srinivas.kandagatla@linaro.org, 
+	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-renesas-soc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	imx@lists.linux.dev, kernel@pengutronix.de, linux-arm-msm@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250528_003337_057761_C0E0555B 
-X-CRM114-Status: GOOD (  27.15  )
+X-CRM114-CacheID: sfid-20250528_003805_332794_D6E24F1E 
+X-CRM114-Status: GOOD (  21.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,59 +96,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgUm9iLAoKT24gU2F0LCAyNCBNYXkgMjAyNSBhdCAwMDo0NiwgUm9iIEhlcnJpbmcgKEFybSkg
-PHJvYmhAa2VybmVsLm9yZz4gd3JvdGU6Cj4KPgo+IE9uIFRodSwgMjIgTWF5IDIwMjUgMjI6NTU6
-MzEgKzA1MzAsIEFuYW5kIE1vb24gd3JvdGU6Cj4gPiBBZGQgbWlzc2luZyByZXNldC1ncGlvcyBw
-cm9wZXJ0eSB0byB0aGUgVVNCIDIuMCBodWIgbm9kZSB0bwo+ID4gZW5zdXJlIHByb3BlciByZXNl
-dCBoYW5kbGluZy4gQWxzbyB1cGRhdGUgdGhlIHZkZC1zdXBwbHkgZm9yCj4gPiBib3RoIFVTQiAy
-LjAgYW5kIDMuMCBodWJzIHRvIHVzZSB0aGUgc2hhcmVkIGh1Yl81diByZWd1bGF0b3IKPiA+IGZv
-ciBjb25zaXN0ZW50IHBvd2VyIG1hbmFnZW1lbnQuCj4gPgo+ID4gRml4ZXM6IGNjZmYzNjkzNDEz
-NyAoImFybTY0OiBkdHM6IGFtbG9naWM6IFVzZWQgb25ib2FyZCB1c2IgaHViIHJlc2V0IG9uIG9k
-cm9pZCBuMiIpCj4gPiBTaWduZWQtb2ZmLWJ5OiBBbmFuZCBNb29uIDxsaW51eC5hbW9vbkBnbWFp
-bC5jb20+Cj4gPiAtLS0KPiA+IHYzOiBkcm9wcGVkIHJlbW92ZSBvZiB1c2IyX3BoeTEuCj4gPiB2
-MjogcmVtb3ZlIHVzYjJfcGh5MSBwaHktc3VwcGx5IHNpbmNlIG5vdyBpdCdzIG1hbmFnZWQgYnkK
-PiA+IHRoZSBodWIgcmVzZXQgY29udHJvbC4KPiA+IC0tLQo+ID4gIGFyY2gvYXJtNjQvYm9vdC9k
-dHMvYW1sb2dpYy9tZXNvbi1nMTJiLW9kcm9pZC1uMi5kdHNpIHwgNSArKystLQo+ID4gIDEgZmls
-ZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4gPgo+Cj4KPiBNeSBi
-b3QgZm91bmQgbmV3IERUQiB3YXJuaW5ncyBvbiB0aGUgLmR0cyBmaWxlcyBhZGRlZCBvciBjaGFu
-Z2VkIGluIHRoaXMKPiBzZXJpZXMuCj4KPiBTb21lIHdhcm5pbmdzIG1heSBiZSBmcm9tIGFuIGV4
-aXN0aW5nIFNvQyAuZHRzaS4gT3IgcGVyaGFwcyB0aGUgd2FybmluZ3MKPiBhcmUgZml4ZWQgYnkg
-YW5vdGhlciBzZXJpZXMuIFVsdGltYXRlbHksIGl0IGlzIHVwIHRvIHRoZSBwbGF0Zm9ybQo+IG1h
-aW50YWluZXIgd2hldGhlciB0aGVzZSB3YXJuaW5ncyBhcmUgYWNjZXB0YWJsZSBvciBub3QuIE5v
-IG5lZWQgdG8gcmVwbHkKPiB1bmxlc3MgdGhlIHBsYXRmb3JtIG1haW50YWluZXIgaGFzIGNvbW1l
-bnRzLgo+Cj4gSWYgeW91IGFscmVhZHkgcmFuIERUIGNoZWNrcyBhbmQgZGlkbid0IHNlZSB0aGVz
-ZSBlcnJvcihzKSwgdGhlbgo+IG1ha2Ugc3VyZSBkdC1zY2hlbWEgaXMgdXAgdG8gZGF0ZToKPgo+
-ICAgcGlwMyBpbnN0YWxsIGR0c2NoZW1hIC0tdXBncmFkZQo+Cj4KPiBUaGlzIHBhdGNoIHNlcmll
-cyB3YXMgYXBwbGllZCAodXNpbmcgYjQpIHRvIGJhc2U6Cj4gIEJhc2U6IHVzaW5nIHNwZWNpZmll
-ZCBiYXNlLWNvbW1pdCA1Y2RiMmM3N2M0YzNkMzZiZGVlODNkOTIzMTY0OTk0MTE1N2Y4MjA0Cj4K
-PiBJZiB0aGlzIGlzIG5vdCB0aGUgY29ycmVjdCBiYXNlLCBwbGVhc2UgYWRkICdiYXNlLWNvbW1p
-dCcgdGFnCj4gKG9yIHVzZSBiNCB3aGljaCBkb2VzIHRoaXMgYXV0b21hdGljYWxseSkKPgo+IE5l
-dyB3YXJuaW5ncyBydW5uaW5nICdtYWtlIENIRUNLX0RUQlM9eSBmb3IgYXJjaC9hcm02NC9ib290
-L2R0cy9hbWxvZ2ljLycgZm9yIDIwMjUwNTIyMTcyNTM1LjMwMjA2NC0xLWxpbnV4LmFtb29uQGdt
-YWlsLmNvbToKPgo+IGFyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLW9kcm9p
-ZC1uMi1wbHVzLmR0YjogdXNiQGZmZTA5MDAwIChhbWxvZ2ljLG1lc29uLWcxMmEtdXNiLWN0cmwp
-OiAncGh5LXN1cHBseScgZG9lcyBub3QgbWF0Y2ggYW55IG9mIHRoZSByZWdleGVzOiAnXnBpbmN0
-cmwtWzAtOV0rJCcsICdedXNiQFswLTlhLWZdKyQnCj4gICAgICAgICBmcm9tIHNjaGVtYSAkaWQ6
-IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3VzYi9hbWxvZ2ljLG1lc29uLWcxMmEtdXNi
-LWN0cmwueWFtbCMKPiBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyYi1vZHJv
-aWQtbjIuZHRiOiB1c2JAZmZlMDkwMDAgKGFtbG9naWMsbWVzb24tZzEyYS11c2ItY3RybCk6ICdw
-aHktc3VwcGx5JyBkb2VzIG5vdCBtYXRjaCBhbnkgb2YgdGhlIHJlZ2V4ZXM6ICdecGluY3RybC1b
-MC05XSskJywgJ151c2JAWzAtOWEtZl0rJCcKPiAgICAgICAgIGZyb20gc2NoZW1hICRpZDogaHR0
-cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvdXNiL2FtbG9naWMsbWVzb24tZzEyYS11c2ItY3Ry
-bC55YW1sIwo+Ck9rIEkgYW0gYWJsZSB0byByZXByb2R1Y2UgdGhpcywgaXQgc2VlbSB0aGUgaXNz
-dWUgaXMgd2l0aCBzZWNvbmQgcGF0Y2gKCkN1cnJlbnRseSwgSSBhbSBpbiB0aGUgcHJvY2VzcyBv
-ZiBkZWJ1Z2dpbmcgdGhlIG9uYm9hcmRfdXNiX2Rldi5jIGRyaXZlci4KSXQgYXBwZWFycyB0aGF0
-IHRoZSBkcml2ZXIgaXMgbm90IGNvcnJlY3RseSBwYXJzaW5nIHRoZSBwZXJyLWh1YiBub2RlIGFu
-ZAppcyBleGl0aW5nIHByZW1hdHVyZWx5LiBJ4oCZdmUgYmVlbiBhYmxlIHRvIHBhcnRpYWxseSBp
-ZGVudGlmeSB0aGUgcm9vdCBjYXVzZSwKYnV0IEkgaGF2ZW7igJl0IHlldCBmb3VuZCBhIHByb3Bl
-ciBzb2x1dGlvbi4KCmFsYXJtQG9kcm9pZC1uMnBsdXM6fiQgbHNtb2QgfCBncmVwIG9uYm9hcmQK
-b25ib2FyZF91c2JfZGV2ICAgICAgICAyMDQ4MCAgMAphbGFybUBvZHJvaWQtbjJwbHVzOn4kCgpU
-aGFua3MKLUFuYW5kCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJh
-ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51
-eC1hbWxvZ2ljCg==
+Hi Ai,
+
+On Tue, 27 May 2025 at 12:52, Ai Chao <aichao@kylinos.cn> wrote:
+> The for_each_child_of_node_scoped() helper provides a scope-based
+> clean-up functionality to put the device_node automatically.
+>
+> Signed-off-by: Ai Chao <aichao@kylinos.cn>
+
+Thanks for your patch!
+
+> --- a/sound/aoa/soundbus/i2sbus/core.c
+> +++ b/sound/aoa/soundbus/i2sbus/core.c
+> @@ -155,7 +155,7 @@ static int i2sbus_add_dev(struct macio_dev *macio,
+>                           struct device_node *np)
+>  {
+>         struct i2sbus_dev *dev;
+> -       struct device_node *child, *sound = NULL;
+> +       struct device_node *sound = NULL;
+>         struct resource *r;
+>         int i, layout = 0, rlen, ok = force;
+>         char node_name[8];
+> @@ -178,7 +178,7 @@ static int i2sbus_add_dev(struct macio_dev *macio,
+>                 return 0;
+>
+>         i = 0;
+> -       for_each_child_of_node(np, child) {
+> +       for_each_child_of_node_scoped(np, child) {
+>                 if (of_node_name_eq(child, "sound")) {
+>                         i++;
+>                         sound = child;
+
+As people pointed out before, the original (and new) code is buggy,
+as child is saved to sound, and the latter is used after this loop.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
