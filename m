@@ -4,87 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF49DC3ABB2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 May 2025 07:40:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BABBDC3ABB2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 May 2025 08:49:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vOz4AikJOhhS4FPiUsSCOl1wxKCQb5K+irwBHVhggNE=; b=yjRSvaLbdzHVCu
-	K0w2A/DCM051qMaqkWdtxhqy10ckb0G9Pfd1bYFzRHLS1wOT9lbX5iJcdrZZPDNes7Yg3jraYqSvl
-	f1clOlf7hVFdolffeeN4ZYLHzD0Mk8BSoVgb0YXTOCPoCMSn9IM25l9gxnNCRiusCq7SsgpFF8jtT
-	HghEMbcTW88t/nJGZQFXZI3r7oj3N0MdAWab4dJZjcfDh4LLPvVVB/IGwqm4XpGJHWEsDBxE3GXQD
-	LLN5/1DKbyLB4kry0hp+NXmaEslMym5+rjImM0lar6kwRBYd9r+PLh48T064lVCbzppzfrac/EeVN
-	wCZ+cOTmcGcspoHdQrxw==;
+	List-Owner; bh=Py0kChf+32sxRrobCHNvLrbjkhDdgrY0ViyexA+wFv8=; b=2Ql/FGnMthui2L
+	PEufyxw/zmZDOmvANDIH8sjcwp2qQmZZoYlpSgx028q6EveCEzuM+lo68kIA2uBrIlMCRDdbsAP6m
+	p28bM36vT78wK3gchpAFUZo8MCnywekX7iJIbAqbiTFb7L4s+G4Ux1I17Cu/AQOM9zPypTN6782Im
+	S0ZhZ21qxMajj5hCe5al8VFLiWa/Gt6W0FNuaQWPnUvpKvMD7VyB1a4K7FvI3ILB/jJa24+p+F8aZ
+	9c1J9eIQHb6JDEiSi9/s4efqC+ZQZ1pFeHe5/qGrXX4Y7Y7Sa2I31ual3g+b2jxPW/cmxe1pH8h8P
+	q1pRGCacAafLHChW23xQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uKBOo-0000000CSVH-1XSn;
-	Wed, 28 May 2025 07:40:30 +0000
-Received: from mail-vs1-f50.google.com ([209.85.217.50])
+	id 1uKCTy-0000000CckV-2rdi;
+	Wed, 28 May 2025 08:49:54 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uKBMT-0000000CS9K-1DLK;
-	Wed, 28 May 2025 07:38:06 +0000
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4e5962a0f20so376316137.1;
-        Wed, 28 May 2025 00:38:04 -0700 (PDT)
+	id 1uKCR1-0000000CcUO-0D6k
+	for linux-amlogic@lists.infradead.org;
+	Wed, 28 May 2025 08:46:52 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54S8kn05019648
+	for <linux-amlogic@lists.infradead.org>; Wed, 28 May 2025 08:46:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=DRzWkDK3ft+iwkKji/GjVMzB
+	ocQDwCbSuP5DIc/EUys=; b=NYX8fy24OEESH86jLxZM9FLzbN+nsk41j6+K93rW
+	ueBNg7KgmhdpslFMbhhc4lTXjuX2liHHDZxYeQ/+t5uz9RssxOwPIu4W9c2tZM+J
+	CGtb5ziTFEhYj5WTXFiQn5KrflxgZV78v52nlevTu5N0Jjc4c+qYaCk8LOv+Tn+X
+	X9OkFAJ3pBEtSkNYly3WQ2nZCCsEO0I5MNBO/kIJSpabr4MU67xuXpVyT/mgYo2N
+	NHHOxlvQLJOx7rtO0uWJ3xj2jV7gU37aeb1yVu/1aXV7A4de+16hUocYKszCct8r
+	MsQgCFogJEUBfWNdmeQitrcpH8XZeyPrbMesdFQBdkqzXA==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u3fq9tbv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Wed, 28 May 2025 08:46:49 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6faad1f2b69so41041086d6.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 28 May 2025 01:46:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748417882; x=1749022682;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q0FIvnATmtkNNdXQbt1Fz7I3kCcVI6Dqou2JsI1LDaQ=;
-        b=WG4QOeN7Azm8d7p/swGivPoViQvLnOer0+w32aaiBbaoY4CbzFsstGfrY3ZRRz0cSk
-         E96nL6B4ZKXlwvTZNevt9FYDRhU4x0QtH5bq6xfHr5UrgZH9dvcIcpvYfWFT02vlZbA6
-         WGeB6xbNj8ag1KTMXiZjxiSVy+XrXt4QcK4V9Xhk53DlBzxT/vjjEoi/JVS/mX4qYvzt
-         Ih24vLmpX8s2mMlKplIYIagLVQUoG9kndNibtMJE66wZt8OphFFoyObxZB0h20S3l1fg
-         a9Hl4ux4oc5S4dw5eV2jmWw9dTaaraTCAg6L1DttGaURP/6wGBU2nPGaDVYwSh3R8s7j
-         /aFA==
-X-Forwarded-Encrypted: i=1; AJvYcCUzkkdt4ciSF34MQQZravGrn1RLt2DlbIr5kVW4DbK5SdbvLdnOapXxqicooKSlhW6cEgHdbYaVOMdlm7Er@lists.infradead.org, AJvYcCVR077wA5OVA8I6Cug1caDDTMJC80v4WO/XWn/fOdLzhnGawuYk6KCd5OeLlJZgTDsYNlnd2+pLMWb4CWaDqgSZ3g==@lists.infradead.org
-X-Gm-Message-State: AOJu0YxqQ2OL9ysFZgq5sN0cLBtOf/rLN4jZjwJ9k19ltgLmMVqU6vPj
-	y6gXsykRhcKSkHjniVsyGu96fGdC3MXJApnOFj++GcX4FqfmP1GNk4+yZ5gD/Jhx
-X-Gm-Gg: ASbGncvzrUkSgSrE96WKZhSlNoMwgn6tidk23JpRJW1Z1yq0KHbrFLu5RI31t1b4Aw+
-	QLG1P3vew5HNrgEGOyCzHwX7ptsQ438faIykKVHmNEKEQfMe0yde0nPgUimUDbld6SNwvffHUwK
-	ap6OG2a1eKJNT06XpilgjnUTZvo3VZaafBsBbQ6GzGF4A9GR+hkjmslOgQSm7dLEzXwhjG11QZq
-	JIz/TgUE+Md+CVj7stukDdtGvrLXOOyaWJhydspiBGO6HRNhkCjKEsDh2A3OP0S6p4SaVqUF3xx
-	qehYGlkUTdbFj/OPFnHOifGl6cfJ4GJC5mvT4Lv1y3EhikVVmPq9iSJxgvdJlW+aR2Hj5A5PJL5
-	bSAGVK4ioNVmfnA==
-X-Google-Smtp-Source: AGHT+IEFaPNRqPPi3MyCEZW9acytXY+IFhU/Y2eSjXj/1RN5oQ6LbWtjy5mQKVdaNjjkqDdI/hcgmQ==
-X-Received: by 2002:a05:6102:3f56:b0:4e2:aafe:1bde with SMTP id ada2fe7eead31-4e4240b0ed0mr12626131137.9.1748417881726;
-        Wed, 28 May 2025 00:38:01 -0700 (PDT)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87e1f03fcdbsm457424241.19.2025.05.28.00.38.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 May 2025 00:38:00 -0700 (PDT)
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4e5962a0f20so376299137.1;
-        Wed, 28 May 2025 00:38:00 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVat/PUA1i79VIt01iHkoVdGMdUPxMSX6D4BddX7xQDwVsErxDtrFH8tyIq2mOHNPq/Fk86K0+nVD4nS4MKVFBazg==@lists.infradead.org, AJvYcCVrHJRkJEZkXeORKis/zRYecdMDN79HwN9ttF0udE6ssnKbtblke32yEWcvf5U/nyMaz3ojE6Ql6FO2qPpd@lists.infradead.org
-X-Received: by 2002:a05:6102:d87:b0:4e5:9731:6ded with SMTP id
- ada2fe7eead31-4e597316ebfmr3313200137.6.1748417879962; Wed, 28 May 2025
- 00:37:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250527082446.2265500-1-aichao@kylinos.cn> <20250527082446.2265500-3-aichao@kylinos.cn>
-In-Reply-To: <20250527082446.2265500-3-aichao@kylinos.cn>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 28 May 2025 09:37:48 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV5ZhJrRiuEWLbU_gFcv40+izLpR0HN0EZU415s3QAkVg@mail.gmail.com>
-X-Gm-Features: AX0GCFve4Aj5WArc9KkplJVctpVO9pqz2wSMOeJzSTUgarGo2ZgOa2T8YLQGOCU
-Message-ID: <CAMuHMdV5ZhJrRiuEWLbU_gFcv40+izLpR0HN0EZU415s3QAkVg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/6] ALSA: aoa: Use helper function for_each_child_of_node_scoped()
+        d=1e100.net; s=20230601; t=1748422009; x=1749026809;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DRzWkDK3ft+iwkKji/GjVMzBocQDwCbSuP5DIc/EUys=;
+        b=YMswpMFx/ZqbDofC9WvrcjeFjcRFanat4lCBGMhCpQPuijOZtDYJUVlUYb0622teaV
+         3I/N0u/qaArlrtsevF2w+Yi2yIZUJ9e+rSdX7uu3JCoG32I9ruunpk2/zNOVUGhKmiRK
+         qvUTSPtaDVguthITo/SqaoVnL1dBJzKByp9XKpJ6DQPJvxoN4gbxi6C/mhFlyO+fIhY0
+         Y0axP35N4Jm8/vTWV7E1vHi1VN+eEkN/vouoskSRl3PmfrjRuV76CeMEcq/sbRrPloKK
+         L652vUtHngNef/SqSa0wpXrfYGB6BxZl3IlY3zAuYWzKjUjfuXgWT9saTYaZwkzmJibH
+         VWKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUvfJPwIXGzFklNJcvjntQztctBxs/ps2ra1fcolV+iya9eEYGncT2x7RxWszVR0jCnWRR5+iBxHdmhpn+N@lists.infradead.org
+X-Gm-Message-State: AOJu0YwOjXyhsxn7W2BVFl3Pu0TiMiH97ehWP1joeT9xUJnLJdEeCuAq
+	phigAggVaKXbUTXs5KV0OZURWPV/d0H34DlmS1KTuTu192PkPxE/IPSqNKzyKllHvDJOJMNUjvs
+	wxdaZY3DMoRVx6CgX5URGdDHgH8TZAQjpKJZpO7E69tykJYrabg5hb3kvAVrUQzMg+J+SuT+h5g
+	==
+X-Gm-Gg: ASbGncukiuodrJ0Zeg6X3IPCG9rUtRtjUn9UJ6Kd3U/2LiJoY03EGoG4pu67NvZ/Jm1
+	ZKj689dPAialK0F6+/BencZIIPUCWsbxOLJj9uKoIoIB+I03XxQt1lWH4QeBff7YzUinDN0F3ms
+	1xRgfzsv1qQpZhz6frGdB9ZQg58Ha5F8dlk5CjxzgEruOKhZHQyKONcQ6kc2Ick79mUaiMvbcHo
+	qqP+46Mmo0xLKrdZtzsxe7mO3nKyRFztZAOKMPb1TE3cCEm9duSWh5ZVjfQ0keaK9r0QKG96FwV
+	qt48XE8uJO3xhcirHA+RkexEo5UB/sI8c4dzSe0X28Xw65RM6CViJR8rTjQvXP5HaSRJ2m7/AAk
+	=
+X-Received: by 2002:ad4:5b81:0:b0:6f8:e367:8440 with SMTP id 6a1803df08f44-6fa9d0330admr302008836d6.23.1748422008975;
+        Wed, 28 May 2025 01:46:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGo9qqoQrF01ykPGF/17EjYHoPs6gmbavsSE2zy6sawKd53Clq0hMx0BlOXLpAzfgtNG6M5ag==
+X-Received: by 2002:ad4:5b81:0:b0:6f8:e367:8440 with SMTP id 6a1803df08f44-6fa9d0330admr302008336d6.23.1748422008535;
+        Wed, 28 May 2025 01:46:48 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5532f6b3e3asm182752e87.234.2025.05.28.01.46.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 May 2025 01:46:47 -0700 (PDT)
+Date: Wed, 28 May 2025 11:46:45 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Ai Chao <aichao@kylinos.cn>
-Cc: perex@perex.cz, tiwai@suse.com, johannes@sipsolutions.net, 
-	kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com, broonie@kernel.org, 
-	jbrunet@baylibre.com, neil.armstrong@linaro.org, khilman@baylibre.com, 
-	martin.blumenstingl@googlemail.com, shengjiu.wang@gmail.com, 
-	Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, srinivas.kandagatla@linaro.org, 
-	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-renesas-soc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	imx@lists.linux.dev, kernel@pengutronix.de, linux-arm-msm@vger.kernel.org
+Cc: perex@perex.cz, tiwai@suse.com, johannes@sipsolutions.net,
+        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
+        broonie@kernel.org, jbrunet@baylibre.com, neil.armstrong@linaro.org,
+        khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+        shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        nicoleotsuka@gmail.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        srinivas.kandagatla@linaro.org, linux-sound@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
+        kernel@pengutronix.de, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] ASoC: qcom: Use helper function
+ for_each_child_of_node_scoped()
+Message-ID: <vjtgxpbpaowlz7ftryudf44f35jyaislvkckuzrzlpj25z25cf@vytjvui65gec>
+References: <20250527082446.2265500-1-aichao@kylinos.cn>
+ <20250527082446.2265500-7-aichao@kylinos.cn>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20250527082446.2265500-7-aichao@kylinos.cn>
+X-Proofpoint-GUID: TBBj8s0D_Xv40WBAJ1qIBlRdVBOXbp-J
+X-Proofpoint-ORIG-GUID: TBBj8s0D_Xv40WBAJ1qIBlRdVBOXbp-J
+X-Authority-Analysis: v=2.4 cv=X8FSKHTe c=1 sm=1 tr=0 ts=6836cd79 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=dt9VzEwgFbYA:10 a=uJ6pKfArofpzZCl0i4YA:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDA3NSBTYWx0ZWRfX7VGPj+ar38iD
+ JRo0RO6jDqw1a+9GOOeHd15LLOTGT1Ywxh6lWt8lkSavJFHNe0L4mXY/X3+hf0WVJCYixkpH/pJ
+ 7aTd5rMJOkyaNdx7WMSgC5I0aWA0EMuH2s643R8+nz3IUMP6vxco6Ad1RvU1BnAhxz/kmFjreZV
+ pPbYIVNGiPQFmiuHO+RGyyFc4A3IFYDLCWecG3Wud7ZxfzlFqP9dNn0YCs8N/46M+e0LfRVXmJe
+ 5Upjelt58x5/MLJ7AVN7lHJpn/7J+vEjmMJigK7dB+dkSVP+iHZ8ziN3rxgcDZ07grgkxyPIAND
+ dzIewAKmBraRGejcesCTp6gjiiH4wWDO9RpSan7W09uiSAeIWfxXxfPoq18PZndvKUOIoMf1yXa
+ HN+F1zTahzzqQQ4tJsqQLGsVgye7607QVEv/HwNvh/5/OJZlJTtywcyIFK1JhtDykkmXNPAG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-28_04,2025-05-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 phishscore=0 bulkscore=0 mlxlogscore=522
+ mlxscore=0 clxscore=1015 priorityscore=1501 spamscore=0 adultscore=0
+ malwarescore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505280075
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250528_003805_332794_D6E24F1E 
-X-CRM114-Status: GOOD (  21.16  )
+X-CRM114-CacheID: sfid-20250528_014651_201799_D5124F38 
+X-CRM114-Status: GOOD (  13.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,50 +141,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Ai,
-
-On Tue, 27 May 2025 at 12:52, Ai Chao <aichao@kylinos.cn> wrote:
+On Tue, May 27, 2025 at 04:24:46PM +0800, Ai Chao wrote:
 > The for_each_child_of_node_scoped() helper provides a scope-based
 > clean-up functionality to put the device_node automatically.
->
+
+There are no calls to put the node. In the patched files the nodes are
+already automatically put by the looping macro, there is nothing to
+cleanup. Please stop sending this patch.
+
+> 
 > Signed-off-by: Ai Chao <aichao@kylinos.cn>
-
-Thanks for your patch!
-
-> --- a/sound/aoa/soundbus/i2sbus/core.c
-> +++ b/sound/aoa/soundbus/i2sbus/core.c
-> @@ -155,7 +155,7 @@ static int i2sbus_add_dev(struct macio_dev *macio,
->                           struct device_node *np)
->  {
->         struct i2sbus_dev *dev;
-> -       struct device_node *child, *sound = NULL;
-> +       struct device_node *sound = NULL;
->         struct resource *r;
->         int i, layout = 0, rlen, ok = force;
->         char node_name[8];
-> @@ -178,7 +178,7 @@ static int i2sbus_add_dev(struct macio_dev *macio,
->                 return 0;
->
->         i = 0;
-> -       for_each_child_of_node(np, child) {
-> +       for_each_child_of_node_scoped(np, child) {
->                 if (of_node_name_eq(child, "sound")) {
->                         i++;
->                         sound = child;
-
-As people pointed out before, the original (and new) code is buggy,
-as child is saved to sound, and the latter is used after this loop.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+> ---
+>  sound/soc/qcom/lpass-cpu.c       | 3 +--
+>  sound/soc/qcom/qdsp6/q6afe-dai.c | 3 +--
+>  sound/soc/qcom/qdsp6/q6asm-dai.c | 4 +---
+>  3 files changed, 3 insertions(+), 7 deletions(-)
+> 
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+With best wishes
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
