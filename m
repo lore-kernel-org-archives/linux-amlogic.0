@@ -4,89 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09000C5B552
-	for <linux-amlogic@archiver.kernel.org>; Fri, 30 May 2025 08:18:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA7B4C3ABB2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 30 May 2025 08:22:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U/lu6wsEZVnKUbd1qB7V65IBzgLVDq8IR249VUg0+wU=; b=RvWsI/BF9SBUH2
-	pQ+K0Zu1udp+fhPBYwJnOkOG1nBdlx/S08kyOiQku8HWy/cv6ezIi87Lf7mFmr02cgjWJ5o33s2MO
-	ZYgc5A4uWwiQbUr9CW1X7ZN6CP47Y9KoZbUfXyaNvKNa6uAxFJcqYa4QS/5ImZTTIEZHhwQ1yipyE
-	ZJlvXWTrnJ5AWHotKFvI3C8jV9ym7TMK/h7GedhTZXp5QM3n86QwGC+rGDw3ARlZS+0oMFkepS0Dy
-	ES9JYBjrUHzPP2hjgDV7yN2d715HWIXvjlgz7oChdmfDtWDFzFikch2o8JXFlcxShSqAiawUGO75J
-	mMIr7Zf50S+DBmD88Bhw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=sY8fTHI4zGMrlRLvD/gT6do/bkM9dTETvqBoKf+3v3c=; b=LIGOXzJFqVabn/
+	dlcLwinfRrr/FZ28zav74xlp5igOf19zOCcKufthLbG4g+LSXM3THK7wVYO5+Hu1WAWs38Ov+8V73
+	MB4DiAkEoUArpnMWGFWI/LvkoekCe4NsRb7taFRsie+eXZ0a/IPOrMAfx+Cwf2ly/LQHtxSsojjcY
+	ex1JHgHNQKPNZAmLVTho4TOaijYkWDuQNVuX54T1lG2g4zRjrO+RpmyBQRT8UEct98+VY+tsTjnne
+	LeW17svaXRpfRmlS95//4au9CCvS4kzYY6320I0rfnJVCoo8sM8MANb3qjGqOKdLjsA8q/l/JKK+L
+	dVBsXLuF2CXEhdY5onQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uKuwb-0000000HaEV-49G8;
-	Fri, 30 May 2025 08:18:25 +0000
-Received: from mail-vs1-f52.google.com ([209.85.217.52])
+	id 1uKv0o-0000000Hadd-0uyu;
+	Fri, 30 May 2025 08:22:46 +0000
+Received: from mail.successa.pl ([162.19.205.12])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uKuWQ-0000000HW0k-2twq;
-	Fri, 30 May 2025 07:51:24 +0000
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4e58a9bb8fcso597089137.2;
-        Fri, 30 May 2025 00:51:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748591479; x=1749196279;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X2WzxSo6sYbiM6b0F2XSBjn+T4nA2ds5QVgGNEvrhj8=;
-        b=cScA9Qn0ZMIYsb7U5v6v/KcZksIxhgt/ve6U2VcQsII63+h7REFYTzJsOaYT8SzIw2
-         g78lemUA/WIYPEHUEJeHS+RIieURBKyk0fR0ADy1Akj0o/eLEPWCHO00nsEAqcnCvzgK
-         dr3uRsYbTGH6cXGh00XnYkAO0UxE8lp+7VFN2xbzbYBUYJy3d+R0N7KXOh0fzWxV6Y6u
-         FXW9r5AigyMPBUL3e7mvKEyo1hD7/hN9mKisiqaOuaca+X2+54q7Ej10J4qqhvXYr8u9
-         4zwxGzwbRQvxE5wO6qB/jTJI/aWqaSpLdrv6QlmFTS6MOEq5euu16zS0YRVM9KTuZesa
-         w8Hw==
-X-Forwarded-Encrypted: i=1; AJvYcCUgFd+I05x2U/QnthNlV2ezKdCKUJFOMU4LuaOHdxjmgx3rWkRSeVk4V7KLqPNCvnqLSiBuidFbgJHHsi+b@lists.infradead.org, AJvYcCW5shm4ByMYGJObVx6SXi+2bpOSld8JLUankPsVZra2ZAPQeK05fWcQSrWgTQxjUSD5rUZHrRj52nf0AWOBicKv8g==@lists.infradead.org
-X-Gm-Message-State: AOJu0YxIKldY7f3gmHbT3AdwoXw4fxTXfrC/HLCxIkReSybTiOCdPgve
-	181jw1C8dJJOxPic5niu1oGpQxLMuHsqvj4LZY0DiY6heclwLn64wFqHyCWDztZB
-X-Gm-Gg: ASbGnctRYOfUX5Gaz3FN04jsFicCcKGUYyInqOLFtrNwsVn70DB9ykOC4EDm09fitFd
-	vnY860cZjWZ55uuEE/IK+r/NzYh7Xj+CHOYjV4kClepjXtgtWDrvgcSAxXvxr6EplV0YJCU4UYb
-	EehEtJjpKCHS5DPGKVjGOGXpMeP9vs/BnhxAOe03buV/SHILJDve76bJkpVax1+Wxinaz3/LUSJ
-	C98ceiIqeCyt3LpGimQq3h69C1i1/DpYqLpFtUGQYNLfQ9Gx5GLJJxIHvLtdWlNYzdo32v2Wf56
-	10dlJaXx6p0gDiocC/3b1wY0epNcGsJSCD4a4YbIQsGDJknERxRFjD1IM5BjkWTdEmBDM6tN5zv
-	w8yN9+C3+UsBXRqfnGQ==
-X-Google-Smtp-Source: AGHT+IE3kVp3TkE91A6iqaHGnAGlJhbp71DlWER6jWqvcu71Ho+O4I3v2gGDmO7fDcCIiXaJwxD1Fw==
-X-Received: by 2002:a05:6102:dd2:b0:4e2:a5b9:df1d with SMTP id ada2fe7eead31-4e6e40f5b8cmr2427879137.8.1748591479275;
-        Fri, 30 May 2025 00:51:19 -0700 (PDT)
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87e2a27da43sm2356303241.5.2025.05.30.00.51.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 May 2025 00:51:18 -0700 (PDT)
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-52f036ef186so500333e0c.1;
-        Fri, 30 May 2025 00:51:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUxmq81yxrLofpYQy5tN/6q7BkDx7d3KyKegst4LIg5jg6ez2h55a5iwQWnCFB93jYX2vzrlccvfzbzWt35PZuUZg==@lists.infradead.org, AJvYcCVYaMzhrwX3TlFu6YApdGcD016UrOPsDUSCZRDNCgLvynZTndzJ8DhruEcT7nSJOCi/yomusWw1KHSdgXnM@lists.infradead.org
-X-Received: by 2002:a05:6122:2188:b0:52f:724a:c748 with SMTP id
- 71dfb90a1353d-53080f5955bmr1748247e0c.1.1748591478153; Fri, 30 May 2025
- 00:51:18 -0700 (PDT)
+	id 1uKucD-0000000HX1t-0M7o
+	for linux-amlogic@lists.infradead.org;
+	Fri, 30 May 2025 07:57:23 +0000
+Received: by mail.successa.pl (Postfix, from userid 1002)
+	id B7B93279BE; Fri, 30 May 2025 09:56:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=successa.pl; s=mail;
+	t=1748591835; bh=Q6Mp/vCJCiZNgk6fb7utkqIErbcoVoR/CugPofoeCtU=;
+	h=Date:From:To:Subject:From;
+	b=nsieAWD4wTTQr9435n5UIjyQpv5CnzW9eATgK6G6Z5xKlJeJAQ5IRoYQiEV9bPhne
+	 uYuhIqL8r0ROFGn+RONcmq8vMowiglH775OijneHsrj7rGxTrqrBl+B2a43yIcQlxQ
+	 zpUvY3FBm42tGJ8KK+D2C0W545KozJ+Ryswa+cVwiYX+kIbo7uLDRwSFLQBXi5Aywb
+	 9sVwLoVRIRNGROEsfDOKdtcY4Hg2fNXmRriQm9SWD0U+bvVk/g46Q3ZmNmPNa1i27t
+	 i8hAPHs3INUdTkKm2mT7uuufBH54BEzsJJMIOF8dFGtfxU3LOiLyh8s2l9zwe98Akc
+	 GX7C/uhg1+wMQ==
+Received: by mail.successa.pl for <linux-amlogic@lists.infradead.org>; Fri, 30 May 2025 07:55:27 GMT
+Message-ID: <20250530084500-0.1.ii.1o2y2.0.8bri7oo1cc@successa.pl>
+Date: Fri, 30 May 2025 07:55:27 GMT
+From: "Adam Drzewiecki" <adam.drzewiecki@successa.pl>
+To: <linux-amlogic@lists.infradead.org>
+Subject: =?UTF-8?Q?Pytanie_o_samoch=C3=B3d_?=
+X-Mailer: mail.successa.pl
 MIME-Version: 1.0
-References: <20250529112423.484232-1-j-choudhary@ti.com>
-In-Reply-To: <20250529112423.484232-1-j-choudhary@ti.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 30 May 2025 09:51:05 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVFrPanoO4CcRKVWhDsXCUm6ty3oayZ6yLs6AksZZJaBg@mail.gmail.com>
-X-Gm-Features: AX0GCFu5SrfJ6XEYDFBe1Hbl2dYZBDrGAQ09XF6wFfWGxGH0eSYgcybRaCFnqRc
-Message-ID: <CAMuHMdVFrPanoO4CcRKVWhDsXCUm6ty3oayZ6yLs6AksZZJaBg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: Add no-hpd property for all ti-sn65dsi86
- bridge consumers
-To: Jayesh Choudhary <j-choudhary@ti.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	neil.armstrong@linaro.org, khilman@baylibre.com, devicetree@vger.kernel.org, 
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	cros-qcom-dts-watchers@chromium.org, andersson@kernel.org, 
-	konradybcio@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	imx@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, dianders@chromium.org, 
-	linux-kernel@vger.kernel.org, max.krummenacher@toradex.com, 
-	ernestvanhoecke@gmail.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250530_005122_733796_7D9E9983 
-X-CRM114-Status: GOOD (  22.97  )
+X-CRM114-CacheID: sfid-20250530_005721_804619_7EC76B11 
+X-CRM114-Status: UNSURE (   0.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,63 +61,15 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jayesh,
-
-Thanks for your patch!
-
-On Thu, 29 May 2025 at 13:24, Jayesh Choudhary <j-choudhary@ti.com> wrote:
-> In the SN65DSI86 DSI-2-eDP bridge, HPD is not supported as of now.
-> But DisplayPort connector_type usecases does need hpd to be enabled.
-> In order not to break any platform from those driver changes, add
-> "no-hpd" property to all the existing sn65dsi86 nodes (that don't
-> have it already) as hpd is not being used there anyways.
->
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-
-DT bindings day:
-
-  no-hpd:
-    type: boolean
-    description:
-      Set if the HPD line on the bridge isn't hooked up to anything or is
-      otherwise unusable.
-
-On all Renesas platforms listed below, the DP bridge's HPD pin is wired
-to the HPD pin on the mini-DP connector.  What am I missing?
-
-> Upcoming driver changes that will break platforms if we do not have this
-> property in all the existing sn65dsi86 nodes that assumes hpd is disabled:
-> <https://lore.kernel.org/all/20250529110418.481756-1-j-choudhary@ti.com/>
-
-Breaking backwards-compatibility with existing DTBs is definitely a no-go.
-I'll reply there, too...
-
->  .../boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts     | 1 +
->  arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts             | 1 +
->  arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts                 | 1 +
->  arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi             | 1 +
->  arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts            | 1 +
->  arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts        | 1 +
->  arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi           | 1 +
->  7 files changed, 7 insertions(+)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RHppZcWEIGRvYnJ5LAoKQ3p5IGludGVyZXN1amUgUGHFhHN0d2Egcm96d2nEhXphbmllIHVtb8W8
+bGl3aWFqxIVjZSBtb25pdG9yb3dhbmllIHNhbW9jaG9kw7N3IGZpcm1vd3ljaCBvcmF6IG9wdHlt
+YWxpemFjasSZIGtvc3p0w7N3IGljaCB1dHJ6eW1hbmlhPyAKCgpQb3pkcmF3aWFtCkFkYW0gRHJ6
+ZXdpZWNraQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
+b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
+b2dpYwo=
