@@ -4,77 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24D01C5AD49
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 May 2025 12:01:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09000C5B552
+	for <linux-amlogic@archiver.kernel.org>; Fri, 30 May 2025 08:18:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=eCc7NmWxKYkGzjDPcChLX5J2hyI9asDNRhtp5WO+TF8=; b=ebZUGytp8NutvF
-	1C/SXMoWQq18nJyltytReqs0RcGUAagDi3dRo/v/sYiFXmcxWkEKMTG+0sUnnqcEMlum34j+hCT8l
-	8Uz1pg3xd5aFc2zgvhyDvwLMycTTTUCtrhBhGrP9RUndDAhVg7hSgUOGa/UKtOOjjj6IX0+Z0Y7fj
-	pXqJ5CfVhJUSnbYu4Edq4eDUZZJ1hFFhi/Rlv1hwC0xK99gxr0olmgfLzLbhsYnUTHi70n9zcqKwQ
-	eSe7btBOtNkBolaL4OVW9LPUc17AWn+RF4ALPPFWxvhY/dbwiKcvQDhttlNcDaFdobzvhnLfwcn7F
-	xtYjOS6PeK6fs4gdfwjA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=U/lu6wsEZVnKUbd1qB7V65IBzgLVDq8IR249VUg0+wU=; b=RvWsI/BF9SBUH2
+	pQ+K0Zu1udp+fhPBYwJnOkOG1nBdlx/S08kyOiQku8HWy/cv6ezIi87Lf7mFmr02cgjWJ5o33s2MO
+	ZYgc5A4uWwiQbUr9CW1X7ZN6CP47Y9KoZbUfXyaNvKNa6uAxFJcqYa4QS/5ImZTTIEZHhwQ1yipyE
+	ZJlvXWTrnJ5AWHotKFvI3C8jV9ym7TMK/h7GedhTZXp5QM3n86QwGC+rGDw3ARlZS+0oMFkepS0Dy
+	ES9JYBjrUHzPP2hjgDV7yN2d715HWIXvjlgz7oChdmfDtWDFzFikch2o8JXFlcxShSqAiawUGO75J
+	mMIr7Zf50S+DBmD88Bhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uKbx8-0000000FhKO-2xTo;
-	Thu, 29 May 2025 12:01:42 +0000
-Received: from lelvem-ot01.ext.ti.com ([198.47.23.234])
+	id 1uKuwb-0000000HaEV-49G8;
+	Fri, 30 May 2025 08:18:25 +0000
+Received: from mail-vs1-f52.google.com ([209.85.217.52])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uKbNN-0000000FblW-0X3d;
-	Thu, 29 May 2025 11:24:48 +0000
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54TBOPh03504642;
-	Thu, 29 May 2025 06:24:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1748517865;
-	bh=56qRrAtL/a6koU+ClmQ0T5MnkBdpWG/sJANgtbap56g=;
-	h=From:To:CC:Subject:Date;
-	b=luI5Snan38kNQ+vphh1lKji9/YO3x7//X4p4oebHZ8lkEjIF2yvQsciBH8yUkuK9k
-	 AMLL08bddYOX598TBZijLKU8dGX1Ixll7VZVftQHBWHRij2nORFQbFkhkLBTXk31NU
-	 siM9pFG3dXuCOKZx68YdFvsYdlscM/r5n1TufYYc=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54TBOPT2061510
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 29 May 2025 06:24:25 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
- May 2025 06:24:24 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 29 May 2025 06:24:24 -0500
-Received: from localhost (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.14])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54TBONkn1516428;
-	Thu, 29 May 2025 06:24:24 -0500
-From: Jayesh Choudhary <j-choudhary@ti.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-        <devicetree@vger.kernel.org>
-CC: <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <shawnguo@kernel.org>, <s.hauer@pengutronix.de>,
-        <kernel@pengutronix.de>, <festevam@gmail.com>,
-        <cros-qcom-dts-watchers@chromium.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <geert+renesas@glider.be>,
-        <magnus.damm@gmail.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <imx@lists.linux.dev>,
-        <linux-arm-msm@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
-        <dianders@chromium.org>, <linux-kernel@vger.kernel.org>,
-        <max.krummenacher@toradex.com>, <j-choudhary@ti.com>,
-        <ernestvanhoecke@gmail.com>
-Subject: [PATCH] arm64: dts: Add no-hpd property for all ti-sn65dsi86 bridge consumers
-Date: Thu, 29 May 2025 16:54:23 +0530
-Message-ID: <20250529112423.484232-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.34.1
+	id 1uKuWQ-0000000HW0k-2twq;
+	Fri, 30 May 2025 07:51:24 +0000
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4e58a9bb8fcso597089137.2;
+        Fri, 30 May 2025 00:51:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748591479; x=1749196279;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X2WzxSo6sYbiM6b0F2XSBjn+T4nA2ds5QVgGNEvrhj8=;
+        b=cScA9Qn0ZMIYsb7U5v6v/KcZksIxhgt/ve6U2VcQsII63+h7REFYTzJsOaYT8SzIw2
+         g78lemUA/WIYPEHUEJeHS+RIieURBKyk0fR0ADy1Akj0o/eLEPWCHO00nsEAqcnCvzgK
+         dr3uRsYbTGH6cXGh00XnYkAO0UxE8lp+7VFN2xbzbYBUYJy3d+R0N7KXOh0fzWxV6Y6u
+         FXW9r5AigyMPBUL3e7mvKEyo1hD7/hN9mKisiqaOuaca+X2+54q7Ej10J4qqhvXYr8u9
+         4zwxGzwbRQvxE5wO6qB/jTJI/aWqaSpLdrv6QlmFTS6MOEq5euu16zS0YRVM9KTuZesa
+         w8Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCUgFd+I05x2U/QnthNlV2ezKdCKUJFOMU4LuaOHdxjmgx3rWkRSeVk4V7KLqPNCvnqLSiBuidFbgJHHsi+b@lists.infradead.org, AJvYcCW5shm4ByMYGJObVx6SXi+2bpOSld8JLUankPsVZra2ZAPQeK05fWcQSrWgTQxjUSD5rUZHrRj52nf0AWOBicKv8g==@lists.infradead.org
+X-Gm-Message-State: AOJu0YxIKldY7f3gmHbT3AdwoXw4fxTXfrC/HLCxIkReSybTiOCdPgve
+	181jw1C8dJJOxPic5niu1oGpQxLMuHsqvj4LZY0DiY6heclwLn64wFqHyCWDztZB
+X-Gm-Gg: ASbGnctRYOfUX5Gaz3FN04jsFicCcKGUYyInqOLFtrNwsVn70DB9ykOC4EDm09fitFd
+	vnY860cZjWZ55uuEE/IK+r/NzYh7Xj+CHOYjV4kClepjXtgtWDrvgcSAxXvxr6EplV0YJCU4UYb
+	EehEtJjpKCHS5DPGKVjGOGXpMeP9vs/BnhxAOe03buV/SHILJDve76bJkpVax1+Wxinaz3/LUSJ
+	C98ceiIqeCyt3LpGimQq3h69C1i1/DpYqLpFtUGQYNLfQ9Gx5GLJJxIHvLtdWlNYzdo32v2Wf56
+	10dlJaXx6p0gDiocC/3b1wY0epNcGsJSCD4a4YbIQsGDJknERxRFjD1IM5BjkWTdEmBDM6tN5zv
+	w8yN9+C3+UsBXRqfnGQ==
+X-Google-Smtp-Source: AGHT+IE3kVp3TkE91A6iqaHGnAGlJhbp71DlWER6jWqvcu71Ho+O4I3v2gGDmO7fDcCIiXaJwxD1Fw==
+X-Received: by 2002:a05:6102:dd2:b0:4e2:a5b9:df1d with SMTP id ada2fe7eead31-4e6e40f5b8cmr2427879137.8.1748591479275;
+        Fri, 30 May 2025 00:51:19 -0700 (PDT)
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87e2a27da43sm2356303241.5.2025.05.30.00.51.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 May 2025 00:51:18 -0700 (PDT)
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-52f036ef186so500333e0c.1;
+        Fri, 30 May 2025 00:51:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUxmq81yxrLofpYQy5tN/6q7BkDx7d3KyKegst4LIg5jg6ez2h55a5iwQWnCFB93jYX2vzrlccvfzbzWt35PZuUZg==@lists.infradead.org, AJvYcCVYaMzhrwX3TlFu6YApdGcD016UrOPsDUSCZRDNCgLvynZTndzJ8DhruEcT7nSJOCi/yomusWw1KHSdgXnM@lists.infradead.org
+X-Received: by 2002:a05:6122:2188:b0:52f:724a:c748 with SMTP id
+ 71dfb90a1353d-53080f5955bmr1748247e0c.1.1748591478153; Fri, 30 May 2025
+ 00:51:18 -0700 (PDT)
 MIME-Version: 1.0
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250529112423.484232-1-j-choudhary@ti.com>
+In-Reply-To: <20250529112423.484232-1-j-choudhary@ti.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 30 May 2025 09:51:05 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVFrPanoO4CcRKVWhDsXCUm6ty3oayZ6yLs6AksZZJaBg@mail.gmail.com>
+X-Gm-Features: AX0GCFu5SrfJ6XEYDFBe1Hbl2dYZBDrGAQ09XF6wFfWGxGH0eSYgcybRaCFnqRc
+Message-ID: <CAMuHMdVFrPanoO4CcRKVWhDsXCUm6ty3oayZ6yLs6AksZZJaBg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: Add no-hpd property for all ti-sn65dsi86
+ bridge consumers
+To: Jayesh Choudhary <j-choudhary@ti.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	neil.armstrong@linaro.org, khilman@baylibre.com, devicetree@vger.kernel.org, 
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	cros-qcom-dts-watchers@chromium.org, andersson@kernel.org, 
+	konradybcio@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	imx@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, dianders@chromium.org, 
+	linux-kernel@vger.kernel.org, max.krummenacher@toradex.com, 
+	ernestvanhoecke@gmail.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250529_042445_267584_977460EA 
-X-CRM114-Status: GOOD (  12.03  )
+X-CRM114-CacheID: sfid-20250530_005122_733796_7D9E9983 
+X-CRM114-Status: GOOD (  22.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,121 +103,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In the SN65DSI86 DSI-2-eDP bridge, HPD is not supported as of now.
-But DisplayPort connector_type usecases does need hpd to be enabled.
-In order not to break any platform from those driver changes, add
-"no-hpd" property to all the existing sn65dsi86 nodes (that don't
-have it already) as hpd is not being used there anyways.
+Hi Jayesh,
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
+Thanks for your patch!
 
-Upcoming driver changes that will break platforms if we do not have this
-property in all the existing sn65dsi86 nodes that assumes hpd is disabled:
-<https://lore.kernel.org/all/20250529110418.481756-1-j-choudhary@ti.com/>
+On Thu, 29 May 2025 at 13:24, Jayesh Choudhary <j-choudhary@ti.com> wrote:
+> In the SN65DSI86 DSI-2-eDP bridge, HPD is not supported as of now.
+> But DisplayPort connector_type usecases does need hpd to be enabled.
+> In order not to break any platform from those driver changes, add
+> "no-hpd" property to all the existing sn65dsi86 nodes (that don't
+> have it already) as hpd is not being used there anyways.
+>
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 
-(sc7180-trogdor-ti-sn65dsi86.dtsi, sdm850-lenovo-yoga-c630.dts and
-sdm845-cheza.dtsi already have this property.)
+DT bindings day:
 
-NOTE: Grouping the logical changes together in a single patch even though
-we have multiple vendor dts. I hope that is not an issue.
+  no-hpd:
+    type: boolean
+    description:
+      Set if the HPD line on the bridge isn't hooked up to anything or is
+      otherwise unusable.
 
- .../boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts     | 1 +
- arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts             | 1 +
- arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts                 | 1 +
- arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi             | 1 +
- arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts            | 1 +
- arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts        | 1 +
- arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi           | 1 +
- 7 files changed, 7 insertions(+)
+On all Renesas platforms listed below, the DP bridge's HPD pin is wired
+to the HPD pin on the mini-DP connector.  What am I missing?
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
-index 0f48c32bec97..6a7d7db3ef8f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
-@@ -292,6 +292,7 @@ edp_bridge: bridge@2c {
- 		vpll-supply = <&reg_main_1v8>;
- 		vcca-supply = <&reg_main_1v2>;
- 		vcc-supply = <&reg_main_1v2>;
-+		no-hpd;
- 
- 		ports {
- 			#address-cells = <1>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
-index 3ae3824be027..599a53969326 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
-@@ -147,6 +147,7 @@ edp_bridge: bridge@2c {
- 		vpll-supply = <&reg_main_1v8>;
- 		vcca-supply = <&reg_main_1v2>;
- 		vcc-supply = <&reg_main_1v2>;
-+		no-hpd;
- 
- 		ports {
- 			#address-cells = <1>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-index 672ac4c3afa3..8fa18273684f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-@@ -384,6 +384,7 @@ sn65dsi86_bridge: bridge@2c {
- 
- 		clocks = <&rpmhcc RPMH_LN_BB_CLK3>;
- 		clock-names = "refclk";
-+		no-hpd;
- 
- 		ports {
- 			#address-cells = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-index 0916fd57d1f1..a115e3fc4cb9 100644
---- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-@@ -214,6 +214,7 @@ bridge@2c {
- 		vpll-supply = <&reg_1p8v>;
- 		vcca-supply = <&reg_1p2v>;
- 		vcc-supply = <&reg_1p2v>;
-+		no-hpd;
- 
- 		ports {
- 			#address-cells = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-index 6955eafd8d6a..fcc2d8edd464 100644
---- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-@@ -349,6 +349,7 @@ bridge@2c {
- 				vpll-supply = <&reg_1p8v>;
- 				vcca-supply = <&reg_1p2v>;
- 				vcc-supply = <&reg_1p2v>;
-+				no-hpd;
- 
- 				ports {
- 					#address-cells = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts b/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
-index 4d890e0617af..8b9592b87366 100644
---- a/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
-@@ -460,6 +460,7 @@ bridge@2c {
- 		vpll-supply = <&reg_1p8v>;
- 		vcca-supply = <&reg_1p2v>;
- 		vcc-supply = <&reg_1p2v>;
-+		no-hpd;
- 
- 		ports {
- 			#address-cells = <1>;
-diff --git a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-index b4024e85ae5a..686a37a8680f 100644
---- a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-@@ -256,6 +256,7 @@ bridge@2c {
- 		vpll-supply = <&reg_1p8v>;
- 		vcca-supply = <&reg_1p2v>;
- 		vcc-supply = <&reg_1p2v>;
-+		no-hpd;
- 
- 		ports {
- 			#address-cells = <1>;
+> Upcoming driver changes that will break platforms if we do not have this
+> property in all the existing sn65dsi86 nodes that assumes hpd is disabled:
+> <https://lore.kernel.org/all/20250529110418.481756-1-j-choudhary@ti.com/>
+
+Breaking backwards-compatibility with existing DTBs is definitely a no-go.
+I'll reply there, too...
+
+>  .../boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts     | 1 +
+>  arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts             | 1 +
+>  arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts                 | 1 +
+>  arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi             | 1 +
+>  arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts            | 1 +
+>  arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts        | 1 +
+>  arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi           | 1 +
+>  7 files changed, 7 insertions(+)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.34.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
 _______________________________________________
 linux-amlogic mailing list
