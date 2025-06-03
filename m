@@ -4,92 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51783C5AD49
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 18:19:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 025B3C5AE59
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 20:02:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/L9Ryvb3feFcxAY6J2Jxkajkrm5tdSXFT6v4STjXuOg=; b=nxz8T3Q/U+q6J1
-	z49sRk6U/8LPTLDlFQn9nUVQ2MDCYOMyFGmeOu3/2zlIEp2MKSk1+bMmtXYmx6LVieAZOjLF+C6cF
-	N6QjSDnc5u1Z9tWTVpsBLbmJeLi+bo6GHQrfJ5FAlMX8nHXWFRw8CcJrN84MO5KVC4L7mrCpIC/Hh
-	mUW70DBmC2Anf5jPWO9xl1lNkApywoWcvC3kRbKKvt2QSHPqrT8D/P83qjNFiZqBzINQ9iajlEexT
-	qf7Q7/nvmK2aXEj41JQpYRiztxqmnFA1K7P4DI6OkPbcoIwnNGZJnDujxX5ZjL3gmKHWmHrags6u+
-	62CJoDvqnRs2qlDKkirQ==;
+	List-Owner; bh=/VltpiQQNZN7yiGoAyq8VsfX/piazr9981Q4eqrMe5Y=; b=rAqAobagex9aX+
+	HoZChMebOie+HAQV3vAZ6P1XtgoSxs0A4XwB9Qu12LL32sv2LN1D/BnEcLLZArNB1uzcaFQasL6f6
+	XQgllzhrhsvVBlP09iYvmGjTklDnf/9uk6S2KVOR3k+N3/tpd3Y1Sji/uovgGPLH1+pcOWyel82nr
+	fJOhV9HjELk3pPkPMSJAOMonnQyTc3zZLM3oOzDjW+rJogSVefu16Ckod/fWLD1EujzFPTq2dYqUC
+	epvegXyIHbW5pk7EE7Rc1Oi2A3NJ8f6NwURxoBXQlax2dVTr0T92TfJwS9J5bfY5HD3DgNBSgdY7t
+	4+nM8DN06MJ72EjmFUQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMWE3-0000000BZOR-2gy6;
-	Tue, 03 Jun 2025 18:19:03 +0000
-Received: from mail-pl1-x62a.google.com ([2607:f8b0:4864:20::62a])
+	id 1uMXq4-0000000BkvN-46WT;
+	Tue, 03 Jun 2025 20:02:24 +0000
+Received: from mail-pl1-x632.google.com ([2607:f8b0:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMWBr-0000000BZ95-3gFO;
-	Tue, 03 Jun 2025 18:16:48 +0000
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-234ade5a819so53527595ad.1;
-        Tue, 03 Jun 2025 11:16:47 -0700 (PDT)
+	id 1uMXq2-0000000Bkv4-2yhC
+	for linux-amlogic@lists.infradead.org;
+	Tue, 03 Jun 2025 20:02:24 +0000
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-23228b9d684so64521775ad.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 03 Jun 2025 13:02:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1748974606; x=1749579406; darn=lists.infradead.org;
+        d=googlemail.com; s=20230601; t=1748980942; x=1749585742; darn=lists.infradead.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=muedraecWG3k6sC4BkfWIIfP1Qhn6jm5riTVBMIqDbo=;
-        b=O9h207cVOTzYEAHc4l2UK9XmsbvGU4Oqpt7krxWa+9SzIs4dhYKK7o6ZnfBWVEh2G3
-         2AbRut3PA/Vr54tTCHmVHt8QIQfG0oBCSgLUgrvVyRc5C0TbFWtaYIcaLJwx/uN4l+Y0
-         HqPVnvTJR+YWRijnKLc1SaDRX6oN2EEHQ7ffHLiVqTWIy4hsMi/DFNBPChSXfNV+LpQG
-         zDYcf6Q4POSrYMjGTB/G91jIq2q1SWDGpS2FEEYJUdFOL75InZyb5/B/1bYgcGiGjGvs
-         o0oMFZwPqPdRfzOzD78/5RCJBOJdc9KHi522GSTvFnsO5SOqwu6+NcO7qGlazI6Tl5WS
-         6SVw==
+        bh=K7mYbEanim3f7HvwnSr13q0zdQduXybtOiIEIfnjJ/4=;
+        b=GtZA0J85iidq1dzG1Sh6heESKjEFBVcq6HYppIwEJJRcunRP+z7z9q7xkO5yOXRf/H
+         tnGFB4irp+4oeSRgdtQgLmJm/OkSGvWXaGPyqiSrLvYadoOaLg7gc52nfYop00sQD1ER
+         FpCF45Hsn406lIxRWnJhYeDDfIycYQ/+5kV7oYk9b/BZ1tSYgzjnrPt4zh+AgupMe0QD
+         skZ3NRlSp0sK9Z/gurOQkOSJhAjm7nygyQWWSw/5zsecmFIHm+eFBq9vmEVVopSM+4mp
+         BGyRYf1MHT1DbvlefQcE9HzudwsEkOsBKQR+rXr1xel+igefKtZTfEJ2CdahzQo8oIzq
+         ssSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748974606; x=1749579406;
+        d=1e100.net; s=20230601; t=1748980942; x=1749585742;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=muedraecWG3k6sC4BkfWIIfP1Qhn6jm5riTVBMIqDbo=;
-        b=VY4DTqGWqxlUov1jTsZvZ88+PF0Ed/dmFk4cwkUGzWZur42bq/m8zpq84j2WzP8uub
-         Zb0Di21LGhG7gJnJZx6udJyuM+5Z2IvAi64ELnRkCc0lVZ9Ru+bkeTtw6MaKlLukV6iP
-         mavoZqHCp6llBGS57NSzuKcCmcmuxFXXdTlpvBoS45Gig0inBvcYrLZw9gjGbbuUTeL+
-         7j8DO/bAuDr5tCECHKZbUd/ohZQUZFEiKFCo3oVEbuVnVxr7kNQeZHxCM12L33UuD0Ih
-         FUeTWQZy9nvmHnNK+Sm4rWvzshT7pNVzjFgRJ5AkK3lT1okJdQGZhhBC152OXVRAFMMu
-         j6/A==
-X-Forwarded-Encrypted: i=1; AJvYcCUBzSUv7SCdJlEgIXUZNErNqGRm9B6z2zeXPfGslR9fuJjoL9IJBGw7GJ1We5gsEbZqv9yqwy9L6CKoftlzGOfbTQ==@lists.infradead.org, AJvYcCW7tH9EADZXMc3+a44jrpHh+erQZA5jO/q07S74dfM0x9x91NQXmgD65/39Cqr8Ca5xUvXgo13ynQ5hAC4N@lists.infradead.org
-X-Gm-Message-State: AOJu0YxDiaCkAaXC0djhlexoluk7lv3aIS0FDDbsQv/UK0GDV+P/j/WS
-	KX0MIj2Vcv6bZXhUPYo1h7eGg8oDAq4M4Zzv0URYQeG4pWtC82SvEFUiWVAxyCJXtKbCFEJ6+CD
-	gfcs3aanA8yisrdE98SkTz04jLDVVKKQ=
-X-Gm-Gg: ASbGnct6rD+OQ8+FLBtIuOa9mSchpR9eMMfWBdcMjpU9iBzuuzIdGJPcRN4m2vBV8sj
-	zOsdfc5RfP9e2X+gHKAGzdp0/QMhxbASFT93b361oXrJVIicaMTmVQdB8fUP7ATreTFCgWbKP+q
-	Rh++TQC9o5pWi7aO+d4MC/lfcr0LKIvUOmnDvN+DWNJa5lHS3PckdUCJOXqhklx+hsEwM6qbwLV
-	HCV
-X-Google-Smtp-Source: AGHT+IHr9J8+h+AZ8STPC1y2/qEM2ZZcXzahpAeXjwcKczY154NqfHQ6m3ty2wKy8w/H9uZv/VxmB7VQvs3K1RzoMLk=
-X-Received: by 2002:a17:903:234c:b0:235:779:edfd with SMTP id
- d9443c01a7336-2355f76c215mr179533115ad.39.1748974606365; Tue, 03 Jun 2025
- 11:16:46 -0700 (PDT)
+        bh=K7mYbEanim3f7HvwnSr13q0zdQduXybtOiIEIfnjJ/4=;
+        b=aCECpg2ldK2P4mrlqUSg0AMiZ4KlbW6HptcrVsJN7Ji0kz6DwnSUQXG5mLs7fdpAR2
+         8P9WF+vF34YUWu9UAoAO0/jU4NEOwVnvatAOCFeuSNFYAVduoEFCmxWyqJwl4K1sha0y
+         /XL6qS6M5KFmQNmLFhEX6M7KZBXs/XEwFIYYAXgwELHIJ1oFVMZaapIVNsBKHj0nXCoV
+         BCbsZtMihS6WHypB8DungoUCqvbv27YGLYs8d6G1hY2OpI0pt9oxnRsVjs+cn7rrh506
+         Jwz4IYJOvDE6vPyXhFknKshtv9xFzQdWbKFM40RoIMsyhd8d10X1GlNPo+3c4wP0v6Cf
+         d8EQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWuWQz0XewFW7sQaShLFtG7rnfqtwQizV67Ul79dJclZNexGIBKVOej656xGu5ghhHSuTkyr58n0chuEjNQ@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy0DIKD2Z5alXoMYMtiUnW6zNDp33zi2stYI9wEfV0hpq1IdmGz
+	C4fqD9QDot6GChGQAJRxXvFRaUs3nh1VTfkc4Ge3aYeY8ZHX6//u0SSWpCrm6wf/1dq6L3O/FoA
+	EEqh47DogZqI3bcTLVkkzinNt32FnlDo=
+X-Gm-Gg: ASbGncuBt4ElT8RQpLwh9oRkp1GYceuGfGvTxklZAbLF4K6X34ruD9hS0aJ6mUVTcHP
+	BPy07kn0/vidLZZ+tOHJ6HdQnuRbN3JBumi2OyKgDGyLMs8Pej3G50Hh/97WuT0d078hypZpUG6
+	UCGftsVj50uzq2PaQUND3xSGhLLWoFuP4hdERepy7hkHjvyraRcvV9ldAYMcGkkM6LtA==
+X-Google-Smtp-Source: AGHT+IGbCwQsYLgw99ZZfNEPT9b46Uas7cFFHBva8qR3JV9DepyWxOalQXIyM+mxa3HesqLdAmFamwLHhSjFWut5iuQ=
+X-Received: by 2002:a17:902:ce03:b0:234:a139:11f0 with SMTP id
+ d9443c01a7336-235e1129193mr836975ad.7.1748980941649; Tue, 03 Jun 2025
+ 13:02:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
- <20250603-dt-bindings-mailbox-cleanup-v1-1-724407563997@linaro.org>
-In-Reply-To: <20250603-dt-bindings-mailbox-cleanup-v1-1-724407563997@linaro.org>
+References: <cover.1748933789.git.zhoubinbin@loongson.cn> <592c6674a83a80558e55b143c483e29dcbfef1fd.1748933789.git.zhoubinbin@loongson.cn>
+In-Reply-To: <592c6674a83a80558e55b143c483e29dcbfef1fd.1748933789.git.zhoubinbin@loongson.cn>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 3 Jun 2025 20:16:35 +0200
-X-Gm-Features: AX0GCFsq34ioWPbcIqxTayHSRdJ5z4uSRbOfAewoz0GwtzdI-PxfH0Fpo31M6tA
-Message-ID: <CAFBinCBSyniWtR5T3XdgohG+n0Ae=6tgmdASSxsnsmoQV4yhQQ@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: mailbox: amlogic,meson-gxbb-mhu: Add
- missing interrupts maxItems
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Nishanth Menon <nm@ti.com>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Suman Anna <s-anna@ti.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, asahi@lists.linux.dev, 
-	linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Date: Tue, 3 Jun 2025 22:02:10 +0200
+X-Gm-Features: AX0GCFuw48Uhx0mbdlqHrrvpfoZrKnoWd5gzYi6VJl6U1CBZuhlEsqxmUNyYRLI
+Message-ID: <CAFBinCD2-u_6M3Lq7vkusxjp0XDoaTGu1Dyq4D1dFN1dPAHgKg@mail.gmail.com>
+Subject: Re: [PATCH v3 11/36] mmc: meson-mx-sdhc: Use devm_mmc_alloc_host() helper
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Huacai Chen <chenhuacai@kernel.org>, 
+	linux-mmc@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250603_111647_931883_AF16E17D 
-X-CRM114-Status: UNSURE (   9.54  )
+X-CRM114-CacheID: sfid-20250603_130222_774666_609681D5 
+X-CRM114-Status: UNSURE (   7.34  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,14 +98,16 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBKdW4gMywgMjAyNSBhdCAxOjU34oCvUE0gS3J6eXN6dG9mIEtvemxvd3NraQo8a3J6
-eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPiB3cm90ZToKPgo+IExpc3RzIHNob3VsZCBoYXZl
-IGZpeGVkIGNvbnN0cmFpbnQsIHNvIGFkZCBtaXNzaW5nIG1heEl0ZW1zIHRvIHRoZQo+ICJpbnRl
-cnJ1cHRzIiBwcm9wZXJ0eS4gIFNpbmNlIG1pbkl0ZW1zPW1heEl0ZW1zLCB0aGUgbWluSXRlbXMg
-aXMgaW1wbGllZAo+IGJ5IGR0c2NoZW1hIHNvIGNhbiBiZSBkcm9wcGVkLgo+Cj4gU2lnbmVkLW9m
-Zi1ieTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3Jn
-PgpSZXZpZXdlZC1ieTogTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBn
-b29nbGVtYWlsLmNvbT4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+T24gVHVlLCBKdW4gMywgMjAyNSBhdCAyOjI24oCvUE0gQmluYmluIFpob3UgPHpob3ViaW5iaW5A
+bG9vbmdzb24uY24+IHdyb3RlOgo+Cj4gVXNlIG5ldyBmdW5jdGlvbiBkZXZtX21tY19hbGxvY19o
+b3N0KCkgdG8gc2ltcGxpZnkgdGhlIGNvZGUuCj4KPiBDYzogTmVpbCBBcm1zdHJvbmcgPG5laWwu
+YXJtc3Ryb25nQGxpbmFyby5vcmc+Cj4gQ2M6IEtldmluIEhpbG1hbiA8a2hpbG1hbkBiYXlsaWJy
+ZS5jb20+Cj4gQ2M6IEplcm9tZSBCcnVuZXQgPGpicnVuZXRAYmF5bGlicmUuY29tPgo+IENjOiBN
+YXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgo+
+IENjOiBsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKPiBSZXZpZXdlZC1ieTogSHVh
+Y2FpIENoZW4gPGNoZW5odWFjYWlAbG9vbmdzb24uY24+Cj4gU2lnbmVkLW9mZi1ieTogQmluYmlu
+IFpob3UgPHpob3ViaW5iaW5AbG9vbmdzb24uY24+ClJldmlld2VkLWJ5OiBNYXJ0aW4gQmx1bWVu
+c3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
+IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
