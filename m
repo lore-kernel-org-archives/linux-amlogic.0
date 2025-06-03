@@ -4,108 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E218C54FB3
-	for <linux-amlogic@archiver.kernel.org>; Sun,  1 Jun 2025 11:11:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8C13C5AE59
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 05:53:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=f+gbS83cAUdENKRX2vKbiW2EhG/G4bdCB77vYdSUOCM=; b=LcC8vZpA/zrYdY
-	a+65oRR1DCzuCUtDSHhCq3E38d7De2zZcPr76Nnjfg1cKrC0ERoAyqhKrD1XqXK4QpmKgzdC40pjC
-	cWqUiqz7MZuDBRFpT1DHzNpLu1yAhmOYyxTyhmAwrZf+HyM/mRi+j1OCDoN2+jTUaBrm65DEPCsnA
-	LcPug7IdBs031ZzDVp5PNilkuWjedEXUOOfWSbormRwZCvk5mCznzXUBqJhND/hDFTK8Lr7DjolWa
-	G/X79yf4ByYYbTOkUAHW3NqlFIfjFZHB9f2VhoUJ0QWbzEPjxeE2D9u7wA/gT1NYkrZQf4+usbcfE
-	NuyBStVvLJ1trataCxtw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=zp80hFOdT6bVmQb0TPM0+xyT1XWjv0YbFC85lK1bx2Y=; b=y3xKgbBatrq3WS
+	+I/yq1YL7jLUQYDE2Vx7+z8wg+J/6tF1ERBT6k6Uy6+4jKkuYeIYagIxENqobu+blOPWgAroFNbj+
+	DNzBLyMPgvUqXMcCR6mv+9WBzRGK5pcZkhBoRlCMlJYNc685dyPF29Kwh+4TmDqd3z5NH1C5Srwpm
+	7vGPyTH1PXGNjccT0UnG7XHXRvHowqD7n6jrQY5QKj2SgYxBuKh4bn7nVM5STh2IVmda1JkwvGag+
+	qiWpe2cGfZn9L/gY8BrN/NL1VBBHrS7/cakCNOcEdkExl7QraRfXPMNGrvShNzfsgYbXHq4XifurX
+	ci4/Cx/eiTu5onIbFgmA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uLgbC-000000059Fs-1U9C;
-	Sun, 01 Jun 2025 11:11:30 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1uMKar-00000009rum-2fX9;
+	Tue, 03 Jun 2025 05:53:49 +0000
+Received: from mailgw.kylinos.cn ([124.126.103.232])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uLgbA-000000059Fj-0Rko;
-	Sun, 01 Jun 2025 11:11:28 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5BDB5629C1;
-	Sun,  1 Jun 2025 11:11:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44C55C4CEE7;
-	Sun,  1 Jun 2025 11:11:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748776284;
-	bh=CsKtKjy2VZl4a3WGzF4q9MTCWACsbPMydfnfJN381Jg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=exiX0NUfbT98F+74O8RgoZot8C82b303RQi9/qaMViBipaZThB/p+D8OWds9ojYaP
-	 oJ7boDG25sXqP9tZBvsS9RVw17hfOg7ExuqgTpJT40BWYpCLFRvpeZTqSZmL7JjJ04
-	 2YoVdguThQ55B+mVCU/j0Ipiab5gaVckai+ipl2HEo68qXcSFoco619nR1M1JUZPtp
-	 pBamJW/TZRjd/10zbbW9D6fGNdkxH8RSVRa2eybhrQ+dbk3CxAvASybXgfo4hBffCr
-	 ODpw0ukfR69VEZD30dHZCej+9a8QOwVwTNCs2FW6qUQs9jtWQMaSvREU7wpMorenIZ
-	 1/TkAPTHaUJoA==
-Message-ID: <f4d38bb8-f17f-464c-b406-b1fb908a975b@kernel.org>
-Date: Sun, 1 Jun 2025 13:11:16 +0200
+	id 1uMKYe-00000009rTU-3CWf;
+	Tue, 03 Jun 2025 05:51:34 +0000
+X-UUID: c44b1a9c403e11f0b29709d653e92f7d-20250603
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45,REQID:36da481d-9628-499b-b408-b3ee3ad83ee2,IP:0,U
+	RL:0,TC:0,Content:32,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:32
+X-CID-META: VersionHash:6493067,CLOUDID:fc49a494d89cd9d5410e466ec1068e3b,BulkI
+	D:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:4|50,EDM:-3,IP:nil,UR
+	L:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,S
+	PR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: c44b1a9c403e11f0b29709d653e92f7d-20250603
+Received: from node4.com.cn [(10.44.16.170)] by mailgw.kylinos.cn
+	(envelope-from <aichao@kylinos.cn>)
+	(Generic MTA)
+	with ESMTP id 576421780; Tue, 03 Jun 2025 13:51:17 +0800
+Received: from node4.com.cn (localhost [127.0.0.1])
+	by node4.com.cn (NSMail) with SMTP id 0A62516001A03;
+	Tue,  3 Jun 2025 13:51:17 +0800 (CST)
+X-ns-mid: postfix-683E8D54-83035764
+Received: from kylin-pc.. (unknown [172.25.130.133])
+	by node4.com.cn (NSMail) with ESMTPA id 070CF16001CC7;
+	Tue,  3 Jun 2025 05:51:12 +0000 (UTC)
+From: Ai Chao <aichao@kylinos.cn>
+To: perex@perex.cz,
+	tiwai@suse.com,
+	kuninori.morimoto.gx@renesas.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	jbrunet@baylibre.com,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	shengjiu.wang@gmail.com,
+	Xiubo.Lee@gmail.com,
+	festevam@gmail.com,
+	nicoleotsuka@gmail.com,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de
+Cc: linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Ai Chao <aichao@kylinos.cn>
+Subject: [PATCH v4 0/4] Use helper function for_each_child_of_node_scoped()
+Date: Tue,  3 Jun 2025 13:51:05 +0800
+Message-ID: <20250603055109.3154061-1-aichao@kylinos.cn>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: Add no-hpd property for all ti-sn65dsi86
- bridge consumers
-To: Jayesh Choudhary <j-choudhary@ti.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
- khilman@baylibre.com, devicetree@vger.kernel.org
-Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, cros-qcom-dts-watchers@chromium.org,
- andersson@kernel.org, konradybcio@kernel.org, geert+renesas@glider.be,
- magnus.damm@gmail.com, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- dianders@chromium.org, linux-kernel@vger.kernel.org,
- max.krummenacher@toradex.com, ernestvanhoecke@gmail.com
-References: <20250529112423.484232-1-j-choudhary@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250529112423.484232-1-j-choudhary@ti.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250602_225133_144966_6FA70553 
+X-CRM114-Status: UNSURE (   6.33  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,24 +98,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29/05/2025 13:24, Jayesh Choudhary wrote:
-> In the SN65DSI86 DSI-2-eDP bridge, HPD is not supported as of now.
-> But DisplayPort connector_type usecases does need hpd to be enabled.
-> In order not to break any platform from those driver changes, add
-> "no-hpd" property to all the existing sn65dsi86 nodes (that don't
-> have it already) as hpd is not being used there anyways.
-> 
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
-> 
-> Upcoming driver changes that will break platforms if we do not have this
-> property in all the existing sn65dsi86 nodes that assumes hpd is disabled:
-> <https://lore.kernel.org/all/20250529110418.481756-1-j-choudhary@ti.com/>
+This patch series introduces wrapper functions for_each_child_of_node_scoped().
 
-That's obviously a NAK.
+The for_each_child_of_node_scoped() helper provides a scope-based clean-up
+functionality to put the device_node automatically, and as such, there is
+no need to call of_node_put() directly.
 
-Best regards,
-Krzysztof
+Summary:
+
+ - Patch 1 ALSA: ppc: Use helper function for_each_child_of_node_scoped()
+
+ - Patch 2 ASoC: renesas: Use helper function for_each_child_of_node_scoped()
+
+ - Patch 3 ASoC: meson: Use helper function for_each_child_of_node_scoped()
+
+ - Patch 4 ASoC: imx-card: Use helper function for_each_child_of_node_scoped()
+
+---
+Changes in V4:
+ - Remove patch ALSA: aoa: Use helper function for_each_child_of_node_scoped()
+ - Remove Patch ASoC: qcom: Use helper function for_each_child_of_node_scoped()
+
+Changes in v3:
+ - Change Patch name ASoC to ALSA for patch 1,2.
+ - Change commit message information.
+ - for_each_child_of_node_scoped() instead of
+   for_each_child_of_node() in i2cbus_add_dev().
+
+Changes in v2:
+ - Fix error reported by kernel test rebot
+ - Keep "node"
+---
+
+ sound/ppc/tumbler.c                |  5 ++---
+ sound/soc/fsl/imx-card.c           | 13 +++++------
+ sound/soc/meson/axg-card.c         |  3 +--
+ sound/soc/meson/meson-card-utils.c | 16 +++++---------
+ sound/soc/renesas/rcar/core.c      | 35 ++++++++++--------------------
+ sound/soc/renesas/rcar/ctu.c       |  8 ++-----
+ sound/soc/renesas/rcar/dma.c       |  4 +---
+ sound/soc/renesas/rcar/dvc.c       |  8 ++-----
+ sound/soc/renesas/rcar/mix.c       |  8 ++-----
+ sound/soc/renesas/rcar/src.c       | 10 ++-------
+ sound/soc/renesas/rcar/ssi.c       | 18 +++++----------
+ sound/soc/renesas/rcar/ssiu.c      |  7 ++----
+ 12 files changed, 40 insertions(+), 95 deletions(-)
+
+-- 
+2.47.1
+
 
 _______________________________________________
 linux-amlogic mailing list
