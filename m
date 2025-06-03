@@ -4,79 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 600F1C5AE59
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 11:59:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 202B0C61CE5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 11:59:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GB0gP60NcwlJBjgvWXz3HcdTi2wi+CejFZD4PbC6TQo=; b=e0FzLqutqUqKKu
-	dwfXcMEa8t9xg7C+GYKuakPX44X1PBpxp7xYYvrx/+UCUbfUU5WPCAWIC6Wz556TNml0Yaj4uCOIY
-	VnxzgKZunEm1tG7CWU/OorFJq9LSzibwMkzooTLDGaLLWnNFD6Pj9/H+LSPIDpvZL/wQ1UgnMD72Q
-	XYRf7PbLIsKIPveE56OVmVTPJiDYU6Gx3tQlGic8oe9cgF6He7pbqTqfdYiMov+GhFXaMmottgBbo
-	lVD8jaD3XFPFMSh4ZnS3ZbI5MX4lPk3EQr4Uwck27ihR1KZM5fnzUQ0HBC6v6ShuPyb1dAz6KEC+z
-	9ZMPfMpVT1sRjZpdXA0A==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=n6nnsnypQfWlYyVVM8JrcIojyjLuKi5C/QbcpQrdGzw=; b=pmDC+fzKJQrUyY
+	vG2fEFtz2JiuuH9+Uw+P1Usa19f+fRbSzDyOOh1pXZtR/ATRsRZFbSdwxhmH30ICO223QgLOSYu6I
+	T/44ol5NqGHpRql19Dv/ZUzgc9e3CGL8Q24tBKjbG8FGme+MzkGwaMw8h7Rk28/rJ1MceReXyA+sf
+	DhLIDKQ61HAurTI/llXFEjnKqsdmbRIfLCTdr6qgEo+CeAcOVOUkxqSNvyIBEra3bNP7giuI3DR6C
+	zo6dj5UuJlGxAPbaIkqZQnITdxe321hP4197qCTfskOpYP7lC/PTKClqtctNP3O5kR1wVplhIN1g3
+	qCbi1fdiHaR0K2ExpsiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMQIz-0000000Arqb-2Fnr;
+	id 1uMQIz-0000000ArqX-0qOB;
 	Tue, 03 Jun 2025 11:59:45 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMQGm-0000000ArSS-3gBW
+	id 1uMQGl-0000000ArSB-2eLI
 	for linux-amlogic@lists.infradead.org;
-	Tue, 03 Jun 2025 11:57:30 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-43d4ff56136so3630515e9.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 03 Jun 2025 04:57:28 -0700 (PDT)
+	Tue, 03 Jun 2025 11:57:29 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-44ff4081975so2164125e9.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 03 Jun 2025 04:57:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748951847; x=1749556647; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ekpXsFXiBQlOEYcI0oMkBbtivVJ9v85D39Ocv5s98/g=;
-        b=JYQNwJIQ563LoPfJoefIwGu+hEXLF4rjqykMgcdz06jtSUIHu4AQYfgV5UBaej0ESi
-         xK0k3PikvzdZ0/+Gu4BWmY6gbrFPK2TSsxIPinOibuEr421Clk6oQ7L4rP16f82mOvgm
-         zLpotjosX+ImqMo7O1yoL+zxlrJ90R7dV0j6zwYkK0qMev4CC6JNiqOUl3VmtTDG8s5v
-         8pO/ohV+kMAkrQlfqZIl5kUraQaaw9asWF7By/C8u5gUpMRJ6b30VhU8wkaIBAhjfkIY
-         QkSfzyiwoFrPapT1BruZsoUDvzkfwbb8Y7jq0FLYKrR6EZyZAXBVhlnWk5yNf85fhWFw
-         zxgg==
+        d=linaro.org; s=google; t=1748951845; x=1749556645; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1IBFWQj94F31lf6usd6PCcvd2+aXV7FOAOa4N/LRiuA=;
+        b=wCQspfgPRWZXIFiywjo18buvKQ0I9Th11aeQzoFc/TNHePSo02M/6KJW/TiskIJtlE
+         TlvDxCRhsJfAtviDdtmDCHhLvo0/xTKsh0IL705Ep7OChHZ9GAC6XisdZ1WAUXCxsEkq
+         Ta7/fHa+03Bu8zlWN/0HpSHTpYRl59GISl9YSzhFAktA2XF23gVUNhKyhbU9b/N8RlvA
+         xnhZuYiIr4i0p86KGCF17m9Gisivr233NoVGlfZTaJwlXS52A9mv+S0G07r2GpNRNROL
+         S0ou49JTcA+sObwNlFMjYSkiLw9uI86wqRJtB/hHkOniDZbllCGYbdW+dfVYFLvK/cQ8
+         AgXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748951847; x=1749556647;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ekpXsFXiBQlOEYcI0oMkBbtivVJ9v85D39Ocv5s98/g=;
-        b=V6yOJfVOolyBNU2KRq7HVnZ00Ix0jaOZZZeIJLsMwafuRbK2Xk9Hfn1M4M1Xtu/EjD
-         LYvJWyvYLS2c5mXYS1a41vINIs00fEkBzrsSpjthSHQy413ZzQvC4DCeh4iIxD4k6jVl
-         qm6Uz89Loc5cFfgxHcuS4/VHzdbMxSbbb2iNw4extE0GkjAwgWN0LnaCZnl/M3aMlrjz
-         FMDvMMEew/uACnrgYGcVzWjRU9n26LVjS7e0j/TdSJmrmL/1B5XW2KsJybi1htpbLEXd
-         xXeCrQbh1BRl5sNekvsDYkyaI42G8ed8jODAUsB4HFH1byxvFBM9BJW2WaPTGYwi9kdb
-         VWPA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUf48ELRIVRi/8XtzqLeQcvBYnOH+EF/kCDumfLMxEo12w+JTknAp9DKMnMfZ8ecvNoUxl1nQjIne8FzIB@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy6RAmsmZUmkWcsFfQLbmcif2Xyhyk2MgzV1apBAb2mFUZFowZ7
-	vJTMS2X8EJIAtqk8pmwd7M39sUbZS7ZXQW1kWFpwPQm5/vvXUi09MH0lGha4T+IxYrM=
-X-Gm-Gg: ASbGncuZJV0udvMqCLKk/cwqMVgwJcp2GTIV/9cLIU1Guxbk41wQVCK740dOPMGB3+A
-	grKwXagB4UUcE+8Eg31hWc155E4URenEsKDIUQkD1ng75SO/0Mz8Yx0Ka4xvYkA68BV7g2vJS/F
-	6Kvnaxro8O0prHVk4XmSOnJmlRM70fnpnLfxlw753QWkO9JQFC1tQVoB2s/zGg2l2HkrrOqrfE8
-	+CS46LfdxRKAxem8ubUm1fTK7tWF3fZAjTKYSUCNOZZhZu2chB2+tRdeSToL0/reIwl68GJIhtK
-	i5WsRN/RK2MbawEd8QGQNC4jbVU4M1X+mWTqCUgXaYSj2Rx0hJUjTURIi8EmIY5IKG3o8YAXOWL
-	vTmntDCyzhqWtkL5km33cdA==
-X-Google-Smtp-Source: AGHT+IHBMSZmFHh0iBBqbg6iYgmvQuQtkRQ7ni42guJxRJHi8RXPAyYfJYKwxYJrmX9gnms5o+3FMw==
-X-Received: by 2002:a05:6000:230c:b0:3a4:dc42:a0c2 with SMTP id ffacd0b85a97d-3a512c032ccmr984242f8f.1.1748951847021;
-        Tue, 03 Jun 2025 04:57:27 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1748951845; x=1749556645;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1IBFWQj94F31lf6usd6PCcvd2+aXV7FOAOa4N/LRiuA=;
+        b=BlTmHN3ANIUJ2ElUtv9my+EiCfggG49R/0YhtulG1ZBkppmnw43ioVGi5YJG5FB/x6
+         jIipENhW0L9YEn3e2Gaj7NBMv9ITfCNHcH/4ajenrLHO2A09E9fnbsQQW7Co35rvJ3Ep
+         t+lnPolqPsC3h9oX+BUbYt9Xxboy2Z1LcVSaPGryI/UqsPH7DHdxT0NSLlAKeZe64EDm
+         wGZF9ZZE9U8AeL4Hm4uFKnypMg8HGHJnEpwHmAGF7fW1UVxsChZ/3QE2PDrVBb88ush9
+         Ca0ToH5S9SB8jtQZm/DFQqMnx6of+O28P3pobnuKqAdAXb6q7JjmLSnIHPlffaZOWG9H
+         A+pw==
+X-Forwarded-Encrypted: i=1; AJvYcCUMRGps24l48QhYhTgl4YgRsbvJ9VEGyU1r43A9aoSXFl2oR7r5KqKqfwbpoJJbRhCfED4eekLn7FSDUvTp@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx6l2TIBPW+NgY4YsObvHYMFM3ciW7QwymaczOUdQ8VcxC2hNuD
+	q2UvPU9qcmt15R8eCXoCl6N9N3woKBz5aBWNI+KPfcCFFTVd2IPvvNTX0SA3LbBAjqM=
+X-Gm-Gg: ASbGnctVnVVNZnyhxcSP3iPvyUzRb+gBPE74skqtnwnZPpHRj0wwuzrnW16m3n9QTyv
+	ITHAH7S47EvW9dNMjjRyJIu8HQZKX13fyCTp1ZLKpwm8NL93wzylVAOpuZJYjKPT3vSwEykQXrk
+	BNtp0v9wAvQCnFfSStMAvBIRuJp16TyA4f0YDd1iQNyvu5W03UeoPfJnN6l7RPGikuyS238kJIe
+	TDrRGJEkiesJREa2KUuc1WOR2SwziKMvLeTEIu9k7utj2m/WCJ8MFxYrzUt8WbEvz0EA7MZRQcE
+	WfGqKM2MpTpuazILT4/7rHAKyLCgg6m6kkyDXsdvM3k8VCewLkxeTuSlFNQJEa4g0Hkb2Adeh2U
+	T2wM0aBHQxAL2JEeaTEXidA==
+X-Google-Smtp-Source: AGHT+IHcDKEnQI0iAe8KmJOAN+5AyRCThhejg+k63FaCsSnbGWGPgYCXX5i11cKOm0Js9aE/AZP8Og==
+X-Received: by 2002:a05:6000:2dc6:b0:3a4:e8c8:fb89 with SMTP id ffacd0b85a97d-3a4f892f306mr4455673f8f.0.1748951845084;
+        Tue, 03 Jun 2025 04:57:25 -0700 (PDT)
 Received: from [172.16.23.13] (adsl-84-227-104-5.adslplus.ch. [84.227.104.5])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe6c7adsm17671666f8f.26.2025.06.03.04.57.25
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe6c7adsm17671666f8f.26.2025.06.03.04.57.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jun 2025 04:57:26 -0700 (PDT)
+        Tue, 03 Jun 2025 04:57:24 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Tue, 03 Jun 2025 13:57:08 +0200
-Subject: [PATCH 1/5] dt-bindings: mailbox: amlogic,meson-gxbb-mhu: Add
- missing interrupts maxItems
+Subject: [PATCH 0/5] dt-bindings: mailbox: Few cleanups
+Date: Tue, 03 Jun 2025 13:57:07 +0200
+Message-Id: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
 MIME-Version: 1.0
-Message-Id: <20250603-dt-bindings-mailbox-cleanup-v1-1-724407563997@linaro.org>
-References: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
-In-Reply-To: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
+X-B4-Tracking: v=1; b=H4sIABPjPmgC/x3MSwqDMBAA0KvIrB1IU5OqV5Eu8hl1QEdJbBHEu
+ zd0+TbvgkyJKUNfXZDoy5k3KXjUFYTZyUTIsRi00kZZ9cR4oGeJLFPG1fHitxPDQk4+O4a2bUx
+ jtH1RB2XYE418/vfhfd8/Li2Ljm0AAAA=
+X-Change-ID: 20250603-dt-bindings-mailbox-cleanup-c884545267e9
 To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -96,26 +96,27 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1020;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1218;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=ar5+pdd2TFr1JcFtgPO5JaiU/Jpg3+NCQIURcO8Mub4=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoPuMafbts+SQHLrCKWoSXydLXFpBuxk4+UMd/K
- nu5qIc0ykGJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaD7jGgAKCRDBN2bmhouD
- 1ybCD/9RNGsVwuWaYUnIhMCF6XOqANSxF4pvD+oiEd/nFdvuoXKyHPDhNDJkzr5JI+eCG+Ub/MQ
- IFPA1Eq4zim5rKSJGghjZ4QRpCKGP/BiC0e3S+lzj0PcZ47Upq2cpIw5uEGa84l7HVOKXzobLHS
- 4dtbpNI66GnxgZ1/hAQyG7cQ+b/JVVCKbo1XzHQdPkwO/sBtnEFmUp36ZDI/u9u2hJTCNd9xwDh
- z8DyRDvM8YT02OvK2sUVR4UoJIaFA43uNXyC0U+o2mZ/XAHLxkOL6t9aY9JhZ1KZ+heKhYVtVDq
- jq6Zz6go76ikVf85UUQkieagE/lk1hxHLb8tPkYIOVn2IR9e9sjHN/DFFOa4m725Ke7rxh2Q4FT
- 3xEYfP/AU+h/cHPAK8he55zMq5tzMMHeNybBTtDKzJP6gXsE3UrINKmF/MYJBWgtu9wx5yWcFY1
- VYfpQ7cJNEoGpu/gPhFNVgrNwEs9yeRon6WMn3H12OTKdniyzdgIpnJ7JIqajxRgkZkKb7n/zxM
- zAzeos1xnYnl4qwTwwQHYBwmfVZYlkcYcXUthGxU188ahk3mMCNE5DE2eEzBmKlVUVfoGpETAFD
- xe8BwA6xrgnmksHotq8VKWpDAzKd0sqUmepz4DJDrs9GYrxZuqqnQzCCE7b34Hj7GArCuhFFaYq
- RxgIODOMV9Ib71w==
+ bh=8VGdoBQnsW1Y8fk4p9+RrKW9XWt9gACX/CPbdQ0dOb8=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoPuMWnfe5utyaUx5gvALmsxmruk7JbV/krIhA4
+ j8qvLrJLFCJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaD7jFgAKCRDBN2bmhouD
+ 15ILD/910b+r8xCBseUJF1YO+j/IHLYwnq2p99ZLKQrjJPODK2Hsa8PvABhsMOVX7NEhd45xauB
+ 1gokachMmddL3QTHvT2SwZxCkXOkbMCydACOrC/fTJt47ZMqSJVTQddnBcQSgLyjNGm4CeOEnp9
+ PNBoEYnzvybXEkQACPTe80hUYBPNMff0l9H1886se4gDoMTuKflotBkuNAKnzK+8kiDBgxNOH9h
+ bZsCvRJodQOSAPreMvq0IihcpWlEs34BWltovMVcvF9aAUp083WRW+KVQYmOhWlos+j/T4BRIbR
+ CwPlyHjcGOVLxKnlJKijLA9qGkIsezGqUQ2SPYxLPKlc2qzyajNrDlj84gdKweskDeOpiBvLN+B
+ KyqdmGfxbd7NpRwX3CTYh4w/0CtWItIAUr9Ys7jFtXr/VsuA0YOCgJjVX1uEFU1xkudoFs1rAth
+ RJ/8B3UMC55EENVrV4M2L4siLZlqy2RcczsoTJFZF2waT+o7rvR+fmeeJf0wybsj1f/u9znmagT
+ kQ8ZnJpha5iIwXpe+p1xsFf82A53nj0jMMo0yNx2V3WeXOWMo7LyjgxfIAQHTUVhIFc4TIZqJVB
+ +kMs1/3Ubq5gPtCQo6w7qymB7PfuxwdaWvtwnw2jPw7zgEtHYR+5EiDbtFhXsuuiB3VyuoxS3ez
+ N7pia2kgSwXPEsw==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250603_045728_922432_C728B5DF 
-X-CRM114-Status: GOOD (  11.70  )
+X-CRM114-CacheID: sfid-20250603_045727_667476_4EB82BE8 
+X-CRM114-Status: UNSURE (   6.53  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,31 +133,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Lists should have fixed constraint, so add missing maxItems to the
-"interrupts" property.  Since minItems=maxItems, the minItems is implied
-by dtschema so can be dropped.
+Few cleanups for Mailbox bindings.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Best regards,
+Krzysztof
+
 ---
- Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Krzysztof Kozlowski (5):
+      dt-bindings: mailbox: amlogic,meson-gxbb-mhu: Add missing interrupts maxItems
+      dt-bindings: mailbox: ti,secure-proxy: Add missing reg maxItems
+      dt-bindings: mailbox: Correct example indentation
+      dt-bindings: mailbox: nvidia,tegra186-hsp: Use generic node name
+      dt-bindings: mailbox: Drop consumers example DTS
 
-diff --git a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
-index 385809ed1569206a7304b777ea42743321c899ad..0849799ee0c5caaeb27fe1e3e3714a630a7c2b09 100644
---- a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
-@@ -27,7 +27,7 @@ properties:
-     maxItems: 1
- 
-   interrupts:
--    minItems: 3
-+    maxItems: 3
-     description:
-       Contains the interrupt information corresponding to each of the 3 links
-       of MHU.
+ .../bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml   | 14 +++++++-------
+ .../bindings/mailbox/amlogic,meson-gxbb-mhu.yaml       | 10 +++++-----
+ .../devicetree/bindings/mailbox/apple,mailbox.yaml     | 16 ++++++++--------
+ .../bindings/mailbox/nvidia,tegra186-hsp.yaml          |  9 +--------
+ .../bindings/mailbox/qcom,apcs-kpss-global.yaml        |  9 +--------
+ .../devicetree/bindings/mailbox/ti,omap-mailbox.yaml   | 10 +++-------
+ .../devicetree/bindings/mailbox/ti,secure-proxy.yaml   | 18 +++++++++---------
+ 7 files changed, 34 insertions(+), 52 deletions(-)
+---
+base-commit: 3be1a7a31fbda82f3604b6c31e4f390110de1b46
+change-id: 20250603-dt-bindings-mailbox-cleanup-c884545267e9
 
+Best regards,
 -- 
-2.45.2
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 _______________________________________________
