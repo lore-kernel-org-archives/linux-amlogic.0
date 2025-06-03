@@ -4,92 +4,120 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE700C5AD49
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 12:28:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2172C5AD49
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 13:23:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EsaMBbG76Tkj3qRhFmH5bLEpBZ1yzAiUP4L4O0M2vVo=; b=ioo4IdjGYOpOE3
-	j+3flJxMa29XHLnN3K7aXGlM/7HwkipTj+Z/V/JJS47VttKzJ2TQsRsO9yNYBpst4+q7ql5H/ylrs
-	XEoFXzMO21FDd9k4KODJhDd86/e2dR4cLBZpkAg6csze+HNncI37UhJYe2ePHEd5kEKHMyQJGRPeu
-	tMThrrbBWhSisLQyKLvuC4ClbQ/NGwGAZz6KbjKuj8qH/n/v9dFaD0vVFeijFMYTmJQraz/8Z1NQn
-	y0AQQHHUBRMdizqyWsWHAA2uEYIJ9Z07/EY3AaZaJnN+sP7nQap4R+S8MKlX1GA+2DWQnAPy9HM66
-	nxPD6x0lcKOAsGYsYoBA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=KQ/SdmS/OT6eKZhp+O9Ov+NvUwt0mB9eZbGhtuTHr28=; b=GzsMNY+BYdavhWCKA/+yTPJXND
+	A1RgIyZGqIm0TySDBdSa1dRmDk9jMT3FkgAfFjysZZGWb55b0CRT5GFFjnYYouyJgRq9Ub5hdQmuB
+	uxaCHigMmKeCl3l2xj3ZT7wYOtGUYz52SGVs8VcLUp1XU1B4AboRjm6zErRgiRswrr+hcakERTSgw
+	xgA/wtCn1HCEn0YyA8Md9ckZ/4jVwqXDyiFB5rDrIQopLOmD5qQNDB4gges1NX00iy3yLq64BYAy0
+	U2Y8Qq6N+EnDd0Bq/fAxQvy0PVpvdr5XZrEGXvPct3UmhIV5N9Umn5AnfKTpjQD7QIQoYzHOHjhdQ
+	PvQGRx7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMQlC-0000000AvTA-1xGG;
-	Tue, 03 Jun 2025 12:28:54 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1uMRbT-0000000B1Xc-2EEm;
+	Tue, 03 Jun 2025 13:22:55 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMQlA-0000000AvSM-3YWl
-	for linux-amlogic@bombadil.infradead.org;
-	Tue, 03 Jun 2025 12:28:52 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=F2sPMlqgu8eH16YjL2INxipbSDJRebgSFdDO53ajZnc=; b=ayGeRJm+N9e9gdfFsQ90jfZp97
-	5fD2hsecLCAY2OTbTKZLiicQzaOW9Fktw/2JaAVcBdNIl8E6OyeP58aOXYggC49NwOAkoQxZ8C0tN
-	f/iMXtzCfLhc0Km7fQymCMHxezya85eA0M3Rf0Rvip+ou8qTRqn/1EwEamPnlzYBiMHF8kTbIspNA
-	tbmd481Nnx3U1z3z2DDSoX0EKW9C8wkTCr7iZXcAS09LGzDaAoXXZg+8sKKVi3wP8/IHM1ME8U4e5
-	S12W+1WKVqV5n1Kl7nJ1uQd+bZATQzjvHjdiNYGZNQdbGJG8CQ4rWP4CWCA3rTD5yknh8/UokGAMZ
-	CnCypPLA==;
-Received: from mail.loongson.cn ([114.242.206.163])
-	by desiato.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMQl5-00000000ku2-2QhS
+	id 1uMRbQ-0000000B1We-0wPu
 	for linux-amlogic@lists.infradead.org;
-	Tue, 03 Jun 2025 12:28:51 +0000
-Received: from loongson.cn (unknown [223.64.69.3])
-	by gateway (Coremail) with SMTP id _____8CxNHB36j5o_DYKAQ--.32621S3;
-	Tue, 03 Jun 2025 20:28:39 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.69.3])
-	by front1 (Coremail) with SMTP id qMiowMAxj8Vv6j5ofg8HAQ--.25897S4;
-	Tue, 03 Jun 2025 20:28:38 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	linux-mmc@vger.kernel.org,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH v3 36/36] mmc: meson-mx-sdio: Use devm_mmc_alloc_host() helper
-Date: Tue,  3 Jun 2025 20:28:22 +0800
-Message-ID: <68e752931552e95667191c2641076a1bfaea3dc6.1748933789.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <cover.1748933789.git.zhoubinbin@loongson.cn>
-References: <cover.1748933789.git.zhoubinbin@loongson.cn>
+	Tue, 03 Jun 2025 13:22:53 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3a35c894313so5054547f8f.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 03 Jun 2025 06:22:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748956970; x=1749561770; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9o1OG5gJMnbyvyc0DC5kIEpva13qObOrgWmt6a2YYaM=;
+        b=AyuI7UhgW99YPSoVWilSYcqToF5AroywIMOyWshnFDE+2fbDalZlX5DiRWKrLUf+RC
+         PBRV/Eflfhvak7vfslqHB9Rj+5xEVm0eEX9V4rWVPEflqv6Mmx1hlpCh+0UWdgZfmnHt
+         zoYWcBh/7GTkt6GDnmedGT0DA1ct1FeSFG8tYbyREMrr6gy3BYwe5k8uFAn/Lwpy+lnw
+         tZkr3V79HSmLBLE5FOVs/tmfFZpZmPOCbqAIroWgLmvjdjXp5881SEUSeHjWaQVG4OA8
+         4GO/X/8HMF8AYv+7Vy7ccO231rkmwgbSv140XJWZTOw/cb9BRjjI7UXITUoQ4EhWsmnA
+         u2Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748956970; x=1749561770;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=9o1OG5gJMnbyvyc0DC5kIEpva13qObOrgWmt6a2YYaM=;
+        b=tF5RZ+wIVuDjY5pi97ec2L1dwW+th0/qJo2fAdjkj44vuQLf5shVKS0TVsuyvFBGax
+         qK56TSPak9/osKVJbiR5z6EAAi6S+Dw4rEQ2LuH+1kY/9kiLyl2qAPPZJYw9qojcTVh7
+         cUe05dVj4ZMwqvO2Bj9lHsoQLm4NDSNmz+cKFuZi7dIxY9pAYIDV+XIHMul0sgt0+eVS
+         tLk2lAGyGkLGaLZ9+qk8jD7vYZzAWqbkrpIVe7RIiTbk87kfESzEywqNulEk0iqbDcWN
+         syuZX3xtQkOE8TwrzzPpsCf+EhI+brWmwmcSbEEDVk18utfBK5tO8ODN0oxbZhtQqx8i
+         W0bw==
+X-Forwarded-Encrypted: i=1; AJvYcCWfUGD2nzF4qUcZtvlLskmaCKmc9COOMmSTiKI3KI6bSUI03Ukp2d4PWVc0FYCcCiTzFmHsN0RDb4q1gvGy@lists.infradead.org
+X-Gm-Message-State: AOJu0YzZFfeSiVa6X6AMCM1sMJZS4qCzbkp5go2jHf5x3RK7p+UAVxYx
+	urwvKdkiWqa+KvwXo2zDW3Eo/dmQQ1vI02pQWMdPsUa9qaRpCVZcMAKjCMnye+WvMug=
+X-Gm-Gg: ASbGncvvIF6IBqQzy2RI/mpDissBdH9AsH/AjeSKxb08T+t4lZ8waXoFOYHhdK4/iX4
+	omFV2nfw4iycWZ8brlv/y7/graaxXt8iknrXI7oGGijqU33zBuY01Xr7f8qQL7ze3D/qAXguw5L
+	g1TVnXia2+GUk6PNGEK0tDvi7J4PP6AW17DZV2MTpu/2X+4yRDrTN61zHUH1iQimZDkZthehR2i
+	APFlOIaPykeKE9ubBudSlly4K0vHLqul6LPj/I4hsumaV88QcBHFw87DyOX53usd7ZecvcKRxZv
+	f2JATM43EBSmfIyQ7PObViUWC2g0rujDf7nzDoTRrd6vtz6EuBhFRJIOdp4N5OeFb2BG6frLSt2
+	cVKWHxBudi5m9TauKdbRYTWeu72PhBg25rvdn
+X-Google-Smtp-Source: AGHT+IGwM1OzgbnP1nAlLY2AaZkYQUoZH8oN0rymNrDg+49LiXGRY5PKTqcJSZ1tfnP2AMJFUo1T8Q==
+X-Received: by 2002:a05:6000:230d:b0:3a4:f8e9:cef2 with SMTP id ffacd0b85a97d-3a4fe39363cmr9636222f8f.36.1748956969885;
+        Tue, 03 Jun 2025 06:22:49 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:563:3654:17de:c930? ([2a01:e0a:3d9:2080:563:3654:17de:c930])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4f00972f3sm18588651f8f.69.2025.06.03.06.22.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Jun 2025 06:22:49 -0700 (PDT)
+Message-ID: <d950d77a-2bc0-4f8d-88c0-3d4da9cc772e@linaro.org>
+Date: Tue, 3 Jun 2025 15:22:48 +0200
 MIME-Version: 1.0
-X-CM-TRANSID: qMiowMAxj8Vv6j5ofg8HAQ--.25897S4
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxur1DJw1xAw4xZw15uF4UAwc_yoW5ZFy8pF
-	n7WFnrKr48ur4Yg395Ja1Ut3Wjg3yjqay8WrWfWw1fWw4YkrWDtF92kFy0qF48ArykZ3Wx
-	GF4Yg3ykAa4DXFcCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUm0b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AK
-	xVW0oVCq3wAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
-	Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Gryq
-	6s0DMcIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x
-	0EwIxGrwACjcxG6xCI17CEII8vrVW3JVW8Jr1lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IY
-	c2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxV
-	Aqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q
-	6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_tr0E3s1lIxAIcVC0I7IYx2IY6x
-	kF7I0E14v26r4UJVWxJr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE
-	14v26r4UJVWxJr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU0x
-	ZFpf9x07b-3ktUUUUU=
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: meson-gxm-rbox-pro: fix wifi node
+ name
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250603-topic-amlogic-upstream-bindings-fixes-dts-round-3-v1-1-2d54a476757d@linaro.org>
+ <366cdccf-571c-4f7f-ae26-2e529de5d5ec@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <366cdccf-571c-4f7f-ae26-2e529de5d5ec@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250603_132848_249719_CAA4E870 
-X-CRM114-Status: GOOD (  10.30  )
+X-CRM114-CacheID: sfid-20250603_062252_272130_7072C988 
+X-CRM114-Status: UNSURE (   9.17  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,107 +129,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use new function devm_mmc_alloc_host() to simplify the code.
+On 03/06/2025 11:50, Krzysztof Kozlowski wrote:
+> On 03/06/2025 09:47, Neil Armstrong wrote:
+>> This fixes the following error:
+>> meson-gxm-rbox-pro.dtb: brcmf@1: $nodename:0: 'brcmf@1' does not match '^wifi(@.*)?$'
+>> 	from schema $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
+>>
+> 
+> I already sent it:
+> https://lore.kernel.org/linux-arm-kernel/3c3c3652-be5f-4f54-a0b8-4829f9549116@linaro.org/
+> 
+> Can you pick that one instead?
 
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org
-Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- drivers/mmc/host/meson-mx-sdio.c | 20 ++++++++------------
- 1 file changed, 8 insertions(+), 12 deletions(-)
+Sorry I forgot, of course I'll pick yours.
 
-diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-index e0ae5a0c9670..b6cb475f1a5f 100644
---- a/drivers/mmc/host/meson-mx-sdio.c
-+++ b/drivers/mmc/host/meson-mx-sdio.c
-@@ -640,7 +640,7 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 	else if (IS_ERR(slot_pdev))
- 		return PTR_ERR(slot_pdev);
- 
--	mmc = mmc_alloc_host(sizeof(*host), &slot_pdev->dev);
-+	mmc = devm_mmc_alloc_host(&slot_pdev->dev, sizeof(*host));
- 	if (!mmc) {
- 		ret = -ENOMEM;
- 		goto error_unregister_slot_pdev;
-@@ -658,13 +658,13 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 	host->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(host->base)) {
- 		ret = PTR_ERR(host->base);
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 	}
- 
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq < 0) {
- 		ret = irq;
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 	}
- 
- 	ret = devm_request_threaded_irq(host->controller_dev, irq,
-@@ -672,28 +672,28 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 					meson_mx_mmc_irq_thread, IRQF_ONESHOT,
- 					NULL, host);
- 	if (ret)
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 
- 	host->core_clk = devm_clk_get(host->controller_dev, "core");
- 	if (IS_ERR(host->core_clk)) {
- 		ret = PTR_ERR(host->core_clk);
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 	}
- 
- 	host->parent_clk = devm_clk_get(host->controller_dev, "clkin");
- 	if (IS_ERR(host->parent_clk)) {
- 		ret = PTR_ERR(host->parent_clk);
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 	}
- 
- 	ret = meson_mx_mmc_register_clks(host);
- 	if (ret)
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 
- 	ret = clk_prepare_enable(host->core_clk);
- 	if (ret) {
- 		dev_err(host->controller_dev, "Failed to enable core clock\n");
--		goto error_free_mmc;
-+		goto error_unregister_slot_pdev;
- 	}
- 
- 	ret = clk_prepare_enable(host->cfg_div_clk);
-@@ -721,8 +721,6 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 	clk_disable_unprepare(host->cfg_div_clk);
- error_disable_core_clk:
- 	clk_disable_unprepare(host->core_clk);
--error_free_mmc:
--	mmc_free_host(mmc);
- error_unregister_slot_pdev:
- 	of_platform_device_destroy(&slot_pdev->dev, NULL);
- 	return ret;
-@@ -741,8 +739,6 @@ static void meson_mx_mmc_remove(struct platform_device *pdev)
- 
- 	clk_disable_unprepare(host->cfg_div_clk);
- 	clk_disable_unprepare(host->core_clk);
--
--	mmc_free_host(host->mmc);
- }
- 
- static const struct of_device_id meson_mx_mmc_of_match[] = {
--- 
-2.47.1
+Neil
+
+> 
+> Best regards,
+> Krzysztof
 
 
 _______________________________________________
