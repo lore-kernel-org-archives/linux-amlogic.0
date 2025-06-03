@@ -4,86 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BFB4C5AD49
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 06:02:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EEA2C5AE59
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 07:50:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UOZt198WsUl+pz5TQ04R03X3N1OoUu9Ss7ap5gi+rwI=; b=WNIBDPAPIc6pzD
-	P5Ipj3qvi92JRuwkPdGBnCCWX472SzIQjiYiPruQqfDPvRdmL96F8THOSU90O85CDIOdylsF/xkl6
-	rVUDN+UtQwgqEbldvZF+wq9d0ykZT/wWOriw//3sUjSPfGU0DW6wxGtenZDQ4vC9o5QRErLmUPfBF
-	LLx3wSfEKlUNqoZDghKZ/XmqVMwXCP61HrobXPV2NplRkn0PNglpHHkzUQkYFAVsqlvpwpX88YkZT
-	rYv8VJzIJwdMGnB4glhwC0C+HbnM0WslkaUjOv9NKB2yD/YHxvgf/t9HeKGRjrjCkeAqgOELx/Nl6
-	sHzENej7LgtA9vutdg2A==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=soIkt8cXDeP4tlY5KK0y34EW0JkKPhmX1Pls2FxnrM8=; b=atrNNqTwZ3nk4Q
+	EXg9n3S3W8RpC+dUP3a4iZjSRjyda3AvMWwc29Y6b+TUUROeIvXhM+gwhJ1GMGotwF3HeCgB+/0g6
+	UJ/AXhbq0mmnqSOI0kK3UMC/STVDUjyMgdeHTw1YD0NBaVwpevJmx7fINhVKIntmyXg5rOLpOkpp5
+	MiTFV24ygszGsgUWZgDLM0G0nEKexDljioURIHKU2KTl+wXcpZc8XeemAIoH1a8Aii54uBypt8lui
+	9ykEQZVAm4SQnnHgIbbSKGqBZDGKw243UpF/YWm95VronPW6g7N/LsTotK3pKw7qmjMGgV62HABEW
+	kVa2x4cbczxk/KYxnEYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMKjS-00000009tUa-16Hd;
-	Tue, 03 Jun 2025 06:02:42 +0000
-Received: from mailgw.kylinos.cn ([124.126.103.232])
+	id 1uMMPC-0000000ACTC-3llm;
+	Tue, 03 Jun 2025 07:49:54 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMKYh-00000009rTn-3NHS;
-	Tue, 03 Jun 2025 05:51:38 +0000
-X-UUID: ca7c50de403e11f0b29709d653e92f7d-20250603
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45,REQID:4d406f31-bb9f-4539-97f8-67984e566c55,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6493067,CLOUDID:332e54c45b2f535d18a25b4ddd08369a,BulkI
-	D:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3,IP:
-	nil,URL:99|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:
-	0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: ca7c50de403e11f0b29709d653e92f7d-20250603
-Received: from node4.com.cn [(10.44.16.170)] by mailgw.kylinos.cn
-	(envelope-from <aichao@kylinos.cn>)
-	(Generic MTA)
-	with ESMTP id 614006275; Tue, 03 Jun 2025 13:51:27 +0800
-Received: from node4.com.cn (localhost [127.0.0.1])
-	by node4.com.cn (NSMail) with SMTP id 822FD16001A00;
-	Tue,  3 Jun 2025 13:51:27 +0800 (CST)
-X-ns-mid: postfix-683E8D5F-37825076
-Received: from kylin-pc.. (unknown [172.25.130.133])
-	by node4.com.cn (NSMail) with ESMTPA id 5D43F16001CC7;
-	Tue,  3 Jun 2025 05:51:25 +0000 (UTC)
-From: Ai Chao <aichao@kylinos.cn>
-To: perex@perex.cz,
-	tiwai@suse.com,
-	kuninori.morimoto.gx@renesas.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	jbrunet@baylibre.com,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com,
-	festevam@gmail.com,
-	nicoleotsuka@gmail.com,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de
-Cc: linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	Ai Chao <aichao@kylinos.cn>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH v4 3/4] ASoC: meson: Use helper function for_each_child_of_node_scoped()
-Date: Tue,  3 Jun 2025 13:51:08 +0800
-Message-ID: <20250603055109.3154061-4-aichao@kylinos.cn>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250603055109.3154061-1-aichao@kylinos.cn>
-References: <20250603055109.3154061-1-aichao@kylinos.cn>
+	id 1uMMMz-0000000AC2g-1wvy
+	for linux-amlogic@lists.infradead.org;
+	Tue, 03 Jun 2025 07:47:39 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3a4f78ebec8so2299133f8f.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 03 Jun 2025 00:47:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748936856; x=1749541656; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=caJ7ux2yumSI+rOgZYfrKx6bLw/EgXNi4UXfiijyCIE=;
+        b=J14WX4sKVdt0QSMGcSkVQJl+VKfAertmwOvjqlJGye5TQVpSYbFxi7Ck5eKgvvAIYY
+         KYDxP6+uyBF9U1DSg451N3BwlfxbVHQPQzJDYmLjUzG2actm2WNDqCyBKuaFhWwT9TpO
+         2W6pcBVdPDcQLLChbbHmRtwyRkFMnyMLoDp6N7xHGl1EjTJxoqox0xHRk/zOWndX/IAz
+         4oSXpmfI9RvFFKVuY9OVQKXo3BxYIufB4hjS9t/acfQJh6v/b1C0PBGVP3enKSfB2RAG
+         d2RfEtJPxEOFCw4XJuDKE3ZGbEUunAvu3MZYUTlGC44atL9rGW+ePh8FlrE31f4Kdrh9
+         zsxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748936856; x=1749541656;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=caJ7ux2yumSI+rOgZYfrKx6bLw/EgXNi4UXfiijyCIE=;
+        b=HAh/BOCOxa3/F1bnEOfRQSQNjfmhP5qvNhaPDznJ1m5j4l6x0gOEXiq0QhzCTDRHjR
+         bibDirNec+aKB1pVLM49g/QUFdJXpkArKu7WJIz47HmM/vWhfLkutsnrCwDptF6cNoPz
+         W4sJOrS9BXPTLyNBshBpbRlferyYsFZG10UtL769/bOUv+XgPw4dGnl2G2sGBAgYgVz9
+         N4GvaG7Vm5jzDvz1njTIu8epSCnR7GIotnFUyU44nITCy0LUoUHPsxODSTIX0XDLL0Oz
+         toJKSH5dYcIBuRVyai7hubvzf5Oiq7mTYc6wdZP8CgB4SmX4s4PqaL65EW9N4le558Vk
+         oy+g==
+X-Forwarded-Encrypted: i=1; AJvYcCVwmxb7sV2rsYJPDKNvX9ZiVugSyEGRRcXMj8XdYhZQX3932uJ8XBi34YdKvU8tLuWm3D9Crfa7F/jkleAM@lists.infradead.org
+X-Gm-Message-State: AOJu0YwJM85tkPUN1sScFbAtUy5KCgLI9LSnOYF7+H+M2ld+gwY7n2ef
+	ULAD8GBc2f8lbMEbKifLpN09MQEkjzu8qi5j1GL5xMMGBRtH6TZ3OcZ3w0vLGaxT5itgFRz2/Qm
+	hCJUz
+X-Gm-Gg: ASbGncshrN5r2q9Bi83gfqQAsiHe5VJsoXaplUMBWmA8PXoTPSQhpl3EGUfrgSUKMdu
+	C9hfc3gO/kATKDRw66XZcmYsOOJE8XMA2zESu2/3lmekoKx79c0iUjqQ+gvBO6B91HwwwotzVG9
+	fGVFXCRYKI5Xi+7CP4+6BmAhujKRSlfZDE9djjNMg3wlIH/JOKl7nYdFXnN7w8cGDbuDsxZid4W
+	9ViEM21oGedZuuWmPSPGbaNfzBW0VpSz6QkzLFVsTF5Kwr/W0LN79RB4mxmW1UoARcAbf9sLTD1
+	979GC6baa7ZucR+lZa0BX+cYigxISrY9UF/yBue4bUm0hqFItpui0X8w3cqBCiEPACkYtNUQ
+X-Google-Smtp-Source: AGHT+IEDZguHy26GTUwFsHWSzO/bLYq1dpznuDMKPsYMZaUuQBDHm6dBdCH9NBhwEc0SzxYYLbe17g==
+X-Received: by 2002:a05:6000:4023:b0:3a4:f723:3e73 with SMTP id ffacd0b85a97d-3a4f89a893emr12077391f8f.16.1748936855700;
+        Tue, 03 Jun 2025 00:47:35 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d7f8f1e7sm152181815e9.1.2025.06.03.00.47.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jun 2025 00:47:35 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Tue, 03 Jun 2025 09:47:33 +0200
+Subject: [PATCH] arm64: dts: amlogic: meson-gxm-rbox-pro: fix wifi node
+ name
 MIME-Version: 1.0
+Message-Id: <20250603-topic-amlogic-upstream-bindings-fixes-dts-round-3-v1-1-2d54a476757d@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAJSoPmgC/x2M0QrCMAwAf2Xk2UC2URF/RXzo2lgDri1NN4Sxf
+ zf4dBwcd4ByE1a4Dwc03kWlZJPxMkB4+5wYJZrDRJOjK83YS5WAfv2UZNyq9sZ+xUVylJwUX/J
+ lxdgVW9lyxBkDBefHxd/IEdi3Nv5Htn08z/MHSS/1noMAAAA=
+X-Change-ID: 20250603-topic-amlogic-upstream-bindings-fixes-dts-round-3-c0c5a1ba8050
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1124;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=84VAWVFlPhyzrCXyj2+DcTr+WKL+4wxRMFJtq/MQ9Mw=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBoPqiWafsssuKl4aBXXalW+12j2G5hJWZTyeYc05Yt
+ p3pu+16JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaD6olgAKCRB33NvayMhJ0V7WEA
+ Ch3KymIceqWdnWOiU5bsyN+KN/+/qIw0hdpFG1GVA3q5Sb0lbC8MnMaAfqQxoT535Ny+BvxM8b6aht
+ 3nXk5//79gXMwRFBhwFrmQRRAsximQ8ZMXLYS3AP+ZhRBes3fZeGL44cpxiL4ehOqT9JVio8f9CVLo
+ wGurl+h2qwznwfg4d3pQhyWOZQYwm2WLMsfxHOPqZGPjqBOr2kf9a991KOpgeJv6gNMbrP7JGdbdOr
+ 3rY46RNuiBB88MpGa/jzZuw0bcWHyzGifAPmuR+Ye0ngJjbp3SSbn7jDNBxYkH13KLs/8VF9KddADc
+ 1gN4PhjgVq0KJ9IdIq9AiLIvsJS/IZFTNsmcpvFiI0Tdf1/nXcqTTs6d8OFhVP6IM31mD4+Fs9CEgb
+ V6Q/eBy2EX6O8AQQHMY08XFaUiwHY9+Tu8vyOi+cDm+U3BzFqSTpzqTOGHvGBaw/Rtp0+us/2fJCIS
+ 5/thXgW7/syAlRKZSsZre875a8Fs+c1KVbJ+MajHhqBH0DBGg4ZkXtaJih0twQ8Yv7mMgJOUOqTwMn
+ vALq+AU3qvyrZ5E9WMvKCDAsxHr6H5CCJxbthtUyLkQUyPKlFzYpDYV3G89eNovoKqkPTzG8ofW/X/
+ 8vm5pQ/kkw1oGK9LFOsXSH4PzKV86QxCcQw8G5uvtmUOvtTlcsITTyLYTOjw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250602_225136_182256_725A4AA2 
-X-CRM114-Status: UNSURE (   8.50  )
+X-CRM114-CacheID: sfid-20250603_004737_518791_5B63EFEB 
+X-CRM114-Status: UNSURE (   9.97  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,99 +122,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The for_each_child_of_node_scoped() helper provides a scope-based
-clean-up functionality to put the device_node automatically, and
-as such, there is no need to call of_node_put() directly.
+This fixes the following error:
+meson-gxm-rbox-pro.dtb: brcmf@1: $nodename:0: 'brcmf@1' does not match '^wifi(@.*)?$'
+	from schema $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202505210557.EpJig9BQ-lkp@intel.com/
-Signed-off-by: Ai Chao <aichao@kylinos.cn>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- sound/soc/meson/axg-card.c         |  3 +--
- sound/soc/meson/meson-card-utils.c | 16 +++++-----------
- 2 files changed, 6 insertions(+), 13 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
-index a2dfccb7990f..b4dca80e15e4 100644
---- a/sound/soc/meson/axg-card.c
-+++ b/sound/soc/meson/axg-card.c
-@@ -222,7 +222,6 @@ static int axg_card_parse_codecs_masks(struct snd_soc_card *card,
- 				       struct axg_dai_link_tdm_data *be)
- {
- 	struct axg_dai_link_tdm_mask *codec_mask;
--	struct device_node *np;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+index ecaf678b23ddd6f0e1f27532059aa706c29fe046..9d5a481b309f7201e5a82b7a91b8ca265c7ef42a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+@@ -217,7 +217,7 @@ &sd_emmc_a {
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_boot>;
  
- 	codec_mask = devm_kcalloc(card->dev, link->num_codecs,
- 				  sizeof(*codec_mask), GFP_KERNEL);
-@@ -231,7 +230,7 @@ static int axg_card_parse_codecs_masks(struct snd_soc_card *card,
- 
- 	be->codec_masks = codec_mask;
- 
--	for_each_child_of_node(node, np) {
-+	for_each_child_of_node_scoped(node, np) {
- 		snd_soc_of_get_slot_mask(np, "dai-tdm-slot-rx-mask",
- 					 &codec_mask->rx);
- 		snd_soc_of_get_slot_mask(np, "dai-tdm-slot-tx-mask",
-diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-index 68531183fb60..cdb759b466ad 100644
---- a/sound/soc/meson/meson-card-utils.c
-+++ b/sound/soc/meson/meson-card-utils.c
-@@ -137,7 +137,6 @@ int meson_card_set_be_link(struct snd_soc_card *card,
- 			   struct device_node *node)
- {
- 	struct snd_soc_dai_link_component *codec;
--	struct device_node *np;
- 	int ret, num_codecs;
- 
- 	num_codecs = of_get_child_count(node);
-@@ -154,19 +153,17 @@ int meson_card_set_be_link(struct snd_soc_card *card,
- 	link->codecs = codec;
- 	link->num_codecs = num_codecs;
- 
--	for_each_child_of_node(node, np) {
-+	for_each_child_of_node_scoped(node, np) {
- 		ret = meson_card_parse_dai(card, np, codec);
--		if (ret) {
--			of_node_put(np);
-+		if (ret)
- 			return ret;
--		}
- 
- 		codec++;
- 	}
- 
- 	ret = meson_card_set_link_name(card, link, node, "be");
- 	if (ret)
--		dev_err(card->dev, "error setting %pOFn link name\n", np);
-+		dev_err(card->dev, "error setting %pOFn link name\n", node);
- 
- 	return ret;
- }
-@@ -198,7 +195,6 @@ static int meson_card_add_links(struct snd_soc_card *card)
- {
- 	struct meson_card *priv = snd_soc_card_get_drvdata(card);
- 	struct device_node *node = card->dev->of_node;
--	struct device_node *np;
- 	int num, i, ret;
- 
- 	num = of_get_child_count(node);
-@@ -212,12 +208,10 @@ static int meson_card_add_links(struct snd_soc_card *card)
- 		return ret;
- 
- 	i = 0;
--	for_each_child_of_node(node, np) {
-+	for_each_child_of_node_scoped(node, np) {
- 		ret = priv->match_data->add_link(card, np, &i);
--		if (ret) {
--			of_node_put(np);
-+		if (ret)
- 			return ret;
--		}
- 
- 		i++;
- 	}
+-	brcmf: brcmf@1 {
++	brcmf: wifi@1 {
+ 		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+ 	};
+
+---
+base-commit: a0bea9e39035edc56a994630e6048c8a191a99d8
+change-id: 20250603-topic-amlogic-upstream-bindings-fixes-dts-round-3-c0c5a1ba8050
+
+Best regards,
 -- 
-2.47.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
 _______________________________________________
