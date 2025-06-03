@@ -4,77 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92984C5AE59
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 12:04:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE3EEC5AD49
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 12:06:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZlL9tCrqRF36Zb7V9tGQkEgMdSk1ungMwrtLxT51/Ss=; b=e1w7KTMsy5leFH
-	Xqa6wXhfEiv8i9voOgz3mFBU8zohcWOTlXmniAbtIX4G89AJ35bOvNgsU74yWPx76102XmlR6JZKd
-	d6OsOWfK2u/YtjVZIj7uLzm4nSFdEHog8FZFK3jnzM6ENDlzhCFasVBDjbStn1CZCcGqnfA9iAV35
-	/hKDt5FxKBSjd164txM3WJv44FBiIXrVKywx6CUfZEKYbk0DF0wftJzm72t6H+BoRF3KEGAceqWjw
-	5is6fqdMyZVWaembU03TDmzmZY1NepS5YOjV5QXIf4FaG8Bb1SXXyN78lCOlL1FK/Eu1kWOdEIEv/
-	0lD24ZN877eoznsvUItA==;
+	List-Owner; bh=+Rng1SlFlFLZOZiYKNmgWAbMYmmJDKMJssdBLeQUQNs=; b=SMVlVwkuFgCBVk
+	ycOdDaFEeNW1180PAEjgU/NwclAd205z7/rWzS/i/vaE97dXvGZOHe8RXr39a0CRxgNcfzHp3MUfw
+	oK5fTv+/sE6ttp2P5NqR29t9aFZaxOHj5+23+N62JmP16jagwdaeLcF2tiEL85Q4VJLwkfjr2BRsq
+	tnl8iAJLcoIp44i3vffLztkVfcwSM8JTU1B9nzyfp0KQewiku6YbRscOIK1jDOksLYmaFWGSzl8Rf
+	LswB+LkS51oDdF2JXA930AHoOWTBO5tPyKKD5+2VAce6xPz/8i/h5mlyVbwxb/o5EMFVMYQD7M7/I
+	VV82G059UwPVKdGF7j+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMQNM-0000000AsOK-1Sjz;
-	Tue, 03 Jun 2025 12:04:16 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1uMQPV-0000000AsdC-1sKi;
+	Tue, 03 Jun 2025 12:06:29 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMQGo-0000000ArTS-3ui2
+	id 1uMQGq-0000000ArUE-3KMb
 	for linux-amlogic@lists.infradead.org;
-	Tue, 03 Jun 2025 11:57:32 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-450d15e2d25so1114435e9.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 03 Jun 2025 04:57:30 -0700 (PDT)
+	Tue, 03 Jun 2025 11:57:34 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-451d41e19d0so2664715e9.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 03 Jun 2025 04:57:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748951849; x=1749556649; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1748951851; x=1749556651; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=P9iOMNCqnm556i6iWSK9mE2UkHu3B2asZSKy8c1kTbA=;
-        b=ZsYrLQOBZAOnCFUkkHwCOD618ExaOS/5hApijfVpFmU1ks0L+Qw5ZJG/TJwgifTdEx
-         Evr76x+XMY39ZZF8xj5uCZeErbXrDSOzfdQIGN0spRVQgg5nQKHop3I67CcRKWLADUqD
-         gX+jiXepHERGli4sYXF/HMJeE20yk9tkXCJUJFPBvSV/aA4g5iM+ySizxJom0mQmG4iG
-         oXFuzaDq68h7t0x+AeT1xVazu3Gnf/+oN+mvZJlKQ5xgzRMg0Acch7qMqL3ZiBDPwEZI
-         KXb2jXxHR1wYnmHrBR0uNOdacNvz5Ku0M9Y7rE4WFnvEdrI0o7yPh9ADIAAB2EFfGEx9
-         05Tg==
+        bh=ExhN+XF0N6J6awaTyjEwEtgTC+vyO+pqDRvv89W3ABg=;
+        b=MgCMnp5I8EwRoBnaqAOdLModlpyQ0XO6lo362o8Ry6kuPUlyFn/ELlqSJ6OTywENkg
+         BKW6MlMQE5JbnDMaqNXsd04fPe0V2Jl2AbfySTKJP/eYdHW5D7fGggKk+0yuK8/JUpZq
+         lyk7n0BbmkF+OkHEGvrR7L/idwNyLfHlFoyvnejnR/Sp869vPw2mbIl4taMVzrDRM7ge
+         YMxb1Rh9cba5GTI6SlN8ThhJh32mg+CvSNyyCSEhSn7zZ7Gd2hb8btqnvdTSHyCDJwcp
+         6fORl8ICelxHqK5KI0vyGJ4Ibq1YjIMv+Mj/4H7dwnB0BhQCMW223FtDSpXvK1gYEFSH
+         126Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748951849; x=1749556649;
+        d=1e100.net; s=20230601; t=1748951851; x=1749556651;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=P9iOMNCqnm556i6iWSK9mE2UkHu3B2asZSKy8c1kTbA=;
-        b=ifwe1pF1vca1fvXos/CjdZCb3/dDfRxgif9Mrw06K8odX0KH2s+tAFeBrOZ4ncYzOx
-         4Hmd+KX20iuju5NLkJkSU1F/Ut4LsXCVc5ziobzD0yWyFYNqqrKzZrKGukE4lUmZX5KE
-         5eOnGkeHeBNWRUCWB3WExSN+RG1cSkEVeLRqBO1aR/ds/haPixeh3uZZRnKzBV4uyMK8
-         3OIlnjR1Lmw3tk2PgH62oraABIEl8KhuLl1Hqx7gtAnDttknNqfJRfTRIn1GCaMsxisB
-         ifsIqSIHIE5hjswCfQYAnOcCCMfcxJEDrQY+lk7nGRPTj73X/1nmJq0IgN6P58bPPlta
-         Vq6g==
-X-Forwarded-Encrypted: i=1; AJvYcCX7xUXTCJdq06sKIls0nw+3Z02HiUz7l87KFgpwuFWVb9nUT6/zrT2DjZF1qIVj7aMxX/5CfvdzbqqaFRJ7@lists.infradead.org
-X-Gm-Message-State: AOJu0YyVJaB/Vjyc+cgwbp9bziBtkCy08XwbMF4sA/Ods6kQ/IbrdSOi
-	pd91TuXwNzEfM5oc8OyME8BM2B+eC2wbyK+qLzKVJ+p6rJk44v9td/h0l3kQHWL0jcw=
-X-Gm-Gg: ASbGncvall/Ic7eQ4NvH2AZM9T2PX8479sGQCSSd5A0UxeE1gvoOicaBJ4+djFQ1yTE
-	znMccKaX4zCc2RkBtGml1GC0jjl/0kmtrH6rJU5MQoTMjxxoXWKO6x0S8MAEs28/PUSjgV+SvwX
-	jSuTN0azL/fhyiCEM8VPLqVOQaccrQGKfw/JcTUFifWFKggtvb45J3LydX+wWM9U1mKwr+3Isj7
-	CzhxBny1xiUeSKotnHGhRz5n51T+i6G/dDKZoipnMy2qaq2NG7MM+zyjXX6TY+oUSIYHJyfZDom
-	mKpWrbKFHZU7f4wUJKCvSmHShIZVjUU2t+GAs2iMo59sUr8QiWpsEWt3stmYw2erU2Td+78ffh9
-	p1el8MKT87axZjk/2+g2/lA==
-X-Google-Smtp-Source: AGHT+IG6CmWM3RslzVJ9Zs6x2OnxvGd9okADIrUTxvkVwVY0rJS07w9DnVo5m/6fQdGbvnL2BjUAIg==
-X-Received: by 2002:a05:6000:2886:b0:3a3:7049:f947 with SMTP id ffacd0b85a97d-3a4f897bc88mr4781768f8f.10.1748951849223;
-        Tue, 03 Jun 2025 04:57:29 -0700 (PDT)
+        bh=ExhN+XF0N6J6awaTyjEwEtgTC+vyO+pqDRvv89W3ABg=;
+        b=wFPWjuA0zbaPVaodjfnzKI11bKDU5LSTWcBXYVszROn9tJ4usuNYGlwd8Yw5mZjMmG
+         0kDC4kyn2H4rpba5wZ3sv8jWGvJndyrtI/yHETpGBFRuy/jpQZRBstL3TYBypYv2SDsy
+         7E6JrrGJRMCxVD7LHbZWVCUGdR8L8ujCJvavYe0wIgMuiX2xEWrJcNwg1vYoK+rbDhuV
+         EhLtKN6/amTb8m9R19mXxXcjlpNnmyGt+cjIyPbwbHl7eK/yDL5HiulqJIDJREY4eyO0
+         m2kGrDLuGUxYmG5BMMCbTf3XXvESiQeww9Wtx5tmuDBRV63k+xFMVVvZwO2ApPOesgyk
+         BuWw==
+X-Forwarded-Encrypted: i=1; AJvYcCXg27CrHE0U2ybE4N06DHf+lUuSQJ5mf8xzBnMwZ0npVN3SiThwg3CigbNEZAKWAcVrZ+L967Fe9mrrSM+y@lists.infradead.org
+X-Gm-Message-State: AOJu0YwL77xMocdQvDmI9D4MgBQUapVFLjPYrQFLgjha1vWl4sX2cKPA
+	W1vXdBs+sH7CqA8DmCiQ3KkM8kZcwX7DN65XusZlMz9eOpFsV+Mtiu/1hCj23q+vPS0=
+X-Gm-Gg: ASbGncvTslCXuqWAlTtaD1QeDnHI6kVS+nIArG8Intz/TQZmjJd+f5Vs/AmJPJwI8lI
+	+ypUvOSo+PQhbflrox7AcwP3QibbAOUTmaDwa4w2tgQk+EwH/L9HjL/ZIdoBAgZRH70V2rVaHta
+	3lcVCgJvaQBi+cmixU6CqcEuZGChjr3QmhBLe7oprpFGTlgBh/7i8angyLKXPFC3s3EMKgz1Rn9
+	WsMbNdfP0cpzhy69v23Wp5mfOmnfjLkajQf4LPyOW8+ihryxq9NmQKSY5nFTWvoMWEoi7LwIpi/
+	tuMueY3mMxjRPJFG2ReW3URBnlIjVaQX3UzgeTPXaOidjB77C2UBT3QUIjEUVRZ73L4w9CCjrRm
+	JBoR69HrIDILxY7rPfmTGYg==
+X-Google-Smtp-Source: AGHT+IFtYARGpAfUwedcZUr+rv2i3DwXIs+E+vyvXAOm1JZEhhjjlgKaNxSVWr0jm35V1p0FWxTuuQ==
+X-Received: by 2002:a05:6000:144a:b0:3a4:d7c7:89d1 with SMTP id ffacd0b85a97d-3a512c0dcf3mr920895f8f.4.1748951850998;
+        Tue, 03 Jun 2025 04:57:30 -0700 (PDT)
 Received: from [172.16.23.13] (adsl-84-227-104-5.adslplus.ch. [84.227.104.5])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe6c7adsm17671666f8f.26.2025.06.03.04.57.27
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe6c7adsm17671666f8f.26.2025.06.03.04.57.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jun 2025 04:57:28 -0700 (PDT)
+        Tue, 03 Jun 2025 04:57:30 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Tue, 03 Jun 2025 13:57:09 +0200
-Subject: [PATCH 2/5] dt-bindings: mailbox: ti,secure-proxy: Add missing reg
- maxItems
+Date: Tue, 03 Jun 2025 13:57:10 +0200
+Subject: [PATCH 3/5] dt-bindings: mailbox: Correct example indentation
 MIME-Version: 1.0
-Message-Id: <20250603-dt-bindings-mailbox-cleanup-v1-2-724407563997@linaro.org>
+Message-Id: <20250603-dt-bindings-mailbox-cleanup-v1-3-724407563997@linaro.org>
 References: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
 In-Reply-To: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
 To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
@@ -96,26 +95,26 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=902;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5065;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=PmQVq4hQS35gwAsgZYe0MBq9ErqtT+mom2oZuUDxvi4=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoPuMb6qbPyHvmIRIrN/4NfNvZ2r6JN2VnhQ/rt
- P/6fx1bFIiJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaD7jGwAKCRDBN2bmhouD
- 11okD/9H8uQVKm6Fba6vs1oJEhpW2E6WDVf76MJKju/FQ59Kihwd3IlRjqvGcI3JVd0sghwfs5E
- dVHRZW7lejfKzozTRGlzYKm8jWya/bma153cjRkvzpDQ4dCBvIRrkIYg1uIO2KFYZbF+V1iRT3b
- g7UmqkWQqU2Xb3Vf2CVYNjeCKU7YQMZfAM2zsm2XqrHunsByEHhmiuPvSN4lljzOe//vWePZRWG
- oO8322aArQSfeBI4C52Yg3eKV9fHdvXpB6DijXi8YYx1Wb7SNfaj4LhVu8ODa/+DU8SGRNlxNP1
- Z9PDMuPCdkOOHza9p/Gzg96ZEX6jiKXZKNLNsZ+MjGfjP+789AdQqGGgMgnuGAk8XzT9GFl8lwQ
- fiu3PECrJ9h2dK0zIrh7fps9SVMjmuxVr4ap/yatDj2cnoKj1Ecc3/++X50tuN4BcbhEcrwOBNX
- KhkMPb8L/I7QgZ5Au5q7TpxMhDVfJXNqe+Iy+pY/JEE4GthRQjtzicDApK+RT8f+pceNlH4Ic/c
- Z1yMhvvNcKbEQkmwRPFyFCJHuv4iX9VNx0nZOxzJnR5Lc+ILPanys9dW3fr6NbwJo5ZlEyyJujQ
- JAyTMfMPK7r9ETJN711C9Myj4NJ76EYYBkR/8yBzgRKUIZmx+mA4WHhJApZvSUkhlTtOCzwMCuu
- LpLpbn5wLmTgrQA==
+ bh=pbB5PzrHWvVUn04LbVYo2MNOE6kLsW5gBdzmEzOHczU=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoPuMdIBzxTrvdsP5gds/d0vjogFtPZqCCBexkU
+ t2g8c+MQ+iJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaD7jHQAKCRDBN2bmhouD
+ 1xFyD/9L4+1GTV5DN1265YZBVsYfGT671n0VhpafJSb91mwvevxDWPkwfY40WAvavWVSdnU+oKt
+ Oul+mg/UJQ89kOSzcxD5LsRCQ9Acsti3Mrc2v+VcXQ5aaKGlGq7jt1acfeHhjeNosEAA5Q/7GGm
+ eGS3YqpRuHV86siWBlHPpFj41TaROQ96ys/d/JfM1FXitBk+o3yBl/OYpWLB7yPVR2Z10titntk
+ KnMS7dslZtULk5I/aSaL/TbCHAPuqYMwom+/SLCL+0+ujJZiLU4XJoZ+lOGclDgOgoRXIVmFHLy
+ irFm7Ztc9RUbHsC/CWQiAZSY3kGwQHDfxSbCfdceTq8dLC8feQ5/8UwFAvJP5pHuUCGmLp4nOj9
+ NCR3wksI5Jhat9TOXbmwNu8Kz2+urDI5jTQ3cX7HOojU8O4d+lByyUWVZIP2AlA/C20a6gv+e4p
+ P02u3sMkeIYYEcZYgTdJAs+VqRVrdEHt2IO21B9N3257zT4/OF95e2urmhCQyJ+Bi8SjdskB7jQ
+ zyl774llaFFuVkbXNBCuRXGiLGYdXtf5iES9z33x77UWRyzpUFqldA4EucRbBYnQR3KT5SomaK+
+ yDnULbjaDeWyLOrtLDh2fBnybkwPfmkdFDiBKfXFCiWAmJFWEfh/RFzExHvT0ZxT9pmyAT0IrdY
+ RkEvLVdycgzd0KA==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250603_045730_966411_0AD6C09F 
-X-CRM114-Status: GOOD (  11.10  )
+X-CRM114-CacheID: sfid-20250603_045732_844046_086162D7 
+X-CRM114-Status: GOOD (  11.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,28 +131,108 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Lists should have fixed constraint, so add missing maxItems to the "reg"
-property.  Since minItems=maxItems, the minItems is implied by dtschema
-so can be dropped.
+DTS example in the bindings should be indented with 2- or 4-spaces, so
+correct a mixture of different styles to keep consistent 4-spaces.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml     | 14 +++++++-------
+ .../bindings/mailbox/amlogic,meson-gxbb-mhu.yaml         |  8 ++++----
+ .../devicetree/bindings/mailbox/apple,mailbox.yaml       | 16 ++++++++--------
+ .../devicetree/bindings/mailbox/ti,secure-proxy.yaml     | 16 ++++++++--------
+ 4 files changed, 27 insertions(+), 27 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml b/Documentation/devicetree/bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml
+index 75d5d97305e19f50059e61a4db2632765885e850..87d31963c1b73c956b9782f029b1a5ad2654f507 100644
+--- a/Documentation/devicetree/bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml
+@@ -68,13 +68,13 @@ examples:
+     #include <dt-bindings/reset/sun8i-h3-ccu.h>
+ 
+     msgbox: mailbox@1c17000 {
+-            compatible = "allwinner,sun8i-h3-msgbox",
+-                         "allwinner,sun6i-a31-msgbox";
+-            reg = <0x01c17000 0x1000>;
+-            clocks = <&ccu CLK_BUS_MSGBOX>;
+-            resets = <&ccu RST_BUS_MSGBOX>;
+-            interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
+-            #mbox-cells = <1>;
++        compatible = "allwinner,sun8i-h3-msgbox",
++                     "allwinner,sun6i-a31-msgbox";
++        reg = <0x01c17000 0x1000>;
++        clocks = <&ccu CLK_BUS_MSGBOX>;
++        resets = <&ccu RST_BUS_MSGBOX>;
++        interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
++        #mbox-cells = <1>;
+     };
+ 
+ ...
+diff --git a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+index 0849799ee0c5caaeb27fe1e3e3714a630a7c2b09..79963c9878bad1684fa0810ad71554af2ceeb75d 100644
+--- a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
++++ b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+@@ -46,8 +46,8 @@ additionalProperties: false
+ examples:
+   - |
+     mailbox@c883c404 {
+-          compatible = "amlogic,meson-gxbb-mhu";
+-          reg = <0xc883c404 0x4c>;
+-          interrupts = <208>, <209>, <210>;
+-          #mbox-cells = <1>;
++        compatible = "amlogic,meson-gxbb-mhu";
++        reg = <0xc883c404 0x4c>;
++        interrupts = <208>, <209>, <210>;
++        #mbox-cells = <1>;
+     };
+diff --git a/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml b/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+index 4c0668e5f0bdc1e03404cbd58a392465d30b0e8e..474c1a0f99f34777e1bed7fc0a34f89320a93b7c 100644
+--- a/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+@@ -78,11 +78,11 @@ additionalProperties: false
+ 
+ examples:
+   - |
+-        mailbox@77408000 {
+-                compatible = "apple,t8103-asc-mailbox", "apple,asc-mailbox-v4";
+-                reg = <0x77408000 0x4000>;
+-                interrupts = <1 583 4>, <1 584 4>, <1 585 4>, <1 586 4>;
+-                interrupt-names = "send-empty", "send-not-empty",
+-                 "recv-empty", "recv-not-empty";
+-                #mbox-cells = <0>;
+-        };
++    mailbox@77408000 {
++        compatible = "apple,t8103-asc-mailbox", "apple,asc-mailbox-v4";
++        reg = <0x77408000 0x4000>;
++        interrupts = <1 583 4>, <1 584 4>, <1 585 4>, <1 586 4>;
++        interrupt-names = "send-empty", "send-not-empty",
++                          "recv-empty", "recv-not-empty";
++        #mbox-cells = <0>;
++    };
 diff --git a/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml b/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
-index eea822861804c259068aa8c4598188db28895518..682ccd76f5c25fc13bb3375007d39e6208cdddc0 100644
+index 682ccd76f5c25fc13bb3375007d39e6208cdddc0..c321b69f0ccd3cdc7cedefadf46982b42cce915e 100644
 --- a/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
 +++ b/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
-@@ -36,7 +36,7 @@ properties:
-       - const: scfg
- 
-   reg:
--    minItems: 3
-+    maxItems: 3
- 
-   interrupt-names:
-     minItems: 1
+@@ -68,12 +68,12 @@ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     secure_proxy: mailbox@32c00000 {
+-          compatible = "ti,am654-secure-proxy";
+-          #mbox-cells = <1>;
+-          reg-names = "target_data", "rt", "scfg";
+-          reg = <0x32c00000 0x100000>,
+-                <0x32400000 0x100000>,
+-                <0x32800000 0x100000>;
+-          interrupt-names = "rx_011";
+-          interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
++        compatible = "ti,am654-secure-proxy";
++        #mbox-cells = <1>;
++        reg-names = "target_data", "rt", "scfg";
++        reg = <0x32c00000 0x100000>,
++              <0x32400000 0x100000>,
++              <0x32800000 0x100000>;
++        interrupt-names = "rx_011";
++        interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+     };
 
 -- 
 2.45.2
