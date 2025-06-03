@@ -4,119 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2172C5AD49
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 13:23:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A902C5B555
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Jun 2025 13:29:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=KQ/SdmS/OT6eKZhp+O9Ov+NvUwt0mB9eZbGhtuTHr28=; b=GzsMNY+BYdavhWCKA/+yTPJXND
-	A1RgIyZGqIm0TySDBdSa1dRmDk9jMT3FkgAfFjysZZGWb55b0CRT5GFFjnYYouyJgRq9Ub5hdQmuB
-	uxaCHigMmKeCl3l2xj3ZT7wYOtGUYz52SGVs8VcLUp1XU1B4AboRjm6zErRgiRswrr+hcakERTSgw
-	xgA/wtCn1HCEn0YyA8Md9ckZ/4jVwqXDyiFB5rDrIQopLOmD5qQNDB4gges1NX00iy3yLq64BYAy0
-	U2Y8Qq6N+EnDd0Bq/fAxQvy0PVpvdr5XZrEGXvPct3UmhIV5N9Umn5AnfKTpjQD7QIQoYzHOHjhdQ
-	PvQGRx7Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=9Fhz+ZSaxXEA98tmi8Fs7vt5cAXOh9C431bJLsr+NYA=; b=nuul5lOavWJvQB
+	VzVdQ0t/DcGgelEbvhL1YtDiZUSQov3i/zJr/UuhtrP3Hr7jmmRgNRzwGsb4B4jPJWD0+0qOR7n10
+	BkGyZ16mHuDEN/N7+tS1kCNYnfQj1WA4BDZM15LUlscIJc3IIzvGbarOPZHM3a9+wdRs/rr1fZH/C
+	0ib/A1zhynIjvBj5020VfYIcFbCcNZA9vPK5KrENAfvoNbNhkYhub0ZNLm2Z4pi0wfVDj5SwO6N4V
+	xmQAnZp6gozkfU3u7PunXppj+b9FdBM07zUz71rlpn953nz+5FgTDyFBrAd165hQFnaRVkl7zHtLM
+	1HOyAFMyh3VODLB1cQ0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMRbT-0000000B1Xc-2EEm;
-	Tue, 03 Jun 2025 13:22:55 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1uMRhi-0000000B2Ee-2mch;
+	Tue, 03 Jun 2025 13:29:22 +0000
+Received: from mail-wm1-f53.google.com ([209.85.128.53])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMRbQ-0000000B1We-0wPu
+	id 1uMRfW-0000000B1yy-13Ne
 	for linux-amlogic@lists.infradead.org;
-	Tue, 03 Jun 2025 13:22:53 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3a35c894313so5054547f8f.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 03 Jun 2025 06:22:51 -0700 (PDT)
+	Tue, 03 Jun 2025 13:27:07 +0000
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-451d54214adso22644855e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 03 Jun 2025 06:27:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748956970; x=1749561770; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1748957224; x=1749562024; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9o1OG5gJMnbyvyc0DC5kIEpva13qObOrgWmt6a2YYaM=;
-        b=AyuI7UhgW99YPSoVWilSYcqToF5AroywIMOyWshnFDE+2fbDalZlX5DiRWKrLUf+RC
-         PBRV/Eflfhvak7vfslqHB9Rj+5xEVm0eEX9V4rWVPEflqv6Mmx1hlpCh+0UWdgZfmnHt
-         zoYWcBh/7GTkt6GDnmedGT0DA1ct1FeSFG8tYbyREMrr6gy3BYwe5k8uFAn/Lwpy+lnw
-         tZkr3V79HSmLBLE5FOVs/tmfFZpZmPOCbqAIroWgLmvjdjXp5881SEUSeHjWaQVG4OA8
-         4GO/X/8HMF8AYv+7Vy7ccO231rkmwgbSv140XJWZTOw/cb9BRjjI7UXITUoQ4EhWsmnA
-         u2Fg==
+        bh=oihVtB+1SEPxR6wMy6kxrIZOmkj3G4LorB9xvDbO3Qs=;
+        b=JB07zlmuI+Zrfsq1xEhmCkjdbQLjmC6WZ3+lYhlUeKwwGQs3OXseXB04cZ9YpkRg5z
+         Xp/d5gEWnrqbIHfoc4Z7fj8notY+jKt2yKltC0PKrsW0QcfURudy7hoOmOL/klNXTrSn
+         k0Taxgy8/0xEwjedVI8AN8f80j/gVBC9nkMLp4+qOMcM+TJIXRQYTs0p6X5YjIV2VbEL
+         CyTml7YAzxCmirn6nLXlVujUFMGbjZ+UtMxH38ybVzVGKtNo1aGO/DW0fHH5lLwCiAbd
+         M0CIapUDzQBpVJkEDtXcXb9ae7dCLzSMwVDvjtC4bc8QJUTCA2nm8ufcV8xr6pZ8gW3R
+         sF9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748956970; x=1749561770;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9o1OG5gJMnbyvyc0DC5kIEpva13qObOrgWmt6a2YYaM=;
-        b=tF5RZ+wIVuDjY5pi97ec2L1dwW+th0/qJo2fAdjkj44vuQLf5shVKS0TVsuyvFBGax
-         qK56TSPak9/osKVJbiR5z6EAAi6S+Dw4rEQ2LuH+1kY/9kiLyl2qAPPZJYw9qojcTVh7
-         cUe05dVj4ZMwqvO2Bj9lHsoQLm4NDSNmz+cKFuZi7dIxY9pAYIDV+XIHMul0sgt0+eVS
-         tLk2lAGyGkLGaLZ9+qk8jD7vYZzAWqbkrpIVe7RIiTbk87kfESzEywqNulEk0iqbDcWN
-         syuZX3xtQkOE8TwrzzPpsCf+EhI+brWmwmcSbEEDVk18utfBK5tO8ODN0oxbZhtQqx8i
-         W0bw==
-X-Forwarded-Encrypted: i=1; AJvYcCWfUGD2nzF4qUcZtvlLskmaCKmc9COOMmSTiKI3KI6bSUI03Ukp2d4PWVc0FYCcCiTzFmHsN0RDb4q1gvGy@lists.infradead.org
-X-Gm-Message-State: AOJu0YzZFfeSiVa6X6AMCM1sMJZS4qCzbkp5go2jHf5x3RK7p+UAVxYx
-	urwvKdkiWqa+KvwXo2zDW3Eo/dmQQ1vI02pQWMdPsUa9qaRpCVZcMAKjCMnye+WvMug=
-X-Gm-Gg: ASbGncvvIF6IBqQzy2RI/mpDissBdH9AsH/AjeSKxb08T+t4lZ8waXoFOYHhdK4/iX4
-	omFV2nfw4iycWZ8brlv/y7/graaxXt8iknrXI7oGGijqU33zBuY01Xr7f8qQL7ze3D/qAXguw5L
-	g1TVnXia2+GUk6PNGEK0tDvi7J4PP6AW17DZV2MTpu/2X+4yRDrTN61zHUH1iQimZDkZthehR2i
-	APFlOIaPykeKE9ubBudSlly4K0vHLqul6LPj/I4hsumaV88QcBHFw87DyOX53usd7ZecvcKRxZv
-	f2JATM43EBSmfIyQ7PObViUWC2g0rujDf7nzDoTRrd6vtz6EuBhFRJIOdp4N5OeFb2BG6frLSt2
-	cVKWHxBudi5m9TauKdbRYTWeu72PhBg25rvdn
-X-Google-Smtp-Source: AGHT+IGwM1OzgbnP1nAlLY2AaZkYQUoZH8oN0rymNrDg+49LiXGRY5PKTqcJSZ1tfnP2AMJFUo1T8Q==
-X-Received: by 2002:a05:6000:230d:b0:3a4:f8e9:cef2 with SMTP id ffacd0b85a97d-3a4fe39363cmr9636222f8f.36.1748956969885;
-        Tue, 03 Jun 2025 06:22:49 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:563:3654:17de:c930? ([2a01:e0a:3d9:2080:563:3654:17de:c930])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4f00972f3sm18588651f8f.69.2025.06.03.06.22.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jun 2025 06:22:49 -0700 (PDT)
-Message-ID: <d950d77a-2bc0-4f8d-88c0-3d4da9cc772e@linaro.org>
-Date: Tue, 3 Jun 2025 15:22:48 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+        d=1e100.net; s=20230601; t=1748957224; x=1749562024;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oihVtB+1SEPxR6wMy6kxrIZOmkj3G4LorB9xvDbO3Qs=;
+        b=Z6XD87ES7WRIKPRLQWYMOKjHAzw2mAIbmwGCImVZfZ9pNeQH8ERaSPFber2AMrUBxC
+         gRKc0xOirMkyUfGvxHxehO9JkOLzknQdUYSW17BtrsieilmddrsneffuaETqMitM8JhT
+         chEo3t7g+wlBzbp59cLQmTOWBUAU676hV26CARAzme8V1d0cYMkLSnJcDXE8J7mLUCRz
+         VgnHWTe/4e7SaES3WNwLfgRu4zJqaLOaIZceOhxKus+KHsHj6dmb/T6TJYeTlVSFb/S7
+         JGQqQwF1EcesWbqrMl6hoCeXlAAYoCeqjExkLhZ8yhjMkpAzJ/ukmq7Y9x8v7McpOCnQ
+         zIkg==
+X-Forwarded-Encrypted: i=1; AJvYcCXiIE6B06elP6js4Pqd2MM9Djpf5ffks0gvNE/AG5kIR36YWm9SU13Wv3imZUA+bIrq1E7zdEcdQutmQYYC@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy0Op3MBkqJVmujye9QKsMyhyhCR2vQJMcPyGjTnR7Lul0SjPiB
+	OChQenWawZ0hUIab+BX7tak/kkPEiByshdGHE3S7s3ROEDfL9gFzw9NEt0h6+kwB9MU=
+X-Gm-Gg: ASbGncttNQDOsSqt2G2aIVree/1QecBADJsxVRNMg60c4XI6hrfZJ7n0vnOQN94aoSV
+	ZyRO/37MJlVpvPIgTH/yzmVxyN+RpFkLFmWK9r/JzfOpSMMGKXWQkek9UoJTb5w+QP1lk2tHRtk
+	wflWtQFRry4tp2eFBWQyQOk6MbCs+Cr2KjppOx8TsczNTItpxfuwgJmVcHZMG5SdxTBaLlSFsH8
+	Dg6/2IgZa1OhKglGnn0D2oKLzc14wg6n4fxQ+m241TilzhB+F9xZ86B4L0R3GIOuamt+Gzd9sOq
+	pU86i3ty4c/eCwtri9SPMRrzeHQKp4e0ZynZzrWcmUNPFPpxYJv5VWetU0WpC4x+2tp8lrWFvCZ
+	v5AMtCVI=
+X-Google-Smtp-Source: AGHT+IGa7mbwcZXtdjmxN4fEKLTzriqSJh2XpWZKE/sUSl2iqQEeeTppliDDInLxLyB5zAkgBnX6bQ==
+X-Received: by 2002:a05:600c:4e0b:b0:442:f4d4:53a with SMTP id 5b1f17b1804b1-450d64c322amr189283025e9.2.1748957224078;
+        Tue, 03 Jun 2025 06:27:04 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d8000d8csm161701305e9.24.2025.06.03.06.27.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jun 2025 06:27:03 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] arm64: dts: amlogic: meson-gxm-rbox-pro: fix wifi node
- name
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250603-topic-amlogic-upstream-bindings-fixes-dts-round-3-v1-1-2d54a476757d@linaro.org>
- <366cdccf-571c-4f7f-ae26-2e529de5d5ec@kernel.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <366cdccf-571c-4f7f-ae26-2e529de5d5ec@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250424084721.105113-1-krzysztof.kozlowski@linaro.org>
+References: <20250424084721.105113-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: Align wifi node name with
+ bindings
+Message-Id: <174895722336.2922018.7146209463305009352.b4-ty@linaro.org>
+Date: Tue, 03 Jun 2025 15:27:03 +0200
+MIME-Version: 1.0
+X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250603_062252_272130_7072C988 
-X-CRM114-Status: UNSURE (   9.17  )
+X-CRM114-CacheID: sfid-20250603_062706_283404_64CE02FA 
+X-CRM114-Status: UNSURE (   9.59  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -129,31 +100,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 03/06/2025 11:50, Krzysztof Kozlowski wrote:
-> On 03/06/2025 09:47, Neil Armstrong wrote:
->> This fixes the following error:
->> meson-gxm-rbox-pro.dtb: brcmf@1: $nodename:0: 'brcmf@1' does not match '^wifi(@.*)?$'
->> 	from schema $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
->>
-> 
-> I already sent it:
-> https://lore.kernel.org/linux-arm-kernel/3c3c3652-be5f-4f54-a0b8-4829f9549116@linaro.org/
-> 
-> Can you pick that one instead?
+Hi,
 
-Sorry I forgot, of course I'll pick yours.
+On Thu, 24 Apr 2025 10:47:21 +0200, Krzysztof Kozlowski wrote:
+> Since commit 3c3606793f7e ("dt-bindings: wireless: bcm4329-fmac: Use
+> wireless-controller.yaml schema"), bindings expect 'wifi' as node name:
+> 
+>   meson-gxm-rbox-pro.dtb: brcmf@1: $nodename:0: 'brcmf@1' does not match '^wifi(@.*)?$'
+> 
+> 
 
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.17/arm64-dt)
+
+[1/1] arm64: dts: amlogic: Align wifi node name with bindings
+      https://git.kernel.org/amlogic/c/117993fc40d96ee3a7697d916a2a0424467e9dcf
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.17/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
 Neil
-
-> 
-> Best regards,
-> Krzysztof
 
 
 _______________________________________________
