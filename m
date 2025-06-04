@@ -4,84 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC40BC5B549
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Jun 2025 04:12:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7732C5B552
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Jun 2025 07:41:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fhJzMyp1TH459MdpEaRpCCgFTSJ/juvDCFJaaLk9a04=; b=ZY4zW/28Ld+Akh
-	jAUV/Oq57PvqPjv5gzc+LAeHRYlhchOYFhMHy2WGDXvLtBqNmpkVyViIWxlq5CaNPjzYLXFmsvXyO
-	bGGlq2I9iCuJdoT01TwptESt9LMX55fDcc5rWRlL1Td3ZVHDXkX545kZfMjU8leVz1WPqTiX1eFoU
-	nCFZRqkH61xv4OKXjm6ujjMaXG1C8XsBfT//r3e3zY6NCdrf907l3cy6PEnQSmZ65rLoTGn1bG2zG
-	HquDtu+gHPmMuhODb6a1n9Y3njaTlfMyU0XAOyp+A48j+npbr/7fdCxuuLpMaiMxq5a8HOeypOuQz
-	F3jOORDz6R3wzGN86WiA==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=gLO449CbUw+SpygGTd0yh42dBN1AE6kUJQMxBNsfxRQ=; b=4LMj2E8JXKGh63
+	GLpAA0X0q2nGRTm9XSsqaw1tnaAXcvRFxMgQTZPmr/CH3CFevCdAbaYkd3bs+qRUQ7CydV4F9jAXE
+	MtCj8/8SNzy9fVgVnCNOqZ/TtkdJAhRe6PyuBF6ZmNUVS6Eal9Cao6eU0VqLuiHRm0P8nxelcAKLu
+	zElozni2RR7/wE43M8D6tK0T2MDHnybGBUx0jFdG6EtzoU5cR+vkdrdxV38kogWWmxjg5HzqXXQWz
+	Qd1RQ9/iQlOP4e/MEll5x1oJqolMAKT8cwqZxPgm6hz0MgeLXspjVmbWG6F5WkjbxjPQun3fTEzBw
+	UQd2uPCtb8ZQ+Z/wcEwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMfUa-0000000CWeR-1Bp9;
-	Wed, 04 Jun 2025 04:12:44 +0000
-Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
+	id 1uMik4-0000000Cmre-1uEC;
+	Wed, 04 Jun 2025 07:40:56 +0000
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uMeOP-0000000CP1P-0GCn
+	id 1uMik2-0000000Cmq1-1xml
 	for linux-amlogic@lists.infradead.org;
-	Wed, 04 Jun 2025 03:02:18 +0000
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-ac3eb3fdd2eso1210649666b.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 03 Jun 2025 20:02:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749006135; x=1749610935; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=93NPImeHgH3phz/ybs8XeZoxvn1O5tzhuznryRfg/TE=;
-        b=nRqFAbOYbsPnseZoD1ReBwNCFiqMioW410Q4nJtx1ZcC4ek3hhxz57DxEkX9kOO8pT
-         eHBzcDiN4BFM5Jy567rF/QUZuAcchxarsQ8xHqUqQN9wRnoAXunvBIfxScBLnnsz1+N2
-         K96PROBlgDL2bqYob3M2FqDCGPaJDWtFUANsRgUuEPMDLi9iaTjhHQsMr5ZHJDhn9Z5J
-         FhauGSdX53rY5o9v76PSZQPSjZI5GyijZFYYXao1vsch+4aMgNvGvCZYwBgSNmvOsPJw
-         PaBvuG6M7363+6MNlNS2WzvIvFxKnL3Jw9OrJzl8CV+45WHdHaSlmHLrTAyT27+/TYbc
-         GnIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749006135; x=1749610935;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=93NPImeHgH3phz/ybs8XeZoxvn1O5tzhuznryRfg/TE=;
-        b=SEbo266TBmOOF7ERma13N6Ap37GXm/U9akvratDff7qXHKwroTSfGOffVMHIohhO/P
-         TdLRuFUdpqkNEk0aeyto6gV1awVDjyNNQH/5dGJTCDJxfN7HRO43cVTCd0CLNslYX24M
-         SGtRS2SEhlu8xU4SuoiKWXAjE9mURn5kj5+7r9rqGvBmRYtjRby0uKqKglj7UusczSfx
-         iPhIZ+IgFlCFNeWIdbC7pMI4Gb+ICKCLvlO5yi45PqQj1AHtLont9fU7LlrtmGg1l53s
-         dC2PE7K41r0OQJMq0GkYPzAaVTGwi9JI1U38RBYAK4SjRXSXgamI6VeiXGj8rr6Tzsp/
-         9sFg==
-X-Forwarded-Encrypted: i=1; AJvYcCXkuAt1xK+fxgCeWSF8VsEas8MI16ODFk3aQQ4hZnNVYXcORsl4IbV+2CB87XNOvk84uJkaufcs5hCwDD7E@lists.infradead.org
-X-Gm-Message-State: AOJu0YwUB5SRwVwIoI6TZO3GkfSP9SZgGJS7gcxxRNXoAbhO5w+q6B7k
-	eJ5hBkiIS8qRQvYGiY/Upgc58Wp/tXNl3uBN7ZjPhuoZMC36qqWIy97tcrJZccjcvlIeHIDVJu0
-	LUM80rn30dGKGuE4CA6NS5TAetor0F8o=
-X-Gm-Gg: ASbGncvpazkpQBIOMEYgP2d47gCak9Ur4DwZGXc4jOQEty/AMk3zQiWTNSAoVOaIiSu
-	dqM4QvwxcibrUJhFyV00ooKivMAejn9ZQ36l9HbcdHX5eYEZkTIQKE7Ar9X2iF0fSG1gxEDIzua
-	PfTB3ShrNn49mS5eljfO2kr9wp0b3NRl5H
-X-Google-Smtp-Source: AGHT+IFrLk1sPD8RHDy3ppQFwO93B09ttmuuSOKZ4IFaVZNSRV2Df/8audvBQwCbwFybmCILd8dYq+ORQKrff6N3LDQ=
-X-Received: by 2002:a17:906:6a16:b0:ad8:af1f:938d with SMTP id
- a640c23a62f3a-addf8e3e0f5mr81959866b.37.1749006134673; Tue, 03 Jun 2025
- 20:02:14 -0700 (PDT)
+	Wed, 04 Jun 2025 07:40:55 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 8E8FCA50154;
+	Wed,  4 Jun 2025 07:40:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 374DEC4CEED;
+	Wed,  4 Jun 2025 07:40:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749022853;
+	bh=pHr+iNzLv9GxJXJt/p1c4oLkaW7OLQQwQD2ifOprTdk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=YhLDvS/JK1MQjqJOCtFmwY4ee7MnE1rf5k+7mIya90zdFIJZ0WTetG5/26ePTXhiG
+	 /1svIGiL6GaK1QRuwQPdTMST0ZZADHh7rblpDdYAcPkAQ/9bbMcvreT4hsTc+/zk/m
+	 BlRGWM/WvmCFDRJ7aq6lku1l6OOkio/Ch5mSjVRz0r2J63C0MWxchQrOKD4zvCEteC
+	 eqsPlR2aX7ZXv8x7wCLHHc/FsfwezehO5/tIY4+HGbLfWJ/Mu0YGRYwDzWybrY2YiB
+	 4EnsOoyCtwy4ipeHNfIs8N/IBPp2wvs6cy51zQlygEb4O3FaJbbAz2jKHUmdheTPVI
+	 tZE2CrSZpaqZg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2CE15C5B552;
+	Wed,  4 Jun 2025 07:40:53 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/3] support for amlogic the new SPI IP
+Date: Wed, 04 Jun 2025 15:40:50 +0800
+Message-Id: <20250604-spisg-v1-0-5893dbe9d953@amlogic.com>
 MIME-Version: 1.0
-References: <cover.1748933789.git.zhoubinbin@loongson.cn> <68e752931552e95667191c2641076a1bfaea3dc6.1748933789.git.zhoubinbin@loongson.cn>
- <CAFBinCA6f6jJQZEgHTiK8FqXW=v465a5rB0BZutDhct-4yhX_Q@mail.gmail.com>
-In-Reply-To: <CAFBinCA6f6jJQZEgHTiK8FqXW=v465a5rB0BZutDhct-4yhX_Q@mail.gmail.com>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 4 Jun 2025 11:02:02 +0800
-X-Gm-Features: AX0GCFtNQ6tHAbcqFzIRYEwd8arzq_HkNvot9pjUSmTfSnaQtZaam0vScKyUZzk
-Message-ID: <CAMpQs4LYc76RMJU0JRG9Rcihx8zoOeaJgYHb1CNrgg1GFzA9Hw@mail.gmail.com>
-Subject: Re: [PATCH v3 36/36] mmc: meson-mx-sdio: Use devm_mmc_alloc_host() helper
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Huacai Chen <chenhuacai@kernel.org>, 
-	linux-mmc@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	linux-amlogic@lists.infradead.org
+X-B4-Tracking: v=1; b=H4sIAIL4P2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDMwNj3eKCzOJ0XXOLNCNDMwuj1KTEZCWg2oKi1LTMCrA50bG1tQCIsWq
+ JVwAAAA==
+To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749022851; l=1058;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=pHr+iNzLv9GxJXJt/p1c4oLkaW7OLQQwQD2ifOprTdk=;
+ b=zYbYWKMNv3d0lQCjOkN7LVwChi6psdws+UWgSlWO/xtLIY8JcHtqxIaHqmCGEcRkP5u6l4uxN
+ mPd/KhjEPTcBNK2OHN9ffH7JR2kD8r/8Mo2jJr8HnFlCej2L0E4QD0C
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250603_200217_104330_033300E9 
-X-CRM114-Status: GOOD (  29.06  )
+X-CRM114-CacheID: sfid-20250604_004054_581509_6A0C25BB 
+X-CRM114-Status: UNSURE (   7.17  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,61 +85,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTWFydGluOgoKVGhhbmtzIGZvciB5b3VyIHRlc3RpbmcgYW5kIHJlcGx5LgoKT24gV2VkLCBK
-dW4gNCwgMjAyNSBhdCA0OjQ54oCvQU0gTWFydGluIEJsdW1lbnN0aW5nbAo8bWFydGluLmJsdW1l
-bnN0aW5nbEBnb29nbGVtYWlsLmNvbT4gd3JvdGU6Cj4KPiBIZWxsbywKPgo+IE9uIFR1ZSwgSnVu
-IDMsIDIwMjUgYXQgMjoyOOKAr1BNIEJpbmJpbiBaaG91IDx6aG91YmluYmluQGxvb25nc29uLmNu
-PiB3cm90ZToKPiA+Cj4gPiBVc2UgbmV3IGZ1bmN0aW9uIGRldm1fbW1jX2FsbG9jX2hvc3QoKSB0
-byBzaW1wbGlmeSB0aGUgY29kZS4KPiA+Cj4gPiBDYzogTmVpbCBBcm1zdHJvbmcgPG5laWwuYXJt
-c3Ryb25nQGxpbmFyby5vcmc+Cj4gPiBDYzogS2V2aW4gSGlsbWFuIDxraGlsbWFuQGJheWxpYnJl
-LmNvbT4KPiA+IENjOiBKZXJvbWUgQnJ1bmV0IDxqYnJ1bmV0QGJheWxpYnJlLmNvbT4KPiA+IENj
-OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29t
-Pgo+ID4gQ2M6IGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+ID4gUmV2aWV3ZWQt
-Ynk6IEh1YWNhaSBDaGVuIDxjaGVuaHVhY2FpQGxvb25nc29uLmNuPgo+ID4gU2lnbmVkLW9mZi1i
-eTogQmluYmluIFpob3UgPHpob3ViaW5iaW5AbG9vbmdzb24uY24+Cj4gPiAtLS0KPiA+ICBkcml2
-ZXJzL21tYy9ob3N0L21lc29uLW14LXNkaW8uYyB8IDIwICsrKysrKysrLS0tLS0tLS0tLS0tCj4g
-PiAgMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMTIgZGVsZXRpb25zKC0pCj4gPgo+
-ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tbXgtc2Rpby5jIGIvZHJpdmVy
-cy9tbWMvaG9zdC9tZXNvbi1teC1zZGlvLmMKPiA+IGluZGV4IGUwYWU1YTBjOTY3MC4uYjZjYjQ3
-NWYxYTVmIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1teC1zZGlvLmMK
-PiA+ICsrKyBiL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tbXgtc2Rpby5jCj4gPiBAQCAtNjQwLDcg
-KzY0MCw3IEBAIHN0YXRpYyBpbnQgbWVzb25fbXhfbW1jX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9k
-ZXZpY2UgKnBkZXYpCj4gPiAgICAgICAgIGVsc2UgaWYgKElTX0VSUihzbG90X3BkZXYpKQo+ID4g
-ICAgICAgICAgICAgICAgIHJldHVybiBQVFJfRVJSKHNsb3RfcGRldik7Cj4gPgo+ID4gLSAgICAg
-ICBtbWMgPSBtbWNfYWxsb2NfaG9zdChzaXplb2YoKmhvc3QpLCAmc2xvdF9wZGV2LT5kZXYpOwo+
-ID4gKyAgICAgICBtbWMgPSBkZXZtX21tY19hbGxvY19ob3N0KCZzbG90X3BkZXYtPmRldiwgc2l6
-ZW9mKCpob3N0KSk7Cj4gVGhpcyBjaGFuZ2UgaXMgZmluZSBhdCBydW50aW1lIChvbiBteSBPZHJv
-aWQtQzEgYm9hcmQpIGJ1dCBpdCBjYW4gbGVhZAo+IHRvIGEgdXNlLWFmdGVyLWZyZWUgaXNzdWUu
-Cj4gbWVzb25fbXhfbW1jX3JlZ2lzdGVyX2Nsa3MoKSBkZXZtXyByZWdpc3RlcnMgdHdvIGNsb2Nr
-cyBhbmQgdXNlcwo+IGhvc3QtPmNvbnRyb2xsZXJfZGV2IGFzIGRldmljZS4KPiBUaGlzIGxlYWRz
-IHRvIHRoZSBmYWN0IHRoYXQgZHVyaW5nIGRyaXZlciByZW1vdmFsIHN0cnVjdAo+IG1lc29uX214
-X21tY19ob3N0IGlzIGZyZWUnZCBiZWZvcmUgaG9zdC0+Y29udHJvbGxlcl9kZXYsIHdoaWNoIG1l
-YW5zCj4gdGhlIGNsb2NrcyBhcmUgYWxzbyBmcmVlJ2QgYWZ0ZXIgc3RydWN0IG1lc29uX214X21t
-Y19ob3N0IGlzIGFscmVhZHkKPiBnb25lLiBUaGUgcHJvYmxlbSBoZXJlOiB0aGUgY2xvY2tzIG5l
-ZWQgdGhlIHN0cnVjdCBjbGtfZGl2aWRlciBhbmQKPiBzdHJ1Y3QgY2xrX2ZpeGVkX2ZhY3RvciBm
-cm9tIHN0cnVjdCBtZXNvbl9teF9tbWNfaG9zdC4KClNvcnJ5LCBJIGhhdmUgYSBzbGlnaHRseSBk
-aWZmZXJlbnQgb3Bpbmlvbiwgd2hpY2ggbWF5IG5vdCBuZWNlc3NhcmlseQpiZSBjb3JyZWN0LgoK
-bWVzb25fbXhfbW1jX2hvc3QgaXMga3phbGxvYyBhcyBgZXh0cmFgIGluIG1tY19hbGxvY19ob3N0
-KClbMV0sIGJ1dCBpbgpmYWN0LCB0aGUgZW50aXJlIGhvc3QgaXMgcmVsZWFzZWQgaW4gbW1jX2hv
-c3RfY2xhc3NkZXZfcmVsZWFzZSgpWzJdLApzbyBJIGRvbid0IHRoaW5rIGl0IHdpbGwgYWZmZWN0
-IHRoZSB1c2Ugb2YgaG9zdC0+Y29udHJvbGxlcl9kZXYuCgpbMV06IGh0dHBzOi8vZWxpeGlyLmJv
-b3RsaW4uY29tL2xpbnV4L3Y2LjE1LXJjMS9zb3VyY2UvZHJpdmVycy9tbWMvY29yZS9ob3N0LmMj
-TDUyMwpbMl06IGh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y2LjE1LXJjMS9zb3Vy
-Y2UvZHJpdmVycy9tbWMvY29yZS9ob3N0LmMjTDc4Cj4KPiBJIGRvbid0IHVuZGVyc3RhbmQgd2h5
-IEknbSBub3Qgc2VlaW5nIGFueSBwcm9ibGVtcyB3aXRoIHRoaXMgcGF0Y2ggYXQKPiBydW50aW1l
-IC0gbWF5YmUgd2hhdCBJJ20gZGVzY3JpYmluZyBpcyBqdXN0IGEgdGhlb3JldGljYWwgaXNzdWUK
-PiAoYmVjYXVzZSBpdCB3b3VsZCBvbmx5IGl0IGlmIHNvbWV0aGluZyB3b3VsZCBhY2Nlc3MgdGhl
-IGNsb2NrcyBiZXR3ZWVuCj4gZnJlZWluZyBzdHJ1Y3QgbWVzb25fbXhfbW1jX2hvc3QgYW5kIHJl
-bW92YWwgb2YgdGhlIGNsb2NrcyBhIGZldwo+IG1pbGxpc2Vjb25kcyBsYXRlcikuCj4KPiBXaGF0
-IGFyZSB5b3VyIHRob3VnaHRzIG9uIHRoaXM/Cj4gSWYgd2UncmUgY29uY2VybmVkIGFib3V0IHRo
-ZSBwb3RlbnRpYWwgVUFGIHRoZW4gSSBjYW4gcmVmYWN0b3IKPiBtZXNvbl9teF9tbWNfcmVnaXN0
-ZXJfY2xrcygpIGZpcnN0IGFuZCB0aGVuIGFwcGx5IHRoaXMgcGF0Y2gKPiBhZnRlcndhcmRzLgo+
-Cj4KPiBCZXN0IHJlZ2FyZHMsCj4gTWFydGluCgoKLS0gClRoYW5rcy4KQmluYmluCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1h
-aWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
-LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Introduced support for the new SPI IP (SPISG). The SPISG is
+a communication-oriented SPI controller from Amlogic,supporting
+three operation modes: PIO, block DMA, and scatter-gather DMA.
+
+Add the drivers and device tree bindings corresponding to the SPISG.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Sunny Luo (2):
+      dt-bindings: spi: Add binding document of Amlogic SPISG controller
+      spi: Add Amlogic SPISG driver
+
+Xianwei Zhao (1):
+      MAINTAINERS: Add an entry for Amlogic spi driver
+
+ .../devicetree/bindings/spi/amlogic,a4-spisg.yaml  |  55 ++
+ MAINTAINERS                                        |   9 +
+ drivers/spi/Kconfig                                |   9 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-amlogic-spisg.c                    | 944 +++++++++++++++++++++
+ 5 files changed, 1018 insertions(+)
+---
+base-commit: 57cf46cd1fe351846e1b065ca9546eef66675ecd
+change-id: 20250603-spisg-78f21682ebac
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
