@@ -4,83 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2CBBC61CE7
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Jun 2025 20:37:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2566C5AD49
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Jun 2025 22:11:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=kP5OeFlq689KdEfg/PtfxgDYcsQ/cZr1nN5JYgpUnks=; b=F4MINT6oAyLGtd
-	3F/f7vg/7rRgmj3WMul1FP64Ijw6A3HgRSivyfjYWiGMdypmmWjtOKcuil1DO0LRY8pIuPv3NMBvA
-	pFIiJHSyWjEo5/v+pF6BP3YlZFFAyo0wY4w+B2+UaxatyF/ga0cmmzK5nr9cbLceXAHFNuDxT79q1
-	HOmebRITz9wUcB/XCXAGgqatYpiz73sCAnt3N4VZjAZwLFuGi+nGC+1DYsnhLXiak1Vew3jojxYcO
-	n9HzP1nsDFSi3WGI0iJJG6SFbebv7hMSZkCNklUUZL4qn2po3852lLtlN6jOXYSP0oCZS3K5qK/B+
-	pK3DiVsDOTR9KAxZ9tXw==;
+	List-Owner; bh=dZiESFyexP0UF67CqYBjScCIqXBH1t89RBtBoi8jYvE=; b=RmByjOSUx0Po83
+	Iz9N7VRow2SE800DZkK4XQbBG81pk4LxZjU8MC15gSQAdp7/YTNtJe9GrQSCFDOeSWCm0VfPoaLPr
+	TRmwXJ8JBSrskOCkzEGot1p8EYEW/+jgv4n7iP7IPYn1Ks+e9PGLFiy3j+XwA/s0entAW5Z3k4UXE
+	+/TDSxwCiFUwEnJQ3UQv7DJ2zP6pirQL2hQ5WJpVm4dUCL5NKw8FYr0AeI1Do7fCFU3PsXd1QE1hi
+	R0vJqD0lL/pSa27+A64S4yIFW7g+GB+kqcov8FIsNBtt7MwWDR+aij15zrDZ9Q84DXuwzRDv8vFAp
+	X0Z6EfeD+s17iCnsIONQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uNdor-00000000xzj-3XoV;
-	Fri, 06 Jun 2025 20:37:41 +0000
-Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
+	id 1uNfH5-000000013l2-0Rbk;
+	Fri, 06 Jun 2025 22:10:55 +0000
+Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uNdop-00000000xzG-24Vb;
-	Fri, 06 Jun 2025 20:37:40 +0000
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-60780d74c85so1580476a12.2;
-        Fri, 06 Jun 2025 13:37:38 -0700 (PDT)
+	id 1uNfH3-000000013kd-1zed;
+	Fri, 06 Jun 2025 22:10:54 +0000
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-ad69e4f2100so433872366b.2;
+        Fri, 06 Jun 2025 15:10:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1749242257; x=1749847057; darn=lists.infradead.org;
+        d=googlemail.com; s=20230601; t=1749247851; x=1749852651; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fTnbotTKBrDuh9yFMLlTHsKfcYmOYKw+giMri+h4htU=;
-        b=M23EYND6aKEWjpt0X/uQycB9ltCgIguzresOJeUU3Y3Yf3vpFbZ4aPo6K2vpPgtUb4
-         9+924S6O50CQF4nUnPhfnRpklpsf5N4GqLcUkq/zMgbibi4ogI3Tbat10ZNA4XX7hMgO
-         gSXtxNNx4AJUaedcwr1CUtiV+hJbqoC3EH9rUb0KOSyGrtRh5CkE85S/MyUFJ+oKZjXB
-         llFBwHe3vfbifJfVZvdy9Y36aPhmGNZZEC0z7LCMSt4KgPdJ2+CanneBaD0hfttPnm8p
-         oKf+8lhQ4THgBHTq8LEf3Wt3SJ5rybt4lhBfwIGW30XlYqDOOORZALBu6oC+ZTEKbU50
-         YqIQ==
+        bh=N3ygnVw/n+6bwn53y0Mh0mYQycS7zL+z+SR1TPl0nEc=;
+        b=Ex2XYQRKYqRLL2YmXPAwi3eEBN2cKcdYg9/4TiHBW5p4GWTOm8ePBuaMXD3UZK5mrw
+         vBOaZpMyxZZ+kf7qwr2qyk7aTRpjFZ5O3Z+n4UTB6tjOT6+D8NsF0QgmOtngpbgD+/sb
+         rmlBkRuP0w5Og26YzL1XezPygsHXfrCamF7CMQ1QfQo9eau0LqLDuv8nHTD4CIfRb1Ei
+         wBytCXn4qnZ+1wC7I/n9Uf/1HkoCSm/hQJqZujha3EOMDbeBy5tBsy3xXBWfidLXN+7E
+         2SmjKRK1OrbQ1SyRXk5XP9L3lODLSBosXHGd4zN6RbIaajvCzrCl+tfzUcjdFW6zvIM5
+         xw2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749242257; x=1749847057;
+        d=1e100.net; s=20230601; t=1749247851; x=1749852651;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fTnbotTKBrDuh9yFMLlTHsKfcYmOYKw+giMri+h4htU=;
-        b=B9E0StYUsK7yu3V9zZnWWqP8CrwoY+UJB0ypIyw4Ymcfa5GRwMeeWV7DrLWPM2zzbq
-         BmBQTC5i1PZd0ImnRwnkSomeJOzccm37bmVtV5MMpW+FjnXf0qA2poQU5WkdN2xtmVg6
-         eZ/6/7H3O7X0p/tNklWUHuLs6wv79d5F5w5dNaXmqB+nSGUuMsCf94xzIUO4VWIOX7Fn
-         op70KNk6aKOE5QkLNWH6KTZjppwBC/+Be6vY6052pojKM+TeBmLHsbkvXFKs4UDAPnVP
-         hN1aipoE7yIiCUW8UEciY1mNLdwYvGKl0X6LwZJydz+JYd17NUE2S2gaQToRaeIIoUzw
-         1Dng==
-X-Gm-Message-State: AOJu0Yx6+jF8h0iBxK5TeE1vo687XQCzfoJoZM6wGPAgVWolnxRn1S54
-	oh3cSrR8yRQBLrcO3qWdjCbGSkEnTNx6XINsWxuiTx7AIn/vUbIJwoW/yZVzJw==
-X-Gm-Gg: ASbGncsWJN9oS2K79/lRy9v4ypVCeZV6fbGaZRzTfvcBPwblaUUaKgywCpnAJ6O31j4
-	h3UzUAsJ3uKjXZkHPULiCkejRNA+6BVGwcdW3aTDIsMqCKaQmal0J2rdL49gnTT1fAUIR+5afsy
-	mQ88xKzZt6DJfCr6/hUH9jvX3upa0Qi9G+439HO85m9xkQpbLtq1ZQzklVEiQ/3QUypawRJ3NJ3
-	J9+S1HFLXw3rHo3R24v01DmrX1jiPjXNmBMFQ1N/+sbijka53c8aDOXAzGpfEKVmfCLtUUgBEC1
-	7iQT271JV6FjKu82Va8LFHx1lXSyhNa2WKMP88+ZTeR7tcQrlPef06Y3bAEXQzuCZySadrU5hyg
-	VQ3ldXHiZ5iiUdIk+457tYqET4jVkIA48jX/pIO1p/sJrNJosegFQJ+FWocgbZkus/3gyq8Pw2/
-	RCUfUvKXeYDfBMOF+NUK8X7b2CIebpFw==
-X-Google-Smtp-Source: AGHT+IFdovf47zA5w77hCKENzRX0iCD+h8wdbY0d2TkUMANo/kiX7t5oGgF0SPw/Z8mbPgOCYyvO0Q==
-X-Received: by 2002:a17:907:3f95:b0:ad8:9811:c0c2 with SMTP id a640c23a62f3a-ade1ab2b859mr396798066b.61.1749242256967;
-        Fri, 06 Jun 2025 13:37:36 -0700 (PDT)
-Received: from localhost.localdomain (dynamic-2a02-3100-a016-f000-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:a016:f000:1e86:bff:fe2f:57b7])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ade1db55f3dsm172072366b.60.2025.06.06.13.37.35
+        bh=N3ygnVw/n+6bwn53y0Mh0mYQycS7zL+z+SR1TPl0nEc=;
+        b=uSGvai7S2r1nwC9jMkpxuD1UbPnVNhFsdwP7bt+40XPAGZPhpRs9a2XLv6x8n0C7Xo
+         a/y3k7g/QgsTox/Tsx57P63r7GHyt3DgYoHQydfKmI/Gjyk7S6CEAtJm1DhJ92ljGV82
+         u40Vgca1gekklMFoOIQyIVIYZt3x6AzbOMcIx4Hf9U/yURAF2HtTn1Ts/bQMe40Ylex/
+         COLsvHA0plVfyTsPqLu2LAB4PUZNLNHPfC+Z2I432uEEh5DmJ0GWuuD/1qxntGAo7WxT
+         jta2FDiS+qlLas7OywHm5HfMj3S3Utk3WmyQm5MF6Ti6ysRUvkGo5MVxXMWGrqxJ3exI
+         vy4g==
+X-Gm-Message-State: AOJu0YxLuZkB5cWY7tPehoDZ+TW82ZsYyesP2pGKVnNZsuesy5rvDWD+
+	NU2b3kwnW+LFemZ3TW0Q3tRkcMNt2Sup2S6Lc6o/ifLgpybqNtik+ySmIjGtZQ==
+X-Gm-Gg: ASbGncs6mGL9v03TajjmHr89piInrXKGgt9aLs6wUKomvmfvHYw9/uesE4dlMAorrQk
+	pj4Llk4vF7TWplXZk2MHLlifIw4q5JclkUQ8sCRt9UbolaBXipzJoLmnZspm2XN5Tea/jD7JQgi
+	JLj7nJmA+p70gAzi/prGN2lfySrUxCn3LuIOMfzmEIsEhm28yXPvEiWJdB4W4lANN7+iqBklqyF
+	YCKWIlL83OES7ET3ZRJJStd59c730Q/jd5b4Bf3N2JHKIRWRxBXiTkGfUfF7WDgt0r49WbngpFU
+	EUuv2ZBZO8CKhgPEwOB5bbf9TXqEc5Io+6QkVhanAX+CQ6KD8Mi41JfX3UqobJQo3N+Ls6CIKnZ
+	gEJa9DhAAzU+ZKSSSIcdn82lkc32TFTvSZser5DOHHVWlybn01kFkkdmy9UkmDbMYQeZ4Rfhe2U
+	2KDAPymFK/w0Lgg6+xPGZBgSRnBEMfJw==
+X-Google-Smtp-Source: AGHT+IF2GDmxSpU2PUP8gOk0whzGQdZbH1jzBstBC+SVXNfKpbrPiO7RDCeI9rjuTtfJwFYp3Msy5Q==
+X-Received: by 2002:a17:907:9628:b0:ad8:9e80:6bb1 with SMTP id a640c23a62f3a-ade1aa933admr431541366b.18.1749247851398;
+        Fri, 06 Jun 2025 15:10:51 -0700 (PDT)
+Received: from localhost.localdomain (dynamic-2a02-3100-a032-8c00-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:a032:8c00:1e86:bff:fe2f:57b7])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ade1dc78f47sm178605166b.153.2025.06.06.15.10.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Jun 2025 13:37:35 -0700 (PDT)
+        Fri, 06 Jun 2025 15:10:49 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
 	dri-devel@lists.freedesktop.org
 Cc: linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH] drm/meson: fix debug log statement when setting the HDMI clocks
-Date: Fri,  6 Jun 2025 22:37:29 +0200
-Message-ID: <20250606203729.3311592-1-martin.blumenstingl@googlemail.com>
+Subject: [PATCH] drm/meson: use vclk_freq instead of pixel_freq in debug print
+Date: Sat,  7 Jun 2025 00:10:31 +0200
+Message-ID: <20250606221031.3419353-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250606_133739_533414_190EBDC5 
-X-CRM114-Status: GOOD (  12.54  )
+X-CRM114-CacheID: sfid-20250606_151053_530647_FF69DC4D 
+X-CRM114-Status: GOOD (  11.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,29 +97,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The "phy" and "vclk" frequency labels were swapped, making it more
-difficult to debug driver errors. Swap the label order to make them
-match with the actual frequencies printed to correct this.
+meson_vclk_vic_supported_freq() has a debug print which includes the
+pixel freq. However, within the whole function the pixel freq is
+irrelevant, other than checking the end of the params array. Switch to
+printing the vclk_freq which is being compared / matched against the
+inputs to the function to avoid confusion when analyzing error reports
+from users.
 
 Fixes: e5fab2ec9ca4 ("drm/meson: vclk: add support for YUV420 setup")
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/meson/meson_vclk.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index 47136bbbe8c6..ab08d690d882 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -109,7 +109,7 @@ static void meson_encoder_hdmi_set_vclk(struct meson_encoder_hdmi *encoder_hdmi,
- 		venc_freq /= 2;
+diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
+index 3325580d885d..c4123bb958e4 100644
+--- a/drivers/gpu/drm/meson/meson_vclk.c
++++ b/drivers/gpu/drm/meson/meson_vclk.c
+@@ -790,9 +790,9 @@ meson_vclk_vic_supported_freq(struct meson_drm *priv,
+ 	}
  
- 	dev_dbg(priv->dev,
--		"vclk:%lluHz phy=%lluHz venc=%lluHz hdmi=%lluHz enci=%d\n",
-+		"phy:%lluHz vclk=%lluHz venc=%lluHz hdmi=%lluHz enci=%d\n",
- 		phy_freq, vclk_freq, venc_freq, hdmi_freq,
- 		priv->venc.hdmi_use_enci);
- 
+ 	for (i = 0 ; params[i].pixel_freq ; ++i) {
+-		DRM_DEBUG_DRIVER("i = %d pixel_freq = %lluHz alt = %lluHz\n",
+-				 i, params[i].pixel_freq,
+-				 PIXEL_FREQ_1000_1001(params[i].pixel_freq));
++		DRM_DEBUG_DRIVER("i = %d vclk_freq = %lluHz alt = %lluHz\n",
++				 i, params[i].vclk_freq,
++				 PIXEL_FREQ_1000_1001(params[i].vclk_freq));
+ 		DRM_DEBUG_DRIVER("i = %d phy_freq = %lluHz alt = %lluHz\n",
+ 				 i, params[i].phy_freq,
+ 				 PHY_FREQ_1000_1001(params[i].phy_freq));
 -- 
 2.49.0
 
