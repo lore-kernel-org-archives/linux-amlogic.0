@@ -4,114 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 963A0C678DA
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jun 2025 16:20:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 657E6C61CE8
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jun 2025 18:50:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Xo+CGGxcKDnBN7LaS2TUziOuzOjbsTUITmQYm/+J5p0=; b=4/4adjUcWFNJZV
-	54M7nQVNPobgTwMHa6YavxplWZp7BfZLSeacElRuohGFUvpNItVISr+dc9uB/oeVp5O2JlIv5ZcR9
-	7SJ1L1m9E6esHEjp90TJrOtGyxZs74UY4SreRnVaYGR4mJoBi8vxGAxZO3hy1xUZuiSFazA5PT0iZ
-	xWOx27Uwr++rqAfigGUa5zPQEIn4Ar7xJrylMj4ZjLg9nNK/iDdHCA/IKEqA4rSHEcPY/6zI/pGAY
-	VZZ+Kcji0c1CLlTjejcNLlJDhDJzmi2DYs8OBYBSg+WZxN1skbjehq4cqvGKNNsFomRJaI4QAJAHM
-	rqPV4Mug3H78Mzq/qytA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=LBJTHNgiE7Zu9+jelU/qWmaUNAMG3J+4fgZgiCcexvs=; b=q6035CyWb+ey5Trm2Y3H0fPOtn
+	vzjC9whUPB5LCbeLiBnlq1/G17D9/BffdN1apq+DMAsPLORPheDLeOSOHJ8EN8pvcYQrAA7CazPgX
+	PSY7Td2w+fYgdIxjAEIjOu6D72PMXq7ZOYVaCbkfT6KPxWpYxYZiKVkgS8c3r4HLBb9RVOYNvYi2F
+	KYPLZ9kI3X5ysVWss2ANEYigcEJ8p3YdBKnCD6oLE5psn7LHBZ1scnTzPutcswECNC/MT6rHkkRR6
+	xRZyN2hzAEgQapUf42j2yI8VlMxgD5Q0hldiFJIyV10y9lJ/YL15+RB7uFXlO+S0aeXv2X7hJAPpA
+	9VDQfJJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOfE5-00000004dzG-0iaK;
-	Mon, 09 Jun 2025 16:19:57 +0000
-Received: from mail-pl1-x634.google.com ([2607:f8b0:4864:20::634])
+	id 1uOhZJ-00000004whn-2OKC;
+	Mon, 09 Jun 2025 18:50:01 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOees-00000004YY2-1RIi
+	id 1uOgNt-00000004oaB-46gc
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Jun 2025 15:43:36 +0000
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-23602481460so26062275ad.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jun 2025 08:43:28 -0700 (PDT)
+	Mon, 09 Jun 2025 17:34:11 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so53162785e9.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jun 2025 10:34:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1749483808; x=1750088608; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dJ6X8dIYmppUXPR9jjYjN7eoEUwVzbFBocT4G4uDz9M=;
-        b=Mqb5fp6OH2eTURogfEvIoNrQfQQ19dMLrT9JQ1jRf7hLcI6g3+h5qlVuxf49229xxU
-         O1HaynXxLIJmBlaFnjFENc1rBlkGL516e3HlxPqF/lvaAJFZwedGTjgZ7j9QUu+T5BlE
-         N33Yekk8twlry2nAj2bBHzskQHCSgB6Te05Co=
+        d=linaro.org; s=google; t=1749490448; x=1750095248; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZCNoRj8OvkbWY83EWwe7S1ChrayvpWwSG5jIbf3fsDA=;
+        b=H4kojOx6zI914sFWPhYRbfWgRfl6OYmAaQ/WSjeAd0/gmeavyLuxtY8h9z4yA3eTmn
+         ZkEZ+7dt4mZHKLaMjuKYoq37qIZpsXoJfebBLVFHwttyrh5UOQIfRLpoCsdazQFuCyKq
+         RK4BDVZzUybNSnNynHgVU8PvgnVsqaEa5FhYp3n92POWhK4Zdgk0Ex4Q5BAHA63PNd5m
+         feauEfzqOUXFnTZPku+vIY/1FK0U0o6lIQ2+zXMMGHf/ZlO6AQz7RvqK5d2zZMeGdyyk
+         +R9pPxg2SRrFtE7IIGrP/ut6L+OZ8NBrOQoKs3mmU/WjT6Jd/c7BLmv+L8ma3byx9t7a
+         YfhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749483808; x=1750088608;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dJ6X8dIYmppUXPR9jjYjN7eoEUwVzbFBocT4G4uDz9M=;
-        b=edumm6T/i4/9x1hQrQKaZcM+Z8cEbjpdCxdMFlTHdjGpgskAKcjNU17VbBketmpEpB
-         MBnX+sHS5D5tledMd0oadFg2ygLajk1Fn0p2cSDkNc8QecsO3tm7HB7rvMzsSH8+2kSP
-         /P2hEtt/HaaxYH2aPGQu4/bX8RwCjtH9XMqpVxApXgGQSE0nsUZGYwmesm6stTti1lib
-         l+81exTpJp0T80KJfvLckrJCwidsxZLY/3w9V9WAt31WQTG8OSaOwlsMWHzDBsjoWaGt
-         TrvLqe6rJ25HFglTpDsvG8ZSjVwO8e3xlP4gGP7K8ExWs761BiFONoy6eM5wXJiZXd+r
-         pixw==
-X-Forwarded-Encrypted: i=1; AJvYcCWyDDQOoFwW1JouYhCdkyNWrfNgV7z/8Hccp7X3zx4eNhNRge4zpSYytZ5ADpi04vR2hnQxxaJSwLY4eFlU@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw1NI8RGUSrnnIrVvEsLr3WpFjF8ns5tBbSqY8JrlIpa0I3I0Pc
-	vQUkvAeDwxRllfV4vU539zSvQwiW3Rxdi2f3QAdeAlkdbIkr4IprDAZ6wUyzM3cBilYIEWFXU6z
-	C5XU=
-X-Gm-Gg: ASbGncvV5yECxiFNqNDbjPLOCn6UuR1Bb6WHKcGUrhew7qMX9EXtVQx9DOzoyfu29Eu
-	FvLHgxTJ9nWH3ilJBfMmIHXJsj70Q1SKPXmCBRsg3lJ8wxajp9uesk0mqBskgDHm3JbGiXaTcYl
-	zZUkhZEmoUhTkmfSSNc63r8W3fYG3hfRg5nHGo4T821kHtpnypD77B6c7Lmdb1B2ajBV5FtEvCl
-	XCdbImxKrOuNXjWOSHwncjbKMBgg2CG9/0FI4eqtTwhnsDO4PXT0zLY/hIVLbsVc9vN1y0uB99y
-	g3Hm1o7AbWUhrX7VSvIRBRuL5WpmaaLo1EIrRJQmvGlwtV/vj39QCfr4miT3ATLnO1eSmSz9V5m
-	WhKnPuTAP5kwVcYA=
-X-Google-Smtp-Source: AGHT+IEAknAoGTWnK+L0nTmIwBJdcEelDXduH/m9m6+p2wuPuLHbRsDpAAWaXtvSYoFQOhxYK7L/Hg==
-X-Received: by 2002:a17:903:3ac8:b0:234:a033:b711 with SMTP id d9443c01a7336-23601dc017emr166504925ad.50.1749483807963;
-        Mon, 09 Jun 2025 08:43:27 -0700 (PDT)
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com. [209.85.216.49])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603078121sm56339015ad.27.2025.06.09.08.43.27
-        for <linux-amlogic@lists.infradead.org>
+        d=1e100.net; s=20230601; t=1749490448; x=1750095248;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ZCNoRj8OvkbWY83EWwe7S1ChrayvpWwSG5jIbf3fsDA=;
+        b=JlDFhrvhXzH1HpB9M0DdIbhujWWC9QTFL90wXGkkcO9a3TrEL+405kX8x8SvSfwBM7
+         Atbfw0XZ3XrSRY7F8HZNLZOozygbRJ4iYYas3jczK3cbIPsDEGWEGDdP4GEQl9y2SfKQ
+         UuVH8X2tuEn7PZJu9HLN0tBVBjw/l1bJmC1axtpBXJfqXB4yr3Ln7uJ4x3gsHgTBkKrF
+         inV2VRA59u4XU/ZcADnO3Q3zQ7/Y4fSHt4ebBLV2mZpY1nES5Yiiapjq8+lsOkWMz8Wa
+         bFw2ZIU8ZwTzwd7QDvV2A6HrQwyz9eKI7TO15oAnVdNCIaFDTDJDDcbRHHAz3YA+0gyP
+         Rt3A==
+X-Forwarded-Encrypted: i=1; AJvYcCXLhVu8J8Ju1HRIyy2rT+bMmG5i3J2wst4asCYFufWuvpoBtTCSkiduwA/9RbipR0sq1JkTIJ0X3XZj3vxx@lists.infradead.org
+X-Gm-Message-State: AOJu0YynzF/hudgf+2JFO6ajZ0+YepUQLMbnmVa9DkctpgZvRNSiBO7f
+	u4oG2RdqIP9DnK6VWSUyGH5xw2AVhCI7STfdNrCi9ZYoRuyV9JdPZfYrONLPwo3q/10qWGU62by
+	Iarlj
+X-Gm-Gg: ASbGncsHSP4HgsBF50iDmjErlVECBCiZzQWmt0cZSpjAguUDR5baBI5JKlL3ZXHwlbq
+	AO6rRnWP7cBiN0i7cXAShXrnrKND5N+WpeM/QnlS5r/0OOaXU21Ihm6IPkCV1T+CWOzj5HD4stx
+	x1naJWGtbPJupSO0/YqaiEXKuTYJZb71RelCs3AopCZXQDeewjOUkZbOHlkUn3MCC+0RN5VhUq7
+	3+4c/YGWmthOw+Qd7D0X3rWusN18NM1cv7HHrlAoDbqGBVf7HL8m/6mNkS0GYIwWEyBmBzK6p/r
+	QW0NfdNXqNYrbO1rNicOaexfSi0E13NKrcPVnmvNaYvLRc61xxx5uRdBWOptqD2hzM79xEQtrUo
+	cHziViGoDLnOXFZ82Vyd5F9rkkGUJ
+X-Google-Smtp-Source: AGHT+IHjGXyFvXdDAggENskwqk5z1F3qFDATDXWh/Gh5Xbnntn1Cd+D5lXKZIFiINl589SC7CggLdw==
+X-Received: by 2002:a05:600c:8b23:b0:450:d37c:9fc8 with SMTP id 5b1f17b1804b1-452013898d8mr137331575e9.13.1749490447982;
+        Mon, 09 Jun 2025 10:34:07 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:d049:de0c:efef:b94d? ([2a01:e0a:3d9:2080:d049:de0c:efef:b94d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-452730d162asm113789415e9.39.2025.06.09.10.34.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jun 2025 08:43:27 -0700 (PDT)
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-312116d75a6so3453718a91.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 09 Jun 2025 08:43:27 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWodg1pJqK+Bu19DVOxdwKnTFU2C6ZuK/UvBKmOMazOn8IypbDM9u2fBxjVy41KTQ3NhUBGJlqJOzT6u3qN@lists.infradead.org
-X-Received: by 2002:a17:90b:4c4e:b0:313:27e5:7ff1 with SMTP id
- 98e67ed59e1d1-313472d3204mr17932741a91.1.1749483806734; Mon, 09 Jun 2025
- 08:43:26 -0700 (PDT)
+        Mon, 09 Jun 2025 10:34:07 -0700 (PDT)
+Message-ID: <6400f504-eef7-489d-bf06-4a0a13cd5ee5@linaro.org>
+Date: Mon, 9 Jun 2025 19:34:07 +0200
 MIME-Version: 1.0
-References: <20250218-aux-device-create-helper-v4-0-c3d7dfdea2e6@baylibre.com>
- <20250218-aux-device-create-helper-v4-3-c3d7dfdea2e6@baylibre.com>
- <CAD=FV=Vb+Wb6wJ42jUBxVVNp9P87BiqHZgoY+Tw6W3fO==FF6g@mail.gmail.com> <1jmsahcbkv.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jmsahcbkv.fsf@starbuckisacylon.baylibre.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 9 Jun 2025 08:43:13 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WzN9Evge-v30NA64Q=QPJR8hkZAhmLXxDekXXFMFrd9g@mail.gmail.com>
-X-Gm-Features: AX0GCFvkFbIIK7ULGaQhmTqdCQ0r1uM5Yw-QxUNG98qVpJtj4RBGOmfISaSOf8g
-Message-ID: <CAD=FV=WzN9Evge-v30NA64Q=QPJR8hkZAhmLXxDekXXFMFrd9g@mail.gmail.com>
-Subject: Re: [PATCH v4 3/8] drm/bridge: ti-sn65dsi86: use the auxiliary device
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dave Ertman <david.m.ertman@intel.com>, 
-	Ira Weiny <ira.weiny@intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Danilo Krummrich <dakr@kernel.org>, 
-	Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Hans de Goede <hdegoede@redhat.com>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Gregory CLEMENT <gregory.clement@bootlin.com>, =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Abel Vesa <abelvesa@kernel.org>, 
-	Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org, 
-	platform-driver-x86@vger.kernel.org, linux-mips@vger.kernel.org, 
-	linux-clk@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Subject: Re: [PATCH] drm/meson: fix debug log statement when setting the HDMI
+ clocks
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250606203729.3311592-1-martin.blumenstingl@googlemail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250606203729.3311592-1-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250609_084334_392115_806C5A26 
-X-CRM114-Status: GOOD (  23.69  )
+X-CRM114-CacheID: sfid-20250609_103410_026340_668654BB 
+X-CRM114-Status: GOOD (  13.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,36 +124,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiBNb24sIEp1biA5LCAyMDI1IGF0IDY6MDLigK9BTSBKZXJvbWUgQnJ1bmV0IDxqYnJ1
-bmV0QGJheWxpYnJlLmNvbT4gd3JvdGU6Cj4KPiBPbiBUdWUgMjUgRmViIDIwMjUgYXQgMDg6MDQs
-IERvdWcgQW5kZXJzb24gPGRpYW5kZXJzQGNocm9taXVtLm9yZz4gd3JvdGU6Cj4KPiA+IEhpLAo+
-ID4KPiA+IE9uIFR1ZSwgRmViIDE4LCAyMDI1IGF0IDExOjMw4oCvQU0gSmVyb21lIEJydW5ldCA8
-amJydW5ldEBiYXlsaWJyZS5jb20+IHdyb3RlOgo+ID4+Cj4gPj4gVGhlIGF1eGlsaWFyeSBkZXZp
-Y2UgY3JlYXRpb24gb2YgdGhpcyBkcml2ZXIgaXMgc2ltcGxlIGVub3VnaCB0bwo+ID4+IHVzZSB0
-aGUgYXZhaWxhYmxlIGF1eGlsaWFyeSBkZXZpY2UgY3JlYXRpb24gaGVscGVyLgo+ID4+Cj4gPj4g
-VXNlIGl0IGFuZCByZW1vdmUgc29tZSBib2lsZXJwbGF0ZSBjb2RlLgo+ID4+Cj4gPj4gU2lnbmVk
-LW9mZi1ieTogSmVyb21lIEJydW5ldCA8amJydW5ldEBiYXlsaWJyZS5jb20+Cj4gPj4gLS0tCj4g
-Pj4gIGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvdGktc242NWRzaTg2LmMgfCA0OSArKysrKy0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ID4+ICAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRp
-b25zKCspLCA0MiBkZWxldGlvbnMoLSkKPiA+Cj4gPiBSZXZpZXdlZC1ieTogRG91Z2xhcyBBbmRl
-cnNvbiA8ZGlhbmRlcnNAY2hyb21pdW0ub3JnPgo+ID4KPiA+IEknbGwgc25vb3plIHRoaXMgZm9y
-IGEgYnVuY2ggb2Ygd2Vla3MgYW5kIGNoZWNrIGJhY2sgdG8gc2VlIGlmIHRoaXMKPiA+IGNhbiBi
-ZSBsYW5kZWQgaW4gZHJtLW1pc2MtbmV4dCBldmVyeSBvbmNlIGluIGEgd2hpbGUuIElmIHlvdSBu
-b3RpY2UKPiA+IHRoYXQgZHJtLW1pc2MtbmV4dCBoYXMgdGhlIG5lY2Vzc2FyeSBwYXRjaGVzIGJl
-Zm9yZSBJIGRvIHRoZW4gZmVlbAo+ID4gZnJlZSB0byBwb2tlIG1lIGFuZCBJJ2xsIGNvbW1pdCBp
-dC4KPgo+IEhpIERvdWcsCj4KPiBGWUksIHRoaXMgaXMgc2FmZSB0byB0YWtlIHdpdGggdjYuMTYt
-cmMxLgo+IFBsZWFzZSBsZXQga25vdyBpbiBjYXNlIHlvdSBwcmVmZXIgYSByZXNlbmQuCgpUaGFu
-a3MgZm9yIHRoZSByZW1pbmRlci4gVW5mb3J0dW5hdGVseSwgSSBzdGlsbCBuZWVkIHRvIHdhaXQu
-IFRoaXMKcGF0Y2ggd2lsbCBuZWVkIHRvIGxhbmQgdGhyb3VnaCBkcm0tbWlzYy1uZXh0IGFuZCB0
-aGF0IGRvZXNuJ3QgaGF2ZQp2Ni4xNi1yYzEgeWV0LgoKaHR0cHM6Ly9jZ2l0LmZyZWVkZXNrdG9w
-Lm9yZy9kcm0vZHJtLW1pc2MvCgouLi5wcmVzdW1hYmx5IHY2LjE2LXJjMSB3aWxsIGdldCBtZXJn
-ZWQgaW4gYmVmb3JlIHRvbyBtdWNoIGxvbmdlci4KSSdsbCB0cnkgdG8ga2VlcCBhbiBleWUgb24g
-aXQuCgotRG91ZwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
-YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
-YW1sb2dpYwo=
+On 06/06/2025 22:37, Martin Blumenstingl wrote:
+> The "phy" and "vclk" frequency labels were swapped, making it more
+> difficult to debug driver errors. Swap the label order to make them
+> match with the actual frequencies printed to correct this.
+> 
+> Fixes: e5fab2ec9ca4 ("drm/meson: vclk: add support for YUV420 setup")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>   drivers/gpu/drm/meson/meson_encoder_hdmi.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> index 47136bbbe8c6..ab08d690d882 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> @@ -109,7 +109,7 @@ static void meson_encoder_hdmi_set_vclk(struct meson_encoder_hdmi *encoder_hdmi,
+>   		venc_freq /= 2;
+>   
+>   	dev_dbg(priv->dev,
+> -		"vclk:%lluHz phy=%lluHz venc=%lluHz hdmi=%lluHz enci=%d\n",
+> +		"phy:%lluHz vclk=%lluHz venc=%lluHz hdmi=%lluHz enci=%d\n",
+>   		phy_freq, vclk_freq, venc_freq, hdmi_freq,
+>   		priv->venc.hdmi_use_enci);
+>   
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
