@@ -4,78 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46154C61CE8
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Jun 2025 21:04:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDAA8C5B552
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Jun 2025 12:49:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mb3ldZFLha+FUlnMpe7qyzK0WL/v5C2q4qztfzOsyMM=; b=NLhJ0qhivBp23Z
-	isr5+YMJprCiw3HtHjrKt4TkiLe559+6MwudPwLIqWVm52neKbGm59CStzgELX8My94kpbfRQ0mI1
-	vnw7x2I8AqivaWSLelU7cOO70nTxN449UIwRClBqnGQvaFrs3pjgsbuIF9FVJFtmQlAxdWuj6CKoh
-	4iRF/KaOG2ikagSyC5R1wW5uLmmBPPBFo0AfLhHlNEmm/9serUFHFmHSHXARwkn6H7yp4m2nxPWHB
-	qMdbgnkK++FZtnk/KfonxU7AmMzqeg61boZmVUWNSAXD4NyJPCRvZZNHz0HewLcm3J+LoDJvT7xTK
-	ma3+O7N9DHKDWjfJmERw==;
+	List-Owner; bh=TBziOBo1uDuQbI6yQO9LHI85Hr1RJfT2xahaiXUGaQw=; b=CMkFI+hsqVhwtc
+	TS6x4c6VO20mD0F+d2OZ5wJ1mCxJcF6iutvm0LuycE6Kql1iVsr0Xy/6unkTtRvLASA0OJNYIr4bv
+	k43byGrdRxWJOCCNU5FpcV9+uEhsReJFS2j5JP3FeZbh5c+JkG2yi1Hxpwaf/5OvW18blZ5tdgX4D
+	Z5WzWSSqq7fAjTbKAq1GPaw49qXWIrlNZUMUybWUgEnwVjMvZWMMeZcaTTn4slhpGO/KyD/6v9aB5
+	/nL8PNBNrWlvKp5QwZqZ1jo/IPTn3WwFS/M5aedtNdFmuHzENsQj6hVotWEhOtCcf+mtgA9GTDcI9
+	3E9aJrWWb4E4wpDJ8CPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOjf5-00000005Eab-41gD;
-	Mon, 09 Jun 2025 21:04:07 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1uOyPz-00000006pnE-2czF;
+	Tue, 10 Jun 2025 12:49:31 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOjc1-00000005E9d-1sCz;
-	Mon, 09 Jun 2025 21:00:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=ZY164f9Dpcp2/yS8fUOmsR/fCN+c8WLUoh6OQ0HlD68=; b=ixl/Y3DSObgazszKpJIdOfF9yh
-	yMq00G4fQOoV6DIllST6uMKsfhO7l7AEyqR1lvXt6RLX7v9QcnsdkHOLKa91ipXcsBnT3hZ+Xye62
-	bsPKGl+Nu7mc/GsoOnO56im+xe9Lop+NzF3/m7jwdUwwUhDhj2pSoM+OtC1ucSMdyj64t9osCsiAh
-	zCIl5XjLnOgdgYh37MHExziyNNZ/W3YEYMUeP2AWoG2jUSSYT1mVQX3GQJNiB78LJ7W/wymnmkSQE
-	rJUW8kp0WS/q+MAyp0i3iyz+zPc79WDTTDsSJq2j9I5Cr5YVGbit+Ua8/od7Im0FLLUp2h+xfA1oT
-	eb3IXdQw==;
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
-	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uOjby-00000001fqG-3DDN;
-	Mon, 09 Jun 2025 21:00:56 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 7C0105C4C02;
-	Mon,  9 Jun 2025 20:58:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C4ABC4CEEF;
-	Mon,  9 Jun 2025 21:00:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749502851;
-	bh=4kqJW1ciMSPYKms3Y+JdGC7f/q+aGKCLpMKAts86L60=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=pv/uXhpuR9ZUpJOCDfH4EtcgNdI2KVijdLyoVEFoklMIpiFMXuyX2w2RiUjll+Dvc
-	 epnH1q4y5U/p9R7+bGNyVh3F+MQdhXLSQZ+x8o5rRx0qDW4PUatpKOyj3U0dFTYMJT
-	 zqx5VSP9aGlyp5iR9xCEgkHn/GpMkIoyljRmwtR1iAgR3Smy3VySb50Wb92eHG8abT
-	 M6byrRuwZZwueXNpDOnevEJgZrHZGA1ohfpmhNVUsgbIfbl5Sr9ukuT9thIptFp/Fb
-	 mcuG/xJHfU6Rn/kmzdUWD+JvTaKi6qqhiQFtv9v6qVCMXsUJFal50MzDGwuhHcyAL3
-	 ugxLnp5j/933A==
-From: Mark Brown <broonie@kernel.org>
-To: perex@perex.cz, tiwai@suse.com, kuninori.morimoto.gx@renesas.com, 
- lgirdwood@gmail.com, jbrunet@baylibre.com, neil.armstrong@linaro.org, 
- khilman@baylibre.com, martin.blumenstingl@googlemail.com, 
- shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com, 
- nicoleotsuka@gmail.com, shawnguo@kernel.org, s.hauer@pengutronix.de, 
- kernel@pengutronix.de, Ai Chao <aichao@kylinos.cn>
-Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org
-In-Reply-To: <20250603055109.3154061-1-aichao@kylinos.cn>
-References: <20250603055109.3154061-1-aichao@kylinos.cn>
-Subject: Re: (subset) [PATCH v4 0/4] Use helper function
- for_each_child_of_node_scoped()
-Message-Id: <174950284791.277844.12094958567890827693.b4-ty@kernel.org>
-Date: Mon, 09 Jun 2025 22:00:47 +0100
+	id 1uOxol-00000006jgJ-1oB1
+	for linux-amlogic@lists.infradead.org;
+	Tue, 10 Jun 2025 12:11:04 +0000
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-32adebb15c5so35094571fa.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 10 Jun 2025 05:11:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749557461; x=1750162261; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+NOuROJ72i5jBg6IZns7LWWw5bhW6PqP3nknc7q7Xb8=;
+        b=IvvANS6V31q4W7579sYFxfiestDtX6W6b6GlHEdAyjxG2YcCKZbp7T/zxWGII/LJzR
+         jHVhjJNyeujH08Sm8RANtFUwMVsGRNKBrXL0v7z4tMs3TSxTeXhLDiKxCxmrljuvyDBD
+         lLk8gjsxqqP0h/nFT/i6gXbXG3A7Jsfw30O4sXRKyNv/IojRUSbYf3xR8oyYFgVd7M6x
+         3YVvalff2fKFXD3ucAACvW5I/Tr0Y9g2pyzYfiuEIL7O8FNaFvrQSQ9uKEkXnhgCmqzI
+         oCNJAJ0a4oWq6a3SJragDZFvZhZ/fCi4it6S+kheoJppxqxnYmjTNy79WekebyhDYXJU
+         pNnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749557461; x=1750162261;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+NOuROJ72i5jBg6IZns7LWWw5bhW6PqP3nknc7q7Xb8=;
+        b=H47X2AZONPDhuGBMkw9G6yXxgEu7I9K1C7buRocxAv/0MhsKZM+o/TVxmHnzpwblqo
+         nG4xnvZ2R51b1mIdqTpagLep+LFx+G1r+C9SfucOvQyfQL/8vbKynWkqrAkinGyWdId8
+         wm0KwbqZYQYZSWvhGYc6my9/MnPU6ZZf7U5Z3+xXGNVe0laeFqwsvIL6cY/7ZPMCXnh4
+         UFOjXEQwW7Uce2YFJ0Xp0eTxSHQtxlPdi7Mv9hzHsu/J+TdSD7UBge8RdegnK1ucn8mi
+         S7aCTmcMicCgPndY7+0Je0flNU90n74DwZ72la5gMLjSu0Qy+JltKbGyJSA3ABK47DKD
+         Ij7w==
+X-Forwarded-Encrypted: i=1; AJvYcCVsHfD966s+uEc4We/K5Zf3vedOAe9NsZNpgmNoMCNiwtRQngTmAn3Lqr/KS01pIXjFV1NbTjVWZU0DUtch@lists.infradead.org
+X-Gm-Message-State: AOJu0YwXdiFyXqvmSF1CFMZiVHE/wsF3aDH11pbmOI3iBZYMPN+gWC9f
+	jdzqN33eo26f1klhMkbXI4daIJpb6D0VvcsYWZWAGKA+hSNYs4I0sxdph0lGjuGnbP5sYX9Vdll
+	AFYLu2vtlYHDc1Mp90Z5PxL0JuSGhYoI2p+tcGerpSw==
+X-Gm-Gg: ASbGncutmb+1hUc13ltzN3RUYtpoLnYIASuH42WJZ2dK4jaSzbctkFwnE+a66k36Z5P
+	41bYCclhXfoFcUaNdImJSw4NDJwlUa3xJp/3V2cU+Oxzo+DFM3DQQLcnJo0m1ykNfFLQ2VHBdOv
+	UnJ6Y9iRcnceo1+jQWx9EDLYKYUIFHj+7U6FQt11kFCJM=
+X-Google-Smtp-Source: AGHT+IFOaMh8nguz7KHH0YUJYEvUW0KxuIsZirmTBD11BY3isr05ce1T1ObffoEpspV/AnboQI2h1yWBLpHu5xR5+Ac=
+X-Received: by 2002:a05:651c:1545:b0:32a:8bb1:d971 with SMTP id
+ 38308e7fff4ca-32adfc290f3mr40168071fa.18.1749557461281; Tue, 10 Jun 2025
+ 05:11:01 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: b4 0.15-dev-c25d1
+References: <20250527-s6-s7-pinctrl-v3-0-44f6a0451519@amlogic.com>
+In-Reply-To: <20250527-s6-s7-pinctrl-v3-0-44f6a0451519@amlogic.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 10 Jun 2025 14:10:49 +0200
+X-Gm-Features: AX0GCFsNvqdvdVYFA3r4z4h1YT4-Cj2REHImr1bxE1u6VG-oVRcj138Ag5WMjho
+Message-ID: <CACRpkdacp1YVjrjfGvHu_8Y2hq03LNwG8Yka30xMbTEwtQ_drA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] Add support for Amlogic S7/S7D/S6 pinctrl
+To: xianwei.zhao@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250609_220055_065145_EBEC5D6D 
-X-CRM114-Status: GOOD (  10.45  )
+X-CRM114-CacheID: sfid-20250610_051103_478486_4F780F0E 
+X-CRM114-Status: UNSURE (   7.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,56 +94,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 03 Jun 2025 13:51:05 +0800, Ai Chao wrote:
-> This patch series introduces wrapper functions for_each_child_of_node_scoped().
-> 
-> The for_each_child_of_node_scoped() helper provides a scope-based clean-up
-> functionality to put the device_node automatically, and as such, there is
-> no need to call of_node_put() directly.
-> 
-> Summary:
-> 
-> [...]
-
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[2/4] ASoC: renesas: Use helper function for_each_child_of_node_scoped()
-      commit: 077caf1d1763e069239101b4a72351fb38d37f13
-[3/4] ASoC: meson: Use helper function for_each_child_of_node_scoped()
-      commit: 618abc785e0cbe9993f7217c9f8ecb1cd2478e4f
-[4/4] ASoC: imx-card: Use helper function for_each_child_of_node_scoped()
-      commit: 111a2c8ab462d77d1519b71b46f13ae1b46920b4
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCBNYXkgMjcsIDIwMjUgYXQgNzoyM+KAr0FNIFhpYW53ZWkgWmhhbyB2aWEgQjQgUmVs
+YXkKPGRldm51bGwreGlhbndlaS56aGFvLmFtbG9naWMuY29tQGtlcm5lbC5vcmc+IHdyb3RlOgoK
+PiBYaWFud2VpIFpoYW8gKDYpOgo+ICAgICAgIGR0LWJpbmRpbmdzOiBwaW5jdGw6IGFtbG9naWMs
+cGluY3RybC1hNDogQWRkIGNvbXBhdGlibGUgc3RyaW5nIGZvciBTNy9TN0QvUzYKPiAgICAgICBw
+aW5jdHJsOiBtZXNvbjogYTQ6IHJlbW92ZSBzcGVjaWFsIGRhdGEgcHJvY2Vzc2luZwo+ICAgICAg
+IHBpbmN0cmw6IG1lc29uOiBzdXBwb3J0IGFtbG9naWMgUzYvUzcvUzdEIFNvQwoKSSBoYXZlIGFw
+cGxpZWQgdGhlc2UgdGhyZWUgdG8gdGhlIHBpbiBjb250cm9sIHRyZWUgZm9yIHY2LjE3LgoKPiAg
+ICAgICBkdHM6IGFybTY0OiBhbWxvZ2ljOiBhZGQgUzcgcGluY3RybCBub2RlCj4gICAgICAgZHRz
+OiBhcm02NDogYW1sb2dpYzogYWRkIFM3RCBwaW5jdHJsIG5vZGUKPiAgICAgICBkdHM6IGFybTY0
+OiBhbWxvZ2ljOiBhZGQgUzYgcGluY3RybCBub2RlCgpQbGVhc2UgZnVubmVsIHRoZXNlIHRocm91
+Z2ggdGhlIFNvQyB0cmVlIQoKWW91cnMsCkxpbnVzIFdhbGxlaWoKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
+CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
