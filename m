@@ -4,115 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CD49C677C4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Jun 2025 20:13:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC091C677C4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Jun 2025 16:07:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=e7HWAWvw6wferGTsKwpfj/csiO8JPVcX2ufPlTruQQk=; b=0h3WKfG2Z1AKDCWRi4yQJLaBcB
-	iUofpTg1SoWveOBaDRAPWuOCZwvxXTh6t2dTuGukLKvtdDZRQK0NmWMPsM0owr5gqTLSwpeAPH5sk
-	BfH8PL7/3DaxXb2+zHBh+FcN4zIowsXRkLkAopOyWlDyPlRNnfE4U1ysjjky2/lDaaIHQlYAGr/2c
-	v7U7gpndtjxuPAKeTrNerHP5xE5pzVypJwJyZvFHMzgp9wLMyRuBTUlR5WLXN2eyUB8Q2tC9U4B0M
-	8LdFBoubqp+CEXV7fte1RuZ9tYP+vtKX/G/UNvbUW/SlaEaQ4oGYO8D218wA9Ejzts4uxyQEqO6X/
-	DVsHfL8Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=1It7nmUkhBGA6XsX1zzNxWLzbX9u49hmgSVSDTz1Q8M=; b=jKQp0OIIbe0Bx5
+	VkmrNFUCDX5KnBxuNkDPFTUYg4nfwryY9H2rddkuOhodOZgoEY5h5p1J97Nhji/TZkh4XXOkw5e8h
+	tWRkmQ51TlV4M8gzDfaJ/9qdT6sz9SxpXKtBtSU/fDK9jmVvpL591T4Bop1TiLhH9oItM2GS1PxhR
+	M5I56E/lSXL2Ox1ZhLr64U39Q+2ZUPIrEm8sd3Rgj3Avi17hAmHIlkFinYPnrNKKPazPdAIDeF9t+
+	8sp3IVgJ7gdMgbcVrzeJ3fbBcuJXNGNvOcsU17CcAalHnDlsD8+UIv3wO5e8DlCMMdydVyW9595WL
+	/k7vQ/ttrASzRYQ+e1oA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uP5Ly-000000080wq-2R6X;
-	Tue, 10 Jun 2025 20:13:50 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1uPNzV-0000000AYDG-0UCG;
+	Wed, 11 Jun 2025 16:07:53 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uP29M-00000007Wfx-40as
+	id 1uPKy9-00000009t7k-1IQ4
 	for linux-amlogic@lists.infradead.org;
-	Tue, 10 Jun 2025 16:48:38 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-450dd065828so39267635e9.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 10 Jun 2025 09:48:36 -0700 (PDT)
+	Wed, 11 Jun 2025 12:54:20 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-451d7b50815so58048715e9.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 11 Jun 2025 05:54:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749574115; x=1750178915; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749646456; x=1750251256; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5eBbNHFgYKH3/CAMrKO1cnhWvLJsUKhM2J/0v+gRPrU=;
-        b=N8SFdvHxXqgWtgSElKDLJwrtINB0aBBdlDoMr84iRuV6iVM9cPXm2wnML8EGC5ip5j
-         WrXpA6W3IvtTYDaw3YacZWyPDQ7i6f229maIj9HKMcpSu2Ko1nmom/DhXTF11EBpkLM1
-         IYkhgLn//LidVGLwF7vHgXnOjp2MSliaH4KpA+uZsLoXJAyCVyXLNFJeQjltho86AJzZ
-         jPC8h8qgr0xLrCJwttxoLIj1KsGP7B+tXIp59uLyg5QMwq3OhnOuIObdCzdcJtcIsaAA
-         Mi/2xl8WGvGuXoHN8IinLe9J9Th3hsaLBvYl3e+aSiWV89Kr4kvyrMH5GS3XPLV8hdzV
-         7DYA==
+        bh=q1Cool/KkGodX8Z3AKXl7cQge0BzoVtk/glY1zU+OpQ=;
+        b=0KaHEqNUlQlmcibJrX6TywoGlW+wDGwzmIVy/wa2slf5yOL3UtDWxim33swZEScgng
+         s2uSQ9O729KQR6xG8jCDvOn0P0JtCVeoEsX96LK/0c4xr7YDe4l14gejPgy0epgpvUcL
+         +4S8CqQFjDy3y56rCg9pKq3R4J4V9FFr3AGc3V83L0gA0hcyZU4mdY8TNudc7KQ3azrz
+         Eb/ugmOByslNqxbiFFZ4eN/960AACwBZ3d8KeuZE7KA9lr+L44pDDt4bEvTGqvUbLz1g
+         O8SGewUo/IQ7strxv0Mv4vBVR1Jy9UbLHvxNFkRB7HEMsQ2cE5x0SsHl530cfkTMcE1p
+         czuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749574115; x=1750178915;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5eBbNHFgYKH3/CAMrKO1cnhWvLJsUKhM2J/0v+gRPrU=;
-        b=UW5R0uhkdBekcq9iOjfFrHgzBVJ3Uqx57wYmOCXDYmtPfIDGtRutdmym5NGAr9vZdE
-         aHAJoC04DEdGYBRild/eRfmGOCc/ct28RLmePNPoQ69YBfhU8umhCWhKuhRbTANkMVqx
-         Wuz+ejm84TzaWKySInLfxKWnh9ZTyKRXKJAJyzrBqLofqHAlni0Q/QWlMIdrPDvw+hxe
-         3H7l/t/B6D+eBbdxVnCG9OI1jw18WiD5UONFctPIl1nS5wo7aPoukePTCFlzOOfSl5kX
-         zDXIWgyCaRF4AkCSUSzaHNpdePkDgIMx2JwNOa8Tnu3iusFbxLw25lzT0MvPSkI7HQu0
-         CaSA==
-X-Gm-Message-State: AOJu0Ywkh6UWk0KkSHbjDu69gcMbzhurZYlR1m1uSJNPTHAcenU8gVVC
-	28E/21IZMIKZbVJDqhxPZsJJjUGR4vKe0pKnRjUDUmMZrdrt66+J5Df+nHqJ7ZZ4GCc=
-X-Gm-Gg: ASbGncvQ1lDRz7Mv1x5kStMNDpCFWvNePYiax//Vr5taYdV2pUgBOPrFvvfcSQC4a2z
-	C6T7WETp5D4r7FAXW0on0320fk79ZHFuv3EjMtcESskFB4pGIKHXgYSTIjuJsPGUZFR33/QwhRS
-	+YaRxVVGTSlENvthGE/kESTzszekEgCY7t5VgjD3B28Dqsz8yz4O6sGBtGsMgyMDMLBHrYRXh98
-	mDn9iTBEHcvwa8oeiuPv+ui33Vf3omv+6BlGplhjHsz+WC5rqQRJWZ1f0rbLJKpPIGeqVYpWpde
-	BoUUrxHoIPjEQZ0tx61vmecmwC4HZDOsRSzPmEJqZOAxk+7jn/f+inAzTkSdrVf6FE/0f0qx8N0
-	zsmSQMt+K1Bo8MREx2uK2WM9lBhcYXIP1ChYr
-X-Google-Smtp-Source: AGHT+IEgb7F2NgOeACKyvU9CSVsbgWLUgkS5s5CagQJYE1TFdhrnU3SeNjXEG4RuaCBclQtZk0dACA==
-X-Received: by 2002:a05:600c:64c3:b0:445:49e:796b with SMTP id 5b1f17b1804b1-4520143459amr177035715e9.17.1749574115263;
-        Tue, 10 Jun 2025 09:48:35 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:f0b:a9b6:d508:9d14? ([2a01:e0a:3d9:2080:f0b:a9b6:d508:9d14])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a532464e7fsm12699387f8f.96.2025.06.10.09.48.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 09:48:34 -0700 (PDT)
-Message-ID: <90ffb187-91f6-46b7-be78-174c7e3a6731@linaro.org>
-Date: Tue, 10 Jun 2025 18:48:34 +0200
+        d=1e100.net; s=20230601; t=1749646456; x=1750251256;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q1Cool/KkGodX8Z3AKXl7cQge0BzoVtk/glY1zU+OpQ=;
+        b=X63T8tbXkPNVNBDx3MLDSTYsihMVmghGP27vuGACXh5xEgBhuV6D/TdvncYvyx03Yw
+         geUFbZwKX4c8pnyynzRSlSi6lsgII11DzeB0mSIB3A2jMdSP2OdspZ1eKAeOC96t78Ua
+         cUAnVxwrZzy1I8KtOEd4RSxiEBz8z6/+VkcZQe+obHTicwP50RTcBhMXbMArRG7TZBdd
+         aBAvsKJMsh+SoXus71NwHHqlidBWly4hOp94p0RcplVbztF/jqgh6hUOOuOr1Ps5S5hp
+         KUGq2esdILHNa+YEPPxT/ftFXzrMG8nx1Iz8MTHnV1yVUFqC6dNSPg7QXG7NLtiOpHAj
+         yh2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUfU8UL3VbwKZIv5+IRkXuk2qAQA1l9pv8ItsJJc4+gEIHvXOrTyA1tAVlXj+ACNCCbRAJOvdb8dCiG04kl@lists.infradead.org
+X-Gm-Message-State: AOJu0YyVOKZIHxCDLGYPiXcuXWKbvhR3gNk4w21NIZnJi11fXMWEs0vL
+	GC6BoFINvHxA7fpao8x5tqv1ji8eXE6rihxPZrOIM2T5T45GEzizpKt9eQR0bHL2R3k=
+X-Gm-Gg: ASbGncsAmnPgm+W3YShhosuug72duXT9QYsJyGiWdJtWx+R8ML/lzVGFsh5pBC5QokY
+	vDl4MoVDDh+2RvOo9j1BD3O6J5H7ZmRHx+EAxZ/tGlmGGj3/6Su5diR7evqeTbIbuDrxLhAeiW4
+	2HJg3RSySxJGdCdjQahxJfDp91pVqLqbeILnXSPJUQnz2QmiZPlv/YCDmx64RHYOv71Au+oXjuK
+	JM7Rcl/dPkbyEA8jGj5HXSWQ4T1q9m6bilqYxeZPy54Q0tYPFntXPkmErqECeXqsoq7Axd9yLCl
+	jl3pUiqOAKKXKSsAGckICHmxioXiDW8kIWjeI7gO1evRJtIRUFH4W7735kdZnrmuvwRqygl/3Sx
+	lQxJ2GlRs9Jg=
+X-Google-Smtp-Source: AGHT+IEndovK5i60dXofmzfCQEmqHj9LiO/Bu6tcHs2EUY63JiHkYLaL474UbWr6R/p7cwzGJjwkKA==
+X-Received: by 2002:a05:6000:4202:b0:3a4:c9d4:2fb2 with SMTP id ffacd0b85a97d-3a558aff029mr2487239f8f.46.1749646455662;
+        Wed, 11 Jun 2025 05:54:15 -0700 (PDT)
+Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:8ef3:a82f:ccaa:91b5])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a53245275esm15225486f8f.76.2025.06.11.05.54.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Jun 2025 05:54:15 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Wed, 11 Jun 2025 14:53:56 +0200
+Subject: [PATCH 1/4] clk: eyeq: use the auxiliary device creation helper
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/3] spi: Add Amlogic SPISG driver
-To: xianwei.zhao@amlogic.com, Sunny Luo <sunny.luo@amlogic.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250604-spisg-v1-0-5893dbe9d953@amlogic.com>
- <20250604-spisg-v1-2-5893dbe9d953@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250604-spisg-v1-2-5893dbe9d953@amlogic.com>
+Message-Id: <20250611-clk-aux-v1-1-fb6575ed86a7@baylibre.com>
+References: <20250611-clk-aux-v1-0-fb6575ed86a7@baylibre.com>
+In-Reply-To: <20250611-clk-aux-v1-0-fb6575ed86a7@baylibre.com>
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ Jerome Brunet <jbrunet@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3080; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=911xKOJApKviZC+11zfPOxyXIb2TukqSX6c3EVx5nkQ=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBoSXxyS4LF2NgHh6lDt4HtpPg68/w9OJYyIIHRQ
+ pbd31+wpYGJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaEl8cgAKCRDm/A8cN/La
+ ha5hD/wLniXN/Wdk0lE+moFPoRY5SqMESsaeB9W5MEi4ILxdPOGqiWLOjtZpsU9xfWIUaT0GO8I
+ 402HkOAnI8/gcBsBz7Xo663TN8FIChB/+plsclM8Yx4h0wjbZGA7O8FWT5mqDZkJ6QAKCtxftz8
+ Y9JTHm7P2e4hGrVO+P6xiUkSQj8QZx9CRlcqpXA2JLlWA8t0WY6f3/5Q5ikgkK9AQpxmg3d/SbI
+ F4eykgdy83+m7Sar8XsrSvwnbQMQ/eJU5PQewYVOOnkDHjss7jsdCU7aTxJHcD8WrrcnjzrqlSX
+ pNybSBpRETU1JpLH9FOuV+dXTP5hBw3WB9whiYRoSWNjOdGuyk52zeSbNbmR1KK4Kp0Qx7kJ4hx
+ CNFIDJ8/oBf3MMRjVa8TWO6zYa4ZvuH854db0sOivyrMS6Xxml3if+HpTAqQ6R+McVG0j4sBxec
+ OzQ+QOTvaGsyZ/vuvnIT9ymNpzYNW2X4eqZOim4IFhXWs03rm+/9BKSMAj+WpwQT1SKIB2+/BHM
+ Z1syPc2I4UnlAheE2uHP1Tkuo6SBUbfIvs3+43BU/e72C0UdNSQ+Ec2aGSdqiR/+Epsi0IZhKcE
+ sMWbJC6gfc1WYr4Ua9VFkaoa+EOU2aYylmYQpq0CRPCmNfYsfOKs0KfHY/2e7Z7TAAGyb59FQ36
+ LgtNe3dkZbYLE/w==
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250610_094837_056921_235F78A0 
-X-CRM114-Status: GOOD (  28.05  )
+X-CRM114-CacheID: sfid-20250611_055417_347730_74A37E7E 
+X-CRM114-Status: GOOD (  13.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,1052 +123,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 04/06/2025 09:40, Xianwei Zhao via B4 Relay wrote:
-> From: Sunny Luo <sunny.luo@amlogic.com>
-> 
-> Introduced support for the new SPI IP (SPISG) driver. The SPISG is
-> a communication-oriented SPI controller from Amlogic,supporting
-> three operation modes: PIO, block DMA, and scatter-gather DMA.
-> 
-> Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->   drivers/spi/Kconfig             |   9 +
->   drivers/spi/Makefile            |   1 +
->   drivers/spi/spi-amlogic-spisg.c | 944 ++++++++++++++++++++++++++++++++++++++++
->   3 files changed, 954 insertions(+)
-> 
-> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-> index c51da3fc3604..e11341df2ecf 100644
-> --- a/drivers/spi/Kconfig
-> +++ b/drivers/spi/Kconfig
-> @@ -99,6 +99,15 @@ config SPI_AMLOGIC_SPIFC_A1
->   	  This enables master mode support for the SPIFC (SPI flash
->   	  controller) available in Amlogic A1 (A113L SoC).
->   
-> +config SPI_AMLOGIC_SPISG
-> +	tristate "Amlogic SPISG controller"
-> +	depends on COMMON_CLK
-> +	depends on ARCH_MESON || COMPILE_TEST
-> +	help
-> +	  This enables master mode support for the SPISG (SPI scatter-gather
-> +	  communication controller), which is available on platforms such as
-> +	  Amlogic A4 SoCs.
-> +
->   config SPI_APPLE
->   	tristate "Apple SoC SPI Controller platform driver"
->   	depends on ARCH_APPLE || COMPILE_TEST
-> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-> index 4ea89f6fc531..b74e3104d71f 100644
-> --- a/drivers/spi/Makefile
-> +++ b/drivers/spi/Makefile
-> @@ -20,6 +20,7 @@ obj-$(CONFIG_SPI_ALTERA)		+= spi-altera-platform.o
->   obj-$(CONFIG_SPI_ALTERA_CORE)		+= spi-altera-core.o
->   obj-$(CONFIG_SPI_ALTERA_DFL)		+= spi-altera-dfl.o
->   obj-$(CONFIG_SPI_AMLOGIC_SPIFC_A1)	+= spi-amlogic-spifc-a1.o
-> +obj-$(CONFIG_SPI_AMLOGIC_SPISG)		+= spi-amlogic-spisg.o
->   obj-$(CONFIG_SPI_APPLE)			+= spi-apple.o
->   obj-$(CONFIG_SPI_AR934X)		+= spi-ar934x.o
->   obj-$(CONFIG_SPI_ARMADA_3700)		+= spi-armada-3700.o
-> diff --git a/drivers/spi/spi-amlogic-spisg.c b/drivers/spi/spi-amlogic-spisg.c
-> new file mode 100644
-> index 000000000000..e86c473e38dd
-> --- /dev/null
-> +++ b/drivers/spi/spi-amlogic-spisg.c
-> @@ -0,0 +1,944 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Driver for Amlogic SPI communication Scatter-Gather Controller
-> + *
-> + * Copyright (C) 2025 Amlogic, Inc. All rights reserved
-> + *
-> + * Author: Sunny Luo <sunny.luo@amlogic.com>
-> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/types.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/reset.h>
-> +#include <linux/pinctrl/consumer.h>
-> +#include <linux/delay.h>
-> +#include <linux/cacheflush.h>
-> +
-> +/* Register Map */
-> +#define SPICC_REG_CFG_READY		0x00
-> +#define SPICC_REG_CFG_SPI		0x04
-
-Why the SPICC prefix ?
-
-> +#define HW_POS				BIT(6)
-> +#define HW_NEG				BIT(7)
-> +#define SPICC_REG_CFG_START		0x08
-> +#define SPICC_REG_CFG_BUS		0x0C
-> +#define SPICC_REG_PIO_TX_DATA_L		0x10
-> +#define SPICC_REG_PIO_TX_DATA_H		0x14
-> +#define SPICC_REG_PIO_RX_DATA_L		0x18
-> +#define SPICC_REG_PIO_RX_DATA_H		0x1C
-> +#define SPICC_REG_MEM_TX_ADDR_L		0x10
-> +#define SPICC_REG_MEM_TX_ADDR_H		0x14
-> +#define SPICC_REG_MEM_RX_ADDR_L		0x18
-> +#define SPICC_REG_MEM_RX_ADDR_H		0x1C
-> +#define SPICC_REG_DESC_LIST_L		0x20
-> +#define SPICC_REG_DESC_LIST_H		0x24
-> +#define SPICC_DESC_PENDING		BIT(31)
-> +#define SPICC_REG_DESC_CURRENT_L	0x28
-> +#define SPICC_REG_DESC_CURRENT_H	0x2c
-> +#define SPICC_REG_IRQ_STS		0x30
-> +#define SPICC_REG_IRQ_ENABLE		0x34
-> +#define SPICC_RCH_DESC_EOC		BIT(0)
-> +#define SPICC_RCH_DESC_INVALID		BIT(1)
-> +#define SPICC_RCH_DESC_RESP		BIT(2)
-> +#define SPICC_RCH_DATA_RESP		BIT(3)
-> +#define SPICC_WCH_DESC_EOC		BIT(4)
-> +#define SPICC_WCH_DESC_INVALID		BIT(5)
-> +#define SPICC_WCH_DESC_RESP		BIT(6)
-> +#define SPICC_WCH_DATA_RESP		BIT(7)
-> +#define SPICC_DESC_ERR			BIT(8)
-> +#define SPICC_SPI_READY			BIT(9)
-> +#define SPICC_DESC_DONE			BIT(10)
-> +#define SPICC_DESC_CHAIN_DONE		BIT(11)
-> +
-> +#define SPICC_BLOCK_MAX			0x100000
-> +
-> +#define SPICC_OP_MODE_WRITE_CMD		0
-> +#define SPICC_OP_MODE_READ_STS		1
-> +#define SPICC_OP_MODE_WRITE		2
-> +#define SPICC_OP_MODE_READ		3
-> +
-> +#define SPICC_DATA_MODE_NONE		0
-> +#define SPICC_DATA_MODE_PIO		1
-> +#define SPICC_DATA_MODE_MEM		2
-> +#define SPICC_DATA_MODE_SG		3
-> +
-> +#define SPICC_CLK_DIV_SHIFT		0
-> +#define SPICC_CLK_DIV_WIDTH		8
-> +#define SPICC_CLK_DIV_MASK		GENMASK(7, 0)
-> +#define SPICC_CLK_DIV_MAX		256
-> +/* recommended by specification */
-> +#define SPICC_CLK_DIV_MIN		4
-> +
-> +#define SPICC_PCLK_RATE_MIN		24000000
-> +
-> +#define SPICC_SINGLE_SPI		0
-> +#define SPICC_DUAL_SPI			1
-> +#define SPICC_QUAD_SPI			2
-> +
-> +union spicc_cfg_spi {
-> +	u32			d32;
-> +	struct  {
-> +		u32		bus64_en:1;
-> +		u32		slave_en:1;
-> +		u32		ss:2;
-> +		u32		flash_wp_pin_en:1;
-> +		u32		flash_hold_pin_en:1;
-> +		u32		hw_pos:1; /* start on vsync rising */
-> +		u32		hw_neg:1; /* start on vsync falling */
-> +		u32		rsv:24;
-> +	} b;
-> +};
-
-
-We usually don't use bitfield in mainline linux,
-please use BIT() GENMASK() and regmap_set/update/clear_bits instead.
-
-> +
-> +union spicc_cfg_start {
-> +	u32			d32;
-> +	struct  {
-> +		u32		block_num:20;
-> +		u32		block_size:3;
-> +		u32		dc_level:1;
-> +		u32		op_mode:2;
-> +		u32		rx_data_mode:2;
-> +		u32		tx_data_mode:2;
-> +		u32		eoc:1;
-> +		u32		pending:1;
-> +	} b;
-> +};
-> +
-> +union spicc_cfg_bus {
-> +	u32			d32;
-> +	struct  {
-> +		u32		clk_div:8;
-> +		u32		rx_tuning_in_pclk:4; /* signed */
-> +		u32		tx_tuning_in_pclk:4; /* signed */
-> +		u32		cs_setup_in_sclk:4;
-> +		u32		lane:2;
-> +		u32		half_duplex_en:1;
-> +		u32		little_endian_en:1;
-> +		u32		dc_mode:1;
-> +		u32		null_ctl:1;
-> +		u32		dummy_ctl:1;
-> +		u32		read_turn_around:2;
-> +		u32		keep_ss:1;
-> +		u32		cpha:1;
-> +		u32		cpol:1;
-> +	} b;
-> +};
-> +
-> +struct spicc_sg_link {
-> +	u32			valid:1;
-> +	u32			eoc:1;
-> +	u32			irq:1;
-> +	u32			act:3;
-> +	u32			ring:1;
-> +	u32			rsv:1;
-> +	u32			len:24;
-> +	u32			addr;
-> +};
-> +
-> +struct spicc_descriptor {
-> +	union spicc_cfg_start		cfg_start;
-> +	union spicc_cfg_bus		cfg_bus;
-> +	u64				tx_paddr;
-> +	u64				rx_paddr;
-> +};
-> +
-> +struct spicc_descriptor_extra {
-> +	struct spicc_sg_link		*tx_ccsg;
-> +	struct spicc_sg_link		*rx_ccsg;
-> +	int				tx_ccsg_len;
-> +	int				rx_ccsg_len;
-> +};
-> +
-> +struct spicc_device {
-> +	struct spi_controller		*controller;
-> +	struct platform_device		*pdev;
-> +	void __iomem			*base;
-> +	struct clk			*core;
-> +	struct clk			*pclk;
-> +	struct clk			*sclk;
-> +	struct completion		completion;
-> +	u32				status;
-> +	u32				speed_hz;
-> +	u32				effective_speed_hz;
-> +	u32				bytes_per_word;
-> +	union spicc_cfg_spi		cfg_spi;
-> +	union spicc_cfg_start		cfg_start;
-> +	union spicc_cfg_bus		cfg_bus;
-> +};
-> +
-> +#define spicc_writel(_spicc, _val, _offset) \
-> +	 writel(_val, (_spicc)->base + (_offset))
-> +#define spicc_readl(_spicc, _offset) \
-> +	readl((_spicc)->base + (_offset))
-
-Drop those and use regmap
-
-> +
-> +static int spi_delay_to_sclk(u32 slck_speed_hz, struct spi_delay *delay)
-> +{
-> +	u32 ns;
-> +
-> +	if (!delay)
-> +		return 0;
-> +
-> +	if (delay->unit == SPI_DELAY_UNIT_SCK)
-> +		return delay->value;
-> +
-> +	ns = spi_delay_to_ns(delay, NULL);
-> +	if (ns < 0)
-> +		return 0;
-> +
-> +	return DIV_ROUND_UP_ULL(slck_speed_hz * ns, NSEC_PER_SEC);
-> +}
-> +
-> +static inline int aml_spicc_sem_down_read(struct spicc_device *spicc)
-> +{
-> +	int ret;
-> +
-> +	ret = spicc_readl(spicc, SPICC_REG_CFG_READY);
-> +	if (ret)
-> +		spicc_writel(spicc, 0, SPICC_REG_CFG_READY);
-> +
-> +	return ret;
-> +}
-> +
-> +static inline void aml_spicc_sem_up_write(struct spicc_device *spicc)
-> +{
-> +	spicc_writel(spicc, 1, SPICC_REG_CFG_READY);
-> +}
-> +
-> +static int aml_spicc_set_speed(struct spicc_device *spicc, uint speed_hz)
-> +{
-> +	u32 div;
-> +
-> +	if (!speed_hz || speed_hz == spicc->speed_hz)
-> +		return 0;
-> +
-> +	spicc->speed_hz = speed_hz;
-> +	clk_set_rate(spicc->sclk, speed_hz);
-> +	/* Store the div for the descriptor mode */
-> +	div = FIELD_GET(SPICC_CLK_DIV_MASK,
-> +			spicc_readl(spicc, SPICC_REG_CFG_BUS));
-> +	spicc->cfg_bus.b.clk_div = div;
-> +	spicc->effective_speed_hz = clk_get_rate(spicc->sclk);
-> +	dev_dbg(&spicc->pdev->dev,
-> +		"desired speed %dHz, effective speed %dHz, div=%d\n",
-> +		speed_hz, spicc->effective_speed_hz, div);
-> +
-> +	return 0;
-> +}
-> +
-> +static int aml_spicc_setup_device(struct spicc_device *spicc,
-> +				  struct spi_device *spi)
-> +{
-> +	if (!spi->bits_per_word || spi->bits_per_word % 8) {
-> +		dev_err(&spicc->pdev->dev, "invalid wordlen %d\n", spi->bits_per_word);
-> +		return -EINVAL;
-> +	}
-> +
-> +	spicc->bytes_per_word = spi->bits_per_word >> 3;
-> +	spicc->cfg_start.b.block_size = spicc->bytes_per_word & 0x7;
-> +	spicc->cfg_spi.b.ss = spi_get_chipselect(spi, 0);
-> +
-> +	spicc->cfg_bus.b.cpol = !!(spi->mode & SPI_CPOL);
-> +	spicc->cfg_bus.b.cpha = !!(spi->mode & SPI_CPHA);
-> +	spicc->cfg_bus.b.little_endian_en = !!(spi->mode & SPI_LSB_FIRST);
-> +	spicc->cfg_bus.b.half_duplex_en = !!(spi->mode & SPI_3WIRE);
-> +
-> +	return 0;
-> +}
-> +
-> +static bool aml_spicc_can_dma(struct spi_controller *ctlr,
-> +			      struct spi_device *spi,
-> +			      struct spi_transfer *xfer)
-> +{
-> +	return true;
-> +}
-> +
-> +static void aml_spicc_sg_xlate(struct sg_table *sgt, struct spicc_sg_link *ccsg)
-> +{
-> +	struct scatterlist *sg;
-> +	int i;
-> +
-> +	for_each_sg(sgt->sgl, sg, sgt->nents, i) {
-> +		ccsg->valid = 1;
-> +		/* EOC specially for the last sg */
-> +		ccsg->eoc = sg_is_last(sg);
-> +		ccsg->ring = 0;
-> +		ccsg->len = sg_dma_len(sg);
-> +		ccsg->addr = (u32)sg_dma_address(sg);
-> +		ccsg++;
-> +	}
-> +}
-> +
-> +static int nbits_to_lane[] = {
-> +	SPICC_SINGLE_SPI,
-> +	SPICC_SINGLE_SPI,
-> +	SPICC_DUAL_SPI,
-> +	-EINVAL,
-> +	SPICC_QUAD_SPI
-> +};
-> +
-> +static int aml_spicc_setup_transfer(struct spicc_device *spicc,
-> +				    struct spi_transfer *xfer,
-> +				    struct spicc_descriptor *desc,
-> +				    struct spicc_descriptor_extra *exdesc)
-> +{
-> +	int block_size, blocks;
-> +	struct device *dev = &spicc->pdev->dev;
-> +	struct spicc_sg_link *ccsg;
-> +	int ccsg_len;
-> +	dma_addr_t paddr;
-> +	int ret;
-> +
-> +	memset(desc, 0, sizeof(*desc));
-> +	if (exdesc)
-> +		memset(exdesc, 0, sizeof(*exdesc));
-> +	aml_spicc_set_speed(spicc, xfer->speed_hz);
-> +	xfer->effective_speed_hz = spicc->effective_speed_hz;
-> +	desc->cfg_start.d32 = spicc->cfg_start.d32;
-> +	desc->cfg_bus.d32 = spicc->cfg_bus.d32;
-> +
-> +	block_size = xfer->bits_per_word >> 3;
-> +	blocks = xfer->len / block_size;
-> +
-> +	desc->cfg_start.b.tx_data_mode = SPICC_DATA_MODE_NONE;
-> +	desc->cfg_start.b.rx_data_mode = SPICC_DATA_MODE_NONE;
-> +	desc->cfg_start.b.eoc = 0;
-> +	desc->cfg_bus.b.keep_ss = !xfer->cs_change;
-> +	desc->cfg_bus.b.null_ctl = 0;
-> +
-> +	if (xfer->tx_buf || xfer->tx_dma) {
-> +		desc->cfg_bus.b.lane = nbits_to_lane[xfer->tx_nbits];
-> +		desc->cfg_start.b.op_mode = SPICC_OP_MODE_WRITE;
-> +	}
-> +	if (xfer->rx_buf || xfer->rx_dma) {
-> +		desc->cfg_bus.b.lane = nbits_to_lane[xfer->rx_nbits];
-> +		desc->cfg_start.b.op_mode = SPICC_OP_MODE_READ;
-> +	}
-> +
-> +	if (desc->cfg_start.b.op_mode == SPICC_OP_MODE_READ_STS) {
-> +		desc->cfg_start.b.block_size = blocks;
-> +		desc->cfg_start.b.block_num = 1;
-> +	} else {
-> +		desc->cfg_start.b.block_size = block_size & 0x7;
-> +		blocks = min_t(int, blocks, SPICC_BLOCK_MAX);
-> +		desc->cfg_start.b.block_num = blocks;
-> +	}
-> +
-> +	if (xfer->tx_sg.nents && xfer->tx_sg.sgl) {
-> +		ccsg_len = xfer->tx_sg.nents * sizeof(struct spicc_sg_link);
-> +		ccsg = kzalloc(ccsg_len, GFP_KERNEL | GFP_DMA);
-> +		if (!ccsg) {
-> +			dev_err(dev, "alloc tx_ccsg failed\n");
-> +			return -ENOMEM;
-> +		}
-> +
-> +		aml_spicc_sg_xlate(&xfer->tx_sg, ccsg);
-> +		paddr = dma_map_single(dev, (void *)ccsg,
-> +				       ccsg_len, DMA_TO_DEVICE);
-> +		ret = dma_mapping_error(dev, paddr);
-> +		if (ret) {
-> +			kfree(ccsg);
-> +			dev_err(dev, "tx ccsg map failed\n");
-> +			return ret;
-> +		}
-> +
-> +		desc->tx_paddr = paddr;
-> +		desc->cfg_start.b.tx_data_mode = SPICC_DATA_MODE_SG;
-> +		exdesc->tx_ccsg = ccsg;
-> +		exdesc->tx_ccsg_len = ccsg_len;
-> +		dma_sync_sgtable_for_device(spicc->controller->cur_tx_dma_dev,
-> +					    &xfer->tx_sg, DMA_TO_DEVICE);
-> +	} else if (xfer->tx_buf || xfer->tx_dma) {
-> +		paddr = xfer->tx_dma;
-> +		if (!paddr) {
-> +			paddr = dma_map_single(dev, (void *)xfer->tx_buf,
-> +					       xfer->len, DMA_TO_DEVICE);
-> +			ret = dma_mapping_error(dev, paddr);
-> +			if (ret) {
-> +				dev_err(dev, "tx buf map failed\n");
-> +				return ret;
-> +			}
-> +		}
-> +		desc->tx_paddr = paddr;
-> +		desc->cfg_start.b.tx_data_mode = SPICC_DATA_MODE_MEM;
-> +	}
-> +
-> +	if (xfer->rx_sg.nents && xfer->rx_sg.sgl) {
-> +		ccsg_len = xfer->rx_sg.nents * sizeof(struct spicc_sg_link);
-> +		ccsg = kzalloc(ccsg_len, GFP_KERNEL | GFP_DMA);
-> +		if (!ccsg) {
-> +			dev_err(dev, "alloc rx_ccsg failed\n");
-> +			return -ENOMEM;
-> +		}
-> +
-> +		aml_spicc_sg_xlate(&xfer->rx_sg, ccsg);
-> +		paddr = dma_map_single(dev, (void *)ccsg,
-> +				       ccsg_len, DMA_TO_DEVICE);
-> +		ret = dma_mapping_error(dev, paddr);
-> +		if (ret) {
-> +			kfree(ccsg);
-> +			dev_err(dev, "rx ccsg map failed\n");
-> +			return ret;
-> +		}
-> +
-> +		desc->rx_paddr = paddr;
-> +		desc->cfg_start.b.rx_data_mode = SPICC_DATA_MODE_SG;
-> +		exdesc->rx_ccsg = ccsg;
-> +		exdesc->rx_ccsg_len = ccsg_len;
-> +		dma_sync_sgtable_for_device(spicc->controller->cur_rx_dma_dev,
-> +					    &xfer->rx_sg, DMA_FROM_DEVICE);
-> +	} else if (xfer->rx_buf || xfer->rx_dma) {
-> +		paddr = xfer->rx_dma;
-> +		if (!paddr) {
-> +			paddr = dma_map_single(dev, xfer->rx_buf,
-> +					       xfer->len, DMA_FROM_DEVICE);
-> +			ret = dma_mapping_error(dev, paddr);
-> +			if (ret) {
-> +				dev_err(dev, "rx buf map failed\n");
-> +				return ret;
-> +			}
-> +		}
-> +
-> +		desc->rx_paddr = paddr;
-> +		desc->cfg_start.b.rx_data_mode = SPICC_DATA_MODE_MEM;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void aml_spicc_cleanup_transfer(struct spicc_device *spicc,
-> +				       struct spi_transfer *xfer,
-> +				       struct spicc_descriptor *desc,
-> +				       struct spicc_descriptor_extra *exdesc)
-> +{
-> +	struct device *dev = &spicc->pdev->dev;
-> +
-> +	if (desc->tx_paddr) {
-> +		if (desc->cfg_start.b.tx_data_mode == SPICC_DATA_MODE_SG) {
-> +			dma_unmap_single(dev, (dma_addr_t)desc->tx_paddr,
-> +					 exdesc->tx_ccsg_len, DMA_TO_DEVICE);
-> +			kfree(exdesc->tx_ccsg);
-> +			dma_sync_sgtable_for_cpu(spicc->controller->cur_tx_dma_dev,
-> +						 &xfer->tx_sg, DMA_TO_DEVICE);
-> +		} else if (!xfer->tx_dma) {
-> +			dma_unmap_single(dev, (dma_addr_t)desc->tx_paddr,
-> +					 xfer->len, DMA_TO_DEVICE);
-> +		}
-> +	}
-> +
-> +	if (desc->rx_paddr) {
-> +		if (desc->cfg_start.b.rx_data_mode == SPICC_DATA_MODE_SG) {
-> +			dma_unmap_single(dev, (dma_addr_t)desc->rx_paddr,
-> +					 exdesc->rx_ccsg_len, DMA_TO_DEVICE);
-> +			kfree(exdesc->rx_ccsg);
-> +			dma_sync_sgtable_for_cpu(spicc->controller->cur_rx_dma_dev,
-> +						 &xfer->rx_sg, DMA_FROM_DEVICE);
-> +		} else if (!xfer->rx_dma) {
-> +			dma_unmap_single(dev, (dma_addr_t)desc->rx_paddr,
-> +					 xfer->len, DMA_FROM_DEVICE);
-> +		}
-> +	}
-> +}
-> +
-> +static void aml_spicc_setup_null_desc(struct spicc_device *spicc,
-> +				      struct spicc_descriptor *desc,
-> +				      u32 n_sclk)
-> +{
-> +	/* unit is the last xfer sclk */
-> +	desc->cfg_start.d32 = spicc->cfg_start.d32;
-> +	desc->cfg_bus.d32 = spicc->cfg_bus.d32;
-> +	desc->cfg_start.b.op_mode = SPICC_OP_MODE_WRITE;
-> +	desc->cfg_start.b.block_size = 1;
-> +	desc->cfg_start.b.block_num = DIV_ROUND_UP(n_sclk, 8);
-> +	desc->cfg_bus.b.null_ctl = 1;
-> +}
-> +
-> +static void aml_spicc_pending(struct spicc_device *spicc,
-> +			      dma_addr_t desc_paddr,
-> +			      bool trig,
-> +			      bool irq_en)
-> +{
-> +	u32 desc_l, desc_h, cfg_spi;
-> +
-> +#ifdef	CONFIG_ARCH_DMA_ADDR_T_64BIT
-> +	desc_l = (u64)desc_paddr & 0xffffffff;
-> +	desc_h = (u64)desc_paddr >> 32;
-> +#else
-> +	desc_l = desc_paddr & 0xffffffff;
-> +	desc_h = 0;
-> +#endif
-> +
-> +	cfg_spi = spicc->cfg_spi.d32;
-> +	if (trig)
-> +		cfg_spi |= HW_POS;
-> +	else
-> +		desc_h |= SPICC_DESC_PENDING;
-> +
-> +	spicc_writel(spicc, irq_en ? SPICC_DESC_CHAIN_DONE : 0,
-> +		     SPICC_REG_IRQ_ENABLE);
-> +	spicc_writel(spicc, cfg_spi, SPICC_REG_CFG_SPI);
-> +	spicc_writel(spicc, desc_l, SPICC_REG_DESC_LIST_L);
-> +	spicc_writel(spicc, desc_h, SPICC_REG_DESC_LIST_H);
-> +}
-> +
-> +static irqreturn_t aml_spicc_irq(int irq, void *data)
-> +{
-> +	struct spicc_device *spicc = (void *)data;
-> +	u32 sts;
-> +
-> +	spicc->status = 0;
-> +	sts = spicc_readl(spicc, SPICC_REG_IRQ_STS);
-> +	spicc_writel(spicc, sts, SPICC_REG_IRQ_STS);
-> +	if (sts & (SPICC_RCH_DESC_INVALID |
-> +		   SPICC_RCH_DESC_RESP |
-> +		   SPICC_RCH_DATA_RESP |
-> +		   SPICC_WCH_DESC_INVALID |
-> +		   SPICC_WCH_DESC_RESP |
-> +		   SPICC_WCH_DATA_RESP |
-> +		   SPICC_DESC_ERR)) {
-> +		spicc->status = sts;
-> +	}
-> +
-> +	complete(&spicc->completion);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int aml_spicc_transfer_one_message(struct spi_controller *ctlr,
-> +					  struct spi_message *msg)
-> +{
-> +	struct spicc_device *spicc = spi_controller_get_devdata(ctlr);
-> +	struct device *dev = &spicc->pdev->dev;
-> +	unsigned long long ms = 0;
-> +	struct spi_transfer *xfer;
-> +	struct spicc_descriptor *descs, *desc;
-> +	struct spicc_descriptor_extra *exdescs, *exdesc;
-> +	dma_addr_t descs_paddr;
-> +	int desc_num = 1, descs_len;
-> +	u32 cs_hold_in_sclk = 0;
-> +	int ret = -EIO;
-> +
-> +	if (!aml_spicc_sem_down_read(spicc)) {
-> +		spi_finalize_current_message(ctlr);
-> +		dev_err(dev, "controller busy\n");
-> +		return -EBUSY;
-> +	}
-> +
-> +	/*calculate the desc num for all xfer */
-
-Add space after /*
-
-> +	list_for_each_entry(xfer, &msg->transfers, transfer_list)
-> +		desc_num++;
-> +
-> +	/* alloc descriptor/extra-descriptor table */
-> +	descs = kcalloc(desc_num, sizeof(*desc) + sizeof(*exdesc),
-> +			GFP_KERNEL | GFP_DMA);
-> +	if (!descs) {
-> +		spi_finalize_current_message(ctlr);
-> +		aml_spicc_sem_up_write(spicc);
-> +		return -ENOMEM;
-> +	}
-> +	descs_len = sizeof(*desc) * desc_num;
-> +	exdescs = (struct spicc_descriptor_extra *)(descs + desc_num);
-> +
-> +	/* config descriptor for each xfer */
-> +	desc = descs;
-> +	exdesc = exdescs;
-> +	list_for_each_entry(xfer, &msg->transfers, transfer_list) {
-> +		ret = aml_spicc_setup_transfer(spicc, xfer, desc, exdesc);
-> +		if (ret) {
-> +			dev_err(dev, "config descriptor failed\n");
-> +			goto end;
-> +		}
-> +
-> +		/* calculate cs-setup delay with the first xfer speed */
-> +		if (list_is_first(&xfer->transfer_list, &msg->transfers))
-> +			desc->cfg_bus.b.cs_setup_in_sclk =
-> +				spi_delay_to_sclk(xfer->effective_speed_hz, &msg->spi->cs_setup);
-> +
-> +		/* calculate cs-hold delay with the last xfer speed */
-> +		if (list_is_last(&xfer->transfer_list, &msg->transfers))
-> +			cs_hold_in_sclk =
-> +				spi_delay_to_sclk(xfer->effective_speed_hz, &msg->spi->cs_hold);
-> +
-> +		desc++;
-> +		exdesc++;
-> +		ms += DIV_ROUND_UP_ULL(8LL * MSEC_PER_SEC * xfer->len,
-> +				       xfer->effective_speed_hz);
-> +	}
-> +
-> +	if (cs_hold_in_sclk)
-> +		/* additional null-descriptor to achieve the cs-hold delay */
-> +		aml_spicc_setup_null_desc(spicc, desc, cs_hold_in_sclk);
-> +	else
-> +		desc--;
-> +
-> +	desc->cfg_bus.b.keep_ss = 0;
-> +	desc->cfg_start.b.eoc = 1;
-> +
-> +	/* some tolerances */
-> +	ms += ms + 20;
-> +	if (ms > UINT_MAX)
-> +		ms = UINT_MAX;
-> +
-> +	descs_paddr = dma_map_single(dev, (void *)descs,
-> +				     descs_len, DMA_TO_DEVICE);
-> +	ret = dma_mapping_error(dev, descs_paddr);
-> +	if (ret) {
-> +		dev_err(dev, "desc table map failed\n");
-> +		goto end;
-> +	}
-> +
-> +	reinit_completion(&spicc->completion);
-> +	aml_spicc_pending(spicc, descs_paddr, false, true);
-> +	if (wait_for_completion_timeout(&spicc->completion,
-> +					spi_controller_is_target(spicc->controller) ?
-> +					MAX_SCHEDULE_TIMEOUT : msecs_to_jiffies(ms)))
-> +		ret = spicc->status ? -EIO : 0;
-> +	else
-> +		ret = -ETIMEDOUT;
-> +
-> +	dma_unmap_single(dev, descs_paddr, descs_len, DMA_TO_DEVICE);
-> +end:
-> +	desc = descs;
-> +	exdesc = exdescs;
-> +	list_for_each_entry(xfer, &msg->transfers, transfer_list)
-> +		aml_spicc_cleanup_transfer(spicc, xfer, desc++, exdesc++);
-> +	kfree(descs);
-> +
-> +	if (!ret)
-> +		msg->actual_length = msg->frame_length;
-> +	msg->status = ret;
-> +	spi_finalize_current_message(ctlr);
-> +	aml_spicc_sem_up_write(spicc);
-> +
-> +	return ret;
-> +}
-> +
-> +static int aml_spicc_prepare_message(struct spi_controller *ctlr,
-> +				     struct spi_message *message)
-> +{
-> +	struct spicc_device *spicc = spi_controller_get_devdata(ctlr);
-> +
-> +	return aml_spicc_setup_device(spicc, message->spi);
-> +}
-> +
-> +static int aml_spicc_setup(struct spi_device *spi)
-> +{
-> +	if (!spi->controller_state)
-> +		spi->controller_state = spi_controller_get_devdata(spi->controller);
-> +
-> +	return 0;
-> +}
-> +
-> +static void aml_spicc_cleanup(struct spi_device *spi)
-> +{
-> +	spi->controller_state = NULL;
-> +}
-> +
-> +static int aml_spicc_target_abort(struct spi_controller *ctlr)
-> +{
-> +	struct spicc_device *spicc = spi_controller_get_devdata(ctlr);
-> +
-> +	spicc->status = 0;
-> +	spicc_writel(spicc, 0, SPICC_REG_DESC_LIST_H);
-> +	complete(&spicc->completion);
-> +
-> +	return 0;
-> +}
-> +
-> +#define DIV_NUM (SPICC_CLK_DIV_MAX - SPICC_CLK_DIV_MIN + 1)
-> +static struct clk_div_table linear_div_table[DIV_NUM + 1] = {
-> +	[0] = {0, 0 /* init flag */},
-> +	[DIV_NUM] = {0, 0 /* sentinel */}
-> +};
-
-Just declare the table, it will be all initialized to 0, but
-you should not use global data, just declare the tasble in the
-spicc_device.
-
-> +
-> +static int aml_spicc_clk_init(struct spicc_device *spicc)
-> +{
-> +	struct device *dev = &spicc->pdev->dev;
-> +	struct clk_init_data init;
-> +	struct clk_divider *div;
-> +	const char *parent_names[1];
-> +	char name[32];
-> +	u32 pclk_rate = 0;
-> +	u32 val;
-> +	int i;
-> +
-> +	spicc->core = devm_clk_get_enabled(dev, "core");
-> +	if (IS_ERR_OR_NULL(spicc->core))
-> +		dev_warn(dev, "core clock request failed\n");
-> +
-> +	spicc->pclk = devm_clk_get_enabled(dev, "pclk");
-> +	if (IS_ERR_OR_NULL(spicc->pclk)) {
-> +		dev_err(dev, "pclk clock request failed\n");
-> +		return PTR_ERR(spicc->pclk);
-> +	}
-> +	clk_set_min_rate(spicc->pclk, SPICC_PCLK_RATE_MIN);
-> +
-> +	if (!linear_div_table[0].div)
-> +		for (i = 0; i < DIV_NUM; i++) {
-> +			linear_div_table[i].val = i + SPICC_CLK_DIV_MIN - 1;
-> +			linear_div_table[i].div = i + SPICC_CLK_DIV_MIN;
-> +		}
-> +
-> +	div = devm_kzalloc(dev, sizeof(*div), GFP_KERNEL);
-> +	if (!div)
-> +		return -ENOMEM;
-> +
-> +	div->flags = CLK_DIVIDER_ROUND_CLOSEST;
-> +	div->reg = spicc->base + SPICC_REG_CFG_BUS;
-> +	div->shift = SPICC_CLK_DIV_SHIFT;
-> +	div->width = SPICC_CLK_DIV_WIDTH;
-> +	div->table = linear_div_table;
-> +
-> +	/* Register value should not be outside of the table */
-> +	val = spicc_readl(spicc, SPICC_REG_CFG_BUS);
-> +	val &= ~SPICC_CLK_DIV_MASK;
-> +	val |= FIELD_PREP(SPICC_CLK_DIV_MASK, SPICC_CLK_DIV_MIN - 1);
-> +	spicc_writel(spicc, val, SPICC_REG_CFG_BUS);
-> +
-> +	/* Register clk-divider */
-> +	parent_names[0] = __clk_get_name(spicc->pclk);
-> +	snprintf(name, sizeof(name), "%s_div", dev_name(dev));
-> +	init.name = name;
-> +	init.ops = &clk_divider_ops;
-> +	init.flags = CLK_SET_RATE_PARENT;
-> +	/*
-> +	 * For multiple transmission of different speeds in one message, the
-> +	 * parent clock rate needs to be fixed by dts configuration.
-> +	 */
-> +	of_property_read_u32(dev->of_node, "fixed-pclk-rate", &pclk_rate);
-
-This is weird thing to write, just leave the DT alone and take it as-is.
-
-> +	if (pclk_rate) {
-> +		clk_set_rate(spicc->pclk, pclk_rate);
-> +		init.flags = 0;
-> +	}
-> +	init.parent_names = parent_names;
-> +	init.num_parents = 1;
-> +	div->hw.init = &init;
-> +
-> +	spicc->sclk = devm_clk_register(dev, &div->hw);
-> +	if (IS_ERR_OR_NULL(spicc->sclk)) {
-> +		dev_err(dev, "clock registration failed\n");
-> +		return PTR_ERR(spicc->sclk);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int aml_spicc_probe(struct platform_device *pdev)
-> +{
-> +	struct spi_controller *ctlr;
-> +	struct spicc_device *spicc;
-> +	int ret, irq;
-> +
-> +	ctlr = __spi_alloc_controller(&pdev->dev, sizeof(*spicc),
-> +				      of_property_read_bool(pdev->dev.of_node, "slave"));
-
-Don't use private apis, use :
-	if (of_property_read_bool(pdev->dev.of_node, "slave"))
-		ctrl = spi_alloc_target(...)
-	else
-		ctrl = spl_alloc_host(...
-
-> +	if (!ctlr) {
-> +		dev_err(&pdev->dev, "controller allocation failed\n");
-> +		return -ENOMEM;
-> +	}
-> +	spicc = spi_controller_get_devdata(ctlr);
-> +	spicc->controller = ctlr;
-> +
-> +	spicc->pdev = pdev;
-> +	platform_set_drvdata(pdev, spicc);
-> +
-> +	spicc->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR_OR_NULL(spicc->base)) {
-> +		dev_err(&pdev->dev, "io resource mapping failed\n");
-> +		ret = PTR_ERR(spicc->base);
-> +		goto out_controller;
-> +	}
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0) {
-> +		ret = irq;
-> +		goto out_controller;
-> +	}
-> +
-> +	ret = devm_request_irq(&pdev->dev, irq, aml_spicc_irq,
-> +			       IRQF_TRIGGER_RISING, NULL, spicc);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "irq request failed\n");
-> +		goto out_controller;
-> +	}
-> +
-> +	ret = aml_spicc_clk_init(spicc);
-> +	if (ret)
-> +		goto out_controller;
-> +
-> +	spicc->cfg_spi.d32 = 0;
-> +	spicc->cfg_start.d32 = 0;
-> +	spicc->cfg_bus.d32 = 0;
-> +
-> +	spicc->cfg_spi.b.flash_wp_pin_en = 1;
-> +	spicc->cfg_spi.b.flash_hold_pin_en = 1;
-> +	if (spi_controller_is_target(ctlr)) {
-> +		spicc->cfg_spi.b.slave_en = true;
-> +		spicc->cfg_bus.b.tx_tuning_in_pclk = -1;
-> +	}
-> +	/* default pending */
-> +	spicc->cfg_start.b.pending = 1;
-> +
-> +	device_reset_optional(&pdev->dev);
-> +	ctlr->num_chipselect = 4;
-> +	ctlr->dev.of_node = pdev->dev.of_node;
-> +	ctlr->mode_bits = SPI_CPHA | SPI_CPOL | SPI_LSB_FIRST |
-> +			  SPI_3WIRE | SPI_TX_QUAD | SPI_RX_QUAD;
-> +	ctlr->max_speed_hz = 1000 * 1000 * 100;
-> +	ctlr->min_speed_hz = 1000 * 10;
-> +	ctlr->setup = aml_spicc_setup;
-> +	ctlr->cleanup = aml_spicc_cleanup;
-> +	ctlr->prepare_message = aml_spicc_prepare_message;
-> +	ctlr->transfer_one_message = aml_spicc_transfer_one_message;
-> +	ctlr->target_abort = aml_spicc_target_abort;
-> +	ctlr->can_dma = aml_spicc_can_dma;
-> +	ctlr->max_dma_len = SPICC_BLOCK_MAX;
-> +	dma_set_max_seg_size(&pdev->dev, SPICC_BLOCK_MAX);
-> +	ret = devm_spi_register_controller(&pdev->dev, ctlr);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "spi controller registration failed\n");
-> +		goto out_clk;
-> +	}
-> +
-> +	init_completion(&spicc->completion);
-> +
-> +	return 0;
-> +
-> +out_clk:
-> +	if (spicc->core)
-> +		clk_disable_unprepare(spicc->core);
-> +	clk_disable_unprepare(spicc->pclk);
-> +out_controller:
-> +	spi_controller_put(ctlr);
-> +
-> +	return ret;
-> +}
-> +
-> +static void aml_spicc_remove(struct platform_device *pdev)
-> +{
-> +	struct spicc_device *spicc = platform_get_drvdata(pdev);
-> +
-> +	if (spicc->core)
-> +		clk_disable_unprepare(spicc->core);
-> +	clk_disable_unprepare(spicc->pclk);
-> +}
-> +
-> +static int aml_spicc_off(struct spicc_device *spicc)
-> +{
-> +	pinctrl_pm_select_sleep_state(&spicc->pdev->dev);
-> +	clk_disable_unprepare(spicc->pclk);
-> +	if (spicc->core)
-> +		clk_disable_unprepare(spicc->core);
-> +
-> +	return 0;
-> +}
-> +
-> +static int aml_spicc_on(struct spicc_device *spicc)
-> +{
-> +	if (spicc->core)
-> +		clk_prepare_enable(spicc->core);
-> +	clk_prepare_enable(spicc->pclk);
-> +	pinctrl_pm_select_default_state(&spicc->pdev->dev);
-> +
-> +	return 0;
-> +}
-> +
-> +#ifdef CONFIG_HIBERNATION
-> +static int aml_spicc_freeze(struct device *dev)
-> +{
-> +	struct spicc_device *spicc = dev_get_drvdata(dev);
-> +
-> +	return aml_spicc_off(spicc);
-> +}
-> +
-> +static int aml_spicc_thaw(struct device *dev)
-> +{
-> +	struct spicc_device *spicc = dev_get_drvdata(dev);
-> +
-> +	return aml_spicc_on(spicc);
-> +}
-> +
-> +static int aml_spicc_restore(struct device *dev)
-> +{
-> +	struct spicc_device *spicc = dev_get_drvdata(dev);
-> +
-> +	return aml_spicc_on(spicc);
-> +}
-> +#endif
-
-Pretty sure you never tested those, so drop.
-
-> +
-> +static void aml_spicc_shutdown(struct platform_device *pdev)
-> +{
-> +	struct spicc_device *spicc = platform_get_drvdata(pdev);
-> +
-> +	aml_spicc_off(spicc);
-> +}
-> +
-> +static int aml_spicc_suspend(struct device *dev)
-> +{
-> +	struct spicc_device *spicc = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = spi_controller_suspend(spicc->controller);
-> +	if (!ret)
-> +		ret = aml_spicc_off(spicc);
-> +
-> +	return ret;
-> +}
-> +
-> +static int aml_spicc_resume(struct device *dev)
-> +{
-> +	struct spicc_device *spicc = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = aml_spicc_on(spicc);
-> +	if (!ret)
-> +		ret = spi_controller_resume(spicc->controller);
-> +
-> +	return ret;
-> +}
-
-Just implement runtime suspend instead, and drop all those.
-
-> +
-> +static const struct dev_pm_ops amlogic_spicc_pm_ops = {
-> +	.suspend	= aml_spicc_suspend,
-> +	.resume		= aml_spicc_resume,
-> +#ifdef CONFIG_HIBERNATION
-> +	.freeze		= aml_spicc_freeze,
-> +	.thaw		= aml_spicc_thaw,
-> +	.restore	= aml_spicc_restore,
-> +#endif
-> +};
-> +
-> +static const struct of_device_id amlogic_spisg_of_match[] = {
-> +	{
-> +		.compatible = "amlogic,a4-spisg",
-> +	},
-> +
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, amlogic_spisg_of_match);
-> +
-> +struct platform_driver amlogic_spisg_driver = {
-> +	.probe = aml_spicc_probe,
-> +	.remove = aml_spicc_remove,
-> +	.shutdown = aml_spicc_shutdown,
-> +	.driver  = {
-> +		.name = "amlogic-spisg",
-> +		.of_match_table = of_match_ptr(amlogic_spisg_of_match),
-> +		.pm = &amlogic_spicc_pm_ops,
-> +	},
-> +};
-> +
-> +module_platform_driver(amlogic_spisg_driver);
-> +
-> +MODULE_DESCRIPTION("Amlogic SPI Scatter-Gather Controller driver");
-> +MODULE_AUTHOR("Sunny Luo <sunny.luo@amlogic.com>");
-> +MODULE_LICENSE("GPL");
-> 
-
-Thanks,
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhlIGF1eGlsaWFyeSBkZXZpY2UgY3JlYXRpb24gb2YgdGhpcyBkcml2ZXIgaXMgc2ltcGxlIGVu
+b3VnaCB0bwp1c2UgdGhlIGF2YWlsYWJsZSBhdXhpbGlhcnkgZGV2aWNlIGNyZWF0aW9uIGhlbHBl
+ci4KClVzZSBpdCBhbmQgcmVtb3ZlIHNvbWUgYm9pbGVycGxhdGUgY29kZS4KClRlc3RlZC1ieTog
+VGjDqW8gTGVicnVuIDx0aGVvLmxlYnJ1bkBib290bGluLmNvbT4gICMgT24gTW9iaWxleWUgRXll
+UTUKU2lnbmVkLW9mZi1ieTogSmVyb21lIEJydW5ldCA8amJydW5ldEBiYXlsaWJyZS5jb20+Ci0t
+LQogZHJpdmVycy9jbGsvY2xrLWV5ZXEuYyB8IDU3ICsrKysrKysrKysrLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygr
+KSwgNDUgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9jbGsvY2xrLWV5ZXEuYyBi
+L2RyaXZlcnMvY2xrL2Nsay1leWVxLmMKaW5kZXggNjQwYzI1Nzg4NDg3ZjhjZjZmYjQ0MzFlZDZm
+YjYxMmNmMDk5ZjExNC4uNDA5NGYzNGFmMDViNDg4NTQ1Y2M4NzA0M2ZiMzM1Mjk2ODUxNWE3OCAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9jbGsvY2xrLWV5ZXEuYworKysgYi9kcml2ZXJzL2Nsay9jbGst
+ZXllcS5jCkBAIC0zMjIsMzggKzMyMiwxOCBAQCBzdGF0aWMgdm9pZCBlcWNfcHJvYmVfaW5pdF9m
+aXhlZF9mYWN0b3JzKHN0cnVjdCBkZXZpY2UgKmRldiwKIAl9CiB9CiAKLXN0YXRpYyB2b2lkIGVx
+Y19hdXhkZXZfcmVsZWFzZShzdHJ1Y3QgZGV2aWNlICpkZXYpCi17Ci0Jc3RydWN0IGF1eGlsaWFy
+eV9kZXZpY2UgKmFkZXYgPSB0b19hdXhpbGlhcnlfZGV2KGRldik7Ci0KLQlrZnJlZShhZGV2KTsK
+LX0KLQotc3RhdGljIGludCBlcWNfYXV4ZGV2X2NyZWF0ZShzdHJ1Y3QgZGV2aWNlICpkZXYsIHZv
+aWQgX19pb21lbSAqYmFzZSwKLQkJCSAgICAgY29uc3QgY2hhciAqbmFtZSwgdTMyIGlkKQorc3Rh
+dGljIHZvaWQgZXFjX2F1eGRldl9jcmVhdGVfb3B0aW9uYWwoc3RydWN0IGRldmljZSAqZGV2LCB2
+b2lkIF9faW9tZW0gKmJhc2UsCisJCQkJICAgICAgIGNvbnN0IGNoYXIgKm5hbWUpCiB7CiAJc3Ry
+dWN0IGF1eGlsaWFyeV9kZXZpY2UgKmFkZXY7Ci0JaW50IHJldDsKLQotCWFkZXYgPSBremFsbG9j
+KHNpemVvZigqYWRldiksIEdGUF9LRVJORUwpOwotCWlmICghYWRldikKLQkJcmV0dXJuIC1FTk9N
+RU07Ci0KLQlhZGV2LT5uYW1lID0gbmFtZTsKLQlhZGV2LT5kZXYucGFyZW50ID0gZGV2OwotCWFk
+ZXYtPmRldi5wbGF0Zm9ybV9kYXRhID0gKHZvaWQgX19mb3JjZSAqKWJhc2U7Ci0JYWRldi0+ZGV2
+LnJlbGVhc2UgPSBlcWNfYXV4ZGV2X3JlbGVhc2U7Ci0JYWRldi0+aWQgPSBpZDsKIAotCXJldCA9
+IGF1eGlsaWFyeV9kZXZpY2VfaW5pdChhZGV2KTsKLQlpZiAocmV0KQotCQlyZXR1cm4gcmV0Owot
+Ci0JcmV0ID0gYXV4aWxpYXJ5X2RldmljZV9hZGQoYWRldik7Ci0JaWYgKHJldCkKLQkJYXV4aWxp
+YXJ5X2RldmljZV91bmluaXQoYWRldik7Ci0KLQlyZXR1cm4gcmV0OworCWlmIChuYW1lKSB7CisJ
+CWFkZXYgPSBkZXZtX2F1eGlsaWFyeV9kZXZpY2VfY3JlYXRlKGRldiwgbmFtZSwKKwkJCQkJCSAg
+ICAodm9pZCBfX2ZvcmNlICopYmFzZSk7CisJCWlmICghYWRldikKKwkJCWRldl93YXJuKGRldiwg
+ImZhaWxlZCBjcmVhdGluZyBhdXhpbGlhcnkgZGV2aWNlICVzLiVzXG4iLAorCQkJCSBLQlVJTERf
+TU9ETkFNRSwgbmFtZSk7CisJfQogfQogCiBzdGF0aWMgaW50IGVxY19wcm9iZShzdHJ1Y3QgcGxh
+dGZvcm1fZGV2aWNlICpwZGV2KQpAQCAtMzY1LDcgKzM0NSw2IEBAIHN0YXRpYyBpbnQgZXFjX3By
+b2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCiAJdW5zaWduZWQgaW50IGksIGNsa19j
+b3VudDsKIAlzdHJ1Y3QgcmVzb3VyY2UgKnJlczsKIAl2b2lkIF9faW9tZW0gKmJhc2U7Ci0JaW50
+IHJldDsKIAogCWRhdGEgPSBkZXZpY2VfZ2V0X21hdGNoX2RhdGEoZGV2KTsKIAlpZiAoIWRhdGEp
+CkBAIC0zNzksMjEgKzM1OCw5IEBAIHN0YXRpYyBpbnQgZXFjX3Byb2JlKHN0cnVjdCBwbGF0Zm9y
+bV9kZXZpY2UgKnBkZXYpCiAJaWYgKCFiYXNlKQogCQlyZXR1cm4gLUVOT01FTTsKIAotCS8qIElu
+aXQgb3B0aW9uYWwgcmVzZXQgYXV4aWxpYXJ5IGRldmljZS4gKi8KLQlpZiAoZGF0YS0+cmVzZXRf
+YXV4ZGV2X25hbWUpIHsKLQkJcmV0ID0gZXFjX2F1eGRldl9jcmVhdGUoZGV2LCBiYXNlLCBkYXRh
+LT5yZXNldF9hdXhkZXZfbmFtZSwgMCk7Ci0JCWlmIChyZXQpCi0JCQlkZXZfd2FybihkZXYsICJm
+YWlsZWQgY3JlYXRpbmcgYXV4aWxpYXJ5IGRldmljZSAlcy4lczogJWRcbiIsCi0JCQkJIEtCVUlM
+RF9NT0ROQU1FLCBkYXRhLT5yZXNldF9hdXhkZXZfbmFtZSwgcmV0KTsKLQl9Ci0KLQkvKiBJbml0
+IG9wdGlvbmFsIHBpbmN0cmwgYXV4aWxpYXJ5IGRldmljZS4gKi8KLQlpZiAoZGF0YS0+cGluY3Ry
+bF9hdXhkZXZfbmFtZSkgewotCQlyZXQgPSBlcWNfYXV4ZGV2X2NyZWF0ZShkZXYsIGJhc2UsIGRh
+dGEtPnBpbmN0cmxfYXV4ZGV2X25hbWUsIDApOwotCQlpZiAocmV0KQotCQkJZGV2X3dhcm4oZGV2
+LCAiZmFpbGVkIGNyZWF0aW5nIGF1eGlsaWFyeSBkZXZpY2UgJXMuJXM6ICVkXG4iLAotCQkJCSBL
+QlVJTERfTU9ETkFNRSwgZGF0YS0+cGluY3RybF9hdXhkZXZfbmFtZSwgcmV0KTsKLQl9CisJLyog
+SW5pdCBvcHRpb25hbCBhdXhpbGlhcnkgZGV2aWNlcy4gKi8KKwllcWNfYXV4ZGV2X2NyZWF0ZV9v
+cHRpb25hbChkZXYsIGJhc2UsIGRhdGEtPnJlc2V0X2F1eGRldl9uYW1lKTsKKwllcWNfYXV4ZGV2
+X2NyZWF0ZV9vcHRpb25hbChkZXYsIGJhc2UsIGRhdGEtPnBpbmN0cmxfYXV4ZGV2X25hbWUpOwog
+CiAJaWYgKGRhdGEtPnBsbF9jb3VudCArIGRhdGEtPmRpdl9jb3VudCArIGRhdGEtPmZpeGVkX2Zh
+Y3Rvcl9jb3VudCA9PSAwKQogCQlyZXR1cm4gMDsgLyogWmVybyBjbG9ja3MsIHdlIGFyZSBkb25l
+LiAqLwoKLS0gCjIuNDcuMgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
+aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2xpbnV4LWFtbG9naWMK
