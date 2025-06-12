@@ -4,159 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8876C71141
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Jun 2025 19:57:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D51D2C61CE8
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Jun 2025 09:01:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vUtEa3tjUWfu3+0+RkKWiXjmI93xWeySIa52U9B6DJc=; b=pHmUymVikZMfuT
-	6bGsPyprhEFNd2YblhUkVKUfAM6crTdG/f4EqrqHyFijY6ltL4oyTDGzzFL/Bep6D6mjxOfyBglDg
-	NGBxu+mb/6ySECVunAFzRX1tMinxNMrbpiteFpyqgzoso1EUNpewV6bR3v+jdEjAI9MrZLdE+ABJM
-	zuPx8gTi/hUl0vUCY5iVC71fIDwH7TBRFSsJAHMWknNP6+EBVQUR1lalafVwYUSPvzC1KxqPF6WCd
-	6/1Wg6rgnELDfrmASTk15L0V2pt7O6VdfaX46hQO0iTLnMK7avw4bmKleXlSlkVpIZfxBShjuLizQ
-	Vw5aguhv6R5qZyQ8KeBw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=gEb4Z+x0yiluR7SA4xM3wHhVgRkiP6BS5PcZM2sWpR0=; b=qNUxERsYAkC9F7
+	YVWiLJAyxzfXrokxH+m5ntqEj7zgSBn5KyGFvw2mw6AzZ5rbOks43NuEFDODXyeGHaROEK/StI3lB
+	TUzXfp81ew4HjmLGp8tjILoAj4nMJGORtSJ3d7+R8zw2i85L6rBnSpO9ecZ1NLOavfkf01NzKX5P1
+	M4BEWRMYXt8tenQWo3p7QLIsUK9tbXsBUVA74pNXrkWEGCTjF982tp6jkmJiLHmF3rtM63mGamKga
+	ctgWOTYLIBqQN6eFN21WbeBxTRYMS/pdiH897yCMx+Vr4PkRGiy/Wq+swAvGkpCS4GhMnMdnGgoLH
+	sWrNJbeXp9SGxfDIssJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPRZA-0000000B5S6-3qHd;
-	Wed, 11 Jun 2025 19:56:56 +0000
-Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
+	id 1uPdom-0000000Ckod-3XHk;
+	Thu, 12 Jun 2025 09:01:52 +0000
+Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uPOce-0000000Af6N-2r06;
-	Wed, 11 Jun 2025 16:48:21 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hIlsOIeMsJ7MKvmShJ7BWfKPDaCUEH1WZbGmqYJWMr4JUN+Zrui2/9Wwo9j3bqtOleanhCqhdy5uBCMK+zR+QLzXqasYoj6yK5uznYvD2ug7Wqw2aN8ak8R4jiWS35u/+QLDXh14AzaLjMclruT6ScvBxn4P25y0Acx1eF36tiHTmxfGtVzcGptuFnlwQkhdpeFdyhOp6z3N7I1cv7bHIwV0/TNGJsIIE96cJPUI6L4pBC8PiwMzD/tendsZDlwwHrNZQTuy1VhLq87mg47xVn+5B8ejrHvrYlZ3z6c2t7gl7RNEZCJQv5w/Mitb/tPBshAUxjaIVad7PSpxBfaSjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G9LPL5Rtm0LlI8oHKH6UGML9y8Hp2hVPjFrT2VVydfg=;
- b=n2Un3tZ6tR0YRdM58x3Iq57GytSYOP3AHsuz7ik0UXvELtLBzTJZ3VOY7ZX3BvJ22Ynx9faYpexHA5BkwsauOetIBsiG6qt6phm9CfZkA3zuB3QOBRNUZ8C8TwJxDF9rUwPFb5hNJ2qphY6e/8Qi7TfuuS8gfz7DmGEtv2+pR4w5ba/lq5hr1sjsAAsWA1UPBE1tLySFdXXQBm7IzZ5esMBXxTRV32JypvoPFaFYC8FoaepNKJO2YRchn/DrtN1FtvhCIvUmfpENcALx3YHEFfiUAB4AezxtA7rwG3Ph6ERut6RsH+slHOe27q4B6KsfXWGSYaKZPDFZGaB6i1Y/mg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=G9LPL5Rtm0LlI8oHKH6UGML9y8Hp2hVPjFrT2VVydfg=;
- b=WxVegemw8zcVMuHA81x0CqACpzXlfHrEv4FFkGE4uTsppxTI2+/TErnkrHPdALKGbzSjAQE4ztArVvfvbFstFLA8kd+SKr89bvmcVXQH1/va4CPO8+jrCZ+w5e57C0LafOd4Hf/huVbdazBqrmcjLV1LDCOsGgCuuxV+yyHYUSiWPukDjfcK6YAs9jzQvncxva2kN2+v5dNA7GYTZ6hXIFEGm531u7Cjx7X6GEmUgun5wcBottH3TpjnutK2cVT22RF6B0wf2oHW/jMV3QfuVZ2IhWUx6lK+Ua6HLE9PHRRiNBHTIO9KbHCdLBrzpK0WS7yKNN+x1c+fmSWRLYR0Zw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB9123.eurprd04.prod.outlook.com (2603:10a6:102:22e::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Wed, 11 Jun
- 2025 16:48:16 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%7]) with mapi id 15.20.8813.024; Wed, 11 Jun 2025
- 16:48:16 +0000
-Date: Wed, 11 Jun 2025 12:48:06 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	id 1uPd85-0000000CaeZ-1kc4
+	for linux-amlogic@lists.infradead.org;
+	Thu, 12 Jun 2025 08:17:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=7kGoXelVVEEZrd
+	/76cIf97/OgYb0jIvLH7pVXFi9WFY=; b=IXl3ISkrJHUPvxBRnQ7r8jom4gi2XI
+	1E6pSa2l4HZ57EzODC3SDv+5GHFzfM1IU58OKPQ9PvanGdS/Oy61TpZIFPC/WG54
+	NmYIa+l1YKCgqo5iEh/LsYzhq1oN96UPT3z5HnecD23v/oM0viIU/JdVluP/lFa0
+	xFjlpIAEccjQPmqEj5XU22WUpz6CxTdfX+rUpAelKB5bbBmuvOlI5N0eBKbA+XCo
+	9rDEQqcsrwiY9h/kKBCVmLKLSDyc7RlINGb4Bk5oEmTal7hI94vd1QKogMr6LIPx
+	ti7w67FOr7OhRipVMaZBm2SqCiT9XhHtgQV5iHPKAzcSLwmRm4xRNMkw==
+Received: (qmail 3547230 invoked from network); 12 Jun 2025 10:17:31 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Jun 2025 10:17:31 +0200
+X-UD-Smtp-Session: l3s3148p1@et2hj1s36OUgAwDPXy2/ACpZfVCNKldR
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-i2c@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Elie Morisse <syniurge@gmail.com>,
+	Shyam Sundar S K <shyam-sundar.s-k@amd.com>,
+	Ryan Chen <ryan_chen@aspeedtech.com>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Thomas Richard <thomas.richard@bootlin.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Jean-Marie Verdun <verdun@hpe.com>,
+	Nick Hawkins <nick.hawkins@hpe.com>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
 	Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+	Kumaravel Thiagarajan <kumaravel.thiagarajan@microchip.com>,
+	Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Qii Wang <qii.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Avi Fishman <avifishman70@gmail.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Tali Perry <tali.perry1@gmail.com>,
+	Patrick Venture <venture@google.com>,
+	Nancy Yuen <yuenn@google.com>,
+	Benjamin Fair <benjaminfair@google.com>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Janusz Krzysztofik <jmkrzyszt@gmail.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Roger Quadros <rogerq@kernel.org>,
+	Vignesh R <vigneshr@ti.com>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	Loic Poulain <loic.poulain@oss.qualcomm.com>,
+	Robert Foss <rfoss@kernel.org>,
+	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
+	Viken Dadhaniya <quic_vdadhani@quicinc.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Laxman Dewangan <ldewangan@nvidia.com>,
+	Dmitry Osipenko <digetx@gmail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	George Cherian <gcherian@marvell.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Peter Rosin <peda@axentia.se>,
+	openbmc@lists.ozlabs.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 3/4] clk: clk-imx8mp-audiomix: use the auxiliary device
- creation helper
-Message-ID: <aEmzRrhQC+olmywj@lizhi-Precision-Tower-5810>
-References: <20250611-clk-aux-v1-0-fb6575ed86a7@baylibre.com>
- <20250611-clk-aux-v1-3-fb6575ed86a7@baylibre.com>
-Content-Disposition: inline
-In-Reply-To: <20250611-clk-aux-v1-3-fb6575ed86a7@baylibre.com>
-X-ClientProxiedBy: PH8PR22CA0016.namprd22.prod.outlook.com
- (2603:10b6:510:2d1::9) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	linux-aspeed@lists.ozlabs.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-amlogic@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-omap@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-tegra@vger.kernel.org
+Subject: [PATCH] i2c: use inclusive callbacks in struct i2c_algorithm
+Date: Thu, 12 Jun 2025 10:12:23 +0200
+Message-ID: <20250612081729.84329-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB9123:EE_
-X-MS-Office365-Filtering-Correlation-Id: 858bd856-254a-4332-d929-08dda907c320
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|52116014|376014|7416014|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wxKsovjro/lJzLr6jyK+XgldYyYVZh4Jv3gg4c8Pnu0zn4vomAxPN5ou8Z6o?=
- =?us-ascii?Q?recUIgKGX8RyJrLMA5Py3tn9+5o71hi6TC4p/dNWwqBlHqS2rs7p8YKs2L7J?=
- =?us-ascii?Q?ghxMzgbczgHrL3gIBY9IH0+cz0aipwrnhPlPrRZjpe1blyE/28UkS27bT8Qn?=
- =?us-ascii?Q?Yquj2kmrllTg6tYV2gncSyUevvHi587OCrbthxjZU9DMX4TawzxmzCx1xcXo?=
- =?us-ascii?Q?2T6Zprc9FP5G83MIMukf20H1xAXGnF56Lko+W8OFuP55hnhXc6YJ2QJoY8T8?=
- =?us-ascii?Q?pdhLd+7i3/eGcdEfDUUteUTv2DMWxA7U+LGLhOHkFjxbCcbPBzV+zvjT2umb?=
- =?us-ascii?Q?qX4PvbbezPziuXOxPf4om7dWSYpBjUvKI+wi0fnIFK/PEaNOCk9EnieDm3e1?=
- =?us-ascii?Q?eNbyBgtFxT4pwwsUYXBkhSKuidCdzk5Yw6CzTrGG2OArTL8HTZv+gyQKVY9T?=
- =?us-ascii?Q?AP0Q3UHboxA6KPTbED5evo09wqtzOpxjcs6/PLlTSLjjvRtZjAlFK2HVrCWQ?=
- =?us-ascii?Q?mo4hynDl+ZwXBO240eqoIv3tEYJeVAMrKgcTGDg5I4kmzcg5vSs6zrCxHIKX?=
- =?us-ascii?Q?TUEtJVq0te3jLYqaYB1HmTSkkdRaEbVwqWWw7A0FbDqUtD1Vhy1OMqrY8v94?=
- =?us-ascii?Q?ZIVIuYNpwNNEcSmXPBP4WA5s9oce7ZF31zCyqmM95fPo9oMx3WMzUJwBmkiv?=
- =?us-ascii?Q?OJANQF588jjr8rbdQNCIraIfgcUOxPpRA4O1PsEnS7WG2i9+RcqLi0Kg99yE?=
- =?us-ascii?Q?NRpkQM2pQ8tbu8slYSqM8UCcyyQPFFc8or/ajMfJZ0PPirhnEMFr0xj/a9IB?=
- =?us-ascii?Q?6pfJoAtVi+mZBIplcNmFqh9G47OiA8LhLV/mjERPSxyyBhz837Lwweb9fd9o?=
- =?us-ascii?Q?NaksHGWpjQGCnCH7KR8BWNhCD++zhB+FhlegS5giZMxwNP9PibF6uEJYzc1K?=
- =?us-ascii?Q?S0Dgp6I6A/+M1LQl6UQ+z6aPwere0MKKEVW5zNx681sQ+4M//e7Kai0Cji8W?=
- =?us-ascii?Q?7AKzFOWDIMWL6x6IWKNCFkPNL/Moo6x99D5KnOqYCBUdUqql6E+3q3Qso90e?=
- =?us-ascii?Q?6b3WP4tlju/PxoiBt87woXUNR1jOq0Y+iBpVY9+2I9wYr6i7HaHllf70kJsJ?=
- =?us-ascii?Q?UHF8+yFSGHJ7ehVcZ7Vb56XvSVqfGmTvlzzDfPzySylz5F9c6c08m5lP0ylL?=
- =?us-ascii?Q?WREHXMcHxq1O306JBelJyx938Dd6MwpMApvQI1mnm22DataxwEqpf764NNOs?=
- =?us-ascii?Q?Bm1X/jX9fKtBmgmS5gFes/cAysFnCJKUrePg/9ReV7o4jXFC5bG09ZOfGRAn?=
- =?us-ascii?Q?Xl5qYqU25hWmODdWKGhtFlokBA64THelyA+TTJfLATXkzrcInFETbWhhBUFc?=
- =?us-ascii?Q?Feh/v86drlakZ0Jgx8b/Nw9qhEuGrVYYl43+CuLz3QwCK4xOB3KBnNJ2GJwg?=
- =?us-ascii?Q?vxxmSQJMWaCEjMBX5RHfFLMsst7EqnC8IY0jINUvcrn1rhn+ijiIwA=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(7416014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SnwX/NfdWwoJWVwkAoqA0q3lLXah3ysD/+wpTO6Vv4upoS45NUpFBnNTk34G?=
- =?us-ascii?Q?PBUODReRf6SyKoTwd/PQhCi9SRCMu2CIgGuSSjhcTD21QHKQxMC6mpOwNyBB?=
- =?us-ascii?Q?MbKx/TZYNU0fCMnAmbOGcyJIwifRWgaZSfj5mRtdrZHAWhBXmOJSsZQNTjxI?=
- =?us-ascii?Q?rt8NFOwdFhgOgmMLiT1yws4bCpsgF9kCi+xvxuUTV2Z9Ksq2W6Jk+7D8QiTM?=
- =?us-ascii?Q?ZVhlLRhE2s5TU8/3L1qo1xjjw16XlCAgll/1mrPg4nlG5OmdttqfUxqBw1+i?=
- =?us-ascii?Q?UBCLcVo3mdgXzT87Mtp1jYtmDAGPOizjhuEwhn3/4NqYgemjm7261/0oZLD7?=
- =?us-ascii?Q?CKx2LimX1dwpeEJxunGvDZVdn90ctCUncZ3C0QK1jjOWSf19FIs1MCG0DrR+?=
- =?us-ascii?Q?AtpVVTzL1Av8i/THoy+v3D0mfyvk635DKVczImDPiW1gNz78/ZK9ctbpvVIn?=
- =?us-ascii?Q?MVVMgumGVFLrqWEnCMKeYdZc5E/DcxQdTzPenzR1kMJJAygLLAlLd/ONuHCz?=
- =?us-ascii?Q?tFg0CEIj5V2FavJ7Lw3u09WJiTRsuL1xyDeEf9RZi5jVeEBE6coAyrdnolFT?=
- =?us-ascii?Q?8WZR5DSf6+kXWKZlG7KZfRpJeqGDbXJiMuWXmHb/J+5RaaUAwpBH5fihL2Un?=
- =?us-ascii?Q?fO724dUndmD2E7kn4W3MK12au2yJ9+tY8rFwHBwJFqSqg5r8ZHfcKfPCQ+ot?=
- =?us-ascii?Q?V571nDE5U+2YSWrTRT3Q8xk/Gm5OxZVSjW6gkiXX9MB11fptV+rPslug5ASe?=
- =?us-ascii?Q?2UO0C8mBEcJvkljY2Hg3c4xSIczNWzHn0BN5WIKWpCsjV9BNXb4fgmhcsNN3?=
- =?us-ascii?Q?U3tIg5iQxj0RtQT/SS1DHqg9/WETITHvG1Ys8cPvhVNJZVlq5ECuQoAs5ANd?=
- =?us-ascii?Q?alR0uONs4u4a4+WpWlKlhhKLoalfkObQUzm4xRpMDl50In6BEtQVHPz/Dh7r?=
- =?us-ascii?Q?dl4y3FXsETY9FBfZVodNjcBImbC2QDR6CUPFt9BlE2PtdXU4ncyDWXH6xvLz?=
- =?us-ascii?Q?C0RTI/qxAOkwXmWnriFQCANtQby24OSnCMyXutcWDWNv53+josexqk4C4fRf?=
- =?us-ascii?Q?Royj1YOs7wwQNHiYeZXsBoORZGeluSVKQQfJwiNL3qHU7eQ9bj0ReXBiGwzp?=
- =?us-ascii?Q?5w5SVo5PVCQN2AzeUIW5C7V13swqLpl2+NtoR2mc5lv+LybSwjqdCMEov5iy?=
- =?us-ascii?Q?PZjdrwPKiwqO27vyktsdvKNykMKQ3bqZTCpHot1lJOGXDwTxHa77IvCAY+pg?=
- =?us-ascii?Q?fGNBC/fhuQ1XysJv54OX4OI6/VF7Pl+CaXl5qe1xAkQR6cg3O0xX1YHijyVi?=
- =?us-ascii?Q?YlCJ9mEkiWZ60mk1Jb69V1x5MKQrLx2Ma39rkVbeSBqM4m+ZDOh09aqwsCj3?=
- =?us-ascii?Q?Qyf5EO5309cIl4HSpmDAqCvVibrSOZh8/U72ojzmCFFgk6rPbDabDc1QPlVt?=
- =?us-ascii?Q?dW2ug0CuXFeARg8nq09NnEAu5cZG0eKkedIToJsq8SpHDhDBncBEQ3TLVZlK?=
- =?us-ascii?Q?YfNnKA58RJEnQ0OqhB/PS1V4OtYQzotev1HCTCAMqit9UDGmSQ47JfvI96MN?=
- =?us-ascii?Q?T8UBygdLZD/AXVCjOAE7WKgmgMckdC9YIy7Vo/3+?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 858bd856-254a-4332-d929-08dda907c320
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2025 16:48:16.4455
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TYGj4bIp2H+kGSsFoes5f29KBwG1B1h2woWhfiUjLjKB4uDZsk6m2ktfx29VaUQTxVscnuD+KS51q2PA421RyA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9123
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250611_094820_719412_3B56EB6E 
-X-CRM114-Status: GOOD (  21.18  )
+X-CRM114-CacheID: sfid-20250612_011745_749983_A693D4F2 
+X-CRM114-Status: GOOD (  17.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -173,111 +151,770 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jun 11, 2025 at 02:53:58PM +0200, Jerome Brunet wrote:
-> The auxiliary device creation of this driver is simple enough to
-> use the available auxiliary device creation helper.
->
-> Use it and remove some boilerplate code.
+Convert the I2C subsystem to drop using the 'master_'-prefixed callbacks
+in favor of the simplified ones. Fix alignment of '=' while here.
 
-Actaully, you also remove unused struct clk_imx8mp_audiomix_priv *priv
-at clk_imx8mp_audiomix_reset_controller_register().
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
 
-Please add it into comments.
+So, after rc1, this is the right timing for such a patch. I originally
+wanted to convert to more inclusive language per-driver. It turned out
+this approach is too cumbersome and slow. I now changed strategy to
+per-feature, at least for the I2C subsystem. This will cause some
+inconsitencies on the way, but less dependencies makes it easier to go
+forward in the end. When drivers within I2C are good, then we can
+convert outside of I2C per-driver to keep the churn there low.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+@Andi: I would like to merge this via my tree once buildbot tells me it
+is happy. Is this okay with you?
 
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/clk/imx/clk-imx8mp-audiomix.c | 49 ++++++-----------------------------
->  1 file changed, 8 insertions(+), 41 deletions(-)
->
-> diff --git a/drivers/clk/imx/clk-imx8mp-audiomix.c b/drivers/clk/imx/clk-imx8mp-audiomix.c
-> index 775f62dddb11d8cfd17a4ebf7a677ef399c5e617..765fb1f5bd4fa2b039d7414abd89471438ee41dd 100644
-> --- a/drivers/clk/imx/clk-imx8mp-audiomix.c
-> +++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
-> @@ -230,61 +230,28 @@ struct clk_imx8mp_audiomix_priv {
->
->  #if IS_ENABLED(CONFIG_RESET_CONTROLLER)
->
-> -static void clk_imx8mp_audiomix_reset_unregister_adev(void *_adev)
-> +static int clk_imx8mp_audiomix_reset_controller_register(struct device *dev)
->  {
-> -	struct auxiliary_device *adev = _adev;
-> -
-> -	auxiliary_device_delete(adev);
-> -	auxiliary_device_uninit(adev);
-> -}
-> -
-> -static void clk_imx8mp_audiomix_reset_adev_release(struct device *dev)
-> -{
-> -	struct auxiliary_device *adev = to_auxiliary_dev(dev);
-> -
-> -	kfree(adev);
-> -}
-> -
-> -static int clk_imx8mp_audiomix_reset_controller_register(struct device *dev,
-> -							 struct clk_imx8mp_audiomix_priv *priv)
-> -{
-> -	struct auxiliary_device *adev __free(kfree) = NULL;
-> -	int ret;
-> +	struct auxiliary_device *adev;
->
->  	if (!of_property_present(dev->of_node, "#reset-cells"))
->  		return 0;
->
-> -	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
-> +	adev = devm_auxiliary_device_create(dev, "reset", NULL);
->  	if (!adev)
-> -		return -ENOMEM;
-> -
-> -	adev->name = "reset";
-> -	adev->dev.parent = dev;
-> -	adev->dev.release = clk_imx8mp_audiomix_reset_adev_release;
-> -
-> -	ret = auxiliary_device_init(adev);
-> -	if (ret)
-> -		return ret;
-> +		return -ENODEV;
->
-> -	ret = auxiliary_device_add(adev);
-> -	if (ret) {
-> -		auxiliary_device_uninit(adev);
-> -		return ret;
-> -	}
-> -
-> -	return devm_add_action_or_reset(dev, clk_imx8mp_audiomix_reset_unregister_adev,
-> -					no_free_ptr(adev));
-> +	return 0;
->  }
->
->  #else /* !CONFIG_RESET_CONTROLLER */
->
-> -static int clk_imx8mp_audiomix_reset_controller_register(struct device *dev,
-> -							 struct clk_imx8mp_audiomix_priv *priv)
-> +static int clk_imx8mp_audiomix_reset_controller_register(struct device *dev)
->  {
->  	return 0;
->  }
->
-> -#endif /* !CONFIG_RESET_CONTROLLER */
-> +#endif
->
->  static void clk_imx8mp_audiomix_save_restore(struct device *dev, bool save)
->  {
-> @@ -408,7 +375,7 @@ static int clk_imx8mp_audiomix_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto err_clk_register;
->
-> -	ret = clk_imx8mp_audiomix_reset_controller_register(dev, priv);
-> +	ret = clk_imx8mp_audiomix_reset_controller_register(dev);
->  	if (ret)
->  		goto err_clk_register;
->
->
-> --
-> 2.47.2
->
+ drivers/i2c/algos/i2c-algo-bit.c           |  4 ++--
+ drivers/i2c/algos/i2c-algo-pca.c           |  4 ++--
+ drivers/i2c/algos/i2c-algo-pcf.c           |  4 ++--
+ drivers/i2c/busses/i2c-amd-mp2-plat.c      |  2 +-
+ drivers/i2c/busses/i2c-aspeed.c            |  8 ++++----
+ drivers/i2c/busses/i2c-at91-master.c       |  4 ++--
+ drivers/i2c/busses/i2c-axxia.c             |  2 +-
+ drivers/i2c/busses/i2c-bcm-iproc.c         |  2 +-
+ drivers/i2c/busses/i2c-cadence.c           | 10 +++++-----
+ drivers/i2c/busses/i2c-cgbc.c              |  4 ++--
+ drivers/i2c/busses/i2c-eg20t.c             |  2 +-
+ drivers/i2c/busses/i2c-emev2.c             |  6 +++---
+ drivers/i2c/busses/i2c-exynos5.c           |  6 +++---
+ drivers/i2c/busses/i2c-gxp.c               |  6 +++---
+ drivers/i2c/busses/i2c-img-scb.c           |  2 +-
+ drivers/i2c/busses/i2c-imx-lpi2c.c         |  8 ++++----
+ drivers/i2c/busses/i2c-imx.c               |  8 ++++----
+ drivers/i2c/busses/i2c-keba.c              |  2 +-
+ drivers/i2c/busses/i2c-mchp-pci1xxxx.c     |  2 +-
+ drivers/i2c/busses/i2c-meson.c             |  4 ++--
+ drivers/i2c/busses/i2c-microchip-corei2c.c |  2 +-
+ drivers/i2c/busses/i2c-mt65xx.c            |  2 +-
+ drivers/i2c/busses/i2c-mxs.c               |  2 +-
+ drivers/i2c/busses/i2c-nomadik.c           |  4 ++--
+ drivers/i2c/busses/i2c-npcm7xx.c           |  6 +++---
+ drivers/i2c/busses/i2c-omap.c              |  6 +++---
+ drivers/i2c/busses/i2c-pnx.c               |  2 +-
+ drivers/i2c/busses/i2c-pxa.c               | 16 ++++++++--------
+ drivers/i2c/busses/i2c-qcom-cci.c          |  4 ++--
+ drivers/i2c/busses/i2c-qcom-geni.c         |  4 ++--
+ drivers/i2c/busses/i2c-qup.c               |  8 ++++----
+ drivers/i2c/busses/i2c-rcar.c              | 10 +++++-----
+ drivers/i2c/busses/i2c-s3c2410.c           |  6 +++---
+ drivers/i2c/busses/i2c-sh7760.c            |  4 ++--
+ drivers/i2c/busses/i2c-sh_mobile.c         |  4 ++--
+ drivers/i2c/busses/i2c-stm32f7.c           |  4 ++--
+ drivers/i2c/busses/i2c-synquacer.c         |  4 ++--
+ drivers/i2c/busses/i2c-tegra.c             |  6 +++---
+ drivers/i2c/busses/i2c-xiic.c              |  4 ++--
+ drivers/i2c/busses/i2c-xlp9xx.c            |  2 +-
+ drivers/i2c/i2c-atr.c                      |  2 +-
+ drivers/i2c/i2c-mux.c                      |  6 +++---
+ drivers/i2c/muxes/i2c-demux-pinctrl.c      |  4 ++--
+ 43 files changed, 101 insertions(+), 101 deletions(-)
+
+diff --git a/drivers/i2c/algos/i2c-algo-bit.c b/drivers/i2c/algos/i2c-algo-bit.c
+index eddf25b90ca8..6544d27e4419 100644
+--- a/drivers/i2c/algos/i2c-algo-bit.c
++++ b/drivers/i2c/algos/i2c-algo-bit.c
+@@ -619,8 +619,8 @@ static u32 bit_func(struct i2c_adapter *adap)
+ /* -----exported algorithm data: -------------------------------------	*/
+ 
+ const struct i2c_algorithm i2c_bit_algo = {
+-	.master_xfer = bit_xfer,
+-	.master_xfer_atomic = bit_xfer_atomic,
++	.xfer = bit_xfer,
++	.xfer_atomic = bit_xfer_atomic,
+ 	.functionality = bit_func,
+ };
+ EXPORT_SYMBOL(i2c_bit_algo);
+diff --git a/drivers/i2c/algos/i2c-algo-pca.c b/drivers/i2c/algos/i2c-algo-pca.c
+index 384af88e58ad..74b66aec33d4 100644
+--- a/drivers/i2c/algos/i2c-algo-pca.c
++++ b/drivers/i2c/algos/i2c-algo-pca.c
+@@ -361,8 +361,8 @@ static u32 pca_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm pca_algo = {
+-	.master_xfer	= pca_xfer,
+-	.functionality	= pca_func,
++	.xfer = pca_xfer,
++	.functionality = pca_func,
+ };
+ 
+ static unsigned int pca_probe_chip(struct i2c_adapter *adap)
+diff --git a/drivers/i2c/algos/i2c-algo-pcf.c b/drivers/i2c/algos/i2c-algo-pcf.c
+index 740066ceaea3..fd563e845d4b 100644
+--- a/drivers/i2c/algos/i2c-algo-pcf.c
++++ b/drivers/i2c/algos/i2c-algo-pcf.c
+@@ -389,8 +389,8 @@ static u32 pcf_func(struct i2c_adapter *adap)
+ 
+ /* exported algorithm data: */
+ static const struct i2c_algorithm pcf_algo = {
+-	.master_xfer	= pcf_xfer,
+-	.functionality	= pcf_func,
++	.xfer = pcf_xfer,
++	.functionality = pcf_func,
+ };
+ 
+ /*
+diff --git a/drivers/i2c/busses/i2c-amd-mp2-plat.c b/drivers/i2c/busses/i2c-amd-mp2-plat.c
+index d9dd0e475d1a..188e24cc4d35 100644
+--- a/drivers/i2c/busses/i2c-amd-mp2-plat.c
++++ b/drivers/i2c/busses/i2c-amd-mp2-plat.c
+@@ -179,7 +179,7 @@ static u32 i2c_amd_func(struct i2c_adapter *a)
+ }
+ 
+ static const struct i2c_algorithm i2c_amd_algorithm = {
+-	.master_xfer = i2c_amd_xfer,
++	.xfer = i2c_amd_xfer,
+ 	.functionality = i2c_amd_func,
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
+index 1550d3d552ae..a26b74c71206 100644
+--- a/drivers/i2c/busses/i2c-aspeed.c
++++ b/drivers/i2c/busses/i2c-aspeed.c
+@@ -814,11 +814,11 @@ static int aspeed_i2c_unreg_slave(struct i2c_client *client)
+ #endif /* CONFIG_I2C_SLAVE */
+ 
+ static const struct i2c_algorithm aspeed_i2c_algo = {
+-	.master_xfer	= aspeed_i2c_master_xfer,
+-	.functionality	= aspeed_i2c_functionality,
++	.xfer = aspeed_i2c_master_xfer,
++	.functionality = aspeed_i2c_functionality,
+ #if IS_ENABLED(CONFIG_I2C_SLAVE)
+-	.reg_slave	= aspeed_i2c_reg_slave,
+-	.unreg_slave	= aspeed_i2c_unreg_slave,
++	.reg_slave = aspeed_i2c_reg_slave,
++	.unreg_slave = aspeed_i2c_unreg_slave,
+ #endif /* CONFIG_I2C_SLAVE */
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-at91-master.c b/drivers/i2c/busses/i2c-at91-master.c
+index 374fc50bb205..59795c1c24ff 100644
+--- a/drivers/i2c/busses/i2c-at91-master.c
++++ b/drivers/i2c/busses/i2c-at91-master.c
+@@ -739,8 +739,8 @@ static u32 at91_twi_func(struct i2c_adapter *adapter)
+ }
+ 
+ static const struct i2c_algorithm at91_twi_algorithm = {
+-	.master_xfer	= at91_twi_xfer,
+-	.functionality	= at91_twi_func,
++	.xfer = at91_twi_xfer,
++	.functionality = at91_twi_func,
+ };
+ 
+ static int at91_twi_configure_dma(struct at91_twi_dev *dev, u32 phy_addr)
+diff --git a/drivers/i2c/busses/i2c-axxia.c b/drivers/i2c/busses/i2c-axxia.c
+index 50030256cd85..0555eeb6903a 100644
+--- a/drivers/i2c/busses/i2c-axxia.c
++++ b/drivers/i2c/busses/i2c-axxia.c
+@@ -706,7 +706,7 @@ static int axxia_i2c_unreg_slave(struct i2c_client *slave)
+ }
+ 
+ static const struct i2c_algorithm axxia_i2c_algo = {
+-	.master_xfer = axxia_i2c_xfer,
++	.xfer = axxia_i2c_xfer,
+ 	.functionality = axxia_i2c_func,
+ 	.reg_slave = axxia_i2c_reg_slave,
+ 	.unreg_slave = axxia_i2c_unreg_slave,
+diff --git a/drivers/i2c/busses/i2c-bcm-iproc.c b/drivers/i2c/busses/i2c-bcm-iproc.c
+index 63bc3c8f49d3..e418a4f23f15 100644
+--- a/drivers/i2c/busses/i2c-bcm-iproc.c
++++ b/drivers/i2c/busses/i2c-bcm-iproc.c
+@@ -1041,7 +1041,7 @@ static int bcm_iproc_i2c_unreg_slave(struct i2c_client *slave)
+ }
+ 
+ static struct i2c_algorithm bcm_iproc_algo = {
+-	.master_xfer = bcm_iproc_i2c_xfer,
++	.xfer = bcm_iproc_i2c_xfer,
+ 	.functionality = bcm_iproc_i2c_functionality,
+ 	.reg_slave = bcm_iproc_i2c_reg_slave,
+ 	.unreg_slave = bcm_iproc_i2c_unreg_slave,
+diff --git a/drivers/i2c/busses/i2c-cadence.c b/drivers/i2c/busses/i2c-cadence.c
+index 8df63aaf2a80..697d095afbe4 100644
+--- a/drivers/i2c/busses/i2c-cadence.c
++++ b/drivers/i2c/busses/i2c-cadence.c
+@@ -1231,12 +1231,12 @@ static int cdns_unreg_slave(struct i2c_client *slave)
+ #endif
+ 
+ static const struct i2c_algorithm cdns_i2c_algo = {
+-	.master_xfer	= cdns_i2c_master_xfer,
+-	.master_xfer_atomic = cdns_i2c_master_xfer_atomic,
+-	.functionality	= cdns_i2c_func,
++	.xfer = cdns_i2c_master_xfer,
++	.xfer_atomic = cdns_i2c_master_xfer_atomic,
++	.functionality = cdns_i2c_func,
+ #if IS_ENABLED(CONFIG_I2C_SLAVE)
+-	.reg_slave	= cdns_reg_slave,
+-	.unreg_slave	= cdns_unreg_slave,
++	.reg_slave = cdns_reg_slave,
++	.unreg_slave = cdns_unreg_slave,
+ #endif
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-cgbc.c b/drivers/i2c/busses/i2c-cgbc.c
+index f054d167ac47..25a74fa51aa0 100644
+--- a/drivers/i2c/busses/i2c-cgbc.c
++++ b/drivers/i2c/busses/i2c-cgbc.c
+@@ -331,8 +331,8 @@ static u32 cgbc_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm cgbc_i2c_algorithm = {
+-	.master_xfer	= cgbc_i2c_xfer,
+-	.functionality	= cgbc_i2c_func,
++	.xfer = cgbc_i2c_xfer,
++	.functionality = cgbc_i2c_func,
+ };
+ 
+ static struct i2c_algo_cgbc_data cgbc_i2c_algo_data[] = {
+diff --git a/drivers/i2c/busses/i2c-eg20t.c b/drivers/i2c/busses/i2c-eg20t.c
+index efdaddf99f9e..27ea3c130a16 100644
+--- a/drivers/i2c/busses/i2c-eg20t.c
++++ b/drivers/i2c/busses/i2c-eg20t.c
+@@ -690,7 +690,7 @@ static u32 pch_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm pch_algorithm = {
+-	.master_xfer = pch_i2c_xfer,
++	.xfer = pch_i2c_xfer,
+ 	.functionality = pch_i2c_func
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-emev2.c b/drivers/i2c/busses/i2c-emev2.c
+index 2512cef8e2a2..ece019b3d066 100644
+--- a/drivers/i2c/busses/i2c-emev2.c
++++ b/drivers/i2c/busses/i2c-emev2.c
+@@ -351,10 +351,10 @@ static int em_i2c_unreg_slave(struct i2c_client *slave)
+ }
+ 
+ static const struct i2c_algorithm em_i2c_algo = {
+-	.master_xfer = em_i2c_xfer,
++	.xfer = em_i2c_xfer,
+ 	.functionality = em_i2c_func,
+-	.reg_slave      = em_i2c_reg_slave,
+-	.unreg_slave    = em_i2c_unreg_slave,
++	.reg_slave = em_i2c_reg_slave,
++	.unreg_slave = em_i2c_unreg_slave,
+ };
+ 
+ static int em_i2c_probe(struct platform_device *pdev)
+diff --git a/drivers/i2c/busses/i2c-exynos5.c b/drivers/i2c/busses/i2c-exynos5.c
+index 02f24479aa07..9c1c5f3c09f6 100644
+--- a/drivers/i2c/busses/i2c-exynos5.c
++++ b/drivers/i2c/busses/i2c-exynos5.c
+@@ -879,9 +879,9 @@ static u32 exynos5_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm exynos5_i2c_algorithm = {
+-	.master_xfer		= exynos5_i2c_xfer,
+-	.master_xfer_atomic	= exynos5_i2c_xfer_atomic,
+-	.functionality		= exynos5_i2c_func,
++	.xfer = exynos5_i2c_xfer,
++	.xfer_atomic = exynos5_i2c_xfer_atomic,
++	.functionality = exynos5_i2c_func,
+ };
+ 
+ static int exynos5_i2c_probe(struct platform_device *pdev)
+diff --git a/drivers/i2c/busses/i2c-gxp.c b/drivers/i2c/busses/i2c-gxp.c
+index 0fc39caa6c87..2d117e7e3cb6 100644
+--- a/drivers/i2c/busses/i2c-gxp.c
++++ b/drivers/i2c/busses/i2c-gxp.c
+@@ -184,11 +184,11 @@ static int gxp_i2c_unreg_slave(struct i2c_client *slave)
+ #endif
+ 
+ static const struct i2c_algorithm gxp_i2c_algo = {
+-	.master_xfer   = gxp_i2c_master_xfer,
++	.xfer = gxp_i2c_master_xfer,
+ 	.functionality = gxp_i2c_func,
+ #if IS_ENABLED(CONFIG_I2C_SLAVE)
+-	.reg_slave     = gxp_i2c_reg_slave,
+-	.unreg_slave   = gxp_i2c_unreg_slave,
++	.reg_slave = gxp_i2c_reg_slave,
++	.unreg_slave = gxp_i2c_unreg_slave,
+ #endif
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-img-scb.c b/drivers/i2c/busses/i2c-img-scb.c
+index 3278707bb885..a454f9f25146 100644
+--- a/drivers/i2c/busses/i2c-img-scb.c
++++ b/drivers/i2c/busses/i2c-img-scb.c
+@@ -1143,7 +1143,7 @@ static u32 img_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm img_i2c_algo = {
+-	.master_xfer = img_i2c_xfer,
++	.xfer = img_i2c_xfer,
+ 	.functionality = img_i2c_func,
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-imx-lpi2c.c b/drivers/i2c/busses/i2c-imx-lpi2c.c
+index 342d47e67586..064bc83840a6 100644
+--- a/drivers/i2c/busses/i2c-imx-lpi2c.c
++++ b/drivers/i2c/busses/i2c-imx-lpi2c.c
+@@ -1268,10 +1268,10 @@ static u32 lpi2c_imx_func(struct i2c_adapter *adapter)
+ }
+ 
+ static const struct i2c_algorithm lpi2c_imx_algo = {
+-	.master_xfer	= lpi2c_imx_xfer,
+-	.functionality	= lpi2c_imx_func,
+-	.reg_target	= lpi2c_imx_register_target,
+-	.unreg_target	= lpi2c_imx_unregister_target,
++	.xfer = lpi2c_imx_xfer,
++	.functionality = lpi2c_imx_func,
++	.reg_target = lpi2c_imx_register_target,
++	.unreg_target = lpi2c_imx_unregister_target,
+ };
+ 
+ static const struct of_device_id lpi2c_imx_of_match[] = {
+diff --git a/drivers/i2c/busses/i2c-imx.c b/drivers/i2c/busses/i2c-imx.c
+index de01dfecb16e..e5732b0557fb 100644
+--- a/drivers/i2c/busses/i2c-imx.c
++++ b/drivers/i2c/busses/i2c-imx.c
+@@ -1692,11 +1692,11 @@ static u32 i2c_imx_func(struct i2c_adapter *adapter)
+ }
+ 
+ static const struct i2c_algorithm i2c_imx_algo = {
+-	.master_xfer = i2c_imx_xfer,
+-	.master_xfer_atomic = i2c_imx_xfer_atomic,
++	.xfer = i2c_imx_xfer,
++	.xfer_atomic = i2c_imx_xfer_atomic,
+ 	.functionality = i2c_imx_func,
+-	.reg_slave	= i2c_imx_reg_slave,
+-	.unreg_slave	= i2c_imx_unreg_slave,
++	.reg_slave = i2c_imx_reg_slave,
++	.unreg_slave = i2c_imx_unreg_slave,
+ };
+ 
+ static int i2c_imx_probe(struct platform_device *pdev)
+diff --git a/drivers/i2c/busses/i2c-keba.c b/drivers/i2c/busses/i2c-keba.c
+index 7b9ed2592f5b..9420c8b342b5 100644
+--- a/drivers/i2c/busses/i2c-keba.c
++++ b/drivers/i2c/busses/i2c-keba.c
+@@ -500,7 +500,7 @@ static u32 ki2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm ki2c_algo = {
+-	.master_xfer   = ki2c_xfer,
++	.xfer = ki2c_xfer,
+ 	.functionality = ki2c_func,
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-mchp-pci1xxxx.c b/drivers/i2c/busses/i2c-mchp-pci1xxxx.c
+index 5ef136c3ecb1..bc0f1a0c8ee1 100644
+--- a/drivers/i2c/busses/i2c-mchp-pci1xxxx.c
++++ b/drivers/i2c/busses/i2c-mchp-pci1xxxx.c
+@@ -1048,7 +1048,7 @@ static u32 pci1xxxx_i2c_get_funcs(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm pci1xxxx_i2c_algo = {
+-	.master_xfer = pci1xxxx_i2c_xfer,
++	.xfer = pci1xxxx_i2c_xfer,
+ 	.functionality = pci1xxxx_i2c_get_funcs,
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
+index e1d69537353b..0d9032953e48 100644
+--- a/drivers/i2c/busses/i2c-meson.c
++++ b/drivers/i2c/busses/i2c-meson.c
+@@ -448,8 +448,8 @@ static u32 meson_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm meson_i2c_algorithm = {
+-	.master_xfer = meson_i2c_xfer,
+-	.master_xfer_atomic = meson_i2c_xfer_atomic,
++	.xfer = meson_i2c_xfer,
++	.xfer_atomic = meson_i2c_xfer_atomic,
+ 	.functionality = meson_i2c_func,
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-microchip-corei2c.c b/drivers/i2c/busses/i2c-microchip-corei2c.c
+index 492bf4c34722..f173bda1c98c 100644
+--- a/drivers/i2c/busses/i2c-microchip-corei2c.c
++++ b/drivers/i2c/busses/i2c-microchip-corei2c.c
+@@ -526,7 +526,7 @@ static int mchp_corei2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned
+ }
+ 
+ static const struct i2c_algorithm mchp_corei2c_algo = {
+-	.master_xfer = mchp_corei2c_xfer,
++	.xfer = mchp_corei2c_xfer,
+ 	.functionality = mchp_corei2c_func,
+ 	.smbus_xfer = mchp_corei2c_smbus_xfer,
+ };
+diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
+index 5bd342047d59..ab456c3717db 100644
+--- a/drivers/i2c/busses/i2c-mt65xx.c
++++ b/drivers/i2c/busses/i2c-mt65xx.c
+@@ -1342,7 +1342,7 @@ static u32 mtk_i2c_functionality(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm mtk_i2c_algorithm = {
+-	.master_xfer = mtk_i2c_transfer,
++	.xfer = mtk_i2c_transfer,
+ 	.functionality = mtk_i2c_functionality,
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-mxs.c b/drivers/i2c/busses/i2c-mxs.c
+index ad62d56b2186..08c9091a1e35 100644
+--- a/drivers/i2c/busses/i2c-mxs.c
++++ b/drivers/i2c/busses/i2c-mxs.c
+@@ -687,7 +687,7 @@ static irqreturn_t mxs_i2c_isr(int this_irq, void *dev_id)
+ }
+ 
+ static const struct i2c_algorithm mxs_i2c_algo = {
+-	.master_xfer = mxs_i2c_xfer,
++	.xfer = mxs_i2c_xfer,
+ 	.functionality = mxs_i2c_func,
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-nomadik.c b/drivers/i2c/busses/i2c-nomadik.c
+index d2877e4cc28d..19b648fc094d 100644
+--- a/drivers/i2c/busses/i2c-nomadik.c
++++ b/drivers/i2c/busses/i2c-nomadik.c
+@@ -996,8 +996,8 @@ static unsigned int nmk_i2c_functionality(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm nmk_i2c_algo = {
+-	.master_xfer	= nmk_i2c_xfer,
+-	.functionality	= nmk_i2c_functionality
++	.xfer = nmk_i2c_xfer,
++	.functionality = nmk_i2c_functionality
+ };
+ 
+ static void nmk_i2c_of_probe(struct device_node *np,
+diff --git a/drivers/i2c/busses/i2c-npcm7xx.c b/drivers/i2c/busses/i2c-npcm7xx.c
+index 892e2d2988a7..8b7e15240fb0 100644
+--- a/drivers/i2c/busses/i2c-npcm7xx.c
++++ b/drivers/i2c/busses/i2c-npcm7xx.c
+@@ -2470,11 +2470,11 @@ static const struct i2c_adapter_quirks npcm_i2c_quirks = {
+ };
+ 
+ static const struct i2c_algorithm npcm_i2c_algo = {
+-	.master_xfer = npcm_i2c_master_xfer,
++	.xfer = npcm_i2c_master_xfer,
+ 	.functionality = npcm_i2c_functionality,
+ #if IS_ENABLED(CONFIG_I2C_SLAVE)
+-	.reg_slave	= npcm_i2c_reg_slave,
+-	.unreg_slave	= npcm_i2c_unreg_slave,
++	.reg_slave = npcm_i2c_reg_slave,
++	.unreg_slave = npcm_i2c_unreg_slave,
+ #endif
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-omap.c b/drivers/i2c/busses/i2c-omap.c
+index 876791d20ed5..f1cc26ac5b80 100644
+--- a/drivers/i2c/busses/i2c-omap.c
++++ b/drivers/i2c/busses/i2c-omap.c
+@@ -1201,9 +1201,9 @@ omap_i2c_isr_thread(int this_irq, void *dev_id)
+ }
+ 
+ static const struct i2c_algorithm omap_i2c_algo = {
+-	.master_xfer	= omap_i2c_xfer_irq,
+-	.master_xfer_atomic	= omap_i2c_xfer_polling,
+-	.functionality	= omap_i2c_func,
++	.xfer = omap_i2c_xfer_irq,
++	.xfer_atomic = omap_i2c_xfer_polling,
++	.functionality = omap_i2c_func,
+ };
+ 
+ static const struct i2c_adapter_quirks omap_i2c_quirks = {
+diff --git a/drivers/i2c/busses/i2c-pnx.c b/drivers/i2c/busses/i2c-pnx.c
+index 9a1af5bbd604..8daa0008bd05 100644
+--- a/drivers/i2c/busses/i2c-pnx.c
++++ b/drivers/i2c/busses/i2c-pnx.c
+@@ -580,7 +580,7 @@ static u32 i2c_pnx_func(struct i2c_adapter *adapter)
+ }
+ 
+ static const struct i2c_algorithm pnx_algorithm = {
+-	.master_xfer = i2c_pnx_xfer,
++	.xfer = i2c_pnx_xfer,
+ 	.functionality = i2c_pnx_func,
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-pxa.c b/drivers/i2c/busses/i2c-pxa.c
+index 4415a29f749b..968a8b8794da 100644
+--- a/drivers/i2c/busses/i2c-pxa.c
++++ b/drivers/i2c/busses/i2c-pxa.c
+@@ -1154,11 +1154,11 @@ static u32 i2c_pxa_functionality(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm i2c_pxa_algorithm = {
+-	.master_xfer	= i2c_pxa_xfer,
+-	.functionality	= i2c_pxa_functionality,
++	.xfer = i2c_pxa_xfer,
++	.functionality = i2c_pxa_functionality,
+ #ifdef CONFIG_I2C_PXA_SLAVE
+-	.reg_slave	= i2c_pxa_slave_reg,
+-	.unreg_slave	= i2c_pxa_slave_unreg,
++	.reg_slave = i2c_pxa_slave_reg,
++	.unreg_slave = i2c_pxa_slave_unreg,
+ #endif
+ };
+ 
+@@ -1244,11 +1244,11 @@ static int i2c_pxa_pio_xfer(struct i2c_adapter *adap,
+ }
+ 
+ static const struct i2c_algorithm i2c_pxa_pio_algorithm = {
+-	.master_xfer	= i2c_pxa_pio_xfer,
+-	.functionality	= i2c_pxa_functionality,
++	.xfer = i2c_pxa_pio_xfer,
++	.functionality = i2c_pxa_functionality,
+ #ifdef CONFIG_I2C_PXA_SLAVE
+-	.reg_slave	= i2c_pxa_slave_reg,
+-	.unreg_slave	= i2c_pxa_slave_unreg,
++	.reg_slave = i2c_pxa_slave_reg,
++	.unreg_slave = i2c_pxa_slave_unreg,
+ #endif
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-qcom-cci.c b/drivers/i2c/busses/i2c-qcom-cci.c
+index 05b73326afd4..a3afa11a71a1 100644
+--- a/drivers/i2c/busses/i2c-qcom-cci.c
++++ b/drivers/i2c/busses/i2c-qcom-cci.c
+@@ -462,8 +462,8 @@ static u32 cci_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm cci_algo = {
+-	.master_xfer	= cci_xfer,
+-	.functionality	= cci_func,
++	.xfer = cci_xfer,
++	.functionality = cci_func,
+ };
+ 
+ static int cci_enable_clocks(struct cci *cci)
+diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
+index ccea575fb783..13889f52b6f7 100644
+--- a/drivers/i2c/busses/i2c-qcom-geni.c
++++ b/drivers/i2c/busses/i2c-qcom-geni.c
+@@ -727,8 +727,8 @@ static u32 geni_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm geni_i2c_algo = {
+-	.master_xfer	= geni_i2c_xfer,
+-	.functionality	= geni_i2c_func,
++	.xfer = geni_i2c_xfer,
++	.functionality = geni_i2c_func,
+ };
+ 
+ #ifdef CONFIG_ACPI
+diff --git a/drivers/i2c/busses/i2c-qup.c b/drivers/i2c/busses/i2c-qup.c
+index 3a36d682ed57..6059f585843e 100644
+--- a/drivers/i2c/busses/i2c-qup.c
++++ b/drivers/i2c/busses/i2c-qup.c
+@@ -1634,13 +1634,13 @@ static u32 qup_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm qup_i2c_algo = {
+-	.master_xfer	= qup_i2c_xfer,
+-	.functionality	= qup_i2c_func,
++	.xfer = qup_i2c_xfer,
++	.functionality = qup_i2c_func,
+ };
+ 
+ static const struct i2c_algorithm qup_i2c_algo_v2 = {
+-	.master_xfer	= qup_i2c_xfer_v2,
+-	.functionality	= qup_i2c_func,
++	.xfer = qup_i2c_xfer_v2,
++	.functionality = qup_i2c_func,
+ };
+ 
+ /*
+diff --git a/drivers/i2c/busses/i2c-rcar.c b/drivers/i2c/busses/i2c-rcar.c
+index 5693a38da7b5..d51884ab99f4 100644
+--- a/drivers/i2c/busses/i2c-rcar.c
++++ b/drivers/i2c/busses/i2c-rcar.c
+@@ -1084,11 +1084,11 @@ static u32 rcar_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm rcar_i2c_algo = {
+-	.master_xfer	= rcar_i2c_master_xfer,
+-	.master_xfer_atomic = rcar_i2c_master_xfer_atomic,
+-	.functionality	= rcar_i2c_func,
+-	.reg_slave	= rcar_reg_slave,
+-	.unreg_slave	= rcar_unreg_slave,
++	.xfer = rcar_i2c_master_xfer,
++	.xfer_atomic = rcar_i2c_master_xfer_atomic,
++	.functionality = rcar_i2c_func,
++	.reg_slave = rcar_reg_slave,
++	.unreg_slave = rcar_unreg_slave,
+ };
+ 
+ static const struct i2c_adapter_quirks rcar_i2c_quirks = {
+diff --git a/drivers/i2c/busses/i2c-s3c2410.c b/drivers/i2c/busses/i2c-s3c2410.c
+index 0f3cf500df68..f4fa4703acbd 100644
+--- a/drivers/i2c/busses/i2c-s3c2410.c
++++ b/drivers/i2c/busses/i2c-s3c2410.c
+@@ -800,9 +800,9 @@ static u32 s3c24xx_i2c_func(struct i2c_adapter *adap)
+ 
+ /* i2c bus registration info */
+ static const struct i2c_algorithm s3c24xx_i2c_algorithm = {
+-	.master_xfer		= s3c24xx_i2c_xfer,
+-	.master_xfer_atomic     = s3c24xx_i2c_xfer_atomic,
+-	.functionality		= s3c24xx_i2c_func,
++	.xfer = s3c24xx_i2c_xfer,
++	.xfer_atomic = s3c24xx_i2c_xfer_atomic,
++	.functionality = s3c24xx_i2c_func,
+ };
+ 
+ /*
+diff --git a/drivers/i2c/busses/i2c-sh7760.c b/drivers/i2c/busses/i2c-sh7760.c
+index 620f12596763..43f33988b98f 100644
+--- a/drivers/i2c/busses/i2c-sh7760.c
++++ b/drivers/i2c/busses/i2c-sh7760.c
+@@ -379,8 +379,8 @@ static u32 sh7760_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm sh7760_i2c_algo = {
+-	.master_xfer	= sh7760_i2c_master_xfer,
+-	.functionality	= sh7760_i2c_func,
++	.xfer = sh7760_i2c_master_xfer,
++	.functionality = sh7760_i2c_func,
+ };
+ 
+ /* calculate CCR register setting for a desired scl clock.  SCL clock is
+diff --git a/drivers/i2c/busses/i2c-sh_mobile.c b/drivers/i2c/busses/i2c-sh_mobile.c
+index adfcee6c9fdc..dae8967f8749 100644
+--- a/drivers/i2c/busses/i2c-sh_mobile.c
++++ b/drivers/i2c/busses/i2c-sh_mobile.c
+@@ -740,8 +740,8 @@ static u32 sh_mobile_i2c_func(struct i2c_adapter *adapter)
+ 
+ static const struct i2c_algorithm sh_mobile_i2c_algorithm = {
+ 	.functionality = sh_mobile_i2c_func,
+-	.master_xfer = sh_mobile_i2c_xfer,
+-	.master_xfer_atomic = sh_mobile_i2c_xfer_atomic,
++	.xfer = sh_mobile_i2c_xfer,
++	.xfer_atomic = sh_mobile_i2c_xfer_atomic,
+ };
+ 
+ static const struct i2c_adapter_quirks sh_mobile_i2c_quirks = {
+diff --git a/drivers/i2c/busses/i2c-stm32f7.c b/drivers/i2c/busses/i2c-stm32f7.c
+index 973a3a8c6d4a..e4aaeb2262d0 100644
+--- a/drivers/i2c/busses/i2c-stm32f7.c
++++ b/drivers/i2c/busses/i2c-stm32f7.c
+@@ -2151,8 +2151,8 @@ static u32 stm32f7_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm stm32f7_i2c_algo = {
+-	.master_xfer = stm32f7_i2c_xfer,
+-	.master_xfer_atomic = stm32f7_i2c_xfer_atomic,
++	.xfer = stm32f7_i2c_xfer,
++	.xfer_atomic = stm32f7_i2c_xfer_atomic,
+ 	.smbus_xfer = stm32f7_i2c_smbus_xfer,
+ 	.functionality = stm32f7_i2c_func,
+ 	.reg_slave = stm32f7_i2c_reg_slave,
+diff --git a/drivers/i2c/busses/i2c-synquacer.c b/drivers/i2c/busses/i2c-synquacer.c
+index 31f8d08e32a4..1230f51e1624 100644
+--- a/drivers/i2c/busses/i2c-synquacer.c
++++ b/drivers/i2c/busses/i2c-synquacer.c
+@@ -520,8 +520,8 @@ static u32 synquacer_i2c_functionality(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm synquacer_i2c_algo = {
+-	.master_xfer	= synquacer_i2c_xfer,
+-	.functionality	= synquacer_i2c_functionality,
++	.xfer = synquacer_i2c_xfer,
++	.functionality = synquacer_i2c_functionality,
+ };
+ 
+ static const struct i2c_adapter synquacer_i2c_ops = {
+diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
+index 049b4d154c23..0862b98007f5 100644
+--- a/drivers/i2c/busses/i2c-tegra.c
++++ b/drivers/i2c/busses/i2c-tegra.c
+@@ -1440,9 +1440,9 @@ static u32 tegra_i2c_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm tegra_i2c_algo = {
+-	.master_xfer		= tegra_i2c_xfer,
+-	.master_xfer_atomic	= tegra_i2c_xfer_atomic,
+-	.functionality		= tegra_i2c_func,
++	.xfer = tegra_i2c_xfer,
++	.xfer_atomic = tegra_i2c_xfer_atomic,
++	.functionality = tegra_i2c_func,
+ };
+ 
+ /* payload size is only 12 bit */
+diff --git a/drivers/i2c/busses/i2c-xiic.c b/drivers/i2c/busses/i2c-xiic.c
+index 6bc1575cea6c..607026c921d6 100644
+--- a/drivers/i2c/busses/i2c-xiic.c
++++ b/drivers/i2c/busses/i2c-xiic.c
+@@ -1398,8 +1398,8 @@ static u32 xiic_func(struct i2c_adapter *adap)
+ }
+ 
+ static const struct i2c_algorithm xiic_algorithm = {
+-	.master_xfer = xiic_xfer,
+-	.master_xfer_atomic = xiic_xfer_atomic,
++	.xfer = xiic_xfer,
++	.xfer_atomic = xiic_xfer_atomic,
+ 	.functionality = xiic_func,
+ };
+ 
+diff --git a/drivers/i2c/busses/i2c-xlp9xx.c b/drivers/i2c/busses/i2c-xlp9xx.c
+index 4d5e49b6321b..ddb1c3e8bc9d 100644
+--- a/drivers/i2c/busses/i2c-xlp9xx.c
++++ b/drivers/i2c/busses/i2c-xlp9xx.c
+@@ -452,7 +452,7 @@ static u32 xlp9xx_i2c_functionality(struct i2c_adapter *adapter)
+ }
+ 
+ static const struct i2c_algorithm xlp9xx_i2c_algo = {
+-	.master_xfer = xlp9xx_i2c_xfer,
++	.xfer = xlp9xx_i2c_xfer,
+ 	.functionality = xlp9xx_i2c_functionality,
+ };
+ 
+diff --git a/drivers/i2c/i2c-atr.c b/drivers/i2c/i2c-atr.c
+index be7d6d41e0b2..dd194476b118 100644
+--- a/drivers/i2c/i2c-atr.c
++++ b/drivers/i2c/i2c-atr.c
+@@ -738,7 +738,7 @@ struct i2c_atr *i2c_atr_new(struct i2c_adapter *parent, struct device *dev,
+ 	atr->flags = flags;
+ 
+ 	if (parent->algo->master_xfer)
+-		atr->algo.master_xfer = i2c_atr_master_xfer;
++		atr->algo.xfer = i2c_atr_master_xfer;
+ 	if (parent->algo->smbus_xfer)
+ 		atr->algo.smbus_xfer = i2c_atr_smbus_xfer;
+ 	atr->algo.functionality = i2c_atr_functionality;
+diff --git a/drivers/i2c/i2c-mux.c b/drivers/i2c/i2c-mux.c
+index fda72e8be885..4d8690981a55 100644
+--- a/drivers/i2c/i2c-mux.c
++++ b/drivers/i2c/i2c-mux.c
+@@ -293,12 +293,12 @@ int i2c_mux_add_adapter(struct i2c_mux_core *muxc,
+ 	 */
+ 	if (parent->algo->master_xfer) {
+ 		if (muxc->mux_locked)
+-			priv->algo.master_xfer = i2c_mux_master_xfer;
++			priv->algo.xfer = i2c_mux_master_xfer;
+ 		else
+-			priv->algo.master_xfer = __i2c_mux_master_xfer;
++			priv->algo.xfer = __i2c_mux_master_xfer;
+ 	}
+ 	if (parent->algo->master_xfer_atomic)
+-		priv->algo.master_xfer_atomic = priv->algo.master_xfer;
++		priv->algo.xfer_atomic = priv->algo.master_xfer;
+ 
+ 	if (parent->algo->smbus_xfer) {
+ 		if (muxc->mux_locked)
+diff --git a/drivers/i2c/muxes/i2c-demux-pinctrl.c b/drivers/i2c/muxes/i2c-demux-pinctrl.c
+index 77a740561fd7..f2a1f4744978 100644
+--- a/drivers/i2c/muxes/i2c-demux-pinctrl.c
++++ b/drivers/i2c/muxes/i2c-demux-pinctrl.c
+@@ -95,9 +95,9 @@ static int i2c_demux_activate_master(struct i2c_demux_pinctrl_priv *priv, u32 ne
+ 	priv->cur_chan = new_chan;
+ 
+ 	/* Now fill out current adapter structure. cur_chan must be up to date */
+-	priv->algo.master_xfer = i2c_demux_master_xfer;
++	priv->algo.xfer = i2c_demux_master_xfer;
+ 	if (adap->algo->master_xfer_atomic)
+-		priv->algo.master_xfer_atomic = i2c_demux_master_xfer;
++		priv->algo.xfer_atomic = i2c_demux_master_xfer;
+ 	priv->algo.functionality = i2c_demux_functionality;
+ 
+ 	snprintf(priv->cur_adap.name, sizeof(priv->cur_adap.name),
+-- 
+2.47.2
+
 
 _______________________________________________
 linux-amlogic mailing list
