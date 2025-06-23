@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E838C7EE30
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jun 2025 09:23:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48C28C77B7F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Jun 2025 09:23:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LXm/QggWVuUrGsVuRUdZwb5so0uT4cFl4+d7aCykifc=; b=WKe/PZ8y++QoV4
-	Na023BpSkZThOcUm3TwT0grp22/JVgnlk6R86QGArntWZ0DXb2zWSj9iCJ9dlNUYSA+/tRgy4qXxK
-	tsGzY/rH0BOK72Q1rDnIWr7mOIjiSylKqeeCVulIXI+N5AVEK+/gYt9cjKXJd1dmwY67sSlgCHub4
-	47eC3n4RX9u9WL+weAvRDU+Y5kgepMYwfshd68NO5CH2SLlpsJnQBQiSP5jI3iPRVRF7ckMbASkJV
-	JkS8nCUgymUKqPMaRPGvezjFkmAReyDm7b6yCIMZZ0pp79K2pEkU50HfhJN8ZLZE4s6n+GM27KGB8
-	2PtsbgMxqb/KLGslO7kg==;
+	List-Owner; bh=r++djQ+JgB8Cz3QdsbH5lHUKSQKbcNRW6JU5rnh72lA=; b=Elzqwqm5nGYavs
+	u2KIdKFgZ8jv5+EW9mr47/q9WiadQ7fXm5vNjTogq13ZD9B9ywlsvwJNR5T6UVU8pX4hZt8rRbjgh
+	YqKtx99gSkKBZmBZcv6Ky6o3lTWC0aZ8GY3WwG/ZUeJoKoKpdRB+YBjToxO8d0zdMNcuzkWS007Sn
+	4QK+mMM0KC6OiNyX30DYgahG2XuwdjaErRdRIoH+Q04JYrSsNs/m/ibl/wGAlbgD88vTemCjFaMiI
+	OrNN04qUe/y6UCThS7e6TKqs4EmG8JJl0y+I0zfGMSet7u25aA41yy8RVL14X0v7XcZ6HcRVvWw1I
+	smvid3R7owipphpRHErw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uTdOG-000000029x2-1i0n;
-	Mon, 23 Jun 2025 09:23:00 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1uTdOH-000000029yI-3hbZ;
+	Mon, 23 Jun 2025 09:23:01 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uTdGu-000000028Of-15FM
+	id 1uTdIc-000000028lZ-1Imi
 	for linux-amlogic@lists.infradead.org;
-	Mon, 23 Jun 2025 09:15:25 +0000
+	Mon, 23 Jun 2025 09:17:11 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id 4BEA45C5B48;
-	Mon, 23 Jun 2025 09:13:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02355C4CEF1;
-	Mon, 23 Jun 2025 09:15:20 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 073F444331;
+	Mon, 23 Jun 2025 09:17:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52D14C4CEEA;
+	Mon, 23 Jun 2025 09:17:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750670123;
-	bh=LfdB0r7nVyN3+y6nWoeFkzn/FyzfDIijtFtfgllWMOQ=;
+	s=k20201202; t=1750670229;
+	bh=lTDfnouWRD6t3V6geE9rp1WNIhalLtWBgQjfMtQEnOE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MAakSjJsPnCYY8c6Ch7T2SxiX7WlW6gJQfutU4ZObdy+JhpR8nWliXcVk3+wpgbo1
-	 muIMvCIGLruSLyn/XCQM6gRXSg+jlbM5Lp1Tt13d12drlJM0p6GNvUvgwMd1kKSJ8D
-	 WQmajVw4S7Rt62IZl7fTNf/CVTUcjRAgDeUV1t/Dh8S9GAbhvh20Wyib9DCEQ/i3Vr
-	 grt/uSnBDYRfDl1uJoaIlKYDlNNmrD0qaJD995eWYPtx2MTDUT0jQzWTakdSskUMnS
-	 uRrGu6Oi/NIs97YxrMziBQ806s6ghUY3Nwck0txx83U/m5/enjOC3DRMEzAY5R4xHK
-	 D2jGlU/ugsB4g==
-Message-ID: <45514054-1bb0-450c-bff6-ffdf491417b1@kernel.org>
-Date: Mon, 23 Jun 2025 11:15:18 +0200
+	b=MUME+Uqqq7s2+T36iA3RvUi0SBjyyMkJl4SKlUBTXtmPzHi9j5RO+ycfMilJ6C3Uq
+	 1zVHxG+wHBKMObnmE7sQ/Ectd5HvvSM72v/DU8SS7fB8R8/5ntX7X3x4C1+aWSlb2f
+	 +H/czKXjOmY5DiWiZwyUOoQZhJXYNxvsK1ipFnhaP0wHgAMJaOGYUqoZnTihupqz58
+	 6OPULul71gq+mtpKTkoNclWpgN54UN/A44+HHw5XaeTinNqlDII279RmCLCN7e1IGx
+	 URCfyoehLGA9gGBPvJZBTUj0pLiXEkrIatkLzFCBaGQohZtRM8irQBy7nEteiB8887
+	 2SC+iQuUK1JCQ==
+Message-ID: <682a48fc-8451-46e5-b3a8-5ad7c237588e@kernel.org>
+Date: Mon, 23 Jun 2025 11:17:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: spi: Add binding document of Amlogic
- SPISG controller
+Subject: Re: [PATCH v3 2/3] spi: Add Amlogic SPISG driver
 To: xianwei.zhao@amlogic.com, Sunny Luo <sunny.luo@amlogic.com>,
  Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20250623-spisg-v3-0-c731f57e289c@amlogic.com>
- <20250623-spisg-v3-1-c731f57e289c@amlogic.com>
+ <20250623-spisg-v3-2-c731f57e289c@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,11 +99,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250623-spisg-v3-1-c731f57e289c@amlogic.com>
+In-Reply-To: <20250623-spisg-v3-2-c731f57e289c@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250623_021524_382553_3FF038BF 
-X-CRM114-Status: UNSURE (   6.29  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250623_021710_397996_10399816 
+X-CRM114-Status: GOOD (  27.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,52 +120,157 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 23/06/2025 10:53, Xianwei Zhao via B4 Relay wrote:
+> From: Sunny Luo <sunny.luo@amlogic.com>
+> 
+> Introduced support for the new SPI IP (SPISG) driver. The SPISG is
+> a communication-oriented SPI controller from Amlogic,supporting
+> three operation modes: PIO, block DMA, and scatter-gather DMA.
+> 
+> Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  drivers/spi/Kconfig             |   9 +
+>  drivers/spi/Makefile            |   1 +
+>  drivers/spi/spi-amlogic-spisg.c | 876 ++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 886 insertions(+)
+> 
+> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+> index c51da3fc3604..e11341df2ecf 100644
+> --- a/drivers/spi/Kconfig
+> +++ b/drivers/spi/Kconfig
+> @@ -99,6 +99,15 @@ config SPI_AMLOGIC_SPIFC_A1
+>  	  This enables master mode support for the SPIFC (SPI flash
+>  	  controller) available in Amlogic A1 (A113L SoC).
+>  
+> +config SPI_AMLOGIC_SPISG
+> +	tristate "Amlogic SPISG controller"
+> +	depends on COMMON_CLK
+> +	depends on ARCH_MESON || COMPILE_TEST
+> +	help
+> +	  This enables master mode support for the SPISG (SPI scatter-gather
+> +	  communication controller), which is available on platforms such as
+> +	  Amlogic A4 SoCs.
+> +
+>  config SPI_APPLE
+>  	tristate "Apple SoC SPI Controller platform driver"
+>  	depends on ARCH_APPLE || COMPILE_TEST
+> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+> index 4ea89f6fc531..b74e3104d71f 100644
+> --- a/drivers/spi/Makefile
+> +++ b/drivers/spi/Makefile
+> @@ -20,6 +20,7 @@ obj-$(CONFIG_SPI_ALTERA)		+= spi-altera-platform.o
+>  obj-$(CONFIG_SPI_ALTERA_CORE)		+= spi-altera-core.o
+>  obj-$(CONFIG_SPI_ALTERA_DFL)		+= spi-altera-dfl.o
+>  obj-$(CONFIG_SPI_AMLOGIC_SPIFC_A1)	+= spi-amlogic-spifc-a1.o
+> +obj-$(CONFIG_SPI_AMLOGIC_SPISG)		+= spi-amlogic-spisg.o
+>  obj-$(CONFIG_SPI_APPLE)			+= spi-apple.o
+>  obj-$(CONFIG_SPI_AR934X)		+= spi-ar934x.o
+>  obj-$(CONFIG_SPI_ARMADA_3700)		+= spi-armada-3700.o
+> diff --git a/drivers/spi/spi-amlogic-spisg.c b/drivers/spi/spi-amlogic-spisg.c
+> new file mode 100644
+> index 000000000000..2f2982154d49
+> --- /dev/null
+> +++ b/drivers/spi/spi-amlogic-spisg.c
+> @@ -0,0 +1,876 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Driver for Amlogic SPI communication Scatter-Gather Controller
+> + *
+> + * Copyright (C) 2025 Amlogic, Inc. All rights reserved
+> + *
+> + * Author: Sunny Luo <sunny.luo@amlogic.com>
+> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/pm_domain.h>
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+cacheflush
 
-> +properties:
-> +  compatible:
-> +    const: amlogic,a4-spisg
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 2
+> +#include <linux/platform_device.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/types.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/reset.h>
 
-Nope, maxItems. Look at other bindings.
+So this you take to reset device... but your device does not have any
+resets! Just look at your binding.
+
+> +#include <linux/pinctrl/consumer.h>
+> +#include <linux/delay.h>
+> +#include <linux/cacheflush.h>
+
+Where do you use it?
+
+> +#include <linux/regmap.h>
+
+Actually several other headers looks unused. I am not going to keep
+checking one by one - you should check and do not include irrelevant
+headers.
 
 > +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: pclk
+> +static int aml_spisg_probe(struct platform_device *pdev)
+> +{
+> +	struct spi_controller *ctlr;
+> +	struct spisg_device *spisg;
+> +	struct device *dev = &pdev->dev;
+> +	void __iomem *base;
+> +	int ret, irq;
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
+> +	const struct regmap_config aml_regmap_config = {
+> +		.reg_bits = 32,
+> +		.val_bits = 32,
+> +		.reg_stride = 4,
+> +		.max_register = SPISG_MAX_REG,
+> +	};
 > +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi@50000 {
-> +        compatible = "amlogic,a4-spisg";
-> +        reg = <0x50000 0x38>;
-> +        interrupts = <0 183 4>;
+> +	if (of_property_read_bool(dev->of_node, "slave"))
 
-Use proper defines
+"slave" is not a bool. You want to check for child presence, don't you?
+You need to use appropriate API for that otherwise you just add one of
+the issues which was being fixed recently.
 
+> +		ctlr = spi_alloc_target(dev, sizeof(*spisg));
+> +	else
+> +		ctlr = spi_alloc_host(dev, sizeof(*spisg));
+> +	if (!ctlr)
+> +		return dev_err_probe(dev, -ENOMEM, "controller allocation failed\n");
+> +
+
+
+
+> +
+> +static struct platform_driver amlogic_spisg_driver = {
+> +	.probe = aml_spisg_probe,
+> +	.remove = aml_spisg_remove,
+> +	.driver  = {
+> +		.name = "amlogic-spisg",
+> +		.of_match_table = of_match_ptr(amlogic_spisg_of_match),
+
+So now you will have warnings... drop of_match_ptr.
+
+Both suggest you send us some old code, instead of working on something
+recent.
+
+> +		.pm = &amlogic_spisg_pm_ops,
+> +	},
+> +};
+> +
+> +module_platform_driver(amlogic_spisg_driver);
+> +
+> +MODULE_DESCRIPTION("Amlogic SPI Scatter-Gather Controller driver");
+> +MODULE_AUTHOR("Sunny Luo <sunny.luo@amlogic.com>");
+> +MODULE_LICENSE("GPL");
+> 
 
 
 Best regards,
