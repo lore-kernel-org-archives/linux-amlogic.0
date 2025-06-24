@@ -4,166 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9C32C77B7F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jun 2025 09:54:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CE9FC77B7F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jun 2025 14:58:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8CI82gAm7xtbQWVuOy+QAxUst1nyw/FCYHWso/4m1IE=; b=HmCwGvEb1lKvuBz7wenbIL5vLG
-	lPcV2LUn5FWOlCvWE9SaiyhITPR+/2RJ/GZnXAU9YDiZICypyjtoeFeJPKrQQIEd/rt2O7r7B9J32
-	vCVw2kxnSMhGHEAxPMGnrYmex8caR9g+GARV++rG5/z1D0xr55AKu/kw5xceBDKL6ptGcfNtF19KX
-	0nigU2bR278UU5Q2N4z9uqHgBNd/4Oos54JYyePjNiT0autfJa9zPBeWFJrhW/b/e69GeXZkrREih
-	0qhI29ZKS9HTMDIusVqUhc4dDc6TPKT6Ch39EFF4FfhkoF15yDu1RLT6Qs6rsYqNKhKvabxgkMh3G
-	p35H2kQA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=C0pucyoV1Ms1GSH+SN+mTmH7As4GuiS1KArrvo4W/Hc=; b=4D497gk4arg2fk
+	lr4JMFsHraUKYqBez5TlIv4sc3yRQlYw3fnywIA+kW/mo3fqhBWc/X+pz1+4daSqs9wOO9Au0p3Oh
+	ju1GrHlkfr5gtZCARioMLZW3S5Xg8+yJTdE7iLqs+Y9NTk+Uh54VmJiOPuaH5MzQ+KuSrpmBG4p6f
+	kNW0HHZEeiCBWXIQSpKUP/CNabyYzDvF5QXdbFtJX9qrzRhtc7v/pYS243oOoVSafOf8UpyPUOP5m
+	QLd1Jj3nYVM+G/LnwVLJo9xfmbNGvxpZXyKAVKBrGkPcFqH2RbVR/f2yUzu3IMbBUhO0DFX1B2X1f
+	JLS/LT6IsOit5zdcwB0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uU0MI-00000005EL1-3SOX;
-	Tue, 24 Jun 2025 09:54:30 +0000
-Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
+	id 1uU56q-000000060gF-2j4u;
+	Tue, 24 Jun 2025 14:58:52 +0000
+Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uU0Kt-00000005E4o-3oca
-	for linux-amlogic@lists.infradead.org;
-	Tue, 24 Jun 2025 09:53:05 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KBPgVwA5brMfM0xd/im4fqd0wHEsOty+HjdilgbBFx1K0hM94hrKDozj3Lpwf2xiPApBQiqXweY0wMVWzpchjhwWPmkzsTYnQdbYTTfnUHnOj9MEBX171jU1jtyHBORZXhNIjZBPwXkplE4Vkk9RtHAxYg+P4oH58/oD531qyvp3G+r0Ri/+GiWGHAh9f+nmGYmOJyp/pCPqB9Cv9jNRRY5nnBG6EOi62iTlwdqmX3DvmALyh6+2xBFuQK4CpuVFx4H4D79XUPDjJSruO3QgvFfS+vs0ppY20VxY0MxPBm81p6nF3qT37oZ+stGyU/RaKgIOHdtz2uOT7x+WOCH1Bw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CwW8uf+BB4BZXI8vAlkZuTxklr4X8urRQOVNEDuBKGo=;
- b=srgVvL749PFrajK7v4k1cqWjeR9Zayk3Gn29rSUdIJF0X9PCmLLjr39ch8AmKlJxdQqsCy08xGkYANUa4AZlB5cOL+m+aeu/YAgQzRzjxDZ8ywBWlLGsNPtYQrNEvrsqqz+a7xS9WAnKgTo17cJp+MENs30WTonvursWkeSamnFvQzE9xqlcH9olvKJ0AJFMrYeKxiCinfjnr1CF6fbcfY8ot/1YBOdQ4/7SaKDi6Q+TgDSnMNXtjhPlzkfqpL0b+4qD/dVNoBkatwGCq6v+lntpPI3BOTlsF92PigZ0wHVOw9lvQZ8kGrEmal/mmeMj9c+eRQjApGEl3gDip+SUHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CwW8uf+BB4BZXI8vAlkZuTxklr4X8urRQOVNEDuBKGo=;
- b=bYHJnNd9y0gYFhE8KHH/rr9PXT7zoCb/graonbt7x/jJXD9rm8f6vjrE0aKfe/2T3ujp29sLYKcmiQqJ2vqcH+8TrvnhbA3C3bUohNStlFq58Z7a2BoUpxet37Ciq0pbuPIGe9rVOUaQ/pNRYzBfyy+Hi1dRZR7lff6OBmrOkdDc8j4Ickx9u6qb1LPGnE94601hTM1JP1LMkcEER0+AAWQZKq9dStPjlO2dkKvp33nbIMI989kannkcrBD4IcVwr9PDaciAjiY9OBTOTwrmYAz2/UOV6XRtJUtem048I+3tO6cQwTEi4ORsVr9SIvEomldgXyYzH+Bbk+YWaOhVYA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by JH0PR03MB8333.apcprd03.prod.outlook.com (2603:1096:990:4c::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.28; Tue, 24 Jun
- 2025 09:52:49 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%2]) with mapi id 15.20.8857.026; Tue, 24 Jun 2025
- 09:52:48 +0000
-Message-ID: <d7502989-dbfd-40d8-8a4e-8e194eefb523@amlogic.com>
-Date: Tue, 24 Jun 2025 17:52:44 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] spi: Add Amlogic SPISG driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Sunny Luo <sunny.luo@amlogic.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250623-spisg-v3-0-c731f57e289c@amlogic.com>
- <20250623-spisg-v3-2-c731f57e289c@amlogic.com>
- <682a48fc-8451-46e5-b3a8-5ad7c237588e@kernel.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <682a48fc-8451-46e5-b3a8-5ad7c237588e@kernel.org>
-X-ClientProxiedBy: TYWPR01CA0023.jpnprd01.prod.outlook.com
- (2603:1096:400:aa::10) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	id 1uU44i-00000005mvY-3U6P;
+	Tue, 24 Jun 2025 13:52:38 +0000
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-553ba7f11cbso574135e87.1;
+        Tue, 24 Jun 2025 06:52:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1750773155; x=1751377955; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+wg9qW4GAB9SxeZP4ZPWnnJ0L3cq/NBnSEznhgizvFM=;
+        b=PSExRQLI4keRwX9wqtpXBXg9cBP3yyLM8Ck1jx8591DJrkGjGApkKjfJK+DJPdb3/f
+         el1ySdFY58fmxa4YzVOiJjliiReQp5+naOO1NLY6PCU1MNeYferYLi2zXHQP9gU5G6a4
+         sVYGuNqMpz+fLMpYkgNA2DnaBJzOC6qEUe+UiH7a0E8TtuqIJuTGG4gW99GVwc2OURS0
+         fE6CCyh/uALuLmvJ9SnGwc82NlrFS0m0wpiIDVK1/XVXXM2B5maKQGHSRE78HnGk7/BO
+         lUELarag5+QpMhuoTKIQET9VqahQ0kVbthAfYscjqbFkXax3K+tOKMTDGQnsW2TcooLj
+         XtHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750773155; x=1751377955;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+wg9qW4GAB9SxeZP4ZPWnnJ0L3cq/NBnSEznhgizvFM=;
+        b=ggtY51qH59868SCImOtwlM37DwJkvCJ1ql440vYEFdpssLlyXAdVmSbmGnQDj5dJzK
+         qIt/yTzs5Hew+rjlxaKsZqnDrjN6ua0oorMTu3yZB9ygbUilc/PPby+OwSHmc0JhQXdJ
+         r7ZS5mHN+mJsqC1TiDS8uZ0G2P0N46fWWf8qYhZq5+kWsnU9wxlHwMNPJClasTUafJdH
+         wNW3gspcGV9QzBfbjEYmd6jcQzDRJfGKCq8J6vgvAL7YOnR2tKKarQEcaez8XLIDzJ2w
+         v+U0N2OU9kYOi/oYkDGVTVRfdFDD3YETUl23GR2gamXFFqgarfjmC9PF92b+t/TUMdZf
+         MF5g==
+X-Forwarded-Encrypted: i=1; AJvYcCU7vpiV3lPtaIq/MojljYPMa254uYWOkPUnfExroMzf/+g5VHU/cLspAoK0F123hcyumm6Jn8ytVwARNoGLOFJ6BQ==@lists.infradead.org, AJvYcCW8+lr+rQEnX6xIouAenMsoBj/oiQF7VJ/K5aEHNjMmxuhBfNqEcPrUlcUp46l+amiQT+toIPBPnIasP9tZ@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw5n4X3gYp2B70wJvlxNeYQTsiKgeo5beUXIpRdLKoiuHIqWWt0
+	uKr4zj2ouBZXGqObJ2SGKngJUn1k1gwb3vmG9X2rFjUT3CBr96yvGMhN
+X-Gm-Gg: ASbGncsj2p/DO9saLjKEHZjJTXeOMnW9YRDKJ12yHtNeKrSpbTx43yTupy7/B8yo4wU
+	TV99PGBbmH1tvENGJW2xdhgHO43FRbSbJxnnO7WNuyAssDdEMmzatyhUguvVOYjI4HerldQX536
+	0DPfhjC6FCsANqTPOIzVQLLCGogzwaF36GFDgRryNGpW259j2Dv+1g3Ev+Evmh2Y8A3arTsm9AC
+	PgWMdIBdHcCJFdg36jRXzB6x3i+JxpwS/Gv5T85+SoTX4JV1By1G+z42qI5v0xAShDNhNLWQ8rU
+	GUyQboZ6Kc2d0BlUgBhWWS7/pp6zpteeH2RpaPFvTG1JjkF1XcRBAYKrd7Qi1S049ocn6rkPYJt
+	uCsst8sXL8zaZgvekeffuhk4QAPXIBbt87WVZ9lnOJ6LZ5zDhcHxfTl8rIg4Bmg==
+X-Google-Smtp-Source: AGHT+IFOuf5bAzhEktFTfPKfMooaN6q3rqHW9Fgh4cH2Pb5c/Dt3frRC792c/mKVwGvTIdymva9mgw==
+X-Received: by 2002:a05:6512:1390:b0:553:aa32:4105 with SMTP id 2adb3069b0e04-553e3bb55cfmr5482884e87.24.1750773154423;
+        Tue, 24 Jun 2025 06:52:34 -0700 (PDT)
+Received: from user-A520M-DS3H.sberdevices.ru (broadband-188-32-30-96.ip.moscow.rt.ru. [188.32.30.96])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-554e6dc186esm1282905e87.114.2025.06.24.06.52.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Jun 2025 06:52:33 -0700 (PDT)
+From: Alexey Romanov <romanov.alexey2000@gmail.com>
+To: neil.armstrong@linaro.org,
+	clabbe@baylibre.com,
+	herbert@gondor.apana.org.au,
+	davem@davemloft.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com
+Cc: linux-crypto@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Alexey Romanov <romanov.alexey2000@gmail.com>
+Subject: [PATCH v12 00/22] Support more Amlogic SoC families in crypto driver
+Date: Tue, 24 Jun 2025 16:51:52 +0300
+Message-Id: <20250624135214.1355051-1-romanov.alexey2000@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|JH0PR03MB8333:EE_
-X-MS-Office365-Filtering-Correlation-Id: 447d6bc1-8b53-44dd-86f1-08ddb304e0a2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SHZydldPK0RaeVZlZFRQRk01dE4rYkpUL05JWVdjdmNreVNHSVc0LzF0RCty?=
- =?utf-8?B?b0Vna2tUKy9YVllVZEg5VWYrZ0NqT0R1WFUzNUZsbXpTZkFjOW5uaG5DekJH?=
- =?utf-8?B?R3cxbU9mVGdGbys2L2JoOHh1bk0yUHR2d3ZDZnF6RHlCZTZhSFpxMGxyNzZn?=
- =?utf-8?B?RTRhalJ3RlJSenozRERXcXJBODFEVjhOQUFhOE5HaXk4SkZ1MGM1Z1dpN1Vv?=
- =?utf-8?B?NGpXcTBmMzRWYUU1a3UzNTRSV2NQTGdmRlVwaDdGR21NT0QwUXd0MStpVExq?=
- =?utf-8?B?b2dCRUVIYVFYcTFLa3JHdG1hRFhSaCsyL1hRdmNjTlM2RmNsUnhwZXYyRFBW?=
- =?utf-8?B?Q01IbmZtMFBySlVHTGFMOGF0c3pTRmNNOTUwclBSM1FycW8xK0dJalcrMTRM?=
- =?utf-8?B?NGMraytZaVZwdFQxclVqWGcwaEFucDA2N2x2ZSswR25OazBoQnBiOWFZTWpj?=
- =?utf-8?B?cHB3QWlZQW5rMy9qL2hJNDc4UWU3L2lWM3lFN0x1ekpLSTErRmJoczA3d1FI?=
- =?utf-8?B?dFdtbytheXdZZ1d6cTljb3V6aUNEaWx6c0FPY0JvbmVON0FrWTdxMmlwYldU?=
- =?utf-8?B?dnNoazlLblNuYnFtbmpHR09SSnRWaXJ5em1nbDFJLzlaT3RsMWI2VWtrMzRZ?=
- =?utf-8?B?ZnF1ZDc1WVpJRCtuTzVXcVhJUTF5U1JSdmh4a29ZbE40NWNMT3J5SWpVajdD?=
- =?utf-8?B?eGk5cVhoYzdOZHhSQUFSem8xdmRsY3psNDdMK1JuQ21DbGJiYU54L0d5NzQz?=
- =?utf-8?B?dVd0MzRyZWk3akx5VjV5S0ZrUW9hN1h3d2F2ZjhPWGhaZUJFU1ppOXoydWN1?=
- =?utf-8?B?SVhwelIzdFpCSXJ5VCszMDd4YktQSXRjRHFGTjVMN2RCSWY5T1ZGVmxRQnRK?=
- =?utf-8?B?eUdJSGxLTWd2SzFhQ2kvZFV2RnBQWUxmYmRQTVNyU2tTSHU2dFl5MXFvOUty?=
- =?utf-8?B?OTNWWU5iVHhPMWVkNjBONmZCZklvc1YrWDZoYnh0WXFOcnhpTWFWeDJ3SFR2?=
- =?utf-8?B?ckJOdFF3aXpIYU9QQ2FIMGZnZTljYVJlRjgyWjFkb2dOSzN6bjMwNHpyUUJL?=
- =?utf-8?B?TnNvZldjNTdiWnhkRlV5U2dWUElKbWV5R0VxSlhrR2VFMGhQc0kzQUhhOFkr?=
- =?utf-8?B?clozbmg2endMbFMrOFlzbmh2Y3FveHBWK0xmQVpoUk1nOEdDVHJaN1hKNmpV?=
- =?utf-8?B?RUVvejRYYk82ZlNoc0VEWTdlVFdaKyt1cFllbnhDMmM0TkJYbUxIZVQvdDEr?=
- =?utf-8?B?d3QvWDVLMkJZdVVicHR5cEp0alVCUDFyWTFtZ3VpQ2llZG45VkEraUJBVDJ2?=
- =?utf-8?B?TWRtQVJ6VkpsTE45UWEyWDN3UStWYUMvV3RpU1BVZHozTE9UUVd1dVAxVVdQ?=
- =?utf-8?B?ZWlFZjNMK2hCcGxYc3dJcFBFajQrbnZ6dnE3L3JPRGVrZmhVZkhpZ1h3QnpW?=
- =?utf-8?B?aS9pVW9ERDczbFl0amVLQUZXOHlEbmZaL0VBWEJ6K2xKeE5ZTUxRTi96clBQ?=
- =?utf-8?B?cng2MEU3a3ZVeHQrWnhEc2lSNDhEN2lwS1BiZlhEdmxqSXkxL25qT2dsdzZ1?=
- =?utf-8?B?RDV1ZVlRNUNOOTM4NTU1UGNtTzVRVzJ0ekJBMzB2YUNZcENhbCtsVkpnRDM4?=
- =?utf-8?B?eDNhMnhXdDNTWE9NMGhVRlNDcHhyR3I1NG9ZK0k2VkpTbzZxbUxrVUFPOU5Y?=
- =?utf-8?B?VUpabExxdUo3R2srVWZsZGVobzMvZjhaQ1AvR0E2REJIN3Y3NFZjQUh6NVow?=
- =?utf-8?B?RjhIUkp5SEpCRWVvUFBUQTh4ckt4M1hyK3E0WXpQYXFxRHY2TU56OFA3UFcw?=
- =?utf-8?B?elpVd1BmbzlsMjB3TkFvMlFFeGhCUDIrNG05VTJiUnRVV2N4NU5BVHlzd1Q4?=
- =?utf-8?B?MzN0NUxXZC9mR3hDWThXcFM5Vkc5VHdVNmVCQlRkMk4rb293dU5FWXdGaDZn?=
- =?utf-8?Q?6NrUiJxe+1E=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OTlHcUtvaklVOXdVRGtaUmFoY3hxQWF1TktrTHN4R3Y2WnhJZHhXQ3cyMXRZ?=
- =?utf-8?B?aDZiNktmUmZmdmlNRENoNG93U09qTnpuTEp1UWk5cE5DUnNNVkphM0Z3U2FK?=
- =?utf-8?B?YWJ4NUI2RmVtVXNvZGJoRHRFYUM3RmR5a0pTbTJTN000WGNPMWRpVk9yM2hH?=
- =?utf-8?B?a25ZTS9qQS9jTnZ5NXV2NTNMRitGZmxRcHFhMFBDRlJJTEx4UGxTOTRWVXJr?=
- =?utf-8?B?cTA5T3VTOXhycVdoWWVtaG56aHMyczhGdU5CM3dkV3JIVDdHMFVhYWxDU1JQ?=
- =?utf-8?B?RVArOVN4cU1ySGFxejh1R243Nk9iTktUUmovdXZhVGlvUkdXOHprWlpzSCtS?=
- =?utf-8?B?WWVMQ2VScEl0R3paVThHcXhIV3NkcHRwK1U2cHpjWmZzTnRwUEJ5cEN3SHBQ?=
- =?utf-8?B?K3JBTFFObEc4VXYvZ2d4eS9meHFUR0lSdHkzeXVWUkJSSmNIWGVDS1pnVHdj?=
- =?utf-8?B?Q08rYy9vV3R6amNrUkpmdGUycS9HZHZjQ3d5QUNORjVnLzhVM3R3WjZReEpZ?=
- =?utf-8?B?akJTTjV6eWdQTnU1MnJwS2VQUlY1YVNFL1pwUk1FRWg0SzNoZWdpT1BxVWNt?=
- =?utf-8?B?azBiRW1rV0tCdzlLVUY2Wm1uQ014eDRGUE1Lakw2Z0VyN1R0bUpiT21tajcw?=
- =?utf-8?B?czJRek4vdjYwMS9vZ1VPQWE1Ums5cENpYzM3Z2ZOZFAyVnRBTGhZRHkxUjJn?=
- =?utf-8?B?RlNQOFE1aUgvdDVXMEk3VjV4aXM4ci90WXRqRWVDOEdLbGVrRGkvaHJvYmV6?=
- =?utf-8?B?aUdMTHFFSjNTZUl2SDFnTll6QlVEN1d3dUd0U0lVeHN4OG5nUzJjZGFrcVA1?=
- =?utf-8?B?QmZ0T1kyczdTRno4YnNMT09aWWhCYTlpUWpQVWdmbzZQenpXRnhheXpLMUQ4?=
- =?utf-8?B?S3Qxc0gzdHllalU0TThMVmRLaWJDek5Pbm5kaUtOT3E0UnExa0E1R3ZJWDBW?=
- =?utf-8?B?aTEvWkJWNEhtVlhkaCtlN0hERVV1UXNrQkwrNi9rVXRXQktpZ1BNNnRNNUpo?=
- =?utf-8?B?NDllRmE3ZnAzdkI2MkIyM1VGbkREa09VNVpkNTFtanF2cUl3Mjd1WTJIZXRy?=
- =?utf-8?B?MExpelBmN24rKzVGcFkwcTl2SWJYVHh0akhqU1gvZnpaeHhvSGI3YklJQ3Uz?=
- =?utf-8?B?U0NGN2NzVFpkK3NoNktNeUtXREV3bjREcDY1dThsNElmUDdScCtLc1ZRbnQ0?=
- =?utf-8?B?V2tncUpPdHRWM0w4Z0hGSlBmRjNnY3VNMURGUGxOblhnQ1BkMncxVksvcmI4?=
- =?utf-8?B?YjRoV0dDcUhRSXNON1puMWNRRzlsWWxlZE85aFB5Sm9ZUCtLaEIyOCtDT0tC?=
- =?utf-8?B?QU95QlRSU1pYL2o2N2xwZFZCM2phZ3VsanZ0WHhJWmcvZk1CenJRTGw3VE4v?=
- =?utf-8?B?UjJkc29EMHJHWmFFdXE3N0xHT0NNbEZSTkhVakF0N1IxTzZRaTZCZmhmbWtQ?=
- =?utf-8?B?TXdMYXB0bmo4MmMxZXIxTDRsenREUEZNd3ZNSHZWUTgxSzBxWUNIWlA3Qm5q?=
- =?utf-8?B?enVxbnlwZk5tOUQremFLL0xvYmhCODhjUVo5TS80OC96TWNiZktkREJjL3pX?=
- =?utf-8?B?U3hSTzdydUg5Tnd4K0RiaDBTclNqcm15UHhLd3ZNTmpoK2t4b25QRDVrVjRk?=
- =?utf-8?B?TkZkdHZJN2l5RDBtMUdUZUc4N2Fhd1YxRkJYalNPaGJIOFBTQ3FGUFp2RVZF?=
- =?utf-8?B?cTVsTXV1bTlqcHZwditsemIwd05QZTF1QjJ0dzNYc1VRNms3WWkzY3UzNUhy?=
- =?utf-8?B?RFFSNDI2RSt5ZmFFM2NBNXVobEgxMUVwUG5sUUtodEFqckZiNWNDak5CY3Mz?=
- =?utf-8?B?Y2ZjeWwyMmpxZkh4TktiRDl2VzdQdk9xamR3UFZCR3oxUTlsTjdDU25JTGU0?=
- =?utf-8?B?cjZmRGxOeUFzUGNGeW5yWlNOTENYa0MwMTdibWh1U3RIRDA0SGVBUGJSWkRh?=
- =?utf-8?B?ZmtpVXZhOUtYQWpIR2Y0OUs4ZFVsRkdGVk5DVTJ3QzJCRDNLUGpMVDRXQ1pH?=
- =?utf-8?B?bmZXOHdYdm81bGsyajIyYnl0eHRsUGRmYUhVbWZxNkRXc2N4RWg5UWdCVUxX?=
- =?utf-8?B?b1BnRDRCbGFHZkJ0NjJoL1VzU1I5QXVOREtZWFZ4ZVJWMTNkejFTVFd3Y1JS?=
- =?utf-8?B?N25mNkRBSzk0WUZlQWVtM2FIMW1GT1czTmtFSk5EbVVmdS9iZmlGR3lVZkVG?=
- =?utf-8?B?WEE9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 447d6bc1-8b53-44dd-86f1-08ddb304e0a2
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2025 09:52:48.8651
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zbZw5UlJZNi8v0yaT0Zm3SWDHGjf5eAcUzvW0bS0OBdrIsJUee+rzu4RLmFFc3Iz+xvBKNnIoiG4WW/ECdvkRHh7EABM/xUVQQKATf1chL8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB8333
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250624_025304_074437_3DB22D94 
-X-CRM114-Status: GOOD (  28.67  )
+X-CRM114-CacheID: sfid-20250624_065236_872914_B999A905 
+X-CRM114-Status: GOOD (  14.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -175,190 +103,175 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Krzysztof,
-    Thanks for your reply.
+Hello!
 
-On 2025/6/23 17:17, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 23/06/2025 10:53, Xianwei Zhao via B4 Relay wrote:
->> From: Sunny Luo <sunny.luo@amlogic.com>
->>
->> Introduced support for the new SPI IP (SPISG) driver. The SPISG is
->> a communication-oriented SPI controller from Amlogic,supporting
->> three operation modes: PIO, block DMA, and scatter-gather DMA.
->>
->> Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   drivers/spi/Kconfig             |   9 +
->>   drivers/spi/Makefile            |   1 +
->>   drivers/spi/spi-amlogic-spisg.c | 876 ++++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 886 insertions(+)
->>
->> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
->> index c51da3fc3604..e11341df2ecf 100644
->> --- a/drivers/spi/Kconfig
->> +++ b/drivers/spi/Kconfig
->> @@ -99,6 +99,15 @@ config SPI_AMLOGIC_SPIFC_A1
->>          This enables master mode support for the SPIFC (SPI flash
->>          controller) available in Amlogic A1 (A113L SoC).
->>
->> +config SPI_AMLOGIC_SPISG
->> +     tristate "Amlogic SPISG controller"
->> +     depends on COMMON_CLK
->> +     depends on ARCH_MESON || COMPILE_TEST
->> +     help
->> +       This enables master mode support for the SPISG (SPI scatter-gather
->> +       communication controller), which is available on platforms such as
->> +       Amlogic A4 SoCs.
->> +
->>   config SPI_APPLE
->>        tristate "Apple SoC SPI Controller platform driver"
->>        depends on ARCH_APPLE || COMPILE_TEST
->> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
->> index 4ea89f6fc531..b74e3104d71f 100644
->> --- a/drivers/spi/Makefile
->> +++ b/drivers/spi/Makefile
->> @@ -20,6 +20,7 @@ obj-$(CONFIG_SPI_ALTERA)            += spi-altera-platform.o
->>   obj-$(CONFIG_SPI_ALTERA_CORE)                += spi-altera-core.o
->>   obj-$(CONFIG_SPI_ALTERA_DFL)         += spi-altera-dfl.o
->>   obj-$(CONFIG_SPI_AMLOGIC_SPIFC_A1)   += spi-amlogic-spifc-a1.o
->> +obj-$(CONFIG_SPI_AMLOGIC_SPISG)              += spi-amlogic-spisg.o
->>   obj-$(CONFIG_SPI_APPLE)                      += spi-apple.o
->>   obj-$(CONFIG_SPI_AR934X)             += spi-ar934x.o
->>   obj-$(CONFIG_SPI_ARMADA_3700)                += spi-armada-3700.o
->> diff --git a/drivers/spi/spi-amlogic-spisg.c b/drivers/spi/spi-amlogic-spisg.c
->> new file mode 100644
->> index 000000000000..2f2982154d49
->> --- /dev/null
->> +++ b/drivers/spi/spi-amlogic-spisg.c
->> @@ -0,0 +1,876 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +/*
->> + * Driver for Amlogic SPI communication Scatter-Gather Controller
->> + *
->> + * Copyright (C) 2025 Amlogic, Inc. All rights reserved
->> + *
->> + * Author: Sunny Luo <sunny.luo@amlogic.com>
->> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> + */
->> +
->> +#include <linux/bitfield.h>
->> +#include <linux/clk.h>
->> +#include <linux/device.h>
->> +#include <linux/io.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/clk-provider.h>
->> +#include <linux/dma-mapping.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/pm_domain.h>
-> 
-> cacheflush
-> 
->> +#include <linux/platform_device.h>
->> +#include <linux/spi/spi.h>
->> +#include <linux/types.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/reset.h>
-> 
-> So this you take to reset device... but your device does not have any
-> resets! Just look at your binding.
-> 
+This patchset expand the funcionality of the Amlogic
+crypto driver by adding support for more SoC families:
+AXG, G12A, G12B, SM1, A1, S4.
 
-Will add resets prop in binding.
+Also specify and enable crypto node in device tree
+for reference Amlogic devices.
 
->> +#include <linux/pinctrl/consumer.h>
->> +#include <linux/delay.h>
->> +#include <linux/cacheflush.h>
-> 
-> Where do you use it?
-> 
-Will remove it.
->> +#include <linux/regmap.h>
-> 
-> Actually several other headers looks unused. I am not going to keep
-> checking one by one - you should check and do not include irrelevant
-> headers.
-> 
+Tested on GXL, AXG, G12A/B, SM1, A1 and S4 devices via
+custom tests [1] and tcrypt module.
 
-Will do.
+---
 
->> +
->> +static int aml_spisg_probe(struct platform_device *pdev)
->> +{
->> +     struct spi_controller *ctlr;
->> +     struct spisg_device *spisg;
->> +     struct device *dev = &pdev->dev;
->> +     void __iomem *base;
->> +     int ret, irq;
->> +
->> +     const struct regmap_config aml_regmap_config = {
->> +             .reg_bits = 32,
->> +             .val_bits = 32,
->> +             .reg_stride = 4,
->> +             .max_register = SPISG_MAX_REG,
->> +     };
->> +
->> +     if (of_property_read_bool(dev->of_node, "slave"))
-> 
-> "slave" is not a bool. You want to check for child presence, don't you?
-> You need to use appropriate API for that otherwise you just add one of
-> the issues which was being fixed recently.
-> 
+Changes V1 -> V2 [2]:
 
-The correct property name  should be "spi-salve". I will fix it.
+- Rebased over linux-next.
+- Adjusted device tree bindings description.
+- A1 and S4 dts use their own compatible, which is a G12 fallback.
 
->> +             ctlr = spi_alloc_target(dev, sizeof(*spisg));
->> +     else
->> +             ctlr = spi_alloc_host(dev, sizeof(*spisg));
->> +     if (!ctlr)
->> +             return dev_err_probe(dev, -ENOMEM, "controller allocation failed\n");
->> +
-> 
-> 
-> 
->> +
->> +static struct platform_driver amlogic_spisg_driver = {
->> +     .probe = aml_spisg_probe,
->> +     .remove = aml_spisg_remove,
->> +     .driver  = {
->> +             .name = "amlogic-spisg",
->> +             .of_match_table = of_match_ptr(amlogic_spisg_of_match),
-> 
-> So now you will have warnings... drop of_match_ptr.
-> 
+Changes V2 -> V3 [3]:
 
-Will drop it.
+- Fix errors in dt-bindings and device tree.
+- Add new field in platform data, which determines
+whether clock controller should be used for crypto IP.
+- Place back MODULE_DEVICE_TABLE.
+- Correct commit messages.
 
-> Both suggest you send us some old code, instead of working on something
-> recent.
-> 
+Changes V3 -> V4 [4]:
 
-The following is the link of my first version:
-https://lore.kernel.org/all/20250604-spisg-v1-0-5893dbe9d953@amlogic.com/
+- Update dt-bindings as per Krzysztof Kozlowski comments.
+- Fix bisection: get rid of compiler errors in some patches.
 
->> +             .pm = &amlogic_spisg_pm_ops,
->> +     },
->> +};
->> +
->> +module_platform_driver(amlogic_spisg_driver);
->> +
->> +MODULE_DESCRIPTION("Amlogic SPI Scatter-Gather Controller driver");
->> +MODULE_AUTHOR("Sunny Luo <sunny.luo@amlogic.com>");
->> +MODULE_LICENSE("GPL");
->>
-> 
-> 
-> Best regards,
-> Krzysztof
+Changes V4 -> V5 [5]:
+
+- Tested on GXL board:
+  1. Fix panic detected by Corentin Labbe [6].
+  2. Disable hasher backend for GXL: in its current realization
+     is doesn't work. And there are no examples or docs in the
+     vendor SDK.
+- Fix AES-CTR realization: legacy boards (gxl, g12, axg) requires
+  inversion of the keyiv at keys setup stage.
+- A1 now uses its own compatible string.
+- S4 uses A1 compatible as fallback.
+- Code fixes based on comments Neil Atrmstrong and Rob Herring.
+- Style fixes (set correct indentations)
+
+Changes V5 -> V6 [7]:
+
+- Fix DMA sync warning reported by Corentin Labbe [8].
+- Remove CLK input from driver. Remove clk definition
+  and second interrput line from crypto node inside GXL dtsi.
+
+Changes V6 -> V7 [9]:
+
+- Fix dt-schema: power domain now required only for A1.
+- Use crypto_skcipher_ctx_dma() helper for cipher instead of
+  ____cacheline_aligned.
+- Add import/export functions for hasher.
+- Fix commit message for patch 17, acorrding to discussion [10].
+
+Changes V7 -> V8 [11]:
+
+- Test patchset with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS: fix some bugs
+  in hasher logic.
+- Use crypto crypto_ahash_ctx_dma in hasher code.
+- Correct clock definition: clk81 is required for all SoC's.
+- Add fixed-clock (clk81) definition for A1/S4.
+- Add information (in commit messages) why different compatibles are used.
+
+Changes V8 -> V9 [12]:
+
+- Remove required field clk-names from dt-schema according to Rob Herring
+recommendation [13].
+- Fix commit order: all dt-bindings schema commits now located earlier
+than any changes in device tree.
+- Fix typos and add more clarifications in dt-schema patches.
+
+Changes V9 -> V10 [14]:
+
+- Rebased over linux-next (20241106).
+- Remove patches with AES-CTR support. This was a dishonest implementation of CTR algo.
+- Update commit headers in accordance with the accepted rules in each
+  of the subsystems.
+- Moved adding power-domains (dt-bindings) in desired commit.
+
+Changes V10 -> V11 [15]:
+
+- Rebased over linux-next (20241213).
+- Fix unused variable warnings reported by kernel test robot [16].
+- Fix dts warnings reported by kernel test robot. [17].
+- Add Rob Herring RvB tags for dt-bindings patches.
+- Remove ____cacheline_aligned macro. Use crypto_ahash/tfm_ctx_dma(),
+  crypto_ahash_set_reqsize_dma() and crypto_dma_align() instead.
+
+Changes V11 -> V12 [18]:
+
+- Rebased over linux-next (20250624).
+- Remove digest() method for hasher.
+- Add ____cacheline_aligned for meson_hasher_req_ctx structure. Hardware requires
+  that these buffers be located in different cache lines.
+
+Links:
+  - [1] https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140706995e7
+  - [2] https://lore.kernel.org/all/20240110201216.18016-1-avromanov@salutedevices.com/
+  - [3] https://lore.kernel.org/all/20240123165831.970023-1-avromanov@salutedevices.com/
+  - [4] https://lore.kernel.org/all/20240205155521.1795552-1-avromanov@salutedevices.com/
+  - [5] https://lore.kernel.org/all/20240212135108.549755-1-avromanov@salutedevices.com/
+  - [6] https://lore.kernel.org/all/ZcsYaPIUrBSg8iXu@Red/
+  - [7] https://lore.kernel.org/all/20240301132936.621238-1-avromanov@salutedevices.com/
+  - [8] https://lore.kernel.org/all/Zf1BAlYtiwPOG-Os@Red/
+  - [9] https://lore.kernel.org/all/20240326153219.2915080-1-avromanov@salutedevices.com/
+  - [10] https://lore.kernel.org/all/20240329-dotted-illusive-9f0593805a05@wendy/
+  - [11] https://lore.kernel.org/all/20240411133832.2896463-1-avromanov@salutedevices.com/
+  - [12] https://lore.kernel.org/all/20240607141242.2616580-1-avromanov@salutedevices.com/
+  - [13] https://lore.kernel.org/all/20240610222827.GA3166929-robh@kernel.org/
+  - [14] https://lore.kernel.org/all/20240820145623.3500864-1-avromanov@salutedevices.com/
+  - [15] https://lore.kernel.org/all/20241108102907.1788584-1-avromanov@salutedevices.com/
+  - [16] https://lore.kernel.org/all/202411090235.a7vEgZQo-lkp@intel.com/
+  - [17] https://lore.kernel.org/all/202411090619.fQTDHg7w-lkp@intel.com/
+  - [18] https://lore.kernel.org/all/20241213140755.1298323-1-avromanov@salutedevices.com/#t
+
+Alexey Romanov (22):
+  crypto: amlogic - Don't hardcode IRQ count
+  crypto: amlogic - Add platform data
+  crypto: amlogic - Remove clock input
+  crypto: amlogic - Add MMIO helpers
+  crypto: amlogic - Move get_engine_number()
+  crypto: amlogic - Drop status field from meson_flow
+  crypto: amlogic - Move algs definition and cipher API to cipher.c
+  crypto: amlogic - Cleanup defines
+  crypto: amlogic - Process more than MAXDESCS descriptors
+  crypto: amlogic - Avoid kzalloc in engine thread
+  crypto: amlogic - Introduce hasher
+  crypto: amlogic - Use fallback for 192-bit keys
+  crypto: amlogic - Add support for G12-series
+  crypto: amlogic - Add support for AXG-series
+  crypto: amlogic - Add support for A1-series
+  dt-bindings: crypto: amlogic,gxl-crypto: correct clk and interrupt
+    lines
+  dt-bindings: crypto: amlogic,gxl-crypto: support new SoC's
+  arm64: dts: amlogic: gxl: correct crypto node definition
+  arm64: dts: amlogic: a1: add crypto node
+  arm64: dts: amlogic: s4: add crypto node
+  arm64: dts: amlogic: g12: add crypto node
+  arm64: dts: amlogic: axg: add crypto node
+
+ .../bindings/crypto/amlogic,gxl-crypto.yaml   |  32 +-
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  14 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |   6 +-
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  13 +
+ drivers/crypto/amlogic/Makefile               |   2 +-
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 587 ++++++++++++------
+ drivers/crypto/amlogic/amlogic-gxl-core.c     | 289 +++++----
+ drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 485 +++++++++++++++
+ drivers/crypto/amlogic/amlogic-gxl.h          | 111 +++-
+ 11 files changed, 1191 insertions(+), 362 deletions(-)
+ create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
+
+-- 
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
