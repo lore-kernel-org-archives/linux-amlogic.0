@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71048C77B7F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jun 2025 15:21:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D78DC77B7C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Jun 2025 15:21:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=16fdyCXhWTTfzLD0ncyovqcJvC6lEzCKGGXsAxq1Fvw=; b=oZKELYyhuff7ZU
-	Cmb3pCYc5zPom0JMw07cnDy/vyzrKqEniQEGk/hrbVSepyV05cm4AuyA6BUPhZaco0OA46t6D2Mst
-	1a8Z9pNOHK1uLyJABVeoAU3E5u2RwVBKZSLnHylMdEDAASmp5nxgJe5aM5we2DWJ19RVDomMYOdZe
-	biKRJ0WKEuHU8T4mOg1F/uWrX0XF5CQs5KblLIID4CiymHJ1+U8icdkKNH+FlzjhmRTxypBPvmyii
-	bgOej1XavVI5lgazC9oqIzJwzqqW6HCfuScWOjpUosE7eKvzRgCio94m94RpgbnvgvDZCoIUpd4kN
-	6bS2qErdoiI/Sb1EKwsQ==;
+	List-Owner; bh=ECJaSQq+zUGIZ6PVw8OqhGGE5FRhfXQaqip2iZnFXzs=; b=tCl7HP8NtNxobR
+	q0Psm48XEYtYw3Q4KQIkY8K5l6mi4YcoHXXd1OnjM/+yx1p+tdNtrItjfc7PEYBNUvp7+6OtasTbg
+	iRSdUQ3iBIWMyuMCAHjuMMyRKDqHspG38HefgGlK7SB1lrWp5ExHGJX0uoCa1FcCArbdepRTcJIeN
+	DMNVnmSJP5biZUYEsvhbwQzRjck3SVrYWHZtW9QMJOWT1z5Vg24fH9CfPHURqlxXA+JF+wlyqBhY1
+	XW0gtBb4iYDuHtCrF7IxY9zqFAk7JmGRcRgQ7PTKxTkFPkpavi9W0+aza15AlpqI44pZOhfo+Ajot
+	QG/mzgU9hP/lTJhGL8MQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uU5Sq-000000065SJ-2Ce7;
-	Tue, 24 Jun 2025 15:21:36 +0000
-Received: from mail-lf1-x12b.google.com ([2a00:1450:4864:20::12b])
+	id 1uU5T0-000000065Uy-3kCR;
+	Tue, 24 Jun 2025 15:21:46 +0000
+Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uU45g-00000005nEZ-2uHa;
-	Tue, 24 Jun 2025 13:53:37 +0000
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-553b60de463so5806612e87.3;
-        Tue, 24 Jun 2025 06:53:36 -0700 (PDT)
+	id 1uU45m-00000005nFn-3cpF;
+	Tue, 24 Jun 2025 13:53:43 +0000
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-553644b8f56so486828e87.1;
+        Tue, 24 Jun 2025 06:53:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1750773215; x=1751378015; darn=lists.infradead.org;
+        d=gmail.com; s=20230601; t=1750773221; x=1751378021; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1pNAOsr7oBRaoQ01PVf9vESlXHVYj7tbDwKZX+rkhTE=;
-        b=jWYTzna7D2rmvqg7dyxBloXF7CLrJ+UvE1vGRVlD8q6Axm2YcBiSaPzN/29DfQwDTP
-         efffmLvdq36lEvS7I8T7nRfs9ZEj0pe2apg4Rw4VDWiFkS78OWf4is7ZPv6AYRr6I93j
-         rjVJCSoLe+aOjUH2VowVTBF3bQpFxeEs2INehyiO0sltidKhKwMBUElIDbFnKNDy7HRt
-         h/Hm1FspfGdxG5cxT0fi5FMg7nqO+BHiLyejuQHtQ7jKX53wRG2XJheA+t2+Eor1yI2e
-         ozq2tLZlNrQt1yK4C9pClYcGwVdaCgg2q6m/sMYJVnXCWx73u5FNYV9wBIpDm/9taLBy
-         kXDA==
+        bh=M/kNUTOdbC7EKSH5yBbwmpZAVzw6PRlNtho+61DZvd0=;
+        b=Rsqa9W8Kg/XCsfDiGfnofzkt2eWSsJKc+aLtx24WTRYuCGeK4yY8aO652tIbzUlUF9
+         /YSwOaAS1SPI/cki3PnO22ommN5lltSZ3PZP/QOjIGG8n8OCZduZfwtFHNuDpUyGNltH
+         PxZ9bQgJQFiJs3wueE1wkU+VjuiHRyTCexZg25ljWoYOKjaBabKRu5ivxRapiBO1pmBJ
+         JwFsvufQk+evuI6bMcijw7i5DAhksk+XK0KEXR5DpTW55bLCXZDgoq4eJh4MHHAsMDyC
+         pYTiy0pQZnJvbDgeQsGbNE6TpY3JIbcJnUQtVeSelaIOesXZ1+KSl1j7BqSXMia2rBWJ
+         80Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750773215; x=1751378015;
+        d=1e100.net; s=20230601; t=1750773221; x=1751378021;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1pNAOsr7oBRaoQ01PVf9vESlXHVYj7tbDwKZX+rkhTE=;
-        b=bJmCbLxPYojxSNcdkiBhAFaZHAumixpvdRqPGij6YFQAo6TTSq5L2z7rJLCFPnASY0
-         Ikzx3ADtaJfjTIi76Omvz6MgegVWt84agR2TmNFilI4JAQ763QbshNyYhMs9rsfJ5yhH
-         UDqdQTQsSUIMbJ1PWL5PDveMTCBdENvm3ztHJ9XEsnXReGOa/mjP6hzAodN+fYB4mFCE
-         ZBIy0a5UNj4PvbxAPKpFFkkbLEUM9ea6rCsNAXxGYvrZG7UDZZsiF36VHbCSw80iN7JI
-         KBH7qwWH5amEoz6xwUVQf9A2pz5AYB4M9um+y6kP1vLcrLOMK6LxzXHlYWRZrK5IhIkh
-         bmlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX5I4ToKdLIHeAQlpWSfnj9Gvil+vqRc8OxDXNWi+C2HTb6YKPUmPAqdNIycfRkPDlsshqFLe3HYLWGhCE5xwZkQw==@lists.infradead.org, AJvYcCXBBqk4+kNwFFLkHbx8dowrjuYzJTOfe9+7JuZ73dc3UtXEhwOdkRuvlh85wfGX4WZRzXCXuA2Yisvp2B6y@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz6xEQIBNYxbqnFfcVrb9imLwok9aTaiyT1oyrmRc0UOzwGkwWr
-	RI4QTb7BIby9FeEIxIuctCIErLDpVzUXQ8sSKWR4EdqwIq9wlxWYBA7l
-X-Gm-Gg: ASbGncsfuUg/ZYrFt06/h+CVT8aThQpT9WDcnrBeOVQy8+rSiBi0ma5RBWS1dDMI863
-	8vfIORQhfUCv04YhV8qhHI81Z0TFLSj1ylczkIAWEVdGBFxqtc+zsgl9yJYa6x2ehTIsyZpGmUl
-	KcuaJO7mfNKVLR+OtkVzrUCyE5rWxr8LovRJbhbXa5QCEjK05peQApYZjswtTPj8+TJ0BeBhgqt
-	0opX/7eZLkPzuMJba3YfZMum/NkfUMZeLMZoANdUe3+nz9ZK60dmT+H6AzyZokxZTu7WNphCb8N
-	RC5hF1qSMOoBP7LWfZlxlMJlpIBuXROzGGpWr9eRyE+MVoxZ69RL966B+29n4WtCIn6LfKuL4DM
-	3UwvxXpFiLekoa/ew4D4RYtuHc62QwLVBJTLCmsHuMOVY1W+/lM/jjrqdRYi8ToDZgMvrmY0Q
-X-Google-Smtp-Source: AGHT+IFHoqsn5l+6wnf/gfhqMIvTUVLCfhefWnXG0QHSCeZSMNDwhCUiamUKfO/EUExW2EQxIREwaw==
-X-Received: by 2002:a05:6512:3e0d:b0:553:50c6:b86c with SMTP id 2adb3069b0e04-553e3d15539mr4868398e87.57.1750773214903;
-        Tue, 24 Jun 2025 06:53:34 -0700 (PDT)
+        bh=M/kNUTOdbC7EKSH5yBbwmpZAVzw6PRlNtho+61DZvd0=;
+        b=pmO2C2XYh1zwdYMBRyLRnYedRxL8fkA40fKMsJIRLgQ9+lZsWk2E7lm4UYXqoJTDox
+         Bm32TlevXTxUPJhGILWbMfw9Va9+n36WzaQFbks7Jd3LlhcNd92umG28f1N7t/buYOC1
+         YvrD/gzZzBKN8AlOSy6GZXK5yWAw8nEYGCzzqUhBRZqxoThfYYqXvBkfG2GT369QzywS
+         2cvoiI6xCDh69pjL4dBwgvONMxjTQrDk0xMrL4wRVDaZAmg1wzqhICP/mCR7nHzMD2bg
+         vkR3DPk3OOvlarspap2l+DAmbztjq9EsLAym4nSu51tLAB+4In2vf8mFapZ4Q/zSecDw
+         hcyA==
+X-Forwarded-Encrypted: i=1; AJvYcCUvAVeQnPFcCH0G+wgEflTrnasqplf4iBc3FUCzaNjvEATjN+Ncfd5ZidQtDxAEuDlGhJI8EGQLuKZvTUuaR44QXQ==@lists.infradead.org, AJvYcCVrVpSbECxvxv5A3IX9JciAKswUL8I8xRaPnRe89PEZ1T1lUQZXwrA6lZo/ZmG1c3Fb/nN/QqtrEKjLqh9A@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx0NjyMjOazXG9T6F+lalsGNBpFlocOByF5DEKjQVQ7gco29Nf9
+	R4lCeqqOnPeDrT5ZfJew5lEPctNfyj1R6l2W4vvxEdP50kXo26h5CX2p
+X-Gm-Gg: ASbGncuODMb3s3UfWCuIDPMYvGuBAJBVJT7WPTU5uhTGTleuRSTS7tl6jNfgByn6gei
+	7shIjUgVjohyq6DdpxWMUVeX0XWXNWcqP8DJ/7t/r5nnAGjU/9GADfYaPoSgAeWz+Kve0d7NJ7E
+	6B7wJl8mSL9SbU8DHDNfkoTxTd6ViIfK3veje2qxZziVrxYt1a+Lb0MSubiDhPdDBeCJlzJU/xn
+	9QZBVhpiJTBPIm3+NMI8u0GaftJ0uYilsfISsq8VWuGGN4txR08Tr76xjTJbwNL1VFzwsnAkIrA
+	bopixlyV3IR051p+MOS78dSwHeHw4sSJltL/ITgYeQnsxTQeshiOrU18OeknOzhZqtrLHLqbj+k
+	37qf5yDZG7XfdBGFl13hl5dkBou6TBFA6O+W83bwD3fOMimvvCYIgCTrSeQTMXA==
+X-Google-Smtp-Source: AGHT+IEu8py0reQYVPpn8LASHx/iO2R4OjsoWGj/5WkGy9D0unPBfn75Kkp+T1/d+Wm91hqFvsrYWA==
+X-Received: by 2002:a05:6512:114f:b0:553:adff:87da with SMTP id 2adb3069b0e04-553e3beb932mr4323147e87.29.1750773220869;
+        Tue, 24 Jun 2025 06:53:40 -0700 (PDT)
 Received: from user-A520M-DS3H.sberdevices.ru (broadband-188-32-30-96.ip.moscow.rt.ru. [188.32.30.96])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-554e6dc186esm1282905e87.114.2025.06.24.06.53.27
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-554e6dc186esm1282905e87.114.2025.06.24.06.53.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jun 2025 06:53:34 -0700 (PDT)
+        Tue, 24 Jun 2025 06:53:40 -0700 (PDT)
 From: Alexey Romanov <romanov.alexey2000@gmail.com>
 To: neil.armstrong@linaro.org,
 	clabbe@baylibre.com,
@@ -85,16 +85,16 @@ Cc: linux-crypto@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Alexey Romanov <romanov.alexey2000@gmail.com>
-Subject: [PATCH v12 17/22] dt-bindings: crypto: amlogic,gxl-crypto: support new SoC's
-Date: Tue, 24 Jun 2025 16:52:09 +0300
-Message-Id: <20250624135214.1355051-18-romanov.alexey2000@gmail.com>
+Subject: [PATCH v12 18/22] arm64: dts: amlogic: gxl: correct crypto node definition
+Date: Tue, 24 Jun 2025 16:52:10 +0300
+Message-Id: <20250624135214.1355051-19-romanov.alexey2000@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250624135214.1355051-1-romanov.alexey2000@gmail.com>
 References: <20250624135214.1355051-1-romanov.alexey2000@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250624_065336_730211_C706066F 
-X-CRM114-Status: UNSURE (   9.29  )
+X-CRM114-CacheID: sfid-20250624_065342_903890_A9ACACC8 
+X-CRM114-Status: UNSURE (   9.78  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -112,78 +112,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Now crypto module available at G12A/G12B/S4/A1/SM1/AXG.
+GXL and newer SoC's uses the DMA engine (not blkmv) for crypto HW.
+Crypto HW doesn't actually use the blkmv clk. At RTL level, crypto
+engine is hard weired to clk81 (CLKID_CLK81). And remove clock-names
+field: according to the new dt-binding, it is no longer required.
 
-1. Add new compatibles:
-  - amlogic,g12a-crypto
-  - amlogic,axg-crypto
-  - amlogic,a1-crypto
-  - amlogic,s4-crypto (uses a1-crypto as fallback)
+Also, GXL crypto IP isn't to seconnd interrput line. So we must
+remove it from dt-bindings.
 
-Difference between this compatibles:
- * Different registers offset and the number of setup descriptors.
- * GXL doesn't support hashing like the others.
- * G12A/B and A1/S4 crypto HW don't support 192 AES key.
- * GXL, G12A/B and AXG require a reverse IV key before processing.
-
-2. Add power-domains in schema, which is required only for A1.
-This is specific vendor design: in old SoC's power domain for
-crypto HW was not configurable, but in A1-series it is configurable.
-
+Fixes: c4a0457eb858 ("ARM64: dts: amlogic: adds crypto hardware node")
 Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../bindings/crypto/amlogic,gxl-crypto.yaml   | 24 +++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-index fdc39797a2a9..106a9d1fed69 100644
---- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-+++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-@@ -11,8 +11,16 @@ maintainers:
- 
- properties:
-   compatible:
--    items:
--      - const: amlogic,gxl-crypto
-+    oneOf:
-+      - items:
-+          - enum:
-+              - amlogic,s4-crypto
-+          - const: amlogic,a1-crypto
-+      - enum:
-+          - amlogic,gxl-crypto
-+          - amlogic,axg-crypto
-+          - amlogic,g12a-crypto
-+          - amlogic,a1-crypto
- 
-   reg:
-     maxItems: 1
-@@ -24,12 +32,24 @@ properties:
-   clocks:
-     maxItems: 1
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-   - interrupts
-   - clocks
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          const: amlogic,a1-crypto
-+    then:
-+      required:
-+        - power-domains
-+
- additionalProperties: false
- 
- examples:
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index ba535010a3c9..aa37358382aa 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -68,10 +68,8 @@ acodec: audio-controller@c8832000 {
+ 		crypto: crypto@c883e000 {
+ 			compatible = "amlogic,gxl-crypto";
+ 			reg = <0x0 0xc883e000 0x0 0x36>;
+-			interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
+-				     <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
+-			clocks = <&clkc CLKID_BLKMV>;
+-			clock-names = "blkmv";
++			interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
++			clocks = <&clkc CLKID_CLK81>;
+ 			status = "okay";
+ 		};
+ 	};
 -- 
 2.34.1
 
