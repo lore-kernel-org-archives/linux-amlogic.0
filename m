@@ -4,72 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EA0FC7EE2A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Jun 2025 20:35:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC796C77B7C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Jun 2025 20:35:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KSAwiqQtzArb5Y9dTSez/8FAvhmWffgAURjv5L9C1pA=; b=Q09yhjVfRvEBAo
-	gnYK/SjSTqxg53FJ56zwm2+u5JmKzBN/NyFvKwmotj7q94V2p8rD/piYQwhoGMhjSUoX1vkTTGTyV
-	B9f0f3VIvFtF8MA00Oyu0KZgA1yc/gmqHHfzMGTQ8hl4JfWZl8jjkgu+QvXlns2pFf+Mqs2Xw1PF+
-	48DnJYIMP26y2+22fago5Sy+NmvgZlna8q9sFTHBYg55h8XaXxHmYFNiYXvALO8I46JM7Q4fj1pxG
-	bP5zAVmrHTH8LutCm29DATR3Etw686h+Zju1qArni/bCfV1xiiOcQfo0dQovaFtbp3prC9IOq6gfS
-	A0fYxbtLYLGJCei18HZw==;
+	List-Owner; bh=Xm3OCoyJrru7uWeSDoJEKsJbyOlNHzN+VZ/wnbSC2kA=; b=ZccxCaLXTw1zoh
+	Cz6OQHjR1k/bgWmakIMoZYpeZlP8YRiE42OexUOfwa1lKTwZE86tyCAOHlG8PQu/Qh4H+AQFSd2Oh
+	aUY+Lk0t7gVG2e/0fpCLu84BsdpXvAFp2wWip8dnKRS9HbXqnS+aFgw9ZyybXlr2oYDDRckPnXj2O
+	sYShfUh1Rcx5yj9Uqs9I98TKFkfBZrOWXNfapIh3J4YVQO0EbclrgOn2BGW/F9EHGU1nzNTyS9kC0
+	JGsOM+VekEissP4jaYCGjWHipvDj8vyc1nsw+940Gz4rF9f+XYdcqNw0wbaXb6KMcypvs4I7ndZ7J
+	cc5ytpqWXCeHrfuuSvaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uUWq6-00000009rhy-0YJk;
-	Wed, 25 Jun 2025 20:35:26 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1uUWq7-00000009rks-3i0L;
+	Wed, 25 Jun 2025 20:35:27 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uUV2y-00000009dJp-0Fo3;
-	Wed, 25 Jun 2025 18:40:36 +0000
+	id 1uUV3Q-00000009dNB-2dkM;
+	Wed, 25 Jun 2025 18:41:05 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0EA8C61425;
-	Wed, 25 Jun 2025 18:40:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E206C4CEEA;
-	Wed, 25 Jun 2025 18:40:34 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id 592965C4EA5;
+	Wed, 25 Jun 2025 18:38:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 527B9C4CEEA;
+	Wed, 25 Jun 2025 18:41:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1750876834;
-	bh=q/8or6cq8OGa8xNABTFOKqL3F2hse9FddmDtZIeWGZQ=;
+	s=k20201202; t=1750876863;
+	bh=OnNE9mY+q1rPxEWew6abwgQMr1/ISDmBqUKGPWYE/Og=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gLH/g5IYQCHlVK3DIrWDwra/rt2rYAY1XwbXQdPNk68KzQgeHdrGH5VSQRVsGoTFp
-	 Kn2chB4zeZ/O98kh3MtkzcUhtybnpKKwxom1iz6XNpN06zJ/GDi7/cYxugypSyFcAY
-	 M6zpqQrDyrhaWKlvaIvJzLeHdYnMAreyUumQ/EMPyPUfrFU6JmkdzebSzcOh0q1mos
-	 5aF9DJfJClk/HuMMrr/WASrZiAtjWo4HuwP0NiVn6hQLWHY7bMETe7y9du7BhLITpv
-	 difTA58iFtjsmNeP8t/obDl0qLs2ecRO67a+yU5vJHXXl3gJbruk7xFtvvVXJephrW
-	 qHED+15vVzC0g==
-Date: Wed, 25 Jun 2025 13:40:33 -0500
+	b=uqFVH/IF47MkJv2QMT9nXskdrh6mA6XytghV1a9FkAyNEQXwRHNx48AfVfp8sxkTu
+	 xcrrLIhBh1vAqcfVijfFwT45igCxcf8oSVWgveYJi2+MReQwtYoMLXjk6cosWrWBOe
+	 NorsS7+RPXTKkXN0S8JuFPKnFVP9TzeJdlb/dHo/oC2CUCygyHg8HCf4B94fdWLa4J
+	 pdgYH53ICBaXDPbEauVog3wOBVDPX9Klt0FXlCLWaeve3o4K2eeMbEyAAUNtqcz1yK
+	 tKcWitq7Q4nWjgN5y/r+6R8Ly6DVuW3q9+IKMZ7Dd/TIcGawpgDFuT+MKytsUCRKbA
+	 b6gJiqaj/4ihA==
+Date: Wed, 25 Jun 2025 13:41:02 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-sunxi@lists.linux.dev, Jernej Skrabec <jernej.skrabec@gmail.com>,
+Cc: Neal Gompa <neal@gompa.dev>, linux-amlogic@lists.infradead.org,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Hector Martin <marcan@marcan.st>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Nishanth Menon <nm@ti.com>, linux-kernel@vger.kernel.org,
+	Jassi Brar <jassisinghbrar@gmail.com>, Suman Anna <s-anna@ti.com>,
+	Janne Grunau <j@jannau.net>, Jerome Brunet <jbrunet@baylibre.com>,
+	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
 	linux-tegra@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Neal Gompa <neal@gompa.dev>, Kevin Hilman <khilman@baylibre.com>,
-	asahi@lists.linux.dev, Nishanth Menon <nm@ti.com>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-	linux-arm-kernel@lists.infradead.org, Janne Grunau <j@jannau.net>,
-	Jassi Brar <jassisinghbrar@gmail.com>, devicetree@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Suman Anna <s-anna@ti.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	linux-amlogic@lists.infradead.org,
-	Thierry Reding <thierry.reding@gmail.com>,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
 	Jonathan Hunter <jonathanh@nvidia.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/5] dt-bindings: mailbox: amlogic,meson-gxbb-mhu: Add
- missing interrupts maxItems
-Message-ID: <175087683295.1998442.14302996914739580882.robh@kernel.org>
+	linux-arm-kernel@lists.infradead.org,
+	Sven Peter <sven@svenpeter.dev>, Conor Dooley <conor+dt@kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Kevin Hilman <khilman@baylibre.com>, linux-sunxi@lists.linux.dev,
+	Neil Armstrong <neil.armstrong@linaro.org>, asahi@lists.linux.dev,
+	Thierry Reding <thierry.reding@gmail.com>,
+	linux-arm-msm@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH 3/5] dt-bindings: mailbox: Correct example indentation
+Message-ID: <175087686216.1999261.11778803038524197779.robh@kernel.org>
 References: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
- <20250603-dt-bindings-mailbox-cleanup-v1-1-724407563997@linaro.org>
+ <20250603-dt-bindings-mailbox-cleanup-v1-3-724407563997@linaro.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250603-dt-bindings-mailbox-cleanup-v1-1-724407563997@linaro.org>
+In-Reply-To: <20250603-dt-bindings-mailbox-cleanup-v1-3-724407563997@linaro.org>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250625_114104_707993_FC13C29D 
+X-CRM114-Status: UNSURE (   9.78  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,15 +90,17 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Tue, 03 Jun 2025 13:57:08 +0200, Krzysztof Kozlowski wrote:
-> Lists should have fixed constraint, so add missing maxItems to the
-> "interrupts" property.  Since minItems=maxItems, the minItems is implied
-> by dtschema so can be dropped.
+On Tue, 03 Jun 2025 13:57:10 +0200, Krzysztof Kozlowski wrote:
+> DTS example in the bindings should be indented with 2- or 4-spaces, so
+> correct a mixture of different styles to keep consistent 4-spaces.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml     | 14 +++++++-------
+>  .../bindings/mailbox/amlogic,meson-gxbb-mhu.yaml         |  8 ++++----
+>  .../devicetree/bindings/mailbox/apple,mailbox.yaml       | 16 ++++++++--------
+>  .../devicetree/bindings/mailbox/ti,secure-proxy.yaml     | 16 ++++++++--------
+>  4 files changed, 27 insertions(+), 27 deletions(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
