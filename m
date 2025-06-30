@@ -4,88 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93850C83027
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Jun 2025 01:56:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93C98C7EE39
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jun 2025 10:10:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=VqkwuF8F4kRQs2h/gcIQVOHT/4Kmp0nTtSKWqgCcb5Y=; b=ZgEybHiVUH0xNY
-	CyhtkQ+I6D6LWp1Bgk2NgC1MATwjONI6+ZTDAPjP3vGNHxejpDcezjlMMZSAuvV2VlZDjBZbmJezc
-	UFC5p5NKbkW85sPPCEhEOIqdzOAZrOMPwNZHsUDqJRWflXWJddennpPgsxrG+ypcWqc7Sh86YACbv
-	qp95s4KA84KB6+oxZ4+FGFO6lR3bWkHNJBSFiCLO0WlEzFSabB8wIXTncV/xyqD34cRb8AjU+/Zmf
-	aUw4nElo+6GY0hQayMnjhlc3iSZ+cOpVr/PbNm4uiwWwOrABAf6Y8Hl5869wmoakcrgwo2GYZZ9we
-	+Vq4sig1vL8ayCTQqxkQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=f8v1AgWnBACN0jhNL7Mx4Y2S5loeVpjJzZ8NakxW7JM=; b=PLGTwxqIAnoDTt
+	kooagou8y+ir8D4Ef/RqO9Qbl10T1wrZOHBpBraetmqNsIfdBWHOs95QFETSvePXbQ1gZGV//FLWw
+	zulw0S11uQeufsfkGVsaQMJQTrnU/80dcgQ67VHONfm9aFUDng67UaQhuB/IoGEAsh9f8/cxxRPnz
+	tv5Mrx+x53wrPOpgaoXHNJOcXrWYNAb6kZ2RU4hv4pPDxlcK92FfVHHjJT1coz//kQCq0T3R5oHuQ
+	k0a8H6lxaGFqUaKI1EnXguEIa3O8LZljY73uM2bYYIRD32BWbAxpNQtphpcUzATxPTyuGnZY1cCvS
+	tezUgswvn0N8PXJ83x5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uVKnR-0000000GAHI-1MO5;
-	Sat, 28 Jun 2025 01:56:01 +0000
-Received: from mail-qk1-x736.google.com ([2607:f8b0:4864:20::736])
+	id 1uWBSh-00000001qJx-0Du0;
+	Mon, 30 Jun 2025 10:10:07 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uVKl7-0000000GA6E-1bds
+	id 1uWBJa-00000001oix-37iu
 	for linux-amlogic@lists.infradead.org;
-	Sat, 28 Jun 2025 01:53:39 +0000
-Received: by mail-qk1-x736.google.com with SMTP id af79cd13be357-7d0976776dcso41442385a.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 27 Jun 2025 18:53:36 -0700 (PDT)
+	Mon, 30 Jun 2025 10:00:44 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-453643020bdso37280335e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 30 Jun 2025 03:00:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=libre.computer; s=google; t=1751075616; x=1751680416; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IDgANBooOaHABbpjHHyBVc8hQrSombBZ6qXbl2V9NGc=;
-        b=E0VBxT77BTKZmnn65JXGkkGzaW5t4L3qhw7rWTQOJcCfj17ctexrTk9PCSVrNgVIwI
-         08tieKAIawzLJT1b2cICnT7BeXleHLtrkkGC2vkegT5cn8Ejw3uegLWr/lbp+SYkhA7v
-         ZpI0fQtMTvcyTS5Zz+RHbDZRY1AyN+h2C8EYyb9jxgoBHAlzUsLukaYHjx5t8KuaZ0Vj
-         eogjFOFdEUGKt4ihVgIEz27E9wXD4Oh6UX5TC0VWUz89kGZTByyAN1QCXWRePued+k4s
-         4DnqlNEQc9mTiIHvdl75wQ68++IngyvGLuqIy1xNb/rtPkmdYTAojBD5TYgIOgEitpoe
-         Y9jg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751277639; x=1751882439; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XkT/Rstid8JISpjAt6SdqbTq9GQ5RgC+pCfbEEzIrEg=;
+        b=kM+rooUo2zFvvDLKPr0e2CVkYAqFqqwo4uuLIb2EWYtPFyzR6D7mFGul+b1rBxwhG9
+         ImViHKbbpE99fHpr9q8bP2DnCvGXFWk4KsdpMiPBI7pQHEkglL+gog+LcsKkYUKLarFm
+         fuLf5l9vcvhIK+I4Qr9Fm63Uht6saqccRJcKhB/+HHsZKSRcP8pXg9dyzmA6Gk6t4jyt
+         TJjGd+8rPliyewiT0BbhoGpr+EIi9EGU2qBfcm3exJYIfAQ+xerXmNj/ES7ekqW+LcDY
+         He9GSMy+e1eFjwJA4hYg66pKW4bq4Vl3NPU9WP6OLwdLEWD3deg+upDZ9wfD2JBYgRSJ
+         lqXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751075616; x=1751680416;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IDgANBooOaHABbpjHHyBVc8hQrSombBZ6qXbl2V9NGc=;
-        b=GAzkHUD53jr4QhdXwO/T/r9LspHysaSK6f4k0EAxJYHBrSQvh5y5Pd0FOLn6THjskw
-         bshJL15KHbnnKKyx3xIy+LqMIXpUHbyRZOiR+0UuxikSQOpOVx+AF8sDFCgxXCsYVEri
-         GlzcqABWRjIvrGWc6+2b7YGOeKLT4dQ9EOqZN42AOEZa9CR/dcAr2Ci7qhmKbnPV3Hko
-         MmM1mje4fItjmoQWVEYsfQ1g8K/w6UT9TfUXP3SZdFtI2wavIkL94herEKl+r056QZqy
-         p7zY2TW9ZekN3T02bQKd+SRE8pB08wWL2r30NWVrwDwLolvL3suRmIGkkyDVMo8nbp1B
-         AW+A==
-X-Forwarded-Encrypted: i=1; AJvYcCWsTQmHYDZSkMcZhllR99glbbCqSLqfBOWcLeRWRYWjh3dr+F+EYSuUPNjr+MJ77yjwhcUdbDnPAvdK+v8K@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyq5o550B6smGvHb3c5YS06tgehsTG3Cuagmz1Vcf4tsF6kLXZA
-	YiaWWvH0jcwAN5Iiwks7R0pkcoCUoZJG9PEVxNAhqp9UR7F6d/MLNBc/wf2N496FKw==
-X-Gm-Gg: ASbGncsrR6K3q1PJRs0cWh36vNp86/cQkIeqloJZU1CD3jUbKTrC1NjfkAAhfOhwor0
-	kiBIqrK8hKho/PR3UniZBUD1O/YnaxEsiKMQ5OtZCEt5rAp2P60fqBsXEB0wHMQI/D8aHRDJDqa
-	JuJAksO4RDXSoE2CvuBykF1405DOIrML5swkNXaUg5/oHG+X+uJPlhKsk+g4JhBXr2Xckm7hZ/o
-	jPrKYjyMtd3821XPbxqUDnqRiCMmZ8SprRxdaBedBNa6zoom3G0y9lIZJNbjnpZ/xqlGjhoZda8
-	jCgP/LzVwffXhvRqBUd5M28gdYIM0lv9890gezNZBjlYRadP2gxAKdNIQxcczCd/s9z0Zw==
-X-Google-Smtp-Source: AGHT+IHDOFs/ZbAzvN7ioQVvaBO3tKspbKCC2PmmEG/e0ea92CY3dBFRoIiyAncqYqaZi3cyXQ2vdQ==
-X-Received: by 2002:a05:620a:198b:b0:7d3:f3e1:b8c4 with SMTP id af79cd13be357-7d443944e85mr816887085a.15.1751075615803;
-        Fri, 27 Jun 2025 18:53:35 -0700 (PDT)
-Received: from localhost ([2607:fb90:6159:6306:aa35:a456:78ca:2103])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4a7fc55c396sm21861621cf.50.2025.06.27.18.53.34
+        d=1e100.net; s=20230601; t=1751277639; x=1751882439;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XkT/Rstid8JISpjAt6SdqbTq9GQ5RgC+pCfbEEzIrEg=;
+        b=dHJSKo9qdTT+rBpkj+TYTwZjyhjUqS+AKLfFIOEsi3wMlzm23bdaSJq5peuxsn4gdX
+         0BjTioXw/2qcgLY6dHI6VtMfOhLqVO/tkAe0UxOKB2jWOgAUMV7+AwyrYM9DOT/dRxrC
+         NCWeIIWjpTo96c1cH+wr76TP7FUPSUy9LB8sVYyq2SdIoMYDzve3a/awI11Qk5UP1813
+         osrUdWtYwccZMEYCher5cEzAjyWUGIMjYqzUkivqeJXBOgQdLVybMF8AaLZn515prtg6
+         0SFmKL3swRfrqFne9E6Mpc44rbBeytSsJRaUYveFaz+Ha2mTHOott3yNCnROIXP8eRrf
+         CNAA==
+X-Forwarded-Encrypted: i=1; AJvYcCV88vpsv82E3sezxDYlWf2jT9neEpF/2G8DgPu5xUTxWwuD26ii3fRuy22HyhyEDSrgK4zTtgM6P5vqDL9S@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz8yJfBqLb9kRdN/rNy0XnwMzP76av2+VbhRaX/mMre0Zhh9Nxb
+	LAsmGFf7dgMX53CSuZFZnW/neXvlwDN1BMs7oHpkXb0ZCXzV0pDqzJ7UHISIozzmlOM=
+X-Gm-Gg: ASbGncsM+WGCK5xgDHq7+6k933O1Zy6yiuphXBM8wrz7o829cRE6ZdBrOoLzGcXg2hW
+	5bdj0t3Leq8hijaNtYqR/cIrKUTAW50cbtaBXaj9/TmJO+ynAb+dKEa5kN+5Zrc2WnnA2cVg6I/
+	TCHgHD9w6WpsrL7RBqngwwln4i7ODgjINT83FNuDMvI6Hq1iDR8xuRTt5CeRVSXrBS0eF3WwcZX
+	I7b643cNqtsaIlTm77uyiJji2h4Dved4or+dB5TlqHqKwusmUH/nNBz/gGeN44WJNUa/lzZGXG8
+	A38UFTdHtPh+HxSfrnmMF+yEjawS/y7EPcJhu7bhHbE2feThj/B67rag/2L87A==
+X-Google-Smtp-Source: AGHT+IGr8kDpio/yTc2q7sbJPgt53a5XcrIQFYk6F8xhvZP/fdYVNcvrjEwO9kaxLpdzOyi51LJFFw==
+X-Received: by 2002:a5d:584a:0:b0:3a4:e844:745d with SMTP id ffacd0b85a97d-3a90be8d151mr11063926f8f.56.1751277639515;
+        Mon, 30 Jun 2025 03:00:39 -0700 (PDT)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:279:fce:4bb7:6daa])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a892e52bbfsm10076002f8f.65.2025.06.30.03.00.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Jun 2025 18:53:35 -0700 (PDT)
-From: Da Xue <da@libre.computer>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
+        Mon, 30 Jun 2025 03:00:38 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Da Xue <da@libre.computer>,
-	linux-mmc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [RFC] mmc: meson-gx-mmc: add delay during poweroff
-Date: Fri, 27 Jun 2025 21:53:28 -0400
-Message-Id: <20250628015328.249637-1-da@libre.computer>
-X-Mailer: git-send-email 2.39.5
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] clk: amlogic: remove unnecessary headers
+Date: Mon, 30 Jun 2025 12:00:16 +0200
+Message-ID: <175127759469.367173.10851786033226658116.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250623-clk-meson-no-headers-v1-1-468161a7279e@baylibre.com>
+References: <20250623-clk-meson-no-headers-v1-1-468161a7279e@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250627_185337_533873_451B26B3 
-X-CRM114-Status: GOOD (  10.54  )
+X-CRM114-CacheID: sfid-20250630_030042_779723_5B89D9F9 
+X-CRM114-Status: UNSURE (   4.78  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,36 +106,14 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Regulators controlling the SD card power need some settling time for SD
-cards to fully reset from UHS modes. The regulator framework seems to
-ignore falling times set in the device tree causing a few boards with the
-same hardware implementation to hang on reboot because the SD card still
-had some voltage and did not reset properly to be initialized again.
+Applied to clk-meson (clk-meson-next), thanks!
 
-Add a delay sufficiently long for the voltage to drop so that the SD card
-can reset properly. Otherwise the reboot will hang at missing SD card
-especially with Samsung cards.
+[1/1] clk: amlogic: remove unnecessary headers
+      https://github.com/BayLibre/clk-meson/commit/328d4a7eb073
 
-Signed-off-by: Da Xue <da@libre.computer>
----
- drivers/mmc/host/meson-gx-mmc.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 694bb443d5f3..a39906079d29 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -605,6 +605,7 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	case MMC_POWER_OFF:
- 		mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, 0);
- 		mmc_regulator_disable_vqmmc(mmc);
-+		msleep(50);
- 
- 		break;
- 
--- 
-2.39.5
-
+Best regards,
+--
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
