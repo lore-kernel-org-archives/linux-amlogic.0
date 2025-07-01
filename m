@@ -4,92 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93C98C7EE39
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Jun 2025 10:10:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22950C8302F
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Jul 2025 10:05:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=f8v1AgWnBACN0jhNL7Mx4Y2S5loeVpjJzZ8NakxW7JM=; b=PLGTwxqIAnoDTt
-	kooagou8y+ir8D4Ef/RqO9Qbl10T1wrZOHBpBraetmqNsIfdBWHOs95QFETSvePXbQ1gZGV//FLWw
-	zulw0S11uQeufsfkGVsaQMJQTrnU/80dcgQ67VHONfm9aFUDng67UaQhuB/IoGEAsh9f8/cxxRPnz
-	tv5Mrx+x53wrPOpgaoXHNJOcXrWYNAb6kZ2RU4hv4pPDxlcK92FfVHHjJT1coz//kQCq0T3R5oHuQ
-	k0a8H6lxaGFqUaKI1EnXguEIa3O8LZljY73uM2bYYIRD32BWbAxpNQtphpcUzATxPTyuGnZY1cCvS
-	tezUgswvn0N8PXJ83x5g==;
+	List-Owner; bh=N2UsTh80LmSfMPQq+W8VcoALNCsd1KLQY6ic81PBBUU=; b=CkcjdRYcwzNClb
+	zOWZLT08mA4mCZI48zfxcOxgKdg+syWI8L1uJcBgQvvbiZp9O5FVt5ZNzQivzkdDkmMNdx+1/60ut
+	SXoqR7ELOlU0GdfB45eMMpaaMm+oG2Uo4goXnayUmCTNuxiUmfrYI64vendFH1h9Yy1JBhrP0xmvv
+	LDzviIjPJ1CNH9WGgtbL7Yc8dqGvyCY5R5ck7rgYKDUWqdbdjVa/sOu9qv+3u3gckdQcbTTbAHSdc
+	oO7Hk4FwlULZKLnQGuE20S07aseoUyQWiZTasCr5Fxg5bpC86I/F6F/xLJExeOb44wywmeVke/F/w
+	5QSdVVD1G8/C9VmGsSlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWBSh-00000001qJx-0Du0;
-	Mon, 30 Jun 2025 10:10:07 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1uWXrc-00000004gSh-3LkD;
+	Tue, 01 Jul 2025 10:05:20 +0000
+Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWBJa-00000001oix-37iu
-	for linux-amlogic@lists.infradead.org;
-	Mon, 30 Jun 2025 10:00:44 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-453643020bdso37280335e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 30 Jun 2025 03:00:40 -0700 (PDT)
+	id 1uWXme-00000004fI9-3LMJ;
+	Tue, 01 Jul 2025 10:00:13 +0000
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-ae0dd7ac1f5so937958366b.2;
+        Tue, 01 Jul 2025 03:00:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751277639; x=1751882439; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XkT/Rstid8JISpjAt6SdqbTq9GQ5RgC+pCfbEEzIrEg=;
-        b=kM+rooUo2zFvvDLKPr0e2CVkYAqFqqwo4uuLIb2EWYtPFyzR6D7mFGul+b1rBxwhG9
-         ImViHKbbpE99fHpr9q8bP2DnCvGXFWk4KsdpMiPBI7pQHEkglL+gog+LcsKkYUKLarFm
-         fuLf5l9vcvhIK+I4Qr9Fm63Uht6saqccRJcKhB/+HHsZKSRcP8pXg9dyzmA6Gk6t4jyt
-         TJjGd+8rPliyewiT0BbhoGpr+EIi9EGU2qBfcm3exJYIfAQ+xerXmNj/ES7ekqW+LcDY
-         He9GSMy+e1eFjwJA4hYg66pKW4bq4Vl3NPU9WP6OLwdLEWD3deg+upDZ9wfD2JBYgRSJ
-         lqXQ==
+        d=gmail.com; s=20230601; t=1751364011; x=1751968811; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dcd4NU6FYr604eOyyCsaYvr/dR8yRtKW86HNNymhJ7U=;
+        b=cxZylHcjF8rwqnS+YudER6v/2E+Fyl7jpCIQwVTC11/wSXG/i0CZ5B9h2EcyAfd13p
+         k/ye9R/AvhZmP7vzc8BBAU6STggam7Zs55Yj4JpaeGhqmdPHq1a7I+EJJcN2RqWCAd+e
+         RqIcbKrhSWwC9wWYQPGqO9UfY6r25TK/tu7uShR6WbTQ6SUaXvZrRDhxEK8pBc1PALXh
+         mjBrsplyf7yXjPfoKf5BV0TCYW/w/PL/mJumug2mCgfxG2hEPuNsUb/LW5BSxab+PYz4
+         03JCU+QUNUgsX0FP1u/tjwZflv+CHhAf1OVqK+CeAAmwQS+vYUN3FhibjPBzof8hYJig
+         1lyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751277639; x=1751882439;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XkT/Rstid8JISpjAt6SdqbTq9GQ5RgC+pCfbEEzIrEg=;
-        b=dHJSKo9qdTT+rBpkj+TYTwZjyhjUqS+AKLfFIOEsi3wMlzm23bdaSJq5peuxsn4gdX
-         0BjTioXw/2qcgLY6dHI6VtMfOhLqVO/tkAe0UxOKB2jWOgAUMV7+AwyrYM9DOT/dRxrC
-         NCWeIIWjpTo96c1cH+wr76TP7FUPSUy9LB8sVYyq2SdIoMYDzve3a/awI11Qk5UP1813
-         osrUdWtYwccZMEYCher5cEzAjyWUGIMjYqzUkivqeJXBOgQdLVybMF8AaLZn515prtg6
-         0SFmKL3swRfrqFne9E6Mpc44rbBeytSsJRaUYveFaz+Ha2mTHOott3yNCnROIXP8eRrf
-         CNAA==
-X-Forwarded-Encrypted: i=1; AJvYcCV88vpsv82E3sezxDYlWf2jT9neEpF/2G8DgPu5xUTxWwuD26ii3fRuy22HyhyEDSrgK4zTtgM6P5vqDL9S@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz8yJfBqLb9kRdN/rNy0XnwMzP76av2+VbhRaX/mMre0Zhh9Nxb
-	LAsmGFf7dgMX53CSuZFZnW/neXvlwDN1BMs7oHpkXb0ZCXzV0pDqzJ7UHISIozzmlOM=
-X-Gm-Gg: ASbGncsM+WGCK5xgDHq7+6k933O1Zy6yiuphXBM8wrz7o829cRE6ZdBrOoLzGcXg2hW
-	5bdj0t3Leq8hijaNtYqR/cIrKUTAW50cbtaBXaj9/TmJO+ynAb+dKEa5kN+5Zrc2WnnA2cVg6I/
-	TCHgHD9w6WpsrL7RBqngwwln4i7ODgjINT83FNuDMvI6Hq1iDR8xuRTt5CeRVSXrBS0eF3WwcZX
-	I7b643cNqtsaIlTm77uyiJji2h4Dved4or+dB5TlqHqKwusmUH/nNBz/gGeN44WJNUa/lzZGXG8
-	A38UFTdHtPh+HxSfrnmMF+yEjawS/y7EPcJhu7bhHbE2feThj/B67rag/2L87A==
-X-Google-Smtp-Source: AGHT+IGr8kDpio/yTc2q7sbJPgt53a5XcrIQFYk6F8xhvZP/fdYVNcvrjEwO9kaxLpdzOyi51LJFFw==
-X-Received: by 2002:a5d:584a:0:b0:3a4:e844:745d with SMTP id ffacd0b85a97d-3a90be8d151mr11063926f8f.56.1751277639515;
-        Mon, 30 Jun 2025 03:00:39 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:279:fce:4bb7:6daa])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a892e52bbfsm10076002f8f.65.2025.06.30.03.00.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Jun 2025 03:00:38 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>
-Cc: linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] clk: amlogic: remove unnecessary headers
-Date: Mon, 30 Jun 2025 12:00:16 +0200
-Message-ID: <175127759469.367173.10851786033226658116.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250623-clk-meson-no-headers-v1-1-468161a7279e@baylibre.com>
-References: <20250623-clk-meson-no-headers-v1-1-468161a7279e@baylibre.com>
+        d=1e100.net; s=20230601; t=1751364011; x=1751968811;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dcd4NU6FYr604eOyyCsaYvr/dR8yRtKW86HNNymhJ7U=;
+        b=rZw15OTqjd5wIMlIshlyYv5053IlSR2a+VGIXeu9ip9YEiBvlx5BaO1XEVqkWukF6I
+         8MaSpmvF/dyiBiUxfNIh3/8fc0W4e5UARJwwKeXKGDPiMgmtxPefIvCxMO8b8W51oIaG
+         jcIFJEczn0/6IXQX+RUnUcQa8J66VlASdSNOoyLJjUGgsqM6LfXRLT9u+s7FOW3ho3BQ
+         8/8YwcwSdm4GO6FIpBBzaVKPgS1kNyK/aiuJ72S25O0+RTD0qhmknB2Eb9bUiG5QETDz
+         6VW8KMi9kFumUaEMB49/WEI1cMjkCNJ00/QoOOGWUqNv06pG+6lLU8Ih/1CS1kq/KKSF
+         iSng==
+X-Forwarded-Encrypted: i=1; AJvYcCVqjvLmAPqD8j72Qg1yL9Rn3QqmMuFELZAQNolWMKvLaYLUuLvekk2n6IeUjZ2vQddFk8dus7AABVIF0sxK@lists.infradead.org, AJvYcCXYekZmdZPS/3VcONHAbOYJdW4d/lpbViaom3uRePOaEqfYclgiWFSMA62J1ciAFGWDYENePZFwes7+6omM0ZyOng==@lists.infradead.org
+X-Gm-Message-State: AOJu0YwOFPnv/rluuvOOlw63yEXqS6B+kLAao7+Ajvuzo0S3GZT/kl2p
+	yenOYq5lfZVGHgINNxo2PSH69M/z5L6GHiGBvzzMTuLgD5KhImEwlgh74JeDKIo08UXirE6ZExN
+	JDXTgnCWZjtMZURQ3tufVe1T4s0IxtZc=
+X-Gm-Gg: ASbGncuHMqjuHDSTMIdtUOGqUOrhW8AqCNEfygKEWl4PoV4JhmFdZz6R09hAIeLuQ6S
+	dX0VD+lom5dMYYJc5XJmwW09RBUGqFKYmzOFindrNrl3kFRF6e02ZDbFrTDXzy/x3Y9AhFP/rhK
+	JZTfljg1mPyJVnHHPnfnUH6Tbm58hpH/MR2YK5FXw1
+X-Google-Smtp-Source: AGHT+IFVGg9I7ij138HqjSz3k5NX/sRlfBODxu7bE94U+eCEWNa8PihnyeL2ytQK8bGikHE/btLURU84ZtWswTf1e94=
+X-Received: by 2002:a17:906:7308:b0:ae0:ce90:4b6c with SMTP id
+ a640c23a62f3a-ae3501a6b84mr1520367566b.49.1751364010417; Tue, 01 Jul 2025
+ 03:00:10 -0700 (PDT)
 MIME-Version: 1.0
+References: <20250628015328.249637-1-da@libre.computer>
+In-Reply-To: <20250628015328.249637-1-da@libre.computer>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 1 Jul 2025 15:29:53 +0530
+X-Gm-Features: Ac12FXyQuaHFFKC-1pIWDliDfzZokX1a7f9rk99GbHKLqTGFlt79NOp9T2kO1fE
+Message-ID: <CANAwSgTH67T9SBQSFQgFjvyrxNCbtfd9ZaCDZFACWA=ZQ-PYtQ@mail.gmail.com>
+Subject: Re: [RFC] mmc: meson-gx-mmc: add delay during poweroff
+To: Da Xue <da@libre.computer>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-mmc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250630_030042_779723_5B89D9F9 
-X-CRM114-Status: UNSURE (   4.78  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250701_030012_837219_1A8A1727 
+X-CRM114-Status: GOOD (  13.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,14 +95,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Applied to clk-meson (clk-meson-next), thanks!
+Hi Da,
 
-[1/1] clk: amlogic: remove unnecessary headers
-      https://github.com/BayLibre/clk-meson/commit/328d4a7eb073
+On Sat, 28 Jun 2025 at 09:15, Da Xue <da@libre.computer> wrote:
+>
+> Regulators controlling the SD card power need some settling time for SD
+> cards to fully reset from UHS modes. The regulator framework seems to
+> ignore falling times set in the device tree causing a few boards with the
+> same hardware implementation to hang on reboot because the SD card still
+> had some voltage and did not reset properly to be initialized again.
+>
+> Add a delay sufficiently long for the voltage to drop so that the SD card
+> can reset properly. Otherwise the reboot will hang at missing SD card
+> especially with Samsung cards.
+>
+Although the driver defines reset identifiers such as
+RESET_SD_EMMC_A, RESET_SD_EMMC_B, and RESET_SD_EMMC_C,
+It does not implement proper reset controller functionality,
+specifically lacking support
+for reset_control_assert() and reset_control_deassert() operations.
 
-Best regards,
---
-Jerome
+Thanks
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
