@@ -4,77 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ABEBC83F04
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jul 2025 16:37:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06365C83F0A
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jul 2025 16:37:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bHDrIxxNrSF9Bfz4IjCRtbbqahsPbu7qUzZ2SXhKT1o=; b=Ogwj0llX+MQIkt
-	o3dp9RB6ur5BEXN2VlGksbH+51UzTJdUc5rcSms1lHH1leBGGXZzoWtPTsDyYy6llSKHqOgjPwHIj
-	HANjak/vb1UvzbpbcWReBHH3Dom/7rn9pd/K0NCZfNOSvYp6UdQIaJDA11Fcop1+NrCIosAwCoZeR
-	/ycHoZDw31aLH8koDasuwlXp8ijf3Xjoj6dA13RYtigCOcOGDiZIL4IHw1FwZ6yCzsoYESaXnXui0
-	qekw3kH5EDkzXh2uqdmYKPAkqKwBoHODlJ0mK5o15AEJbbBmynf8JAUaXA0gIcOESGS0IHZ0AxzI+
-	vIJS9y2+QM6HziPcOd5g==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6wcCl3Twl3ipJpq7goLd10sNn1vrxtRFqDeRhPTNv14=; b=M53GQ6IUnOvevh
+	alfOraF61+fahlZ+mrROkCArVeNPMW//xSrrgEHPmjCjqDxL0GHIg/JxEueqHxGAPEfqGj9UOIeTb
+	41mjJeb+dKNwrA34HiZp5s+MyrB908zqtL2VlXH4ZnsUPsmqBH7YTEbbHsqfAjxemweYOba8PYAFL
+	XADYbzSpukP8e+xf2UNkBEgGqICLgvViXkzqebkIILBMFGEAs7QEMvVYs9UTUT6tGNqkMM59mIeoA
+	DY5oLNZxiLcAAPRtwOdJ0M6iI3bLLgwC6qgwfera4Kuh6l2lhAxVnrtP24WKxhpkebBRXyBRRg0t3
+	sSlIygqHCNBw322ESrVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uX0Sp-00000008yV3-2rEJ;
-	Wed, 02 Jul 2025 16:37:39 +0000
-Received: from mail-wr1-f42.google.com ([209.85.221.42])
+	id 1uX0So-00000008yUc-1pXZ;
+	Wed, 02 Jul 2025 16:37:38 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWzMj-00000008mr7-2zi3
+	id 1uWzMg-00000008mqA-1HAE
 	for linux-amlogic@lists.infradead.org;
-	Wed, 02 Jul 2025 15:27:18 +0000
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3a503d9ef59so3491641f8f.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 02 Jul 2025 08:27:17 -0700 (PDT)
+	Wed, 02 Jul 2025 15:27:16 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3a6f2c6715fso4817314f8f.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 02 Jul 2025 08:27:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751470036; x=1752074836; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MQZMgmABiXY7VmBZiQdhyQTUuhtXH4FhWKbouPsWYSI=;
-        b=eAjqzoM7oqQyAvFHx4qX823eAemZ4qTgOMNqXBy0EX8CglYZm+N4UVZK+HrddUVGy/
-         HXnA5531Ewd9FbmU1xq+mhXYF1Temhl5OWU5mK8qlDkeXj+om4jiyfdLO7oaHXht9GEq
-         qBUAlht3sPiPUEpYJ7AmFza4z1TC8AQ/aHr+kHJpOauPgkfKeyf/0cp740LgBXqMT1K+
-         vXxH7PXKk0O0jXfVqi3AFeyytK4RjKce2CJJ/c7jWbq/14QmPVn0B3Fmdt7T9UgZzxx0
-         Ua0QfjtuEV7SGHiHfWWp2lWm6WN43EC7dV/Y4ov0VuERpo2nGT/1/1nG1SmgWlDSfEwR
-         0veA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751470033; x=1752074833; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mZEXD2+i9jrIQND3h3J1ExPn/hJoUIEOFDjyNRmi8MA=;
+        b=OJ9QHfaZ5TtUNGlB321InfORf28A4PRhPRAwbDLHHH0gY+r8jtMCMrM5v4Aj8jOZAD
+         saY//Fli3FeDYeTbBLAEZYYlKfo+daMu3xwqX1k2cBRZ4d9y2yyNGCLse3hFdrH3A+Tg
+         M1+TWO19IR/wGRffCSA7s0gmfT+Q9Mnp6W2d83IY/LBjw6gaX8pU4JbGkHQEiofPkZa1
+         WTDoWwCeIqfIaO72Apgqh5wBd1hQWX7j5ex437kr413efOrzRyLuk1QxWaZPNCKkEwBW
+         CQwkg5BfkCjwYJiuCi0TMr51OugatClwNqmVNLg++2ZZYXsN33T4th55vwwCFF75e3yj
+         b6Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751470036; x=1752074836;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MQZMgmABiXY7VmBZiQdhyQTUuhtXH4FhWKbouPsWYSI=;
-        b=iS/eVM8WBEKPG1LkS/yLl6O8080K7m2UMb8gBtYU57IxoHfqApSltOSvZLTIpcx5as
-         WHgtx//wbwwkM04493Vu/MbG9ukrU4gMhxuDi5vAM6zXoO96F0qusY3XW2mofdOpNQz/
-         /hejjU0+afWuWlXnuv8KZroilS+6Incg4lc9G/ooFd1tYErp1wBeMdwyTTrnJ6xqj4Zd
-         wDMXNzuzTCyUJrU9QpFqjeaw/29VPvfOGEwVkNrviQVDwMDrR2MU1PuovuaCC36aODcc
-         bHnB5SCxVFuesm4UjvhrUN7S5YgbPjCHjB0D39qyiRp7Wf2OIAh2KG1JWP5Kb6rzIvqB
-         6+5Q==
-X-Gm-Message-State: AOJu0YyPAM71Aez5OgEGi014xV2xzLW1/8hHqjjm7PYIpzQ3xa3iaG3g
-	Fcst7aG++BrC5RRd+9lqvTZ6I2PKLTOSYpYFVOZluzbE7yHL/zHkWTq3F0rBx4oA4Z8=
-X-Gm-Gg: ASbGnctYVoodzbePXUmiScXhUeDcDNbCPRx9axEoBfPdEMiud5erqTa3Se56xiMJUPd
-	T9T1pJ0mTgBzVvfgZxZ/hB/KeISCF2GvnxTa7OFqj/rRFCmTb/h9Suv5tFxx65NMQn/uuFvWg4D
-	bVS9mpdue16NYriTusYPbGZDrw2gdT5+GpAa7f7r9GczRlRZEoh3ixq195jMxZS9Ri0iqdBRkUU
-	SuFViPQU7YhRXYA5254u3YT1c0PgtP4/z8FNH0Eb4ajUpBaNT28bLLGknXbyvvS9Iv7c6dAoVdl
-	sgPUhIfoFZArLyf60DXLR2T4CndaDdlIeCGQh/twnnVEwVc8k6PJ6yWnoEixckRy6zO1DHh8Xhu
-	g
-X-Google-Smtp-Source: AGHT+IHmBv898ajOHi2h8LSM77WdK1B4++cK31ezYUfiNC2/ARIx6oCZm4OwQhPxRJW+W9HyLTjXsQ==
-X-Received: by 2002:a05:6000:4024:b0:3a5:57b7:cd7b with SMTP id ffacd0b85a97d-3b1fec790d7mr2867275f8f.22.1751470035585;
-        Wed, 02 Jul 2025 08:27:15 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751470033; x=1752074833;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mZEXD2+i9jrIQND3h3J1ExPn/hJoUIEOFDjyNRmi8MA=;
+        b=JYQrv9rGqgbtDoPT6Ow9MTVxe0Z5NUoboFfgXNZ3mZ4CLPiDH3At2wZJpCujUPVkCY
+         zzMRGjZIzBHAh32ksZbqkqdJ3HjalrQiKr/FRQH22UqRaNOC75Xm/Pf7Gg/7WodlXMf7
+         FGzL5sOluFNly7nNWrraHdl504MqTNXEEti6aLC91UXd30KvW81gM40P8cB3hLY2gKEG
+         eDypYlW2B2DrnY+5MN21dAkpw9ArBp16IzC0zljK6yckix6No1f/uCn7zxWY+bviY8HL
+         GutKeeo1kltvLMhII6zpKy0YB30ki5rTGxkXCuZMZ01GfFDJ/d1DJ0zx36hNj1tcOxnF
+         BbKg==
+X-Gm-Message-State: AOJu0Yw4F++6vFe6Dx2OiIsNvD450ERfwxoKELeOOfQX00tK/o4HNbWS
+	s6y3TgdE5MGmIZULhrS5GlcZVo09guUvyfNYJj2gfLqgvZFNWUqnkPAZwCK9RQryodY=
+X-Gm-Gg: ASbGnctmIQx8aBu+E3BjiDTJiVBTJuvMKpjtWKd9MG5rx5f/TuX0szwKoy3yCJlHoUL
+	L7lEWtUAtadAYkLIshM2Aw5/lnMjykDNEpFrzwowoVq4DXEc/ILxKz/zXLsV/iPbExHyd1KI1l6
+	HwqpGpeii7XC+KdvvHsiJ2npUlYBO7bjVBLxK3+54sjbAyTBPCNKf5ifB3Nm1nEVz2pSuURDdxg
+	VZWfLFuCCh6jOKtsFC2LE2/Go9Mw2Sqk/zqyesVwEDt8QnJlNVyrD2nlCnqgEWzbk+XG8E1O8zC
+	IY2bV1+wBEDl3Kp6rsnPt19v7Bz+kS4nxfSP6jgjGWYl6M0KYpHH+4CWKqHT/x+Sj8+qrMzHNlG
+	b
+X-Google-Smtp-Source: AGHT+IECpWxeElBoSmJlvb93CQNlef939HEeihtXTY2qzYHwnEYlCFa1/geWXCnGm0yUCufzbNrdFg==
+X-Received: by 2002:a05:6000:4028:b0:3a5:287b:da02 with SMTP id ffacd0b85a97d-3b200b4657bmr2630366f8f.40.1751470032604;
+        Wed, 02 Jul 2025 08:27:12 -0700 (PDT)
 Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:5542:4bad:e07b:9489])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-454a9bcf35csm869205e9.20.2025.07.02.08.27.14
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-454a9bcf35csm869205e9.20.2025.07.02.08.27.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 08:27:15 -0700 (PDT)
+        Wed, 02 Jul 2025 08:27:11 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Wed, 02 Jul 2025 17:26:01 +0200
-Subject: [PATCH 03/26] clk: amlogic: axg-ao: naming consistency alignment
+Subject: [PATCH 00/26] clk: amlogic: clock controllers clean-up and
+ factorisation
+Date: Wed, 02 Jul 2025 17:25:58 +0200
+Message-Id: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
 MIME-Version: 1.0
-Message-Id: <20250702-meson-clk-cleanup-24-v1-3-e163c9a1fc21@baylibre.com>
-References: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
-In-Reply-To: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAIZPZWgC/x2MMQqAMAwAvyKZDZhQBP2KOGiNGtRWWhSh+HeLw
+ w033CWIElQitEWCILdG9S4LlQXYdXCLoE7ZgSs2xER4SPQO7b5lZHDXiWzQkB2FGjY1NZDTM8i
+ sz7/t+vf9AECO6ihmAAAA
+X-Change-ID: 20241211-meson-clk-cleanup-24-41cbe1924619
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
@@ -82,25 +84,25 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10920; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=1IvHyI1bjjxPKpLk03HL+ct5ZNMHSy2xdey6fod754c=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBoZU+5KF0rmce/op3Zg9Js+LvwL+6nmECdDWMyE
- lC5z2yigISJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaGVPuQAKCRDm/A8cN/La
- hWRDEACpUEiSnvz3yj+hAPAnLm+8aJNj/17s9/l2eMyIh+RdVuwLUTfPrdK47kGuRVNqoOGXWc8
- C9/PzdTGmzx5rpld6WEyheLWJOhPtds96EPwxO271qieDpOuGyaRBoV+hyIpW5dRzeUgU1f286b
- S4h41fFVAfx+So0MWEZqrYKvaHuApxGf9k6RK/7EB16Z2JnP917e6jLHixOjtA9L9LPszPU7pQN
- /NmEnKZQDUT3rjmptoOyjlWUmvWX2KR9a89PGJb8+oFdGAsjoV6f6O3UXwfin1G6Wgu3rTZl/QY
- RxudlxK0VPgcjQnzOKtmz2sqd+enkV6vn314pVYpjRNo50wDb0pvCyLc2i4nteCSZF0jkQ8uC5R
- vQP5BTIsFQ7z6xbMqh89RQdmZY48Yh98NP8sGF4WxUImV7EJJHsG5CXHLkDTLLzYV5D3OnAtC2g
- mKby3K/mprCeMofak3rx0JSI0nPp/genQyqgIlQ2AlGSTfHA5e0J4aJ683WoZwnZ6iGYTIRj0U8
- o9o20bWm2lWPa8VKKL+4MfGd2c4AUMZJDbSohVnAfKw+SOol9Ttis2dt90CvMyibzvQZBJ4V+F3
- lmJT4z43ceMa5xf1hU3sONxB6zSkPnhb6wWQUHbTcVu0KaxrHCCOlySj7AX9XpDyNQhv1BFADA0
- 3LDKyl5e+A69mtw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5210; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=LJVxQf7NdIcUrlOkMpBxQHCXouOiNXQbPohW3ECQIQk=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBoZU+yeQ57OOFVKwuT0WWvU3Gndq1dETWjEaNQW
+ UlN7cL+DN+JAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaGVPsgAKCRDm/A8cN/La
+ hYKJD/9+M0TmYQdd3/rSQbthQJaQj5IMrKfVvlmGpsIup6XF2eDdZesRI9d0dx3qbUusH/ZkSBv
+ dFZ360Mkrh3KmVvSMhQ27HhAnCl+4ikVzKiOFWsW40pJ1Njyi+OPi83jqPuQM0VRxmK8wsX+Je+
+ 3WnON3E8oX0i8v+AKXZFoygZwe4eoDSEdvA0Ecy1yZCZzRB6ZBO16GElQmdAU60A6/6A1F8YJv0
+ ixMR1YspvPjr2R2fXeM6RCgfhQ48u9Q98Tdmqv9jxuWIviHOF6TC12EinFxTXb+au6aOmHl97EN
+ 6lb9D4kh+xZ9hxHHEnaSvdEWG2i2SbFHo4vpe5fODA56uGN8f5uDAfzQATLlS98PxlaHqfOBxJp
+ 3rTkjnghRfIK42Pxpyeygsl/VHWjEHiF89WCvEPBuuXvfGp43PBK0HtI6s1y1GrLHph444DO84F
+ RnBQNrTWcHKJCPhERyUUB/0C7yTD/ndbZgmZzqnhIPA/B1ZrOxOcIdCRwd788VxIHo0YklB1Rr3
+ vLfVn0J1WNWl8JH5TY9UB2Q7jxZCN3U0mGZ5I3rVDjuhEO3S4O/57FXFIz8QewKGLhNXTAROkDl
+ d6t3WjrO19YZUDhgJGUOLsjPoKld6FZhT1/qRCLM/rA/1Luto/JmY34J2zJhIJDZ7YQTmI8EqJZ
+ lnruOJj7adMCW/w==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250702_082717_793668_95041524 
-X-CRM114-Status: GOOD (  19.18  )
+X-CRM114-CacheID: sfid-20250702_082714_350641_639B4D31 
+X-CRM114-Status: GOOD (  17.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,330 +119,111 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic clock controller drivers are all doing the same thing, more or
-less. Yet, over the years, tiny (and often pointless) differences have
-emerged.
+The work on this patchset started with the submission of the Amlogic t7
+peripheral clock controller [1]. This controller is fairly similar to
+existing controllers. Once again, it redefines the peripheral clock macro,
+the probe function and composite clock helpers, even if it is almost the
+same as in other controllers. This code duplication trend has been going on
+for too long and now is the time to properly address the problem.
 
-This makes reviews more difficult, allows some errors to slip through and
-make it more difficult to exploit SoC commonalities, leading to code
-duplication.
+There is clearly 4 parts in this patchset. These are sent together for v1
+to show why what the ugly first part is useful. If more versions are
+needed, the patchset will be split in 4.
 
-This change enforce, wherever possible, a consistent and predictable scheme
-when it comes to code organisation and naming, The scheme chosen is what
-was used the most already, to try and minimise the size of the ugly
-resulting diff. Here are some of the rules applied:
-- Aligning clock names, variable names and IDs.
-  - ID cannot change (used in DT)
-  - Variable names w/ SoC name prefixes
-  - Clock names w/o SoC name prefixes, except pclks for historic reasons
-- Composite clock systematic naming : mux: X_sel, div:X_div, gate:X
-- Parent table systematically named with the same name as the clock and
-  a '_parents' suffix
-- Group various tables next to the related clock
-- etc ...
+While all controllers are doing more or less the same things, tiny and
+often pointless differences have emerged between the controllers. This
+makes it harder to exploit SoC commonalities.
 
-Doing so removes what would otherwise show up as unrelated diff in
-following changes. It will allow to introduce common definitions for
-peripheral clocks, probe helpers, composite clocks, etc ... making further
-review and maintenance easier.
+The first part of this series deals with that problem and realign things
+up. There is nothing complicated going on there beside renaming. It is the
+ugly stuff, yet necessary, we have to go through to get to the interesting
+stuff afterwards. There is one change per controller for the review, with
+the intent to squash this into a single change on application.
+
+Second is the factorisation of the probe functions so those stop being
+copy/pasted in each clock controller drivers.
+
+Then the clean-up and factorisation for the PCLK macros, again to stop
+copy/paste but also the silent use CLK_IGNORE_UNUSED.
+
+Finally the introduction of macros for composite clock definitions. The
+same pattern as the for the PCLKs started to appear on s4, c3 and t7. Done
+properly, this could also help reduce the verbosity of the older
+controllers.
+
+With this, the c3-peripherals controller may be used as an example of what
+future similar controllers should look like.
+
+After this, there is still some house keeping to be done in the amlogic
+clock drivers:
+- Moving remaining reset drivers to the reset subsystem
+- Proper decoupling of clk-regmap from the clock controllers
+- Reduce verbosity of older controllers with the composite macros, where it
+  makes sense.
+
+[1]: https://lore.kernel.org/linux-clk/20250108094025.2664201-6-jian.hu@amlogic.com/
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg-aoclk.c | 116 ++++++++++++++++++++++--------------------
- 1 file changed, 61 insertions(+), 55 deletions(-)
+Jerome Brunet (26):
+      clk: amlogic: a1-peripherals: naming consistency alignment
+      clk: amlogic: a1-pll: naming consistency alignment
+      clk: amlogic: axg-ao: naming consistency alignment
+      clk: amlogic: axg: naming consistency alignment
+      clk: amlogic: c3-peripherals: naming consistency alignment
+      clk: amlogic: c3-pll: naming consistency alignment
+      clk: amlogic: g12a-ao: naming consistency alignment
+      clk: amlogic: g12a: naming consistency alignment
+      clk: amlogic: gxbb-ao: naming consistency alignment
+      clk: amlogic: gxbb: naming consistency alignment
+      clk: amlogic: meson8b: naming consistency alignment
+      clk: amlogic: s4-peripherals: naming consistency alignment
+      clk: amlogic: s4-pll: naming consistency alignment
+      clk: amlogic: meson8-ddr: naming consistency alignment
+      clk: amlogic: drop meson-clkcee
+      clk: amlogic: add probe helper for mmio based controllers
+      clk: amlogic: use probe helper in mmio based controllers
+      clk: amlogic: aoclk: use clkc-utils syscon probe
+      clk: amlogic: move PCLK definition to clkc-utils
+      clk: amlogic: drop CLK_SET_RATE_PARENT from peripheral clocks
+      clk: amlogic: pclk explicitly use CLK_IGNORE_UNUSED
+      clk: amlogic: introduce a common pclk definition
+      clk: amlogic: use the common pclk definition
+      clk: amlogic: add composite clock helpers
+      clk: amlogic: align s4 and c3 pwm clock descriptions
+      clk: amlogic: c3-peripherals: use helper for basic composite clocks
 
-diff --git a/drivers/clk/meson/axg-aoclk.c b/drivers/clk/meson/axg-aoclk.c
-index cd5d0b5ebdb237a74129b44410318748e48780d1..a0c58dc8e950a05c340c3427af4f6ff7661fa84e 100644
---- a/drivers/clk/meson/axg-aoclk.c
-+++ b/drivers/clk/meson/axg-aoclk.c
-@@ -35,7 +35,7 @@
- #define AO_RTC_ALT_CLK_CNTL1	0x98
- 
- #define AXG_AO_GATE(_name, _bit)					\
--static struct clk_regmap axg_aoclk_##_name = {				\
-+static struct clk_regmap axg_ao_##_name = {				\
- 	.data = &(struct clk_regmap_gate_data) {			\
- 		.offset = (AO_RTI_GEN_CNTL_REG0),			\
- 		.bit_idx = (_bit),					\
-@@ -59,7 +59,7 @@ AXG_AO_GATE(uart2, 5);
- AXG_AO_GATE(ir_blaster, 6);
- AXG_AO_GATE(saradc, 7);
- 
--static struct clk_regmap axg_aoclk_cts_oscin = {
-+static struct clk_regmap axg_ao_cts_oscin = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = AO_RTI_PWR_CNTL_REG0,
- 		.bit_idx = 14,
-@@ -74,7 +74,7 @@ static struct clk_regmap axg_aoclk_cts_oscin = {
- 	},
- };
- 
--static struct clk_regmap axg_aoclk_32k_pre = {
-+static struct clk_regmap axg_ao_32k_pre = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = AO_RTC_ALT_CLK_CNTL0,
- 		.bit_idx = 31,
-@@ -83,7 +83,7 @@ static struct clk_regmap axg_aoclk_32k_pre = {
- 		.name = "axg_ao_32k_pre",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&axg_aoclk_cts_oscin.hw
-+			&axg_ao_cts_oscin.hw
- 		},
- 		.num_parents = 1,
- 	},
-@@ -99,7 +99,7 @@ static const struct meson_clk_dualdiv_param axg_32k_div_table[] = {
- 	}, {}
- };
- 
--static struct clk_regmap axg_aoclk_32k_div = {
-+static struct clk_regmap axg_ao_32k_div = {
- 	.data = &(struct meson_clk_dualdiv_data){
- 		.n1 = {
- 			.reg_off = AO_RTC_ALT_CLK_CNTL0,
-@@ -132,13 +132,13 @@ static struct clk_regmap axg_aoclk_32k_div = {
- 		.name = "axg_ao_32k_div",
- 		.ops = &meson_clk_dualdiv_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&axg_aoclk_32k_pre.hw
-+			&axg_ao_32k_pre.hw
- 		},
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_regmap axg_aoclk_32k_sel = {
-+static struct clk_regmap axg_ao_32k_sel = {
- 	.data = &(struct clk_regmap_mux_data) {
- 		.offset = AO_RTC_ALT_CLK_CNTL1,
- 		.mask = 0x1,
-@@ -149,15 +149,15 @@ static struct clk_regmap axg_aoclk_32k_sel = {
- 		.name = "axg_ao_32k_sel",
- 		.ops = &clk_regmap_mux_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&axg_aoclk_32k_div.hw,
--			&axg_aoclk_32k_pre.hw,
-+			&axg_ao_32k_div.hw,
-+			&axg_ao_32k_pre.hw,
- 		},
- 		.num_parents = 2,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static struct clk_regmap axg_aoclk_32k = {
-+static struct clk_regmap axg_ao_32k = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = AO_RTC_ALT_CLK_CNTL0,
- 		.bit_idx = 30,
-@@ -166,14 +166,14 @@ static struct clk_regmap axg_aoclk_32k = {
- 		.name = "axg_ao_32k",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&axg_aoclk_32k_sel.hw
-+			&axg_ao_32k_sel.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static struct clk_regmap axg_aoclk_cts_rtc_oscin = {
-+static struct clk_regmap axg_ao_cts_rtc_oscin = {
- 	.data = &(struct clk_regmap_mux_data) {
- 		.offset = AO_RTI_PWR_CNTL_REG0,
- 		.mask = 0x1,
-@@ -184,7 +184,7 @@ static struct clk_regmap axg_aoclk_cts_rtc_oscin = {
- 		.name = "axg_ao_cts_rtc_oscin",
- 		.ops = &clk_regmap_mux_ops,
- 		.parent_data = (const struct clk_parent_data []) {
--			{ .hw = &axg_aoclk_32k.hw },
-+			{ .hw = &axg_ao_32k.hw },
- 			{ .fw_name = "ext_32k-0", },
- 		},
- 		.num_parents = 2,
-@@ -192,7 +192,7 @@ static struct clk_regmap axg_aoclk_cts_rtc_oscin = {
- 	},
- };
- 
--static struct clk_regmap axg_aoclk_clk81 = {
-+static struct clk_regmap axg_ao_clk81 = {
- 	.data = &(struct clk_regmap_mux_data) {
- 		.offset = AO_RTI_PWR_CNTL_REG0,
- 		.mask = 0x1,
-@@ -200,68 +200,74 @@ static struct clk_regmap axg_aoclk_clk81 = {
- 		.flags = CLK_MUX_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
-+		/*
-+		 * NOTE: this is one of the infamous clock the pwm driver
-+		 * can request directly by its global name. It's wrong but
-+		 * there is not much we can do about it until the support
-+		 * for the old pwm bindings is dropped
-+		 */
- 		.name = "axg_ao_clk81",
- 		.ops = &clk_regmap_mux_ro_ops,
- 		.parent_data = (const struct clk_parent_data []) {
- 			{ .fw_name = "mpeg-clk", },
--			{ .hw = &axg_aoclk_cts_rtc_oscin.hw },
-+			{ .hw = &axg_ao_cts_rtc_oscin.hw },
- 		},
- 		.num_parents = 2,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static struct clk_regmap axg_aoclk_saradc_mux = {
-+static struct clk_regmap axg_ao_saradc_mux = {
- 	.data = &(struct clk_regmap_mux_data) {
- 		.offset = AO_SAR_CLK,
- 		.mask = 0x3,
- 		.shift = 9,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "axg_ao_saradc_mux",
-+		.name = "ao_saradc_mux",
- 		.ops = &clk_regmap_mux_ops,
- 		.parent_data = (const struct clk_parent_data []) {
- 			{ .fw_name = "xtal", },
--			{ .hw = &axg_aoclk_clk81.hw },
-+			{ .hw = &axg_ao_clk81.hw },
- 		},
- 		.num_parents = 2,
- 	},
- };
- 
--static struct clk_regmap axg_aoclk_saradc_div = {
-+static struct clk_regmap axg_ao_saradc_div = {
- 	.data = &(struct clk_regmap_div_data) {
- 		.offset = AO_SAR_CLK,
- 		.shift = 0,
- 		.width = 8,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "axg_ao_saradc_div",
-+		.name = "ao_saradc_div",
- 		.ops = &clk_regmap_divider_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&axg_aoclk_saradc_mux.hw
-+			&axg_ao_saradc_mux.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static struct clk_regmap axg_aoclk_saradc_gate = {
-+static struct clk_regmap axg_ao_saradc_gate = {
- 	.data = &(struct clk_regmap_gate_data) {
- 		.offset = AO_SAR_CLK,
- 		.bit_idx = 8,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "axg_ao_saradc_gate",
-+		.name = "ao_saradc_gate",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&axg_aoclk_saradc_div.hw
-+			&axg_ao_saradc_div.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static const unsigned int axg_aoclk_reset[] = {
-+static const unsigned int axg_ao_reset[] = {
- 	[RESET_AO_REMOTE]	= 16,
- 	[RESET_AO_I2C_MASTER]	= 18,
- 	[RESET_AO_I2C_SLAVE]	= 19,
-@@ -270,53 +276,53 @@ static const unsigned int axg_aoclk_reset[] = {
- 	[RESET_AO_IR_BLASTER]	= 23,
- };
- 
--static struct clk_hw *axg_aoclk_hw_clks[] = {
--	[CLKID_AO_REMOTE]	= &axg_aoclk_remote.hw,
--	[CLKID_AO_I2C_MASTER]	= &axg_aoclk_i2c_master.hw,
--	[CLKID_AO_I2C_SLAVE]	= &axg_aoclk_i2c_slave.hw,
--	[CLKID_AO_UART1]	= &axg_aoclk_uart1.hw,
--	[CLKID_AO_UART2]	= &axg_aoclk_uart2.hw,
--	[CLKID_AO_IR_BLASTER]	= &axg_aoclk_ir_blaster.hw,
--	[CLKID_AO_SAR_ADC]	= &axg_aoclk_saradc.hw,
--	[CLKID_AO_CLK81]	= &axg_aoclk_clk81.hw,
--	[CLKID_AO_SAR_ADC_SEL]	= &axg_aoclk_saradc_mux.hw,
--	[CLKID_AO_SAR_ADC_DIV]	= &axg_aoclk_saradc_div.hw,
--	[CLKID_AO_SAR_ADC_CLK]	= &axg_aoclk_saradc_gate.hw,
--	[CLKID_AO_CTS_OSCIN]	= &axg_aoclk_cts_oscin.hw,
--	[CLKID_AO_32K_PRE]	= &axg_aoclk_32k_pre.hw,
--	[CLKID_AO_32K_DIV]	= &axg_aoclk_32k_div.hw,
--	[CLKID_AO_32K_SEL]	= &axg_aoclk_32k_sel.hw,
--	[CLKID_AO_32K]		= &axg_aoclk_32k.hw,
--	[CLKID_AO_CTS_RTC_OSCIN] = &axg_aoclk_cts_rtc_oscin.hw,
-+static struct clk_hw *axg_ao_hw_clks[] = {
-+	[CLKID_AO_REMOTE]	= &axg_ao_remote.hw,
-+	[CLKID_AO_I2C_MASTER]	= &axg_ao_i2c_master.hw,
-+	[CLKID_AO_I2C_SLAVE]	= &axg_ao_i2c_slave.hw,
-+	[CLKID_AO_UART1]	= &axg_ao_uart1.hw,
-+	[CLKID_AO_UART2]	= &axg_ao_uart2.hw,
-+	[CLKID_AO_IR_BLASTER]	= &axg_ao_ir_blaster.hw,
-+	[CLKID_AO_SAR_ADC]	= &axg_ao_saradc.hw,
-+	[CLKID_AO_CLK81]	= &axg_ao_clk81.hw,
-+	[CLKID_AO_SAR_ADC_SEL]	= &axg_ao_saradc_mux.hw,
-+	[CLKID_AO_SAR_ADC_DIV]	= &axg_ao_saradc_div.hw,
-+	[CLKID_AO_SAR_ADC_CLK]	= &axg_ao_saradc_gate.hw,
-+	[CLKID_AO_CTS_OSCIN]	= &axg_ao_cts_oscin.hw,
-+	[CLKID_AO_32K_PRE]	= &axg_ao_32k_pre.hw,
-+	[CLKID_AO_32K_DIV]	= &axg_ao_32k_div.hw,
-+	[CLKID_AO_32K_SEL]	= &axg_ao_32k_sel.hw,
-+	[CLKID_AO_32K]		= &axg_ao_32k.hw,
-+	[CLKID_AO_CTS_RTC_OSCIN] = &axg_ao_cts_rtc_oscin.hw,
- };
- 
--static const struct meson_aoclk_data axg_aoclkc_data = {
-+static const struct meson_aoclk_data axg_ao_clkc_data = {
- 	.reset_reg	= AO_RTI_GEN_CNTL_REG0,
--	.num_reset	= ARRAY_SIZE(axg_aoclk_reset),
--	.reset		= axg_aoclk_reset,
-+	.num_reset	= ARRAY_SIZE(axg_ao_reset),
-+	.reset		= axg_ao_reset,
- 	.hw_clks	= {
--		.hws	= axg_aoclk_hw_clks,
--		.num	= ARRAY_SIZE(axg_aoclk_hw_clks),
-+		.hws	= axg_ao_hw_clks,
-+		.num	= ARRAY_SIZE(axg_ao_hw_clks),
- 	},
- };
- 
--static const struct of_device_id axg_aoclkc_match_table[] = {
-+static const struct of_device_id axg_ao_clkc_match_table[] = {
- 	{
- 		.compatible	= "amlogic,meson-axg-aoclkc",
--		.data		= &axg_aoclkc_data,
-+		.data		= &axg_ao_clkc_data,
- 	},
- 	{ }
- };
--MODULE_DEVICE_TABLE(of, axg_aoclkc_match_table);
-+MODULE_DEVICE_TABLE(of, axg_ao_clkc_match_table);
- 
--static struct platform_driver axg_aoclkc_driver = {
-+static struct platform_driver axg_ao_clkc_driver = {
- 	.probe		= meson_aoclkc_probe,
- 	.driver		= {
--		.name	= "axg-aoclkc",
--		.of_match_table = axg_aoclkc_match_table,
-+		.name	= "axg-ao-clkc",
-+		.of_match_table = axg_ao_clkc_match_table,
- 	},
- };
--module_platform_driver(axg_aoclkc_driver);
-+module_platform_driver(axg_ao_clkc_driver);
- 
- MODULE_DESCRIPTION("Amlogic AXG Always-ON Clock Controller driver");
- MODULE_LICENSE("GPL");
+ drivers/clk/meson/Kconfig            |   13 +-
+ drivers/clk/meson/Makefile           |    1 -
+ drivers/clk/meson/a1-peripherals.c   |  995 +++++-----
+ drivers/clk/meson/a1-pll.c           |  124 +-
+ drivers/clk/meson/axg-aoclk.c        |  153 +-
+ drivers/clk/meson/axg.c              |  237 +--
+ drivers/clk/meson/c3-peripherals.c   | 2055 ++++++---------------
+ drivers/clk/meson/c3-pll.c           |  245 ++-
+ drivers/clk/meson/clk-regmap.h       |   20 -
+ drivers/clk/meson/g12a-aoclk.c       |  238 +--
+ drivers/clk/meson/g12a.c             | 3316 +++++++++++++++++-----------------
+ drivers/clk/meson/gxbb-aoclk.c       |  123 +-
+ drivers/clk/meson/gxbb.c             |  611 ++++---
+ drivers/clk/meson/meson-aoclk.c      |   32 +-
+ drivers/clk/meson/meson-aoclk.h      |    2 +-
+ drivers/clk/meson/meson-clkc-utils.c |   89 +-
+ drivers/clk/meson/meson-clkc-utils.h |   89 +
+ drivers/clk/meson/meson-eeclk.c      |   60 -
+ drivers/clk/meson/meson-eeclk.h      |   24 -
+ drivers/clk/meson/meson8-ddr.c       |   62 +-
+ drivers/clk/meson/meson8b.c          |  746 ++++----
+ drivers/clk/meson/s4-peripherals.c   | 1160 ++++--------
+ drivers/clk/meson/s4-pll.c           |   82 +-
+ 23 files changed, 4437 insertions(+), 6040 deletions(-)
+---
+base-commit: 2c37e1c671428002519e7615d786b9b692261052
+change-id: 20241211-meson-clk-cleanup-24-41cbe1924619
 
+Best regards,
 -- 
-2.47.2
+Jerome
 
 
 _______________________________________________
