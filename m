@@ -4,75 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02F7BC83F07
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jul 2025 16:37:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A338DC83F05
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jul 2025 16:37:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VX1JehYpjTAqYPcynzcV84KAYDcQ/lezw8d2NC3k3gU=; b=XmVhEB2xPeO/cd
-	w4JUe8S5ZiNpjaN3taKxBlkG+obQjc65H/kwY5uULGKsSgr+KjcEZdE0ly0GaEoCB4O5g6ShzbfbH
-	tXYws2oILMVJkbiTilRJ0X3eba6JVeiAKA4KeK8KOmam2GFnzi0NVT+f1zJ4+DnYE+PvwFXylFIdn
-	pvS9rDlNzJ6DMt62TmokYldjBt0B+rqlglnA9bcNNWc/1pPyTGOOHljtWXsIHWIht1Ij7wQoI2mSL
-	30Du+2gs2sWtxh45xHRKyrv0w2nol7U+tSFTPMLQwZERpqPYeh7kvhXuz8ohcFLUlgkzuI20pbPgm
-	7Z6dqnZ6SuqmTsQC1OgQ==;
+	List-Owner; bh=X/N4EQ0AGynVuYgyi/3NzghGCH61NhBRynEgDzcsln4=; b=H3nV5AWnxSk4As
+	gM58pJoTrhyi89/hxKJDyiSdy9puGKbMOI0Pbdq9Hydp1mQqHbQKrb32HJgNqfihe6IWjC6MIAO/T
+	Yj04/bVU++69SNh0iNFKQXotLj4DOtCgGOex0zCymxoie9PRlU6FMeniK13INKsOWhVinZlKH5iy7
+	oSCfujzfEwlKgcCu3n6MoMwumEleVX4MAd8k4UHXKXJX2D4m6HIz6EhvfQVRc1RnFW6Yhlw3RYNwC
+	3SvqyqMeRxQ2SdOCUDycZhTAsHs8jLVB/l710c7464Hne/cYGTzxYxD6F9wOL/OLARZm2e88qm9pm
+	e7jl7vju8ryhlgiViFhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uX0Sq-00000008yW0-3nqc;
-	Wed, 02 Jul 2025 16:37:40 +0000
-Received: from mail-wm1-f52.google.com ([209.85.128.52])
+	id 1uX0So-00000008yUg-3Gfc;
+	Wed, 02 Jul 2025 16:37:38 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWzMn-00000008msO-34We
+	id 1uWzMi-00000008mqT-1Zku
 	for linux-amlogic@lists.infradead.org;
-	Wed, 02 Jul 2025 15:27:23 +0000
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-450ccda1a6eso37064165e9.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 02 Jul 2025 08:27:21 -0700 (PDT)
+	Wed, 02 Jul 2025 15:27:17 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4537deebb01so24558935e9.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 02 Jul 2025 08:27:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751470040; x=1752074840; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751470035; x=1752074835; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=u2vfHycaQ2aNX5ou5BTAjuhhA7Heobv0edIIPsMPx08=;
-        b=LFkx4bd1e3P7ROHzDu1BRy8Ld0yPLT5/dkxAbY1lBNnj5PC0J7/M/CRPec85R2C5Dt
-         Cz5O90nwntpsn42/Vc7mNXzBnyGFoqH622CisiAOIrml9M3RCvGcqpHDC9SRQ5l6QTQ2
-         WnOQTxzlqEd88KtHIsL0PxhZrWMQDhB4N+BRsjkB1e3iLxIovCJBf09usXr1UtvcNLeC
-         d+yw5zF5aC8j5MtCE3EkrYRFJx/15/bcRIQcCRLB+5G030kZzKBcNry8wIQ+nU/CMwXT
-         jv5Z7G8t9BklClG+B8w9oyrC68VCU9uqdysRS7PslxDDKj3sp5nOwkcRpIZtvnm5OdtV
-         zmEw==
+        bh=BXRvwlWjT/EyQOfphmccZKzVxuD7M62GOWYIY7jzqaI=;
+        b=w+ipSZkTcaO0iSES0t4YTeblqXbOdV1ciblB69tPNyrr2Vjixs1O0qfysMNac0+Xzm
+         CXTyUmZnbkgUutce0+NdaXS6+6yJfk/TOK5FlgJ79v3Y2SqeTmJ3qT+ZkQ9NQnUBm3vM
+         vWuajluhTaCg0FnQeFYmTdnM3noaZ/DXmGBnUR8xYuqPAhTC5bAeaZf/mgUJVLpGgawV
+         zr4rnsR+OMlXCDA5qYNPNejLfGHDwjMz3qMAUJTi+28bnotPVqUqyL5e3MNpuVDkNLLE
+         ifK9LgQEz4+4ZV3jRjkuwI9iD1UwmBre6v1sVUm/u+LUMVJi2K1X4IWnwXdt2afYTYc7
+         baww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751470040; x=1752074840;
+        d=1e100.net; s=20230601; t=1751470035; x=1752074835;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=u2vfHycaQ2aNX5ou5BTAjuhhA7Heobv0edIIPsMPx08=;
-        b=wvWvy0vojJB2CseSBe09a3qu5JWqdDuaLHNXni74OywsaRxe+OJ3z5UsCbJk+65lCQ
-         cZb+9JX2Z/s9tA8AkvAFrzsutUSp1lSJG+w6eGT4u159n779bj4SjQJSeQKTbE5K6X6R
-         ofQm/Fu7+75XlIv7+TZ17WyKxUpdyF3M8mXBoSqRBEGviNTwFgtN8Due6IfW/ehT07XV
-         XMdNWcypHRNKQKRQfL5kbDfb46qYuwrXSRgldEgmARO8vX+JlwxUlPBwlp6jSrooQvRc
-         Hv9V4i7bAgA8lkygEjK3eAt2ZWI9uywKhpUSRO87t0gyMvJTDb3HYIKLJGAWq4tmaJd6
-         2foQ==
-X-Gm-Message-State: AOJu0YzNalL3FZAJnm0OWkFm1OIz9/8bhcYlkqkFLFAA5U6njz8UwSOr
-	Qtwtad3UhlX85U91EWg3QXIENH80BD6WstPa0yioLVwAWt0cCI2suK6QT24ZNu99eXs=
-X-Gm-Gg: ASbGncuoBdSog2I32V89Vti31/dWuuyxiivlYko9FJIFgC42kktpYcD1+ko4huY/BPU
-	tijYIc7cXVhVn2KPdqgqXP+CoCQJ1y8UEyZWj7J5vPHIjDKJ7rgXon1aQr8uQYZTvPOGgdJ9UjD
-	uiIwnTgusYO7cuJ3MwGPMqeRqhDAcJZlwm7K7u3bj/rUd57GCEAir2xZxnjBb082X6A/JHZ3U7P
-	J3I/HMjlL0jlxbSO9jKrx/Mr63pjSXgR6lLWmGyBEFjl5u4dS1N00IONla8FEhlvWVeTs4iiY++
-	SaDQcEYafD2i6D7rGe7mx+Kg3zIo2/YTNewXVf1CXCNQpuqocD8eLjrAlXVqyr9YkhiVCO0qOWY
-	UQWnmZ8E9rl4=
-X-Google-Smtp-Source: AGHT+IHrchYGzHcs365qgBIDfY4hWYgsXuOd+9UXpsgNmD//bFzA+LvPvKmwJzVDPkDG+oas69aMJg==
-X-Received: by 2002:a05:6000:21c3:b0:3a0:b940:d479 with SMTP id ffacd0b85a97d-3b2012f8716mr1840043f8f.53.1751470039784;
-        Wed, 02 Jul 2025 08:27:19 -0700 (PDT)
+        bh=BXRvwlWjT/EyQOfphmccZKzVxuD7M62GOWYIY7jzqaI=;
+        b=RSjDaZOGo3dHEUU4b6yTCyMY3oJbT7BD02VCbQiUKfCAM66+xMse5eBSUhNjWhNSHi
+         UgbJVdCKCeqmPS1zQn1pluDvyrEilhBCPseRbwmpBJ6n7/xQpkVIPZhLhlntkJU3CqQD
+         bCl/rKX6DyuHuWICPdJhXmC4Gb2rKDg4NB/LpYOuyS4co+VokwIjYrD+Xh2STJtXc5eZ
+         KvIQVY5Be95rwW9FOA0/Zs5r+ZNRLqPcdz1SBntsLgjwkTgS6RVgKqE1JUQ7cwkLxNsK
+         VCcKG3V34RdwIFZl//0xKId7so+e5AwfHNhXnbHremr6Q/TSSPRIXOyFSg/V3CwGHcbh
+         QHPw==
+X-Gm-Message-State: AOJu0Yw5mzeEPq9L8C4PYRr3neWdtMr9nfLl7Uoa4zdk47cE1rz5Pq5f
+	po4XVxF+2+loxsdmnjC3CMdBc1yZm4sSVeZx7QbJ6Qs0gD1jtUP4RDN/NXegoF+jXZiDwChhA+/
+	vVqZ3
+X-Gm-Gg: ASbGncsBP0fLECIU+4W2hhPTW6VacS0mWCMogLH1ko9PnycZXcqvXGSj+IJDp45XlrF
+	eZ2ZUPaYVUDGGW74964yzEclB0MQFkP6WFVb4Q5sZiMmia4NleUbHrKbm0EcSNpL29rtZ3xPI58
+	vkqUIJ7tBKXV3dDWqAmPhjX4w7Uw0ZFatTV8o0UGyKgnSbh53igF7CXfreyzNMSbVp9q8vPk6rT
+	j+bLcKVhgZMOxb1RErc4xCM+FqDFkV6ZFGnKJ0qPcDn0UAu9OtlpGz+qjZjr0P0e6FEKS+5JfzJ
+	UwdAQ+gXehKYj1Ro5anXiw/v8izHq1M35JwGMxd+aSBAi+b7JVjBfu4kUkZdtDpdSi1ZnfdyjUg
+	682t6wnmX8u4=
+X-Google-Smtp-Source: AGHT+IG13relPt+fMaFDnlo9fAhiV1HPr4nnHmg8XsHo+YKVo10+/irbdtgHzgJWZrReIhNPCk7xUQ==
+X-Received: by 2002:a05:600c:37c7:b0:453:1058:f8aa with SMTP id 5b1f17b1804b1-454a36ec3fdmr40711705e9.15.1751470034729;
+        Wed, 02 Jul 2025 08:27:14 -0700 (PDT)
 Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:5542:4bad:e07b:9489])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-454a9bcf35csm869205e9.20.2025.07.02.08.27.18
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-454a9bcf35csm869205e9.20.2025.07.02.08.27.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 08:27:19 -0700 (PDT)
+        Wed, 02 Jul 2025 08:27:14 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Wed, 02 Jul 2025 17:26:05 +0200
-Subject: [PATCH 07/26] clk: amlogic: g12a-ao: naming consistency alignment
+Date: Wed, 02 Jul 2025 17:26:00 +0200
+Subject: [PATCH 02/26] clk: amlogic: a1-pll: naming consistency alignment
 MIME-Version: 1.0
-Message-Id: <20250702-meson-clk-cleanup-24-v1-7-e163c9a1fc21@baylibre.com>
+Message-Id: <20250702-meson-clk-cleanup-24-v1-2-e163c9a1fc21@baylibre.com>
 References: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
 In-Reply-To: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -82,25 +83,25 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=16330; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=BsDu7/Vg0WHtN39FndrGjMoc90Hoc0+X58Lv9FeO4RQ=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBoZU+9h7P8ICiND7ba6ymWgC5onAbiTMEm5yt08
- W8HqknbJ3uJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaGVPvQAKCRDm/A8cN/La
- hbWAD/4u8dcP+a8IX5wX6ILqSuVAa0mOoWUAyajDMCogZbg5BQ8vJh0RcDFLFcaQ/4/L4RBcLjc
- /4wxgQz2I8DAOITsQI99XrT3+0FjvLqlkcdByP5aJ6u4Oz8zgolME1MCDrzGuYNtI35ttsNIhZO
- GEk8JepNd6lXVA0hdcbdYRkeSVsCTl8Cq0UWHh019Kem7ficqF9uh7YFtqcyKnGpN/XHFE+a9KY
- fuhj1Wi9/QX9zU74qZrARsba4zPI6tEcpVAxYwbVSxNfRRlMmJ7IENlUsPd02e67mJLFG4iZIUY
- l/rmUOgbzcyFsedg0iSorX6Nxopw7QoBr9QClYJL+htuFY8ePYpRLtdcie0OfyT+WFAH/P5ZHJL
- xLCzABb4cd06XydCUFLdZ7gGlV/k1YuU99Jc3+CC9R/9h94yy/wIFeRGzoEh2wqY2L+ytIlwlad
- AafFzRWfYBjWr0L7TqV9LGhAlxRE7Kw2GoG/nBn6Qi0FJInArD2kGsg5p1PicX4W+yOy9JISrYk
- EU+l8qkoP/ejzFyWxl0XQ38gjKFM3GCDEoKg8YDzNe40fLQNpjl+TzRWXk5LmE8b/Ky/caPv1JD
- DQZrBik6lfi1viXT+AwrK1V/DZwjYoWN8r1brxlec6vfif0Xmd7u3aJMyyOqsJumUf5Qm6jx63G
- ll1srfS0NEnBHPA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8963; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=V/ioS7Ec7Cg3YTVk3xhhI9osc4/59GAF44moXsR7xyM=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBoZU+4k+xXNM/NC4iV1vrZpHpGmopZVtnCb0tqt
+ pisbMy7xBCJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaGVPuAAKCRDm/A8cN/La
+ hReOD/9CXpTsL9ZauAqvRLJMuDtAb+fuwpo2MD5qs8MkAxpcg2Ds9oT4vwOAf/FAldy6pb2zCLa
+ 96K60+tTKuf1IHl/uxgWN8LvCyZhGNy3ugUdBieO4XedTpZaPdkrOBPYDK/yC4OtsRRgEGqAW35
+ QaYhhbnrKijVjawLt//EQhf88wiqhIa8aKNzMWLj0lB4QvqhTmk5ChCIpAPberW7JEsbcuQO+9p
+ 3wP+BYdevSl7ktgH0MfVsI6xLC4bdKOM+Eca6jVNHDyM6JBEBtYbqgmQ8wgq9ayDn5ox3ccIoeW
+ 0C436LxcG30mHCkZhH8d5w+0rffTk29vEIKVCt+f6FcnerM0O8RHk4eZRIANi0wy/yumPZ3m+z1
+ qPxNMW2y0KnFqGlmEO3sV4HsdpfywEtgyIZIwsWfSfXSxy9iRb223HjB6raqYxkq9hz2JxMCfZv
+ E4yFS9oVGEb1MmzHxDy7BBEKzjRBnqfT8eQPqgqFOM5kZS0CGmU+R3j6mnSqvj7VBZk1kMuOpXS
+ 7pNvkEAM4e10YhJxdmi4JYILyEHsiTErdX0miMuhE0JapF9vMZBM3wl+GP6Mghb6BdMy+IiDvvr
+ reQ9Djqg7/dMSRD9Th6Bc8w8NFG/BDEupYXzGdlH6pFPqksom4Zuzyb7hEA5UL68raZuQMV33rL
+ tbXMo/Co4+z1QVA==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250702_082721_785997_CDE73EB8 
-X-CRM114-Status: GOOD (  18.47  )
+X-CRM114-CacheID: sfid-20250702_082716_425222_DA8551C2 
+X-CRM114-Status: GOOD (  16.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,450 +147,254 @@ review and maintenance easier.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/g12a-aoclk.c | 207 +++++++++++++++++++++--------------------
- 1 file changed, 107 insertions(+), 100 deletions(-)
+ drivers/clk/meson/a1-pll.c | 76 +++++++++++++++++++++++-----------------------
+ 1 file changed, 38 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/clk/meson/g12a-aoclk.c b/drivers/clk/meson/g12a-aoclk.c
-index 4095a1b2bb80ee430f8aeb56cbcf5ed549188781..3eaf1db16f45a0adf0acd901ed7ae1f51a9c8dc1 100644
---- a/drivers/clk/meson/g12a-aoclk.c
-+++ b/drivers/clk/meson/g12a-aoclk.c
-@@ -43,8 +43,8 @@
-  * bootloader. The goal is to remove this flag at some point.
-  * Actually removing it will require some extensive test to be done safely.
-  */
--#define AXG_AO_GATE(_name, _reg, _bit)					\
--static struct clk_regmap g12a_aoclk_##_name = {				\
-+#define G12A_AO_PCLK(_name, _reg, _bit)					\
-+static struct clk_regmap g12a_ao_##_name = {				\
- 	.data = &(struct clk_regmap_gate_data) {			\
- 		.offset = (_reg),					\
- 		.bit_idx = (_bit),					\
-@@ -60,23 +60,24 @@ static struct clk_regmap g12a_aoclk_##_name = {				\
- 	},								\
- }
+diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+index dabd4fad1f57bdfa1d755298cd07a48d345e56a9..79ef4cbe955326ecedceb68cda7f59bb8882b165 100644
+--- a/drivers/clk/meson/a1-pll.c
++++ b/drivers/clk/meson/a1-pll.c
+@@ -26,7 +26,7 @@
  
--AXG_AO_GATE(ahb, AO_CLK_GATE0, 0);
--AXG_AO_GATE(ir_in, AO_CLK_GATE0, 1);
--AXG_AO_GATE(i2c_m0, AO_CLK_GATE0, 2);
--AXG_AO_GATE(i2c_s0, AO_CLK_GATE0, 3);
--AXG_AO_GATE(uart, AO_CLK_GATE0, 4);
--AXG_AO_GATE(prod_i2c, AO_CLK_GATE0, 5);
--AXG_AO_GATE(uart2, AO_CLK_GATE0, 6);
--AXG_AO_GATE(ir_out, AO_CLK_GATE0, 7);
--AXG_AO_GATE(saradc, AO_CLK_GATE0, 8);
--AXG_AO_GATE(mailbox, AO_CLK_GATE0_SP, 0);
--AXG_AO_GATE(m3, AO_CLK_GATE0_SP, 1);
--AXG_AO_GATE(ahb_sram, AO_CLK_GATE0_SP, 2);
--AXG_AO_GATE(rti, AO_CLK_GATE0_SP, 3);
--AXG_AO_GATE(m4_fclk, AO_CLK_GATE0_SP, 4);
--AXG_AO_GATE(m4_hclk, AO_CLK_GATE0_SP, 5);
-+G12A_AO_PCLK(ahb,	AO_CLK_GATE0,    0);
-+G12A_AO_PCLK(ir_in,	AO_CLK_GATE0,    1);
-+G12A_AO_PCLK(i2c_m0,	AO_CLK_GATE0,    2);
-+G12A_AO_PCLK(i2c_s0,	AO_CLK_GATE0,    3);
-+G12A_AO_PCLK(uart,	AO_CLK_GATE0,    4);
-+G12A_AO_PCLK(prod_i2c,	AO_CLK_GATE0,    5);
-+G12A_AO_PCLK(uart2,	AO_CLK_GATE0,    6);
-+G12A_AO_PCLK(ir_out,	AO_CLK_GATE0,    7);
-+G12A_AO_PCLK(saradc,	AO_CLK_GATE0,    8);
+ #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
  
--static struct clk_regmap g12a_aoclk_cts_oscin = {
-+G12A_AO_PCLK(mailbox,	AO_CLK_GATE0_SP, 0);
-+G12A_AO_PCLK(m3,	AO_CLK_GATE0_SP, 1);
-+G12A_AO_PCLK(ahb_sram,	AO_CLK_GATE0_SP, 2);
-+G12A_AO_PCLK(rti,	AO_CLK_GATE0_SP, 3);
-+G12A_AO_PCLK(m4_fclk,	AO_CLK_GATE0_SP, 4);
-+G12A_AO_PCLK(m4_hclk,	AO_CLK_GATE0_SP, 5);
-+
-+static struct clk_regmap g12a_ao_cts_oscin = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = AO_RTI_PWR_CNTL_REG0,
- 		.bit_idx = 14,
-@@ -103,22 +104,22 @@ static const struct meson_clk_dualdiv_param g12a_32k_div_table[] = {
- 
- /* 32k_by_oscin clock */
- 
--static struct clk_regmap g12a_aoclk_32k_by_oscin_pre = {
-+static struct clk_regmap g12a_ao_32k_by_oscin_pre = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = AO_RTC_ALT_CLK_CNTL0,
- 		.bit_idx = 31,
+-static struct clk_regmap fixed_pll_dco = {
++static struct clk_regmap a1_fixed_pll_dco = {
+ 	.data = &(struct meson_clk_pll_data){
+ 		.en = {
+ 			.reg_off = ANACTRL_FIXPLL_CTRL0,
+@@ -69,7 +69,7 @@ static struct clk_regmap fixed_pll_dco = {
  	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_32k_by_oscin_pre",
-+		.name = "ao_32k_by_oscin_pre",
+ };
+ 
+-static struct clk_regmap fixed_pll = {
++static struct clk_regmap a1_fixed_pll = {
+ 	.data = &(struct clk_regmap_gate_data){
+ 		.offset = ANACTRL_FIXPLL_CTRL0,
+ 		.bit_idx = 20,
+@@ -78,18 +78,18 @@ static struct clk_regmap fixed_pll = {
+ 		.name = "fixed_pll",
  		.ops = &clk_regmap_gate_ops,
  		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_aoclk_cts_oscin.hw
-+			&g12a_ao_cts_oscin.hw
+-			&fixed_pll_dco.hw
++			&a1_fixed_pll_dco.hw
  		},
  		.num_parents = 1,
  	},
  };
  
--static struct clk_regmap g12a_aoclk_32k_by_oscin_div = {
-+static struct clk_regmap g12a_ao_32k_by_oscin_div = {
- 	.data = &(struct meson_clk_dualdiv_data){
- 		.n1 = {
- 			.reg_off = AO_RTC_ALT_CLK_CNTL0,
-@@ -148,16 +149,16 @@ static struct clk_regmap g12a_aoclk_32k_by_oscin_div = {
- 		.table = g12a_32k_div_table,
+-static const struct pll_mult_range hifi_pll_mult_range = {
++static const struct pll_mult_range a1_hifi_pll_range = {
+ 	.min = 32,
+ 	.max = 64,
+ };
+ 
+-static const struct reg_sequence hifi_init_regs[] = {
++static const struct reg_sequence a1_hifi_pll_init_regs[] = {
+ 	{ .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x01800000 },
+ 	{ .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001100 },
+ 	{ .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x100a1100 },
+@@ -97,7 +97,7 @@ static const struct reg_sequence hifi_init_regs[] = {
+ 	{ .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x01f18000 },
+ };
+ 
+-static struct clk_regmap hifi_pll = {
++static struct clk_regmap a1_hifi_pll = {
+ 	.data = &(struct meson_clk_pll_data){
+ 		.en = {
+ 			.reg_off = ANACTRL_HIFIPLL_CTRL0,
+@@ -134,9 +134,9 @@ static struct clk_regmap hifi_pll = {
+ 			.shift   = 6,
+ 			.width   = 1,
+ 		},
+-		.range = &hifi_pll_mult_range,
+-		.init_regs = hifi_init_regs,
+-		.init_count = ARRAY_SIZE(hifi_init_regs),
++		.range = &a1_hifi_pll_range,
++		.init_regs = a1_hifi_pll_init_regs,
++		.init_count = ARRAY_SIZE(a1_hifi_pll_init_regs),
  	},
  	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_32k_by_oscin_div",
-+		.name = "ao_32k_by_oscin_div",
- 		.ops = &meson_clk_dualdiv_ops,
+ 		.name = "hifi_pll",
+@@ -148,20 +148,20 @@ static struct clk_regmap hifi_pll = {
+ 	},
+ };
+ 
+-static struct clk_fixed_factor fclk_div2_div = {
++static struct clk_fixed_factor a1_fclk_div2_div = {
+ 	.mult = 1,
+ 	.div = 2,
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "fclk_div2_div",
+ 		.ops = &clk_fixed_factor_ops,
  		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_aoclk_32k_by_oscin_pre.hw
-+			&g12a_ao_32k_by_oscin_pre.hw
+-			&fixed_pll.hw
++			&a1_fixed_pll.hw
  		},
  		.num_parents = 1,
  	},
  };
  
--static struct clk_regmap g12a_aoclk_32k_by_oscin_sel = {
-+static struct clk_regmap g12a_ao_32k_by_oscin_sel = {
- 	.data = &(struct clk_regmap_mux_data) {
- 		.offset = AO_RTC_ALT_CLK_CNTL1,
- 		.mask = 0x1,
-@@ -165,27 +166,27 @@ static struct clk_regmap g12a_aoclk_32k_by_oscin_sel = {
- 		.flags = CLK_MUX_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_32k_by_oscin_sel",
-+		.name = "ao_32k_by_oscin_sel",
- 		.ops = &clk_regmap_mux_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_aoclk_32k_by_oscin_div.hw,
--			&g12a_aoclk_32k_by_oscin_pre.hw,
-+			&g12a_ao_32k_by_oscin_div.hw,
-+			&g12a_ao_32k_by_oscin_pre.hw,
- 		},
- 		.num_parents = 2,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static struct clk_regmap g12a_aoclk_32k_by_oscin = {
-+static struct clk_regmap g12a_ao_32k_by_oscin = {
+-static struct clk_regmap fclk_div2 = {
++static struct clk_regmap a1_fclk_div2 = {
  	.data = &(struct clk_regmap_gate_data){
- 		.offset = AO_RTC_ALT_CLK_CNTL0,
- 		.bit_idx = 30,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_32k_by_oscin",
-+		.name = "ao_32k_by_oscin",
+ 		.offset = ANACTRL_FIXPLL_CTRL0,
+ 		.bit_idx = 21,
+@@ -170,7 +170,7 @@ static struct clk_regmap fclk_div2 = {
+ 		.name = "fclk_div2",
  		.ops = &clk_regmap_gate_ops,
  		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_aoclk_32k_by_oscin_sel.hw
-+			&g12a_ao_32k_by_oscin_sel.hw
+-			&fclk_div2_div.hw
++			&a1_fclk_div2_div.hw
  		},
  		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
-@@ -194,22 +195,22 @@ static struct clk_regmap g12a_aoclk_32k_by_oscin = {
+ 		/*
+@@ -186,20 +186,20 @@ static struct clk_regmap fclk_div2 = {
+ 	},
+ };
  
- /* cec clock */
+-static struct clk_fixed_factor fclk_div3_div = {
++static struct clk_fixed_factor a1_fclk_div3_div = {
+ 	.mult = 1,
+ 	.div = 3,
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "fclk_div3_div",
+ 		.ops = &clk_fixed_factor_ops,
+ 		.parent_hws = (const struct clk_hw *[]) {
+-			&fixed_pll.hw
++			&a1_fixed_pll.hw
+ 		},
+ 		.num_parents = 1,
+ 	},
+ };
  
--static struct clk_regmap g12a_aoclk_cec_pre = {
-+static struct clk_regmap g12a_ao_cec_pre = {
+-static struct clk_regmap fclk_div3 = {
++static struct clk_regmap a1_fclk_div3 = {
  	.data = &(struct clk_regmap_gate_data){
- 		.offset = AO_CEC_CLK_CNTL_REG0,
- 		.bit_idx = 31,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_cec_pre",
-+		.name = "ao_cec_pre",
+ 		.offset = ANACTRL_FIXPLL_CTRL0,
+ 		.bit_idx = 22,
+@@ -208,7 +208,7 @@ static struct clk_regmap fclk_div3 = {
+ 		.name = "fclk_div3",
  		.ops = &clk_regmap_gate_ops,
  		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_aoclk_cts_oscin.hw
-+			&g12a_ao_cts_oscin.hw
+-			&fclk_div3_div.hw
++			&a1_fclk_div3_div.hw
+ 		},
+ 		.num_parents = 1,
+ 		/*
+@@ -219,20 +219,20 @@ static struct clk_regmap fclk_div3 = {
+ 	},
+ };
+ 
+-static struct clk_fixed_factor fclk_div5_div = {
++static struct clk_fixed_factor a1_fclk_div5_div = {
+ 	.mult = 1,
+ 	.div = 5,
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "fclk_div5_div",
+ 		.ops = &clk_fixed_factor_ops,
+ 		.parent_hws = (const struct clk_hw *[]) {
+-			&fixed_pll.hw
++			&a1_fixed_pll.hw
  		},
  		.num_parents = 1,
  	},
  };
  
--static struct clk_regmap g12a_aoclk_cec_div = {
-+static struct clk_regmap g12a_ao_cec_div = {
- 	.data = &(struct meson_clk_dualdiv_data){
- 		.n1 = {
- 			.reg_off = AO_CEC_CLK_CNTL_REG0,
-@@ -239,16 +240,16 @@ static struct clk_regmap g12a_aoclk_cec_div = {
- 		.table = g12a_32k_div_table,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_cec_div",
-+		.name = "ao_cec_div",
- 		.ops = &meson_clk_dualdiv_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_aoclk_cec_pre.hw
-+			&g12a_ao_cec_pre.hw
- 		},
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_regmap g12a_aoclk_cec_sel = {
-+static struct clk_regmap g12a_ao_cec_sel = {
- 	.data = &(struct clk_regmap_mux_data) {
- 		.offset = AO_CEC_CLK_CNTL_REG1,
- 		.mask = 0x1,
-@@ -256,34 +257,34 @@ static struct clk_regmap g12a_aoclk_cec_sel = {
- 		.flags = CLK_MUX_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_cec_sel",
-+		.name = "ao_cec_sel",
- 		.ops = &clk_regmap_mux_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_aoclk_cec_div.hw,
--			&g12a_aoclk_cec_pre.hw,
-+			&g12a_ao_cec_div.hw,
-+			&g12a_ao_cec_pre.hw,
- 		},
- 		.num_parents = 2,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static struct clk_regmap g12a_aoclk_cec = {
-+static struct clk_regmap g12a_ao_cec = {
+-static struct clk_regmap fclk_div5 = {
++static struct clk_regmap a1_fclk_div5 = {
  	.data = &(struct clk_regmap_gate_data){
- 		.offset = AO_CEC_CLK_CNTL_REG0,
- 		.bit_idx = 30,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_cec",
-+		.name = "ao_cec",
+ 		.offset = ANACTRL_FIXPLL_CTRL0,
+ 		.bit_idx = 23,
+@@ -241,7 +241,7 @@ static struct clk_regmap fclk_div5 = {
+ 		.name = "fclk_div5",
  		.ops = &clk_regmap_gate_ops,
  		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_aoclk_cec_sel.hw
-+			&g12a_ao_cec_sel.hw
+-			&fclk_div5_div.hw
++			&a1_fclk_div5_div.hw
  		},
  		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
+ 		/*
+@@ -252,20 +252,20 @@ static struct clk_regmap fclk_div5 = {
  	},
  };
  
--static struct clk_regmap g12a_aoclk_cts_rtc_oscin = {
-+static struct clk_regmap g12a_ao_cts_rtc_oscin = {
- 	.data = &(struct clk_regmap_mux_data) {
- 		.offset = AO_RTI_PWR_CNTL_REG0,
- 		.mask = 0x1,
-@@ -291,10 +292,10 @@ static struct clk_regmap g12a_aoclk_cts_rtc_oscin = {
- 		.flags = CLK_MUX_ROUND_CLOSEST,
- 	},
+-static struct clk_fixed_factor fclk_div7_div = {
++static struct clk_fixed_factor a1_fclk_div7_div = {
+ 	.mult = 1,
+ 	.div = 7,
  	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_cts_rtc_oscin",
-+		.name = "ao_cts_rtc_oscin",
- 		.ops = &clk_regmap_mux_ops,
- 		.parent_data = (const struct clk_parent_data []) {
--			{ .hw = &g12a_aoclk_32k_by_oscin.hw },
-+			{ .hw = &g12a_ao_32k_by_oscin.hw },
- 			{ .fw_name = "ext-32k-0", },
- 		},
- 		.num_parents = 2,
-@@ -302,7 +303,7 @@ static struct clk_regmap g12a_aoclk_cts_rtc_oscin = {
- 	},
- };
- 
--static struct clk_regmap g12a_aoclk_clk81 = {
-+static struct clk_regmap g12a_ao_clk81 = {
- 	.data = &(struct clk_regmap_mux_data) {
- 		.offset = AO_RTI_PWR_CNTL_REG0,
- 		.mask = 0x1,
-@@ -310,68 +311,74 @@ static struct clk_regmap g12a_aoclk_clk81 = {
- 		.flags = CLK_MUX_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
-+		/*
-+		 * NOTE: this is one of the infamous clock the pwm driver
-+		 * can request directly by its global name. It's wrong but
-+		 * there is not much we can do about it until the support
-+		 * for the old pwm bindings is dropped
-+		 */
- 		.name = "g12a_ao_clk81",
- 		.ops = &clk_regmap_mux_ro_ops,
- 		.parent_data = (const struct clk_parent_data []) {
- 			{ .fw_name = "mpeg-clk", },
--			{ .hw = &g12a_aoclk_cts_rtc_oscin.hw },
-+			{ .hw = &g12a_ao_cts_rtc_oscin.hw },
- 		},
- 		.num_parents = 2,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static struct clk_regmap g12a_aoclk_saradc_mux = {
-+static struct clk_regmap g12a_ao_saradc_mux = {
- 	.data = &(struct clk_regmap_mux_data) {
- 		.offset = AO_SAR_CLK,
- 		.mask = 0x3,
- 		.shift = 9,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_saradc_mux",
-+		.name = "ao_saradc_mux",
- 		.ops = &clk_regmap_mux_ops,
- 		.parent_data = (const struct clk_parent_data []) {
- 			{ .fw_name = "xtal", },
--			{ .hw = &g12a_aoclk_clk81.hw },
-+			{ .hw = &g12a_ao_clk81.hw },
- 		},
- 		.num_parents = 2,
- 	},
- };
- 
--static struct clk_regmap g12a_aoclk_saradc_div = {
-+static struct clk_regmap g12a_ao_saradc_div = {
- 	.data = &(struct clk_regmap_div_data) {
- 		.offset = AO_SAR_CLK,
- 		.shift = 0,
- 		.width = 8,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_saradc_div",
-+		.name = "ao_saradc_div",
- 		.ops = &clk_regmap_divider_ops,
+ 		.name = "fclk_div7_div",
+ 		.ops = &clk_fixed_factor_ops,
  		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_aoclk_saradc_mux.hw
-+			&g12a_ao_saradc_mux.hw
+-			&fixed_pll.hw
++			&a1_fixed_pll.hw
  		},
  		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
  	},
  };
  
--static struct clk_regmap g12a_aoclk_saradc_gate = {
-+static struct clk_regmap g12a_ao_saradc_gate = {
- 	.data = &(struct clk_regmap_gate_data) {
- 		.offset = AO_SAR_CLK,
- 		.bit_idx = 8,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "g12a_ao_saradc_gate",
-+		.name = "ao_saradc_gate",
+-static struct clk_regmap fclk_div7 = {
++static struct clk_regmap a1_fclk_div7 = {
+ 	.data = &(struct clk_regmap_gate_data){
+ 		.offset = ANACTRL_FIXPLL_CTRL0,
+ 		.bit_idx = 24,
+@@ -274,7 +274,7 @@ static struct clk_regmap fclk_div7 = {
+ 		.name = "fclk_div7",
  		.ops = &clk_regmap_gate_ops,
  		.parent_hws = (const struct clk_hw *[]) {
--			&g12a_aoclk_saradc_div.hw
-+			&g12a_ao_saradc_div.hw
+-			&fclk_div7_div.hw
++			&a1_fclk_div7_div.hw
  		},
  		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
  	},
+@@ -282,17 +282,17 @@ static struct clk_regmap fclk_div7 = {
+ 
+ /* Array of all clocks registered by this provider */
+ static struct clk_hw *a1_pll_hw_clks[] = {
+-	[CLKID_FIXED_PLL_DCO]	= &fixed_pll_dco.hw,
+-	[CLKID_FIXED_PLL]	= &fixed_pll.hw,
+-	[CLKID_FCLK_DIV2_DIV]	= &fclk_div2_div.hw,
+-	[CLKID_FCLK_DIV3_DIV]	= &fclk_div3_div.hw,
+-	[CLKID_FCLK_DIV5_DIV]	= &fclk_div5_div.hw,
+-	[CLKID_FCLK_DIV7_DIV]	= &fclk_div7_div.hw,
+-	[CLKID_FCLK_DIV2]	= &fclk_div2.hw,
+-	[CLKID_FCLK_DIV3]	= &fclk_div3.hw,
+-	[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
+-	[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
+-	[CLKID_HIFI_PLL]	= &hifi_pll.hw,
++	[CLKID_FIXED_PLL_DCO]	= &a1_fixed_pll_dco.hw,
++	[CLKID_FIXED_PLL]	= &a1_fixed_pll.hw,
++	[CLKID_FCLK_DIV2_DIV]	= &a1_fclk_div2_div.hw,
++	[CLKID_FCLK_DIV3_DIV]	= &a1_fclk_div3_div.hw,
++	[CLKID_FCLK_DIV5_DIV]	= &a1_fclk_div5_div.hw,
++	[CLKID_FCLK_DIV7_DIV]	= &a1_fclk_div7_div.hw,
++	[CLKID_FCLK_DIV2]	= &a1_fclk_div2.hw,
++	[CLKID_FCLK_DIV3]	= &a1_fclk_div3.hw,
++	[CLKID_FCLK_DIV5]	= &a1_fclk_div5.hw,
++	[CLKID_FCLK_DIV7]	= &a1_fclk_div7.hw,
++	[CLKID_HIFI_PLL]	= &a1_hifi_pll.hw,
  };
  
--static const unsigned int g12a_aoclk_reset[] = {
-+static const unsigned int g12a_ao_reset[] = {
- 	[RESET_AO_IR_IN]	= 16,
- 	[RESET_AO_UART]		= 17,
- 	[RESET_AO_I2C_M]	= 18,
-@@ -381,65 +388,65 @@ static const unsigned int g12a_aoclk_reset[] = {
- 	[RESET_AO_IR_OUT]	= 23,
+ static const struct regmap_config a1_pll_regmap_cfg = {
+@@ -307,7 +307,7 @@ static struct meson_clk_hw_data a1_pll_clks = {
+ 	.num = ARRAY_SIZE(a1_pll_hw_clks),
  };
  
--static struct clk_hw *g12a_aoclk_hw_clks[] = {
--	[CLKID_AO_AHB]		= &g12a_aoclk_ahb.hw,
--	[CLKID_AO_IR_IN]	= &g12a_aoclk_ir_in.hw,
--	[CLKID_AO_I2C_M0]	= &g12a_aoclk_i2c_m0.hw,
--	[CLKID_AO_I2C_S0]	= &g12a_aoclk_i2c_s0.hw,
--	[CLKID_AO_UART]		= &g12a_aoclk_uart.hw,
--	[CLKID_AO_PROD_I2C]	= &g12a_aoclk_prod_i2c.hw,
--	[CLKID_AO_UART2]	= &g12a_aoclk_uart2.hw,
--	[CLKID_AO_IR_OUT]	= &g12a_aoclk_ir_out.hw,
--	[CLKID_AO_SAR_ADC]	= &g12a_aoclk_saradc.hw,
--	[CLKID_AO_MAILBOX]	= &g12a_aoclk_mailbox.hw,
--	[CLKID_AO_M3]		= &g12a_aoclk_m3.hw,
--	[CLKID_AO_AHB_SRAM]	= &g12a_aoclk_ahb_sram.hw,
--	[CLKID_AO_RTI]		= &g12a_aoclk_rti.hw,
--	[CLKID_AO_M4_FCLK]	= &g12a_aoclk_m4_fclk.hw,
--	[CLKID_AO_M4_HCLK]	= &g12a_aoclk_m4_hclk.hw,
--	[CLKID_AO_CLK81]	= &g12a_aoclk_clk81.hw,
--	[CLKID_AO_SAR_ADC_SEL]	= &g12a_aoclk_saradc_mux.hw,
--	[CLKID_AO_SAR_ADC_DIV]	= &g12a_aoclk_saradc_div.hw,
--	[CLKID_AO_SAR_ADC_CLK]	= &g12a_aoclk_saradc_gate.hw,
--	[CLKID_AO_CTS_OSCIN]	= &g12a_aoclk_cts_oscin.hw,
--	[CLKID_AO_32K_PRE]	= &g12a_aoclk_32k_by_oscin_pre.hw,
--	[CLKID_AO_32K_DIV]	= &g12a_aoclk_32k_by_oscin_div.hw,
--	[CLKID_AO_32K_SEL]	= &g12a_aoclk_32k_by_oscin_sel.hw,
--	[CLKID_AO_32K]		= &g12a_aoclk_32k_by_oscin.hw,
--	[CLKID_AO_CEC_PRE]	= &g12a_aoclk_cec_pre.hw,
--	[CLKID_AO_CEC_DIV]	= &g12a_aoclk_cec_div.hw,
--	[CLKID_AO_CEC_SEL]	= &g12a_aoclk_cec_sel.hw,
--	[CLKID_AO_CEC]		= &g12a_aoclk_cec.hw,
--	[CLKID_AO_CTS_RTC_OSCIN] = &g12a_aoclk_cts_rtc_oscin.hw,
-+static struct clk_hw *g12a_ao_hw_clks[] = {
-+	[CLKID_AO_AHB]		= &g12a_ao_ahb.hw,
-+	[CLKID_AO_IR_IN]	= &g12a_ao_ir_in.hw,
-+	[CLKID_AO_I2C_M0]	= &g12a_ao_i2c_m0.hw,
-+	[CLKID_AO_I2C_S0]	= &g12a_ao_i2c_s0.hw,
-+	[CLKID_AO_UART]		= &g12a_ao_uart.hw,
-+	[CLKID_AO_PROD_I2C]	= &g12a_ao_prod_i2c.hw,
-+	[CLKID_AO_UART2]	= &g12a_ao_uart2.hw,
-+	[CLKID_AO_IR_OUT]	= &g12a_ao_ir_out.hw,
-+	[CLKID_AO_SAR_ADC]	= &g12a_ao_saradc.hw,
-+	[CLKID_AO_MAILBOX]	= &g12a_ao_mailbox.hw,
-+	[CLKID_AO_M3]		= &g12a_ao_m3.hw,
-+	[CLKID_AO_AHB_SRAM]	= &g12a_ao_ahb_sram.hw,
-+	[CLKID_AO_RTI]		= &g12a_ao_rti.hw,
-+	[CLKID_AO_M4_FCLK]	= &g12a_ao_m4_fclk.hw,
-+	[CLKID_AO_M4_HCLK]	= &g12a_ao_m4_hclk.hw,
-+	[CLKID_AO_CLK81]	= &g12a_ao_clk81.hw,
-+	[CLKID_AO_SAR_ADC_SEL]	= &g12a_ao_saradc_mux.hw,
-+	[CLKID_AO_SAR_ADC_DIV]	= &g12a_ao_saradc_div.hw,
-+	[CLKID_AO_SAR_ADC_CLK]	= &g12a_ao_saradc_gate.hw,
-+	[CLKID_AO_CTS_OSCIN]	= &g12a_ao_cts_oscin.hw,
-+	[CLKID_AO_32K_PRE]	= &g12a_ao_32k_by_oscin_pre.hw,
-+	[CLKID_AO_32K_DIV]	= &g12a_ao_32k_by_oscin_div.hw,
-+	[CLKID_AO_32K_SEL]	= &g12a_ao_32k_by_oscin_sel.hw,
-+	[CLKID_AO_32K]		= &g12a_ao_32k_by_oscin.hw,
-+	[CLKID_AO_CEC_PRE]	= &g12a_ao_cec_pre.hw,
-+	[CLKID_AO_CEC_DIV]	= &g12a_ao_cec_div.hw,
-+	[CLKID_AO_CEC_SEL]	= &g12a_ao_cec_sel.hw,
-+	[CLKID_AO_CEC]		= &g12a_ao_cec.hw,
-+	[CLKID_AO_CTS_RTC_OSCIN] = &g12a_ao_cts_rtc_oscin.hw,
- };
+-static int meson_a1_pll_probe(struct platform_device *pdev)
++static int a1_pll_clkc_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+ 	void __iomem *base;
+@@ -344,7 +344,7 @@ static const struct of_device_id a1_pll_clkc_match_table[] = {
+ MODULE_DEVICE_TABLE(of, a1_pll_clkc_match_table);
  
--static const struct meson_aoclk_data g12a_aoclkc_data = {
-+static const struct meson_aoclk_data g12a_ao_clkc_data = {
- 	.reset_reg	= AO_RTI_GEN_CNTL_REG0,
--	.num_reset	= ARRAY_SIZE(g12a_aoclk_reset),
--	.reset		= g12a_aoclk_reset,
-+	.num_reset	= ARRAY_SIZE(g12a_ao_reset),
-+	.reset		= g12a_ao_reset,
- 	.hw_clks	= {
--		.hws	= g12a_aoclk_hw_clks,
--		.num	= ARRAY_SIZE(g12a_aoclk_hw_clks),
-+		.hws	= g12a_ao_hw_clks,
-+		.num	= ARRAY_SIZE(g12a_ao_hw_clks),
- 	},
- };
- 
--static const struct of_device_id g12a_aoclkc_match_table[] = {
-+static const struct of_device_id g12a_ao_clkc_match_table[] = {
- 	{
- 		.compatible	= "amlogic,meson-g12a-aoclkc",
--		.data		= &g12a_aoclkc_data,
-+		.data		= &g12a_ao_clkc_data,
- 	},
- 	{ }
- };
--MODULE_DEVICE_TABLE(of, g12a_aoclkc_match_table);
-+MODULE_DEVICE_TABLE(of, g12a_ao_clkc_match_table);
- 
--static struct platform_driver g12a_aoclkc_driver = {
-+static struct platform_driver g12a_ao_clkc_driver = {
- 	.probe		= meson_aoclkc_probe,
- 	.driver		= {
- 		.name	= "g12a-aoclkc",
--		.of_match_table = g12a_aoclkc_match_table,
-+		.of_match_table = g12a_ao_clkc_match_table,
- 	},
- };
--module_platform_driver(g12a_aoclkc_driver);
-+module_platform_driver(g12a_ao_clkc_driver);
- 
- MODULE_DESCRIPTION("Amlogic G12A Always-ON Clock Controller driver");
- MODULE_LICENSE("GPL");
+ static struct platform_driver a1_pll_clkc_driver = {
+-	.probe = meson_a1_pll_probe,
++	.probe = a1_pll_clkc_probe,
+ 	.driver = {
+ 		.name = "a1-pll-clkc",
+ 		.of_match_table = a1_pll_clkc_match_table,
 
 -- 
 2.47.2
