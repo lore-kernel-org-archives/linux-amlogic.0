@@ -4,90 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C80A3C77B7C
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jul 2025 16:40:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93575C83F0B
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jul 2025 16:40:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oS6OuWvUfPyD7JbotUiOzSBriCrPnRRexPHv3ehnxkc=; b=BRsk2joXMG1vkm
-	DwUTipRdc/5oBJIPzQJWdAVRUhkRB1rKyxyq3LtdQxO767/PzuDavgFmgg9egj9QYy35L1EepLVPe
-	F9VkZSXiwLsxTjJmXOwGyY0ALt/Q+Zz0+zSls3doVs/TogepwTARQ8U/DdMCqPmAnPXl49nMLNh8r
-	ik3c0AivymR4IhxVl9toOw3Q4lgiut9m6PY+d3UiUMSMronrbjobWjHQ/gKx8OVqjp6DeBG9xVhCn
-	LMP52lp3jFOLcCmzSaBcD8Bs92jHCtMaEzyatNdCji61Ps4S/AbvWKNvWdzeL1fNCg/SOn46ApERl
-	ro8xelghwHsHCA+J5Xyw==;
+	List-Owner; bh=D7ZUQHHuwb8DPghfe/BsuGk+9OU3pLVSSbv4ZjwBaXU=; b=O0oDFkKlRJcVES
+	O6aACxk4GvybNkgPBxLonRzAfbFgq4BYG9XuJsFYYvklCY05heC6NyH3A2ECciXEZZEGsdq4TAwnp
+	PbmwTnIi/eNH8xeb8eia7+jOzGqnmQcmy1+JrD4NYemtKgJbwfd36z4vf3LlEJxNIA1TVG2Z7At12
+	EdrlQ3pQgHRiIFGXHjME0x2yFGUgFoWcZNQq3zBk1qIClQtF087vvBWhG+5vbCMoXvSHQmUwUbdy8
+	Ol2/YrKFl7S/XpLyr54irYj2yfK1f9tlRa7XTlbLRJEyZlpnIdwiA+1MYgKCFMdTbH7v+q73LtOhp
+	32Yovu4VooUaOwKdrEgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uX0VB-00000008zI5-3DHr;
-	Wed, 02 Jul 2025 16:40:05 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1uX0VC-00000008zIp-0kWA;
+	Wed, 02 Jul 2025 16:40:06 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWzMx-00000008mwY-2AoC
-	for linux-amlogic@bombadil.infradead.org;
-	Wed, 02 Jul 2025 15:27:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=2gK5w/SU70bgPzrjySAkWpDaffQt0ydN/UE80qwpHaY=; b=GUEf8bJVH6cnkIexLHSsd4MUVy
-	lT3L/1n1Obc4Rh8DFR+PMUnSqJhBDp4IOB+biq5i6fyPODfC5gaot/yZVmvv5B7pVbtKUI0G3T4iZ
-	CXigjqXXYw4ibK78vN7vhdZS5mHmQMcuOLQBM1XA07HgXVvTL3XU1TmmSKpebItTxG+Xb9a9Hban9
-	r8gNCZY9GMeZIJJW8eRLb8mpBEBCHH4Tslr1TTa0fHuoR8ftBKa9gEC6AvJXWiwKPC+6EGjIm3Iw6
-	X7yeKltvVUOKbvbTaCowzh0DutpoEpfEvS+krwIXrZ4On15GvUiTxkjttG29lPtidqVcbeG/vV+xj
-	rKD2mPNQ==;
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
-	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWzMu-00000007TpD-32Da
+	id 1uWzMv-00000008mve-3Bsf
 	for linux-amlogic@lists.infradead.org;
-	Wed, 02 Jul 2025 15:27:30 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-453398e90e9so38110575e9.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 02 Jul 2025 08:27:28 -0700 (PDT)
+	Wed, 02 Jul 2025 15:27:32 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4537deebb01so24560465e9.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 02 Jul 2025 08:27:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751470047; x=1752074847; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751470048; x=1752074848; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2gK5w/SU70bgPzrjySAkWpDaffQt0ydN/UE80qwpHaY=;
-        b=VfeJJMEwWCpUiSdks8AZQXXFlQ9i+fFlp0rV7uME1aw7kw8KSznS1mIICB8Ve1asRV
-         o9FDBVRNYmKWcL04CxfclvS/6Q+s7s9Szm8hJNkuMNKBnylm83L/VROjLKQdiKZSmEuP
-         J3Yqj0wX5CuZc7LzTa7B0Ue3g1wB3HEEpBOO6IgiCqb3oj2Ky35piuKxDRbXq61Hv07q
-         wlt8iwRawZH2f9hO1F52TIAb+8DBVr2BtrTiB/WO0IOB0TmUsNDE9FU/PyEpQL2qDtfZ
-         8qudfQ9TwYPBx1fDm1qAmuSCWFHkt0VPduACdOegODbEP0tKg1ZSTTrefUa3u/DdDrpD
-         +MMA==
+        bh=+/rEMnGeD4qvZyBGNuDDr/e/nsVy27ZDZfCTdz4n+TQ=;
+        b=p1L2rw+6gwCWMk9GZ2eugmQREvFq4gm0IOazArJC1NiejJZ7BxSu9nmTNmLhQ31EoL
+         qmTYFWDAwvoxATzskktzXPPeBjLgS3PP5kWJbKsIP7C/br8iBfdkF/5e4UCC0rRfUp+3
+         bI0JgHxdwBloHnfuo7vaEVQDwvKLJcrxmX17JpxWimA/8l9XJTwnrrzNWttXcVWcbfiM
+         fqRpoarJC9XzAlbzm8xZQ5IEDgizrrmcucylp4FQbg2C7w/obKoQUk29VEASHqGRII/x
+         bO21xvWcPEFXMlBt+5rF0pN2zCyShZsCAy69sXuCu4mNgTdpZD5RdJKGbU1AddylwzsL
+         abcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751470047; x=1752074847;
+        d=1e100.net; s=20230601; t=1751470048; x=1752074848;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2gK5w/SU70bgPzrjySAkWpDaffQt0ydN/UE80qwpHaY=;
-        b=ZeR1AFPaK4T3Cq5QAjTHOFX0KYFh+7MDlHYkpzl6KfIUM4I+E0vDPCWAPNVjHOhu7V
-         dmPQC1mnQ7oYV/Lmj3Lnc8QNXaRHyWWsJg1H94aPLYxTXjiZm9qWx3HmoQO+rH35wS5D
-         hsKBsK7WeQMFnfOwhB8dhg8gQHY8OTif1+q30c7zLbYzOiogt9fCrgNULDtyaiuJA8iY
-         exy393XDWlprZfiFUd6LyMI+ffKeq4XwqbkP4xhP07511I6iRBwfmJnJC4sNIqeAvr/s
-         KbgYC7GwNP87cYhvHln5q8wiZkKW+o4wJW+I/6Vb97D37gc6BSeKcrdaRLffSusx4Eds
-         hRNg==
-X-Gm-Message-State: AOJu0YwaFBe259WE+4KqdizXkgkF7I+lYYzwO2hKQYC0IF6JzK1F6Dkx
-	/uOV8J72aOJNueXQ6FI3n1Ju/DQETVfaeF5nhynWnWMHTuzuEl7H4OMIfgaLkONLy48=
-X-Gm-Gg: ASbGncs8dB7pE89R3QgRLosJU8Ndx6niqCBjZjNNzIl89o5hXLs0gaPPBOeejrGgCt+
-	l2vuoF3hlV+9rOqbcYqaK7sS6Q9VvDk8QBELBiopr1fvGEr5Q6NiWq7xJqUFp9EBALl1XcgM/lP
-	IZHSvNqn9OiV6r7I2FMgoauC33o9whsyb7mJodVtv/3YBDxAk+fjsez1/D46Sy94U93CHn22nOT
-	bG3zQRuzbmfNwQtPzhHpaFSeP0swQtN8yZin75TIIc2SWhp4XxNjWHaQnNq8a/S3ICrRG97WXDd
-	+KlXM1tVoBt+6jeZsSM19HYOh2yj/7b6HcaLB+Uu98JZFUg3nYswv3NTEz+R8DXNw+PbVvsgLWC
-	Q
-X-Google-Smtp-Source: AGHT+IFL/9/lkIgAqJj7Ak4tUb6JNbD+DaFRi6G1+U3dIDUNhCg8o+8TqiTvUJvN9NilK2wzt8ulmw==
-X-Received: by 2002:a05:600c:3488:b0:43b:ce36:7574 with SMTP id 5b1f17b1804b1-454a9c70d55mr1120225e9.11.1751470047490;
-        Wed, 02 Jul 2025 08:27:27 -0700 (PDT)
+        bh=+/rEMnGeD4qvZyBGNuDDr/e/nsVy27ZDZfCTdz4n+TQ=;
+        b=BUs5ZsAxylvwP0Ixe+nO8wu2YCWV9zcwwjJugi8SdwhRtdlAGXqthvyNxYoUN6heLv
+         G7MV4LF6Jb6nRGxJEEdvmijIE+AxC5tHF8pE9SulG+6jjL8Ub/Za8oKF0fmfIcA7lm90
+         wELvNZ0vzVqVJytAVuxmVxfhrBrKaZX6Ibh7+8/KwCCkw1XmQzkkfWmco1AkG8mvl3rE
+         0cwQHDY6eln/Oci9mDPWaBla+Y9WNWUbs+mtAWcsdGBYqBwrZyT8tt4vBPCE1xg1idPM
+         qo6hOeVNaaLozVe7OJFIJTeDj97VQG+jAdnSS2bJKqVS287fCGBFJMPbsgwgP3s9HA3t
+         vKGw==
+X-Gm-Message-State: AOJu0YzvwHY6TEoBltbeimP7DLMlLslsdjvRvleeKLm5yILAok5K9rQO
+	8Gf56vTqj+SUnHky80XZ8YwhRf6yeQadjJ8I79xZRzIPkqJu+NQtY7FX1L7fAl67gBc=
+X-Gm-Gg: ASbGncszmiBp8C1AECXtbrQHC6Pf1sdl/FAB464DrO2TbiyfbD88QRgkuysIYDZ8trb
+	SfkPNPxzUv48kNGy+45KWoV5D5i2r+4/GQxc4OnxKl/b9eFt/gM+mLYKrsgbLYctd+M2+4mwgjt
+	UckzjCG9sV3vFKbXsDOhMwG3OLDh5CO/yziTjKw7YUa8fe0LGPsOgASsbbIsbBOXorJHztJHukg
+	aHte5FiOPSCD+DHc3XOe8Q9HYreDFlanK/iXXZhizQCv84C5qIZBTUCspuu1kiHJz/nqb/QeUmC
+	K9+U9/TS5qsDwUrUNjXm4HchFQt7HBJ5dMo1LKGB7hmXTGluFwKtU1XCD4Wv9Ir7rEjMlEKqcmb
+	y
+X-Google-Smtp-Source: AGHT+IHahoxmKnDB02LYfoZM5uHtVJlqRyi8ul0wrW+Qb+0qZK32tlqLlnVRa8VTgImck9/poeHQlg==
+X-Received: by 2002:a05:600c:4e90:b0:43d:fa59:cc8f with SMTP id 5b1f17b1804b1-454a373b017mr35366795e9.33.1751470048195;
+        Wed, 02 Jul 2025 08:27:28 -0700 (PDT)
 Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:5542:4bad:e07b:9489])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-454a9bcf35csm869205e9.20.2025.07.02.08.27.26
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-454a9bcf35csm869205e9.20.2025.07.02.08.27.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 08:27:26 -0700 (PDT)
+        Wed, 02 Jul 2025 08:27:27 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Wed, 02 Jul 2025 17:26:11 +0200
-Subject: [PATCH 13/26] clk: amlogic: s4-pll: naming consistency alignment
+Date: Wed, 02 Jul 2025 17:26:12 +0200
+Subject: [PATCH 14/26] clk: amlogic: meson8-ddr: naming consistency
+ alignment
 MIME-Version: 1.0
-Message-Id: <20250702-meson-clk-cleanup-24-v1-13-e163c9a1fc21@baylibre.com>
+Message-Id: <20250702-meson-clk-cleanup-24-v1-14-e163c9a1fc21@baylibre.com>
 References: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
 In-Reply-To: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -97,25 +83,25 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5678; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=dC9fR8dCdw4MCQUXs1TojL+gHHZbG5T/NoHzphabgSQ=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBoZU/Cb4CPYZbTpqqMqeEnIIzKTx98YsF4CpOXs
- g22PqNoH+qJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaGVPwgAKCRDm/A8cN/La
- hbj3D/9AlTWRQKxJvRMqH0OwhcZmalTSE/pG2jXaJzmTrcfcgpDcCzFzXAxcZuDxcyUcN6g9ttK
- 6bwS1tayEcEjBu/LXNB03lvhsWpqQoPWhDDhzTteUghXJ9yHuRF+9ZwWkHn+IM89yvK6YN7BqsY
- kGusxRPWqn2zCm46iXxQGOAfD5dX8kfjZ8DoDgubSsQNzxIy5z3yH/3W+uDJWigcyPr9qRhG167
- JzC4heYPQAKRfNKmBUIidV+ZBWtXkWPAG/+J03isGCff0MrDpl0C7ADP4gTmbcBEJsqEsN/mgrL
- qigVFg4POSi7VUbqP3x3XtKbGqu441Y7s4ZNz1QxrStvwkKlywplK2bYlj/siFgODuD8uqoaZIW
- FMo+S6wD95tNtE0Ctlvefq4iFQcLC3UM+KrEhyWuzTYJj2Gh5975BlJf2dQZqwCz9eYBldWc1XU
- 3vtKQ4ZXLxK+4Kfdsn/gFDzqoysdpSElhbpiC0OPgxTnx9ZmC/MMV7i13vfVFZiJKEuv/26x0Sc
- U/rxZbo6DqStQSxWXQ23/xcAjbyt3ek7ugPVE3iYizo6X1nUK6XD5P4TGkOKifIpo5napvHp7dl
- JxZLEVlonS2j27OeI5/I1wWDVW7jDzo0EaK2sA1vSPfzQpCFHDCE+B1/F9rDozcGbBEOJxLD2gQ
- HUlXyDIhr1HhK+g==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3620; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=GoRUGsUnjViszPLATa2jyFADH3UQuWxdu+h4Qd6gJsw=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBoZU/DPxkoHZIJ97lDN9ytfXkN1hQtyq0tH90Ab
+ EBAvpbwlL6JAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaGVPwwAKCRDm/A8cN/La
+ hQmxD/45yEiAXoag5hm097lT1KWnHb/uEVW0SgXHcEbpGveuEqrnsPx7DgMWESiWGwtINokytBJ
+ RUvOsuMELTM8XbSiYKbspLcj0MSah1NyPrl+e8F9nvwEMmIgfXFsk8fkGJpvLpnwuq7zYIZpsDx
+ Frm7J5ZkCN0Tq1aPuMvPcEQAKG7b1Oc+L/MhXR6Gat/RY/rnmFywkvshMBHFNp/A9d8iKQAe2TS
+ ZRTuErqcQxBIShHvjeQTJC0jquA8RuvwcMj3Ozq6n8OuphQrXBvSTzp9BNnfR0lu6KyrvkbGtOx
+ f6EW56HQ0mscED3PdVyTrJOuihA/qUfGi9pnL92d8iKmE2WKeYGue2AibpCQzt9mvJT4Ic0UrVB
+ tlW2OcG8/gshyciD5gOrsEQ1XqZfij1tn4XMcZyTOmqt0vweD/eqdJnp+faLPFSYG/Y+9UtGLSB
+ /g8BzAtZr1SRfKIMp4eO+qk1iT4LRgyHmxWbnvnYbpbwDNQ25tHW9jPamX0NtQS4CZUaQidYs6b
+ 7r/839QzdtFV+iasInyGTKRt6g08z0mqxxd+yCu/3gT0v7eLCBzyfeIDqkp+HhK0jjFv9dTWz7T
+ a0Gd/C3BxqceA01Uc4O2770E4SLjmZhvci2CSnO17G01/SggnjOcRxuwMLBPSsvZ50UA2ejhT4W
+ K0FmExSB5zCEZSA==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250702_162728_906065_E92375DE 
-X-CRM114-Status: GOOD (  15.81  )
+X-CRM114-CacheID: sfid-20250702_082729_817795_969AF529 
+X-CRM114-Status: GOOD (  16.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -161,120 +147,74 @@ review and maintenance easier.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/s4-pll.c | 34 +++++++++++++++++-----------------
- 1 file changed, 17 insertions(+), 17 deletions(-)
+ drivers/clk/meson/meson8-ddr.c | 27 +++++++++++++++------------
+ 1 file changed, 15 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/clk/meson/s4-pll.c b/drivers/clk/meson/s4-pll.c
-index 3d689d2f003e21658016b84918bf1b7b1954c05a..6a266bcafd6257937c1de50cbc5606dcc6f8207b 100644
---- a/drivers/clk/meson/s4-pll.c
-+++ b/drivers/clk/meson/s4-pll.c
-@@ -281,7 +281,7 @@ static const struct pll_mult_range s4_gp0_pll_mult_range = {
- /*
-  * Internal gp0 pll emulation configuration parameters
-  */
--static const struct reg_sequence s4_gp0_init_regs[] = {
-+static const struct reg_sequence s4_gp0_pll_init_regs[] = {
- 	{ .reg = ANACTRL_GP0PLL_CTRL1,	.def = 0x00000000 },
- 	{ .reg = ANACTRL_GP0PLL_CTRL2,	.def = 0x00000000 },
- 	{ .reg = ANACTRL_GP0PLL_CTRL3,	.def = 0x48681c00 },
-@@ -318,8 +318,8 @@ static struct clk_regmap s4_gp0_pll_dco = {
- 			.width   = 1,
- 		},
- 		.range = &s4_gp0_pll_mult_range,
--		.init_regs = s4_gp0_init_regs,
--		.init_count = ARRAY_SIZE(s4_gp0_init_regs),
-+		.init_regs = s4_gp0_pll_init_regs,
-+		.init_count = ARRAY_SIZE(s4_gp0_pll_init_regs),
+diff --git a/drivers/clk/meson/meson8-ddr.c b/drivers/clk/meson/meson8-ddr.c
+index 1975fc3987e2cb28823ffd69a5e2aa7b33f4853e..6a9efde9b570d8a2609c118d7d38334a3b4a5dcc 100644
+--- a/drivers/clk/meson/meson8-ddr.c
++++ b/drivers/clk/meson/meson8-ddr.c
+@@ -12,6 +12,7 @@
+ 
+ #include "clk-regmap.h"
+ #include "clk-pll.h"
++#include "meson-clkc-utils.h"
+ 
+ #define AM_DDR_PLL_CNTL			0x00
+ #define AM_DDR_PLL_CNTL1		0x04
+@@ -77,15 +78,17 @@ static struct clk_regmap meson8_ddr_pll = {
  	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "gp0_pll_dco",
-@@ -353,7 +353,7 @@ static struct clk_regmap s4_gp0_pll = {
- /*
-  * Internal hifi pll emulation configuration parameters
-  */
--static const struct reg_sequence s4_hifi_init_regs[] = {
-+static const struct reg_sequence s4_hifi_pll_init_regs[] = {
- 	{ .reg = ANACTRL_HIFIPLL_CTRL2,	.def = 0x00000000 },
- 	{ .reg = ANACTRL_HIFIPLL_CTRL3,	.def = 0x6a285c00 },
- 	{ .reg = ANACTRL_HIFIPLL_CTRL4,	.def = 0x65771290 },
-@@ -394,8 +394,8 @@ static struct clk_regmap s4_hifi_pll_dco = {
- 			.width   = 1,
- 		},
- 		.range = &s4_gp0_pll_mult_range,
--		.init_regs = s4_hifi_init_regs,
--		.init_count = ARRAY_SIZE(s4_hifi_init_regs),
-+		.init_regs = s4_hifi_pll_init_regs,
-+		.init_count = ARRAY_SIZE(s4_hifi_pll_init_regs),
- 		.frac_max = 100000,
- 		.flags = CLK_MESON_PLL_ROUND_CLOSEST,
- 	},
-@@ -794,11 +794,11 @@ static struct clk_hw *s4_pll_hw_clks[] = {
- 	[CLKID_MPLL3]			= &s4_mpll3.hw,
  };
  
--static const struct reg_sequence s4_init_regs[] = {
-+static const struct reg_sequence s4_pll_init_regs[] = {
- 	{ .reg = ANACTRL_MPLL_CTRL0,	.def = 0x00000543 },
+-static struct clk_hw_onecell_data meson8_ddr_clk_hw_onecell_data = {
+-	.hws = {
+-		[DDR_CLKID_DDR_PLL_DCO]		= &meson8_ddr_pll_dco.hw,
+-		[DDR_CLKID_DDR_PLL]		= &meson8_ddr_pll.hw,
+-	},
+-	.num = 2,
++static struct clk_hw *meson8_ddr_hw_clks[] = {
++	[DDR_CLKID_DDR_PLL_DCO]		= &meson8_ddr_pll_dco.hw,
++	[DDR_CLKID_DDR_PLL]		= &meson8_ddr_pll.hw,
++};
++
++static struct meson_clk_hw_data meson8_ddr_clks = {
++	.hws = meson8_ddr_hw_clks,
++	.num = ARRAY_SIZE(meson8_ddr_hw_clks),
  };
  
--static const struct regmap_config clkc_regmap_config = {
-+static const struct regmap_config s4_pll_clkc_regmap_cfg = {
- 	.reg_bits       = 32,
- 	.val_bits       = 32,
- 	.reg_stride     = 4,
-@@ -810,7 +810,7 @@ static struct meson_clk_hw_data s4_pll_clks = {
- 	.num = ARRAY_SIZE(s4_pll_hw_clks),
- };
+-static const struct regmap_config meson8_ddr_clkc_regmap_config = {
++static const struct regmap_config meson8_ddr_regmap_cfg = {
+ 	.reg_bits = 8,
+ 	.val_bits = 32,
+ 	.reg_stride = 4,
+@@ -104,13 +107,13 @@ static int meson8_ddr_clkc_probe(struct platform_device *pdev)
+ 		return PTR_ERR(base);
  
--static int meson_s4_pll_probe(struct platform_device *pdev)
-+static int s4_pll_clkc_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct regmap *regmap;
-@@ -822,12 +822,12 @@ static int meson_s4_pll_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(base),
- 				     "can't ioremap resource\n");
- 
--	regmap = devm_regmap_init_mmio(dev, base, &clkc_regmap_config);
-+	regmap = devm_regmap_init_mmio(dev, base, &s4_pll_clkc_regmap_cfg);
+ 	regmap = devm_regmap_init_mmio(&pdev->dev, base,
+-				       &meson8_ddr_clkc_regmap_config);
++				       &meson8_ddr_regmap_cfg);
  	if (IS_ERR(regmap))
- 		return dev_err_probe(dev, PTR_ERR(regmap),
- 				     "can't init regmap mmio region\n");
+ 		return PTR_ERR(regmap);
  
--	ret = regmap_multi_reg_write(regmap, s4_init_regs, ARRAY_SIZE(s4_init_regs));
-+	ret = regmap_multi_reg_write(regmap, s4_pll_init_regs, ARRAY_SIZE(s4_pll_init_regs));
- 	if (ret)
- 		return dev_err_probe(dev, ret,
- 				     "Failed to init registers\n");
-@@ -848,22 +848,22 @@ static int meson_s4_pll_probe(struct platform_device *pdev)
- 					   &s4_pll_clks);
+ 	/* Register all clks */
+-	for (i = 0; i < meson8_ddr_clk_hw_onecell_data.num; i++) {
+-		hw = meson8_ddr_clk_hw_onecell_data.hws[i];
++	for (i = 0; i < meson8_ddr_clks.num; i++) {
++		hw = meson8_ddr_clks.hws[i];
+ 
+ 		ret = devm_clk_hw_register(&pdev->dev, hw);
+ 		if (ret) {
+@@ -119,8 +122,8 @@ static int meson8_ddr_clkc_probe(struct platform_device *pdev)
+ 		}
+ 	}
+ 
+-	return devm_of_clk_add_hw_provider(&pdev->dev, of_clk_hw_onecell_get,
+-					   &meson8_ddr_clk_hw_onecell_data);
++	return devm_of_clk_add_hw_provider(&pdev->dev, meson_clk_hw_get,
++					   &meson8_ddr_clks);
  }
  
--static const struct of_device_id clkc_match_table[] = {
-+static const struct of_device_id s4_pll_clkc_match_table[] = {
- 	{
- 		.compatible = "amlogic,s4-pll-clkc",
- 	},
- 	{}
- };
--MODULE_DEVICE_TABLE(of, clkc_match_table);
-+MODULE_DEVICE_TABLE(of, s4_pll_clkc_match_table);
- 
--static struct platform_driver s4_driver = {
--	.probe		= meson_s4_pll_probe,
-+static struct platform_driver s4_pll_clkc_driver = {
-+	.probe		= s4_pll_clkc_probe,
- 	.driver		= {
- 		.name	= "s4-pll-clkc",
--		.of_match_table = clkc_match_table,
-+		.of_match_table = s4_pll_clkc_match_table,
- 	},
- };
--module_platform_driver(s4_driver);
-+module_platform_driver(s4_pll_clkc_driver);
- 
- MODULE_DESCRIPTION("Amlogic S4 PLL Clock Controller driver");
- MODULE_AUTHOR("Yu Tu <yu.tu@amlogic.com>");
+ static const struct of_device_id meson8_ddr_clkc_match_table[] = {
 
 -- 
 2.47.2
