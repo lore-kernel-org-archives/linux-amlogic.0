@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F392C7EE30
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jul 2025 06:10:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5775FC83013
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jul 2025 06:59:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=54Kd5Tim9HKcu4IhRNY9jMvLmXu55HrHHAsDckv9CG0=; b=t6hFqWzl1QhB46JaWoRADlZoaP
-	B/ex8A83ivtDZFOjpPEtNNEPCqNc7g9qtNQKKdvHBmPJllbfnMDnl34wq5V7grNep5hkER0fbdbY5
-	NnJjgHlBvqQ+s2aP7Hc18Xw79r7YXsD+NXzACFL1orkB1mBGKyAnp19kSWg/M7Mvgj9r6h3/0CXRi
-	2Nq6zkfn2If2ZUAY8XD6uUCbpXqkbgzzqCedBWaTqL+Z+Ryhmx9ya0c2i4wekd5yunWD+9wQ9kDv0
-	WL1UFjFGMPQT3btglYg3i0m+73n32rxWA2RwEsa6P6Z4Et0HYtUBY2jezEtsmPO+5klykQWWPMbQ6
-	2KbVQNNw==;
+	bh=0wEWPnWErwAA2DF52iECezQ6U3/sn2Pp7wdqC9o+kqA=; b=4R2aBcNHmYTA253oFXEEGsgJgq
+	ZF/1ZY2MUQB9F29+mkw7v3Al4hgcoPjD7b/LII6/M48h9KNtwh4FY2VmUU/5xllgqfF0SNiZRrzjT
+	UFf4NgPH68dPoT5OLF5OUwgaSfgnM59MzbggG9UlkEUHJifaUZUF/INjUAsaIFTj5q4PNoBOtxcFO
+	Fz9Es2hspHSPtntd9Yt4b1EUHILED1GWPYVJxq1P+gnkrtSs2b43uESG6ScYfAtmZuaoRKRJIlyRN
+	iycDM3zVj8tO4gvjoi+HvJIPyJDMerfgfIWSGfGn3YHv4nVrKW4p/PTssDx+yINAUgmmBYCMlmS08
+	hqw40RLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWqfy-00000007MzP-2Rax;
-	Wed, 02 Jul 2025 06:10:34 +0000
-Received: from nyc.source.kernel.org ([147.75.193.91])
+	id 1uWrRM-00000007SOC-2FUX;
+	Wed, 02 Jul 2025 06:59:32 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWqfw-00000007Myb-24Em;
-	Wed, 02 Jul 2025 06:10:33 +0000
+	id 1uWrMp-00000007Rx2-321M;
+	Wed, 02 Jul 2025 06:54:52 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by nyc.source.kernel.org (Postfix) with ESMTP id 24D4BA42123;
-	Wed,  2 Jul 2025 06:10:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C363C4CEEE;
-	Wed,  2 Jul 2025 06:10:30 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 01A3846044;
+	Wed,  2 Jul 2025 06:54:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DADDC4CEEE;
+	Wed,  2 Jul 2025 06:54:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751436630;
-	bh=jTxeZTxuIEmptXyaI8i1uVNMBzq5osaRO+bZp5mu0is=;
+	s=k20201202; t=1751439290;
+	bh=OygOYEPels4czGsYfayew2rB/2MBUfzsc+sH9m4SBq0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NWDG0isC2uNjFuDe3JPfxbgnNDiLAKGklW9DTAz2P2ytBJL6UdEXbpir70IkxkiAq
-	 SYkAm13wd/ZsySAUN5mpMILP27UykLjLZUAdZ6vezYSbTyP9dQxmkL9u/OyZAYHu/i
-	 X3LQcVAgGFGbEzb+q8Z531JFZRAQo0bpaB0ZDV/3xFobNA5KtUEBq4kNjYPGXQduZI
-	 8oVmPxcqY6payAVFbG7VJsnuXAKVzeVVxQwGG/pG8UoCPEwlLYYuWOpJke1I3ef+M+
-	 8KCc9jnbv0IxFnscmMd4Mw+jJ9Vt7o/dWCo1vsVauS75cHMsFA/slfRWgrJdUO8p+Y
-	 0R/P3vu3ytNbA==
-Date: Wed, 2 Jul 2025 08:10:28 +0200
+	b=HgEzaVEsk//JdYC+Qyn/5EKrQUtKGk9503aAH2+MGID4BNeVQ532beH+YUPat8bTE
+	 ksassL7x58UVM8H2z1YiCwar+F03MKvsVVnuzRRKynO2HQG/FWdGtT9efkSLGsT2I7
+	 Ms+P4pZHTOL3Vi5wMI5yX6frOXuS33VSRWuaxiWcuK7ssHBQAM1VMY79ox/M3t/Kkg
+	 MpzSll7uEgbWqbwWs12mIdTWwhhed0E7KABMg9q7RSCMgBIviaW2okigJHox485Vzp
+	 +NGA4KhTUCCW4PB5nkG0t/tcwwrvz8+nBPF7c5fUeC9tKEKmXUIejMhEFiSWJ7w1Sq
+	 ROwcsDKchkEaA==
+Date: Wed, 2 Jul 2025 08:54:48 +0200
 From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
 Cc: Waqar Hameed <waqar.hameed@axis.com>, 
 	Vignesh Raghavendra <vigneshr@ti.com>, Julien Panis <jpanis@baylibre.com>, 
 	William Breathitt Gray <wbg@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
 	Bartosz Golaszewski <brgl@bgdev.pl>, Peter Rosin <peda@axentia.se>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, 
-	Cosmin Tanislav <cosmin.tanislav@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Cosmin Tanislav <cosmin.tanislav@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Matteo Martelli <matteomartelli3@gmail.com>, 
 	Heiko Stuebner <heiko@sntech.de>, Francesco Dolcini <francesco@dolcini.it>, 
 	=?utf-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, 
@@ -89,15 +89,15 @@ Cc: Waqar Hameed <waqar.hameed@axis.com>,
 	linux-scsi@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
 	sound-open-firmware@alsa-project.org, linux-sound@vger.kernel.org
 Subject: Re: [PATCH] Remove error prints for devm_add_action_or_reset()
-Message-ID: <zxtyk4vly2salnoy3lng2ni7pzu3wg6qnmucadnclfigrd2m2m@i6xcrmvh34r5>
+Message-ID: <jeajjewfbg5qo736imozpghnpxln2pux74aegtqsi57qsbpug2@opndel6zc3m3>
 References: <pnd7c0s6ji2.fsf@axis.com>
  <ylr7cuxldwb24ccenen4khtyddzq3owgzzfblbohkdxb7p7eeo@qpuddn6wrz3x>
- <CAHp75Ve=Zas8=6YKoPeTRrvjCaTyyRAyJG1gBLripqZgQpfg7g@mail.gmail.com>
+ <20250701185519.1410e831@jic23-huawei>
 MIME-Version: 1.0
-In-Reply-To: <CAHp75Ve=Zas8=6YKoPeTRrvjCaTyyRAyJG1gBLripqZgQpfg7g@mail.gmail.com>
+In-Reply-To: <20250701185519.1410e831@jic23-huawei>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250701_231032_667439_F9AA8D89 
-X-CRM114-Status: GOOD (  25.74  )
+X-CRM114-CacheID: sfid-20250701_235451_805417_23BDD633 
+X-CRM114-Status: GOOD (  35.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,92 +109,110 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7309346362858684247=="
+Content-Type: multipart/mixed; boundary="===============5640105256446894129=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============7309346362858684247==
+--===============5640105256446894129==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="k77zpjuydsxyj3qv"
+	protocol="application/pgp-signature"; boundary="yoqxembgtzssn7jy"
 Content-Disposition: inline
 
 
---k77zpjuydsxyj3qv
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
+--yoqxembgtzssn7jy
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 Subject: Re: [PATCH] Remove error prints for devm_add_action_or_reset()
 MIME-Version: 1.0
 
-Hello Andy,
+Hello Jonathan,
 
-On Tue, Jul 01, 2025 at 08:57:02PM +0300, Andy Shevchenko wrote:
-> On Tue, Jul 1, 2025 at 8:44=E2=80=AFPM Uwe Kleine-K=C3=B6nig <ukleinek@ke=
-rnel.org> wrote:
+On Tue, Jul 01, 2025 at 06:55:19PM +0100, Jonathan Cameron wrote:
+> On Tue, 1 Jul 2025 19:44:17 +0200
+> Uwe Kleine-K=F6nig <ukleinek@kernel.org> wrote:
+>=20
 > > On Tue, Jul 01, 2025 at 05:03:33PM +0200, Waqar Hameed wrote:
+> > >  drivers/pwm/pwm-meson.c                          | 3 +-- =20
+> >=20
+> > Looking at this driver I tried the following:
 >=20
-> ...
+> I'm not sure what we actually want here.
 >=20
-> > With that
-> >
-> >         ret =3D devm_add_action_or_reset(dev, meson_pwm_s4_put_clk,
-> >                                        meson->channels[i].clk);
-> >         if (ret)
-> >                 return dev_err_probe(dev, ret,
-> >                                      "Failed to add clk_put action\n");
-> >
-> > from drivers/pwm/pwm-meson.c is optimized to
-> >
-> >         ret =3D devm_add_action_or_reset(dev, meson_pwm_s4_put_clk,
-> >                                        meson->channels[i].clk);
-> >         if (ret)
-> >                 return ret;
-> >
-> > .
-> >
-> > I would prefer this approach, because a) there is no need to drop all
-> > dev_err_probe()s after devm_add_action_or_reset() and b) the
-> > dev_err_probe()s could stay for consistency in the error paths of a
-> > driver.
+> My thought when suggesting removing instances of this
+> particular combination wasn't saving on code size, but rather just
+> general removal of pointless code that was getting cut and
+> paste into new drivers and wasting a tiny bit of review bandwidth.
+> I'd consider it bad practice to have patterns like
 >=20
-> Why do we need a dev_err_probe() after devm_add_action*()? I would
-> expect that the original call (if needed) can spit out a message.
+> void *something =3D kmalloc();
+> if  (!something)
+> 	return dev_err_probe(dev, -ENOMEM, ..);
+>=20
+> and my assumption was people would take a similar view with
+> devm_add_action_or_reset().
+>
+> It is a bit nuanced to have some cases where we think prints
+> are reasonable and others where they aren't so I get your
+> point about consistency.
 
-I'm not a big fan of API functions that emit an error message. In
-general the caller knows better what went wrong (here:
-devm_add_action_or_reset() doesn't know this to be about the clk_put
-action), so the error message can be more expressive.
+The problem I see is that there are two classes of functions: a) Those
+that require an error message and b) those that don't. Class b) consists
+of the functions that can only return success or -ENOMEM and the
+functions that emit an error message themselves. (And another problem I
+see is that for the latter the error message is usually non-optimal
+because the function doesn't know the all details of the request. See my
+reply to Andy for more details about that rant.)
 
-Also in general an API function doesn't know if a failure is fatal or if
-the consumer handles the failure just well and if the call is part of a
-driver's .probe() so it's unclear if dev_err_probe() can/should be used.
-(I admit that the last two probably don't apply to
-devm_add_action_or_reset() but that's not a good enough reason to
-make this function special. Every special case is a maintanance burden.)
+IMHO what takes away the review bandwidth is that the reviewer has to
+check which class the failing function is part of. If this effort
+results in more driver authors not adding an error message after
+devm_add_action_or_reset() that's nice, but in two months I have
+forgotten the details of this discussion and I have to recheck if
+devm_add_action_or_reset() is part of a) or b) and so the burden is
+still on me.
 
-My two =C2=A2,
+So to give my answer on your question "What do we actually want here?":
+Please let us get rid of the need to care for a) or b).
+
+> The code size reduction is nice so I'd not be against it as an extra
+> if the reduction across a kernel builds is significant and enough
+> people want to keep these non printing prints.
+
+To complete implementing my wish all API functions would need to stop to
+emit an error message. Unfortunately that isn't without downsides
+because the result is that there are more error strings and so the
+kernel size is increased. So you have to weight if you prefer individual
+error messages and easier review/maintenance at the cost of a bigger
+binary size and more dev_err_probe() calls in drivers eating vertical
+space in your editor.
+
+I know on which side I am, but I bet we won't find agreement about that
+in the kernel community ...
+
+Best regards
 Uwe
 
---k77zpjuydsxyj3qv
+--yoqxembgtzssn7jy
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhkzVEACgkQj4D7WH0S
-/k4QBQf9Em2pqsnQTecp04ABJJapZRnih78NLCfEr+OSLp62HS+/R6qdnaueQp3c
-snWhr/KeS8lMJkfhBrRz7mtGC8nKRmUxJX5dVG2x47hs2LAAyBQ528DJscHxvlZf
-GMOpPcMVMCyEE2s+LXKg+027cbqGV3oa60NL6VbzadTPoGrjxEdftDezQftDsxsu
-TGm7XMEbxP+TO6ZdVtF8HmKAfaLmh5QKwXn0D8UCSe8LVjtlvlDD7RI6MNqpHNiH
-yr28f1rCDnAut6qhCa9g3zsSYlmBpztpd56Y3hSn3kLXtVz3OBx+Py7jDsyV/QuU
-NBEpFQGKyurRCKocUTGotAcog+9ozA==
-=azmY
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhk17UACgkQj4D7WH0S
+/k4YcQgAlm1BDi3/P3JcN5b6Y1UamZV/S9cGOikezq/kf1GhqDBu8DxrVjTBFjOf
+OJoBgw/566zxq5agBq8EUgc7GrJBwe7BhieAXUGmYQI0pBg1Zdhgyj42kXhx7B9R
+u2j6XXXrEWa1Sw58sbK3g8bLeDEo9/kIem6g0Yk6NZX2WibbNU6Bw6UuV3yVwVaX
+TH4uFzMJ5wVvnwJDz2HCuxCLQ9NO25UL0U3DdZWIPI9oeuodG3U3MVNJWMJ5OuXc
+e+Yo5MhzsrnrMpj4nWPaicdD25qLOdVCySFDim72U4oI24wsmtlQBiJmDuNoldf/
+kbQM9dmwp48V3mVs7SFSmrt/TD4bFw==
+=6zPO
 -----END PGP SIGNATURE-----
 
---k77zpjuydsxyj3qv--
+--yoqxembgtzssn7jy--
 
 
---===============7309346362858684247==
+--===============5640105256446894129==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -205,5 +223,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============7309346362858684247==--
+--===============5640105256446894129==--
 
