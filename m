@@ -4,75 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7E5CC83F04
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jul 2025 16:40:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C80A3C77B7C
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jul 2025 16:40:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FSZefkFrdJaCqij9QjFAhBB2zMcYVHwvPCpXXomQ3zs=; b=rda/Li/PI9Z6CX
-	BjaMfEe3ghVAEuAN9ou6tkiiwGbo+2WMo/QyAjUMQP3Su8xON2gJkWtlOA+5REAQ9U7GcNDE/ep2C
-	fLusct61b/7Yr6/vy0f+foGhUG5R9LfFzfyQpY4JlhQdds3NhvC1eaUAx+H+Zn1CVj1+5T5LT67SG
-	dQXdqAT9H+Tfm0zaP3XVgSlsfot6Wgryr+LMBbkpCL3luL/KcMVeXOK/8o9sj5e/Cx72HlqHF87lw
-	f6YMERTe2fXiQoIye91eRotSdWHHdiBR+rnUvZcLBA/TGh7zmCk8AwUK0VlFBjq+MRGGNA+bbbrCF
-	409TWDBa7/euFOsZf2RA==;
+	List-Owner; bh=oS6OuWvUfPyD7JbotUiOzSBriCrPnRRexPHv3ehnxkc=; b=BRsk2joXMG1vkm
+	DwUTipRdc/5oBJIPzQJWdAVRUhkRB1rKyxyq3LtdQxO767/PzuDavgFmgg9egj9QYy35L1EepLVPe
+	F9VkZSXiwLsxTjJmXOwGyY0ALt/Q+Zz0+zSls3doVs/TogepwTARQ8U/DdMCqPmAnPXl49nMLNh8r
+	ik3c0AivymR4IhxVl9toOw3Q4lgiut9m6PY+d3UiUMSMronrbjobWjHQ/gKx8OVqjp6DeBG9xVhCn
+	LMP52lp3jFOLcCmzSaBcD8Bs92jHCtMaEzyatNdCji61Ps4S/AbvWKNvWdzeL1fNCg/SOn46ApERl
+	ro8xelghwHsHCA+J5Xyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uX0VA-00000008zGo-3Sja;
-	Wed, 02 Jul 2025 16:40:04 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1uX0VB-00000008zI5-3DHr;
+	Wed, 02 Jul 2025 16:40:05 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uWzMs-00000008muQ-14qh
+	id 1uWzMx-00000008mwY-2AoC
+	for linux-amlogic@bombadil.infradead.org;
+	Wed, 02 Jul 2025 15:27:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=2gK5w/SU70bgPzrjySAkWpDaffQt0ydN/UE80qwpHaY=; b=GUEf8bJVH6cnkIexLHSsd4MUVy
+	lT3L/1n1Obc4Rh8DFR+PMUnSqJhBDp4IOB+biq5i6fyPODfC5gaot/yZVmvv5B7pVbtKUI0G3T4iZ
+	CXigjqXXYw4ibK78vN7vhdZS5mHmQMcuOLQBM1XA07HgXVvTL3XU1TmmSKpebItTxG+Xb9a9Hban9
+	r8gNCZY9GMeZIJJW8eRLb8mpBEBCHH4Tslr1TTa0fHuoR8ftBKa9gEC6AvJXWiwKPC+6EGjIm3Iw6
+	X7yeKltvVUOKbvbTaCowzh0DutpoEpfEvS+krwIXrZ4On15GvUiTxkjttG29lPtidqVcbeG/vV+xj
+	rKD2mPNQ==;
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uWzMu-00000007TpD-32Da
 	for linux-amlogic@lists.infradead.org;
-	Wed, 02 Jul 2025 15:27:28 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3a588da60dfso2925443f8f.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 02 Jul 2025 08:27:26 -0700 (PDT)
+	Wed, 02 Jul 2025 15:27:30 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-453398e90e9so38110575e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 02 Jul 2025 08:27:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751470045; x=1752074845; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751470047; x=1752074847; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=wjtuk+6/ukBTOIJtN1YWN2IujD8g9sXUqF09Oi41PpY=;
-        b=xnW0AhcHBeUN35MrbsYmjTy7SLbPj+zhIu6wpbAgXsotOPDILk0+BalfsA2j3u3CgH
-         3MEwunrjO7tkiztCcs/67mCoVyhEWkaco4XdF2HaHrwnadmI09LWIbZPlQlhDnyWNNfm
-         tT/R267I+3pMTMNKjVKPwV8PFwDQRcx2pie4p5s55f2ceiFApPV1IAwiWmR9JI2gPWxD
-         YsNn57NLTMC6vMS4lMP9kLuGUwroD2FurB5QC/LADwSR0Mx8rEx5qSFQIhn0TJ+JVMXe
-         gDXPSMT2/yFBynT8MajO1dfa3GlN4ntVxbvtQqH+I9yitS0kJngEpN8iqNMUBTxZFq5X
-         rNzg==
+        bh=2gK5w/SU70bgPzrjySAkWpDaffQt0ydN/UE80qwpHaY=;
+        b=VfeJJMEwWCpUiSdks8AZQXXFlQ9i+fFlp0rV7uME1aw7kw8KSznS1mIICB8Ve1asRV
+         o9FDBVRNYmKWcL04CxfclvS/6Q+s7s9Szm8hJNkuMNKBnylm83L/VROjLKQdiKZSmEuP
+         J3Yqj0wX5CuZc7LzTa7B0Ue3g1wB3HEEpBOO6IgiCqb3oj2Ky35piuKxDRbXq61Hv07q
+         wlt8iwRawZH2f9hO1F52TIAb+8DBVr2BtrTiB/WO0IOB0TmUsNDE9FU/PyEpQL2qDtfZ
+         8qudfQ9TwYPBx1fDm1qAmuSCWFHkt0VPduACdOegODbEP0tKg1ZSTTrefUa3u/DdDrpD
+         +MMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751470045; x=1752074845;
+        d=1e100.net; s=20230601; t=1751470047; x=1752074847;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wjtuk+6/ukBTOIJtN1YWN2IujD8g9sXUqF09Oi41PpY=;
-        b=Ukdh/x0g+fGHf+qKSsFTmZzd9NzsW4H6UagIuKrL91m2cEOrgj0HOlvQ/Kh5E+gHwt
-         FFFo8w2HpBUqvdjI+4iEmVwuUMsuj3KIpabUmQRMq9Tqs2KDE9KXY85HlkK8YJrZFo72
-         4BGCSyZAqP6l7ws7H73j0Avxt2Gi4AVC+K/DFWjCFdp3SrwcGnmHGZge1sdH/yvTkPTl
-         s/EYOfcXvoDUN3g4LSVg9F3tdlVe5+DJob7pEc8WHi4Glu7Sj0pUDPMrePcsKLqF7q/s
-         Lg8LGd2mxDytWWkTDir49SMcf4KRuns4tpS5VsdbSINAaVLUnp+YkGO+2ozmxNeGJQqB
-         krPQ==
-X-Gm-Message-State: AOJu0YxPedREOnc91VOfiSUk9y4WdoWvn7jcqsNE/aI5EjDOtJHPL5fx
-	fF0a/h8ghId84nw7xiGggLDLeUbVkXhx/2GP38z4Vwlr0cgPuSXiiLljKv0YN7hL3p8=
-X-Gm-Gg: ASbGnct6jFmRL5GVZoNmGW+aXXZMTyNs3WIuSE/+vX3sy5b0KHXOsmcyil0vECbha0Q
-	LmijPdBl9AyeVlYweuWA/p6bkYfqW1WyRYZg201yb5S7IEdBT7T9ZJurjC56+WZNrPhKeGLDzMJ
-	8R+1MEEKaD/QOv8y+ba+fuMjW2GL6F8qEaWI/wSaj59pJChchbz/kGdch1GPWrKrqWrcZkZ/XQN
-	X/dspiUP0BwGYEmdm4vt8dxNiWJB8y703CB52Rn0Qhvy+2FvQKxEotjTrEHAJ0sIdEeSNM67VBi
-	VQKPk3HWTC8LSgqMQIMG9zETmsJu/C2Jk4xqbX2ISqbcFoFnKMNAvYw3hm2upy+Q50ADWiqnTbd
-	SM0gnqo5lJ5Y=
-X-Google-Smtp-Source: AGHT+IGRMTWc9HAIVlzpJSb8MiLOdNrQm1S36jEvZK3H9TEbr4TDLM0JtJzkX8qheNpFVdaC4mKpHw==
-X-Received: by 2002:a05:6000:1aca:b0:3a5:2cb5:642f with SMTP id ffacd0b85a97d-3b2019b7e75mr2661567f8f.34.1751470044722;
-        Wed, 02 Jul 2025 08:27:24 -0700 (PDT)
+        bh=2gK5w/SU70bgPzrjySAkWpDaffQt0ydN/UE80qwpHaY=;
+        b=ZeR1AFPaK4T3Cq5QAjTHOFX0KYFh+7MDlHYkpzl6KfIUM4I+E0vDPCWAPNVjHOhu7V
+         dmPQC1mnQ7oYV/Lmj3Lnc8QNXaRHyWWsJg1H94aPLYxTXjiZm9qWx3HmoQO+rH35wS5D
+         hsKBsK7WeQMFnfOwhB8dhg8gQHY8OTif1+q30c7zLbYzOiogt9fCrgNULDtyaiuJA8iY
+         exy393XDWlprZfiFUd6LyMI+ffKeq4XwqbkP4xhP07511I6iRBwfmJnJC4sNIqeAvr/s
+         KbgYC7GwNP87cYhvHln5q8wiZkKW+o4wJW+I/6Vb97D37gc6BSeKcrdaRLffSusx4Eds
+         hRNg==
+X-Gm-Message-State: AOJu0YwaFBe259WE+4KqdizXkgkF7I+lYYzwO2hKQYC0IF6JzK1F6Dkx
+	/uOV8J72aOJNueXQ6FI3n1Ju/DQETVfaeF5nhynWnWMHTuzuEl7H4OMIfgaLkONLy48=
+X-Gm-Gg: ASbGncs8dB7pE89R3QgRLosJU8Ndx6niqCBjZjNNzIl89o5hXLs0gaPPBOeejrGgCt+
+	l2vuoF3hlV+9rOqbcYqaK7sS6Q9VvDk8QBELBiopr1fvGEr5Q6NiWq7xJqUFp9EBALl1XcgM/lP
+	IZHSvNqn9OiV6r7I2FMgoauC33o9whsyb7mJodVtv/3YBDxAk+fjsez1/D46Sy94U93CHn22nOT
+	bG3zQRuzbmfNwQtPzhHpaFSeP0swQtN8yZin75TIIc2SWhp4XxNjWHaQnNq8a/S3ICrRG97WXDd
+	+KlXM1tVoBt+6jeZsSM19HYOh2yj/7b6HcaLB+Uu98JZFUg3nYswv3NTEz+R8DXNw+PbVvsgLWC
+	Q
+X-Google-Smtp-Source: AGHT+IFL/9/lkIgAqJj7Ak4tUb6JNbD+DaFRi6G1+U3dIDUNhCg8o+8TqiTvUJvN9NilK2wzt8ulmw==
+X-Received: by 2002:a05:600c:3488:b0:43b:ce36:7574 with SMTP id 5b1f17b1804b1-454a9c70d55mr1120225e9.11.1751470047490;
+        Wed, 02 Jul 2025 08:27:27 -0700 (PDT)
 Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:5542:4bad:e07b:9489])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-454a9bcf35csm869205e9.20.2025.07.02.08.27.23
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-454a9bcf35csm869205e9.20.2025.07.02.08.27.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Jul 2025 08:27:24 -0700 (PDT)
+        Wed, 02 Jul 2025 08:27:26 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Wed, 02 Jul 2025 17:26:09 +0200
-Subject: [PATCH 11/26] clk: amlogic: meson8b: naming consistency alignment
+Date: Wed, 02 Jul 2025 17:26:11 +0200
+Subject: [PATCH 13/26] clk: amlogic: s4-pll: naming consistency alignment
 MIME-Version: 1.0
-Message-Id: <20250702-meson-clk-cleanup-24-v1-11-e163c9a1fc21@baylibre.com>
+Message-Id: <20250702-meson-clk-cleanup-24-v1-13-e163c9a1fc21@baylibre.com>
 References: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
 In-Reply-To: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -82,25 +97,25 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=58930; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=Y0Vh8yhisCVzvwgb2JlHiaml11LpkOp0BxQ/myF3PT8=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBoZU/AvfqjEcsFc6c16mxhTkoUOA5RxF7/LV+fB
- g3p+9qikm2JAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaGVPwAAKCRDm/A8cN/La
- hTJUEACtSB4bPbGcc3uz+NHA3ghQdMbLrNmjDI63IgygJEMapBOSupthz5bPBDupzSuejS2rsyJ
- NkMVyF779GZyrMDpzRZW/61fmTpWRg4n1aUJzEcIUB0voNi+6F3eHOhFL4KNTLxdBbM71zngmT5
- Oiv51Cyasvha+mFQlDhI2ReDZOwenigyTI+IYaXWSLqwat9WSsRndf4TRBlu9x6dxFxYO/CEWI2
- UgJB0IpoX72UTq5JznRZWoZzOqsKdn9tDXiWpzQgUm9p86B+bkmJ46NxlTMMgULg0zJKBjwGMqU
- /6SlxKdGL8HuX6noX4NtB3bhXWl0ek59+u2ZWy6mq6/3PdJiPivjWh8n4HRCNhAc4c4BCOSAifq
- ow2lzHwvGBzPkicxZTFQ7/wi7zEmHllZcEy/BzlID7RS4nME3dGAfQfUNU/w3x0MdTjhcwHe4ET
- khBmoHjkZaX+CKx6bQ5xCgSY248UsQ4D1iUo7F37HsLiFNvn8NImgJursAqDaZ33i1c/ctnmVR2
- QTN62svlDA7lpHCOkkiluoh7k2XwaurCDFyrodGF+410lMbnjMONT/A85wNZvbDvYZ/DOH6P8Bd
- n3nmkwwbKOhfsX0+CikPiHpv7Hd2CcveBmeSmAQc+G++x/baqdE7FifsmViRKpy4jUBTjH1upM0
- Ht1eq7wc25oXBqQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5678; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=dC9fR8dCdw4MCQUXs1TojL+gHHZbG5T/NoHzphabgSQ=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBoZU/Cb4CPYZbTpqqMqeEnIIzKTx98YsF4CpOXs
+ g22PqNoH+qJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaGVPwgAKCRDm/A8cN/La
+ hbj3D/9AlTWRQKxJvRMqH0OwhcZmalTSE/pG2jXaJzmTrcfcgpDcCzFzXAxcZuDxcyUcN6g9ttK
+ 6bwS1tayEcEjBu/LXNB03lvhsWpqQoPWhDDhzTteUghXJ9yHuRF+9ZwWkHn+IM89yvK6YN7BqsY
+ kGusxRPWqn2zCm46iXxQGOAfD5dX8kfjZ8DoDgubSsQNzxIy5z3yH/3W+uDJWigcyPr9qRhG167
+ JzC4heYPQAKRfNKmBUIidV+ZBWtXkWPAG/+J03isGCff0MrDpl0C7ADP4gTmbcBEJsqEsN/mgrL
+ qigVFg4POSi7VUbqP3x3XtKbGqu441Y7s4ZNz1QxrStvwkKlywplK2bYlj/siFgODuD8uqoaZIW
+ FMo+S6wD95tNtE0Ctlvefq4iFQcLC3UM+KrEhyWuzTYJj2Gh5975BlJf2dQZqwCz9eYBldWc1XU
+ 3vtKQ4ZXLxK+4Kfdsn/gFDzqoysdpSElhbpiC0OPgxTnx9ZmC/MMV7i13vfVFZiJKEuv/26x0Sc
+ U/rxZbo6DqStQSxWXQ23/xcAjbyt3ek7ugPVE3iYizo6X1nUK6XD5P4TGkOKifIpo5napvHp7dl
+ JxZLEVlonS2j27OeI5/I1wWDVW7jDzo0EaK2sA1vSPfzQpCFHDCE+B1/F9rDozcGbBEOJxLD2gQ
+ HUlXyDIhr1HhK+g==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250702_082726_638601_7BEF536D 
-X-CRM114-Status: GOOD (  14.19  )
+X-CRM114-CacheID: sfid-20250702_162728_906065_E92375DE 
+X-CRM114-Status: GOOD (  15.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,1470 +161,120 @@ review and maintenance easier.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/meson8b.c | 720 +++++++++++++++++++++-----------------------
- 1 file changed, 340 insertions(+), 380 deletions(-)
+ drivers/clk/meson/s4-pll.c | 34 +++++++++++++++++-----------------
+ 1 file changed, 17 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 2065383266145b76f86e7f945cbf552a24ae881e..446e57d45d8deeab9516a923ddddcba7fa274203 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -214,7 +214,7 @@ static const struct reg_sequence meson8b_hdmi_pll_init_regs[] = {
- 	{ .reg = HHI_VID2_PLL_CNTL2,	.def = 0x0430a800 },
- };
- 
--static const struct pll_params_table hdmi_pll_params_table[] = {
-+static const struct pll_params_table meson8b_hdmi_pll_params_table[] = {
- 	PLL_PARAMS(40, 1),
- 	PLL_PARAMS(42, 1),
- 	PLL_PARAMS(44, 1),
-@@ -267,7 +267,7 @@ static struct clk_regmap meson8b_hdmi_pll_dco = {
- 			.shift   = 29,
+diff --git a/drivers/clk/meson/s4-pll.c b/drivers/clk/meson/s4-pll.c
+index 3d689d2f003e21658016b84918bf1b7b1954c05a..6a266bcafd6257937c1de50cbc5606dcc6f8207b 100644
+--- a/drivers/clk/meson/s4-pll.c
++++ b/drivers/clk/meson/s4-pll.c
+@@ -281,7 +281,7 @@ static const struct pll_mult_range s4_gp0_pll_mult_range = {
+ /*
+  * Internal gp0 pll emulation configuration parameters
+  */
+-static const struct reg_sequence s4_gp0_init_regs[] = {
++static const struct reg_sequence s4_gp0_pll_init_regs[] = {
+ 	{ .reg = ANACTRL_GP0PLL_CTRL1,	.def = 0x00000000 },
+ 	{ .reg = ANACTRL_GP0PLL_CTRL2,	.def = 0x00000000 },
+ 	{ .reg = ANACTRL_GP0PLL_CTRL3,	.def = 0x48681c00 },
+@@ -318,8 +318,8 @@ static struct clk_regmap s4_gp0_pll_dco = {
  			.width   = 1,
  		},
--		.table = hdmi_pll_params_table,
-+		.table = meson8b_hdmi_pll_params_table,
- 		.init_regs = meson8b_hdmi_pll_init_regs,
- 		.init_count = ARRAY_SIZE(meson8b_hdmi_pll_init_regs),
- 	},
-@@ -670,16 +670,17 @@ static struct clk_regmap meson8b_mpll2 = {
- 	},
- };
- 
--static u32 mux_table_clk81[]	= { 6, 5, 7 };
--static struct clk_regmap meson8b_mpeg_clk_sel = {
-+/* clk81 is often referred as "mpeg_clk" */
-+static u32 meson8b_clk81_parents_val_table[] = { 6, 5, 7 };
-+static struct clk_regmap meson8b_clk81_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_MPEG_CLK_CNTL,
- 		.mask = 0x7,
- 		.shift = 12,
--		.table = mux_table_clk81,
-+		.table = meson8b_clk81_parents_val_table,
+ 		.range = &s4_gp0_pll_mult_range,
+-		.init_regs = s4_gp0_init_regs,
+-		.init_count = ARRAY_SIZE(s4_gp0_init_regs),
++		.init_regs = s4_gp0_pll_init_regs,
++		.init_count = ARRAY_SIZE(s4_gp0_pll_init_regs),
  	},
  	.hw.init = &(struct clk_init_data){
--		.name = "mpeg_clk_sel",
-+		.name = "clk81_sel",
- 		.ops = &clk_regmap_mux_ro_ops,
- 		/*
- 		 * FIXME bits 14:12 selects from 8 possible parents:
-@@ -695,17 +696,17 @@ static struct clk_regmap meson8b_mpeg_clk_sel = {
- 	},
- };
- 
--static struct clk_regmap meson8b_mpeg_clk_div = {
-+static struct clk_regmap meson8b_clk81_div = {
- 	.data = &(struct clk_regmap_div_data){
- 		.offset = HHI_MPEG_CLK_CNTL,
- 		.shift = 0,
- 		.width = 7,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "mpeg_clk_div",
-+		.name = "clk81_div",
- 		.ops = &clk_regmap_divider_ro_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_mpeg_clk_sel.hw
-+			&meson8b_clk81_sel.hw
- 		},
- 		.num_parents = 1,
- 	},
-@@ -720,7 +721,7 @@ static struct clk_regmap meson8b_clk81 = {
- 		.name = "clk81",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_mpeg_clk_div.hw
-+			&meson8b_clk81_div.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_IS_CRITICAL,
-@@ -774,7 +775,7 @@ static struct clk_fixed_factor meson8b_cpu_in_div3 = {
- 	},
- };
- 
--static const struct clk_div_table cpu_scale_table[] = {
-+static const struct clk_div_table meson8b_cpu_scale_div_table[] = {
- 	{ .val = 1, .div = 4 },
- 	{ .val = 2, .div = 6 },
- 	{ .val = 3, .div = 8 },
-@@ -791,7 +792,7 @@ static struct clk_regmap meson8b_cpu_scale_div = {
- 		.offset =  HHI_SYS_CPU_CLK_CNTL1,
- 		.shift = 20,
- 		.width = 10,
--		.table = cpu_scale_table,
-+		.table = meson8b_cpu_scale_div_table,
- 		.flags = CLK_DIVIDER_ALLOW_ZERO,
- 	},
- 	.hw.init = &(struct clk_init_data){
-@@ -805,13 +806,13 @@ static struct clk_regmap meson8b_cpu_scale_div = {
- 	},
- };
- 
--static u32 mux_table_cpu_scale_out_sel[] = { 0, 1, 3 };
-+static u32 meson8b_cpu_scale_out_parents_val_table[] = { 0, 1, 3 };
- static struct clk_regmap meson8b_cpu_scale_out_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL0,
- 		.mask = 0x3,
- 		.shift = 2,
--		.table = mux_table_cpu_scale_out_sel,
-+		.table = meson8b_cpu_scale_out_parents_val_table,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cpu_scale_out_sel",
-@@ -893,13 +894,13 @@ static struct clk_regmap meson8b_nand_clk_div = {
- 	},
- };
- 
--static struct clk_regmap meson8b_nand_clk_gate = {
-+static struct clk_regmap meson8b_nand_clk = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_NAND_CLK_CNTL,
- 		.bit_idx = 8,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "nand_clk_gate",
-+		.name = "nand_clk",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_nand_clk_div.hw
-@@ -1000,160 +1001,137 @@ static struct clk_fixed_factor meson8b_cpu_clk_div8 = {
- 	},
- };
- 
--static u32 mux_table_apb[] = { 1, 2, 3, 4, 5, 6, 7 };
--static struct clk_regmap meson8b_apb_clk_sel = {
-+static u32 meson8b_cpu_if_parents_val_table[] = { 1, 2, 3, 4, 5, 6, 7 };
-+static const struct clk_hw *meson8b_cpu_if_parents[] = {
-+	&meson8b_cpu_clk_div2.hw,
-+	&meson8b_cpu_clk_div3.hw,
-+	&meson8b_cpu_clk_div4.hw,
-+	&meson8b_cpu_clk_div5.hw,
-+	&meson8b_cpu_clk_div6.hw,
-+	&meson8b_cpu_clk_div7.hw,
-+	&meson8b_cpu_clk_div8.hw,
-+};
-+
-+static struct clk_regmap meson8b_apb_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL1,
- 		.mask = 0x7,
- 		.shift = 3,
--		.table = mux_table_apb,
-+		.table = meson8b_cpu_if_parents_val_table,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "apb_clk_sel",
-+		.name = "apb_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_cpu_clk_div2.hw,
--			&meson8b_cpu_clk_div3.hw,
--			&meson8b_cpu_clk_div4.hw,
--			&meson8b_cpu_clk_div5.hw,
--			&meson8b_cpu_clk_div6.hw,
--			&meson8b_cpu_clk_div7.hw,
--			&meson8b_cpu_clk_div8.hw,
--		},
--		.num_parents = 7,
-+		.parent_hws = meson8b_cpu_if_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_cpu_if_parents),
- 	},
- };
- 
--static struct clk_regmap meson8b_apb_clk_gate = {
-+static struct clk_regmap meson8b_apb = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL1,
- 		.bit_idx = 16,
- 		.flags = CLK_GATE_SET_TO_DISABLE,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "apb_clk_dis",
-+		.name = "apb",
- 		.ops = &clk_regmap_gate_ro_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_apb_clk_sel.hw
-+			&meson8b_apb_sel.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static struct clk_regmap meson8b_periph_clk_sel = {
-+static struct clk_regmap meson8b_periph_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL1,
- 		.mask = 0x7,
- 		.shift = 6,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "periph_clk_sel",
-+		.name = "periph_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_cpu_clk_div2.hw,
--			&meson8b_cpu_clk_div3.hw,
--			&meson8b_cpu_clk_div4.hw,
--			&meson8b_cpu_clk_div5.hw,
--			&meson8b_cpu_clk_div6.hw,
--			&meson8b_cpu_clk_div7.hw,
--			&meson8b_cpu_clk_div8.hw,
--		},
--		.num_parents = 7,
-+		.parent_hws = meson8b_cpu_if_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_cpu_if_parents),
- 	},
- };
- 
--static struct clk_regmap meson8b_periph_clk_gate = {
-+static struct clk_regmap meson8b_periph = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL1,
- 		.bit_idx = 17,
- 		.flags = CLK_GATE_SET_TO_DISABLE,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "periph_clk_dis",
-+		.name = "periph",
- 		.ops = &clk_regmap_gate_ro_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_periph_clk_sel.hw
-+			&meson8b_periph_sel.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static u32 mux_table_axi[] = { 1, 2, 3, 4, 5, 6, 7 };
--static struct clk_regmap meson8b_axi_clk_sel = {
-+static struct clk_regmap meson8b_axi_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL1,
- 		.mask = 0x7,
- 		.shift = 9,
--		.table = mux_table_axi,
-+		.table = meson8b_cpu_if_parents_val_table,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "axi_clk_sel",
-+		.name = "axi_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_cpu_clk_div2.hw,
--			&meson8b_cpu_clk_div3.hw,
--			&meson8b_cpu_clk_div4.hw,
--			&meson8b_cpu_clk_div5.hw,
--			&meson8b_cpu_clk_div6.hw,
--			&meson8b_cpu_clk_div7.hw,
--			&meson8b_cpu_clk_div8.hw,
--		},
--		.num_parents = 7,
-+		.parent_hws = meson8b_cpu_if_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_cpu_if_parents),
- 	},
- };
- 
--static struct clk_regmap meson8b_axi_clk_gate = {
-+static struct clk_regmap meson8b_axi = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL1,
- 		.bit_idx = 18,
- 		.flags = CLK_GATE_SET_TO_DISABLE,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "axi_clk_dis",
-+		.name = "axi",
- 		.ops = &clk_regmap_gate_ro_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_axi_clk_sel.hw
-+			&meson8b_axi_sel.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static struct clk_regmap meson8b_l2_dram_clk_sel = {
-+static struct clk_regmap meson8b_l2_dram_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL1,
- 		.mask = 0x7,
- 		.shift = 12,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "l2_dram_clk_sel",
-+		.name = "l2_dram_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_cpu_clk_div2.hw,
--			&meson8b_cpu_clk_div3.hw,
--			&meson8b_cpu_clk_div4.hw,
--			&meson8b_cpu_clk_div5.hw,
--			&meson8b_cpu_clk_div6.hw,
--			&meson8b_cpu_clk_div7.hw,
--			&meson8b_cpu_clk_div8.hw,
--		},
--		.num_parents = 7,
-+		.parent_hws = meson8b_cpu_if_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_cpu_if_parents),
- 	},
- };
- 
--static struct clk_regmap meson8b_l2_dram_clk_gate = {
-+static struct clk_regmap meson8b_l2_dram = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL1,
- 		.bit_idx = 19,
- 		.flags = CLK_GATE_SET_TO_DISABLE,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "l2_dram_clk_dis",
-+		.name = "l2_dram",
- 		.ops = &clk_regmap_gate_ro_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_l2_dram_clk_sel.hw
-+			&meson8b_l2_dram_sel.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
-@@ -1286,7 +1264,7 @@ static struct clk_regmap meson8b_vid_pll_final_div = {
- 	},
- };
- 
--static const struct clk_hw *meson8b_vclk_mux_parent_hws[] = {
-+static const struct clk_hw *meson8b_vclk_parents[] = {
- 	&meson8b_vid_pll_final_div.hw,
- 	&meson8b_fclk_div4.hw,
- 	&meson8b_fclk_div3.hw,
-@@ -1305,8 +1283,8 @@ static struct clk_regmap meson8b_vclk_in_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vclk_in_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vclk_mux_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vclk_mux_parent_hws),
-+		.parent_hws = meson8b_vclk_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vclk_parents),
- 		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
- 	},
- };
-@@ -1343,13 +1321,13 @@ static struct clk_regmap meson8b_vclk_en = {
- 	},
- };
- 
--static struct clk_regmap meson8b_vclk_div1_gate = {
-+static struct clk_regmap meson8b_vclk_div1 = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VID_CLK_CNTL,
- 		.bit_idx = 0,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk_div1_en",
-+		.name = "vclk_div1",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk_en.hw
-@@ -1363,7 +1341,7 @@ static struct clk_fixed_factor meson8b_vclk_div2_div = {
- 	.mult = 1,
- 	.div = 2,
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk_div2",
-+		.name = "vclk_div2_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk_en.hw
-@@ -1373,13 +1351,13 @@ static struct clk_fixed_factor meson8b_vclk_div2_div = {
- 	}
- };
- 
--static struct clk_regmap meson8b_vclk_div2_div_gate = {
-+static struct clk_regmap meson8b_vclk_div2 = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VID_CLK_CNTL,
- 		.bit_idx = 1,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk_div2_en",
-+		.name = "vclk_div2",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk_div2_div.hw
-@@ -1393,7 +1371,7 @@ static struct clk_fixed_factor meson8b_vclk_div4_div = {
- 	.mult = 1,
- 	.div = 4,
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk_div4",
-+		.name = "vclk_div4_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk_en.hw
-@@ -1403,13 +1381,13 @@ static struct clk_fixed_factor meson8b_vclk_div4_div = {
- 	}
- };
- 
--static struct clk_regmap meson8b_vclk_div4_div_gate = {
-+static struct clk_regmap meson8b_vclk_div4 = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VID_CLK_CNTL,
- 		.bit_idx = 2,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk_div4_en",
-+		.name = "vclk_div4",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk_div4_div.hw
-@@ -1423,7 +1401,7 @@ static struct clk_fixed_factor meson8b_vclk_div6_div = {
- 	.mult = 1,
- 	.div = 6,
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk_div6",
-+		.name = "vclk_div6_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk_en.hw
-@@ -1433,13 +1411,13 @@ static struct clk_fixed_factor meson8b_vclk_div6_div = {
- 	}
- };
- 
--static struct clk_regmap meson8b_vclk_div6_div_gate = {
-+static struct clk_regmap meson8b_vclk_div6 = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VID_CLK_CNTL,
- 		.bit_idx = 3,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk_div6_en",
-+		.name = "vclk_div6",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk_div6_div.hw
-@@ -1453,7 +1431,7 @@ static struct clk_fixed_factor meson8b_vclk_div12_div = {
- 	.mult = 1,
- 	.div = 12,
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk_div12",
-+		.name = "vclk_div12_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk_en.hw
-@@ -1463,13 +1441,13 @@ static struct clk_fixed_factor meson8b_vclk_div12_div = {
- 	}
- };
- 
--static struct clk_regmap meson8b_vclk_div12_div_gate = {
-+static struct clk_regmap meson8b_vclk_div12 = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VID_CLK_CNTL,
- 		.bit_idx = 4,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk_div12_en",
-+		.name = "vclk_div12",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk_div12_div.hw
-@@ -1488,13 +1466,13 @@ static struct clk_regmap meson8b_vclk2_in_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vclk2_in_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vclk_mux_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vclk_mux_parent_hws),
-+		.parent_hws = meson8b_vclk_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vclk_parents),
- 		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
- 	},
- };
- 
--static struct clk_regmap meson8b_vclk2_clk_in_en = {
-+static struct clk_regmap meson8b_vclk2_in_en = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VIID_CLK_DIV,
- 		.bit_idx = 16,
-@@ -1510,7 +1488,7 @@ static struct clk_regmap meson8b_vclk2_clk_in_en = {
- 	},
- };
- 
--static struct clk_regmap meson8b_vclk2_clk_en = {
-+static struct clk_regmap meson8b_vclk2_en = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VIID_CLK_DIV,
- 		.bit_idx = 19,
-@@ -1519,23 +1497,23 @@ static struct clk_regmap meson8b_vclk2_clk_en = {
- 		.name = "vclk2_en",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_vclk2_clk_in_en.hw
-+			&meson8b_vclk2_in_en.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
- 
--static struct clk_regmap meson8b_vclk2_div1_gate = {
-+static struct clk_regmap meson8b_vclk2_div1 = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VIID_CLK_DIV,
- 		.bit_idx = 0,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk2_div1_en",
-+		.name = "vclk2_div1",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_vclk2_clk_en.hw
-+			&meson8b_vclk2_en.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
-@@ -1546,23 +1524,23 @@ static struct clk_fixed_factor meson8b_vclk2_div2_div = {
- 	.mult = 1,
- 	.div = 2,
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk2_div2",
-+		.name = "vclk2_div2_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_vclk2_clk_en.hw
-+			&meson8b_vclk2_en.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	}
- };
- 
--static struct clk_regmap meson8b_vclk2_div2_div_gate = {
-+static struct clk_regmap meson8b_vclk2_div2 = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VIID_CLK_DIV,
- 		.bit_idx = 1,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk2_div2_en",
-+		.name = "vclk2_div2",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk2_div2_div.hw
-@@ -1576,23 +1554,23 @@ static struct clk_fixed_factor meson8b_vclk2_div4_div = {
- 	.mult = 1,
- 	.div = 4,
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk2_div4",
-+		.name = "vclk2_div4_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_vclk2_clk_en.hw
-+			&meson8b_vclk2_en.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	}
- };
- 
--static struct clk_regmap meson8b_vclk2_div4_div_gate = {
-+static struct clk_regmap meson8b_vclk2_div4 = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VIID_CLK_DIV,
- 		.bit_idx = 2,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk2_div4_en",
-+		.name = "vclk2_div4",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk2_div4_div.hw
-@@ -1606,23 +1584,23 @@ static struct clk_fixed_factor meson8b_vclk2_div6_div = {
- 	.mult = 1,
- 	.div = 6,
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk2_div6",
-+		.name = "vclk2_div6_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_vclk2_clk_en.hw
-+			&meson8b_vclk2_en.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	}
- };
- 
--static struct clk_regmap meson8b_vclk2_div6_div_gate = {
-+static struct clk_regmap meson8b_vclk2_div6 = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VIID_CLK_DIV,
- 		.bit_idx = 3,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk2_div6_en",
-+		.name = "vclk2_div6",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk2_div6_div.hw
-@@ -1636,23 +1614,23 @@ static struct clk_fixed_factor meson8b_vclk2_div12_div = {
- 	.mult = 1,
- 	.div = 12,
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk2_div12",
-+		.name = "vclk2_div12_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
--			&meson8b_vclk2_clk_en.hw
-+			&meson8b_vclk2_en.hw
- 		},
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	}
- };
- 
--static struct clk_regmap meson8b_vclk2_div12_div_gate = {
-+static struct clk_regmap meson8b_vclk2_div12 = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_VIID_CLK_DIV,
- 		.bit_idx = 4,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "vclk2_div12_en",
-+		.name = "vclk2_div12",
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_hws = (const struct clk_hw *[]) {
- 			&meson8b_vclk2_div12_div.hw
-@@ -1662,12 +1640,12 @@ static struct clk_regmap meson8b_vclk2_div12_div_gate = {
- 	},
- };
- 
--static const struct clk_hw *meson8b_vclk_enc_mux_parent_hws[] = {
--	&meson8b_vclk_div1_gate.hw,
--	&meson8b_vclk_div2_div_gate.hw,
--	&meson8b_vclk_div4_div_gate.hw,
--	&meson8b_vclk_div6_div_gate.hw,
--	&meson8b_vclk_div12_div_gate.hw,
-+static const struct clk_hw *meson8b_vclk_enc_parents[] = {
-+	&meson8b_vclk_div1.hw,
-+	&meson8b_vclk_div2.hw,
-+	&meson8b_vclk_div4.hw,
-+	&meson8b_vclk_div6.hw,
-+	&meson8b_vclk_div12.hw,
- };
- 
- static struct clk_regmap meson8b_cts_enct_sel = {
-@@ -1679,8 +1657,8 @@ static struct clk_regmap meson8b_cts_enct_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cts_enct_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vclk_enc_mux_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vclk_enc_mux_parent_hws),
-+		.parent_hws = meson8b_vclk_enc_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vclk_enc_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -1710,8 +1688,8 @@ static struct clk_regmap meson8b_cts_encp_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cts_encp_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vclk_enc_mux_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vclk_enc_mux_parent_hws),
-+		.parent_hws = meson8b_vclk_enc_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vclk_enc_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -1741,8 +1719,8 @@ static struct clk_regmap meson8b_cts_enci_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cts_enci_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vclk_enc_mux_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vclk_enc_mux_parent_hws),
-+		.parent_hws = meson8b_vclk_enc_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vclk_enc_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -1772,8 +1750,8 @@ static struct clk_regmap meson8b_hdmi_tx_pixel_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "hdmi_tx_pixel_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vclk_enc_mux_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vclk_enc_mux_parent_hws),
-+		.parent_hws = meson8b_vclk_enc_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vclk_enc_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -1794,14 +1772,6 @@ static struct clk_regmap meson8b_hdmi_tx_pixel = {
- 	},
- };
- 
--static const struct clk_hw *meson8b_vclk2_enc_mux_parent_hws[] = {
--	&meson8b_vclk2_div1_gate.hw,
--	&meson8b_vclk2_div2_div_gate.hw,
--	&meson8b_vclk2_div4_div_gate.hw,
--	&meson8b_vclk2_div6_div_gate.hw,
--	&meson8b_vclk2_div12_div_gate.hw,
--};
--
- static struct clk_regmap meson8b_cts_encl_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_VIID_CLK_DIV,
-@@ -1811,8 +1781,8 @@ static struct clk_regmap meson8b_cts_encl_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cts_encl_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vclk2_enc_mux_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vclk2_enc_mux_parent_hws),
-+		.parent_hws = meson8b_vclk_enc_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vclk_enc_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -1842,8 +1812,8 @@ static struct clk_regmap meson8b_cts_vdac0_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cts_vdac0_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vclk2_enc_mux_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vclk2_enc_mux_parent_hws),
-+		.parent_hws = meson8b_vclk_enc_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vclk_enc_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -1926,7 +1896,8 @@ static struct clk_regmap meson8b_hdmi_sys = {
-  * CLK_SET_RATE_GATE is set.
-  * Meson8 only has mali_0 and no glitch-free mux.
+ 		.name = "gp0_pll_dco",
+@@ -353,7 +353,7 @@ static struct clk_regmap s4_gp0_pll = {
+ /*
+  * Internal hifi pll emulation configuration parameters
   */
--static const struct clk_parent_data meson8b_mali_0_1_parent_data[] = {
-+static u32 meson8b_mali_parents_val_table[] = { 0, 2, 3, 4, 5, 6, 7 };
-+static const struct clk_parent_data meson8b_mali_parents[] = {
- 	{ .fw_name = "xtal", .name = "xtal", .index = -1, },
- 	{ .hw = &meson8b_mpll2.hw, },
- 	{ .hw = &meson8b_mpll1.hw, },
-@@ -1936,20 +1907,18 @@ static const struct clk_parent_data meson8b_mali_0_1_parent_data[] = {
- 	{ .hw = &meson8b_fclk_div5.hw, },
+-static const struct reg_sequence s4_hifi_init_regs[] = {
++static const struct reg_sequence s4_hifi_pll_init_regs[] = {
+ 	{ .reg = ANACTRL_HIFIPLL_CTRL2,	.def = 0x00000000 },
+ 	{ .reg = ANACTRL_HIFIPLL_CTRL3,	.def = 0x6a285c00 },
+ 	{ .reg = ANACTRL_HIFIPLL_CTRL4,	.def = 0x65771290 },
+@@ -394,8 +394,8 @@ static struct clk_regmap s4_hifi_pll_dco = {
+ 			.width   = 1,
+ 		},
+ 		.range = &s4_gp0_pll_mult_range,
+-		.init_regs = s4_hifi_init_regs,
+-		.init_count = ARRAY_SIZE(s4_hifi_init_regs),
++		.init_regs = s4_hifi_pll_init_regs,
++		.init_count = ARRAY_SIZE(s4_hifi_pll_init_regs),
+ 		.frac_max = 100000,
+ 		.flags = CLK_MESON_PLL_ROUND_CLOSEST,
+ 	},
+@@ -794,11 +794,11 @@ static struct clk_hw *s4_pll_hw_clks[] = {
+ 	[CLKID_MPLL3]			= &s4_mpll3.hw,
  };
  
--static u32 meson8b_mali_0_1_mux_table[] = { 0, 2, 3, 4, 5, 6, 7 };
--
- static struct clk_regmap meson8b_mali_0_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_MALI_CLK_CNTL,
- 		.mask = 0x7,
- 		.shift = 9,
--		.table = meson8b_mali_0_1_mux_table,
-+		.table = meson8b_mali_parents_val_table,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mali_0_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_data = meson8b_mali_0_1_parent_data,
--		.num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_data),
-+		.parent_data = meson8b_mali_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_mali_parents),
- 		/*
- 		 * Don't propagate rate changes up because the only changeable
- 		 * parents are mpll1 and mpll2 but we need those for audio and
-@@ -1998,13 +1967,13 @@ static struct clk_regmap meson8b_mali_1_sel = {
- 		.offset = HHI_MALI_CLK_CNTL,
- 		.mask = 0x7,
- 		.shift = 25,
--		.table = meson8b_mali_0_1_mux_table,
-+		.table = meson8b_mali_parents_val_table,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mali_1_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_data = meson8b_mali_0_1_parent_data,
--		.num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_data),
-+		.parent_data = meson8b_mali_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_mali_parents),
- 		/*
- 		 * Don't propagate rate changes up because the only changeable
- 		 * parents are mpll1 and mpll2 but we need those for audio and
-@@ -2139,20 +2108,13 @@ static struct clk_regmap meson8m2_gp_pll = {
- 	},
+-static const struct reg_sequence s4_init_regs[] = {
++static const struct reg_sequence s4_pll_init_regs[] = {
+ 	{ .reg = ANACTRL_MPLL_CTRL0,	.def = 0x00000543 },
  };
  
--static const struct clk_hw *meson8b_vpu_0_1_parent_hws[] = {
-+static const struct clk_hw *meson8b_vpu_parents[] = {
- 	&meson8b_fclk_div4.hw,
- 	&meson8b_fclk_div3.hw,
- 	&meson8b_fclk_div5.hw,
- 	&meson8b_fclk_div7.hw,
+-static const struct regmap_config clkc_regmap_config = {
++static const struct regmap_config s4_pll_clkc_regmap_cfg = {
+ 	.reg_bits       = 32,
+ 	.val_bits       = 32,
+ 	.reg_stride     = 4,
+@@ -810,7 +810,7 @@ static struct meson_clk_hw_data s4_pll_clks = {
+ 	.num = ARRAY_SIZE(s4_pll_hw_clks),
  };
  
--static const struct clk_hw *mmeson8m2_vpu_0_1_parent_hws[] = {
--	&meson8b_fclk_div4.hw,
--	&meson8b_fclk_div3.hw,
--	&meson8b_fclk_div5.hw,
--	&meson8m2_gp_pll.hw,
--};
--
- static struct clk_regmap meson8b_vpu_0_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_VPU_CLK_CNTL,
-@@ -2162,12 +2124,19 @@ static struct clk_regmap meson8b_vpu_0_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vpu_0_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vpu_0_1_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vpu_0_1_parent_hws),
-+		.parent_hws = meson8b_vpu_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vpu_parents),
- 		.flags = CLK_SET_RATE_PARENT,
+-static int meson_s4_pll_probe(struct platform_device *pdev)
++static int s4_pll_clkc_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+ 	struct regmap *regmap;
+@@ -822,12 +822,12 @@ static int meson_s4_pll_probe(struct platform_device *pdev)
+ 		return dev_err_probe(dev, PTR_ERR(base),
+ 				     "can't ioremap resource\n");
+ 
+-	regmap = devm_regmap_init_mmio(dev, base, &clkc_regmap_config);
++	regmap = devm_regmap_init_mmio(dev, base, &s4_pll_clkc_regmap_cfg);
+ 	if (IS_ERR(regmap))
+ 		return dev_err_probe(dev, PTR_ERR(regmap),
+ 				     "can't init regmap mmio region\n");
+ 
+-	ret = regmap_multi_reg_write(regmap, s4_init_regs, ARRAY_SIZE(s4_init_regs));
++	ret = regmap_multi_reg_write(regmap, s4_pll_init_regs, ARRAY_SIZE(s4_pll_init_regs));
+ 	if (ret)
+ 		return dev_err_probe(dev, ret,
+ 				     "Failed to init registers\n");
+@@ -848,22 +848,22 @@ static int meson_s4_pll_probe(struct platform_device *pdev)
+ 					   &s4_pll_clks);
+ }
+ 
+-static const struct of_device_id clkc_match_table[] = {
++static const struct of_device_id s4_pll_clkc_match_table[] = {
+ 	{
+ 		.compatible = "amlogic,s4-pll-clkc",
+ 	},
+ 	{}
+ };
+-MODULE_DEVICE_TABLE(of, clkc_match_table);
++MODULE_DEVICE_TABLE(of, s4_pll_clkc_match_table);
+ 
+-static struct platform_driver s4_driver = {
+-	.probe		= meson_s4_pll_probe,
++static struct platform_driver s4_pll_clkc_driver = {
++	.probe		= s4_pll_clkc_probe,
+ 	.driver		= {
+ 		.name	= "s4-pll-clkc",
+-		.of_match_table = clkc_match_table,
++		.of_match_table = s4_pll_clkc_match_table,
  	},
  };
+-module_platform_driver(s4_driver);
++module_platform_driver(s4_pll_clkc_driver);
  
-+static const struct clk_hw *mmeson8m2_vpu_parents[] = {
-+	&meson8b_fclk_div4.hw,
-+	&meson8b_fclk_div3.hw,
-+	&meson8b_fclk_div5.hw,
-+	&meson8m2_gp_pll.hw,
-+};
-+
- static struct clk_regmap meson8m2_vpu_0_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_VPU_CLK_CNTL,
-@@ -2177,8 +2146,8 @@ static struct clk_regmap meson8m2_vpu_0_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vpu_0_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = mmeson8m2_vpu_0_1_parent_hws,
--		.num_parents = ARRAY_SIZE(mmeson8m2_vpu_0_1_parent_hws),
-+		.parent_hws = mmeson8m2_vpu_parents,
-+		.num_parents = ARRAY_SIZE(mmeson8m2_vpu_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -2233,8 +2202,8 @@ static struct clk_regmap meson8b_vpu_1_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vpu_1_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vpu_0_1_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vpu_0_1_parent_hws),
-+		.parent_hws = meson8b_vpu_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vpu_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -2248,8 +2217,8 @@ static struct clk_regmap meson8m2_vpu_1_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vpu_1_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = mmeson8m2_vpu_0_1_parent_hws,
--		.num_parents = ARRAY_SIZE(mmeson8m2_vpu_0_1_parent_hws),
-+		.parent_hws = mmeson8m2_vpu_parents,
-+		.num_parents = ARRAY_SIZE(mmeson8m2_vpu_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -2321,7 +2290,7 @@ static struct clk_regmap meson8b_vpu = {
- 	},
- };
- 
--static const struct clk_hw *meson8b_vdec_parent_hws[] = {
-+static const struct clk_hw *meson8b_vdec_parents[] = {
- 	&meson8b_fclk_div4.hw,
- 	&meson8b_fclk_div3.hw,
- 	&meson8b_fclk_div5.hw,
-@@ -2340,8 +2309,8 @@ static struct clk_regmap meson8b_vdec_1_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vdec_1_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vdec_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vdec_parent_hws),
-+		.parent_hws = meson8b_vdec_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vdec_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -2443,8 +2412,8 @@ static struct clk_regmap meson8b_vdec_hcodec_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vdec_hcodec_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vdec_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vdec_parent_hws),
-+		.parent_hws = meson8b_vdec_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vdec_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -2493,8 +2462,8 @@ static struct clk_regmap meson8b_vdec_2_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vdec_2_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vdec_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vdec_parent_hws),
-+		.parent_hws = meson8b_vdec_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vdec_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -2543,8 +2512,8 @@ static struct clk_regmap meson8b_vdec_hevc_sel = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vdec_hevc_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_vdec_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_vdec_parent_hws),
-+		.parent_hws = meson8b_vdec_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_vdec_parents),
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
-@@ -2603,27 +2572,26 @@ static struct clk_regmap meson8b_vdec_hevc = {
- };
- 
- /* TODO: the clock at index 0 is "DDR_PLL" which we don't support yet */
--static const struct clk_hw *meson8b_cts_amclk_parent_hws[] = {
-+static u32 meson8b_cts_mclk_parents_val_table[] = { 1, 2, 3 };
-+static const struct clk_hw *meson8b_cts_mclk_parents[] = {
- 	&meson8b_mpll0.hw,
- 	&meson8b_mpll1.hw,
- 	&meson8b_mpll2.hw
- };
- 
--static u32 meson8b_cts_amclk_mux_table[] = { 1, 2, 3 };
--
- static struct clk_regmap meson8b_cts_amclk_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_AUD_CLK_CNTL,
- 		.mask = 0x3,
- 		.shift = 9,
--		.table = meson8b_cts_amclk_mux_table,
-+		.table = meson8b_cts_mclk_parents_val_table,
- 		.flags = CLK_MUX_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cts_amclk_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_cts_amclk_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_cts_amclk_parent_hws),
-+		.parent_hws = meson8b_cts_mclk_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_cts_mclk_parents),
- 	},
- };
- 
-@@ -2661,28 +2629,19 @@ static struct clk_regmap meson8b_cts_amclk = {
- 	},
- };
- 
--/* TODO: the clock at index 0 is "DDR_PLL" which we don't support yet */
--static const struct clk_hw *meson8b_cts_mclk_i958_parent_hws[] = {
--	&meson8b_mpll0.hw,
--	&meson8b_mpll1.hw,
--	&meson8b_mpll2.hw
--};
--
--static u32 meson8b_cts_mclk_i958_mux_table[] = { 1, 2, 3 };
--
- static struct clk_regmap meson8b_cts_mclk_i958_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_AUD_CLK_CNTL2,
- 		.mask = 0x3,
- 		.shift = 25,
--		.table = meson8b_cts_mclk_i958_mux_table,
-+		.table = meson8b_cts_mclk_parents_val_table,
- 		.flags = CLK_MUX_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data) {
- 		.name = "cts_mclk_i958_sel",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_hws = meson8b_cts_mclk_i958_parent_hws,
--		.num_parents = ARRAY_SIZE(meson8b_cts_mclk_i958_parent_hws),
-+		.parent_hws = meson8b_cts_mclk_parents,
-+		.num_parents = ARRAY_SIZE(meson8b_cts_mclk_parents),
- 	},
- };
- 
-@@ -2742,113 +2701,114 @@ static struct clk_regmap meson8b_cts_i958 = {
- 	},
- };
- 
--#define MESON_GATE(_name, _reg, _bit) \
-+#define MESON8B_PCLK(_name, _reg, _bit) \
- 	MESON_PCLK(_name, _reg, _bit, &meson8b_clk81.hw)
- 
- /* Everything Else (EE) domain gates */
- 
--static MESON_GATE(meson8b_ddr, HHI_GCLK_MPEG0, 0);
--static MESON_GATE(meson8b_dos, HHI_GCLK_MPEG0, 1);
--static MESON_GATE(meson8b_isa, HHI_GCLK_MPEG0, 5);
--static MESON_GATE(meson8b_pl301, HHI_GCLK_MPEG0, 6);
--static MESON_GATE(meson8b_periphs, HHI_GCLK_MPEG0, 7);
--static MESON_GATE(meson8b_spicc, HHI_GCLK_MPEG0, 8);
--static MESON_GATE(meson8b_i2c, HHI_GCLK_MPEG0, 9);
--static MESON_GATE(meson8b_sar_adc, HHI_GCLK_MPEG0, 10);
--static MESON_GATE(meson8b_smart_card, HHI_GCLK_MPEG0, 11);
--static MESON_GATE(meson8b_rng0, HHI_GCLK_MPEG0, 12);
--static MESON_GATE(meson8b_uart0, HHI_GCLK_MPEG0, 13);
--static MESON_GATE(meson8b_sdhc, HHI_GCLK_MPEG0, 14);
--static MESON_GATE(meson8b_stream, HHI_GCLK_MPEG0, 15);
--static MESON_GATE(meson8b_async_fifo, HHI_GCLK_MPEG0, 16);
--static MESON_GATE(meson8b_sdio, HHI_GCLK_MPEG0, 17);
--static MESON_GATE(meson8b_abuf, HHI_GCLK_MPEG0, 18);
--static MESON_GATE(meson8b_hiu_iface, HHI_GCLK_MPEG0, 19);
--static MESON_GATE(meson8b_assist_misc, HHI_GCLK_MPEG0, 23);
--static MESON_GATE(meson8b_spi, HHI_GCLK_MPEG0, 30);
--
--static MESON_GATE(meson8b_i2s_spdif, HHI_GCLK_MPEG1, 2);
--static MESON_GATE(meson8b_eth, HHI_GCLK_MPEG1, 3);
--static MESON_GATE(meson8b_demux, HHI_GCLK_MPEG1, 4);
--static MESON_GATE(meson8b_blkmv, HHI_GCLK_MPEG1, 14);
--static MESON_GATE(meson8b_aiu, HHI_GCLK_MPEG1, 15);
--static MESON_GATE(meson8b_uart1, HHI_GCLK_MPEG1, 16);
--static MESON_GATE(meson8b_g2d, HHI_GCLK_MPEG1, 20);
--static MESON_GATE(meson8b_usb0, HHI_GCLK_MPEG1, 21);
--static MESON_GATE(meson8b_usb1, HHI_GCLK_MPEG1, 22);
--static MESON_GATE(meson8b_reset, HHI_GCLK_MPEG1, 23);
--static MESON_GATE(meson8b_nand, HHI_GCLK_MPEG1, 24);
--static MESON_GATE(meson8b_dos_parser, HHI_GCLK_MPEG1, 25);
--static MESON_GATE(meson8b_usb, HHI_GCLK_MPEG1, 26);
--static MESON_GATE(meson8b_vdin1, HHI_GCLK_MPEG1, 28);
--static MESON_GATE(meson8b_ahb_arb0, HHI_GCLK_MPEG1, 29);
--static MESON_GATE(meson8b_efuse, HHI_GCLK_MPEG1, 30);
--static MESON_GATE(meson8b_boot_rom, HHI_GCLK_MPEG1, 31);
--
--static MESON_GATE(meson8b_ahb_data_bus, HHI_GCLK_MPEG2, 1);
--static MESON_GATE(meson8b_ahb_ctrl_bus, HHI_GCLK_MPEG2, 2);
--static MESON_GATE(meson8b_hdmi_intr_sync, HHI_GCLK_MPEG2, 3);
--static MESON_GATE(meson8b_hdmi_pclk, HHI_GCLK_MPEG2, 4);
--static MESON_GATE(meson8b_usb1_ddr_bridge, HHI_GCLK_MPEG2, 8);
--static MESON_GATE(meson8b_usb0_ddr_bridge, HHI_GCLK_MPEG2, 9);
--static MESON_GATE(meson8b_mmc_pclk, HHI_GCLK_MPEG2, 11);
--static MESON_GATE(meson8b_dvin, HHI_GCLK_MPEG2, 12);
--static MESON_GATE(meson8b_uart2, HHI_GCLK_MPEG2, 15);
--static MESON_GATE(meson8b_sana, HHI_GCLK_MPEG2, 22);
--static MESON_GATE(meson8b_vpu_intr, HHI_GCLK_MPEG2, 25);
--static MESON_GATE(meson8b_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
--static MESON_GATE(meson8b_clk81_a9, HHI_GCLK_MPEG2, 29);
--
--static MESON_GATE(meson8b_vclk2_venci0, HHI_GCLK_OTHER, 1);
--static MESON_GATE(meson8b_vclk2_venci1, HHI_GCLK_OTHER, 2);
--static MESON_GATE(meson8b_vclk2_vencp0, HHI_GCLK_OTHER, 3);
--static MESON_GATE(meson8b_vclk2_vencp1, HHI_GCLK_OTHER, 4);
--static MESON_GATE(meson8b_gclk_venci_int, HHI_GCLK_OTHER, 8);
--static MESON_GATE(meson8b_gclk_vencp_int, HHI_GCLK_OTHER, 9);
--static MESON_GATE(meson8b_dac_clk, HHI_GCLK_OTHER, 10);
--static MESON_GATE(meson8b_aoclk_gate, HHI_GCLK_OTHER, 14);
--static MESON_GATE(meson8b_iec958_gate, HHI_GCLK_OTHER, 16);
--static MESON_GATE(meson8b_enc480p, HHI_GCLK_OTHER, 20);
--static MESON_GATE(meson8b_rng1, HHI_GCLK_OTHER, 21);
--static MESON_GATE(meson8b_gclk_vencl_int, HHI_GCLK_OTHER, 22);
--static MESON_GATE(meson8b_vclk2_venclmcc, HHI_GCLK_OTHER, 24);
--static MESON_GATE(meson8b_vclk2_vencl, HHI_GCLK_OTHER, 25);
--static MESON_GATE(meson8b_vclk2_other, HHI_GCLK_OTHER, 26);
--static MESON_GATE(meson8b_edp, HHI_GCLK_OTHER, 31);
-+static MESON8B_PCLK(meson8b_ddr,		HHI_GCLK_MPEG0, 0);
-+static MESON8B_PCLK(meson8b_dos,		HHI_GCLK_MPEG0, 1);
-+static MESON8B_PCLK(meson8b_isa,		HHI_GCLK_MPEG0, 5);
-+static MESON8B_PCLK(meson8b_pl301,		HHI_GCLK_MPEG0, 6);
-+static MESON8B_PCLK(meson8b_periphs,		HHI_GCLK_MPEG0, 7);
-+static MESON8B_PCLK(meson8b_spicc,		HHI_GCLK_MPEG0, 8);
-+static MESON8B_PCLK(meson8b_i2c,		HHI_GCLK_MPEG0, 9);
-+static MESON8B_PCLK(meson8b_sar_adc,		HHI_GCLK_MPEG0, 10);
-+static MESON8B_PCLK(meson8b_smart_card,		HHI_GCLK_MPEG0, 11);
-+static MESON8B_PCLK(meson8b_rng0,		HHI_GCLK_MPEG0, 12);
-+static MESON8B_PCLK(meson8b_uart0,		HHI_GCLK_MPEG0, 13);
-+static MESON8B_PCLK(meson8b_sdhc,		HHI_GCLK_MPEG0, 14);
-+static MESON8B_PCLK(meson8b_stream,		HHI_GCLK_MPEG0, 15);
-+static MESON8B_PCLK(meson8b_async_fifo,		HHI_GCLK_MPEG0, 16);
-+static MESON8B_PCLK(meson8b_sdio,		HHI_GCLK_MPEG0, 17);
-+static MESON8B_PCLK(meson8b_abuf,		HHI_GCLK_MPEG0, 18);
-+static MESON8B_PCLK(meson8b_hiu_iface,		HHI_GCLK_MPEG0, 19);
-+static MESON8B_PCLK(meson8b_assist_misc,	HHI_GCLK_MPEG0, 23);
-+static MESON8B_PCLK(meson8b_spi,		HHI_GCLK_MPEG0, 30);
-+
-+static MESON8B_PCLK(meson8b_i2s_spdif,		HHI_GCLK_MPEG1, 2);
-+static MESON8B_PCLK(meson8b_eth,		HHI_GCLK_MPEG1, 3);
-+static MESON8B_PCLK(meson8b_demux,		HHI_GCLK_MPEG1, 4);
-+static MESON8B_PCLK(meson8b_blkmv,		HHI_GCLK_MPEG1, 14);
-+static MESON8B_PCLK(meson8b_aiu,		HHI_GCLK_MPEG1, 15);
-+static MESON8B_PCLK(meson8b_uart1,		HHI_GCLK_MPEG1, 16);
-+static MESON8B_PCLK(meson8b_g2d,		HHI_GCLK_MPEG1, 20);
-+static MESON8B_PCLK(meson8b_usb0,		HHI_GCLK_MPEG1, 21);
-+static MESON8B_PCLK(meson8b_usb1,		HHI_GCLK_MPEG1, 22);
-+static MESON8B_PCLK(meson8b_reset,		HHI_GCLK_MPEG1, 23);
-+static MESON8B_PCLK(meson8b_nand,		HHI_GCLK_MPEG1, 24);
-+static MESON8B_PCLK(meson8b_dos_parser,		HHI_GCLK_MPEG1, 25);
-+static MESON8B_PCLK(meson8b_usb,		HHI_GCLK_MPEG1, 26);
-+static MESON8B_PCLK(meson8b_vdin1,		HHI_GCLK_MPEG1, 28);
-+static MESON8B_PCLK(meson8b_ahb_arb0,		HHI_GCLK_MPEG1, 29);
-+static MESON8B_PCLK(meson8b_efuse,		HHI_GCLK_MPEG1, 30);
-+static MESON8B_PCLK(meson8b_boot_rom,		HHI_GCLK_MPEG1, 31);
-+
-+static MESON8B_PCLK(meson8b_ahb_data_bus,	HHI_GCLK_MPEG2, 1);
-+static MESON8B_PCLK(meson8b_ahb_ctrl_bus,	HHI_GCLK_MPEG2, 2);
-+static MESON8B_PCLK(meson8b_hdmi_intr_sync,	HHI_GCLK_MPEG2, 3);
-+static MESON8B_PCLK(meson8b_hdmi_pclk,		HHI_GCLK_MPEG2, 4);
-+static MESON8B_PCLK(meson8b_usb1_ddr_bridge,	HHI_GCLK_MPEG2, 8);
-+static MESON8B_PCLK(meson8b_usb0_ddr_bridge,	HHI_GCLK_MPEG2, 9);
-+static MESON8B_PCLK(meson8b_mmc_pclk,		HHI_GCLK_MPEG2, 11);
-+static MESON8B_PCLK(meson8b_dvin,		HHI_GCLK_MPEG2, 12);
-+static MESON8B_PCLK(meson8b_uart2,		HHI_GCLK_MPEG2, 15);
-+static MESON8B_PCLK(meson8b_sana,		HHI_GCLK_MPEG2, 22);
-+static MESON8B_PCLK(meson8b_vpu_intr,		HHI_GCLK_MPEG2, 25);
-+static MESON8B_PCLK(meson8b_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
-+static MESON8B_PCLK(meson8b_clk81_a9,		HHI_GCLK_MPEG2, 29);
-+
-+static MESON8B_PCLK(meson8b_vclk2_venci0,	HHI_GCLK_OTHER, 1);
-+static MESON8B_PCLK(meson8b_vclk2_venci1,	HHI_GCLK_OTHER, 2);
-+static MESON8B_PCLK(meson8b_vclk2_vencp0,	HHI_GCLK_OTHER, 3);
-+static MESON8B_PCLK(meson8b_vclk2_vencp1,	HHI_GCLK_OTHER, 4);
-+static MESON8B_PCLK(meson8b_gclk_venci_int,	HHI_GCLK_OTHER, 8);
-+static MESON8B_PCLK(meson8b_gclk_vencp_int,	HHI_GCLK_OTHER, 9);
-+static MESON8B_PCLK(meson8b_dac_clk,		HHI_GCLK_OTHER, 10);
-+static MESON8B_PCLK(meson8b_aoclk_gate,		HHI_GCLK_OTHER, 14);
-+static MESON8B_PCLK(meson8b_iec958_gate,	HHI_GCLK_OTHER, 16);
-+static MESON8B_PCLK(meson8b_enc480p,		HHI_GCLK_OTHER, 20);
-+static MESON8B_PCLK(meson8b_rng1,		HHI_GCLK_OTHER, 21);
-+static MESON8B_PCLK(meson8b_gclk_vencl_int,	HHI_GCLK_OTHER, 22);
-+static MESON8B_PCLK(meson8b_vclk2_venclmcc,	HHI_GCLK_OTHER, 24);
-+static MESON8B_PCLK(meson8b_vclk2_vencl,	HHI_GCLK_OTHER, 25);
-+static MESON8B_PCLK(meson8b_vclk2_other,	HHI_GCLK_OTHER, 26);
-+static MESON8B_PCLK(meson8b_edp,		HHI_GCLK_OTHER, 31);
- 
- /* AIU gates */
--#define MESON_AIU_GLUE_GATE(_name, _reg, _bit) \
-+static MESON_PCLK(meson8b_aiu_glue,		HHI_GCLK_MPEG1, 6, &meson8b_aiu.hw);
-+
-+#define MESON_AIU_PCLK(_name, _reg, _bit) \
- 	MESON_PCLK(_name, _reg, _bit, &meson8b_aiu_glue.hw)
- 
--static MESON_PCLK(meson8b_aiu_glue, HHI_GCLK_MPEG1, 6, &meson8b_aiu.hw);
--static MESON_AIU_GLUE_GATE(meson8b_iec958, HHI_GCLK_MPEG1, 7);
--static MESON_AIU_GLUE_GATE(meson8b_i2s_out, HHI_GCLK_MPEG1, 8);
--static MESON_AIU_GLUE_GATE(meson8b_amclk, HHI_GCLK_MPEG1, 9);
--static MESON_AIU_GLUE_GATE(meson8b_aififo2, HHI_GCLK_MPEG1, 10);
--static MESON_AIU_GLUE_GATE(meson8b_mixer, HHI_GCLK_MPEG1, 11);
--static MESON_AIU_GLUE_GATE(meson8b_mixer_iface, HHI_GCLK_MPEG1, 12);
--static MESON_AIU_GLUE_GATE(meson8b_adc, HHI_GCLK_MPEG1, 13);
-+static MESON_AIU_PCLK(meson8b_iec958,		HHI_GCLK_MPEG1, 7);
-+static MESON_AIU_PCLK(meson8b_i2s_out,		HHI_GCLK_MPEG1, 8);
-+static MESON_AIU_PCLK(meson8b_amclk,		HHI_GCLK_MPEG1, 9);
-+static MESON_AIU_PCLK(meson8b_aififo2,		HHI_GCLK_MPEG1, 10);
-+static MESON_AIU_PCLK(meson8b_mixer,		HHI_GCLK_MPEG1, 11);
-+static MESON_AIU_PCLK(meson8b_mixer_iface,	HHI_GCLK_MPEG1, 12);
-+static MESON_AIU_PCLK(meson8b_adc,		HHI_GCLK_MPEG1, 13);
- 
- /* Always On (AO) domain gates */
- 
--static MESON_GATE(meson8b_ao_media_cpu, HHI_GCLK_AO, 0);
--static MESON_GATE(meson8b_ao_ahb_sram, HHI_GCLK_AO, 1);
--static MESON_GATE(meson8b_ao_ahb_bus, HHI_GCLK_AO, 2);
--static MESON_GATE(meson8b_ao_iface, HHI_GCLK_AO, 3);
-+static MESON8B_PCLK(meson8b_ao_media_cpu,	HHI_GCLK_AO, 0);
-+static MESON8B_PCLK(meson8b_ao_ahb_sram,	HHI_GCLK_AO, 1);
-+static MESON8B_PCLK(meson8b_ao_ahb_bus,		HHI_GCLK_AO, 2);
-+static MESON8B_PCLK(meson8b_ao_iface,		HHI_GCLK_AO, 3);
- 
- static struct clk_hw *meson8_hw_clks[] = {
--	[CLKID_PLL_FIXED] = &meson8b_fixed_pll.hw,
--	[CLKID_PLL_VID] = &meson8b_vid_pll.hw,
--	[CLKID_PLL_SYS] = &meson8b_sys_pll.hw,
--	[CLKID_FCLK_DIV2] = &meson8b_fclk_div2.hw,
--	[CLKID_FCLK_DIV3] = &meson8b_fclk_div3.hw,
--	[CLKID_FCLK_DIV4] = &meson8b_fclk_div4.hw,
--	[CLKID_FCLK_DIV5] = &meson8b_fclk_div5.hw,
--	[CLKID_FCLK_DIV7] = &meson8b_fclk_div7.hw,
--	[CLKID_CPUCLK] = &meson8b_cpu_clk.hw,
--	[CLKID_MPEG_SEL] = &meson8b_mpeg_clk_sel.hw,
--	[CLKID_MPEG_DIV] = &meson8b_mpeg_clk_div.hw,
--	[CLKID_CLK81] = &meson8b_clk81.hw,
-+	[CLKID_PLL_FIXED]	    = &meson8b_fixed_pll.hw,
-+	[CLKID_PLL_VID]		    = &meson8b_vid_pll.hw,
-+	[CLKID_PLL_SYS]		    = &meson8b_sys_pll.hw,
-+	[CLKID_FCLK_DIV2]	    = &meson8b_fclk_div2.hw,
-+	[CLKID_FCLK_DIV3]	    = &meson8b_fclk_div3.hw,
-+	[CLKID_FCLK_DIV4]	    = &meson8b_fclk_div4.hw,
-+	[CLKID_FCLK_DIV5]	    = &meson8b_fclk_div5.hw,
-+	[CLKID_FCLK_DIV7]	    = &meson8b_fclk_div7.hw,
-+	[CLKID_CPUCLK]		    = &meson8b_cpu_clk.hw,
-+	[CLKID_MPEG_SEL]	    = &meson8b_clk81_sel.hw,
-+	[CLKID_MPEG_DIV]	    = &meson8b_clk81_div.hw,
-+	[CLKID_CLK81]		    = &meson8b_clk81.hw,
- 	[CLKID_DDR]		    = &meson8b_ddr.hw,
- 	[CLKID_DOS]		    = &meson8b_dos.hw,
- 	[CLKID_ISA]		    = &meson8b_isa.hw,
-@@ -2945,7 +2905,7 @@ static struct clk_hw *meson8_hw_clks[] = {
- 	[CLKID_FCLK_DIV7_DIV]	    = &meson8b_fclk_div7_div.hw,
- 	[CLKID_NAND_SEL]	    = &meson8b_nand_clk_sel.hw,
- 	[CLKID_NAND_DIV]	    = &meson8b_nand_clk_div.hw,
--	[CLKID_NAND_CLK]	    = &meson8b_nand_clk_gate.hw,
-+	[CLKID_NAND_CLK]	    = &meson8b_nand_clk.hw,
- 	[CLKID_PLL_FIXED_DCO]	    = &meson8b_fixed_pll_dco.hw,
- 	[CLKID_HDMI_PLL_DCO]	    = &meson8b_hdmi_pll_dco.hw,
- 	[CLKID_PLL_SYS_DCO]	    = &meson8b_sys_pll_dco.hw,
-@@ -2956,14 +2916,14 @@ static struct clk_hw *meson8_hw_clks[] = {
- 	[CLKID_CPU_CLK_DIV6]	    = &meson8b_cpu_clk_div6.hw,
- 	[CLKID_CPU_CLK_DIV7]	    = &meson8b_cpu_clk_div7.hw,
- 	[CLKID_CPU_CLK_DIV8]	    = &meson8b_cpu_clk_div8.hw,
--	[CLKID_APB_SEL]		    = &meson8b_apb_clk_sel.hw,
--	[CLKID_APB]		    = &meson8b_apb_clk_gate.hw,
--	[CLKID_PERIPH_SEL]	    = &meson8b_periph_clk_sel.hw,
--	[CLKID_PERIPH]		    = &meson8b_periph_clk_gate.hw,
--	[CLKID_AXI_SEL]		    = &meson8b_axi_clk_sel.hw,
--	[CLKID_AXI]		    = &meson8b_axi_clk_gate.hw,
--	[CLKID_L2_DRAM_SEL]	    = &meson8b_l2_dram_clk_sel.hw,
--	[CLKID_L2_DRAM]		    = &meson8b_l2_dram_clk_gate.hw,
-+	[CLKID_APB_SEL]		    = &meson8b_apb_sel.hw,
-+	[CLKID_APB]		    = &meson8b_apb.hw,
-+	[CLKID_PERIPH_SEL]	    = &meson8b_periph_sel.hw,
-+	[CLKID_PERIPH]		    = &meson8b_periph.hw,
-+	[CLKID_AXI_SEL]		    = &meson8b_axi_sel.hw,
-+	[CLKID_AXI]		    = &meson8b_axi.hw,
-+	[CLKID_L2_DRAM_SEL]	    = &meson8b_l2_dram_sel.hw,
-+	[CLKID_L2_DRAM]		    = &meson8b_l2_dram.hw,
- 	[CLKID_HDMI_PLL_LVDS_OUT]   = &meson8b_hdmi_pll_lvds_out.hw,
- 	[CLKID_HDMI_PLL_HDMI_OUT]   = &meson8b_hdmi_pll_hdmi_out.hw,
- 	[CLKID_VID_PLL_IN_SEL]	    = &meson8b_vid_pll_in_sel.hw,
-@@ -2974,27 +2934,27 @@ static struct clk_hw *meson8_hw_clks[] = {
- 	[CLKID_VCLK_IN_SEL]	    = &meson8b_vclk_in_sel.hw,
- 	[CLKID_VCLK_IN_EN]	    = &meson8b_vclk_in_en.hw,
- 	[CLKID_VCLK_EN]		    = &meson8b_vclk_en.hw,
--	[CLKID_VCLK_DIV1]	    = &meson8b_vclk_div1_gate.hw,
-+	[CLKID_VCLK_DIV1]	    = &meson8b_vclk_div1.hw,
- 	[CLKID_VCLK_DIV2_DIV]	    = &meson8b_vclk_div2_div.hw,
--	[CLKID_VCLK_DIV2]	    = &meson8b_vclk_div2_div_gate.hw,
-+	[CLKID_VCLK_DIV2]	    = &meson8b_vclk_div2.hw,
- 	[CLKID_VCLK_DIV4_DIV]	    = &meson8b_vclk_div4_div.hw,
--	[CLKID_VCLK_DIV4]	    = &meson8b_vclk_div4_div_gate.hw,
-+	[CLKID_VCLK_DIV4]	    = &meson8b_vclk_div4.hw,
- 	[CLKID_VCLK_DIV6_DIV]	    = &meson8b_vclk_div6_div.hw,
--	[CLKID_VCLK_DIV6]	    = &meson8b_vclk_div6_div_gate.hw,
-+	[CLKID_VCLK_DIV6]	    = &meson8b_vclk_div6.hw,
- 	[CLKID_VCLK_DIV12_DIV]	    = &meson8b_vclk_div12_div.hw,
--	[CLKID_VCLK_DIV12]	    = &meson8b_vclk_div12_div_gate.hw,
-+	[CLKID_VCLK_DIV12]	    = &meson8b_vclk_div12.hw,
- 	[CLKID_VCLK2_IN_SEL]	    = &meson8b_vclk2_in_sel.hw,
--	[CLKID_VCLK2_IN_EN]	    = &meson8b_vclk2_clk_in_en.hw,
--	[CLKID_VCLK2_EN]	    = &meson8b_vclk2_clk_en.hw,
--	[CLKID_VCLK2_DIV1]	    = &meson8b_vclk2_div1_gate.hw,
-+	[CLKID_VCLK2_IN_EN]	    = &meson8b_vclk2_in_en.hw,
-+	[CLKID_VCLK2_EN]	    = &meson8b_vclk2_en.hw,
-+	[CLKID_VCLK2_DIV1]	    = &meson8b_vclk2_div1.hw,
- 	[CLKID_VCLK2_DIV2_DIV]	    = &meson8b_vclk2_div2_div.hw,
--	[CLKID_VCLK2_DIV2]	    = &meson8b_vclk2_div2_div_gate.hw,
-+	[CLKID_VCLK2_DIV2]	    = &meson8b_vclk2_div2.hw,
- 	[CLKID_VCLK2_DIV4_DIV]	    = &meson8b_vclk2_div4_div.hw,
--	[CLKID_VCLK2_DIV4]	    = &meson8b_vclk2_div4_div_gate.hw,
-+	[CLKID_VCLK2_DIV4]	    = &meson8b_vclk2_div4.hw,
- 	[CLKID_VCLK2_DIV6_DIV]	    = &meson8b_vclk2_div6_div.hw,
--	[CLKID_VCLK2_DIV6]	    = &meson8b_vclk2_div6_div_gate.hw,
-+	[CLKID_VCLK2_DIV6]	    = &meson8b_vclk2_div6.hw,
- 	[CLKID_VCLK2_DIV12_DIV]	    = &meson8b_vclk2_div12_div.hw,
--	[CLKID_VCLK2_DIV12]	    = &meson8b_vclk2_div12_div_gate.hw,
-+	[CLKID_VCLK2_DIV12]	    = &meson8b_vclk2_div12.hw,
- 	[CLKID_CTS_ENCT_SEL]	    = &meson8b_cts_enct_sel.hw,
- 	[CLKID_CTS_ENCT]	    = &meson8b_cts_enct.hw,
- 	[CLKID_CTS_ENCP_SEL]	    = &meson8b_cts_encp_sel.hw,
-@@ -3041,18 +3001,18 @@ static struct clk_hw *meson8_hw_clks[] = {
- };
- 
- static struct clk_hw *meson8b_hw_clks[] = {
--	[CLKID_PLL_FIXED] = &meson8b_fixed_pll.hw,
--	[CLKID_PLL_VID] = &meson8b_vid_pll.hw,
--	[CLKID_PLL_SYS] = &meson8b_sys_pll.hw,
--	[CLKID_FCLK_DIV2] = &meson8b_fclk_div2.hw,
--	[CLKID_FCLK_DIV3] = &meson8b_fclk_div3.hw,
--	[CLKID_FCLK_DIV4] = &meson8b_fclk_div4.hw,
--	[CLKID_FCLK_DIV5] = &meson8b_fclk_div5.hw,
--	[CLKID_FCLK_DIV7] = &meson8b_fclk_div7.hw,
--	[CLKID_CPUCLK] = &meson8b_cpu_clk.hw,
--	[CLKID_MPEG_SEL] = &meson8b_mpeg_clk_sel.hw,
--	[CLKID_MPEG_DIV] = &meson8b_mpeg_clk_div.hw,
--	[CLKID_CLK81] = &meson8b_clk81.hw,
-+	[CLKID_PLL_FIXED]	    = &meson8b_fixed_pll.hw,
-+	[CLKID_PLL_VID]		    = &meson8b_vid_pll.hw,
-+	[CLKID_PLL_SYS]		    = &meson8b_sys_pll.hw,
-+	[CLKID_FCLK_DIV2]	    = &meson8b_fclk_div2.hw,
-+	[CLKID_FCLK_DIV3]	    = &meson8b_fclk_div3.hw,
-+	[CLKID_FCLK_DIV4]	    = &meson8b_fclk_div4.hw,
-+	[CLKID_FCLK_DIV5]	    = &meson8b_fclk_div5.hw,
-+	[CLKID_FCLK_DIV7]	    = &meson8b_fclk_div7.hw,
-+	[CLKID_CPUCLK]		    = &meson8b_cpu_clk.hw,
-+	[CLKID_MPEG_SEL]	    = &meson8b_clk81_sel.hw,
-+	[CLKID_MPEG_DIV]	    = &meson8b_clk81_div.hw,
-+	[CLKID_CLK81]		    = &meson8b_clk81.hw,
- 	[CLKID_DDR]		    = &meson8b_ddr.hw,
- 	[CLKID_DOS]		    = &meson8b_dos.hw,
- 	[CLKID_ISA]		    = &meson8b_isa.hw,
-@@ -3149,7 +3109,7 @@ static struct clk_hw *meson8b_hw_clks[] = {
- 	[CLKID_FCLK_DIV7_DIV]	    = &meson8b_fclk_div7_div.hw,
- 	[CLKID_NAND_SEL]	    = &meson8b_nand_clk_sel.hw,
- 	[CLKID_NAND_DIV]	    = &meson8b_nand_clk_div.hw,
--	[CLKID_NAND_CLK]	    = &meson8b_nand_clk_gate.hw,
-+	[CLKID_NAND_CLK]	    = &meson8b_nand_clk.hw,
- 	[CLKID_PLL_FIXED_DCO]	    = &meson8b_fixed_pll_dco.hw,
- 	[CLKID_HDMI_PLL_DCO]	    = &meson8b_hdmi_pll_dco.hw,
- 	[CLKID_PLL_SYS_DCO]	    = &meson8b_sys_pll_dco.hw,
-@@ -3160,14 +3120,14 @@ static struct clk_hw *meson8b_hw_clks[] = {
- 	[CLKID_CPU_CLK_DIV6]	    = &meson8b_cpu_clk_div6.hw,
- 	[CLKID_CPU_CLK_DIV7]	    = &meson8b_cpu_clk_div7.hw,
- 	[CLKID_CPU_CLK_DIV8]	    = &meson8b_cpu_clk_div8.hw,
--	[CLKID_APB_SEL]		    = &meson8b_apb_clk_sel.hw,
--	[CLKID_APB]		    = &meson8b_apb_clk_gate.hw,
--	[CLKID_PERIPH_SEL]	    = &meson8b_periph_clk_sel.hw,
--	[CLKID_PERIPH]		    = &meson8b_periph_clk_gate.hw,
--	[CLKID_AXI_SEL]		    = &meson8b_axi_clk_sel.hw,
--	[CLKID_AXI]		    = &meson8b_axi_clk_gate.hw,
--	[CLKID_L2_DRAM_SEL]	    = &meson8b_l2_dram_clk_sel.hw,
--	[CLKID_L2_DRAM]		    = &meson8b_l2_dram_clk_gate.hw,
-+	[CLKID_APB_SEL]		    = &meson8b_apb_sel.hw,
-+	[CLKID_APB]		    = &meson8b_apb.hw,
-+	[CLKID_PERIPH_SEL]	    = &meson8b_periph_sel.hw,
-+	[CLKID_PERIPH]		    = &meson8b_periph.hw,
-+	[CLKID_AXI_SEL]		    = &meson8b_axi_sel.hw,
-+	[CLKID_AXI]		    = &meson8b_axi.hw,
-+	[CLKID_L2_DRAM_SEL]	    = &meson8b_l2_dram_sel.hw,
-+	[CLKID_L2_DRAM]		    = &meson8b_l2_dram.hw,
- 	[CLKID_HDMI_PLL_LVDS_OUT]   = &meson8b_hdmi_pll_lvds_out.hw,
- 	[CLKID_HDMI_PLL_HDMI_OUT]   = &meson8b_hdmi_pll_hdmi_out.hw,
- 	[CLKID_VID_PLL_IN_SEL]	    = &meson8b_vid_pll_in_sel.hw,
-@@ -3178,27 +3138,27 @@ static struct clk_hw *meson8b_hw_clks[] = {
- 	[CLKID_VCLK_IN_SEL]	    = &meson8b_vclk_in_sel.hw,
- 	[CLKID_VCLK_IN_EN]	    = &meson8b_vclk_in_en.hw,
- 	[CLKID_VCLK_EN]		    = &meson8b_vclk_en.hw,
--	[CLKID_VCLK_DIV1]	    = &meson8b_vclk_div1_gate.hw,
-+	[CLKID_VCLK_DIV1]	    = &meson8b_vclk_div1.hw,
- 	[CLKID_VCLK_DIV2_DIV]	    = &meson8b_vclk_div2_div.hw,
--	[CLKID_VCLK_DIV2]	    = &meson8b_vclk_div2_div_gate.hw,
-+	[CLKID_VCLK_DIV2]	    = &meson8b_vclk_div2.hw,
- 	[CLKID_VCLK_DIV4_DIV]	    = &meson8b_vclk_div4_div.hw,
--	[CLKID_VCLK_DIV4]	    = &meson8b_vclk_div4_div_gate.hw,
-+	[CLKID_VCLK_DIV4]	    = &meson8b_vclk_div4.hw,
- 	[CLKID_VCLK_DIV6_DIV]	    = &meson8b_vclk_div6_div.hw,
--	[CLKID_VCLK_DIV6]	    = &meson8b_vclk_div6_div_gate.hw,
-+	[CLKID_VCLK_DIV6]	    = &meson8b_vclk_div6.hw,
- 	[CLKID_VCLK_DIV12_DIV]	    = &meson8b_vclk_div12_div.hw,
--	[CLKID_VCLK_DIV12]	    = &meson8b_vclk_div12_div_gate.hw,
-+	[CLKID_VCLK_DIV12]	    = &meson8b_vclk_div12.hw,
- 	[CLKID_VCLK2_IN_SEL]	    = &meson8b_vclk2_in_sel.hw,
--	[CLKID_VCLK2_IN_EN]	    = &meson8b_vclk2_clk_in_en.hw,
--	[CLKID_VCLK2_EN]	    = &meson8b_vclk2_clk_en.hw,
--	[CLKID_VCLK2_DIV1]	    = &meson8b_vclk2_div1_gate.hw,
-+	[CLKID_VCLK2_IN_EN]	    = &meson8b_vclk2_in_en.hw,
-+	[CLKID_VCLK2_EN]	    = &meson8b_vclk2_en.hw,
-+	[CLKID_VCLK2_DIV1]	    = &meson8b_vclk2_div1.hw,
- 	[CLKID_VCLK2_DIV2_DIV]	    = &meson8b_vclk2_div2_div.hw,
--	[CLKID_VCLK2_DIV2]	    = &meson8b_vclk2_div2_div_gate.hw,
-+	[CLKID_VCLK2_DIV2]	    = &meson8b_vclk2_div2.hw,
- 	[CLKID_VCLK2_DIV4_DIV]	    = &meson8b_vclk2_div4_div.hw,
--	[CLKID_VCLK2_DIV4]	    = &meson8b_vclk2_div4_div_gate.hw,
-+	[CLKID_VCLK2_DIV4]	    = &meson8b_vclk2_div4.hw,
- 	[CLKID_VCLK2_DIV6_DIV]	    = &meson8b_vclk2_div6_div.hw,
--	[CLKID_VCLK2_DIV6]	    = &meson8b_vclk2_div6_div_gate.hw,
-+	[CLKID_VCLK2_DIV6]	    = &meson8b_vclk2_div6.hw,
- 	[CLKID_VCLK2_DIV12_DIV]	    = &meson8b_vclk2_div12_div.hw,
--	[CLKID_VCLK2_DIV12]	    = &meson8b_vclk2_div12_div_gate.hw,
-+	[CLKID_VCLK2_DIV12]	    = &meson8b_vclk2_div12.hw,
- 	[CLKID_CTS_ENCT_SEL]	    = &meson8b_cts_enct_sel.hw,
- 	[CLKID_CTS_ENCT]	    = &meson8b_cts_enct.hw,
- 	[CLKID_CTS_ENCP_SEL]	    = &meson8b_cts_encp_sel.hw,
-@@ -3256,18 +3216,18 @@ static struct clk_hw *meson8b_hw_clks[] = {
- };
- 
- static struct clk_hw *meson8m2_hw_clks[] = {
--	[CLKID_PLL_FIXED] = &meson8b_fixed_pll.hw,
--	[CLKID_PLL_VID] = &meson8b_vid_pll.hw,
--	[CLKID_PLL_SYS] = &meson8b_sys_pll.hw,
--	[CLKID_FCLK_DIV2] = &meson8b_fclk_div2.hw,
--	[CLKID_FCLK_DIV3] = &meson8b_fclk_div3.hw,
--	[CLKID_FCLK_DIV4] = &meson8b_fclk_div4.hw,
--	[CLKID_FCLK_DIV5] = &meson8b_fclk_div5.hw,
--	[CLKID_FCLK_DIV7] = &meson8b_fclk_div7.hw,
--	[CLKID_CPUCLK] = &meson8b_cpu_clk.hw,
--	[CLKID_MPEG_SEL] = &meson8b_mpeg_clk_sel.hw,
--	[CLKID_MPEG_DIV] = &meson8b_mpeg_clk_div.hw,
--	[CLKID_CLK81] = &meson8b_clk81.hw,
-+	[CLKID_PLL_FIXED]	    = &meson8b_fixed_pll.hw,
-+	[CLKID_PLL_VID]		    = &meson8b_vid_pll.hw,
-+	[CLKID_PLL_SYS]		    = &meson8b_sys_pll.hw,
-+	[CLKID_FCLK_DIV2]	    = &meson8b_fclk_div2.hw,
-+	[CLKID_FCLK_DIV3]	    = &meson8b_fclk_div3.hw,
-+	[CLKID_FCLK_DIV4]	    = &meson8b_fclk_div4.hw,
-+	[CLKID_FCLK_DIV5]	    = &meson8b_fclk_div5.hw,
-+	[CLKID_FCLK_DIV7]	    = &meson8b_fclk_div7.hw,
-+	[CLKID_CPUCLK]		    = &meson8b_cpu_clk.hw,
-+	[CLKID_MPEG_SEL]	    = &meson8b_clk81_sel.hw,
-+	[CLKID_MPEG_DIV]	    = &meson8b_clk81_div.hw,
-+	[CLKID_CLK81]		    = &meson8b_clk81.hw,
- 	[CLKID_DDR]		    = &meson8b_ddr.hw,
- 	[CLKID_DOS]		    = &meson8b_dos.hw,
- 	[CLKID_ISA]		    = &meson8b_isa.hw,
-@@ -3364,7 +3324,7 @@ static struct clk_hw *meson8m2_hw_clks[] = {
- 	[CLKID_FCLK_DIV7_DIV]	    = &meson8b_fclk_div7_div.hw,
- 	[CLKID_NAND_SEL]	    = &meson8b_nand_clk_sel.hw,
- 	[CLKID_NAND_DIV]	    = &meson8b_nand_clk_div.hw,
--	[CLKID_NAND_CLK]	    = &meson8b_nand_clk_gate.hw,
-+	[CLKID_NAND_CLK]	    = &meson8b_nand_clk.hw,
- 	[CLKID_PLL_FIXED_DCO]	    = &meson8b_fixed_pll_dco.hw,
- 	[CLKID_HDMI_PLL_DCO]	    = &meson8b_hdmi_pll_dco.hw,
- 	[CLKID_PLL_SYS_DCO]	    = &meson8b_sys_pll_dco.hw,
-@@ -3375,14 +3335,14 @@ static struct clk_hw *meson8m2_hw_clks[] = {
- 	[CLKID_CPU_CLK_DIV6]	    = &meson8b_cpu_clk_div6.hw,
- 	[CLKID_CPU_CLK_DIV7]	    = &meson8b_cpu_clk_div7.hw,
- 	[CLKID_CPU_CLK_DIV8]	    = &meson8b_cpu_clk_div8.hw,
--	[CLKID_APB_SEL]		    = &meson8b_apb_clk_sel.hw,
--	[CLKID_APB]		    = &meson8b_apb_clk_gate.hw,
--	[CLKID_PERIPH_SEL]	    = &meson8b_periph_clk_sel.hw,
--	[CLKID_PERIPH]		    = &meson8b_periph_clk_gate.hw,
--	[CLKID_AXI_SEL]		    = &meson8b_axi_clk_sel.hw,
--	[CLKID_AXI]		    = &meson8b_axi_clk_gate.hw,
--	[CLKID_L2_DRAM_SEL]	    = &meson8b_l2_dram_clk_sel.hw,
--	[CLKID_L2_DRAM]		    = &meson8b_l2_dram_clk_gate.hw,
-+	[CLKID_APB_SEL]		    = &meson8b_apb_sel.hw,
-+	[CLKID_APB]		    = &meson8b_apb.hw,
-+	[CLKID_PERIPH_SEL]	    = &meson8b_periph_sel.hw,
-+	[CLKID_PERIPH]		    = &meson8b_periph.hw,
-+	[CLKID_AXI_SEL]		    = &meson8b_axi_sel.hw,
-+	[CLKID_AXI]		    = &meson8b_axi.hw,
-+	[CLKID_L2_DRAM_SEL]	    = &meson8b_l2_dram_sel.hw,
-+	[CLKID_L2_DRAM]		    = &meson8b_l2_dram.hw,
- 	[CLKID_HDMI_PLL_LVDS_OUT]   = &meson8b_hdmi_pll_lvds_out.hw,
- 	[CLKID_HDMI_PLL_HDMI_OUT]   = &meson8b_hdmi_pll_hdmi_out.hw,
- 	[CLKID_VID_PLL_IN_SEL]	    = &meson8b_vid_pll_in_sel.hw,
-@@ -3393,27 +3353,27 @@ static struct clk_hw *meson8m2_hw_clks[] = {
- 	[CLKID_VCLK_IN_SEL]	    = &meson8b_vclk_in_sel.hw,
- 	[CLKID_VCLK_IN_EN]	    = &meson8b_vclk_in_en.hw,
- 	[CLKID_VCLK_EN]		    = &meson8b_vclk_en.hw,
--	[CLKID_VCLK_DIV1]	    = &meson8b_vclk_div1_gate.hw,
-+	[CLKID_VCLK_DIV1]	    = &meson8b_vclk_div1.hw,
- 	[CLKID_VCLK_DIV2_DIV]	    = &meson8b_vclk_div2_div.hw,
--	[CLKID_VCLK_DIV2]	    = &meson8b_vclk_div2_div_gate.hw,
-+	[CLKID_VCLK_DIV2]	    = &meson8b_vclk_div2.hw,
- 	[CLKID_VCLK_DIV4_DIV]	    = &meson8b_vclk_div4_div.hw,
--	[CLKID_VCLK_DIV4]	    = &meson8b_vclk_div4_div_gate.hw,
-+	[CLKID_VCLK_DIV4]	    = &meson8b_vclk_div4.hw,
- 	[CLKID_VCLK_DIV6_DIV]	    = &meson8b_vclk_div6_div.hw,
--	[CLKID_VCLK_DIV6]	    = &meson8b_vclk_div6_div_gate.hw,
-+	[CLKID_VCLK_DIV6]	    = &meson8b_vclk_div6.hw,
- 	[CLKID_VCLK_DIV12_DIV]	    = &meson8b_vclk_div12_div.hw,
--	[CLKID_VCLK_DIV12]	    = &meson8b_vclk_div12_div_gate.hw,
-+	[CLKID_VCLK_DIV12]	    = &meson8b_vclk_div12.hw,
- 	[CLKID_VCLK2_IN_SEL]	    = &meson8b_vclk2_in_sel.hw,
--	[CLKID_VCLK2_IN_EN]	    = &meson8b_vclk2_clk_in_en.hw,
--	[CLKID_VCLK2_EN]	    = &meson8b_vclk2_clk_en.hw,
--	[CLKID_VCLK2_DIV1]	    = &meson8b_vclk2_div1_gate.hw,
-+	[CLKID_VCLK2_IN_EN]	    = &meson8b_vclk2_in_en.hw,
-+	[CLKID_VCLK2_EN]	    = &meson8b_vclk2_en.hw,
-+	[CLKID_VCLK2_DIV1]	    = &meson8b_vclk2_div1.hw,
- 	[CLKID_VCLK2_DIV2_DIV]	    = &meson8b_vclk2_div2_div.hw,
--	[CLKID_VCLK2_DIV2]	    = &meson8b_vclk2_div2_div_gate.hw,
-+	[CLKID_VCLK2_DIV2]	    = &meson8b_vclk2_div2.hw,
- 	[CLKID_VCLK2_DIV4_DIV]	    = &meson8b_vclk2_div4_div.hw,
--	[CLKID_VCLK2_DIV4]	    = &meson8b_vclk2_div4_div_gate.hw,
-+	[CLKID_VCLK2_DIV4]	    = &meson8b_vclk2_div4.hw,
- 	[CLKID_VCLK2_DIV6_DIV]	    = &meson8b_vclk2_div6_div.hw,
--	[CLKID_VCLK2_DIV6]	    = &meson8b_vclk2_div6_div_gate.hw,
-+	[CLKID_VCLK2_DIV6]	    = &meson8b_vclk2_div6.hw,
- 	[CLKID_VCLK2_DIV12_DIV]	    = &meson8b_vclk2_div12_div.hw,
--	[CLKID_VCLK2_DIV12]	    = &meson8b_vclk2_div12_div_gate.hw,
-+	[CLKID_VCLK2_DIV12]	    = &meson8b_vclk2_div12.hw,
- 	[CLKID_CTS_ENCT_SEL]	    = &meson8b_cts_enct_sel.hw,
- 	[CLKID_CTS_ENCT]	    = &meson8b_cts_enct.hw,
- 	[CLKID_CTS_ENCP_SEL]	    = &meson8b_cts_encp_sel.hw,
+ MODULE_DESCRIPTION("Amlogic S4 PLL Clock Controller driver");
+ MODULE_AUTHOR("Yu Tu <yu.tu@amlogic.com>");
 
 -- 
 2.47.2
