@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADE2BC83030
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jul 2025 07:52:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33650C83030
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jul 2025 08:01:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XuxN6jlYULJrHLSmVps4SMNSx/50muQDZpbDpVUyPR4=; b=t3cMYRxccjqIXJ
-	sM2Z6ShaLixeeHwkxpLdon2AfTwvEFfTecekJT6BrH0ObOR1DbxGM/poz6y6jNFhPd805HCjodqYX
-	NloS5lWXY5KLL+D4ZF8Ej3qVxByqKxggfhkRLVb5JSt6armCej1Z12VUdzAPuXmiilC87EJTWJNUI
-	OWg5bzFvsGQdGer3GWk+LQyAl9lc/8FSuDh7a6sdQxMhNqVZXBRu3NNSg/osY3DhvDHJ21gLhHqSl
-	GgGJhnfxOXu7PBovxNTrvI651SM2H/j+DqhgmfFkkcIVO+mfrdgNpjgTYfbx8gJ/JJKP3kH5sqSb4
-	gfO5qtrgCATJLO5PQkiQ==;
+	List-Owner; bh=gvb8BcbYvCWLhuf0i5xJzjEA60nbgMsAdp+BNeoujEM=; b=P860rhC6XA3MtS
+	3pmulm8CzvdiHAITRhjVtyAwuwwKBAjQnBRFkvSbR4/Ynfo+y+oInZ1tzADAI3JueIIyAQR38DT+S
+	Srpzocxt+zlrJX21NFGlvAM+oM2h9f+dyzowh3Fq/IR9VA0pIr+YnCDhxzdUzCVLpp6EjFv88J0eK
+	jmJSERmy63MpWOL4M/0sBwianGWCjKSqUF1bSCatSuI1pw2P/eutgUapBJ+yshOK0fXDW3Dpfb7b/
+	aI8Dc1ZCbdlQNlpT7B7r5RMfgYLeY+zbDID4z5TSOXEsK1/v1XkoSebrvtNXNnyGO9oL+aQyOZHpt
+	kxH5436qrK6YtUulFo+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uXEjp-0000000AZRI-293d;
-	Thu, 03 Jul 2025 07:52:09 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1uXEt6-0000000AbSf-0Cj2;
+	Thu, 03 Jul 2025 08:01:44 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uXEgS-0000000AYkx-3r9Y
+	id 1uXEmD-0000000AZpz-2TIs
 	for linux-amlogic@lists.infradead.org;
-	Thu, 03 Jul 2025 07:48:43 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4530921461aso50899285e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 03 Jul 2025 00:48:40 -0700 (PDT)
+	Thu, 03 Jul 2025 07:54:39 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-451d54214adso54839055e9.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 03 Jul 2025 00:54:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751528919; x=1752133719; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751529276; x=1752134076; darn=lists.infradead.org;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=v8j/0HFcGq80O81mlMY+WzGVR3ktjzb/D67nQLfvYiE=;
-        b=pK5xiB+/4zF+wnoUKE50mIlBE09XewCKFB8qs+m1cDO2rb0lpuuZP+1rTA4vlMrsaT
-         gx6yGq/F+eUUY86hzyTT/5uRDaPUNyFfCwke3hGu29o1ynpFdwH6Kw5+OHOoGiuy7RTE
-         SdP7G2sYx+Qg7wtlanWHKaQFvooUttVXXItABNnPevuyxB/0yqtpR3SykefpdRIIAFSD
-         IhI/ijm8+mXGsA3t85WdCG1FCzfc1dBrmc3kfStxgGlOldauA/fABQZLaboiSfy+9D8D
-         4zvJkkgvWrfofaTF+XIyBcoO6Lq9Mlz5d/RYbjVb/aQ/3thnj/SIpmaMZjAm2BCdFWqP
-         s/Mg==
+        bh=TQ+a7e2XqmrAj6StBU7aKHlBb7NWBzERXFCwgZtjl3s=;
+        b=RL8r4wKqlVWfqjDoo7BaRzlXrBDMmUuBMUlirN51rteZkvVFKe/gCwNzDW54VzA5Il
+         rYsnAS3G6gQzLpvKPRou07mwonYvKiVL+OhlXLt6kENcSLACH1a97fqUJfEvZHex65CJ
+         6V/q1lyFOtf4sgtxDxMmucpiJwUBz374OU1AaMmUNmtKDM5ilYlnDr+3xr9dmdI7nzaT
+         9uTtnQ8mx1mu9LwOuKS3PDC5uTpqJu2QfGg0T0vJ4+XtkyDuFbg6X2YLa6t6VaTpCeRM
+         YwO+5oDQ1ewV/dmWpjUDlH/FOdh1SrgGOqN06DuAsiU891dhD/u/Z9v1MYG9m5k9+/kD
+         gzDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751528919; x=1752133719;
+        d=1e100.net; s=20230601; t=1751529276; x=1752134076;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=v8j/0HFcGq80O81mlMY+WzGVR3ktjzb/D67nQLfvYiE=;
-        b=VmVLOodq1jvcYhhA28IbSMFt+MJ+QNZ1QMJ+EhY3lde3RYJ6j5edwgJUSOaRXRXkqR
-         bHD2hnPsQd5KS4QHMdg0bxwqHnka+5yxJ1WiOe/9TNOY1FPlnRRAG0A4LxPuD/WFZHxk
-         9UNVQKRx8AiK0kMlcLqfmamwzmVFNATS0LpSTDNUOzmvo1TBusHR2CZZ2zJ3X5+V9agI
-         Tt7xRE/nC1RGAaPfQx1pm1pZYSPBQksQgO1PnvW6S5SxYprBj8JcmneaPOUQ4CemxXLG
-         B0/KIuU299SN86RA7JtmKUlwJJmmgIJY13q+XmnoXlkN4lUm5ilK4Zcumd/XHINN+OD9
-         LjtA==
-X-Forwarded-Encrypted: i=1; AJvYcCVo/lN35P6E0Db5nl/QNacEwnO6LyqaA2ayZSmDH4oMgqdmo8Egsfn6FtWrkv9TeKwGPzA1V+Pk49Y4TYB1@lists.infradead.org
-X-Gm-Message-State: AOJu0YzHg8KjQn2laSg3aZ2WW0p7IqCflL2KYHV/U1LL2pdyVl3WzXJD
-	6RW3tw583AQHmMswKPQhbKvwWw21sWlzQ4thqavz7Vjm569/rD9QFVOZeND1KgpVS7M=
-X-Gm-Gg: ASbGncu10BcJIQb0QwQ/FfQ2Opc0yhZCuTBuCdTMS7OASK7aphfDw+0Cx8+YOe8/gwS
-	BUoLGzTiMXn203n7mfMBLznuiBg3AZ+TrlbGjMI51Wvok+HyLeL1tx8ZQgsTH5eJjwi74BgWoCI
-	A68MUk5O3t2Afu7S7r1FLO46TI7z4Q1IABWKq+Oxv6EnCrW1JAAqXnsucqlmFJVkJqXopIxowv0
-	botBK2R6gTXk7upWi7ZjQqlq62qbK7OPQ3CTc4uZMWMIN5ocSJeuHRfOv4M5+udpUlZpM7sGtkQ
-	MQqk2uAXjlryJvtkoLNsKdbnmrKZYc+M5+CSupJeQpGpS4n/u8ydMErPKjGpkA==
-X-Google-Smtp-Source: AGHT+IFJpSqy935AeSkMTPdOYET1P8hC02KkMBO+l6v23mFxwRQ4BlWOp1U7Ls20FOnt3iQ5UlOJAQ==
-X-Received: by 2002:a05:600c:608c:b0:43c:fa24:8721 with SMTP id 5b1f17b1804b1-454ab3a9274mr19797505e9.17.1751528919290;
-        Thu, 03 Jul 2025 00:48:39 -0700 (PDT)
+        bh=TQ+a7e2XqmrAj6StBU7aKHlBb7NWBzERXFCwgZtjl3s=;
+        b=dJZxqz96ZdZklAiw2v5op9bAmhSdoaPcRNu6p90zIWmQwExFbAZqt0TkEJ++XinVmX
+         vsPGzU8KEfJa2d3aFhqmutLi10gLuXt5LJrJ0QZENkbmYIw9LuTHYt5BnMyN1cZkkANR
+         n3alrvXQGcttphdVtFPiHbFAKm/6pNLXsnx53yPGvISLxcEVEzaJLJKOP/u1o13qdy7U
+         dGkjXiZTtIXdg2QMMtoQJuAEgOGw9z9uCKyiKIhpj9RVLPJN5VNO9xwjYVWrJs321m9v
+         oIQPwtt/o6T85ox0OzNnlvCSZFUZN1WeW3nalpW+8iESzz3OqBpTtMN8r9E52yw+ApKc
+         vJxw==
+X-Forwarded-Encrypted: i=1; AJvYcCVUwwK+hIH+tUDFnymxEZAaWG26Nowt5e+jQgIVaXHuV4hG/H3WA68qJ2hSDcb5SRQ/Vs7wMN1VaIgc0/sn@lists.infradead.org
+X-Gm-Message-State: AOJu0Yxz+k5afEcO/YlbOPOsCw0cQTZrP0EK4nI8DHrUe0CWuzUUDSVf
+	s4xc7iJbfHsEqCX4FkuJCLAzxSItvKAfFJ1hyAbu3LmduI0Y24XaH2V+QefJ79WsxgM=
+X-Gm-Gg: ASbGncvxInvYgGIeBkaVqYfbSzkJFZIswj7foOfQQzyrEQHdaIq3J6XjePYSzymQ17N
+	/j7J50eGv2CIh/0+KXYZrnY3kWco/irIaSzOBvLH9T/YxxiuQdDlXzh4/VbU2H9UP80c863yRB1
+	9GHRnJ5B2WSS44uGymHVsYUH4ncIUVy5nozoSGaRtPKPurpReCZ7YyljHfXuhs3i2u4WyUWyxWw
+	JMAHTtim/wDKK79SLBZjqx7KOOZPTQo4oJW6Nc5QuXzlO5UIFn/joho9HrXFeAX3cr9CeMIRrpr
+	Aly9GYF4KMNeqPPpI2Mxv1Vc7HNv+ttrlRMR4a+/FlrtnyPm4bXusau5Ojh6ug==
+X-Google-Smtp-Source: AGHT+IHxPOgGMF4E/igQ+9zuKWpkgI9g01pOMTJQFOuCNZV4sYhenQsuo3Rce+I6dtWKJJvUGA2Kwg==
+X-Received: by 2002:a05:600c:3b8a:b0:450:6b55:cf91 with SMTP id 5b1f17b1804b1-454a5629244mr48611805e9.6.1751529275924;
+        Thu, 03 Jul 2025 00:54:35 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:1b4c:1be9:25d0:5634])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-454a997ae2esm18696005e9.9.2025.07.03.00.48.38
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-454a9989fcesm18837365e9.16.2025.07.03.00.54.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jul 2025 00:48:38 -0700 (PDT)
+        Thu, 03 Jul 2025 00:54:35 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Chuan Liu <chuan.liu@amlogic.com>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
@@ -74,20 +74,20 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
  <khilman@baylibre.com>,  Martin Blumenstingl
  <martin.blumenstingl@googlemail.com>,  linux-amlogic@lists.infradead.org,
   linux-clk@vger.kernel.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 05/26] clk: amlogic: c3-peripherals: naming consistency
+Subject: Re: [PATCH 12/26] clk: amlogic: s4-peripherals: naming consistency
  alignment
-In-Reply-To: <eb233f20-1927-4944-9b57-f90c998db19a@amlogic.com> (Chuan Liu's
-	message of "Thu, 3 Jul 2025 10:51:07 +0800")
+In-Reply-To: <a7738c67-25fc-4919-bee8-69a72abb4871@amlogic.com> (Chuan Liu's
+	message of "Thu, 3 Jul 2025 11:18:04 +0800")
 References: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
-	<20250702-meson-clk-cleanup-24-v1-5-e163c9a1fc21@baylibre.com>
-	<eb233f20-1927-4944-9b57-f90c998db19a@amlogic.com>
+	<20250702-meson-clk-cleanup-24-v1-12-e163c9a1fc21@baylibre.com>
+	<a7738c67-25fc-4919-bee8-69a72abb4871@amlogic.com>
 User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Thu, 03 Jul 2025 09:48:37 +0200
-Message-ID: <1jy0t5d8a2.fsf@starbuckisacylon.baylibre.com>
+Date: Thu, 03 Jul 2025 09:54:34 +0200
+Message-ID: <1jsejdd805.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250703_004841_609389_A8F97390 
-X-CRM114-Status: GOOD (  21.39  )
+X-CRM114-CacheID: sfid-20250703_005437_662748_A0744268 
+X-CRM114-Status: GOOD (  21.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,9 +104,9 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu 03 Jul 2025 at 10:51, Chuan Liu <chuan.liu@amlogic.com> wrote:
+On Thu 03 Jul 2025 at 11:18, Chuan Liu <chuan.liu@amlogic.com> wrote:
 
-> hi Jerome:
+> Hi Jerome:
 >
 >
 > On 7/2/2025 11:26 PM, Jerome Brunet wrote:
@@ -141,172 +141,494 @@ On Thu 03 Jul 2025 at 10:51, Chuan Liu <chuan.liu@amlogic.com> wrote:
 >>
 >> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 >> ---
->>   drivers/clk/meson/c3-peripherals.c | 1261 ++++++++++++++++++------------------
->>   1 file changed, 630 insertions(+), 631 deletions(-)
+>>   drivers/clk/meson/s4-peripherals.c | 746 ++++++++++++++++++-------------------
+>>   1 file changed, 370 insertions(+), 376 deletions(-)
 >>
->> diff --git a/drivers/clk/meson/c3-peripherals.c b/drivers/clk/meson/c3-peripherals.c
->> index a25e7d5dc6691d2d4a852e3d3da2b36f251cc141..a09cb1435ab108b2dcc209c6557bcd1988c4ba1a 100644
->> --- a/drivers/clk/meson/c3-peripherals.c
->> +++ b/drivers/clk/meson/c3-peripherals.c
->> @@ -48,7 +48,7 @@
->>   #define SPIFC_CLK_CTRL                         0x1a0
->>   #define NNA_CLK_CTRL                           0x220
->>
->> -static struct clk_regmap rtc_xtal_clkin = {
->> +static struct clk_regmap c3_rtc_xtal_clkin = {
->>          .data = &(struct clk_regmap_gate_data) {
->>                  .offset = RTC_BY_OSCIN_CTRL0,
->>                  .bit_idx = 31,
->> @@ -63,12 +63,12 @@ static struct clk_regmap rtc_xtal_clkin = {
->>          },
->>   };
->>
->> -static const struct meson_clk_dualdiv_param rtc_32k_div_table[] = {
->> +static const struct meson_clk_dualdiv_param c3_rtc_32k_div_table[] = {
->>          { 733, 732, 8, 11, 1 },
->>          { /* sentinel */ }
->>   };
->>
->> -static struct clk_regmap rtc_32k_div = {
->> +static struct clk_regmap c3_rtc_32k_div = {
->>          .data = &(struct meson_clk_dualdiv_data) {
->>                  .n1 = {
->>                          .reg_off = RTC_BY_OSCIN_CTRL0,
->> @@ -95,39 +95,39 @@ static struct clk_regmap rtc_32k_div = {
->>                          .shift   = 28,
->>                          .width   = 1,
->>                  },
->> -               .table = rtc_32k_div_table,
->> +               .table = c3_rtc_32k_div_table,
->>          },
->>          .hw.init = &(struct clk_init_data) {
->>                  .name = "rtc_32k_div",
->>                  .ops = &meson_clk_dualdiv_ops,
->>                  .parent_hws = (const struct clk_hw *[]) {
->> -                       &rtc_xtal_clkin.hw
->> +                       &c3_rtc_xtal_clkin.hw
->>                  },
->>                  .num_parents = 1,
->>          },
->>   };
->>
->> -static const struct clk_parent_data rtc_32k_mux_parent_data[] = {
->> -       { .hw = &rtc_32k_div.hw },
->> -       { .hw = &rtc_xtal_clkin.hw }
->> +static const struct clk_parent_data c3_rtc_32k_parents[] = {
->> +       { .hw = &c3_rtc_32k_div.hw },
->> +       { .hw = &c3_rtc_xtal_clkin.hw }
->>   };
->>
->> -static struct clk_regmap rtc_32k_mux = {
->> +static struct clk_regmap c3_rtc_32k_sel = {
->>          .data = &(struct clk_regmap_mux_data) {
->>                  .offset = RTC_BY_OSCIN_CTRL1,
->>                  .mask = 0x1,
->>                  .shift = 24,
->>          },
->>          .hw.init = &(struct clk_init_data) {
->> -               .name = "rtc_32k_mux",
->> +               .name = "rtc_32k_sel",
->>                  .ops = &clk_regmap_mux_ops,
->> -               .parent_data = rtc_32k_mux_parent_data,
->> -               .num_parents = ARRAY_SIZE(rtc_32k_mux_parent_data),
->> +               .parent_data = c3_rtc_32k_parents,
->> +               .num_parents = ARRAY_SIZE(c3_rtc_32k_parents),
->>                  .flags = CLK_SET_RATE_PARENT,
->>          },
->>   };
->>
->> -static struct clk_regmap rtc_32k = {
->> +static struct clk_regmap c3_rtc_32k = {
->>          .data = &(struct clk_regmap_gate_data) {
->>                  .offset = RTC_BY_OSCIN_CTRL0,
->>                  .bit_idx = 30,
->> @@ -136,20 +136,20 @@ static struct clk_regmap rtc_32k = {
->>                  .name = "rtc_32k",
->>                  .ops = &clk_regmap_gate_ops,
->>                  .parent_hws = (const struct clk_hw *[]) {
->> -                       &rtc_32k_mux.hw
->> +                       &c3_rtc_32k_sel.hw
->>                  },
->>                  .num_parents = 1,
->>                  .flags = CLK_SET_RATE_PARENT,
->>          },
->>   };
->>
->> -static const struct clk_parent_data rtc_clk_mux_parent_data[] = {
->> +static const struct clk_parent_data c3_rtc_clk_parents[] = {
->>          { .fw_name = "oscin" },
->> -       { .hw = &rtc_32k.hw },
->> +       { .hw = &c3_rtc_32k.hw },
->>          { .fw_name = "pad_osc" }
->>   };
->>
->> -static struct clk_regmap rtc_clk = {
->> +static struct clk_regmap c3_rtc_clk = {
->>          .data = &(struct clk_regmap_mux_data) {
->>                  .offset = RTC_CTRL,
->>                  .mask = 0x3,
->> @@ -158,62 +158,62 @@ static struct clk_regmap rtc_clk = {
->>          .hw.init = &(struct clk_init_data) {
->>                  .name = "rtc_clk",
->>                  .ops = &clk_regmap_mux_ops,
->> -               .parent_data = rtc_clk_mux_parent_data,
->> -               .num_parents = ARRAY_SIZE(rtc_clk_mux_parent_data),
->> +               .parent_data = c3_rtc_clk_parents,
->> +               .num_parents = ARRAY_SIZE(c3_rtc_clk_parents),
->>                  .flags = CLK_SET_RATE_PARENT,
->>          },
->>   };
->>
->> -#define C3_CLK_GATE(_name, _reg, _bit, _fw_name, _ops, _flags)         \
->> -struct clk_regmap _name = {                                            \
->> +#define C3_PCLK(_name, _reg, _bit, _fw_name, _ops, _flags)             \
->> +struct clk_regmap c3_##_name = {                                       \
->>          .data = &(struct clk_regmap_gate_data){                         \
->>                  .offset = (_reg),                                       \
->>                  .bit_idx = (_bit),                                      \
->>          },                                                              \
->>          .hw.init = &(struct clk_init_data) {                            \
->> -               .name = #_name,                                         \
->> +               .name = "c3_" #_name,                                   \
->
->
-> Prefixing variable names with 'SoC' is understandable (to avoid duplicate
-> definitions and facilitate variable searching), but is it necessary to add
-> 'SoC' prefixes to clock names?
-
-This is part of the description but I'll ellaborate.
-
-Some controllers do so, some do not. This is a typical pointless
-difference that make code sharing difficult and lead to the duplication
-I'm addressing now.
-
-Both with and without are fine but picking one a sticking to it helps a
-lot. I would have preferred to drop the prefix from the pclk clock
-names, same as the other clock, but:
-* It would have changed more clock names and I prefer to minimize those
-changes
-* It would have caused several name clashes with other clocks.
-
-so prefix it is for the peripheral clock.
-
-In the end, what matters is consistency.
-
->
->
->>                  .ops = _ops,                                            \
->>                  .parent_data = &(const struct clk_parent_data) {        \
->> -                       .fw_name = #_fw_name,                           \
->> +                       .fw_name = (_fw_name),                          \
->>                  },                                                      \
->>                  .num_parents = 1,                                       \
->>                  .flags = (_flags),                                      \
->>          },                                                              \
->>   }
+>> diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
+>> index c9400cf54c84c3dc7c63d0636933951b0cac230c..9bcd35f12836de5e318fd1ad9c9ae15a2bfc3dd7 100644
+>> --- a/drivers/clk/meson/s4-peripherals.c
+>> +++ b/drivers/clk/meson/s4-peripherals.c
 >
 >
 > [...]
+>
+>
+>> @@ -1320,7 +1320,7 @@ static struct clk_regmap s4_ts_clk_gate = {
+>>    * mux because it does top-to-bottom updates the each clock tree and
+>>    * switches to the "inactive" one when CLK_SET_RATE_GATE is set.
+>>    */
+>> -static const struct clk_parent_data s4_mali_0_1_parent_data[] = {
+>> +static const struct clk_parent_data s4_mali_parents[] = {
+>>          { .fw_name = "xtal", },
+>>          { .fw_name = "gp0_pll", },
+>>          { .fw_name = "hifi_pll", },
+>> @@ -1340,8 +1340,8 @@ static struct clk_regmap s4_mali_0_sel = {
+>>          .hw.init = &(struct clk_init_data){
+>>                  .name = "mali_0_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = s4_mali_0_1_parent_data,
+>> -               .num_parents = ARRAY_SIZE(s4_mali_0_1_parent_data),
+>> +               .parent_data = s4_mali_parents,
+>> +               .num_parents = ARRAY_SIZE(s4_mali_parents),
+>>                  /*
+>>                   * Don't request the parent to change the rate because
+>>                   * all GPU frequencies can be derived from the fclk_*
+>> @@ -1394,8 +1394,8 @@ static struct clk_regmap s4_mali_1_sel = {
+>>          .hw.init = &(struct clk_init_data){
+>>                  .name = "mali_1_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = s4_mali_0_1_parent_data,
+>> -               .num_parents = ARRAY_SIZE(s4_mali_0_1_parent_data),
+>> +               .parent_data = s4_mali_parents,
+>> +               .num_parents = ARRAY_SIZE(s4_mali_parents),
+>>                  .flags = 0,
+>>          },
+>>   };
+>> @@ -1433,28 +1433,26 @@ static struct clk_regmap s4_mali_1 = {
+>>          },
+>>   };
+>>
+>> -static const struct clk_hw *s4_mali_parent_hws[] = {
+>> -       &s4_mali_0.hw,
+>> -       &s4_mali_1.hw
+>> -};
+>> -
+>> -static struct clk_regmap s4_mali_mux = {
+>> +static struct clk_regmap s4_mali_sel = {
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_MALI_CLK_CTRL,
+>>                  .mask = 1,
+>>                  .shift = 31,
+>>          },
+>>          .hw.init = &(struct clk_init_data){
+>> -               .name = "mali",
+>> +               .name = "mali_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_hws = s4_mali_parent_hws,
+>> +               .parent_hws = (const struct clk_hw *[]) {
+>> +                       &s4_mali_0.hw,
+>> +                       &s4_mali_1.hw,
+>> +               },
+>>                  .num_parents = 2,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>>          },
+>>   };
+>>
+>>   /* VDEC clocks */
+>> -static const struct clk_parent_data s4_dec_parent_data[] = {
+>> +static const struct clk_parent_data s4_dec_parents[] = {
+>>          { .fw_name = "fclk_div2p5", },
+>>          { .fw_name = "fclk_div3", },
+>>          { .fw_name = "fclk_div4", },
+>> @@ -1465,7 +1463,7 @@ static const struct clk_parent_data s4_dec_parent_data[] = {
+>>          { .fw_name = "xtal", }
+>>   };
+>>
+>> -static struct clk_regmap s4_vdec_p0_mux = {
+>> +static struct clk_regmap s4_vdec_p0_sel = {
+>
+>
+> Since both vdec_clk and mali_clk are 'no glitch clock', should we also unify
+> the naming from 's4_vdec_p0'/'s4_vdec_p1' to 's4_vdec_0'/'s4_vdec_1'?
+
+Please have another look at the description.
+
+As much as possible, I want the ID, clock name, and variable names
+aligned. ID do not change and has that 'p' ... so no, the 'p' stays.
+
+>
+>
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_VDEC_CLK_CTRL,
+>>                  .mask = 0x7,
+>> @@ -1473,10 +1471,10 @@ static struct clk_regmap s4_vdec_p0_mux = {
+>>                  .flags = CLK_MUX_ROUND_CLOSEST,
+>>          },
+>>          .hw.init = &(struct clk_init_data) {
+>> -               .name = "vdec_p0_mux",
+>> +               .name = "vdec_p0_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = s4_dec_parent_data,
+>> -               .num_parents = ARRAY_SIZE(s4_dec_parent_data),
+>> +               .parent_data = s4_dec_parents,
+>> +               .num_parents = ARRAY_SIZE(s4_dec_parents),
+>>                  .flags = 0,
+>>          },
+>>   };
+>> @@ -1492,7 +1490,7 @@ static struct clk_regmap s4_vdec_p0_div = {
+>>                  .name = "vdec_p0_div",
+>>                  .ops = &clk_regmap_divider_ops,
+>>                  .parent_hws = (const struct clk_hw *[]) {
+>> -                       &s4_vdec_p0_mux.hw
+>> +                       &s4_vdec_p0_sel.hw
+>>                  },
+>>                  .num_parents = 1,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>> @@ -1515,7 +1513,7 @@ static struct clk_regmap s4_vdec_p0 = {
+>>          },
+>>   };
+>>
+>> -static struct clk_regmap s4_vdec_p1_mux = {
+>> +static struct clk_regmap s4_vdec_p1_sel = {
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_VDEC3_CLK_CTRL,
+>>                  .mask = 0x7,
+>> @@ -1523,10 +1521,10 @@ static struct clk_regmap s4_vdec_p1_mux = {
+>>                  .flags = CLK_MUX_ROUND_CLOSEST,
+>>          },
+>>          .hw.init = &(struct clk_init_data) {
+>> -               .name = "vdec_p1_mux",
+>> +               .name = "vdec_p1_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = s4_dec_parent_data,
+>> -               .num_parents = ARRAY_SIZE(s4_dec_parent_data),
+>> +               .parent_data = s4_dec_parents,
+>> +               .num_parents = ARRAY_SIZE(s4_dec_parents),
+>>                  .flags = 0,
+>>          },
+>>   };
+>> @@ -1542,7 +1540,7 @@ static struct clk_regmap s4_vdec_p1_div = {
+>>                  .name = "vdec_p1_div",
+>>                  .ops = &clk_regmap_divider_ops,
+>>                  .parent_hws = (const struct clk_hw *[]) {
+>> -                       &s4_vdec_p1_mux.hw
+>> +                       &s4_vdec_p1_sel.hw
+>>                  },
+>>                  .num_parents = 1,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>> @@ -1565,27 +1563,25 @@ static struct clk_regmap s4_vdec_p1 = {
+>>          },
+>>   };
+>>
+>> -static const struct clk_hw *s4_vdec_mux_parent_hws[] = {
+>> -       &s4_vdec_p0.hw,
+>> -       &s4_vdec_p1.hw
+>> -};
+>> -
+>> -static struct clk_regmap s4_vdec_mux = {
+>> +static struct clk_regmap s4_vdec_sel = {
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_VDEC3_CLK_CTRL,
+>>                  .mask = 0x1,
+>>                  .shift = 15,
+>>          },
+>>          .hw.init = &(struct clk_init_data) {
+>> -               .name = "vdec_mux",
+>> +               .name = "vdec_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_hws = s4_vdec_mux_parent_hws,
+>> -               .num_parents = ARRAY_SIZE(s4_vdec_mux_parent_hws),
+>> +               .parent_hws = (const struct clk_hw *[]) {
+>> +                       &s4_vdec_p0.hw,
+>> +                       &s4_vdec_p1.hw,
+>> +               },
+>> +               .num_parents = 2,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>>          },
+>>   };
+>>
+>> -static struct clk_regmap s4_hevcf_p0_mux = {
+>> +static struct clk_regmap s4_hevcf_p0_sel = {
+>
+>
+> +static struct clk_regmap s4_hevcf_0_sel
+> +static struct clk_regmap s4_hevcf_0_div
+> .
+> .
+> .
+>
+>
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_VDEC2_CLK_CTRL,
+>>                  .mask = 0x7,
+>> @@ -1593,10 +1589,10 @@ static struct clk_regmap s4_hevcf_p0_mux = {
+>>                  .flags = CLK_MUX_ROUND_CLOSEST,
+>>          },
+>>          .hw.init = &(struct clk_init_data) {
+>> -               .name = "hevcf_p0_mux",
+>> +               .name = "hevcf_p0_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = s4_dec_parent_data,
+>> -               .num_parents = ARRAY_SIZE(s4_dec_parent_data),
+>> +               .parent_data = s4_dec_parents,
+>> +               .num_parents = ARRAY_SIZE(s4_dec_parents),
+>>                  .flags = 0,
+>>          },
+>>   };
+>> @@ -1612,7 +1608,7 @@ static struct clk_regmap s4_hevcf_p0_div = {
+>>                  .name = "hevcf_p0_div",
+>>                  .ops = &clk_regmap_divider_ops,
+>>                  .parent_hws = (const struct clk_hw *[]) {
+>> -                       &s4_hevcf_p0_mux.hw
+>> +                       &s4_hevcf_p0_sel.hw
+>>                  },
+>>                  .num_parents = 1,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>> @@ -1625,7 +1621,7 @@ static struct clk_regmap s4_hevcf_p0 = {
+>>                  .bit_idx = 8,
+>>          },
+>>          .hw.init = &(struct clk_init_data){
+>> -               .name = "hevcf_p0_gate",
+>> +               .name = "hevcf_p0",
+>>                  .ops = &clk_regmap_gate_ops,
+>>                  .parent_hws = (const struct clk_hw *[]) {
+>>                          &s4_hevcf_p0_div.hw
+>> @@ -1635,7 +1631,7 @@ static struct clk_regmap s4_hevcf_p0 = {
+>>          },
+>>   };
+>>
+>> -static struct clk_regmap s4_hevcf_p1_mux = {
+>> +static struct clk_regmap s4_hevcf_p1_sel = {
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_VDEC4_CLK_CTRL,
+>>                  .mask = 0x7,
+>> @@ -1643,10 +1639,10 @@ static struct clk_regmap s4_hevcf_p1_mux = {
+>>                  .flags = CLK_MUX_ROUND_CLOSEST,
+>>          },
+>>          .hw.init = &(struct clk_init_data) {
+>> -               .name = "hevcf_p1_mux",
+>> +               .name = "hevcf_p1_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = s4_dec_parent_data,
+>> -               .num_parents = ARRAY_SIZE(s4_dec_parent_data),
+>> +               .parent_data = s4_dec_parents,
+>> +               .num_parents = ARRAY_SIZE(s4_dec_parents),
+>>                  .flags = 0,
+>>          },
+>>   };
+>> @@ -1662,7 +1658,7 @@ static struct clk_regmap s4_hevcf_p1_div = {
+>>                  .name = "hevcf_p1_div",
+>>                  .ops = &clk_regmap_divider_ops,
+>>                  .parent_hws = (const struct clk_hw *[]) {
+>> -                       &s4_hevcf_p1_mux.hw
+>> +                       &s4_hevcf_p1_sel.hw
+>>                  },
+>>                  .num_parents = 1,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>> @@ -1685,28 +1681,26 @@ static struct clk_regmap s4_hevcf_p1 = {
+>>          },
+>>   };
+>>
+>> -static const struct clk_hw *s4_hevcf_mux_parent_hws[] = {
+>> -       &s4_hevcf_p0.hw,
+>> -       &s4_hevcf_p1.hw
+>> -};
+>> -
+>> -static struct clk_regmap s4_hevcf_mux = {
+>> +static struct clk_regmap s4_hevcf_sel = {
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_VDEC4_CLK_CTRL,
+>>                  .mask = 0x1,
+>>                  .shift = 15,
+>>          },
+>>          .hw.init = &(struct clk_init_data) {
+>> -               .name = "hevcf",
+>> +               .name = "hevcf_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_hws = s4_hevcf_mux_parent_hws,
+>> -               .num_parents = ARRAY_SIZE(s4_hevcf_mux_parent_hws),
+>> +               .parent_hws = (const struct clk_hw *[]) {
+>> +                       &s4_hevcf_p0.hw,
+>> +                       &s4_hevcf_p1.hw,
+>> +               },
+>> +               .num_parents = 2,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>>          },
+>>   };
+>>
+>>   /* VPU Clock */
+>> -static const struct clk_parent_data s4_vpu_parent_data[] = {
+>> +static const struct clk_parent_data s4_vpu_parents[] = {
+>>          { .fw_name = "fclk_div3", },
+>>          { .fw_name = "fclk_div4", },
+>>          { .fw_name = "fclk_div5", },
+>> @@ -1726,8 +1720,8 @@ static struct clk_regmap s4_vpu_0_sel = {
+>>          .hw.init = &(struct clk_init_data){
+>>                  .name = "vpu_0_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = s4_vpu_parent_data,
+>> -               .num_parents = ARRAY_SIZE(s4_vpu_parent_data),
+>> +               .parent_data = s4_vpu_parents,
+>> +               .num_parents = ARRAY_SIZE(s4_vpu_parents),
+>>                  .flags = 0,
+>>          },
+>>   };
+>> @@ -1770,8 +1764,8 @@ static struct clk_regmap s4_vpu_1_sel = {
+>>          .hw.init = &(struct clk_init_data){
+>>                  .name = "vpu_1_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = s4_vpu_parent_data,
+>> -               .num_parents = ARRAY_SIZE(s4_vpu_parent_data),
+>> +               .parent_data = s4_vpu_parents,
+>> +               .num_parents = ARRAY_SIZE(s4_vpu_parents),
+>>                  .flags = 0,
+>>          },
+>>   };
+>> @@ -1823,24 +1817,24 @@ static struct clk_regmap s4_vpu = {
+>>          },
+>>   };
+>>
+>> -static const struct clk_parent_data vpu_clkb_tmp_parent_data[] = {
+>> +static const struct clk_parent_data vpu_clkb_tmp_parents[] = {
+>>          { .hw = &s4_vpu.hw },
+>>          { .fw_name = "fclk_div4", },
+>>          { .fw_name = "fclk_div5", },
+>>          { .fw_name = "fclk_div7", }
+>>   };
+>>
+>> -static struct clk_regmap s4_vpu_clkb_tmp_mux = {
+>> +static struct clk_regmap s4_vpu_clkb_tmp_sel = {
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_VPU_CLKB_CTRL,
+>>                  .mask = 0x3,
+>>                  .shift = 20,
+>>          },
+>>          .hw.init = &(struct clk_init_data) {
+>> -               .name = "vpu_clkb_tmp_mux",
+>> +               .name = "vpu_clkb_tmp_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = vpu_clkb_tmp_parent_data,
+>> -               .num_parents = ARRAY_SIZE(vpu_clkb_tmp_parent_data),
+>> +               .parent_data = vpu_clkb_tmp_parents,
+>> +               .num_parents = ARRAY_SIZE(vpu_clkb_tmp_parents),
+>>                  .flags = CLK_SET_RATE_PARENT,
+>>          },
+>>   };
+>> @@ -1855,7 +1849,7 @@ static struct clk_regmap s4_vpu_clkb_tmp_div = {
+>>                  .name = "vpu_clkb_tmp_div",
+>>                  .ops = &clk_regmap_divider_ops,
+>>                  .parent_hws = (const struct clk_hw *[]) {
+>> -                       &s4_vpu_clkb_tmp_mux.hw
+>> +                       &s4_vpu_clkb_tmp_sel.hw
+>>                  },
+>>                  .num_parents = 1,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>> @@ -1911,7 +1905,7 @@ static struct clk_regmap s4_vpu_clkb = {
+>>          },
+>>   };
+>>
+>> -static const struct clk_parent_data s4_vpu_clkc_parent_data[] = {
+>> +static const struct clk_parent_data s4_vpu_clkc_parents[] = {
+>>          { .fw_name = "fclk_div4", },
+>>          { .fw_name = "fclk_div3", },
+>>          { .fw_name = "fclk_div5", },
+>> @@ -1922,17 +1916,17 @@ static const struct clk_parent_data s4_vpu_clkc_parent_data[] = {
+>>          { .fw_name = "gp0_pll", },
+>>   };
+>>
+>> -static struct clk_regmap s4_vpu_clkc_p0_mux  = {
+>> +static struct clk_regmap s4_vpu_clkc_p0_sel  = {
+>
+>
+> +static struct clk_regmap s4_vpu_clkc_0_sel
+> +static struct clk_regmap s4_vpu_clkc_0_div
+> .
+> .
+> .
+>
+>
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_VPU_CLKC_CTRL,
+>>                  .mask = 0x7,
+>>                  .shift = 9,
+>>          },
+>>          .hw.init = &(struct clk_init_data) {
+>> -               .name = "vpu_clkc_p0_mux",
+>> +               .name = "vpu_clkc_p0_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = s4_vpu_clkc_parent_data,
+>> -               .num_parents = ARRAY_SIZE(s4_vpu_clkc_parent_data),
+>> +               .parent_data = s4_vpu_clkc_parents,
+>> +               .num_parents = ARRAY_SIZE(s4_vpu_clkc_parents),
+>>                  .flags = 0,
+>>          },
+>>   };
+>> @@ -1947,7 +1941,7 @@ static struct clk_regmap s4_vpu_clkc_p0_div = {
+>>                  .name = "vpu_clkc_p0_div",
+>>                  .ops = &clk_regmap_divider_ops,
+>>                  .parent_hws = (const struct clk_hw *[]) {
+>> -                       &s4_vpu_clkc_p0_mux.hw
+>> +                       &s4_vpu_clkc_p0_sel.hw
+>>                  },
+>>                  .num_parents = 1,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>> @@ -1970,17 +1964,17 @@ static struct clk_regmap s4_vpu_clkc_p0 = {
+>>          },
+>>   };
+>>
+>> -static struct clk_regmap s4_vpu_clkc_p1_mux = {
+>> +static struct clk_regmap s4_vpu_clkc_p1_sel = {
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_VPU_CLKC_CTRL,
+>>                  .mask = 0x7,
+>>                  .shift = 25,
+>>          },
+>>          .hw.init = &(struct clk_init_data) {
+>> -               .name = "vpu_clkc_p1_mux",
+>> +               .name = "vpu_clkc_p1_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_data = s4_vpu_clkc_parent_data,
+>> -               .num_parents = ARRAY_SIZE(s4_vpu_clkc_parent_data),
+>> +               .parent_data = s4_vpu_clkc_parents,
+>> +               .num_parents = ARRAY_SIZE(s4_vpu_clkc_parents),
+>>                  .flags = 0,
+>>          },
+>>   };
+>> @@ -1995,7 +1989,7 @@ static struct clk_regmap s4_vpu_clkc_p1_div = {
+>>                  .name = "vpu_clkc_p1_div",
+>>                  .ops = &clk_regmap_divider_ops,
+>>                  .parent_hws = (const struct clk_hw *[]) {
+>> -                       &s4_vpu_clkc_p1_mux.hw
+>> +                       &s4_vpu_clkc_p1_sel.hw
+>>                  },
+>>                  .num_parents = 1,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>> @@ -2018,28 +2012,26 @@ static struct clk_regmap s4_vpu_clkc_p1 = {
+>>          },
+>>   };
+>>
+>> -static const struct clk_hw *s4_vpu_mux_parent_hws[] = {
+>> -       &s4_vpu_clkc_p0.hw,
+>> -       &s4_vpu_clkc_p1.hw
+>> -};
+>> -
+>> -static struct clk_regmap s4_vpu_clkc_mux = {
+>> +static struct clk_regmap s4_vpu_clkc_sel = {
+>>          .data = &(struct clk_regmap_mux_data){
+>>                  .offset = CLKCTRL_VPU_CLKC_CTRL,
+>>                  .mask = 0x1,
+>>                  .shift = 31,
+>>          },
+>>          .hw.init = &(struct clk_init_data) {
+>> -               .name = "vpu_clkc_mux",
+>> +               .name = "vpu_clkc_sel",
+>>                  .ops = &clk_regmap_mux_ops,
+>> -               .parent_hws = s4_vpu_mux_parent_hws,
+>> -               .num_parents = ARRAY_SIZE(s4_vpu_mux_parent_hws),
+>> +               .parent_hws = (const struct clk_hw *[]) {
+>> +                       &s4_vpu_clkc_p0.hw,
+>> +                       &s4_vpu_clkc_p1.hw,
+>> +               },
+>> +               .num_parents = 2,
+>>                  .flags = CLK_SET_RATE_PARENT,
+>>          },
+>>   };
+>
+>
+> [...]
+>
+>
+>>   MODULE_DESCRIPTION("Amlogic S4 Peripherals Clock Controller driver");
+>>   MODULE_AUTHOR("Yu Tu <yu.tu@amlogic.com>");
+>>
+>> --
+>> 2.47.2
+>>
+>>
+>> _______________________________________________
+>> linux-amlogic mailing list
+>> linux-amlogic@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 -- 
 Jerome
