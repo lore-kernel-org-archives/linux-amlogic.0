@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA33BC77B7C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jul 2025 08:39:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E12FCC83030
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jul 2025 08:46:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6bFZEfJoHE8i4RD5qmDarOLexZ5PoYq+5DDV6Y8bkcI=; b=rgNVSER1WoH1Oc
-	boU/dRxTYqiAcQkcQsz3apZ5j+egahmx1jihNhTQ74K0m98RmkmCe1ugqbuNYlYsird00UBn/f53Q
-	d20lpbZjGPLI/Se6Zbl/BtS1UnhPd9pyWsqQnDt5tBXL6AOagtF7XqYl4jGpMVElJ2l7Bg0RBbG5g
-	byZOEwaSmnJj+abARqWwpGgMoDJUHTYB9Wz8JNbHBNp9mVZRdNNohZFeDoBzcfzU8Ztz6PaGnQ5dG
-	bi648x1+N003aEUMapP0jJTru4oMEZSnykze3IThszh9sp0wAmaM6043GfByAMt3Wn6vjGTJmIKU3
-	d1r+MyF0Ao1hcIY6QMtQ==;
+	List-Owner; bh=1FaqgZ5A6WLz/WA6iDc1nyZDSA7NbYMeG/ngi+zGj2w=; b=E9ylkNCJUSG6eT
+	VR25QtNNoNzAEcS9PCCT1Sg3/64CNnxhzDO/iQ06hqlOy360+X6w9Lz1/D9dGcO2PSrx5TZZ3f2L2
+	6UarW03oDipkZbIGgHMbHU28cA+6qfq9aoREF0+ak2SBSi4wUHBOQY/ScAmYVp3f/2eDVKk0enOi3
+	ZV/02JWHFhfsERhPNm6oGncafaunTc9zFK6Ob/xycYJkIBOrH2Pe0DI4P+OBuPic2pazt71Ttv3gH
+	SX+r7aSbJkI7MBJ8F+OuMtMEuHKEO+5rlex13WrIWRlG1r1DOUCa/HmXakqoGd9rms+YHmz3eeM23
+	9dzZh4UxRzksGZGNX1DQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uXFU2-0000000AhWF-20r5;
-	Thu, 03 Jul 2025 08:39:54 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1uXFaU-0000000Aic4-0vOl;
+	Thu, 03 Jul 2025 08:46:34 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uXFTz-0000000AhUC-3y6R
+	id 1uXFYu-0000000AiFx-41yL
 	for linux-amlogic@lists.infradead.org;
-	Thu, 03 Jul 2025 08:39:53 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-451d7b50815so40978635e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 03 Jul 2025 01:39:51 -0700 (PDT)
+	Thu, 03 Jul 2025 08:44:58 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-3a507e88b0aso4218969f8f.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 03 Jul 2025 01:44:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751531990; x=1752136790; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1751532295; x=1752137095; darn=lists.infradead.org;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5c5DYGl47aYWZLPkSpLUyqJH150qyEt79Wo9rxFNQNQ=;
-        b=U95UHpAz7ztyKedHpfnfRz31XesjIsv0U5kqYn0dUDN+UKWMHV7JpxvlmTannMQ6DU
-         ir1477fD7wuGkNdE+KqdIFwDXatBF8vr95+pCvsnocCeQmAkBLjkw7IHYKKS4gSVd5Kl
-         mUmSaWO4Id+x5Wmyb/Utzpv3qw4edp3TyspfNGkvKdNgKzVbkjWV+tZk90h6/bouoWkt
-         y3PtFOqixVgKMjheFrtZveUrmyHNvByVoN+HAHKw30hMDnbpjN2TWs+ptT4uU4KCSUVe
-         ODugnyedP0Md/0lLnAAqvl38Gbr4oWO2wkN96sXYAIOQy0g3+rNrXmtPwTf3jx4REr20
-         dLgg==
+        bh=BCaJVrU9vvGCv3HMW8UcZSchVxJ9IX/Nuw4VRhiVqcc=;
+        b=JyE0+WnwPCzJIKof7ScY+VdUJUo4GCsaOKneESTJErigtKoUKHGUqPMRU5lp/CpF5m
+         xX+iAmwUkb08S1Z45VclkxrdDzHsEE+WRcK5JsiS+TWZBqf4914O5ylew4EayvTCzszS
+         iSYWLzBRQnoUfAscZt4dhBYC/MngpUtK4n0JiRw7EHhZGCQWSvtOUYfDET8p5LY7QAFK
+         dYMPm5LkEiFVV6CyeiaAG2ErDlbU2tYc5G89yPOkRLDIZi2Y5RsW41oGNGxK3YCKmmaI
+         O3JPUKcN6byj3fW+2E5Ips4En7Jly7aBN0VIJN1DVCqAOllxknZ//Om3p1FrNCV5g8Td
+         9SYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751531990; x=1752136790;
+        d=1e100.net; s=20230601; t=1751532295; x=1752137095;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5c5DYGl47aYWZLPkSpLUyqJH150qyEt79Wo9rxFNQNQ=;
-        b=vs1aZKkFegZue891noBx5PrvDBevLODu1TvB4oJZKqdiIiciSnv5QjEIgtkROdGBor
-         ZxnqkbBGu57/o//8KAUH/y3vJOwGZM6j2M4ACh8q3osY5UrgXQHKmm8hgI6PYx1B6k+C
-         EC6EHJxUhK4QFTrYN/WXHhhNMtOIPTa+59NlncrrHJQBLaJG6DSjl4u+CuBzCP9sz9so
-         FksPUQHN7z/WW5D7xmPVgogiNIK5SwOkAUqKIWt32cW8HqOvQNnoidC/2e//jot2dlKQ
-         GUPO2ewH2lsld20yQtgntrWvCOT2H+SperOelyCz4cYbhVn+uqsEPKRIavk/ltrbvQ7y
-         7oDA==
-X-Forwarded-Encrypted: i=1; AJvYcCW0SOy1+PcNVqDVdnSfG1kkh7X9YuhMdmXAlZOh1zJc5nWdqblacZ8mor0VO575C4BAUnIYCzIZogAzTebC@lists.infradead.org
-X-Gm-Message-State: AOJu0YxcEbsmm1wzZ9qF3XGB5z4fC6XkX8z7z64GuMe8joGmtq/tI8GX
-	zHYd6Z3uuu49Bese+mbqTicPF/oQt7D2+z2w55fxqWUbWQiSiRbN6YmUAKCVXUBXU7U=
-X-Gm-Gg: ASbGncsawYOQBUT4XcfQDI0gLpb6TcwtkJ8fm/lwg0kMkBd6LUwRlvQbWg7qj5ARA1n
-	su8yJOK+aNuHtOUoE0ZLxkmnW4MXPX3esTPnCdqLHFeiRNW6OkcguZSBugVK8Ph8NbiM7E/EKMH
-	fcspdb2/m5cIU9t/TlxYnCBHfSA+kM7kWQeprh7o68iv646Ra/KSlbCn5Nx9bD2YIqa0+jBx4I8
-	jeyzpJSUHtAfWbnhWzXuJoePt5u0Jl2RUjzrBIJ/+dBC/6AbJPdDQ4dRsajxV9YAVbqR91zC2Y5
-	WdCzHAwsnGF7XzQQ/sfxuuVyB8hpTF9DLGby27wMicZLmGwlJY2ce8Y4N3rL9Q==
-X-Google-Smtp-Source: AGHT+IEM43hwgON08uzyYs0xx1I5VpWRjMLLXLPjH06b7O2PIIqRcDAeRfUfliYzvrSLOzEu/UQUYQ==
-X-Received: by 2002:a05:6000:26d1:b0:3a4:f52d:8b05 with SMTP id ffacd0b85a97d-3b32db892femr2028812f8f.35.1751531990341;
-        Thu, 03 Jul 2025 01:39:50 -0700 (PDT)
+        bh=BCaJVrU9vvGCv3HMW8UcZSchVxJ9IX/Nuw4VRhiVqcc=;
+        b=MPyA4mR/YiqhaNgSwKa51OVdub5TpzsKpmuZwo6iLmqAEsSWSUB9jDU1KGdtK0icDm
+         uZ+KxKlDGqy/4CWpQ48atyeR5HB2ymbMal1ENKl5GtUYGw9V1K7LrJ+HG+Weem6Vd8SG
+         G6a3GFb67w0tH2gh8DcZGcetR2bywiOg/mMf0pNkQvFEOXQ7nzTtxWU6tbFw0VVup5ie
+         KJ/IEjkVkWb+YPpOVzsgQWpwxSR7qR4LYHArEjq+WBs7uoxAwEq/6/8Fdp7sq/CJ/gnH
+         Zj2astiX7kw3DePwWtYz4VcXRY1C9wqKzsJ9iEnsfIy83/rznyMvhJdj0227DRG8s08p
+         mbzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWFwyKcyqD4nuAzmrvoVj7sn51R6Jm4ioqVWaPLO6MMOmT7KaSKrlwy8iT5lRSVTZnJ76DOtLUiYNR3HmdP@lists.infradead.org
+X-Gm-Message-State: AOJu0YwsEWK+SoTi1KwYOylbXVsNDITBV8UYpN58MRlvoXGU/7ZkifWK
+	8YAZuq1DAjGA2VCMB45Jeang8HIi+9CWhkaEk/dXLdWC5LW7ma2/Azw3oaKAZ0Gsqsg=
+X-Gm-Gg: ASbGncs7xgi8mD9HtHKdpeQNheu3q3J2K4PK/YXzYOCXAUIaBzUo0wmU5l12xuTQtn8
+	xPBvdjAEXQDHNjVBgqwH8G7twKiCqCIF3QLRK2xa07hIu0YIRCM2f8JJtvESZTWjGbTVfvf1Yia
+	xv9x3VXoO5V+MppgRT5J5lblXlOrUGvl9eofJtM73aUT+qx+WEk9QWjyNTVNWxQVFQolmqCkC0J
+	NIoDYgckS/qpjzwkGNxeMxW1pVZA8vMfgAOUR3PE3OGh/uaqnMDJfP/1d3xE0ixaXhu/zU8JOZq
+	AgRsu/9eVAq+cBca5F/GZnlF8PZOR8NQcdrcswxvVpBe/uf0BXjLwNU7fMC3TA==
+X-Google-Smtp-Source: AGHT+IF545q3PqJViLJ3tmQn2xNcqUD4C4aWOYfTnAGoUJX7T6e4Ign+bwQdPieifu8Yhl+1ojcvfw==
+X-Received: by 2002:a5d:5e84:0:b0:3b1:3466:6734 with SMTP id ffacd0b85a97d-3b32de6b0f1mr2108930f8f.44.1751532295095;
+        Thu, 03 Jul 2025 01:44:55 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:1b4c:1be9:25d0:5634])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a88c7fab6esm18379133f8f.31.2025.07.03.01.39.49
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a892e5f923sm17657514f8f.89.2025.07.03.01.44.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Jul 2025 01:39:49 -0700 (PDT)
+        Thu, 03 Jul 2025 01:44:54 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Chuan Liu <chuan.liu@amlogic.com>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
@@ -74,19 +74,20 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
  <khilman@baylibre.com>,  Martin Blumenstingl
  <martin.blumenstingl@googlemail.com>,  linux-amlogic@lists.infradead.org,
   linux-clk@vger.kernel.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 24/26] clk: amlogic: add composite clock helpers
-In-Reply-To: <a9b6ffdc-489f-4be9-9005-e987df739901@amlogic.com> (Chuan Liu's
-	message of "Thu, 3 Jul 2025 15:24:50 +0800")
+Subject: Re: [PATCH 26/26] clk: amlogic: c3-peripherals: use helper for
+ basic composite clocks
+In-Reply-To: <27ae4f23-7a41-4810-9639-5bcc4cebc8dd@amlogic.com> (Chuan Liu's
+	message of "Thu, 3 Jul 2025 15:56:25 +0800")
 References: <20250702-meson-clk-cleanup-24-v1-0-e163c9a1fc21@baylibre.com>
-	<20250702-meson-clk-cleanup-24-v1-24-e163c9a1fc21@baylibre.com>
-	<a9b6ffdc-489f-4be9-9005-e987df739901@amlogic.com>
+	<20250702-meson-clk-cleanup-24-v1-26-e163c9a1fc21@baylibre.com>
+	<27ae4f23-7a41-4810-9639-5bcc4cebc8dd@amlogic.com>
 User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Thu, 03 Jul 2025 10:39:49 +0200
-Message-ID: <1j5xg9d5wq.fsf@starbuckisacylon.baylibre.com>
+Date: Thu, 03 Jul 2025 10:44:54 +0200
+Message-ID: <1jzfdlbr3t.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250703_013951_987022_3CDE6688 
-X-CRM114-Status: GOOD (  14.71  )
+X-CRM114-CacheID: sfid-20250703_014457_000697_9F012D92 
+X-CRM114-Status: GOOD (  12.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,105 +104,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu 03 Jul 2025 at 15:24, Chuan Liu <chuan.liu@amlogic.com> wrote:
+On Thu 03 Jul 2025 at 15:56, Chuan Liu <chuan.liu@amlogic.com> wrote:
 
-> Hi Jerome:
->
->
-> On 7/2/2025 11:26 PM, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->>
->> Device composite clocks tend to reproduce the usual sel/div/gate
->> arrangement.
->>
->> Add macros to help define simple composite clocks in the system.
->>
->> The idea is _not_ to replace all instances of mux, div or gate with those
->> macros. It is rather to use it for recurring and/or simple composite
->> clocks, reducing controller verbosity where it makes sense. This should
->> help reviews focus on the tricky parts.
->>
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>   drivers/clk/meson/meson-clkc-utils.h | 57 ++++++++++++++++++++++++++++++++++++
->>   1 file changed, 57 insertions(+)
->>
->> diff --git a/drivers/clk/meson/meson-clkc-utils.h b/drivers/clk/meson/meson-clkc-utils.h
->> index 95d9f85f7ca22f63a16f8665d6f7a250b21bfdb8..ddadf14b4923781d8807546f35a1ba2e6a8a894a 100644
->> --- a/drivers/clk/meson/meson-clkc-utils.h
->> +++ b/drivers/clk/meson/meson-clkc-utils.h
->> @@ -48,4 +48,61 @@ struct clk_regmap _name = {                                          \
->>   #define MESON_PCLK_RO(_name, _reg, _bit, _pdata, _flags)               \
->>          __MESON_PCLK(_name, _reg, _bit, &clk_regmap_gate_ro_ops, _pdata, _flags)
->>
->> +/* Helpers for the usual sel/div/gate composite clocks */
->> +#define MESON_COMP_SEL(_prefix, _name, _reg, _shift, _mask, _pdata,    \
->> +                      _table, _dflags, _iflags)                        \
->> +struct clk_regmap _prefix##_name##_sel = {                             \
->
->
-> Can we apply the same naming style to the '**PCLK' clocks? The SoC prefix in
-> clock names looks inconsistent and awkward.
 
-Replied on patch 5
+>> +static C3_COMP_SEL(hcodec_1, VDEC3_CLK_CTRL, 9, 0x7, c3_hcodec_pre_parents);
+>> +static C3_COMP_DIV(hcodec_1, VDEC3_CLK_CTRL, 0, 7);
+>> +static C3_COMP_GATE(hcodec_1, VDEC3_CLK_CTRL, 8);
+>
+>
+> Note: hcodec_clk is a no-glitch clock. The current driver may fail to set
+> hcodec_clk properly. A previous patch attempted to fix this by adding a
+> flag,
+> but was abandoned as it introduced other issues.
+> (https://lore.kernel.org/all/f8c3b6e7-2f5d-493e-8254-2a27623f0d2e@amlogic.com/)
+>
+> This macro won't be suitable if we revisit the flag approach later.
+>
+
+But it is now. As documented in the description, the purpose of these
+macro is to get the easy and repeating stuff out of the way, helping
+tricky things stand out.
+
+So when/if you fix this clock and you add tricky things, please drop the
+macro then and add some comments explaining what you do and why.
 
 >
->
->> +       .data = &(struct clk_regmap_mux_data) {                         \
->> +               .offset = (_reg),                                       \
->> +               .mask = (_mask),                                        \
->> +               .shift = (_shift),                                      \
->> +               .flags = (_dflags),                                     \
->> +               .table = (_table),                                      \
->> +       },                                                              \
->> +       .hw.init = &(struct clk_init_data){                             \
->> +               .name = #_name "_sel",                                  \
->> +               .ops = &clk_regmap_mux_ops,                             \
->> +               .parent_data = _pdata,                                  \
->> +               .num_parents = ARRAY_SIZE(_pdata),                      \
->> +               .flags = (_iflags),                                     \
->> +       },                                                              \
->> +}
->> +
->> +#define MESON_COMP_DIV(_prefix, _name, _reg, _shift, _width,           \
->> +                      _dflags, _iflags)                                \
->> +struct clk_regmap _prefix##_name##_div = {                             \
->> +       .data = &(struct clk_regmap_div_data) {                         \
->> +               .offset = (_reg),                                       \
->> +               .shift = (_shift),                                      \
->> +               .width = (_width),                                      \
->> +               .flags = (_dflags),                                     \
->> +       },                                                              \
->> +       .hw.init = &(struct clk_init_data) {                            \
->> +               .name = #_name "_div",                                  \
->> +               .ops = &clk_regmap_divider_ops,                         \
->> +               .parent_hws = (const struct clk_hw *[]) {               \
->> +                       &_prefix##_name##_sel.hw                        \
->> +               },                                                      \
->> +               .num_parents = 1,                                       \
->> +               .flags = (_iflags),                                     \
->> +       },                                                              \
->> +}
->> +
->> +#define MESON_COMP_GATE(_prefix, _name, _reg, _bit, _iflags)           \
->> +struct clk_regmap _prefix##_name = {                                   \
->> +       .data = &(struct clk_regmap_gate_data) {                        \
->> +               .offset = (_reg),                                       \
->> +               .bit_idx = (_bit),                                      \
->> +       },                                                              \
->> +       .hw.init = &(struct clk_init_data) {                            \
->> +               .name = #_name,                                         \
->> +               .ops = &clk_regmap_gate_ops,                            \
->> +               .parent_hws = (const struct clk_hw *[]) {               \
->> +                       &_prefix##_name##_div.hw                        \
->> +               },                                                      \
->> +               .num_parents = 1,                                       \
->> +               .flags = (_iflags),                                     \
->> +       },                                                              \
->> +}
->> +
->>   #endif
 >>
+>>   static const struct clk_parent_data c3_hcodec_parents[] = {
+>>          { .hw = &c3_hcodec_0.hw },
+>
+>
+> [...]
+>
+>
 >> --
 >> 2.47.2
 >>
