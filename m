@@ -4,174 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AE64C77B7C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jul 2025 03:49:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04BF3C77B7C
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jul 2025 05:48:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=eiafLxCZloX2xhgONWDOYHQ3ElZjFOpYFtl7dgwTgFw=; b=OB4IAo5mN+XCMqvRbEdJMp967j
-	FsR72S6Wb9lG9YzslqXWV1nEaKCt5bxp/pGRXrd2LdJSkWdbCPAo73O/fkNG6v7JS6iBZDOnyCu/O
-	lTf99spD34gu10dIK8tmv9DpOnOPJHqBWbEupD/kyWLY1v/0GizV8xqkw5XA33RizyE5OhI8UrmKV
-	/h/zHXt943UELkWWdEQfI9NgKmzNDoeyySGcDAQ3DItHz74TbUCcv44m2Ro6yypVEHFvb4UgYkLJV
-	AmS3ORLe1PyXkkpmrEZ8sLsZLDerxwny9Z+VAocAGJ2O5/IZ3acJNZenHPQW5Ryewj26YLwGgRwsQ
-	rb0ZaTxA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=5aTKmB2b0EclEk7pTMOMC/19x+fiQJ8QLyZnz3A/8oU=; b=4CKXslF6H28Fp6
+	7RLTAjwCOPhNXk8j4MttmEOB9HN9HRt98IFIwwa8Y4N63+rlptWbp6+TH+iC15DYUiuzl0InWEX7i
+	0MeCU5YswYJaJMr/DO4QtglPPN0raxmoMzqjpRKtWr4E3YLrfZQFhhjRxHR8gvE+fOxhkx77dCVKf
+	YDHXMSNxRY6xxaH2fcbuQdDgyE0SQNlgOG0UOtVaMBlCpODckp2mV0woFLRdFL/mRBiXLtRt7lSFs
+	2uD0anbvpUs2H3S2hf3ALRkOIvITkF4yVcH7kItiTA74Qlksq30m3zhm2bavtE5oUvjCAi2nG7LlE
+	MSPepTYx2hFyVUH00Qyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uXAxE-0000000A9UJ-1aGK;
-	Thu, 03 Jul 2025 03:49:44 +0000
-Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
+	id 1uXCo1-0000000AItW-2FKo;
+	Thu, 03 Jul 2025 05:48:21 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uXAqI-0000000A8eN-275V;
-	Thu, 03 Jul 2025 03:42:35 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HRd0RZhvA+qEwR1VYI2098rBXjmvi/vG7Jxplr/Czaz2QOY/qGqHGcrgF9FLYVOaW0BUKXnTy3+HCsTg742OKkqWYJlnB69PxkkcAn4DC2qIXVr1J48O0HdIVlFQI/XcjIAkcKWV8jt3i+kXal+e3+XKXdL5QGOzeU0sZzhvjWyA19CqZ2292H/lDTyFLkmErsgIpKpRH+nGF1MwbjAKuxbP9Abv0hN3b7te+SCp4upZBiHZ7G4/Sy3pk2YZmVipRvXfJGETTvCJik6v5ljHg5/pWQybnUpvLYySfU9SugpG9rWPnmLve1D3qcHviAPmDsBuaUdA1ogekd/uSneHPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sByetnw4LR2FTA52xGZ97GxS+efL9v9o3UY2MDL0Bcw=;
- b=FQ5ovR+PACCGiNkN/4OZhMiK+H8Z9NuY34Mvd4L7KUAXOEXq9p3vZvKcio6pxbgU4mLIaxvgYM8oGJnOxv/Y+8Lc/hVz97Z52DH9FuiU5LFDTGhBcIss/3ybh3BZiS7x4V15aB8BZF8ez9CKRWE20uiyUJPWtqUROUaVRTceywLBlHdM8Q0XOCvCWHoQfkpgdGnUgPmfC3dN7k5n0ZBbwLiSNcnp+/lVvjc635IVox/s2NUcFacxY/YsHzswLms5eLrJfOS2SlZ91UdPOlYgycAA4vXC/JHBYSnaUtFvPkygApr6No8Y4zlLUvGssNK5SYGJNw7rGy7ATUt4g2ALIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sByetnw4LR2FTA52xGZ97GxS+efL9v9o3UY2MDL0Bcw=;
- b=zew83AznrACkJZDgQ70T2sJTcL1NFJVZSsfaZrpfhnY9XHVd9HUbJR6buFBezhH1dUmKd7vJTlLm1FCkpDjCm6HpgVgV14Q9M+0+mzUp8u6Uly6FKRqw6IcwB+zDPhY4gwaJBjR382tmMmcPi9Ni6hIJN1FLoPM9qN8QmZVfm0V4u3DL7sNGa7Oy7GUAZtuSwejHkF/5whnoKprDKnqBqtxRYaXEorabdqc+rtarBLwFu9MWnym/dgMrgshi9Ynx4T7NRwza2PHq9F9nQOghU6FTABMWWx2ISShYSieII6JiiXcknjMFlMIidhUyYlPrv2ILHWb7yak5Z8AdUZgzGQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
- by TYZPR03MB8338.apcprd03.prod.outlook.com (2603:1096:405:24::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.20; Thu, 3 Jul
- 2025 03:42:22 +0000
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::a311:33f6:519d:73bf]) by KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::a311:33f6:519d:73bf%3]) with mapi id 15.20.8880.027; Thu, 3 Jul 2025
- 03:42:21 +0000
-Message-ID: <bd68352f-7f8c-4cbc-9f4f-f83645cc1f70@amlogic.com>
-Date: Thu, 3 Jul 2025 11:42:19 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/6] clk: meson: t7: add support for the T7 SoC PLL
- clock
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, Chuan Liu
- <chuan.liu@amlogic.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Dmitry Rokosov <ddrokosov@sberdevices.ru>, robh+dt <robh+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, devicetree <devicetree@vger.kernel.org>,
- linux-clk <linux-clk@vger.kernel.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20250509074825.1933254-1-jian.hu@amlogic.com>
- <20250509074825.1933254-5-jian.hu@amlogic.com>
- <1jtt5ny6gq.fsf@starbuckisacylon.baylibre.com>
- <4dd25114-212d-44d6-938a-63871750c292@amlogic.com>
- <1jh60fd52u.fsf@starbuckisacylon.baylibre.com>
- <22a24fe6-9e62-4aba-825e-aee214f683ee@amlogic.com>
- <1j7c10jmbp.fsf@starbuckisacylon.baylibre.com>
-From: Jian Hu <jian.hu@amlogic.com>
-In-Reply-To: <1j7c10jmbp.fsf@starbuckisacylon.baylibre.com>
-X-ClientProxiedBy: SI2P153CA0019.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:190::10) To KL1PR03MB7149.apcprd03.prod.outlook.com
- (2603:1096:820:ca::7)
+	id 1uXCnx-0000000AIqt-0MVX;
+	Thu, 03 Jul 2025 05:48:20 +0000
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-ae04d3d63e6so888631066b.2;
+        Wed, 02 Jul 2025 22:48:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751521695; x=1752126495; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mVj3wbnpG5hZNCBW23hwPMbmFGflIAtjMdLxGwdCGg8=;
+        b=SlYavqIhvLZcI2jCk1N5S63qIDN01rBUv0yZNqpNJx+7Pg4Q9Nx3K9ilblOx6oQt0z
+         8HQVWqdMJLzNdqfq4QPr2Ae0QBsy7yDprkNhnZBsdKE+EbepTk/GMRr9ii7/XTeKQTbh
+         T/KQbpYI8Aq87k0BsmO0YIrpx1OzGDC1hsQtXSynEteACv7lffeq8XXhAPeD0ODEhiCQ
+         +3KBclKFHdBhBi6EqOisad08SWWGMEB1iX+dTbM8AgW0euw/sJDbtiva5ui+xsUbuzbT
+         nGh/yu5wGIsmyHy23E0fdsZXaK7WM3FqXQTlFWOrGlNONBpk2miBZ+nIoOo9YuXHBGD9
+         WlLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751521695; x=1752126495;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mVj3wbnpG5hZNCBW23hwPMbmFGflIAtjMdLxGwdCGg8=;
+        b=bciJJLRVYKIz2783Z+gcCIIMZv6MuHW/dyibmkdPRSJezca5MIc0kxTqyW4p4T/jQX
+         kmWUY/uo08fWcnl1k16wLsmWqeF1C9xCJLktix9KcE2PgSqtUf4wJABMlfGKiH/68L1Y
+         zwq9KfibN0NHLKkVpRR975EOaz4TeKoTiPI5kbT5E+V5x3OL7MgJMJsDDwNDcgkxuQA4
+         QhuffS8E81gUNfITr3Xclwve3Vy7wZUzFMXROF/JU1EGzpwqqys+vNsRwhiticQ7rUN5
+         cqrHjJwiDGVejsF+qPXvh860UVDcNCxHwCetViwQy5sB7pjK4iNH2UpLdEujhOar0TFm
+         z4xQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVlznEAnUrUyCIrpLbRKbBmmm3FqVbspwCPajJFaZZOAlmk2imOsYN7+1A2TcT8KuPMnce5GQaj4u3QoPM8@lists.infradead.org, AJvYcCXJ8jMXLng76KZWpCiZkwHY0QfQLN0XHtEtJQIBfKl7djar5B4wvo+PZ2muv4gbuyAGgd9KQ7kSx+3+vwm+Dl8Waw==@lists.infradead.org
+X-Gm-Message-State: AOJu0YxTTe1ixuKQfSC7D/n5fSa3g++wurhBBPA5MeNqLjMJBMmXM9GZ
+	0zuJjD+g9hyEK+t1PGF5CM01PXC1doCkWJsAlSvxr+T6Yb7F7fSVMNDr82c5Sdw/DxZ6GppPto+
+	8aqe6l+FI4bmlJSP4mhfgQjmTIE2zbzk=
+X-Gm-Gg: ASbGncv1ivqesPFki6GmDKslTAEpY4tYlkFayc2la6/uw5ATwNfDj3FNG998D9ogt4D
+	o1yGEehOSjq0pgE3eYxVx89+I4y2sx0GCQPwJwLDNU2wKRbSa9/dzK/2jqTEw9dtSyG4DdJuv9T
+	dxNcmP+1qW8xbYGTN+Ct0p/6R1xanCBRxs4ysgsx4xVJKYrfpvsdA=
+X-Google-Smtp-Source: AGHT+IEHsVPE3MDluqiXrzyqwGMpX8WERAG/uuR5m6RypAsfJLS1wDinsd9LROKX8eiMRN45fBicLWwb1QGhfOCCjXw=
+X-Received: by 2002:a17:907:94c1:b0:ae3:53b3:b67d with SMTP id
+ a640c23a62f3a-ae3d83d9a6fmr176784666b.1.1751521694551; Wed, 02 Jul 2025
+ 22:48:14 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|TYZPR03MB8338:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5e308440-9f06-405f-d560-08ddb9e39ddd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RVZPYUhoeTJwRVFQUUVaWklzZXY1UjFFWVNFLy9rU0FSQ3YrNFZLaE10TXB4?=
- =?utf-8?B?ZW5KbkpxRTJYeWJNWEVtWmRuNWVzdFZ6aEV2Y240UXYwdC80cjRVUUg2ZUFG?=
- =?utf-8?B?eU9FL2FDV3dLem9YeDQ1UENLbGkwaGd4TzVUenBMeEdmOEhuWU4rT0N4ZVlW?=
- =?utf-8?B?Sk9EZ2RwZ0Mwb0xiRTdaUUVhZS9wMGxST1A2Z3g5VEVwM1dzU3krb2NOMUc4?=
- =?utf-8?B?WFU4emFPZEY4N1hCM3A5eVZUZnpZak5yVVZ3K1A2WDdMUnRSUGgwRWRSdVBK?=
- =?utf-8?B?cDBYZ0xCTXdXRCt5TjBRaDdMQXVvczA4L1E5KzM4aFJ3aTNwTnlwK3VCM3hQ?=
- =?utf-8?B?WGp2eWpvSmo1WDk2TzZkRjBTODlYQVVlVlNkSVFsTHAwZnZZRVJHS2VpcVJt?=
- =?utf-8?B?MXAwblNrc2dHMHJ6eTZNOHBCcytEdkZmVSt0STFZc3Facmx3dmxkdHRtUVlH?=
- =?utf-8?B?amdadDdTczBvWEZhd09sUGp5VXNDZU5GRHMxYU1RSUNtZWpHN3JjLzJtUWxB?=
- =?utf-8?B?SjBBb1Y4VklXMURwQVFMNTBRYmw0bmpaVmdFSG5ZV2hQWXg0MG0zb2c0TGJr?=
- =?utf-8?B?NkFPT01FVm40NUVhUlIwZDYvVEdTK21TUjlrOVBtL0FXOVdpUVFTN0RrcXA4?=
- =?utf-8?B?cHV3NVNXbW43ZFphUnB3UGo5YkxTMHR1eHZMeFdVSVNBYkpuOUJLWGNPZkEv?=
- =?utf-8?B?OWRxRXdsQ3BjSUkreXE1VWh6SlVXQzRUMExpcGR0VERnNFdFRjdJYnQvQlZU?=
- =?utf-8?B?QzRhd3RFbDZTUEYvTERmeEhYNHVIVnkvZnpQQldBSytFRGRuVFNFcFlRbmho?=
- =?utf-8?B?aW9Va1lUNXBOSTQvQU9TaDFLNFh4V0ZjSVVDLytnanBRMVBhSzhyTG4vYUdo?=
- =?utf-8?B?eUQxeEFJekFRQkNnU1ZRTjQxanNjMGUyK3Q3SmF3dm9JSnZPaHhxbDhKSVR0?=
- =?utf-8?B?elh5SFN1R2pmaFhyWEZWeEZaL0dhZFdvMmluV2NYWmNtamJuQUdKRFM4dk9K?=
- =?utf-8?B?RloyenZVazlNNjlSR3dvaitsOTZIYmZtOWVuVHRreHZlaWYxZjRxeXRhOTRG?=
- =?utf-8?B?Tlo5V1dJd3lnbEhhMzJORlBHLzBLZlN4ZTZkVUU5eXBMWUQ3VTIrOTFHUVMr?=
- =?utf-8?B?bXRKM0g4Vi9VN3RVdk5mMDJrVFcyanJDc2xvbVBaN1RDbzVla01scExGYU50?=
- =?utf-8?B?dkt5Q3pwajQvYXVQUVAxZ1Zldm0xd29FNXVWdjAzUU4xMC9GSTMrTU5LMUpj?=
- =?utf-8?B?V0pIZUttdksvbTRQYm1KTGpLZFN3TEEwYTBaVFRsQklaSlRlYUFwbURYRXYx?=
- =?utf-8?B?a0lWaUNtYy9wVTlVb21BYVIzUVdNbU1VY2hnUTg4ZDNoOXJSd0Y0YXVKR3Fi?=
- =?utf-8?B?N1liRE1XOStVVjYyZlZocGJtNmpDYkdxTmpqSkNnNTQzb2E1ZHBjR1NCalhK?=
- =?utf-8?B?TEZvemY2L0R2bUpiTXlUMmhMaTlvZ3FESTFKWkpTVnpQbWZDeDNrdkdnbXdx?=
- =?utf-8?B?VzJCR25BclRUZEM0RlpJSzRYZ0FTY2RBTVBjTmVwamF6Y1JEbEZlV2E3MDR6?=
- =?utf-8?B?T2NNcTlmUTQyQitKeVVDMmJ3amlDRDVQSmFkVHhwczdXcCtWVG4zZE96QVE5?=
- =?utf-8?B?dldwVmlsL1gwaG1zN2RkdWt3N1NWaDRnSzcxSWRoSlM2U2FmUGUveWpCS0FK?=
- =?utf-8?B?MUxoMmJHYS9wd1lreEVwaWFNTnlMZ3NHNWNMZEpvUzNERUhxWUtUeXZGQ21P?=
- =?utf-8?B?ZGVBZ1lJdkJhcHlQNlhTSU9OSGhEU0NXeHhLWVNINkJtaDE5QUZuYXNBeng1?=
- =?utf-8?B?dEYzVnRSblRITUtJUlNPVmU1UVBzUmFvdWtHRko2dTVIUTZjRHE2dW8zWjVt?=
- =?utf-8?B?L1gvNFhoWTZyUlZsQTlLREwrOVNpRUJnWDBEU0lnSlU3SGQ0NlVtTTQ3Qmth?=
- =?utf-8?Q?YsMhmoinQJk=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WVcxdjhHaXN4ZUxtK25mMGo5a0E1NEo1SFpDSHpuSml6aDBxQ01uQzZveXJN?=
- =?utf-8?B?bHo0ZnVZVnBiMmZJeHJlZXh2dkxiVE92Rk1RdlRoS1F3RHR6dXRWblJvMEVi?=
- =?utf-8?B?ZzFBWndUMVFUTGVDb0RISlo2dkpKYTEzZ0RGUllYdk1MUGVLTFZ5M2VqMlll?=
- =?utf-8?B?Wm1OR2EvNjZESm5ocHF1bnB5NDM0Z01UbGVQbTlYYitISUtrWlk2Zm1kdm1E?=
- =?utf-8?B?eUs2U2FTWTcxam5jWTJjWjEzL0ljdS8vaW9aY3pNc0gxUHptcXY4Uk5YV1hi?=
- =?utf-8?B?YjZRdVZDQlNzWHQrTEpLcWFWQm1WSGJ3M0piTm9vVTVxVjlvS3NtYjVraXlI?=
- =?utf-8?B?dFRhcFlCUDhuWFMya2gyL3VrT2RMM3RCTTB3Qk1BOCtneEFvWnR5M1J1cjBD?=
- =?utf-8?B?UnpFbTBKbXpUVzJ4YU8vbWpjM0V2WC9nWlNMcWEzenVzRFNLNnFMb2hDTWIr?=
- =?utf-8?B?VGtjTzk5bFA0Q05tb1NObmtkRXBqTFpCUnJDemdkZnNZYmZnYUlNS1hlbW12?=
- =?utf-8?B?dzhMckprUmlTMGdVendLTm1EaHdsL0Y3Y2d5YzF5OGIxSGo5eUI0ejIremZP?=
- =?utf-8?B?WGJieG1rUzNXdUdBZlV0aVNvVFFOUmVFaG55eDZuRVRJM21kdSs4cngrQ2RK?=
- =?utf-8?B?ZkdKUjBKSFcvcWVkQytaSmVlQm11RUNsTkJMa0lnZ3h3dm40WVI3dHQzbzdo?=
- =?utf-8?B?RjJLMnBSbXhqcFBXaTFxQnIyWnV5Zmxyb2Z5NndZRzZzWVRvTkdxVC9JTGxB?=
- =?utf-8?B?WlNlc25kOGZzRnM3Qm1HZVJlYW1EMTJwZmJyelFEU0FRaDhQeXZ5Z1QyRUd0?=
- =?utf-8?B?MW5IMmlJWXVxU2RhYVRncDZjVlNMMVN2R1VLa3lFay91S3pCUEx3amhrM2J3?=
- =?utf-8?B?SjkwQkJCYWlTTU9rMWFuNjZia2w5WFk0R0FaRGY5NUE3N2xMSGRPUk5Qcnln?=
- =?utf-8?B?ZDZVT0pYMWlRUzN6UFNhS0hNeGxQRU9UZGdWNWNmL25WWHhYZjNzVGFPN013?=
- =?utf-8?B?anFyY1UwWmdGVXREZjhZd3V3MzdRQ2Fvc3hwSk0zK05sUlFNU2NSYnpXY0to?=
- =?utf-8?B?Q1FTVlVmdjdzak4xSjZTbjAvYmVhUXNGSlBYVGdkcXBzaVZDek9Sd0FqVTk4?=
- =?utf-8?B?bFpPVVBENENxeWNsNlhrTDZwS29aZWNWSTllUWI3Z3ZkNzA3eFFBYUpGZUZT?=
- =?utf-8?B?NHBvRnZMQlMxZXRjUTVtdDFYZ2N0N0xIOVVEY2NWbGVzcm04dXQveU8vYzVD?=
- =?utf-8?B?b081Nk9sMVU1WFlFT2k3SElsVXQ5N0lWZjltT0wrWEFxZ0hxejlRY0JYUnBV?=
- =?utf-8?B?WmJGSjB5aGtpbndnTXM4UlBGU3EvaldJaUxobGsyOWpiaHVrd2V2cnQvcE9X?=
- =?utf-8?B?b2tpM2g3M0JxT054OExueG9qWHR4eUo2NENZQ2FoZ2Z2aEdaSTk0RHV5elNW?=
- =?utf-8?B?MVVIb04rTmFsc2cyMXlxaDkvNlRhNHJZamRxWlNMaTdrcmRBbURvT3BEbkZs?=
- =?utf-8?B?TjZxNmdNWDhoV3BIaTdmbEwrMGtLVkdkeGVKb08yaUNWVktUSkJ3b2JGTnAr?=
- =?utf-8?B?TDBZT01NRG9qRjBicjNKcmxWVndhVFFwUTFBa3o3ZlUzRW5TTUxaUXZma1I2?=
- =?utf-8?B?dEZmOXR3MnY5Ry93ZXNqeTdmM3JuNkk3N3orZ3dnMVo1QmJFVUdhbHRwQTlE?=
- =?utf-8?B?UXk0OVREWGVUWWJuWDlDV2tsYVhaQkhnVHNJMlFzeWFVZldTcVdUZThnUVdD?=
- =?utf-8?B?cVpnZ0Q0alphRGlMODJzZ0JYcTltbGk3bjQrWnFHUUROVVlWenkydGZ4cnE5?=
- =?utf-8?B?b1daVTFOcGE1TCt0SURwY0VwNm9GR3dMNGtkK3lPaWZmT0h2OTRtZVFQUXRh?=
- =?utf-8?B?RjE0MC9FenNTZXF1V2FFL0E2V1lOdEttdE5VUTd2bGUwQXF2c3hBa1JIMHFY?=
- =?utf-8?B?TG43VGV6ZnhkR2lWOUUwTkI4WUhSbjV4UncvN3VSNkh1K1Q4WW8zQ0ZOdTBj?=
- =?utf-8?B?TCt5U3FBcTU5R0VVaWtEeDVXVG5LcGJhTTRrQXMzYWR4OWIzVFhteGpnN2c5?=
- =?utf-8?B?N2g2NEdFaXpycnVsS2trRDNRZnNUbmF2a0VyV3FJTkdUU1E5RjZHSEF5Wm5J?=
- =?utf-8?Q?noXtW1PknT7HW1zPkAoscNzJ6?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e308440-9f06-405f-d560-08ddb9e39ddd
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2025 03:42:21.5477
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vlHG1NaggJauRNULGJQUYW4ztKRXKdXmd6Bg7QLRflteI9MfRaLzkQBTZBk7yZ711RgjQWfiO3VW7VoDHFRvEA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB8338
+References: <20250624135214.1355051-1-romanov.alexey2000@gmail.com>
+In-Reply-To: <20250624135214.1355051-1-romanov.alexey2000@gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 3 Jul 2025 11:17:57 +0530
+X-Gm-Features: Ac12FXyST0hXGZG3XMCb1p96mhr--D9oLQ205yN9d2sNvp8JX62uy4InGQKfyz4
+Message-ID: <CANAwSgRcO9sq_+pYLTwpANi2fkVAxe_3RPtSvTuqmoNnUwtU=g@mail.gmail.com>
+Subject: Re: [PATCH v12 00/22] Support more Amlogic SoC families in crypto driver
+To: Alexey Romanov <romanov.alexey2000@gmail.com>
+Cc: neil.armstrong@linaro.org, clabbe@baylibre.com, 
+	herbert@gondor.apana.org.au, davem@davemloft.net, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, khilman@baylibre.com, 
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, 
+	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250702_204234_547890_93BACE15 
-X-CRM114-Status: GOOD (  14.28  )
+X-CRM114-CacheID: sfid-20250702_224817_128816_0648B8D4 
+X-CRM114-Status: GOOD (  29.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -183,58 +92,224 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Ck9uIDIwMjUvNi8yNSAxNTo0NiwgSmVyb21lIEJydW5ldCB3cm90ZToKPiBbIEVYVEVSTkFMIEVN
-QUlMIF0KPgo+IE9uIFdlZCAyNSBKdW4gMjAyNSBhdCAxMDo1MiwgSmlhbiBIdSA8amlhbi5odUBh
-bWxvZ2ljLmNvbT4gd3JvdGU6Cj4KPj4gT24gMjAyNS82LzE3IDA6MjcsIEplcm9tZSBCcnVuZXQg
-d3JvdGU6Cj4+PiBbIEVYVEVSTkFMIEVNQUlMIF0KPj4+Cj4+PiBPbiBUaHUgMTIgSnVuIDIwMjUg
-YXQgMjE6MDIsIEppYW4gSHUgPGppYW4uaHVAYW1sb2dpYy5jb20+IHdyb3RlOgo+Pj4KPj4+Pj4+
-ICsKPj4+Pj4+ICtzdGF0aWMgc3RydWN0IGNsa19yZWdtYXAgdDdfcGNpZV9wbGxfb2QgPSB7Cj4+
-Pj4+PiArICAgICAuZGF0YSA9ICYoc3RydWN0IGNsa19yZWdtYXBfZGl2X2RhdGEpewo+Pj4+Pj4g
-KyAgICAgICAgICAgICAub2Zmc2V0ID0gQU5BQ1RSTF9QQ0lFUExMX0NUUkwwLAo+Pj4+Pj4gKyAg
-ICAgICAgICAgICAuc2hpZnQgPSAxNiwKPj4+Pj4+ICsgICAgICAgICAgICAgLndpZHRoID0gNSwK
-Pj4+Pj4+ICsgICAgICAgICAgICAgLmZsYWdzID0gQ0xLX0RJVklERVJfT05FX0JBU0VEIHwKPj4+
-Pj4+ICsgICAgICAgICAgICAgICAgICAgICAgQ0xLX0RJVklERVJfQUxMT1dfWkVSTywKPj4+Pj4g
-V2hhdCdzIHRoZSBiZWhhdmlvdXIgb2YgdGhlIGRpdmlkZXIgb24gemVybyB0aGVuID8KPj4+PiBJ
-ZiB0aGVyZSBpcyBubyBDTEtfRElWREVSX0FMTE9XX1pFUk8sIHRoZXJlIGlzIGEgd2FybmluZyB3
-aGVuIHJlZ2lzdGVyaW5nCj4+Pj4gdDdfcGNpZV9wbGxfb2QuCj4+Pj4KPj4+PiBsaWtlIHRoaXM6
-Cj4+Pj4KPj4+PiAgICAgLS0tLS0tLS0tLS0tWyBjdXQgaGVyZSBdLS0tLS0tLS0tLS0tCj4+Pj4g
-ICAgIFdBUk5JTkc6IENQVTogMSBQSUQ6IDEgYXQgZHJpdmVycy9jbGsvY2xrLWRpdmlkZXIuYzox
-NDAKPj4+PiBkaXZpZGVyX3JlY2FsY19yYXRlKzB4ZmMvMHgxMDAKPj4+PiAgICAgcGNpZV9wbGxf
-b2Q6IFplcm8gZGl2aXNvciBhbmQgQ0xLX0RJVklERVJfQUxMT1dfWkVSTyBub3Qgc2V0Cj4+Pj4g
-ICAgIE1vZHVsZXMgbGlua2VkIGluOgo+Pj4+ICAgIENQVTogMSBQSUQ6IDEgQ29tbTogc3dhcHBl
-ci8wIE5vdCB0YWludGVkCj4+Pj4gNS40LjI4My0wOTk3Ni1nYTgwM2U5NGVlZDg4LWRpcnR5ICM5
-MQo+Pj4+ICAgICBIYXJkd2FyZSBuYW1lOiB0bTJfdDk2MmUyX2FiMzExIChEVCkKPj4+PiAgICBD
-YWxsIHRyYWNlOgo+Pj4+ICAgICBbZmZmZmZmYzAyMDAwMzc1MCsgIDY0XVs8ZmZmZmZmYzAxMDBl
-M2UzYz5dIGR1bXBfYmFja3RyYWNlKzB4MC8weDFlNAo+Pj4+ICAgICBbZmZmZmZmYzAyMDAwMzc5
-MCsgIDMyXVs8ZmZmZmZmYzAxMDBlNDA0ND5dIHNob3dfc3RhY2srMHgyNC8weDM0Cj4+Pj4gICAg
-IFtmZmZmZmZjMDIwMDAzN2IwKyAgOTZdWzxmZmZmZmZjMDExMzBhMmU4Pl0gZHVtcF9zdGFjaysw
-eGJjLzB4MTA4Cj4+Pj4gICAgW2ZmZmZmZmMwMjAwMDM4MTArIDE0NF1bPGZmZmZmZmMwMTAxMGM0
-ODQ+XSBfX3dhcm4rMHhmNC8weDFiOAo+Pj4+ICAgICBbZmZmZmZmYzAyMDAwMzhhMCsgIDY0XVs8
-ZmZmZmZmYzAxMDEwYzVmND5dIHdhcm5fc2xvd3BhdGhfZm10KzB4YWMvMHhjOAo+Pj4+ICAgIFtm
-ZmZmZmZjMDIwMDAzOGUwKyAgNjRdWzxmZmZmZmZjMDEwNjFkMzY0Pl0gZGl2aWRlcl9yZWNhbGNf
-cmF0ZSsweGZjLzB4MTAwCj4+Pj4gICAgW2ZmZmZmZmMwMjAwMDM5MjArICA4MF1bPGZmZmZmZmMw
-MTA2MjRlODQ+XQo+Pj4+IGNsa19yZWdtYXBfZGl2X3JlY2FsY19yYXRlKzB4NzQvMHg4OAo+Pj4+
-ICAgICBbZmZmZmZmYzAyMDAwMzk3MCsgIDk2XVs8ZmZmZmZmYzAxMDYxNmE1ND5dIF9fY2xrX3Jl
-Z2lzdGVyKzB4NjJjLzB4Yjc4Cj4+Pj4KPj4+PiBzbyBhZGQgaXQgdG8gYXZvaWQgdGhlIHdhcm5p
-bmcuCj4+PiBUaGF0IGRvZXMgbm90IHJlYWxseSBhbnN3ZXIgbXkgcXVlc3Rpb24KPj4KPj4gU29y
-cnksIEkgZGlkIG5vdCBnZXQgeW91IGJlZm9yZS4KPj4KPj4gSSBoYXZlIHNldCBPRCB0byAwLiAg
-QW5kIG1lYXN1cmUgcGNpZSBmcmVxdWVuY3ksICBJdCBpcyAzNy41TWh6Lgo+Pgo+PiA0ODAwTWh6
-LzIvMzIvMj0zNy41TWh6LCBhbmQgdGhlIE9EIGVxdWFsIHplcm8gbWVhbnMgZGl2aWRlZCBieSAz
-MiBpbiBmYWN0Lgo+Pgo+IENMS19ESVZJREVSX01BWF9BVF9aRVJPIG1heWJlID8KCgpZb3UgYXJl
-IHJpZ2h0LCBDTEtfRElWSURFUl9NQVhfQVRfWkVSTyBtYWtlcyBzZW5zZSBoZXJlLgoKCml0cyB3
-aWR0aCBpcyA1LCBhbmQgdGhlIGRpdmlzb3IgaXMgMl41ID0gMzIuCgoKSSB3aWxsIGFkZMKgQ0xL
-X0RJVklERVJfTUFYX0FUX1pFUk/CoCBhbmQgcmVtb3ZlIENMS19ESVZJREVSX0FMTE9XX1pFUk8g
-aW4gCnRoZSBuZXh0IHZlcnNpb24uCgo+PiBIZXJlIGlzIHRoZSB0ZXN0IHJlc3VsdDoKPj4KPj4g
-ZGV2bSAweGZlMDA4MTQwIDMyCj4+Cj4+IDB4RDQwQzA0QzgKPj4KPj4gY2F0IC9zeXMva2VybmVs
-L2RlYnVnL21lc29uLWNsay1tc3IvbWVhc3VyZV9zdW1tYXJ5IHwgZ3JlcCBwY2llCj4+Cj4+IFsx
-Nl0gcGNpZV9jbGtfaW5wICAgICAgMzc1MDAwMDAgICsvMSAzMTI1SFoKPj4KPj4KPj4gdGhlIE9E
-IGRpdmlkZXIgaXMgTiBjcm9zc292ZXIuIGl0IGlzIG9uZSBiYXNlZC4KPj4KPj4gYW5kIEl0J3Mg
-cG9zc2libGUgdG8gZ28gZnJvbSAxIHRvIDMxIGNyb3Nzb3ZlcnMuCj4gLS0KPiBKZXJvbWUKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
-aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
-bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Hi Alexey,
+
+On Tue, 24 Jun 2025 at 20:29, Alexey Romanov
+<romanov.alexey2000@gmail.com> wrote:
+>
+> Hello!
+>
+> This patchset expand the funcionality of the Amlogic
+> crypto driver by adding support for more SoC families:
+> AXG, G12A, G12B, SM1, A1, S4.
+>
+> Also specify and enable crypto node in device tree
+> for reference Amlogic devices.
+>
+> Tested on GXL, AXG, G12A/B, SM1, A1 and S4 devices via
+> custom tests [1] and tcrypt module.
+>
+Is it possible to enable this module on GXBB platforms
+that use the older crypto architecture?
+
+Crypto Engine
+o AES block cipher with 128/192/256 bits keys, standard 16 bytes block
+size and streaming ECB, CBC and CTR modes
+o DES/TDES block cipher with ECB and CBC modes supporting 64 bits key
+for DES and 192 bits key for 3DES
+o Hardware key-ladder operation and DVB-CSA for transport stream encryption
+o Built-in hardware True Random Number Generator (TRNG), CRC and
+SHA-1/SHA-2 (SHA-224/SHA-256) engine
+
+Thanks I have tested using the following command on G12B Odroid N2plus.
+
+$ sudo modprobe tcrypt sec=1 mode=200
+[   42.857936] tcrypt: testing speed of sync ecb(aes) (ecb-aes-ce) encryption
+[   42.859184] tcrypt: test 0 (128 bit key, 16 byte blocks): 7019057
+operations in 1 seconds (112304912 bytes)
+[   43.861782] tcrypt: test 1 (128 bit key, 64 byte blocks): 6136472
+operations in 1 seconds (392734208 bytes)
+[   44.865778] tcrypt: test 2 (128 bit key, 128 byte blocks): 5506574
+operations in 1 seconds (704841472 bytes)
+[   45.869854] tcrypt: test 3 (128 bit key, 256 byte blocks): 4460371
+operations in 1 seconds (1141854976 bytes)
+[   46.873939] tcrypt: test 4 (128 bit key, 1024 byte blocks): 2014161
+operations in 1 seconds (2062500864 bytes)
+[   47.878034] tcrypt: test 5 (128 bit key, 1424 byte blocks): 1553828
+operations in 1 seconds (2212651072 bytes)
+[   48.882023] tcrypt: test 6 (128 bit key, 4096 byte blocks): 599874
+operations in 1 seconds (2457083904 bytes)
+
+Please add my
+
+Tested-by: Anand Moon <linux.amoon@gmail.com>
+
+Thanks
+-Anand
+> ---
+>
+> Changes V1 -> V2 [2]:
+>
+> - Rebased over linux-next.
+> - Adjusted device tree bindings description.
+> - A1 and S4 dts use their own compatible, which is a G12 fallback.
+>
+> Changes V2 -> V3 [3]:
+>
+> - Fix errors in dt-bindings and device tree.
+> - Add new field in platform data, which determines
+> whether clock controller should be used for crypto IP.
+> - Place back MODULE_DEVICE_TABLE.
+> - Correct commit messages.
+>
+> Changes V3 -> V4 [4]:
+>
+> - Update dt-bindings as per Krzysztof Kozlowski comments.
+> - Fix bisection: get rid of compiler errors in some patches.
+>
+> Changes V4 -> V5 [5]:
+>
+> - Tested on GXL board:
+>   1. Fix panic detected by Corentin Labbe [6].
+>   2. Disable hasher backend for GXL: in its current realization
+>      is doesn't work. And there are no examples or docs in the
+>      vendor SDK.
+> - Fix AES-CTR realization: legacy boards (gxl, g12, axg) requires
+>   inversion of the keyiv at keys setup stage.
+> - A1 now uses its own compatible string.
+> - S4 uses A1 compatible as fallback.
+> - Code fixes based on comments Neil Atrmstrong and Rob Herring.
+> - Style fixes (set correct indentations)
+>
+> Changes V5 -> V6 [7]:
+>
+> - Fix DMA sync warning reported by Corentin Labbe [8].
+> - Remove CLK input from driver. Remove clk definition
+>   and second interrput line from crypto node inside GXL dtsi.
+>
+> Changes V6 -> V7 [9]:
+>
+> - Fix dt-schema: power domain now required only for A1.
+> - Use crypto_skcipher_ctx_dma() helper for cipher instead of
+>   ____cacheline_aligned.
+> - Add import/export functions for hasher.
+> - Fix commit message for patch 17, acorrding to discussion [10].
+>
+> Changes V7 -> V8 [11]:
+>
+> - Test patchset with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS: fix some bugs
+>   in hasher logic.
+> - Use crypto crypto_ahash_ctx_dma in hasher code.
+> - Correct clock definition: clk81 is required for all SoC's.
+> - Add fixed-clock (clk81) definition for A1/S4.
+> - Add information (in commit messages) why different compatibles are used.
+>
+> Changes V8 -> V9 [12]:
+>
+> - Remove required field clk-names from dt-schema according to Rob Herring
+> recommendation [13].
+> - Fix commit order: all dt-bindings schema commits now located earlier
+> than any changes in device tree.
+> - Fix typos and add more clarifications in dt-schema patches.
+>
+> Changes V9 -> V10 [14]:
+>
+> - Rebased over linux-next (20241106).
+> - Remove patches with AES-CTR support. This was a dishonest implementation of CTR algo.
+> - Update commit headers in accordance with the accepted rules in each
+>   of the subsystems.
+> - Moved adding power-domains (dt-bindings) in desired commit.
+>
+> Changes V10 -> V11 [15]:
+>
+> - Rebased over linux-next (20241213).
+> - Fix unused variable warnings reported by kernel test robot [16].
+> - Fix dts warnings reported by kernel test robot. [17].
+> - Add Rob Herring RvB tags for dt-bindings patches.
+> - Remove ____cacheline_aligned macro. Use crypto_ahash/tfm_ctx_dma(),
+>   crypto_ahash_set_reqsize_dma() and crypto_dma_align() instead.
+>
+> Changes V11 -> V12 [18]:
+>
+> - Rebased over linux-next (20250624).
+> - Remove digest() method for hasher.
+> - Add ____cacheline_aligned for meson_hasher_req_ctx structure. Hardware requires
+>   that these buffers be located in different cache lines.
+>
+> Links:
+>   - [1] https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140706995e7
+>   - [2] https://lore.kernel.org/all/20240110201216.18016-1-avromanov@salutedevices.com/
+>   - [3] https://lore.kernel.org/all/20240123165831.970023-1-avromanov@salutedevices.com/
+>   - [4] https://lore.kernel.org/all/20240205155521.1795552-1-avromanov@salutedevices.com/
+>   - [5] https://lore.kernel.org/all/20240212135108.549755-1-avromanov@salutedevices.com/
+>   - [6] https://lore.kernel.org/all/ZcsYaPIUrBSg8iXu@Red/
+>   - [7] https://lore.kernel.org/all/20240301132936.621238-1-avromanov@salutedevices.com/
+>   - [8] https://lore.kernel.org/all/Zf1BAlYtiwPOG-Os@Red/
+>   - [9] https://lore.kernel.org/all/20240326153219.2915080-1-avromanov@salutedevices.com/
+>   - [10] https://lore.kernel.org/all/20240329-dotted-illusive-9f0593805a05@wendy/
+>   - [11] https://lore.kernel.org/all/20240411133832.2896463-1-avromanov@salutedevices.com/
+>   - [12] https://lore.kernel.org/all/20240607141242.2616580-1-avromanov@salutedevices.com/
+>   - [13] https://lore.kernel.org/all/20240610222827.GA3166929-robh@kernel.org/
+>   - [14] https://lore.kernel.org/all/20240820145623.3500864-1-avromanov@salutedevices.com/
+>   - [15] https://lore.kernel.org/all/20241108102907.1788584-1-avromanov@salutedevices.com/
+>   - [16] https://lore.kernel.org/all/202411090235.a7vEgZQo-lkp@intel.com/
+>   - [17] https://lore.kernel.org/all/202411090619.fQTDHg7w-lkp@intel.com/
+>   - [18] https://lore.kernel.org/all/20241213140755.1298323-1-avromanov@salutedevices.com/#t
+>
+> Alexey Romanov (22):
+>   crypto: amlogic - Don't hardcode IRQ count
+>   crypto: amlogic - Add platform data
+>   crypto: amlogic - Remove clock input
+>   crypto: amlogic - Add MMIO helpers
+>   crypto: amlogic - Move get_engine_number()
+>   crypto: amlogic - Drop status field from meson_flow
+>   crypto: amlogic - Move algs definition and cipher API to cipher.c
+>   crypto: amlogic - Cleanup defines
+>   crypto: amlogic - Process more than MAXDESCS descriptors
+>   crypto: amlogic - Avoid kzalloc in engine thread
+>   crypto: amlogic - Introduce hasher
+>   crypto: amlogic - Use fallback for 192-bit keys
+>   crypto: amlogic - Add support for G12-series
+>   crypto: amlogic - Add support for AXG-series
+>   crypto: amlogic - Add support for A1-series
+>   dt-bindings: crypto: amlogic,gxl-crypto: correct clk and interrupt
+>     lines
+>   dt-bindings: crypto: amlogic,gxl-crypto: support new SoC's
+>   arm64: dts: amlogic: gxl: correct crypto node definition
+>   arm64: dts: amlogic: a1: add crypto node
+>   arm64: dts: amlogic: s4: add crypto node
+>   arm64: dts: amlogic: g12: add crypto node
+>   arm64: dts: amlogic: axg: add crypto node
+>
+>  .../bindings/crypto/amlogic,gxl-crypto.yaml   |  32 +-
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  14 +
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
+>  .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |   6 +-
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  13 +
+>  drivers/crypto/amlogic/Makefile               |   2 +-
+>  drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 587 ++++++++++++------
+>  drivers/crypto/amlogic/amlogic-gxl-core.c     | 289 +++++----
+>  drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 485 +++++++++++++++
+>  drivers/crypto/amlogic/amlogic-gxl.h          | 111 +++-
+>  11 files changed, 1191 insertions(+), 362 deletions(-)
+>  create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
+>
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
