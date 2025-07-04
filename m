@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67E46C83F07
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D926CC83F0A
 	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jul 2025 03:07:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,45 +12,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fsJ0YozsN6dHR8xY0icW95gbEgcGZBbWmefEuTc6Nx8=; b=EMLb93EAuaqVZP
-	7OERnaOag4ZRYOtASQJvBAfftsFt0Pa90OUqpuZjaC1Qcv1wrUc9Scmj+er8oR/+7vEp/P+phul+t
-	IlMrPSDwnJWf4tSxpzruk7NShnqWqbj8EPcONueuQHfFBjanMrxuy9fST8T7MsZFsaus9qxxOtn9T
-	IuLmuTiQWH0rbU+nR8xrG/2fv5ENsKbXiNdpI9TypWfDo0vLKr2caKO0i5ZxiCt7TnP6laE9gXggu
-	sZL4ypViyUrcaVdgOdqofGalupJ0aDBKBmQcxCs2xpPEQvuJceJmVWRD6Z2xTvGYimH0D+57aG4wP
-	pE8pJyliAAQE3q7opTMw==;
+	List-Owner; bh=Tzc7czwI1cYLeg9uT0G8M/+BBK7zhVU15b7tPSeYz0g=; b=P/N+cG0BkkufXJ
+	8x209bPl9fft3xljHF/oV1BS6y0SQHGa4c4rDix82Zc9m8IZemYoHqT10T4E9hbxgRqB43Whpuz70
+	BwLR1gRJCUzk2KrARe49PXB41GI+9qYuWm8JYfU70+HPbB9XH/21s2lO/PMCL91a6tK5Yg4Nw2TJ7
+	8MOE8TSJSe2cCeGperl7eVmxDMQhvk1G2loIpgAcySVx3vWoZTNIc95XC0u/mgfnBCTXrn08rN6J4
+	femMsNRYiZNZZ0pKtt3/Gv9Ml2Nvv2MS80jR3j9/dPsVYr8XS5t5W/FHwiIAaB2In8Wp0+puPyD7A
+	kfa2QPlaYhAz1W7r8Bpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uXWlr-0000000D8A6-0NVI;
-	Fri, 04 Jul 2025 03:07:27 +0000
+	id 1uXWlq-0000000D8A1-36HL;
+	Fri, 04 Jul 2025 03:07:26 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uXWeG-0000000D7Mj-3D3Q
+	id 1uXWeG-0000000D7Mi-2jkL
 	for linux-amlogic@lists.infradead.org;
-	Fri, 04 Jul 2025 02:59:38 +0000
+	Fri, 04 Jul 2025 02:59:37 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 45069458D7;
+	by sea.source.kernel.org (Postfix) with ESMTP id 61735466F5;
 	Fri,  4 Jul 2025 02:59:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 170E5C4CEEE;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2A436C4CEF3;
 	Fri,  4 Jul 2025 02:59:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1751597974;
-	bh=HE+QQyQASQhlwMh647dt8HO00YDtO4Uo+20sLmuAsfg=;
+	bh=ZG2hqHecU73ektMlHLBv3zCPSuuwC64rbg9ypuyirdM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=TKR/XPnDpQFYgF6qrseSFvtps8p8XIIHW8xL9Znw0DAhvu1y6xM8h4ObRL2QXJX0L
-	 EvNK6HHV5y9Nv850pX6rZ3G0geZxFnKaLtLl7oIBQbVlR1AtwyBXhxvSZIupBHNWBl
-	 v/ynul/VrabtsZk2ZxnLM1Rg2sz4kjEQ79iuv3oO9pMew00VqavkaVn99hob+6nexE
-	 dQH3XXap8zKAMoz5RsfoGVZtO5IAdjREJf6AguPWz0gcB6JvaAY6502m2QtY5ZCs/M
-	 D2Wlk+uB3kzrExyQtSV1Sm/N+vuCdqMSaxGg5yJuKWeotzzEGszeVm64PM5gNZh3np
-	 x5CR8xVTql47A==
+	b=HDxVUCp4WUbotADP5rpIAYC5zuz8EpkoIJHkFNj7oN6fLLPmTUEenN7h9IGtGfoBj
+	 TSrl/puosF+sDmhwmGAOEPtdLGw40quiqUw9nmo4YgYW5zSkYYUol4Xz8XTc64ONc9
+	 JbAVlzkA4rSqwmATd49BTUrfxfsD5cGibSxEHMWjJEnL7y3BdtJ+S0AUR8BbPTvO92
+	 d3AtpDu2+/3JiS2psB7pVKnSSBGME6tdnnn/bYb/B8kN8I6UalV2Rm9C5CB0HB8NBb
+	 ILrF5597EUnHYg4EEbG3c8jMLRU94B3e7c9B0aWXG/LcxP28GMdMvTsS0tBD77hlLP
+	 rP/VRDppvzGcA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 06569C83030;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F6C3C83F0B;
 	Fri,  4 Jul 2025 02:59:34 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 04 Jul 2025 10:59:32 +0800
-Subject: [PATCH v4 1/3] spi: dt-bindings: Add binding document of Amlogic
- SPISG controller
+Date: Fri, 04 Jul 2025 10:59:34 +0800
+Subject: [PATCH v4 3/3] MAINTAINERS: Add an entry for Amlogic spi driver
 MIME-Version: 1.0
-Message-Id: <20250704-spisg-v4-1-6b731dfbe610@amlogic.com>
+Message-Id: <20250704-spisg-v4-3-6b731dfbe610@amlogic.com>
 References: <20250704-spisg-v4-0-6b731dfbe610@amlogic.com>
 In-Reply-To: <20250704-spisg-v4-0-6b731dfbe610@amlogic.com>
 To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
@@ -58,22 +57,22 @@ To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Conor Dooley <conor.dooley@microchip.com>
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1751597972; l=1996;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1751597972; l=878;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=IHQOnKrg7npxbLs9TpeLcto9ZcmGHjz7nxGFh2mfna0=;
- b=IQdq1I0A/nxaoSC9PFdRfxrIi9GLilVkR76OMO3Nj+L40D88t+6EW6X8UJ7wD7DnpQuRQolXK
- BUbvoemWmK6DRlBqmggSd47SESbCRE04/Tb+baO7yg6SSy+o+tB2MIP
+ bh=d96hwpa3CUOhnffR2RHeVgOJAkVgtVaxxsoYbBLIdso=;
+ b=+8h8P8IdiJPKnWksejSX3yPRXBFoA8MScmaDW4dmic5n0o28kTiuaTOuwDCflRzs3OYkVzUIn
+ yVTF+KHQyItDT3WjibIfeegX89Ma8wTtsaL+x096XdoK1z9bzjmPcqG
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
  auth_id=107
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250703_195936_860232_201B7EC2 
-X-CRM114-Status: GOOD (  10.28  )
+X-CRM114-CacheID: sfid-20250703_195936_718133_CF4DCFFB 
+X-CRM114-Status: UNSURE (   8.50  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,83 +90,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Sunny Luo <sunny.luo@amlogic.com>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-The SPISG is a new communication oriented SPI controller of Amlogic, which
-supports PIO, block DMA and scatter-gather DMA three operation modes.
+Add Amlogic spi entry to MAINTAINERS to clarify the maintainers.
 
-Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- .../devicetree/bindings/spi/amlogic,a4-spisg.yaml  | 59 ++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ MAINTAINERS | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml b/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
-new file mode 100644
-index 000000000000..9bfb8089f7ea
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2025 Amlogic, Inc. All rights reserved
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/amlogic,a4-spisg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/MAINTAINERS b/MAINTAINERS
+index a92290fffa16..8225df5ede74 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1307,6 +1307,15 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
+ F:	drivers/rtc/rtc-amlogic-a4.c
+ 
++AMLOGIC SPISG DRIVER
++M:	Sunny Luo <sunny.luo@amlogic.com>
++M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
++L:	linux-amlogic@lists.infradead.org
++L:	linux-spi@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
++F:	drivers/spi/spi-amlogic-spisg.c
 +
-+title: Amlogic SPI Scatter-Gather Controller
-+
-+maintainers:
-+  - Xianwei Zhao <xianwei.zhao@amlogic.com>
-+  - Sunny Luo <sunny.luo@amlogic.com>
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: amlogic,a4-spisg
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: pclk
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    spi@50000 {
-+        compatible = "amlogic,a4-spisg";
-+        reg = <0x50000 0x38>;
-+        interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clkc 37>,
-+                 <&clkc 93>;
-+        clock-names = "core", "pclk";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
+ AMPHENOL CHIPCAP 2 DRIVER
+ M:	Javier Carrasco <javier.carrasco.cruz@gmail.com>
+ L:	linux-hwmon@vger.kernel.org
 
 -- 
 2.37.1
