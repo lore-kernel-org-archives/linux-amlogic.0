@@ -4,90 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3F69C83F03
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jul 2025 15:22:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B571C83F03
+	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Jul 2025 15:46:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H/j+WJ/z50SaLSIjKdKFSC5LUSQU9YtBj82keF8M8go=; b=FSjxX3aaAqXtEl
-	Spq3p8k35qdwzAum2yR1gmusNSAUyCHpIwg5Mkq3Aqtm+6MtvN009pwdHnEbXfmYJBPLDP6/hIV8G
-	bdj2GY8GDE2dnRWSpkBR+P4b0nWhk6ZjdvvdcaHt0W0cPwxsQyJRH5M07QfLhIj3DFMFRG4DgNtKO
-	behZWDPDev76DUKsP9PPJu1QQxydkg3deWwMUeyXmAu1++539NBuj0ZdemddPHmXvG7C+yMcuvaGT
-	IoAzFJ6KpIL+lp07q81QSS5WrnoGy0ADtx8axbnUOAxGHZtfd70qNJ/cFYPiPtv5s/RtmYVdfDB/0
-	BJ9qncasfNI+nziJ23Cw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=BtjRIdoCNETMSaetUH/jY0jW7BnA+WHCbUrg4Tk4gnU=; b=eEIKcN2SCz3gRZ
+	n9f2Euq8EoABPWcMpJnpAt6RXyeNpjEHHahSsan8D27mXJqV+FA/I/dJksihelTZFKsQz1Z6dbGlw
+	ForVSC36y7wkG8CVNzHuAWk7dhwU4VfQ7CQdUu5oom3jSS8tZ0BH0Tueufvkfbn4lW1l3CUF9y2u2
+	lgLe0ot7Gw4t1BfoPgxN0hMPLkm4VgtOtRneZotnW4U/aAmSwpYy9rQW97Y89a238oeFetrsy9o1A
+	ar3d77CMmbNrYssKexYInHhgnj7ky8kBkef3RoiJDgv9FWFxvRedE/1SuGe3OIDjPyPhjwEVhx3gU
+	d6RIHAlvIXA8OnmTYBrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uXiEk-0000000Eo5G-3Veg;
-	Fri, 04 Jul 2025 15:22:02 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1uYRYv-00000000Tb8-1e0k;
+	Sun, 06 Jul 2025 15:45:53 +0000
+Received: from smtp-18.smtpout.orange.fr ([80.12.242.18] helo=smtp.smtpout.orange.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uXi4P-0000000EmPO-3NaH
-	for linux-amlogic@lists.infradead.org;
-	Fri, 04 Jul 2025 15:11:23 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3b45edf2303so958370f8f.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 04 Jul 2025 08:11:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1751641880; x=1752246680; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RoEspbh1eRKE7g7m7KXe/ScKkbCYU5aYNDNwW3OSB14=;
-        b=OpJfCaBK7EljszedIji8IvghvfSjej9e/idr+iDsaM4PxMSPOFjm+sQKiXaXXYfSIO
-         TdxlJq6XN7lQYZbbAk4CWyfEGghQwmpeQzGYdgdRf4DSlL71uktrFBXAY5VFz29TU1HU
-         7dcITdJguH+uFVYBlRf5Vn1v7arANImrprVGrXVp2dlKUpJ73kknCs8cQDrp0YHRK8nj
-         cI2iWg8llqxmnewDN8q3CBIQL0Z8pXYet2uFXCPb+f40yNmzMB2/fRRX6II0lHs9owOo
-         b0UegJ3O4UEnkJ4uA4V/Wer3MR3Gf5YY1r8ujlzzb40n4lSiknKHNk6PohMddbGVf+k4
-         AAgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751641880; x=1752246680;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RoEspbh1eRKE7g7m7KXe/ScKkbCYU5aYNDNwW3OSB14=;
-        b=hWj1tMdPjKHsHUbVKW4KA08OXrCAxvcEAeoYENLHNc44XuK7juRw3m9AwjHwOW/ovT
-         Sj6AYcq+86ngON/uUdFWKY105ck0GjnNxv9Z74Ui/n1Pt+raOjhjpRSVuWlvIHXkXwHr
-         YKMdAfaZUF+Lg/rkLmqiENNp9wq10JRzB3C8YbOATwvORdyUzc4ZHXonH/fpNR3nReuH
-         cyxF+7hNTOFIVsQIONTGJqotNg7RAwIQGEQe6RGGSl2Pab5fv4oz7rvGm/ugjNCFyHu5
-         rhzSopWWUeHzexuqH0ja0AwMs0KCS+/SdnDuOiZRN0e786fY7I7nCpDFp7x0PykUTmBY
-         dv7g==
-X-Forwarded-Encrypted: i=1; AJvYcCW+mu3QjyP5F1yaOmV1nlBgpD+w9otMuF08+YIwpkMKnntsAn5yVAGeewiGEEc/OehlA4ejK8901sq91VV7@lists.infradead.org
-X-Gm-Message-State: AOJu0YzGdEF7jMkZ+azAwbUxhhRoh5/xLvvv/I1MZiT3L8hEpcM54E1k
-	mM3Q80EMUW8zHmY3flp8nLi0iZNjFHGmhzy0NjAnzzEUM4ZxUbQY8F2VndYEHoFaxpU=
-X-Gm-Gg: ASbGncs8akNHTki/8Mz4oYB1JDgAXnzmrGCFat8M2qxO/DQmxzegtOIkxXD272cuE26
-	zFL0GeNdDIMssRYRXfSTrbMwLTGwHgARai0I2Sv0SV8EyxU1y6PmOwGmf8/WNom7TX4aVEyO9jq
-	DmmNb3vUmC1Er881EMt6Anb7g38jMMx8YhZWUgQ2iSM1VZqkH44zHgWGBJghzNVxWA585nQyL3L
-	o+o1h1riXgS84s9F+/kKm+ocDD4fY4lYz0k9QWdZueCAPia4CIlmccf6ERjqky27G4Nodv6tTRv
-	Q8gF+/rd6/UZ2uMg5xgNrIsOF5QN15NEGvRBZWSrsS6DJz0lwso2FfV7usb9QwjKqbYjOlt4GfZ
-	xcynTI8pnaL3cDUdHqQ==
-X-Google-Smtp-Source: AGHT+IGJq4QH4n1fa8cinoR1z+3JkFuWIr6OSpZpSR6Ueat01j+mEIj1olmOHplIEibyLWK0AicYSg==
-X-Received: by 2002:a05:6000:250f:b0:3a4:ebc2:d6ec with SMTP id ffacd0b85a97d-3b4964f8b3cmr2987717f8f.14.1751641880123;
-        Fri, 04 Jul 2025 08:11:20 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b470e928aesm2675416f8f.44.2025.07.04.08.11.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Jul 2025 08:11:19 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: linux-kernel@vger.kernel.org, Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org
-In-Reply-To: <20250522092940.3293889-1-tomeu@tomeuvizoso.net>
-References: <20250522092940.3293889-1-tomeu@tomeuvizoso.net>
-Subject: Re: [PATCH] arm64: dts: amlogic: Enable the npu node for Alta and
- VIM3
-Message-Id: <175164187949.2868628.8689971906930320435.b4-ty@linaro.org>
-Date: Fri, 04 Jul 2025 17:11:19 +0200
+	id 1uYRYr-00000000Taj-4BXK;
+	Sun, 06 Jul 2025 15:45:52 +0000
+Received: from fedora.home ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+	by smtp.orange.fr with ESMTPA
+	id YRYluars3Th6NYRYluaK11; Sun, 06 Jul 2025 17:45:44 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1751816744;
+	bh=Usl6H/nBtIdNWk85VvCvQgapH1XWWJZiBzQZgQJqsc0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=WpBgGGCFmow0oQIz7lEbxTEUnoCkbYoEcfTdvX/txtOTWtzj8srDrSJmFh/sTMrxg
+	 lcteRfLOmO+XuBK1WftkCUmOPbb6EUj/OpqOe10NI5Q3hQvFNeOZgkth1i5EE7XJC5
+	 sRGw3La2irDJwYQ7MKbl/BMTRr6UJ+wgy96HhKcx187G7G9cqMAbQRlF/YBMC4Ij2h
+	 kqBUQLRDeJ+c5P2TVhMpHSi3WgL+4NR3b14qMNxv/zfGYVHJD+e8lTALlQOa0CH4PG
+	 f3eKwkV3ucYuQqWTfnrqE1QimImOtZUCo9QzmAoofhGCVsrT0gRIpjYiTMwr41goKE
+	 Tgzz6j7HW3tJQ==
+X-ME-Helo: fedora.home
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 06 Jul 2025 17:45:44 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org,
+	kernel-janitors@vger.kernel.org,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH] pmdomain: amlogic: Constify struct meson_secure_pwrc_domain_data
+Date: Sun,  6 Jul 2025 17:45:41 +0200
+Message-ID: <e71abd8d75dd842690e5a11e38037bcf5feac189.1751816732.git.christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.50.0
 MIME-Version: 1.0
-X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250704_081121_837051_E0AE2CC4 
-X-CRM114-Status: GOOD (  10.67  )
+X-CRM114-CacheID: sfid-20250706_084551_241256_4D80CC3C 
+X-CRM114-Status: UNSURE (   9.45  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,42 +80,74 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+'struct meson_secure_pwrc_domain_data' are not modified in these drivers.
 
-On Thu, 22 May 2025 11:29:40 +0200, Tomeu Vizoso wrote:
-> We now have support in Mesa and everything is ready in distros such as
-> Debian.
-> 
-> 
+Constifying these structures moves some data to a read-only section, so
+increases overall security.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.17/arm64-dt)
+On a x86_64, with allmodconfig:
+Before:
+======
+   text	   data	    bss	    dec	    hex	filename
+   9248	    408	      0	   9656	   25b8	drivers/pmdomain/amlogic/meson-secure-pwrc.o
 
-[1/1] arm64: dts: amlogic: Enable the npu node for Alta and VIM3
-      https://git.kernel.org/amlogic/c/587c1c00f75565567d1f26a333a3392f7a21c28c
+After:
+=====
+   text	   data	    bss	    dec	    hex	filename
+   9344	    304	      0	   9648	   25b0	drivers/pmdomain/amlogic/meson-secure-pwrc.o
 
-These changes has been applied on the intermediate git tree [1].
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+Compile tested only
+---
+ drivers/pmdomain/amlogic/meson-secure-pwrc.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-The v6.17/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
+diff --git a/drivers/pmdomain/amlogic/meson-secure-pwrc.c b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+index ff76ea36835e..e8bda60078c4 100644
+--- a/drivers/pmdomain/amlogic/meson-secure-pwrc.c
++++ b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+@@ -342,32 +342,32 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
+ 	return of_genpd_add_provider_onecell(pdev->dev.of_node, &pwrc->xlate);
+ }
+ 
+-static struct meson_secure_pwrc_domain_data meson_secure_a1_pwrc_data = {
++static const struct meson_secure_pwrc_domain_data meson_secure_a1_pwrc_data = {
+ 	.domains = a1_pwrc_domains,
+ 	.count = ARRAY_SIZE(a1_pwrc_domains),
+ };
+ 
+-static struct meson_secure_pwrc_domain_data amlogic_secure_a4_pwrc_data = {
++static const struct meson_secure_pwrc_domain_data amlogic_secure_a4_pwrc_data = {
+ 	.domains = a4_pwrc_domains,
+ 	.count = ARRAY_SIZE(a4_pwrc_domains),
+ };
+ 
+-static struct meson_secure_pwrc_domain_data amlogic_secure_a5_pwrc_data = {
++static const struct meson_secure_pwrc_domain_data amlogic_secure_a5_pwrc_data = {
+ 	.domains = a5_pwrc_domains,
+ 	.count = ARRAY_SIZE(a5_pwrc_domains),
+ };
+ 
+-static struct meson_secure_pwrc_domain_data amlogic_secure_c3_pwrc_data = {
++static const struct meson_secure_pwrc_domain_data amlogic_secure_c3_pwrc_data = {
+ 	.domains = c3_pwrc_domains,
+ 	.count = ARRAY_SIZE(c3_pwrc_domains),
+ };
+ 
+-static struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
++static const struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
+ 	.domains = s4_pwrc_domains,
+ 	.count = ARRAY_SIZE(s4_pwrc_domains),
+ };
+ 
+-static struct meson_secure_pwrc_domain_data amlogic_secure_t7_pwrc_data = {
++static const struct meson_secure_pwrc_domain_data amlogic_secure_t7_pwrc_data = {
+ 	.domains = t7_pwrc_domains,
+ 	.count = ARRAY_SIZE(t7_pwrc_domains),
+ };
 -- 
-Neil
+2.50.0
 
 
 _______________________________________________
