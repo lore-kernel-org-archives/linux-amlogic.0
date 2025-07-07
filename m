@@ -4,68 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77C66C83F07
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jul 2025 06:23:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78D69C83F0A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jul 2025 10:36:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=EwyBrxk/FjDXOzYMZGe6qJIpn29TLjVnDc16MWvKmiE=; b=VHJ0TT46gUDGes+BZuD/wGVtGV
-	May5LGTqIxryxNkjId9R6hyeb4Y6T1kFpSBKXcb9yP/xTnq8p0Ih3mlgFiey7qz6DqVXcB8KOM6Jx
-	kBkExgeVIUYLuYzMlqB7ePFRdGoN7Nl3tzf4DRFe5vbF+6kL/lVTALDsP/eXRtY6R83gfWIPecdv3
-	A7g705ev/n5MA0PiF2kdLNCtj7TQbtmTCBE0ckaNToJMpv324jV3lgCrkV13vryTkm/Z7m7vqynjZ
-	uroSMUsuYU6p83gSHcFz2bwA2eB1JzWhJo1gCgBeWADzp4etOnx1qDOX4X9OeDDqfXigMCbzP6GYW
-	RNbaggRA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=cEllm0K9pOqv57fj0/3IEpG0Tqrt3Rdi9zsc6I7TxEk=; b=KrFhzmcJZ1Y8S4
+	WA6ZzASI7QwhkVbXygIRNdAqycce8R26BNymBW+qsRFwvfdUYETEHKWcx5WhqUOazNbtjb3EmllrF
+	ZcQ/jH4S5ZV/wLm5hiXj55137XuNVJGT3SIqKyrc2PuKmLWXETTBwaeKPyNKh/XH/ur56aulCtA4x
+	3MsjLohk/lMbrGrIRe4Jq7KiGg0yZXUWQVYHE+LyMBtBaTonar82vnVv+vuPI9yeXshGe6r6aSZ4H
+	bglhWIpxXEzEpK3y7hPtTqXbvzLxD2Gu5WuPrGalgMhMCUczDTAg6mKnALWV8NypJTAVRZA2z+oH/
+	9dMBlHMgm6ynFbBhgA3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uYfFh-00000001Xbg-2OBX;
-	Mon, 07 Jul 2025 06:22:57 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1uYjD4-00000002Atm-1Q97;
+	Mon, 07 Jul 2025 10:36:30 +0000
+Received: from relay4-d.mail.gandi.net ([2001:4b98:dc4:8::224])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uYf9o-00000001WWK-2ySF
+	id 1uYid7-000000024eD-0djc
 	for linux-amlogic@lists.infradead.org;
-	Mon, 07 Jul 2025 06:16:53 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id E913446123;
-	Mon,  7 Jul 2025 06:16:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52164C4CEE3;
-	Mon,  7 Jul 2025 06:16:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751869011;
-	bh=RTb1GysruvfffIrScYvKwPRxv8wNzkYER6dRCtTCUzc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hFBUGkvSqaQT39PsZEPK/Bgw2cKHKby/1QXHqwO4Iw83xnI1OmG6CAf0203qd23or
-	 B+J24mruyiTOzXyV5vEuca/3XAP4hlWShSxasJfcQhZUTNDhyVUr+Xry8PYCkRmHHH
-	 LB2wrFGDG5FR6aM4X/SpYHbmF5TsZSrEx0UEE/2KihsSaxjtbZY6wqAKbV6/GCz9AG
-	 EPzcLo9u1XR5e3xNeM9XL3cQl6UG+mboGROIT+37XZV95r4xDf7kaaiT9o8jwV/a4I
-	 gOVQm+8h1Cg3XSg1UZjCgeYM9hxnyyL07htMcm7Z03O8n/nb38SUNO/w/rUG5iWttV
-	 vG336ZVm7XEkw==
-Date: Mon, 7 Jul 2025 08:16:49 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Inki Dae <inki.dae@samsung.com>, 
-	Jagan Teki <jagan@amarulasolutions.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Jani Nikula <jani.nikula@linux.intel.com>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Hui Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org
+	Mon, 07 Jul 2025 09:59:23 +0000
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0881143AE7;
+	Mon,  7 Jul 2025 09:59:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1751882356;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aIuFlXWrcDzU9uPaQKpuqpy2rjs9RFnhUBtYgzbA9Uw=;
+	b=mBG3URH1EKrJK/9byvkOGEmzsn5QyyDPOXTERmFclarapjywrB5Ah/7q0/VWSw891BpwKx
+	+WNhSstAtb7CxvRolX4NhkLoD9a/2uSR9bqPPYbAzoWbauQh8VSe4H1H+MbrTEyZqK1O/G
+	aB7gyHekMQ4lpJMEjLm9b891iOEF2t347myivgB/xdfAvJTxf2cl5FcrwAezoadPE4ZuXA
+	lkLxaoL1olalS+IE4775uYeMfrtHbTmYU9mIEO/r+e8pmCTLrh41gi0ko8Zn/btNUyipKK
+	0zm2Z3OBL6X5F+UVmOIuwHsNwN5oc4ObAM3f8WW5Fc3/ZOmt/+vR3JtxocCPZg==
+Date: Mon, 7 Jul 2025 11:58:53 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Inki Dae
+ <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, Marek
+ Szyprowski <m.szyprowski@samsung.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Dmitry Baryshkov <lumag@kernel.org>, Hui Pu
+ <Hui.Pu@gehealthcare.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org
 Subject: Re: [PATCH 00/32] drm/mipi-dsi: avoid DSI host drivers to have
  pointers to DSI devices
-Message-ID: <20250707-strange-warm-bear-cb4ee8@houat>
+Message-ID: <20250707115853.128f2e6f@booty>
+In-Reply-To: <20250707-strange-warm-bear-cb4ee8@houat>
 References: <20250625-drm-dsi-host-no-device-ptr-v1-0-e36bc258a7c5@bootlin.com>
+	<20250707-strange-warm-bear-cb4ee8@houat>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20250625-drm-dsi-host-no-device-ptr-v1-0-e36bc258a7c5@bootlin.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdefudehtdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepnfhutggrucevvghrvghsohhlihcuoehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedvgeejjeevhefhiefgffethfdtieffheefvedtgeekteejffdtvedugeeihfdvkeenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghdpkhgvrhhnvghlrdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppeekjedruddvtddrvddukedrvddtjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeekjedruddvtddrvddukedrvddtjedphhgvlhhopegsohhothihpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdehpdhrtghpthhtohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghpthhtoheprghir
+ hhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghnughriigvjhdrhhgrjhgurgesihhnthgvlhdrtghomhdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhgpdhrtghpthhtoheprhhfohhssheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: luca.ceresoli@bootlin.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250706_231652_790999_C6EAB44D 
-X-CRM114-Status: GOOD (  35.22  )
+X-CRM114-CacheID: sfid-20250707_025921_474955_9D00F5C7 
+X-CRM114-Status: GOOD (  62.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,167 +86,199 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2115174353789699610=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============2115174353789699610==
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="jbjb7flgq4mjqz2o"
-Content-Disposition: inline
-
-
---jbjb7flgq4mjqz2o
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 00/32] drm/mipi-dsi: avoid DSI host drivers to have
- pointers to DSI devices
-MIME-Version: 1.0
-
-Hi Luca,
-
-On Wed, Jun 25, 2025 at 06:45:04PM +0200, Luca Ceresoli wrote:
-> This series is the first attempt at avoiding DSI host drivers to have
-> pointers to DSI devices (struct mipi_dsi_device), as discussed during the
-> Linux Plumbers Conference 2024 with Maxime and Dmitry.
->=20
-> It is working, but I consider this a draft in order to discuss and
-> challenge the proposed approach.
->=20
-> Overall work
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=20
-> This is part of the work towards removal of bridges from a still existing
-> DRM pipeline without use-after-free. The grand plan as discussed in [1].
-> Here's the work breakdown (=E2=9E=9C marks the current series):
->=20
->  1. =E2=80=A6 add refcounting to DRM bridges (struct drm_bridge)
->     (based on devm_drm_bridge_alloc() [0])
->     A. =E2=9C=94 add new alloc API and refcounting (in v6.16-rc1)
->     B. =E2=9C=94 convert all bridge drivers to new API (now in drm-misc-n=
-ext)
->     C. =E2=9C=94 kunit tests (now in drm-misc-next)
->     D. =E2=80=A6 add get/put to drm_bridge_add/remove() + attach/detach()
->          and warn on old allocation pattern (under review)
->     E. =E2=80=A6 add get/put on drm_bridge accessors
->        1. =E2=80=A6 drm_bridge_chain_get_first_bridge() + add a cleanup a=
-ction
->        2. =E2=80=A6 drm_bridge_chain_get_last_bridge()
->        3. drm_bridge_get_prev_bridge()
->        4. drm_bridge_get_next_bridge()
->        5. drm_for_each_bridge_in_chain()
->        6. drm_bridge_connector_init
->        7. of_drm_find_bridge
->        8. drm_of_find_panel_or_bridge, *_of_get_bridge
->     F. debugfs improvements
->  2. handle gracefully atomic updates during bridge removal
->  3. =E2=9E=9C avoid DSI host drivers to have dangling pointers to DSI dev=
-ices
->       (this series)
->  4. finish the hotplug bridge work, removing the "always-disconnected"
->     connector, moving code to the core and potentially removing the
->     hotplug-bridge itself (this needs to be clarified as points 1-3 are
->     developed)
->=20
-> [0] https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/0cc6aadd7fc1e=
-629b715ea3d1ba537ef2da95eec
-> [1] https://lore.kernel.org/lkml/20250206-hotplug-drm-bridge-v6-0-9d6f2c9=
-c3058@bootlin.com/t/#u
->=20
-> Motivation
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=20
-> The motivation for this series is that with hot-pluggable hardware a DSI
-> device can be disconnected from the DSI host at runtime, and later on
-> reconnected, potentially with a different model having different bus
-> parameters.
->=20
-> DSI host drivers currently receive a struct mipi_dsi_device pointer in the
-> attach callback and some store it permanently for later access to the bur
-> format data (lanes, channel, pixel format etc). The stored pointer can
-> become dangling if the device is removed, leading to a use-after-free.
->=20
-> Currently the data exchange between DSI host and device happens primarily
-> by two means:
->=20
->  * the device requests attach, detach and message transfer to the host by
->    calling mipi_dsi_attach/detach/transfer which in turn call the callbac=
-ks
->    in struct mipi_dsi_host_ops
->     - for this to work, struct mipi_dsi_device has a pointer to the host:
->       this is OK because the goal is supporting hotplug of the "remote"
->       part of the DRM pipeline
->  * the host accesses directly the fields of struct mipi_dsi_device, to
->    which it receives a pointer in the .attach and .detach callbacks
->=20
-> The second bullet is the problematic one, which we want to remove.
->=20
-> Strategy
-> =3D=3D=3D=3D=3D=3D=3D=3D
->=20
-> I devised two possible strategies to address it:
->=20
->  1. change the host ops to not pass a struct mipi_dsi_device, but instead
->     to pass only a copy of the needed information (bus format mainly), so
->     the host driver does never access any info from the device
->    =20
->  2. let the host get info from the device as needed, but without having a
->     pointer to it; this is be based on:
->      - storing a __private mipi_dsi_device pointer in struct mipi_dsi_host
->      - adding getters to the DSI core for the host to query the needed
->        info, e.g. drm_mipi_dsi_host_get_device_lanes(host) (the getters
->        would be allowed to dereference the device pointer)
->=20
-> This series implements strategy 1. It does so by adding a .attach_new host
-> op, which does not take a mipi_dsi_device pointer, and converting most ho=
-st
-> drivers to it. Once all drivers are converted, the old op can be removed,
-> and .attach_new renamed to .attach.
-
-I don't recall discussing this particular aspect at Plumbers, so sorry
-if we're coming back to the same discussion we had.
-
-I'm not necessarily opposed to changing the MIPI-DSI bus API, but I
-don't think changing the semantics to remove the fact that a particular
-device is connected or not is a good idea.
-
-I would have expected to have bus driver (maybe) take a device pointer
-at attach, and drop it at detach.
-
-Then, when we detect the hotplug of a DSI device, we detach it from its
-parent, and we're done.
-
-What prevents us from using that approach?
-
-Maxime
-
---jbjb7flgq4mjqz2o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaGtmTAAKCRAnX84Zoj2+
-dpi4AYC8hyZHRaL4DgbyXSUW8SXl+GxbqmRSMfw0nVVNCe6EK0pfkLmT2EbDNLj/
-Sni6oEIBf3gEv+z3YZoTrjS8cH+0yjB1OhW9/KW40vAUIc3EoJHWRVCAqU3UkqIO
-aQiNoKl5Hw==
-=O5sI
------END PGP SIGNATURE-----
-
---jbjb7flgq4mjqz2o--
-
-
---===============2115174353789699610==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============2115174353789699610==--
-
+T24gTW9uLCA3IEp1bCAyMDI1IDA4OjE2OjQ5ICswMjAwCk1heGltZSBSaXBhcmQgPG1yaXBhcmRA
+a2VybmVsLm9yZz4gd3JvdGU6Cgo+IEhpIEx1Y2EsCj4gCj4gT24gV2VkLCBKdW4gMjUsIDIwMjUg
+YXQgMDY6NDU6MDRQTSArMDIwMCwgTHVjYSBDZXJlc29saSB3cm90ZToKPiA+IFRoaXMgc2VyaWVz
+IGlzIHRoZSBmaXJzdCBhdHRlbXB0IGF0IGF2b2lkaW5nIERTSSBob3N0IGRyaXZlcnMgdG8gaGF2
+ZQo+ID4gcG9pbnRlcnMgdG8gRFNJIGRldmljZXMgKHN0cnVjdCBtaXBpX2RzaV9kZXZpY2UpLCBh
+cyBkaXNjdXNzZWQgZHVyaW5nIHRoZQo+ID4gTGludXggUGx1bWJlcnMgQ29uZmVyZW5jZSAyMDI0
+IHdpdGggTWF4aW1lIGFuZCBEbWl0cnkuCj4gPiAKPiA+IEl0IGlzIHdvcmtpbmcsIGJ1dCBJIGNv
+bnNpZGVyIHRoaXMgYSBkcmFmdCBpbiBvcmRlciB0byBkaXNjdXNzIGFuZAo+ID4gY2hhbGxlbmdl
+IHRoZSBwcm9wb3NlZCBhcHByb2FjaC4KPiA+IAo+ID4gT3ZlcmFsbCB3b3JrCj4gPiA9PT09PT09
+PT09PT0KPiA+IAo+ID4gVGhpcyBpcyBwYXJ0IG9mIHRoZSB3b3JrIHRvd2FyZHMgcmVtb3ZhbCBv
+ZiBicmlkZ2VzIGZyb20gYSBzdGlsbCBleGlzdGluZwo+ID4gRFJNIHBpcGVsaW5lIHdpdGhvdXQg
+dXNlLWFmdGVyLWZyZWUuIFRoZSBncmFuZCBwbGFuIGFzIGRpc2N1c3NlZCBpbiBbMV0uCj4gPiBI
+ZXJlJ3MgdGhlIHdvcmsgYnJlYWtkb3duICjinpwgbWFya3MgdGhlIGN1cnJlbnQgc2VyaWVzKToK
+PiA+IAo+ID4gIDEuIOKApiBhZGQgcmVmY291bnRpbmcgdG8gRFJNIGJyaWRnZXMgKHN0cnVjdCBk
+cm1fYnJpZGdlKQo+ID4gICAgIChiYXNlZCBvbiBkZXZtX2RybV9icmlkZ2VfYWxsb2MoKSBbMF0p
+Cj4gPiAgICAgQS4g4pyUIGFkZCBuZXcgYWxsb2MgQVBJIGFuZCByZWZjb3VudGluZyAoaW4gdjYu
+MTYtcmMxKQo+ID4gICAgIEIuIOKclCBjb252ZXJ0IGFsbCBicmlkZ2UgZHJpdmVycyB0byBuZXcg
+QVBJIChub3cgaW4gZHJtLW1pc2MtbmV4dCkKPiA+ICAgICBDLiDinJQga3VuaXQgdGVzdHMgKG5v
+dyBpbiBkcm0tbWlzYy1uZXh0KQo+ID4gICAgIEQuIOKApiBhZGQgZ2V0L3B1dCB0byBkcm1fYnJp
+ZGdlX2FkZC9yZW1vdmUoKSArIGF0dGFjaC9kZXRhY2goKQo+ID4gICAgICAgICAgYW5kIHdhcm4g
+b24gb2xkIGFsbG9jYXRpb24gcGF0dGVybiAodW5kZXIgcmV2aWV3KQo+ID4gICAgIEUuIOKApiBh
+ZGQgZ2V0L3B1dCBvbiBkcm1fYnJpZGdlIGFjY2Vzc29ycwo+ID4gICAgICAgIDEuIOKApiBkcm1f
+YnJpZGdlX2NoYWluX2dldF9maXJzdF9icmlkZ2UoKSArIGFkZCBhIGNsZWFudXAgYWN0aW9uCj4g
+PiAgICAgICAgMi4g4oCmIGRybV9icmlkZ2VfY2hhaW5fZ2V0X2xhc3RfYnJpZGdlKCkKPiA+ICAg
+ICAgICAzLiBkcm1fYnJpZGdlX2dldF9wcmV2X2JyaWRnZSgpCj4gPiAgICAgICAgNC4gZHJtX2Jy
+aWRnZV9nZXRfbmV4dF9icmlkZ2UoKQo+ID4gICAgICAgIDUuIGRybV9mb3JfZWFjaF9icmlkZ2Vf
+aW5fY2hhaW4oKQo+ID4gICAgICAgIDYuIGRybV9icmlkZ2VfY29ubmVjdG9yX2luaXQKPiA+ICAg
+ICAgICA3LiBvZl9kcm1fZmluZF9icmlkZ2UKPiA+ICAgICAgICA4LiBkcm1fb2ZfZmluZF9wYW5l
+bF9vcl9icmlkZ2UsICpfb2ZfZ2V0X2JyaWRnZQo+ID4gICAgIEYuIGRlYnVnZnMgaW1wcm92ZW1l
+bnRzCj4gPiAgMi4gaGFuZGxlIGdyYWNlZnVsbHkgYXRvbWljIHVwZGF0ZXMgZHVyaW5nIGJyaWRn
+ZSByZW1vdmFsCj4gPiAgMy4g4p6cIGF2b2lkIERTSSBob3N0IGRyaXZlcnMgdG8gaGF2ZSBkYW5n
+bGluZyBwb2ludGVycyB0byBEU0kgZGV2aWNlcwo+ID4gICAgICAgKHRoaXMgc2VyaWVzKQo+ID4g
+IDQuIGZpbmlzaCB0aGUgaG90cGx1ZyBicmlkZ2Ugd29yaywgcmVtb3ZpbmcgdGhlICJhbHdheXMt
+ZGlzY29ubmVjdGVkIgo+ID4gICAgIGNvbm5lY3RvciwgbW92aW5nIGNvZGUgdG8gdGhlIGNvcmUg
+YW5kIHBvdGVudGlhbGx5IHJlbW92aW5nIHRoZQo+ID4gICAgIGhvdHBsdWctYnJpZGdlIGl0c2Vs
+ZiAodGhpcyBuZWVkcyB0byBiZSBjbGFyaWZpZWQgYXMgcG9pbnRzIDEtMyBhcmUKPiA+ICAgICBk
+ZXZlbG9wZWQpCj4gPiAKPiA+IFswXSBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJt
+L21pc2Mva2VybmVsLy0vY29tbWl0LzBjYzZhYWRkN2ZjMWU2MjliNzE1ZWEzZDFiYTUzN2VmMmRh
+OTVlZWMKPiA+IFsxXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzIwMjUwMjA2LWhvdHBs
+dWctZHJtLWJyaWRnZS12Ni0wLTlkNmYyYzljMzA1OEBib290bGluLmNvbS90LyN1Cj4gPiAKPiA+
+IE1vdGl2YXRpb24KPiA+ID09PT09PT09PT0KPiA+IAo+ID4gVGhlIG1vdGl2YXRpb24gZm9yIHRo
+aXMgc2VyaWVzIGlzIHRoYXQgd2l0aCBob3QtcGx1Z2dhYmxlIGhhcmR3YXJlIGEgRFNJCj4gPiBk
+ZXZpY2UgY2FuIGJlIGRpc2Nvbm5lY3RlZCBmcm9tIHRoZSBEU0kgaG9zdCBhdCBydW50aW1lLCBh
+bmQgbGF0ZXIgb24KPiA+IHJlY29ubmVjdGVkLCBwb3RlbnRpYWxseSB3aXRoIGEgZGlmZmVyZW50
+IG1vZGVsIGhhdmluZyBkaWZmZXJlbnQgYnVzCj4gPiBwYXJhbWV0ZXJzLgo+ID4gCj4gPiBEU0kg
+aG9zdCBkcml2ZXJzIGN1cnJlbnRseSByZWNlaXZlIGEgc3RydWN0IG1pcGlfZHNpX2RldmljZSBw
+b2ludGVyIGluIHRoZQo+ID4gYXR0YWNoIGNhbGxiYWNrIGFuZCBzb21lIHN0b3JlIGl0IHBlcm1h
+bmVudGx5IGZvciBsYXRlciBhY2Nlc3MgdG8gdGhlIGJ1cgo+ID4gZm9ybWF0IGRhdGEgKGxhbmVz
+LCBjaGFubmVsLCBwaXhlbCBmb3JtYXQgZXRjKS4gVGhlIHN0b3JlZCBwb2ludGVyIGNhbgo+ID4g
+YmVjb21lIGRhbmdsaW5nIGlmIHRoZSBkZXZpY2UgaXMgcmVtb3ZlZCwgbGVhZGluZyB0byBhIHVz
+ZS1hZnRlci1mcmVlLgo+ID4gCj4gPiBDdXJyZW50bHkgdGhlIGRhdGEgZXhjaGFuZ2UgYmV0d2Vl
+biBEU0kgaG9zdCBhbmQgZGV2aWNlIGhhcHBlbnMgcHJpbWFyaWx5Cj4gPiBieSB0d28gbWVhbnM6
+Cj4gPiAKPiA+ICAqIHRoZSBkZXZpY2UgcmVxdWVzdHMgYXR0YWNoLCBkZXRhY2ggYW5kIG1lc3Nh
+Z2UgdHJhbnNmZXIgdG8gdGhlIGhvc3QgYnkKPiA+ICAgIGNhbGxpbmcgbWlwaV9kc2lfYXR0YWNo
+L2RldGFjaC90cmFuc2ZlciB3aGljaCBpbiB0dXJuIGNhbGwgdGhlIGNhbGxiYWNrcwo+ID4gICAg
+aW4gc3RydWN0IG1pcGlfZHNpX2hvc3Rfb3BzCj4gPiAgICAgLSBmb3IgdGhpcyB0byB3b3JrLCBz
+dHJ1Y3QgbWlwaV9kc2lfZGV2aWNlIGhhcyBhIHBvaW50ZXIgdG8gdGhlIGhvc3Q6Cj4gPiAgICAg
+ICB0aGlzIGlzIE9LIGJlY2F1c2UgdGhlIGdvYWwgaXMgc3VwcG9ydGluZyBob3RwbHVnIG9mIHRo
+ZSAicmVtb3RlIgo+ID4gICAgICAgcGFydCBvZiB0aGUgRFJNIHBpcGVsaW5lCj4gPiAgKiB0aGUg
+aG9zdCBhY2Nlc3NlcyBkaXJlY3RseSB0aGUgZmllbGRzIG9mIHN0cnVjdCBtaXBpX2RzaV9kZXZp
+Y2UsIHRvCj4gPiAgICB3aGljaCBpdCByZWNlaXZlcyBhIHBvaW50ZXIgaW4gdGhlIC5hdHRhY2gg
+YW5kIC5kZXRhY2ggY2FsbGJhY2tzCj4gPiAKPiA+IFRoZSBzZWNvbmQgYnVsbGV0IGlzIHRoZSBw
+cm9ibGVtYXRpYyBvbmUsIHdoaWNoIHdlIHdhbnQgdG8gcmVtb3ZlLgo+ID4gCj4gPiBTdHJhdGVn
+eQo+ID4gPT09PT09PT0KPiA+IAo+ID4gSSBkZXZpc2VkIHR3byBwb3NzaWJsZSBzdHJhdGVnaWVz
+IHRvIGFkZHJlc3MgaXQ6Cj4gPiAKPiA+ICAxLiBjaGFuZ2UgdGhlIGhvc3Qgb3BzIHRvIG5vdCBw
+YXNzIGEgc3RydWN0IG1pcGlfZHNpX2RldmljZSwgYnV0IGluc3RlYWQKPiA+ICAgICB0byBwYXNz
+IG9ubHkgYSBjb3B5IG9mIHRoZSBuZWVkZWQgaW5mb3JtYXRpb24gKGJ1cyBmb3JtYXQgbWFpbmx5
+KSwgc28KPiA+ICAgICB0aGUgaG9zdCBkcml2ZXIgZG9lcyBuZXZlciBhY2Nlc3MgYW55IGluZm8g
+ZnJvbSB0aGUgZGV2aWNlCj4gPiAgICAgCj4gPiAgMi4gbGV0IHRoZSBob3N0IGdldCBpbmZvIGZy
+b20gdGhlIGRldmljZSBhcyBuZWVkZWQsIGJ1dCB3aXRob3V0IGhhdmluZyBhCj4gPiAgICAgcG9p
+bnRlciB0byBpdDsgdGhpcyBpcyBiZSBiYXNlZCBvbjoKPiA+ICAgICAgLSBzdG9yaW5nIGEgX19w
+cml2YXRlIG1pcGlfZHNpX2RldmljZSBwb2ludGVyIGluIHN0cnVjdCBtaXBpX2RzaV9ob3N0Cj4g
+PiAgICAgIC0gYWRkaW5nIGdldHRlcnMgdG8gdGhlIERTSSBjb3JlIGZvciB0aGUgaG9zdCB0byBx
+dWVyeSB0aGUgbmVlZGVkCj4gPiAgICAgICAgaW5mbywgZS5nLiBkcm1fbWlwaV9kc2lfaG9zdF9n
+ZXRfZGV2aWNlX2xhbmVzKGhvc3QpICh0aGUgZ2V0dGVycwo+ID4gICAgICAgIHdvdWxkIGJlIGFs
+bG93ZWQgdG8gZGVyZWZlcmVuY2UgdGhlIGRldmljZSBwb2ludGVyKQo+ID4gCj4gPiBUaGlzIHNl
+cmllcyBpbXBsZW1lbnRzIHN0cmF0ZWd5IDEuIEl0IGRvZXMgc28gYnkgYWRkaW5nIGEgLmF0dGFj
+aF9uZXcgaG9zdAo+ID4gb3AsIHdoaWNoIGRvZXMgbm90IHRha2UgYSBtaXBpX2RzaV9kZXZpY2Ug
+cG9pbnRlciwgYW5kIGNvbnZlcnRpbmcgbW9zdCBob3N0Cj4gPiBkcml2ZXJzIHRvIGl0LiBPbmNl
+IGFsbCBkcml2ZXJzIGFyZSBjb252ZXJ0ZWQsIHRoZSBvbGQgb3AgY2FuIGJlIHJlbW92ZWQsCj4g
+PiBhbmQgLmF0dGFjaF9uZXcgcmVuYW1lZCB0byAuYXR0YWNoLiAgCj4gCj4gSSBkb24ndCByZWNh
+bGwgZGlzY3Vzc2luZyB0aGlzIHBhcnRpY3VsYXIgYXNwZWN0IGF0IFBsdW1iZXJzLCBzbyBzb3Jy
+eQo+IGlmIHdlJ3JlIGNvbWluZyBiYWNrIHRvIHRoZSBzYW1lIGRpc2N1c3Npb24gd2UgaGFkLgo+
+IAo+IEknbSBub3QgbmVjZXNzYXJpbHkgb3Bwb3NlZCB0byBjaGFuZ2luZyB0aGUgTUlQSS1EU0kg
+YnVzIEFQSSwgYnV0IEkKPiBkb24ndCB0aGluayBjaGFuZ2luZyB0aGUgc2VtYW50aWNzIHRvIHJl
+bW92ZSB0aGUgZmFjdCB0aGF0IGEgcGFydGljdWxhcgo+IGRldmljZSBpcyBjb25uZWN0ZWQgb3Ig
+bm90IGlzIGEgZ29vZCBpZGVhLgo+IAo+IEkgd291bGQgaGF2ZSBleHBlY3RlZCB0byBoYXZlIGJ1
+cyBkcml2ZXIgKG1heWJlKSB0YWtlIGEgZGV2aWNlIHBvaW50ZXIKPiBhdCBhdHRhY2gsIGFuZCBk
+cm9wIGl0IGF0IGRldGFjaC4KPiAKPiBUaGVuLCB3aGVuIHdlIGRldGVjdCB0aGUgaG90cGx1ZyBv
+ZiBhIERTSSBkZXZpY2UsIHdlIGRldGFjaCBpdCBmcm9tIGl0cwo+IHBhcmVudCwgYW5kIHdlJ3Jl
+IGRvbmUuCj4gCj4gV2hhdCBwcmV2ZW50cyB1cyBmcm9tIHVzaW5nIHRoYXQgYXBwcm9hY2g/CgpJ
+IHByb2JhYmx5IHNob3VsZCBoYXZlIGRvbmUgYSByZWNhcCBvZiB0aGUgd2hvbGUgZGlzY3Vzc2lv
+biwgc28gbGV0IG1lCmRvIGl0IG5vdy4KCkl0IGFsbCBzdGFydHMgd2l0aCBvbmUgZmFjdDogYSBE
+U0kgZGV2aWNlIGNhbiBiZSBkaXNjb25uZWN0ZWQgYW5kIHRoZW4KYSBkaWZmZXJlbnQgb25lIGNv
+bm5lY3RlZCBsYXRlciBvbiwgaGF2aW5nIGEgZGlmZmVyZW50IERTSSBidXMgZm9ybWF0CihsYW5l
+cywgY2hhbm5lbCwgbW9kZSBmbGFncywgd2hhdGV2ZXIpLiBBIGRldGFjaC9hdHRhY2ggc2VxdWVu
+Y2Ugd291bGQKaGFuZGxlIHRoYXQsIGJ1dCBvbmx5IGluIHRoZSBzaW1wbGUgY2FzZSB3aGVuIHRo
+ZXJlIGlzIGEgaG9zdC9kZXZpY2UKcGFpci4gTGV0J3MgaG93IGNvbnNpZGVyIHRoaXMgdG9wb2xv
+Z3k6CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IAogICAgICAgICAgICAgICAg4pSM4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA
+4pSA4pSA4pSA4pSA4pSA4pSA4pSQICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICDi
+lIIgICAgRFNJIGJyaWRnZSAgICDilIIgICAgICAgICAgICAgICAgICAK4pSM4pSA4pSA4pSA4pSA
+4pSA4pSA4pSA4pSA4pSA4pSQICBBICDilIIgICAgICAgICAgICAgICAgICDilIIgIEIgIOKUjOKU
+gOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUkArilIIgRFNJIGhvc3TilJzilIDilIDi
+lIDilIDilrrilIJkZXZpY2UgICAgICAgIGhvc3TilJzilIDilIDilIDilIDilrrilIJEU0kgZGV2
+aWNlIOKUggrilJTilIDilIDilIDilIDilIDilIDilIDilIDilIDilJggICAgIOKUlOKUgOKUgOKU
+gOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUmCAgICAg4pSU
+4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSYCiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIApIZXJlIGxpbmsgQSBpcyBhbHdheXMg
+Y29ubmVjdGVkLCBsaW5rIEIgaXMgaG90LXBsdWdnYWJsZS4gV2hlbiB0aGUgdGFpbApkZXZpY2Ug
+aXMgcmVtb3ZlZCBhbmQgYSBkaWZmZXJlbnQgb25lIHBsdWdnZWQsIGEgZGV0YWNoL2F0dGFjaCBz
+ZXF1ZW5jZQpjYW4gdXBkYXRlIHRoZSBidXMgZm9ybWF0IG9uIHRoZSBEU0kgYnJpZGdlLCBidXQg
+dGhlbiB0aGUgRFNJIGJyaWRnZQpjYW5ub3QgdXBkYXRlIHRoZSBmb3JtYXQgb24gdGhlIGZpcnN0
+IGhvc3Qgd2l0aG91dCBmYWtpbmcgYQpkZXRhY2gvYXR0YWNoIHRoYXQgZG9lcyBub3QgbWFwIGEg
+cmVhbCBldmVudC4KClRoZSBhYm92ZSB0b3BvbG9neSBpcyBwcm9iYWJseSBub3QgY29tbW9uLCBi
+dXQgaXQgaXMgZXhhY3RseSB3aGF0IHRoZQpob3RwbHVnLWJyaWRnZSBpbnRyb2R1Y2VzIFswXS4g
+V2hldGhlciB0aGUgaG90cGx1Zy1icmlkZ2Ugd2lsbCBoYXZlIHRvCmV2ZW50dWFsbHkgZXhpc3Qg
+b3Igbm90IHRvIHN1cHBvcnQgaG90cGx1ZyBpcyBzdGlsbCB0byBiZSBkZWZpbmVkLCBidXQKcmVn
+YXJkbGVzcyB0aGVyZSBpcyBhbm90aGVyIHByb2JsZW1hdGljIGFzcGVjdC4KClRoZSBzZWNvbmQg
+cHJvYmxlbWF0aWMgYXNwZWN0IGlzIHRoYXQgc2V2ZXJhbCBEU0kgaG9zdCBkcml2ZXJzIHdpbGwg
+bm90CmV2ZW4gZHJtX2JyaWRnZV9hZGQoKSB1bnRpbCB0aGV5IGhhdmUgYW4gYXR0YWNoZWQgRFNJ
+IGRldmljZS4gT25lIHN1Y2gKZXhhbXBsZSBpcyBzYW1zdW5nLWRzaW0sIHdoaWNoIGNhbGxzIGRy
+bV9icmlkZ2VfYWRkKCkKaW4gc2Ftc3VuZ19kc2ltX2hvc3RfYXR0YWNoKCkuIFdoZW4gc3VjaCBh
+IGRyaXZlciBpbXBsZW1lbnRzIHRoZSBmaXJzdApEU0kgaG9zdCwgdGhlIERTSSBicmlkZ2UgbXVz
+dCByZWdpc3RlciBhIERTSSBkZXZpY2UgYmVmb3JlIHRoZSBEUk0gY2FyZApjYW4gYmUgaW5zdGFu
+dGlhdGVkLiBTZWUgdGhlIGxlbmd0aHkgY29tbWVudCBiZWZvcmUKaG90cGx1Z19icmlkZ2VfZHNp
+X2F0dGFjaCgpIGluIFswXSBmb3IgbW9yZSBnb3J5IGRldGFpbHMsIGJ1dCB0aGUKb3V0Y29tZSBp
+cyB0aGF0IHRoZSBob3RwbHVnLWJyaWRnZSBuZWVkcyB0byBhdHRhY2ggYSBEU0kgZGV2aWNlIHdp
+dGgKYSBmYWtlIGZvcm1hdCBvbmNlIGluaXRpYWxseSBqdXN0IHRvIGxldCB0aGUgRFJNIGNhcmQg
+cHJvYmUsIGFuZCB0aGUKZGV0YWNoIGFuZCByZWF0dGFjaCB3aXRoIHRoZSBjb3JyZWN0IGZvcm1h
+dCBvbmNlIGFuIGFjdHVhbCBEU0kgZGV2aWNlCmlzIGNvbm5lY3RlZCBhdCB0aGUgdGFpbC4KClsw
+XSBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNDA5MTctaG90cGx1Zy1kcm0tYnJpZGdl
+LXY0LTQtYmM0ZGZlZTYxYmU2QGJvb3RsaW4uY29tLwoKVGhlIGFib3ZlIHdvdWxkIGJlIGltcHJv
+dmVkIGlmIHRoZSBEU0kgaG9zdCBBUEkgcHJvdmlkZWQgYSB3YXkgdG8Kbm90aWZ5IHRvIHRoZSBo
+b3N0IGFib3V0IGEgYnVzIGZvcm1hdCBjaGFuZ2UsIHdoaWNoIGlzIGhvd2V2ZXIgbm90CnByZXNl
+bnQgY3VycmVudGx5LgoKVGhlIG5haXZlIHNvbHV0aW9uIHdvdWxkIGJlIGFkZGluZyBhIG5ldyBE
+U0kgaG9zdCBvcDoKCiBzdHJ1Y3QgbWlwaV9kc2lfaG9zdF9vcHMgewogCWludCAoKmF0dGFjaCko
+c3RydWN0IG1pcGlfZHNpX2hvc3QgKmhvc3QsCiAJCSAgICAgIHN0cnVjdCBtaXBpX2RzaV9kZXZp
+Y2UgKmRzaSk7CiAJaW50ICgqZGV0YWNoKShzdHJ1Y3QgbWlwaV9kc2lfaG9zdCAqaG9zdCwKIAkJ
+ICAgICAgc3RydWN0IG1pcGlfZHNpX2RldmljZSAqZHNpKTsKKwlpbnQgKCpidXNfZm10X2NoYW5n
+ZWQpKHN0cnVjdCBtaXBpX2RzaV9ob3N0ICpob3N0LAorIAkJICAgICAgc3RydWN0IG1pcGlfZHNp
+X2RldmljZSAqZHNpKTsKIAlzc2l6ZV90ICgqdHJhbnNmZXIpKHN0cnVjdCBtaXBpX2RzaV9ob3N0
+ICpob3N0LAogCQkJICAgIGNvbnN0IHN0cnVjdCBtaXBpX2RzaV9tc2cgKm1zZyk7CiB9OwoKVGhp
+cyB3b3VsZCBhbGxvdyByZWR1Y2UgdGhlIGN1cnJlbnQgc2VxdWVuY2U6CiAxLiBhdHRhY2ggd2l0
+aCBkdW1teSBmb3JtYXQgKG5vIHRhaWwgZGV2aWNlIHlldCkKIDIuIGZha2UgZGV0YWNoCiAzLiBh
+dHRhY2gKCndpdGg6CiAxLiBhdHRhY2ggd2l0aCBkdW1teSBmb3JtYXQgKG5vIHRhaWwgZGV2aWNl
+IHlldCkKIDIuIHVwZGF0ZSBmb3JtYXQKCkFkZGluZyBzdWNoIGEgbmV3IG9wIHdvdWxkIGJlIHBh
+cnQgb2YgY2hhcHRlciA0IG9mIHRoaXMgd29yaywgYmVpbmcgaXQKcXVpdGUgdXNlbGVzcyB3aXRo
+b3V0IGhvdHBsdWcuCgpIb3dldmVyIHdoaWxlIHJlYXNvbmluZyBhYm91dCB0aGlzIEkgbm90aWNl
+ZCB0aGUgRFNJIGhvc3QgZHJpdmVycyBwZWVrCmludG8gdGhlIHN0cnVjdCBtaXBpX2RzaV9kZXZp
+Y2UgZmllbGRzIHRvIHJlYWQgdGhlIGZvcm1hdCwgc28gdGhlcmUgaXMKbm8gc29ydCBvZiBpc29s
+YXRpb24gYmV0d2VlbiBob3N0IGFuZCBkZXZpY2UuIEludHJvZHVjaW5nIGEgc3RydWN0IHRvCmNv
+bnRhaW4gYWxsIHRoZSBmb3JtYXQgZmllbGRzIGxvb2tlZCBsaWtlIGEgZ29vZCBpbXByb3ZlbWVu
+dCBpbiB0ZXJtcwpvZiBjb2RlIG9yZ2FuaXphdGlvbi4KCllldCBhbm90aGVyIGFzcGVjdCBpcyB0
+aGF0IHNldmVyYWwgaG9zdCBkcml2ZXJzIGtlZXAgYSBwb2ludGVyIHRvIHRoZQpkZXZpY2UsIGFu
+ZCB0aHVzIGluIGNhc2Ugb2YgZm9ybWF0IGNoYW5nZSBpbiB0aGUgRFNJIGRldmljZSB0aGV5IG1p
+Z2h0CmJlIHJlYWRpbmcgZGlmZmVyZW50IGZpZWxkcyBhdCBkaWZmZXJlbnQgbW9tZW50cywgZW5k
+aW5nIHVwIHdpdGggYW4KaW5jb25zaXN0ZW50IGZvcm1hdC4KClRoZSBhYm92ZSBjb25zaWRlcmF0
+aW9ucywgd2hpY2ggYXJlIGFsbCBwYXJ0aWFsbHkgb3ZlcmxhcHBlZCwgbGVkIG1lIHRvCnRoZSBp
+ZGVhIG9mIGludHJvZHVjaW5nIGEgc3RydWN0IHRvIGV4Y2hhbmdlIGEgRFNJIGJ1cyBmb3JtYXQs
+IHRvIGJlCmV4Y2hhbmdlZCBhcyBhIHdob2xlICgiYXRvbWljYWxseSIpIGJldHdlZW4gaG9zdCBh
+bmQgZGV2aWNlLiBXaGF0J3MKeW91ciBvcGluaW9uIGFib3V0IGludHJvZHVjaW5nIHN1Y2ggYSBz
+dHJ1Y3Q/CgpUaGUgc2Vjb25kIGFzcGVjdCBvZiB0aGlzIHNlcmllcyBpcyBub3QgcGFzc2luZyBw
+b2ludGVycywgYW5kIHRoYXQncwp0aGUgY29yZSB0b3BpYyB5b3UgcXVlc3Rpb25lZC4gSSByZWFs
+aXplIGl0IGlzIG5vdCBzdHJpY3RseSBuZWNlc3NhcnkKdG8gcmVhY2ggdGhlIHZhcmlvdXMgZ29h
+bHMgZGlzY3Vzc2VkIGluIHRoaXMgZS1tYWlsLiBUaGUgd29yayBJJ20gZG9pbmcKb24gdGhlIGRy
+bV9icmlkZ2Ugc3RydWN0IGlzIGFjdHVhbGx5IGEgd2F5IHRvIHN0b3JlIGEgcG9pbnRlciB3aGls
+ZQphdm9pZGluZyB1c2UtYWZ0ZXItZnJlZSwgc28gdGhhdCBjYW4gb2J2aW91c2x5IGJlIGRvbmUg
+Zm9yIGEgc2ltcGxlcgpzY2VuYXJpbyBzdWNoIGFzIERTSSBob3N0LWRldmljZS4gSG93ZXZlciBJ
+IHRob3VnaHQgbm90IHBhc3NpbmcgYQpwb2ludGVyIHdvdWxkIGJlIGEgbW9yZSByYWRpY2FsIHNv
+bHV0aW9uOiBpZiBhIGRyaXZlciByZWNlaXZlcyBubwpwb2ludGVyLCB0aGVuIGl0IGNhbm5vdCBi
+eSBtaXN0YWtlIGtlZXAgaXQgc3RvcmVkIHdoZW4gaXQgc2hvdWxkbid0LAptYXliZSBpbiBhIHJh
+cmUgY2FzZSB3aXRoaW4gYSBjb21wbGV4IGRyaXZlciB3aGVyZSBpdCBpcyBoYXJkIHRvIHNwb3Qu
+CgpJJ2xsIGJlIE9LIHRvIGNoYW5nZSB0aGUgYXBwcm9hY2ggYW5kIGtlZXAgdGhlIHBvaW50ZXIg
+cGFzc2VkIGluIHRoZQphdHRhY2gvZGV0YWNoIG9wcywgaWYgdGhhdCBpcyB0aGUgYmVzdCBvcHRp
+b24uIEhvd2V2ZXIgSSdkIGxpa2UgdG8gaGF2ZQp5b3VyIG9waW5pb24gYWJvdXQgdGhlIGFib3Zl
+IHRvcGljcyBiZWZvcmUgd29ya2luZyB0b3dhcmRzIHRoYXQKZGlyZWN0aW9uLCBhbmQgZW5zdXJl
+IEkgZnVsbHkgZ3Jhc3AgdGhlIHVzZWZ1bG5lc3Mgb2Yga2VlcGluZyB0aGUKcG9pbnRlci4KClBv
+c3Qgc2NyaXB0dW0uIFRoZSB2ZXJ5IGluaXRpYWwgaXNzdWUgdGhhdCBsZWQgdG8gYWxsIHRoaXMg
+ZGlzY3Vzc2lvbgp3aGVuIHdyaXRpbmcgdGhlIGhvdHBsdWctYnJpZGdlIGRyaXZlciBpcyB0aGF0
+IHRoZSBzYW1zdW5nLWRzaW0gZHJpdmVyCndpbGwgbm90IGRybV9icmlkZ2VfYWRkKCkgdW50aWwg
+YSBEU0kgZGV2aWNlIGRvZXMgLmF0dGFjaCB0byBpdC4gQWdhaW4sCnNlZSB0aGUgY29tbWVudHMg
+YmVmb3JlIGhvdHBsdWdfYnJpZGdlX2RzaV9hdHRhY2goKSBpbiBbMF0gZm9yIGRldGFpbHMuCkhv
+d2V2ZXIgYnkgcmUtZXhhbWluaW5nIHRoZSBkcml2ZXIgZm9yIHRoZSBOLXRoIHRpbWUgbm93IGZy
+b20gYSBuZXcKUE9WLCBJIF90aGlua18gdGhpcyBpcyBub3QgY29ycmVjdCBhbmQgcG90ZW50aWFs
+bHkgZWFzeSB0byBzb2x2ZS4gQnV0IHRoaXMgbGVhZHMgdG8gb25lIGZ1bmRhbWVudGFsIHF1ZXN0
+aW9uOgoKCi0tIApMdWNhIENlcmVzb2xpLCBCb290bGluCkVtYmVkZGVkIExpbnV4IGFuZCBLZXJu
+ZWwgZW5naW5lZXJpbmcKaHR0cHM6Ly9ib290bGluLmNvbQoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
+dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
