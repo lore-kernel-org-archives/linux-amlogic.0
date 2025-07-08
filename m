@@ -4,62 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17457C83F07
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jul 2025 13:06:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ABA7C83F12
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Jul 2025 10:41:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8dRIqMlJijGzig0CW0N0LyYYJtihwgjjNwE1Sc3jTbs=; b=4BSUvqDPXDMrivNkMJxJsixFnK
-	OdVVlxjLkAkoXTWLGEwekIJDJv60hdmz8fgZ2WFWz4rifRW+F1L2ceTONpmwDfQW6LpDh8iJfVzYT
-	cogCI/5Qb1tXWK7/7bsCPLzi9tcJWM6zILHcGxAaDVfQewrUR2VwD2HW1W6Bo3qJ2mNzHsV3nmDso
-	4RQQrJ/KYS4y4tkvaUb32Yu6FHWLmBD9w7EiE+Gx0cpeWSHA6yRPecq6VtBxDlyP9JCLnV8fKkr+w
-	WH6Jhs9mtwSjdX1OMx/pHIS9a85RSNKl6016aCd6oaLqbitsHUrbnFbd5JkkzM+r/p2lcbn9xYo6a
-	QMt9tG9w==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=mVBtUJdtsXR9ZMMcKI6CZjtRixZaTWkQNTr7UUZ+qD0=; b=E8KPkiHVqcQvF/TXI4WeurqAEJ
+	Mfy0GG/v4uvepc/ixUXSBigchgdDqc5jBwNfKksAbzwko+OWUQrmlDE+KkTJ3qrQBDXDEPFHayKpa
+	4vxucrwNrOZaHBsa+qaCxIAnMVMb/Y8K8i0xeRfejwvsuE5RfDOMXxxkl4tfyOSKd6Stq2RSLWuiz
+	Agb7PVhTg+dZh9RgMGW4JASs2TYXuaM5g9upE6BhiILYrBOG6yWmHPH217EUNHbCZkrFIvmi5DTGQ
+	qLwshoLVc8QCb2SQ0hNrfxujnJgqjkZm61+uaojb8qELQYF2255fROZ2tZky5dW1n0URoZySOcPvm
+	NRswIEqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uYlXm-00000002VOl-009y;
-	Mon, 07 Jul 2025 13:06:02 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1uZ5lm-000000055oL-3aJ7;
+	Tue, 08 Jul 2025 10:41:50 +0000
+Received: from mail-koreacentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c40f::7] helo=SEYPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uYlXj-00000002VNx-1NMw
+	id 1uZ5ej-000000054vj-1BRk
 	for linux-amlogic@lists.infradead.org;
-	Mon, 07 Jul 2025 13:06:00 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id B767A43ACD;
-	Mon,  7 Jul 2025 13:05:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3C28C4CEE3;
-	Mon,  7 Jul 2025 13:05:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1751893558;
-	bh=PuLkdsqUGDmezMVAO49b/CuVBHRcasZBx/jY/Y7ONeI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=auVZl2ME5ZhvPj5grOu5VjEFBMbi/SAqVXXpQHVX0V3478vEwPNBhTaGP08auugIt
-	 oEu88gjSXXLi8nB8TnB5XFvk0FCkFPHwgPQCMtL5Ef1m+HEmx/BRyOJ3HTiAtlPMRY
-	 BYv8x5LS/idAmMaRFpQ7fITg/TjwhRqZLdbW//BIMenxKnoBu8W4Yq2kggebe0Y5f2
-	 46Vkwax1UGXn7Yqp6UceR/iSyKfUBuYZ74B6nyFKdOi7oFtxcEDCOsEnv1AJteWdRB
-	 sqSkf7uxtuOOBGEnhN5/Ou56UuhvQ8RdqYBHBPK6Mg+WEi2aE2K4cwK7EfjlMgv3fs
-	 dnpUkAWjl768w==
-Date: Mon, 7 Jul 2025 14:05:53 +0100
-From: Mark Brown <broonie@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Sunny Luo <sunny.luo@amlogic.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+	Tue, 08 Jul 2025 10:34:34 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qUrhO4UljbgWUXxmn35IiHQb4jKDoSnVZ0wYE1UMvyc+XNrEW5ugU62oLLYdOlrupfOJy14FJ+4bP9JEAAR2x5LMqoQDi3G6vsAqC9TzYz+QZe5Opgu2btBPB7nKMtRoHgKNJiEQiWiMF0d3U8TEGY5C7+jJDmYsPpaJofGpNN7BumJ8G8Slnfn0KvMR8kAozW72d3dv0iTDJlDAoNouwVh/7k/7FBrJgDtU+JOa11JCltdeWrWkeXPz+pZIQyQ8MavhDB5FH1oxnG6X9JvLr955Hlg7do2NdTKbqW8YGJSKSjeqeevIwc5HYx2UAfWH4qUMj1Cz+kKTSYBd1UqF9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6SM1A8BX+aFhBJQIhmnYVKZDrJrW+KtEWhHmyPUFFAQ=;
+ b=GsXJEDmatv3FIynu+clMU9XxbtbXoQ/Gaku2t4xICgzZhBmh76EgvZl8+W17HXhrwWiAOkp8NICDpBWeIKMDJ6XuNo2S7ilEaj4JiVY5nxVbcbjTl++BIZM1i2CZaSTOgEJUOWO9HsEOIewCOtq5sRqGT9H08SDN83B2CDAy3sPakufNFtEVKXHlGX+nYtWwknAohWIXWONPeSKulkXfv9+OiFavdBgLThOL/3RFo1jA1lD/vTm9PykFwpO0c5UP0ijZ3AmD0cNnYDBAAitw2XXwLEqYo51fLHlqtrhMkczrxFqwbAX3Ha282MfLnADMz76G/2+TV7jgv5ORsl+TVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6SM1A8BX+aFhBJQIhmnYVKZDrJrW+KtEWhHmyPUFFAQ=;
+ b=oDNIyZwa7wTsPrej1qLTHjXBdeFlRd353Pw2/2SpxhWixiOHwiulXJPok/4ngOdl+Ypz4x+698YN/TCqRQ1MVo4NCxviZjY6sc2IFXYOTtgrREpK4dv6Zo66gZKJFuyW8Oz9SutVx0m7OMsTGCX+Ly3LL9SPeefzUksIThybHMhYCwIuyz9A0CENz+s0k0FaMqO8DlA5imr31+XcmJpYJMueOq3yeGYdBkFoKvFT2cxQIzDh9K0FKZ9ZS4MsfrSq8GRPGdHB0o0OsXXrDkyaTdK2i3GC11veOOGmYI+wn7vtyBZbeV5HQALYIL8Oy/bZCmFoXxZPdc6t8ryoJR8yJA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by KUXPR03MB9397.apcprd03.prod.outlook.com (2603:1096:d10:53::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.26; Tue, 8 Jul
+ 2025 10:34:07 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123%2]) with mapi id 15.20.8901.024; Tue, 8 Jul 2025
+ 10:34:06 +0000
+Message-ID: <55ecc836-7fed-44d5-aa4b-94bc17894ef0@amlogic.com>
+Date: Tue, 8 Jul 2025 18:34:02 +0800
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v4 2/3] spi: Add Amlogic SPISG driver
-Message-ID: <3ac88119-9980-42df-9e1c-c0ec30bbaadd@sirena.org.uk>
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>
+Cc: Sunny Luo <sunny.luo@amlogic.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 References: <20250704-spisg-v4-0-6b731dfbe610@amlogic.com>
  <20250704-spisg-v4-2-6b731dfbe610@amlogic.com>
+ <3ac88119-9980-42df-9e1c-c0ec30bbaadd@sirena.org.uk>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <3ac88119-9980-42df-9e1c-c0ec30bbaadd@sirena.org.uk>
+X-ClientProxiedBy: SI2PR02CA0009.apcprd02.prod.outlook.com
+ (2603:1096:4:194::11) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 MIME-Version: 1.0
-In-Reply-To: <20250704-spisg-v4-2-6b731dfbe610@amlogic.com>
-X-Cookie: We are what we are.
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|KUXPR03MB9397:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e803833-4a0b-40ce-c908-08ddbe0af763
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?U0FYS0xrcTg4em1XRCt5a1Rsanh0c3hQWDQ0cUNPOGh1STNYcWJNMXJhWnRJ?=
+ =?utf-8?B?TEFMaFFhT0lreWVyM1VtdEd1SHRRb3Jab0FkN2lHSVJhWWtDMmVWc2RUQ3Bn?=
+ =?utf-8?B?MG1UN3RpMGduNE1zd3grOWRIbGY2SEdlaWN4dnNVYTVUMFRBeTNLY2p2d1V5?=
+ =?utf-8?B?UHQvaUk1Z1pvMHZTNlNKdXpUQmZGQS9tK0ZLN28vNkUwVXFxc2FVZk45MnI4?=
+ =?utf-8?B?R0VTWi9HU21ubUdRT0JGbTVhL3NHSTRWazZad21rWUorQWxTclNncFZybFph?=
+ =?utf-8?B?MWkzYVRSeGlIVGdsYTFmSWJjNi9raVlEUmRSaEluU3R3bGpDRmN6TCt2T2x2?=
+ =?utf-8?B?b2VWZE5KVU9teUlvZDkrZmVrZHR4ODlXQ3Fnd3J3UXBLUmZHdFV5ajN6cW5R?=
+ =?utf-8?B?dGx4NzB3QXdzcEdodE5Na3BOSUM3dUNjcVNRSUhSZm9PZVpkbUFQNEVMbzVn?=
+ =?utf-8?B?U0IrMUF3QytMV2pXNXlXdnB4N3R0dnRzNDhWWm5UYndpNlk2YVdXNFVTZ0JR?=
+ =?utf-8?B?L3BubjZPWk1Lcnp6b2dIZlZVZDcyd1ZOenYxMTNDOXJIVTNxRlhJR0o3eGda?=
+ =?utf-8?B?bjY0Mitjc3c1Vm1rQjU2T3dRakVscFZhMFhsbGRTSmRPempadW1lVXg3VnZY?=
+ =?utf-8?B?ZHk0OE1hczNhMzdmS2ROa2RPeDVBcXFYQlRUNm4zQzJsdVVYREc5RFBCVEkz?=
+ =?utf-8?B?ZVVONTZXV3hselZma2tlZ0FFTlM2N216Lzh0ejRIY3dQOXIwVzR3amNCR1BU?=
+ =?utf-8?B?a25ZSFdpVTRTV0tHSTJ3cWIrZW5yQVRwc1RhUVpNc2c5ODJCek5nb25ucEFv?=
+ =?utf-8?B?YjV2UnZNYndJY28wZUt4QXhNTFdVaEdJRmNLcTlxbWcwbjlLb2lXVWF4TnRS?=
+ =?utf-8?B?eSsrZ3NTZDZFcmVnT0VNcUF6K0l2UnAzVHNlZnZoNHV1YVlPLzFGNXh5TXRJ?=
+ =?utf-8?B?YTNXMU9oVWhuUHg2RENFYjloUWIzNzIzd1Z4cmwwSjQyWTlreitBaVhNU3Bk?=
+ =?utf-8?B?Z3JwbmlmaXNZeVJwSVNxbERSc1UwWDJnbU5IOHZySUc2UW1JYUZ0SEdweklp?=
+ =?utf-8?B?b1lqSnJGWUFEOGxoL3g3clBkdlRSVW1ENnZmQ2s3blV2Z2t5cTlpM2Q5c0sx?=
+ =?utf-8?B?b3E1d2hEYzdMT0RhUnBoRkxwNjBmQjVKZ003SEE4QzZrS014WmZuZjRWT0ZI?=
+ =?utf-8?B?Y1hTOUdCaGVuNVlmVFFSQnJ3QVQxaWVnRXdkNzBkU2lOU0JGR1h5SHhaZ3FR?=
+ =?utf-8?B?Vi9NSlVKWEt2dlV2YnczbklvV1A2bkxpZi9WQ3RHYWJOYU9iSXRzVFBxT1lp?=
+ =?utf-8?B?Qmd3WUtZMjVWL2FEZHFNM282disxU2hWMW8vaGN2enlSSlNncWFGNE9nK051?=
+ =?utf-8?B?ZGtTYUIzajZTRXlTRFNHZ2VhS3BrSHFUSTN3aGVMRGJlbXU1azd3Rkhha1VL?=
+ =?utf-8?B?eXVDQ3IvbjhLZXc0cmRzdEdIZFdIWGtvdzVVY1ZHV2lGMUtlaWNKelhyWWEv?=
+ =?utf-8?B?OE9TSUxxcHBIMms1eERuL0UwdFE5ZERhVmU2MmVjOWxVOFkvbGhOZTdtS0hM?=
+ =?utf-8?B?OUxFQWF4VS9pem52eC9CWDdZd0dMU1ZkaFUzV3l0MmYrSWVkVVlBYkk0ZldB?=
+ =?utf-8?B?VkJlNVE0QWxrM3hSTkR1V2tMQk91cWxUay9uRDZ5N3hlQUo0eEhuK2JkUWJS?=
+ =?utf-8?B?RDlSWVhXR2dGcExpbVNnbC90Uk13NWt0VzVseEdXbVRIa2tYZWhZelFjMmI5?=
+ =?utf-8?B?Zm96N21tdVF6cmhFTng4RDU3YU5lOXcvU01xU2tpT21UQ242eGdOQUJhMTVM?=
+ =?utf-8?B?ODZLQjdLV0VlcnJPekFTYUEzdnc5NmdIa0M3QitvdUJQUGVEOVMyeURwNElk?=
+ =?utf-8?B?aGVhQUlicUF0bmdOSDhvbWg1eTNpQTJBTjNkU0tLVVNwQW5VSEVqd2FadUd4?=
+ =?utf-8?Q?HR931RE8IAA=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TWdPeFVQRERaVkpvWmowVFJQVEFtZ0RHYUlRR0pHMi83dTVlaHNIbVNteEla?=
+ =?utf-8?B?UlliK2NkWVFuN3dncWRnYUxMTWQ2UDZCY3FwY0xIYzlFQllpRm84Vm0xRldX?=
+ =?utf-8?B?bVZhcFM0M2VxSGVaR28zREtleEJJNkRRTWswWjJsVCtPWWNBTUhmWGQ2U1Q2?=
+ =?utf-8?B?SVVuV0hGL3V2YXNJTW9XNWsvVWFWMnNZQm5OdEhnVUJSMEoxNFRQTXR6RkxG?=
+ =?utf-8?B?cWVCbUExUXZHM3dKRHc1a1RXejhxRU9hUlhNYkhTaGpKZzZxd0plR0taTTRj?=
+ =?utf-8?B?R0ZwUUlIYVdVVm1KMlpBTS9qQ0xRUzFVQkpSNndlZ3VqYjJxUjNxMmtyYjNM?=
+ =?utf-8?B?RG5xbEwyN3ltVVA2eHRLSDcwb2NtYkR4RWFCUy9HVTkraFpMbFpOTDhhTXZp?=
+ =?utf-8?B?SzlHUUt2Q295SXI5YkhYWm53aWVtYUlCTjhYcnZJZWZYdUVnZ3B2RDI5RWw4?=
+ =?utf-8?B?QmpyV05qN0tiV3Z2WDdrOWF4MGZjTW5IRC9KWUt4UU9ZdTNTMnk3SmJWS1ox?=
+ =?utf-8?B?eFlRMEQxZVRsN2I4K2kvRE1iOHMwQTVpNTE2S1RNemdKTEVzSG9uYklWajRU?=
+ =?utf-8?B?UFNrYm9sSzMxVGlub21PWXVLcDFnU0NERFNIZktYVmhIWlN3bEFET0FBWlZi?=
+ =?utf-8?B?K1c0K3EwUjhOTXlTeUpyRk1XRmRPUFI3ajFCZXR4cGEzb3VHUzJyMjZnUk80?=
+ =?utf-8?B?c04ySVdoQi9sdWljK3VaekFCRUFSV3hyNm1ndi9od3FVSFVlcmpjNFZ5M0Fm?=
+ =?utf-8?B?Q3JScFBGbnNiL1lKK0pIUFlXMkhjQ3pLWkpVQjUvaDc3bitkWVh2dlB4dFg5?=
+ =?utf-8?B?bmhsUUZ3eExuLzRybmQzRHg0MFhGTEIwempZeDVFT0daUjlLVlJWR0xITGlC?=
+ =?utf-8?B?V3lvK1A4N05vMEkvdUJMM2xUL05mK1E2WFlQTkZzc2VibkcyU2NmRHlBZEVp?=
+ =?utf-8?B?RWhRSTljS1VwV1BIdVVieXEyelhab1JXR2NMVG9kMlZLT3FvOWhNRW9DYS9t?=
+ =?utf-8?B?WUVMYU1hNjRnTEdMQjJ2cDdoTWgxNDJQbjdGM2YzVVhlMzFUd3VRMTYyNm9p?=
+ =?utf-8?B?WkZ0YTZFdHlkY05yRng4OCtRV2VZR0MzWEFnNENtQ3hOKzZNTDFQWWNqMEcw?=
+ =?utf-8?B?VUxZYkRGZGl0UEgzekFTalBsOTZUSFR0d1JkYUZYN05iakFYNW1KejhzMjhi?=
+ =?utf-8?B?cG1GSU05Q2ZSUGpMTGNaNmZnWm9KUWh4YTlySkloTE5nNmkvazdTQXdWcDlj?=
+ =?utf-8?B?TGFva3Aza3RMZU5ETGpkRnlGeExoRzJrZmpCSzdVSlQ0cE5VbGRpVko0Q2pj?=
+ =?utf-8?B?Y29GQVJEdHFTTmxJM3M4bXJuR1d1VjNCYnNCZHJTMDBOMmdKSEwrakpJK0d3?=
+ =?utf-8?B?L2JjRm9vMlBTYVR4KzFXSnYrdkdiQ05FQUdNNFFlNFFINklSTlVmZ0hmZlNP?=
+ =?utf-8?B?dmQ3VWhTblNBN1NQbTlWNUFlMnhGSHdwZzBhT0oxOENNTUFjUTdGRHI1ZDY1?=
+ =?utf-8?B?YzI2VmNaOWs5YktDbDhSdVU5LzZmRHhVYysxS1ZPaHBmNkxwaWhEeXg0NlZV?=
+ =?utf-8?B?KzN5RXBDQ2F4aTd2YitVYTJlcnUySUVhcVM0UDYvcStWbXBUNmpLS0dlV1py?=
+ =?utf-8?B?bWhWS0hOZi82QTAxM0dZV1lHaVdNMUp0cjZPN3NoSlQwM21HSEQ2akJhTjZv?=
+ =?utf-8?B?UnEwNGVGVmNmR1VPaG9TU3FQc3hPTVlCT1MyQUdPam9uQi9RQk9zNTNqWWJM?=
+ =?utf-8?B?UDNMUzFjc1hUR21EM1h3OVQ4ekFrNCtIemRUbFdGTit3VERRUnJkb0F3c3Q0?=
+ =?utf-8?B?d0xqUm9zMkJyWTQ5c2gvSVQvN3VWek93dml1dEZnUXVIQ0h4UW5ESUx3aVRv?=
+ =?utf-8?B?MWRIaFVSS0ljZG0rVHJpMWQwR0NsSFcxc1F6QW1uQnptRE9rNTEzNkVqcXBU?=
+ =?utf-8?B?dHdxS0g5bVZ2OCtMekdFNngyYUpCYksxeENWeXpKVUZlYy8weXZSeEc2b25m?=
+ =?utf-8?B?NEtyME54dXRZQkxNRk84Z2tNQVZzbnpPYmJqS1YyK1hLMVphZ0VlVU1KUTl5?=
+ =?utf-8?B?WitLb28ranBMdW9yY29aQlRIVzl2bEo0N0dxTmYra0F4V09TUk9rTjI1V2M5?=
+ =?utf-8?B?bGpDOGdyaTk1QjU5YUtKbDhrUDVYcVgrVHRocnlRMEpqNUcwalY2WXdyY2Zj?=
+ =?utf-8?B?VWc9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e803833-4a0b-40ce-c908-08ddbe0af763
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2025 10:34:06.8286
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XtXDod7hq/b4r25QLL4+EMnxOOGGRIAu8trkKM6AjDyVFlbxbjnspmbjYEfaPVIlr5JvIFuUja8GdMm5OpnVbocDhotCfYp2sUf085sM5Hw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUXPR03MB9397
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250707_060559_406867_149BD59C 
-X-CRM114-Status: GOOD (  18.71  )
+X-CRM114-CacheID: sfid-20250708_033433_323855_B0459EAA 
+X-CRM114-Status: GOOD (  21.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,109 +176,109 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0775102888032836208=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Mark,
+    Thanks for your advice.
 
---===============0775102888032836208==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="XuNRsNwpi0P6rBB3"
-Content-Disposition: inline
+On 2025/7/7 21:05, Mark Brown wrote:
+> Subject:
+> Re: [PATCH v4 2/3] spi: Add Amlogic SPISG driver
+> From:
+> Mark Brown <broonie@kernel.org>
+> Date:
+> 2025/7/7 21:05
+> 
+> To:
+> xianwei.zhao@amlogic.com
+> CC:
+> Sunny Luo <sunny.luo@amlogic.com>, Rob Herring <robh@kernel.org>, 
+> Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley 
+> <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
+> linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+> linux-kernel@vger.kernel.org
+> 
+> 
+> 
+> On Fri, Jul 04, 2025 at 10:59:33AM +0800, Xianwei Zhao via B4 Relay wrote:
+> 
+>> Introduced support for the new SPI IP (SPISG) driver. The SPISG is
+>> a communication-oriented SPI controller from Amlogic,supporting
+>> three operation modes: PIO, block DMA, and scatter-gather DMA.
+> This looks good, a few small things below but nothing major.
+> 
+>> +static bool aml_spisg_can_dma(struct spi_controller *ctlr,
+>> +			      struct spi_device *spi,
+>> +			      struct spi_transfer *xfer)
+>> +{
+>> +	return true;
+>> +}
+> Is it worth having a copybreak such that smaller transfers are done
+> using PIO?  With a lot of controllers that increases performance due to
+> the extra overhead of setting up DMA, talking to the DMA and interrupt
+> controllers can be as expensive as directly accessing the FIFOs.
+> 
 
+If the data volume of a single transfer (xfer) is small, PIO mode does 
+offer some advantages. However, since PIO requires the CPU to wait in a 
+busy loop for the transfer to complete, it continuously occupies CPU 
+resources. As a result, its advantages are not particularly significant.
 
---XuNRsNwpi0P6rBB3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+If PIO is to be implemented, it can only handle one transfer at a time 
+(via transfer_one), and not entire messages (which consist of multiple 
+transfers). In contrast, when processing messages, the SPI controller 
+can handle the entire sequence in one go, which also provides certain 
+benefits.
 
-On Fri, Jul 04, 2025 at 10:59:33AM +0800, Xianwei Zhao via B4 Relay wrote:
+Taking all factors into account, it may be better not to add PIO support.
 
-> Introduced support for the new SPI IP (SPISG) driver. The SPISG is
-> a communication-oriented SPI controller from Amlogic,supporting
-> three operation modes: PIO, block DMA, and scatter-gather DMA.
+>> +static irqreturn_t aml_spisg_irq(int irq, void *data)
+>> +{
+>> +	struct spisg_device *spisg = (void *)data;
+>> +	u32 sts;
+>> +
+>> +	spisg->status = 0;
+>> +	regmap_read(spisg->map, SPISG_REG_IRQ_STS, &sts);
+>> +	regmap_write(spisg->map, SPISG_REG_IRQ_STS, sts);
+>> +	if (sts & (IRQ_RCH_DESC_INVALID |
+>> +		   IRQ_RCH_DESC_RESP |
+>> +		   IRQ_RCH_DATA_RESP |
+>> +		   IRQ_WCH_DESC_INVALID |
+>> +		   IRQ_WCH_DESC_RESP |
+>> +		   IRQ_WCH_DATA_RESP |
+>> +		   IRQ_DESC_ERR))
+>> +		spisg->status = sts;
+>> +
+>> +	complete(&spisg->completion);
+>> +
+>> +	return IRQ_HANDLED;
+> It'd be better to check if there's an interrupt actually flagged and
+> return IRQ_NONE if not, as well as supporting sharing that means that
+> the interrupt core can handle any errors that cause the interrupt to
+> latch on.
+>
 
-This looks good, a few small things below but nothing major.
+Will do,unreasonable values will be returned IRQ_NONE.
 
-> +static bool aml_spisg_can_dma(struct spi_controller *ctlr,
-> +			      struct spi_device *spi,
-> +			      struct spi_transfer *xfer)
-> +{
-> +	return true;
-> +}
+>> +	ret = devm_request_irq(&pdev->dev, irq, aml_spisg_irq, 0, NULL, spisg);
+>> +	if (ret) {
+>> +		dev_err(&pdev->dev, "irq request failed\n");
+>> +		goto out_controller;
+>> +	}
+>> +
+>> +	ret = aml_spisg_clk_init(spisg, base);
+>> +	if (ret)
+>> +		goto out_controller;
+> Do we need the clocks for register access - if so what happens if the
+> interrupt fires as soon as it is registered?  I'd have expected
+> requesting the interrupt to be one of the last things done.
 
-Is it worth having a copybreak such that smaller transfers are done
-using PIO?  With a lot of controllers that increases performance due to
-the extra overhead of setting up DMA, talking to the DMA and interrupt
-controllers can be as expensive as directly accessing the FIFOs.
-
-> +static irqreturn_t aml_spisg_irq(int irq, void *data)
-> +{
-> +	struct spisg_device *spisg = (void *)data;
-> +	u32 sts;
-> +
-> +	spisg->status = 0;
-> +	regmap_read(spisg->map, SPISG_REG_IRQ_STS, &sts);
-> +	regmap_write(spisg->map, SPISG_REG_IRQ_STS, sts);
-> +	if (sts & (IRQ_RCH_DESC_INVALID |
-> +		   IRQ_RCH_DESC_RESP |
-> +		   IRQ_RCH_DATA_RESP |
-> +		   IRQ_WCH_DESC_INVALID |
-> +		   IRQ_WCH_DESC_RESP |
-> +		   IRQ_WCH_DATA_RESP |
-> +		   IRQ_DESC_ERR))
-> +		spisg->status = sts;
-> +
-> +	complete(&spisg->completion);
-> +
-> +	return IRQ_HANDLED;
-
-It'd be better to check if there's an interrupt actually flagged and
-return IRQ_NONE if not, as well as supporting sharing that means that
-the interrupt core can handle any errors that cause the interrupt to
-latch on.
-
-> +	ret = devm_request_irq(&pdev->dev, irq, aml_spisg_irq, 0, NULL, spisg);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "irq request failed\n");
-> +		goto out_controller;
-> +	}
-> +
-> +	ret = aml_spisg_clk_init(spisg, base);
-> +	if (ret)
-> +		goto out_controller;
-
-Do we need the clocks for register access - if so what happens if the
-interrupt fires as soon as it is registered?  I'd have expected
-requesting the interrupt to be one of the last things done.
-
---XuNRsNwpi0P6rBB3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhrxjEACgkQJNaLcl1U
-h9BsIQf6A+9yaMYcp1gxZdLMx2jltWF7cHCNvSupFRmtYZ0ljM+gNdKkaigkOinq
-rHrYqdyrb+tJLA7AKeFshHPiEVJi4v9hZXJTlVWSE9dO0GaZ+/C7wDGzFejo/V2V
-ZD+3xVNkv/SO8hv/eeay1Y8eL4iMKfIcZZn3sBepyLR1Hlo6YrrmyxnYsvDOzVYH
-RxE+wvzzB10bC/Bjsvg3HnkYpnmb01a9o0awWFw324+uDcv91wp5i+Bsv9NQLkBs
-tmobLgDQjVj6WihO2nmXoB+2vbAmrWZQaFNl7FS2TnyanYBUwNRPkWi/UhGDwoHK
-AqUULN21wUgdXzCXib52d1c67OyQYQ==
-=dEip
------END PGP SIGNATURE-----
-
---XuNRsNwpi0P6rBB3--
-
-
---===============0775102888032836208==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Will move irq request of the processing to a bit further back.
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0775102888032836208==--
-
