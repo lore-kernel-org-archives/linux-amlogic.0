@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08693C83F1B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jul 2025 06:33:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9442C83F20
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jul 2025 07:48:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PCwQ+umIsQUu9E/iHXxsJCmXnNDaaiCHdgpRXQOTVxo=; b=tQ6t97Evmylxrb
-	S/NyYdnU/hNihKdEMc9/QOIgGUXk1EuL3eSnitH50Gvx3IIrvxN/1Qx7bEfYQXPmQxIhyPOxKz5C+
-	jvFdacw4z97FzWSZbYgT2yRWx7qU8ggjeAApSCXKDK73Y1AcGp1p+WxwvaoRAlf1ixsGq45c0YtEG
-	l/zTJYRRuPcXC/EqK7smRhmsEkR3haOMdSuLaN5NM2qfHY49yKXyaLPEDRboHkuXJOSSsld7Z8BSw
-	goBdn0bwg6M0zhu3LULZHoCuBuiqt3BPLxiBbdSET1d+8SWR0sy4gRA2ySNQ+xlL3Q/xFJ8kVgaJz
-	xPqC2ZfBHkdQH/F2F0Bw==;
+	List-Owner; bh=o0jTqh6e62IOHheC/UYmTYwF2oLlrcsKtG4bQOO6kIc=; b=ZIi6asiu0qUZFU
+	Xq3KJNWPQRXHugL8wyEw6sWeF4KBeB+l9PQvsvc9QVa5Dy66kJZQc5TkrVcbh5MXBTgd4Re4MafUM
+	EKeuPnlo7cA0RRIlVmYeegcPJvWGuZkMGUVhfcNjtJ300E80Im6DQN3Yo5EubZQGSREMb4rb++6IO
+	04fGsuVGPCKP67ONlIYRbU4gLncdN4Y5/7SE6pPgxBuVARnb+U9unZA7hSdTlY/piA/bl9DGlmYz5
+	zhtxGi3Vqo53rH8LgO6x+Rge/I8Rk84ybRoLl+dbcU6oTijY9JevZW2RlAAXbSnvZXf6uS5sFM1UL
+	DfYEW1idvqnNw1AT1sxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ubCl2-00000001MoP-41rr;
-	Mon, 14 Jul 2025 06:33:48 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1ubDvK-00000001Vxg-00hE;
+	Mon, 14 Jul 2025 07:48:30 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ubCP2-00000001INO-17aC;
-	Mon, 14 Jul 2025 06:11:05 +0000
+	id 1ubDWk-00000001SY7-0bRU;
+	Mon, 14 Jul 2025 07:23:07 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id EC8C946506;
-	Mon, 14 Jul 2025 06:11:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5589DC4CEF6;
-	Mon, 14 Jul 2025 06:10:57 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id DB76D5C5899;
+	Mon, 14 Jul 2025 07:23:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3C42C4CEED;
+	Mon, 14 Jul 2025 07:22:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752473463;
-	bh=cgoFQzidKJiXken5LY/zYRTNKdUK37df3G6JRzGndZs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=msSspsSbeo0L/K9rS2/HadP4jcVsXuS+yYzRrtqTnDsa6o/3PjXfFdoKBiPrh8ftQ
-	 uEWLJh7K1+Ib5SO9XX+UmifxLTVT18FxJhsfdL7uOyv2oiP9WfrjMbiZj85mhOwEXP
-	 /574fcXBWBEa1QFOR/tnEjrYORVsdVwq2yRzGP4kSoSbdgA2hSIqNtR4KPmSuxLPj8
-	 /dKlgAKebDFZbIzNQuhcl3zcGX0HGuER9hiP/xDaRRx2uM1J72s8TVqdOMpl2OWgQV
-	 n+h0YijhUjbGPu1HSmSdcNQbdNIigAOm7NxOSBPpm2R9uFPldRY6jgY9Ek/E5HgY3R
-	 FMSlhW0nR2+4w==
-Message-ID: <82f1a34f-bfdf-466f-9c44-2e58d172f3fd@kernel.org>
-Date: Mon, 14 Jul 2025 08:10:55 +0200
+	s=k20201202; t=1752477784;
+	bh=lA+u2wsudK4biBMNEiNRChT30Crw822XUo7zjFOgD4k=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=fINE7GdRKWb39l7UaOrkTXkgICvxx2f6Pt5a7ACJPS26f7lMtIa6GTwAm5czXExcl
+	 zhCAMUw+rvLZVc8/6szvDOyCDN30k7yN4UouJ5j4bTYVuy7VYaRMnqMwsO/UJLAJaS
+	 wzKQDlgBnqpFZ+EWaJctcehVkKmx7EzYXJ/67Ag8scbyKsUYYXUyIphkROt0Lo/bX3
+	 dhK/gi+qZuvwBtWJtKavyv0i6s6J/3bzX6Bhch9vKt06T/wfln0ud17vyxPzPjoG9K
+	 yuSExTPz10oAKz35bd9HTJnkK2w5s3MfzyuV6dCN+FBtHqyQnos/U9ghrIwNUF16l4
+	 agIYJR9LROioA==
+Message-ID: <b8d61abb-a6a6-49cd-94c3-f397bb30203e@kernel.org>
+Date: Mon, 14 Jul 2025 09:22:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v5 3/6] dt-bindings: Asoc: axg-audio: Add s4 audio tocodec
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: jiebing.chen@amlogic.com, Jerome Brunet <jbrunet@baylibre.com>,
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -60,7 +61,7 @@ Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
  jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
 References: <20250710-audio_drvier-v5-0-d4155f1e7464@amlogic.com>
  <20250710-audio_drvier-v5-3-d4155f1e7464@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <82f1a34f-bfdf-466f-9c44-2e58d172f3fd@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -105,11 +106,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250710-audio_drvier-v5-3-d4155f1e7464@amlogic.com>
+In-Reply-To: <82f1a34f-bfdf-466f-9c44-2e58d172f3fd@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250713_231104_357874_5D0E16F2 
-X-CRM114-Status: UNSURE (   8.43  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250714_002306_270769_4715B0D6 
+X-CRM114-Status: GOOD (  12.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,33 +126,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/07/2025 05:35, jiebing chen via B4 Relay wrote:
-> From: jiebing chen <jiebing.chen@amlogic.com>
+On 14/07/2025 08:10, Krzysztof Kozlowski wrote:
+> On 10/07/2025 05:35, jiebing chen via B4 Relay wrote:
+>> From: jiebing chen <jiebing.chen@amlogic.com>
+>>
+>> Add S4 SoC tocodec compatibility support.
+>>
+>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>> Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
+>> ---
 > 
-> Add S4 SoC tocodec compatibility support.
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
-> ---
+> 
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It seems my or other reviewer's previous comments were not fully
+> addressed. Maybe the feedback got lost between the quotes, maybe you
+> just forgot to apply it. Please go back to the previous discussion and
+> either implement all requested changes or keep discussing them.
+> 
+> Thank you.
+> </form letter>
+> 
+You responded in private, but that's not how we discuss here. Please
+keep all discussions public.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+Above form letter means you received feedback at v1 or v2 and you did
+not implement it. You did not respond to it, either.
 
-
-<form letter>
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-</form letter>
-
+Please go back to v1 or v2 and implement entire feedback.
 
 Best regards,
 Krzysztof
