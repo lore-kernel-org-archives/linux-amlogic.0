@@ -4,81 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A23E7C83F34
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jul 2025 16:19:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED7F6C83F34
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jul 2025 02:08:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=n3s+O3txGJffVnHkWLmIaeIQTnnaJpUXnpmLLlxD3RQ=; b=KEkTXsk5jg9+IV
-	Y7FMRL4C3hItylwEPY8/nNOP6hbQpYcqKl0DDW62wnYrml3dEdqjCnB3IZFxPHG3f8Tag5gUXWlqI
-	1HUVjmW06NEGmi7yDdDzFcLnIeMQz1+mFi+rLqlLBf95ETlCAv1VwmQu9r3QmPAA/iaB9Xk4/iQW3
-	lceSc6a7TwpxRgCrbLorsbusVz4dmMSRTwIBltWIqmfh/4XjzxLMWAXHRYgDFEwa1IsUAza3d7GNC
-	zp7hYV9iDQvTePa1H28YvYgWS2Eyr+tN+M9411Es2IkIOEW1HQ34W7EcHTs3EG6XE99RMLipoCtqc
-	bxyDI1QIvW8R8pj9FHGA==;
+	List-Owner; bh=Tzc7czwI1cYLeg9uT0G8M/+BBK7zhVU15b7tPSeYz0g=; b=jGkt2FUyd2ZU9S
+	O5oRAZ0QS4UOYTrCiKty48l1q513TDINMClZkSWu+VLPuNqKZPKCbS+IVHUavHZJfJnJlhAtDHJfA
+	b7PGaO6IGR2evtUXCmRGaN0RmDavooGEFxBjy7elNTjqC+yTzloDJlHpjofEVFzlime5qEhys72ph
+	jwcFSjvEGbHsD1JtHP2H3/+YSvWS6qyRvtU3Y+i3AC3jp44KDrMr1icm/EveHeUjNF8kvpsIMwB6A
+	n20o5yCsXaTWA4iX1UcZDJnrBhzwNWlxan4RAVLa8xTj0UmuROitvfnPhnoCcfJv/GnvwYliS4F/8
+	ElH1NOEobJ8cidj7HFkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ucRK8-0000000AcNb-1jNf;
-	Thu, 17 Jul 2025 16:19:08 +0000
-Received: from mail-pl1-x632.google.com ([2607:f8b0:4864:20::632])
+	id 1ucaWF-0000000BW0b-3XHf;
+	Fri, 18 Jul 2025 02:08:15 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ucQmA-0000000AWxe-40Jr;
-	Thu, 17 Jul 2025 15:44:04 +0000
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-23dea2e01e4so13346215ad.1;
-        Thu, 17 Jul 2025 08:44:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1752767042; x=1753371842; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rN4bJ0MLHsMuhB36620IX8nWVKMPLDlQLQ5oOeKTkGg=;
-        b=Y5Bp15vgPFOl3f/oHldwOFX7jqvyQzC6tspDP8v+pw9ndZU13t5EZt7nrRpFU5oyRr
-         zHN33FjL5nZRX9EiUR1lBIOom65+JOKe/PPZT8waDEdH10Xzx+3c6pgbUFWLhOLc0ODN
-         Pces95uo8gAFYPQPt+OYVQcBfqg6rmGN3CYouNquV4CzcmnSVyg0z1GTGXb7db6m6bdt
-         avkLf2ikTBQG+cgk4A9JYmkCSm6HfuhEP1B7jIOpQPXego3sJfAHEdnZzun0bmFmbabd
-         hKLmttTqVO4YpeL8MJsgcQOovKHySG/v9iXI1ijIUmuy/70ZZz4xKrjVyFv2UjZgds4o
-         npzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752767042; x=1753371842;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rN4bJ0MLHsMuhB36620IX8nWVKMPLDlQLQ5oOeKTkGg=;
-        b=kkNJR3Vbw4nk+pzPDvdMYug3zyS9M7I1s+pB0k9uMNyMfTvoo6+syCjBgG2ebGr7X6
-         oKWqGKPiSsonZTKPCmtegZxpIcivyqttkju/svbO7vSm5GUpOOjEgy8SVqHcfGGhJbbf
-         l1sOCiEoPEdej/K+ynRZWXUlHX+mmWEbUT/UEX+PTZc6sv5euIjzlzYzDG37zTkYUfkj
-         Utr2yDuSmlz5TaJHD1JGe6HVSsBVi4GV3PAdiBo8Wkj+Uc3VvGDoR+9CIKLxVbN8dSpW
-         i0ZnkeSmtGNG3a28lvUV2ZaZS15MAYIWUZPRXhyJ6VJgn7sWjhGfF7OXa2bEg3ZMY4/n
-         d9rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWxsN2mZ27WgkdAKTNSSmKSHDRcS/3pUvO0505kmBi6LR1haq5frkdRaww5lG9J49W3gWd0LalAsNcge8eE@lists.infradead.org, AJvYcCXTvVDX89QGdYfI7RzKx6/kp4j2wHDwqE5C3dMn0LxWpGHfCTe47r2LiY8XlBnVAiat+1UNqUWGKAxPAXI0j4puBQ==@lists.infradead.org
-X-Gm-Message-State: AOJu0YzpjSGYE0u7aS8Lv9QS8mGzE1NURpa1AACYCxXCZVwtj4cVk3Rd
-	WdHheNBnPEldLuOzYK2Lui7IVsKlX6OkXozyvngUK8yTPuRfJ2v76wq23i54MDNKMGJ4Fa/n1iG
-	HvQXIFtOFWrmKdtadBxhWzEfYAeqAITchg3lq
-X-Gm-Gg: ASbGncsEMHqGgfxnSeCPzQEQaHWAzzK8mUlZ2uYPkbJbzmgduIUZGZF6ArvbvVxqHLA
-	QZG8JeB3nFWkgLO7849DC549uxYiU7b1euUKs0KKOGfBa23oUZJ6pUnh3xLN46sByK2vmGQdlIe
-	1+GhfvLCq01+n9g0oincFwAOduhLMooj5do6v3qdMHT+26885deqbGK7E5Vsfd0iu9a3L+IZ6OP
-	BOeDSVGqvppBa2GshyXsZm4cpApIO1O
-X-Google-Smtp-Source: AGHT+IHA1ZrKnYuPXE4GXLTfL1TF9TCNgu66q+ocBubO7yF3+9AbPVtS6s8vpRxMX8NX3hB8Al+UyUorAl8wjgpvBEM=
-X-Received: by 2002:a17:902:ebcb:b0:234:f200:51a1 with SMTP id
- d9443c01a7336-23e2566a7bfmr87576115ad.9.1752767042136; Thu, 17 Jul 2025
- 08:44:02 -0700 (PDT)
+	id 1ucaGr-0000000BUBX-0YdR
+	for linux-amlogic@lists.infradead.org;
+	Fri, 18 Jul 2025 01:52:22 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id 5A89BA57AB0;
+	Fri, 18 Jul 2025 01:52:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C4649C4CEF6;
+	Fri, 18 Jul 2025 01:52:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752803539;
+	bh=ZG2hqHecU73ektMlHLBv3zCPSuuwC64rbg9ypuyirdM=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=JNgOm7vQMqRlMkKtlGoG2rxdtaAHX9lqcxZI2kfqcy6zMusbe9r3y0JeItkgnfRTn
+	 eEb66hHB4ylYCHIKeLnism6UAHg5XYuQ5WPgABNNhzxCsY1/6MUtJIiXHo1zslq8OG
+	 y5KlH7YcrnQ9d1YYMWPRgSlL3hhrPJKbmrZGhA3YTRmZ/PzwVmucoUL7PXrWx5ngOt
+	 7K+8SnFXCHJP+lp232RLUcT5Oh0yRD6TVD+aRPwRfeozvpzXeqsUnvJr4KaNt3tBAk
+	 GjrxMlhO+AzWB75+bYpGLZaNRgg6lI80iEPXpPACbUzBiH1/xzPXFKZVT0jwtcNikL
+	 NOy4POrT1Vo/A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7CBCC83F1A;
+	Fri, 18 Jul 2025 01:52:19 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Fri, 18 Jul 2025 09:52:18 +0800
+Subject: [PATCH v5 3/3] MAINTAINERS: Add an entry for Amlogic spi driver
 MIME-Version: 1.0
-References: <20250717-optimize_clk-measure_accuracy-v1-1-3b82d7ccd743@amlogic.com>
-In-Reply-To: <20250717-optimize_clk-measure_accuracy-v1-1-3b82d7ccd743@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 17 Jul 2025 17:43:51 +0200
-X-Gm-Features: Ac12FXxyJdrkT0-Udvls8NBCEN5HDOxcf-2RPU7Aaa4UPg2Q8zxybsDbpxTtPl4
-Message-ID: <CAFBinCDyjf7MOE6f_AGEEwqV8z68qRv6JAUxn7zt5ZZqwFLkPg@mail.gmail.com>
-Subject: Re: [PATCH] soc: amlogic: clk-measure: Optimize measurement accuracy
-To: chuan.liu@amlogic.com
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Message-Id: <20250718-spisg-v5-3-b8f0f1eb93a2@amlogic.com>
+References: <20250718-spisg-v5-0-b8f0f1eb93a2@amlogic.com>
+In-Reply-To: <20250718-spisg-v5-0-b8f0f1eb93a2@amlogic.com>
+To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1752803537; l=878;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=d96hwpa3CUOhnffR2RHeVgOJAkVgtVaxxsoYbBLIdso=;
+ b=wIO4Nvl9SJ9G6w63S2Qsm2HFkMy6Cc1zIelD4Mo/R+YrpDo73uUsGMmRIhKoUwzOiUN5FSuOj
+ AduBJFto1h+Cy+N9Vri6FycrGoemxypZwHeCY41BYJY+zzHFs0OfQkq
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250717_084402_992901_D9E6CCCC 
-X-CRM114-Status: GOOD (  14.65  )
+X-CRM114-CacheID: sfid-20250717_185221_242892_E069FB17 
+X-CRM114-Status: UNSURE (   8.12  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,61 +84,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8sCgp0aGFuayB5b3UgZm9yIHRoaXMgcGF0Y2ghCgpPbiBUaHUsIEp1bCAxNywgMjAyNSBh
-dCA1OjA44oCvQU0gQ2h1YW4gTGl1IHZpYSBCNCBSZWxheQo8ZGV2bnVsbCtjaHVhbi5saXUuYW1s
-b2dpYy5jb21Aa2VybmVsLm9yZz4gd3JvdGU6Cj4KPiBGcm9tOiBDaHVhbiBMaXUgPGNodWFuLmxp
-dUBhbWxvZ2ljLmNvbT4KPgo+IFRoZSBjeWNsZSBjb3VudCByZWdpc3RlciBoYXMgYSAyMC1iaXQg
-ZWZmZWN0aXZlIHdpZHRoLCBidXQgdGhlIGRyaXZlcgo+IG9ubHkgdXRpbGl6ZXMgMTYgYml0cy4g
-VGhpcyByZWR1Y2VzIHRoZSBzYW1wbGluZyB3aW5kb3cgd2hlbiBtZWFzdXJpbmcKPiBoaWdoLWZy
-ZXF1ZW5jeSBjbG9ja3MsIHJlc3VsdGluZyBpbiAoc2xpZ2h0bHkpIGRlZ3JhZGVkIG1lYXN1cmVt
-ZW50Cj4gYWNjdXJhY3kuCkkgY2hlY2tlZCB0aGUgTWVzb244IGRvd25zdHJlYW0gY29kZSBbMF0g
-YW5kIGl0IHVzZXMgMHgwMDBGRkZGRiB0bwptYXNrIHRoZSByZWdpc3RlciB2YWx1ZSAtPiB0aGlz
-IG1lYW5zIHRoYXQgb2xkIFNvQ3MgYWxzbyBoYXZlIGEgMjAtYml0CndpZGUgd2lkdGguCgpbLi4u
-XQo+IEhlcmUgYXJlIHRoZSB0ZXN0IGNvbXBhcmlzb25zIGJhc2VkIG9uIEMzOgpbLi4uXQo+IEhl
-cmUgYXJlIHRoZSB0ZXN0IGNvbXBhcmlzb25zIGJhc2VkIG9uIEMzOgpJIGhhdmUgdGVzdGVkIHRo
-aXMgcGF0Y2ggd2l0aCBNZXNvbjhiIGJhc2VkIE9kcm9pZC1DMToKcHJlLW9wdGltaXphdGlvbjoK
-IyB0aW1lIGNhdCAvc3lzL2tlcm5lbC9kZWJ1Zy9tZXNvbi1jbGstbXNyL21lYXN1cmVfc3VtbWFy
-eSB8IGdyZXAgLXYgIiAgMCAgIgogIGNsb2NrICAgICAgICAgICAgICAgICAgICAgcmF0ZSAgICBw
-cmVjaXNpb24KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiBj
-bGs4MSAgICAgICAgICAgICAgICAgMTU5MzcyMzk2ICAgICsvLTUyMDhIegogYTlfY2xrX2RpdjE2
-ICAgICAgICAgICAyNDAwMDAwMCAgICArLy0zMTI1SHoKIHJ0Y19vc2NfY2xrX291dCAgICAgICAg
-ICAgMzEyNTAgICAgKy8tMzEyNUh6CiBoZG1pX2NoMF90bWRzICAgICAgICAgMTQ2Mzk5MDM4ICAg
-ICsvLTQ4MDdIegogc2FyX2FkYyAgICAgICAgICAgICAgICAgMTE0MDYyNSAgICArLy0zMTI1SHoK
-IHNkaGNfcnggICAgICAgICAgICAgICAgOTQ0NDM3NTAgICAgKy8tMzEyNUh6CiBzZGhjX3NkICAg
-ICAgICAgICAgICAgIDk0NDQzNzUwICAgICsvLTMxMjVIegogcHdtX2QgICAgICAgICAgICAgICAg
-IDg0OTkyMTg3NSAgICArLy0zMTI1MEh6CiBwd21fYyAgICAgICAgICAgICAgICAgODQ5OTIxODc1
-ICAgICsvLTMxMjUwSHoKCnJlYWwgICAgMG0wLjEwMnMKdXNlciAgICAwbTAuMDA1cwpzeXMgICAg
-IDBtMC4wNjlzCgoKcG9zdC1vcHRpbWl6YXRpb246CiMgdGltZSBjYXQgL3N5cy9rZXJuZWwvZGVi
-dWcvbWVzb24tY2xrLW1zci9tZWFzdXJlX3N1bW1hcnkgfCBncmVwIC12ICIgIDAgICIKICBjbG9j
-ayAgICAgICAgICAgICAgICAgICAgIHJhdGUgICAgcHJlY2lzaW9uCi0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogY2xrODEgICAgICAgICAgICAgICAgIDE1OTM3
-MzQzOCAgICArLy0xNTYySHoKIGE5X2Nsa19kaXYxNiAgICAgICAgICAgMTIwMDAwMDAgICAgKy8t
-MTU2Mkh6CiBydGNfb3NjX2Nsa19vdXQgICAgICAgICAgIDMyODEzICAgICsvLTE1NjJIegogaGRt
-aV9jaDBfdG1kcyAgICAgICAgIDE0NjM5ODQzOCAgICArLy0xNTYySHoKIHNhcl9hZGMgICAgICAg
-ICAgICAgICAgIDExNDM3NTAgICAgKy8tMTU2Mkh6CiBzZGhjX3J4ICAgICAgICAgICAgICAgIDk0
-NDQzNzUwICAgICsvLTE1NjJIegogc2RoY19zZCAgICAgICAgICAgICAgICA5NDQ0Mzc1MCAgICAr
-Ly0xNTYySHoKIHB3bV9kICAgICAgICAgICAgICAgICA4NDk5OTIxODggICAgKy8tMTU2Mkh6CiBw
-d21fYyAgICAgICAgICAgICAgICAgODQ5OTkyMTg4ICAgICsvLTE1NjJIegoKcmVhbCAgICAwbTAu
-MTczcwp1c2VyICAgIDBtMC4wMDhzCnN5cyAgICAgMG0wLjEwOXMKClNvIHRoZXJlJ3MgYWxzbyBh
-biBpbXByb3ZlbWVudCBpbiBhY2N1cmFjeS4gVGhlIG9ubHkgZG93bnNpZGUgSSdtCnNlZWluZyBp
-cyB0aGF0IGl0IHRha2VzIDc1JSBleHRyYSB0aW1lIGZvciB0aGUgbWVhc3VyZW1lbnQuIEZvciBt
-ZQp0aGlzIGlzIGlycmVsZXZhbnQgc2luY2Ugd2UgdXNlIHRoaXMgZm9yIGRlYnVnZ2luZy4KClsu
-Li5dCj4gKyAgICAgICAvKgo+ICsgICAgICAgICogSEFDSzogVGhlIGlucHV0IGNsb2NrIHNpZ25h
-bCBwYXRoIGZyb20gZ2F0ZSAoQ29udHJvbGxlZCBieSBNU1JfUlVOKQo+ICsgICAgICAgICogdG8g
-aW50ZXJuYWwgc2FtcGxpbmcgY2lyY3VpdCBpbiBjbGstbWVhc3VyZSBoYXMgYSBwcm9wYWdhdGlv
-biBkZWxheQo+ICsgICAgICAgICogcmVxdWlyZW1lbnQ6IDI0IGNsb2NrIGN5Y2xlcyBtdXN0IGVs
-YXBzZSBhZnRlciBtdXggc2VsZWN0aW9uIGJlZm9yZQo+ICsgICAgICAgICogc2FtcGxpbmcuCj4g
-KyAgICAgICAgKgo+ICsgICAgICAgICogRm9yIGEgMzBrSHogbWVhc3VyZW1lbnQgY2xvY2ssIHRo
-aXMgdHJhbnNsYXRlcyB0byBhbiA4MDDOvHMgZGVsYXk6Cj4gKyAgICAgICAgKiA4MDB1cyA9IDI0
-IC8gMzAwMDBIei4KPiArICAgICAgICAqLwo+ICsgICAgICAgZnNsZWVwKDgwMCk7CldoYXQgaXMg
-bmVlZGVkIHRvIG1ha2UgdGhpcyBub3QgYSBIQUNLIGFueW1vcmU/IElzIHRoZXJlIGEgcmVnaXN0
-ZXIKdGhhdCB3ZSBjYW4gcG9sbCBmb3IgdGhlIG51bWJlciBvZiBjbG9jayBjeWNsZXMgdGhhdCBo
-YXZlIHBhc3NlZD8KCgpCZXN0IHJlZ2FyZHMsCk1hcnRpbgoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
-dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
-L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+Add Amlogic spi entry to MAINTAINERS to clarify the maintainers.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ MAINTAINERS | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index a92290fffa16..8225df5ede74 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1307,6 +1307,15 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
+ F:	drivers/rtc/rtc-amlogic-a4.c
+ 
++AMLOGIC SPISG DRIVER
++M:	Sunny Luo <sunny.luo@amlogic.com>
++M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
++L:	linux-amlogic@lists.infradead.org
++L:	linux-spi@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
++F:	drivers/spi/spi-amlogic-spisg.c
++
+ AMPHENOL CHIPCAP 2 DRIVER
+ M:	Javier Carrasco <javier.carrasco.cruz@gmail.com>
+ L:	linux-hwmon@vger.kernel.org
+
+-- 
+2.37.1
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
