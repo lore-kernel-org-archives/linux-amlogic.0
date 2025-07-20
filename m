@@ -4,64 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4424C83F22
-	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Jul 2025 22:31:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90715C83F1A
+	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Jul 2025 23:32:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6+0+5DlE3IcsP+Qa5P4BxA61LX/lxRwjYJTTa3T7S4U=; b=afs9/zqCDeq4A3
-	fCafNsFByKxtb5bLrlySrw0J0mV0cvJjjiT8pR+dM5M6e9d42tytbfID98OCx0J3KMDNKtd1gEhEh
-	9InD0eq+/rYG2MXWzjRRCv1gW67lnvEcW+naCkV4wvPpnIQr/egUN3PaLkdMHukA1KL+AscLPgWIu
-	11BfJw7kazudXsIEw1Ecu5Ay+EMOWDc/skVGheZP5WsXeLsVOCGQ/hvtq/+uD+7n7eLleO0CceWVR
-	rcf24GfO6R13nENPvQOR7NoLSDaUaW4mgszkm6bWb3kIJ8L3xKRRpripLVKVgUQV2u3KyxTZiv2sU
-	m42X9EOhSbkjUl0LBgfw==;
+	List-Owner; bh=SYkCL7+ocq0h+FcWYcNhyVCujppVcwE8XyCPWtpuCKQ=; b=Nk69FQH3mtKDVd
+	Ix73TnruHDgVY6iBQHTiEVCeeUcnIsLw5jUn2lntueES7Ore87ug+8sFWdtaWHErTNKKaFVoe4aIq
+	nIqkysURkQTrW0YVhGt0ERJglXGIrpyI9W+K7JX92sxaOSl2WI9pKuc9tWANYHYRdO3tcQ79FGrS3
+	i0/7n5KtdjQD89DmCnzWJWPTu5cY2fIXLnJ20wCbW1P28yHbUalTJJwYoMLLOLQJ6fVEGy9iXJftz
+	0aQ+Nz5nTDSB9iKlfJDCnYy7897NgHnZhiHTwtBD+X/cQ4lhbqmrcbspE3o0qI2TYPmCFMTFYzGXa
+	NNpx2FjubQUOO7mE1zhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1udcZD-0000000FmZ5-1L2J;
-	Sun, 20 Jul 2025 22:31:35 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1uddW6-0000000Fpjk-378z;
+	Sun, 20 Jul 2025 23:32:26 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1udcZC-0000000FmYu-2ZAt;
-	Sun, 20 Jul 2025 22:31:34 +0000
+	id 1uddU4-0000000Fpcz-0jtK;
+	Sun, 20 Jul 2025 23:30:20 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0A5BB60051;
-	Sun, 20 Jul 2025 22:31:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90F18C4CEE7;
-	Sun, 20 Jul 2025 22:31:33 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 47B7C600AE;
+	Sun, 20 Jul 2025 23:30:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6832C4CEE7;
+	Sun, 20 Jul 2025 23:30:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753050693;
-	bh=50iTg/SAsC7EhohLsSHiAG2N4JR8waxyUPKg3blf/d8=;
+	s=k20201202; t=1753054219;
+	bh=Uw7o8viWBAcFgkSMOuAiVgFI/VtnomVY/vJupcJsJDc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iIE5+0nREUkQvqWy8homaCWmQE3s2zz3WH1Eb3qCG40Otsm5ZTRc+5AnFpKULX9+e
-	 osNJPXQPubkkRHKCnZgbuIokYe8dDlP1T+oxRrM2z7zgNEesM/U8vbzfEGmJNDNuyc
-	 wlhomREK1io+vaSYHWf3CXnB0uCF27zLVZybUeINF2/2nQWiozYDKuiIyHw2KpueHg
-	 SzacHO6cfAAmRofkLE/kQ4HxeI9LMTBD356TeKYA0QxQG2+bFRhsjOGt9kCPUO5Fg5
-	 gr2Amws4KLywEFZGTpzV2agGaspvIJ/0euQ5arTjjSH7q8vPuVt0QYOmbVf6g6KtNq
-	 ticKY/n0+zv5A==
-Date: Sun, 20 Jul 2025 17:31:32 -0500
+	b=bYQqNfdVLiBlC1jA2b3qxIWsp6u90rsBEDuUjDPEHnL94DtSCB2nZoGUKlSddRA4O
+	 fb5bIdp9Qvh7LfG+S+KXowgIt5GZyPSbyVu2WuEj6IJhUz8ngWaYAzUChgWr/HAbx5
+	 XMru6fVsIDIFIj5Mikj5O7uOXyg0auJKIQA/X1of+9k4keNdrFtR30VORViU60IgGA
+	 khqGRzoccntp9a/fYdOTBYpSVwrFaWZbAnbXD4jt8m5/VHQj42d+2z9DumCfEuGOc1
+	 i6T1c5yaTC2mC6cRMq6h36vDrZOiaBWkxZvGrTiIMjB9uoVvUuboTEYvgJkmpalZL4
+	 c3I8xZwYgkvqg==
+Date: Sun, 20 Jul 2025 18:30:18 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: linux-clk@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
-	linux-kernel@vger.kernel.org,
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Kevin Hilman <khilman@baylibre.com>,
+	Yiting Deng <yiting.deng@amlogic.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: add video clock indices for
- Amlogic S4 SoC
-Message-ID: <175305069251.2909158.8930383532423770218.robh@kernel.org>
-References: <20250715-add_video_clk-v1-0-40e7f633f361@amlogic.com>
- <20250715-add_video_clk-v1-1-40e7f633f361@amlogic.com>
+	Jerome Brunet <jbrunet@baylibre.com>, linux-rtc@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: rtc: amlogic,a4-rtc: Add compatible
+ string for C3
+Message-ID: <175305421760.3067874.9815406474339904105.robh@kernel.org>
+References: <20250717-rtc-c3-node-v1-0-4f9ae059b8e6@amlogic.com>
+ <20250717-rtc-c3-node-v1-1-4f9ae059b8e6@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250715-add_video_clk-v1-1-40e7f633f361@amlogic.com>
+In-Reply-To: <20250717-rtc-c3-node-v1-1-4f9ae059b8e6@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,16 +80,18 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Tue, 15 Jul 2025 20:51:38 +0800, Chuan Liu wrote:
-> Add indices for video encoder, demodulator and CVBS clocks.
+On Thu, 17 Jul 2025 17:38:37 +0800, Xianwei Zhao wrote:
+> Amlogic C3 SoCs uses the same rtc controller as A5 SoCs. There is
+> no need for an extra compatible line in the driver, but add C3
+> compatible line for documentation.
 > 
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>  Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
 _______________________________________________
