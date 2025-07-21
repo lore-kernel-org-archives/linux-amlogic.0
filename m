@@ -4,111 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3106BC87FC5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jul 2025 06:55:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B82EBC87FC5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jul 2025 07:54:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sp5oH3y2kh3Gs8kiTLOaPfRnKnluWwGJZBA8jgwEo+o=; b=rdQkd59Mlfziga
-	wl+oNc9VoVvDMCVT4R9zQfHgg0Y+zMjDWmSB5KGY8xPIHqYVPsFRsD5PaRyWPC/61RtHD1QSm9msv
-	dxZM7BSsooNS0ZkimnL5XdYsBGDg/DNXslgFPN3se5ZYP8A9PjhLgtkeyq+Mxmrhs71TpERaytCST
-	diB/eWpaiAeMCgD66MHfYQRwqkQ4x40SNBavEZmAV60Ru9ShA3b9jGv/cJFO/Rqx7WjVzBH/zxvHQ
-	EqBr9qpW0H63M2z5HpWEc/1f66MDPt7zHCig50BMKF0WzVDjNnFhZubnBLFNhDpQzjTAjizsKSPrS
-	2v60EW0d3AOYIlr+DovA==;
+	List-Owner; bh=mLJ62egZI8PmSj3zZdaof8YzoewB+8xzuNAjTcGR51I=; b=qBf53hG3y0ixx4
+	To8Crlu6XFSeiocJaKQE7x4Lsn2yzxBCQy2IkJkhlz6AmuGYwvWHj/iv6fCn3LlSeLQsJTbqHuKBD
+	Oq4uw5+JC1enAKr4o1qTVeLltsNlOEWYjoSeV1r3OcsC2tbzWA4Faf5jw64dxjZG8Vlztjn89Okup
+	F06lfYOLgjbVLCFye4KGbCvEh/yHax6+FbP1iFEO+bYB8FCKGZah22iNLEB1XYG65Vwn1GyJLGaYh
+	8DaktCQ6B/AA4adKbUrmksz18OuHM9AMFKyrR37IoVS8GG+H6lXlukK9wtb3TbQ/fqquUO4GlFlCM
+	DUriYI9zk1TDTnct1ZaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1udkQG-0000000GQx9-1nhu;
-	Mon, 21 Jul 2025 06:54:52 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1udlMC-0000000GZEY-2aQZ;
+	Mon, 21 Jul 2025 07:54:44 +0000
+Received: from mgamail.intel.com ([198.175.65.17])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1udkOA-0000000GQhw-2VjO;
-	Mon, 21 Jul 2025 06:52:43 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id D5F8D44D44;
-	Mon, 21 Jul 2025 06:52:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8065DC4CEED;
-	Mon, 21 Jul 2025 06:52:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753080761;
-	bh=Fj2B+JNw6UkLmg+kDNy6fM5RkSwPiSm8KCZnRQSQWss=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t9G7JeCGjETBbBP5rsHRIZo0lCY01I/emLq5/di0udM/ulJsYhAuzB09xkp1atpLt
-	 tZlTpNevJ7rDxKm6EbgqR8Xg66c5aeaQmfKJUuNCY3Hcm0qbLiajaMOGoyUAdv2111
-	 JboHLReaD4JA09x/9Mtfo8/O1W/ZOsduvoOr+4OtTXUUjE7L4YkPjkXqweRaL8hWZK
-	 OivoX+yF0GZTTgxWIJmnpJAe35LDYaFroyXB1e/UvgsCoKnw94F5lxrt06fXHcJaw3
-	 7kiLPSfvKbkWzqpGR1324EyDQ85mBwLyEG7LzbvZtVIhvkZoFPkMNimWFfheBuWbPi
-	 kf6GWNzVquXzg==
-Message-ID: <9574826f-3023-4fe1-9346-eacd70990d73@kernel.org>
-Date: Mon, 21 Jul 2025 08:52:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	id 1udlJl-0000000GYjp-2FHZ;
+	Mon, 21 Jul 2025 07:52:14 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1753084333; x=1784620333;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=S81qr9hFOduDkWryR/8Zook9qEaCBaFDKK8h/sGo2HY=;
+  b=VMss2JQTMY5hbXmJlSbFyXVdGLQnBmvOjFzQgzlmnn5D72TrB92WQfc3
+   crZzT8b8HvqbpZs+X2P5pAKJ/2w0p21cXaala9BRdC/7/Qqu6K6ZS5vAo
+   REDevpLgS4KWtFe6kCMbgvFoM/p2dio3TNEK4PYlVRFuYlpWlGQa8fC6h
+   japYvjh9hT81M3zBX5/PQm4tKWz6maiS+Y0RHZGLYTbqQbGIU+9DN6jwq
+   9kQA3y5nVE13qPYHfpCgMtv8V701uUAfCfQ1aYq+PffuVEYoo90gvq1qD
+   cZv2oz2l+sK8Wgzp0h1t3eTZTWrDS9xwVG44l+6s1Gp37JxVr2Rchxhf5
+   w==;
+X-CSE-ConnectionGUID: Y+ZHF6lKTRSY0/YNyX7shg==
+X-CSE-MsgGUID: ALFz8ioCTHG8bkFuwXMEhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11498"; a="55249408"
+X-IronPort-AV: E=Sophos;i="6.16,328,1744095600"; 
+   d="scan'208";a="55249408"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 00:52:12 -0700
+X-CSE-ConnectionGUID: o0q7XRb0RPitcVimaam3ZA==
+X-CSE-MsgGUID: khK44DSEQ5igeY5q8Fawhw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,328,1744095600"; 
+   d="scan'208";a="182474746"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2025 00:52:07 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1udlJb-0000000HHid-2Qi4;
+	Mon, 21 Jul 2025 10:52:03 +0300
+Date: Mon, 21 Jul 2025 10:52:03 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: ">" <sanjaysuthar661996@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, ribalda@kernel.org,
+	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	neil.armstrong@linaro.org, khilman@baylibre.com,
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
 Subject: Re:
-To: David Lechner <dlechner@baylibre.com>, ">"
- <sanjaysuthar661996@gmail.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-Cc: ribalda@kernel.org, jic23@kernel.org, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, neil.armstrong@linaro.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com
+Message-ID: <aH3xo8PeReb0s-QD@smile.fi.intel.com>
 References: <CADU64hCr7mshqfBRE2Wp8zf4BHBdJoLLH=VJt2MrHeR+zHOV4w@mail.gmail.com>
  <20250720182627.39384-1-sanjaysuthar661996@gmail.com>
- <84ad0f66-311e-4560-870d-851852c6f902@baylibre.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <84ad0f66-311e-4560-870d-851852c6f902@baylibre.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20250720182627.39384-1-sanjaysuthar661996@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250720_235242_684612_1B2A666C 
-X-CRM114-Status: GOOD (  10.02  )
+X-CRM114-CacheID: sfid-20250721_005213_617040_3475907B 
+X-CRM114-Status: UNSURE (   8.66  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,34 +99,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/07/2025 21:30, David Lechner wrote:
->>    - Ricardo Ribalda Delgado <ricardo@ribalda.com>
->> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
->> index 0cd78d71768c..5c91716d1f21 100644
->> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
->> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
->> @@ -149,7 +149,7 @@ properties:
->>        - description:
->>            The first register range should be the one of the DWMAC controller
->>        - description:
->> -          The second range is is for the Amlogic specific configuration
->> +          The second range is for the Amlogic specific configuration
->>            (for example the PRG_ETHERNET register range on Meson8b and newer)
->>  
->>    interrupts:
+On Sun, Jul 20, 2025 at 11:56:27PM +0530, > wrote:
+> Changes in v2:
+> - Fixed commit message grammar
+> - Fixed subject line style as per DT convention
+> - Added missing reviewers/maintainers in CC
 > 
-> I would be tempted to split this into two patches. It's a bit odd to have
+> From 5c00524cbb47e30ee04223fe9502af2eb003ddf1 Mon Sep 17 00:00:00 2001
+> From: sanjay suthar <sanjaysuthar661996@gmail.com>
+> Date: Sun, 20 Jul 2025 01:11:00 +0530
+> Subject: [PATCH v2] dt-bindings: cleanup: fix duplicated 'is is' in YAML docs
+> 
+> Fix minor grammatical issues by removing duplicated "is" in two devicetree
+> binding documents:
+> 
+> - net/amlogic,meson-dwmac.yaml
+> - iio/dac/ti,dac7612.yaml
+
+This mail is b0rken.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-No, it's a churn to split this into more than one patch.
-
-> a single patch touching two unrelated bindings.
-
-
-
-
-Best regards,
-Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
