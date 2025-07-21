@@ -4,69 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0938BC83F1A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jul 2025 05:47:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3106BC87FC5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jul 2025 06:55:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mjcTWAkihHipPT4jCRTIKCQR+i2uC8wXszRaMKJr2m8=; b=TqXw548l7PAptj
-	KNyQQvIzd3iSMFayiVyIgvzspMrMHbZPoJkQdXHolyzqYaIgk9fF4LPfontkDRLNdQk+ddZJblGsM
-	K9wblk940bZ1torpzTmqitoPtfDmR8qV+sLZ/yh80RdboFPsSMMb0VMgmYeFggcjU4pypjPVc6WNw
-	F8VzHtGzKFTdVkKolxY97SorO4H8qaCERzoBxG6oUw35tYr84OnqGqgQnP12PVV94thwIlUIzyni4
-	vIvrh5mXunBDFy7+aaLu/lmXZMy3IbDpHy4Nt2Q0tr4heYtt30HzfUVyDgvi41HEWHYz3TuzYnEq6
-	TWGoANLYT4BFcEbJ4eNg==;
+	List-Owner; bh=sp5oH3y2kh3Gs8kiTLOaPfRnKnluWwGJZBA8jgwEo+o=; b=rdQkd59Mlfziga
+	wl+oNc9VoVvDMCVT4R9zQfHgg0Y+zMjDWmSB5KGY8xPIHqYVPsFRsD5PaRyWPC/61RtHD1QSm9msv
+	dxZM7BSsooNS0ZkimnL5XdYsBGDg/DNXslgFPN3se5ZYP8A9PjhLgtkeyq+Mxmrhs71TpERaytCST
+	diB/eWpaiAeMCgD66MHfYQRwqkQ4x40SNBavEZmAV60Ru9ShA3b9jGv/cJFO/Rqx7WjVzBH/zxvHQ
+	EqBr9qpW0H63M2z5HpWEc/1f66MDPt7zHCig50BMKF0WzVDjNnFhZubnBLFNhDpQzjTAjizsKSPrS
+	2v60EW0d3AOYIlr+DovA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1udjN3-0000000GI5g-2E7Z;
-	Mon, 21 Jul 2025 05:47:29 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1udkQG-0000000GQx9-1nhu;
+	Mon, 21 Jul 2025 06:54:52 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1udjN0-0000000GI4v-0DZZ;
-	Mon, 21 Jul 2025 05:47:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1753076842;
-	bh=Y6O1LeXawfH6jqCiha75wKFY04tLvXmKtw8IkQsRZzE=;
+	id 1udkOA-0000000GQhw-2VjO;
+	Mon, 21 Jul 2025 06:52:43 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id D5F8D44D44;
+	Mon, 21 Jul 2025 06:52:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8065DC4CEED;
+	Mon, 21 Jul 2025 06:52:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753080761;
+	bh=Fj2B+JNw6UkLmg+kDNy6fM5RkSwPiSm8KCZnRQSQWss=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=R6sgbtT1j4PydMnb9LKCtJbvY/h+dBwoJCRjJfAknzIQNRrlcOiG3Rk7yOIjryhEo
-	 oT7IdyLx4C46fpqYi16JO1SXk+maA3prPGcpfO41dZKiPy/jt/7nmEClDczTMthbjO
-	 f5rn1uQfLT9p/KaXVj+L7P7QFkUwyCRq8fB7KJnD12SvtbzJDgF6K2DqpC6eNNMXSc
-	 R4tdiCX2+c7lD3XeADrFBiihDgbCH+kYyNMl57OF7K1/z6GCmvW19PSFZ3/ayya0Kj
-	 Sl9U4R7JPUywoq3uTD9VyR8AzQ3zrX9cT/8qIK4KOr7oEry2iagdrQ+7cmqWFkzuq2
-	 qyC1Q3wjkaoUw==
-Received: from [192.168.50.250] (unknown [171.76.80.183])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B508E17E0F66;
-	Mon, 21 Jul 2025 07:47:19 +0200 (CEST)
-Message-ID: <bcff3bed-0695-45fa-8f62-453878b6075f@collabora.com>
-Date: Mon, 21 Jul 2025 11:17:02 +0530
+	b=t9G7JeCGjETBbBP5rsHRIZo0lCY01I/emLq5/di0udM/ulJsYhAuzB09xkp1atpLt
+	 tZlTpNevJ7rDxKm6EbgqR8Xg66c5aeaQmfKJUuNCY3Hcm0qbLiajaMOGoyUAdv2111
+	 JboHLReaD4JA09x/9Mtfo8/O1W/ZOsduvoOr+4OtTXUUjE7L4YkPjkXqweRaL8hWZK
+	 OivoX+yF0GZTTgxWIJmnpJAe35LDYaFroyXB1e/UvgsCoKnw94F5lxrt06fXHcJaw3
+	 7kiLPSfvKbkWzqpGR1324EyDQ85mBwLyEG7LzbvZtVIhvkZoFPkMNimWFfheBuWbPi
+	 kf6GWNzVquXzg==
+Message-ID: <9574826f-3023-4fe1-9346-eacd70990d73@kernel.org>
+Date: Mon, 21 Jul 2025 08:52:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 5/7] drm/ci: uprev IGT
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
- helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, valentine.burley@collabora.com,
- lumag@kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250718105407.32878-1-vignesh.raman@collabora.com>
- <20250718105407.32878-6-vignesh.raman@collabora.com>
- <7c6suvc6quwwxni2nsos65btzim2lbv7f2u6mz5qbupzpmpzgb@g46wg63ubr6l>
+Subject: Re:
+To: David Lechner <dlechner@baylibre.com>, ">"
+ <sanjaysuthar661996@gmail.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+Cc: ribalda@kernel.org, jic23@kernel.org, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, neil.armstrong@linaro.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+References: <CADU64hCr7mshqfBRE2Wp8zf4BHBdJoLLH=VJt2MrHeR+zHOV4w@mail.gmail.com>
+ <20250720182627.39384-1-sanjaysuthar661996@gmail.com>
+ <84ad0f66-311e-4560-870d-851852c6f902@baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <7c6suvc6quwwxni2nsos65btzim2lbv7f2u6mz5qbupzpmpzgb@g46wg63ubr6l>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <84ad0f66-311e-4560-870d-851852c6f902@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250720_224726_288847_04238993 
-X-CRM114-Status: GOOD (  15.25  )
+X-CRM114-CacheID: sfid-20250720_235242_684612_1B2A666C 
+X-CRM114-Status: GOOD (  10.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,179 +120,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 18/07/25 18:24, Dmitry Baryshkov wrote:
-> On Fri, Jul 18, 2025 at 04:23:57PM +0530, Vignesh Raman wrote:
->> Uprev IGT to the latest version and update expectation files.
->>
->> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
->> ---
->>   drivers/gpu/drm/ci/gitlab-ci.yml              |   2 +-
->>   .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |   2 +
->>   .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |   7 ++
->>   drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |  11 +-
->>   drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  |   2 +
->>   drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  |  29 +----
->>   drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |   7 ++
->>   drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |   8 +-
->>   drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  |  83 ++++++++++++
->>   drivers/gpu/drm/ci/xfails/i915-jsl-fails.txt  |  10 +-
->>   drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  |   3 +
->>   drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  |   5 +-
->>   drivers/gpu/drm/ci/xfails/i915-tgl-flakes.txt |   6 +
->>   drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |   7 +-
->>   .../drm/ci/xfails/mediatek-mt8173-fails.txt   |   5 +-
->>   .../drm/ci/xfails/mediatek-mt8173-flakes.txt  | 119 ++++++++++++++++++
->>   .../drm/ci/xfails/mediatek-mt8183-fails.txt   |   7 +-
->>   .../msm-sc7180-trogdor-kingoftown-fails.txt   |   1 +
->>   ...sm-sc7180-trogdor-lazor-limozeen-fails.txt |   1 +
->>   .../drm/ci/xfails/msm-sm8350-hdk-fails.txt    |   1 +
->>   .../drm/ci/xfails/msm-sm8350-hdk-skips.txt    |  73 +++++++++++
->>   .../drm/ci/xfails/panfrost-mt8183-fails.txt   |   1 +
->>   .../drm/ci/xfails/panfrost-rk3288-fails.txt   |   1 +
->>   .../drm/ci/xfails/panfrost-rk3399-fails.txt   |   1 +
->>   .../drm/ci/xfails/rockchip-rk3288-fails.txt   |  12 +-
->>   .../drm/ci/xfails/rockchip-rk3288-flakes.txt  |  21 ++++
->>   .../drm/ci/xfails/rockchip-rk3399-fails.txt   |   9 +-
->>   .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  35 ++++++
->>   .../drm/ci/xfails/virtio_gpu-none-fails.txt   |   4 +
->>   drivers/gpu/drm/ci/xfails/vkms-none-fails.txt |   3 +
->>   drivers/gpu/drm/ci/xfails/vkms-none-skips.txt |   3 +
->>   31 files changed, 416 insertions(+), 63 deletions(-)
->>   create mode 100644 drivers/gpu/drm/ci/xfails/i915-tgl-flakes.txt
->>
->> diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
->> index e4a8f8352cd6..9bf38c077f8e 100644
->> --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
->> +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
->> @@ -15,3 +15,4 @@ kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
->>   kms_plane_alpha_blend@alpha-7efc,Fail
->>   kms_plane_alpha_blend@coverage-7efc,Fail
->>   kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
->> +core_setmaster@master-drop-set-user,Fail
+On 20/07/2025 21:30, David Lechner wrote:
+>>    - Ricardo Ribalda Delgado <ricardo@ribalda.com>
+>> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+>> index 0cd78d71768c..5c91716d1f21 100644
+>> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+>> @@ -149,7 +149,7 @@ properties:
+>>        - description:
+>>            The first register range should be the one of the DWMAC controller
+>>        - description:
+>> -          The second range is is for the Amlogic specific configuration
+>> +          The second range is for the Amlogic specific configuration
+>>            (for example the PRG_ETHERNET register range on Meson8b and newer)
+>>  
+>>    interrupts:
 > 
-> Could you please point out the issue / failure log?
+> I would be tempted to split this into two patches. It's a bit odd to have
 
-Please see the pipeline logs,
-https://gitlab.freedesktop.org/vigneshraman/msm/-/jobs/79793740
-https://gitlab.freedesktop.org/vigneshraman/msm/-/jobs/79793742
 
-Let me know if you want me to raise an issue.
+No, it's a churn to split this into more than one patch.
 
-Regards,
-Vignesh
+> a single patch touching two unrelated bindings.
 
-> 
->> diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
->> index e4a8f8352cd6..7441b363efae 100644
->> --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
->> +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
->> @@ -1,3 +1,4 @@
->> +core_setmaster@master-drop-set-user,Fail
->>   kms_color@ctm-0-25,Fail
->>   kms_color@ctm-0-50,Fail
->>   kms_color@ctm-0-75,Fail
->> diff --git a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
->> index 8d26b23133aa..f387c73193c6 100644
->> --- a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
->> +++ b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
->> @@ -1,3 +1,4 @@
->> +core_setmaster@master-drop-set-user,Fail
->>   kms_3d,Fail
->>   kms_cursor_legacy@forked-bo,Fail
->>   kms_cursor_legacy@forked-move,Fail
->> diff --git a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt
->> index 9450f2a002fd..84ffbe0981ea 100644
->> --- a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt
->> +++ b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt
->> @@ -210,3 +210,76 @@ msm/msm_mapping@ring
->>   # [  229.752499] CPU features: 0x18,00000017,00200928,4200720b
->>   # [  229.758095] Memory Limit: none
->>   # [  229.761291] ---[ end Kernel panic - not syncing: softlockup: hung tasks ]---
->> +
->> +msm/msm_recovery@gpu-fault
-> 
-> Hmm. I thought this should have been fixed...
-> 
->> +# DEBUG - Begin test msm/msm_recovery@gpu-fault
->> +# [  153.288652] [IGT] msm_recovery: executing
->> +# [  153.295317] [IGT] msm_recovery: starting subtest gpu-fault
->> +# [  153.317588] adreno 3d00000.gpu: CP | opcode error | possible opcode=0xDEADDEAD
->> +# [  153.367412] adreno 3d00000.gpu: [drm:a6xx_irq] *ERROR* gpu fault ring 0 fence 814 status 00800005 rb 016b/0215 ib1 000000010000B000/0000 ib2 0000000000000000/0000
->> +# [  153.383449] msm_dpu ae01000.display-controller: [drm:recover_worker] *ERROR* 6.6.0.1: hangcheck recover!
->> +# [  153.393296] msm_dpu ae01000.display-controller: [drm:recover_worker] *ERROR* 6.6.0.1: offending task: msm_recovery (/igt/libexec/igt-gpu-tools/msm/msm_recovery --run-subtest gpu-fault)
->> +# [  153.436085] revision: 660 (6.6.0.1)
->> +# [  153.439702] rb 0: fence:    2063/2068
->> +# [  153.443659] rptr:     360
->> +# [  153.446389] rb wptr:  533
->> +# [  153.449103] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG0: 0
->> +# [  153.455746] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG1: 0
->> +# [  153.462387] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG2: 2062
->> +# [  153.469293] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG3: 0
->> +# [  153.475680] adreno 3d00000.gpu: [drm:a6xx_irq] *ERROR* gpu fault ring 0 fence 814 status 00800005 rb 016b/0215 ib1 000000010000B000/0000 ib2 0000000000000000/0000
->> +# [  153.475919] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG4: 0
->> +# [  153.475925] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG5: 0
->> +# [  153.475928] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG6: 0
->> +# [  153.475930] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG7: 1
->> +# [  153.529587] platform 3d6a000.gmu: [drm:a6xx_gmu_set_oob] *ERROR* Timeout waiting for GMU OOB set GPU_SET: 0x0
->> +# [  153.539837] msm_dpu ae01000.display-controller: [drm:recover_worker] *ERROR* 6.6.0.1: hangcheck recover!
->> +# [  153.549597] msm_dpu ae01000.display-controller: [drm:recover_worker] *ERROR* 6.6.0.1: offending task: msm_recovery (/igt/libexec/igt-gpu-tools/msm/msm_recovery --run-subtest gpu-fault)
->> +# [  153.566489] revision: 660 (6.6.0.1)
->> +# [  153.570099] rb 0: fence:    2064/2068
->> +# [  153.573878] rptr:     0
->> +# [  153.576411] rb wptr:  688
->> +# [  153.579134] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG0: 0
->> +# [  153.585775] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG1: 0
->> +# [  153.592410] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG2: 0
->> +# [  153.597308] [IGT] msm_recovery: finished subtest gpu-fault, FAIL
->> +# [  153.599039] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG3: 0
->> +# [  153.611856] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG4: 0
->> +# [  153.618498] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG5: 0
->> +# [  153.625132] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG6: 0
->> +# [  153.631766] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG7: 0
->> +# [  153.639162] *** gpu fault: ttbr0=00000001042fc000 iova=0000000000000000 dir=READ type=TRANSLATION source=CP (0,0,0,0)
->> +# [  153.648502] platform 3d6a000.gmu: [drm:a6xx_gmu_set_oob] *ERROR* Timeout waiting for GMU OOB set GPU_SET: 0x0
->> +# [  153.650144] *** gpu fault: ttbr0=00000001042fc000 iova=0000000000000020 dir=READ type=TRANSLATION source=CP (0,0,0,0)
->> +# [  153.650241] adreno 3d00000.gpu: CP illegal instruction error
->> +# [  153.671006] platform 3d6a000.gmu: [drm:a6xx_rpmh_start] *ERROR* Unable to power on the GPU RSC
->> +# [  153.687278] platform 3d6a000.gmu: [drm:a6xx_gmu_set_oob] *ERROR* Timeout waiting for GMU OOB set GPU_SET: 0x0
->> +# [  363.495437] INFO: task msm_recovery:876 blocked for more than 120 seconds.
->> +# [  363.503070]       Not tainted 6.16.0-rc2-g0594d0b01a7c #1
->> +# [  363.508838] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
->> +# [  363.517142] task:msm_recovery    state:D stack:0     pid:876   tgid:876   ppid:274    task_flags:0x400100 flags:0x00000009
->> +# [  363.528876] Call trace:
->> +# [  363.531554]  __switch_to+0xf8/0x1a8 (T)
->> +# [  363.535703]  __schedule+0x418/0xee0
->> +# [  363.539486]  schedule+0x4c/0x164
->> +# [  363.542986]  schedule_timeout+0x11c/0x128
->> +# [  363.547281]  dma_fence_default_wait+0x13c/0x234
->> +# [  363.552123]  dma_fence_wait_timeout+0x160/0x45c
->> +# [  363.556947]  dma_resv_wait_timeout+0x70/0x11c
->> +# [  363.561582]  msm_gem_close+0xac/0xe4
->> +# [  363.565405]  drm_gem_handle_delete+0x74/0xe8
->> +# [  363.569951]  drm_gem_close_ioctl+0x38/0x44
->> +# [  363.574297]  drm_ioctl_kernel+0xc4/0x134
->> +# [  363.578442]  drm_ioctl+0x224/0x4f0
->> +# [  363.582050]  __arm64_sys_ioctl+0xac/0x104
->> +# [  363.586292]  invoke_syscall+0x48/0x110
->> +# [  363.590254]  el0_svc_common.constprop.0+0x40/0xe0
->> +# [  363.595197]  do_el0_svc+0x1c/0x28
->> +# [  363.598705]  el0_svc+0x4c/0x158
->> +# [  363.602035]  el0t_64_sync_handler+0x10c/0x138
->> +# [  363.606601]  el0t_64_sync+0x198/0x19c
->> +# [  363.610465] Showing all locks held in the system:
->> +# [  363.620406]  #0: ffff0000840200a0 (&tty->ldisc_sem){++++}-{0:0}, at: ldsem_down_read+0x18/0x24
->> +# [  363.629412]  #1: ffff800080d7c2f0 (&ldata->atomic_read_lock){+.+.}-{4:4}, at: n_tty_read+0x15c/0x57c
->> +# [  363.643169]  #0: ffffbd9c0475d920 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x18/0x1c0
->> +# [  363.654158] =============================================
-> 
 
+
+
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
