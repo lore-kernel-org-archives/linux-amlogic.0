@@ -4,102 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27011C87FC5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Jul 2025 17:06:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 237B5C83F1A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Jul 2025 19:41:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=qGqL8MWKnQZidnxrypSlO0qWeN3RN2TdYAaknrVcd/M=; b=hc4Kjep1mXKQZ3
-	gzE8paY2akpY4w1POO16RQCwdvCtbCzAgJncfe6k4GeE0ens1aAehJZl+b/TlOcluFdOGupCPYMve
-	S5aSKItFmCbFrqx7ddPp44EqkUQ9hiOR1HXmWdfTweBdzvaleBKNQdAZjRlMXdpcOW88hDMmTlgqw
-	tF+V35W4wkkwNgXI5Dizx2A7VnFEZQVcs8D4YMZbd0saZszl7W36jtC1SDLjUsZTdT/RGVdPgaN4r
-	LUQWMJDxP4Qd+U/PlMuHfpjZ6Kg0MBYs9zaC/uBA8RA8vw8FVWNOqSH/vsa4trJzhOQmlwINjf1XQ
-	XvXoaO2DNmX7ad+grfWQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oGkdTg3lBGUee8zpL/Mfl8U5RraljrOA77RksE82ORc=; b=aZQKwIZHWxH9nX
+	o5733RcKnhLwhJsrU1qRW+AHV7cQTwvFKNBin3qbp/UOV5xHfbxz2xTNtutvJQE6SMe3XOisSqPXz
+	9otBdaflT39rMoNHGJe1fcydkzw9N1Jvpes94z4f7/7OUxn6aHmTm9n/t1rC2lIrlrGKMiQtAMu2l
+	VmegLNZvX8GEfVNrxe7EV/UdDaRZLb/8w2pNScXBEAJQ7cFJACkksZuDGb4DA0/4lQZvItTZQo3U5
+	N6UJu4IkUV0osaUTIEl3t7gmXvDUA7b3D1BVrg5XzQ8DUiQaSKHtBSRutpGQWSzp1IKaMma0pFGRm
+	FzMrpfvc8nQzE4vyyZTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ueGS0-000000036EA-02Vj;
-	Tue, 22 Jul 2025 17:06:48 +0000
-Received: from mail-pf1-x42a.google.com ([2607:f8b0:4864:20::42a])
+	id 1ueIrW-00000003Mmq-3flm;
+	Tue, 22 Jul 2025 19:41:18 +0000
+Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ueGRU-0000000368o-27Qm;
-	Tue, 22 Jul 2025 17:06:17 +0000
-Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-748e63d4b05so3468051b3a.2;
-        Tue, 22 Jul 2025 10:06:14 -0700 (PDT)
+	id 1ueIp0-00000003MX2-0MkH;
+	Tue, 22 Jul 2025 19:38:43 +0000
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-234b9dfb842so50102735ad.1;
+        Tue, 22 Jul 2025 12:38:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753203974; x=1753808774; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GJQH/hF+xiHb5wpOlNLaNq0/n1MDfFBc0fOnEVl8MF0=;
-        b=UzCrhEF8BVi2jftHuNi4/v1ODCvSt8R9bp+4+/VgEcOwoRgmsr4+Ia+rWOMxMpWAO0
-         sFrJ+cocwLPU1SLag5gATbGSCvbqss0auIj9mOVljff/rhQdLpT+86G8zXDHbZqypFsu
-         hJo0+6yap2TXQq69UQO0z7o96zJ+DiAwVheQiaZs1m2Wz2h4GHh1LJMdp0ZRP8gCy1Sk
-         fetSQ5jO7t8PrFb+iBQY6/3rySkqC4fOzUuC3Ia6nAM00rTwzcCFePjvaVe1fJ4GTFK9
-         lrTAD2XOnMlL2Ho9EkKzs2rS/pxbYsdxWyzKRnGtrdM8cncxvOQ6R3Fy4vquiOc66QzH
-         Q71w==
+        d=googlemail.com; s=20230601; t=1753213121; x=1753817921; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jwyAwao4oPJjdf7FpSRPigfPtomo1g/hUFFqJP0uxSg=;
+        b=fwS6AkHE2Gu1T/mmaLTittFtSifXp02XfJYy6wjfsNSBmQk+YJtG8S060deeFajKa3
+         iCBCyxH17+MBorvVPRbFgYGnnibwC89kUN8YnqpaUwyV/rNZ7PAjqh0qHygwN0q8aqa9
+         /OwDVbXYB8PPl3wcR9LpnApYsL0/8jPxeqN4OttNdNHjAnMKvf5aZ/cdno4gMHxfdSZu
+         RBUEiY+SmSxsU9TV3/iTyA5oqP2wUyGQjRwLHbZwG5XQYrqqzWe+aUtdsYN7tfY4vuXV
+         bqg1uT9z+fX+GnGEFdLGZSL9332Rhy81W+PQ/fFWju71EDWYGT5zrirfupOsDgp9Mcrw
+         s1RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753203974; x=1753808774;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GJQH/hF+xiHb5wpOlNLaNq0/n1MDfFBc0fOnEVl8MF0=;
-        b=sFSaTWmSbZmaho+O2AfrTssRgI66p2010jBtKERVIW3CFEcLKbS271rArkbB/Stf8T
-         SLBhpIsZtZQeRnK4Lr70LhZMtzbYmCD0C/AZJoQ3RV8xXVAaqHx+CAEDPaj4bO8ksSg6
-         4VfSj5fgm4Wj/sShL9ly+nIJC/Qv24Qt3WjAJ9UsRt6eq4FbMpsG+tceKbNWHCoSoJ1x
-         3hRNCy5wZNm/MY6vGaV8a8oadD0OEk9uJjJ4cWsERP9M0fZgjgrv8kROcbcCE4B9M5Fi
-         dZ/t3feLJrb5LwNsNTK3MmaFMtkz1bb6vz6pG/b94/P+J+HP6ylx406k2E3pG0o7D51v
-         4ofA==
-X-Forwarded-Encrypted: i=1; AJvYcCWZCtSeiGgJfsZbZ90lJa9fA7cnSnZ6VAgYxo+3w1zcdEU4gEd8KGxOibaVOWwUVTivstz4gPLKYco7G6VixGTe6w==@lists.infradead.org, AJvYcCXVE8WIXxRjd8tIUbc9GB81grCcHcQWDOwylKF65yubQoXNlptjq/BSYO0s4tue2R/tbSLVSAF017x/o1sM@lists.infradead.org
-X-Gm-Message-State: AOJu0YyQwhjkjs5aES78QM7ngq9hpaXGct3ONRUrY5XNAbwBODchJ2cV
-	PejQqYOg4lA7CqF77HUzK9DGT6OJc7pAhxOytEKxExB0Q5oHAbnf6rGuWDCudNcBsTE=
-X-Gm-Gg: ASbGnctRNDt/Uw+YbCJ1b9x+4k+siSN91xuDV/jWsrHTAsEBelXXo7O0vcEPh8dI3dA
-	C/gNsjjXZdWienxHfFgKRCcZ2oX4NNgVzpuy84guUUFf4EJ1euHIAvWVmcifjzViEdMqlsC+NgY
-	klHmZ1PRZmFIz1cY6reiDnCZFbm9WCTZWfS+8GcKw9cSIhL3TB1qkjAv7BoSwXvLsHmldr7FAtT
-	5mFpZtYSdYMvQUqRG5bPFcu6CY/eq3dN1/5xwlMi00KpyHpY6P+so6FdrvJHS6XnqJgcauoSM8N
-	YQnZiLakLfKN4mSwB9zWwfj8mQqc+UNkJwgMZf6bRBZWsw4KTxUewUUbFkWJu1UhVsQkwCKFd2O
-	eeq9ns12RGxTeAUoDNUdnRjKDuUS/23Y=
-X-Google-Smtp-Source: AGHT+IEkw8+Vtk94z6sfnq2tvcwIOwJg956iq0XweSQItS4GP7Y0qaUNiQVwgOPzwgaUtt2BcOqzAQ==
-X-Received: by 2002:a05:6a20:6a09:b0:232:6809:d41a with SMTP id adf61e73a8af0-2381244da0bmr42904835637.14.1753203974225;
-        Tue, 22 Jul 2025 10:06:14 -0700 (PDT)
-Received: from km-host.. ([49.207.192.227])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b3f2fe63065sm7350732a12.15.2025.07.22.10.06.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jul 2025 10:06:13 -0700 (PDT)
-From: Sanjay Suthar <sanjaysuthar661996@gmail.com>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Cc: ribalda@kernel.org,
-	jic23@kernel.org,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	Sanjay Suthar <sanjaysuthar661996@gmail.com>
-Subject: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML docs
-Date: Tue, 22 Jul 2025 22:35:13 +0530
-Message-Id: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1753213121; x=1753817921;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jwyAwao4oPJjdf7FpSRPigfPtomo1g/hUFFqJP0uxSg=;
+        b=ry5TF/tlxX6E9vJIlfJWMqKEJSxGjH1lebLllv4yM4tZ2nyCPzcZ07QeAl2DqGE0xl
+         8EfYw6P7b78N9t4HmKE+rSW7tn3kiAGWU2TN995NtUhVxbz7bk3YVfEIXDcVaAM1VuRJ
+         04kIlY9nC+22BF16D/y4AXOQub8QrxeD7oO5hINNUfwrYZykp0xCQ4Lux2MIU8wX7bDO
+         W4Fx/XmUqQ8UWSKarrYvZ3r2V3Qb5r8V3SlEJmQChtgKJlC3ypOYu2Rn++pISkLwxWKy
+         sUk8e/XNz2F/KH/uf+Y05d1aIoCgyuB8aR5ZwHDgYXOnM4x6mpRQ+x3pCf7UyjfTxEJS
+         m8pw==
+X-Forwarded-Encrypted: i=1; AJvYcCVJe1Z5avVEjZ3YwVxuRHFjRMKojsBxiNzm0Fa9BxXH4e6kmS3RO/Bru2bTpfbhTx+AAD+7SD1jheL4ljsLswK4gw==@lists.infradead.org, AJvYcCWQf/wJP2qa2IVkPnRexhmaTcf1GEk4rbNVz6GuXXX6kM3bLcm6kKLTpE8zSqzybjqoDFK5OwnqqhJPOL5s@lists.infradead.org
+X-Gm-Message-State: AOJu0YwY4i1/CPwURDEGHWB2ReB5LhHHxX1x2FoKWV1xjEL3u5yhJK+E
+	/0U5aVX4Y/B+dbT3Fr8Y+80GW8PhBLX0M1TjwCsUkYTIORauiTocKcQGXGzOoiHcLfx0ZjjhP6C
+	6rWJQnOcZNlIGOUsC/LscinrPG7pxxvpXiBit
+X-Gm-Gg: ASbGncteVPNjSkU6H5fmul9AypcazbEUFcDWPJ2S+psEpSHDtQnx1rcWfScEUgzG8TF
+	VKYgkeyVxzEBimTMXR0uoel9k6xHDLu5mCmvzuf/g1b7ERXSZobE0gsxDYQvxVy5t1a1YqyAo4p
+	H+V/dXJtEFHUVJJ6xjpMdjges8Y7DtpSSPkR/mWjAXrWf2VaYKrlPS4yHLW37XKwYjZwLxgDDGh
+	InPUwoEs0/XnOx8T5iv2w==
+X-Google-Smtp-Source: AGHT+IGsEsP2+Lauu71M+oW4n4HRG//Lxp5u7eb8uK45PKFMboS8RYf4aGCjOdXnbHCp/CGkWd7DOfhjjO/CU0YvNwA=
+X-Received: by 2002:a17:902:cec4:b0:23d:fa76:5c3b with SMTP id
+ d9443c01a7336-23f9814e9a7mr3452365ad.22.1753213121296; Tue, 22 Jul 2025
+ 12:38:41 -0700 (PDT)
 MIME-Version: 1.0
+References: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+In-Reply-To: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 22 Jul 2025 21:38:30 +0200
+X-Gm-Features: Ac12FXwCtPAOsiQDY47hJ2_tvejllz9nr8xSmIyDW7TLGWTLqhLQAI8E9IianHU
+Message-ID: <CAFBinCCmsw=XGPtrk1XbphOu=OwhxmAiZ+2h4x_M-_f64Vo-7A@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML docs
+To: Sanjay Suthar <sanjaysuthar661996@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	ribalda@kernel.org, jic23@kernel.org, dlechner@baylibre.com, 
+	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
+	neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250722_100616_547033_FB4EAB86 
-X-CRM114-Status: GOOD (  11.39  )
+X-CRM114-CacheID: sfid-20250722_123842_130888_CD28C4B9 
+X-CRM114-Status: UNSURE (   6.52  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,58 +96,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix minor grammatical issues by removing duplicated "is" in two devicetree
-binding documents:
-
-- net/amlogic,meson-dwmac.yaml
-- iio/dac/ti,dac7612.yaml
-
-Signed-off-by: Sanjay Suthar <sanjaysuthar661996@gmail.com>
----
-Changes since V2:
-- Corrected the subject line
-- link to v2 : https://lore.kernel.org/linux-iio/20250720182627.39384-1-sanjaysuthar661996@gmail.com/T/#u
-
- Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml      | 2 +-
- Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
-index 20dd1370660d..624c640be4c8 100644
---- a/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
-+++ b/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
-@@ -9,7 +9,7 @@ title: Texas Instruments DAC7612 family of DACs
- description:
-   The DAC7612 is a dual, 12-bit digital-to-analog converter (DAC) with
-   guaranteed 12-bit monotonicity performance over the industrial temperature
--  range. Is is programmable through an SPI interface.
-+  range. It is programmable through an SPI interface.
- 
- maintainers:
-   - Ricardo Ribalda Delgado <ricardo@ribalda.com>
-diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-index 0cd78d71768c..5c91716d1f21 100644
---- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-@@ -149,7 +149,7 @@ properties:
-       - description:
-           The first register range should be the one of the DWMAC controller
-       - description:
--          The second range is is for the Amlogic specific configuration
-+          The second range is for the Amlogic specific configuration
-           (for example the PRG_ETHERNET register range on Meson8b and newer)
- 
-   interrupts:
--- 
-2.34.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCBKdWwgMjIsIDIwMjUgYXQgNzowNuKAr1BNIFNhbmpheSBTdXRoYXIKPHNhbmpheXN1
+dGhhcjY2MTk5NkBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gRml4IG1pbm9yIGdyYW1tYXRpY2FsIGlz
+c3VlcyBieSByZW1vdmluZyBkdXBsaWNhdGVkICJpcyIgaW4gdHdvIGRldmljZXRyZWUKPiBiaW5k
+aW5nIGRvY3VtZW50czoKPgo+IC0gbmV0L2FtbG9naWMsbWVzb24tZHdtYWMueWFtbAo+IC0gaWlv
+L2RhYy90aSxkYWM3NjEyLnlhbWwKPgo+IFNpZ25lZC1vZmYtYnk6IFNhbmpheSBTdXRoYXIgPHNh
+bmpheXN1dGhhcjY2MTk5NkBnbWFpbC5jb20+ClJldmlld2VkLWJ5OiBNYXJ0aW4gQmx1bWVuc3Rp
+bmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgoKVGhhbmsgeW91IGZvciBz
+cG90dGluZyBhbmQgZml4aW5nIHRoaXMhCgpUbyBteSBrbm93bGVkZ2Ugbm9ib2R5IGVsc2UgaXMg
+Y3VycmVudGx5IHdvcmtpbmcgb24gYW1sb2dpYyxtZXNvbi1kd21hYyBjaGFuZ2VzLgpNZWFuaW5n
+OiB3aXRoIGFuIEFDSyBmcm9tIHRoZSBuZXRkZXYgb3IgaWlvIG1haW50YWluZXJzIHRoaXMgcGF0
+Y2ggY2FuCmdvIHRocm91Z2ggYW55IHRyZWUgKGlpbywgbmV0ZGV2LCBkZXZpY2V0cmVlKS4KCgpC
+ZXN0IHJlZ2FyZHMsCk1hcnRpbgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0
+cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbGludXgtYW1sb2dpYwo=
