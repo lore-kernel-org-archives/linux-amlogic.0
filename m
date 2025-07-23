@@ -4,77 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C18D7C83F17
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jul 2025 16:32:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95F99C83F1A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jul 2025 16:37:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BuGu56vxQtejmXTUCYM3qEyiyDk1/GVXybht4Hd8UgA=; b=fsEu6r2NveAFSY
-	8PX3sAOTInupP8jr/9QEV7ATg9nObtUdfAWzqxBHhfTXVKGnHBAwt4wRUSuZlkRBtfnzvAViqCLGX
-	dcLO5lLbrnZTpmbzijNAODKjXs8RMFLwbYqoTT02eSowFEm9MPeJeJqNG4NPQHiTAWR7DZnSBoXfE
-	KwI0M6VkQ6uJ+KBi+kA5j+UpwjWILq5UuZRwY+LQHHNVpB5b6Xq4dUUuw3o/PVebyDmjqP2uub2tR
-	Tpc/n00LQfXqfa5L1TU9h+ciYgp1RRcKXmjThYXzvoFWNvJv2MOhf5CIHoz/Md7vCZkGitNXiUziC
-	KWAKlR2WASJ+202g9Hzg==;
+	List-Owner; bh=4uNMPZ3FH3Pk5cB6x5nIdN836s0E5okwSwYMue4CGFE=; b=V/tqkhNUgFPn4W
+	hIIBgcMkdz8tfaFVVFuNgQHVxuSxpThARp6ntJkLFAdgFqG+XpTEGrebBkvKmiVCbQldaIf3DZ2jO
+	gpzuAzBoFVvAArb5r+5Q9YIgueBeyCfAdhdDwsnvsku4mUM8x0HCUTAf5sh6PI86exscmQ3dWaGeb
+	MN8Zw9MbfhIjhrrAE74rEkUf0YvSq+V6lAvp8zJjzGm3sXJ6e0v0bWJXtTMwrA9LfBrETYshRC6MR
+	rofSiMRyDUsuiTEYlsQcMiwrQm0KtrpK1dcbilphaOC3uoGYCgbYroo53wBUpWSQEjys2nOshwKnM
+	w6DRU5IYP7H1idN8CCfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uecOT-00000005VRZ-14t8;
-	Wed, 23 Jul 2025 16:32:37 +0000
-Received: from mail-pg1-x52c.google.com ([2607:f8b0:4864:20::52c])
+	id 1uecSk-00000005Vn2-1vWN;
+	Wed, 23 Jul 2025 16:37:02 +0000
+Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uecM1-00000005VBP-0x9y;
-	Wed, 23 Jul 2025 16:30:06 +0000
-Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-b26f5f47ba1so129067a12.1;
-        Wed, 23 Jul 2025 09:30:05 -0700 (PDT)
+	id 1uecQI-00000005Vei-0qLk;
+	Wed, 23 Jul 2025 16:34:31 +0000
+Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-31e3d29b0ffso54480a91.0;
+        Wed, 23 Jul 2025 09:34:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753288204; x=1753893004; darn=lists.infradead.org;
+        d=gmail.com; s=20230601; t=1753288469; x=1753893269; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2oLVQ+wEF7L0i9K+mBIHWmF3qtu8o6QfrkYubSnBjN0=;
-        b=i1FDjT5CKzGiK9VlqxB9F6iR8vWFLT97xMaFjUJ3bb1UBEHK5BcMFt65XjMvNRHBFK
-         yOgWPn6ivSxRrIbGu+nDhoPJSWwtOWPf/ZrxIU5e6i4n23y6nKPtsX7xC4FXHBjbfMmj
-         hDT5cTE35MGhwNFnuA94JhQisSJ4nhj26xvn730reX3fIfkkml8kg6zZ0KAEFV5H/9kn
-         duX7UQuIh8Uc4a7zIzOgNNnH08HC8/fG+YGIkBQ5UZHakkxi+vyA6SGpSBJT8Pylscd2
-         47xFy52gosW6qQyjIWzcwRLYtjW8xk4Z2CsXl6gzcg9+wUjBOkM/WnXfxfOx5MKVGgMG
-         T5dw==
+        bh=E9Xd/U2z4tmfw6ztPMpuZGjzJCTGLEXhl3vszeoyDjk=;
+        b=mi3JrWV9zs3IzsgR+U+HIbHbn2SxfPeKHPSIQD+nSXhyOFeh/ZUes9e/KwhcaQqyp+
+         EJRXKP2LLnlCqJOoHGqmMgoyz7A+44EkcqErIJZAKV+s9uaFZlTcMx+vaBkCi8XhH1Uv
+         CE9mwTfTaoXVW0mFVCGinefIcYcK/CgrCcE8+Ui/+UVP/eL9GKYxCggA0u7T6+GFBYgw
+         jLtSUsMQinTQtAciN0D9iDKzz8ii5k2wyUtUg6cUCgUJRwIfHY8fp0mKPcltPY5rYruM
+         uf0jr0yRml5exv8kaVLqc2zt1skMray2UBlXGBnAkWodBAhiTqgNBeLfdelhxYLvQWV4
+         FQOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753288204; x=1753893004;
+        d=1e100.net; s=20230601; t=1753288469; x=1753893269;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2oLVQ+wEF7L0i9K+mBIHWmF3qtu8o6QfrkYubSnBjN0=;
-        b=ZC/4MtHQ80UEal4Une3IXbZlBjFwXvuKTcvVVL/mytmYeNMQ3h19bhWDGPMkILXdWk
-         y74b+mOcO27+4XPEL0Qy8j8Csg0+JeEJNQ+RxUxz9xmNIkrb/CSFT92a9JvoWC9MOsjM
-         MjCfvRvPu1JBLH5aa0rtsqItkQXpJPtfulsXxGDfzulFcZFiWBXHSuy62sRxbq/S6hIa
-         OarLGuuGi2Y8CBJkxZyCA/4BIHVPdUoh/7Lm2ACc2fH9S2EJDt6+4uRC1PBg0ymLVKkP
-         HDhrKCOvDjS4hx42Bdurf8gBuo2Ef0AFDm0E3CdYBrNOIJi6aD25JGwXmqWUQgK4S6hg
-         ehZg==
-X-Forwarded-Encrypted: i=1; AJvYcCVOTbgVo67Xa23HtSSqP6MRHtsRrywqMiuHZwm1KzqSIvHQY/zZh+nqnlBWobxLRrWvvvKWt9nVoDbRy8sbDQlVzg==@lists.infradead.org, AJvYcCVbfc7rVB4kMDMtsM/RD1okfxDAKuJz14JEqwSpvYd5IUL71ABGw/FTUc76pbBxLTgP4CzKxU1YRAwJHhXq@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz2PFEhSj9+y1wPyWsUyq9EUQpqgfZd4NuXgPtJWvk91NQ6RmjX
-	6ym2hIntrScLCMZbQ8XzNJ1CHKRKBJbD6y5KvmeYol++58JSpGVStIUvUAMZ+R+GnWY=
-X-Gm-Gg: ASbGnctd/FNerYcgWtcbeBCgNuPTQsiPXfuT3uPmgLN9o4/r4j/KrS7z7QqKyyXDlvb
-	61HsQqzIR9uJ7HTM9siP1BSkM/kvKcBssiCv8v056NIGe4PYuKYsN4NPaXu2pjtM0Gja/XMyhL0
-	9t5A5r2cpKmmh15BvwEB9fxHPPUGh+x0N1wKJTYls6x6c9M6cTMXuufIJj0h4hz1sBQTWcfkVHr
-	qi1byoLYaxftncdVPJEvwVBucuV+OAFY83XmFhSgRBTPKZ6FZ6tXlnaSIBv5+rR+pslyHZSD0rf
-	Zu15Y02zbi82kppl2ovIMxjaudVN2w4scgyU6bFOHqeBK9KcumD1rc5/PqAoJXKBL2na84kiV8f
-	WY6CPhWD+GhK7ExSoKW9uO2dhbItUJHLx7amGojU=
-X-Google-Smtp-Source: AGHT+IE8R/cLesETtxNTKi6GADIN03ysXQ0xFDkmBNduvgzLi3IKVKIBX5o6E4+QQ7bIBNKgOSkiiw==
-X-Received: by 2002:a17:90b:3f8d:b0:311:e8cc:424c with SMTP id 98e67ed59e1d1-31e507cdcebmr5060289a91.25.1753288204285;
-        Wed, 23 Jul 2025 09:30:04 -0700 (PDT)
+        bh=E9Xd/U2z4tmfw6ztPMpuZGjzJCTGLEXhl3vszeoyDjk=;
+        b=NGlXs3agS+6qonBXKr38y0Ni6LBthI9sx5xXFouk5Njyg9pN/uJJ3gv1loRdQTTKB0
+         M+C4kK5XYiliUFNB7wA90C+SuIrsmfpCKnTFIkRv5H/Y9YTNw0EuSsCEYW6DyIFMOcrA
+         tQ1kRe1Qd+Fj2UmnpoqdLw1IuZu8WTb6sZZ+NrikxsWLbN5x4OVSwtpbsTTfyjsqxBJW
+         GdimfE0h4ERUaYAdEdBG9RmO+4N5rQhKPGPGIIfvQgxLoVcRVJZNm7RNEk7bj1692e5j
+         wPqIyWJ2Z36X6yVeQfuWyyOOoLsBNI7Mxm+Q1DrZ+lib56ese597rvxNJkwwUkxZv4Tg
+         HRdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWEr1ft94yl50R2MoMoR2oQCEyOxZPy4mSonujddvWO2Z/lMj34YK9xswxE0DhqkqO9fUUgF5BklQIeEaKH@lists.infradead.org, AJvYcCWVVHf76FkZJbYbGM0dDzxTjye1QcuapC85eh2zPoCjZo1JAIbSB2GvqgL6hJxieelUH7imzv2kaTPvY3H5FHMDew==@lists.infradead.org
+X-Gm-Message-State: AOJu0YxAPu3QNehAnJx59iDQnkprPcUK1anHj5zkwqmqwqYCfC5wpCSg
+	O1I764OdVbEZKSGIBmVx97xDjgNFOJt28Pk6DhaVogZT6y8UPJFYktkA
+X-Gm-Gg: ASbGncsUBNw9fjjH2xjnuoRnM8r8Usq11wVJ3GQ/p8u2atbY0gQRQGw9SNrAW82noYM
+	gLc3afDo+aKt7slErG1WqFBziYgS/ZGC7uRQL0KK1bHMm472o/I8v6zJdG4IcUJuxxEGLmq3ZKz
+	E/ndhZwZ+V+fvj0YNZO6dpDTFkXIUcI7AAevK+WP3JcZ7rSXCHnWlZe2t3wVVUyBpWMmSh6RNTj
+	nq5Stn5XfC5JF8p5AP8615JTLS9oruf7yJJX8PgpNz6GcVQpCzQoOV9WfYqP2zl7uqP7MNA8/Rj
+	fhIpo1JbEFODiLMAt4+lh4B785ph03FC5gWX4WK8EEshiyWqG1qdLA6WdgsuZvsOQ8QiGq24QpI
+	m+WPo56KbjV/ebMI5o4vTvWZKGwdMZu0No5Et3+hX5uiSIX8P/w==
+X-Google-Smtp-Source: AGHT+IHk3A6YXkSfq5EiTOgSQfJLMSFz6qiFQuW3inOO+ZCDhCMcwUobbP9gZ2q3IPF2326ki+C4wQ==
+X-Received: by 2002:a17:90b:2b86:b0:311:e605:f60e with SMTP id 98e67ed59e1d1-31e507c19f9mr5756344a91.20.1753288469351;
+        Wed, 23 Jul 2025 09:34:29 -0700 (PDT)
 Received: from [192.168.1.143] ([49.207.192.227])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31e519b11d1sm2037415a91.5.2025.07.23.09.29.56
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31e519ce288sm2047652a91.6.2025.07.23.09.34.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Jul 2025 09:30:03 -0700 (PDT)
-Message-ID: <8e5e1d09-0706-42b3-8ae1-00a0e2f5139a@gmail.com>
-Date: Wed, 23 Jul 2025 21:59:53 +0530
+        Wed, 23 Jul 2025 09:34:29 -0700 (PDT)
+Message-ID: <169f4fd7-7ea6-4764-aaca-c08cafb36762@gmail.com>
+Date: Wed, 23 Jul 2025 22:04:19 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML
  docs
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-iio@vger.kernel.org, netdev@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
@@ -82,15 +82,17 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
  edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
 References: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
- <CAFBinCCmsw=XGPtrk1XbphOu=OwhxmAiZ+2h4x_M-_f64Vo-7A@mail.gmail.com>
+ <20250723-foamy-glaring-tench-561fe2@kuoka>
 Content-Language: en-US
 From: Sanjay Suthar <sanjaysuthar661996@gmail.com>
-In-Reply-To: <CAFBinCCmsw=XGPtrk1XbphOu=OwhxmAiZ+2h4x_M-_f64Vo-7A@mail.gmail.com>
+In-Reply-To: <20250723-foamy-glaring-tench-561fe2@kuoka>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250723_093005_268246_3F6ECD40 
-X-CRM114-Status: GOOD (  13.05  )
+X-CRM114-CacheID: sfid-20250723_093430_244020_B52A84A2 
+X-CRM114-Status: UNSURE (   5.74  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,29 +104,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjMvMDcvMjUgMDE6MDgsIE1hcnRpbiBCbHVtZW5zdGluZ2wgd3JvdGU6Cgo+IE9uIFR1ZSwg
-SnVsIDIyLCAyMDI1IGF0IDc6MDbigK9QTSBTYW5qYXkgU3V0aGFyCj4gPHNhbmpheXN1dGhhcjY2
-MTk5NkBnbWFpbC5jb20+IHdyb3RlOgo+PiBGaXggbWlub3IgZ3JhbW1hdGljYWwgaXNzdWVzIGJ5
-IHJlbW92aW5nIGR1cGxpY2F0ZWQgImlzIiBpbiB0d28gZGV2aWNldHJlZQo+PiBiaW5kaW5nIGRv
-Y3VtZW50czoKPj4KPj4gLSBuZXQvYW1sb2dpYyxtZXNvbi1kd21hYy55YW1sCj4+IC0gaWlvL2Rh
-Yy90aSxkYWM3NjEyLnlhbWwKPj4KPj4gU2lnbmVkLW9mZi1ieTogU2FuamF5IFN1dGhhciA8c2Fu
-amF5c3V0aGFyNjYxOTk2QGdtYWlsLmNvbT4KPiBSZXZpZXdlZC1ieTogTWFydGluIEJsdW1lbnN0
-aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVtYWlsLmNvbT4KPgo+IFRoYW5rIHlvdSBm
-b3Igc3BvdHRpbmcgYW5kIGZpeGluZyB0aGlzIQo+Cj4gVG8gbXkga25vd2xlZGdlIG5vYm9keSBl
-bHNlIGlzIGN1cnJlbnRseSB3b3JraW5nIG9uIGFtbG9naWMsbWVzb24tZHdtYWMgY2hhbmdlcy4K
-PiBNZWFuaW5nOiB3aXRoIGFuIEFDSyBmcm9tIHRoZSBuZXRkZXYgb3IgaWlvIG1haW50YWluZXJz
-IHRoaXMgcGF0Y2ggY2FuCj4gZ28gdGhyb3VnaCBhbnkgdHJlZSAoaWlvLCBuZXRkZXYsIGRldmlj
-ZXRyZWUpLgo+Cj4KPiBCZXN0IHJlZ2FyZHMsCj4gTWFydGluCgpUaGFua3MgZm9yIHJldmlld2lu
-ZyB0aGUgcGF0Y2guIFNvIHlvdSBtZW50aW9uZWQsIG5vdyB0aGUgcGF0Y2ggY2FuIGdvIAp0aHJv
-dWdoIGFueSBvZiBhYm92ZSBtZW50aW9uZWQgdHJlZSwgSXMgdGhlcmUgYW55IEFjdGlvbiBpdGVt
-IGxlZnQgb24gbXkgCmVuZCByZWxhdGVkIHRvIHRoaXMgcGF0Y2g/IEFsc28gd2lsbCBJIGJlIG5v
-dGlmaWVkIGFib3V0IHdoZW4gdGhlIHBhdGNoIAp3aWxsIGJlIGFwcHJvdmVkIGFuZCBtZXJnZWQg
-YnkgdGhlIHJlc3BlY3RpdmUgb3duZXI/CgpCZXN0IHJlZ2FyZHMsCgpTYW5qYXkgU3V0aGFyCgoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
-b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
-Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On 23/07/25 13:12, Krzysztof Kozlowski wrote:
+
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Best regards,
+>> Krzysztof
+
+Thanks for the review and suggestion throughout the patch review 
+process. Let me know if any action item needed from my end related to 
+this patch. Best Regards, Sanjay Suthar
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
