@@ -4,72 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5B10C83F17
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jul 2025 05:08:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 275A8C83F34
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jul 2025 07:48:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=g14i692jCXbvYD9PjSb9FhScQCb5YiTLqIPFFsHGGGo=; b=msPx5JfTg3pX0u
-	veaiYOJjxIOEi98f74dLIP67O9Rgb+wAW+JGgRzR1dNP4RTdhJq6WPip14Qw0g6+sXyp5Wmt6Geh0
-	M8/ikBG8/6lMkr3l2M6YzL9W0rBe6fqBLuRsU3yWphsSZfABIRiTuOvJxks+T/xJRxVXlw6kvbrXd
-	b6rzRTc23hCJ9ZVSoisMHjPUBqMwDw0RnDRiuDagqgj2A/MHMBpGxWRB3rpi++ImAn5kHq8po+9XQ
-	K2075WssezJapHaoP0xXfhktz/O4es7Y0fLr07hWi9BSr7B8VmT/KNflbByveHH0YRLV9Q6d7sl0t
-	sVpiFLnsqlobC7kOKQIQ==;
+	List-Owner; bh=S/zfLRhOjkSy/D+0Uskm3FpJSxfK+uGnlX74Y8ysQXc=; b=IiBWmv1MSflQpu
+	tEW95TG1YTHEntCa5ZH/pJCWEtZJ6upOOYmHSC1U5vB7Gsr+jl33YTjYRwAqvmmneVKpTW/ApiFsQ
+	Zm2c3lKY2cYxTLEL3kb2/mFtGeJVp6zZShHdwlDpfkS98tc8TNsr0X1CXoZL5qe7HFu721c2LO6JH
+	8iPP7h4up+IweOY3bI6Yanmw91+VcQkoMxC9ZPTdAi7kWIoskstR+V0gAliuNSkzn3rgtPzVn0d6s
+	Fs37CV6CQkfiG2xziCqqSsINLbMaYzZ336pC284nHojJl5KgEdC8Nc5fyXbr4jw4BzrppmTdDHcQY
+	Fe6HGQT4Hu20iypuDtrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ueRic-000000042Cc-1NsR;
-	Wed, 23 Jul 2025 05:08:42 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1ueUDX-00000004HsM-3Db1;
+	Wed, 23 Jul 2025 07:48:47 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ueRdr-000000041w7-1PCG;
-	Wed, 23 Jul 2025 05:03:48 +0000
+	id 1ueU7H-00000004Gjh-3s8q;
+	Wed, 23 Jul 2025 07:42:19 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 75495461FE;
-	Wed, 23 Jul 2025 05:03:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3714AC4CEE7;
-	Wed, 23 Jul 2025 05:03:46 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 072EB6691D;
+	Wed, 23 Jul 2025 07:42:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25A78C4CEE7;
+	Wed, 23 Jul 2025 07:42:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753247026;
-	bh=HNdcDInfR5691ALsx7YFA6KQ881CsZllB61Hu6dp+sc=;
+	s=k20201202; t=1753256538;
+	bh=fYh2NB4GUoqzaRVlaz/dvGLqiathfR8O8zqZOjCaDRo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T1eJpYtP362i6QpQB+Gyr3nVNU4ib/ncXo5a8bynYbCbVde1E4PIfSG1viBeQFXri
-	 rZLxYRWbemEoP9mMxnTuF8rtwfg06RtoWNz8PEsbqTHnts0Wd/mVt6y819T/xD6RuL
-	 mOFHzLVYKVP+pxhxcOYL4QotHxlwjOfbPo/CG7bHZ3R9w/FM9zzx8hvkrN+lR0uFOy
-	 8nlygR5DDHvtsEJREgk2Y0HvV+R97GxJwshMLUEnM+VMnSchUU/mvhERqjU8tbRDM3
-	 Tsen+b8Ztg/WXn7szBtQsSckYKxW5tObFakUNVKOcgxh8F21AF5wjxGYwH4C9rZreM
-	 w64dgibb0Ew6w==
-Date: Wed, 23 Jul 2025 00:03:45 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Liming Xue <liming.xue@amlogic.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Guillaume La Roque <glaroque@baylibre.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Lukasz Luba <lukasz.luba@arm.com>, Zhang Rui <rui.zhang@intel.com>,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: thermal: amlogic: Add compatible
- string for C3
-Message-ID: <175324702489.1243031.2642099886679126022.robh@kernel.org>
-References: <20250722-c3-thermal-v2-0-b2231b4be79e@amlogic.com>
- <20250722-c3-thermal-v2-1-b2231b4be79e@amlogic.com>
+	b=dUW962WOw9nxieE72WyF/Yus+q+umq2odPt2oyw0iM1A7fwa09VWCK+HgAINsLxfm
+	 4YyFn6tk1wLrFdpYoTtfFn6rGQ+/f2RslTqft+ne0kRbuPLyO0Uy2f8phKammS3vnA
+	 KkmlRCluerSgbYsDUjnOfYyOo0kXEcb8RmxffmqO/FCKPKIJMrKVGbHR92AGtRGDRf
+	 L65KJkOXNIqEVcH8tB9/2VSIwZ65prnYCxwtbJw8W5n0RERvyIHCXw9sHKse/xjhTN
+	 8Uhw9gYdJuATIypdsx1w+TY0YgFzGgmHBrcC/UrIbSZD9eT5LIPcC+HHpzmIx4n4Zl
+	 3iK/XMnPmBKrA==
+Date: Wed, 23 Jul 2025 09:42:16 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sanjay Suthar <sanjaysuthar661996@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, ribalda@kernel.org, jic23@kernel.org, dlechner@baylibre.com, 
+	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, neil.armstrong@linaro.org, 
+	khilman@baylibre.com, jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
+Subject: Re: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML
+ docs
+Message-ID: <20250723-foamy-glaring-tench-561fe2@kuoka>
+References: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250722-c3-thermal-v2-1-b2231b4be79e@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250722_220347_394816_680E6D71 
-X-CRM114-Status: UNSURE (   9.08  )
-X-CRM114-Notice: Please train this message.
+In-Reply-To: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,20 +74,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Tue, 22 Jul 2025 19:26:27 +0800, Xianwei Zhao wrote:
-> Add the compatible properties for Amlogic C3 SoC family.
-> C3 family supports only one thermal node - CPU thermal
-> sensor.
+On Tue, Jul 22, 2025 at 10:35:13PM +0530, Sanjay Suthar wrote:
+> Fix minor grammatical issues by removing duplicated "is" in two devicetree
+> binding documents:
 > 
-> Signed-off-by: Liming Xue <liming.xue@amlogic.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> - net/amlogic,meson-dwmac.yaml
+> - iio/dac/ti,dac7612.yaml
+> 
+> Signed-off-by: Sanjay Suthar <sanjaysuthar661996@gmail.com>
 > ---
->  Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+> Changes since V2:
+> - Corrected the subject line
+> - link to v2 : https://lore.kernel.org/linux-iio/20250720182627.39384-1-sanjaysuthar661996@gmail.com/T/#u
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
 _______________________________________________
