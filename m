@@ -4,52 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B70B3C87FC5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jul 2025 09:02:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E952C83F26
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jul 2025 13:52:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=crkB/OHGNlAZ5oVlAiNB8eMs8sEGH3bSKi8UpVUwF20=; b=Ce22QDCKOBbIR8
-	8CkES+LR2piOQ7VR83915pWu/gSeK/ChFtZ9Bpm04Mg7jdLpvAbjVpXoFD+QHVeL88XAgQxkSEOAL
-	KjMUWBSN1SAMgHBcx915ggKfdujMN66XDnCoaIU7GNB1bDx/UBUeNewYzIDqGt7Gim/6UFKhMdY1l
-	/2nu48nPPEDDVLeXlItzUCJgoRTpOXVgV8wp3yQTGVbqke2XO55IsyW5Nisuh54VgKBtQi0HxrjgT
-	Vtm7sf8TZeASChK9fI1hxWz7GdY/KHUZWC+Y9tL8xM/2sABbMFDoDSjJBMbPT+VWSQyW4AjLwPdaC
-	zsXvei1XxJGta3xAE09g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=r6cJkoKzw8yY0Mu3sR1YXFC6GxFhnZAInwrUobwCeJM=; b=O4aSIQpvYRUGcS
+	afW9TvZlkbpttGi9KNlg/7WunP90BK5wSy9XSiTdUkevPY4Qfd7Zop2fJyC1Equmwto72caNiHu1X
+	de/KhkE4Q9NjyinkopzeFeCqsn10JAYTROkLAzpakNQIQw9KlOODdYmVAqhqyh7Ee0x2Sy3oPlMpN
+	NGiQHsPhisNJim+J2F9DszI3YAg66B/xmg0REzQSaVudRtbI/WGqGkTX9nDVwJDEvvUb37MXuNnVI
+	uy7UewzC7ex354rP5Kj9sagBie1LR5MQzr6bJgwu5haDwLs8vc1Uyf4s6RNi+CHGSKeEpqMYi4/xo
+	gnK1uQUEDBx1KgoBNeWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uerqk-00000006yc5-1JfJ;
-	Thu, 24 Jul 2025 09:02:50 +0000
-Received: from mail.fintara.pl ([51.68.214.200])
+	id 1uewMz-00000007Yxu-2GlK;
+	Thu, 24 Jul 2025 13:52:25 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uer30-00000006oRs-3tuI
-	for linux-amlogic@lists.infradead.org;
-	Thu, 24 Jul 2025 08:11:28 +0000
-Received: by mail.fintara.pl (Postfix, from userid 1002)
-	id B3E364E6C1; Thu, 24 Jul 2025 10:11:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fintara.pl; s=mail;
-	t=1753344682; bh=0Yjr6NsrKkaYb/LNYm1mPKHuxqkR0iWhkNkzH9QSzrg=;
-	h=Date:From:To:Subject:From;
-	b=hvhyxNAOnYGEnxHEagPRTLE3RulZ70VNVfqae0IN8126jIXIsMp1mAZamEyKsVnwp
-	 GY24/S31cBiw5tfwxMPg8h/BC7dEOSS6horLcDlxfdW2tdEaLg0HC4vHijWaAYUJWI
-	 ti4NsmOmSeMY/mduqMacCvK/R+NdMqCT6tTT0sG2oVfqtoPTXBuii5aNRf8TbdDOaZ
-	 hN17soRO/gvXnZflNP7JtWWfam/2PaQmQYUk++DpOOR7F8/WzjTNowibNUmHDrjdsA
-	 68v7jFRcZeZEL41uQqqe87Z7bs7Pe56EPWKpBEfCfMCEUJMLAFDleSOv9IdkTNoU3Y
-	 0LIKqWlPNCEIw==
-Received: by mail.fintara.pl for <linux-amlogic@lists.infradead.org>; Thu, 24 Jul 2025 08:10:58 GMT
-Message-ID: <20250724084500-0.1.av.2xslr.0.zzes52o2hm@fintara.pl>
-Date: Thu, 24 Jul 2025 08:10:58 GMT
-From: "Dominik Lotka" <dominik.lotka@fintara.pl>
-To: <linux-amlogic@lists.infradead.org>
-Subject: =?UTF-8?Q?Prosz=C4=99_o_kontakt?=
-X-Mailer: mail.fintara.pl
+	id 1ueswe-00000007Azc-2BGN;
+	Thu, 24 Jul 2025 10:13:00 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8281A61126;
+	Thu, 24 Jul 2025 10:12:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C04C4CEF4;
+	Thu, 24 Jul 2025 10:12:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753351979;
+	bh=MKTJsXoh0ovoIVsPRZJbybf8oVQe3fF6tNG1svHyD9Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=F+KOmwgg+z7e6KttvqwjToMUUNQKbMcch6Kaqh7mZiJe+e9MtjQqK0QFMCc/r6Sja
+	 p+D1xm97+/1DEirZQdiS8y+/KFaz8D6qlqH/lfgk8mS6gp58TEMqhj6XVq6SYaXY5J
+	 zQuYjzsOKaKulq2ezVsbW2oiw0HNwtpngA5XWMEv7MyE5aSpR/zbmzYjpcXTHEcitb
+	 TfjwB0SaDiSzB8/wFtEMf3vnCWpMBWKbirWtqS8e6MvX9yNTXf0K3in3uJsMhAoGaZ
+	 Tmo1DaoDs2g06Y13IpqoEM1crzlFMx2a8w1h76uWBwcDwvJC1BSwoH7wUiLJemnoiU
+	 GobqWa0flpRbQ==
+Date: Thu, 24 Jul 2025 11:12:47 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Sanjay Suthar <sanjaysuthar661996@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ ribalda@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, neil.armstrong@linaro.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Subject: Re: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML
+ docs
+Message-ID: <20250724111247.669d6955@jic23-huawei>
+In-Reply-To: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+References: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250724_011127_219505_867AADEC 
-X-CRM114-Status: UNSURE (   0.05  )
-X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,16 +71,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RHppZcWEIGRvYnJ5LAoKQ3p5IGplc3QgbW/FvGxpd2/Fm8SHIG5hd2nEhXphbmlhIHdzcMOzxYJw
-cmFjeSB6IFBhxYRzdHdlbT8KClogY2jEmWNpxIUgcG9yb3ptYXdpYW0geiBvc29ixIUgemFqbXVq
-xIVjxIUgc2nEmSBkemlhxYJhbmlhbWkgendpxIV6YW55bWkgemUgc3ByemVkYcW8xIUuCgpQb21h
-Z2FteSBza3V0ZWN6bmllIHBvenlza2l3YcSHIG5vd3ljaCBrbGllbnTDs3cuCgpaYXByYXN6YW0g
-ZG8ga29udGFrdHUuCgoKUG96ZHJhd2lhbQpEb21pbmlrIExvdGthCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
-dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Tue, 22 Jul 2025 22:35:13 +0530
+Sanjay Suthar <sanjaysuthar661996@gmail.com> wrote:
+
+> Fix minor grammatical issues by removing duplicated "is" in two devicetree
+> binding documents:
+> 
+> - net/amlogic,meson-dwmac.yaml
+> - iio/dac/ti,dac7612.yaml
+> 
+> Signed-off-by: Sanjay Suthar <sanjaysuthar661996@gmail.com>
+
+I'd have no problem with the argument that this can go through either
+tree if there was any interaction between the files or the changes, but
+here there isn't. This is just causing potential mess if either tree ends
+up with other changes overlapping this for no benefit.  Please split into
+two patches, one for each subsystem.  You should be fine to keep the
+various tags given here for the new patches.
+
+Jonathan
+
+
+> ---
+> Changes since V2:
+> - Corrected the subject line
+> - link to v2 : https://lore.kernel.org/linux-iio/20250720182627.39384-1-sanjaysuthar661996@gmail.com/T/#u
+> 
+>  Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml      | 2 +-
+>  Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
+> index 20dd1370660d..624c640be4c8 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
+> @@ -9,7 +9,7 @@ title: Texas Instruments DAC7612 family of DACs
+>  description:
+>    The DAC7612 is a dual, 12-bit digital-to-analog converter (DAC) with
+>    guaranteed 12-bit monotonicity performance over the industrial temperature
+> -  range. Is is programmable through an SPI interface.
+> +  range. It is programmable through an SPI interface.
+>  
+>  maintainers:
+>    - Ricardo Ribalda Delgado <ricardo@ribalda.com>
+> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> index 0cd78d71768c..5c91716d1f21 100644
+> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> @@ -149,7 +149,7 @@ properties:
+>        - description:
+>            The first register range should be the one of the DWMAC controller
+>        - description:
+> -          The second range is is for the Amlogic specific configuration
+> +          The second range is for the Amlogic specific configuration
+>            (for example the PRG_ETHERNET register range on Meson8b and newer)
+>  
+>    interrupts:
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
