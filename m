@@ -4,64 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 617DEC83F1A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jul 2025 00:07:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B70B3C87FC5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jul 2025 09:02:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ocre7ykl46g+JnUKYKV1TMxJZ1u6PWctd4jraR6AqBE=; b=UjHZ3kvwiqsbo3
-	NJ6QchYaOb5h8meazc7BlXAxr7lOQ07uSmT9KoWIh9xtHjiYry5EI3XDf8NO3DQF0cPnP5wrIC3px
-	QpGghzz9/sBXOLlQmbt4gAQ111CDBzuyysR0afK1EZXCIvtQukO+IdAFANiagJTBBeE8Cbr2eZjov
-	IopBwvsk8Kw03juE4Nn9XY1Yqb1zjl6AXxCVXgGLMTTKtNam2+oJ066ljMcRWlKROAb9Lifvv37SP
-	ht78rMPgw9A8DXAymbXIMzFcYBsb86nagLVZBLMWExCoiwAK168RvvioWrsjsSuZZK/nKqobzi77Y
-	Mpa8WuX5SmYOVOenDUyw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=crkB/OHGNlAZ5oVlAiNB8eMs8sEGH3bSKi8UpVUwF20=; b=Ce22QDCKOBbIR8
+	8CkES+LR2piOQ7VR83915pWu/gSeK/ChFtZ9Bpm04Mg7jdLpvAbjVpXoFD+QHVeL88XAgQxkSEOAL
+	KjMUWBSN1SAMgHBcx915ggKfdujMN66XDnCoaIU7GNB1bDx/UBUeNewYzIDqGt7Gim/6UFKhMdY1l
+	/2nu48nPPEDDVLeXlItzUCJgoRTpOXVgV8wp3yQTGVbqke2XO55IsyW5Nisuh54VgKBtQi0HxrjgT
+	Vtm7sf8TZeASChK9fI1hxWz7GdY/KHUZWC+Y9tL8xM/2sABbMFDoDSjJBMbPT+VWSQyW4AjLwPdaC
+	zsXvei1XxJGta3xAE09g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uejUv-00000006Cy6-1wpf;
-	Thu, 24 Jul 2025 00:07:45 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1uerqk-00000006yc5-1JfJ;
+	Thu, 24 Jul 2025 09:02:50 +0000
+Received: from mail.fintara.pl ([51.68.214.200])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uejAF-00000006AtZ-3IF6;
-	Wed, 23 Jul 2025 23:46:24 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 429B24585B;
-	Wed, 23 Jul 2025 23:46:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 525B2C4CEE7;
-	Wed, 23 Jul 2025 23:46:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753314381;
-	bh=L9TrYMjgYebm6KWIWcjYqtWR2XfIR95CuTK3iPlv5r4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=i1K9qzH7DG2h+g1yZsEjaOVZzigH1fChupHxonmAIx7JGqhCu+z87XlBnVEupXEt6
-	 KSqkbGRpnDxmrhXtnF1dcFlSHwR1cn5ToYnTcU2qtx8pk7v85TdPm10X605v4xe17R
-	 wpbUeQu7mCREt74xv0h5FygWr++g81Wpj85SOxBpjOmSJb251GcTyhRdonSQSdj3JI
-	 W7of1EJ+hb2S3xA6dWqjuH+45NyOpujnCTIPius9sxbeG/NSDlnyQztLfic65oghnN
-	 4TCL++mWSgE9usLvZUw6/KW0T9ZQpTwet84KvfyjPT3ptHhE9tlUoBWJTBc3AvBXUO
-	 fSVFmBk159VXw==
-Date: Wed, 23 Jul 2025 16:46:19 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Sanjay Suthar <sanjaysuthar661996@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- ribalda@kernel.org, jic23@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, pabeni@redhat.com, neil.armstrong@linaro.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com
-Subject: Re: [PATCH v3] dt-bindings: cleanup: fix duplicated 'is is' in YAML
- docs
-Message-ID: <20250723164619.303f1dcd@kernel.org>
-In-Reply-To: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
-References: <20250722170513.5854-1-sanjaysuthar661996@gmail.com>
+	id 1uer30-00000006oRs-3tuI
+	for linux-amlogic@lists.infradead.org;
+	Thu, 24 Jul 2025 08:11:28 +0000
+Received: by mail.fintara.pl (Postfix, from userid 1002)
+	id B3E364E6C1; Thu, 24 Jul 2025 10:11:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fintara.pl; s=mail;
+	t=1753344682; bh=0Yjr6NsrKkaYb/LNYm1mPKHuxqkR0iWhkNkzH9QSzrg=;
+	h=Date:From:To:Subject:From;
+	b=hvhyxNAOnYGEnxHEagPRTLE3RulZ70VNVfqae0IN8126jIXIsMp1mAZamEyKsVnwp
+	 GY24/S31cBiw5tfwxMPg8h/BC7dEOSS6horLcDlxfdW2tdEaLg0HC4vHijWaAYUJWI
+	 ti4NsmOmSeMY/mduqMacCvK/R+NdMqCT6tTT0sG2oVfqtoPTXBuii5aNRf8TbdDOaZ
+	 hN17soRO/gvXnZflNP7JtWWfam/2PaQmQYUk++DpOOR7F8/WzjTNowibNUmHDrjdsA
+	 68v7jFRcZeZEL41uQqqe87Z7bs7Pe56EPWKpBEfCfMCEUJMLAFDleSOv9IdkTNoU3Y
+	 0LIKqWlPNCEIw==
+Received: by mail.fintara.pl for <linux-amlogic@lists.infradead.org>; Thu, 24 Jul 2025 08:10:58 GMT
+Message-ID: <20250724084500-0.1.av.2xslr.0.zzes52o2hm@fintara.pl>
+Date: Thu, 24 Jul 2025 08:10:58 GMT
+From: "Dominik Lotka" <dominik.lotka@fintara.pl>
+To: <linux-amlogic@lists.infradead.org>
+Subject: =?UTF-8?Q?Prosz=C4=99_o_kontakt?=
+X-Mailer: mail.fintara.pl
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250723_164623_854732_8715AECD 
-X-CRM114-Status: UNSURE (   5.14  )
+X-CRM114-CacheID: sfid-20250724_011127_219505_867AADEC 
+X-CRM114-Status: UNSURE (   0.05  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,17 +61,16 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 22 Jul 2025 22:35:13 +0530 Sanjay Suthar wrote:
-> - net/amlogic,meson-dwmac.yaml
-
-Acked-by: Jakub Kicinski <kuba@kernel.org>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RHppZcWEIGRvYnJ5LAoKQ3p5IGplc3QgbW/FvGxpd2/Fm8SHIG5hd2nEhXphbmlhIHdzcMOzxYJw
+cmFjeSB6IFBhxYRzdHdlbT8KClogY2jEmWNpxIUgcG9yb3ptYXdpYW0geiBvc29ixIUgemFqbXVq
+xIVjxIUgc2nEmSBkemlhxYJhbmlhbWkgendpxIV6YW55bWkgemUgc3ByemVkYcW8xIUuCgpQb21h
+Z2FteSBza3V0ZWN6bmllIHBvenlza2l3YcSHIG5vd3ljaCBrbGllbnTDs3cuCgpaYXByYXN6YW0g
+ZG8ga29udGFrdHUuCgoKUG96ZHJhd2lhbQpEb21pbmlrIExvdGthCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
+dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
+ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
