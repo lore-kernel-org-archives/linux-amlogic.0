@@ -4,101 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71DA9C87FD1
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9809C87FCB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Q4b0lTcDtOejZKx+BzPAEE3AoxcbntYAhm3NKy3qSWs=; b=e6UgHYf0zwYhKa
-	ln0DyE/n36hb8RyEI9RkS0EEgLCW/s8FqeJU8rQWDEmX+ef4yWWUur+No3L60hxzyZG4l8hwV3CHT
-	BDrJhVZmmD4zgdkMGoBLMCbpv3imAcrIdx7NTgWv1myrkvsgF/8lpg/I6hbuyljFbmHg6GQh/h0nJ
-	urAWt5YoKUgxun1e7lUaNTakyiHvfxT0oMJ0rTA382d1tFBMZc6zTlvCQYqo6QhoP/FnebpzZJGzE
-	Jz39XqJJ7+6899Xa9w1JWwLJsQTbusSuraSsS6+UEhir1qVMH1Ir66Zln/TlJL1Yz3M9cHdRDDSXa
-	fDExOc2qqrA0ymrTpwCQ==;
+	List-Owner; bh=RndlhGwg7x3dbhxgt/0TH2qLnVxIofCg+m1JarEljtk=; b=alC+dUhVODL6dA
+	gTYIZwLS4gEQXQLX+RHQ1gWfRsDBSjy04FpeYqLCfUGya0LRUx2KjAzHh3Zd6lTQua7pk3GVPOwRO
+	7mCZ6pzlKZYO/dVVKtW08k/ZKyNzHL+fzjlz8OVSxjQG/pEbZjlkpjXLqNdKGa09yneCI2/urnDJ0
+	1n/B7QkLmMxbtiJmk4pydZaVBtPhR47YEpzFfzV2FHR9wu0AQrUNxu8CEEzxcY5on1XFkG7vApqB6
+	p7uaIdpyQuVYTuMG1fdXzE2zpCpZw0s7VoRwc8+JeTtxZg664pVBfPQ3yHmRQEl5PqNvYxx1clrjV
+	PuOA6lYlBLN/8poWgzCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXx-0000000AvMn-1HPQ;
-	Mon, 04 Aug 2025 15:56:21 +0000
-Received: from flow-a5-smtp.messagingengine.com ([103.168.172.140])
+	id 1uixXu-0000000AvHP-1oHW;
+	Mon, 04 Aug 2025 15:56:18 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uiCGG-00000007e1R-21Yr;
-	Sat, 02 Aug 2025 13:26:58 +0000
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailflow.phl.internal (Postfix) with ESMTP id A87BC1380608;
-	Sat,  2 Aug 2025 09:26:52 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-04.internal (MEProxy); Sat, 02 Aug 2025 09:26:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1754141212;
-	 x=1754148412; bh=bmI1hYqjksR+DRa8JSQk6MVH64W5+sLipA6UwCtocJY=; b=
-	qqNUWLHW5NkgMWC7l9Ppuzcw0TRZVKBalVrpuNL2tWkSX16V+CaL/WD3GPRevH/3
-	cOaqYuZWVehBMlqwkuJTQ3+7ee7mvoCmm57l/9y3kSLOhYi/j9UZL0baYRp5JOQM
-	j4yp2XwkBPHkkHrQr9G2kPmFqob1bo+ge9yICVt/dsRrLU+xuJA6h9g8SW4qJPa0
-	AHQH8Vz64gEdgI7kQ+1DTmePAvNbJQJxnWkGkDSZF/paCkDAzfIwxTUg+JfaHIca
-	2uCTiijQTVgzLiuE6qwTC/es2iaY0ak3Q1yInsTplxnRcKjgCrvxpj+WvGFL/Gkm
-	HIx11r/lg4cei6lIenYP+g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1754141212; x=
-	1754148412; bh=bmI1hYqjksR+DRa8JSQk6MVH64W5+sLipA6UwCtocJY=; b=C
-	LzPCjtSlWjEpgC9nck7IIN+a6VWM2T9KzMBiWo4CFmbf/c8EsbwRuyBR6zo43jFD
-	hvyIbMP0zgOcLL+h4kub0bXZEqehHtgFY6sV9cwlFjffv+lGsEsKcJttU2+8fn3b
-	kRALXojkwbX6H2IOxV2soFJHVIcKk6LuRbHAbjPhMXvWGeT7KA2Mau0LJLy4HAji
-	lfgiUMmK9spCDs/oe1YGLozfqCHtXvx0XyirO7dloL77Fyd05IG6lp0ZwH1pUgeh
-	FNabC3mgBC+9qZ25Drxy58dz8xR3lKKGectSGWS0hTtARs2FRFJmAX2nfNB3fKxO
-	c360wFl1nKo7iNibIdOnQ==
-X-ME-Sender: <xms:FhKOaIqzIVCCzZqyPT8S-Kuyp75Ghz90bD-sNWC1Ynb1xWuDhB2fgA>
-    <xme:FhKOaAAM51hB_nYlCo1hgXLgPrXfAQsJTzEzSK29ONCez_BVzRWEnZ7YYfmVPVSd4
-    mYWvtLYdmS8g_-J1io>
-X-ME-Received: <xmr:FhKOaKNy3dovqvqjcZlMlmNulu_odOhDUh_OuI4TialffSqjpk1dXSXjcgxfsuv77hx6_icSG8wxq9Qphv3aDtPfT18v805RrQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddutdeiieelucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhklhgr
-    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrg
-    htvggthhdrshgvqeenucggtffrrghtthgvrhhnpeevteegtddvvdfhtdekgefhfeefheet
-    heekkeegfeejudeiudeuleegtdehkeekteenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhn
-    rghtvggthhdrshgvpdhnsggprhgtphhtthhopedutdehpdhmohguvgepshhmthhpohhuth
-    dprhgtphhtthhopehjrggtohhpohdrmhhonhguihesihguvggrshhonhgsohgrrhgurdgt
-    ohhmpdhrtghpthhtohepmhgthhgvhhgrsgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
-    epuggvvhgrrhhshhhtsehtihdrtghomhdprhgtphhtthhopegsphgrrhhrohhtsehtihdr
-    tghomhdprhgtphhtthhopehhvhgvrhhkuhhilheskhgvrhhnvghlrdhorhhgpdhrtghpth
-    htohepihhsvghlhiesphhosghogidrtghomhdprhgtphhtthhopehlrghurhgvnhhtrdhp
-    ihhntghhrghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtohephhgrnh
-    hsgheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrrhhthhhisggrnhdrvhgvvghr
-    rghsohhorhgrnhesmhhitghrohgthhhiphdrtghomh
-X-ME-Proxy: <xmx:FhKOaHAoXiF7NV692VGvUlBtEKV8Ppc7HpktTEwZStXxvUIyFnrhjw>
-    <xmx:FhKOaIXbJEGFB6MyMI6SEvkY_tAqtZmQdwpF1CyYAg0cU-whIhajXA>
-    <xmx:FhKOaOXdPk75wbqe7BRIpcNiWjQWCtbKZe7Hw0Dw9yRuHK1wn0wJ9A>
-    <xmx:FhKOaA4w1OKh4y5m73fZ4TocrIIXqTtdAsWzkrmS8EjZZidpBDEFUw>
-    <xmx:HBKOaGfprgDP-C4pCZ_BqeXWMGw4oENfGJWvHSy-BbRaGSp473jMOr6M>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 2 Aug 2025 09:26:45 -0400 (EDT)
-Date: Sat, 2 Aug 2025 15:26:43 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Devarsh Thakkar <devarsht@ti.com>, Benoit Parrot <bparrot@ti.com>, Hans Verkuil <hverkuil@kernel.org>, Mike Isely <isely@pobox.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Hans de Goede <hansg@kernel.org>, Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, Christian Gromm <christian.gromm@microchip.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Alex Shi <alexs@kernel.org>, Yanteng Si <si.yanteng@linux.dev>, Dongliang Mu <dzm91@hust.edu.cn>, Jonathan Corbet <corbet@lwn.net>, Tomasz Figa <tfiga@chromium.org>, Marek Szyprowski <m.szyprowski@samsung.com>, Andy Walls <awalls@md.metrocast.net>, Michael Tretter <m.tretter@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Bin Liu <bin.liu@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Dmitry Osipenko <digetx@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, Mirela Rabulea <mirela.rabulea@nxp.com>,	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Michal Simek <michal.simek@amd.com>, Ming Qian <ming.qian@nxp.com>, Zhou Peng <eagle.zhou@nxp.com>, Xavier Roumegue <xavier.roumegue@oss.nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>, Vikash Garodia <quic_vgarodia@quicinc.com>, Dikshita Agarwal <quic_dikshita@quicinc.com>, Abhinav Kumar <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Sylwester Nawrocki <sylvester.nawrocki@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,	Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>, Daniel Almeida <daniel.almeida@collabora.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Nas Chung <nas.chung@chipsnmedia.com>, Jackson Lee <jackson.lee@chipsnmedia.com>, Minghsiu Tsai <minghsiu.tsai@mediatek.com>, Houlong Wei <houlong.wei@mediatek.com>, Andrew-CT Chen <andrew-ct.chen@mediatek.com>, Tiffany Lin <tiffany.lin@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>, Jacob Chen <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Heiko Stuebner <heiko@sntech.de>, Detlev Casanova <detlev.casanova@collabora.com>, Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>, Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>, Jacek Anaszewski <jacek.anaszewski@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Fabien Dessenne <fabien.dessenne@foss.st.com>, Hugues Fruchet <hugues.fruchet@foss.st.com>, Jean-Christophe Trotin <jean-christophe.trotin@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, Steve Longerbeam <slongerbeam@gmail.com>, Maxime Ripard <mripard@kernel.org>, Paul Kocialkowski <paulk@sys-base.io>,	Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Corentin Labbe <clabbe@baylibre.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, Bingbu Cao <bingbu.cao@intel.com>,	Tianshu Qiu <tian.shu.qiu@intel.com>, Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev, linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,	linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org,	imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,	linux-arm-msm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,	linux-sunxi@lists.linux.dev,
- linux-usb@vger.kernel.org,	linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net
-Subject: Re: [PATCH 17/65] media: rcar-vin: Do not set file->private_data
-Message-ID: <20250802132643.GA1848717@ragnatech.se>
-References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
- <20250802-media-private-data-v1-17-eb140ddd6a9d@ideasonboard.com>
+	id 1ui8d2-00000007SQy-0UoT;
+	Sat, 02 Aug 2025 09:34:13 +0000
+Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 01DB643F7;
+	Sat,  2 Aug 2025 11:33:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1754127205;
+	bh=ugZh/KFY5LMHBtI9abTRXe3/VfduYxDNcYofd35iW9A=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=EczlcoJFbDCzor1UJYwkUixhGK8xZeYVEQgf2zjsTBoG5f3rAGBr7ZW1udpXzsSw+
+	 PaCYNja9CGEUBK6a+A2RNVXvzoKvVL32iD4f04zH888Qbzd4RYSYDndijzhdNMtOLt
+	 NZnCMhc90PQkjsXpC98MWxGN6mqpLpHHRq5RnIBc=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Date: Sat, 02 Aug 2025 11:23:25 +0200
+Subject: [PATCH 63/65] media: ipu6: isys: Don't set V4L2_FL_USES_V4L2_FH
+ manually
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20250802-media-private-data-v1-17-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-63-eb140ddd6a9d@ideasonboard.com>
+References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
+In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Devarsh Thakkar <devarsht@ti.com>, Benoit Parrot <bparrot@ti.com>, 
+ Hans Verkuil <hverkuil@kernel.org>, Mike Isely <isely@pobox.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Hans de Goede <hansg@kernel.org>, 
+ Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, 
+ Christian Gromm <christian.gromm@microchip.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Alex Shi <alexs@kernel.org>, Yanteng Si <si.yanteng@linux.dev>, 
+ Dongliang Mu <dzm91@hust.edu.cn>, Jonathan Corbet <corbet@lwn.net>, 
+ Tomasz Figa <tfiga@chromium.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Andy Walls <awalls@md.metrocast.net>, 
+ Michael Tretter <m.tretter@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Bin Liu <bin.liu@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Dmitry Osipenko <digetx@gmail.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Mirela Rabulea <mirela.rabulea@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+ Michal Simek <michal.simek@amd.com>, Ming Qian <ming.qian@nxp.com>, 
+ Zhou Peng <eagle.zhou@nxp.com>, 
+ Xavier Roumegue <xavier.roumegue@oss.nxp.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Vikash Garodia <quic_vgarodia@quicinc.com>, 
+ Dikshita Agarwal <quic_dikshita@quicinc.com>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Sylwester Nawrocki <sylvester.nawrocki@gmail.com>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Nas Chung <nas.chung@chipsnmedia.com>, 
+ Jackson Lee <jackson.lee@chipsnmedia.com>, 
+ Minghsiu Tsai <minghsiu.tsai@mediatek.com>, 
+ Houlong Wei <houlong.wei@mediatek.com>, 
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>, 
+ Tiffany Lin <tiffany.lin@mediatek.com>, 
+ Yunfei Dong <yunfei.dong@mediatek.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, 
+ Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>, 
+ Jacob Chen <jacob-chen@iotwrt.com>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Heiko Stuebner <heiko@sntech.de>, 
+ Detlev Casanova <detlev.casanova@collabora.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ =?utf-8?q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>, 
+ Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>, 
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Fabien Dessenne <fabien.dessenne@foss.st.com>, 
+ Hugues Fruchet <hugues.fruchet@foss.st.com>, 
+ Jean-Christophe Trotin <jean-christophe.trotin@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Steve Longerbeam <slongerbeam@gmail.com>, 
+ Maxime Ripard <mripard@kernel.org>, Paul Kocialkowski <paulk@sys-base.io>, 
+ =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Corentin Labbe <clabbe@baylibre.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Bingbu Cao <bingbu.cao@intel.com>, Tianshu Qiu <tian.shu.qiu@intel.com>, 
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-staging@lists.linux.dev, linux-doc@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-tegra@vger.kernel.org, imx@lists.linux.dev, 
+ linux-renesas-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-usb@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1027;
+ i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
+ bh=JegptJK/Wh+Y3waXfEoaG6eqZD0SkxAIytfm8Tqanf8=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj/rV2onUyAj1Ve0S8AEhrBpSnCKsJ7/mmH6
+ Rix8TpQ+3qJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/wAKCRByNAaPFqFW
+ PMNMD/sFA/FTtUQGAqxj6hcVIegtJidGsIWt+OwDUeT5SttZ1yGE+mxy2mXyIdarbOQRkDlWrMz
+ B3b0dcbhFM4O+ag1TuALQllprFLcTPBkpxlhhWFyJykxUpkFgS1xtTSAd3OtI0g6WSnJbzxDCa0
+ C9cO3jGU0z8et+LJRu+rRi4ArnjZjaupgMEge5SBvFM89JAWolUppy8FnADTJtXrxOtgkO85LGj
+ Hz0R4ns95HNI772/U/Q8VLX9xYHRe/uCOmhT54PffiApIqBNBR9o2GDX6ztDGTlvoT9hIK+PXdP
+ eaa6kiu+1gExaMU7Aah5FJb57ikuODm3RKJ6XU7BZCul4E06C9JqYLCSCibSI+hSpiFe+HKe/Mb
+ 3Rf8vrJXbkAmPOl1xZ9AmjJZxX9rqKaZfZJIM1cHRyD8D+GY84dqNby5rdwSvWCbp4MRCUq3Hgd
+ GhhNicEEatld6fs7qLN4+BWYAuHCmAlTRAC6J63J+0Hq+aVAxo8M6vGGJbzJH2sFw4UWFO8WonQ
+ JqhqQPdO/rK7VQd+3mnogYjsUfLjUF2J6M4D8sQrRcYJm1QTvq1ZAwhDmWWw0wW5fdT/AZUrem4
+ V6ryoP66+qtsLSW3sfdCkUEvbEq+eSSy9izUSKGe8I0631Q/ugWwMQ6GLbyuDYhoS5q8+3BajEh
+ Q+6reTO4wHR944A==
+X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
+ fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_062657_016115_9F272AFA 
-X-CRM114-Status: GOOD (  18.09  )
+X-CRM114-CacheID: sfid-20250802_023412_303775_50756B5D 
+X-CRM114-Status: GOOD (  10.05  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -111,32 +162,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgSmFjb3BvLAoKVGhhbmtzIGZvciB5b3VyIGVmZm9ydCB0aWR5aW5nIHRoaW5ncyB1cCEKCk9u
-IDIwMjUtMDgtMDIgMTE6MjI6MzkgKzAyMDAsIEphY29wbyBNb25kaSB3cm90ZToKPiBUaGUgUi1D
-YXIgVklOIGRyaXZlciBzZXRzIGZpbGUtPnByaXZhdGVfZGF0YSB0byB0aGUgZHJpdmVyLXNwZWNp
-ZmljCj4gc3RydWN0dXJlLCBidXQgdGhlIGZvbGxvd2luZyBjYWxsIHRvIHY0bDJfZmhfb3Blbigp
-IG92ZXJ3cml0ZXMgaXQKPiB3aXRoIGEgcG9pbnRlciB0byB0aGUganVzdCBhbGxvY2F0ZWQgdjRs
-Ml9maC4KPiAKPiBSZW1vdmUgdGhlIG1pcy1sZWFkaW5nIGFzc2lnbm1lbnQgaW4gdGhlIGRyaXZl
-ci4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBKYWNvcG8gTW9uZGkgPGphY29wby5tb25kaUBpZGVhc29u
-Ym9hcmQuY29tPgoKUmV2aWV3ZWQtYnk6IE5pa2xhcyBTw7ZkZXJsdW5kIDxuaWtsYXMuc29kZXJs
-dW5kK3JlbmVzYXNAcmFnbmF0ZWNoLnNlPgoKPiAtLS0KPiAgZHJpdmVycy9tZWRpYS9wbGF0Zm9y
-bS9yZW5lc2FzL3JjYXItdmluL3JjYXItdjRsMi5jIHwgMiAtLQo+ICAxIGZpbGUgY2hhbmdlZCwg
-MiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9y
-ZW5lc2FzL3JjYXItdmluL3JjYXItdjRsMi5jIGIvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9yZW5l
-c2FzL3JjYXItdmluL3JjYXItdjRsMi5jCj4gaW5kZXggNjJlZGRmM2EzNWZjOTE0MzRjYjJlNTg0
-YTAxODE5MzgwYTdhNmRkOC4uMDc5ZGJhZjAxNmMyNTEzOWUyYWM4MmJlNjNkOGZjZTBkMTFmZDIw
-OCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL3JlbmVzYXMvcmNhci12aW4v
-cmNhci12NGwyLmMKPiArKysgYi9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL3JlbmVzYXMvcmNhci12
-aW4vcmNhci12NGwyLmMKPiBAQCAtNTg4LDggKzU4OCw2IEBAIHN0YXRpYyBpbnQgcnZpbl9vcGVu
-KHN0cnVjdCBmaWxlICpmaWxlKQo+ICAJaWYgKHJldCkKPiAgCQlnb3RvIGVycl9wbTsKPiAgCj4g
-LQlmaWxlLT5wcml2YXRlX2RhdGEgPSB2aW47Cj4gLQo+ICAJcmV0ID0gdjRsMl9maF9vcGVuKGZp
-bGUpOwo+ICAJaWYgKHJldCkKPiAgCQlnb3RvIGVycl91bmxvY2s7Cj4gCj4gLS0gCj4gMi40OS4w
-Cj4gCgotLSAKS2luZCBSZWdhcmRzLApOaWtsYXMgU8O2ZGVybHVuZAoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxp
-c3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRl
-YWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+The V4L2_FL_USES_V4L2_FH flag is set by v4l2_fh_init(). It is not meant
+to be set manually by drivers. Drop it from the ipu6-isys driver.
+
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+---
+ drivers/media/pci/intel/ipu6/ipu6-isys-video.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/media/pci/intel/ipu6/ipu6-isys-video.c b/drivers/media/pci/intel/ipu6/ipu6-isys-video.c
+index 24a2ef93474cc400f64eb1d50bc760ee66124d1b..f3f3bc0615e5dc698be5c479dfed8ef2eb49cbfb 100644
+--- a/drivers/media/pci/intel/ipu6/ipu6-isys-video.c
++++ b/drivers/media/pci/intel/ipu6/ipu6-isys-video.c
+@@ -1306,7 +1306,6 @@ int ipu6_isys_video_init(struct ipu6_isys_video *av)
+ 	__ipu6_isys_vidioc_try_fmt_meta_cap(av, &format_meta);
+ 	av->meta_fmt = format_meta.fmt.meta;
+ 
+-	set_bit(V4L2_FL_USES_V4L2_FH, &av->vdev.flags);
+ 	video_set_drvdata(&av->vdev, av);
+ 
+ 	ret = video_register_device(&av->vdev, VFL_TYPE_VIDEO, -1);
+
+-- 
+2.49.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
