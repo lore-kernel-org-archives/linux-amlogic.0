@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 284BEC87FCB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33261CA0EC0
 	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,36 +12,36 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d3yGxWvhG3o7cp9ZuyXDQO0dldJVqSB2Z/kweOPEJ6U=; b=GaFcdt4i0d0VqQ
-	nur5CxhPgOCo6SZkV36nPcx4XAbzxVrfY74LUyNMXfoWpTRs9uGNDhQ3m0zT19ecdm/ZItsN/lLvm
-	VDLeo/XEeii0fm0CZD9/+04a76Ey2vBvXNtqHUglJLClHkE2KyYzBeYQ5XbCO1wefbpPpAvfvjwPg
-	3yNuTgiIpcvxwlCvpnNVFBW4AQvaCUZedLwIaL0FzXjs88CvfEbhKn7v2fkFzvpAFtg3mch0HqrGZ
-	agbIWrpnnn7qb5Ma2VdEhDe9a53oLCkrGkKiC3D85wS+4XSrHISL3N0NZtja19pbEQruTeU+pwZK5
-	8Du122I8WGJhMxXmpQ5Q==;
+	List-Owner; bh=CZZmagCNtRBUksohm7L+sHgHW6tMYRz/YPMs0hTKyRc=; b=qiyz5i5gIyyc70
+	VuxKvbV38p0n1LkcQMdlDnMgGW4KdCzzOXAoFQdy7zGgNcDfjeKWucBezcM0Kni+Yi2FDK1jBH/rx
+	ISXTumTAgDSMK6zLQzTXqgsAF11iR3Dqy880LD7yi17mnWsnf+NqPuTh0Xur90xKGf2YPt86+22Th
+	kKOHpW5h8NS4sHseFuPiJQxrOn7i5Pi7jwoDrHGde68v2Aqdfx+n88Zt94Bwulpcws2Cj5QnX08or
+	apwytdeNYXaFYG8ISjpfFFmTal78R3/OBiuSZKUVeFMBUFOHSlqipr9UTcuFA4G5Pv+hFExXq3+ac
+	+83+KfkaBTflCkfIiVIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXG-0000000AuBU-1oIg;
-	Mon, 04 Aug 2025 15:55:38 +0000
+	id 1uixXJ-0000000AuFn-05g0;
+	Mon, 04 Aug 2025 15:55:41 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8W4-00000007P99-45lp;
-	Sat, 02 Aug 2025 09:27:02 +0000
+	id 1ui8Wb-00000007POG-2qDT;
+	Sat, 02 Aug 2025 09:27:34 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4C35D330E;
-	Sat,  2 Aug 2025 11:26:06 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B8B6E3BA3;
+	Sat,  2 Aug 2025 11:26:35 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754126774;
-	bh=YeeZiet6PqHm7IlGh7t3GZOdydEI6jy4AdesJo+UFJ8=;
+	s=mail; t=1754126807;
+	bh=8wi3ERfqhNF0n7Qty7pg2iRliLtnhljmMkGSJfQ6Hsg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=efEEkJTnS1kS5gUzaXOmI/yYslA+2pJMaHIkGKProANNbr8dxKaCBtqnVHS7MQhUm
-	 5O2inCnrkmxZUR7Sb/afzgyTKrbaPNf/CC1zw3zEX7ePOorKxhty47n27+ZtwThhbW
-	 xJ9x9IaW2d+ETCWGrE3pPgiKenybAl/eZ+xNKYmQ=
+	b=DkuGu4xRR6LJyt/BrWYiHj5iOqv5dhewfJ3hwKWatqKNWw5aye9NwZagv3kmssPOE
+	 CrfWdtKhJm9DcJj5g5CzQoYrcgh3RGvIuF70mp5W3SdrzZoyvluCyQ+wrLAQhg/E1L
+	 kIcY0MpBFSbqgFuWM94vhNjwhFsmlkdbx86x8gLE=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:22:43 +0200
-Subject: [PATCH 21/65] media: chips-media: wave5: Pass file pointer to
- wave5_cleanup_instance()
+Date: Sat, 02 Aug 2025 11:22:46 +0200
+Subject: [PATCH 24/65] media: qcom: iris: Drop unused argument to
+ iris_get_inst()
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-21-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-24-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -130,26 +130,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3292;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3646;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=sFLeSeZ18AiPz7TNtzZuErYTeuXEDyYERBW9KVUCez8=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj5Ab8WMNqTk1vrNJmzEF9fusCZ5AJs5tg8p
- ikoDaHa4TGJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+QAKCRByNAaPFqFW
- PIGXD/9X1mdSs4tmw4s1JTfYvMbuDI1kxi3A97kXvrt+El+sQRTisOHlSxLE9USoyAGm9PnoFPY
- icrGza2HD8EwUhtANb4EwK4SX8gRpvg5DXsHiY+BzBm4ZVvbrn4YKQ8EspQAqrqPqNpRCC3jLzn
- 0GRaHqxDXvUIkwHB48fJQ6GV3QDhI0wZH4KOeyPYnI+UAT/tN3QLKewQVSIxCvc+x44Uz1UIfYt
- kdVvO1fp4phNaCAUHr+TNYEglxeQRmyTjF7EFg8glg2DIQvarhZjR2idgNmJRc32RfKKlrWhLLG
- qsc3G5XT4rTHdpVwmtUQZodlMjwJIMrLeeq3gmQLcuVkPx7WrqJFWrykMYjVSJW9boC6wQNseOL
- g/jwwARgjsbT4VVBTM34U4UGM25/qXegXPcvFArnizqPHj2jNKsfNiwqCk9hQvsaZb0hejeg2C6
- PIHxrsXkFRQdQNuT5CuoeTdUazuF9Y8PozrVwKktzkTD3iCYWR6uVAZwa5j/+W0fWDzMJe3etdR
- iL0DtcbzUnBRXuciDmUfTXXz4QqjEoF7LYYGV9gHpobdDmtnG6aN+YRDMpFr8/cXnc76JpLWK1O
- iZ4WMJ6IpVenQcUxz2evwcVueKdYxxj8eIkzeEvX3GLQmspDOksNr43SNDrl2k/d9vKpDQ7djH2
- UWeorQDKZwyuLsQ==
+ bh=9GluRJsNYGFG25N0tAt2DCmvfQ/RCr9Ew1fkTJNt5v4=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj6pttk4jyKbwjBxeL0idYh0vr/bLr00peVD
+ JUZKh9W0+eJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+gAKCRByNAaPFqFW
+ PGDoEAC13XyW/5FISnksj3XUPDtzKAE0wQOpV6Bci/1SfoKU0HQM/iCHDx/sMO0qeSd99+64lGr
+ gJRtPOLtn6N8BKObyNPsfUp+mWuBnx5vmSe1Pbde63K6+drX2xvFoiAzbIXnfK/fP2jlpBnAICK
+ iZ7dRTBReQ8v0opu20jNW6evMyN4a342ga3+7vMBOf1np9sErNiaYIRsx2+Mq0B1KKNt4GwPE9b
+ /YHZKp48kNiJwFv7WAuSZ8wYIXV3GYqG1YO06xSSauUp59H7rcKz5wKKjIZ5cHdAXPgZ1wM6Akr
+ NQxbA8bQhpJaT0rDQsMXokHC3odLdwITPD51wRddL6FhZUMxNbvaKJFhf3wkgf6WZYxqM+i+7rf
+ X7+lGVUksiq9uD+OSHUXhpHdk/H1zA/StHIrmyB7hKWi0ZEePGrRi/aSWxmlmrq1BGxSZ5l2S/s
+ PN0iJUN26Xym+8+JpsmsyKda1QyFgIcOSURmg2inMwMEv/ZOM+pQf3GLCsWUCJ1HY9NP0U1GOq2
+ Sp2PJ7STeJ8BbL0TKF0XPsE5gpeUaSL7Lf++MdERh/p3bzNfElGYTtAOI/KyrGFjriYijVcxmG4
+ cVjjRgPCaqBajc6c6NNGpl61zEF0t1FzWrpJ3QcYADnGeyIHJ3WMiAyfCjoJfptKbkkoVeX3w2Y
+ 56CTWDdhVyiViXw==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_022701_163594_0BE05E75 
-X-CRM114-Status: GOOD (  13.26  )
+X-CRM114-CacheID: sfid-20250802_022733_862628_276EC880 
+X-CRM114-Status: GOOD (  11.70  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -169,81 +169,99 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-In preparation for a tree-wide rework automated with coccinelle that
-will need to access a struct file pointer in the
-wave5_cleanup_instance() function, pass it from the callers. There is
-not functional change yet.
+The second argument to the iris_get_inst() function is never used. Drop
+it.
 
 Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/platform/chips-media/wave5/wave5-helper.c  | 4 ++--
- drivers/media/platform/chips-media/wave5/wave5-helper.h  | 2 +-
- drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c | 2 +-
- drivers/media/platform/chips-media/wave5/wave5-vpu-enc.c | 2 +-
- 4 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/media/platform/qcom/iris/iris_vidc.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/media/platform/chips-media/wave5/wave5-helper.c b/drivers/media/platform/chips-media/wave5/wave5-helper.c
-index 031dea0ee61c6c5afddf7ff47d67d85826f16d8d..ed8ff04a899da0a3c9e0f037dac2c9548c98920f 100644
---- a/drivers/media/platform/chips-media/wave5/wave5-helper.c
-+++ b/drivers/media/platform/chips-media/wave5/wave5-helper.c
-@@ -27,7 +27,7 @@ const char *state_to_str(enum vpu_instance_state state)
- 	}
+diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media/platform/qcom/iris/iris_vidc.c
+index 73c96498759cbde8e1d9870336023e7773f6f28b..64ebec2ca6b3d58118ac1a6f4ddeed2e43de6d5b 100644
+--- a/drivers/media/platform/qcom/iris/iris_vidc.c
++++ b/drivers/media/platform/qcom/iris/iris_vidc.c
+@@ -69,7 +69,7 @@ static void iris_remove_session(struct iris_inst *inst)
+ 	mutex_unlock(&core->lock);
  }
  
--void wave5_cleanup_instance(struct vpu_instance *inst)
-+void wave5_cleanup_instance(struct vpu_instance *inst, struct file *filp)
+-static inline struct iris_inst *iris_get_inst(struct file *filp, void *fh)
++static inline struct iris_inst *iris_get_inst(struct file *filp)
  {
- 	int i;
- 
-@@ -78,7 +78,7 @@ int wave5_vpu_release_device(struct file *filp,
- 		}
- 	}
- 
--	wave5_cleanup_instance(inst);
-+	wave5_cleanup_instance(inst, filp);
- 
- 	return ret;
+ 	return container_of(file_to_v4l2_fh(filp), struct iris_inst, fh);
  }
-diff --git a/drivers/media/platform/chips-media/wave5/wave5-helper.h b/drivers/media/platform/chips-media/wave5/wave5-helper.h
-index 9937fce553fc33000bd31abcfc6d7345f6f7e485..976a402e426ff329490717925a08a76d777cbe3e 100644
---- a/drivers/media/platform/chips-media/wave5/wave5-helper.h
-+++ b/drivers/media/platform/chips-media/wave5/wave5-helper.h
-@@ -14,7 +14,7 @@
- #define MAX_FMTS	12
+@@ -251,7 +251,7 @@ static void iris_check_num_queued_internal_buffers(struct iris_inst *inst, u32 p
  
- const char *state_to_str(enum vpu_instance_state state);
--void wave5_cleanup_instance(struct vpu_instance *inst);
-+void wave5_cleanup_instance(struct vpu_instance *inst, struct file *filp);
- int wave5_vpu_release_device(struct file *filp,
- 			     int (*close_func)(struct vpu_instance *inst, u32 *fail_res),
- 			     char *name);
-diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c b/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
-index fd71f0c43ac37a0bb56f669d4b89d6054cb181d5..f3188d720ed3e183f3400816a9c939014213711d 100644
---- a/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
-+++ b/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
-@@ -1840,7 +1840,7 @@ static int wave5_vpu_open_dec(struct file *filp)
- 	return 0;
+ int iris_close(struct file *filp)
+ {
+-	struct iris_inst *inst = iris_get_inst(filp, NULL);
++	struct iris_inst *inst = iris_get_inst(filp);
  
- cleanup_inst:
--	wave5_cleanup_instance(inst);
-+	wave5_cleanup_instance(inst, filp);
- 	return ret;
+ 	v4l2_ctrl_handler_free(&inst->ctrl_handler);
+ 	v4l2_m2m_ctx_release(inst->m2m_ctx);
+@@ -276,14 +276,14 @@ int iris_close(struct file *filp)
+ 
+ static int iris_enum_fmt(struct file *filp, void *fh, struct v4l2_fmtdesc *f)
+ {
+-	struct iris_inst *inst = iris_get_inst(filp, NULL);
++	struct iris_inst *inst = iris_get_inst(filp);
+ 
+ 	return iris_vdec_enum_fmt(inst, f);
  }
  
-diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu-enc.c b/drivers/media/platform/chips-media/wave5/wave5-vpu-enc.c
-index 1e5fc5f8b856c5329b2c6007649285a28749b6aa..b69a1206fa12c2ff5f3a32d269b8fd3b80a597aa 100644
---- a/drivers/media/platform/chips-media/wave5/wave5-vpu-enc.c
-+++ b/drivers/media/platform/chips-media/wave5/wave5-vpu-enc.c
-@@ -1784,7 +1784,7 @@ static int wave5_vpu_open_enc(struct file *filp)
- 	return 0;
+ static int iris_try_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format *f)
+ {
+-	struct iris_inst *inst = iris_get_inst(filp, NULL);
++	struct iris_inst *inst = iris_get_inst(filp);
+ 	int ret;
  
- cleanup_inst:
--	wave5_cleanup_instance(inst);
-+	wave5_cleanup_instance(inst, filp);
- 	return ret;
- }
+ 	mutex_lock(&inst->lock);
+@@ -295,7 +295,7 @@ static int iris_try_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_form
  
+ static int iris_s_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format *f)
+ {
+-	struct iris_inst *inst = iris_get_inst(filp, NULL);
++	struct iris_inst *inst = iris_get_inst(filp);
+ 	int ret;
+ 
+ 	mutex_lock(&inst->lock);
+@@ -307,7 +307,7 @@ static int iris_s_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format
+ 
+ static int iris_g_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format *f)
+ {
+-	struct iris_inst *inst = iris_get_inst(filp, NULL);
++	struct iris_inst *inst = iris_get_inst(filp);
+ 	int ret = 0;
+ 
+ 	mutex_lock(&inst->lock);
+@@ -326,7 +326,7 @@ static int iris_g_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format
+ static int iris_enum_framesizes(struct file *filp, void *fh,
+ 				struct v4l2_frmsizeenum *fsize)
+ {
+-	struct iris_inst *inst = iris_get_inst(filp, NULL);
++	struct iris_inst *inst = iris_get_inst(filp);
+ 	struct platform_inst_caps *caps;
+ 
+ 	if (fsize->index)
+@@ -359,7 +359,7 @@ static int iris_querycap(struct file *filp, void *fh, struct v4l2_capability *ca
+ 
+ static int iris_g_selection(struct file *filp, void *fh, struct v4l2_selection *s)
+ {
+-	struct iris_inst *inst = iris_get_inst(filp, NULL);
++	struct iris_inst *inst = iris_get_inst(filp);
+ 
+ 	if (s->type != V4L2_BUF_TYPE_VIDEO_CAPTURE)
+ 		return -EINVAL;
+@@ -394,7 +394,7 @@ static int iris_subscribe_event(struct v4l2_fh *fh, const struct v4l2_event_subs
+ static int iris_dec_cmd(struct file *filp, void *fh,
+ 			struct v4l2_decoder_cmd *dec)
+ {
+-	struct iris_inst *inst = iris_get_inst(filp, NULL);
++	struct iris_inst *inst = iris_get_inst(filp);
+ 	int ret = 0;
+ 
+ 	mutex_lock(&inst->lock);
 
 -- 
 2.49.0
