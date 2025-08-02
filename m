@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 393DDC87FDA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0803C87FCF
 	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,35 +12,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DCbOPMh/ombq7fNOKdQnr6wisbasVqyE3r4EpINlr78=; b=LXGeOPP5T0UgCS
-	ng8lyvsG9oGednPlRm39YI/hofQURWtmOyD7VRN0y5Thoa5gp8DDKvu59scJ2bUC4a8v5Wp6O46fK
-	FcerXHIopgKYhrnW2j80sv+6+XeKGLna2fr+8iLganQi+wwHkqcb7ADk00RmRYjInkPqsto+zkmHg
-	1pmo040HMwUAePgkgI3xWY2QTIDGmaY8fEAZzGREQFDVF82s9rQe/WDMRG7uhx9jfqgA/BmzvX02d
-	1ZIvYVE9+j/vGE62t5UyF5e2iYibHI7cybrGgfdDQ5TH1ne2joqNUiwKIJxCDheQT+jvOgX5G6Hay
-	Cm/hQPXPrEw5aDdTHanQ==;
+	List-Owner; bh=WFZWnPUsdwpdkZW0XiBw4ZMUGDIkTXZp0ck4bZxGLOo=; b=kcJ8OKD8fVxahz
+	ycY4mNELxA+foVYpTSNwhNN+nqgCLbhkHa6vKiLC9I6pWHG5OCsjD1wsgYl3FMExo1ObzZ3kr6pLy
+	yTQMuPkAMKoVCklXCTMq4sc7ZLEzVn/1KG1ywrDcY+4Eil7fWFaofSv8WiUunsjI4sMC/wyl/nhGp
+	Rnq++M+lNgyUX6+bMUlDaUPVL+yZYRIWPPiTJJotQsw6RI2oM/1CXDKmXPYcSY8CCoW+1KZcVYTJd
+	Qm5MWkcmWAgxejMAg5nPaIbQhbsKH14/RglV+o/VjBvwlF7cz4497SyaRdGJ4uVoOHSwyjgdH1qyx
+	UhVKm8/BpS/8wnoblCIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXh-0000000Auum-1pdP;
-	Mon, 04 Aug 2025 15:56:05 +0000
+	id 1uixXc-0000000Aum5-0T9q;
+	Mon, 04 Aug 2025 15:56:00 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8aG-00000007REf-3hFB;
-	Sat, 02 Aug 2025 09:31:22 +0000
+	id 1ui8ZY-00000007Qsf-1DfR;
+	Sat, 02 Aug 2025 09:30:37 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B3C5940D8;
-	Sat,  2 Aug 2025 11:30:23 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id ECBE63C6E;
+	Sat,  2 Aug 2025 11:29:41 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754127034;
-	bh=P+AdXovkDs72ySz3QReqGKxKqBANHR4M/z/Qnx0Et0A=;
+	s=mail; t=1754126989;
+	bh=myVmSWYpHXIiztgrX4Nbrz2tt4YIb4c7beKoOCYKNI8=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=TYEMJ1NQIn2AHami8rz14vK1JzGQigVifiRoyt6QHmF3Iu7LxEUWe+myT+degFzvr
-	 js1GxPK6uXfvuzkK5py81gAkb/ClqJxrx4Q9yB2nZNuMAdOJCd1ZQz6ex+ZmHLpccd
-	 Mvkz9iIBZ12ifbUQkccgBT6ah7Ey34/3qfhaou9E=
+	b=QbRPXMxClSG+25IAt4oxV96cFHKcviPLixdfqrSDzLcPwvWgGgvIRo50l5ww6D3IK
+	 Kmv9Ks6g/gci/i2jR1Ii5hzUnPUR3QYANiVjpHd5IsdNJWzE+5wygun8SqKXIHhqCi
+	 xz+TVzEYqOd0uNepbZV7dK/LW9Ec3RfJXm4/uk2I=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:23:10 +0200
-Subject: [PATCH 48/65] media: s5p-g2d: Access v4l2_fh from file
+Date: Sat, 02 Aug 2025 11:23:05 +0200
+Subject: [PATCH 43/65] media: rockhip: rga: Access v4l2_fh from file
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-48-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-43-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -129,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2354;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2197;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=P+AdXovkDs72ySz3QReqGKxKqBANHR4M/z/Qnx0Et0A=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj9QjDArsCCpetRJypejE9fiKxkH/6QF97H/
- V7Va6UoY5qJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/QAKCRByNAaPFqFW
- PC37EACiB4t1ueWIIp+xm9SL1tP9bPd4oIx6m58tUtufzqv2UhhlQY2uIeweEcdjDrnmK6wlPFf
- Zh67AxZib08g3DhnLVPtuf6zyFFx9glCJg6E37kf4tO0Cbjk2b7Wo0XqOtvRvL0mrbcFdm10XOQ
- u48ojoafbcLDoihcjqYmZZQA517dhFRTPQq0ewLAWh1vRHp5r3u6zxmRYWXvtvn07t8yRHYo1yy
- pTIdGY05xvfVpm2AwuDef2uLWLTO0ecyx5rhZzPNUGXD+b+hBJfXTGV2aZuhzrLZFz4q/HnJ3x0
- BYQRN2rUU0mfRw6XAJg2vcYskCk4xE1oHXWcvGmeORkGTZqWQquB4DHbQxT1ITU7vwv3iRSKx36
- fCognK5a0c4ZW//QBYFwwlv9k74VAtnxKtNiBK6Vbuhbjdsu+YafF0wxxd0bwQ7mVD56iAeaLTZ
- aP2D2Iy/3E+BdZ4DzVXCbcj9E+jTxZfxbaXg3u5ARjUZb/cQaha4H5DW+a/bxwe6Dc0pyaf8hr7
- jlWtg1P74osSQLocQSEkYZA+LkuSwrf7AjDO/49ylXeeTtmSe4k4UQHi0XpMZYOYBqHYmyW7gGE
- ppnTGZndhnM4xWgtUrd4XxDQx4HNaUV59HsflvBoP9BCtbJ8eruyG9ddj+y0d1cNTq36z2Yf78+
- 2X3qjhfFmyd527g==
+ bh=myVmSWYpHXIiztgrX4Nbrz2tt4YIb4c7beKoOCYKNI8=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj8bCtcXrZDq0XjKLnfeb21Qxsw9vktTvwYZ
+ I8b1Ve5FRiJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/AAKCRByNAaPFqFW
+ PJerD/wPNsB4FoQmDjS+Q2bgvOYg1HMkC42KAS+62lqBwK9OjkMw5wdywbBTFVeAO7/aoTCDScD
+ yaUKSkF5RIqchlj+RO4Fa3fXWvdbRYfYpEFp0EnPQxkJDfsd9xAIXoVxPIaEasZ77ZQWuXrwfn5
+ 9EnPq+6b9yaVDD6W0KF2Cm5V7S9Zbm8l7NrJRBO79plfdkHjIux7O67NnUg2I+6yfQIPw/lP5Ka
+ zdWfiKBOmgWFRUQm4sI/0lHkPp+KThqrCq9CAMoxKILayA4NNC4JtPrP7ungcho77BKXBKL5mXW
+ h1EoMrBYp+mRVweuy/YfN5F7wCaS7v1moLkiVEAY0S45X685QTspJhlewfsMyDIOJUCNTCPejJV
+ biw7C0PdiRlREDEAwu5Ek1ACd09LU9uov8HmE5kki5FRUIRJHNqNI+gquFNumbhuRwfLpCneuLY
+ u2i4QhmC/EJ2NVmyQFGPJthMLMjeAD1fNVa8a0W+AosRLcgV164/Zzk41RNSGleeJSKNbEj8mvy
+ 2JhIDecUDT+kETEC5GSA2UJElubl0KSPWDHdrDa7P+fnFfWsX3DYhIxPU+4ZB5gXoHiCWoxYBSq
+ yFlTXFLCz9RCU7s879GUKIUTEZIvGggHd9u7cMgyh5Bc2/9Cm+qwEvi0fAgKJ+fGwx0ZxFRIrSn
+ mpL2fgUgHW/KBvA==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_023121_065124_937462E0 
-X-CRM114-Status: GOOD (  12.46  )
+X-CRM114-CacheID: sfid-20250802_023036_479998_6CAFC582 
+X-CRM114-Status: GOOD (  12.48  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -174,58 +174,49 @@ from the file * in all ioctl handlers.
 
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/platform/samsung/s5p-g2d/g2d.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/media/platform/rockchip/rga/rga.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/media/platform/samsung/s5p-g2d/g2d.c b/drivers/media/platform/samsung/s5p-g2d/g2d.c
-index 922262f61e7b53baf1b5840d35149bf5b4b2e7ad..55f5130156b7e8690bd0eb204630a730d9f84bd6 100644
---- a/drivers/media/platform/samsung/s5p-g2d/g2d.c
-+++ b/drivers/media/platform/samsung/s5p-g2d/g2d.c
-@@ -307,7 +307,7 @@ static int vidioc_enum_fmt(struct file *file, void *prv, struct v4l2_fmtdesc *f)
- 
+diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
+index 45c42c7ad846fab985e573ef7acf4a5bc1a4cac1..7c657df623f2897cd1ce2b6fa4c4b4de369f1c64 100644
+--- a/drivers/media/platform/rockchip/rga/rga.c
++++ b/drivers/media/platform/rockchip/rga/rga.c
+@@ -462,7 +462,7 @@ static int vidioc_enum_fmt(struct file *file, void *prv, struct v4l2_fmtdesc *f)
  static int vidioc_g_fmt(struct file *file, void *prv, struct v4l2_format *f)
  {
--	struct g2d_ctx *ctx = prv;
-+	struct g2d_ctx *ctx = file2ctx(file);
+ 	struct v4l2_pix_format_mplane *pix_fmt = &f->fmt.pix_mp;
+-	struct rga_ctx *ctx = prv;
++	struct rga_ctx *ctx = file_to_rga_ctx(file);
  	struct vb2_queue *vq;
- 	struct g2d_frame *frm;
+ 	struct rga_frame *frm;
  
-@@ -359,7 +359,7 @@ static int vidioc_try_fmt(struct file *file, void *prv, struct v4l2_format *f)
- 
+@@ -504,7 +504,7 @@ static int vidioc_try_fmt(struct file *file, void *prv, struct v4l2_format *f)
  static int vidioc_s_fmt(struct file *file, void *prv, struct v4l2_format *f)
  {
--	struct g2d_ctx *ctx = prv;
-+	struct g2d_ctx *ctx = file2ctx(file);
- 	struct g2d_dev *dev = ctx->dev;
+ 	struct v4l2_pix_format_mplane *pix_fmt = &f->fmt.pix_mp;
+-	struct rga_ctx *ctx = prv;
++	struct rga_ctx *ctx = file_to_rga_ctx(file);
+ 	struct rockchip_rga *rga = ctx->rga;
  	struct vb2_queue *vq;
- 	struct g2d_frame *frm;
-@@ -400,7 +400,7 @@ static int vidioc_s_fmt(struct file *file, void *prv, struct v4l2_format *f)
+ 	struct rga_frame *frm;
+@@ -561,7 +561,7 @@ static int vidioc_s_fmt(struct file *file, void *prv, struct v4l2_format *f)
  static int vidioc_g_selection(struct file *file, void *prv,
  			      struct v4l2_selection *s)
  {
--	struct g2d_ctx *ctx = prv;
-+	struct g2d_ctx *ctx = file2ctx(file);
- 	struct g2d_frame *f;
+-	struct rga_ctx *ctx = prv;
++	struct rga_ctx *ctx = file_to_rga_ctx(file);
+ 	struct rga_frame *f;
+ 	bool use_frame = false;
  
- 	f = get_frame(ctx, s->type);
-@@ -450,7 +450,7 @@ static int vidioc_g_selection(struct file *file, void *prv,
- static int vidioc_try_selection(struct file *file, void *prv,
- 				const struct v4l2_selection *s)
- {
--	struct g2d_ctx *ctx = prv;
-+	struct g2d_ctx *ctx = file2ctx(file);
- 	struct g2d_dev *dev = ctx->dev;
- 	struct g2d_frame *f;
- 
-@@ -478,7 +478,7 @@ static int vidioc_try_selection(struct file *file, void *prv,
+@@ -609,7 +609,7 @@ static int vidioc_g_selection(struct file *file, void *prv,
  static int vidioc_s_selection(struct file *file, void *prv,
  			      struct v4l2_selection *s)
  {
--	struct g2d_ctx *ctx = prv;
-+	struct g2d_ctx *ctx = file2ctx(file);
- 	struct g2d_frame *f;
- 	int ret;
- 
+-	struct rga_ctx *ctx = prv;
++	struct rga_ctx *ctx = file_to_rga_ctx(file);
+ 	struct rockchip_rga *rga = ctx->rga;
+ 	struct rga_frame *f;
+ 	int ret = 0;
 
 -- 
 2.49.0
