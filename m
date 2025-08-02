@@ -4,80 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56015C87FDB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 08:41:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80EF0C87FD1
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=4qNHGiL+SMra/m6qldsf4bD2+eifJpx9C2OKCpEE7zI=; b=C25cFn5yq6pTTQ
-	g3hyzyr1mH8aJ35d4qvPo6PlOmbt9RWCmjjyr6EJu6+VfcJ+3g5AikgINXxeN4vgE+FlXEY4NXpSW
-	VAQ2BLy57qOOMjgLTXyB+5Y1r/yGgjdtZD0TBkBJSp0MwBahl/MImHl1Ck84DauoZTTbiHSJEdn0L
-	czX4l2Viz8/Qb+QTxBNhHnmX9mETKQvvdXokOyaF3Mxeuv1IcOKt6na2sRWR4LLs20hC/NkSMaWYB
-	UaAUlKXZtgpyy7pOPPqAZB4YBXDX/ZrNQO8durgM9PFn4dyeziLw64nUsPBxvAtPDVXRoeBiucj3P
-	mFZ6j8UrctTlfmZ+qFEQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kaDG7eyViG+gNgBhkbf4j0Szb6f4FuXOZI5IcpyEZmg=; b=lKxiEgdJVowMo5
+	+taH5C5KJwGo0JF5vkhjy8La1LqURN2OsCWbW1rnvXTEuGZi1ZcsCcAur9OGNN7wSDAN7cZ2CDKMT
+	QMPErbQRqgw460rNYWTyYHt9fsNgcebEMqbhBcgRd5sKHEiFPf84BdzKoTyzkcuiiUnAbWBatyirr
+	sxXvnzcO2LMj66cvfkExObf43C/a8IpHWVaIx203vUSJE1RO8u4owPBL+w+SMmlizBJj6BF/GgpSb
+	Rl7LYUeKCgijOItZbpAVKutxQ9XKGPuDYyTOttVty4N704oc6C4sczeVJvJf7NI4/qfrV44SIjnzH
+	tiv7jS4vSaKDNs9Nkybw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uiqlD-00000009ygR-3Z8S;
-	Mon, 04 Aug 2025 08:41:35 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1uixWq-0000000AteS-0BI4;
+	Mon, 04 Aug 2025 15:55:12 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uiqKg-00000009utT-0HvZ
-	for linux-amlogic@lists.infradead.org;
-	Mon, 04 Aug 2025 08:14:11 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-458bece40fcso7410175e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 04 Aug 2025 01:14:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754295248; x=1754900048; darn=lists.infradead.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aIs0VZsx9ne5+u8erw4jNU+9U75wvlH5jVml9RCdY5w=;
-        b=YGj74d7og0BjxNiE6VRUvNdaf/eCdqfXcylaNza0Xjl3jihC7JgJgY82tef4SmOUsf
-         g9bzXyxw2sZWTOHqUGohAhEqSxtzsppMr8VXv392y1L/wUVbM0VTwp0MREEgGqAIwbg6
-         9jNCzAwKSck2YW4Ehjqh4kEzeRt/pHewp/f6BqvoeAJdiw2xNa9kaHFIz5eaaQyu4VTr
-         QPoHfa9dDEO9tgYRg2jOCVsYw17gidZIY6kfgE6RKkq+Epc0YRvx9CXl3SXJ0vcHkYBh
-         +YfzB3DxPcxhkezZI+q2ygnEUrb9PYSHlh55hwFYymQ6NNGe/aBhzFJ12hLrTOjDPjHD
-         DcjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754295248; x=1754900048;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aIs0VZsx9ne5+u8erw4jNU+9U75wvlH5jVml9RCdY5w=;
-        b=E1LNCR2ZnVJ95iYcuzigQkhm5ERRyTMFL7rvENV6SjBTFp86rcJh0kD98E8G8GrR9z
-         t/ukePMoz3M7sxm41qgGyF4YiGDiQMtuKUx0+M8P8qLXk6uGTA/LCYjJeUScnU5hBgcz
-         lgMqDa6cKfQ2W5lxXRVMFyZwPrZWZni8Wvh0mje4qYV4YU6S1bpQLeTu/LYukwjSL8ec
-         roBTPwYhigVPoQ2ZLOGXwjsCdPxu1y+fP0M1HjoQHjX00SzSdrF8q095JHVLVV2FYLG8
-         jtr62h3InUvvxMbusyyQV2vq3+PDgdBJ8jZXP9uqO5MRlsy+kUKLbWGAI4slzJLmqnO2
-         JNmw==
-X-Gm-Message-State: AOJu0YwWy8ZAI/5YRaGVjQACALdlQZ7Pnh5Z1VgXhp4rkQ29zkPIhzkY
-	oSjcymg9GOYtzC2P+U/U3DKfpWkZszFth9Q1q0m8xqghTd566YG5l6/rsl54AID5h0o=
-X-Gm-Gg: ASbGncuZTXsDS3F1dcTLAYumFJic+J/+B4e46irCcKtxF7C+n+rDRgtYhMjnnebArwU
-	VKINMXJ6U9RKrQIQB9XPUnG7q+UpAqBjR/nBcqHa3n/FWVnX3Hp/cHV8eT+Rqc7LiksW9ZFpazw
-	mJ/xRmxrogwv8mvhXOTE6AiJ2FolAm8FKf5JyglOxjS7fyJf/o/L+Uuf4NaEavZ5Nsvs/WzTvji
-	mH9ah43W+ZOffIhJ6wMUjLKYXpUBzPkNwGL1LF96CN2IwhkFeKYXefXIgQl7uUa9tEzijVxnm0r
-	irJdlV1473EtRGbIwWSKgsqVKbLxaG8cWruzEykZi7sKBzhN110cWCkYv2WWR1/aERWhm9x5zcm
-	9nslzDPNc7Al4epaUXUw8W46tnt4=
-X-Google-Smtp-Source: AGHT+IEeeJkFKsl7/38jlJguNroD6DzRmQgXbAi7gRxUyE2DHkd/n/ytZVazRk0tnMc3kTWnIPGKwQ==
-X-Received: by 2002:a05:600c:a01:b0:456:1d61:b0f2 with SMTP id 5b1f17b1804b1-458b6b57100mr61139955e9.30.1754295245801;
-        Mon, 04 Aug 2025 01:14:05 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4589ee4f239sm156065575e9.21.2025.08.04.01.14.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Aug 2025 01:14:05 -0700 (PDT)
-Date: Mon, 4 Aug 2025 11:14:00 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Sunny Luo <sunny.luo@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org
-Subject: [bug report] spi: Add Amlogic SPISG driver
-Message-ID: <aJBryDMreHB9dI_i@stanley.mountain>
+	id 1ui8Sw-00000007Ng4-1YGV;
+	Sat, 02 Aug 2025 09:23:47 +0000
+Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 50061725;
+	Sat,  2 Aug 2025 11:22:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1754126580;
+	bh=K8dDCPVG1nkY6ic4h3FKwjvVzHTUjGzd1GG1sYDnoFA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=g8cVRCST89q8XYffSHxu1w8tRa9g2WsNGAItA5r8tH7V/DbNblJ6jc6QvVyhgL8GB
+	 eKkqv3HG0YcDlIfWs/kNrYjBUoXt/w9rLBJirlDl0OvkFCg0Gk7qcnY3MaZSyFiphj
+	 CNoEtAx/JHqYMJ4o7RcXRdqE15IMUkcyVG52VhQU=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Date: Sat, 02 Aug 2025 11:22:24 +0200
+Subject: [PATCH 02/65] media: imagination: Store v4l2_fh pointer in
+ file->private_data
 MIME-Version: 1.0
-Content-Disposition: inline
+Message-Id: <20250802-media-private-data-v1-2-eb140ddd6a9d@ideasonboard.com>
+References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
+In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Devarsh Thakkar <devarsht@ti.com>, Benoit Parrot <bparrot@ti.com>, 
+ Hans Verkuil <hverkuil@kernel.org>, Mike Isely <isely@pobox.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Hans de Goede <hansg@kernel.org>, 
+ Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, 
+ Christian Gromm <christian.gromm@microchip.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Alex Shi <alexs@kernel.org>, Yanteng Si <si.yanteng@linux.dev>, 
+ Dongliang Mu <dzm91@hust.edu.cn>, Jonathan Corbet <corbet@lwn.net>, 
+ Tomasz Figa <tfiga@chromium.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Andy Walls <awalls@md.metrocast.net>, 
+ Michael Tretter <m.tretter@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Bin Liu <bin.liu@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Dmitry Osipenko <digetx@gmail.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Mirela Rabulea <mirela.rabulea@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+ Michal Simek <michal.simek@amd.com>, Ming Qian <ming.qian@nxp.com>, 
+ Zhou Peng <eagle.zhou@nxp.com>, 
+ Xavier Roumegue <xavier.roumegue@oss.nxp.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Vikash Garodia <quic_vgarodia@quicinc.com>, 
+ Dikshita Agarwal <quic_dikshita@quicinc.com>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Sylwester Nawrocki <sylvester.nawrocki@gmail.com>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Nas Chung <nas.chung@chipsnmedia.com>, 
+ Jackson Lee <jackson.lee@chipsnmedia.com>, 
+ Minghsiu Tsai <minghsiu.tsai@mediatek.com>, 
+ Houlong Wei <houlong.wei@mediatek.com>, 
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>, 
+ Tiffany Lin <tiffany.lin@mediatek.com>, 
+ Yunfei Dong <yunfei.dong@mediatek.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, 
+ Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>, 
+ Jacob Chen <jacob-chen@iotwrt.com>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Heiko Stuebner <heiko@sntech.de>, 
+ Detlev Casanova <detlev.casanova@collabora.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ =?utf-8?q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>, 
+ Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>, 
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Fabien Dessenne <fabien.dessenne@foss.st.com>, 
+ Hugues Fruchet <hugues.fruchet@foss.st.com>, 
+ Jean-Christophe Trotin <jean-christophe.trotin@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Steve Longerbeam <slongerbeam@gmail.com>, 
+ Maxime Ripard <mripard@kernel.org>, Paul Kocialkowski <paulk@sys-base.io>, 
+ =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Corentin Labbe <clabbe@baylibre.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Bingbu Cao <bingbu.cao@intel.com>, Tianshu Qiu <tian.shu.qiu@intel.com>, 
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-staging@lists.linux.dev, linux-doc@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-tegra@vger.kernel.org, imx@lists.linux.dev, 
+ linux-renesas-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-usb@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4825;
+ i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
+ bh=uq3V2iL6jCR+ekaMlo1+qk6d+aP7IFCv3nHFixV02JI=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj30OFbTXcU0cO/acV0mQKqOVtG4JiSgWCWT
+ g8NFanNpkOJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y9wAKCRByNAaPFqFW
+ PHCED/4vrTjKJYdLSEILTxmBH365qg3YmPx3URIJqZdf8km+nCKwi18Ewh7L8dvElXpn+jZJHMK
+ iKF6lVmZ0nmIlIRlnH0Se6dmxhUSypRm6TuyQrsNID25XEkTcjN53a2+mk/NPFIGywdmIT7RxA0
+ bhfdBlfEJs53trejkMhGwCeigYz4KCwv9Jp+4R6xKuTII7IzCGi4ChSkK84RyAQYIYJrePAGgWY
+ DNIXleinVIw/43K55GUapypW1rzzVB57Hf8PJCHKazRfD5Gxqmz51P8817+/bcabIMfp6b+wk0w
+ /xgE23R2n45by1ZqRZPJgg3RSjyYhQ+SZEIojBzMxHsjz7ER/Uqp74kbaBK46lUromE5rNJKVIi
+ 8fkdjLbmGlxHZIVaJG+mc83ADCfH572DS8t0knqjYlieQGK8F2wak6rvN/voGvF7UM3oZpjURwb
+ Le9qpnU9LdYcS5WGJ2/ZjuWgjv6j4DwdSmxEHhtqX4Y21ggO8HrL6lWdhdvk943omp9GFgDPGWt
+ qv5A5St0/fo6JY1FcZYd/AV2SbfJoaCb6aaaFuo/Ore1XBRkOSzj3IFDFCDa0wlOGaAqVsM1GNr
+ /oaORYpASWFGcUWz2IBIjnFDw+QsEUtkzz9n5Hf3Yw+ojHMdNjUAQa2UzZxJhtL9XlP9gjqDZ/Q
+ 1WxsRYX5yD/TxHA==
+X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
+ fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250804_011410_116987_58B9097A 
-X-CRM114-Status: UNSURE (   6.38  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250802_022346_699785_0B3EED3B 
+X-CRM114-Status: GOOD (  14.99  )
+X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,152 +167,125 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Sunny Luo,
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Commit cef9991e04ae ("spi: Add Amlogic SPISG driver") from Jul 18,
-2025 (linux-next), leads to the following Smatch static checker
-warning:
+Most V4L2 drivers store the v4l2_fh pointer in file->private_data. The
+e5010-jpeg-enc driver instead stores the pointer to the driver-specific
+structure that embeds the v4l2_fh. Switch to storing the v4l2_fh pointer
+itself to standardize behaviour across drivers. This also prepares for
+future refactoring that depends on v4l2_fh being stored in private_data.
 
-	drivers/spi/spi-amlogic-spisg.c:314 aml_spisg_setup_transfer()
-	error: we previously assumed 'exdesc' could be null (see line 261)
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+---
+ drivers/media/platform/imagination/e5010-jpeg-enc.c | 18 +++++++++---------
+ drivers/media/platform/imagination/e5010-jpeg-enc.h |  5 +++++
+ 2 files changed, 14 insertions(+), 9 deletions(-)
 
-drivers/spi/spi-amlogic-spisg.c
-    248 static int aml_spisg_setup_transfer(struct spisg_device *spisg,
-    249                                     struct spi_transfer *xfer,
-    250                                     struct spisg_descriptor *desc,
-    251                                     struct spisg_descriptor_extra *exdesc)
-    252 {
-    253         int block_size, blocks;
-    254         struct device *dev = &spisg->pdev->dev;
-    255         struct spisg_sg_link *ccsg;
-    256         int ccsg_len;
-    257         dma_addr_t paddr;
-    258         int ret;
-    259 
-    260         memset(desc, 0, sizeof(*desc));
-    261         if (exdesc)
-                    ^^^^^^
-Checked for NULL
+diff --git a/drivers/media/platform/imagination/e5010-jpeg-enc.c b/drivers/media/platform/imagination/e5010-jpeg-enc.c
+index ae868d9f73e13fdac747ef603e08ea13cd66d3a6..295461325862fb2bcac755cf815955955b37e6f0 100644
+--- a/drivers/media/platform/imagination/e5010-jpeg-enc.c
++++ b/drivers/media/platform/imagination/e5010-jpeg-enc.c
+@@ -253,7 +253,7 @@ static int e5010_enum_fmt(struct file *file, void *priv, struct v4l2_fmtdesc *f)
+ {
+ 	int i, index = 0;
+ 	struct e5010_fmt *fmt = NULL;
+-	struct e5010_context *ctx = file->private_data;
++	struct e5010_context *ctx = to_e5010_context(file);
+ 
+ 	if (!V4L2_TYPE_IS_MULTIPLANAR(f->type)) {
+ 		v4l2_err(&ctx->e5010->v4l2_dev, "ENUMFMT with Invalid type: %d\n", f->type);
+@@ -279,7 +279,7 @@ static int e5010_enum_fmt(struct file *file, void *priv, struct v4l2_fmtdesc *f)
+ 
+ static int e5010_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ {
+-	struct e5010_context *ctx = file->private_data;
++	struct e5010_context *ctx = to_e5010_context(file);
+ 	struct e5010_q_data *queue;
+ 	int i;
+ 	struct v4l2_pix_format_mplane *pix_mp = &f->fmt.pix_mp;
+@@ -380,14 +380,14 @@ static int e5010_jpeg_try_fmt(struct v4l2_format *f, struct e5010_context *ctx)
+ 
+ static int e5010_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ {
+-	struct e5010_context *ctx = file->private_data;
++	struct e5010_context *ctx = to_e5010_context(file);
+ 
+ 	return e5010_jpeg_try_fmt(f, ctx);
+ }
+ 
+ static int e5010_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ {
+-	struct e5010_context *ctx = file->private_data;
++	struct e5010_context *ctx = to_e5010_context(file);
+ 	struct vb2_queue *vq;
+ 	int ret = 0, i = 0;
+ 	struct v4l2_pix_format_mplane *pix_mp = &f->fmt.pix_mp;
+@@ -462,7 +462,7 @@ static int e5010_enum_framesizes(struct file *file, void *priv, struct v4l2_frms
+ 
+ static int e5010_g_selection(struct file *file, void *fh, struct v4l2_selection *s)
+ {
+-	struct e5010_context *ctx = file->private_data;
++	struct e5010_context *ctx = to_e5010_context(file);
+ 	struct e5010_q_data *queue;
+ 
+ 	if (s->type != V4L2_BUF_TYPE_VIDEO_OUTPUT)
+@@ -490,7 +490,7 @@ static int e5010_g_selection(struct file *file, void *fh, struct v4l2_selection
+ 
+ static int e5010_s_selection(struct file *file, void *fh, struct v4l2_selection *s)
+ {
+-	struct e5010_context *ctx = file->private_data;
++	struct e5010_context *ctx = to_e5010_context(file);
+ 	struct e5010_q_data *queue;
+ 	struct vb2_queue *vq;
+ 	struct v4l2_rect base_rect;
+@@ -742,7 +742,7 @@ static int e5010_open(struct file *file)
+ 	}
+ 
+ 	v4l2_fh_init(&ctx->fh, vdev);
+-	file->private_data = ctx;
++	file->private_data = &ctx->fh;
+ 	v4l2_fh_add(&ctx->fh);
+ 
+ 	ctx->e5010 = e5010;
+@@ -781,7 +781,7 @@ static int e5010_open(struct file *file)
+ static int e5010_release(struct file *file)
+ {
+ 	struct e5010_dev *e5010 = video_drvdata(file);
+-	struct e5010_context *ctx = file->private_data;
++	struct e5010_context *ctx = to_e5010_context(file);
+ 
+ 	dprintk(e5010, 1, "Releasing instance: 0x%p, m2m_ctx: 0x%p\n", ctx, ctx->fh.m2m_ctx);
+ 	mutex_lock(&e5010->mutex);
+@@ -1262,7 +1262,7 @@ static void e5010_buf_queue(struct vb2_buffer *vb)
+ static int e5010_encoder_cmd(struct file *file, void *priv,
+ 			     struct v4l2_encoder_cmd *cmd)
+ {
+-	struct e5010_context *ctx = file->private_data;
++	struct e5010_context *ctx = to_e5010_context(file);
+ 	int ret;
+ 	struct vb2_queue *cap_vq;
+ 
+diff --git a/drivers/media/platform/imagination/e5010-jpeg-enc.h b/drivers/media/platform/imagination/e5010-jpeg-enc.h
+index 71f49ead68980c83fd81b19fd63d9abd47abef64..eefaf60489d3fba518acd12709f2e4831686620b 100644
+--- a/drivers/media/platform/imagination/e5010-jpeg-enc.h
++++ b/drivers/media/platform/imagination/e5010-jpeg-enc.h
+@@ -120,6 +120,11 @@ struct e5010_context {
+ 	u8				chroma_qp[QP_TABLE_SIZE];
+ };
+ 
++static inline struct e5010_context *to_e5010_context(struct file *filp)
++{
++	return container_of(filp->private_data, struct e5010_context, fh);
++}
++
+ /*
+  * Buffer structure
+  * Contains info for all buffers
 
-    262                 memset(exdesc, 0, sizeof(*exdesc));
-    263         aml_spisg_set_speed(spisg, xfer->speed_hz);
-    264         xfer->effective_speed_hz = spisg->effective_speed_hz;
-    265 
-    266         desc->cfg_start = spisg->cfg_start;
-    267         desc->cfg_bus = spisg->cfg_bus;
-    268 
-    269         block_size = xfer->bits_per_word >> 3;
-    270         blocks = xfer->len / block_size;
-    271 
-    272         desc->cfg_start |= FIELD_PREP(CFG_EOC, 0);
-    273         desc->cfg_bus |= FIELD_PREP(CFG_KEEP_SS, !xfer->cs_change);
-    274         desc->cfg_bus |= FIELD_PREP(CFG_NULL_CTL, 0);
-    275 
-    276         if (xfer->tx_buf || xfer->tx_dma) {
-    277                 desc->cfg_bus |= FIELD_PREP(CFG_LANE, nbits_to_lane[xfer->tx_nbits]);
-    278                 desc->cfg_start |= FIELD_PREP(CFG_OP_MODE, SPISG_OP_MODE_WRITE);
-    279         }
-    280         if (xfer->rx_buf || xfer->rx_dma) {
-    281                 desc->cfg_bus |= FIELD_PREP(CFG_LANE, nbits_to_lane[xfer->rx_nbits]);
-    282                 desc->cfg_start |= FIELD_PREP(CFG_OP_MODE, SPISG_OP_MODE_READ);
-    283         }
-    284 
-    285         if (FIELD_GET(CFG_OP_MODE, desc->cfg_start) == SPISG_OP_MODE_READ_STS) {
-    286                 desc->cfg_start |= FIELD_PREP(CFG_BLOCK_SIZE, blocks) |
-    287                                    FIELD_PREP(CFG_BLOCK_NUM, 1);
-    288         } else {
-    289                 blocks = min_t(int, blocks, SPISG_BLOCK_MAX);
-    290                 desc->cfg_start |= FIELD_PREP(CFG_BLOCK_SIZE, block_size & 0x7) |
-    291                                    FIELD_PREP(CFG_BLOCK_NUM, blocks);
-    292         }
-    293 
-    294         if (xfer->tx_sg.nents && xfer->tx_sg.sgl) {
-    295                 ccsg_len = xfer->tx_sg.nents * sizeof(struct spisg_sg_link);
-    296                 ccsg = kzalloc(ccsg_len, GFP_KERNEL | GFP_DMA);
-    297                 if (!ccsg) {
-    298                         dev_err(dev, "alloc tx_ccsg failed\n");
-    299                         return -ENOMEM;
-    300                 }
-    301 
-    302                 aml_spisg_sg_xlate(&xfer->tx_sg, ccsg);
-    303                 paddr = dma_map_single(dev, (void *)ccsg,
-    304                                        ccsg_len, DMA_TO_DEVICE);
-    305                 ret = dma_mapping_error(dev, paddr);
-    306                 if (ret) {
-    307                         kfree(ccsg);
-    308                         dev_err(dev, "tx ccsg map failed\n");
-    309                         return ret;
-    310                 }
-    311 
-    312                 desc->tx_paddr = paddr;
-    313                 desc->cfg_start |= FIELD_PREP(CFG_TXD_MODE, SPISG_DATA_MODE_SG);
---> 314                 exdesc->tx_ccsg = ccsg;
-                        ^^^^^^^^
-Unchecked dereference
+-- 
+2.49.0
 
-    315                 exdesc->tx_ccsg_len = ccsg_len;
-    316                 dma_sync_sgtable_for_device(spisg->controller->cur_tx_dma_dev,
-    317                                             &xfer->tx_sg, DMA_TO_DEVICE);
-    318         } else if (xfer->tx_buf || xfer->tx_dma) {
-    319                 paddr = xfer->tx_dma;
-    320                 if (!paddr) {
-    321                         paddr = dma_map_single(dev, (void *)xfer->tx_buf,
-    322                                                xfer->len, DMA_TO_DEVICE);
-    323                         ret = dma_mapping_error(dev, paddr);
-    324                         if (ret) {
-    325                                 dev_err(dev, "tx buf map failed\n");
-    326                                 return ret;
-    327                         }
-    328                 }
-    329                 desc->tx_paddr = paddr;
-    330                 desc->cfg_start |= FIELD_PREP(CFG_TXD_MODE, SPISG_DATA_MODE_MEM);
-    331         }
-    332 
-    333         if (xfer->rx_sg.nents && xfer->rx_sg.sgl) {
-    334                 ccsg_len = xfer->rx_sg.nents * sizeof(struct spisg_sg_link);
-    335                 ccsg = kzalloc(ccsg_len, GFP_KERNEL | GFP_DMA);
-    336                 if (!ccsg) {
-    337                         dev_err(dev, "alloc rx_ccsg failed\n");
-    338                         return -ENOMEM;
-    339                 }
-    340 
-    341                 aml_spisg_sg_xlate(&xfer->rx_sg, ccsg);
-    342                 paddr = dma_map_single(dev, (void *)ccsg,
-    343                                        ccsg_len, DMA_TO_DEVICE);
-    344                 ret = dma_mapping_error(dev, paddr);
-    345                 if (ret) {
-    346                         kfree(ccsg);
-    347                         dev_err(dev, "rx ccsg map failed\n");
-    348                         return ret;
-    349                 }
-    350 
-    351                 desc->rx_paddr = paddr;
-    352                 desc->cfg_start |= FIELD_PREP(CFG_RXD_MODE, SPISG_DATA_MODE_SG);
-    353                 exdesc->rx_ccsg = ccsg;
-    354                 exdesc->rx_ccsg_len = ccsg_len;
-    355                 dma_sync_sgtable_for_device(spisg->controller->cur_rx_dma_dev,
-    356                                             &xfer->rx_sg, DMA_FROM_DEVICE);
-    357         } else if (xfer->rx_buf || xfer->rx_dma) {
-    358                 paddr = xfer->rx_dma;
-    359                 if (!paddr) {
-    360                         paddr = dma_map_single(dev, xfer->rx_buf,
-    361                                                xfer->len, DMA_FROM_DEVICE);
-    362                         ret = dma_mapping_error(dev, paddr);
-    363                         if (ret) {
-    364                                 dev_err(dev, "rx buf map failed\n");
-    365                                 return ret;
-    366                         }
-    367                 }
-    368 
-    369                 desc->rx_paddr = paddr;
-    370                 desc->cfg_start |= FIELD_PREP(CFG_RXD_MODE, SPISG_DATA_MODE_MEM);
-    371         }
-    372 
-    373         return 0;
-    374 }
-
-regards,
-dan carpenter
 
 _______________________________________________
 linux-amlogic mailing list
