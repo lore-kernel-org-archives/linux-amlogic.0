@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FDBFC87FCB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AECE0C87FDA
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=10dJrU4IiPNE/uLqie7XBmxLDqZ/lwSSzPgET3Kjcuw=; b=L+vawv3K63UCXI
-	pGee/j0XToZx4QT0mCWmeELkbZ/PJ+HXcfNlMuuOksVc2JrAbEIJ9JUFkLDlLGa02Z2TNY9W6cH0N
-	9xSkz6ff6AoItRCadXgegMyYdWjd7MEKmzWvhI2sUHfslLxkpnmz2CwM2yVfGODJUL9MVCPJMMrLn
-	zgq1e8bRLTlLqFSF/7b3IT8F6Bt8Y0ZnsbSJkJ1FT1iiC0EKUvSVRBtDg4NmNVR+QHJxn/CrWFbOZ
-	EPJZknHCep38pZgkUDcAPqDKIB4B8x9KtDZv0+P+GV+ZiBzZNB7E0uOWUE89qglP9wnmUvzaEEAj5
-	tRzOesAGn+PZFKS4iKuw==;
+	List-Owner; bh=OKJeF6DuICseXX46ltHN3vGA/MVqJ8pJ7pFM8jzlGas=; b=0N0kOOtMtVCadG
+	g/zZ7FuRbH1uNcqRlFQvK/UnF3fVNasnMi5SPFJC1xl91Dcq7HMjM4UzzrQZhAQ3SpYChgRGIQ2Sm
+	tvF1wUyt/p8+JPthnwYuHAE9PBnVHckPEylbvUBkoflniEfP3TSUpwyBvStNHFJZDFAxkZZSypZOP
+	EZXx6dTJvMjRAOzffcnr+FIgwiESD47SM3mXWuzumC7u/NVAGkbULdY5EBHVVMEpthuZLghrkRyHO
+	+gCbuzyNQXdHl7mNyOBiM2rjvs/nc81LVp6wXXGXgK+rG3gRG+DCarKZHtrnut6ZB8iiZ6Q91kHJx
+	LvbfWCfZQRAa9VxVC1aA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXo-0000000Av83-3Gww;
-	Mon, 04 Aug 2025 15:56:12 +0000
+	id 1uixXs-0000000AvDN-01ng;
+	Mon, 04 Aug 2025 15:56:16 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8cA-00000007S15-1ses;
-	Sat, 02 Aug 2025 09:33:20 +0000
+	id 1ui8cm-00000007SJJ-0jNN;
+	Sat, 02 Aug 2025 09:33:57 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6D376EA0;
-	Sat,  2 Aug 2025 11:32:23 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8FDB1434B;
+	Sat,  2 Aug 2025 11:33:01 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754127152;
-	bh=Y80t6mB4iwBQesQdO4LMCe3YSMTXsJXe2CdPx2tZgnM=;
+	s=mail; t=1754127189;
+	bh=HJZkrhFG+jzm747g4Ehf7uDDScTqxfq9NHQKM9RJ9+c=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=HbDZkGyPReuTqOUXC4XHvtVbecmjFjkvn9QhJ0swKjQNlvhX4OF1EMulXh30ASkzt
-	 N9fqCk2OHTyciiwGn7MpBubDw2OX/r2v3IlRdXILvymYskKIxuLeBDm9MbMPNzNusL
-	 nwkNIoughd8Iq0CCaXEm6KLMQF2/2xUQeORvtiSM=
+	b=drO4QQ4w5C/9gxSKad/aI2GIngo7vFtEHIHzrGgn7kZAWSwLR5wrEh4HQvq6Jm6OI
+	 ZusDu7tyhzItb/PJ3UgESd1YUquS1Fmh3fVSitOAj7wJomAczSa4RbhwDqiVZJfF3B
+	 Qtx/E4NpY2guxQIm3G7R7AMgxzqza3IQPTFKsu6c=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:23:19 +0200
-Subject: [PATCH 57/65] media: ivtv: Access v4l2_fh from file
+Date: Sat, 02 Aug 2025 11:23:23 +0200
+Subject: [PATCH 61/65] media: staging: imx: Access v4l2_fh from file
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-57-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-61-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -129,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=22060;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2886;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=Y80t6mB4iwBQesQdO4LMCe3YSMTXsJXe2CdPx2tZgnM=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj+/vd8qdz5//sT07XduRB8DRKCpHK7o4Fbl
- m7SrCBEp6OJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/gAKCRByNAaPFqFW
- PIvnD/93dcaaiVIv4xP4TjJUecfS+KksaInR7XVJ9lOTjDhNOGP/MA1HqTEI46kfkiDDOTqOwA6
- Y4v43HX2/p9BqmBQ++L/6yhnRUHGpzMLbcYPl/plBKjEGX5Rq5f+WiBf185PrseXD4ZdxWkS7OO
- 5fkexLYYfixbUAYAKeSUF8K34JBxU6+xbaozfQqrtF5pPau0v5uJMCorHOY4PNbFiQQSZZKTISS
- 3J7f8BAim1cqQOxtXMIZDe72HYeI38zijMOr9GwPVdVVPB4Ha11Ab4Zk0hDiillEvLGcVM6aNDv
- jg2hyzmuzxqiEUrr1hDr2hFtLcD5hhoyAnbbplUggWrpk8axwRa5rFSAzriHn2mu0UORF0tNHUG
- St9yirJPpMVekNHIOsqJTfuzafUlZfwzY4tz72wlE2T6w+EKS1MMAsYte+k+7pzmYDKuNTb6HHV
- rzLa6zgKrW+uNul5J8y+Qg64ur0bR1bjQc27JZrSuk8kzI+/2W6/6nS7vB1SvPbL5WM5/bCRVrx
- aahTr+Rg0JDCSldHLSKOSQ4mbFvJFneyUnsRlEd4WrEGNBzBzLYZ/CuqP3A2UNMoUaAVS4Me1Xd
- NoPs417fSlc9Xu7lCqp7iFx01KI1tQ07uiHbunVdTpf+E7YTsYFTLVyIbBT8ueL0tdRtheyt7oM
- C3CCP/dgA/Ghuxw==
+ bh=HJZkrhFG+jzm747g4Ehf7uDDScTqxfq9NHQKM9RJ9+c=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj/LYqcTTKP5IO38I6jRkZtnPsad4yNU/BBM
+ LhZkqOCQmyJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/wAKCRByNAaPFqFW
+ PBUoD/9IzXwsCQmzZriXZwyHxu8ZbHSG9GOn5AFJ5yuxmyL+uefno6h2zKTZMm8PDQQEMO/jVe0
+ WSC2PXgtp2l2beUGIlkrSqMAWd2ooWmRvUskEkWBmBzeG506UdTZjbx/418DFC8Z8zaeB0nVCdc
+ /wGf0Gy1y1swBI602aZLOtqjRfjKcD5vu9ozAisDD4RHfMWfPbDX7hndsvy/b185ErMEK6rG3SI
+ Ux1cGTjjJ4rFaeg9XyTreQ3dPyg7tPSoaubiZa2cunxMtK5RPQmbqJkWG2EF56aX6LYWLUshWQm
+ 1+WDzhvT0criVSZX0gp0EGUYaemxF1Gcd13bOgQ6l5Cmlq3KeKDlns0Q17hjXxdnwz6revxZAGl
+ FrTVFgF3IyThahVOUI6yq/UMj0LI82p9bgOwi4Mu4aUOoLzz09jWVkYPdh+Jma4I3Ker4Qw8XYW
+ mPuw1AHdEAi8T2Ygj8ksbEaFPQkxSNfmMk1ocWww69os41oVrZ0VF6a+r8xmZe/EudJmIWtW9Rb
+ 4S+lSn8e7w2Jt7CcII/wZZJqnFDuYyP/Ty87GGVE8d7K9g7Bx4Z4dOZNVB1u2OPb+8W/gcu4E/5
+ TYrxi33Ung3k9TQRPV8LyxI/8QGtcQZubSmmlE2e7kjnp6Rzuo/gnwA9C0Ba04DByNeihtvEVG2
+ QGndJvaTcNt3y7g==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_023318_780275_6DD46D7E 
-X-CRM114-Status: GOOD (  15.68  )
+X-CRM114-CacheID: sfid-20250802_023356_359752_850A474E 
+X-CRM114-Status: GOOD (  11.71  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -172,545 +172,70 @@ to be available in file->private_data, initialised by v4l2_fh_add().
 Access the v4l2_fh, and from there the driver-specific structure,
 from the file * in all ioctl handlers.
 
-While at it remove the only left user of fh2id() and remove
-the macro completely.
-
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/pci/ivtv/ivtv-driver.h  |   5 --
- drivers/media/pci/ivtv/ivtv-fileops.c |   2 +-
- drivers/media/pci/ivtv/ivtv-ioctl.c   | 124 +++++++++++++++++-----------------
- 3 files changed, 63 insertions(+), 68 deletions(-)
+ drivers/staging/media/imx/imx-media-csc-scaler.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/media/pci/ivtv/ivtv-driver.h b/drivers/media/pci/ivtv/ivtv-driver.h
-index 38c4ceb04cf834906ed877b57c20fcbdb390da13..69c37f450c21f91abb4e4f73823097bd61d5abc2 100644
---- a/drivers/media/pci/ivtv/ivtv-driver.h
-+++ b/drivers/media/pci/ivtv/ivtv-driver.h
-@@ -384,11 +384,6 @@ struct ivtv_open_id {
- 	struct ivtv *itv;
- };
+diff --git a/drivers/staging/media/imx/imx-media-csc-scaler.c b/drivers/staging/media/imx/imx-media-csc-scaler.c
+index c4ee0eebb3730e709c3d4a95935d0047a645e411..1869c5792ecb46682491ecbf33674c6044915261 100644
+--- a/drivers/staging/media/imx/imx-media-csc-scaler.c
++++ b/drivers/staging/media/imx/imx-media-csc-scaler.c
+@@ -23,8 +23,6 @@
  
--static inline struct ivtv_open_id *fh2id(struct v4l2_fh *fh)
--{
--	return container_of(fh, struct ivtv_open_id, fh);
--}
+ #include "imx-media.h"
+ 
+-#define fh_to_ctx(__fh)	container_of(__fh, struct ipu_csc_scaler_ctx, fh)
 -
- static inline struct ivtv_open_id *file2id(struct file *filp)
+ #define IMX_CSC_SCALER_NAME "imx-csc-scaler"
+ 
+ enum {
+@@ -184,7 +182,7 @@ static int ipu_csc_scaler_enum_fmt(struct file *file, void *fh,
+ static int ipu_csc_scaler_g_fmt(struct file *file, void *priv,
+ 				struct v4l2_format *f)
  {
- 	return container_of(file_to_v4l2_fh(filp), struct ivtv_open_id, fh);
-diff --git a/drivers/media/pci/ivtv/ivtv-fileops.c b/drivers/media/pci/ivtv/ivtv-fileops.c
-index 0040a5e7f654149eb429400dd1db7197a9a3b54e..814fe7989cdc11ed225f03a9168be50c6b9ba595 100644
---- a/drivers/media/pci/ivtv/ivtv-fileops.c
-+++ b/drivers/media/pci/ivtv/ivtv-fileops.c
-@@ -878,7 +878,7 @@ static void ivtv_stop_decoding(struct ivtv_open_id *id, int flags, u64 pts)
- int ivtv_v4l2_close(struct file *filp)
+-	struct ipu_csc_scaler_ctx *ctx = fh_to_ctx(priv);
++	struct ipu_csc_scaler_ctx *ctx = file_to_ctx(file);
+ 	struct ipu_csc_scaler_q_data *q_data;
+ 
+ 	q_data = get_q_data(ctx, f->type);
+@@ -197,7 +195,7 @@ static int ipu_csc_scaler_g_fmt(struct file *file, void *priv,
+ static int ipu_csc_scaler_try_fmt(struct file *file, void *priv,
+ 				  struct v4l2_format *f)
  {
- 	struct v4l2_fh *fh = file_to_v4l2_fh(filp);
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(filp);
- 	struct ivtv *itv = id->itv;
- 	struct ivtv_stream *s = &itv->streams[id->type];
- 
-diff --git a/drivers/media/pci/ivtv/ivtv-ioctl.c b/drivers/media/pci/ivtv/ivtv-ioctl.c
-index d888435b71fb6f6873d9d884248a67364576bf33..8077a71d4850ec773caa20c3fca08f92f3117d69 100644
---- a/drivers/media/pci/ivtv/ivtv-ioctl.c
-+++ b/drivers/media/pci/ivtv/ivtv-ioctl.c
-@@ -308,7 +308,7 @@ static int ivtv_video_command(struct ivtv *itv, struct ivtv_open_id *id,
- 
- static int ivtv_g_fmt_sliced_vbi_out(struct file *file, void *fh, struct v4l2_format *fmt)
+-	struct ipu_csc_scaler_ctx *ctx = fh_to_ctx(priv);
++	struct ipu_csc_scaler_ctx *ctx = file_to_ctx(file);
+ 	struct ipu_csc_scaler_q_data *q_data = get_q_data(ctx, f->type);
+ 	struct ipu_image test_in, test_out;
+ 	enum v4l2_field field;
+@@ -245,8 +243,8 @@ static int ipu_csc_scaler_try_fmt(struct file *file, void *priv,
+ static int ipu_csc_scaler_s_fmt(struct file *file, void *priv,
+ 				struct v4l2_format *f)
  {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 	struct v4l2_sliced_vbi_format *vbifmt = &fmt->fmt.sliced;
++	struct ipu_csc_scaler_ctx *ctx = file_to_ctx(file);
+ 	struct ipu_csc_scaler_q_data *q_data;
+-	struct ipu_csc_scaler_ctx *ctx = fh_to_ctx(priv);
+ 	struct vb2_queue *vq;
+ 	int ret;
  
- 	vbifmt->reserved[0] = 0;
-@@ -330,7 +330,7 @@ static int ivtv_g_fmt_sliced_vbi_out(struct file *file, void *fh, struct v4l2_fo
- 
- static int ivtv_g_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *fmt)
+@@ -301,7 +299,7 @@ static int ipu_csc_scaler_s_fmt(struct file *file, void *priv,
+ static int ipu_csc_scaler_g_selection(struct file *file, void *priv,
+ 				      struct v4l2_selection *s)
  {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 	struct v4l2_pix_format *pixfmt = &fmt->fmt.pix;
+-	struct ipu_csc_scaler_ctx *ctx = fh_to_ctx(priv);
++	struct ipu_csc_scaler_ctx *ctx = file_to_ctx(file);
+ 	struct ipu_csc_scaler_q_data *q_data;
  
-@@ -353,7 +353,7 @@ static int ivtv_g_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *f
- 
- static int ivtv_g_fmt_vbi_cap(struct file *file, void *fh, struct v4l2_format *fmt)
+ 	switch (s->target) {
+@@ -339,7 +337,7 @@ static int ipu_csc_scaler_g_selection(struct file *file, void *priv,
+ static int ipu_csc_scaler_s_selection(struct file *file, void *priv,
+ 				      struct v4l2_selection *s)
  {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 	struct v4l2_vbi_format *vbifmt = &fmt->fmt.vbi;
- 
- 	vbifmt->sampling_rate = 27000000;
-@@ -372,7 +372,7 @@ static int ivtv_g_fmt_vbi_cap(struct file *file, void *fh, struct v4l2_format *f
- static int ivtv_g_fmt_sliced_vbi_cap(struct file *file, void *fh, struct v4l2_format *fmt)
- {
- 	struct v4l2_sliced_vbi_format *vbifmt = &fmt->fmt.sliced;
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 
- 	vbifmt->reserved[0] = 0;
-@@ -394,7 +394,7 @@ static int ivtv_g_fmt_sliced_vbi_cap(struct file *file, void *fh, struct v4l2_fo
- 
- static int ivtv_g_fmt_vid_out(struct file *file, void *fh, struct v4l2_format *fmt)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 	struct v4l2_pix_format *pixfmt = &fmt->fmt.pix;
- 
-@@ -434,8 +434,8 @@ static int ivtv_g_fmt_vid_out(struct file *file, void *fh, struct v4l2_format *f
- 
- static int ivtv_g_fmt_vid_out_overlay(struct file *file, void *fh, struct v4l2_format *fmt)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
--	struct ivtv_stream *s = &itv->streams[fh2id(fh)->type];
-+	struct ivtv *itv = file2id(file)->itv;
-+	struct ivtv_stream *s = &itv->streams[file2id(file)->type];
- 	struct v4l2_window *winfmt = &fmt->fmt.win;
- 
- 	if (!(s->vdev.device_caps & V4L2_CAP_VIDEO_OUTPUT_OVERLAY))
-@@ -461,7 +461,7 @@ static int ivtv_try_fmt_sliced_vbi_out(struct file *file, void *fh, struct v4l2_
- 
- static int ivtv_try_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *fmt)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 	int w = fmt->fmt.pix.width;
- 	int h = fmt->fmt.pix.height;
-@@ -490,7 +490,7 @@ static int ivtv_try_fmt_vbi_cap(struct file *file, void *fh, struct v4l2_format
- static int ivtv_try_fmt_sliced_vbi_cap(struct file *file, void *fh, struct v4l2_format *fmt)
- {
- 	struct v4l2_sliced_vbi_format *vbifmt = &fmt->fmt.sliced;
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 
- 	if (id->type == IVTV_DEC_STREAM_TYPE_VBI)
-@@ -510,7 +510,7 @@ static int ivtv_try_fmt_sliced_vbi_cap(struct file *file, void *fh, struct v4l2_
- 
- static int ivtv_try_fmt_vid_out(struct file *file, void *fh, struct v4l2_format *fmt)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	s32 w = fmt->fmt.pix.width;
- 	s32 h = fmt->fmt.pix.height;
- 	int field = fmt->fmt.pix.field;
-@@ -544,8 +544,8 @@ static int ivtv_try_fmt_vid_out(struct file *file, void *fh, struct v4l2_format
- 
- static int ivtv_try_fmt_vid_out_overlay(struct file *file, void *fh, struct v4l2_format *fmt)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
--	struct ivtv_stream *s = &itv->streams[fh2id(fh)->type];
-+	struct ivtv *itv = file2id(file)->itv;
-+	struct ivtv_stream *s = &itv->streams[file2id(file)->type];
- 	u32 chromakey = fmt->fmt.win.chromakey;
- 	u8 global_alpha = fmt->fmt.win.global_alpha;
- 
-@@ -566,7 +566,7 @@ static int ivtv_s_fmt_sliced_vbi_out(struct file *file, void *fh, struct v4l2_fo
- 
- static int ivtv_s_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *fmt)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 	struct v4l2_subdev_format format = {
- 		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
-@@ -597,7 +597,7 @@ static int ivtv_s_fmt_vid_cap(struct file *file, void *fh, struct v4l2_format *f
- 
- static int ivtv_s_fmt_vbi_cap(struct file *file, void *fh, struct v4l2_format *fmt)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	if (!ivtv_raw_vbi(itv) && atomic_read(&itv->capturing) > 0)
- 		return -EBUSY;
-@@ -610,7 +610,7 @@ static int ivtv_s_fmt_vbi_cap(struct file *file, void *fh, struct v4l2_format *f
- static int ivtv_s_fmt_sliced_vbi_cap(struct file *file, void *fh, struct v4l2_format *fmt)
- {
- 	struct v4l2_sliced_vbi_format *vbifmt = &fmt->fmt.sliced;
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 	int ret = ivtv_try_fmt_sliced_vbi_cap(file, fh, fmt);
- 
-@@ -628,7 +628,7 @@ static int ivtv_s_fmt_sliced_vbi_cap(struct file *file, void *fh, struct v4l2_fo
- 
- static int ivtv_s_fmt_vid_out(struct file *file, void *fh, struct v4l2_format *fmt)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 	struct yuv_playback_info *yi = &itv->yuv_info;
- 	int ret = ivtv_try_fmt_vid_out(file, fh, fmt);
-@@ -673,7 +673,7 @@ static int ivtv_s_fmt_vid_out(struct file *file, void *fh, struct v4l2_format *f
- 
- static int ivtv_s_fmt_vid_out_overlay(struct file *file, void *fh, struct v4l2_format *fmt)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 	int ret = ivtv_try_fmt_vid_out_overlay(file, fh, fmt);
- 
- 	if (ret == 0) {
-@@ -710,7 +710,7 @@ static int ivtv_itvc(struct ivtv *itv, bool get, u64 reg, u64 *val)
- 
- static int ivtv_g_register(struct file *file, void *fh, struct v4l2_dbg_register *reg)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	reg->size = 4;
- 	return ivtv_itvc(itv, true, reg->reg, &reg->val);
-@@ -718,7 +718,7 @@ static int ivtv_g_register(struct file *file, void *fh, struct v4l2_dbg_register
- 
- static int ivtv_s_register(struct file *file, void *fh, const struct v4l2_dbg_register *reg)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 	u64 val = reg->val;
- 
- 	return ivtv_itvc(itv, false, reg->reg, &val);
-@@ -727,7 +727,7 @@ static int ivtv_s_register(struct file *file, void *fh, const struct v4l2_dbg_re
- 
- static int ivtv_querycap(struct file *file, void *fh, struct v4l2_capability *vcap)
- {
--	struct ivtv_open_id *id = fh2id(file_to_v4l2_fh(file));
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 
- 	strscpy(vcap->driver, IVTV_DRIVER_NAME, sizeof(vcap->driver));
-@@ -738,14 +738,14 @@ static int ivtv_querycap(struct file *file, void *fh, struct v4l2_capability *vc
- 
- static int ivtv_enumaudio(struct file *file, void *fh, struct v4l2_audio *vin)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	return ivtv_get_audio_input(itv, vin->index, vin);
- }
- 
- static int ivtv_g_audio(struct file *file, void *fh, struct v4l2_audio *vin)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	vin->index = itv->audio_input;
- 	return ivtv_get_audio_input(itv, vin->index, vin);
-@@ -753,7 +753,7 @@ static int ivtv_g_audio(struct file *file, void *fh, struct v4l2_audio *vin)
- 
- static int ivtv_s_audio(struct file *file, void *fh, const struct v4l2_audio *vout)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	if (vout->index >= itv->nof_audio_inputs)
- 		return -EINVAL;
-@@ -766,7 +766,7 @@ static int ivtv_s_audio(struct file *file, void *fh, const struct v4l2_audio *vo
- 
- static int ivtv_enumaudout(struct file *file, void *fh, struct v4l2_audioout *vin)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	/* set it to defaults from our table */
- 	return ivtv_get_audio_output(itv, vin->index, vin);
-@@ -774,7 +774,7 @@ static int ivtv_enumaudout(struct file *file, void *fh, struct v4l2_audioout *vi
- 
- static int ivtv_g_audout(struct file *file, void *fh, struct v4l2_audioout *vin)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	vin->index = 0;
- 	return ivtv_get_audio_output(itv, vin->index, vin);
-@@ -782,7 +782,7 @@ static int ivtv_g_audout(struct file *file, void *fh, struct v4l2_audioout *vin)
- 
- static int ivtv_s_audout(struct file *file, void *fh, const struct v4l2_audioout *vout)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	if (itv->card->video_outputs == NULL || vout->index != 0)
- 		return -EINVAL;
-@@ -791,7 +791,7 @@ static int ivtv_s_audout(struct file *file, void *fh, const struct v4l2_audioout
- 
- static int ivtv_enum_input(struct file *file, void *fh, struct v4l2_input *vin)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	/* set it to defaults from our table */
- 	return ivtv_get_input(itv, vin->index, vin);
-@@ -799,7 +799,7 @@ static int ivtv_enum_input(struct file *file, void *fh, struct v4l2_input *vin)
- 
- static int ivtv_enum_output(struct file *file, void *fh, struct v4l2_output *vout)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	return ivtv_get_output(itv, vout->index, vout);
- }
-@@ -807,7 +807,7 @@ static int ivtv_enum_output(struct file *file, void *fh, struct v4l2_output *vou
- static int ivtv_g_pixelaspect(struct file *file, void *fh,
- 			      int type, struct v4l2_fract *f)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 
- 	if (type == V4L2_BUF_TYPE_VIDEO_CAPTURE) {
-@@ -825,7 +825,7 @@ static int ivtv_g_pixelaspect(struct file *file, void *fh,
- static int ivtv_s_selection(struct file *file, void *fh,
- 			    struct v4l2_selection *sel)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 	struct yuv_playback_info *yi = &itv->yuv_info;
- 	struct v4l2_rect r = { 0, 0, 720, 0 };
-@@ -868,7 +868,7 @@ static int ivtv_s_selection(struct file *file, void *fh,
- static int ivtv_g_selection(struct file *file, void *fh,
- 			    struct v4l2_selection *sel)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 	struct yuv_playback_info *yi = &itv->yuv_info;
- 	struct v4l2_rect r = { 0, 0, 720, 0 };
-@@ -924,8 +924,8 @@ static int ivtv_enum_fmt_vid_cap(struct file *file, void *fh, struct v4l2_fmtdes
- 		.description = "MPEG",
- 		.pixelformat = V4L2_PIX_FMT_MPEG,
- 	};
--	struct ivtv *itv = fh2id(fh)->itv;
--	struct ivtv_stream *s = &itv->streams[fh2id(fh)->type];
-+	struct ivtv *itv = file2id(file)->itv;
-+	struct ivtv_stream *s = &itv->streams[file2id(file)->type];
- 
- 	if (fmt->index)
- 		return -EINVAL;
-@@ -951,8 +951,8 @@ static int ivtv_enum_fmt_vid_out(struct file *file, void *fh, struct v4l2_fmtdes
- 		.description = "MPEG",
- 		.pixelformat = V4L2_PIX_FMT_MPEG,
- 	};
--	struct ivtv *itv = fh2id(fh)->itv;
--	struct ivtv_stream *s = &itv->streams[fh2id(fh)->type];
-+	struct ivtv *itv = file2id(file)->itv;
-+	struct ivtv_stream *s = &itv->streams[file2id(file)->type];
- 
- 	if (fmt->index)
- 		return -EINVAL;
-@@ -967,7 +967,7 @@ static int ivtv_enum_fmt_vid_out(struct file *file, void *fh, struct v4l2_fmtdes
- 
- static int ivtv_g_input(struct file *file, void *fh, unsigned int *i)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	*i = itv->active_input;
- 
-@@ -976,7 +976,7 @@ static int ivtv_g_input(struct file *file, void *fh, unsigned int *i)
- 
- int ivtv_s_input(struct file *file, void *fh, unsigned int inp)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 	v4l2_std_id std;
- 	int i;
- 
-@@ -1019,7 +1019,7 @@ int ivtv_s_input(struct file *file, void *fh, unsigned int inp)
- 
- static int ivtv_g_output(struct file *file, void *fh, unsigned int *i)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	if (!(itv->v4l2_cap & V4L2_CAP_VIDEO_OUTPUT))
- 		return -EINVAL;
-@@ -1031,7 +1031,7 @@ static int ivtv_g_output(struct file *file, void *fh, unsigned int *i)
- 
- static int ivtv_s_output(struct file *file, void *fh, unsigned int outp)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	if (outp >= itv->card->nof_outputs)
- 		return -EINVAL;
-@@ -1053,8 +1053,8 @@ static int ivtv_s_output(struct file *file, void *fh, unsigned int outp)
- 
- static int ivtv_g_frequency(struct file *file, void *fh, struct v4l2_frequency *vf)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
--	struct ivtv_stream *s = &itv->streams[fh2id(fh)->type];
-+	struct ivtv *itv = file2id(file)->itv;
-+	struct ivtv_stream *s = &itv->streams[file2id(file)->type];
- 
- 	if (s->vdev.vfl_dir)
- 		return -ENOTTY;
-@@ -1067,8 +1067,8 @@ static int ivtv_g_frequency(struct file *file, void *fh, struct v4l2_frequency *
- 
- int ivtv_s_frequency(struct file *file, void *fh, const struct v4l2_frequency *vf)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
--	struct ivtv_stream *s = &itv->streams[fh2id(fh)->type];
-+	struct ivtv *itv = file2id(file)->itv;
-+	struct ivtv_stream *s = &itv->streams[file2id(file)->type];
- 
- 	if (s->vdev.vfl_dir)
- 		return -ENOTTY;
-@@ -1084,7 +1084,7 @@ int ivtv_s_frequency(struct file *file, void *fh, const struct v4l2_frequency *v
- 
- static int ivtv_g_std(struct file *file, void *fh, v4l2_std_id *std)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	*std = itv->std;
- 	return 0;
-@@ -1157,7 +1157,7 @@ void ivtv_s_std_dec(struct ivtv *itv, v4l2_std_id std)
- 
- static int ivtv_s_std(struct file *file, void *fh, v4l2_std_id std)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	if ((std & V4L2_STD_ALL) == 0)
- 		return -EINVAL;
-@@ -1185,7 +1185,7 @@ static int ivtv_s_std(struct file *file, void *fh, v4l2_std_id std)
- 
- static int ivtv_s_tuner(struct file *file, void *fh, const struct v4l2_tuner *vt)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 
- 	if (vt->index != 0)
-@@ -1198,7 +1198,7 @@ static int ivtv_s_tuner(struct file *file, void *fh, const struct v4l2_tuner *vt
- 
- static int ivtv_g_tuner(struct file *file, void *fh, struct v4l2_tuner *vt)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	if (vt->index != 0)
- 		return -EINVAL;
-@@ -1214,7 +1214,7 @@ static int ivtv_g_tuner(struct file *file, void *fh, struct v4l2_tuner *vt)
- 
- static int ivtv_g_sliced_vbi_cap(struct file *file, void *fh, struct v4l2_sliced_vbi_cap *cap)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 	int set = itv->is_50hz ? V4L2_SLICED_VBI_625 : V4L2_SLICED_VBI_525;
- 	int f, l;
- 
-@@ -1249,7 +1249,7 @@ static int ivtv_g_sliced_vbi_cap(struct file *file, void *fh, struct v4l2_sliced
- 
- static int ivtv_g_enc_index(struct file *file, void *fh, struct v4l2_enc_idx *idx)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 	struct v4l2_enc_idx_entry *e = idx->entry;
- 	int entries;
- 	int i;
-@@ -1275,7 +1275,7 @@ static int ivtv_g_enc_index(struct file *file, void *fh, struct v4l2_enc_idx *id
- 
- static int ivtv_encoder_cmd(struct file *file, void *fh, struct v4l2_encoder_cmd *enc)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 
- 
-@@ -1327,7 +1327,7 @@ static int ivtv_encoder_cmd(struct file *file, void *fh, struct v4l2_encoder_cmd
- 
- static int ivtv_try_encoder_cmd(struct file *file, void *fh, struct v4l2_encoder_cmd *enc)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	switch (enc->cmd) {
- 	case V4L2_ENC_CMD_START:
-@@ -1357,8 +1357,8 @@ static int ivtv_try_encoder_cmd(struct file *file, void *fh, struct v4l2_encoder
- 
- static int ivtv_g_fbuf(struct file *file, void *fh, struct v4l2_framebuffer *fb)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
--	struct ivtv_stream *s = &itv->streams[fh2id(fh)->type];
-+	struct ivtv *itv = file2id(file)->itv;
-+	struct ivtv_stream *s = &itv->streams[file2id(file)->type];
- 	u32 data[CX2341X_MBOX_MAX_DATA];
- 	struct yuv_playback_info *yi = &itv->yuv_info;
- 
-@@ -1444,9 +1444,9 @@ static int ivtv_g_fbuf(struct file *file, void *fh, struct v4l2_framebuffer *fb)
- 
- static int ivtv_s_fbuf(struct file *file, void *fh, const struct v4l2_framebuffer *fb)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
--	struct ivtv_stream *s = &itv->streams[fh2id(fh)->type];
-+	struct ivtv_stream *s = &itv->streams[file2id(file)->type];
- 	struct yuv_playback_info *yi = &itv->yuv_info;
- 
- 	if (!(s->vdev.device_caps & V4L2_CAP_VIDEO_OUTPUT_OVERLAY))
-@@ -1465,9 +1465,9 @@ static int ivtv_s_fbuf(struct file *file, void *fh, const struct v4l2_framebuffe
- 
- static int ivtv_overlay(struct file *file, void *fh, unsigned int on)
- {
--	struct ivtv_open_id *id = fh2id(fh);
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
--	struct ivtv_stream *s = &itv->streams[fh2id(fh)->type];
-+	struct ivtv_stream *s = &itv->streams[file2id(file)->type];
- 
- 	if (!(s->vdev.device_caps & V4L2_CAP_VIDEO_OUTPUT_OVERLAY))
- 		return -ENOTTY;
-@@ -1492,7 +1492,7 @@ static int ivtv_subscribe_event(struct v4l2_fh *fh, const struct v4l2_event_subs
- 
- static int ivtv_log_status(struct file *file, void *fh)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 	u32 data[CX2341X_MBOX_MAX_DATA];
- 
- 	int has_output = itv->v4l2_cap & V4L2_CAP_VIDEO_OUTPUT;
-@@ -1584,7 +1584,7 @@ static int ivtv_log_status(struct file *file, void *fh)
- 
- static int ivtv_decoder_cmd(struct file *file, void *fh, struct v4l2_decoder_cmd *dec)
- {
--	struct ivtv_open_id *id = fh2id(file_to_v4l2_fh(file));
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 
- 	IVTV_DEBUG_IOCTL("VIDIOC_DECODER_CMD %d\n", dec->cmd);
-@@ -1593,7 +1593,7 @@ static int ivtv_decoder_cmd(struct file *file, void *fh, struct v4l2_decoder_cmd
- 
- static int ivtv_try_decoder_cmd(struct file *file, void *fh, struct v4l2_decoder_cmd *dec)
- {
--	struct ivtv_open_id *id = fh2id(file_to_v4l2_fh(file));
-+	struct ivtv_open_id *id = file2id(file);
- 	struct ivtv *itv = id->itv;
- 
- 	IVTV_DEBUG_IOCTL("VIDIOC_TRY_DECODER_CMD %d\n", dec->cmd);
-@@ -1602,7 +1602,7 @@ static int ivtv_try_decoder_cmd(struct file *file, void *fh, struct v4l2_decoder
- 
- static int ivtv_decoder_ioctls(struct file *filp, unsigned int cmd, void *arg)
- {
--	struct ivtv_open_id *id = fh2id(file_to_v4l2_fh(filp));
-+	struct ivtv_open_id *id = file2id(filp);
- 	struct ivtv *itv = id->itv;
- 	struct ivtv_stream *s = &itv->streams[id->type];
- 
-@@ -1645,7 +1645,7 @@ static int ivtv_decoder_ioctls(struct file *filp, unsigned int cmd, void *arg)
- static long ivtv_default(struct file *file, void *fh, bool valid_prio,
- 			 unsigned int cmd, void *arg)
- {
--	struct ivtv *itv = fh2id(fh)->itv;
-+	struct ivtv *itv = file2id(file)->itv;
- 
- 	if (!valid_prio) {
- 		switch (cmd) {
+-	struct ipu_csc_scaler_ctx *ctx = fh_to_ctx(priv);
++	struct ipu_csc_scaler_ctx *ctx = file_to_ctx(file);
+ 	struct ipu_csc_scaler_q_data *q_data;
+ 
+ 	switch (s->target) {
 
 -- 
 2.49.0
