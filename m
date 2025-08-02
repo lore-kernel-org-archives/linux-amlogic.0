@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 714B2C87FCF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2731EC87FCB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S+ESWzIB6PZp4faYDRLNEPc8qqQsuQU6sJnTBT4WGOs=; b=Zge/5cOo0SlVXq
-	yxlSGo9VQJmyn4JSwtwaYJ4EFKFxP2nP7+4iT5WMenrrFIb51BgOkJe2sxf5cXw/06gHgh64yPs4a
-	9+aymOfE5zkccv1jVMLXFet+HMkN0gDJwt5t45Ja2CKQyXdHhBrF55DaJ+jq1tPI0S4r7ljKkVC7u
-	M3lpCLPrTY21EkbSzTfnVPOBqnOxUA6M6U7IP4vsaTcqGT4Q8xeBQ6tgQUYdHjncWvwdGVk0bAFK2
-	1cw+rUzqU42+RIaPa5TXGHr4W4V8quYlhU4eUhCdbq6gnv2quiv1KGn2tYviQjgP9ZjZVFOKNZreB
-	ZV9Dj5FsAEaxCQPk/0CQ==;
+	List-Owner; bh=4g3OGZRNbbd5nM3G1WgmfFIoLoUSMJvdUEc5n+MPv+M=; b=YM18EY19QC4xjG
+	ewcP/HMH3ZO63ubRjZG2+srwBKmNltLUysXHQuYSR/2yG9qvuiX2axX6iJWs1x1oyVxtSuUUqJgJ1
+	JyvodCSn4qFryXrkEnE5M0Giw6zT/ve6Bt9hzUFyNQjB+8SfZlFV5BHq9ltNmfnyxZJkqeTkS7dca
+	b/Xeo+YyRleaEo4b2x083Skuxn2hTa2fPcTRtR8mppmwJ4VsQl76yx3AY8PrdYyAko1gUCkV6JX4C
+	53YeW5A8i7bA4+1M0CktHh5HVDmCEGhEWXhud7pvrfsqBl+oiYn4F+NzJ58km0JPRvFU0SE+64/gp
+	0NgtSe3ek2RMapMBo99A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixX9-0000000Au0S-34NV;
-	Mon, 04 Aug 2025 15:55:31 +0000
+	id 1uixXA-0000000Au2i-4949;
+	Mon, 04 Aug 2025 15:55:32 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8UD-00000007OJc-0Sow;
-	Sat, 02 Aug 2025 09:25:06 +0000
+	id 1ui8Uc-00000007OTc-0B9D;
+	Sat, 02 Aug 2025 09:25:31 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1FBB9305C;
-	Sat,  2 Aug 2025 11:24:10 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A80C42F0D;
+	Sat,  2 Aug 2025 11:24:29 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754126658;
-	bh=OM/rWlEKQ8f8HPIrakLZ0WhLkd4bPI6pfIRVXjyRJJM=;
+	s=mail; t=1754126683;
+	bh=h5udZ1SzPumXnE7xu2zWQT6vfdKtMoA3NyZ01lPUHuA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=ib/AkYuzsNuKTt+lp42wfbltoMJtD5Sd4hsrRjAcqAMEf9SCjBWcBnbuX50vt5Prw
-	 0UzYkmWn2/xlChWVoyTLLj93l8MP3fB+FzbSXSdwBfPD7QAOfvUBlQUbRUwAu4vGMY
-	 U9QTUuKMZnkPvtECT7b6OO11EXVtXW0+EZ9EHjHY=
+	b=iM9OfLxjFezRevsFSM+DHzmuj7nNeL7ocIFelwKtOOkub03t9gmFJnj5/MndtBa1u
+	 1XukpB+YRy0Co1GOWWW3SG+Dxx0BaUMXn+oMf3Bj0kz24biyJYcQAGPxrgLXbniG5N
+	 a+YY9PwN+Cv72yF31/RICanxWaiXB8p++jEUVsBE=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:22:32 +0200
-Subject: [PATCH 10/65] media: nvidia: tegra-vde: Replace file->private_data
- access
+Date: Sat, 02 Aug 2025 11:22:34 +0200
+Subject: [PATCH 12/65] media: pci: ivtv: Don't create fake v4l2_fh
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-10-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-12-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -130,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1550;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6700;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=HdAr4YyOcrocqziACBpasSPBf3zgC1qgSFvP/LJn3YQ=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj41aVvy6Rjwij+qj6xHx4PUZkLAhV3n8zM3
- AY+rL2WR0OJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+AAKCRByNAaPFqFW
- PKCIEACt+1llOB444L1nlesDr3J1k37KiM1p/lvO6eUrnhStXc7r3O+OFl93UfBTj2+YjQ1caYY
- lM7LmFaSuXHnMP3gnTbmwc7szdGB5nwBaaWC9+7tE6KC/GuBE1stlpZYiCRrETy9kBkUDbsLcMB
- pSR60pJm6pAxmSr1D3CVrswOfnMdiRhcXVgCs/M6wWA1TZQDGu1qfLANLutXJWrDgLOmQVnVYId
- Xb5aTkYhFgPduOVyaTA0P9lWEOMK8dsJnw7NwPugtQ01l9D6qPoZpRkbOQtm/+6HALFV6kJZPUp
- 6Lq3E0DGPuQUILws3PZXfBKC2EtOdoCEkR4VzIfdQ8h5OJdyyuMrIPHpBX9FtUbLtx/6kdQOiBH
- RfDgaYS9Y2A+IfP22V4VXYEl9+g6Db6WmbDheJO4/jdhs8jYwMXmVH1AL6M34Lj49outPp4tIpd
- mhYXqOjZbqNvmBGTF1dG0IKQ8wJQV+IzJbe25fkw7pYBwUv7OE15TBk/xbxjms7VbMXF18QG6S9
- K4HHENXpy5GWX4kBs39GNpKJsBs4YBofJrpM0iHhNZnRFg0cXgqvt+7ryv1721kfPoBeOnx4g9r
- Ak3tPK/iYLW+h4M2QumwTv8Gy8yj077pLHiVgy+bJ58QTy/ARoWSLHL4dpCJH57fMvm59jr2FtI
- fkrkiqymIOZa3eQ==
+ bh=2/+7JKVHQ0FUPAMFvnWgDgM7Mra+DCKmELJTQXBkvDA=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj4n5+bYKeplnUHvNaRht9BxmiwNfWLvjFfp
+ RrwjLb0lYOJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+AAKCRByNAaPFqFW
+ PAmHD/4mhFhl/805WB3JLxIhy7zUPvIxr2/l7bll6BZb+Uwp4egXUM6l3Wr+RH/zsD/o7f2JO4p
+ IKeuRxRQTW4A6Tbfa0RzfC6hysVeMWcv3mjkcBug3surPW4kuftKxbMbnm1t5Jk5jwN+j3H3q3P
+ eCxZdeV65ONT4MJT2N8YblptRqH6aV9BdTdCP6b30dJwQy1e14T37qbNRtfHQBhxT7rML4K1DDj
+ c6Qj1hrlyc/CkG07XT9hZUhGcwB7ra0b/2L7bp+8ijuhR0q7KGvXTKZ/Oq8SrINLvVgisiFfWKw
+ iRc7K8Q7Rqk7503ezMkGbAskIlbn4kPaaSrCYUFQOGooexgaAGuevht3vw0PkMxW+lO+z3eqh1e
+ hKtEbNAhnjZA5t0fxtpBNZK5XJqjsYLeEpSizSVzVVuEcMvMry+oTTLbhGcPrgRWtnqoh29L8QD
+ YcRbxMcnzpw2+buRGdOHPm+9CUTmz71/80mKyigU7RFsBLwYY3+YIMBxSOu+l7XCVNKgq6AQ2ev
+ hxXxr6rTciajnOManNEKxiWuM90o5SjS5WjkGDvJp+2GlRuEP0Hbq1HYXPjvSzbg11HgjbEHwfl
+ o3wfhk1v6eO4g7gbV9Q4Z6NtQC7PxdjPkPVdcJC9akSlAlM/jjzolxFItGYzjltOT6bmjh193f3
+ Dpt/CwXPkT8LQTA==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_022505_298830_885F3484 
-X-CRM114-Status: GOOD (  12.33  )
+X-CRM114-CacheID: sfid-20250802_022530_234255_09A1F866 
+X-CRM114-Status: GOOD (  26.86  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -169,40 +168,172 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Accessing file->private_data manually to retrieve the v4l2_fh pointer is
-error-prone, as the field is a void * and will happily cast implicitly
-to any pointer type.
+The ivtv driver has a structure named ivtv_open_id that models an open
+file handle for the device. It embeds a v4l2_fh instance for file
+handles that correspond to a V4L2 video device, and stores a pointer to
+that v4l2_fh in struct ivtv_stream to identify which open file handle
+owns a particular stream.
 
-The tegra-vde driver accesses file->private_data in the tegra_open()
-function, right after setting the field to &ctx->fh. Replace the
-accesses with usage of &ctx->fh.
+In addition to video devices, streams can be owned by ALSA PCM devices.
+Those devices do not make use of the v4l2_fh instance for obvious
+reasons, but the snd_ivtv_pcm_capture_open() function still initializes
+a "fake" v4l2_fh for the sole purpose of using it as an open file handle
+identifier. The v4l2_fh is not properly destroyed when the ALSA PCM
+device is closed, leading to possible resource leaks.
 
-No functional change is intended, this only paves the way to remove
-direct accesses to file->private_data and make V4L2 drivers safer.
-Other accesses to the field will be addressed separately.
+Fortunately, the v4l2_fh instance pointed to by ivtv_stream is not
+accessed, only the pointer value is used for comparison. Replace it with
+a pointer to the ivtv_open_id structure that embeds the v4l2_fh, and
+don't initialize the v4l2_fh for ALSA PCM devices.
 
 Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/platform/nvidia/tegra-vde/v4l2.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/media/pci/ivtv/ivtv-alsa-pcm.c |  2 --
+ drivers/media/pci/ivtv/ivtv-driver.h   |  3 ++-
+ drivers/media/pci/ivtv/ivtv-fileops.c  | 18 +++++++++---------
+ drivers/media/pci/ivtv/ivtv-irq.c      |  4 ++--
+ 4 files changed, 13 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/media/platform/nvidia/tegra-vde/v4l2.c b/drivers/media/platform/nvidia/tegra-vde/v4l2.c
-index 531a85e3fe49ad0aa94fb96cbc7a84d474faae94..393dc3f07d5c78ff5ab0ae7b6368914859564458 100644
---- a/drivers/media/platform/nvidia/tegra-vde/v4l2.c
-+++ b/drivers/media/platform/nvidia/tegra-vde/v4l2.c
-@@ -836,10 +836,10 @@ static int tegra_open(struct file *file)
- 	v4l2_fh_add(&ctx->fh);
+diff --git a/drivers/media/pci/ivtv/ivtv-alsa-pcm.c b/drivers/media/pci/ivtv/ivtv-alsa-pcm.c
+index 8f346d7da9c8defb12191c3addb12a118547b9a0..269a799ec046c67265484945acf89a5fbd40a3f4 100644
+--- a/drivers/media/pci/ivtv/ivtv-alsa-pcm.c
++++ b/drivers/media/pci/ivtv/ivtv-alsa-pcm.c
+@@ -148,14 +148,12 @@ static int snd_ivtv_pcm_capture_open(struct snd_pcm_substream *substream)
  
- 	tegra_reset_coded_fmt(ctx);
--	tegra_try_coded_fmt(file, file->private_data, &ctx->coded_fmt);
-+	tegra_try_coded_fmt(file, &ctx->fh, &ctx->coded_fmt);
+ 	s = &itv->streams[IVTV_ENC_STREAM_TYPE_PCM];
  
- 	tegra_reset_decoded_fmt(ctx);
--	tegra_try_decoded_fmt(file, file->private_data, &ctx->decoded_fmt);
-+	tegra_try_decoded_fmt(file, &ctx->fh, &ctx->decoded_fmt);
+-	v4l2_fh_init(&item.fh, &s->vdev);
+ 	item.itv = itv;
+ 	item.type = s->type;
  
- 	return 0;
+ 	/* See if the stream is available */
+ 	if (ivtv_claim_stream(&item, item.type)) {
+ 		/* No, it's already in use */
+-		v4l2_fh_exit(&item.fh);
+ 		snd_ivtv_unlock(itvsc);
+ 		return -EBUSY;
+ 	}
+diff --git a/drivers/media/pci/ivtv/ivtv-driver.h b/drivers/media/pci/ivtv/ivtv-driver.h
+index cad548b28e360ecfe2bcb9fcb5d12cd8823c3727..38c4ceb04cf834906ed877b57c20fcbdb390da13 100644
+--- a/drivers/media/pci/ivtv/ivtv-driver.h
++++ b/drivers/media/pci/ivtv/ivtv-driver.h
+@@ -322,6 +322,7 @@ struct ivtv_queue {
+ };
+ 
+ struct ivtv;				/* forward reference */
++struct ivtv_open_id;
+ 
+ struct ivtv_stream {
+ 	/* These first four fields are always set, even if the stream
+@@ -331,7 +332,7 @@ struct ivtv_stream {
+ 	const char *name;		/* name of the stream */
+ 	int type;			/* stream type */
+ 
+-	struct v4l2_fh *fh;		/* pointer to the streaming filehandle */
++	struct ivtv_open_id *id;	/* pointer to the streaming ivtv_open_id */
+ 	spinlock_t qlock;		/* locks access to the queues */
+ 	unsigned long s_flags;		/* status flags, see above */
+ 	int dma;			/* can be PCI_DMA_TODEVICE, PCI_DMA_FROMDEVICE or PCI_DMA_NONE */
+diff --git a/drivers/media/pci/ivtv/ivtv-fileops.c b/drivers/media/pci/ivtv/ivtv-fileops.c
+index cc91695a5b7605dcd964bd2c68bb12f645dc302f..67964a3c382c6627a7b3ce6380a2da97dcc47c3d 100644
+--- a/drivers/media/pci/ivtv/ivtv-fileops.c
++++ b/drivers/media/pci/ivtv/ivtv-fileops.c
+@@ -39,16 +39,16 @@ int ivtv_claim_stream(struct ivtv_open_id *id, int type)
+ 
+ 	if (test_and_set_bit(IVTV_F_S_CLAIMED, &s->s_flags)) {
+ 		/* someone already claimed this stream */
+-		if (s->fh == &id->fh) {
++		if (s->id == id) {
+ 			/* yes, this file descriptor did. So that's OK. */
+ 			return 0;
+ 		}
+-		if (s->fh == NULL && (type == IVTV_DEC_STREAM_TYPE_VBI ||
++		if (s->id == NULL && (type == IVTV_DEC_STREAM_TYPE_VBI ||
+ 					 type == IVTV_ENC_STREAM_TYPE_VBI)) {
+ 			/* VBI is handled already internally, now also assign
+ 			   the file descriptor to this stream for external
+ 			   reading of the stream. */
+-			s->fh = &id->fh;
++			s->id = id;
+ 			IVTV_DEBUG_INFO("Start Read VBI\n");
+ 			return 0;
+ 		}
+@@ -56,7 +56,7 @@ int ivtv_claim_stream(struct ivtv_open_id *id, int type)
+ 		IVTV_DEBUG_INFO("Stream %d is busy\n", type);
+ 		return -EBUSY;
+ 	}
+-	s->fh = &id->fh;
++	s->id = id;
+ 	if (type == IVTV_DEC_STREAM_TYPE_VBI) {
+ 		/* Enable reinsertion interrupt */
+ 		ivtv_clear_irq_mask(itv, IVTV_IRQ_DEC_VBI_RE_INSERT);
+@@ -94,7 +94,7 @@ void ivtv_release_stream(struct ivtv_stream *s)
+ 	struct ivtv *itv = s->itv;
+ 	struct ivtv_stream *s_vbi;
+ 
+-	s->fh = NULL;
++	s->id = NULL;
+ 	if ((s->type == IVTV_DEC_STREAM_TYPE_VBI || s->type == IVTV_ENC_STREAM_TYPE_VBI) &&
+ 		test_bit(IVTV_F_S_INTERNAL_USE, &s->s_flags)) {
+ 		/* this stream is still in use internally */
+@@ -126,7 +126,7 @@ void ivtv_release_stream(struct ivtv_stream *s)
+ 		/* was already cleared */
+ 		return;
+ 	}
+-	if (s_vbi->fh) {
++	if (s_vbi->id) {
+ 		/* VBI stream still claimed by a file descriptor */
+ 		return;
+ 	}
+@@ -359,7 +359,7 @@ static ssize_t ivtv_read(struct ivtv_stream *s, char __user *ubuf, size_t tot_co
+ 	size_t tot_written = 0;
+ 	int single_frame = 0;
+ 
+-	if (atomic_read(&itv->capturing) == 0 && s->fh == NULL) {
++	if (atomic_read(&itv->capturing) == 0 && s->id == NULL) {
+ 		/* shouldn't happen */
+ 		IVTV_DEBUG_WARN("Stream %s not initialized before read\n", s->name);
+ 		return -EIO;
+@@ -831,7 +831,7 @@ void ivtv_stop_capture(struct ivtv_open_id *id, int gop_end)
+ 		     id->type == IVTV_ENC_STREAM_TYPE_VBI) &&
+ 		    test_bit(IVTV_F_S_INTERNAL_USE, &s->s_flags)) {
+ 			/* Also used internally, don't stop capturing */
+-			s->fh = NULL;
++			s->id = NULL;
+ 		}
+ 		else {
+ 			ivtv_stop_v4l2_encode_stream(s, gop_end);
+@@ -915,7 +915,7 @@ int ivtv_v4l2_close(struct file *filp)
+ 	v4l2_fh_exit(fh);
+ 
+ 	/* Easy case first: this stream was never claimed by us */
+-	if (s->fh != &id->fh)
++	if (s->id != id)
+ 		goto close_done;
+ 
+ 	/* 'Unclaim' this stream */
+diff --git a/drivers/media/pci/ivtv/ivtv-irq.c b/drivers/media/pci/ivtv/ivtv-irq.c
+index 748c14e879632ae6f62c3cc1981a168b01ed060d..20ba5ae9c6d1d0e6e4d856d1f083e30a0f9be321 100644
+--- a/drivers/media/pci/ivtv/ivtv-irq.c
++++ b/drivers/media/pci/ivtv/ivtv-irq.c
+@@ -305,7 +305,7 @@ static void dma_post(struct ivtv_stream *s)
+ 			ivtv_process_vbi_data(itv, buf, 0, s->type);
+ 			s->q_dma.bytesused += buf->bytesused;
+ 		}
+-		if (s->fh == NULL) {
++		if (s->id == NULL) {
+ 			ivtv_queue_move(s, &s->q_dma, NULL, &s->q_free, 0);
+ 			return;
+ 		}
+@@ -330,7 +330,7 @@ static void dma_post(struct ivtv_stream *s)
+ 		set_bit(IVTV_F_I_HAVE_WORK, &itv->i_flags);
+ 	}
+ 
+-	if (s->fh)
++	if (s->id)
+ 		wake_up(&s->waitq);
+ }
  
 
 -- 
