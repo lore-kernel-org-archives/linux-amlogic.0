@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 106F6CA0EC1
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3F5CC87FD1
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YvR/KqjlIChkNrrdVGz3/2OxLCuHpk7tQGJ1l2APqhg=; b=KCQT1vw0Ik2Xsq
-	Efv+mOgaU6mb1QCeWF0E1er+2zfW7W/J0zScsg/Kz7uLomO7OgSQ5gRmNbYXIDts0yq9E5pS5MsnN
-	eMy8uMp+lGI1ezX3Y/ctKxgbVf26MxKLBNKtYgNL8t4gxVXVE3JouV64Pv/QPa0Yoo3kl7dYYGOjn
-	uEcNDaRog/BXdH9bXQZY3zai/749dLIeMdxDxa/ElI8+ENSghHdhMuHRdyh538pm0L7oYO8l53s9B
-	7A+DCM75mLTerLVIhmSYaFgKSXGQTy2Qj8HPS9I7GmVrH//CIm/oLF9VkKQOk7aBGMZe2upyMuCka
-	2bR908uvb/gtv6OGGvRw==;
+	List-Owner; bh=odov8DVkUlw57RYydLRQTtsGvILmko3wQhneTCZcr80=; b=4Lu7BIv8mjDfev
+	LgFeN/HiIYD+TfV+5zpevlhXEfNhmBbMIxTDMsphiPUP02Fztn2DC2fqHfdRIxYu9fWBtpEicCs06
+	cEYiyFkQnoOtg5bhuOnAL21J//kzZxgutNqIlw8ibtEQdDQN+nqAYH39yvKPX3ysQXU0LjS+yds4G
+	QHk82haJwredxvJLWMPRalqb+vN7aY4ndLCJO8bkefRPxW2rsDA0+XjEccZpQqi7sSs/8lM3o+klt
+	1Q2rdGuG/SRT/R7AESF5PewGNAMQluKOnJzX+LKXb9D48Bo6QBih0qKesQ/BYQtk8LhOOK783dMsz
+	MJv0/dUTgdD2Z0yQkSpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXF-0000000AuAm-47HA;
-	Mon, 04 Aug 2025 15:55:37 +0000
+	id 1uixXH-0000000AuCf-1tBX;
+	Mon, 04 Aug 2025 15:55:39 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8Vw-00000007P5B-1wqc;
-	Sat, 02 Aug 2025 09:26:53 +0000
+	id 1ui8WE-00000007PDq-2MY9;
+	Sat, 02 Aug 2025 09:27:11 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7C7583997;
-	Sat,  2 Aug 2025 11:25:56 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CEC0B3AC8;
+	Sat,  2 Aug 2025 11:26:14 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754126766;
-	bh=plDKQLiwBIj0x8r/FQG+sxFHvp8nFgmjt6T8+cGPkZI=;
+	s=mail; t=1754126784;
+	bh=PZLQVaI1vZKi0WIr3Q878QLqEaTr0uij9E9KhgQTBLY=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Yg7mSLXywEATs7NdZAo/15CRPyv1tSknSnoBACCZsbidd3zRcjyh5s7g5TNfPXgb9
-	 gUhe1Tm6jpa01d4o5M2x6RA6R1VZl63+VBHlceA7hW5Fvnepymmk7TyYyDGBnQ6TTA
-	 Sw6wC1k5m0p9lWqybBEcYlPRZH86WPer4t5vumTM=
+	b=glpozsiMSkAdE8qk8DV+qPeB3taW375MoVrWdOB4cufVoZ/iT2/9a/sHUU6CS0d5I
+	 riolvMj1G/tGQ7S2/0rHQQjGwNysQGwANruXqaKpTG39MMXBMknM5lc8YSPrjUgIai
+	 9jDndo/hQZm6gNe2reNXZU/1z+kKk7B/biiUSd+U=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:22:42 +0200
-Subject: [PATCH 20/65] media: camss: Remove custom .release fop()
+Date: Sat, 02 Aug 2025 11:22:44 +0200
+Subject: [PATCH 22/65] media: qcom: iris: Pass file pointer to
+ iris_v4l2_fh_(de)init()
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-20-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-22-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -129,26 +130,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1305;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2406;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=plDKQLiwBIj0x8r/FQG+sxFHvp8nFgmjt6T8+cGPkZI=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj5cxYW858SCw6LTG+aHwiW1liG/P/5haVZ9
- 0mzExpmUPCJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+QAKCRByNAaPFqFW
- PHhwEACP6/NBzk7i6VJN72Jn8/7oEe8k4hjRvq0+0ovO2wCFUpNc5OX+ZqalxcHnw8QWm9aZoBX
- cthgY0YADO91eZH63UwrNZViYnp2K+RtXE89BkRMKucikIDs/zTZr9+wHcPCGbbw7Ue+q1HuWh3
- 4gVRKZ7fbAXbp3R244W2ws9cxUElPjUZzgiPmQqHurk6/MxXXC2MU7AgVMc80OAUyGeAODZwwmJ
- wfVDsO5348pe+cK6lIPs8PbtbOyXTzrP+qAA1+0EraPxa5RW7DJTG2+OZRvqJ2bxfWQl6EGqx0Y
- 4WIL25OQyMoRYTiak2eEHRH5de8cfpPxTqzix6noCSKq8dHwYleqMhG0F/Uhsw8SGP33AzYmhNu
- LKYAEM03Uh3l7qmXVqBDHnZOvBcenlAd9RGHeFJmDdcXyzC84PVQVKHHbQbGZWpMa3XCHcwqB6r
- dyTqw36hcSnIGas5cBvTAfz1puBJYHqsdthf3soOfaYgYWsgZnt0Wl9cIYbkJiV7BfcZgpbhqF8
- cf/WNrSpBF3AnjeYXdbvfwB2GbgLK2U2ocbsCWGGsrsv89ej4XYypUVse+T+uox6Dh+nUj+w375
- sTcNMNGfzONapg7E8wydsqThpj3t8+rIufCWwqaBcMobAYyhE0VrXzs+5ThA40cwY/dLD0VM6A/
- RxrM2yMXPUqLZUw==
+ bh=T7tnvhAAkedHKQQVRtKCkxG+wcLOyWF1XErsaMtfBYY=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj59XaFL/Sd0BVhJH0Xfg7Vmb1RhxbHsvp6x
+ 5ltEdCDgMOJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+QAKCRByNAaPFqFW
+ PCwcEACdclKr4oR/Yg45NonSfNvh7MFckOXskhI7d8HCP6X6W2mxvMN2af258eUD0Po2k7UJAdg
+ yhzWebC08rW11AJ0yJ3BPh7FKCi1eL6HmLvL6gUYdf/HFCIzVRaXRBIrvgCE9Z7XiMpZOvHml3U
+ PH+YUa/VZZd/SLAZtNbWr1356EBCqBLxuvqCV9B0zyLAgNGvv1CoyeO3pbvl2oNL7OJyn7v2mof
+ YqY9cFeaIDMIhiDfZ4xNa4r/eQ1DT43YITKFB8bZmFcojlHmuByILVOj+o9uOTJWeMFIl2UC5F/
+ YZxhB+yQInGuMlJVYQkGvBp06TE3kgE3NjJyhV52/FwlfnUdSo0d1/HxG4QxVaoAUp9BsuJKAwS
+ eJ4eo9xwhHWzs06HcHx1Kt/YmtN/QJJd6Ukjby5WdtpRpmAARIgr5LwfiYuysqD9N3VRbKq+9fZ
+ kLJ0e40lPrCJaeDc36gAl0dUgo8OeDcuHcWRiUL3uOHxA9+U0oRdQ15nEgmGY1MxnBeO/hLMLkI
+ G3PtZs8kgWlBW8b/bMN28rvvgm9rR7VUuvAk/4f9p+dgDkhu4ZTPyheBI2V4JRgGlleR7vVeSTm
+ UZvbPhAiM16/87VqLg31yijDZzm1Zn8du/yPyJN8U7+HyQIBTjVVhYTrY9eD0NO9TTEdkwfHdsx
+ 5RIsN9qBKPBFCrw==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_022652_651978_1C800D9B 
-X-CRM114-Status: GOOD (  10.89  )
+X-CRM114-CacheID: sfid-20250802_022710_768768_5DCA8D45 
+X-CRM114-Status: GOOD (  12.53  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -166,42 +167,67 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The 'file->private_data' pointer is reset in the vb2_fop_release()
-call path. For this reason a custom handler for the .release
-file operation is not needed and the driver can use
-vb2_fop_release() directly.
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
+In preparation for a tree-wide rework automated with coccinelle that
+will need to access a struct file pointer in the iris_v4l2_fh_init() and
+iris_v4l2_fh_deinit() functions, pass it from the callers. There is not
+functional change yet.
+
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/platform/qcom/camss/camss-video.c | 11 +----------
- 1 file changed, 1 insertion(+), 10 deletions(-)
+ drivers/media/platform/qcom/iris/iris_vidc.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/media/platform/qcom/camss/camss-video.c b/drivers/media/platform/qcom/camss/camss-video.c
-index c5d02f9ebc6aa9bfd6910944f3d40a2e5f0a908f..831486e14754ab3a24b077e21be14ea3169220a4 100644
---- a/drivers/media/platform/qcom/camss/camss-video.c
-+++ b/drivers/media/platform/qcom/camss/camss-video.c
-@@ -604,20 +604,11 @@ static const struct v4l2_ioctl_ops msm_vid_ioctl_ops = {
-  * V4L2 file operations
-  */
+diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media/platform/qcom/iris/iris_vidc.c
+index 0c3b47b9958aa3388d91ffda9b2acfbb53f09f59..d5f99519def45d1c5859e641eed490ec9ad5784a 100644
+--- a/drivers/media/platform/qcom/iris/iris_vidc.c
++++ b/drivers/media/platform/qcom/iris/iris_vidc.c
+@@ -21,14 +21,14 @@
+ #define STEP_WIDTH 1
+ #define STEP_HEIGHT 1
  
--static int video_release(struct file *file)
--{
--	vb2_fop_release(file);
--
--	file->private_data = NULL;
--
--	return 0;
--}
--
- static const struct v4l2_file_operations msm_vid_fops = {
- 	.owner          = THIS_MODULE,
- 	.unlocked_ioctl = video_ioctl2,
- 	.open           = v4l2_fh_open,
--	.release        = video_release,
-+	.release        = vb2_fop_release,
- 	.poll           = vb2_fop_poll,
- 	.mmap		= vb2_fop_mmap,
- 	.read		= vb2_fop_read,
+-static void iris_v4l2_fh_init(struct iris_inst *inst)
++static void iris_v4l2_fh_init(struct iris_inst *inst, struct file *filp)
+ {
+ 	v4l2_fh_init(&inst->fh, inst->core->vdev_dec);
+ 	inst->fh.ctrl_handler = &inst->ctrl_handler;
+ 	v4l2_fh_add(&inst->fh);
+ }
+ 
+-static void iris_v4l2_fh_deinit(struct iris_inst *inst)
++static void iris_v4l2_fh_deinit(struct iris_inst *inst, struct file *filp)
+ {
+ 	v4l2_fh_del(&inst->fh);
+ 	inst->fh.ctrl_handler = NULL;
+@@ -164,7 +164,7 @@ int iris_open(struct file *filp)
+ 	init_completion(&inst->completion);
+ 	init_completion(&inst->flush_completion);
+ 
+-	iris_v4l2_fh_init(inst);
++	iris_v4l2_fh_init(inst, filp);
+ 
+ 	inst->m2m_dev = v4l2_m2m_init(&iris_m2m_ops);
+ 	if (IS_ERR_OR_NULL(inst->m2m_dev)) {
+@@ -194,7 +194,7 @@ int iris_open(struct file *filp)
+ fail_m2m_release:
+ 	v4l2_m2m_release(inst->m2m_dev);
+ fail_v4l2_fh_deinit:
+-	iris_v4l2_fh_deinit(inst);
++	iris_v4l2_fh_deinit(inst, filp);
+ 	mutex_destroy(&inst->ctx_q_lock);
+ 	mutex_destroy(&inst->lock);
+ 	kfree(inst);
+@@ -259,7 +259,7 @@ int iris_close(struct file *filp)
+ 	iris_vdec_inst_deinit(inst);
+ 	iris_session_close(inst);
+ 	iris_inst_change_state(inst, IRIS_INST_DEINIT);
+-	iris_v4l2_fh_deinit(inst);
++	iris_v4l2_fh_deinit(inst, filp);
+ 	iris_destroy_all_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
+ 	iris_destroy_all_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
+ 	iris_check_num_queued_internal_buffers(inst, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
 
 -- 
 2.49.0
