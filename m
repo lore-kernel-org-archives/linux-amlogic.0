@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3123ACA0EC1
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 714B2C87FCF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rscSP+7TmTr8JaaWKl88ooU+nnF5CsjP46iCskpyRdo=; b=32LK3jkKeUg49X
-	PDv7dcGtD88cRi+uYPx+8Ktv7UPfwdM33GX7OlCJdcFi1ILkKSCr3QqaHfHeF/5OKLGJdDMrYNooc
-	LBT3buqJoy4WYlXWG0phnWL0wmyYdBymj9YtWBxCecMzvBybW1+i7YSVYdboZAtil3LxilTSKJ0vN
-	/cAT2mmxhEL0K7oNEs+BVri4eXsn4cYGei0m58q7npqu/DBu8mqb1QrYvYJownbkhudyJUkmuDx2H
-	qU7KXQ5+q9SUvSZT2Qc91XLgrKrHlHGTfTVgfsj/CLvzMktnnxn+atsNVbha5EM/HD4tSgOnjXKKP
-	mgit8jSxMfbeeEGnWqcQ==;
+	List-Owner; bh=S+ESWzIB6PZp4faYDRLNEPc8qqQsuQU6sJnTBT4WGOs=; b=Zge/5cOo0SlVXq
+	yxlSGo9VQJmyn4JSwtwaYJ4EFKFxP2nP7+4iT5WMenrrFIb51BgOkJe2sxf5cXw/06gHgh64yPs4a
+	9+aymOfE5zkccv1jVMLXFet+HMkN0gDJwt5t45Ja2CKQyXdHhBrF55DaJ+jq1tPI0S4r7ljKkVC7u
+	M3lpCLPrTY21EkbSzTfnVPOBqnOxUA6M6U7IP4vsaTcqGT4Q8xeBQ6tgQUYdHjncWvwdGVk0bAFK2
+	1cw+rUzqU42+RIaPa5TXGHr4W4V8quYlhU4eUhCdbq6gnv2quiv1KGn2tYviQjgP9ZjZVFOKNZreB
+	ZV9Dj5FsAEaxCQPk/0CQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixWv-0000000Atif-35cR;
-	Mon, 04 Aug 2025 15:55:17 +0000
+	id 1uixX9-0000000Au0S-34NV;
+	Mon, 04 Aug 2025 15:55:31 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8Tb-00000007NzH-3liC;
-	Sat, 02 Aug 2025 09:24:29 +0000
+	id 1ui8UD-00000007OJc-0Sow;
+	Sat, 02 Aug 2025 09:25:06 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 47C052F92;
-	Sat,  2 Aug 2025 11:23:28 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1FBB9305C;
+	Sat,  2 Aug 2025 11:24:10 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754126621;
-	bh=Q7uNkMZiUR/bAyP4ReuiDNkh5bQApW2xlrBUgmJ6QKo=;
+	s=mail; t=1754126658;
+	bh=OM/rWlEKQ8f8HPIrakLZ0WhLkd4bPI6pfIRVXjyRJJM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Qt496vmQr+qgRMEyIl/SE5sDskG6fnGheHq330f4+774KPf1LlMV6RbdNuJemqYqG
-	 X7RsbLsmtdNfm5DTLA3eAM1LHQYhURvKCf7WCrdPCz2daf9D16QJi8hfMMMcPN/sxp
-	 b+t4QKddTrOPi6Gw761qhfKA91B7QpjLKRcr2Ci0=
+	b=ib/AkYuzsNuKTt+lp42wfbltoMJtD5Sd4hsrRjAcqAMEf9SCjBWcBnbuX50vt5Prw
+	 0UzYkmWn2/xlChWVoyTLLj93l8MP3fB+FzbSXSdwBfPD7QAOfvUBlQUbRUwAu4vGMY
+	 U9QTUuKMZnkPvtECT7b6OO11EXVtXW0+EZ9EHjHY=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:22:28 +0200
-Subject: [PATCH 06/65] media: usb: uvcvideo: Store v4l2_fh pointer in
- file->private_data
+Date: Sat, 02 Aug 2025 11:22:32 +0200
+Subject: [PATCH 10/65] media: nvidia: tegra-vde: Replace file->private_data
+ access
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-6-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-10-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -130,26 +130,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3116;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1550;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=k2a8LQETJyWR2lrXA5s/EIpHnltWb4lK+Y+yCXeLDbQ=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj3Cd24ST01biVMwBnhdcgc4JexWZ1RRHGt6
- aNTUJytO6yJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y9wAKCRByNAaPFqFW
- PIrWEADEzYQUUXusyN/5PWZduwqYASEKZjv3DhemKWy8omxWHHGL3V9ygO/Zol0UXvAoIY9izDS
- hr345GKKuuTwjhpINb5X5WA4+XF2HALGBUqjz6HitPEAMfpIcgoY5YIKgXGr+AnFt8ek/O5XpPq
- xROsipH50X/KAV4TQvzwZ5uAd8jdhhp6ZaE0urbSbMnjXsUsPo9Gv/gV8U67dscDYaGZRWPgOWh
- wONEr4lo12lq8KatT2n4sCh3wwTrnZdZ7j+aFIr5RRQgk0X0FktXVvP54fkYznShPJweiwzsdNc
- 0BfieQ+5ILTSxHpg4rUYUuCg7pffwRYZqZeiPA64J1dPt+F9w5cbsuosMjmv2Mmv/+boOXoedVI
- w14RJpIVw5Dk1DJVu8M/6cPCnVByEEur0OLw/5I3s4/Mbj5ETl5DGnxrbKAsvOk9QmlvLzcgRRy
- mNr7LP5r4VJvrlJpr06z1ySN664lNIxPVlHvSVtSHmPCDhi8k48ls7XU5eKOJLwRsTg2icjuNXw
- lSy/pVjVukWETb7QUZQgc9UCzsmzSM7LTMyAHMbG/n+GWLokosseFjabHRBRhH9O5W7u9hpnrnf
- 96tc/uGLksh7ycinpXbc9zMBpKWIeTZGLVlIplk84LyM4vrwot3YFdmKPdK8EdTnZ9pD0MN3NPq
- ZeGWw2RI7zpMoLQ==
+ bh=HdAr4YyOcrocqziACBpasSPBf3zgC1qgSFvP/LJn3YQ=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj41aVvy6Rjwij+qj6xHx4PUZkLAhV3n8zM3
+ AY+rL2WR0OJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+AAKCRByNAaPFqFW
+ PKCIEACt+1llOB444L1nlesDr3J1k37KiM1p/lvO6eUrnhStXc7r3O+OFl93UfBTj2+YjQ1caYY
+ lM7LmFaSuXHnMP3gnTbmwc7szdGB5nwBaaWC9+7tE6KC/GuBE1stlpZYiCRrETy9kBkUDbsLcMB
+ pSR60pJm6pAxmSr1D3CVrswOfnMdiRhcXVgCs/M6wWA1TZQDGu1qfLANLutXJWrDgLOmQVnVYId
+ Xb5aTkYhFgPduOVyaTA0P9lWEOMK8dsJnw7NwPugtQ01l9D6qPoZpRkbOQtm/+6HALFV6kJZPUp
+ 6Lq3E0DGPuQUILws3PZXfBKC2EtOdoCEkR4VzIfdQ8h5OJdyyuMrIPHpBX9FtUbLtx/6kdQOiBH
+ RfDgaYS9Y2A+IfP22V4VXYEl9+g6Db6WmbDheJO4/jdhs8jYwMXmVH1AL6M34Lj49outPp4tIpd
+ mhYXqOjZbqNvmBGTF1dG0IKQ8wJQV+IzJbe25fkw7pYBwUv7OE15TBk/xbxjms7VbMXF18QG6S9
+ K4HHENXpy5GWX4kBs39GNpKJsBs4YBofJrpM0iHhNZnRFg0cXgqvt+7ryv1721kfPoBeOnx4g9r
+ Ak3tPK/iYLW+h4M2QumwTv8Gy8yj077pLHiVgy+bJ58QTy/ARoWSLHL4dpCJH57fMvm59jr2FtI
+ fkrkiqymIOZa3eQ==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_022428_228987_94C2A792 
-X-CRM114-Status: GOOD (  15.74  )
+X-CRM114-CacheID: sfid-20250802_022505_298830_885F3484 
+X-CRM114-Status: GOOD (  12.33  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -169,83 +169,41 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Most V4L2 drivers store the v4l2_fh pointer in file->private_data. The
-uvcvideo driver instead stores the pointer to the driver-specific
-structure that embeds the v4l2_fh. Switch to storing the v4l2_fh pointer
-itself to standardize behaviour across drivers. This also prepares for
-future refactoring that depends on v4l2_fh being stored in private_data.
+Accessing file->private_data manually to retrieve the v4l2_fh pointer is
+error-prone, as the field is a void * and will happily cast implicitly
+to any pointer type.
+
+The tegra-vde driver accesses file->private_data in the tegra_open()
+function, right after setting the field to &ctx->fh. Replace the
+accesses with usage of &ctx->fh.
+
+No functional change is intended, this only paves the way to remove
+direct accesses to file->private_data and make V4L2 drivers safer.
+Other accesses to the field will be addressed separately.
 
 Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/usb/uvc/uvc_v4l2.c | 10 +++++-----
- drivers/media/usb/uvc/uvcvideo.h |  5 +++++
- 2 files changed, 10 insertions(+), 5 deletions(-)
+ drivers/media/platform/nvidia/tegra-vde/v4l2.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/media/usb/uvc/uvc_v4l2.c b/drivers/media/usb/uvc/uvc_v4l2.c
-index 160f9cf6e6dbdbf39e3eff56a5d5ea1d977fbe22..6dd329a972fda5c2574231b8526105676df3d4a1 100644
---- a/drivers/media/usb/uvc/uvc_v4l2.c
-+++ b/drivers/media/usb/uvc/uvc_v4l2.c
-@@ -603,14 +603,14 @@ static int uvc_v4l2_open(struct file *file)
- 	v4l2_fh_add(&handle->vfh);
- 	handle->chain = stream->chain;
- 	handle->stream = stream;
--	file->private_data = handle;
-+	file->private_data = &handle->vfh;
+diff --git a/drivers/media/platform/nvidia/tegra-vde/v4l2.c b/drivers/media/platform/nvidia/tegra-vde/v4l2.c
+index 531a85e3fe49ad0aa94fb96cbc7a84d474faae94..393dc3f07d5c78ff5ab0ae7b6368914859564458 100644
+--- a/drivers/media/platform/nvidia/tegra-vde/v4l2.c
++++ b/drivers/media/platform/nvidia/tegra-vde/v4l2.c
+@@ -836,10 +836,10 @@ static int tegra_open(struct file *file)
+ 	v4l2_fh_add(&ctx->fh);
+ 
+ 	tegra_reset_coded_fmt(ctx);
+-	tegra_try_coded_fmt(file, file->private_data, &ctx->coded_fmt);
++	tegra_try_coded_fmt(file, &ctx->fh, &ctx->coded_fmt);
+ 
+ 	tegra_reset_decoded_fmt(ctx);
+-	tegra_try_decoded_fmt(file, file->private_data, &ctx->decoded_fmt);
++	tegra_try_decoded_fmt(file, &ctx->fh, &ctx->decoded_fmt);
  
  	return 0;
- }
  
- static int uvc_v4l2_release(struct file *file)
- {
--	struct uvc_fh *handle = file->private_data;
-+	struct uvc_fh *handle = to_uvc_fh(file);
- 	struct uvc_streaming *stream = handle->stream;
- 
- 	uvc_dbg(stream->dev, CALLS, "%s\n", __func__);
-@@ -626,7 +626,7 @@ static int uvc_v4l2_release(struct file *file)
- static int uvc_ioctl_querycap(struct file *file, void *fh,
- 			      struct v4l2_capability *cap)
- {
--	struct uvc_fh *handle = file->private_data;
-+	struct uvc_fh *handle = to_uvc_fh(file);
- 	struct uvc_video_chain *chain = handle->chain;
- 	struct uvc_streaming *stream = handle->stream;
- 
-@@ -1170,7 +1170,7 @@ static int uvc_v4l2_put_xu_query(const struct uvc_xu_control_query *kp,
- static long uvc_v4l2_compat_ioctl32(struct file *file,
- 		     unsigned int cmd, unsigned long arg)
- {
--	struct uvc_fh *handle = file->private_data;
-+	struct uvc_fh *handle = to_uvc_fh(file);
- 	union {
- 		struct uvc_xu_control_mapping xmap;
- 		struct uvc_xu_control_query xqry;
-@@ -1221,7 +1221,7 @@ static long uvc_v4l2_compat_ioctl32(struct file *file,
- static long uvc_v4l2_unlocked_ioctl(struct file *file,
- 				    unsigned int cmd, unsigned long arg)
- {
--	struct uvc_fh *handle = file->private_data;
-+	struct uvc_fh *handle = to_uvc_fh(file);
- 	unsigned int converted_cmd = v4l2_translate_cmd(cmd);
- 	int ret;
- 
-diff --git a/drivers/media/usb/uvc/uvcvideo.h b/drivers/media/usb/uvc/uvcvideo.h
-index 757254fc4fe930ae61c9d0425f04d4cd074a617e..8b56252030480b8a5d2ef6de24902b544357ff02 100644
---- a/drivers/media/usb/uvc/uvcvideo.h
-+++ b/drivers/media/usb/uvc/uvcvideo.h
-@@ -637,6 +637,11 @@ struct uvc_fh {
- 	unsigned int pending_async_ctrls;
- };
- 
-+static inline struct uvc_fh *to_uvc_fh(struct file *filp)
-+{
-+	return container_of(filp->private_data, struct uvc_fh, vfh);
-+}
-+
- /* ------------------------------------------------------------------------
-  * Debugging, printing and logging
-  */
 
 -- 
 2.49.0
