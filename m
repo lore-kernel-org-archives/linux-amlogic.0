@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEE4BCA0EC0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 699ACC87FCF
 	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,35 +12,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lcNP3sCdLjbsuKp0P8Cf/5z/6N2Dl/YaoZUcOL5rGwY=; b=rzte3KCkJ5mA0C
-	fb3SRdUgaskVuTDufJSXdXuPPuawZJLRlh8Ed+rKz8qf1n09l0M/V/VRcRlMYxCa4l9Rvy1dMriBC
-	mKCFnJVH15irf+sIpyCFffNIO4q6Dt3+SDB5VDDZVddm2v413Ag/njwK33U2KeFqAou0W5JvM6Wux
-	lC28A9wNGBvr/hYPfhe8u/D9/ljrDK7cN/xGKRxocoRZnw7Tb5wuK+g+ww4iJZr5GwOMVNbfwB6+F
-	9wJEc32992uA1kd+zfHnthXlVHEOU0kIra643h77T4hrzAJOTg2iYC7hWwdIYeSwxaY26vJWd/dHt
-	hGImoQk8kFfND98WQmJQ==;
+	List-Owner; bh=Md3Wq8LgG+tmnOJvojv/NUqy1J3u3GfD8f0PfeT9Fsk=; b=xxt4wgd0qP802u
+	u3X67uQKk2bdpOtsjoNKEqgjXP6V//m5SdMshTnWd0GpB09lxEh27fCF7ctTRJ47El4cWNOR/AgQa
+	d91E6qnKFefNy9Zm6PQ7ETHbaxwUcXLXLTjmZpLFUcHQ29bKxuWzzaTurU3TCiO1+wtAjLCTOjPUN
+	UHT2RbxFhp/Uw5qt5wbAS0pwTfhiiT166T3cI4KJ6zlOkiE9tGrtsCD+bF19o8F6v00iMinTY/lHW
+	NFLDZUNlwkrFrI+Tu0AJCQSWsorJeMR9a5ccUk1XYBUwNJibq/77HPWlGhMmuQuu6fvSMNEH3Nxxx
+	iPxMdQcJHCqEm9Tcg/hQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXT-0000000AuY7-3u1l;
-	Mon, 04 Aug 2025 15:55:51 +0000
+	id 1uixXZ-0000000Auhu-2xvQ;
+	Mon, 04 Aug 2025 15:55:57 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8Xz-00000007Q4u-2uyf;
-	Sat, 02 Aug 2025 09:29:01 +0000
+	id 1ui8Z4-00000007Qay-0iBs;
+	Sat, 02 Aug 2025 09:30:07 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8152C3C67;
-	Sat,  2 Aug 2025 11:28:04 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EDA0D3C97;
+	Sat,  2 Aug 2025 11:29:10 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754126893;
-	bh=41vTx83z/Uwja6XVkgBfBZsgFkv9BjK18LAN6EVk9C4=;
+	s=mail; t=1754126959;
+	bh=DR8H5PIAc8L4JOzfoP4xWpCxebhDCEnaJqqWhPBFy+0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=pVvNcAuntI593b3+8JOouhdzGDFt2tmHaE57Nr/H0+gti/BMJpEEIFHA5+uFfKKEi
-	 /TinR7qedy9WiH2jyXomKJZiyq8x2qshMpdc2vFlrCpho2CEsAjd95XWFp6F9VNkLH
-	 qOhagXfR5W5AHnPYjhQSxrZyg7F3cCClyLs7v+n8=
+	b=hT8Gx6BmOM76bDFeML8LExuJPTAnht6Wvn57/qJhB7+ZhlNMqfXhEkASH3NW3RuyW
+	 UZTqUXH/j8H6xn9lPsNIuJ1E2Ht2wzHcwFHMec6ZTXX4zFnaK3T8vOqZ9UuNg86A45
+	 wLsnMm4kFRwPqYJBTI/nmtZ/BWbP+cVS1qJzP4Mw=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:22:55 +0200
-Subject: [PATCH 33/65] media: m2m-deinterlace: Access v4l2_fh from file
+Date: Sat, 02 Aug 2025 11:23:02 +0200
+Subject: [PATCH 40/65] media: imx-isi: Access v4l2_fh from file
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-33-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-40-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -129,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2772;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3477;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=41vTx83z/Uwja6XVkgBfBZsgFkv9BjK18LAN6EVk9C4=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj7pwyrSBi9rnZ2weNb65Z8p51fNTUj4IIin
- TQAaww2RVaJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+wAKCRByNAaPFqFW
- PAMDD/9Ug9QwsOwqd/AgPzEvnOkucjAOnVc54Ut2Iym9meadtfaDDV1mc7FXlnf4QLXhPrr78BW
- mpb135tIptu5FHRKG7ysZfYALCQMddnU3UUQx0/gn5ZIZ5zPK4m9roV/TBUt4NtkFNAEaGV8NLQ
- 9FEY9ol3rYLDbWKjxpoZe+VhhCMaZiOBw5yagf67MDewREcw+UUrbGSHW4ru40PKZciqbc/vj0e
- nQfpCOMoiEF91JYrkF/d2z0t/W67gr7LDYsHVhwa/juCbCz2Wu5KQFwJkwZkJNSo2XbrEJdiJ4w
- jnU91qYWYQryas5efYVfY85hlacIcp74d7FCyJCPUdYt8NZ/hyYn8/VfC6qTgKHjcL/9vUZ3uu+
- H32Q5uHhBqaFOo33iNE4+ZRkxfXJ5OcPoqWx+OWYYHE3044p0atCe5/EpNW+pdAD9SD5D+D4UTZ
- kv3SB4HWGcxMS+9txidCBc03zJCYCS8Vc6QIc/VosL0FGTOMEiMfJr6LSwuOipAKCDgNrX2V8sT
- OTZ9kYNFRnph4i25ZZq1/kHy+UJ5IMzKBGRFfCzBCuOngdJG5UtWh9IEQa9OTuiAJTnDo8qoqwT
- viKs/nKaDQkiXseRHCpINPwJEHsdfM+BRPU5LJEZzEfrGdcAxUCWkgHfZ07hCSfQ953aDjIBp9O
- TtEBNodMx+bGSzA==
+ bh=DR8H5PIAc8L4JOzfoP4xWpCxebhDCEnaJqqWhPBFy+0=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj8EoZgkMCHL3+wASHVhjTV75Orj6SKgaDZA
+ 6AcS4LUd4KJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/AAKCRByNAaPFqFW
+ POVpD/9a3Ls6bK9algAcZ2oeiBjNz7tRIjEIwEqB46qB5Bq/kQDbriurqxVTCwNigHT9yYh0mXP
+ 7cACNJ33RBJeyO9365kZBXs/wmIKGs/p4y+dJ8d2bdWddvcupEtgqZNitoozeu7ESiwRcXbm3y+
+ BoqB1V1jDTE11ypab29+vcaKo4qzSBIP3Hrtk4YeBKLn7gvYgaFBrNEonU6NKD9ODA/LIQulZRe
+ 73jR/l7r+PYcnZ7Rx2T3rwKBgs8D83nyaNr0oEZik56YfleC18XsXP3MSfruSvbfjD6GZWeNrgd
+ 712W4aBRF81a+B6kH5V8Aovltk00OUqLELIBHSUZ7El7W4Me1pXr/QPd6vAC1H+DRpxf2j40+RN
+ TDxqmDHi3YGoi8kJ0PnEMVgSCBCaLXRuhS8dGLvwvkIDAcuHVFiPB8byYSwpkGOYBKB7luuYB7H
+ 4xIhq9bAWnGPh09Xfuwcd9HL+8K5DLRYr1sqRYZZ55yszHbxWsYKKm4yD7EKfvDRiOMJb3LBBrX
+ Z35HmnmFMEe15m2PWocAX01Sgl4eA0YFESsMERAWjZQgueknFQDoJGsL4JOMUxeaYI6kcUScc+3
+ RYuRDI3FkGlEJpgXEYQ+q+gim7m/X5v4sL1NiwSpLY259tUn9RHwSBlkYDikigIZORsM45vlmyz
+ zSJL01P1ffA0xNA==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_022859_881435_9178F55C 
-X-CRM114-Status: GOOD (  12.15  )
+X-CRM114-CacheID: sfid-20250802_023006_356996_E5231000 
+X-CRM114-Status: GOOD (  11.27  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -172,75 +172,74 @@ to be available in file->private_data, initialised by v4l2_fh_add().
 Access the v4l2_fh, and from there the driver-specific structure,
 from the file * in all ioctl handlers.
 
+While at it, remove the now unused to_isi_m2m_ctx() macro.
+
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/platform/m2m-deinterlace.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/media/platform/m2m-deinterlace.c b/drivers/media/platform/m2m-deinterlace.c
-index 51c2f206cb1f601ec2f3d07fffbf63c86f4cdc01..e07e57d4206baa5e7a467298cb240c3a2cd57cd8 100644
---- a/drivers/media/platform/m2m-deinterlace.c
-+++ b/drivers/media/platform/m2m-deinterlace.c
-@@ -517,13 +517,13 @@ static int vidioc_g_fmt(struct deinterlace_ctx *ctx, struct v4l2_format *f)
- static int vidioc_g_fmt_vid_out(struct file *file, void *priv,
- 				struct v4l2_format *f)
- {
--	return vidioc_g_fmt(priv, f);
-+	return vidioc_g_fmt(file_to_ctx(file), f);
+diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
+index 850dd8ae95841d4470ac6bd7cb1e54a7510d6d5e..5501214cc6c0ce3e0188ae6d4ff4ae277b975911 100644
+--- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
++++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
+@@ -74,11 +74,6 @@ to_isi_m2m_buffer(struct vb2_v4l2_buffer *buf)
+ 	return container_of(buf, struct mxc_isi_m2m_buffer, buf.vb);
  }
  
- static int vidioc_g_fmt_vid_cap(struct file *file, void *priv,
- 				struct v4l2_format *f)
+-static inline struct mxc_isi_m2m_ctx *to_isi_m2m_ctx(struct v4l2_fh *fh)
+-{
+-	return container_of(fh, struct mxc_isi_m2m_ctx, fh);
+-}
+-
+ static inline struct mxc_isi_m2m_ctx *file_to_isi_m2m_ctx(struct file *filp)
  {
--	return vidioc_g_fmt(priv, f);
-+	return vidioc_g_fmt(file_to_ctx(file), f);
- }
+ 	return container_of(file_to_v4l2_fh(filp), struct mxc_isi_m2m_ctx, fh);
+@@ -432,7 +427,7 @@ static int mxc_isi_m2m_try_fmt_vid(struct file *file, void *fh,
+ 	const enum mxc_isi_video_type type =
+ 		f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE ?
+ 		MXC_ISI_VIDEO_M2M_OUT : MXC_ISI_VIDEO_M2M_CAP;
+-	struct mxc_isi_m2m_ctx *ctx = to_isi_m2m_ctx(fh);
++	struct mxc_isi_m2m_ctx *ctx = file_to_isi_m2m_ctx(file);
  
- static int vidioc_try_fmt(struct v4l2_format *f, struct deinterlace_fmt *fmt)
-@@ -544,8 +544,8 @@ static int vidioc_try_fmt(struct v4l2_format *f, struct deinterlace_fmt *fmt)
- static int vidioc_try_fmt_vid_cap(struct file *file, void *priv,
- 				  struct v4l2_format *f)
+ 	__mxc_isi_m2m_try_fmt_vid(ctx, &f->fmt.pix_mp, type);
+ 
+@@ -442,7 +437,7 @@ static int mxc_isi_m2m_try_fmt_vid(struct file *file, void *fh,
+ static int mxc_isi_m2m_g_fmt_vid(struct file *file, void *fh,
+ 				 struct v4l2_format *f)
  {
-+	struct deinterlace_ctx *ctx = file_to_ctx(file);
- 	struct deinterlace_fmt *fmt;
--	struct deinterlace_ctx *ctx = priv;
+-	struct mxc_isi_m2m_ctx *ctx = to_isi_m2m_ctx(fh);
++	struct mxc_isi_m2m_ctx *ctx = file_to_isi_m2m_ctx(file);
+ 	const struct mxc_isi_m2m_ctx_queue_data *qdata =
+ 		mxc_isi_m2m_ctx_qdata(ctx, f->type);
  
- 	fmt = find_format(f);
- 	if (!fmt || !(fmt->types & MEM2MEM_CAPTURE))
-@@ -638,20 +638,20 @@ static int vidioc_s_fmt_vid_cap(struct file *file, void *priv,
- 	ret = vidioc_try_fmt_vid_cap(file, priv, f);
- 	if (ret)
- 		return ret;
--	return vidioc_s_fmt(priv, f);
-+	return vidioc_s_fmt(file_to_ctx(file), f);
- }
- 
- static int vidioc_s_fmt_vid_out(struct file *file, void *priv,
- 				struct v4l2_format *f)
+@@ -457,7 +452,7 @@ static int mxc_isi_m2m_s_fmt_vid(struct file *file, void *fh,
+ 	const enum mxc_isi_video_type type =
+ 		f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE ?
+ 		MXC_ISI_VIDEO_M2M_OUT : MXC_ISI_VIDEO_M2M_CAP;
+-	struct mxc_isi_m2m_ctx *ctx = to_isi_m2m_ctx(fh);
++	struct mxc_isi_m2m_ctx *ctx = file_to_isi_m2m_ctx(file);
+ 	struct v4l2_pix_format_mplane *pix = &f->fmt.pix_mp;
+ 	const struct mxc_isi_format_info *info;
+ 	struct vb2_queue *vq;
+@@ -489,7 +484,7 @@ static int mxc_isi_m2m_s_fmt_vid(struct file *file, void *fh,
+ static int mxc_isi_m2m_streamon(struct file *file, void *fh,
+ 				enum v4l2_buf_type type)
  {
--	struct deinterlace_ctx *ctx = priv;
-+	struct deinterlace_ctx *ctx = file_to_ctx(file);
- 	int ret;
- 
- 	ret = vidioc_try_fmt_vid_out(file, priv, f);
- 	if (ret)
- 		return ret;
- 
--	ret = vidioc_s_fmt(priv, f);
-+	ret = vidioc_s_fmt(ctx, f);
- 	if (!ret)
- 		ctx->colorspace = f->fmt.pix.colorspace;
- 
-@@ -661,8 +661,8 @@ static int vidioc_s_fmt_vid_out(struct file *file, void *priv,
- static int vidioc_streamon(struct file *file, void *priv,
- 			   enum v4l2_buf_type type)
+-	struct mxc_isi_m2m_ctx *ctx = to_isi_m2m_ctx(fh);
++	struct mxc_isi_m2m_ctx *ctx = file_to_isi_m2m_ctx(file);
+ 	struct mxc_isi_m2m_ctx_queue_data *q = mxc_isi_m2m_ctx_qdata(ctx, type);
+ 	const struct v4l2_pix_format_mplane *out_pix = &ctx->queues.out.format;
+ 	const struct v4l2_pix_format_mplane *cap_pix = &ctx->queues.cap.format;
+@@ -577,7 +572,7 @@ static int mxc_isi_m2m_streamon(struct file *file, void *fh,
+ static int mxc_isi_m2m_streamoff(struct file *file, void *fh,
+ 				 enum v4l2_buf_type type)
  {
-+	struct deinterlace_ctx *ctx = file_to_ctx(file);
- 	struct deinterlace_q_data *s_q_data, *d_q_data;
--	struct deinterlace_ctx *ctx = priv;
+-	struct mxc_isi_m2m_ctx *ctx = to_isi_m2m_ctx(fh);
++	struct mxc_isi_m2m_ctx *ctx = file_to_isi_m2m_ctx(file);
+ 	struct mxc_isi_m2m_ctx_queue_data *q = mxc_isi_m2m_ctx_qdata(ctx, type);
+ 	struct mxc_isi_m2m *m2m = ctx->m2m;
  
- 	s_q_data = get_q_data(V4L2_BUF_TYPE_VIDEO_OUTPUT);
- 	d_q_data = get_q_data(V4L2_BUF_TYPE_VIDEO_CAPTURE);
 
 -- 
 2.49.0
