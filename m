@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 119C8C87FCF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35F6AC87FDA
 	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,35 +12,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PxMSO9/ZtHrujmEMRZk4l4wkNbKgRh/k2lSOU80HCZQ=; b=CcPAmgqXIUkdzi
-	OORc69TfJcMTaNWdBnVzZIh4tEjsaR4ILI8zJXyLJWvCnowiKAna8Ig8+MuSShHYmzaBDrxPJAl8e
-	AWbaatUah9aLix5i53g2ti2pim6QEDLhnJgfcfsSz5D/ECNn89GNBqsKHVvdMW2L1J02Z2Jwcztgg
-	eosBGa8EcWQgVN4hm0snO6rrkBSLHAgaYXFIghZoGXMKDisJX/dw901XMnteR9avV2mCxiSK8Wq24
-	PV6OS6AIJOaeZaYTYZiP0rnTyG7CNPprLrOcLm0a18jwxM9VSuCisY9VdItyidtW0RmpWRTASTdTW
-	Cz/aG87av3FoKpiEs4Kg==;
+	List-Owner; bh=VBl00zHXNgqozCKSrQqJzuJjnW8DsGm3pkELzwrC1L8=; b=qAzJG9sA1JheNV
+	iJk/HXWabGYNaBpHiYnDBAiqBWREBVPvVWCYhKyYEmglXY02nzvJhkahyJjNz9Uigc5+YWh2bjets
+	yGFvQW2zSY5jQx+ZWS+rO+Zyxe8oBs4X9c08FmqwhD+GaJ76ASS3y0uOjRfR/COV4swcdvEW3YdAO
+	Z1wWLQik3bmDeloKTT+sJ6b5bSWX0YAMB177JQ51OMlXVzrzgWDUx4LL6YGoRSKI9U5n4GYR3ly1y
+	xdAseNqNecunUy89HKDo0EUKpcMuANHoysNeJUxP3MxqX4UA0fqgfaGflnOq/8u6X5vHlkXb95Xho
+	ApKAKAcu8FGFuHu+bTFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXk-0000000AuzY-0tdS;
-	Mon, 04 Aug 2025 15:56:08 +0000
+	id 1uixXd-0000000Auob-1o6A;
+	Mon, 04 Aug 2025 15:56:01 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8bS-00000007Reo-42KB;
-	Sat, 02 Aug 2025 09:32:36 +0000
+	id 1ui8Zo-00000007R0k-1oXi;
+	Sat, 02 Aug 2025 09:30:53 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id ACBF54335;
-	Sat,  2 Aug 2025 11:31:38 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 10B5D4126;
+	Sat,  2 Aug 2025 11:29:57 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754127108;
-	bh=Gv9lbTXbRA6yPchkZ3lS+TOW5kUSmV4lOuM2BHAl6rc=;
+	s=mail; t=1754127005;
+	bh=xHnhOGEMWbiAskGZ/qB9Pnn4oRUTnceFuQgyRVWi5Z4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=prjR2qMEqDFUpRAMyRMQie2Nv0psrCvqJct/SVaw4UJ1ZnQGtwemB81zuwIxfhYmA
-	 UT5xqYwRWk4pliCkOwyDtOZIWgQ02ealWQ9qhJOwpXw0HYOuCGUOVZSW9E4Olza9D9
-	 1kBxLlAAFwfvVJtSUCBdG3fkfFioLN9du/EPH7ao=
+	b=Qm8VlMMdD2mYpZ3jp8TiUK71YniJfD/W+U3FXDvkjAOJ90OJwj4al+DQ5JYMy5IJA
+	 V1dTufXhg0/73p0n/9BN0o2p9OtealswLjQtP6Ul/KN2+PcPPz23WefAZU8vnmwaCp
+	 JlEi0d/D0b6LzhryhAg86Gmp9WQNciqsWUkiM9A4=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:23:14 +0200
-Subject: [PATCH 52/65] media: st: delta: Access v4l2_fh from file
+Date: Sat, 02 Aug 2025 11:23:07 +0200
+Subject: [PATCH 45/65] media: exynos-gsc: Access v4l2_fh from file
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-52-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-45-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -129,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2303;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5168;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=Gv9lbTXbRA6yPchkZ3lS+TOW5kUSmV4lOuM2BHAl6rc=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj9vdOmSnLOUwNwZy60z/PGCExXr86n8sWQN
- A1xKQtQDdiJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/QAKCRByNAaPFqFW
- PM7LEADD+AAAj6JZRdP++0YsTAt4fObDpya+EVPh0Cb6TnbK5FzsF4T3lKA6HhvS/ZooVnw7Qt6
- ZpWIDwjI5j7u+vUeC1Do3HIjmUMHE7dy6rPcFFFYJ8i/gRomOvyDoOZs+iBbQp/jNPmks7dD1/0
- XvAOPjC8OwzdASEGKKnYyY7Nlx9vpxlhz/1PlG7c69xJu7QXyP6Oh14W7IEpbixZCSduafhQWDy
- anWvYa0l/kB3kjG0SvbpfqoyCoYyS7dOmtMccsrqvkN6Jg/P3cMEXaqjm7u+YPuwI6hbNbNzThW
- 2A6reQ1Ppsheu3gX/KTOuV1GbuBoEtugJuj2SYYrN2tkIwcs+b070nlaGrUjnaCjBR6vrl5rgg9
- 3r/tBLDf4cYBpghzvw9pWiNuxfaYcPmGta1lFZvZD6EvNKv7qpCJeubCbOY7+y4fSXliKRWunTv
- A6ghHNWLKUjZeIEG/SB9kODMGrjXog5eevGf8bg3APXdUQewvBQ5wtPLBJ5hDKa/nrrOpatS+73
- S33mhSyYAbGnXk/FvdKW0CyYkhKhFYpAJD/G4PEFPl/KfH0FgL98LWJRailHu0zYoRvIN47ABBk
- A+HmZuJVgKFOB0gKqfCbqdNp9mK0h6YBD2sX8h0jI/O1LvaFppcRnZAMDdydv7fRr+pji3KSqGE
- /UkNMoMG/NlhRdg==
+ bh=xHnhOGEMWbiAskGZ/qB9Pnn4oRUTnceFuQgyRVWi5Z4=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj8mJTRrXDLZmlcFTn5RabMqJPlofNXwIR40
+ Mp7zonG0TCJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/AAKCRByNAaPFqFW
+ POP5D/0YMuyBDL0G469A3dQex0lq+u9oMevFJtDvon3YgoFWn8rVfh39dM7Miv2PMU5cy/NsTLd
+ f+3KO1inbR/ppCbjkFdOoYPxszXvrr+AYE4PQQ6dmoXMGfaYzKhCEaGBISizKwCe8C1VE1wQjnx
+ beevIt1FLO/FDXjoII+Hk+gNLEapJgchdW76opTMxcU1f9k+ldr7BuLho65E9Z5z+CAwNuTsxDT
+ W+NYh6ak5wp6eMTlBQeYtpJeY/f0ZZIVSFX9uuvwTXSLGSPCsonZosaKOL2oasrhdQy7zyAePGs
+ Xu8DpRyTeJJEuEWAHEGq8MIsNz9fBS7qz/q5BdJrRnFEQFDi5SZ3+hopYbp3ZgPam9BtJQviGLe
+ hWd0d9slmpAZ4i67M1dNiJUfdB22NDRPprPqV7IDSI8mBSdracO/VcBDwKgS7YLAMpHz9/DIIrn
+ XPfwHPeTtH5Wn608pM8qqwAjAQrNNVr+yxoD7bfbROE2thO94uVX1GzAL2BxBhrwpWws1SlCSh0
+ L7h7MSfCAjgQ/a+MiZ8cjrGqN87HOh8zG3nAhWmyzaTLW040hsL6w+BNotcPAR0CvvEtQV22/hE
+ TK79grAfwHWgcbGKQTOA1yO79fNp5t73ipYVezgZErk4LcQA7FFGjTVRzJ3AOu3j+EPkzTuR/Rq
+ qF7qIxPbZn5s6iQ==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_023235_149725_9AE89D23 
-X-CRM114-Status: GOOD (  13.76  )
+X-CRM114-CacheID: sfid-20250802_023052_629423_8A1BB3FE 
+X-CRM114-Status: GOOD (  13.28  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -176,57 +176,132 @@ While at it, remove the now unused fh_to_ctx() macro.
 
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/platform/st/sti/delta/delta-v4l2.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+ .../media/platform/samsung/exynos-gsc/gsc-core.h   |  2 --
+ .../media/platform/samsung/exynos-gsc/gsc-m2m.c    | 24 +++++++++++-----------
+ 2 files changed, 12 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/media/platform/st/sti/delta/delta-v4l2.c b/drivers/media/platform/st/sti/delta/delta-v4l2.c
-index adff43271b2dc059abbbf82d90cd13482f6bca30..6c1a53c771f746813a6062cb3ffc139250ff7146 100644
---- a/drivers/media/platform/st/sti/delta/delta-v4l2.c
-+++ b/drivers/media/platform/st/sti/delta/delta-v4l2.c
-@@ -24,8 +24,6 @@
+diff --git a/drivers/media/platform/samsung/exynos-gsc/gsc-core.h b/drivers/media/platform/samsung/exynos-gsc/gsc-core.h
+index a5491fe39e0f686c75c888c4632150f32326c36e..265221abf4dcd87f2ab10758e145fa96ac9d420e 100644
+--- a/drivers/media/platform/samsung/exynos-gsc/gsc-core.h
++++ b/drivers/media/platform/samsung/exynos-gsc/gsc-core.h
+@@ -85,8 +85,6 @@ enum gsc_yuv_fmt {
+ 	GSC_CRCB,
+ };
  
- #define DELTA_PREFIX "[---:----]"
- 
--#define to_ctx(__fh) container_of(__fh, struct delta_ctx, fh)
+-#define fh_to_ctx(__fh) container_of(__fh, struct gsc_ctx, fh)
 -
- static inline struct delta_ctx *file_to_ctx(struct file *filp)
+ #define is_rgb(x) (!!((x) & 0x1))
+ #define is_yuv420(x) (!!((x) & 0x2))
+ #define is_yuv422(x) (!!((x) & 0x4))
+diff --git a/drivers/media/platform/samsung/exynos-gsc/gsc-m2m.c b/drivers/media/platform/samsung/exynos-gsc/gsc-m2m.c
+index 2999fb2610f0f61b63d0331f94883469ff43d751..722e2531e23f1bc01f5e9a9c08dfe4745cc2aa4f 100644
+--- a/drivers/media/platform/samsung/exynos-gsc/gsc-m2m.c
++++ b/drivers/media/platform/samsung/exynos-gsc/gsc-m2m.c
+@@ -297,7 +297,7 @@ static int gsc_m2m_enum_fmt(struct file *file, void *priv,
+ static int gsc_m2m_g_fmt_mplane(struct file *file, void *fh,
+ 			     struct v4l2_format *f)
  {
- 	return container_of(file_to_v4l2_fh(filp), struct delta_ctx, fh);
-@@ -727,7 +725,7 @@ static int delta_s_fmt_frame(struct file *file, void *fh, struct v4l2_format *f)
- static int delta_g_selection(struct file *file, void *fh,
- 			     struct v4l2_selection *s)
- {
--	struct delta_ctx *ctx = to_ctx(fh);
-+	struct delta_ctx *ctx = file_to_ctx(file);
- 	struct delta_frameinfo *frameinfo = &ctx->frameinfo;
- 	struct v4l2_rect crop;
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
  
-@@ -809,7 +807,7 @@ static int delta_try_decoder_cmd(struct file *file, void *fh,
- 	return 0;
+ 	return gsc_g_fmt_mplane(ctx, f);
+ }
+@@ -305,7 +305,7 @@ static int gsc_m2m_g_fmt_mplane(struct file *file, void *fh,
+ static int gsc_m2m_try_fmt_mplane(struct file *file, void *fh,
+ 				  struct v4l2_format *f)
+ {
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 
+ 	return gsc_try_fmt_mplane(ctx, f);
+ }
+@@ -313,7 +313,7 @@ static int gsc_m2m_try_fmt_mplane(struct file *file, void *fh,
+ static int gsc_m2m_s_fmt_mplane(struct file *file, void *fh,
+ 				 struct v4l2_format *f)
+ {
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 	struct vb2_queue *vq;
+ 	struct gsc_frame *frame;
+ 	struct v4l2_pix_format_mplane *pix;
+@@ -359,7 +359,7 @@ static int gsc_m2m_s_fmt_mplane(struct file *file, void *fh,
+ static int gsc_m2m_reqbufs(struct file *file, void *fh,
+ 			  struct v4l2_requestbuffers *reqbufs)
+ {
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 	struct gsc_dev *gsc = ctx->gsc_dev;
+ 	u32 max_cnt;
+ 
+@@ -374,35 +374,35 @@ static int gsc_m2m_reqbufs(struct file *file, void *fh,
+ static int gsc_m2m_expbuf(struct file *file, void *fh,
+ 				struct v4l2_exportbuffer *eb)
+ {
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 	return v4l2_m2m_expbuf(file, ctx->m2m_ctx, eb);
  }
  
--static int delta_decoder_stop_cmd(struct delta_ctx *ctx, void *fh)
-+static int delta_decoder_stop_cmd(struct delta_ctx *ctx)
+ static int gsc_m2m_querybuf(struct file *file, void *fh,
+ 					struct v4l2_buffer *buf)
  {
- 	const struct delta_dec *dec = ctx->dec;
- 	struct delta_dev *delta = ctx->dev;
-@@ -872,14 +870,14 @@ static int delta_decoder_stop_cmd(struct delta_ctx *ctx, void *fh)
- static int delta_decoder_cmd(struct file *file, void *fh,
- 			     struct v4l2_decoder_cmd *cmd)
- {
--	struct delta_ctx *ctx = to_ctx(fh);
-+	struct delta_ctx *ctx = file_to_ctx(file);
- 	int ret = 0;
- 
- 	ret = delta_try_decoder_cmd(file, fh, cmd);
- 	if (ret)
- 		return ret;
- 
--	return delta_decoder_stop_cmd(ctx, fh);
-+	return delta_decoder_stop_cmd(ctx);
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 	return v4l2_m2m_querybuf(file, ctx->m2m_ctx, buf);
  }
  
- static int delta_subscribe_event(struct v4l2_fh *fh,
+ static int gsc_m2m_qbuf(struct file *file, void *fh,
+ 			  struct v4l2_buffer *buf)
+ {
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 	return v4l2_m2m_qbuf(file, ctx->m2m_ctx, buf);
+ }
+ 
+ static int gsc_m2m_dqbuf(struct file *file, void *fh,
+ 			   struct v4l2_buffer *buf)
+ {
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 	return v4l2_m2m_dqbuf(file, ctx->m2m_ctx, buf);
+ }
+ 
+ static int gsc_m2m_streamon(struct file *file, void *fh,
+ 			   enum v4l2_buf_type type)
+ {
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 
+ 	/* The source and target color format need to be set */
+ 	if (V4L2_TYPE_IS_OUTPUT(type)) {
+@@ -418,7 +418,7 @@ static int gsc_m2m_streamon(struct file *file, void *fh,
+ static int gsc_m2m_streamoff(struct file *file, void *fh,
+ 			    enum v4l2_buf_type type)
+ {
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 	return v4l2_m2m_streamoff(file, ctx->m2m_ctx, type);
+ }
+ 
+@@ -440,8 +440,8 @@ static int is_rectangle_enclosed(struct v4l2_rect *a, struct v4l2_rect *b)
+ static int gsc_m2m_g_selection(struct file *file, void *fh,
+ 			struct v4l2_selection *s)
+ {
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 	struct gsc_frame *frame;
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
+ 
+ 	if ((s->type != V4L2_BUF_TYPE_VIDEO_CAPTURE) &&
+ 	    (s->type != V4L2_BUF_TYPE_VIDEO_OUTPUT))
+@@ -478,7 +478,7 @@ static int gsc_m2m_s_selection(struct file *file, void *fh,
+ 				struct v4l2_selection *s)
+ {
+ 	struct gsc_frame *frame;
+-	struct gsc_ctx *ctx = fh_to_ctx(fh);
++	struct gsc_ctx *ctx = file_to_ctx(file);
+ 	struct gsc_variant *variant = ctx->gsc_dev->variant;
+ 	struct v4l2_selection sel = *s;
+ 	int ret;
 
 -- 
 2.49.0
