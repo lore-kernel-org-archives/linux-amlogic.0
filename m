@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CDEBC87FCF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E002C87FCB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fJgT3aZvcW644LYsVo9R6Q3qyCHLIodslsuL3c1BXEY=; b=ekeI94E4XwRfH3
-	751KWywSiIRD368MSZi9ilJYbXAGFTxxIfoBvyqnLL5EtOyr2k+71NCZc9xzW7hHfE6qY0USNLRE5
-	G2Xxi106X1ZJ6NeqGkP8kHkj5HUhi3nH8gekkSffI1hNTdonEc8GMuxK18K7FbdmrbPEEvZKunE53
-	GaH9Pajononhp5DQriWY4QniVkOnvc9TTaUXfCikYstlSQGjdwxAw1ldx5h6+4oByLGWESlwgXi7N
-	dX4SBSGlhBB53+sUEWZbQjkwpGqaV6cggV7IaenqsQdmNYN1xgny5sisVJIy803dSWCdSifKrDTfK
-	tjMpQkGd+b6bGOBMVRUg==;
+	List-Owner; bh=vkH3U0URnTemmI8w7K0zhGOr471tC5zfQNCdVtrPXtU=; b=3iMRirYmGyvHzx
+	+K6C3HPzdiowMqpHgtTMlQoe0tUi7wfaryByj0aGntGrb1w2nMLIjjytIEvtTfB/Ypjb9Ik2qa76F
+	XRG4qaF5tA5yI8odSidNAxH3n672csqyZ3NQTZQ4q6+DOv0DAq7qmFFP/abXRva13ILv/Fwm7LkiE
+	GKrLhTo+3/NgfsSv85L8FnwCkRhJIyMlujq8hXkO9Y63kWKIZXSoEvZ+IR7lTxzFx6IgGGtrpvPzb
+	9jRas8bD0unuINLYmZfSSuMNe5dTleqdG/neSMzODcYtPQCEGxotEhm4EtsE1X/IGeA2Ukix5lQd9
+	LdoEHGTuIWuX3y2NRPKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXO-0000000AuOH-27Zc;
-	Mon, 04 Aug 2025 15:55:46 +0000
+	id 1uixXQ-0000000AuSO-3a9F;
+	Mon, 04 Aug 2025 15:55:48 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8XD-00000007PgF-3W9R;
-	Sat, 02 Aug 2025 09:28:13 +0000
+	id 1ui8XZ-00000007Pqd-2qBM;
+	Sat, 02 Aug 2025 09:28:34 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AE6443B8B;
-	Sat,  2 Aug 2025 11:27:16 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 876C73C5C;
+	Sat,  2 Aug 2025 11:27:37 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754126845;
-	bh=50vYXEGhZeTzddTpY4VW3qqWt6o/oRzLVr9heRBb344=;
+	s=mail; t=1754126867;
+	bh=T3nnvKTfBwctCb2KRCzrOOTSYhCcGLTV59+/l2e0jic=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=bO9ZV45xEGgF6pwv4xOp/UHbDpRuyn3tsM5Ps8cKLkUxOwstVyEmE52BbRzyaxnPi
-	 RejLuvxRjfRvLuJdJHjNNrN9exsHVyD1VwXr3a55aLgI0Cc7LVsjh6E6VonxeaDjK6
-	 ZFCSwB7kkcd7rfn+xRvUFNpPtTnXo2hQg3lcZ0EU=
+	b=Dkkumh4LvxiuD8hNn3xqAjWcNyloSHLSyCVxEPeN03ejtzn2UG2VxVNhAnRssFn5b
+	 F2/F6FTzFRh9zHyOicYH+CITNw2ZAfi/45abmodAsDOnwXOXQkS8HI/S/Tn7OIRfWQ
+	 pXWkRYmhrYm2juFG6mt5ZWW34am6MecwMRht3TvU=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:22:50 +0200
-Subject: [PATCH 28/65] media: v4l2-ioctl: Access v4l2_fh from private_data
+Date: Sat, 02 Aug 2025 11:22:52 +0200
+Subject: [PATCH 30/65] media: meson-ge2d: Access v4l2_fh from file
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-28-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-30-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -129,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6102;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2933;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=50vYXEGhZeTzddTpY4VW3qqWt6o/oRzLVr9heRBb344=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj6BS2OkLRIRXzaVdf/zNJM4Q4XKjnvniijd
- fboQzcTYIyJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+gAKCRByNAaPFqFW
- PFmQD/wOSAarhR1JioG20KiYPWKE7F1VDzwex19iOgZ3opz7/FURvUVDym7b666cyh2qCgiZgwH
- UptIgDpZRKRd949B8/ze4g0rQq9lEcIFAoTG6ELQzVXKlE4Xo1A1AywpEIuSDOqss2HguWiclXD
- xlkbmtDShmuRY8o79e9VNxhlDzDuYGgkXYcwTWTuYiKYmp1/x9HQq8XxdkJmIsB4jlkVIxsv+En
- Vys4x++KRGGfLo8TcaE48yyO7w/avATN3ZsZhHaEJ32Kp/0USpuNsgrNSrrH4BOvF88Ut3gVBVS
- 6wrvQqkiePkw95y4c7bN6bCoWdAsWxEvV91DhkHXO1q8K3q8hISLyJc8HKtlCruwfZmJJg44jQo
- T5ClGMTBO0xYbiL2e+Y/5zdGRR31dIKoS6ptm3CvqlQ/CbrguuS/Rfz/4Tb/36mMr/+fe9AyuZu
- x9BchltjTcciuZHQChHl+P+qI7bQTTo9EZJgoIw+xWyffKaCxVvRJGPuWtGslIb+dqcqJGY4f8q
- 8o42ieKDM8ILzrxk+neDKYp2tkMbesSWcUwpwP3kG084u+8ei9qJCbrkg1qBrLBgxloK9IuPKE0
- yvbsJLuB1QptIUH2eYuA9guw/0Lr5vX6S9RUldh4Ki7dAAt7pk3mVT4S6neF9Fmhq5AlYtN/4Kr
- CkVxUsTH44vt4mg==
+ bh=T3nnvKTfBwctCb2KRCzrOOTSYhCcGLTV59+/l2e0jic=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj7Fyaa+k6kJNktEpScDTtiWPy/zaeBwHz9r
+ DJi8voptXKJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+wAKCRByNAaPFqFW
+ PKVRD/9hNjf7I/ZFLIZiasLup5gsgyNwUHVXZkHcmovAL8TIvnofdZ5VhpAM3eJ++8/l9qxMSuE
+ MXKsXSR9XFbtftKtXz4+Y1tvz1FJ79z64WHGMs0xneU5nu2CpLKfX8ZvYAEKy58fxuSIHHSLLX0
+ hWA9E5Fa7k7kpVg4KT9CBQm2zTWNGW9Ucy6Pjt8HofFZT82URpYm6/fVN1NtXpbxqwV2unaH27Z
+ oZOtB6292Z/G5zI8p4nl8eeeYxXn8egPLXef91fozHfsAdabGC/yL+Z5sWeOAGKv9D5s36TUoFQ
+ w/lxJXYhMlOSk5+Q5WYei14Z/iOhIb6lbVl7JMQTaEIwgHpcBoodDYNyP3Z6Mnu8yc53Kj/FD6X
+ razFUGu3uX1tU0YKS/TVeN2DYYJHlDUdDyvHf0Q+4z2LW1WWWpflBIncqJcoJarL8aeqsmJwDrU
+ E8e4biI29YK7NJRZQ31JDbhuVIuwBjoYzkSOYA9bI+E0ftdCi+f0uGW9qiy/caNDTeXipY7xKTt
+ zP3Uu36adc8AcaxdNLQtKM7zr7fCg/ssFemih19ULbECnJCfI85T8acrRKM4Z6OGo0iNB5jksc+
+ JPboZIQKZLhoLoTqDOBdSIg3MEs1Jh69sAhZu6nnVAT3asyNA/WNjkgnPPP4IYjOb2kxH08TA7Y
+ VEIR3oTqjNmorVQ==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_022812_175726_4CDF774A 
-X-CRM114-Status: GOOD (  15.37  )
+X-CRM114-CacheID: sfid-20250802_022833_861206_F3F71220 
+X-CRM114-Status: GOOD (  12.28  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -166,163 +166,76 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Now that it is guaranteed that file->private_data is set to point to the
-'struct v4l2_fh' initialised by v4l2_fh_add() the v4l2-ioctl layer can
-be modified to retrieve the v4l2_fh pointer from the file *.
+The v4l2_fh associated with an open file handle is now guaranteed
+to be available in file->private_data, initialised by v4l2_fh_add().
 
-As the __video_do_ioctl() function, that calls all the handlers modified
-by this patch goes as:
+Access the v4l2_fh, and from there the driver-specific structure,
+from the file * in all ioctl handlers.
 
-static long __video_do_ioctl(struct file *file,
-		unsigned int cmd, void *arg)
-{
-	void *fh = file->private_data;
-
-	...
-
-	ret = info->func(ops, file, fh, arg);
-
-}
-
-This patch introduces no functional changes and makes it possible to
-remove in future the 'fh' argument to all ioctl handlers.
-
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/v4l2-core/v4l2-ioctl.c | 46 ++++++++++++++++++++----------------
- 1 file changed, 26 insertions(+), 20 deletions(-)
+ drivers/media/platform/amlogic/meson-ge2d/ge2d.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
-index 8c81852c30466865eca36fd41923f6d05dbf9293..44c2f5ef3dae407d9786c5278d13efc982be2ff0 100644
---- a/drivers/media/v4l2-core/v4l2-ioctl.c
-+++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-@@ -2297,8 +2297,8 @@ static int v4l_queryctrl(const struct v4l2_ioctl_ops *ops,
- 	struct video_device *vfd = video_devdata(file);
- 	struct v4l2_query_ext_ctrl qec = {};
- 	struct v4l2_queryctrl *p = arg;
--	struct v4l2_fh *vfh =
--		test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ? fh : NULL;
-+	struct v4l2_fh *vfh = test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ?
-+			      file_to_v4l2_fh(file) : NULL;
- 	int ret;
- 
- 	if (vfh && vfh->ctrl_handler)
-@@ -2322,8 +2322,8 @@ static int v4l_query_ext_ctrl(const struct v4l2_ioctl_ops *ops,
+diff --git a/drivers/media/platform/amlogic/meson-ge2d/ge2d.c b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
+index b1b0b6535fb1931c74ae9b2da28bea579cd1bc4c..5744853a40035e9973e605dd3ffec508641470f2 100644
+--- a/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
++++ b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
+@@ -457,7 +457,7 @@ static int vidioc_enum_fmt(struct file *file, void *priv, struct v4l2_fmtdesc *f
+ static int vidioc_g_selection(struct file *file, void *priv,
+ 			      struct v4l2_selection *s)
  {
- 	struct video_device *vfd = video_devdata(file);
- 	struct v4l2_query_ext_ctrl *p = arg;
--	struct v4l2_fh *vfh =
--		test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ? fh : NULL;
-+	struct v4l2_fh *vfh = test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ?
-+			      file_to_v4l2_fh(file) : NULL;
+-	struct ge2d_ctx *ctx = priv;
++	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
+ 	struct ge2d_frame *f;
+ 	bool use_frame = false;
  
- 	if (vfh && vfh->ctrl_handler)
- 		return v4l2_query_ext_ctrl(vfh->ctrl_handler, p);
-@@ -2339,8 +2339,8 @@ static int v4l_querymenu(const struct v4l2_ioctl_ops *ops,
+@@ -507,7 +507,7 @@ static int vidioc_g_selection(struct file *file, void *priv,
+ static int vidioc_s_selection(struct file *file, void *priv,
+ 			      struct v4l2_selection *s)
  {
- 	struct video_device *vfd = video_devdata(file);
- 	struct v4l2_querymenu *p = arg;
--	struct v4l2_fh *vfh =
--		test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ? fh : NULL;
-+	struct v4l2_fh *vfh = test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ?
-+			      file_to_v4l2_fh(file) : NULL;
+-	struct ge2d_ctx *ctx = priv;
++	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
+ 	struct meson_ge2d *ge2d = ctx->ge2d;
+ 	struct ge2d_frame *f;
+ 	int ret = 0;
+@@ -574,8 +574,8 @@ static void vidioc_setup_cap_fmt(struct ge2d_ctx *ctx, struct v4l2_pix_format *f
  
- 	if (vfh && vfh->ctrl_handler)
- 		return v4l2_querymenu(vfh->ctrl_handler, p);
-@@ -2356,8 +2356,8 @@ static int v4l_g_ctrl(const struct v4l2_ioctl_ops *ops,
+ static int vidioc_try_fmt_cap(struct file *file, void *priv, struct v4l2_format *f)
  {
- 	struct video_device *vfd = video_devdata(file);
- 	struct v4l2_control *p = arg;
--	struct v4l2_fh *vfh =
--		test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ? fh : NULL;
-+	struct v4l2_fh *vfh = test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ?
-+			      file_to_v4l2_fh(file) : NULL;
- 	struct v4l2_ext_controls ctrls;
- 	struct v4l2_ext_control ctrl;
++	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
+ 	const struct ge2d_fmt *fmt = find_fmt(f);
+-	struct ge2d_ctx *ctx = priv;
+ 	struct v4l2_pix_format fmt_cap;
  
-@@ -2388,8 +2388,8 @@ static int v4l_s_ctrl(const struct v4l2_ioctl_ops *ops,
- {
- 	struct video_device *vfd = video_devdata(file);
- 	struct v4l2_control *p = arg;
--	struct v4l2_fh *vfh =
--		test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ? fh : NULL;
-+	struct v4l2_fh *vfh = test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ?
-+			      file_to_v4l2_fh(file) : NULL;
- 	struct v4l2_ext_controls ctrls;
- 	struct v4l2_ext_control ctrl;
- 	int ret;
-@@ -2418,8 +2418,8 @@ static int v4l_g_ext_ctrls(const struct v4l2_ioctl_ops *ops,
- {
- 	struct video_device *vfd = video_devdata(file);
- 	struct v4l2_ext_controls *p = arg;
--	struct v4l2_fh *vfh =
--		test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ? fh : NULL;
-+	struct v4l2_fh *vfh = test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ?
-+			      file_to_v4l2_fh(file) : NULL;
+ 	vidioc_setup_cap_fmt(ctx, &fmt_cap);
+@@ -595,7 +595,7 @@ static int vidioc_try_fmt_cap(struct file *file, void *priv, struct v4l2_format
  
- 	p->error_idx = p->count;
- 	if (vfh && vfh->ctrl_handler)
-@@ -2439,8 +2439,8 @@ static int v4l_s_ext_ctrls(const struct v4l2_ioctl_ops *ops,
+ static int vidioc_s_fmt_cap(struct file *file, void *priv, struct v4l2_format *f)
  {
- 	struct video_device *vfd = video_devdata(file);
- 	struct v4l2_ext_controls *p = arg;
--	struct v4l2_fh *vfh =
--		test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ? fh : NULL;
-+	struct v4l2_fh *vfh = test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ?
-+			      file_to_v4l2_fh(file) : NULL;
+-	struct ge2d_ctx *ctx = priv;
++	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
+ 	struct meson_ge2d *ge2d = ctx->ge2d;
+ 	struct vb2_queue *vq;
+ 	struct ge2d_frame *frm;
+@@ -631,7 +631,7 @@ static int vidioc_s_fmt_cap(struct file *file, void *priv, struct v4l2_format *f
  
- 	p->error_idx = p->count;
- 	if (vfh && vfh->ctrl_handler)
-@@ -2460,8 +2460,8 @@ static int v4l_try_ext_ctrls(const struct v4l2_ioctl_ops *ops,
+ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
  {
- 	struct video_device *vfd = video_devdata(file);
- 	struct v4l2_ext_controls *p = arg;
--	struct v4l2_fh *vfh =
--		test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ? fh : NULL;
-+	struct v4l2_fh *vfh = test_bit(V4L2_FL_USES_V4L2_FH, &vfd->flags) ?
-+			      file_to_v4l2_fh(file) : NULL;
+-	struct ge2d_ctx *ctx = priv;
++	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
+ 	struct vb2_queue *vq;
+ 	struct ge2d_frame *frm;
  
- 	p->error_idx = p->count;
- 	if (vfh && vfh->ctrl_handler)
-@@ -2756,19 +2756,25 @@ static int v4l_dbg_g_chip_info(const struct v4l2_ioctl_ops *ops,
- static int v4l_dqevent(const struct v4l2_ioctl_ops *ops,
- 				struct file *file, void *fh, void *arg)
+@@ -670,7 +670,7 @@ static int vidioc_try_fmt_out(struct file *file, void *priv, struct v4l2_format
+ 
+ static int vidioc_s_fmt_out(struct file *file, void *priv, struct v4l2_format *f)
  {
--	return v4l2_event_dequeue(fh, arg, file->f_flags & O_NONBLOCK);
-+	struct v4l2_fh *vfh = file_to_v4l2_fh(file);
-+
-+	return v4l2_event_dequeue(vfh, arg, file->f_flags & O_NONBLOCK);
- }
- 
- static int v4l_subscribe_event(const struct v4l2_ioctl_ops *ops,
- 				struct file *file, void *fh, void *arg)
- {
--	return ops->vidioc_subscribe_event(fh, arg);
-+	struct v4l2_fh *vfh = file_to_v4l2_fh(file);
-+
-+	return ops->vidioc_subscribe_event(vfh, arg);
- }
- 
- static int v4l_unsubscribe_event(const struct v4l2_ioctl_ops *ops,
- 				struct file *file, void *fh, void *arg)
- {
--	return ops->vidioc_unsubscribe_event(fh, arg);
-+	struct v4l2_fh *vfh = file_to_v4l2_fh(file);
-+
-+	return ops->vidioc_unsubscribe_event(vfh, arg);
- }
- 
- static int v4l_g_sliced_vbi_cap(const struct v4l2_ioctl_ops *ops,
-@@ -3072,7 +3078,7 @@ static long __video_do_ioctl(struct file *file,
- 	bool write_only = false;
- 	struct v4l2_ioctl_info default_info;
- 	const struct v4l2_ioctl_info *info;
--	void *fh = file->private_data;
-+	void *fh = file_to_v4l2_fh(file);
- 	struct v4l2_fh *vfh = NULL;
- 	int dev_debug = vfd->dev_debug;
- 	long ret = -ENOTTY;
+-	struct ge2d_ctx *ctx = priv;
++	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
+ 	struct meson_ge2d *ge2d = ctx->ge2d;
+ 	struct vb2_queue *vq;
+ 	struct ge2d_frame *frm, *frm_cap;
 
 -- 
 2.49.0
