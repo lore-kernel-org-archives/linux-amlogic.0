@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0803C87FCF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79932C87FCB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WFZWnPUsdwpdkZW0XiBw4ZMUGDIkTXZp0ck4bZxGLOo=; b=kcJ8OKD8fVxahz
-	ycY4mNELxA+foVYpTSNwhNN+nqgCLbhkHa6vKiLC9I6pWHG5OCsjD1wsgYl3FMExo1ObzZ3kr6pLy
-	yTQMuPkAMKoVCklXCTMq4sc7ZLEzVn/1KG1ywrDcY+4Eil7fWFaofSv8WiUunsjI4sMC/wyl/nhGp
-	Rnq++M+lNgyUX6+bMUlDaUPVL+yZYRIWPPiTJJotQsw6RI2oM/1CXDKmXPYcSY8CCoW+1KZcVYTJd
-	Qm5MWkcmWAgxejMAg5nPaIbQhbsKH14/RglV+o/VjBvwlF7cz4497SyaRdGJ4uVoOHSwyjgdH1qyx
-	UhVKm8/BpS/8wnoblCIA==;
+	List-Owner; bh=L5OpJpW5V7gwVDKMUdd88hMUWHPweJT703vlBBE+6l8=; b=LXPfUa2ruEk28L
+	J2x+xoILMwIg101KGuhQC3FkzhgMe+Exb9W9VCpDquLjKSonyvsyardch+PKBSvrVyNio1JhpmoOa
+	bhJ2jFasYSjqswPnv1i7vkwWn0c+V4eZXGnf5XZ061dlvCg6QzxqCp5tNg7kMKbd46YGBHsQtgfsj
+	aO7Xh/AFgn16MswsXGEMus00J5F71vOM8IoJSE2V2fGV4mmLTzS7sMwxUR8afarFeLu/R+cMr0fZ2
+	HAFr2BEXXG+Bo7K37yAAQDdHih2GCz23Rc/XkYYnZvvtkTY1IfNX2KjPilo0r2MxqGzaGNtjmG6ow
+	X0HFjhcZ7+3i60aHALPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXc-0000000Aum5-0T9q;
-	Mon, 04 Aug 2025 15:56:00 +0000
+	id 1uixXi-0000000AuxH-3Bbr;
+	Mon, 04 Aug 2025 15:56:06 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8ZY-00000007Qsf-1DfR;
-	Sat, 02 Aug 2025 09:30:37 +0000
+	id 1ui8au-00000007RRh-0OcL;
+	Sat, 02 Aug 2025 09:32:01 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id ECBE63C6E;
-	Sat,  2 Aug 2025 11:29:41 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 079D63EB0;
+	Sat,  2 Aug 2025 11:30:52 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754126989;
-	bh=myVmSWYpHXIiztgrX4Nbrz2tt4YIb4c7beKoOCYKNI8=;
+	s=mail; t=1754127073;
+	bh=IirxBztmljSSgN2BVXB6cHuAJICj/kyqIr+6UJ76kV4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=QbRPXMxClSG+25IAt4oxV96cFHKcviPLixdfqrSDzLcPwvWgGgvIRo50l5ww6D3IK
-	 Kmv9Ks6g/gci/i2jR1Ii5hzUnPUR3QYANiVjpHd5IsdNJWzE+5wygun8SqKXIHhqCi
-	 xz+TVzEYqOd0uNepbZV7dK/LW9Ec3RfJXm4/uk2I=
+	b=TmEtBzqdBLqoZluZmZs8RWZtWynh8NG+K6Ba1+EQhY2cVQPMXqrZZI/bLcmAR0I4/
+	 JHinrXd1/aSAMaplfSD+nTW92cFr9EAud1X6dQtjs6yp64g4C5UV1Y6sCRs19SnxRs
+	 jonF1sJjFPnx6LCJpUmOEXFbILHpJm0DWXiE5iHU=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:23:05 +0200
-Subject: [PATCH 43/65] media: rockhip: rga: Access v4l2_fh from file
+Date: Sat, 02 Aug 2025 11:23:12 +0200
+Subject: [PATCH 50/65] media: s5p-mfc: Access v4l2_fh from file
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-43-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-50-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -129,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2197;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9860;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=myVmSWYpHXIiztgrX4Nbrz2tt4YIb4c7beKoOCYKNI8=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj8bCtcXrZDq0XjKLnfeb21Qxsw9vktTvwYZ
- I8b1Ve5FRiJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/AAKCRByNAaPFqFW
- PJerD/wPNsB4FoQmDjS+Q2bgvOYg1HMkC42KAS+62lqBwK9OjkMw5wdywbBTFVeAO7/aoTCDScD
- yaUKSkF5RIqchlj+RO4Fa3fXWvdbRYfYpEFp0EnPQxkJDfsd9xAIXoVxPIaEasZ77ZQWuXrwfn5
- 9EnPq+6b9yaVDD6W0KF2Cm5V7S9Zbm8l7NrJRBO79plfdkHjIux7O67NnUg2I+6yfQIPw/lP5Ka
- zdWfiKBOmgWFRUQm4sI/0lHkPp+KThqrCq9CAMoxKILayA4NNC4JtPrP7ungcho77BKXBKL5mXW
- h1EoMrBYp+mRVweuy/YfN5F7wCaS7v1moLkiVEAY0S45X685QTspJhlewfsMyDIOJUCNTCPejJV
- biw7C0PdiRlREDEAwu5Ek1ACd09LU9uov8HmE5kki5FRUIRJHNqNI+gquFNumbhuRwfLpCneuLY
- u2i4QhmC/EJ2NVmyQFGPJthMLMjeAD1fNVa8a0W+AosRLcgV164/Zzk41RNSGleeJSKNbEj8mvy
- 2JhIDecUDT+kETEC5GSA2UJElubl0KSPWDHdrDa7P+fnFfWsX3DYhIxPU+4ZB5gXoHiCWoxYBSq
- yFlTXFLCz9RCU7s879GUKIUTEZIvGggHd9u7cMgyh5Bc2/9Cm+qwEvi0fAgKJ+fGwx0ZxFRIrSn
- mpL2fgUgHW/KBvA==
+ bh=IirxBztmljSSgN2BVXB6cHuAJICj/kyqIr+6UJ76kV4=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj9WlUYBZnvtf2wlXVIHJUMp9jqezOCJZkEu
+ ZnI1YN6t7OJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/QAKCRByNAaPFqFW
+ PNIKD/9gLwzi+0G2rYD3uhw/B90pgSgcO+CBQcWIi3EmM3D9Z5NL370hmM371eFP8iZ+KPoX2f0
+ WNvQYpl+7zDqGikGkhpak7k0SmbxMaalX/OgFsHCx79mpOM06FBfqSDSDIA943JnuxIFpNn2ymB
+ wF65SyOjgG0Vrp2l8HTSFSP1yugJr2jXchjFaqAwLd90RZx/qcJWBJ7H6Xzl4y8LfPDJIv1EfuJ
+ QhQrrSrWgV3Ykci//zn8E1SVEnM0+D16nAXVGqI1Fm43/byjzJloxtHpzuwI1t9jKpgDWg79kNw
+ VJvGq8STnkxwsw03Pr54zOR+AGKMpwu2WcEjnc76q2UX1lqOqAhGitu/HsStX4mMq8vCKEs+fC0
+ MMkS3dqeBqqTemtbtodeIcWEIK2Xc6XAJe97Rj7WMwbGQncnUJgY12XhpkKKYNcyavDoNsMGEOP
+ Q6eqUyYK1hFwo8/Cp0YvQWuknTsI5aznce/twxHwr+PdL3SWKa9mNtsplRx8YRFryUKkt6GVpCM
+ BlziLQuxJgaPME2bQyq1e72z/X0RHeWzxSZhxXPA/Tk3i6YEcXxfa/v2hHjFnYmbnPgfHvY/8ca
+ T3ICF5986+Vi7y/BaFmkldV4+Gs+luRI1xoHvEv9NEhaioZi6mtJOgg4XdXyObH6ALLGfS4602Y
+ yx8stXWkxbGP4hQ==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_023036_479998_6CAFC582 
-X-CRM114-Status: GOOD (  12.48  )
+X-CRM114-CacheID: sfid-20250802_023200_423841_8EA24523 
+X-CRM114-Status: GOOD (  14.47  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -174,49 +174,230 @@ from the file * in all ioctl handlers.
 
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/platform/rockchip/rga/rga.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ .../media/platform/samsung/s5p-mfc/s5p_mfc_dec.c   | 22 ++++++++++----------
+ .../media/platform/samsung/s5p-mfc/s5p_mfc_enc.c   | 24 +++++++++++-----------
+ 2 files changed, 23 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
-index 45c42c7ad846fab985e573ef7acf4a5bc1a4cac1..7c657df623f2897cd1ce2b6fa4c4b4de369f1c64 100644
---- a/drivers/media/platform/rockchip/rga/rga.c
-+++ b/drivers/media/platform/rockchip/rga/rga.c
-@@ -462,7 +462,7 @@ static int vidioc_enum_fmt(struct file *file, void *prv, struct v4l2_fmtdesc *f)
- static int vidioc_g_fmt(struct file *file, void *prv, struct v4l2_format *f)
+diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_dec.c b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_dec.c
+index 3efbc336790629425c2a71e9feee8f073db55790..6a2703fe7e8cc3104fbaa3c7405e67295e87db5d 100644
+--- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_dec.c
++++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_dec.c
+@@ -345,7 +345,7 @@ static int vidioc_enum_fmt_vid_out(struct file *file, void *priv,
+ /* Get format */
+ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
  {
- 	struct v4l2_pix_format_mplane *pix_fmt = &f->fmt.pix_mp;
--	struct rga_ctx *ctx = prv;
-+	struct rga_ctx *ctx = file_to_rga_ctx(file);
- 	struct vb2_queue *vq;
- 	struct rga_frame *frm;
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	struct v4l2_pix_format_mplane *pix_mp;
  
-@@ -504,7 +504,7 @@ static int vidioc_try_fmt(struct file *file, void *prv, struct v4l2_format *f)
- static int vidioc_s_fmt(struct file *file, void *prv, struct v4l2_format *f)
+ 	mfc_debug_enter();
+@@ -442,7 +442,7 @@ static int vidioc_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
  {
- 	struct v4l2_pix_format_mplane *pix_fmt = &f->fmt.pix_mp;
--	struct rga_ctx *ctx = prv;
-+	struct rga_ctx *ctx = file_to_rga_ctx(file);
- 	struct rockchip_rga *rga = ctx->rga;
- 	struct vb2_queue *vq;
- 	struct rga_frame *frm;
-@@ -561,7 +561,7 @@ static int vidioc_s_fmt(struct file *file, void *prv, struct v4l2_format *f)
- static int vidioc_g_selection(struct file *file, void *prv,
- 			      struct v4l2_selection *s)
- {
--	struct rga_ctx *ctx = prv;
-+	struct rga_ctx *ctx = file_to_rga_ctx(file);
- 	struct rga_frame *f;
- 	bool use_frame = false;
- 
-@@ -609,7 +609,7 @@ static int vidioc_g_selection(struct file *file, void *prv,
- static int vidioc_s_selection(struct file *file, void *prv,
- 			      struct v4l2_selection *s)
- {
--	struct rga_ctx *ctx = prv;
-+	struct rga_ctx *ctx = file_to_rga_ctx(file);
- 	struct rockchip_rga *rga = ctx->rga;
- 	struct rga_frame *f;
+ 	struct s5p_mfc_dev *dev = video_drvdata(file);
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
  	int ret = 0;
+ 	struct v4l2_pix_format_mplane *pix_mp;
+ 	const struct s5p_mfc_buf_size *buf_size = dev->variant->buf_size;
+@@ -598,7 +598,7 @@ static int vidioc_reqbufs(struct file *file, void *priv,
+ 					  struct v4l2_requestbuffers *reqbufs)
+ {
+ 	struct s5p_mfc_dev *dev = video_drvdata(file);
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	if (reqbufs->memory != V4L2_MEMORY_MMAP) {
+ 		mfc_debug(2, "Only V4L2_MEMORY_MMAP is supported\n");
+@@ -619,7 +619,7 @@ static int vidioc_reqbufs(struct file *file, void *priv,
+ static int vidioc_querybuf(struct file *file, void *priv,
+ 						   struct v4l2_buffer *buf)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	int ret;
+ 	int i;
+ 
+@@ -647,7 +647,7 @@ static int vidioc_querybuf(struct file *file, void *priv,
+ /* Queue a buffer */
+ static int vidioc_qbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	if (ctx->state == MFCINST_ERROR) {
+ 		mfc_err("Call on QBUF after unrecoverable error\n");
+@@ -666,7 +666,7 @@ static int vidioc_dqbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
+ 	const struct v4l2_event ev = {
+ 		.type = V4L2_EVENT_EOS
+ 	};
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	int ret;
+ 
+ 	if (ctx->state == MFCINST_ERROR) {
+@@ -695,7 +695,7 @@ static int vidioc_dqbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
+ static int vidioc_expbuf(struct file *file, void *priv,
+ 	struct v4l2_exportbuffer *eb)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	if (eb->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+ 		return vb2_expbuf(&ctx->vq_src, eb);
+@@ -708,7 +708,7 @@ static int vidioc_expbuf(struct file *file, void *priv,
+ static int vidioc_streamon(struct file *file, void *priv,
+ 			   enum v4l2_buf_type type)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	int ret = -EINVAL;
+ 
+ 	mfc_debug_enter();
+@@ -724,7 +724,7 @@ static int vidioc_streamon(struct file *file, void *priv,
+ static int vidioc_streamoff(struct file *file, void *priv,
+ 			    enum v4l2_buf_type type)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	if (type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+ 		return vb2_streamoff(&ctx->vq_src, type);
+@@ -801,7 +801,7 @@ static const struct v4l2_ctrl_ops s5p_mfc_dec_ctrl_ops = {
+ static int vidioc_g_selection(struct file *file, void *priv,
+ 			      struct v4l2_selection *s)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	struct s5p_mfc_dev *dev = ctx->dev;
+ 	u32 left, right, top, bottom;
+ 	u32 width, height;
+@@ -856,7 +856,7 @@ static int vidioc_g_selection(struct file *file, void *priv,
+ static int vidioc_decoder_cmd(struct file *file, void *priv,
+ 			      struct v4l2_decoder_cmd *cmd)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	struct s5p_mfc_dev *dev = ctx->dev;
+ 	struct s5p_mfc_buf *buf;
+ 	unsigned long flags;
+diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c
+index 6c603dcd56649fcabe161173c64b9ea8bd055b93..c6787ccfaaa422a905dbb136d992f2d15b8e484f 100644
+--- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c
++++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c
+@@ -1389,8 +1389,8 @@ static int vidioc_enum_fmt_vid_out(struct file *file, void *priv,
+ 
+ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
+ 	struct v4l2_pix_format_mplane *pix_fmt_mp = &f->fmt.pix_mp;
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	mfc_debug(2, "f->type = %d ctx->state = %d\n", f->type, ctx->state);
+ 	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
+@@ -1472,8 +1472,8 @@ static int vidioc_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ 
+ static int vidioc_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ {
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	struct s5p_mfc_dev *dev = video_drvdata(file);
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
+ 	struct v4l2_pix_format_mplane *pix_fmt_mp = &f->fmt.pix_mp;
+ 	int ret = 0;
+ 
+@@ -1531,7 +1531,7 @@ static int vidioc_reqbufs(struct file *file, void *priv,
+ 					  struct v4l2_requestbuffers *reqbufs)
+ {
+ 	struct s5p_mfc_dev *dev = video_drvdata(file);
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	int ret = 0;
+ 
+ 	/* if memory is not mmp or userptr or dmabuf return error */
+@@ -1601,7 +1601,7 @@ static int vidioc_reqbufs(struct file *file, void *priv,
+ static int vidioc_querybuf(struct file *file, void *priv,
+ 						   struct v4l2_buffer *buf)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	int ret = 0;
+ 
+ 	/* if memory is not mmp or userptr or dmabuf return error */
+@@ -1636,7 +1636,7 @@ static int vidioc_querybuf(struct file *file, void *priv,
+ /* Queue a buffer */
+ static int vidioc_qbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	if (ctx->state == MFCINST_ERROR) {
+ 		mfc_err("Call on QBUF after unrecoverable error\n");
+@@ -1657,10 +1657,10 @@ static int vidioc_qbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
+ /* Dequeue a buffer */
+ static int vidioc_dqbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
+ {
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	const struct v4l2_event ev = {
+ 		.type = V4L2_EVENT_EOS
+ 	};
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
+ 	int ret;
+ 
+ 	if (ctx->state == MFCINST_ERROR) {
+@@ -1685,7 +1685,7 @@ static int vidioc_dqbuf(struct file *file, void *priv, struct v4l2_buffer *buf)
+ static int vidioc_expbuf(struct file *file, void *priv,
+ 	struct v4l2_exportbuffer *eb)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	if (eb->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+ 		return vb2_expbuf(&ctx->vq_src, eb);
+@@ -1698,7 +1698,7 @@ static int vidioc_expbuf(struct file *file, void *priv,
+ static int vidioc_streamon(struct file *file, void *priv,
+ 			   enum v4l2_buf_type type)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	if (type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+ 		return vb2_streamon(&ctx->vq_src, type);
+@@ -1711,7 +1711,7 @@ static int vidioc_streamon(struct file *file, void *priv,
+ static int vidioc_streamoff(struct file *file, void *priv,
+ 			    enum v4l2_buf_type type)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	if (type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+ 		return vb2_streamoff(&ctx->vq_src, type);
+@@ -2284,7 +2284,7 @@ static const struct v4l2_ctrl_ops s5p_mfc_enc_ctrl_ops = {
+ static int vidioc_s_parm(struct file *file, void *priv,
+ 			 struct v4l2_streamparm *a)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	if (a->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+ 		ctx->enc_params.rc_framerate_num =
+@@ -2301,7 +2301,7 @@ static int vidioc_s_parm(struct file *file, void *priv,
+ static int vidioc_g_parm(struct file *file, void *priv,
+ 			 struct v4l2_streamparm *a)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 
+ 	if (a->type == V4L2_BUF_TYPE_VIDEO_OUTPUT) {
+ 		a->parm.output.timeperframe.denominator =
+@@ -2318,7 +2318,7 @@ static int vidioc_g_parm(struct file *file, void *priv,
+ static int vidioc_encoder_cmd(struct file *file, void *priv,
+ 			      struct v4l2_encoder_cmd *cmd)
+ {
+-	struct s5p_mfc_ctx *ctx = fh_to_ctx(priv);
++	struct s5p_mfc_ctx *ctx = file_to_ctx(file);
+ 	struct s5p_mfc_dev *dev = ctx->dev;
+ 	struct s5p_mfc_buf *buf;
+ 	unsigned long flags;
 
 -- 
 2.49.0
