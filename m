@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1F04CA0EC2
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCB39C87FCB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BmbCbLG3UhylRL3qzovNB2srabAUJwzslR/FVkH3/5c=; b=mDvHNik99SGKR/
-	EntJQSPUpZf2wS6fgIYpIIAvS1GCE4BJ431ezw001O7kZ3meJuigH/AbjB4ExfZUSPm+wNGab9KX7
-	IEvHdxbwW8DrWOKnDeVRebKbSS81nWhDEE4rTwxk06H5CtY6Srq5qDPkYr4sLx6Axouk6OeVCLPLY
-	QlVYOaBxOi+VI+B34HUJbQOC0gCLsLDeVpaQ6RjLE3S8YVW7mCyf+XnW7LNhCQqE+QZ6K6YGZTt5Z
-	ATHhGZEK6Xps+zcnOIcHNKh3/bkibw2TArSac4Jv6GUDeDX3aWY+QtwKOCO1oI5G2J9Fl1H863A4b
-	H/MojaswccObIuxXtpJA==;
+	List-Owner; bh=yFF1DXLJaog/+U96WSofvKWiJCDJCflmqBS7WIkoCJk=; b=jUclPT1RQ0a/YM
+	0eAXqkHSp3lVvYbrW/UdW3X+u8oXVKMvl20tqG816d9gZ1fofiXky+TrdhDZL6sWrLyHc3mMJds86
+	gZvRdXZsr7221qK78SWqGNG5vbmzKDEXTPTggsJpoXPQG9BH3uE6J/Y+H04o4DfItCnD56sXzKdQf
+	wa105V07xNsZYlvakaFhiMkbU+pexRx49WOT+mHglhgECbTLTpab099z9xCbaK6BY7mvxDmqQp9on
+	YP1yeLPdKwq1Q1H7WwtDwSuWn/euJRIlhIiFakrw4vDlHIZMHlP+2+gPyGjYjPaqq5vYY3VMNeoY2
+	87ac+863H7O5KvRQahVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXD-0000000Au6a-0na0;
-	Mon, 04 Aug 2025 15:55:35 +0000
+	id 1uixXE-0000000Au8q-3UeH;
+	Mon, 04 Aug 2025 15:55:36 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8VC-00000007Olh-2xZi;
-	Sat, 02 Aug 2025 09:26:08 +0000
+	id 1ui8Vb-00000007Owf-3NC2;
+	Sat, 02 Aug 2025 09:26:33 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B634132CE;
-	Sat,  2 Aug 2025 11:25:10 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5C5733382;
+	Sat,  2 Aug 2025 11:25:32 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754126720;
-	bh=PZJ1dtH8nmhfLvI56JLBdPdVDA0PB4szlI4XA3Wq6yw=;
+	s=mail; t=1754126745;
+	bh=w27FBrYuy5luuq8sfLJhkAyXcxYLO6q6OgUGzOvjXCg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=OTFLVa011NnEd62Pg03uYC4ijQ+I7C7eKlpJ/1lEAKQn52ln5poN59ByaM1OP/BJJ
-	 1bGZzAQl8d3H7dkSml1kQTy9Mv+ol4VjnBH3vkVhOgfYLCUFuf44EaIzs77SisC9gp
-	 9NTv3iC0LTAsfBWAeEubFS1vkreWcTWYo8AiEHoc=
+	b=KfCGdKe1K3Fc0zAQ4xzG9+N4gRTgUX7hp2XSLsiS8QJYWuuBMu/dxj1woEa4oaDSG
+	 ePa2piLt7m4G65UgqLGBXtTVqiJuzfB5hKjMmfZtMDLqdf2V+hRecSUEVTop8muZJ9
+	 6AtH6ZyFsW2g9mm1rqXW6sWXRXQIwCNR02B0Uaeg=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:22:38 +0200
-Subject: [PATCH 16/65] media: v4l2-fh: Move piece of documentation to
- correct function
+Date: Sat, 02 Aug 2025 11:22:40 +0200
+Subject: [PATCH 18/65] media: rzg2l-cru: Do not set file->private_data
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-16-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-18-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -130,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1332;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=954;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=3mdLRukve15yg0XhGTxj6WeSGHvr7vlZ9xqEhBw1Ap8=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj5Aqu9VSv4VW4JgzhkKv4IejFT1+wHP4iEB
- k8A3tbKR0+JAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+QAKCRByNAaPFqFW
- PMs+D/95ql+AofdksJ9+zTLY+7aOcDVLMQvYbA3pgfKJARD2L8GaSgT26Bs+muoW5SxO55NXUua
- M1AsJL8/xTGUpkmb9QB6bqbkIQqfW0MAU/R6prYbSr2QVa7palsTZqZuzU1Ngf/aJWjOMes52Hg
- FEqpmzq1bF+rXHMuiK4CKcExsn3a5ww/jpd1mJQ2dKh44gRYjXhv+JEsMUBsXfF8bjZsjHKBEdR
- xiGrMTt07gugBQDNa0zaJIV9bvYRqzDBh6zrx6VG9cCqltgdvn6qa4E5xuD2wJNOYo5f8jHzICK
- jzkTlBzDRuJ9pyNfQwcPM2CucUdG6ESpU38FP080jZnPDHGqOEOpZSPTNi1r6lkQyBZov0Oidmh
- AFDsX3+1yLe/Q36ytvuP/eRkK0QCU3T0AreReNKzLe/MkxA9MOs8v8n5Jg+hO60DSPMhzyIOzF8
- TTUgxC1Rv7kDtLKhwRVAgFmypxz+Yl7XdTm7v5nA8aqCQJTHjNzPSMZbDP4mIlzCVNWGztU2CKb
- OF8H9KNqJaiUO3BJPX1eqCOacTSvtuI/Z3y9X0/HTPfwXXZNSkaLm1Wp2oPcWu4T8H6XTH9dO4t
- JIh7O8nImH8gE4dCTNvxjXypvMugfjCkwL4iM/yXf0Ilmp25VoACwNJCB3vA67AyhaVa+5Pd786
- vgFeamTgOOjrY+A==
+ bh=w27FBrYuy5luuq8sfLJhkAyXcxYLO6q6OgUGzOvjXCg=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj5leh6NZr7YBb5F3lUqdPDVAoAv/E+Apn8a
+ VdBJqbYhJOJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+QAKCRByNAaPFqFW
+ PDjxEACcu4vUKoDreIA9sdrRv0rPntbmVcO2EIY5HI+PZ7TWdXhWtE/uwJnsTBw8XW8YyxFL1Ko
+ B7edSHJtyHk7hhRiCEQshw3WA5B3rs82kRtrhLR3zwlgcyLE96k1J2SJQpEzrtt9p9E51UWfD0U
+ BqcZAisqTFozP7zQW0WGKc8lEyJt0/F2RNj3Ic0vjqTjBg90DgZsPtueqxNGkinh50/AXDKsZxA
+ +HMqE2gTktb4hQIXKTjZpa+e+3ILeB5U0Mnrz1/6EBcONhc0haAuWp1Vf5xRpZkQxJXpVtBEi47
+ RusW/FbWHWez/uMc68lFdXOe005GtLsYoP9jbKJmi9am2yQGdjulGsavfIHnnwNdSSwhRFKyeEj
+ Frh8FHbh6zi6N/2qZQqS2HLKV0PQvUit8vqN86W8YqZ30843b51yZ1uMMqXDa4JpeJV+5by9KaL
+ XXbn9tYid9Mu+NVhfQxXxTiUFZRRWTUMhKJ/fb+7d6Ckohv/KfMZT2NCIIsQQNLzJb7V9iR5jJT
+ Qw6Q2Yr6GB/yGn+78O8+pyIAfOS1/O36Otr4bdVWOkjkBzfXrJ/RksX8plhoJE390pM1Wbd0GC2
+ 9ByBL0oNCt/Vvv8CMMv1vO87h4lAeh3jTbr5YVmfD3+1X/gXXOZRR1GBpkDZJLW8ctFkCmxHueY
+ fs0wBGy3WUnSD6w==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_022606_891586_8FDBEA26 
-X-CRM114-Status: GOOD (  13.16  )
+X-CRM114-CacheID: sfid-20250802_022631_992356_90AFA259 
+X-CRM114-Status: GOOD (  11.52  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -167,42 +166,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+The RZ G2/L CRU driver sets file->private_data to the driver-specific
+structure, but the following call to v4l2_fh_open() overwrites it
+with a pointer to the just allocated v4l2_fh.
 
-The paragraph in the v4l2_fh_del() documentation that indicates the
-function sets filp->private_data was added in the wrong place. It is
-meant for v4l2_fh_open(). Move it to where it belongs.
+Remove the mis-leading assignment in the driver.
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- include/media/v4l2-fh.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/include/media/v4l2-fh.h b/include/media/v4l2-fh.h
-index 823fa8ebeb8fbe36f05a1c31d3d3a9b7bba4de4d..14e7136e693f0a7b8b25959200603028e0db36ac 100644
---- a/include/media/v4l2-fh.h
-+++ b/include/media/v4l2-fh.h
-@@ -101,6 +101,9 @@ void v4l2_fh_add(struct v4l2_fh *fh);
-  *
-  * It allocates a v4l2_fh and inits and adds it to the &struct video_device
-  * associated with the file pointer.
-+ *
-+ * On error filp->private_data will be %NULL, otherwise it will point to
-+ * the &struct v4l2_fh.
-  */
- int v4l2_fh_open(struct file *filp);
+diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c
+index a8817a7066b22f8a8dd1fdab50efabc486e4dfdb..941badc90ff55c5225644f88de1d70239eb3a247 100644
+--- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c
++++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c
+@@ -1078,7 +1078,6 @@ static int rzg2l_cru_open(struct file *file)
+ 	if (ret)
+ 		return ret;
  
-@@ -109,9 +112,6 @@ int v4l2_fh_open(struct file *filp);
-  *
-  * @fh: pointer to &struct v4l2_fh
-  *
-- * On error filp->private_data will be %NULL, otherwise it will point to
-- * the &struct v4l2_fh.
-- *
-  * .. note::
-  *    Must be called in v4l2_file_operations->release\(\) handler if the driver
-  *    uses &struct v4l2_fh.
+-	file->private_data = cru;
+ 	ret = v4l2_fh_open(file);
+ 	if (ret)
+ 		goto err_unlock;
 
 -- 
 2.49.0
