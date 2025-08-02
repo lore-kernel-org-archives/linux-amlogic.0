@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E002C87FCB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35F17C87FCF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:55:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vkH3U0URnTemmI8w7K0zhGOr471tC5zfQNCdVtrPXtU=; b=3iMRirYmGyvHzx
-	+K6C3HPzdiowMqpHgtTMlQoe0tUi7wfaryByj0aGntGrb1w2nMLIjjytIEvtTfB/Ypjb9Ik2qa76F
-	XRG4qaF5tA5yI8odSidNAxH3n672csqyZ3NQTZQ4q6+DOv0DAq7qmFFP/abXRva13ILv/Fwm7LkiE
-	GKrLhTo+3/NgfsSv85L8FnwCkRhJIyMlujq8hXkO9Y63kWKIZXSoEvZ+IR7lTxzFx6IgGGtrpvPzb
-	9jRas8bD0unuINLYmZfSSuMNe5dTleqdG/neSMzODcYtPQCEGxotEhm4EtsE1X/IGeA2Ukix5lQd9
-	LdoEHGTuIWuX3y2NRPKg==;
+	List-Owner; bh=SkWyJSBO/AssaMA963C2GBO62pc6BqioMY22Bkv0Sfk=; b=ec2KKaASz89KoN
+	mM/MqpcqsHnhA7aKD0HYwHaV6Vgw6qU3gQLbH3az4jLpvCWm8VgEmxGMTrXTOVFilBOMVC3bsQn5N
+	sKJk+45Y3O8jRx9xiuwN4jzN1A5kpCsLYqqNniDanl4rs910j/o0J0XK615JHknVuoWH9xDAwEd8+
+	lgFgf0AN2zJHfg5fHiUHDqDfsyVQ7niDUo0xcV1CFpGbIHe4un/tLXkxfYD1nulT8+cLcTEQKgFg4
+	2YahwSeYuDskMa3nCGi8TMEK3EoP6QL+KAJ7KlkLrV6axfjg1yKma2cep7bK283KRC2ulLq3yrm4u
+	YgnCh4uscTCleDZMHv7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXQ-0000000AuSO-3a9F;
-	Mon, 04 Aug 2025 15:55:48 +0000
+	id 1uixXP-0000000AuQo-3lKQ;
+	Mon, 04 Aug 2025 15:55:47 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8XZ-00000007Pqd-2qBM;
-	Sat, 02 Aug 2025 09:28:34 +0000
+	id 1ui8XP-00000007Pm6-2Mg7;
+	Sat, 02 Aug 2025 09:28:24 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 876C73C5C;
-	Sat,  2 Aug 2025 11:27:37 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A3DB13BFA;
+	Sat,  2 Aug 2025 11:27:25 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754126867;
-	bh=T3nnvKTfBwctCb2KRCzrOOTSYhCcGLTV59+/l2e0jic=;
+	s=mail; t=1754126857;
+	bh=EupQNZwVDEWPV0lRXOPIWwyqRXZFDT974pCYxdDmFr4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Dkkumh4LvxiuD8hNn3xqAjWcNyloSHLSyCVxEPeN03ejtzn2UG2VxVNhAnRssFn5b
-	 F2/F6FTzFRh9zHyOicYH+CITNw2ZAfi/45abmodAsDOnwXOXQkS8HI/S/Tn7OIRfWQ
-	 pXWkRYmhrYm2juFG6mt5ZWW34am6MecwMRht3TvU=
+	b=hpY78CmkVv74nSpWm7mIQCCiDoYD4+PYB95WVTP4W7eZHiEy+SV4qDjjuyt3l55ad
+	 Wo1Jomg7/kuakxont8Lj75UEoyxO/gXWRVep1Pym+B5WryRO5Bf/nqQHWEQxxF549z
+	 O+SKZiZJEXIhWbrbWhqqK7Mujk0z12AkXw6FIywc=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:22:52 +0200
-Subject: [PATCH 30/65] media: meson-ge2d: Access v4l2_fh from file
+Date: Sat, 02 Aug 2025 11:22:51 +0200
+Subject: [PATCH 29/65] media: allegro: Access v4l2_fh from file
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-30-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-29-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -129,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2933;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4042;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=T3nnvKTfBwctCb2KRCzrOOTSYhCcGLTV59+/l2e0jic=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj7Fyaa+k6kJNktEpScDTtiWPy/zaeBwHz9r
- DJi8voptXKJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+wAKCRByNAaPFqFW
- PKVRD/9hNjf7I/ZFLIZiasLup5gsgyNwUHVXZkHcmovAL8TIvnofdZ5VhpAM3eJ++8/l9qxMSuE
- MXKsXSR9XFbtftKtXz4+Y1tvz1FJ79z64WHGMs0xneU5nu2CpLKfX8ZvYAEKy58fxuSIHHSLLX0
- hWA9E5Fa7k7kpVg4KT9CBQm2zTWNGW9Ucy6Pjt8HofFZT82URpYm6/fVN1NtXpbxqwV2unaH27Z
- oZOtB6292Z/G5zI8p4nl8eeeYxXn8egPLXef91fozHfsAdabGC/yL+Z5sWeOAGKv9D5s36TUoFQ
- w/lxJXYhMlOSk5+Q5WYei14Z/iOhIb6lbVl7JMQTaEIwgHpcBoodDYNyP3Z6Mnu8yc53Kj/FD6X
- razFUGu3uX1tU0YKS/TVeN2DYYJHlDUdDyvHf0Q+4z2LW1WWWpflBIncqJcoJarL8aeqsmJwDrU
- E8e4biI29YK7NJRZQ31JDbhuVIuwBjoYzkSOYA9bI+E0ftdCi+f0uGW9qiy/caNDTeXipY7xKTt
- zP3Uu36adc8AcaxdNLQtKM7zr7fCg/ssFemih19ULbECnJCfI85T8acrRKM4Z6OGo0iNB5jksc+
- JPboZIQKZLhoLoTqDOBdSIg3MEs1Jh69sAhZu6nnVAT3asyNA/WNjkgnPPP4IYjOb2kxH08TA7Y
- VEIR3oTqjNmorVQ==
+ bh=EupQNZwVDEWPV0lRXOPIWwyqRXZFDT974pCYxdDmFr4=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj6938RTcCW3JLF7q2TU/zTQB1aW4uCXzbSl
+ KRPGOpR5M2JAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y+gAKCRByNAaPFqFW
+ PPEoEACtOVVZcE0Jno+wySkwxbtRcY7fcEkuzlP+5mpC4ISfqOV+gM1G/t+jhOBOQxI2V/sx6dj
+ NffRk/kDtQ0yQ4OGn75YP9PwPU1u9Ho0ABWevDJPGYy5zNzO1Ho6BvS55kDKWQhWVZUBNHaX5q7
+ ydYl8Kklpn3uECXV2WO4sJhJcOUYT1yZ4VZ7O6wNgmZjaL+XavqFPr05yLv4ATGvhCQK1zttCLo
+ ZuyM2KYvgb2RWYqOlshgBkBj6Ry5xxAPHBGJltaqSdAms5rji4stoNX+CGpKTz/eZCE1XaM8lec
+ KfphPeP6gNXjr4erndbjbZ5ZG4SszKQ0+yLymE6Wdj+DQvrPjHGjJCx1xRLzDG4PzvA3ILsaB2E
+ cmu6TARWAS4IXzftMkQ7UsHq3BLGTqd1B/BroBVisfe+SI5XaE8KQyW7YdgWWMUPmgD6IqaQ0D8
+ NG5HUaRIsNxYllVZYKG+EbXmU0cfD3ELrYPOBtInFkGy717UK1q8BcTX6XcC+G8qhbJZBsiGM6w
+ SqUODvlIMVAPmeAe8idoPhTsaqG0rZJ6GHa13M4scN3OICYwSQoh2HrXwVz5Fs+X8Z993R2hRiR
+ UuwCyI5NZ+aiwhmLknbWCncfbc/sPJStc5Q8ddqgjMoRv47AcoNqw7tZnQ+l3zMnhzdNFYcsO4x
+ 6BSqqLyKW3RHXBA==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_022833_861206_F3F71220 
-X-CRM114-Status: GOOD (  12.28  )
+X-CRM114-CacheID: sfid-20250802_022823_888965_1F0D351C 
+X-CRM114-Status: GOOD (  13.60  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -172,70 +172,99 @@ to be available in file->private_data, initialised by v4l2_fh_add().
 Access the v4l2_fh, and from there the driver-specific structure,
 from the file * in all ioctl handlers.
 
+While at it remove the only left user of fh_to_channel() and remove
+the macro completely.
+
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/platform/amlogic/meson-ge2d/ge2d.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/media/platform/allegro-dvt/allegro-core.c | 18 ++++++++----------
+ 1 file changed, 8 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/media/platform/amlogic/meson-ge2d/ge2d.c b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
-index b1b0b6535fb1931c74ae9b2da28bea579cd1bc4c..5744853a40035e9973e605dd3ffec508641470f2 100644
---- a/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
-+++ b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
-@@ -457,7 +457,7 @@ static int vidioc_enum_fmt(struct file *file, void *priv, struct v4l2_fmtdesc *f
- static int vidioc_g_selection(struct file *file, void *priv,
- 			      struct v4l2_selection *s)
- {
--	struct ge2d_ctx *ctx = priv;
-+	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
- 	struct ge2d_frame *f;
- 	bool use_frame = false;
+diff --git a/drivers/media/platform/allegro-dvt/allegro-core.c b/drivers/media/platform/allegro-dvt/allegro-core.c
+index 5e3b1f5d7206d84b8ccb9ea3b3f3f1fe75becf99..81c6afcf2d06f9e39015e49d355346238c5033d8 100644
+--- a/drivers/media/platform/allegro-dvt/allegro-core.c
++++ b/drivers/media/platform/allegro-dvt/allegro-core.c
+@@ -197,8 +197,6 @@ static const struct regmap_config allegro_sram_config = {
+ 	.cache_type = REGCACHE_NONE,
+ };
  
-@@ -507,7 +507,7 @@ static int vidioc_g_selection(struct file *file, void *priv,
- static int vidioc_s_selection(struct file *file, void *priv,
- 			      struct v4l2_selection *s)
+-#define fh_to_channel(__fh) container_of(__fh, struct allegro_channel, fh)
+-
+ struct allegro_channel {
+ 	struct allegro_dev *dev;
+ 	struct v4l2_fh fh;
+@@ -3284,7 +3282,7 @@ static int allegro_enum_fmt_vid(struct file *file, void *fh,
+ static int allegro_g_fmt_vid_cap(struct file *file, void *fh,
+ 				 struct v4l2_format *f)
  {
--	struct ge2d_ctx *ctx = priv;
-+	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
- 	struct meson_ge2d *ge2d = ctx->ge2d;
- 	struct ge2d_frame *f;
- 	int ret = 0;
-@@ -574,8 +574,8 @@ static void vidioc_setup_cap_fmt(struct ge2d_ctx *ctx, struct v4l2_pix_format *f
+-	struct allegro_channel *channel = fh_to_channel(fh);
++	struct allegro_channel *channel = file_to_channel(file);
  
- static int vidioc_try_fmt_cap(struct file *file, void *priv, struct v4l2_format *f)
+ 	f->fmt.pix.field = V4L2_FIELD_NONE;
+ 	f->fmt.pix.width = channel->width;
+@@ -3326,7 +3324,7 @@ static int allegro_try_fmt_vid_cap(struct file *file, void *fh,
+ static int allegro_s_fmt_vid_cap(struct file *file, void *fh,
+ 				 struct v4l2_format *f)
  {
-+	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
- 	const struct ge2d_fmt *fmt = find_fmt(f);
--	struct ge2d_ctx *ctx = priv;
- 	struct v4l2_pix_format fmt_cap;
- 
- 	vidioc_setup_cap_fmt(ctx, &fmt_cap);
-@@ -595,7 +595,7 @@ static int vidioc_try_fmt_cap(struct file *file, void *priv, struct v4l2_format
- 
- static int vidioc_s_fmt_cap(struct file *file, void *priv, struct v4l2_format *f)
- {
--	struct ge2d_ctx *ctx = priv;
-+	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
- 	struct meson_ge2d *ge2d = ctx->ge2d;
+-	struct allegro_channel *channel = fh_to_channel(fh);
++	struct allegro_channel *channel = file_to_channel(file);
  	struct vb2_queue *vq;
- 	struct ge2d_frame *frm;
-@@ -631,7 +631,7 @@ static int vidioc_s_fmt_cap(struct file *file, void *priv, struct v4l2_format *f
+ 	int err;
  
- static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
+@@ -3350,7 +3348,7 @@ static int allegro_s_fmt_vid_cap(struct file *file, void *fh,
+ static int allegro_g_fmt_vid_out(struct file *file, void *fh,
+ 				 struct v4l2_format *f)
  {
--	struct ge2d_ctx *ctx = priv;
-+	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
- 	struct vb2_queue *vq;
- 	struct ge2d_frame *frm;
+-	struct allegro_channel *channel = fh_to_channel(fh);
++	struct allegro_channel *channel = file_to_channel(file);
  
-@@ -670,7 +670,7 @@ static int vidioc_try_fmt_out(struct file *file, void *priv, struct v4l2_format
+ 	f->fmt.pix.field = V4L2_FIELD_NONE;
  
- static int vidioc_s_fmt_out(struct file *file, void *priv, struct v4l2_format *f)
+@@ -3397,7 +3395,7 @@ static int allegro_try_fmt_vid_out(struct file *file, void *fh,
+ static int allegro_s_fmt_vid_out(struct file *file, void *fh,
+ 				 struct v4l2_format *f)
  {
--	struct ge2d_ctx *ctx = priv;
-+	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
- 	struct meson_ge2d *ge2d = ctx->ge2d;
- 	struct vb2_queue *vq;
- 	struct ge2d_frame *frm, *frm_cap;
+-	struct allegro_channel *channel = fh_to_channel(fh);
++	struct allegro_channel *channel = file_to_channel(file);
+ 	int err;
+ 
+ 	err = allegro_try_fmt_vid_out(file, fh, f);
+@@ -3438,7 +3436,7 @@ static int allegro_channel_cmd_start(struct allegro_channel *channel)
+ static int allegro_encoder_cmd(struct file *file, void *fh,
+ 			       struct v4l2_encoder_cmd *cmd)
+ {
+-	struct allegro_channel *channel = fh_to_channel(fh);
++	struct allegro_channel *channel = file_to_channel(file);
+ 	int err;
+ 
+ 	err = v4l2_m2m_ioctl_try_encoder_cmd(file, fh, cmd);
+@@ -3488,7 +3486,7 @@ static int allegro_ioctl_streamon(struct file *file, void *priv,
+ 				  enum v4l2_buf_type type)
+ {
+ 	struct v4l2_fh *fh = file_to_v4l2_fh(file);
+-	struct allegro_channel *channel = fh_to_channel(fh);
++	struct allegro_channel *channel = file_to_channel(file);
+ 	int err;
+ 
+ 	if (type == V4L2_BUF_TYPE_VIDEO_CAPTURE) {
+@@ -3503,7 +3501,7 @@ static int allegro_ioctl_streamon(struct file *file, void *priv,
+ static int allegro_g_parm(struct file *file, void *fh,
+ 			  struct v4l2_streamparm *a)
+ {
+-	struct allegro_channel *channel = fh_to_channel(fh);
++	struct allegro_channel *channel = file_to_channel(file);
+ 	struct v4l2_fract *timeperframe;
+ 
+ 	if (a->type != V4L2_BUF_TYPE_VIDEO_OUTPUT)
+@@ -3520,7 +3518,7 @@ static int allegro_g_parm(struct file *file, void *fh,
+ static int allegro_s_parm(struct file *file, void *fh,
+ 			  struct v4l2_streamparm *a)
+ {
+-	struct allegro_channel *channel = fh_to_channel(fh);
++	struct allegro_channel *channel = file_to_channel(file);
+ 	struct v4l2_fract *timeperframe;
+ 	int div;
+ 
 
 -- 
 2.49.0
