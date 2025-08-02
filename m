@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BFFDC87FD1
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 393DDC87FDA
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ScU0UgETd7/8XkoCNKnXH0Uej9LebfraXTstyRFfzOw=; b=r+OmK+NoEkIU0y
-	GSu2vTY4ye3NsKRecT9KalJnI3X6c5WEZtf/+dEAbAT/y5yDZk4fPW4Z1hzSsbypygPxzW3GdeOwp
-	LUbPcyscDGhvgSWRU7Fp+YlJIndLR5by0BEMiHR9GyTc9koFB02jJKjupHKEmeIAxXr15dDUbhEar
-	iDHkAH+AEq5R07Ja/2wxSIvOiS2N75M+Kc+r2DLm9CxYrx71FGUvV3HVFNRTzCtdaTFyJhC7FLXGE
-	wa1/uhouhSQkFE793MTncX6SQYmZZyhZ5w6vKj3Dz++DKiKdA91eXZKNQfTWWOzNTKbTSzbYM+fYb
-	vQcbd/DMydTj+D7nvJDw==;
+	List-Owner; bh=DCbOPMh/ombq7fNOKdQnr6wisbasVqyE3r4EpINlr78=; b=LXGeOPP5T0UgCS
+	ng8lyvsG9oGednPlRm39YI/hofQURWtmOyD7VRN0y5Thoa5gp8DDKvu59scJ2bUC4a8v5Wp6O46fK
+	FcerXHIopgKYhrnW2j80sv+6+XeKGLna2fr+8iLganQi+wwHkqcb7ADk00RmRYjInkPqsto+zkmHg
+	1pmo040HMwUAePgkgI3xWY2QTIDGmaY8fEAZzGREQFDVF82s9rQe/WDMRG7uhx9jfqgA/BmzvX02d
+	1ZIvYVE9+j/vGE62t5UyF5e2iYibHI7cybrGgfdDQ5TH1ne2joqNUiwKIJxCDheQT+jvOgX5G6Hay
+	Cm/hQPXPrEw5aDdTHanQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXa-0000000AujO-1pQT;
-	Mon, 04 Aug 2025 15:55:58 +0000
+	id 1uixXh-0000000Auum-1pdP;
+	Mon, 04 Aug 2025 15:56:05 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8ZC-00000007Qim-0YK5;
-	Sat, 02 Aug 2025 09:30:15 +0000
+	id 1ui8aG-00000007REf-3hFB;
+	Sat, 02 Aug 2025 09:31:22 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F05833F8F;
-	Sat,  2 Aug 2025 11:29:19 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B3C5940D8;
+	Sat,  2 Aug 2025 11:30:23 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754126967;
-	bh=M2x6tXzxCjjFAUXbEL3SC1QII47wQxoBv/wBb1wDsp0=;
+	s=mail; t=1754127034;
+	bh=P+AdXovkDs72ySz3QReqGKxKqBANHR4M/z/Qnx0Et0A=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=i9zx++aQy/alvIpuEbDg4B8AZJJ6ljo40OX7t/PQh+QoqR2JKsunNOZik5UtJPOIh
-	 HkA0w1qtbec7i1eXH98uzHZHkmMQTSdGwYpy1rVrXNPF25rPMV/Q0resMuSAHRSHzr
-	 WRbwUjUj18J0V9ZzY59wjrgffWpq5xaH1xshksJw=
+	b=TYEMJ1NQIn2AHami8rz14vK1JzGQigVifiRoyt6QHmF3Iu7LxEUWe+myT+degFzvr
+	 js1GxPK6uXfvuzkK5py81gAkb/ClqJxrx4Q9yB2nZNuMAdOJCd1ZQz6ex+ZmHLpccd
+	 Mvkz9iIBZ12ifbUQkccgBT6ah7Ey34/3qfhaou9E=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:23:03 +0200
-Subject: [PATCH 41/65] media: nxp: mx2: Access v4l2_fh from file
+Date: Sat, 02 Aug 2025 11:23:10 +0200
+Subject: [PATCH 48/65] media: s5p-g2d: Access v4l2_fh from file
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-41-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-48-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -129,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2558;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2354;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=M2x6tXzxCjjFAUXbEL3SC1QII47wQxoBv/wBb1wDsp0=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj8n9hAMD57A4gTd58HcmF9kOI9d41H8TaVb
- 6NpnZLKiN6JAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/AAKCRByNAaPFqFW
- PPR3D/49Ma84Vh9j5F5lg+aITWx3vFs2W0Ao6fxs0ce6jAjUUycjjm5bMR9ul9yvs+bvwNYKCu/
- /unwZHnferqh4e3z6zoxuYb5CSXpIxc1jr4Kk/EqeGOiKOnn/YkW+utx+fsqKKsVIK3uLt6FOta
- IRAVmTSR8HwUKkhJhuyYlHsJGaAkKoWSm2XBBa+OSM7TrXCqm+6xGIl1iAYtuma4zB0R8Z1bTx8
- d1Kz+3QMgH29z52NvDsY4L+9bP3myDbJQBCBicACsU4DseVlbjXaqhtC8zrMi4wNQsxF3nyQg5w
- zw3tKqg+X/9n4dj8egNhtrzQ9fajVM1xp1exUiOe0JiH6u00E97/9DPUiXPiiAxpSpq4QTc1rd4
- aCPhF7bX6bqcgmnb1by/d1vqkuaASPi/VRmo9x4tykyyWZfd8rh6IOkiGJf5V/wFf9qJz6zuOSX
- kCEGX03VCm2ksn8iOZMB5bPilBNd060ETYyKNsSODxpRwLbmfaN7wBbl3oOwV5WOWLM7Wn0znRs
- uwu8gEf8zravjInXPbM2xA1mhcei9mOg3RyrE43J4rwjCagzVyEwvT7d8Bf731bR0ng6svImvD3
- p+kgM+LGY/7CfBWG3zHWNRPfvzpPzytKg/8ZNIqHfTSj0gqunclhwK7YXop3L5pAAwnCvhko2yA
- fM1004fYqBkAsEA==
+ bh=P+AdXovkDs72ySz3QReqGKxKqBANHR4M/z/Qnx0Et0A=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj9QjDArsCCpetRJypejE9fiKxkH/6QF97H/
+ V7Va6UoY5qJAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/QAKCRByNAaPFqFW
+ PC37EACiB4t1ueWIIp+xm9SL1tP9bPd4oIx6m58tUtufzqv2UhhlQY2uIeweEcdjDrnmK6wlPFf
+ Zh67AxZib08g3DhnLVPtuf6zyFFx9glCJg6E37kf4tO0Cbjk2b7Wo0XqOtvRvL0mrbcFdm10XOQ
+ u48ojoafbcLDoihcjqYmZZQA517dhFRTPQq0ewLAWh1vRHp5r3u6zxmRYWXvtvn07t8yRHYo1yy
+ pTIdGY05xvfVpm2AwuDef2uLWLTO0ecyx5rhZzPNUGXD+b+hBJfXTGV2aZuhzrLZFz4q/HnJ3x0
+ BYQRN2rUU0mfRw6XAJg2vcYskCk4xE1oHXWcvGmeORkGTZqWQquB4DHbQxT1ITU7vwv3iRSKx36
+ fCognK5a0c4ZW//QBYFwwlv9k74VAtnxKtNiBK6Vbuhbjdsu+YafF0wxxd0bwQ7mVD56iAeaLTZ
+ aP2D2Iy/3E+BdZ4DzVXCbcj9E+jTxZfxbaXg3u5ARjUZb/cQaha4H5DW+a/bxwe6Dc0pyaf8hr7
+ jlWtg1P74osSQLocQSEkYZA+LkuSwrf7AjDO/49ylXeeTtmSe4k4UQHi0XpMZYOYBqHYmyW7gGE
+ ppnTGZndhnM4xWgtUrd4XxDQx4HNaUV59HsflvBoP9BCtbJ8eruyG9ddj+y0d1cNTq36z2Yf78+
+ 2X3qjhfFmyd527g==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_023014_324187_9482170E 
-X-CRM114-Status: GOOD (  12.78  )
+X-CRM114-CacheID: sfid-20250802_023121_065124_937462E0 
+X-CRM114-Status: GOOD (  12.46  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -174,67 +174,58 @@ from the file * in all ioctl handlers.
 
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/platform/nxp/mx2_emmaprp.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/media/platform/samsung/s5p-g2d/g2d.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/media/platform/nxp/mx2_emmaprp.c b/drivers/media/platform/nxp/mx2_emmaprp.c
-index d23da93304bd6f55898cfb96319d2fa101036ca1..3aae8c0b690c0b1b0dd4f05a1c9184b089719a20 100644
---- a/drivers/media/platform/nxp/mx2_emmaprp.c
-+++ b/drivers/media/platform/nxp/mx2_emmaprp.c
-@@ -456,13 +456,13 @@ static int vidioc_g_fmt(struct emmaprp_ctx *ctx, struct v4l2_format *f)
- static int vidioc_g_fmt_vid_out(struct file *file, void *priv,
- 				struct v4l2_format *f)
+diff --git a/drivers/media/platform/samsung/s5p-g2d/g2d.c b/drivers/media/platform/samsung/s5p-g2d/g2d.c
+index 922262f61e7b53baf1b5840d35149bf5b4b2e7ad..55f5130156b7e8690bd0eb204630a730d9f84bd6 100644
+--- a/drivers/media/platform/samsung/s5p-g2d/g2d.c
++++ b/drivers/media/platform/samsung/s5p-g2d/g2d.c
+@@ -307,7 +307,7 @@ static int vidioc_enum_fmt(struct file *file, void *prv, struct v4l2_fmtdesc *f)
+ 
+ static int vidioc_g_fmt(struct file *file, void *prv, struct v4l2_format *f)
  {
--	return vidioc_g_fmt(priv, f);
-+	return vidioc_g_fmt(file_to_emmaprp_ctx(file), f);
- }
+-	struct g2d_ctx *ctx = prv;
++	struct g2d_ctx *ctx = file2ctx(file);
+ 	struct vb2_queue *vq;
+ 	struct g2d_frame *frm;
  
- static int vidioc_g_fmt_vid_cap(struct file *file, void *priv,
- 				struct v4l2_format *f)
+@@ -359,7 +359,7 @@ static int vidioc_try_fmt(struct file *file, void *prv, struct v4l2_format *f)
+ 
+ static int vidioc_s_fmt(struct file *file, void *prv, struct v4l2_format *f)
  {
--	return vidioc_g_fmt(priv, f);
-+	return vidioc_g_fmt(file_to_emmaprp_ctx(file), f);
- }
- 
- static int vidioc_try_fmt(struct v4l2_format *f)
-@@ -502,8 +502,8 @@ static int vidioc_try_fmt(struct v4l2_format *f)
- static int vidioc_try_fmt_vid_cap(struct file *file, void *priv,
- 				  struct v4l2_format *f)
+-	struct g2d_ctx *ctx = prv;
++	struct g2d_ctx *ctx = file2ctx(file);
+ 	struct g2d_dev *dev = ctx->dev;
+ 	struct vb2_queue *vq;
+ 	struct g2d_frame *frm;
+@@ -400,7 +400,7 @@ static int vidioc_s_fmt(struct file *file, void *prv, struct v4l2_format *f)
+ static int vidioc_g_selection(struct file *file, void *prv,
+ 			      struct v4l2_selection *s)
  {
-+	struct emmaprp_ctx *ctx = file_to_emmaprp_ctx(file);
- 	struct emmaprp_fmt *fmt;
--	struct emmaprp_ctx *ctx = priv;
+-	struct g2d_ctx *ctx = prv;
++	struct g2d_ctx *ctx = file2ctx(file);
+ 	struct g2d_frame *f;
  
- 	fmt = find_format(f);
- 	if (!fmt || !(fmt->types & MEM2MEM_CAPTURE)) {
-@@ -519,8 +519,8 @@ static int vidioc_try_fmt_vid_cap(struct file *file, void *priv,
- static int vidioc_try_fmt_vid_out(struct file *file, void *priv,
- 				  struct v4l2_format *f)
+ 	f = get_frame(ctx, s->type);
+@@ -450,7 +450,7 @@ static int vidioc_g_selection(struct file *file, void *prv,
+ static int vidioc_try_selection(struct file *file, void *prv,
+ 				const struct v4l2_selection *s)
  {
-+	struct emmaprp_ctx *ctx = file_to_emmaprp_ctx(file);
- 	struct emmaprp_fmt *fmt;
--	struct emmaprp_ctx *ctx = priv;
+-	struct g2d_ctx *ctx = prv;
++	struct g2d_ctx *ctx = file2ctx(file);
+ 	struct g2d_dev *dev = ctx->dev;
+ 	struct g2d_frame *f;
  
- 	fmt = find_format(f);
- 	if (!fmt || !(fmt->types & MEM2MEM_OUTPUT)) {
-@@ -580,7 +580,7 @@ static int vidioc_s_fmt_vid_cap(struct file *file, void *priv,
- 	if (ret)
- 		return ret;
+@@ -478,7 +478,7 @@ static int vidioc_try_selection(struct file *file, void *prv,
+ static int vidioc_s_selection(struct file *file, void *prv,
+ 			      struct v4l2_selection *s)
+ {
+-	struct g2d_ctx *ctx = prv;
++	struct g2d_ctx *ctx = file2ctx(file);
+ 	struct g2d_frame *f;
+ 	int ret;
  
--	return vidioc_s_fmt(priv, f);
-+	return vidioc_s_fmt(file_to_emmaprp_ctx(file), f);
- }
- 
- static int vidioc_s_fmt_vid_out(struct file *file, void *priv,
-@@ -592,7 +592,7 @@ static int vidioc_s_fmt_vid_out(struct file *file, void *priv,
- 	if (ret)
- 		return ret;
- 
--	return vidioc_s_fmt(priv, f);
-+	return vidioc_s_fmt(file_to_emmaprp_ctx(file), f);
- }
- 
- static const struct v4l2_ioctl_ops emmaprp_ioctl_ops = {
 
 -- 
 2.49.0
