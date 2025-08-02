@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20DE9C87FCB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 452BEC87FDA
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Aug 2025 15:56:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PI/FpXnWZlumRvRh/H1zSc1W1UrGC49WLwdZCs7x3j4=; b=p2flGUCXMqlLxL
-	YBryLCRzFarNQ+rPBJe+mQZuRutRubH4rdj1bWVqH8n4cOzCXUGRPdyvwn/l57BIsz7Kscbs6c7OP
-	khRmWW8fWx+Q5wGNanZb70GNSTWbu1+WZETFkiYO9RyB/vxhGpKB70s0+32CqVe/WMQqgcpbmNGFH
-	SxE71aTznaaXEgcOw9ljiwzoSfeS7ngZLsoiE702tgUjJwABACE05qIselh6VIDgYIb5hPm9JgezV
-	TMdMxuYFYJ4BRmYtj5zVpodjxVBJokb/JuRbErv4L3IPde4Ung3JN/onhnTzkeFyH/3lOAVupVOEo
-	YRBnbVUCragvuCACi3DQ==;
+	List-Owner; bh=UONE4xBsWCywh/X8HfaI2oNq/EzJ03B55DuV1gRwpTI=; b=JwSFENjhxqxeXi
+	TY2c2kfarMTmwwDhuguy7ZQdRrmpmCn0kvrUTRgE79c3yy9NvQjuLXZ8XhY+q/pYAPc0Z3bFa2+wZ
+	/MCA/pFy788hf3XEJd2LzpsZlnBM3BBXgohGYNDCsb4OcENeJVcAg2hKhRi3Q7BFXpHqhmg5+6tXb
+	nnMy9CoERmnk0u9wTZARRRBB/hyolccls2iZFt14Sh1C4xJ32WgCq4s15YmrLg2sg7hq3xJLldxFQ
+	ZbWz0Vxl2bGZ5/7Q3bLBdzwmbMoq2NL3Cpciyf9bgQcBi4cqV0q+sX/qRVhCCEVsDwNbzXKXDPCIL
+	Ns7rdl+GWZCZCh1cfz6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uixXp-0000000Av9F-2RO5;
-	Mon, 04 Aug 2025 15:56:13 +0000
+	id 1uixXl-0000000Av1T-0szk;
+	Mon, 04 Aug 2025 15:56:09 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ui8cM-00000007S6b-3hNs;
-	Sat, 02 Aug 2025 09:33:32 +0000
+	id 1ui8bb-00000007Rik-3W5O;
+	Sat, 02 Aug 2025 09:32:45 +0000
 Received: from [192.168.0.172] (mob-5-90-138-121.net.vodafone.it [5.90.138.121])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 65B522F8B;
-	Sat,  2 Aug 2025 11:32:32 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C5A563FAA;
+	Sat,  2 Aug 2025 11:31:48 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754127164;
-	bh=K/dzfOS0dkV05E8cvQoG7rwz6dZ9ZnnXvqtKDs2t7xo=;
+	s=mail; t=1754127117;
+	bh=0Wm4/RCQ2ghH3Q7cxBC1m0z/ZhL6jcKl5NKq/nEvhYI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=WzvZ2DuTeTr9GaZYJYqUZ0wzA/oeg6yvYX0wZsUJFGdjrfZamwqsW67ol38XV9gwp
-	 kdyl8dDrLlE/F0D5V9Xqi/vjReFJX7jg/lwbTcK7TvBh541QqyFa7LeywALRlK5zzV
-	 hXdFNW5LxfxIjbogRPihvL8rs0OoosH5yzwzMaD0=
+	b=LPbIFhtb7RUjGqKbpUtFGva4zIdr6qXUvUvDFh/PFG+cYiSj+FgviD2jOqNT74Pz5
+	 +EpAhg551TGs5l1tFvNkXNdZXegg1X7xQE+psD2h5F2thd2vcKqYdCg481ysT9zIWB
+	 BA5sOSjJJ7OZAwyrUS5Xp7/3wwfNh0NkvQpY8PnE=
 From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Sat, 02 Aug 2025 11:23:20 +0200
-Subject: [PATCH 58/65] media: zoran: Remove access to __fh
+Date: Sat, 02 Aug 2025 11:23:15 +0200
+Subject: [PATCH 53/65] media: stm32: dma2d: Access v4l2_fh from file
 MIME-Version: 1.0
-Message-Id: <20250802-media-private-data-v1-58-eb140ddd6a9d@ideasonboard.com>
+Message-Id: <20250802-media-private-data-v1-53-eb140ddd6a9d@ideasonboard.com>
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 In-Reply-To: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -129,26 +129,26 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net, 
  Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1617;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1764;
  i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=K/dzfOS0dkV05E8cvQoG7rwz6dZ9ZnnXvqtKDs2t7xo=;
- b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj+SsmP6BGofKCY4QKrL2701OyUXD717ITDG
- 7Ik2h8or36JAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/gAKCRByNAaPFqFW
- PEGYEAC/vc5ffxbdnceLM5+KLumODTQTA1neOKuNhgMT8YpOzMtlVK+dF5JMoJu9D11t01DCqCo
- JkYJbGM3IjxD6odRWgYWcOW+XVJN9coQUv+6MDOKDpPZibuaZt2nrGJlvwFK2cwh8/pye7jMGwo
- EYlMCweT91Pwu/glbdctNofWZQH0kCBURg0VbT8s2bzOgqlD+483+LVSSl5VIYBXRRnGLXEh6qP
- E0rNx7KliVie3Bo7yRmkedmcWuHOuro9Ypu/3L3g3rR31ONnmHdjNK22QUJinRjV5dvHgL4bJl4
- nxl9NA0ktz4tYk/PruS0Zwv05qMJtpsdgkbBD3JJ8CO7bUQbgPcqH2BbiO9lKUDzqVKVIjLh0Hi
- vgL7W9cg2DZ7x1p6ou9TOx5FS9UOxR5rHnYBLPRwbDo1skp/TvQK+dTgNxyN7+5eqz8Hcq4Ks09
- NOSTRHu44Vn7RPSdf4RUbC0OqccCCL/UUnAvRYtKl/yrnOGuV/jCUq+R6wt/5nBSwWqDCV1mBr4
- h5/1HqY2L6B0ZD6KOnflHG8B9JOJGt+luOyaRDGG3IGyQ4wqHChbDw/qd2YgwrjNwVJc+SAg05p
- 7HUKO0Tdh3VYf0edLQc7zgVxc1VzQcptntmErcuywAlnyBp0N3Tv0ND51Gg+L8W3gwhQ4RecDfW
- JboSxoPNrKexePw==
+ bh=0Wm4/RCQ2ghH3Q7cxBC1m0z/ZhL6jcKl5NKq/nEvhYI=;
+ b=owEBbQKS/ZANAwAKAXI0Bo8WoVY8AcsmYgBojdj+iTlXHGapdCZ3Rdg3aaSFzezt7QmFvOAXT
+ 3xC8gkCbA6JAjMEAAEKAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCaI3Y/gAKCRByNAaPFqFW
+ PKWrD/9Z2LlP8zp6jDlvAZhHO91/5WhfrQjAV4XA1pd7+h7Yt+lXpe+UXlwVv4eI9ip1UQbDJt5
+ KAhujyIApfJIsY7phLC1CYJ0wW6deOdDiZkKNLrPF4k8Oapv/g1zuMEZ1AUnk00IBEq2PvKu28u
+ j3SSvyUfNmrS32OE4pFBpFkybWnElDESOcP0kI7c6ANVdXCeSSXxIU4jtkLGdKB33hu1IHtvBw4
+ lwvcUPkn/LMHTG2E8l4EdRTbrhYSpvmc0xoCg/oWaig36e7FP+u8cRfnFTXxvH0qgINZljl074p
+ 3iplZeoKfdca8vbTg5MQ2EZvROg46v1T66Mf1Q6sJV14mLZ8hhI45bNg1xO9Z54ctxRvkIcPNKz
+ 2FxEHGI8LsbEEun4RkALrJOGxqWPRQjH+ds9huudfym5ODBGUhLV2Y097pOcGTBM/Ys9+KJ3VFK
+ H4sb+sd3Tn/jZdb25RXLxU3aJkiilRlE2fnMmW99QNbfPYUBYeFbdjZJ2Y0pofrUb5fYxxx7mQL
+ HgaFOBdCSMtDlRFU15h4P6W8mJxSaRJ4YlEwxqrOedi1y5jMhjcEoWGsdrDivID8czR0jJ/JrDS
+ d3idISE1xsuy9Bbwt53l266mU0QsZoo2f92kbFj1xZTXj4RnmyUnNFU28rEs0c/0tzjjBjHRftc
+ YT3FGRxMpHovWtg==
 X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
  fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250802_023331_065335_B1918AE8 
-X-CRM114-Status: GOOD (  13.32  )
+X-CRM114-CacheID: sfid-20250802_023244_022247_F9E4B64A 
+X-CRM114-Status: GOOD (  11.99  )
 X-Mailman-Approved-At: Mon, 04 Aug 2025 08:40:54 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -166,50 +166,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The __fh parameter is assigned to an unsued variable. Remove it
-and remove the unused struct zoran_fh type.
+The v4l2_fh associated with an open file handle is now guaranteed
+to be available in file->private_data, initialised by v4l2_fh_add().
+
+Access the v4l2_fh, and from there the driver-specific structure,
+from the file * in all ioctl handlers.
 
 Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 ---
- drivers/media/pci/zoran/zoran.h        | 6 ------
- drivers/media/pci/zoran/zoran_driver.c | 3 +--
- 2 files changed, 1 insertion(+), 8 deletions(-)
+ drivers/media/platform/st/stm32/dma2d/dma2d.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/media/pci/zoran/zoran.h b/drivers/media/pci/zoran/zoran.h
-index 1cd990468d3de9db8b14b72483972041c57bfee2..d05e222b392156bf1b3b4c83c6591db642c3c377 100644
---- a/drivers/media/pci/zoran/zoran.h
-+++ b/drivers/media/pci/zoran/zoran.h
-@@ -154,12 +154,6 @@ struct zoran_jpg_settings {
+diff --git a/drivers/media/platform/st/stm32/dma2d/dma2d.c b/drivers/media/platform/st/stm32/dma2d/dma2d.c
+index bc0f81e78018b20c38677eaea44358ddad7a9a52..a22f587a5f83fe114e5b1f0a7a0299638701fa71 100644
+--- a/drivers/media/platform/st/stm32/dma2d/dma2d.c
++++ b/drivers/media/platform/st/stm32/dma2d/dma2d.c
+@@ -354,7 +354,7 @@ static int vidioc_enum_fmt(struct file *file, void *prv, struct v4l2_fmtdesc *f)
  
- struct zoran;
- 
--/* zoran_fh contains per-open() settings */
--struct zoran_fh {
--	struct v4l2_fh fh;
--	struct zoran *zr;
--};
--
- struct card_info {
- 	enum card_type type;
- 	char name[32];
-diff --git a/drivers/media/pci/zoran/zoran_driver.c b/drivers/media/pci/zoran/zoran_driver.c
-index f42f596d3e6295e31e3b33cd83c5f7243911bd30..ec7fc1da4cc02f5a344cb49bb9a783c41c758195 100644
---- a/drivers/media/pci/zoran/zoran_driver.c
-+++ b/drivers/media/pci/zoran/zoran_driver.c
-@@ -511,12 +511,11 @@ static int zoran_s_fmt_vid_cap(struct file *file, void *__fh,
- 			       struct v4l2_format *fmt)
+ static int vidioc_g_fmt(struct file *file, void *prv, struct v4l2_format *f)
  {
- 	struct zoran *zr = video_drvdata(file);
--	struct zoran_fh *fh = __fh;
- 	int i;
- 	int res = 0;
+-	struct dma2d_ctx *ctx = prv;
++	struct dma2d_ctx *ctx = file2ctx(file);
+ 	struct vb2_queue *vq;
+ 	struct dma2d_frame *frm;
  
- 	if (fmt->fmt.pix.pixelformat == V4L2_PIX_FMT_MJPEG)
--		return zoran_s_fmt_vid_out(file, fh, fmt);
-+		return zoran_s_fmt_vid_out(file, __fh, fmt);
+@@ -379,7 +379,7 @@ static int vidioc_g_fmt(struct file *file, void *prv, struct v4l2_format *f)
  
- 	for (i = 0; i < NUM_FORMATS; i++)
- 		if (fmt->fmt.pix.pixelformat == zoran_formats[i].fourcc)
+ static int vidioc_try_fmt(struct file *file, void *prv, struct v4l2_format *f)
+ {
+-	struct dma2d_ctx *ctx = prv;
++	struct dma2d_ctx *ctx = file2ctx(file);
+ 	struct dma2d_fmt *fmt;
+ 	enum v4l2_field *field;
+ 	u32 fourcc = f->fmt.pix.pixelformat;
+@@ -422,7 +422,7 @@ static int vidioc_try_fmt(struct file *file, void *prv, struct v4l2_format *f)
+ 
+ static int vidioc_s_fmt(struct file *file, void *prv, struct v4l2_format *f)
+ {
+-	struct dma2d_ctx *ctx = prv;
++	struct dma2d_ctx *ctx = file2ctx(file);
+ 	struct vb2_queue *vq;
+ 	struct dma2d_frame *frm;
+ 	struct dma2d_fmt *fmt;
 
 -- 
 2.49.0
