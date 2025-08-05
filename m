@@ -4,51 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D99AC87FCB
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Aug 2025 10:19:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 743E0C87FCB
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Aug 2025 13:36:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:To:Cc:From:Subject:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xBp3k/+CmlXL67yeLP51iFVFtOCGFs8Z0jXNo5Nynfc=; b=L/ptH0u4xP9gAl
-	RBPdBRegWiwTlEbFq3oqmBZdyBI5E4rt3aHfPEcXx1hELecgQloTR6FvYTvTMk6gjyslglqVR2h6f
-	wXuFzCsA8Np5FnNkHdUqDBDC6NzCiIawNRFIjcE6dkDEYfjc2tL7yhXjL6/BRNPJFFuGdo9XWGvmC
-	u5zOGd/EammcWEJpaw8i7I3RzadxAlz5zp065/kFPxGzEcRqmnVKGsDEg8OHVLXQfPFUF8J0Q2QF/
-	caSAXi8ZQ63EtJFeLpdyAkjm74sC4XjtSwR/Fp3ebnJdafu3yNpN/06znX4ycZmGKSOkjuuWRfqDO
-	xdmYh8vt9mlnTilryeGA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=45EhNdwmbiaWZAOeMAfawsbNbTMJVANKr7cdn9xhze0=; b=i6Q3AlogadrMkiE5k3vQfNSY2S
+	DSYOQVblesvVmENdOSemgQvQ+aG0tDXiToxdKeJOIIxSuzxkG6LK8u85fGYOKcl1aR5oLkbZd+i3t
+	0m+AF/RBfUeH3LnvElW/dCc0fro7vZUmYcw+IbcUJxMS6g7GnHfczxeoJl+SKuK2O32WxQX7H0+Lg
+	JNNJpNWEnqs57jVPNpJEyvY5AyzTJyUj317UTpNtOPMPyCllgMAX6PWs9iSN805QmrCXFV3i8MlEt
+	FRDPrg3KozmVr566BQYlv/dVu37tYXf4manB2RmF8rblvjsujP7zzg6O7ogsElhd0UwAX96fFEijt
+	6kCP6wgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ujEld-0000000CT9F-0OXo;
-	Tue, 05 Aug 2025 10:19:37 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1ujHq8-0000000Crbs-0Y4c;
+	Tue, 05 Aug 2025 13:36:28 +0000
+Received: from nyc.source.kernel.org ([147.75.193.91])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ujES6-0000000CQzy-3SDE;
-	Tue, 05 Aug 2025 09:59:28 +0000
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D96F2AD0;
-	Tue,  5 Aug 2025 11:58:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1754387915;
-	bh=RV+XSnddoBH4JRWHZZy+4T5rBIZcZFEquw455N0WQVA=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=aPIOyP3CCN60ghQ95OYLB9emUWH/n0b6O3gtc9ZoA+uMAITK5524gPFOoFe3iPgrR
-	 PeGZgkGvvmEIfAIjVWqinSJN2vlhZuO+XIf+jbLxH1tzVI09y3TIRrSaAcZCkteW9d
-	 f9FcX+PdukMOKmU3dXioC96DYHeFg17Pwv6UxHrs=
+	id 1ujHdM-0000000CpeR-3En6;
+	Tue, 05 Aug 2025 13:23:18 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by nyc.source.kernel.org (Postfix) with ESMTP id AE213A4DA06;
+	Tue,  5 Aug 2025 13:23:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3BF7C4CEF0;
+	Tue,  5 Aug 2025 13:23:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754400195;
+	bh=4XpKY+hrV//JqY5IB0jEGLiEF04z3a1ypjzN/Ip/ON0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MppPOKAETMD/BqZRdpVGHGh0jhnuJMh9KObQqr9IRR1G0wYcPe5YUe9bHfzOlG4po
+	 0SC44ly+aXPz/iMhRAM5yj4RkanAgvRO5IZ7sgNigcRJPM4OQ/ESdBLOs4DAbhmL4g
+	 nUVo8lRu4XRj+P19miwzQjWyepxUCuvk3y8h80yJz65ZWG8Mm7sZ+X1+hJV6gOgLWC
+	 XNLxrSVOcVAPGnQvDiAOOcB9UoLHf32eYEwBwriug0ierfD3VZolCZi3bwghbnfj6d
+	 fNdpad2Brd5jze6/lOtyc/y/7NyN+WXKvz1UzmkWGSOGIbB/Ay1LC9Krj1GH20Nq6d
+	 8udjMyFgWLOCw==
+Date: Tue, 5 Aug 2025 15:23:12 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Waqar Hameed <waqar.hameed@axis.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, kernel@axis.com, linux-pwm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] pwm: meson: Remove error print for
+ devm_add_action_or_reset()
+Message-ID: <sveurgnigarzdjreweoibcxkkl7rekcpufuwqr7bxcrdx7zdrd@kz4ohstmfyjh>
+References: <pndwm7ikt8v.a.out@axis.com>
 MIME-Version: 1.0
-In-Reply-To: <20250802-media-private-data-v1-42-eb140ddd6a9d@ideasonboard.com>
-References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com> <20250802-media-private-data-v1-42-eb140ddd6a9d@ideasonboard.com>
-Subject: Re: [PATCH 42/65] media: renesas: Access v4l2_fh from file
-From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev, linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org, imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev, linux-usb@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Tue, 05 Aug 2025 10:59:19 +0100
-Message-ID: <175438795943.1641235.15440393062572657340@ping.linuxembedded.co.uk>
-User-Agent: alot/0.9.1
+In-Reply-To: <pndwm7ikt8v.a.out@axis.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250805_025927_001004_E505C0F4 
-X-CRM114-Status: GOOD (  14.55  )
+X-CRM114-CacheID: sfid-20250805_062316_944870_47A4AB31 
+X-CRM114-Status: GOOD (  26.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -60,170 +68,124 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============7750886788185490153=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jacopo Mondi (2025-08-02 10:23:04)
-> The v4l2_fh associated with an open file handle is now guaranteed
-> to be available in file->private_data, initialised by v4l2_fh_add().
-> 
-> Access the v4l2_fh, and from there the driver-specific structure,
-> from the file * in all ioctl handlers.
-> 
-> While at it, remove the now unused fh_to_ctx() macro.
-> 
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+--===============7750886788185490153==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qpe4lsz3c3n5r2b5"
+Content-Disposition: inline
 
+
+--qpe4lsz3c3n5r2b5
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2] pwm: meson: Remove error print for
+ devm_add_action_or_reset()
+MIME-Version: 1.0
+
+Hello Waqar,
+
+On Tue, Aug 05, 2025 at 11:33:36AM +0200, Waqar Hameed wrote:
+> When `devm_add_action_or_reset()` fails, it is due to a failed memory
+> allocation and will thus return `-ENOMEM`. `dev_err_probe()` doesn't do
+> anything when error is `-ENOMEM`. Therefore, remove the useless call to
+> `dev_err_probe()` when `devm_add_action_or_reset()` fails, and just
+> return the value instead.
+>=20
+> Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
 > ---
->  drivers/media/platform/renesas/rcar_fdp1.c | 11 +++--------
->  drivers/media/platform/renesas/rcar_jpu.c  | 21 ++++++++-------------
->  2 files changed, 11 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/media/platform/renesas/rcar_fdp1.c b/drivers/media/platform/renesas/rcar_fdp1.c
-> index e78d8fb104e9544d27c8ace38888995ca170483f..84c3901a2e5dc3e7ccfb3b44062e839f8f19ee02 100644
-> --- a/drivers/media/platform/renesas/rcar_fdp1.c
-> +++ b/drivers/media/platform/renesas/rcar_fdp1.c
-> @@ -630,11 +630,6 @@ struct fdp1_ctx {
->         struct fdp1_field_buffer        *previous;
->  };
->  
-> -static inline struct fdp1_ctx *fh_to_ctx(struct v4l2_fh *fh)
-> -{
-> -       return container_of(fh, struct fdp1_ctx, fh);
-> -}
-> -
->  static inline struct fdp1_ctx *file_to_ctx(struct file *filp)
->  {
->         return container_of(file_to_v4l2_fh(filp), struct fdp1_ctx, fh);
-> @@ -1411,8 +1406,8 @@ static int fdp1_enum_fmt_vid_out(struct file *file, void *priv,
->  
->  static int fdp1_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
->  {
-> +       struct fdp1_ctx *ctx = file_to_ctx(file);
->         struct fdp1_q_data *q_data;
-> -       struct fdp1_ctx *ctx = fh_to_ctx(priv);
->  
->         if (!v4l2_m2m_get_vq(ctx->fh.m2m_ctx, f->type))
->                 return -EINVAL;
-> @@ -1589,7 +1584,7 @@ static void fdp1_try_fmt_capture(struct fdp1_ctx *ctx,
->  
->  static int fdp1_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
->  {
-> -       struct fdp1_ctx *ctx = fh_to_ctx(priv);
-> +       struct fdp1_ctx *ctx = file_to_ctx(file);
->  
->         if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
->                 fdp1_try_fmt_output(ctx, NULL, &f->fmt.pix_mp);
-> @@ -1660,7 +1655,7 @@ static void fdp1_set_format(struct fdp1_ctx *ctx,
->  
->  static int fdp1_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
->  {
-> -       struct fdp1_ctx *ctx = fh_to_ctx(priv);
-> +       struct fdp1_ctx *ctx = file_to_ctx(file);
->         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
->         struct vb2_queue *vq = v4l2_m2m_get_vq(m2m_ctx, f->type);
->  
-> diff --git a/drivers/media/platform/renesas/rcar_jpu.c b/drivers/media/platform/renesas/rcar_jpu.c
-> index 058fcfb967bd98440f33272db42f0d973299d572..9c70a74a2969fce6446b0f26e0637a68eade3942 100644
-> --- a/drivers/media/platform/renesas/rcar_jpu.c
-> +++ b/drivers/media/platform/renesas/rcar_jpu.c
-> @@ -480,11 +480,6 @@ static struct jpu_ctx *ctrl_to_ctx(struct v4l2_ctrl *c)
->         return container_of(c->handler, struct jpu_ctx, ctrl_handler);
->  }
->  
-> -static struct jpu_ctx *fh_to_ctx(struct v4l2_fh *fh)
-> -{
-> -       return container_of(fh, struct jpu_ctx, fh);
-> -}
-> -
->  static struct jpu_ctx *file_to_ctx(struct file *filp)
->  {
->         return container_of(file_to_v4l2_fh(filp), struct jpu_ctx, fh);
-> @@ -661,7 +656,7 @@ static u8 jpu_parse_hdr(void *buffer, unsigned long size, unsigned int *width,
->  static int jpu_querycap(struct file *file, void *priv,
->                         struct v4l2_capability *cap)
->  {
-> -       struct jpu_ctx *ctx = fh_to_ctx(priv);
-> +       struct jpu_ctx *ctx = file_to_ctx(file);
->  
->         if (ctx->encoder)
->                 strscpy(cap->card, DRV_NAME " encoder", sizeof(cap->card));
-> @@ -719,7 +714,7 @@ static int jpu_enum_fmt(struct v4l2_fmtdesc *f, u32 type)
->  static int jpu_enum_fmt_cap(struct file *file, void *priv,
->                             struct v4l2_fmtdesc *f)
->  {
-> -       struct jpu_ctx *ctx = fh_to_ctx(priv);
-> +       struct jpu_ctx *ctx = file_to_ctx(file);
->  
->         return jpu_enum_fmt(f, ctx->encoder ? JPU_ENC_CAPTURE :
->                             JPU_DEC_CAPTURE);
-> @@ -728,7 +723,7 @@ static int jpu_enum_fmt_cap(struct file *file, void *priv,
->  static int jpu_enum_fmt_out(struct file *file, void *priv,
->                             struct v4l2_fmtdesc *f)
->  {
-> -       struct jpu_ctx *ctx = fh_to_ctx(priv);
-> +       struct jpu_ctx *ctx = file_to_ctx(file);
->  
->         return jpu_enum_fmt(f, ctx->encoder ? JPU_ENC_OUTPUT : JPU_DEC_OUTPUT);
->  }
-> @@ -828,7 +823,7 @@ static int __jpu_try_fmt(struct jpu_ctx *ctx, struct jpu_fmt **fmtinfo,
->  
->  static int jpu_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
->  {
-> -       struct jpu_ctx *ctx = fh_to_ctx(priv);
-> +       struct jpu_ctx *ctx = file_to_ctx(file);
->  
->         if (!v4l2_m2m_get_vq(ctx->fh.m2m_ctx, f->type))
->                 return -EINVAL;
-> @@ -839,7 +834,7 @@ static int jpu_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
->  static int jpu_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
->  {
->         struct vb2_queue *vq;
-> -       struct jpu_ctx *ctx = fh_to_ctx(priv);
-> +       struct jpu_ctx *ctx = file_to_ctx(file);
->         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
->         struct jpu_fmt *fmtinfo;
->         struct jpu_q_data *q_data;
-> @@ -868,8 +863,8 @@ static int jpu_s_fmt(struct file *file, void *priv, struct v4l2_format *f)
->  
->  static int jpu_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
->  {
-> +       struct jpu_ctx *ctx = file_to_ctx(file);
->         struct jpu_q_data *q_data;
-> -       struct jpu_ctx *ctx = fh_to_ctx(priv);
->  
->         if (!v4l2_m2m_get_vq(ctx->fh.m2m_ctx, f->type))
->                 return -EINVAL;
-> @@ -902,8 +897,8 @@ static const struct v4l2_ctrl_ops jpu_ctrl_ops = {
->  
->  static int jpu_streamon(struct file *file, void *priv, enum v4l2_buf_type type)
->  {
-> -       struct jpu_ctx *ctx = fh_to_ctx(priv);
->         struct jpu_q_data *src_q_data, *dst_q_data, *orig, adj, *ref;
-> +       struct jpu_ctx *ctx = file_to_ctx(file);
->         enum v4l2_buf_type adj_type;
->  
->         src_q_data = jpu_get_q_data(ctx, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-> @@ -1284,8 +1279,8 @@ static int jpu_open(struct file *file)
->  
->  static int jpu_release(struct file *file)
->  {
-> -       struct jpu *jpu = video_drvdata(file);
->         struct jpu_ctx *ctx = file_to_ctx(file);
-> +       struct jpu *jpu = video_drvdata(file);
->  
->         v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
->         v4l2_ctrl_handler_free(&ctx->ctrl_handler);
-> 
-> -- 
-> 2.49.0
->
+> Changes in v2:
+>=20
+> * Split the patch to one seperate patch for each sub-system.
+>=20
+> Link to v1: https://lore.kernel.org/all/pnd7c0s6ji2.fsf@axis.com/
+>=20
+>  drivers/pwm/pwm-meson.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> index 8c6bf3d49753..e90d37d4f956 100644
+> --- a/drivers/pwm/pwm-meson.c
+> +++ b/drivers/pwm/pwm-meson.c
+> @@ -520,8 +520,7 @@ static int meson_pwm_init_channels_s4(struct pwm_chip=
+ *chip)
+>  		ret =3D devm_add_action_or_reset(dev, meson_pwm_s4_put_clk,
+>  					       meson->channels[i].clk);
+>  		if (ret)
+> -			return dev_err_probe(dev, ret,
+> -					     "Failed to add clk_put action\n");
+> +			return ret;
+
+On the other hand the call to dev_err_probe() also doesn't hurt, right?
+And when we keep it, it is clear that this error path is correctly
+handled without having to know that devm_add_action_or_reset() can only
+return success or -ENOMEM and we don't have to watch
+devm_add_action_or_reset() to not grow something like
+
+diff --git a/include/linux/device/devres.h b/include/linux/device/devres.h
+index ae696d10faff..0876cce68776 100644
+--- a/include/linux/device/devres.h
++++ b/include/linux/device/devres.h
+@@ -156,6 +156,9 @@ static inline int __devm_add_action_or_reset(struct dev=
+ice *dev, void (*action)(
+ {
+ 	int ret;
+=20
++	if (IS_ERR_OR_NULL(dev))
++		return -EINVAL;
++
+ 	ret =3D __devm_add_action(dev, action, data, name);
+ 	if (ret)
+ 		action(data);
+
+=46rom a subsystem maintainer's POV it would be great if it was easy to
+notice if a given function needs an error message or not. One excellent
+way to cover functions that can only return -ENOMEM on failure is to
+optimize out the small overhead of the devm_add_action_or_reset() call.
+
+See
+https://lore.kernel.org/all/ylr7cuxldwb24ccenen4khtyddzq3owgzzfblbohkdxb7p7=
+eeo@qpuddn6wrz3x/
+for a prototype of what I imagine. Oh, you were the addressee of that
+mail, so you already know.
+
+To make my position here explicit: This is a nack.
+
+Best regards
+Uwe
+
+--qpe4lsz3c3n5r2b5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmiSBb0ACgkQj4D7WH0S
+/k7uTAf+IV4xlBSvJged2+TaatRIHPURN3SCK5I88TP02Cl5uM6b7hApBTqA8Ypd
+g3faAO9lFQSRxGgQ7s8VAOsXAMJbmYzc0yFsAANBo1Nx587Q9QA/sVHFNhWPF/hs
+v0wUECR915RNR3BgakctzGvtF4aS99tCgkVS8DszU4ngP9ZYtqqHi6vztBHrZgA4
+61kveQRsL2xsBv//xmoN5cDtmcns2Gr7nAC3G+8lgq/kkSWiJ6BKMhpi1Tvz/2T0
+XagBlQK6u66Aa6letKYpYuDGCAoBxre4ecvDcTHTOCiwLBaCO7/cQKBWDPMUpnYl
+lgExQoYJuwfH3aw6jq1LbSFplv2QYQ==
+=NaYJ
+-----END PGP SIGNATURE-----
+
+--qpe4lsz3c3n5r2b5--
+
+
+--===============7750886788185490153==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7750886788185490153==--
+
