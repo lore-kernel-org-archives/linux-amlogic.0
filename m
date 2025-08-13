@@ -4,65 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2936BCA0EE0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Aug 2025 16:59:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9319CA0EE4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Aug 2025 18:06:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TvXXGDAYFSu/3suodVG9s7x0UfhF8ItHBKSTE7oJSEs=; b=WMVArvMFzkQrip
-	uFivJ1027XFANz8/Sh6pc7Vbyw+CUp3oprcwDSujVS2MexXguyWtorIZYpoThx0FcyqcWHzhy+g3P
-	+0oTKvv/PDDxfeB4N1b2m9tuQ7R0y0bWhGzvyCZtJ63JxEyY5DqgctLWFfC0+PUxXwTm74Xo81N5j
-	tK5N3A1mm5GVvs9mIaguSjvfXtQLvOyLXfWG4dpQsUUID7BVcJb1MmwODyN8ELDao1Dt4QF8UMIuF
-	6XUyhLtN/cUDzUMbXeO22z5avwpwUWw20skS9UZUHnBorJS6+8uqawLIWWYx1oRKG7mpwwZBba3B6
-	6UJAa+A6mR2wmaKDjNkw==;
+	List-Owner; bh=9UjE/X+MlHGKLMgKoWU5JZTRYu5je/4aeZwu1Hi+W7s=; b=zf9qRf+GBI6EZo
+	z1AG/PaB0jOjNZbnNB6cj8dFO2nygZR8TsxMhuUkZW4MSc9QCg5vBS0bMpekJcIIWu8h+YuSpS6ln
+	77LHSc4I1k+i9KuL1Qs5oBTv2waNNI+jIsU4eCC61norowUYO8/HW08FDnYQnMlw9gmlFMlfLedn4
+	HvJlGeixmkNE+gdQcaZV+Dqo4jOMS3aEPKIH+R78qclo+m8//CB56nyNSz7uaYMONbf4NT+2glok4
+	AcMF5z5Ssh3RAfKo6eY/9TYLxXVFNbz4+iljCfeFaH9D4LILMDSUDce1hjh/SqvTYic3oDmfJovQa
+	G33cJLNXQUKWcCSjC8Pg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1umEoT-0000000EUeD-3b9B;
-	Wed, 13 Aug 2025 16:58:57 +0000
-Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
-	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1umE9U-0000000ELkM-3zFe
-	for linux-amlogic@lists.infradead.org;
-	Wed, 13 Aug 2025 16:16:38 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=OYn6F3avixjtER6E0ohkY1hi7mX0fUkF12CsoRFU9/k=; b=PmD+yI
-	vxRAKaGAXHba17GAjQPiz7VPVfkfzMuO6zPxsF1nZa9rVY9CeAaEqnG7TAD41SMS
-	R5xL6MkdHdi+wybfV4oir8xCoY906vOOCo4nvVWtAGKXDTG7k0SFV0/lx269u0Ah
-	zqrAAh0BIugpdiD/qAMcRQIIep/oYijYEChahm2FVrjxfgTd0nGNW12fr0T03NTz
-	dd4LHlmwDBip4OJC+GrvXSJkA51U/V9Bxr6hH27NQWC75e4Nu6I1I0h8lTiU2zlK
-	fugrvsMltZjD55+XQromft7/jqKW5muWgDoWzF7TJYYl2p4egtdSldez7VIOOwjJ
-	+kBv/8blVSmjwt+g==
-Received: (qmail 695593 invoked from network); 13 Aug 2025 18:16:27 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Aug 2025 18:16:27 +0200
-X-UD-Smtp-Session: l3s3148p1@cDWKekE8xJFtKLKq
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-kernel@vger.kernel.org
-Cc: Mark Brown <broonie@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-rtc@vger.kernel.org,
+	id 1umFrS-0000000EenY-16sH;
+	Wed, 13 Aug 2025 18:06:06 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1umEqw-0000000EVJX-1l85;
+	Wed, 13 Aug 2025 17:01:31 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8977914BF;
+	Wed, 13 Aug 2025 10:01:21 -0700 (PDT)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.50])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 704653F738;
+	Wed, 13 Aug 2025 10:01:25 -0700 (PDT)
+From: Robin Murphy <robin.murphy@arm.com>
+To: peterz@infradead.org,
+	mingo@redhat.com,
+	will@kernel.org,
+	mark.rutland@arm.com,
+	acme@kernel.org,
+	namhyung@kernel.org,
+	alexander.shishkin@linux.intel.com,
+	jolsa@kernel.org,
+	irogers@google.com,
+	adrian.hunter@intel.com,
+	kan.liang@linux.intel.com
+Cc: linux-perf-users@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-alpha@vger.kernel.org,
+	linux-snps-arc@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH 17/21] rtc: remove unneeded 'fast_io' parameter in regmap_config
-Date: Wed, 13 Aug 2025 18:15:03 +0200
-Message-ID: <20250813161517.4746-18-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250813161517.4746-1-wsa+renesas@sang-engineering.com>
-References: <20250813161517.4746-1-wsa+renesas@sang-engineering.com>
+	imx@lists.linux.dev,
+	linux-csky@vger.kernel.org,
+	loongarch@lists.linux.dev,
+	linux-mips@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-s390@vger.kernel.org,
+	linux-sh@vger.kernel.org,
+	sparclinux@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	dmaengine@vger.kernel.org,
+	linux-fpga@vger.kernel.org,
+	amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org,
+	coresight@lists.linaro.org,
+	iommu@lists.linux.dev,
+	linux-amlogic@lists.infradead.org,
+	linux-cxl@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH 01/19] perf/arm-cmn: Fix event validation
+Date: Wed, 13 Aug 2025 18:00:53 +0100
+Message-Id: <0716da3e77065f005ef6ea0d10ddf67fc53e76cb.1755096883.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
+In-Reply-To: <cover.1755096883.git.robin.murphy@arm.com>
+References: <cover.1755096883.git.robin.murphy@arm.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250813_091637_258751_69342EE5 
-X-CRM114-Status: UNSURE (   9.48  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250813_100130_505794_FECC0653 
+X-CRM114-Status: GOOD (  11.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,31 +97,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When using MMIO with regmap, fast_io is implied. No need to set it
-again.
+In the hypothetical case where a CMN event is opened with a software
+group leader that already has some other hardware sibling, currently
+arm_cmn_val_add_event() could try to interpret the other event's data
+as an arm_cmn_hw_event, which is not great since we dereference a
+pointer from there... Thankfully the way to be more robust is to be
+less clever - stop trying to special-case software events and simply
+skip any event that isn't for our PMU.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 ---
-No dependencies, can be applied directly to the subsystem tree. Buildbot is
-happy, too.
+ drivers/perf/arm-cmn.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
- drivers/rtc/rtc-meson.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/rtc/rtc-meson.c b/drivers/rtc/rtc-meson.c
-index 47e9ebf58ffc..21eceb9e2e13 100644
---- a/drivers/rtc/rtc-meson.c
-+++ b/drivers/rtc/rtc-meson.c
-@@ -72,7 +72,6 @@ static const struct regmap_config meson_rtc_peripheral_regmap_config = {
- 	.val_bits	= 32,
- 	.reg_stride	= 4,
- 	.max_register	= RTC_REG4,
--	.fast_io	= true,
- };
+diff --git a/drivers/perf/arm-cmn.c b/drivers/perf/arm-cmn.c
+index 11fb2234b10f..f8c9be9fa6c0 100644
+--- a/drivers/perf/arm-cmn.c
++++ b/drivers/perf/arm-cmn.c
+@@ -1652,7 +1652,7 @@ static void arm_cmn_val_add_event(struct arm_cmn *cmn, struct arm_cmn_val *val,
+ 	enum cmn_node_type type;
+ 	int i;
  
- /* RTC front-end serialiser controls */
+-	if (is_software_event(event))
++	if (event->pmu != &cmn->pmu)
+ 		return;
+ 
+ 	type = CMN_EVENT_TYPE(event);
+@@ -1693,9 +1693,6 @@ static int arm_cmn_validate_group(struct arm_cmn *cmn, struct perf_event *event)
+ 	if (leader == event)
+ 		return 0;
+ 
+-	if (event->pmu != leader->pmu && !is_software_event(leader))
+-		return -EINVAL;
+-
+ 	val = kzalloc(sizeof(*val), GFP_KERNEL);
+ 	if (!val)
+ 		return -ENOMEM;
 -- 
-2.47.2
+2.39.2.101.g768bb238c484.dirty
 
 
 _______________________________________________
