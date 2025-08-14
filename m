@@ -4,121 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75E6DCA0EE4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Aug 2025 15:25:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85C1CCA0EE4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Aug 2025 18:15:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZXT/Y4ZkJeM9j5VZNzcaWWRL4epFC1TGgyhnwcfEfBM=; b=fQcJCPpqY7L0r6uOv4bjV4t6Sw
-	KBxkgIXwGvZX5Z4s3mfsD0BAHWAzT25Vm/1XC4PTflcD9XXf1+A24VID3KayPFiyQ8sS+4wuN5LU1
-	MnJCe0Fy84g1bjFbJCRIWymnbd7omjGlKVJ/his+JQ2ZCUh4Z7ax7gMWKwmQNIM1quDkrczB56VW1
-	i5Q0OFqq+Wa3Pdw6qooIBEDdM25OPKk2xhmMhH5usBf1sThdP5Kv6rz2rBIrtewObMm1fMdZMPCe2
-	FFYnHcgmxuRUmjn/tlhxyewcO3V8B04BvXkjEdX1DZyUnY/Douaxk6KVbopXyA/rWavUvUznTE0U7
-	nLeyHqgQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=5MGt9+tnM68lM0o+g8AQyKei+jaL+tr6kHP1KGDTZNY=; b=KowqyCp7YSzPIK
+	McOaWLxshqzhdMtCX2SDQzBUdcd9Ha49puDOESf9sP1X2ZbalIxVa5br7k4CleFSnpuTguuDlcWqH
+	7HvVbEYE5qchUSR2svces9C5yRbDmpjr01KvPs5Wr/LpRZktMYw5FmMTt4XvMCMKipJN9Yn2gotGm
+	Qjy2JBAccGPc9wouMGHvzVu2tyP3BZ57jyLChyT87KODJxk/e4SPJ5XAymFPZxIeDQSmtLiCXREJI
+	cwraqsOLQjhsXntI9CnvBK7lXFR0hnaQn791wc6qM6FlO/3w/vVlp246k6D73oMgPYWThusnOIzR3
+	bRIK9M5OjiFDAzCm9n7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1umZpo-0000000HQab-1Y8W;
-	Thu, 14 Aug 2025 15:25:44 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1umcU0-00000000J1T-3AAK;
+	Thu, 14 Aug 2025 18:15:24 +0000
+Received: from mail-qk1-x72b.google.com ([2607:f8b0:4864:20::72b])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1umYoL-0000000HEey-2ECv
+	id 1umcRR-00000000Ivw-0Nn1
 	for linux-amlogic@lists.infradead.org;
-	Thu, 14 Aug 2025 14:20:10 +0000
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3b9170db547so908758f8f.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 14 Aug 2025 07:20:08 -0700 (PDT)
+	Thu, 14 Aug 2025 18:12:46 +0000
+Received: by mail-qk1-x72b.google.com with SMTP id af79cd13be357-7e87068760bso139744985a.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 14 Aug 2025 11:12:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755181207; x=1755786007; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5bdQgEC7rZ77bKFkIIw8e//b55v9uHd60dNBACGWzhY=;
-        b=MpzPlGUZoS70KGvojjbGWCZgeU+HnYOzVJRXItWqnNqetSnjvTy+OXn4DsOkgcNPv5
-         i6+QseCGZPi4TpqLGqoj5rhGhtjpojcAHlHZd4RD0R5fLb4TOJqf1JC6GZIH59dxp0Ti
-         xzZwHGMiLaFEoA5/umDM/rf5rGoi4lQLBSSzlh7L5eBWfOSz5JI9IQHSOHtGfLr3760l
-         VfxlmZAHbVsG3fzIlzI1vvQccWYnGy5JDzfoSBS01FzHhyl25MtmlkbHAoJ/UNebR/dS
-         3S0B/bmdVdzPJNvQW4N1OQfUyhFrDDSguReNz7dTuLOS7V04GhFbHTHNEPeHBVLGubny
-         LddQ==
+        d=libre.computer; s=google; t=1755195163; x=1755799963; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4/dZvvhdpeV5T70CXzzhIM2ftvucviNjA+HOyZU3hVU=;
+        b=fKfrenSy4MRv2eaMAxeEaJLHwJHI/sUh3jGzmJPflSg7DoBpxSdubHasJj+f+hz825
+         oc3go2zXQFYFsKgrDfXvgDJV7CbqR61cJSl8MWhdBBo6NgtycHp47e8V2vLAZsAJhG2Z
+         HocF+qv+sW9Y+ZgdKB3T9x1i3rtBL4ZV5cAeFhwchWvXWd0dmI1OHmIoPZfFausyR69i
+         2CyMtO797rNQ4yM45oe6amaWeZer3r+jA65ZpvgbapMIYXSuBavjIWqhp33hnU1JXeHh
+         E47AbBBORDRqv+i1P15IZWEsPRU/Wku9EYFFHP3kJq5cr4GnFrd36LSVqACvVEQTi+aN
+         hebg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755181207; x=1755786007;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5bdQgEC7rZ77bKFkIIw8e//b55v9uHd60dNBACGWzhY=;
-        b=E+rFNZULV7jpBWr6tSE+C9ib7FIoADN8nNv9Q+YOK4tnmDGuhfi4UTryAFEEDFVAA6
-         ypK128OBMq9WyvBZ1KRp473mYfZJBfkHqMZ5mNQF2MrNX9xSleEfTYsENiK2FTdqdzf9
-         biUHHeyCXWdjPG5eFjZGkPNvHaVuQ8oHOSWof5PMjWzinN3G/n87u2fTGHkm2MUq44uF
-         rUDJ6CyW831kCk+DIGaqJE0ydADhk8H0nFtUSUNI/YYbOo+gW/4lksNRhwDT8PuLajQ9
-         mGdLKgLyceIl6TvElk9oJY9JeOWdy7twYf54DRhCbs1RebLBmrDnnk7bVR9xCWrH+mPX
-         ZbIw==
-X-Forwarded-Encrypted: i=1; AJvYcCWBpa7SbK9og0FtAOLzW2FoNcFn7fSPCSADVCGzTwm+Pl93SeFxxr1HWOJbJtBmowMQsA1IB7uHNiW8zmHt@lists.infradead.org
-X-Gm-Message-State: AOJu0YxELRYqnl/N1O3Tc9pOyV7IdKjhQpumBliYZ5pj9oribSQWqoxG
-	d/aTzzYV91BoHZ5SRxf6hrIryCHGZHMbFy+sTSvOKnV6RLYcSnxOSZEKG5g6KihK1Mdp4s/d0eH
-	rtgY6
-X-Gm-Gg: ASbGncvwLNhHLWEgkg+hvXIahzsMgLpgjySb/loAQuuuSDC/12A0VdF5Oa6m92shZJO
-	1HrG7zyEhIc6I1i11LZZxERS7F6UgeYx5SJQcXQsH+4/QWwnBdzMjJcPB7qXbwussXlh1My/Ivj
-	lXkbX5VmaHJqvHbjyB5hwfIXeGARPRENW9sM6cjya4h8v9gcAx8VdmavUDSArqcsDhRrx9XTww1
-	Ksgq7Q3x9fI6/rbUeGlkqV/aN2i5j3MNMafkMCyozPC+MXRyT2Jq0tYAi7PU8Ak3GtcO1Th/5UX
-	aW0ENfWu68lRpAZ53y0gagAixEDSnUzCuRNVhG6/h1+EBSVUsAfLtmNOOPs8xj1fQcT5KRTXnPJ
-	PBVsEyYO+9bpUIJRwSO1De0VSLZnshwup30zPXJmdxA5IUcb3zp6DwLOvaoRVIJDFssf4kbuG
-X-Google-Smtp-Source: AGHT+IHIriY44PvISGPQnuaFi77640VOHi2AzHePwqO5rLcVQO7pXXuzSy2y2TPprE6NsOwOB+2/OA==
-X-Received: by 2002:a05:6000:2282:b0:3b7:8ba2:9818 with SMTP id ffacd0b85a97d-3ba50d4b1c4mr2635910f8f.22.1755181207507;
-        Thu, 14 Aug 2025 07:20:07 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:7336:e60:7f9e:21e6? ([2a01:e0a:3d9:2080:7336:e60:7f9e:21e6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3abedesm51508312f8f.3.2025.08.14.07.20.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Aug 2025 07:20:07 -0700 (PDT)
-Message-ID: <382972ef-92e2-44b3-a510-37009fa2f781@linaro.org>
-Date: Thu, 14 Aug 2025 16:20:06 +0200
+        d=1e100.net; s=20230601; t=1755195163; x=1755799963;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4/dZvvhdpeV5T70CXzzhIM2ftvucviNjA+HOyZU3hVU=;
+        b=qYBX3VKIF0npBni1gTQJycbRgacINIXDG1Ns1bYijEBgGTWwOkVlND6B0huhFn3bLO
+         GzU9ZpwtUCjnB27PrBe+PlzptIWYFu9je47XbH3CpsAkTMHUymjlknFmGe+++QtjBTac
+         ya1W9f2g3kGzJhX/R1zYXxzdLuZ+8B0WL4GTGoIOHBtLVi8Z2lWJlJExDcKx0MZeNpfH
+         tF5Lmtxbp9ZO+oNLCh4hYVfg4ytVXHvT9wgjDko4cxnHRsI9PK5+MY6/TcHYvAO6s3hp
+         hHPHM0hurniQz7Qw3MBsRdK7/CA1iCLsSkJovDbho9gHIraZ5hhJSxwg7v2Vdip8SFNV
+         rUhg==
+X-Forwarded-Encrypted: i=1; AJvYcCW9e7OngNGIdk6IaoTdec6SyDxKc8wCiUXwMRqmHsW/CMUWS1hj1cJ6Qb7m0ur/MKuaP7Dx4RpM4/vd/1RQ@lists.infradead.org
+X-Gm-Message-State: AOJu0YxOlCwZil83rCWPa5q1icnA3JUKgjq7c9jSHhIC0FshY6F+M0OX
+	n2CJB5zjIwmVTAMYEG6J961kTqEdsf80m5P+mldycks+FMk/3zdHUYNWJIk0JOd8Uw==
+X-Gm-Gg: ASbGncttQ1XclCKysq0CnAoPAaeqUBYl1CbnoEtHnP5SOhGhfzh7pzti0JqnRWlISKs
+	HdMM5nUa+ZvXEF1iiABC4UOU9NTcgziFdteJoHF7wm8zs3PSc5EfgPxpUI4jjirk3R0WupZW9H4
+	L0mNKFX0rlNeuSaWRolSxyiKl16+gxePyEAm6+NEtaOeOdxPfT9mvHZw1q8rkNJ7TXQ3CSph7lU
+	L4UDv3FhbxVFdfw8fdhdPIWQ4vzXnOGBrdFHWthrFrL37q3w3qsUn7OielWcn5CeZYJ4TGRnMAC
+	9VepY9iQuTQ+K5pk0PHLiyKhk/Di/GB5WpoSglRkpiNJ0yg/jAp26+q0MAwVKNUZlxMUZlUzT6M
+	muZc9QRyIRW4+BFuyLi/iY9jn72Y=
+X-Google-Smtp-Source: AGHT+IHZet1Jvv8jg99HpAw6hDsF8fx3/AYC1SN8lGZ35gs0uFt1zck15oaDyeVmE3ge8wvu7oeH4w==
+X-Received: by 2002:a05:620a:4055:b0:7e8:2989:1149 with SMTP id af79cd13be357-7e8705b5fa2mr627043385a.49.1755195163315;
+        Thu, 14 Aug 2025 11:12:43 -0700 (PDT)
+Received: from localhost ([172.56.29.94])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-70af5c43392sm16269836d6.84.2025.08.14.11.12.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Aug 2025 11:12:42 -0700 (PDT)
+From: Da Xue <da@libre.computer>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Da Xue <da@libre.computer>,
+	linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] pinctrl: meson-g12a: add GPIOC_7 pcie_clkreqn pinmux
+Date: Thu, 14 Aug 2025 14:12:36 -0400
+Message-ID: <20250814181236.1956731-1-da@libre.computer>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 17/21] rtc: remove unneeded 'fast_io' parameter in
- regmap_config
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-kernel@vger.kernel.org
-Cc: Mark Brown <broonie@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20250813161517.4746-1-wsa+renesas@sang-engineering.com>
- <20250813161517.4746-18-wsa+renesas@sang-engineering.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250813161517.4746-18-wsa+renesas@sang-engineering.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250814_072009_565615_FB10F014 
-X-CRM114-Status: GOOD (  14.59  )
+X-CRM114-CacheID: sfid-20250814_111245_211616_809840DC 
+X-CRM114-Status: UNSURE (   8.61  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,38 +99,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/08/2025 18:15, Wolfram Sang wrote:
-> When using MMIO with regmap, fast_io is implied. No need to set it
-> again.
-> 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
-> No dependencies, can be applied directly to the subsystem tree. Buildbot is
-> happy, too.
-> 
->   drivers/rtc/rtc-meson.c | 1 -
->   1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/rtc/rtc-meson.c b/drivers/rtc/rtc-meson.c
-> index 47e9ebf58ffc..21eceb9e2e13 100644
-> --- a/drivers/rtc/rtc-meson.c
-> +++ b/drivers/rtc/rtc-meson.c
-> @@ -72,7 +72,6 @@ static const struct regmap_config meson_rtc_peripheral_regmap_config = {
->   	.val_bits	= 32,
->   	.reg_stride	= 4,
->   	.max_register	= RTC_REG4,
-> -	.fast_io	= true,
->   };
->   
->   /* RTC front-end serialiser controls */
+Amlogic G12 exposes PCIe clock request signal on GPIOC_7 pinmux func 1
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Add the relevant pinmux and pin groups
+
+Signed-off-by: Da Xue <da@libre.computer>
+---
+ drivers/pinctrl/meson/pinctrl-meson-g12a.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-g12a.c b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
+index 8b9130c6e170..117e72b4ffcb 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-g12a.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
+@@ -442,6 +442,8 @@ static const unsigned int tdm_c_dout1_z_pins[]		= { GPIOZ_3 };
+ static const unsigned int tdm_c_dout2_z_pins[]		= { GPIOZ_4 };
+ static const unsigned int tdm_c_dout3_z_pins[]		= { GPIOZ_5 };
+ 
++static const unsigned int pcie_clkreqn_pins[]		= { GPIOC_7 };
++
+ static const struct meson_pmx_group meson_g12a_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOZ_0),
+ 	GPIO_GROUP(GPIOZ_1),
+@@ -721,6 +723,7 @@ static const struct meson_pmx_group meson_g12a_periphs_groups[] = {
+ 	GROUP(pdm_din2_c,		4),
+ 	GROUP(pdm_din3_c,		4),
+ 	GROUP(pdm_dclk_c,		4),
++	GROUP(pcie_clkreqn,		1),
+ 
+ 	/* bank GPIOH */
+ 	GROUP(spi1_mosi,		3),
+@@ -1183,6 +1186,10 @@ static const char * const tdm_c_groups[] = {
+ 	"tdm_c_dout2_z", "tdm_c_dout3_z",
+ };
+ 
++static const char * const pcie_clkreqn_groups[] = {
++	"pcie_clkreqn"
++};
++
+ static const char * const gpio_aobus_groups[] = {
+ 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
+ 	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
+@@ -1309,6 +1316,7 @@ static const struct meson_pmx_func meson_g12a_periphs_functions[] = {
+ 	FUNCTION(tdm_a),
+ 	FUNCTION(tdm_b),
+ 	FUNCTION(tdm_c),
++	FUNCTION(pcie_clkreqn),
+ };
+ 
+ static const struct meson_pmx_func meson_g12a_aobus_functions[] = {
+-- 
+2.47.2
+
 
 _______________________________________________
 linux-amlogic mailing list
