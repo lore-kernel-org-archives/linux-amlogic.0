@@ -4,72 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB904CA0EFA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Aug 2025 13:35:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66E24CA0EFB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Aug 2025 13:35:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rj8KztQo/vYoPw8ip5JxCLEMpy/ChJJt/ncXeZ5hr1A=; b=4KATrl3aGaxIgk
-	oK/4b8NLUvh5JReWu1pLzfeO+vDggg7L0Wsi89jm/xWhpgZs7ACAZmOLwDz0i3tFqWgOfCtvwBrv2
-	+mZmgdZEQZTg2DkB/gX8cbI5zuJFmV/+98nrTX5vtioJ4HKuWFAjSuF9ioDa5QGkOs1cev+aSzG8u
-	24u7nJeiFIK0HAcak30Um6NkEpLkqTH7D/11zBsEBJ+l5eqOuPI0xXgdq7ITSxrRWffPQ6iUsS8Ha
-	35gcvA0PihWn9mdocaSVfzR8U4mcUGtSmhUHxUe+BQi5hnlbhSxuemWq/pN3+CKhyz4sBFCeevnVJ
-	QRm4uk+2W/67x4mlVrlw==;
+	List-Owner; bh=np4Bw3+dBof7fs7nJ2vW9qJ8EFtEopxE4B1kY8/oY1Q=; b=nhxEH9nqnHcSTD
+	GEzRXaEuHB0z8ZjuxHIWfOGLgPJ++Slqb+eo1OnvxZsAvCPjACuKFtYmX3BFHAWGCBJtFz3HzveU6
+	POCpf/VcuKmVDtsQH4JYLtoaAM5hHetassdSS0y30nVaSvwG6k3LV87bd7qgkeqzxNHhVLZtXvzzQ
+	F6LOOK28Zso0UYRVt3oh8YI2bYLRk+DV42cEiNW9DxXk08HfDdE9nRVwPpxecn0d8TxRUaFEp7qm/
+	G+dwn4tlpMHyF9WzME98hEUOzvWUbisUj3Bz2v9PjmkM9Hizredv6Q1uzWCCesbLII4FsZQe/K80R
+	IPJA2o/Sg93p1HFqlr7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uo00z-00000007T0A-11C8;
+	id 1uo00z-00000007T17-3cEu;
 	Mon, 18 Aug 2025 13:35:09 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+Received: from nyc.source.kernel.org ([2604:1380:45d1:ec00::3])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1umYn1-0000000HESx-0tpF;
-	Thu, 14 Aug 2025 14:18:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=V+vnB+61+tXOtwzGfCSSnwdvyVeojqtPAkoFjSfvsr4=; b=NhgbMQ8NdbEOVmheS2dvX0oJNY
-	ALrfcMDsEEnMNgunbvqREbZq1oHzp7ccngaUVMO5++E/uAyDNYqinyGThJmEpm7YBuhT3Tkh+VNi9
-	jAiqOM4rhUamhaj70Il7HCUSt7yzARMU72pOqw494k8l1Q8HailKIeknsdWt3dhAX7o6ayScfHwg/
-	Ii2lXAh/WZDOQPZt1HReyHlinv8O2qaXvljjxRqrXeqJkA4eRQnMCoaoGWNgplNRdFpt+ynmupnga
-	gL3L3ZRJ3TFncfXNK8+zrX/4powWhhke2jb57DUcEBWSVdXUgPoJqcrPP4QPAtiJT8kRpW7Q8p3j3
-	voDIwG1A==;
-Received: from sea.source.kernel.org ([172.234.252.31])
-	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1umYmw-0000000GRX7-0xy9;
-	Thu, 14 Aug 2025 14:18:45 +0000
+	id 1umvdG-00000002kdm-1K5A;
+	Fri, 15 Aug 2025 14:42:16 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id BF3F944BCD;
-	Thu, 14 Aug 2025 14:18:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 140DFC4CEEF;
-	Thu, 14 Aug 2025 14:18:14 +0000 (UTC)
+	by nyc.source.kernel.org (Postfix) with ESMTP id 1DA9AA5557E;
+	Fri, 15 Aug 2025 14:42:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3B35C4CEEB;
+	Fri, 15 Aug 2025 14:42:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755181116;
-	bh=aIOvB7Z2yTByNAFttZWfPG8POEc6396jSKH09BJ+/Lw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=EqgU/EDu3oDCYRt1Si13BRghMkcwK5LqN9GkAcGcfcrhFTazE34zUUq8Od+e5oGUJ
-	 GNx5ulPcFgtO5ZyiSpwIBr8FUNyAthpqEJ1HFf9GnjWHY+qIpiLzwl5jpRBrlolPn2
-	 z6xjKGXo4jawDOcpqGnCDN73BGfqRqAyieck88qD94UdpBJX7zr50+UVyAUEIFPEy1
-	 8iZ5/OdecI+vpH1tXXE5PIrAiCENDSW7wdju78QYNBO7tccEMhyLT5/PeO3ORXivtj
-	 sVMKdqgvEftfF5s9YxpUhwR00ND4s4PmT0wxP/dvrTnBxT6CdvlYHRM7ommRoJA5zP
-	 uiUsOyuYlg5Jw==
-From: Mark Brown <broonie@kernel.org>
-To: linux-kernel@vger.kernel.org, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Adrian Hunter <adrian.hunter@intel.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Alim Akhtar <alim.akhtar@samsung.com>, Andrea della Porta <andrea.porta@suse.com>, =?utf-8?q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Andy Shevchenko <andy@kernel.org>, Andy Yan <andy.yan@rock-chips.com>, Avi Fishman <avifishman70@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, Benjamin Fair <benjaminfair@google.com>, Bjorn Andersson <andersson@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, David Airlie <airlied@gmail.com>, David Lechner <dlechner@baylibre.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Drew Fustini <fustini@kernel.org>, dri-devel@lists.freedesktop.org, Fabio Estevam <festevam@gmail.com>, Fabrice Gasnier <fabrice.gasnier@foss.st.com>, Fu Wei <wefu@redhat.com>, Guo Ren <guoren@kernel.org>, Hans Verkuil <hverkuil@kernel.org>, =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, imx@lists.linux.dev, Iwona Winiarska <iwona.winiarska@intel.com>, Jaroslav Kysela <perex@perex.cz>, Jassi Brar <jassisinghbrar@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>, Jonas Karlman <jonas@kwiboo.se>, Jonathan Cameron <jic23@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Kishon Vijay Abraham I <kishon@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, linux-actions@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org, linux-input@vger.kernel.org, linux-media@vger.kernel.org, linux-mmc@vger.kernel.org, linux-phy@lists.infradead.org, linux-pm@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-rtc@vger.kernel.org, linux-samsung-soc@vger.kernel.org, linux-sound@vger.kernel.org, linux-spi@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, Lukasz Luba <lukasz.luba@arm.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Manivannan Sadhasivam <mani@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Maxime Ripard <mripard@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Nancy Yuen <yuenn@google.com>, Neil Armstrong <neil.armstrong@linaro.org>, Nicolin Chen <nicoleotsuka@gmail.com>, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, openbmc@lists.ozlabs.org, Patrick Venture <venture@google.com>, Paul Walmsley <paul.walmsley@sifive.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Philipp Zabel <p.zabel@pengutronix.de>, Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Robert Foss <rfoss@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, Samuel Holland <samuel@sholland.org>, Sandy Huang <hjc@rock-chips.com>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Shengjiu Wang <shengjiu.wang@gmail.com>, Simona Vetter <simona@ffwll.ch>, Stephen Boyd <sboyd@kernel.org>, Takashi Iwai <tiwai@suse.com>, Tali Perry <tali.perry1@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>, Tomer Maimon <tmaimon77@gmail.com>, Ulf Hansson <ulf.hansson@linaro.org>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Vasily Khoruzhick <anarsoul@gmail.com>, Vinod Koul <vkoul@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>, Xiubo Li <Xiubo.Lee@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, Zhang Rui <rui.zhang@intel.com>
+	s=k20201202; t=1755268931;
+	bh=3eUf4UXirGpUX0gw3VvalDgnQQxUYuzOa7d+Bn86Fb0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=QGhHpuiSTtGAbt/6dlTCnnoTA4ZplxFC8Tro0GJAdbAh12tMNEUSLu07z11OvQBvk
+	 oHTf5TJS/YKStrrrPHeWRzwJ0jGE6j5AZ1tbRvaZy3dDmEE9KCuVb15MPpzSH6J/gw
+	 2nlRciQR5ILTUmZcjfPb8Wftcr9/dguuRdUZKw9cWJDeaG76YAPPH1GvTVv9P/kSEx
+	 wLYcS3eJZ7unChNgWOYh7wQNPjdRjal2zeZDCWKyPnLkisSlJQ+WGVCBgVhn2LIrAt
+	 +qG7XHhqCY/zS15DuM72YtrsT2tpKSGGxqzGtUU2p/oH3AF5g3+H8o04kc5YGhgMBJ
+	 knwp+/59e078g==
+From: Bjorn Andersson <andersson@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Mark Brown <broonie@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Avi Fishman <avifishman70@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Benjamin Fair <benjaminfair@google.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	David Airlie <airlied@gmail.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Drew Fustini <fustini@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	Fabio Estevam <festevam@gmail.com>,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+	Fu Wei <wefu@redhat.com>,
+	Guo Ren <guoren@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	=?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+	imx@lists.linux.dev,
+	Iwona Winiarska <iwona.winiarska@intel.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Lee Jones <lee@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-actions@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-pwm@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-rtc@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev,
+	Liu Ying <victor.liu@nxp.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Nancy Yuen <yuenn@google.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Nicolin Chen <nicoleotsuka@gmail.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	openbmc@lists.ozlabs.org,
+	Patrick Venture <venture@google.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Takashi Iwai <tiwai@suse.com>,
+	Tali Perry <tali.perry1@gmail.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Vasily Khoruzhick <anarsoul@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>,
+	Yangtao Li <tiny.windzz@gmail.com>,
+	Zhang Rui <rui.zhang@intel.com>
+Subject: Re: (subset) [PATCH 00/21] treewide: remove unneeded 'fast_io' parameter in regmap_config
+Date: Fri, 15 Aug 2025 09:42:02 -0500
+Message-ID: <175526892008.370600.8859545110801188375.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250813161517.4746-1-wsa+renesas@sang-engineering.com>
 References: <20250813161517.4746-1-wsa+renesas@sang-engineering.com>
-Subject: Re: (subset) [PATCH 00/21] treewide: remove unneeded 'fast_io'
- parameter in regmap_config
-Message-Id: <175518109481.47921.1666131365484481268.b4-ty@kernel.org>
-Date: Thu, 14 Aug 2025 15:18:14 +0100
 MIME-Version: 1.0
-X-Mailer: b4 0.15-dev-cff91
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250814_151842_687303_497FAFC4 
-X-CRM114-Status: GOOD (  16.64  )
+X-CRM114-CacheID: sfid-20250815_074214_483093_3D84C6C4 
+X-CRM114-Status: GOOD (  13.45  )
 X-Mailman-Approved-At: Mon, 18 Aug 2025 01:02:16 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,6 +177,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+
 On Wed, 13 Aug 2025 18:14:46 +0200, Wolfram Sang wrote:
 > While working on a driver using regmap with MMIO, I wondered if I need
 > to set 'fast_io' in the config. Turned out I don't need to, so I added
@@ -98,34 +189,14 @@ On Wed, 13 Aug 2025 18:14:46 +0200, Wolfram Sang wrote:
 > 
 > [...]
 
-Applied to
+Applied, thanks!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+[18/21] soc: remove unneeded 'fast_io' parameter in regmap_config
+        commit: 5d8a9c8401648d338d072a488d455ed4611c5d4b
 
-Thanks!
-
-[21/21] ASoC: remove unneeded 'fast_io' parameter in regmap_config
-        commit: d578faf7096affc036fd16333f1bfbe4991a22f7
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
