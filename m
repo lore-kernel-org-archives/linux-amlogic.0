@@ -4,81 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FC23CA0EE4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Aug 2025 14:49:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 144D7CA0ED1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Aug 2025 17:31:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VtPdnRdcGzRidM6TkrPcA+qaAGNE+EnmR9keUb8GbJs=; b=x0u11IGgVszOzE
-	3arZ2d4pYi0GycTN13W2ByWIBFiE2tzr99sjI/0MGm48OrN3jUW2WnO6IL2SMij8qBGvykrE1iMd6
-	JUKqwJHt1zi6OH8ceY965u6Gfau+k8HKR6TCb2nFTkkmgSIbZEDFdbQb6WaGL70iy4y/UnAphqL55
-	TgDgF4kCAEd/THGOeMwFKzFrnGNN1NPF60OKeflrI/dw1BRG/faAC70IXaoIVwEuZt1/EREZq/ffe
-	tVG1TCPmXXSmJO9UL8Y+mZ54UXq7Aa1POSziVumGxIBdpBoLQhWeKREyZQA/T/PnuXaFENqXGKqNj
-	2ah5cnfext7C7hH8Nv4A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	References:MIME-Version:Message-ID:In-Reply-To:Date:Subject:Cc:To:From:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=JqyYOCa9ycSl1Xp4XaNHGqi/JIWagRpOI8Xv4zkyK5c=; b=44mhtSgd8ClIAiC2jTg8GUDvRD
+	ZQd2uTHxkju4Azx0CEO9Win/gmrpn3hyiaUQy9bgDbcr0HFovN8khu3SH3K6KpvT7ffAmAsmTANJE
+	nPGVHKgd7Gjt+OuDaJqpZ3V73KGP7wWk7tF8+b4KSY9H6x+0Ypq07N9SFVe4HVoooQSeE3vJnXWfF
+	CYLY6RB0IV+rCx+CK3RofbXuAcWg3sLzDrDajkeX9yKrr1fw6acZGtIBy4GeywPCayzcVyPJNvaxr
+	kYiOJAu7MPZ85UQKwzpVcvwNEbecJkxApuw2x8gT1U/skE8XLyRZvGVMkDYq9M9m+jSs8wQOfxFWU
+	A6hGZpOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uo1AQ-00000007orZ-0NWO;
-	Mon, 18 Aug 2025 14:48:58 +0000
-Received: from mail-yb1-xb31.google.com ([2607:f8b0:4864:20::b31])
+	id 1uo3h9-000000088Un-4C4T;
+	Mon, 18 Aug 2025 17:30:56 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1unxX1-00000007C4M-166I
-	for linux-amlogic@lists.infradead.org;
-	Mon, 18 Aug 2025 10:56:04 +0000
-Received: by mail-yb1-xb31.google.com with SMTP id 3f1490d57ef6-e933af9f8b5so1705229276.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 18 Aug 2025 03:56:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755514562; x=1756119362; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gf/h379UViupe5+NY6kzAfazLWPK0066Pyufbr9DpO4=;
-        b=LR7cx31yUmH2GxYCo50FBZZyMy8ObyZbvTH7Oyllm4aCMYM6h6MZ3kvnpoHPEKnO1R
-         ldsgZcPdnsEcN8CS1a9JmWmiW8RQaNRK+Dk5V4Ubz6OuyaGROf1QHoQqaUtBi+hOIAF2
-         t8qD6K02NKfS8Ma6Qh3fNVcwe/pwDpUkbZhFsyPCLQLqreh9x7i+IsTiLukbD2AfUDkh
-         YuF5T+LVeGzIC4NVsSFwvDVBHQ7GXKXIqnE82GsbT1e3EwAPDOl2HR4kgP+/YQ9fbbP6
-         Vs+gqI/zQuhr52p+4S323UHs0tM0SWSa72r+E4FuQ9czwZbAV1p4LHO5FRTR/vXizbOf
-         6wqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755514562; x=1756119362;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Gf/h379UViupe5+NY6kzAfazLWPK0066Pyufbr9DpO4=;
-        b=OFN7TZpxr3uVn5ZvYd01AZ4an2lu41gW9GwmXkYG5Jk6+oyEwzQDfJRyWuC+aTc3FI
-         J6nDcjcrLkpJ/Z6izvtlVqwzk1iUkCHWa3iuBt2F7g6CDlNbIP2O4UhqrdqL+mDN7iYH
-         +0l/75nArIXanIKcmYdQSOPHPCxOGohjKIKpoZ81S3qmuN2nUDbAGkceOhrErodmZemE
-         icBCVjsQ7C0hKkRCE8NvJiK8B/rZ6NDR6Mgs88pEdAI8NfPUIf9dRXfFoUbRrEg3ZYYl
-         15HFDAqqNRNP5lKa5U4NLUxQaHYf+F67OtX/iw/730b4X7LHStuuy52bBU1LFbNwgRGB
-         +dIg==
-X-Forwarded-Encrypted: i=1; AJvYcCVR3yvljxf6N6ZV4W8shQj6K2UD67U9gY43Mk8oiuhxBmQ5G6dm59whWwomON+PozWnvOwKAcmGfUn1h5Dl@lists.infradead.org
-X-Gm-Message-State: AOJu0YzFH02LJsJg9ndG3CGfuKKdNORuIuINXVZpoBjLcPr3eBPsUi4r
-	OUqDiNi2Gw50dRqhpldNduJyZ2ph3tCW/BcR6LBU0vpAkuUyZb60ra3drC7xmIrxjm3gfQfSO4o
-	4CYNlYM634xNTqeeIaXG75SPf+whixCZ0LLNzhw/45g==
-X-Gm-Gg: ASbGncs84L6qc5bqP7wuhUX9wr6tH/Gm7mZPXQZ+4KMsT2dpYbTI1S8rFi1ZuD0SwFg
-	jJVUkbpKJrB/7vKT9YlmPiEFkak8cMcN7RXErhHP/fLwmkLbS9GUMHwK5EhrQfQz+vr0dKJ36g7
-	K3DGL7QYt6LmSkb7MoiN1ybK2JbyQXv1Lv/orw60lZJbswAmlRWkHmVMm3hA2kLx/lqjmLMMjiT
-	NCetLp/
-X-Google-Smtp-Source: AGHT+IGpvbrDi4hUl48Zba/3/rBPfc8NraKhAc4AfrhtmjNoilheS+QB0WSMwYa9e4qE4gIontoviX/Mi8xWRVPKC+8=
-X-Received: by 2002:a05:690c:6605:b0:71a:3849:f88e with SMTP id
- 00721157ae682-71e6ddb2fb5mr146226437b3.17.1755514562208; Mon, 18 Aug 2025
- 03:56:02 -0700 (PDT)
+	id 1uo0ZX-00000007hig-3K8e;
+	Mon, 18 Aug 2025 14:10:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=References:Content-Type:MIME-Version:
+	Message-ID:In-Reply-To:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=ts3A4MvB+pLF9b1fYr1OaRKHsIG9rXzjaSyR872fx0Q=; b=bdxobbpPgUa/l1rJVgAmwPSVCU
+	EwRtv0dOu5GIEla3hBn2Gw0BNRXwFDzN97gZt2hFx/Ddeoz+R2+5fTfgw57WZ58ZDhIR1YDIz+I6d
+	yz5I0+NpGxVQe5oRebmUNR8dNggGmn/n8yclh3hOQaId/GGmPWCCXKxN6uXdcvyrc6JJz604/hpo/
+	IbLGmqYy2mdpV0TOQYJwrWURC1CVciuLVL8D+e3/MaCKhq66GxDPGjZtuvJy14Bpq1oIPxDB7lpP1
+	AJtA603T3UVMToVF7t768FMv1RP2sTC/iIOmKN944ekpXq27Ac6u8HgOBqodnSERnL+HCouz1n1qn
+	fP+A7gKA==;
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uo0ZT-0000000HP5N-3XHX;
+	Mon, 18 Aug 2025 14:10:50 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250818141041euoutp01198781292bd5d26e9ea7136d3d3d73e8~c4dDIkjfs2135921359euoutp01S;
+	Mon, 18 Aug 2025 14:10:41 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250818141041euoutp01198781292bd5d26e9ea7136d3d3d73e8~c4dDIkjfs2135921359euoutp01S
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1755526241;
+	bh=ts3A4MvB+pLF9b1fYr1OaRKHsIG9rXzjaSyR872fx0Q=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=nweMstTkqZUfTDcgSuzWRYVoV9JvbPK+l2fq2+I3gRx0SKOetrGBglidgci/XLRHG
+	 yKiRGPTghNY65ZYuW+rQetbaj0UlX84N/HJy2tuH4Qs0xmThMbES7YZyWuK/y2EQwa
+	 pANBPLppgOKGZUguwTqkajXJsHrX4XbKh4XzMW6k=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250818141040eucas1p12598f376bdd8cfcb984a8a799373111d~c4dCdErup2133021330eucas1p1j;
+	Mon, 18 Aug 2025 14:10:40 +0000 (GMT)
+Received: from localhost (unknown [106.120.51.111]) by eusmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250818141040eusmtip168497366a830534395c067398c2a3939~c4dCY3Ph_0814408144eusmtip1d;
+	Mon, 18 Aug 2025 14:10:40 +0000 (GMT)
+From: Lukasz Stelmach <l.stelmach@samsung.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org,  linux-kernel@vger.kernel.org,
+	linux-staging@lists.linux.dev,  linux-doc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-tegra@vger.kernel.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	linux-usb@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net
+Subject: Re: [PATCH 11/65] media: Replace file->private_data access with
+ custom functions
+Date: Mon, 18 Aug 2025 16:10:40 +0200
+In-Reply-To: <20250802-media-private-data-v1-11-eb140ddd6a9d@ideasonboard.com>
+	(Jacopo Mondi's message of "Sat, 02 Aug 2025 11:22:33 +0200")
+Message-ID: <oypijda53wra8v.fsf%l.stelmach@samsung.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 MIME-Version: 1.0
-References: <20250812092908.101867-1-zhao.xichao@vivo.com>
-In-Reply-To: <20250812092908.101867-1-zhao.xichao@vivo.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 18 Aug 2025 12:55:26 +0200
-X-Gm-Features: Ac12FXwa1IzQiF3BDBFOd_R2WYobNi0PZbh6LfTaEAaRBfzgD2wCR6ijr3XXs00
-Message-ID: <CAPDyKFqeA895DBDKJUcerXAYLGG_Em-vBu9eRMoVEwc0LyX=ug@mail.gmail.com>
-Subject: Re: [PATCH] mmc: meson-mx-sdhc: use PTR_ERR_OR_ZERO() to simplify code
-To: Xichao Zhao <zhao.xichao@vivo.com>
-Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
-	martin.blumenstingl@googlemail.com, linux-mmc@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+X-CMS-MailID: 20250818141040eucas1p12598f376bdd8cfcb984a8a799373111d
+X-Msg-Generator: CA
+X-RootMTR: 20250802092520eucas1p2d0edfe269d3c423e6157bd7a0ec0b43c
+X-EPHeader: CA
+X-CMS-RootMailID: 20250802092520eucas1p2d0edfe269d3c423e6157bd7a0ec0b43c
+References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
+	<CGME20250802092520eucas1p2d0edfe269d3c423e6157bd7a0ec0b43c@eucas1p2.samsung.com>
+	<20250802-media-private-data-v1-11-eb140ddd6a9d@ideasonboard.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250818_035603_298154_AFB38CD2 
-X-CRM114-Status: GOOD (  14.99  )
+X-CRM114-CacheID: sfid-20250818_151048_051603_5A14573A 
+X-CRM114-Status: GOOD (  18.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,48 +101,107 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1291359748502657419=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 12 Aug 2025 at 11:29, Xichao Zhao <zhao.xichao@vivo.com> wrote:
+--===============1291359748502657419==
+Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
+	protocol="application/pgp-signature"
+
+--=-=-=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+It was <2025-08-02 sob 11:22>, when Jacopo Mondi wrote:
+> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 >
-> Use the standard error pointer macro to shorten the code and simplify.
+> Accessing file->private_data manually to retrieve the v4l2_fh pointer is
+> error-prone, as the field is a void * and will happily cast implicitly
+> to any pointer type.
 >
-> Signed-off-by: Xichao Zhao <zhao.xichao@vivo.com>
-
-Applied for next, thanks!
-
-Kind regards
-Uffe
-
-
+> Replace all remaining locations that read the v4l2_fh pointer directly
+> from file->private_data and cast it to driver-specific file handle
+> structures with driver-specific functions that use file_to_v4l2_fh() and
+> perform the same cast.
+>
+> No functional change is intended, this only paves the way to remove
+> direct accesses to file->private_data and make V4L2 drivers safer.
+> Other accesses to the field will be addressed separately.
+>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 > ---
->  drivers/mmc/host/meson-mx-sdhc-clkc.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
->
-> diff --git a/drivers/mmc/host/meson-mx-sdhc-clkc.c b/drivers/mmc/host/meson-mx-sdhc-clkc.c
-> index cbd17a596cd2..6d619bd0a8dc 100644
-> --- a/drivers/mmc/host/meson-mx-sdhc-clkc.c
-> +++ b/drivers/mmc/host/meson-mx-sdhc-clkc.c
-> @@ -84,10 +84,8 @@ static int meson_mx_sdhc_gate_clk_hw_register(struct device *dev,
->                 return ret;
->
->         clk_bulk_data[bulk_index].clk = devm_clk_hw_get_clk(dev, hw, name_suffix);
-> -       if (IS_ERR(clk_bulk_data[bulk_index].clk))
-> -               return PTR_ERR(clk_bulk_data[bulk_index].clk);
->
-> -       return 0;
-> +       return PTR_ERR_OR_ZERO(clk_bulk_data[bulk_index].clk);
->  }
->
->  int meson_mx_sdhc_register_clkc(struct device *dev, void __iomem *base,
-> --
-> 2.34.1
->
+
+[...]
+
+> diff --git a/drivers/media/platform/samsung/s5p-g2d/g2d.c b/drivers/media=
+/platform/samsung/s5p-g2d/g2d.c
+> index ffed16a34493be2edbdaee13619467417487c1e7..44fcedbbc90a9863827aacbcd=
+5f56d850cb552ea 100644
+> --- a/drivers/media/platform/samsung/s5p-g2d/g2d.c
+> +++ b/drivers/media/platform/samsung/s5p-g2d/g2d.c
+> @@ -25,7 +25,10 @@
+>  #include "g2d.h"
+>  #include "g2d-regs.h"
+>=20=20
+> -#define fh2ctx(__fh) container_of(__fh, struct g2d_ctx, fh)
+> +static inline struct g2d_ctx *file2ctx(struct file *filp)
+> +{
+> +	return container_of(file_to_v4l2_fh(filp), struct g2d_ctx, fh);
+> +}
+>=20=20
+>  static struct g2d_fmt formats[] =3D {
+>  	{
+> @@ -272,7 +275,7 @@ static int g2d_open(struct file *file)
+>  static int g2d_release(struct file *file)
+>  {
+>  	struct g2d_dev *dev =3D video_drvdata(file);
+> -	struct g2d_ctx *ctx =3D fh2ctx(file->private_data);
+> +	struct g2d_ctx *ctx =3D file2ctx(file);
+>=20=20
+>  	mutex_lock(&dev->mutex);
+>  	v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
+
+
+Acked-by: Lukasz Stelmach <l.stelmach@samsung.com>
+
+
+[...]
+
+
+=2D-=20
+=C5=81ukasz Stelmach
+Samsung R&D Institute Poland
+Samsung Electronics
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAmijNGAACgkQsK4enJil
+gBDoIQgAm0zhFQfQO2pDJE9DC0t6P4lrJ//jtdrQJtVSYpcaXDYP9Oq1iygQ3s54
+2wjf/n/+kXlE2cUM5pvbFc0c1qeuZipb+lexBpwBdogDE3njAsinDf4ohsWPGhJC
+TMOuWPadHmM0CXjuSWpeF+MoKtOJYJjdyVizq8ZoFwgGHssYApRxGVuXx6DRlsZK
+aqNXp4P9HNaVsxLl5JOCaeEaJLBkU++5rhIooxbmm/jPuM6WuOWil+jQKADaODeJ
+UfkLjfRCLFc4WdsXOBZuwqUiyU4imB8qJOlrjosCChiqKqr7up+cyr3YZ7PJEXPv
+jN4MErP/mPjxbYUi+bON3CbY2FlWfw==
+=alRq
+-----END PGP SIGNATURE-----
+--=-=-=--
+
+
+--===============1291359748502657419==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============1291359748502657419==--
+
