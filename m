@@ -4,65 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6902BCA0EE6
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Aug 2025 18:13:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2808CA0EEB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Aug 2025 18:21:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kNCAnA10qtE1lksZCbAn2yKPG7EKpQdO5ZmWNFsnjKg=; b=uXyAoM9WMse3Ni
-	VFEqEbSu/tp4qF1o8/wbWjd1xy7pr8GnPDtmuCrJq15LTvxayF48u/VgZT/SJObam3xBk3hr/MT1S
-	2AMFxS9bm61uxS6R9kXkojuUtoseuxbVAsju/sbtB24aVfjgc9uOrbEPU5lfxcvNu1wcwNHpiwDdt
-	j1nfPcBsQIF2PAkLzZfdeCh2ATX0G3BeNccV4R79g12KeWDehWdALmkYkYGkCcnWw+ESHuMp6/8bb
-	ZqAQXkGvdN3fxXSqP/NP+mj95Yjn7ToSZi6ZTlhzKKvz/kmA91lwjNFTtUMbglla2NGOHtC8XrEiF
-	xRs4X1Zx7RNxOYnAtA3w==;
+	List-Owner; bh=Ij+XCG2tu0RV3qzhv7K+XW+QbRczjySr0abMlTeFT34=; b=E7xGFqxeWW8lcz
+	HKsI8CDctQqP1BCueDPRhVzcGCf0O3nTRwX1zg1DimitMqRMOFURYWvgvlE3SisLMLav/KCA8bi2y
+	HhsDTKIPn9l65d+GYAUzExq+xj9i8OqEx6l/hZ32MUEUx7sleNY1lGx2Sp0suZyaX/a0s1BX171Tm
+	5MsjiuvF7Ok8jRfdcZxlla8yhdurr0CAmRYhRiu3zPUmzZHFB08RqcNBlEGTKSou1pBOr8jtmAXkr
+	b3fF+TBIE+uHsicQ7LUaFl2Fu9m4iIPAFzEoRGmpxLA8SbLqGORS8lKJwCrLyTsyVOoTFWQclG84i
+	6Lcev5bhUGPAfZGMISkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uoQq8-0000000BCuB-2gDx;
-	Tue, 19 Aug 2025 18:13:44 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uoMLX-0000000Aay7-2520;
-	Tue, 19 Aug 2025 13:25:52 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8CEF116A3;
-	Tue, 19 Aug 2025 06:25:42 -0700 (PDT)
-Received: from [10.1.196.50] (e121345-lin.cambridge.arm.com [10.1.196.50])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 884583F738;
-	Tue, 19 Aug 2025 06:25:46 -0700 (PDT)
-Message-ID: <271daf71-3c57-49a5-a65f-c58ac670864f@arm.com>
-Date: Tue, 19 Aug 2025 14:25:45 +0100
+	id 1uoQxa-0000000BHLC-18sc;
+	Tue, 19 Aug 2025 18:21:26 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uoOPr-0000000AuUs-3tPK
+	for linux-amlogic@lists.infradead.org;
+	Tue, 19 Aug 2025 15:38:29 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 624B35C5657;
+	Tue, 19 Aug 2025 15:38:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3476C4CEF1;
+	Tue, 19 Aug 2025 15:38:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755617907;
+	bh=WRnEY5mnXKIAn8fJoPOREi7qTQPCOerE9LQWJjKAxg0=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=mucZ1rhaqeajrsUd6si8VwwKDekoCZtEaVRe3PKN6ewpUk+A3cB5QVI3Sz1ZVeAXS
+	 1/51zIPrjqV9MKtuIcV9wdq5IJPSAlZAAmmgQq33Z1oIJVzqKrMj2hd1vQy+H/dY8s
+	 St3IW5W7mo4hreHWuJAvFvBojODnXbSuFcsBiCb+IzxEKIB0AHnal3kXC6g7jKRLTv
+	 hjy6+vCTK6cs5r9MDTcaTDY5RRZADt54bHPsuYDbd5cdm50ryyDhKdrM1F/u5ArQVi
+	 3TletLwvnkJoy1ES6kUpFoSzl67MX3uWMsuF/3iKUnZtfCK4SdltPhSZF7sixx/ovL
+	 t12se6xOErbRw==
+From: Mark Brown <broonie@kernel.org>
+To: Sunny Luo <sunny.luo@amlogic.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, linux-amlogic@lists.infradead.org, 
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Qianfeng Rong <rongqianfeng@vivo.com>
+In-Reply-To: <20250819040239.434863-1-rongqianfeng@vivo.com>
+References: <20250819040239.434863-1-rongqianfeng@vivo.com>
+Subject: Re: [PATCH] spi: SPISG: Use devm_kcalloc() in aml_spisg_clk_init()
+Message-Id: <175561790566.178223.1385181209019603763.b4-ty@kernel.org>
+Date: Tue, 19 Aug 2025 16:38:25 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 19/19] perf: Garbage-collect event_init checks
-From: Robin Murphy <robin.murphy@arm.com>
-To: peterz@infradead.org, mingo@redhat.com, will@kernel.org,
- mark.rutland@arm.com, acme@kernel.org, namhyung@kernel.org,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org, irogers@google.com,
- adrian.hunter@intel.com, kan.liang@linux.intel.com
-Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <ace3532a8a438a96338bf349a27636d8294c7111.1755096883.git.robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <ace3532a8a438a96338bf349a27636d8294c7111.1755096883.git.robin.murphy@arm.com>
+X-Mailer: b4 0.15-dev-cff91
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250819_062551_585873_0AA4631D 
-X-CRM114-Status: GOOD (  13.59  )
+X-CRM114-CacheID: sfid-20250819_083828_009502_99D53CED 
+X-CRM114-Status: UNSURE (   9.69  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,52 +69,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/08/2025 6:01 pm, Robin Murphy wrote:
-[...]
-> diff --git a/arch/x86/events/intel/uncore.c b/arch/x86/events/intel/uncore.c
-> index 297ff5adb667..98ffab403bb4 100644
-> --- a/arch/x86/events/intel/uncore.c
-> +++ b/arch/x86/events/intel/uncore.c
-> @@ -731,24 +731,11 @@ static int uncore_pmu_event_init(struct perf_event *event)
->   	struct hw_perf_event *hwc = &event->hw;
->   	int ret;
->   
-> -	if (event->attr.type != event->pmu->type)
-> -		return -ENOENT;
-> -
->   	pmu = uncore_event_to_pmu(event);
->   	/* no device found for this pmu */
->   	if (!pmu->registered)
->   		return -ENOENT;
->   
-> -	/* Sampling not supported yet */
-> -	if (hwc->sample_period)
-> -		return -EINVAL;
-> -
-> -	/*
-> -	 * Place all uncore events for a particular physical package
-> -	 * onto a single cpu
-> -	 */
-> -	if (event->cpu < 0)
-> -		return -EINVAL;
+On Tue, 19 Aug 2025 12:02:38 +0800, Qianfeng Rong wrote:
+> Replace calls of devm_kzalloc() with devm_kcalloc() in aml_spisg_clk_init()
+> for safer memory allocation with built-in overflow protection, and replace
+> sizeof(struct clk_div_table) with sizeof(*tbl) to shorten the line.
+> 
+> 
 
-Oopsie, I missed that this isn't just the usual boilerplate as the 
-comment kind of implies, but is also necessary to prevent the 
-uncore_pmu_to_box() lookup going wrong (since the core code won't reject 
-a task-bound event until later). I'll put this back with an updated 
-comment for v2 (and double-check everything else again...), thanks LKP!
+Applied to
 
-Robin.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
+Thanks!
 
->   	box = uncore_pmu_to_box(pmu, event->cpu);
->   	if (!box || box->cpu < 0)
->   		return -EINVAL;
+[1/1] spi: SPISG: Use devm_kcalloc() in aml_spisg_clk_init()
+      commit: c1dd310f1d76b4b13f1854618087af2513140897
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
 _______________________________________________
 linux-amlogic mailing list
