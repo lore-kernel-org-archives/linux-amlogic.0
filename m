@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B8E1CA0EDC
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Aug 2025 08:33:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C70E9CA0EDC
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Aug 2025 08:35:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NgyntoQAqT4EA4IMsT5+hzZ/SHbPqOvaSij/6RDNZmA=; b=fI0IkqzHPLa+g4
-	3w2KWIsr8CmR0vU3r8EuK+jWP0mp3XH6iVY5hJq58htGHLOGIjObAsnO5eWEQkNIwRFadEV8gJQzb
-	E497lEpo4GlfAiaTsqNGga3ZTazU2aOBoDWVruyGawVXTyJKA03LYRreaUTc4UXNA9hNT6damwxw4
-	+/L/uuhDK5rQXmL2PBwM0saZ1Gx3CfZdFO2eA64aDsSb2R2B0xycBhX+5rU5CEaB4b4LKrjvfYBVc
-	NG8EGGQBofBHbsieyB1yZzshTIN4ykh6utNUzn4KNU0ZncijSOdKB+K0nX27i0QFBeBmB/qL7zIx5
-	nL1Ud/97Osrxi6mIBwLw==;
+	List-Owner; bh=o9adAHy7AG8JfgZfQ88I9kdXrNqY1emgJamRUGKLERU=; b=ox+HP+CpYsyhGV
+	6SmerzcWPAb36FTDlIyy8Ar9l2t1XdgtQaug5rtT+sGd9vJzctKncvkuT+aoJrG7AD6dgmPkUNjmX
+	BpM0wYHcdkrjLNkZhyhohQ2ndZ5RqQWJwyChtrx6n8afnqfl1taq2rV3a2Lbt69LxXqWRJfSVDcJG
+	rhM2axK6dvzQG7hZ+Gm0utX8NhhM21CxpK+hszDgtAxZF1S2nazYDAKSxzQoKf1EwoYZCVQNRlEpL
+	Woa4foI5eleARvS5Wpxd0KtOLAJdhIwrbtwqNXZwZN4PQ94jdSknQEaOzoOPR/KjNphiIrqTh+H0s
+	CXLXprfR5V7A7HXgo28Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uoeFm-0000000CklK-0dhV;
-	Wed, 20 Aug 2025 08:33:06 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1uoeIN-0000000ClVH-1Kgb;
+	Wed, 20 Aug 2025 08:35:47 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uodsN-0000000CgJF-1waN;
-	Wed, 20 Aug 2025 08:08:55 +0000
+	id 1uodss-0000000CgNv-2mZV;
+	Wed, 20 Aug 2025 08:09:27 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 979866113B;
-	Wed, 20 Aug 2025 08:08:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE166C113D0;
-	Wed, 20 Aug 2025 08:08:52 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C901B4531F;
+	Wed, 20 Aug 2025 08:09:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18A65C4CEEB;
+	Wed, 20 Aug 2025 08:09:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755677333;
-	bh=czkdxE5TB5R/9a6En1K+Wcou33QtXIlLqEcTWW6eYhM=;
+	s=k20201202; t=1755677365;
+	bh=VAzAJjUiSUbgkKmTprNwXqi/ADJs5TrO9JHx5kVkx+Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l75ryk7FJcY8fynfRbmLJ0xqNdDiqe1NKSK3eyPIx3uh04Y+WiWqvnUaH+RCPQe/K
-	 KrmHnYKB6GYJyaAQdz/XmwhbT9PyfYVwMqvt9J5kyTnoHn1EUcrY1DWE4TalHL2VRc
-	 GLN2VdVwy93bf2IAQNJCexlrTUQIpCMXA8iFJK8NeeuzOn8VSxNejZIt/6LoOMhopk
-	 dNj+Ork5Y2pVAn1RSnW7vFdVJkhZQLBF1LSCrd8Hje4F4SUaj3K9rZ6H8/RIyiCfQk
-	 5IBxCNUNKqCdciHp8VC+cAVAhNY+TgUHoZ9VoeUQqh4GzyULVYUSEGjgx6ySt9k3SP
-	 A9y6GW7r5Q3dg==
-Date: Wed, 20 Aug 2025 10:08:50 +0200
+	b=mOfMF2XKuFZ9r6EL8l2uZd7HA9goBHFWsgTRwXYqi/9aD1JkjH1+9nYdJhcNdF81F
+	 /x21Oi3ERxVy8/ymXXrlZ+lLjoOPtlFcHPiE/Ku5CZnylZSt8bfD6nRSJab0HteLVJ
+	 4vC7fWx0cZLX0oft0A+tZuQs7qCAeihz5+617N6dV52As+d/j6asfxC5H1gfEmdpDT
+	 fZ0pCdW7aj1LfQkblAQ0R97PWE1rqasPnoXXidgELe0exyfLt2pFJLDQvHgMYDy0NY
+	 097C3qB18uWPqp2dAhmO9b98jnyIoLl07bZZDNaUjPFvJQKzfzNl2mEvBV0BB9uW8z
+	 MegMfa+DzfofQ==
+Date: Wed, 20 Aug 2025 10:09:23 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Chuan Liu <chuan.liu@amlogic.com>
 Cc: Rob Herring <robh@kernel.org>, 
@@ -50,14 +50,17 @@ Cc: Rob Herring <robh@kernel.org>,
 	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/13] dt-bindings: soc: amlogic: Add clk-measure related
- properties
-Message-ID: <20250820-robust-didactic-panda-d374be@kuoka>
+Subject: Re: [PATCH 05/13] dt-bindings: soc: amlogic: Unify the compatible
+ property for clk-measure
+Message-ID: <20250820-shapeless-devout-pig-defdd7@kuoka>
 References: <20250815-add-more-socs-to-support-clk_measure-v1-0-59f04ba67457@amlogic.com>
- <20250815-add-more-socs-to-support-clk_measure-v1-1-59f04ba67457@amlogic.com>
+ <20250815-add-more-socs-to-support-clk_measure-v1-5-59f04ba67457@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250815-add-more-socs-to-support-clk_measure-v1-1-59f04ba67457@amlogic.com>
+In-Reply-To: <20250815-add-more-socs-to-support-clk_measure-v1-5-59f04ba67457@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250820_010926_721913_E575434B 
+X-CRM114-Status: GOOD (  12.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,77 +77,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Aug 15, 2025 at 04:37:27PM +0800, Chuan Liu wrote:
-> Add three properties to clk-measure: 'clkmsr-indices', 'clkmsr-names',
-> and 'clkmsr-reg-v2' for describing measurable channels and register
-> offsets in DT.
+On Fri, Aug 15, 2025 at 04:37:31PM +0800, Chuan Liu wrote:
+> The clk-measure IPs across Amlogic SoCs have minimal differences, so
+> they can be managed with a unified compatible property.
 > 
 > Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 > ---
->  .../soc/amlogic/amlogic,meson-gx-clk-measure.yaml  | 54 +++++++++++++++++++++-
->  1 file changed, 53 insertions(+), 1 deletion(-)
+>  .../bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml | 14 +++-----------
+>  1 file changed, 3 insertions(+), 11 deletions(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-> index 39d4637c2d08..1c9d37eef5f0 100644
+> index 1c9d37eef5f0..a7927acde2fe 100644
 > --- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
 > +++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-> @@ -6,7 +6,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> @@ -15,15 +15,7 @@ maintainers:
 >  
->  title: Amlogic Internal Clock Measurer
->  
-> -description:
-> +description: |
+>  properties:
+>    compatible:
+> -    enum:
+> -      - amlogic,meson-gx-clk-measure
+> -      - amlogic,meson8-clk-measure
+> -      - amlogic,meson8b-clk-measure
+> -      - amlogic,meson-axg-clk-measure
+> -      - amlogic,meson-g12a-clk-measure
+> -      - amlogic,meson-sm1-clk-measure
+> -      - amlogic,c3-clk-measure
+> -      - amlogic,s4-clk-measure
+> +    const: amlogic,clk-measure
 
-Why?
-
->    The Amlogic SoCs contains an IP to measure the internal clocks.
->    The precision is multiple of MHz, useful to debug the clock states.
->  
-> @@ -28,15 +28,67 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  clkmsr-indices:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: |
-
-Why | ?
-
-> +      Supported channel IDs for clk-measure.
-> +    minItems: 1
-> +    maxItems: 256
-
-Nothing - neither this nor commit msg - explains why you need it and
-what this is.
-
-> +
-> +  clkmsr-names:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    description: |
-> +      The channel ID names supported by clk-measure correspond one-to-one with
-> +      the IDs specified in 'clkmsr-indices'.
-> +
-> +      Therefore, the defined 'clkmsr-indices' and 'clkmsr-names' must have
-> +      matching counts and maintain strict correspondence.
-> +    minItems: 1
-> +    maxItems: 256
-> +
-> +  clkmsr-reg-v2:
-> +    type: boolean
-> +    description: |
-> +      Specify whether the register address offset for clk-measure corresponds
-> +      to version V2.
-
-No, compatible defines this.
-
-> +
->  required:
->    - compatible
->    - reg
-> +  - clkmsr-indices
-> +  - clkmsr-names
-
-That's ABI break. Again, nothing explains it.
+Obviously NAK, cannot stress more how wrong your approach is. It defies
+all rules for writing bindings.
 
 Best regards,
 Krzysztof
