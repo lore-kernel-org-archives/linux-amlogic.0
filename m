@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C70E9CA0EDC
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Aug 2025 08:35:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54012CA0EED
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Aug 2025 08:41:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=o9adAHy7AG8JfgZfQ88I9kdXrNqY1emgJamRUGKLERU=; b=ox+HP+CpYsyhGV
-	6SmerzcWPAb36FTDlIyy8Ar9l2t1XdgtQaug5rtT+sGd9vJzctKncvkuT+aoJrG7AD6dgmPkUNjmX
-	BpM0wYHcdkrjLNkZhyhohQ2ndZ5RqQWJwyChtrx6n8afnqfl1taq2rV3a2Lbt69LxXqWRJfSVDcJG
-	rhM2axK6dvzQG7hZ+Gm0utX8NhhM21CxpK+hszDgtAxZF1S2nazYDAKSxzQoKf1EwoYZCVQNRlEpL
-	Woa4foI5eleARvS5Wpxd0KtOLAJdhIwrbtwqNXZwZN4PQ94jdSknQEaOzoOPR/KjNphiIrqTh+H0s
-	CXLXprfR5V7A7HXgo28Q==;
+	List-Owner; bh=8FO8fq2pyQqibryYtV+4YkxWjIzNgyjQM3lsjaM0XTA=; b=rtmaPcGWPATZQt
+	lXHKWJQKQoY7itUJplev28dPupxwVrZoe2gIje4TnidIY6+qnXdTcdQdhQfTqlrIzCeIoREzmkman
+	EB6IWOfTFhvxJwKFenIC3ECsRkX3+NCRa8y2lGsMfxdxZWG9KTcb+pQaNsIBb2A8l/2BMOiIqyLIy
+	0lve2xZSK5Od6jLzttllTc2gRIFcFnL/NICKmHEYVsPlkeC/HeqJZKswVq2lMBj6mMfLJP1rfE3Tw
+	EAi/mQFrrDmBvCGW+Jntvt2X5FW1H85Rp532vLQCI44O5o6x2UarqMHnkXjpNntn2sGuXBxY9tpSp
+	hEMe354UMwl19/Q0eEww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uoeIN-0000000ClVH-1Kgb;
-	Wed, 20 Aug 2025 08:35:47 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1uoeNb-0000000CmJL-2U14;
+	Wed, 20 Aug 2025 08:41:11 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uodss-0000000CgNv-2mZV;
-	Wed, 20 Aug 2025 08:09:27 +0000
+	id 1uodtb-0000000CgWn-3oyI;
+	Wed, 20 Aug 2025 08:10:11 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id C901B4531F;
-	Wed, 20 Aug 2025 08:09:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18A65C4CEEB;
-	Wed, 20 Aug 2025 08:09:24 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 06A38613AB;
+	Wed, 20 Aug 2025 08:10:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46E55C4CEEB;
+	Wed, 20 Aug 2025 08:10:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755677365;
-	bh=VAzAJjUiSUbgkKmTprNwXqi/ADJs5TrO9JHx5kVkx+Q=;
+	s=k20201202; t=1755677410;
+	bh=rMAGOw8W70aPMqJ4oYe4yG8AyBcRn52d6Z3l0h2p0l8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mOfMF2XKuFZ9r6EL8l2uZd7HA9goBHFWsgTRwXYqi/9aD1JkjH1+9nYdJhcNdF81F
-	 /x21Oi3ERxVy8/ymXXrlZ+lLjoOPtlFcHPiE/Ku5CZnylZSt8bfD6nRSJab0HteLVJ
-	 4vC7fWx0cZLX0oft0A+tZuQs7qCAeihz5+617N6dV52As+d/j6asfxC5H1gfEmdpDT
-	 fZ0pCdW7aj1LfQkblAQ0R97PWE1rqasPnoXXidgELe0exyfLt2pFJLDQvHgMYDy0NY
-	 097C3qB18uWPqp2dAhmO9b98jnyIoLl07bZZDNaUjPFvJQKzfzNl2mEvBV0BB9uW8z
-	 MegMfa+DzfofQ==
-Date: Wed, 20 Aug 2025 10:09:23 +0200
+	b=knRq30y8schxAtCBl9yankxHIXIaBa1fsZbg8BApQ/N2jeFgA0l3frjaQ0q3rljNl
+	 HUgGU6Kz5FvpfsnjI305F6BxCN3uGWJ1QqTJn9hcCD8OaZWKA/3Na5gZsWBNeehKRS
+	 MzsJQF9oq5j10wd0q80of9TchxMV4f2ohN2O2goKP1jIgWKtHQYjXzBJPJgZFCG88s
+	 9hkw+cfcbIXzJ3lnfrYp8g0tpFHVo0E4Z3R2RrtDMmGF/LbvVeqDSoKZWPqilJDZ1S
+	 EwJ4wuqBNbriuM4io1/zDVm3bhWLKkr7wXg3h0yQsdrnNrUakRFB/lLxS6TQMY9Frf
+	 Yqt2cVeaXOmRg==
+Date: Wed, 20 Aug 2025 10:10:08 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Chuan Liu <chuan.liu@amlogic.com>
 Cc: Rob Herring <robh@kernel.org>, 
@@ -50,17 +50,14 @@ Cc: Rob Herring <robh@kernel.org>,
 	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 05/13] dt-bindings: soc: amlogic: Unify the compatible
- property for clk-measure
-Message-ID: <20250820-shapeless-devout-pig-defdd7@kuoka>
+Subject: Re: [PATCH 02/13] soc: amlogic: clk-measure: Remove the msr_data
+ from clk-measure
+Message-ID: <20250820-amber-gecko-of-economy-cce4b4@kuoka>
 References: <20250815-add-more-socs-to-support-clk_measure-v1-0-59f04ba67457@amlogic.com>
- <20250815-add-more-socs-to-support-clk_measure-v1-5-59f04ba67457@amlogic.com>
+ <20250815-add-more-socs-to-support-clk_measure-v1-2-59f04ba67457@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250815-add-more-socs-to-support-clk_measure-v1-5-59f04ba67457@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250820_010926_721913_E575434B 
-X-CRM114-Status: GOOD (  12.57  )
+In-Reply-To: <20250815-add-more-socs-to-support-clk_measure-v1-2-59f04ba67457@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,40 +74,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Aug 15, 2025 at 04:37:31PM +0800, Chuan Liu wrote:
-> The clk-measure IPs across Amlogic SoCs have minimal differences, so
-> they can be managed with a unified compatible property.
-> 
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
->  .../bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml | 14 +++-----------
->  1 file changed, 3 insertions(+), 11 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-> index 1c9d37eef5f0..a7927acde2fe 100644
-> --- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-> +++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-> @@ -15,15 +15,7 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - amlogic,meson-gx-clk-measure
-> -      - amlogic,meson8-clk-measure
-> -      - amlogic,meson8b-clk-measure
-> -      - amlogic,meson-axg-clk-measure
-> -      - amlogic,meson-g12a-clk-measure
-> -      - amlogic,meson-sm1-clk-measure
-> -      - amlogic,c3-clk-measure
-> -      - amlogic,s4-clk-measure
-> +    const: amlogic,clk-measure
+On Fri, Aug 15, 2025 at 04:37:28PM +0800, Chuan Liu wrote:
+>  static const struct of_device_id meson_msr_match_table[] = {
+>  	{
+>  		.compatible = "amlogic,meson-gx-clk-measure",
+> -		.data = &clk_msr_gx_data,
 
-Obviously NAK, cannot stress more how wrong your approach is. It defies
-all rules for writing bindings.
+NAK, actual ABI break.
 
-Best regards,
-Krzysztof
-
+>  	},
+>  	{
+>  		.compatible = "amlogic,meson8-clk-measure",
+> -		.data = &clk_msr_m8_data,
+>  	},
 
 _______________________________________________
 linux-amlogic mailing list
