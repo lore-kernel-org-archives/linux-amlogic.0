@@ -4,78 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEA70CA0FEB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Aug 2025 14:18:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8259CA0EE4
+	for <linux-amlogic@archiver.kernel.org>; Sat, 23 Aug 2025 09:36:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=QSDpN6hcmDsNeOGVlRo9Uu84mjJyzaXVKocAVI8nqb4=; b=c0Tv/k1aG0zERw
-	onuznDFs/It0x2bq1tAKbolkXTzTuF6mlbV5IAEBEH4oecibrPLhoUEsJcfeJcvHkW3GuMUYAXr2x
-	FhqZ1pJcMkx5vk1eub/7eICSn7o00tVxbtIR1QIS9GRc/4oAhcWtZEfgFkYvFMN9vO76dbhAjwm1Q
-	J4mlLivV8dXyUbXVfsqRGBjKkFm2YhzCTBLsJvrtuypBOio7rPWXNNwA79oF3LdOe/DFE5vS+tG/q
-	SPr8U5rmGY5D92IrhcvdxvKgORmWhDhVaTEBcy27FkJQuatb59vYNphkYIL2Ea3uMn3IaC9TJBlAE
-	KvNOnud8Ms3j401MaIyg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=iuqUJUJNGzeeBJBKAbDmBwBD99dolQXuMKATwqF/X2I=; b=pqQkhmEqoxf6WgJ2/zAB/keb2w
+	pdju8qMluo2fG5bibtqPqsewWvVqB4eH3YPZbRjUb3TXjGtSIOlH2Xu4wA8rNyQZgISyvvOvf2lYq
+	htyUQXfntWoBDjM8OHEnIr2KVHxmJCDJmCUldN4RVaS7eswRahsfPH3jXAblVztd5H2QRk1eIsuI+
+	jkGijhxxdHopQX4W5CorVd/0nFRgQRKJ9EgvS7hfajuDpXFxKJ3rebxZ6hk1WgdCsguy0lvTI9F0o
+	/j6HcTkZ24QwzNN8IGgFOS+8vKqTRNRFa9HqiADEKDui/ikrWHum1hOMveg8/nZzni4qlEr2Gi7bQ
+	Je5kdEVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1upSae-00000002jz9-0nNH;
-	Fri, 22 Aug 2025 14:18:00 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1upkfP-00000004Uib-2OPF;
+	Sat, 23 Aug 2025 09:36:07 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1upKWo-00000001bnM-0Z6S;
-	Fri, 22 Aug 2025 05:41:31 +0000
+	id 1upV1X-00000003Cg0-3iVD;
+	Fri, 22 Aug 2025 16:53:56 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1FBB643DAC;
-	Fri, 22 Aug 2025 05:41:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E4FA4C4CEF1;
-	Fri, 22 Aug 2025 05:41:28 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTP id ABC345C7146;
+	Fri, 22 Aug 2025 16:53:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63074C4CEED;
+	Fri, 22 Aug 2025 16:53:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755841289;
-	bh=SWllvQUuWXUiZ37XKVOHkxwQQPRk+5jHJR1X7QQbqWU=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=C5j435qr4Pj8VO0GCMmm/0ypKQMl7HSaVhfYN5xCQH/qpPo9DacK5T5F9oS+M0TKp
-	 8H1h8ty/DB1Zkz7xbceBqro39/dRNmgI69ehsKsG3CnUmUpYBejhyMkrChVkcAkJA6
-	 eGCVhz+jMl42iemjHiz3QytcNtmJq6AJvRuKAyFbKo7keecwUaG89HqysDFknHZxuc
-	 Adet3E4iRgKeRl4k+aFHRnSoMYYQnj7pEJeBZD+xU8KStkZDQ/ypOf9D72AlvSzUIk
-	 p+fGI6tNeTGH1Crq4/TXoZAYkjXD72DBKG28qb8qC9krbAhf9PzJgUr5EbCwQV2+XF
-	 DsqzeK65yyBEA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DB9EFCA0EFF;
-	Fri, 22 Aug 2025 05:41:28 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Subject: [PATCH 0/5] Power: Add power domain driver for S6 S7 S7D
-Date: Fri, 22 Aug 2025 13:39:54 +0800
-Message-Id: <20250822-pm-s6-s7-s7d-v1-0-82e3f3aff327@amlogic.com>
+	s=k20201202; t=1755881634;
+	bh=J9Pc+PAihK6OLwpz+8d8MSEkFl3S9CIiabPdvcTk9v8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LdwyCWqjwop9mnpY+v/oAFKE3edAqepKLXQyUCy+vtjyb2zYUljXfdkuHphvlPc/I
+	 +Kl51TGtHpjk3Q3OVh2CV1ldi5R2qJd4CVYGz+9gjIJ/h6B2VwEOOlD9zdrya8lZQG
+	 WvoLJ7goU1Ys8sswVHb4SvXRjUCcd+5yIoqQwwbt+nqNO64RbJFETce6bkOgePh3Qe
+	 7ydnMdv6M7Hm3ZEOgqrmWoevoiC74nZ0Q95wLSJeqmYxJ/IPacNb/mqzswQZXXW7XT
+	 8JSapDmG0hbvchp5AX5pg16yrniIRKfg3uktLojhRtWVUi58jkIOzXfay+7TarTS3v
+	 lr1WlxWh2e/1g==
+Date: Fri, 22 Aug 2025 17:53:49 +0100
+From: Conor Dooley <conor@kernel.org>
+To: xianwei.zhao@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jianxin Pan <jianxin.pan@amlogic.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, "hongyu.chen1" <hongyu.chen1@amlogic.com>
+Subject: Re: [PATCH 1/5] dt-bindings: power: add Amlogic S6 S7 S7D power
+ domains
+Message-ID: <20250822-gala-contents-4f16558dcd68@spud>
+References: <20250822-pm-s6-s7-s7d-v1-0-82e3f3aff327@amlogic.com>
+ <20250822-pm-s6-s7-s7d-v1-1-82e3f3aff327@amlogic.com>
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAKoCqGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDCyMD3YJc3WIz3WJzIErRtTQ1SDM3MkhMTDZLUQJqKShKTcusABsXHVt
- bCwC3esbIXgAAAA==
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- "hongyu.chen1" <hongyu.chen1@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755841286; l=1213;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=SWllvQUuWXUiZ37XKVOHkxwQQPRk+5jHJR1X7QQbqWU=;
- b=v6zP1X1MiyNWQVfGhjRcfGOC0lt9iG/FSAbPc+2Df+zqZf0YLjimp7/DcF5ze+DfN5jFWSfkw
- C5A8U4wNBWFDDsajqvt6DFrIfF7N0vlKPmgrOvHh1HqITJru5NZz9yJ
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20250822-pm-s6-s7-s7d-v1-1-82e3f3aff327@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250821_224130_196870_0FF5E5E9 
-X-CRM114-Status: UNSURE (   6.88  )
+X-CRM114-CacheID: sfid-20250822_095355_957121_F9CF0056 
+X-CRM114-Status: UNSURE (   6.67  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,43 +77,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============8475157265375413227=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add power controller driver support for Amlogic S6 S7 S7D SoC.
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
-hongyu.chen1 (5):
-      dt-bindings: power: add Amlogic S6 S7 S7D power domains
-      pmdomain: amlogic: Add support for S6 S7 S7D power domains controller
-      arm64: dts: amlogic: s6: add power domain controller node
-      arm64: dts: amlogic: s7: add power domain controller node
-      arm64: dts: amlogic: s7d: add power domain controller node
-
- .../bindings/power/amlogic,meson-sec-pwrc.yaml     |  3 +
- arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        | 10 +++
- arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        | 10 +++
- arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       | 10 +++
- drivers/pmdomain/amlogic/meson-secure-pwrc.c       | 95 ++++++++++++++++++++++
- include/dt-bindings/power/amlogic,s6-pwrc.h        | 29 +++++++
- include/dt-bindings/power/amlogic,s7-pwrc.h        | 20 +++++
- include/dt-bindings/power/amlogic,s7d-pwrc.h       | 27 ++++++
- 8 files changed, 204 insertions(+)
----
-base-commit: ffeebf7587f518a3717fad308cf735adbbcaba97
-change-id: 20250820-pm-s6-s7-s7d-950f720aac6d
-
-Best regards,
--- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+--===============8475157265375413227==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/+Hljh53Ey6WSwxk"
+Content-Disposition: inline
 
 
+--/+Hljh53Ey6WSwxk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--/+Hljh53Ey6WSwxk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaKignQAKCRB4tDGHoIJi
+0mN9AQDE4nlsgOE9D3gmaacJI+/i2rKetx2wsfYbDyeZK3FRzQD+NFyZz67qC78e
+nDNCV2Nrhip+LAe9vQttb4M7UTiWxAk=
+=MTEB
+-----END PGP SIGNATURE-----
+
+--/+Hljh53Ey6WSwxk--
+
+
+--===============8475157265375413227==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8475157265375413227==--
+
