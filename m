@@ -4,78 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7E63CA0EFC
-	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Aug 2025 19:05:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F214ECA0EEB
+	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Aug 2025 19:07:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8L87dpzy78SX1DlUgGkpud/iomQspVbEJLV8X21dFgA=; b=KBycBe9HtNhsNR
-	hMp1wvFV/ZBmtinq9GpXPUkAVyHuqvTKMb83b11x7ZpwwjJXIFpcMPwrCf4wCEJKZQukzwnydZiz9
-	rVwhwyTf+/YSVqhaq0w7O3gkL8XO2htArILggt5kN/DRuW4k+6ZuvaI2preWjXdiIObzbNeqNEXHS
-	KYEUXlo4v7ZVQY44FTzJgWC9SnN9g4rIPD7OemFIwA0TeUYg/T68MO3lcAK5v9UT8IWUPAxZBj3q7
-	ov9oyotYq5/e0LTHhs63yB10e7oSnC3ytYqLKyHya4blJA+gwZsv+owIJykuOcDqPjwTdioVFTdT8
-	OC5qKGwe+NRaqdiOJ0ow==;
+	List-Owner; bh=hTwALmtGIoNoNZnIvVzJ3Yxao1RVA1HoVazTaCBqC30=; b=FscmeCvFxs4PNb
+	713z5Q+tMC5BGLFIG3xWA2mG1VmDUdssMwyDfu/VXfyH8XGstvuKVAPjNVvLvnC3/x+FYEGmKD98y
+	EVjnlcE8aWLdkazKXZI5IuXLOBS7308+OwzDYP68N9nyOXu0FL3HN5p6k2IE0LluP5zCy6+rZ9QXB
+	ORpjVUvLkCDrkza1h9G/n3baAmZSYeJJKEdAeYi//VIbLuWhmicITumEw8Q3rrkububhXSZN6Ypdx
+	ZWM5aDCR7qstbWbd5tESEajuExljoFchjYQeAEVzvrLNvWCUrrNWTC7oXSlvMFfne3FvMFxlMQzYC
+	XU2wfYXn8A9oMJWPaz9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqG1N-00000006Tg2-3jQJ;
-	Sun, 24 Aug 2025 19:04:53 +0000
+	id 1uqG3o-00000006TqV-0Ikw;
+	Sun, 24 Aug 2025 19:07:24 +0000
 Received: from mail-lf1-x12c.google.com ([2a00:1450:4864:20::12c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqG1K-00000006Tee-2TTX
+	id 1uqG3l-00000006Tp8-0rgg
 	for linux-amlogic@lists.infradead.org;
-	Sun, 24 Aug 2025 19:04:52 +0000
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-55ce52718abso291747e87.3
-        for <linux-amlogic@lists.infradead.org>; Sun, 24 Aug 2025 12:04:50 -0700 (PDT)
+	Sun, 24 Aug 2025 19:07:22 +0000
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-55f455e7fe7so22413e87.2
+        for <linux-amlogic@lists.infradead.org>; Sun, 24 Aug 2025 12:07:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756062288; x=1756667088; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6yqEEUlIDSc/+3KFB8fDmfBaOKciQCNwulQzIyyj/3k=;
-        b=sN9NqbPDz9VzRdszVp/gpv3jGWU9Hle/9Gc2cxINzwQ0k1KSi64tSQopUVRVd5sgTC
-         nFuuoaWI8HgcZpM+F4JfMk7mOAlL4bbYo6E6iQ406ElxOcyu8lzHEHZKeppkF6o6EVWj
-         6Tgiyupg3Ly/ya5MmpLwmUmtKxAereZgF0PyoIEMlag1dr0kEhtHz4QIWfdb+Md6WmF8
-         av9kqFzaFfv5qtAkDuHP8bLetkBuncRe5zti6vyTUlabtzMXz8td06c5+TDd+HReEwxZ
-         YtOMZNiZEcuRXry87otSW7R8bAxtn6cFwUPv9Zy86RtXcLrnJjww/+X/niNPcALdZa7/
-         1/ig==
+        d=linaro.org; s=google; t=1756062439; x=1756667239; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kRFerQraihZIanmomm0IKhmbjfbkS3W8YtjfgYvp2fw=;
+        b=QXjP9WpGluFL/kKeFDvOBMzKuViaf0VT9jT5PRaRsodA2Sfrag3v7N42g5KmfcaqR5
+         RnmSlhvIplqcxIkRuJJ3ywOseJOX93xDg/3HVFUksKp2Cjz9EAAf54fvU6weMoy6sEBa
+         ujgeb8IFFVZz+jSesKldV76ZuahnX8MSeuXZeUbXsUrubHpO/zhDJ1BftmeSUqfJLLT7
+         Iz6wsrCDU1p/cF9bUXjLQ19nz3Am2+2PRsxCwuHrQF6+IRl7f7FUCZscOrH6XDTtg0Cd
+         CAThtcEpzNY7h1bnmjuHU+lZkzTMi3PjpRmqRp2We/eNNiblM0SoeKfwCiMfWyffE5DV
+         UsDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756062288; x=1756667088;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6yqEEUlIDSc/+3KFB8fDmfBaOKciQCNwulQzIyyj/3k=;
-        b=PxPOslKlZkyXTFFpdenX/2Fpow7EDE6t3XRpu98jVBUXfE8HEjg4/I9S7zUjBHtMnQ
-         eg0G3F3BIa2xbnnKxWkNSd9Six9QhPOyYluknphO0gkkZA8TFeiiTbid3f/K65QiKpIi
-         tMqDuuNctQhEUQOFpT2IvC+HBtt76I3GqK/4uFkNGWWwfw4/qxAYyNnF09T3N/oSP55k
-         TVmKeSauQZsEmNy3ZYq0RBWEkYdzXtPIOUbqHIW5PmcqQsLHcI55jSCMaf7GU4m3UhOj
-         GZtt3a15f3+fIaD+/CZv/hP0SBDbJe6I3J/zq4CwgZAllztx4UuS7xG9P5kLGrXzubU/
-         bYQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWOnPdGUrdL7I7nAoOtRAG82lbMuP9egQLXOxnCfFIUvgPB8wsGZ0tc7wO4xEzggfmkg9jUTSRxgYneATk3@lists.infradead.org
-X-Gm-Message-State: AOJu0YwGbP1bG7cr6eKWZ8AOst/PToOfPp9dEnmzTDljh52RcUZUJRia
-	nRaVIjEkiE1eLIGJvFSd31MmuP0GvUlyKj2Ync2Fle1e5tiYCnEecDFbtzLTCjOHUyI=
-X-Gm-Gg: ASbGncuZDjUIjUH45F2e6LBbV5pk+k3ATprjUkTC7a+jsvqzKq3zwwFC4BRAfhcW+O6
-	xC7FIOvTRISebsR+IUsA8CIVKjynxtyU434CrCuKoURLToVvHS+geAsqo3T2/HRQ0nAweXEF/BJ
-	5QOM0MW5DLJ+RHs0gbazfBXVRFIhewmeremBMMF1xdZsnPk0CofGbTFKJYTCOBnMZKZ0x/xYY30
-	jCQg9WCWdFoSAPSpLqqyeHkacMCzVmUgSaqqYp+HRD+KoHIQehgmT2nzwGVIDNQn+VqMVSt6Wg9
-	oG4/J6McpkWK2xAfGvwimZHjjbrOvRB4xeEpI68vaEyA7DoHEQOtX7SsowPixrWX3M0vYVxcG9I
-	ncXV63k9p8GWlq+JXb+KRid4Gj1JVNttLpYbFwKEe9zGO0hWjFrDjFVApaZ83LPA7u2UtiW/uk0
-	HB
-X-Google-Smtp-Source: AGHT+IFyrm2w79r4qu/FnmHu4qBJdoxQ8tpCUb7HA7mtPlKxjeyzi9xJQ9J7AuBmZ4uek0zzq2ON9Q==
-X-Received: by 2002:a05:6512:a85:b0:553:24b4:6492 with SMTP id 2adb3069b0e04-55f0cd6ef0bmr1246189e87.5.1756062288277;
-        Sun, 24 Aug 2025 12:04:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756062439; x=1756667239;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kRFerQraihZIanmomm0IKhmbjfbkS3W8YtjfgYvp2fw=;
+        b=S+maS7K3NgVTpQ3S339umnFrjg5EFOGIn7Rsy0cbl4c5ctdRNWBTl4qswgaW6pH9Iv
+         leIx8/sqknw6MgRA4eLzlMLGyu8tyY91OoPyCEHZbcbs0KGbkjQXE0yauB0tLkVdqwwB
+         rCkw6M6PfrxYt7cuwADu7O2n7UN6F7RJ+R5lyeBlqk9SzVDQhsjVPpNyCYxWc2bZ3VXP
+         VM6Ks99+4lOJofjdfu3OJj+pplH4yievTB0UZQS1bzW5eo7AtpWEobKex2gAdscfNBOb
+         N3mBwEu9plQyfpeeMdUWE+D3Arh74Mmf7/XVlHvPAk5H+6ExUvM6whtCdTIgApgjapBK
+         YytQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUONjgGf/hO4cQENkOlRI3ZqY4JtpNAgnAywB8+kPr00konaZBwlQ4yYg+/hkTDN3HVtZspQ+h3fugqNpmP@lists.infradead.org
+X-Gm-Message-State: AOJu0YwtdXnrrk7l/ANVg/c/JgU8yF3S/XGKwLfFchxXKDZ+uQIF4f6k
+	tLrWA9sbz0oOvQb/3e77bQEYID+T5sSucyTdyeH1bgJMrfrtwfYAIB8w+8XByj1EK30=
+X-Gm-Gg: ASbGnct5fdbvPXOHn3k/RmSmTnZvukRr3vWn4l+0mKQhhkY5oPhygoduBFTWkIXoxeM
+	HQ86T4w1f384puAnX7mnwlnH0bKeCFwsFk2PF6/Bh7QeyQ0DdPtO+qWXrzrOjes12deBVSlApU6
+	hBb6YpSDY42bivFq9PbCvvfZRdkyBxeAlXyTLAAfaUzEwQADG5VRMQX4uA5LEENooYtXuRbaKwH
+	aEuutoqakpLd0j032Nl7ql3hGyv7F+uswPlwWW/NegXXpOlSKm3taiv5BO0uzdpavY6dkO5Gwid
+	BO5UJ5zyzb8FaXWWur4VbP+8TMUMsLMObWBUH7hIvFiTyeB5zcig2uMMvaPeXBJ+u5Dv+GHikUf
+	sghysBLC8JhOU7ls2sG6UjLKQQz4FVMdy9ApXAZHH4fAoMudI1rDyHKN3hrGOtHhQi6VI1tvdME
+	+UiI9xgZWnpKQ=
+X-Google-Smtp-Source: AGHT+IH13MoxmrDQetMznYo3yow5OENe/3UHzqm8TZjVRtSQjRA+4ERWWZasIRoFRuhqFpxTrCVdqA==
+X-Received: by 2002:a05:6512:2391:b0:55f:44eb:ea92 with SMTP id 2adb3069b0e04-55f44ebec0cmr134730e87.7.1756062439301;
+        Sun, 24 Aug 2025 12:07:19 -0700 (PDT)
 Received: from [192.168.1.100] (88-112-128-43.elisa-laajakaista.fi. [88.112.128.43])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55f35c8bb4esm1204996e87.75.2025.08.24.12.04.45
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55f35ca6713sm1206429e87.136.2025.08.24.12.07.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Aug 2025 12:04:47 -0700 (PDT)
-Message-ID: <fb733991-857c-4a5b-ba20-d8bd557a4339@linaro.org>
-Date: Sun, 24 Aug 2025 22:04:45 +0300
+        Sun, 24 Aug 2025 12:07:18 -0700 (PDT)
+Message-ID: <b4221eca-7977-47b3-a563-f392d7dafb8b@linaro.org>
+Date: Sun, 24 Aug 2025 22:07:16 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 19/65] media: camss: Replace .open() file operation with
- v4l2_fh_open()
+Subject: Re: [PATCH 20/65] media: camss: Remove custom .release fop()
+Content-Language: ru-RU
 To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>, Devarsh Thakkar
  <devarsht@ti.com>, Benoit Parrot <bparrot@ti.com>,
@@ -112,6 +112,8 @@ To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Nas Chung <nas.chung@chipsnmedia.com>,
+ Jackson Lee <jackson.lee@chipsnmedia.com>,
  Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
  Houlong Wei <houlong.wei@mediatek.com>,
  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
@@ -120,10 +122,11 @@ To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
  Geert Uytterhoeven <geert+renesas@glider.be>,
  Magnus Damm <magnus.damm@gmail.com>,
  Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>,
- Jacob Chen <jacob-chen@iotwrt.com>, Heiko Stuebner <heiko@sntech.de>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Heiko Stuebner <heiko@sntech.de>,
  Detlev Casanova <detlev.casanova@collabora.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
+ <alim.akhtar@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>,
  =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>,
  Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
  Jacek Anaszewski <jacek.anaszewski@gmail.com>,
@@ -135,11 +138,11 @@ To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
  Nicolas Dufresne <nicolas.dufresne@collabora.com>,
  Benjamin Gaignard <benjamin.gaignard@collabora.com>,
  Steve Longerbeam <slongerbeam@gmail.com>, Maxime Ripard
- <mripard@kernel.org>, Paul Kocialkowski <paulk@sys-base.io>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Corentin Labbe <clabbe@baylibre.com>,
+ <mripard@kernel.org>, =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund@ragnatech.se>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Corentin Labbe <clabbe@baylibre.com>,
  Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Bingbu Cao <bingbu.cao@intel.com>,
  Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
 Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-staging@lists.linux.dev, linux-doc@vger.kernel.org,
@@ -151,12 +154,12 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-rockchip@lists.infradead.org,
  linux-stm32@st-md-mailman.stormreply.com, mjpeg-users@lists.sourceforge.net
 References: <20250802-media-private-data-v1-0-eb140ddd6a9d@ideasonboard.com>
- <20250802-media-private-data-v1-19-eb140ddd6a9d@ideasonboard.com>
+ <20250802-media-private-data-v1-20-eb140ddd6a9d@ideasonboard.com>
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20250802-media-private-data-v1-19-eb140ddd6a9d@ideasonboard.com>
+In-Reply-To: <20250802-media-private-data-v1-20-eb140ddd6a9d@ideasonboard.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250824_120450_656758_237170CC 
-X-CRM114-Status: GOOD (  12.80  )
+X-CRM114-CacheID: sfid-20250824_120721_276300_CC8F4D79 
+X-CRM114-Status: GOOD (  10.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -173,20 +176,16 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jacopo, Laurent,
+Hi Jacopo,
 
-thank you for the nice clean-up.
+thank you for the change!
 
 On 8/2/25 12:22, Jacopo Mondi wrote:
-> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> The 'file->private_data' pointer is reset in the vb2_fop_release()
+> call path. For this reason a custom handler for the .release
+> file operation is not needed and the driver can use
+> vb2_fop_release() directly.
 > 
-> The custom video_open() function in the camss driver open-codes the
-> v4l2_fh_open() helper, with an additional mutex that protects the whole
-> function. Given that the function does not modify any data guarded by
-> the lock, there's no need for using the mutex and the function can be
-> replaced by v4l2_fh_open().
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
 Tested-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
