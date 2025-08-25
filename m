@@ -4,76 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 956AFCA0FE7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Aug 2025 15:30:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5C6FCA0FEE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Aug 2025 15:30:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MRjCjmtAagqq0KLI3jmYMaG/bw2flREch6DB989r+kI=; b=umJiCyk9u82mpF
-	KgnTWql01Ef+llpSvjLUJN0++nunTYE4q34jmIkomuxENhwzdkkBPE9zOANl1pcpQ9mqzRJtKM0Cb
-	ZdyOy+8g2HHsO1o0gLe9Bej3p/nZXlVyo3ZY2Qstb/QSAdz9O9Ru6jmvp8l9U+IS4SMyOfD48lSxW
-	RvFiIH0jSaMQHBZxnhbMdXfpdkSbNnGmrDzN6tRO35LJ4BWga3BZeF2JLcpMZ1ZFhCPw3z4N0/chO
-	oEfIQsp7jxI+PbYexxrZjVwRoW7srw2Ge8sdq2okTdTMdVP0JV/7IyGIWzY4Jrzh99DeZBGyHqFLd
-	1DmPBt9v5uwokQ4BvrAA==;
+	List-Owner; bh=d8iIBiSEmEqjhAjIAXL2J0Zs++Zk+cQyZjRhi9LGvlw=; b=uV74EbQ2EsT2iJ
+	ElBACJmBlUcar5A6SDB6LtDJ3QEAJ48ijtoIhSE/RDU47yJjJTEHNRSzMGb2zuDKm8uxoCNfVB3kB
+	gX39znJz/LQ6KGqeX2LwRzEnLxqpXXrqDj+tds24RzHxKztPTfbhvdfPGvLKDgyPQpWfDwyBjH/9O
+	kOTGCV5wBljJKkBzOgwzy06kRc3h/UifrMS2iOVSb2lcNrTrZcIiDiW+TkP3qVzf4mGO5E1eQgeGu
+	b7dWHkaeRMVExRxs/0VfztFPYTHTEFzGksNOnKPDYb0R81dr/roJfmbf06YqvKETOv4kTgCCG8s9m
+	eM2/cO3zXZwKpdZ4YWyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqZ9N-00000008WAc-1iTJ;
-	Mon, 25 Aug 2025 15:30:25 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1uqZ9P-00000008WCn-1cK7;
+	Mon, 25 Aug 2025 15:30:27 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqYAA-00000008Fga-0ICj
+	id 1uqYAD-00000008Fir-2eXm
 	for linux-amlogic@lists.infradead.org;
-	Mon, 25 Aug 2025 14:27:11 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-45a1b0c82eeso38243715e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 25 Aug 2025 07:27:09 -0700 (PDT)
+	Mon, 25 Aug 2025 14:27:15 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3c79f0a606eso1040047f8f.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 25 Aug 2025 07:27:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756132028; x=1756736828; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756132032; x=1756736832; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DIJEmsB/8rs8xNSH4XrNmepRzdvgwCQLygjTeJuMmaQ=;
-        b=JATjKqH0fFf3NjmtFB0Ag/G6X1m5FIyto95vgxbiLoes0KtBftyT03Vy0tIsp3M1Ka
-         fH1ns6lvH/3cxNBy8haKVATfCxIbpjnaGvGUpx+I+gBxaUBXDw6NaWDQaBzsI4jq3hsG
-         I7Dh+wYO+k+1vBipEyREUmqdyLCyY7HyK7YTeZCIkopxFTWeDuKi5VMMOuULE6vTXlB+
-         So27gSmIdaqJx7uL6LYigs8dMa1kxc9YIm0C19dW+VMSW25MnaWEiF0vXDVowADmKZi+
-         fGPtam8b6kWQYFzje50kNx1X2Bpj1Kczuuqkr9zL1f37ISMAiBFcXHBeD2s/aZOSmbCE
-         iRkA==
+        bh=euKCmjTtqFHDoU6LHakJngU3/m3WiWXa94SHMvLwXS4=;
+        b=agIyu5dndumRCJpdyfRZNpbCu9s74gpweECeVJPRYh+b6RRkGV6hJnw/CHI0oUYBkM
+         KT2J2Ws9KYKOZhcke4E7rxTjT5UxleWRCySmuRFUH0OFo6HD6hKuaj9ILBgOPKkrEDMx
+         KXJw0h6JsDu0fLmyUm0HiTeBJiVOGXdZTVy9fwSD97/pK4SRcsH1Vq6xxFXnY3wmwyd1
+         +2gJx0aZJ2gqoLT/j86I+YyMpcyPvsD32ZjgeMArKaj50CdtN+jhQOmQOXHAPymhRPu5
+         Ctf848SnMP9u/2B6MQd1/NGinN64qVcgAXy+3uJdd6iUnmyzjvISKcw6ZLlrAdnLV7B4
+         2B1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756132028; x=1756736828;
+        d=1e100.net; s=20230601; t=1756132032; x=1756736832;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DIJEmsB/8rs8xNSH4XrNmepRzdvgwCQLygjTeJuMmaQ=;
-        b=d8V5qW6qohjAZWd4P99iexjQ8JhJk9QpQlJ4zJYLH5rxtzyHsr0kJXb8adyxYuNlTx
-         Xdkva0wcSO2rlomdlMn8nmvZtnrAYcbeKeP+0/S3b9AbHitNc+7sEPzmbq3r0wTRgVHV
-         FbOk0UiqPo0SJZ/RM9Hfe/fiRJhardj5LHrChTAR81+gwbg+5a/DoZepL3ufV2MoYnHw
-         AiHVYlCIu/KkoqDZ9zOP7PR3y0wvE25fD0WAU0Y1l403dByIbyuazi2xuOnm71VYhu2b
-         3REGbr30MCjQ1zEPDCRHLMmFnLxK6ORLSHHJPjcKhvUVwpV5PEUIOByBEkcdaOaDgEM7
-         bo4A==
-X-Gm-Message-State: AOJu0YxOqWdyt339AEAe25gV5lXvrdNTiPR4du+JxR37WQM6J612J+ip
-	qfHoVPaLBYTboPmejhwQctgmUtde5Zzb3opyegq52O8IK02TEArmfGXEEUnPTY94CK4=
-X-Gm-Gg: ASbGncuD8OM9XiqDTAh3qkFrMucrrKFdp2XI8LKro+r42XoGIGe7TTnQYLDItpbSJdb
-	4Pj1vNWCxwXPW1VCXvSzANbtk/OITepf3Aiv3lEutoBF890F4Gd2uLyNRT2kUGMPLLSYHPLGec2
-	HyYGMUTaAJjmPiAO+qDj0wED6DdTVE4OJqztpAFDsmVt9xMJw6Ibb6PGABnN3FpLj5wNM5TZ6yo
-	3UVCAQWdGL0URUqjmi9DviO4twTLslHdUcKvFTmlzc91HtJ6kD4b08zrYTFf4wmWE3i8oV+/YJB
-	9t463A0nTLpehGz+v8BMb/idkYbv7io/mhKCkCxReoupAyrWhV4Id3GgAQyoXWdvCoCCQsZMGCL
-	i0zMV7MJ7e79ARYWhj7jff0wPeDfhTwmJ/KGGw7ax72PlDEU=
-X-Google-Smtp-Source: AGHT+IEXfyq5m2bLUeQjUXFA2zrBYTIxS3J/1xQIovcTnCPbPWUNt6OGW4xg2+q3mV00zpwUEtqa3Q==
-X-Received: by 2002:a5d:4846:0:b0:3b7:6d95:56d2 with SMTP id ffacd0b85a97d-3c5da7402e3mr6635931f8f.7.1756132028370;
-        Mon, 25 Aug 2025 07:27:08 -0700 (PDT)
+        bh=euKCmjTtqFHDoU6LHakJngU3/m3WiWXa94SHMvLwXS4=;
+        b=N5wI5y6m690PnHeyUWQ7SPar5mkJ80lTk9ldYIA1JXinQaGPATroDO9AkmSsM/KRmZ
+         wyXMf5cjD0XgDmI24gLnuOgPK/U31DxqV+9hvh8V1mDpgcHLWixyLhELW4sVD46XMWIs
+         jn+Wczz86T4wDxhEfLSumA8P2384DSEMZ6ov57maN8DCdhGcpQFcVF5GYS4472wELFae
+         EYqUi7uqVjuk0dS73jYi0OTiVTzYov9GntmlZG7PycWkXJXx+1GWCOdjoXXJGTKE9PfD
+         v0n7r3uAXj/rsW6RMJzbZSvGlBW+fD/8+S3ef/mnoOrvKcjcGgVxHmIV6gpfaRnsEynS
+         aa5w==
+X-Gm-Message-State: AOJu0Yz+rIlgTJ6bXh8Li4ptZLHLFfEeuSDu+8wC3kcadwADhifufy0K
+	TLfVJp998IF9ljsTHlBtj3byW6KEupupLbUuU4RSQyjS3cG4fqbRXIdoAZ6+0UiQI1Y=
+X-Gm-Gg: ASbGncuCMuf4+lyxCNItfP3hO4+2kq9PdZgrly1KGN1+249SCl+ABKdGHtE1xG1BoXo
+	7j4dJq3BxVFzPKaQJ9lsFDaC93lUYK9NadWFrAclkUgyaalv2A9wiWBiIASOPXmyjbCA3/IPdI8
+	xL3zrkCjiYdUvptC5jc0PMBlpph6f5YZHFnxXJ2/eOVizZ6p25zgx2fHBup5HhP+x+SpORYMkPR
+	N78rBslcyETisuGEHjbOjflsJXLJ/K+uUatPp2aJ0T0yrEhxpheM259M+sv/e6WXTu8md4ABEcA
+	exEHI1QjdbxQ4yB/JFLnAcsBPScVh16W+1i/OYI+CR6oWOEMzAiYUktm5BsDVj9I7cjg5GEInU0
+	5yYex8tFQbijoxkrHpw2swBFkqDF62COcdQBf
+X-Google-Smtp-Source: AGHT+IHzf1zBMogo6qwNYmdim+KUSN44hRz+cqBwGOk4IKKU5b5IVPiFT1z370fUAp1wSCO64WjI8Q==
+X-Received: by 2002:a5d:5d0a:0:b0:3b7:792c:e8d9 with SMTP id ffacd0b85a97d-3c5daf023eamr10484620f8f.14.1756132032010;
+        Mon, 25 Aug 2025 07:27:12 -0700 (PDT)
 Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:b261:baab:ed3d:3cb6])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3c70e4b9e1fsm12634462f8f.14.2025.08.25.07.27.07
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3c70e4b9e1fsm12634462f8f.14.2025.08.25.07.27.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Aug 2025 07:27:07 -0700 (PDT)
+        Mon, 25 Aug 2025 07:27:11 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 25 Aug 2025 16:26:28 +0200
-Subject: [PATCH v2 03/12] clk: amlogic: use probe helper in mmio based
- controllers
+Date: Mon, 25 Aug 2025 16:26:33 +0200
+Subject: [PATCH v2 08/12] clk: amlogic: introduce a common pclk definition
 MIME-Version: 1.0
-Message-Id: <20250825-meson-clk-cleanup-24-v2-3-0f402f01e117@baylibre.com>
+Message-Id: <20250825-meson-clk-cleanup-24-v2-8-0f402f01e117@baylibre.com>
 References: <20250825-meson-clk-cleanup-24-v2-0-0f402f01e117@baylibre.com>
 In-Reply-To: <20250825-meson-clk-cleanup-24-v2-0-0f402f01e117@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -84,25 +83,25 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=16590; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=mV4e9A5hAMuH50dPvN6Eogw/db6BsyrhlDBBLhpRuDk=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBorHKwFTVxum2O6ljQ+WO53Pz7AsJ09Q8raP7e+
- 49CuC6SJT2JAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaKxysAAKCRDm/A8cN/La
- hU52D/47UTicmhVW7zkjB77rRCoL61Jnysns+K3Yf7zEjypTy4ajihwF3zobtWrskG0mj/i+/Yx
- U1qBg24vC0hV+hRO1OPaHCWLon7JJ0ej5tUBRXJ9kA37cg2ciBnBs0NpFxp95HcV6ETEJiB9kz3
- M00zQ82Q4Iw2ltRXFmC6ykM0mXP0unSo613Dt6/MadcJqcBu3YaqgW5f2qiBE+z28E9Dlk6d49Q
- 9abfgkKCAz8SsOGf01an5M3pUAfNg2hqu1gNsauWbnSB4KTCJR8Uo0quMtcNPMYBpVbmRpABOYS
- huNi9kqwv69Fmg0objwMAs3JJ6GAbY6VitSNjsmbPREs7yGBbmELWfnPLOtRQ7QE5xZtOMT5Sdg
- 7z9Dj3f1ZZ34qKeIpTq8SUY4+Bm9/VQ0QM/Whif2vjxPrlNZVsGj59ILJjlijjxOn/ZnT33ljdK
- cL3JQfY2MUo13UFi01RpgDvHz8RkhxsoqhBa8JuFcB7XKzViLNvv/YfNN8bp0buApY59SjU0u4B
- QfUwG1r8w0+QVjW9H7ihFjmXcd5vLo2d6+rDzBI9tGQVWthBmdQDMStrrt+tm14dU/21OhvJR+8
- SFyFr08Hs38pPayQbGaDsqr3rkL3qHHSl8jnJFE/vhHxfa8Ux8PbplrPpGzG4fvxDC0skdzROOB
- wDqtK4AQQ06KLwQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10129; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=Y56X7oQHuKA4lo20ZsgXO5l4gyfh+4L+P05X7w+y73Q=;
+ b=kA0DAAoB5vwPHDfy2oUByyZiAGiscrSg+dyaK5A9W6G75hRGdsahgRm0IWxHdlVu6XUqS05L2
+ YkCMwQAAQoAHRYhBPThWa4Y8/VtXxu3G+b8Dxw38tqFBQJorHK0AAoJEOb8Dxw38tqFUfAP/00z
+ URL2EFIIxTrVtSV8q0c1qew6G9U3/f7ug8TWr3aww8AIbXna9bL0bI3ZZsGE+NBNygyFS1cU5Ci
+ /l8SouTRGvRqGiIFgdO2cxKyserGsTNsI37O4fzaS2oCrpWZAFu2HbKiDMO06n4PCJzNkG7Db5F
+ W8TkUSV35yriuAdzITs4thtIPG9wgqxdox3PlEcEbuW+CCsDPztuesf1di8ZfXs2fYeWHr+JdRF
+ eDcWEUisLEQ4zb/kYQyasnDLgKmcAKfGwTVQtsHZjDKl7SkN7twuC55IbT8Cv+OV932F8Vta1n6
+ XzO1BVkwXO/zx5axgByF3NjX+gQW9TmXCxLF8riPt8cCKwUaVvOQGST/16Q5839+vEkkrIugEL3
+ MSDpZJmC/mDYM1w/5yglgWwnpzyX2mvr+v/QO9q4SV8k6ElpwEmxIg2LKJO+3skK50mxRn9nmmj
+ MV+nRJ8P1mZCNOqA3s3EXBcFKVeNE6TxTGb2a/nmUUHNCacmDq5Qq9IRYy88uElt7vuTVbC8ipL
+ zo/+xSZ9mZHQRjoig1Hnz247XfteEnd52uryqPPkhTwtXcSXsexa2b6ZSTpFVzm9xHvHOg0bkWK
+ R/ca5uwteWQ/ZGL/vzYyJ9q8xDe556e04lv4AidECCb4Nelr8zFmWawAnmVifVVgymwcPZ5xv3d
+ gLksK
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250825_072710_129161_05A4B641 
-X-CRM114-Status: GOOD (  16.13  )
+X-CRM114-CacheID: sfid-20250825_072713_692187_028DB0D1 
+X-CRM114-Status: GOOD (  12.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,534 +118,222 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Factorize the probe function of the mmio based amlogic clock controllers
-using the newly introduced probe helper. This removes a fair amount
-of duplicated code.
+All Amlogic peripheral clocks are more or less the same. The only thing
+that differs is the parent data.
+
+Adapt the common pclk definition so it takes clk_parent_data and can be
+used by all controllers.
 
 Reviewed-by: Chuan Liu <chuan.liu@amlogic.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/a1-peripherals.c | 52 +++++++--------------------------
- drivers/clk/meson/a1-pll.c         | 52 +++++++--------------------------
- drivers/clk/meson/c3-peripherals.c | 51 +++++---------------------------
- drivers/clk/meson/c3-pll.c         | 49 +++++--------------------------
- drivers/clk/meson/meson8-ddr.c     | 57 +++++++++---------------------------
- drivers/clk/meson/s4-peripherals.c | 49 +++++--------------------------
- drivers/clk/meson/s4-pll.c         | 60 +++++++-------------------------------
- 7 files changed, 66 insertions(+), 304 deletions(-)
+ drivers/clk/meson/a1-peripherals.c   |  4 +++-
+ drivers/clk/meson/axg.c              |  4 +++-
+ drivers/clk/meson/g12a.c             |  6 ++++--
+ drivers/clk/meson/gxbb.c             | 26 +++++++++++++++++---------
+ drivers/clk/meson/meson-clkc-utils.h | 12 ++++++------
+ drivers/clk/meson/meson8b.c          | 31 ++++++++++++++++++-------------
+ drivers/clk/meson/s4-peripherals.c   |  4 +++-
+ 7 files changed, 54 insertions(+), 33 deletions(-)
 
 diff --git a/drivers/clk/meson/a1-peripherals.c b/drivers/clk/meson/a1-peripherals.c
-index 9e352dba54775c22126ee8bf7861ee1d981d6c88..b2feb8fe4775e38a17d8aa9ce9b992b3e1fb2bb8 100644
+index a7bd3822df18f5e043e58e2d7bbcaa24345ea404..5e0d58c01405c1925a5c25ee6d0a547fd2e69911 100644
 --- a/drivers/clk/meson/a1-peripherals.c
 +++ b/drivers/clk/meson/a1-peripherals.c
-@@ -2057,54 +2057,24 @@ static struct clk_hw *a1_peripherals_hw_clks[] = {
- 	[CLKID_DMC_SEL2]		= &a1_dmc_sel2.hw,
- };
- 
--static const struct regmap_config a1_peripherals_regmap_cfg = {
--	.reg_bits   = 32,
--	.val_bits   = 32,
--	.reg_stride = 4,
--	.max_register = DMC_CLK_CTRL,
--};
--
--static struct meson_clk_hw_data a1_peripherals_clks = {
--	.hws = a1_peripherals_hw_clks,
--	.num = ARRAY_SIZE(a1_peripherals_hw_clks),
--};
--
--static int a1_peripherals_clkc_probe(struct platform_device *pdev)
--{
--	struct device *dev = &pdev->dev;
--	void __iomem *base;
--	struct regmap *map;
--	int clkid, err;
--
--	base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(base))
--		return dev_err_probe(dev, PTR_ERR(base),
--				     "can't ioremap resource\n");
--
--	map = devm_regmap_init_mmio(dev, base, &a1_peripherals_regmap_cfg);
--	if (IS_ERR(map))
--		return dev_err_probe(dev, PTR_ERR(map),
--				     "can't init regmap mmio region\n");
--
--	for (clkid = 0; clkid < a1_peripherals_clks.num; clkid++) {
--		err = devm_clk_hw_register(dev, a1_peripherals_clks.hws[clkid]);
--		if (err)
--			return dev_err_probe(dev, err,
--					     "clock[%d] registration failed\n",
--					     clkid);
--	}
--
--	return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get, &a1_peripherals_clks);
--}
-+static const struct meson_clkc_data a1_peripherals_clkc_data = {
-+	.hw_clks = {
-+		.hws = a1_peripherals_hw_clks,
-+		.num = ARRAY_SIZE(a1_peripherals_hw_clks),
-+	},
-+};
- 
- static const struct of_device_id a1_peripherals_clkc_match_table[] = {
--	{ .compatible = "amlogic,a1-peripherals-clkc", },
-+	{
-+		.compatible = "amlogic,a1-peripherals-clkc",
-+		.data = &a1_peripherals_clkc_data,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, a1_peripherals_clkc_match_table);
- 
- static struct platform_driver a1_peripherals_clkc_driver = {
--	.probe = a1_peripherals_clkc_probe,
-+	.probe = meson_clkc_mmio_probe,
- 	.driver = {
- 		.name = "a1-peripherals-clkc",
- 		.of_match_table = a1_peripherals_clkc_match_table,
-diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
-index 79ef4cbe955326ecedceb68cda7f59bb8882b165..1f82e9c7c14ebeae5d43cf2623c3ab69427a8504 100644
---- a/drivers/clk/meson/a1-pll.c
-+++ b/drivers/clk/meson/a1-pll.c
-@@ -295,56 +295,24 @@ static struct clk_hw *a1_pll_hw_clks[] = {
- 	[CLKID_HIFI_PLL]	= &a1_hifi_pll.hw,
- };
- 
--static const struct regmap_config a1_pll_regmap_cfg = {
--	.reg_bits   = 32,
--	.val_bits   = 32,
--	.reg_stride = 4,
--	.max_register = ANACTRL_HIFIPLL_STS,
--};
--
--static struct meson_clk_hw_data a1_pll_clks = {
--	.hws = a1_pll_hw_clks,
--	.num = ARRAY_SIZE(a1_pll_hw_clks),
-+static const struct meson_clkc_data a1_pll_clkc_data = {
-+	.hw_clks = {
-+		.hws = a1_pll_hw_clks,
-+		.num = ARRAY_SIZE(a1_pll_hw_clks),
-+	},
- };
- 
--static int a1_pll_clkc_probe(struct platform_device *pdev)
--{
--	struct device *dev = &pdev->dev;
--	void __iomem *base;
--	struct regmap *map;
--	int clkid, err;
--
--	base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(base))
--		return dev_err_probe(dev, PTR_ERR(base),
--				     "can't ioremap resource\n");
--
--	map = devm_regmap_init_mmio(dev, base, &a1_pll_regmap_cfg);
--	if (IS_ERR(map))
--		return dev_err_probe(dev, PTR_ERR(map),
--				     "can't init regmap mmio region\n");
--
--	/* Register clocks */
--	for (clkid = 0; clkid < a1_pll_clks.num; clkid++) {
--		err = devm_clk_hw_register(dev, a1_pll_clks.hws[clkid]);
--		if (err)
--			return dev_err_probe(dev, err,
--					     "clock[%d] registration failed\n",
--					     clkid);
--	}
--
--	return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get,
--					   &a1_pll_clks);
--}
--
- static const struct of_device_id a1_pll_clkc_match_table[] = {
--	{ .compatible = "amlogic,a1-pll-clkc", },
-+	{
-+		.compatible = "amlogic,a1-pll-clkc",
-+		.data = &a1_pll_clkc_data,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, a1_pll_clkc_match_table);
- 
- static struct platform_driver a1_pll_clkc_driver = {
--	.probe = a1_pll_clkc_probe,
-+	.probe = meson_clkc_mmio_probe,
- 	.driver = {
- 		.name = "a1-pll-clkc",
- 		.of_match_table = a1_pll_clkc_match_table,
-diff --git a/drivers/clk/meson/c3-peripherals.c b/drivers/clk/meson/c3-peripherals.c
-index a09cb1435ab108b2dcc209c6557bcd1988c4ba1a..e9c1ef99be13d0542b8a972ceffe69c8a9977118 100644
---- a/drivers/clk/meson/c3-peripherals.c
-+++ b/drivers/clk/meson/c3-peripherals.c
-@@ -2091,52 +2091,17 @@ static struct clk_hw *c3_peripherals_hw_clks[] = {
- 	[CLKID_VAPB]			= &c3_vapb.hw,
- };
- 
--static const struct regmap_config c3_peripherals_regmap_cfg = {
--	.reg_bits       = 32,
--	.val_bits       = 32,
--	.reg_stride     = 4,
--	.max_register   = NNA_CLK_CTRL,
--};
--
--static struct meson_clk_hw_data c3_peripherals_clks = {
--	.hws = c3_peripherals_hw_clks,
--	.num = ARRAY_SIZE(c3_peripherals_hw_clks),
--};
--
--static int c3_peripherals_clkc_probe(struct platform_device *pdev)
--{
--	struct device *dev = &pdev->dev;
--	struct regmap *regmap;
--	void __iomem *base;
--	int clkid, ret;
--
--	base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(base))
--		return PTR_ERR(base);
--
--	regmap = devm_regmap_init_mmio(dev, base, &c3_peripherals_regmap_cfg);
--	if (IS_ERR(regmap))
--		return PTR_ERR(regmap);
--
--	for (clkid = 0; clkid < c3_peripherals_clks.num; clkid++) {
--		/* array might be sparse */
--		if (!c3_peripherals_clks.hws[clkid])
--			continue;
--
--		ret = devm_clk_hw_register(dev, c3_peripherals_clks.hws[clkid]);
--		if (ret) {
--			dev_err(dev, "Clock registration failed\n");
--			return ret;
--		}
--	}
--
--	return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get,
--					   &c3_peripherals_clks);
--}
-+static const struct meson_clkc_data c3_peripherals_clkc_data = {
-+	.hw_clks = {
-+		.hws = c3_peripherals_hw_clks,
-+		.num = ARRAY_SIZE(c3_peripherals_hw_clks),
-+	},
-+};
- 
- static const struct of_device_id c3_peripherals_clkc_match_table[] = {
- 	{
- 		.compatible = "amlogic,c3-peripherals-clkc",
-+		.data = &c3_peripherals_clkc_data,
+@@ -1840,8 +1840,10 @@ static struct clk_regmap a1_cecb_32k_out = {
  	},
- 	{ /* sentinel */ }
- };
-@@ -2144,7 +2109,7 @@ static const struct of_device_id c3_peripherals_clkc_match_table[] = {
- MODULE_DEVICE_TABLE(of, c3_peripherals_clkc_match_table);
- 
- static struct platform_driver c3_peripherals_clkc_driver = {
--	.probe		= c3_peripherals_clkc_probe,
-+	.probe		= meson_clkc_mmio_probe,
- 	.driver		= {
- 		.name	= "c3-peripherals-clkc",
- 		.of_match_table = c3_peripherals_clkc_match_table,
-diff --git a/drivers/clk/meson/c3-pll.c b/drivers/clk/meson/c3-pll.c
-index ccfcd4b5be8996592c27df31fa62d4871c826926..dd047d17488c1309dcc4607dfb55582ea978528d 100644
---- a/drivers/clk/meson/c3-pll.c
-+++ b/drivers/clk/meson/c3-pll.c
-@@ -653,59 +653,24 @@ static struct clk_hw *c3_pll_hw_clks[] = {
- 	[CLKID_MCLK1]		= &c3_mclk1.hw
  };
  
--static const struct regmap_config c3_pll_regmap_cfg = {
--	.reg_bits       = 32,
--	.val_bits       = 32,
--	.reg_stride     = 4,
--	.max_register   = ANACTRL_MPLL_CTRL4,
--};
--
--static struct meson_clk_hw_data c3_pll_clks = {
--	.hws = c3_pll_hw_clks,
--	.num = ARRAY_SIZE(c3_pll_hw_clks),
-+static const struct meson_clkc_data c3_pll_clkc_data = {
-+	.hw_clks = {
-+		.hws = c3_pll_hw_clks,
-+		.num = ARRAY_SIZE(c3_pll_hw_clks),
-+	},
- };
++static const struct clk_parent_data a1_pclk_parents = { .hw = &a1_sys.hw };
++
+ #define A1_PCLK(_name, _reg, _bit, _flags) \
+-	MESON_PCLK(a1_##_name, _reg, _bit, &a1_sys.hw, _flags)
++	MESON_PCLK(a1_##_name, _reg, _bit, &a1_pclk_parents, _flags)
  
--static int c3_pll_clkc_probe(struct platform_device *pdev)
--{
--	struct device *dev = &pdev->dev;
--	struct regmap *regmap;
--	void __iomem *base;
--	int clkid, ret;
--
--	base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(base))
--		return PTR_ERR(base);
--
--	regmap = devm_regmap_init_mmio(dev, base, &c3_pll_regmap_cfg);
--	if (IS_ERR(regmap))
--		return PTR_ERR(regmap);
--
--	for (clkid = 0; clkid < c3_pll_clks.num; clkid++) {
--		/* array might be sparse */
--		if (!c3_pll_clks.hws[clkid])
--			continue;
--
--		ret = devm_clk_hw_register(dev, c3_pll_clks.hws[clkid]);
--		if (ret) {
--			dev_err(dev, "Clock registration failed\n");
--			return ret;
--		}
--	}
--
--	return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get,
--					   &c3_pll_clks);
--}
--
- static const struct of_device_id c3_pll_clkc_match_table[] = {
- 	{
- 		.compatible = "amlogic,c3-pll-clkc",
-+		.data = &c3_pll_clkc_data,
+ /*
+  * NOTE: The gates below are marked with CLK_IGNORE_UNUSED for historic reasons
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index fd9a7a362a1be1d8a584f855f454daa354ae2ade..0a25c649ef1d4847fad1ebb7bc4bd8c16c83d4d0 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -1915,8 +1915,10 @@ static struct clk_regmap axg_gen_clk = {
  	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, c3_pll_clkc_match_table);
- 
- static struct platform_driver c3_pll_clkc_driver = {
--	.probe		= c3_pll_clkc_probe,
-+	.probe		= meson_clkc_mmio_probe,
- 	.driver		= {
- 		.name	= "c3-pll-clkc",
- 		.of_match_table = c3_pll_clkc_match_table,
-diff --git a/drivers/clk/meson/meson8-ddr.c b/drivers/clk/meson/meson8-ddr.c
-index 6a9efde9b570d8a2609c118d7d38334a3b4a5dcc..0f93774f73718d29afca87b4c601bd32b9745d30 100644
---- a/drivers/clk/meson/meson8-ddr.c
-+++ b/drivers/clk/meson/meson8-ddr.c
-@@ -83,57 +83,26 @@ static struct clk_hw *meson8_ddr_hw_clks[] = {
- 	[DDR_CLKID_DDR_PLL]		= &meson8_ddr_pll.hw,
  };
  
--static struct meson_clk_hw_data meson8_ddr_clks = {
--	.hws = meson8_ddr_hw_clks,
--	.num = ARRAY_SIZE(meson8_ddr_hw_clks),
--};
--
--static const struct regmap_config meson8_ddr_regmap_cfg = {
--	.reg_bits = 8,
--	.val_bits = 32,
--	.reg_stride = 4,
--	.max_register = DDR_CLK_STS,
-+static const struct meson_clkc_data meson8_ddr_clkc_data = {
-+	.hw_clks = {
-+		.hws = meson8_ddr_hw_clks,
-+		.num = ARRAY_SIZE(meson8_ddr_hw_clks),
-+	},
++static const struct clk_parent_data axg_pclk_parents = { .hw = &axg_clk81.hw };
++
+ #define AXG_PCLK(_name, _reg, _bit, _flags) \
+-	MESON_PCLK(axg_##_name, _reg, _bit, &axg_clk81.hw, _flags)
++	MESON_PCLK(axg_##_name, _reg, _bit, &axg_pclk_parents, _flags)
+ 
+ /*
+  * Everything Else (EE) domain gates
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index bfa8815647aee9f8c0b373a36b8b9ae5380c759e..348aff4fae68bf3f856e70de5fa4f687e3d8144f 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -4384,11 +4384,13 @@ static struct clk_regmap sm1_nna_core_clk = {
+ 	},
  };
  
--static int meson8_ddr_clkc_probe(struct platform_device *pdev)
--{
--	struct regmap *regmap;
--	void __iomem *base;
--	struct clk_hw *hw;
--	int ret, i;
--
--	base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(base))
--		return PTR_ERR(base);
--
--	regmap = devm_regmap_init_mmio(&pdev->dev, base,
--				       &meson8_ddr_regmap_cfg);
--	if (IS_ERR(regmap))
--		return PTR_ERR(regmap);
--
--	/* Register all clks */
--	for (i = 0; i < meson8_ddr_clks.num; i++) {
--		hw = meson8_ddr_clks.hws[i];
--
--		ret = devm_clk_hw_register(&pdev->dev, hw);
--		if (ret) {
--			dev_err(&pdev->dev, "Clock registration failed\n");
--			return ret;
--		}
--	}
--
--	return devm_of_clk_add_hw_provider(&pdev->dev, meson_clk_hw_get,
--					   &meson8_ddr_clks);
--}
--
- static const struct of_device_id meson8_ddr_clkc_match_table[] = {
--	{ .compatible = "amlogic,meson8-ddr-clkc" },
--	{ .compatible = "amlogic,meson8b-ddr-clkc" },
-+	{
-+		.compatible = "amlogic,meson8-ddr-clkc",
-+		.data = &meson8_ddr_clkc_data,
-+	}, {
-+		.compatible = "amlogic,meson8b-ddr-clkc",
-+		.data = &meson8_ddr_clkc_data,
-+	},
- 	{ /* sentinel */ }
++static const struct clk_parent_data g12a_pclk_parents = { .hw = &g12a_clk81.hw };
++
+ #define G12A_PCLK(_name, _reg, _bit, _flags) \
+-	MESON_PCLK(_name, _reg, _bit, &g12a_clk81.hw, _flags)
++	MESON_PCLK(_name, _reg, _bit, &g12a_pclk_parents, _flags)
+ 
+ #define G12A_PCLK_RO(_name, _reg, _bit, _flags) \
+-	MESON_PCLK_RO(_name, _reg, _bit, &g12a_clk81.hw, _flags)
++	MESON_PCLK_RO(_name, _reg, _bit, &g12a_pclk_parents, _flags)
+ 
+ /*
+  * Everything Else (EE) domain gates
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index ccc1490a092814c242e719d4c37c66c4b3e27f07..5a229c4ffae105bc112824f79af5785ff6c5a710 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -2721,8 +2721,10 @@ static struct clk_regmap gxbb_gen_clk = {
+ 	},
  };
  
- static struct platform_driver meson8_ddr_clkc_driver = {
--	.probe		= meson8_ddr_clkc_probe,
-+	.probe		= meson_clkc_mmio_probe,
- 	.driver		= {
- 		.name	= "meson8-ddr-clkc",
- 		.of_match_table = meson8_ddr_clkc_match_table,
++static const struct clk_parent_data gxbb_pclk_parents = { .hw = &gxbb_clk81.hw };
++
+ #define GXBB_PCLK(_name, _reg, _bit, _flags) \
+-	MESON_PCLK(_name, _reg, _bit, &gxbb_clk81.hw, _flags)
++	MESON_PCLK(_name, _reg, _bit, &gxbb_pclk_parents, _flags)
+ 
+ /*
+  * Everything Else (EE) domain gates
+@@ -2817,14 +2819,20 @@ static GXBB_PCLK(gxbb_ao_iface,		HHI_GCLK_AO, 3, CLK_IGNORE_UNUSED);
+ static GXBB_PCLK(gxbb_ao_i2c,		HHI_GCLK_AO, 4, CLK_IGNORE_UNUSED);
+ 
+ /* AIU gates */
+-static MESON_PCLK(gxbb_aiu_glue,	HHI_GCLK_MPEG1,  6, &gxbb_aiu.hw, CLK_IGNORE_UNUSED);
+-static MESON_PCLK(gxbb_iec958,		HHI_GCLK_MPEG1,  7, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
+-static MESON_PCLK(gxbb_i2s_out,		HHI_GCLK_MPEG1,  8, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
+-static MESON_PCLK(gxbb_amclk,		HHI_GCLK_MPEG1,  9, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
+-static MESON_PCLK(gxbb_aififo2,		HHI_GCLK_MPEG1, 10, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
+-static MESON_PCLK(gxbb_mixer,		HHI_GCLK_MPEG1, 11, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
+-static MESON_PCLK(gxbb_mixer_iface,	HHI_GCLK_MPEG1, 12, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
+-static MESON_PCLK(gxbb_adc,		HHI_GCLK_MPEG1, 13, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
++static const struct clk_parent_data gxbb_aiu_glue_parents = { .hw = &gxbb_aiu.hw };
++static MESON_PCLK(gxbb_aiu_glue, HHI_GCLK_MPEG1,  6, &gxbb_aiu_glue_parents, CLK_IGNORE_UNUSED);
++
++static const struct clk_parent_data gxbb_aiu_pclk_parents = { .hw = &gxbb_aiu_glue.hw };
++#define GXBB_AIU_PCLK(_name, _bit, _flags) \
++	MESON_PCLK(_name, HHI_GCLK_MPEG1, _bit, &gxbb_aiu_pclk_parents, _flags)
++
++static GXBB_AIU_PCLK(gxbb_iec958,	 7, CLK_IGNORE_UNUSED);
++static GXBB_AIU_PCLK(gxbb_i2s_out,	 8, CLK_IGNORE_UNUSED);
++static GXBB_AIU_PCLK(gxbb_amclk,	 9, CLK_IGNORE_UNUSED);
++static GXBB_AIU_PCLK(gxbb_aififo2,	10, CLK_IGNORE_UNUSED);
++static GXBB_AIU_PCLK(gxbb_mixer,	11, CLK_IGNORE_UNUSED);
++static GXBB_AIU_PCLK(gxbb_mixer_iface,	12, CLK_IGNORE_UNUSED);
++static GXBB_AIU_PCLK(gxbb_adc,		13, CLK_IGNORE_UNUSED);
+ 
+ /* Array of all clocks provided by this provider */
+ 
+diff --git a/drivers/clk/meson/meson-clkc-utils.h b/drivers/clk/meson/meson-clkc-utils.h
+index 03e38992c4c73ff4ee24f0fa99b7c34134376992..95d9f85f7ca22f63a16f8665d6f7a250b21bfdb8 100644
+--- a/drivers/clk/meson/meson-clkc-utils.h
++++ b/drivers/clk/meson/meson-clkc-utils.h
+@@ -27,7 +27,7 @@ struct meson_clkc_data {
+ int meson_clkc_syscon_probe(struct platform_device *pdev);
+ int meson_clkc_mmio_probe(struct platform_device *pdev);
+ 
+-#define __MESON_PCLK(_name, _reg, _bit, _ops, _pname, _flags)		\
++#define __MESON_PCLK(_name, _reg, _bit, _ops, _pdata, _flags)		\
+ struct clk_regmap _name = {						\
+ 	.data = &(struct clk_regmap_gate_data) {			\
+ 		.offset = (_reg),					\
+@@ -36,16 +36,16 @@ struct clk_regmap _name = {						\
+ 	.hw.init = &(struct clk_init_data) {				\
+ 		.name = #_name,						\
+ 		.ops = _ops,						\
+-		.parent_hws = (const struct clk_hw *[]) { _pname },	\
++		.parent_data = (_pdata),				\
+ 		.num_parents = 1,					\
+ 		.flags = (_flags),					\
+ 	},								\
+ }
+ 
+-#define MESON_PCLK(_name, _reg, _bit, _pname, _flags)			\
+-	__MESON_PCLK(_name, _reg, _bit, &clk_regmap_gate_ops, _pname, _flags)
++#define MESON_PCLK(_name, _reg, _bit, _pdata, _flags)			\
++	__MESON_PCLK(_name, _reg, _bit, &clk_regmap_gate_ops, _pdata, _flags)
+ 
+-#define MESON_PCLK_RO(_name, _reg, _bit, _pname, _flags)		\
+-	__MESON_PCLK(_name, _reg, _bit, &clk_regmap_gate_ro_ops, _pname, _flags)
++#define MESON_PCLK_RO(_name, _reg, _bit, _pdata, _flags)		\
++	__MESON_PCLK(_name, _reg, _bit, &clk_regmap_gate_ro_ops, _pdata, _flags)
+ 
+ #endif
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index a16ebbbf664cdd56b2c74db4f88a8d0a22d2ddc3..95d0b9cbd90404ee1c7ec551a2748665b4ef9ccd 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -2701,8 +2701,10 @@ static struct clk_regmap meson8b_cts_i958 = {
+ 	},
+ };
+ 
++static const struct clk_parent_data meson8b_pclk_parents = { .hw = &meson8b_clk81.hw };
++
+ #define MESON8B_PCLK(_name, _reg, _bit, _flags) \
+-	MESON_PCLK(_name, _reg, _bit, &meson8b_clk81.hw, _flags)
++	MESON_PCLK(_name, _reg, _bit, &meson8b_pclk_parents, _flags)
+ 
+ /*
+  * Everything Else (EE) domain gates
+@@ -2785,18 +2787,21 @@ static MESON8B_PCLK(meson8b_vclk2_other,	HHI_GCLK_OTHER, 26, CLK_IGNORE_UNUSED);
+ static MESON8B_PCLK(meson8b_edp,		HHI_GCLK_OTHER, 31, CLK_IGNORE_UNUSED);
+ 
+ /* AIU gates */
+-static MESON_PCLK(meson8b_aiu_glue, HHI_GCLK_MPEG1, 6, &meson8b_aiu.hw, CLK_IGNORE_UNUSED);
+-
+-#define MESON_AIU_PCLK(_name, _reg, _bit, _flags) \
+-	MESON_PCLK(_name, _reg, _bit, &meson8b_aiu_glue.hw, _flags)
+-
+-static MESON_AIU_PCLK(meson8b_iec958,		HHI_GCLK_MPEG1,  7, CLK_IGNORE_UNUSED);
+-static MESON_AIU_PCLK(meson8b_i2s_out,		HHI_GCLK_MPEG1,  8, CLK_IGNORE_UNUSED);
+-static MESON_AIU_PCLK(meson8b_amclk,		HHI_GCLK_MPEG1,  9, CLK_IGNORE_UNUSED);
+-static MESON_AIU_PCLK(meson8b_aififo2,		HHI_GCLK_MPEG1, 10, CLK_IGNORE_UNUSED);
+-static MESON_AIU_PCLK(meson8b_mixer,		HHI_GCLK_MPEG1, 11, CLK_IGNORE_UNUSED);
+-static MESON_AIU_PCLK(meson8b_mixer_iface,	HHI_GCLK_MPEG1, 12, CLK_IGNORE_UNUSED);
+-static MESON_AIU_PCLK(meson8b_adc,		HHI_GCLK_MPEG1, 13, CLK_IGNORE_UNUSED);
++static const struct clk_parent_data meson8b_aiu_glue_parents = { .hw = &meson8b_aiu.hw };
++static MESON_PCLK(meson8b_aiu_glue, HHI_GCLK_MPEG1, 6,
++		  &meson8b_aiu_glue_parents, CLK_IGNORE_UNUSED);
++
++static const struct clk_parent_data meson8b_aiu_pclk_parents = { .hw = &meson8b_aiu_glue.hw };
++#define MESON8B_AIU_PCLK(_name, _bit, _flags) \
++	MESON_PCLK(_name, HHI_GCLK_MPEG1, _bit, &meson8b_aiu_pclk_parents, _flags)
++
++static MESON8B_AIU_PCLK(meson8b_iec958,		  7, CLK_IGNORE_UNUSED);
++static MESON8B_AIU_PCLK(meson8b_i2s_out,	  8, CLK_IGNORE_UNUSED);
++static MESON8B_AIU_PCLK(meson8b_amclk,		  9, CLK_IGNORE_UNUSED);
++static MESON8B_AIU_PCLK(meson8b_aififo2,	 10, CLK_IGNORE_UNUSED);
++static MESON8B_AIU_PCLK(meson8b_mixer,		 11, CLK_IGNORE_UNUSED);
++static MESON8B_AIU_PCLK(meson8b_mixer_iface,	 12, CLK_IGNORE_UNUSED);
++static MESON8B_AIU_PCLK(meson8b_adc,		 13, CLK_IGNORE_UNUSED);
+ 
+ /* Always On (AO) domain gates */
+ 
 diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
-index 9bcd35f12836de5e318fd1ad9c9ae15a2bfc3dd7..fc1500df926d056ce17252987dd91095a8399b55 100644
+index 23b51d84d8de40aa540dbc6dd5db9fb627e579de..3e048e645b080f9e5982ef908e3f9c43578a0b5f 100644
 --- a/drivers/clk/meson/s4-peripherals.c
 +++ b/drivers/clk/meson/s4-peripherals.c
-@@ -3449,59 +3449,24 @@ static struct clk_hw *s4_peripherals_hw_clks[] = {
- 	[CLKID_HDCP22_SKPCLK]		= &s4_hdcp22_skpclk.hw,
- };
- 
--static const struct regmap_config s4_peripherals_regmap_cfg = {
--	.reg_bits       = 32,
--	.val_bits       = 32,
--	.reg_stride     = 4,
--	.max_register   = CLKCTRL_DEMOD_CLK_CTRL,
--};
--
--static struct meson_clk_hw_data s4_peripherals_clks = {
--	.hws = s4_peripherals_hw_clks,
--	.num = ARRAY_SIZE(s4_peripherals_hw_clks),
-+static const struct meson_clkc_data s4_peripherals_clkc_data = {
-+	.hw_clks = {
-+		.hws = s4_peripherals_hw_clks,
-+		.num = ARRAY_SIZE(s4_peripherals_hw_clks),
-+	},
- };
- 
--static int s4_peripherals_clkc_probe(struct platform_device *pdev)
--{
--	struct device *dev = &pdev->dev;
--	struct regmap *regmap;
--	void __iomem *base;
--	int ret, i;
--
--	base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(base))
--		return dev_err_probe(dev, PTR_ERR(base),
--				     "can't ioremap resource\n");
--
--	regmap = devm_regmap_init_mmio(dev, base, &s4_peripherals_regmap_cfg);
--	if (IS_ERR(regmap))
--		return dev_err_probe(dev, PTR_ERR(regmap),
--				     "can't init regmap mmio region\n");
--
--	for (i = 0; i < s4_peripherals_clks.num; i++) {
--		/* array might be sparse */
--		if (!s4_peripherals_clks.hws[i])
--			continue;
--
--		ret = devm_clk_hw_register(dev, s4_peripherals_clks.hws[i]);
--		if (ret)
--			return dev_err_probe(dev, ret,
--					     "clock[%d] registration failed\n", i);
--	}
--
--	return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get, &s4_peripherals_clks);
--}
--
- static const struct of_device_id s4_peripherals_clkc_match_table[] = {
- 	{
- 		.compatible = "amlogic,s4-peripherals-clkc",
-+		.data = &s4_peripherals_clkc_data,
+@@ -3165,8 +3165,10 @@ static struct clk_regmap s4_gen_clk = {
  	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, s4_peripherals_clkc_match_table);
- 
- static struct platform_driver s4_peripherals_clkc_driver = {
--	.probe		= s4_peripherals_clkc_probe,
-+	.probe		= meson_clkc_mmio_probe,
- 	.driver		= {
- 		.name	= "s4-peripherals-clkc",
- 		.of_match_table = s4_peripherals_clkc_match_table,
-diff --git a/drivers/clk/meson/s4-pll.c b/drivers/clk/meson/s4-pll.c
-index 6a266bcafd6257937c1de50cbc5606dcc6f8207b..56ce6f566e537a26e932db245ede17d900d9f093 100644
---- a/drivers/clk/meson/s4-pll.c
-+++ b/drivers/clk/meson/s4-pll.c
-@@ -798,66 +798,26 @@ static const struct reg_sequence s4_pll_init_regs[] = {
- 	{ .reg = ANACTRL_MPLL_CTRL0,	.def = 0x00000543 },
  };
  
--static const struct regmap_config s4_pll_clkc_regmap_cfg = {
--	.reg_bits       = 32,
--	.val_bits       = 32,
--	.reg_stride     = 4,
--	.max_register   = ANACTRL_HDMIPLL_CTRL0,
--};
--
--static struct meson_clk_hw_data s4_pll_clks = {
--	.hws = s4_pll_hw_clks,
--	.num = ARRAY_SIZE(s4_pll_hw_clks),
--};
--
--static int s4_pll_clkc_probe(struct platform_device *pdev)
--{
--	struct device *dev = &pdev->dev;
--	struct regmap *regmap;
--	void __iomem *base;
--	int ret, i;
--
--	base = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(base))
--		return dev_err_probe(dev, PTR_ERR(base),
--				     "can't ioremap resource\n");
--
--	regmap = devm_regmap_init_mmio(dev, base, &s4_pll_clkc_regmap_cfg);
--	if (IS_ERR(regmap))
--		return dev_err_probe(dev, PTR_ERR(regmap),
--				     "can't init regmap mmio region\n");
--
--	ret = regmap_multi_reg_write(regmap, s4_pll_init_regs, ARRAY_SIZE(s4_pll_init_regs));
--	if (ret)
--		return dev_err_probe(dev, ret,
--				     "Failed to init registers\n");
--
--	/* Register clocks */
--	for (i = 0; i < s4_pll_clks.num; i++) {
--		/* array might be sparse */
--		if (!s4_pll_clks.hws[i])
--			continue;
--
--		ret = devm_clk_hw_register(dev, s4_pll_clks.hws[i]);
--		if (ret)
--			return dev_err_probe(dev, ret,
--					     "clock[%d] registration failed\n", i);
--	}
--
--	return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get,
--					   &s4_pll_clks);
--}
-+static const struct meson_clkc_data s4_pll_clkc_data = {
-+	.hw_clks = {
-+		.hws = s4_pll_hw_clks,
-+		.num = ARRAY_SIZE(s4_pll_hw_clks),
-+	},
-+	.init_regs = s4_pll_init_regs,
-+	.init_count = ARRAY_SIZE(s4_pll_init_regs),
-+};
++static const struct clk_parent_data s4_pclk_parents = { .hw = &s4_sys_clk.hw };
++
+ #define S4_PCLK(_name, _reg, _bit, _flags) \
+-	MESON_PCLK(_name, _reg, _bit, &s4_sys_clk.hw, _flags)
++	MESON_PCLK(_name, _reg, _bit, &s4_pclk_parents, _flags)
  
- static const struct of_device_id s4_pll_clkc_match_table[] = {
- 	{
- 		.compatible = "amlogic,s4-pll-clkc",
-+		.data = &s4_pll_clkc_data,
- 	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, s4_pll_clkc_match_table);
- 
- static struct platform_driver s4_pll_clkc_driver = {
--	.probe		= s4_pll_clkc_probe,
-+	.probe		= meson_clkc_mmio_probe,
- 	.driver		= {
- 		.name	= "s4-pll-clkc",
- 		.of_match_table = s4_pll_clkc_match_table,
+ /*
+  * NOTE: The gates below are marked with CLK_IGNORE_UNUSED for historic reasons
 
 -- 
 2.47.2
