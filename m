@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0847FCA0FEE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DABDECA0FEF
 	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Aug 2025 15:30:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,68 +12,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mYZXhfV6Obcxt7g9JiPUNoQcHM8ItUyWUp2jyEbPx3g=; b=Wf9TS/5gmZjbUk
-	nrvogGg70ZnBJHJJYHVLkMqevd7Nmll1YTFHmT6mmlxO5XU8iiXNrEoXWZO8qXOZHTQYMonYjpUl3
-	AFKVUdHkDQIiCbHlq24JyARvctePe4fY3iz/IKsbUURE6E4pwimkVZ3sTsrO99LIGfZ0NQtC7WvM7
-	sjXwFmLYv2YVe7DpLrYRCc0ewQ/gZYMLyhYXeY3np/GnA3Hoknxtlf0KtUjX11xD2Od0M8sqoSd5G
-	SnViixNKYpL11oEJQFBychcy+CQCz8l58H1qSmqAqsKauEDnrfIZxrte6TwfHDaOZRWCJUboHN0X5
-	ViaXLPMcjJmvJBTi/paw==;
+	List-Owner; bh=6BnuOryNWHLEnhih34CJbbATn0OUx6vuS+x8wdRg038=; b=1iUg2FJ9RoXLBO
+	K9HD8TAJYrq17IIxDBdDtm+HGOSQqGt9Ye1FW2pTaZ/qSMybY7p+h3ZoajEHEN0mpIJpqE4YQABKh
+	jb9xymSozGq92++wRtF135bJ26aqolGj5KmpgX+gresok8qXW6STtPswFyGxsEUhfTh0VYLiJsAYg
+	u/fSHAzdXntlkSY049LhC1pRQ2x8cw3PvLWp4p6U3vPO1Tayv1rVrIBVmo2lsn6POzTM+y1fCSU4S
+	Cu13G4BqY7vyLbStm+Pc8oRtKiLpQOwn6BKVS7SPz4w49oi8cGPcy268MKCHtyOgSIdKsMYuom8lk
+	LrXcZja0H9aX2F2NVfpw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqZ9N-00000008WAW-06vi;
-	Mon, 25 Aug 2025 15:30:25 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1uqZ9O-00000008WCQ-3aKm;
+	Mon, 25 Aug 2025 15:30:26 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqYA9-00000008Fg6-0noa
+	id 1uqYAB-00000008Fi2-439B
 	for linux-amlogic@lists.infradead.org;
-	Mon, 25 Aug 2025 14:27:10 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-45b60fd5a1dso8308245e9.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 25 Aug 2025 07:27:08 -0700 (PDT)
+	Mon, 25 Aug 2025 14:27:13 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3c380aa1ad0so2194285f8f.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 25 Aug 2025 07:27:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756132028; x=1756736828; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756132030; x=1756736830; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3E0OX3l7hSZpbmIvG6p8r2X61gE3s0wO+uAxqyQVEXs=;
-        b=Wz4HdLaAbFty6hUbX+K8yJB2rJi94Ohj2ecXO1c5QYGb8mphsJMDIp6qzmbRemqzzc
-         xU/+31BiggDX5DJAQPoy0v/a2CCW/QLHr33A8L28zX+BgjW8KeqJf4dRN/bWwwRVUzLY
-         aMIBITkmyDi7YM0KP9i0BOzwS9hgS1EAbP3J+jDwMIs7XYOxI6D48t29qxcpiWTYPTeE
-         lw3pGXT7r2mHYg4PLvpQCvTEWAobx5mdqbw4U3HrHV1h31trFdC9NDX5foGeUOiANVQS
-         OtKyN1R/4HIcMWl45h3mvAm0UmTNiseecBMGhtmJpVorHSJ8LH92ObYObGkZhPJ7h2o5
-         Y5mA==
+        bh=xRqhnX04LSAiYdBNDlTGLugmcAxHcjqdN/6E4HSJk+A=;
+        b=VW5sxFnkOsf6yd9lcD/3WpUiFR2cvbEGkXV1UYyix7yPv4UFrMHHC6TVuuzOTLFF9d
+         IdWV9AYffKtozBJKcoDtkJuzODiNHfc8v0VleluM7BKCIXGwyrXytlPAF4W6rX2PSx+A
+         fF71LFDOy89wlEzAg/Epm8OktEa3mp6g22DiDEl3teTJOoVrhBehT6uvOBrIang5tETB
+         3tV1V8+75xEO005FxbhGjqQo3bzoecVeSTQawAzf0ZFMoqw0Hkwro6nZ03UJTjtLCIcz
+         A1vnhlg1Xe78/QATBXBGd6ydZkRzjvi+r3zhLYgDK9Y4+0jrwwTG+JwNeey5Cym8m27w
+         hV7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756132028; x=1756736828;
+        d=1e100.net; s=20230601; t=1756132030; x=1756736830;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3E0OX3l7hSZpbmIvG6p8r2X61gE3s0wO+uAxqyQVEXs=;
-        b=Ajc2mUQCiHXqBqMnC8gXxnXsAoJgOOq3hRKPeMZNGLMJkdqb+ZlZLyt3GfRhCphKeG
-         pU8I9rXXW01rf6naPtnA3gHzXpBI6RmEk2J9pBjBUFFYGAjYpqnb13HwAqmMwkBYlZN8
-         ymmEV2xXtA8xJzyvInpv5k1JRyuJDQoOhjFehoel95KR6JtkY138JGuCWWZEGPV9X9wc
-         ggCNRKPuVeKB4Y93+/Wo2Qk9pvK4Bm9r+c+ub5N4LNobtxeUrACyM5HsF3f3eWqBDBwq
-         Pj9aL4H0EyBqSYBSI4eqOgNlx7EXKhbLcm3cNEbCMJKpxuO9BxutgBdYj82D2Fl8jl44
-         Oq3g==
-X-Gm-Message-State: AOJu0YzMg91ZpEDqHxhaM+b22xNHG1AIYkBIvwzyaabBx9mWpOD0Uad5
-	hmB8+GSFXv9LvBt8UAiVJ07+WdS3r/Y+Va5u8UJwMd/66pvAqPL7BRCLzSKh3TL6Ldg=
-X-Gm-Gg: ASbGncv6LSjX4DD6OWs7Htg1pa55HZuWwKF8t14CaOd48OcaRGig3QC4M2z8SfWTUun
-	O2bYetrXhA3xjSUkXtnKJcPuyj4qZduIeGf0wQ5tMg4WNEty0/H+anEGOd16237FI9Y+XzMd999
-	LADUIj7geH+sl0+0iSwDbdYJl09l5WLuIXQsAPiOfeRC4jRgdr+hB+0tjUSXgHY1Lkd3r8FC3Zo
-	BafLSyW7h01+94rygJAgYKPckSYTCqoiX/gAsUezXic+FmJJZqDgal5qSHddoC6SFk/Ew73uwQ6
-	4jHV+maVAWcftz1cBviYU5L5TnIxvV+oQkkscFxG98AjR9nWW5/bhOpjxVrOLtP1Fc678NKoLre
-	xRXgNlhavmL1WJgAAF0tOQaThOeLvwYpsHo6T
-X-Google-Smtp-Source: AGHT+IG97/qISA8MqcZl/mFg7nS0dUGfrxzbGW4TGxFceOnmVdStCa+f8SnHWO66tjzhKARbGRvgHg==
-X-Received: by 2002:a05:600c:3b2a:b0:453:2066:4a26 with SMTP id 5b1f17b1804b1-45b5179f3d1mr151618155e9.16.1756132027543;
-        Mon, 25 Aug 2025 07:27:07 -0700 (PDT)
+        bh=xRqhnX04LSAiYdBNDlTGLugmcAxHcjqdN/6E4HSJk+A=;
+        b=oi7RWIdt9h93HiWjWB5xtOSFGPo6ZnJrHKjujtaiplteOY74DLV3CvWjm+bgGK32yT
+         piE6h0S6xbMEqtri+Weo++w0+IWAPkVajkxFOwjplI0l1t7/zXu4fRpqW7/dfcaYIn3i
+         gxR++GeRq0lDeI9FJXI1fVyBneuyCiOzbqrFAvkLRY5SVY2MsvFMZB6/V4k2oxANLTX3
+         1jw/VIWNNfQf5+FIDmRmhh6Nmhhzbyc1wYjc1LSCF/0Z3FSAadidr0ZHRDTh8ei/dn5o
+         ayoA6n6k54oALcAKSt3Xn4NVjtju97QBzzhQrNIlqveERdTFXQlQrUjBPO3PV+86rdse
+         ocNQ==
+X-Gm-Message-State: AOJu0Yw9bqU76DAY5ybTHg5qX8pI5/M2CPE3KAj+N9aZel78HcDc5hAn
+	75okhlQSW7Ks8arD8pNFMsK7SxplfJTLEPGbWjiv7xXhG+sVw0LxkfRrH8e1qJnMPmQ=
+X-Gm-Gg: ASbGncuxXvFQhQsmf4UvuLs9WkRbFuJpTBeJ5M6FKFT2mxVIsZNcjqs6dsOtIQwqyn1
+	dkbPO9XWQDySjj5ioD+Pyl02vMrxNYVliEZx8xIHG62L4nX9b8UYE6mxPFAla/2U2bw79qbwcNW
+	Ze3t4RNHXrlh1WjKwVH5xUmp04Il8HKwD0p8pftA8ZblPFF3+gzWoFJKM/XlhHkOjE2XP8Z2ZyW
+	1r1b4+Bd5jLvCotZArUklfxUXdepqGgtvsj2Th61kxlKpLyS3iZa+oCOawSO0U2IyBDMx7A7fpJ
+	EYnQ5pmgeXFziNQAVCQBae7E/6EUDWVndyoBnk4YCldsrbZ9ClCB4JZnhCSj49wZm4qKyYhjN2v
+	gm4SQ8JuoRPYxDyoLcsGtD5D9lyuRGoCpxv3Ipn8mZHQWGyY=
+X-Google-Smtp-Source: AGHT+IFiPKoRqUt+ns9QGMzAHG5ADHsWD9oCSqbjBX7AALemd/YQHEFsuSaB7N7pDSlpI8XFCAMjJA==
+X-Received: by 2002:a05:6000:288a:b0:3c3:f134:28ba with SMTP id ffacd0b85a97d-3c5db2dcc73mr10078522f8f.28.1756132030376;
+        Mon, 25 Aug 2025 07:27:10 -0700 (PDT)
 Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:b261:baab:ed3d:3cb6])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3c70e4b9e1fsm12634462f8f.14.2025.08.25.07.27.06
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3c70e4b9e1fsm12634462f8f.14.2025.08.25.07.27.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Aug 2025 07:27:07 -0700 (PDT)
+        Mon, 25 Aug 2025 07:27:10 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 25 Aug 2025 16:26:27 +0200
-Subject: [PATCH v2 02/12] clk: amlogic: add probe helper for mmio based
- controllers
+Date: Mon, 25 Aug 2025 16:26:31 +0200
+Subject: [PATCH v2 06/12] clk: amlogic: drop CLK_SET_RATE_PARENT from
+ peripheral clocks
 MIME-Version: 1.0
-Message-Id: <20250825-meson-clk-cleanup-24-v2-2-0f402f01e117@baylibre.com>
+Message-Id: <20250825-meson-clk-cleanup-24-v2-6-0f402f01e117@baylibre.com>
 References: <20250825-meson-clk-cleanup-24-v2-0-0f402f01e117@baylibre.com>
 In-Reply-To: <20250825-meson-clk-cleanup-24-v2-0-0f402f01e117@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -83,25 +83,25 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3563; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=+HNEh7kwqO29/XBYa7Ua9Z9/DByHKmxsSbqdzoDcKd4=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBorHKvxaowyPgU9EztKNOZEz2aQx91OrxuPgs8m
- 8sKoQw4BwGJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaKxyrwAKCRDm/A8cN/La
- hVQXD/0aAjUtx5KRzTTrPI2utKSOITXpjIpBAvWOFFJyhdNjV05yalKeYTT73MxL9ZEsqMnajIw
- 66jChhvqaYDcHddLUwTzMsX+EOJd/rhwUgqlIYEVXlGwmzg8dEQcp/qwJS1ECewk0Kta4JoYH+z
- OuD1oz4bbhp4xJLOSckzAKW43qHjy/5yjl7RjjVo5E29EmcE5mnRs9TKaN9K8f7/3SmDmyHMQfs
- 2DDziIS0L6j3BsURuw/oplHoooSN7de9FN5MgPQprrKdLvSxj6DKVMGYW5bUZOgXCAwXFkCRPyO
- 1qtBA5VYOXA6UfvPxHCu5t/r7rFYBj4Wr+GwEe5x7MODMm5ExB4daArLYtuD3d91rQPdyfk+IG3
- yKIynnIKuC2W5CwvRJu/sfWruBp9yMhyV247opoYmx9vnqrmwBxB8ZyumqxcMarcmuEm5kdCXgI
- ORY2mdkUfYE2JgN1jDDzvzIg5rBrmITtlmAYpO6Jdsc2ixMYYsPKIjXTVHLhPxoXQdFm8kevemX
- 4foheR30XhsMspEdnJgRnoh82yVeVG+/fPUpFqqp4NTg+kTPGGvdY+QedZWsrzwfndqOE+EB2e/
- IMlMcWjAKop3gFKJpRO4RIaKkm8sTCXYql/1QQ9DUB/im7pDrh3QPOWj3Y5zPeKZcFzYIIcH2rw
- 4zBO2MbxH7HjyhQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1121; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=72WOcl72YOlZwt+/CKTosZbQzCnfjCTjpwRm9zwOmLc=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBorHKzmtWoqm6bakWO4aKPSmFt40T0qw2eFXNA3
+ VSI6WqYcXuJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaKxyswAKCRDm/A8cN/La
+ hdhKD/kBP+rn+onWFFONaftlxYdK3A/70krVdI9E8Ed4u2qVKwNTK8gYdu+FC++MQR3SyZUdB61
+ jq56+0ekWz28V2fZ8FVwaH74fz4eoXQ3Zgme4vQUXSMw25zClzqCEdekFweiMZAkJjXhsrfC0so
+ 5SrtlSz7jU/EIIW9TTll7tly7/cVkiWdoPF0tBj6y2Y3GOy9+sYhx/CWCQUYvcNvbqIMKQ+oUn0
+ NajUZsntJ4TkzY0REthSO/alUHbltx9JzK9mC7O/H9d4fdMm7RDm6YKq+qywCwU5N0uDwmUUmz9
+ /dERanMgbXxJF+H/DFcgYrxYpl6oXoXVmb+mbHbXswsikTfoFRjpbj3InOl356uuRYqhhm4nDUo
+ I9yJfXxWJkKpUNlYi72srABYcdjCC7RCouxjKNBDnZkDeEABMrx+n8V18+qAgStQlbGEc5HNVxf
+ 7EjAm+DfazEypaXlfLNuTFr5bXJOBgBDcRxFMXNn3CY709MnOhv+sQF2YECpppMZ5s8rBDu7oQC
+ uN499gfY9WIKPtzkgmoIYCjaEVgizqzKNXpAgY4bFv9Plyo1rx8yS01hbj8tO7V6VpCF0SOKZWA
+ uGG661IS0XryE9SfHYJJo2nwiOOP8qoNRti+7sL9KCjjkpfqr8GD57B7fvW4nQJAhcy1p9ZMT4F
+ nmTT04JV8y9D3dw==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250825_072709_267782_ED6E7E77 
-X-CRM114-Status: GOOD (  15.20  )
+X-CRM114-CacheID: sfid-20250825_072712_007479_50412CBA 
+X-CRM114-Status: GOOD (  12.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,117 +118,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add a 2nd probe function helper for mmio based controllers, which
-are getting the memory region from a resource instead of a syscon.
+On Amlogic SoCs, the rate of a peripheral clock should not be changed,
+let alone the rate of the parent PLL.
+
+These clocks are meant to be used as provided by the parent PLL. Changing
+the rate would be dangerous and would likely break a lot of devices running
+from the same PLL.
+
+Don't propagate any rate change request that may come from these clocks and
+drop the corresponding flag.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/meson-clkc-utils.c | 62 ++++++++++++++++++++++++++++--------
- drivers/clk/meson/meson-clkc-utils.h |  1 +
- 2 files changed, 50 insertions(+), 13 deletions(-)
+ drivers/clk/meson/meson-clkc-utils.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/meson/meson-clkc-utils.c b/drivers/clk/meson/meson-clkc-utils.c
-index 49f562d0f203b9a7d15b5119100216564c10cb21..870f50548e26841130dd4267f5a79c8bcd188c70 100644
---- a/drivers/clk/meson/meson-clkc-utils.c
-+++ b/drivers/clk/meson/meson-clkc-utils.c
-@@ -26,12 +26,9 @@ struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_da
- }
- EXPORT_SYMBOL_NS_GPL(meson_clk_hw_get, "CLK_MESON");
- 
--int meson_clkc_syscon_probe(struct platform_device *pdev)
-+static int meson_clkc_init(struct device *dev, struct regmap *map)
- {
- 	const struct meson_clkc_data *data;
--	struct device *dev = &pdev->dev;
--	struct device_node *np;
--	struct regmap *map;
- 	struct clk_hw *hw;
- 	int ret, i;
- 
-@@ -39,15 +36,6 @@ int meson_clkc_syscon_probe(struct platform_device *pdev)
- 	if (!data)
- 		return -EINVAL;
- 
--	np = of_get_parent(dev->of_node);
--	map = syscon_node_to_regmap(np);
--	of_node_put(np);
--	if (IS_ERR(map)) {
--		dev_err(dev,
--			"failed to get parent syscon regmap\n");
--		return PTR_ERR(map);
--	}
--
- 	if (data->init_count)
- 		regmap_multi_reg_write(map, data->init_regs, data->init_count);
- 
-@@ -68,8 +56,56 @@ int meson_clkc_syscon_probe(struct platform_device *pdev)
- 
- 	return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get, (void *)&data->hw_clks);
- }
-+
-+int meson_clkc_syscon_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np;
-+	struct regmap *map;
-+
-+	np = of_get_parent(dev->of_node);
-+	map = syscon_node_to_regmap(np);
-+	of_node_put(np);
-+	if (IS_ERR(map)) {
-+		dev_err(dev, "failed to get parent syscon regmap\n");
-+		return PTR_ERR(map);
-+	}
-+
-+	return meson_clkc_init(dev, map);
-+}
- EXPORT_SYMBOL_NS_GPL(meson_clkc_syscon_probe, "CLK_MESON");
- 
-+int meson_clkc_mmio_probe(struct platform_device *pdev)
-+{
-+	const struct meson_clkc_data *data;
-+	struct device *dev = &pdev->dev;
-+	struct resource *res;
-+	void __iomem *base;
-+	struct regmap *map;
-+	struct regmap_config regmap_cfg = {
-+			.reg_bits	= 32,
-+			.val_bits	= 32,
-+			.reg_stride	= 4,
-+	};
-+
-+	data = of_device_get_match_data(dev);
-+	if (!data)
-+		return -EINVAL;
-+
-+	base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	regmap_cfg.max_register = resource_size(res) - regmap_cfg.reg_stride;
-+
-+	map = devm_regmap_init_mmio(dev, base, &regmap_cfg);
-+	if (IS_ERR(map))
-+		return PTR_ERR(map);
-+
-+	return meson_clkc_init(dev, map);
-+}
-+EXPORT_SYMBOL_NS_GPL(meson_clkc_mmio_probe, "CLK_MESON");
-+
- MODULE_DESCRIPTION("Amlogic Clock Controller Utilities");
- MODULE_LICENSE("GPL");
- MODULE_IMPORT_NS("CLK_MESON");
 diff --git a/drivers/clk/meson/meson-clkc-utils.h b/drivers/clk/meson/meson-clkc-utils.h
-index 26cd47544302b28ca1a342e178956559a84b152a..b45f85f630d7190fb6509b088f05f17ca91fa1c8 100644
+index 0c228a6723bb2bddc0b9a4f92515f05850a5613a..3e1fb7efe6da1f5d8e55993541d12d40464a47f5 100644
 --- a/drivers/clk/meson/meson-clkc-utils.h
 +++ b/drivers/clk/meson/meson-clkc-utils.h
-@@ -25,5 +25,6 @@ struct meson_clkc_data {
- };
+@@ -38,7 +38,7 @@ struct clk_regmap _name = {						\
+ 		.ops = _ops,						\
+ 		.parent_hws = (const struct clk_hw *[]) { _pname },	\
+ 		.num_parents = 1,					\
+-		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),	\
++		.flags = CLK_IGNORE_UNUSED,				\
+ 	},								\
+ }
  
- int meson_clkc_syscon_probe(struct platform_device *pdev);
-+int meson_clkc_mmio_probe(struct platform_device *pdev);
- 
- #endif
 
 -- 
 2.47.2
