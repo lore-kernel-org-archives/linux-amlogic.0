@@ -4,76 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65B6FCA0FE1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Aug 2025 08:54:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 457F8CA0EFA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Aug 2025 08:54:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HHOlzEGN5U/H7gc5YE/hCIXlf+hlXB3zQvy/uZFCFLY=; b=fo6XPVe0pIv5kv
-	b39/ZvESfY+tknOX3wzmb73BH9Qfck7Ikx+xle9s+PrMynw10JcJLiH2vHKqxttq9AJnhUkbap2Mf
-	OJeAhhtGa5/nKD3LCo+J3P+UleRjM9lxQFHhYr3m/sDSUsGM510MfEb4JA+zlkJgfZzfmmeQBorfH
-	Z12F1Wf0DicsuDvO13s36V0owfmSzQGzbLhljANACM8k7I9K8L+zqfMxGl9LgYDcyqZQb2FPrv/Kh
-	w0x5iVZfh1bGH8cw7nOR38mTQubMwfc8C3pkAQyh6otk7uYmAOfm1LMZOC5/RvIX5Ftq8V2yx6pWF
-	8/to4QQ3FT76zAUSkuaw==;
+	List-Owner; bh=WB8auAnAzZkSRmFybExzSrp4M/4tsyfjV1med+7gcRk=; b=ZJ4iXA8Qtxh/IC
+	HYTx2OTDiCIEgmiAVq6vJYyDu+0AMCyx53J+XIyKfVeunr86GNmxzHy1IH+LFyCTxiR0Mj70a7qDq
+	mEcsWcTNi9JCHCFsYA2gRqNmvX2413E8MbChWOG/dIF2Y9+rK2oh0q4PVsu+LY9GLCCfWRgLkDK1I
+	aUl3iZ1LIXeh3SCIW1cRTUUxUS6NdAyEfFKbuFpZ10GCAPtTy5yHSKfOkkVybWDpcbA204XwOkigW
+	qT5L3w7pN+GFO/LjwMTrBGvJ/Z/J8wTTVBEM+myjPkiOAe17BuT1VjaTWjzXAGBIcAAcSxW70IXwy
+	4BF61mtqsYnNyp19b1Qw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqSxs-00000007PJp-1UMh;
+	id 1uqSxs-00000007PJk-042n;
 	Mon, 25 Aug 2025 08:54:08 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqSgw-00000007Kxr-39Z2;
-	Mon, 25 Aug 2025 08:36:39 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by dfw.source.kernel.org (Postfix) with ESMTP id EB7175C5B8C;
-	Mon, 25 Aug 2025 08:36:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15402C4CEF1;
-	Mon, 25 Aug 2025 08:36:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756110997;
-	bh=WfaWLEgdb3jnJ7oeG9CJd/226yiBCsA11HpFYxtP4ik=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=AiKVSiOP3IUKqIrE0nTH3NobajH02tOQwEZZspr/7mjkgAUlw30jkvC8fFJFXowLX
-	 0WzIXSGAhgnIZdfmsYNAcn0b4ZptW0NHASXukWAToEBV86BHXo8yFsjGa+t+jpI/Tt
-	 H+ZFhzDEWliaHAzrUjbGaXVFmIuNuNfh7AaNtL39MnNiHZdp13hGT3OLLrbD9BzYGF
-	 7wB6ceHclSvDqzX7iv4OQSAowmeI553BhCTUiYhAPF05UFqNwkDSWYcu6/MhHKuJWY
-	 MM1YHmhnjYtTu9F6GpE9Tq3QyysX5PgAziaI/OCrDuEmL8mLy6hZawNVj5zU2+Xnkp
-	 8U6Nd0fcpUSyA==
-Date: Mon, 25 Aug 2025 09:36:22 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Xichao Zhao <zhao.xichao@vivo.com>, Andreas Klinger <ak@it-klinger.de>,
- David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Haibo Chen
- <haibo.chen@nxp.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Marius Cristea
- <marius.cristea@microchip.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Heiko Stuebner <heiko@sntech.de>, Francesco Dolcini <francesco@dolcini.it>,
- =?UTF-8?B?Sm/Do28=?= Paulo =?UTF-8?B?R29uw6dhbHZlcw==?=
- <jpaulo.silvagoncalves@gmail.com>, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>, "open list:AVIA HX711 ANALOG DIGITAL CONVERTER
- IIO DRIVER" <linux-iio@vger.kernel.org>, open list
- <linux-kernel@vger.kernel.org>, "open list:NXP i.MX 7D/6SX/6UL/93 AND VF610
- ADC DRIVER" <imx@lists.linux.dev>, "moderated list:ARM/FREESCALE IMX / MXC
- ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, "open
- list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>,
- "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH 2/7] iio: adc: Remove dev_err_probe() if error is
- -ENOMEM
-Message-ID: <20250825093622.68c8e5cc@jic23-huawei>
-In-Reply-To: <CAFBinCDDMo2Dm1UAoB4QKyf-KKoRUTNNg4i7Qh_vgZh71trMNg@mail.gmail.com>
-References: <20250821080723.525379-1-zhao.xichao@vivo.com>
-	<20250821080723.525379-3-zhao.xichao@vivo.com>
-	<CAFBinCDDMo2Dm1UAoB4QKyf-KKoRUTNNg4i7Qh_vgZh71trMNg@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	id 1uqSgm-00000007KvY-0YUd
+	for linux-amlogic@lists.infradead.org;
+	Mon, 25 Aug 2025 08:36:30 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-45b5d49ae47so4324365e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 25 Aug 2025 01:36:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756110986; x=1756715786; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XO1+IS9STBCj34Lw+wOXXrOpWS+ZkYDToI4PIiLJ9vs=;
+        b=27QAgJVdcNVUAUk2ncH8A+hdeQ06ehFuAOKzeG3t1Sij6hzMXEQizhOTFJnwlbGcnr
+         kK+HWOykLm/Y40qfkrM0LKjn+zGL62VGJ5nR6pcde9he5jWwh1tyGBWW4No+x3abfPyY
+         EB3TzZnIab73NNr1ARkzzT4QpIkCcFxYF/TsMZNd5/xndqht70F5ktuwTWimbrkaSrt3
+         D3kY/sv609IIFirzvxkT8IJZFf+cXIH+kGITMeUCW//BS3eCUVG0WnWM10ETeH67zLGI
+         uJTZoLGGT/bne51EChW/9WLucay3kYb5RFedTKiWKMIgNjIGRBmDyl0j/XhVdcUvnK6P
+         zEtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756110986; x=1756715786;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XO1+IS9STBCj34Lw+wOXXrOpWS+ZkYDToI4PIiLJ9vs=;
+        b=Beq54zch2KSlqiqvHNXwNWQ2mXYItjwIBYoqjycUhExrXPn32fYGb/4QaJb69IMl6N
+         JSUilU0Icuru/tUwSb8a87SR269hQ9cCtgKh4W7HMZYU09wvWNnBtn5yj6XRtIBHYu2+
+         FgkTYPmRvLrtP/mSmlIJYP4M4Mr4mFMgbPKonOLHhF+pxzN5uh7laZ5Zsmx1MnMvpodH
+         egJy0oYdelb5SczwCcgcmhJZGgy7mxeT/75A+DVzjswl9bab2uzePttplvdoJwD0HNoy
+         K7NYt+aAKdkOF5KapPcy9i6hckWAUemllGN1uOo8Tsd7quz/D0JBijlAQYErE94qpNp0
+         RsCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVx/FYZEIkv/BkNIhQ5I9Td3OIKJvReTnzqypnxt8HUhOBTpg8nb35x0H72fEkih/C03VJKd/Ek9ehHGlFs@lists.infradead.org
+X-Gm-Message-State: AOJu0YyUzqe+d4KA6RClVaAQVr6fb6owOrz/ryA562dXlNjyoceOVKlp
+	u75OrPH8k5awXrFs0PudwJ8LDwN01SCJJgLGozwbiaGrXpTtBNlKG9xiFB7gud9+U1E=
+X-Gm-Gg: ASbGncuJr/8ggfAFNmY66m/P+BFVlI64WDqNLRgcnY7TnA36c2JVppAA2yrHJfuWDVQ
+	J0O5VVH/k/oGWf/QHKlLozDe+cpbV9cVVHLnBNN4wx+sNgpVXTkI0v7+obrfNf23FNzdA4mq5Zj
+	NgFTtW7ZswfK8qcjTIJeb5o0NDBPoSCVYtW7tp8ostN1KZz8y4/+i4uMROfmAyQT1y3SsIrKnLC
+	1ToOQfQvIEUP6Nc9FlWdODR1X2IALdH5urtq0dEGmeev6uQsQ7+G/UxQ/GZYitowmqhc3Egvx2W
+	HBa5HqHf9PsYitPBL0LXSl0tfgGDeGtf+NIsE96Dumq7D+L/gIXxg23Azn3o2U5nN0O6s2CQ/dE
+	k1aw3G4TuGULwVMjs8YEtQA==
+X-Google-Smtp-Source: AGHT+IGiamtdsGY2kDX6w9f/mzPofYs3vSisqz5ZM4c90dOvsj+B0bgxdt8+7FzKKa6/ub2RebLE1A==
+X-Received: by 2002:a05:600c:b8d:b0:459:e35e:a90d with SMTP id 5b1f17b1804b1-45b517c2eebmr91517135e9.27.1756110986280;
+        Mon, 25 Aug 2025 01:36:26 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:af88:b6ba:23b9:97e3])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45b5753adf7sm99733285e9.7.2025.08.25.01.36.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Aug 2025 01:36:25 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Da Xue <da@libre.computer>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
+ <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Kevin Hilman
+ <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Jian Hu <jian.hu@amlogic.com>,
+  linux-amlogic@lists.infradead.org,  linux-clk@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] clk: meson-g12a: fix bit range for fixed sys and
+ hifi pll
+In-Reply-To: <20250822002203.1979235-1-da@libre.computer> (Da Xue's message of
+	"Thu, 21 Aug 2025 20:22:02 -0400")
+References: <20250822002203.1979235-1-da@libre.computer>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Mon, 25 Aug 2025 10:36:25 +0200
+Message-ID: <1jcy8j6bna.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250825_013638_830385_2194E8A0 
-X-CRM114-Status: GOOD (  13.13  )
+X-CRM114-CacheID: sfid-20250825_013628_258355_23169303 
+X-CRM114-Status: GOOD (  16.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,30 +99,115 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVGh1LCAyMSBBdWcgMjAyNSAyMjozMTo1MSArMDIwMApNYXJ0aW4gQmx1bWVuc3RpbmdsIDxt
-YXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPiB3cm90ZToKCj4gT24gVGh1LCBBdWcg
-MjEsIDIwMjUgYXQgMTA6MDfigK9BTSBYaWNoYW8gWmhhbyA8emhhby54aWNoYW9Adml2by5jb20+
-IHdyb3RlOgo+ID4KPiA+IFRoZSBkZXZfZXJyX3Byb2JlKCkgZG9lc24ndCBkbyBhbnl0aGluZyB3
-aGVuIGVycm9yIGlzICctRU5PTUVNJy4KPiA+IFRoZXJlZm9yZSwgcmVtb3ZlIHRoZSB1c2VsZXNz
-IGNhbGwgdG8gZGV2X2Vycl9wcm9iZSgpLCBhbmQganVzdAo+ID4gcmV0dXJuIHRoZSB2YWx1ZSBp
-bnN0ZWFkLgo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IFhpY2hhbyBaaGFvIDx6aGFvLnhpY2hhb0B2
-aXZvLmNvbT4KPiA+IC0tLQo+ID4gIGRyaXZlcnMvaWlvL2FkYy9oeDcxMS5jICAgICAgICAgICB8
-IDIgKy0KPiA+ICBkcml2ZXJzL2lpby9hZGMvaW14OTNfYWRjLmMgICAgICAgfCAzICstLQo+ID4g
-IGRyaXZlcnMvaWlvL2FkYy9tY3AzNTY0LmMgICAgICAgICB8IDIgKy0KPiA+ICBkcml2ZXJzL2lp
-by9hZGMvbWVzb25fc2FyYWRjLmMgICAgfCAyICstICAKPiBGb3IgbWVzb25fc2FyYWRjOgo+IFJl
-dmlld2VkLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2ds
-ZW1haWwuY29tPgo+IAoKSGkgTWFydGluIChhcHBsaWVzIHRvIG90aGVycyBpbiB0aGlzIHNlcmll
-cyksCgpGb3IgYSBjb21tZW50IGFib3V0IGEgdGFnIHBsZWFzZSB1c2UgdGhlIHN0eWxlIHN1Ym1p
-dHRpbmctcGF0Y2hlcyBzdWdnZXN0cy4KUmV2aWV3ZWQtYnk6IE1hcnRpbiBCbHVtZW5zdGluZ2wg
-PG1hcnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5jb20+ICMgZm9yIG1lc29uX3NhcmFkYwoK
-VGhlbiB0aGUgdG9vbGluZyBwaWNrcyBpdCBhdXRvbWF0aWNhbGx5LiAgU29tZXRpbWVzIEkgcmVt
-ZW1iZXIgdG8gZWRpdCBjb21taXRzCnRvIHRpZHkgdGhpcyB1cCwgYnV0IG5vdCBhbHdheXMhCgpK
-b25hdGhhbgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
-b2dpYwo=
+On Thu 21 Aug 2025 at 20:22, Da Xue <da@libre.computer> wrote:
+
+> The bit range 17:0 does not match the datasheet for A311D / S905D3.
+> Change the bit range to 18:0 for FIX and HIFI PLLs to match datasheet.
+>
+> The frac field is missing for sys pll so add that as well.
+>
+> Patched:
+>
+> + sudo cat /sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq \
+> /sys/devices/system/cpu/cpufreq/policy2/cpuinfo_cur_freq
+> 996999
+> 500000
+> + sudo cat /sys/kernel/debug/meson-clk-msr/measure_summary
+> + grep -i '\(sys_\|hifi_\|fixed_\)pll'
+>  hifi_pll                      0    +/-1562Hz
+>  sys_pll_div16                 0    +/-1562Hz
+>  sys_pll_cpub_div16            0    +/-1562Hz
+> + sudo cat /sys/kernel/debug/clk/clk_summary
+> + grep -i '\(sys_\|hifi_\|fixed_\)pll'
+>     hifi_pll_dco                     0       0        0        0
+>        hifi_pll                      0       0        0        0
+>     sys_pll_dco                      1       1        0        3999999985
+>        sys_pll                       0       0        0        499999999
+>           sys_pll_div16_en           0       0        0        499999999
+>              sys_pll_div16           0       0        0        31249999
+>     fixed_pll_dco                    1       1        1        3987999985
+>        fixed_pll                     3       3        1        1993999993
+>
+> Unpatch:
+>
+> + sudo cat /sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq \
+> /sys/devices/system/cpu/cpufreq/policy2/cpuinfo_cur_freq
+> 1000000
+> 500000
+> + sudo cat /sys/kernel/debug/meson-clk-msr/measure_summary
+> + grep -i '\(sys_\|hifi_\|fixed_\)pll'
+>  hifi_pll                      0    +/-1562Hz
+>  sys_pll_div16                 0    +/-1562Hz
+>  sys_pll_cpub_div16            0    +/-1562Hz
+> + sudo cat /sys/kernel/debug/clk/clk_summary
+> + grep -i '\(sys_\|hifi_\|fixed_\)pll'
+>     hifi_pll_dco                     0       0        0        0
+>        hifi_pll                      0       0        0        0
+>     sys_pll_dco                      1       1        0        4800000000
+>        sys_pll                       0       0        0        1200000000
+>           sys_pll_div16_en           0       0        0        1200000000
+>              sys_pll_div16           0       0        0        75000000
+>     fixed_pll_dco                    1       1        1        3999999939
+>        fixed_pll                     3       3        1        1999999970
+>
+> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
+> Signed-off-by: Da Xue <da@libre.computer>
+> ---
+>  drivers/clk/meson/g12a.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+> index 66f0e817e416..f78cca619ca5 100644
+> --- a/drivers/clk/meson/g12a.c
+> +++ b/drivers/clk/meson/g12a.c
+> @@ -157,7 +157,7 @@ static struct clk_regmap g12a_fixed_pll_dco = {
+>  		.frac = {
+>  			.reg_off = HHI_FIX_PLL_CNTL1,
+>  			.shift   = 0,
+> -			.width   = 17,
+> +			.width   = 19,
+>  		},
+>  		.l = {
+>  			.reg_off = HHI_FIX_PLL_CNTL0,
+> @@ -223,6 +223,11 @@ static struct clk_regmap g12a_sys_pll_dco = {
+>  			.shift   = 10,
+>  			.width   = 5,
+>  		},
+> +		.frac = {
+> +			.reg_off = HHI_SYS_PLL_CNTL1,
+> +			.shift   = 0,
+> +			.width   = 19,
+> +		},
+>  		.l = {
+>  			.reg_off = HHI_SYS_PLL_CNTL0,
+>  			.shift   = 31,
+> @@ -1901,7 +1906,7 @@ static struct clk_regmap g12a_hifi_pll_dco = {
+>  		.frac = {
+>  			.reg_off = HHI_HIFI_PLL_CNTL1,
+>  			.shift   = 0,
+> -			.width   = 17,
+> +			.width   = 19,
+>  		},
+>  		.l = {
+>  			.reg_off = HHI_HIFI_PLL_CNTL0,
+
+Thanks for this.
+
+While this is indeed the same topic, this is doing 2 things at once.
+Could you please split this, fixup in one change, adding the missing
+frac in another ?
+
+It is much easier to handle in case something needs to be reverted.
+
+-- 
+Jerome
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
