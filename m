@@ -4,77 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B32D4CA0EFA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Aug 2025 15:30:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15743CA0FF0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Aug 2025 15:30:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NBCNuQ/oYbS7hjXc8pFX4tyZ2is7f6IGShJAN1zKN24=; b=Oj281pR9sP801u
-	MaKeSEm4qbYEuYqPYvJFaGu6msdJCxVCD7FaXSyeFagaxOc/rO2/ulNfq5uN/kGX7citMPJ671zZx
-	IisQG0Sh+Kbw0ZjpacMClZehqTUd2TZKaCArRP6WbNWbCe9iE7+onWaS64xwykZlP1Lmnvbh6Md/p
-	6UzN0yIHmha+3q6/ygGFBVWod2NDF9sz9bVpbs7RyiquCdQw+o8FVgIsG1FBirk9JtkkzvaUVMvkF
-	xCx92T/8qmj1vJNNxDgDp7ldSEQhzAz3SYYNzCEe0tBlT/5f7TBfehgPkr7uTRb8kZwdB1+wIVSpV
-	TTSjvAixL0tQ2kKVyMEw==;
+	List-Owner; bh=nCJjOMO1WbfIfl9YzGVALnQ4mn3LqfsLQCCDCdzvM3I=; b=Jh8MYMkJRTu/2r
+	1GvRM+mnGqqDBtZUyQ1r07Ya/2//HIueWnv0FcSo0FBHz8BPKDQQLQgt450Tp/05OJoAC9rnExRtx
+	C/7FFvaEua3GiA6WrVr7RhYy9oErt6HuUeoDey6noAp8GCP4ns1ZFPAFm1mTYE5GMt9hDScpVlVQz
+	HF5j2jhlgEqL+Qhca5oDkpNWxUcXU3lu4qbm2h26kIPY1mCuOCSUqChE1JLx0gvQkIXcNioajhZTE
+	63qN/jurMn6rwMQ22RP60pFCCr1+PVaSOYfkpNr23jhF7mv+NHEIazr2LvCsWlcgwGQALZAIDEYBg
+	RjQVZzn0qJIu6gDGVnMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqZ9S-00000008WHM-1AZo;
-	Mon, 25 Aug 2025 15:30:30 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1uqZ9Q-00000008WEs-2iUe;
+	Mon, 25 Aug 2025 15:30:28 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqYAG-00000008Flb-38WC
+	id 1uqYAD-00000008Fin-0B2S
 	for linux-amlogic@lists.infradead.org;
-	Mon, 25 Aug 2025 14:27:18 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-45a1b0c52f3so27118145e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 25 Aug 2025 07:27:16 -0700 (PDT)
+	Mon, 25 Aug 2025 14:27:16 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-45b618e067eso5632515e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 25 Aug 2025 07:27:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756132035; x=1756736835; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756132032; x=1756736832; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ztmX1UDMK5rFccXy1oFM7d/s55AHNRDE1K8M0+F4fD8=;
-        b=hTN4kerLLk22K7xfplapcR2byDtcq9BxiiMARdaXGRmk+A+kywwm2qls9MPsnN7y1K
-         8mvvfkRPTI9CyG1G/7MRcT740nO4Y4vM/+Q3BJZWuhGKIBHatfNYpB2kEHgTBms7A8JV
-         qgnZf6mrc3KmB8onMFGcFuo8YxhhDwMm7eNIUpoWC5iL5qItjgq8bb9w4TzDWWPtXbBV
-         AgWb7vXh0sSZITn7ELEruh0Imtxfais4NW1jOCrj+lcGUoNT3h0fxsLfSxYMDuMezBsQ
-         2gSGsMvjJJYtG5N6YTE2/da8ag6SOiilD7qRxVxqdq7ORWliZ9cgsSYNH/rk08TBESfj
-         O/zg==
+        bh=obtHB0H0zF8/AUNa0Qw+GTMgbmBek7VKVmSq18IqlTc=;
+        b=KeXvXy/HcWllN06mq3Mej6qeUqFEEoMp1I7hhnVF83NV+ft7BkMz7fSB4cOYHcYy5E
+         S2h17KpwMfBqGcTB1JTavMtGraJd2PCVDeM3qgul0neWpFI9dchDGia1nyAkokdl947V
+         6VNL6yi+DrzPPAjx9IeSRLDtiecPNIsfdMfxyVTfFqZVLZequHDiPidPh0UYJp9w1ryA
+         Bb0unS1rICKddaUvvHUaKrv1Uj7vKLyvjNuAr3hZ9rJCOvbhQz4RTVIIC9bEEmQ0DGOx
+         iATGbGXQJ6PQJ0u/RHwGFteYKTxcOYrw38+YorVLgwYpo60tS2Ummu1qkg28CmrdrUVw
+         rEIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756132035; x=1756736835;
+        d=1e100.net; s=20230601; t=1756132032; x=1756736832;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ztmX1UDMK5rFccXy1oFM7d/s55AHNRDE1K8M0+F4fD8=;
-        b=Zje7vjnagmoGYHI/q3L+sJVJ6a9+MgTGwc7TB4DN9BEMgX7Qhz0L5eRF+w9FVlROPz
-         jPL8nnB5pWsYiXHb9yFyRnRtJHIIL7L/GJdHzHAOBj8SeZRqLC8ImLg1HfL+XZmEI31P
-         5DrBEWTf6y0qnh9H4OYcqCWK4+WjEOjDe4lNV+wEk0onRQg5v8G92sHkLxfhvv5JaQRM
-         DHEgzisPddS9ycxDi7sJcvJeCyk2u+aKUXIvXtfe/KN7olkK0HMuEKU6A2+5bD94oB1H
-         NVMc70dTbtmqZYpLp+hnMvttP0x0+znILX4s0mePKc0waG4xv8T3ySXwP/vZajWHtXu+
-         E5eg==
-X-Gm-Message-State: AOJu0Yx3lt0E2KU9XHBBUKElk8lMBxBzth6adAgvDFDIP67SnMmurz4e
-	Ku7p9BbfwHu4tCAdVPTMvb279xccY01JphSQebJsa9wBba69UUlaQ7M1Y+Owsl3cT/si49dsW3T
-	VoXn5
-X-Gm-Gg: ASbGncvoDwlOkyvjRf0DD7EjnLpY/vvxe73gAh8b1S149rZTZCu33gESfjePY+WXeJS
-	ScAmHZm8jURD/ybysaOGPcnTYBIcKdV9InNiPCbJSUSx8PJrYx4KrcuUjpzGKHLNm7KIuNQzj5c
-	avU0q2u2UhkoMKQvE7BtnrqwS8moEae45QjXjFjEpdBsr/whs6iRLiWiM/vX9ZJczSgbd1OUbG1
-	4ahP7ovqoWiU6nXfxQDr6tt9aFMxeYtHaD8KSAEvBM6QJfVQz6D5E7iNXNOvVu3N57gxbvuEG4H
-	AzOWwCF1O+81DUiMnXyEenun35L+ak8w4CNcgGpwaPaHhSh90VdUPpcoh3w670Fi/gt/NRWugRu
-	GW2f9jLEqflQx6X3t7kiwJ3gP3uSRMh60WLj7
-X-Google-Smtp-Source: AGHT+IFnC0MUZSq/sl9kL/TcEekI5S6Ch+nzFMuQT2QCGnMv7MVM3STVdYmSZ5zm0xBhJbPzwkXGqQ==
-X-Received: by 2002:a05:6000:238a:b0:3b8:d79a:6a60 with SMTP id ffacd0b85a97d-3c5daa27b08mr9526344f8f.3.1756132034951;
-        Mon, 25 Aug 2025 07:27:14 -0700 (PDT)
+        bh=obtHB0H0zF8/AUNa0Qw+GTMgbmBek7VKVmSq18IqlTc=;
+        b=SHAXcoPjrNSWS1gmTdKP4dK+Vh2/ctR4dCFyBQRAPR3QHfGEif9BYZrpawh1lPZwST
+         /gLsQUhCXFTuVQDuZmGhx9AnzBM49Z+BMVuXlWuTeHG0tzw1j3jxWrDu2Es/uV6EAknz
+         g8TVKqoxIGbdkoaop5f52epKQyjzCafDdIMDqIWlNfvm2OVunvFthcwmWGe/UnAPlD1V
+         rghsKiVcRL8CbtzmTayAZ9EeZC6V/6gm2sRMKrPFnb4j4iNhHeWGy9KBszuxP/s1EjeR
+         d1HzxeTLl1wrnk0qeLd9V4r2+ABRiP/jMos3VjIcLRmgjOYJr2B0bZEIFzbiCnm+YtTo
+         X+Ow==
+X-Gm-Message-State: AOJu0Yz51/58oWvYmNanc70ZRXQxG31zO4QhgbVDpasGWtwTI0B+wdIW
+	X3u07QVTbYIOjrLxMi/pEmsKqPXOODJnLGMC/sPu7NHUGy5jiLu0xl6zzI7oS6+6wc0=
+X-Gm-Gg: ASbGncsKjPDAWTveP13/vbqBocucHc3r7CYSqmIhgXpl+prqkb4cgpRGDRz8ZWRR0aW
+	mXa9VAy1UHJ/UB3uGD133bQM/kPQTythE+X+4SfDvakv9rPwhmJf/bVslZSi6NM8KyI75Jtq32B
+	LnCQ+2YO9Ig/4Qw0xKL1CofkXSr5gSWINYiU83F7XWLGeTNASRWXyfVRZDt41Z+9uNLRsPmZziM
+	CfAiZyPAS/ZH7nuBrYnOH8uGXKpyDHXPXWWaa2FEVpxmmPdSGvaCqbkYqlKauKUrkgyNHHp/rXh
+	ZdHvv3iPsXJkAqg9tTUoJez4BYXQXha0bpFdg5WnZVG+DF2cG8w/vbZe/gAhoC8crFzAZPKIAOr
+	EhEA3xHmes30bJJgx/7avnXOuX6luztJvsgGh
+X-Google-Smtp-Source: AGHT+IFcq3ZXI3i0LHZWpsp/q+i24wDf6XY6QuEKult4QnrTYt+AlspnV3rhphQd1qYlTs82qh5j+Q==
+X-Received: by 2002:adf:f7d2:0:b0:3c5:921a:f440 with SMTP id ffacd0b85a97d-3c5922a3763mr9495467f8f.12.1756132031283;
+        Mon, 25 Aug 2025 07:27:11 -0700 (PDT)
 Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:b261:baab:ed3d:3cb6])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3c70e4b9e1fsm12634462f8f.14.2025.08.25.07.27.14
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3c70e4b9e1fsm12634462f8f.14.2025.08.25.07.27.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Aug 2025 07:27:14 -0700 (PDT)
+        Mon, 25 Aug 2025 07:27:10 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 25 Aug 2025 16:26:37 +0200
-Subject: [PATCH v2 12/12] clk: amlogic: c3-peripherals: use helper for
- basic composite clocks
+Date: Mon, 25 Aug 2025 16:26:32 +0200
+Subject: [PATCH v2 07/12] clk: amlogic: pclk explicitly use
+ CLK_IGNORE_UNUSED
 MIME-Version: 1.0
-Message-Id: <20250825-meson-clk-cleanup-24-v2-12-0f402f01e117@baylibre.com>
+Message-Id: <20250825-meson-clk-cleanup-24-v2-7-0f402f01e117@baylibre.com>
 References: <20250825-meson-clk-cleanup-24-v2-0-0f402f01e117@baylibre.com>
 In-Reply-To: <20250825-meson-clk-cleanup-24-v2-0-0f402f01e117@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -85,25 +84,25 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=32323; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=ps9sLzPPWk2M8ivkTmXUaslXwG8/bmatTRMHNFG1fME=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBorHK4qpXm7JmpvPobuRaQvfv+8Nfs2wLyI4+RD
- dk9RSaqFQCJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaKxyuAAKCRDm/A8cN/La
- hRGoEACDZa/T4n3cZ+Et6j5Ca+v57X1x5SyuJ2iXWhlDxHe0rIZIRSBjD5FqDgNP8mePJIPqeOy
- 2YaS4wC25muwGthDedfsI6xl7XNhwxlCgKZ5h4CPT04FFyzHM3lXJtGqD4dkg07zLCTTfCz8Wdm
- WA7eRVBgKHlhd1ZBzjvkTyy1z1dwcHEegWC2tydllMeTYuLRViF+Tn+VHr8+7h8GwjuqOUNpMz6
- ePO23AlWSuH7g6YssXUqKMLjhuijjzDlY1uZSvr9pxgWRR7YVz7O5FFV6qtSFCRJlEMywEl6DER
- mxWzs/7yug9/r40V4AAOgJm+jdwWkeshUssX6XcEUkYbtLlhB7+CpTUzgY/4jHVh/lZ9dI42aOZ
- Tu1ytx2J34WeRVMO3QcL8QmkXWzJA/AyAB6bRWXYohgCKprY4byIfuQnaWTpaJm2tuiGLLrItRz
- sOj2AS73uipN0gd2VJMelZ81x30d6g2MS8cJF2p883WZ6kCTbrXcAww3rU+ZKlSEg37WtE6Bj7J
- 92osANTpGYvFn49R1taeZOGT++1gKomnKByigaVhRiATOY+7AHatcRtAZb9IUzwt61UKAMEG8Bp
- z72ZPSjjHi28E4/zIJJnCIXF8XwZxn8+rbm5cT9k8XSNSk/8MPlJBhsdazQ6s33okylcFquTCHB
- NnnmDwwLOOG3xWA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=65122; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=X5//jNi74IpHsHYBbOdRVuP6Q8Mvlr1eAL2dNlSaP1Y=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBorHK0qxQE/1xHz8WUZ7io62TpsxvDFsBuEMZju
+ mPz1+/hAh2JAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaKxytAAKCRDm/A8cN/La
+ hcaSEACQNlTYtAvySYcw/eLaxmExXPR4vf97oYZwdL38KdU0P2oaV/NbrdLb3AGSClt3g6dwf/X
+ jCqe9PmpPf+GsF7ifMO7RanyJ/0bwTKkJu8rphg1Jtb3KbGXcovm+x0U0jstR7NXN3Xyv6gMxu4
+ +RbfftkoP1LxQ3/XbRjX2Q40o15kHpqUdAy5R1kHWWDpW9W0tc/ofGGLEGEkf+kMtMY7JuaQX2i
+ sywHhFG81fmWEyRTURdiI71Z8Y/OiACqDBCNdEXezNgnYQH/RNcc9VppbsMvYOx4x4y8m9m89VZ
+ UvCnHvRGy1dWU8/MSFnDJ8s/mA01qBpgW4xV/nRzVVuARbZ2NlR1GaPx7YycgdmEb8Pr3w1FbFR
+ 3cnh5CkUqWYb9fOZ6GuiEITTXdauXDakV3kA28pkHRhB5XUQDm0441psbJY7FnHat19unZ+Gr0z
+ LRVj4e5x7ra74ObTpyLC3qzaVgNZOyTls7La6W7Fj5nt8v07WAFTaqeuClffCDtSdSB4ipMXnmZ
+ qoUKTOxKSlisWJqev2kn+PI3dyQTsLnXqTh5/vOesA88Pfw/xB3a4lkXeA8ZcSV18gf49IRRwY7
+ C37EHrXxSPc2gBQilqCobeSFVapd3R9fgai3QCRCX86ACdlw4+E205rH9pOP8/hA0wkMjtRO4Xg
+ Y1BfULMe9SFFOuw==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250825_072716_875536_EEB2270D 
-X-CRM114-Status: GOOD (  10.61  )
+X-CRM114-CacheID: sfid-20250825_072713_532675_3F36229D 
+X-CRM114-Status: GOOD (  17.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,1168 +119,1199 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use the composite clock helpers to define simple composite clocks of
-the c3-peripherals clock controller.
+Every usage of CLK_IGNORE_UNUSED should be explicitly motivated and
+documented. However, the PCLK macros used by most Amlogic platforms are
+adding that flag systematically. Because of this, all pclks are marked with
+CLK_IGNORE_UNUSED, without any form of distinction or motivation.
 
-This reduces the verbosity of the controller code on these very simple
-parts, making maintenance simpler.
+This may have been fine in the early days of CCF but it is not anymore.
+
+Just removing the flag is not an option at this stage since it could cause
+regression on existing platforms.
+
+Instead, drop the flag from the macro definition and add it to the each
+clock definition, for the existing clocks. This makes quite a nasty change
+but it will make it a lot easier for people to contribute to fixing the
+problem, clock by clock. It will also prevent new platform from being added
+with a silent use of the flag.
 
 Reviewed-by: Chuan Liu <chuan.liu@amlogic.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/c3-peripherals.c | 1029 +++---------------------------------
- 1 file changed, 63 insertions(+), 966 deletions(-)
+ drivers/clk/meson/a1-peripherals.c   | 125 ++++++++++++-----------
+ drivers/clk/meson/axg-aoclk.c        |  18 ++--
+ drivers/clk/meson/axg.c              | 110 ++++++++++----------
+ drivers/clk/meson/g12a-aoclk.c       |  49 ++++-----
+ drivers/clk/meson/g12a.c             | 176 ++++++++++++++++----------------
+ drivers/clk/meson/gxbb-aoclk.c       |  16 +--
+ drivers/clk/meson/gxbb.c             | 188 ++++++++++++++++++-----------------
+ drivers/clk/meson/meson-clkc-utils.h |  12 +--
+ drivers/clk/meson/meson8b.c          | 183 ++++++++++++++++++----------------
+ drivers/clk/meson/s4-peripherals.c   | 119 ++++++++++++----------
+ 10 files changed, 528 insertions(+), 468 deletions(-)
 
-diff --git a/drivers/clk/meson/c3-peripherals.c b/drivers/clk/meson/c3-peripherals.c
-index fd35f9b7994720d069c5f72142d6064790d40b60..b158756cfee4dd4bad5c0c9576da02d2cb8ee515 100644
---- a/drivers/clk/meson/c3-peripherals.c
-+++ b/drivers/clk/meson/c3-peripherals.c
-@@ -467,52 +467,9 @@ static const struct clk_parent_data c3_saradc_parents[] = {
- 	{ .fw_name = "sysclk" }
+diff --git a/drivers/clk/meson/a1-peripherals.c b/drivers/clk/meson/a1-peripherals.c
+index b2feb8fe4775e38a17d8aa9ce9b992b3e1fb2bb8..a7bd3822df18f5e043e58e2d7bbcaa24345ea404 100644
+--- a/drivers/clk/meson/a1-peripherals.c
++++ b/drivers/clk/meson/a1-peripherals.c
+@@ -1840,64 +1840,73 @@ static struct clk_regmap a1_cecb_32k_out = {
+ 	},
  };
  
--static struct clk_regmap c3_saradc_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = SAR_CLK_CTRL0,
--		.mask = 0x1,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "saradc_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_saradc_parents,
--		.num_parents = ARRAY_SIZE(c3_saradc_parents),
--	},
--};
+-#define A1_PCLK(_name, _reg, _bit) \
+-	MESON_PCLK(a1_##_name, _reg, _bit, &a1_sys.hw)
 -
--static struct clk_regmap c3_saradc_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = SAR_CLK_CTRL0,
--		.shift = 0,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "saradc_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_saradc_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
+-static A1_PCLK(clktree,		SYS_CLK_EN0,	0);
+-static A1_PCLK(reset_ctrl,	SYS_CLK_EN0,	1);
+-static A1_PCLK(analog_ctrl,	SYS_CLK_EN0,	2);
+-static A1_PCLK(pwr_ctrl,	SYS_CLK_EN0,	3);
+-static A1_PCLK(pad_ctrl,	SYS_CLK_EN0,	4);
+-static A1_PCLK(sys_ctrl,	SYS_CLK_EN0,	5);
+-static A1_PCLK(temp_sensor,	SYS_CLK_EN0,	6);
+-static A1_PCLK(am2axi_dev,	SYS_CLK_EN0,	7);
+-static A1_PCLK(spicc_b,		SYS_CLK_EN0,	8);
+-static A1_PCLK(spicc_a,		SYS_CLK_EN0,	9);
+-static A1_PCLK(msr,		SYS_CLK_EN0,	10);
+-static A1_PCLK(audio,		SYS_CLK_EN0,	11);
+-static A1_PCLK(jtag_ctrl,	SYS_CLK_EN0,	12);
+-static A1_PCLK(saradc_en,	SYS_CLK_EN0,	13);
+-static A1_PCLK(pwm_ef,		SYS_CLK_EN0,	14);
+-static A1_PCLK(pwm_cd,		SYS_CLK_EN0,	15);
+-static A1_PCLK(pwm_ab,		SYS_CLK_EN0,	16);
+-static A1_PCLK(cec,		SYS_CLK_EN0,	17);
+-static A1_PCLK(i2c_s,		SYS_CLK_EN0,	18);
+-static A1_PCLK(ir_ctrl,		SYS_CLK_EN0,	19);
+-static A1_PCLK(i2c_m_d,		SYS_CLK_EN0,	20);
+-static A1_PCLK(i2c_m_c,		SYS_CLK_EN0,	21);
+-static A1_PCLK(i2c_m_b,		SYS_CLK_EN0,	22);
+-static A1_PCLK(i2c_m_a,		SYS_CLK_EN0,	23);
+-static A1_PCLK(acodec,		SYS_CLK_EN0,	24);
+-static A1_PCLK(otp,		SYS_CLK_EN0,	25);
+-static A1_PCLK(sd_emmc_a,	SYS_CLK_EN0,	26);
+-static A1_PCLK(usb_phy,		SYS_CLK_EN0,	27);
+-static A1_PCLK(usb_ctrl,	SYS_CLK_EN0,	28);
+-static A1_PCLK(sys_dspb,	SYS_CLK_EN0,	29);
+-static A1_PCLK(sys_dspa,	SYS_CLK_EN0,	30);
+-static A1_PCLK(dma,		SYS_CLK_EN0,	31);
 -
--static struct clk_regmap c3_saradc = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = SAR_CLK_CTRL0,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "saradc",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_saradc_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(saradc, SAR_CLK_CTRL0, 9, 0x1, c3_saradc_parents);
-+static C3_COMP_DIV(saradc, SAR_CLK_CTRL0, 0, 8);
-+static C3_COMP_GATE(saradc, SAR_CLK_CTRL0, 8);
+-static A1_PCLK(irq_ctrl,	SYS_CLK_EN1,	0);
+-static A1_PCLK(nic,		SYS_CLK_EN1,	1);
+-static A1_PCLK(gic,		SYS_CLK_EN1,	2);
+-static A1_PCLK(uart_c,		SYS_CLK_EN1,	3);
+-static A1_PCLK(uart_b,		SYS_CLK_EN1,	4);
+-static A1_PCLK(uart_a,		SYS_CLK_EN1,	5);
+-static A1_PCLK(sys_psram,	SYS_CLK_EN1,	6);
+-static A1_PCLK(rsa,		SYS_CLK_EN1,	8);
+-static A1_PCLK(coresight,	SYS_CLK_EN1,	9);
+-
+-static A1_PCLK(am2axi_vad,	AXI_CLK_EN,	0);
+-static A1_PCLK(audio_vad,	AXI_CLK_EN,	1);
+-static A1_PCLK(axi_dmc,		AXI_CLK_EN,	3);
+-static A1_PCLK(axi_psram,	AXI_CLK_EN,	4);
+-static A1_PCLK(ramb,		AXI_CLK_EN,	5);
+-static A1_PCLK(rama,		AXI_CLK_EN,	6);
+-static A1_PCLK(axi_spifc,	AXI_CLK_EN,	7);
+-static A1_PCLK(axi_nic,		AXI_CLK_EN,	8);
+-static A1_PCLK(axi_dma,		AXI_CLK_EN,	9);
+-static A1_PCLK(cpu_ctrl,	AXI_CLK_EN,	10);
+-static A1_PCLK(rom,		AXI_CLK_EN,	11);
+-static A1_PCLK(prod_i2c,	AXI_CLK_EN,	12);
++#define A1_PCLK(_name, _reg, _bit, _flags) \
++	MESON_PCLK(a1_##_name, _reg, _bit, &a1_sys.hw, _flags)
++
++/*
++ * NOTE: The gates below are marked with CLK_IGNORE_UNUSED for historic reasons
++ * Users are encouraged to test without it and submit changes to:
++ *  - remove the flag if not necessary
++ *  - replace the flag with something more adequate, such as CLK_IS_CRITICAL,
++ *    if appropriate.
++ *  - add a comment explaining why the use of CLK_IGNORE_UNUSED is desirable
++ *    for a particular clock.
++ */
++static A1_PCLK(clktree,		SYS_CLK_EN0,	 0, CLK_IGNORE_UNUSED);
++static A1_PCLK(reset_ctrl,	SYS_CLK_EN0,	 1, CLK_IGNORE_UNUSED);
++static A1_PCLK(analog_ctrl,	SYS_CLK_EN0,	 2, CLK_IGNORE_UNUSED);
++static A1_PCLK(pwr_ctrl,	SYS_CLK_EN0,	 3, CLK_IGNORE_UNUSED);
++static A1_PCLK(pad_ctrl,	SYS_CLK_EN0,	 4, CLK_IGNORE_UNUSED);
++static A1_PCLK(sys_ctrl,	SYS_CLK_EN0,	 5, CLK_IGNORE_UNUSED);
++static A1_PCLK(temp_sensor,	SYS_CLK_EN0,	 6, CLK_IGNORE_UNUSED);
++static A1_PCLK(am2axi_dev,	SYS_CLK_EN0,	 7, CLK_IGNORE_UNUSED);
++static A1_PCLK(spicc_b,		SYS_CLK_EN0,	 8, CLK_IGNORE_UNUSED);
++static A1_PCLK(spicc_a,		SYS_CLK_EN0,	 9, CLK_IGNORE_UNUSED);
++static A1_PCLK(msr,		SYS_CLK_EN0,	10, CLK_IGNORE_UNUSED);
++static A1_PCLK(audio,		SYS_CLK_EN0,	11, CLK_IGNORE_UNUSED);
++static A1_PCLK(jtag_ctrl,	SYS_CLK_EN0,	12, CLK_IGNORE_UNUSED);
++static A1_PCLK(saradc_en,	SYS_CLK_EN0,	13, CLK_IGNORE_UNUSED);
++static A1_PCLK(pwm_ef,		SYS_CLK_EN0,	14, CLK_IGNORE_UNUSED);
++static A1_PCLK(pwm_cd,		SYS_CLK_EN0,	15, CLK_IGNORE_UNUSED);
++static A1_PCLK(pwm_ab,		SYS_CLK_EN0,	16, CLK_IGNORE_UNUSED);
++static A1_PCLK(cec,		SYS_CLK_EN0,	17, CLK_IGNORE_UNUSED);
++static A1_PCLK(i2c_s,		SYS_CLK_EN0,	18, CLK_IGNORE_UNUSED);
++static A1_PCLK(ir_ctrl,		SYS_CLK_EN0,	19, CLK_IGNORE_UNUSED);
++static A1_PCLK(i2c_m_d,		SYS_CLK_EN0,	20, CLK_IGNORE_UNUSED);
++static A1_PCLK(i2c_m_c,		SYS_CLK_EN0,	21, CLK_IGNORE_UNUSED);
++static A1_PCLK(i2c_m_b,		SYS_CLK_EN0,	22, CLK_IGNORE_UNUSED);
++static A1_PCLK(i2c_m_a,		SYS_CLK_EN0,	23, CLK_IGNORE_UNUSED);
++static A1_PCLK(acodec,		SYS_CLK_EN0,	24, CLK_IGNORE_UNUSED);
++static A1_PCLK(otp,		SYS_CLK_EN0,	25, CLK_IGNORE_UNUSED);
++static A1_PCLK(sd_emmc_a,	SYS_CLK_EN0,	26, CLK_IGNORE_UNUSED);
++static A1_PCLK(usb_phy,		SYS_CLK_EN0,	27, CLK_IGNORE_UNUSED);
++static A1_PCLK(usb_ctrl,	SYS_CLK_EN0,	28, CLK_IGNORE_UNUSED);
++static A1_PCLK(sys_dspb,	SYS_CLK_EN0,	29, CLK_IGNORE_UNUSED);
++static A1_PCLK(sys_dspa,	SYS_CLK_EN0,	30, CLK_IGNORE_UNUSED);
++static A1_PCLK(dma,		SYS_CLK_EN0,	31, CLK_IGNORE_UNUSED);
++
++static A1_PCLK(irq_ctrl,	SYS_CLK_EN1,	 0, CLK_IGNORE_UNUSED);
++static A1_PCLK(nic,		SYS_CLK_EN1,	 1, CLK_IGNORE_UNUSED);
++static A1_PCLK(gic,		SYS_CLK_EN1,	 2, CLK_IGNORE_UNUSED);
++static A1_PCLK(uart_c,		SYS_CLK_EN1,	 3, CLK_IGNORE_UNUSED);
++static A1_PCLK(uart_b,		SYS_CLK_EN1,	 4, CLK_IGNORE_UNUSED);
++static A1_PCLK(uart_a,		SYS_CLK_EN1,	 5, CLK_IGNORE_UNUSED);
++static A1_PCLK(sys_psram,	SYS_CLK_EN1,	 6, CLK_IGNORE_UNUSED);
++static A1_PCLK(rsa,		SYS_CLK_EN1,	 8, CLK_IGNORE_UNUSED);
++static A1_PCLK(coresight,	SYS_CLK_EN1,	 9, CLK_IGNORE_UNUSED);
++
++static A1_PCLK(am2axi_vad,	AXI_CLK_EN,	 0, CLK_IGNORE_UNUSED);
++static A1_PCLK(audio_vad,	AXI_CLK_EN,	 1, CLK_IGNORE_UNUSED);
++static A1_PCLK(axi_dmc,		AXI_CLK_EN,	 3, CLK_IGNORE_UNUSED);
++static A1_PCLK(axi_psram,	AXI_CLK_EN,	 4, CLK_IGNORE_UNUSED);
++static A1_PCLK(ramb,		AXI_CLK_EN,	 5, CLK_IGNORE_UNUSED);
++static A1_PCLK(rama,		AXI_CLK_EN,	 6, CLK_IGNORE_UNUSED);
++static A1_PCLK(axi_spifc,	AXI_CLK_EN,	 7, CLK_IGNORE_UNUSED);
++static A1_PCLK(axi_nic,		AXI_CLK_EN,	 8, CLK_IGNORE_UNUSED);
++static A1_PCLK(axi_dma,		AXI_CLK_EN,	 9, CLK_IGNORE_UNUSED);
++static A1_PCLK(cpu_ctrl,	AXI_CLK_EN,	10, CLK_IGNORE_UNUSED);
++static A1_PCLK(rom,		AXI_CLK_EN,	11, CLK_IGNORE_UNUSED);
++static A1_PCLK(prod_i2c,	AXI_CLK_EN,	12, CLK_IGNORE_UNUSED);
  
- static const struct clk_parent_data c3_pwm_parents[] = {
- 	{ .fw_name = "oscin" },
-@@ -588,99 +545,13 @@ static const struct clk_parent_data c3_spicc_parents[] = {
- 	{ .fw_name = "gp1" }
+ /* Array of all clocks registered by this provider */
+ static struct clk_hw *a1_peripherals_hw_clks[] = {
+diff --git a/drivers/clk/meson/axg-aoclk.c b/drivers/clk/meson/axg-aoclk.c
+index efc33fd18c197df233d537e5f8244a376d4d0924..74c2f51424f11cc04a80a3a4918e4de0a5d11d08 100644
+--- a/drivers/clk/meson/axg-aoclk.c
++++ b/drivers/clk/meson/axg-aoclk.c
+@@ -34,7 +34,7 @@
+ #define AO_RTC_ALT_CLK_CNTL0	0x94
+ #define AO_RTC_ALT_CLK_CNTL1	0x98
+ 
+-#define AXG_AO_GATE(_name, _bit)					\
++#define AXG_AO_GATE(_name, _bit, _flags)				\
+ static struct clk_regmap axg_ao_##_name = {				\
+ 	.data = &(struct clk_regmap_gate_data) {			\
+ 		.offset = (AO_RTI_GEN_CNTL_REG0),			\
+@@ -47,17 +47,17 @@ static struct clk_regmap axg_ao_##_name = {				\
+ 			.fw_name = "mpeg-clk",				\
+ 		},							\
+ 		.num_parents = 1,					\
+-		.flags = CLK_IGNORE_UNUSED,				\
++		.flags = (_flags),					\
+ 	},								\
+ }
+ 
+-AXG_AO_GATE(remote, 0);
+-AXG_AO_GATE(i2c_master, 1);
+-AXG_AO_GATE(i2c_slave, 2);
+-AXG_AO_GATE(uart1, 3);
+-AXG_AO_GATE(uart2, 5);
+-AXG_AO_GATE(ir_blaster, 6);
+-AXG_AO_GATE(saradc, 7);
++AXG_AO_GATE(remote,	0, CLK_IGNORE_UNUSED);
++AXG_AO_GATE(i2c_master,	1, CLK_IGNORE_UNUSED);
++AXG_AO_GATE(i2c_slave,	2, CLK_IGNORE_UNUSED);
++AXG_AO_GATE(uart1,	3, CLK_IGNORE_UNUSED);
++AXG_AO_GATE(uart2,	5, CLK_IGNORE_UNUSED);
++AXG_AO_GATE(ir_blaster,	6, CLK_IGNORE_UNUSED);
++AXG_AO_GATE(saradc,	7, CLK_IGNORE_UNUSED);
+ 
+ static struct clk_regmap axg_ao_cts_oscin = {
+ 	.data = &(struct clk_regmap_gate_data){
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index 021bc7658f7f49911835abd22badac3eba64a10c..fd9a7a362a1be1d8a584f855f454daa354ae2ade 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -1915,59 +1915,69 @@ static struct clk_regmap axg_gen_clk = {
+ 	},
  };
  
--static struct clk_regmap c3_spicc_a_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = SPICC_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "spicc_a_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_spicc_parents,
--		.num_parents = ARRAY_SIZE(c3_spicc_parents),
--	},
--};
+-#define AXG_PCLK(_name, _reg, _bit) \
+-	MESON_PCLK(axg_##_name, _reg, _bit, &axg_clk81.hw)
 -
--static struct clk_regmap c3_spicc_a_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = SPICC_CLK_CTRL,
--		.shift = 0,
--		.width = 6,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "spicc_a_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_spicc_a_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
+-/* Everything Else (EE) domain gates */
+-static AXG_PCLK(ddr,			HHI_GCLK_MPEG0,  0);
+-static AXG_PCLK(audio_locker,		HHI_GCLK_MPEG0,  2);
+-static AXG_PCLK(mipi_dsi_host,		HHI_GCLK_MPEG0,  3);
+-static AXG_PCLK(isa,			HHI_GCLK_MPEG0,  5);
+-static AXG_PCLK(pl301,			HHI_GCLK_MPEG0,  6);
+-static AXG_PCLK(periphs,		HHI_GCLK_MPEG0,  7);
+-static AXG_PCLK(spicc_0,		HHI_GCLK_MPEG0,  8);
+-static AXG_PCLK(i2c,			HHI_GCLK_MPEG0,  9);
+-static AXG_PCLK(rng0,			HHI_GCLK_MPEG0, 12);
+-static AXG_PCLK(uart0,			HHI_GCLK_MPEG0, 13);
+-static AXG_PCLK(mipi_dsi_phy,		HHI_GCLK_MPEG0, 14);
+-static AXG_PCLK(spicc_1,		HHI_GCLK_MPEG0, 15);
+-static AXG_PCLK(pcie_a,			HHI_GCLK_MPEG0, 16);
+-static AXG_PCLK(pcie_b,			HHI_GCLK_MPEG0, 17);
+-static AXG_PCLK(hiu_reg,		HHI_GCLK_MPEG0, 19);
+-static AXG_PCLK(assist_misc,		HHI_GCLK_MPEG0, 23);
+-static AXG_PCLK(emmc_b,			HHI_GCLK_MPEG0, 25);
+-static AXG_PCLK(emmc_c,			HHI_GCLK_MPEG0, 26);
+-static AXG_PCLK(dma,			HHI_GCLK_MPEG0, 27);
+-static AXG_PCLK(spi,			HHI_GCLK_MPEG0, 30);
 -
--static struct clk_regmap c3_spicc_a = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = SPICC_CLK_CTRL,
--		.bit_idx = 6,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "spicc_a",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_spicc_a_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
+-static AXG_PCLK(audio,			HHI_GCLK_MPEG1,  0);
+-static AXG_PCLK(eth_core,		HHI_GCLK_MPEG1,  3);
+-static AXG_PCLK(uart1,			HHI_GCLK_MPEG1, 16);
+-static AXG_PCLK(g2d,			HHI_GCLK_MPEG1, 20);
+-static AXG_PCLK(usb0,			HHI_GCLK_MPEG1, 21);
+-static AXG_PCLK(usb1,			HHI_GCLK_MPEG1, 22);
+-static AXG_PCLK(reset,			HHI_GCLK_MPEG1, 23);
+-static AXG_PCLK(usb_general,		HHI_GCLK_MPEG1, 26);
+-static AXG_PCLK(ahb_arb0,		HHI_GCLK_MPEG1, 29);
+-static AXG_PCLK(efuse,			HHI_GCLK_MPEG1, 30);
+-static AXG_PCLK(boot_rom,		HHI_GCLK_MPEG1, 31);
 -
--static struct clk_regmap c3_spicc_b_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = SPICC_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 23,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "spicc_b_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_spicc_parents,
--		.num_parents = ARRAY_SIZE(c3_spicc_parents),
--	},
--};
--
--static struct clk_regmap c3_spicc_b_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = SPICC_CLK_CTRL,
--		.shift = 16,
--		.width = 6,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "spicc_b_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_spicc_b_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(spicc_a, SPICC_CLK_CTRL, 7, 0x7, c3_spicc_parents);
-+static C3_COMP_DIV(spicc_a, SPICC_CLK_CTRL, 0, 6);
-+static C3_COMP_GATE(spicc_a, SPICC_CLK_CTRL,  6);
+-static AXG_PCLK(ahb_data_bus,		HHI_GCLK_MPEG2,  1);
+-static AXG_PCLK(ahb_ctrl_bus,		HHI_GCLK_MPEG2,  2);
+-static AXG_PCLK(usb1_to_ddr,		HHI_GCLK_MPEG2,  8);
+-static AXG_PCLK(usb0_to_ddr,		HHI_GCLK_MPEG2,  9);
+-static AXG_PCLK(mmc_pclk,		HHI_GCLK_MPEG2, 11);
+-static AXG_PCLK(vpu_intr,		HHI_GCLK_MPEG2, 25);
+-static AXG_PCLK(sec_ahb_ahb3_bridge,	HHI_GCLK_MPEG2, 26);
+-static AXG_PCLK(gic,			HHI_GCLK_MPEG2, 30);
++#define AXG_PCLK(_name, _reg, _bit, _flags) \
++	MESON_PCLK(axg_##_name, _reg, _bit, &axg_clk81.hw, _flags)
++
++/*
++ * Everything Else (EE) domain gates
++ *
++ * NOTE: The gates below are marked with CLK_IGNORE_UNUSED for historic reasons
++ * Users are encouraged to test without it and submit changes to:
++ *  - remove the flag if not necessary
++ *  - replace the flag with something more adequate, such as CLK_IS_CRITICAL,
++ *    if appropriate.
++ *  - add a comment explaining why the use of CLK_IGNORE_UNUSED is desirable
++ *    for a particular clock.
++ */
++static AXG_PCLK(ddr,			HHI_GCLK_MPEG0,  0, CLK_IGNORE_UNUSED);
++static AXG_PCLK(audio_locker,		HHI_GCLK_MPEG0,  2, CLK_IGNORE_UNUSED);
++static AXG_PCLK(mipi_dsi_host,		HHI_GCLK_MPEG0,  3, CLK_IGNORE_UNUSED);
++static AXG_PCLK(isa,			HHI_GCLK_MPEG0,  5, CLK_IGNORE_UNUSED);
++static AXG_PCLK(pl301,			HHI_GCLK_MPEG0,  6, CLK_IGNORE_UNUSED);
++static AXG_PCLK(periphs,		HHI_GCLK_MPEG0,  7, CLK_IGNORE_UNUSED);
++static AXG_PCLK(spicc_0,		HHI_GCLK_MPEG0,  8, CLK_IGNORE_UNUSED);
++static AXG_PCLK(i2c,			HHI_GCLK_MPEG0,  9, CLK_IGNORE_UNUSED);
++static AXG_PCLK(rng0,			HHI_GCLK_MPEG0, 12, CLK_IGNORE_UNUSED);
++static AXG_PCLK(uart0,			HHI_GCLK_MPEG0, 13, CLK_IGNORE_UNUSED);
++static AXG_PCLK(mipi_dsi_phy,		HHI_GCLK_MPEG0, 14, CLK_IGNORE_UNUSED);
++static AXG_PCLK(spicc_1,		HHI_GCLK_MPEG0, 15, CLK_IGNORE_UNUSED);
++static AXG_PCLK(pcie_a,			HHI_GCLK_MPEG0, 16, CLK_IGNORE_UNUSED);
++static AXG_PCLK(pcie_b,			HHI_GCLK_MPEG0, 17, CLK_IGNORE_UNUSED);
++static AXG_PCLK(hiu_reg,		HHI_GCLK_MPEG0, 19, CLK_IGNORE_UNUSED);
++static AXG_PCLK(assist_misc,		HHI_GCLK_MPEG0, 23, CLK_IGNORE_UNUSED);
++static AXG_PCLK(emmc_b,			HHI_GCLK_MPEG0, 25, CLK_IGNORE_UNUSED);
++static AXG_PCLK(emmc_c,			HHI_GCLK_MPEG0, 26, CLK_IGNORE_UNUSED);
++static AXG_PCLK(dma,			HHI_GCLK_MPEG0, 27, CLK_IGNORE_UNUSED);
++static AXG_PCLK(spi,			HHI_GCLK_MPEG0, 30, CLK_IGNORE_UNUSED);
++
++static AXG_PCLK(audio,			HHI_GCLK_MPEG1,  0, CLK_IGNORE_UNUSED);
++static AXG_PCLK(eth_core,		HHI_GCLK_MPEG1,  3, CLK_IGNORE_UNUSED);
++static AXG_PCLK(uart1,			HHI_GCLK_MPEG1, 16, CLK_IGNORE_UNUSED);
++static AXG_PCLK(g2d,			HHI_GCLK_MPEG1, 20, CLK_IGNORE_UNUSED);
++static AXG_PCLK(usb0,			HHI_GCLK_MPEG1, 21, CLK_IGNORE_UNUSED);
++static AXG_PCLK(usb1,			HHI_GCLK_MPEG1, 22, CLK_IGNORE_UNUSED);
++static AXG_PCLK(reset,			HHI_GCLK_MPEG1, 23, CLK_IGNORE_UNUSED);
++static AXG_PCLK(usb_general,		HHI_GCLK_MPEG1, 26, CLK_IGNORE_UNUSED);
++static AXG_PCLK(ahb_arb0,		HHI_GCLK_MPEG1, 29, CLK_IGNORE_UNUSED);
++static AXG_PCLK(efuse,			HHI_GCLK_MPEG1, 30, CLK_IGNORE_UNUSED);
++static AXG_PCLK(boot_rom,		HHI_GCLK_MPEG1, 31, CLK_IGNORE_UNUSED);
++
++static AXG_PCLK(ahb_data_bus,		HHI_GCLK_MPEG2,  1, CLK_IGNORE_UNUSED);
++static AXG_PCLK(ahb_ctrl_bus,		HHI_GCLK_MPEG2,  2, CLK_IGNORE_UNUSED);
++static AXG_PCLK(usb1_to_ddr,		HHI_GCLK_MPEG2,  8, CLK_IGNORE_UNUSED);
++static AXG_PCLK(usb0_to_ddr,		HHI_GCLK_MPEG2,  9, CLK_IGNORE_UNUSED);
++static AXG_PCLK(mmc_pclk,		HHI_GCLK_MPEG2, 11, CLK_IGNORE_UNUSED);
++static AXG_PCLK(vpu_intr,		HHI_GCLK_MPEG2, 25, CLK_IGNORE_UNUSED);
++static AXG_PCLK(sec_ahb_ahb3_bridge,	HHI_GCLK_MPEG2, 26, CLK_IGNORE_UNUSED);
++static AXG_PCLK(gic,			HHI_GCLK_MPEG2, 30, CLK_IGNORE_UNUSED);
  
--static struct clk_regmap c3_spicc_b = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = SPICC_CLK_CTRL,
--		.bit_idx = 22,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "spicc_b",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_spicc_b_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(spicc_b, SPICC_CLK_CTRL, 23, 0x7, c3_spicc_parents);
-+static C3_COMP_DIV(spicc_b, SPICC_CLK_CTRL, 16, 6);
-+static C3_COMP_GATE(spicc_b, SPICC_CLK_CTRL, 22);
+ /* Always On (AO) domain gates */
  
- static const struct clk_parent_data c3_spifc_parents[] = {
- 	{ .fw_name = "gp0" },
-@@ -693,52 +564,9 @@ static const struct clk_parent_data c3_spifc_parents[] = {
- 	{ .fw_name = "fdiv7" }
+-static AXG_PCLK(ao_media_cpu,		HHI_GCLK_AO, 0);
+-static AXG_PCLK(ao_ahb_sram,		HHI_GCLK_AO, 1);
+-static AXG_PCLK(ao_ahb_bus,		HHI_GCLK_AO, 2);
+-static AXG_PCLK(ao_iface,		HHI_GCLK_AO, 3);
+-static AXG_PCLK(ao_i2c,			HHI_GCLK_AO, 4);
++static AXG_PCLK(ao_media_cpu,		HHI_GCLK_AO, 0, CLK_IGNORE_UNUSED);
++static AXG_PCLK(ao_ahb_sram,		HHI_GCLK_AO, 1, CLK_IGNORE_UNUSED);
++static AXG_PCLK(ao_ahb_bus,		HHI_GCLK_AO, 2, CLK_IGNORE_UNUSED);
++static AXG_PCLK(ao_iface,		HHI_GCLK_AO, 3, CLK_IGNORE_UNUSED);
++static AXG_PCLK(ao_i2c,			HHI_GCLK_AO, 4, CLK_IGNORE_UNUSED);
+ 
+ /* Array of all clocks provided by this provider */
+ 
+diff --git a/drivers/clk/meson/g12a-aoclk.c b/drivers/clk/meson/g12a-aoclk.c
+index 872a7b800bb86bdf1ead56c3eec7e47f30637dbd..45e4df393feb6f916b6e035ad71e379e6e30ee99 100644
+--- a/drivers/clk/meson/g12a-aoclk.c
++++ b/drivers/clk/meson/g12a-aoclk.c
+@@ -37,13 +37,7 @@
+ #define AO_RTC_ALT_CLK_CNTL0	0x94
+ #define AO_RTC_ALT_CLK_CNTL1	0x98
+ 
+-/*
+- * Like every other peripheral clock gate in Amlogic Clock drivers,
+- * we are using CLK_IGNORE_UNUSED here, so we keep the state of the
+- * bootloader. The goal is to remove this flag at some point.
+- * Actually removing it will require some extensive test to be done safely.
+- */
+-#define G12A_AO_PCLK(_name, _reg, _bit)					\
++#define G12A_AO_PCLK(_name, _reg, _bit, _flags)				\
+ static struct clk_regmap g12a_ao_##_name = {				\
+ 	.data = &(struct clk_regmap_gate_data) {			\
+ 		.offset = (_reg),					\
+@@ -56,26 +50,35 @@ static struct clk_regmap g12a_ao_##_name = {				\
+ 			.fw_name = "mpeg-clk",				\
+ 		},							\
+ 		.num_parents = 1,					\
+-		.flags = CLK_IGNORE_UNUSED,				\
++		.flags = (_flags),					\
+ 	},								\
+ }
+ 
+-G12A_AO_PCLK(ahb,	AO_CLK_GATE0,    0);
+-G12A_AO_PCLK(ir_in,	AO_CLK_GATE0,    1);
+-G12A_AO_PCLK(i2c_m0,	AO_CLK_GATE0,    2);
+-G12A_AO_PCLK(i2c_s0,	AO_CLK_GATE0,    3);
+-G12A_AO_PCLK(uart,	AO_CLK_GATE0,    4);
+-G12A_AO_PCLK(prod_i2c,	AO_CLK_GATE0,    5);
+-G12A_AO_PCLK(uart2,	AO_CLK_GATE0,    6);
+-G12A_AO_PCLK(ir_out,	AO_CLK_GATE0,    7);
+-G12A_AO_PCLK(saradc,	AO_CLK_GATE0,    8);
++/*
++ * NOTE: The gates below are marked with CLK_IGNORE_UNUSED for historic reasons
++ * Users are encouraged to test without it and submit changes to:
++ *  - remove the flag if not necessary
++ *  - replace the flag with something more adequate, such as CLK_IS_CRITICAL,
++ *    if appropriate.
++ *  - add a comment explaining why the use of CLK_IGNORE_UNUSED is desirable
++ *    for a particular clock.
++ */
++G12A_AO_PCLK(ahb,	AO_CLK_GATE0,    0, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(ir_in,	AO_CLK_GATE0,    1, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(i2c_m0,	AO_CLK_GATE0,    2, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(i2c_s0,	AO_CLK_GATE0,    3, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(uart,	AO_CLK_GATE0,    4, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(prod_i2c,	AO_CLK_GATE0,    5, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(uart2,	AO_CLK_GATE0,    6, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(ir_out,	AO_CLK_GATE0,    7, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(saradc,	AO_CLK_GATE0,    8, CLK_IGNORE_UNUSED);
+ 
+-G12A_AO_PCLK(mailbox,	AO_CLK_GATE0_SP, 0);
+-G12A_AO_PCLK(m3,	AO_CLK_GATE0_SP, 1);
+-G12A_AO_PCLK(ahb_sram,	AO_CLK_GATE0_SP, 2);
+-G12A_AO_PCLK(rti,	AO_CLK_GATE0_SP, 3);
+-G12A_AO_PCLK(m4_fclk,	AO_CLK_GATE0_SP, 4);
+-G12A_AO_PCLK(m4_hclk,	AO_CLK_GATE0_SP, 5);
++G12A_AO_PCLK(mailbox,	AO_CLK_GATE0_SP, 0, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(m3,	AO_CLK_GATE0_SP, 1, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(ahb_sram,	AO_CLK_GATE0_SP, 2, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(rti,	AO_CLK_GATE0_SP, 3, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(m4_fclk,	AO_CLK_GATE0_SP, 4, CLK_IGNORE_UNUSED);
++G12A_AO_PCLK(m4_hclk,	AO_CLK_GATE0_SP, 5, CLK_IGNORE_UNUSED);
+ 
+ static struct clk_regmap g12a_ao_cts_oscin = {
+ 	.data = &(struct clk_regmap_gate_data){
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index c06a4b678b277e8789a33328e25f0c615b3f1b9d..bfa8815647aee9f8c0b373a36b8b9ae5380c759e 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -4384,89 +4384,99 @@ static struct clk_regmap sm1_nna_core_clk = {
+ 	},
  };
  
--static struct clk_regmap c3_spifc_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = SPIFC_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "spifc_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_spifc_parents,
--		.num_parents = ARRAY_SIZE(c3_spifc_parents),
--	},
--};
+-#define G12A_PCLK(_name, _reg, _bit) \
+-	MESON_PCLK(_name, _reg, _bit, &g12a_clk81.hw)
 -
--static struct clk_regmap c3_spifc_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = SPIFC_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "spifc_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_spifc_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
+-#define G12A_PCLK_RO(_name, _reg, _bit) \
+-	MESON_PCLK_RO(_name, _reg, _bit, &g12a_clk81.hw)
 -
--static struct clk_regmap c3_spifc = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = SPIFC_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "spifc",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_spifc_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(spifc, SPIFC_CLK_CTRL, 9, 0x7, c3_spifc_parents);
-+static C3_COMP_DIV(spifc, SPIFC_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(spifc, SPIFC_CLK_CTRL,  8);
+-/* Everything Else (EE) domain gates */
+-static G12A_PCLK(g12a_ddr,			HHI_GCLK_MPEG0,	0);
+-static G12A_PCLK(g12a_dos,			HHI_GCLK_MPEG0,	1);
+-static G12A_PCLK(g12a_audio_locker,		HHI_GCLK_MPEG0,	2);
+-static G12A_PCLK(g12a_mipi_dsi_host,		HHI_GCLK_MPEG0,	3);
+-static G12A_PCLK(g12a_eth_phy,			HHI_GCLK_MPEG0,	4);
+-static G12A_PCLK(g12a_isa,			HHI_GCLK_MPEG0,	5);
+-static G12A_PCLK(g12a_pl301,			HHI_GCLK_MPEG0,	6);
+-static G12A_PCLK(g12a_periphs,			HHI_GCLK_MPEG0,	7);
+-static G12A_PCLK(g12a_spicc_0,			HHI_GCLK_MPEG0,	8);
+-static G12A_PCLK(g12a_i2c,			HHI_GCLK_MPEG0,	9);
+-static G12A_PCLK(g12a_sana,			HHI_GCLK_MPEG0,	10);
+-static G12A_PCLK(g12a_sd,			HHI_GCLK_MPEG0,	11);
+-static G12A_PCLK(g12a_rng0,			HHI_GCLK_MPEG0,	12);
+-static G12A_PCLK(g12a_uart0,			HHI_GCLK_MPEG0,	13);
+-static G12A_PCLK(g12a_spicc_1,			HHI_GCLK_MPEG0,	14);
+-static G12A_PCLK(g12a_hiu_reg,			HHI_GCLK_MPEG0,	19);
+-static G12A_PCLK(g12a_mipi_dsi_phy,		HHI_GCLK_MPEG0,	20);
+-static G12A_PCLK(g12a_assist_misc,		HHI_GCLK_MPEG0,	23);
+-static G12A_PCLK(g12a_emmc_a,			HHI_GCLK_MPEG0,	24);
+-static G12A_PCLK(g12a_emmc_b,			HHI_GCLK_MPEG0,	25);
+-static G12A_PCLK(g12a_emmc_c,			HHI_GCLK_MPEG0,	26);
+-static G12A_PCLK(g12a_audio_codec,		HHI_GCLK_MPEG0,	28);
+-
+-static G12A_PCLK(g12a_audio,			HHI_GCLK_MPEG1,	0);
+-static G12A_PCLK(g12a_eth_core,			HHI_GCLK_MPEG1,	3);
+-static G12A_PCLK(g12a_demux,			HHI_GCLK_MPEG1,	4);
+-static G12A_PCLK(g12a_audio_ififo,		HHI_GCLK_MPEG1,	11);
+-static G12A_PCLK(g12a_adc,			HHI_GCLK_MPEG1,	13);
+-static G12A_PCLK(g12a_uart1,			HHI_GCLK_MPEG1,	16);
+-static G12A_PCLK(g12a_g2d,			HHI_GCLK_MPEG1,	20);
+-static G12A_PCLK(g12a_reset,			HHI_GCLK_MPEG1,	23);
+-static G12A_PCLK(g12a_pcie_comb,		HHI_GCLK_MPEG1,	24);
+-static G12A_PCLK(g12a_parser,			HHI_GCLK_MPEG1,	25);
+-static G12A_PCLK(g12a_usb_general,		HHI_GCLK_MPEG1,	26);
+-static G12A_PCLK(g12a_pcie_phy,			HHI_GCLK_MPEG1,	27);
+-static G12A_PCLK(g12a_ahb_arb0,			HHI_GCLK_MPEG1,	29);
+-
+-static G12A_PCLK(g12a_ahb_data_bus,		HHI_GCLK_MPEG2,	1);
+-static G12A_PCLK(g12a_ahb_ctrl_bus,		HHI_GCLK_MPEG2,	2);
+-static G12A_PCLK(g12a_htx_hdcp22,		HHI_GCLK_MPEG2,	3);
+-static G12A_PCLK(g12a_htx_pclk,			HHI_GCLK_MPEG2,	4);
+-static G12A_PCLK(g12a_bt656,			HHI_GCLK_MPEG2,	6);
+-static G12A_PCLK(g12a_usb1_to_ddr,		HHI_GCLK_MPEG2,	8);
+-static G12A_PCLK(g12b_mipi_isp_gate,		HHI_GCLK_MPEG2,	17);
+-static G12A_PCLK(g12a_mmc_pclk,			HHI_GCLK_MPEG2,	11);
+-static G12A_PCLK(g12a_uart2,			HHI_GCLK_MPEG2,	15);
+-static G12A_PCLK(g12a_vpu_intr,			HHI_GCLK_MPEG2,	25);
+-static G12A_PCLK(g12b_csi_phy1,			HHI_GCLK_MPEG2,	28);
+-static G12A_PCLK(g12b_csi_phy0,			HHI_GCLK_MPEG2,	29);
+-static G12A_PCLK(g12a_gic,			HHI_GCLK_MPEG2,	30);
+-
+-static G12A_PCLK(g12a_vclk2_venci0,		HHI_GCLK_OTHER,	1);
+-static G12A_PCLK(g12a_vclk2_venci1,		HHI_GCLK_OTHER,	2);
+-static G12A_PCLK(g12a_vclk2_vencp0,		HHI_GCLK_OTHER,	3);
+-static G12A_PCLK(g12a_vclk2_vencp1,		HHI_GCLK_OTHER,	4);
+-static G12A_PCLK(g12a_vclk2_venct0,		HHI_GCLK_OTHER,	5);
+-static G12A_PCLK(g12a_vclk2_venct1,		HHI_GCLK_OTHER,	6);
+-static G12A_PCLK(g12a_vclk2_other,		HHI_GCLK_OTHER,	7);
+-static G12A_PCLK(g12a_vclk2_enci,		HHI_GCLK_OTHER,	8);
+-static G12A_PCLK(g12a_vclk2_encp,		HHI_GCLK_OTHER,	9);
+-static G12A_PCLK(g12a_dac_clk,			HHI_GCLK_OTHER,	10);
+-static G12A_PCLK(g12a_aoclk_gate,		HHI_GCLK_OTHER,	14);
+-static G12A_PCLK(g12a_iec958_gate,		HHI_GCLK_OTHER,	16);
+-static G12A_PCLK(g12a_enc480p,			HHI_GCLK_OTHER,	20);
+-static G12A_PCLK(g12a_rng1,			HHI_GCLK_OTHER,	21);
+-static G12A_PCLK(g12a_vclk2_enct,		HHI_GCLK_OTHER,	22);
+-static G12A_PCLK(g12a_vclk2_encl,		HHI_GCLK_OTHER,	23);
+-static G12A_PCLK(g12a_vclk2_venclmmc,		HHI_GCLK_OTHER,	24);
+-static G12A_PCLK(g12a_vclk2_vencl,		HHI_GCLK_OTHER,	25);
+-static G12A_PCLK(g12a_vclk2_other1,		HHI_GCLK_OTHER,	26);
+-
+-static G12A_PCLK_RO(g12a_dma,			HHI_GCLK_OTHER2, 0);
+-static G12A_PCLK_RO(g12a_efuse,			HHI_GCLK_OTHER2, 1);
+-static G12A_PCLK_RO(g12a_rom_boot,		HHI_GCLK_OTHER2, 2);
+-static G12A_PCLK_RO(g12a_reset_sec,		HHI_GCLK_OTHER2, 3);
+-static G12A_PCLK_RO(g12a_sec_ahb_apb3,		HHI_GCLK_OTHER2, 4);
++#define G12A_PCLK(_name, _reg, _bit, _flags) \
++	MESON_PCLK(_name, _reg, _bit, &g12a_clk81.hw, _flags)
++
++#define G12A_PCLK_RO(_name, _reg, _bit, _flags) \
++	MESON_PCLK_RO(_name, _reg, _bit, &g12a_clk81.hw, _flags)
++
++/*
++ * Everything Else (EE) domain gates
++ *
++ * NOTE: The gates below are marked with CLK_IGNORE_UNUSED for historic reasons
++ * Users are encouraged to test without it and submit changes to:
++ *  - remove the flag if not necessary
++ *  - replace the flag with something more adequate, such as CLK_IS_CRITICAL,
++ *    if appropriate.
++ *  - add a comment explaining why the use of CLK_IGNORE_UNUSED is desirable
++ *    for a particular clock.
++ */
++static G12A_PCLK(g12a_ddr,			HHI_GCLK_MPEG0,	 0, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_dos,			HHI_GCLK_MPEG0,	 1, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_audio_locker,		HHI_GCLK_MPEG0,	 2, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_mipi_dsi_host,		HHI_GCLK_MPEG0,	 3, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_eth_phy,			HHI_GCLK_MPEG0,	 4, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_isa,			HHI_GCLK_MPEG0,	 5, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_pl301,			HHI_GCLK_MPEG0,	 6, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_periphs,			HHI_GCLK_MPEG0,	 7, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_spicc_0,			HHI_GCLK_MPEG0,	 8, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_i2c,			HHI_GCLK_MPEG0,	 9, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_sana,			HHI_GCLK_MPEG0,	10, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_sd,			HHI_GCLK_MPEG0,	11, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_rng0,			HHI_GCLK_MPEG0,	12, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_uart0,			HHI_GCLK_MPEG0,	13, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_spicc_1,			HHI_GCLK_MPEG0,	14, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_hiu_reg,			HHI_GCLK_MPEG0,	19, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_mipi_dsi_phy,		HHI_GCLK_MPEG0,	20, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_assist_misc,		HHI_GCLK_MPEG0,	23, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_emmc_a,			HHI_GCLK_MPEG0,	24, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_emmc_b,			HHI_GCLK_MPEG0,	25, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_emmc_c,			HHI_GCLK_MPEG0,	26, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_audio_codec,		HHI_GCLK_MPEG0,	28, CLK_IGNORE_UNUSED);
++
++static G12A_PCLK(g12a_audio,			HHI_GCLK_MPEG1,	 0, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_eth_core,			HHI_GCLK_MPEG1,	 3, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_demux,			HHI_GCLK_MPEG1,	 4, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_audio_ififo,		HHI_GCLK_MPEG1,	11, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_adc,			HHI_GCLK_MPEG1,	13, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_uart1,			HHI_GCLK_MPEG1,	16, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_g2d,			HHI_GCLK_MPEG1,	20, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_reset,			HHI_GCLK_MPEG1,	23, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_pcie_comb,		HHI_GCLK_MPEG1,	24, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_parser,			HHI_GCLK_MPEG1,	25, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_usb_general,		HHI_GCLK_MPEG1,	26, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_pcie_phy,			HHI_GCLK_MPEG1,	27, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_ahb_arb0,			HHI_GCLK_MPEG1,	29, CLK_IGNORE_UNUSED);
++
++static G12A_PCLK(g12a_ahb_data_bus,		HHI_GCLK_MPEG2,	 1, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_ahb_ctrl_bus,		HHI_GCLK_MPEG2,	 2, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_htx_hdcp22,		HHI_GCLK_MPEG2,	 3, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_htx_pclk,			HHI_GCLK_MPEG2,	 4, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_bt656,			HHI_GCLK_MPEG2,	 6, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_usb1_to_ddr,		HHI_GCLK_MPEG2,	 8, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12b_mipi_isp_gate,		HHI_GCLK_MPEG2,	17, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_mmc_pclk,			HHI_GCLK_MPEG2,	11, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_uart2,			HHI_GCLK_MPEG2,	15, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vpu_intr,			HHI_GCLK_MPEG2,	25, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12b_csi_phy1,			HHI_GCLK_MPEG2,	28, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12b_csi_phy0,			HHI_GCLK_MPEG2,	29, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_gic,			HHI_GCLK_MPEG2,	30, CLK_IGNORE_UNUSED);
++
++static G12A_PCLK(g12a_vclk2_venci0,		HHI_GCLK_OTHER,	 1, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_venci1,		HHI_GCLK_OTHER,	 2, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_vencp0,		HHI_GCLK_OTHER,	 3, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_vencp1,		HHI_GCLK_OTHER,	 4, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_venct0,		HHI_GCLK_OTHER,	 5, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_venct1,		HHI_GCLK_OTHER,	 6, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_other,		HHI_GCLK_OTHER,	 7, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_enci,		HHI_GCLK_OTHER,	 8, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_encp,		HHI_GCLK_OTHER,	 9, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_dac_clk,			HHI_GCLK_OTHER,	10, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_aoclk_gate,		HHI_GCLK_OTHER,	14, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_iec958_gate,		HHI_GCLK_OTHER,	16, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_enc480p,			HHI_GCLK_OTHER,	20, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_rng1,			HHI_GCLK_OTHER,	21, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_enct,		HHI_GCLK_OTHER,	22, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_encl,		HHI_GCLK_OTHER,	23, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_venclmmc,		HHI_GCLK_OTHER,	24, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_vencl,		HHI_GCLK_OTHER,	25, CLK_IGNORE_UNUSED);
++static G12A_PCLK(g12a_vclk2_other1,		HHI_GCLK_OTHER,	26, CLK_IGNORE_UNUSED);
++
++static G12A_PCLK_RO(g12a_dma,			HHI_GCLK_OTHER2, 0, 0);
++static G12A_PCLK_RO(g12a_efuse,			HHI_GCLK_OTHER2, 1, 0);
++static G12A_PCLK_RO(g12a_rom_boot,		HHI_GCLK_OTHER2, 2, 0);
++static G12A_PCLK_RO(g12a_reset_sec,		HHI_GCLK_OTHER2, 3, 0);
++static G12A_PCLK_RO(g12a_sec_ahb_apb3,		HHI_GCLK_OTHER2, 4, 0);
  
- static const struct clk_parent_data c3_sd_emmc_parents[] = {
- 	{ .fw_name = "oscin" },
-@@ -751,146 +579,17 @@ static const struct clk_parent_data c3_sd_emmc_parents[] = {
- 	{ .fw_name = "gp0" }
+ /* Array of all clocks provided by this provider */
+ static struct clk_hw *g12a_hw_clks[] = {
+diff --git a/drivers/clk/meson/gxbb-aoclk.c b/drivers/clk/meson/gxbb-aoclk.c
+index ce8d2e9e071759ab8b8aa8619ad7400f1513c319..2bf45fd7fe4ba0783e736fbbb126209870985b22 100644
+--- a/drivers/clk/meson/gxbb-aoclk.c
++++ b/drivers/clk/meson/gxbb-aoclk.c
+@@ -23,7 +23,7 @@
+ #define AO_RTC_ALT_CLK_CNTL0	0x94
+ #define AO_RTC_ALT_CLK_CNTL1	0x98
+ 
+-#define GXBB_AO_PCLK(_name, _bit)					\
++#define GXBB_AO_PCLK(_name, _bit, _flags)					\
+ static struct clk_regmap gxbb_ao_##_name = {				\
+ 	.data = &(struct clk_regmap_gate_data) {			\
+ 		.offset = AO_RTI_GEN_CNTL_REG0,				\
+@@ -36,16 +36,16 @@ static struct clk_regmap gxbb_ao_##_name = {				\
+ 			.fw_name = "mpeg-clk",				\
+ 		},							\
+ 		.num_parents = 1,					\
+-		.flags = CLK_IGNORE_UNUSED,				\
++		.flags = (_flags),					\
+ 	},								\
+ }
+ 
+-GXBB_AO_PCLK(remote,		0);
+-GXBB_AO_PCLK(i2c_master,	1);
+-GXBB_AO_PCLK(i2c_slave,		2);
+-GXBB_AO_PCLK(uart1,		3);
+-GXBB_AO_PCLK(uart2,		5);
+-GXBB_AO_PCLK(ir_blaster,	6);
++GXBB_AO_PCLK(remote,		0, CLK_IGNORE_UNUSED);
++GXBB_AO_PCLK(i2c_master,	1, CLK_IGNORE_UNUSED);
++GXBB_AO_PCLK(i2c_slave,		2, CLK_IGNORE_UNUSED);
++GXBB_AO_PCLK(uart1,		3, CLK_IGNORE_UNUSED);
++GXBB_AO_PCLK(uart2,		5, CLK_IGNORE_UNUSED);
++GXBB_AO_PCLK(ir_blaster,	6, CLK_IGNORE_UNUSED);
+ 
+ static struct clk_regmap gxbb_ao_cts_oscin = {
+ 	.data = &(struct clk_regmap_gate_data){
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 608c2cd34a455f48087dd65809dbcda54f153a71..ccc1490a092814c242e719d4c37c66c4b3e27f07 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -2721,100 +2721,110 @@ static struct clk_regmap gxbb_gen_clk = {
+ 	},
  };
  
--static struct clk_regmap c3_sd_emmc_a_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = SD_EMMC_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "sd_emmc_a_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_sd_emmc_parents,
--		.num_parents = ARRAY_SIZE(c3_sd_emmc_parents),
--	},
--};
+-#define GXBB_PCLK(_name, _reg, _bit) \
+-	MESON_PCLK(_name, _reg, _bit, &gxbb_clk81.hw)
 -
--static struct clk_regmap c3_sd_emmc_a_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = SD_EMMC_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "sd_emmc_a_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_sd_emmc_a_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
+-/* Everything Else (EE) domain gates */
+-static GXBB_PCLK(gxbb_ddr,		HHI_GCLK_MPEG0, 0);
+-static GXBB_PCLK(gxbb_dos,		HHI_GCLK_MPEG0, 1);
+-static GXBB_PCLK(gxbb_isa,		HHI_GCLK_MPEG0, 5);
+-static GXBB_PCLK(gxbb_pl301,		HHI_GCLK_MPEG0, 6);
+-static GXBB_PCLK(gxbb_periphs,		HHI_GCLK_MPEG0, 7);
+-static GXBB_PCLK(gxbb_spicc,		HHI_GCLK_MPEG0, 8);
+-static GXBB_PCLK(gxbb_i2c,		HHI_GCLK_MPEG0, 9);
+-static GXBB_PCLK(gxbb_sana,		HHI_GCLK_MPEG0, 10);
+-static GXBB_PCLK(gxbb_smart_card,	HHI_GCLK_MPEG0, 11);
+-static GXBB_PCLK(gxbb_rng0,		HHI_GCLK_MPEG0, 12);
+-static GXBB_PCLK(gxbb_uart0,		HHI_GCLK_MPEG0, 13);
+-static GXBB_PCLK(gxbb_sdhc,		HHI_GCLK_MPEG0, 14);
+-static GXBB_PCLK(gxbb_stream,		HHI_GCLK_MPEG0, 15);
+-static GXBB_PCLK(gxbb_async_fifo,	HHI_GCLK_MPEG0, 16);
+-static GXBB_PCLK(gxbb_sdio,		HHI_GCLK_MPEG0, 17);
+-static GXBB_PCLK(gxbb_abuf,		HHI_GCLK_MPEG0, 18);
+-static GXBB_PCLK(gxbb_hiu_iface,	HHI_GCLK_MPEG0, 19);
+-static GXBB_PCLK(gxbb_assist_misc,	HHI_GCLK_MPEG0, 23);
+-static GXBB_PCLK(gxbb_emmc_a,		HHI_GCLK_MPEG0, 24);
+-static GXBB_PCLK(gxbb_emmc_b,		HHI_GCLK_MPEG0, 25);
+-static GXBB_PCLK(gxbb_emmc_c,		HHI_GCLK_MPEG0, 26);
+-static GXBB_PCLK(gxl_acodec,		HHI_GCLK_MPEG0, 28);
+-static GXBB_PCLK(gxbb_spi,		HHI_GCLK_MPEG0, 30);
 -
--static struct clk_regmap c3_sd_emmc_a = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = SD_EMMC_CLK_CTRL,
--		.bit_idx = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "sd_emmc_a",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_sd_emmc_a_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
+-static GXBB_PCLK(gxbb_i2s_spdif,	HHI_GCLK_MPEG1, 2);
+-static GXBB_PCLK(gxbb_eth,		HHI_GCLK_MPEG1, 3);
+-static GXBB_PCLK(gxbb_demux,		HHI_GCLK_MPEG1, 4);
+-static GXBB_PCLK(gxbb_blkmv,		HHI_GCLK_MPEG1, 14);
+-static GXBB_PCLK(gxbb_aiu,		HHI_GCLK_MPEG1, 15);
+-static GXBB_PCLK(gxbb_uart1,		HHI_GCLK_MPEG1, 16);
+-static GXBB_PCLK(gxbb_g2d,		HHI_GCLK_MPEG1, 20);
+-static GXBB_PCLK(gxbb_usb0,		HHI_GCLK_MPEG1, 21);
+-static GXBB_PCLK(gxbb_usb1,		HHI_GCLK_MPEG1, 22);
+-static GXBB_PCLK(gxbb_reset,		HHI_GCLK_MPEG1, 23);
+-static GXBB_PCLK(gxbb_nand,		HHI_GCLK_MPEG1, 24);
+-static GXBB_PCLK(gxbb_dos_parser,	HHI_GCLK_MPEG1, 25);
+-static GXBB_PCLK(gxbb_usb,		HHI_GCLK_MPEG1, 26);
+-static GXBB_PCLK(gxbb_vdin1,		HHI_GCLK_MPEG1, 28);
+-static GXBB_PCLK(gxbb_ahb_arb0,		HHI_GCLK_MPEG1, 29);
+-static GXBB_PCLK(gxbb_efuse,		HHI_GCLK_MPEG1, 30);
+-static GXBB_PCLK(gxbb_boot_rom,		HHI_GCLK_MPEG1, 31);
 -
--static struct clk_regmap c3_sd_emmc_b_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = SD_EMMC_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 25,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "sd_emmc_b_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_sd_emmc_parents,
--		.num_parents = ARRAY_SIZE(c3_sd_emmc_parents),
--	},
--};
+-static GXBB_PCLK(gxbb_ahb_data_bus,	HHI_GCLK_MPEG2, 1);
+-static GXBB_PCLK(gxbb_ahb_ctrl_bus,	HHI_GCLK_MPEG2, 2);
+-static GXBB_PCLK(gxbb_hdmi_intr_sync,	HHI_GCLK_MPEG2, 3);
+-static GXBB_PCLK(gxbb_hdmi_pclk,	HHI_GCLK_MPEG2, 4);
+-static GXBB_PCLK(gxbb_usb1_ddr_bridge,	HHI_GCLK_MPEG2, 8);
+-static GXBB_PCLK(gxbb_usb0_ddr_bridge,	HHI_GCLK_MPEG2, 9);
+-static GXBB_PCLK(gxbb_mmc_pclk,		HHI_GCLK_MPEG2, 11);
+-static GXBB_PCLK(gxbb_dvin,		HHI_GCLK_MPEG2, 12);
+-static GXBB_PCLK(gxbb_uart2,		HHI_GCLK_MPEG2, 15);
+-static GXBB_PCLK(gxbb_sar_adc,		HHI_GCLK_MPEG2, 22);
+-static GXBB_PCLK(gxbb_vpu_intr,		HHI_GCLK_MPEG2, 25);
+-static GXBB_PCLK(gxbb_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
+-static GXBB_PCLK(gxbb_clk81_a53,	HHI_GCLK_MPEG2, 29);
 -
--static struct clk_regmap c3_sd_emmc_b_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = SD_EMMC_CLK_CTRL,
--		.shift = 16,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "sd_emmc_b_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_sd_emmc_b_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_sd_emmc_b = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = SD_EMMC_CLK_CTRL,
--		.bit_idx = 23,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "sd_emmc_b",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_sd_emmc_b_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_sd_emmc_c_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = NAND_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "sd_emmc_c_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_sd_emmc_parents,
--		.num_parents = ARRAY_SIZE(c3_sd_emmc_parents),
--	},
--};
-+static C3_COMP_SEL(sd_emmc_a, SD_EMMC_CLK_CTRL, 9, 0x7, c3_sd_emmc_parents);
-+static C3_COMP_DIV(sd_emmc_a, SD_EMMC_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(sd_emmc_a, SD_EMMC_CLK_CTRL,  7);
+-static GXBB_PCLK(gxbb_vclk2_venci0,	HHI_GCLK_OTHER, 1);
+-static GXBB_PCLK(gxbb_vclk2_venci1,	HHI_GCLK_OTHER, 2);
+-static GXBB_PCLK(gxbb_vclk2_vencp0,	HHI_GCLK_OTHER, 3);
+-static GXBB_PCLK(gxbb_vclk2_vencp1,	HHI_GCLK_OTHER, 4);
+-static GXBB_PCLK(gxbb_gclk_venci_int0,	HHI_GCLK_OTHER, 8);
+-static GXBB_PCLK(gxbb_gclk_vencp_int,	HHI_GCLK_OTHER, 9);
+-static GXBB_PCLK(gxbb_dac_clk,		HHI_GCLK_OTHER, 10);
+-static GXBB_PCLK(gxbb_aoclk_gate,	HHI_GCLK_OTHER, 14);
+-static GXBB_PCLK(gxbb_iec958_gate,	HHI_GCLK_OTHER, 16);
+-static GXBB_PCLK(gxbb_enc480p,		HHI_GCLK_OTHER, 20);
+-static GXBB_PCLK(gxbb_rng1,		HHI_GCLK_OTHER, 21);
+-static GXBB_PCLK(gxbb_gclk_venci_int1,	HHI_GCLK_OTHER, 22);
+-static GXBB_PCLK(gxbb_vclk2_venclmcc,	HHI_GCLK_OTHER, 24);
+-static GXBB_PCLK(gxbb_vclk2_vencl,	HHI_GCLK_OTHER, 25);
+-static GXBB_PCLK(gxbb_vclk_other,	HHI_GCLK_OTHER, 26);
+-static GXBB_PCLK(gxbb_edp,		HHI_GCLK_OTHER, 31);
++#define GXBB_PCLK(_name, _reg, _bit, _flags) \
++	MESON_PCLK(_name, _reg, _bit, &gxbb_clk81.hw, _flags)
++
++/*
++ * Everything Else (EE) domain gates
++ *
++ * NOTE: The gates below are marked with CLK_IGNORE_UNUSED for historic reasons
++ * Users are encouraged to test without it and submit changes to:
++ *  - remove the flag if not necessary
++ *  - replace the flag with something more adequate, such as CLK_IS_CRITICAL,
++ *    if appropriate.
++ *  - add a comment explaining why the use of CLK_IGNORE_UNUSED is desirable
++ *    for a particular clock.
++ */
++static GXBB_PCLK(gxbb_ddr,		HHI_GCLK_MPEG0,  0, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_dos,		HHI_GCLK_MPEG0,  1, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_isa,		HHI_GCLK_MPEG0,  5, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_pl301,		HHI_GCLK_MPEG0,  6, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_periphs,		HHI_GCLK_MPEG0,  7, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_spicc,		HHI_GCLK_MPEG0,  8, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_i2c,		HHI_GCLK_MPEG0,  9, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_sana,		HHI_GCLK_MPEG0, 10, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_smart_card,	HHI_GCLK_MPEG0, 11, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_rng0,		HHI_GCLK_MPEG0, 12, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_uart0,		HHI_GCLK_MPEG0, 13, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_sdhc,		HHI_GCLK_MPEG0, 14, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_stream,		HHI_GCLK_MPEG0, 15, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_async_fifo,	HHI_GCLK_MPEG0, 16, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_sdio,		HHI_GCLK_MPEG0, 17, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_abuf,		HHI_GCLK_MPEG0, 18, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_hiu_iface,	HHI_GCLK_MPEG0, 19, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_assist_misc,	HHI_GCLK_MPEG0, 23, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_emmc_a,		HHI_GCLK_MPEG0, 24, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_emmc_b,		HHI_GCLK_MPEG0, 25, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_emmc_c,		HHI_GCLK_MPEG0, 26, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxl_acodec,		HHI_GCLK_MPEG0, 28, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_spi,		HHI_GCLK_MPEG0, 30, CLK_IGNORE_UNUSED);
++
++static GXBB_PCLK(gxbb_i2s_spdif,	HHI_GCLK_MPEG1,  2, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_eth,		HHI_GCLK_MPEG1,  3, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_demux,		HHI_GCLK_MPEG1,  4, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_blkmv,		HHI_GCLK_MPEG1, 14, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_aiu,		HHI_GCLK_MPEG1, 15, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_uart1,		HHI_GCLK_MPEG1, 16, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_g2d,		HHI_GCLK_MPEG1, 20, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_usb0,		HHI_GCLK_MPEG1, 21, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_usb1,		HHI_GCLK_MPEG1, 22, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_reset,		HHI_GCLK_MPEG1, 23, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_nand,		HHI_GCLK_MPEG1, 24, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_dos_parser,	HHI_GCLK_MPEG1, 25, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_usb,		HHI_GCLK_MPEG1, 26, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_vdin1,		HHI_GCLK_MPEG1, 28, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_ahb_arb0,		HHI_GCLK_MPEG1, 29, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_efuse,		HHI_GCLK_MPEG1, 30, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_boot_rom,		HHI_GCLK_MPEG1, 31, CLK_IGNORE_UNUSED);
++
++static GXBB_PCLK(gxbb_ahb_data_bus,	HHI_GCLK_MPEG2,  1, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_ahb_ctrl_bus,	HHI_GCLK_MPEG2,  2, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_hdmi_intr_sync,	HHI_GCLK_MPEG2,  3, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_hdmi_pclk,	HHI_GCLK_MPEG2,  4, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_usb1_ddr_bridge,	HHI_GCLK_MPEG2,  8, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_usb0_ddr_bridge,	HHI_GCLK_MPEG2,  9, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_mmc_pclk,		HHI_GCLK_MPEG2, 11, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_dvin,		HHI_GCLK_MPEG2, 12, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_uart2,		HHI_GCLK_MPEG2, 15, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_sar_adc,		HHI_GCLK_MPEG2, 22, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_vpu_intr,		HHI_GCLK_MPEG2, 25, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_clk81_a53,	HHI_GCLK_MPEG2, 29, CLK_IGNORE_UNUSED);
++
++static GXBB_PCLK(gxbb_vclk2_venci0,	HHI_GCLK_OTHER,  1, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_vclk2_venci1,	HHI_GCLK_OTHER,  2, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_vclk2_vencp0,	HHI_GCLK_OTHER,  3, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_vclk2_vencp1,	HHI_GCLK_OTHER,  4, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_gclk_venci_int0,	HHI_GCLK_OTHER,  8, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_gclk_vencp_int,	HHI_GCLK_OTHER,  9, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_dac_clk,		HHI_GCLK_OTHER, 10, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_aoclk_gate,	HHI_GCLK_OTHER, 14, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_iec958_gate,	HHI_GCLK_OTHER, 16, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_enc480p,		HHI_GCLK_OTHER, 20, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_rng1,		HHI_GCLK_OTHER, 21, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_gclk_venci_int1,	HHI_GCLK_OTHER, 22, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_vclk2_venclmcc,	HHI_GCLK_OTHER, 24, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_vclk2_vencl,	HHI_GCLK_OTHER, 25, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_vclk_other,	HHI_GCLK_OTHER, 26, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_edp,		HHI_GCLK_OTHER, 31, CLK_IGNORE_UNUSED);
  
--static struct clk_regmap c3_sd_emmc_c_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = NAND_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "sd_emmc_c_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_sd_emmc_c_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(sd_emmc_b, SD_EMMC_CLK_CTRL, 25, 0x7, c3_sd_emmc_parents);
-+static C3_COMP_DIV(sd_emmc_b, SD_EMMC_CLK_CTRL, 16, 7);
-+static C3_COMP_GATE(sd_emmc_b, SD_EMMC_CLK_CTRL, 23);
+ /* Always On (AO) domain gates */
  
--static struct clk_regmap c3_sd_emmc_c = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = NAND_CLK_CTRL,
--		.bit_idx = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "sd_emmc_c",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_sd_emmc_c_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(sd_emmc_c, NAND_CLK_CTRL, 9, 0x7, c3_sd_emmc_parents);
-+static C3_COMP_DIV(sd_emmc_c, NAND_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(sd_emmc_c, NAND_CLK_CTRL, 7);
+-static GXBB_PCLK(gxbb_ao_media_cpu,	HHI_GCLK_AO, 0);
+-static GXBB_PCLK(gxbb_ao_ahb_sram,	HHI_GCLK_AO, 1);
+-static GXBB_PCLK(gxbb_ao_ahb_bus,	HHI_GCLK_AO, 2);
+-static GXBB_PCLK(gxbb_ao_iface,		HHI_GCLK_AO, 3);
+-static GXBB_PCLK(gxbb_ao_i2c,		HHI_GCLK_AO, 4);
++static GXBB_PCLK(gxbb_ao_media_cpu,	HHI_GCLK_AO, 0, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_ao_ahb_sram,	HHI_GCLK_AO, 1, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_ao_ahb_bus,	HHI_GCLK_AO, 2, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_ao_iface,		HHI_GCLK_AO, 3, CLK_IGNORE_UNUSED);
++static GXBB_PCLK(gxbb_ao_i2c,		HHI_GCLK_AO, 4, CLK_IGNORE_UNUSED);
  
- static struct clk_regmap c3_ts_div = {
- 	.data = &(struct clk_regmap_div_data) {
-@@ -996,52 +695,9 @@ static const struct clk_parent_data c3_mipi_dsi_meas_parents[] = {
- 	{ .fw_name = "fdiv7" }
+ /* AIU gates */
+-static MESON_PCLK(gxbb_aiu_glue,	HHI_GCLK_MPEG1,  6, &gxbb_aiu.hw);
+-static MESON_PCLK(gxbb_iec958,		HHI_GCLK_MPEG1,  7, &gxbb_aiu_glue.hw);
+-static MESON_PCLK(gxbb_i2s_out,		HHI_GCLK_MPEG1,  8, &gxbb_aiu_glue.hw);
+-static MESON_PCLK(gxbb_amclk,		HHI_GCLK_MPEG1,  9, &gxbb_aiu_glue.hw);
+-static MESON_PCLK(gxbb_aififo2,		HHI_GCLK_MPEG1, 10, &gxbb_aiu_glue.hw);
+-static MESON_PCLK(gxbb_mixer,		HHI_GCLK_MPEG1, 11, &gxbb_aiu_glue.hw);
+-static MESON_PCLK(gxbb_mixer_iface,	HHI_GCLK_MPEG1, 12, &gxbb_aiu_glue.hw);
+-static MESON_PCLK(gxbb_adc,		HHI_GCLK_MPEG1, 13, &gxbb_aiu_glue.hw);
++static MESON_PCLK(gxbb_aiu_glue,	HHI_GCLK_MPEG1,  6, &gxbb_aiu.hw, CLK_IGNORE_UNUSED);
++static MESON_PCLK(gxbb_iec958,		HHI_GCLK_MPEG1,  7, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
++static MESON_PCLK(gxbb_i2s_out,		HHI_GCLK_MPEG1,  8, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
++static MESON_PCLK(gxbb_amclk,		HHI_GCLK_MPEG1,  9, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
++static MESON_PCLK(gxbb_aififo2,		HHI_GCLK_MPEG1, 10, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
++static MESON_PCLK(gxbb_mixer,		HHI_GCLK_MPEG1, 11, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
++static MESON_PCLK(gxbb_mixer_iface,	HHI_GCLK_MPEG1, 12, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
++static MESON_PCLK(gxbb_adc,		HHI_GCLK_MPEG1, 13, &gxbb_aiu_glue.hw, CLK_IGNORE_UNUSED);
+ 
+ /* Array of all clocks provided by this provider */
+ 
+diff --git a/drivers/clk/meson/meson-clkc-utils.h b/drivers/clk/meson/meson-clkc-utils.h
+index 3e1fb7efe6da1f5d8e55993541d12d40464a47f5..03e38992c4c73ff4ee24f0fa99b7c34134376992 100644
+--- a/drivers/clk/meson/meson-clkc-utils.h
++++ b/drivers/clk/meson/meson-clkc-utils.h
+@@ -27,7 +27,7 @@ struct meson_clkc_data {
+ int meson_clkc_syscon_probe(struct platform_device *pdev);
+ int meson_clkc_mmio_probe(struct platform_device *pdev);
+ 
+-#define __MESON_PCLK(_name, _reg, _bit, _ops, _pname)			\
++#define __MESON_PCLK(_name, _reg, _bit, _ops, _pname, _flags)		\
+ struct clk_regmap _name = {						\
+ 	.data = &(struct clk_regmap_gate_data) {			\
+ 		.offset = (_reg),					\
+@@ -38,14 +38,14 @@ struct clk_regmap _name = {						\
+ 		.ops = _ops,						\
+ 		.parent_hws = (const struct clk_hw *[]) { _pname },	\
+ 		.num_parents = 1,					\
+-		.flags = CLK_IGNORE_UNUSED,				\
++		.flags = (_flags),					\
+ 	},								\
+ }
+ 
+-#define MESON_PCLK(_name, _reg, _bit, _pname)	\
+-	__MESON_PCLK(_name, _reg, _bit, &clk_regmap_gate_ops, _pname)
++#define MESON_PCLK(_name, _reg, _bit, _pname, _flags)			\
++	__MESON_PCLK(_name, _reg, _bit, &clk_regmap_gate_ops, _pname, _flags)
+ 
+-#define MESON_PCLK_RO(_name, _reg, _bit, _pname)	\
+-	__MESON_PCLK(_name, _reg, _bit, &clk_regmap_gate_ro_ops, _pname)
++#define MESON_PCLK_RO(_name, _reg, _bit, _pname, _flags)		\
++	__MESON_PCLK(_name, _reg, _bit, &clk_regmap_gate_ro_ops, _pname, _flags)
+ 
+ #endif
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 446e57d45d8deeab9516a923ddddcba7fa274203..a16ebbbf664cdd56b2c74db4f88a8d0a22d2ddc3 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -2701,100 +2701,109 @@ static struct clk_regmap meson8b_cts_i958 = {
+ 	},
  };
  
--static struct clk_regmap c3_mipi_dsi_meas_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = VDIN_MEAS_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 21,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "mipi_dsi_meas_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_mipi_dsi_meas_parents,
--		.num_parents = ARRAY_SIZE(c3_mipi_dsi_meas_parents),
--	},
--};
+-#define MESON8B_PCLK(_name, _reg, _bit) \
+-	MESON_PCLK(_name, _reg, _bit, &meson8b_clk81.hw)
 -
--static struct clk_regmap c3_mipi_dsi_meas_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = VDIN_MEAS_CLK_CTRL,
--		.shift = 12,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "mipi_dsi_meas_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_mipi_dsi_meas_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
+-/* Everything Else (EE) domain gates */
 -
--static struct clk_regmap c3_mipi_dsi_meas = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = VDIN_MEAS_CLK_CTRL,
--		.bit_idx = 20,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "mipi_dsi_meas",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_mipi_dsi_meas_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(mipi_dsi_meas, VDIN_MEAS_CLK_CTRL, 21, 0x7, c3_mipi_dsi_meas_parents);
-+static C3_COMP_DIV(mipi_dsi_meas, VDIN_MEAS_CLK_CTRL, 12, 7);
-+static C3_COMP_GATE(mipi_dsi_meas, VDIN_MEAS_CLK_CTRL, 20);
+-static MESON8B_PCLK(meson8b_ddr,		HHI_GCLK_MPEG0, 0);
+-static MESON8B_PCLK(meson8b_dos,		HHI_GCLK_MPEG0, 1);
+-static MESON8B_PCLK(meson8b_isa,		HHI_GCLK_MPEG0, 5);
+-static MESON8B_PCLK(meson8b_pl301,		HHI_GCLK_MPEG0, 6);
+-static MESON8B_PCLK(meson8b_periphs,		HHI_GCLK_MPEG0, 7);
+-static MESON8B_PCLK(meson8b_spicc,		HHI_GCLK_MPEG0, 8);
+-static MESON8B_PCLK(meson8b_i2c,		HHI_GCLK_MPEG0, 9);
+-static MESON8B_PCLK(meson8b_sar_adc,		HHI_GCLK_MPEG0, 10);
+-static MESON8B_PCLK(meson8b_smart_card,		HHI_GCLK_MPEG0, 11);
+-static MESON8B_PCLK(meson8b_rng0,		HHI_GCLK_MPEG0, 12);
+-static MESON8B_PCLK(meson8b_uart0,		HHI_GCLK_MPEG0, 13);
+-static MESON8B_PCLK(meson8b_sdhc,		HHI_GCLK_MPEG0, 14);
+-static MESON8B_PCLK(meson8b_stream,		HHI_GCLK_MPEG0, 15);
+-static MESON8B_PCLK(meson8b_async_fifo,		HHI_GCLK_MPEG0, 16);
+-static MESON8B_PCLK(meson8b_sdio,		HHI_GCLK_MPEG0, 17);
+-static MESON8B_PCLK(meson8b_abuf,		HHI_GCLK_MPEG0, 18);
+-static MESON8B_PCLK(meson8b_hiu_iface,		HHI_GCLK_MPEG0, 19);
+-static MESON8B_PCLK(meson8b_assist_misc,	HHI_GCLK_MPEG0, 23);
+-static MESON8B_PCLK(meson8b_spi,		HHI_GCLK_MPEG0, 30);
+-
+-static MESON8B_PCLK(meson8b_i2s_spdif,		HHI_GCLK_MPEG1, 2);
+-static MESON8B_PCLK(meson8b_eth,		HHI_GCLK_MPEG1, 3);
+-static MESON8B_PCLK(meson8b_demux,		HHI_GCLK_MPEG1, 4);
+-static MESON8B_PCLK(meson8b_blkmv,		HHI_GCLK_MPEG1, 14);
+-static MESON8B_PCLK(meson8b_aiu,		HHI_GCLK_MPEG1, 15);
+-static MESON8B_PCLK(meson8b_uart1,		HHI_GCLK_MPEG1, 16);
+-static MESON8B_PCLK(meson8b_g2d,		HHI_GCLK_MPEG1, 20);
+-static MESON8B_PCLK(meson8b_usb0,		HHI_GCLK_MPEG1, 21);
+-static MESON8B_PCLK(meson8b_usb1,		HHI_GCLK_MPEG1, 22);
+-static MESON8B_PCLK(meson8b_reset,		HHI_GCLK_MPEG1, 23);
+-static MESON8B_PCLK(meson8b_nand,		HHI_GCLK_MPEG1, 24);
+-static MESON8B_PCLK(meson8b_dos_parser,		HHI_GCLK_MPEG1, 25);
+-static MESON8B_PCLK(meson8b_usb,		HHI_GCLK_MPEG1, 26);
+-static MESON8B_PCLK(meson8b_vdin1,		HHI_GCLK_MPEG1, 28);
+-static MESON8B_PCLK(meson8b_ahb_arb0,		HHI_GCLK_MPEG1, 29);
+-static MESON8B_PCLK(meson8b_efuse,		HHI_GCLK_MPEG1, 30);
+-static MESON8B_PCLK(meson8b_boot_rom,		HHI_GCLK_MPEG1, 31);
+-
+-static MESON8B_PCLK(meson8b_ahb_data_bus,	HHI_GCLK_MPEG2, 1);
+-static MESON8B_PCLK(meson8b_ahb_ctrl_bus,	HHI_GCLK_MPEG2, 2);
+-static MESON8B_PCLK(meson8b_hdmi_intr_sync,	HHI_GCLK_MPEG2, 3);
+-static MESON8B_PCLK(meson8b_hdmi_pclk,		HHI_GCLK_MPEG2, 4);
+-static MESON8B_PCLK(meson8b_usb1_ddr_bridge,	HHI_GCLK_MPEG2, 8);
+-static MESON8B_PCLK(meson8b_usb0_ddr_bridge,	HHI_GCLK_MPEG2, 9);
+-static MESON8B_PCLK(meson8b_mmc_pclk,		HHI_GCLK_MPEG2, 11);
+-static MESON8B_PCLK(meson8b_dvin,		HHI_GCLK_MPEG2, 12);
+-static MESON8B_PCLK(meson8b_uart2,		HHI_GCLK_MPEG2, 15);
+-static MESON8B_PCLK(meson8b_sana,		HHI_GCLK_MPEG2, 22);
+-static MESON8B_PCLK(meson8b_vpu_intr,		HHI_GCLK_MPEG2, 25);
+-static MESON8B_PCLK(meson8b_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
+-static MESON8B_PCLK(meson8b_clk81_a9,		HHI_GCLK_MPEG2, 29);
+-
+-static MESON8B_PCLK(meson8b_vclk2_venci0,	HHI_GCLK_OTHER, 1);
+-static MESON8B_PCLK(meson8b_vclk2_venci1,	HHI_GCLK_OTHER, 2);
+-static MESON8B_PCLK(meson8b_vclk2_vencp0,	HHI_GCLK_OTHER, 3);
+-static MESON8B_PCLK(meson8b_vclk2_vencp1,	HHI_GCLK_OTHER, 4);
+-static MESON8B_PCLK(meson8b_gclk_venci_int,	HHI_GCLK_OTHER, 8);
+-static MESON8B_PCLK(meson8b_gclk_vencp_int,	HHI_GCLK_OTHER, 9);
+-static MESON8B_PCLK(meson8b_dac_clk,		HHI_GCLK_OTHER, 10);
+-static MESON8B_PCLK(meson8b_aoclk_gate,		HHI_GCLK_OTHER, 14);
+-static MESON8B_PCLK(meson8b_iec958_gate,	HHI_GCLK_OTHER, 16);
+-static MESON8B_PCLK(meson8b_enc480p,		HHI_GCLK_OTHER, 20);
+-static MESON8B_PCLK(meson8b_rng1,		HHI_GCLK_OTHER, 21);
+-static MESON8B_PCLK(meson8b_gclk_vencl_int,	HHI_GCLK_OTHER, 22);
+-static MESON8B_PCLK(meson8b_vclk2_venclmcc,	HHI_GCLK_OTHER, 24);
+-static MESON8B_PCLK(meson8b_vclk2_vencl,	HHI_GCLK_OTHER, 25);
+-static MESON8B_PCLK(meson8b_vclk2_other,	HHI_GCLK_OTHER, 26);
+-static MESON8B_PCLK(meson8b_edp,		HHI_GCLK_OTHER, 31);
++#define MESON8B_PCLK(_name, _reg, _bit, _flags) \
++	MESON_PCLK(_name, _reg, _bit, &meson8b_clk81.hw, _flags)
++
++/*
++ * Everything Else (EE) domain gates
++ *
++ * NOTE: The gates below are marked with CLK_IGNORE_UNUSED for historic reasons
++ * Users are encouraged to test without it and submit changes to:
++ *  - remove the flag if not necessary
++ *  - replace the flag with something more adequate, such as CLK_IS_CRITICAL,
++ *    if appropriate.
++ *  - add a comment explaining why the use of CLK_IGNORE_UNUSED is desirable
++ *    for a particular clock.
++ */
++static MESON8B_PCLK(meson8b_ddr,		HHI_GCLK_MPEG0,  0, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_dos,		HHI_GCLK_MPEG0,  1, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_isa,		HHI_GCLK_MPEG0,  5, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_pl301,		HHI_GCLK_MPEG0,  6, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_periphs,		HHI_GCLK_MPEG0,  7, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_spicc,		HHI_GCLK_MPEG0,  8, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_i2c,		HHI_GCLK_MPEG0,  9, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_sar_adc,		HHI_GCLK_MPEG0, 10, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_smart_card,		HHI_GCLK_MPEG0, 11, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_rng0,		HHI_GCLK_MPEG0, 12, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_uart0,		HHI_GCLK_MPEG0, 13, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_sdhc,		HHI_GCLK_MPEG0, 14, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_stream,		HHI_GCLK_MPEG0, 15, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_async_fifo,		HHI_GCLK_MPEG0, 16, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_sdio,		HHI_GCLK_MPEG0, 17, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_abuf,		HHI_GCLK_MPEG0, 18, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_hiu_iface,		HHI_GCLK_MPEG0, 19, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_assist_misc,	HHI_GCLK_MPEG0, 23, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_spi,		HHI_GCLK_MPEG0, 30, CLK_IGNORE_UNUSED);
++
++static MESON8B_PCLK(meson8b_i2s_spdif,		HHI_GCLK_MPEG1,  2, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_eth,		HHI_GCLK_MPEG1,  3, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_demux,		HHI_GCLK_MPEG1,  4, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_blkmv,		HHI_GCLK_MPEG1, 14, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_aiu,		HHI_GCLK_MPEG1, 15, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_uart1,		HHI_GCLK_MPEG1, 16, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_g2d,		HHI_GCLK_MPEG1, 20, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_usb0,		HHI_GCLK_MPEG1, 21, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_usb1,		HHI_GCLK_MPEG1, 22, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_reset,		HHI_GCLK_MPEG1, 23, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_nand,		HHI_GCLK_MPEG1, 24, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_dos_parser,		HHI_GCLK_MPEG1, 25, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_usb,		HHI_GCLK_MPEG1, 26, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_vdin1,		HHI_GCLK_MPEG1, 28, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_ahb_arb0,		HHI_GCLK_MPEG1, 29, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_efuse,		HHI_GCLK_MPEG1, 30, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_boot_rom,		HHI_GCLK_MPEG1, 31, CLK_IGNORE_UNUSED);
++
++static MESON8B_PCLK(meson8b_ahb_data_bus,	HHI_GCLK_MPEG2,  1, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_ahb_ctrl_bus,	HHI_GCLK_MPEG2,  2, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_hdmi_intr_sync,	HHI_GCLK_MPEG2,  3, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_hdmi_pclk,		HHI_GCLK_MPEG2,  4, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_usb1_ddr_bridge,	HHI_GCLK_MPEG2,  8, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_usb0_ddr_bridge,	HHI_GCLK_MPEG2,  9, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_mmc_pclk,		HHI_GCLK_MPEG2, 11, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_dvin,		HHI_GCLK_MPEG2, 12, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_uart2,		HHI_GCLK_MPEG2, 15, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_sana,		HHI_GCLK_MPEG2, 22, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_vpu_intr,		HHI_GCLK_MPEG2, 25, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_clk81_a9,		HHI_GCLK_MPEG2, 29, CLK_IGNORE_UNUSED);
++
++static MESON8B_PCLK(meson8b_vclk2_venci0,	HHI_GCLK_OTHER,  1, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_vclk2_venci1,	HHI_GCLK_OTHER,  2, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_vclk2_vencp0,	HHI_GCLK_OTHER,  3, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_vclk2_vencp1,	HHI_GCLK_OTHER,  4, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_gclk_venci_int,	HHI_GCLK_OTHER,  8, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_gclk_vencp_int,	HHI_GCLK_OTHER,  9, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_dac_clk,		HHI_GCLK_OTHER, 10, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_aoclk_gate,		HHI_GCLK_OTHER, 14, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_iec958_gate,	HHI_GCLK_OTHER, 16, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_enc480p,		HHI_GCLK_OTHER, 20, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_rng1,		HHI_GCLK_OTHER, 21, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_gclk_vencl_int,	HHI_GCLK_OTHER, 22, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_vclk2_venclmcc,	HHI_GCLK_OTHER, 24, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_vclk2_vencl,	HHI_GCLK_OTHER, 25, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_vclk2_other,	HHI_GCLK_OTHER, 26, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_edp,		HHI_GCLK_OTHER, 31, CLK_IGNORE_UNUSED);
  
- static const struct clk_parent_data c3_dsi_phy_parents[] = {
- 	{ .fw_name = "gp1" },
-@@ -1054,52 +710,9 @@ static const struct clk_parent_data c3_dsi_phy_parents[] = {
- 	{ .fw_name = "fdiv7" }
+ /* AIU gates */
+-static MESON_PCLK(meson8b_aiu_glue,		HHI_GCLK_MPEG1, 6, &meson8b_aiu.hw);
++static MESON_PCLK(meson8b_aiu_glue, HHI_GCLK_MPEG1, 6, &meson8b_aiu.hw, CLK_IGNORE_UNUSED);
+ 
+-#define MESON_AIU_PCLK(_name, _reg, _bit) \
+-	MESON_PCLK(_name, _reg, _bit, &meson8b_aiu_glue.hw)
++#define MESON_AIU_PCLK(_name, _reg, _bit, _flags) \
++	MESON_PCLK(_name, _reg, _bit, &meson8b_aiu_glue.hw, _flags)
+ 
+-static MESON_AIU_PCLK(meson8b_iec958,		HHI_GCLK_MPEG1, 7);
+-static MESON_AIU_PCLK(meson8b_i2s_out,		HHI_GCLK_MPEG1, 8);
+-static MESON_AIU_PCLK(meson8b_amclk,		HHI_GCLK_MPEG1, 9);
+-static MESON_AIU_PCLK(meson8b_aififo2,		HHI_GCLK_MPEG1, 10);
+-static MESON_AIU_PCLK(meson8b_mixer,		HHI_GCLK_MPEG1, 11);
+-static MESON_AIU_PCLK(meson8b_mixer_iface,	HHI_GCLK_MPEG1, 12);
+-static MESON_AIU_PCLK(meson8b_adc,		HHI_GCLK_MPEG1, 13);
++static MESON_AIU_PCLK(meson8b_iec958,		HHI_GCLK_MPEG1,  7, CLK_IGNORE_UNUSED);
++static MESON_AIU_PCLK(meson8b_i2s_out,		HHI_GCLK_MPEG1,  8, CLK_IGNORE_UNUSED);
++static MESON_AIU_PCLK(meson8b_amclk,		HHI_GCLK_MPEG1,  9, CLK_IGNORE_UNUSED);
++static MESON_AIU_PCLK(meson8b_aififo2,		HHI_GCLK_MPEG1, 10, CLK_IGNORE_UNUSED);
++static MESON_AIU_PCLK(meson8b_mixer,		HHI_GCLK_MPEG1, 11, CLK_IGNORE_UNUSED);
++static MESON_AIU_PCLK(meson8b_mixer_iface,	HHI_GCLK_MPEG1, 12, CLK_IGNORE_UNUSED);
++static MESON_AIU_PCLK(meson8b_adc,		HHI_GCLK_MPEG1, 13, CLK_IGNORE_UNUSED);
+ 
+ /* Always On (AO) domain gates */
+ 
+-static MESON8B_PCLK(meson8b_ao_media_cpu,	HHI_GCLK_AO, 0);
+-static MESON8B_PCLK(meson8b_ao_ahb_sram,	HHI_GCLK_AO, 1);
+-static MESON8B_PCLK(meson8b_ao_ahb_bus,		HHI_GCLK_AO, 2);
+-static MESON8B_PCLK(meson8b_ao_iface,		HHI_GCLK_AO, 3);
++static MESON8B_PCLK(meson8b_ao_media_cpu,	HHI_GCLK_AO, 0, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_ao_ahb_sram,	HHI_GCLK_AO, 1, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_ao_ahb_bus,		HHI_GCLK_AO, 2, CLK_IGNORE_UNUSED);
++static MESON8B_PCLK(meson8b_ao_iface,		HHI_GCLK_AO, 3, CLK_IGNORE_UNUSED);
+ 
+ static struct clk_hw *meson8_hw_clks[] = {
+ 	[CLKID_PLL_FIXED]	    = &meson8b_fixed_pll.hw,
+diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
+index fc1500df926d056ce17252987dd91095a8399b55..23b51d84d8de40aa540dbc6dd5db9fb627e579de 100644
+--- a/drivers/clk/meson/s4-peripherals.c
++++ b/drivers/clk/meson/s4-peripherals.c
+@@ -3165,61 +3165,70 @@ static struct clk_regmap s4_gen_clk = {
+ 	},
  };
  
--static struct clk_regmap c3_dsi_phy_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = MIPIDSI_PHY_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 12,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "dsi_phy_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_dsi_phy_parents,
--		.num_parents = ARRAY_SIZE(c3_dsi_phy_parents),
--	},
--};
+-#define S4_PCLK(_name, _reg, _bit) \
+-	MESON_PCLK(_name, _reg, _bit, &s4_sys_clk.hw)
 -
--static struct clk_regmap c3_dsi_phy_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = MIPIDSI_PHY_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "dsi_phy_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_dsi_phy_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
+-static S4_PCLK(s4_ddr,		CLKCTRL_SYS_CLK_EN0_REG0, 0);
+-static S4_PCLK(s4_dos,		CLKCTRL_SYS_CLK_EN0_REG0, 1);
+-static S4_PCLK(s4_ethphy,	CLKCTRL_SYS_CLK_EN0_REG0, 4);
+-static S4_PCLK(s4_mali,		CLKCTRL_SYS_CLK_EN0_REG0, 6);
+-static S4_PCLK(s4_aocpu,	CLKCTRL_SYS_CLK_EN0_REG0, 13);
+-static S4_PCLK(s4_aucpu,	CLKCTRL_SYS_CLK_EN0_REG0, 14);
+-static S4_PCLK(s4_cec,		CLKCTRL_SYS_CLK_EN0_REG0, 16);
+-static S4_PCLK(s4_sdemmca,	CLKCTRL_SYS_CLK_EN0_REG0, 24);
+-static S4_PCLK(s4_sdemmcb,	CLKCTRL_SYS_CLK_EN0_REG0, 25);
+-static S4_PCLK(s4_nand,		CLKCTRL_SYS_CLK_EN0_REG0, 26);
+-static S4_PCLK(s4_smartcard,	CLKCTRL_SYS_CLK_EN0_REG0, 27);
+-static S4_PCLK(s4_acodec,	CLKCTRL_SYS_CLK_EN0_REG0, 28);
+-static S4_PCLK(s4_spifc,	CLKCTRL_SYS_CLK_EN0_REG0, 29);
+-static S4_PCLK(s4_msr_clk,	CLKCTRL_SYS_CLK_EN0_REG0, 30);
+-static S4_PCLK(s4_ir_ctrl,	CLKCTRL_SYS_CLK_EN0_REG0, 31);
 -
--static struct clk_regmap c3_dsi_phy = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = MIPIDSI_PHY_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "dsi_phy",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_dsi_phy_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(dsi_phy, MIPIDSI_PHY_CLK_CTRL, 12, 0x7, c3_dsi_phy_parents);
-+static C3_COMP_DIV(dsi_phy, MIPIDSI_PHY_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(dsi_phy, MIPIDSI_PHY_CLK_CTRL, 8);
+-static S4_PCLK(s4_audio,	CLKCTRL_SYS_CLK_EN0_REG1, 0);
+-static S4_PCLK(s4_eth,		CLKCTRL_SYS_CLK_EN0_REG1, 3);
+-static S4_PCLK(s4_uart_a,	CLKCTRL_SYS_CLK_EN0_REG1, 5);
+-static S4_PCLK(s4_uart_b,	CLKCTRL_SYS_CLK_EN0_REG1, 6);
+-static S4_PCLK(s4_uart_c,	CLKCTRL_SYS_CLK_EN0_REG1, 7);
+-static S4_PCLK(s4_uart_d,	CLKCTRL_SYS_CLK_EN0_REG1, 8);
+-static S4_PCLK(s4_uart_e,	CLKCTRL_SYS_CLK_EN0_REG1, 9);
+-static S4_PCLK(s4_aififo,	CLKCTRL_SYS_CLK_EN0_REG1, 11);
+-static S4_PCLK(s4_ts_ddr,	CLKCTRL_SYS_CLK_EN0_REG1, 15);
+-static S4_PCLK(s4_ts_pll,	CLKCTRL_SYS_CLK_EN0_REG1, 16);
+-static S4_PCLK(s4_g2d,		CLKCTRL_SYS_CLK_EN0_REG1, 20);
+-static S4_PCLK(s4_spicc0,	CLKCTRL_SYS_CLK_EN0_REG1, 21);
+-static S4_PCLK(s4_usb,		CLKCTRL_SYS_CLK_EN0_REG1, 26);
+-static S4_PCLK(s4_i2c_m_a,	CLKCTRL_SYS_CLK_EN0_REG1, 30);
+-static S4_PCLK(s4_i2c_m_b,	CLKCTRL_SYS_CLK_EN0_REG1, 31);
+-
+-static S4_PCLK(s4_i2c_m_c,	CLKCTRL_SYS_CLK_EN0_REG2, 0);
+-static S4_PCLK(s4_i2c_m_d,	CLKCTRL_SYS_CLK_EN0_REG2, 1);
+-static S4_PCLK(s4_i2c_m_e,	CLKCTRL_SYS_CLK_EN0_REG2, 2);
+-static S4_PCLK(s4_hdmitx_apb,	CLKCTRL_SYS_CLK_EN0_REG2, 4);
+-static S4_PCLK(s4_i2c_s_a,	CLKCTRL_SYS_CLK_EN0_REG2, 5);
+-static S4_PCLK(s4_usb1_to_ddr,	CLKCTRL_SYS_CLK_EN0_REG2, 8);
+-static S4_PCLK(s4_hdcp22,	CLKCTRL_SYS_CLK_EN0_REG2, 10);
+-static S4_PCLK(s4_mmc_apb,	CLKCTRL_SYS_CLK_EN0_REG2, 11);
+-static S4_PCLK(s4_rsa,		CLKCTRL_SYS_CLK_EN0_REG2, 18);
+-static S4_PCLK(s4_cpu_debug,	CLKCTRL_SYS_CLK_EN0_REG2, 19);
+-static S4_PCLK(s4_vpu_intr,	CLKCTRL_SYS_CLK_EN0_REG2, 25);
+-static S4_PCLK(s4_demod,	CLKCTRL_SYS_CLK_EN0_REG2, 27);
+-static S4_PCLK(s4_sar_adc,	CLKCTRL_SYS_CLK_EN0_REG2, 28);
+-static S4_PCLK(s4_gic,		CLKCTRL_SYS_CLK_EN0_REG2, 30);
+-
+-static S4_PCLK(s4_pwm_ab,	CLKCTRL_SYS_CLK_EN0_REG3, 7);
+-static S4_PCLK(s4_pwm_cd,	CLKCTRL_SYS_CLK_EN0_REG3, 8);
+-static S4_PCLK(s4_pwm_ef,	CLKCTRL_SYS_CLK_EN0_REG3, 9);
+-static S4_PCLK(s4_pwm_gh,	CLKCTRL_SYS_CLK_EN0_REG3, 10);
+-static S4_PCLK(s4_pwm_ij,	CLKCTRL_SYS_CLK_EN0_REG3, 11);
++#define S4_PCLK(_name, _reg, _bit, _flags) \
++	MESON_PCLK(_name, _reg, _bit, &s4_sys_clk.hw, _flags)
++
++/*
++ * NOTE: The gates below are marked with CLK_IGNORE_UNUSED for historic reasons
++ * Users are encouraged to test without it and submit changes to:
++ *  - remove the flag if not necessary
++ *  - replace the flag with something more adequate, such as CLK_IS_CRITICAL,
++ *    if appropriate.
++ *  - add a comment explaining why the use of CLK_IGNORE_UNUSED is desirable
++ *    for a particular clock.
++ */
++static S4_PCLK(s4_ddr,		CLKCTRL_SYS_CLK_EN0_REG0,  0, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_dos,		CLKCTRL_SYS_CLK_EN0_REG0,  1, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_ethphy,	CLKCTRL_SYS_CLK_EN0_REG0,  4, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_mali,		CLKCTRL_SYS_CLK_EN0_REG0,  6, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_aocpu,	CLKCTRL_SYS_CLK_EN0_REG0, 13, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_aucpu,	CLKCTRL_SYS_CLK_EN0_REG0, 14, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_cec,		CLKCTRL_SYS_CLK_EN0_REG0, 16, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_sdemmca,	CLKCTRL_SYS_CLK_EN0_REG0, 24, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_sdemmcb,	CLKCTRL_SYS_CLK_EN0_REG0, 25, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_nand,		CLKCTRL_SYS_CLK_EN0_REG0, 26, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_smartcard,	CLKCTRL_SYS_CLK_EN0_REG0, 27, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_acodec,	CLKCTRL_SYS_CLK_EN0_REG0, 28, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_spifc,	CLKCTRL_SYS_CLK_EN0_REG0, 29, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_msr_clk,	CLKCTRL_SYS_CLK_EN0_REG0, 30, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_ir_ctrl,	CLKCTRL_SYS_CLK_EN0_REG0, 31, CLK_IGNORE_UNUSED);
++
++static S4_PCLK(s4_audio,	CLKCTRL_SYS_CLK_EN0_REG1,  0, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_eth,		CLKCTRL_SYS_CLK_EN0_REG1,  3, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_uart_a,	CLKCTRL_SYS_CLK_EN0_REG1,  5, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_uart_b,	CLKCTRL_SYS_CLK_EN0_REG1,  6, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_uart_c,	CLKCTRL_SYS_CLK_EN0_REG1,  7, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_uart_d,	CLKCTRL_SYS_CLK_EN0_REG1,  8, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_uart_e,	CLKCTRL_SYS_CLK_EN0_REG1,  9, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_aififo,	CLKCTRL_SYS_CLK_EN0_REG1, 11, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_ts_ddr,	CLKCTRL_SYS_CLK_EN0_REG1, 15, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_ts_pll,	CLKCTRL_SYS_CLK_EN0_REG1, 16, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_g2d,		CLKCTRL_SYS_CLK_EN0_REG1, 20, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_spicc0,	CLKCTRL_SYS_CLK_EN0_REG1, 21, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_usb,		CLKCTRL_SYS_CLK_EN0_REG1, 26, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_i2c_m_a,	CLKCTRL_SYS_CLK_EN0_REG1, 30, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_i2c_m_b,	CLKCTRL_SYS_CLK_EN0_REG1, 31, CLK_IGNORE_UNUSED);
++
++static S4_PCLK(s4_i2c_m_c,	CLKCTRL_SYS_CLK_EN0_REG2,  0, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_i2c_m_d,	CLKCTRL_SYS_CLK_EN0_REG2,  1, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_i2c_m_e,	CLKCTRL_SYS_CLK_EN0_REG2,  2, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_hdmitx_apb,	CLKCTRL_SYS_CLK_EN0_REG2,  4, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_i2c_s_a,	CLKCTRL_SYS_CLK_EN0_REG2,  5, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_usb1_to_ddr,	CLKCTRL_SYS_CLK_EN0_REG2,  8, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_hdcp22,	CLKCTRL_SYS_CLK_EN0_REG2, 10, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_mmc_apb,	CLKCTRL_SYS_CLK_EN0_REG2, 11, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_rsa,		CLKCTRL_SYS_CLK_EN0_REG2, 18, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_cpu_debug,	CLKCTRL_SYS_CLK_EN0_REG2, 19, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_vpu_intr,	CLKCTRL_SYS_CLK_EN0_REG2, 25, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_demod,	CLKCTRL_SYS_CLK_EN0_REG2, 27, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_sar_adc,	CLKCTRL_SYS_CLK_EN0_REG2, 28, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_gic,		CLKCTRL_SYS_CLK_EN0_REG2, 30, CLK_IGNORE_UNUSED);
++
++static S4_PCLK(s4_pwm_ab,	CLKCTRL_SYS_CLK_EN0_REG3,  7, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_pwm_cd,	CLKCTRL_SYS_CLK_EN0_REG3,  8, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_pwm_ef,	CLKCTRL_SYS_CLK_EN0_REG3,  9, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_pwm_gh,	CLKCTRL_SYS_CLK_EN0_REG3, 10, CLK_IGNORE_UNUSED);
++static S4_PCLK(s4_pwm_ij,	CLKCTRL_SYS_CLK_EN0_REG3, 11, CLK_IGNORE_UNUSED);
  
- static const struct clk_parent_data c3_vout_mclk_parents[] = {
- 	{ .fw_name = "fdiv2p5" },
-@@ -1112,52 +725,9 @@ static const struct clk_parent_data c3_vout_mclk_parents[] = {
- 	{ .fw_name = "fdiv7" }
- };
- 
--static struct clk_regmap c3_vout_mclk_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = VOUTENC_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vout_mclk_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_vout_mclk_parents,
--		.num_parents = ARRAY_SIZE(c3_vout_mclk_parents),
--	},
--};
--
--static struct clk_regmap c3_vout_mclk_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = VOUTENC_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vout_mclk_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_vout_mclk_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_vout_mclk = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = VOUTENC_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vout_mclk",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_vout_mclk_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(vout_mclk, VOUTENC_CLK_CTRL, 9, 0x7, c3_vout_mclk_parents);
-+static C3_COMP_DIV(vout_mclk, VOUTENC_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(vout_mclk, VOUTENC_CLK_CTRL, 8);
- 
- static const struct clk_parent_data c3_vout_enc_parents[] = {
- 	{ .fw_name = "gp1" },
-@@ -1170,52 +740,9 @@ static const struct clk_parent_data c3_vout_enc_parents[] = {
- 	{ .fw_name = "fdiv7" }
- };
- 
--static struct clk_regmap c3_vout_enc_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = VOUTENC_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 25,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vout_enc_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_vout_enc_parents,
--		.num_parents = ARRAY_SIZE(c3_vout_enc_parents),
--	},
--};
--
--static struct clk_regmap c3_vout_enc_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = VOUTENC_CLK_CTRL,
--		.shift = 16,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vout_enc_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_vout_enc_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_vout_enc = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = VOUTENC_CLK_CTRL,
--		.bit_idx = 24,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vout_enc",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_vout_enc_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(vout_enc, VOUTENC_CLK_CTRL, 25, 0x7, c3_vout_enc_parents);
-+static C3_COMP_DIV(vout_enc, VOUTENC_CLK_CTRL, 16, 7);
-+static C3_COMP_GATE(vout_enc, VOUTENC_CLK_CTRL, 24);
- 
- static const struct clk_parent_data c3_hcodec_pre_parents[] = {
- 	{ .fw_name = "fdiv2p5" },
-@@ -1228,99 +755,13 @@ static const struct clk_parent_data c3_hcodec_pre_parents[] = {
- 	{ .fw_name = "oscin" }
- };
- 
--static struct clk_regmap c3_hcodec_0_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = VDEC_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "hcodec_0_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_hcodec_pre_parents,
--		.num_parents = ARRAY_SIZE(c3_hcodec_pre_parents),
--	},
--};
-+static C3_COMP_SEL(hcodec_0,  VDEC_CLK_CTRL, 9, 0x7, c3_hcodec_pre_parents);
-+static C3_COMP_DIV(hcodec_0,  VDEC_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(hcodec_0,  VDEC_CLK_CTRL, 8);
- 
--static struct clk_regmap c3_hcodec_0_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = VDEC_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "hcodec_0_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_hcodec_0_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_hcodec_0 = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = VDEC_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "hcodec_0",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_hcodec_0_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_hcodec_1_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = VDEC3_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "hcodec_1_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_hcodec_pre_parents,
--		.num_parents = ARRAY_SIZE(c3_hcodec_pre_parents),
--	},
--};
--
--static struct clk_regmap c3_hcodec_1_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = VDEC3_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "hcodec_1_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_hcodec_1_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_hcodec_1 = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = VDEC3_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "hcodec_1",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_hcodec_1_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(hcodec_1, VDEC3_CLK_CTRL, 9, 0x7, c3_hcodec_pre_parents);
-+static C3_COMP_DIV(hcodec_1, VDEC3_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(hcodec_1, VDEC3_CLK_CTRL, 8);
- 
- static const struct clk_parent_data c3_hcodec_parents[] = {
- 	{ .hw = &c3_hcodec_0.hw },
-@@ -1353,99 +794,13 @@ static const struct clk_parent_data c3_vc9000e_parents[] = {
- 	{ .fw_name = "gp0" }
- };
- 
--static struct clk_regmap c3_vc9000e_aclk_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = VC9000E_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vc9000e_aclk_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_vc9000e_parents,
--		.num_parents = ARRAY_SIZE(c3_vc9000e_parents),
--	},
--};
--
--static struct clk_regmap c3_vc9000e_aclk_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = VC9000E_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vc9000e_aclk_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_vc9000e_aclk_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_vc9000e_aclk = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = VC9000E_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vc9000e_aclk",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_vc9000e_aclk_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_vc9000e_core_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = VC9000E_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 25,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vc9000e_core_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_vc9000e_parents,
--		.num_parents = ARRAY_SIZE(c3_vc9000e_parents),
--	},
--};
--
--static struct clk_regmap c3_vc9000e_core_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = VC9000E_CLK_CTRL,
--		.shift = 16,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vc9000e_core_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_vc9000e_core_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(vc9000e_aclk, VC9000E_CLK_CTRL, 9, 0x7, c3_vc9000e_parents);
-+static C3_COMP_DIV(vc9000e_aclk, VC9000E_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(vc9000e_aclk, VC9000E_CLK_CTRL, 8);
- 
--static struct clk_regmap c3_vc9000e_core = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = VC9000E_CLK_CTRL,
--		.bit_idx = 24,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vc9000e_core",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_vc9000e_core_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(vc9000e_core, VC9000E_CLK_CTRL, 25, 0x7, c3_vc9000e_parents);
-+static C3_COMP_DIV(vc9000e_core, VC9000E_CLK_CTRL, 16, 7);
-+static C3_COMP_GATE(vc9000e_core, VC9000E_CLK_CTRL, 24);
- 
- static const struct clk_parent_data c3_csi_phy_parents[] = {
- 	{ .fw_name = "fdiv2p5" },
-@@ -1458,52 +813,9 @@ static const struct clk_parent_data c3_csi_phy_parents[] = {
- 	{ .fw_name = "oscin" }
- };
- 
--static struct clk_regmap c3_csi_phy0_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = ISP0_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 25,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "csi_phy0_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_csi_phy_parents,
--		.num_parents = ARRAY_SIZE(c3_csi_phy_parents),
--	},
--};
--
--static struct clk_regmap c3_csi_phy0_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = ISP0_CLK_CTRL,
--		.shift = 16,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "csi_phy0_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_csi_phy0_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_csi_phy0 = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = ISP0_CLK_CTRL,
--		.bit_idx = 24,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "csi_phy0",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_csi_phy0_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(csi_phy0, ISP0_CLK_CTRL, 25, 0x7, c3_csi_phy_parents);
-+static C3_COMP_DIV(csi_phy0, ISP0_CLK_CTRL, 16, 7);
-+static C3_COMP_GATE(csi_phy0, ISP0_CLK_CTRL, 24);
- 
- static const struct clk_parent_data c3_dewarpa_parents[] = {
- 	{ .fw_name = "fdiv2p5" },
-@@ -1516,52 +828,9 @@ static const struct clk_parent_data c3_dewarpa_parents[] = {
- 	{ .fw_name = "fdiv7" }
- };
- 
--static struct clk_regmap c3_dewarpa_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = DEWARPA_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "dewarpa_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_dewarpa_parents,
--		.num_parents = ARRAY_SIZE(c3_dewarpa_parents),
--	},
--};
--
--static struct clk_regmap c3_dewarpa_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = DEWARPA_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "dewarpa_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_dewarpa_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_dewarpa = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = DEWARPA_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "dewarpa",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_dewarpa_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(dewarpa, DEWARPA_CLK_CTRL, 9, 0x7, c3_dewarpa_parents);
-+static C3_COMP_DIV(dewarpa, DEWARPA_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(dewarpa, DEWARPA_CLK_CTRL, 8);
- 
- static const struct clk_parent_data c3_isp_parents[] = {
- 	{ .fw_name = "fdiv2p5" },
-@@ -1574,52 +843,9 @@ static const struct clk_parent_data c3_isp_parents[] = {
- 	{ .fw_name = "oscin" }
- };
- 
--static struct clk_regmap c3_isp0_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = ISP0_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "isp0_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_isp_parents,
--		.num_parents = ARRAY_SIZE(c3_isp_parents),
--	},
--};
--
--static struct clk_regmap c3_isp0_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = ISP0_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "isp0_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_isp0_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_isp0 = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = ISP0_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "isp0",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_isp0_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(isp0, ISP0_CLK_CTRL, 9, 0x7, c3_isp_parents);
-+static C3_COMP_DIV(isp0, ISP0_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(isp0, ISP0_CLK_CTRL, 8);
- 
- static const struct clk_parent_data c3_nna_core_parents[] = {
- 	{ .fw_name = "oscin" },
-@@ -1632,52 +858,9 @@ static const struct clk_parent_data c3_nna_core_parents[] = {
- 	{ .fw_name = "hifi" }
- };
- 
--static struct clk_regmap c3_nna_core_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = NNA_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "nna_core_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_nna_core_parents,
--		.num_parents = ARRAY_SIZE(c3_nna_core_parents),
--	},
--};
--
--static struct clk_regmap c3_nna_core_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = NNA_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "nna_core_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_nna_core_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_nna_core = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = NNA_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "nna_core",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_nna_core_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(nna_core, NNA_CLK_CTRL, 9, 0x7, c3_nna_core_parents);
-+static C3_COMP_DIV(nna_core, NNA_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(nna_core, NNA_CLK_CTRL, 8);
- 
- static const struct clk_parent_data c3_ge2d_parents[] = {
- 	{ .fw_name = "oscin" },
-@@ -1690,52 +873,9 @@ static const struct clk_parent_data c3_ge2d_parents[] = {
- 	{ .hw = &c3_rtc_clk.hw }
- };
- 
--static struct clk_regmap c3_ge2d_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = GE2D_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "ge2d_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_ge2d_parents,
--		.num_parents = ARRAY_SIZE(c3_ge2d_parents),
--	},
--};
--
--static struct clk_regmap c3_ge2d_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = GE2D_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "ge2d_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_ge2d_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_ge2d = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = GE2D_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "ge2d",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_ge2d_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(ge2d, GE2D_CLK_CTRL, 9, 0x7, c3_ge2d_parents);
-+static C3_COMP_DIV(ge2d, GE2D_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(ge2d, GE2D_CLK_CTRL, 8);
- 
- static const struct clk_parent_data c3_vapb_parents[] = {
- 	{ .fw_name = "fdiv2p5" },
-@@ -1748,52 +888,9 @@ static const struct clk_parent_data c3_vapb_parents[] = {
- 	{ .fw_name = "oscin" },
- };
- 
--static struct clk_regmap c3_vapb_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = VAPB_CLK_CTRL,
--		.mask = 0x7,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vapb_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = c3_vapb_parents,
--		.num_parents = ARRAY_SIZE(c3_vapb_parents),
--	},
--};
--
--static struct clk_regmap c3_vapb_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = VAPB_CLK_CTRL,
--		.shift = 0,
--		.width = 7,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vapb_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_vapb_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap c3_vapb = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = VAPB_CLK_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vapb",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&c3_vapb_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static C3_COMP_SEL(vapb, VAPB_CLK_CTRL, 9, 0x7, c3_vapb_parents);
-+static C3_COMP_DIV(vapb, VAPB_CLK_CTRL, 0, 7);
-+static C3_COMP_GATE(vapb, VAPB_CLK_CTRL, 8);
- 
- static struct clk_hw *c3_peripherals_hw_clks[] = {
- 	[CLKID_RTC_XTAL_CLKIN]		= &c3_rtc_xtal_clkin.hw,
+ /* Array of all clocks provided by this provider */
+ static struct clk_hw *s4_peripherals_hw_clks[] = {
 
 -- 
 2.47.2
