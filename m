@@ -4,67 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1CA8CA0FF2
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Aug 2025 17:08:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85A26CA0FE7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Aug 2025 17:51:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8gnXQVAr/5UaRlRZNMChnifsxZex8c+T0Jx+KQiUoPY=; b=Sn1uNHD2YOrObA
-	nBjvoMsXh1vRuN1cgMsojm1mGwwvMziCNQyFV3iSKprrtIn/bNLH8zSUBIuxKilkb1vgfuFpQe3Od
-	Tjumnn5MjDNDUfh5pMwHPOvEamsOxKwmGoDpk3waFc0A1xbtv/TTDsVx/K6TEutsAlSiDHN4aseIH
-	j9S0GP12Uv5tnKO4BJroiZUNBr6UmHcHz3MZhWPDa5xqOmTmlh5QQYjBgMa2Dd02NY6MjLXJsXgdo
-	8c/rOg1/wggZXo8rgGWkgGkFBM07ll6fK6NMNGc2vnOOGxDecwL2yGIB19U6SS0b/Z62uU7h1NMR9
-	TUjVAUDI0yDxl6CWnfdg==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=WiCNNoAiYpyzpA9X4Sv5lfDRgpvUPenRahAkTJ9C+A8=; b=ACNFo6aYBNrZSGpmQJdZ8fQiw2
+	fI+rF0MflvHQmKS4lh+4BNuZVagOggRduTHYy+MgRNMsy7E9Whah5sc2pYc3wrBCjTkrJ2VjXtptE
+	9NTzQDtAk9wON4QViu32fpNB0f4AlbhD8qp4qS1Vqk5sZjd/ZdY8SsD8FSHRdEx5q8yqOXvTRkQKH
+	dXwmn7KGY1BatOEIOpv+Lr/DCrMxHKs6t8pQR8SyxDf9Alt7VwWExZkEKSi9UBAMTkAznmt2TqYrw
+	iLb+6TOX42EjVIEjxHFilHqfmod//l7RHFaXdI5QJPCnsAR4ZtJnB3GaavFRxFNc6MepyxSHEoS2v
+	sKukoLtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqx9d-0000000CjEH-2jye;
-	Tue, 26 Aug 2025 17:08:17 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqvzo-0000000CWzP-0w3U;
-	Tue, 26 Aug 2025 15:54:05 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 39F0B1A25;
-	Tue, 26 Aug 2025 08:53:54 -0700 (PDT)
-Received: from [10.57.4.86] (unknown [10.57.4.86])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8041A3F694;
-	Tue, 26 Aug 2025 08:53:54 -0700 (PDT)
-Message-ID: <983df32a-ba74-421d-bc20-06e778b4d2c9@arm.com>
-Date: Tue, 26 Aug 2025 16:53:51 +0100
+	id 1uqxpY-0000000CoMb-3SBF;
+	Tue, 26 Aug 2025 17:51:36 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uqxpW-0000000CoLc-1ABq
+	for linux-amlogic@lists.infradead.org;
+	Tue, 26 Aug 2025 17:51:35 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 0696943C99;
+	Tue, 26 Aug 2025 17:51:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B72F2C4CEF1;
+	Tue, 26 Aug 2025 17:51:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756230693;
+	bh=5OG0CFSumhwO6LPpaT7Nwl9tbfKtGy7nJSNDdcsM6Xw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZBIWB8CfNuqO2Xt04dr1deTArEr1hsWTPwg3F+HkeDvfDwssE5q+kkFSD6kSTleEN
+	 00d6M0WcGX5tfcuEb1jeRM4FhRpA1iVofSqHon/UJK8jDClHQAHt/XiSWvt6ofRRRV
+	 P54jx5TwCo9IRGFD21Xt7eUWwpkaVRVhov8z8dWtJTjrbv8lQTJr7GxD0uxxNdrITF
+	 Ewpw0B3LnGgv0+qIJeWk+4nwUn6zF7bU71y3GZHEnkWGofxwqw3bATe3mHa1LoUaD+
+	 pBBYsBR2/A7eREM5xY6JjyJQP8jTH46SanN4fy90/GdhJPIgLp+DGPTga2bvrROvZL
+	 +WxtkIB0brobg==
+Date: Tue, 26 Aug 2025 18:51:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: xianwei.zhao@amlogic.com
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liang Yang <liang.yang@amlogic.com>,
+	Feng Chen <feng.chen@amlogic.com>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] spi: dt-bindings: add Amlogic A113L2 SFC
+Message-ID: <20250826-scratch-cleft-a3f7b36a3cb5@spud>
+References: <20250826-spifc-v3-0-7e926041d7f6@amlogic.com>
+ <20250826-spifc-v3-1-7e926041d7f6@amlogic.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 16/19] perf: Introduce positive capability for sampling
-To: Leo Yan <leo.yan@arm.com>
-Cc: peterz@infradead.org, mingo@redhat.com, will@kernel.org,
- mark.rutland@arm.com, acme@kernel.org, namhyung@kernel.org,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org, irogers@google.com,
- adrian.hunter@intel.com, kan.liang@linux.intel.com,
- linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <ae81cb65b38555c628e395cce67ac6c7eaafdd23.1755096883.git.robin.murphy@arm.com>
- <20250826131124.GB745921@e132581.arm.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250826131124.GB745921@e132581.arm.com>
+In-Reply-To: <20250826-spifc-v3-1-7e926041d7f6@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250826_085404_355518_3E337AE0 
-X-CRM114-Status: GOOD (  21.90  )
+X-CRM114-CacheID: sfid-20250826_105134_356995_C6E8D9A4 
+X-CRM114-Status: GOOD (  20.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,87 +72,166 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============3549248208329434463=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2025-08-26 2:11 pm, Leo Yan wrote:
-> On Wed, Aug 13, 2025 at 06:01:08PM +0100, Robin Murphy wrote:
->> Sampling is inherently a feature for CPU PMUs, given that the thing
->> to be sampled is a CPU context. These days, we have many more
->> uncore/system PMUs than CPU PMUs, so it no longer makes much sense to
->> assume sampling support by default and force the ever-growing majority
->> of drivers to opt out of it (or erroneously fail to). Instead, let's
->> introduce a positive opt-in capability that's more obvious and easier to
->> maintain.
-> 
-> [...]
-> 
->> diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
->> index 369e77ad5f13..dbd52851f5c6 100644
->> --- a/drivers/perf/arm_spe_pmu.c
->> +++ b/drivers/perf/arm_spe_pmu.c
->> @@ -955,7 +955,8 @@ static int arm_spe_pmu_perf_init(struct arm_spe_pmu *spe_pmu)
->>   	spe_pmu->pmu = (struct pmu) {
->>   		.module = THIS_MODULE,
->>   		.parent		= &spe_pmu->pdev->dev,
->> -		.capabilities	= PERF_PMU_CAP_EXCLUSIVE | PERF_PMU_CAP_ITRACE,
->> +		.capabilities	= PERF_PMU_CAP_SAMPLING |
->> +				  PERF_PMU_CAP_EXCLUSIVE | PERF_PMU_CAP_ITRACE,
->>   		.attr_groups	= arm_spe_pmu_attr_groups,
->>   		/*
->>   		 * We hitch a ride on the software context here, so that
-> 
-> The change in Arm SPE driver looks good to me.
-> 
-> I noticed you did not set the flag for other AUX events, like Arm
-> CoreSight, Intel PT and bts. The drivers locate in:
-> 
->    drivers/hwtracing/coresight/coresight-etm-perf.c
->    arch/x86/events/intel/bts.c
->    arch/x86/events/intel/pt.c
-> 
-> Genearlly, AUX events generate interrupts based on AUX ring buffer
-> watermark but not the period. Seems to me, it is correct to set the
-> PERF_PMU_CAP_SAMPLING flag for them.
 
-This cap is given to drivers which handle event->attr.sample_period and 
-call perf_event_overflow() - or in a few rare cases, 
-perf_output_sample() directly - to do something meaningful with it, 
-since the intent is to convey "I properly handle events for which 
-is_sampling_event() is true". My understanding is that aux events are 
-something else entirely, but I'm happy to be corrected.
+--===============3549248208329434463==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nV4lczYBtuhRtLNv"
+Content-Disposition: inline
 
-Otherwise, perhaps this suggests it deserves to be named a little more 
-specifically for clarity, maybe PERF_CAP_SAMPLING_EVENTS?
 
-Thanks,
-Robin.
+--nV4lczYBtuhRtLNv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> A special case is Arm CoreSight legacy sinks (like ETR/ETB, etc)
-> don't has interrupt. We might need set or clear the flag on the fly
-> based on sink type:
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-etm-perf.c b/drivers/hwtracing/coresight/coresight-etm-perf.c
-> index f1551c08ecb2..404edc94c198 100644
-> --- a/drivers/hwtracing/coresight/coresight-etm-perf.c
-> +++ b/drivers/hwtracing/coresight/coresight-etm-perf.c
-> @@ -433,6 +433,11 @@ static void *etm_setup_aux(struct perf_event *event, void **pages,
->          if (!sink)
->                  goto err;
->   
-> +       if (coresight_is_percpu_sink(sink))
-> +               event->pmu.capabilities = PERF_PMU_CAP_SAMPLING;
-> +       else
-> +               event->pmu.capabilities &= ~PERF_PMU_CAP_SAMPLING;
+On Tue, Aug 26, 2025 at 10:10:09AM +0800, Xianwei Zhao via B4 Relay wrote:
+> From: Feng Chen <feng.chen@amlogic.com>
+>=20
+> The Flash Controller is derived by adding an SPI path to the original
+> raw NAND controller. This controller supports two modes: raw mode and
+> SPI mode. The raw mode has already been implemented in the community,
+> and the SPI mode is described here.
+>=20
+> Add bindings for Amlogic A113L2 SPI Flash Controller.
+>=20
+> Signed-off-by: Feng Chen <feng.chen@amlogic.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  .../devicetree/bindings/spi/amlogic,a4-spifc.yaml  | 82 ++++++++++++++++=
+++++++
+>  1 file changed, 82 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/amlogic,a4-spifc.yaml =
+b/Documentation/devicetree/bindings/spi/amlogic,a4-spifc.yaml
+> new file mode 100644
+> index 000000000000..80a89408a832
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/amlogic,a4-spifc.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/amlogic,a4-spifc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> 
-> Thanks,
-> Leo
+> +title: SPI flash controller for Amlogic ARM SoCs
+> +
+> +maintainers:
+> +  - Liang Yang <liang.yang@amlogic.com>
+> +  - Feng Chen <feng.chen@amlogic.com>
+> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+> +
+> +description:
+> +  The Amlogic SPI flash controller is an extended version of the Amlogic=
+ NAND
+> +  flash controller. It supports SPI Nor Flash and SPI NAND Flash(where t=
+he Host
+> +  ECC HW engine could be enabled).
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,a4-spifc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: clock apb gate
+> +      - description: clock used for the controller
+> +
+> +  clock-names:
+> +    items:
+> +      - const: gate
+> +      - const: core
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  amlogic,rx-adj:
+> +    description:
+> +      Adjust sample timing for RX, Sampling time move later by 1 bus clo=
+ck.
 
+By 1 bus clock? Or by up to 3? I'd suggest rewording this to something
+like "Number of clock cycles by which sampling is delayed" or along
+those lines.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    sfc0: spi@fe08d000 {
+> +      compatible =3D "amlogic,a4-spifc";
+> +      reg =3D <0xfe08d000 0x800>;
+> +      clocks =3D <&clkc_periphs 31>,
+> +               <&clkc_periphs 102>;
+> +      clock-names =3D "gate", "core";
+> +
+> +      pinctrl-0 =3D <&spiflash_default>;
+> +      pinctrl-names =3D "default";
+> +
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      flash@0 {
+> +          compatible =3D "spi-nand";
+> +          reg =3D <0>;
+> +          #address-cells =3D <1>;
+> +          #size-cells =3D <1>;
+> +          nand-ecc-engine =3D <&sfc0>;
+> +          nand-ecc-strength =3D <8>;
+> +          nand-ecc-step-size =3D <512>;
+> +      };
+> +    };
+>=20
+> --=20
+> 2.37.1
+>=20
+>=20
+
+--nV4lczYBtuhRtLNv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaK30IQAKCRB4tDGHoIJi
+0mnBAP9q21gLzy77xyCZZSJg4XByZEMOe0XHyHUr6l/8gLQX/AEA5uxdEN8+9653
+Kjgpi+dqVC4/8HIBfELwg25BaNiapwM=
+=qzT9
+-----END PGP SIGNATURE-----
+
+--nV4lczYBtuhRtLNv--
+
+
+--===============3549248208329434463==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3549248208329434463==--
+
