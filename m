@@ -4,105 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CB5ECA0FE8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Aug 2025 15:30:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84B1BCA0EFA
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Aug 2025 02:12:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MVArw+SBK1rreLNdi86RhA3pCsRfP7S+ERWE3ZvdPns=; b=kn2vnnvZBeL3uo
-	YAmVa5beenveL2LLr39ldfIduBq8GchE4kLxbzlJYZTVO1ajK7rYKnH44PEqhX/+hkGqm8zoTMvru
-	7xKJwUcGsF0tclnlgtJnQBvD50dHGXHMi45o/hzKjYD+p/aqLHZhwNWCTlIFtRlRxRfZ0EHLNKL4F
-	djdDl4IZEVSq+C7QqYr95ykyfRCYgrOiFuQkeImbMcaWlTepVz6MmQ4sebTSJGgu+ALJHRc2Sd4l4
-	Hu7pnANW1ig0KjIOEXmkgFSG/mK0Hmd4Rt/32+UwAMbkHruvSeaeyuINiMNRIHM8kMh3Ri1Jkn2gz
-	nRB65Hc1p85wP0QHBzig==;
+	List-Owner; bh=10qqeZMCSwrlXvaa/Lr78sAvgyZGzBtD84pcf8LQqeQ=; b=c63CHSJHn9Wn8b
+	y3lHjw3c4BDkoiV+jUoVsnOaODzJyFtE2XOK3ddp2C+S74K3QS0jWw0PZTt4R4z/IpsvXkJerxFFS
+	TOZafsi1fdoUDvP75jP4ky30OufL0L8LIgLalP3wxUp7xKoQmrfY23g0VZvi27zAWaWPnECh5SA3C
+	H/FekPi3DUC9CKa4TV+R3petL6rHes3Az77WczZQc5HN0y6J/elynkbPjBP/bTvPxNDmH+xPEliul
+	xySMes93WGlLgZLNkbzklMc4GU6ub/a8Jw1CqqnZghw1zwAjNZRICFB9zdinQyPSMaSbxxIs1s526
+	rmiSkOpyxS8oxyrYAxKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqZ9R-00000008WGd-35NW;
-	Mon, 25 Aug 2025 15:30:29 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1uqjAe-0000000AKkE-0lu3;
+	Tue, 26 Aug 2025 02:12:24 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uqYAF-00000008FlA-2tMS
+	id 1uqj8W-0000000AKTa-2nWI
 	for linux-amlogic@lists.infradead.org;
-	Mon, 25 Aug 2025 14:27:17 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3c607029266so1924072f8f.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 25 Aug 2025 07:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756132034; x=1756736834; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OUky9lqttrbpUCvILYpHg9Z0/QzSnBTRvjKKimO9Xdo=;
-        b=Qc2fD1VpUb8xk5SA4h0VNNwxkebZk3/pYIRRrriB6M7LexzALcp6l3jQGtknzbV+Dj
-         R/bSL8P+IzX6gBLk3HQam7gjq1uCICJJSkGQdNvD01aPMqBO3Xca/CHk2N6m5fNNfD50
-         8g3jf9m0uBUODtgPtXIF41VMeA9gIkKMijZyzrIzajsoqzQkh0LFBpX4X7hkngDM/Slr
-         WVy9klFYCFisLbDf1UNCThJIgOjeAS/wSSG92Pp4z/6uJVvX3eoM0WUOUX2tvaVHJKYC
-         874fkgfL2yk4Hr0gZI0b/kxsJGMMLopCN0Q4A+sX8qFergFvmw6ZWEmnT5JAD+DuK/uS
-         w9mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756132034; x=1756736834;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OUky9lqttrbpUCvILYpHg9Z0/QzSnBTRvjKKimO9Xdo=;
-        b=q6xEWwvl9w7yuFjyAzufGSL0PGalEXhBW42aJbokGmZJ5OepVGxvGfsMK4+jHCB/27
-         8oaIZkt6WTc6qL2nUaj9Rs3ptyatyXEngw6QSOB5N0GQIQu9YbohA3pFeKFnCADmtfzJ
-         yMjAc5yloKsI5VDClvQdfuzSDz53gHR3VLpkVfuqI2lp6GQ9z42cT7lWuNeWPkkA0Zwu
-         /7cdQNxensG03FfUwMBMEYqiFcwvGFuOnFLy2MgANX1oyqvljvKcSSjz+rITFlGPmw6a
-         PVdxR6zDodlVsZu3ok7FoCouxUB6qoL94LgVhKH28mS3Rzm57HWbbzoSveehykvXVEtX
-         9paw==
-X-Gm-Message-State: AOJu0YzsNGwTiHZRvLeGM4wuT3SaGB+Dg/AmJURsIyFaG3ntZDta5bRC
-	xpSDRfVXZ3PLnCD+zWYIMLFeDT39cjL0ztKRBQVcQVaFHhRE6pU++iqTB7+rHBPNkJc=
-X-Gm-Gg: ASbGncsNaB6xrAAHE3c01D6qKAkY2o0VpXi7EZ30kNvOgJ0erHULs3Ypnngtjn6j1Ht
-	XO9jIMLZRaRyzneOzcwMItCcD4cvB/P9O/FepkmLhi1yOASEtAVS/CLLpuoAzIdElLOtFRM/SFj
-	mgEi0LPZniqiIaM7KTvHt6vJ+y+Z5E8uiNsN074PcpDwGGrWDgNCIRblL6hNmttmaXBTRcmyewA
-	PcL1ErpZz0KfPZvXg9+a7oV1eOaOXrGYMm1w1Jqz3OMSHONDbDCWOHh4zwj6Ot5f6LPp3Ypx8NP
-	IW9QZf6IK1CBzYL7p3QCnB1bw+oiajEJ+msUxTPXBwN90elSEoS8BvgNIlzNcPK8UHIaZuMz2QT
-	87wUNTs2Cpo7ljScw0y7E7zeeRiAmnpCT/zDp
-X-Google-Smtp-Source: AGHT+IFyirK+nJVW3TSIPe8IdYzeCN4+xJ95Y/siJ2NO5IGM9xDzrIhZnHpMmswZS9kHh+gZ03v77w==
-X-Received: by 2002:a05:6000:4022:b0:3ca:a190:c45a with SMTP id ffacd0b85a97d-3caa190c847mr1129222f8f.40.1756132034173;
-        Mon, 25 Aug 2025 07:27:14 -0700 (PDT)
-Received: from toaster.baylibre.com ([2a01:e0a:3c5:5fb1:b261:baab:ed3d:3cb6])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3c70e4b9e1fsm12634462f8f.14.2025.08.25.07.27.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Aug 2025 07:27:13 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 25 Aug 2025 16:26:36 +0200
-Subject: [PATCH v2 11/12] clk: amlogic: align s4 and c3 pwm clock
- descriptions
+	Tue, 26 Aug 2025 02:10:14 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id F0FA644724;
+	Tue, 26 Aug 2025 02:10:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AD6BEC116D0;
+	Tue, 26 Aug 2025 02:10:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756174211;
+	bh=J3UQShLQLJSMeJYjFv3qpSxx/rj3+dggOiCKmmBjf5o=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=H00J2t25Nj45ZVYS4WMNOWesFCFXJO7P7iWrMYLswgYOrJlfdpuIHN3421TXEJ1WV
+	 ejjWwBc4l/oPrR+DaMFNR9KYOH4PBasLKFtNGrXmRRqMjlPSJl1O4wi6HuNG6mD1lE
+	 Jd66RYmhwjmuxTL1XZWpdeXduU5fqfksfFNNcHcZXMwCcW7klCvZriJw+h0t6eEGEk
+	 PR40NSsckJrBTHBKGG1b9bOpnxtS32M9yRb9rllUNDUzCC2Yo5OsoArcy5gePNdSMR
+	 4VtAEMMPoCJ4mFCzm6yBnWXsr/OGLJe2OBfunRrWncdz5ORLdB03EBU300tl3e6qJM
+	 7F0Cd5oP1Imqg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A2411C8303F;
+	Tue, 26 Aug 2025 02:10:11 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Tue, 26 Aug 2025 10:10:10 +0800
+Subject: [PATCH v3 2/3] spi: amlogic: add driver for Amlogic SPI Flash
+ Controller
 MIME-Version: 1.0
-Message-Id: <20250825-meson-clk-cleanup-24-v2-11-0f402f01e117@baylibre.com>
-References: <20250825-meson-clk-cleanup-24-v2-0-0f402f01e117@baylibre.com>
-In-Reply-To: <20250825-meson-clk-cleanup-24-v2-0-0f402f01e117@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>, 
- Chuan Liu <chuan.liu@amlogic.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=23845; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=KKJgRJArtEZnmgn+Mscv9ei4wZaRB5fejXiQda3cJb4=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBorHK32MkKZMhtncHhNzkjnsZZFAA/KL4kBfxgZ
- oR/8jZtjSuJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaKxytwAKCRDm/A8cN/La
- hcrMD/wKJEBRLsHXNqvrJqmH63n0JoDfvtdVeSwVwXL2ReXRCuoq4Yt61Ei4LdXQCg55TN/SZL2
- y1Gd9SsT1Y9bkoD1s22zoiE8PYOHFSNO9l2ejl9LFUPZ669l9WDXjNX/aF5e9/BJCO2xIyx0tGH
- 010yzihS1Eh6eI6i31O32HBjGyOkKH/WFdpQVqCezS3qi8ikVd/agYTUuB4tuzcCUb/DtA/5Ktl
- pZTCYZm2oWFb9aLH/DYrfqSdSInx3Wbjiw0gQXPeIGr6gv0ox2CnNlddZMjyhzP8hOobDYLv7pW
- VjxSGfBtbgqSpFLAkz1v4yvr+n9RmRcWGx3p+DIHtiy5/SPueE3hPiXoFfjhlwgnRtacEBfp3Yg
- 3raTRDKjfzcqyGXiyWUtpo9Ei4NstyySh8xeEOoeDihtOHMbLeVpDcr00rgOL6qkW8Fn1zA0/M5
- wBFcS7fGR42hfilpLGBnwT+r2Wc1RgAqnLcaL1mwju2U68HUog0tZYKwLYVPHkEEMwhmAfhKC9P
- gwsvkl/ED0WzWgtEpCeQl1BUhf7Plf5me5HjNQ7Uwx/vr1oac6uco7uAom/dnVNRBTJQyZ4Thf/
- FjMF1pmznyOmKzU4+CR5KtrybJ4S8LkWiZWwHa19DoXfsLGA3G8wn3tjS1ocvm6uYQEJkHIeyaT
- sgqM5SgLJfnNFAg==
-X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
- fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
+Message-Id: <20250826-spifc-v3-2-7e926041d7f6@amlogic.com>
+References: <20250826-spifc-v3-0-7e926041d7f6@amlogic.com>
+In-Reply-To: <20250826-spifc-v3-0-7e926041d7f6@amlogic.com>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756174209; l=36119;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=EKem6179nRg39Bbe+qX6i9H7Ul8quRFYBYeHHyK46Z0=;
+ b=R+KtOJ+TQU17DpUunLRVgANJy42NXdm6109tdIxcoNMcjhk31IiNmdAZZFYSKuWHJ1BORmraa
+ /6j5b/lDk95A5Ji71NYkuyarnqhf2iXW+iF6Y02kSIow9uJNY9rR0uJ
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250825_072715_924553_31C0BF9E 
-X-CRM114-Status: GOOD (  11.72  )
+X-CRM114-CacheID: sfid-20250825_191012_821124_2B52C663 
+X-CRM114-Status: GOOD (  24.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,784 +85,1296 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-s4 and c3 follow exactly the same structure when it comes to PWM clocks but
-differ in the way these clocks are described, for no obvious reason.
+From: Feng Chen <feng.chen@amlogic.com>
 
-Align the description of the pwm clocks of these SoCs with the composite
-clock helpers.
+This driver provides support for the SPI mode of the Amlogic
+Flash Controller. It supports both SPI NOR flash and SPI NAND
+flash. For SPI NAND, the Host ECC hardware engine can be enabled.
 
-Reviewed-by: Chuan Liu <chuan.liu@amlogic.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+The controller implements the SPI-MEM interface and does not
+support generic SPI.
+
+Signed-off-by: Feng Chen <feng.chen@amlogic.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- drivers/clk/meson/c3-peripherals.c | 204 +++++----------
- drivers/clk/meson/s4-peripherals.c | 508 +++----------------------------------
- 2 files changed, 103 insertions(+), 609 deletions(-)
+ drivers/spi/Kconfig                |   10 +
+ drivers/spi/Makefile               |    1 +
+ drivers/spi/spi-amlogic-spifc-a4.c | 1224 ++++++++++++++++++++++++++++++++++++
+ 3 files changed, 1235 insertions(+)
 
-diff --git a/drivers/clk/meson/c3-peripherals.c b/drivers/clk/meson/c3-peripherals.c
-index 02c9820cd98655e57a290859b595cf09d39e5fe3..fd35f9b7994720d069c5f72142d6064790d40b60 100644
---- a/drivers/clk/meson/c3-peripherals.c
-+++ b/drivers/clk/meson/c3-peripherals.c
-@@ -48,6 +48,15 @@
- #define SPIFC_CLK_CTRL				0x1a0
- #define NNA_CLK_CTRL				0x220
+diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+index 891729c9c564..b44b0b5e5cdc 100644
+--- a/drivers/spi/Kconfig
++++ b/drivers/spi/Kconfig
+@@ -99,6 +99,16 @@ config SPI_AMLOGIC_SPIFC_A1
+ 	  This enables master mode support for the SPIFC (SPI flash
+ 	  controller) available in Amlogic A1 (A113L SoC).
  
-+#define C3_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
-+	MESON_COMP_SEL(c3_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
++config SPI_AMLOGIC_SPIFC_A4
++	tristate "Amlogic A4 SPI Flash controller"
++	depends on ARCH_MESON || COMPILE_TEST
++	select REGMAP_MMIO
++	help
++	  This enables SPI mode on the NAND Flash Controller of Amlogic
++	  ARM SoCs. It supports SPI Nor Flash and SPI NAND Flash (Could
++	  enable Host ECC HW engine). The controller implements the
++	  SPI-MEM interface, it doesn't support generic SPI.
 +
-+#define C3_COMP_DIV(_name, _reg, _shift, _width) \
-+	MESON_COMP_DIV(c3_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
+ config SPI_AMLOGIC_SPISG
+ 	tristate "Amlogic SPISG controller"
+ 	depends on COMMON_CLK
+diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+index 062c85989c8c..eefaeca09745 100644
+--- a/drivers/spi/Makefile
++++ b/drivers/spi/Makefile
+@@ -20,6 +20,7 @@ obj-$(CONFIG_SPI_ALTERA)		+= spi-altera-platform.o
+ obj-$(CONFIG_SPI_ALTERA_CORE)		+= spi-altera-core.o
+ obj-$(CONFIG_SPI_ALTERA_DFL)		+= spi-altera-dfl.o
+ obj-$(CONFIG_SPI_AMLOGIC_SPIFC_A1)	+= spi-amlogic-spifc-a1.o
++obj-$(CONFIG_SPI_AMLOGIC_SPIFC_A4)	+= spi-amlogic-spifc-a4.o
+ obj-$(CONFIG_SPI_AMLOGIC_SPISG)		+= spi-amlogic-spisg.o
+ obj-$(CONFIG_SPI_APPLE)			+= spi-apple.o
+ obj-$(CONFIG_SPI_AR934X)		+= spi-ar934x.o
+diff --git a/drivers/spi/spi-amlogic-spifc-a4.c b/drivers/spi/spi-amlogic-spifc-a4.c
+new file mode 100644
+index 000000000000..c057be4e38cd
+--- /dev/null
++++ b/drivers/spi/spi-amlogic-spifc-a4.c
+@@ -0,0 +1,1224 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
++/*
++ * Copyright (C) 2025 Amlogic, Inc. All rights reserved
++ *
++ * Driver for the SPI Mode of Amlogic Flash Controller
++ * Authors:
++ *  Liang Yang <liang.yang@amlogic.com>
++ *  Feng Chen <feng.chen@amlogic.com>
++ *  Xianwei Zhao <xianwei.zhao@amlogic.com>
++ */
 +
-+#define C3_COMP_GATE(_name, _reg, _bit) \
-+	MESON_COMP_GATE(c3_, _name, _reg, _bit, CLK_SET_RATE_PARENT)
++#include <linux/platform_device.h>
++#include <linux/clk-provider.h>
++#include <linux/dma-mapping.h>
++#include <linux/bitfield.h>
++#include <linux/module.h>
++#include <linux/slab.h>
++#include <linux/of.h>
++#include <linux/clk.h>
++#include <linux/delay.h>
++#include <linux/bitops.h>
++#include <linux/regmap.h>
++#include <linux/mtd/spinand.h>
++#include <linux/spi/spi-mem.h>
 +
- static struct clk_regmap c3_rtc_xtal_clkin = {
- 	.data = &(struct clk_regmap_gate_data) {
- 		.offset = RTC_BY_OSCIN_CTRL0,
-@@ -512,146 +521,61 @@ static const struct clk_parent_data c3_pwm_parents[] = {
- 	{ .fw_name = "fdiv3" }
- };
- 
--#define C3_PWM_CLK_MUX(_name, _reg, _shift) {			\
--	.data = &(struct clk_regmap_mux_data) {			\
--		.offset = _reg,					\
--		.mask = 0x3,					\
--		.shift = _shift,				\
--	},							\
--	.hw.init = &(struct clk_init_data) {			\
--		.name = #_name "_sel",				\
--		.ops = &clk_regmap_mux_ops,			\
--		.parent_data = c3_pwm_parents,			\
--		.num_parents = ARRAY_SIZE(c3_pwm_parents),	\
--	},							\
--}
--
--#define C3_PWM_CLK_DIV(_name, _reg, _shift) {			\
--	.data = &(struct clk_regmap_div_data) {			\
--		.offset = _reg,					\
--		.shift = _shift,				\
--		.width = 8,					\
--	},							\
--	.hw.init = &(struct clk_init_data) {			\
--		.name = #_name "_div",				\
--		.ops = &clk_regmap_divider_ops,			\
--		.parent_names = (const char *[]) { #_name "_sel" },\
--		.num_parents = 1,				\
--		.flags = CLK_SET_RATE_PARENT,			\
--	},							\
--}
--
--#define C3_PWM_CLK_GATE(_name, _reg, _bit) {			\
--	.data = &(struct clk_regmap_gate_data) {		\
--		.offset = _reg,					\
--		.bit_idx = _bit,				\
--	},							\
--	.hw.init = &(struct clk_init_data) {			\
--		.name = #_name,					\
--		.ops = &clk_regmap_gate_ops,			\
--		.parent_names = (const char *[]) { #_name "_div" },\
--		.num_parents = 1,				\
--		.flags = CLK_SET_RATE_PARENT,			\
--	},							\
--}
--
--static struct clk_regmap c3_pwm_a_sel =
--	C3_PWM_CLK_MUX(pwm_a, PWM_CLK_AB_CTRL, 9);
--static struct clk_regmap c3_pwm_a_div =
--	C3_PWM_CLK_DIV(pwm_a, PWM_CLK_AB_CTRL, 0);
--static struct clk_regmap c3_pwm_a =
--	C3_PWM_CLK_GATE(pwm_a, PWM_CLK_AB_CTRL, 8);
--
--static struct clk_regmap c3_pwm_b_sel =
--	C3_PWM_CLK_MUX(pwm_b, PWM_CLK_AB_CTRL, 25);
--static struct clk_regmap c3_pwm_b_div =
--	C3_PWM_CLK_DIV(pwm_b, PWM_CLK_AB_CTRL, 16);
--static struct clk_regmap c3_pwm_b =
--	C3_PWM_CLK_GATE(pwm_b, PWM_CLK_AB_CTRL, 24);
--
--static struct clk_regmap c3_pwm_c_sel =
--	C3_PWM_CLK_MUX(pwm_c, PWM_CLK_CD_CTRL, 9);
--static struct clk_regmap c3_pwm_c_div =
--	C3_PWM_CLK_DIV(pwm_c, PWM_CLK_CD_CTRL, 0);
--static struct clk_regmap c3_pwm_c =
--	C3_PWM_CLK_GATE(pwm_c, PWM_CLK_CD_CTRL, 8);
--
--static struct clk_regmap c3_pwm_d_sel =
--	C3_PWM_CLK_MUX(pwm_d, PWM_CLK_CD_CTRL, 25);
--static struct clk_regmap c3_pwm_d_div =
--	C3_PWM_CLK_DIV(pwm_d, PWM_CLK_CD_CTRL, 16);
--static struct clk_regmap c3_pwm_d =
--	C3_PWM_CLK_GATE(pwm_d, PWM_CLK_CD_CTRL, 24);
--
--static struct clk_regmap c3_pwm_e_sel =
--	C3_PWM_CLK_MUX(pwm_e, PWM_CLK_EF_CTRL, 9);
--static struct clk_regmap c3_pwm_e_div =
--	C3_PWM_CLK_DIV(pwm_e, PWM_CLK_EF_CTRL, 0);
--static struct clk_regmap c3_pwm_e =
--	C3_PWM_CLK_GATE(pwm_e, PWM_CLK_EF_CTRL, 8);
--
--static struct clk_regmap c3_pwm_f_sel =
--	C3_PWM_CLK_MUX(pwm_f, PWM_CLK_EF_CTRL, 25);
--static struct clk_regmap c3_pwm_f_div =
--	C3_PWM_CLK_DIV(pwm_f, PWM_CLK_EF_CTRL, 16);
--static struct clk_regmap c3_pwm_f =
--	C3_PWM_CLK_GATE(pwm_f, PWM_CLK_EF_CTRL, 24);
--
--static struct clk_regmap c3_pwm_g_sel =
--	C3_PWM_CLK_MUX(pwm_g, PWM_CLK_GH_CTRL, 9);
--static struct clk_regmap c3_pwm_g_div =
--	C3_PWM_CLK_DIV(pwm_g, PWM_CLK_GH_CTRL, 0);
--static struct clk_regmap c3_pwm_g =
--	C3_PWM_CLK_GATE(pwm_g, PWM_CLK_GH_CTRL, 8);
--
--static struct clk_regmap c3_pwm_h_sel =
--	C3_PWM_CLK_MUX(pwm_h, PWM_CLK_GH_CTRL, 25);
--static struct clk_regmap c3_pwm_h_div =
--	C3_PWM_CLK_DIV(pwm_h, PWM_CLK_GH_CTRL, 16);
--static struct clk_regmap c3_pwm_h =
--	C3_PWM_CLK_GATE(pwm_h, PWM_CLK_GH_CTRL, 24);
--
--static struct clk_regmap c3_pwm_i_sel =
--	C3_PWM_CLK_MUX(pwm_i, PWM_CLK_IJ_CTRL, 9);
--static struct clk_regmap c3_pwm_i_div =
--	C3_PWM_CLK_DIV(pwm_i, PWM_CLK_IJ_CTRL, 0);
--static struct clk_regmap c3_pwm_i =
--	C3_PWM_CLK_GATE(pwm_i, PWM_CLK_IJ_CTRL, 8);
--
--static struct clk_regmap c3_pwm_j_sel =
--	C3_PWM_CLK_MUX(pwm_j, PWM_CLK_IJ_CTRL, 25);
--static struct clk_regmap c3_pwm_j_div =
--	C3_PWM_CLK_DIV(pwm_j, PWM_CLK_IJ_CTRL, 16);
--static struct clk_regmap c3_pwm_j =
--	C3_PWM_CLK_GATE(pwm_j, PWM_CLK_IJ_CTRL, 24);
--
--static struct clk_regmap c3_pwm_k_sel =
--	C3_PWM_CLK_MUX(pwm_k, PWM_CLK_KL_CTRL, 9);
--static struct clk_regmap c3_pwm_k_div =
--	C3_PWM_CLK_DIV(pwm_k, PWM_CLK_KL_CTRL, 0);
--static struct clk_regmap c3_pwm_k =
--	C3_PWM_CLK_GATE(pwm_k, PWM_CLK_KL_CTRL, 8);
--
--static struct clk_regmap c3_pwm_l_sel =
--	C3_PWM_CLK_MUX(pwm_l, PWM_CLK_KL_CTRL, 25);
--static struct clk_regmap c3_pwm_l_div =
--	C3_PWM_CLK_DIV(pwm_l, PWM_CLK_KL_CTRL, 16);
--static struct clk_regmap c3_pwm_l =
--	C3_PWM_CLK_GATE(pwm_l, PWM_CLK_KL_CTRL, 24);
--
--static struct clk_regmap c3_pwm_m_sel =
--	C3_PWM_CLK_MUX(pwm_m, PWM_CLK_MN_CTRL, 9);
--static struct clk_regmap c3_pwm_m_div =
--	C3_PWM_CLK_DIV(pwm_m, PWM_CLK_MN_CTRL, 0);
--static struct clk_regmap c3_pwm_m =
--	C3_PWM_CLK_GATE(pwm_m, PWM_CLK_MN_CTRL, 8);
--
--static struct clk_regmap c3_pwm_n_sel =
--	C3_PWM_CLK_MUX(pwm_n, PWM_CLK_MN_CTRL, 25);
--static struct clk_regmap c3_pwm_n_div =
--	C3_PWM_CLK_DIV(pwm_n, PWM_CLK_MN_CTRL, 16);
--static struct clk_regmap c3_pwm_n =
--	C3_PWM_CLK_GATE(pwm_n, PWM_CLK_MN_CTRL, 24);
-+static C3_COMP_SEL(pwm_a, PWM_CLK_AB_CTRL, 9, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_a, PWM_CLK_AB_CTRL, 0, 8);
-+static C3_COMP_GATE(pwm_a, PWM_CLK_AB_CTRL, 8);
++#define SFC_CMD				0x00
++#define SFC_CFG				0x04
++#define SFC_DADR			0x08
++#define SFC_IADR			0x0c
++#define SFC_BUF				0x10
++#define SFC_INFO			0x14
++#define SFC_DC				0x18
++#define SFC_ADR				0x1c
++#define SFC_DL				0x20
++#define SFC_DH				0x24
++#define SFC_CADR			0x28
++#define SFC_SADR			0x2c
++#define SFC_RX_IDX			0x34
++#define SFC_RX_DAT			0x38
++#define SFC_SPI_CFG			0x40
 +
-+static C3_COMP_SEL(pwm_b, PWM_CLK_AB_CTRL, 25, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_b, PWM_CLK_AB_CTRL, 16, 8);
-+static C3_COMP_GATE(pwm_b, PWM_CLK_AB_CTRL, 24);
++/* settings in SFC_CMD  */
 +
-+static C3_COMP_SEL(pwm_c, PWM_CLK_CD_CTRL, 9, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_c, PWM_CLK_CD_CTRL, 0, 8);
-+static C3_COMP_GATE(pwm_c, PWM_CLK_CD_CTRL, 8);
++/* 4 bits support 4 chip select, high false, low select but spi support 2*/
++#define CHIP_SELECT_MASK		GENMASK(13, 10)
++#define CS_NONE				0xf
++#define CS_0				0xe
++#define CS_1				0xd
 +
-+static C3_COMP_SEL(pwm_d, PWM_CLK_CD_CTRL, 25, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_d, PWM_CLK_CD_CTRL, 16, 8);
-+static C3_COMP_GATE(pwm_d, PWM_CLK_CD_CTRL, 24);
++#define CLE				(0x5 << 14)
++#define ALE				(0x6 << 14)
++#define DWR				(0x4 << 14)
++#define DRD				(0x8 << 14)
++#define DUMMY				(0xb << 14)
++#define IDLE				(0xc << 14)
++#define IDLE_CYCLE_MASK			GENMASK(9, 0)
++#define EXT_CYCLE_MASK			GENMASK(9, 0)
 +
-+static C3_COMP_SEL(pwm_e, PWM_CLK_EF_CTRL, 9, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_e, PWM_CLK_EF_CTRL, 0, 8);
-+static C3_COMP_GATE(pwm_e, PWM_CLK_EF_CTRL, 8);
++#define OP_M2N				((0 << 17) | (2 << 20))
++#define OP_N2M				((1 << 17) | (2 << 20))
++#define OP_STS				((3 << 17) | (2 << 20))
++#define OP_ADL				((0 << 16) | (3 << 20))
++#define OP_ADH				((1 << 16) | (3 << 20))
++#define OP_AIL				((2 << 16) | (3 << 20))
++#define OP_AIH				((3 << 16) | (3 << 20))
++#define OP_ASL				((4 << 16) | (3 << 20))
++#define OP_ASH				((5 << 16) | (3 << 20))
++#define OP_SEED				((8 << 16) | (3 << 20))
++#define SEED_MASK			GENMASK(14, 0)
++#define ENABLE_RANDOM			BIT(19)
 +
-+static C3_COMP_SEL(pwm_f, PWM_CLK_EF_CTRL, 25, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_f, PWM_CLK_EF_CTRL, 16, 8);
-+static C3_COMP_GATE(pwm_f, PWM_CLK_EF_CTRL, 24);
++#define CMD_COMMAND(cs_sel, cmd)	(CLE | ((cs_sel) << 10) | (cmd))
++#define CMD_ADDR(cs_sel, addr)		(ALE | ((cs_sel) << 10) | (addr))
++#define CMD_DUMMY(cs_sel, cyc)		(DUMMY | ((cs_sel) << 10) | ((cyc) & EXT_CYCLE_MASK))
++#define CMD_IDLE(cs_sel, cyc)		(IDLE | ((cs_sel) << 10) | ((cyc) & IDLE_CYCLE_MASK))
++#define CMD_MEM2NAND(bch, pages)	(OP_M2N | ((bch) << 14) | (pages))
++#define CMD_NAND2MEM(bch, pages)	(OP_N2M | ((bch) << 14) | (pages))
++#define CMD_DATA_ADDRL(addr)		(OP_ADL | ((addr) & 0xffff))
++#define CMD_DATA_ADDRH(addr)		(OP_ADH | (((addr) >> 16) & 0xffff))
++#define CMD_INFO_ADDRL(addr)		(OP_AIL | ((addr) & 0xffff))
++#define CMD_INFO_ADDRH(addr)		(OP_AIH | (((addr) >> 16) & 0xffff))
++#define CMD_SEED(seed)			(OP_SEED | ((seed) & SEED_MASK))
 +
-+static C3_COMP_SEL(pwm_g, PWM_CLK_GH_CTRL, 9, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_g, PWM_CLK_GH_CTRL, 0, 8);
-+static C3_COMP_GATE(pwm_g, PWM_CLK_GH_CTRL, 8);
++#define GET_CMD_SIZE(x)			(((x) >> 22) & GENMASK(4, 0))
 +
-+static C3_COMP_SEL(pwm_h, PWM_CLK_GH_CTRL, 25, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_h, PWM_CLK_GH_CTRL, 16, 8);
-+static C3_COMP_GATE(pwm_h, PWM_CLK_GH_CTRL, 24);
++#define DEFAULT_PULLUP_CYCLE		2
++#define CS_SETUP_CYCLE			1
++#define CS_HOLD_CYCLE			2
++#define DEFAULT_BUS_CYCLE		4
 +
-+static C3_COMP_SEL(pwm_i, PWM_CLK_IJ_CTRL, 9, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_i, PWM_CLK_IJ_CTRL, 0, 8);
-+static C3_COMP_GATE(pwm_i, PWM_CLK_IJ_CTRL, 8);
++#define RAW_SIZE			GENMASK(13, 0)
++#define RAW_SIZE_BW			14
 +
-+static C3_COMP_SEL(pwm_j, PWM_CLK_IJ_CTRL, 25, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_j, PWM_CLK_IJ_CTRL, 16, 8);
-+static C3_COMP_GATE(pwm_j, PWM_CLK_IJ_CTRL, 24);
++#define DMA_ADDR_ALIGN			8
 +
-+static C3_COMP_SEL(pwm_k, PWM_CLK_KL_CTRL, 9, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_k, PWM_CLK_KL_CTRL, 0, 8);
-+static C3_COMP_GATE(pwm_k, PWM_CLK_KL_CTRL, 8);
++/* Bit fields in SFC_SPI_CFG */
++#define SPI_MODE_EN			BIT(31)
++#define RAW_EXT_SIZE			GENMASK(29, 18)
++#define ADDR_LANE			GENMASK(17, 16)
++#define CPOL				BIT(15)
++#define CPHA				BIT(14)
++#define EN_HOLD				BIT(13)
++#define EN_WP				BIT(12)
++#define TXADJ				GENMASK(11, 8)
++#define RXADJ				GENMASK(7, 4)
++#define CMD_LANE			GENMASK(3, 2)
++#define DATA_LANE			GENMASK(1, 0)
++#define LANE_MAX			0x3
 +
-+static C3_COMP_SEL(pwm_l, PWM_CLK_KL_CTRL, 25, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_l, PWM_CLK_KL_CTRL, 16, 8);
-+static C3_COMP_GATE(pwm_l, PWM_CLK_KL_CTRL, 24);
++/* raw ext size[25:14] + raw size[13:0] */
++#define RAW_MAX_RW_SIZE_MASK		GENMASK(25, 0)
 +
-+static C3_COMP_SEL(pwm_m, PWM_CLK_MN_CTRL, 9, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_m, PWM_CLK_MN_CTRL, 0, 8);
-+static C3_COMP_GATE(pwm_m, PWM_CLK_MN_CTRL, 8);
++/* Ecc fields */
++#define ECC_COMPLETE			BIT(31)
++#define ECC_UNCORRECTABLE		0x3f
++#define ECC_ERR_CNT(x)			(((x) >> 24) & 0x3f)
++#define ECC_ZERO_CNT(x)			(((x) >> 16) & 0x3f)
 +
-+static C3_COMP_SEL(pwm_n, PWM_CLK_MN_CTRL, 25, 0x3, c3_pwm_parents);
-+static C3_COMP_DIV(pwm_n, PWM_CLK_MN_CTRL, 16, 8);
-+static C3_COMP_GATE(pwm_n, PWM_CLK_MN_CTRL, 24);
- 
- static const struct clk_parent_data c3_spicc_parents[] = {
- 	{ .fw_name = "oscin" },
-diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
-index 3e048e645b080f9e5982ef908e3f9c43578a0b5f..6d69b132d1e1f5950d73757c45b920c9c9052344 100644
---- a/drivers/clk/meson/s4-peripherals.c
-+++ b/drivers/clk/meson/s4-peripherals.c
-@@ -62,6 +62,15 @@
- #define CLKCTRL_PWM_CLK_IJ_CTRL                    0x190
- #define CLKCTRL_DEMOD_CLK_CTRL                     0x200
- 
-+#define S4_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
-+	MESON_COMP_SEL(s4_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
++#define ECC_BCH8_512			1
++#define ECC_BCH8_1K			2
++#define ECC_BCH8_PARITY_BYTES		14
++#define ECC_BCH8_USER_BYTES		2
++#define ECC_BCH8_INFO_BYTES		(ECC_BCH8_USER_BYTES + ECC_BCH8_PARITY_BYTES)
++#define ECC_BCH8_STRENGTH		8
++#define ECC_BCH8_DEFAULT_STEP		512
++#define ECC_DEFAULT_BCH_MODE		ECC_BCH8_512
++#define ECC_PER_INFO_BYTE		8
++#define ECC_PATTERN			0x5a
++#define ECC_BCH_MAX_SECT_SIZE		63
++/* soft flags for sfc */
++#define SFC_HWECC			BIT(0)
++#define SFC_DATA_RANDOM			BIT(1)
++#define SFC_DATA_ONLY			BIT(2)
++#define SFC_OOB_ONLY			BIT(3)
++#define SFC_DATA_OOB			BIT(4)
++#define SFC_AUTO_OOB			BIT(5)
++#define SFC_RAW_RW			BIT(6)
++#define SFC_XFER_MDOE_MASK		GENMASK(6, 2)
 +
-+#define S4_COMP_DIV(_name, _reg, _shift, _width) \
-+	MESON_COMP_DIV(s4_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
++#define SFC_DATABUF_SIZE		8192
++#define SFC_INFOBUF_SIZE		256
++#define SFC_BUF_SIZE			(SFC_DATABUF_SIZE + SFC_INFOBUF_SIZE)
 +
-+#define S4_COMP_GATE(_name, _reg, _bit) \
-+	MESON_COMP_GATE(s4_, _name, _reg, _bit, CLK_SET_RATE_PARENT)
++/* !!! PCB and SPI-NAND chip limitations */
++#define SFC_MAX_FREQUENCY		(250 * 1000 * 1000)
++#define SFC_MIN_FREQUENCY		(4 * 1000 * 1000)
++#define SFC_BUS_DEFAULT_CLK		40000000
++#define SFC_MAX_CS_NUM			2
 +
- static struct clk_regmap s4_rtc_32k_by_oscin_clkin = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = CLKCTRL_RTC_BY_OSCIN_CTRL0,
-@@ -2559,484 +2568,45 @@ static const struct clk_parent_data s4_pwm_parents[] = {
- 	{ .fw_name = "fclk_div3", },
- };
- 
--static struct clk_regmap s4_pwm_a_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = CLKCTRL_PWM_CLK_AB_CTRL,
--		.mask = 0x3,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_a_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = s4_pwm_parents,
--		.num_parents = ARRAY_SIZE(s4_pwm_parents),
--		.flags = 0,
--	},
--};
--
--static struct clk_regmap s4_pwm_a_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = CLKCTRL_PWM_CLK_AB_CTRL,
--		.shift = 0,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_a_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_a_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_a = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = CLKCTRL_PWM_CLK_AB_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_a_gate",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_a_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_b_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = CLKCTRL_PWM_CLK_AB_CTRL,
--		.mask = 0x3,
--		.shift = 25,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_b_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = s4_pwm_parents,
--		.num_parents = ARRAY_SIZE(s4_pwm_parents),
--		.flags = 0,
--	},
--};
--
--static struct clk_regmap s4_pwm_b_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = CLKCTRL_PWM_CLK_AB_CTRL,
--		.shift = 16,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_b_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_b_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_b = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = CLKCTRL_PWM_CLK_AB_CTRL,
--		.bit_idx = 24,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_b",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_b_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_c_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = CLKCTRL_PWM_CLK_CD_CTRL,
--		.mask = 0x3,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_c_mux",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = s4_pwm_parents,
--		.num_parents = ARRAY_SIZE(s4_pwm_parents),
--		.flags = 0,
--	},
--};
--
--static struct clk_regmap s4_pwm_c_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = CLKCTRL_PWM_CLK_CD_CTRL,
--		.shift = 0,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_c_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_c_sel.hw
--		},
--		.num_parents = 1,
--	},
--};
--
--static struct clk_regmap s4_pwm_c = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = CLKCTRL_PWM_CLK_CD_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_c",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_c_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_d_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = CLKCTRL_PWM_CLK_CD_CTRL,
--		.mask = 0x3,
--		.shift = 25,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_d_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = s4_pwm_parents,
--		.num_parents = ARRAY_SIZE(s4_pwm_parents),
--		.flags = 0,
--	},
--};
--
--static struct clk_regmap s4_pwm_d_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = CLKCTRL_PWM_CLK_CD_CTRL,
--		.shift = 16,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_d_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_d_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_d = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = CLKCTRL_PWM_CLK_CD_CTRL,
--		.bit_idx = 24,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_d",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_d_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_e_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = CLKCTRL_PWM_CLK_EF_CTRL,
--		.mask = 0x3,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_e_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = s4_pwm_parents,
--		.num_parents = ARRAY_SIZE(s4_pwm_parents),
--		.flags = 0,
--	},
--};
--
--static struct clk_regmap s4_pwm_e_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = CLKCTRL_PWM_CLK_EF_CTRL,
--		.shift = 0,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_e_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_e_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_e = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = CLKCTRL_PWM_CLK_EF_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_e",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_e_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_f_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = CLKCTRL_PWM_CLK_EF_CTRL,
--		.mask = 0x3,
--		.shift = 25,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_f_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = s4_pwm_parents,
--		.num_parents = ARRAY_SIZE(s4_pwm_parents),
--		.flags = 0,
--	},
--};
-+static S4_COMP_SEL(pwm_a, CLKCTRL_PWM_CLK_AB_CTRL, 9, 0x3, s4_pwm_parents);
-+static S4_COMP_DIV(pwm_a, CLKCTRL_PWM_CLK_AB_CTRL, 0, 8);
-+static S4_COMP_GATE(pwm_a, CLKCTRL_PWM_CLK_AB_CTRL, 8);
- 
--static struct clk_regmap s4_pwm_f_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = CLKCTRL_PWM_CLK_EF_CTRL,
--		.shift = 16,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_f_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_f_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static S4_COMP_SEL(pwm_b, CLKCTRL_PWM_CLK_AB_CTRL, 25, 0x3, s4_pwm_parents);
-+static S4_COMP_DIV(pwm_b, CLKCTRL_PWM_CLK_AB_CTRL, 16, 8);
-+static S4_COMP_GATE(pwm_b, CLKCTRL_PWM_CLK_AB_CTRL, 24);
- 
--static struct clk_regmap s4_pwm_f = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = CLKCTRL_PWM_CLK_EF_CTRL,
--		.bit_idx = 24,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_f",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_f_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static S4_COMP_SEL(pwm_c, CLKCTRL_PWM_CLK_CD_CTRL, 9, 0x3, s4_pwm_parents);
-+static S4_COMP_DIV(pwm_c, CLKCTRL_PWM_CLK_CD_CTRL, 0, 8);
-+static S4_COMP_GATE(pwm_c, CLKCTRL_PWM_CLK_CD_CTRL, 8);
- 
--static struct clk_regmap s4_pwm_g_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = CLKCTRL_PWM_CLK_GH_CTRL,
--		.mask = 0x3,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_g_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = s4_pwm_parents,
--		.num_parents = ARRAY_SIZE(s4_pwm_parents),
--		.flags = 0,
--	},
--};
-+static S4_COMP_SEL(pwm_d, CLKCTRL_PWM_CLK_CD_CTRL, 25, 0x3, s4_pwm_parents);
-+static S4_COMP_DIV(pwm_d, CLKCTRL_PWM_CLK_CD_CTRL, 16, 8);
-+static S4_COMP_GATE(pwm_d, CLKCTRL_PWM_CLK_CD_CTRL, 24);
- 
--static struct clk_regmap s4_pwm_g_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = CLKCTRL_PWM_CLK_GH_CTRL,
--		.shift = 0,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_g_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_g_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static S4_COMP_SEL(pwm_e, CLKCTRL_PWM_CLK_EF_CTRL, 9, 0x3, s4_pwm_parents);
-+static S4_COMP_DIV(pwm_e, CLKCTRL_PWM_CLK_EF_CTRL, 0, 8);
-+static S4_COMP_GATE(pwm_e, CLKCTRL_PWM_CLK_EF_CTRL, 8);
- 
--static struct clk_regmap s4_pwm_g = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = CLKCTRL_PWM_CLK_GH_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_g",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_g_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static S4_COMP_SEL(pwm_f, CLKCTRL_PWM_CLK_EF_CTRL, 25, 0x3, s4_pwm_parents);
-+static S4_COMP_DIV(pwm_f, CLKCTRL_PWM_CLK_EF_CTRL, 16, 8);
-+static S4_COMP_GATE(pwm_f, CLKCTRL_PWM_CLK_EF_CTRL, 24);
- 
--static struct clk_regmap s4_pwm_h_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = CLKCTRL_PWM_CLK_GH_CTRL,
--		.mask = 0x3,
--		.shift = 25,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_h_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = s4_pwm_parents,
--		.num_parents = ARRAY_SIZE(s4_pwm_parents),
--		.flags = 0,
--	},
--};
-+static S4_COMP_SEL(pwm_g, CLKCTRL_PWM_CLK_GH_CTRL, 9, 0x3, s4_pwm_parents);
-+static S4_COMP_DIV(pwm_g, CLKCTRL_PWM_CLK_GH_CTRL, 0, 8);
-+static S4_COMP_GATE(pwm_g, CLKCTRL_PWM_CLK_GH_CTRL, 8);
- 
--static struct clk_regmap s4_pwm_h_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = CLKCTRL_PWM_CLK_GH_CTRL,
--		.shift = 16,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_h_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_h_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static S4_COMP_SEL(pwm_h, CLKCTRL_PWM_CLK_GH_CTRL, 25, 0x3, s4_pwm_parents);
-+static S4_COMP_DIV(pwm_h, CLKCTRL_PWM_CLK_GH_CTRL, 16, 8);
-+static S4_COMP_GATE(pwm_h, CLKCTRL_PWM_CLK_GH_CTRL, 24);
- 
--static struct clk_regmap s4_pwm_h = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = CLKCTRL_PWM_CLK_GH_CTRL,
--		.bit_idx = 24,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_h",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_h_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static S4_COMP_SEL(pwm_i, CLKCTRL_PWM_CLK_IJ_CTRL, 9, 0x3, s4_pwm_parents);
-+static S4_COMP_DIV(pwm_i, CLKCTRL_PWM_CLK_IJ_CTRL, 0, 8);
-+static S4_COMP_GATE(pwm_i, CLKCTRL_PWM_CLK_IJ_CTRL, 8);
- 
--static struct clk_regmap s4_pwm_i_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = CLKCTRL_PWM_CLK_IJ_CTRL,
--		.mask = 0x3,
--		.shift = 9,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_i_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = s4_pwm_parents,
--		.num_parents = ARRAY_SIZE(s4_pwm_parents),
--		.flags = 0,
--	},
--};
--
--static struct clk_regmap s4_pwm_i_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = CLKCTRL_PWM_CLK_IJ_CTRL,
--		.shift = 0,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_i_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_i_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_i = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = CLKCTRL_PWM_CLK_IJ_CTRL,
--		.bit_idx = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_i",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_i_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_j_sel = {
--	.data = &(struct clk_regmap_mux_data) {
--		.offset = CLKCTRL_PWM_CLK_IJ_CTRL,
--		.mask = 0x3,
--		.shift = 25,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_j_sel",
--		.ops = &clk_regmap_mux_ops,
--		.parent_data = s4_pwm_parents,
--		.num_parents = ARRAY_SIZE(s4_pwm_parents),
--		.flags = 0,
--	},
--};
--
--static struct clk_regmap s4_pwm_j_div = {
--	.data = &(struct clk_regmap_div_data) {
--		.offset = CLKCTRL_PWM_CLK_IJ_CTRL,
--		.shift = 16,
--		.width = 8,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_j_div",
--		.ops = &clk_regmap_divider_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_j_sel.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
--
--static struct clk_regmap s4_pwm_j = {
--	.data = &(struct clk_regmap_gate_data) {
--		.offset = CLKCTRL_PWM_CLK_IJ_CTRL,
--		.bit_idx = 24,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "pwm_j",
--		.ops = &clk_regmap_gate_ops,
--		.parent_hws = (const struct clk_hw *[]) {
--			&s4_pwm_j_div.hw
--		},
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT,
--	},
--};
-+static S4_COMP_SEL(pwm_j, CLKCTRL_PWM_CLK_IJ_CTRL, 25, 0x3, s4_pwm_parents);
-+static S4_COMP_DIV(pwm_j, CLKCTRL_PWM_CLK_IJ_CTRL, 16, 8);
-+static S4_COMP_GATE(pwm_j, CLKCTRL_PWM_CLK_IJ_CTRL, 24);
- 
- static struct clk_regmap s4_saradc_sel = {
- 	.data = &(struct clk_regmap_mux_data) {
++/* SPI-FLASH R/W operation cmd */
++#define SPIFLASH_RD_OCTALIO		0xcb
++#define SPIFLASH_RD_OCTAL		0x8b
++#define SPIFLASH_RD_QUADIO		0xeb
++#define SPIFLASH_RD_QUAD		0x6b
++#define SPIFLASH_RD_DUALIO		0xbb
++#define SPIFLASH_RD_DUAL		0x3b
++#define SPIFLASH_RD_FAST		0x0b
++#define SPIFLASH_RD			0x03
++#define SPIFLASH_WR_OCTALIO		0xC2
++#define SPIFLASH_WR_OCTAL		0x82
++#define SPIFLASH_WR_QUAD		0x32
++#define SPIFLASH_WR			0x02
++#define SPIFLASH_UP_QUAD		0x34
++#define SPIFLASH_UP			0x84
++
++struct aml_sfc_ecc_cfg {
++	u32 stepsize;
++	u32 nsteps;
++	u32 strength;
++	u32 oobsize;
++	u32 bch;
++};
++
++struct aml_ecc_stats {
++	u32 corrected;
++	u32 bitflips;
++	u32 failed;
++};
++
++struct aml_sfc_caps {
++	struct aml_sfc_ecc_cfg *ecc_caps;
++	u32 num_ecc_caps;
++};
++
++struct aml_sfc {
++	struct device *dev;
++	struct clk *gate_clk;
++	struct clk *core_clk;
++	struct spi_controller *ctrl;
++	struct regmap *regmap_base;
++	const struct aml_sfc_caps *caps;
++	struct nand_ecc_engine ecc_eng;
++	struct aml_ecc_stats ecc_stats;
++	dma_addr_t daddr;
++	dma_addr_t iaddr;
++	u32 info_bytes;
++	u32 bus_rate;
++	u32 flags;
++	u32 rx_adj;
++	u32 cs_sel;
++	u8 *data_buf;
++	u8 *info_buf;
++	u8 *priv;
++};
++
++#define AML_ECC_DATA(sz, s, b)	{ .stepsize = (sz), .strength = (s), .bch = (b) }
++
++static struct aml_sfc_ecc_cfg aml_a113l2_ecc_caps[] = {
++	AML_ECC_DATA(512, 8, ECC_BCH8_512),
++	AML_ECC_DATA(1024, 8, ECC_BCH8_1K),
++};
++
++static const struct aml_sfc_caps aml_a113l2_sfc_caps = {
++	.ecc_caps = aml_a113l2_ecc_caps,
++	.num_ecc_caps = ARRAY_SIZE(aml_a113l2_ecc_caps)
++};
++
++static struct aml_sfc *nand_to_aml_sfc(struct nand_device *nand)
++{
++	struct nand_ecc_engine *eng = nand->ecc.engine;
++
++	return container_of(eng, struct aml_sfc, ecc_eng);
++}
++
++static inline void *aml_sfc_to_ecc_ctx(struct aml_sfc *sfc)
++{
++	return sfc->priv;
++}
++
++static int aml_sfc_wait_cmd_finish(struct aml_sfc *sfc, u64 timeout_ms)
++{
++	u32 cmd_size = 0;
++	int ret;
++
++	/*
++	 * The SPINAND flash controller employs a two-stage pipeline:
++	 * 1) command prefetch; 2) command execution.
++	 *
++	 * All commands are stored in the FIFO, with one prefetched for execution.
++	 *
++	 * There are cases where the FIFO is detected as empty, yet a command may
++	 * still be in execution and a prefetched command pending execution.
++	 *
++	 * So, send two idle commands to ensure all previous commands have
++	 * been executed.
++	 */
++	regmap_write(sfc->regmap_base, SFC_CMD, CMD_IDLE(sfc->cs_sel, 0));
++	regmap_write(sfc->regmap_base, SFC_CMD, CMD_IDLE(sfc->cs_sel, 0));
++
++	/* Wait for the FIFO to empty. */
++	ret = regmap_read_poll_timeout(sfc->regmap_base, SFC_CMD, cmd_size,
++				       !GET_CMD_SIZE(cmd_size),
++				       10, timeout_ms * 1000);
++	if (ret)
++		dev_err(sfc->dev, "wait for empty CMD FIFO time out\n");
++
++	return ret;
++}
++
++static int aml_sfc_pre_transfer(struct aml_sfc *sfc, u32 idle_cycle, u32 cs2clk_cycle)
++{
++	int ret;
++
++	ret = regmap_write(sfc->regmap_base, SFC_CMD, CMD_IDLE(CS_NONE, idle_cycle));
++	if (ret)
++		return ret;
++
++	return regmap_write(sfc->regmap_base, SFC_CMD, CMD_IDLE(sfc->cs_sel, cs2clk_cycle));
++}
++
++static int aml_sfc_end_transfer(struct aml_sfc *sfc, u32 clk2cs_cycle)
++{
++	int ret;
++
++	ret = regmap_write(sfc->regmap_base, SFC_CMD, CMD_IDLE(sfc->cs_sel, clk2cs_cycle));
++	if (ret)
++		return ret;
++
++	return aml_sfc_wait_cmd_finish(sfc, 0);
++}
++
++static int aml_sfc_set_bus_width(struct aml_sfc *sfc, u8 buswidth, u32 mask)
++{
++	int i;
++	u32 conf = 0;
++
++	for (i = 0; i <= LANE_MAX; i++) {
++		if (buswidth == 1 << i) {
++			conf = i << __bf_shf(mask);
++			return regmap_update_bits(sfc->regmap_base, SFC_SPI_CFG,
++						  mask, conf);
++		}
++	}
++
++	return 0;
++}
++
++static int aml_sfc_send_cmd(struct aml_sfc *sfc, const struct spi_mem_op *op)
++{
++	int i, ret;
++	u8 val;
++
++	ret = aml_sfc_set_bus_width(sfc, op->cmd.buswidth, CMD_LANE);
++	if (ret)
++		return ret;
++
++	for (i = 0; i < op->cmd.nbytes; i++) {
++		val = (op->cmd.opcode >> ((op->cmd.nbytes - i - 1) * 8)) & 0xff;
++		ret = regmap_write(sfc->regmap_base, SFC_CMD, CMD_COMMAND(sfc->cs_sel, val));
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static int aml_sfc_send_addr(struct aml_sfc *sfc, const struct spi_mem_op *op)
++{
++	int i, ret;
++	u8 val;
++
++	ret = aml_sfc_set_bus_width(sfc, op->addr.buswidth, ADDR_LANE);
++	if (ret)
++		return ret;
++
++	for (i = 0; i < op->addr.nbytes; i++) {
++		val = (op->addr.val >> ((op->addr.nbytes - i - 1) * 8)) & 0xff;
++
++		ret = regmap_write(sfc->regmap_base, SFC_CMD, CMD_ADDR(sfc->cs_sel, val));
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static bool aml_sfc_is_xio_op(const struct spi_mem_op *op)
++{
++	switch (op->cmd.opcode) {
++	case SPIFLASH_RD_OCTALIO:
++	case SPIFLASH_RD_QUADIO:
++	case SPIFLASH_RD_DUALIO:
++		return true;
++	default:
++		break;
++	}
++
++	return false;
++}
++
++static int aml_sfc_send_cmd_addr_dummy(struct aml_sfc *sfc, const struct spi_mem_op *op)
++{
++	u32 dummy_cycle, cmd;
++	int ret;
++
++	ret = aml_sfc_send_cmd(sfc, op);
++	if (ret)
++		return ret;
++
++	ret = aml_sfc_send_addr(sfc, op);
++	if (ret)
++		return ret;
++
++	if (op->dummy.nbytes) {
++		/*  Dummy buswidth configuration is not supported */
++		if (aml_sfc_is_xio_op(op))
++			dummy_cycle = op->dummy.nbytes * 8 / op->data.buswidth;
++		else
++			dummy_cycle = op->dummy.nbytes * 8;
++		cmd = CMD_DUMMY(sfc->cs_sel, dummy_cycle - 1);
++		return regmap_write(sfc->regmap_base, SFC_CMD, cmd);
++	}
++
++	return 0;
++}
++
++static bool aml_sfc_is_snand_hwecc_page_op(struct aml_sfc *sfc, const struct spi_mem_op *op)
++{
++	switch (op->cmd.opcode) {
++	/* SPINAND read from cache cmd */
++	case SPIFLASH_RD_QUADIO:
++	case SPIFLASH_RD_QUAD:
++	case SPIFLASH_RD_DUALIO:
++	case SPIFLASH_RD_DUAL:
++	case SPIFLASH_RD_FAST:
++	case SPIFLASH_RD:
++	/* SPINAND write to cache cmd */
++	case SPIFLASH_WR_QUAD:
++	case SPIFLASH_WR:
++	case SPIFLASH_UP_QUAD:
++	case SPIFLASH_UP:
++		if (sfc->flags & SFC_HWECC)
++			return true;
++		else
++			return false;
++	default:
++		break;
++	}
++
++	return false;
++}
++
++static int aml_sfc_dma_buffer_setup(struct aml_sfc *sfc, void *databuf,
++				    int datalen, void *infobuf, int infolen,
++				    enum dma_data_direction dir)
++{
++	u32 cmd = 0;
++	int ret;
++
++	sfc->daddr = dma_map_single(sfc->dev, databuf, datalen, dir);
++	ret = dma_mapping_error(sfc->dev, sfc->daddr);
++	if (ret) {
++		dev_err(sfc->dev, "DMA mapping error\n");
++		goto out_map_data;
++	}
++
++	cmd = CMD_DATA_ADDRL(sfc->daddr);
++	ret = regmap_write(sfc->regmap_base, SFC_CMD, cmd);
++	if (ret)
++		goto out_map_data;
++
++	cmd = CMD_DATA_ADDRH(sfc->daddr);
++	regmap_write(sfc->regmap_base, SFC_CMD, cmd);
++	if (ret)
++		goto out_map_data;
++
++	if (infobuf) {
++		sfc->iaddr = dma_map_single(sfc->dev, infobuf, infolen, dir);
++		ret = dma_mapping_error(sfc->dev, sfc->iaddr);
++		if (ret) {
++			dev_err(sfc->dev, "DMA mapping error\n");
++			dma_unmap_single(sfc->dev, sfc->daddr, datalen, dir);
++			goto out_map_data;
++		}
++
++		sfc->info_bytes = infolen;
++		cmd = CMD_INFO_ADDRL(sfc->iaddr);
++		ret = regmap_write(sfc->regmap_base, SFC_CMD, cmd);
++		if (ret)
++			goto out_map_info;
++
++		cmd = CMD_INFO_ADDRH(sfc->iaddr);
++		ret = regmap_write(sfc->regmap_base, SFC_CMD, cmd);
++		if (ret)
++			goto out_map_info;
++	}
++
++	return 0;
++
++out_map_info:
++	dma_unmap_single(sfc->dev, sfc->iaddr, datalen, dir);
++out_map_data:
++	dma_unmap_single(sfc->dev, sfc->daddr, datalen, dir);
++
++	return ret;
++}
++
++static void aml_sfc_dma_buffer_release(struct aml_sfc *sfc,
++				       int datalen, int infolen,
++				       enum dma_data_direction dir)
++{
++	dma_unmap_single(sfc->dev, sfc->daddr, datalen, dir);
++	if (infolen) {
++		dma_unmap_single(sfc->dev, sfc->iaddr, infolen, dir);
++		sfc->info_bytes = 0;
++	}
++}
++
++static bool aml_sfc_dma_buffer_is_safe(const void *buffer)
++{
++	if ((uintptr_t)buffer % DMA_ADDR_ALIGN)
++		return false;
++
++	if (virt_addr_valid(buffer))
++		return true;
++
++	return false;
++}
++
++static void *aml_get_dma_safe_input_buf(const struct spi_mem_op *op)
++{
++	if (WARN_ON(op->data.dir != SPI_MEM_DATA_IN))
++		return NULL;
++
++	if (aml_sfc_dma_buffer_is_safe(op->data.buf.in))
++		return op->data.buf.in;
++
++	return kzalloc(op->data.nbytes, GFP_KERNEL);
++}
++
++static void aml_sfc_put_dma_safe_input_buf(const struct spi_mem_op *op, void *buf)
++{
++	if (WARN_ON(op->data.dir != SPI_MEM_DATA_IN) || WARN_ON(!buf))
++		return;
++
++	if (buf == op->data.buf.in)
++		return;
++
++	memcpy(op->data.buf.in, buf, op->data.nbytes);
++	kfree(buf);
++}
++
++static void *aml_sfc_get_dma_safe_output_buf(const struct spi_mem_op *op)
++{
++	if (WARN_ON(op->data.dir != SPI_MEM_DATA_OUT))
++		return NULL;
++
++	if (aml_sfc_dma_buffer_is_safe(op->data.buf.out))
++		return (void *)op->data.buf.out;
++
++	return kmemdup(op->data.buf.out, op->data.nbytes, GFP_KERNEL);
++}
++
++static void aml_sfc_put_dma_safe_output_buf(const struct spi_mem_op *op, const void *buf)
++{
++	if (WARN_ON(op->data.dir != SPI_MEM_DATA_OUT) || WARN_ON(!buf))
++		return;
++
++	if (buf != op->data.buf.out)
++		kfree(buf);
++}
++
++static u64 aml_sfc_cal_timeout_cycle(struct aml_sfc *sfc, const struct spi_mem_op *op)
++{
++	u64 ms;
++
++	/* For each byte we wait for (8 cycles / buswidth) of the SPI clock. */
++	ms = 8 * MSEC_PER_SEC * op->data.nbytes / op->data.buswidth;
++	do_div(ms, sfc->bus_rate / DEFAULT_BUS_CYCLE);
++
++	/*
++	 * Double the value and add a 200 ms tolerance to compensate for
++	 * the impact of specific CS hold time, CS setup time sequences,
++	 * controller burst gaps, and other related timing variations.
++	 */
++	ms += ms + 200;
++
++	if (ms > UINT_MAX)
++		ms = UINT_MAX;
++
++	return ms;
++}
++
++static void aml_sfc_check_ecc_pages_valid(struct aml_sfc *sfc, bool raw)
++{
++	struct aml_sfc_ecc_cfg *ecc_cfg;
++	__le64 *info;
++	int ret;
++
++	info = (u64 *)sfc->info_buf;
++	ecc_cfg = aml_sfc_to_ecc_ctx(sfc);
++	info += raw ? 0 : ecc_cfg->nsteps - 1;
++
++	do {
++		usleep_range(10, 15);
++		/* info is updated by nfc dma engine*/
++		smp_rmb();
++		dma_sync_single_for_cpu(sfc->dev, sfc->iaddr, sfc->info_bytes,
++					DMA_FROM_DEVICE);
++		ret = *info & ECC_COMPLETE;
++	} while (!ret);
++}
++
++static int aml_sfc_raw_io_op(struct aml_sfc *sfc, const struct spi_mem_op *op)
++{
++	void *buf;
++	int ret;
++	bool is_datain;
++	u32 cmd = 0, conf;
++	u64 timeout_ms;
++
++	if (!op->data.nbytes)
++		goto end_xfer;
++
++	conf = (op->data.nbytes >> RAW_SIZE_BW) << __bf_shf(RAW_EXT_SIZE);
++	ret = regmap_update_bits(sfc->regmap_base, SFC_SPI_CFG, RAW_EXT_SIZE, conf);
++	if (ret)
++		goto err_out;
++
++	if (op->data.dir == SPI_MEM_DATA_IN) {
++		is_datain = true;
++
++		buf = aml_get_dma_safe_input_buf(op);
++		if (!buf) {
++			ret = -ENOMEM;
++			goto err_out;
++		}
++
++		cmd |= CMD_NAND2MEM(0, (op->data.nbytes & RAW_SIZE));
++	} else if (op->data.dir == SPI_MEM_DATA_OUT) {
++		buf = aml_sfc_get_dma_safe_output_buf(op);
++		if (!buf) {
++			ret = -ENOMEM;
++			goto err_out;
++		}
++
++		cmd |= CMD_MEM2NAND(0, (op->data.nbytes & RAW_SIZE));
++	}
++
++	ret = aml_sfc_dma_buffer_setup(sfc, buf, op->data.nbytes,
++				       is_datain ? sfc->info_buf : NULL,
++				       is_datain ? ECC_PER_INFO_BYTE : 0,
++				       is_datain ? DMA_FROM_DEVICE : DMA_TO_DEVICE);
++	if (ret)
++		goto err_out;
++
++	ret = regmap_write(sfc->regmap_base, SFC_CMD, cmd);
++	if (ret)
++		goto err_out;
++
++	timeout_ms = aml_sfc_cal_timeout_cycle(sfc, op);
++	ret = aml_sfc_wait_cmd_finish(sfc, timeout_ms);
++	if (ret)
++		goto err_out;
++
++	if (is_datain)
++		aml_sfc_check_ecc_pages_valid(sfc, 1);
++
++	if (op->data.dir == SPI_MEM_DATA_IN)
++		aml_sfc_put_dma_safe_input_buf(op, buf);
++	else if (op->data.dir == SPI_MEM_DATA_OUT)
++		aml_sfc_put_dma_safe_output_buf(op, buf);
++
++	aml_sfc_dma_buffer_release(sfc, op->data.nbytes,
++				   is_datain ? ECC_PER_INFO_BYTE : 0,
++				   is_datain ? DMA_FROM_DEVICE : DMA_TO_DEVICE);
++
++end_xfer:
++	return aml_sfc_end_transfer(sfc, CS_HOLD_CYCLE);
++
++err_out:
++	return ret;
++}
++
++static void aml_sfc_set_user_byte(struct aml_sfc *sfc, u64 *info_buf, u8 *oob_buf, bool auto_oob)
++{
++	struct aml_sfc_ecc_cfg *ecc_cfg;
++	__le64 *info;
++	int i, count, step_size;
++
++	ecc_cfg = aml_sfc_to_ecc_ctx(sfc);
++
++	step_size = auto_oob ? ECC_BCH8_INFO_BYTES : ECC_BCH8_USER_BYTES;
++
++	for (i = 0, count = 0; i < ecc_cfg->nsteps; i++, count += step_size) {
++		info = &info_buf[i];
++		*info |= oob_buf[count];
++		*info |= oob_buf[count + 1] << 8;
++	}
++}
++
++static void aml_sfc_get_user_byte(struct aml_sfc *sfc, u64 *info_buf, u8 *oob_buf)
++{
++	struct aml_sfc_ecc_cfg *ecc_cfg;
++	__le64 *info;
++	int i, count;
++
++	ecc_cfg = aml_sfc_to_ecc_ctx(sfc);
++
++	for (i = 0, count = 0; i < ecc_cfg->nsteps; i++, count += ECC_BCH8_INFO_BYTES) {
++		info = &info_buf[i];
++		oob_buf[count] = *info;
++		oob_buf[count + 1] = *info >> 8;
++	}
++}
++
++static int aml_sfc_check_hwecc_status(struct aml_sfc *sfc, u64 *info_buf)
++{
++	struct aml_sfc_ecc_cfg *ecc_cfg;
++	__le64 *info;
++	u32 i, max_bitflips = 0, per_sector_bitflips = 0;
++
++	ecc_cfg = aml_sfc_to_ecc_ctx(sfc);
++
++	sfc->ecc_stats.failed = 0;
++	sfc->ecc_stats.bitflips = 0;
++	sfc->ecc_stats.corrected = 0;
++
++	for (i = 0, info = info_buf; i < ecc_cfg->nsteps; i++, info++) {
++		if (ECC_ERR_CNT(*info) != ECC_UNCORRECTABLE) {
++			per_sector_bitflips = ECC_ERR_CNT(*info);
++			max_bitflips = max_t(u32, max_bitflips, per_sector_bitflips);
++			sfc->ecc_stats.corrected += per_sector_bitflips;
++			continue;
++		}
++
++		return -EBADMSG;
++	}
++
++	return max_bitflips;
++}
++
++static int aml_sfc_read_page_hwecc(struct aml_sfc *sfc, const struct spi_mem_op *op)
++{
++	struct aml_sfc_ecc_cfg *ecc_cfg;
++	int ret, data_len, info_len;
++	u32 page_size, cmd = 0;
++	u64 timeout_ms;
++
++	ecc_cfg = aml_sfc_to_ecc_ctx(sfc);
++
++	page_size = ecc_cfg->stepsize * ecc_cfg->nsteps;
++	data_len = page_size + ecc_cfg->oobsize;
++	info_len = ecc_cfg->nsteps * ECC_PER_INFO_BYTE;
++
++	ret = aml_sfc_dma_buffer_setup(sfc, sfc->data_buf, data_len,
++				       sfc->info_buf, info_len, DMA_FROM_DEVICE);
++	if (ret)
++		goto err_out;
++
++	cmd |= CMD_NAND2MEM(ecc_cfg->bch, ecc_cfg->nsteps);
++	ret = regmap_write(sfc->regmap_base, SFC_CMD, cmd);
++	if (ret)
++		goto err_out;
++
++	timeout_ms = aml_sfc_cal_timeout_cycle(sfc, op);
++	ret = aml_sfc_wait_cmd_finish(sfc, timeout_ms);
++	if (ret)
++		goto err_out;
++
++	aml_sfc_check_ecc_pages_valid(sfc, 0);
++	aml_sfc_dma_buffer_release(sfc, data_len, info_len, DMA_FROM_DEVICE);
++
++	/* check ecc status here */
++	ret = aml_sfc_check_hwecc_status(sfc, (u64 *)sfc->info_buf);
++	if (ret < 0)
++		sfc->ecc_stats.failed++;
++	else
++		sfc->ecc_stats.bitflips = ret;
++
++	if (sfc->flags & SFC_DATA_ONLY) {
++		memcpy(op->data.buf.in, sfc->data_buf, page_size);
++	} else if (sfc->flags & SFC_OOB_ONLY) {
++		aml_sfc_get_user_byte(sfc, (u64 *)sfc->info_buf, op->data.buf.in);
++	} else if (sfc->flags & SFC_DATA_OOB) {
++		memcpy(op->data.buf.in, sfc->data_buf, page_size);
++		aml_sfc_get_user_byte(sfc, (u64 *)sfc->info_buf, op->data.buf.in + page_size);
++	}
++
++	return aml_sfc_end_transfer(sfc, CS_HOLD_CYCLE);
++
++err_out:
++	return ret;
++}
++
++static int aml_sfc_write_page_hwecc(struct aml_sfc *sfc, const struct spi_mem_op *op)
++{
++	struct aml_sfc_ecc_cfg *ecc_cfg;
++	int ret, data_len, info_len;
++	u32 page_size, cmd = 0;
++	u64 timeout_ms;
++
++	ecc_cfg = aml_sfc_to_ecc_ctx(sfc);
++
++	page_size = ecc_cfg->stepsize * ecc_cfg->nsteps;
++	data_len = page_size + ecc_cfg->oobsize;
++	info_len = ecc_cfg->nsteps * ECC_PER_INFO_BYTE;
++
++	memset(sfc->info_buf, ECC_PATTERN, ecc_cfg->oobsize);
++	memcpy(sfc->data_buf, op->data.buf.out, page_size);
++
++	if (!(sfc->flags & SFC_DATA_ONLY)) {
++		if (sfc->flags & SFC_AUTO_OOB)
++			aml_sfc_set_user_byte(sfc, (u64 *)sfc->info_buf,
++					      (u8 *)op->data.buf.out + page_size, 1);
++		else
++			aml_sfc_set_user_byte(sfc, (u64 *)sfc->info_buf,
++					      (u8 *)op->data.buf.out + page_size, 0);
++	}
++
++	ret = aml_sfc_dma_buffer_setup(sfc, sfc->data_buf, data_len,
++				       sfc->info_buf, info_len, DMA_TO_DEVICE);
++	if (ret)
++		goto err_out;
++
++	cmd |= CMD_MEM2NAND(ecc_cfg->bch, ecc_cfg->nsteps);
++	ret = regmap_write(sfc->regmap_base, SFC_CMD, cmd);
++	if (ret)
++		goto err_out;
++
++	timeout_ms = aml_sfc_cal_timeout_cycle(sfc, op);
++
++	ret = aml_sfc_wait_cmd_finish(sfc, timeout_ms);
++	if (ret)
++		goto err_out;
++
++	aml_sfc_dma_buffer_release(sfc, data_len, info_len, DMA_TO_DEVICE);
++
++	return  aml_sfc_end_transfer(sfc, CS_HOLD_CYCLE);
++
++err_out:
++	return ret;
++}
++
++static int aml_sfc_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
++{
++	struct aml_sfc *sfc;
++	struct spi_device *spi;
++	struct aml_sfc_ecc_cfg *ecc_cfg;
++	int ret;
++
++	sfc = spi_controller_get_devdata(mem->spi->controller);
++	ecc_cfg = aml_sfc_to_ecc_ctx(sfc);
++	spi = mem->spi;
++	sfc->cs_sel = spi->chip_select[0] ? CS_1 : CS_0;
++
++	dev_dbg(sfc->dev, "cmd:0x%02x - addr:%08llX@%d:%u - dummy:%d:%u - data:%d:%u",
++		op->cmd.opcode, op->addr.val, op->addr.buswidth, op->addr.nbytes,
++		op->dummy.buswidth, op->dummy.nbytes, op->data.buswidth, op->data.nbytes);
++
++	ret = aml_sfc_pre_transfer(sfc, DEFAULT_PULLUP_CYCLE, CS_SETUP_CYCLE);
++	if (ret)
++		return ret;
++
++	ret = aml_sfc_send_cmd_addr_dummy(sfc, op);
++	if (ret)
++		return ret;
++
++	ret = aml_sfc_set_bus_width(sfc, op->data.buswidth, DATA_LANE);
++	if (ret)
++		return ret;
++
++	if (aml_sfc_is_snand_hwecc_page_op(sfc, op) &&
++	    ecc_cfg && !(sfc->flags & SFC_RAW_RW)) {
++		if (op->data.dir == SPI_MEM_DATA_IN)
++			return aml_sfc_read_page_hwecc(sfc, op);
++		else
++			return aml_sfc_write_page_hwecc(sfc, op);
++	}
++
++	return aml_sfc_raw_io_op(sfc, op);
++}
++
++static int aml_sfc_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
++{
++	struct aml_sfc *sfc;
++	struct aml_sfc_ecc_cfg *ecc_cfg;
++
++	sfc = spi_controller_get_devdata(mem->spi->controller);
++	ecc_cfg = aml_sfc_to_ecc_ctx(sfc);
++
++	if (aml_sfc_is_snand_hwecc_page_op(sfc, op) && ecc_cfg) {
++		if (op->data.nbytes > ecc_cfg->stepsize * ECC_BCH_MAX_SECT_SIZE)
++			return -EOPNOTSUPP;
++	} else if (op->data.nbytes & ~RAW_MAX_RW_SIZE_MASK) {
++		return -EOPNOTSUPP;
++	}
++
++	return 0;
++}
++
++static const struct spi_controller_mem_ops aml_sfc_mem_ops = {
++	.adjust_op_size = aml_sfc_adjust_op_size,
++	.exec_op = aml_sfc_exec_op,
++};
++
++static int aml_sfc_layout_ecc(struct mtd_info *mtd, int section,
++			      struct mtd_oob_region *oobregion)
++{
++	struct nand_device *nand = mtd_to_nanddev(mtd);
++
++	if (section >= nand->ecc.ctx.nsteps)
++		return -ERANGE;
++
++	oobregion->offset =  ECC_BCH8_USER_BYTES + (section * ECC_BCH8_INFO_BYTES);
++	oobregion->length = ECC_BCH8_PARITY_BYTES;
++
++	return 0;
++}
++
++static int aml_sfc_ooblayout_free(struct mtd_info *mtd, int section,
++				  struct mtd_oob_region *oobregion)
++{
++	struct nand_device *nand = mtd_to_nanddev(mtd);
++
++	if (section >= nand->ecc.ctx.nsteps)
++		return -ERANGE;
++
++	oobregion->offset = section * ECC_BCH8_INFO_BYTES;
++	oobregion->length = ECC_BCH8_USER_BYTES;
++
++	return 0;
++}
++
++static const struct mtd_ooblayout_ops aml_sfc_ooblayout_ops = {
++	.ecc = aml_sfc_layout_ecc,
++	.free = aml_sfc_ooblayout_free,
++};
++
++static int aml_spi_settings(struct aml_sfc *sfc, struct spi_device *spi)
++{
++	u32 conf = 0;
++
++	if (spi->mode & SPI_CPHA)
++		conf |= CPHA;
++
++	if (spi->mode & SPI_CPOL)
++		conf |= CPOL;
++
++	conf |= FIELD_PREP(RXADJ, sfc->rx_adj);
++	conf |= EN_HOLD | EN_WP;
++	return regmap_update_bits(sfc->regmap_base, SFC_SPI_CFG,
++					CPHA | CPOL | RXADJ |
++					EN_HOLD | EN_WP, conf);
++}
++
++static int aml_set_spi_clk(struct aml_sfc *sfc, struct spi_device *spi)
++{
++	u32 speed_hz;
++	int ret;
++
++	if (spi->max_speed_hz > SFC_MAX_FREQUENCY)
++		speed_hz = SFC_MAX_FREQUENCY;
++	else if (!spi->max_speed_hz)
++		speed_hz = SFC_BUS_DEFAULT_CLK;
++	else if (spi->max_speed_hz < SFC_MIN_FREQUENCY)
++		speed_hz = SFC_MIN_FREQUENCY;
++	else
++		speed_hz = spi->max_speed_hz;
++
++	/* The SPI clock is generated by dividing the bus clock by four by default. */
++	ret = regmap_write(sfc->regmap_base, SFC_CFG, (DEFAULT_BUS_CYCLE - 1));
++	if (ret) {
++		dev_err(sfc->dev, "failed to set bus cycle\n");
++		return ret;
++	}
++
++	return clk_set_rate(sfc->core_clk, speed_hz * DEFAULT_BUS_CYCLE);
++}
++
++static int aml_sfc_setup(struct spi_device *spi)
++{
++	struct aml_sfc *sfc;
++	int ret;
++
++	sfc = spi_controller_get_devdata(spi->controller);
++	ret = aml_spi_settings(sfc, spi);
++	if (ret)
++		return ret;
++
++	ret = aml_set_spi_clk(sfc, spi);
++	if (ret)
++		return ret;
++
++	sfc->bus_rate = clk_get_rate(sfc->core_clk);
++
++	return 0;
++}
++
++static int aml_sfc_ecc_init_ctx(struct nand_device *nand)
++{
++	struct mtd_info *mtd = nanddev_to_mtd(nand);
++	struct aml_sfc *sfc = nand_to_aml_sfc(nand);
++	struct aml_sfc_ecc_cfg *ecc_cfg;
++	const struct aml_sfc_caps *caps = sfc->caps;
++	struct aml_sfc_ecc_cfg *ecc_caps = caps->ecc_caps;
++	int i, ecc_strength, ecc_step_size;
++
++	ecc_step_size = nand->ecc.user_conf.step_size;
++	ecc_strength = nand->ecc.user_conf.strength;
++
++	for (i = 0; i < caps->num_ecc_caps; i++) {
++		if (ecc_caps[i].stepsize == ecc_step_size) {
++			nand->ecc.ctx.conf.step_size = ecc_step_size;
++			nand->ecc.ctx.conf.flags |= BIT(ecc_caps[i].bch);
++		}
++
++		if (ecc_caps[i].strength == ecc_strength)
++			nand->ecc.ctx.conf.strength = ecc_strength;
++	}
++
++	if (!nand->ecc.ctx.conf.step_size) {
++		nand->ecc.ctx.conf.step_size = ECC_BCH8_DEFAULT_STEP;
++		nand->ecc.ctx.conf.flags |= BIT(ECC_DEFAULT_BCH_MODE);
++	}
++
++	if (!nand->ecc.ctx.conf.strength)
++		nand->ecc.ctx.conf.strength = ECC_BCH8_STRENGTH;
++
++	nand->ecc.ctx.nsteps = nand->memorg.pagesize / nand->ecc.ctx.conf.step_size;
++	nand->ecc.ctx.total = nand->ecc.ctx.nsteps * ECC_BCH8_PARITY_BYTES;
++
++	/* Verify the page size and OOB size against the SFC requirements. */
++	if ((nand->memorg.pagesize % nand->ecc.ctx.conf.step_size) ||
++	    (nand->memorg.oobsize < (nand->ecc.ctx.total +
++	     nand->ecc.ctx.nsteps * ECC_BCH8_USER_BYTES)))
++		return -EOPNOTSUPP;
++
++	nand->ecc.ctx.conf.engine_type = NAND_ECC_ENGINE_TYPE_ON_HOST;
++
++	ecc_cfg = kzalloc(sizeof(*ecc_cfg), GFP_KERNEL);
++	if (!ecc_cfg)
++		return -ENOMEM;
++
++	ecc_cfg->stepsize = nand->ecc.ctx.conf.step_size;
++	ecc_cfg->nsteps = nand->ecc.ctx.nsteps;
++	ecc_cfg->strength = nand->ecc.ctx.conf.strength;
++	ecc_cfg->oobsize = nand->memorg.oobsize;
++	ecc_cfg->bch = nand->ecc.ctx.conf.flags & BIT(ECC_DEFAULT_BCH_MODE) ? 1 : 2;
++
++	nand->ecc.ctx.priv = ecc_cfg;
++	sfc->priv = (void *)ecc_cfg;
++	mtd_set_ooblayout(mtd, &aml_sfc_ooblayout_ops);
++
++	sfc->flags |= SFC_HWECC;
++
++	return 0;
++}
++
++static void aml_sfc_ecc_cleanup_ctx(struct nand_device *nand)
++{
++	struct aml_sfc *sfc = nand_to_aml_sfc(nand);
++
++	sfc->flags &= ~(SFC_HWECC);
++	kfree(nand->ecc.ctx.priv);
++	sfc->priv = NULL;
++}
++
++static int aml_sfc_ecc_prepare_io_req(struct nand_device *nand,
++				      struct nand_page_io_req *req)
++{
++	struct aml_sfc *sfc = nand_to_aml_sfc(nand);
++	struct spinand_device *spinand = nand_to_spinand(nand);
++
++	sfc->flags &= ~SFC_XFER_MDOE_MASK;
++
++	if (req->datalen && !req->ooblen)
++		sfc->flags |= SFC_DATA_ONLY;
++	else if (!req->datalen && req->ooblen)
++		sfc->flags |= SFC_OOB_ONLY;
++	else if (req->datalen && req->ooblen)
++		sfc->flags |= SFC_DATA_OOB;
++
++	if (req->mode == MTD_OPS_RAW)
++		sfc->flags |= SFC_RAW_RW;
++	else if (req->mode == MTD_OPS_AUTO_OOB)
++		sfc->flags |= SFC_AUTO_OOB;
++
++	memset(spinand->oobbuf, 0xff, nanddev_per_page_oobsize(nand));
++
++	return 0;
++}
++
++static int aml_sfc_ecc_finish_io_req(struct nand_device *nand,
++				     struct nand_page_io_req *req)
++{
++	struct aml_sfc *sfc = nand_to_aml_sfc(nand);
++	struct mtd_info *mtd = nanddev_to_mtd(nand);
++
++	if (req->mode == MTD_OPS_RAW || req->type == NAND_PAGE_WRITE)
++		return 0;
++
++	if (sfc->ecc_stats.failed)
++		mtd->ecc_stats.failed++;
++
++	mtd->ecc_stats.corrected += sfc->ecc_stats.corrected;
++
++	return sfc->ecc_stats.failed ? -EBADMSG : sfc->ecc_stats.bitflips;
++}
++
++static const struct spi_controller_mem_caps aml_sfc_mem_caps = {
++	.ecc = true,
++};
++
++static const struct nand_ecc_engine_ops aml_sfc_ecc_engine_ops = {
++	.init_ctx = aml_sfc_ecc_init_ctx,
++	.cleanup_ctx = aml_sfc_ecc_cleanup_ctx,
++	.prepare_io_req = aml_sfc_ecc_prepare_io_req,
++	.finish_io_req = aml_sfc_ecc_finish_io_req,
++};
++
++static int aml_sfc_clk_init(struct aml_sfc *sfc)
++{
++	sfc->gate_clk = devm_clk_get_enabled(sfc->dev, "gate");
++	if (IS_ERR(sfc->gate_clk)) {
++		dev_err(sfc->dev, "unable to enable gate clk\n");
++		return PTR_ERR(sfc->gate_clk);
++	}
++
++	sfc->core_clk = devm_clk_get_enabled(sfc->dev, "core");
++	if (IS_ERR(sfc->core_clk)) {
++		dev_err(sfc->dev, "unable to enable core clk\n");
++		return PTR_ERR(sfc->core_clk);
++	}
++
++	return clk_set_rate(sfc->core_clk, SFC_BUS_DEFAULT_CLK);
++}
++
++static int aml_sfc_disable_clk(struct aml_sfc *sfc)
++{
++	clk_disable_unprepare(sfc->core_clk);
++	clk_disable_unprepare(sfc->gate_clk);
++
++	return 0;
++}
++
++static int aml_sfc_probe(struct platform_device *pdev)
++{
++	struct device_node *np = pdev->dev.of_node;
++	struct device *dev = &pdev->dev;
++	struct spi_controller *ctrl;
++	struct aml_sfc *sfc;
++	void __iomem *reg_base;
++	int ret;
++	u32 val = 0;
++
++	const struct regmap_config core_config = {
++		.reg_bits = 32,
++		.val_bits = 32,
++		.reg_stride = 4,
++		.max_register = SFC_SPI_CFG,
++	};
++
++	ctrl = devm_spi_alloc_host(dev, sizeof(*sfc));
++	if (!ctrl)
++		return -ENOMEM;
++	platform_set_drvdata(pdev, ctrl);
++
++	sfc = spi_controller_get_devdata(ctrl);
++	sfc->dev = dev;
++	sfc->ctrl = ctrl;
++
++	sfc->caps = of_device_get_match_data(dev);
++	if (!sfc->caps)
++		return dev_err_probe(dev, -ENODEV, "failed to get device data\n");
++
++	reg_base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(reg_base))
++		return PTR_ERR(reg_base);
++
++	sfc->regmap_base = devm_regmap_init_mmio(dev, reg_base, &core_config);
++	if (IS_ERR(sfc->regmap_base))
++		return dev_err_probe(dev, PTR_ERR(sfc->regmap_base),
++			"failed to init sfc base regmap\n");
++
++	sfc->data_buf = devm_kzalloc(dev, SFC_BUF_SIZE, GFP_KERNEL);
++	if (!sfc->data_buf)
++		return -ENOMEM;
++	sfc->info_buf = sfc->data_buf + SFC_DATABUF_SIZE;
++
++	ret = aml_sfc_clk_init(sfc);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to initialize SFC clock\n");
++
++	/* Enable Amlogic flash controller spi mode */
++	ret = regmap_write(sfc->regmap_base, SFC_SPI_CFG, SPI_MODE_EN);
++	if (ret) {
++		dev_err(dev, "failed to enable SPI mode\n");
++		goto err_out;
++	}
++
++	ret = dma_set_mask(sfc->dev, DMA_BIT_MASK(32));
++	if (ret) {
++		dev_err(sfc->dev, "failed to set dma mask\n");
++		goto err_out;
++	}
++
++	sfc->ecc_eng.dev = &pdev->dev;
++	sfc->ecc_eng.integration = NAND_ECC_ENGINE_INTEGRATION_PIPELINED;
++	sfc->ecc_eng.ops = &aml_sfc_ecc_engine_ops;
++	sfc->ecc_eng.priv = sfc;
++
++	ret = nand_ecc_register_on_host_hw_engine(&sfc->ecc_eng);
++	if (ret) {
++		dev_err(&pdev->dev, "failed to register Aml host ecc engine.\n");
++		goto err_out;
++	}
++
++	ret = of_property_read_u32(np, "amlogic,rx-adj", &val);
++	if (!ret)
++		sfc->rx_adj = val;
++
++	ctrl->dev.of_node = np;
++	ctrl->mem_ops = &aml_sfc_mem_ops;
++	ctrl->mem_caps = &aml_sfc_mem_caps;
++	ctrl->setup = aml_sfc_setup;
++	ctrl->mode_bits = SPI_TX_QUAD | SPI_TX_DUAL | SPI_RX_QUAD |
++			  SPI_RX_DUAL | SPI_TX_OCTAL | SPI_RX_OCTAL;
++	ctrl->max_speed_hz = SFC_MAX_FREQUENCY;
++	ctrl->min_speed_hz = SFC_MIN_FREQUENCY;
++	ctrl->num_chipselect = SFC_MAX_CS_NUM;
++
++	ret = devm_spi_register_controller(dev, ctrl);
++	if (ret)
++		goto err_out;
++
++	return 0;
++
++err_out:
++	aml_sfc_disable_clk(sfc);
++
++	return ret;
++}
++
++static void aml_sfc_remove(struct platform_device *pdev)
++{
++	struct spi_controller *ctlr = platform_get_drvdata(pdev);
++	struct aml_sfc *sfc = spi_controller_get_devdata(ctlr);
++
++	aml_sfc_disable_clk(sfc);
++}
++
++static const struct of_device_id aml_sfc_of_match[] = {
++	{
++		.compatible = "amlogic,a4-spifc",
++		.data = &aml_a113l2_sfc_caps
++	},
++	{},
++};
++MODULE_DEVICE_TABLE(of, aml_sfc_of_match);
++
++static struct platform_driver aml_sfc_driver = {
++	.driver = {
++		.name = "aml_sfc",
++		.of_match_table = aml_sfc_of_match,
++	},
++	.probe = aml_sfc_probe,
++	.remove = aml_sfc_remove,
++};
++module_platform_driver(aml_sfc_driver);
++
++MODULE_DESCRIPTION("Amlogic SPI Flash Controller driver");
++MODULE_AUTHOR("Feng Chen <feng.chen@amlogic.com>");
++MODULE_LICENSE("Dual MIT/GPL");
 
 -- 
-2.47.2
+2.37.1
+
 
 
 _______________________________________________
