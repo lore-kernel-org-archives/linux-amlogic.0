@@ -4,67 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0260DCA0FFB
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Aug 2025 11:07:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B281CA0FED
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Aug 2025 17:08:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=duFgFoeiYmqqEGKkzbjgKOm9/wipH/e/ApMbvQvRiS0=; b=wIZSceoJU4ITI4
-	nScS3LBCcnoySCoQYzXVS7mor5qhEosGjw+qgCFE/S0l08KKfbugGHeTYRUHiACEVR8Dejm/NFEYR
-	0J6EVuri5+35BPFPUmSKPlUsAOozsvFy5HBCDLp8o2GsYXfvuvfspsnoUh5VHSMpl3U9H++BQeBXk
-	s4i42oymga7qRXHCzGW2mlWdGMLeBFHX9aSTQyntO0J8e7NwPtWa2Z18EooYx3TidQzQN4kj3q7uP
-	T4PJx93H0zLjuceCtOMbSSpmk9Thy+oHDQtd27GdrCGpEm+aJM3yjTtLNDl7CDuRACgh1PtOjhE7v
-	OhWFgZ4qX/Nb/pAj9k5A==;
+	List-Owner; bh=9vxxTaktVNVsFq0FG1KwoBFPh+xgqwygwCmVMTUhu50=; b=p/XMogHmFcOOV6
+	yvu9h7pxYEFV/F4fdTIeWGlaT5pta4Etjv6AyKsfALmL6lTJuyUBxTfDcqhd+O9ULDGsPRtTOvsfL
+	SZLPz9dFNRDWBovBp7qEkYN7g/bdFOkR0vaz62m5TT0udmG7RUQ1ZOSvo0fTIE6iE9ZSFxyCgz2Zc
+	ekecsWQi/5xb0RQ8bYjsGZ21Yal6RGDagGaEgV6VjRr2HHxujPFWQIBbivb+hkbu8trVEkMTxCt7/
+	RHEKF3nZo+Q/eHLKj1csHMHTrmBPp+9cEw1lTeOFVCyeMN4MjuG5YTt5Aw80KEVxKrtt5O1eg9sSV
+	gioXYHefMFXR2Ob4i1Yw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1urE05-0000000FATa-3gya;
-	Wed, 27 Aug 2025 11:07:33 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
-	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1urCnt-0000000EvQS-0D26
-	for linux-amlogic@lists.infradead.org;
-	Wed, 27 Aug 2025 09:50:54 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2915040B76;
-	Wed, 27 Aug 2025 09:50:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05BBBC4CEEB;
-	Wed, 27 Aug 2025 09:50:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756288252;
-	bh=Z9v7tOyCLbVTC4vbmMT5DzEjyMHuEBoDGU4LdAB1szI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e1rV1avxJGTQkHo2kkYr9KjIlQIEsq4jp2M+0eC+XLVYV2v/Z9KWSQZW06cy/y7bm
-	 CGHKJcpZ8WOCC+igAh/FgfalIRE417Q2tNSs3Up4pJt11+6RGSh+jGMzgQ9jqDekHm
-	 Ywzbnjx96ycDhZPFZwS+72u+/MRorJkn4I5QCMixVFFdFltmOnlhefAJh94kPz1PC+
-	 t+b4UkMse3Er+MxQjpG4cDH5yIwKjZckkJeWQqhUaH1WHayO2XUNjrxYqvavjTFmG7
-	 J6GV/vpAmc+Ymvn/fP5xCcDLUL0POUnb9GujFIBbhJN3PQTuUu3Ilxth9v8Z3EzBEf
-	 70Ggujy2F15Yw==
-Received: from johan by xi.lan with local (Exim 4.98.2)
-	(envelope-from <johan@kernel.org>)
-	id 1urCnf-000000002L0-1A0D;
-	Wed, 27 Aug 2025 11:50:39 +0200
-Date: Wed, 27 Aug 2025 11:50:39 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Carlo Caione <ccaione@baylibre.com>,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] firmware: meson_sm: fix device leak at probe
-Message-ID: <aK7U7-ebrPcxwEIj@hovoldconsulting.com>
-References: <20250725074019.8765-1-johan@kernel.org>
+	id 1urJdT-0000000GGEK-2n13;
+	Wed, 27 Aug 2025 17:08:35 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1urGkb-0000000FgDj-3N7s;
+	Wed, 27 Aug 2025 14:03:47 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 417AD2720;
+	Wed, 27 Aug 2025 07:03:36 -0700 (PDT)
+Received: from J2N7QTR9R3 (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 662DB3F738;
+	Wed, 27 Aug 2025 07:03:37 -0700 (PDT)
+Date: Wed, 27 Aug 2025 15:03:22 +0100
+From: Mark Rutland <mark.rutland@arm.com>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: peterz@infradead.org, mingo@redhat.com, will@kernel.org,
+	acme@kernel.org, namhyung@kernel.org,
+	alexander.shishkin@linux.intel.com, jolsa@kernel.org,
+	irogers@google.com, adrian.hunter@intel.com,
+	kan.liang@linux.intel.com, linux-perf-users@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
+	linux-snps-arc@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
+	linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+	sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
+	linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
+	iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
+	linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 02/19] perf/hisilicon: Fix group validation
+Message-ID: <aK8QKlGsjB4WWg2e@J2N7QTR9R3>
+References: <cover.1755096883.git.robin.murphy@arm.com>
+ <c7b877e66ba0d34d8558c5af8bbb620e8c0e47d9.1755096883.git.robin.murphy@arm.com>
+ <aK2XS_GhLw1EQ2ml@J2N7QTR9R3>
+ <ab80cb84-42b2-4ce8-aa6c-4ce6be7a12b7@arm.com>
+ <aK3TS3s5_Pczx1nu@J2N7QTR9R3>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20250725074019.8765-1-johan@kernel.org>
+In-Reply-To: <aK3TS3s5_Pczx1nu@J2N7QTR9R3>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250827_025053_125537_CDE86EB1 
-X-CRM114-Status: UNSURE (   9.59  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250827_070345_932399_F976A552 
+X-CRM114-Status: GOOD (  31.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,23 +83,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jul 25, 2025 at 09:40:19AM +0200, Johan Hovold wrote:
-> Make sure to drop the reference to the secure monitor device taken by
-> of_find_device_by_node() when looking up its driver data on behalf of
-> other drivers (e.g. during probe).
-> 
-> Note that holding a reference to the platform device does not prevent
-> its driver data from going away so there is no point in keeping the
-> reference after the helper returns.
-> 
-> Fixes: 8cde3c2153e8 ("firmware: meson_sm: Rework driver as a proper platform driver")
-> Cc: stable@vger.kernel.org	# 5.5
-> Cc: Carlo Caione <ccaione@baylibre.com>
-> Signed-off-by: Johan Hovold <johan@kernel.org>
+On Tue, Aug 26, 2025 at 04:31:23PM +0100, Mark Rutland wrote:
+> On Tue, Aug 26, 2025 at 03:35:48PM +0100, Robin Murphy wrote:
+> > On 2025-08-26 12:15 pm, Mark Rutland wrote:
+> > > On Wed, Aug 13, 2025 at 06:00:54PM +0100, Robin Murphy wrote:
 
-Can someone pick this one up (along with the compile-test patch)?
+> > > > diff --git a/drivers/perf/hisilicon/hisi_pcie_pmu.c b/drivers/perf/hisilicon/hisi_pcie_pmu.c
+> > > > index c5394d007b61..3b0b2f7197d0 100644
+> > > > --- a/drivers/perf/hisilicon/hisi_pcie_pmu.c
+> > > > +++ b/drivers/perf/hisilicon/hisi_pcie_pmu.c
+> > > > @@ -338,21 +338,16 @@ static bool hisi_pcie_pmu_validate_event_group(struct perf_event *event)
+> > > >   	int counters = 1;
+> > > >   	int num;
+> > > > -	event_group[0] = leader;
+> > > > -	if (!is_software_event(leader)) {
+> > > > -		if (leader->pmu != event->pmu)
+> > > > -			return false;
+> > > > +	if (leader == event)
+> > > > +		return true;
+> > > > -		if (leader != event && !hisi_pcie_pmu_cmp_event(leader, event))
+> > > > -			event_group[counters++] = event;
+> > > > -	}
+> > > > +	event_group[0] = event;
+> > > > +	if (leader->pmu == event->pmu && !hisi_pcie_pmu_cmp_event(leader, event))
+> > > > +		event_group[counters++] = leader;
+> > > 
+> > > Looking at this, the existing logic to share counters (which
+> > > hisi_pcie_pmu_cmp_event() is trying to permit) looks to be bogus, given
+> > > that the start/stop callbacks will reprogram the HW counters (and hence
+> > > can fight with one another).
 
-Johan
+> > It does seem somewhat nonsensical to have multiple copies of the same event
+> > in the same group, but I imagine it could happen with some sort of scripted
+> > combination of metrics, and supporting it at this level saves needing
+> > explicit deduplication further up. So even though my initial instinct was to
+> > rip it out too, in the end I concluded that that doesn't seem justified.
+> 
+> As above, I think it's clearly bogus. I don't think we should have
+> merged it as-is and it's not something I'd like to see others copy.
+> Other PMUs don't do this sort of event deduplication, and in general it
+> should be up to the user or userspace software to do that rather than
+> doing that badly in the kernel.
+> 
+> Given it was implemented with no rationale I think we should rip it out.
+> If that breaks someone's scripting, then we can consider implementing
+> something that actually works.
+
+Having dug some more, I see that this was intended to handle the way
+the hardware shares a single config register between pairs of counter
+and counter_ext registers, with the idea being that two related events
+could be allocated into the same counter pair (but would only occupy a
+single counter each).
+
+I still think the code is wrong, but it is more complex than I made it
+out to be, and you're right that we should leave it as-is for now. I can
+follow up after we've got this series in.
+
+Mark.
 
 _______________________________________________
 linux-amlogic mailing list
