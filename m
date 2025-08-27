@@ -4,69 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86236CA0FFB
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Aug 2025 08:36:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0260DCA0FFB
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Aug 2025 11:07:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WJvx6coF+K2mWLzobHI6BGencSbQektUYqtNMbkB9Yc=; b=iICeVdGeJCMOo/
-	tyVpWCzccu7jNTHWAsu6rIUOeowArQs30ACDFtPJXUXKawlkes93E6VqG4Ph5ErpH/w8M9Fi+4CTd
-	YYcm273QwjdJNik65VRnKDqqygpGbM67na56G9B+iaCR9uGBi4M9FLE+/l9YLUWsPLt+Aw0J32zwx
-	fCLy2Sb7svzbSOYSnIBCk7xUCaiBNnGyCOFvQ5MDHusqbQDvCZzGorAqX3yD9LePHmtpmDFG6+56u
-	hfdkenu3/5Nk6JoOFU/DM3cd7g1lym80INWiOEpgAZ4ccI/nfDwYqdUmd6Jwrp8M1KZbTa7kJP6wU
-	ku1fkGDSCMKmw5mOP4zw==;
+	List-Owner; bh=duFgFoeiYmqqEGKkzbjgKOm9/wipH/e/ApMbvQvRiS0=; b=wIZSceoJU4ITI4
+	nScS3LBCcnoySCoQYzXVS7mor5qhEosGjw+qgCFE/S0l08KKfbugGHeTYRUHiACEVR8Dejm/NFEYR
+	0J6EVuri5+35BPFPUmSKPlUsAOozsvFy5HBCDLp8o2GsYXfvuvfspsnoUh5VHSMpl3U9H++BQeBXk
+	s4i42oymga7qRXHCzGW2mlWdGMLeBFHX9aSTQyntO0J8e7NwPtWa2Z18EooYx3TidQzQN4kj3q7uP
+	T4PJx93H0zLjuceCtOMbSSpmk9Thy+oHDQtd27GdrCGpEm+aJM3yjTtLNDl7CDuRACgh1PtOjhE7v
+	OhWFgZ4qX/Nb/pAj9k5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1urBdR-0000000Egr5-0QIc;
-	Wed, 27 Aug 2025 08:36:01 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1urBMo-0000000EdBL-2niP;
-	Wed, 27 Aug 2025 08:18:51 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 875DD1515;
-	Wed, 27 Aug 2025 01:18:41 -0700 (PDT)
-Received: from J2N7QTR9R3 (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C8D1A3F694;
-	Wed, 27 Aug 2025 01:18:41 -0700 (PDT)
-Date: Wed, 27 Aug 2025 09:18:38 +0100
-From: Mark Rutland <mark.rutland@arm.com>
-To: Ian Rogers <irogers@google.com>
-Cc: Robin Murphy <robin.murphy@arm.com>,
-	Peter Zijlstra <peterz@infradead.org>, mingo@redhat.com,
-	will@kernel.org, acme@kernel.org, namhyung@kernel.org,
-	alexander.shishkin@linux.intel.com, jolsa@kernel.org,
-	adrian.hunter@intel.com, kan.liang@linux.intel.com,
-	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
-	linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
-	sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
-	linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
-	iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
-	linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 12/19] perf: Ignore event state for group validation
-Message-ID: <aK6_XrA_OaLnoFkr@J2N7QTR9R3>
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <d6cda4e2999aba5794c8178f043c91068fa8080c.1755096883.git.robin.murphy@arm.com>
- <20250826130329.GX4067720@noisy.programming.kicks-ass.net>
- <6080e45d-032e-48c2-8efc-3d7e5734d705@arm.com>
- <CAP-5=fXF2x3hW4Sk+A362T-50cBbw6HVd7KY+QEUjFwT+JL37Q@mail.gmail.com>
+	id 1urE05-0000000FATa-3gya;
+	Wed, 27 Aug 2025 11:07:33 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1urCnt-0000000EvQS-0D26
+	for linux-amlogic@lists.infradead.org;
+	Wed, 27 Aug 2025 09:50:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2915040B76;
+	Wed, 27 Aug 2025 09:50:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05BBBC4CEEB;
+	Wed, 27 Aug 2025 09:50:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756288252;
+	bh=Z9v7tOyCLbVTC4vbmMT5DzEjyMHuEBoDGU4LdAB1szI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e1rV1avxJGTQkHo2kkYr9KjIlQIEsq4jp2M+0eC+XLVYV2v/Z9KWSQZW06cy/y7bm
+	 CGHKJcpZ8WOCC+igAh/FgfalIRE417Q2tNSs3Up4pJt11+6RGSh+jGMzgQ9jqDekHm
+	 Ywzbnjx96ycDhZPFZwS+72u+/MRorJkn4I5QCMixVFFdFltmOnlhefAJh94kPz1PC+
+	 t+b4UkMse3Er+MxQjpG4cDH5yIwKjZckkJeWQqhUaH1WHayO2XUNjrxYqvavjTFmG7
+	 J6GV/vpAmc+Ymvn/fP5xCcDLUL0POUnb9GujFIBbhJN3PQTuUu3Ilxth9v8Z3EzBEf
+	 70Ggujy2F15Yw==
+Received: from johan by xi.lan with local (Exim 4.98.2)
+	(envelope-from <johan@kernel.org>)
+	id 1urCnf-000000002L0-1A0D;
+	Wed, 27 Aug 2025 11:50:39 +0200
+Date: Wed, 27 Aug 2025 11:50:39 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Carlo Caione <ccaione@baylibre.com>,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] firmware: meson_sm: fix device leak at probe
+Message-ID: <aK7U7-ebrPcxwEIj@hovoldconsulting.com>
+References: <20250725074019.8765-1-johan@kernel.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <CAP-5=fXF2x3hW4Sk+A362T-50cBbw6HVd7KY+QEUjFwT+JL37Q@mail.gmail.com>
+In-Reply-To: <20250725074019.8765-1-johan@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250827_011850_786207_B56C2E3C 
-X-CRM114-Status: GOOD (  24.85  )
+X-CRM114-CacheID: sfid-20250827_025053_125537_CDE86EB1 
+X-CRM114-Status: UNSURE (   9.59  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,46 +76,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBBdWcgMjYsIDIwMjUgYXQgMTE6NDg6NDhBTSAtMDcwMCwgSWFuIFJvZ2VycyB3cm90
-ZToKPiBPbiBUdWUsIEF1ZyAyNiwgMjAyNSBhdCA4OjMy4oCvQU0gUm9iaW4gTXVycGh5IDxyb2Jp
-bi5tdXJwaHlAYXJtLmNvbT4gd3JvdGU6Cj4gPgo+ID4gT24gMjAyNS0wOC0yNiAyOjAzIHBtLCBQ
-ZXRlciBaaWpsc3RyYSB3cm90ZToKPiA+ID4gT24gV2VkLCBBdWcgMTMsIDIwMjUgYXQgMDY6MDE6
-MDRQTSArMDEwMCwgUm9iaW4gTXVycGh5IHdyb3RlOgo+ID4gPj4gSXQgbWF5IGhhdmUgYmVlbiBk
-aWZmZXJlbnQgbG9uZyBhZ28sIGJ1dCB0b2RheSBpdCBzZWVtcyB3cm9uZyBmb3IgdGhlc2UKPiA+
-ID4+IGRyaXZlcnMgdG8gc2tpcCBjb3VudGluZyBkaXNhYmxlZCBzaWJsaW5nIGV2ZW50cyBpbiBn
-cm91cCB2YWxpZGF0aW9uLAo+ID4gPj4gZ2l2ZW4gdGhhdCBwZXJmX2V2ZW50X2VuYWJsZSgpIGNv
-dWxkIG1ha2UgdGhlbSBzY2hlZHVsYWJsZSBhZ2FpbiwgYW5kCj4gPiA+PiB0aHVzIGluY3JlYXNl
-IHRoZSBlZmZlY3RpdmUgc2l6ZSBvZiB0aGUgZ3JvdXAgbGF0ZXIuIENvbnZlcnNlbHksIGlmIGEK
-PiA+ID4+IHNpYmxpbmcgZXZlbnQgaXMgdHJ1bHkgZGVhZCB0aGVuIGl0IHN0YW5kcyB0byByZWFz
-b24gdGhhdCB0aGUgd2hvbGUKPiA+ID4+IGdyb3VwIGlzIGRlYWQsIHNvIGl0J3Mgbm90IHdvcnRo
-IGdvaW5nIHRvIGFueSBzcGVjaWFsIGVmZm9ydCB0byB0cnkgdG8KPiA+ID4+IHNxdWVlemUgaW4g
-YSBuZXcgZXZlbnQgdGhhdCdzIG5ldmVyIGdvaW5nIHRvIHJ1biBhbnl3YXkuIFRodXMsIHdlIGNh
-bgo+ID4gPj4gc2ltcGx5IHJlbW92ZSBhbGwgdGhlc2UgY2hlY2tzLgo+ID4gPgo+ID4gPiBTbyBj
-dXJyZW50bHkgeW91IGNhbiBkbyBzb3J0IG9mIGEgbWFudWFsIGV2ZW50IHJvdGF0aW9uIGluc2lk
-ZSBhbgo+ID4gPiBvdmVyLXNpemVkIGdyb3VwIGFuZCBoYXZlIGl0IHdvcmsuCj4gPiA+Cj4gPiA+
-IEknbSBub3Qgc3VyZSBpZiBhbnlib2R5IGFjdHVhbGx5IGRvZXMgdGhpcywgYnV0IGl0cyBwb3Nz
-aWJsZS4KPiA+ID4KPiA+ID4gRWcuIG9uIGEgUE1VIHRoYXQgc3VwcG9ydHMgb25seSA0IGNvdW50
-ZXJzLCBjcmVhdGUgYSBncm91cCBvZiA1IGFuZAo+ID4gPiBwZXJpb2RpY2FsbHkgY3ljbGUgd2hp
-Y2ggb2YgdGhlIDUgZXZlbnRzIGlzIG9mZi4KPiAKPiBJJ20gbm90IHN1cmUgdGhpcyBpcyB0cnVl
-LCBJIHRob3VnaHQgdGhpcyB3b3VsZCBmYWlsIGluIHRoZQo+IHBlcmZfZXZlbnRfb3BlbiB3aGVu
-IGFkZGluZyB0aGUgNXRoIGV2ZW50IGFuZCB0aGVyZSBiZWluZyBpbnN1ZmZpY2llbnQKPiBjb3Vu
-dGVycyBmb3IgdGhlIGdyb3VwLgoKV2UncmUgdGFsa2luZyBzcGVjaWZpY2FsbHkgYWJvdXQgY2Fz
-ZXMgd2hlcmUgdGhlIGxvZ2ljIGluIGEgcG11J3MKcG11OjpldmVudF9pbml0KCkgY2FsbGJhY2sg
-ZG9lc24ndCBjb3VudCBldmVudHMgaW4gc3BlY2lmaWMgc3RhdGVzLCBhbmQKaGVuY2UgdGhlIDV0
-aCBldmVuIGRvZXNuJ3QgZ2V0IHJlamVjdGVkIHdoZW4gaXQgaXMgaW5pdGlhbGlzZWQuCgpGb3Ig
-ZXhhbXBsZSwgaW4gYXJjaC94ODYvZXZlbnRzL2NvcmUuYywgdmFsaWRhdGVfZ3JvdXAoKSB1c2Vz
-CmNvbGxlY3RfZXZlbnRzKCksIHdoaWNoIGhhczoKCglmb3JfZWFjaF9zaWJsaW5nX2V2ZW50KGV2
-ZW50LCBsZWFkZXIpIHsKCQlpZiAoIWlzX3g4Nl9ldmVudChldmVudCkgfHwgZXZlbnQtPnN0YXRl
-IDw9IFBFUkZfRVZFTlRfU1RBVEVfT0ZGKQoJCQljb250aW51ZTsKCgkJaWYgKGNvbGxlY3RfZXZl
-bnQoY3B1YywgZXZlbnQsIG1heF9jb3VudCwgbikpCgkJCXJldHVybiAtRUlOVkFMOwoKCQluKys7
-Cgl9CgouLi4gYW5kIHNvIHdoZXJlIGFuIGV2ZW50J3Mgc3RhdGUgaXMgPD0gUEVSRl9FVkVOVF9T
-VEFURV9PRkYgYXQgaW5pdAp0aW1lLCB0aGF0IGV2ZW50IGlzIG5vdCBjb3VudGVkIHRvIHNlZSBp
-ZiBpdCBmaXRzIGludG8gSFcgY291bnRlcnMuCgpNYXJrLgoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
-dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
-L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Fri, Jul 25, 2025 at 09:40:19AM +0200, Johan Hovold wrote:
+> Make sure to drop the reference to the secure monitor device taken by
+> of_find_device_by_node() when looking up its driver data on behalf of
+> other drivers (e.g. during probe).
+> 
+> Note that holding a reference to the platform device does not prevent
+> its driver data from going away so there is no point in keeping the
+> reference after the helper returns.
+> 
+> Fixes: 8cde3c2153e8 ("firmware: meson_sm: Rework driver as a proper platform driver")
+> Cc: stable@vger.kernel.org	# 5.5
+> Cc: Carlo Caione <ccaione@baylibre.com>
+> Signed-off-by: Johan Hovold <johan@kernel.org>
+
+Can someone pick this one up (along with the compile-test patch)?
+
+Johan
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
