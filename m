@@ -4,66 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787B1CA0FFE
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Sep 2025 15:45:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77DE6CA1005
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Sep 2025 21:45:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=P7IQUwrmaIJJyiAIRA3OBRlT5m+RLmtCALTMDM8tgUE=; b=xxuFwZaukhU/Gb
-	408Xu12RQwInuqJJ2zKFGgBHUdq3Ni6iByXzdmzYVSKY5mAzupHKba+75EdfUUaAgbmuXqRGWWHmc
-	WiNRnddIVYZu7KsJGNM3zJ4JCBloEuTo4f6R0DA37UwuGbSm+nX3/Ark1VUbAQ/PM0AksK9f9rcms
-	J2RLxYFu3m2EsOmt1QUbSINJK+R5p7yYBmGGO8+3wpXMUA4A/pnJYwpIre22ZMXyJ53If2Pz2HTHt
-	8d4L5jqDVSpuCNtHPflLKfY8zwfK7v1dVRWRMxmE2dpvhg3DlgG5j8xfj8D0sBX9/VUwVFAlSVbsv
-	Y5HjNcZ6C+YJ3pq4yEzw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Owner; bh=wlSNV5Y468JzGlPemziJJ9y+icO8XCAs3vtuW9IqWgM=; b=k/vhY+TrQrq9ax
+	nJ2qJv6gEea/sLzBJddpY8JB3xbmVb6qWtypjWQRU5DmY2sDnU75mWmKs/NyRc5eMo9BfBJz+Hi/l
+	3KY7PTz0XxLTDz4PV2NfuI+quKsZHRhR3lknXRfwqAX89Mx88pMFB14U8khG+cgI2BlaJn4dJBVlQ
+	V6kwnDrDCuLrZZKglL5q4wlh5J3O/OBgcZrm8ASWfSuGCjrYBCfJjPr5XA7mo37lSnXdxuQpDd9xm
+	kf8VU8E2gkDQOqwKAf4j/n9cBWolpE7nsL023o8d+ewWthHPPlVeCHukGbigoIuNcsRUJ2gKwcMmC
+	u4+1Ka2zpMyudPl7bhOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1utTBs-00000000km1-0CVa;
-	Tue, 02 Sep 2025 15:45:00 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1utYp1-00000002EPW-0Inu;
+	Tue, 02 Sep 2025 21:45:47 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1utPoU-0000000H7RY-2jwB;
-	Tue, 02 Sep 2025 12:08:38 +0000
+	id 1utV7P-00000001GKn-1e78;
+	Tue, 02 Sep 2025 17:48:31 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 175796020C;
-	Tue,  2 Sep 2025 12:08:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7627C4CEF7;
-	Tue,  2 Sep 2025 12:08:36 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 98A1060055;
+	Tue,  2 Sep 2025 17:48:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B832C4CEED;
+	Tue,  2 Sep 2025 17:48:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756814917;
-	bh=757pey5fnEg/qeq9CPxzMrLDiz9/8/oYvMF8D6dGc30=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sfyuwHypWYSuAc0P6oMVNGBTCH4OCNymSjUysZLo4FjzWYj2V0Z7LyHxATqIXKDrx
-	 DcdeIoRWSEZGu8+amagySS7gT9WngVj6XzfCqEVZiXwvO2u/pdbCWNdYIfmroY4ELj
-	 ZBXBUti33S6pJXFsQuGsxLb2Jne+hrNYAhCntdn+LEZkzgJULTNc3I4RX4cmzLog36
-	 EcfeinLB8Bk7BzJCJKYCHtnVDDaaHZNurdq5CfSmS9fXYPbQe8x5CP/Hx5Lv8JIdHN
-	 5FMlG4wO3UMSzdI217+0223NMHbCO9OoE8F/vVW1GPZATc0AJHmaBHeepnxLSpLJG7
-	 BpBWt1wp5oqQA==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Alexey Gladkov <legion@kernel.org>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
+	s=k20201202; t=1756835310;
+	bh=Ml5xDwIj2ou2yj2DtWoHvojD3g+Fyp27UWcuuPsZx30=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=VpgiDiHIzDRjLEPSlhTvW8AjxfDsKuQE4Ar7rjQicUnXODvJeZ41RJ+LppU5vwSuU
+	 K8qGjkNpw1qFDxJnNzZvYBc70U9C71dbTP/DLqYceHZuNFvfB14g9spGiLkmmw8Jcf
+	 DMznEoe3YYXsuGT5+WYNjofzk2zqkGeAFIKBjRPTJ7eMobvVP1j7z7eK8WfyN7n2hf
+	 xiMaDMHewuZ16HSj/lXJUTU5Sj847GIDrNK3qHS/CjHacl2Ud6yTaeHcolYR0u/WwB
+	 OhvnrJiaZOXBbr2QsG38HCoIrFKje9afPMVrqbes7OpiR+eFs4LFi3zHYO9IRYL1JN
+	 IXvExVf8LLogA==
+Date: Tue, 2 Sep 2025 12:48:28 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Hans Zhang <18255117159@163.com>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
+	heiko@sntech.de, mani@kernel.org, yue.wang@amlogic.com,
+	pali@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
+	jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	kernel test robot <lkp@intel.com>,
-	Sasha Levin <sashal@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.16] pinctrl: meson: Fix typo in device table macro
-Date: Tue,  2 Sep 2025 08:08:13 -0400
-Message-ID: <20250902120833.1342615-2-sashal@kernel.org>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250902120833.1342615-1-sashal@kernel.org>
-References: <20250902120833.1342615-1-sashal@kernel.org>
+	linux-rockchip@lists.infradead.org,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v5 1/2] PCI: Configure root port MPS during host probing
+Message-ID: <20250902174828.GA1165373@bhelgaas>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.16.4
+Content-Disposition: inline
+In-Reply-To: <20250620155507.1022099-2-18255117159@163.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,92 +74,84 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Alexey Gladkov <legion@kernel.org>
+On Fri, Jun 20, 2025 at 11:55:06PM +0800, Hans Zhang wrote:
+> Current PCIe initialization logic may leave root ports operating with
+> non-optimal Maximum Payload Size (MPS) settings. While downstream device
+> configuration is handled during bus enumeration, root port MPS values
+> inherited from firmware or hardware defaults ...
 
-[ Upstream commit bd7c2312128e31d056d30d34d60503de056e15f0 ]
+Apparently Root Port MPS configuration is different from that for
+downstream devices?
 
-The typo when using the MODULE_DEVICE_TABLE macro was not noticeable
-because the macro was defined only if the module was built as a separate
-module.
+> might not utilize the full
+> capabilities supported by the controller hardware. This can result in
+> suboptimal data transfer efficiency across the PCIe hierarchy.
+> 
+> During host controller probing phase, when PCIe bus tuning is enabled,
+> the implementation now configures root port MPS settings to their
+> hardware-supported maximum values. Specifically, when configuring the MPS
+> for a PCIe device, if the device is a root port and the bus tuning is not
+> disabled (PCIE_BUS_TUNE_OFF), the MPS is set to 128 << dev->pcie_mpss to
+> match the Root Port's maximum supported payload size. The Max Read Request
+> Size (MRRS) is subsequently adjusted through existing companion logic to
+> maintain compatibility with PCIe specifications.
+> 
+> Note that this initial setting of the root port MPS to the maximum might
+> be reduced later during the enumeration of downstream devices if any of
+> those devices do not support the maximum MPS of the root port.
+> 
+> Explicit initialization at host probing stage ensures consistent PCIe
+> topology configuration before downstream devices perform their own MPS
+> negotiations. This proactive approach addresses platform-specific
+> requirements where controller drivers depend on properly initialized
+> root port settings, while maintaining backward compatibility through
+> PCIE_BUS_TUNE_OFF conditional checks. Hardware capabilities are fully
+> utilized without altering existing device negotiation behaviors.
 
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-gpio@vger.kernel.org
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202507220009.8HKbNP16-lkp@intel.com/
-Signed-off-by: Alexey Gladkov <legion@kernel.org>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Link: https://lore.kernel.org/e548b7761302defec15aa2098172eabb1ce1ad4a.1755170493.git.legion@kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
+This last paragraph seems kind of like marketing without any real
+content.  Is there something important in there?
 
-LLM Generated explanations, may be completely bogus:
+Nits:
+s/root port/Root Port/
 
-**YES**
+Reword "implementation now configures" to be clear about whether "now"
+refers to before this patch or after.
 
-This commit should be backported to stable kernel trees for the
-following reasons:
+Update the MRRS "to maintain compatibility" part.  I'm dubious about
+there being a spec compatibility issue with respect to MRRS.  Cite the
+relevant section if there is an issue.
 
-1. **Clear bug fix**: The commit fixes a typo where
-   `MODULE_DEVICE_TABLE(of, aml_pctl_dt_match)` incorrectly referenced
-   `aml_pctl_dt_match` instead of the actual device table name
-   `aml_pctl_of_match` (line 1022-1025 shows the table is named
-   `aml_pctl_of_match`).
-
-2. **Prevents module loading failure**: This typo would cause the module
-   to fail to load properly when built as a loadable module, as the
-   MODULE_DEVICE_TABLE macro creates an alias for module autoloading.
-   The incorrect reference means the device matching wouldn't work
-   correctly for module loading.
-
-3. **Small, contained change**: The fix is a simple one-line change that
-   only corrects the typo - changing `aml_pctl_dt_match` to
-   `aml_pctl_of_match`. There are no architectural changes or feature
-   additions.
-
-4. **Low regression risk**: This is a straightforward typo fix with
-   minimal risk. The change only affects the MODULE_DEVICE_TABLE macro
-   invocation and doesn't modify any functional code paths.
-
-5. **Affects user functionality**: When the pinctrl driver is built as a
-   module (CONFIG_PINCTRL_AMLOGIC_A4=m), this bug would prevent proper
-   module autoloading and device matching, affecting users of Amlogic
-   A4/S6/S7 SoCs.
-
-6. **Recently introduced code**: The driver was added very recently
-   (February 2025 based on commit 6e9be3abb78c2), and this typo was
-   present from the initial submission. Fixing it in stable trees
-   ensures users get a working driver.
-
-The commit message indicates it was caught by the kernel test robot, and
-the fix has already been reviewed by the subsystem maintainer (Neil
-Armstrong). This is exactly the type of bug fix that stable kernels
-should include - it fixes a real problem, is minimal in scope, and has
-very low risk of introducing regressions.
-
- drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-index 385cc619df13c..95525e66e5c00 100644
---- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-+++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-@@ -1023,7 +1023,7 @@ static const struct of_device_id aml_pctl_of_match[] = {
- 	{ .compatible = "amlogic,pinctrl-a4", },
- 	{ /* sentinel */ }
- };
--MODULE_DEVICE_TABLE(of, aml_pctl_dt_match);
-+MODULE_DEVICE_TABLE(of, aml_pctl_of_match);
- 
- static struct platform_driver aml_pctl_driver = {
- 	.driver = {
--- 
-2.50.1
-
+> Suggested-by: Niklas Cassel <cassel@kernel.org>
+> Suggested-by: Manivannan Sadhasivam <mani@kernel.org>
+> Signed-off-by: Hans Zhang <18255117159@163.com>
+> ---
+>  drivers/pci/probe.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+> index 4b8693ec9e4c..9f8803da914c 100644
+> --- a/drivers/pci/probe.c
+> +++ b/drivers/pci/probe.c
+> @@ -2178,6 +2178,16 @@ static void pci_configure_mps(struct pci_dev *dev)
+>  		return;
+>  	}
+>  
+> +	/*
+> +	 * Unless MPS strategy is PCIE_BUS_TUNE_OFF (don't touch MPS at all),
+> +	 * start off by setting root ports' MPS to MPSS. Depending on the MPS
+> +	 * strategy, and the MPSS of the devices below the root port, the MPS
+> +	 * of the root port might get overridden later.
+> +	 */
+> +	if (pci_pcie_type(dev) == PCI_EXP_TYPE_ROOT_PORT &&
+> +	    pcie_bus_config != PCIE_BUS_TUNE_OFF)
+> +		pcie_set_mps(dev, 128 << dev->pcie_mpss);
+> +
+>  	if (!bridge || !pci_is_pcie(bridge))
+>  		return;
+>  
+> -- 
+> 2.25.1
+> 
 
 _______________________________________________
 linux-amlogic mailing list
