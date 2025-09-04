@@ -4,90 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C045BCA1015
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Sep 2025 16:27:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B0FCCA1013
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Sep 2025 16:27:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OvqztGWC+1yiWDvAMzwEb1TUWds9FTFr8ci4kIIHh1A=; b=B474fktY4bcGr8
-	CP3cLhCOKMVxygWJqvl8ElQNUyK8IZ8vFmZJ2d/DZxtCxCr93MWXxm454BY1bxXaFxkCnB39Z70DE
-	KPYFFk6ZqbgqbE0lsWkF7fKFnVSAx0Lw/uu8YcihVAqajqjd/BtFs0HXDm+aPBL2VmFoTb7fmOsbP
-	6SF2fM6BZjTfciTkzJaB2RJXluXddrnIOs4obvhyLOp7cDseySahef17W7nxpy+vxtfAbS6sH4Ltx
-	WSG7rlpEaFAM34FSB5lSlM8VkqC/2LA1kRHQUYcYxbjbx/wdASKHb/U1K4eNY6F9JW4K7V0Ee9MAo
-	NeVMpJYxglphBU6pP6qw==;
+	List-Owner; bh=Kk7LGk66MxkLW6ygqbqKZvdasPo9F6b3aF3eGeG62sE=; b=ogObKIV8EK0HXy
+	j9mPw0+O14xNBI+qHMITsEqhCSDMESGRM4YEMN4FJEiUPVE/2Hm1QsIWsB5QG/T2hvrHw95GER5J+
+	CXL8uHSwuCQ3/GaSeq42+WlvQhOrKiAUxAnVfdDzWHm7iph/7g7uxQmyQgSnrogw2nfk2Md1EeTFO
+	QQzFoUa/X33J+g/X22iwgh0xBXPyKksEzmdoHxN7wAJGLmcGn/7wM79UAfIXn+TWI3eXhHJLtLZ3A
+	dSh2z22zDk2uQLEt7CgEifjqpwZuBDqHB0EJqDinHX19VrhbCxTBvyPZeIQIgQp/KWjqd5edv44+7
+	2XQlitWVyrkdlmx5LRew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uuCo0-0000000Culv-0794;
-	Thu, 04 Sep 2025 16:27:27 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1uuCo5-0000000Cus8-2QHJ;
+	Thu, 04 Sep 2025 16:27:29 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uuA0t-0000000BtHT-3kfg
+	id 1uuA0u-0000000BtIA-2goY
 	for linux-amlogic@lists.infradead.org;
 	Thu, 04 Sep 2025 13:28:34 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-45b87bc67a4so7704215e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 04 Sep 2025 06:28:31 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-45cb659e858so8779075e9.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 04 Sep 2025 06:28:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756992510; x=1757597310; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1756992511; x=1757597311; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vVjNlWUjUJbko6NCXNm3bP5sMvagvoIs0Rsycf+Tcfk=;
-        b=qnH54Qaav/SmvPbs89HTs1LsYPxEAKYczgCl4PHBRDWY8u1iG5FGT5i7B0YkyUFx4v
-         81P1LiYbQS0GObItI4yDrbP7VJlVJHiwXyXdprOMTAv2fitHYpuw9uKiN7DkEJuIeg12
-         gR5bet5Q3bF9RgkADeEB7sdX3/eSXlnbnDRPDx0QhLXbA3xg+aRFVFDGKtl6oP/w+dhb
-         AcFCXSCc9lIEPcQfYMPcsh7pILTdRjY8CrAs8kY0LyA9/GyCKrmLBKoFQviGRwm5pc3n
-         c2wdnQx62z9mkHipai6p53+0+kI90fBk/gP3A0mTFig/I5R1ZfdhSo1P+gspYRQ1WKib
-         7U1w==
+        bh=FPemxXw+0FJhICaHUSL6epgUI+v6RGxIc62gtZdQfSo=;
+        b=Kb8YOh0g7lFeOwLcvkGVJDu+50wWhJDajr5P5Ui0qd37rnzkzn7ZTncwLcKxAVWUaf
+         b5ziGwdbSgRF5G+bEiXbneLSNPApRhP0jk1cKi33tdnqTHLi/HMg2VSOVtWjx+WXZN1v
+         k8ZI8eaZ9HJUwbfB6vYY1+OOnDf0RrnWozZ8QmOGBGrZQ/wuHrP9R6oYHKHAJxW/fPV4
+         ex10fuFfK7NysqbYIXvbPx1OpuBQtPVCYWfCFeKCvmcEZmuQKXckKGQs2Q4TNLB6EaSv
+         qBm0OyFWx9K2KN4UjngVe+EYYQZhkEVQfJ5hZxxhdMMfSnEPkY0oMWC2/XzCsxtChJQN
+         UxNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756992510; x=1757597310;
+        d=1e100.net; s=20230601; t=1756992511; x=1757597311;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vVjNlWUjUJbko6NCXNm3bP5sMvagvoIs0Rsycf+Tcfk=;
-        b=kQ7DdmCVTT+h/UR1uSJCCBGgHyDWUzaOpwg8LNqsUNwmMuy0cW8heXgkivHSZDGFNx
-         9IgfcHYHW+9IlsA5zR/EqGnZdreM/752nqHJyL4pN80nXn/pyANOfyD200fPyDNtSJMW
-         MNsymg4Q8G9tcs6o2AsMmGsb45//HSdLK0KOPU6GPvwXj0IM4oQYXvKawr9sDk0ZSmKj
-         UAC3xh5WBcSJWhY6Zqn1Xp7MsPLwiW/Eib3FLI2ej6xiZBC6R0pQN3QEpnpFxCSzEnTA
-         ViZdGWkHnGpKYEBYNPQYPGmjGntMP65dNVCZNyZrFxl/grx8z4J8IUJX5unWvsaU+H/e
-         CGPA==
-X-Forwarded-Encrypted: i=1; AJvYcCV1yU3XUjjA3M/9dA9+YctjgcHp1qEWCYerGBj7q1JS6oFyV8jHPyNPiNZxiTuAd/DuhB6P019R2R5dR9Ww@lists.infradead.org
-X-Gm-Message-State: AOJu0YyJW22HclTuWmPUDpJAbpTEFWW9sfbAEg79KW/mooU/l5/c8mEE
-	774UVsp+pY71Xt6NFUsvM7cLQg9DiACINDNEc9cnxKTIRazRmejI0El1vM6ZcNcSTlsDJ5BXm1x
-	nlApm1OYQkA==
-X-Gm-Gg: ASbGncu2gOxoA5OVHV1u9RwxMngOWMpS+p8dskUyf2lE6pvoHqMdGzXhlU15893z1/Y
-	Jm5pVmhdotW3fD/iP8WNyUp/0+SqToIaJdeJK/U7esqMGAwMKJZugcTLbZ+w2g0g3RAfnKHRaDY
-	UCJAq//H4BgCFetc1r6yuovukyCkHIZyxryr0dlWdK/Zg1I4fmJROHIyUjbSFpockJIl47f/w31
-	0Eb2OntdjIIzrfPYw8sfXLsFpRDGZnRXtqTeGWXsbeEjr0J+qs734Yuj1tXtVLuvtcuzElERJgk
-	L/0fpJnW6XRgUhi80yJ587vE+mzvWuwWzZBvFjkZSTZ7jUpz3qFffksJkp2/CUJ8jprNYxrb87e
-	4zQsjNzWmS5rD+bXaJh2wS8MKQUSW/Qet7J8g6TzLIaJhUyfVdKFyqQ==
-X-Google-Smtp-Source: AGHT+IEEWnzxKzJRyT3eEFYsuorsgTXLKnfmT3YCKLi6VQxYP8ugD4yl1yHboe6tUZ8/uCLiCcnrlQ==
-X-Received: by 2002:a05:600c:46c3:b0:458:c059:7db1 with SMTP id 5b1f17b1804b1-45b8557f254mr183701165e9.30.1756992510230;
-        Thu, 04 Sep 2025 06:28:30 -0700 (PDT)
+        bh=FPemxXw+0FJhICaHUSL6epgUI+v6RGxIc62gtZdQfSo=;
+        b=uMy2eNxVupFUKiFmV6f5OgPdW6VyGiTDnnDonNu2JztxCQHptv/oFPKgYHwqZ/4RKo
+         z/yIHxn1rzY7FqMMyVmAt13xd0OALJSTLUJZ4nANQQQ9FX4A8o1XJCU0QTAwSPnItSGm
+         R+tFqRKGpz8ktvluDZWYb5y9+ebucnu9ysJvpBJsAQkLeGNkBOUqiMRVCm6i7QhQSP0d
+         PXHz6piXslBT8pxrtxb5zNf5uZQTgBjQWpf7bf/E0/qEdqxAFyXm2qhmEDRMI4pee1PO
+         kzWwoWBUBGorg/zzBvdU4nzM9zCOEaLCoWnw8bXgpv7cooQztoHB9PZqSuUdLWYTmG7y
+         q2lQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW4bCdDWzOV06WjPYaE6E43QXyJzMkwLurzZW/FR5QAcAzskO+UCKnSbD7zqXoS/94bjyFbikXrwHiZO3v1@lists.infradead.org
+X-Gm-Message-State: AOJu0YxmZ/a4dLFjACFzeIgxwXt3Ojr3rdnpDVP+PSAcrblKazZ1cLnV
+	E4DRikof4EorsRJTUeVRYXXx+eTfkdge0bpCrb4OCUkZMj1ZWT6D7TT1h4AayWbPB1cYh7ufjjZ
+	P51H4SI2f6w==
+X-Gm-Gg: ASbGncshsLhJdZunwMCXZuG8rMlfiwVP1c5Lontp1zUMszxQGqxUnf7NXdH06ejQ6xa
+	buC7jQf6rGB3ygzRRskZzwT5QcRWpxWNpEFvMJvRv/48/C/ZxADIJyoCuDXBYY8+IZ/NOevw4Ak
+	iMyxmoE9MJcxl0T1S0/XY0y96HoCcAlN8Q3kdDkDw1cCjsI7d8VGhxcPtZ3pIITM1+HJQFjF+Ob
+	CVxGgTP88eLKkHNHYUalx9TEv4RZSAc2/UO6GtNnzKrvpE8f8w5Mkr8ObOLdesGKEGjIqZCKYMh
+	J1bZPiZJ7ceSI1BK5zK2q2v9na97cFNz3op1h2beLSXfI/BKofaWpQmXzglQ6OIElN2jdkukOLR
+	SoWLKFxhQij7dVx1DqDXmn5oiGu7J9g+IYYQiUBBEWS0=
+X-Google-Smtp-Source: AGHT+IFChDxfidjmo6oLli8hpEv8BHitZXQWhFKQ0sFyaxZOzOcsJqvu3t6i4m2n6GGf1/m4WMbRVQ==
+X-Received: by 2002:a05:600c:35d5:b0:456:fdd:6030 with SMTP id 5b1f17b1804b1-45d030f7fc7mr32582245e9.19.1756992511081;
+        Thu, 04 Sep 2025 06:28:31 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e8879cesm286165305e9.12.2025.09.04.06.28.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e8879cesm286165305e9.12.2025.09.04.06.28.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 06:28:29 -0700 (PDT)
+        Thu, 04 Sep 2025 06:28:30 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Kevin Hilman <khilman@baylibre.com>, 
  Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>
-In-Reply-To: <20250825065240.22577-1-linux.amoon@gmail.com>
-References: <20250825065240.22577-1-linux.amoon@gmail.com>
-Subject: Re: [PATCH v2 00/11] Add cache information to Amlogic SoC
-Message-Id: <175699250964.3374853.16885676491827667777.b4-ty@linaro.org>
-Date: Thu, 04 Sep 2025 15:28:29 +0200
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20250505143700.4029484-1-christianshewitt@gmail.com>
+References: <20250505143700.4029484-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: sm1-bananapi: lower SD card speed
+ for stability
+Message-Id: <175699251033.3374853.7119442456595565513.b4-ty@linaro.org>
+Date: Thu, 04 Sep 2025 15:28:30 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250904_062831_981106_1FF04BB5 
-X-CRM114-Status: GOOD (  10.93  )
+X-CRM114-CacheID: sfid-20250904_062832_693030_8E5ADF9D 
+X-CRM114-Status: GOOD (  13.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,41 +107,22 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Mon, 25 Aug 2025 12:21:40 +0530, Anand Moon wrote:
-> Most publicly available Amlogic datasheets mention that the CPU employs
-> a architecture, quad-core ARM Cortex-A53 and ARM Cortex A55 and
-> Cortex-A73 and Cortex-A53 cluster, sharing a unified L2 cache to enhance
-> overall system performance.
+On Mon, 05 May 2025 14:37:00 +0000, Christian Hewitt wrote:
+> Users report being able to boot (u-boot) from SD card but kernel
+> init then fails to mount partitions on the card containing boot
+> media resulting in first-boot failure. System logs show only the
+> probe of the mmc devices: the SD card is seen, but no partitions
+> are found so init fails to mount them and boot stalls.
 > 
-> However, these documents typically omit details regarding the sizes of the
-> L1 data cache, L1 instruction cache, and L2 cache.
+> Reducing the speed of the SD card from 50MHz to 35MHz results in
+> complete probing of the card and successful boot.
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.18/arm64-dt)
 
-[01/11] arm64: dts: amlogic: Add cache information to the Amlogic GXBB and GXL SoC
-        https://git.kernel.org/amlogic/c/d7fc05da8ba28d22fb9bd79d9308f928fcb81c19
-[02/11] arm64: dts: amlogic: Add cache information to the Amlogic SM1 SoC
-        https://git.kernel.org/amlogic/c/fd7b48b1f91e1830e22e73744e7525af24d8ae25
-[03/11] arm64: dts: amlogic: Add cache information to the Amlogic G12A SoCS
-        https://git.kernel.org/amlogic/c/a4428e52babdb682f47f99b0b816e227e51a3835
-[04/11] arm64: dts: amlogic: Add cache information to the Amlogic AXG SoCS
-        https://git.kernel.org/amlogic/c/3b6ad2a433672f4ed9e1c90e4ae6b94683d1f1a2
-[05/11] arm64: dts: amlogic: Add cache information to the Amlogic GXM SoCS
-        https://git.kernel.org/amlogic/c/fe2c12bc0a8f9e5db87bfbf231658eadef4cdd47
-[06/11] arm64: dts: amlogic: Add cache information to the Amlogic A1 SoC
-        https://git.kernel.org/amlogic/c/2d97773212f8516b2fe3177077b1ecf7b67a4e09
-[07/11] arm64: dts: amlogic: Add cache information to the Amlogic A4 SoC
-        https://git.kernel.org/amlogic/c/57273dc063d5a80e8cebc20878369099992be01a
-[08/11] arm64: dts: amlogic: Add cache information to the Amlogic C3 SoC
-        https://git.kernel.org/amlogic/c/6d4ab38a0a21c82076105e4cc37087ef92253c7b
-[09/11] arm64: dts: amlogic: Add cache information to the Amlogic S7 SoC
-        https://git.kernel.org/amlogic/c/494c362fa1633bba127045ace8f0eea0b277af28
-[10/11] arm64: dts: amlogic: Add cache information to the Amlogic S922X SoC
-        https://git.kernel.org/amlogic/c/e7f85e6c155aed3e10e698dd05bd04b2d52edb59
-[11/11] arm64: dts: amlogic: Add cache information to the Amlogic T7 SoC
-        https://git.kernel.org/amlogic/c/e97fdb9b8a0f8bd349de48815694f8a7200e3d62
+[1/1] arm64: dts: amlogic: sm1-bananapi: lower SD card speed for stability
+      https://git.kernel.org/amlogic/c/916fa558cb27182933fdfe82d6d84b437e69349c
 
 These changes has been applied on the intermediate git tree [1].
 
