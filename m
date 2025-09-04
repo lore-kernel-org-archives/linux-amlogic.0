@@ -4,85 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42DD3CA1002
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Sep 2025 12:36:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 078FBCA1015
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Sep 2025 12:36:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KBPGw9v6Qzn+H7TftJ69Fiy+xe9oPoZ6cGkP/4bJKTo=; b=2lfpPH0ARXTzf7
-	i0eHHCIlaUlL/0qi+UErTJDEwCWo7vqg+G6OduIiv20GteqNcQql27QZW9Tki1djPSG5sjOJYpm7D
-	c0rFgsmpDFwAn83jeQ2RcLZfC6HWDM6dBZSiSTm47YjLjlHw7cxxH8aayZAfSYOidtUmlHFPGudmj
-	0EXvjRreMTZaZ6DhnC8CuFmIP51Q400BbdeePpgUWp0Ob2gIs7xorbel8+6TbIPsQCTiusA9edPUD
-	GKFtfmnYCDjAeabGuuqAmXNdTDzG4Ab6jRFxRgrE29PkF3khADW512WXRjjWtfgODJvz7Xi5+92m7
-	85w5qJa8jHPAC0bgHY0A==;
+	List-Owner; bh=SOmRdiehzaX1pNHC8QlKJnhseP4Prg5T2C7TREtqwBU=; b=ugi7+qOW2ylwQw
+	bohlEuG+zBkqKBqkC91f7coA+5xWXbvphEM6UbSRwPspm3tI0+DF2KfTGBCahx8UYAPTmT600iANB
+	OPGQK9VHqKNr3IU1OwRvKQACnq8BisKmIS1/6R8pLeOs/gC/z2UCVG6T1k70ZoYdBM/PYRvU6tjSs
+	EUHE/wqTTHRXjQsGC1R3ZUMCeLtrUrQyEoCPqX3/YvxcXOselxrn026wuehc8iIQ5HtMetaQ4kh/L
+	gAJOwT4D7z8ldBf+uw6AMpUJo+YfTFAsk44NDmdt7SAJ92Srb8pJ7bYOlg3ObCYmpdBsW5Wr60GGY
+	NHGyFzMrEV4/kF00d18w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uu9C2-0000000BbSq-233O;
-	Thu, 04 Sep 2025 12:35:58 +0000
-Received: from mail-yw1-x1135.google.com ([2607:f8b0:4864:20::1135])
+	id 1uu9CY-0000000Bbkz-41tF;
+	Thu, 04 Sep 2025 12:36:30 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uu7nM-0000000B61v-37xb
-	for linux-amlogic@lists.infradead.org;
-	Thu, 04 Sep 2025 11:06:26 +0000
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-71d60504bf8so9008077b3.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 04 Sep 2025 04:06:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756983984; x=1757588784; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qqKmJAcNXHCDcjaAnbZVhbmbW/ApAzLJDIUDuK/HU4s=;
-        b=RI7lkc/fKcfQr6YZdSxpHvZjgC2TQEUrYIxFbGQFbwiwmbA8LfhH4EZTX1vk1Jn+XW
-         N+PVmM5eXj5EmwvSYIg1xaFJZPDH3P9RtvTVw/vHlF1z7S2G6AFqtzvJYW0gvt2QfPWp
-         QCPT1OAEGkfqtJm4zX3ylY/kUPvS74WZ2ddAmNvXBme9wbzlcXEzOjnRusyqB4dXgt2x
-         XZ+F7vjnmFhOlMMlYZKLEGppljBkDSDoOykCDJESMyzo2czeOcEmBB20Yz3WEdn+yPAJ
-         VK6WlLOuo2OcJjpCBfI9N3utVxJmfcqRRN2RtiRVsPZHm/jETRIZDQ5PJ8QoB5o5f8aH
-         OazQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756983984; x=1757588784;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qqKmJAcNXHCDcjaAnbZVhbmbW/ApAzLJDIUDuK/HU4s=;
-        b=HKbK1vBec0ZS86fOViTX44WxTlhK08fi6jI1c+CXxCULa0Hv3x+OyCusTGFTuTuIYn
-         x+sJIxnlMeqvV3fCVEcAy1ylum3kgxNQrG1uq+Bg/HaqCxE5tXA11rHYDNpJtX3FEOZr
-         oKn7VUSrslHsVtvTWEuOYhJWXpKP7Ud4UI4n/9ChaLCezElZ70zs8RkdukO4HSho0niT
-         rxFU5rDqvlWN7rZl8IV1Y/Y50VBKhl5+L+tEmTpKMlKUE4vQHcYc0FEzS4fg0PU8nlSd
-         TUbu7B07xHocyC/xUz0twnUvga/ouzb7n4dd5bIXM7RW5ViJ7zkhCEt26E6ETDUuALQt
-         Tx5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUR0sPQ8C4J4Jk+j3umgNKtdMb4tSGjZKvRrQSe9xIJbqaE2EWsSuRL97W5EhFwDI7cA5GL/heRRy8vyS3l@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyxuet7A+ocKKpDaEhAzGJ16u+4S5CQdAc1RIpvnO1uq4dxSBBN
-	r2eMfCAWrufNc/+rh6XHEI40I0501vRS/NIeFysN6bIionE3G46iW5lPAimM8HfI9jYF7Gw0Hbt
-	nYXnTa2SiaOwO1zY0NNmg47eAtuWQTNV1LTl/Q2lQaw==
-X-Gm-Gg: ASbGncuLZlEUpEj8l/075HskAN09jqq+yVqd9Hsjq/ptXXiwVYrtoON3C2zI+WV7kXd
-	lqgZ+nkOPhEcKMqKLyyaOAazW5WPAaLb6czANHXh6DpETso291aSKU5FAvEs6KTNqnRKBtR4Zre
-	d2ZPIR/BmClK4XgY+UgqqI0fGTDpWbtjHZ5UR/SCf4XItJ9qMQWCI93RCcEI3He9jochUtDaCon
-	PH9BoI/
-X-Google-Smtp-Source: AGHT+IGqecQe5yOp9cR8x9hlAxxhDZsB8TfIupcC0FJtDt5AMK3d6JhTkzzkgdPyrWC0L7dsYj69W3txBCo/Z85TaT0=
-X-Received: by 2002:a05:690c:9a8d:b0:71c:1754:2696 with SMTP id
- 00721157ae682-72276542673mr206178927b3.36.1756983983654; Thu, 04 Sep 2025
- 04:06:23 -0700 (PDT)
+	id 1uu7oj-0000000B6hx-2Z0L;
+	Thu, 04 Sep 2025 11:07:50 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 1EEA143D51;
+	Thu,  4 Sep 2025 11:07:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F94AC4CEF0;
+	Thu,  4 Sep 2025 11:07:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756984069;
+	bh=W8Kb3H7rs8X2hyII1Ot5Epc50hcU2zHPUGNXGysAdrg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bqU2OYay8a/dEevRCiDUxLYHXLvLFpNklkOJtHJfKM0YeNinWYHDQL2KjRrqLycAa
+	 Qq5w/qBVrFBWtK9hCZDrpi4kcH+zFtlzMbsaC5abxtqqbTsgT8twtn/n3HPDxNsJrP
+	 bD3JR2+fzF5wyAjYVSJLIRwAu4xfUjWR3AcvoViftO9R2hYZA6/vMnR1dhIiFM/eEa
+	 tySM1rZMLArRLo7vD2y5eiMnQTe5Mlu8Rs2trxVSXWAMZam+ugEPeRA3CfC9LbuYIG
+	 kp2XH250lIcng/IJBfPu6YAD4PoOJumSq+u6Z9POlPtGKmvQLmcs+fjTxo1Z/Wq86B
+	 nR5LNdlFVEt1Q==
+Message-ID: <cce649b1-511b-4895-84be-2c85e748cfa8@kernel.org>
+Date: Thu, 4 Sep 2025 13:07:43 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: power: add Amlogic S6 S7 S7D power
+ domains
+To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, "hongyu.chen1" <hongyu.chen1@amlogic.com>
 References: <20250822-pm-s6-s7-s7d-v1-0-82e3f3aff327@amlogic.com>
-In-Reply-To: <20250822-pm-s6-s7-s7d-v1-0-82e3f3aff327@amlogic.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 4 Sep 2025 13:05:47 +0200
-X-Gm-Features: Ac12FXzzO6lh2XeuKq6zK_9jSCFOJd4db2W5dfvQA3Y4rmF6D3oa47ZB2y7XJS0
-Message-ID: <CAPDyKFo=pwb43vZFkKprbBthxAy_YtYD2mKitY6Oe-rMHYCkDQ@mail.gmail.com>
-Subject: Re: [PATCH 0/5] Power: Add power domain driver for S6 S7 S7D
-To: xianwei.zhao@amlogic.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jianxin Pan <jianxin.pan@amlogic.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, "hongyu.chen1" <hongyu.chen1@amlogic.com>
+ <20250822-pm-s6-s7-s7d-v1-1-82e3f3aff327@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250822-pm-s6-s7-s7d-v1-1-82e3f3aff327@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250904_040624_782191_A3808FE9 
-X-CRM114-Status: GOOD (  11.67  )
+X-CRM114-CacheID: sfid-20250904_040749_695380_152F95E4 
+X-CRM114-Status: GOOD (  11.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,47 +123,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 22 Aug 2025 at 07:41, Xianwei Zhao via B4 Relay
-<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
->
-> Add power controller driver support for Amlogic S6 S7 S7D SoC.
->
+On 22/08/2025 07:39, Xianwei Zhao via B4 Relay wrote:
+> From: "hongyu.chen1" <hongyu.chen1@amlogic.com>
+> 
+> Add devicetree binding document and related header file for
+> Amlogic S6 S7 S7D secure power domains.
+> 
+> Signed-off-by: hongyu.chen1 <hongyu.chen1@amlogic.com>
 > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-Patch 1 and 2 applied for next, thanks!
-
-Note, the DT patch (patch1) is available on my immutable dt branch too.
-
-Kind regards
-Uffe
-
-
 > ---
-> hongyu.chen1 (5):
->       dt-bindings: power: add Amlogic S6 S7 S7D power domains
->       pmdomain: amlogic: Add support for S6 S7 S7D power domains controller
->       arm64: dts: amlogic: s6: add power domain controller node
->       arm64: dts: amlogic: s7: add power domain controller node
->       arm64: dts: amlogic: s7d: add power domain controller node
->
->  .../bindings/power/amlogic,meson-sec-pwrc.yaml     |  3 +
->  arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        | 10 +++
->  arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        | 10 +++
->  arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       | 10 +++
->  drivers/pmdomain/amlogic/meson-secure-pwrc.c       | 95 ++++++++++++++++++++++
->  include/dt-bindings/power/amlogic,s6-pwrc.h        | 29 +++++++
->  include/dt-bindings/power/amlogic,s7-pwrc.h        | 20 +++++
->  include/dt-bindings/power/amlogic,s7d-pwrc.h       | 27 ++++++
->  8 files changed, 204 insertions(+)
-> ---
-> base-commit: ffeebf7587f518a3717fad308cf735adbbcaba97
-> change-id: 20250820-pm-s6-s7-s7d-950f720aac6d
->
-> Best regards,
-> --
-> Xianwei Zhao <xianwei.zhao@amlogic.com>
->
->
+>  .../bindings/power/amlogic,meson-sec-pwrc.yaml     |  3 +++
+>  include/dt-bindings/power/amlogic,s6-pwrc.h        | 29 ++++++++++++++++++++++
+>  include/dt-bindings/power/amlogic,s7-pwrc.h        | 20 +++++++++++++++
+>  include/dt-bindings/power/amlogic,s7d-pwrc.h       | 27 ++++++++++++++++++++
+>  4 files changed, 79 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> index 15d74138baa3..12b71688dd34 100644
+> --- a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> @@ -24,6 +24,9 @@ properties:
+>        - amlogic,a5-pwrc
+>        - amlogic,c3-pwrc
+>        - amlogic,t7-pwrc
+> +      - amlogic,s6-pwrc
+> +      - amlogic,s7-pwrc
+> +      - amlogic,s7d-pwrc
+
+
+If there is going to be new version:
+Please keep alphabetical order.
+
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
