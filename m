@@ -4,93 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32C6FCA1015
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Sep 2025 16:27:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C045BCA1015
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Sep 2025 16:27:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5tNRHmPQjmcqwWbR3EHxqyvGsDRMPmGPTbn4F1IROf0=; b=pMK8AZUHgbtyg0
-	KpX/LWl6nEAA8MJUPq4Q3SUIPgOI/l/RivlRfXap+FAeOgDLFv8k8y/h7aUp7v2HS/yaIoYISBgGa
-	0ninvDUOK+m7g645B1OegeIxBz5InSE3y3q4eWJD0Y6Qi4iZ/Z8MBecpxjwavwdcOkmyWqgnPlze0
-	AdKsjkA1Zx7L87aTVSNGzCxyOE+rSHFNxCpmTxKmegBz+Oq3nPtj5U7CpG2tWfvpMwOO/6+8trGxi
-	zg9i15lq+FmZdhVMvV8zycHQI2xfETjq2/MGIJ+N4Nj6iKrp/9NVYsonwl6qQlTi5iu3Znl8NkSA6
-	fYFT4fwHcwCKrxoWE/WA==;
+	List-Owner; bh=OvqztGWC+1yiWDvAMzwEb1TUWds9FTFr8ci4kIIHh1A=; b=B474fktY4bcGr8
+	CP3cLhCOKMVxygWJqvl8ElQNUyK8IZ8vFmZJ2d/DZxtCxCr93MWXxm454BY1bxXaFxkCnB39Z70DE
+	KPYFFk6ZqbgqbE0lsWkF7fKFnVSAx0Lw/uu8YcihVAqajqjd/BtFs0HXDm+aPBL2VmFoTb7fmOsbP
+	6SF2fM6BZjTfciTkzJaB2RJXluXddrnIOs4obvhyLOp7cDseySahef17W7nxpy+vxtfAbS6sH4Ltx
+	WSG7rlpEaFAM34FSB5lSlM8VkqC/2LA1kRHQUYcYxbjbx/wdASKHb/U1K4eNY6F9JW4K7V0Ee9MAo
+	NeVMpJYxglphBU6pP6qw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uuCny-0000000CuiX-1ZdQ;
-	Thu, 04 Sep 2025 16:27:22 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1uuCo0-0000000Culv-0794;
+	Thu, 04 Sep 2025 16:27:27 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uuA0t-0000000BtHN-0xvA
+	id 1uuA0t-0000000BtHT-3kfg
 	for linux-amlogic@lists.infradead.org;
 	Thu, 04 Sep 2025 13:28:34 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-45b7d87b90fso8840865e9.0
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-45b87bc67a4so7704215e9.3
         for <linux-amlogic@lists.infradead.org>; Thu, 04 Sep 2025 06:28:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1756992510; x=1757597310; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wg9RQ81pLZ+ciihaHbHh+VHe51/1jd/flpRJCWP5vTY=;
-        b=sm4tP6reqfYeqbefl7PVBbho9zDSmQKJNv9nLDS1Z8npFnnhne3Sdg2VRFlSQiwgxE
-         ZThikM6Q5xmu27EI+GZQ2XhylUY8tEGTD/rQmvO9wlsiIGkNhEAAHq+il8Taw7jVRNIw
-         G7YSkxvrueBoQnebJOZhoyZCmSslrkLPp8tPl5V3oIcBKpklLSaYw3tZln2vhj3lZCPy
-         OLtpkHlO13fvT/JtkHUCVW3Rz4uSZAEh+gSL8CSdDRiccfm3OHni+Jio6R3HouTUkLS7
-         5fr7Mis2Opbx/Rj3PhAhqF6Sj96kzvK6qDB2D62utHJAN79m/WfMrQnIEwboguLPFGBP
-         KthA==
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vVjNlWUjUJbko6NCXNm3bP5sMvagvoIs0Rsycf+Tcfk=;
+        b=qnH54Qaav/SmvPbs89HTs1LsYPxEAKYczgCl4PHBRDWY8u1iG5FGT5i7B0YkyUFx4v
+         81P1LiYbQS0GObItI4yDrbP7VJlVJHiwXyXdprOMTAv2fitHYpuw9uKiN7DkEJuIeg12
+         gR5bet5Q3bF9RgkADeEB7sdX3/eSXlnbnDRPDx0QhLXbA3xg+aRFVFDGKtl6oP/w+dhb
+         AcFCXSCc9lIEPcQfYMPcsh7pILTdRjY8CrAs8kY0LyA9/GyCKrmLBKoFQviGRwm5pc3n
+         c2wdnQx62z9mkHipai6p53+0+kI90fBk/gP3A0mTFig/I5R1ZfdhSo1P+gspYRQ1WKib
+         7U1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1756992510; x=1757597310;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wg9RQ81pLZ+ciihaHbHh+VHe51/1jd/flpRJCWP5vTY=;
-        b=f5ijEbb+l0BgnzB8H5DUE2O8Gvc/zJ93CKej1GD0nOkVfWShQmbA81qBlbF/E4hK1b
-         Ihn/H50Sby5BN1ovx78MwsDmyIaLdRGy4/bU042DR9kgbob2GntHTcdEo2G20bT8Ff86
-         5gDLvQgCkACH5RQOBM5HW/sznoY+UsaY0BOoDV/InRcEx3llHAuRhNNHfIC2cyroMYDp
-         lsbx/7qPQUVgwgVkbng2lI0Vg6XYnMX7XM0nW0BW+P3x7YR9e6nWTgpJdkYasFggfiVv
-         gamJTOzVwGJCMaCQEfzM7TRHJUYcpbZZvMazGSIG+rISfAL1QLZ4FiOssg/i5OfbJm2Y
-         QFIw==
-X-Gm-Message-State: AOJu0Yw6ep5kWbVfgLBV4JVP3SmAGqPBK6OgzmQXBr5wuf8THFzOOqJl
-	onHQRlUt0KMx7MC4nDr4e4BD+EPsHDa6l/3EE/O3rlpYsDrjZ0CIQm4ZcgplzEVg7yDGmDQYNGk
-	1sMfkZ1sy3Q==
-X-Gm-Gg: ASbGncvUaEbao21DioLh/LTxA2B5kyaCWZhVGhe/rTGWw5RrYEKnwrpFTBv7dMOeoKD
-	5/p9fSYltBlJiAS3nRzbKayMMzgKcxjLPqn23qc1wJ8HoVf5Z0j+NYWLnCn/PuvMZEWx5NctsdM
-	DDgiNj+ElfYvoOYA8b5VqisFG0K7iE9dt6iOCyW+XDAsC3fjs1arYjPWSwePWIfKRJ8+QsKDUJp
-	EQsreXeoWMu5cyRItFmbpCOaZeEKPfbdAV5ahwbysexvudJv0BDVkLUJHIQzyazSC3vhRcK5zK5
-	xqaULdBIHuPjnlPdAllBG8d9rVjlCqEY8RSzzBa8up5BtT/iBxSbdVxcd6qj9GXMFz2uss5mES+
-	yrYEfBQxmCCkMV7tKqNVChAwUp5rVoHdeAboF5Rs9nOc=
-X-Google-Smtp-Source: AGHT+IEqR0+n4/kIxFH+iZ1e8ctE7JnfjyeZG2z9hWnY3yB50qjsaKmYnmnDkhp/9C/R0KCDPHIUFw==
-X-Received: by 2002:a05:600c:331b:b0:45c:b501:795c with SMTP id 5b1f17b1804b1-45cb50179cemr38578945e9.10.1756992509525;
-        Thu, 04 Sep 2025 06:28:29 -0700 (PDT)
+        bh=vVjNlWUjUJbko6NCXNm3bP5sMvagvoIs0Rsycf+Tcfk=;
+        b=kQ7DdmCVTT+h/UR1uSJCCBGgHyDWUzaOpwg8LNqsUNwmMuy0cW8heXgkivHSZDGFNx
+         9IgfcHYHW+9IlsA5zR/EqGnZdreM/752nqHJyL4pN80nXn/pyANOfyD200fPyDNtSJMW
+         MNsymg4Q8G9tcs6o2AsMmGsb45//HSdLK0KOPU6GPvwXj0IM4oQYXvKawr9sDk0ZSmKj
+         UAC3xh5WBcSJWhY6Zqn1Xp7MsPLwiW/Eib3FLI2ej6xiZBC6R0pQN3QEpnpFxCSzEnTA
+         ViZdGWkHnGpKYEBYNPQYPGmjGntMP65dNVCZNyZrFxl/grx8z4J8IUJX5unWvsaU+H/e
+         CGPA==
+X-Forwarded-Encrypted: i=1; AJvYcCV1yU3XUjjA3M/9dA9+YctjgcHp1qEWCYerGBj7q1JS6oFyV8jHPyNPiNZxiTuAd/DuhB6P019R2R5dR9Ww@lists.infradead.org
+X-Gm-Message-State: AOJu0YyJW22HclTuWmPUDpJAbpTEFWW9sfbAEg79KW/mooU/l5/c8mEE
+	774UVsp+pY71Xt6NFUsvM7cLQg9DiACINDNEc9cnxKTIRazRmejI0El1vM6ZcNcSTlsDJ5BXm1x
+	nlApm1OYQkA==
+X-Gm-Gg: ASbGncu2gOxoA5OVHV1u9RwxMngOWMpS+p8dskUyf2lE6pvoHqMdGzXhlU15893z1/Y
+	Jm5pVmhdotW3fD/iP8WNyUp/0+SqToIaJdeJK/U7esqMGAwMKJZugcTLbZ+w2g0g3RAfnKHRaDY
+	UCJAq//H4BgCFetc1r6yuovukyCkHIZyxryr0dlWdK/Zg1I4fmJROHIyUjbSFpockJIl47f/w31
+	0Eb2OntdjIIzrfPYw8sfXLsFpRDGZnRXtqTeGWXsbeEjr0J+qs734Yuj1tXtVLuvtcuzElERJgk
+	L/0fpJnW6XRgUhi80yJ587vE+mzvWuwWzZBvFjkZSTZ7jUpz3qFffksJkp2/CUJ8jprNYxrb87e
+	4zQsjNzWmS5rD+bXaJh2wS8MKQUSW/Qet7J8g6TzLIaJhUyfVdKFyqQ==
+X-Google-Smtp-Source: AGHT+IEEWnzxKzJRyT3eEFYsuorsgTXLKnfmT3YCKLi6VQxYP8ugD4yl1yHboe6tUZ8/uCLiCcnrlQ==
+X-Received: by 2002:a05:600c:46c3:b0:458:c059:7db1 with SMTP id 5b1f17b1804b1-45b8557f254mr183701165e9.30.1756992510230;
+        Thu, 04 Sep 2025 06:28:30 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e8879cesm286165305e9.12.2025.09.04.06.28.28
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e8879cesm286165305e9.12.2025.09.04.06.28.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 04 Sep 2025 06:28:29 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Yiting Deng <yiting.deng@amlogic.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+To: Kevin Hilman <khilman@baylibre.com>, 
  Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20250717-rtc-c3-node-v1-0-4f9ae059b8e6@amlogic.com>
-References: <20250717-rtc-c3-node-v1-0-4f9ae059b8e6@amlogic.com>
-Subject: Re: (subset) [PATCH 0/2] rtc: add amlogic C3 RTC node
-Message-Id: <175699250880.3374853.13696019102809895067.b4-ty@linaro.org>
-Date: Thu, 04 Sep 2025 15:28:28 +0200
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>
+In-Reply-To: <20250825065240.22577-1-linux.amoon@gmail.com>
+References: <20250825065240.22577-1-linux.amoon@gmail.com>
+Subject: Re: [PATCH v2 00/11] Add cache information to Amlogic SoC
+Message-Id: <175699250964.3374853.16885676491827667777.b4-ty@linaro.org>
+Date: Thu, 04 Sep 2025 15:28:29 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250904_062831_273259_5432DB65 
-X-CRM114-Status: UNSURE (   9.09  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250904_062831_981106_1FF04BB5 
+X-CRM114-Status: GOOD (  10.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,15 +106,41 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Thu, 17 Jul 2025 17:38:36 +0800, Xianwei Zhao wrote:
-> Add C3 rtc compatible string and device node.
+On Mon, 25 Aug 2025 12:21:40 +0530, Anand Moon wrote:
+> Most publicly available Amlogic datasheets mention that the CPU employs
+> a architecture, quad-core ARM Cortex-A53 and ARM Cortex A55 and
+> Cortex-A73 and Cortex-A53 cluster, sharing a unified L2 cache to enhance
+> overall system performance.
 > 
+> However, these documents typically omit details regarding the sizes of the
+> L1 data cache, L1 instruction cache, and L2 cache.
 > 
+> [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.18/arm64-dt)
 
-[2/2] arm64: dts: amlogic: C3: Add RTC controller node
-      https://git.kernel.org/amlogic/c/59b4c260582a74e641c973d016725e5dca32f300
+[01/11] arm64: dts: amlogic: Add cache information to the Amlogic GXBB and GXL SoC
+        https://git.kernel.org/amlogic/c/d7fc05da8ba28d22fb9bd79d9308f928fcb81c19
+[02/11] arm64: dts: amlogic: Add cache information to the Amlogic SM1 SoC
+        https://git.kernel.org/amlogic/c/fd7b48b1f91e1830e22e73744e7525af24d8ae25
+[03/11] arm64: dts: amlogic: Add cache information to the Amlogic G12A SoCS
+        https://git.kernel.org/amlogic/c/a4428e52babdb682f47f99b0b816e227e51a3835
+[04/11] arm64: dts: amlogic: Add cache information to the Amlogic AXG SoCS
+        https://git.kernel.org/amlogic/c/3b6ad2a433672f4ed9e1c90e4ae6b94683d1f1a2
+[05/11] arm64: dts: amlogic: Add cache information to the Amlogic GXM SoCS
+        https://git.kernel.org/amlogic/c/fe2c12bc0a8f9e5db87bfbf231658eadef4cdd47
+[06/11] arm64: dts: amlogic: Add cache information to the Amlogic A1 SoC
+        https://git.kernel.org/amlogic/c/2d97773212f8516b2fe3177077b1ecf7b67a4e09
+[07/11] arm64: dts: amlogic: Add cache information to the Amlogic A4 SoC
+        https://git.kernel.org/amlogic/c/57273dc063d5a80e8cebc20878369099992be01a
+[08/11] arm64: dts: amlogic: Add cache information to the Amlogic C3 SoC
+        https://git.kernel.org/amlogic/c/6d4ab38a0a21c82076105e4cc37087ef92253c7b
+[09/11] arm64: dts: amlogic: Add cache information to the Amlogic S7 SoC
+        https://git.kernel.org/amlogic/c/494c362fa1633bba127045ace8f0eea0b277af28
+[10/11] arm64: dts: amlogic: Add cache information to the Amlogic S922X SoC
+        https://git.kernel.org/amlogic/c/e7f85e6c155aed3e10e698dd05bd04b2d52edb59
+[11/11] arm64: dts: amlogic: Add cache information to the Amlogic T7 SoC
+        https://git.kernel.org/amlogic/c/e97fdb9b8a0f8bd349de48815694f8a7200e3d62
 
 These changes has been applied on the intermediate git tree [1].
 
