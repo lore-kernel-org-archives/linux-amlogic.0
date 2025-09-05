@@ -4,82 +4,204 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 716CACA0FED
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Sep 2025 04:04:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA7BCCA1016
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Sep 2025 08:51:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qBuSO30xHOwg1ji4pjwwB6e6u+rJwQF2zsWzTfx/GlY=; b=lQrhuMoNBcEGgF
-	78N3vy9NOimb7lNUWY5TP3ZXACUwjyDSr099PruF46Hod+B4Av//fiVY+dtV9nS+kL0VH6IVpU4gB
-	Pyfl+iferWG3TIfnLuyq9bNBjxA6hDMG/bTNMUjTB3IM2dBCZDts7WvDykHFODOyopqm1l2/tJ6mf
-	GXacvlLGXzNMNA2K8L4Ey2cmmlmtPEf/q+D8APSyCM1vhmKoNV7wVX+Fk2ggi9r8y+xOXfz7IX2mS
-	TL84Ef6oZvdPBaeZT62F643nRXcG7iaxGuMh5PgGkD2mAs3Wm1uTFHxUouFks6I5RpfhvYc5k5SrU
-	WMzeCY9O9JDdbGE9Bgfg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=LXzKW/WLW91CIB4SbRuoRsoUG/M7Tpm3oW/g/lKnmdc=; b=0uRnrJlANMdQbo
+	8YrlRCRlfVW6ygpZasZiIJ748aFTjE4EwIHxl15J2IQAwGgtjWSutIM/V90GVJlF+1NzVmPTgeXu9
+	oGF3zoZm8RLu9yhUPs48aAw15vG4g0QbY3dRC8TNWpTtuGGxQOqLQ48/8k16BLZXHWmUgxtK7ognG
+	mDYIbMi+cJ2d3FpiGoLyf0puvG7l0TArHA93ESOgnTMhIk6TTlY+ILV1ebjmwBD8uDnzu1/ZDX3LT
+	ZHxpQ7pL0nlVIxPjfa27U6ucrrcIqfocWzHBj7+HkMSqzP4ks1uwRmwKp0PovKN1a0j5mKOaryk32
+	6uYc7NCyMN3CGH9srG3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uuNgc-0000000Gd7j-00s5;
-	Fri, 05 Sep 2025 04:04:30 +0000
-Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
+	id 1uuS9u-00000000UW8-0sNq;
+	Fri, 05 Sep 2025 08:51:02 +0000
+Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uuNdo-0000000GcJ0-1lJ5;
-	Fri, 05 Sep 2025 04:01:37 +0000
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-61e3b74672cso3711327a12.0;
-        Thu, 04 Sep 2025 21:01:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757044895; x=1757649695; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YGmnk9Y7kDaqvngUdy9AiDHXDEmTlZrFIomlpm38Cxs=;
-        b=C9AIb0v0w/P7BzIAEFJNGFGarUo2LB1f8lXzoAlbtOOn78pa8t09ordZmnK4v3GX4M
-         i0ER62B7IqRRURv1jwwUO9fzH8ojHCzO4yQPkIe+eXTwl/ZXgSr9I++sJtTTQ5FT6s0r
-         4JqHPUmWMJF2+Rd/1hFixuWUmDRBgmVAB6jw/Yfw3AcxA8gJHX0nQ3RsBTevB5lrJc69
-         G1n5d1U9zKHe9ufXhp3cATVH2DTvLDS64TQ/9bVTORpyK3r7LJY98zEr6pvlGCYN1TyY
-         1LUjaPGvGPZ7ism8kr5d6dpK32iEKDVoLPMCxdY1VgnvQoPwttmhyK+bu+86YBeKUFXB
-         f7pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757044895; x=1757649695;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YGmnk9Y7kDaqvngUdy9AiDHXDEmTlZrFIomlpm38Cxs=;
-        b=H/si5aMk3aAjznYSp+LCTwd+udOqZiH5LhQ6cquFVVZtalft4X1CCr5j5DmDPnOZeY
-         4P/r2sb2uZmqHhGiqvKz/rkVf6+r0a5lsZBGxZEeU3V7ZVPZ6QT3NQm3vpF1ztYTRqqd
-         RdNKW0IT/Qx0yf7eub84YvUpJfRS8P55KvHuk8Vb28uuuf+GGmtA2BE9bKft0MP0FvnD
-         33PnAUY707lNoKpY4aQGAnQ/Z0YVcX2twBw+eBqQUEKfa1AUxie+Hz5oXoUIGjCs449H
-         e0+icRF0r2DsKN38gYk+0qi9mmO+x8ZjzeKUS24CZEwrfCrPFdTRY7oQX+82ddZT5FTZ
-         8uWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWmwgbNDIECMMQ1bJP16VlAkpf9XtfvPdkQQxtflgmyR8UjKnL21LDGHVCEa8kTinylpfX3YS/fB9RSRBOH@lists.infradead.org, AJvYcCX4f2tDh3d07LMAImrHn7YmZ9oF5MVVNLyBwlitPpojwlmk/Rsu8hcMcusJ/ttDlDJk2d1VJgs+e/nlBeeFEiOshw==@lists.infradead.org
-X-Gm-Message-State: AOJu0YxgmoV6bwTc14h17tZ8zEwIzQDSIucDTGUU4oDXeiR4vzAlI9Y1
-	nJ5tbVPw1Vxihr0KcvUc8DRbYwrtje5w5ZabOwshC0v+FeeZcWb7KIJMPgbLv7IO+viGc1dkYlc
-	pL6BYVWqWpivRrbrFCx18HDVdscBPEFo=
-X-Gm-Gg: ASbGncs1oPpwIk7xKMw+VOXIRxSuC3cgC4K/CW3adepeq/VV8ls0Lp5rWCSOFkxg9SY
-	aKoXyt9T4yfAwkPRgfRF6I/T+Jk+a1r6126WUoUjMkoj64p0Jb0uGzoeiqJrnx0shDe3qRod/ro
-	asndbvea8zyIOMloDZOH5XD+z8knk6W3G/MvSiQVUWWh4I4EtpN2PrTvAEme6azjNTX4fJC7YHm
-	U4CgHcfzDhDaKGc
-X-Google-Smtp-Source: AGHT+IGI90WvQ1OL6qzT0UTrxnDzkKtA7u7gnGXFuOteAw9bkUI6xf+wizPLY6+YzR0GtxSZAJQl+LWmGOlaRBQLAUQ=
-X-Received: by 2002:a05:6402:430c:b0:61c:e3cd:a515 with SMTP id
- 4fb4d7f45d1cf-620f549b25cmr1673091a12.9.1757044894512; Thu, 04 Sep 2025
- 21:01:34 -0700 (PDT)
+	id 1uuQoh-0000000Hau9-2iBq;
+	Fri, 05 Sep 2025 07:25:04 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gUEzKZJy130J3LZpRDi268EHykQ8Q7GvKsnmww08mX1T0Hyxk/qzi924V/ESj0ZyMjaEnbd6B62KpBbYpWTuOx+aO+dMQNWSIN0orKWj+KeFCIo9ppAsKl9C3o4pMFNRYiPUFkEGL+C3Ynjf4AUM0VFTNS84yq0IMzxPJCc2yPDwRo7bBUtUL1aggd3jd1oXdx4OzUCjL3PVNLB9dCy0KK4FHbsyAGff6uy3QcqiKz2Z+SBaI3hwOEQoKL/MgSeRmnF58SB4Y082ZdZ2gPU/83AXPSJKIkrxpvRYtDfR0xjvTv3Z2QbkyE4HG57cAJP63GzDiIARCF0esaWaep4kww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l00aG08W87I1prscd7L+aG/F3ovWpspEgEd6GQuSNBc=;
+ b=cl3YF129SNJOoulVpsnCMa2Da+zqV+mBnbEaQHMiAUNDYlkMO4prn/xHbZRbp12h6RcmuvYVSrMuYaN3m0t7oXr1b82wDUlR4A1djgOh+VqOG7pHQVmqYSbA+vjCt/1leFpqyj/N099yX9jRbIgQc227VpTx2xIrGyVu+D4hZMzpYa0VwYS+pBWjOzfRm1fsIaW2v9X1abp4jBIW7OnXleEYZK3yWDk3RVlmckh/a4PMsig7700R/Jmv3KqD8psmbc+RIwQ6gB/jIh8GYV/ir358/ophubCwSwcdiDbDBVDf/PTh0wmu7l4FSYtisn17LIbT5j8NmdpqQkWI9BhVEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l00aG08W87I1prscd7L+aG/F3ovWpspEgEd6GQuSNBc=;
+ b=jJUQ7rV/2tjm05PLvH5sxyJ2oo/pKnA5P/+MdTuiqfACAaKkmUzx5RtRDcRPSgKrATS4mH003mQfomci51Na0TmokQ6oZHkv1/9M+xB15eKC2roaH1TgXFcLmECBlJnIfGH44n49YrqqqOmqut+jyYmtuxLejfaqEGOnsgEcVcDHL8oseiG9+fwd4GpMYPKNGaXUeOGPRGWaufD+r/jlwhWQ8n1G1sB2fj5umJAVxKS4HZnRbDND24tT6PNmbsFPFohteAECEs4F4jwnpzNlLNjOF4TMcH1O7+fbgCEfgpj4a+Xbp9ill+vfQTii3bDkDDp/Vu3s3V81qt1V6kDH+Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vivo.com;
+Received: from KL1PR06MB7330.apcprd06.prod.outlook.com (2603:1096:820:146::7)
+ by SEZPR06MB7185.apcprd06.prod.outlook.com (2603:1096:101:22a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.18; Fri, 5 Sep
+ 2025 07:24:51 +0000
+Received: from KL1PR06MB7330.apcprd06.prod.outlook.com
+ ([fe80::d1d3:916:af43:55f5]) by KL1PR06MB7330.apcprd06.prod.outlook.com
+ ([fe80::d1d3:916:af43:55f5%4]) with mapi id 15.20.9094.018; Fri, 5 Sep 2025
+ 07:24:50 +0000
+From: Xichao Zhao <zhao.xichao@vivo.com>
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Guillaume La Roque <glaroque@baylibre.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Markus Mayer <mmayer@broadcom.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	zhanghongchen <zhanghongchen@loongson.cn>,
+	Yinbo Zhu <zhuyinbo@loongson.cn>,
+	Amit Kucheria <amitk@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Talel Shenhar <talel@amazon.com>,
+	Eduardo Valentin <edubezval@gmail.com>,
+	Keerthy <j-keerthy@ti.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	linux-hwmon@vger.kernel.org (open list:HARDWARE MONITORING),
+	linux-kernel@vger.kernel.org (open list),
+	linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Allwinner sunXi SoC support),
+	linux-sunxi@lists.linux.dev (open list:ARM/Allwinner sunXi SoC support),
+	linux-pm@vger.kernel.org (open list:THERMAL),
+	linux-amlogic@lists.infradead.org (open list:THERMAL DRIVER FOR AMLOGIC SOCS),
+	linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-msm@vger.kernel.org (open list:QUALCOMM TSENS THERMAL DRIVER),
+	linux-renesas-soc@vger.kernel.org (open list:RENESAS R-CAR THERMAL DRIVERS),
+	linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support),
+	linux-samsung-soc@vger.kernel.org (open list:SAMSUNG THERMAL DRIVER),
+	linux-stm32@st-md-mailman.stormreply.com (moderated list:ARM/STM32 ARCHITECTURE),
+	linux-tegra@vger.kernel.org (open list:TEGRA ARCHITECTURE SUPPORT),
+	linux-omap@vger.kernel.org (open list:TI BANDGAP AND THERMAL DRIVER)
+Cc: Xichao Zhao <zhao.xichao@vivo.com>
+Subject: [PATCH 00/12] drivers: Integrate log message printing into devm_thermal_*_register()
+Date: Fri,  5 Sep 2025 15:23:52 +0800
+Message-Id: <20250905072423.368123-1-zhao.xichao@vivo.com>
+X-Mailer: git-send-email 2.34.1
+X-ClientProxiedBy: TYCP286CA0075.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:31a::16) To KL1PR06MB7330.apcprd06.prod.outlook.com
+ (2603:1096:820:146::7)
 MIME-Version: 1.0
-References: <20250825065240.22577-1-linux.amoon@gmail.com> <175699250964.3374853.16885676491827667777.b4-ty@linaro.org>
-In-Reply-To: <175699250964.3374853.16885676491827667777.b4-ty@linaro.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Fri, 5 Sep 2025 09:31:18 +0530
-X-Gm-Features: Ac12FXw6Duul3YjCrLSMtIq3Ki1Yxh-YbEkzS0fLz92JkUkwkfAjtBL1MXoQ11A
-Message-ID: <CANAwSgQGCTs46DVm3gt4PpdSTBTvVg5zga_oBt=rUJh2yhRLtw@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] Add cache information to Amlogic SoC
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR06MB7330:EE_|SEZPR06MB7185:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4ce90b0b-55b7-4cab-a0d2-08ddec4d4cd6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|52116014|7416014|366016|38350700014|921020;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?RdPhrFtPD62QYRERKyMpXhYXceCHpOCdnsSISXPeCItz7fQ83GhkKaXQYJ4K?=
+ =?us-ascii?Q?h0e5qwTaJmwm78arHIgvmTHRVURhxCnVByEUnKNhbIQy4CpSVJrJL1RdYFrj?=
+ =?us-ascii?Q?Evb4bIV1aosKL/kQLNNN68qxVQ0a8QYTrJcWQItDJd5Dk21WN0XzU4pJiY/D?=
+ =?us-ascii?Q?YsqICFWFw5jotuRueYfalqRCNJfPaXckNG0v1s1dW2rqXhW7IdYmAJ2XznTZ?=
+ =?us-ascii?Q?PBg4JDvQ1SlNYFwIC3PqI4HLID4O2PBXJrz5ye0RlyNVJrHFGWF98VzPREQy?=
+ =?us-ascii?Q?FZ/FfDtFOPSab0tNGi+yZrX3pbW01P7G4m1+4mwiwmzXjg3ROR7Nst6gBwi9?=
+ =?us-ascii?Q?WPXoNixBIYUP4ssXJQ+vhSimVIOmnCh+g+vDGTtARET4Sh76oTtZbgkviwKz?=
+ =?us-ascii?Q?OckcvCriT2bZU1BCt4O+AbHmxGx7hoe/+4E7mqilLFPx/WyMGF7YNRt7BgvH?=
+ =?us-ascii?Q?Z5g09WxmHcvGBkLotB9/+XUsJC4zAFINIJ0dThZ6kuMKGSiorAskmE5en3BH?=
+ =?us-ascii?Q?y4PHHdyFVqgtcI7ElyDCJT5XSnKpuFY3JSp8LWt8wn3xOUjjgpJMrnVJIUF2?=
+ =?us-ascii?Q?4VouEI6UrOPAosUJPOrx0oZtxpNjAHZ9i53kmr2TOI1fy4ln1OWwxjsGmGhO?=
+ =?us-ascii?Q?tJJl77GA8871Wob074ZditN9RbZpNC0b9oiidyHzLqWSVMZ8R765g1YP+pBU?=
+ =?us-ascii?Q?H3XOc138OsYNPJZBRDvzhKViSrUr2eUvrevzWAvU+U38RQOeSovYLy/FXTZl?=
+ =?us-ascii?Q?VNtCpewA30+Un5G6h2dfUit09JTr+nu+AxnmTOSLJ6ER+KCS2L0rkTyk6ib8?=
+ =?us-ascii?Q?O+Z6h1hZyzNk5wclDxaJBb2BRP8U3N+9OAhqapnE7qYwwSF6mY7Gs4Y3veFu?=
+ =?us-ascii?Q?S2VNRYLMiM5zErn9MoU7Lq3iv3yP4CqBjvm3Ia9dBWvWf+jEuIzpOsNzgGHO?=
+ =?us-ascii?Q?wAjfHulo+/idyRqRpIHWHDsfSmviaGjPjrA1ljQPQYA/iriwF03NJJL08geJ?=
+ =?us-ascii?Q?fUc0A3yjBC0Wfz+cLVc4CXxPwAmxK26OLMnQsovC6+eWrYx5YCuvLalIeoCy?=
+ =?us-ascii?Q?Sk4RZLuhI0ZSZvt1VgNsEAl+sJbPDrwKnBkCU8Ya08DwcaMm8B+GXHCEHPjZ?=
+ =?us-ascii?Q?+6nM5tQ/58SRkHpbn5bcBn1McsHEJWiZGSMyrlDxi9shXLP6ms5CTfQNg//5?=
+ =?us-ascii?Q?zFuzP9Iom+NA/ktPpkJ9/yFK2vTSM4+zHr4UMB0uIwChFGyyWr88cANmltPx?=
+ =?us-ascii?Q?Aw4hgu0PI3XXIl2eXbHRbdWb6TCR2kwmdPByOA37gs1IG8WVoI1mbZlEsfOx?=
+ =?us-ascii?Q?U5e6Xutepl0DfuCtWWXGbQh/HKBoGf2kpxC5+YoSlpHjmqrN0oF6Ql2kBeAS?=
+ =?us-ascii?Q?0YkG7p443CmJY8fTlXtQf9CwM0jZch5wc8vP/5MnE4gZYlRluhJ7T84z0Ubz?=
+ =?us-ascii?Q?kFJmuPMKcxKiE0qh+uQWnSV4Mz0YR+Wz+MXOPRHDeSEITse5lei2VIDxKHby?=
+ =?us-ascii?Q?IwPn3cIVTOSV7ug=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR06MB7330.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(52116014)(7416014)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PaGM1vR8GM6pr87N6crztM4CFNPQ9dJRTcvDhsGmKGtZ+jpH5ToLNh9VFvOw?=
+ =?us-ascii?Q?V9ljzdUgy60O3/+ot7+hlVAvlt5Y3p5xqgzaQ0iffvEeKFUl3t4tGAfU0M0e?=
+ =?us-ascii?Q?6SXlqX27C8asMGtBpQ+vPreRpoaWp4nlBxbXiuPjvjDEUu6xROZDwEjaRGpi?=
+ =?us-ascii?Q?XSPpnw9obwoM87lv2dt0wL4/CuTPOro191ZhWs13cvNxM8eii2ELf66P0w15?=
+ =?us-ascii?Q?Gqznd6rhWHue24aePSFto0GvIjjPjaZrzc5cPMl8kBDq1A8gzVW3mR0AeUou?=
+ =?us-ascii?Q?tMRoGTnwOJ0oPCwBOjpMumFsThZQyle16u891W0Vqt4L9ievK5nU0anObDWm?=
+ =?us-ascii?Q?M26Ddetda5vbCZoEPEuxdbNhMCyMJzXfSdmur93IoMpxrCoaCxFaZ0h9pnqs?=
+ =?us-ascii?Q?20Be7WLVOzmrSux/HQJvAM0AUIDF+W9/mWwiaaCgS9/UcUVxoa7TOR/5L9je?=
+ =?us-ascii?Q?PpWXYWp0Gic6ZGaD95iSeuH2hmq7RADe/LSYaJj/nDv5HVYEx/OBeA7OdETz?=
+ =?us-ascii?Q?fqmyV5y2UluHwFGrMvQLvD6SPqGIrJVnfVTIog9/q59i33OSICHlHGjSaEqb?=
+ =?us-ascii?Q?STaqWuodjhJskEeFtO4ZX6Q4O36zWyfQos/Jkwkq+EhUXL5pAnYpb4jpCNYs?=
+ =?us-ascii?Q?e4haZsdTz7wyEkPxy7kqPfmwCwxDnZ/mwQZth7vt/AFWBveCp9sHoVfSAB2v?=
+ =?us-ascii?Q?RtlbpeOXZ+rsEUA9zbEkBe9hinurUDumzWm6XAn9IlobBF8XometisYLe1o9?=
+ =?us-ascii?Q?Vh+j2vCbFFUkv0l8e7Aj1aQ7HkNNVxxGqDKIYWpd99tfafn5AW7wX4jPp+wV?=
+ =?us-ascii?Q?7ApWCfj03V9etPsOWpLGA53jVEtp/tin/yin8b2jAFcnrKaX51aYxvAUAtuW?=
+ =?us-ascii?Q?45qIQrR9qAhRSdF5sKdAiFgjD31fOyYTX7ZtsrWLCHyWqJ0H9PSVIrbGxMNA?=
+ =?us-ascii?Q?f4Czz/5WbsvuCONlczfdE/f8MpYQA7rAG46upGUNZyGLUXJJd7AjtZsnpqgq?=
+ =?us-ascii?Q?xdfF4HxCTffd4LQouqxnw674tvpRYdoirSgCXBZJDriHgkFXrwyCKNOWJ6HX?=
+ =?us-ascii?Q?CqVPe8iG8ZX5JNqfIdIkYDhoWKGYoWoPEnByjbgyL6UadGcVVlnq4U1xg5+g?=
+ =?us-ascii?Q?FPmfItVqx9pD+0ecWBWfBrT50SldlwSXIQeazWi6rQzpaxCv6pVXvs7j1tYK?=
+ =?us-ascii?Q?vfmyjvw0Tf/+9ee93lD/TCJjYmnadb/JDCUHbnfbkDTvph54s8mDWcaQqjLo?=
+ =?us-ascii?Q?uGc4Vs5drmgqd+uu+/uZks6U3UEckmzBayK7q2ejxMdSmmeeoP6lk+wl1SYg?=
+ =?us-ascii?Q?IbvnzKQelKY5M8gOS6XDXSSiWwby5PkoYmB0KJKMXAI2I8biikyIJQRI0RaD?=
+ =?us-ascii?Q?coNRP28zmB2gIakTF5wzNck5N/hTXdfSsSF9+bYRTPdKQd4SZzlOmNikJhlL?=
+ =?us-ascii?Q?WL3CYQy6l9XkhyUHEOmUsCb9PEPvRELBpVCOaAhe/gvqPMspZIjBSDKOIjLE?=
+ =?us-ascii?Q?H4F88PQuy/wICLseyiYBT6lxgkRMOKQwWAcCJ39EnimjIpCJ5SjQ+6Ay9iqf?=
+ =?us-ascii?Q?zzSBuefklIZOXiv0961N5AXJosZMsOk6gqTL1PyW?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ce90b0b-55b7-4cab-a0d2-08ddec4d4cd6
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR06MB7330.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 07:24:50.6622
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3R4e/IRJQH3VXFbk/lRBhlzGkYiV1hW2lSfNsQ0JlobI3EhfdYw0N5q4fAIRxoPes0UKblB6s7wi+N7zmbCmJg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB7185
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250904_210136_457585_CDED371D 
-X-CRM114-Status: GOOD (  19.54  )
+X-CRM114-CacheID: sfid-20250905_002503_813826_26282E49 
+X-CRM114-Status: UNSURE (   9.52  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,76 +218,61 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+Add dev_err_probe() in devm_thermal_of_zone_register() to unify
+error reporting. Remove redundant error log prints in various driver codes.
 
-On Thu, 4 Sept 2025 at 18:58, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->
-> Hi,
->
-> On Mon, 25 Aug 2025 12:21:40 +0530, Anand Moon wrote:
-> > Most publicly available Amlogic datasheets mention that the CPU employs
-> > a architecture, quad-core ARM Cortex-A53 and ARM Cortex A55 and
-> > Cortex-A73 and Cortex-A53 cluster, sharing a unified L2 cache to enhance
-> > overall system performance.
-> >
-> > However, these documents typically omit details regarding the sizes of the
-> > L1 data cache, L1 instruction cache, and L2 cache.
-> >
-> > [...]
->
-> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.18/arm64-dt)
->
-> [01/11] arm64: dts: amlogic: Add cache information to the Amlogic GXBB and GXL SoC
->         https://git.kernel.org/amlogic/c/d7fc05da8ba28d22fb9bd79d9308f928fcb81c19
-> [02/11] arm64: dts: amlogic: Add cache information to the Amlogic SM1 SoC
->         https://git.kernel.org/amlogic/c/fd7b48b1f91e1830e22e73744e7525af24d8ae25
-> [03/11] arm64: dts: amlogic: Add cache information to the Amlogic G12A SoCS
->         https://git.kernel.org/amlogic/c/a4428e52babdb682f47f99b0b816e227e51a3835
-> [04/11] arm64: dts: amlogic: Add cache information to the Amlogic AXG SoCS
->         https://git.kernel.org/amlogic/c/3b6ad2a433672f4ed9e1c90e4ae6b94683d1f1a2
-> [05/11] arm64: dts: amlogic: Add cache information to the Amlogic GXM SoCS
->         https://git.kernel.org/amlogic/c/fe2c12bc0a8f9e5db87bfbf231658eadef4cdd47
-> [06/11] arm64: dts: amlogic: Add cache information to the Amlogic A1 SoC
->         https://git.kernel.org/amlogic/c/2d97773212f8516b2fe3177077b1ecf7b67a4e09
-> [07/11] arm64: dts: amlogic: Add cache information to the Amlogic A4 SoC
->         https://git.kernel.org/amlogic/c/57273dc063d5a80e8cebc20878369099992be01a
-> [08/11] arm64: dts: amlogic: Add cache information to the Amlogic C3 SoC
->         https://git.kernel.org/amlogic/c/6d4ab38a0a21c82076105e4cc37087ef92253c7b
-> [09/11] arm64: dts: amlogic: Add cache information to the Amlogic S7 SoC
->         https://git.kernel.org/amlogic/c/494c362fa1633bba127045ace8f0eea0b277af28
-> [10/11] arm64: dts: amlogic: Add cache information to the Amlogic S922X SoC
->         https://git.kernel.org/amlogic/c/e7f85e6c155aed3e10e698dd05bd04b2d52edb59
-> [11/11] arm64: dts: amlogic: Add cache information to the Amlogic T7 SoC
->         https://git.kernel.org/amlogic/c/e97fdb9b8a0f8bd349de48815694f8a7200e3d62
->
-> These changes has been applied on the intermediate git tree [1].
->
-> The v6.18/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-> for inclusion in their intermediate git branches in order to be sent to Linus during
-> the next merge window, or sooner if it's a set of fixes.
->
-> In the cases of fixes, those will be merged in the current release candidate
-> kernel and as soon they appear on the Linux master branch they will be
-> backported to the previous Stable and Long-Stable kernels [2].
->
-> The intermediate git branches are merged daily in the linux-next tree [3],
-> people are encouraged testing these pre-release kernels and report issues on the
-> relevant mailing-lists.
->
-> If problems are discovered on those changes, please submit a signed-off-by revert
-> patch followed by a corrective changeset.
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
->
-Received feedback from Krzysztof to omit the comments in the commit message.
-Should I respin accordingly?
-> --
-> Neil
->
-Thanks
--Anand
+Xichao Zhao (12):
+  thermal: of: Add error handling in devm_thermal_*_register()
+  hwmon: Remove redundant error log prints
+  iio: adc: Remove redundant error log prints
+  regulator: max8973: Remove redundant error log prints
+  thermal: Remove redundant error log prints
+  thermal: broadcom: Remove redundant error log prints
+  thermal: qcom: Remove redundant error log prints
+  thermal: renesas: Remove redundant error log prints
+  thermal: samsung: Remove redundant error log prints
+  thermal: st: Remove redundant error log prints
+  thermal: tegra: Remove redundant error log prints
+  thermal: ti-soc-thermal: Remove redundant error log  prints
+
+ drivers/hwmon/hwmon.c                              |  3 +--
+ drivers/iio/adc/sun4i-gpadc-iio.c                  |  6 +-----
+ drivers/regulator/max8973-regulator.c              |  8 ++------
+ drivers/thermal/airoha_thermal.c                   |  4 +---
+ drivers/thermal/amlogic_thermal.c                  |  7 ++-----
+ drivers/thermal/armada_thermal.c                   |  2 --
+ drivers/thermal/broadcom/bcm2711_thermal.c         |  7 ++-----
+ drivers/thermal/broadcom/bcm2835_thermal.c         |  2 +-
+ drivers/thermal/broadcom/brcmstb_thermal.c         |  3 +--
+ drivers/thermal/db8500_thermal.c                   |  5 ++---
+ drivers/thermal/hisi_thermal.c                     |  7 +------
+ drivers/thermal/imx8mm_thermal.c                   |  3 ---
+ drivers/thermal/imx_sc_thermal.c                   |  2 +-
+ drivers/thermal/k3_bandgap.c                       |  1 -
+ drivers/thermal/k3_j72xx_bandgap.c                 |  1 -
+ drivers/thermal/loongson2_thermal.c                |  2 +-
+ drivers/thermal/qcom/qcom-spmi-adc-tm5.c           |  7 +------
+ drivers/thermal/qcom/qcom-spmi-temp-alarm.c        |  3 +--
+ drivers/thermal/renesas/rcar_gen3_thermal.c        |  1 -
+ drivers/thermal/renesas/rcar_thermal.c             |  3 ++-
+ drivers/thermal/renesas/rzg2l_thermal.c            |  1 -
+ drivers/thermal/rockchip_thermal.c                 |  8 ++------
+ drivers/thermal/samsung/exynos_tmu.c               |  2 +-
+ drivers/thermal/sprd_thermal.c                     |  2 --
+ drivers/thermal/st/st_thermal.c                    |  1 -
+ drivers/thermal/st/stm_thermal.c                   |  8 ++------
+ drivers/thermal/tegra/soctherm.c                   |  2 --
+ drivers/thermal/tegra/tegra30-tsensor.c            |  3 +--
+ drivers/thermal/thermal-generic-adc.c              | 10 ++--------
+ drivers/thermal/thermal_mmio.c                     |  6 +-----
+ drivers/thermal/thermal_of.c                       |  6 +++++-
+ drivers/thermal/ti-soc-thermal/ti-thermal-common.c |  4 +---
+ drivers/thermal/uniphier_thermal.c                 |  4 +---
+ 33 files changed, 36 insertions(+), 98 deletions(-)
+
+-- 
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
