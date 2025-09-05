@@ -4,64 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7321CA0FED
-	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Sep 2025 00:11:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A988CA0FED
+	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Sep 2025 00:11:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=EdB2PUtTOWB4DGL4M1FFZtvY1ddKuyAgU/Kscz0eCrM=; b=nC7wwiLTrFokFQcmrrbkCmKwFy
-	lIPnHyT0HaOloi5TKKCva+u3Ql2EcPuc8LaXG5bUm086YTJUm3FQx1WrXUIofovIRn7Zq+KQ/Fdsi
-	gGdfm13FTQtO7UTlzaNgBNMPbUZI6GGF+v1AsPFQ1jkhwFsESvs2MK6OWN990p+Ua48c7194irqsq
-	rr0SWMu2yj0urJb+piQzkiY8j49BlmAdoE2gbopxKTuoOAZ3SRwq7uqSdFjEKF1euHVtST/Ro6KzV
-	IpAhrOtu/TFKOi5Ecjgjn4ICooVSzUfGmygaqmEmfVqGkLkTstWPt2/sTnHo0QToDUQUCvxXou/zh
-	do+tVtfA==;
+	bh=MdCPr7rWDkc1aeiCQRLJEt5KLfih8c7ANW1KVk0zg30=; b=Xcr4Ap0+TL9ZV36bJwaiOMNwvd
+	8qATZcJpGy/0ryKl8dkL7QXFXyfAYXoOsQDASZA3+0m0uW/JtKx8lpcCJhJFfZJ2r6lapap6w1H1W
+	q46BrtrOG2jcNcKFhNxsclCwK6riyB1f8siwoKu0PV939Q/bovYQhlE6ggtJ15b13XX73eIixRqDg
+	rn96rXCyVLwMaWLc7TADR89OrtG/Dc56t3prD/hmITKkbSgM/ki5v4PIf3+zt5olEWl1X8uvXh+al
+	GJuMUJUpWL0c7W4yx6ZlmEnpy5BR5M27DZ1qcKIdVSIGSbaF09imyNe22QMBUc6B7WETwb3yGNIvC
+	2/3rriQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uugWH-00000005TF6-3wC3;
-	Sat, 06 Sep 2025 00:11:05 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1uugWL-00000005TOo-4Bg7;
+	Sat, 06 Sep 2025 00:11:10 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uubAo-00000003nA3-0P7o;
-	Fri, 05 Sep 2025 18:28:34 +0000
+	id 1uubEd-00000003obv-2SQP;
+	Fri, 05 Sep 2025 18:32:32 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7E5C2601AA;
-	Fri,  5 Sep 2025 18:28:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26872C4CEF1;
-	Fri,  5 Sep 2025 18:28:29 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 4AB1D416B1;
+	Fri,  5 Sep 2025 18:32:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE429C4CEF1;
+	Fri,  5 Sep 2025 18:32:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757096913;
-	bh=gvlpwRNtZnIGPhG7S6zJZs/7xh+8sbv8Bx4xDVNZaaQ=;
+	s=k20201202; t=1757097151;
+	bh=e4JMOWDCtaWn4IWv+Qg9bqYdXONUBAHh8WRaRowDs6s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OotgecdISxk6kWKWnSDQYxp7at6LsdwLy6Ko3CjW/0iR212vxzjkOjrEEZyx5g/A3
-	 pp1lH98V9O0sJqlQnNscYbjEapYQbJLDHUPM0b4xvsu8UfIGVIYFovlsxMIHVhNZTH
-	 Q0PrGULAXljxr4kpmHJxDQVBErqV85O+1e3NKySx8herH0soBWOuajBzIlqhuR5q1k
-	 xdLlf9eKVtjipig6m0+bO5U0MRLKCjkhU0bXQJ5nxkYsDDXoNvT/R4WoZPsS386HJ9
-	 sXj+GJFfADGJsqVi1U5pVj7P0bHtxDhtzylcZMYvbHIMCeyw55ua5FVaBmscNo1b3r
-	 M2Tnh/YR5/EEg==
-Date: Fri, 5 Sep 2025 19:28:27 +0100
+	b=BUtojZFfxPu8z3gD7wiOB66CARaIwLsYkUy3gjCrgMpyZVgcxewDZMKVj8e5UAa2X
+	 +HhOGkTGVs+WUqWWIy5ULM0j6/BhVLUL3s5fW81Un9h8AtnqrEXIErhW22zGgyr38u
+	 hGh8n9vAx5trCCECvpeVi6q0fjY+5B2CgtMN4uqTRSyJQ6WKlF9pT9OzsYsEFOhaSl
+	 QK2wr33IGQdg6hL+6sHohs7jdiqCr+uC3SBEUzC2Imwyx8DCLDGSHfRReIw7CprZr1
+	 24bR6LWwOJySdfP8rEueEz+q9REj18vjNRqqkuexNB1CIgt3JwVZBUIpvdSzigOuYs
+	 m8E6l6C4TcyKQ==
+Date: Fri, 5 Sep 2025 19:32:25 +0100
 From: Conor Dooley <conor@kernel.org>
-To: chuan.liu@amlogic.com
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: xianwei.zhao@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
 	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: add video clock indices for
- Amlogic S4 SoC
-Message-ID: <20250905-datebook-excuse-659da9b41d8b@spud>
-References: <20250905-add_video_clk-v3-0-8304c91b8b94@amlogic.com>
- <20250905-add_video_clk-v3-1-8304c91b8b94@amlogic.com>
+	Jianxin Pan <jianxin.pan@amlogic.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	"hongyu.chen1" <hongyu.chen1@amlogic.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: power: keep alphabetical order
+Message-ID: <20250905-stew-removed-db191517cdf5@spud>
+References: <20250905-pm-fix-order-v1-1-3596e03d66e6@amlogic.com>
+ <20250905-vexingly-crudely-36f9e510e9c5@spud>
 MIME-Version: 1.0
-In-Reply-To: <20250905-add_video_clk-v3-1-8304c91b8b94@amlogic.com>
+In-Reply-To: <20250905-vexingly-crudely-36f9e510e9c5@spud>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250905_113231_644276_9BF05CC4 
+X-CRM114-Status: UNSURE (   8.44  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,38 +77,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2577744258729756146=="
+Content-Type: multipart/mixed; boundary="===============1559814962531075970=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============2577744258729756146==
+--===============1559814962531075970==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tp/2PmSvCUVt5yEJ"
+	protocol="application/pgp-signature"; boundary="ArYkgdtypeXZuzdN"
 Content-Disposition: inline
 
 
---tp/2PmSvCUVt5yEJ
+--ArYkgdtypeXZuzdN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Fri, Sep 05, 2025 at 07:31:33PM +0100, Conor Dooley wrote:
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---tp/2PmSvCUVt5yEJ
+Actually no. Ack is dependant on $subject being scoped to the individual
+amlogic binding. Perhaps the subsystem maintainer can do it on
+application
+
+
+
+--ArYkgdtypeXZuzdN
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLsrywAKCRB4tDGHoIJi
-0hR+AQDCr0nevvM8U0I/9Maks/GUrWECQUm7mVu1J/fU9cV7awEAnWatZjLmHYF8
-WW1uD9ucXu1VnPgvK3uEC9EvFqfHLw8=
-=+jIT
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLssuQAKCRB4tDGHoIJi
+0pLHAPsGHxXqiKWNNentQqgjeU+9z7eQFW2LYOQzgEYNCmyDuQEA8yzY+9TrObfw
+cZ4RAaTfqlgFAYVSR2jknvD3eFTKJwY=
+=To+s
 -----END PGP SIGNATURE-----
 
---tp/2PmSvCUVt5yEJ--
+--ArYkgdtypeXZuzdN--
 
 
---===============2577744258729756146==
+--===============1559814962531075970==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,5 +126,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============2577744258729756146==--
+--===============1559814962531075970==--
 
