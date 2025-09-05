@@ -4,120 +4,121 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD097CA0FED
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Sep 2025 14:33:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5252BCA1010
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Sep 2025 14:35:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jfR8aKztMTHbqPN3epL1FSBc58m9euMgthfQtQwToOU=; b=Ym8r8fsTIe5Mf0
-	weRF8x2gfrS4dGILV0yuF8/OtnVx9ar0WrKFMcFWB1QiPkw0F5XcAXIBpaCJmv+IkjCKoeMdKXBNe
-	5c9AAwxOkvqZGPL5TFzBniZbzANcbs/6DIvmbTEtQmAclmsUE1pEYE38WxSIvfoBcrcpniFr6nOSX
-	m/4WutKfYK/L+1+DQ04+fZUkgxoMZ3mYWxOhs/LI4DVC2bcaHC8X4gL5HHmI5eKHHIbEZmiL1fOwA
-	W+b7Maag5/ac/cHKdsgFjKuL39yPRN5Z6bT6HYhO/4hJKYECmi+3yrlcD1bxJ9sIyZ7auMs+uEGC0
-	+iDPIN3q2eKOdyc6q0Dw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Z2PBjAUqLOCBP8fP8BG7O8FSoUF0czFsqGOgt53H+NA=; b=X8l/4nC3homh2lvpZ40ubCx6h3
+	NUbUPz9A2ex2T727a//NDAjWH2ey5aqR35gzpKo3WmTe/LjyFdtlMOoSrFTfYBDuFl8OOycema6AO
+	vWjddFPFYUJO6P4ECWr4rpTPRkjnkdo2RgMhdsl9attkaqndM0UhnDjOmbv2VbgeXtkW/C8HE4MbY
+	pUEUptJSVKmawj7cvIPeKpmVg83HBQ9sVwePkUI+n2fHnxpB56tEoCLlnspXXiGZPFzvLuMAVoTTO
+	0SzRoeMYzlVWsAm5rz33j4NDTqwWGVSSEz+B5d48ceWSWvSaxk5ucjQ3WavngtI5OP4oSjit88jzz
+	SgJk870g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uuXVB-00000002KVO-3lN2;
-	Fri, 05 Sep 2025 14:33:21 +0000
-Received: from mail-ej1-x62f.google.com ([2a00:1450:4864:20::62f])
+	id 1uuXX8-00000002N0g-2Ivg;
+	Fri, 05 Sep 2025 14:35:22 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uuSrb-00000000mTV-3TjI;
-	Fri, 05 Sep 2025 09:36:12 +0000
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-afebb6d4093so386124166b.1;
-        Fri, 05 Sep 2025 02:36:11 -0700 (PDT)
+	id 1uuTYv-0000000116q-1GWH
+	for linux-amlogic@lists.infradead.org;
+	Fri, 05 Sep 2025 10:20:58 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-45b8b2712d8so18019125e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 05 Sep 2025 03:20:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757064970; x=1757669770; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nqf6D6Y//+lOVA7z+yQJwo2jJaSIwyijSnsvcGjMTK4=;
-        b=LSQXBfKruOe+NfW+a7uJ8uhgx/L19hw166cj71jefUZ0d887pgdHLSHWWxjYQrDgFp
-         5EVJt4/6RcTZ8X7DIw6cZ0hwm2h2+X6xUdM5+fB1iMVjxG0m69YkJUilpxAt875WKiK9
-         Yebz6xjCcHOiux94g/vvHYmXVoWje40Zyj3oCP2mydIluyZWACoqkZZRSBN+Xlwm0cAU
-         K1fwH7GBQMe68cdf0BaHjaVYdZT+U6UIHtFvvuSnZXqgD8JHlZTPCgJlURTNAft4OSwE
-         L2Jh9zr731anRCG4Sb6QQmNuJb6o/2Ly2lR9iytUOizrhTKLCBZNy777bnvzg0SoZ8Zt
-         oBUQ==
+        d=linaro.org; s=google; t=1757067656; x=1757672456; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g5vez/qigeUN3N+Im1RmVn0JRRYgZnIjim3ZE3xXKic=;
+        b=L7SUZuBmdg3y1NOxehyVMJOj4MqHY0oQlBglsgsVeRwCp6HmaE1RS4anEd3EznQ9EA
+         4/L9JTYjKbjPcEd228ee48LLkeH6at0NkI+IsU8C1rW81z33p2brfNnFh4MDx9D/mvy6
+         cymYvYVFPt1zEiJ6ftkK+7ot6QnePhNJFoQOXoDzXuLxTzspkkfmhrq97cdIeqZzsU7Q
+         PQ62XK0cl5Td5ZrA79L5LOPoRm4FY82H+fndjDchGtH0kbab6ZkwEgGeRM82Cx3aW7gs
+         xdxrd9nrUAivGcrF9kOcg6QCpf/mnzVCVrkVBPs526llK9GI2nt4oyjOFjcmz3tNDUWa
+         yixA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757064970; x=1757669770;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nqf6D6Y//+lOVA7z+yQJwo2jJaSIwyijSnsvcGjMTK4=;
-        b=AHJceyFfVQ5Qq1+dnRj8w7QlOOZH+IofO+Qffe01gGis7qYO/UuIda2JbxpCJ51tzY
-         hCbPw4WmI9wpTpmfGn3ZAgTJwDYc2zw/NTgTt3L3StFZVmkAEoEOgIS4txiRU3sJS592
-         6vn7QYdkwVbJ5U6e89smDd4fwKwT/D2P/6XAFF9n+Nr3lYkekjnCIjlHR4IYg2cPj9N7
-         cMxbIs0FgySOY5i0fbZu1Hk0yiBa/pD84eFPjH3r9kmfOCRyCQzqlZPntZXtLnTuHIQ1
-         jq9nCERODJKQ53D9hsqKY44FU7alaMdLreetrAg20KXE8cgw7j8JXhaeEdL6b5FuguG8
-         PJKA==
-X-Forwarded-Encrypted: i=1; AJvYcCV9/L2ER6uokIHGavHvyq+zLu7r/tQ/fatsM2Q6CYqbwW3zzmrsgzBTx4SToT0YJTWk1Ncosb6tfxSqhwKQ3andkQ==@lists.infradead.org, AJvYcCVFidGUxiJshWPpyHp8qn3cLLO00OAVXxPg1sRrK7KjxmRG7efbd7XXrASbgiREAplYg1dzopIgliux575n@lists.infradead.org, AJvYcCVtMb/t8nNX4dtiIo7IW20Xh1VqnrX845+wEb1IBssGdmrtjggbLxfu7qg89CJ77Kw6jkr5sFNzQtlo1mqObT2lXg==@lists.infradead.org, AJvYcCW4CJCF3nvAvTBlFBm7WM7bDJDkAYQj2cbr6cvEcfaOV+CMAUnhJ1/bIL4GApurrV0Zr0n7AjFkCzPrCWmyHvs=@lists.infradead.org
-X-Gm-Message-State: AOJu0YxePRAdjjeoO94Lod+CnkHaUj5Dvr1szKOiqlBXtHySCozV6C6K
-	Li593oN5qmqPMyOB2rkczLP6nNIAZhF5Uw1HG3W7VBGwc46XCzL2GrmTnE4PFSo9V1ZEosYIUW0
-	Qm3CQSnAqd8qU/LGtX5IAVfrV8+n0t74=
-X-Gm-Gg: ASbGncsK2x0fI8sBLkg8oSxjJrp59+NVoDGLdEt02CQ/AwVyEN6cHp880P2aXIpZ3zY
-	/L82urA6cx0f4eKV59aoR5dxRncGejiWew/CNEazo7oMvjL2Z1K99F5C950GxambSX5SEmBP5ip
-	MymvsG3/k0gXJDxpA6IHN5/McOVlECOh0InE3/L1gXRoe9CSyNRLUDfUAsNGs8IjHsO/w27SLQk
-	5hmP+lWoC0z4vEZJpYg
-X-Google-Smtp-Source: AGHT+IH7OMu1dd1ZlYosPz3SPqptVrWuN6c3SeVJCBYbCfoyYDh6z1nFqhk/368zJOb4WYqLr166BLEihh9LvFYDNYs=
-X-Received: by 2002:a17:906:48c9:b0:b04:10d9:48d4 with SMTP id
- a640c23a62f3a-b0410d9523dmr1630508566b.35.1757064970102; Fri, 05 Sep 2025
- 02:36:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757067656; x=1757672456;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=g5vez/qigeUN3N+Im1RmVn0JRRYgZnIjim3ZE3xXKic=;
+        b=RYzYq8YkaBeLevbaOzuqnM9fgf4y1AfcxbFJi2V3xDipb6c7m0d88FsLKgoO9Avmk3
+         O8yHmWrET7kLWZeJaarm3fFBG5zgy24bHEaLtGxpZ1LXbkAWHImpP3pEMYRshVwHtWfC
+         1NpH54rRvrIlx+WhNWWk5dVR6i4gQD9RgjK+v+3gB56YYZ7gxGMIddRoUZjHATv4mUXv
+         l8lLaDePn2RpEnOCfnmB1emjadjkDV5pcHXlY0lYUqvCkU/FFDOcUSOWHXgRyJymwgxj
+         sc8wFqzGd1E8xsLPIqdaUj6G8o52gQGCxHdeEtBzEgHzIi6rvZFgyDVvFnfJr6gi3oaW
+         PJNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVUVlXgTmEApgelyQ/zIk4A5yjK4pa6BdYugnFmuFnHaaTPe2rwjjxcpsjCxt6YZObImGWiaEOVpJlvI7bG@lists.infradead.org
+X-Gm-Message-State: AOJu0Yxa7b85l0PaDzNQYwrl7M1JzTxNFpgYjXBC3HMfbhVgnUKfSjAf
+	wSd5wCaghjLiUKBIwX23FMUkVCcVotHOhC4imRPMd8EL0WFjmvYQwf+jKFNV0OPtHUA=
+X-Gm-Gg: ASbGncsOkzBlxwXfl5LxfWgtDYb+/1kwIHqT0ZqW2KiBH1uQzF6M8vOitGboXf12kiW
+	pZHiGtnJ5Mw6loo5+Fn/oQWJBgiEpIzpv+ZyVO8tNt87SwgcSDIBSiS+4ZIUKszD5MnXxQ6skuA
+	pmBsJPNPmNwYlOb6U4LF0VuQD+g9cLePnGFV0gz9af63gBlMdWZ19xPrcIMqcrYG/hNgOehfCAp
+	QQ3UOc4fNplCWL+/h3xy8YiupmWPVvYTxIZhS58soUTUK7wA7L9XMOM+1mzxuu9CEgnpymGKTRj
+	L8ioXn6bCJ7c9zOGKVF92FAsz4a2ZYYangHXuOJa9KhBQDAfKPKu5di1QYels3qtB7bQJuEi2gk
+	CBPuQrQhK20G2XzXJcWYYVaCsPSVvRmUM41gouw+YVw3qsQMhLM31cca3JEjMDuRpbOA2T7962G
+	1ziDospQa8KLsqyeTSX4X7
+X-Google-Smtp-Source: AGHT+IGQiU+kRp+7oSBH2pZIbGwL4AQMXeMBFNpTuAKX09/3FoPn8L5rNkO2mZKlz4GakzCW+U30BA==
+X-Received: by 2002:a05:600c:1c88:b0:45c:b52d:8d30 with SMTP id 5b1f17b1804b1-45cb52d8f28mr86216625e9.26.1757067655677;
+        Fri, 05 Sep 2025 03:20:55 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:ad6e:d9be:21dd:7b96? ([2a01:e0a:3d9:2080:ad6e:d9be:21dd:7b96])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45cb61377a7sm115282475e9.13.2025.09.05.03.20.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Sep 2025 03:20:55 -0700 (PDT)
+Message-ID: <32d93739-0ea9-4b75-ae73-c0c8b10f2c3b@linaro.org>
+Date: Fri, 5 Sep 2025 12:20:54 +0200
 MIME-Version: 1.0
-References: <20250905072423.368123-1-zhao.xichao@vivo.com> <20250905072423.368123-2-zhao.xichao@vivo.com>
- <CAHp75VforxjsHWzxrxfD_YOshvg0Y=KwrpmAPWwhyarNm2wNjQ@mail.gmail.com>
-In-Reply-To: <CAHp75VforxjsHWzxrxfD_YOshvg0Y=KwrpmAPWwhyarNm2wNjQ@mail.gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 5 Sep 2025 12:35:33 +0300
-X-Gm-Features: Ac12FXxkIEGZA5-qHqK-CmbOa_oJh7A8t90OuTImqynr4N5GOyYLVDsnRsxsyg0
-Message-ID: <CAHp75VdRn1qnoiCr7aeZfHF9GEyQshOA5awTjiJ9oJiY6Q+Gsw@mail.gmail.com>
-Subject: Re: [PATCH 01/12] thermal: of: Add error handling in devm_thermal_*_register()
-To: Xichao Zhao <zhao.xichao@vivo.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
-	Guillaume La Roque <glaroque@baylibre.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, Markus Mayer <mmayer@broadcom.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	zhanghongchen <zhanghongchen@loongson.cn>, Yinbo Zhu <zhuyinbo@loongson.cn>, 
-	Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Chunyan Zhang <zhang.lyra@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Talel Shenhar <talel@amazon.com>, 
-	Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>, 
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>, 
-	"open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	"open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>, 
-	"moderated list:ARM/Allwinner sunXi SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>, 
-	"open list:THERMAL" <linux-pm@vger.kernel.org>, 
-	"open list:THERMAL DRIVER FOR AMLOGIC SOCS" <linux-amlogic@lists.infradead.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, 
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
-	"open list:QUALCOMM TSENS THERMAL DRIVER" <linux-arm-msm@vger.kernel.org>, 
-	"open list:RENESAS R-CAR THERMAL DRIVERS" <linux-renesas-soc@vger.kernel.org>, 
-	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>, 
-	"open list:SAMSUNG THERMAL DRIVER" <linux-samsung-soc@vger.kernel.org>, 
-	"moderated list:ARM/STM32 ARCHITECTURE" <linux-stm32@st-md-mailman.stormreply.com>, 
-	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, 
-	"open list:TI BANDGAP AND THERMAL DRIVER" <linux-omap@vger.kernel.org>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 00/11] Add cache information to Amlogic SoC
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250825065240.22577-1-linux.amoon@gmail.com>
+ <175699250964.3374853.16885676491827667777.b4-ty@linaro.org>
+ <CANAwSgQGCTs46DVm3gt4PpdSTBTvVg5zga_oBt=rUJh2yhRLtw@mail.gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <CANAwSgQGCTs46DVm3gt4PpdSTBTvVg5zga_oBt=rUJh2yhRLtw@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250905_023611_866596_DBD7DF16 
-X-CRM114-Status: GOOD (  19.16  )
+X-CRM114-CacheID: sfid-20250905_032057_362327_9A1313B0 
+X-CRM114-Status: GOOD (  16.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,34 +130,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCBTZXAgNSwgMjAyNSBhdCAxMjozM+KAr1BNIEFuZHkgU2hldmNoZW5rbwo8YW5keS5z
-aGV2Y2hlbmtvQGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gRnJpLCBTZXAgNSwgMjAyNSBhdCAxMDoy
-NeKAr0FNIFhpY2hhbyBaaGFvIDx6aGFvLnhpY2hhb0B2aXZvLmNvbT4gd3JvdGU6CgouLi4KCj4g
-PiAgICAgICAgIHB0ciA9IGRldnJlc19hbGxvYyhkZXZtX3RoZXJtYWxfb2Zfem9uZV9yZWxlYXNl
-LCBzaXplb2YoKnB0ciksCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICBHRlBfS0VSTkVM
-KTsKPiA+IC0gICAgICAgaWYgKCFwdHIpCj4gPiArICAgICAgIGlmICghcHRyKSB7Cj4KPiA+ICsg
-ICAgICAgICAgICAgICBkZXZfZXJyKGRldiwgIkZhaWxlZCB0byBhbGxvY2F0ZSBkZXZpY2UgcmVz
-b3VyY2UgZGF0YVxuIik7Cj4KPiBXZSBkbyBub3QgYWRkIGVycm9yIG1lc3NhZ2VzIGZvciBFTk9N
-RU0uCj4KPiA+ICAgICAgICAgICAgICAgICByZXR1cm4gRVJSX1BUUigtRU5PTUVNKTsKPgo+IEV2
-ZW4gaWYgeW91IHdhbnQgc28gZWFnZXJseSB0byBkbyB0aGF0LCBpdCBzaG91bGQgYmUKPgo+ICAg
-IHJldHVybiBkZXZfZXJyX3Byb2JlKCk7Cj4KPiBCdXQsIGl0IHdpbGwgaWdub3JlIHRoZSBFTk9N
-RU0gZXJyb3IgY29kZSBmb3IgcHJpbnRpbmcuCj4KPiA+ICsgICAgICAgfQo+Cj4gU28sIHRoZSBi
-b3R0b20gbGluZSwgbm8gbmVlZCB0byBhZGQgdGhpcyBtZXNzYWdlIGhlcmUuCgouLi4KCj4gPiAg
-ICAgICAgIHR6ZCA9IHRoZXJtYWxfb2Zfem9uZV9yZWdpc3RlcihkZXYtPm9mX25vZGUsIHNlbnNv
-cl9pZCwgZGF0YSwgb3BzKTsKPiA+ICAgICAgICAgaWYgKElTX0VSUih0emQpKSB7Cj4gPiArICAg
-ICAgICAgICAgICAgZGV2X2Vycl9wcm9iZShkZXYsIFBUUl9FUlIodHpkKSwKPiA+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICJGYWlsZWQgdG8gcmVnaXN0ZXIgdGhlcm1hbCB6b25lIHNl
-bnNvclslZF1cbiIsIHNlbnNvcl9pZCk7Cj4gPiAgICAgICAgICAgICAgICAgZGV2cmVzX2ZyZWUo
-cHRyKTsKPiA+ICAgICAgICAgICAgICAgICByZXR1cm4gdHpkOwo+Cj4gSSBkb24ndCBzZWUgaG93
-IHB0ciBpcyByZWxhdGVkIHRvIHRoZSBtZXNzYWdlLiBDYW4ndCB3ZSB1c2UKPgo+ICAgcmV0dXJu
-IGRldl9lcnJfcHJvYmUoZGV2LCBQVFJfRVJSKC4uLiksIC4uLik7Cj4KPiBpbnN0ZWFkPwoKT24g
-dG9wIG9mIHRoYXQgY2FuIHdlIGFjdHVhbGx5IHVzZSBkZXZtX2FkZF9hY3Rpb25fb3JfcmVzZXQo
-KT8KCi0tIApXaXRoIEJlc3QgUmVnYXJkcywKQW5keSBTaGV2Y2hlbmtvCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcg
-bGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
-ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On 05/09/2025 06:01, Anand Moon wrote:
+> Hi Neil,
+> 
+> On Thu, 4 Sept 2025 at 18:58, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>
+>> Hi,
+>>
+>> On Mon, 25 Aug 2025 12:21:40 +0530, Anand Moon wrote:
+>>> Most publicly available Amlogic datasheets mention that the CPU employs
+>>> a architecture, quad-core ARM Cortex-A53 and ARM Cortex A55 and
+>>> Cortex-A73 and Cortex-A53 cluster, sharing a unified L2 cache to enhance
+>>> overall system performance.
+>>>
+>>> However, these documents typically omit details regarding the sizes of the
+>>> L1 data cache, L1 instruction cache, and L2 cache.
+>>>
+>>> [...]
+>>
+>> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.18/arm64-dt)
+>>
+>> [01/11] arm64: dts: amlogic: Add cache information to the Amlogic GXBB and GXL SoC
+>>          https://git.kernel.org/amlogic/c/d7fc05da8ba28d22fb9bd79d9308f928fcb81c19
+>> [02/11] arm64: dts: amlogic: Add cache information to the Amlogic SM1 SoC
+>>          https://git.kernel.org/amlogic/c/fd7b48b1f91e1830e22e73744e7525af24d8ae25
+>> [03/11] arm64: dts: amlogic: Add cache information to the Amlogic G12A SoCS
+>>          https://git.kernel.org/amlogic/c/a4428e52babdb682f47f99b0b816e227e51a3835
+>> [04/11] arm64: dts: amlogic: Add cache information to the Amlogic AXG SoCS
+>>          https://git.kernel.org/amlogic/c/3b6ad2a433672f4ed9e1c90e4ae6b94683d1f1a2
+>> [05/11] arm64: dts: amlogic: Add cache information to the Amlogic GXM SoCS
+>>          https://git.kernel.org/amlogic/c/fe2c12bc0a8f9e5db87bfbf231658eadef4cdd47
+>> [06/11] arm64: dts: amlogic: Add cache information to the Amlogic A1 SoC
+>>          https://git.kernel.org/amlogic/c/2d97773212f8516b2fe3177077b1ecf7b67a4e09
+>> [07/11] arm64: dts: amlogic: Add cache information to the Amlogic A4 SoC
+>>          https://git.kernel.org/amlogic/c/57273dc063d5a80e8cebc20878369099992be01a
+>> [08/11] arm64: dts: amlogic: Add cache information to the Amlogic C3 SoC
+>>          https://git.kernel.org/amlogic/c/6d4ab38a0a21c82076105e4cc37087ef92253c7b
+>> [09/11] arm64: dts: amlogic: Add cache information to the Amlogic S7 SoC
+>>          https://git.kernel.org/amlogic/c/494c362fa1633bba127045ace8f0eea0b277af28
+>> [10/11] arm64: dts: amlogic: Add cache information to the Amlogic S922X SoC
+>>          https://git.kernel.org/amlogic/c/e7f85e6c155aed3e10e698dd05bd04b2d52edb59
+>> [11/11] arm64: dts: amlogic: Add cache information to the Amlogic T7 SoC
+>>          https://git.kernel.org/amlogic/c/e97fdb9b8a0f8bd349de48815694f8a7200e3d62
+>>
+>> These changes has been applied on the intermediate git tree [1].
+>>
+>> The v6.18/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+>> for inclusion in their intermediate git branches in order to be sent to Linus during
+>> the next merge window, or sooner if it's a set of fixes.
+>>
+>> In the cases of fixes, those will be merged in the current release candidate
+>> kernel and as soon they appear on the Linux master branch they will be
+>> backported to the previous Stable and Long-Stable kernels [2].
+>>
+>> The intermediate git branches are merged daily in the linux-next tree [3],
+>> people are encouraged testing these pre-release kernels and report issues on the
+>> relevant mailing-lists.
+>>
+>> If problems are discovered on those changes, please submit a signed-off-by revert
+>> patch followed by a corrective changeset.
+>>
+>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+>>
+> Received feedback from Krzysztof to omit the comments in the commit message.
+> Should I respin accordingly?
+
+Sure, I'll re-apply the new version
+
+Neil
+
+>> --
+>> Neil
+>>
+> Thanks
+> -Anand
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
