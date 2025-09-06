@@ -4,68 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A988CA0FED
-	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Sep 2025 00:11:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E14AECA1012
+	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Sep 2025 11:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=MdCPr7rWDkc1aeiCQRLJEt5KLfih8c7ANW1KVk0zg30=; b=Xcr4Ap0+TL9ZV36bJwaiOMNwvd
-	8qATZcJpGy/0ryKl8dkL7QXFXyfAYXoOsQDASZA3+0m0uW/JtKx8lpcCJhJFfZJ2r6lapap6w1H1W
-	q46BrtrOG2jcNcKFhNxsclCwK6riyB1f8siwoKu0PV939Q/bovYQhlE6ggtJ15b13XX73eIixRqDg
-	rn96rXCyVLwMaWLc7TADR89OrtG/Dc56t3prD/hmITKkbSgM/ki5v4PIf3+zt5olEWl1X8uvXh+al
-	GJuMUJUpWL0c7W4yx6ZlmEnpy5BR5M27DZ1qcKIdVSIGSbaF09imyNe22QMBUc6B7WETwb3yGNIvC
-	2/3rriQQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qiwahBiGLs6vmSHKIOkW+kfif6YCFPVEv3Wrm3vBS4E=; b=zhOOWN9N4kS/0U
+	tXw9brB/t1F4gIWVwEO9whBRa9UEhhrBBTSg7i4KDCS4VAG7y7Iund4ojDrIHnWfgFVySXBROCMd5
+	y7NPlR3Ytog7I3LOMLN3geGGV/ZKmt/eRXMppR8LajuCx3OjmfqU8MqfslDLebYc/7Qp7QlEKOpwI
+	eouRWR3aG8tUEJ3hSYPh6GgHlp39GVQMU1pxLQ2hWRJUVtgGF/w8cl0/DGHLo0Z1NVlK1YOWJoKld
+	vmnrIUhfzb/ZooNV6HxlH8L1TjmUkqFkLpvymoNzzh8oqZKOV0NkD93+8k8HjUpRF6P91PorVu2DI
+	Sy1BkQQCJDUYIPzhwFHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uugWL-00000005TOo-4Bg7;
-	Sat, 06 Sep 2025 00:11:10 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1uur4z-00000007gRf-08t4;
+	Sat, 06 Sep 2025 11:27:37 +0000
+Received: from mgamail.intel.com ([192.198.163.19])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uubEd-00000003obv-2SQP;
-	Fri, 05 Sep 2025 18:32:32 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4AB1D416B1;
-	Fri,  5 Sep 2025 18:32:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE429C4CEF1;
-	Fri,  5 Sep 2025 18:32:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757097151;
-	bh=e4JMOWDCtaWn4IWv+Qg9bqYdXONUBAHh8WRaRowDs6s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BUtojZFfxPu8z3gD7wiOB66CARaIwLsYkUy3gjCrgMpyZVgcxewDZMKVj8e5UAa2X
-	 +HhOGkTGVs+WUqWWIy5ULM0j6/BhVLUL3s5fW81Un9h8AtnqrEXIErhW22zGgyr38u
-	 hGh8n9vAx5trCCECvpeVi6q0fjY+5B2CgtMN4uqTRSyJQ6WKlF9pT9OzsYsEFOhaSl
-	 QK2wr33IGQdg6hL+6sHohs7jdiqCr+uC3SBEUzC2Imwyx8DCLDGSHfRReIw7CprZr1
-	 24bR6LWwOJySdfP8rEueEz+q9REj18vjNRqqkuexNB1CIgt3JwVZBUIpvdSzigOuYs
-	 m8E6l6C4TcyKQ==
-Date: Fri, 5 Sep 2025 19:32:25 +0100
-From: Conor Dooley <conor@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	id 1uur4w-00000007gR7-3Ugm;
+	Sat, 06 Sep 2025 11:27:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1757158055; x=1788694055;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gtt+QkW89qQ/xiE4F1ORAwE6JL5LfqecUfOhg9hp7B8=;
+  b=nTOeL49+Hz1HWapD7r13kQOIgtMvYevFIGa2KDpHU2Jk5UW2TJUI2wiN
+   qQq0FvH+a6BXLBIGvdKChMfmnM6Wu3ABhmGinpV56tKaj9F86kB132L69
+   WQPnAxINJ5EfzmTfBn+AGuBygp/2X58NJ9B8xIv56he8jqlpr75WdTESK
+   cbAcXgt/rQT0F4XE2n7RL0AB4j3dDgMShmuR3K8WBn/TR+AKwXrMs3ljj
+   6sXub9bcjWm/VEu4DkjxAcxWgV3kF+GAkWsYWM4x1E5zdCtwW6j4PwAuw
+   rtAon/ieGcZdcJRsu6miPAJ3b196gOkQvNVuWA/GVQWHIZU86FCq7faEX
+   w==;
+X-CSE-ConnectionGUID: QoLUj17tSCSAzCw24JHRfw==
+X-CSE-MsgGUID: kH4Mf/yeQwOYk9j/WAar7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="58525533"
+X-IronPort-AV: E=Sophos;i="6.18,244,1751266800"; 
+   d="scan'208";a="58525533"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2025 04:27:34 -0700
+X-CSE-ConnectionGUID: OWRVGH4MTcqWp+tpytIhAw==
+X-CSE-MsgGUID: P4w+HXhvSIeDmXPIiyKcPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,244,1751266800"; 
+   d="scan'208";a="177626327"
+Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 06 Sep 2025 04:27:30 -0700
+Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uur4p-0001O3-18;
+	Sat, 06 Sep 2025 11:27:27 +0000
+Date: Sat, 6 Sep 2025 19:26:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	"hongyu.chen1" <hongyu.chen1@amlogic.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: power: keep alphabetical order
-Message-ID: <20250905-stew-removed-db191517cdf5@spud>
-References: <20250905-pm-fix-order-v1-1-3596e03d66e6@amlogic.com>
- <20250905-vexingly-crudely-36f9e510e9c5@spud>
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Chuan Liu <chuan.liu@amlogic.com>
+Subject: Re: [PATCH v3 2/2] clk: amlogic: add video-related clocks for S4 SoC
+Message-ID: <202509061948.3VcIfqLx-lkp@intel.com>
+References: <20250905-add_video_clk-v3-2-8304c91b8b94@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <20250905-vexingly-crudely-36f9e510e9c5@spud>
+Content-Disposition: inline
+In-Reply-To: <20250905-add_video_clk-v3-2-8304c91b8b94@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250905_113231_644276_9BF05CC4 
-X-CRM114-Status: UNSURE (   8.44  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250906_042734_908581_E519693B 
+X-CRM114-Status: GOOD (  12.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,54 +93,84 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1559814962531075970=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Chuan,
 
---===============1559814962531075970==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ArYkgdtypeXZuzdN"
-Content-Disposition: inline
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Chuan-Liu-via-B4-Relay/dt-bindings-clock-add-video-clock-indices-for-Amlogic-S4-SoC/20250905-171121
+base:   01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
+patch link:    https://lore.kernel.org/r/20250905-add_video_clk-v3-2-8304c91b8b94%40amlogic.com
+patch subject: [PATCH v3 2/2] clk: amlogic: add video-related clocks for S4 SoC
+config: arm64-randconfig-002-20250906 (https://download.01.org/0day-ci/archive/20250906/202509061948.3VcIfqLx-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 12.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250906/202509061948.3VcIfqLx-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509061948.3VcIfqLx-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/meson/s4-peripherals.c:1135:26: error: 'mux_table_cts_sel' undeclared here (not in a function)
+    1135 |                 .table = mux_table_cts_sel,
+         |                          ^~~~~~~~~~~~~~~~~
+>> drivers/clk/meson/s4-peripherals.c:1140:31: error: 's4_cts_parent_hws' undeclared here (not in a function); did you mean 's4_cts_parents'?
+    1140 |                 .parent_hws = s4_cts_parent_hws,
+         |                               ^~~~~~~~~~~~~~~~~
+         |                               s4_cts_parents
+   In file included from include/linux/build_bug.h:5,
+                    from include/linux/bits.h:30,
+                    from include/linux/bitops.h:6,
+                    from include/linux/of.h:15,
+                    from include/linux/clk-provider.h:9,
+                    from drivers/clk/meson/s4-peripherals.c:9:
+   include/linux/compiler.h:197:82: error: expression in static assertion is not an integer
+     197 | #define __BUILD_BUG_ON_ZERO_MSG(e, msg, ...) ((int)sizeof(struct {_Static_assert(!(e), msg);}))
+         |                                                                                  ^
+   include/linux/compiler.h:202:33: note: in expansion of macro '__BUILD_BUG_ON_ZERO_MSG'
+     202 | #define __must_be_array(a)      __BUILD_BUG_ON_ZERO_MSG(!__is_array(a), \
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/array_size.h:11:59: note: in expansion of macro '__must_be_array'
+      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+         |                                                           ^~~~~~~~~~~~~~~
+   drivers/clk/meson/s4-peripherals.c:1141:32: note: in expansion of macro 'ARRAY_SIZE'
+    1141 |                 .num_parents = ARRAY_SIZE(s4_cts_parent_hws),
+         |                                ^~~~~~~~~~
 
 
---ArYkgdtypeXZuzdN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+vim +/mux_table_cts_sel +1135 drivers/clk/meson/s4-peripherals.c
 
-On Fri, Sep 05, 2025 at 07:31:33PM +0100, Conor Dooley wrote:
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+  1129	
+  1130	static struct clk_regmap s4_cts_encl_sel = {
+  1131		.data = &(struct clk_regmap_mux_data){
+  1132			.offset = CLKCTRL_VIID_CLK_DIV,
+  1133			.mask = 0xf,
+  1134			.shift = 12,
+> 1135			.table = mux_table_cts_sel,
+  1136		},
+  1137		.hw.init = &(struct clk_init_data){
+  1138			.name = "cts_encl_sel",
+  1139			.ops = &clk_regmap_mux_ops,
+> 1140			.parent_hws = s4_cts_parent_hws,
+  1141			.num_parents = ARRAY_SIZE(s4_cts_parent_hws),
+  1142			.flags = CLK_SET_RATE_PARENT,
+  1143		},
+  1144	};
+  1145	
 
-Actually no. Ack is dependant on $subject being scoped to the individual
-amlogic binding. Perhaps the subsystem maintainer can do it on
-application
-
-
-
---ArYkgdtypeXZuzdN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLssuQAKCRB4tDGHoIJi
-0pLHAPsGHxXqiKWNNentQqgjeU+9z7eQFW2LYOQzgEYNCmyDuQEA8yzY+9TrObfw
-cZ4RAaTfqlgFAYVSR2jknvD3eFTKJwY=
-=To+s
------END PGP SIGNATURE-----
-
---ArYkgdtypeXZuzdN--
-
-
---===============1559814962531075970==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============1559814962531075970==--
-
