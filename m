@@ -4,84 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E14AECA1012
-	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Sep 2025 11:27:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AE63CA1017
+	for <linux-amlogic@archiver.kernel.org>; Sun,  7 Sep 2025 12:29:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qiwahBiGLs6vmSHKIOkW+kfif6YCFPVEv3Wrm3vBS4E=; b=zhOOWN9N4kS/0U
-	tXw9brB/t1F4gIWVwEO9whBRa9UEhhrBBTSg7i4KDCS4VAG7y7Iund4ojDrIHnWfgFVySXBROCMd5
-	y7NPlR3Ytog7I3LOMLN3geGGV/ZKmt/eRXMppR8LajuCx3OjmfqU8MqfslDLebYc/7Qp7QlEKOpwI
-	eouRWR3aG8tUEJ3hSYPh6GgHlp39GVQMU1pxLQ2hWRJUVtgGF/w8cl0/DGHLo0Z1NVlK1YOWJoKld
-	vmnrIUhfzb/ZooNV6HxlH8L1TjmUkqFkLpvymoNzzh8oqZKOV0NkD93+8k8HjUpRF6P91PorVu2DI
-	Sy1BkQQCJDUYIPzhwFHw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=1462PWYIS9a3DjqSf5kSeeDu9GltPimAwj3E8RC7GyE=; b=OjO5YWOBhwO+dN
+	bL/Hz5foW1dmhLeHgZMesEnc+9U3h98L1lU1Yzj7mzkzKuByxrf7CpNY+hv2P66XxYNVtVn3pCG++
+	ePvTMSfQ9hmxCIAaK79cQcZKAt2SjbnGpXbf8C6mpyOxXz3otEWcGQsBLo3lm4140XEO75bftvlDw
+	sBOjnH7Ha7mJoSeKrYfRwL4LABYtDs+DeDcORcpXeAjAhsRaHx2x0yOVgzVZXMKG6iJ07chx/FYnR
+	gAgFTL8TwfJAup1XIrsUF8FydYCT64gxN1MifsKpoodNdy77j4HIFounEfhs3Ko3JDOIybhz7TLf7
+	fRKjxrm/Yir9afx+SXNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uur4z-00000007gRf-08t4;
-	Sat, 06 Sep 2025 11:27:37 +0000
-Received: from mgamail.intel.com ([192.198.163.19])
+	id 1uvEWb-0000000B3WM-0PYM;
+	Sun, 07 Sep 2025 12:29:41 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uur4w-00000007gR7-3Ugm;
-	Sat, 06 Sep 2025 11:27:36 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757158055; x=1788694055;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gtt+QkW89qQ/xiE4F1ORAwE6JL5LfqecUfOhg9hp7B8=;
-  b=nTOeL49+Hz1HWapD7r13kQOIgtMvYevFIGa2KDpHU2Jk5UW2TJUI2wiN
-   qQq0FvH+a6BXLBIGvdKChMfmnM6Wu3ABhmGinpV56tKaj9F86kB132L69
-   WQPnAxINJ5EfzmTfBn+AGuBygp/2X58NJ9B8xIv56he8jqlpr75WdTESK
-   cbAcXgt/rQT0F4XE2n7RL0AB4j3dDgMShmuR3K8WBn/TR+AKwXrMs3ljj
-   6sXub9bcjWm/VEu4DkjxAcxWgV3kF+GAkWsYWM4x1E5zdCtwW6j4PwAuw
-   rtAon/ieGcZdcJRsu6miPAJ3b196gOkQvNVuWA/GVQWHIZU86FCq7faEX
-   w==;
-X-CSE-ConnectionGUID: QoLUj17tSCSAzCw24JHRfw==
-X-CSE-MsgGUID: kH4Mf/yeQwOYk9j/WAar7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="58525533"
-X-IronPort-AV: E=Sophos;i="6.18,244,1751266800"; 
-   d="scan'208";a="58525533"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2025 04:27:34 -0700
-X-CSE-ConnectionGUID: OWRVGH4MTcqWp+tpytIhAw==
-X-CSE-MsgGUID: P4w+HXhvSIeDmXPIiyKcPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,244,1751266800"; 
-   d="scan'208";a="177626327"
-Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 06 Sep 2025 04:27:30 -0700
-Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uur4p-0001O3-18;
-	Sat, 06 Sep 2025 11:27:27 +0000
-Date: Sat, 6 Sep 2025 19:26:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Chuan Liu <chuan.liu@amlogic.com>
-Subject: Re: [PATCH v3 2/2] clk: amlogic: add video-related clocks for S4 SoC
-Message-ID: <202509061948.3VcIfqLx-lkp@intel.com>
-References: <20250905-add_video_clk-v3-2-8304c91b8b94@amlogic.com>
+	id 1uvEWZ-0000000B3W9-45Ps;
+	Sun, 07 Sep 2025 12:29:40 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 143C4601E9;
+	Sun,  7 Sep 2025 12:29:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B09EEC4CEF0;
+	Sun,  7 Sep 2025 12:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757248178;
+	bh=qDpX76/Rz1kCBhaI70kE6hYmSdNLUblzUjGz0/M4d0o=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=B3MmJAWFs+3gyy0sUGgqX+Zi3uCoR9eHU8tjULNNucAHMIDieSQ4DBAobqY5gDsi3
+	 /WV8VrFmWhiY4XIwQXbPo3bjvS+cKmMuMABOBVWbEzr42+7OQYl6OT+AJ+R59h2AcZ
+	 x73JDkJnj8mfmi8fQt8dbx/JMSXMneIhvqnccFzktChkES+tf3pyrfSqn4UdUSUFOD
+	 M9Dj93EnIiVlZ06AATosjgfAf+Mbq+3wOZjWIGCY5/RVxZnR+H8c/HFveH+2vVVNxs
+	 xJjLZKS46kzd+XdSSTTS6Xr4Rpl/1eHjg1hnkX0hDA0bXzN+maPp8ByIHqtR2L36NG
+	 IkriQ8GHzzoYg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A1729CAC581;
+	Sun,  7 Sep 2025 12:29:38 +0000 (UTC)
+From: Valerio Setti via B4 Relay <devnull+vsetti.baylibre.com@kernel.org>
+Date: Sun, 07 Sep 2025 14:29:21 +0200
+Subject: [PATCH] arm64: dts: amlogic: gxbb-odroidc2: remove UHS capability
+ for SD card
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20250905-add_video_clk-v3-2-8304c91b8b94@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250906_042734_908581_E519693B 
-X-CRM114-Status: GOOD (  12.59  )
+Message-Id: <20250907-fix-reboot-v1-1-7606fc91254e@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAKB6vWgC/x2MQQqAIBAAvyJ7bmGVIuwr0cFsrb1oaEQg/T3pO
+ AwzFQpn4QKTqpD5liIpNtCdAn+4uDPK1hgMmYEsjRjkwcxrShdSzxS81dYxQQvOzM3+s3l53w+
+ 6d6OLXAAAAA==
+X-Change-ID: 20250907-fix-reboot-04e0fc919ae0
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Valerio Setti <vsetti@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2226;
+ i=vsetti@baylibre.com; h=from:subject:message-id;
+ bh=8EBu8xBycRGsUBCELcsXSIlLy471WBn+C9oMzb171Ho=;
+ b=owGbwMvMwCF2z3ty7kUrRgbG02pJDBl7qzZ+EotTzK5mWfxPQoD3/DQxnkX1aVs1a1Z1aVvlx
+ HUkbd7ZUcrCIMbBICumyMIy/d7vglK1h8YJJwtg5rAygQxh4OIUgIkcFWD4X21T+C1i+zvvZQeO
+ e5zqsmt76n9o+7IXy1Z+TO1bva5APYbhD4dH72EDe83XX45zHOD27/+wJdz7NJfMPtPW+jXLO05
+ vYgIA
+X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
+ fpr=0497DEFB707526E13360C970DE4B936DD13A0100
+X-Endpoint-Received: by B4 Relay for vsetti@baylibre.com/default with
+ auth_id=515
+X-Original-From: Valerio Setti <vsetti@baylibre.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,82 +86,75 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: vsetti@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Chuan,
+From: Valerio Setti <vsetti@baylibre.com>
 
-kernel test robot noticed the following build errors:
+This is meant to resolve reboot not working on this board.
 
-[auto build test ERROR on 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf]
+The problem is as follows. In order to be able to switch from HS to UHS
+mode the bus voltage needs to be reduced from 3.3V down to 1.8V and this
+is achieved by the "vqmmc-supply" regulator. The ROM bootloader is only
+able to manage the card in HS mode (3.3V) and the switch HS->UHS happen
+at boottime in the kernel. The problem appears when the reboot command
+is issued or watchdog expires because in this case the "vqmmc-supply"
+voltage is not returned back at 3.3V before rebooting the board so the
+ROM bootloader will be completely stuck.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chuan-Liu-via-B4-Relay/dt-bindings-clock-add-video-clock-indices-for-Amlogic-S4-SoC/20250905-171121
-base:   01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
-patch link:    https://lore.kernel.org/r/20250905-add_video_clk-v3-2-8304c91b8b94%40amlogic.com
-patch subject: [PATCH v3 2/2] clk: amlogic: add video-related clocks for S4 SoC
-config: arm64-randconfig-002-20250906 (https://download.01.org/0day-ci/archive/20250906/202509061948.3VcIfqLx-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250906/202509061948.3VcIfqLx-lkp@intel.com/reproduce)
+Therefore this commit removes both "vqmmc-supply" property, which is the
+one causing the reboot problem, as well as all the UHS modes which would
+now became unreachable due to this regulator control removal.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509061948.3VcIfqLx-lkp@intel.com/
+In terms of performance the main drawback of this commit is limiting the
+SD card bus speed to HS (25 MB/s) instead of UHS DDR50 (50 MB/s). However
+this comes with the benefit of being able to reboot the board, so it
+sounds like a reasonable compromise.
 
-All errors (new ones prefixed by >>):
+Signed-off-by: Valerio Setti <vsetti@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
->> drivers/clk/meson/s4-peripherals.c:1135:26: error: 'mux_table_cts_sel' undeclared here (not in a function)
-    1135 |                 .table = mux_table_cts_sel,
-         |                          ^~~~~~~~~~~~~~~~~
->> drivers/clk/meson/s4-peripherals.c:1140:31: error: 's4_cts_parent_hws' undeclared here (not in a function); did you mean 's4_cts_parents'?
-    1140 |                 .parent_hws = s4_cts_parent_hws,
-         |                               ^~~~~~~~~~~~~~~~~
-         |                               s4_cts_parents
-   In file included from include/linux/build_bug.h:5,
-                    from include/linux/bits.h:30,
-                    from include/linux/bitops.h:6,
-                    from include/linux/of.h:15,
-                    from include/linux/clk-provider.h:9,
-                    from drivers/clk/meson/s4-peripherals.c:9:
-   include/linux/compiler.h:197:82: error: expression in static assertion is not an integer
-     197 | #define __BUILD_BUG_ON_ZERO_MSG(e, msg, ...) ((int)sizeof(struct {_Static_assert(!(e), msg);}))
-         |                                                                                  ^
-   include/linux/compiler.h:202:33: note: in expansion of macro '__BUILD_BUG_ON_ZERO_MSG'
-     202 | #define __must_be_array(a)      __BUILD_BUG_ON_ZERO_MSG(!__is_array(a), \
-         |                                 ^~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/array_size.h:11:59: note: in expansion of macro '__must_be_array'
-      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
-         |                                                           ^~~~~~~~~~~~~~~
-   drivers/clk/meson/s4-peripherals.c:1141:32: note: in expansion of macro 'ARRAY_SIZE'
-    1141 |                 .num_parents = ARRAY_SIZE(s4_cts_parent_hws),
-         |                                ^~~~~~~~~~
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 959bd8d77a82ebc78c5e0592d7613e692e4ede4e..331a0a62b884389b4e0d4d157fff7f9c8738c89d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -348,17 +348,16 @@ &sd_emmc_b {
+ 
+ 	bus-width = <4>;
+ 	cap-sd-highspeed;
+-	sd-uhs-sdr12;
+-	sd-uhs-sdr25;
+-	sd-uhs-sdr50;
+-	sd-uhs-ddr50;
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+ 	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&tflash_vdd>;
+-	vqmmc-supply = <&tf_io>;
++	/*
++	 * Control of vqmmc-supply is intentionally omitted because it would
++	 * prevent the board from rebooting properly.
++	 */
+ };
+ 
+ /* eMMC */
 
+---
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+change-id: 20250907-fix-reboot-04e0fc919ae0
 
-vim +/mux_table_cts_sel +1135 drivers/clk/meson/s4-peripherals.c
-
-  1129	
-  1130	static struct clk_regmap s4_cts_encl_sel = {
-  1131		.data = &(struct clk_regmap_mux_data){
-  1132			.offset = CLKCTRL_VIID_CLK_DIV,
-  1133			.mask = 0xf,
-  1134			.shift = 12,
-> 1135			.table = mux_table_cts_sel,
-  1136		},
-  1137		.hw.init = &(struct clk_init_data){
-  1138			.name = "cts_encl_sel",
-  1139			.ops = &clk_regmap_mux_ops,
-> 1140			.parent_hws = s4_cts_parent_hws,
-  1141			.num_parents = ARRAY_SIZE(s4_cts_parent_hws),
-  1142			.flags = CLK_SET_RATE_PARENT,
-  1143		},
-  1144	};
-  1145	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Valerio Setti <vsetti@baylibre.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
