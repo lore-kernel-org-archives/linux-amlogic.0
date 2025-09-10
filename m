@@ -4,105 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 762DDCA0FED
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Sep 2025 07:41:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46FBACAC58D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Sep 2025 07:41:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nvaCcMR8mjOjRpoKKB6o/FiydtQQ+fNAqI0j4JbNmao=; b=kJULMjF4jwY9q8
-	1ey+8RczJSYCWVqAQrqhGH+JuHnLXYr9F5HEcvBZWJF18R4EowWUEEwg6GTdjK3AJQxIBgUQS0/0Q
-	7vxAX6Yv7BnFLnh4W8x6gpBohg38GzKBUXz5W9ZZVNvzkCXWgqCbDGvyuUq+OMsokW9VL+XwBgI/g
-	G3S18+7VOfmUnrrkQFCeRUr84ynqn0vbiD7elfB12OHeF2zudx7eggIk4seWjXDp20Xv+YaRli0Ks
-	EXs9xmGKM4q97nF9N2vWqNBi3OOHI8Mh1GdD37UwPAAHWY6Cr8ra6Y2zns1hn2nNbSq63rFgHUP6q
-	I0qfVlLO6ZGZh8pK8E6g==;
+	List-Owner; bh=TveuSaqCVVpYTKr9kVAUY6gWj2rmvgRVEYBfOs8K3/s=; b=YrmcxPQU2mcu3x
+	FekOTm2/rkw/0//69yyutKfQXVS0hvunQi0NfzqWDzdokwpXw3KLjkGuedh/N/8K5fKze5IsJVQby
+	4O47RrUNUNm4VeLwrwRFNE9SmpdPTVbPqNCv3Kw3eO9LIGDyy5CdbC7mkL0UoC3pgubnv3NPAmJJ5
+	frJHlQGtQTkZSxx/KAU2DoBTs63R3ZmbQcK0hU8s0zWPEwKs6dYqUago8xR48PAyQuxLUyUF02f1p
+	lOPUG+cr/pq6ufRUPaGc/sTlPwus7dR3XoIxsGKhkA/8cHE9mv0+c/p3FrynZzA2Abu99iVVI6jPH
+	tGvUy8VhCJY1A9vW9mlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uwFSQ-0000000CdIe-12XH;
-	Wed, 10 Sep 2025 07:41:34 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1uwFSO-0000000CdHr-46Ya;
+	Wed, 10 Sep 2025 07:41:32 +0000
+Received: from mail-wm1-f41.google.com ([209.85.128.41])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uwFSP-0000000CdH6-0dLE
-	for linux-amlogic@bombadil.infradead.org;
-	Wed, 10 Sep 2025 07:41:33 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=OFi9l2xoUcPdKDTlp7DtxIMxRchiKoMRzV8J34u2n6Q=; b=OnWLDd3036s/XIY6xs5AHVs1L1
-	HQ6xJle2Mq5zd+3nba7rEaDFxO798mDcYgnn7xwQ0wN349VEe3ruo/PSa9rSm6PcJc6ziRH0OYy93
-	U/kVomd4s9kVD+3udnz2plRhX/GDQP7eehI4nf0a52ZKvsZTLfcosOixd9vivUz8ExTnkmJ132tlI
-	MjgLxNoYfeulwqq2g+4ole0nl0OEPVIg0Mpc/kw1q+K4s9IVZ6w5u2LLweF7TITX7WEdV+F0GfNLP
-	LHEUaYk5imjIwOy6odrbI3NmNPuTSgauQmzkdBhTaNV/qiWnxlqd7voiDygNh0Vn41cm7rgycwGP1
-	YQCJwE+g==;
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
-	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uwFSL-00000005mGI-3YWp
+	id 1uwFSL-0000000CdEp-3StT
 	for linux-amlogic@lists.infradead.org;
 	Wed, 10 Sep 2025 07:41:31 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-45df7dc034cso3643795e9.1
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45de56a042dso21741985e9.3
         for <linux-amlogic@lists.infradead.org>; Wed, 10 Sep 2025 00:41:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757490088; x=1758094888; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1757490087; x=1758094887; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OFi9l2xoUcPdKDTlp7DtxIMxRchiKoMRzV8J34u2n6Q=;
-        b=HfU6P+yJEQ2XTwgae/ZTtK01TGuIbZ7b+AMuNaph30KkonVeOCbE1X03K9tIw9Svr3
-         1hDnVW8m98k9mJnsavD7kHVbtyX72rkgNvZimh+fmTWDFiIGZ9hqXAkSvzY+ER+zw1pk
-         6cTMLJVfXLVe6S172EGXm3SllA1h5ICZnYN5Jf7mHNVIix8KBzSpGRzTBLVW+2NGEZFr
-         vNxDJdW/uoHG8guDTx+ZuCCrmHXrqhf1bjJuEeZ3TSvQMu9UwTIy9+7iyGZPpyOCUVCk
-         GN/wJY7I3o1lRpV6Mjfw+HlzB2UsHzZqiz3qxNPEiMD0PuRPleKZwet0CkC3LyMGitrN
-         V2Yg==
+        bh=YQINu9fJW9+xt1bW69VqgmZeDthwxC6ZybeJa/0e4HM=;
+        b=ce9DX1YEmGUmGXHCHy4WoAyhG1Nk+xPt0ndFDpLZmy5bo+WvisjMTDk5Yydb1aqSLx
+         D8YC3QTlmGqrQdD0M/XLOsA64a7cmMQngZorQqnkX5EobbwdjDZAQBNF7s6HlvhGFaJn
+         uUjWaXvqepAysHiLVVmah0AGXNuMK6iJScXRyM0+mE7oRQU/Ucf854p0PPC4fH1Aw8Lh
+         1DXNdfQ/gK39Pv07PklV/62+A2Z+burmMCGbgDymKPZ5qH6ZnySfium0NmKy4nr5QcDG
+         ZH1xsFKZW9pka3/vxcoZrqE04QNNXX78IpXPoum5JaugTAL1ErqFA0EWS4vDHE9cUJAv
+         D35g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757490088; x=1758094888;
+        d=1e100.net; s=20230601; t=1757490087; x=1758094887;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OFi9l2xoUcPdKDTlp7DtxIMxRchiKoMRzV8J34u2n6Q=;
-        b=bZMxN4M/tbaZJ8XwnRribLZlh13sFoKd2upeDsd82FCWP4KmjiN1ctfWoEFi1IUSmL
-         SgCjzFz2v9bR5ZMRjTiUwzgiDYOUP6TZcV/4wvwWSJnSKzThpQ35DRxRr/nN2nAmpxvs
-         rqYD4lkUkZTpn6LoXzGP/Lw9K3YpsQfZ6sr4MHLHMaQE/G1OvAxlH4Owq+uO0Lz0iQ5l
-         26b2kFlXWeoyFlEYQy63jtNc2z7ETZ9KFTllK6nlTb8fgYmWqlZXj87LlL1lQQgE0qkd
-         XeXJEdafzRcH1ndH9FQt5yiec8BdIs/NZEpsOAS9jjctDm1jPBcAw6I3AueWCneiXP3F
-         ntvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUq8cLtCoFthGzEPfPrIKd2KDoHR3eyfPAew2nMWyueqzDsfd2+2iHl8F0Z9EoP9m/3x9xSJrtS/BIX1t7k@lists.infradead.org
-X-Gm-Message-State: AOJu0YxVTk0fOMC/4/FQH44OJA3WCX6TTwFK+tbDsXgMGm4m3lvE7CD+
-	QIgWAHKe/2r2rX6nmYCn3SX24GoD0bVADSfqM+de+EP1M0C+qHaWC4yWcSQfDy7/2RQ=
-X-Gm-Gg: ASbGncvawact4nnqBPMjt2epNP6I43JJPuxRYG0IDWOUzbXA10Zydg4C3tFNNq6BWQS
-	gUnCqrZC6bGttDvGd9dRJ23AcK3FQTUqvlzJrhTV8eBrg6AtJffvZxsdTlxdtae6v0PuNiZPNyL
-	Rly6cRPLC1Ct2dpQm24xTuwHZ+yMpT+MOETY87Ga26CPSUCEveFU5UIavpe93pLYNwTkQnJcy7E
-	DjqKkWoDHvZ3REc4hBtaJ5OqGYNuTwtGjJLsPJTAhur/BWW86zZnN7qbO5dkW623Wy9KaaVNcZu
-	nHaopWbTm/DStZ3kJgQZraZYBBRZinheE7ByI9lzr9MqwTp6EdMbkW+m5C14zNVwP6bEhpZfBWx
-	eNQXzmpcyBv4qjoy2NBCfRHuVgYKGPc1xhKJFnQlL7mSyI7/Wa07x9Q==
-X-Google-Smtp-Source: AGHT+IFsU3yXlWlG1yOOb7EeI/0GYa1ze44ob0J5hkt+SyO3sFYx+UnxBi7g+7gTTu6mB+/M07fxiQ==
-X-Received: by 2002:a05:600c:4b19:b0:45d:d88b:cc6 with SMTP id 5b1f17b1804b1-45dde66c652mr88230185e9.25.1757490088210;
-        Wed, 10 Sep 2025 00:41:28 -0700 (PDT)
+        bh=YQINu9fJW9+xt1bW69VqgmZeDthwxC6ZybeJa/0e4HM=;
+        b=Zdt3aRSkO9JXu0l+4XdgK4O+VS7344rHfS822NQ3J4PvpqIKeSKKeYHO3MDQauIvkB
+         9O833XeZ0G22SEAHKTGw4sqSYnMBdrydkJh4byw3zX/+cLVBcHxAT8W+I1+rA2txpmUN
+         RC4nrhVafa03dnfVlbevTc6WVkzxhJ77I3Q56WYBo2Y1qQzl+xV+ny4qIQHubf+4r+HT
+         5s92uhtLxZeBwDg5dIZfcbcSBKrShhdXiJl//2Xg0L0eQVLEfb/W5fUBdCNfjA83mFQh
+         YFxdbf5wKVUojz4oARt+6/bCkJAIvZZgOXozIsPW0EWWZ0z1GXb+xItZ3d/qMsHnKKoT
+         sJGA==
+X-Forwarded-Encrypted: i=1; AJvYcCX0be9AVM9eCkKxZCxAgLWjjojNxoeyJL8+T2Sd5ITIuQmRMEOd/DI2yasI+47PkuExabrlhB/MpMFiz291@lists.infradead.org
+X-Gm-Message-State: AOJu0YylFiJ0Vjc0mZAI9VqLBUJePV0IeoayWy0zVNRd1dUHSYF5/ipN
+	eHRoh4yz4geVSZyc1QGYsG91pvnUvGvxQuNOSwnYCZkIsj7UfBFbGmcgVvtV6hdH3+IDwtBAvj1
+	pIjD3AsU=
+X-Gm-Gg: ASbGncucpJ35JN5b82672vzFa5aYAUCZu8x9AEadk4sjhsDaPMdrxrQJk5oywPuiozh
+	eSTueKDEKAq/ArhGlxM2aDDDShmCVvPSDYXvTlGHc8lNoLOiTB9Vy/gNMQuNXT8r8l4kBJQ9NVD
+	B/7q0khfXq2TZO4P/XMo6rUIdAf1YFl63bEpzW1tycqOaMSEb9J23+lvhgBAtZNXu7JlL7oYcf+
+	XAsKVrTO6iZMDSQQ6vn6r2fRNzKnlryU+YoS7KLV1J7RuktWk8TCb1CD9+I4U8CIB/kJ6VeKWou
+	KHD+eE37yFM2jaiV3JiA0tDd8dNK4NIepPz0mwrt1atUneuP8C3//q4vhML+QwvSY35Q9cUhFRd
+	Dvicx2/EjRd2a4NtgL7Le6INb4m1aGAo+trddtXuqsISiKVDhYVHmhw==
+X-Google-Smtp-Source: AGHT+IHFrHs/AQbTtdmpcTDbnBfFFNqmYeMTeKOdyAzndhMB+Fk7gzlF81CDMGzg4BTKrAQ7R4nr/g==
+X-Received: by 2002:a05:600c:c177:b0:45d:98be:ee91 with SMTP id 5b1f17b1804b1-45dddeb8f1emr124260285e9.9.1757490087519;
+        Wed, 10 Sep 2025 00:41:27 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45df8259cb1sm17003035e9.24.2025.09.10.00.41.27
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45df8259cb1sm17003035e9.24.2025.09.10.00.41.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 10 Sep 2025 00:41:27 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+To: Kevin Hilman <khilman@baylibre.com>, 
  Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Valerio Setti <vsetti@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250908-fix-reboot-v2-1-354d0e57c855@baylibre.com>
-References: <20250908-fix-reboot-v2-1-354d0e57c855@baylibre.com>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: gxbb-odroidc2: remove UHS
- capability for SD card
-Message-Id: <175749008761.1189257.11203428787242176794.b4-ty@linaro.org>
-Date: Wed, 10 Sep 2025 09:41:27 +0200
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20250717-fix-pwm-node-v2-1-7365ac7d5320@amlogic.com>
+References: <20250717-fix-pwm-node-v2-1-7365ac7d5320@amlogic.com>
+Subject: Re: [PATCH v2] dts: arm: amlogic: fix pwm node for c3
+Message-Id: <175749008683.1189257.13747268542905887474.b4-ty@linaro.org>
+Date: Wed, 10 Sep 2025 09:41:26 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.14.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250910_084130_179525_22BC8B4A 
-X-CRM114-Status: GOOD (  16.71  )
+X-CRM114-CacheID: sfid-20250910_004129_878883_9D9BD754 
+X-CRM114-Status: UNSURE (   9.11  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,24 +108,15 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Mon, 08 Sep 2025 21:50:03 +0200, Valerio Setti wrote:
-> This is meant to resolve reboot not working on this board.
+On Thu, 17 Jul 2025 17:29:54 +0800, Xianwei Zhao wrote:
+> Fix reg address for c3 pwm node.
 > 
-> The problem is as follows. In order to be able to switch from HS to UHS
-> mode the bus voltage needs to be reduced from 3.3V down to 1.8V and this
-> is achieved by the "vqmmc-supply" regulator. The ROM bootloader is only
-> able to manage the card in HS mode (3.3V) and the switch HS->UHS happen
-> at boottime in the kernel. The problem appears when the reboot command
-> is issued or watchdog expires because in this case the "vqmmc-supply"
-> voltage is not returned back at 3.3V before rebooting the board so the
-> ROM bootloader will be completely stuck.
 > 
-> [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.18/arm64-dt)
 
-[1/1] arm64: dts: amlogic: gxbb-odroidc2: remove UHS capability for SD card
-      https://git.kernel.org/amlogic/c/663bfe77b6f70bcb33b2607e16c94fcb1029580e
+[1/1] dts: arm: amlogic: fix pwm node for c3
+      https://git.kernel.org/amlogic/c/f8c9fabf2f3d87773613734a8479d0ef9b662b11
 
 These changes has been applied on the intermediate git tree [1].
 
