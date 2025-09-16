@@ -4,57 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8AC9CAC597
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Sep 2025 01:39:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 655CDCAC597
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Sep 2025 02:06:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:To:Cc:From:Subject:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GJFdM9+/DdNES5mQHa4Vj/Qy2/UXWWcj8LXbuuv56cc=; b=NtKWaOTyR/7krF
-	VUURsFNwmu01UaL7B7HFIdoOm+80G0ZufioMbvNn106sRY6jz4pZcGwEb/r4Hi3BwP4uoKUlbX78h
-	DzD4PXyE3P2jz6U8kbkwgJHPG/LIaw2OxaDnc5eqJUb4BwhAI6XqPIRM0axR2Q5gWlkqaJGApe2lU
-	zaGmo/HluotP+uP/rEXIX3E/CmNkPgbhWDNDmGG9i+nYzLl/J+Aqt86+Qcg2/wS+q96s6De/84EcP
-	Uzdf5YGx6cNZyUOKVPpoMBYk4FXrQ+xIsF69UBPE+0LpEO8ePdrCoXi95B9KnZCPZWhos44UFkcQf
-	VsoGTkdkmAEpyv/zSEyQ==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=IuP5wmdZ6jdcnlkU40hnmAZwtyBXVARatTvG9/wEkxU=; b=A3lKjFOpf63pcN
+	Af1//Paw0mla4qfOmtW89III17VDJCbYh93/ByHxAHEfT3+dJYLatzQqeR3RbCbBx3PM7J5XOpW74
+	n4j+tmJEmj6zg0aUXUa4jH7tofBlvWb677qkIu2lgwok44yQwmG9lUpnCDJbGmv2wdCQfSI8tMVa/
+	lDbHnUiUp2XBB9YvIOvVq9qFsbZf7xgkoWxYYADn7hz/fGyp1SZWHtw2eSRqiqvBAGcEKKdpxuNAD
+	8L6NZO4ktoocB/FhXFNwSrqW43eBuBe0Xj/+QA9vCt70VTD0WNeaJVmGOg9dtXNSRTJ9js/S1abee
+	EOtoiEOoDUxYfy2t8kpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uyKeu-00000006ApO-2IT3;
-	Tue, 16 Sep 2025 01:39:04 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1uyL5S-00000006FgC-32MY;
+	Tue, 16 Sep 2025 02:06:30 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uyKer-00000006Aoz-1zZP
-	for linux-amlogic@lists.infradead.org;
-	Tue, 16 Sep 2025 01:39:02 +0000
+	id 1uyL5S-00000006Ffw-0RCi;
+	Tue, 16 Sep 2025 02:06:30 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id CD21A401B3;
-	Tue, 16 Sep 2025 01:38:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96873C4CEF1;
-	Tue, 16 Sep 2025 01:38:59 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 45443600B0;
+	Tue, 16 Sep 2025 02:06:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DA2E2C4CEF1;
+	Tue, 16 Sep 2025 02:06:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757986739;
-	bh=8sFoEaMtB3SAvjyszuoCB6AyW4HgU2Zoq6ImsftTPwA=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=tssAsw8nmknUbBtb8FYPFPee3d0mnYeNgt6A64N/SdHsvhKbrBLylQGUkKZbbq25t
-	 eLzv2RfEOB2lNcp7l/ohgtWUB37ZsNr6qcu4Rdhbp5hkppXd/X1/9J+I3hKBnvK2+C
-	 RMQC+IRrJ4SXcP0IX/413jOnnBI7M5eXe4FahR5p5kCxyJSUBsWj75B/9HqBCAD1Fq
-	 zJ2tyA7x06v/rkUwWe5tOcT5JPL9gIv5oUmmZQKceQG5TmWjQsVt1B5zggXPXDECbH
-	 pwxuNOMbHewAJylwiz3xa1sjmm1h4uLADL9+x1G06eq+AUXgW9yaLgeC72AcXn3ZrT
-	 yvrZhlnH4gsLQ==
+	s=k20201202; t=1757988388;
+	bh=9kK68Xs+KCmxOIP2SAhilPIrfTsceTJZcF5LekB7CjI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=nlPKPcqCkuRy7II+o0WDa1b/voNXMCByVg+5KMOKTd31IcKDiHP6Fp5VZuYA3W4ba
+	 MxTnUbhhMwKviZzvE9pJtFkD6/Z36AGZdR7IPMs0fH1HG24wbDDMzp+yWp3RMhCxUZ
+	 V4zAXVjJgU2vY81WZ9E58T7dGwG935ilnEJHr7kflO1RdBwG22+6Uym8IL3JjfLPkV
+	 gPDnIXRgZdlmdBHZkNrK9qr1Q3ec5JBw6oX3pFn3tbfwzaKPd2wXaiidQ85TOlV0zI
+	 OybKc0txpzF34+ao2DDBQ/ztUB8b+Wbetll8x3/8ik5JmBNws7vXhQuE1OOIchgS8D
+	 cISqLjBEi0bpA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7199CAC592;
+	Tue, 16 Sep 2025 02:06:28 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Subject: [PATCH v5 0/2] clk: amlogic: add video-related clocks for S4 SoC
+Date: Tue, 16 Sep 2025 10:06:05 +0800
+Message-Id: <20250916-add_video_clk-v5-0-e25293589601@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <1jecs8hxry.fsf@starbuckisacylon.baylibre.com>
-References: <1jecs8hxry.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [GIT PULL] clk: meson: amlogic updates for v6.18
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, linux-clk <linux-clk@vger.kernel.org>, linux-amlogic <linux-amlogic@lists.infradead.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 15 Sep 2025 18:38:44 -0700
-Message-ID: <175798672445.4354.9868549804401398525@lazor>
-User-Agent: alot/0.11
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250915_183901_534946_CA19A670 
-X-CRM114-Status: GOOD (  10.68  )
+X-B4-Tracking: v=1; b=H4sIAA3GyGgC/3XNSwrCMBSF4a2UjI3cvNrEkfsQKXlVg9VIK0Ep3
+ bvRSbXV4bnw/XdAve+C79GmGFDnU+hDvOQhVgWyR305eBxc3ogCFVARgbVzdQrOx9q2J+wsk0Z
+ woYBIlM218024v3u7fd7H0N9i93jnE3ld/5USwYA5+KopGWtYSbb63MZDsGsbz+jVSnTykvC5p
+ 9kbQ43QoqEK+NKzyStY/GfZSwbcKmKkUT88//Rq7nn2woMF4niltfz24zg+Aapg/Y1sAQAA
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, Chuan Liu <chuan.liu@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757988387; l=1583;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=9kK68Xs+KCmxOIP2SAhilPIrfTsceTJZcF5LekB7CjI=;
+ b=nkaxWwNE5fra2bm3s9BXD4almurc1c50e/MeIIel3z6gjw+9eMM/sYz0NEoQvw99qUNoZiwcP
+ 5xi9b8BjZ3jAnCPUugGo5SfS5d6mXEvuQ+pT7SKmPR3u8+p6qYRjGZi
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,45 +87,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: chuan.liu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2025-09-15 02:26:25)
-> 
-> Hi Stephen,
-> 
-> Here are the Amlogic clock updates for v6.18.
-> 
-> This is mostly a clean up of pointless differences between the
-> controllers which have been accumulated over the years. Hopefully, this
-> will help with the maintenance and simplify the review of the incoming
-> new controllers.
-> 
-> Overall, this is just simple stuff but since it touches every Amlogic
-> controllers, the diff is fairly large.
-> 
-> Please pull
-> Cheers
-> 
-> Jerome
-> 
-> The following changes since commit 8f5ae30d69d7543eee0d70083daf4de8fe15d585:
-> 
->   Linux 6.17-rc1 (2025-08-10 19:41:16 +0300)
-> 
-> are available in the Git repository at:
-> 
->   https://github.com/BayLibre/clk-meson.git tags/clk-meson-v6.18-1
-> 
-> for you to fetch changes up to 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf:
-> 
->   clk: amlogic: c3-peripherals: use helper for basic composite clocks (2025-09-04 18:27:12 +0200)
-> 
-> ----------------------------------------------------------------
+This patch introduces new clock support for video processing components
+including the encoder, demodulator and CVBS interface modules.
 
-Thanks. Pulled into clk-next
+The related clocks have passed clk-measure verification.
+
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+---
+Changes in v5:
+- Add Acked-by tags from Conor.
+- Remove unnecessary flags as suggested by Jerome.
+- Link to v4: https://lore.kernel.org/r/20250909-add_video_clk-v4-0-5e0c01d47aa8@amlogic.com
+
+Changes in v4:
+- Add Acked-by tags from Rob and Krzysztof.
+- Fix compilation errors.
+- Link to v3: https://lore.kernel.org/r/20250905-add_video_clk-v3-0-8304c91b8b94@amlogic.com
+
+Changes in v3:
+- Rebase with Jerome's latest code base.
+- Link to v2: https://lore.kernel.org/r/20250814-add_video_clk-v2-0-bb2b5a5f2904@amlogic.com
+
+Changes in v2:
+- Removed lcd_an clock tree (previously used in meson series but obsolete in
+newer chips).
+- Removed Rob's 'Acked-by' tag due to dt-binding changes (Is it necessary?).
+- Link to v1: https://lore.kernel.org/r/20250715-add_video_clk-v1-0-40e7f633f361@amlogic.com
+
+---
+Chuan Liu (2):
+      dt-bindings: clock: add video clock indices for Amlogic S4 SoC
+      clk: amlogic: add video-related clocks for S4 SoC
+
+ drivers/clk/meson/s4-peripherals.c                 | 206 ++++++++++++++++++++-
+ .../clock/amlogic,s4-peripherals-clkc.h            |  11 ++
+ 2 files changed, 213 insertions(+), 4 deletions(-)
+---
+base-commit: 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
+change-id: 20250715-add_video_clk-dc38b5459018
+
+Best regards,
+-- 
+Chuan Liu <chuan.liu@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
