@@ -4,81 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48257CAC592
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Sep 2025 02:06:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33F8CCAC599
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Sep 2025 07:48:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=X/7g0ot0xji41DtXZs+P+e2QIJOOSVftA8/iSW6rumI=; b=MNJGncGbDgbikz
-	CuwTgz4cAO+zalTXi1SA9zvUGrpfsfDIn0bMJmRryAIodjfBPtNw5GEiH2SZruBQXMiV9KBIapnby
-	ps9xa8+DH+3h5FAIlAcYV97fMaZrf2hwS+LO0Bq2cGvukuAHG+1bpfMqaGo70fduZcfEpqqYrtxLo
-	4KYoi8e3yCp2Kusp0/T/hkCyKlPmUBN/KGqHn3oiwHBA71ohm/UzM3N+y1f4KWZRnTNPJf04YirLo
-	sjM3h60H1Xydj2Mxdx0ljp05pWC6WXc78fsjDzh7OZ944FwMpuR3zz25+4n3vA8stVOP7VRwMdEgh
-	F/oJIzCW6XFszV7INIRw==;
+	List-Owner; bh=R15NkQztaNvHYycXaDxSboSo7wSX5+CEHoc9rmOAHFc=; b=QdUicBrnDxAAnA
+	COF4KhuFW4J1SSCwTwaH7tZB2C/lSdQ3f2SydR8pxItSLmdkhj5Zfr7nEW96VdrKEWQSVe4aqyB20
+	yXOyjwjeHEJLbAmb81a2z/6WqaNSPprVdFiu3Aob6HfVKJmp0yvGyPP2x3JhJflzzZObShwdN7YCT
+	XPfostBOtWXuQL8y96cYMJYhXdra4ZRUP4r+JwgZVSxYQOVRgen9R4WvftMVpkwPISmcNHjDljG3X
+	B/jQ64zDmItSg6LCzeBBSs8Ca5hFgcPNkX6n/6idzwleRu4xTHK3uz8ZX74kRtXmWi+jC/dy6bsIs
+	RMoLFqkyKtTo3OAgfvKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uyL5Y-00000006FrI-3cxi;
-	Tue, 16 Sep 2025 02:06:36 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1uyQPr-000000074Jh-29eq;
+	Tue, 16 Sep 2025 07:47:55 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uyL5T-00000006Fg0-002a;
-	Tue, 16 Sep 2025 02:06:32 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 24B39450AF;
-	Tue, 16 Sep 2025 02:06:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E7AEDC4CEF9;
-	Tue, 16 Sep 2025 02:06:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757988389;
-	bh=QLoUf6MbemExweEkSHZ6Cs4Fo/cev8YIR8uKZymd67k=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=agXC5LkCqWnp1biTl5BUVyg8SRFUovUf8ygMm5nxJhdZzpS8hI5Wqod1JkjpSxqRc
-	 c5JjwdzhQJC/RAl3tnRr1HNafCjiLtRJrWYEKvx992Ms5ZptQTf89fMjUDin7oCrEY
-	 925zBkjpvR4Cfp2zi7xfW/5qT8hqXCKGJljKuSVszi/7dKHFtFHkeO5SY9E9jF5BDq
-	 2OnuloGHfpPieJT0SjUb/nBudwZNftcPJd56EnhOIGSkMdByk1vhLYHbeX+INbqgje
-	 0EX8RLcOkgcLtwWEIAUTSwDywt1G9h1nWHHBbKQcl4g9G5XxRH2Caw6niYI+wYtBjW
-	 R+Hd2RZg4T7oQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D6B56CAC599;
-	Tue, 16 Sep 2025 02:06:28 +0000 (UTC)
-From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Tue, 16 Sep 2025 10:06:06 +0800
-Subject: [PATCH v5 1/2] dt-bindings: clock: add video clock indices for
- Amlogic S4 SoC
-MIME-Version: 1.0
-Message-Id: <20250916-add_video_clk-v5-1-e25293589601@amlogic.com>
+	id 1uyQPn-000000074I6-1hf8
+	for linux-amlogic@lists.infradead.org;
+	Tue, 16 Sep 2025 07:47:53 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-45f29dd8490so22100355e9.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 16 Sep 2025 00:47:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758008869; x=1758613669; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XtKFlQh+rgS2OBNXT81z/HpP/1PZSXgKCEKufgx4uds=;
+        b=l/8pynlaAuIlUHngmLRLh+A+7ih1apmnzKeYZEGL1WRzz6JmsrqDrNK7wETi7Donc4
+         HTqJr0NdMAPSpKe0/hThI64iFhzzblynC+hCV06dCew1IIi5aVBDxdbqtzvcwzW/imqI
+         5KKyIC7b43h7R0Ai6JxySu1wO/G6KBNBW8uECp2EyO7CVFpyKxjUAnGtu1xiSjazpy9u
+         7D7IjFrpeQfjVo2OGoIcS8udvKYvXNbDHc94os6TQJefHmBLkjRmNm9bbUJwd/q5ia4v
+         pzWO38fzm3rIb7m4Uop5QyxnHnxRjyGNngz9h7hbmXDGB4FbWOByQqbYQ+T0Xkfo/98P
+         RCSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758008869; x=1758613669;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XtKFlQh+rgS2OBNXT81z/HpP/1PZSXgKCEKufgx4uds=;
+        b=WFxpubyueAz0qBtwjB3mC5mgm9crYEPFbZLVzzTr3m7qCezubO71bbaIFDLa8Y2B7J
+         Ui87x/J8sCccNHL8F2H3JI0slrjKS4zQVm4Qe2tuDo32rmN01seahOaZnvgBweEwuUfh
+         oJzSo+vaNd5D1STlzTNtzUEZZfsF2GmntYHzT2f9irthzEYa29uxMlaeyqE0t1zeogBz
+         UAhk+De/oFNLGwWrXuXTwDkpSD7OYeZluUEdvk4Y5vzCGXAggBOLnQu1Y0V4iqr4Dz0Z
+         f/qASsIVlSYLEie3XO1ub7fVZE5066rgMZBysbWaIiRjt0Us9B944J5oiXBotbJfwNOU
+         a/XQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWJ4R9gDUCzN4aor62sfPKEvcuzQzrXPQorhxIfw26O/xv64tIy8ffw/ymQbaqzEZ3xzZTYz2Q1utb2hBjt@lists.infradead.org
+X-Gm-Message-State: AOJu0YzyFQes4CfsVecDMZEWC7HjbICV4KXedLxjz226ymFVkwMr+7JQ
+	9HZC4REZOEoVnaBrwTG9Ko8nSTZXvdXx18qNhaj0HVDk9e90CM7pultSyVhQNtW0IA4=
+X-Gm-Gg: ASbGncv6ioHMzFB0GkcTjgQFMOIUsxZONgxgeoQhmdIr6qTRXLFhI+s4/Bxi6DnoeBC
+	Rl3JQ9acfO6eIGMT59f00qgnS3rP+prmGaRWz3w556/BS+WKPtf6ri7iqeLOTyLHs5lXq8GBbjs
+	XKyGFZMgCXxY+jj0j02TU4rACtnLyBdERVSBOwHOPhDkHoFduf3M013J2VasVCLCJ9LB0LlOjUR
+	FqrugqogOflRPuRsTi1VlOZITKB0oXh7bCfMa8nZSMizhBHQSRWRFTnOKVxzsBuAfYDny4vwhfK
+	jYEYTVt/yIAIfO8jwV7RSEy6Jy4vlGM37kgdOL+j2C4CY3bTP6qaUWnuzUmkvVGQcAJI+I0B1cw
+	Gfb2SxxfOQWfsbEkveUFU
+X-Google-Smtp-Source: AGHT+IHFvGzslxXy4KwOm1ooC56uMKQXwQ1Zj1Upo1YdNgdF6b6Vs+dYtvJRY+alye5YC/5QpkTOXw==
+X-Received: by 2002:a05:6000:24c7:b0:3d1:e1b1:9640 with SMTP id ffacd0b85a97d-3e7659f3afbmr10403889f8f.30.1758008869244;
+        Tue, 16 Sep 2025 00:47:49 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:a6cd:21af:56e0:521])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3e7d369ea3bsm15452393f8f.0.2025.09.16.00.47.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Sep 2025 00:47:48 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,  chuan.liu@amlogic.com,
+  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  linux-amlogic@lists.infradead.org,
+  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 2/2] clk: amlogic: add video-related clocks for S4 SoC
+In-Reply-To: <20250916-add_video_clk-v5-2-e25293589601@amlogic.com> (Chuan Liu
+	via's message of "Tue, 16 Sep 2025 10:06:07 +0800")
 References: <20250916-add_video_clk-v5-0-e25293589601@amlogic.com>
-In-Reply-To: <20250916-add_video_clk-v5-0-e25293589601@amlogic.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, Chuan Liu <chuan.liu@amlogic.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757988387; l=1277;
- i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=oFTBK7GmWCd1bTbEyxd9lw2QoXtneH1SDFph2xdcxG4=;
- b=oMOS0qBWNYhTCkKeIJSvkDNEQ0rEh61ZqxQ/unVz/WlVjattQnvHeUAxpbBLp6uTsxK+3GdcQ
- bRx59VjWVi0DWeb2isz67xp/LBjCVFPxmrquIFsIf5kCP2ElCGt7DAA
-X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
- pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
-X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
- auth_id=203
-X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+	<20250916-add_video_clk-v5-2-e25293589601@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Tue, 16 Sep 2025 09:47:47 +0200
+Message-ID: <1j5xdij0t8.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250915_190631_122336_A5469F3A 
-X-CRM114-Status: UNSURE (   8.30  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250916_004751_612285_A65361E6 
+X-CRM114-Status: GOOD (  16.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,50 +101,294 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: chuan.liu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Chuan Liu <chuan.liu@amlogic.com>
+On Tue 16 Sep 2025 at 10:06, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
 
-Add indices for video encoder, demodulator and CVBS clocks.
+> From: Chuan Liu <chuan.liu@amlogic.com>
+>
+> Add video encoder, demodulator and CVBS clocks.
+>
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> ---
+>  drivers/clk/meson/s4-peripherals.c | 206 ++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 202 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
+> index 6d69b132d1e1..ba41fcd90588 100644
+> --- a/drivers/clk/meson/s4-peripherals.c
+> +++ b/drivers/clk/meson/s4-peripherals.c
+> @@ -44,6 +44,7 @@
+>  #define CLKCTRL_VDIN_MEAS_CLK_CTRL                 0x0f8
+>  #define CLKCTRL_VAPBCLK_CTRL                       0x0fc
+>  #define CLKCTRL_HDCP22_CTRL                        0x100
+> +#define CLKCTRL_CDAC_CLK_CTRL                      0x108
+>  #define CLKCTRL_VDEC_CLK_CTRL                      0x140
+>  #define CLKCTRL_VDEC2_CLK_CTRL                     0x144
+>  #define CLKCTRL_VDEC3_CLK_CTRL                     0x148
+> @@ -1106,7 +1107,6 @@ static struct clk_regmap s4_cts_enci_sel = {
+>  		.ops = &clk_regmap_mux_ops,
+>  		.parent_hws = s4_cts_parents,
+>  		.num_parents = ARRAY_SIZE(s4_cts_parents),
+> -		.flags = CLK_SET_RATE_PARENT,
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
----
- include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Change unrelated to the description.
 
-diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
-index 861a331963ac..b0fc549f53e3 100644
---- a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
-+++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
-@@ -232,5 +232,16 @@
- #define CLKID_HDCP22_SKPCLK_SEL		222
- #define CLKID_HDCP22_SKPCLK_DIV		223
- #define CLKID_HDCP22_SKPCLK		224
-+#define CLKID_CTS_ENCL_SEL		225
-+#define CLKID_CTS_ENCL			226
-+#define CLKID_CDAC_SEL			227
-+#define CLKID_CDAC_DIV			228
-+#define CLKID_CDAC			229
-+#define CLKID_DEMOD_CORE_SEL		230
-+#define CLKID_DEMOD_CORE_DIV		231
-+#define CLKID_DEMOD_CORE		232
-+#define CLKID_ADC_EXTCLK_IN_SEL		233
-+#define CLKID_ADC_EXTCLK_IN_DIV		234
-+#define CLKID_ADC_EXTCLK_IN		235
- 
- #endif /* _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H */
+>  	},
+>  };
+>  
+> @@ -1122,7 +1122,21 @@ static struct clk_regmap s4_cts_encp_sel = {
+>  		.ops = &clk_regmap_mux_ops,
+>  		.parent_hws = s4_cts_parents,
+>  		.num_parents = ARRAY_SIZE(s4_cts_parents),
+> -		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap s4_cts_encl_sel = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = CLKCTRL_VIID_CLK_DIV,
+> +		.mask = 0xf,
+> +		.shift = 12,
+> +		.table = s4_cts_parents_val_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "cts_encl_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = s4_cts_parents,
+> +		.num_parents = ARRAY_SIZE(s4_cts_parents),
+>  	},
+>  };
+>  
+> @@ -1138,7 +1152,6 @@ static struct clk_regmap s4_cts_vdac_sel = {
+>  		.ops = &clk_regmap_mux_ops,
+>  		.parent_hws = s4_cts_parents,
+>  		.num_parents = ARRAY_SIZE(s4_cts_parents),
+> -		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -1169,7 +1182,6 @@ static struct clk_regmap s4_hdmi_tx_sel = {
+>  		.ops = &clk_regmap_mux_ops,
+>  		.parent_hws = s4_hdmi_tx_parents,
+>  		.num_parents = ARRAY_SIZE(s4_hdmi_tx_parents),
+> -		.flags = CLK_SET_RATE_PARENT,
+>  	},
+>  };
+>  
+> @@ -1205,6 +1217,22 @@ static struct clk_regmap s4_cts_encp = {
+>  	},
+>  };
+>  
+> +static struct clk_regmap s4_cts_encl = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = CLKCTRL_VID_CLK_CTRL2,
+> +		.bit_idx = 3,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "cts_encl",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&s4_cts_encl_sel.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+>  static struct clk_regmap s4_cts_vdac = {
+>  	.data = &(struct clk_regmap_gate_data){
+>  		.offset = CLKCTRL_VID_CLK_CTRL2,
+> @@ -2735,6 +2763,165 @@ static struct clk_regmap s4_gen_clk = {
+>  	},
+>  };
+>  
+> +/* CVBS DAC */
+> +static struct clk_regmap s4_cdac_sel = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CLKCTRL_CDAC_CLK_CTRL,
+> +		.mask = 0x3,
+> +		.shift = 16,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "cdac_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = (const struct clk_parent_data []) {
+> +			{ .fw_name = "xtal", },
+> +			{ .fw_name = "fclk_div5" },
+> +		},
+> +		.num_parents = 2,
+> +	},
+> +};
+> +
+> +static struct clk_regmap s4_cdac_div = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = CLKCTRL_CDAC_CLK_CTRL,
+> +		.shift = 0,
+> +		.width = 16,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "cdac_div",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&s4_cdac_sel.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap s4_cdac = {
+> +	.data = &(struct clk_regmap_gate_data) {
+> +		.offset = CLKCTRL_CDAC_CLK_CTRL,
+> +		.bit_idx = 20,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "cdac",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&s4_cdac_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap s4_demod_core_sel = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
+> +		.mask = 0x3,
+> +		.shift = 9,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "demod_core_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = (const struct clk_parent_data []) {
+> +			{ .fw_name = "xtal" },
+> +			{ .fw_name = "fclk_div7" },
+> +			{ .fw_name = "fclk_div4" }
+> +		},
+> +		.num_parents = 3,
+> +	},
+> +};
+> +
+> +static struct clk_regmap s4_demod_core_div = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
+> +		.shift = 0,
+> +		.width = 7,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "demod_core_div",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&s4_demod_core_sel.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap s4_demod_core = {
+> +	.data = &(struct clk_regmap_gate_data) {
+> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
+> +		.bit_idx = 8
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "demod_core",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&s4_demod_core_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +/* CVBS ADC */
+> +static struct clk_regmap s4_adc_extclk_in_sel = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
+> +		.mask = 0x7,
+> +		.shift = 25,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "adc_extclk_in_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = (const struct clk_parent_data []) {
+> +			{ .fw_name = "xtal" },
+> +			{ .fw_name = "fclk_div4" },
+> +			{ .fw_name = "fclk_div3" },
+> +			{ .fw_name = "fclk_div5" },
+> +			{ .fw_name = "fclk_div7" },
+> +			{ .fw_name = "mpll2" },
+> +			{ .fw_name = "gp0_pll" },
+> +			{ .fw_name = "hifi_pll" }
+> +		},
+> +		.num_parents = 8,
+> +	},
+> +};
+> +
+> +static struct clk_regmap s4_adc_extclk_in_div = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
+> +		.shift = 16,
+> +		.width = 7,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "adc_extclk_in_div",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&s4_adc_extclk_in_sel.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap s4_adc_extclk_in = {
+> +	.data = &(struct clk_regmap_gate_data) {
+> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
+> +		.bit_idx = 24
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "adc_extclk_in",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&s4_adc_extclk_in_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+>  static const struct clk_parent_data s4_pclk_parents = { .hw = &s4_sys_clk.hw };
+>  
+>  #define S4_PCLK(_name, _reg, _bit, _flags) \
+> @@ -3028,6 +3215,17 @@ static struct clk_hw *s4_peripherals_hw_clks[] = {
+>  	[CLKID_HDCP22_SKPCLK_SEL]	= &s4_hdcp22_skpclk_sel.hw,
+>  	[CLKID_HDCP22_SKPCLK_DIV]	= &s4_hdcp22_skpclk_div.hw,
+>  	[CLKID_HDCP22_SKPCLK]		= &s4_hdcp22_skpclk.hw,
+> +	[CLKID_CTS_ENCL_SEL]		= &s4_cts_encl_sel.hw,
+> +	[CLKID_CTS_ENCL]		= &s4_cts_encl.hw,
+> +	[CLKID_CDAC_SEL]		= &s4_cdac_sel.hw,
+> +	[CLKID_CDAC_DIV]		= &s4_cdac_div.hw,
+> +	[CLKID_CDAC]			= &s4_cdac.hw,
+> +	[CLKID_DEMOD_CORE_SEL]		= &s4_demod_core_sel.hw,
+> +	[CLKID_DEMOD_CORE_DIV]		= &s4_demod_core_div.hw,
+> +	[CLKID_DEMOD_CORE]		= &s4_demod_core.hw,
+> +	[CLKID_ADC_EXTCLK_IN_SEL]	= &s4_adc_extclk_in_sel.hw,
+> +	[CLKID_ADC_EXTCLK_IN_DIV]	= &s4_adc_extclk_in_div.hw,
+> +	[CLKID_ADC_EXTCLK_IN]		= &s4_adc_extclk_in.hw,
+>  };
+>  
+>  static const struct meson_clkc_data s4_peripherals_clkc_data = {
 
 -- 
-2.42.0
-
-
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
