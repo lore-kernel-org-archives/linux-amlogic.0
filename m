@@ -4,70 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62F72CAC59A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Sep 2025 08:35:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E707FCAC59A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Sep 2025 16:06:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=sIj4mgZ93IKP4I3mzfi+k93hvZR1mxW3rrId9koyBww=; b=xDj6LhHhBUqH4H
-	SpBFQ1EyWnQn2CNR6eCBm8+FRbKTZETClO7pxlHW27e/oKRw71lsooTB+w3JJ2V995ANjDWJxFq/9
-	bz00dWxrbZisFIyL2JWF1qxQN2siPr3SbqTHhbsAcHR8meP8h0lkufafhdanPWJriFCaDeAvdpNbw
-	VgacUyLVcg2j2vWis7oL+sjRpBCSjy6H8apRNYYz/zPspkptj6UYKWOf+7jJ9PV8WHpMwjoni/Jps
-	FswNdvnSAYcJhvy5zxEIlY1BEgOxvbcdhwqFWuLKeoF3Q8ziXXeVZACkGRYdpNBPHjPFcjQReELDx
-	r9bcUACpEErZjQTy/TDg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:References:MIME-Version:Message-Id:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	List-Owner; bh=TPLlVVm88bLHf9lJ1oijhOTca/ov9IWYemcVLgUCXyc=; b=HfpNq1bjHfDeaD
+	d2ohOH7+yx27kDrMGFhXPB6fRHSt9RcRG9cIWBy/WBQlDAAIJgaXysp4u4kb4le5CQ4PyIZfVNzJE
+	JTktR6Oc3n5q1OlswdP/mLGw37rmY7F2pVDn3j3RcBFzFyjPbi97ZF/s/hCZ60vUnLKGtg9tNOXLD
+	oBINXPUHeSka2LNWx9jk+WPTjjPqWnnrC1ThLAiTG3RF1p+c2GlGcMeQ03HgnRPnQOoeMripJ4o6g
+	75UY8nHHDV+/jjjRzGmRHKLt+oEAzW6HzavznOzeygjeLK4NRCKGdbGM6ZTPZ88zKrD2G4KoJ+yH/
+	xWiqwuixV4msImeUImng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzA6p-0000000Giet-14Gd;
-	Thu, 18 Sep 2025 08:35:19 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1uzH9S-00000000Ybm-3tVx;
+	Thu, 18 Sep 2025 16:06:30 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzA6o-0000000GieT-09Wx;
-	Thu, 18 Sep 2025 08:35:18 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 59536601FC;
-	Thu, 18 Sep 2025 08:35:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 00F32C4CEE7;
-	Thu, 18 Sep 2025 08:35:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758184517;
-	bh=lpMnSBw5eXCFVEZ77Jf4N2uMk6YKZK4ppHKLrkinK64=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=cRJKn1RH/+X2dxtSg2ezHCIjH8dJoJ2gMmAjFXF3xzY8LmnmQrLmM3HNgOsO9Pdu8
-	 cFXgMnDwM0w+IUiFlBENbF5KJOit6j86lC3kr5Kka6ezL8FzTKzJOG6h7qJlGZw0RE
-	 MRifjO3AHzqyxG/NJYdcC84xIF2oa9geajtb1IVsNRFXM1Ka1X96vNr304J2y/kO0j
-	 EAQf/2KoXFDZzBXQvnzGwpQyCM5zudKZa4Czu9NuEo5j6bBK2xQvcjWEvugxa9yDtf
-	 +i+PgjLla+XqQu6i8/ABBPKelqUwGj/V/YO45TvgJjtYiUUCkkCHm+vDLd+FJidl06
-	 pHsY6CRzKMwAg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1098CAC59F;
-	Thu, 18 Sep 2025 08:35:16 +0000 (UTC)
-From: Keke Li via B4 Relay <devnull+keke.li.amlogic.com@kernel.org>
-Date: Thu, 18 Sep 2025 16:35:09 +0800
-Subject: [PATCH RESEND] dts: arm64: amlogic: Add ISP related nodes for C3
+	id 1uzH9Q-00000000Yb9-2l91
+	for linux-amlogic@bombadil.infradead.org;
+	Thu, 18 Sep 2025 16:06:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=References:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description:In-Reply-To;
+	bh=irDApffJ5TVFRyQKwcFhXwSY4n2Rzqd5l4J/n3RE/x8=; b=l4X/vmtogZKPbvdOEmuIltb7X1
+	yTkw9PIGgbSS8o0QV2N80uPLFtTkcq3aCKVK72HDhEL3u4VANBKLqVLwjPbnEFhKMY09GTahpEUJz
+	Y6/IuBVaLNzO+yLTFpNkvR5bnXRi69SrgS2IVCP/RTv3caNmv9fVmpttDxAumE8tqRUT7kzRVMKx0
+	7T41tVzJLMM7AFlihOJfG3w2p9jyVuX+CigBaXoG0DobiJmBmOQHzX8xJKJzkzGJeOxsG2RHgR0gD
+	0SXem1JWohKd4H2HUEQ1GOgeFxfiixjvXQXUdvswlY3L1mVZ9DSoGnqyxXAakhFztlXrEhJwabsZr
+	S++9KYEA==;
+Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uzH9J-00000007eXZ-49X3
+	for linux-amlogic@lists.infradead.org;
+	Thu, 18 Sep 2025 16:06:25 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250918160615euoutp0238361d7748c858979043ac26f5a42520~mbBzNmCD-1411314113euoutp02G
+	for <linux-amlogic@lists.infradead.org>; Thu, 18 Sep 2025 16:06:15 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250918160615euoutp0238361d7748c858979043ac26f5a42520~mbBzNmCD-1411314113euoutp02G
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1758211575;
+	bh=irDApffJ5TVFRyQKwcFhXwSY4n2Rzqd5l4J/n3RE/x8=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=XbRJiMmcTqplBU1DDiepwLmT/WVm6h08wFXh8Wp+cVq17sSUmw5Km4cjIBX+NX1j9
+	 DKacCdcBSP8R7tekGbRySsudnX+55wkXpsOkaaoZhE0h/UpNlqIfHbIT4XLXnDY9V2
+	 BEnx3ngawiTNWYXVMV0lQK1K/Y/oUBmV4i5JJ9Tw=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6~mbByfB1uf1725317253eucas1p1Y;
+	Thu, 18 Sep 2025 16:06:14 +0000 (GMT)
+Received: from AMDC4653.digital.local (unknown [106.120.51.32]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250918160614eusmtip2af2da5163fdeb2d9681208727274bc45~mbByDyyX02246622466eusmtip2L;
+	Thu, 18 Sep 2025 16:06:14 +0000 (GMT)
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+To: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
+	Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Kevin
+	Hilman <khilman@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>
+Subject: [PATCH] clk: amlogic: fix recent code refactoring
+Date: Thu, 18 Sep 2025 18:06:01 +0200
+Message-Id: <20250918160601.3286872-1-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Message-Id: <20250918-b4-c3isp-v1-1-5f48db6516c9@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Keke Li <keke.li@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758184516; l=5995;
- i=keke.li@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=UmVS1PU/90tdLntCDKm08KbbQoIVC5jklVv6ZZ2RpE0=;
- b=rOF2nql3OL4yABLAuC+LQqHynH/oDDl+RTCOUrGInFY9HEDC/KN8vaRuOultWR8rlGgKKIJWT
- mzviPpJYSmBA10Cqza6TcVMTR41EHARbh2ZWa72nAbwjbMEmcFmKK6j
-X-Developer-Key: i=keke.li@amlogic.com; a=ed25519;
- pk=XxNPTsQ0YqMJLLekV456eoKV5gbSlxnViB1k1DhfRmU=
-X-Endpoint-Received: by B4 Relay for keke.li@amlogic.com/20240902 with
- auth_id=204
-X-Original-From: Keke Li <keke.li@amlogic.com>
+X-CMS-MailID: 20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6
+X-Msg-Generator: CA
+X-RootMTR: 20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6
+X-EPHeader: CA
+X-CMS-RootMailID: 20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6
+References: <CGME20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6@eucas1p1.samsung.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250918_170622_142983_0A1C005B 
+X-CRM114-Status: GOOD (  13.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,243 +93,76 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: keke.li@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Keke Li <keke.li@amlogic.com>
+Commit 4c4e17f27013 ("clk: amlogic: naming consistency alignment")
+refactored some internals in the g12a meson clock driver. Unfortunately
+it introduced a bug in the clock init data, which results in the
+following kernel panic:
 
-Add the IMX290 sensor node description to the device tree file,
-which will be controlled via I2C bus with image data transmission
-through MIPI CSI-2 interface.
+Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+Mem abort info:
+...
+Data abort info:
+...
+[0000000000000000] user address but active_mm is swapper
+Internal error: Oops: 0000000096000004 [#1]  SMP
+Modules linked in:
+CPU: 4 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.17.0-rc1+ #11158 PREEMPT
+Hardware name: Hardkernel ODROID-N2 (DT)
+pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : __clk_register+0x60/0x92c
+lr : __clk_register+0x48/0x92c
+...
+Call trace:
+ __clk_register+0x60/0x92c (P)
+ devm_clk_hw_register+0x5c/0xd8
+ meson_eeclkc_probe+0x74/0x110
+ g12a_clkc_probe+0x2c/0x58
+ platform_probe+0x5c/0xac
+ really_probe+0xbc/0x298
+ __driver_probe_device+0x78/0x12c
+ driver_probe_device+0xdc/0x164
+ __driver_attach+0x9c/0x1ac
+ bus_for_each_dev+0x74/0xd0
+ driver_attach+0x24/0x30
+ bus_add_driver+0xe4/0x208
+ driver_register+0x60/0x128
+ __platform_driver_register+0x24/0x30
+ g12a_clkc_driver_init+0x1c/0x28
+ do_one_initcall+0x64/0x308
+ kernel_init_freeable+0x27c/0x4f8
+ kernel_init+0x20/0x1d8
+ ret_from_fork+0x10/0x20
+Code: 52800038 aa0003fc b9010018 52819801 (f9400260)
+---[ end trace 0000000000000000 ]---
 
-Add CSI-2, adapter and ISP nodes for C3 family.
+Fix this by correcting the clock init data.
 
-Signed-off-by: Keke Li <keke.li@amlogic.com>
+Fixes: 4c4e17f27013 ("clk: amlogic: naming consistency alignment")
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 ---
-The C3 ISP driver and device-tree bindings have been
-submitted. To facilitate using the C3 ISP driver, the
-related device nodes need to be added.
----
- .../boot/dts/amlogic/amlogic-c3-c308l-aw419.dts    | 84 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        | 88 ++++++++++++++++++++++
- 2 files changed, 172 insertions(+)
+ drivers/clk/meson/g12a.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-index 45f8631f9feb..e026604c55e6 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-@@ -17,6 +17,7 @@ / {
- 	aliases {
- 		serial0 = &uart_b;
- 		spi0 = &spifc;
-+		i2c2 = &i2c2;
- 	};
- 
- 	memory@0 {
-@@ -146,6 +147,36 @@ sdcard: regulator-sdcard {
- 		regulator-boot-on;
- 		regulator-always-on;
- 	};
-+
-+	camera_vdddo_1v8: regulator-camera-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "CAMERA_VDDDO";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	camera_vdda_2v9: regulator-camera-2v9 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "CAMERA_VDDA";
-+		regulator-min-microvolt = <2900000>;
-+		regulator-max-microvolt = <2900000>;
-+		vin-supply = <&vcc_5v>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	camera_vddd_1v2: regulator-camera-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "CAMERA_VDDD";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
- };
- 
- &uart_b {
-@@ -258,3 +289,56 @@ &sd {
- 	vmmc-supply = <&sdcard>;
- 	vqmmc-supply = <&sdcard>;
- };
-+
-+&i2c2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c2_pins1>;
-+	clock-frequency = <100000>; /* default 100k */
-+
-+	imx290: sensor0@1a {
-+		compatible = "sony,imx290";
-+		reg = <0x1a>;
-+		clocks = <&clkc_pll CLKID_MCLK0>;
-+		clock-names = "xclk";
-+		clock-frequency = <37125000>;
-+		assigned-clocks = <&clkc_pll CLKID_MCLK_PLL>,
-+				  <&clkc_pll CLKID_MCLK0>;
-+		assigned-clock-rates = <74250000>, <37125000>;
-+
-+		vdddo-supply = <&camera_vdddo_1v8>;
-+		vdda-supply = <&camera_vdda_2v9>;
-+		vddd-supply = <&camera_vddd_1v2>;
-+
-+		reset-gpios = <&gpio GPIOE_4 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			imx290_out: endpoint {
-+				data-lanes = <1 2 3 4>;
-+				link-frequencies = /bits/ 64 <222750000 148500000>;
-+				remote-endpoint = <&c3_mipi_csi_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&csi2 {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			c3_mipi_csi_in: endpoint {
-+				remote-endpoint = <&imx290_out>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
-+};
-+
-+&adap {
-+	status = "okay";
-+};
-+
-+&isp {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-index cb9ea3ca6ee0..a62fd8534209 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-@@ -992,5 +992,93 @@ mdio0: mdio {
- 				#size-cells = <0>;
- 			};
- 		};
-+
-+		csi2: csi2@ff018000 {
-+			compatible = "amlogic,c3-mipi-csi2";
-+			reg = <0x0 0xff018000 0x0 0x100>,
-+			      <0x0 0xff019000 0x0 0x300>,
-+			      <0x0 0xff01a000 0x0 0x100>;
-+			reg-names = "aphy", "dphy", "host";
-+			power-domains = <&pwrc PWRC_C3_MIPI_ISP_WRAP_ID>;
-+			clocks = <&clkc_periphs CLKID_VAPB>,
-+				 <&clkc_periphs CLKID_CSI_PHY0>;
-+			clock-names = "vapb", "phy0";
-+			assigned-clocks = <&clkc_periphs CLKID_VAPB>,
-+					  <&clkc_periphs CLKID_CSI_PHY0>;
-+			assigned-clock-rates = <0>, <200000000>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					c3_mipi_csi_out: endpoint {
-+						remote-endpoint = <&c3_adap_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		adap: adap@ff010000 {
-+			compatible = "amlogic,c3-mipi-adapter";
-+			reg = <0x0 0xff010000 0x0 0x100>,
-+			      <0x0 0xff01b000 0x0 0x100>,
-+			      <0x0 0xff01d000 0x0 0x200>;
-+			reg-names = "top", "fd", "rd";
-+			power-domains = <&pwrc PWRC_C3_ISP_TOP_ID>;
-+			clocks = <&clkc_periphs CLKID_VAPB>,
-+				 <&clkc_periphs CLKID_ISP0>;
-+			clock-names = "vapb", "isp0";
-+			assigned-clocks = <&clkc_periphs CLKID_VAPB>,
-+					  <&clkc_periphs CLKID_ISP0>;
-+			assigned-clock-rates = <0>, <400000000>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					c3_adap_in: endpoint {
-+						remote-endpoint = <&c3_mipi_csi_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					c3_adap_out: endpoint {
-+						remote-endpoint = <&c3_isp_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		isp: isp@ff000000 {
-+			compatible = "amlogic,c3-isp";
-+			reg = <0x0 0xff000000 0x0 0xf000>;
-+			reg-names = "isp";
-+			power-domains = <&pwrc PWRC_C3_ISP_TOP_ID>;
-+			clocks = <&clkc_periphs CLKID_VAPB>,
-+				 <&clkc_periphs CLKID_ISP0>;
-+			clock-names = "vapb", "isp0";
-+			assigned-clocks = <&clkc_periphs CLKID_VAPB>,
-+					  <&clkc_periphs CLKID_ISP0>;
-+			assigned-clock-rates = <0>, <400000000>;
-+			interrupts = <GIC_SPI 145 IRQ_TYPE_EDGE_RISING>;
-+			status = "disabled";
-+
-+			port {
-+				c3_isp_in: endpoint {
-+					remote-endpoint = <&c3_adap_out>;
-+				};
-+			};
-+		};
- 	};
- };
-
----
-base-commit: 84b92a499e7eca54ba1df6f6c6e01766025943f1
-change-id: 20250731-b4-c3isp-16531391a1cb
-
-Best regards,
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index 7e2c0ce91964..1413eadd8dc6 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -4919,7 +4919,7 @@ static struct clk_hw *g12b_hw_clks[] = {
+ 	[CLKID_CPUB_CLK_DYN0_SEL]	= &g12b_cpub_clk_dyn0_sel.hw,
+ 	[CLKID_CPUB_CLK_DYN0_DIV]	= &g12b_cpub_clk_dyn0_div.hw,
+ 	[CLKID_CPUB_CLK_DYN0]		= &g12b_cpub_clk_dyn0.hw,
+-	[CLKID_CPUB_CLK_DYN1_SEL]	= &g12b_cpub_clk_dyn1.hw,
++	[CLKID_CPUB_CLK_DYN1_SEL]	= &g12b_cpub_clk_dyn1_sel.hw,
+ 	[CLKID_CPUB_CLK_DYN1_DIV]	= &g12b_cpub_clk_dyn1_div.hw,
+ 	[CLKID_CPUB_CLK_DYN1]		= &g12b_cpub_clk_dyn1.hw,
+ 	[CLKID_CPUB_CLK_DYN]		= &g12b_cpub_clk_dyn.hw,
 -- 
-Keke Li <keke.li@amlogic.com>
-
+2.34.1
 
 
 _______________________________________________
