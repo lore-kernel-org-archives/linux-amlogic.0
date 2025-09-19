@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B690CAC5A5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD6EDCAC5AA
 	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Sep 2025 05:59:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,44 +12,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=X/7g0ot0xji41DtXZs+P+e2QIJOOSVftA8/iSW6rumI=; b=PXp08eBb2wQ7wI
-	Xqil1ClP4FQVgIDZ3KODFcDWEi/aW/IbhnQGGe89XYJ+F399QyuchYEKlpd9JKCdDUHSqGtlfuTIg
-	ldi9qcN9+GOhafHydfTpxfDnAXLtDaWmReqBglj40YJ88eGT9medJbPfD9ORZ7XN4RUwuzaCBObVS
-	ld8ZMfWQwwaHT34jqeIbALQCw+I7fzu8CB6/7R4rEWwOCrD/dZQ/crJKmHfvBZLFsC3VjlVlCW/q/
-	Gs5SilcBCXaZc/PaRacsnld+DgJTjMwSs8LRngMeKvx1oT5lt/fq6qlm28TJOEjmdH1I6xNGORSMc
-	j25sekzem+m4OJk+qUgg==;
+	List-Owner; bh=A7sXyxfJ6KpbgSvrKMeuYw0Ps0pqfIIlfxlCO3DyMXM=; b=VnIx7rPaWv/Lvq
+	g6StqSqZtANJFOqQnfX7dsqsEGftqLAR814q0gb0HgK1enUA1SWtTfh+/X2t9249+GfbqFgsdhsLU
+	ooEdjBfCReqTwuHeJak2H9GRm2uqCNxeI5xFQ1PtDz3byjUEKEelzwehz2/vu2pMwQjNsgJ3g+1Fe
+	wJ9oVQFO0pSVlAqFAosjd5LJ5/aLy02rdEy7ABMbSDQYEa5mOV5/EjP2zCiAzy7AGPR9sHJ5Nduau
+	/qyNz/L/ZAGLOwmaXyRrqatEIqlNEOS2AcGmldQWjiG7JR7uUi/1sFbmBOpgf9lMLsvvgFcJuatvk
+	UdznhQ81wRL0dmg8ENkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzU9J-00000001u3M-3OZa;
-	Fri, 19 Sep 2025 05:59:13 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1uzU9L-00000001u4c-04eF;
+	Fri, 19 Sep 2025 05:59:15 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzU9H-00000001u2q-3XqD;
-	Fri, 19 Sep 2025 05:59:11 +0000
+	id 1uzU9J-00000001u2u-2a1q;
+	Fri, 19 Sep 2025 05:59:14 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id EEB516021D;
+	by sea.source.kernel.org (Postfix) with ESMTP id DBBBE44D2C;
 	Fri, 19 Sep 2025 05:59:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 91F59C4CEF7;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AFA3AC4CEFC;
 	Fri, 19 Sep 2025 05:59:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1758261550;
-	bh=QLoUf6MbemExweEkSHZ6Cs4Fo/cev8YIR8uKZymd67k=;
+	bh=vxKxe6c/ehRwg4Y0ba6xYL+uSGYy+9cgQxN0cPnDXHQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=DdmmGPmg3TR3TMfxLtnLjyVcgG9cVOkyMT+JFYcLGXFUlyF1fl4JODVB8CF+VTHXK
-	 F9ExPLXTcQNzAbSun1YmtzOxc+VouR635zPDG0pVePHDRIHDOvzi9ZZZVYL5fu4RLC
-	 iBJgGBFBI6AbE13rqU7/kCXUFZ7z3V7dxU4Ljkv0OQ2KMBZUkLglxrWAxTBeSestrI
-	 hUefAAbJsKFsxUQ/jHTSvFFyQc2pV9XDWvHooqRrVDsW8m3jqWR2lF2rLMuUJMPpeD
-	 fLLjwS2Hb7+yXhhd3QQ0vXwBX4bLW/2ob86U+aXmdZsCkm7PtyeLRqY60sL8/9d8eb
-	 0NJyA/08sSyiw==
+	b=TqCCsuFtMp9lQjdZUunivKKbFPlxcgzDyostmwz+hkEVnx4ELwic6L9D7KlgGcVPz
+	 oilXZnHJ2ehuVRZcQl+xS+mzVvK/YVzZ/qB/pNArcwot88F8ZerxaFx+pXiD7z9kkU
+	 t/fTKpE7XB6F7FWt9Z7VLaddA/+tTsB36ZWjJcSmmk531NSfnoK67AY2Hx4BabvB+I
+	 KlT2SlZopfQ71ypEkS47zc5hKrBkXyqcfGMLaiyEc8WCzV08TH2Q3wqnIGBib40zh+
+	 KsmrmrdteLJEiNUhO5sV7nij3erbVRd2bUjmVxYgEIJ30XuTYbnZzWY0okMT2dAKos
+	 RKamPQ88mCn5A==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 81091CAC5A8;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A3001CAC592;
 	Fri, 19 Sep 2025 05:59:10 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Fri, 19 Sep 2025 13:58:59 +0800
-Subject: [PATCH v6 1/3] dt-bindings: clock: add video clock indices for
- Amlogic S4 SoC
+Date: Fri, 19 Sep 2025 13:59:01 +0800
+Subject: [PATCH v6 3/3] clk: amlogic: remove potentially unsafe flags from
+ S4 video clocks
 MIME-Version: 1.0
-Message-Id: <20250919-add_video_clk-v6-1-fe223161fb3f@amlogic.com>
+Message-Id: <20250919-add_video_clk-v6-3-fe223161fb3f@amlogic.com>
 References: <20250919-add_video_clk-v6-0-fe223161fb3f@amlogic.com>
 In-Reply-To: <20250919-add_video_clk-v6-0-fe223161fb3f@amlogic.com>
 To: Michael Turquette <mturquette@baylibre.com>, 
@@ -61,20 +61,22 @@ To: Michael Turquette <mturquette@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, Chuan Liu <chuan.liu@amlogic.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Conor Dooley <conor.dooley@microchip.com>
+ linux-arm-kernel@lists.infradead.org, Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758261548; l=1277;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758261548; l=1493;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=oFTBK7GmWCd1bTbEyxd9lw2QoXtneH1SDFph2xdcxG4=;
- b=qgOii3kCYety9Xap68/0E6rPikg6BVV+MXY2JSJ82KyPp0Vw9nm3HCAFXsY+3VabzegaeHx4p
- P0bxD3847auCuNMQOyYEvyTNeronrG/nAohEiE3pqXV7p+ioBRh4M0x
+ bh=pOpocCKNpaziWiHhDcJu1vTMZ5jdWqLvQRMLrgn1IXk=;
+ b=r14O5cCFsk9df7Bw/kETEQkh7o9IKmZ5Q7JHBFdXPEM/dxZevMJ3AfIfwazFWlcs/xX0Ssh/0
+ S6wSIFg/QLZBFbHr4/RDzoZr2PLcvw8lScuSWpG6CdNg7pj084sfRQX
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250918_225913_710692_A6056E77 
+X-CRM114-Status: UNSURE (   9.91  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,37 +96,51 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-Add indices for video encoder, demodulator and CVBS clocks.
+The video clocks enci, encp, vdac and hdmitx share the same clock
+source. Adding CLK_SET_RATE_PARENT to the mux may unintentionally change
+the shared parent clock, which could affect other video clocks.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/clk/meson/s4-peripherals.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
-index 861a331963ac..b0fc549f53e3 100644
---- a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
-+++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
-@@ -232,5 +232,16 @@
- #define CLKID_HDCP22_SKPCLK_SEL		222
- #define CLKID_HDCP22_SKPCLK_DIV		223
- #define CLKID_HDCP22_SKPCLK		224
-+#define CLKID_CTS_ENCL_SEL		225
-+#define CLKID_CTS_ENCL			226
-+#define CLKID_CDAC_SEL			227
-+#define CLKID_CDAC_DIV			228
-+#define CLKID_CDAC			229
-+#define CLKID_DEMOD_CORE_SEL		230
-+#define CLKID_DEMOD_CORE_DIV		231
-+#define CLKID_DEMOD_CORE		232
-+#define CLKID_ADC_EXTCLK_IN_SEL		233
-+#define CLKID_ADC_EXTCLK_IN_DIV		234
-+#define CLKID_ADC_EXTCLK_IN		235
+diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
+index aa500ea8ef9c..ba41fcd90588 100644
+--- a/drivers/clk/meson/s4-peripherals.c
++++ b/drivers/clk/meson/s4-peripherals.c
+@@ -1107,7 +1107,6 @@ static struct clk_regmap s4_cts_enci_sel = {
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_hws = s4_cts_parents,
+ 		.num_parents = ARRAY_SIZE(s4_cts_parents),
+-		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
  
- #endif /* _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H */
+@@ -1123,7 +1122,6 @@ static struct clk_regmap s4_cts_encp_sel = {
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_hws = s4_cts_parents,
+ 		.num_parents = ARRAY_SIZE(s4_cts_parents),
+-		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -1154,7 +1152,6 @@ static struct clk_regmap s4_cts_vdac_sel = {
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_hws = s4_cts_parents,
+ 		.num_parents = ARRAY_SIZE(s4_cts_parents),
+-		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -1185,7 +1182,6 @@ static struct clk_regmap s4_hdmi_tx_sel = {
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_hws = s4_hdmi_tx_parents,
+ 		.num_parents = ARRAY_SIZE(s4_hdmi_tx_parents),
+-		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
 
 -- 
 2.42.0
