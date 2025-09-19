@@ -4,93 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03357CAC592
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Sep 2025 07:46:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BE35CAC5A5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Sep 2025 08:40:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=9xR+P2T/d2Vcfjq+BbKCJ0MDtJLDTUenDcwdmcuNNe4=; b=Sj2Jyv24PoaOzW
-	ThgtHomVey2YRDCrN5eJDnMmhaHAmpI4yltlXU6NJ7tdLteRGpUCsmn2n9v8lNKZQDG3wq2AhuDmY
-	uwszeKzUPkpknVY5w1lt6ITcfaaGNrfOF1py2p9NmR5vNro0jbUcQLKtg5EQENeCUqgQT9CJtGQeR
-	fefj+CMJOSEEpy2hDaT8xmWoY4r5kmHD6ekkOGRK+CERWOYRH8Oo5i16JMVwxKmOUxH1fPqPjvbF9
-	qtiPVGCK/1UV5MlCItinGFz8E/phsuuWaTCdwJGIARylryBw3F1snstP2o22dddA0aithCM2FNfnz
-	7lk3eZuygPbrd8yKf9hQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=k26bkPslLfabpNA/Yt4EZ7A1V1GFY+JoAXue1N3Xybs=; b=kE++Yy0W1yO6WgZlignqZ7BfdZ
+	yjycqQKrJh9Dn80vYmm7z2weuPPzociPJB1fCDma/XhVUaxIsvEeMxoVCszkFRr1c/po+RW/6M053
+	xjjSc4HSAX6BtzqCxBOiFZxpgAkQEEumbUFG8AvyCsNejfqce02a1PAFtuqZKTWTf6s7q3INzJGvx
+	6trIu4PkUcOCgxD49UqaRaiER/shEsdZU9b0c9BzepT85b8+LUCD+aN+yOtXrFulQpXvmNSURSGL6
+	zVnmDTAKjkhZIm25TPy1a3jHHJ/vTbg23k5UjI3lN2j73U+2tZRVvaZClCAE1mZMXlbWBo/WoBaWd
+	rxARSkVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzVor-000000027YD-0TyP;
-	Fri, 19 Sep 2025 07:46:13 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1uzWfE-00000002HB6-19G6;
+	Fri, 19 Sep 2025 08:40:20 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzVop-000000027Xs-0xX0
-	for linux-amlogic@bombadil.infradead.org;
-	Fri, 19 Sep 2025 07:46:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:Cc:To:Reply-To:Subject:From:MIME-Version:Date:Message-ID:Sender:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=Sj//8F4fTHzOhzOgZFY9djcOmaWCzdNmUbED0aVzyoU=; b=It/FwiUdqJbv/2gTGRtOTcZDED
-	V1bCseNVv/S8AMkI+OpQVPtTjL2KVAVU+qYH6FhrGLLhxEPAOmZ8czAdYkdLv0/gr1w9osIJvkW77
-	V9gfbLEqASvHIdZJnNvRhtLQ7OEBpw1GJpGQYbMH91xqDSUpBGAspVPJGHy4uIIa0ZfX1sRzYEHNQ
-	WjY93DNjDX6vSM6ci9QxepuSHHXM1zswQAVQMDXPD+8kKrmIjOmm9uh9JYjJM8JB8QN4BA4ZCOAj3
-	tDVjR/lUf97EobyXRTr0VbNZC57N3+7Gmnk3leyurP0qT0zBnFgoSpEcpX/D3/v9IqATloIV1gD7S
-	GetFFTyA==;
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
-	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzVol-00000007mAT-3KEK
+	id 1uzWfB-00000002HAN-0vzf
 	for linux-amlogic@lists.infradead.org;
-	Fri, 19 Sep 2025 07:46:10 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3ee15b5435bso574859f8f.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 19 Sep 2025 00:46:06 -0700 (PDT)
+	Fri, 19 Sep 2025 08:40:18 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-45ed646b656so17936455e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 19 Sep 2025 01:40:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758267965; x=1758872765; darn=lists.infradead.org;
-        h=content-transfer-encoding:organization:autocrypt:content-language
-         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sj//8F4fTHzOhzOgZFY9djcOmaWCzdNmUbED0aVzyoU=;
-        b=xhEIQMCmrIcNZkE2yNTrlgdk/Z43CHtyopzogS3VAxk3sxI2kx45Mm6A2D3OSX7i6i
-         2+P34S9QUD2vhuqnR9NeBulObsvXszyrXJDGxv9aB95lNHAJy9247QIseWhNajyiUzhW
-         BG54bXApYLaEhCf+L5ywhjZ8dA55O0WTQyNcJXbjWCQmYv+LSHfV5CW2IpSqNymfb70+
-         LqNx7V/hYAPPZ0Yz0e1FRuRG+ZnrkAWQMi7a2C67bCBf6w7hxg1zd0GoOnoNCnsb5sto
-         luijO771Y7lipEO5/+Mf0t3+wO0DhQ5ZBZc8mqjZUWur8GmboGB7DXgnPyFiNloyUam9
-         g0uQ==
+        d=linaro.org; s=google; t=1758271215; x=1758876015; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/SvyxtZWUKI1Rdo1Vjcf+SLlqK70xnu3k0FLQZ6kagM=;
+        b=bhkAjkrw3RVWXaeGgPvKaomXQKyOwpBGywxZCZi2Z3vivUZUCQiRETUpw16FyqtJeq
+         lFR7sjEA1Z+NSc6uM6RgENQlXu4LpTulM16p8pIrKdpzqE/3il7frZWaM9q9lkS12Etu
+         920GRbahXUEWN1/1xLR3xsEX96umdkNzWeLko4RHU0tmQpJq48EfdonzMlZ+ggM+qDW3
+         +8ui0WBj/aVdNu249RiTBYQn+jNdEVarqOss7tA+RREw9tOXfau8SRYRRAGHZuck3fcR
+         pdAb/HjXaAt8lhh069kGJuAyJ2tqiHfBacv8Lalcf7aLHP5SOXJopkUBjSQymz9JEmhf
+         BI4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758267965; x=1758872765;
-        h=content-transfer-encoding:organization:autocrypt:content-language
-         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sj//8F4fTHzOhzOgZFY9djcOmaWCzdNmUbED0aVzyoU=;
-        b=QTydA8D8lYB5UJUtvKCUX/K2JKDBmNiVnkoLva9/J/AH+AUhaveM+jYhA3MkPSQ1s4
-         SukaBjnno5hP5CEiOIAKjypWkhLfkdoRIBbz4CtETapgIZSnNtvkDdYDQVhNXGrPnxOj
-         08A4vvec9oJGlg1/xK8PccXylfVTvKRBU1EeOb/pEicDTFbG57gIO9kehIxkdHfq+C5V
-         eKWK2CZ94i0sblZoSqnbcUj3g5E/IyUKPpfnWcjWVhr8+CJ3uIUeNvIjd/gCCqZs4FUi
-         4gK+dRRqGGz+eJuJjUDQTpSs7jVYwNQiLRTB7yFUUEIiJejpYy65GxLVzZe/msd44TJ7
-         UOZw==
-X-Gm-Message-State: AOJu0YxTquUR9cFWnNj5FiyP9dzkXVsD6hwrfevEkfdpmkwaSbolMQGW
-	6KLgTvVQ2H6FlnWo22q0GtmQWOEenINULTtUNFhL6zAIQEQGmqLT6VI6isuwrzRb6G4=
-X-Gm-Gg: ASbGncu2RwrP2MpbR6lcFOFq8oSGXgXClR25esO2+jGiHxOPRW9+/dvlxT50vda6Xzw
-	Vu/Erl6QH5IqZnJH9y8ncfMVtrrVAJoOwoqZB3Z9l1PyvhJBwPTDIEdLz4FvCgIFAg6qhknk2F0
-	Td6TR9PH48iCJZ/KI5hwSZAJKB0+SO8a+D0hGsJqNr33cehcvl+XeuJeLm0Q3GxG/URqf4msI7O
-	Ho/IqkTUEU2XeM5zSkhNvCfZoNBafr10xAbWPM0NAxUvnOUCk9ead2hxO6AGNeZ7zCT9VkZCseV
-	lBBp/P6meSFYM6hclONYo4nP93Oucj3AnBQHlJuMm4D65WQWM+wOvOeWEdJWntrlFO4wm8BxJP3
-	uao05fqKwchAqV8nMUo2G6VwNoYdmKUvYgx4WwYNIo5gJdOMBnj7MiMskLlb6Ns/d/tnmXyZO
-X-Google-Smtp-Source: AGHT+IF1xyuhwXqnZwy0ko9KlFPIehOGJYLXMgJOucjyGCzOVvKO3TFQuawkjLcp2ZJOEerqdy3ZqA==
-X-Received: by 2002:a05:6000:2dc5:b0:3ec:df85:351e with SMTP id ffacd0b85a97d-3ee7c55272dmr1797890f8f.11.1758267965437;
-        Fri, 19 Sep 2025 00:46:05 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758271215; x=1758876015;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/SvyxtZWUKI1Rdo1Vjcf+SLlqK70xnu3k0FLQZ6kagM=;
+        b=BST0ATDW1SOxLF/KIYJi469IDRKpLB5Pr8VsaiRt9yQ+jNd2Lfg+BbcHgZMc+JGkk6
+         gFp/lRoOaRMx2Nv/7v3zwAV/uCUaISlz/3+4rxH15X5icnAPnOUwq4xhRdEzmqwRcOkA
+         ewATfwhtFUVjVAH/hsCokdWjxUdfGp+opul+a66EQLJmXsWUqvZEvvB9G2nZJWXOgvgr
+         0+EmJ3qUIZLY4HykkTDuzs1LUTrO1InYXi+hA0bcQttvhUlDX41UDkrlo1oEQiMGXhE6
+         IUSYkOeCYh/Jzjbmp4SpiABYtC5/f/D+jSfpIMHG8amRvlaSw9ytacYeUzfzCWggPhIp
+         BueA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQcsJp0j1PiWKrhd+Gfmld71Pav9N4AnW9KdASPRsevaQjrv8DAkSOLocnhEdp9xqxpB484eGF9WCPtxMM@lists.infradead.org
+X-Gm-Message-State: AOJu0YwTXYbGY/9dl2swUQ+FkAo4/ISYCWvXsQev3e/xjH587niEBdY5
+	vdAeLnPLaPHK3DJZ3mRfycgXc1Zz0tSYK9wrs49jwX2E/cfRYEeiPpxgPi0Vi8sDk8Q=
+X-Gm-Gg: ASbGncv0k82ZOlzBiE9HhNE+w2NS7imZtDO5yhHM8uRuew6OrCD4x6g4DinJculbayF
+	clxdu/m/22ojPhocngWAp+Ax+BFIxBKWiqc7qJXWBJro3x+en5HMTSZD3nYC+TSfh4oN5y8aJcQ
+	3a70/YpI73Lb8aKDC7reNn+15AWRaHqM5JSkV5/ywN1VBjTlj05a3YFQx0UjFffdtNgtcFbUizP
+	hlKhujV5X20yEqKQwnfzNrndnw2JCATwtAM7sSu41HtyuN6HG2mQ8qTIF99nF5+jCjMvCNLg436
+	6EejhlCFmM60lEfJ4eM0fSb1Or6ZCVeDZXZngrbi9irW/GSjwQM64CWvMpY9RmFk52tdHHkDivn
+	TXHTjdoaIATTddhkTsmypoGip9395SJa5yKm5MIwoCmtnuj9LqGLQAYqHvQNC7LujygrGdo4K
+X-Google-Smtp-Source: AGHT+IELGqVFFcBCfJAgURUToEPyQ4ceFB5Cg74ffCU9dil9DlOeFPSPFEncoJEp1KJFhTnqnsa52Q==
+X-Received: by 2002:a05:600c:1d27:b0:45b:47e1:ef6a with SMTP id 5b1f17b1804b1-467f15d40b7mr18712765e9.37.1758271215177;
+        Fri, 19 Sep 2025 01:40:15 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:77b3:66a:b2a0:c20f? ([2a01:e0a:3d9:2080:77b3:66a:b2a0:c20f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ee0740841dsm6625247f8f.23.2025.09.19.00.46.04
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4613e754140sm113990945e9.21.2025.09.19.01.40.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Sep 2025 00:46:05 -0700 (PDT)
-Message-ID: <d40e7e96-4a7c-4e4f-b36f-750c6525b95c@linaro.org>
-Date: Fri, 19 Sep 2025 09:46:05 +0200
+        Fri, 19 Sep 2025 01:40:14 -0700 (PDT)
+Message-ID: <a1423d92-657e-45da-84de-7a7b77cc4eac@linaro.org>
+Date: Fri, 19 Sep 2025 10:40:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic ARM64 DT updates for v6.18
-To: soc@kernel.org, arm@kernel.org
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] clk: amlogic: fix recent code refactoring
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chuan Liu <chuan.liu@amlogic.com>
+References: <CGME20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6@eucas1p1.samsung.com>
+ <20250918160601.3286872-1-m.szyprowski@samsung.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -117,10 +112,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
+In-Reply-To: <20250918160601.3286872-1-m.szyprowski@samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250919_084608_118191_474BE64E 
-X-CRM114-Status: UNSURE (   8.81  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250919_014017_306665_40E5160E 
+X-CRM114-Status: GOOD (  16.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,72 +133,75 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On 18/09/2025 18:06, Marek Szyprowski wrote:
+> Commit 4c4e17f27013 ("clk: amlogic: naming consistency alignment")
+> refactored some internals in the g12a meson clock driver. Unfortunately
+> it introduced a bug in the clock init data, which results in the
+> following kernel panic:
+> 
+> Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+> Mem abort info:
+> ...
+> Data abort info:
+> ...
+> [0000000000000000] user address but active_mm is swapper
+> Internal error: Oops: 0000000096000004 [#1]  SMP
+> Modules linked in:
+> CPU: 4 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.17.0-rc1+ #11158 PREEMPT
+> Hardware name: Hardkernel ODROID-N2 (DT)
+> pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> pc : __clk_register+0x60/0x92c
+> lr : __clk_register+0x48/0x92c
+> ...
+> Call trace:
+>   __clk_register+0x60/0x92c (P)
+>   devm_clk_hw_register+0x5c/0xd8
+>   meson_eeclkc_probe+0x74/0x110
+>   g12a_clkc_probe+0x2c/0x58
+>   platform_probe+0x5c/0xac
+>   really_probe+0xbc/0x298
+>   __driver_probe_device+0x78/0x12c
+>   driver_probe_device+0xdc/0x164
+>   __driver_attach+0x9c/0x1ac
+>   bus_for_each_dev+0x74/0xd0
+>   driver_attach+0x24/0x30
+>   bus_add_driver+0xe4/0x208
+>   driver_register+0x60/0x128
+>   __platform_driver_register+0x24/0x30
+>   g12a_clkc_driver_init+0x1c/0x28
+>   do_one_initcall+0x64/0x308
+>   kernel_init_freeable+0x27c/0x4f8
+>   kernel_init+0x20/0x1d8
+>   ret_from_fork+0x10/0x20
+> Code: 52800038 aa0003fc b9010018 52819801 (f9400260)
+> ---[ end trace 0000000000000000 ]---
+> 
+> Fix this by correcting the clock init data.
+> 
+> Fixes: 4c4e17f27013 ("clk: amlogic: naming consistency alignment")
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> ---
+>   drivers/clk/meson/g12a.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+> index 7e2c0ce91964..1413eadd8dc6 100644
+> --- a/drivers/clk/meson/g12a.c
+> +++ b/drivers/clk/meson/g12a.c
+> @@ -4919,7 +4919,7 @@ static struct clk_hw *g12b_hw_clks[] = {
+>   	[CLKID_CPUB_CLK_DYN0_SEL]	= &g12b_cpub_clk_dyn0_sel.hw,
+>   	[CLKID_CPUB_CLK_DYN0_DIV]	= &g12b_cpub_clk_dyn0_div.hw,
+>   	[CLKID_CPUB_CLK_DYN0]		= &g12b_cpub_clk_dyn0.hw,
+> -	[CLKID_CPUB_CLK_DYN1_SEL]	= &g12b_cpub_clk_dyn1.hw,
+> +	[CLKID_CPUB_CLK_DYN1_SEL]	= &g12b_cpub_clk_dyn1_sel.hw,
+>   	[CLKID_CPUB_CLK_DYN1_DIV]	= &g12b_cpub_clk_dyn1_div.hw,
+>   	[CLKID_CPUB_CLK_DYN1]		= &g12b_cpub_clk_dyn1.hw,
+>   	[CLKID_CPUB_CLK_DYN]		= &g12b_cpub_clk_dyn.hw,
 
-Here's the Amlogic ARM64 DT changes for v6.18, mainly adding cache properties to all
-ARM cores in Amlogic SoCs, enabling RTC on C3, fixing RTC node layout on C3 and fixing
-long-running issues with SDCard on BananaPi S905x3 boards and the Odroid-C2.
+Thanks for the fix!
 
-Thanks,
-Neil
-
-The following changes since commit 8f5ae30d69d7543eee0d70083daf4de8fe15d585:
-
-   Linux 6.17-rc1 (2025-08-10 19:41:16 +0300)
-
-are available in the Git repository at:
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v6.18
-
-for you to fetch changes up to 663bfe77b6f70bcb33b2607e16c94fcb1029580e:
-
-   arm64: dts: amlogic: gxbb-odroidc2: remove UHS capability for SD card (2025-09-10 09:32:09 +0200)
-
-----------------------------------------------------------------
-Amlogic ARM64 DT for v6.18:
-- Add cache information to the Amlogic SoCs
-- Add RTC node for Amlogic C3 SoC
-- Fix PWM node for Amlogic C3 SoC
-- Remove UHS capability for Odroid-C2 SDCard
-
-----------------------------------------------------------------
-Anand Moon (11):
-       arm64: dts: amlogic: Add cache information to the Amlogic GXBB and GXL SoC
-       arm64: dts: amlogic: Add cache information to the Amlogic SM1 SoC
-       arm64: dts: amlogic: Add cache information to the Amlogic G12A SoCS
-       arm64: dts: amlogic: Add cache information to the Amlogic AXG SoCS
-       arm64: dts: amlogic: Add cache information to the Amlogic GXM SoCS
-       arm64: dts: amlogic: Add cache information to the Amlogic A1 SoC
-       arm64: dts: amlogic: Add cache information to the Amlogic A4 SoC
-       arm64: dts: amlogic: Add cache information to the Amlogic C3 SoC
-       arm64: dts: amlogic: Add cache information to the Amlogic S7 SoC
-       arm64: dts: amlogic: Add cache information to the Amlogic S922X SoC
-       arm64: dts: amlogic: Add cache information to the Amlogic T7 SoC
-
-Christian Hewitt (1):
-       arm64: dts: amlogic: sm1-bananapi: lower SD card speed for stability
-
-Valerio Setti (1):
-       arm64: dts: amlogic: gxbb-odroidc2: remove UHS capability for SD card
-
-Xianwei Zhao (2):
-       arm64: dts: amlogic: C3: Add RTC controller node
-       dts: arm: amlogic: fix pwm node for c3
-
-  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 37 +++++++++++
-  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        | 41 +++++++++++-
-  arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        | 36 +++++++++++
-  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        | 74 ++++++++++++++++++++++
-  arch/arm64/boot/dts/amlogic/meson-a1.dtsi          | 15 +++++
-  arch/arm64/boot/dts/amlogic/meson-axg.dtsi         | 21 ++++++
-  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi        | 27 ++++++++
-  arch/arm64/boot/dts/amlogic/meson-g12b.dtsi        | 62 ++++++++++++++++--
-  arch/arm64/boot/dts/amlogic/meson-gx.dtsi          | 27 ++++++++
-  .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  4 --
-  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         | 24 +++++++
-  .../arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi |  5 +-
-  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         | 27 ++++++++
-  13 files changed, 385 insertions(+), 15 deletions(-)
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on BananPi M2S
 
 _______________________________________________
 linux-amlogic mailing list
