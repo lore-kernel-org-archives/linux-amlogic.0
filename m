@@ -4,84 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E707FCAC59A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Sep 2025 16:06:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B690CAC5A5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Sep 2025 05:59:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:MIME-Version:Message-Id:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	List-Owner; bh=TPLlVVm88bLHf9lJ1oijhOTca/ov9IWYemcVLgUCXyc=; b=HfpNq1bjHfDeaD
-	d2ohOH7+yx27kDrMGFhXPB6fRHSt9RcRG9cIWBy/WBQlDAAIJgaXysp4u4kb4le5CQ4PyIZfVNzJE
-	JTktR6Oc3n5q1OlswdP/mLGw37rmY7F2pVDn3j3RcBFzFyjPbi97ZF/s/hCZ60vUnLKGtg9tNOXLD
-	oBINXPUHeSka2LNWx9jk+WPTjjPqWnnrC1ThLAiTG3RF1p+c2GlGcMeQ03HgnRPnQOoeMripJ4o6g
-	75UY8nHHDV+/jjjRzGmRHKLt+oEAzW6HzavznOzeygjeLK4NRCKGdbGM6ZTPZ88zKrD2G4KoJ+yH/
-	xWiqwuixV4msImeUImng==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=X/7g0ot0xji41DtXZs+P+e2QIJOOSVftA8/iSW6rumI=; b=PXp08eBb2wQ7wI
+	Xqil1ClP4FQVgIDZ3KODFcDWEi/aW/IbhnQGGe89XYJ+F399QyuchYEKlpd9JKCdDUHSqGtlfuTIg
+	ldi9qcN9+GOhafHydfTpxfDnAXLtDaWmReqBglj40YJ88eGT9medJbPfD9ORZ7XN4RUwuzaCBObVS
+	ld8ZMfWQwwaHT34jqeIbALQCw+I7fzu8CB6/7R4rEWwOCrD/dZQ/crJKmHfvBZLFsC3VjlVlCW/q/
+	Gs5SilcBCXaZc/PaRacsnld+DgJTjMwSs8LRngMeKvx1oT5lt/fq6qlm28TJOEjmdH1I6xNGORSMc
+	j25sekzem+m4OJk+qUgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzH9S-00000000Ybm-3tVx;
-	Thu, 18 Sep 2025 16:06:30 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1uzU9J-00000001u3M-3OZa;
+	Fri, 19 Sep 2025 05:59:13 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzH9Q-00000000Yb9-2l91
-	for linux-amlogic@bombadil.infradead.org;
-	Thu, 18 Sep 2025 16:06:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=References:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description:In-Reply-To;
-	bh=irDApffJ5TVFRyQKwcFhXwSY4n2Rzqd5l4J/n3RE/x8=; b=l4X/vmtogZKPbvdOEmuIltb7X1
-	yTkw9PIGgbSS8o0QV2N80uPLFtTkcq3aCKVK72HDhEL3u4VANBKLqVLwjPbnEFhKMY09GTahpEUJz
-	Y6/IuBVaLNzO+yLTFpNkvR5bnXRi69SrgS2IVCP/RTv3caNmv9fVmpttDxAumE8tqRUT7kzRVMKx0
-	7T41tVzJLMM7AFlihOJfG3w2p9jyVuX+CigBaXoG0DobiJmBmOQHzX8xJKJzkzGJeOxsG2RHgR0gD
-	0SXem1JWohKd4H2HUEQ1GOgeFxfiixjvXQXUdvswlY3L1mVZ9DSoGnqyxXAakhFztlXrEhJwabsZr
-	S++9KYEA==;
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
-	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzH9J-00000007eXZ-49X3
-	for linux-amlogic@lists.infradead.org;
-	Thu, 18 Sep 2025 16:06:25 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250918160615euoutp0238361d7748c858979043ac26f5a42520~mbBzNmCD-1411314113euoutp02G
-	for <linux-amlogic@lists.infradead.org>; Thu, 18 Sep 2025 16:06:15 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250918160615euoutp0238361d7748c858979043ac26f5a42520~mbBzNmCD-1411314113euoutp02G
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1758211575;
-	bh=irDApffJ5TVFRyQKwcFhXwSY4n2Rzqd5l4J/n3RE/x8=;
-	h=From:To:Cc:Subject:Date:References:From;
-	b=XbRJiMmcTqplBU1DDiepwLmT/WVm6h08wFXh8Wp+cVq17sSUmw5Km4cjIBX+NX1j9
-	 DKacCdcBSP8R7tekGbRySsudnX+55wkXpsOkaaoZhE0h/UpNlqIfHbIT4XLXnDY9V2
-	 BEnx3ngawiTNWYXVMV0lQK1K/Y/oUBmV4i5JJ9Tw=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6~mbByfB1uf1725317253eucas1p1Y;
-	Thu, 18 Sep 2025 16:06:14 +0000 (GMT)
-Received: from AMDC4653.digital.local (unknown [106.120.51.32]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250918160614eusmtip2af2da5163fdeb2d9681208727274bc45~mbByDyyX02246622466eusmtip2L;
-	Thu, 18 Sep 2025 16:06:14 +0000 (GMT)
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-To: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
-	Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Kevin
-	Hilman <khilman@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>
-Subject: [PATCH] clk: amlogic: fix recent code refactoring
-Date: Thu, 18 Sep 2025 18:06:01 +0200
-Message-Id: <20250918160601.3286872-1-m.szyprowski@samsung.com>
-X-Mailer: git-send-email 2.34.1
+	id 1uzU9H-00000001u2q-3XqD;
+	Fri, 19 Sep 2025 05:59:11 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id EEB516021D;
+	Fri, 19 Sep 2025 05:59:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 91F59C4CEF7;
+	Fri, 19 Sep 2025 05:59:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758261550;
+	bh=QLoUf6MbemExweEkSHZ6Cs4Fo/cev8YIR8uKZymd67k=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=DdmmGPmg3TR3TMfxLtnLjyVcgG9cVOkyMT+JFYcLGXFUlyF1fl4JODVB8CF+VTHXK
+	 F9ExPLXTcQNzAbSun1YmtzOxc+VouR635zPDG0pVePHDRIHDOvzi9ZZZVYL5fu4RLC
+	 iBJgGBFBI6AbE13rqU7/kCXUFZ7z3V7dxU4Ljkv0OQ2KMBZUkLglxrWAxTBeSestrI
+	 hUefAAbJsKFsxUQ/jHTSvFFyQc2pV9XDWvHooqRrVDsW8m3jqWR2lF2rLMuUJMPpeD
+	 fLLjwS2Hb7+yXhhd3QQ0vXwBX4bLW/2ob86U+aXmdZsCkm7PtyeLRqY60sL8/9d8eb
+	 0NJyA/08sSyiw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 81091CAC5A8;
+	Fri, 19 Sep 2025 05:59:10 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Date: Fri, 19 Sep 2025 13:58:59 +0800
+Subject: [PATCH v6 1/3] dt-bindings: clock: add video clock indices for
+ Amlogic S4 SoC
 MIME-Version: 1.0
-X-CMS-MailID: 20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6
-X-Msg-Generator: CA
-X-RootMTR: 20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6
-X-EPHeader: CA
-X-CMS-RootMailID: 20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6
-References: <CGME20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6@eucas1p1.samsung.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250918_170622_142983_0A1C005B 
-X-CRM114-Status: GOOD (  13.10  )
+Message-Id: <20250919-add_video_clk-v6-1-fe223161fb3f@amlogic.com>
+References: <20250919-add_video_clk-v6-0-fe223161fb3f@amlogic.com>
+In-Reply-To: <20250919-add_video_clk-v6-0-fe223161fb3f@amlogic.com>
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, Chuan Liu <chuan.liu@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758261548; l=1277;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=oFTBK7GmWCd1bTbEyxd9lw2QoXtneH1SDFph2xdcxG4=;
+ b=qgOii3kCYety9Xap68/0E6rPikg6BVV+MXY2JSJ82KyPp0Vw9nm3HCAFXsY+3VabzegaeHx4p
+ P0bxD3847auCuNMQOyYEvyTNeronrG/nAohEiE3pqXV7p+ioBRh4M0x
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,76 +86,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: chuan.liu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Commit 4c4e17f27013 ("clk: amlogic: naming consistency alignment")
-refactored some internals in the g12a meson clock driver. Unfortunately
-it introduced a bug in the clock init data, which results in the
-following kernel panic:
+From: Chuan Liu <chuan.liu@amlogic.com>
 
-Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
-Mem abort info:
-...
-Data abort info:
-...
-[0000000000000000] user address but active_mm is swapper
-Internal error: Oops: 0000000096000004 [#1]  SMP
-Modules linked in:
-CPU: 4 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.17.0-rc1+ #11158 PREEMPT
-Hardware name: Hardkernel ODROID-N2 (DT)
-pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-pc : __clk_register+0x60/0x92c
-lr : __clk_register+0x48/0x92c
-...
-Call trace:
- __clk_register+0x60/0x92c (P)
- devm_clk_hw_register+0x5c/0xd8
- meson_eeclkc_probe+0x74/0x110
- g12a_clkc_probe+0x2c/0x58
- platform_probe+0x5c/0xac
- really_probe+0xbc/0x298
- __driver_probe_device+0x78/0x12c
- driver_probe_device+0xdc/0x164
- __driver_attach+0x9c/0x1ac
- bus_for_each_dev+0x74/0xd0
- driver_attach+0x24/0x30
- bus_add_driver+0xe4/0x208
- driver_register+0x60/0x128
- __platform_driver_register+0x24/0x30
- g12a_clkc_driver_init+0x1c/0x28
- do_one_initcall+0x64/0x308
- kernel_init_freeable+0x27c/0x4f8
- kernel_init+0x20/0x1d8
- ret_from_fork+0x10/0x20
-Code: 52800038 aa0003fc b9010018 52819801 (f9400260)
----[ end trace 0000000000000000 ]---
+Add indices for video encoder, demodulator and CVBS clocks.
 
-Fix this by correcting the clock init data.
-
-Fixes: 4c4e17f27013 ("clk: amlogic: naming consistency alignment")
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/clk/meson/g12a.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index 7e2c0ce91964..1413eadd8dc6 100644
---- a/drivers/clk/meson/g12a.c
-+++ b/drivers/clk/meson/g12a.c
-@@ -4919,7 +4919,7 @@ static struct clk_hw *g12b_hw_clks[] = {
- 	[CLKID_CPUB_CLK_DYN0_SEL]	= &g12b_cpub_clk_dyn0_sel.hw,
- 	[CLKID_CPUB_CLK_DYN0_DIV]	= &g12b_cpub_clk_dyn0_div.hw,
- 	[CLKID_CPUB_CLK_DYN0]		= &g12b_cpub_clk_dyn0.hw,
--	[CLKID_CPUB_CLK_DYN1_SEL]	= &g12b_cpub_clk_dyn1.hw,
-+	[CLKID_CPUB_CLK_DYN1_SEL]	= &g12b_cpub_clk_dyn1_sel.hw,
- 	[CLKID_CPUB_CLK_DYN1_DIV]	= &g12b_cpub_clk_dyn1_div.hw,
- 	[CLKID_CPUB_CLK_DYN1]		= &g12b_cpub_clk_dyn1.hw,
- 	[CLKID_CPUB_CLK_DYN]		= &g12b_cpub_clk_dyn.hw,
+diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+index 861a331963ac..b0fc549f53e3 100644
+--- a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
++++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+@@ -232,5 +232,16 @@
+ #define CLKID_HDCP22_SKPCLK_SEL		222
+ #define CLKID_HDCP22_SKPCLK_DIV		223
+ #define CLKID_HDCP22_SKPCLK		224
++#define CLKID_CTS_ENCL_SEL		225
++#define CLKID_CTS_ENCL			226
++#define CLKID_CDAC_SEL			227
++#define CLKID_CDAC_DIV			228
++#define CLKID_CDAC			229
++#define CLKID_DEMOD_CORE_SEL		230
++#define CLKID_DEMOD_CORE_DIV		231
++#define CLKID_DEMOD_CORE		232
++#define CLKID_ADC_EXTCLK_IN_SEL		233
++#define CLKID_ADC_EXTCLK_IN_DIV		234
++#define CLKID_ADC_EXTCLK_IN		235
+ 
+ #endif /* _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H */
+
 -- 
-2.34.1
+2.42.0
+
 
 
 _______________________________________________
