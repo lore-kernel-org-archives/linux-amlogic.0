@@ -4,79 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 384B2CAC5A5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Sep 2025 05:59:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EC2ACAC59A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Sep 2025 07:43:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
+	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=k0ltokkLDlpGQTNyT4r0Ngr0Lyh9sR3nNpJugt9WjhI=; b=vEl5bUuztFpo+V
-	LSr0sP1Cv0QsD2/Iq6zED+R7o3M+qALS4e06dO7o0jMPjYo+RMmOZqEMIEv7yp+T83ziPkMfvnq9y
-	V3pFBeoRkoFqztTqkjQgOnFhEdJOlVvhKxPPX31Q2qecwjaOHaTcMPtngMxu/OeifC4F9dj/Zt0Pe
-	NmlV7LsHSjPovpj6gsceDye7KXKaXHnTSnpKTJOpJksYiXT1JQSdp6WFGsPcXINc2wkNYAZPBi3NY
-	YhF4QX8fttmqqOFVCi+mrBwFi81E+hwmk8xL3YLzmZlIGHccjtx5CZv3ZrJEfR1QzuOmpPAXxH/bA
-	NIV9ku9s5cjfKFzrXskQ==;
+	List-Owner; bh=S6l6MChfUS2Jzga2QOFzLZhV5krTlegT3WLqfoImgd4=; b=ru0kK2TBDxZ4dF
+	+w4jTQ3WZuRzZSUTeLXJXEZu5gitEEwSZCMpQQ4m6Brh9BdN74yrhRaM8u6LYZmNfrpS/Y2SzwcwL
+	lq+nfKXUFpUIoBZY0CyXtTAexWYfUpftB3bexN2Bv8HJW7a+9qGb2qgybkTGqGAMkKX0QSx+AI6K4
+	Ru7mVQdtlb9ZgQ9ZwvUJFSsGTao6UVoLphbixESavTJ5ce9J+Qx0mLnZ4ybwnW+K/ixc3KCvP/zyd
+	ztuJldwDogVx24/kDMl1Cjf/qgbdfQp//YqbgvsxADR61g71P0YSjO9t4Dq1jTu5T05eW8CwcFfcf
+	sJZeFs/QV82tn9/4K8Fg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzU9K-00000001u3p-0QAX;
-	Fri, 19 Sep 2025 05:59:14 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1uzVmY-00000002712-0RZd;
+	Fri, 19 Sep 2025 07:43:50 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzU9H-00000001u2p-3XnL;
-	Fri, 19 Sep 2025 05:59:11 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id DD22860140;
-	Fri, 19 Sep 2025 05:59:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 80730C4CEF0;
-	Fri, 19 Sep 2025 05:59:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758261550;
-	bh=ARN6P9/X424zlXLiKTbeILtanwkQtWd4O4u45ktBDnM=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=R/qUzZBHIsxOOMKjnRckwsYr37MOnatD+425r/3bMIPTdPagxJds5RmoXdQ1t7PSw
-	 VKC4ys+4Uc9nL8IE8GblocuztHLnidGyWn+8wb1a19Hlb+dz6TDoeQyv2we8B05JEU
-	 u1BFt8RduSHsac4/Qy8o8L0oHtV5TsnoV4ydfE4FxogDz0D3c2M4V7sflb0sX/Gk30
-	 fgIFe2FaZzjgQP5En/DtRwdZjk6xGCa9JI4dq8+nh6fTSBS/zxAxvOeQlVtUu3RwOD
-	 0w8Q1STDbdNCMp/PAJSrRasbDvrE4wPofWtXcP+AFKlIJGDYIYMy5rDycGS1U5k3Xd
-	 jaP8moY3eVaxw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6BC39CAC592;
-	Fri, 19 Sep 2025 05:59:10 +0000 (UTC)
-From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Subject: [PATCH v6 0/3] clk: amlogic: add video-related clocks for S4 SoC
-Date: Fri, 19 Sep 2025 13:58:58 +0800
-Message-Id: <20250919-add_video_clk-v6-0-fe223161fb3f@amlogic.com>
+	id 1uzVmU-0000000270G-3EaC
+	for linux-amlogic@lists.infradead.org;
+	Fri, 19 Sep 2025 07:43:48 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3ed20bdfdffso1786733f8f.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 19 Sep 2025 00:43:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758267824; x=1758872624; darn=lists.infradead.org;
+        h=content-transfer-encoding:organization:autocrypt:content-language
+         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+s3KzlEou4Arh9IszQHrxspSJWPrDvVkQR1g8Npkl2s=;
+        b=QtTPGWhULb/YD1Z43OTnj3IR5qzhXn2yxNRa8PIL1NxxunSgNxapEUhHrzysqM1nsw
+         XAH5BeafZyVSXK6mtPQUWovyjn6SMR5AVMKoRTmsSdzESyXUJqY+zHiazFqaMqAJIx3s
+         Yw7EewDUgoELty5uk+IGMDG2LwKFSQ2xBqcLEdZi/yJpCpvryXQU2qQcDORTnlZbnOpl
+         NAoUQJbln6HavoOwmZ2hwYXY53o5c6i5cUfp+AGP4VEwy22gKUWwmo/8OpCnhvA3Ey0r
+         375ssuXw+GHZrZrOYc5Mmd1adH1o1scwrjP74M6zUq9vtDk3i8lbVOMreR+JCuL66Xk7
+         EASg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758267824; x=1758872624;
+        h=content-transfer-encoding:organization:autocrypt:content-language
+         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+s3KzlEou4Arh9IszQHrxspSJWPrDvVkQR1g8Npkl2s=;
+        b=tkwxtl8yLoDlxyvTB5ZwSRqsjeLqx4hS0V2YvlVrAzNEwcjFcxWnMOi2zIfROwhWEg
+         5GCamtvx45TLfjkgGPm5RY7TfkvYwSlx7TxeVvk9gohDXtmhxosJz3EqUfq7XZYGtTEM
+         UJmIT9GSIfgZ5PARW28S5yTd3Z9evTaFDsLYdtk3Yo0Krp8TlTAxVoRYl+oxK1D7/R2M
+         /nZZKhVjqfo5uazjEIK/84P6JD1sIdoSIBT0yUISPD4G9HgtRppfs5NOqCTgPxNwUiDS
+         Ix8moYlqfZhwTAKBpvRznFvgRZNHQDG9u3XDyn+NKd/ZGOawk031X2Qhb3IdUppGUHA8
+         M+Uw==
+X-Gm-Message-State: AOJu0Yyl/gmCrp7U7oAL8ZhSmI1wOiMHGwzTpDYhhYIpYa27OL5MpcPe
+	/OiKpIYBXqzA2OaH71LBIlZQGtwW0o+cezBBlojz5p7HpuU04z2P1I6mmNSz8B42f2I=
+X-Gm-Gg: ASbGncuPF+DYZoFyLesVtqRSp0PSI7vOAglbu/ArO1RHyn3MQSLk8si/Fkli6utEvnS
+	hiMUG5L7R7VumfhGjWNUunBW0Jtmx2cjlZQMLDzu2G75R9npMrEDmZstuW8mFGzNAsI1CElqqcg
+	y65p7UsTN1tXmzLjtvQNjV0vl4bpEgms8gsH3deYENK+fO8A6unOIbeA/ibVlgSyw1upMFAy3BB
+	KnmCzDGHps7WyexEqMyXYHpzSfZijypIFqtIH1TuK+DCpFN0qShIC9u0+i0yUOkMLVxUh/YVL7l
+	BXI2qyMUz6qCL4NGh9SOhJ4LAns5w+w58CgzG3T53IJB6bsv0Zf3fH0r/Pl9bdru/nIBzeunkIN
+	IU1VBonFequRk9PBNeqs018jngc1cEYOkwss/JWe4+TAPWlAxwyIwpPhYF3GBG8eVQyybUg/s
+X-Google-Smtp-Source: AGHT+IHcpJllzu9GwIGxRnbuf2O8B6mLK+lDLJvJu6rm63gNOYwmoqZg+mDrovu4zkhtTeyVh08/AA==
+X-Received: by 2002:a05:6000:2681:b0:3ed:c9c0:73ce with SMTP id ffacd0b85a97d-3ee8407d43cmr1276205f8f.32.1758267824324;
+        Fri, 19 Sep 2025 00:43:44 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:77b3:66a:b2a0:c20f? ([2a01:e0a:3d9:2080:77b3:66a:b2a0:c20f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-464f4f9f339sm84730655e9.14.2025.09.19.00.43.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Sep 2025 00:43:43 -0700 (PDT)
+Message-ID: <003cb467-531d-4a8d-a97f-19d59154132f@linaro.org>
+Date: Fri, 19 Sep 2025 09:43:43 +0200
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIACPxzGgC/3XPzWoCMRSG4VuRrBs5+TmZpKveRxHJzxkNVVNmJ
- LTI3LvRjTKjyy/wvIdc2EhDppF9ri5soJrHXE5tmI8Vi3t/2hHPqW0mQSJ0ArlPaVtzorKNhx+
- eorIBNToQljXzO1Cf/+69703b+zyey/B/z1dxe31XqoID10Bdb5TqlRFf/ngouxzXsRzZrVXlw
- 1uh5142H4IM6LGXDvTSq4d3sLivmrcKdHQi2OBeeP3s3dzr5pEggki6894uPT55YeYemyeJ0im
- 0zsDs/9M0XQHF8HpArAEAAA==
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, Chuan Liu <chuan.liu@amlogic.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758261548; l=1984;
- i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=ARN6P9/X424zlXLiKTbeILtanwkQtWd4O4u45ktBDnM=;
- b=XXP6mQSo6VYw2td4KrrELnplOge6oWnhKcSZSb+u2Xr4OOmy2ahWYAZ3efQOYgziW+ySI+p7C
- kh9uYnVngwBDttGGcI1ZdGpcOzEN8UVV20TQpALs/I9Lf+4KyV+HqZ7
-X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
- pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
-X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
- auth_id=203
-X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [GIT PULL] Amlogic drivers updates for v6.18
+To: soc@kernel.org, arm@kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250919_004346_845420_C1FC1ACC 
+X-CRM114-Status: UNSURE (   6.78  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,64 +117,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: chuan.liu@amlogic.com
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch introduces new clock support for video processing components
-including the encoder, demodulator and CVBS interface modules.
+Hi,
 
-The related clocks have passed clk-measure verification.
+Here's drivers updates for Amlogic SoCs, 2 non-urgent fixes for the meson_sm driver.
 
-Some potentially unsafe flag configurations were identified in other
-video clocks, and they are cleaned up as part of this patch series.
+Thanks,
+Neil
 
-Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
----
-Changes in v6:
-- Split the flag removal changes for video clocks into a separate patch.
-- Link to v5: https://lore.kernel.org/r/20250916-add_video_clk-v5-0-e25293589601@amlogic.com
+The following changes since commit 8f5ae30d69d7543eee0d70083daf4de8fe15d585:
 
-Changes in v5:
-- Add Acked-by tags from Conor.
-- Remove unnecessary flags as suggested by Jerome.
-- Link to v4: https://lore.kernel.org/r/20250909-add_video_clk-v4-0-5e0c01d47aa8@amlogic.com
+   Linux 6.17-rc1 (2025-08-10 19:41:16 +0300)
 
-Changes in v4:
-- Add Acked-by tags from Rob and Krzysztof.
-- Fix compilation errors.
-- Link to v3: https://lore.kernel.org/r/20250905-add_video_clk-v3-0-8304c91b8b94@amlogic.com
+are available in the Git repository at:
 
-Changes in v3:
-- Rebase with Jerome's latest code base.
-- Link to v2: https://lore.kernel.org/r/20250814-add_video_clk-v2-0-bb2b5a5f2904@amlogic.com
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-drivers-for-v6.18
 
-Changes in v2:
-- Removed lcd_an clock tree (previously used in meson series but obsolete in
-newer chips).
-- Removed Rob's 'Acked-by' tag due to dt-binding changes (Is it necessary?).
-- Link to v1: https://lore.kernel.org/r/20250715-add_video_clk-v1-0-40e7f633f361@amlogic.com
+for you to fetch changes up to 0454346d1c5f7fccb3ef6e3103985de8ab3469f3:
 
----
-Chuan Liu (3):
-      dt-bindings: clock: add video clock indices for Amlogic S4 SoC
-      clk: amlogic: add video-related clocks for S4 SoC
-      clk: amlogic: remove potentially unsafe flags from S4 video clocks
+   firmware: firmware: meson-sm: fix compile-test default (2025-09-10 09:31:20 +0200)
 
- drivers/clk/meson/s4-peripherals.c                 | 206 ++++++++++++++++++++-
- .../clock/amlogic,s4-peripherals-clkc.h            |  11 ++
- 2 files changed, 213 insertions(+), 4 deletions(-)
----
-base-commit: 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
-change-id: 20250715-add_video_clk-dc38b5459018
+----------------------------------------------------------------
+Amlogic Drivers changes for v6.18:
+- device leak at probe in meson_sm
+- fix compile-test default for meson_sm
 
-Best regards,
--- 
-Chuan Liu <chuan.liu@amlogic.com>
+----------------------------------------------------------------
+Johan Hovold (2):
+       firmware: meson_sm: fix device leak at probe
+       firmware: firmware: meson-sm: fix compile-test default
 
-
+  drivers/firmware/meson/Kconfig    | 2 +-
+  drivers/firmware/meson/meson_sm.c | 7 ++++++-
+  2 files changed, 7 insertions(+), 2 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
