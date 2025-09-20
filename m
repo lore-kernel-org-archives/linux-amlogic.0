@@ -4,118 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9869CAC59A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Sep 2025 14:43:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81858CAC5A0
+	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Sep 2025 04:59:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/400MlzqA0iEq+ZKq7IvWSPSRyibrR9X3g2Ho79f9Q0=; b=wBAqpiYe5EewUPDQaw0fi69C2K
-	0FNrHwOsS76YUe+z0Cik6+Bz0JTyJAb9wXmnS5A9SboJksXMaVssRCnoPUCHieS96TavQWCtgcwG6
-	Q9VRGezl3V1JU/qm3iBj4Aoh06xX0R38ovnx4D3qqIWfr8aChKX/+TtZi0bGz3NGnXKVWNNFlBhrl
-	jgCxunKpulLTSuK2Gn1OcFpERgk9MFzhB3t5ShTfnzihp8H8WGtZ+lc9KznJjtq+3dyjTxmumVQKN
-	CkZxvvhwRmZefsOpsN4BMj+BHp1YbhznJcFENwB2Ie3bvgFcMgMWi6giw5aCpAxKNeRdX7sP2eUDQ
-	V+cjUloQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:To:Cc:From:Subject:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OZOkosVbfQOk2+rvDPO9waBf+jkkL9K2SajTqqJvakU=; b=P1TQiEt6ThNHOh
+	qZaqmVXu4JhYLS3NcjAPSjRvm8Pt5Fqvm85b/ZSLoB0Qvu5vyGcBauI5+hU2ieK/dCvvTHWCqvntY
+	SBmtLQxERhVIinYYRroVCSVk0AoO42gBenXodGzGgQEAu8yPTOlU6Qwg0ya/8G6Wf7QrHXwjqpX0S
+	kYps2UOXn7vsg1dZvigBs6n18NcDsAoP42jWZfVvVmApDcibx1U1E4ncNQh/bzYaIr6IWl5CKc68I
+	T567+qRZUf/LKItjqCRinlNokMln9fd6DGOaADlcYGSrrKc9dNe16Dxm70gk1+hP9b7BMZJeegjDs
+	rwnjf0BVtY70Je8mm4lw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzcKj-00000003BnO-0AKA;
-	Fri, 19 Sep 2025 14:43:33 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1uzph9-00000004kUK-3GsB;
+	Sat, 20 Sep 2025 04:59:35 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1uzcKf-00000003Bma-3RKp
+	id 1uzph7-00000004kU1-2MeF
 	for linux-amlogic@lists.infradead.org;
-	Fri, 19 Sep 2025 14:43:31 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-45df0cde41bso14606405e9.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 19 Sep 2025 07:43:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758293008; x=1758897808; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SWUtL1UQ6+yUSLVklwzlRQU7PKxN439/50grQVTKRY0=;
-        b=wSUOM623X8y0scFBmNINDM1u2zODpPxZMiu8zvlJJER5ln8lLnrZ5ApuPYxo81qjuO
-         quHy4fFs5axiDjUTSVNS8oB0QBFBtYH61FHX7Im97W4IGkeH8hNfoy61VcYPLrRZ9+Mj
-         WnZnxhhPS8giHZCwIOONbb8Mq2+mx7rovoBwsy/aaoE9h8XXVDI4ZoCwnACzo7m1xk6C
-         dtYUQ3bY4r7HgFTsi36tbldk513wj5aLcMwCM6jdLZzuXK620LTVJLk3RKbgRHXZm83v
-         y9wK+t3MDwsYB7q1IcGDxzsX4XK3BNj8YSVYiJxgwehD+KPOK14Bg8A8Yn1wOYwSgbaE
-         nwCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758293008; x=1758897808;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=SWUtL1UQ6+yUSLVklwzlRQU7PKxN439/50grQVTKRY0=;
-        b=A1jxCGschKCenRD9vHHldm3HAjNDOiVkXxVj0HsRLyIby7htje58CvhMrnv22CrTJM
-         P9rNDjO3+bA79RfRDm9BqEN5Vhdq5yPFehzIE1R/ux87R+xpOKVoixHTPcvqloapGqz0
-         B7bEuDeUkiLb8mNkAibyJsExgNevLYNxKwm1Ta50D2seTPcrNeK95i9ECcIZc9ww2Oc+
-         fj9uA02KTHrHD146sjHReWuEJZ+RM4dmObVF94u3jFa/v16v2fsqO54Bwl7E/MRyrdTY
-         5RDDCbjFqZ0zBktF1/6OtBIwV3S+lNUhdHhmT1KpNw64/PadkB3SmrtIdWwDuxo1VT7X
-         q3ww==
-X-Forwarded-Encrypted: i=1; AJvYcCXgE5V/eIruDUbnRHlrGxTNPrUEikhWX8ZkA1HjOoD8cfrjolMkVip5l4uHoODF5SuNA1qXL9YbI1njwZRL@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyu/x+Y6xeTFW2/ZlVp44UUoCL7PnhAW3Swg7FJuQ1qbQiVOueg
-	KMyA/vfYIfNm2d3RZ1PgWAaP8tML3wMkwFOGIKroXC15h27VX2MD4ANtzrsvPqs7h9WnIHhjGjF
-	I6gWM
-X-Gm-Gg: ASbGncsx3n2WgRcKFdugXEn5KLIbnmK8o14QmALN2lwmnBOhq31RMrb1zbiwJaXonHi
-	Ds3i/dqW3M+7kLg/7fnhEn2uu0L/3twv4J8UWJAEXXCUU6g6/2hT7+RQsPJssb5ktJMp9mtrU/w
-	x/y+fR+3QgBYm+iLTosCFGaiLkwiufdKZVHis8oA8ka5ZNqwNzWzWrOZR2Np0QvladMgxle2rom
-	x1bGzK6kMsZadUrNsMMX/d6sh+Ex2PoiCj2sstkxJwFfhBCsmK5fgoZAwW/buF3ynIWdlmJYemj
-	GVp0DOSbgw87/Ac8jRrNmwz1XYqaNUxxzJL+KMlo7ZxrTtt0ozaGLfIkbIIXzjrsYNgqDsJ5OsY
-	VONdUAutUoAAWjiy6xSdyWdqxMx3l/eiABWLwqskjOPGYtpEHa5L25ZIOq2JA66PibRXwCcoc
-X-Google-Smtp-Source: AGHT+IHCWl7rYd87fEkv3gPY4LPDSQXSViH2/pCqHBtI1svI/kh5EQAbPk2h8jWXnmgX+A4zRGpPIw==
-X-Received: by 2002:a05:600c:8b4b:b0:456:1a69:94fa with SMTP id 5b1f17b1804b1-467e7f7d89dmr29564495e9.13.1758293007734;
-        Fri, 19 Sep 2025 07:43:27 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:77b3:66a:b2a0:c20f? ([2a01:e0a:3d9:2080:77b3:66a:b2a0:c20f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4613d42bee6sm131246365e9.15.2025.09.19.07.43.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Sep 2025 07:43:27 -0700 (PDT)
-Message-ID: <36345378-6fd5-4a48-b5ea-0fcb6abda7ba@linaro.org>
-Date: Fri, 19 Sep 2025 16:43:26 +0200
+	Sat, 20 Sep 2025 04:59:34 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 412DA44912;
+	Sat, 20 Sep 2025 04:59:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12EB3C4CEEB;
+	Sat, 20 Sep 2025 04:59:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758344371;
+	bh=bZwm5S0mm6UMLKOrHzuuiC6Ew59OaikRwm6YhPA3rhk=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=LpnRi3YFym9rNPfNWPSQrdWW9DUIip1afdsGT/GIkVCzy47vxH7XT1jkxlMO3tCp1
+	 t66piTOvhTy17f5uwGzHK9YhZ+b49yFeBhiS9WUHF/t5H7cfBiFLLPRUztUBG13/qA
+	 by42+SclnHneA3ZkhRYgtY1S4upCEcxlFONot2yECUFtSRF/K39Wj6YolpVyqbUp1+
+	 KRUfvARwPEX08keQX+4DNDJQvgl8ISsmUGE6SlIMIIwtffkc+AWGidHBNX9cx/OuOX
+	 Ea4JV8dM055rFulfoiPbhD904F9/rl9gF83H0qDKI/D2Z4PyZms1BXJFjZuplm0Fx3
+	 jDw2mwzuS5yzg==
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH RESEND] dts: arm64: amlogic: Add ISP related nodes for C3
-To: keke.li@amlogic.com, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250918-b4-c3isp-v1-1-5f48db6516c9@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250918-b4-c3isp-v1-1-5f48db6516c9@amlogic.com>
+In-Reply-To: <20250918160601.3286872-1-m.szyprowski@samsung.com>
+References: <CGME20250918160614eucas1p1657e57414f7db6a57828fc256e8111a6@eucas1p1.samsung.com> <20250918160601.3286872-1-m.szyprowski@samsung.com>
+Subject: Re: [PATCH] clk: amlogic: fix recent code refactoring
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chuan Liu <chuan.liu@amlogic.com>
+To: Marek Szyprowski <m.szyprowski@samsung.com>, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org
+Date: Fri, 19 Sep 2025 21:59:30 -0700
+Message-ID: <175834437006.4354.11933545174004616373@lazor>
+User-Agent: alot/0.11
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250919_074329_921397_F5AAC750 
-X-CRM114-Status: GOOD (  15.40  )
+X-CRM114-CacheID: sfid-20250919_215933_625176_2E2452E2 
+X-CRM114-Status: UNSURE (   7.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,247 +67,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18/09/2025 10:35, Keke Li via B4 Relay wrote:
-> From: Keke Li <keke.li@amlogic.com>
+Quoting Marek Szyprowski (2025-09-18 09:06:01)
+> Commit 4c4e17f27013 ("clk: amlogic: naming consistency alignment")
+> refactored some internals in the g12a meson clock driver. Unfortunately
+> it introduced a bug in the clock init data, which results in the
+> following kernel panic:
 > 
-> Add the IMX290 sensor node description to the device tree file,
-> which will be controlled via I2C bus with image data transmission
-> through MIPI CSI-2 interface.
-> 
-> Add CSI-2, adapter and ISP nodes for C3 family.
-> 
-> Signed-off-by: Keke Li <keke.li@amlogic.com>
-> ---
-> The C3 ISP driver and device-tree bindings have been
-> submitted. To facilitate using the C3 ISP driver, the
-> related device nodes need to be added.
+> Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+> Mem abort info:
+> ...
+> Data abort info:
+> ...
+> [0000000000000000] user address but active_mm is swapper
+> Internal error: Oops: 0000000096000004 [#1]  SMP
+> Modules linked in:
+> CPU: 4 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.17.0-rc1+ #11158 PREEMPT
+> Hardware name: Hardkernel ODROID-N2 (DT)
+> pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> pc : __clk_register+0x60/0x92c
+> lr : __clk_register+0x48/0x92c
+> ...
+> Call trace:
+>  __clk_register+0x60/0x92c (P)
+>  devm_clk_hw_register+0x5c/0xd8
+>  meson_eeclkc_probe+0x74/0x110
+>  g12a_clkc_probe+0x2c/0x58
+>  platform_probe+0x5c/0xac
+>  really_probe+0xbc/0x298
+>  __driver_probe_device+0x78/0x12c
+>  driver_probe_device+0xdc/0x164
+>  __driver_attach+0x9c/0x1ac
+>  bus_for_each_dev+0x74/0xd0
+>  driver_attach+0x24/0x30
+>  bus_add_driver+0xe4/0x208
+>  driver_register+0x60/0x128
+>  __platform_driver_register+0x24/0x30
+>  g12a_clkc_driver_init+0x1c/0x28
+>  do_one_initcall+0x64/0x308
+>  kernel_init_freeable+0x27c/0x4f8
+>  kernel_init+0x20/0x1d8
+>  ret_from_fork+0x10/0x20
+> Code: 52800038 aa0003fc b9010018 52819801 (f9400260)
+> ---[ end trace 0000000000000000 ]---
 
-No need to resend until the bindings are merged.
-
-Neil
-
-> ---
->   .../boot/dts/amlogic/amlogic-c3-c308l-aw419.dts    | 84 +++++++++++++++++++++
->   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        | 88 ++++++++++++++++++++++
->   2 files changed, 172 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-> index 45f8631f9feb..e026604c55e6 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-> @@ -17,6 +17,7 @@ / {
->   	aliases {
->   		serial0 = &uart_b;
->   		spi0 = &spifc;
-> +		i2c2 = &i2c2;
->   	};
->   
->   	memory@0 {
-> @@ -146,6 +147,36 @@ sdcard: regulator-sdcard {
->   		regulator-boot-on;
->   		regulator-always-on;
->   	};
-> +
-> +	camera_vdddo_1v8: regulator-camera-1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "CAMERA_VDDDO";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vcc_3v3>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	camera_vdda_2v9: regulator-camera-2v9 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "CAMERA_VDDA";
-> +		regulator-min-microvolt = <2900000>;
-> +		regulator-max-microvolt = <2900000>;
-> +		vin-supply = <&vcc_5v>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	camera_vddd_1v2: regulator-camera-1v2 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "CAMERA_VDDD";
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +		vin-supply = <&vcc_3v3>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
->   };
->   
->   &uart_b {
-> @@ -258,3 +289,56 @@ &sd {
->   	vmmc-supply = <&sdcard>;
->   	vqmmc-supply = <&sdcard>;
->   };
-> +
-> +&i2c2 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c2_pins1>;
-> +	clock-frequency = <100000>; /* default 100k */
-> +
-> +	imx290: sensor0@1a {
-> +		compatible = "sony,imx290";
-> +		reg = <0x1a>;
-> +		clocks = <&clkc_pll CLKID_MCLK0>;
-> +		clock-names = "xclk";
-> +		clock-frequency = <37125000>;
-> +		assigned-clocks = <&clkc_pll CLKID_MCLK_PLL>,
-> +				  <&clkc_pll CLKID_MCLK0>;
-> +		assigned-clock-rates = <74250000>, <37125000>;
-> +
-> +		vdddo-supply = <&camera_vdddo_1v8>;
-> +		vdda-supply = <&camera_vdda_2v9>;
-> +		vddd-supply = <&camera_vddd_1v2>;
-> +
-> +		reset-gpios = <&gpio GPIOE_4 GPIO_ACTIVE_LOW>;
-> +
-> +		port {
-> +			imx290_out: endpoint {
-> +				data-lanes = <1 2 3 4>;
-> +				link-frequencies = /bits/ 64 <222750000 148500000>;
-> +				remote-endpoint = <&c3_mipi_csi_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&csi2 {
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@0 {
-> +			c3_mipi_csi_in: endpoint {
-> +				remote-endpoint = <&imx290_out>;
-> +				data-lanes = <1 2 3 4>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&adap {
-> +	status = "okay";
-> +};
-> +
-> +&isp {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> index cb9ea3ca6ee0..a62fd8534209 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -992,5 +992,93 @@ mdio0: mdio {
->   				#size-cells = <0>;
->   			};
->   		};
-> +
-> +		csi2: csi2@ff018000 {
-> +			compatible = "amlogic,c3-mipi-csi2";
-> +			reg = <0x0 0xff018000 0x0 0x100>,
-> +			      <0x0 0xff019000 0x0 0x300>,
-> +			      <0x0 0xff01a000 0x0 0x100>;
-> +			reg-names = "aphy", "dphy", "host";
-> +			power-domains = <&pwrc PWRC_C3_MIPI_ISP_WRAP_ID>;
-> +			clocks = <&clkc_periphs CLKID_VAPB>,
-> +				 <&clkc_periphs CLKID_CSI_PHY0>;
-> +			clock-names = "vapb", "phy0";
-> +			assigned-clocks = <&clkc_periphs CLKID_VAPB>,
-> +					  <&clkc_periphs CLKID_CSI_PHY0>;
-> +			assigned-clock-rates = <0>, <200000000>;
-> +			status = "disabled";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					c3_mipi_csi_out: endpoint {
-> +						remote-endpoint = <&c3_adap_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		adap: adap@ff010000 {
-> +			compatible = "amlogic,c3-mipi-adapter";
-> +			reg = <0x0 0xff010000 0x0 0x100>,
-> +			      <0x0 0xff01b000 0x0 0x100>,
-> +			      <0x0 0xff01d000 0x0 0x200>;
-> +			reg-names = "top", "fd", "rd";
-> +			power-domains = <&pwrc PWRC_C3_ISP_TOP_ID>;
-> +			clocks = <&clkc_periphs CLKID_VAPB>,
-> +				 <&clkc_periphs CLKID_ISP0>;
-> +			clock-names = "vapb", "isp0";
-> +			assigned-clocks = <&clkc_periphs CLKID_VAPB>,
-> +					  <&clkc_periphs CLKID_ISP0>;
-> +			assigned-clock-rates = <0>, <400000000>;
-> +			status = "disabled";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					c3_adap_in: endpoint {
-> +						remote-endpoint = <&c3_mipi_csi_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					c3_adap_out: endpoint {
-> +						remote-endpoint = <&c3_isp_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		isp: isp@ff000000 {
-> +			compatible = "amlogic,c3-isp";
-> +			reg = <0x0 0xff000000 0x0 0xf000>;
-> +			reg-names = "isp";
-> +			power-domains = <&pwrc PWRC_C3_ISP_TOP_ID>;
-> +			clocks = <&clkc_periphs CLKID_VAPB>,
-> +				 <&clkc_periphs CLKID_ISP0>;
-> +			clock-names = "vapb", "isp0";
-> +			assigned-clocks = <&clkc_periphs CLKID_VAPB>,
-> +					  <&clkc_periphs CLKID_ISP0>;
-> +			assigned-clock-rates = <0>, <400000000>;
-> +			interrupts = <GIC_SPI 145 IRQ_TYPE_EDGE_RISING>;
-> +			status = "disabled";
-> +
-> +			port {
-> +				c3_isp_in: endpoint {
-> +					remote-endpoint = <&c3_adap_out>;
-> +				};
-> +			};
-> +		};
->   	};
->   };
-> 
-> ---
-> base-commit: 84b92a499e7eca54ba1df6f6c6e01766025943f1
-> change-id: 20250731-b4-c3isp-16531391a1cb
-> 
-> Best regards,
-
+Applied to clk-next
 
 _______________________________________________
 linux-amlogic mailing list
