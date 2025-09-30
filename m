@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3A9CCCA471
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Sep 2025 09:38:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F193CCA472
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Sep 2025 09:38:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Wg2xUvR+VQJnE30NU/I2hDjcjlJbfbQhx4xjGTudvdo=; b=CAELNT+4XAv8iC
-	Le7x9HVE/Uch4H+vV7IIqE4mNLesArvVyV4GLne87vUZfMulHgOm8VQz1P5rr2/zf0yOkO6ATQYgT
-	maFGyk/+mu32+PAGm0tEIuIYZ3yD7+SHcxkGzGDLGzU9NOw1G7QZox/zvvVWR6RncLM1qGqH0yif8
-	WJSYrhvHHOjXw39JlVPHc9lHJsEX11ASeYgPV7pJTpBVjWZnKIx2lUfEESQcMhq+EEhJ8ZJMQ1LWV
-	/dM1v8Zp6SFcO290uQ2qhzNpr/VQbEXJJ9kP+6HTq3apojOL2FlfWHkVwGYp5jKNTaYtC78fEpO7K
-	gMF5iDDxkl4aIuYxzTSA==;
+	List-Owner; bh=5WdwG1KS4ecx4o3uGRXaqT6jA1cgW6ZwW4rqKW7hRxM=; b=VlgMxxJd9gVWCn
+	y/H6J3W5OC8a/iY5EgSNdTtvHRAv3809SC0u426HKPQebOocG0pnBtUlOI4nFuANqBpGmapzWnitq
+	/emYJIcMYYAw2bInU6/XBI15y1FKM2O15lMwEI5X2730ckfbM6H+egcTeZIW8SKyQW/sQrB19wiA6
+	NrORdUQcF+j6TzXrF1ZgchqQ5t7gIb3p2yXP62JB/lYAu50RUo/11vBZhvjl6G5fKCKqEhXvaAxLv
+	kH/8GICw081y/w5rPKqaZpB3ly/sETQSVND43CgwhVBBKsgmM5LtC4fKN7RfLV2Sdswb/h8RkiUuH
+	kTliqiiPszclUQVrDbdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v3WoM-00000004qb9-2kyq;
-	Tue, 30 Sep 2025 09:38:18 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1v3WoL-00000004qZc-3qFP;
+	Tue, 30 Sep 2025 09:38:17 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v3Wne-00000004q2N-17C5;
+	id 1v3Wnd-00000004q1d-2yRB;
 	Tue, 30 Sep 2025 09:37:35 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 00AC844595;
-	Tue, 30 Sep 2025 09:37:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D3BA9C116C6;
+	by sea.source.kernel.org (Postfix) with ESMTP id BEC464827B;
+	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8CAB8C19425;
 	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1759225051;
-	bh=m3tcUPTeAy9N3b8of7vcp0PLY10EBp4gFZGLnaPlv6M=;
+	bh=Bo1CFOtg4gIIbGHHtViZt9t2cUZjQ5keBMKPre0nFbA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=OPEjn6X1XzS8pl7W7CUbHiZrYdFOCC4R6XhFwkqMewH7hocoFtKiH1NZSQqv6NFdO
-	 tt/Ixu07a+VxwGCZgRh7aDxrYjZT5iHbxRK4mP40EN1lEru7Hm99LhlniHBMwB/J5I
-	 ehEOxkXCJHGE4jBGjXiHiFxUJ8VWi1vqcnAc9hoX4C5JifJNZZtX3F1O3kWmeSC966
-	 lBhKnxm/eA0QgIiy/QtdLJucUT7WekNPfRSeEdJ5CdL6Fg+ZLxwT2qL4mqEfKuzrxC
-	 FAUyGaOIog3Q6fWWmVnqg3RWWt6IkyuaSBEc6sgmPru9L0huhJMq+um6DbKoQeLYXF
-	 1iSuKkyW2PwNg==
+	b=GPfn31fgjG1WCcX9ALUQsxP89/Qfck26jzsNY9XnrKfhV/yXKeAws1Kq0O0201Z9v
+	 ow5TtEoDEEBUzqsEj+aYjQXG82ZQuj/eL+9xm3SFkHMTyNIEH50U0c+ZYEXEpneXHL
+	 xQHXu238GR8JPzZANR0ut1CMTGVmhMC27j5oIUZYZIK2bAgGAw0ymO7fgBf4dfcWB7
+	 9KLroX1CzB8Jh2ETP/ApgqgaP1ax9kwXjggy+SU1uWNHV0QApfbshMFdsBX3fvdwmf
+	 m9t4AXxa37ZVXsbcV7yjUj5Lz5SirXrKfbfTFSlRXt6rDPmKaHUnIXyYjGa7Lowe5k
+	 8vK6roUnLCA8Q==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C74A6CCA470;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 801B5CAC5BC;
 	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Tue, 30 Sep 2025 17:37:22 +0800
-Subject: [PATCH 09/19] arm64: dts: amlogic: A4: Add scmi-clk node
+Date: Tue, 30 Sep 2025 17:37:18 +0800
+Subject: [PATCH 05/19] clk: amlogic: Correct l_detect bit control
 MIME-Version: 1.0
-Message-Id: <20250930-a4_a5_add_clock_driver-v1-9-a9acf7951589@amlogic.com>
+Message-Id: <20250930-a4_a5_add_clock_driver-v1-5-a9acf7951589@amlogic.com>
 References: <20250930-a4_a5_add_clock_driver-v1-0-a9acf7951589@amlogic.com>
 In-Reply-To: <20250930-a4_a5_add_clock_driver-v1-0-a9acf7951589@amlogic.com>
 To: Michael Turquette <mturquette@baylibre.com>, 
@@ -63,20 +63,19 @@ Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759225047; l=1181;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759225047; l=2616;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=+Iyb8ucZxc+f5S3pcp3snpI9+yN2dfYAfr8oIOUIHcQ=;
- b=lcBDqboM/iymoRmBzRwcVori330OjmwhgepC7924uxxFr8NPhQ3vWlz/SUAhF46VD/1UJca2J
- X4tLUGHjoR8B5T7MHj0vHgNS+dSMKktQ8J6H0QpvswRFRb53ARknA05
+ bh=LtshPz5QhFtZiWYcR/aI7iIkvqDd3NT0MWjkTbs07gA=;
+ b=pVc8LO0dn09seJBcSmtce0lp3bWlsFa5f3MvlD1HYbzetWEr7JIaBPn2THXXkqz1OKnWyZ1jX
+ Y9vw3nm/3PHDfiH5MrxfhloJIvhwZ3Nfkx8qYHld3DZY+smlimqbrKU
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250930_023734_344070_10659A91 
-X-CRM114-Status: UNSURE (   8.33  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20250930_023733_880317_DCDA2E70 
+X-CRM114-Status: GOOD (  13.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,52 +95,78 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-Add scmi-clk device node information for the Amlogic A4 SoC family.
+l_detect controls the enable/disable of the PLL lock-detect module.
+
+For A1, the l_detect signal is active-low:
+0 -> Enable lock-detect module;
+1 -> Disable lock-detect module.
 
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ drivers/clk/meson/a1-pll.c  |  1 +
+ drivers/clk/meson/clk-pll.c | 16 ++++++++++++----
+ drivers/clk/meson/clk-pll.h |  2 ++
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-index 563bc2e662fa..75a87f093d8d 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-@@ -49,6 +49,34 @@ pwrc: power-controller {
- 			#power-domain-cells = <1>;
- 		};
- 	};
-+
-+	sram0: sram@f7033000 {
-+		compatible = "mmio-sram";
-+		reg = <0x0 0xf7033000 0x0 0x100>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0x0 0xf7033000 0x100>;
-+
-+		scmi_buf0: scmi-sram-section@0 {
-+			compatible = "arm,scmi-shmem";
-+			reg = <0x0 0x100>;
-+		};
-+	};
-+
-+	firmware {
-+		scmi {
-+			compatible = "arm,scmi-smc";
-+			arm,smc-id = <0x820000C1>;
-+			shmem = <&scmi_buf0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			scmi_clk: protocol@14 {
-+				reg = <0x14>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+	};
- };
+diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+index 1f82e9c7c14e..bfe559c71402 100644
+--- a/drivers/clk/meson/a1-pll.c
++++ b/drivers/clk/meson/a1-pll.c
+@@ -137,6 +137,7 @@ static struct clk_regmap a1_hifi_pll = {
+ 		.range = &a1_hifi_pll_range,
+ 		.init_regs = a1_hifi_pll_init_regs,
+ 		.init_count = ARRAY_SIZE(a1_hifi_pll_init_regs),
++		.flags = CLK_MESON_PLL_L_DETECT_N
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "hifi_pll",
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index 8bddd44d4738..c1e4c5710015 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -384,8 +384,12 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+ 		meson_parm_write(clk->map, &pll->rst, 1);
  
- &apb {
+ 	/* Disable the PLL lock-detect module */
+-	if (MESON_PARM_APPLICABLE(&pll->l_detect))
+-		meson_parm_write(clk->map, &pll->l_detect, 1);
++	if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
++		if (pll->flags & CLK_MESON_PLL_L_DETECT_N)
++			meson_parm_write(clk->map, &pll->l_detect, 1);
++		else
++			meson_parm_write(clk->map, &pll->l_detect, 0);
++	}
+ 
+ 	/* Enable the pll */
+ 	meson_parm_write(clk->map, &pll->en, 1);
+@@ -413,8 +417,12 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+ 	udelay(20);
+ 
+ 	/* Enable the lock-detect module */
+-	if (MESON_PARM_APPLICABLE(&pll->l_detect))
+-		meson_parm_write(clk->map, &pll->l_detect, 0);
++	if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
++		if (pll->flags & CLK_MESON_PLL_L_DETECT_N)
++			meson_parm_write(clk->map, &pll->l_detect, 0);
++		else
++			meson_parm_write(clk->map, &pll->l_detect, 1);
++	}
+ 
+ 	if (meson_clk_pll_wait_lock(hw)) {
+ 		/* disable PLL when PLL lock failed. */
+diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+index 949157fb7bf5..83295a24721f 100644
+--- a/drivers/clk/meson/clk-pll.h
++++ b/drivers/clk/meson/clk-pll.h
+@@ -29,6 +29,8 @@ struct pll_mult_range {
+ 
+ #define CLK_MESON_PLL_ROUND_CLOSEST	BIT(0)
+ #define CLK_MESON_PLL_NOINIT_ENABLED	BIT(1)
++/* l_detect signal is active-low */
++#define CLK_MESON_PLL_L_DETECT_N	BIT(2)
+ 
+ struct meson_clk_pll_data {
+ 	struct parm en;
 
 -- 
 2.42.0
