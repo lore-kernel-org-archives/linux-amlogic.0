@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E62EFCCA471
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Sep 2025 09:37:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1779BCCA472
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Sep 2025 09:38:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MkfaOoXRPhH6zsNGF0G1QOK5vmpNQyD654MBJ8O2/MY=; b=q07Y7mUL068lMv
-	RnCAC62O4SKqvQiVZL8MoUMLSaFbPwk0B8FF/cHSgmEPji+Zlu6+5PHATuv7sKiHOFx/rBuxq9EGt
-	e+JQwZaVphND/gcuFjMPB3YePV5zebpfcCjAOG5TK08ZcKNK5xAkucVIwYRrRFnE/0P59I3jbZZ96
-	lbxYKJLEduniY2K0XDEQ1nPTAnd9Mkx4NJNKroQp0FN+A9oelQCSP/6K+dXfcrmnQpZ/c9mJZRG5K
-	qLJWVMaxkrviVGlZ1Qvw0XlLmb9rW25zR3hz15hS2T9kxQio7EeoDJAtyOL+gP51CMplqBR7bUs31
-	PM5pUq6sErwaXtSfIdKw==;
+	List-Owner; bh=EyzaoadkGRBy+Jld/pmrFWsLzWUb+pNIhjVsw5mA1fw=; b=Y0SWiqO97fIKZI
+	W7aGhDxmskQPVkB9itH8DJPP9VLcbfclToTiNCErW+/P5RH7xPwUVHW1JMnWsf6NyB4yRPhlmZ4OU
+	lmsy1WfunCPe99pO0mtUjD2Dx06S/vF5TIyfa6wCZ35rf9IzdtAjoNJnl/Z7mRxBpBZWaaCUBB6p5
+	uKRlc3ibSC4NR5IyTNIw01fwpZEuEMaUuwjtGyW5DnAoeRY/FFAwIfWTVbdmMSQ5xeYNq+CuIKftG
+	5HIEo2oKNuoBKVuigLfmcqvW8HuYYidfTPmtnf2fTvgQ+anCnopnw+ZfDsMHEwZc9g9uQFikdbETc
+	Y+TXwGkXaqrTzYe2Iczg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v3Wnq-00000004qDl-06s5;
-	Tue, 30 Sep 2025 09:37:46 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1v3Wo4-00000004qM8-3dTL;
+	Tue, 30 Sep 2025 09:38:01 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v3Wnc-00000004q0N-29WA;
+	id 1v3Wnc-00000004q0K-2QNc;
 	Tue, 30 Sep 2025 09:37:34 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id BB1AB4826D;
+	by sea.source.kernel.org (Postfix) with ESMTP id 9143D45AAF;
 	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 98B3FC2BCAF;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 645D0C4AF0C;
 	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1759225051;
-	bh=YxnyBmHxHXzYw9b8hnimJetb+1Ax5l5URVrr4n8BLuQ=;
+	bh=Ln6ckunYF1rhHX/pMi0GZqFO1vw1cbwS0hhp7CdYdMQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=nbowOD043XUfT4f0Yxlyoo5OVZnB40eqlO5t0xPQxBSSD9JI7WyKAUgg3Q8OfWhw5
-	 RL6MIcbXGMn+URG1vzBPntmntV7sXXl6IbzkuhO8LnmJzt9vdTVv6dVgOQmZkcGWz3
-	 HkmGGkBwypfBdybroOOoeFnkeg0fUwYQUi8Or6c2d8xc+Djo3M4H52l+RxDKZKFbcN
-	 U9UZ6eKq1HDUc8r3kAD5Th0ozB2gGSCcLNxYFAcVW8U7D4LrTfDFLSJhGwKbChaxDk
-	 DdS21jjICCK6FLPJdR56svsHekatDhrJAzw/ycwQEEw7zjiCFCcQhn8r5Yeh3k7QpH
-	 wwyPZ8KAlP92g==
+	b=O2YMv6mbgT79WBGL2LXGTHx37t3nbjWEkdBv8EjwFiEyXCMERsfnMFP+jM7O9BH4M
+	 hHOpXyWAVr+LAKZ9ayK7LtVizPGDADJ45BNEnEyhUChIBBn8BD7T9wP0vkv9MBDTFy
+	 SbpQ6RnqK4PHEMaQZWpJL5AOYWK1wTuylb4gzMg0/lm9luJJKkQK3Q/9NasUqqbBYP
+	 QAeWG37tQYSsq5hWJGrvip2kh5AJ6qSobxFsjWSarOW1weWrp9l8KLEM7zipwdxijk
+	 dYj2afvD1CHfI58mk4/7TSoYAic9U1BAPRa3zp/JfMQgROWlCuefoPWuDk3b8i96cB
+	 EEmH4GlmuDuew==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F50CCCA46F;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F978CAC5B9;
 	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Tue, 30 Sep 2025 17:37:19 +0800
-Subject: [PATCH 06/19] clk: amlogic: Fix out-of-range PLL frequency setting
+Date: Tue, 30 Sep 2025 17:37:15 +0800
+Subject: [PATCH 02/19] dt-bindings: clock: Add Amlogic A4 PLL clock
+ controller
 MIME-Version: 1.0
-Message-Id: <20250930-a4_a5_add_clock_driver-v1-6-a9acf7951589@amlogic.com>
+Message-Id: <20250930-a4_a5_add_clock_driver-v1-2-a9acf7951589@amlogic.com>
 References: <20250930-a4_a5_add_clock_driver-v1-0-a9acf7951589@amlogic.com>
 In-Reply-To: <20250930-a4_a5_add_clock_driver-v1-0-a9acf7951589@amlogic.com>
 To: Michael Turquette <mturquette@baylibre.com>, 
@@ -63,19 +64,19 @@ Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759225047; l=799;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759225047; l=2798;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=N/UanqAAstFKaIoQ6E9vlI4RDukLeWAnvo1MhrWVBkQ=;
- b=NIGYgjmhjY3pQ4TkcHp0Hu/MXYaxJFmjLqUACPK6UAcYyXgxSZv9INdR2f7JW4NPfchtH+Zg6
- xq0i+9MDrAkDlwweTsVFFpVntkLGXyDpWktoIks9BoSUXNbAlLfgsdA
+ bh=Ft6yNqo0TZ3QMKb3Jm5Wur9+935/1unmm660KRVPRPE=;
+ b=2dpRYtAPCMjQbgEd7EMDfUTMrfRTEis8Y4GdAn4NjLc4KD01/8j89KXgL4Txe0Cy3rKTBvv3o
+ eLsPuSQ6X+GBUiNTGLkXxVH9r6bIYzfxMxgIszPdqOkuCly5YWFwrHs
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20250930_023732_581915_4D81A86E 
-X-CRM114-Status: GOOD (  11.07  )
+X-CRM114-CacheID: sfid-20250930_023732_665165_2E22B429 
+X-CRM114-Status: GOOD (  11.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,28 +96,102 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-meson_clk_get_pll_range_index incorrectly determines the maximum value
-of 'm'.
+Add the PLL clock controller dt-bindings for Amlogic A4 SoC family.
 
-Fixes: 8eed1db1adec6 ("clk: meson: pll: update driver for the g12a")
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/clk/meson/clk-pll.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/clock/amlogic,a4-pll-clkc.yaml        | 61 ++++++++++++++++++++++
+ include/dt-bindings/clock/amlogic,a4-pll-clkc.h    | 15 ++++++
+ 2 files changed, 76 insertions(+)
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index c1e4c5710015..602c93aba3cc 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -191,7 +191,7 @@ static int meson_clk_get_pll_range_index(unsigned long rate,
- 	*m = meson_clk_get_pll_range_m(rate, parent_rate, *n, pll);
- 
- 	/* the pre-divider gives a multiplier too big - stop */
--	if (*m >= (1 << pll->m.width))
-+	if (*m > pll->range->max)
- 		return -EINVAL;
- 
- 	return 0;
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a4-pll-clkc.yaml
+new file mode 100644
+index 000000000000..dafad7bd4407
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,a4-pll-clkc.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2025 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,a4-pll-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic A4 series PLL Clock Controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Jerome Brunet <jbrunet@baylibre.com>
++  - Chuan Liu <chuan.liu@amlogic.com>
++  - Xianwei Zhao <xianwei.zhao@amlogic.com>
++
++properties:
++  compatible:
++    const: amlogic,a4-pll-clkc
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: input oscillator
++      - description: input fix pll
++
++  clock-names:
++    items:
++      - const: xtal
++      - const: fix
++
++  "#clock-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - "#clock-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/amlogic,a4-scmi-clkc.h>
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clock-controller@8000 {
++            compatible = "amlogic,a4-pll-clkc";
++            reg = <0x0 0x8000 0x0 0x110>;
++            clocks = <&xtal>,
++                     <&scmi_clk CLKID_FIXED_PLL>;
++            clock-names = "xtal",
++                          "fix";
++            #clock-cells = <1>;
++        };
++    };
+diff --git a/include/dt-bindings/clock/amlogic,a4-pll-clkc.h b/include/dt-bindings/clock/amlogic,a4-pll-clkc.h
+new file mode 100644
+index 000000000000..0950dcd68e0a
+--- /dev/null
++++ b/include/dt-bindings/clock/amlogic,a4-pll-clkc.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2025 Amlogic, Inc. All rights reserved.
++ * Author: Chuan Liu <chuan.liu@amlogic.com>
++ */
++
++#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_A4_PLL_CLKC_H
++#define _DT_BINDINGS_CLOCK_AMLOGIC_A4_PLL_CLKC_H
++
++#define CLKID_GP0_PLL_DCO			0
++#define CLKID_GP0_PLL				1
++#define CLKID_HIFI_PLL_DCO			2
++#define CLKID_HIFI_PLL				3
++
++#endif  /* _DT_BINDINGS_CLOCK_AMLOGIC_A4_PLL_CLKC_H */
 
 -- 
 2.42.0
