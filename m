@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 127A0CCA472
-	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Sep 2025 09:37:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19027CCA474
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Sep 2025 09:37:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hbOjRH194nKrtKLLct03qvBoXRBf6syGXWi4a4IXgFQ=; b=r8B4Dz/tNLNRJO
-	6Nh0VMOiCBhnBjz7qmt9vJuxVI1KAdGiHzseVh3y3nm+bf6UkHZ+dOOBncaWL9kAb9xLy4acW6jvx
-	JO4uDfalYX4djutPnojnj1ar5sTw3uMFqVj+vNcIhZmxnDtMyPgOtglvIuttMyUhJdovoe4HnwUQW
-	+RXSfXvZIlOI9aDefr8xDEN7g6d0/wryFtcLl7xnXeZtD1QAc3wg/1bn2iG8SXzfwI7s4hHqwSxPk
-	WZngi2lXpcMFykOucifq649fm53Qx/4FQqtruxIkJPp/roaxfzZ2qNwqRmfM4dXXIdCE4bJgXwG5p
-	d53mDubvbKW3ZHvsqH9w==;
+	List-Owner; bh=pSu6QRs5kURfGprt5UqWlxywnzDO7xgWQNgekjj0nYI=; b=t4HGU5mmbtXd6I
+	r/oZAJEDh1aAZWx5JqBX+mRxhU/GhWkOu2yKfxTqG8HN9+j9iTn5gUlhmAQcd4zdVlQgbODs/IgNa
+	jRSQuAbWrOYrQ5X47/KTJf2rauP0nRm6Tk+2+3IwjmNAvBGdBtZDx3c6p4dxFGiz2kP/K9rcX5Vj3
+	zETmm5jh5SEwRUrVlfPeUO+RxzBYCf42E8FaKzKF0VEMLSbm0mTSS0BHQcVMES6tblBR4GPqYnrS6
+	jRcYZcOWEfy2OIGtA35ZB8kd2etm91XwusTtadJhNiEtouBaolQuVuHZc6cc8REKrgZzdfDAg2Clr
+	Wp48Pd7wj7Kj8ffxumuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v3Wng-00000004q6Q-3AOF;
-	Tue, 30 Sep 2025 09:37:36 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1v3Wne-00000004q3N-3H6i;
+	Tue, 30 Sep 2025 09:37:34 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v3Wnd-00000004q1U-2uVu;
+	id 1v3Wnc-00000004q0I-0omY;
 	Tue, 30 Sep 2025 09:37:33 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id BD26562779;
-	Tue, 30 Sep 2025 09:37:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6363EC19422;
-	Tue, 30 Sep 2025 09:37:32 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 838A745913;
+	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4F585C113D0;
+	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759225052;
-	bh=usjXaJmrQBaOByOo0f9SIIGQaMPOLSk+orCRo+WCesE=;
+	s=k20201202; t=1759225051;
+	bh=tvbsNP2qVU1cS/ayMypPvum2ysqLXXw2xrupi3Us5z4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=pnLj+8csA698jLcbD0B62hmLfVWZ4vv3brRxWO4isPsHPWOcZ2AWBUlo3EhMxxOZ0
-	 Ex3/ZulkIXvT6lvqK2xyE2xAhkysfhbM18VXzg4YpRPISpTYk9dMA53pZyZTB4Ncx4
-	 5pNu/028/eLOz9blzV1xcdsVEzvr8FH3/vAIWKtGJ6DUvhunwVh6WLDUKWttiu43Vc
-	 IJwXqAKFm1rUoC0I5NZH9e16Bhu34+YdejLGeVgkXOSC7EAPo+drnfM1T+ZttWu+Cq
-	 dHdm1POQjPMHjJ7JS0cqAVMQLNp7A2qfhIBrXWVs3FoPpyqi7pnRuhDSTpSwvZ8RMk
-	 y2pP3hh3yPilw==
+	b=rr6/GDpauEY2HHAqRcDmiTNhPC7TN9DAYYCycVXlDHtgTxBjCkc0uJgP65l+B+keg
+	 IG5OhTR5p2myHJndvJuwe6EBdnrjZG+N3ZocVpjpthu4fDFCEKSIhqnL0tv99g9Z3f
+	 /V4WdCoMcyEn11g12Y7Dmojcrfqdi5QKtD7H/QqDqdPPB3elrqmiIhYMOcG76ao0z9
+	 /eT1wpxwfTl3tvjwkyJwiUWcYNPXbRbeqkNYAiifZ7b8iIdE14ORShYP/+C9deIr4Y
+	 Dpj5k0HogW95ceGK2HuPd2zss+gv7edzgvwTBJ8qWqbvCT8eVyCL68ADpgGTBa2DVf
+	 cOxoDpwD8M2vA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 57E52CCA471;
-	Tue, 30 Sep 2025 09:37:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 41289CAC5B8;
+	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Tue, 30 Sep 2025 17:37:30 +0800
-Subject: [PATCH 17/19] arm64: dts: amlogic: A5: Add scmi-clk node
+Date: Tue, 30 Sep 2025 17:37:14 +0800
+Subject: [PATCH 01/19] dt-bindings: clock: Add Amlogic A4 SCMI clock
+ controller
 MIME-Version: 1.0
-Message-Id: <20250930-a4_a5_add_clock_driver-v1-17-a9acf7951589@amlogic.com>
+Message-Id: <20250930-a4_a5_add_clock_driver-v1-1-a9acf7951589@amlogic.com>
 References: <20250930-a4_a5_add_clock_driver-v1-0-a9acf7951589@amlogic.com>
 In-Reply-To: <20250930-a4_a5_add_clock_driver-v1-0-a9acf7951589@amlogic.com>
 To: Michael Turquette <mturquette@baylibre.com>, 
@@ -63,16 +64,20 @@ Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759225047; l=1185;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759225047; l=1814;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=ZspyBFWCUNiYBTdpBZ0EtAZp2GBczlcrxn+GjTrWL+k=;
- b=rG9NwK2T9qExtErn9VwTiBIYDzzQzUyyccAHrFcR2+2hwFvuiVrDYBIPujs3LrMfmhVAgVpdO
- 9UaELmKxZU+BaxZOjeihIsDoZmQ6xX37P+MfarjJmq/cEuk+PFVP0LU
+ bh=lepg6iT8bmM81rEU5ToL/dWT4QLnpMs52RztUgBBpJI=;
+ b=9DlKusjYS9lvJ5c+yIorherlGXVHoEWA7WXl+kn4Crs79ES3JyMECgX8nYfKzxnBZ3aewWJbC
+ PNqO/UxUUyuC5w6Rvv8v4ryBepX5x7v5MVHuUbUJjfzWlvDFRb2nrux
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20250930_023732_366708_5E4E283C 
+X-CRM114-Status: UNSURE (   9.98  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,53 +97,61 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-Add scmi-clk device node information for the Amlogic A5 SoC family.
+Add the SCMI clock controller dt-bindings for Amlogic A4 SoC family.
 
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ include/dt-bindings/clock/amlogic,a4-scmi-clkc.h | 42 ++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-index b1da8cbaa25a..3b0e70211268 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -48,6 +48,35 @@ pwrc: power-controller {
- 			#power-domain-cells = <1>;
- 		};
- 	};
+diff --git a/include/dt-bindings/clock/amlogic,a4-scmi-clkc.h b/include/dt-bindings/clock/amlogic,a4-scmi-clkc.h
+new file mode 100644
+index 000000000000..454e492f8f6f
+--- /dev/null
++++ b/include/dt-bindings/clock/amlogic,a4-scmi-clkc.h
+@@ -0,0 +1,42 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2025 Amlogic, Inc. All rights reserved.
++ * Author: Chuan Liu <chuan.liu@amlogic.com>
++ */
 +
-+	sram0: sram@f702a000 {
-+		compatible = "mmio-sram";
-+		reg = <0x0 0xf702a000 0x0 0x100>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0x0 0xf702a000 0x100>;
++#ifndef __AMLOGIC_A4_SCMI_CLKC_H
++#define __AMLOGIC_A4_SCMI_CLKC_H
 +
-+		scmi_buf0: scmi-sram-section@0 {
-+			compatible = "arm,scmi-shmem";
-+			reg = <0x0 0x100>;
-+		};
-+	};
++#define CLKID_OSC				0
++#define CLKID_SYS_CLK				1
++#define CLKID_AXI_CLK				2
++#define CLKID_CPU_CLK				3
++#define CLKID_FIXED_PLL				4
++#define CLKID_GP1_PLL				5
++#define CLKID_ACLKM				6
++#define CLKID_SYS_PLL_DIV16			7
++#define CLKID_CPU_CLK_DIV16			8
++#define CLKID_FCLK_50M_PREDIV			9
++#define CLKID_FCLK_50M_DIV			10
++#define CLKID_FCLK_50M				11
++#define CLKID_FCLK_DIV2_DIV			12
++#define CLKID_FCLK_DIV2				13
++#define CLKID_FCLK_DIV2P5_DIV			14
++#define CLKID_FCLK_DIV2P5			15
++#define CLKID_FCLK_DIV3_DIV			16
++#define CLKID_FCLK_DIV3				17
++#define CLKID_FCLK_DIV4_DIV			18
++#define CLKID_FCLK_DIV4				19
++#define CLKID_FCLK_DIV5_DIV			20
++#define CLKID_FCLK_DIV5				21
++#define CLKID_FCLK_DIV7_DIV			22
++#define CLKID_FCLK_DIV7				23
++#define CLKID_SYS_MMC_PCLK			24
++#define CLKID_SYS_CPU_CTRL			25
++#define CLKID_SYS_IRQ_CTRL			26
++#define CLKID_SYS_GIC				27
++#define CLKID_SYS_BIG_NIC			28
++#define CLKID_AXI_SYS_NIC			29
++#define CLKID_AXI_CPU_DMC			30
 +
-+	firmware {
-+		scmi {
-+			compatible = "arm,scmi-smc";
-+			arm,smc-id = <0x820000C1>;
-+			shmem = <&scmi_buf0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			scmi_clk: protocol@14 {
-+				reg = <0x14>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+	};
-+
- };
- 
- &apb {
++#endif /* __AMLOGIC_A4_SCMI_CLKC_H */
 
 -- 
 2.42.0
