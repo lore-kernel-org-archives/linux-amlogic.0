@@ -4,83 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 869A3CAC5B0
-	for <linux-amlogic@archiver.kernel.org>; Sat,  4 Oct 2025 19:53:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64B6CCAC5BB
+	for <linux-amlogic@archiver.kernel.org>; Sat,  4 Oct 2025 19:53:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fXyk89xmwpxNDdvA8G3+CUCAAh1lAn1L5Y61osUMLuI=; b=2xAAak8iLtwqI6
-	jaJabIt29VMopgYacB7nBVHfrCMERhDijSUb5so8kK/LTugOD/Bx7LOZ7+xeRp1dO2mgKB1vHJJbQ
-	MwMegqhkwDDMOiYkJODm95BEAvsL9SpUh4dyvIoqJ5kgBogGRW7PfgUSPwBMjxogGq2m44DrE84tk
-	VYW0YqEtf2UcgaGuDS4B8Unq7hQletSAnQqW0nsHkBlcOHeFximMoLhxif4T1bGDz14PWwqAHwezb
-	s+Zfb6LA9l775UjYWZy0omKHQ36qAehseTxnU3dGnDzPvnX0X4FvEiY/rTpRGk8LHWY43Uiw/OF71
-	Ay03nZKrVVQ51nr4uYrw==;
+	List-Owner; bh=pBRPs5vhj8zjFQEw5/6cBE0TjQclGokSw2QBtQwZ5ok=; b=xj1tnRFvaNFWq8
+	dxK16IeUIIa0ZiDxq/JCbP8N8O+sc4sPq1Sd7Qm+JyhHvj3fEko77SWQdqfNhBMrTvXgkNhsQQFZz
+	ZSWkyZK/H+g6WIdA/5ZrlylymoA6M8/VNIqY8YfzBXXwJLteUUVnP9mMuNUTKPtx5YJbdgiQUxia9
+	PzIP7d10Lg9h8dFW1+wCZEJq926IkqKXsqh3glh/hySGg5blh0bK0ar5hjDXRIjgqEXUSV9TjEUGu
+	BF2Pg+39CdlpyZMXLSiSCFi+6obws0MzRvmEfeIwYKobvIqtev2AqQQEpNLGRi5HKd4gPLPDXiUCd
+	WqAWiv7L3lE5NPWW+q7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v58JF-0000000DySI-2MYY;
-	Sat, 04 Oct 2025 19:52:49 +0000
-Received: from mail-pl1-x635.google.com ([2607:f8b0:4864:20::635])
+	id 1v58Jp-0000000DyWS-3Z1l;
+	Sat, 04 Oct 2025 19:53:25 +0000
+Received: from mail-pg1-x534.google.com ([2607:f8b0:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v58JD-0000000DyRv-0b5m
+	id 1v58Jn-0000000DyVj-3QLS
 	for linux-amlogic@lists.infradead.org;
-	Sat, 04 Oct 2025 19:52:48 +0000
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-2697899a202so31000565ad.0
-        for <linux-amlogic@lists.infradead.org>; Sat, 04 Oct 2025 12:52:46 -0700 (PDT)
+	Sat, 04 Oct 2025 19:53:24 +0000
+Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-b550eff972eso2361142a12.3
+        for <linux-amlogic@lists.infradead.org>; Sat, 04 Oct 2025 12:53:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1759607566; x=1760212366; darn=lists.infradead.org;
+        d=googlemail.com; s=20230601; t=1759607603; x=1760212403; darn=lists.infradead.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UAybQmudTYzSK/tcY3PtMZl0JJzvR+yKSsKri3KtNgc=;
-        b=IZBbo7JhE/T9mc7wZxXeO2UTElPOgZxZw2oigdSsdtjznCKeMG7AJFTT0BI5IrGzNk
-         N6taWycfbtGE0JRE17iSr9giNkvnT/fnHAf24uZ+OfJU92hMSz2dIRnOoXV3/woayGmZ
-         CBveu1VkitKSaJGeEJk0v2fgkf/+DlK3VN7GDNjcMY2S/uzwqY76uobQwZI4/kMXvLia
-         paU4KrtfPV5uOmPLajAfSBVtg5IVHXbhd/VJ5jW/11ZYLiT0Dh0gYbhpU3PvQrw8pVSs
-         aaWmMzWw1XHDkqfFblKIwVrri3HM2JiXEutWJr0gsqeAYqr9w1h+faMP3ZPIE847nLCw
-         DMLQ==
+        bh=cXxv9oygkgnXgXW7rGttTdR/kUrSYqtw/DdaORWAxBA=;
+        b=K9NYmHWrndkwrMGiGlvGPSIE/bcC+eNFndhNRHTqBwIFqq6OLwZ2iW7FbGAzwfxvHX
+         OdIG6MkVt/wz2ebqERCUpwA1SwzFH0vDObAz6PKpjWTv/z9qY0FN4f6qY3vtcoHXnsXw
+         A811ZKpq6mCXpVzSXLog76kHTk9fQoYh5+b3mx/etCkhS5+OvVa2OMPKxPbGshpJRTUs
+         B9JdlRZkAQuHE+LVC5BQtn6gKk9Qwmq5LrAGk8J7Q+cS826wXRtulrl7LxhuVcRopi0U
+         nqevibsZ4bodEsjEPpjZh5CLGhU1LImtLGOw4yKHm1g842hu7IbNXWYr0b/ngACm7sgw
+         8WzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759607566; x=1760212366;
+        d=1e100.net; s=20230601; t=1759607603; x=1760212403;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=UAybQmudTYzSK/tcY3PtMZl0JJzvR+yKSsKri3KtNgc=;
-        b=ShsUdDPF8AOxpUwb5rziu6RM4HwhAihi7d618wuf+BeFe43E8r7fj+B/fAIb0hA1Wh
-         GCj0hW+MQg+AFTkDcoxoWMP4DG16ZOT13BWGC9TeKNhVBYwlvvvX3BcQuJeXyLZKEDJ6
-         BYIBV9rodGWMHUeRGuUr1QyLDrpq6LIgr4AolNeve0+p+Tlm9DHkBc+IdicHf58ifNtQ
-         F0VtqxfZVnhBydMpCTCbl+AlhvwJwnzwvhyYvmcNljv2oP+49I2AXmEyHJa7iCbZKj1I
-         h2l00hS3mcl/dfBmTRAjjK2buuKdCV4LU41RYmv0/zx3gMXvehuTGg1bdn9J/gVEn/tx
-         L/tQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXO20BCIN+0hy7DGyRhuYv918OJCwRfgp5pMg6tVPPFZZoMP72ifBOdFh+zJ5J4o1GAudUaKPVf8eotqhms@lists.infradead.org
-X-Gm-Message-State: AOJu0YxU1LW0W2xL4PFSr4uXUf2cTzLgEXyzF5NtFDba9cS3tU+LT8yh
-	GMmI+rep0E6HL7gG1ax6vWbzB7N6deWK1+9JAaLMGxiv6HOxnqh9SH/iAwERs0HKt5yIKX4qYlc
-	EVbAmHOC1mohMhjvLTZGO7kbz4ss30vU=
-X-Gm-Gg: ASbGnctd2QJCOrgkPhbn3SEBDcFsrMG7OzobTh0Nxbsp5yxmP6EOCwpuzYKLB3dNGzJ
-	6DqEeQhNr0DCvhGDzfDWNYlXeqFSYNMJa9a2awLRvZg8DqIJ9NbMq/Yk5ANK7ADNzFPrysDEaTX
-	gB0UjbqrRD+1izJowzXeqZhigb7cptQJHnb9kppUoD607fDCye39BEcYO+jJTyANTk2TxtBK0GT
-	xMwuQP+QrhE4L3dr28V4W+FCnqZRZgGsSKZwYYN/HBAvsFAzfbY7Z96zIopZIvjVZGbPvBMGXc=
-X-Google-Smtp-Source: AGHT+IHIGZbYkJ1SDHVdfJpS7K+FvOcrEyzv91AIf3qtubIlP9Lr0Nmn46Z8cwprgw4hxPvpGz40imPwq6+ElwKPvrU=
-X-Received: by 2002:a17:903:acd:b0:27e:d66e:8729 with SMTP id
- d9443c01a7336-28e99a86748mr101512415ad.0.1759607565713; Sat, 04 Oct 2025
- 12:52:45 -0700 (PDT)
+        bh=cXxv9oygkgnXgXW7rGttTdR/kUrSYqtw/DdaORWAxBA=;
+        b=h3t9Bv8pkRfsvLN7HKlacGvf3Qur7WLtPT6+860rymgP1urTKr8+BRDyuRlaiCePV3
+         qI+6eKwkunoCmVI5h3EcR8jHptOPfStydIvG6IypGtpjUSTVCQdxZPOvnTsqfHR5dRUe
+         AXGVZ/kdc70jrxfYDBK7JwdVFQJvTyIJIHLte8OMURgHVJ/XIzFwyxtXEL7vAWjT3e6R
+         1AxF0OLyQwAsnt2gjUffO9XwYrUXcDTSxwWCWRmLQoQu9T+dH49znCof+oXBP9ehX88J
+         uACQNbReFz7JGHIUzrSiZYwcA2LGFtckigxds5gO74rH/9V2d4IYt04eb0TFB0TvCYL4
+         fCmw==
+X-Forwarded-Encrypted: i=1; AJvYcCXQZjff4mGi7lc/OuLZW0r9LSP3ffmqKBtjxeK5pwY7a9RVMhX4s71ijQRt0pNV9hWQqo83eg2bwpPrSTK3@lists.infradead.org
+X-Gm-Message-State: AOJu0YzEbubi1t1JWPZQVB9T6qOVZMu7hppsTVPVd7Szp16nJ4dvPcU6
+	GbyaroUKfTVAWeAeVhaVJvkYj8QQPmBxAQmpOzx/vM32sedkFucVzxalaP4uKUdyctwk0bOT2BW
+	KtqU9k1buHNzdL/Q9mPAp9/DxWO+lKqM=
+X-Gm-Gg: ASbGncunFd9N9VsJglm+eEu8GJkSxPLcc8/tdCAdqp5azRc2U7IeNFdqr0IULbJGFe0
+	xpv8QjcuOk6WR1LZ/C41Pcl73EIITfZhwY9DIXXZ/qhJ2vf9Afiim0Qlab0jLfzuoZXVh7KhlMg
+	Jbcs/R3ZzB5g347Frb3VIfTj2E4mRlAExVVQhk379m3HOhRaSsq6nItTD8v1ARRdGVuGK0wGv31
+	jPStxizThGMOZ7axs34BRb/ewLKGohOHyGzBVDHHpQrZBLSQGZC/MGOCFgnF9yf
+X-Google-Smtp-Source: AGHT+IE5WgEya5mbDL6IucjMhYo+1sNVBm78MZ2ZLWglN0SEnlGhH8rggjUfNn3xPuefRUpxWKZ10+Hdl0ki7DqgsLE=
+X-Received: by 2002:a17:902:e5d0:b0:282:2c52:5094 with SMTP id
+ d9443c01a7336-28e9a61abb2mr80433455ad.37.1759607603021; Sat, 04 Oct 2025
+ 12:53:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250926142454.5929-1-johan@kernel.org> <20250926142454.5929-2-johan@kernel.org>
-In-Reply-To: <20250926142454.5929-2-johan@kernel.org>
+References: <20250926142454.5929-1-johan@kernel.org> <20250926142454.5929-3-johan@kernel.org>
+In-Reply-To: <20250926142454.5929-3-johan@kernel.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 4 Oct 2025 21:52:34 +0200
-X-Gm-Features: AS18NWDU8ocZk0ezDCUadLBXAKIcA1Zy54NbZyjlAwDgH18dZXT8OTopz2n03m0
-Message-ID: <CAFBinCBT+8aFH68gKja7PS6BtPUBcEfW4KRv8GFyADiK_QB7dw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] soc: amlogic: canvas: fix device leak on lookup
+Date: Sat, 4 Oct 2025 21:53:12 +0200
+X-Gm-Features: AS18NWD95pzK_qqo061ps6RQQpKquYvXdH89bYJG2uaPEGWKLOIyqhi5Q8ZyggE
+Message-ID: <CAFBinCAbHR3g5QGdjDjJisdC0y4gPJJA2it9-qt016T4BigGzQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] soc: amlogic: canvas: simplify lookup error handling
 To: Johan Hovold <johan@kernel.org>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
 	Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
-	Yu Kuai <yukuai3@huawei.com>, Markus.Elfring@web.de
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251004_125247_203431_6BF15457 
-X-CRM114-Status: GOOD (  13.09  )
+X-CRM114-CacheID: sfid-20251004_125323_853767_4D83A9AA 
+X-CRM114-Status: UNSURE (   5.37  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,26 +98,10 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 T24gRnJpLCBTZXAgMjYsIDIwMjUgYXQgNDoyNeKAr1BNIEpvaGFuIEhvdm9sZCA8am9oYW5Aa2Vy
-bmVsLm9yZz4gd3JvdGU6Cj4KPiBNYWtlIHN1cmUgdG8gZHJvcCB0aGUgcmVmZXJlbmNlIHRha2Vu
-IHRvIHRoZSBjYW52YXMgcGxhdGZvcm0gZGV2aWNlIHdoZW4KPiBsb29raW5nIHVwIGl0cyBkcml2
-ZXIgZGF0YS4KPgo+IE5vdGUgdGhhdCBob2xkaW5nIGEgcmVmZXJlbmNlIHRvIGEgZGV2aWNlIGRv
-ZXMgbm90IHByZXZlbnQgaXRzIGRyaXZlcgo+IGRhdGEgZnJvbSBnb2luZyBhd2F5IHNvIHRoZXJl
-IGlzIG5vIHBvaW50IGluIGtlZXBpbmcgdGhlIHJlZmVyZW5jZS4KPgo+IEFsc28gbm90ZSB0aGF0
-IGNvbW1pdCAyOGY4NTFlNmFmYTggKCJzb2M6IGFtbG9naWM6IGNhbnZhczogYWRkIG1pc3NpbmcK
-PiBwdXRfZGV2aWNlKCkgY2FsbCBpbiBtZXNvbl9jYW52YXNfZ2V0KCkiKSBmaXhlZCB0aGUgbGVh
-ayBpbiBhIGxvb2t1cAo+IGVycm9yIHBhdGgsIGJ1dCB0aGUgcmVmZXJlbmNlIGlzIHN0aWxsIGxl
-YWtpbmcgb24gc3VjY2Vzcy4KPgo+IEZpeGVzOiBkNDk4Mzk4M2Q5ODcgKCJzb2M6IGFtbG9naWM6
-IGFkZCBtZXNvbi1jYW52YXMgZHJpdmVyIikKPiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZyAg
-ICAgICMgNC4yMDogMjhmODUxZTZhZmE4Cj4gQ2M6IFl1IEt1YWkgPHl1a3VhaTNAaHVhd2VpLmNv
-bT4KPiBTaWduZWQtb2ZmLWJ5OiBKb2hhbiBIb3ZvbGQgPGpvaGFuQGtlcm5lbC5vcmc+ClJldmll
-d2VkLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1h
-aWwuY29tPgoKSSBoYXZlbid0IHVzZWQgdGhlIHNjb3BlLWJhc2VkIHJlc291cmNlIG1hbmFnZW1l
-bnQgbXlzZWxmIGFzIHBvaW50ZWQKb3V0IGJ5IE1hcmt1cy4KVGhhdCBzYWlkLCBhcyBmYXIgYXMg
-SSB1bmRlcnN0YW5kIGl0J3MgYSBmZWF0dXJlIGluIG5ld2VyIGtlcm5lbHMgYW5kCnRoaXMgcGF0
-Y2ggbWF5IGJlIGJhY2twb3J0ZWQgdW50aWwgNS40IChvbGRlc3QgLXN0YWJsZSBrZXJuZWwgc3Rp
-bGwKc3VwcG9ydGVkKS4KU28gbGV0J3MgZ28gd2l0aCB0aGlzIHNpbXBsZSBhcHByb2FjaCBmcm9t
-IEpvaGFuIC0gd2UgY2FuIHN0aWxsCmltcHJvdmUgdGhpcyAod2l0aG91dCBoYXZpbmcgdG8gd29y
-cnkgYWJvdXQgYmFja3BvcnRzKS4KCgpCZXN0IHJlZ2FyZHMsCk1hcnRpbgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
-IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+bmVsLm9yZz4gd3JvdGU6Cj4KPiBTaW1wbGlmeSB0aGUgY2FudmFzIGxvb2t1cCBlcnJvciBoYW5k
+bGluZyBieSBkcm9wcGluZyB0aGUgT0Ygbm9kZQo+IHJlZmVyZW5jZSBzb29uZXIuCj4KPiBTaWdu
+ZWQtb2ZmLWJ5OiBKb2hhbiBIb3ZvbGQgPGpvaGFuQGtlcm5lbC5vcmc+ClJldmlld2VkLWJ5OiBN
+YXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
+b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
+Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
