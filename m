@@ -4,119 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5671CCA470
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Oct 2025 18:13:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F693CCA470
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Oct 2025 18:24:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=IoIGKLzyfLVUYHpMZe5Fgj04mUWnBWgse8wa9Api3eI=; b=OzY33DLowtR8y/qcSfh/2EbPfs
-	ZmE2lYkp8H7mx9vjjeIxzHWDvjtBAkRLpGx3WJo+2y+WYtEhv2zPacz3rIdkTLkN5AbH+A2Cv5y8d
-	dxwmfrbizlKrkjSLi67iKntNnPZOvYrn28SmVeLnHIYODUY38ejICp4yxCs3BG2w1ggbaa7FmyTmm
-	UAYJ3tRly8pOSxxuZJOxNA3p21JI2QwvImsLdCjBqxaywteQmImUWafZpAg/qfDeCrVJ7VP3zha1V
-	EcR8Hf29QlsmQS+wM9qlwlJ0i1L2PWTD229/M2dNs0WvhzSF+RI3KVm5ioJ5a4HaK6D5c5pKeU1MY
-	/29t4Dhw==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=o/YytOEgyOmErqDVosZmEjxFX1DP3PMZ0BPmZDtkRt4=; b=DUU4Ww57m2xrtcrW34k7T1sMm2
+	UpUy1ItHXsavoaA9jb24Px4w96wyCCgrn5d6+kjr/t4SLREsbZxOTFhJ2IuEtj6wzpll4NS+OxbYw
+	j4vDcR9zlv4Mp5RtkIzRx5ycWj5OACvnx1j8S5jzF617hu5Eh9Bp2wZN5xgkJ19vCpIgjAWhYillM
+	P4ZrzguQJfZL3zdFpK0QZpzN+YGos2adzW+rDIsOlBhbsW5XfVPu0eDNO3bcDH3W1pBAsbpm3Ulka
+	RonqeowqoD0ja0jH8W3JD7vJYZg/7Z00WtFCOGO2kIpoRo6FzQkHL997SUSIXo2Ozh/jRG0EJbIem
+	bK7/BMjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v6YfC-00000004SZC-2mZu;
-	Wed, 08 Oct 2025 18:13:22 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1v6YqC-00000004TWP-1eMY;
+	Wed, 08 Oct 2025 18:24:44 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v6YfA-00000004SY5-19lh
-	for linux-amlogic@lists.infradead.org;
-	Wed, 08 Oct 2025 18:13:21 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-46e2c3b6d4cso1029455e9.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 08 Oct 2025 11:13:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759947198; x=1760551998; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fZaXt+gShwcST4niGAvItceQr0XW4MXQVlljb1xZ9gY=;
-        b=fbRK9YLOCxXTUzGxScTyibKYACuTmik7splNwrRKBHI4zvucmGJEJY+fiGEuOJ2LrV
-         0o/eRAq4BWdNWbekohzZ/W1hHNGFXTvX3q7GceB7bhp3gJlBHMC3kpj8Fa4EMg6gPGgc
-         TS9vQcHGXvzm5+0qqvjC4WJ6gqjHtpxZJ3v97b/ewfOPpSZiOq4/dFS0aJ9IguoGRi2F
-         NYNIy3iaM9O3N3DcmhvDx0eoWppghZIp6D+Cw0rFnL6vTLcUSPLjusVWu6r3IIcvNDif
-         F/ioP5ANYHyYTlaNs8bGia3uQ4MfJigV246Ocq1ztQ7NXaaSPsN77xuIL3SSLcrknyui
-         CxUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759947198; x=1760551998;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=fZaXt+gShwcST4niGAvItceQr0XW4MXQVlljb1xZ9gY=;
-        b=apDCdqGRsPKouQergxv9kNx/x5DQwnJMTJaAMNl2iahXLaIoVJZFzfPo0KoiebYul8
-         N4os+SlAmCBtRBZQ79KUwKFXZab9SOVM7/aF5aM4vqA1ziEROJCXErhzMCSvvCfL9ugi
-         HiLcBfnb0bM0Vh4KIbwayTklNd6u+VYx3a2MUgN1X65tmg7YhGo2pxMdkYbifdlM42kP
-         xtXG6ZWeXFJeBw9W9Bg+cLZQJsoD1lpgktRofK0wH+FfXG0zdxt1nzZNI/+WWiDgloiB
-         Ck3WtRTf7k5L35Cw6vlRSV+47Y7bRRaPjrqYEm8brZZfFBfQ8EVZwhO/OtDTHXSxrQ28
-         Pdzw==
-X-Forwarded-Encrypted: i=1; AJvYcCUHic3hzqY0j79e2vy9OpcqiBdTdwDiFCcS6oosp1wu07ZNEPgHqZarjti7D9UVM0mh16e3OcXjcS+JTHwS@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxe18HjSohE+ciWBqzNci0jy+QWDfC1VgHmK0V36jLucOawbboC
-	3tzk38ph10TvROqQhN+0+3A/shLTYqZfJJpzqfQXWW6V5FSGBwOQjXiBaN64yobMVsg=
-X-Gm-Gg: ASbGnct/uzlN02CK92feDrOfplxWIwNzinzuHYM1oLhtfVgF4GjY9rcO9zrvgMt81ME
-	syjwuG++SqML/JJMljtEf/6gO+ghgYuD20cE8v+fh1e7DgnYwN/hGy0o/AgpPxtXjdHzh/jVKde
-	duWN+JbpJak5fs6nUbcDL2JRtExXt1SN9ZrmARVQWkQ7BwFX2U749wb0xH0PZresLoR8Lz5x8CP
-	DFp4bzmGt571qmHNGzH4UWVFl8w6oj/xeNeMN3XMCGa+xyEOEHzp9cYGq6lDQNjx1ow/5LtijW+
-	XEkGV8u90nvlq2xCw5lmSsFece3IQN9PAh5BcUgUWwC4+gwC45H0OvQf840rpldw0smTbYWE8+E
-	sXVwGFhxfxCwgDCe9Wm8L6xDmcrlpe7z6Ucq5Im6NP9UZtIGf4eTM0L4b87Wj3pJ11C3Vszsu4E
-	4sColZNYCZ8dUCXM5tSw8=
-X-Google-Smtp-Source: AGHT+IH66uhKvXnvTehKe3lInuC7qmM/YcfilA/g+9CQ8oNy3NiDtUo8BeUgAB3WyYNGUPEby1HO9Q==
-X-Received: by 2002:a05:600c:8b16:b0:46e:4004:a296 with SMTP id 5b1f17b1804b1-46fa9a965a9mr35155715e9.9.1759947197837;
-        Wed, 08 Oct 2025 11:13:17 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:b264:afbc:dee:3d? ([2a01:e0a:3d9:2080:b264:afbc:dee:3d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8f0853sm31405791f8f.50.2025.10.08.11.13.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 11:13:17 -0700 (PDT)
-Message-ID: <45f68b22-4514-4ddf-95e7-e00f45561307@linaro.org>
-Date: Wed, 8 Oct 2025 20:13:16 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 03/25] media: meson-g2d: Drop unneeded v4l2_m2m_get_vq()
- NULL check
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+	id 1v6Yq9-00000004TVd-2i1N;
+	Wed, 08 Oct 2025 18:24:43 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1759947878;
+	bh=RsqMaJC2iID86BNt1juQ80CEq7yoPe8omJ1X2/PwyHw=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=bzSgeTZ3E18DyQkDMnSOfYGpMjtoDFZvvo78LBcjUURbElc4ao00lQH9dYuLOZcqU
+	 JOxb9e347HFhmvKnjDQIMW3q+OSgVHHIJeTQApfGf76L3wrNwEroinPW2bX1EgIYaW
+	 W86Yw0pFFcXTsQJ5wyp/dieERtH9/meTkf4zdErkfhdxcKU8P/1UIgKDgPp3+96K1q
+	 yiQfkGFa2KgTuYf1O8MY5rgsE2USEndGBW+gejfCS344Q+DbhA0Kmo2OX4N4R6BEG0
+	 PSQxfjQER6VYl8eX2q7QP10sAM0FXCyxrwOpCDdhZQfXE8Q3qcJxCTbveFWheB/t6y
+	 jd3kzJwO68jOg==
+Received: from [IPv6:2606:6d00:17:ebd3::c41] (unknown [IPv6:2606:6d00:17:ebd3::c41])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5FB3517E0579;
+	Wed,  8 Oct 2025 20:24:32 +0200 (CEST)
+Message-ID: <205478244873d09cad5b77bd887f6a836c31c7ec.camel@collabora.com>
+Subject: Re: [PATCH 00/25] media: v4l2-mem2mem: Reduce cargo-cult
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	imx@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-renesas-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org
+Cc: Matthew Majewski <mattwmajewski@gmail.com>, Mirela Rabulea	
+ <mirela.rabulea@nxp.com>, Jacek Anaszewski <jacek.anaszewski@gmail.com>, 
+ Michael Tretter <m.tretter@pengutronix.de>, Devarsh Thakkar
+ <devarsht@ti.com>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=	
+ <u.kleine-koenig@baylibre.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Martin Blumenstingl	
+ <martin.blumenstingl@googlemail.com>, Alexandre Torgue	
+ <alexandre.torgue@foss.st.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Arnd Bergmann <arnd@arndb.de>, Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Ming Qian <ming.qian@nxp.com>,  Pengutronix Kernel Team	
+ <kernel@pengutronix.de>, Kieran Bingham	
+ <kieran.bingham+renesas@ideasonboard.com>, Nathan Chancellor
+ <nathan@kernel.org>,  Sascha Hauer <s.hauer@pengutronix.de>, Hans Verkuil
+ <hverkuil@kernel.org>, Mikhail Ulyanov	
+ <mikhail.ulyanov@cogentembedded.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Xavier Roumegue <xavier.roumegue@oss.nxp.com>, Shuah Khan
+ <skhan@linuxfoundation.org>, Andrzej Pietrasiewicz	
+ <andrzejtp2010@gmail.com>, Tiffany Lin <tiffany.lin@mediatek.com>, Zhou
+ Peng	 <eagle.zhou@nxp.com>, Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>, Yunfei Dong
+ <yunfei.dong@mediatek.com>, Ezequiel Garcia	
+ <ezequiel@vanguardiasur.com.ar>, Neil Armstrong
+ <neil.armstrong@linaro.org>,  Jiasheng Jiang <jiashengjiangcool@gmail.com>,
+ Shawn Guo <shawnguo@kernel.org>, =?UTF-8?Q?=C5=81ukasz?= Stelmach	
+ <l.stelmach@samsung.com>, Abhinav Kumar <abhinav.kumar@linux.dev>, Heiko
+ Stuebner <heiko@sntech.de>, Benoit Parrot <bparrot@ti.com>, Andrew-CT Chen	
+ <andrew-ct.chen@mediatek.com>, Geert Uytterhoeven
+ <geert+renesas@glider.be>,  Magnus Damm <magnus.damm@gmail.com>, Sebastian
+ Fricke <sebastian.fricke@collabora.com>, Maxime Coquelin	
+ <mcoquelin.stm32@gmail.com>, Jacob Chen <jacob-chen@iotwrt.com>, Bin Liu	
+ <bin.liu@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>, Fabio
+ Estevam <festevam@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>, Bryan
+ O'Donoghue	 <bryan.odonoghue@linaro.org>
+Date: Wed, 08 Oct 2025 14:24:30 -0400
+In-Reply-To: <20251008175052.19925-1-laurent.pinchart@ideasonboard.com>
 References: <20251008175052.19925-1-laurent.pinchart@ideasonboard.com>
- <20251008175052.19925-4-laurent.pinchart@ideasonboard.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20251008175052.19925-4-laurent.pinchart@ideasonboard.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251008_111320_511683_92B1E32F 
-X-CRM114-Status: GOOD (  14.29  )
+X-CRM114-CacheID: sfid-20251008_112441_872341_463FF552 
+X-CRM114-Status: GOOD (  20.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,47 +119,199 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============7748363189015318142=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/8/25 19:50, Laurent Pinchart wrote:
-> The v4l2_m2m_get_vq() function never returns NULL. The check was
-> probably intended to catch invalid format types, but that's not needed
-> as the V4L2 core picks the appropriate VIDIOC_G_FMT ioctl handler based
-> on the format type, so the type can't be incorrect. Drop the unneeded
-> return value check and, as the return value is not used for other
-> purposes and the function has no side effect, the function call as well.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->   drivers/media/platform/amlogic/meson-ge2d/ge2d.c | 5 -----
->   1 file changed, 5 deletions(-)
-> 
-> diff --git a/drivers/media/platform/amlogic/meson-ge2d/ge2d.c b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
-> index 0c004bb8ba05..a9323b383547 100644
-> --- a/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
-> +++ b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
-> @@ -627,13 +627,8 @@ static int vidioc_s_fmt_cap(struct file *file, void *priv, struct v4l2_format *f
->   static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
->   {
->   	struct ge2d_ctx *ctx = priv;
-> -	struct vb2_queue *vq;
->   	struct ge2d_frame *frm;
->   
-> -	vq = v4l2_m2m_get_vq(ctx->fh.m2m_ctx, f->type);
-> -	if (!vq)
-> -		return -EINVAL;
-> -
->   	frm = get_frame(ctx, f->type);
->   
->   	f->fmt.pix = frm->pix_fmt;
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+--===============7748363189015318142==
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-LjFEnUafECFwApd/yAvu"
+
+
+--=-LjFEnUafECFwApd/yAvu
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Le mercredi 08 octobre 2025 =C3=A0 20:50 +0300, Laurent Pinchart a =C3=A9cr=
+it=C2=A0:
+> Hello,
+>=20
+> The v4l2_m2m_get_vq() function never returns NULL, but many mem2mem
+> drivers still check its return value and consider NULL as an error. This
+> may have originated a long time ago from valid checks when
+> v4l2_m2m_get_vq() could return NULL, with drivers then just copying the
+> checks. This series attempts to stop the cargo-cult behaviour.
+>=20
+> Patch 01/25 starts by explicitly stating in kerneldoc that the
+> v4l2_m2m_get_vq() function never returns NULL. All the other patches
+> drop NULL checks from drivers.
+>=20
+> I have carefully checked all patched locations in all drivers. They fall
+> in 3 categories:
+>=20
+> - Checks in the VIDIOC_G_FMT, VIDIOC_TRY_FMT and VIDIOC_S_FMT handlers:
+> =C2=A0 Those may have been added to ensure that the format type has a val=
+id
+> =C2=A0 value, but that is ensured by the V4L2 ioctl core before calling t=
+he
+> =C2=A0 handlers. The checks can be dropped without a need to replace them
+> =C2=A0 with proper type checks.
+>=20
+> - Checks in the VIDIOC_S_SELECTION handler: The only location where this
+> =C2=A0 is performed has an explicit type check, so the NULL check can als=
+o be
+> =C2=A0 dropped.
+>=20
+> - Checks in other locations where the type parameter to the
+> =C2=A0 v4l2_m2m_get_vq() function is hardcoded: The hardcoded type is val=
+id,
+> =C2=A0 so the NULL check can't have been meant to check the type. It can =
+also
+> =C2=A0 be removed.
+>=20
+> There's no dependency between any of those patches so they can be merged
+> in any order.
+>=20
+> Laurent Pinchart (25):
+> =C2=A0 media: v4l2-mem2mem: Document that v4l2_m2m_get_vq() never returns
+> =C2=A0=C2=A0=C2=A0 NULL
+> =C2=A0 media: allgro-dvt: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: meson-g2d: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: amphion: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: coda: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: imagination: e5010: Drop unneeded v4l2_m2m_get_vq() NULL ch=
+eck
+> =C2=A0 media: m2m-deinterlace: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: mediatek: jpeg: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: mediatek: vcodec: Drop unneeded v4l2_m2m_get_vq() NULL chec=
+k
+> =C2=A0 media: dw100: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: imx-jpeg: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: imx-pxp: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: nxp: imx8-isi: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: mx2_emmaprp: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: qcom: iris: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: qcom: venus: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: renesas: fdp1: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: rcar_jpu: Drop unneeded v4l2_m2m_get_vq() NULL check
+
+Why not "renesas: jpu" to match the fdp1 patch naming ?
+
+> =C2=A0 media: platform: rga: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: samsung: s5p-g2d: Drop unneeded v4l2_m2m_get_vq() NULL chec=
+k
+> =C2=A0 media: samsung: s5p-jpeg: Drop unneeded v4l2_m2m_get_vq() NULL che=
+ck
+> =C2=A0 media: stm32: dma2d: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: ti: vpe: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: vicodec: Drop unneeded v4l2_m2m_get_vq() NULL check
+> =C2=A0 media: vim2m: Drop unneeded v4l2_m2m_get_vq() NULL check
+
+I reviewed the list and it seems complete to me.
+
+Nicolas
+
+>=20
+> =C2=A0drivers/media/platform/allegro-dvt/allegro-core.c=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 2 --
+> =C2=A0drivers/media/platform/amlogic/meson-ge2d/ge2d.c=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 5 -----
+> =C2=A0drivers/media/platform/amphion/vdec.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 --
+> =C2=A0drivers/media/platform/amphion/venc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 --
+> =C2=A0.../media/platform/chips-media/coda/coda-common.c=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 4 ----
+> =C2=A0drivers/media/platform/imagination/e5010-jpeg-enc.c=C2=A0 |=C2=A0 4=
+ ----
+> =C2=A0drivers/media/platform/m2m-deinterlace.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 7 -------
+> =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c |=C2=A0 7 ----=
+---
+> =C2=A0.../mediatek/vcodec/decoder/mtk_vcodec_dec.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 7 -------
+> =C2=A0.../vcodec/decoder/vdec/vdec_av1_req_lat_if.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 --
+> =C2=A0.../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 --
+> =C2=A0.../mediatek/vcodec/encoder/mtk_vcodec_enc.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 8 --------
+> =C2=A0drivers/media/platform/nxp/dw100/dw100.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 7 -------
+> =C2=A0drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 4 ----
+> =C2=A0drivers/media/platform/nxp/imx-pxp.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 =
+7 -------
+> =C2=A0drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c=C2=A0=C2=A0 |=C2=
+=A0 2 --
+> =C2=A0drivers/media/platform/nxp/mx2_emmaprp.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 7 -------
+> =C2=A0drivers/media/platform/qcom/iris/iris_vdec.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 --
+> =C2=A0drivers/media/platform/qcom/venus/vdec.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 --
+> =C2=A0drivers/media/platform/qcom/venus/venc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 --
+> =C2=A0drivers/media/platform/renesas/rcar_fdp1.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 3 ---
+> =C2=A0drivers/media/platform/renesas/rcar_jpu.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 8 --------
+> =C2=A0drivers/media/platform/rockchip/rga/rga.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 ----
+> =C2=A0drivers/media/platform/samsung/s5p-g2d/g2d.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 ----
+> =C2=A0drivers/media/platform/samsung/s5p-jpeg/jpeg-core.c=C2=A0 |=C2=A0 7=
+ -------
+> =C2=A0drivers/media/platform/st/stm32/dma2d/dma2d.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 5 -----
+> =C2=A0drivers/media/platform/ti/vpe/vpe.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 7 -------
+> =C2=A0drivers/media/test-drivers/vicodec/vicodec-core.c=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 7 -------
+> =C2=A0drivers/media/test-drivers/vim2m.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 12 ------------
+> =C2=A0drivers/media/v4l2-core/v4l2-mem2mem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 12 +-----------
+> =C2=A0include/media/v4l2-mem2mem.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 3 +++
+> =C2=A031 files changed, 4 insertions(+), 153 deletions(-)
+>=20
+>=20
+> base-commit: e5f0a698b34ed76002dc5cff3804a61c80233a7a
+
+--=-LjFEnUafECFwApd/yAvu
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaOasXgAKCRDZQZRRKWBy
+9F8oAP92tHDSFRd6mdp01gSe1GDFGPRn1q4aOR2d4zEl8W2BoQEAuXK4NGidjdie
+sOQmoarDKx/ErFatR3/qQmk9d+ZaGAY=
+=Bmyy
+-----END PGP SIGNATURE-----
+
+--=-LjFEnUafECFwApd/yAvu--
+
+
+--===============7748363189015318142==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7748363189015318142==--
+
