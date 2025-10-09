@@ -4,100 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24FE4CCA470
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Oct 2025 19:21:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8114CCD18A
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Oct 2025 01:07:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XLw5oCHjsjC2AYOvG/+mTi6jLz90aBKUBrOk6HG0H5Y=; b=N24OXWwCdV914g
-	J0UPXogRrSMePp0jhmcWhK33kS0x6ObGpnHu98pCLzHEDqTUPfuUTVBk1v9xPN5rFaywVJC+WXehQ
-	cg9YccolHW5RNnp5gs6CzAdaowU0KXUeI/leXP66Sfgou8qK9XfolT/aV0y9gvZYpb4fOv2PpO0mk
-	lSWfoyAAvk+zcefUMi7AQ7U/8KTfitUqhjMXsLOTYaL/9TI+2sHVYpfi4zNpTj79r0i4c2ut03aKe
-	mHmOrb0qxarIMG3dXW/dgffSEFzQqEPbhIIC6trl8bsRT3Qa0Or1m4Lk+OpyT2D300k5jigNIZkyw
-	3XK660B6pV2wmY2q5ZIQ==;
+	List-Owner; bh=/sgzIOEs/IgROyiYvKY0UP1zEX9Ly1X2K26XrT5qrDY=; b=W02IeBPSEMpOW5
+	WTqBiJSd38bUfid2MV6TrB6S52fhHdGjltYt6M3pIdXZTz6Pb5GyIhq8W0TGE6/Mkdv9d74BY8OMn
+	HppFvUW3XgzRpwNRPReShtZxb4OO+4e7DTT8yKtQSaiyZLTnSE/puaxxokx26Yb88qyeIU8LzLGKB
+	nNu6GqVfohuor507pCy3DF6nmIa5EbCfhBur/2Zl6LSO5EXlPJbeBFRtbc9i4rZsOaQVATYS0b6N/
+	K2xPXToHYD2nzYdU+OxmHhHvm8ltuj4zDqmSNVtuGq5/N3PbWqDvw13r1cwBFbxU3fkE9zR5RmJHj
+	CutfSHrpsmkayaq2qaCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v6ZjN-00000004YPx-2LWg;
-	Wed, 08 Oct 2025 19:21:45 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1v6f7v-00000004umN-26y0;
+	Thu, 09 Oct 2025 01:07:27 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v6ZjK-00000004YPQ-3Wv6;
-	Wed, 08 Oct 2025 19:21:44 +0000
-Received: from pendragon.ideasonboard.com (82-203-166-19.bb.dnainternet.fi [82.203.166.19])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id B22C11831;
-	Wed,  8 Oct 2025 21:20:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1759951203;
-	bh=qQokYW/VARCWCLgR7Bc7K4ey6RBNxLIsdA5nrZ46+tE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FgmJk2/YEEqMsNrw8ePmdPns4OKSKs5GD97J2cZONy3e6nKAXD2s7B1NWuN9t9aEJ
-	 P1cM18SZxCqMqCZ+LDBut9PSYPfkFAj0820hagqXrnFHxBZGbus9d46BgECqHzGByr
-	 a+qPEkuWAbR3FMswmhzzaCoEv0Bi2mnxSGDI6U9I=
-Date: Wed, 8 Oct 2025 22:21:29 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	imx@lists.linux.dev, linux-amlogic@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	Matthew Majewski <mattwmajewski@gmail.com>,
-	Mirela Rabulea <mirela.rabulea@nxp.com>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Michael Tretter <m.tretter@pengutronix.de>,
-	Devarsh Thakkar <devarsht@ti.com>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Ming Qian <ming.qian@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
-	Tiffany Lin <tiffany.lin@mediatek.com>,
-	Zhou Peng <eagle.zhou@nxp.com>,
-	Dikshita Agarwal <quic_dikshita@quicinc.com>,
-	Vikash Garodia <quic_vgarodia@quicinc.com>,
-	Yunfei Dong <yunfei.dong@mediatek.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jiasheng Jiang <jiashengjiangcool@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	=?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	Heiko Stuebner <heiko@sntech.de>, Benoit Parrot <bparrot@ti.com>,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Jacob Chen <jacob-chen@iotwrt.com>, Bin Liu <bin.liu@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH 00/25] media: v4l2-mem2mem: Reduce cargo-cult
-Message-ID: <20251008192129.GG16422@pendragon.ideasonboard.com>
-References: <20251008175052.19925-1-laurent.pinchart@ideasonboard.com>
- <205478244873d09cad5b77bd887f6a836c31c7ec.camel@collabora.com>
+	id 1v6f7r-00000004uco-0H1o;
+	Thu, 09 Oct 2025 01:07:24 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id A8D1048A4E;
+	Thu,  9 Oct 2025 01:07:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89B32C4CEFE;
+	Thu,  9 Oct 2025 01:07:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759972042;
+	bh=8SQsDQoloTxTr71LaWPc56p2Al3DqRO/PNTgELW/Rqg=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=h5N8+h+/J1jXv++dgDIauQcFpu8xcohWpSqElhPUngssaN+blZLXv83TBTDJTGByB
+	 g7CPPClrkwY+JVC0iBk9rOOxYj84NzrZCifKBdPItESNFWSNwSB+DzF+LeX1k0dedr
+	 9lDqOe/SLCPLi5DhGQTPGuinUmeoaB7eMapsntqh3zKpF714QDX2b0uxUfpkHChyjf
+	 7aHz3/+xov5Bg/nYoRtH/OgSTlC1jrT1WlmHe2ynHJ9COHdLSsVfFxOdWH/OPVjFiS
+	 9wb2j/cIzqDsaTa1xmPgJZsjXHngKE4k6EEI10fcmkB4BCYRAovIkJ7ycYxsEmssWQ
+	 yNU3oH1T6Lu2w==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33DDE3A41017;
+	Thu,  9 Oct 2025 01:07:12 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <205478244873d09cad5b77bd887f6a836c31c7ec.camel@collabora.com>
+Subject: Re: [PATCH v1 0/6] spi: Remove the use of dev_err_probe()
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: <175997203075.3661959.13983624116098440178.git-patchwork-notify@kernel.org>
+Date: Thu, 09 Oct 2025 01:07:10 +0000
+References: <20250819092044.549464-1-zhao.xichao@vivo.com>
+In-Reply-To: <20250819092044.549464-1-zhao.xichao@vivo.com>
+To: Xichao Zhao <zhao.xichao@vivo.com>
+Cc: linux-riscv@lists.infradead.org, Raju.Rangoju@amd.com, broonie@kernel.org,
+ sunny.luo@amlogic.com, xianwei.zhao@amlogic.com, conor.dooley@microchip.com,
+ daire.mcnamara@microchip.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, daniel@zonque.org,
+ haojian.zhuang@gmail.com, robert.jarzmik@free.fr, andi.shyti@kernel.org,
+ tudor.ambarus@linaro.org, krzk@kernel.org, alim.akhtar@samsung.com,
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-samsung-soc@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251008_122143_044211_9AECF264 
-X-CRM114-Status: GOOD (  27.03  )
+X-CRM114-CacheID: sfid-20251008_180723_177099_0B7AD6BE 
+X-CRM114-Status: UNSURE (   8.95  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,124 +76,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBPY3QgMDgsIDIwMjUgYXQgMDI6MjQ6MzBQTSAtMDQwMCwgTmljb2xhcyBEdWZyZXNu
-ZSB3cm90ZToKPiBIaSwKPiAKPiBMZSBtZXJjcmVkaSAwOCBvY3RvYnJlIDIwMjUgw6AgMjA6NTAg
-KzAzMDAsIExhdXJlbnQgUGluY2hhcnQgYSDDqWNyaXTCoDoKPiA+IEhlbGxvLAo+ID4gCj4gPiBU
-aGUgdjRsMl9tMm1fZ2V0X3ZxKCkgZnVuY3Rpb24gbmV2ZXIgcmV0dXJucyBOVUxMLCBidXQgbWFu
-eSBtZW0ybWVtCj4gPiBkcml2ZXJzIHN0aWxsIGNoZWNrIGl0cyByZXR1cm4gdmFsdWUgYW5kIGNv
-bnNpZGVyIE5VTEwgYXMgYW4gZXJyb3IuIFRoaXMKPiA+IG1heSBoYXZlIG9yaWdpbmF0ZWQgYSBs
-b25nIHRpbWUgYWdvIGZyb20gdmFsaWQgY2hlY2tzIHdoZW4KPiA+IHY0bDJfbTJtX2dldF92cSgp
-IGNvdWxkIHJldHVybiBOVUxMLCB3aXRoIGRyaXZlcnMgdGhlbiBqdXN0IGNvcHlpbmcgdGhlCj4g
-PiBjaGVja3MuIFRoaXMgc2VyaWVzIGF0dGVtcHRzIHRvIHN0b3AgdGhlIGNhcmdvLWN1bHQgYmVo
-YXZpb3VyLgo+ID4gCj4gPiBQYXRjaCAwMS8yNSBzdGFydHMgYnkgZXhwbGljaXRseSBzdGF0aW5n
-IGluIGtlcm5lbGRvYyB0aGF0IHRoZQo+ID4gdjRsMl9tMm1fZ2V0X3ZxKCkgZnVuY3Rpb24gbmV2
-ZXIgcmV0dXJucyBOVUxMLiBBbGwgdGhlIG90aGVyIHBhdGNoZXMKPiA+IGRyb3AgTlVMTCBjaGVj
-a3MgZnJvbSBkcml2ZXJzLgo+ID4gCj4gPiBJIGhhdmUgY2FyZWZ1bGx5IGNoZWNrZWQgYWxsIHBh
-dGNoZWQgbG9jYXRpb25zIGluIGFsbCBkcml2ZXJzLiBUaGV5IGZhbGwKPiA+IGluIDMgY2F0ZWdv
-cmllczoKPiA+IAo+ID4gLSBDaGVja3MgaW4gdGhlIFZJRElPQ19HX0ZNVCwgVklESU9DX1RSWV9G
-TVQgYW5kIFZJRElPQ19TX0ZNVCBoYW5kbGVyczoKPiA+IMKgIFRob3NlIG1heSBoYXZlIGJlZW4g
-YWRkZWQgdG8gZW5zdXJlIHRoYXQgdGhlIGZvcm1hdCB0eXBlIGhhcyBhIHZhbGlkCj4gPiDCoCB2
-YWx1ZSwgYnV0IHRoYXQgaXMgZW5zdXJlZCBieSB0aGUgVjRMMiBpb2N0bCBjb3JlIGJlZm9yZSBj
-YWxsaW5nIHRoZQo+ID4gwqAgaGFuZGxlcnMuIFRoZSBjaGVja3MgY2FuIGJlIGRyb3BwZWQgd2l0
-aG91dCBhIG5lZWQgdG8gcmVwbGFjZSB0aGVtCj4gPiDCoCB3aXRoIHByb3BlciB0eXBlIGNoZWNr
-cy4KPiA+IAo+ID4gLSBDaGVja3MgaW4gdGhlIFZJRElPQ19TX1NFTEVDVElPTiBoYW5kbGVyOiBU
-aGUgb25seSBsb2NhdGlvbiB3aGVyZSB0aGlzCj4gPiDCoCBpcyBwZXJmb3JtZWQgaGFzIGFuIGV4
-cGxpY2l0IHR5cGUgY2hlY2ssIHNvIHRoZSBOVUxMIGNoZWNrIGNhbiBhbHNvIGJlCj4gPiDCoCBk
-cm9wcGVkLgo+ID4gCj4gPiAtIENoZWNrcyBpbiBvdGhlciBsb2NhdGlvbnMgd2hlcmUgdGhlIHR5
-cGUgcGFyYW1ldGVyIHRvIHRoZQo+ID4gwqAgdjRsMl9tMm1fZ2V0X3ZxKCkgZnVuY3Rpb24gaXMg
-aGFyZGNvZGVkOiBUaGUgaGFyZGNvZGVkIHR5cGUgaXMgdmFsaWQsCj4gPiDCoCBzbyB0aGUgTlVM
-TCBjaGVjayBjYW4ndCBoYXZlIGJlZW4gbWVhbnQgdG8gY2hlY2sgdGhlIHR5cGUuIEl0IGNhbiBh
-bHNvCj4gPiDCoCBiZSByZW1vdmVkLgo+ID4gCj4gPiBUaGVyZSdzIG5vIGRlcGVuZGVuY3kgYmV0
-d2VlbiBhbnkgb2YgdGhvc2UgcGF0Y2hlcyBzbyB0aGV5IGNhbiBiZSBtZXJnZWQKPiA+IGluIGFu
-eSBvcmRlci4KPiA+IAo+ID4gTGF1cmVudCBQaW5jaGFydCAoMjUpOgo+ID4gwqAgbWVkaWE6IHY0
-bDItbWVtMm1lbTogRG9jdW1lbnQgdGhhdCB2NGwyX20ybV9nZXRfdnEoKSBuZXZlciByZXR1cm5z
-Cj4gPiDCoMKgwqAgTlVMTAo+ID4gwqAgbWVkaWE6IGFsbGdyby1kdnQ6IERyb3AgdW5uZWVkZWQg
-djRsMl9tMm1fZ2V0X3ZxKCkgTlVMTCBjaGVjawo+ID4gwqAgbWVkaWE6IG1lc29uLWcyZDogRHJv
-cCB1bm5lZWRlZCB2NGwyX20ybV9nZXRfdnEoKSBOVUxMIGNoZWNrCj4gPiDCoCBtZWRpYTogYW1w
-aGlvbjogRHJvcCB1bm5lZWRlZCB2NGwyX20ybV9nZXRfdnEoKSBOVUxMIGNoZWNrCj4gPiDCoCBt
-ZWRpYTogY29kYTogRHJvcCB1bm5lZWRlZCB2NGwyX20ybV9nZXRfdnEoKSBOVUxMIGNoZWNrCj4g
-PiDCoCBtZWRpYTogaW1hZ2luYXRpb246IGU1MDEwOiBEcm9wIHVubmVlZGVkIHY0bDJfbTJtX2dl
-dF92cSgpIE5VTEwgY2hlY2sKPiA+IMKgIG1lZGlhOiBtMm0tZGVpbnRlcmxhY2U6IERyb3AgdW5u
-ZWVkZWQgdjRsMl9tMm1fZ2V0X3ZxKCkgTlVMTCBjaGVjawo+ID4gwqAgbWVkaWE6IG1lZGlhdGVr
-OiBqcGVnOiBEcm9wIHVubmVlZGVkIHY0bDJfbTJtX2dldF92cSgpIE5VTEwgY2hlY2sKPiA+IMKg
-IG1lZGlhOiBtZWRpYXRlazogdmNvZGVjOiBEcm9wIHVubmVlZGVkIHY0bDJfbTJtX2dldF92cSgp
-IE5VTEwgY2hlY2sKPiA+IMKgIG1lZGlhOiBkdzEwMDogRHJvcCB1bm5lZWRlZCB2NGwyX20ybV9n
-ZXRfdnEoKSBOVUxMIGNoZWNrCj4gPiDCoCBtZWRpYTogaW14LWpwZWc6IERyb3AgdW5uZWVkZWQg
-djRsMl9tMm1fZ2V0X3ZxKCkgTlVMTCBjaGVjawo+ID4gwqAgbWVkaWE6IGlteC1weHA6IERyb3Ag
-dW5uZWVkZWQgdjRsMl9tMm1fZ2V0X3ZxKCkgTlVMTCBjaGVjawo+ID4gwqAgbWVkaWE6IG54cDog
-aW14OC1pc2k6IERyb3AgdW5uZWVkZWQgdjRsMl9tMm1fZ2V0X3ZxKCkgTlVMTCBjaGVjawo+ID4g
-wqAgbWVkaWE6IG14Ml9lbW1hcHJwOiBEcm9wIHVubmVlZGVkIHY0bDJfbTJtX2dldF92cSgpIE5V
-TEwgY2hlY2sKPiA+IMKgIG1lZGlhOiBxY29tOiBpcmlzOiBEcm9wIHVubmVlZGVkIHY0bDJfbTJt
-X2dldF92cSgpIE5VTEwgY2hlY2sKPiA+IMKgIG1lZGlhOiBxY29tOiB2ZW51czogRHJvcCB1bm5l
-ZWRlZCB2NGwyX20ybV9nZXRfdnEoKSBOVUxMIGNoZWNrCj4gPiDCoCBtZWRpYTogcmVuZXNhczog
-ZmRwMTogRHJvcCB1bm5lZWRlZCB2NGwyX20ybV9nZXRfdnEoKSBOVUxMIGNoZWNrCj4gPiDCoCBt
-ZWRpYTogcmNhcl9qcHU6IERyb3AgdW5uZWVkZWQgdjRsMl9tMm1fZ2V0X3ZxKCkgTlVMTCBjaGVj
-awo+IAo+IFdoeSBub3QgInJlbmVzYXM6IGpwdSIgdG8gbWF0Y2ggdGhlIGZkcDEgcGF0Y2ggbmFt
-aW5nID8KCkkgdHJpZWQgdG8gZ28gd2l0aCB0aGUgbW9zdCBjb21tb24gcHJlZml4IGFzIHJlcG9y
-dGVkIGJ5IGdpdCBsb2cuIEkKZG9uJ3QgbWluZCBjaGFuZ2luZyB0aGlzLCBJJ2xsIHdhaXQgZm9y
-IG1vcmUgcmV2aWV3cyB0byBzZWUgaWYgYSB2MiBpcwpuZWVkZWQsIG90aGVyd2lzZSB0aGlzIGNh
-biBiZSB1cGRhdGVkIHdoZW4gYXBwbHlpbmcgaWYgZGVzaXJlZC4KCj4gPiDCoCBtZWRpYTogcGxh
-dGZvcm06IHJnYTogRHJvcCB1bm5lZWRlZCB2NGwyX20ybV9nZXRfdnEoKSBOVUxMIGNoZWNrCj4g
-PiDCoCBtZWRpYTogc2Ftc3VuZzogczVwLWcyZDogRHJvcCB1bm5lZWRlZCB2NGwyX20ybV9nZXRf
-dnEoKSBOVUxMIGNoZWNrCj4gPiDCoCBtZWRpYTogc2Ftc3VuZzogczVwLWpwZWc6IERyb3AgdW5u
-ZWVkZWQgdjRsMl9tMm1fZ2V0X3ZxKCkgTlVMTCBjaGVjawo+ID4gwqAgbWVkaWE6IHN0bTMyOiBk
-bWEyZDogRHJvcCB1bm5lZWRlZCB2NGwyX20ybV9nZXRfdnEoKSBOVUxMIGNoZWNrCj4gPiDCoCBt
-ZWRpYTogdGk6IHZwZTogRHJvcCB1bm5lZWRlZCB2NGwyX20ybV9nZXRfdnEoKSBOVUxMIGNoZWNr
-Cj4gPiDCoCBtZWRpYTogdmljb2RlYzogRHJvcCB1bm5lZWRlZCB2NGwyX20ybV9nZXRfdnEoKSBO
-VUxMIGNoZWNrCj4gPiDCoCBtZWRpYTogdmltMm06IERyb3AgdW5uZWVkZWQgdjRsMl9tMm1fZ2V0
-X3ZxKCkgTlVMTCBjaGVjawo+IAo+IEkgcmV2aWV3ZWQgdGhlIGxpc3QgYW5kIGl0IHNlZW1zIGNv
-bXBsZXRlIHRvIG1lLgoKVGhhbmsgeW91LgoKPiA+IMKgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9h
-bGxlZ3JvLWR2dC9hbGxlZ3JvLWNvcmUuY8KgwqDCoCB8wqAgMiAtLQo+ID4gwqBkcml2ZXJzL21l
-ZGlhL3BsYXRmb3JtL2FtbG9naWMvbWVzb24tZ2UyZC9nZTJkLmPCoMKgwqDCoCB8wqAgNSAtLS0t
-LQo+ID4gwqBkcml2ZXJzL21lZGlhL3BsYXRmb3JtL2FtcGhpb24vdmRlYy5jwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAyIC0tCj4gPiDCoGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0v
-YW1waGlvbi92ZW5jLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDIgLS0KPiA+
-IMKgLi4uL21lZGlhL3BsYXRmb3JtL2NoaXBzLW1lZGlhL2NvZGEvY29kYS1jb21tb24uY8KgwqDC
-oCB8wqAgNCAtLS0tCj4gPiDCoGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vaW1hZ2luYXRpb24vZTUw
-MTAtanBlZy1lbmMuY8KgIHzCoCA0IC0tLS0KPiA+IMKgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9t
-Mm0tZGVpbnRlcmxhY2UuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgNyAtLS0tLS0tCj4g
-PiDCoGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbWVkaWF0ZWsvanBlZy9tdGtfanBlZ19jb3JlLmMg
-fMKgIDcgLS0tLS0tLQo+ID4gwqAuLi4vbWVkaWF0ZWsvdmNvZGVjL2RlY29kZXIvbXRrX3Zjb2Rl
-Y19kZWMuY8KgwqDCoMKgwqDCoMKgwqAgfMKgIDcgLS0tLS0tLQo+ID4gwqAuLi4vdmNvZGVjL2Rl
-Y29kZXIvdmRlYy92ZGVjX2F2MV9yZXFfbGF0X2lmLmPCoMKgwqDCoMKgwqDCoCB8wqAgMiAtLQo+
-ID4gwqAuLi4vdmNvZGVjL2RlY29kZXIvdmRlYy92ZGVjX3ZwOV9yZXFfbGF0X2lmLmPCoMKgwqDC
-oMKgwqDCoCB8wqAgMiAtLQo+ID4gwqAuLi4vbWVkaWF0ZWsvdmNvZGVjL2VuY29kZXIvbXRrX3Zj
-b2RlY19lbmMuY8KgwqDCoMKgwqDCoMKgwqAgfMKgIDggLS0tLS0tLS0KPiA+IMKgZHJpdmVycy9t
-ZWRpYS9wbGF0Zm9ybS9ueHAvZHcxMDAvZHcxMDAuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8
-wqAgNyAtLS0tLS0tCj4gPiDCoGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbnhwL2lteC1qcGVnL214
-Yy1qcGVnLmPCoMKgwqDCoMKgwqAgfMKgIDQgLS0tLQo+ID4gwqBkcml2ZXJzL21lZGlhL3BsYXRm
-b3JtL254cC9pbXgtcHhwLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgNyAt
-LS0tLS0tCj4gPiDCoGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbnhwL2lteDgtaXNpL2lteDgtaXNp
-LW0ybS5jwqDCoCB8wqAgMiAtLQo+ID4gwqBkcml2ZXJzL21lZGlhL3BsYXRmb3JtL254cC9teDJf
-ZW1tYXBycC5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCA3IC0tLS0tLS0KPiA+IMKgZHJp
-dmVycy9tZWRpYS9wbGF0Zm9ybS9xY29tL2lyaXMvaXJpc192ZGVjLmPCoMKgwqDCoMKgwqDCoMKg
-IHzCoCAyIC0tCj4gPiDCoGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vcWNvbS92ZW51cy92ZGVjLmPC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDIgLS0KPiA+IMKgZHJpdmVycy9tZWRpYS9wbGF0
-Zm9ybS9xY29tL3ZlbnVzL3ZlbmMuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMiAtLQo+
-ID4gwqBkcml2ZXJzL21lZGlhL3BsYXRmb3JtL3JlbmVzYXMvcmNhcl9mZHAxLmPCoMKgwqDCoMKg
-wqDCoMKgwqDCoCB8wqAgMyAtLS0KPiA+IMKgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9yZW5lc2Fz
-L3JjYXJfanB1LmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCA4IC0tLS0tLS0tCj4gPiDCoGRy
-aXZlcnMvbWVkaWEvcGxhdGZvcm0vcm9ja2NoaXAvcmdhL3JnYS5jwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCB8wqAgNCAtLS0tCj4gPiDCoGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vc2Ftc3VuZy9zNXAt
-ZzJkL2cyZC5jwqDCoMKgwqDCoMKgwqDCoCB8wqAgNCAtLS0tCj4gPiDCoGRyaXZlcnMvbWVkaWEv
-cGxhdGZvcm0vc2Ftc3VuZy9zNXAtanBlZy9qcGVnLWNvcmUuY8KgIHzCoCA3IC0tLS0tLS0KPiA+
-IMKgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9zdC9zdG0zMi9kbWEyZC9kbWEyZC5jwqDCoMKgwqDC
-oMKgwqAgfMKgIDUgLS0tLS0KPiA+IMKgZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS90aS92cGUvdnBl
-LmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCA3IC0tLS0tLS0KPiA+IMKg
-ZHJpdmVycy9tZWRpYS90ZXN0LWRyaXZlcnMvdmljb2RlYy92aWNvZGVjLWNvcmUuY8KgwqDCoCB8
-wqAgNyAtLS0tLS0tCj4gPiDCoGRyaXZlcnMvbWVkaWEvdGVzdC1kcml2ZXJzL3ZpbTJtLmPCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfCAxMiAtLS0tLS0tLS0tLS0KPiA+IMKg
-ZHJpdmVycy9tZWRpYS92NGwyLWNvcmUvdjRsMi1tZW0ybWVtLmPCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIHwgMTIgKy0tLS0tLS0tLS0tCj4gPiDCoGluY2x1ZGUvbWVkaWEvdjRsMi1tZW0y
-bWVtLmjCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKg
-IDMgKysrCj4gPiDCoDMxIGZpbGVzIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMTUzIGRlbGV0
-aW9ucygtKQo+ID4gCj4gPiAKPiA+IGJhc2UtY29tbWl0OiBlNWYwYTY5OGIzNGVkNzYwMDJkYzVj
-ZmYzODA0YTYxYzgwMjMzYTdhCgotLSAKUmVnYXJkcywKCkxhdXJlbnQgUGluY2hhcnQKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
-bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
-dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Hello:
+
+This patch was applied to riscv/linux.git (for-next)
+by Mark Brown <broonie@kernel.org>:
+
+On Tue, 19 Aug 2025 17:20:37 +0800 you wrote:
+> The dev_err_probe() doesn't do anything when error is '-ENOMEM'. Therefore,
+> remove the useless call to dev_err_probe(), and just return the value instead.
+> 
+> Xichao Zhao (6):
+>   spi: spi_amd: Remove the use of dev_err_probe()
+>   spi: SPISG: Remove the use of dev_err_probe()
+>   spi: Remove the use of dev_err_probe()
+>   spi: mt65xx: Remove the use of dev_err_probe()
+>   spi: pxa2xx: Remove the use of dev_err_probe()
+>   spi: s3c64xx: Remove the use of dev_err_probe()
+> 
+> [...]
+
+Here is the summary with links:
+  - [v1,3/6] spi: Remove the use of dev_err_probe()
+    https://git.kernel.org/riscv/c/2aade32d1ffc
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
