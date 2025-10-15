@@ -4,106 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E49F9CCD195
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Oct 2025 07:54:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB350CCD195
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Oct 2025 12:04:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=rAke5CMBCXTMk4CB3PsdWmgok5m7vFtpCNm5tIWwJ9Y=; b=O67w7uQ/MkK/Gb
-	MwWvWR+n83xdMoOK7jRJmcxqftmadLXekPalSeO6R7zKkQRcUlALD+B4OxV2e45fTFD7qKjM0NFmC
-	MKibWNmEbxOzFC8/ELc55+d2IYubRzjm6qilP72gs+Gmsk+iMjHtIzOzLV2+pEsTICWKYg3vt3onQ
-	XM3mMseguL7BeZTrOXtVCaN1/O5gBko9THcilJK9eZ11GkFoX8JvCsSVs/57VnrZtQ7+7HQB8QxMR
-	HH1jJGGiiH+n7RtaJes2jeDOjUkXlM5ka5hH5Pp15OFXyWG+o4QW7QdVapf0cTMEmFOafOmZsNuXP
-	qB/95kQuFwiZnBfzrmHQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=IReWZaYl0Amigic7ZP8plhaAFp9IzzTQohd6VRHUAZU=; b=0IgOByGJUbIFIq
+	P/e67z2voTObD4spPc3u5M8Ri7UzkJRy+AsGlyVgy254it9s3Rcvq1M6BXYTXNQu3fDixE9Ofz0/U
+	pMgIwoNLtFCR0rkkTu10dmWbFxKVfJiw3AHTI47cEuWPsaNQ+tpqGQ4ESQMY6eubJxbcayV+EazqZ
+	bYbtWcA2PEkeTKZOwflplI3RLJenCp3GtDH5UDlgnYeLRbm+RtS82M3KnVsSjy1fRdMqgOMZRFRrO
+	2UEhhV3h5QQrOza78+voVNidA3ojKQLU5uauj9DP/zrqjWla1heYkwSWlZ9U/EftttFkSbyeelIBo
+	Spcps951Xwq+DN0CkiDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v8wKn-00000000oZt-1p84;
-	Wed, 15 Oct 2025 07:54:09 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1v90Ej-00000001Upk-1J3m;
+	Wed, 15 Oct 2025 12:04:09 +0000
+Received: from mail-qk1-x72d.google.com ([2607:f8b0:4864:20::72d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v8wKk-00000000oZ2-1omE;
-	Wed, 15 Oct 2025 07:54:07 +0000
-Received: from pendragon.ideasonboard.com (87-94-110-32.bb.dnainternet.fi [87.94.110.32])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 7C3E8E92;
-	Wed, 15 Oct 2025 09:52:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1760514742;
-	bh=HMpyQc1vCbg200Ovi9oVcwwxqMAbktCljqyWnp6/pa4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=bHz2suxZQcf0OwK6sXgHCFZZ6iQ17jH8d09o9a4jKXrYvttYbKQiN193Zi3ckmrEb
-	 VOc063B/05xd/wZPm3lhzUiRSoCLduQif6EbnCkdyDb4f7fNTKbIFtfsUB7NowV2j5
-	 Xm/CYKIPh8yqEnxujxmRWLzg3Hf6LshKSceZbfRg=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-mediatek@lists.infradead.org,
-	imx@lists.linux.dev,
-	linux-amlogic@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org
-Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Matthew Majewski <mattwmajewski@gmail.com>,
-	Mirela Rabulea <mirela.rabulea@nxp.com>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Michael Tretter <m.tretter@pengutronix.de>,
-	Devarsh Thakkar <devarsht@ti.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	"Bryan O'Donoghue" <bod@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Ming Qian <ming.qian@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Hans Verkuil <hverkuil+cisco@kernel.org>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
-	Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-	Tiffany Lin <tiffany.lin@mediatek.com>,
-	Zhou Peng <eagle.zhou@nxp.com>,
-	Yunfei Dong <yunfei.dong@mediatek.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jiasheng Jiang <jiashengjiangcool@gmail.com>,
-	Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	=?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Yemike Abhilash Chandra <y-abhilashchandra@ti.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Jacob Chen <jacob-chen@iotwrt.com>,
-	Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-	Bin Liu <bin.liu@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Yunseong Kim <ysk@kzalloc.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>
-Subject: [PATCH v2 00/25] media: v4l2-mem2mem: Reduce cargo-cult
-Date: Wed, 15 Oct 2025 10:53:23 +0300
-Message-ID: <20251015075353.22625-1-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.51.0
+	id 1v90Eg-00000001Uom-47r3
+	for linux-amlogic@lists.infradead.org;
+	Wed, 15 Oct 2025 12:04:08 +0000
+Received: by mail-qk1-x72d.google.com with SMTP id af79cd13be357-88e371e3cbfso95176285a.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 15 Oct 2025 05:04:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fooishbar.org; s=google; t=1760529845; x=1761134645; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=X3tSr4HAvbS0zz40z1XcCEFjgrGlF3qXMnfs2AVWb3Y=;
+        b=CmjKMQQxalohCKa19hLFu05BC9gR+hUoogekzbPk7zzbE8jt66LezCjoG3TrRXUsLN
+         ronbv0i6EzQJ7PK2Tq77C0/5Wg2JBdJSZ+hZW0rrwTKjUBKfGyCnOrZmdwAwU1ZdUp7n
+         uke1f+XNu/cnzvzU2uvNoytYO0HGU4iLzDFLcr098OUnmcNwJgVKf+ZUrV7YObTwBlEW
+         jNDSRvVZX2/ArVk9KNUtUOZkvoJkzjw6dlwykynPX373YLH47WuVt79qDJMFkI9nUZjw
+         p0Voo3xKPCLjvAx3YVvk7WRVm1mO1v67l9HDuROG6boD11oyJx4E28WCvDqEald9NFgF
+         7hzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760529845; x=1761134645;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X3tSr4HAvbS0zz40z1XcCEFjgrGlF3qXMnfs2AVWb3Y=;
+        b=eRPJ4zXcO+vmgOF8oAJ/USlK6kriT1+6JnJsvUFsEmrokq0LQVEFGkaVFOm13EGdet
+         WXhnwCnKcQvbQDQDKrvV1T2I/tFExlqSCChA/Wv1Z2kdVAMY5QzFwc47XMIWzMx5iJnv
+         sJhw1rBUOA5dx6IR0OGH3jEv6yl3NY9sjR2uGkHmnn/jAk29EhH1Rz2/b5UmLlW4Xvu0
+         sTyrosLFuTnvBbunpe6CIB0DBrcg+qLk8VozQu11Zog0/Fut6zc1YbzdCI5zi1svOONY
+         Y/Trg5Qt8wWc/TMULEGEn+SCa6bqqqQ/ynlebqOk23HfKi6+IMNjZNBAV+El0PSHBF22
+         UNHg==
+X-Forwarded-Encrypted: i=1; AJvYcCWkGiNkGMkyxbfSYXuZ5PLPEqXrLh38rrBFCNPZ1xs0MYkhVKKmatStXF7HEDZLX2haTp+E6QiZTKS4lNfI@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy9ngRLhVe3wPjppaP95S7Fr5rLXItqmhlphCRoKYbGzia9yGK2
+	MW5lRsESuUUY/27Tf6vBKXVAnFWczSzS9yetEAu6c4vcKQnTtDHKy5W3mwYL1tCoeQGL6shgPOZ
+	5mTMsnk56zBreHJjMIvSiWqBs4GHmwocCQlRHf0VyLw==
+X-Gm-Gg: ASbGncsNWwYI7ybV52/jObFUguCDxiortpCpDcb0CAZaDwWEiYHRcETfN4XAvOcTjAV
+	lT1xKJtCLz2lqc1o9DGKDblqN2IX5U1oMszEFL+F4yBk+bqpwGgRDgR/p+NHO8PKl3GXLnkPUM3
+	GUhw3snDBfLgHekGHqW4dhUf6NRvGXGPlFR8chtSglKTu1bkRlsWUJp2xLWWGejBW+0MsPMqtjC
+	3HXLkQEGEITJd96B09/CMTxFauQlMnq3g==
+X-Google-Smtp-Source: AGHT+IHqCTndsaW9mNNOpEoxqpK+g671TVftkJwHJncfJRnISWrovh6jkW0GrLsJk4LzlYEdY/SfnIetRnQxqll+9N8=
+X-Received: by 2002:a05:620a:d89:b0:859:7e5d:efb0 with SMTP id
+ af79cd13be357-883521dbdb5mr3978297485a.43.1760529845105; Wed, 15 Oct 2025
+ 05:04:05 -0700 (PDT)
 MIME-Version: 1.0
+References: <20250718105407.32878-1-vignesh.raman@collabora.com>
+In-Reply-To: <20250718105407.32878-1-vignesh.raman@collabora.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Wed, 15 Oct 2025 13:03:53 +0100
+X-Gm-Features: AS18NWCXawAF8rrUemNB4cY6pOyINS36FA1C_QZssu58BBI9i4GnKsHpaQ9lquo
+Message-ID: <CAPj87rMRKdm4BvfD8gMmSF3jjeMK4nurzTKPOFY15V0tBr4pyw@mail.gmail.com>
+Subject: Re: [PATCH v1 0/7] drm/ci: add new jobs, uprev IGT and mesa
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
+	helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch, 
+	robdclark@gmail.com, guilherme.gallo@collabora.com, 
+	sergi.blanch.torne@collabora.com, valentine.burley@collabora.com, 
+	lumag@kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+	intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251015_005406_612967_2A1DAC65 
-X-CRM114-Status: GOOD (  13.66  )
+X-CRM114-CacheID: sfid-20251015_050407_086777_0C4BBB08 
+X-CRM114-Status: UNSURE (   9.13  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,112 +102,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
+Hi VIgnesh,
 
-The v4l2_m2m_get_vq() function never returns NULL, but many mem2mem
-drivers still check its return value and consider NULL as an error. This
-may have originated a long time ago from valid checks when
-v4l2_m2m_get_vq() could return NULL, with drivers then just copying the
-checks. This series attempts to stop the cargo-cult behaviour.
+On Fri, 18 Jul 2025 at 11:54, Vignesh Raman <vignesh.raman@collabora.com> wrote:
+> This series introduces new jobs to drm-ci for testing the following
+> devices:
+> - rk3588-rock-5b
+> - mt8192-asurada-spherion-r0
+>
+> Other updates include:
+> - Uprev IGT and updating test expectations accordingly.
+> - Adapting to recent changes in Mesa CI, such as:
+>    - LAVA overlay-based firmware handling
+>    - Container/job rule separation
+>    - Removal of the python-artifacts job
+>    - Use of the Alpine container for LAVA jobs
+>    - Various other CI improvements
+> - Disabling bare-metal jobs for apq8016 and apq8096, as these devices
+>   are being migrated to LAVA.
+> - Updating the runner tag for i915: cml (switching from hatch to puff)
+>   to improve device availability.
+> - Adjusting parallelism in jobs (sm8350-hdk, amly) to better utilize
+>   test resources.
 
-Patch 01/25 starts by explicitly stating in kerneldoc that the
-v4l2_m2m_get_vq() function never returns NULL. All the other patches
-drop NULL checks from drivers.
+Series is:
+Reviewed-by: Daniel Stone <daniels@collabora.com>
 
-I have carefully checked all patched locations in all drivers. They fall
-in 3 categories:
-
-- Checks in the VIDIOC_G_FMT, VIDIOC_TRY_FMT and VIDIOC_S_FMT handlers:
-  Those may have been added to ensure that the format type has a valid
-  value, but that is ensured by the V4L2 ioctl core before calling the
-  handlers. The checks can be dropped without a need to replace them
-  with proper type checks.
-
-- Checks in the VIDIOC_S_SELECTION handler: The only location where this
-  is performed has an explicit type check, so the NULL check can also be
-  dropped.
-
-- Checks in other locations where the type parameter to the
-  v4l2_m2m_get_vq() function is hardcoded: The hardcoded type is valid,
-  so the NULL check can't have been meant to check the type. It can also
-  be removed.
-
-There's no dependency between any of those patches so they can be merged
-in any order.
-
-Compared to v1, this version drops two more NULL checks, in the Mediatek
-vcodec encoder get format handler (09/25) and the Qualcomm iris venc set
-format handler (15/25).
-
-Laurent Pinchart (25):
-  media: v4l2-mem2mem: Document that v4l2_m2m_get_vq() never returns
-    NULL
-  media: allgro-dvt: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: meson-g2d: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: amphion: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: coda: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: imagination: e5010: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: m2m-deinterlace: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: mediatek: jpeg: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: mediatek: vcodec: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: dw100: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: imx-jpeg: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: imx-pxp: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: nxp: imx8-isi: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: mx2_emmaprp: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: qcom: iris: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: qcom: venus: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: renesas: fdp1: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: rcar_jpu: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: platform: rga: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: samsung: s5p-g2d: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: samsung: s5p-jpeg: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: stm32: dma2d: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: ti: vpe: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: vicodec: Drop unneeded v4l2_m2m_get_vq() NULL check
-  media: vim2m: Drop unneeded v4l2_m2m_get_vq() NULL check
-
- drivers/media/platform/allegro-dvt/allegro-core.c  |  2 --
- drivers/media/platform/amlogic/meson-ge2d/ge2d.c   |  5 -----
- drivers/media/platform/amphion/vdec.c              |  2 --
- drivers/media/platform/amphion/venc.c              |  2 --
- .../media/platform/chips-media/coda/coda-common.c  |  4 ----
- .../media/platform/imagination/e5010-jpeg-enc.c    |  4 ----
- drivers/media/platform/m2m-deinterlace.c           |  7 -------
- .../media/platform/mediatek/jpeg/mtk_jpeg_core.c   |  7 -------
- .../mediatek/vcodec/decoder/mtk_vcodec_dec.c       |  7 -------
- .../vcodec/decoder/vdec/vdec_av1_req_lat_if.c      |  2 --
- .../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c      |  2 --
- .../mediatek/vcodec/encoder/mtk_vcodec_enc.c       | 14 --------------
- drivers/media/platform/nxp/dw100/dw100.c           |  7 -------
- drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c     |  4 ----
- drivers/media/platform/nxp/imx-pxp.c               |  7 -------
- drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c |  2 --
- drivers/media/platform/nxp/mx2_emmaprp.c           |  7 -------
- drivers/media/platform/qcom/iris/iris_vdec.c       |  2 --
- drivers/media/platform/qcom/iris/iris_venc.c       |  2 --
- drivers/media/platform/qcom/venus/vdec.c           |  2 --
- drivers/media/platform/qcom/venus/venc.c           |  2 --
- drivers/media/platform/renesas/rcar_fdp1.c         |  3 ---
- drivers/media/platform/renesas/rcar_jpu.c          |  8 --------
- drivers/media/platform/rockchip/rga/rga.c          |  4 ----
- drivers/media/platform/samsung/s5p-g2d/g2d.c       |  4 ----
- .../media/platform/samsung/s5p-jpeg/jpeg-core.c    |  7 -------
- drivers/media/platform/st/stm32/dma2d/dma2d.c      |  5 -----
- drivers/media/platform/ti/vpe/vpe.c                |  7 -------
- drivers/media/test-drivers/vicodec/vicodec-core.c  |  7 -------
- drivers/media/test-drivers/vim2m.c                 | 12 ------------
- drivers/media/v4l2-core/v4l2-mem2mem.c             | 12 +-----------
- include/media/v4l2-mem2mem.h                       |  3 +++
- 32 files changed, 4 insertions(+), 161 deletions(-)
-
-
-base-commit: 082b86919b7a94de01d849021b4da820a6cb89dc
--- 
-Regards,
-
-Laurent Pinchart
-
+Cheers,
+Daniel
 
 _______________________________________________
 linux-amlogic mailing list
