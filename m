@@ -4,75 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FABECCD190
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Oct 2025 07:37:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A2D4CCD190
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Oct 2025 07:54:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=XCI/++cJdTKNf6SZIaTmJtzQKU4KFFUBAjo3zzGFIf4=; b=RErV9H4rMt3qGZ
-	YTd7FeVDyRxX7VMFZ3kiN6K2PtLEO3q1xHwuaPGeoQ9nRNaDTqA27uR+UYHWXqSX7thoh5q5A8hpr
-	v/6VJNLQf0FWEQYXQeaiuYteElzd7dlYcJTJt9r4InOz9ZiiQs+lXYac0dgVjO1ifwplfCBc38jlL
-	gIlcwYvJ7+SIIQaF06VOw5qTR4rMeEvrQJ4f8dUGWSD5EdFySScNP8cSrjHMiP9IxRR4rx0m9Q3AZ
-	kEwekiqB4x5oII2+9TQFTaDvBo/7JBBitbtLaxH9KEuZizVtfGu9h/zFvQ5mlMPpMzsS7afHxPTDd
-	XqMrZwnQJX/mdC085GpQ==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0hKCQ2YRe4UQslARIhcD8JF8uPQdD9hBlvy5tKNLzeQ=; b=gDGPnUhAFqa/WF
+	zCWu9SSSVBpEbUwRGiSkkXMf8L4zNGZiZJOcNRS7P4ZrOM8G8ALiLeX0ktkF1vzLhE1MKGJji/O3x
+	cOLyHFAK11VRWV+gkckuMMep9scCvWZORGsnWf8967UZSJYOWnVSvfggHDq1v7euIwMJreY/D1Gom
+	kEiEHa3HYzo2O4HbIBhGw7dky3q0S+vyc8imoUI6+5Q/tGT/4d19cC6ksGFN3Tudkwbhvu6Mr/8fM
+	htQorfr7evBWrZVK7u/L/uv7ov7yeV8fmkou+wq5FlX9UUtUosIGXXbMCGUsT3w14x5lSR4OUJGaq
+	xdmgInvZ59EHh4EREGOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v8w4O-00000000m34-319e;
-	Wed, 15 Oct 2025 07:37:12 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1v8wKo-00000000ob3-3suz;
+	Wed, 15 Oct 2025 07:54:10 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v8w4M-00000000m1i-0lrF
-	for linux-amlogic@lists.infradead.org;
-	Wed, 15 Oct 2025 07:37:11 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6B745457D3;
-	Wed, 15 Oct 2025 07:37:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 44F2DC4CEF8;
-	Wed, 15 Oct 2025 07:37:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760513829;
-	bh=H0wf87Ra86CLHS1tXo0mSuHmiuFU4bbwc5VHjWQQnD4=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=p+m+TnsXXJ66DCzZc1D/hV0pjHsH2oa++FULr4MBYdpv2V6vr9UOwcBpG1BYV2fb8
-	 vnzqoG1WdYmEpC6NYqbv+J2N4m50BH7cng5ucx1RuZVH/N6g729ney+F4IOLZ3gfMv
-	 kR5TKJfOUSnhlo2RVaIKkhSZ9FD4BRHgkH6uBDuziAuscMUy0raQQo1S1oR1B4TFtg
-	 Y4eOcBsIjT0FF8vilFC1stXQQSf39phAtM+VEYO2iWg3wRXEv44NO6bEO2XMbbAtEz
-	 BKAH0zKMu3k0IWqN2PojRMLxaAGUASkDZvUOTaur3Jjp/zVGXOoJ0pNUn2FwFA537W
-	 UAbkWEd7p+j3g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3035ECCD190;
-	Wed, 15 Oct 2025 07:37:09 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 15 Oct 2025 15:36:59 +0800
-Subject: [PATCH] spi: amlogic: fix spifc build error
+	id 1v8wKm-00000000oZN-3nMS;
+	Wed, 15 Oct 2025 07:54:10 +0000
+Received: from pendragon.ideasonboard.com (87-94-110-32.bb.dnainternet.fi [87.94.110.32])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 5ADAB190D;
+	Wed, 15 Oct 2025 09:52:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1760514748;
+	bh=Uxgf1oxP9kkN4+H9BmWzXKT3e8oWnSdrgQRWaAUajUs=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=IiRPjPZiLYusQGUslHhwVs6tUuPrcEjK1qqsG1VQeEFunGEJC5YWvwOu0YQFgOygg
+	 k2cdkMolsljfitcQAuNJ+Yxsr4UKYgE1YGdenBeR0gcEl5r9nzKZQhttDLXEfsKhFD
+	 DkNingh/dABrDaHjSlyo/zYM+ByoMqa9MKHlsjJg=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-media@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 03/25] media: meson-g2d: Drop unneeded v4l2_m2m_get_vq() NULL check
+Date: Wed, 15 Oct 2025 10:53:26 +0300
+Message-ID: <20251015075353.22625-4-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251015075353.22625-1-laurent.pinchart@ideasonboard.com>
+References: <20251015075353.22625-1-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-Message-Id: <20251015-fix-spifc-a4-v1-1-08e0900e5b7e@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIABpP72gC/x2MQQqAMAzAvjJ6ttBOHeJXxINo1V5UVhBB9neLx
- xCSF0yyikEfXshyq+l5OHAVYN6nYxPUxRkixZaJW1z1Qbt0nXFqkLo6ifBClBJ4cmVx/++GsZQ
- PwDhbkl4AAAA=
-To: Liang Yang <liang.yang@amlogic.com>, Feng Chen <feng.chen@amlogic.com>, 
- Mark Brown <broonie@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760513827; l=1872;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=ib4K3AKweceHACtvQk2qAu1Cu/KOa08Hppl4rd6zBYY=;
- b=8MdBsfApJXW2O9AH4npOlocTZ3FbpagtH4/ZTFZY9aaslApccjLdZcT/BXHUPBJGo1s0YlV/W
- lFZuormMTOvBtGgqksRN9YUyQZCgOPpnnO2bEryepLQwFmbybNKJmvI
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251015_003710_264865_8861B2AE 
-X-CRM114-Status: UNSURE (   9.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20251015_005409_082917_A2F6D275 
+X-CRM114-Status: GOOD (  10.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,66 +66,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+The v4l2_m2m_get_vq() function never returns NULL. The check was
+probably intended to catch invalid format types, but that's not needed
+as the V4L2 core picks the appropriate VIDIOC_G_FMT ioctl handler based
+on the format type, so the type can't be incorrect. Drop the unneeded
+return value check and, as the return value is not used for other
+purposes and the function has no side effect, the function call as well.
 
-There is an error building when
-Compiler version: gcc (GCC) 14.3.0
-Assembler version: GNU assembler (GNU Binutils) 2.44
-"
- Error log:
- WARNING: modpost: missing MODULE_DESCRIPTION() in arch/arm/probes/kprobes/test-kprobes.o
- ERROR: modpost: "__ffsdi2" [drivers/spi/spi-amlogic-spifc-a4.ko] undefined!
-"
-
-Use __ffs API instead of __bf_shf to be safer.
-
-Reported-by: Guenter Roeck <linux@roeck-us.net>
-Closes: https://lore.kernel.org/all/f594c621-f9e1-49f2-af31-23fbcb176058@roeck-us.net/
-Fixes: 4670db6f32e9 ("spi: amlogic: add driver for Amlogic SPI Flash Controller")
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Fix build err for spifc.
----
- drivers/spi/spi-amlogic-spifc-a4.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/media/platform/amlogic/meson-ge2d/ge2d.c | 5 -----
+ 1 file changed, 5 deletions(-)
 
-diff --git a/drivers/spi/spi-amlogic-spifc-a4.c b/drivers/spi/spi-amlogic-spifc-a4.c
-index 4338d00e56a6..35a7c4965e11 100644
---- a/drivers/spi/spi-amlogic-spifc-a4.c
-+++ b/drivers/spi/spi-amlogic-spifc-a4.c
-@@ -286,7 +286,7 @@ static int aml_sfc_set_bus_width(struct aml_sfc *sfc, u8 buswidth, u32 mask)
+diff --git a/drivers/media/platform/amlogic/meson-ge2d/ge2d.c b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
+index 5744853a4003..c51c6f4e41dc 100644
+--- a/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
++++ b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
+@@ -632,13 +632,8 @@ static int vidioc_s_fmt_cap(struct file *file, void *priv, struct v4l2_format *f
+ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
+ {
+ 	struct ge2d_ctx *ctx = file_to_ge2d_ctx(file);
+-	struct vb2_queue *vq;
+ 	struct ge2d_frame *frm;
  
- 	for (i = 0; i <= LANE_MAX; i++) {
- 		if (buswidth == 1 << i) {
--			conf = i << __bf_shf(mask);
-+			conf = i << __ffs(mask);
- 			return regmap_update_bits(sfc->regmap_base, SFC_SPI_CFG,
- 						  mask, conf);
- 		}
-@@ -566,7 +566,7 @@ static int aml_sfc_raw_io_op(struct aml_sfc *sfc, const struct spi_mem_op *op)
- 	if (!op->data.nbytes)
- 		goto end_xfer;
+-	vq = v4l2_m2m_get_vq(ctx->fh.m2m_ctx, f->type);
+-	if (!vq)
+-		return -EINVAL;
+-
+ 	frm = get_frame(ctx, f->type);
  
--	conf = (op->data.nbytes >> RAW_SIZE_BW) << __bf_shf(RAW_EXT_SIZE);
-+	conf = (op->data.nbytes >> RAW_SIZE_BW) << __ffs(RAW_EXT_SIZE);
- 	ret = regmap_update_bits(sfc->regmap_base, SFC_SPI_CFG, RAW_EXT_SIZE, conf);
- 	if (ret)
- 		goto err_out;
-
----
-base-commit: 4412ab501677606436e5c49e41151a1e6eac7ac0
-change-id: 20251015-fix-spifc-a4-0836ee1d0066
-
-Best regards,
+ 	f->fmt.pix = frm->pix_fmt;
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+Regards,
 
+Laurent Pinchart
 
 
 _______________________________________________
