@@ -4,70 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4180DCCD195
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Oct 2025 07:31:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B916CCD193
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Oct 2025 15:11:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Bmko3dp3OmYSnMwZisNkmjCt57GPnIoOB5ilb+ebluE=; b=wGwp4kHKA8Kdr4
-	lTT4Dq8RKk5l5d4c2VcHsO5lSt+tcaiL39h6b5bd2SxV9Cny7pKCbsgPpfROphYBJ1+rPDAEAVDoV
-	YnJrZn1v+kd8jV5MJxbJaQiBxP4L37tGWA6KU2K84DuUz4bwd7ByhuDphsG5iqQJhEJGqd2QVYZS6
-	pefgbKoH9BIMZh1sj9WEPBJsBCG/jeGp+Y+hkrS6aQgRD4mgcryar/tHYif1hSL56xJ1sfwIq6VgY
-	7izWu4rjcCHxA2z7mfjcW0f2y68ZzYBy9O7Nm2lTdsrWzk6988+QRGHUhPEuuvcfXm0mhJ65Pw57r
-	ZO2e0sAdTAMqQEk6IGMA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=CSSgd2COHxx3t0k29fZQJ+AVNFJrrzyVmlHhjOv9/QA=; b=iiSl7Iw1g1Ko4c
+	KLfgFHH9V3pvhiMqesriUSNcSQ2z+Vg2FWoZxkQAHXJaaHJnc5K7VD6haPt8dPH9OE+19FuyngRmI
+	JzoAMJD7+RQsTjsumLrrFS0Xwabo7EtXwFRmPzRPU+/qpYMMpNSi8LfanW65zK1G7ZVgj1kos4eoT
+	A1i+Yru02LnAvnPjjBZuIIfyCPBbE/PzkCo0ot0C0kPp4NLS/HjJuwHNe35l1ObGYp9ImnyX3K44W
+	CwBVo050iMJq6n8/OUt0v4gk09nffG/tfeWPDHAlSbOwCNvG8BhRnmP8z1GH+Bu1vQ2EkIXU5HAlo
+	17hPHmLKbb65IwfMWRHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v9ewA-00000006y3R-1QbU;
-	Fri, 17 Oct 2025 07:31:42 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1vArXb-0000000E4VD-0HIC;
+	Mon, 20 Oct 2025 15:11:19 +0000
+Received: from smtp81.cstnet.cn ([159.226.251.81] helo=cstnet.cn)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1v9ew7-00000006y1h-10hR;
-	Fri, 17 Oct 2025 07:31:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1760686296;
-	bh=+BMP92K4asKFaGVxNw7U7Zl5UFujoFolv1nhfrtKbto=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WLaKsOv+PriMSUKniOrtmEXJaysfC6roB605EvkuYZgZ5pOgtRwb+klzkqa3zLy+3
-	 TziAC0z7uf7vMRQkkUdOgda1bI6JuvZkfnjGPNTDaJ4Ey8bPBDjhJ+H7qY4UCKvAOd
-	 11GI3+ZY+7NHLI7bkbomSD675uSgk5FnOxSmPX5EW5zNcIRKWb+8X0kI9t6LIQ7Qpt
-	 w/HCWZHSP9yOLVJJP1to35UeXykuyZiBYpNLnm9UWk6LjOTg7bLwPGG9FtWCuy3Uhx
-	 gtk5SbONRX3EalYkRgfIVhqafdHuNcxJcnoQEyRdWVBA4yOxYzDi+FSvC4aW/NcmHD
-	 Nz3MB0AbQjHkg==
-Received: from [192.168.50.250] (unknown [171.76.80.157])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B11C217E0FAD;
-	Fri, 17 Oct 2025 09:31:32 +0200 (CEST)
-Message-ID: <6769d162-ab1c-4427-a0be-22c0b62673c3@collabora.com>
-Date: Fri, 17 Oct 2025 13:01:24 +0530
+	id 1vArXW-0000000E4UG-1bNE
+	for linux-amlogic@lists.infradead.org;
+	Mon, 20 Oct 2025 15:11:18 +0000
+Received: from DESKTOP-L0HPE2S (unknown [114.245.38.183])
+	by APP-03 (Coremail) with SMTP id rQCowADXH3oMUfZo9hsqEg--.25932S2;
+	Mon, 20 Oct 2025 23:11:10 +0800 (CST)
+From: Haotian Zhang <vulab@iscas.ac.cn>
+To: Yiting Deng <yiting.deng@amlogic.com>,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: linux-amlogic@lists.infradead.org,
+	linux-rtc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org,
+	Haotian Zhang <vulab@iscas.ac.cn>
+Subject: [PATCH] rtc: amlogic-a4: fix double free caused by devm
+Date: Mon, 20 Oct 2025 23:09:56 +0800
+Message-ID: <20251020150956.491-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.50.1.windows.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/7] drm/ci: disable apq8016 and apq8096 bare-metal
- jobs
-To: rob.clark@oss.qualcomm.com
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
- helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, valentine.burley@collabora.com,
- lumag@kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250718105407.32878-1-vignesh.raman@collabora.com>
- <20250718105407.32878-2-vignesh.raman@collabora.com>
- <CACSVV029ueL_4Y5irmmOwy_9QDQGqDe_1wCGUe22FdefQiNjkw@mail.gmail.com>
-Content-Language: en-US
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <CACSVV029ueL_4Y5irmmOwy_9QDQGqDe_1wCGUe22FdefQiNjkw@mail.gmail.com>
+X-CM-TRANSID: rQCowADXH3oMUfZo9hsqEg--.25932S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Xr1kuF48Kr17GFyDJryxZrb_yoW8JF1UpF
+	Z7GFyjkFsIqrW8Ka1DXrykXF15K3y8ta48KrWUW3sa93WrJFykAFZ7J3W8Xan5CrWkGa13
+	Wr4Utr1rGF1DuFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUkl14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r1j
+	6r4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7MxkF7I0En4kS14v26r12
+	6r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI
+	0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y
+	0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxV
+	WUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1l
+	IxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbSfO7UUUU
+	U==
+X-Originating-IP: [114.245.38.183]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBgsBA2j2KwVh2AAAsG
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251017_003139_447973_DA337C66 
-X-CRM114-Status: GOOD (  11.92  )
+X-CRM114-CacheID: sfid-20251020_081114_801280_B1969BC5 
+X-CRM114-Status: UNSURE (   8.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,36 +78,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgUm9iLAoKT24gMTYvMTAvMjUgMjA6MjIsIFJvYiBDbGFyayB3cm90ZToKPiBPbiBGcmksIEp1
-bCAxOCwgMjAyNSBhdCAzOjU04oCvQU0gVmlnbmVzaCBSYW1hbgo+IDx2aWduZXNoLnJhbWFuQGNv
-bGxhYm9yYS5jb20+IHdyb3RlOgo+Pgo+PiBUaGVzZSBkZXZpY2VzIGFyZSBiZWluZyBtb3ZlZCB0
-byBMQVZBLiBUaGUgam9icyB3aWxsIGJlIGVuYWJsZWQgYW5kIHRoZQo+PiBqb2IgZGVmaW5pdGlv
-bnMgd2lsbCBiZSB1cGRhdGVkIG9uY2UgdGhlIG1vdmUgaXMgY29tcGxldGUuCj4gCj4gZndpdywg
-dGhlIHJ1bm5lcnMgYXJlIHVwIGFuZCBydW5uaW5nIGluIExBVkEgbm93CgpUaGFua3MuIEkgd2ls
-bCBlbmFibGUgdGhlbSBhbmQgc2VuZCB2Mi4KClJlZ2FyZHMsClZpZ25lc2gKCj4gCj4gQlIsCj4g
-LVIKPiAKPj4gU2lnbmVkLW9mZi1ieTogVmlnbmVzaCBSYW1hbiA8dmlnbmVzaC5yYW1hbkBjb2xs
-YWJvcmEuY29tPgo+PiAtLS0KPj4gICBkcml2ZXJzL2dwdS9kcm0vY2kvdGVzdC55bWwgfCA2ICsr
-KystLQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0p
-Cj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vY2kvdGVzdC55bWwgYi9kcml2ZXJz
-L2dwdS9kcm0vY2kvdGVzdC55bWwKPj4gaW5kZXggODExNDdlODZiZmQwLi41M2QxOWZmYWFmNjEg
-MTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9jaS90ZXN0LnltbAo+PiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vY2kvdGVzdC55bWwKPj4gQEAgLTE0OCw3ICsxNDgsOSBAQCBtc206c2M3MTgw
-LXRyb2dkb3Ita2luZ29mdG93bjoKPj4gICAgICAgR1BVX1ZFUlNJT046ICR7REVWSUNFX1RZUEV9
-Cj4+ICAgICAgIFJVTk5FUl9UQUc6IG1lc2EtY2kteDg2LTY0LWxhdmEtc2M3MTgwLXRyb2dkb3It
-a2luZ29mdG93bgo+Pgo+PiAtbXNtOmFwcTgwMTY6Cj4+ICsjIEZJWE1FOiBEaXNhYmxlIHRoZSBi
-YXJlLW1ldGFsIGpvYnMuIFRoZXNlIGRldmljZXMgYXJlIGJlaW5nIG1vdmVkIHRvIExBVkEuCj4+
-ICsjIE9uY2UgdGhlIG1vdmUgaXMgY29tcGxldGUsIHVwZGF0ZSB0aGUgam9iIGRlZmluaXRpb25z
-IGFjY29yZGluZ2x5Lgo+PiArLm1zbTphcHE4MDE2Ogo+PiAgICAgZXh0ZW5kczoKPj4gICAgICAg
-LSAuYmFyZW1ldGFsLWlndC1hcm02NAo+PiAgICAgc3RhZ2U6IG1zbQo+PiBAQCAtMTY1LDcgKzE2
-Nyw3IEBAIG1zbTphcHE4MDE2Ogo+PiAgICAgc2NyaXB0Ogo+PiAgICAgICAtIC4vaW5zdGFsbC9i
-YXJlLW1ldGFsL2Zhc3Rib290LnNoIHx8IGV4aXQgJD8KPj4KPj4gLW1zbTphcHE4MDk2Ogo+PiAr
-Lm1zbTphcHE4MDk2Ogo+PiAgICAgZXh0ZW5kczoKPj4gICAgICAgLSAuYmFyZW1ldGFsLWlndC1h
-cm02NAo+PiAgICAgc3RhZ2U6IG1zbQo+PiAtLQo+PiAyLjQ3LjIKPj4KCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcg
-bGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
-ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+The clock obtained via devm_clk_get_enabled() is automatically managed
+by devres and will be disabled and freed on driver detach. Manually
+calling clk_disable_unprepare() in error path and remove function
+causes double free.
+
+Remove the redundant clk_disable_unprepare() calls from the probe
+error path and aml_rtc_remove(), allowing the devm framework to
+automatically manage the clock lifecycle.
+
+Fixes: c89ac9182ee2 ("rtc: support for the Amlogic on-chip RTC")
+Signed-off-by: Haotian Zhang <vulab@iscas.ac.cn>
+---
+ drivers/rtc/rtc-amlogic-a4.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
+index 1928b29c1045..ed36b649c057 100644
+--- a/drivers/rtc/rtc-amlogic-a4.c
++++ b/drivers/rtc/rtc-amlogic-a4.c
+@@ -390,7 +390,6 @@ static int aml_rtc_probe(struct platform_device *pdev)
+ 
+ 	return 0;
+ err_clk:
+-	clk_disable_unprepare(rtc->sys_clk);
+ 	device_init_wakeup(dev, false);
+ 
+ 	return ret;
+@@ -425,7 +424,6 @@ static void aml_rtc_remove(struct platform_device *pdev)
+ {
+ 	struct aml_rtc_data *rtc = dev_get_drvdata(&pdev->dev);
+ 
+-	clk_disable_unprepare(rtc->sys_clk);
+ 	device_init_wakeup(&pdev->dev, false);
+ }
+ 
+-- 
+2.25.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
