@@ -4,68 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B916CCD193
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Oct 2025 15:11:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34653CCD184
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Oct 2025 07:47:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=CSSgd2COHxx3t0k29fZQJ+AVNFJrrzyVmlHhjOv9/QA=; b=iiSl7Iw1g1Ko4c
-	KLfgFHH9V3pvhiMqesriUSNcSQ2z+Vg2FWoZxkQAHXJaaHJnc5K7VD6haPt8dPH9OE+19FuyngRmI
-	JzoAMJD7+RQsTjsumLrrFS0Xwabo7EtXwFRmPzRPU+/qpYMMpNSi8LfanW65zK1G7ZVgj1kos4eoT
-	A1i+Yru02LnAvnPjjBZuIIfyCPBbE/PzkCo0ot0C0kPp4NLS/HjJuwHNe35l1ObGYp9ImnyX3K44W
-	CwBVo050iMJq6n8/OUt0v4gk09nffG/tfeWPDHAlSbOwCNvG8BhRnmP8z1GH+Bu1vQ2EkIXU5HAlo
-	17hPHmLKbb65IwfMWRHA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=iPIqPkvboflRTzCsA2uLbJynxx+ryO+inK9Fqebaq2c=; b=BXMXkONC6qpimZ
+	l1DKRsu4tVyb6wN7SKMSsfhbX2Ax2u0FF0/ypKMKu8GYUi6y+q+LOzN63Rs9ZWztmIDPmOjf9DPOZ
+	ZJQ1i4Nv4as/8o1dEhMEUs4LC1EfVH4LcQze9Rh/pjzYT9zN2qwB2T15LQhQrs2/H3sRr13TxEkEJ
+	F/aoj4B+WZH2eiK18thwvhRHnx7tHwtemrlDexK4Qs8EhygK7s2FgaHtFfQOIkCy4XNpUB4+8qrlH
+	wePNlnmaKU+thVcXuqP3krUyleL/Em3yQIXMfUhWtD5ioTtXosJCfzBxmq1rYeHi29QE0L5GJw/O7
+	wsD87l41YL73zdgR+uaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vArXb-0000000E4VD-0HIC;
-	Mon, 20 Oct 2025 15:11:19 +0000
-Received: from smtp81.cstnet.cn ([159.226.251.81] helo=cstnet.cn)
+	id 1vB75j-0000000G99C-3qob;
+	Tue, 21 Oct 2025 07:47:35 +0000
+Received: from mail.zynotix.com ([79.137.80.196])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vArXW-0000000E4UG-1bNE
+	id 1vB75h-0000000G98C-3rLS
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Oct 2025 15:11:18 +0000
-Received: from DESKTOP-L0HPE2S (unknown [114.245.38.183])
-	by APP-03 (Coremail) with SMTP id rQCowADXH3oMUfZo9hsqEg--.25932S2;
-	Mon, 20 Oct 2025 23:11:10 +0800 (CST)
-From: Haotian Zhang <vulab@iscas.ac.cn>
-To: Yiting Deng <yiting.deng@amlogic.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: linux-amlogic@lists.infradead.org,
-	linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org,
-	Haotian Zhang <vulab@iscas.ac.cn>
-Subject: [PATCH] rtc: amlogic-a4: fix double free caused by devm
-Date: Mon, 20 Oct 2025 23:09:56 +0800
-Message-ID: <20251020150956.491-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.50.1.windows.1
+	Tue, 21 Oct 2025 07:47:35 +0000
+Received: by mail.zynotix.com (Postfix, from userid 1002)
+	id 2B64722971; Tue, 21 Oct 2025 09:41:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=zynotix.com; s=mail;
+	t=1761032517; bh=xZTLqM3E7aVDYIB/jnD5MiDi3FAIGgatFm751EDj2YQ=;
+	h=Date:From:To:Subject:From;
+	b=Xjvo+sXkpQLeWemoW75ifwOqSGR1ZYAKJcrjV5VUjPZoOys+JpOEGsHfOmDKcmm6z
+	 qpAjKoiy0kBdbp0JrcHlZuJq1pt04/HPPRKyTWjOU7tJGdiHbYwBWl4pdcJWP47wJZ
+	 uSttfjKG3cpdqfmT2/BH1jvm8EZeCsFuemF0ABx7pAmkChOPZEeuuEdYYf3Ug6Ejj1
+	 CSQ7i7+gR5p9DWz/H2pxjb+MJWxyXLRXdC85ZDZYvVq5c4sub+bEt2JUZffgUpaFt0
+	 7THeAg89kAt/Zjzzi4QEFL1+35/0g92DDbWO3+c1YNKRw8Xbk7CXTCQOgssJw8rVoY
+	 fsT1X1M5QC3kw==
+Received: by mail.zynotix.com for <linux-amlogic@lists.infradead.org>; Tue, 21 Oct 2025 07:40:46 GMT
+Message-ID: <20251021084501-0.1.ck.uoi2.0.2k3d751fqt@zynotix.com>
+Date: Tue, 21 Oct 2025 07:40:46 GMT
+From: =?UTF-8?Q?"Magdalena_Ko=C5=82adczyk"?= <magdalena.koladczyk@zynotix.com>
+To: <linux-amlogic@lists.infradead.org>
+Subject: =?UTF-8?Q?Informacja_z_ksi=C4=99gowo=C5=9Bci?=
+X-Mailer: mail.zynotix.com
 MIME-Version: 1.0
-X-CM-TRANSID: rQCowADXH3oMUfZo9hsqEg--.25932S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Xr1kuF48Kr17GFyDJryxZrb_yoW8JF1UpF
-	Z7GFyjkFsIqrW8Ka1DXrykXF15K3y8ta48KrWUW3sa93WrJFykAFZ7J3W8Xan5CrWkGa13
-	Wr4Utr1rGF1DuFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUkl14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r1j
-	6r4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
-	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
-	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7MxkF7I0En4kS14v26r12
-	6r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI
-	0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y
-	0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxV
-	WUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1l
-	IxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbSfO7UUUU
-	U==
-X-Originating-IP: [114.245.38.183]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBgsBA2j2KwVh2AAAsG
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251020_081114_801280_B1969BC5 
-X-CRM114-Status: UNSURE (   8.48  )
+X-CRM114-CacheID: sfid-20251021_004734_090443_37463392 
+X-CRM114-Status: UNSURE (  -0.04  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,51 +61,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The clock obtained via devm_clk_get_enabled() is automatically managed
-by devres and will be disabled and freed on driver detach. Manually
-calling clk_disable_unprepare() in error path and remove function
-causes double free.
-
-Remove the redundant clk_disable_unprepare() calls from the probe
-error path and aml_rtc_remove(), allowing the devm framework to
-automatically manage the clock lifecycle.
-
-Fixes: c89ac9182ee2 ("rtc: support for the Amlogic on-chip RTC")
-Signed-off-by: Haotian Zhang <vulab@iscas.ac.cn>
----
- drivers/rtc/rtc-amlogic-a4.c | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
-index 1928b29c1045..ed36b649c057 100644
---- a/drivers/rtc/rtc-amlogic-a4.c
-+++ b/drivers/rtc/rtc-amlogic-a4.c
-@@ -390,7 +390,6 @@ static int aml_rtc_probe(struct platform_device *pdev)
- 
- 	return 0;
- err_clk:
--	clk_disable_unprepare(rtc->sys_clk);
- 	device_init_wakeup(dev, false);
- 
- 	return ret;
-@@ -425,7 +424,6 @@ static void aml_rtc_remove(struct platform_device *pdev)
- {
- 	struct aml_rtc_data *rtc = dev_get_drvdata(&pdev->dev);
- 
--	clk_disable_unprepare(rtc->sys_clk);
- 	device_init_wakeup(&pdev->dev, false);
- }
- 
--- 
-2.25.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RHppZcWEIGRvYnJ5LAoKcHJvd2FkesSZIGJpdXJvIGtzacSZZ293ZSwga3TDs3JlIHNwZWNqYWxp
+enVqZSBzacSZIHcgb2JzxYJ1ZHplIGJpem5lc3UgUGHFhHN0d2EgZm9ybWF0dS4KCldyYXogeiB6
+ZXNwb8WCZW0gemFwZXduaWFteSB3c3BhcmNpZSwga3TDs3JlIHd5a3JhY3phIGRhbGVrbyBwb3ph
+IHNhbW8gcHJ6eWdvdG93YW5pZSByb3psaWN6ZcWEIGkgcHJvY2Vzb3dhbmllIGRva3VtZW50YWNq
+aS4KClJlZHVrdWplbXkgZG8gbWluaW11bSBjemFzIGkgxZtyb2RraSwgamFraWUgbmFzaSBLbGll
+bmNpIHByemV6bmFjemFqxIUgbmEgb2JzxYJ1Z8SZIGZpbmFuc293by1rc2nEmWdvd8SFIGkga2Fk
+cm93by1wxYJhY293xIUuIAoKWiByYWNqaSBtb2plZ28gZG/Fm3dpYWRjemVuaWEgcHJ6eSB3c3DD
+s8WCcHJhY3kgeiBmaXJtYW1pIG8gdGFraW0gcm9kemFqdSBkemlhxYJhbG5vxZtjaSwgY2hjaWHF
+gmFieW0gcHJ6ZWRzdGF3acSHIGtpbGthIHdhcnRvxZtjaW93eWNoIGkgc3ByYXdkem9ueWNoIHJv
+endpxIV6YcWELgoKQ3p5IG1vxbxlbXkgcG9yb3ptYXdpYcSHIG8gb2JzxYJ1ZHplIFBhxYRzdHdh
+IGZpcm15PwoKUG96ZHJhd2lhbQpNYWdkYWxlbmEgS2/FgmFkY3p5awoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxp
+c3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRl
+YWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
