@@ -4,79 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FCC8CCD1A5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Oct 2025 09:34:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB044CCD184
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Oct 2025 10:36:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MQU1wyiZiOjBfTnBQPCSYeaxhXyfjXd+oKH6Dr5Me40=; b=RsN4l0etZvqAwg
-	SiMSIgndQEixsCVlVmYrcWo7vsUJmIWaDFw4QUOdm4Dhx9XZSAxclDRV1EGrzScoRxrzxIqMBU79e
-	hQ3elfQcwwxuij5yNysbZ/imq2CVzaRkHJLQrPZkY3AgnnO/iLjw6A6f/6F5DwV2F2rrEOF1+WYq/
-	/4+bLEmoXlrFFypTRHZw+TuR6gjv17kBHtEFpJIWZqtbHqPDTbY3xZAHizwGzs+p1JaybWv17dRut
-	IHNA2HzUS0krJvbIp2Ii/qeBDEBuREVLb9miELtvF8Y29TjNbJBHdRsZnsC6zuxriFKg4aAoqsuEX
-	nOyui9jGYEw2ADL3vQQA==;
+	List-Owner; bh=NG8d43ggYYGhPF2S9DBcsrKfW2IPtuWtYVTI7i1CpQ0=; b=gsKShKPTti8tQd
+	WK0QY9wzd9umxpMsIA2/+SPw8OqnjaxQnG5QUwJ7tiMB3TgIUlxMarBm0G8Ry1NDVltO2MH5uvlij
+	o/XaeKvFgGqfsPOOoc/8THga4lc89450Y9XjAZmqNEW+bWy0H1Kegs2YX5Ft7mC7w0MJoDoUW9jVI
+	ztq+XislxtNAFyhXBbaHJBeodlzxnCVLvURC1f3Z3Ffz/YdZmsTWZCJyBrlj3xwRT9NUFA4VRwI1p
+	E8yCTOnqCO7N4IwO3D30izgeSfO41GdO3ocogai/M306smml82LoxDALQKLs1ngN1VwqqzLqiyZMa
+	3DQrR/2n41wVtplrM7xQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vB8kx-0000000GSqD-3PmW;
-	Tue, 21 Oct 2025 09:34:15 +0000
-Received: from mgamail.intel.com ([198.175.65.21])
+	id 1vB9iu-0000000Gdy3-2AoW;
+	Tue, 21 Oct 2025 10:36:12 +0000
+Received: from smtp84.cstnet.cn ([159.226.251.84] helo=cstnet.cn)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vB8kv-0000000GSpl-2NyX
+	id 1vB9io-0000000GdvA-2vly
 	for linux-amlogic@lists.infradead.org;
-	Tue, 21 Oct 2025 09:34:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761039254; x=1792575254;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NuNaGs/aTEkE7RGJzLyuoXHuGc7MDkZXmN/08+xvIOc=;
-  b=kBjfuz6Ks6UYbIM1Nj9kdRbc3Ji9tIyV503ln6phtabjxpj31Odiyvry
-   RId/sA2fgm5K+c8+m23ahNG7XfcZtQ/W890guH6LfAgprIQ1d2/PxZMKh
-   yDLGpGOWAIf59s7afgzhJYnw9NyY4hxUwsxMv8yn3jX1CXX6nxvqy4Jw+
-   QDp4wxhaZtrTTJ4DmiXhlOt0/iXdi/+mSFr5V7d2/6E6ibhCZW+rsiUob
-   PehVqrXUynudK4jqpJrEOANfCpuIw/nXxaE8XzuC3zC8vZ2SBVDg8yKmq
-   mfPswE4YpYq729d51iD0D5RQqm50px5B5T4hMsqiAx9xFnOQSig5EIOhg
-   A==;
-X-CSE-ConnectionGUID: VygPtRtPQ9iHtFDXHeGnFg==
-X-CSE-MsgGUID: KFEsbDdeSEq14jbHwCR/PQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63066487"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
-   d="scan'208";a="63066487"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 02:34:12 -0700
-X-CSE-ConnectionGUID: vD6z0ZsJRle3uMTT2KkwVg==
-X-CSE-MsgGUID: xor/ioRCQdqRm1zZIOR81A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; 
-   d="scan'208";a="183254367"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by fmviesa007.fm.intel.com with ESMTP; 21 Oct 2025 02:34:09 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vB8ih-000AhN-37;
-	Tue, 21 Oct 2025 09:33:39 +0000
-Date: Tue, 21 Oct 2025 17:29:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Haotian Zhang <vulab@iscas.ac.cn>,
-	Yiting Deng <yiting.deng@amlogic.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+	Tue, 21 Oct 2025 10:36:11 +0000
+Received: from DESKTOP-L0HPE2S (unknown [124.16.141.245])
+	by APP-05 (Coremail) with SMTP id zQCowAAnyhMRYvdo3tXeEg--.23830S2;
+	Tue, 21 Oct 2025 18:36:02 +0800 (CST)
+From: Haotian Zhang <vulab@iscas.ac.cn>
+To: alexandre.belloni@bootlin.com,
+	yiting.deng@amlogic.com,
+	xianwei.zhao@amlogic.com
+Cc: linux-amlogic@lists.infradead.org,
+	linux-rtc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	Haotian Zhang <vulab@iscas.ac.cn>
-Subject: Re: [PATCH] rtc: amlogic-a4: fix double free caused by devm
-Message-ID: <202510211756.vnQ8ZIWo-lkp@intel.com>
+Subject: [PATCH v2] rtc: amlogic-a4: fix double free caused by devm
+Date: Tue, 21 Oct 2025 18:35:59 +0800
+Message-ID: <20251021103559.1903-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.50.1.windows.1
+In-Reply-To: <20251020150956.491-1-vulab@iscas.ac.cn>
 References: <20251020150956.491-1-vulab@iscas.ac.cn>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20251020150956.491-1-vulab@iscas.ac.cn>
+X-CM-TRANSID: zQCowAAnyhMRYvdo3tXeEg--.23830S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Kr18AFWfAr4DKrWUZr48Xrb_yoW8GF1DpF
+	WxGFyj9FsIgFW8Kan8Xr1UXF15t3y8ta4IgrWUW3sa93WrJFy8AFWxtF18Xan5CFWkGa13
+	Wr4Utr1rGF1DuFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwCY1x0262kKe7AKxVWU
+	AVWUtwCY02Avz4vE14v_Gw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r126r1DMIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjfUrF4iDUUUU
+X-Originating-IP: [124.16.141.245]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBwkCA2j3I1HxSAAAsb
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251021_023413_669490_78BBC856 
-X-CRM114-Status: GOOD (  11.08  )
+X-CRM114-CacheID: sfid-20251021_033607_105936_46B1018D 
+X-CRM114-Status: GOOD (  10.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,54 +83,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Haotian,
+The clock obtained via devm_clk_get_enabled() is automatically managed
+by devres and will be disabled and freed on driver detach. Manually
+calling clk_disable_unprepare() in error path and remove function
+causes double free.
 
-kernel test robot noticed the following build warnings:
+Remove the redundant clk_disable_unprepare() calls from the probe
+error path and aml_rtc_remove(), allowing the devm framework to
+automatically manage the clock lifecycle.
 
-[auto build test WARNING on abelloni/rtc-next]
-[also build test WARNING on linus/master v6.18-rc2 next-20251021]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Fixes: c89ac9182ee2 ("rtc: support for the Amlogic on-chip RTC")
+Signed-off-by: Haotian Zhang <vulab@iscas.ac.cn>
+---
+v2: Also remove the now-unused local variable 'rtc' in aml_rtc_remove()
+---
+ drivers/rtc/rtc-amlogic-a4.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Haotian-Zhang/rtc-amlogic-a4-fix-double-free-caused-by-devm/20251020-231345
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20251020150956.491-1-vulab%40iscas.ac.cn
-patch subject: [PATCH] rtc: amlogic-a4: fix double free caused by devm
-config: i386-buildonly-randconfig-002-20251021 (https://download.01.org/0day-ci/archive/20251021/202510211756.vnQ8ZIWo-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251021/202510211756.vnQ8ZIWo-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510211756.vnQ8ZIWo-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/rtc/rtc-amlogic-a4.c:425:23: warning: unused variable 'rtc' [-Wunused-variable]
-     425 |         struct aml_rtc_data *rtc = dev_get_drvdata(&pdev->dev);
-         |                              ^~~
-   1 warning generated.
-
-
-vim +/rtc +425 drivers/rtc/rtc-amlogic-a4.c
-
-c89ac9182ee297 Yiting Deng  2024-11-12  419  
-c89ac9182ee297 Yiting Deng  2024-11-12  420  static SIMPLE_DEV_PM_OPS(aml_rtc_pm_ops,
-c89ac9182ee297 Yiting Deng  2024-11-12  421  			 aml_rtc_suspend, aml_rtc_resume);
-c89ac9182ee297 Yiting Deng  2024-11-12  422  
-c89ac9182ee297 Yiting Deng  2024-11-12  423  static void aml_rtc_remove(struct platform_device *pdev)
-c89ac9182ee297 Yiting Deng  2024-11-12  424  {
-c89ac9182ee297 Yiting Deng  2024-11-12 @425  	struct aml_rtc_data *rtc = dev_get_drvdata(&pdev->dev);
-c89ac9182ee297 Yiting Deng  2024-11-12  426  
-8c28c4993f117e Wolfram Sang 2024-12-17  427  	device_init_wakeup(&pdev->dev, false);
-c89ac9182ee297 Yiting Deng  2024-11-12  428  }
-c89ac9182ee297 Yiting Deng  2024-11-12  429  
-
+diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
+index 1928b29c1045..a993d35e1d6b 100644
+--- a/drivers/rtc/rtc-amlogic-a4.c
++++ b/drivers/rtc/rtc-amlogic-a4.c
+@@ -390,7 +390,6 @@ static int aml_rtc_probe(struct platform_device *pdev)
+ 
+ 	return 0;
+ err_clk:
+-	clk_disable_unprepare(rtc->sys_clk);
+ 	device_init_wakeup(dev, false);
+ 
+ 	return ret;
+@@ -423,9 +422,6 @@ static SIMPLE_DEV_PM_OPS(aml_rtc_pm_ops,
+ 
+ static void aml_rtc_remove(struct platform_device *pdev)
+ {
+-	struct aml_rtc_data *rtc = dev_get_drvdata(&pdev->dev);
+-
+-	clk_disable_unprepare(rtc->sys_clk);
+ 	device_init_wakeup(&pdev->dev, false);
+ }
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
 _______________________________________________
 linux-amlogic mailing list
