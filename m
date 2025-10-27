@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65AB1CCF9EA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Oct 2025 13:06:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04D40CCF9E5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Oct 2025 13:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dEIawfbINOGv6J1zAP39LMQaIdTqJLWYTf7G0KuKi0Y=; b=wN22Fpi8MLHzvE
-	322ueyroarpYKg4+f8n8oNZMwQsmEmoPCmqhp82HQTEcRS3djlmlkl4z+X3qzDLY00dRV9n6Dj9Jh
-	9yBsm+UGvu707LVGxGwuBNVXUNep9wStBzTa8sSNgvQmm14hNL7lLHcpTVDNXuR/6x2L6nPR7B1FB
-	iKEgp/oMMXgqs2oEXFosthfzTbgDYfs4H9ZDDjqlNA+JrX7iy+ADxA9F/UPW5ZEpXo+n8Wi3GYPo1
-	1t3o4eT3nAyaeAV3jvjpZxexL8T0+r6Nv/szbQQRQ9KHTTuH3dIm82pAkMHLYGIlXCcEE0bX9yjVf
-	9FGRPdrBXJhUPSMcBDHA==;
+	List-Owner; bh=qEYtZfVV8udBGqopDbsr48DpNvi061W48v3KSWPyqt4=; b=0WKMDZFq1EH6Hc
+	jE5CDa/vHbnNfyMuexXTYn05YWppYyXPlr0kD4t/3s9B2k/WCS7sf33CJoCRptxsOZ4HcUaRTt+Mc
+	EHQCzA/rlG6R6IfiEeIh9+gorxCVJkP9GE+XcQsGXY9hsnDJEEPYYy4k7fd+9BUbTdGSojMSLwINo
+	TBEMuOhQ1Qmimhou8VAIuMT3daUj06WFmp9GGVN0sciLnwiFweNTb4NbtufAezaa79KhlYDPvwijt
+	r2nbOziu/YWATdGRM2jTN1Tv583n6K9u9P6qkKNC02+9Lwv0/x0XtvSYmOALwFwWOLHUsOctjaN1l
+	ivBWKHoSfMbkg5UO3P4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vDMvR-0000000DyZ3-0JYC;
-	Mon, 27 Oct 2025 13:06:17 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1vDMzR-0000000Dz37-38bc;
+	Mon, 27 Oct 2025 13:10:25 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vDMvO-0000000DyYS-2IPv;
-	Mon, 27 Oct 2025 13:06:15 +0000
+	id 1vDMzQ-0000000Dz2i-22p1;
+	Mon, 27 Oct 2025 13:10:24 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 15ACD4558E;
-	Mon, 27 Oct 2025 13:06:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6AA7C4CEF1;
-	Mon, 27 Oct 2025 13:06:10 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 8BD9B604DC;
+	Mon, 27 Oct 2025 13:10:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0529EC4CEFF;
+	Mon, 27 Oct 2025 13:10:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761570373;
-	bh=PsQsp861Ykv1mY2uESLxhH32w+HggUC3IjQqF4o6Zns=;
+	s=k20201202; t=1761570623;
+	bh=oQmm+wvIDMShfnALqPD7wwl33FnC85XhswN//H+pbp8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZTuZSqWbRWHOJ9iQJkpEpEFtJxFv7qeEqU68tQmKjnT0rwUymr4wLIAKcrQP6jVSX
-	 b2s9fkfbr++IvxtY8qUO81CW2Uj1cpPIwfqngNPtBOeOuMu2gXTyCDLHcC70P238pq
-	 QqYq0Jm7jGOKlaOmsKECrEQKw7amnu1Cf9jxPsLMTC86PrgesBYMVXxcxX2cMSRsJN
-	 fUp7g4sAv+cAuG43odFdgUUbhfjMKtAr2MAgGALhCsg19w682zXSh4JWaG36rguyWw
-	 ezDGki/dTkMP+/wnOAt5JPUCNODNOt1Jjz8puoiQPZrN0WzJ66av4h2fM9rybgjTeO
-	 NRqbHSG/7enJQ==
-Message-ID: <43280bcc-5afd-4b46-a83d-d81c80405e71@kernel.org>
-Date: Mon, 27 Oct 2025 14:06:08 +0100
+	b=X13+xhplCXsjWqBnlnhDbz7hYz8xE65UGoHPkd9Cw9FeJrxoQXWliigGkMgKlyWCr
+	 QgJ9yT27/M0MyZXxKsNQXu5kPaNUsRsR8VSj9aDK6MojBBdsMTIM11CYPOfyc2276z
+	 QDCE++RfBO3YmJdfGE/piBTkPEzRAFin62hLHwQbcOG1MK5tTdeSCrtnZ5ibGTKyNp
+	 jQOxNWQ6LVdOek8fAm2IGmIRx7JUhAbEfxrx+HNzev6IXdnVuMA575STmCVwBfTWAS
+	 x/wgIITxB7SYCSQurqKtSyLhTNevnl06tr1rhq0WwpzQN287sP/HyrXnfCq85zoFBH
+	 WB3rqqH16ZB2g==
+Message-ID: <a2ec6794-1131-421e-848b-3fddd39191e2@kernel.org>
+Date: Mon, 27 Oct 2025 14:10:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dts: decoder: Support V4L2 stateless decoder dt node
- for S4
+Subject: Re: [PATCH 3/3] decoder: Add V4L2 stateless H.264 decoder driver
 To: zhentao.guo@amlogic.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
@@ -57,7 +56,7 @@ Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org
 References: <20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com>
- <20251027-b4-s4-vdec-upstream-v1-2-620401813b5d@amlogic.com>
+ <20251027-b4-s4-vdec-upstream-v1-3-620401813b5d@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,11 +102,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251027-b4-s4-vdec-upstream-v1-2-620401813b5d@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251027_060614_633556_A0BAF8E8 
-X-CRM114-Status: UNSURE (   6.89  )
-X-CRM114-Notice: Please train this message.
+In-Reply-To: <20251027-b4-s4-vdec-upstream-v1-3-620401813b5d@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,20 +122,201 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 27/10/2025 06:42, Zhentao Guo via B4 Relay wrote:
 > From: Zhentao Guo <zhentao.guo@amlogic.com>
 > 
-> Add vcodec_dec to the s4 dtsi for the V4L2 stateless decoder driver
+> This patch introduces initial driver support for Amlogic's new
+
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
+
+> video acceleration hardware architecture, designed for video
+> stream decoding. The driver is designed to support the
+> V4L2 M2M stateless decoder API. In phase 1, it supports H.264
+> bitstreams decoding.
 > 
 > Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
 
+...
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-Please order the patchset as expressed in submitting patches DT
-document. Or SoC maintainer profile.
+> +
+> +static int aml_vdec_drv_probe(struct platform_device *pdev)
+> +{
+> +	struct aml_vdec_dev *dev;
+> +	struct video_device *vfd_dec;
+> +	struct aml_vdec_hw *hw;
+> +	int ret = 0;
+> +
+> +	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
+> +	if (!dev)
+> +		return -ENOMEM;
+> +
+> +	dev->plat_dev = pdev;
+> +	mutex_init(&dev->dev_mutex);
+> +
+> +	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "v4l2_device_register err\n");
+> +
+> +	vfd_dec = video_device_alloc();
+> +	if (!vfd_dec) {
+> +		v4l2_err(&dev->v4l2_dev, "Failed to allocate video device\n");
+> +		ret = -ENOMEM;
+> +		goto err_device_alloc;
+> +	}
+> +	*vfd_dec = dec_dev;
+> +	vfd_dec->v4l2_dev = &dev->v4l2_dev;
+> +	vfd_dec->lock = &dev->dev_mutex;
+> +	video_set_drvdata(vfd_dec, dev);
+> +	dev->vfd = vfd_dec;
+> +	platform_set_drvdata(pdev, dev);
+> +
+> +	hw = kzalloc(sizeof(*hw), GFP_KERNEL);
 
+Why aren't you using devm interfaces?
+
+> +	if (!hw) {
+> +		ret = -ENOMEM;
+> +		goto err_dec_mem_init;
+> +	}
+> +	dev->dec_hw = hw;
+> +
+> +	dev->pvdec_data = of_device_get_match_data(&pdev->dev);
+> +	ret = dev->pvdec_data->req_hw_resource(dev);
+> +	if (ret < 0)
+> +		goto err_hw_init;
+> +
+> +	dev->m2m_dev_dec = v4l2_m2m_init(&aml_vdec_m2m_ops);
+> +	if (IS_ERR((__force void *)dev->m2m_dev_dec)) {
+
+Huh? Why the cast?
+
+> +		v4l2_err(&dev->v4l2_dev, "Failed to init mem2mem dec device\n");
+> +		ret = PTR_ERR((__force void *)dev->m2m_dev_dec);
+> +		goto err_hw_init;
+> +	}
+> +
+> +	ret = video_register_device(vfd_dec, VFL_TYPE_VIDEO, -1);
+> +	if (ret) {
+> +		v4l2_err(&dev->v4l2_dev, "Failed to register video device");
+> +		goto err_vid_dev_register;
+> +	}
+> +
+> +	v4l2_info(&dev->v4l2_dev, "Registered %s as /dev/%s\n",
+> +		  vfd_dec->name, video_device_node_name(vfd_dec));
+
+This does not look like useful printk message. Drivers should be silent
+on success:
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
+
+> +
+> +	dev->mdev.dev = &pdev->dev;
+> +	strscpy(dev->mdev.model, AML_VDEC_DRV_NAME, sizeof(dev->mdev.model));
+> +	media_device_init(&dev->mdev);
+> +	dev->mdev.ops = &aml_m2m_media_ops;
+> +	dev->v4l2_dev.mdev = &dev->mdev;
+> +
+> +	ret = v4l2_m2m_register_media_controller(dev->m2m_dev_dec, vfd_dec,
+> +						 MEDIA_ENT_F_PROC_VIDEO_DECODER);
+> +	if (ret) {
+> +		v4l2_err(&dev->v4l2_dev, "Failed to init mem2mem media controller\n");
+> +		goto error_m2m_mc_register;
+> +	}
+> +
+> +	ret = media_device_register(&dev->mdev);
+> +	if (ret) {
+> +		v4l2_err(&dev->v4l2_dev, "Failed to register media device");
+> +		goto err_media_dev_register;
+> +	}
+> +	vdec_enable(dev->dec_hw);
+> +	return 0;
+> +
+> +err_media_dev_register:
+> +	v4l2_m2m_unregister_media_controller(dev->m2m_dev_dec);
+> +error_m2m_mc_register:
+> +	media_device_cleanup(&dev->mdev);
+> +err_vid_dev_register:
+> +	v4l2_m2m_release(dev->m2m_dev_dec);
+> +err_hw_init:
+> +	kfree(hw);
+> +	dev->dec_hw = NULL;
+> +err_dec_mem_init:
+> +	video_device_release(vfd_dec);
+> +err_device_alloc:
+> +	v4l2_device_unregister(&dev->v4l2_dev);
+> +	return ret;
+> +}
+> +
+> +static void aml_vdec_drv_remove(struct platform_device *pdev)
+> +{
+> +	struct aml_vdec_dev *dev = platform_get_drvdata(pdev);
+> +
+> +	vdec_disable(dev->dec_hw);
+> +
+> +	if (media_devnode_is_registered(dev->mdev.devnode)) {
+> +		media_device_unregister(&dev->mdev);
+> +		media_device_cleanup(&dev->mdev);
+> +	}
+> +
+> +	if (dev->m2m_dev_dec)
+> +		v4l2_m2m_release(dev->m2m_dev_dec);
+> +	if (dev->vfd)
+> +		video_unregister_device(dev->vfd);
+> +	if (dev->dec_hw)
+> +		dev->pvdec_data->destroy_hw_resource(dev);
+> +
+> +	v4l2_device_unregister(&dev->v4l2_dev);
+> +
+> +	pr_debug("aml v4l2 decoder driver remove\n");
+
+
+This does not look like useful printk message. Drivers should be silent
+on success:
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
+
+> +}
+> +
+> +static const struct of_device_id aml_vdec_match[] = {
+> +	{.compatible = "amlogic,s4-vcodec-dec", .data = &aml_vdec_s4_pdata},
+> +	{},
+> +};
+> +
+> +static struct platform_driver aml_vcodec_dec_driver = {
+> +	.probe    = aml_vdec_drv_probe,
+> +	.remove    = aml_vdec_drv_remove,
+> +	.driver    = {
+> +		.name    = AML_VDEC_DRV_NAME,
+> +		.of_match_table = aml_vdec_match,
+> +	},
+> +};
+> +
+> +static int __init aml_vdec_init(void)
+> +{
+> +	pr_debug("aml v4l2 decoder module init\n");
+> +
+> +	if (platform_driver_register(&aml_vcodec_dec_driver)) {
+> +		pr_err("failed to register aml v4l2 decoder\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void __exit aml_vdec_exit(void)
+> +{
+> +	pr_debug("aml v4l2 decoder module exit\n");
+> +	platform_driver_unregister(&aml_vcodec_dec_driver);
+
+No, drop entire init/exit. This is some really odd code, probably
+copy-paste from poor downstream. Please look at upstream drivers - do
+you see anything like that anywhere?
+
+> +}
+> +
+> +module_init(aml_vdec_init);
+> +module_exit(aml_vdec_exit);
+> +
 
 Best regards,
 Krzysztof
