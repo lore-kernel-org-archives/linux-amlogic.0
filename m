@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FA8DCCF9FB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Oct 2025 05:24:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35848CCF9F9
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Oct 2025 05:24:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LVJlc/kyKkrVnu97UpgsbZN9prLLNSHIx90GL5Vo89U=; b=JytQ2au0myvCA4
-	Bqh46XKtm4noSDBZY8uHVTJLTEU2mlnVPnEnSeK81nYISWRlyHn8fQsDhQDlsi78CPyIS5NkrxZ3c
-	YLAwtGP0yYDM/vTFNsKNnTtAJvdpxuptora+x/cxgUK5w4s6y+RyU1D+RP9QyMmawb9/lU90b/Lud
-	GRbLztrwf4kadaKEdImmcDCcDb7yeme3yE6itXbFHrSw0CDjVBSWFe78tQqFl69E1GNsYmMmEt4jp
-	QzxAq5WWsI4RR9KDoUyot3xTNGnHnrYhnzEcauVCZIfrwIQ5sNW5/Gb95ypWgTsOW8QVvqN/hcnzW
-	c3LGdupLiWRuLWV81H+g==;
+	List-Owner; bh=d8Vh7P7METeIxOJi/O/8AJiMBZSl/DTvUlp11frUTwI=; b=bqP5YkKoEavgHI
+	jOKwtrpwdza/lXiaCRI2tQQUrynIOvhfFaafH3km+ydcjav/3IkTPnYDtK6OFsIzkcbiAajn5FBx+
+	1JVbsCTBdRYtunPwUEhgInU3sU3eC+9Q2QbGQdr8agP1T0U8EWBQmL7jfdnEWCQ3xXNW890T5ylzm
+	tgZI2lUMRIvqu1ggyMZ/H1mEtDdEQRq+ZJRFea+qvpAv8CPclvIwTxU4x5wig9HNbjnwG0oYqjJSz
+	B3vOsfZ87f5MmIkIcYAbDM+YT97VGG58v+mXDvL1GJ8+fVvdEt9S4snvEgAmyx2H1RDtx9X7K8Vg1
+	392XrsU8SHJw456xOwCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEL95-00000003Ux3-0Lto;
-	Thu, 30 Oct 2025 05:24:23 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vEL94-00000003Uwo-3Vai;
+	Thu, 30 Oct 2025 05:24:22 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEL91-00000003Uve-11Uw;
+	id 1vEL91-00000003Uvg-0meN;
 	Thu, 30 Oct 2025 05:24:21 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2A14F601F8;
+	by tor.source.kernel.org (Postfix) with ESMTP id 3382860327;
 	Thu, 30 Oct 2025 05:24:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B4D78C4CEFF;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CB1EEC113D0;
 	Thu, 30 Oct 2025 05:24:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1761801857;
-	bh=5tLSRE6BInQejsiPR/fc5RiDlVZ9iOn8Or4TkaTc/g4=;
+	bh=7PrPtqlO+xwMN6puDCOh8Tf+yRQi8msCbeKY70lBqSA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=d91xdU3DbJl+qQa6lgSQtM7avaR4NNy5V/BBKTRM7wJ+HAfoxiT8FRJTX63UPixo1
-	 AJFPG8ySkx0ZyRFxWRRXEbyG1SbzTXHnG+eRluzSORyzg/u/MN4tousMEBE1uNEIGO
-	 fsWmpwSrtd4YoejlXGH5+fGOPz42aara+mOHhVrTFrMT2m5yhlVevAPQFW53tHWriK
-	 S/DSuVjw1oDxtzGp0BiREnjg9KKiV78RRYc9KYGbcvdDhdBBl89GuHNoCMWsAOw7B0
-	 OrTDqQo3r6XJPKOvys5HzBP5VjGlBbAqPMhYGZVKMhiERNLgFa4V58oqDQa3cbVOIR
-	 oaazgjXuWGsTw==
+	b=ba0sn1ggI/79H0CiA2KfZtb+PuJZfu0J6FUZhhW/kSpdorEYmTY5veZhUeycILUuB
+	 UcL7ghxSH9Epb5IloiBr/MklFdp5Dc12GnK0/7bAuhm7ZjGczYrhWeO3Xt/HPxnmfd
+	 OgqV7y8PG06UoOYdxabsXtfDTJ+3sVexvebrS0LyC3okbCUlt7QT9tBMnnwKMhBPgH
+	 hE88iu134EiV5UPHwVQiuTnjwRp1aOhS06jv5WhohA2F/ci+hHzUIxB47PqwG4H1Xi
+	 HIWxyzvEr1R9PtSWJQ7D5Rl3DHPqx7ta/BSd0yRBHWyY8UR2dFcGeaGlCPtvfTIhMK
+	 EWe7v5WzMD0kg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9EE23CCF9EA;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BE853CCF9F8;
 	Thu, 30 Oct 2025 05:24:17 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Thu, 30 Oct 2025 13:24:11 +0800
-Subject: [PATCH v2 1/5] clk: amlogic: Fix out-of-range PLL frequency
- setting
+Date: Thu, 30 Oct 2025 13:24:13 +0800
+Subject: [PATCH v2 3/5] clk: amlogic: Add handling for PLL lock failure
 MIME-Version: 1.0
-Message-Id: <20251030-optimize_pll_driver-v2-1-37273f5b25ab@amlogic.com>
+Message-Id: <20251030-optimize_pll_driver-v2-3-37273f5b25ab@amlogic.com>
 References: <20251030-optimize_pll_driver-v2-0-37273f5b25ab@amlogic.com>
 In-Reply-To: <20251030-optimize_pll_driver-v2-0-37273f5b25ab@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,11 +60,11 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>, da@libre.computer
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761801855; l=991;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761801855; l=2331;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=6onhzW3ODDG4bFoHZLKVZ14BJkN4o2IaabjNVGrsFP0=;
- b=1KGZg2CEt0fhJufxEmdvITvTntwRDyum3Rdl62EXQsiDSKUog/TKBEitbhD1QajWng+8BLt18
- T+rrPWVi0uQBAvwQMD9AjZ6uyKVd2rP99mLY1neIEaParGQ9LNvQWUW
+ bh=vrUlJ1HmRnCEyEkq2xDw1ggVFh4RddetWLmGLf94sV4=;
+ b=cSkp9cTFFGr5sg6ASQ8L33zSJKDZR942ZJ8M8anl9qJse6qqWwezMYBS2WJrFMSpurm2Vpguh
+ xbNHhPo/ZlBCEu/7QDJNyKvbgOsc82743NVagBbUZHSXjb5k+QBmYDc
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
@@ -90,33 +89,79 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-If the calculated 'm' falls into the range:
+If the PLL fails to lock, it should be disabled, This makes the logic
+more complete, and also helps save unnecessary power consumption when
+the PLL is malfunctioning.
 
-    pll->range->max < m < (1 << pll->m.width)
-
-Here an incorrect 'm' value could be obtained, so an additional
-condition is added to ensure that the calculated 'm' stays within a
-valid range.
-
-Fixes: 8eed1db1adec6 ("clk: meson: pll: update driver for the g12a")
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/clk/meson/clk-pll.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/meson/clk-pll.c | 41 +++++++++++++++++++++++------------------
+ 1 file changed, 23 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index 1ea6579a760f..629f6af18ea1 100644
+index f81ebf6cc981..6c794adb8ccd 100644
 --- a/drivers/clk/meson/clk-pll.c
 +++ b/drivers/clk/meson/clk-pll.c
-@@ -191,7 +191,7 @@ static int meson_clk_get_pll_range_index(unsigned long rate,
- 	*m = meson_clk_get_pll_range_m(rate, parent_rate, *n, pll);
+@@ -353,6 +353,23 @@ static int meson_clk_pcie_pll_enable(struct clk_hw *hw)
+ 	return -EIO;
+ }
  
- 	/* the pre-divider gives a multiplier too big - stop */
--	if (*m >= (1 << pll->m.width))
-+	if (*m > pll->range->max || *m >= (1 << pll->m.width))
- 		return -EINVAL;
++static void meson_clk_pll_disable(struct clk_hw *hw)
++{
++	struct clk_regmap *clk = to_clk_regmap(hw);
++	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
++
++	/* Put the pll is in reset */
++	if (MESON_PARM_APPLICABLE(&pll->rst))
++		meson_parm_write(clk->map, &pll->rst, 1);
++
++	/* Disable the pll */
++	meson_parm_write(clk->map, &pll->en, 0);
++
++	/* Disable PLL internal self-adaption current module */
++	if (MESON_PARM_APPLICABLE(&pll->current_en))
++		meson_parm_write(clk->map, &pll->current_en, 0);
++}
++
+ static int meson_clk_pll_enable(struct clk_hw *hw)
+ {
+ 	struct clk_regmap *clk = to_clk_regmap(hw);
+@@ -397,29 +414,17 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+ 		meson_parm_write(clk->map, &pll->l_detect, 0);
+ 	}
+ 
+-	if (meson_clk_pll_wait_lock(hw))
++	if (meson_clk_pll_wait_lock(hw)) {
++		/* disable PLL when PLL lock failed. */
++		meson_clk_pll_disable(hw);
++		pr_warn("%s: PLL lock failed!!!\n", clk_hw_get_name(hw));
++
+ 		return -EIO;
++	}
  
  	return 0;
+ }
+ 
+-static void meson_clk_pll_disable(struct clk_hw *hw)
+-{
+-	struct clk_regmap *clk = to_clk_regmap(hw);
+-	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+-
+-	/* Put the pll is in reset */
+-	if (MESON_PARM_APPLICABLE(&pll->rst))
+-		meson_parm_write(clk->map, &pll->rst, 1);
+-
+-	/* Disable the pll */
+-	meson_parm_write(clk->map, &pll->en, 0);
+-
+-	/* Disable PLL internal self-adaption current module */
+-	if (MESON_PARM_APPLICABLE(&pll->current_en))
+-		meson_parm_write(clk->map, &pll->current_en, 0);
+-}
+-
+ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+ 				  unsigned long parent_rate)
+ {
 
 -- 
 2.42.0
