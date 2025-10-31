@@ -4,74 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 863D8CCFA02
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Oct 2025 17:43:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10E8DCCF9F8
+	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Oct 2025 17:48:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=221c1O02Q0qgdsweJElGr0VB1VXFPhd4qKRV3VPWjhk=; b=Jj0qwJGueuFt0B
-	m2zjReO1By/SDe1AHUkokXk4ZtrBMXWtl3UjDB5z0BKH0RfllXqvHvQByDqiihx5L6YVfLYxAC4Oj
-	eDd9bqQKSLQ9AiTtjaoHgvgeXJlNqMHCdiGulbhCpGmYQ8k7ikTSkgrKJynkBlRj++716EluCY8Wt
-	Qj+tT4C5jN7/H/JsVUUSleaEe6fFyEqfcnqOjl/IRXR6BgtgZdg2dCGY5bukLjjG8XJRsXDSdtLLy
-	a4JJwfuAMZLl/wb9nNlpA2ZZHIzcJnvy5FCoD0YDX6ealYVL8qQV25puvRfcGD0oXz7wcK8sNAHug
-	FzIYZxDyOzGYoc4ZHo0w==;
+	List-Owner; bh=jOnhhM7fXWPopQVrSZEaN7GyMqmgDUYck6P+NeIUBVY=; b=rK+Lp59pqrJWLn
+	nXQY8TvfvdCyqfWJu8wT2xqokigYI0NOgG3yrRwUtrzmXb1FLOhNCngtPW1HTzLJILbiuuvEHsz94
+	aJxnqHMUm3e2udTy9n3ZyT961e+xBsfsl3aFD+TUbg3VoZmqFUPrBeREhVBOremzPg9aEO9Sesz2c
+	MrjED43nRd3IQtrf3mdEABquSh6s9Fnn2GPnmuA3ZLkailP8R9Aw+0WC/zAZO5l0/11fgEJ2iMf9H
+	80DFxvh6ak2hl8qX3LadJXmbNyBITSptrXw7eAH1VIkYLnEjE10ANaN+PrBmmK6JqPzvEUp24f5bY
+	657+6PJTxM4aBbpLa/dQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEtA8-00000006ZJv-3UB8;
-	Fri, 31 Oct 2025 17:43:44 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vEtEH-00000006ZyI-0Yqo;
+	Fri, 31 Oct 2025 17:48:01 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEtA4-00000006ZFh-1vi9;
-	Fri, 31 Oct 2025 17:43:42 +0000
+	id 1vEtEE-00000006Zxn-0fCn
+	for linux-amlogic@lists.infradead.org;
+	Fri, 31 Oct 2025 17:47:59 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 110FF43AF7;
-	Fri, 31 Oct 2025 17:43:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 720D2C4CEFD;
-	Fri, 31 Oct 2025 17:43:33 +0000 (UTC)
-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Date: Fri, 31 Oct 2025 23:13:01 +0530
-Subject: [PATCH 3/3] PCI: meson: Fix parsing the DBI register region
+	by sea.source.kernel.org (Postfix) with ESMTP id C3C2F40E87;
+	Fri, 31 Oct 2025 17:47:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96452C4CEE7;
+	Fri, 31 Oct 2025 17:47:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761932877;
+	bh=HeGe6c0YHevoJLq10In5ANfraZ5zF5UmASxtNszXF5U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UR4GjxomLCe1weH7cYm/SksUjWQ0NbNfdOtM7qhSl0+vSrWaDmzwrg5BIN6JtLhf4
+	 ZfkxV51n4rAn01rrmIl+lT85kJ2ap8IkgAR4O9kM2cyPYNeBkwgbVKapF97W8AJCdf
+	 bY8dzJkqFog765dcq1VTBIy0ktsh/paS2aowvQ/pvDoGfuBeLRfaSb004qLUJkZZcx
+	 Fsw0n/7k5i7WPTgM6mO/Wv2PuSo9A+oFFLtEGLbArtNC9lW7VIk6V/eoc8FCq2Dga9
+	 MBkSBPzcOoLp3cybooM0OTaALkCsGM5lrvi7LuWWdTC0q0ERsxpylWN6JT65dUovAm
+	 GCWDcAhALb06Q==
+Date: Fri, 31 Oct 2025 23:17:45 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Linnaea Lavia <linnaea-von-lavia@live.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, FUKAUMI Naoki <naoki@radxa.com>, 
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
+	regressions@lists.linux.dev, Yue Wang <yue.wang@amlogic.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Subject: Re: PCIe probe failure on AmLogic A311D after 6.18-rc1
+Message-ID: <agqyqr7c6wwkr4fewt3szomd7c57eeujkal7modj46ssbngxf7@f7t56i723mvx>
+References: <DM4PR05MB1027077E1F4CD8B1A7EDADF1DC7F8A@DM4PR05MB10270.namprd05.prod.outlook.com>
+ <20251031161323.GA1688975@bhelgaas>
 MIME-Version: 1.0
-Message-Id: <20251031-pci-meson-fix-v1-3-ed29ee5b54f9@oss.qualcomm.com>
-References: <20251031-pci-meson-fix-v1-0-ed29ee5b54f9@oss.qualcomm.com>
-In-Reply-To: <20251031-pci-meson-fix-v1-0-ed29ee5b54f9@oss.qualcomm.com>
-To: Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Hanjie Lin <hanjie.lin@amlogic.com>, Yue Wang <yue.wang@amlogic.com>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Andrew Murray <amurray@thegoodpenguin.co.uk>, 
- Jingoo Han <jingoohan1@gmail.com>, 
- Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, 
- Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
- stable@vger.kernel.org, Linnaea Lavia <linnaea-von-lavia@live.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3414;
- i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
- bh=z6Ma1tu8vEZQke3NjkVPJHb01xM4bsdEHhx7cBiREVQ=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBpBPUvXsQtI6n1/ub7CgmXxGJ8JQaiffJFgXqJj
- IzTr9DiOUmJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaQT1LwAKCRBVnxHm/pHO
- 9RqECACAesI/tWx6iPgaFUHpHOdBsklA2dKYzIq50VMZE8TITLoLok0QC1u/5MZaotv9fBwvVtz
- CFLVVss7W1lhqxX0tSMJ2PeeYX/vnjD/PKpNznfsAmv0T0vSgUuRArmunIH47Wdftrm8Kwgk/rY
- +djMmr21xzwda6XqDunl4TxYwjWRCCDfuZHfJkDgxKJYYoa+J1aFl9NRsks1J4pxeE71lIOPJhW
- 4V/43ur74Zo7cTo851njPWd/oXhe6dAsq7Ees/3POTB1/k4W5AmSe4spB/OKRUyBY4OgaIPXDq8
- scPBWKL/psMaD/PHj11mY1V5tqnHYKE12zUU+PfChr+L8u00
-X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
+Content-Disposition: inline
+In-Reply-To: <20251031161323.GA1688975@bhelgaas>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251031_104340_589751_8A364150 
-X-CRM114-Status: GOOD (  15.58  )
+X-CRM114-CacheID: sfid-20251031_104758_241623_456E0D30 
+X-CRM114-Status: GOOD (  50.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,93 +71,120 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-First of all, the driver was parsing the 'dbi' register region as 'elbi'.
-This was due to DT mistakenly passing 'dbi' as 'elbi'. Since the DT is
-now fixed to supply 'dbi' region, this driver can rely on the DWC core
-driver to parse and map it.
-
-However, to support the old DTs, if the 'elbi' region is found in DT, parse
-and map the region as both 'dw_pcie::elbi_base' as 'dw_pcie::dbi_base'.
-This will allow the driver to work with both broken and fixed DTs.
-
-Also, skip parsing the 'elbi' region in DWC core if 'pci->elbi_base' was
-already populated.
-
-Cc: <stable@vger.kernel.org> # 6.2
-Reported-by: Linnaea Lavia <linnaea-von-lavia@live.com>
-Closes: https://lore.kernel.org/linux-pci/DM4PR05MB102707B8CDF84D776C39F22F2C7F0A@DM4PR05MB10270.namprd05.prod.outlook.com/
-Fixes: 9c0ef6d34fdb ("PCI: amlogic: Add the Amlogic Meson PCIe controller driver")
-Fixes: c96992a24bec ("PCI: dwc: Add support for ELBI resource mapping")
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
----
- drivers/pci/controller/dwc/pci-meson.c       | 18 +++++++++++++++---
- drivers/pci/controller/dwc/pcie-designware.c | 12 +++++++-----
- 2 files changed, 22 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index 787469d1b396d4c7b3e28edfe276b7b997fb8aee..54b6a4196f1767a3c14c6c901bfee3505588134c 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -108,10 +108,22 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
- 			       struct meson_pcie *mp)
- {
- 	struct dw_pcie *pci = &mp->pci;
-+	struct resource *res;
- 
--	pci->dbi_base = devm_platform_ioremap_resource_byname(pdev, "elbi");
--	if (IS_ERR(pci->dbi_base))
--		return PTR_ERR(pci->dbi_base);
-+	/*
-+	 * For the broken DTs that supply 'dbi' as 'elbi', parse the 'elbi'
-+	 * region and assign it to both 'pci->elbi_base' and 'pci->dbi_space' so
-+	 * that the DWC core can skip parsing both regions.
-+	 */
-+	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "elbi");
-+	if (res) {
-+		pci->elbi_base = devm_pci_remap_cfg_resource(pci->dev, res);
-+		if (IS_ERR(pci->elbi_base))
-+			return PTR_ERR(pci->elbi_base);
-+
-+		pci->dbi_base = pci->elbi_base;
-+		pci->dbi_phys_addr = res->start;
-+	}
- 
- 	mp->cfg_base = devm_platform_ioremap_resource_byname(pdev, "cfg");
- 	if (IS_ERR(mp->cfg_base))
-diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-index c644216995f69cbf065e61a0392bf1e5e32cf56e..06eca858eb1b3c7a8a833df6616febcdbe854850 100644
---- a/drivers/pci/controller/dwc/pcie-designware.c
-+++ b/drivers/pci/controller/dwc/pcie-designware.c
-@@ -168,11 +168,13 @@ int dw_pcie_get_resources(struct dw_pcie *pci)
- 	}
- 
- 	/* ELBI is an optional resource */
--	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "elbi");
--	if (res) {
--		pci->elbi_base = devm_ioremap_resource(pci->dev, res);
--		if (IS_ERR(pci->elbi_base))
--			return PTR_ERR(pci->elbi_base);
-+	if (!pci->elbi_base) {
-+		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "elbi");
-+		if (res) {
-+			pci->elbi_base = devm_ioremap_resource(pci->dev, res);
-+			if (IS_ERR(pci->elbi_base))
-+				return PTR_ERR(pci->elbi_base);
-+		}
- 	}
- 
- 	/* LLDD is supposed to manually switch the clocks and resets state */
-
--- 
-2.48.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBPY3QgMzEsIDIwMjUgYXQgMTE6MTM6MjNBTSAtMDUwMCwgQmpvcm4gSGVsZ2FhcyB3
+cm90ZToKPiBPbiBGcmksIE9jdCAzMSwgMjAyNSBhdCAwODoyNjo0MlBNICswODAwLCBMaW5uYWVh
+IExhdmlhIHdyb3RlOgo+ID4gT24gMTAvMzEvMjAyNSA0OjUwIFBNLCBOZWlsIEFybXN0cm9uZyB3
+cm90ZToKPiA+ID4gT24gMTAvMzEvMjUgMDY6MzQsIExpbm5hZWEgTGF2aWEgd3JvdGU6Cj4gPiA+
+ID4gT24gMTAvMzAvMjAyNSAxOjE1IEFNLCBCam9ybiBIZWxnYWFzIHdyb3RlOgo+ID4gPiA+ID4g
+T24gV2VkLCBPY3QgMjksIDIwMjUgYXQgMDY6NTA6NDZQTSArMDgwMCwgTGlubmFlYSBMYXZpYSB3
+cm90ZToKPiA+ID4gPiA+ID4gT24gMTAvMjkvMjAyNSA2OjE2IEFNLCBCam9ybiBIZWxnYWFzIHdy
+b3RlOgo+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL3F1
+aXJrcy5jIGIvZHJpdmVycy9wY2kvcXVpcmtzLmMKPiA+ID4gPiA+ID4gPiBpbmRleCAyMTRlZDA2
+MGNhMWIuLjljZDEyOTI0YjVjYiAxMDA2NDQKPiA+ID4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL3Bj
+aS9xdWlya3MuYwo+ID4gPiA+ID4gPiA+ICsrKyBiL2RyaXZlcnMvcGNpL3F1aXJrcy5jCj4gPiA+
+ID4gPiA+ID4gQEAgLTI1MjQsNiArMjUyNCw3IEBAIHN0YXRpYyB2b2lkIHF1aXJrX2Rpc2FibGVf
+YXNwbV9sMHNfbDEoc3RydWN0IHBjaV9kZXYgKmRldikKPiA+ID4gPiA+ID4gPiDCoMKgwqAgKiBk
+aXNhYmxlIGJvdGggTDBzIGFuZCBMMSBmb3Igbm93IHRvIGJlIHNhZmUuCj4gPiA+ID4gPiA+ID4g
+wqDCoMKgICovCj4gPiA+ID4gPiA+ID4gwqDCoCBERUNMQVJFX1BDSV9GSVhVUF9GSU5BTChQQ0lf
+VkVORE9SX0lEX0FTTUVESUEsIDB4MTA4MCwgcXVpcmtfZGlzYWJsZV9hc3BtX2wwc19sMSk7Cj4g
+PiA+ID4gPiA+ID4gK0RFQ0xBUkVfUENJX0ZJWFVQX0ZJTkFMKFBDSV9WRU5ET1JfSURfU1lOT1BT
+WVMsIDB4YWJjZCwgcXVpcmtfZGlzYWJsZV9hc3BtX2wwc19sMSk7Cj4gPiA+ID4gPiA+ID4gwqDC
+oCAvKgo+ID4gPiA+ID4gPiA+IMKgwqDCoCAqIFNvbWUgUGVyaWNvbSBQQ0llLXRvLVBDSSBicmlk
+Z2VzIGluIHJldmVyc2UgbW9kZSBuZWVkIHRoZSBQQ0llIFJldHJhaW4KPiA+ID4gPiA+ID4gCj4g
+PiA+ID4gPiA+IEkgaGF2ZSBhcHBsaWVkIHRoZSBwYXRjaCBvbiA2LjE4LXJjMyBidXQgaXQncyBz
+dGlsbCB0cnlpbmcgdG8gZW5hYmxlIEFTUE0gZm9yIHNvbWUgcmVhc29ucy4KPiA+ID4gPiA+IAo+
+ID4gPiA+ID4gU29ycnksIG15IGZhdWx0LCBJIHNob3VsZCBoYXZlIG1hZGUgdGhhdCBmaXh1cCBy
+dW4gZWFybGllciwgc28gdGhlCj4gPiA+ID4gPiBwYXRjaCBzaG91bGQgYmUgdGhpcyBpbnN0ZWFk
+Ogo+ID4gPiA+ID4gCj4gPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvcXVpcmtzLmMg
+Yi9kcml2ZXJzL3BjaS9xdWlya3MuYwo+ID4gPiA+ID4gaW5kZXggMjE0ZWQwNjBjYTFiLi40ZmMw
+NDAxNWNhMGMgMTAwNjQ0Cj4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL3BjaS9xdWlya3MuYwo+ID4g
+PiA+ID4gKysrIGIvZHJpdmVycy9wY2kvcXVpcmtzLmMKPiA+ID4gPiA+IEBAIC0yNTI0LDYgKzI1
+MjQsNyBAQCBzdGF0aWMgdm9pZCBxdWlya19kaXNhYmxlX2FzcG1fbDBzX2wxKHN0cnVjdCBwY2lf
+ZGV2ICpkZXYpCj4gPiA+ID4gPiDCoMKgICogZGlzYWJsZSBib3RoIEwwcyBhbmQgTDEgZm9yIG5v
+dyB0byBiZSBzYWZlLgo+ID4gPiA+ID4gwqDCoCAqLwo+ID4gPiA+ID4gwqAgREVDTEFSRV9QQ0lf
+RklYVVBfRklOQUwoUENJX1ZFTkRPUl9JRF9BU01FRElBLCAweDEwODAsIHF1aXJrX2Rpc2FibGVf
+YXNwbV9sMHNfbDEpOwo+ID4gPiA+ID4gK0RFQ0xBUkVfUENJX0ZJWFVQX0hFQURFUihQQ0lfVkVO
+RE9SX0lEX1NZTk9QU1lTLCAweGFiY2QsIHF1aXJrX2Rpc2FibGVfYXNwbV9sMHNfbDEpOwo+ID4g
+PiA+IAo+ID4gPiA+IEwxIHN0aWxsIGdvdCBlbmFibGVkCj4gCj4gSXMgdGhhdCBiYXNlZCBvbiB0
+aGUgb3V0cHV0IGJlbG93Pwo+IAo+ICAgWyAgICA1LjQ0NTg1M10gWyAgICAgVDQ4XSBwY2kgMDAw
+MDowMDowMC4wOiBEaXNhYmxpbmcgQVNQTSBMMHMvTDEKPiAgIFsgICAgNS41NjA0NDhdIFsgICAg
+IFQ0OF0gcGNpIDAwMDA6MDE6MDAuMDogQVNQTTogZGVmYXVsdCBzdGF0ZXMgTDEKPiAKPiBJZiBz
+bywgdGhpcyBkb2Vzbid0IG5lY2Vzc2FyaWx5IG1lYW4gTDEgd2FzIGVuYWJsZWQuICBJdCBtZWFu
+cyB0aGUKPiBxdWlyayBtYXJrZWQgdGhlIDAwOjAwLjAgUm9vdCBQb3J0IHNvIHdlIHNob3VsZG4n
+dCBldmVyIGVuYWJsZSBMMHMgb3IKPiBMMSwgYW5kIHdoZW4gd2UgZW51bWVyYXRlZCAwMTowMC4w
+LCB3ZSBzZXQgaXRzIGRlZmF1bHQgQVNQTSBzdGF0ZSB0bwo+IEwxLgo+IAo+IEJ1dCBJIGRvbid0
+ICp0aGluayogTDEgc2hvdWxkIGFjdHVhbGx5IGJlIGVuYWJsZWQgdW5sZXNzIHdlIGNhbiBlbmFi
+bGUKPiBpdCBmb3IgYm90aCAwMDowMC4wIGFuZCAwMTowMC4wLCBhbmQgdGhlIHF1aXJrIHNob3Vs
+ZCBtZWFuIHRoYXQgd2UKPiBjYW4ndCBlbmFibGUgaXQgZm9yIDAwOjAwLjAuCj4gCj4gVGhpcyBt
+dWRkbGUgb2YgImNhcGFibGUiIChwZXIgTGluayBDYXBhYmlsaXRpZXMpIHZzICJkaXNhYmxlZCIg
+KGVpdGhlcgo+IHRoZSBMaW5rIENvbnRyb2wgc2hvd3MgZGlzYWJsZWQsIG9yIHNvZnR3YXJlIHNh
+aWQgImRvbid0IGV2ZXIgdXNlIEwxIikKPiBpcyBwYXJ0IG9mIHdoYXQgbWFrZXMgYXNwbS5jIHNv
+IGNvbmZ1c2luZy4KPiAKPiA+ID4gPiBUaGUgY2FyZCB3b3JrcyBqdXN0IGZpbmUuIEknbSB0aGlu
+a2luZyB0aGUgQVNQTSBpc3N1ZSBpcwo+ID4gPiA+IHByb2JhYmx5IGZyb20gdGhlIGdsdWUgZHJp
+dmVyIHJlcG9ydGluZyB0aGUgbGluayB0byBiZSBkb3duIHdoZW4KPiA+ID4gPiBpdCdzIHJlYWxs
+eSBqdXN0IGluIGxvdyBwb3dlciBzdGF0ZS4KPiA+ID4gCj4gPiA+IFlvdSdyZSBwcm9iYWJseSBy
+aWdodCwgdGhlIG1lc29uX3BjaWVfbGlua191cCgpIG5vdCBvbmx5IGNoZWNrcwo+ID4gPiB0aGUg
+TFRTU00gYnV0IGFsc28gdGhlIHNwZWVkLCB3aGljaCBpcyBwcm9iYWJseSB3cm9uZy4KPiA+ID4g
+Cj4gPiA+IENhbiB5b3UgdHJ5IHJlbW92aW5nIHRoZSB0ZXN0IGZvciBzcGVlZCA/Cj4gPiA+IAo+
+ID4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKHNtbGhfdXAgJiYgcmRs
+aF91cCAmJiBsdHNzbV91cCAmJiBzcGVlZF9va2F5KQo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgaWYgKHNtbGhfdXAgJiYgcmRsaF91cCAmJiBsdHNzbV91cCkKPiA+ID4g
+Cj4gPiA+IFRoZSBvdGhlciBkcml2ZXJzIGp1c3QgY2hlY2tzIHRoZSBsaW5rLCBhbmQgc29tZSBv
+bmx5IHRoZSBzbWxoX3VwCj4gPiA+ICYmIHJkbGhfdXAuIFNvIHlvdSBjYW4gYWxzbyBwcm9iYWJs
+eSBkcm9wIGx0c3NtX3VwIGFzd2VsbC4KPiA+IAo+ID4gSSBjYW4gY29uZmlybSB0aGF0IHJlbW92
+aW5nIHRoZSBjaGVjayBmb3IgbHRzc21fdXAgYW5kIHNwZWVkX29rYXkKPiA+IG1hZGUgQVNQTSB3
+b3JrLgo+IAo+IEkgZG9uJ3QgdGhpbmsgbWVzb25fcGNpZV9saW5rX3VwKCkgc2hvdWxkIGhhdmUg
+dGhlIGxvb3AgaW4gaXQsIHNvIHRoZQo+IGx0c3NtX3VwIGFuZCBzcGVlZF9va2F5IGNoZWNrcywg
+dGhlIGxvb3AsIHRoZSBkZWxheSwgYW5kIHRoZSB0aW1lb3V0Cj4gbWVzc2FnZSBzaG91bGQgcHJv
+YmFibHkgYWxsIGJlIHJlbW92ZWQuICBUaGF0IG1ldGhvZCBpcyBzdXBwb3NlZCB0byBiZQo+IGEg
+c2ltcGxlIHRydWUvZmFsc2UgY2hlY2ssIGFuZCBhbnkgd2FpdGluZyByZXF1aXJlZCBzaG91bGQg
+YmUgZG9uZSBpbgo+IGR3X3BjaWVfd2FpdF9mb3JfbGluaygpLgo+IAo+IFRoZSBsaW5rIHdhcyBj
+bGVhcmx5IHVwIHdoZW4gd2UgZGlzY292ZXJlZCAwMTowMC4wLCBzbyB0aGUgIndhaXQKPiBsaW5r
+dXAgdGltZW91dCIgbWVzc2FnZXMgZnJvbSBtZXNvbl9wY2llX2xpbmtfdXAoKSBhZnRlciB0aGF0
+IG11c3QgYmUKPiBmcm9tIGR3X3BjaWVfbGlua191cCgpIGJlaW5nIGNhbGxlZCB2aWEgdGhlIC5t
+YXBfYnVzKCkgY2FsbCBpbgo+IHBjaV9nZW5lcmljX2NvbmZpZ19yZWFkKCkgb3IgcGNpX2dlbmVy
+aWNfY29uZmlnX3dyaXRlKCkuCj4gCj4gV2hlbiBtZXNvbl9wY2llX2xpbmtfdXAoKSByZXR1cm5z
+IGZhbHNlIGluIHRob3NlIGNvbmZpZyBhY2Nlc3NvcnMsCj4gdGhlIGNvbmZpZyBhY2Nlc3NlcyB3
+aWxsIGZhaWwgKHRoZXkgd29uJ3QgZXZlbiBiZSBhdHRlbXB0ZWQpLCBzbyB3ZSdsbAo+IHNlZSB0
+aGluZ3MgbGlrZSB0aGlzOgo+IAo+ICAgcGNpIDAwMDA6MDE6MDAuMDogQkFSIDA6IGVycm9yIHVw
+ZGF0aW5nICgweGZjNzAwMDA0ICE9IDB4ZmZmZmZmZmYpCj4gCj4gYW5kICJVbmtub3duIGhlYWRl
+ciB0eXBlIDdmIiBmcm9tIGxzcGNpLgo+IAo+IENhbiB5b3UgZHJvcCB0aGUgQVNQTSBxdWlyayBw
+YXRjaCBhbmQgaW5zdGVhZCB0cnkgdGhlCj4gbWVzb25fcGNpZV9saW5rX3VwKCkgcGF0Y2ggYmVs
+b3cgb24gdG9wIG9mIHY2LjE4LXJjMz8KPiAKPiA+IFdlIHN0aWxsIG5lZWQgYSBzb2x1dGlvbiB0
+byB0aGUgb3JpZ2luYWwgaXNzdWUgdGhhdCdzIHByZXZlbnRpbmcgdGhlCj4gPiBjb250cm9sbGVy
+IGZyb20gYmVpbmcgaW5pdGlhbGl6ZWQuCj4gPiAKPiA+IE15IGtlcm5lbCBoYXMgdGhlIGZvbGxv
+d2luZyBwYXRjaCBhcHBsaWVkLCBidXQgSSB0aGluayBpdCdzIG5vdAo+ID4gc3VpdGFibGUgZm9y
+IHVwc3RyZWFtIGFzIHRoaXMgY2hhbmdlcyBkZXZpY2UgdHJlZSBiaW5kaW5ncyBmb3IgUENJZQo+
+ID4gY29udHJvbGxlciBvbiBtZXNvbi4KPiAKPiBJIGFzc3VtZSB0aGUgb3JpZ2luYWwgaXNzdWUg
+aXMgdGhpczoKPiAKPiAgIG1lc29uLXBjaWUgZmMwMDAwMDAucGNpZTogZXJyb3IgLUVCVVNZOiBj
+YW4ndCByZXF1ZXN0IHJlZ2lvbiBmb3IgcmVzb3VyY2UgW21lbSAweGZjMDAwMDAwLTB4ZmMzZmZm
+ZmZdCj4gCj4gYW5kIHlvdSBjb25maXJtZWQgdGhhdCBpdCB3YXNuJ3QgZml4ZWQgYnkgYTE5Nzhi
+NjkyYTM5ICgiUENJOiBkd2M6IFVzZQo+IGN1c3RvbSBwY2lfb3BzIGZvciByb290IGJ1cyBEQkkg
+dnMgRUNBTSBjb25maWcgYWNjZXNzIiksIHdoaWNoCj4gYXBwZWFyZWQgaW4gdjYuMTgtcmMzPwo+
+IAo+IElmIGl0J3Mgc3RpbGwgYnJva2VuIGluIHY2LjE4LXJjMywgYW5kIHRoZSBkdHNpIGFuZAo+
+IG1lc29uX3BjaWVfZ2V0X21lbXMoKSBwYXRjaCBiZWxvdyBtYWtlcyBpdCB3b3JrLCB3ZSBoYXZl
+IG1vcmUgd29yayB0bwo+IGRvLCBhbmQgbWF5YmUgS3Jpc2huYSBoYXMgc29tZSBpZGVhcy4KPiAK
+CldlIGhhdmUgdHdvIGlzc3VlcyBvbiB0aGlzIHBsYXRmb3JtOgoKMS4gRFQgcmVwcmVzZW50cyAn
+ZGJpJyByZWdpb24gYXMgJ2VsYmknLCB3aGljaCB3YXMgd3JvbmcgYXMgYm90aCBhcmUgZGlmZmVy
+ZW50CmFkZHJlc3Mgc3BhY2VzLiBFTEJJIGlzIGFuIG9wdGlvbmFsIHJlZ2lvbiwgd2hlcmVhcyBE
+QkkgaGFzIFJvb3QgUG9ydCBhbmQKY29udHJvbGxlciBjb25maWd1cmF0aW9uIHJlZ2lzdGVycywg
+d2hpY2ggaXMgbWFuZGF0b3J5LgoKMi4gRHJpdmVyIHBhcnNlcy9tYXBzIHRoZSAnZWxiaScgcmVn
+aW9uIGFuZCBzdG9yZXMgaXQgaW4gJ3BjaS0+ZGJpX2Jhc2UnLiBTbwp0aGlzIG1hZGUgc3VyZSB0
+aGF0IHRoZSBjb2RlIGRlcGVuZGluZyBvbiB0aGUgJ3BjaS0+ZGJpX2Jhc2UnIHdvcmsgYXMgZXhw
+ZWN0ZWQuCgpDb21taXQgYzk2OTkyYTI0YmVjLCBtb3ZlZCB0aGUgRUxCSSBwYXJzaW5nIGxvZ2lj
+IHRvIHRoZSBjb3JlIGNvZGUsIGFuZCBpdCBhbHNvCnJlbW92ZWQgdGhlIGN1c3RvbSBwYXJzaW5n
+IGZyb20gZ2x1ZSBkcml2ZXJzLiBCdXQgc2luY2UgdGhpcyBkcml2ZXIgd2FzIHVzaW5nCidwY2kt
+PmRiaV9iYXNlJyBpbnN0ZWFkIG9mICdwY2ktPmVsYmlfYmFzZScsIGl0IHdhcyBub3QgY2F1Z2h0
+IGR1cmluZyB0aGUgbW92ZS4KCkkndmUgc3VibWl0dGVkIGEgc2VyaWVzIFsxXSB0aGF0IGhvcGVm
+dWxseSB3b3VsZCBmaXggdGhpcyByZXNvdXJjZSBwYXJzaW5nCmlzc3VlLiBQbGVhc2UgdGVzdCBp
+dCBvdXQuCgotIE1hbmkKClsxXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1wY2kvMjAy
+NTEwMzEtcGNpLW1lc29uLWZpeC12MS0wLWVkMjllZTViNTRmOUBvc3MucXVhbGNvbW0uY29tCgot
+LSAK4K6u4K6j4K6/4K614K6j4K+N4K6j4K6p4K+NIOCumuCupOCuvuCumuCuv+CuteCuruCvjQoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
+b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
+Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
