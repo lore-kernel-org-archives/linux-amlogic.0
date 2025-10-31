@@ -4,120 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE56DCCFA00
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Oct 2025 08:51:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1862CCF9FF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Oct 2025 09:04:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=mojU0wO7kmivFcy3M9w+WDn8oblIgx6g+Th6d1qxaog=; b=ThyVJbFLxvFNbK3dw5/HVSAw5d
-	7jbvx0Mn/QCa4Lgp3qiAQbUPdSC9Xg5mRVGH7TbHFoA4JFoy8zNlqNG244oNhlyW//L139XDzcobO
-	fbQLG6ehs1HkSsmNmnFgXcfDuiZhDKA/ku6BSaBChFpXz4Yxs76mS3lf0NCkWz3Yqj6XTcEsbNHRg
-	L2M392IACiFmAuMvjBrVdUjh4eJDu4KOEhPmER/sRAZ7INNDdpWF7kVj3OtufP/LfSQu/Fqr1cFvE
-	obkrQ8srsnt75YIAXt3UPNFNJvWil6cKHAoed9+Od7qeaB7ea3qmnyO/BoRsht4XzZ4rwsLH/3ZxZ
-	cgIlSJSg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=PxNIPJjOHHmtcIU0YASGP5t94MPqh0sLUIigp7ukhhs=; b=gMEYQ5BhgDgCMV
+	Ixf3jTd496pB6CSIkIiNoitEq5W08DZPkUhkJ4Cgo8C8gIABCW140MBMGKNj4NH37pCf1iK1mNHMy
+	hxnzOBHX1oVKLY4EEAWBI/QUhnBS1qFgcUPMadpDzxjrJjL95YeKhuoA7cx6EUptallf886mjkis9
+	bLBgpsROvmjjRt5vkbM60hhyhsMJdbEsm6lYMKkamEu7kcvQglkZaP0r8qsxxl4D4yi5demYy82lg
+	Nf0cX2iOs7jEiWOOhplG8r5jZpv4Fe0kdtywx4Pg9xqSjvAnhVqIddLyocCCCFvKRzBWYrSg/PYiP
+	OoMkkFrbYE+pZNb4G2YQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEkqi-00000005hGo-2cxb;
-	Fri, 31 Oct 2025 08:51:08 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1vEl3y-00000005kD1-3k0Z;
+	Fri, 31 Oct 2025 09:04:50 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEkqd-00000005hGB-2lz0
+	id 1vEl3v-00000005kCB-094p
 	for linux-amlogic@lists.infradead.org;
-	Fri, 31 Oct 2025 08:51:07 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4770e7062b5so14174935e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 31 Oct 2025 01:51:02 -0700 (PDT)
+	Fri, 31 Oct 2025 09:04:49 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-4270491e9easo1723174f8f.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 31 Oct 2025 02:04:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761900661; x=1762505461; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VdthYQx3fPupz9VTuX9fs9tD+q8rhp/J+8kdTaSyYGI=;
-        b=tLNO0iLKS75do6tkI0PYLka7VV+0XAbqIdokKScfoYsMUa2V5a/tnD1DeYUUGjspLI
-         9tWBc377desODEqPTZGMbZq0jjL5QRIeXimgO4MsEAoueRNuaNHQWZ732By2v+MohNP/
-         mSHFz7MwWUl4Ex2SSNC2FyEpl072rhbU4h5nkNAgb1+6x1iFHx8gMqXFnf+66g8aaUmy
-         TtuAgJCWsLzknWPA8khp5QoOl0kNAV1yy+imDIiXd//XsBO/hFiPjhzIGSNuJO5Gl5dS
-         tgBs0NdFmuR3pKicaSLDN+B6g0RiAN8y7s31R8iVx6j584oCckA2JmJWmMHrbxpJJCqL
-         Aobg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1761901485; x=1762506285; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NTUxY2QRsBa4YiD8QVHQP1f7QsWrz+ePLEmHRSCQsCg=;
+        b=RB+w/zgjW0h5AKHMa0lNR58FuYPiIFRjgbwOAD9PZClTNcaKQeHG2KmDIeIv6jvgH7
+         reSyyX4qJfxmCFaA9D9M9wqdXXbsU1V4EOZck8yMDUB0H/Dg/YR7JpdnS+LeDUCMwr9X
+         ve84q3XjVSXEpUnPxC62b6wVhcFKKiNyC0M0mT/HXi94j16QWaTA4L70vFr8nWCNnJSR
+         2xrANezGUeEmDPKszPy8ceh7PgEOlZwJmEUt4C5SowrJnm647EdF6udp6OzulSk1J8Qj
+         ISGqXu2pnMsRcG/jsv3LVxZRQ5mjtSvSB5YhLHjTs3pwGjkPIe6oudsoAeHCjlprtOgj
+         WyuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761900661; x=1762505461;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=VdthYQx3fPupz9VTuX9fs9tD+q8rhp/J+8kdTaSyYGI=;
-        b=V3gRiOsYUlw4J2PJ86qVTKW+jXsHb2WROgVAeG8GFEx65YTZAsr73yH2oA02zMzSxi
-         bnULfqllfDmJGM9MXUVG4k+vRh9MXwd6NL5+Dy4byJfi7tRHI5QYLNZOduh/dB3DUsjY
-         fkixbQm5sXyLEwSvoqzdd5tST/EAHK9naj/4QMYjW7lwLyBRQHKBtJJZkSrIdVnEwxMm
-         AnaouWZXMIQRQi9jRw2frenVWf8qhE1IClRC4+/FhLNP3hCnxxx9bwbgVS1uJYypkwwJ
-         je4vzgkieR5nXdPZTW4w+6awwQCyLNdGMsS5sTT0TbKO5aCcvAIv/CEFhE6ei6zzUugE
-         NZZg==
-X-Forwarded-Encrypted: i=1; AJvYcCV5S6VsVr9jq1fDXD5aplE1kcZDGVAJfM70+NZOzCGM3huckrKXU813/hQxwF1umEEoegquaeTq7D8+zF/6@lists.infradead.org
-X-Gm-Message-State: AOJu0YwF4h472U//JUKnb4dN60gtk5XV9hu+zrhZMRxGkbKrXFel3Pdn
-	sXp0LqAAEYCNiwXLsxjFukLOBMATKZd5YHx6As3TyKRsFTcOWSJiJIcGfNzFPv6eQW4=
-X-Gm-Gg: ASbGncvaBnIm8abSu7jTbsOaNDpOc3pkiHdyPeLrTb0p06i8g6VT6FWGVHlhDj9pwI9
-	jqdouE4FyG7L99hVTEEcABrOHqafyfeywJa3K5LHfuhwJHWRO/6CGLIFWqDAsQHWqsHAdPAe2n4
-	LuVYMC5J3vn66zx/7INfHaq3nIcN3VWg8d1bKUtyHbU49Z5TATIRkJXEoQeu4EsLsOhz8n7m2ya
-	KWsW3u/Ja707PB16f5b6M4errZKeUn1eP2OvZsqxutQzFHFVLowDrtRxsC6XCjEEXX9AhTXKPtR
-	Lk7cgBkqa3h6KlXqmhJzZER9XNQqynw8zGT4mHZjKfQGKB8ellCuhhfpy5NQnFddog8TvzboGEN
-	PWYICpiI2yY4EB7xaVTyVVN3GQDB93TG+MjO0HvkMkfPcfTaCBSelZj6/vaFtKkgGvoXjfCPq8P
-	g892c1pwwC3mvAe5yIYDbzR4cw/KiuLGkZN881Z8Gvs595MHx/9fPKxIHoE1fKviI=
-X-Google-Smtp-Source: AGHT+IHgzS/nF5S0MzMHbXjLp8vWzcH8CRZAK3FVflgVJ4Dnpp781CewdMABTPZNC2jy/zYIIniiPg==
-X-Received: by 2002:a05:600c:524f:b0:471:c72:c7f8 with SMTP id 5b1f17b1804b1-477308b6117mr24385315e9.21.1761900660929;
-        Fri, 31 Oct 2025 01:51:00 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:cad:2140:d967:2bcf:d2d0:b324? ([2a01:e0a:cad:2140:d967:2bcf:d2d0:b324])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477289adc18sm86749505e9.6.2025.10.31.01.51.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Oct 2025 01:51:00 -0700 (PDT)
-Message-ID: <59baecc0-bc28-4411-bf83-37ff9e7dd193@linaro.org>
-Date: Fri, 31 Oct 2025 09:50:59 +0100
+        d=1e100.net; s=20230601; t=1761901485; x=1762506285;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NTUxY2QRsBa4YiD8QVHQP1f7QsWrz+ePLEmHRSCQsCg=;
+        b=pJyw44mlkp6OuHUyoW0YzyzdA+V0wKFrsmzbFgZdqyJs4VRJ8GIhrzsyR14msWOuL6
+         SQh/SLzFcMaUxTrrF+1asyyf758aEoxL3RuCbj/kv9mzTIR6r7W1B6Crgl5MZfTqldPo
+         Fn/mApasD1W3Ue3YzbatlVbeg+wqVCazzxaELGjOnctgU72dUPdNiZzmV11Sc1ojieKb
+         rFxuk2AmAVZClyBOkMzXzUMBQTWAOX9ib66pTLEtrUvaXMJ2Kt2yeVn85dzelZhxLAyL
+         D5oTsQkl7+2d3ci0neFc1zXwEeNj3Q9kXpQGSJIQVWUnGtk8iuNhQTuQDEOtLpSpnDuj
+         NULg==
+X-Forwarded-Encrypted: i=1; AJvYcCUACCQpHQhxleUHQV1rDruX8Kk6duiH1UFXX9y7/HK3d3sbv87nZJwzK+T3Y33Wp1od9bYvJzN5xq5xjsOW@lists.infradead.org
+X-Gm-Message-State: AOJu0YyhTs8UpJrZ9q03jZgEeicckvrDSjsQ6nx/T0bc8JRj5E1pmLQx
+	LZh0a838dP1tVgPm/TD+dmAI/jBfgG+4OoAE1JHSfoDJvlNrn+W6eDGacdPzsHnV+Gc=
+X-Gm-Gg: ASbGncsrkxHGniDvQOfbX108Hv5jFm1RUvp2ATVdi2+R8v/Sn9H/yhilcENw9yhckyj
+	i11/ax8YDNR3J8WpTNiWB4GG6xbd8IUlwzDkfJ9ARcHAN52PO1ZD+bqyNLIB06HqsTogJbi7cbQ
+	6PmZfTGar1kRshnGXqs/yrMfP6nMVvAoJCZVZKyOiVd4FqBbZki2Ng83GLUNfDt1KBufPVKK5st
+	OsrmsvuS89PdJgGmx+KmQKF5BSVJ2Jh+ufSvc9fmDgEtsYFqeto0LWcHgttlukeBdd2eikxCgv+
+	QgyGeNEy83TpW5nILCA0s9DUdO+hyqGxsw/9wIWUm7wvnqLEagnWk27+g0juZSfDR9uCTVGS1H3
+	DeKclQ7A0jSn9Lg21am9H4a17ohrBv+7PTSR19EhVm+Y8SVGcFgzpfZSvnLp3hyS+pIrMIKVBkD
+	o=
+X-Google-Smtp-Source: AGHT+IHz9Ep06R4/artcngFbJlB1bKA2Girkc8hxPw+EQjUGEBiqGYPMJZdtFD7tESCBa2KyIazeYQ==
+X-Received: by 2002:a5d:5846:0:b0:428:4004:8241 with SMTP id ffacd0b85a97d-429bd6aa277mr2136641f8f.40.1761901483472;
+        Fri, 31 Oct 2025 02:04:43 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:b8e9:e124:10fc:8444])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-429c13e1d47sm2392315f8f.23.2025.10.31.02.04.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Oct 2025 02:04:42 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
+ <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Kevin Hilman
+ <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  chuan.liu@amlogic.com,
+  linux-amlogic@lists.infradead.org,  linux-clk@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/4] clk: amlogic: optimize the PLL driver
+In-Reply-To: <20251031-optimize_pll_driver-v3-0-92f3b2f36a83@amlogic.com>
+	(Chuan Liu via's message of "Fri, 31 Oct 2025 16:10:07 +0800")
+References: <20251031-optimize_pll_driver-v3-0-92f3b2f36a83@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Fri, 31 Oct 2025 10:04:42 +0100
+Message-ID: <1jms57xx05.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: PCIe probe failure on AmLogic A311D after 6.18-rc1
-To: Linnaea Lavia <linnaea-von-lavia@live.com>,
- Bjorn Helgaas <helgaas@kernel.org>
-Cc: FUKAUMI Naoki <naoki@radxa.com>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- regressions@lists.linux.dev, Yue Wang <yue.wang@amlogic.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-References: <20251029171542.GA1566240@bhelgaas>
- <DM4PR05MB10270506AAC1FCE53C4915CC2C7F8A@DM4PR05MB10270.namprd05.prod.outlook.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <DM4PR05MB10270506AAC1FCE53C4915CC2C7F8A@DM4PR05MB10270.namprd05.prod.outlook.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251031_015103_763191_58790005 
-X-CRM114-Status: GOOD (  13.15  )
+X-CRM114-CacheID: sfid-20251031_020447_222713_ED521973 
+X-CRM114-Status: GOOD (  25.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,50 +99,144 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTAvMzEvMjUgMDY6MzQsIExpbm5hZWEgTGF2aWEgd3JvdGU6Cj4gT24gMTAvMzAvMjAyNSAx
-OjE1IEFNLCBCam9ybiBIZWxnYWFzIHdyb3RlOgo+PiBPbiBXZWQsIE9jdCAyOSwgMjAyNSBhdCAw
-Njo1MDo0NlBNICswODAwLCBMaW5uYWVhIExhdmlhIHdyb3RlOgo+Pj4gT24gMTAvMjkvMjAyNSA2
-OjE2IEFNLCBCam9ybiBIZWxnYWFzIHdyb3RlOgo+Pgo+Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L3BjaS9xdWlya3MuYyBiL2RyaXZlcnMvcGNpL3F1aXJrcy5jCj4+Pj4gaW5kZXggMjE0ZWQwNjBj
-YTFiLi45Y2QxMjkyNGI1Y2IgMTAwNjQ0Cj4+Pj4gLS0tIGEvZHJpdmVycy9wY2kvcXVpcmtzLmMK
-Pj4+PiArKysgYi9kcml2ZXJzL3BjaS9xdWlya3MuYwo+Pj4+IEBAIC0yNTI0LDYgKzI1MjQsNyBA
-QCBzdGF0aWMgdm9pZCBxdWlya19kaXNhYmxlX2FzcG1fbDBzX2wxKHN0cnVjdCBwY2lfZGV2ICpk
-ZXYpCj4+Pj4gwqDCoMKgICogZGlzYWJsZSBib3RoIEwwcyBhbmQgTDEgZm9yIG5vdyB0byBiZSBz
-YWZlLgo+Pj4+IMKgwqDCoCAqLwo+Pj4+IMKgwqAgREVDTEFSRV9QQ0lfRklYVVBfRklOQUwoUENJ
-X1ZFTkRPUl9JRF9BU01FRElBLCAweDEwODAsIHF1aXJrX2Rpc2FibGVfYXNwbV9sMHNfbDEpOwo+
-Pj4+ICtERUNMQVJFX1BDSV9GSVhVUF9GSU5BTChQQ0lfVkVORE9SX0lEX1NZTk9QU1lTLCAweGFi
-Y2QsIHF1aXJrX2Rpc2FibGVfYXNwbV9sMHNfbDEpOwo+Pj4+IMKgwqAgLyoKPj4+PiDCoMKgwqAg
-KiBTb21lIFBlcmljb20gUENJZS10by1QQ0kgYnJpZGdlcyBpbiByZXZlcnNlIG1vZGUgbmVlZCB0
-aGUgUENJZSBSZXRyYWluCj4+Pgo+Pj4gSSBoYXZlIGFwcGxpZWQgdGhlIHBhdGNoIG9uIDYuMTgt
-cmMzIGJ1dCBpdCdzIHN0aWxsIHRyeWluZyB0byBlbmFibGUgQVNQTSBmb3Igc29tZSByZWFzb25z
-Lgo+Pgo+PiBTb3JyeSwgbXkgZmF1bHQsIEkgc2hvdWxkIGhhdmUgbWFkZSB0aGF0IGZpeHVwIHJ1
-biBlYXJsaWVyLCBzbyB0aGUKPj4gcGF0Y2ggc2hvdWxkIGJlIHRoaXMgaW5zdGVhZDoKPj4KPj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL3F1aXJrcy5jIGIvZHJpdmVycy9wY2kvcXVpcmtzLmMK
-Pj4gaW5kZXggMjE0ZWQwNjBjYTFiLi40ZmMwNDAxNWNhMGMgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZl
-cnMvcGNpL3F1aXJrcy5jCj4+ICsrKyBiL2RyaXZlcnMvcGNpL3F1aXJrcy5jCj4+IEBAIC0yNTI0
-LDYgKzI1MjQsNyBAQCBzdGF0aWMgdm9pZCBxdWlya19kaXNhYmxlX2FzcG1fbDBzX2wxKHN0cnVj
-dCBwY2lfZGV2ICpkZXYpCj4+IMKgwqAgKiBkaXNhYmxlIGJvdGggTDBzIGFuZCBMMSBmb3Igbm93
-IHRvIGJlIHNhZmUuCj4+IMKgwqAgKi8KPj4gwqAgREVDTEFSRV9QQ0lfRklYVVBfRklOQUwoUENJ
-X1ZFTkRPUl9JRF9BU01FRElBLCAweDEwODAsIHF1aXJrX2Rpc2FibGVfYXNwbV9sMHNfbDEpOwo+
-PiArREVDTEFSRV9QQ0lfRklYVVBfSEVBREVSKFBDSV9WRU5ET1JfSURfU1lOT1BTWVMsIDB4YWJj
-ZCwgcXVpcmtfZGlzYWJsZV9hc3BtX2wwc19sMSk7Cj4gCj4gTDEgc3RpbGwgZ290IGVuYWJsZWQK
-CjxzbmlwPgoKPiAKPiBUaGUgY2FyZCB3b3JrcyBqdXN0IGZpbmUuIEknbSB0aGlua2luZyB0aGUg
-QVNQTSBpc3N1ZSBpcyBwcm9iYWJseSBmcm9tIHRoZSBnbHVlIGRyaXZlciByZXBvcnRpbmcgdGhl
-IGxpbmsgdG8gYmUgZG93biB3aGVuIGl0J3MgcmVhbGx5IGp1c3QgaW4gbG93IHBvd2VyIHN0YXRl
-LgoKWW91J3JlIHByb2JiYWx5IHJpZ2h0LCB0aGUgbWVzb25fcGNpZV9saW5rX3VwKCkgbm90IG9u
-bHkgY2hlY2tzIHRoZSBMVFNTTSBidXQgYWxzbyB0aGUgc3BlZWQsIHdoaWNoIGlzIHByb2JhYmx5
-IHdyb25nLgoKQ2FuIHlvdSB0cnkgcmVtb3ZpbmcgdGhlIHRlc3QgZm9yIHNwZWVkID8KCi0gICAg
-ICAgICAgICAgICAgIGlmIChzbWxoX3VwICYmIHJkbGhfdXAgJiYgbHRzc21fdXAgJiYgc3BlZWRf
-b2theSkKKyAgICAgICAgICAgICAgICAgaWYgKHNtbGhfdXAgJiYgcmRsaF91cCAmJiBsdHNzbV91
-cCkKClRoZSBvdGhlciBkcml2ZXJzIGp1c3QgY2hlY2tzIHRoZSBsaW5rLCBhbmQgc29tZSBvbmx5
-IHRoZSBzbWxoX3VwICYmIHJkbGhfdXAuIFNvIHlvdSBjYW4gYWxzbyBwcm9iYWJseSBkcm9wIGx0
-c3NtX3VwIGFzd2VsbC4KCk5laWwKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
-aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
-dGluZm8vbGludXgtYW1sb2dpYwo=
+On Fri 31 Oct 2025 at 16:10, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
+
+> This patch series consists of four topics involving the amlogic PLL
+> driver:
+> - Fix out-of-range PLL frequency setting.
+> - Improve the issue of PLL lock failures.
+> - Add handling for PLL lock failure.
+> - Optimize PLL enable timing.
+>
+> For easier review and management, these are submitted as a single
+> patch series.
+>
+> The PLL timing optimization changes were merged into our internal
+> repository quite some time ago and have been verified on a large
+> number of SoCs:
+> - Already supported upstream: G12A, G12B, SM1, S4, A1, C3.
+> - Planned for upstream support: T7, A5, A4, S7, S7D, S6, etc.
+>
+> Based on the upstream code base, I have performed functional testing
+> on G12A, A1, A5, A4, T7, S7, S7D, and S6, all of which passed.
+>
+> Additionally, stress testing using scripts was conducted on A5 and
+> A1, with over 40,000 and 50,000 iterations respectively, and no
+> abnormalities were observed. Below is a portion of the stress test
+> log (CLOCK_ALLOW_WRITE_DEBUGFS has been manually enabled):
+
+Okay, this little game has been going on long enough.
+
+You've posted v2 24h hours ago
+You've got feedback within hours
+There was still a 1 question pending
+The rest of community had no chance to review.
+
+and yet, here the v3 already ! still with bearing pr_warn().
+
+Chuan, the community is not dedicated to reviewing your submission.
+Time and time again you ignore the feedback provided in reviews and the
+documentation. I've had enough of your sloppy submission.
+
+I will not review or apply anything from you in this cycle.
+
+You have been warned multiple times. Every time you ignore a review,
+you'll get ignored in return. This is how it will be from now on.
+
+>
+> - For A5:
+>   # echo 491520000 > /sys/kernel/debug/clk/hifi_pll/clk_rate
+>   # cnt=0
+>   # while true; do
+>   >     echo "------------ cnt=$cnt -----------"
+>   >     echo 1 > /sys/kernel/debug/clk/hifi_pll/clk_prepare_enable
+>   >     en=$(cat /sys/kernel/debug/clk/hifi_pll/clk_prepare_enable 2>/dev/null)
+>   >     if [ "$en" != "1" ]; then
+>   >         echo "[ERROR] PLL enable test failed! (clk_prepare_enable=$en)"
+>   >         break
+>   >     fi
+>   > 
+>   >     echo 0 > /sys/kernel/debug/clk/hifi_pll/clk_prepare_enable
+>   >     cnt=$((cnt + 1))
+>   >     echo -e "sleep time: 1 s."
+>   >     sleep 1
+>   > done &
+>   # ------------ cnt=0 -----------
+>   sleep time: 1 s.
+>   ------------ cnt=1 -----------
+>   sleep time: 1 s.
+>   ------------ cnt=2 -----------
+>   sleep time: 1 s.
+>   ...
+>   ------------ cnt=42076 -----------
+>   sleep time: 1 s.
+>
+> - For A1:
+>   # echo 983040000 > /sys/kernel/debug/clk/hifi_pll/clk_rate
+>   # cnt=0
+>   # while true; do
+>   >     echo "------------ cnt=$cnt -----------"
+>   >     echo 1 > /sys/kernel/debug/clk/hifi_pll/clk_prepare_enable
+>   >     en=$(cat /sys/kernel/debug/clk/hifi_pll/clk_prepare_enable 2>/dev/null)
+>   >     if [ "$en" != "1" ]; then
+>   >         echo "[ERROR] PLL enable test failed! (clk_prepare_enable=$en)"
+>   >         break
+>   >     fi
+>   > 
+>   >     echo 0 > /sys/kernel/debug/clk/hifi_pll/clk_prepare_enable
+>   >     cnt=$((cnt + 1))
+>   >     echo -e "sleep time: 1 s."
+>   >     sleep 1
+>   > done &
+>   # ------------ cnt=0 -----------
+>   sleep time: 1 s.
+>   ------------ cnt=1 -----------
+>   sleep time: 1 s.
+>   ------------ cnt=2 -----------
+>   sleep time: 1 s.
+>   ...
+>   ------------ cnt=55051 -----------
+>   sleep time: 1 s.
+>
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> ---
+> Changes in v3:
+> - Fix some formatting issues.
+> - Move the 20 us delay after reset into the corresponding if
+> condition (no delay is needed if there is no reset).
+> - Move the code that releases rst back to execute before current_en.
+> - Remove the patch that changes the active level of l_detect.
+> - Link to v2: https://lore.kernel.org/r/20251030-optimize_pll_driver-v2-0-37273f5b25ab@amlogic.com
+>
+> Changes in v2:
+> - Modify the judgment condition of 'm' out of range.
+> - Split the PLL timing optimization patch to make it easier to review.
+> - Link to v1: https://lore.kernel.org/r/20251022-optimize_pll_driver-v1-0-a275722fb6f4@amlogic.com
+>
+> ---
+> Chuan Liu (4):
+>       clk: amlogic: Fix out-of-range PLL frequency setting
+>       clk: amlogic: Improve the issue of PLL lock failures
+>       clk: amlogic: Add handling for PLL lock failure
+>       clk: amlogic: Optimize PLL enable timing
+>
+>  drivers/clk/meson/clk-pll.c | 64 +++++++++++++++++++++++++++------------------
+>  1 file changed, 39 insertions(+), 25 deletions(-)
+> ---
+> base-commit: 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
+> change-id: 20251020-optimize_pll_driver-7bef91876c41
+>
+> Best regards,
+
+-- 
+Jerome
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
