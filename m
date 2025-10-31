@@ -4,148 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87E82CCF9FF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Oct 2025 05:35:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEAF1CCF9FF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Oct 2025 08:10:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=292Iyc7HGXf50fF41zxrBFucxoZPJGfzkTqqVzD2otM=; b=k+oBVO5BWq6GzNOmP6ILkWMue1
-	tDn9JlygYl/u0K7ZMf//ekaKKIi3wiZkVaAT6Sqafz0rU18X4QH5zlevF1Yh9KD1QGtmzGPSsHz21
-	S3TyL4e0uOo2s7woaJkRJPaZzzM2gQbemcJHqiRqQUcAQp9CURL/L0kvf5zh75g+Cs6d1u9kTJs86
-	UMoXoUEyp0/R3xzkusSs/bkHVPETJSjQEmJJveAEN6AVp3Uss18lTjLkEsoIFsW66tEJ6/f9MJJ48
-	yPfNxgZNkQner1Tstb1P1Fr+vcZ7u3ZmOOuN6/7nQ5D7DsIwdBvGz7ahu4Or71Mz+osomH3UioJ62
-	0K5MV7Qw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=P8H4GJXNbxZI+3d3QYzeW17F2tWOjNkSAoZlNFOkfOA=; b=t8iVAVKeqQjod9
+	qqHRWK9ymliqfcdTMaImQqHSjOh3eQkZM+8/QiXqa8bQwjjzfTBnCVL8/lm8xeWEn8IoiwxOFq8fz
+	gGW2FOltc042dQEesIIgcMLccE4FqoLlRPJThWkC+aSWxxOh1y+L9N1pNwQBGl95BMhZVYC9wMICU
+	pl6LhAZ0lXpb9vxkzOJlzh4MX0otbcEyVoR0fBPp5QtOGy8f6ERdMoYv+5Od3Y6Jn5SseN/QrA3sl
+	txlIr4q72x2syCLYIXGlIYx9LrVVBixzOqTMA983ZJMrbq6YhJ5fGwJd9MpnnwfiNqg4MoLzk8kYT
+	Y7ZWrmrcSHEYMnzAKBCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEhn3-00000005Ptx-1GoG;
-	Fri, 31 Oct 2025 05:35:09 +0000
-Received: from mail-westcentralusazolkn19010046.outbound.protection.outlook.com ([52.103.7.46] helo=CY7PR03CU001.outbound.protection.outlook.com)
+	id 1vEkDW-00000005bgS-3PhP;
+	Fri, 31 Oct 2025 08:10:38 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEhmz-00000005PtY-3iQ9
-	for linux-amlogic@lists.infradead.org;
-	Fri, 31 Oct 2025 05:35:07 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Sm/DXW7Q71mddtbwEQvKuLtJTm8zyplvkJNxsNYlhx9Sr0emnSwU6E39051FF8k9ZWgUY1QJFclbV1T+UpypHQcFJ6lliTmwZlIynNSxFxPlMurGdusa2titk/aGLpG/p2kdGt6OB4uCuDPutD8ovjx/4wv3pmwmx99jodei83sA8cvWo5zb8Stsuk5ML8Ab/C+se3pBPsgzCSCr/R7/hugT1D+ExsOJqZo9zDlctk3bX1WzeMtQh8KKgT53qyXQ7lPGharVq3TiBB7vbCRWx/Qu4orX8ZjCKSxyNNvSbvGrSgX3k1YKEJd0CGbE01nB68LbvknufdLp7rsfUD/vyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l9An2B4gVE6M3/uZVRBIB3ujMNHLIsTKpsfWSM3i90g=;
- b=umGU2yq3Hy7/2wGBTWHi0a9ZGDeL9KTr2ELXZvgnkHEJE2ziWMECyJgPLPg3FufVOCZfwu5FlCd8fZgAJeJgR7JyHiyIKMTrYphHWd6TaWcn3FyCO/+S6wldorVGvnL4GNhajuDRrxDvINi4QsVSEa+qwDWNG5naWHHNHL8o9s+k9xzPWiviyAiHBFtkdiZESSNswHkbTTJPUNWrX7b2/i3/GnUDmWP+fRTvvazsGkMBxQgWihNSHk8G7spSNY5V7q+YuxN77AQKmJkqX/Dv2yTPJJzvgSmUqJRJvyz/MkVVRP4sGDaEdvZiM9N+le4x3KbOzrrlCQi9UU/HuP84HQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l9An2B4gVE6M3/uZVRBIB3ujMNHLIsTKpsfWSM3i90g=;
- b=KxXG+JYsIfXGLeEHWY8rGPxiw0tj4s+UyD5yCQFLVADgxKJZldoOT7OOR6uq/Kr95YkNCCihmtQQtYdopdqMX+H0ItQLY/db0Jq0AaUkn6Ev3gwK8gYIDetsAICOJ2gOubLvzX6QGm/pKO7MTnqoSx81t5tr9aXzQO0CrFbn5ZKqnatT7I7guLM8Kx6OvG2KTPC4iJdlNAZi6Bw544qAGQscofgkfyJbFtecYE2eK02BmIu9XmOpbJPPkSyMMEGmqWFGe60fE5WM9A/zUT1KZaDvvKzcad6QBqw6JqeQnjS+701DZPlepElLYWMNMV8vpA5dG1YBAsBF1RWeyyIyjQ==
-Received: from DM4PR05MB10270.namprd05.prod.outlook.com (2603:10b6:8:180::11)
- by SA3PR05MB9667.namprd05.prod.outlook.com (2603:10b6:806:312::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.14; Fri, 31 Oct
- 2025 05:35:00 +0000
-Received: from DM4PR05MB10270.namprd05.prod.outlook.com
- ([fe80::76f2:11b4:e433:a65c]) by DM4PR05MB10270.namprd05.prod.outlook.com
- ([fe80::76f2:11b4:e433:a65c%5]) with mapi id 15.20.9275.013; Fri, 31 Oct 2025
- 05:35:00 +0000
-Message-ID: <DM4PR05MB10270506AAC1FCE53C4915CC2C7F8A@DM4PR05MB10270.namprd05.prod.outlook.com>
-Date: Fri, 31 Oct 2025 13:34:41 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: PCIe probe failure on AmLogic A311D after 6.18-rc1
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: FUKAUMI Naoki <naoki@radxa.com>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- regressions@lists.linux.dev, Yue Wang <yue.wang@amlogic.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-References: <20251029171542.GA1566240@bhelgaas>
-Content-Language: en-US
-From: Linnaea Lavia <linnaea-von-lavia@live.com>
-In-Reply-To: <20251029171542.GA1566240@bhelgaas>
-X-ClientProxiedBy: SG2PR02CA0012.apcprd02.prod.outlook.com
- (2603:1096:3:17::24) To DM4PR05MB10270.namprd05.prod.outlook.com
- (2603:10b6:8:180::11)
-X-Microsoft-Original-Message-ID: <593551a9-4716-4630-bfd2-8b13582ec5c0@live.com>
+	id 1vEkDR-00000005bep-15Pl;
+	Fri, 31 Oct 2025 08:10:33 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 45021612A4;
+	Fri, 31 Oct 2025 08:10:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E9AF6C19424;
+	Fri, 31 Oct 2025 08:10:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761898232;
+	bh=6ESWC7weu+fkakS/P318zzkxwK20bhDH2SY7HZ3vBd4=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=TA0APZqYRrCONMPdDPvTaxyKas30+zpO3qlC5h0QacSccmboZAZwOmgto7v+aINr0
+	 RquKFP8xA1ZM4h0z6SJ8CaDXbEyDhB8nfvBsJTFCs4O/gvlv5MTS2fC0BCJS/H8TUm
+	 8upEULcZZcKPynxXnmfgMD92mVO6+jyGkFsRfZ7aCIuFZGSSGpGUlkTYJHRGYoEZ0/
+	 0K8YwZQF4J4kiqlhiO9iFiiL8j6FzUn7R3zoE8YmjSSiQDwHrh2qvYQMYM+CsKqPZT
+	 fFursmhuoa7zdd7nUr7yXo3QbqaQZKFg91r9m8W/gZ/9qyQ3rYlZPOc/KywCo3snA+
+	 NZFAGnBDl2k5g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E1091CCFA00;
+	Fri, 31 Oct 2025 08:10:31 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Date: Fri, 31 Oct 2025 16:10:11 +0800
+Subject: [PATCH v3 4/4] clk: amlogic: Optimize PLL enable timing
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR05MB10270:EE_|SA3PR05MB9667:EE_
-X-MS-Office365-Filtering-Correlation-Id: 15df0ec9-feb5-4c0d-0dc8-08de183f3a74
-X-Microsoft-Antispam: BCL:0;ARA:14566002|41001999006|8060799015|5072599009|6090799003|19110799012|12121999013|15080799012|23021999003|8022599003|461199028|440099028|3412199025;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?OENwcGJQT0d3Y1hBY0h4TjFDYVRKRkVNV3ZUa0tsVjk1NFVDckFTOGcrWWRn?=
- =?utf-8?B?dG1PU1VoLzZKME5hVjlCVmRKSFg5MWtVK3lOdkhvM2VldStTbXlNNmdFS2dI?=
- =?utf-8?B?LzdsdUtrdGMrT2IycGN5aWNsQnJxTFUzK1pvdUE0ejFaaFJPVDFoRG91THR6?=
- =?utf-8?B?WjF2eW9NZmZ0cWdEbEtyT2N3d3lOZHQrV3R1bkZkSjJjNlA1SENlKzkwZWlJ?=
- =?utf-8?B?a0gyM0w1UVp6TG1acndUWFYzVUpXZ3lvYmQyeWEvcm5zVDNKYklaTTJ4VGh2?=
- =?utf-8?B?Rk1XMkd2R3ZjR3JNL2xMTndBVnpkUlN5OXpQdnd4T3NOU2FtS2NUV3g0Y0l4?=
- =?utf-8?B?aHNrelZmcmxwb2dEdkZ2MFFoUGNxRGtscUxoR2QxNjgra25mLzZIQjlyYTNu?=
- =?utf-8?B?MFhLVHlxckk4OWg4aVhLM2JtZUY1aWZJL3U0aytvT2cyUWFHQ09xV0s0Z3Jq?=
- =?utf-8?B?eXI2QjFWV1VZOERpWjgzdWtYSWV6N3hWMUxpcWhtRXRvdlNacDViYThXeHh4?=
- =?utf-8?B?cjZoS3VSUjRVTDkrZ3YzZCswelNpSm9XTVFvdTRqUnhBNmJ5aFNybCtWQWtt?=
- =?utf-8?B?RUpUNWozYW1HWlczQjJ2K2N2RkZyV1ZKRFRMbkRMTS9XK0Y2YkF1bE1BT25J?=
- =?utf-8?B?YUxRTnF2T2xwTzdHWGJuelRGRTlMaWlvQ24vVDhsa1hoZVprV0VrNVZMS0I4?=
- =?utf-8?B?RGZzWnhuZFl1UXRmc3NQcHdiOVh1eTRzdmJ5TUZjcUIwZTV5YmZlSWVjUFdo?=
- =?utf-8?B?OXR2bGZLdjV4YVJJTlExc1grOUZPRDd6bVpmaCtLN3h3cTVDVEFGUnAyRmp1?=
- =?utf-8?B?ZnF6MklFc1dlUmR5Qk1hRVJEUDA0RU0xZFlYNU5ES25VUjFuMWdZYjBUOTky?=
- =?utf-8?B?TlJ4d2VIc0FMelFFVXd5SVZNb3JqT1ptZFdZS09NeWtOWXRTYlQwaVNza1hi?=
- =?utf-8?B?WDdta2U1b2JOU1p4a2ZNaHhNcjVDVzBCTW1UZ0hWSHdpN0hwTU12OGk0OHB4?=
- =?utf-8?B?bEZlR1FlR3hlUDFpNEFlM2lBMlhiSTVNQVJrNWo1VHhTOTd6d2JBb0xTV0x5?=
- =?utf-8?B?c3JqOEd4TURHYmFuY2ZIKzVGWkJwSTFLOFgrRWovUEJKdlJPWlJDVnlTcWVB?=
- =?utf-8?B?MjBKN0JNSElWUkZDVWY4Y1FvallKU2hRejhxSjFpTzkxd1BMYTBtK3V6bWJJ?=
- =?utf-8?B?QlJNN2dZbmR5dyt3SW9FSVBDak4zOGgxUVNmb3pmZU53VzRwNmZIaG5DNWNv?=
- =?utf-8?B?QlU3KzhSUG5WN2huSzk4VUdPQ3ErZFVyNDAzbEtsV081R0JxbGsyMGZXMm1v?=
- =?utf-8?B?WitIREdtSExxSytvYjJlY2xjUnErVmVhYkZTUkNFOE9NOXUrSlpxNVlDYlJq?=
- =?utf-8?B?WktkejZNVDh5ZGJPRnRJN2JUTE5SVElHTDNtTGhMZVVHcHJ0VTd3QnZwSmpn?=
- =?utf-8?B?S2FrbzdsT2JsUWxYK0IxRVBKUUJvYXN1c2ROTDg1bjRROTg1bGxlRnBEbWhI?=
- =?utf-8?B?akFaRVVhOFBKd21yb1NLMkc0TTBRTUc0WWFYMlJHdkVJa21tSnBnQ0NhZWVL?=
- =?utf-8?B?RzVNZW9lQzkxcXdUeUlZY3lwbm5Ka3llMmFTZmlKOU9iQlpGWm94UTFZSHBy?=
- =?utf-8?Q?THZa5f9ebjl97vbvhqPpckkqNrTyeTXPpTNjP4+7EOt8=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZTViZzJHUTJ4NUJ6VDM2Y2VSMW5KbTZQcVNIcTRjNUUwRFRRR1kvS1RsYVNQ?=
- =?utf-8?B?bStXaTBKWXRndDl1SFZlR01wQ0kwTElMMW4rMGlJeGFTQThVSXV5Um43V3Rk?=
- =?utf-8?B?TlY3YzhRcDZ0azJoVUtTVHlOTXBVREF1M21KelBVaCt3Sjc1ODQyQ3NMcmFG?=
- =?utf-8?B?V05OelhoYS9wUElTS0FIVGxSK1MxZ2xqeWovYnJubmFHelRnWExSVDVvOTZU?=
- =?utf-8?B?KzIzMXdUdkM2MWIzb1FzZTkvWXh3Uy9sOHVyTmtlL29tWEhPYzl1TGNUUDRx?=
- =?utf-8?B?R1lydVBlRWJlRWZmWDcrcis2aENqUUlzbTRWRDNZWGdvb3VHOXFkVXo3V2Jw?=
- =?utf-8?B?UUM3Q1NrcnpDbEtmWXFNeTFFalUzeTQ0SlZXVG1qR0M1dFJjOWRIQXUvQzZT?=
- =?utf-8?B?ak1ZZ1FIMlI1cFlLeklVMjBmTEpaUnRHMG1jK0VlNkNINkhTVlF1QitsQzBs?=
- =?utf-8?B?Q1NOWG0yOHJxc0FUWk5XTi9jZktuMXhwZExBb3ZDaEdRTGdjZ244R2o0Q3FR?=
- =?utf-8?B?d0Yzdm15cXBnVG9uYXN6TmxzclBwcGFabVcyaktLalJMd1lLbGIyLzNuTzR5?=
- =?utf-8?B?alJoQ3FLb2c2UlVScExOLy8vZWVuL1d0RktKUElNd0tMeVZaQW1CdlZ6Um5Z?=
- =?utf-8?B?NHk0VjU4cHNFK0QzdkVrdjZ2VytnSnlLZlhHV1VYNUkrZS8wQXpwc0tOS3Za?=
- =?utf-8?B?K1lpT3RidktyVWtFOUhoSk00Wlo5N3dJK2tVSzRXUStxMFBZa0dPN2NPTFp3?=
- =?utf-8?B?ajRhcXRyZ1pVSWYxcFQyKytTMmlZN2NpL2h0Y0tNNkh4Y0xTaStCZTRUb1lE?=
- =?utf-8?B?OVp2Szh4TzZ5Qmdab3BqVTRqakRZdWxCV0g1SGlVUURMQlZLNmx0SUNHemtB?=
- =?utf-8?B?SEdlbnp0UkJQVnhPUVNiZGdQdmMxd1BKaWJST29ERk44K1BUbU15VDdrNE95?=
- =?utf-8?B?Q1MrdTdFZlN2YkpYeFgzVkdvRHZtdGorOFV3dGlnaWJHWmZhSFlJb3JVUlRY?=
- =?utf-8?B?Q25lUG5iVmFCcmEyUkROVG5JUFZFU1RqQUtacUpQa1ZNUURrOFV5OWMyTXVY?=
- =?utf-8?B?KzNEaDhRbjRhVFhqM3oxc1BOcC9ZYmJzUTFCTXptdjk4aXBzSEhQU01UZEtX?=
- =?utf-8?B?bW1obzBwSnd1QnpoRDhYN3puRlA4eldVNmZsTDFzVXZmTzNKcnRYbU5TVVQw?=
- =?utf-8?B?dE83WWVBdU1kdTNUcnVXSkVyQmlVeUM0Mk9CL3NldFVMUWNqWlR2Rll0eXdo?=
- =?utf-8?B?ZldqeUYzNnV4ZnJldnFQVjZ1TnNJdFpoS2NUaDM3azI4WHBTbDUwc05LMmkv?=
- =?utf-8?B?UXhYRjJIazU5WkRmVFQya1RXRkNtbXFwQy8xV3BhYXlCUTBJZWdsZFJSa0lN?=
- =?utf-8?B?ZzVyMzB0OXJEeUdJY1hNOEpYV05pZkExay9hVlZZUGY5YlQrbURicG95Ulo4?=
- =?utf-8?B?cytmZGg3WERYQnFlRFFJa3h4V01NTWw0QlVyNW9tSGQvSUlLQUZBZlVTTXRZ?=
- =?utf-8?B?TkpCR2RUd2dHam9QTFk2bzVhOGNMZmRXeFRpRW13ejFlaXJLQXA0bVZzd2Y4?=
- =?utf-8?B?L0xrWlROR1JTWFY0U1JUZy84RlpBa3BxNnA2K1FWVndYcGErUTlKeG55bEFR?=
- =?utf-8?B?NE5DbEpqeHE5bm5HYlNkKzFMQTBud2pYQ21BMkFRNmtvUVFSMkdKVE9rNm4y?=
- =?utf-8?Q?hujICBbx4KGdAZxyVyUn?=
-X-OriginatorOrg: sct-15-20-8534-9-msonline-outlook-d08a8.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15df0ec9-feb5-4c0d-0dc8-08de183f3a74
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR05MB10270.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2025 05:34:59.9363
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR05MB9667
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251030_223506_081965_9AC89AA6 
-X-CRM114-Status: GOOD (  15.98  )
+Message-Id: <20251031-optimize_pll_driver-v3-4-92f3b2f36a83@amlogic.com>
+References: <20251031-optimize_pll_driver-v3-0-92f3b2f36a83@amlogic.com>
+In-Reply-To: <20251031-optimize_pll_driver-v3-0-92f3b2f36a83@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761898227; l=2090;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=3bVoQCKgnuZ/IY+cWp9z2timk+2eNG6PU6hMfKQ9QKc=;
+ b=PaR4cC+nx1zlBGR24Xc20vUT2lEJgJbv9J7AWiZu9QbNIDq2BkxtlT0lPMVoKhLR7ofEt/Xpz
+ XzFQVzImYksCF6+t+rElWpS5+OSqL/J/xLPNCqFmzWFOpoFoJvkbaTD
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,216 +81,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: chuan.liu@amlogic.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/30/2025 1:15 AM, Bjorn Helgaas wrote:
-> On Wed, Oct 29, 2025 at 06:50:46PM +0800, Linnaea Lavia wrote:
->> On 10/29/2025 6:16 AM, Bjorn Helgaas wrote:
-> 
->>> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
->>> index 214ed060ca1b..9cd12924b5cb 100644
->>> --- a/drivers/pci/quirks.c
->>> +++ b/drivers/pci/quirks.c
->>> @@ -2524,6 +2524,7 @@ static void quirk_disable_aspm_l0s_l1(struct pci_dev *dev)
->>>     * disable both L0s and L1 for now to be safe.
->>>     */
->>>    DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_ASMEDIA, 0x1080, quirk_disable_aspm_l0s_l1);
->>> +DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_SYNOPSYS, 0xabcd, quirk_disable_aspm_l0s_l1);
->>>    /*
->>>     * Some Pericom PCIe-to-PCI bridges in reverse mode need the PCIe Retrain
->>
->> I have applied the patch on 6.18-rc3 but it's still trying to enable ASPM for some reasons.
-> 
-> Sorry, my fault, I should have made that fixup run earlier, so the
-> patch should be this instead:
-> 
-> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> index 214ed060ca1b..4fc04015ca0c 100644
-> --- a/drivers/pci/quirks.c
-> +++ b/drivers/pci/quirks.c
-> @@ -2524,6 +2524,7 @@ static void quirk_disable_aspm_l0s_l1(struct pci_dev *dev)
->    * disable both L0s and L1 for now to be safe.
->    */
->   DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_ASMEDIA, 0x1080, quirk_disable_aspm_l0s_l1);
-> +DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_SYNOPSYS, 0xabcd, quirk_disable_aspm_l0s_l1);
-
-L1 still got enabled
-
-# dmesg | grep -i -e pci -e iwlwifi -e aspm
-[    0.130298] [      T1] PCI: CLS 0 bytes, default 64
-[    5.243878] [     T48] dw-pcie fc000000.pcie: error -ENXIO: IRQ index 1 not found
-[    5.294697] [     T48] meson-pcie fc000000.pcie: host bridge /soc/pcie@fc000000 ranges:
-[    5.298580] [     T48] meson-pcie fc000000.pcie:       IO 0x00fc600000..0x00fc6fffff -> 0x0000000000
-[    5.307484] [     T48] meson-pcie fc000000.pcie:      MEM 0x00fc700000..0x00fdffffff -> 0x00fc700000
-[    5.324258] [     T48] meson-pcie fc000000.pcie: iATU: unroll T, 4 ob, 4 ib, align 64K, limit 4G
-[    5.366020] [     T48] meson-pcie fc000000.pcie: error: wait linkup timeout
-[    5.371376] [     T48] meson-pcie fc000000.pcie: PCIe Gen.2 x1 link up
-[    5.375932] [     T48] meson-pcie fc000000.pcie: PCI host bridge to bus 0000:00
-[    5.381390] [     T48] pci_bus 0000:00: root bus resource [bus 00-ff]
-[    5.388280] [     T48] pci_bus 0000:00: root bus resource [io  0x0000-0xfffff]
-[    5.395226] [     T48] pci_bus 0000:00: root bus resource [mem 0xfc700000-0xfdffffff]
-[    5.402942] [     T48] pci 0000:00:00.0: [16c3:abcd] type 01 class 0x060400 PCIe Root Port
-[    5.410068] [     T48] pci 0000:00:00.0: ROM [mem 0x00000000-0x0000ffff pref]
-[    5.416900] [     T48] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
-[    5.422838] [     T48] pci 0000:00:00.0:   bridge window [io  0x0000-0x0fff]
-[    5.429605] [     T48] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff]
-[    5.437147] [     T48] pci 0000:00:00.0:   bridge window [mem 0x00000000-0x000fffff pref]
-[    5.445853] [     T48] pci 0000:00:00.0: Disabling ASPM L0s/L1
-[    5.451334] [     T48] pci 0000:00:00.0: supports D1
-[    5.455104] [     T48] pci 0000:00:00.0: PME# supported from D0 D1 D3hot D3cold
-[    5.480231] [     T48] pci 0000:01:00.0: [8086:2725] type 00 class 0x028000 PCIe Endpoint
-[    5.490539] [     T48] pci 0000:01:00.0: BAR 0 [mem 0x00000000-0x00003fff 64bit]
-[    5.503464] [     T48] pci 0000:01:00.0: Upstream bridge's Max Payload Size set to 128 (was 256, max 256)
-[    5.525959] [     T48] pci 0000:01:00.0: Max Payload Size set to 128 (was 128, max 128)
-[    5.534845] [     T48] pci 0000:01:00.0: PME# supported from D0 D3hot D3cold
-[    5.560448] [     T48] pci 0000:01:00.0: ASPM: default states L1
-[    5.603416] [     T48] meson-pcie fc000000.pcie: error: wait linkup timeout
-[    5.606141] [     T48] pci 0000:00:00.0: bridge window [mem 0xfc700000-0xfc7fffff]: assigned
-[    5.636768] [     T48] pci 0000:00:00.0: ROM [mem 0xfc800000-0xfc80ffff pref]: assigned
-[    5.636812] [     T48] pci 0000:01:00.0: BAR 0 [mem 0xfc700000-0xfc703fff 64bit]: assigned
-[    5.693932] [     T48] meson-pcie fc000000.pcie: error: wait linkup timeout
-[    5.735461] [     T48] meson-pcie fc000000.pcie: error: wait linkup timeout
-[    5.778011] [     T48] meson-pcie fc000000.pcie: error: wait linkup timeout
-[    5.820548] [     T48] meson-pcie fc000000.pcie: error: wait linkup timeout
-[    5.821633] [     T48] pci 0000:01:00.0: BAR 0: error updating (0xfc700004 != 0xffffffff)
-[    5.870950] [     T48] meson-pcie fc000000.pcie: error: wait linkup timeout
-[    5.913471] [     T48] meson-pcie fc000000.pcie: error: wait linkup timeout
-[    5.914547] [     T48] pci 0000:01:00.0: BAR 0: error updating (high 0x00000000 != 0xffffffff)
-[    5.964337] [     T48] meson-pcie fc000000.pcie: error: wait linkup timeout
-[    5.975124] [     T48] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
-[    5.988201] [     T48] pci 0000:00:00.0:   bridge window [mem 0xfc700000-0xfc7fffff]
-[    6.004583] [     T48] pci_bus 0000:00: resource 4 [io  0x0000-0xfffff]
-[    6.018790] [     T48] pci_bus 0000:00: resource 5 [mem 0xfc700000-0xfdffffff]
-[    6.032400] [     T48] pci_bus 0000:01: resource 1 [mem 0xfc700000-0xfc7fffff]
-[    6.033164] [     T48] pcieport 0000:00:00.0: PME: Signaling with IRQ 24
-[    6.045204] [     T48] pcieport 0000:00:00.0: AER: enabled with IRQ 24
-
-# lspci -vv
-00:00.0 PCI bridge: Synopsys, Inc. DWC_usb3 / PCIe bridge (rev 01) (prog-if 00 [Normal decode])
-         Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR+ FastB2B- DisINTx+
-         Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
-         Latency: 0
-         Interrupt: pin A routed to IRQ 24
-         Bus: primary=00, secondary=01, subordinate=ff, sec-latency=0
-         I/O behind bridge: [disabled] [16-bit]
-         Memory behind bridge: fc700000-fc7fffff [size=1M] [32-bit]
-         Prefetchable memory behind bridge: [disabled] [32-bit]
-         Secondary status: 66MHz- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort+ <SERR- <PERR-
-         Expansion ROM at fc800000 [virtual] [disabled] [size=64K]
-         BridgeCtl: Parity- SERR+ NoISA- VGA- VGA16- MAbort- >Reset- FastB2B-
-                 PriDiscTmr- SecDiscTmr- DiscTmrStat- DiscTmrSERREn-
-         Capabilities: [40] Power Management version 3
-                 Flags: PMEClk- DSI- D1+ D2- AuxCurrent=375mA PME(D0+,D1+,D2-,D3hot+,D3cold+)
-                 Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
-         Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
-                 Address: 000000000935f000  Data: 0000
-         Capabilities: [70] Express (v2) Root Port (Slot-), IntMsgNum 0
-                 DevCap: MaxPayload 256 bytes, PhantFunc 0
-                         ExtTag- RBE+ TEE-IO-
-                 DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
-                         RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop-
-                         MaxPayload 128 bytes, MaxReadReq 256 bytes
-                 DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr+ TransPend-
-                 LnkCap: Port #0, Speed 5GT/s, Width x1, ASPM L0s L1, Exit Latency L0s <1us, L1 <2us
-                         ClockPM- Surprise- LLActRep+ BwNot+ ASPMOptComp+
-                 LnkCtl: ASPM L1 Enabled; RCB 64 bytes, LnkDisable- CommClk+
-                         ExtSynch- ClockPM- AutWidDis- BWInt+ AutBWInt+
-                 LnkSta: Speed 5GT/s, Width x1
-                         TrErr- Train- SlotClk+ DLActive+ BWMgmt- ABWMgmt-
-                 RootCap: CRSVisible+
-                 RootCtl: ErrCorrectable- ErrNon-Fatal- ErrFatal- PMEIntEna+ CRSVisible+
-                 RootSta: PME ReqID 0000, PMEStatus- PMEPending-
-                 DevCap2: Completion Timeout: Range ABCD, TimeoutDis+ NROPrPrP+ LTR-
-                          10BitTagComp- 10BitTagReq- OBFF Not Supported, ExtFmt- EETLPPrefix-
-                          EmergencyPowerReduction Not Supported, EmergencyPowerReductionInit-
-                          FRS- LN System CLS Not Supported, TPHComp- ExtTPHComp- ARIFwd-
-                          AtomicOpsCap: Routing- 32bit- 64bit- 128bitCAS-
-                 DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis- ARIFwd-
-                          AtomicOpsCtl: ReqEn- EgressBlck-
-                          IDOReq- IDOCompl- LTR- EmergencyPowerReductionReq-
-                          10BitTagReq- OBFF Disabled, EETLPPrefixBlk-
-                 LnkCap2: Supported Link Speeds: 2.5-5GT/s, Crosslink- Retimer- 2Retimers- DRS-
-                 LnkCtl2: Target Link Speed: 5GT/s, EnterCompliance- SpeedDis-
-                          Transmit Margin: Normal Operating Range, EnterModifiedCompliance- ComplianceSOS-
-                          Compliance Preset/De-emphasis: -6dB de-emphasis, 0dB preshoot
-                 LnkSta2: Current De-emphasis Level: -6dB, EqualizationComplete- EqualizationPhase1-
-                          EqualizationPhase2- EqualizationPhase3- LinkEqualizationRequest-
-                          Retimer- 2Retimers- CrosslinkRes: unsupported
-         Capabilities: [100 v2] Advanced Error Reporting
-                 UESta:  DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP-
-                         ECRC- UnsupReq- ACSViol- UncorrIntErr- BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
-                         PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
-                 UEMsk:  DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP-
-                         ECRC- UnsupReq- ACSViol- UncorrIntErr+ BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
-                         PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
-                 UESvrt: DLP+ SDES+ TLP- FCP+ CmpltTO- CmpltAbrt- UnxCmplt- RxOF+ MalfTLP+
-                         ECRC- UnsupReq- ACSViol- UncorrIntErr+ BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
-                         PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
-                 CESta:  RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr- CorrIntErr- HeaderOF-
-                 CEMsk:  RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr+ CorrIntErr+ HeaderOF+
-                 AERCap: First Error Pointer: 00, ECRCGenCap+ ECRCGenEn- ECRCChkCap+ ECRCChkEn-
-                         MultHdrRecCap- MultHdrRecEn- TLPPfxPres- HdrLogCap-
-                 HeaderLog: 00000000 00000000 00000000 00000000
-                 RootCmd: CERptEn+ NFERptEn+ FERptEn+
-                 RootSta: CERcvd- MultCERcvd- UERcvd- MultUERcvd-
-                          FirstFatal- NonFatalMsg- FatalMsg- IntMsgNum 0
-                 ErrorSrc: ERR_COR: 0000 ERR_FATAL/NONFATAL: 0000
-         Capabilities: [148 v1] L1 PM Substates
-                 L1SubCap: PCI-PM_L1.2+ PCI-PM_L1.1+ ASPM_L1.2- ASPM_L1.1+ L1_PM_Substates+
-                           PortCommonModeRestoreTime=55us PortTPowerOnTime=12us
-                 L1SubCtl1: PCI-PM_L1.2- PCI-PM_L1.1- ASPM_L1.2- ASPM_L1.1-
-                            T_CommonMode=55us
-                 L1SubCtl2: T_PwrOn=18us
-         Kernel driver in use: pcieport
-         Kernel modules: shpchp
-
-01:00.0 Network controller: Intel Corporation Wi-Fi 6E(802.11ax) AX210/AX1675* 2x2 [Typhoon Peak] (rev 1a)
-         Subsystem: Intel Corporation Wi-Fi 6 AX210 160MHz
-         !!! Unknown header type 7f
-         Region 0: Memory at fc700000 (64-bit, non-prefetchable) [size=16K]
-         Kernel modules: iwlwifi
-
-Something else I tried was to boot with pcie_aspm.policy=performance so the link and device can be initialized, then
-
-# echo default > /sys/module/pcie_aspm/parameters/policy
-
-# while true; do cat /sys/kernel/debug/dwc_pcie_fc000000.pcie/ltssm_status; done | uniq
-L1_IDLE (0x14)
-RCVRY_LOCK (0x0d)
-L1_IDLE (0x14)
-RCVRY_IDLE (0x10)
-L1_IDLE (0x14)
-RCVRY_LOCK (0x0d)
-L1_IDLE (0x14)
-RCVRY_LOCK (0x0d)
-L1_IDLE (0x14)
-L0 (0x11)
-L1_IDLE (0x14)
-RCVRY_LOCK (0x0d)
-L1_IDLE (0x14)
-L0 (0x11)
-L1_IDLE (0x14)
-RCVRY_LOCK (0x0d)
-L1_IDLE (0x14)
-RCVRY_LOCK (0x0d)
-L1_IDLE (0x14)
-L0 (0x11)
-L1_IDLE (0x14)
-L0 (0x11)
-L1_IDLE (0x14)
-L0 (0x11)
-L1_IDLE (0x14)
-L0 (0x11)
-L1_IDLE (0x14)
-L123_SEND_EIDLE (0x13)
-L1_IDLE (0x14)
-
-The card works just fine. I'm thinking the ASPM issue is probably from the glue driver reporting the link to be down when it's really just in low power state.
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RnJvbTogQ2h1YW4gTGl1IDxjaHVhbi5saXVAYW1sb2dpYy5jb20+CgpsX2RldGVjdCBjb250cm9s
+cyB0aGUgZW5hYmxlbWVudCBvZiB0aGUgUExMIGxvY2sgZGV0ZWN0aW9uIG1vZHVsZS4KSXQgc2hv
+dWxkIHJlbWFpbiBkaXNhYmxlZCB3aGlsZSB0aGUgaW50ZXJuYWwgUExMIGNpcmN1aXRzIGFyZQpy
+ZWFjaGluZyBhIHN0ZWFkeSBzdGF0ZTsgb3RoZXJ3aXNlLCB0aGUgbG9jayBzaWduYWwgbWF5IGJl
+IGZhbHNlbHkKdHJpZ2dlcmVkIGhpZ2guCgpBIDIwIHVzIGRlbGF5IGhhcyBiZWVuIGFkZGVkIGJl
+Zm9yZSBlbmFibGluZyB0aGUgUExMLCBzbyB0aGVyZeKAmXMgbm8KbmVlZCBmb3IgYW4gYWRkaXRp
+b25hbCAxMCB1cyBkZWxheSBiZWZvcmUgZW5hYmxpbmcgY3VycmVudF9lbi4KCkN1cnJlbnRseSwg
+b25seSBBMSBzdXBwb3J0cyBib3RoIGxfZGV0ZWN0IGFuZCBjdXJyZW50X2VuLCBzbyB0aGlzCnBh
+dGNoIHdpbGwgb25seSBhZmZlY3QgQTEuCgpTaWduZWQtb2ZmLWJ5OiBDaHVhbiBMaXUgPGNodWFu
+LmxpdUBhbWxvZ2ljLmNvbT4KLS0tCiBkcml2ZXJzL2Nsay9tZXNvbi9jbGstcGxsLmMgfCAxMiAr
+KysrKysrLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9jbGsvbWVzb24vY2xrLXBsbC5jIGIvZHJpdmVycy9j
+bGsvbWVzb24vY2xrLXBsbC5jCmluZGV4IGNkYjM5YTcyM2JkMC4uYzliOTQxYWRmNjg4IDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2Nsay9tZXNvbi9jbGstcGxsLmMKKysrIGIvZHJpdmVycy9jbGsvbWVz
+b24vY2xrLXBsbC5jCkBAIC0zODMsNiArMzgzLDEwIEBAIHN0YXRpYyBpbnQgbWVzb25fY2xrX3Bs
+bF9lbmFibGUoc3RydWN0IGNsa19odyAqaHcpCiAJaWYgKE1FU09OX1BBUk1fQVBQTElDQUJMRSgm
+cGxsLT5yc3QpKQogCQltZXNvbl9wYXJtX3dyaXRlKGNsay0+bWFwLCAmcGxsLT5yc3QsIDEpOwog
+CisJLyogRGlzYWJsZSB0aGUgUExMIGxvY2stZGV0ZWN0IG1vZHVsZSAqLworCWlmIChNRVNPTl9Q
+QVJNX0FQUExJQ0FCTEUoJnBsbC0+bF9kZXRlY3QpKQorCQltZXNvbl9wYXJtX3dyaXRlKGNsay0+
+bWFwLCAmcGxsLT5sX2RldGVjdCwgMSk7CisKIAkvKiBFbmFibGUgdGhlIHBsbCAqLwogCW1lc29u
+X3Bhcm1fd3JpdGUoY2xrLT5tYXAsICZwbGwtPmVuLCAxKTsKIApAQCAtNDAxLDIwICs0MDUsMTgg
+QEAgc3RhdGljIGludCBtZXNvbl9jbGtfcGxsX2VuYWJsZShzdHJ1Y3QgY2xrX2h3ICpodykKIAkg
+KiBDb21wYXJlZCB3aXRoIHRoZSBwcmV2aW91cyBTb0NzLCBzZWxmLWFkYXB0aW9uIGN1cnJlbnQg
+bW9kdWxlCiAJICogaXMgbmV3bHkgYWRkZWQgZm9yIEExLCBrZWVwIHRoZSBuZXcgcG93ZXItb24g
+c2VxdWVuY2UgdG8gZW5hYmxlIHRoZQogCSAqIFBMTC4gVGhlIHNlcXVlbmNlIGlzOgotCSAqIDEu
+IGVuYWJsZSB0aGUgcGxsLCBkZWxheSBmb3IgMTB1cworCSAqIDEuIGVuYWJsZSB0aGUgcGxsLCBk
+ZWxheSBmb3IgMjB1cwogCSAqIDIuIGVuYWJsZSB0aGUgcGxsIHNlbGYtYWRhcHRpb24gY3VycmVu
+dCBtb2R1bGUsIGRlbGF5IGZvciA0MHVzCiAJICogMy4gZW5hYmxlIHRoZSBsb2NrIGRldGVjdCBt
+b2R1bGUKIAkgKi8KIAlpZiAoTUVTT05fUEFSTV9BUFBMSUNBQkxFKCZwbGwtPmN1cnJlbnRfZW4p
+KSB7Ci0JCXVkZWxheSgxMCk7CiAJCW1lc29uX3Bhcm1fd3JpdGUoY2xrLT5tYXAsICZwbGwtPmN1
+cnJlbnRfZW4sIDEpOwogCQl1ZGVsYXkoNDApOwogCX0KIAotCWlmIChNRVNPTl9QQVJNX0FQUExJ
+Q0FCTEUoJnBsbC0+bF9kZXRlY3QpKSB7Ci0JCW1lc29uX3Bhcm1fd3JpdGUoY2xrLT5tYXAsICZw
+bGwtPmxfZGV0ZWN0LCAxKTsKKwkvKiBFbmFibGUgdGhlIGxvY2stZGV0ZWN0IG1vZHVsZSAqLwor
+CWlmIChNRVNPTl9QQVJNX0FQUExJQ0FCTEUoJnBsbC0+bF9kZXRlY3QpKQogCQltZXNvbl9wYXJt
+X3dyaXRlKGNsay0+bWFwLCAmcGxsLT5sX2RldGVjdCwgMCk7Ci0JfQogCiAJaWYgKG1lc29uX2Ns
+a19wbGxfd2FpdF9sb2NrKGh3KSkgewogCQkvKiBkaXNhYmxlIFBMTCB3aGVuIFBMTCBsb2NrIGZh
+aWxlZC4gKi8KCi0tIAoyLjQyLjAKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
+aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
+dGluZm8vbGludXgtYW1sb2dpYwo=
