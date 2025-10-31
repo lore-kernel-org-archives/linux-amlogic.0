@@ -4,94 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72929CCF9F8
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Oct 2025 16:28:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1689CCFA03
+	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Oct 2025 17:43:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bC1zeocqfU7w7i94yaQNwUtIlsVFs3Ohz//VlmByc40=; b=jKlf8nFyoe46K9
-	chxgUTfQeO7KGO/PWSibPLcz7cR2fSJqJ2jyJqoDe8eWz3gAdggakuWn5ReMYJSN1FPdlr8MIO/gE
-	PnJXDR6p29+om7TLl90/9hU6p51bWZW/f6i9XMdNgtrcQBVk3MC+hYU8q4gCkg8XW7jUbzBrZhh9B
-	3Cf7sE0fjL5e0xRXZ3ZqLZWaDSpKj6/KFYy0HIr86KBX1uMKz7ctfiVrTKJGnMAQdYGt9xpEfWLgk
-	NEWGu4wdb5Vj9khbwEcOdjOWHC30a+Ji/63TZlxrxKoy5Xrsbz4PLSzIodbaoODfk1pH1wl8eWNrl
-	K+p32qD1rlbCMFCyaDXw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=iOJhjdDMQWdOwas/sqYaCyq18ie3O87QV8QU/lqui0o=; b=lDX6P2OzRjzWMc
+	Ihkdpowqd8ALJ/2s+luDV7SUSN+DQVb5ujNXWBYkRfwZBKfEMllaEeTnanQo1E0mR2oeM1dWNWsri
+	opkqQmUAD88SFCPI8sIoVJhIT9rC/tINl5faerFhJj1SqX6xX1SKSTluRmpO8YBLsEHcUUvFwDzDm
+	pzRRgfUOgmWs8VHCJhSjULifRJeWcc9SLpqP4z9uOaZkce0etbOm0vu4QDLzkJy56nwBkGw3LEJX7
+	0U0TMDZO0GrqsI+Z+eYlTCiTbDC3asAE1D4DmwwsWgsxS+gdD1Hhs90AAi6Rl2C8ZglxTf/3jQLKj
+	g+iuxBhIQbCmz/74Gq6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEryu-00000006PLf-3TQo;
-	Fri, 31 Oct 2025 16:28:04 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1vEt9l-00000006Z4u-3HNM;
+	Fri, 31 Oct 2025 17:43:21 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vEryr-00000006PKY-0sbc
-	for linux-amlogic@lists.infradead.org;
-	Fri, 31 Oct 2025 16:28:03 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-426fc536b5dso1579206f8f.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 31 Oct 2025 09:28:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1761928079; x=1762532879; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kDssZKzypBLff+1ZVIfB58ENRKA3B3YlfDeq0xu5XOQ=;
-        b=KRSWf4v/EPv8EPb/a5+5pgo09gLV5BBpmsT88rmMM7zsTiJXMwqdeJD3C8wnjK9FpL
-         mUFPDYKwBeNErQCv10OkMybT6kka4hViF0i2o0D5VVkOsOX1e27aDLUlRBpXF1+nkM+E
-         7RiCUSrn9YfIac3mO6CRNpdje0bPTNllD0qg4x+nUrRFQwELwSDYBcy4g+/zJAlyM1tQ
-         X4UYqbz8JmAaXEVdb4DE8DbTHJ0hwYEJdt7/HV2OU6eThc7Z7Yxsxjcqb3JB8ttHx+X2
-         MoUlhpkQT2Ec7ciYF4O0rXzhaQ5I1d6JAjcVctH3ZaQuSgL3b2scX3Fjw/j4w3W3MZKk
-         0klg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761928079; x=1762532879;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=kDssZKzypBLff+1ZVIfB58ENRKA3B3YlfDeq0xu5XOQ=;
-        b=UA3wtuUza2cS6PlHNHp8pJBpY3HPq0bJlf5AvqZPDSWmy5ax5Wc8l3sX1BBSNimMqh
-         0y9aTnjjLgvthOny2w3tvml5LuG5wn8+Jt0Tu9ZpUom8IldLj9EUU7HRaiHO+/R4p42D
-         coHhMfa3GM9XRnr/Hjs7rRv39kScVXUriusEWBBIHM+zm/3ghSF/5TQRaRiKSvI1bm7Z
-         9oXazq9Iljkyqcez6cYhvo+unX+Z6YKE+yLK7idRG5q9xRpJMkI4Be0J1ayQZ8lXy1gG
-         JMojjQVZjG1bqxXt/JzuDeKrJ5CxoPAemLxGTLRbkqGdH4LZTkUKBbLnW6ulPHvG6SEY
-         vaog==
-X-Forwarded-Encrypted: i=1; AJvYcCVWlIt/siFX3SsWPo9ne0vX4/p5mMw6LjBUBdgVTb45qogPo/OUyf/xIfIVoZvGSjlCOHGno3cyvWsY1sw1@lists.infradead.org
-X-Gm-Message-State: AOJu0YxfulllaqCpuadffYu61ny/dt0lcN/cSNLRL3dulq3gwAs9hmLV
-	oiRwzN1lOlGO7TrqilMRsb2M5JLrMbszrZYpw2tIRl7Ws8xgsw33x5/Fqgghl4hhUfQ=
-X-Gm-Gg: ASbGncvuuiqZfGPj5XKoRuHHKhATJiQcJsNBGDReuS3JlYY5Q/WDe9sncRasOwPtLbo
-	c4+Uh7rPXXYq74tbubCDfta201aTXgzjDjYCxNCPXkXZsJtfr9jIHQaegBebKsd+39FijFcw0hn
-	nqk0lkE8Lrb5sVf3xaepAoAFaKgFHuTlI40JhHnqCvFmtWpRF/YfYHLgRUyHzICWBOY7+OG6h8c
-	H1yRUi3mItL871wuXTn9O36kP7481ZdBqn30Lkxgeo4eGEb2sRCFzXhLeOAPjdBuSYra/J+1j/G
-	dZopygTyYb/Rz9aUp+3R+ocXT/4KANIkOieISl3lDtAWPHh1yATkRunImRtYLJWqgejJMBzviVd
-	oxoyxqifQNOp2jFwbL46iZYs5CjlRTm3cHa4+CZlVbPfNUKN+vKWwrCiU9Qt3MfW1hY8YQlpin5
-	CO8cLnUw5umA==
-X-Google-Smtp-Source: AGHT+IFrsbEnwLrCCUR6Iu0VY5Uzhd0sq8qEcvcS/A9/eiqg3la7OAXHkma7L0rV7CnkzwdcPd10ig==
-X-Received: by 2002:a05:6000:178f:b0:429:bb21:94e1 with SMTP id ffacd0b85a97d-429bd6a0caemr3886114f8f.41.1761928079286;
-        Fri, 31 Oct 2025 09:27:59 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:b8e9:e124:10fc:8444])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-429c112413esm4367494f8f.12.2025.10.31.09.27.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 09:27:58 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,  Neil
- Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
- <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Kevin Hilman
- <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  linux-amlogic@lists.infradead.org,
-  linux-clk@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/4] clk: amlogic: optimize the PLL driver
-In-Reply-To: <9751014d-926e-4d42-b8e1-5a4d3e734457@amlogic.com> (Chuan Liu's
-	message of "Fri, 31 Oct 2025 23:09:13 +0800")
-References: <20251031-optimize_pll_driver-v3-0-92f3b2f36a83@amlogic.com>
-	<1jms57xx05.fsf@starbuckisacylon.baylibre.com>
-	<9751014d-926e-4d42-b8e1-5a4d3e734457@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Fri, 31 Oct 2025 17:27:58 +0100
-Message-ID: <1j5xbvxchd.fsf@starbuckisacylon.baylibre.com>
+	id 1vEt9k-00000006Z4b-3KXj;
+	Fri, 31 Oct 2025 17:43:20 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id B317A60254;
+	Fri, 31 Oct 2025 17:43:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 382B5C4CEE7;
+	Fri, 31 Oct 2025 17:43:11 +0000 (UTC)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Subject: [PATCH 0/3] PCI: meson: Fix the parsing of DBI region
+Date: Fri, 31 Oct 2025 23:12:58 +0530
+Message-Id: <20251031-pci-meson-fix-v1-0-ed29ee5b54f9@oss.qualcomm.com>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251031_092801_270722_D5E62906 
-X-CRM114-Status: GOOD (  16.28  )
+X-B4-Tracking: v=1; b=H4sIACL1BGkC/x2MQQqAIBAAvyJ7bkENJfpKdEjbag+pKEQg/j3pO
+ AMzFQplpgKzqJDp4cIxdFCDAH9t4STkvTNoqY2So8LkGW8qMeDBL/rJWaOct9Zq6E3K1PX/W9b
+ WPrPmlXNfAAAA
+X-Change-ID: 20251031-pci-meson-fix-c8b651bc6662
+To: Bjorn Helgaas <bhelgaas@google.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Hanjie Lin <hanjie.lin@amlogic.com>, Yue Wang <yue.wang@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Andrew Murray <amurray@thegoodpenguin.co.uk>, 
+ Jingoo Han <jingoohan1@gmail.com>, 
+ Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+ stable+noautosel@kernel.org, stable@vger.kernel.org, 
+ Linnaea Lavia <linnaea-von-lavia@live.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1509;
+ i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
+ bh=vroR35+0m/WOqTCc3pHB+dq6wrRsNeMwH4SL+cTs0Zs=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBpBPUv/ByYAMlVSnih7i/7vpgUV16Ct4fpIK8Kc
+ YRDlbdh7viJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaQT1LwAKCRBVnxHm/pHO
+ 9UKrB/4jcLEeWocGJwfF6C2jbmqDNLzp+AgmCielD3AzwWmZi1u/nuZk23uQrE/nUyALXisj1NV
+ YTlJXdSp5Ua/KpwmqVwlEiRlT/2o7zQ1aZMjkBHuw3+RIjDM23ngzTsB3SfDidXqGoDD1vDwu6x
+ VbvARVbvAhtStxViBSpXAgBNDBXkAVR95izzw989HAIQ1CFq2YhSSqgu8goOtWH5ZdF2rWdJnvm
+ trXrsKghDytyE4UjlP/CztKgJYtzY3KnoWG/stR4IwIWGjQ0BXgPP9hx29yqFe55Y6PLSCVP+e5
+ 6AumRv0O79SN7H9dIMbI8Zklyo9bM0gWpgPE/Dkrp+1a/nn/
+X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,57 +83,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpIDMxIE9jdCAyMDI1IGF0IDIzOjA5LCBDaHVhbiBMaXUgPGNodWFuLmxpdUBhbWxvZ2lj
-LmNvbT4gd3JvdGU6Cgo+IEhpIEplcm9tZSwKPgo+IE9uIDEwLzMxLzIwMjUgNTowNCBQTSwgSmVy
-b21lIEJydW5ldCB3cm90ZToKPj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+IE9uIEZyaSAzMSBPY3Qg
-MjAyNSBhdCAxNjoxMCwgQ2h1YW4gTGl1IHZpYSBCNCBSZWxheQo+PiA8ZGV2bnVsbCtjaHVhbi5s
-aXUuYW1sb2dpYy5jb21Aa2VybmVsLm9yZz4gd3JvdGU6Cj4+IAo+Pj4gVGhpcyBwYXRjaCBzZXJp
-ZXMgY29uc2lzdHMgb2YgZm91ciB0b3BpY3MgaW52b2x2aW5nIHRoZSBhbWxvZ2ljIFBMTAo+Pj4g
-ZHJpdmVyOgo+Pj4gLSBGaXggb3V0LW9mLXJhbmdlIFBMTCBmcmVxdWVuY3kgc2V0dGluZy4KPj4+
-IC0gSW1wcm92ZSB0aGUgaXNzdWUgb2YgUExMIGxvY2sgZmFpbHVyZXMuCj4+PiAtIEFkZCBoYW5k
-bGluZyBmb3IgUExMIGxvY2sgZmFpbHVyZS4KPj4+IC0gT3B0aW1pemUgUExMIGVuYWJsZSB0aW1p
-bmcuCj4+Pgo+Pj4gRm9yIGVhc2llciByZXZpZXcgYW5kIG1hbmFnZW1lbnQsIHRoZXNlIGFyZSBz
-dWJtaXR0ZWQgYXMgYSBzaW5nbGUKPj4+IHBhdGNoIHNlcmllcy4KPj4+Cj4+PiBUaGUgUExMIHRp
-bWluZyBvcHRpbWl6YXRpb24gY2hhbmdlcyB3ZXJlIG1lcmdlZCBpbnRvIG91ciBpbnRlcm5hbAo+
-Pj4gcmVwb3NpdG9yeSBxdWl0ZSBzb21lIHRpbWUgYWdvIGFuZCBoYXZlIGJlZW4gdmVyaWZpZWQg
-b24gYSBsYXJnZQo+Pj4gbnVtYmVyIG9mIFNvQ3M6Cj4+PiAtIEFscmVhZHkgc3VwcG9ydGVkIHVw
-c3RyZWFtOiBHMTJBLCBHMTJCLCBTTTEsIFM0LCBBMSwgQzMuCj4+PiAtIFBsYW5uZWQgZm9yIHVw
-c3RyZWFtIHN1cHBvcnQ6IFQ3LCBBNSwgQTQsIFM3LCBTN0QsIFM2LCBldGMuCj4+Pgo+Pj4gQmFz
-ZWQgb24gdGhlIHVwc3RyZWFtIGNvZGUgYmFzZSwgSSBoYXZlIHBlcmZvcm1lZCBmdW5jdGlvbmFs
-IHRlc3RpbmcKPj4+IG9uIEcxMkEsIEExLCBBNSwgQTQsIFQ3LCBTNywgUzdELCBhbmQgUzYsIGFs
-bCBvZiB3aGljaCBwYXNzZWQuCj4+Pgo+Pj4gQWRkaXRpb25hbGx5LCBzdHJlc3MgdGVzdGluZyB1
-c2luZyBzY3JpcHRzIHdhcyBjb25kdWN0ZWQgb24gQTUgYW5kCj4+PiBBMSwgd2l0aCBvdmVyIDQw
-LDAwMCBhbmQgNTAsMDAwIGl0ZXJhdGlvbnMgcmVzcGVjdGl2ZWx5LCBhbmQgbm8KPj4+IGFibm9y
-bWFsaXRpZXMgd2VyZSBvYnNlcnZlZC4gQmVsb3cgaXMgYSBwb3J0aW9uIG9mIHRoZSBzdHJlc3Mg
-dGVzdAo+Pj4gbG9nIChDTE9DS19BTExPV19XUklURV9ERUJVR0ZTIGhhcyBiZWVuIG1hbnVhbGx5
-IGVuYWJsZWQpOgo+PiBPa2F5LCB0aGlzIGxpdHRsZSBnYW1lIGhhcyBiZWVuIGdvaW5nIG9uIGxv
-bmcgZW5vdWdoLgo+PiBZb3UndmUgcG9zdGVkIHYyIDI0aCBob3VycyBhZ28KPj4gWW91J3ZlIGdv
-dCBmZWVkYmFjayB3aXRoaW4gaG91cnMKPj4gVGhlcmUgd2FzIHN0aWxsIGEgMSBxdWVzdGlvbiBw
-ZW5kaW5nCj4+IFRoZSByZXN0IG9mIGNvbW11bml0eSBoYWQgbm8gY2hhbmNlIHRvIHJldmlldy4K
-Pj4gCj4KPiBUaGVyZSBtaWdodCBiZSBhIHNlcmlvdXMgbWlzdW5kZXJzdGFuZGluZyBoZXJlLgo+
-Cj4gSW4gcmVjZW50IHllYXJzLCB3ZSd2ZSBtYWlubHkgYmVlbiBtYWludGFpbmluZyBvdXIgY29k
-ZSBpbiBvdXIKPiBpbnRlcm5hbCByZXBvc2l0b3J5LCB3aGljaCBoYXMgbGVkIHRvIHNvbWUgZGlm
-ZmVyZW5jZXMgYmV0d2VlbiBvdXIKPiBpbnRlcm5hbCBjb2RlYmFzZSBhbmQgdGhlIHVwc3RyZWFt
-IHZlcnNpb24uIFRoZSBwYXRjaGVzIHRoYXQgYWNjb3VudAo+IGZvciB0aGVzZSBkaWZmZXJlbmNl
-cyBhcmUgYWxyZWFkeSBxdWV1ZWQgZm9yIHN1Ym1pc3Npb24sIGFuZCBzZXZlcmFsCj4gU29DcyBh
-cmUgYWxzbyB3YWl0aW5nIGluIGxpbmUgdG8gYmUgc3VibWl0dGVkLiBBcyBhIHJlc3VsdCwgcXVp
-dGUgYQo+IGZldyBwYXRjaGVzIGhhdmUgcGlsZWQgdXAsIHdhaXRpbmcgdG8gZ28gdXBzdHJlYW0u
-Cj4KPiBQcmV2aW91c2x5LCBJIGhhZCBiZWVuIHdhaXRpbmcgZm9yIHlvdXIgY2xvY2sgZHJpdmVy
-IHJlc3RydWN0dXJpbmcKPiBwYXRjaGVzIHRvIGJlIHJlYWR5ICh3aGljaCBoYXZlIHJlY2VudGx5
-IGJlZW4gbWVyZ2VkKSwgc28gZm9yIGFsbW9zdAo+IGEgeWVhciwgd2UgaGF2ZW4ndCBtYWRlIG11
-Y2ggcHJvZ3Jlc3Mgb24gY2xvY2sgZHJpdmVy4oCTcmVsYXRlZAo+IHVwc3RyZWFtaW5nLgoKT2hv
-aCBub3cgeW91IGFyZSBqdXN0IHRlYXNpbmcgbWUgIQoKVGhhdCB3b3JrIHdhcyBtYWRlIG5lY2Vz
-c2FyeSBiZWNhdXNlIG9mIGFsbCB0aGUgY29weS9wYXN0ZSBBbWxvZ2ljIHdhcwpzdWJtaXR0aW5n
-LiBEZXNwaXRlIG1hbnkgcmVxdWVzdHMsIHRoaXMgd2FzIG5ldmVyIGFkZHJlc3NlZCBzbyBJIGhh
-ZAp0byBzdGVwIGluLgoKSWYgeW91IHdhbnQgdGhpbmdzIHRvIGdvIGZhc3RlciwgdGhlbiAqcmVh
-bGx5KiBwYXkgYXR0ZW50aW9uIHRvIHRoZSByZXZpZXcKeW91IGFyZSBnZXR0aW5nLCBkbyBub3Qg
-YXNrIHF1ZXN0aW9uIHRvIGlnbm9yZSB0aGUgYW5zd2VycyBhbmQgc3RvcAptYWtpbmcgcGVvcGxl
-IHJlcGVhdCB0aGVtc2VsdmVzIG92ZXIgYW5kIG92ZXIuCgoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
-dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
-L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi,
+
+This compile tested only series aims to fix the DBI parsing issue repored in
+[1]. The issue stems from the fact that the DT and binding describing 'dbi'
+region as 'elbi' from the start.
+
+Now, both binding and DTs are fixed and the driver is reworked to work with both
+old and new DTs.
+
+Note: The driver patch is OK to be backported till 6.2 where the common resource
+parsing code was introduced. But the DTS patch should not be backported. And I'm
+not sure about the backporting of the binding.
+
+Please test this series on the Meson board with old and new DTs.
+
+- Mani
+
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+---
+Manivannan Sadhasivam (3):
+      dt-bindings: PCI: amlogic: Fix the register name of the DBI region
+      arm64: dts: amlogic: Fix the register name of the 'DBI' region
+      PCI: meson: Fix parsing the DBI register region
+
+ .../devicetree/bindings/pci/amlogic,axg-pcie.yaml      |  6 +++---
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi             |  4 ++--
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi      |  2 +-
+ drivers/pci/controller/dwc/pci-meson.c                 | 18 +++++++++++++++---
+ drivers/pci/controller/dwc/pcie-designware.c           | 12 +++++++-----
+ 5 files changed, 28 insertions(+), 14 deletions(-)
+---
+base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+change-id: 20251031-pci-meson-fix-c8b651bc6662
+
+Best regards,
+-- 
+Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
