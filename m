@@ -4,98 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D750CCF9F8
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Nov 2025 04:30:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8386DCCF9F8
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Nov 2025 04:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ab/LkzTK5oK5L7883Q87CJ2hQ0SfHrtIELMT/XgIruc=; b=dh7gAgiv8YjCyl
-	omFIOgSP3xS5/uS+oZRty1i0SnX+0GGXwwQLOn6KUc+gamKhD5RLi234OdYSlqB7yaUcnvihfCzAW
-	2VhFIt20og7gY42R030VX6eu3fOFpUfvlqkH/gbrOACaNP3q6woVonyi0RJdEopi7qXhmmBm89vFt
-	yKR4r3BzkwqtTeyuvSKrFVQFnNrubRG3jvfOh5Nnh6NLOXqQz9QoJFo0dBLeqPIJTju0ZKQQ8VPPA
-	zsS0tMOK5da1glkQHO9joAnAOlELryzpl+GLUYGypKHlz60oa3RYr2UYAe0T5/h01TZLCYq/ZqOgc
-	rR+9Ym7Vp+2/qy5gUDng==;
+	List-Owner; bh=BWuGKRZGz7/Es6YW2ZJDn+6xSgyBgv/JTdpolgCAIyM=; b=ffLdRY1FbV3HV9
+	dGWCbWSvtbhTgrfAWrggAwrBc6WCYa8+80Vw9Ayn037hGC2Gmr79Y3ylDP6avBFbdK6YWA/RtB9wF
+	Pl9O5Dw/a+YSOOr0k1lO/J27xRZ18z4Tq1LFQNAyECivfadBNTpNXINSRRAtQMbtNUoe+5AeWfPBs
+	m35GZNKYJwsmoACKS49sIMO/CeB/FN6q9C4moBWEZkSUlb16iSL8W6QAavKrPpp4XcGRKArgDit7q
+	78/O1XB22Du4Bvyg9g9zqx17T9vUXsRo9RXLA9V2cp/+r1UX90tEFC+McKmScvLKqS6GFBdm1J0LH
+	AfLEbVjRDnYU3Jek9uXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vF3Fj-0000000740h-0nNw;
-	Sat, 01 Nov 2025 04:30:11 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1vF3Fn-0000000742P-23AR;
+	Sat, 01 Nov 2025 04:30:15 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vF3Fd-000000073yl-0Fjw
+	id 1vF3Fk-0000000740g-1TTz
 	for linux-amlogic@lists.infradead.org;
-	Sat, 01 Nov 2025 04:30:07 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5A13PfIW517967
-	for <linux-amlogic@lists.infradead.org>; Sat, 1 Nov 2025 04:30:04 GMT
+	Sat, 01 Nov 2025 04:30:14 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59VLo0dw3964377
+	for <linux-amlogic@lists.infradead.org>; Sat, 1 Nov 2025 04:30:11 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	VCqahWxJSH0GJ6HwC5OvL8qeWdhWmEk+RK3OoYwwn+M=; b=grlhPYuuRy7u9HPb
-	hY5dmob/1WLH136XMzDHSCFS6OvyQW8uz9rDf7Fze8B4zbOepisIZrdLNtyK52/P
-	hhhmY3eLqjZv30PmuAn8IHpFZIyY6ekTm+psFlrfaw0Di2U6zAwSYsdnK8iXMY9i
-	f1p0lIhi8hw6R7dGyDdH//g6MDAyZCi/geNQKUsculA+EBiVXpf/QfhYSRuw1Hvh
-	xdFfJ7rPE1ECCBMEppxpMYJO1LAQf8u8mrm9TIyZZwZDiAMaA+tPqNc55vywRCEU
-	WJy/fVbdl847A9O7BjXvX98VQVxqotmNbln/2XG7u/heTHkktF80e1yCDomo1gXz
-	2WcaXQ==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a5a9vg2hs-1
+	rEmntNzIgvbd3ZfuZ5iUUv+8+XvQ/yURzasHSY5J4tk=; b=QpfW27k6/ts5uivf
+	O0Jv5hlAtu0EzN6j07MkZDDnO/qtug/EcMJcALOCtmKE2IASg9lvaeOtddlQMScD
+	kiATUwyQTn1msT/NGI57gx0/PQbk8RK8/BYpKS55Xbht5Im/pKu6bwVMMJC5lbEi
+	dcLtnvXFJewtbMhH741KAzTA7IWWI9aViLmGAMY6rAyzty8bPliBy0DZ//kpjoLg
+	iObSQwVU4uQSS/FK2Q45jW6V0SpXS6AnHufPSvzAEjLAAOTIpQnHdi3JStnoQRKm
+	8pTKt2Kw9Z17uNqRxbB0BRiiDXWU6quRtoAzYRvOBWcp5JAbVx1+kq8SayX72wPE
+	D7zKWg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4a55ch8k9s-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Sat, 01 Nov 2025 04:30:04 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b5535902495so2072412a12.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 31 Oct 2025 21:30:03 -0700 (PDT)
+	for <linux-amlogic@lists.infradead.org>; Sat, 01 Nov 2025 04:30:10 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-295093f614cso28071815ad.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 31 Oct 2025 21:30:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1761971403; x=1762576203; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1761971410; x=1762576210; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=VCqahWxJSH0GJ6HwC5OvL8qeWdhWmEk+RK3OoYwwn+M=;
-        b=jM6Ed8qRHhziotkp+Oh4U9sK356GUqzIonVbev43OCUTIzv8PSoddww286sMTecKoK
-         oKR/IDvdqsiDKxh7dF1+E0rwAKXFbTVdvirzDwyXiqOOkDkOI6tB31ssmnShk9hQEvYf
-         n/WitFmBHwwzcgOHmIMYVQjwracY8NrshR0XMFY1n62Hu82q5pXOcTgCkStedXEqIPZR
-         raNSWutf6/Wonni7EQerJC+03ewGiajM/HB9t9+O3E1L01YhkRYntdeZ6VpT0lapnF/W
-         ++L/L+Ax0amRjN9NSHWpmrSN776LxbIN02CLkkKRLrBPH1vUplhIOkH039vJ4bNMJkb2
-         lVjA==
+        bh=rEmntNzIgvbd3ZfuZ5iUUv+8+XvQ/yURzasHSY5J4tk=;
+        b=Ne4LBahklHnBpy8A9juGP7j5BhWWneKujmzGo78ta9SerG9qNykcdtPYhwzjuCkGXB
+         hMk5ZTzsLRoM4tH5BTMg0o7h3tOcAkDlnmsvNKIWxfOdp/bE57O/ivegEt1+K5tOn/Eh
+         U7Pf4K8r+OArZovFLE302YkBEZKV1MZOqwxL2sTr2K8LSjMnuW5KpJ81JcfWdyStWyfd
+         fFo7YoVnVOxZ7A6n0nZgvVq2+almTXWkdqw6PU2Z2foSDHIV0/f1JUaeiLPhbszoF5qs
+         Uo3U6NMx/FxCLPf0+YRHtVQI8/C8N+C9VsfuLiADTrm305IgYLIegAttUN+xt3SXKZGT
+         VrOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761971403; x=1762576203;
+        d=1e100.net; s=20230601; t=1761971410; x=1762576210;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VCqahWxJSH0GJ6HwC5OvL8qeWdhWmEk+RK3OoYwwn+M=;
-        b=LGZazdvnoJUX35T5FVn5iS64vQN0CUVlBUMjdirpn2Q34yyQA+ykMrHqdRfURkKmsD
-         CK6mA22ZtWvS9wpR2UHPKXjuVq3LKbb31mw9gNZUo5xwM7qlPZO/GU5QgpDwVhkOVlBg
-         FBEmnRkWR0XDG+nDZTjWYGAUW033ZXpYH3OFTXIcV0Jh7Tkkyj2NVqYbGSLVkR4yZiem
-         Q146x9vhg2jSWbTcr8KozZNiKmp/9n126rJcW9x7LLZzYVNuABMRImd664lFHmPRENqY
-         YlsPk9NenD3jddZfhulYaqByzWj+ULO2uSySwSdKig5NXVBDgkHS9mJDCYbwmvtOOJo1
-         Kc3g==
-X-Forwarded-Encrypted: i=1; AJvYcCU6TeT+nzhZc4Lqn89OJAMOPBzGIHqepgnnR2MVUsZZM/QZcCnhiKi0kyPdgPJMcVpWzC51gUqrtAV0rUu4@lists.infradead.org
-X-Gm-Message-State: AOJu0Yypa/loJC7hGkvGnixcFYHMGWQeFbSJ+X1AstWPljlwqgF8VEc2
-	/3iSiikXOxPsUusUYvWlF4AT+1U/2ue1eQ39iTkFduruDwoyikNCdxUAe3x6DgmQJkdgB7a23WV
-	OK468/V+myFwf19jAPl6ThV+fp1G1caMBdvMarxNFKl1DF2MR9MajQr8bc8M92qheq8PkeJ8FPw
+        bh=rEmntNzIgvbd3ZfuZ5iUUv+8+XvQ/yURzasHSY5J4tk=;
+        b=l7SBJtx+e1RGY5IEvRUc+nmdTBqBAwlaK+Bm16h9NvbIsIUcXCwEwjgXFqEpXAtQ5T
+         7RX7NUCKfEMLNJu/B/jIsm2R1lbNV+lFzzu+VWrx1vYK+u7vQWPe6XeD4EP2z1Dq5lFT
+         ArtO64WucqNqCtLey3fJegldSdOUw9Hdvuz3N8sPWNUYAgSHvfyYsWuDrMwHUCB8DlwD
+         BEA5eGCWlWPxRw5M/0ktBSwZUHRLTuWpqAwr3ATYo8CbHtfqJS2+Qslk564A3QpvkjjA
+         1f4RFRtdFwWq041545kYlPfNgHCVNXIymf3SGzfelWwg83DbBVz6/C0yTHJvdp2dQK4y
+         sDww==
+X-Forwarded-Encrypted: i=1; AJvYcCX5dwl8F9BXMn84zR2+4uiywIJtRYxC2eDmxeZFqh0WXT11jDwbPbWVydtMim6niIYd0FtdEbPEG72v1svc@lists.infradead.org
+X-Gm-Message-State: AOJu0Yyo1zY6AzjH5hqE2FOi9vChpbBFvujNZ+9ctd49LyNpvN4GZyRK
+	I3vj5XQwFJqAdTOhzBLtVnT3WoZb4wBnX1uXaum7iv7gZP3mZp50bYoKaLDMk6HLSswrWkQgAec
+	YCgT0K42hxcGZbrZAF/r4rdf5GzGZfAXlEQTI3n6GJir/CWRYK2naTWLzKexvZaqkOb3hUAq7qQ
 	==
-X-Gm-Gg: ASbGncvINRebMRT9UQnvH9yl5CfeTadGj3r7efMs1JUgMXHe9nRBjDpc9BNp7+Z+PnZ
-	piCK7fyRF+SXDqxZPC/0/e0hPRxoRM05YusTpaQlLA6lLjUrQ8WafeIlBUADGptrVx1NyBpGZ4n
-	gqw1q/Q8hc6M6pCHTNf1/mqTwZB9ONIXEsZjsr9Ilh4XlXKoNN72cVinc/OUuttlgXI/GBRguIz
-	FY7i6nDJ908XdDE5HJOj87CHFvBuCNl9RTXFIpP8K2dqxNk4TNHpSj9L7guHu/g58K+W0VWGWbg
-	mf/tsQfJkSeA8mTnS0HjisoGu7Ihdl4kdh/A/hYzX1IlB13fLOu4+FZlcvM2vVpjAL2en0aa+Ko
-	Ho147qniT9NuCwoNUnyIrrL2k
-X-Received: by 2002:a05:6a20:94c9:b0:334:9649:4754 with SMTP id adf61e73a8af0-348cab90586mr8300615637.13.1761971403125;
-        Fri, 31 Oct 2025 21:30:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHWduze7ttH0fM3SXqrm9M7DW4Z/7xe/Nc3XYQeEd4wKVo1kiDZdb6XskF1v6a8AcaNd0i4Jw==
-X-Received: by 2002:a05:6a20:94c9:b0:334:9649:4754 with SMTP id adf61e73a8af0-348cab90586mr8300585637.13.1761971402661;
-        Fri, 31 Oct 2025 21:30:02 -0700 (PDT)
+X-Gm-Gg: ASbGncv9hJnXK1AXiK7B7+fW2lAiyFKn7RbcczFCSXOE9lUOhiOGO8MMvclG/C7RDxC
+	h9orBlQxJS4nTq68w2N1TFn6b/FGt00FqRF/HsLBA71+Ln9wlHsZ+1vt+CiDCNdLRpSB5IE5CMg
+	ThSgnsjdd3PSfA1qx/c96DnHunzL8R6Tey6kkSW7M6UbgknMBlewDXilL4kO6GSPO6uRgJPhg20
+	6DK6/1O/ZuOJDfdvMfaH5V73MZmai9IiwZaFlFRD7kykCD2D8QUHzzH8DL6LRCxceaJ2u7QxjHH
+	8eWyI0hxnYpXQlPSh2/YhymZ7Btkj0PWzHk3tcH2wAGJcC4wFJvXDSAX4lPmqP13c/kYvoM4+tR
+	LH2iC+ZCS4b8J4da3NbvzbCaR
+X-Received: by 2002:a17:902:f602:b0:295:28a4:f0c6 with SMTP id d9443c01a7336-29528a4f5admr55695995ad.0.1761971409397;
+        Fri, 31 Oct 2025 21:30:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEVwZ+kekou+fixvG0M2Vz/vgve/y1Kvl47T2KxfST7IaCXT0xX2tM2WuyIGokWq2NTuaVOZQ==
+X-Received: by 2002:a17:902:f602:b0:295:28a4:f0c6 with SMTP id d9443c01a7336-29528a4f5admr55695065ad.0.1761971408819;
+        Fri, 31 Oct 2025 21:30:08 -0700 (PDT)
 Received: from work.lan ([2409:4091:a0f4:6806:9857:f290:6ecf:344f])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-295268717ffsm42273285ad.2.2025.10.31.21.29.57
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-295268717ffsm42273285ad.2.2025.10.31.21.30.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Oct 2025 21:30:02 -0700 (PDT)
+        Fri, 31 Oct 2025 21:30:08 -0700 (PDT)
 From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Date: Sat, 01 Nov 2025 09:59:40 +0530
-Subject: [PATCH RESEND 1/3] dt-bindings: PCI: amlogic: Fix the register
- name of the DBI region
+Date: Sat, 01 Nov 2025 09:59:41 +0530
+Subject: [PATCH RESEND 2/3] arm64: dts: amlogic: Fix the register name of
+ the 'DBI' region
 MIME-Version: 1.0
-Message-Id: <20251101-pci-meson-fix-v1-1-c50dcc56ed6a@oss.qualcomm.com>
+Message-Id: <20251101-pci-meson-fix-v1-2-c50dcc56ed6a@oss.qualcomm.com>
 References: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
 In-Reply-To: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>,
@@ -115,46 +115,46 @@ To: Bjorn Helgaas <bhelgaas@google.com>,
 Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        stable+noautosel@kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1877;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2433;
  i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
- bh=hOzRlMRlpIFq50j9dDHMLuFdaWiwUzshHPxiwOpWbK0=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBpBYy9zq4wJrz0r3+6uCkCvsMmwRZUlT46YYvOf
- J+G28QVziGJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaQWMvQAKCRBVnxHm/pHO
- 9T7WB/9nIC9CiMtsjFOltn8J1++MX+wQ/k98V/p+0MAawJkUXXMpCNwLStWI1NmCyUkr8N20efv
- MeYn4YxpBpJesUMCtMvd8rY0ZTPNM9eygq7GWsxlcIkJlD2vnxBlSgXs5sHGSzcgIIaXIaxG5EQ
- lPY6zr6SEfF6KM7y43ow45Qon28ey0xRI1EbMExZKnmclQKdqWq9HntetUgaZVMOvQTf2bXsZGA
- wTvDOztHqK9IKShy3PiYFTZc69Sp8rh6DLOV1pHf6lKsPPCeRfN9Cke2ROnJvnKvcXZIdTbDndf
- ymyWWbXKvW+eKG4O1aQbRvM997tza5KQp3LFXjTU1VPlJNz8
+ bh=VrcDCZTTzA+LINiKOMWUnoZKZnxjToLdODEk4F9zscM=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBpBYy9XwQb731Bpv0QhX79igT+SZRYiSopEBiJ4
+ W2XERk5uCGJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaQWMvQAKCRBVnxHm/pHO
+ 9Zh/B/9owuOX+V5eWryUwchPVToFhqEvoXpFH2c5lRHxiSrUbe1aaJoP2pPhP1t0wqK49vmI5o7
+ UVb8r+OdIcFl+ZF7Kn0gr4dOv3xXCbYKb0+vgmdMxHFTZUUhzt5EMnZd0S1oobqV2hJvmpbMWEn
+ bx1QA9Xu9f9Al2l0hUZQm2SrCJPKqW3c2qQbEetzF5MVp4isGqYffd4VI0Tm9vyS73l+60be+2I
+ +bnZiDs4mYAkGHM79aBXBZUizbn2qYhm4dP/kPatxE9ipGiiTivqjIfiXR7s8X5mwSSyqM/fvaa
+ AjG9aS8O3ekS4FGuOqfCEscfcTNjaHgzg2ieFHftf+S8v6Sb
 X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
  fpr=C668AEC3C3188E4C611465E7488550E901166008
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTAxMDAzNSBTYWx0ZWRfXwdVsfnqjF+Ju
- Ro7EIPMK91YEDzsVmlXWV4eUKz0cFEx7oJszZwXFLAGvYxUm1yOwtHMO9x7GOxgeQ650KAstA4x
- uHt+TnnJ6LfXMlBDdTrBMtS+bkCr498kCsBimktaiuDycArHAJCVBDhgC7NtzOxxS+Vrb1dW020
- xKEf20EgcrJww9C18E2vAyM2QAcp9CjCHKQ1FkSGBoFMfV9NdM3Ahu6xOAaJHJ1qwxIeZ7/IP/Z
- 3ql3xpBBKTbFfwZBL67qo20wsOFH9YLUzDo8JaE0dXoAuo+V0wTmTNnLVOURq3nQsiuXMOANL20
- KiqNYij7MgGONunPLhWCUlzhgcXHmTkpx3PSSVk6xhl8oQ1gG11JDLc97XWKsVbvcRn9FLVbYpo
- 18HQFb2ITQS8ozFiVCohyd4htaa24Q==
-X-Authority-Analysis: v=2.4 cv=c6CmgB9l c=1 sm=1 tr=0 ts=69058ccc cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+X-Proofpoint-GUID: dcpRBkm_rGpgQgf_3g-hpiUhapUbaSuZ
+X-Authority-Analysis: v=2.4 cv=LZgxKzfi c=1 sm=1 tr=0 ts=69058cd2 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
  a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=tsNw8QEO8ZJO9lGSRLYA:9 a=QEXdDO2ut3YA:10
- a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-ORIG-GUID: Wbm-eMsH4y4JH52XwOvB1GXOXGSKRije
-X-Proofpoint-GUID: Wbm-eMsH4y4JH52XwOvB1GXOXGSKRije
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=_UaV9RfZZwOaPWMAg4wA:9
+ a=0bXxn9q0MV6snEgNplNhOjQmxlI=:19 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: dcpRBkm_rGpgQgf_3g-hpiUhapUbaSuZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTAxMDAzNSBTYWx0ZWRfX8ud+oFkXltqz
+ RpoKyoexaPtRABAQ1C1n87LrHePCZtfYzwrI4S8f/9sSbrIzs97LWDG04F21ms1Hw6VCaRYIxSr
+ REOMEb5Tu2UhgsnHxoiKjdwz4ORkQv44rbcieMfp+owCw2bgY4seZnNDh33HlocwNp2/oCwNeSW
+ M7PqaQ6GSmbaNKNV8WpLAdA8TR7JGLvH65bqG0mNwf2Qa5h6ay6jMkjaIbMcW9pfVVi9zsIWvl1
+ GnVopnrkXALPuMlitM7kDZlOKj7AHxzIA49Aevnk+H47oqVVJQ88vAU9uNf8hj/s61T2DKyKwj4
+ CV4LFT38PCoQgYvzPC49mMDPl4x+n/L3t5HqqQymJJjVmvQvGqkSq4tvCyO1wSAb9SkK1UJsim9
+ BVQSB6GVyNC5nyfEAeOjbq7OuPaVJg==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-10-31_08,2025-10-29_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1011 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 adultscore=0 bulkscore=0 phishscore=0 spamscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511010035
+ lowpriorityscore=0 impostorscore=0 spamscore=0 clxscore=1015 bulkscore=0
+ malwarescore=0 phishscore=0 adultscore=0 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511010035
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251031_213005_223113_FA63670A 
-X-CRM114-Status: GOOD (  11.73  )
+X-CRM114-CacheID: sfid-20251031_213012_512401_0E84184C 
+X-CRM114-Status: GOOD (  12.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -171,48 +171,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Binding incorrectly specifies the 'DBI' region as 'ELBI'. DBI is a must
-have region for DWC controllers as it has the Root Port and controller
-specific registers, while ELBI has optional registers.
+DT incorrectly specifies the 'DBI' region as 'ELBI'. DBI is a must have
+region for DWC controllers as it has the Root Port and controller specific
+registers, while ELBI has optional registers.
 
-Hence, fix the binding. Though this is an ABI break, this change is needed
-to accurately describe the PCI memory map.
+Hence, fix the DT for both Meson platforms.
 
-Fixes: 7cd210391101 ("dt-bindings: PCI: meson: add DT bindings for Amlogic Meson PCIe controller")
+Cc: stable+noautosel@kernel.org # Driver dependency
+Fixes: 5b3a9c20926e ("arm64: dts: meson-axg: add PCIe nodes")
+Fixes: 1f8607d59763 ("arm64: dts: meson-g12a: Add PCIe node")
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 ---
- Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml b/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
-index 79a21ba0f9fd62804ba95fe8a6cc3252cf652197..c8258ef4032834d87cf3160ffd1d93812801b62a 100644
---- a/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
-@@ -36,13 +36,13 @@ properties:
- 
-   reg:
-     items:
--      - description: External local bus interface registers
-+      - description: Data Bus Interface registers
-       - description: Meson designed configuration registers
-       - description: PCIe configuration space
- 
-   reg-names:
-     items:
--      - const: elbi
-+      - const: dbi
-       - const: cfg
-       - const: config
- 
-@@ -113,7 +113,7 @@ examples:
-     pcie: pcie@f9800000 {
-         compatible = "amlogic,axg-pcie", "snps,dw-pcie";
-         reg = <0xf9800000 0x400000>, <0xff646000 0x2000>, <0xf9f00000 0x100000>;
--        reg-names = "elbi", "cfg", "config";
-+        reg-names = "dbi", "cfg", "config";
-         interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
-         clocks = <&pclk>, <&clk_port>, <&clk_phy>;
-         clock-names = "pclk", "port", "general";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 04fb130ac7c6a498f7e8029aeaa7e511cbfe815d..e95c91894968b2c8b3b8e96a5f5e85cd60f3e085 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -208,7 +208,7 @@ pcieA: pcie@f9800000 {
+ 			reg = <0x0 0xf9800000 0x0 0x400000>,
+ 			      <0x0 0xff646000 0x0 0x2000>,
+ 			      <0x0 0xf9f00000 0x0 0x100000>;
+-			reg-names = "elbi", "cfg", "config";
++			reg-names = "dbi", "cfg", "config";
+ 			interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 0>;
+@@ -234,7 +234,7 @@ pcieB: pcie@fa000000 {
+ 			reg = <0x0 0xfa000000 0x0 0x400000>,
+ 			      <0x0 0xff648000 0x0 0x2000>,
+ 			      <0x0 0xfa400000 0x0 0x100000>;
+-			reg-names = "elbi", "cfg", "config";
++			reg-names = "dbi", "cfg", "config";
+ 			interrupts = <GIC_SPI 167 IRQ_TYPE_EDGE_RISING>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 0>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index dcc927a9da80246da43391f9f90049c3570f10d2..ca455f634834b5a52db8ff4e6ebca35a87ea17b7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -138,7 +138,7 @@ pcie: pcie@fc000000 {
+ 			reg = <0x0 0xfc000000 0x0 0x400000>,
+ 			      <0x0 0xff648000 0x0 0x2000>,
+ 			      <0x0 0xfc400000 0x0 0x200000>;
+-			reg-names = "elbi", "cfg", "config";
++			reg-names = "dbi", "cfg", "config";
+ 			interrupts = <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 0>;
 
 -- 
 2.48.1
