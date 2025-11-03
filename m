@@ -4,162 +4,129 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B159CCF9FE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Nov 2025 03:32:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29819CCFA04
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Nov 2025 09:47:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fLttFPOoi+VkEc/5yv5BgkkCLmlMpTnTg3ePzJ0/Z8k=; b=mKay+taRrxshhvtiuGtnpv0tWO
-	JASWoXGPO0tQhByq62ndT4IggcMfBUnvDZj6KI+uRIRTbyWS5pAKkv7cnLN+ttU3vuInEAGyKsEux
-	w72fCtLQ1w0xji4SrixEdX6/JORyWKjMmAcYBrLq/lfo8TnEpzUA/FDwRBCcXHfHnsek/Ykm6w1TU
-	GQQ78HnVC51OtduHkYoyyhXjdprQTfhhIuFKHnjN3N4qXoztGVdjfk/yluP6UDcy6xAjjrurvK0r8
-	VvBnAFVdZgLLPZFE/35GJAmjdkb+RTmYg3qrG0W5HlXsN3oYWp6WLq2ZwLK509aYvQ8bfDYM3byWl
-	4BboPmJA==;
+	bh=iBrk9A8z4JRJ99ZALPag/Su5cgh9WGs2K8xUcLigL1k=; b=5BUUCHa9etTuzdWtCuShNL9Yb2
+	H+TLA62RErcpFVVSf1NLIwZ17J0q82bHCrgwuzkgEq1TuHtpOj3BQGU8xGjxUBWEYuVJODAkgSMGz
+	2p34nqfcvw+XdSOK3WXDY5ioLcODkg4zJ0LW5PYjNSk0hTmzrHyThOpSdcLqDnDqbS0JvIJcRB28I
+	n4CaXb1TLizNH12h804VqRGuwe8cRWEfN/1JzC0dnRnVxrnhnspNJFQGLDeWRTTy37T0tTWRVR+Xb
+	yRQr9h9VQywdhKVAkp0m+5OIIm6eDAj8dBVz5BWmsuwnZEre7Ob+LwmTGaaCIJUS5L+TqqG1TShkm
+	V0G3XchA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vFlJJ-0000000988o-0mkQ;
-	Mon, 03 Nov 2025 03:32:49 +0000
-Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1vFrA6-00000009XCD-3xoj;
+	Mon, 03 Nov 2025 09:47:42 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vFlJG-0000000987o-1kGy
+	id 1vFrA3-00000009XB6-2wFl
 	for linux-amlogic@lists.infradead.org;
-	Mon, 03 Nov 2025 03:32:47 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sCVG4QlddrOpxV9XDEz4aiZltS4157pV/h9zfstTLr0liHzd2RmSqNVlLXq9QG54SeGwuqWfpN7fHc44m9uy8zCs8ZfQhmmPFSoS23voriwfcxhceFJDKlwoXAa8igsrKgT/zX7ikRz/9BADZtn14I/IVS4Hx97c/xHt+tOP5mGstE1kX0sTbHS4jmmHWHjgLomjMJoy8QwZnMSfpMWzIRWHVoM7lWhWiBYD1yAmaqzeIlNgoxqsVOlN+u26csCbslPdZJScktulW0gyvSx+X+wOtxiGqE+S+dpzFErso0k7H9Ths15XuoKOk9f/TqpAbB19krJT87h8tWAo3AxgRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5zZg8qKmaRMJCdUptNrnit+n+xtlsJinKxuZYZ1AGPc=;
- b=n+hsk+7mI7/5lMezq5qz0aooTWzk+pECylWS4xqQbW+IiJet7vCw35QcIO5fcvJ9ujSXsKslJ8ifXNKzDRv7Uh4q3V5ZQbtZpLcH5Lx4U+I3gv9VGqY1ZgmDTFpoUG6Om+qv1b8OjCcnHpCnj3OTOAxRe4tD7uKBXkzLukqh+33GmYvBY06ftykzNv4SuIMtNi2Oei+RBxtwWeU6hAOXZm4u65+LMxxmkmIh8BYC32LR1aMkErgrk1btJWC/GIYR1mRjzDdO8QBXa4x6V1Yarp4Czq+kgIpFC/Yb46y/DXHkvJ/CGF1Jw2mmylyy80t68uRR+dwYkO/fw/lesLdXog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5zZg8qKmaRMJCdUptNrnit+n+xtlsJinKxuZYZ1AGPc=;
- b=YWyitl8gF+6+lEcuYssHOqALiucIhOOYFA5Go1IyV0/J0Mpnyx6IqADEGIBTjYUdz7fuWsovqlOofPVv+vGhvntVMorM6sxDyjs7rkdD7JhFx9JNU0KMzRRyxZAO2MRBu0AcJoxDbUpalT7o+1qodoNAnVZzQuUZ6uecJG4/+MTAttwFX/Gfn3yrQVWJRnmusdnu7gOOE++6nj7H+TSOmc3Wbp++Cgk7QdndAqqxQWq6oczeJHwHeSOPtP8Kod/qD9bdu2M1jmTs2cUt2hm2H18exC081725qCU2zJA+foZrbYtdQQtRKHRHdKsr34+qRKB3m/srLdoPL0vSXHEUNA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from PUZPR03MB6888.apcprd03.prod.outlook.com (2603:1096:301:100::7)
- by TYPPR03MB9424.apcprd03.prod.outlook.com (2603:1096:405:318::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9275.15; Mon, 3 Nov
- 2025 03:32:35 +0000
-Received: from PUZPR03MB6888.apcprd03.prod.outlook.com
- ([fe80::57d0:f9e6:1d9f:91f]) by PUZPR03MB6888.apcprd03.prod.outlook.com
- ([fe80::57d0:f9e6:1d9f:91f%4]) with mapi id 15.20.9275.015; Mon, 3 Nov 2025
- 03:32:35 +0000
-Message-ID: <eef59589-5d52-41d6-a9db-abed2ddf9149@amlogic.com>
-Date: Mon, 3 Nov 2025 11:32:32 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] rtc: amlogic-a4: simplify probe
-To: alexandre.belloni@bootlin.com, Yiting Deng <yiting.deng@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251031204724.756857-1-alexandre.belloni@bootlin.com>
-Content-Language: en-US
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20251031204724.756857-1-alexandre.belloni@bootlin.com>
-X-ClientProxiedBy: SG2PR02CA0099.apcprd02.prod.outlook.com
- (2603:1096:4:92::15) To PUZPR03MB6888.apcprd03.prod.outlook.com
- (2603:1096:301:100::7)
+	Mon, 03 Nov 2025 09:47:41 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-475db4ad7e4so14765075e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 03 Nov 2025 01:47:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1762163257; x=1762768057; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bWAXx0S/pPXGVImvk7hrySXVZEromhVxb0VxrMIicFs=;
+        b=CX4GmwxF3JJqgqmVFezowgt/6ws9gMd3KXEEsfmuUJv1g5LneeJYhivU1jI1ttsLMT
+         gbUIG8GJsMS34kGXf/EpTl/c0DQdRH8zLbgh9AvWn76Kp4LztLvrk0KMueOUOGnGrp4r
+         w7nxgsYEpyS8/uAIIeTHX8gK4a8oSPvxWB3P4lAutTVW4K6rv3/Q13CArIzy/nvQSDAo
+         jyycWoifWhCGL25JzTocyhRImw7r3pufFXDiruIIpv6WYEIse6EfKFxV+GoVwx0F4PFI
+         HLdKmTFu43CInwMkOz09yU2vQLgTUdFfetEc/NXxwS8e2yjhm/SPfksIPd4vFRP3Byh8
+         z9Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762163257; x=1762768057;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=bWAXx0S/pPXGVImvk7hrySXVZEromhVxb0VxrMIicFs=;
+        b=oBEK2L2RqzQuRrVlbdxIy95u2i/osh6Vhtfifq3SRJ6OWNiM++jzoN6uRQOnPiNEGe
+         XpNBH2ZjLCs21S7RmvwX2bMHfKAjrOwNB0mtQfCgaZRePjWggE6qwX0Rv3vZ5ZRhNx4g
+         KGTbt03AQGtyACOoDmUjGVCiojI2KA8spkFgEbp+Zs2Yb59usaEV7kwgfygYOEg515jl
+         1eYg/oPrn+GuwYkqaiHEUGD7Q0dxLfLWEEh8cVVyrjMHIQ2s+gQnvkrEw+nHbRkXj9tt
+         sp86P78PiLBasCD0mGX45u1VHsQiioOKFNpSKqH8G3UotwX2ZOfUi7bEuIUzAZWy9ODd
+         lr+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVaNxYhxANVrJ+4QyYmgRwgYfCg1ny/enouWh89WBoJCR/UQG952vjkK4cVhJZ49GbFv/F80qClcHs+Uxp/@lists.infradead.org
+X-Gm-Message-State: AOJu0YxFy4X649pzMpb9b53IMchbhtoVqWgGh2nhw6P7cSS3jd4HsCJw
+	6AQvsOytu6kwiVOdBRvy/KmpBt18CdvkiL9RQE9qtUf37v+vthJbOcrUM9xlGicsIz8=
+X-Gm-Gg: ASbGncsnsqqezw0jH+usJ9P+SzZSRSOYvQzAkltnvMI1thsv9TsWngV+MJtcsefZeod
+	kZw5w7imKJcGX8RfVfBamIQBvEDEIUYf4WBVm2BVeBvQuptmKvUvSXqTIo/2ZyxJpRVjLODovTC
+	wr/3dxeIG5qC6SYRNTJbhQfkk4oD6fDbFUKmVqYOXl9/ucyDJf+miiOAG0Iz55vhP5J+xcTts/2
+	J1ZY2cu2neckSaeTuoBpcANs0H++rpFjyjOg8OsTXlFFYN8nXh6rsuE+medEzCO1KHlVeg8txDL
+	0/X7/k++Y/DaRk2lH88WZ1eC+LabyU3F6JGsJ9BFO+W+eVVCLSQsNJtlV8L4DRFjNVYbXi8qEV2
+	szlj8xZABHkPTXeOIhMm4o/tanfzA+NGNKj3/z3RGTE3sc6gYTScBGDvS5+snsYwFqEq+6PVbbc
+	lbxIr2L3rE84ZlQBT+YkSu/1pjH1LGKhpUuatu2s9UqACr
+X-Google-Smtp-Source: AGHT+IFJTdtxUlC5NqH3U7Qd9RRa1ToHSLBe/u+l9wzF/fKHgtyig4wAMueqSDc4k0TKmlPFEUaTjQ==
+X-Received: by 2002:a05:600d:4393:b0:475:f16b:bcbf with SMTP id 5b1f17b1804b1-477331dbef2mr57555515e9.14.1762163256713;
+        Mon, 03 Nov 2025 01:47:36 -0800 (PST)
+Received: from [192.168.27.65] (home.rastines.starnux.net. [82.64.67.166])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4773c374f84sm144227945e9.0.2025.11.03.01.47.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Nov 2025 01:47:36 -0800 (PST)
+Message-ID: <31271df3-73e1-4eea-9bba-9e5b3bf85409@linaro.org>
+Date: Mon, 3 Nov 2025 10:47:36 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PUZPR03MB6888:EE_|TYPPR03MB9424:EE_
-X-MS-Office365-Filtering-Correlation-Id: 51c2da0c-4c4e-475e-b702-08de1a89a13e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?b0VsN0YzMGhPUlBQSUorR3BYQlAzUFdlTGF0Zi9SUmhxY1hjNkNXZXNYNFo4?=
- =?utf-8?B?cG1rdUQ4VUZ2QmlhbnBaWnNSZzExckR6RUVydUZNdmM4RjNZbkNEN0JXNHhJ?=
- =?utf-8?B?NGVuVkFkQ3pKOVpFUW4wc25jNFU0RGZZRytwL29UTlZtNThKakVwaWxIUkJX?=
- =?utf-8?B?Q1BDRWU3UXhIcTlpeDNpbW9UUTVYOGs1d0ZXME0vSmlROUtIM3Jqbk5uVk5w?=
- =?utf-8?B?bzk2OXhiaXVuUFlOd2hYV3dDUWdMRlRxMElUT1FZRnlmNjljNUc3VDNBU1Jz?=
- =?utf-8?B?V0t2elh2bVFrcEIvQ3BORDdCYXZxUzNremw3WEllZUpGdkkvRmFXWGh3bjRZ?=
- =?utf-8?B?Qkl4Tnlra2trUXEzeVBWaG5CdXFNV1dPWHU0UVI0MTZDVUNVZEpUVTVYYUI1?=
- =?utf-8?B?dGpPMmFlaHhDZ3ZFUVhLVXVLTEtlTVdxRGdkUm4zMEFnN2xzSUJ2NGVOUldN?=
- =?utf-8?B?VzNpcGozMXg4Uk96YUVhTUQvYUZPdEhrdUtQQjFZYmgzRkFiWHJIRitZZHNo?=
- =?utf-8?B?RWRra1dMQXlRM20wMkJ1c0YzRjJObGVNRGVteFpwWW5mV3dJdm1PYnd6MTRQ?=
- =?utf-8?B?d3pqTGQzbzg5ZlkxYzJ5bk42YXhSbE5QdEMwbUJwWHlwdlFQTEtaczdtbUVo?=
- =?utf-8?B?RzFHb1FSWko3YjF3L3c5MkFTOHVlZGswMGdpTDdLZmsrVTFVaHpTMTJzdGRz?=
- =?utf-8?B?NDkwdTQ0eUpvM2ovTFJPcnNRdnBwZ0I0VWxnVkpzSUVsOVAwSVRsL2lzY29w?=
- =?utf-8?B?dER5SnczM3JoMEFFNGNVa0ZjRzNrZjRXQzFFdkRURTRoTXBIOG1vUmR4R01x?=
- =?utf-8?B?QmVob0h2VG1mWkNFb2d5cWFpQlJFN25LcnFXeDVGcm5ES0gyNXFqbVRaYmdq?=
- =?utf-8?B?TUkydTVmMWhWY2FETGMybitJNTBKdVNPSDV1Z0p2TUJjMk1PL25EeUF5dXN2?=
- =?utf-8?B?eTVkWGNJREpiZmZrbDY1YXlaZHcraWx5U2p4R0pISE9wU0FrbDYzQkxVT2Yr?=
- =?utf-8?B?V2VrWDhrR2xwY3R0T3RjNTZnb3QrRUtYNDB6elJNUXRSV2c1Vlk3dUF2WUhS?=
- =?utf-8?B?SmFpVklScXVmaVNCRSs0ZTU1Q1NhSGFPYWpqdm43NjlyS0NYMmhLRE9QZkhE?=
- =?utf-8?B?NGFiaG8rTGo5ME5ITHptYlBuN3IwMVQxTllMOHM1Z3REQVZBbFRkV2xyTkZQ?=
- =?utf-8?B?K0o2TDFqa1RUNXR6UG9nTlVuN0lTalJIZGl5L09ra0JsY1ZQbmFZWXhvUzBT?=
- =?utf-8?B?NEw4ZmVIcXpJUjg0SHBkRVZtemlRcmwyVlU1K2RtZ2RHcHdWeGtYVDZpcFVP?=
- =?utf-8?B?aVJJYWt2TFNXMG1yaVpBSmNhMjR6U0V5WTFNcWd4ZCtZaW1nZkxSTTErSFVj?=
- =?utf-8?B?aG1WMlRxTG1RcklyUEFMUmxka2JJUUdoMkd2Qkp5T1VlczA5ZCtlTHN3WnlG?=
- =?utf-8?B?djV5Ymo2SDRpZkkzbnVjbCtNWUMweGE4ZzdRZllUaGJQZElQM1N3ZitVL1Yv?=
- =?utf-8?B?L2tRdzBNenFPTjNWQkV6SDg0bjhWeFBIOERjRjdiKzIvZ2VBblUzcklCTGx5?=
- =?utf-8?B?R2V5d0lDMGswRVpKS0MvcC81bldVWTl0UncvMSs2djhTa3pCMnlicHk0RjdY?=
- =?utf-8?B?eVVqZWhWemdhUzArdXNQTFVFMmI1YktoK29WN20xQXJ2OW5oWGY1L3JjY3BF?=
- =?utf-8?B?RlpBYWtSc204Wm9WeEFXY0kzcHhZUUE4akxXUm9uNU5rdG4xN1ZVajlhQzJJ?=
- =?utf-8?B?VVJxa1l5bXZuNlljZXdxMjFmYUZFK1ZDdTRqaE5ySTVicFpQRnZUUzZ1TXAv?=
- =?utf-8?B?TGR5UWRFczlleGF2dUJLQ0lvUUMzekZqQTl6dEVLdm5ZQW05elNGTXRFWWY3?=
- =?utf-8?B?YXhsMFhCR3lTZkYvcWVIczkrMExjZm9lRmVYQUFqb3UwdWdDYzlzNEMrcUpJ?=
- =?utf-8?Q?iV4NlOjkhPbfrdfSjs1fn++Caz0Pucuw?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PUZPR03MB6888.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(7053199007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vno2YWEyWnNzUkRjWXZuNDdGd3VIWjZNSnphS1BtTGpzcnBYMGk0TGhoUkhZ?=
- =?utf-8?B?M3ZnL2tMREwyZ1hDeDZwUEFYaVNVcEZJVFY4bFE3VVhNZE0yQ0dHMGFzRyty?=
- =?utf-8?B?UHovR2Nyck80a3hFNytnVTBCMklJbitaYUMvclNqWUR5aWZ3ZFpGbUdIeVBp?=
- =?utf-8?B?S3lwSXhjK21mVHR6aGQ1YnNIaEhyTGRmNGw5RGJKUDVWZWs5cFYrdHh5NERt?=
- =?utf-8?B?cXR1R08vSlpLZW1aVS95OXp0WGJ0QXRrRDh4UmFja29nSzI2WUpzR000aTVz?=
- =?utf-8?B?dDVOSDhldzBCVllwbUtjZWUvQkEvbFFjOHdRL2RJVkVaVEhSdjNNTGt3dHJL?=
- =?utf-8?B?aFV6TysrZE5ub0NTQVlWdXFxd3JadXlVSDlTMmJUb2lON1ZnRGFIS3RRR01w?=
- =?utf-8?B?Vzc4cEZrVWowVmg4cWlMckdZb2ZKWXlhZHdUbDU3cnA5UW1RY1dvMXdwY3dU?=
- =?utf-8?B?YUJOSENxV1ZmbTlKaWwweXJFaVV5NjVka3FDenI0VUVTb0MvbGpPTVJuMWp2?=
- =?utf-8?B?cGxib1NyOEdyN1ZlKzlBby91c3dIYTZ6M3l6b0IvaUlzUVlNc0hGRlpRejVN?=
- =?utf-8?B?NVVoT0NXY3lEa1hTSzlFZ1BTSWZTNkxXRzFYcUpWUDQyc3hUU2hucWVRZCtK?=
- =?utf-8?B?TkZNbG95cSs1VTNqUlpNYXFLQW9KZnRpMWJlUEZkdVg5YXBJVWQ1TXpObngv?=
- =?utf-8?B?cVlEdjBmeGxkeVBOZXRDV2RyQ2grVDduMXVvaExrTk5VUzd4akFzQ2FnUUZo?=
- =?utf-8?B?K081RGZvajRLbFdzTVZZSWI0WEovb2NwNTJpSGRwOVdjbHQxWEE4MnpIUGlO?=
- =?utf-8?B?RG9FYmJlYjVUK1Fabi9RUHd3bWlLRTAxT21NSnV6MUZ3aXlhQlE4NlRZYzZt?=
- =?utf-8?B?UjE5ZlpMaWVLdnVSOEs3NmtqU0cwWUJiU0hjWjNBZmpGc25heFY4WWxWMUZT?=
- =?utf-8?B?R3o1U05SRFpPR3BhUUl2OFdraGR5eThYVG93ZktnQ2tZY0JrR0xiSlU2cFVU?=
- =?utf-8?B?YlNvOFJPaVJKTlpoNWZmbXIzL1k2aFlaQVN4Y2h4djRKbms5SkhwQTAwaXlz?=
- =?utf-8?B?YjB5K1dZSE85QVE0clI3ZmVRR3pqaisxU2d1TTNOR2duWmFkTU1yNitVRnhB?=
- =?utf-8?B?RmFEUHo2ZnlDVklmNk5uNDNkRFhSS01ZSDVTYlc1Yzl3SHFON3RncVYydXVY?=
- =?utf-8?B?ZDY2dVpkaThtR0txbklmdUhvQUt4amxvWDI5K1N5OUV0b2tkc3RUOE90N0Zw?=
- =?utf-8?B?Ryt1S2dibzZ2a0J0bGFJcTlnU0d1K0FJcjJ4N28rbGprNThxRU55K0VjR3NJ?=
- =?utf-8?B?cHF2VEoxWFJGeUtSblMyeWVqNFRVaktlazg2Wkw0OE0rZ1B5ZjdLcnc2dlpo?=
- =?utf-8?B?eFVWcDQ1K0hYbXRlUXBsTDFTZEVMS0RkWHB6bUhqWDU4ZFdYNXdpcm83Uy9r?=
- =?utf-8?B?ZWRCb1Q1WEdxSDNXeEQvYzNISGhzc001Q2lRQXFYYW9xNFFVZlBNaklyTzQ1?=
- =?utf-8?B?bzd6MTFWRzRGWVpCRlprcXRqL1hzZlA2RmNjWWQ2ZkJ1UG5vTkdvemcxazY4?=
- =?utf-8?B?dk1mK0VYSEhReTJUU0FJYU1OSys3b0pxWGFXTll6WGpsQXQwYjRqK3YrZVZD?=
- =?utf-8?B?SmdyTjYzdnRyTDNHdjYvaWRxejBEdFRvcHJjRXJKTHJmOHVUcjgvWDNhZjdv?=
- =?utf-8?B?L2dKbWsxTTdxdUdKRjd1aTc3Z29vcG9lWm5ESG9XSzFQQ0F0bCtEaTlMclJx?=
- =?utf-8?B?NWo2ajdsRTFmTm9rNHBOM2Z5ZmRBSDFkdTJVb0N2RzFDNW9Rb0JWck45dUM5?=
- =?utf-8?B?b3QyRU40bVk0UUx1NUlzSDlyc1NRSkcwbDVMT0pmNzJBRTVMTUZWdVFPQjZX?=
- =?utf-8?B?ZlVFK3FpL01yNGxrOVNyTjlDL2tJOWhBTlNaSnBXaGpTMFpWeTNuTzVwZnUv?=
- =?utf-8?B?VWx3QXVWWnBUMzNUeXRweGo5V3VsdWI2K2FpT0ovLy9SdWVIU1dHa1M4QnpE?=
- =?utf-8?B?TlY1Uzh3S1hWN0lKRm5FMHIrMHZhZGo2eWhud2lZRmdscDI5djJZb2Y5TXVB?=
- =?utf-8?B?WUhQYzUrQjlibG9QUDZvT0tvRUtnU2dmOW5wdE9lc1hYb0JVajYvczc0UXRT?=
- =?utf-8?B?MmhVV2FLU1ZmUldKS09Ua3JUZDQ1UkhtNE5Vd3NOZ1ZkK3ZOOWpSSkJST2lP?=
- =?utf-8?B?VkE9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51c2da0c-4c4e-475e-b702-08de1a89a13e
-X-MS-Exchange-CrossTenant-AuthSource: PUZPR03MB6888.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2025 03:32:35.4235
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iZq4mHocXoVsKpXbiRGjW7s68o1pY7VhQBi6FxqEgN2zlVnFuGIijeWAbtP4FcvtQ1GFmMv+kkf49Eeu8BhMSogu6VQe3xRJc3jogYIjdGc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYPPR03MB9424
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH RESEND 1/3] dt-bindings: PCI: amlogic: Fix the register
+ name of the DBI region
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Yue Wang <yue.wang@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Andrew Murray <amurray@thegoodpenguin.co.uk>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
+ <20251101-pci-meson-fix-v1-1-c50dcc56ed6a@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20251101-pci-meson-fix-v1-1-c50dcc56ed6a@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251102_193246_478964_6A759956 
-X-CRM114-Status: GOOD (  19.86  )
+X-CRM114-CacheID: sfid-20251103_014739_777480_F4EA6693 
+X-CRM114-Status: GOOD (  13.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -171,100 +138,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Mani,
 
-Reviewed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-On 2025/11/1 04:47, alexandre.belloni@bootlin.com wrote:
-> [ EXTERNAL EMAIL ]
+On 11/1/25 05:29, Manivannan Sadhasivam wrote:
+> Binding incorrectly specifies the 'DBI' region as 'ELBI'. DBI is a must
+> have region for DWC controllers as it has the Root Port and controller
+> specific registers, while ELBI has optional registers.
 > 
-> From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Hence, fix the binding. Though this is an ABI break, this change is needed
+> to accurately describe the PCI memory map.
+
+Not fan of this ABI break, the current bindings should be marked as deprecated instead.
+
 > 
-> Use devm_device_init_wakeup to simplify probe and remove .remove as it is now
-> empty.
-> 
-> Also remove the unnecessary error string as there are no error path without an
-> error message in devm_rtc_register_device.
-> 
-> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Fixes: 7cd210391101 ("dt-bindings: PCI: meson: add DT bindings for Amlogic Meson PCIe controller")
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 > ---
->   drivers/rtc/rtc-amlogic-a4.c | 28 +++++-----------------------
->   1 file changed, 5 insertions(+), 23 deletions(-)
+>   Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
-> index a993d35e1d6b..123fb372fc9f 100644
-> --- a/drivers/rtc/rtc-amlogic-a4.c
-> +++ b/drivers/rtc/rtc-amlogic-a4.c
-> @@ -361,38 +361,26 @@ static int aml_rtc_probe(struct platform_device *pdev)
->                                       "failed to get_enable rtc sys clk\n");
->          aml_rtc_init(rtc);
+> diff --git a/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml b/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
+> index 79a21ba0f9fd62804ba95fe8a6cc3252cf652197..c8258ef4032834d87cf3160ffd1d93812801b62a 100644
+> --- a/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
+> @@ -36,13 +36,13 @@ properties:
+>   
+>     reg:
+>       items:
+> -      - description: External local bus interface registers
+> +      - description: Data Bus Interface registers
+>         - description: Meson designed configuration registers
+>         - description: PCIe configuration space
+>   
+>     reg-names:
+>       items:
+> -      - const: elbi
+> +      - const: dbi
+>         - const: cfg
+>         - const: config
+>   
+> @@ -113,7 +113,7 @@ examples:
+>       pcie: pcie@f9800000 {
+>           compatible = "amlogic,axg-pcie", "snps,dw-pcie";
+>           reg = <0xf9800000 0x400000>, <0xff646000 0x2000>, <0xf9f00000 0x100000>;
+> -        reg-names = "elbi", "cfg", "config";
+> +        reg-names = "dbi", "cfg", "config";
+>           interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
+>           clocks = <&pclk>, <&clk_port>, <&clk_phy>;
+>           clock-names = "pclk", "port", "general";
 > 
-> -       device_init_wakeup(dev, true);
-> +       devm_device_init_wakeup(dev);
->          platform_set_drvdata(pdev, rtc);
-> 
->          rtc->rtc_dev = devm_rtc_allocate_device(dev);
-> -       if (IS_ERR(rtc->rtc_dev)) {
-> -               ret = PTR_ERR(rtc->rtc_dev);
-> -               goto err_clk;
-> -       }
-> +       if (IS_ERR(rtc->rtc_dev))
-> +               return PTR_ERR(rtc->rtc_dev);
-> 
->          ret = devm_request_irq(dev, rtc->irq, aml_rtc_handler,
->                                 IRQF_ONESHOT, "aml-rtc alarm", rtc);
->          if (ret) {
->                  dev_err_probe(dev, ret, "IRQ%d request failed, ret = %d\n",
->                                rtc->irq, ret);
-> -               goto err_clk;
-> +               return ret;
->          }
-> 
->          rtc->rtc_dev->ops = &aml_rtc_ops;
->          rtc->rtc_dev->range_min = 0;
->          rtc->rtc_dev->range_max = U32_MAX;
-> 
-> -       ret = devm_rtc_register_device(rtc->rtc_dev);
-> -       if (ret) {
-> -               dev_err_probe(&pdev->dev, ret, "Failed to register RTC device: %d\n", ret);
-> -               goto err_clk;
-> -       }
-> -
-> -       return 0;
-> -err_clk:
-> -       device_init_wakeup(dev, false);
-> -
-> -       return ret;
-> +       return devm_rtc_register_device(rtc->rtc_dev);
->   }
-> 
->   #ifdef CONFIG_PM_SLEEP
-> @@ -420,11 +408,6 @@ static int aml_rtc_resume(struct device *dev)
->   static SIMPLE_DEV_PM_OPS(aml_rtc_pm_ops,
->                           aml_rtc_suspend, aml_rtc_resume);
-> 
-> -static void aml_rtc_remove(struct platform_device *pdev)
-> -{
-> -       device_init_wakeup(&pdev->dev, false);
-> -}
-> -
->   static const struct aml_rtc_config a5_rtc_config = {
->   };
-> 
-> @@ -447,7 +430,6 @@ MODULE_DEVICE_TABLE(of, aml_rtc_device_id);
-> 
->   static struct platform_driver aml_rtc_driver = {
->          .probe = aml_rtc_probe,
-> -       .remove = aml_rtc_remove,
->          .driver = {
->                  .name = "aml-rtc",
->                  .pm = &aml_rtc_pm_ops,
-> --
-> 2.51.1
-> 
+
 
 _______________________________________________
 linux-amlogic mailing list
