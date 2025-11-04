@@ -4,63 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C96C7CCFA04
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Nov 2025 15:00:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41553CCF9E3
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Nov 2025 16:13:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OmpQkIautC/qlyHoTBXFPbCqmi07XsSeWc9vKQPOmTo=; b=Dod2gzgeA0jol7
-	2X35RviLHz4A4WSgqGnm5OTODD3Z/KS6/ZrYqzu/mjqxYLAp0AyB7wlm1S7nbF84OuaQumZHzx8P+
-	R27O7WMa8ADybCsJAoIS7OcUYVOA6ljc6F+qYOctE3vGfp1cyFj4VLiHC8edBMUdSVek9MrHe/Cap
-	zl59u9eRSD/paXQilg51nUC3nJqpVqjuvzCD9KJZBWXLQsGZRVMVmaUqpPIBhbBHWXsIbBOwlh9Z8
-	I0QMrjsIeMVzZANZMfADfxOg2qmtJHPZJ/fouBnQ1MaK7ihcXVCEg87J715nlaTPBB3F1fP09hM+6
-	XkWgTXuKRnGg0SOOoXiA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=fmuEDhN7QzTnkoAt2GKMcjRBAy+TPigFLstEaWl+TYc=; b=KG92qyHx7CbfxrzRQoadRip6m6
+	+iGG+GXsEuTJsAYYTDv6VUxaS0FVBU0GPe/tzftXs3+VBgbY37TyODHu/220TeN5VwKHdExthqufH
+	e1abkIjscfFgLVIslUjmWFkv+lTEr0cy/VrlcPzZIHb7rUYueGlF5S4MXOY1QpJk3K5es9tYb82lZ
+	u0QVif465MaU8wSEzuZSoqeglRL9/uVFRHcuuAhgA/PGfffLVUMzIwdq6JanKV4EeSoquaoANecVw
+	WGJuEV/maRtETDtlWlym3SaAZNitZHEwcRzx2cDL+4daOuj/M+RXSsJPPVqu+SL7VIiRpXeLCvzFB
+	IojNdyaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vGIWA-0000000C20C-0Rid;
-	Tue, 04 Nov 2025 15:00:18 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vGJee-0000000CAZs-2iQO;
+	Tue, 04 Nov 2025 16:13:08 +0000
+Received: from mail-qk1-x72c.google.com ([2607:f8b0:4864:20::72c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vGIW8-0000000C1zy-2YH7;
-	Tue, 04 Nov 2025 15:00:16 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id AB994601EC;
-	Tue,  4 Nov 2025 15:00:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B73C4CEF7;
-	Tue,  4 Nov 2025 15:00:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1762268415;
-	bh=ebMwlcOllEAmVux6uigBYvOvQ1U699pEuwenpk8GAa8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EpYT4giRowe6c94+e/O49vmTAnRcdfwZ9BkTVxBfzSYWtXoUvG0xiGmllObuw0CNI
-	 EWg1qvF9vAw9LLzr4AzKDAQTb0tnnGHgF7sZdQxK+PreK1mJU+YuTq1V9/ZOIXyNjX
-	 IEQF+GTYmE1SqYnyCgBu1p4ddfaFlecE6gfs+FWa/2yNX4x4gmMs2YJNPF7sskkzEN
-	 KT7Qou+0EQoMyafMIgLxtuitNanOeADgO2OnfkM+wLpdc9HSCdMl2agtwE8Z9lk8oB
-	 72RWkrV0w50Nv5xXUezTyrjbwSjP/T4DyqAlmcmOiqexhD/wxPXJHekqTkTxGuJRtz
-	 bdqr3E09iK3yw==
-Date: Tue, 4 Nov 2025 16:00:08 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Hans Zhang <18255117159@163.com>, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, bhelgaas@google.com, heiko@sntech.de,
-	mani@kernel.org, yue.wang@amlogic.com, pali@kernel.org,
-	neil.armstrong@linaro.org, robh@kernel.org, jingoohan1@gmail.com,
-	khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v5 1/2] PCI: Configure root port MPS during host probing
-Message-ID: <aQoU-JhWz6IYTpGi@ryzen>
-References: <20250620155507.1022099-2-18255117159@163.com>
- <20250902174828.GA1165373@bhelgaas>
- <aLlmV8Qiaph1PHFY@ryzen>
+	id 1vGJeb-0000000CAZ7-1Wpr
+	for linux-amlogic@lists.infradead.org;
+	Tue, 04 Nov 2025 16:13:07 +0000
+Received: by mail-qk1-x72c.google.com with SMTP id af79cd13be357-8af121588d9so329892585a.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 04 Nov 2025 08:13:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1762272783; x=1762877583; darn=lists.infradead.org;
+        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
+         :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=EhPNKWXcOC4wz99nX7zOq9HMTheZCFEjaub0QmjufR4=;
+        b=iwaaPVprKAVUqEB8ZXrFERhEe2inOstrNICP1DxVgzYV0ouC81qu93X4XUBPZJZnKt
+         xCGrquaCxvvNosf+1mbdlbVjOggj8jZLhoLITJ1/Kz54L3Y8E8QIqW012wVYn9p0fAQ0
+         3Rldzo6MbRvGpBdv6Ubb5J4eQUjjp0RMHEEu7IN6kQAkc104zBggh35hMizZFmb/BlgB
+         LSS/STDQXhYDiBjTW4DIJAXpvyJvrIiblWdOYQl1E4js2JDaEoqY9tYBccKOv1udDCUS
+         8jO04nnekqE30fLOwvu8jSoQl64sA1INPXhF+x170K7etOjbD3hwzj1dYFsAXNCaBVsi
+         +fpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762272783; x=1762877583;
+        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
+         :subject:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EhPNKWXcOC4wz99nX7zOq9HMTheZCFEjaub0QmjufR4=;
+        b=cKBciwGF/k8GngfL+U6lxdxazaLROr5mXoFXnYPrueu1PS5sxRv8BX2KPwNqnFSDWb
+         qo67rrrJczcKcsLdoBGgrU/gMU2PcJi7pt6aSv02ZeW21OUopBSj08EIN7pt045oJRJ4
+         MjOkvEuZgHtSx8aMa7qPr/dbymjd07QIL+NHu3Auz+oluHnRgdig8SbN7x27MmGqZcID
+         x8vtWVCylHzS/95ZVDzuX4aAJO9jAUiAvX00UeEaHVE4+cBiYm/Z0ehpa3Y4GvG0bxZ+
+         O41DRioO/7/+8R2vX//So5jIef9OqF36uy2jnmNQVo0NCFACri9ei2Re/vJYCvgBEQex
+         SUrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXY3VzQy4Ie/AiUA26O1p5D8XnWtMMlWg3Q1ooESUaEVHbiM0gxc8EWMVDEwFzb1kAbmWsxPAWfiXrIqaiV@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw3th6KvBXHUc6YrTJw6r3UDAcMsJBKnmQU7/5efoqmMRwwNwwH
+	2MeT1PKV4tkDUXzEPopZ2n2RHXuf8kRsq+QXMG6X8jQ1+JLeyd3y1r5HURT+vNer5Us=
+X-Gm-Gg: ASbGncsfsOhuHS4UDaFC5QvvOMewPYfD6opgfWZBZLvZjiZWUu6KyVhUoNgiDVlvjiK
+	dajWuHA8HUW1L9Fs6mrz+LkvajFad5e5Wd3SL/mw93aThlOj+8CR4To+N3ehI4sOxdCR96OaEgu
+	bBDbHZQRcISpuqz/+hbx3o0e6aZHFGeu13pgIzIqi1Jo3XQo5BXnPR+AmExuULpjg7uvRZodmcg
+	3Y+eguXSv3yaJDntSVHgtHlHJfZMe0A/8R19corJXfpemiM/R2BzjS24mo8uP70QUjs334/3IrV
+	VCWj9zAcEQ5w46i0cDpI9auoIPm/rhmfrXtXak7oNKOtoonH8hQkqttad6802/X6z9HLZ5S9SU1
+	g1fxJoGSm6h9lxfTg4VcrPEKp4YtI0bhvh7m4QR3NHhyVbmMqDQ8csgz3pUDKFm4GRAwWKm9GR9
+	+gYZ02ASqpb+yULTik
+X-Google-Smtp-Source: AGHT+IHJNxRdepwmA70rIxH7CleHW+ih2OcQNUmhfvzupPYK5yYekte9k/E/acCX6TG/uH9ZccgQuw==
+X-Received: by 2002:a05:620a:d8b:b0:8a1:eac9:a84d with SMTP id af79cd13be357-8b220b7f57dmr20914885a.44.1762272782998;
+        Tue, 04 Nov 2025 08:13:02 -0800 (PST)
+Received: from ?IPv6:2606:6d00:17:ebd3::5ac? ([2606:6d00:17:ebd3::5ac])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8b0f51ecd3fsm216022085a.11.2025.11.04.08.13.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Nov 2025 08:13:02 -0800 (PST)
+Message-ID: <b6e6881197dc4c83e43ef5eb1f20c2bf1887d395.camel@ndufresne.ca>
+Subject: Re: [PATCH 0/3] Add Amlogic stateless H.264 video decoder for S4
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Zhentao Guo <zhentao.guo@amlogic.com>, Neil Armstrong	
+ <neil.armstrong@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley	 <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet	 <jbrunet@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org
+Date: Tue, 04 Nov 2025 11:13:01 -0500
+In-Reply-To: <540d98ea-114c-43bc-94c0-e944b5613d74@amlogic.com>
+References: <20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com>
+	 <b976b442-7d07-4fef-b851-ccd14661a233@linaro.org>
+	 <540d98ea-114c-43bc-94c0-e944b5613d74@amlogic.com>
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <aLlmV8Qiaph1PHFY@ryzen>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20251104_081305_648038_B8E1C592 
+X-CRM114-Status: UNSURE (   9.39  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,133 +103,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2008438677262814613=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Hans,
 
-Any chance that you have time to re-spin this series?
-
-I've seen some new DWC based drivers like NXP that also want to
-configure MPS.
-
-Most likely we know the reason... The PCI core does not change it
-without this series.
+--===============2008438677262814613==
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-kJqvtTvIehm+17QzwcKF"
 
 
-Kind regards,
-Niklas
+--=-kJqvtTvIehm+17QzwcKF
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 04, 2025 at 12:13:43PM +0200, Niklas Cassel wrote:
-> On Tue, Sep 02, 2025 at 12:48:28PM -0500, Bjorn Helgaas wrote:
-> > On Fri, Jun 20, 2025 at 11:55:06PM +0800, Hans Zhang wrote:
-> > > Current PCIe initialization logic may leave root ports operating with
-> > > non-optimal Maximum Payload Size (MPS) settings. While downstream device
-> > > configuration is handled during bus enumeration, root port MPS values
-> > > inherited from firmware or hardware defaults ...
-> > 
-> > Apparently Root Port MPS configuration is different from that for
-> > downstream devices?
-> 
-> pci_host_probe() will call pci_scan_root_bus_bridge(), which will call
-> pci_scan_single_device(), which will call pci_device_add(), which will
-> call pci_configure_device(), which will call pci_configure_mps().
-> 
-> This will be done for both bridges and endpoints.
-> 
-> The bridge will be scanned/added first, before devices behind the bridge.
-> 
-> 
-> While pci_configure_device()/pci_configure_mps() will be called for both
-> bridges and endpoints, pci_configure_mps() will do an early return for
-> devices where pci_upstream_bridge() returns NULL, i.e. for devices where
-> that does not have an upstream bridge, i.e. for the root bridge itself:
-> https://github.com/torvalds/linux/blob/v6.17-rc4/drivers/pci/probe.c#L2181-L2182
-> 
-> So MPS will not be touched for root bridges.
-> 
-> This patch ensures that MPS for root bridges gets initialized to MPSS
-> (Max supported MPS).
-> 
-> Later, when pci_configure_device()/pci_configure_mps() is called for a
-> device behind the bridge, if the MPSS of the device behind the bridge is
-> smaller than the MPS of the bridge, the code reduces the MPS of the bridge:
-> https://github.com/torvalds/linux/blob/v6.17-rc4/drivers/pci/probe.c#L2205
-> 
-> 
-> My only question with this patch is if there is a bridge behind a bridge,
-> will the bridge behind the bridge still have pci_pcie_type() ==
-> PCI_EXP_TYPE_ROOT_PORT ?
-> 
-> If so, perhaps we should modify this patch from:
-> 
-> +       if (pci_pcie_type(dev) == PCI_EXP_TYPE_ROOT_PORT &&
-> +           pcie_bus_config != PCIE_BUS_TUNE_OFF) {
-> +               pcie_write_mps(dev, 128 << dev->pcie_mpss);
-> +       }
-> +
->         if (!bridge || !pci_is_pcie(bridge))
->                 return;
-> 
-> 
-> to:
-> 
-> +       if (!bridge && pci_pcie_type(dev) == PCI_EXP_TYPE_ROOT_PORT &&
-> +           pcie_bus_config != PCIE_BUS_TUNE_OFF) {
-> +               pcie_write_mps(dev, 128 << dev->pcie_mpss);
-> +       }
-> +
->         if (!bridge || !pci_is_pcie(bridge))
->                 return;
-> 
-> 
-> 
-> > > During host controller probing phase, when PCIe bus tuning is enabled,
-> > > the implementation now configures root port MPS settings to their
-> > > hardware-supported maximum values. Specifically, when configuring the MPS
-> > > for a PCIe device, if the device is a root port and the bus tuning is not
-> > > disabled (PCIE_BUS_TUNE_OFF), the MPS is set to 128 << dev->pcie_mpss to
-> > > match the Root Port's maximum supported payload size. The Max Read Request
-> > > Size (MRRS) is subsequently adjusted through existing companion logic to
-> > > maintain compatibility with PCIe specifications.
-> > > 
-> > > Note that this initial setting of the root port MPS to the maximum might
-> > > be reduced later during the enumeration of downstream devices if any of
-> > > those devices do not support the maximum MPS of the root port.
-> > > 
-> > > Explicit initialization at host probing stage ensures consistent PCIe
-> > > topology configuration before downstream devices perform their own MPS
-> > > negotiations. This proactive approach addresses platform-specific
-> > > requirements where controller drivers depend on properly initialized
-> > > root port settings, while maintaining backward compatibility through
-> > > PCIE_BUS_TUNE_OFF conditional checks. Hardware capabilities are fully
-> > > utilized without altering existing device negotiation behaviors.
-> > 
-> > This last paragraph seems kind of like marketing without any real
-> > content.  Is there something important in there?
-> > 
-> > Nits:
-> > s/root port/Root Port/
-> > 
-> > Reword "implementation now configures" to be clear about whether "now"
-> > refers to before this patch or after.
-> > 
-> > Update the MRRS "to maintain compatibility" part.  I'm dubious about
-> > there being a spec compatibility issue with respect to MRRS.  Cite the
-> > relevant section if there is an issue.
-> 
-> I'm not sure why the commit message mentions MRRS at all.
-> 
-> Sure, pcie_write_mrrs() might set MRRS to MPS, but that is existing logic
-> and not really related to the change in this patch IMO.
-> 
-> 
-> Kind regards,
-> Niklas
+Hi,
+
+Le mardi 28 octobre 2025 =C3=A0 19:47 +0800, Zhentao Guo a =C3=A9crit=C2=A0=
+:
+> Ran 54/135 tests successfully
+>=20
+> - 52 test vectors failed due to interlaced or mbaff clips: The Amlogic=
+=20
+> stateless
+> =C2=A0=C2=A0 decoder driver only support bitstreams with frame_mbs_only_f=
+lags =3D=3D 1.
+> =C2=A0=C2=A0 Test Vectors:
+
+Is there plan to support it ? Most of the legacy content, and why users wan=
+ts
+H.264 around is to handle interlaced content. Its also not really optional =
+in
+the ITU conformance spec.
+
+regards,
+Nicolas
+
+--=-kJqvtTvIehm+17QzwcKF
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaQomDQAKCRDZQZRRKWBy
+9G86AP9s4PfT2ZOEc7H8CSULI0fPz0RdFYmemyQn3wCh76IcygD6A5aq+z1GM0Eb
+LOyvHiMpTuu/yzDSHPEMnVL2wN653Qc=
+=yfQW
+-----END PGP SIGNATURE-----
+
+--=-kJqvtTvIehm+17QzwcKF--
+
+
+--===============2008438677262814613==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2008438677262814613==--
+
