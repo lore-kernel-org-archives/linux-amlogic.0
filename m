@@ -4,93 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1D78CCFA1A
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Nov 2025 10:31:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5DD5CCF9F8
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Nov 2025 10:31:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jm8zV2SPi14n8uWUCWkiLyqSDSfa81IUhcyvTBOz+IQ=; b=nwQOz4Kgglo97O
-	fNi16npVuZh3Qfnzsz/WLmoyyiedq857BIwy6GqxX/L/PLbv2PMKPAE/MlZTmbwWUZLJ2HqLVI2LD
-	f++9Vr0yp9fbISsg0Su143BvsYlnXMWQWm+AVFe7uai+OUeHZaCvEZAzLg9HetsU/6cwRPI7B7/H1
-	GRDORzcLzHCVsvmyocYW5qdLN1z0+OL6JkyAKDAVi9GdCEK39eLhLW9hfXPmn2ZszlkmJ+mAdYWMq
-	JEvSqKnTmQ6Bt7As7zoKc1DuIvFHq6DVj1mUMwTUHBDNmymp+W1PcTn0FjmC/jgb9du60xS7aj5VO
-	F5WvJr2vs2typzPM7qYA==;
+	List-Owner; bh=OKBI4ecA+mStxZNBs1ukbz4Eu44cUw+6xH14/ZptDfg=; b=KXFcgqvGGokkpL
+	9o4ouPBomlw8N4v/PiYRrhQUL39GMcCp8QLKHr2IqTmumaOQ1vBI97eLWT19amE2KWhHXDoduKcm8
+	Qxdbs2+/Jz5Oxg2oqqMAxwU27uxTyyuTRaovvzIMHyEenz8CKXK4yIC4aensayX4ZWd+3JY8cqV+m
+	Exyu3MI/6AFMcow++10/aFHZaAfxDbW6FwpQCaL5o5BPlfqdks7mKz5jlDCy2YFZigsuJ1RnCjDu1
+	k6HAEOmyQeAmg16zzVLcqeM54h4NiTW9utsWPA4TzuKH48SRPPi+Y5lZ3h9+sUjBG8l78JtZmKcpQ
+	GhFhpiEzSKHXAC8Ead3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHJkW-0000000H5qu-21YQ;
-	Fri, 07 Nov 2025 10:31:20 +0000
+	id 1vHJki-0000000H5xY-0TUH;
+	Fri, 07 Nov 2025 10:31:32 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHJkU-0000000H5oF-1u6Q
+	id 1vHJkg-0000000H5wd-0xDb
 	for linux-amlogic@bombadil.infradead.org;
-	Fri, 07 Nov 2025 10:31:18 +0000
+	Fri, 07 Nov 2025 10:31:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=Y+bD9XMSY/PxNEVtej7SYELNOHLIlDJsCB53kL01eGk=; b=MK0aW/E+lQQrn42CMO+s79mgrb
-	s/HmPcvLuJfNg5B7Hjza+NQDwLfhs6fHuw/SE9aYIAy6ZHLt1CeeWeUtMhbmaTKB1J0miueX5rafs
-	N8+UZti0joF5sogVH7UGwwYnTDy+azlyVh8d9IJSTwCM2f28Cy8oQQ2pAuNS9p9lxqVCg1snE3rEq
-	ytf057uZXQVzRuGfIca1gDOk5QfFyclGBK0sVaHmB8dbhbeYh8Wb0vUQNVRyMzGxHbMHTtqBhFFAf
-	d0VVVJF9mLuU1P1T3dgdk8jN9ZWYx/3+j8/4JXoWkrmQEtZQZ4wYN7n+3n0B/4Y+H5x9RD3Ys1jh4
-	TUzS9Jjg==;
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	bh=A7G2ramQk2hxdGs1tmlSj6o/OfknwFPaFfxdjJIosVo=; b=Jl+hoPdoT1tdgtb7QrwqL0fNR3
+	v0+EbNjw4BUmf2vWcT0hSfrn/tiZeG2EldzqNqObok8mvYciXE+8eG5zmHTXY4Zu/BA1bFXLH8SHK
+	Wq2N/YQZ5oZmNTc+n2yRmdp27epMKjO0Y8FRMhkKj6jW2IW6LFm5VxaE8KaefsYmJFvntGJ045sAc
+	dArs2pWlfT1CnM/1dynun0r92XNx7+v0gRAHv9GZc2nCrDfvWDDTVnjySNySZirxlCFlXL+HNInxa
+	vsNjZTsa+vx7Co131dSa3qH1ZophhHo8PNd3H0J8oEZ67RWEylUtHzEySDA3XA+uFwq9Yw4hhpYiG
+	ssqq5JaQ==;
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHIsj-00000006BSi-0ctx
+	id 1vHIsw-00000006BY8-1VwI
 	for linux-amlogic@lists.infradead.org;
-	Fri, 07 Nov 2025 09:35:47 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-429b9b6ce96so376991f8f.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 07 Nov 2025 02:31:13 -0800 (PST)
+	Fri, 07 Nov 2025 09:36:00 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-477563bcbbcso2663475e9.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 07 Nov 2025 02:31:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1762511413; x=1763116213; darn=lists.infradead.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1762511426; x=1763116226; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Y+bD9XMSY/PxNEVtej7SYELNOHLIlDJsCB53kL01eGk=;
-        b=j3wr2N+b6OCN87KSMQJwA/b1tCvTUF8wR270uHyTY1lHoQgsIyGC+IJ4BjEUFBA3vE
-         du3rYIIG+ruOw9eAUw4XBn2ul4LGz7LznN2vssaihPQDyBGJWFHx++rF1C1PcMLS5bcV
-         gR5T1/Qcp6MCpuV1U5UVc7Dmi1VrUkTnhGaYrlsACLA79Egx5AY9YYCzHbEhYhKRzZM7
-         UwCeYgCXbsKDSb9S9MPcL9EV1zdfLxuRH5+HX1af5IhNgZG3RfvCBb8ODzNhOYfUKWg+
-         hPwGC6KPt8+4G+iMj839ydGMCFUFtptglKtB8EaI4eQKMmoUHNncu5K95soe5MhGEkb9
-         BypA==
+        bh=A7G2ramQk2hxdGs1tmlSj6o/OfknwFPaFfxdjJIosVo=;
+        b=hzdHJ2NT+y4NjWI61yZiRBb7268BOrudp2RcwFOQFpfZC3Gssp449eZdMhFVKUFdrU
+         i8K+p7NMC+/qEtGCKgKzDWSXQ6dwZuBL8isOK0cIdyJwIMOVDDxotljKTSWcIhGKLvZe
+         3kzRaISPXy8zXoKtWHWCgzvictQOUUbm7jfRaTI7itK1bySXTvKUCKwkNHPsVSSh7eLH
+         gRzILFqiYM5vNm/Ixs1u3yGLHIb95vUSvaP8sh35un4nHDkF2SZS/KjrJt2GKDK/5r3C
+         qKiN+DyPS2U+d+og4gx8C0mL50CJ2Ij45nEsZFlL4LwBGsH919xHjDZxQ1HKj/IxczIg
+         N0iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762511413; x=1763116213;
+        d=1e100.net; s=20230601; t=1762511426; x=1763116226;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Y+bD9XMSY/PxNEVtej7SYELNOHLIlDJsCB53kL01eGk=;
-        b=tQRI/CGnWj3gNHm0ydyGMIArzxu2zT1pNIOvCyOxdoJ3URSwBCSxYpAKQNHsrcFsvP
-         PcVlUCdqfTTcrBuhGKKkETirpE4QrJjy1LgHAkH4+i6UqdaI8hrlSMSn/mk4W8yyOQzB
-         Yxq3mPFGSZ3v+zpi21EQLsaccNnEtocVGx7N2ft4e23goUFj45uNcd++AOm/iaQI1CNE
-         1F2qRRX1iphR5bbCZWKhzTzR9sFmFX3f1KhLcQlIvlB3MtTxbAKZk4Asdu9qXvRGJwE1
-         JPj8L+Z9tnZdhuwGyeN5xYYvwcdhF9cDP2jumZ0BRPUMd1f/R4RPbzMHLCemHt8h7Phx
-         dmNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXho9TKc3NK2xQkNFMua/wLO2i0p/vQP+XG+HX29dc5Rp9317ulh+5hUlhfDrNWF4mo1NwtJBVt4DqNpyqC@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx/pdkUzN4/Eirt4ytl08K7HeTYMyLUa5phSwrOCfKou10nxUM0
-	qF5HhcgXsjDusFPOD9dfXI2ZhXMyE1GReIh+pSGP4/5BT0Gsfb4zaVl6pgtrQDmt5+M=
-X-Gm-Gg: ASbGncuGaZCSpeizIcMHgKO3JlFXHgB2qfumj1UU2BAEmWpN3q7cv3/JWxRRgrj9SKO
-	reXIE9GrAn0JPDr6ncHPy1bpyuSBUK/klxzM7QLhSKHo23kJ6wzsqklidQCbFMJaCMMx0E61GRb
-	YAfMyUB57nWKHwPp9QCfBCdJKLAoMRJlLj5moSUJ6UzJPCsA/RAUX0prX4n8Kygl5n9M6ratlT3
-	nITVRf3r5qFs2pnnf8sM7tAV1zd5VH+kxa+f31XjF9UZNA049EUIV6OcHiZoF26CkCbhX9r+yTU
-	W/AKVt+Hp558PQepzC5B3uyTE64baw2g7WWXthi0/jwRZ7N9KsGteTeEbEC+BW1cJZ0/2kRaDW4
-	PPh4XSYbr9czha8kHSh0W58z0wCvpNbbiufmNWSz3UDA8nQKns8LWQsqqOlWTodJNsmn6PWKzlp
-	/DnZc=
-X-Google-Smtp-Source: AGHT+IERkMxY/OdgqWfaZ7AT7DwdB4UOki9h9A7muZP3Z616/ajyEOm8UxRI695/XTN9HnuI+cZyWg==
-X-Received: by 2002:a05:6000:2012:b0:427:8c85:a4ac with SMTP id ffacd0b85a97d-42aefb43605mr2064791f8f.47.1762511412542;
-        Fri, 07 Nov 2025 02:30:12 -0800 (PST)
+        bh=A7G2ramQk2hxdGs1tmlSj6o/OfknwFPaFfxdjJIosVo=;
+        b=IBn0+bWJKxNar6aF+vUSxb2tynqvfnwad/nDPdWB0rafI2OckwZG67/paYe1C0rFUL
+         ZRzLe66RxLCGXlPdNF4hs1TXtQeWJvZz+PtbOd7hUDdzNwyp6idSrSJU38iLAU+QxW+w
+         nOxaSFYD6sWsfr/Q3VtIKvqTxEEh4q3tJQDJSbylTGdS7MUhLu+koN3gDC+TA0jxEqT1
+         tt2/sOElnZiq3YqANzNCQJA2zmZTeyt5qa+ngE2Adt70gPJRcJvw1A6CcYHUL5fadIyb
+         FQHyfRZnoiez0+29vPNx62H+U+Z0FamPTugFcvINGkInQThU8dQ2zc2yvAIdJXLNmf7k
+         3S/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW3/5SIMh0TA2/GaPo6solLxhr5StvWprL5vwoceN7dKGI2WyPXEks7RJWm9dBiO/5asKEuAI++Eh5WGXq3@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx8R1IyX6vUradQ8hF+9qebJfW9D8HCuuJH6h3zvTxhY5sk045r
+	b2O3JvrV7v5DU0LZDh8kbrdRNTVaF0AMY3vwgVKYG5Mi+StIQM+Qn82m6mTZkXqjLDc=
+X-Gm-Gg: ASbGncs6RC0157qhHQZGsjQGIdqIOblFGw+Zkx1jLGTNKQSlDytjUCciH8H/DPPwHhK
+	kKgVIuan6EJsKZa7XrXpR72nddDmrVov5lf245wsqZGmRflewG1pRut/0AJo4ySir2sUXHJeVsL
+	CdIluJYVabxvQz8E2EPwWdB/u5XBln1+UxSANMXAIOPS7SagYFAlLrM+4zHSq16vnS0hmPpAT1v
+	Jxkz9Co0ZvFnIh2eh2ZaKg6dlG4kcsJeDP0raTMSr/n2esUtYtIReGaOmA/z+GkcQuIDA1vlmyE
+	ibHfsFw6ju4jBZIqI29wpdMsIPJHKVsXsi0MmJ7hivV8JlzcrQ/sEHrgURHK+enw/ehNEvhl+L/
+	cM8fvaYhI7IPW5ISKU0J7etR3w0Z21cSf6emuGHC2F8HdjS9MyuyjXWo/wP3b3skjm9/TcguU9v
+	8JUOw=
+X-Google-Smtp-Source: AGHT+IHIBx2tJqRLVHmEw90vFp0rp7ojXL3UXgjP5mQ5luFxcEaSq2ZhQysTlSzW77Ym94NwaGSiSA==
+X-Received: by 2002:a05:600c:4695:b0:476:d494:41d2 with SMTP id 5b1f17b1804b1-4776bd04cc9mr22964605e9.29.1762511425524;
+        Fri, 07 Nov 2025 02:30:25 -0800 (PST)
 Received: from [127.0.1.1] ([2a01:cb1d:dc:7e00:fb6d:2ee:af61:f551])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42ac67920fcsm4414864f8f.39.2025.11.07.02.30.09
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42ac67920fcsm4414864f8f.39.2025.11.07.02.30.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Nov 2025 02:30:11 -0800 (PST)
+        Fri, 07 Nov 2025 02:30:24 -0800 (PST)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 07 Nov 2025 11:29:53 +0100
-Subject: [PATCH v5 3/8] net: stmmac: qcom-ethqos: improve typing in devres
- callback
+Date: Fri, 07 Nov 2025 11:29:57 +0100
+Subject: [PATCH v5 7/8] net: stmmac: qcom-ethqos: define a callback for
+ setting the serdes speed
 MIME-Version: 1.0
-Message-Id: <20251107-qcom-sa8255p-emac-v5-3-01d3e3aaf388@linaro.org>
+Message-Id: <20251107-qcom-sa8255p-emac-v5-7-01d3e3aaf388@linaro.org>
 References: <20251107-qcom-sa8255p-emac-v5-0-01d3e3aaf388@linaro.org>
 In-Reply-To: <20251107-qcom-sa8255p-emac-v5-0-01d3e3aaf388@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -144,26 +144,26 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-riscv@lists.infradead.org, 
  Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1037;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1914;
  i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=/4v1a8QAtlU1YFnwlRQMWe0GMJqjCY4EA0FHsr43o1A=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBpDconjyIV+fTbtiiEvLmwzz2XANDPioDzvoKtm
- cu4MX5qD8GJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCaQ3KJwAKCRARpy6gFHHX
- chguD/48PDKdlDmcnZzg7JiW0mzCIguyJgTHeZLzPIFm5p89jeT2Xw9rJg2JOadHllTnAvDXe/U
- rvDQsGndzvsN+xzFpJ61PEzm5YAScMgZDW64C34/Cog5rNgiNs3vkk1gLmgscNeF3Cna5YA+RA5
- BsXoQWCIq5UtEFkXesDvEfFmouRUOeTDINymGLKpCE65eO7kIWIQCZpYBDo6AnW06NlTq2DlOKQ
- Fdp3E4YMrkhab74JdTcn39x/INJvXk9K5y23XTeiGCMlvPmiqtmboUlQPDXdOIU3C8lUqWRkUTT
- 7xxipK88IcZ8YiSyegvj+0NLjo7dDc8AMkfyOkibQMiUh/K2t0tz7bIjKXZlNxdWPVJhkqswNyW
- R0evKvs6IKV+2Q71flHCD3rcRH0yK0gW7fA59gChceGBjLKGchAkERDHwwqrOpUqNy0WePVlsn8
- rAUWS+/a13WqCZG7ZoL926vFHV/gx8tYhJhWbKsM+aXcbTkr7WgNPhL6O6LPGZg6LIPL3+052yp
- Eld9SE0yD3WZLc0ux9XwhoD9yRGy+e1dAMCzD8+Ghg/k5pxeRe7x5u5SfcOx2RTT0x4yr6yuL5d
- fGW0aKXSXdHWQw7ECZ/W67Bn6p5RJUhQVVzQNg5VS3/UwDyQK9uldBujAYSXuMLCQV77tfpiZfF
- FazfeeIRG8/+w/g==
+ bh=Yczz6nmRkpIoGqMAKNVvyF3zmCEkrzboH4PyVFVc9jM=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBpDcopMMZ8M5zQYmizMBW3totvKz7P+ctBnkiJX
+ 04NgM1FS42JAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCaQ3KKQAKCRARpy6gFHHX
+ ckX/EAC9NUTeuFc1Qq8u9nvzBzxll6MRRMehTj3Mt9pnQD7hqBrWvtqc1jkjY1i2hL6D8DqCTNM
+ ADwHBwy0x5IGuvWAJgJBtkLFqjNVBn4RkdBeT+fgNbc065JK/E5gq7+k/5CFt5J/F+vtYIMdUn2
+ ACgjrXNcC1mGlubZtKqKfS7JYyF+ghRRLlL+Z6JFM77knoDS0e68XGH9wa9xSSur4rV1Z0dP0tL
+ fugNnQ1QTejMfr7s8TEqIJUz4LUt9vj/mQK18PmZ/rCG5KRMU5elHEmQpzMMS5Hm4pJr/qghOW5
+ hLfCpdzX8hXSeBe4J1Tqbmaepw1sZH76HsiPITTMz4FMAfz1fMDewaqq7RTgZCv2owuCs19v5SO
+ ekn0rEpj7GFrQARyyOJ4+BFtm1IM6NXNFoEOec6ol+AoYS3CgMjxn8f2bvBVp7/yoY+kT8yFc/b
+ QPgf/DeZGqa+fiZNjmUE5h7gv50ss4MqfK4zDAjPeaMF24qClKLWvvrH45j7PiNQFpa4BTG6D69
+ r39IcYnucrELGDsODIPAKsBCAxWjQvw4XF7hlU7iYYvhCdUyyJPGAA5B+oKdpKV/zsULdmpSTQY
+ gCuDCRrYfZkwiknvEqG20ltxDvZ66jVSUECOq7C2J0RA5MQwN1aNdvRTV4zOUcQkj0BojlaFihE
+ yL6mFKj/t21Xc+w==
 X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
  fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251107_093545_480551_75E20EB4 
-X-CRM114-Status: GOOD (  10.58  )
+X-CRM114-CacheID: sfid-20251107_093558_715316_A602CAEB 
+X-CRM114-Status: GOOD (  12.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -182,30 +182,54 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-It's bad practice to just directly pass void pointers to functions which
-expect concrete types. Make it more clear what type ethqos_clks_config()
-expects.
+Ahead of adding support for firmware driven power management, let's
+allow different ways of setting the PHY speed. To that end create a
+callback with a single implementation for now, that will be extended
+later.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-index 8578a2df8cf0d1d8808bcf7e7b57c93eb14c87db..8493131ca32f5c6ca7e1654da0bbf4ffa1eefa4e 100644
+index 09f122062dec87aa11804af2769ddff4964e6596..446f06b591a0b70992c7a431b56cf88c1b6718fd 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-@@ -726,7 +726,9 @@ static int ethqos_clks_config(void *priv, bool enabled)
+@@ -120,6 +120,7 @@ struct qcom_ethqos {
+ 	struct ethqos_emac_pm_ctx pm;
+ 	phy_interface_t phy_mode;
+ 	int serdes_speed;
++	int (*set_serdes_speed)(struct qcom_ethqos *ethqos);
  
- static void ethqos_clks_disable(void *data)
- {
--	ethqos_clks_config(data, false);
-+	struct qcom_ethqos *ethqos = data;
-+
-+	ethqos_clks_config(ethqos, false);
+ 	const struct ethqos_emac_por *por;
+ 	unsigned int num_por;
+@@ -640,11 +641,16 @@ static int ethqos_configure_rgmii(struct qcom_ethqos *ethqos, int speed)
+ 	return 0;
  }
  
- static void ethqos_ptp_clk_freq_config(struct stmmac_priv *priv)
++static int ethqos_set_serdes_speed_phy(struct qcom_ethqos *ethqos)
++{
++	return phy_set_speed(ethqos->pm.serdes_phy, ethqos->serdes_speed);
++}
++
+ static void ethqos_set_serdes_speed(struct qcom_ethqos *ethqos, int speed)
+ {
+ 	if (ethqos->serdes_speed != speed) {
+-		phy_set_speed(ethqos->pm.serdes_phy, speed);
+ 		ethqos->serdes_speed = speed;
++		ethqos->set_serdes_speed(ethqos);
+ 	}
+ }
+ 
+@@ -865,6 +871,7 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+ 		return dev_err_probe(dev, PTR_ERR(ethqos->pm.serdes_phy),
+ 				     "Failed to get serdes phy\n");
+ 
++	ethqos->set_serdes_speed = ethqos_set_serdes_speed_phy;
+ 	ethqos->serdes_speed = SPEED_1000;
+ 	ethqos_update_link_clk(ethqos, SPEED_1000);
+ 	ethqos_set_func_clk_en(ethqos);
 
 -- 
 2.51.0
