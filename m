@@ -4,87 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A06D1CCFA05
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Nov 2025 14:59:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 976AECCF9F8
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Nov 2025 16:00:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:MIME-Version:Subject:Cc
-	:To:From:References:In-Reply-To:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/GxOByQkKz0vq6SNynQgjLkKpYqttQSUZXFk4u8jjo0=; b=JnIdZr1cXkVNVd
-	VaMqtA901gNr1q2HfQqGnhwexexpLK0cRVEAExmEv4Nf4RGViUqY+AWXE7fMklJpIhNMPUXosG21w
-	7qZ+jQxND/8rRhMoH9fq0QVWcgzK0IVGFcaTfDSh6/d4JtkRR2dc13tpesRvBxUq+3HVFdY1CjEXv
-	kuQslOdLfC1v+JUU5WuKzyTxApQ6nvRI9tPFacEo6DpUODz5QKnijRyljjUZxhe+8ntAOxaSXTUXP
-	826n8sUcVi97/4n4nSFQZ/964xh+t73WyKv65umWFh/jaK3TZQ1cCn+qck2PfL2oOinXkN5dorLkh
-	hbdbvspRgMXq37BnUxWA==;
+	List-Owner; bh=lfUMjVHNNN567E+d9GoDCvd5wt2acIye/KH5/KfvC1o=; b=NxSm28ApOkh/pc
+	E4FZmm0CqnuJyqqslLIPT1/tQJQrbwjRZJy3X2CvLv2oABGw6dVA7Q7z9q4FHMBqydBaCVUtfVo/k
+	HavkHEjYb58DqVwAwH98d6vB+J04BA6vbzNkltCf+T5SgCWzt+/xYC/Jxkzjeqbyysi4cPTPpYyTk
+	jwYabkyD1lKxixjfYJV+VVNpsvBwVSVaM1upTtmXnc8Y5eAcsTxrMzl+8g7GZcCruuZAfwZtkda2m
+	MSt50WXI9uJ1deDRuYyKZlG+vnYgwn8K661udeJBMjtHaT6l1utj/tCkUxu83qbHj3n8EVNJn8ID5
+	+obl+hQbzlxKX+l77w7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHNvv-0000000HYD4-3Xjq;
-	Fri, 07 Nov 2025 14:59:23 +0000
-Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	id 1vHOtG-000000002b6-0YHQ;
+	Fri, 07 Nov 2025 16:00:42 +0000
+Received: from mail-ej1-f52.google.com ([209.85.218.52])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHNvt-0000000HYBF-3Ojq;
-	Fri, 07 Nov 2025 14:59:22 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
-	In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=nxKxjy/C3oPWob4dBvPPL6F8jhZxW9+kJIyvEtBbh7A=; b=CPnkQ/JKGlnhsZP7olTVHXoO56
-	ZtNRVW5PrJWImlfI+MZDhkWVn7VIaCAgmep0krm9sBkoCgWXCHbEaUaVR0MT84q98R4L/ghHWUhPs
-	FJ+Qh32UwhEcAtJVfgQeT3QJyYTrLQYKJq0lh3PGtuDxsx7qYup3jQM8NM5pnqUc3LJdk44jY4A2M
-	wd3t8p7v8gqZNGaBa7g/hSOD1KjSdsbjevxpvO/bY5pg3I4z91TbmxORLGXyJPK9xSCcxClue8hId
-	JGfee8ETjXeLLl20zbI0CNPgDMVcS516BVuGcGNn06nujeWe00Oh0hwtjxscycfUACiQFXEsf2rWP
-	ZSchN2qA==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:47708 helo=rmk-PC.armlinux.org.uk)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <rmk@armlinux.org.uk>)
-	id 1vHNSg-000000006j5-2SUq;
-	Fri, 07 Nov 2025 14:29:10 +0000
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1vHNSb-0000000DkT4-1s8G;
-	Fri, 07 Nov 2025 14:29:05 +0000
-In-Reply-To: <aQ4ByErmsnAPSHIL@shell.armlinux.org.uk>
-References: <aQ4ByErmsnAPSHIL@shell.armlinux.org.uk>
-From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Keguang Zhang <keguang.zhang@gmail.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-mips@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	netdev@vger.kernel.org,
-	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
-	Paolo Abeni <pabeni@redhat.com>
-Subject: [PATCH net-next 13/16] net: stmmac: stm32: use PHY_INTF_SEL_x
- directly
+	id 1vHOtC-000000002ZJ-3HyU
+	for linux-amlogic@lists.infradead.org;
+	Fri, 07 Nov 2025 16:00:41 +0000
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b729a941e35so107948666b.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 07 Nov 2025 08:00:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762531236; x=1763136036;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wkBMuEFYniV7o/NZEZ9uUf/PpOYiog+if+0C8Zohm+8=;
+        b=QoDETvRJmb/+jyEefYjQgICodDtY6nUEpAfbowULEk7/x6n/9y7O2hA1i7LsEo70ra
+         BlDDWq0Terojj6bY0O3RE0pcaRQCN4ePxzdhu8GjoYFWWaYzU6f8hAP3ujiW8WKdxHt/
+         qT2+0tbIph573PjOUpwpgE4mtHqH0D9K1UJbg/a0wzFniBEXv+ksOT39QG7X8FNG+mYO
+         TX3J63jbqwsLpC8u2Hq0kMlNKAWGkV0Vq4axlphKBaDzIUtkPgcOsuGYkqqBPRfNvD3M
+         5QVu0u1RhGK/T4DBFgDZBSbULWkQBYsc2uxFIIf7xlHr4jgKrcjhB62kc/2QWn8NcO/I
+         lX7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVG3S9Q/JnIYVo1+SnFrvBw/Gxasr9rJb5bYJ/0U8cGXJ9yN3AggzSKuk1uhhUcC973Tbe62vc4rLod1VHo@lists.infradead.org
+X-Gm-Message-State: AOJu0YzIUDCcunDTyjkJ2TYcV5PJqGqHSV6w+jaNh/rMC+smnCm4+hgA
+	nSg9tmr8tNUXMV754jlBjX1jOmw0fUaa4cKYkYWhp7o9i/CQfH05IpOujamdSHZpLIpFNQIEI03
+	9hUo/p4lkKcgzYsEH8yafWqcb2GidsB8=
+X-Gm-Gg: ASbGncudPgOP/9grPQPwexYIaF1YvPMHBizxIOETTHSL5hMFgLhMsZChrqA1vt7/bKQ
+	eheYTrFy6Oiw601619AfuZQU8bwNdVw2REA16LXCqyc6BJRdmVlCwx6+uJsbHBMctlYxIsR1WAO
+	r38A4lcFk5w7wmXPf6GgMieOe3tjY8e2OOoJ8joZj522BJTW3eSfsWpJ5LPwxQRZs/H7P6E0Gmd
+	BZq+wvMvZbS1JOu3io1Wb+OOUP8LtLCVrbNMgcGtKlKM9NAaRnrfarUGJGormy+YwIBpD+fQL2N
+	w3GM3lMz9yoPIyJ/Qw==
+X-Google-Smtp-Source: AGHT+IFOoHBXH/PzewtzvKKUtM610X3TQ1SmT9FLvQyuUDuxyBy4OLhIMpEqweiHRkcJBKlSnsBceRB/zJjkJgVr+9A=
+X-Received: by 2002:a17:906:f582:b0:b70:a9fd:1170 with SMTP id
+ a640c23a62f3a-b72c0eef5bfmr340953066b.65.1762531236039; Fri, 07 Nov 2025
+ 08:00:36 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 7 Nov 2025 11:00:35 -0500
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 7 Nov 2025 11:00:35 -0500
 MIME-Version: 1.0
-Content-Disposition: inline
-Message-Id: <E1vHNSb-0000000DkT4-1s8G@rmk-PC.armlinux.org.uk>
-Date: Fri, 07 Nov 2025 14:29:05 +0000
+In-Reply-To: <E1vHNSR-0000000DkSt-0wDu@rmk-PC.armlinux.org.uk>
+References: <aQ4ByErmsnAPSHIL@shell.armlinux.org.uk> <E1vHNSR-0000000DkSt-0wDu@rmk-PC.armlinux.org.uk>
+From: Emil Renner Berthing <kernel@esmil.dk>
+User-Agent: alot/0.0.0
+Date: Fri, 7 Nov 2025 11:00:35 -0500
+X-Gm-Features: AWmQ_bnSZQW08h0NXQTG6zSRGIlnDRSY70b9JlHXkxjmDNLgOFrMa4uAbMmEPzM
+Message-ID: <CANBLGczzW+kjvSqYm5YVt+2sdLtgyZfa=fhsU1Q-nUjSVvB4cw@mail.gmail.com>
+Subject: Re: [PATCH net-next 11/16] net: stmmac: starfive: use stmmac_get_phy_intf_sel()
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Keguang Zhang <keguang.zhang@gmail.com>, Kevin Hilman <khilman@baylibre.com>, 
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Minda Chen <minda.chen@starfivetech.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	netdev@vger.kernel.org, 
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, Paolo Abeni <pabeni@redhat.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251107_065921_847697_CDA24020 
-X-CRM114-Status: GOOD (  12.61  )
+X-CRM114-CacheID: sfid-20251107_080038_830123_F5B11876 
+X-CRM114-Status: GOOD (  10.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,136 +101,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Rather than defining separate constants for each, use the
-PHY_INTF_SEL_x definitions in the switch()es configuring the
-control register, and use one FIELD_PREP() to convert phy_intf_sel
-to the register value.
+Quoting Russell King (Oracle) (2025-11-07 15:28:55)
+> Use stmmac_get_phy_intf_sel() to decode the PHY interface mode to the
+> phy_intf_sel value, validate the result and use that to set the
+> control register to select the operating mode for the DWMAC core.
+>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> ---
+>  .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 22 +++++--------------
+>  1 file changed, 6 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> index 1ef72576c6f1..00078b7a6486 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
+> @@ -35,25 +35,15 @@ static int starfive_dwmac_set_mode(struct plat_stmmacenet_data *plat_dat)
+>         struct starfive_dwmac *dwmac = plat_dat->bsp_priv;
+>         struct regmap *regmap;
+>         unsigned int args[2];
+> -       unsigned int mode;
+> +       int phy_intf_sel;
+>         int err;
+>
+> -       switch (plat_dat->phy_interface) {
+> -       case PHY_INTERFACE_MODE_RMII:
+> -               mode = STARFIVE_DWMAC_PHY_INFT_RMII;
+> -               break;
+> -
+> -       case PHY_INTERFACE_MODE_RGMII:
+> -       case PHY_INTERFACE_MODE_RGMII_ID:
+> -       case PHY_INTERFACE_MODE_RGMII_RXID:
+> -       case PHY_INTERFACE_MODE_RGMII_TXID:
+> -               mode = STARFIVE_DWMAC_PHY_INFT_RGMII;
+> -               break;
 
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 32 ++++++++-----------
- 1 file changed, 13 insertions(+), 19 deletions(-)
+After these two patches the STARFIVE_DWMAC_PHY_INFT_RMII and ..RGMII macros are
+left unused. Maybe just squash the patches and remove the definitions?
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-index 1545772419d5..18d26f096f5f 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-@@ -48,30 +48,17 @@
-  */
- #define SYSCFG_PMCR_ETH_SEL_MII		BIT(20)
- #define SYSCFG_PMCR_PHY_INTF_SEL_MASK	GENMASK(23, 21)
--#define SYSCFG_PMCR_ETH_SEL_RGMII	\
--	FIELD_PREP(SYSCFG_PMCR_PHY_INTF_SEL_MASK, PHY_INTF_SEL_RGMII)
--#define SYSCFG_PMCR_ETH_SEL_RMII	\
--	FIELD_PREP(SYSCFG_PMCR_PHY_INTF_SEL_MASK, PHY_INTF_SEL_RMII)
--#define SYSCFG_PMCR_ETH_SEL_GMII	\
--	FIELD_PREP(SYSCFG_PMCR_PHY_INTF_SEL_MASK, PHY_INTF_SEL_GMII_MII)
- #define SYSCFG_MCU_ETH_SEL_MII		0
- #define SYSCFG_MCU_ETH_SEL_RMII		1
- 
- /* STM32MP2 register definitions */
- #define SYSCFG_MP2_ETH_MASK		GENMASK(31, 0)
- 
-+#define SYSCFG_ETHCR_ETH_SEL_MASK	GENMASK(6, 4)
- #define SYSCFG_ETHCR_ETH_PTP_CLK_SEL	BIT(2)
- #define SYSCFG_ETHCR_ETH_CLK_SEL	BIT(1)
- #define SYSCFG_ETHCR_ETH_REF_CLK_SEL	BIT(0)
- 
--#define SYSCFG_ETHCR_ETH_SEL_MASK	GENMASK(6, 4)
--#define SYSCFG_ETHCR_ETH_SEL_MII	FIELD_PREP(SYSCFG_ETHCR_ETH_SEL_MASK, \
--						   PHY_INTF_SEL_GMII_MII)
--#define SYSCFG_ETHCR_ETH_SEL_RGMII	FIELD_PREP(SYSCFG_ETHCR_ETH_SEL_MASK, \
--						   PHY_INTF_SEL_RGMII)
--#define SYSCFG_ETHCR_ETH_SEL_RMII	FIELD_PREP(SYSCFG_ETHCR_ETH_SEL_MASK, \
--						   PHY_INTF_SEL_RMII)
--
- /* STM32MPx register definitions
-  *
-  * Below table summarizes the clock requirement and clock sources for
-@@ -244,10 +231,12 @@ static int stm32mp1_configure_pmcr(struct plat_stmmacenet_data *plat_dat)
- {
- 	struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
- 	u32 reg = dwmac->mode_reg;
-+	u8 phy_intf_sel;
- 	int val = 0;
- 
- 	switch (plat_dat->phy_interface) {
- 	case PHY_INTERFACE_MODE_MII:
-+		phy_intf_sel = PHY_INTF_SEL_GMII_MII;
- 		/*
- 		 * STM32MP15xx supports both MII and GMII, STM32MP13xx MII only.
- 		 * SYSCFG_PMCSETR ETH_SELMII is present only on STM32MP15xx and
-@@ -258,12 +247,12 @@ static int stm32mp1_configure_pmcr(struct plat_stmmacenet_data *plat_dat)
- 			val |= SYSCFG_PMCR_ETH_SEL_MII;
- 		break;
- 	case PHY_INTERFACE_MODE_GMII:
--		val = SYSCFG_PMCR_ETH_SEL_GMII;
-+		phy_intf_sel = PHY_INTF_SEL_GMII_MII;
- 		if (dwmac->enable_eth_ck)
- 			val |= SYSCFG_PMCR_ETH_CLK_SEL;
- 		break;
- 	case PHY_INTERFACE_MODE_RMII:
--		val = SYSCFG_PMCR_ETH_SEL_RMII;
-+		phy_intf_sel = PHY_INTF_SEL_RMII;
- 		if (dwmac->enable_eth_ck)
- 			val |= SYSCFG_PMCR_ETH_REF_CLK_SEL;
- 		break;
-@@ -271,7 +260,7 @@ static int stm32mp1_configure_pmcr(struct plat_stmmacenet_data *plat_dat)
- 	case PHY_INTERFACE_MODE_RGMII_ID:
- 	case PHY_INTERFACE_MODE_RGMII_RXID:
- 	case PHY_INTERFACE_MODE_RGMII_TXID:
--		val = SYSCFG_PMCR_ETH_SEL_RGMII;
-+		phy_intf_sel = PHY_INTF_SEL_RGMII;
- 		if (dwmac->enable_eth_ck)
- 			val |= SYSCFG_PMCR_ETH_CLK_SEL;
- 		break;
-@@ -284,6 +273,8 @@ static int stm32mp1_configure_pmcr(struct plat_stmmacenet_data *plat_dat)
- 
- 	dev_dbg(dwmac->dev, "Mode %s", phy_modes(plat_dat->phy_interface));
- 
-+	val |= FIELD_PREP(SYSCFG_PMCR_PHY_INTF_SEL_MASK, phy_intf_sel);
-+
- 	/* Shift value at correct ethernet MAC offset in SYSCFG_PMCSETR */
- 	val <<= ffs(dwmac->mode_mask) - ffs(SYSCFG_MP1_ETH_MASK);
- 
-@@ -299,6 +290,7 @@ static int stm32mp1_configure_pmcr(struct plat_stmmacenet_data *plat_dat)
- static int stm32mp2_configure_syscfg(struct plat_stmmacenet_data *plat_dat)
- {
- 	struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
-+	u8 phy_intf_sel = PHY_INTF_SEL_GMII_MII;
- 	u32 reg = dwmac->mode_reg;
- 	int val = 0;
- 
-@@ -307,7 +299,7 @@ static int stm32mp2_configure_syscfg(struct plat_stmmacenet_data *plat_dat)
- 		/* ETH_REF_CLK_SEL bit in SYSCFG register is not applicable in MII mode */
- 		break;
- 	case PHY_INTERFACE_MODE_RMII:
--		val = SYSCFG_ETHCR_ETH_SEL_RMII;
-+		phy_intf_sel = PHY_INTF_SEL_RMII;
- 		if (dwmac->enable_eth_ck) {
- 			/* Internal clock ETH_CLK of 50MHz from RCC is used */
- 			val |= SYSCFG_ETHCR_ETH_REF_CLK_SEL;
-@@ -317,7 +309,7 @@ static int stm32mp2_configure_syscfg(struct plat_stmmacenet_data *plat_dat)
- 	case PHY_INTERFACE_MODE_RGMII_ID:
- 	case PHY_INTERFACE_MODE_RGMII_RXID:
- 	case PHY_INTERFACE_MODE_RGMII_TXID:
--		val = SYSCFG_ETHCR_ETH_SEL_RGMII;
-+		phy_intf_sel = PHY_INTF_SEL_RGMII;
- 		fallthrough;
- 	case PHY_INTERFACE_MODE_GMII:
- 		if (dwmac->enable_eth_ck) {
-@@ -334,6 +326,8 @@ static int stm32mp2_configure_syscfg(struct plat_stmmacenet_data *plat_dat)
- 
- 	dev_dbg(dwmac->dev, "Mode %s", phy_modes(plat_dat->phy_interface));
- 
-+	val |= FIELD_PREP(SYSCFG_ETHCR_ETH_SEL_MASK, phy_intf_sel);
-+
- 	/* Select PTP (IEEE1588) clock selection from RCC (ck_ker_ethxptp) */
- 	val |= SYSCFG_ETHCR_ETH_PTP_CLK_SEL;
- 
--- 
-2.47.3
-
+/Emil
 
 _______________________________________________
 linux-amlogic mailing list
