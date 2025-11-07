@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAF05CCF9F8
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Nov 2025 14:28:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11562CCFA18
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Nov 2025 14:28:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:MIME-Version:Subject:Cc
 	:To:From:References:In-Reply-To:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=avZIZ/JKojfIjiJ5spmsEiDxl+YItPuclRGHVJiY4S0=; b=dzs1YcrMkPokXn
-	BICPK/w3s3acWz9WoewiEM2h8X/xQC9V2r8/xsHid2anDf/F2Me01zKZXVsRsbX4/RcZTViSD2oIB
-	nNZ8Kzc+GLKLpIy7bcVLyBm0z10FNuZsrrinMvWjlkDHrxuvk38hsElBk+cgzzjPuQ9n7xOTGimYP
-	nif/XxMkO/aPvJsojbRa0xxsvfz7umdoedtD+i5QD65HEOWUU2gBU+qaRhgSYFW8bINQtMicvnBAN
-	WwoLhY5wyb7dQPL08R+zc2wPCGJUCG+Z3htVB0x4mc+8A5Ko9AvleRebhP0xq9W8YJtnj2mr4qMrL
-	K6uJ0o5S+hXr58aLqBuw==;
+	List-Owner; bh=3NU7vsX5GqPaLo4vl1MosEnO8Wnn8fnyNL3gdJVQKXo=; b=egA1pc81uqt3Tl
+	BFoIDktvhFrg9KvNLdJmizoXfi9gxX6CekpZ2fQrWZp/Sr2jCS0x9TcgcRVahf6v0swhYk/VxvYS6
+	APE23dDHOCEm6+dXGPUdmY8DZqUeUEI+QZpgoMvhusj3iUK4GxTQeEBxlcterw/J3zEpc6b6rIpsv
+	BGa99VpX/eWJqHpP60N4/VSr7Jmyh4xNildjs+ekOft8qPGWB4s5LXOfTR6Eorr+dQQp/eLVTcazD
+	Ak5gKOAKv5enznX8d499dqlxvmbTD5EElPTiyjdUx3mF5W6QSLKQdP6y2BmVWSw9Blq1GAv8nte0y
+	0bIyCnSx0NPjLhqdAcbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHNRn-0000000HTlv-3WbJ;
-	Fri, 07 Nov 2025 14:28:15 +0000
+	id 1vHNRr-0000000HTom-2fI1;
+	Fri, 07 Nov 2025 14:28:19 +0000
 Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHNRl-0000000HTko-3IWd;
-	Fri, 07 Nov 2025 14:28:14 +0000
+	id 1vHNRp-0000000HTm3-3cLb;
+	Fri, 07 Nov 2025 14:28:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
 	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
 	In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
 	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=CytaSTnftbEEyTDU2s+KGe4TAAN74Ksg7sEYbIARhBc=; b=XaZ8okrrSRuqlmq2Yy+4d4VNPe
-	hLJsLKOOMg0xYmKiev4nUqSgPiZol6SnPBhuiRQlXg7+/cPmT8Zbf19VoaHoLVHIQ7RLQr1xjdmBG
-	g+x2jVCWqwMA9drMFa4lPUlA0pq5Glf54sjlG9n6zOzI9oqBJnpw2yhp3QabSEmaPmqNJTaA6fkSt
-	mKKHRFhvuZbaBCdMEgpnWncm4lPXcl4xUWnPA56Cgxobv4Efc/kMeJQZOY7c3Yo85553S6BdYo/+D
-	cX3IsH0V1e5CJO3z4b9eyzjS34Zghwn6lmhTKLB9CSgGSJRn3hWWOsEq9aHGBg23TLwkynYX514T8
-	rSoiJoXw==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:50548 helo=rmk-PC.armlinux.org.uk)
+	bh=bzAz2OSqG2eLqXJWaxdsurWbDprdWOWwtQP4/q9dLmg=; b=bbtIfqncB6v4yv+kZZ3WAE3NNM
+	dmGVwl2QOAEYbA7duVnU4ykCpRBqRWhFDVsRJ2py5yA6hD+x/Wo4xu5wbls23NKQ19dRB+f1VVPr+
+	EiITc7Hu5BzM0AUdziWI2X0pQwEXSMgFMayYCsa7IUaDDVlad1kI43QYJxWGIYyJWwiaDAIdQp+kh
+	+3sWI54VdfIncpKwrgKtbABt8KC3d0DoXEXvWRS7fA7PGt5ER6MJAHN0vjjk5Qjsr820G2Cj+Ymzl
+	/vHA1x963+3uoEg3zYHFH2LqX6qvnyqbqrZthQs8s/QNirKiQjjx8qY7WhTsxbwGtoeSpsdWWYYNO
+	AAfFKv0g==;
+Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:42702 helo=rmk-PC.armlinux.org.uk)
 	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <rmk@armlinux.org.uk>)
-	id 1vHNRc-000000006ej-3hSr;
-	Fri, 07 Nov 2025 14:28:05 +0000
+	id 1vHNRi-000000006ev-0Mjd;
+	Fri, 07 Nov 2025 14:28:10 +0000
 Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.98.2)
 	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1vHNRc-0000000DkRv-0FzL;
-	Fri, 07 Nov 2025 14:28:04 +0000
+	id 1vHNRh-0000000DkS1-0fl2;
+	Fri, 07 Nov 2025 14:28:09 +0000
 In-Reply-To: <aQ4ByErmsnAPSHIL@shell.armlinux.org.uk>
 References: <aQ4ByErmsnAPSHIL@shell.armlinux.org.uk>
 From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
@@ -76,15 +76,15 @@ Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
 	netdev@vger.kernel.org,
 	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
 	Paolo Abeni <pabeni@redhat.com>
-Subject: [PATCH net-next 01/16] net: stmmac: loongson1: use PHY_INTF_SEL_x
+Subject: [PATCH net-next 02/16] net: stmmac: loongson1: use PHY_INTF_SEL_x
+ directly
 MIME-Version: 1.0
 Content-Disposition: inline
-Message-Id: <E1vHNRc-0000000DkRv-0FzL@rmk-PC.armlinux.org.uk>
-Date: Fri, 07 Nov 2025 14:28:04 +0000
+Message-Id: <E1vHNRh-0000000DkS1-0fl2@rmk-PC.armlinux.org.uk>
+Date: Fri, 07 Nov 2025 14:28:09 +0000
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251107_062813_821090_A53800E7 
-X-CRM114-Status: UNSURE (   8.52  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20251107_062817_910988_76188025 
+X-CRM114-Status: GOOD (  10.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,28 +101,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use PHY_INTF_SEL_x definitions for phy_intf_sel bitfield.
+Use the PHY_INTF_SEL_xx values directly in ls1c_dwmac_syscon_init(),
+converting them to the PHY_INTF_SELI bitfield when calling
+regmap_update_bits().
 
 Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-index 32b5d1492e2e..09e2af1d778a 100644
+index 09e2af1d778a..5f9f66fbc191 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-@@ -38,8 +38,8 @@
+@@ -38,8 +38,6 @@
  #define GMAC_SHUT		BIT(6)
  
  #define PHY_INTF_SELI		GENMASK(30, 28)
--#define PHY_INTF_MII		FIELD_PREP(PHY_INTF_SELI, 0)
--#define PHY_INTF_RMII		FIELD_PREP(PHY_INTF_SELI, 4)
-+#define PHY_INTF_MII		FIELD_PREP(PHY_INTF_SELI, PHY_INTF_SEL_GMII_MII)
-+#define PHY_INTF_RMII		FIELD_PREP(PHY_INTF_SELI, PHY_INTF_SEL_RMII)
+-#define PHY_INTF_MII		FIELD_PREP(PHY_INTF_SELI, PHY_INTF_SEL_GMII_MII)
+-#define PHY_INTF_RMII		FIELD_PREP(PHY_INTF_SELI, PHY_INTF_SEL_RMII)
  
  struct ls1x_dwmac {
  	struct plat_stmmacenet_data *plat_dat;
+@@ -140,15 +138,14 @@ static int ls1c_dwmac_syscon_init(struct platform_device *pdev, void *priv)
+ 	struct ls1x_dwmac *dwmac = priv;
+ 	struct plat_stmmacenet_data *plat = dwmac->plat_dat;
+ 	struct regmap *regmap = dwmac->regmap;
++	int phy_intf_sel;
+ 
+ 	switch (plat->phy_interface) {
+ 	case PHY_INTERFACE_MODE_MII:
+-		regmap_update_bits(regmap, LS1X_SYSCON1, PHY_INTF_SELI,
+-				   PHY_INTF_MII);
++		phy_intf_sel = PHY_INTF_SEL_GMII_MII;
+ 		break;
+ 	case PHY_INTERFACE_MODE_RMII:
+-		regmap_update_bits(regmap, LS1X_SYSCON1, PHY_INTF_SELI,
+-				   PHY_INTF_RMII);
++		phy_intf_sel = PHY_INTF_SEL_RMII;
+ 		break;
+ 	default:
+ 		dev_err(&pdev->dev, "Unsupported PHY-mode %u\n",
+@@ -156,6 +153,8 @@ static int ls1c_dwmac_syscon_init(struct platform_device *pdev, void *priv)
+ 		return -EOPNOTSUPP;
+ 	}
+ 
++	regmap_update_bits(regmap, LS1X_SYSCON1, PHY_INTF_SELI,
++			   FIELD_PREP(PHY_INTF_SELI, phy_intf_sel));
+ 	regmap_update_bits(regmap, LS1X_SYSCON0, GMAC0_SHUT, 0);
+ 
+ 	return 0;
 -- 
 2.47.3
 
