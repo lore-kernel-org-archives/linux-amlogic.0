@@ -4,89 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A08FCD1292
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Nov 2025 23:13:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1C53CD1288
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Nov 2025 23:13:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gfzR/zsi3ilibdQFYi7+IoRofwO+mtUQn8BAFQtYQUM=; b=uBcYCppAQOhvUq
-	eLhPPJt/4feyiiuNM8vqUYoNmNB/0IzTjgRjMWzQGopiIsn4DV0rhCo2epJ/+iLvrl9/b015uA8Ll
-	Fkov2AN/qGxYzTdvGuuV6+9Zukt+PCwQiLg/yT+d/1dKQxaFt0HBx5R/PCFm1ctv9E09svxQvwgkj
-	1cYCvNVEEICncRUEefSghBVdXyWvqXlzY5SVtc7aD/KyQ/DrZwhZF2bc1GppRHR2TAgmUW69/1DzI
-	0MUhRJfPjVKvQHs8x5xiflXPFTr3m+KM+u4QcSbQlOooZuQZfQnu2dCuyQx5lb6tVAqrsqqhrWl7b
-	zHnuzxzy1u8YDMzQSjtw==;
+	List-Owner; bh=lqIYPpLSDYiiV0KYmDC1OwoWqPoMLyMRks1uUXdEd7s=; b=A64MBiYAfY1HJ7
+	/QV07izx1WWloiA1ad3OhWNUw3fQI9yTKRhr82XKEGKyXqcVl3d2ZKUbWgOCbg4jzlA1Qhc0YglKq
+	s9O9DB7cOHNGDRrd1wugFN3TpvLU68m7bzYsPjRdKSRq+D6PvNw2M/7Xs0oQnRF/GE1gg1CsK1N9i
+	sSKrMYOqwVUHbnctwF+jZ0YUPxxpX/ilRTpmRLlQKqXawnScTjo5vRArA+UNlB5P9SV+ypS5Bi4sa
+	FpnpOiGaTY+Ra3X+GM++luHt6cVLRf2914km+QkWfnLxujg2G8Cr3+7JbbjA/4nqLhktqEN8RV0Ay
+	h89+Ugc/18iHzKmw3Z9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHs7c-00000003YXy-01EA;
-	Sat, 08 Nov 2025 23:13:28 +0000
-Received: from mail-ed1-x529.google.com ([2a00:1450:4864:20::529])
+	id 1vHs7e-00000003Yar-2aqC;
+	Sat, 08 Nov 2025 23:13:30 +0000
+Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHs7Z-00000003YTj-3GHB
+	id 1vHs7b-00000003YWD-2MOm
 	for linux-amlogic@lists.infradead.org;
-	Sat, 08 Nov 2025 23:13:26 +0000
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-640ca678745so3503913a12.2
-        for <linux-amlogic@lists.infradead.org>; Sat, 08 Nov 2025 15:13:25 -0800 (PST)
+	Sat, 08 Nov 2025 23:13:28 +0000
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-64074f01a6eso3435605a12.2
+        for <linux-amlogic@lists.infradead.org>; Sat, 08 Nov 2025 15:13:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1762643604; x=1763248404; darn=lists.infradead.org;
+        d=googlemail.com; s=20230601; t=1762643605; x=1763248405; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=72U297d2NX6RO9yoD7XU9KTbdxctb0+CTvTsi0z9044=;
-        b=FoQ0MZa6cgQEcICwt1GipqCB6ET+mjdMgz6oZVFT91J8IYuMBk+1XcOusdYFGADmRX
-         H0vfyDZoMCcoeDOVXmE417vOUHLkWbmCukffSqhNwKqd89EUMMqOxhf1K45/MUC1Ied5
-         NJ/CbCsE0KrIyDz72YbvKA6CgrOlS971KVNFR3MGf5+95SM+7LT2ZmU0vr0XiNz2QiRk
-         P47J6vvRCTl6KcFWrny5vTitvjrXpRPkx4ujWDttjYSVcHoQtNF/W9tO0vZjebRey2AK
-         Jp/K7miH0F8G6xxrz9sIOjoN+qxHlDZShwKmQv7loGRkmBmTHM23DaYMxs5BhiL7CV5e
-         R24w==
+        bh=1MEwQ3w0WXL0SbyJSEK5ayMTVI87i1RH9nRchsrOxNc=;
+        b=AsLDNHxuBxUawAmUxvHxixzanpSB6uiZN8E8yNrVNbIgGekUdLuBYW+bmUH+eONAjv
+         kEeNOop5peDEWdgKqtj2iktQWDJ1vMcUG0sAPBHnH6BHMqUnycCuzEAENxvSC8Xe0MZN
+         mF/6zf+XZtq9mwk5CrqlgOzdzGn5uMrDRI081w/UQZCz0viXQDO1loZwO6X/06ehpDTX
+         6ipkA8MXV+JhinEff6iy+P24lVMYS1M3PFjK3WufCCcs2mKZjSwEYAnc8hcr5ttdhidQ
+         1R8hC+5oxcsFg8T0TP4t5DEAxi+D0D9Rnb9d7SxGAwwOUAZfjhCToX1H3xFW6v267SG8
+         kfCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762643604; x=1763248404;
+        d=1e100.net; s=20230601; t=1762643605; x=1763248405;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=72U297d2NX6RO9yoD7XU9KTbdxctb0+CTvTsi0z9044=;
-        b=WoTl1lLXSqmaKK2MjYMci61xV6TFLT6xQsJ68JHMWwz5GNicOgnkqiA/dhQ4KWmlZf
-         TyFy5LGPO4zFLBuz2rOZAx/B9QWH8GE+Y8b9jHU4zx1PN1J08DJT+zS5hQVCl9O0fl7z
-         A8Es4/BxzrP7S9gXQWT2IbmNwIjIzgHXEhasU8115MEd91yPRd+hxZUzaukavNjx13ET
-         cPBrES/yElI08fKk1b1yxjIBnwZ3wbvpr+YCN6qp50y1227wvI2/8SNDcl4FmNY5ud7v
-         AMwjVbYbfQMGfyQklZs30lG+/O7pabA2U4ascMj+tcZTHKnmeU/UzieLL1UAOLXcF3sD
-         KksA==
-X-Gm-Message-State: AOJu0YyBiTLXLFzoucLsHa4SU71UpcLTNfko1uJnGuOZBN3Hf2Z7Wp/b
-	L9MPqKs63C6BezyJNoq/8WfZzdTBoYYS8bwfu+0Sart3+pkpApjislruvUqwHg==
-X-Gm-Gg: ASbGncvllMvSe1fs26bEJi6hB98W7U24TIIHRLTOGyPyZMStaWTxK/iQjrsubGj9nE7
-	6sPaG3t14ZKd4P6IBhHzMq8ANT/m5LAx5Ju0GTr8jz034QEjAPufbVYTo9oW2kymRew9JIcKH3C
-	somxY2KBMnukwm1ZkS5EkN8klFBl0wOu42T3EkgwFGkhM3oA+MtOWme5itASjaQGe4RkDoI7OfP
-	wOrMPdbjRq7jEcTXkJrkhp56M2/CVKA0iOpyIsLR8yuR2SKUFZXdiYJ9+2Byplnh6L6BId9+Q6o
-	QZuBQZ+98cbBswCzwlvYuPCe+dNN2ebhu8hWGBYAfD2UYnWac94j6PUdzivEBrShMvZyLv2XlY2
-	Ddt3PKwPSyfjQgBoMrYOE4/NY88AT3MA9/efsC48tsnkL7Mp7NR9molAtE8NwEGMpi2lQ7IO9Yn
-	HKlHodAfFT85About0kOe3B8eXHivD//GXDMYTg+dgbKpckEEcx+tJWC8+3QuQTnum2n9smhXUY
-	6OMKz5tKtvrilcy6xNaHBP37AcLJWmnLqG094beZ9A=
-X-Google-Smtp-Source: AGHT+IHbNQTEVG2cKof3S4FeUIgLFrT/DVsyswwXVAtJnkg7b3F2iGq4VQNvhnBsPlTOOJ7clsnvPQ==
-X-Received: by 2002:a05:6402:270c:b0:640:d0d9:71d3 with SMTP id 4fb4d7f45d1cf-6415dc2ea5fmr2873707a12.6.1762643603577;
-        Sat, 08 Nov 2025 15:13:23 -0800 (PST)
+        bh=1MEwQ3w0WXL0SbyJSEK5ayMTVI87i1RH9nRchsrOxNc=;
+        b=YKqs5Jkf0GeFXDnrR5z35GkOEgQIv70giDY7G54JEXIFoFJ56mliySAwvicTQJSCDJ
+         T5sYoAorLbdjMiqVC0vAA2yf/be+soKm48tJ6HOQPYWpQdDFM92kXsYU4+r8D6m9Pj3U
+         vt/ciEqmqfg2DLI9F0OTrjZyjZm6slMSN+cw7gkkLqY4doP3AcB9O9YFGL3HDfRlPw7W
+         MbftZHnRaC5bdpfXgca6Lnv03mGPNAbhhaEZTmZuWMS0oAjFickgBxzCy17i/Do6B6OY
+         ISmgPSIXRV2JJOMO6HX5FKQnLTI11mTRqJaU311E3iXtSy/+X1ebRbQuH/6DhxU5lWUi
+         0SFQ==
+X-Gm-Message-State: AOJu0YxVYZ5jEyP9gZyMOK7bj6bJkkTxxlfnG4t4LtyN2GVUGG7+17On
+	WQ12ZqEBWLXCIQHVdi2R61/xGXIbO47P7+Ytzg5MNBS98O06zb7SlAi3H6wtuQ==
+X-Gm-Gg: ASbGnctLuCgHQJMBDnthCr8dNt6MIhyQ4IzSK3G8Z8BCMkVaS0CvI49L23LO0o2X0h4
+	Wt3XKYJKCJPIl5edOG21rpKNsW4NGDphPEicHiZj6lCNtlXFPksanlUkhTjzQ60KpRxzky6nXIn
+	FUJ93OInA6Z24Ip/tD19YZ9WF1k+BYxS6fikdlvM21ZSpvx3qb6y39upKIoqegtI0vxpfCiRkma
+	/9b0m75vP8CUVwTm4yzP7KR7G1gO3ienoJKjOp7p49i+cszYApCzh7hxtfTSkVSkI24hATNoRhJ
+	Vm4oZgKqcpUoShygwDNZ3Mu4vxJaJtL6qJAoS+ZBc7Om6SSCdl/GQRaqVNqJ47X2dgMzAJsO+CE
+	f52mW51ec81be791p9al34dSgVSkGXCybb1yGLZwhdKIfGj1NQ8VSMrpWx9+Btj8SoZL/DB8g5w
+	2gLMbn22BR1s376JSOmUqLrwsr2DHtPFF19RW4rL8fusb9h4VhJs/URTWYhEYExyLeQJ3QVBXkb
+	YGnI0Z4Fk6YkDXd5s5uvxhEw2yRVJHyWvxXYKfzrOk=
+X-Google-Smtp-Source: AGHT+IEsR1rp3/X0FtnDGE5wBY+8APLUTqmqxSkpd5bpl/RawvNHr6XzcekK44kWFCslKuF52z+IjQ==
+X-Received: by 2002:a05:6402:305c:10b0:640:ebca:e680 with SMTP id 4fb4d7f45d1cf-6415e80f7fdmr2452169a12.37.1762643605472;
+        Sat, 08 Nov 2025 15:13:25 -0800 (PST)
 Received: from blackbox (dynamic-2a02-3100-a9b3-6600-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:a9b3:6600:1e86:bff:fe2f:57b7])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-6411f814164sm7642807a12.13.2025.11.08.15.13.20
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-6411f814164sm7642807a12.13.2025.11.08.15.13.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Nov 2025 15:13:22 -0800 (PST)
+        Sat, 08 Nov 2025 15:13:24 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
 	linux-mmc@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	ulf.hansson@linaro.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1 3/7] mmc: meson-mx-sdio: Refactor internal clock initialization
-Date: Sun,  9 Nov 2025 00:12:49 +0100
-Message-ID: <20251108231253.1641927-4-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v1 4/7] mmc: meson-mx-sdio: Use devm_mmc_alloc_host() helper
+Date: Sun,  9 Nov 2025 00:12:50 +0100
+Message-ID: <20251108231253.1641927-5-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.51.2
 In-Reply-To: <20251108231253.1641927-1-martin.blumenstingl@googlemail.com>
 References: <20251108231253.1641927-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251108_151325_857645_0FB784FF 
-X-CRM114-Status: GOOD (  18.51  )
+X-CRM114-CacheID: sfid-20251108_151327_636840_25285F81 
+X-CRM114-Status: GOOD (  13.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,185 +104,92 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use modern common clock framework helpers for simplifying the clock
-controller management:
-- switch to struct clk_hw for internal clocks and only get the
-  "cfg_div_clk" (which has to be managed at runtime) as struct clk
-  using devm_clk_hw_get_clk() which is then the only clock used by
-  struct meson_mx_mmc_host.
-- use CLK_HW_INIT_FW_NAME and CLK_HW_INIT_HW helper macros for simpler
-  init data initialization
-- keep the clock controller memory allocation separate to prevent a
-  potential use-after-free because struct meson_mx_mmc_host_clkc is
-  free'd before controller_dev
+From: Binbin Zhou <zhoubinbin@loongson.cn>
 
+Use new function devm_mmc_alloc_host() to simplify the code.
+
+Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/mmc/host/meson-mx-sdio.c | 119 ++++++++++++++++---------------
- 1 file changed, 61 insertions(+), 58 deletions(-)
+ drivers/mmc/host/meson-mx-sdio.c | 18 +++++++-----------
+ 1 file changed, 7 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-index 1159cc911359..ce1828d915da 100644
+index ce1828d915da..214ce84f1ddd 100644
 --- a/drivers/mmc/host/meson-mx-sdio.c
 +++ b/drivers/mmc/host/meson-mx-sdio.c
-@@ -99,15 +99,15 @@
- #define MESON_MX_SDIO_RESPONSE_CRC16_BITS			(16 - 1)
- #define MESON_MX_SDIO_MAX_SLOTS					3
+@@ -648,7 +648,7 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
+ 	else if (IS_ERR(slot_pdev))
+ 		return PTR_ERR(slot_pdev);
  
-+struct meson_mx_mmc_host_clkc {
-+	struct clk_divider		cfg_div;
-+	struct clk_fixed_factor		fixed_div2;
-+};
-+
- struct meson_mx_mmc_host {
- 	struct device			*controller_dev;
- 
--	struct clk			*parent_clk;
--	struct clk_divider		cfg_div;
- 	struct clk			*cfg_div_clk;
--	struct clk_fixed_factor		fixed_factor;
--	struct clk			*fixed_factor_clk;
--
- 	struct regmap			*regmap;
- 	int				irq;
- 	spinlock_t			irq_lock;
-@@ -548,8 +548,7 @@ static int meson_mx_mmc_add_host(struct meson_mx_mmc_host *host)
- 
- 	/* Get the min and max supported clock rates */
- 	mmc->f_min = clk_round_rate(host->cfg_div_clk, 1);
--	mmc->f_max = clk_round_rate(host->cfg_div_clk,
--				    clk_get_rate(host->parent_clk));
-+	mmc->f_max = clk_round_rate(host->cfg_div_clk, ULONG_MAX);
- 
- 	mmc->caps |= MMC_CAP_CMD23 | MMC_CAP_WAIT_WHILE_BUSY;
- 	mmc->ops = &meson_mx_mmc_ops;
-@@ -565,54 +564,62 @@ static int meson_mx_mmc_add_host(struct meson_mx_mmc_host *host)
- 	return 0;
- }
- 
--static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host,
--				      void __iomem *base)
-+static struct clk *meson_mx_mmc_register_clk(struct device *dev,
-+					     void __iomem *base)
- {
--	struct clk_init_data init;
--	const char *clk_div_parent, *clk_fixed_factor_parent;
--
--	clk_fixed_factor_parent = __clk_get_name(host->parent_clk);
--	init.name = devm_kasprintf(host->controller_dev, GFP_KERNEL,
--				   "%s#fixed_factor",
--				   dev_name(host->controller_dev));
--	if (!init.name)
--		return -ENOMEM;
-+	const char *fixed_div2_name, *cfg_div_name;
-+	struct meson_mx_mmc_host_clkc *host_clkc;
-+	struct clk *clk;
-+	int ret;
- 
--	init.ops = &clk_fixed_factor_ops;
--	init.flags = 0;
--	init.parent_names = &clk_fixed_factor_parent;
--	init.num_parents = 1;
--	host->fixed_factor.div = 2;
--	host->fixed_factor.mult = 1;
--	host->fixed_factor.hw.init = &init;
--
--	host->fixed_factor_clk = devm_clk_register(host->controller_dev,
--						 &host->fixed_factor.hw);
--	if (WARN_ON(IS_ERR(host->fixed_factor_clk)))
--		return PTR_ERR(host->fixed_factor_clk);
--
--	clk_div_parent = __clk_get_name(host->fixed_factor_clk);
--	init.name = devm_kasprintf(host->controller_dev, GFP_KERNEL,
--				   "%s#div", dev_name(host->controller_dev));
--	if (!init.name)
--		return -ENOMEM;
-+	/* use a dedicated memory allocation for the clock controller to
-+	 * prevent use-after-free as meson_mx_mmc_host is free'd before
-+	 * dev (controller dev, not mmc_host->dev) is free'd.
-+	 */
-+	host_clkc = devm_kzalloc(dev, sizeof(*host_clkc), GFP_KERNEL);
-+	if (!host_clkc)
-+		return ERR_PTR(-ENOMEM);
-+
-+	fixed_div2_name = devm_kasprintf(dev, GFP_KERNEL, "%s#fixed_div2",
-+					 dev_name(dev));
-+	if (!fixed_div2_name)
-+		return ERR_PTR(-ENOMEM);
-+
-+	host_clkc->fixed_div2.div = 2;
-+	host_clkc->fixed_div2.mult = 1;
-+	host_clkc->fixed_div2.hw.init = CLK_HW_INIT_FW_NAME(fixed_div2_name,
-+							    "clkin",
-+							    &clk_fixed_factor_ops,
-+							    0);
-+	ret = devm_clk_hw_register(dev, &host_clkc->fixed_div2.hw);
-+	if (ret)
-+		return dev_err_ptr_probe(dev, ret,
-+					 "Failed to register %s clock\n",
-+					 fixed_div2_name);
-+
-+	cfg_div_name = devm_kasprintf(dev, GFP_KERNEL, "%s#div", dev_name(dev));
-+	if (!cfg_div_name)
-+		return ERR_PTR(-ENOMEM);
-+
-+	host_clkc->cfg_div.reg = base + MESON_MX_SDIO_CONF;
-+	host_clkc->cfg_div.shift = MESON_MX_SDIO_CONF_CMD_CLK_DIV_SHIFT;
-+	host_clkc->cfg_div.width = MESON_MX_SDIO_CONF_CMD_CLK_DIV_WIDTH;
-+	host_clkc->cfg_div.hw.init = CLK_HW_INIT_HW(cfg_div_name,
-+						    &host_clkc->fixed_div2.hw,
-+						    &clk_divider_ops,
-+						    CLK_DIVIDER_ALLOW_ZERO);
-+	ret = devm_clk_hw_register(dev, &host_clkc->cfg_div.hw);
-+	if (ret)
-+		return dev_err_ptr_probe(dev, ret,
-+					 "Failed to register %s clock\n",
-+					 cfg_div_name);
- 
--	init.ops = &clk_divider_ops;
--	init.flags = CLK_SET_RATE_PARENT;
--	init.parent_names = &clk_div_parent;
--	init.num_parents = 1;
--	host->cfg_div.reg = base + MESON_MX_SDIO_CONF;
--	host->cfg_div.shift = MESON_MX_SDIO_CONF_CMD_CLK_DIV_SHIFT;
--	host->cfg_div.width = MESON_MX_SDIO_CONF_CMD_CLK_DIV_WIDTH;
--	host->cfg_div.hw.init = &init;
--	host->cfg_div.flags = CLK_DIVIDER_ALLOW_ZERO;
--
--	host->cfg_div_clk = devm_clk_register(host->controller_dev,
--					      &host->cfg_div.hw);
--	if (WARN_ON(IS_ERR(host->cfg_div_clk)))
--		return PTR_ERR(host->cfg_div_clk);
-+	clk = devm_clk_hw_get_clk(dev, &host_clkc->cfg_div.hw, "cfg_div_clk");
-+	if (IS_ERR(clk))
-+		return dev_err_ptr_probe(dev, PTR_ERR(clk),
-+					 "Failed to get the cfg_div clock\n");
- 
--	return 0;
-+	return clk;
- }
- 
- static int meson_mx_mmc_probe(struct platform_device *pdev)
-@@ -682,16 +689,12 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 		goto error_free_mmc;
- 	}
- 
--	host->parent_clk = devm_clk_get(host->controller_dev, "clkin");
--	if (IS_ERR(host->parent_clk)) {
--		ret = PTR_ERR(host->parent_clk);
-+	host->cfg_div_clk = meson_mx_mmc_register_clk(&pdev->dev, base);
-+	if (IS_ERR(host->cfg_div_clk)) {
-+		ret = PTR_ERR(host->cfg_div_clk);
- 		goto error_free_mmc;
- 	}
- 
--	ret = meson_mx_mmc_register_clks(host, base);
--	if (ret)
+-	mmc = mmc_alloc_host(sizeof(*host), &slot_pdev->dev);
++	mmc = devm_mmc_alloc_host(&slot_pdev->dev, sizeof(*host));
+ 	if (!mmc) {
+ 		ret = -ENOMEM;
+ 		goto error_unregister_slot_pdev;
+@@ -667,13 +667,13 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
+ 					     &meson_mx_sdio_regmap_config);
+ 	if (IS_ERR(host->regmap)) {
+ 		ret = PTR_ERR(host->regmap);
 -		goto error_free_mmc;
--
++		goto error_unregister_slot_pdev;
+ 	}
+ 
+ 	irq = platform_get_irq(pdev, 0);
+ 	if (irq < 0) {
+ 		ret = irq;
+-		goto error_free_mmc;
++		goto error_unregister_slot_pdev;
+ 	}
+ 
+ 	ret = devm_request_threaded_irq(host->controller_dev, irq,
+@@ -681,24 +681,24 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
+ 					meson_mx_mmc_irq_thread, IRQF_ONESHOT,
+ 					NULL, host);
+ 	if (ret)
+-		goto error_free_mmc;
++		goto error_unregister_slot_pdev;
+ 
+ 	core_clk = devm_clk_get_enabled(host->controller_dev, "core");
+ 	if (IS_ERR(core_clk)) {
+ 		ret = PTR_ERR(core_clk);
+-		goto error_free_mmc;
++		goto error_unregister_slot_pdev;
+ 	}
+ 
+ 	host->cfg_div_clk = meson_mx_mmc_register_clk(&pdev->dev, base);
+ 	if (IS_ERR(host->cfg_div_clk)) {
+ 		ret = PTR_ERR(host->cfg_div_clk);
+-		goto error_free_mmc;
++		goto error_unregister_slot_pdev;
+ 	}
+ 
  	ret = clk_prepare_enable(host->cfg_div_clk);
  	if (ret) {
  		dev_err(host->controller_dev, "Failed to enable MMC clock\n");
+-		goto error_free_mmc;
++		goto error_unregister_slot_pdev;
+ 	}
+ 
+ 	conf = 0;
+@@ -718,8 +718,6 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
+ 
+ error_disable_div_clk:
+ 	clk_disable_unprepare(host->cfg_div_clk);
+-error_free_mmc:
+-	mmc_free_host(mmc);
+ error_unregister_slot_pdev:
+ 	of_platform_device_destroy(&slot_pdev->dev, NULL);
+ 	return ret;
+@@ -737,8 +735,6 @@ static void meson_mx_mmc_remove(struct platform_device *pdev)
+ 	of_platform_device_destroy(slot_dev, NULL);
+ 
+ 	clk_disable_unprepare(host->cfg_div_clk);
+-
+-	mmc_free_host(host->mmc);
+ }
+ 
+ static const struct of_device_id meson_mx_mmc_of_match[] = {
 -- 
 2.51.2
 
