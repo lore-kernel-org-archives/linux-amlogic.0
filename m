@@ -4,89 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA2AACCFA13
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Nov 2025 23:13:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02225CCFA13
+	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Nov 2025 16:39:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZC5skZFxbexPUOKKDJuU9UqTKmXCDt+rzpyunioNjPY=; b=VOfDqvL6guUc1A
-	Da1isajpjiM5M0lDptCl7+ibgyO49GZAeWqilytRIfXC7q4qeqsN98izVU/edwTffOh6KLbhyTdhU
-	Xd5aONC7fl8fpLEzM713dnFGWeAJVC5st6IUA8NQxavr3mg03/uTg2qMbEDqemCMyOXfS6xtzRiY/
-	ZK/pfhoTXOq0whaEEq4lpGWGckN8f5dcpeofjPSHvIwnRLV4S4mdwihIQh/dKUKD38ffFP/q6eyVJ
-	Ks80XIfh3OJHVrpYbDu0uNojebUK8UyvOpAeSuPp2Wsc6JPq2c1MlbUKyERgYKNw1z2Nbu7Derp3Y
-	kpmUpn5q0owi/vy7lErg==;
+	List-Owner; bh=sLJhq1W9usiW3pmWp8Xjlqcf8r3ymE3Te6nlwZsFwGU=; b=2qY5QMyUsxJ2iv
+	pBLCwmH0IL8NLpAeBOSm9aLZfmqdQGPPEZCuWLtkeAL30V7DIUQulf0Bs0HTgYlLQ3HzFsrJtF+DS
+	aallMEmvBJeU3UcBj0rLmBkQZE95OCZwtqb007lc6WTGV7zgnVZ6HG322rLL2YLCTkOXkdviuftKp
+	kKnPh16oceeLBK9lRWklLKWXNdf9gLOxyFOAo/9qFNnOcKOc/+zRb1iqQJ5TP5tkyaxcBz7nzBAyc
+	2gdKm/CUcymRjcr7D/YhTliMALdk2i1lAOj0RHxbwescskimHyd6rAzRmWkAySniTuL6+GYKPaXq/
+	lmQ1zgPjCKstSEaOt9rA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHs7o-00000003YoB-40Hz;
-	Sat, 08 Nov 2025 23:13:40 +0000
-Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
+	id 1vI8Ra-00000004A0Q-2erD;
+	Sun, 09 Nov 2025 16:39:10 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vHs7j-00000003Yf8-0IA8
+	id 1vI8RW-000000049z4-1DJu
 	for linux-amlogic@lists.infradead.org;
-	Sat, 08 Nov 2025 23:13:36 +0000
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-64180bd67b7so23672a12.0
-        for <linux-amlogic@lists.infradead.org>; Sat, 08 Nov 2025 15:13:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1762643613; x=1763248413; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jp3aBA3u4fWo7xiq7xdD0SMcDBXI+jskP2t4r2Vw08s=;
-        b=dHmkxpTM3ESsnDkMjMdmNNcojyzhAZI2kOk2Ccw0WDx0a7WBGWB7IGLVLRLiaH+qyX
-         LQkwYY0qz7rUnQ7D+mgQkYgt8KhZ/5QKodm3CqTdIvj3Avb1EHzoa5S0rtVljrVJG76T
-         yQeaMvzmzyilwmKD31N/ggisVQ+zRbOQAUwsAsi8LXBNAF9Tc0o/0Au0UhJbPWNuXM5O
-         BiSTgcsWmOmDXiXtSYzAJb15Zv3I41yVPZUbOZbsAxhQjqkbVbZAnznGAYw8sMYbBK/E
-         Qq0IwK2+7U8CgxGWV3X8Et7nW2u9zVDsnNqkLwh8MyAZgtPiPhkgntAJwli4PkfsdZhL
-         do0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762643613; x=1763248413;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=jp3aBA3u4fWo7xiq7xdD0SMcDBXI+jskP2t4r2Vw08s=;
-        b=CYdtdTtYVQmqEdy8qUR9GuKDvH1BX1jc2YT1OhFiAAVThRPGR8ZE+17JZajBrI+wxx
-         b0b3QNkcK0Aen6GPYU+9ht9/MpqKz3Gtndf+N6V5qll4TNakNg7uFRlwJwBzgQVpOGz7
-         261goD5TfcVd6v3P9icQLyo4SB3VZmtGMcymE6fyneoUZhU/Q58a55CPjlLolxPC534U
-         ohGXrIm6ew1HeMDfnvyJhGnq2eKO1/8lbYFU2IUquotxs5E/IcL12wOyHTLIXG4fBDtQ
-         ArchE/HXW7pVlE7xM4Iadr3SGk7HyHi3VegvpyJZOqjgGXj2ucF2ReN9VRJ7j2t/ZKF0
-         ScIw==
-X-Gm-Message-State: AOJu0YxLxxVH+tbh1uI4QvXABml8PPYGE386f/A1xV9kYDKGqbFCAEe5
-	C5pL6Wl1AH4SoubvbJ0N7SmbT2Pm/Kxw/v+uBnW6VKVIh5jN1u1ioIF7kY6JJA==
-X-Gm-Gg: ASbGnctHlsyc72XRq0AMY2cNGcUttsARch1iCj3GybSffP9JXsxMG0wsW3R1iT5Ci+x
-	ubsXAWV6/k7dVUzxJdpgD//lTxses3gww+pYYovzV7nTD6AIKTXzJUQDDS0EmldL4Vzc1q517fg
-	C3G13ZFlxQ3BUDbxBtqX4S1usHddcF9elXKjE5s0u4BHfWNn8vw7j4+aLi1cAmW/qwVnA+ErVDi
-	Des2I25tZGU+k2lRLgwJqp/ciDCvI/pNqPuEBbSQJ7MbrEtoRaiYEBPWENLNZiQ7URU+yrRGMsZ
-	pqh+ObZ7w8Rv8s+e7ij2L0SUarMBoBxRbFF2AG8y2mYKyRBqfQntRHP18H+5q65j1GPfjyp14y4
-	AxOf6z2RmDoQfLuac2+3GBVJoufyVENaxJ0UKNRlVXxnMEgpL2CEEiWKGHd5I5w2N/KhqhhqNLW
-	P2rC6KFsIAZ3bTiLM/qXas0ma+cHRU4mE2Xer3JbUtGpPMPE5diClicK/Be8EGM1x4rS9af2jQp
-	L1Xqnb0o+zfhbpXV3nyRXdGoKVwevxH
-X-Google-Smtp-Source: AGHT+IGemsR0OuxveqoCLuvT35vA4jAjT0f4VTJglt6MI1GNIHLfcz8g6Jk7qZLukmNg7JdbfDQkvg==
-X-Received: by 2002:a05:6402:4415:b0:634:6d87:1d28 with SMTP id 4fb4d7f45d1cf-6415e856c10mr2612380a12.35.1762643612939;
-        Sat, 08 Nov 2025 15:13:32 -0800 (PST)
-Received: from blackbox (dynamic-2a02-3100-a9b3-6600-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:a9b3:6600:1e86:bff:fe2f:57b7])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-6411f814164sm7642807a12.13.2025.11.08.15.13.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Nov 2025 15:13:31 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org,
-	linux-mmc@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	ulf.hansson@linaro.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1 7/7] mmc: meson-mx-sdio: Ignore disabled "mmc-slot" child-nodes
-Date: Sun,  9 Nov 2025 00:12:53 +0100
-Message-ID: <20251108231253.1641927-8-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251108231253.1641927-1-martin.blumenstingl@googlemail.com>
-References: <20251108231253.1641927-1-martin.blumenstingl@googlemail.com>
+	Sun, 09 Nov 2025 16:39:09 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id EB0491A197F;
+	Sun,  9 Nov 2025 16:39:00 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BCD0D606F5;
+	Sun,  9 Nov 2025 16:39:00 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 66E9011853189;
+	Sun,  9 Nov 2025 17:38:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1762706339; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=ZPRMEMcp2dhUGBHSuTRmxmLz/+slEndBNL5XpFqtZ1U=;
+	b=aIoKA3TZ8t6K+Vrshq3NfDorKiZuRejrlRcVM0UIqysbh10hoVWL/cFDQhnbe6lSgmOWR0
+	uarz8vGDSht8iVMcwkPYyBxJjPFdP7M6zXkR37d8DrJIdoZygxRdQq+7li1H0hHStZwqWR
+	daNbvdSgrgRc7RjtZdrQcXdI8UR0Aph/BG+sFxJJTMPqR/sWkHAj6VUwTAXQK8OSr8e/Mr
+	KGNYX84FHVQkFyJhxmFq51m5AWO/5263nSruhA8vU2zzrFNPt2eFYtVdJFTHqJkYsTJkpW
+	nyIToGDmgTbgMXEt7bAePomqHPtkWBJ+w4z9jj9+8PmpuLrHiKK2RuV0GMylRw==
+Message-ID: <e309efc0-1b03-416c-8464-af92cc428acf@bootlin.com>
+Date: Sun, 9 Nov 2025 17:38:45 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 16/16] net: stmmac: visconti: use
+ stmmac_get_phy_intf_sel()
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Emil Renner Berthing <kernel@esmil.dk>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ Keguang Zhang <keguang.zhang@gmail.com>, Kevin Hilman
+ <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-mips@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Minda Chen <minda.chen@starfivetech.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, netdev@vger.kernel.org,
+ Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
+ Paolo Abeni <pabeni@redhat.com>
+References: <aQ4ByErmsnAPSHIL@shell.armlinux.org.uk>
+ <E1vHNSq-0000000DkTN-3RoV@rmk-PC.armlinux.org.uk>
+ <14f80863-5766-437a-8e38-8991a1a725f9@bootlin.com>
+ <aQ74G_WqoAusC2wd@shell.armlinux.org.uk>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <aQ74G_WqoAusC2wd@shell.armlinux.org.uk>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251108_151335_129742_8700E102 
-X-CRM114-Status: GOOD (  17.43  )
+X-CRM114-CacheID: sfid-20251109_083906_917064_B4A02F88 
+X-CRM114-Status: UNSURE (   9.37  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,80 +97,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The meson-mx-sdio (and mmc core) only support one MMC/SD/SDIO slot
-(device) per host. Thus having multiple mmc-slot nodes (one for the up
-to three supported slots with one device each on the meson-mx-sdio
-hardware) can be problematic.
 
-Allow specifying all slots (with their respective device) connected to
-the meson-mx-sdio hardware in device-tree, while making sure that only
-the enabled one(s) are actually considered by the driver.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/mmc/host/meson-mx-sdio.c | 37 ++++++++++++++++++--------------
- 1 file changed, 21 insertions(+), 16 deletions(-)
+On 08/11/2025 08:58, Russell King (Oracle) wrote:
+> On Fri, Nov 07, 2025 at 07:23:26PM +0100, Maxime Chevallier wrote:
+>> Hi Russell,
+>>
+>> On 07/11/2025 15:29, Russell King (Oracle) wrote:
+>>> -	switch (plat_dat->phy_interface) {
+>>> -	case PHY_INTERFACE_MODE_RGMII:
+>>> -	case PHY_INTERFACE_MODE_RGMII_ID:
+>>> -	case PHY_INTERFACE_MODE_RGMII_RXID:
+>>> -	case PHY_INTERFACE_MODE_RGMII_TXID:
+>>> -		phy_intf_sel = ETHER_CONFIG_INTF_RGMII;
+>>> -		break;
+>>> -	case PHY_INTERFACE_MODE_MII:
+>>> -		phy_intf_sel = ETHER_CONFIG_INTF_MII;
+>>> -		break;
+>>> -	case PHY_INTERFACE_MODE_RMII:
+>>> -		phy_intf_sel = ETHER_CONFIG_INTF_RMII;
+>>> -		break;
+>>> -	default:
+>>> +	int phy_intf_sel;
+>>> +
+>>> +	phy_intf_sel = stmmac_get_phy_intf_sel(plat_dat->phy_interface);
+>>> +	if (phy_intf_sel != PHY_INTF_SEL_GMII_MII &&
+>>> +	    phy_intf_sel != PHY_INTF_SEL_RGMII &&
+>>> +	    phy_intf_sel != PHY_INTF_SEL_RMII) {
+>>>  		dev_err(&pdev->dev, "Unsupported phy-mode (%d)\n", plat_dat->phy_interface);
+>>>  		return -EOPNOTSUPP;
+>>>  	}
+>>
+>> Probably not too big of a deal, but don't we now incorrectly accept the
+>> "gmii" mode ?
+> 
+> We will accept GMII mode, but (a) does that matter, and (b) shouldn't
+> the DT binding be checking the phy-mode (we have some bindings that do.)
 
-diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-index e8b63dc45dd8..5921e2cb2180 100644
---- a/drivers/mmc/host/meson-mx-sdio.c
-+++ b/drivers/mmc/host/meson-mx-sdio.c
-@@ -493,23 +493,30 @@ static struct mmc_host_ops meson_mx_mmc_ops = {
- 
- static struct platform_device *meson_mx_mmc_slot_pdev(struct device *parent)
- {
--	struct device_node *slot_node;
--	struct platform_device *pdev;
-+	struct platform_device *pdev = NULL;
-+
-+	for_each_available_child_of_node_scoped(parent->of_node, slot_node) {
-+		if (!of_device_is_compatible(slot_node, "mmc-slot"))
-+			continue;
-+
-+		/*
-+		 * TODO: the MMC core framework currently does not support
-+		 * controllers with multiple slots properly. So we only
-+		 * register the first slot for now.
-+		 */
-+		if (pdev) {
-+			dev_warn(parent,
-+				 "more than one 'mmc-slot' compatible child found - using the first one and ignoring all subsequent ones\n");
-+			break;
-+		}
- 
--	/*
--	 * TODO: the MMC core framework currently does not support
--	 * controllers with multiple slots properly. So we only register
--	 * the first slot for now
--	 */
--	slot_node = of_get_compatible_child(parent->of_node, "mmc-slot");
--	if (!slot_node) {
--		dev_warn(parent, "no 'mmc-slot' sub-node found\n");
--		return ERR_PTR(-ENOENT);
-+		pdev = of_platform_device_create(slot_node, NULL, parent);
-+		if (!pdev)
-+			dev_err(parent,
-+				"Failed to create platform device for mmc-slot node '%pOF'\n",
-+				slot_node);
- 	}
- 
--	pdev = of_platform_device_create(slot_node, NULL, parent);
--	of_node_put(slot_node);
--
- 	return pdev;
- }
- 
-@@ -642,8 +649,6 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 	slot_pdev = meson_mx_mmc_slot_pdev(&pdev->dev);
- 	if (!slot_pdev)
- 		return -ENODEV;
--	else if (IS_ERR(slot_pdev))
--		return PTR_ERR(slot_pdev);
- 
- 	mmc = devm_mmc_alloc_host(&slot_pdev->dev, sizeof(*host));
- 	if (!mmc) {
--- 
-2.51.2
+Thanks for the clarification, that's fine by me then :)
+
+Maxime
 
 
 _______________________________________________
