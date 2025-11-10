@@ -4,121 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30DF4CD13CF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Nov 2025 11:04:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35241CCF9E3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Nov 2025 14:42:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=CFb0inK5WHFbXcMROw4zKshwenze+n9kEDmWL2W2/+A=; b=3QD+pbfwoANEZfiJV1KN634T9O
-	nEVqv5HKBXOoYSP6q/mmMk5NDxh737GhfORN+kFN/OZxLUQKdsdTpNkcfM4JR/cDrOlLZhfiXE/Bq
-	j9lUI08q3ineonIdAnWX4TMXEqZCwYs+j9+oUkqZBIgpzqJ8akh5kkMevJ7KdoyPyBM4OpK7qUJJf
-	bz4AZhQpzw5KVg+O+yRf6UfwuSuaMlxbq5M+Obyl90iPYkRRNuO8oKUnTxzF/T3z4vBAKJPfRFBOU
-	mQIPCllnJrSwozRMqgx4qvw5VtfQSJH3aB3Xuze1kgoI/49G/LE2oVShx0hvD+MX0cSDq/b3V/1LO
-	xUPUpodg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=9jocCXcC9ph1Leu+nnlHNB7KxO+D/w2ggHgZ1oyYpNk=; b=T+ovJEi/F81Bae
+	sbw9Cubq4VPa/+/sjcq+jWmcj+cINzaRwOaUOM9x7zwC7VdmegQB4FuefEZ4uynngw2PUNqrO9Qbt
+	KYoyq8tHixe6Y6v+hrI68f19ExZjZa3UOybvwVmuFJ/I8KWOxEvidD6RkxklPNA9crOfB4Gbzspld
+	F2ezDKenaN7JcPh8ToUpbluk+5/2GXyQa+ZcSm+aG5QYODN04/BI8CMTW2n57pd+d4vylteGVCu3R
+	R0kPD7EAi16Wf2pY9hmXpmNZI38fVL6v8Dsqaa+4FWvdlF10zkhpBYvGJz7hjGsdqkrQNC7qkEVFw
+	upptbt9WtiquEAHy+RTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vIPh4-00000005G5B-3dqt;
-	Mon, 10 Nov 2025 11:04:18 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1vIT6V-00000005c2L-0xxU;
+	Mon, 10 Nov 2025 14:42:47 +0000
+Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vIPgy-00000005G4A-0a3o
-	for linux-amlogic@lists.infradead.org;
-	Mon, 10 Nov 2025 11:04:17 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-42b3377aaf2so680548f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 10 Nov 2025 03:04:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762772650; x=1763377450; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yIWnZ8dEqAIo6e04DNrTq+ZCsjQol4ZAc5Df0I8mreM=;
-        b=sKjXapYuKOz9PJcDUKb9Kk5L7LbA+devOQiHdwfRnreUA6BqkNJtFsXG8rempMvzum
-         AZvmXPWPlna7Opv9vKNqYpkCWL7m72CTsMfUzx6Rz92H+ObpDffyHIm30c6m6e8k2J7E
-         Jx0EpTaMblepxf4GBPFg17yo/az1KM3JMxbvr4fBxFvpJD19vLU5JUj2QVhwzWZhVq0G
-         uGsFapDw6n0XoeJ0pV00N5THJ1C+FRUtned5YzQ7Sv9VapehhpPZ5CFTV8FdzZDBacqb
-         0cWv8Gc5nEBuvSSuR6p9e3+/c3jmcGjlB5kCvuQiuqOFgVvQU+BYAyinBxm+Aojus3VM
-         CVbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762772650; x=1763377450;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yIWnZ8dEqAIo6e04DNrTq+ZCsjQol4ZAc5Df0I8mreM=;
-        b=RGHWGYqV8bPVsh8b+U6t9ACE50L1riPxCYu16w4igrWLg8fpm8JcTsQ8B+HO1cSBzO
-         LJyO9grp07BbyVtZbgwDXEOTASf1TOaZbFnvYSNx+olUiO6KBpz1kAi6+NC3LUYADdf2
-         Tdioiz0wnJXZEDK68juqOA5UsbDtkO6xB0kN2cS1teVV338LKv72/W8N80GWDbBJpRPy
-         lXPme7wgUTI3kF4vUVhz+u49EXWBIzjW0N2sAD9CYLyF+9FCHq0XD/LeE84jYCxdZ1Bs
-         f/+FeFcbT9k4jXuwAgXEwjPFY8GUyYXtF1UizbWeJTsLXUVs6hcyE+d+Y/o6pcRgAtDV
-         AGBA==
-X-Forwarded-Encrypted: i=1; AJvYcCVfU0heCIJp+91OCyRfm8sDdnskOZBIUZcFUlNx2NptZkFvmVIY1hNznF/Qrm0+gQBxSCXlUrlGVD/MFC6c@lists.infradead.org
-X-Gm-Message-State: AOJu0Yzg7zzUSTUvbdyrQVhZAQKCE3I3lGhhahlW0PykgjYYjrWZiDKP
-	ByS3ZkRK3GXxMd8gBgATthWOtXDnjtUKkZC+XgDkLNp+1Uc/XnYON1bgJ+OFGzB/QD4=
-X-Gm-Gg: ASbGncv7YLFiTbM5APDwTO1//RlTlBf3clVYSYTOsOSRck5Gazk2c28DPgvHC7qZdOt
-	53vb+wY/q/nWImfdDittQFSg6GJSW8o7fNU7LzdPf9NkVafUOBAmh4BQdXgxfeh6OfLOygHwZF6
-	UizpS7lD8ILdAYqzsauF1Woo/aCZkBG7kLDhA8Kv88VzdOGMJeTin++6aypSAF6dw8aBU18QDuT
-	pylr6qiOZcmc9xN3rQ7SEpM9x7CMk/Bpd06s9CPDOBNjiq+ehpebFYApQF9IfR3NtUxyCd+LbNF
-	/hebERnFLaWry4o38TYA2hJMi9MTUoe9+jAiqmc477cWI/vOWbTK7DxDjriuINfNY5JhuXD/mxq
-	vzMMNyyVQ553ZWDAu8LYzeWC60weBW0svQEtU7nqFjgH/hOWspsm0vXNzEVmJ7T1WwZkDoeKtmI
-	ymgJaPjS8QX0ob/cKovxaZg2Vhh5g8rPmqINjV/HVtAgw3neh6tjzP
-X-Google-Smtp-Source: AGHT+IH0yKFYlADFFoNgI+vt5Nvr3682vUUZksEIjYehH1HnbB5yCLv9XtMdyOspZEkknqy2NTGIgA==
-X-Received: by 2002:a05:600c:c84:b0:46e:3f75:da49 with SMTP id 5b1f17b1804b1-477732a1d2bmr55933905e9.37.1762772649975;
-        Mon, 10 Nov 2025 03:04:09 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080:f168:a23e:c1b2:ae61? ([2a01:e0a:3d9:2080:f168:a23e:c1b2:ae61])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47763e4f13dsm106249415e9.5.2025.11.10.03.04.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Nov 2025 03:04:09 -0800 (PST)
-Message-ID: <3c98a3f1-ca68-41ed-a8bb-f99a57ac57d7@linaro.org>
-Date: Mon, 10 Nov 2025 12:04:08 +0100
+	id 1vIT6R-00000005c1K-3t7M;
+	Mon, 10 Nov 2025 14:42:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=pTHTnt47dLnvjBSkUPSimpdVNbseAt9gYfCc7cGjwZM=; b=Bg7eIF/nhX4f25nLvWrbk05hXu
+	19ZiIrw2v7uwrhAks3/yHKlyo4RfB5fVVRH5snm1fNTylSIqs32z1Q1PzQy1ED4RdFgyuftQScOjR
+	Wv8McRxhFq7arVI56mIh1XPaiMOnSMZ68dyPivUOo7jvsNZzgMva9PeT0qq6+41kNS/wSZ0lWI6q3
+	lg9KQn7EqjUKzfEk5YIODMbWh2RTJNPh0UTe4mAG7kVu1JlLAr1Jv1JrlD+i8dT08UlVdRRHCrRH/
+	ktUJjjJ3/jaDmas8otejsFlS3sWqFkCab2tW2JNXdQb+AqsYk5Lxum9+M4PR5PRmZxy2/7G/8G8Uj
+	Aw3Kplrg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55342)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vIT6F-000000001Dg-1Zxp;
+	Mon, 10 Nov 2025 14:42:31 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vIT6A-0000000023w-4AxZ;
+	Mon, 10 Nov 2025 14:42:27 +0000
+Date: Mon, 10 Nov 2025 14:42:26 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>, netdev@vger.kernel.org,
+	Paolo Abeni <pabeni@redhat.com>
+Subject: [PATCH net-next v2 0/3] net: stmmac: convert meson8b to use
+ stmmac_get_phy_intf_sel()
+Message-ID: <aRH50uVDX4_9O5ZU@shell.armlinux.org.uk>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] PCI: meson: Remove meson_pcie_link_up() timeout, message,
- speed check
-To: Bjorn Helgaas <helgaas@kernel.org>, Yue Wang <yue.wang@Amlogic.com>,
- Kevin Hilman <khilman@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Linnaea Lavia <linnaea-von-lavia@live.com>, FUKAUMI Naoki <naoki@radxa.com>,
- Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>, stable@vger.kernel.org
-References: <20251103221930.1831376-1-helgaas@kernel.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20251103221930.1831376-1-helgaas@kernel.org>
+Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251110_030412_249028_F6DC6C96 
-X-CRM114-Status: GOOD (  19.83  )
+X-CRM114-CacheID: sfid-20251110_064244_230265_D5BE83A3 
+X-CRM114-Status: UNSURE (   8.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,98 +85,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/3/25 23:19, Bjorn Helgaas wrote:
-> From: Bjorn Helgaas <bhelgaas@google.com>
-> 
-> Previously meson_pcie_link_up() only returned true if the link was in the
-> L0 state.  This was incorrect because hardware autonomously manages
-> transitions between L0, L0s, and L1 while both components on the link stay
-> in D0.  Those states should all be treated as "link is active".
-> 
-> Returning false when the device was in L0s or L1 broke config accesses
-> because dw_pcie_other_conf_map_bus() fails if the link is down, which
-> caused errors like this:
-> 
->    meson-pcie fc000000.pcie: error: wait linkup timeout
->    pci 0000:01:00.0: BAR 0: error updating (0xfc700004 != 0xffffffff)
-> 
-> Remove the LTSSM state check, timeout, speed check, and error message from
-> meson_pcie_link_up(), the dw_pcie_ops.link_up() method, so it is a simple
-> boolean check of whether the link is active.  Timeouts and and error
-> messages are handled at a higher level, e.g., dw_pcie_wait_for_link().
-> 
-> Fixes: 9c0ef6d34fdb ("PCI: amlogic: Add the Amlogic Meson PCIe controller driver")
-> Reported-by: Linnaea Lavia <linnaea-von-lavia@live.com>
-> Closes: https://lore.kernel.org/r/DM4PR05MB102707B8CDF84D776C39F22F2C7F0A@DM4PR05MB10270.namprd05.prod.outlook.com
-> Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
-> Tested-by: Linnaea Lavia <linnaea-von-lavia@live.com>
-> Cc: stable@vger.kernel.org
-> ---
->   drivers/pci/controller/dwc/pci-meson.c | 36 +++-----------------------
->   1 file changed, 3 insertions(+), 33 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> index 787469d1b396..13685d89227a 100644
-> --- a/drivers/pci/controller/dwc/pci-meson.c
-> +++ b/drivers/pci/controller/dwc/pci-meson.c
-> @@ -338,40 +338,10 @@ static struct pci_ops meson_pci_ops = {
->   static bool meson_pcie_link_up(struct dw_pcie *pci)
->   {
->   	struct meson_pcie *mp = to_meson_pcie(pci);
-> -	struct device *dev = pci->dev;
-> -	u32 speed_okay = 0;
-> -	u32 cnt = 0;
-> -	u32 state12, state17, smlh_up, ltssm_up, rdlh_up;
-> +	u32 state12;
->   
-> -	do {
-> -		state12 = meson_cfg_readl(mp, PCIE_CFG_STATUS12);
-> -		state17 = meson_cfg_readl(mp, PCIE_CFG_STATUS17);
-> -		smlh_up = IS_SMLH_LINK_UP(state12);
-> -		rdlh_up = IS_RDLH_LINK_UP(state12);
-> -		ltssm_up = IS_LTSSM_UP(state12);
-> -
-> -		if (PM_CURRENT_STATE(state17) < PCIE_GEN3)
-> -			speed_okay = 1;
-> -
-> -		if (smlh_up)
-> -			dev_dbg(dev, "smlh_link_up is on\n");
-> -		if (rdlh_up)
-> -			dev_dbg(dev, "rdlh_link_up is on\n");
-> -		if (ltssm_up)
-> -			dev_dbg(dev, "ltssm_up is on\n");
-> -		if (speed_okay)
-> -			dev_dbg(dev, "speed_okay\n");
-> -
-> -		if (smlh_up && rdlh_up && ltssm_up && speed_okay)
-> -			return true;
-> -
-> -		cnt++;
-> -
-> -		udelay(10);
-> -	} while (cnt < WAIT_LINKUP_TIMEOUT);
-> -
-> -	dev_err(dev, "error: wait linkup timeout\n");
-> -	return false;
-> +	state12 = meson_cfg_readl(mp, PCIE_CFG_STATUS12);
-> +	return IS_SMLH_LINK_UP(state12) && IS_RDLH_LINK_UP(state12);
->   }
->   
->   static int meson_pcie_host_init(struct dw_pcie_rp *pp)
+This series splits out meson8b from the previous 16 patch series
+as that now has r-b tags.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on BananaPi M2S
+This series converts meson8b to use stmmac_get_phy_intf_sel(). This
+driver is not converted to the set_phy_intf_sel() method as it is
+unclear whether there are ordering dependencies that would prevent
+it. I would appreciate the driver author looking in to whether this
+conversion is possible.
 
-Thanks !
+Technically v2, since these changes were posted as part of the 16
+patch series. No changes other than r-b tags added.
 
-Neil
+ .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    | 30 ++++++++--------------
+ 1 file changed, 10 insertions(+), 20 deletions(-)
 
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
 _______________________________________________
 linux-amlogic mailing list
