@@ -4,101 +4,121 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19EB0CCFA1E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Nov 2025 08:19:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30DF4CD13CF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Nov 2025 11:04:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ns34BLiQ+7Sw9L329biqHvZMy8dzyKEhbwTQNk9vZi0=; b=f/S07AkX3/QkCE
-	Ey4Zxr9KmFwQotp0mWgsQYG1XlfZ7sKt++r2tPJLmDiWfFG9MqlV/VPGO4Gz+lwJO3IcVcza8Qo4S
-	agjcfX03y1sq3ZThw1I7QMA2BSaQKO2X4isL1200Soluy0Pv7UtofyC8qbUUIk+v2WcLsW6KN0WfV
-	+mR6xMCBYx2Ciswd2pLQ6FLa8lyh0Ru5cJRNTEOHLAl/RahnZkArIv7Oi3ZKlim2+wBGftnrH0LnL
-	AuC40u7yZ8z5DHWiXzcoWECODn63+CgKcc1uWKVtQvoGmfJMnEd7jcMf6Ehieymkov1Cm9QVia3QX
-	3JNlHswSxFzD8X0BXFOw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=CFb0inK5WHFbXcMROw4zKshwenze+n9kEDmWL2W2/+A=; b=3QD+pbfwoANEZfiJV1KN634T9O
+	nEVqv5HKBXOoYSP6q/mmMk5NDxh737GhfORN+kFN/OZxLUQKdsdTpNkcfM4JR/cDrOlLZhfiXE/Bq
+	j9lUI08q3ineonIdAnWX4TMXEqZCwYs+j9+oUkqZBIgpzqJ8akh5kkMevJ7KdoyPyBM4OpK7qUJJf
+	bz4AZhQpzw5KVg+O+yRf6UfwuSuaMlxbq5M+Obyl90iPYkRRNuO8oKUnTxzF/T3z4vBAKJPfRFBOU
+	mQIPCllnJrSwozRMqgx4qvw5VtfQSJH3aB3Xuze1kgoI/49G/LE2oVShx0hvD+MX0cSDq/b3V/1LO
+	xUPUpodg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vIN75-00000004y1n-0Qin;
-	Mon, 10 Nov 2025 08:18:59 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1vIPh4-00000005G5B-3dqt;
+	Mon, 10 Nov 2025 11:04:18 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vIN71-00000004y0f-1JiA
+	id 1vIPgy-00000005G4A-0a3o
 	for linux-amlogic@lists.infradead.org;
-	Mon, 10 Nov 2025 08:18:57 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-477632cc932so10054545e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 10 Nov 2025 00:18:54 -0800 (PST)
+	Mon, 10 Nov 2025 11:04:17 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-42b3377aaf2so680548f8f.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 10 Nov 2025 03:04:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1762762733; x=1763367533; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+Ow0jXvjkh77pOXWIP6I5DYsF4xpz6igLz3RhPzX2Hc=;
-        b=cVtERCXGVSYvsdxIWSxBizOKYPj8a1/IhhgYbsmwAa8dp5pbxQLzGTQ4er7M6GE0T5
-         FbWo4a9zl4F3UokSKFCYNcDjTgQeMWEBSni7b3XwU2zIKmoUXIUW/m+bfapsN7g1p0Eo
-         UOsxnUwmIMPUzj1Pt3iqN05ho4DM3QyZGCcMEdz1cRaOmW4yXlbQiBMd4+EZKI0isYRk
-         StQ2kb+JoBZmFGdJ2Q5wCz24TxDkGXG3h986ldY9UzUhk3JrajZjEyDDhGQijzHU7RKU
-         cggOpEhHOJUTLPsgRMoEs+K04sNTHMcVOQT7p57A+RvBdy+p1ElINlgP1eQeZ7WZU8Ti
-         Y/Qw==
+        d=linaro.org; s=google; t=1762772650; x=1763377450; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yIWnZ8dEqAIo6e04DNrTq+ZCsjQol4ZAc5Df0I8mreM=;
+        b=sKjXapYuKOz9PJcDUKb9Kk5L7LbA+devOQiHdwfRnreUA6BqkNJtFsXG8rempMvzum
+         AZvmXPWPlna7Opv9vKNqYpkCWL7m72CTsMfUzx6Rz92H+ObpDffyHIm30c6m6e8k2J7E
+         Jx0EpTaMblepxf4GBPFg17yo/az1KM3JMxbvr4fBxFvpJD19vLU5JUj2QVhwzWZhVq0G
+         uGsFapDw6n0XoeJ0pV00N5THJ1C+FRUtned5YzQ7Sv9VapehhpPZ5CFTV8FdzZDBacqb
+         0cWv8Gc5nEBuvSSuR6p9e3+/c3jmcGjlB5kCvuQiuqOFgVvQU+BYAyinBxm+Aojus3VM
+         CVbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1762762733; x=1763367533;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+Ow0jXvjkh77pOXWIP6I5DYsF4xpz6igLz3RhPzX2Hc=;
-        b=jjtf7Cm2KbUZ4eSHwI7MnQ+f0S+RVj5r4wijQxRnwWrE+Y51DazviMSVdeqKZ6g1r5
-         rLG7ok7n315whaWKz7rNWKXu7M/stxzz3KRv2CnfYAvqYKjaOK1xpPDEgPD9tjSrdLy1
-         QzPUfCSxOxJY4lbRHoTZxMB1DUv3DuaRa43qdDe3KnJD8FTIEp+sowNtDKKMpxK6Os8g
-         ap3mXqI+Y7JtFJTI/dBDHAbvURqkW1oZPEe7mMSWN9cLtgHaML2f86rEBc1AeOhTjtcP
-         fbLODVrxF6YlYoJaBoILxgLp4ivuvteIuvRnJ2l1SXCPS1B6m6S/c9lWx4cuxIkvvglJ
-         JOKA==
-X-Forwarded-Encrypted: i=1; AJvYcCXIZgd2Tv/dhvBXZL14WRRnUzVVfn5HKyvfi7PFG4PakxbvTbcef/2WEv1u1+ihaKgua6nC6Y6roYOyluxJ@lists.infradead.org
-X-Gm-Message-State: AOJu0YwbTzZPkqJNaz2+Pu5MyZ2HEmIboaOO2P8k4KIz8ZBaKF8LWwhT
-	n7B8yyYth9o+RAUuuyEnISynLf858RPMULvSFEGFhaeeGb/wLNsoiPXzb1cf+BJhfRY=
-X-Gm-Gg: ASbGnctU0emCLG84PWdyMS3nwDDc5yQ42zqbFIj4OUkmhiZvTIuVF3w+uXvAxAJjpDJ
-	P9OciHc4Ihymi0zrZNXiJOcI7/8/dNb9Elb3NItLO341SVuiq1sSDQYKHX/h6tq9pPuJmhtGIFa
-	hzopvksjvOze6suD4+BnOTum8fvsQt/9ffB8ReRD9MyKDc+Wehc3WD2wOPvWdOFKGVFXCNHLgfY
-	VJJW4s3ldCDQoYBs3kbUm2+fwp29p3kIZV5QUkOG0GAjVKcoZOnPm/eE6K2qatfxbJGbDVl36jE
-	NWg9O7sN5oCm30/Hd00bnaZIo2o/bKoqVAcRw8oA1ekRZta1A1QcHOQKHXPndAdYokIC7svDraL
-	6FAwTZ05ahU8sgSBatVf5NjGKvijOBfi4gInJ98oS3qm2AOCKhC+RqT/t0MJP4iE1XimDaidUNq
-	1DNQhlyHfu9W1V0IfbbsVz
-X-Google-Smtp-Source: AGHT+IFNAJ6Bn4FpyZtFF1NnxwYE2SjgYr7mpYVD4++XybQIbWpInXbD7iemC8JYoesp/8+j6x9DXg==
-X-Received: by 2002:a05:600c:4fc7:b0:477:6d96:b3dd with SMTP id 5b1f17b1804b1-47773236f6cmr51381675e9.1.1762762733314;
-        Mon, 10 Nov 2025 00:18:53 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4776bd08834sm192070105e9.15.2025.11.10.00.18.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Nov 2025 00:18:53 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>, 
- Yue Wang <yue.wang@amlogic.com>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Andrew Murray <amurray@thegoodpenguin.co.uk>, 
- Jingoo Han <jingoohan1@gmail.com>, 
- Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, stable+noautosel@kernel.org, 
- stable@vger.kernel.org, Linnaea Lavia <linnaea-von-lavia@live.com>
-In-Reply-To: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
-References: <20251101-pci-meson-fix-v1-0-c50dcc56ed6a@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH RESEND 0/3] PCI: meson: Fix the parsing of DBI
- region
-Message-Id: <176276273239.834148.1225755186046227156.b4-ty@linaro.org>
-Date: Mon, 10 Nov 2025 09:18:52 +0100
+        d=1e100.net; s=20230601; t=1762772650; x=1763377450;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yIWnZ8dEqAIo6e04DNrTq+ZCsjQol4ZAc5Df0I8mreM=;
+        b=RGHWGYqV8bPVsh8b+U6t9ACE50L1riPxCYu16w4igrWLg8fpm8JcTsQ8B+HO1cSBzO
+         LJyO9grp07BbyVtZbgwDXEOTASf1TOaZbFnvYSNx+olUiO6KBpz1kAi6+NC3LUYADdf2
+         Tdioiz0wnJXZEDK68juqOA5UsbDtkO6xB0kN2cS1teVV338LKv72/W8N80GWDbBJpRPy
+         lXPme7wgUTI3kF4vUVhz+u49EXWBIzjW0N2sAD9CYLyF+9FCHq0XD/LeE84jYCxdZ1Bs
+         f/+FeFcbT9k4jXuwAgXEwjPFY8GUyYXtF1UizbWeJTsLXUVs6hcyE+d+Y/o6pcRgAtDV
+         AGBA==
+X-Forwarded-Encrypted: i=1; AJvYcCVfU0heCIJp+91OCyRfm8sDdnskOZBIUZcFUlNx2NptZkFvmVIY1hNznF/Qrm0+gQBxSCXlUrlGVD/MFC6c@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzg7zzUSTUvbdyrQVhZAQKCE3I3lGhhahlW0PykgjYYjrWZiDKP
+	ByS3ZkRK3GXxMd8gBgATthWOtXDnjtUKkZC+XgDkLNp+1Uc/XnYON1bgJ+OFGzB/QD4=
+X-Gm-Gg: ASbGncv7YLFiTbM5APDwTO1//RlTlBf3clVYSYTOsOSRck5Gazk2c28DPgvHC7qZdOt
+	53vb+wY/q/nWImfdDittQFSg6GJSW8o7fNU7LzdPf9NkVafUOBAmh4BQdXgxfeh6OfLOygHwZF6
+	UizpS7lD8ILdAYqzsauF1Woo/aCZkBG7kLDhA8Kv88VzdOGMJeTin++6aypSAF6dw8aBU18QDuT
+	pylr6qiOZcmc9xN3rQ7SEpM9x7CMk/Bpd06s9CPDOBNjiq+ehpebFYApQF9IfR3NtUxyCd+LbNF
+	/hebERnFLaWry4o38TYA2hJMi9MTUoe9+jAiqmc477cWI/vOWbTK7DxDjriuINfNY5JhuXD/mxq
+	vzMMNyyVQ553ZWDAu8LYzeWC60weBW0svQEtU7nqFjgH/hOWspsm0vXNzEVmJ7T1WwZkDoeKtmI
+	ymgJaPjS8QX0ob/cKovxaZg2Vhh5g8rPmqINjV/HVtAgw3neh6tjzP
+X-Google-Smtp-Source: AGHT+IH0yKFYlADFFoNgI+vt5Nvr3682vUUZksEIjYehH1HnbB5yCLv9XtMdyOspZEkknqy2NTGIgA==
+X-Received: by 2002:a05:600c:c84:b0:46e:3f75:da49 with SMTP id 5b1f17b1804b1-477732a1d2bmr55933905e9.37.1762772649975;
+        Mon, 10 Nov 2025 03:04:09 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:3d9:2080:f168:a23e:c1b2:ae61? ([2a01:e0a:3d9:2080:f168:a23e:c1b2:ae61])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47763e4f13dsm106249415e9.5.2025.11.10.03.04.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Nov 2025 03:04:09 -0800 (PST)
+Message-ID: <3c98a3f1-ca68-41ed-a8bb-f99a57ac57d7@linaro.org>
+Date: Mon, 10 Nov 2025 12:04:08 +0100
 MIME-Version: 1.0
-X-Mailer: b4 0.14.3
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] PCI: meson: Remove meson_pcie_link_up() timeout, message,
+ speed check
+To: Bjorn Helgaas <helgaas@kernel.org>, Yue Wang <yue.wang@Amlogic.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Linnaea Lavia <linnaea-von-lavia@live.com>, FUKAUMI Naoki <naoki@radxa.com>,
+ Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>, stable@vger.kernel.org
+References: <20251103221930.1831376-1-helgaas@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20251103221930.1831376-1-helgaas@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251110_001855_462770_F29403D8 
-X-CRM114-Status: GOOD (  12.83  )
+X-CRM114-CacheID: sfid-20251110_030412_249028_F6DC6C96 
+X-CRM114-Status: GOOD (  19.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,50 +130,96 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Sat, 01 Nov 2025 09:59:39 +0530, Manivannan Sadhasivam wrote:
-> This compile tested only series aims to fix the DBI parsing issue repored in
-> [1]. The issue stems from the fact that the DT and binding described 'dbi'
-> region as 'elbi' from the start.
+On 11/3/25 23:19, Bjorn Helgaas wrote:
+> From: Bjorn Helgaas <bhelgaas@google.com>
 > 
-> Now, both binding and DTs are fixed and the driver is reworked to work with both
-> old and new DTs.
+> Previously meson_pcie_link_up() only returned true if the link was in the
+> L0 state.  This was incorrect because hardware autonomously manages
+> transitions between L0, L0s, and L1 while both components on the link stay
+> in D0.  Those states should all be treated as "link is active".
 > 
-> [...]
+> Returning false when the device was in L0s or L1 broke config accesses
+> because dw_pcie_other_conf_map_bus() fails if the link is down, which
+> caused errors like this:
+> 
+>    meson-pcie fc000000.pcie: error: wait linkup timeout
+>    pci 0000:01:00.0: BAR 0: error updating (0xfc700004 != 0xffffffff)
+> 
+> Remove the LTSSM state check, timeout, speed check, and error message from
+> meson_pcie_link_up(), the dw_pcie_ops.link_up() method, so it is a simple
+> boolean check of whether the link is active.  Timeouts and and error
+> messages are handled at a higher level, e.g., dw_pcie_wait_for_link().
+> 
+> Fixes: 9c0ef6d34fdb ("PCI: amlogic: Add the Amlogic Meson PCIe controller driver")
+> Reported-by: Linnaea Lavia <linnaea-von-lavia@live.com>
+> Closes: https://lore.kernel.org/r/DM4PR05MB102707B8CDF84D776C39F22F2C7F0A@DM4PR05MB10270.namprd05.prod.outlook.com
+> Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
+> Tested-by: Linnaea Lavia <linnaea-von-lavia@live.com>
+> Cc: stable@vger.kernel.org
+> ---
+>   drivers/pci/controller/dwc/pci-meson.c | 36 +++-----------------------
+>   1 file changed, 3 insertions(+), 33 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+> index 787469d1b396..13685d89227a 100644
+> --- a/drivers/pci/controller/dwc/pci-meson.c
+> +++ b/drivers/pci/controller/dwc/pci-meson.c
+> @@ -338,40 +338,10 @@ static struct pci_ops meson_pci_ops = {
+>   static bool meson_pcie_link_up(struct dw_pcie *pci)
+>   {
+>   	struct meson_pcie *mp = to_meson_pcie(pci);
+> -	struct device *dev = pci->dev;
+> -	u32 speed_okay = 0;
+> -	u32 cnt = 0;
+> -	u32 state12, state17, smlh_up, ltssm_up, rdlh_up;
+> +	u32 state12;
+>   
+> -	do {
+> -		state12 = meson_cfg_readl(mp, PCIE_CFG_STATUS12);
+> -		state17 = meson_cfg_readl(mp, PCIE_CFG_STATUS17);
+> -		smlh_up = IS_SMLH_LINK_UP(state12);
+> -		rdlh_up = IS_RDLH_LINK_UP(state12);
+> -		ltssm_up = IS_LTSSM_UP(state12);
+> -
+> -		if (PM_CURRENT_STATE(state17) < PCIE_GEN3)
+> -			speed_okay = 1;
+> -
+> -		if (smlh_up)
+> -			dev_dbg(dev, "smlh_link_up is on\n");
+> -		if (rdlh_up)
+> -			dev_dbg(dev, "rdlh_link_up is on\n");
+> -		if (ltssm_up)
+> -			dev_dbg(dev, "ltssm_up is on\n");
+> -		if (speed_okay)
+> -			dev_dbg(dev, "speed_okay\n");
+> -
+> -		if (smlh_up && rdlh_up && ltssm_up && speed_okay)
+> -			return true;
+> -
+> -		cnt++;
+> -
+> -		udelay(10);
+> -	} while (cnt < WAIT_LINKUP_TIMEOUT);
+> -
+> -	dev_err(dev, "error: wait linkup timeout\n");
+> -	return false;
+> +	state12 = meson_cfg_readl(mp, PCIE_CFG_STATUS12);
+> +	return IS_SMLH_LINK_UP(state12) && IS_RDLH_LINK_UP(state12);
+>   }
+>   
+>   static int meson_pcie_host_init(struct dw_pcie_rp *pp)
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.19/arm64-dt)
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on BananaPi M2S
 
-[2/3] arm64: dts: amlogic: Fix the register name of the 'DBI' region
-      https://git.kernel.org/amlogic/c/8b983ae355aab50942c72096beba30254c5078bd
+Thanks !
 
-These changes has been applied on the intermediate git tree [1].
-
-The v6.19/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
 Neil
 
 
