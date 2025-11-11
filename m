@@ -4,80 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6379FCCFA13
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Nov 2025 14:43:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0BDCCCF9E3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Nov 2025 11:48:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:MIME-Version:Subject:Cc
-	:To:From:References:In-Reply-To:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GNBnWdli8AIiBuQu09sLVgi6rmkOp6feleSxY4Hojyk=; b=jzZZjvtdkBiZJv
-	P2PAL51jL4jWDPt9jdV5rJP7tsa4MknSqUiLXUfrFeu9C9Kzhz8r3h2/swt/vs+ZhjdR7TNtUSwxv
-	S3h8qzAaR48m0cquPumysqsd/gj5rCF1BeRwm2EmD5Uz2yAh5kR1ulCE7g/4mWVhxMRFgw7bVq7/K
-	dyE0wyMVHotV9iiggnErSxhGHHtQhNvkq/09TCZLpSe5ffxIZ67WoYv378VCO/Dx5KLiMpHXg4PNm
-	DENWgW9D5c2qnIF6sfnGTIDpPku0W3O0+A0Xd90ahrbw764hqXT62Tno9qlPv5tjHlZkAefybzVpd
-	eo2aZDd0H6V3opngEBBA==;
+	List-Owner; bh=Vx4gshWXLEcDWXBIP+CR2PSnNryqKbWyj+/biHax1Tk=; b=bv3UBHECimV/sU
+	apS/rMxqEuYB3mGvVg+j/BBZTL/PDMVyNkhLUd2FjljYt+K04ugb14/TQNKg0yMT2B8cRdinEjWmP
+	tBSeDlI3cn0uYjTLnlr7fSFnQ7PJY/rB2yTm3iaKNTDijEcqmXK6r30kHsB8G25MBIopqjBA+/xSH
+	iHE7cH54MZbKkpfgbTN6QhdBs4bJ5IxGsEtU4aPtkDQpxp9cq1EDgBaUv8s5pUKQpyoxo7VSB6xfB
+	cI69bYq0KhhyhToL5/KjsNh3l79rdzjNgRfbpvB20R8qy80df69Q9jHpok3lT/JeBvuPQTIuZr3wF
+	Ql87n/k3WuBWO4CgR4/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vIT6p-00000005cEj-1lIS;
-	Mon, 10 Nov 2025 14:43:07 +0000
-Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	id 1vImr7-000000076mV-31kv;
+	Tue, 11 Nov 2025 11:48:13 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vIT6l-00000005cBD-2zVR;
-	Mon, 10 Nov 2025 14:43:05 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
-	In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=3CWXVBhOiA+tRvKyE+/GGXUPBWvE2q22xR+ZQCaN5h4=; b=vEvs389teh52/YLlwapr+eFGbh
-	YuUw1usZIlOM1GPy58FgHHlEQtKt2gb16aeU8f64kgwh3pXr7uSut0pbN/nzgvnwt+mQsP2D4MrhO
-	8CFRuwSB0QyXyC1qhkmaEt1LCNinruhztYD2fatvjD451MH3GIVNsGi3vsTqrBOS/VSPaJlQM+/GA
-	1tKShjcbUBH5O+YT8qBIrkoWfTpwh6JNpR9Kej1hdlpoQaP0pR8WaX2yUbPzQAvfCPikBWpBYb6cj
-	WARnywcYiXoT2U7y0wn0wRamh2c1cWMHp5y4ub5kJ5r6LzKxN3jxfqWN52vdOJsgVM5uAb2Jve/yC
-	jvpQz4Sw==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:41032 helo=rmk-PC.armlinux.org.uk)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <rmk@armlinux.org.uk>)
-	id 1vIT6c-000000001Eb-3hIR;
-	Mon, 10 Nov 2025 14:42:55 +0000
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1vIT6b-0000000DpPX-1LQ0;
-	Mon, 10 Nov 2025 14:42:53 +0000
-In-Reply-To: <aRH50uVDX4_9O5ZU@shell.armlinux.org.uk>
-References: <aRH50uVDX4_9O5ZU@shell.armlinux.org.uk>
-From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	id 1vImr5-000000076m0-0Q7s;
+	Tue, 11 Nov 2025 11:48:12 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id A5F0242B45;
+	Tue, 11 Nov 2025 11:48:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E74BC116D0;
+	Tue, 11 Nov 2025 11:47:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1762861689;
+	bh=jxi1Gv6OcPtGGFXGFF2QxkwKjLaMbfnLeBrhrAyU/Tg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U8wDzG2jhPfzS4KLy6BBXjLkq8tbdJdbZ2HLPt/oCduCWbREVPz6XahhQXZNBZvqk
+	 rL61nJbROp9KbKpanxP6Xm+RhhBC2JjGt3mq5g1Vt8UeeKM8gOKgcYiPO0I2jAA8oR
+	 2vP9zcZsjezzMSY7lXp0qcTehuQ5Bvcn5PLIyv21tVd9pJmlDNPzRzYLCVga+fJVZC
+	 exeLAcTwq2GZWVxiqi/O5Hs9YfEKaR3AZUbkmkVOA0uPAeCkVjy4pmp9+BXSwywuet
+	 qQS5xfNfqALbItTHOqCEixH82CxNQPweybJmarDGuJMjWDhzcw/4Ag1g8TdQPeJwJh
+	 M8yYB1Fdu26pw==
+Date: Tue, 11 Nov 2025 11:47:53 +0000
+From: Simon Horman <horms@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
 	Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Matthew Gerlach <matthew.gerlach@altera.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	netdev@vger.kernel.org,
-	Paolo Abeni <pabeni@redhat.com>
-Subject: [PATCH net-next v2 3/3] net: stmmac: meson8b: use
- stmmac_get_phy_intf_sel()
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Shuang Liang <liangshuang@eswincomputing.com>,
+	Zhi Li <lizhi2@eswincomputing.com>,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
+	Clark Wang <xiaoning.wang@nxp.com>, Linux Team <linux-imx@nxp.com>,
+	Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>,
+	Samin Guo <samin.guo@starfivetech.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Swathi K S <swathi.ks@samsung.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Drew Fustini <dfustini@tenstorrent.com>,
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org,
+	linux-mips@vger.kernel.org, imx@lists.linux.dev,
+	linux-renesas-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v5 8/8] net: stmmac: qcom-ethqos: add support for sa8255p
+Message-ID: <aRMiafCQNPVDOljU@horms.kernel.org>
+References: <20251107-qcom-sa8255p-emac-v5-0-01d3e3aaf388@linaro.org>
+ <20251107-qcom-sa8255p-emac-v5-8-01d3e3aaf388@linaro.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-Message-Id: <E1vIT6b-0000000DpPX-1LQ0@rmk-PC.armlinux.org.uk>
-Date: Mon, 10 Nov 2025 14:42:53 +0000
+In-Reply-To: <20251107-qcom-sa8255p-emac-v5-8-01d3e3aaf388@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251110_064303_762195_8877C635 
-X-CRM114-Status: UNSURE (   9.85  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20251111_034811_202441_481F9095 
+X-CRM114-Status: GOOD (  23.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,50 +130,123 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use stmmac_get_phy_intf_sel() to decode the PHY interface mode to the
-phy_intf_sel value, validate the result and use that to set the
-control register to select the operating mode for the DWMAC core.
+On Fri, Nov 07, 2025 at 11:29:58AM +0100, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- .../ethernet/stmicro/stmmac/dwmac-meson8b.c    | 18 ++++--------------
- 1 file changed, 4 insertions(+), 14 deletions(-)
+...
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index 865cd6166134..e4d5c41294f4 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -238,22 +238,12 @@ static int meson_axg_set_phy_mode(struct meson8b_dwmac *dwmac)
- {
- 	int phy_intf_sel;
- 
--	switch (dwmac->phy_mode) {
--	case PHY_INTERFACE_MODE_RGMII:
--	case PHY_INTERFACE_MODE_RGMII_RXID:
--	case PHY_INTERFACE_MODE_RGMII_ID:
--	case PHY_INTERFACE_MODE_RGMII_TXID:
--		/* enable RGMII mode */
--		phy_intf_sel = PHY_INTF_SEL_RGMII;
--		break;
--	case PHY_INTERFACE_MODE_RMII:
--		/* disable RGMII mode -> enables RMII mode */
--		phy_intf_sel = PHY_INTF_SEL_RMII;
--		break;
--	default:
-+	phy_intf_sel = stmmac_get_phy_intf_sel(dwmac->phy_mode);
-+	if (phy_intf_sel != PHY_INTF_SEL_RGMII &&
-+	    phy_intf_sel != PHY_INTF_SEL_RMII) {
- 		dev_err(dwmac->dev, "fail to set phy-mode %s\n",
- 			phy_modes(dwmac->phy_mode));
--		return -EINVAL;
-+		return phy_intf_sel < 0 ? phy_intf_sel : -EINVAL;
- 	}
- 
- 	meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_EXT_PHY_MODE_MASK,
--- 
-2.47.3
+> +static int qcom_ethqos_pd_init(struct platform_device *pdev, void *priv)
+> +{
+> +	struct qcom_ethqos *ethqos = priv;
+> +	int ret;
+> +
+> +	/*
+> +	 * Enable functional clock to prevent DMA reset after timeout due
+> +	 * to no PHY clock being enabled after the hardware block has been
+> +	 * power cycled. The actual configuration will be adjusted once
+> +	 * ethqos_fix_mac_speed() is called.
+> +	 */
+> +	ethqos_set_func_clk_en(ethqos);
+> +
+> +	ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_CORE);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_MDIO);
+> +	if (ret) {
+> +		qcom_ethqos_domain_off(ethqos, ETHQOS_PD_CORE);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void qcom_ethqos_pd_exit(struct platform_device *pdev, void *data)
+> +{
+> +	struct qcom_ethqos *ethqos = data;
+> +
+> +	qcom_ethqos_domain_off(ethqos, ETHQOS_PD_MDIO);
+> +	qcom_ethqos_domain_off(ethqos, ETHQOS_PD_CORE);
+> +}
+> +
+>  static void ethqos_ptp_clk_freq_config(struct stmmac_priv *priv)
+>  {
+>  	struct plat_stmmacenet_data *plat_dat = priv->plat;
 
+...
+
+> @@ -852,28 +993,63 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+>  	ethqos->rgmii_config_loopback_en = drv_data->rgmii_config_loopback_en;
+>  	ethqos->has_emac_ge_3 = drv_data->has_emac_ge_3;
+>  	ethqos->needs_sgmii_loopback = drv_data->needs_sgmii_loopback;
+> -
+> -	ethqos->pm.link_clk = devm_clk_get(dev, clk_name);
+> -	if (IS_ERR(ethqos->pm.link_clk))
+> -		return dev_err_probe(dev, PTR_ERR(ethqos->pm.link_clk),
+> -				     "Failed to get link_clk\n");
+> -
+> -	ret = ethqos_clks_config(ethqos, true);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = devm_add_action_or_reset(dev, ethqos_clks_disable, ethqos);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ethqos->pm.serdes_phy = devm_phy_optional_get(dev, "serdes");
+> -	if (IS_ERR(ethqos->pm.serdes_phy))
+> -		return dev_err_probe(dev, PTR_ERR(ethqos->pm.serdes_phy),
+> -				     "Failed to get serdes phy\n");
+> -
+> -	ethqos->set_serdes_speed = ethqos_set_serdes_speed_phy;
+>  	ethqos->serdes_speed = SPEED_1000;
+> -	ethqos_update_link_clk(ethqos, SPEED_1000);
+> +
+> +	if (pm_data && pm_data->use_domains) {
+> +		ethqos->set_serdes_speed = ethqos_set_serdes_speed_pd;
+> +
+> +		ret = devm_pm_domain_attach_list(dev, &pm_data->pd,
+> +						 &ethqos->pd.pd_list);
+> +		if (ret < 0)
+> +			return dev_err_probe(dev, ret, "Failed to attach power domains\n");
+> +
+> +		plat_dat->clks_config = ethqos_pd_clks_config;
+> +		plat_dat->serdes_powerup = qcom_ethqos_pd_serdes_powerup;
+> +		plat_dat->serdes_powerdown = qcom_ethqos_pd_serdes_powerdown;
+> +		plat_dat->exit = qcom_ethqos_pd_exit;
+
+Hi Bartosz,
+
+It seems that the intention of this is to ensure
+that domains turned on by qcom_ethqos_pd_init()
+are turned off again on exit or clean-up in error paths.
+
+> +		plat_dat->init = qcom_ethqos_pd_init;
+> +		plat_dat->clk_ptp_rate = pm_data->clk_ptp_rate;
+> +
+> +		ret = qcom_ethqos_pd_init(pdev, ethqos);
+> +		if (ret)
+> +			return ret;
+
+And here those domains are turned on.
+
+> +
+> +		ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_SERDES);
+> +		if (ret)
+
+But it seems that if we reach this error path then the cleanup is not
+performed. This is because plat_dat and thus it's exit callback are
+registered until the call to devm_stmmac_pltfr_probe() towards the end of
+this function.
+
+Sorry if I'm on the wrong track here. I did dig into it.
+But this was flagged by Claude Code running
+https://github.com/masoncl/review-prompts/
+
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to enable the serdes power domain\n");
+
+...
 
 _______________________________________________
 linux-amlogic mailing list
