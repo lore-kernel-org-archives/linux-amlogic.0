@@ -4,77 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCDA6CDB47A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Nov 2025 03:01:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19EA1CE8D4A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Nov 2025 15:58:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zgExG307BO1MSfqvWdnvUKjMqP0a+qD4F0Ns7LeR2kY=; b=3pNDnOlecMYYU5
-	1iRM4BPxwTJgjidN3STCl5JiLxEwb1YT6w8U4kUydj7EI016Rn4SSk1987eA6YeLhEBFJUrv8Yrps
-	ZEYA3iuTKEjUF15iMOtCVwe6SiE8rlgcb2xRNXqBTEN/g84i+Tjne4xpm7hU9kKx651Z2uKp0Gu3d
-	jP1gVsqW9wLywUAZHk5RkA1mb7tz6UaWuVRTQB/Mpl5zyx8pK18DU1KYwcY2pahr7SLKGHgY6CltX
-	c58tjulXdiYOjl5oZ9Hf8huEdE2THUZ+lzy2csNVhZ1Xjj/Rz4Xk+YC8/qSNCeHHLVlwme/yfH7Hq
-	OcXDJW4w8eRYzoA6Em3w==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=YGbyAZxSudu9ckDLrutJauJYyL4k6OAUoBWjcI5mY1Y=; b=2KpQK8XOUh9ZMszMCl/S9KnT9r
+	3gvUP95ruTD7fYE79akEI5zT1fyvYlgRJBNps1IjY4m/B6yaSTk4a4+ZpDIfx0mfJs7gvyttpx22/
+	tHZPTCSwairOUFeYiwjt5Q/rQWBLxLtOJSbp74x5yyPqWsKodkIA3yndoBgUQTwXjA14OmTbjXVGR
+	Db13ZpUniwSfo7FVoGcY/d8+0aoFGMVK+QZakATsPQDOpNs3kn7poBrO7Atn4z86fiWnKG17VJkbN
+	8TNLrziS/WjGIbV/Cfe4gGQ7MfeAKNEeBRH3h0UdLn2oc6bA+2i5y5p0BoY3k/4qdkdNb5JXbs4Hc
+	mzsvjUDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vJk4J-0000000BRhu-3b52;
-	Fri, 14 Nov 2025 03:01:47 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1vJwBq-0000000CdfX-2MSL;
+	Fri, 14 Nov 2025 15:58:22 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vJk4H-0000000BRdv-06gN;
-	Fri, 14 Nov 2025 03:01:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1763089301;
-	bh=fpctLSQF/NF2mNL/C7f8N8pXoyQ4/1yo7rKatwKgPTk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=IatPK1vqv1b1q8n64yFCQuI0yv79iGGbsiUEU/je1ECOG+vnkFXT0JEHz7ItV3uBz
-	 Tdbhh3lXGTcM5Z+OW6DvI/h7U9Awch1yjEAIyVXvLTWH7kJfF4sRwY7/kIpGBzfX74
-	 40ZVJNsTc6JLAjbo0+N1kH79cEq6nKWE+pI5G6MBQOBUk2ymGgb7byaq6gJzKA0HYf
-	 l8878T31xEP741UUamsaaQBE5JazwHXHEDJvwA2UIdrJk7Luw+mMfJ7FLmPQyDMSJA
-	 +96deSWaB83IhKHKFc/J4uqAVHMiSx2OlCrYIHeiB32DmJ8PWljrrjWr9+eyiLVBkn
-	 jH0H9l5w+B/lw==
-Received: from debian (unknown [171.76.81.120])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: vignesh)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6D4A517E0E0A;
-	Fri, 14 Nov 2025 04:01:35 +0100 (CET)
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com,
-	helen.fornazier@gmail.com,
-	airlied@gmail.com,
-	simona.vetter@ffwll.ch,
-	dmitry.baryshkov@oss.qualcomm.com,
-	lumag@kernel.org,
-	robdclark@gmail.com,
-	robin.clark@oss.qualcomm.com,
-	guilherme.gallo@collabora.com,
-	sergi.blanch.torne@collabora.com,
-	valentine.burley@collabora.com,
-	linux-mediatek@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	amd-gfx@lists.freedesktop.org,
-	linux-arm-msm@vger.kernel.org,
-	intel-gfx@lists.freedesktop.org,
-	virtualization@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] drm/ci: Move qualcomm baremetal jobs to lava
-Date: Fri, 14 Nov 2025 08:30:51 +0530
-Message-ID: <20251114030056.1139570-3-vignesh.raman@collabora.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251114030056.1139570-1-vignesh.raman@collabora.com>
-References: <20251114030056.1139570-1-vignesh.raman@collabora.com>
+	id 1vJwBp-0000000CdfD-0f8W;
+	Fri, 14 Nov 2025 15:58:21 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 5430060121;
+	Fri, 14 Nov 2025 15:58:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA6AAC19421;
+	Fri, 14 Nov 2025 15:58:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763135900;
+	bh=tRFbjnnnGYoNv0ovOhf9bdB3gNHViLXElGTT7OSRUNM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=kn0voBfhkFcXuamgxp1cypg5mRJYcDjJPdn2UBLK5ris48B7Oq4H9FkY+NzEziugS
+	 evjYPPdviDkQKxDhod7Iwuia4NcBUHWlURuhu8l3nV5jIXRUJDNvbsOlRU17PgRnpt
+	 ydRlUnBhMFjd1BCDD6Wrer0ZAtSZ9v4+rghuXZWmfW76LnavEl68TDiXj6w6Ikimjd
+	 o3Z5BoZcJ0kywb7tQ/z2YIa31/KC0hy+6ewhU1G5kyJKcIEg6D09PAWAzNh42kuWo2
+	 DK5bvlI7S0M2dKiJ5mSfxkRQrmXSQjE1c+ewXIG4vSr86DsX6NEPCg0R0bgkiAKFN9
+	 5mxW4hSujkSdg==
+Date: Fri, 14 Nov 2025 09:58:18 -0600
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251113_190145_367424_CD1B588E 
-X-CRM114-Status: UNSURE (   9.67  )
-X-CRM114-Notice: Please train this message.
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ linux-kernel@vger.kernel.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com>
+References: <20251105-irqchip-gpio-s6-s7-s7d-v1-0-b4d1fe4781c1@amlogic.com>
+ <20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com>
+Message-Id: <176313578804.3261993.9727195642647352249.robh@kernel.org>
+Subject: Re: [PATCH 5/5] arm64: dts: Add gpio_intc node for Amlogic S7D
+ SoCs
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,148 +77,61 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Qualcomm apq8016 and apq8096 DUTS are moved to Collabora lava
-farm. So enable these jobs to use lava and update expectation
-files.
 
-Co-developed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
----
- drivers/gpu/drm/ci/arm64.config               |  1 +
- drivers/gpu/drm/ci/test.yml                   | 62 ++++++-------------
- .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |  4 ++
- .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |  2 +
- 4 files changed, 27 insertions(+), 42 deletions(-)
+On Wed, 05 Nov 2025 17:45:36 +0800, Xianwei Zhao wrote:
+> Add GPIO interrupt controller device.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
 
-diff --git a/drivers/gpu/drm/ci/arm64.config b/drivers/gpu/drm/ci/arm64.config
-index fddfbd4d2493..b850b88787ad 100644
---- a/drivers/gpu/drm/ci/arm64.config
-+++ b/drivers/gpu/drm/ci/arm64.config
-@@ -83,6 +83,7 @@ CONFIG_SC_DISPCC_7180=y
- CONFIG_SC_GPUCC_7180=y
- CONFIG_SM_GPUCC_8350=y
- CONFIG_QCOM_SPMI_ADC5=y
-+CONFIG_QCOM_SPMI_VADC=y
- CONFIG_DRM_PARADE_PS8640=y
- CONFIG_DRM_LONTIUM_LT9611UXC=y
- CONFIG_PHY_QCOM_USB_HS=y
-diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-index e56895626500..42f75993e190 100644
---- a/drivers/gpu/drm/ci/test.yml
-+++ b/drivers/gpu/drm/ci/test.yml
-@@ -67,31 +67,6 @@
-     - testing:x86_64
-     - igt:x86_64
- 
--.baremetal-igt-arm64:
--  extends:
--    - .baremetal-test-arm64-gl
--    - .use-debian/baremetal_arm64_test-gl
--    - .allow_failure_lockdep
--  timeout: "1h30m"
--  rules:
--    - !reference [.scheduled_pipeline-rules, rules]
--    - !reference [.google-freedreno-farm-rules, rules]
--    - when: on_success
--  variables:
--    FDO_CI_CONCURRENT: 10
--    HWCI_TEST_SCRIPT: "/install/igt_runner.sh"
--    S3_ARTIFACT_NAME: "arm64/kernel-files"
--    BM_KERNEL: https://${PIPELINE_ARTIFACTS_BASE}/arm64/Image.gz
--    BM_CMDLINE: "ip=dhcp console=ttyMSM0,115200n8 $BM_KERNEL_EXTRA_ARGS root=/dev/nfs rw nfsrootdebug nfsroot=,tcp,nfsvers=4.2 init=/init $BM_KERNELARGS"
--    FARM: google
--  needs:
--    - debian/baremetal_arm64_test-gl
--    - job: testing:arm64
--      artifacts: false
--    - igt:arm64
--  tags:
--    - $RUNNER_TAG
--
- .software-driver:
-   stage: software-driver
-   extends:
-@@ -149,34 +124,37 @@ msm:sc7180-trogdor-kingoftown:
- 
- msm:apq8016:
-   extends:
--    - .baremetal-igt-arm64
-+    - .lava-igt:arm64
-   stage: msm
-+  parallel: 3
-   variables:
--    DEVICE_TYPE: apq8016-sbc-usb-host
-+    BOOT_METHOD: fastboot
-+    DEVICE_TYPE: dragonboard-410c
-     DRIVER_NAME: msm
--    BM_DTB: https://${PIPELINE_ARTIFACTS_BASE}/arm64/${DEVICE_TYPE}.dtb
-+    DTB: apq8016-sbc-usb-host
-+    FARM: collabora
-     GPU_VERSION: apq8016
--    # disabling unused clocks congests with the MDSS runtime PM trying to
--    # disable those clocks and causes boot to fail.
--    # Reproducer: DRM_MSM=y, DRM_I2C_ADV7511=m
--    BM_KERNEL_EXTRA_ARGS: clk_ignore_unused
--    RUNNER_TAG: google-freedreno-db410c
--  script:
--    - ./install/bare-metal/fastboot.sh || exit $?
-+    KERNEL_IMAGE_NAME: "Image.gz"
-+    KERNEL_IMAGE_TYPE: ""
-+    RUNNER_TAG: mesa-ci-x86-64-lava-dragonboard-410c
-+    LAVA_FIRMWARE: qcom-lava
- 
- msm:apq8096:
-   extends:
--    - .baremetal-igt-arm64
-+    - .lava-igt:arm64
-   stage: msm
-+  parallel: 3
-   variables:
--    DEVICE_TYPE: apq8096-db820c
-+    BOOT_METHOD: fastboot
-+    DEVICE_TYPE: dragonboard-820c
-     DRIVER_NAME: msm
--    BM_KERNEL_EXTRA_ARGS: maxcpus=2
--    BM_DTB: https://${PIPELINE_ARTIFACTS_BASE}/arm64/${DEVICE_TYPE}.dtb
-+    DTB: apq8096-db820c
-+    FARM: collabora
-     GPU_VERSION: apq8096
--    RUNNER_TAG: google-freedreno-db820c
--  script:
--    - ./install/bare-metal/fastboot.sh || exit $?
-+    KERNEL_IMAGE_NAME: "Image.gz"
-+    KERNEL_IMAGE_TYPE: ""
-+    RUNNER_TAG: mesa-ci-x86-64-lava-dragonboard-820c
-+    LAVA_FIRMWARE: qcom-lava
- 
- msm:sm8350-hdk:
-   extends:
-diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-index 72c469021b66..4546363447ff 100644
---- a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-+++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-@@ -1,5 +1,9 @@
-+core_setmaster@master-drop-set-user,Fail
- kms_3d,Fail
-+kms_cursor_legacy@forked-move,Fail
-+kms_cursor_legacy@single-bo,Fail
- kms_force_connector_basic@force-edid,Fail
- kms_hdmi_inject@inject-4k,Fail
- kms_lease@lease-uevent,Fail
-+msm/msm_mapping@memptrs,Fail
- msm/msm_mapping@ring,Fail
-diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt
-index 2893f98a6b97..0d5cb2a87e67 100644
---- a/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt
-+++ b/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt
-@@ -1,2 +1,4 @@
-+core_setmaster@master-drop-set-user,Fail
- kms_3d,Fail
- kms_lease@lease-uevent,Fail
-+msm/msm_mapping@memptrs,Fail
--- 
-2.51.0
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: cb718411c4c05a4a424c2b73790a1648be97a4af (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com:
+
+arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: interrupt-controller@4080 (amlogic,s7d-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
+	['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
+	'amlogic,meson-gpio-intc' was expected
+	'amlogic,s7d-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
+arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc']
+arch/arm64/boot/dts/amlogic/amlogic-s6-s905x5-bl209.dtb: interrupt-controller@4080 (amlogic,s6-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
+	['amlogic,s6-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
+	'amlogic,meson-gpio-intc' was expected
+	'amlogic,s6-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
+arch/arm64/boot/dts/amlogic/amlogic-s6-s905x5-bl209.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s6-gpio-intc', 'amlogic,meson-gpio-intc']
+arch/arm64/boot/dts/amlogic/amlogic-s7-s805x3-bp201.dtb: interrupt-controller@4080 (amlogic,s7-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
+	['amlogic,s7-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
+	'amlogic,meson-gpio-intc' was expected
+	'amlogic,s7-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
+	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
+arch/arm64/boot/dts/amlogic/amlogic-s7-s805x3-bp201.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s7-gpio-intc', 'amlogic,meson-gpio-intc']
+
+
+
+
 
 
 _______________________________________________
