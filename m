@@ -4,63 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19EA1CE8D4A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Nov 2025 15:58:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D73EACE8D4F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Nov 2025 16:11:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:To:Cc:From:MIME-Version:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=YGbyAZxSudu9ckDLrutJauJYyL4k6OAUoBWjcI5mY1Y=; b=2KpQK8XOUh9ZMszMCl/S9KnT9r
-	3gvUP95ruTD7fYE79akEI5zT1fyvYlgRJBNps1IjY4m/B6yaSTk4a4+ZpDIfx0mfJs7gvyttpx22/
-	tHZPTCSwairOUFeYiwjt5Q/rQWBLxLtOJSbp74x5yyPqWsKodkIA3yndoBgUQTwXjA14OmTbjXVGR
-	Db13ZpUniwSfo7FVoGcY/d8+0aoFGMVK+QZakATsPQDOpNs3kn7poBrO7Atn4z86fiWnKG17VJkbN
-	8TNLrziS/WjGIbV/Cfe4gGQ7MfeAKNEeBRH3h0UdLn2oc6bA+2i5y5p0BoY3k/4qdkdNb5JXbs4Hc
-	mzsvjUDQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=cCYouFIZ/sg5fXtsQr0i13/jgLikWws7wo2mHl72eOU=; b=zyLAtIrP3d7bOW
+	BkrjN3dLGMwAVQ1/JAzNhHyivMcMrlGrqmsKnjzskBMubbSc/4ZupgdXOitwxWbpVXg2ZuUHDqrgm
+	bQatR/ZZHbIN7+UkjacxSAWuFVbFUnoxRJmaB9yN2s2HisT5y3oPaSEL7uKhL0GTzZe+Rsl61bRtW
+	QCPCHYh+kpoOhrYc+aIJ2mnEckkLoR6mAxYgCnrRq/CUwczDyn4daJ+x0wBavrh4NGw4EXqCNewkN
+	Rwhwlqh0Bumm5MqoVw9zEGIUbBqD8FQSdsMyoFLMW+0lztOggeDax63/sov9JM83eSM8F532GbEE+
+	mdAAcZ31rSpAtxB7a5Yw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vJwBq-0000000CdfX-2MSL;
-	Fri, 14 Nov 2025 15:58:22 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vJwOT-0000000Ci77-0UUU;
+	Fri, 14 Nov 2025 16:11:25 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vJwBp-0000000CdfD-0f8W;
-	Fri, 14 Nov 2025 15:58:21 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5430060121;
-	Fri, 14 Nov 2025 15:58:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA6AAC19421;
-	Fri, 14 Nov 2025 15:58:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763135900;
-	bh=tRFbjnnnGYoNv0ovOhf9bdB3gNHViLXElGTT7OSRUNM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=kn0voBfhkFcXuamgxp1cypg5mRJYcDjJPdn2UBLK5ris48B7Oq4H9FkY+NzEziugS
-	 evjYPPdviDkQKxDhod7Iwuia4NcBUHWlURuhu8l3nV5jIXRUJDNvbsOlRU17PgRnpt
-	 ydRlUnBhMFjd1BCDD6Wrer0ZAtSZ9v4+rghuXZWmfW76LnavEl68TDiXj6w6Ikimjd
-	 o3Z5BoZcJ0kywb7tQ/z2YIa31/KC0hy+6ewhU1G5kyJKcIEg6D09PAWAzNh42kuWo2
-	 DK5bvlI7S0M2dKiJ5mSfxkRQrmXSQjE1c+ewXIG4vSr86DsX6NEPCg0R0bgkiAKFN9
-	 5mxW4hSujkSdg==
-Date: Fri, 14 Nov 2025 09:58:18 -0600
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
- linux-kernel@vger.kernel.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>, 
- Conor Dooley <conor+dt@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com>
+	id 1vJwOQ-0000000Ci6K-1Ky9;
+	Fri, 14 Nov 2025 16:11:23 +0000
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1763136678;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8spWPzzW+RpkKEZEymL4RDCa/iyttnxIy8IqNQCgQ7A=;
+	b=oVgbwioBD/6TNTKY8meNQAeUQVUHEPhW52odZ12L7J43od1/WiyI3F5/WEWKrbcTp4vrly
+	o1KCg/dBAs88qjZvaBNJpTcl6UYV7dZGzAiAsMg7ZnybYwYfqHgBIrQV+xenXFL1NY/RCj
+	Cb3fvucG1RFLRt/cwaMc3yIZcyOVdYg5zSgdeVKiFju2+xYy4qLAtS+z0HqNpHVOO66mjw
+	cX6cQzJs8aJ9undnJKUmey+phf8ejGdDDogdWF/PFSDZv6bjs69F8if5nna1oMwIfyg8wF
+	RUHtJoQXitzaZ+xUZ2M2ZvJlUnQ0RtNdP09zwDKaXD27Jbk2g3ssQDpWGjLO9Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1763136678;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8spWPzzW+RpkKEZEymL4RDCa/iyttnxIy8IqNQCgQ7A=;
+	b=BtP+hfQ7bH5zpsE6Ty5ce+Wlrw5LK+C1+844V/ZHYhQge3fb/2SzGwHOwp6Bbijhk7VKKr
+	k3V0HP+8QXpQRKDA==
+To: "Rob Herring (Arm)" <robh@kernel.org>, Xianwei Zhao
+ <xianwei.zhao@amlogic.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ linux-kernel@vger.kernel.org, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Kevin Hilman
+ <khilman@baylibre.com>, devicetree@vger.kernel.org, Heiner Kallweit
+ <hkallweit1@gmail.com>, linux-arm-kernel@lists.infradead.org, Jerome
+ Brunet <jbrunet@baylibre.com>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 5/5] arm64: dts: Add gpio_intc node for Amlogic S7D SoCs
+In-Reply-To: <176313578804.3261993.9727195642647352249.robh@kernel.org>
 References: <20251105-irqchip-gpio-s6-s7-s7d-v1-0-b4d1fe4781c1@amlogic.com>
  <20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com>
-Message-Id: <176313578804.3261993.9727195642647352249.robh@kernel.org>
-Subject: Re: [PATCH 5/5] arm64: dts: Add gpio_intc node for Amlogic S7D
- SoCs
+ <176313578804.3261993.9727195642647352249.robh@kernel.org>
+Date: Fri, 14 Nov 2025 17:11:17 +0100
+Message-ID: <87qzu0bnmi.ffs@tglx>
+MIME-Version: 1.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20251114_081122_499718_E0FBF5EA 
+X-CRM114-Status: UNSURE (   7.45  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,62 +83,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Fri, Nov 14 2025 at 09:58, Rob Herring wrote:
+> On Wed, 05 Nov 2025 17:45:36 +0800, Xianwei Zhao wrote:
 
-On Wed, 05 Nov 2025 17:45:36 +0800, Xianwei Zhao wrote:
-> Add GPIO interrupt controller device.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
+> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com:
+>
+> arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: interrupt-controller@4080 (amlogic,s7d-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
+> 	'amlogic,meson-gpio-intc' was expected
+> 	'amlogic,s7d-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
+> 	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
+> arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc']
 
+The first patch in this series clearly adds the "missing"
+bindings.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: cb718411c4c05a4a424c2b73790a1648be97a4af (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20251105-irqchip-gpio-s6-s7-s7d-v1-5-b4d1fe4781c1@amlogic.com:
-
-arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: interrupt-controller@4080 (amlogic,s7d-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
-	['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
-	'amlogic,meson-gpio-intc' was expected
-	'amlogic,s7d-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
-arch/arm64/boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s7d-gpio-intc', 'amlogic,meson-gpio-intc']
-arch/arm64/boot/dts/amlogic/amlogic-s6-s905x5-bl209.dtb: interrupt-controller@4080 (amlogic,s6-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
-	['amlogic,s6-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
-	'amlogic,meson-gpio-intc' was expected
-	'amlogic,s6-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
-arch/arm64/boot/dts/amlogic/amlogic-s6-s905x5-bl209.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s6-gpio-intc', 'amlogic,meson-gpio-intc']
-arch/arm64/boot/dts/amlogic/amlogic-s7-s805x3-bp201.dtb: interrupt-controller@4080 (amlogic,s7-gpio-intc): compatible: 'oneOf' conditional failed, one must be fixed:
-	['amlogic,s7-gpio-intc', 'amlogic,meson-gpio-intc'] is too long
-	'amlogic,meson-gpio-intc' was expected
-	'amlogic,s7-gpio-intc' is not one of ['amlogic,meson8-gpio-intc', 'amlogic,meson8b-gpio-intc', 'amlogic,meson-gxbb-gpio-intc', 'amlogic,meson-gxl-gpio-intc', 'amlogic,meson-axg-gpio-intc', 'amlogic,meson-g12a-gpio-intc', 'amlogic,meson-sm1-gpio-intc', 'amlogic,meson-a1-gpio-intc', 'amlogic,meson-s4-gpio-intc', 'amlogic,a4-gpio-intc', 'amlogic,a4-gpio-ao-intc', 'amlogic,a5-gpio-intc', 'amlogic,c3-gpio-intc', 'amlogic,t7-gpio-intc']
-	from schema $id: http://devicetree.org/schemas/interrupt-controller/amlogic,meson-gpio-intc.yaml
-arch/arm64/boot/dts/amlogic/amlogic-s7-s805x3-bp201.dtb: /soc/bus@fe000000/interrupt-controller@4080: failed to match any schema with compatible: ['amlogic,s7-gpio-intc', 'amlogic,meson-gpio-intc']
-
-
-
-
-
+Confused....
 
 _______________________________________________
 linux-amlogic mailing list
