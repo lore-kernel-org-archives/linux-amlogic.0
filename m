@@ -4,194 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2860ACD6E74
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Nov 2025 14:47:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E54C1CDB475
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Nov 2025 03:01:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=05UasPAUgaP0cSJKEJzIYYM75p7EkdGe0fi8z9u0F2A=; b=JHlIuSmn6RjMBP
-	8ULSPUnclwwnIf7Oa5f5/5VoAifdLE5IDlqc1mY4s67ZwOnCgOZ0TaibzCoyUC45TWYCHIaa68Vz8
-	qrp80qytK1bfb9GqqQmbW7oJrJIl0t31w1c+7Iv+No5VB55yorkpDrZPn3DI6uZ5rZ3zqw47Qcx9S
-	GBpFbDwYmrn3YRNMJGDPvo5PLxJn62ZsUgkU6PD1DyOWBCm1v2p47WxV9dJNvNCtlRuRumfRKhjIa
-	Np9Mu3XKU6eWZXPCwkvvLygPSz7yr2vpcmXbnnVWKMzFOi1q4HLhWMYMdZgvazcqwBfhNwKY/BJdt
-	c4KNOczt4PysZzLZaHoQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=rrKrJpGKnnkD4e4HMIs5bg8LwWt1DBa4hNgJsFssNSs=; b=0N0Pqovo83b5yE
+	Y3s36sBR7dJ2u2No7NqT7QFD1s75A23gooiFJyMRufK/YWYKpgwzSi7nxb606nqgzy7W95IId1e4e
+	baIWSFz0qx9uUzBAfb6xkEcL1im+ibx3TiwEbVOz1pH6uej85ouHmVVG3Ro3YNZ0kPe/iA2GzQiL8
+	uC46UZfV9noZiz3DQg4gLcjItRQf+5oSjgSxpkUYtdzPhDhz5gB/SfzesSsj2w13vuS/iOATF60R2
+	ngSW2Ifg6ZJlbmltmtCW3z5GZQd4Gx+86IiA3E1vP1ddoY8u0vtK/kT09dNC7ap1raxQFv1VHxKoP
+	oZCtwnR97cHdrhf+XigA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vJYbd-0000000Adjn-2UhX;
-	Thu, 13 Nov 2025 14:47:25 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1vJk4D-0000000BRcZ-00nV;
+	Fri, 14 Nov 2025 03:01:41 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vJYbY-0000000AdhL-1kri
-	for linux-amlogic@lists.infradead.org;
-	Thu, 13 Nov 2025 14:47:22 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AD8xFGP2993483
-	for <linux-amlogic@lists.infradead.org>; Thu, 13 Nov 2025 14:47:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c/j8O4OMZ/iO6ANHgdWOttUeORFw+6paoVM6GB+aNhc=; b=b/JRKlQaoXhQbjBg
-	7mm9S/5h3Fp/qe27uSlmDQXdKJyVelTPms9TAYlDvBXVpwrx7Y/JPF42qOoJETR1
-	cZsoxMoudkiU5Xx0VLidAV4Vf4PHDod433Ykxn74s+LsoMkTrwjARIl3IDm/A+Rr
-	grUZjvJu70AF5w6jwH7l4Aq5Be8BuM4nP6pt3KJhqDbJ+xtwdCLznzo3aNk/9SZu
-	F6Qj+Ub89gKav1oigAckmv9WKdjgeoUN7Q2qgBe471l3GyeBKiIxCveVSXs/+XGB
-	RXI/WhEDsA6qtDMbbTNJWwMSedDbYI2Id5NJthr9QY3IvsFmN+3HmL11WKKwX00L
-	cTlHdQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ad47jjkw6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Thu, 13 Nov 2025 14:47:19 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4e890deecf6so1854241cf.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 13 Nov 2025 06:47:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763045239; x=1763650039; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c/j8O4OMZ/iO6ANHgdWOttUeORFw+6paoVM6GB+aNhc=;
-        b=jEOdhlfoi+0W4ctinZsomfTmDUIYgeG3Rna2/bUNui2JljAPxM+ZH3EJsHHItjYhUc
-         wf3N2PGoAI1HkAh/QtC1vcdX7oXd3l0m5w8XUDkiod4OJSLWUsoJl99GKD3VtaQvJTL1
-         SfLC0CD+dMen+LwHT/A4jTDfperwloptaVYXJniue/mbLnSX+tEjO0ajFNZaW9DFPbS0
-         RXR68pshR56tOO7jKPYjMFqK4g0KCiFPTrPf4RBh3yzIp99MDEd9sUgWPoySQqJRtUlJ
-         zCgEUoF6j8DAh8MCUZ1lxVwryfKaSLAeQ0zWdpxSnwM87Oh5uejwXtb0/Nzv09DDsgLH
-         seKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763045239; x=1763650039;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c/j8O4OMZ/iO6ANHgdWOttUeORFw+6paoVM6GB+aNhc=;
-        b=l667SpWvCPiYmAaNx+E8WUIk67j51xXMjR0ACnK3Bnlpd3u8XLTEI6ymN0Sv6FN42s
-         RP9nUqIxHQq36NwIrohFJHeoVITpxftBOewWlSL6BYCZ5Yk144UgkgWOOtM+C+ZZ5k1e
-         HSJYupIhUHR4KMy8oD1RLvsfEitquanDVxnS2IVkdXbXX9hsZYzmuYEGCI4DzWHifb21
-         LorvBn7FE04xEQvRGGTk3A01fnYMpD1+SnMlXe2tEfXot+E+VeREnYBBoR1eUs7XoX6M
-         5gYCK/a2SLwbiQGIsFBFDOGNp/RyR0khBG0HuWYvCMmYtLKLj7IOI/MjwVGvZft3nqX+
-         JA7A==
-X-Forwarded-Encrypted: i=1; AJvYcCW9K8yyZuwNjGNIkZ0NbALmGxctQRhqslz2SWLtPxDzjc02fx1anZ/qfsdK8GzU2U1XY9vN7ZeP9f5kYdcK@lists.infradead.org
-X-Gm-Message-State: AOJu0YxEnY2dVV8e6aIvjvzmDDeFj3RAq0aC6FG0cas2mCCuMsL+oDAq
-	Ws/UiBW0jKwrteTYIoj//XyzMF1glz/rdSepTWYB8VyynvbF5E9IFNCJTuy0UDjjWTpDhO8Bw6Z
-	Ut/Ogs+KpNiTs0AQMa+uMuA0CugwHlzus6AhKyadHD+4svTDjYSaGgWhjlAYvtxQdNZbvHwKV6g
-	==
-X-Gm-Gg: ASbGncugcp5cfAg7Bw1H5QAYvnWYbUK41FV7pEetYHROJWncp2GIF6TqiFTjx5sphLZ
-	WEzfVOhtyxvFmhGMgaULB3a4YZrsoQw9yPvBkRPDJ7AlFjiQswuQ58oJ/3+wreUCKWB4cGsjL61
-	+y70u9AzLB9tIcBiheMxi6x8hgCjzrSgykLrCt5wGMYCVLl2ETkrXf+S5zc4kgKagHhzcko2ztK
-	UTq6B1YGpNDkNqZyB+qQRZ8wj0QerwY0Z2PcGBcloZqD/6Ay+3rc0Uwb4eiN8/HXLpNqJircp4O
-	tueyWyYacttgbSbtp//XtjgeQP54lu8fWRKyMuAFtulDyv0pEpXvCrkAaKN+whSn+R5TZG3qDIh
-	kllfySCInG1+L5kQcArrpzHzF/lj4bPnubdNJ30mSLe3iXuW6AGCYvo7X
-X-Received: by 2002:ac8:5f10:0:b0:4ed:7ca:5f33 with SMTP id d75a77b69052e-4eddbc9256dmr60354861cf.5.1763045238326;
-        Thu, 13 Nov 2025 06:47:18 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFM7YamsAo7x44iby6/PzuNKLIab4wveVf6S4JQ4cd4mg9yAzxbvu88BKH+RnT7m5FWyF+0JA==
-X-Received: by 2002:ac8:5f10:0:b0:4ed:7ca:5f33 with SMTP id d75a77b69052e-4eddbc9256dmr60354251cf.5.1763045237576;
-        Thu, 13 Nov 2025 06:47:17 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fdaf6dasm176196266b.63.2025.11.13.06.47.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Nov 2025 06:47:17 -0800 (PST)
-Message-ID: <45915f40-caa1-417b-95bb-deb7363a2ffc@oss.qualcomm.com>
-Date: Thu, 13 Nov 2025 15:47:09 +0100
+	id 1vJk45-0000000BRbi-42dR;
+	Fri, 14 Nov 2025 03:01:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1763089287;
+	bh=ZCItdMAKSBYnoQbmuGe/KriN1j9Lnyjo9QM9qRu8/Tg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=fO2DfZ3anN63JQRdUKZKbXQvW89bTHJGrjDtoZc0l4DnjlGkv0Wel/oKZnNbkOGEK
+	 JsjyJIThA99jtvIioB6Akn9r16cA9NwP3uql0Zzl5YFepprArIuVgyBrPH57/ZzVEZ
+	 Xo2KJomytJnq/4crzXj54OJvgRzrFxUIJJifeS5xYi14vZqcQvdYyrYw/roBii9C2Z
+	 dOxbRjpXHrj0eEKmp4qxpQdqs8mcpsyOFIrO3JBkArcbxMVJhQrmRzX/iozkr/xfmq
+	 GnXqIDj5NmI4i/9geKHZoBulQrJVlTnHVwoOFfbG9iEJzmzmlyPoRPu6WjGq9FoeRK
+	 YaAWv52iBCWyA==
+Received: from debian (unknown [171.76.81.120])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: vignesh)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4776517E0202;
+	Fri, 14 Nov 2025 04:01:21 +0100 (CET)
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: dri-devel@lists.freedesktop.org
+Cc: daniels@collabora.com,
+	helen.fornazier@gmail.com,
+	airlied@gmail.com,
+	simona.vetter@ffwll.ch,
+	dmitry.baryshkov@oss.qualcomm.com,
+	lumag@kernel.org,
+	robdclark@gmail.com,
+	robin.clark@oss.qualcomm.com,
+	guilherme.gallo@collabora.com,
+	sergi.blanch.torne@collabora.com,
+	valentine.burley@collabora.com,
+	linux-mediatek@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	amd-gfx@lists.freedesktop.org,
+	linux-arm-msm@vger.kernel.org,
+	intel-gfx@lists.freedesktop.org,
+	virtualization@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] drm/ci: uprev IGT and enable apq8016, apq8096
+Date: Fri, 14 Nov 2025 08:30:49 +0530
+Message-ID: <20251114030056.1139570-1-vignesh.raman@collabora.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/8] net: stmmac: qcom-ethqos: use generic device
- properties
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
- <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Matthew Gerlach <matthew.gerlach@altera.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Keguang Zhang <keguang.zhang@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com,
-        Romain Gantois <romain.gantois@bootlin.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Heiko Stuebner <heiko@sntech.de>, Chen Wang <unicorn_wang@outlook.com>,
-        Inochi Amaoto <inochiama@gmail.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Minda Chen <minda.chen@starfivetech.com>,
-        Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
-        Fu Wei <wefu@redhat.com>,
-        Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Shuang Liang <liangshuang@eswincomputing.com>,
-        Zhi Li <lizhi2@eswincomputing.com>,
-        Shangjuan Wei <weishangjuan@eswincomputing.com>,
-        "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
-        Clark Wang <xiaoning.wang@nxp.com>, Linux Team <linux-imx@nxp.com>,
-        Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        Christophe Roullier <christophe.roullier@foss.st.com>,
-        Swathi K S <swathi.ks@samsung.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Drew Fustini
- <dfustini@tenstorrent.com>, linux-sunxi@lists.linux.dev,
-        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
-        imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
-        linux-riscv@lists.infradead.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20251107-qcom-sa8255p-emac-v5-0-01d3e3aaf388@linaro.org>
- <20251107-qcom-sa8255p-emac-v5-2-01d3e3aaf388@linaro.org>
- <21a3d269-76e6-4da9-aa25-bfd1fb6dfb07@oss.qualcomm.com>
- <CAMRc=MexMn_GSC2EtMek5hDRLjGYA5HKM8ge9vrxw1pYDqPJgw@mail.gmail.com>
- <cd7c0490-a2d6-4885-aa36-ee1492f107b8@oss.qualcomm.com>
- <CAMRc=MeuByh=N_-F2+zPiqnh+Qp9u97kiMheLJ-xxcSZSy+_tw@mail.gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <CAMRc=MeuByh=N_-F2+zPiqnh+Qp9u97kiMheLJ-xxcSZSy+_tw@mail.gmail.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTEzMDExNCBTYWx0ZWRfXyxp7XoIoFjgg
- WyrwOFPVnvNAbFe5DjIwqPHOaT1YJube6SZI0aE+po3U8xchkKHd5z4uzTJFzdzfovqFy9C/Iu/
- hZm7Ot4GASywk+gzGdWPKVNXcwnjI+GG/Tot27SqDW+Z62GFZw51YvEfc1i8dgsW+cNiEmg7kxC
- henrn8g2qHUqpLIFOAVoG2nNzDxROHVSDND381b0xygWGsQV88qVhz/C8KMwth3WayiNb22ret1
- pdt8Fj3YkOBHerT0vG1My4N3iqGMjrD+aKZn++JGYnj3S+HhF4LDjnuVGg1onfyRdNhv/OmBMO7
- JMZfFsR84huKcRQCMEtAb3n2QxVsB2k7QZHsC3Kb6akhAQvr+nSQfDmpEeHZykeo17qdCkG69hU
- LRgGeb+lN9A55XiBdYra0NnstxSg9Q==
-X-Proofpoint-GUID: 0z7B6xB9PAJCmZg9bCr14EvVW41fT0e3
-X-Authority-Analysis: v=2.4 cv=A5Fh/qWG c=1 sm=1 tr=0 ts=6915ef77 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
- a=IegXRtMujPCPvfbY5ZIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: 0z7B6xB9PAJCmZg9bCr14EvVW41fT0e3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-13_02,2025-11-13_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 priorityscore=1501 clxscore=1015 spamscore=0 phishscore=0
- adultscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511130114
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251113_064720_606119_41FECB4D 
-X-CRM114-Status: GOOD (  18.38  )
+X-CRM114-CacheID: sfid-20251113_190134_172647_05C754E5 
+X-CRM114-Status: UNSURE (   7.50  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -203,40 +84,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTEvMTMvMjUgMjo0MSBQTSwgQmFydG9zeiBHb2xhc3pld3NraSB3cm90ZToKPiBPbiBUaHUs
-IE5vdiAxMywgMjAyNSBhdCAyOjMz4oCvUE0gS29ucmFkIER5YmNpbwo+IDxrb25yYWQuZHliY2lv
-QG9zcy5xdWFsY29tbS5jb20+IHdyb3RlOgo+Pgo+PiBPbiAxMS8xMy8yNSAyOjE4IFBNLCBCYXJ0
-b3N6IEdvbGFzemV3c2tpIHdyb3RlOgo+Pj4gT24gRnJpLCBOb3YgNywgMjAyNSBhdCAxMTo0OeKA
-r0FNIEtvbnJhZCBEeWJjaW8KPj4+IDxrb25yYWQuZHliY2lvQG9zcy5xdWFsY29tbS5jb20+IHdy
-b3RlOgo+Pj4+Cj4+Pj4gT24gMTEvNy8yNSAxMToyOSBBTSwgQmFydG9zeiBHb2xhc3pld3NraSB3
-cm90ZToKPj4+Pj4gRnJvbTogQmFydG9zeiBHb2xhc3pld3NraSA8YmFydG9zei5nb2xhc3pld3Nr
-aUBsaW5hcm8ub3JnPgo+Pj4+Pgo+Pj4+PiBJbiBvcmRlciB0byBkcm9wIHRoZSBkZXBlbmRlbmN5
-IG9uIENPTkZJR19PRiwgY29udmVydCBhbGwgZGV2aWNlIHByb3BlcnR5Cj4+Pj4+IGdldHRlcnMg
-ZnJvbSBPRi1zcGVjaWZpYyB0byBnZW5lcmljIGRldmljZSBwcm9wZXJ0aWVzIGFuZCBzdG9wIHB1
-bGxpbmcKPj4+Pj4gaW4gYW55IGxpbnV4L29mLmggc3ltYm9scy4KPj4+Pj4KPj4+Pj4gU2lnbmVk
-LW9mZi1ieTogQmFydG9zeiBHb2xhc3pld3NraSA8YmFydG9zei5nb2xhc3pld3NraUBsaW5hcm8u
-b3JnPgo+Pj4+PiAtLS0KPj4+Pgo+Pj4+IFsuLi5dCj4+Pj4KPj4+Pj4gLSAgICAgaWYgKG9mX3By
-b3BlcnR5X3JlYWRfYm9vbChucCwgInNucHMsdHNvIikpCj4+Pj4+ICsgICAgIGlmIChkZXZpY2Vf
-cHJvcGVydHlfcHJlc2VudChkZXYsICJzbnBzLHRzbyIpKQo+Pj4+Cj4+Pj4gVGhpcyBpcyBhIGNo
-YW5nZSBpbiBiZWhhdmlvciAtICJzbnBzLHRzbyA9IDwwPiIgd291bGQgaGF2ZSBwcmV2aW91c2x5
-Cj4+Pj4gcmV0dXJuZWQgZmFsc2UsIGl0IG5vdyByZXR1cm5zIHRydWUKPj4+Pgo+Pj4KPj4+IFRo
-aXMgcHJvcGVydHkgaXMgYSBib29sZWFuIGZsYWcsIGl0IGNhbm5vdCBoYXZlIGEgdmFsdWUuCj4+
-Cj4+IEV2ZXJ5IERUIHByb3BlcnR5IG1heSBoYXZlIGEgdmFsdWUsIHNvIHRoaXMgaXMgbm90IGFz
-IG9idmlvdXMgYXMgd2UnZAo+PiBsaWtlIGl0IHRvIGJlIChJSVVDIC0gdW5sZXNzIHRoYXQgY2hh
-bmdlZCByZWNlbnRseSkKPj4KPiAKPiBUaGF0J3MgbmV3IHRvIG1lLiBJIHRob3VnaHQgdGhhdCBp
-ZiBhIHByb3BlcnR5IGlzIGEKPiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9mbGFn
-IHRoZW4gb25seSBpdHMgYm9vbGVhbiBmb3JtIGlzCj4gYWxsb3dlZC4gVGhlIGZhY3QgdGhhdCB0
-aGUgZHRjIGNhbiBjb21waWxlIGl0IHdpdGggYSB2YWx1ZSBkb2Vzbid0Cj4gbWF0dGVyIGFzIHRo
-ZSBiaW5kaW5ncyBhcmUgdGhlIGhpZ2hlciBhdXRob3JpdHkgZm9yIERUIHNvdXJjZXM/CgpZb3Un
-cmUgcmlnaHQsIEkgbWlzcmVwcmVzZW50ZWQgdGhlIGlzc3VlLiByZWFkX2Jvb2woKSB3YXMgaGlz
-dG9yaWNhbGx5CnVzZWQgZm9yIG1ha2luZyBzdXJlIGEgcHJvcGVydHkgaXMgcHJlc2VudCBhbmQg
-dGhpcyB3YXMgYSBwcm9ibGVtCndoZW4gdGhlIHR5cGUgd2FzICE9IGZsYWcuCgpQbGVhc2UgZGlz
-Y2FyZCBteSBjb21tZW50CgpLb25yYWQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNA
-bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2xpbnV4LWFtbG9naWMK
+This series includes,
+- Adapting to recent changes in Mesa CI, such as:
+   - LAVA overlay-based firmware handling
+   - Container/job rule separation
+   - Removal of the python-artifacts job
+   - Use lava-job-submitter for submitting jobs to LAVA
+   - Various other CI improvements
+- Move bare-metal jobs for apq8016 and apq8096 to LAVA, as these devices
+  are migrated to Collabora LAVA farm.
+
+Pipeline: https://gitlab.freedesktop.org/vigneshraman/msm/-/pipelines/1546424
+MR: https://gitlab.freedesktop.org/drm/msm/-/merge_requests/200
+
+There will be a follow up series to update expectation files for the
+other jobs.
+
+Vignesh Raman (2):
+  drm/ci: uprev mesa
+  drm/ci: Move qualcomm baremetal jobs to lava
+
+ drivers/gpu/drm/ci/arm64.config               |   1 +
+ drivers/gpu/drm/ci/build.yml                  |  22 ++--
+ drivers/gpu/drm/ci/container.yml              |  28 +++--
+ drivers/gpu/drm/ci/gitlab-ci.yml              |  95 ++++++++++++----
+ drivers/gpu/drm/ci/igt_runner.sh              |   4 +-
+ drivers/gpu/drm/ci/image-tags.yml             |  22 ++--
+ drivers/gpu/drm/ci/lava-submit.sh             | 101 ++++++++----------
+ drivers/gpu/drm/ci/static-checks.yml          |   1 +
+ drivers/gpu/drm/ci/test.yml                   |  80 ++++++--------
+ .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |   4 +
+ .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |   2 +
+ 11 files changed, 213 insertions(+), 147 deletions(-)
+
+-- 
+2.51.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
