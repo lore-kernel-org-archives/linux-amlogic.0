@@ -4,92 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0CEBCEACF9
-	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Nov 2025 00:50:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CCEECD4F48
+	for <linux-amlogic@archiver.kernel.org>; Sat, 15 Nov 2025 03:55:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PFtvv619v4yUnV8qRypNgOYrQHBgz5Ijwh1xYI73aW8=; b=wo9WLS3zh1Xkew
-	GwbjbuVxT+8TmqbTT7RBJ0aT/0gLVVlRf5MYuns6ab3r6hYJWwxzGXn9Mjb5sqkyQCaPEKxSJkZ3g
-	dgL5IgUzggM0QnP7wY6mxaGP0OI3UEnM3hrz6TrUPrWtHcCczZ/DJbv/JIJP8Y+RUN6DE90S2Lqb+
-	UNPib7/fQQL7OlFzRubLw8PtLWIUXzG9ba2JyusA6rsfsK9Dl9G9ZSAV/oZbWFy5g9gmswqUQTYXx
-	dFZ7akxA8r3dhZy3bi/3wkIlYPiCiLWVonpk6ORcf316YoEfoAvKnVa3SglLDFnxhI735vpf+OvdV
-	9YfJw7POqvID3qDGZPYg==;
+	List-Owner; bh=VJ3ELudTcA5sWlLo3OU96QOGXe+6jsmghG17RdPoKTA=; b=RGO2+92dnMGtyZ
+	rheOq7XyYQFgb7iyoR41MQHr0EfM5ffvlpBOpNJEwv78yOd6FWXfWCObjcAa2lHaPi0moof2muiKM
+	ubGKMCkgpRWcbdmYcfJsYWOXuZ97hgxNLIXz1AQMxaxUntE9HKyXclNgpblPhqKwwuSpwkev8R+fv
+	Lx8C207ydAt96mCJGkJu0O1ty4IOf+Boo2q3Og8wHSIVU0KFjBWtH4Fe8M0ogKQUMJHlmnP3p8pPM
+	IGfi3F8yos/RW0iOrYGgSTxUqAuQ1ESoPO1e2n8hwtocoYcZzFt7WmAmPgKCP/C7F3nw6e9auBSeC
+	SVNA7eGJKjt9ZAuDO1Eg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vK4UZ-0000000DIlS-00N3;
-	Sat, 15 Nov 2025 00:50:15 +0000
+	id 1vK7Np-0000000DRHV-2rPU;
+	Sat, 15 Nov 2025 03:55:29 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vK4UV-0000000DIjj-1wES
+	id 1vK7Nl-0000000DRFr-3iY2
 	for linux-amlogic@lists.infradead.org;
-	Sat, 15 Nov 2025 00:50:14 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AF0JoxT1136448
-	for <linux-amlogic@lists.infradead.org>; Sat, 15 Nov 2025 00:50:10 GMT
+	Sat, 15 Nov 2025 03:55:27 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AF2q95C1502150
+	for <linux-amlogic@lists.infradead.org>; Sat, 15 Nov 2025 03:55:24 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Qs9XNl6C5ygh9qZUkoG6dSnI
-	2cAtbM33aIVEqpZU3HM=; b=LxUYZC8H3vZCJgDMaslziF+/Q+DGDpgidTjmxz91
-	36M9bXPQASL0FtjnxYfrUVa1RxfX/6Gx0QRblsZWir9/aZGk9+AO/Bx7/lK6htOu
-	Kld39VgMAHM2tQvShW6rixT4ooi/0ZDEkCQl+CHmcUqd7XlYKDhy9nIkb/l1G30P
-	8MUMR014eDXOtxX+gjWzx34mcc9JA6nEV5BeVunCkD+NB3z6IefYWUeHupCjzzTd
-	AzfeiCztR72AYwahKrSIIHEMhcWT5EQsRTFBaSGjKloFPxSK9SPAbPxvOhpNAzVX
-	fLJMN8YRUPS0S07zPbKtVfvjn6QEYSfcvTnlirAT3vmhkA==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aeevpr1r5-1
+	:references:subject:to; s=qcppdkim1; bh=kpUJE4SYKU9ynxkJ/T5JJhpa
+	CqT/i8ZykNmysQrjF+s=; b=V9xyueey6blpzm/jfavsSbhlfoxZqh6ziY9GLiVo
+	pRLERZ2MEX31+yuGsAhlfVnpx49LUnkivh7VOeVkX+iEZCpUszfAr6RWAvx/GoxG
+	ZijhYK8E3mzyIqhG1hK2L5/w9DdedzrozrD9Lv3PvXEGCefrjA2nK2F6EPnJkN5Q
+	59YLYTARTJ+Imk6JfdjaS45qa6wSMYck595UYohLzKOGwUnrjp4w0vmLrwRUpeB6
+	SYq4g3sGHee1nq0e3QSLce0NkDu8LM1+cCMEAkTcfdWp6FkDpecyTGsY74vra0rZ
+	jqFpR49ENgMSjHk8p1Xtfaa+aw5Hd9R3LM0WfZoyiVfmLQ==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aeh3x834f-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Sat, 15 Nov 2025 00:50:10 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-8823acf4db3so73274886d6.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 14 Nov 2025 16:50:10 -0800 (PST)
+	for <linux-amlogic@lists.infradead.org>; Sat, 15 Nov 2025 03:55:23 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-8824b00ee8bso41889816d6.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 14 Nov 2025 19:55:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763167810; x=1763772610; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1763178923; x=1763783723; darn=lists.infradead.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qs9XNl6C5ygh9qZUkoG6dSnI2cAtbM33aIVEqpZU3HM=;
-        b=EBDrYjBSuS2mXLaq/wIXjr6kDLPONQONu+w3oydwcBsI0gRKDb/L1alXYPhBnq98Uc
-         3NVR7++BNrXppR10flgUEQDc14WRppnr6Wv04SafQbTGVLwSk6e+KWh5UIdlQD7AP4Cf
-         aHaIh42+QinsmCL2zTzS7XuzUuwByMSeL4Eq1AjaEzwfziKLiMmQVmpF8GXnf5Vpv/K7
-         CoJEDr9CHQ29iacARH6nGb15z86YYR/E/0L8qJqKpALdUtircHOesfL1aEZO6CwI3JQn
-         zMeneqYC4a7+f39RDoH6eqlhgK5EsPjy+5kowY3mZcw9Lg++qt3bCgDyWVbppQTCbRvk
-         fYWw==
+        bh=kpUJE4SYKU9ynxkJ/T5JJhpaCqT/i8ZykNmysQrjF+s=;
+        b=XeKPjhoHnUkU6kE49OaBA3vKXwMMbXzhzwjANN/WcgdkG/Z+3NEim+xTKTefTL7f2c
+         hpEGuNFw9RzceZY7IhtHd03Mjs10NKPwmk4ZV/eMp0piuq2PZl5uZSfiPDTGTeqZh9hC
+         M074ENAIfwKqGvKlLHTzoHWOlugql9p+iJY/fzKe/PHN9FsaP8vs8gHe/KP01+mhQBIT
+         szMPrQJkij9AqpVuK5WjyF/yViaKbTJKmP6PYsj1yGZjoDd4Dxb0zTsYriD7DUMjWTZ/
+         kYZaz698YT/WjJ16XGdSrA/QPUVyjiGr+9usisbrfuPcHjD4Icf8/DCZw5w4L9ZHIU4O
+         k9Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763167810; x=1763772610;
+        d=1e100.net; s=20230601; t=1763178923; x=1763783723;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Qs9XNl6C5ygh9qZUkoG6dSnI2cAtbM33aIVEqpZU3HM=;
-        b=VMfMGMwa2p2z/ao+1DBh88UhEFPnQVk1mP42CWSPGZuZIw3R4i0tLRQWdQhU7HsNJg
-         4yYoo9PiN3oK9CWqLegEjMwtFNyluAJfzxeLn7zYJkWhbSKqVUNOB+zgqpMMmP6VxLIH
-         FCykJXNREUfRlsGj8EyN9s4R6dYRDG+DA9YJ9GYiErEkKgXgVFSc8yJ4EfzYRDQhT/wt
-         B83HGLhcUtnvwG3gxs/jrsY+Y1mHA9/EAu+a/Uno9wQkBrLF4qkUSS0sWgkHkTUZHaMg
-         92dN5zo2F5DXpx/bp/2os3NPVosY4+qVunhKyWvzZa75qv0YROkDCdgM3Es9pZxotY9d
-         eR+g==
-X-Forwarded-Encrypted: i=1; AJvYcCUQgeOZcovsaTJcta+N8+oNPGI9FiIV2Z/euPTL5ya3O55ZS+LhvdbTql+bWqlUIRBdxOfGgh64Pi0lDfVA@lists.infradead.org
-X-Gm-Message-State: AOJu0YyinEWZm8X1bJRNHaOFtfn4ts6DmyxDfwcotEg6H31lMgQ+9a4c
-	WE64q6BVBna+HL5EmjBb/vCbwYPQU7PAM01hyfkzIkNdfV8/T82onf+BLDNazFtX2PxvW3+aDuf
-	1P9nMvd0lXWqAIkl+eiVH5KXKcuQmoXkf9HpLYWpM5OVX+3HJIL/uuxEEac9Ip0MwjfULUGa0Ng
+        bh=kpUJE4SYKU9ynxkJ/T5JJhpaCqT/i8ZykNmysQrjF+s=;
+        b=ewslWKoV63XiPTRCoKXdF6fGhw4sJOKZThWnfAAPrSzIHH67ic10olPE0sfsEDLCkX
+         u2u3S7F0V9vIU3UD76VF4bdSUZ6EVKEBHHBJG40eInjKYY4SToy8zoiz129/U0OYXif2
+         9WEk0VFzUQyhmptVKeuYS41iYr+FNFH2jNIRUN2KE5TMm5e+Isnu/3gNhwpQ6UGvNXcM
+         /Tf3k8iW/WGHRT3oFFNlM8Eav/RsYvvCnPCafOp9H9psWUyXTyDBKHtyktTNP99+GaOW
+         hpzdMKJV6iAuA6VgWOBKRsMbB37xZeEVNN7OSS0DLOjrQIJ7Q7AkjZECz2rEo5YiZMLs
+         U8vA==
+X-Forwarded-Encrypted: i=1; AJvYcCXSdaqZzBCXYEmYxx/gH2lWA4jNWyduNNQyCG9VAxmLToj9baDQiPQUH46saJv3SmBAKsxPe6Lkb1Ox8yR6@lists.infradead.org
+X-Gm-Message-State: AOJu0YzNn6o+b240A8fa/nUcTkgt1yCDlX2WD7W0JtRGmSy7rH2YG6p/
+	vQ0aM3DPWdP7kAafdJnKSigJIsTyXp5TTNfyrpVAWKimEqGasTdzJz/8ue4DW/vOuwb49Xgha5W
+	tfQbdLFWE3s7dNUFC97HiAQQCLqbKFaXDT5Af6a9H942rSXFiTuiVKoiL0IxZdgSjQ1TcTlNeJA
 	==
-X-Gm-Gg: ASbGncum1TlY+FW7TPpcXyuHbsB04SMh6iLAzLSWmSgDe+ZcrcVmNd4MMVFVNiZO3U+
-	7SDmNo3X/f64Yj2mIqkSpsLuW0gjNsvG+csoRqX2k0ERsaucsJfbsnkZdyC/5KpzW3I4zROt3J7
-	UUu3bGdeUm59UYppstJjEYYvhBuf9NPGH/eN9fPyzpJ/4TWD6sLWKkREwAT6fDMVKVzZqe18yOk
-	VEbsKPkdriR+uPG64v4B3PyiQpflowP22lq8+EYci6lBd2Wy05I2n27alNHJ1hxa1r0Q2qNSsm/
-	u0Aqw1EkV7KrmVVmHYbJjI1RBT5vthG2nttfNfDizvjHNEUmuRIUQcwCfq85v1G5C+sLDfNu+Xf
-	gfJZe9LOWXN/BFIP7P/wjzjEKtXnE0Ta720hL8TBkE+SyjxUeNaiycDq4UK+BwonI3UiPsmAPxN
-	RHlvnqCEYXqjsO
-X-Received: by 2002:ad4:5dce:0:b0:87c:1d89:a245 with SMTP id 6a1803df08f44-88292699d47mr77113396d6.49.1763167809710;
-        Fri, 14 Nov 2025 16:50:09 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFjIFGATfZLfaUZaE3KWR5c8p1sYfBsOVpYyQEawnaMA0DTE16Ifr+U3lmX3Y+76mKypsKpog==
-X-Received: by 2002:ad4:5dce:0:b0:87c:1d89:a245 with SMTP id 6a1803df08f44-88292699d47mr77113096d6.49.1763167809268;
-        Fri, 14 Nov 2025 16:50:09 -0800 (PST)
+X-Gm-Gg: ASbGnct8uMoUehK8DpkqgzI1w4rb1M1MT1rSMzocXhs4eFd8TA1XB+/cGAmq1psjxfE
+	1+bOMTxtVHwPlbtZGTffuQbIvWxELoAgS8x9XkTgkGOksMcfbTD+0gLh7U5FPkwUTunNjGaF+0R
+	QBmqsQmRSNEicW3vkvhhyuEvSghv7EYriXsuqHf8eUbbILhbYoS4+gf0nrsVoPfSwKy46f1ggk+
+	a7X03IKB5UcBhPYSpTbBgt5JigMfyadnJAcHU/UdmfP/wEldEKTy1a2NBxphObTqGQsDLnH4P77
+	CEe3hzC2dFEmP/WTIV/R+/9XPTPgg3VwGzYvi7uhk8VzDEob+cG2aaRmIMXn8uZPQA1RY/iPwY+
+	HsQrAOGDv3kfR9Gjnt7mAhumxFnbOdQzV/nUBSZe9bb2OkuWHe6amM3C9Z0qCWfKxdAQNZlMz1t
+	fdmOZx0uHVtW00
+X-Received: by 2002:a05:6214:c65:b0:882:4dec:42b9 with SMTP id 6a1803df08f44-882925f280amr79893286d6.26.1763178923085;
+        Fri, 14 Nov 2025 19:55:23 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH21xNZD/1SaQbAJXQ9lzSs2ET/wK99qDySnRnPvmoMPz0h942r+lDos6cmgLn70aSgdH9ifQ==
+X-Received: by 2002:a05:6214:c65:b0:882:4dec:42b9 with SMTP id 6a1803df08f44-882925f280amr79893116d6.26.1763178922595;
+        Fri, 14 Nov 2025 19:55:22 -0800 (PST)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37b9ce0822csm12716841fa.10.2025.11.14.16.50.05
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5958040c7ccsm1449901e87.100.2025.11.14.19.55.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Nov 2025 16:50:07 -0800 (PST)
-Date: Sat, 15 Nov 2025 02:50:04 +0200
+        Fri, 14 Nov 2025 19:55:20 -0800 (PST)
+Date: Sat, 15 Nov 2025 05:55:17 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Vignesh Raman <vignesh.raman@collabora.com>
 Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
@@ -101,40 +101,41 @@ Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
         amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] drm/ci: Move qualcomm baremetal jobs to lava
-Message-ID: <ursdbkco5n734zhfqceztib4b6vxb2juq5jfllzcjeuctd6lvn@dbdbkbr4csws>
+Subject: Re: [PATCH v1 1/2] drm/ci: uprev mesa
+Message-ID: <42v64xdsaqug5yy76yel4tukh6wkt2tp237vlnpteabyl5qjo5@iigtgujvecwc>
 References: <20251114030056.1139570-1-vignesh.raman@collabora.com>
- <20251114030056.1139570-3-vignesh.raman@collabora.com>
+ <20251114030056.1139570-2-vignesh.raman@collabora.com>
+ <prjwrsepfc3b6ozhue5cp66khlcvdrpvpy6jkk23edncmi4l3y@oiddmamgg3mx>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20251114030056.1139570-3-vignesh.raman@collabora.com>
-X-Proofpoint-ORIG-GUID: efXgSHVwxRnGMcpgqINYGF1dMqqrfy6r
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE1MDAwNCBTYWx0ZWRfXyI7iRGngbEjs
- OvpS6q2AIT8yxUDh57RlnYhxOTBBokaxAVGDiflIV38ZB+UMvPmAt20S7o7g1sLThT5hBa8SzKG
- UPEyC2ClafLeS541d3W7DGdUHWX/yGufnP2bH4GK2evFYIa5o2nb3TJXFaPYCeHSwJJrJPUGUBw
- NzcUOvpW+kMzrBsO3kK6Eqtq8xm1W9yVtwjahQrAzVuIfuGBDaRBxxgZPmLEnbU3Teie/k/1eiC
- GWoHssxvSzKcJg12zBHL5C6FqIaSOtZcCXfKF2k12Y+pKVxq4mUO1wT5AQfdU1G5o7tf/N6jFEv
- xK61jVBNsLaoxdZe4UoF74IOYEtdpMtMxsc5rcZoDdyOEGXgluh6Th9G4MSt+mB3BfAmjAcYPSh
- iynhVUTT5g1neZxqpyYvH/4ok+4cCg==
-X-Authority-Analysis: v=2.4 cv=NLfYOk6g c=1 sm=1 tr=0 ts=6917ce42 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <prjwrsepfc3b6ozhue5cp66khlcvdrpvpy6jkk23edncmi4l3y@oiddmamgg3mx>
+X-Authority-Analysis: v=2.4 cv=Fek6BZ+6 c=1 sm=1 tr=0 ts=6917f9ab cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=QX4gbG5DAAAA:8 a=Oc5gQ_T1tCqBBtY5fQkA:9
- a=NqO74GWdXPXpGKcKHaDJD/ajO6k=:19 a=CjuIK1q_8ugA:10 a=OIgjcC2v60KrkQgK7BGD:22
+ a=e5mUnYsNAAAA:8 a=EUspDBNiAAAA:8 a=QX4gbG5DAAAA:8 a=E-Vn-V3zxCEcjh91BPMA:9
+ a=CjuIK1q_8ugA:10 a=pJ04lnu7RYOZP9TFuWaZ:22 a=Vxmtnl_E_bksehYqCbjh:22
  a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-GUID: efXgSHVwxRnGMcpgqINYGF1dMqqrfy6r
+X-Proofpoint-GUID: cZPU-SV_7JVBqxOTmiAyThArjbPlsraj
+X-Proofpoint-ORIG-GUID: cZPU-SV_7JVBqxOTmiAyThArjbPlsraj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE1MDAyOCBTYWx0ZWRfXwufa1WpCFldf
+ qi3yMBLdGodLXm1oyCbEIxaeRpuYsnCBahTUpZUb8+Ln4heRTiXRKjifR0L5QyZrBFL53wNanDR
+ lp8Ta5CBXjdeJECDwxtfnFt0fD4SX//ZUodC/M+AMF0xvSZ8wiysp23N7WWZ1/4CtOOWi0xG3DH
+ 4L3PJJn20z8f6FA2cG34AYj+z2drMh9sUYjEIbPauu/8Xtt0K0XTQFrTI3kSsyerVqw5QAFbX1J
+ pBmSQrrAQHwYIjCw4thrAHzCgWqw+rLTE/CPfjitm3lD3qPWMf2rbPgh6iU+E4tzRkYyHPOFzVi
+ k72i9Qoaq5TZvmJCrvtzLjLj9EvCBCC1ddRtNHauYjOCtLf7JSaHQWJm3Q7QBydfxRW2ThcxSHW
+ LE0sii5piSj9Dm6E1dDpZ9apos7EaQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-14_07,2025-11-13_02,2025-10-01_01
+ definitions=2025-11-15_01,2025-11-13_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 lowpriorityscore=0 impostorscore=0
- suspectscore=0 clxscore=1015 bulkscore=0 malwarescore=0 adultscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ suspectscore=0 adultscore=0 malwarescore=0 spamscore=0 bulkscore=0
+ impostorscore=0 phishscore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511150004
+ definitions=main-2511150028
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251114_165013_068405_3A57659A 
-X-CRM114-Status: GOOD (  13.41  )
+X-CRM114-CacheID: sfid-20251114_195526_038241_FBCF8505 
+X-CRM114-Status: GOOD (  20.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,26 +152,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Nov 14, 2025 at 08:30:51AM +0530, Vignesh Raman wrote:
-> Qualcomm apq8016 and apq8096 DUTS are moved to Collabora lava
-> farm. So enable these jobs to use lava and update expectation
-> files.
+On Sat, Nov 15, 2025 at 02:44:56AM +0200, Dmitry Baryshkov wrote:
+> On Fri, Nov 14, 2025 at 08:30:50AM +0530, Vignesh Raman wrote:
+> > Uprev mesa to adapt to the latest changes in Mesa CI, including support
+> > for firmware via LAVA overlays, removal of the python-artifacts job,
+> > split container and build rules, use lava-job-submitter container,
+> > and various misc fixes.
+> > 
+> > Co-developed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> > ---
+> >  drivers/gpu/drm/ci/build.yml         |  22 +++---
+> >  drivers/gpu/drm/ci/container.yml     |  28 ++++++--
+> >  drivers/gpu/drm/ci/gitlab-ci.yml     |  95 ++++++++++++++++++++-----
+> >  drivers/gpu/drm/ci/igt_runner.sh     |   4 +-
+> >  drivers/gpu/drm/ci/image-tags.yml    |  22 +++---
+> >  drivers/gpu/drm/ci/lava-submit.sh    | 101 +++++++++++++--------------
+> >  drivers/gpu/drm/ci/static-checks.yml |   1 +
+> >  drivers/gpu/drm/ci/test.yml          |  18 +++--
+> >  8 files changed, 186 insertions(+), 105 deletions(-)
+> > 
 > 
-> Co-developed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> ---
->  drivers/gpu/drm/ci/arm64.config               |  1 +
->  drivers/gpu/drm/ci/test.yml                   | 62 ++++++-------------
->  .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |  4 ++
->  .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |  2 +
->  4 files changed, 27 insertions(+), 42 deletions(-)
+> Thanks a lot for taking care of it!
 > 
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Hmm, this causes a lot of failures, see [1] (note, the run is not
+finished yet):
+- On some platforms (msm, rk3399, mt8173) the
+  core_setmaster@master-drop-set-root test fails. On other it seems to
+  work correctly
+- sm8350 seems to have some issues with this uprev, it cant' finish the
+  jobs at all
+- mt8173 and rockchip:rk3399 seem to have other test failures too
 
-I'll try picking up these patches through the drm/msm tree, if noone
-objects.
+Could you please update fails / flakes tor all the affected platforms?
+Also I'm really interested in the master-drop-set tests. Why do they
+fail on some of the platforms, but not on all? This seems to be some
+infrastructure-related issue, since exactly the same kernel with the
+same IGT passes those tests (at least on msm hardware).
+
+[1] https://gitlab.freedesktop.org/drm/msm/-/pipelines/1547684
 
 -- 
 With best wishes
