@@ -4,87 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B43DCEACEF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Nov 2025 09:10:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D6FCEACEF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Nov 2025 09:11:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Y8sc4fZ0kGgMEJXNXp5CJj9fYZ3Qar+jY4nnkX6bAAU=; b=Xnpk7ROWP/l0lQIls+dAT2vCb7
-	j6htemMtNd44M8re5KDq4s1IaPz90Y3iXzm5WSVRPmj5rN3jegZN+3p2Djqs+DbE3ukADi0yRcNWk
-	P1gphEX9258IJEH7mn6TC3l6q8OYfonnrxzSJzwljB1HSmyV/qdItLnb5qtpGo6HwnyyCxytEwfvS
-	PSvBj15tUteUSi7+Pnd8YmTXKO+PPcMNWTqBRAzgkbHUBQXgnOAeiFQLNbQp7EDtMXD+OTwb5+oYk
-	ugtfJYiE+dPigdXjLo/r34e+FI6CkbP5EJIDXRaXJNL+Tz63YQHgwK827OdT9EeGyryfLDKv6Ck6j
-	XJDkIbnw==;
+	bh=z2N34xnBVT1fHbL+IID5cZspeWNyU6RVacgHhffl6UQ=; b=bh20WBs9Ix97bZe8YI4kV8cliN
+	egQv7YDxMuJAhz728ZUWid6mAYGwGjkzO6/xGm7B1vP9BwQU1mskK4WzFB6bVanajoInOEHrJCm2T
+	Wo3JIeboxdS6nMfEouQqLT0yifJCNpzalOqXIohf5VK8BcraD7UzAAf8/QGIPVh4mH7ClfUlq1iUE
+	xmlkdHacQuNf3GrBFBmmkDa1nVSItRnFNeUeiTT+bpJ3w7eM1cL+A7UoNhhn01A7PBq8iinSKR2+G
+	51+98JtJ1VlosNoTUKS9MavYUetMC6VH+2u3Nag0+iqyMVZgNz+yCM6ay+tLCGTVlWiGcRE74rxPN
+	3pYRSgGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vKvFx-0000000FlAm-0X4n;
-	Mon, 17 Nov 2025 09:10:41 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1vKvGR-0000000FlLI-0ITd;
+	Mon, 17 Nov 2025 09:11:11 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vKvFv-0000000Fl99-0yB1
+	id 1vKvGM-0000000FlJ4-1UDz
 	for linux-amlogic@lists.infradead.org;
-	Mon, 17 Nov 2025 09:10:40 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-429c48e05aeso2385253f8f.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 17 Nov 2025 01:10:38 -0800 (PST)
+	Mon, 17 Nov 2025 09:11:09 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-429c4c65485so3355886f8f.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 17 Nov 2025 01:11:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763370637; x=1763975437; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1763370664; x=1763975464; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Z5xS83R6jTExGfiXtHMfiumDDrM0n3+eJ9443zfQkUA=;
-        b=TC+N4/Svp5BFezqj9sPyP/oRJmvx71t6sKwrXXocq8A0k9vY1fKfAN+2aJq+855GCT
-         0PaxjmGHMDdY2Pf5XXp9nA3SH1GxEdbW64lYoYJBnSNC040LfrJwFAXpgR1Y77FW8hNG
-         bkQqWU8X2FjUHHN2t5tU+nI47XiXHOYriqIZcnWatxn2i1ZrMc2GVRiSmhViXICnbeBE
-         /UldihllKI6zyAZZ0iFhoQqAWcMjA02H3CAWeHwwbIkJg0GMRAm0G74IM0OA02iw4xlL
-         SzoCWWh0EerNq9zaLogdrwUkDubxfUaWJ58t9K6npGPtWw0OH3xpZ5dvYzejSlZMqhAr
-         S9Mg==
+        bh=qWXKv6dzpM2CS8QuqpR6KyDTLS4NLIuX56g7jGiE3Rc=;
+        b=WgJhdJJpJ5sWS1cH42oSLhTtX6azF7q7MtqFVqEFfJWFKR/bkxtGTMwwZ7dfXg6pJ5
+         ZQozvCkh1OeO971OJnMFfWRi1fKI+1CvrOn5FfNo54eG3Up5+zZlXByKdsm2j6n3Fwnp
+         HebTb++WCKmSehbh45/mFXSavdJcyAgZ6w+7fVx9mR37BLmJi7diLI+nv/WcbAQV8Hlf
+         l9adniy+lcz7eKVOcUZDyVENlPJjHKHrmqw3ux5XrigA0TvPcXzmgCQiSc6BnrLKmsLW
+         js6S3nJglwotbN9d6iOFfL04+IIsZDSngOto5W3BT3CYyvvZrlv9LZpOYlVCztRPKihF
+         3GrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763370637; x=1763975437;
+        d=1e100.net; s=20230601; t=1763370664; x=1763975464;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Z5xS83R6jTExGfiXtHMfiumDDrM0n3+eJ9443zfQkUA=;
-        b=CJd+bs0KGtlAuj4kjvNEczySlfBsyN6PisNCImiJ/E1PcK22icQRVG3j4/P8kgM/GB
-         V6pJ6W55VIV8AcSeDE/AVfnUdYnqBQnfesNKRu0ZoxqB37xZQRuKyZNxwy8OVMmuDJaU
-         gsB7UEBvSStzMpRW3xO9n/XoLwNvr7urcYEEZUagwl2OmPLMGDv1hTzxsMYiBWoGOT0C
-         QtEqTE9Uu2k0Ro1FiLqfaP0AxpBcbYYXTe94WWYaqhypkPooT1WsJZqTdyV3XHnialjx
-         FN3zSR6hGhi8Y1tHbHfcraezI67mdJ5FMSHc4Xy59fhPSEVlyGd5zmAUdGic4UyqbTJe
-         HjUA==
-X-Forwarded-Encrypted: i=1; AJvYcCUhQyVyZSEsFy5wrizHxgtb629BwPauZmLoMA6kZ/Rbqk9+nbkWY3vO5LTOwN7DIVvk3Kl02LSARD0ictPG@lists.infradead.org
-X-Gm-Message-State: AOJu0YyvSktonkfXBbVA3m+NEI1ad5kT9I4XdwErDvFh7ae6zpoDZ7Af
-	pB8xuH5W7RbkLmV6mhtmwdn7GXWsURgcj++b1L/0MFk40f69PpbTD8f3PmAf3K8MJyo=
-X-Gm-Gg: ASbGncvZX9AN8iTl1laJs/6iYNF1/IUwXuC+5UXKQUsJQ7vFl/SRe/+rF3sD8s+HVMH
-	CXmu/9WeffMwSCF2tnJqiUpLq+unnDKXDtg6O6gkY2dKBuO4kRV7a9Os2f7bmlLv0Q7hZi+wRja
-	6RLGkvm14EuquWD9rvpUdJmsotMuI4nQ8q3oKD2Q006ZK3kvTJLnBRroGwcbnHcgvcwvJkwlQCb
-	uBJe1Rq2kRaHeXtNGTviZUL69VDcBh3xbHqsqEXrKdKsjgPRoUJHzwk1KvcSCyY4xh8USoMgzYs
-	GZBMTYCecTLdk5rSy/V/8c4dSSgBUufuqK+WUCailLzl3PIa/0irGxtzpXERWWRrtw1aCRjHwXx
-	cazyNMuX77rYv2X5aQKArA84rRP6yMOHvmv9Yjq4LnvdjPkQB+yVcOpbyzYAAMwiPeDKSc4fLYK
-	RzTxTicTvLd+2ZxphvRKBYGrK8UQyjoVGDJ/4kp48DG1EsdUp5cLFRIg2NRcBlGmk=
-X-Google-Smtp-Source: AGHT+IFInPvL/+hlf6EvBiL3GuycrSuUEXiGcy+maGHmWCjrynz9VPYDH7y5YTt48xKHIlg1cCH8VA==
-X-Received: by 2002:adf:b601:0:b0:42c:a420:e755 with SMTP id ffacd0b85a97d-42ca420e9eamr1015380f8f.23.1763370637172;
-        Mon, 17 Nov 2025 01:10:37 -0800 (PST)
+        bh=qWXKv6dzpM2CS8QuqpR6KyDTLS4NLIuX56g7jGiE3Rc=;
+        b=xTKU9olKP7AwLapwjng2H6Mhn0m8cYCC++nlFHR/mCZ5wq4PYtiQwIaGod5Kr2IhiD
+         Xzz5kJFzz7PK+VgD7jmxM1WTw36JO7PiI77p95Qe6nvCkoy2aD0O3pPP/IXl01kjvITd
+         HLq+5ippF2AqeDZoQQHKzicm0yfAqYzoMssypnXS4S457u5bb+TM1Nv0XMU8m6PWzi8r
+         JIcp3laM3OESENcDN2DBqD2CbGBPOlka7plozZWEvFONjZLygE/UjOxNFy6KaIORDAoz
+         wbP+lZRMwK6xfIDSTd5pJj3TskXoxd1MDp8SeCP5pHk804UOjM3enZ248PQTkrO7E3Oz
+         giHg==
+X-Forwarded-Encrypted: i=1; AJvYcCX+jxbtUJX6UhSRzJVEJ2QpBw/XVE5CflCxuV0Scx5vQywEPRE7gfTBD924qMM7tYrQi3iAEveQElcvMeGc@lists.infradead.org
+X-Gm-Message-State: AOJu0YyYDJL2NcsxfVzwVQfD161ssgIDJUK2z2yRUEOMj3n6ELpsg998
+	ZegYkX3OJeq5ynDP+X+tD68vRLTtuqMv+z400THiXRRZcjGPlnk+clyFl4cv3DtDWMA=
+X-Gm-Gg: ASbGncvFyTWceIRGhZWzlgQ91XirXAltq8tplhZul+vCm+BVeKJptKVPjyyV7rAVayy
+	BQcyWkcpLS9gEhQD8vSOmB68/maH8UWh0n34RC9gY1YQHPpfNssXFF/kZkpHqlwyV12t1v6bWaY
+	Mj8hp8NRD5S7nxWI0153wAJeW/adO1CqVJkE28GZc85T/4XBnOHPq7vW4ilXFLd9t0+vgW6GNHa
+	tbVtPC8Fz9fXJtMxQg6j9gU/bAgn52p9uMNmYd8UcKn2wFSVQ0NouZX/1o+OJQBKoHPWkLTwD8o
+	qdAhAjxLg8b+RfMG6/FKNhKTd0v6QlizZtwsRwB82YrB1oRs3fzUa4yLhSNJVXNrJWVvW7ISxj0
+	qs62psrbSMOTmvcXT657js5D6fbhdfvyVmKTkngVcf1KwM59Zcltdl8jKK+L8upWRBmEjN4bZiR
+	nDPcqBLxTNOwoA2ENiqlO7hSac1zlWh3jTeVI9YxZOSgenIJfq0YQxRSpXJezy5QA=
+X-Google-Smtp-Source: AGHT+IHyuINLK5MdbEyCE84WDmNGgCERjzRvEgCe7ErPY+YmW9fdaWeR1WnnEstHTpOfhgyPahtbCg==
+X-Received: by 2002:a05:6000:657:b0:42b:2a09:2e55 with SMTP id ffacd0b85a97d-42b592d106dmr9359114f8f.0.1763370664318;
+        Mon, 17 Nov 2025 01:11:04 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:3d9:2080:d631:aa74:9313:e9f3? ([2a01:e0a:3d9:2080:d631:aa74:9313:e9f3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f19aa0sm25146237f8f.37.2025.11.17.01.10.36
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f0b622sm24597140f8f.29.2025.11.17.01.11.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Nov 2025 01:10:36 -0800 (PST)
-Message-ID: <3243f07f-da15-4819-837d-4de081d336ac@linaro.org>
-Date: Mon, 17 Nov 2025 10:10:35 +0100
+        Mon, 17 Nov 2025 01:11:02 -0800 (PST)
+Message-ID: <9df2dd4c-9283-4f3c-859e-586e1b397a96@linaro.org>
+Date: Mon, 17 Nov 2025 10:11:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1 4/7] mmc: meson-mx-sdio: Use devm_mmc_alloc_host()
- helper
+Subject: Re: [PATCH v1 5/7] mmc: meson-mx-sdio: Use dev_err_probe() where
+ appropriate
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- ulf.hansson@linaro.org, Binbin Zhou <zhoubinbin@loongson.cn>
+ ulf.hansson@linaro.org
 References: <20251108231253.1641927-1-martin.blumenstingl@googlemail.com>
- <20251108231253.1641927-5-martin.blumenstingl@googlemail.com>
+ <20251108231253.1641927-6-martin.blumenstingl@googlemail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -111,10 +111,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20251108231253.1641927-5-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20251108231253.1641927-6-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251117_011039_303250_9E37B593 
-X-CRM114-Status: GOOD (  16.31  )
+X-CRM114-CacheID: sfid-20251117_011106_432701_5CC0B8EA 
+X-CRM114-Status: GOOD (  16.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,92 +133,80 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 11/9/25 00:12, Martin Blumenstingl wrote:
-> From: Binbin Zhou <zhoubinbin@loongson.cn>
+> This streamlines probe error handling / logging with other drivers.
 > 
-> Use new function devm_mmc_alloc_host() to simplify the code.
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->   drivers/mmc/host/meson-mx-sdio.c | 18 +++++++-----------
->   1 file changed, 7 insertions(+), 11 deletions(-)
+>   drivers/mmc/host/meson-mx-sdio.c | 30 +++++++++++++++++-------------
+>   1 file changed, 17 insertions(+), 13 deletions(-)
 > 
 > diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-> index ce1828d915da..214ce84f1ddd 100644
+> index 214ce84f1ddd..052bcf8f32df 100644
 > --- a/drivers/mmc/host/meson-mx-sdio.c
 > +++ b/drivers/mmc/host/meson-mx-sdio.c
-> @@ -648,7 +648,7 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
->   	else if (IS_ERR(slot_pdev))
->   		return PTR_ERR(slot_pdev);
+> @@ -520,16 +520,14 @@ static int meson_mx_mmc_add_host(struct meson_mx_mmc_host *host)
+>   	struct device *slot_dev = mmc_dev(mmc);
+>   	int ret;
 >   
-> -	mmc = mmc_alloc_host(sizeof(*host), &slot_pdev->dev);
-> +	mmc = devm_mmc_alloc_host(&slot_pdev->dev, sizeof(*host));
->   	if (!mmc) {
->   		ret = -ENOMEM;
->   		goto error_unregister_slot_pdev;
-> @@ -667,13 +667,13 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
+> -	if (of_property_read_u32(slot_dev->of_node, "reg", &host->slot_id)) {
+> -		dev_err(slot_dev, "missing 'reg' property\n");
+> -		return -EINVAL;
+> -	}
+> +	if (of_property_read_u32(slot_dev->of_node, "reg", &host->slot_id))
+> +		return dev_err_probe(slot_dev, -EINVAL,
+> +				     "missing 'reg' property\n");
+>   
+> -	if (host->slot_id >= MESON_MX_SDIO_MAX_SLOTS) {
+> -		dev_err(slot_dev, "invalid 'reg' property value %d\n",
+> -			host->slot_id);
+> -		return -EINVAL;
+> -	}
+> +	if (host->slot_id >= MESON_MX_SDIO_MAX_SLOTS)
+> +		return dev_err_probe(slot_dev, -EINVAL,
+> +				     "invalid 'reg' property value %d\n",
+> +				     host->slot_id);
+>   
+>   	/* Get regulators and the supported OCR mask */
+>   	ret = mmc_regulator_get_supply(mmc);
+> @@ -666,7 +664,8 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
+>   	host->regmap = devm_regmap_init_mmio(&pdev->dev, base,
 >   					     &meson_mx_sdio_regmap_config);
 >   	if (IS_ERR(host->regmap)) {
->   		ret = PTR_ERR(host->regmap);
-> -		goto error_free_mmc;
-> +		goto error_unregister_slot_pdev;
+> -		ret = PTR_ERR(host->regmap);
+> +		ret = dev_err_probe(host->controller_dev, PTR_ERR(host->regmap),
+> +				    "Failed to initialize regmap\n");
+>   		goto error_unregister_slot_pdev;
 >   	}
 >   
->   	irq = platform_get_irq(pdev, 0);
->   	if (irq < 0) {
->   		ret = irq;
-> -		goto error_free_mmc;
-> +		goto error_unregister_slot_pdev;
->   	}
->   
->   	ret = devm_request_threaded_irq(host->controller_dev, irq,
-> @@ -681,24 +681,24 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
+> @@ -680,12 +679,16 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
+>   					meson_mx_mmc_irq,
 >   					meson_mx_mmc_irq_thread, IRQF_ONESHOT,
 >   					NULL, host);
->   	if (ret)
-> -		goto error_free_mmc;
-> +		goto error_unregister_slot_pdev;
+> -	if (ret)
+> +	if (ret) {
+> +		dev_err_probe(host->controller_dev, ret,
+> +			      "Failed to request IRQ\n");
+>   		goto error_unregister_slot_pdev;
+> +	}
 >   
 >   	core_clk = devm_clk_get_enabled(host->controller_dev, "core");
 >   	if (IS_ERR(core_clk)) {
->   		ret = PTR_ERR(core_clk);
-> -		goto error_free_mmc;
-> +		goto error_unregister_slot_pdev;
+> -		ret = PTR_ERR(core_clk);
+> +		ret = dev_err_probe(host->controller_dev, PTR_ERR(core_clk),
+> +				    "Failed to get and enable 'core' clock\n");
+>   		goto error_unregister_slot_pdev;
 >   	}
 >   
->   	host->cfg_div_clk = meson_mx_mmc_register_clk(&pdev->dev, base);
->   	if (IS_ERR(host->cfg_div_clk)) {
->   		ret = PTR_ERR(host->cfg_div_clk);
-> -		goto error_free_mmc;
-> +		goto error_unregister_slot_pdev;
->   	}
+> @@ -697,7 +700,8 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
 >   
 >   	ret = clk_prepare_enable(host->cfg_div_clk);
 >   	if (ret) {
->   		dev_err(host->controller_dev, "Failed to enable MMC clock\n");
-> -		goto error_free_mmc;
-> +		goto error_unregister_slot_pdev;
+> -		dev_err(host->controller_dev, "Failed to enable MMC clock\n");
+> +		dev_err_probe(host->controller_dev, ret,
+> +			      "Failed to enable MMC (cfg div) clock\n");
+>   		goto error_unregister_slot_pdev;
 >   	}
 >   
->   	conf = 0;
-> @@ -718,8 +718,6 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
->   
->   error_disable_div_clk:
->   	clk_disable_unprepare(host->cfg_div_clk);
-> -error_free_mmc:
-> -	mmc_free_host(mmc);
->   error_unregister_slot_pdev:
->   	of_platform_device_destroy(&slot_pdev->dev, NULL);
->   	return ret;
-> @@ -737,8 +735,6 @@ static void meson_mx_mmc_remove(struct platform_device *pdev)
->   	of_platform_device_destroy(slot_dev, NULL);
->   
->   	clk_disable_unprepare(host->cfg_div_clk);
-> -
-> -	mmc_free_host(host->mmc);
->   }
->   
->   static const struct of_device_id meson_mx_mmc_of_match[] = {
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
