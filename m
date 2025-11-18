@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C833CED249
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Nov 2025 05:59:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DF23CCD19A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Nov 2025 05:59:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=a0CSGsZyPoKHUZ/s8jHup8NYKVPFbYrkBbXoJa8GfYU=; b=Gal1UANY7MJo37
-	pam9S8dNjr7XIecGO2gG9S76IugHFr0ZP+fYWYYXbTHC2bGw8vV5gtbygsfG+AyCIyvE8o2C7VIaH
-	djVg8n2klNnUz+uuQWbQpG1zIvgphagX8ewyk/OJxQTGeMK2Bqk/xOJuACpkIuLX1vEQPaDm097oG
-	tfomJ/oeLzF9VTjsfPey2Aq6HZ0d62wPFqwwBQifLaqKrYOWM0//Tfnuqi7WvYcDqAHJI122koGEt
-	hK5FcVCLsYyaceBGkF/rbswGiYzAJblCXi299yPbUVps4AkYEkqnaR9NbLs9chvBHRkV2T75dkC+c
-	bWLa0JTpwEqT0kIZfu0A==;
+	List-Owner; bh=WCLafHmJ5jQQ6ZZVvxVNeo087G6VV6uhlBu/7Ok6hH0=; b=mrF3lK1A8qYRnC
+	qAUCp9elfz1B0gU9A1s6Apcq8tuXX2Fk6kumRVcphCw5vh3FPHNXGaWeqokSuEVdAc4Q4lDx9n6/C
+	TcwoPTAwXjY+8WKrHV5L2xmvuv7PROFCFlH/6aLtOTZO/dsopnFC6iN4MDDo91OGkl1uyqjbio3zI
+	rNtSqxTMSD2qC+KdbHQ2g1k2EsF8OSaZgFgMqBLSAongnHgTpJLbk6D2EmeKDRw7Uhti0RwkqJTaR
+	Z4gxJj54Jo4e4NCH9o2A0WkBwQeEf6jfbFLS6m04jv3xOdEW+xTI93o/CzvBwSsHTxyPbDvOatSa9
+	m++lLVsjV1SpYdV5zUPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLEkG-0000000HSIE-0XkN;
-	Tue, 18 Nov 2025 05:59:16 +0000
+	id 1vLEkH-0000000HSJx-1ArW;
+	Tue, 18 Nov 2025 05:59:18 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLEk4-0000000HSC9-3TWo;
-	Tue, 18 Nov 2025 05:59:06 +0000
+	id 1vLEk4-0000000HSCB-3We4;
+	Tue, 18 Nov 2025 05:59:07 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4993244384;
+	by sea.source.kernel.org (Postfix) with ESMTP id 6D9EA4074D;
 	Tue, 18 Nov 2025 05:59:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C81C7C2BCB5;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B0A47C4AF0D;
 	Tue, 18 Nov 2025 05:59:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1763445544;
-	bh=K/UsZ1gWQPrXE8Cmyyx1itR+TSnLgVk5ZkCZ5Z2VCCw=;
+	bh=8qJePZ/qYEO2UNbXovKjzo5sEmI+BwCxbWANSjOTzYw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=muIbDzM//nQ5qQ1f4EFe/WmwM95YS1Ckp8AMf36CqZLk3tnJxzZM8czPqnDIS39I/
-	 27J5KMlpzFNs2ZLieEkOBsZe123zBt2LzJnUmqXsJTwMjtsVf8/oNe/FsFaceOCf+1
-	 LuG2J6f0y8QbEyfnaTfrtOFrtTcr6lzGJuijwGSuhMCUaPqXiyCVNU8/ynUkG2YlES
-	 sjc+DzNp5c8nRCnulnHQN3SQwb6poYzXQpEgIAgCbJw/9E0ZcYBG0+fIai2Lb56Bxd
-	 6xjeV1cPTJbENPPmAWZI4tcla5GTsdHZJSBvUCczWfmsef3wcIczM+n26bPq5NmJ16
-	 rEc3az0mKI40w==
+	b=TWj1MY5E7kveAN2rm444JBrui98wazrWiegoES6D0VpoSq63HZng06SD4kCf24j/Q
+	 5SWlc6wnOB/zWaKvOS73cfXOXyO9j4eBFhC2Wrp+wvoKHCWRIVrU7PZO27JxGRJrKr
+	 p5HTMk6uf4RreMZKq/EkwWGQMugC8tVBPdR6Xfgtm1FYFzhLHxvGlcarPZP08iYq5Z
+	 RG90V0WBWAnXPWxUhNnJsMkVvoWQixYRw+4IV4bS1NhIlzUlsBtOBoq+FpwTEWhws/
+	 8tmUw0kzzLvIMbQMskP9l03prT2Aqm5CqaNv9h2rs1ZO+E8/hJNxwFE1FYSVNd/jY+
+	 SQE5Jwi5aOK3g==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4FAB6CED249;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D964CCD19A;
 	Tue, 18 Nov 2025 05:59:03 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 18 Nov 2025 13:59:02 +0800
-Subject: [PATCH v2 3/5] arm64: dts: amlogic: s6: add ao secure node
+Date: Tue, 18 Nov 2025 13:59:01 +0800
+Subject: [PATCH v2 2/5] soc: amlogic: meson-gx-socinfo: add new SoCs id
 MIME-Version: 1.0
-Message-Id: <20251118-soc-info-s6-s7-s7d-v2-3-38e2b31a88d1@amlogic.com>
+Message-Id: <20251118-soc-info-s6-s7-s7d-v2-2-38e2b31a88d1@amlogic.com>
 References: <20251118-soc-info-s6-s7-s7d-v2-0-38e2b31a88d1@amlogic.com>
 In-Reply-To: <20251118-soc-info-s6-s7-s7d-v2-0-38e2b31a88d1@amlogic.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -60,19 +60,19 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763445540; l=856;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763445540; l=1002;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=lkBjmJL/fA5SfT99KKhTn/IbIqqAL9gYKbERk/NBAp4=;
- b=/4j2wGfR+kNruk3cqjYP5no72jgN2ItSWlXKlprbI1PYFezCj5zK8v3ryWe4WQOTUIJCc8Utu
- qpS1C6qFYGXAEHhkAuSyPQEbXRua/PUatPIAlgFieeUgwmRfLd1tZoi
+ bh=r5XOc1DExyRTPaepAOT2vA2ghPS6TRl6+HA/H3c2gj4=;
+ b=ql4WsQGw8qVd45J++79fRc4h8EgbiCo7L8iE30zzHh0u4MKWtXwApGCOnN9fdJjuIykLUMZ9M
+ 9CmPYiY30yOBqmRzw+WWE5v/bfgPJ6tAi/q5lkQuxzBeSKUxxXBv+yD
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
  auth_id=107
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251117_215905_647578_7715EB55 
-X-CRM114-Status: UNSURE (   8.41  )
+X-CRM114-CacheID: sfid-20251117_215905_649333_1422B620 
+X-CRM114-Status: UNSURE (   8.18  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -93,33 +93,37 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Add node for board info registers, which allows getting SoC family and
-board revision.
+Add new definition for Amlogi SoCs, include S6, S7, S7D.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/soc/amlogic/meson-gx-socinfo.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
-index 0dca64a2ef9e..da3e607aea85 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
-@@ -199,6 +199,14 @@ gpiocc: gpio@300 {
- 					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_CC<<8) 2>;
- 				};
- 			};
-+
-+			ao-secure@10220 {
-+				compatible = "amlogic,s6-ao-secure",
-+					     "amlogic,meson-gx-ao-secure",
-+					     "syscon";
-+				reg = <0x0 0x10220 0x0 0x140>;
-+				amlogic,has-chip-id;
-+			};
- 		};
- 	};
+diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+index 7549f1644e5e..2a54ca43cd13 100644
+--- a/drivers/soc/amlogic/meson-gx-socinfo.c
++++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+@@ -46,6 +46,9 @@ static const struct meson_gx_soc_id {
+ 	{ "A5", 0x3c },
+ 	{ "C3", 0x3d },
+ 	{ "A4", 0x40 },
++	{ "S7", 0x46 },
++	{ "S7D", 0x47 },
++	{ "S6", 0x48 },
  };
+ 
+ static const struct meson_gx_package_id {
+@@ -86,6 +89,9 @@ static const struct meson_gx_package_id {
+ 	{ "A311D2", 0x36, 0x1, 0xf },
+ 	{ "A113X2", 0x3c, 0x1, 0xf },
+ 	{ "A113L2", 0x40, 0x1, 0xf },
++	{ "S805X3", 0x46, 0x3, 0xf },
++	{ "S905X5M", 0x47, 0x1, 0xf },
++	{ "S905X5", 0x48, 0x1, 0xf },
+ };
+ 
+ static inline unsigned int socinfo_to_major(u32 socinfo)
 
 -- 
 2.37.1
