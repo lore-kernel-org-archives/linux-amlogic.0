@@ -4,51 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33858CF34AB
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Nov 2025 13:07:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 468AECF34AB
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Nov 2025 13:07:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7PhoE3wvESB8U9useKVnwZ3c69z9JLU/yK+MRCy4kUc=; b=ZcWKAEm1UeV9hX
-	r+cr4GxDShj+8hONyEYIFSGG+z7VEEXrAdg+yb8qTeAiJzds5HsyW2uwsf/JBAYnF7PCxofrCEFSd
-	AwLurWVJSep2ogn9gnLXZWDgWP9M+bhZClcDgtNfgy7z3dQIu27sw1fDyH9jzCNQSbKaETy6Llk1t
-	rGi7xojPQR4/juDnNBvS3jnXzlIqJYBoyGjfX6VCaRcl0Ey5RUii5v6vS3+4DRdJ7HdBIC81z6ufl
-	D2T5KVAFKpcdj+xn/R2td7rV1xO8ynrl/WhwYdQaGbwhdQk8enoLf0zwUzfP2nDCkMi52KC/jJ6Nh
-	2R5f10fRW5evTW50d+gQ==;
+	List-Owner; bh=IgPPCaRDPIS12wGvU36HeMLIQ0v+Rpz6qcPHf7+vCFM=; b=1OkObcxEWFM2rY
+	vvyph8MX71HeVQ27H2DrPR+9fdBF0w8NjAIBPWIkvwLbucgnEwvKADQjh43ar2OOkJLnVzU+OnJUs
+	NDiXaptqPrqWbZOHGSZ+NHeQ4NewbX+6rhBtJefKFyX0Kfll/kRT5OqSst32JLMj/waAE6IexkxH7
+	H0LJO92Wn/favEZ2B9Y9hlOajQtTBXqXW21zWXP+/165eswgRsG/OlbWaYYnOfjn7YAs7csCoaZp5
+	HS54sAc2SgkCPn5A1kYo6ibI7ZBxDZ52hQka1DexIcFJ1EXRSGp9vl1F6+OCzKcFA2BMXeRsBJO6L
+	P3A0RIxCN6xP+Jt2jIgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLhuM-00000003Efq-0CHT;
-	Wed, 19 Nov 2025 13:07:38 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1vLhua-00000003EmM-3wnh;
+	Wed, 19 Nov 2025 13:07:52 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLhuI-00000003Eds-1Es4;
-	Wed, 19 Nov 2025 13:07:36 +0000
+	id 1vLhua-00000003Elf-0cE6;
+	Wed, 19 Nov 2025 13:07:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=TiBLlmwYhB63nFLorXIwQ6qQtOlHHavm3I18CstCbZg=; b=byfM3aAVKVPfwjmAuThtULtEy4
+	d6pw4ct2Sq3urZ/p2XdGLIHk0V5mhzWiY0nMXhmL9UkbfWU9YR10pOZqnERlNlXiSgqy+hckhbZ+0
+	WrKpbpoSxptNr3JzRD52FYxztREGgo2SMzOQ4FRm24C58buhKplTVSrfV0zG0REUVyL0Aapo+Wlte
+	AADCXtxmBWZftq8liUBGRW+juTc9RSX8OUJWw8mAXCV/LJmDzM/LNxsvTRCGA6Yc3F36YGQef1GoK
+	PzNcZ21ZExo3F8Hva2JRk+tRYJtm+Hn4zyT4putl95kp6LHFuMApute6KNG0ivL5IOE4+hOf7QIkN
+	4wf5iu+A==;
+Received: from smtpout-03.galae.net ([185.246.85.4])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vLh2u-0000000CAJr-01H0;
+	Wed, 19 Nov 2025 12:12:25 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 4F7F3C11188;
-	Wed, 19 Nov 2025 13:07:10 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 0E7934E4179D;
+	Wed, 19 Nov 2025 13:07:41 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8418E60720;
-	Wed, 19 Nov 2025 13:07:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3AAD010371A4D;
-	Wed, 19 Nov 2025 14:07:22 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D45B660699;
+	Wed, 19 Nov 2025 13:07:40 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0283810371A50;
+	Wed, 19 Nov 2025 14:07:30 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763557650; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1763557658; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=Ic9ph8Z1Op+ytw7mO9G+BaMZIC2zCJODcJzk4yl4TnA=;
-	b=D7DBAvwbZZjrlq8Ev1VpLDlL34tBKuPw/seXgJf+ILNy9gVNWZJ0CqqBCwICCvH4/YakiQ
-	RoezdaLkZkEwwoeoxUv/tclieBny0oVLZXVOp9rReGTdfThXukdXepfPgAU61m0H6xUhAc
-	uh1W+D4gOhnT5F7YsPL2bvl3G67BcDZyMWSVlzW+l8NALHrkElTq9Q/1hq/E/eqgcF8wxm
-	q4LwhHTGqYGjnMxyKaDmmqjOdlu80GKThQ/XkawPXCHj80EMdrWS0iY/IgdXPCkeUQMcDJ
-	t1IuY87oY/acM/7tOs5YrzrZQMltSj5zzVqjvBfpDFVyZNH4RPA9Q+XGi2T9ng==
+	bh=TiBLlmwYhB63nFLorXIwQ6qQtOlHHavm3I18CstCbZg=;
+	b=MfrTHzewk3JFkQFD8AyqTB32RaHtpIW9HGz9cfBsuTCF0CBnujN6n5pfwQ2MfVjVxLlbtF
+	fQxV35iN83osuwmb9XyjBN91m1Mfz2dJHoSNWB1UQTnQ1L3YKMU5a0VbTvSYYkqelSm7y2
+	hEtjSXdkifhua+TKmFxatqevAcjvvwHJs6eki6u3scNSGWjFEGiKKs4+Dy1vCG1L6D5i7V
+	6kkX4iPBlhX27nu/rB9/L7LHWBOHqgYMq4msDLFTdqV/sdmIpkV5qkVWDnPfXE0zR54Ddr
+	ji7EuIi0QoXvvUAoaZ2xBM1azFoE3R0rBHFQu05kMMC2DQPB76tju8pyDzVWHw==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 19 Nov 2025 14:05:41 +0100
-Subject: [PATCH 10/26] drm/bridge: tpd12s015: use devm_drm_of_find_bridge()
- to put the next bridge
+Date: Wed, 19 Nov 2025 14:05:42 +0100
+Subject: [PATCH 11/26] drm/bridge: thc63lvd1024: use
+ devm_drm_of_find_bridge() to put the next bridge
 MIME-Version: 1.0
-Message-Id: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-10-0db98a7fe474@bootlin.com>
+Message-Id: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-11-0db98a7fe474@bootlin.com>
 References: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com>
 In-Reply-To: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -92,8 +106,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251119_050734_480850_7DD38F4B 
-X-CRM114-Status: GOOD (  13.41  )
+X-CRM114-CacheID: sfid-20251119_121224_177659_ACA521FA 
+X-CRM114-Status: GOOD (  12.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,22 +131,22 @@ reference on remove or on probe failure.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/bridge/ti-tpd12s015.c | 2 +-
+ drivers/gpu/drm/bridge/thc63lvd1024.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/bridge/ti-tpd12s015.c b/drivers/gpu/drm/bridge/ti-tpd12s015.c
-index dcf686c4e73d..cef01106db31 100644
---- a/drivers/gpu/drm/bridge/ti-tpd12s015.c
-+++ b/drivers/gpu/drm/bridge/ti-tpd12s015.c
-@@ -138,7 +138,7 @@ static int tpd12s015_probe(struct platform_device *pdev)
- 	if (!node)
+diff --git a/drivers/gpu/drm/bridge/thc63lvd1024.c b/drivers/gpu/drm/bridge/thc63lvd1024.c
+index 2cb7cd0c0608..bc658883c813 100644
+--- a/drivers/gpu/drm/bridge/thc63lvd1024.c
++++ b/drivers/gpu/drm/bridge/thc63lvd1024.c
+@@ -132,7 +132,7 @@ static int thc63_parse_dt(struct thc63_dev *thc63)
  		return -ENODEV;
+ 	}
  
--	tpd->next_bridge = of_drm_find_bridge(node);
-+	tpd->next_bridge = devm_drm_of_find_bridge(&pdev->dev, node);
- 	of_node_put(node);
- 
- 	if (!tpd->next_bridge)
+-	thc63->next = of_drm_find_bridge(remote);
++	thc63->next = devm_drm_of_find_bridge(thc63->dev, remote);
+ 	of_node_put(remote);
+ 	if (!thc63->next)
+ 		return -EPROBE_DEFER;
 
 -- 
 2.51.1
