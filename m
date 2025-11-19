@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA10CCF34A1
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Nov 2025 13:09:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5B5BCF34AB
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Nov 2025 13:09:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=a46YNCSjR+TADY01NP760uKS9vZNxi4EOTcwFvyVn5Q=; b=c1FkoB5W9n28TF
-	w8ymsacFO9IYCDHO/0tOo0tRNXmVBswjTw/EW1G24piDR4c4CjVMclUJR5JJ7a6PVAB5bQaIwvmkV
-	6MT7ESFLNe9sH+plJykcAXAYznuy82RdmdeHZR1V9LdMcLkSq6WE5e16tC/9awP01KzOcKWnDdxXh
-	fHXs7wRVfbTnoEzWxKAyAXi2G0Bd2Hj/IVg68Vr1h3yZaleo0lQSHb06x0s7zAFXbNIAjsuYosIAG
-	QGPsfbYu1JGCYcmk9gtNy/Fyx/o9nxS09GVjXD9wsbVuEyTgwx78prZ1MfF5n9yMEMNGYjQgAosMK
-	ydIYtIPf132w48s8k05w==;
+	List-Owner; bh=ML2BevfFJSN23CpFJbNrmWInrOrRmsYKuIQ9UG9w1Q8=; b=kzFDKDX9+aer8X
+	O6hoYC72QXLXjP51yyWf2pC0/cfSASOAu8++ShY1y3jubiHzW3WlT5JFp/HJMk4CDcaXyPZSRFvBm
+	hcffl106P04K1sMy/QgkOx8AwSejV5ID+3Z/bktA4UMrCcHQiXNKYYSOtQS85S6dWMcL7kGk2iHOj
+	obZ9uVQa7Cjxe71z0OElrdBx5FQnESdAUKxwbD7Bf3GFBg+Is7L9sMj0ehNjORuyWEsMgU1vdbzMY
+	s8LIqb9SlFpBFHCV0PXNTj22Q0eOWOszNkj9aKl7nRMykZQSVBpFgcmwBTxrFTKIh+eKVKA0z8VcX
+	12Y8g8G5xPuYPyKzelig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLhvd-00000003FL1-2wQn;
-	Wed, 19 Nov 2025 13:08:57 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1vLhvi-00000003FOV-37Xr;
+	Wed, 19 Nov 2025 13:09:02 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLhvY-00000003FI9-22KT
-	for linux-amlogic@lists.infradead.org;
-	Wed, 19 Nov 2025 13:08:55 +0000
+	id 1vLhvg-00000003FMU-3tmV;
+	Wed, 19 Nov 2025 13:09:02 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 54420C11188;
-	Wed, 19 Nov 2025 13:08:28 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 533481A1BDE;
+	Wed, 19 Nov 2025 13:08:59 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8A03C60699;
-	Wed, 19 Nov 2025 13:08:50 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8AF7E10371A51;
-	Wed, 19 Nov 2025 14:08:40 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 255EF60699;
+	Wed, 19 Nov 2025 13:08:59 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1C63810371A4D;
+	Wed, 19 Nov 2025 14:08:48 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763557728; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1763557737; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=ug+PhDpwof8UC1as0UO8CJI8RrRNzwgCCqAFDo7o0RQ=;
-	b=Mr/S+z4rb6W/sVm8IPs7WuYmJSreXiSjDzMbksS0wSpWfu7AHKR5qbat7HA5+dytFRMgpG
-	SW6oZB5ucrzHcjiwTVDq9AqizEVGFHUwRFG1mPcltSaPb5Nuu/ZgGOStmmZ1hUSS+Xx4AX
-	QO/2AAwYsHeBDp/sRP+pnY3XINDKFM68uLt3YIIJC9Q0ZZDhnEKMGARWAZT52+AFIdZq89
-	PqkN6f+2D9GAh0JvsHNXtNl8Jb5RjP122UVzzI+HEd3rYaCZyiwkq2/GuCtcZlqCqDB636
-	gbI5wwYwE3PvH0+BHrtyhB2AkWfgf5z5Vf0BKNbpccKs+P3F4Q+8DEfCcDLd8w==
+	bh=qwyda0vKD9Tp8nxe63uhqvTZQcM8lKqf106QJfQpcEU=;
+	b=BeFVaMzFK2wStLtQ6jN2PuIbw30QcIRyV07gaLfbC08eRaTBbvzK6qEQ5Xb6ov+h/iWM1T
+	9cIT07v05S+0hkkUEYssaFADxBW2rAFRMMZ9BQvpQStTzWj0FmRCofNSEEByOriqeLspUk
+	sO4g/tiSp0Ye8zo8TI6KSxm9Hyv1X6+oJB3o3uWuilmWeW+iLUPUCgmAXvbLwHI84EGT0Q
+	vruZSJfloAbVQJW7J1zvOa0F7djleb7CANrh5s4hBncBpAp5hJuFViWHdpXIkcoHfW1/Ts
+	+owSUwBtGd6P6iv7enr9zmS4fdDnCvDsXBuF9yj52/rZrAgdjn47Gat0iBdoLA==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 19 Nov 2025 14:05:50 +0100
-Subject: [PATCH 19/26] drm/mediatek: use devm_drm_of_find_bridge() to put
+Date: Wed, 19 Nov 2025 14:05:51 +0100
+Subject: [PATCH 20/26] drm/kmb: dsi: use devm_drm_of_find_bridge() to put
  the next bridge
 MIME-Version: 1.0
-Message-Id: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-19-0db98a7fe474@bootlin.com>
+Message-Id: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-20-0db98a7fe474@bootlin.com>
 References: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com>
 In-Reply-To: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -93,8 +92,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251119_050852_695255_AE8E829C 
-X-CRM114-Status: GOOD (  12.78  )
+X-CRM114-CacheID: sfid-20251119_050901_113814_75BDBE78 
+X-CRM114-Status: GOOD (  14.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,24 +115,29 @@ function and stores it until driver removal. of_drm_find_bridge() is
 deprecated. Move to devm_drm_of_find_bridge() which puts the bridge
 reference on remove or on probe failure.
 
+Note: this driver stores the bridge pointer in the adv_bridge global
+variable, which could hold a value from a previous probe. However the code
+flow always sets the adv_bridge value in the probe function before it is
+read, so the change is safe.
+
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/mediatek/mtk_hdmi.c | 2 +-
+ drivers/gpu/drm/kmb/kmb_dsi.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-index b766dd5e6c8d..57a926bdf8b4 100644
---- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-@@ -1405,7 +1405,7 @@ static int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi,
+diff --git a/drivers/gpu/drm/kmb/kmb_dsi.c b/drivers/gpu/drm/kmb/kmb_dsi.c
+index faf38ca9e44c..05a6ccc1bd22 100644
+--- a/drivers/gpu/drm/kmb/kmb_dsi.c
++++ b/drivers/gpu/drm/kmb/kmb_dsi.c
+@@ -251,7 +251,7 @@ int kmb_dsi_host_bridge_init(struct device *dev)
  		return -EINVAL;
- 
- 	if (!of_device_is_compatible(remote, "hdmi-connector")) {
--		hdmi->next_bridge = of_drm_find_bridge(remote);
-+		hdmi->next_bridge = devm_drm_of_find_bridge(dev, remote);
- 		if (!hdmi->next_bridge) {
- 			dev_err(dev, "Waiting for external bridge\n");
- 			of_node_put(remote);
+ 	}
+ 	/* Locate drm bridge from the hdmi encoder DT node */
+-	adv_bridge = of_drm_find_bridge(encoder_node);
++	adv_bridge = devm_drm_of_find_bridge(dev, encoder_node);
+ 	of_node_put(dsi_out);
+ 	of_node_put(encoder_node);
+ 	if (!adv_bridge) {
 
 -- 
 2.51.1
