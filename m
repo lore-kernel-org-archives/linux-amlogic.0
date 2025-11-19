@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5F5ECF34A1
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Nov 2025 13:07:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A714CF34A1
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Nov 2025 13:07:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tTeWa3xCMB8Uu4C9wUgKv72Vb64qubP/C/8GIjjeTSc=; b=WWbwPq9puo+tAg
-	an+wzAc9ANKb1TC9BZvnyE4cCotNh3CvTP1pLLWdd+68GaTOn3dFpClCtsvEh4tOZQ/b/psrE66io
-	j1ueC0gr3fMP5g1u4NOtlTWEbcKF/qbHdxHUnIn9xBYJZ24o8mhbbkrscG1S0SpbyfEWpf4BK/Xer
-	Bki+bFr/b5ICE4PelKvzOXMvESz66yjBlZ5l6t9g20e+bpBwsVbKar0J0XxalSBjTK2Wn808fIpM9
-	d7LrJy2aCAC9cX7mdMv+DAWTAYwhivnI0du4753PveAEn2T3x2COuk2puxYtvp0h/Pl0+NwOLIN+Q
-	gi73N+YOiqSGr3eTpoig==;
+	List-Owner; bh=Z6HJrFdTHA9+U0GTFaKJs+SzjRKoFIH5FLRoUCnzUDs=; b=pNN311l8gtZemq
+	hoiaA3ttp9KD+8fjQ0WDvEhf2jpMw+iB/mfL6mR0oqUoLfcMANpljErAso3q1ucI71Y18ptcsJccc
+	54gJeDtbF05+soNl5WFoa9S9AP+Ewd1o9eIfFjKFi+txPNbisnFKXbGmVYjouZ7VsYsIuTRi4InvK
+	K+RKdzluLGR+GlZxAqhvrj5TdJRFeLZ+WGuCBVavSnzDsRC6/zKubiY5koFtOHfKsVgW2nn1J9WTL
+	WOw/X7jtjzs5KUerBQNg441dAOnOw1TfI+CBiaiKm20C2UkYD0yBmqfY+llyYi4SKLaYhFokPidXh
+	0xKcXsecc62ca6FhZx5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLhts-00000003EOm-1KQ9;
-	Wed, 19 Nov 2025 13:07:08 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1vLhu4-00000003EVe-0DHY;
+	Wed, 19 Nov 2025 13:07:20 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLhtq-00000003EMu-1dq7
-	for linux-amlogic@lists.infradead.org;
-	Wed, 19 Nov 2025 13:07:07 +0000
+	id 1vLhu0-00000003ESN-3SyJ;
+	Wed, 19 Nov 2025 13:07:18 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id EBCC94E4179F;
-	Wed, 19 Nov 2025 13:07:04 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 5E745C11189;
+	Wed, 19 Nov 2025 13:06:52 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B600660720;
-	Wed, 19 Nov 2025 13:07:04 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 95D7A10371A50;
-	Wed, 19 Nov 2025 14:06:52 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 92AC060720;
+	Wed, 19 Nov 2025 13:07:14 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1444110371A54;
+	Wed, 19 Nov 2025 14:07:02 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763557621; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1763557632; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=qsazag2An/fgMKK08J9HfhnhU42+l2KXmaAJPH5Vluw=;
-	b=SINksK3OTvoGnmlWlEC2/vSxrmPi+Mro0sJJXQaFJuKGFTUA252iHhYx9EgmLc5PrbVKZM
-	RUr4gvoz9t6J9epsIL181FJgX+PDDF8pNu6M9USf2VcP7kWsaMShijyzm3GOItW+ABL7e0
-	+HSv/zNLf7bSGeSvlqjM8dkVZWu5RtJHnKc5V05UvOaa2waluCoxBZx3x+2P3f2Otb0Gtx
-	vVSWGhk0rCFESdXYMGery+tKQSB7m5QqpY7TahdE8Dpl2x8rYCC2poMCPoPxeuujw7DJeq
-	7YupO9sXu+i9jcaWlNcyrgtk4Q5dmaMC8Wf9vqrZRKLaAu1dnSW0FhhY1c6RfA==
+	bh=S3/RyqtG2O2X95jZe77v2eECppzA5uptVgV9rNXhIWk=;
+	b=NEyAu5XkT2W+7Bzh5MQvyIdqpPPlktCWksQ5UCtOpM8Okntp1aUYiBlrNA059OFdHkdTZf
+	q/sjuH5lTJmh2usXh/vG13ctJbJgYMT/Ibv5Rcl9qMF/tYlrrAGSJpQOYNCp8ETb8U+KpW
+	t/1C7/D3fmH4JQEf5H0bmjK2Ocq3ReX/1hosaSfpS+7d8Szzvjp1MRkJSfY67CphcqT+UY
+	ZU0w6xYCHWkEpmbF0sdQ6BP+SFRmbJ2+GP00cRfSUK2tVugUu13S6h+gQ1lUM2KVQs+GaP
+	2X3qGKrbXt3jh762jJFCTCexpS4u0Hkrj0z4bEYzXa3uYfMAimCXLADx/692uw==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 19 Nov 2025 14:05:38 +0100
-Subject: [PATCH 07/26] drm/bridge: ite-it66121: use
+Date: Wed, 19 Nov 2025 14:05:39 +0100
+Subject: [PATCH 08/26] drm/bridge: imx8qxp-pixel-combiner: use
  devm_drm_of_find_bridge() to put the next bridge
 MIME-Version: 1.0
-Message-Id: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-7-0db98a7fe474@bootlin.com>
+Message-Id: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-8-0db98a7fe474@bootlin.com>
 References: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com>
 In-Reply-To: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -93,8 +92,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251119_050706_566762_BABF877E 
-X-CRM114-Status: GOOD (  12.39  )
+X-CRM114-CacheID: sfid-20251119_050717_019383_E984241A 
+X-CRM114-Status: GOOD (  13.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,22 +117,22 @@ reference on remove or on probe failure.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/bridge/ite-it66121.c | 2 +-
+ drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-index aa7b1dcc5d70..5bc4e5afb823 100644
---- a/drivers/gpu/drm/bridge/ite-it66121.c
-+++ b/drivers/gpu/drm/bridge/ite-it66121.c
-@@ -1542,7 +1542,7 @@ static int it66121_probe(struct i2c_client *client)
- 		return -EINVAL;
- 	}
+diff --git a/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c b/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c
+index 8517b1c953d4..8ec8f1fba62a 100644
+--- a/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c
++++ b/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-combiner.c
+@@ -326,7 +326,7 @@ static int imx8qxp_pc_bridge_probe(struct platform_device *pdev)
+ 			goto free_child;
+ 		}
  
--	ctx->next_bridge = of_drm_find_bridge(ep);
-+	ctx->next_bridge = devm_drm_of_find_bridge(dev, ep);
- 	of_node_put(ep);
- 	if (!ctx->next_bridge) {
- 		dev_dbg(ctx->dev, "Next bridge not found, deferring probe\n");
+-		ch->next_bridge = of_drm_find_bridge(remote);
++		ch->next_bridge = devm_drm_of_find_bridge(dev, remote);
+ 		if (!ch->next_bridge) {
+ 			of_node_put(remote);
+ 			ret = -EPROBE_DEFER;
 
 -- 
 2.51.1
