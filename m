@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68AD0CF256A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01E1ACF256C
 	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Nov 2025 02:52:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=F1GIpXnqahWrtDhK9XPV5n0at1jf5jBYJFA0kgMUXWI=; b=Vr8lBtrQGwIKRz
-	IHhMLdvVevgtpI7wCUNPp8KYWPKNod1kbLguTMz06qskE7CFTyuiVr0FV81+W16zyKszKutaLYgFG
-	dG4KDu982D7444ZJSQ1cd8uvloMTyg/KvkEpySLIKWc2nvAO3Pvz+kIUsEI2fOgGMnS11caF1e3Sl
-	TroDrcityzJzcfjBxz9DoGnfaoZxnzAu+560AG2ZQi8mQQ5RTly27UBvHuferVMWklwTO8ydARqIL
-	8jL4rsHh99JM6u4CfH7MUgMW96IfMVtvzXGbHRvbvyv+Pj402FHGJu1Wq8F4Q559HFy4WR1tyikEH
-	BEWjVwy6P+w6HpXLwJng==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pc49yPyZCsljOeJUeykrQ86Aj4jXUZgZmwyan2vWktA=; b=MrF01FeK+oh5S7
+	VcObXW4uqCfwsJBmM5SHv86uI1V2WYUNRZ31KF2O+q/QKOAMRXM/iH4BFaSZqrwpiP+rgPdNI+EdZ
+	rU4uitZ/lKGCrpDTGWBi2PqfDKFsQM0MeaWFw15Gzm4Pphl9UqgBb+TY2RzTi8ay1cLg6sevnVYmE
+	YYNBiAAPvHm3ZBLBuyogDQMdjM9ePuxuSKUQlCC2mkkDqgZI44enGG3qOjW1pxFil2QGHpbztDOXQ
+	o1xO/AG8BpE9CiMmbKP+ua16gsgW/0fIQHRPkOkm6CsMUdnj4aKmH+wZOToI6N8XiPih1st3zNiVS
+	j/c6/dIySHeXnPrpAXjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLYJ3-00000001PeF-0rDO;
-	Wed, 19 Nov 2025 02:52:29 +0000
+	id 1vLYJ2-00000001PeB-3pMR;
+	Wed, 19 Nov 2025 02:52:28 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLYJ1-00000001PdN-33GX;
+	id 1vLYJ1-00000001PdP-3CLt;
 	Wed, 19 Nov 2025 02:52:27 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 75A5C60135;
+	by tor.source.kernel.org (Postfix) with ESMTP id E8129601F0;
 	Wed, 19 Nov 2025 02:52:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C335FC19422;
-	Wed, 19 Nov 2025 02:52:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 46EB7C2BCB8;
+	Wed, 19 Nov 2025 02:52:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1763520746;
-	bh=yGGQ82tynU/Cs1FoQ40nLIWp5JIbe9V7Pi5kfcfRrgs=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=Q1yoA/py3ZooYjbabzJ76j5SCOpLsvpaJSbhAuFr6t/a0OtAgOhr0xrZxoJKDlXiV
-	 QVyU1s0V93JCOeNLQag7nbJuXuEGhF4Q/nn+WrTqrqsCt05Ni1ixBydISiWj7IKHP7
-	 8UoNVF0BQM5fqhKDej5GJRFrpE37ZOnlLSmEDP4NMTZDvoBAtbC/tDK1+Rgm4bWIO3
-	 JudQ2AlWVtajR/i0cUAzJHNXyURWJB0WwSZpXoULNiT5J2JrxVtoz5tqpOKlTn7dsX
-	 SMIsTXArHV265YEgk/Iln2xZmddR6Ylifvt9Df5nSDWpRrSKDNMeIHpKF7gIQK9Uck
-	 eRSAlMyYRcOBQ==
+	bh=KFGyrQh93ivdhVyvrOG6wXqJIaFFQnK/RBZGtIK0bf8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=MqwETRBRk5sHmRufIPnx15j7+h8yl1Rcbv54ztf/Q2pmrFxvm1g9VjJlqMdWxdB3t
+	 EIiUbVdr57FnW6proG7NgBLfXYUX6pdAzxqaPtiLr3OvJQQFzFbTmubY8wiEBY5GKZ
+	 dvSDDD8wIMAK/SO6R4C7+H4V7IUcmAp3ilSJ3FhATMLeYpPoTRtaVruydMKY4sYtp/
+	 RNHrYe4/mr2xPYISzji+OrkYdXAgTqMv8b/BuUEXkkvm8l9nHAt0J4BVIVF1YW642a
+	 maP8ofNJIt+KrWdNX1ehGVe5Kt1DAQgnHCDwrgQXya5ogbQl80PEiIHuAmUopTRmLX
+	 6z8akzELcZ3cA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A1F07CF256C;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1E49CF256F;
 	Wed, 19 Nov 2025 02:52:25 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Subject: [PATCH v3 0/5] soc: amlogic: Add new Amlogic SoCs info defines
-Date: Wed, 19 Nov 2025 10:52:21 +0800
-Message-Id: <20251119-soc-info-s6-s7-s7d-v3-0-1764c1995c04@amlogic.com>
+Date: Wed, 19 Nov 2025 10:52:24 +0800
+Subject: [PATCH v3 3/5] arm64: dts: amlogic: s6: add ao secure node
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAOYwHWkC/23NwQqDMAyA4VeRnpfRtJvWnfYeY4faVg1MK+0oG
- +K7rwqDDYRc/kC+zCy6QC6ySzGz4BJF8mMOeSiY6fXYOSCbmwkuzogoIHoDNLYeYgmxymOBo1F
- ljWjEqWb5cAqupdeG3u65e4pPH97bj4Tr9stVe1xC4FDqRmndcGmNu+rh4TsyR+MHtoJJ/CJqF
- xEZkcqJRqJWyuI/sizLB//1zP77AAAA
+Message-Id: <20251119-soc-info-s6-s7-s7d-v3-3-1764c1995c04@amlogic.com>
+References: <20251119-soc-info-s6-s7-s7d-v3-0-1764c1995c04@amlogic.com>
+In-Reply-To: <20251119-soc-info-s6-s7-s7d-v3-0-1764c1995c04@amlogic.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -60,14 +58,13 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Conor Dooley <conor.dooley@microchip.com>
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763520742; l=1361;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763520743; l=913;
  i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=yGGQ82tynU/Cs1FoQ40nLIWp5JIbe9V7Pi5kfcfRrgs=;
- b=wLxX3Cp5piFHCG506GA5M5KyuVVL2l6yIS3U/E4ZXAwPWoBvmuxVQ8RNUjDCVjiFcpdjbfvXb
- M9qZKNzL1OfCetJ8p4xOwzCW5G/v9trDHPc3j5bZcR6khXkC8NuBAza
+ bh=Radwg8hYK+TMvojVUY9r/2XXC2WELdJKWA4Bk2N59s8=;
+ b=MGnG/vtgtGjQCDohwEB4pkdfIDdx3n/2tFmD+oKhf8/tNiMYcFZ0HzlC0grUIPf1MMXkTKcwd
+ 30KL0EfV1D3Dfq1aB+9lnh1SXQXtKhd/Y80YHX1ZLIqcT+ahZBugiph
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
@@ -90,39 +87,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add more Amlogic SoCs info defines, include S6, S7, S7D.
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
+Add node for board info registers, which allows getting SoC family and
+board revision.
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-Changes in v3:
-- s/Amlogi/Amlogic/ for patch [2/5].
-- Link to v2: https://lore.kernel.org/r/20251118-soc-info-s6-s7-s7d-v2-0-38e2b31a88d1@amlogic.com
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Changes in v2:
-- Restore the previous accidental deletion of A4.
-- Link to v1: https://lore.kernel.org/r/20251117-soc-info-s6-s7-s7d-v1-0-6ab8aab03dce@amlogic.com
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
+index 0dca64a2ef9e..da3e607aea85 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
+@@ -199,6 +199,14 @@ gpiocc: gpio@300 {
+ 					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_CC<<8) 2>;
+ 				};
+ 			};
++
++			ao-secure@10220 {
++				compatible = "amlogic,s6-ao-secure",
++					     "amlogic,meson-gx-ao-secure",
++					     "syscon";
++				reg = <0x0 0x10220 0x0 0x140>;
++				amlogic,has-chip-id;
++			};
+ 		};
+ 	};
+ };
 
----
-Xianwei Zhao (5):
-      dt-bindings: arm: amlogic: meson-gx-ao-secure: support more SoCs
-      soc: amlogic: meson-gx-socinfo: add new SoCs id
-      arm64: dts: amlogic: s6: add ao secure node
-      arm64: dts: amlogic: s7: add ao secure node
-      arm64: dts: amlogic: s7d: add ao secure node
-
- .../bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml          | 3 +++
- arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi                       | 8 ++++++++
- arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi                       | 8 ++++++++
- arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi                      | 8 ++++++++
- drivers/soc/amlogic/meson-gx-socinfo.c                            | 6 ++++++
- 5 files changed, 33 insertions(+)
----
-base-commit: 8d5b965a53bf6a4e2a2a028b75b2c7067cde5397
-change-id: 20251112-soc-info-s6-s7-s7d-01c86911c249
-
-Best regards,
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+2.37.1
 
 
 
