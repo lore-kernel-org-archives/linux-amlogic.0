@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A6CECF34B2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Nov 2025 14:33:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CFD1CF34AD
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Nov 2025 14:36:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5mmfGSF7duOprzJOxhWZxiTAgBSl3zBE+mZ1IfI5QC8=; b=ve3nfzBhwTbNii
-	5eN5SzmnjsMdbF7zH/XHcwKv4ugZHkg7iqKlfJ+6Nt4f7GJVS+MeWVLUQHku/wT8GZgIDfIyYsrhB
-	8iMIyfLkQ1nc7jftzZOWURR/PJjabbhv9pmATM8DVe9+mpCdjjvDxTaHPFhEp+03a2GL0aiIqo2JW
-	tQ82CPvjD0qkgObRo/ncjOxUnStYjx1B9VrYwL3Pg2CK56B1xGrmVIY6NO1U1SqDJBwV5kWzYi/bV
-	lNtRlOiqD2igg512DZAU5/eTlPVlOrTrlrj7rzEOVan26X86jvxtAnPdCqqhi4ah/YpQDcAW7PCsY
-	v2unBtZwP9aJlHaDH1xQ==;
+	List-Owner; bh=q+5arzPM9OskbSRq1CDXMxXsDGojv0leLYHYYrSWAfk=; b=CDQFxryb8erBZ3
+	Vzt4NiJhyR6pVWBCdk6/sMPWuLyR6LyRmoLx0oGP9Cvn9H2oZOZ42d/IOALHt4O+hnPUFAYcxyAkY
+	zP6bkOm6xIcQF9TVcmpraUomYw2rG3JSDaHEd3RBGt8cVoFOUI5Z352aLRLwbo15rccoRJ6Aj+abG
+	9Hg07ooeMc+mpUosWADxVf5greAblWr+kf2H7yokcO+Vv09cSmsdbSTzeuMN85h2mAmkUT7+EUGRs
+	NF3SQaLZADanSu6LkeOeHOgs7H6qioNzFIzgKd0kHKx0SC9FB9Oir/3zBQs3njYaz+Ub2LnWjAPD3
+	5YcoLGCWJ6cC4tlKWKhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLjFL-00000003NvZ-24zG;
-	Wed, 19 Nov 2025 14:33:23 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1vLjIF-00000003O9M-0byW;
+	Wed, 19 Nov 2025 14:36:23 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vLjFI-00000003Nui-3DTB
+	id 1vLjIB-00000003O87-3jFP
 	for linux-amlogic@lists.infradead.org;
-	Wed, 19 Nov 2025 14:33:22 +0000
+	Wed, 19 Nov 2025 14:36:22 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id ED5CB1A1BE0;
-	Wed, 19 Nov 2025 14:33:18 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 4F194C11189;
+	Wed, 19 Nov 2025 14:35:55 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BEA8760699;
-	Wed, 19 Nov 2025 14:33:18 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4DA6310371A62;
-	Wed, 19 Nov 2025 15:33:04 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7E7AC60699;
+	Wed, 19 Nov 2025 14:36:17 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F3D1810371A0D;
+	Wed, 19 Nov 2025 15:36:03 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763562796; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1763562975; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=0vbDr+QjnWAsQ6X5coWb1jIQOFxpmdjPSWJIgMslIi0=;
-	b=pupAGR3mHYH4v3bdqG9lB63xH4OPbAI6MGyFpKDJh78mR3Zex9P5V02vdy6o0fLd8967Sk
-	JK6HNnpcQvd4s5xoTOKVEstBPli6t3eALZwCRL6xVH6dCX5ZphnkgT5OlonumufXJKuzgB
-	oUx9qVp3XlzUcRyOCYsqYNm+gV8fFxZT1W0ySpU9zygoxTAMwKyMaHXVG6iQ40/jzK7cZV
-	ldmn1YhKlJgR3YHNT7xNfvG/PeQA6bvqeBSQnZ9483u89j+NP6DkGqxMfX1AzVMspPtl9I
-	YpWJCOTeKJE0c/6Eg6tkrby0b7NcLi05CJHcJTN9WveGfQr/cgdlhPWDiQh7Fg==
-Message-ID: <0858117f-9397-4045-9b7d-490ad24926cb@bootlin.com>
-Date: Wed, 19 Nov 2025 14:33:09 +0000
+	bh=i80dj0GflYpB1hZNEEPgVvWiw8lZXjOo2MgG9uRoiXg=;
+	b=cyOEp89nJrCZoYG3avsOq17lwj2MmFPr9JJNV8uJoRbiUf4i0FpASC7DYih3+kt22Z4JLK
+	hSfQAKmElJaMv6eTW96h32EOAkaD/+EFkR9eQ9wj6eOaNWPXmFuek8CAOxBduzaCp3MKqE
+	SRSwfh/p42u24j0seruGdGX03vsbe1FXL1+wnIiKztiT4pTasuKQA7XQ5fMZEt1qxhkfkX
+	Lkm5OLbXHB4C5ilnR5VnsNMMw4PF073vGSCHsvLUZo2v92DoVPJWTUfnDbHwDmg8DEvTRD
+	G2tqiz9kie5yiw/RfMiYlKZFRz6f0jK5xnKofaGhGeYtBD9xgQSkRsDygt5W+A==
+Message-ID: <3c257fa4-764c-486a-b4b0-74b137df59fc@bootlin.com>
+Date: Wed, 19 Nov 2025 14:36:08 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/26] drm/bridge: add devm_drm_of_find_bridge
+Subject: Re: [PATCH 07/26] drm/bridge: ite-it66121: use
+ devm_drm_of_find_bridge() to put the next bridge
 To: Luca Ceresoli <luca.ceresoli@bootlin.com>,
  Andrzej Hajda <andrzej.hajda@intel.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
@@ -87,14 +88,14 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
  linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org
 References: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com>
- <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-6-0db98a7fe474@bootlin.com>
+ <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-7-0db98a7fe474@bootlin.com>
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 Content-Language: en-US
-In-Reply-To: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-6-0db98a7fe474@bootlin.com>
+In-Reply-To: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-7-0db98a7fe474@bootlin.com>
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251119_063320_953691_3EC25D9B 
-X-CRM114-Status: GOOD (  32.05  )
+X-CRM114-CacheID: sfid-20251119_063620_072778_B7617156 
+X-CRM114-Status: GOOD (  17.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,104 +115,40 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 
 On 11/19/25 13:05, Luca Ceresoli wrote:
-> Several drivers (about 20) follow the same pattern:
-> 
->   1. get a pointer to a bridge (typically the next bridge in the chain) by
->      calling of_drm_find_bridge()
->   2. store the returned pointer in the private driver data, keep it until
->      driver .remove
->   3. dereference the pointer at attach time and possibly at other times
-> 
-> of_drm_find_bridge() is now deprecated because it does not increment the
-> refcount and should be replaced with drm_of_find_bridge() +
-> drm_bridge_put().
-> 
-> However some of those drivers have a complex code flow and adding a
-> drm_bridge_put() call in all the appropriate locations is error-prone,
-> leads to ugly and more complex code, and can lead to errors over time with
-> code flow changes.
-> 
-> To handle all those drivers in a straightforward way, add a devm variant of
-> drm_of_find_bridge() that adds a devm action to invoke drm_bridge_put()
-> when the said driver is removed. This allows all those drivers to put the
-> reference automatically and safely with a one line change:
-> 
->    - priv->next_bridge = of_drm_find_bridge(remote_np);
->    + priv->next_bridge = devm_drm_of_find_bridge(dev, remote_np);
+> This driver obtains a bridge pointer from of_drm_find_bridge() in the probe
+> function and stores it until driver removal. of_drm_find_bridge() is
+> deprecated. Move to devm_drm_of_find_bridge() which puts the bridge
+> reference on remove or on probe failure.
 > 
 > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 > ---
->   drivers/gpu/drm/drm_bridge.c | 30 ++++++++++++++++++++++++++++++
->   include/drm/drm_bridge.h     |  5 +++++
->   2 files changed, 35 insertions(+)
+>   drivers/gpu/drm/bridge/ite-it66121.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-> index 09ad825f9cb8..c7baafbe5695 100644
-> --- a/drivers/gpu/drm/drm_bridge.c
-> +++ b/drivers/gpu/drm/drm_bridge.c
-> @@ -1446,6 +1446,36 @@ struct drm_bridge *drm_of_find_bridge(struct device_node *np)
->   }
->   EXPORT_SYMBOL(drm_of_find_bridge);
+> diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
+> index aa7b1dcc5d70..5bc4e5afb823 100644
+> --- a/drivers/gpu/drm/bridge/ite-it66121.c
+> +++ b/drivers/gpu/drm/bridge/ite-it66121.c
+> @@ -1542,7 +1542,7 @@ static int it66121_probe(struct i2c_client *client)
+>   		return -EINVAL;
+>   	}
 >   
-> +/**
-> + * devm_drm_of_find_bridge - find the bridge corresponding to the device
-> + *			     node in the global bridge list and add a devm
-> + *			     action to put it
-> + *
-> + * @dev: device requesting the bridge
-> + * @np: device node
-> + *
-> + * On success the returned bridge refcount is incremented, and a devm
-> + * action is added to call drm_bridge_put() when @dev is removed. So the
-> + * caller does not have to put the returned bridge explicitly.
-> + *
-> + * RETURNS:
-> + * drm_bridge control struct on success, NULL on failure
+> -	ctx->next_bridge = of_drm_find_bridge(ep);
+> +	ctx->next_bridge = devm_drm_of_find_bridge(dev, ep);
+>   	of_node_put(ep);
+>   	if (!ctx->next_bridge) {
 
-I am not sure for the "NULL on failure", you return ERR_PTR(err), which 
-is probably not NULL but an error code.
+And for all the patches converting of_drm_find_bridge to 
+devm_drm_of_find_bridge, I think the pattern:
 
-> + */
-> +struct drm_bridge *devm_drm_of_find_bridge(struct device *dev, struct device_node *np)
-> +{
-> +	struct drm_bridge *bridge = drm_of_find_bridge(np);
-> +
-> +	if (bridge) {
-> +		int err = devm_add_action_or_reset(dev, drm_bridge_put_void, bridge);
-> +
-> +		if (err)
-> +			return ERR_PTR(err);
-> +	}
-> +
-> +	return bridge;
-> +}
-> +EXPORT_SYMBOL(devm_drm_of_find_bridge);
-> +
->   /**
->    * of_drm_find_bridge - find the bridge corresponding to the device node in
->    *			the global bridge list
-> diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-> index e74e91004c48..98d5433f7d35 100644
-> --- a/include/drm/drm_bridge.h
-> +++ b/include/drm/drm_bridge.h
-> @@ -1314,12 +1314,17 @@ int drm_bridge_attach(struct drm_encoder *encoder, struct drm_bridge *bridge,
->   
->   #ifdef CONFIG_OF
->   struct drm_bridge *drm_of_find_bridge(struct device_node *np);
-> +struct drm_bridge *devm_drm_of_find_bridge(struct device *dev, struct device_node *np);
->   struct drm_bridge *of_drm_find_bridge(struct device_node *np);
->   #else
->   static inline struct drm_bridge *drm_of_find_bridge(struct device_node *np)
->   {
->   	return NULL;
->   }
-> +static inline struct drm_bridge *devm_drm_of_find_bridge(struct device *dev, struct device_node *np)
-> +{
-> +	return NULL;
-> +}
->   static inline struct drm_bridge *of_drm_find_bridge(struct device_node *np)
->   {
->   	return NULL;
+	bridge = devm_drm_of_find_bridge(dev, ep);
+	if(!bridge)
+		return -E...;
+
+is wrong, because devm_drm_of_find_bridge can return a non-null error code.
+
+
+>   		dev_dbg(ctx->dev, "Next bridge not found, deferring probe\n");
 > 
 
 
