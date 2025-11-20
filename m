@@ -4,93 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EE22CF8860
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Nov 2025 14:21:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2607BCF8860
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Nov 2025 14:22:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fiZVg4P5N85KoJLPZPJI5ZaghxXTPkl4gYihGONvQrE=; b=ysj7rLg148dxzF
-	Jl3SRgADp/ra9f/qwjMegzBwnnN5lzxYweO3z+0so8ODkRUhesysmmIZN10w/QbuXSFuoxf9pM+8m
-	+SUUUDJRYBLBRwabAAMUvR1o51YbQeFStSBfCoIJUH3rwBzz6PExot3+P3iGMWl0QX/pegprEl2IP
-	RsoLD3S3EoTT8C3sVUEPI+vQ+nyQnCvnbRq35Y0na8KN5HyEEr1qDot/JzxLfb1U6Pva3xIQm59Oc
-	8D1IEK8CMNiZUv6Z/hNieucdwLdJXF4NtHBymbAEFkHhrQOh6jGxdb2xFn8pYO9Wo/5keYjfDxwr7
-	8ISaGq68Kfy6psGnpDZA==;
+	List-Owner; bh=05rIyIq3v22qQZVelK4s3mc/Nc4x0QNkVWnF29PtLQQ=; b=DuZzBvgm9BqC8K
+	qexfewMe3xHMYBtgGy8CTzK4dN+UJvaUClp/DsQvlrwNg60xmWSwk34DRNiG5w/DttlFc17CCCx2t
+	57jfRphmDCrTx1ne3FbJu5+syeY93gOW+jMDX//Xcs4pAA4pLTSDNzMDlfALKniv79HqgG4mGv29C
+	+BUztOVh2t33bbvcJcTBLrHAcCf+2phXKipA33NvtAW7b12sCLayOVy12A7xAt6ufIMUGhfSp+e+N
+	kDQgIXZWMw4ZQZuo3OLeYthEwrZBMDV/Bh6dHWqfZLdgiA27TdilTP32A7IRDg1Ra1VmJE/2w3FyA
+	eYk7TwwApOo7lWMglOwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vM5XT-00000006pfN-2GK9;
-	Thu, 20 Nov 2025 14:21:35 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1vM5YG-00000006pnb-3fQG;
+	Thu, 20 Nov 2025 14:22:25 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vM5XR-00000006peC-1lRx
+	id 1vM5YD-00000006pma-1dAm
 	for linux-amlogic@lists.infradead.org;
-	Thu, 20 Nov 2025 14:21:34 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4777771ed1aso6601335e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 20 Nov 2025 06:21:32 -0800 (PST)
+	Thu, 20 Nov 2025 14:22:22 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-42b379cd896so550060f8f.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 20 Nov 2025 06:22:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763648491; x=1764253291; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1763648539; x=1764253339; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4vwGWKGJvlZBNC9/cIqoY6FRuhMfwnJeZfMijAXI4Rg=;
-        b=rsswpZQFW5683y58Pmpg136kMDXevNFx4dF5Nt98BnLC7TsCDLQ+SwP19LY4so2661
-         oZxTAaj6YVKpjfkagQ6DPqxvTJqMgpAFJpF2zCHZ3envekJMsiUhTItrV1TY4FX9GFE2
-         zNfkyf9G+VKIQgcPm04o8NqsyBm4tJTFCKpyvAYHnAq5oEa+/6i5dtSxaJ3wzQHil6KR
-         85UE0sloDkRIlFlEWnzeL2S2c582cYUS5Bq0HHcYLVScwNGAyE+qdqCfx2WugQFvRfwv
-         iI2D0xtwbbd4O4xQ65YLljuNLTgmdswEqD9d2aooHA6yVSbM2eCIOvhWhD8ErPqshDwd
-         jaFQ==
+        bh=ImsNgbxyduoUICuKtNWRzS77ROdXymoggItSs8rqsZ4=;
+        b=yd0iKTKQyZMMsCVv9j8Gflwc5A4yJbQlNQ31tbXfzCHIZ4CMmZE0RLLt0uRRZyHCNN
+         roX5v1x9aG9Ygar63D3coVa5wEVZlTbfU92OKv4MjgLF59G3RO0fXvh5rOmAeNZ8oQFL
+         N03yg4pEuz9cTZzeHn2U6bIRWNpQCu2J36j2hwQLGMCi8zZMsSe9jD1aKgKxvxAKW2LT
+         0zI2chuPmV6FPHThzPrmx09jrzh9oo3lwIHKzGihEtiwROoBFfDWNtaZA/GDGgQ1BUwV
+         M4IUJPADfA9xJIsIuBHAZaRcIrHiYfM2IHMvWWSA9fuXjVFWq90PFCJ9604+5BpIV+js
+         d9+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763648491; x=1764253291;
+        d=1e100.net; s=20230601; t=1763648539; x=1764253339;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=4vwGWKGJvlZBNC9/cIqoY6FRuhMfwnJeZfMijAXI4Rg=;
-        b=hSYi9pdZY47jjgo3PgfaBxUqWJdGPpNsitRnFZ0UBDDEaZZInBq0PdzN1BEWsVw3fF
-         SbM4yxErX4CPyoYLQMWChnB3H/f3Ubk2Ip8g75MokDbMcigUHJ6PqnzRijufh/6N760M
-         EUObEQ2so01NpMuXtAHN9+pxIyVD/H++bvdk1oZ9er9y1YZHv3v02TnEhh8fvVhqAL3p
-         ebhxMCfMWOCMK23yT6/0xGSp65LiGpMpRYML6wgu6pKOsLN+MqFq73lfqP2q5L4B15LP
-         BetHKd1SM21AHLhBxS3Avmr6jx/EyVHTYj8SLRzjaGKP/2vw8FC5DjKwKftmyCqlzad3
-         EI/A==
-X-Forwarded-Encrypted: i=1; AJvYcCV8g+39oSrjX2Ud/MhavlfORldOjzGYUeLAO04zkljdCE7cDi1KQ27SALYd9yJFa86Pa4YJdSDnzmTj47D4@lists.infradead.org
-X-Gm-Message-State: AOJu0YwP+PRvv0alvffjD+FPvcL/l3bQ2yaMQOdI+2OxBE65m8Hxvy5f
-	kH1kfFdk5mGkCckUuIL5krP0r+E4/w139G6jdJGmwpM5MEmiV9jaR3R3t2OpW7/JCGg=
-X-Gm-Gg: ASbGnctPB+s/OOB2qsEKZEbm1I2+MiXGQqmNLNfEqqaV498wPlcYGx2j/MaVxHBGGBr
-	6o32SkWnWDMK2pzjOHiSPrjMsvZANK50HhRn/cNU2G67pAyiIfD3NdB7KS5iHk5NIZBfbeyj76p
-	H+mOEcXYOBzcYXcbkNsA4rJs111p1mXVURIpCksmAnuU5ubf9V10q9bVNWQmQlfPR85vFaQEI4b
-	/SLG8rMuIfb+lNmlMS8rXrWK+Kcg6Nfx54h/YLq5Xm/asaYDN6zhBNvLYJBHwS/s1p4arswV3aW
-	JPnqFXo9xQdmD3Khdk6A6GAZhUYUYT5ezhKyHuMjs5bA+SqlPSt9pn75xi6K/9EOKwBU7kQ+otz
-	+oj+VKG57g/tmg8eexCUPwdV1xtyUlKNZr+4LjteJgwLJitZBpYqAKw+YAnqa1qJVUfdwJ1bPTt
-	gi7z0RmhmkE4DsVXFB/rfOI6CziLczsMg=
-X-Google-Smtp-Source: AGHT+IFxAbvoQ/DxLOXZp0l1dwaXexo9KAQDd8gwZkfBWJtP1PrL6I+wcx7pCO0NKjnPPhgubkLJcw==
-X-Received: by 2002:a05:600c:4746:b0:471:1774:3003 with SMTP id 5b1f17b1804b1-477bac1d90bmr23599555e9.29.1763648490969;
-        Thu, 20 Nov 2025 06:21:30 -0800 (PST)
+        bh=ImsNgbxyduoUICuKtNWRzS77ROdXymoggItSs8rqsZ4=;
+        b=V998CJVqujPl88XPuOE9Go1ugQItjFzUfIZNwEtqGJqKGDBQh+J4OwWVXtT6YnjHEq
+         Uc/HdPdi07roEValChcteX29naCdDSukLWkUjWq+4WHOGi8UbdzYUNS9FLM+kEfhyjh/
+         U0SJqRFScn2OOrjD7zqlRDOak0r0sfUGyOY93aA8tAGjucVeBnTjsE7dfcBClXVxQX8Y
+         /gOV1SsxjdKux42uQeyO6V2vPCkMYckqtI3IxRbkYUDGVWaoRy2r6WFoiBcg3yTuU9yP
+         pFBDuO2q1dZgGc+ueM2Ch5bPDiFMtc3SP0yjsD0fK22GnFdipDrAMTG2MhFB07qiGoqW
+         bgZg==
+X-Forwarded-Encrypted: i=1; AJvYcCXK8l4RCGaEAcV1f9ILYL3Wd3Zl+kvEXgdqS9X9R8h80Ez2SyhWozjWh3WNPjHq60biIYlLjgRtOg2psw6e@lists.infradead.org
+X-Gm-Message-State: AOJu0YxwoAiWV+/01Iy5bT6Qi/xC4e9/e3+8OOus+0jEHckbaGdoHvlN
+	7jK57PaJZ6NG/aA7a3nsC5NO19wqP5WNgB/9z5AO7hvX7tR3knoiUBeiXBO8nRswhMM=
+X-Gm-Gg: ASbGncvKZjv/vOMGnj6laC4L5NcuXnsg65pfElRK/HNI3KfC4d3xgXVn805F8Z0f6zn
+	hnZaU87JM8EvANf9D2d7urg+xy0FRtEMbeqbJIvaRqBZGowOTDF6fq7uMRX4LdBmo9ZkMJ/qJv4
+	AEPMN8TV2HmucXxu+NEmipN6Yxe+Xbjs3oGwQAT+bMgANU/51nIjRB6eO0Ox51uUorhJvObuKX2
+	vFaGMwdQwyr6o6zE+lIAEigRYTNlDpvxcu8kamuobqfEFizQHj7Z9oh6S4k3CowTh93gQeMMQ8j
+	fMz8qanB2xpNA00LqS4RBEtBl4+AyuRrToVXe6XZfWl7r2f0hHLVOHLNvrOM9brEBox9PB1gcLF
+	GUGXOCCVHn/BwPuQgenHgp69pCKHoPGYTQW/X7ELhqGG2SB3Ea0z/TpQdur+pfVhQliLoGLWtJ5
+	M1uWCrlIBeUsZOTAlcRxTrHRhkqsDGgPY=
+X-Google-Smtp-Source: AGHT+IEGseLKbFavKV9xaiJK1w+nleecfiJIQQYI2QNSmK0kaikQ4QsqFmQRSpA3dOYxpV3ByNTjGQ==
+X-Received: by 2002:a5d:5f48:0:b0:42b:3ad7:fdb3 with SMTP id ffacd0b85a97d-42cb9a1177fmr3052135f8f.4.1763648539064;
+        Thu, 20 Nov 2025 06:22:19 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477a9df8db3sm63372585e9.11.2025.11.20.06.21.30
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fa41d2sm5565338f8f.22.2025.11.20.06.22.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Nov 2025 06:21:30 -0800 (PST)
+        Thu, 20 Nov 2025 06:22:18 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
  Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20251119-soc-info-s6-s7-s7d-v3-0-1764c1995c04@amlogic.com>
-References: <20251119-soc-info-s6-s7-s7d-v3-0-1764c1995c04@amlogic.com>
-Subject: Re: (subset) [PATCH v3 0/5] soc: amlogic: Add new Amlogic SoCs
- info defines
-Message-Id: <176364849018.2627407.16106708011654431567.b4-ty@linaro.org>
-Date: Thu, 20 Nov 2025 15:21:30 +0100
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20251105-irqchip-gpio-s6-s7-s7d-v1-0-b4d1fe4781c1@amlogic.com>
+References: <20251105-irqchip-gpio-s6-s7-s7d-v1-0-b4d1fe4781c1@amlogic.com>
+Subject: Re: (subset) [PATCH 0/5] Add GPIO interrupt support for Amlogic S6
+ S7 and S7D
+Message-Id: <176364853839.2628478.10260053331001764353.b4-ty@linaro.org>
+Date: Thu, 20 Nov 2025 15:22:18 +0100
 MIME-Version: 1.0
 X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251120_062133_472758_98E03750 
-X-CRM114-Status: UNSURE (   8.84  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20251120_062221_443499_3EF40699 
+X-CRM114-Status: GOOD (  11.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,19 +109,19 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Wed, 19 Nov 2025 10:52:21 +0800, Xianwei Zhao wrote:
-> Add more Amlogic SoCs info defines, include S6, S7, S7D.
+On Wed, 05 Nov 2025 17:45:31 +0800, Xianwei Zhao wrote:
+> This patch adds GPIO interrupt support for Amlogic S6 S7 and S7D SoCs.
 > 
 > 
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.19/arm64-dt)
 
-[3/5] arm64: dts: amlogic: s6: add ao secure node
-      https://git.kernel.org/amlogic/c/834f278c9f0676f3c97b62b5d7469ef212362cc4
-[4/5] arm64: dts: amlogic: s7: add ao secure node
-      https://git.kernel.org/amlogic/c/0145430828b5ec34b85a65584ea1e749df43a704
-[5/5] arm64: dts: amlogic: s7d: add ao secure node
-      https://git.kernel.org/amlogic/c/5224cde731e8f749d643dcc994526b827891eb8e
+[3/5] arm64: dts: Add gpio_intc node for Amlogic S6 SoCs
+      https://git.kernel.org/amlogic/c/96ce4313d6f9d5131937b449f9a2484277658c13
+[4/5] arm64: dts: Add gpio_intc node for Amlogic S7 SoCs
+      https://git.kernel.org/amlogic/c/8e8059d1747da43b0d8dafff216cbf32b647a7ca
+[5/5] arm64: dts: Add gpio_intc node for Amlogic S7D SoCs
+      https://git.kernel.org/amlogic/c/691db5908724f2f63b3a2fbe8394f2cc35b02c31
 
 These changes has been applied on the intermediate git tree [1].
 
