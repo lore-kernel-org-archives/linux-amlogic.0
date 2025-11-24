@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC469CFD313
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Nov 2025 03:32:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E4D6CFD31F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Nov 2025 03:32:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mQYP/Hq03PYTehGx0gA2UZxuRvlXqD8ma1ydpVAQez0=; b=bjsbu7Zdmdod1i
-	JH00h3xAmT+A21TLAg2QHhlg6SPufjUIA+N+gs7L9E6QITpC9iynWcCgaLYtNkd6+6SJbD4d5NW3C
-	ZHnK5/mhb7w5f7PvbKKph9vx7EFqrKlVUCtnOT1hSxI8QBBnSSW2mebaCrtsBFKBXM1a1sXtkRTga
-	KXaU1vtD+9603u0xzdrssV/9gvoNyC5Gj6Zq72iLUSm1I73KPuXvcbq7q3S/zsInbeaIlA7dUEV+l
-	uhbc7EuGkVgvza5KNiAWAor030l9aRb2dbo76Q0kSv2DEftw3YNRP6wd6xBTbE0uPYlsu2w+YPiak
-	uyrpAz/DZAZh8tWKk/tw==;
+	List-Owner; bh=d3+BLJXAEuXlzlZIUrTIIgj+h4t0cGCdxXDfQd60Qi8=; b=LdCBGFS3f1KVuO
+	RTsRSKjHIrsNKi11wItq0whinAY2igOWBY19ACr1bDAeJqw5AoxEcagksqFfqthWAvsOXCUq+iio+
+	4QxIzGQs7v5TeVTklsoUe4WoCf8LhooTleOVsbUQUilJHGkeFLarFaUO568VFD/Kb1zGOq1WfZdEu
+	/yH1cSnbddPJ89MKgr2M7UORLE6g29FOgxLHMHtOcxN4xEX4MfVf+OYhhLg/DL6thRbWxMkRjTTiP
+	fH1pzb8/cDWcOb/fbs5PEOBiGwnfAwYcVUAAcEds91kq5B9tPBsZF2ShmFfVwcEdYEUu/Vg2j0FWF
+	9Eu69Iuf8cGpStRVgzhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vNNJe-0000000B1ta-1wdA;
-	Mon, 24 Nov 2025 03:32:38 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vNNJj-0000000B1v2-29uE;
+	Mon, 24 Nov 2025 03:32:43 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vNNJb-0000000B1sN-3joI;
-	Mon, 24 Nov 2025 03:32:37 +0000
+	id 1vNNJb-0000000B1sL-3fkl;
+	Mon, 24 Nov 2025 03:32:38 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id C3AF244398;
+	by sea.source.kernel.org (Postfix) with ESMTP id A08F3442E7;
 	Mon, 24 Nov 2025 03:32:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 94261C2BC9E;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6B38BC4CEFB;
 	Mon, 24 Nov 2025 03:32:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1763955154;
-	bh=nQMpas0P68zqe+jsuAUQuc78OljFGZeSHfJ158LMKlg=;
+	bh=+vUEeQ+oKBW42P4bNYyEWDh9IPPF0c9ajm6FdHUtDgQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=LIvqdsee1woYL1Q8LlyGqPI8UWC+R3TubGMryLxV0Lbrjw1PUqH1+0rJGHSYq1tzW
-	 eDifwaEwSBYALohqMjo5p22/686Mjw832VBupIP5TTaoZtBobhGXBLaAftNEjtFIco
-	 dX5gzqMTJxLrX2RrCe1r+154pMsLSTq0Is4iJPJ9K7vm1I1fDlSw3Iu567FfLMI9N2
-	 OoNfNVbVdk2YMATkWV2uyfnW7+vyqnaGpvhI0K2dTG39slf9Mw9tFBCKXOEZ1yRDwk
-	 05P/M7Mfirm+JfS8T2VyNAcKtQVFyZEVfqAS+qgUJnEMyhdg352PJA+QpsmmO8+lqT
-	 BT3og9flY3swA==
+	b=K2QHG2vgHxz4OUoqZIJnJvp0v3udBmajr5kDfVQaUPleIqOk6iPHRCevoyK/gt2a8
+	 HI7TKc0JY7QBIozsVWIqHJQOF/DuzV95nakrdG3s7aurQUXWUFhTH0BUOUhaC25GZ4
+	 au6y46lSOnRgFASjFImqu3o6OEsAJOiiJI9nLh49WXR4yHt+KuWt/ZSdPiOWsl6s4f
+	 UwtkI14Mopwm4EUmgYM6lxfwza/6uMjz1MzaEuZDOjrx4il2eUsJTpM55NFAlnJGTh
+	 /TVYeJBsEdTR46KSui/KfzqFtNlOpvuufI46mAGbzkJhwRgsgSUZXa53sTgjmp1xuH
+	 YSwCmI0ELv9ZA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8685BCFD31F;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50CD6CFD317;
 	Mon, 24 Nov 2025 03:32:34 +0000 (UTC)
 From: Zhentao Guo via B4 Relay <devnull+zhentao.guo.amlogic.com@kernel.org>
-Date: Mon, 24 Nov 2025 11:32:19 +0800
-Subject: [PATCH RFC v2 3/3] arm64: dts: amlogic: Add video decoder driver
- support for S4 SOCs
+Date: Mon, 24 Nov 2025 11:32:17 +0800
+Subject: [PATCH RFC v2 1/3] media: dt-bindings: Add Amlogic V4L2 video
+ decoder
 MIME-Version: 1.0
-Message-Id: <20251124-b4-s4-vdec-upstream-v2-3-bdbbce3f11a6@amlogic.com>
+Message-Id: <20251124-b4-s4-vdec-upstream-v2-1-bdbbce3f11a6@amlogic.com>
 References: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
 In-Reply-To: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -62,20 +62,19 @@ Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, Zhentao Guo <zhentao.guo@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763955152; l=1441;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763955152; l=2874;
  i=zhentao.guo@amlogic.com; s=20251024; h=from:subject:message-id;
- bh=ipvSyoCuAjlj5iGd/O8ZvsuGOB2B3dXxp1S6BN3SOc4=;
- b=+1wPmnRCbaMUs0SfXj44FPENcjNu8W4k/F7Tgy5s0bjQiMcfnJkYcBKCv5+xdb+cSPZT7jend
- eHRRpV6VIQSA8ZOxSqEmAJO5YdnW3ZVx3xXwZdX4csth3oNHl+54ezg
+ bh=ojBHIRmTFbfRhSiNqZUE5wWfU7fFlbxeePD+nSCZSVI=;
+ b=kGEEn3iGlSSJBNB1XpOPFEICT4DGpDfrFEJEg69bILFh9RhP7d7k5fE+S9k2RsjSPo4YIyogm
+ DYyPCIQOM9RA62C8DdE4iCXsXY7/tXicnfpo4P9NNfSKzyGxT68OxzN
 X-Developer-Key: i=zhentao.guo@amlogic.com; a=ed25519;
  pk=5yfDKrjreXwcAoEUsdtWafy6YN500upXp/CgtnXjLVU=
 X-Endpoint-Received: by B4 Relay for zhentao.guo@amlogic.com/20251024 with
  auth_id=555
 X-Original-From: Zhentao Guo <zhentao.guo@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251123_193235_974796_BBB7220D 
-X-CRM114-Status: UNSURE (   8.97  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20251123_193235_970197_D0DEC221 
+X-CRM114-Status: GOOD (  11.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,51 +94,107 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Zhentao Guo <zhentao.guo@amlogic.com>
 
-Add vcodec node to enable Amlogic V4L2 stateless video decoder
-support.
+Describe the initial support for the V4L2 stateless video decoder
+driver used with the Amlogic S4 (S805X2) platform.
 
 Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ .../bindings/media/amlogic,s4-vcodec-dec.yaml      | 87 ++++++++++++++++++++++
+ 1 file changed, 87 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 9d99ed2994df..80f1b92492a5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -853,5 +853,32 @@ emmc: mmc@fe08c000 {
- 			no-sd;
- 			status = "disabled";
- 		};
+diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml
+new file mode 100644
+index 000000000000..401a5a32902e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2025 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/amlogic,vcodec-dec.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		canvas: video-lut@fe036048 {
-+			compatible = "amlogic,canvas";
-+			reg = <0x0 0xfe036048 0x0 0x14>;
-+		};
++title: Amlogic Video Decode Accelerator
 +
-+		video-codec@fe320000 {
-+			compatible = "amlogic,s4-vcodec-dec";
-+			reg = <0x0 0xfe320000 0x0 0x10000>,
-+			      <0x0 0xfe036000 0x0 0x20>;
-+			amlogic,canvas = <&canvas>;
-+			reg-names = "dos",
-+				    "dmc";
-+			interrupts = <GIC_SPI 91 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 92 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_periphs CLKID_DOS>,
-+				 <&clkc_periphs CLKID_VDEC_SEL>,
-+				 <&clkc_periphs CLKID_HEVCF_SEL>;
-+			clock-names = "vdec",
-+				      "clk_vdec_mux",
-+				      "clk_hevcf_mux";
-+			power-domains = <&pwrc PWRC_S4_DOS_VDEC_ID>,
-+					<&pwrc PWRC_S4_DOS_HEVC_ID>;
-+			power-domain-names = "vdec",
-+					     "hevc";
-+		};
- 	};
- };
++maintainers:
++  - Zhentao Guo <zhentao.guo@amlogic.com>
++
++description:
++  The Video Decoder Accelerator present on Amlogic SOCs.
++  It supports stateless h264 decoding.
++
++properties:
++  compatible:
++    const: amlogic,s4-vcodec-dec
++
++  reg:
++    maxItems: 2
++
++  reg-names:
++    items:
++      - const: dos
++      - const: dmc
++
++  interrupts:
++    maxItems: 3
++
++  clocks:
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: vdec
++      - const: clk_vdec_mux
++      - const: clk_hevcf_mux
++
++  power-domains:
++    maxItems: 2
++
++  power-domain-names:
++    items:
++      - const: vdec
++      - const: hevc
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - clocks
++  - clock-names
++  - power-domains
++  - power-domain-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
++    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
++    #include <dt-bindings/power/meson-s4-power.h>
++    video-codec@fe320000 {
++      compatible = "amlogic,s4-vcodec-dec";
++      reg = <0xfe320000 0x10000>,
++            <0xfe036000 0x20>;
++      amlogic,canvas = <&canvas>;
++      reg-names = "dos",
++                  "dmc";
++      interrupts = <GIC_SPI 91 IRQ_TYPE_EDGE_RISING>,
++                   <GIC_SPI 92 IRQ_TYPE_EDGE_RISING>,
++                   <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
++      clocks = <&clkc_periphs CLKID_DOS>,
++               <&clkc_periphs CLKID_VDEC_SEL>,
++               <&clkc_periphs CLKID_HEVCF_SEL>;
++      clock-names = "vdec",
++                    "clk_vdec_mux",
++                    "clk_hevcf_mux";
++      power-domains = <&pwrc PWRC_S4_DOS_VDEC_ID>,
++                      <&pwrc PWRC_S4_DOS_HEVC_ID>;
++      power-domain-names = "vdec",
++                           "hevc";
++    };
 
 -- 
 2.42.0
