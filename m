@@ -4,76 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBDF2CFA466
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Nov 2025 10:39:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3F92CFD313
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Nov 2025 14:28:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Y1cEhFxiEsmVqORNB2sGQJTDiNOS6w38bysZmPOdlOU=; b=mnveUKpy/XOoM+KBuXNJQ6fXM/
-	mEMlsjFPbWPVaQ04Y+PMc+xFqGUJc/rjn3+FCndKcdOp0bYF46+21+HSTHxcolwBHMw2Z46F0/zfc
-	i05FEOI/Zv4kvDKXfZR+5VQAvX5xSB5OR5VlCkm/yMWDZzzV5k6Dy2BIOXbIbKo3eXNJIZVYe72le
-	tg6Xpi515gyxEddsXRFQOQjmq+HjwAK84FscuulcJD3vb65ToVkG4hEOXNvRqTlLp3HCjud0VXaCh
-	EvV06lXQp3DEJz6q/8MqYN/Jhrs3Vll6EHlHtjx6LrmyzzDIE49x0F4xkoDxiyDgLD3+WNPo6lW+B
-	Rnj7Hlyw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:To:Cc:MIME-Version:Date:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=lE2rAY5/+W/Dj7P7dduYxKtM7TXmtz5DSUIgJW86dVk=; b=PCUxZ9oXQa2gcHKiywMswTkqAS
+	/vYnD7jC3Hto/8vzLQfIdxbHOeboGGdtoNyFa9KDXdNiTWeZZ1ylDBMZ3Oe/3eOCgoSAE4N5Fxc8u
+	ELq1FdQzQU8R2CgdQ5+cRZIw0pRH+hHC6IhgZeeFqgWSlwdBewNZ0QJDeL3/ZhWvFPR8kndUft/Dr
+	k79JpjjFd4+PJtGtdMfMX2hiFSxMhvTDUXX3Q3D0R5JHv5ZZOOvUs2AZklvBEFKj4NgzC2NoEq5oa
+	bSw0pjyxXjtSnfAmNa7kXeXfs+TC8T5ESsININtXGkM0lnB3NLd6Emmw4aIxsbntDJWoEZRgEfXUi
+	RgOUYKHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vNTyw-0000000BRJw-3vXp;
-	Mon, 24 Nov 2025 10:39:42 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vNXYe-0000000BqQj-2CJz;
+	Mon, 24 Nov 2025 14:28:48 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vNTyv-0000000BRJM-3UMu;
-	Mon, 24 Nov 2025 10:39:41 +0000
+	id 1vNXYd-0000000BqQY-12uP;
+	Mon, 24 Nov 2025 14:28:47 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id C84AF60190;
-	Mon, 24 Nov 2025 10:39:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0016EC4CEF1;
-	Mon, 24 Nov 2025 10:39:39 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 56D756016C;
+	Mon, 24 Nov 2025 14:28:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3DD3C116D0;
+	Mon, 24 Nov 2025 14:28:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763980780;
-	bh=wG0LtNXrjp+tZ6+DjiOmVw4tWhV/2DPiV64zQMWzD6E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=firEdU2gCtMh4N6YI19W5r3iOxB5sPvAIKExbAF0UKd6W/4+e4/WHnpUVVGhgtWBA
-	 a5pHIpAfdiYTEv1sen/+Y5y19BThHuf5QV7YsTbMjr03yNiePn6xxPFM9rBmFBGO/F
-	 TiEtraXUzP3fH1UnA4jBQAQTFMtojoqtoTg6/MraXPZFWcHy/puTwsedmw3WE0jHV2
-	 mylk4e1h00mN8rZh9xIGkDDB+u8aHBXDegba3zOnzn4UzfAVX9HfqEA2VqqP1N7+9d
-	 IFknDENgch1ihKzPP3CXf7xAiwSA7GPydZqDuHvGrkcGVvyUSstDSkj3J6juuaQQUN
-	 40rHR4ovEobtg==
-Date: Mon, 24 Nov 2025 11:39:37 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
-	Alexey Brodkin <abrodkin@synopsys.com>, Phong LE <ple@baylibre.com>, Liu Ying <victor.liu@nxp.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Adrien Grassein <adrien.grassein@gmail.com>, Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Anitha Chrisanthus <anitha.chrisanthus@intel.com>, 
-	Edmund Dea <edmund.j.dea@intel.com>, Inki Dae <inki.dae@samsung.com>, 
-	Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Hui Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-renesas-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 06/26] drm/bridge: add devm_drm_of_find_bridge
-Message-ID: <hs44z4b2dgisemuewgtvl4epjcqqilg6cy36po25pubaog4hmq@33qgl4o3hwoa>
-References: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com>
- <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-6-0db98a7fe474@bootlin.com>
+	s=k20201202; t=1763994526;
+	bh=lXpGCOoct+/71A0nTTpJIxCc2V4EGg5C9RDF8s1TsDM=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=j0IKMoaG3cR1RpSFy/pSS1sT/DSSUxmH/XIxiptYiVi3V/AgrGTihDFX9CrMhPJqJ
+	 VyrZNFaukQFydNljrew3CdPuuNngkcdw8Jo4rHGI7Sz+GO+cPc56g+FdSQ5W0uY+U9
+	 Z3dv3kujzTvQCwT3CHyGi9xaK37pHTSZBJtFYDzbii/Q74l63WgcwP/TsGSX7uKEpc
+	 ngevVik22fG6Az55vUIvVOu7j/zyK53YWnZZSIMZgqVEf6U9HpI8iPKblSrybm5rCv
+	 O3JwQviLJ97KvreS+xFEJTWL67/Pu2/8kr7gunEkzGovr0VfrZi+C0DgIlffEnZCwN
+	 Z1of9m5q/q6Rw==
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 24 Nov 2025 08:28:44 -0600
 MIME-Version: 1.0
-In-Reply-To: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-6-0db98a7fe474@bootlin.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Zhentao Guo <zhentao.guo@amlogic.com>
+In-Reply-To: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
+References: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
+Message-Id: <176399402192.138936.11233579649489245455.robh@kernel.org>
+Subject: Re: [PATCH RFC v2 0/3] Add Amlogic stateless H.264 video decoder
+ for S4
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,151 +71,304 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============6461179864020169984=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============6461179864020169984==
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="wbm42ghgit2cp5t3"
-Content-Disposition: inline
-
-
---wbm42ghgit2cp5t3
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 06/26] drm/bridge: add devm_drm_of_find_bridge
-MIME-Version: 1.0
-
-On Wed, Nov 19, 2025 at 02:05:37PM +0100, Luca Ceresoli wrote:
-> Several drivers (about 20) follow the same pattern:
->=20
->  1. get a pointer to a bridge (typically the next bridge in the chain) by
->     calling of_drm_find_bridge()
->  2. store the returned pointer in the private driver data, keep it until
->     driver .remove
->  3. dereference the pointer at attach time and possibly at other times
->=20
-> of_drm_find_bridge() is now deprecated because it does not increment the
-> refcount and should be replaced with drm_of_find_bridge() +
-> drm_bridge_put().
->=20
-> However some of those drivers have a complex code flow and adding a
-> drm_bridge_put() call in all the appropriate locations is error-prone,
-> leads to ugly and more complex code, and can lead to errors over time with
-> code flow changes.
->=20
-> To handle all those drivers in a straightforward way, add a devm variant =
-of
-> drm_of_find_bridge() that adds a devm action to invoke drm_bridge_put()
-> when the said driver is removed. This allows all those drivers to put the
-> reference automatically and safely with a one line change:
->=20
->   - priv->next_bridge =3D of_drm_find_bridge(remote_np);
->   + priv->next_bridge =3D devm_drm_of_find_bridge(dev, remote_np);
->=20
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
->
+On Mon, 24 Nov 2025 11:32:16 +0800, Zhentao Guo wrote:
+> Introduce initial driver support for Amlogic's new video acceleration
+> hardware architecture, designed for video stream decoding.
+> 
+> Compared to the current Amlogic video decoder hardware architecture,
+> this new implementation eliminates the Esparser hardware component,
+> enabling direct vb2 buffer input. The driver is designed to support
+> the V4L2 M2M stateless decoder API. The initial phase includes support
+> for H.264 decoding on Amlogic S805X2 platform.
+> 
+> The driver is capable of:
+> - Supporting stateless H.264 decoding up to a resolution 1920x1088(on the S805X2 platform).
+> - Supporting I/P/B frame handling.
+> - Supporting vb2 mmap and dma-buf modes.
+> - Supporting frame-based decode mode. (Note that some H.264 bitstreams require
+>   DPB reordering to generate reference lists, the stateless decoder driver
+>   cannot access reordered reference lists in this mode, requiring the driver
+>   to perform reference list reordering itself)
+> - Supporting NV12/NV21 output.
+> - Supporting Annex B start codes.
+> 
+> This driver is tested with Gstreamer.
+> Example:
+> gst-launch-1.0 filesrc location=/tmp/video_640x360_mp4_hevc_450kbps_no_b.mp4 !
+> parsebin ! v4l2slh264dec ! filesink location=/tmp/output.yuv
+> 
+> Retry the compliance test based on kernel 6.18-rc6:
+> v4l2-compliance 1.30.1, 64 bits, 64-bit time_t
+> 
+> Compliance test for aml-vdec-drv device /dev/video0:
+> 
+> Driver Info:
+>         Driver name      : aml-vdec-drv
+>         Card type        : platform:aml-vdec-drv
+>         Bus info         : platform:fe320000.video-codec
+>         Driver version   : 6.18.0
+>         Capabilities     : 0x84204000
+>                 Video Memory-to-Memory Multiplanar
+>                 Streaming
+>                 Extended Pix Format
+>                 Device Capabilities
+>         Device Caps      : 0x04204000
+>                 Video Memory-to-Memory Multiplanar
+>                 Streaming
+>                 Extended Pix Format
+>         Detected Stateless Decoder
+> Media Driver Info:
+>         Driver name      : aml-vdec-drv
+>         Model            : aml-vdec-drv
+>         Serial           :
+>         Bus info         : platform:fe320000.video-codec
+>         Media version    : 6.18.0
+>         Hardware revision: 0x00000000 (0)
+>         Driver version   : 6.18.0
+> Interface Info:
+>         ID               : 0x0300000c
+>         Type             : V4L Video
+> Entity Info:
+>         ID               : 0x00000001 (1)
+>         Name             : aml_dev_drv-source
+>         Function         : V4L2 I/O
+>         Pad 0x01000002   : 0: Source
+>           Link 0x02000008: to remote pad 0x1000004 of entity 'aml_dev_drv-proc' (Video Decoder): Data, Enabled, Immutable
+> 
+> Required ioctls:
+>         test MC information (see 'Media Driver Info' above): OK
+>         test VIDIOC_QUERYCAP: OK
+>         test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+>         test second /dev/video0 open: OK
+>         test VIDIOC_QUERYCAP: OK
+>         test VIDIOC_G/S_PRIORITY: OK
+>         test for unlimited opens: OK
+> 
+> Debug ioctls:
+>         test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+>         test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+>         test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+>         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>         test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+>         test VIDIOC_ENUMAUDIO: OK (Not Supported)
+>         test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+>         test VIDIOC_G/S_AUDIO: OK (Not Supported)
+>         Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+>         test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+>         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>         test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+>         test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+>         test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+>         Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+>         test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+>         test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+>         test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+>         test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+>         test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+>         test VIDIOC_QUERYCTRL: OK
+>         test VIDIOC_G/S_CTRL: OK
+>         test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+>         test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+>         test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+>         Standard Controls: 6 Private Controls: 0
+>         Standard Compound Controls: 4 Private Compound Controls: 0
+> 
+> Format ioctls:
+>         test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+>         test VIDIOC_G/S_PARM: OK (Not Supported)
+>         test VIDIOC_G_FBUF: OK (Not Supported)
+>         test VIDIOC_G_FMT: OK
+>         test VIDIOC_TRY_FMT: OK
+>         test VIDIOC_S_FMT: OK
+>         test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+>         test Cropping: OK (Not Supported)
+>         test Composing: OK (Not Supported)
+>         test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+>         test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+>         test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+>         test VIDIOC_(TRY_)DECODER_CMD: OK
+> 
+> Buffer ioctls:
+>         test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+>         test CREATE_BUFS maximum buffers: OK
+>         test VIDIOC_REMOVE_BUFS: OK
+>         test VIDIOC_EXPBUF: OK
+>         test Requests: OK
+>         test blocking wait: OK
+> 
+> Fluster test result of JVT-AVC_V1.
+> Result:
+> Ran 61/135 tests successfully
+> 
+> - 52 test vectors failed due to interlaced or mbaff clips: The Amlogic stateless
+>   decoder driver only support bitstreams with frame_mbs_only_flags == 1.
+>   Test Vectors:
+>         cabac_mot_fld0_full
+>         cabac_mot_mbaff0_full
+>         cabac_mot_picaff0_full
+>         CABREF3_Sand_D
+>         CAFI1_SVA_C
+>         CAMA1_Sony_C
+>         CAMA1_TOSHIBA_B
+>         cama1_vtc_c
+>         cama2_vtc_b
+>         CAMA3_Sand_E
+>         cama3_vtc_b
+>         CAMACI3_Sony_C
+>         CAMANL1_TOSHIBA_B
+>         CAMANL2_TOSHIBA_B
+>         CAMANL3_Sand_E
+>         CAMASL3_Sony_B
+>         CAMP_MOT_MBAFF_L30
+>         CAMP_MOT_MBAFF_L31
+>         CANLMA2_Sony_C
+>         CANLMA3_Sony_C
+>         CAPA1_TOSHIBA_B
+>         CAPAMA3_Sand_F
+>         cavlc_mot_fld0_full_B
+>         cavlc_mot_mbaff0_full_B
+>         cavlc_mot_picaff0_full_B
+>         CVCANLMA2_Sony_C
+>         CVFI1_Sony_D
+>         CVFI1_SVA_C
+>         CVFI2_Sony_H
+>         CVFI2_SVA_C
+>         CVMA1_Sony_D
+>         CVMA1_TOSHIBA_B
+>         CVMANL1_TOSHIBA_B
+>         CVMANL2_TOSHIBA_B
+>         CVMAPAQP3_Sony_E
+>         CVMAQP2_Sony_G
+>         CVMAQP3_Sony_D
+>         CVMP_MOT_FLD_L30_B
+>         CVNLFI1_Sony_C
+>         CVNLFI2_Sony_H
+>         CVPA1_TOSHIBA_B
+>         FI1_Sony_E
+>         MR6_BT_B
+>         MR7_BT_B
+>         MR8_BT_B
+>         MR9_BT_B
+>         Sharp_MP_Field_1_B
+>         Sharp_MP_Field_2_B
+>         Sharp_MP_Field_3_B
+>         Sharp_MP_PAFF_1r2
+>         Sharp_MP_PAFF_2r
+>         CVMP_MOT_FRM_L31_B
+> - 3 test vectors failed due to unsupported bitstream.
+>   num_slice_group_minus1 greater than zero is not supported by the
+>   hardware.
+>   Test Vectors:
+>         FM1_BT_B
+>         FM1_FT_E
+>         FM2_SVA_C
+> - 2 test vectors failed because SP_SLICE type is not supported by the
+>   hardware.
+>   Test Vectors:
+>         SP1_BT_A
+>         sp2_bt_b
+> 
+> We are working with the remain failures, these failures have the same root cause.
+> 
+> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
 > ---
->  drivers/gpu/drm/drm_bridge.c | 30 ++++++++++++++++++++++++++++++
->  include/drm/drm_bridge.h     |  5 +++++
->  2 files changed, 35 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-> index 09ad825f9cb8..c7baafbe5695 100644
-> --- a/drivers/gpu/drm/drm_bridge.c
-> +++ b/drivers/gpu/drm/drm_bridge.c
-> @@ -1446,6 +1446,36 @@ struct drm_bridge *drm_of_find_bridge(struct devic=
-e_node *np)
->  }
->  EXPORT_SYMBOL(drm_of_find_bridge);
-> =20
-> +/**
-> + * devm_drm_of_find_bridge - find the bridge corresponding to the device
-> + *			     node in the global bridge list and add a devm
-> + *			     action to put it
-> + *
-> + * @dev: device requesting the bridge
-> + * @np: device node
-> + *
-> + * On success the returned bridge refcount is incremented, and a devm
-> + * action is added to call drm_bridge_put() when @dev is removed. So the
-> + * caller does not have to put the returned bridge explicitly.
-> + *
-> + * RETURNS:
-> + * drm_bridge control struct on success, NULL on failure
-> + */
-> +struct drm_bridge *devm_drm_of_find_bridge(struct device *dev, struct de=
-vice_node *np)
-> +{
-> +	struct drm_bridge *bridge =3D drm_of_find_bridge(np);
-> +
-> +	if (bridge) {
-> +		int err =3D devm_add_action_or_reset(dev, drm_bridge_put_void, bridge);
-> +
-> +		if (err)
-> +			return ERR_PTR(err);
-> +	}
-> +
-> +	return bridge;
-> +}
-> +EXPORT_SYMBOL(devm_drm_of_find_bridge);
-
-That's inherently unsafe though, because even if the bridge is removed
-other parts of DRM might still have a reference to it and could call
-into it.
-
-We'd then have dropped our reference to the next bridge, which could
-have been freed, and it's a use-after-free.
-
-It's more complicated than it sounds, because we only have access to the
-drm_device when the bridge is attached, so later than probe.
-
-I wonder if we shouldn't tie the lifetime of that reference to the
-lifetime of the bridge itself, and we would give up the next_bridge
-reference only when we're destroyed ourselves.
-
-Storing a list of all the references we need to drop is going to be
-intrusive though, so maybe the easiest way to do it would be to create a
-next_bridge field in drm_bridge, and only drop the reference stored
-there?
-
-And possibly tie the whole thing together using a helper?
-
-Anyway, I'm not sure it should be a prerequisite to this series. I we do
-want to go the devm_drm_of_find_bridge route however, we should at least
-document that it's unsafe, and add a TODO entry to clean up the mess
-later on.
-
-Maxime
-
---wbm42ghgit2cp5t3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaSQ16QAKCRAnX84Zoj2+
-drTLAX0QBwwX78SPwaYEqj6Om+7ADsxYhVrgX1HoD1xpc0ILj+Ur57K6wtKDIc5l
-JWSP6zkBgJA2DSWw4vHzHhFRbZQ+eGEUkynilMkrpEr/EsrHbAzT3gfgz8IOyhGR
-Vs8tk3i2Uw==
-=/E1G
------END PGP SIGNATURE-----
-
---wbm42ghgit2cp5t3--
+> Changes in v2:
+> - Fixed incorrect generation of the reference lists for some B-frames.
+> - Rename or get rid of some properties in DTS and dt-binding.
+> - Remove some useless code or helper functions, (eg. clk helper functions, reg I/O macros, and some superfluous print messages) replace these functions with existing ones.
+> - Replace all the printk messages with dev_err/dev_info/dev_dbg
+> - Use the helper functions from the existing meson-canvas driver.
+> - Use clk_bulk_data to map clocks from DTS.
+> - Retry the V4L2 Compliance test on 6.18-rc6, fix a newly introduced bug.
+> - Link to v1: https://lore.kernel.org/r/20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com
+> 
+> ---
+> Zhentao Guo (3):
+>       media: dt-bindings: Add Amlogic V4L2 video decoder
+>       decoder: Add V4L2 stateless H.264 decoder driver
+>       arm64: dts: amlogic: Add video decoder driver support for S4 SOCs
+> 
+>  .../bindings/media/amlogic,s4-vcodec-dec.yaml      |   87 +
+>  MAINTAINERS                                        |    7 +
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |   27 +
+>  drivers/media/platform/amlogic/Kconfig             |    1 +
+>  drivers/media/platform/amlogic/Makefile            |    1 +
+>  drivers/media/platform/amlogic/vdec/Kconfig        |   16 +
+>  drivers/media/platform/amlogic/vdec/Makefile       |    4 +
+>  drivers/media/platform/amlogic/vdec/TODO           |    7 +
+>  drivers/media/platform/amlogic/vdec/aml_vdec.c     |  756 ++++++++
+>  drivers/media/platform/amlogic/vdec/aml_vdec.h     |   31 +
+>  drivers/media/platform/amlogic/vdec/aml_vdec_drv.c |  239 +++
+>  drivers/media/platform/amlogic/vdec/aml_vdec_drv.h |  196 ++
+>  drivers/media/platform/amlogic/vdec/aml_vdec_hw.c  |  596 ++++++
+>  drivers/media/platform/amlogic/vdec/aml_vdec_hw.h  |  158 ++
+>  .../platform/amlogic/vdec/aml_vdec_platform.c      |   37 +
+>  .../platform/amlogic/vdec/aml_vdec_platform.h      |   62 +
+>  drivers/media/platform/amlogic/vdec/h264.c         | 1933 ++++++++++++++++++++
+>  drivers/media/platform/amlogic/vdec/h264.h         |  300 +++
+>  drivers/media/platform/amlogic/vdec/reg_defines.h  |  177 ++
+>  19 files changed, 4635 insertions(+)
+> ---
+> base-commit: 0c1c7a6a83feaf2cf182c52983ffe330ffb50280
+> change-id: 20251027-b4-s4-vdec-upstream-0603c1a4c84a
+> 
+> Best regards,
+> --
+> Zhentao Guo <zhentao.guo@amlogic.com>
+> 
+> 
+> 
 
 
---===============6461179864020169984==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: 0c1c7a6a83feaf2cf182c52983ffe330ffb50280 (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com:
+
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: video-codec@fe320000 (amlogic,s4-vcodec-dec): 'amlogic,canvas' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/media/amlogic,vcodec-dec.yaml
+
+
+
+
+
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6461179864020169984==--
-
