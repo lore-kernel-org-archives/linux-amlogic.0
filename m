@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FD9ACFD313
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Nov 2025 16:03:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 173A5CFD313
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Nov 2025 16:24:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Cc:Subject:
-	From:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Subject:From:To:
+	Cc:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9zLq6dQbV1L+Ltm1nXI6JpO8IB5GTf/ZqNjILRpKm/w=; b=kCXDsxOGhgQN5c
-	+Ht5IKtVpS4tnuSQOFIP8lgeRA2t8OmPWiHTczlpVHgBCyiMo/P7ltDUHi0KPnrUATBXODVq//nRm
-	+0AnsIdVN4Nvc200UbdiDhzboaPrwmRZo16L3T9PpJX8QHRJTW246pWoqgyqbjf+MSN8YDb4wOpxd
-	JpilGZRN6z0BqPQ6WpS2DGr0yP3ItpAZXsD+cxu1Hb7A48ziUlM2zoVNhrzZJbMGwhoMuTAXcf6El
-	gHHQsaFOaB7uKW5Qf463BDxuCcw0uQa03Pe3PMxGnACzM/Kwc5QO95QEiEI3vUS2M9tuIEdftKu6K
-	dNpH5xtoYwEfhF/ck+vQ==;
+	List-Owner; bh=EAoedm2OqtkE/3Y+CZZ+utKsc+UabGuyHFjHhhCbZvM=; b=ayWhzc6sqrNVtj
+	SFU9lSd2G+i64pLqFypv+7KMGYfABL+bXwTctknpVQpGSbsaVdq96VqqeaY3TJLLVGwokYxxGFPyH
+	qx/FpNiXXYziegzQZg2ZIssyGKIu7fz3psuivPCit1UvM3aoGbMhr7MdVslfvK85meZGKfDZjXgMB
+	qN9RH/WmQ21xKXKIJvszlTIf9MPJ91Vmk9Oui6HwQ/CUFX5y/XGU2jNwiGgUgOr3U2BP/q+o0hGGd
+	mfoJm/BAlGcg1vbmUdAhQM8lfM++BYJLgzzlh7vaTHR+6Do/mk6hzh6no1/LIJxuVtfWLthZ1oA1p
+	+sJeWQ64aPcqya3sIPcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vNZ2A-0000000BxqQ-34no;
-	Mon, 24 Nov 2025 16:03:23 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1vNZM5-0000000BzR2-0HmL;
+	Mon, 24 Nov 2025 16:23:57 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vNZ26-0000000BxpC-25qs
+	id 1vNZM1-0000000BzPw-0qjY
 	for linux-amlogic@lists.infradead.org;
-	Mon, 24 Nov 2025 16:03:20 +0000
+	Mon, 24 Nov 2025 16:23:55 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 635361A1D26;
-	Mon, 24 Nov 2025 16:03:15 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 80999C139B0;
+	Mon, 24 Nov 2025 16:23:27 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2CA36606FC;
-	Mon, 24 Nov 2025 16:03:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B4CDF10371A40;
-	Mon, 24 Nov 2025 17:03:01 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 02ACB606FC;
+	Mon, 24 Nov 2025 16:23:50 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2AF0A10371D9A;
+	Mon, 24 Nov 2025 17:23:35 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1764000193; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1764001428; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=p+QBWKtawqpPzZu9LPDyPm5gsgmOzV7hJRZ5Ebshggc=;
-	b=cc20tvebhyskRFsehgbMDtN58mFWJzw3+meTYMQYXrWdpw5VV3uKvGIpPD9HS8R83EmRZH
-	qALe8e5UUI6C7MJXNERyWBLmNk5WfzKKvn8Wss/BPa1OVvmct7arm5zW27QDKgInGVcz6k
-	oi6j2QLmL3GbqobdqI1pyE5V0TLsDjFvq2MBjZC1AlbLsk1PMdr+v727PXLGHuuUayjymh
-	vV+Lgfi2eIyHigvvg8KiU75iRe8JFjVl6qwYhTFrQuO5g/Z240s/dFBsN/mdGefIWxxz3z
-	LHntkwUmsv/8hiteqTu/SKAu006LhE9TFbOO34cMGYjkq2/kVuVeteyUjoVDQw==
+	bh=4dwXgW7awt8oQD3TrOxHo6im6bS23ABW/5Js6C/RUYk=;
+	b=BmmKrDVRXr5Ui32ulufganjLHxAsQu1h7GaA9GD/T26zZxsOmgBvpSlEsWb4eI9jBIrq8K
+	HJRZgRJik54F0xx2TU/v0tHCfxRpZNOWhhVFU0fh/tctuiBkGe6xW5AKIFV56AzOFeR0D+
+	KkRUZ/Hf/eBL0NxbHwdjqgI5BzLofOXiNiZX41H7n5Pc/c2ktwFubkq0zA6WKyHxr/g7w0
+	Fj3SFW1KfFRHkOtqPrRz8zKkw4Y3NTKrSm8YCJtPSGvkDc4QPbzddQG3GvEd0nqVdi7Tba
+	eeHfeMNGKEukwL0NNBiTyeDeUH5H5ptJ2JmJJI7XgEcDg4bqaXb0zUbE3FpsZg==
 Mime-Version: 1.0
-Date: Mon, 24 Nov 2025 17:03:00 +0100
-Message-Id: <DEH1VJUEJ8HQ.MIS45UOLCPXL@bootlin.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH 01/26] drm/bridge: add drm_of_find_bridge()
+Date: Mon, 24 Nov 2025 17:23:34 +0100
+Message-Id: <DEH2BAF6NRPG.3S6GKB2PR1465@bootlin.com>
 Cc: "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
  <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
  Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
@@ -81,14 +79,17 @@ Cc: "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
  <linux-arm-kernel@lists.infradead.org>,
  <linux-renesas-soc@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
  <linux-mediatek@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>
-To: "Maxime Ripard" <mripard@kernel.org>
+To: "Maxime Ripard" <mripard@kernel.org>, "Louis Chauvet"
+ <louis.chauvet@bootlin.com>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH 02/26] drm/bridge: deprecate of_drm_find_bridge()
 X-Mailer: aerc 0.20.1
-References: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com> <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-1-0db98a7fe474@bootlin.com> <pv56bl4p7lfflloocozxaeufd6udkk3jhehrtne65cidrvlfwn@wvrkw6mjmhwp>
-In-Reply-To: <pv56bl4p7lfflloocozxaeufd6udkk3jhehrtne65cidrvlfwn@wvrkw6mjmhwp>
+References: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com> <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-2-0db98a7fe474@bootlin.com> <66cdbe39-d065-4aa4-86e4-84a38b49c09c@bootlin.com> <x6uch6cyjgbwnmac7fyjxdbi56gnhmilezfjdhqpakbz5hogt3@q72fex3ssh6u>
+In-Reply-To: <x6uch6cyjgbwnmac7fyjxdbi56gnhmilezfjdhqpakbz5hogt3@q72fex3ssh6u>
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251124_080318_671142_BAB5B173 
-X-CRM114-Status: GOOD (  13.25  )
+X-CRM114-CacheID: sfid-20251124_082353_417932_D07F8EB9 
+X-CRM114-Status: GOOD (  25.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,39 +106,80 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Maxime,
+Hi Maxime,
 
-On Mon Nov 24, 2025 at 11:15 AM CET, Maxime Ripard wrote:
-> Hi,
+On Mon Nov 24, 2025 at 11:18 AM CET, Maxime Ripard wrote:
+> On Wed, Nov 19, 2025 at 02:28:41PM +0000, Louis Chauvet wrote:
+>> On 11/19/25 13:05, Luca Ceresoli wrote:
+>> > of_drm_find_bridge() does not increment the returned bridge
+>> > refcount. drm_of_find_bridge() is to be used as a replacement.
+>> >
+>> > Suggested-by: Maxime Ripard <mripard@kernel.org>
+>> > Link: https://lore.kernel.org/dri-devel/20250319-stylish-lime-mongoose-0a18ad@houat/
+>> > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+>> > ---
+>> >   drivers/gpu/drm/drm_bridge.c | 7 +++++--
+>> >   1 file changed, 5 insertions(+), 2 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+>> > index d98a7b4a83c0..6debbf20aaa8 100644
+>> > --- a/drivers/gpu/drm/drm_bridge.c
+>> > +++ b/drivers/gpu/drm/drm_bridge.c
+>> > @@ -299,7 +299,7 @@ EXPORT_SYMBOL(__devm_drm_bridge_alloc);
+>> >    * @bridge: bridge control structure
+>> >    *
+>> >    * Add the given bridge to the global list of bridges, where they can be
+>> > - * found by users via of_drm_find_bridge().
+>> > + * found by users via drm_of_find_bridge().
+>> >    *
+>> >    * The bridge to be added must have been allocated by
+>> >    * devm_drm_bridge_alloc().
+>> > @@ -360,7 +360,7 @@ EXPORT_SYMBOL(devm_drm_bridge_add);
+>> >    * @bridge: bridge control structure
+>> >    *
+>> >    * Remove the given bridge from the global list of registered bridges, so
+>> > - * it won't be found by users via of_drm_find_bridge(), and add it to the
+>> > + * it won't be found by users via drm_of_find_bridge(), and add it to the
+>> >    * lingering bridge list, to keep track of it until its allocated memory is
+>> >    * eventually freed.
+>> >    */
+>> > @@ -1452,6 +1452,9 @@ EXPORT_SYMBOL(drm_of_find_bridge);
+>> >    *
+>> >    * @np: device node
+>> >    *
+>> > + * This function is deprecated. Use drm_of_find_bridge() instead for proper
+>> > + * refcounting.
+>> > + *
+>>
+>> I think it should be more explicit that the refcounting is not done by this
+>> function, like:
+>>
+>> 	This function is deprecated. The returned bridge is not refcounted, you
+>> should not use drm_bridge_put(). Use drm_of_find_bridge() instead for proper
+>> refcounting.
 >
-> On Wed, Nov 19, 2025 at 02:05:32PM +0100, Luca Ceresoli wrote:
->>  #ifdef CONFIG_OF
->> +/**
->> + * drm_of_find_bridge - find the bridge corresponding to the device node in
->> + *			the global bridge list
->> + * @np: device node
->> + *
->> + * The refcount of the returned bridge is incremented. Use drm_bridge_put()
->> + * when done with it.
->> + *
->> + * RETURNS:
->> + * drm_bridge control struct on success, NULL on failure
->> + */
->> +struct drm_bridge *drm_of_find_bridge(struct device_node *np)
->
-> So the convention we've mostly had was that the first argument would
-> define the prefix, ie. if we pass a drm_* pointer, the prefix is drm, if
-> we pass a device_node pointer, then the prefix is of.
->
-> Considering that convention, of_drm_find_bridge would be the ideal
-> candidate, but we can't use that obviously. What about
-> of_drm_find_and_get_bridge, or of_drm_get_bridge?
+> I'd rather say that the callers must take care of the refcounting by
+> themselves but that it's racy, or at least that it *must* not use
+> drm_bridge_put().
 
-Ah, it sounded the other way around during the old discussion [0]. :-) But
-no problem in using a different name of course. of_drm_get_bridge() looks
-like the best to me, so I'll rename that way in v2.
+I was rather leaning towards "Deprecated. Convert to drm_of_get_bridge().".
 
-[0] https://lore.kernel.org/dri-devel/20250319-stylish-lime-mongoose-0a18ad@houat/
+But if we want to still support existing (lazy) users, with yours and
+Louis' comments taken into account, what about:
+
+ * This function is deprecated. Convert to of_drm_get_bridge() instead for
+ * proper refcounting.
+ *
+ * The bridge returned by this function is not refcounted. This is
+ * dangerous because the bridge might be deallocated even before the caller
+ * has a chance to use it. To use this function you have to do one of:
+ * - get a reference with drm_bridge_get() as soon as possible to
+ *   minimize the race window, and then drm_bridge_put() when no longer
+ *   using the pointer
+ * - not call drm_bridge_get() or drm_bridge_put() at all, which used to
+ *   be the correct practice before dynamic bridge lifetime was introduced
+ * - again, convert to of_drm_get_bridge(), which is the only safe thing
+ *   to do
 
 Luca
 
