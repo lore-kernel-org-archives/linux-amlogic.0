@@ -4,63 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2CDBD111BD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Nov 2025 23:54:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD8FBCFD2F6
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Nov 2025 07:30:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=lp9dMFlS0mOs1i+f6k+tNbiz+OZ6UvJqmxsopTkk9dQ=; b=CnH/cXetNcrrTG
-	ME/E6XF7t0u5Lo6ErEuf1rqMqdfceUTrBv+VLeyeo992Nv5l0VJRZmEZwXSANEs3x+sa6/Z6EKApN
-	nIjSpRAc/akubaVn+BgGgPV/WfjvLM5D6KIpIWt4gbIT0aZXy3q4A+/WNSv1FzZ0lKxRhM5DyJ6yb
-	fva24owp2COIQ11GRy+mQJtGZAq8G21OT/1lWhuWKbyVGXod3vkSTPk0Qf2XezRn0v22u6d8o6iid
-	4wvMdTk8ctILowW6f8eKmELmexmZyOmsG/yf5aThjlIjzMKj38NjkevmS/kyPs7ORBRi1B7UpaFqx
-	k+r9RlNHPax115a6yWrg==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=FxbabjWSESijxgfCOd3vE8NpcwLjf5Do2j+LuanFYEc=; b=wvH4vXIEEzrTgj
+	zQk5QKpaWdUVu5TfyyatJtJKiJLBoqVr7DPpAbUpikicTnCWqxWXikUXxeuv2LPLEuC46f7HSGQbF
+	ak9ZGiRr1LEGs2Lm5RgKtyE+Cb3wr/CYjiOsxqfkTxYL36euqz6gK3BSK298ZfkKtBFoBq4TLO028
+	UbHR4AIXLuHdD1guzagdpBh9C5ohgGUQ8tjrRt6oDGhyjRUXIS4CTA1/hHw8HVeWZXyNbPBzrl/bs
+	vMn0FmjOG9KDhdrGA9B7yjgI1xSLRDL4uXUd1r2bnqHfPQ8BhVKWbtjVtnFJkaaZEoK1XAyYoLzSM
+	HiLa7K6aYiLQfFsFVDZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vOPLJ-0000000FmRR-1bHE;
-	Wed, 26 Nov 2025 23:54:37 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vOWSj-0000000G7ae-3XdU;
+	Thu, 27 Nov 2025 07:30:45 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vOPLG-0000000FmQy-3mFr;
-	Wed, 26 Nov 2025 23:54:36 +0000
+	id 1vOWSi-0000000G7ZZ-3xQw;
+	Thu, 27 Nov 2025 07:30:45 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 027DE4197D;
-	Wed, 26 Nov 2025 23:54:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5A68C4CEF7;
-	Wed, 26 Nov 2025 23:54:33 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 2757860172;
+	Thu, 27 Nov 2025 07:30:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BE6F7C4CEF8;
+	Thu, 27 Nov 2025 07:30:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764201273;
-	bh=g9nM4cO2Nu/TJJjgqtJ77MJB0fTDSxhxd0RQ+LzrMi4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=RQCfpfeZnsMlL2sUCsmFtjvqUATIhGbpQyu2dIi70gm8+BkN4dpSOM8JiXvAM5ZkP
-	 BoBfquJLzroZc5wGIAhoeSIkCUnY0qS/5icO4JnicFJ0PPsD5DfEBBC7hBmvplQj5F
-	 ri2lDTXygjlNAnWYiAyrbQd22ZR9ML4QDBiPfJIqcB9nPwDfqKnpAU2yVmhPKxrPRg
-	 2EumjNk/YuuXvFGVk84zVWHzVu4QY6ZGevOp5ULfj/A+7wtKaM0W8Gbch+y00woMe/
-	 yBcP4f8YtTSAWZMVLl6ZP0I+y/MtkKXo+hfPfxFy9bKI4FmbV42CSLYgrYvTEV6ahp
-	 pmVD44qu7aO0w==
-Date: Wed, 26 Nov 2025 17:54:32 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Hans Zhang <18255117159@163.com>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
-	heiko@sntech.de, mani@kernel.org, yue.wang@amlogic.com,
-	pali@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
-	jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, cassel@kernel.org,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v6 1/2] PCI: Configure Root Port MPS during host probing
-Message-ID: <20251126235432.GA2726707@bhelgaas>
+	s=k20201202; t=1764228643;
+	bh=6jPCsfq4CeOnErf3qNwJU7sJXITpGdob9lEfen7L2oQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=OhEyhWE/v3IymteflPwIgo2JT9OM2ts7CmFLMG58IjdqSDWM7Q7dgFMzwfXziXviv
+	 RI9UvAtf8YnKnLoci5DgqgncwsbFAG9XfuiarjQLTeDmQLkGLHeqcE3ioPUYNZ9+ro
+	 kjNqsG76vpgIKKwJ5q0YNsQLe1kw0lInrnyGjl9YbPGAlpYSpNhPc0edfRbYXjgp7w
+	 ZRJxVGpUTg4GQb/nWvJwZ0kQ3+Dt1NY44VpdOUFs0jxn/LRNqt59MOGm7iT7Um5aGs
+	 jN1FQlb4lFPxHiDyekqN67/Ruq45vplg8tyYLwfuIJ1da8oJo6bFB8Po1k2cnfGTPH
+	 yunALonCbhu7A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A7C6FD11183;
+	Thu, 27 Nov 2025 07:30:43 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/4] Add support for Amlogic S6/S7/S7D Reset
+Date: Thu, 27 Nov 2025 15:30:30 +0800
+Message-Id: <20251127-reset-s6-s7-s7d-v1-0-879099ad90d3@amlogic.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20251104165125.174168-2-18255117159@163.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251126_155434_983171_AC023225 
-X-CRM114-Status: GOOD (  22.11  )
+X-B4-Tracking: v=1; b=H4sIABb+J2kC/x2MuwqAMAwAf0UyGzABn78iDtWmmqVKIyKI/24Rb
+ rnh7gGTpGIwFA8kudR0j1moLGDZXFwF1WcHrrgm4hqTmJxoDVqb8chEoW879sHNkKsjSdD7P47
+ T+34GgAzDYQAAAA==
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764228641; l=1065;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=6jPCsfq4CeOnErf3qNwJU7sJXITpGdob9lEfen7L2oQ=;
+ b=+6Fgb0YDwTd5M6y0wp/2GvdWtmo59GcMmDK77MFLDAdShb4SHZoI+iPLjuyNILLj5UZfC14up
+ 6Mbdyhe6Y3sAbJrrOlAOD0UWC/2QTC94jipkNNnhf168f7iHFilSohw
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,88 +83,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Nov 05, 2025 at 12:51:24AM +0800, Hans Zhang wrote:
-> Current PCIe initialization logic may leave Root Ports (root bridges)
-> operating with non-optimal Maximum Payload Size (MPS) settings. Existing
-> code in pci_configure_mps() returns early for devices without an upstream
-> bridge (!bridge) which includes Root Ports, so their MPS values remain
-> at firmware/hardware defaults. This fails to utilize the controller's full
-> capabilities, leading to suboptimal data transfer efficiency across the
-> PCIe hierarchy.
-> 
-> With this patch, during the host controller probing phase:
-> - When PCIe bus tuning is enabled (not PCIE_BUS_TUNE_OFF), and
-> - The device is a Root Port without an upstream bridge (!bridge),
-> The Root Port's MPS is set to its hardware-supported maximum value
-> (128 << dev->pcie_mpss).
-> 
-> Note that this initial maximum MPS setting may be reduced later, during
-> downstream device enumeration, if any downstream device does not suppor
-> the Root Port's maximum MPS.
-> 
-> This change ensures Root Ports are properly initialized before downstream
-> devices negotiate MPS, while maintaining backward compatibility via the
-> PCIE_BUS_TUNE_OFF check.
+Add dt-binding compatibles and device nodes for Amlogic S6/S7/S7D reset.
 
-"Properly" is sort of a junk word for me because all it really says is
-we were stupid before, and we're smarter now, but it doesn't explain
-exactly *what* was wrong and why this new thing is "proper."
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Xianwei Zhao (4):
+      dt-bindings: reset: Add compatible for Amlogic S6/S7/S7D
+      arm64: dts: amlogic: Add S6 Reset Controller
+      arm64: dts: amlogic: Add S7 Reset Controller
+      arm64: dts: amlogic: Add S7D Reset Controller
 
-It's obvious that the Max_Payload_Size power-on default (128 bytes) is
-suboptimal in some situations, so you don't even need to say that.
-And I think 128 bytes *is* optimal in the PCIE_BUS_PEER2PEER case.
+ .../bindings/reset/amlogic,meson-reset.yaml        |   3 +
+ arch/arm64/boot/dts/amlogic/amlogic-s6-reset.h     | 171 +++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        |   8 +
+ arch/arm64/boot/dts/amlogic/amlogic-s7-reset.h     | 124 +++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        |   8 +
+ arch/arm64/boot/dts/amlogic/amlogic-s7d-reset.h    | 134 ++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       |   8 +
+ 7 files changed, 456 insertions(+)
+---
+base-commit: 79482f3791c4760b9b0d8d9bfde9f1053ea3dd5e
+change-id: 20251125-reset-s6-s7-s7d-211f9782dfab
 
-s/Root Ports (root bridges)/Root Ports/
-s/bridge (!bridge)/bridge/     # a couple times
-s/hardware-supported//         # unnecessary
-s/(128 << dev->pcie_mpss)//    # we can read the spec
-s/suppor/support/
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-> Suggested-by: Niklas Cassel <cassel@kernel.org>
-> Suggested-by: Manivannan Sadhasivam <mani@kernel.org>
-> Signed-off-by: Hans Zhang <18255117159@163.com>
-> ---
->  drivers/pci/probe.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-> index 0ce98e18b5a8..2459def3af9b 100644
-> --- a/drivers/pci/probe.c
-> +++ b/drivers/pci/probe.c
-> @@ -2196,6 +2196,18 @@ static void pci_configure_mps(struct pci_dev *dev)
->  		return;
->  	}
->  
-> +	/*
-> +	 * Unless MPS strategy is PCIE_BUS_TUNE_OFF (don't touch MPS at all),
-> +	 * start off by setting Root Ports' MPS to MPSS. This only applies to
-> +	 * Root Ports without an upstream bridge (root bridges), as other Root
-> +	 * Ports will have downstream bridges.
 
-I can't parse this sentence.  *No* Root Port has an upstream bridge.
-So I don't know what "other Root Ports" would be or why they would
-have downstream bridges (any Root Port is likely to have downstream
-endpoints or bridges).
-
-> +	   ... Depending on the MPS strategy
-> +	 * and MPSS of downstream devices, the Root Port's MPS may be
-> +	 * overridden later.
-> +	 */
-> +	if (!bridge && pci_pcie_type(dev) == PCI_EXP_TYPE_ROOT_PORT &&
-> +	    pcie_bus_config != PCIE_BUS_TUNE_OFF)
-> +		pcie_set_mps(dev, 128 << dev->pcie_mpss);
-> +
->  	if (!bridge || !pci_is_pcie(bridge))
->  		return;
->  
-> -- 
-> 2.34.1
-> 
 
 _______________________________________________
 linux-amlogic mailing list
