@@ -4,74 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D49ED111A8
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Nov 2025 17:10:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E15A1D111A8
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Nov 2025 17:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=SYZLiKliE3g9qch5v8X/IlKpbMBw3zu7pGKhv4MnknM=; b=wUHLQmOFSMHiBm
-	V9lrNWsS7kiFLA8AFk/LYgVjR5wQC3n+3HoG502opu1OJIzNQ9qYd1y9nPNKDPGWLwULf26ifwpbr
-	zpw2XvvcYGyk5MYxzJO+VLtOVqglk7uxgaAqJxggsUJDRvQU6e2BPC/EdxP3Kh304Cl5IYaa04rRp
-	4f2F3YFSVPPYwPhwF/0G98eO++v1a8FwdFEAhoQKqzDeGAsfLkKJYTD2gAAclRREQ9s6iIvlXZh4K
-	0/NFIFvfvJGq8wvnlaX5tZ28Fqq6mSjFvwAVu+E333JSK7KNtUrryVh6LkRfqjVeDJKlegl8xP58V
-	sCt9Lt+thy+BPt3/dVOQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=fQiLB2LPCvDixybagnOQwHAD9Oy0WyfVsN+gneTnQYY=; b=1T9okKWiJ7dwNLTJ5r8ZYQeTce
+	W+OdbvJeBqeR0pU0JcvQTkcEmViTqs4E9HnTEEe16PTQHUB7dHm+HGF3iGrRzE2GfStqa6vopBet8
+	wzoy7UKl9KDq+rZYu50uBomOUfun+tmNnSPcrTj/1DaVOgGCU1/LX2Ms7XMuaBmAThu0ycYTnokrR
+	0qjoXiE2j67oDttLYTX03ehKL51qZCO8CebHko1cjco0CgRYaL8WkL/vIp+9BWunPXDA8BnpfDX9w
+	GEqNIEMDwPuCsCtHJ58sTXrYkPV92no3YHPJMoDVo+7r3ipN19UQNF737gaw0LQaMqlDLC/hLHP/F
+	nmwGaCyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vOfVT-0000000Gy4U-3uDV;
-	Thu, 27 Nov 2025 17:10:11 +0000
-Received: from m16.mail.163.com ([117.135.210.2])
+	id 1vOfp4-0000000H0op-1v3M;
+	Thu, 27 Nov 2025 17:30:26 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vOfVR-0000000Gy1P-1vdq;
-	Thu, 27 Nov 2025 17:10:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=V/
-	pS6w4rFfk/7ExZrmkUZsh7BR5ggFxkvqiAgus5FlI=; b=WxY1kTW5iD9Tag5MVL
-	3PylHmgbmRIRcRPR6+vagTaDcVMoEPC5XqUe4bxk0/ooFObo+PjdSxQjd0lt3qrm
-	Ko9ErzZE/EBVpHEGXNoArMyB8r0Z+rDevDBDdy1YZ6MRy4G9AstEZ+3UH8l/S4uR
-	L5ErgPhHu6fGR5W3q5YNnzauA=
-Received: from zhb.. (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wDX71K2hShpkFjfDA--.43603S2;
-	Fri, 28 Nov 2025 01:09:11 +0800 (CST)
-From: Hans Zhang <18255117159@163.com>
-To: lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	bhelgaas@google.com,
-	helgaas@kernel.org,
-	heiko@sntech.de,
-	mani@kernel.org,
-	yue.wang@Amlogic.com
-Cc: pali@kernel.org,
-	neil.armstrong@linaro.org,
-	robh@kernel.org,
-	jingoohan1@gmail.com,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	cassel@kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Hans Zhang <18255117159@163.com>
-Subject: [PATCH v7 0/2] PCI: Configure Root Port MPS during host probing
-Date: Fri, 28 Nov 2025 01:09:06 +0800
-Message-Id: <20251127170908.14850-1-18255117159@163.com>
-X-Mailer: git-send-email 2.34.1
+	id 1vOfp2-0000000H0oN-386T;
+	Thu, 27 Nov 2025 17:30:25 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 25A1441949;
+	Thu, 27 Nov 2025 17:30:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 818E2C4CEF8;
+	Thu, 27 Nov 2025 17:30:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764264624;
+	bh=TRqI2kajG3MpFHcedh0f/LFtV6jlxn9lFMGnLAS5L/g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jVoISbcjJC2JQyqpT0XlEeM4acwQB3Nr5+V3HDRO2F0WhG8kMHkH1STZIhelG5Pg3
+	 0DsFJJt43r9BagkRTku3D447zCEW+BTd/UMYQeY20Y8DJDuyuuhUzpvwyGaDvGZCme
+	 Jq0addUt9zQU1mLLVVdDUXZi8b2zl3Hwnp104MrqCb15WBvomN1zJFkqbvAg/4ZITp
+	 JFrSOGSuBXiwOAyUcBAnyIQSSpzYyoxtnorJoOC7UgRqtI8bVXGLSShXlcQcrz+ia7
+	 9pp2Um4+ekdDDZW93YeJMxTGurfslvuxmc+RF05eHxhHhN8k0JYnjDX47cTcvQ+d1a
+	 vuOs6XbNNNCWg==
+Date: Thu, 27 Nov 2025 17:30:19 +0000
+From: Conor Dooley <conor@kernel.org>
+To: xianwei.zhao@amlogic.com
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: reset: Add compatible for Amlogic
+ S6/S7/S7D
+Message-ID: <20251127-panda-detest-8a5454dac059@spud>
+References: <20251127-reset-s6-s7-s7d-v1-0-879099ad90d3@amlogic.com>
+ <20251127-reset-s6-s7-s7d-v1-1-879099ad90d3@amlogic.com>
 MIME-Version: 1.0
-X-CM-TRANSID: _____wDX71K2hShpkFjfDA--.43603S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxCw1DXr45CF1fAr1kGr1DAwb_yoW5urWkpF
-	WFgws3Gr4xGF15Ga9rGa1jkFy5Xas7GFW3GrZ8GwnxZan0vF1UXryv9a1Fyry7XrWS9a12
-	vr9FqryxC3Wqva7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pEtCzPUUUUU=
-X-Originating-IP: [240e:b8f:927e:1000:9218:e74d:98cf:7e7c]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbCxBjzl2kohbgRVAAA3B
+In-Reply-To: <20251127-reset-s6-s7-s7d-v1-1-879099ad90d3@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251127_091009_922390_76088DB8 
-X-CRM114-Status: UNSURE (   9.13  )
+X-CRM114-CacheID: sfid-20251127_093024_809485_D0EDB304 
+X-CRM114-Status: UNSURE (   7.84  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,92 +75,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4750698808862913546=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Current PCIe initialization exhibits a key optimization gap: Root Ports
-may operate with non-optimal Maximum Payload Size (MPS) settings. While
-downstream device configuration is handled during bus enumeration, Root
-Port MPS values inherited from firmware or hardware defaults often fail
-to utilize the full capabilities supported by controller hardware. This
-results in suboptimal data transfer efficiency throughout the PCIe
-hierarchy.
 
-This patch series addresses this by:
-
-1. Core PCI enhancement (Patch 1):
-- Proactively configures Root Port MPS during host controller probing
-- Sets initial MPS to hardware maximum (128 << dev->pcie_mpss)
-- Conditional on PCIe bus tuning being enabled (PCIE_BUS_TUNE_OFF unset)
-  and not in PCIE_BUS_PEER2PEER mode (which requires default 128 bytes)
-- Maintains backward compatibility via PCIE_BUS_TUNE_OFF check
-- Preserves standard MPS negotiation during downstream enumeration
-
-2. Driver cleanup (Patch 2):
-- Removes redundant MPS configuration from Meson PCIe controller driver
-- Functionality is now centralized in PCI core
-- Simplifies driver maintenance long-term
-
----
-Changes in v7:
-- Exclude PCIE_BUS_PEER2PEER mode from Root Port MPS configuration
-- Remove redundant check for upstream bridge (Root Ports don't have one)
-- Improve commit message and code comments as per Bjorn.
-
-Changes for v6:
-https://patchwork.kernel.org/project/linux-pci/patch/20251104165125.174168-1-18255117159@163.com/
-
-- Modify the commit message and comments. (Bjorn)
-- Patch 1/2 code logic: Add !bridge check to configure MPS only for Root Ports
-  without an upstream bridge (root bridges), avoiding incorrect handling of
-  non-root-bridge Root Ports (Niklas).
-
-Changes for v5:
-https://patchwork.kernel.org/project/linux-pci/patch/20250620155507.1022099-1-18255117159@163.com/
-
-- Use pcie_set_mps directly instead of pcie_write_mps.
-- The patch 1 commit message were modified.
-
-Changes for v4:
-https://patchwork.kernel.org/project/linux-pci/patch/20250510155607.390687-1-18255117159@163.com/
-
-- The patch [v4 1/2] add a comment to explain why it was done this way.
-- The patch [v4 2/2] have not been modified.
-- Drop patch [v3 3/3]. The Maintainer of the pci-aardvark.c file suggests
-  that this patch cannot be submitted. In addition, Mani also suggests
-  dropping this patch until this series of issues is resolved.
-
-Changes for v3:
-https://patchwork.kernel.org/project/linux-pci/patch/20250506173439.292460-1-18255117159@163.com/
-
-- The new split is patch 2/3 and 3/3.
-- Modify the patch 1/3 according to Niklas' suggestion.
-
-Changes for v2:
-https://patchwork.kernel.org/project/linux-pci/patch/20250425095708.32662-1-18255117159@163.com/
-
-- According to the Maintainer's suggestion, limit the setting of MPS
-  changes to platforms with controller drivers.
-- Delete the MPS code set by the SOC manufacturer.
----
-
-Hans Zhang (2):
-  PCI: Configure Root Port MPS during host probing
-  PCI: dwc: Remove redundant MPS configuration
-
- drivers/pci/controller/dwc/pci-meson.c | 17 -----------------
- drivers/pci/probe.c                    | 12 ++++++++++++
- 2 files changed, 12 insertions(+), 17 deletions(-)
+--===============4750698808862913546==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="PyJOIfZRJSpZTrvf"
+Content-Disposition: inline
 
 
-base-commit: 765e56e41a5af2d456ddda6cbd617b9d3295ab4e
--- 
-2.34.1
+--PyJOIfZRJSpZTrvf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Nov 27, 2025 at 03:30:31PM +0800, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>=20
+> Add compatibles for Amlogic S6/S7/S7D reset controllers,
+> which fall back to 'amlogic,meson-s4-reset'.
+>=20
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
+
+--PyJOIfZRJSpZTrvf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSiKqwAKCRB4tDGHoIJi
+0tH2AP43SN9VXKPMwWnwJ6H72N4NrnVMOYGLiaodZKgEkMpXywD+Pj5xkLfnb9xK
+o9CPw6OaekkvC5EFHti+AbOc3tXIewo=
+=3ECP
+-----END PGP SIGNATURE-----
+
+--PyJOIfZRJSpZTrvf--
+
+
+--===============4750698808862913546==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4750698808862913546==--
+
