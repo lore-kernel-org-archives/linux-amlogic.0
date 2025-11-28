@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5233D116F1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Nov 2025 16:54:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CFBFD116F1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Nov 2025 16:54:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bk4GQlO+wbgXmUfktVOKVT7skGGN1FWpRm1ZrT5qKho=; b=fWUq1LwOjyc3iO
-	9yOGZeWbrkrgQBOlzlHI+6nDfOa1CZ+u7dKaidu9Rid3WmN0L/xG6o4T6wYKqQszpx6oXezHs2Min
-	5cjNE9hfd8wQPc172vocSqFfp3rvVfdl7/dxe4BEPAQp8nc9raIspwDyIvdgkgQzSrAumv+Wnk85n
-	r8Yn9OZP9xpWqPjcy6x42lU8ORXLADSVaU3LN9/Gmdl04bQ5SWUnHHCmaIvW6lPQKHojFacqeHK+j
-	a1Kn3eXbSBLHUpXuE6010OoyHD0HjE9lTEvjoZ1kuO396Y0kyxQp6T/7XHiXDVw9ZaV0t2I53dgNS
-	vJhFxgujytR7fojGFrdQ==;
+	List-Owner; bh=9LcEmhPVvUqdyVrbhZecroYAIW9Mux/DaXi0tDup49c=; b=1F0cbaFClmyNxZ
+	ehxKynCETKSiG0vrJPRKFU/Z0+7OqIhVdqjA5gnQjRQMeFV3n4rRhwMISEq2nyncq8JNX+8jQUd34
+	6RpYdpGRf8HNfgDAh0sjgTfuQO/Ykgyckn9fsV8u7FOsnU04w1ck3WztyC9s4KV+nKjJL22LxKfcj
+	Z0wcg6/eOUSrEmStUO5uSmDpksvJ4cy/5ae8oprSt0VEPY/vfAFEv3KbGUA79zgdROxfyTuWamCOb
+	YehcXE1w/WMqNFYm3XgipHucLrFoxvlNkMRKdEBZZHr7IooPlmcLZ9Cr7NuTaePvq8GwlzoIIFDhy
+	1xnKlNhDX2D5r2g+2mjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vP1jb-00000000fvj-0cAy;
-	Fri, 28 Nov 2025 16:54:15 +0000
+	id 1vP1jk-00000000g0Z-0zvY;
+	Fri, 28 Nov 2025 16:54:24 +0000
 Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vP1jX-00000000ftH-3nfY
+	id 1vP1jf-00000000fxT-3vjH
 	for linux-amlogic@lists.infradead.org;
-	Fri, 28 Nov 2025 16:54:13 +0000
+	Fri, 28 Nov 2025 16:54:22 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 429A5C16A3C;
-	Fri, 28 Nov 2025 16:53:47 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 649E1C16A3C;
+	Fri, 28 Nov 2025 16:53:55 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2C14D60706;
-	Fri, 28 Nov 2025 16:54:10 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0EEA610B02187;
-	Fri, 28 Nov 2025 17:53:59 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 4F4E160706;
+	Fri, 28 Nov 2025 16:54:18 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C8D2A10B02189;
+	Fri, 28 Nov 2025 17:54:08 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1764348848; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1764348856; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=P7PuQnrr2U0mS6+K0q3iGdpY5r4F/rhA/7tugsaTWHQ=;
-	b=2skVqUO2wpq9PHtRVHRtqRhujv2FbueuNpP1H5JWR6CVK7xatL4uwySXumc3/taO9CvVMb
-	acdli3XiqiV9CdPG5t8Qh3060lAfnNWjI2VPpk8RzD30MX13YdAas9gX/xJI+V5stGJ9IF
-	QMH5qEERVOgRkIBJ381RLvqZ46+x/Sv0HHJQUeu21s2J1xRIOi9XngP+WMtr6FzDBX329V
-	U87a1CUVxVq3zlNfVkGzc1y+sh9gaBb+ChDYlklggLCAaOMizlEfNE4HN5DHjPnhCkjqDX
-	xtna16A1xSoMZcoauwJAsmEKEJxKySi463KCX3OOU9NqVtVl/UJy/drjwNFnOQ==
+	bh=5WAdl9mF/5vmOeq7HjMbS/w4YcaMEw0PcVLTVO9N8Bg=;
+	b=ZJRXdtVJ+OtHF5FjaXM78TLQNKNjEsmYao6LihS0FqfEsa3rxyeylnvgf0yQdP4kGfGRN+
+	dx+RmgVTwOX7KcHCMkjxLsSepp6Aws+MkEnhswjWuZ99+7PhAECdC3WGz0mkpKngocZRyC
+	fb1lxDLX4ahZyiXxMbPybSYnGIkSdSdyftsaRZvTfhBFpRB3ZSLCLbftxY5oiB0uRtva+h
+	91uqysczMslvOk4r69/DYMDImuw+z/yKbz3c/38+D0Uu5/U9tp3VxPUmqr44DwPgfzaWFM
+	a4pva8vH1LOSqyG03DDkRi3l0g7zSo4EdrmPcSVcCwQOeEoPrKiKafFuunB4oA==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Fri, 28 Nov 2025 17:50:26 +0100
-Subject: [PATCH v2 16/26] drm/rcar-du: lvds: use devm_of_drm_get_bridge()
- to put the next bridge
+Date: Fri, 28 Nov 2025 17:50:27 +0100
+Subject: [PATCH v2 17/26] drm/meson: encoder_*: use
+ devm_of_drm_get_bridge() to put the next bridge
 MIME-Version: 1.0
-Message-Id: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-16-88f8a107eca2@bootlin.com>
+Message-Id: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-17-88f8a107eca2@bootlin.com>
 References: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-0-88f8a107eca2@bootlin.com>
 In-Reply-To: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-0-88f8a107eca2@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -92,8 +92,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251128_085412_129675_7703C0A6 
-X-CRM114-Status: GOOD (  11.84  )
+X-CRM114-CacheID: sfid-20251128_085420_301091_A5E13C60 
+X-CRM114-Status: GOOD (  11.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,22 +117,50 @@ reference on remove or on probe failure.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/renesas/rcar-du/rcar_lvds.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/meson/meson_encoder_cvbs.c | 2 +-
+ drivers/gpu/drm/meson/meson_encoder_dsi.c  | 2 +-
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_lvds.c b/drivers/gpu/drm/renesas/rcar-du/rcar_lvds.c
-index 001b3543924a..2dd95fd52e71 100644
---- a/drivers/gpu/drm/renesas/rcar-du/rcar_lvds.c
-+++ b/drivers/gpu/drm/renesas/rcar-du/rcar_lvds.c
-@@ -740,7 +740,7 @@ static int rcar_lvds_parse_dt_companion(struct rcar_lvds *lvds)
- 		goto done;
+diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+index dc374bfc5951..bf8588a5f6dd 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
++++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+@@ -241,7 +241,7 @@ int meson_encoder_cvbs_probe(struct meson_drm *priv)
+ 		return 0;
  	}
  
--	lvds->companion = of_drm_find_bridge(companion);
-+	lvds->companion = devm_of_drm_get_bridge(dev, companion);
- 	if (!lvds->companion) {
- 		ret = -EPROBE_DEFER;
- 		goto done;
+-	meson_encoder_cvbs->next_bridge = of_drm_find_bridge(remote);
++	meson_encoder_cvbs->next_bridge = devm_of_drm_get_bridge(priv->dev, remote);
+ 	of_node_put(remote);
+ 	if (!meson_encoder_cvbs->next_bridge)
+ 		return dev_err_probe(priv->dev, -EPROBE_DEFER,
+diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+index 6c6624f9ba24..6304f51a7e7e 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
++++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+@@ -120,7 +120,7 @@ int meson_encoder_dsi_probe(struct meson_drm *priv)
+ 		return 0;
+ 	}
+ 
+-	meson_encoder_dsi->next_bridge = of_drm_find_bridge(remote);
++	meson_encoder_dsi->next_bridge = devm_of_drm_get_bridge(priv->dev, remote);
+ 	if (!meson_encoder_dsi->next_bridge)
+ 		return dev_err_probe(priv->dev, -EPROBE_DEFER,
+ 				     "Failed to find DSI transceiver bridge\n");
+diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+index 8205ee56a691..e2a871347136 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+@@ -390,7 +390,7 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
+ 		return 0;
+ 	}
+ 
+-	meson_encoder_hdmi->next_bridge = of_drm_find_bridge(remote);
++	meson_encoder_hdmi->next_bridge = devm_of_drm_get_bridge(priv->dev, remote);
+ 	if (!meson_encoder_hdmi->next_bridge) {
+ 		ret = dev_err_probe(priv->dev, -EPROBE_DEFER,
+ 				    "Failed to find HDMI transceiver bridge\n");
 
 -- 
 2.51.1
