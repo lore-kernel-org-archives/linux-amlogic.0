@@ -4,56 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C067FD116E2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Nov 2025 16:52:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69866D116F3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Nov 2025 16:52:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uZ1ugCHsbKzPovOz4jWtEDjW24AG+xYfAso+XPs/L58=; b=t5PEUCVdFMlbCX
-	kTAbbHCGcyxVsPX4hNTpeG3h8qqyBHQkR+NP4lB9g9f365rEoSe0Er9BxPvSSxPGt9qqyOH7uARtD
-	B3WelIp0QPYIQiPdpC9L68WDKVY6oz9wgZVoEgIv2s9s0+NALWigPaRmSDZu9M1gildkJM/TeMvrN
-	SRzdpQUGnP8OAfat2E9aLmLMNN+y5MD1ApXEJdJpqGebv9koHs57npI3x3umsuXBIlZZP9ytAzqjc
-	DfYfxSX7A2eScFEYgwhG+lKf3rDS8ulAz1mdKhTy9mGlSspXl7liar5aSqHvYlllslLRDgJrwZkKw
-	/brKqzy1I7nSMcwuWf4A==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=v0hlyrT/XCnZEX504gH5FDG/HzuFkfPjRXEl5LTggc0=; b=3IqBbF6Uym5OZH
+	2logGTkjG9Wpk6gsweQQUKve6D8cuFoo6s2G5jyggzzzDOaKjLPjT4IVmuD35p6m8rE/x58UJfeRt
+	oxby/inaTIuOG97ZGWcUFLJ53J8y46CcQqj7c3kEoxZ/YNfHfmgrcssUWs9uagjV8tioNWx7Wxlnk
+	nqTjuAKKGkxkCVsWqH+h4qcXhArXXObUFkQ/puA6sylgTfV9FDxHKgO0t7IUsnCev4rfHCSV5jiGc
+	Bn+NtZIncZnb8wDk+fg6ZbARKiIU36Dhv7uh7N1mPMA1wEGOYpysAFztU8uceqX0Aa0QRK/8TFeGu
+	DZSLXVxWx1T7GGMkSQ9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vP1hS-00000000edr-2ZHj;
-	Fri, 28 Nov 2025 16:52:02 +0000
+	id 1vP1hX-00000000egP-3d6m;
+	Fri, 28 Nov 2025 16:52:07 +0000
 Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vP1hO-00000000ecn-2zzv
-	for linux-amlogic@lists.infradead.org;
-	Fri, 28 Nov 2025 16:52:01 +0000
+	id 1vP1hV-00000000eeK-2d7v;
+	Fri, 28 Nov 2025 16:52:07 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id BFB2E4E4194E;
-	Fri, 28 Nov 2025 16:51:53 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id E61A24E4194F;
+	Fri, 28 Nov 2025 16:52:03 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 83CD460706;
-	Fri, 28 Nov 2025 16:51:53 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3B46510B02155;
-	Fri, 28 Nov 2025 17:51:37 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B7B8D60706;
+	Fri, 28 Nov 2025 16:52:03 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F058510B02176;
+	Fri, 28 Nov 2025 17:51:51 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1764348710; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=4LXnxBJlqd2UazTmBhwXwFStb/3+5cf3TPNAlsU5TvA=;
-	b=VUX78Sy4XiyC9MPlVpttqJ9SQIQnLJGEto9dm/Wz9ym7T7bN/CgnVlY9YH1bFcC0CgzUQe
-	cZofZ4OEZUrrcGm7JEzsnL/etiRVBFwZzGGetbM0bgfGQ8fhKl1CmChVPekpLxS7jOlSK/
-	B1kea5ki5mVy1By5DwWomHJRAzf/5aB3po6F7XpWKHUzRNA/KlBEfcw2dr1S/BoUKwTmTY
-	jTevGUZnNFJkK/0JxyFshBgnAEB0h6+hbX3C2stg8aS1MNDCf/acKsU6YDTC4b6Xv/aXH9
-	y6s8LhEMqH9Ez7UYbhzo3zb3DijYvmvDN8X+0amDd5uaA6wuXX7uEGzIbnqiwg==
+	t=1764348720; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=bfxIpz9K+qEowy1gWs/Avt5i+RktBHE73O5CtmVeTcQ=;
+	b=ih3sJ1QQr8jd58rRt3K3muSKtKm0l7Jc24utlAvq+x8N8L0p3eklyeAqHH2jdPkAiHdSGn
+	0xf4rkSmj7tDAJJ1S+zWATM4xmTyRjSkArM4cjdeg84QjMKFjAQdUe3E5RRn0Mf3vDtv6K
+	vlt/SO/CsqxKtclMhdGoDOg1Pny5mn8JjbZPnk6OMW5YNU5KO652fgprJRRjvgqFiaBdmb
+	rAD+0R/E+sXveq4R7aizVpB7w+MCC1k9gDcKodQa7QS3OmvziuSjuBTh3MZkjmo/GFH3mY
+	Ib012tpfglMM+VDSOQcPghZKDpHbFcArJAfMi7qW1EYXZVnD72BIw+5DLicMFA==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Subject: [PATCH v2 00/26] drm/bridge: add drm_of_find_bridge(), deprecate
- of_drm_find_bridge()
-Date: Fri, 28 Nov 2025 17:50:10 +0100
-Message-Id: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-0-88f8a107eca2@bootlin.com>
+Date: Fri, 28 Nov 2025 17:50:11 +0100
+Subject: [PATCH v2 01/26] drm/bridge: add of_drm_get_bridge()
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAMLSKWkC/5WNQQ6DIBQFr2JYlwaQFu2q92iMUQH9ifINUNPGe
- PeiaQ/Q5cxL3qwkGA8mkFu2Em8WCIAugThlpBsa1xsKOjERTFw454pqP9HWg05LM47Y0d7E+Rl
- 3X6OtLThdf3clS5bnVyVloUk6nL2x8DpijyrxACGifx/the/2lyn/ySycMsp0WxaNskYqeW8R4
- wju3OFEqm3bPvDOx3LmAAAA
-X-Change-ID: 20251117-drm-bridge-alloc-getput-drm_of_find_bridge-74903367448d
+Message-Id: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-1-88f8a107eca2@bootlin.com>
+References: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-0-88f8a107eca2@bootlin.com>
+In-Reply-To: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-0-88f8a107eca2@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
@@ -94,8 +90,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251128_085159_374613_5B80737D 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20251128_085205_813252_16A361DA 
+X-CRM114-Status: GOOD (  15.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,140 +103,102 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhpcyBzZXJpZXMgZGVwcmVjYXRlZCBvZl9kcm1fZmluZF9icmlkZ2UoKSwgYWRkcyBhIHJlcGxh
-Y2VtZW50IHdoaWNoCmhhbmRsZXMgYnJpZGdlIHJlZmNvdW50aW5nLCBhbmQgY29udmVydHMgbW9z
-dCBvZiB0aGUgZGlyZWN0IHVzZXJzLgoKVGhpcyBpcyBwYXJ0IG9mIHRoZSB3b3JrIHRvIHN1cHBv
-cnQgaG90cGx1ZyBvZiBEUk0gYnJpZGdlcy4gVGhlIGdyYW5kIHBsYW4Kd2FzIGRpc2N1c3NlZCBp
-biBbMF0uCgpIZXJlJ3MgdGhlIHdvcmsgYnJlYWtkb3duICjinpwgbWFya3MgdGhlIGN1cnJlbnQg
-c2VyaWVzKToKCiAxLiDinpwgYWRkIHJlZmNvdW50aW5nIHRvIERSTSBicmlkZ2VzIHN0cnVjdCBk
-cm1fYnJpZGdlLAogICAgICBiYXNlZCBvbiBkZXZtX2RybV9icmlkZ2VfYWxsb2MoKQogICAgQS4g
-4pyUIGFkZCBuZXcgYWxsb2MgQVBJIGFuZCByZWZjb3VudGluZyAodjYuMTYpCiAgICBCLiDinJQg
-Y29udmVydCBhbGwgYnJpZGdlIGRyaXZlcnMgdG8gbmV3IEFQSSAodjYuMTcpCiAgICBDLiDinJQg
-a3VuaXQgdGVzdHMgKHY2LjE3KQogICAgRC4g4pyUIGFkZCBnZXQvcHV0IHRvIGRybV9icmlkZ2Vf
-YWRkL3JlbW92ZSgpICsgYXR0YWNoL2RldGFjaCgpCiAgICAgICAgIGFuZCB3YXJuIG9uIG9sZCBh
-bGxvY2F0aW9uIHBhdHRlcm4gKHY2LjE3KQogICAgRS4g4p6cIGFkZCBnZXQvcHV0IG9uIGRybV9i
-cmlkZ2UgYWNjZXNzb3JzCiAgICAgICAxLiDinJQgZHJtX2JyaWRnZV9jaGFpbl9nZXRfZmlyc3Rf
-YnJpZGdlKCksIGFkZCBjbGVhbnVwIGFjdGlvbiAodjYuMTgpCiAgICAgICAyLiDinJQgZHJtX2Jy
-aWRnZV9nZXRfcHJldl9icmlkZ2UoKSAodjYuMTgpCiAgICAgICAzLiDinJQgZHJtX2JyaWRnZV9n
-ZXRfbmV4dF9icmlkZ2UoKSAodjYuMTkpCiAgICAgICA0LiDinJQgZHJtX2Zvcl9lYWNoX2JyaWRn
-ZV9pbl9jaGFpbigpICh2Ni4xOSkKICAgICAgIDUuIOKclCBkcm1fYnJpZGdlX2Nvbm5lY3Rvcl9p
-bml0ICh2Ni4xOSkKICAgICAgIDYuIOKApiBwcm90ZWN0IGVuY29kZXIgYnJpZGdlIGNoYWluIHdp
-dGggYSBtdXRleAogICAgICAgNy4g4p6cIG9mX2RybV9maW5kX2JyaWRnZSgpCiAgICAgICAgICBh
-LiDinpwgYWRkIG9mX2RybV9nZXRfYnJpZGdlKCksIGNvbnZlcnQgbW9zdCBkaXJlY3QgdXNlcnMK
-CSAgYi4gY29udmVydCBvdGhlciBkaXJlY3QgdXNlcnMKCSAgYy4gY29udmVydCBicmlkZ2Utb25s
-eSBkcm1fb2ZfZmluZF9wYW5lbF9vcl9icmlkZ2UoKSB1c2VycwogICAgICAgOC4gZHJtX29mX2Zp
-bmRfcGFuZWxfb3JfYnJpZGdlLCAqX29mX2dldF9icmlkZ2UKICAgICAgIDkuIOKclCBlbmZvcmNl
-IGRybV9icmlkZ2VfYWRkIGJlZm9yZSBkcm1fYnJpZGdlX2F0dGFjaCAodjYuMTkpCiAgICBGLiDi
-nJQgZGVidWdmcyBpbXByb3ZlbWVudHMKICAgICAgIDEuIOKclCBhZGQgdG9wLWxldmVsICdicmlk
-Z2VzJyBmaWxlICh2Ni4xNikKICAgICAgIDIuIOKclCBzaG93IHJlZmNvdW50IGFuZCBsaXN0IGxp
-bmdlcmluZyBicmlkZ2VzICh2Ni4xOSkKIDIuIOKApiBoYW5kbGUgZ3JhY2VmdWxseSBhdG9taWMg
-dXBkYXRlcyBkdXJpbmcgYnJpZGdlIHJlbW92YWwKICAgIEEuIOKApiBBZGQgZHJtX2Rldl9lbnRl
-ci9leGl0KCkgdG8gcHJvdGVjdCBkZXZpY2UgcmVzb3VyY2VzCiAgICBCLiDigKYgcHJvdGVjdCBw
-cml2YXRlX29iaiByZW1vdmFsIGZyb20gbGlzdAogMy4g4oCmIERTSSBob3N0LWRldmljZSBkcml2
-ZXIgaW50ZXJhY3Rpb24KIDQuIOKclCByZW1vdmluZyB0aGUgbmVlZCBmb3IgdGhlICJhbHdheXMt
-ZGlzY29ubmVjdGVkIiBjb25uZWN0b3IKIDUuIGZpbmlzaCB0aGUgaG90cGx1ZyBicmlkZ2Ugd29y
-aywgbW92aW5nIGNvZGUgdG8gdGhlIGNvcmUgYW5kIHBvdGVudGlhbGx5CiAgICByZW1vdmluZyB0
-aGUgaG90cGx1Zy1icmlkZ2UgaXRzZWxmICh0aGlzIG5lZWRzIHRvIGJlIGNsYXJpZmllZCBhcwog
-ICAgcG9pbnRzIDEtMyBhcmUgZGV2ZWxvcGVkKQoKWzBdIGh0dHBzOi8vbG9yZS5rZXJuZWwub3Jn
-L2xrbWwvMjAyNTAyMDYtaG90cGx1Zy1kcm0tYnJpZGdlLXY2LTAtOWQ2ZjJjOWMzMDU4QGJvb3Rs
-aW4uY29tLyN0CgpBbG1vc3QgYWxsIHRoZSBmdW5jdGlvbnMgcmV0dXJuaW5nIGEgc3RydWN0IGRy
-bV9icmlkZ2UgcG9pbnRlciBoYXZlIGJlZW4KbW9kaWZpZWQgdG8gZHJtX2JyaWRnZV9nZXQoKSB0
-aGUgcmV0dXJuZWQgYnJpZGdlLCBhbmQgdGhlaXIgdXNlcnMgdXBkYXRlZAp0byBkcm1fYnJpZGdl
-X3B1dCgpIGl0LiBTZWUgaXRlbXMgMS5FLnsxLTZ9IGFib3ZlLgoKb2ZfZHJtX2ZpbmRfYnJpZGdl
-KCkgY291bGQgYmUgbW9kaWZpZWQgZWFzaWx5IGluIHRoZSBzYW1lIHdheSwgYnV0IGl0IGhhcyBh
-CmxvdCBvZiAoZGlyZWN0ICsgaW5kaXJlY3QpIGNhbGxlcnMsIGFuZCBtb3N0IG5vdGFibHkKZHJt
-X29mX2ZpbmRfcGFuZWxfb3JfYnJpZGdlKCkgd2hpY2ggaXMgdmVyeSBoYXJkIHRvIGFkYXB0IHdp
-dGhvdXQgcmVvd3JraW5nCnRoZSBwYW5lbF9icmlkZ2UgbGlmZXRpbWUuCgpUaGlzIGhhcyBiZWVu
-IGRpc2N1c3NlZCBpbiBbMV0gYW5kIE1heGltZSBwcm9wb3NlZCBhbiBpbmNyZW1lbnRhbCBhcHBy
-b2FjaDoKCj4gU28gbWF5YmUgd2UgY2FuIGp1c3QgY3JlYXRlIGRybV9vZl9maW5kX2JyaWRnZSgp
-IHRoYXQgdGFrZXMgYSByZWZlcmVuY2UsCj4gbWFrZSBvZl9kcm1fZmluZF9icmlkZ2UoKSBkZXBy
-ZWNhdGVkIGluIGZhdm91ciBvZiBkcm1fb2ZfZmluZF9icmlkZ2UoKSwKPiBhZGQgYSBUT0RPLCBh
-bmQgY2FsbCBpdCBhIGRheS4gUGVvcGxlIHdpbGwgZ3JhZHVhbGx5IHN3aXRjaCB0byB0aGUgbmV3
-Cj4gQVBJIG92ZXIgdGltZS4KClRoYXQgcHJvcG9zYWwgaXMgaW1wbGVtZW50ZWQgYnkgdGhpcyBz
-ZXJpZXMuIE1vc3Qgb2YgdGhlIGRpcmVjdCBjYWxsZXJzIGFyZQphbHNvIGNvbnZlcnRlZDogdGhl
-eSBhcmUgYWxsIHRyaXZpYWwgY29udmVyc2lvbnMgZXhjZXB0IGZvciBvbmUsIHdoaWNoIGlzCmhh
-bmRsZWQgYnkgdGhlIGxhc3QgMyBwYXRjaGVzLgoKRm9sbG93LXVwIHNlcmllcyB3aWxsOgotIGNv
-bnZlcnQgcmVtYWluaW5nIGRpcmVjdCBjYWxsZXJzIG9mIG9mX2RybV9maW5kX2JyaWRnZSgpCi0g
-Y29udmVydCBzaW1wbGUgY2FzZXMgb2YgZHJtX29mX2ZpbmRfcGFuZWxfb3JfYnJpZGdlKCkKClsx
-XSBodHRwczovL2xvcmUua2VybmVsLm9yZy9kcmktZGV2ZWwvMjAyNTAzMTktc3R5bGlzaC1saW1l
-LW1vbmdvb3NlLTBhMThhZEBob3VhdC8KClNpZ25lZC1vZmYtYnk6IEx1Y2EgQ2VyZXNvbGkgPGx1
-Y2EuY2VyZXNvbGlAYm9vdGxpbi5jb20+Ci0tLQpDaGFuZ2VzIGluIHYyOgotIEFsbCBwYXRjaGVz
-OiByZW5hbWVkIGRybV9vZl9maW5kX2JyaWRnZSgpIC0+IG9mX2RybV9nZXRfYnJpZGdlKCkKLSBW
-YXJpb3VzIGZpeGVzIGFuZCBpbXByb3ZlbWVudHMgdG8gcGF0Y2hlcyAxLTYsIHNlZSBpbmRpdmlk
-dWFsIHBhdGNoZXMKICBjaGFuZ2Vsb2cKLSBSZW1vdmVkIGJvdW5jaW5nIHJlY2lwaWVudDogRWRt
-dW5kIERlYSA8ZWRtdW5kLmouZGVhQGludGVsLmNvbT4KLSBMaW5rIHRvIHYxOiBodHRwczovL2xv
-cmUua2VybmVsLm9yZy9yLzIwMjUxMTE5LWRybS1icmlkZ2UtYWxsb2MtZ2V0cHV0LWRybV9vZl9m
-aW5kX2JyaWRnZS12MS0wLTBkYjk4YTdmZTQ3NEBib290bGluLmNvbQoKLS0tCkx1Y2EgQ2VyZXNv
-bGkgKDI2KToKICAgICAgZHJtL2JyaWRnZTogYWRkIG9mX2RybV9nZXRfYnJpZGdlKCkKICAgICAg
-ZHJtL2JyaWRnZTogZGVwcmVjYXRlIG9mX2RybV9maW5kX2JyaWRnZSgpCiAgICAgIGRybS90b2Rv
-OiBhZGQgZW50cnkgYWJvdXQgY29udmVydGluZyB0byBvZl9kcm1fZ2V0X2JyaWRnZSgpCiAgICAg
-IGRybS9icmlkZ2U6IG1ha2Ugb2ZfZHJtX2ZpbmRfYnJpZGdlKCkgYSB3cmFwcGVyIG9mIG9mX2Ry
-bV9nZXRfYnJpZGdlKCkKICAgICAgZHJtL2FyY3BndTogY29udmVydCB0byBvZl9kcm1fZ2V0X2Jy
-aWRnZSgpCiAgICAgIGRybS9icmlkZ2U6IGFkZCBkZXZtX29mX2RybV9nZXRfYnJpZGdlCiAgICAg
-IGRybS9icmlkZ2U6IGl0ZS1pdDY2MTIxOiB1c2UgZGV2bV9vZl9kcm1fZ2V0X2JyaWRnZSgpIHRv
-IHB1dCB0aGUgbmV4dCBicmlkZ2UKICAgICAgZHJtL2JyaWRnZTogaW14OHF4cC1waXhlbC1jb21i
-aW5lcjogdXNlIGRldm1fb2ZfZHJtX2dldF9icmlkZ2UoKSB0byBwdXQgdGhlIG5leHQgYnJpZGdl
-CiAgICAgIGRybS9icmlkZ2U6IHNpbXBsZS1icmlkZ2U6IHVzZSBkZXZtX29mX2RybV9nZXRfYnJp
-ZGdlKCkgdG8gcHV0IHRoZSBuZXh0IGJyaWRnZQogICAgICBkcm0vYnJpZGdlOiB0cGQxMnMwMTU6
-IHVzZSBkZXZtX29mX2RybV9nZXRfYnJpZGdlKCkgdG8gcHV0IHRoZSBuZXh0IGJyaWRnZQogICAg
-ICBkcm0vYnJpZGdlOiB0aGM2M2x2ZDEwMjQ6IHVzZSBkZXZtX29mX2RybV9nZXRfYnJpZGdlKCkg
-dG8gcHV0IHRoZSBuZXh0IGJyaWRnZQogICAgICBkcm0vYnJpZGdlOiBpbXg4cXhwLXB4bDJkcGk6
-IHVzZSBkZXZtX29mX2RybV9nZXRfYnJpZGdlKCkgdG8gcHV0IHRoZSBuZXh0IGFuZCBjb21wYW5p
-b24gYnJpZGdlcwogICAgICBkcm0vYnJpZGdlOiBsdDg5MTJiOiB1c2UgZGV2bV9vZl9kcm1fZ2V0
-X2JyaWRnZSgpIHRvIHB1dCB0aGUgaGRtaSBicmlkZ2UKICAgICAgZHJtL2JyaWRnZTogdGZwNDEw
-OiB1c2UgZGV2bV9vZl9kcm1fZ2V0X2JyaWRnZSgpIHRvIHB1dCB0aGUgbmV4dCBicmlkZ2UKICAg
-ICAgZHJtL2JyaWRnZTogaW14OHF4cC1sZGI6IHVzZSBkZXZtX29mX2RybV9nZXRfYnJpZGdlKCkg
-dG8gcHV0IHRoZSBjb21wYW5pb24gYnJpZGdlCiAgICAgIGRybS9yY2FyLWR1OiBsdmRzOiB1c2Ug
-ZGV2bV9vZl9kcm1fZ2V0X2JyaWRnZSgpIHRvIHB1dCB0aGUgbmV4dCBicmlkZ2UKICAgICAgZHJt
-L21lc29uOiBlbmNvZGVyXyo6IHVzZSBkZXZtX29mX2RybV9nZXRfYnJpZGdlKCkgdG8gcHV0IHRo
-ZSBuZXh0IGJyaWRnZQogICAgICBkcm0vYnJpZGdlOiBzaWk5MDJ4OiB1c2UgZGV2bV9vZl9kcm1f
-Z2V0X2JyaWRnZSgpIHRvIHB1dCB0aGUgbmV4dCBicmlkZ2UKICAgICAgZHJtL21lZGlhdGVrOiB1
-c2UgZGV2bV9vZl9kcm1fZ2V0X2JyaWRnZSgpIHRvIHB1dCB0aGUgbmV4dCBicmlkZ2UKICAgICAg
-ZHJtL2ttYjogZHNpOiB1c2UgZGV2bV9vZl9kcm1fZ2V0X2JyaWRnZSgpIHRvIHB1dCB0aGUgbmV4
-dCBicmlkZ2UKICAgICAgZHJtL2lteC9pcHV2MzogdXNlIGRldm1fb2ZfZHJtX2dldF9icmlkZ2Uo
-KSB0byBwdXQgdGhlIG5leHQgYnJpZGdlCiAgICAgIGRybS9leHlub3M6IGhkbWk6IHVzZSBkZXZt
-X29mX2RybV9nZXRfYnJpZGdlKCkgdG8gcHV0IHRoZSBuZXh0IGJyaWRnZQogICAgICBkcm0vYnJp
-ZGdlOiBkdy1oZG1pOiB1c2UgZGV2bV9vZl9kcm1fZ2V0X2JyaWRnZSgpIHRvIHB1dCB0aGUgbmV4
-dCBicmlkZ2UKICAgICAgZHJtL2JyaWRnZTogaW14OHF4cC1waXhlbC1saW5rOiBzaW1wbGlmeSBs
-b2dpYyB0byBmaW5kIG5leHQgYnJpZGdlCiAgICAgIGRybS9icmlkZ2U6IGlteDhxeHAtcGl4ZWwt
-bGluazogc2ltcGxpZnkgZnJlZWluZyBvZiB0aGUgcmVtb3RlIGRldmljZV9ub2RlCiAgICAgIGRy
-bS9icmlkZ2U6IGlteDhxeHAtcGl4ZWwtbGluazogY29udmVydCB0byBvZl9kcm1fZ2V0X2JyaWRn
-ZSgpCgogRG9jdW1lbnRhdGlvbi9ncHUvdG9kby5yc3QgICAgICAgICAgICAgICAgICAgICAgICAg
-fCAxNiArKysrCiBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lteC9pbXg4cXhwLWxkYi5jICAgICAg
-ICAgICB8ICAyICstCiAuLi4vZ3B1L2RybS9icmlkZ2UvaW14L2lteDhxeHAtcGl4ZWwtY29tYmlu
-ZXIuYyAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lteC9pbXg4cXhwLXBpeGVs
-LWxpbmsuYyAgICB8IDM3ICsrKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9pbXgvaW14
-OHF4cC1weGwyZHBpLmMgICAgICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9pdGUt
-aXQ2NjEyMS5jICAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9s
-b250aXVtLWx0ODkxMmIuYyAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2JyaWRn
-ZS9zaWk5MDJ4LmMgICAgICAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2Jy
-aWRnZS9zaW1wbGUtYnJpZGdlLmMgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJt
-L2JyaWRnZS9zeW5vcHN5cy9kdy1oZG1pLmMgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUv
-ZHJtL2JyaWRnZS90aGM2M2x2ZDEwMjQuYyAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9n
-cHUvZHJtL2JyaWRnZS90aS10ZnA0MTAuYyAgICAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVy
-cy9ncHUvZHJtL2JyaWRnZS90aS10cGQxMnMwMTUuYyAgICAgICAgICAgICAgfCAgMiArLQogZHJp
-dmVycy9ncHUvZHJtL2RybV9icmlkZ2UuYyAgICAgICAgICAgICAgICAgICAgICAgfCA5MSArKysr
-KysrKysrKysrKysrKystLS0tCiBkcml2ZXJzL2dwdS9kcm0vZXh5bm9zL2V4eW5vc19oZG1pLmMg
-ICAgICAgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vaW14L2lwdXYzL2R3X2hkbWkt
-aW14LmMgICAgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0va21iL2ttYl9kc2kuYyAg
-ICAgICAgICAgICAgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
-X2hkbWkuYyAgICAgICAgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVz
-b25fZW5jb2Rlcl9jdmJzLmMgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbWVzb24v
-bWVzb25fZW5jb2Rlcl9kc2kuYyAgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbWVz
-b24vbWVzb25fZW5jb2Rlcl9oZG1pLmMgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0v
-cmVuZXNhcy9yY2FyLWR1L3JjYXJfbHZkcy5jICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9k
-cm0vdGlueS9hcmNwZ3UuYyAgICAgICAgICAgICAgICAgICAgICB8ICA0ICstCiBpbmNsdWRlL2Ry
-bS9kcm1fYnJpZGdlLmggICAgICAgICAgICAgICAgICAgICAgICAgICB8IDEwICsrKwogMjQgZmls
-ZXMgY2hhbmdlZCwgMTQzIGluc2VydGlvbnMoKyksIDU1IGRlbGV0aW9ucygtKQotLS0KYmFzZS1j
-b21taXQ6IGU4NWU5Y2NmM2Y4NDA0MDA3ZjYyZGZmOWEwMjI3M2ZjZGViNDQyMDYKY2hhbmdlLWlk
-OiAyMDI1MTExNy1kcm0tYnJpZGdlLWFsbG9jLWdldHB1dC1kcm1fb2ZfZmluZF9icmlkZ2UtNzQ5
-MDMzNjc0NDhkCgpCZXN0IHJlZ2FyZHMsCi0tIApMdWNhIENlcmVzb2xpIDxsdWNhLmNlcmVzb2xp
-QGJvb3RsaW4uY29tPgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+of_drm_find_bridge() does not increment the refcount for the returned
+bridge, but that is required now. However converting it and all its users
+is not realistically doable at once given the large amount of (direct and
+indirect) callers and the complexity of some.
+
+Solve this issue by creating a new of_drm_get_bridge() function that is
+identical to of_drm_find_bridge() except it takes a reference. Then
+of_drm_find_bridge() will be deprecated to be eventually removed.
+
+Suggested-by: Maxime Ripard <mripard@kernel.org>
+Link: https://lore.kernel.org/dri-devel/20250319-stylish-lime-mongoose-0a18ad@houat/
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+
+---
+
+Changes in v2:
+- fix "mutex_unlock() before drm_bridge_get()", and use scoped_guard() to
+  do it cleaning instead of complicating code
+- rename to of_drm_get_bridge()
+
+Note: a simple implementation would just be
+  { return drm_bridge_get(of_drm_find_bridge(np)); }
+but it would release the mutex before getting the reference, so it is
+not safe. Make things simple by duplicating the code. A later patch will
+make instead the (to be deprecated) of_drm_find_bridge() become a wrapper
+of the new of_drm_get_bridge()
+---
+ drivers/gpu/drm/drm_bridge.c | 25 +++++++++++++++++++++++++
+ include/drm/drm_bridge.h     |  5 +++++
+ 2 files changed, 30 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+index 8f355df883d8..367b7a3d8aa3 100644
+--- a/drivers/gpu/drm/drm_bridge.c
++++ b/drivers/gpu/drm/drm_bridge.c
+@@ -1417,6 +1417,31 @@ void drm_bridge_hpd_notify(struct drm_bridge *bridge,
+ EXPORT_SYMBOL_GPL(drm_bridge_hpd_notify);
+ 
+ #ifdef CONFIG_OF
++/**
++ * of_drm_get_bridge - find the bridge corresponding to the device node in
++ *		       the global bridge list
++ * @np: device node
++ *
++ * The refcount of the returned bridge is incremented. Use drm_bridge_put()
++ * when done with it.
++ *
++ * RETURNS:
++ * drm_bridge control struct on success, NULL on failure
++ */
++struct drm_bridge *of_drm_get_bridge(struct device_node *np)
++{
++	struct drm_bridge *bridge;
++
++	scoped_guard(mutex, &bridge_lock) {
++		list_for_each_entry(bridge, &bridge_list, list)
++			if (bridge->of_node == np)
++				return drm_bridge_get(bridge);
++	}
++
++	return NULL;
++}
++EXPORT_SYMBOL(of_drm_get_bridge);
++
+ /**
+  * of_drm_find_bridge - find the bridge corresponding to the device node in
+  *			the global bridge list
+diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
+index 0ff7ab4aa868..0977eab78aac 100644
+--- a/include/drm/drm_bridge.h
++++ b/include/drm/drm_bridge.h
+@@ -1313,8 +1313,13 @@ int drm_bridge_attach(struct drm_encoder *encoder, struct drm_bridge *bridge,
+ 		      enum drm_bridge_attach_flags flags);
+ 
+ #ifdef CONFIG_OF
++struct drm_bridge *of_drm_get_bridge(struct device_node *np);
+ struct drm_bridge *of_drm_find_bridge(struct device_node *np);
+ #else
++static inline struct drm_bridge *of_drm_get_bridge(struct device_node *np)
++{
++	return NULL;
++}
+ static inline struct drm_bridge *of_drm_find_bridge(struct device_node *np)
+ {
+ 	return NULL;
+
+-- 
+2.51.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
