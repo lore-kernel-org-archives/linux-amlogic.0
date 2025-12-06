@@ -4,86 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6714CD3ABE7
-	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Dec 2025 03:19:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E72DAD3ABF8
+	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Dec 2025 07:13:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=F8eVA7Zvpdp0Qq+uIagNeEWMxDbeErFj760TKCSQNAM=; b=g2/vnFTEJ4BUyb
-	MhYYxlcHpdP/jCUPiuof4PxW9nvK7P13EjyeXPoB64Ccj89hUDIqmsCOoCTwXg2y9QTKLeZ4k7ctn
-	a1fq34ZdMEyATL+mMbMIA48aWjsi0mM6hIiwQCS19YACs4TB/As6/uVJ011rYbtBNL3Z/BTgDB7W8
-	L3MTF0B6mA5CbMR+kUo5ReWU/Qi7xmGMNGdcyloQL5nuXDRCsUmAylMWWEB+4N4JT04p9G9z/0bCd
-	9HqOtC2Tcs5SCSQ4F1q+q0Cq0xAAbWp06u0Oon71P92Sb57BhY7So9+BZ3MhffTkmWRke2BBr5Qms
-	s/7PQ71LUj6F5fsgmkrQ==;
+	List-Owner; bh=ksz0Gg1jqwelQXBEbWorADR7xgJYZ7eW2QpS9Zj1LiI=; b=je3gpMpndDg/Lz
+	7rGR4Y1gKACXtY35lNzhcW0iOfejjSySn3cowZ4Dg1okhq3hroPYswcWhaN4ItxmzB5gVCJiuG4Ns
+	MArVG5mahktkz3zeQMBMt5hpYA4abCJ1e41/cuDKirlT+72OHgLZbboEoFvP2IClxJx/esZ8FStUc
+	74O59mHGlOvpHHJO4CiiDeLTO93qlEbIc/GasW3DZ5pkI+Tnxz8YHayvG+UU/joQyLTmoEK8hxwu2
+	U4fi9B34IHyRfnAW73muFhnQbTjGhGIfZR/z5xG1IUefbAPzp9xY4WJuZHfx0EbzDM/ymHQ7kxJQi
+	P6y8gipBQxMjxY+GcCdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vRipk-0000000AWsA-2mi9;
-	Sat, 06 Dec 2025 03:19:44 +0000
-Received: from mgamail.intel.com ([198.175.65.14])
+	id 1vRmTt-0000000Ahwv-2DPv;
+	Sat, 06 Dec 2025 07:13:25 +0000
+Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vRiph-0000000AWrk-31G2;
-	Sat, 06 Dec 2025 03:19:43 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764991182; x=1796527182;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5gH637Pes04sa8dca3MnyEjtJ4p46PyN8XeJW2eyJ/s=;
-  b=End4kVXZYaL1FtOQNiCI1f8LFRDc2ta0KZ4tBAMsjy+TV97hX+yD9u20
-   Fn0eMiYKj6aFbApH55j6M+4GSXYfZ1BG7ASlXE38gwbgeCqqF6d1IRROd
-   UQoUfwc8iiWEfV9rLaaAx/7SQpC9D5P8nzIRq5c5/Dyw+wg8mgJFkOxKn
-   9coDDDyN5X9MGYLYADRbbcdIiaczRoZAa51f2Yz4ysNO8T7De64iWMAle
-   l1fbM9Hjta8EAS/Mrc44l7Z7QrdylyhM5eM3zelvJTPnXMD39MyIE1OKU
-   qUspaVdOglewgaCLrKJdScSKIlJ3luFywR9U76Jjk2EU/fUxHAcsenrSn
-   A==;
-X-CSE-ConnectionGUID: OtIXD5uPTHGEPVvIenLbkQ==
-X-CSE-MsgGUID: IrTPpenhR9SkAupvJzMaig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="70877767"
-X-IronPort-AV: E=Sophos;i="6.20,253,1758610800"; 
-   d="scan'208";a="70877767"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2025 19:19:40 -0800
-X-CSE-ConnectionGUID: /FlQIMuHQ6WB1l5Y0IpOnA==
-X-CSE-MsgGUID: 1rZPUzLrShiRQVuphcTEzw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,253,1758610800"; 
-   d="scan'208";a="199929287"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 05 Dec 2025 19:19:36 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vRipZ-00000000Fob-2I6r;
-	Sat, 06 Dec 2025 03:19:33 +0000
-Date: Sat, 6 Dec 2025 11:18:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jian Hu <jian.hu@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Chuan Liu <chuan.liu@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	robh+dt <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Jian Hu <jian.hu@amlogic.com>,
-	devicetree <devicetree@vger.kernel.org>,
-	linux-clk <linux-clk@vger.kernel.org>,
-	linux-amlogic <linux-amlogic@lists.infradead.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>,
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v6 4/5] clk: meson: t7: add support for the T7 SoC PLL
- clock
-Message-ID: <202512061054.wsIzRCCd-lkp@intel.com>
-References: <20251204053635.1234150-5-jian.hu@amlogic.com>
+	id 1vRmTq-0000000AhwC-1IzN
+	for linux-amlogic@lists.infradead.org;
+	Sat, 06 Dec 2025 07:13:24 +0000
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-64320b9bb4bso5775463a12.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 05 Dec 2025 23:13:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765005200; x=1765610000; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=F6O9y5Z+AdkoL+Tm0wkCr7cebT9+l7JoZ+wcqNIg4NU=;
+        b=Iwp5fEu4MGdQDhn3Gofbzmge6A2h6HtcdIv07NPHn7sunri/G/+muzE1sbadSfK9oZ
+         umoVC6yiuKKQZtFglKhzv+jJXeYzuC+FFAakrsDtD/qfV4LDsvSiSSlBZKdMbWfVoxfT
+         myQBv9sAIK0LVA8zKExDwUeJc7DRH8L5wyYMrt9o30a7PJ8hupPQviKcOgsihcc+sNjk
+         ze4jnPtgkUktzU6lkHj2QBqYfguM9Xp8VqZPjZ6UL5qgesmXOhD9WR+IsZE3BlmqdSyM
+         fA+TZeRxMCtTN1MpIccoAnU6FNi75tD5QJJn0Jo8abBDwJj/txGnbiPnVenHg+YjTxj5
+         E0vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765005200; x=1765610000;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F6O9y5Z+AdkoL+Tm0wkCr7cebT9+l7JoZ+wcqNIg4NU=;
+        b=I/EzpAA5YUUSIk8tnpxHPdRC5F1Yx+BNi+uK7cda7+OH45kTOgOOD8xj1IbK4DaZ2c
+         kTmQsSILDaXMZLAfcwYZCsCq56BAoW0asPC1jGJOTpS5gA9Y47kPe8Xzx1xXskLbvGYX
+         SmT6lQ9boxUO+PEh1p8Y2pYFJDIMNgs7vtwEuyIlYgsFwS1WUi0EPqkg2XY3xwOVkM3E
+         X0E696vOomJQwZubheHw6clSqM1HceykHTQigL/YELVeJMB+Q1nHFb0a1875rktUykTO
+         ETGGyd/g285f+gqdWLOwQFO1N7QTSr1hFK2fDKH3Sua0TUIhwg4TW6Fijblx9WefETuD
+         Dopg==
+X-Forwarded-Encrypted: i=1; AJvYcCX+xbEXrCBWR9b+HKrFsdRS+6u8pCfZ7pTyhFwbxJBR+o5lLKhxhHkhfnvkF5bURuSI2S2f3XY9BTefglbE@lists.infradead.org
+X-Gm-Message-State: AOJu0YyPq06/tCDjBImjFtiON5Crv5F1hYskrPobzNtNGYjs4LVz/egT
+	mDXcXKMfZVrgm/2VjI1mIqzxTtT6hVGm2aDxHmUf68UGVSeEe8aroXQ4d2Oq2YGHKv684u83Ndj
+	6go8QvmtwYcfJZ+uJQmdY4izaq+GvbVQ=
+X-Gm-Gg: ASbGncv+NkToUC4JrAPAQF2YC4yf08iIxvSjawniNX4ut+au29xrhRSVmG6/h1ehYtV
+	QGcaie89TYlfEqMCvn9vyRgkqSVi4f3BFXEdss3x0yUxtvVkpYpDFxjIq5S8us5nhV6+YvPFkaU
+	0/Pls8Ua2ftgKRNLRM1Q/Xfp0z+jUbfOzQqGD7qHfvLHlK05DNXgvgQWrHLGbvhflj71XoXfe7c
+	Zyn+MdtstsxqofTDl3meZR9i2A4h5+cY7pOy/uBA8BumpoCOyDXEBNI3fniv/qptuz6Yw==
+X-Google-Smtp-Source: AGHT+IGwqPkGdPum0faeStLtu2ktwCeeXpdd/Gr8bwvAvPpRB4dJntX84+9feZ0xNyk77ATtUZIZiKkj4xtUXhaRTNE=
+X-Received: by 2002:a05:6402:26c8:b0:649:19bf:bba2 with SMTP id
+ 4fb4d7f45d1cf-64919bfc0d5mr1360036a12.17.1765005199541; Fri, 05 Dec 2025
+ 23:13:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20251204053635.1234150-5-jian.hu@amlogic.com>
+References: <20251123-fixkhadas-v1-1-045348f0a4c2@baylibre.com>
+In-Reply-To: <20251123-fixkhadas-v1-1-045348f0a4c2@baylibre.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Sat, 6 Dec 2025 12:43:03 +0530
+X-Gm-Features: AQt7F2p5UjYlgHBMh4GKU7Y8S9VjvIpYJkR0ez5ZYJAnsWIvHhN0798bvgLMxKg
+Message-ID: <CANAwSgSqHR1kYxo8SaHcBfq=eij_YmVAidy8M+h1dFeK2nz1ug@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: meson-g12b: Fix L2 cache reference
+ for S922X CPUs
+To: Guillaume La Roque <glaroque@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251205_191941_825368_61FD6F9F 
-X-CRM114-Status: GOOD (  10.51  )
+X-CRM114-CacheID: sfid-20251205_231322_359043_093BB4D0 
+X-CRM114-Status: GOOD (  16.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,45 +99,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jian,
+Hi Guillaume,
 
-kernel test robot noticed the following build errors:
+On Sun, 23 Nov 2025 at 22:44, Guillaume La Roque <glaroque@baylibre.com> wrote:
+>
+> The original addition of cache information for the Amlogic S922X SoC
+> used the wrong next-level cache node for CPU cores 100 and 101,
+> incorrectly referencing `l2_cache_l`. These cores actually belong to
+> the big cluster and should reference `l2_cache_b`. Update the device
+> tree accordingly.
+>
+> Fixes: e7f85e6c155a ("arm64: dts: amlogic: Add cache information to the Amlogic S922X SoC")
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on linus/master v6.18 next-20251205]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Reviewed-by: Anand Moon <linux.amoon@gmail.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jian-Hu/dt-bindings-clock-add-Amlogic-T7-PLL-clock-controller/20251204-135351
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20251204053635.1234150-5-jian.hu%40amlogic.com
-patch subject: [PATCH v6 4/5] clk: meson: t7: add support for the T7 SoC PLL clock
-config: arm64-randconfig-003-20251206 (https://download.01.org/0day-ci/archive/20251206/202512061054.wsIzRCCd-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 14bf95b06a18b9b59c89601cbc0e5a6f2176b118)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251206/202512061054.wsIzRCCd-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512061054.wsIzRCCd-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> ld.lld: error: undefined symbol: meson_clk_mpll_ops
-   >>> referenced by t7-pll.c
-   >>>               drivers/clk/meson/t7-pll.o:(.compoundliteral.51) in archive vmlinux.a
-   >>> referenced by t7-pll.c
-   >>>               drivers/clk/meson/t7-pll.o:(.compoundliteral.59) in archive vmlinux.a
-   >>> referenced by t7-pll.c
-   >>>               drivers/clk/meson/t7-pll.o:(.compoundliteral.67) in archive vmlinux.a
-   >>> referenced 1 more times
-   >>> did you mean: meson_clk_pll_ops
-   >>> defined in: vmlinux.a(drivers/clk/meson/clk-pll.o)
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks
+-Anand
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> index f04efa828256..23358d94844c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> @@ -87,7 +87,7 @@ cpu100: cpu@100 {
+>                         i-cache-line-size = <32>;
+>                         i-cache-size = <0x8000>;
+>                         i-cache-sets = <32>;
+> -                       next-level-cache = <&l2_cache_l>;
+> +                       next-level-cache = <&l2_cache_b>;
+>                         #cooling-cells = <2>;
+>                 };
+>
+> @@ -103,7 +103,7 @@ cpu101: cpu@101 {
+>                         i-cache-line-size = <32>;
+>                         i-cache-size = <0x8000>;
+>                         i-cache-sets = <32>;
+> -                       next-level-cache = <&l2_cache_l>;
+> +                       next-level-cache = <&l2_cache_b>;
+>                         #cooling-cells = <2>;
+>                 };
+>
+>
+> ---
+> base-commit: 6a23ae0a96a600d1d12557add110e0bb6e32730c
+> change-id: 20251123-fixkhadas-c84da7d7c47c
+>
+> Best regards,
+> --
+> Guillaume La Roque <glaroque@baylibre.com>
+>
 
 _______________________________________________
 linux-amlogic mailing list
