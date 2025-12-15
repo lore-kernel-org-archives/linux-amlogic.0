@@ -4,90 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11EDCD5B16E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Dec 2025 14:11:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB665D5B16C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Dec 2025 14:30:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:To:Cc:
-	Subject:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=85f/Ol0eP8Cbl7ttEus6LElW9E9HPYimdXgFLAAwuL4=; b=maDbNe217EvbAz
-	KkfqhjZTvf8l+tciUJU88/Ld1E/G0KsAR4PoYapEo3xi4L2CXHKHnHO/9U35aqXPwptw4tmogr0Q5
-	ksiPuLQlxS4ABOV96oA7GXvD6mo4FlZ/pJ580yIx5CQVgFzoBB+BmkkP6l2hZRZyPa4bli1k7QRwE
-	ms0zwzU35HwZzEuEhcTIeTAgNI7eQtfSOGIlJWg2h6guDZRVYftOjCnQsU/DDweo5vofb5eNB4Zei
-	DaS0SYCgZRRocTPbsYlTkVxJ8saxhj6P8AFcKUd4s+4ynjn3oXadafgPSkht+QZP4lSuboifu3dUw
-	hIqvn0eA3Wr8E2Vow2/A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=m1TKptP8dhhfiql6OYGD4CB5wHhee2dGdHfD0+ufVHw=; b=yIl0cy1GZ2R54uSuxOAcrgKQ3U
+	elTKvshxkYuNYCojuRBS+dX/fWPPCZ+dixOFx3EVu77ISwtA4jeCMH/i9AMaUQONLlWW9h9lTcNEd
+	rJVE+5ccu2mZd2uzTGO8+9w4A83I6m9+psfNaA+Lu6Asmv4LB+rvF93tM1eJuwc+9biRaSjvVTQNK
+	7e++2xj5ZhSTIWRpFkE9/JrJM7vHYuRqxDPDH+bVjpfLpDY3nx0/cLnt8DWxDAwT15KmmiuF9kC1P
+	xesmuTfuSDNLqEeZrJTMzrgV1pIsx9zc3V0iosn41nSXBSNNPxhfyzoqS1b036Z4Gi1aWNJu+WW0d
+	L78lO/wQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vV9Ig-00000003ktO-3roO;
-	Mon, 15 Dec 2025 14:11:46 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1vV9a8-00000003naJ-1v4q;
+	Mon, 15 Dec 2025 14:29:48 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vV9Id-00000003kqI-2fsW;
-	Mon, 15 Dec 2025 14:11:45 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 5646E1A21DB;
-	Mon, 15 Dec 2025 14:11:38 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 239FE60664;
-	Mon, 15 Dec 2025 14:11:38 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 29A8E119422E6;
-	Mon, 15 Dec 2025 15:11:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765807895; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=GaZqoyrRFDKWBlOXglMrXMF3qjcnoMmJDluDUgIWSsM=;
-	b=OECsWx7FHMnHsTiEWe95R0X/rhnlkHzsoat62TNpnal1UtUfmgJoK+UlcEImBZgrSUQtgX
-	Bi9L17rvGG0VuUJzYZe3q3F4eFbnSJmWkhqJI367VXOnYnd0WY8N3Ax4UR1sXRBMm9Qkps
-	dmoQYyFlkhiuBEQ/S81gcoBkIcia9w+KtvGl3ip4onRDdQzp5jTshjZfm+I+AmpNCYWSTa
-	JPygNzOrYXSqmHWUHMdEJdUk+ny/dxFJWUJkRFOEt8n48AdXIeerW9K8zEwP8oFZn/s1nU
-	aM+k80qaA7tqbrbCCFJmzHEp2J1aHWwdvkr7gPEk7XG54Ovqe2ESMRR92HxtdA==
-Mime-Version: 1.0
-Date: Mon, 15 Dec 2025 15:11:21 +0100
-Message-Id: <DEYUNHVYCKYJ.2HU878WBYCJMV@bootlin.com>
-Subject: Re: [PATCH 06/26] drm/bridge: add devm_drm_of_find_bridge
-Cc: "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
- Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
- <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>, "Thomas Zimmermann"
- <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
- <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>, "Alexey Brodkin"
- <abrodkin@synopsys.com>, "Phong LE" <ple@baylibre.com>, "Liu Ying"
- <victor.liu@nxp.com>, "Shawn Guo" <shawnguo@kernel.org>, "Sascha Hauer"
- <s.hauer@pengutronix.de>, "Pengutronix Kernel Team"
- <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>, "Adrien
- Grassein" <adrien.grassein@gmail.com>, "Laurent Pinchart"
- <laurent.pinchart+renesas@ideasonboard.com>, "Tomi Valkeinen"
- <tomi.valkeinen+renesas@ideasonboard.com>, "Kieran Bingham"
- <kieran.bingham+renesas@ideasonboard.com>, "Geert Uytterhoeven"
- <geert+renesas@glider.be>, "Magnus Damm" <magnus.damm@gmail.com>, "Kevin
- Hilman" <khilman@baylibre.com>, "Jerome Brunet" <jbrunet@baylibre.com>,
- "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>, "Chun-Kuang Hu"
- <chunkuang.hu@kernel.org>, "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Matthias Brugger" <matthias.bgg@gmail.com>, "AngeloGioacchino Del Regno"
- <angelogioacchino.delregno@collabora.com>, "Anitha Chrisanthus"
- <anitha.chrisanthus@intel.com>, "Edmund Dea" <edmund.j.dea@intel.com>,
- "Inki Dae" <inki.dae@samsung.com>, "Seung-Woo Kim"
- <sw0312.kim@samsung.com>, "Kyungmin Park" <kyungmin.park@samsung.com>,
- "Krzysztof Kozlowski" <krzk@kernel.org>, "Alim Akhtar"
- <alim.akhtar@samsung.com>, "Hui Pu" <Hui.Pu@gehealthcare.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <imx@lists.linux.dev>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-renesas-soc@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
- <linux-mediatek@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>
-To: "Maxime Ripard" <mripard@kernel.org>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-0-0db98a7fe474@bootlin.com> <20251119-drm-bridge-alloc-getput-drm_of_find_bridge-v1-6-0db98a7fe474@bootlin.com> <hs44z4b2dgisemuewgtvl4epjcqqilg6cy36po25pubaog4hmq@33qgl4o3hwoa> <DEH2CVQV21Z2.25PJBAQAKFJSG@bootlin.com> <20251201-thick-jasmine-oarfish-1eceb0@houat> <DEVKQWH8GU0D.2NWQ1U7IOIEHI@bootlin.com> <DEW6XHD12EY4.1THDR9UMJOTAN@bootlin.com> <20251215-mottled-dexterous-marmot-c69ad3@penduick>
-In-Reply-To: <20251215-mottled-dexterous-marmot-c69ad3@penduick>
-X-Last-TLS-Session-Version: TLSv1.3
+	id 1vV9a5-00000003nZh-1Xp5;
+	Mon, 15 Dec 2025 14:29:46 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4F8B9407C7;
+	Mon, 15 Dec 2025 14:29:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3651BC4CEF5;
+	Mon, 15 Dec 2025 14:29:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765808984;
+	bh=IIlQ7Jpm1J4ASKEQEKqjtVdyfOiI54c8CBKZNP/oWHI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l4fdbQXGhu7aq4nVKW70uSZJdrfxRTKK/HurNg+8xQSMyqVXOMNaFdPMDj6p/0wge
+	 dL6Ylsn+hI1nsQ68Uykk/a3pTnGt56VVC7H9u7B+i/mqcRjnAYeNFBciU3k70OFeJV
+	 OztDw9Nnk0xFBd4DmlvtKwPSRmWl9W9HmdOOi8ywbkvkdw1DqTHb2VnQSXSW6DhSPT
+	 hE6dFUHqW+D55qc2j1QUG+oa9fz2HT71pIPf1H+gwq8hZMdvRlpig01sGEK39GaPvn
+	 MhoyfgniD3WE3qWWeZq2NsxbzLU26davCCtL+Xtoe9bMfXL4Kr21kcIiur8TbNAQbO
+	 rK0ErGqxpRGzw==
+Date: Mon, 15 Dec 2025 15:29:40 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
+	Alexey Brodkin <abrodkin@synopsys.com>, Phong LE <ple@baylibre.com>, Liu Ying <victor.liu@nxp.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Adrien Grassein <adrien.grassein@gmail.com>, Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Anitha Chrisanthus <anitha.chrisanthus@intel.com>, 
+	Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
+	Kyungmin Park <kyungmin.park@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Hui Pu <Hui.Pu@gehealthcare.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Louis Chauvet <louis.chauvet@bootlin.com>, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-renesas-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v2 01/26] drm/bridge: add of_drm_get_bridge()
+Message-ID: <20251215-quirky-encouraging-waxbill-5b04e6@penduick>
+References: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-0-88f8a107eca2@bootlin.com>
+ <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-1-88f8a107eca2@bootlin.com>
+MIME-Version: 1.0
+In-Reply-To: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-1-88f8a107eca2@bootlin.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251215_061143_936220_32336D4E 
-X-CRM114-Status: GOOD (  22.37  )
+X-CRM114-CacheID: sfid-20251215_062945_470941_4542D6AF 
+X-CRM114-Status: GOOD (  13.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,78 +88,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============6996545395645904156=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Maxime,
 
-On Mon Dec 15, 2025 at 11:35 AM CET, Maxime Ripard wrote:
-[...]
->> > Additionally, as a matter of fact there are currently drivers storing
->> > bridge pointers. The next_bridge is the most common case. Code using
->> > drm_bridge_connector_init() for example can store up to eight of them, but
->> > individual drivers are the hardest to hunt for.
->> >
->> > I can see these (potential) tools to handle this (not mutually exclusive):
->> >
->> >  1. remove drm_bridge pointers pointing to other bridges
->> >  2. check whether a bridge (say B) still exists before any dereference
->> >     to B->another_bridge: that's drm_bridge_enter/exit()
->> >  3. let owners of bridge pointers be notified when a bridge is unplugged,
->> >     so they can actively put their reference and clear their pointer
->> >
->> > For item 1, I think the drm_of_bridge_attach() idea quoted above would
->> > work, at least for the simple cases where bridge drivers use the
->> > next_bridge only for attach. A next_bridge pointer in struct drm_bridge is
->> > not even needed in that case, the pointer would be computed from OF when
->> > needed and not stored. I can do an experiment and send a first series, do
->> > you think it would be useful?
->>
->> I had a look and, while the implementation should be simple, only a few
->> drivers could benefit right now. The majority fall into one of these
->> categories:
->>
->>  * drivers using drm_of_find_panel_or_bridge() or *_of_get_bridge()
->>    (maybe 60-80% of all drivers, those will have to wait for the panel
->>    improvements)
->>  * drivers using the next_bridge pointer for more than just attach
->>  * drivers doing more complicated stuff
->>
->> I think your "put next_bridge in __drm_bridge_free" idea would fit well the
->> 2nd category and perhaps also the 1st one. For the 3rd category we'd need
->> something different, e.g. a per-driver .destroy callback.
->
-> Yep, that's fine. We should optimize for the common case, with an escape
-> hatch. That's exactly what we are talking about here.
+--===============6996545395645904156==
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="jpxp2yuvxjnvtegw"
+Content-Disposition: inline
 
-Not sure why, but it's taking a while before I grasp your ideas about this
-series and meld them with mine. I hopefully got a clear POV now, so based
-on it my plan is to rework this series to:
 
- * keep drm_of_find_bridge() but renamed to of_drm_get_bridge(), and keep
-   patches 1-5 (with the changes suggested by you and Louis, nothing big
-   and all already sent in v2)
- * not add devm_drm_of_find_bridge()
- * add next_bridge pointer to struct drm_bridge and call
-   drm_bridge_put(bridge->next_bridge) in __drm_bridge_free, document it
- * convert patches 7-26 to use bridge->next_bridge where applicable,
-   or to do something different when needed
- * maybe remove part of patches 7-26 just to reduce spam and rework effort
-   in case of further iterations, to send them separately once the approach
-   is accepted
+--jpxp2yuvxjnvtegw
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 01/26] drm/bridge: add of_drm_get_bridge()
+MIME-Version: 1.0
 
-Does it look OK?
+Hi,
 
-Luca
+On Fri, Nov 28, 2025 at 05:50:11PM +0100, Luca Ceresoli wrote:
+> of_drm_find_bridge() does not increment the refcount for the returned
+> bridge, but that is required now. However converting it and all its users
+> is not realistically doable at once given the large amount of (direct and
+> indirect) callers and the complexity of some.
+>=20
+> Solve this issue by creating a new of_drm_get_bridge() function that is
+> identical to of_drm_find_bridge() except it takes a reference. Then
+> of_drm_find_bridge() will be deprecated to be eventually removed.
+>=20
+> Suggested-by: Maxime Ripard <mripard@kernel.org>
+> Link: https://lore.kernel.org/dri-devel/20250319-stylish-lime-mongoose-0a=
+18ad@houat/
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+I don't think it's a good name still. It's way too close to
+drm_bridge_get it gets confusing. I still believe that
+of_drm_find_and_get_bridge() is a better name. If you disagree, please
+explain why.
+
+Maxime
+
+--jpxp2yuvxjnvtegw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaUAbUwAKCRAnX84Zoj2+
+djcYAX0XDI3qHEaKNThqzvK+xH7wgFSb4PSqArOG86oyKIGMi8pT7b5csS5bOuV5
+2ctCO38BgN8OxOo0ee8AltSidRvxpQt71QwlpeJAk75pjrFZxR3ZmGp82TJ8I9q7
+RSr1bb4kZw==
+=txhL
+-----END PGP SIGNATURE-----
+
+--jpxp2yuvxjnvtegw--
+
+
+--===============6996545395645904156==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6996545395645904156==--
+
