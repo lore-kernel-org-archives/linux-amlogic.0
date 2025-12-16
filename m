@@ -4,52 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ADA1D609D7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 18:01:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88E5CD5E13D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 18:01:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RwI+R5mJTB0bPhLhYNQqQEpakkfFvt2NUdUb9AhEiPw=; b=SUmN9ZZu9hDsRg
-	lrAN2ozTzYayzGaxOTqDToNbPxbvun0z3kJ1Nf+fRZQKakWk5m5uCHelieJ0D4YCAIycUEy6rCS+K
-	kgXZGS0K7VNi37F71SQeR/aR32xn+UJyAEwNZ0fk0/jMf3Xppje+LmVvG0O5e3M9D7QtI1pnnWCCf
-	dobXTgmzZvSEYQrBew5hbiK4P39owZGTdj2Gs+04NlHqmfrA8kmZs+UsYoGl1SGhqPZ36F3lIRa4O
-	UGrPb2crbbOEF5zlLFxHX8xvhnqLFsfbhuhOdoxajXYkPyILOp059vP21eB/Yam9Hcq94YDCiT0T8
-	bAXmq2cGF/wv5Z89q5Og==;
+	List-Owner; bh=Q0Egxlo9B71IKKCxAqtnBUWu7muldAC69LYHdaA0Rv0=; b=GizVU+fgUYUP1L
+	I0VZ2enYdaHgMTvIS2Y6hjj5uv1wecWWTQaM6YEAsQOWTz7NpUG61GD6WMXj3IAFgXQiWqK8fHZKa
+	TE4rRAR5M6nTgT2lkJD5pkk1tM9p+6c6Eoz0Sppp2a8ak8WZrFshnvwb1uJS8BbFxDKD+LiPduGup
+	KpCIJj6O7jaIcjdGy7+39KMWdpF7Rvz9Z1RkiywstH/OJo3MG/ltpctXD+lRAoGO+22C3K+CZGSzA
+	HwLSnOVYaqzDTlolwVvROOke6pmQXt481M5kKZnQojSt4UQ8Yjt4cUNNCIw0Zo1YJbW2P27nuNIl7
+	2zm4PXbIpOdsUaPsgk4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVZMJ-00000005fYN-0uR2;
-	Tue, 16 Dec 2025 18:01:15 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1vVZMZ-00000005fp5-10p2;
+	Tue, 16 Dec 2025 18:01:31 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVZM7-00000005fI5-049a
+	id 1vVZMR-00000005fhZ-1ygG
+	for linux-amlogic@bombadil.infradead.org;
+	Tue, 16 Dec 2025 18:01:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=q1SQgG8CDgy8pHJUhmPefyNI4mOwi1BDcEiUTUoG2qs=; b=ugKIJWTQRJwFewpbrSAPMq27D2
+	C4bK5Kjqg+CExuVfIHqRBJK6ViLphKtP+enUBsbHGYNPvR71aDn5qcfZtBr+x+vUUBX8S3ZWYHgZI
+	BvM/LaWwGMzx0elOvD1ceD3KitBnYboQcYUl+rmI5O0lP2naua6cgZRDjFA3hggYCO8Y18ClKHVtv
+	BBlK2lUG9MZeN/9PYTib6kl54HgV0dYe79QDNxYXtW8eso8MJvA4eiN74iWfvdIw3jocLNI7iSglr
+	ymdolKBfCQzuZjDKNi4xT08VNSKTk6tJsuU5gxE84hGYX7dWRe+kvCycQr4IpWL5WoTGHzNHKG767
+	zcdSpaQw==;
+Received: from smtpout-04.galae.net ([185.171.202.116])
+	by casper.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vVZML-00000003cWd-2Xdo
 	for linux-amlogic@lists.infradead.org;
-	Tue, 16 Dec 2025 18:01:06 +0000
+	Tue, 16 Dec 2025 18:01:22 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 6C40DC1A582;
-	Tue, 16 Dec 2025 18:00:36 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id DA5E4C1A582;
+	Tue, 16 Dec 2025 18:00:43 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D42A56071C;
-	Tue, 16 Dec 2025 18:01:00 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1ADD6119A9811;
-	Tue, 16 Dec 2025 19:00:55 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 5824C6071C;
+	Tue, 16 Dec 2025 18:01:08 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 03259119A97F1;
+	Tue, 16 Dec 2025 19:00:59 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765908059; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1765908063; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=vphgdK3fv94n1zonuUG7zDk53Na3mW4h7l4BRt8Xt1M=;
-	b=rZPXmq3RtPX/5ScJ+KjOqb+0dehOnxx5Ww5McS0CngQLq1HGvBFTli4zqUVQcgqJ4eeFtc
-	XWH8dcmTk5TMxeiPjnH/9NuKqFJ7SwIsTsLB27rYhtepxUDXmyHtQJevFCnmCqKmPaxtaK
-	6iofmkwfXXijRzWuiWfV/hQ74s7FsDyzCTdW+5Ub2Z3zvxLDOsXVYPL7aBv4Ax+Orr05CV
-	yYGvU2R3SY2Z/TaO/k0Dgm9GyIqRDGlKdzCpFFZEJ5y0PHQeoY4dJGnr+VKgJ5AumWpdJV
-	+LG9sQLB4wbnNibGxLpaO/hdA4+twpf4UJNUGz/eJH4avxnLwS2EGWPOU66/EQ==
+	bh=q1SQgG8CDgy8pHJUhmPefyNI4mOwi1BDcEiUTUoG2qs=;
+	b=K40Qm54C3qdPF1+qLRUL+AfP2p8yAX1aWTb5MdJ5M1M6JIaqfvIKIdfG/XNh3YHiSd1elV
+	L/V7oyrMVc+BYvsG2C+wfa+mO6KA+3DGdlxnIHxD6L5WzwsWQsFVRYou5gLS+UJOdLHM6u
+	ar6vAMFqbotLZk6bgd/f16073Qir2VWOJBDRGidTy8ulP7z9/SbnP0ocqFgL7Qo1f3zSaJ
+	UYj3CLRGAXutCaTsq+fpks/CY68yAu6ds1Wbh4YU5edv1m7qvrZOj0tXnc0gJY+B7F5GnL
+	QJ9dtLvpqb3tS7yHZj/CKp8HkftGnPMgAdx/66AqAwoL+eLy5ZT87ZVpe2YFmQ==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Tue, 16 Dec 2025 18:58:53 +0100
-Subject: [PATCH v3 20/22] drm/bridge: imx8qxp-pixel-link: remove excess
- error message
+Date: Tue, 16 Dec 2025 18:58:54 +0100
+Subject: [PATCH v3 21/22] drm/bridge: imx8qxp-pixel-link:
+ imx8qxp_pixel_link_find_next_bridge: return int, not ERR_PTR
 MIME-Version: 1.0
-Message-Id: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-20-b5165fab8058@bootlin.com>
+Message-Id: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-21-b5165fab8058@bootlin.com>
 References: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-0-b5165fab8058@bootlin.com>
 In-Reply-To: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-0-b5165fab8058@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -75,8 +90,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251216_100105_018714_71C8057F 
-X-CRM114-Status: GOOD (  10.47  )
+X-CRM114-CacheID: sfid-20251216_180117_702059_6F22D2E9 
+X-CRM114-Status: GOOD (  12.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,34 +108,73 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-imx8qxp_pixel_link_find_next_bridge() already emits a DRM_DEV_ERROR() on
-error except for -EPROBE_DEFER. The caller emits another one, which is
-redundant. Remove the message in the caller and keep the one in
-imx8qxp_pixel_link_find_next_bridge() as it is more informative about the
-error cause.
+In preparation for using bridge->next_bridge, we need to ensure that it
+will never contain anything but NULL or a valid bridge pointer. Current
+code stores an ERR_PTR when imx8qxp_pixel_link_find_next_bridge() errors
+out. Instead of fixing that after the facts in the caller, change the
+function to internally set pl->next_bridge and just return an int error
+value.
+
+No functional changes.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c b/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
-index 2ecc3c1051e5..0c5ed06eee1b 100644
+index 0c5ed06eee1b..91e4f4d55469 100644
 --- a/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
 +++ b/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
-@@ -369,13 +369,8 @@ static int imx8qxp_pixel_link_bridge_probe(struct platform_device *pdev)
+@@ -256,8 +256,7 @@ static int imx8qxp_pixel_link_disable_all_controls(struct imx8qxp_pixel_link *pl
+ 	return imx8qxp_pixel_link_disable_sync(pl);
+ }
+ 
+-static struct drm_bridge *
+-imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
++static int imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
+ {
+ 	struct device_node *np = pl->dev->of_node;
+ 	struct device_node *port;
+@@ -282,7 +281,7 @@ imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
+ 
+ 	if (!found_port) {
+ 		DRM_DEV_ERROR(pl->dev, "no available output port\n");
+-		return ERR_PTR(-ENODEV);
++		return -ENODEV;
+ 	}
+ 
+ 	for (reg = 0; reg < PL_MAX_NEXT_BRIDGES; reg++) {
+@@ -300,7 +299,7 @@ imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
+ 
+ 		struct drm_bridge *next_bridge = of_drm_find_bridge(remote);
+ 		if (!next_bridge)
+-			return ERR_PTR(-EPROBE_DEFER);
++			return -EPROBE_DEFER;
+ 
+ 		/*
+ 		 * Select the next bridge with companion PXL2DPI if
+@@ -311,8 +310,9 @@ imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
+ 	}
+ 
+ 	pl->mst_addr = port_id - 1;
++	pl->next_bridge = selected_bridge;
+ 
+-	return selected_bridge;
++	return 0;
+ }
+ 
+ static int imx8qxp_pixel_link_bridge_probe(struct platform_device *pdev)
+@@ -368,9 +368,9 @@ static int imx8qxp_pixel_link_bridge_probe(struct platform_device *pdev)
+ 	if (ret)
  		return ret;
  
- 	pl->next_bridge = imx8qxp_pixel_link_find_next_bridge(pl);
--	if (IS_ERR(pl->next_bridge)) {
--		ret = PTR_ERR(pl->next_bridge);
--		if (ret != -EPROBE_DEFER)
--			DRM_DEV_ERROR(dev, "failed to find next bridge: %d\n",
--				      ret);
--		return ret;
--	}
-+	if (IS_ERR(pl->next_bridge))
-+		return PTR_ERR(pl->next_bridge);
+-	pl->next_bridge = imx8qxp_pixel_link_find_next_bridge(pl);
+-	if (IS_ERR(pl->next_bridge))
+-		return PTR_ERR(pl->next_bridge);
++	ret = imx8qxp_pixel_link_find_next_bridge(pl);
++	if (ret)
++		return ret;
  
  	platform_set_drvdata(pdev, pl);
  
