@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 096DFD5C0F2
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 08:45:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E01D2D5C0C2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 08:47:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9T/VnmHUPD3sIM3MhSuieUNkI6+7wMGtVRQuR1G86jI=; b=jcKu9XHYHjpCgC
-	issdikD+LNsa5tcG/RlucWJxgRM+eMV2YT1rogIlhkYMgAieDji4slD/dszUu4BabI3ixHX8iXH4x
-	lSTCWgWRFFa807eV45fGm/LHxhMbrwyAf/XASKlVH3fjSKBcCAo8sXv9xlf74MhuNSl+JtfB29kxv
-	MC2fHeqfPFBs+lzpoOvGi6Hd3w/l59pWtoU5skpUS9IvMnnzTJILsXS0tEA5YDF3k60Dk5xbW0KO0
-	hcVhiSKqgMgNnq0VrkeXUnbnYc+MzOmZBVZQhUB364iHtiTjll+1VYHhkkEjpr8Qet1HuKNpoItHx
-	JTBJo950d+55o/80xIHg==;
+	List-Owner; bh=1ISLMIgi1AwMlwqgcGPD9E++c2BDa1H88zwKk27i0eM=; b=jBWGCUqPmd7e6e
+	zGjgfxd8QoBU4Q0ukczPn5WOGi+9johLgob31/DPoavVIej8s3ZOrXHaQ1vg7/2TaKR4jiG+l/Kij
+	/b8DlSgNjvN99cKAxrhsgsJdh9btja0AZoq/8t7VORPJvmJOle9jnmGPp4xXREI4UmaQ+Lkzu9RRJ
+	q0hbQ30sdocEtvptYXHkUkh/ke5ln0V+5AAy+unBTKwGMW2u/Vg6mDV7tw7/r91AnTC7iOJPAVMEu
+	GQSbTEdEGPkQgvk7zeP1L2gHy+OlJ1HuUsuJk8Eaio8HlNr+1S6OgzhP5J34d3v2jPd96nFPeg+uV
+	ZAoFPkbHMLo5dLlnxneg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVQgW-00000004wOy-3Vi0;
-	Tue, 16 Dec 2025 08:45:32 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1vVQhn-00000004whl-3k9k;
+	Tue, 16 Dec 2025 08:46:51 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVQgS-00000004wOL-0uZk
+	id 1vVQhm-00000004whK-1uuU
 	for linux-amlogic@lists.infradead.org;
-	Tue, 16 Dec 2025 08:45:32 +0000
+	Tue, 16 Dec 2025 08:46:51 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5045943302;
-	Tue, 16 Dec 2025 08:45:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2840C16AAE;
-	Tue, 16 Dec 2025 08:45:24 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 7D2DE60144;
+	Tue, 16 Dec 2025 08:46:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5EE0C113D0;
+	Tue, 16 Dec 2025 08:46:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765874727;
-	bh=tvseRd0ZBKVZuxl0/2VvYZVVO718dYCkJYN9IBKiMek=;
+	s=k20201202; t=1765874809;
+	bh=U6AMER3xHbREfz4zPD/+FFhhIS+o9BoU8Nkc/13AIdc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QR7Uiw5VgzfsE7U2kpUwyYuna6qcbU3xhKYDGw7qrT+JaDIQ0b7i73YSGqS77cDNW
-	 UTNhYKC+8o/f77bxcvYPR19JheTOlciBMoIBWrALFiOrqXbOl/JHnuTTQBxlTWJ2nP
-	 yPWNXIn0wJyGOnrZaBiykTUUDy/dAK+mp9lX69iV7gXRwdyWlABYY4KfpOwT+0Ckkt
-	 0evz8jbMl1Gric++TNzBTHxA8gcRJFA/OwUGTGRSG5bcwDk4fK08uKw/n7zoX77mdI
-	 Hp/BD5AlYesfSLHaHF4nRPNzs8LLrjC55iXgDVXsofltBzxK+wwhlmn5ibZGMnog+E
-	 wKxcUd69ZdlPA==
-Message-ID: <83c771e7-f32b-48e4-91ab-d7c3b9746e14@kernel.org>
-Date: Tue, 16 Dec 2025 09:45:22 +0100
+	b=PsC1Ezilg837+gM/eC8yMnZFcF5N9RetIZBHpkvNt5INBubjkB80mtCOMneHDO02m
+	 AxS1ivh4v1nqFlQP37ewI4SryBcqo2Po9xTSp5pbAVPYiqpjMl7ymrh/tkpRZ7gA5m
+	 8AbQVpfK7GvvdFrzCxxtwZ/0t6cAWRwedAnhP5jFLAd4oUDmaZUwRQz63XC0Gwk+A1
+	 stCvPZ8D1urXIwkiEtV/pAtIoC8iigvL9bGfZjS0grvt0yXxVud37kgITWsy/drC60
+	 46hmHgj6LvM5BfPuEHVDElXwARDICARrykHtwX5SFiU9kCpC70DQu3gXBQr+CY/kWM
+	 9e/JSlnqOH7Ww==
+Message-ID: <176db27e-a689-4de1-898b-527420bf68dc@kernel.org>
+Date: Tue, 16 Dec 2025 09:46:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: dma: Add Amlogic general DMA
+Subject: Re: [PATCH 2/3] dma: amlogic: Add general DMA driver for SoCs
 To: xianwei.zhao@amlogic.com, Vinod Koul <vkoul@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
@@ -55,7 +55,7 @@ Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-hardening@vger.kernel.org
 References: <20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com>
- <20251216-amlogic-dma-v1-1-e289e57e96a7@amlogic.com>
+ <20251216-amlogic-dma-v1-2-e289e57e96a7@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,10 +101,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251216-amlogic-dma-v1-1-e289e57e96a7@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251216_004528_359320_E503CFCD 
-X-CRM114-Status: GOOD (  14.06  )
+In-Reply-To: <20251216-amlogic-dma-v1-2-e289e57e96a7@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,41 +113,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTYvMTIvMjAyNSAwOTowMywgWGlhbndlaSBaaGFvIHZpYSBCNCBSZWxheSB3cm90ZToKPiBG
-cm9tOiBYaWFud2VpIFpoYW8gPHhpYW53ZWkuemhhb0BhbWxvZ2ljLmNvbT4KPiAKPiBBZGQgZG9j
-dW1lbnRhdGlvbiBkZXNjcmliaW5nIHRoZSBBbWxvZ2ljIGdlbmVyYWwgRE1BLgo+IAo+IFNpZ25l
-ZC1vZmYtYnk6IFhpYW53ZWkgWmhhbyA8eGlhbndlaS56aGFvQGFtbG9naWMuY29tPgo+IC0tLQo+
-ICAuLi4vYmluZGluZ3MvZG1hL2FtbG9naWMsZ2VuZXJhbC1kbWEueWFtbCAgICAgICAgICB8IDcw
-ICsrKysrKysrKysrKysrKysrKysrKysKPiAgMSBmaWxlIGNoYW5nZWQsIDcwIGluc2VydGlvbnMo
-KykKPiAKPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rt
-YS9hbWxvZ2ljLGdlbmVyYWwtZG1hLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvZG1hL2FtbG9naWMsZ2VuZXJhbC1kbWEueWFtbAo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0
-Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi44YjljZWM5YjhkYTAKPiAtLS0gL2Rldi9udWxsCj4gKysr
-IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2RtYS9hbWxvZ2ljLGdlbmVyYWwt
-ZG1hLnlhbWwKPiBAQCAtMCwwICsxLDcwIEBACj4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6
-IEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UKPiArJVlBTUwgMS4yCj4gKy0tLQo+ICskaWQ6
-IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL2RtYS9hbWxvZ2ljLGdlbmVyYWwtZG1hLnlh
-bWwjCj4gKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55
-YW1sIwo+ICsKPiArdGl0bGU6IEFtbG9naWMgZ2VuZXJhbCBETUEgY29udHJvbGxlcgo+ICsKPiAr
-ZGVzY3JpcHRpb246IHwKPiArICBUaGlzIGlzIGEgZ2VuZXJhbC1wdXJwb3NlIHBlcmlwaGVyYWwg
-RE1BIGNvbnRyb2xsZXIuIEl0IGN1cnJlbnRseSBzdXBwb3J0cwo+ICsgIG1ham9yIHBlcmlwaGVy
-YWxzIGluY2x1ZGluZyBJMkMsIEkzQywgUElPLCBhbmQgQ0FOLUJVUy4gVHJhbnNtaXQgYW5kIHJl
-Y2VpdmUKPiArICBmb3IgdGhlIHNhbWUgcGVyaXBoZXJhbCB1c2UgdHdvIHNlcGFyYXRlIGNoYW5u
-ZWxzLCBjb250cm9sbGVkIGJ5IGRpZmZlcmVudAo+ICsgIHJlZ2lzdGVyIHNldHMuIEkyQyBhbmQg
-STNDIHRyYW5zZmVyIGRhdGEgaW4gMS1ieXRlIHVuaXRzLCB3aGlsZSBQSU8gYW5kCj4gKyAgQ0FO
-LUJVUyB0cmFuc2ZlciBkYXRhIGluIDQtYnl0ZSB1bml0cy4gRnJvbSB0aGUgY29udHJvbGxlcuKA
-mXMgcGVyc3BlY3RpdmUsCj4gKyAgdGhlcmUgaXMgbm8gc2lnbmlmaWNhbnQgZGlmZmVyZW5jZS4K
-PiArCj4gK21haW50YWluZXJzOgo+ICsgIC0gWGlhbndlaSBaaGFvIDx4aWFud2VpLnpoYW9AYW1s
-b2dpYy5jb20+Cj4gKwo+ICtwcm9wZXJ0aWVzOgo+ICsgIGNvbXBhdGlibGU6Cj4gKyAgICBjb25z
-dDogYW1sb2dpYyxnZW5lcmFsLWRtYQoKSSBkb24ndCBrbm93IHdoYXQgeW91IG1lYW4gYnkgImdl
-bmVyYWwiIGJ1dCBpdCBmZWVscyBsaWtlIHdpbGRjYXJkLCBub3QKU29DLCBzbyB0aGF0IHdvdWxk
-IGJlIGEgbm8tZ28uIFJlYWQgd3JpdGluZyBiaW5kaW5ncyBvciBzZXZlcmFsIHRhbGtzCmFib3V0
-IHRoaXMuCgpCZXN0IHJlZ2FyZHMsCktyenlzenRvZgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
-YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
-aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On 16/12/2025 09:03, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> 
+> Amlogic SoCs include a general-purpose DMA controller that can be used
+> by multiple peripherals, such as I2C PIO and I3C. Each peripheral group
+> is associated with a dedicated DMA channel in hardware.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  drivers/dma/Kconfig       |   8 +
+>  drivers/dma/Makefile      |   1 +
+>  drivers/dma/amlogic-dma.c | 567 ++++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 576 insertions(+)
+> 
+> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+> index 8bb0a119ecd4..fc7f70e22c22 100644
+> --- a/drivers/dma/Kconfig
+> +++ b/drivers/dma/Kconfig
+> @@ -85,6 +85,14 @@ config AMCC_PPC440SPE_ADMA
+>  	help
+>  	  Enable support for the AMCC PPC440SPe RAID engines.
+>  
+> +config AMLOGIC_DMA
+> +	tristate "Amlogic genneral DMA support"
+> +	depends on ARCH_MESON
+
+Missing compile test.
+
+> +	select DMA_ENGINE
+> +	select REGMAP_MMIO
+> +	help
+> +	  Enable support for the Amlogic general DMA engines.
+> +
+
+
+
+> +
+> +	ret = of_dma_controller_register(np, aml_of_dma_xlate, aml_dma);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regmap_write(aml_dma->regmap, RCH_INT_MASK, 0xffffffff);
+> +	regmap_write(aml_dma->regmap, WCH_INT_MASK, 0xffffffff);
+> +
+> +	ret = devm_request_irq(&pdev->dev, aml_dma->irq, aml_dma_interrupt_handler,
+> +			       IRQF_SHARED, dev_name(&pdev->dev), aml_dma);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev_info(aml_dma->dma_device.dev, "initialized\n");
+
+Useless message, drop. This does not look like useful printk message.
+Drivers should be silent on success:
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id aml_dma_ids[] = {
+> +	{ .compatible = "amlogic,general-dma", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, aml_dma_ids);
+> +
+> +static struct platform_driver aml_dma_driver = {
+> +	.probe = aml_dma_probe,
+> +	.driver		= {
+> +		.name	= "aml-dma",
+> +		.of_match_table = aml_dma_ids,
+> +	},
+> +};
+> +
+> +module_platform_driver(aml_dma_driver);
+> +
+> +MODULE_DESCRIPTION("GENERAL DMA driver for Amlogic");
+> +MODULE_AUTHOR("Xianwei Zhao <xianwei.zhao@amlogic.com>");
+> +MODULE_ALIAS("platform:aml-dma");
+> +MODULE_LICENSE("GPL");
+> 
+
+
+Best regards,
+Krzysztof
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
