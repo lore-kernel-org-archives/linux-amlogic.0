@@ -4,66 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9371D609DB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 18:00:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C80CD609D7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 18:00:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yOy8+YA9s33Z61xWquNRHMR3htJRMsGCmIUhPRUWu+Y=; b=iGQKGZZvInBEFs
-	Lw7T60W89kOSD7TFhhjSd/A+fPAPgpwSxm9WDJdw8FF5VH7rc/MSHljS2hUqj0GTJ0wlye2Ja6QGu
-	hArH4nM3yTuBFH5yZ5T0q5JMvKaiyIitoMOrlWi0BVAfLynaRqumJX+9BUHa3LPYJG5e7z1fy4nDi
-	WQ6sEO3eAEcNJu27ZIg9jIC3aiBlM90I8ziLjy26cRZJiEsT84fZnOYeq0r1h8WEnQ4IdmCl41upc
-	IjqOMMj8eSlwlNOc6LPeVs2OfaU035IVI5sigsT0Nb7OUPE2joSlrIomnVYX+tCEixysv769yMiQ2
-	PP3SLw3aiFvWmqnqqL9w==;
+	List-Owner; bh=gsBr5p6Rm967h5LCi9OBZ5XR9xfVh0oFj9F0E9Vv2KI=; b=Awx9qcK80ZQxjD
+	iEtseaSgcuqFajmdRzjmbRU3q0RG2hU5SIPg1lokCIu53PyftrpvGw+GPlVcNwvvCihGyvz5Ic7LF
+	rJiFR/kOIcEni1vCKB+sltHrL+5LBrAVEbARyI/zVSM7MBUsIPz0L2GUeCPi03zHgVBZtndd0n9UM
+	aSR8tSS8nyNe5FAnmRlS9AzQqHHpVFTzncfBgK5zJiDq6w/y/9Y/Nhack6tHgTzEplJ60hOVOTgYX
+	BWtwvJhYf4mCTQxFcYE4Lr09uk3+HtuO8+XWBG4DevREp9UiWkDl/v1bYaPKxYaLlXaCowAaIQkHS
+	vXb78WpRHPBR9KYMP0/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVZLU-00000005ebS-38UZ;
-	Tue, 16 Dec 2025 18:00:24 +0000
+	id 1vVZLe-00000005eoQ-1PxJ;
+	Tue, 16 Dec 2025 18:00:34 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVZLR-00000005eWW-36B2
+	id 1vVZLb-00000005ejQ-2VJ6
 	for linux-amlogic@bombadil.infradead.org;
-	Tue, 16 Dec 2025 18:00:21 +0000
+	Tue, 16 Dec 2025 18:00:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=8PkmTgmquqdcxF6G5c67yqDXYmcbCyXSS/SGER/sdIk=; b=oiU02PyrDDWz6Hp/G5Dd1ZYkFS
-	eeCrJS1jHfA1BHtJXpiKkYBBSmh0a+a8YPXozKr+kbBc/4R6ynkylTfU7fOj+kmSaED0TSKUpzKGr
-	kj3LvkHiuOY8jpRwXhj1hQb5H++64CVchgswqlwRtQSbQldwrbQzfIJSGIYt1vR1ATQJmS4fdVRSJ
-	0SaMdq/04PiJAs44K3fhsGc+stbjtOd9AcufrJngikOykLlJVvMGGnyHJgFOD6WNmOdtljBYbqLqg
-	J+QDs5K3IQ9ESVKodkB1zz8GltcUAdV+COUI22HYh94gQH0EY+D9JUcR13f/jJzLtNaIzriQhiZcd
-	GFgtj0SA==;
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	bh=sUZmDVtQVbSET7XgjXwPjJ7VIEIK5vtHf64g0TE1q9M=; b=czmcmdXIFAq3ltj4HwqQDbwKO6
+	L9uIkOwNAzPZy0xPOlNnj9oDQCKPwgVyvFXO/PQ4lCvXJnhmlz9lNG6BYXGlpf5HW+vx9kg3mRT7f
+	aX0F2BSRWc6vAGORmMPJVQarWzglXJgdjQkDkbcOm2FIBozEV2uuzBogUpd6+zq917D5g50MrTfGy
+	KBrfkDYWxeeBpmdSEGATIS+da7fcHwKZAzvgHT8Bu+71jCS9XsMJpC4AMfBAtMQ9EYpVxicQ8XhOU
+	KyW+CF3q7djaeh3w3PWOVcgIN1hwtqSXz3ucUST06Q3DIkfKdSIGisRn1VDF5qPMdcEwJUl3OX2Di
+	A7feMILw==;
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVYTu-00000005JcW-3S5f
+	id 1vVYU2-00000005Jgs-24CS
 	for linux-amlogic@lists.infradead.org;
-	Tue, 16 Dec 2025 17:05:05 +0000
+	Tue, 16 Dec 2025 17:05:13 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 5DC0B4E419EA;
-	Tue, 16 Dec 2025 18:00:17 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 2567CC1A582;
+	Tue, 16 Dec 2025 18:00:00 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2B52A6071C;
-	Tue, 16 Dec 2025 18:00:17 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 017AD119A97E8;
-	Tue, 16 Dec 2025 19:00:10 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 98B486071C;
+	Tue, 16 Dec 2025 18:00:24 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1A6D4119A97F9;
+	Tue, 16 Dec 2025 19:00:15 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765908015; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1765908019; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=8PkmTgmquqdcxF6G5c67yqDXYmcbCyXSS/SGER/sdIk=;
-	b=qOkNMDesYpUKHvxRTl2FGlRCdyvjQOc5XBt7EIazgxDos1FA5lneUXtG0j4QCiFmR0gO+J
-	wbLwsWIsOUZfybN4SRSYP7/ilE3uulgNnZGF/hSRWutAttsNN1khF7vVELOJI8rZXCjj6K
-	HaXNAumta6a5SiTIrr8wEsdmbaIb1SfQUN0GzaPa/zVi02FDcHqvUz+lWjNXmEH6pGZEGt
-	1DV92cYHduLjDn2uS53mUdinu7aeTkTxb1iZ+bRC+Rgpi4GTE1YXeYuudZue4IiSEOWx4p
-	bIuc2YaOIDzXjA1PxX/EZOablFifq/Bzq0LPlWbCm7LD8uXRNECn5gtKEbgYLQ==
+	bh=sUZmDVtQVbSET7XgjXwPjJ7VIEIK5vtHf64g0TE1q9M=;
+	b=rCvbQVczxnGhgmTN1HwL6qR6TnP1k95+o76okv96c5RV1UAouTbtX8N2sS8WUploHz3t7g
+	eqm+UyRcprwzeTG0YSFQKDsKVha60Om0Ypj1s2ObyPskxqpk05MyK46GEXG6I/1or6umEr
+	9MogC1PEfZTGxRZiIfsTNBltm1qeoq85g/tA+cNy6DDsod9anJZ0u/kXFboigJojbzHLhc
+	0noGPPRQ2mLXDo1EbadMmd6BWtCppqbJMu144jQ4iIQJE3O1mxvaM2bkmWiJ1JAulK8vyT
+	JYpaWC7WvRgkwgu0mjSA8zqdvunnkwIUleZZdCc/vJIG5N2x69mvYcHA7PIX4Q==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Tue, 16 Dec 2025 18:58:45 +0100
-Subject: [PATCH v3 12/22] drm/meson: encoder_hdmi: get/put the next bridge
+Date: Tue, 16 Dec 2025 18:58:46 +0100
+Subject: [PATCH v3 13/22] drm/bridge: imx8qxp-pxl2dpi: simplify put of
+ device_node pointers
 MIME-Version: 1.0
-Message-Id: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-12-b5165fab8058@bootlin.com>
+Message-Id: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-13-b5165fab8058@bootlin.com>
 References: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-0-b5165fab8058@bootlin.com>
 In-Reply-To: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-0-b5165fab8058@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -89,8 +90,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251216_170502_962578_70B28317 
-X-CRM114-Status: GOOD (  11.95  )
+X-CRM114-CacheID: sfid-20251216_170512_290687_2EB546D5 
+X-CRM114-Status: GOOD (  11.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,58 +108,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This driver obtains a bridge pointer from of_drm_find_bridge() in the probe
-function and stores it until driver removal. of_drm_find_bridge() is
-deprecated. Move to of_drm_find_and_get_bridge() for the bridge to be
-refcounted and use bridge->next_bridge to put the reference on
-deallocation.
+Simplify the error-management code in
+imx8qxp_pxl2dpi_get_available_ep_from_port() by using a release action for
+the struct device_node pointers.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c | 21 +++++++--------------
+ 1 file changed, 7 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index 8205ee56a691..dc4e23590a6e 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -38,7 +38,6 @@
- struct meson_encoder_hdmi {
- 	struct drm_encoder encoder;
- 	struct drm_bridge bridge;
--	struct drm_bridge *next_bridge;
- 	struct drm_connector *connector;
- 	struct meson_drm *priv;
- 	unsigned long output_bus_fmt;
-@@ -54,7 +53,7 @@ static int meson_encoder_hdmi_attach(struct drm_bridge *bridge,
+diff --git a/drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c b/drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c
+index 111310acab2c..a4941f39a2e6 100644
+--- a/drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c
++++ b/drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c
+@@ -258,35 +258,28 @@ imx8qxp_pxl2dpi_get_available_ep_from_port(struct imx8qxp_pxl2dpi *p2d,
+ static struct drm_bridge *
+ imx8qxp_pxl2dpi_find_next_bridge(struct imx8qxp_pxl2dpi *p2d)
  {
- 	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
+-	struct device_node *ep, *remote;
+ 	struct drm_bridge *next_bridge;
+ 	int ret;
  
--	return drm_bridge_attach(encoder, encoder_hdmi->next_bridge,
-+	return drm_bridge_attach(encoder, encoder_hdmi->bridge.next_bridge,
- 				 &encoder_hdmi->bridge, flags);
- }
- 
-@@ -334,7 +333,7 @@ static void meson_encoder_hdmi_hpd_notify(struct drm_bridge *bridge,
- 		const struct drm_edid *drm_edid;
- 		const struct edid *edid;
- 
--		drm_edid = drm_bridge_edid_read(encoder_hdmi->next_bridge,
-+		drm_edid = drm_bridge_edid_read(encoder_hdmi->bridge.next_bridge,
- 						encoder_hdmi->connector);
- 		if (!drm_edid)
- 			return;
-@@ -390,8 +389,8 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
- 		return 0;
+-	ep = imx8qxp_pxl2dpi_get_available_ep_from_port(p2d, 1);
++	struct device_node *ep __free(device_node) =
++		imx8qxp_pxl2dpi_get_available_ep_from_port(p2d, 1);
+ 	if (IS_ERR(ep)) {
+ 		ret = PTR_ERR(ep);
+ 		return ERR_PTR(ret);
  	}
  
--	meson_encoder_hdmi->next_bridge = of_drm_find_bridge(remote);
--	if (!meson_encoder_hdmi->next_bridge) {
-+	meson_encoder_hdmi->bridge.next_bridge = of_drm_find_and_get_bridge(remote);
-+	if (!meson_encoder_hdmi->bridge.next_bridge) {
- 		ret = dev_err_probe(priv->dev, -EPROBE_DEFER,
- 				    "Failed to find HDMI transceiver bridge\n");
- 		goto err_put_node;
+-	remote = of_graph_get_remote_port_parent(ep);
++	struct device_node *remote __free(device_node) = of_graph_get_remote_port_parent(ep);
+ 	if (!remote || !of_device_is_available(remote)) {
+ 		DRM_DEV_ERROR(p2d->dev, "no available remote\n");
+-		next_bridge = ERR_PTR(-ENODEV);
+-		goto out;
++		return ERR_PTR(-ENODEV);
+ 	} else if (!of_device_is_available(remote->parent)) {
+ 		DRM_DEV_ERROR(p2d->dev, "remote parent is not available\n");
+-		next_bridge = ERR_PTR(-ENODEV);
+-		goto out;
++		return ERR_PTR(-ENODEV);
+ 	}
+ 
+ 	next_bridge = of_drm_find_bridge(remote);
+-	if (!next_bridge) {
+-		next_bridge = ERR_PTR(-EPROBE_DEFER);
+-		goto out;
+-	}
+-out:
+-	of_node_put(remote);
+-	of_node_put(ep);
++	if (!next_bridge)
++		return ERR_PTR(-EPROBE_DEFER);
+ 
+ 	return next_bridge;
+ }
 
 -- 
 2.52.0
