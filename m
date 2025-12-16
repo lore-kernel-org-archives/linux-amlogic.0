@@ -4,76 +4,172 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE361D5B17B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Dec 2025 15:21:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36594D5C0C1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 02:36:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=oxEFHl8pG/Pdf0wygiMWZS0DAJ944sZRMFVNo5BF3iU=; b=LYBKo5qelh7KVBI2CWA3XSJ2A5
-	1eZB5mo2cPzIK/hjIqYtNz+z8rYlyLl05bKmRrlbZjumk9/MDhZl2C8LfNB1cpDWCLtAyFRiHUT+G
-	ECL56lUYktyFBUY85TIhvEmCA7yWkITouAywXGBqzaO4sPDtvknmc6UuJ/c8TzCI0gzEhDSxJEXpf
-	U/pmlyhNvOKH3aXxVZr4NhSIcQVOlxIxNNH/o+rjYnSyYbBfO3eFauRorCN88psP3FVZ5uqYyjOH3
-	oltmVS+F3fDP0NurmhmReFcuOOBeqV+cJKhFm1UvvHZcnHoI39d3W+aZvYQJgvh7VbUysyn7jyzZu
-	u1nwqfKg==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=t0O8t/BHUTC9lQ0IXG7BwxLYIe/4Ld0c3j1i+6MH/cI=; b=38Mhq5tUj0PbjCA/4E30CQ5Awq
+	Rlxqt48EN0huRcYhxNCLMVnVlxO2JRIGWDMM6YcoJViyEXooj15PQhXlQlRDg8tMc9RAunLDg4/Rj
+	pnFopLCaiB+kHShKBkdDDeuYE3FgBbRpQAHRE4Qf8uO+7vtlK4Ep3MQW54R8VwGavSsYCtEvKOtP0
+	DYaInak8L0HMqnBgaL+q+cNQWp5MPcrdLV3bcrpXUCHisXYBFA5c+eJ/4ZMkf3gvvBJ/HmtCS84h1
+	ZeahBKAfq5XBSlv+XN5jdmesch/k4YSrdKvmemHGC3wN+OIgpgisg8vaFgTkrYqX0QV58NQjR6hbo
+	cfDUPdfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVAO4-00000003tID-00S8;
-	Mon, 15 Dec 2025 15:21:24 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vVKvP-00000004aC4-1IFn;
+	Tue, 16 Dec 2025 02:36:31 +0000
+Received: from mail-japaneastazon11023134.outbound.protection.outlook.com ([52.101.127.134] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVAO2-00000003tHz-10ek;
-	Mon, 15 Dec 2025 15:21:22 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 162DE60133;
-	Mon, 15 Dec 2025 15:21:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36F5FC4CEF5;
-	Mon, 15 Dec 2025 15:21:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765812080;
-	bh=MDT80+HnOqYoPF13DdZpWx5G4AfuEz3zXo+tGv3k9kQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Mj4Td7K0i4vUtxfzfd4iz6hFgePmUEer1942TVlrOA9Rbo6KvDvecd5Lli1q1L0Ki
-	 qwX1zEN+87kYjIn6DV6wYqWZRKVMwNvpQa4jEjTL9uPBHyRmUnmY2xIAjK5iuiqLqe
-	 bjzy0N3KtEFKcXpYw1Wh2EY2Embua4NWw0NJYGmDKo1LaYMjGfA5f/yu8lYIO/U2wJ
-	 f6/WXWqXXpCwoGGuurff9s6rE7Cg5YolT6INs7hv7P89urh23hiSktIY2x4SePTR3l
-	 uJ8XJJiwQNMQeZk/C0HUNeYFUsapSWw+zpS3mE17LWGU92a0gGGB4/j5bp1IZYXceo
-	 QKJPdZygpvl5w==
-Date: Mon, 15 Dec 2025 16:21:17 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
-	Alexey Brodkin <abrodkin@synopsys.com>, Phong LE <ple@baylibre.com>, Liu Ying <victor.liu@nxp.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Adrien Grassein <adrien.grassein@gmail.com>, Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Anitha Chrisanthus <anitha.chrisanthus@intel.com>, 
-	Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
-	Kyungmin Park <kyungmin.park@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Hui Pu <Hui.Pu@gehealthcare.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Louis Chauvet <louis.chauvet@bootlin.com>, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-renesas-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v2 06/26] drm/bridge: add devm_of_drm_get_bridge
-Message-ID: <20251215-amigurumi-bullmastiff-of-witchcraft-0dc22a@penduick>
-References: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-0-88f8a107eca2@bootlin.com>
- <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-6-88f8a107eca2@bootlin.com>
+	id 1vVKvN-00000004aBA-0bFo;
+	Tue, 16 Dec 2025 02:36:30 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qFjEvUQCqBtMtJo8pgYiwhKYU3ELZJlxhDLrnAu5GGlfkijL0WGXpY1TfDgxtu9x8XqODxVihbWUYIkjde9k5NNdR4qjkSNPi3g9waML5uLRkdAj5Doli9z4bHba1dTUSDVktclYROmcjEifmdB6tgX3mzAEDjX0+S4CN00pishXFdlqVxni706UxzkW2CfoZAziGzAhd/Fr1lgwPGbV2QKeG7ws5YJYHXTpthwNzyV8Xe0CKESyK6kRAMio0gn9M6u6FQchuGE7EyIPQtgcVbK9+i1PpYct3UnkWmVCCHNlgVLUi2zuKdL6L9XMS3bIVQrYwOjJD5LlOFuGv0gl0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FUp56oyq1AxbnvAGjYgfctA7iFOFxYTEUR/k8qFvodc=;
+ b=hRTXfMEv8Cl3UAQj+yiKUGO/yFgxa+JdVBiyIUpMjt5DXqBhui7t5ts2/f4eNo00n7QYkA5gfnBHEmF/1veGeUZNbhlgWBE/QQflX27aRYwuhDoj1PT1u+MPbh+mm5PrT5vazrDxe1+jgfvuZAeEiegRp1Dj23NjnzgocZlg0uNOF7072qdVdB5EGiXVTSz6dMOevEVSQ7ZPdPhVhE16TXgXLL+Yx/+IcrCCjpptr2x//iM2cMBmoS3zGHQ2uMhC01Wqanzbz4Q1S9gnW5DD4fUMs5Bi8V2E15ZiIkzcgX9WRGXjeJTOMYwBZd3wVROVPSonFP4a229dk5ZJfy35jQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FUp56oyq1AxbnvAGjYgfctA7iFOFxYTEUR/k8qFvodc=;
+ b=FU92lcaqL6oFlio6z0/KryT6HkVqsTK3M4///wuXsUnjEJ07HpldqvGAhjL4gtUjpP4+/EgVOCYMv3t9pn8gft0KjiSsLLUo3ArLWm/Dmcfy7CfmXMWn8PPzFH7pgthc2uHyOl5ndq1ikNpv4852+hAegpGVRpYzgmXvCUIRCx7eou2xU+brp7lGZEEZYpWYFs2xpcDTcjpOggywE28si388f86z1UBKYvwXJE7CoZLDPTkPWKVtSYF237rNEElbb8cmgfLAZYUGQtueJA+WoZSkReDHzaYBTNjTMJqCOkdNthUL/5dw2JUBiEubf2RnXXOX6gtq8ChdH5WXqeVGvg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB5521.apcprd03.prod.outlook.com (2603:1096:820:51::12)
+ by OSQPR03MB8460.apcprd03.prod.outlook.com (2603:1096:604:277::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
+ 2025 02:36:20 +0000
+Received: from KL1PR03MB5521.apcprd03.prod.outlook.com
+ ([fe80::f12b:85e:f95c:191e]) by KL1PR03MB5521.apcprd03.prod.outlook.com
+ ([fe80::f12b:85e:f95c:191e%4]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
+ 02:36:19 +0000
+Message-ID: <3b3f890c-2649-4a29-a620-203d4a72688e@amlogic.com>
+Date: Tue, 16 Dec 2025 10:36:17 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 2/3] decoder: Add V4L2 stateless H.264 decoder
+ driver
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
+ <20251124-b4-s4-vdec-upstream-v2-2-bdbbce3f11a6@amlogic.com>
+ <9b74086ac938475328904960add2c284b81efd4a.camel@ndufresne.ca>
+ <12f26bf8-409b-4206-a39b-4bb2a14edec0@amlogic.com>
+ <f9c113914290a0701614c64b5e2167d4b3e21646.camel@ndufresne.ca>
+ <9ab31529-8146-4ca7-8389-04c69f7d1b49@amlogic.com>
+ <04287d0b6207c98f24112b492b9ee52f0889da39.camel@ndufresne.ca>
+From: Zhentao Guo <zhentao.guo@amlogic.com>
+In-Reply-To: <04287d0b6207c98f24112b492b9ee52f0889da39.camel@ndufresne.ca>
+X-ClientProxiedBy: SG2PR02CA0018.apcprd02.prod.outlook.com
+ (2603:1096:3:17::30) To KL1PR03MB5521.apcprd03.prod.outlook.com
+ (2603:1096:820:51::12)
 MIME-Version: 1.0
-In-Reply-To: <20251128-drm-bridge-alloc-getput-drm_of_find_bridge-v2-6-88f8a107eca2@bootlin.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB5521:EE_|OSQPR03MB8460:EE_
+X-MS-Office365-Filtering-Correlation-Id: f6cf413c-7080-4a5b-a8cb-08de3c4be4e4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NS91M0E4UnlZbVo5blZ3cExnejluanRzTTMwMmhjS3VKdkc5dUc0Y3MyV2Rj?=
+ =?utf-8?B?bDNiVGR2Y1N5VStXek9WaG1IZWo2MEdJWmRZVzQ0R21pdmd2dFBVTUROaE1j?=
+ =?utf-8?B?K0w3NDBrdGI2NDh5d0VvSU9WZ2JiWkF2Ui84bmF2dnJ5ZEZXd01UbU85WVRV?=
+ =?utf-8?B?SVpBakV6bG42VXVKZUlKUEMxdFF3bWdxcmtDZGdud1BBRVFPQk5qWTNLbHp5?=
+ =?utf-8?B?Z2VxdCtKclU4MTQ1OFBZdUlTR1hYdDlJZERxbmxhQ2lzTm1yUS9TajNrbzdO?=
+ =?utf-8?B?SDVOaEVENWJRUzZ1eTlSbU95NGlsbVNFcUxMNjV0NStVZlJ3NFJDelVGT3hu?=
+ =?utf-8?B?RjB5bk5ubFhPc0VCMEdYbFF3SG1GRGN2V0ZqK3VtOEVGd2FMZUY4dGdTZzhL?=
+ =?utf-8?B?bTRkVng3RmJpNDlodlVwdzBCdzhQaWI5amNQTTZHT05tS2x0OGFWeDQ0OFJY?=
+ =?utf-8?B?SzA5UjRCbjUvZGhneWVNTjZsM0VEUzIvdG9pSHUrRStWM1Z6R2x2Y2FEeFQr?=
+ =?utf-8?B?NzJ0bFFZKzFGeWVDelMzdlJEZlB2Z05iaUt2bUUvQlAyQzk0bkJYcnh6TVpq?=
+ =?utf-8?B?dzR1NkZqVnp3ZEZqMDhSenRXRS81NGwwVk1Tc0dqTUtqaE1YVk1MT2FqbnY0?=
+ =?utf-8?B?WTlZV1l5QkFDb2ZNc0l6S1VaTVlldGpJcU1seCtMaU56d05TWlRFQmhaTmFs?=
+ =?utf-8?B?d0d0UnByRzZjTnF1S253NTVFTUVDR3FFTk9UcXRjTHVNUURkWnhkTlhuQ0Z3?=
+ =?utf-8?B?SnorMWx3TlNTK0k3WWhvSjcydGsycWRKcEJUOWVhTXh4RjMrZGFYVWkwWEdv?=
+ =?utf-8?B?alE4dEc3andjbWpjdTZsNFdmNzZnNjBwbEM0dWlJTHB4TnRPVTcwZVRwaVZ3?=
+ =?utf-8?B?QlIza0VsQ2pYeWhWWWpLdkhhRURpaG1VNnFIT3JMeFZvUUI1cmdNREhudis4?=
+ =?utf-8?B?djIrTDdqTHhqMUpGZFgrMXNUcXBRZGFwcEt3UWFGMHB1anBjNmZjUUplS05C?=
+ =?utf-8?B?dktvd0lUYzFobzNGNkdTQmdkZmFoZTNPalllZzZITlI0Si9LeHV3Sms5YlNs?=
+ =?utf-8?B?anJtNWpMemZiNzVteUR3R0V4YTU5TUNTVis1Z0tMQUZkVjJMOUlkTTZWcGxO?=
+ =?utf-8?B?alp1TXJXSUFmdFB5bklBYVJML0lBck1ISktPZTRzTEl2SVp5REVZdU96WFM4?=
+ =?utf-8?B?UExXTnFnZWJRNnc2Q3FvWEIyK1J0TXBXV0N0L3oyOUdUa1FtaTdvQk9OUWVw?=
+ =?utf-8?B?RXA1TmJTQVd2dStiS2JLNGpzRVJpd2pOUDNzMFc1U3Y4VjVzbnBNT29ZTkx5?=
+ =?utf-8?B?NFFYNTQ4L1JtSkJ2Z3dhSEtsMGVHWU5rTG0ycHl1by9GWW5oc3oxbnF5MWpp?=
+ =?utf-8?B?QzFqZkMzbmEzbGsyTlpLR2gyalJuWnNYVG1JWFM5N0h1Z1I5QUxoM2UwZ2hB?=
+ =?utf-8?B?U2ZEN0t2RzhybDgxOUI3MmpSNkpOUk85ZEhSUytlVFJrcjUwTm5VQXdWRGFu?=
+ =?utf-8?B?V1lRbStqeDFzSHM3TUp0VUh6OVZ0Ti9jdGdJUmZkbVg4RzlvYXA2R3ZsaVQy?=
+ =?utf-8?B?SlZNMGJkM1ZnWDJydVRvdlpiaXhaaWRVY3czOGh5WWVyL2lkRjRMY2laNTNF?=
+ =?utf-8?B?UllpZ3pWQ0wyUkVjT2VDMGRKVlNyZjZja29UTGJRYmQ1cFRzUFpPMHVIaUc5?=
+ =?utf-8?B?cmFxZlpPRVZwUnNtWVI3TUozeGoySFBsNCtzdytQTktXTnQ5MFBCSWFtWlFX?=
+ =?utf-8?B?QlBQelAyZ2t4cm5WNEFFM0pPWHhYUk9ER1dYOFM3K3ZPdDNLeEN3czgvT3lH?=
+ =?utf-8?B?b054NFZPRHphVjczVFVIWmQ2STJ1N1BBb0VueGtYNTNkK3VJLzlZMGdXd2xi?=
+ =?utf-8?B?OEFiMU02RE1saGs3T0JvbjlrbWhPVFFoMWJRb1I4WEFyQTJ1S0pyNVZWc3VS?=
+ =?utf-8?Q?cfx4Xr1EpyU8MPKd7wrrp+8PF8uO8vd9?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5521.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bXVGZ1ZlT0RSSU5YRm9hTE55amQvUEJXTWxQTzFmeUQxRHo1YmpUbW9Pbld5?=
+ =?utf-8?B?T0E5MzVSMUpzYU9TOGRGN3hMVzg0VEoyVkpJL1RUWVlYT2tYOEx0ODJablYr?=
+ =?utf-8?B?Wk5seWs0NEZObmlZczByVmFhS3FNclFpUXNYSFdWbXp5U0Q0L1luMHZZNWx5?=
+ =?utf-8?B?a2RheHVKeEdqK0JTYmlrdEptRWIybmRhYWZPeXJZeHJMNVhuZERqVnZoVjNh?=
+ =?utf-8?B?V1U0dG5EMWc1ejNUblBIK0IvSnVpRnVSYVRZeUw2WWpDbjc0WUJtWGhoeFFr?=
+ =?utf-8?B?OFQzMFV4bWpVb0cwdlRuQkNXTzFtUFg4ajJwQVJkTlBLT3pvMHRkQWxJVkN1?=
+ =?utf-8?B?a2llQUcxYmUwU0UxSkhUUGVxc3dHa3E1MFN3Q3k4c041d3VLVHB2L2JRS3Vi?=
+ =?utf-8?B?LzFNaGRuVDRwUVUyMWJYdUQxTVo0cmhyaW9pSFV6bGNob2hCUm9EaDZVWURv?=
+ =?utf-8?B?aGdFMitOcVFPSHlDbExNK2pXSm9Hc0hHS2c5ZVlDS0c1VG9Hd01yZkRLdFZn?=
+ =?utf-8?B?YnJoeWRQM2lnV01uV0tiYlBwTS9PNlYySDlPS1hlZGgyVS9WUlR1TjU1WG9B?=
+ =?utf-8?B?M2VDbVNaNy9YU0NkZHZkZjRvNFZTY29NR2p6bkVwYXBrMklZdmtlM2k1dEFV?=
+ =?utf-8?B?ZWZXSHVLUk1rRW1iako2R0lMUWNuN2tNL3BWV014Zlcwd1pjK01pLzRqTEFq?=
+ =?utf-8?B?d0N1VnY0anNVS2gwT0UxTTY3RWVuWmY3dWM1Ly9ZL1I4TFZtRE9RM1MwcC9Y?=
+ =?utf-8?B?UzlSN2l1OTZ4UFZ6dEVGd3dweHVuK2hlVEFhcXVxait4cTN4QUdpWG4wSENt?=
+ =?utf-8?B?MDZqNVZoSjh3MDlWQXR6ZjBoUHBnTytDUHIrZ2x0QnpqZGMydmZlbHdDVkl4?=
+ =?utf-8?B?NmI1RXdZd2xwRGpLZnRCRHFtZDlSN3NWcjJXN3lwM0RjdDgvVmF0aFc1d0pv?=
+ =?utf-8?B?REVCdk1LMWZVOSsySUZLM3NITUZOMDVPd2J0RDc5QTlhbE50c24vVXBRWFdD?=
+ =?utf-8?B?TFNsMGF0UmZEZlBFUVdHclk5bjdHdndnK1RoOHlWT2t3cDF4ekh5NzVRSUFZ?=
+ =?utf-8?B?d1JzaXRCNEVnZ01ic0pTNldDYTQrTkZyMnlLenZCVGlxM3pVTDUyK0YySHhX?=
+ =?utf-8?B?MGZDOUppTWF2dTVSdHRKV2dCVktEd3VESDRESUlLTHFDSVdnbERjVFlxY3FE?=
+ =?utf-8?B?OGltbVJJVkZ5OGVvcWhoalN0V28zR1VNTkFYZXFqd3g1TWRXc25vU1hzSG5J?=
+ =?utf-8?B?c25YYW1rTVBSNGU4bGJhdkJrbEdFdnlUKzFMYlhKN2VzSGg0TWxnWm9iYmRB?=
+ =?utf-8?B?eEwvSjMvVUk1cDFrRERDdGorQzZJQ0hjeVU1MzF4Z016blc0K0pRMEF5alNu?=
+ =?utf-8?B?VTFZQUtOZmg0OEhEdDBMUVk4SWt6YkpFU0pHVEFQNVZ2elBtcTJrTHRBNlpN?=
+ =?utf-8?B?TVlwdzIvMkRxUFJqalBld2pHYTJ5NGt3OEhSeXc4S1NKUGZiWDU4UWd6bG9o?=
+ =?utf-8?B?TjZLZE90enJkdW9XQTlhejh3UVR3RGpqSHdneXJDVzJUT09BTlptc2laOHNN?=
+ =?utf-8?B?Rk1qWjdvSUZFS0xDZTV5VWErcVNWVFhxYXliZGtlTGpGM29VYnRnR0syQ1RB?=
+ =?utf-8?B?Um9KYU5Ma09pS1hrY0NMdFhQSml3QjVTYmZEcVJEeWdZUlhwRTRkUHFjNVY1?=
+ =?utf-8?B?YTJoeldKRG16YjBKVFRmMjROdTVkbEJOZzRwNzg0dU5PL0tuZ0VDRHhSWHd5?=
+ =?utf-8?B?TFRyVHNmcG5zNGtNMk9QeERRemZJeWJBNHhFS0ljeTdUaVo2MENYNElVcjVv?=
+ =?utf-8?B?NFRIMVQvNUdITkRLcGUrUXZKVTlFODhOSkk5ajlZOW02dk8wRExoQlZqYjJM?=
+ =?utf-8?B?NDlIdFhEVitqSU0rSHpyRUVNR0VQelRNaGVXenJJanJmMkhkdWQyaURuMXpo?=
+ =?utf-8?B?a0xHZDlsQzBXdDAzckdieVJESzYxSmdPZjNlVjBZUXlUczBqbUFGMGtRMjlw?=
+ =?utf-8?B?K3RrVFFaSWt5VElVT1A0U1ZVZ1hBaXpTZkVocXI0aytSejVVb2thYVZEblRY?=
+ =?utf-8?B?czJ0c295azZ4UnB5eFovNlBkN3AwcXplYjZQT0lkalpwT01jVlJpS3Faalp2?=
+ =?utf-8?Q?6b1NaV7vvNzJ+kaPGmTKTeFBV?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6cf413c-7080-4a5b-a8cb-08de3c4be4e4
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5521.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 02:36:19.6514
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SP/OSj/mn3xQIEAdGoWT4WzIa5uBRg1QechFDgkCLEDGSNgew3CYL+Q3uf2EozRZ0CAkHffOZ6ayk1To07cy6w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSQPR03MB8460
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20251215_183629_216278_660F45BD 
+X-CRM114-Status: GOOD (  10.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,122 +181,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3660979803241878475=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============3660979803241878475==
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="gsdrqopk6hwziqn7"
-Content-Disposition: inline
-
-
---gsdrqopk6hwziqn7
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 06/26] drm/bridge: add devm_of_drm_get_bridge
-MIME-Version: 1.0
-
-On Fri, Nov 28, 2025 at 05:50:16PM +0100, Luca Ceresoli wrote:
-> Several drivers (about 20) follow the same pattern:
->=20
->  1. get a pointer to a bridge (typically the next bridge in the chain) by
->     calling of_drm_find_bridge()
->  2. store the returned pointer in the private driver data, keep it until
->     driver .remove
->  3. dereference the pointer at attach time and possibly at other times
->=20
-> of_drm_find_bridge() is now deprecated because it does not increment the
-> refcount and should be replaced with of_drm_get_bridge() +
-> drm_bridge_put().
->=20
-> However some of those drivers have a complex code flow and adding a
-> drm_bridge_put() call in all the appropriate locations is error-prone,
-> leads to ugly and more complex code, and can lead to errors over time with
-> code flow changes.
->=20
-> To handle all those drivers in a straightforward way, add a devm variant =
-of
-> of_drm_get_bridge() that adds a devm action to invoke drm_bridge_put()
-> when the said driver is removed. This allows all those drivers to put the
-> reference automatically and safely with a one line change:
->=20
->   - priv->next_bridge =3D of_drm_find_bridge(remote_np);
->   + priv->next_bridge =3D devm_of_drm_get_bridge(dev, remote_np);
->=20
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
->=20
-> ---
->=20
-> Changes in v2:
-> - fix return value: NULL on error, as documented, not an ERR_PTR
-> ---
->  drivers/gpu/drm/drm_bridge.c | 28 ++++++++++++++++++++++++++++
->  include/drm/drm_bridge.h     |  5 +++++
->  2 files changed, 33 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-> index 9b7e3f859973..59575a84eff6 100644
-> --- a/drivers/gpu/drm/drm_bridge.c
-> +++ b/drivers/gpu/drm/drm_bridge.c
-> @@ -1442,6 +1442,34 @@ struct drm_bridge *of_drm_get_bridge(struct device=
-_node *np)
->  }
->  EXPORT_SYMBOL(of_drm_get_bridge);
-> =20
-> +/**
-> + * devm_of_drm_get_bridge - find the bridge corresponding to the device
-> + *			    node in the global bridge list and add a devm
-> + *			    action to put it
-> + *
-> + * @dev: device requesting the bridge
-> + * @np: device node
-> + *
-> + * On success the returned bridge refcount is incremented, and a devm
-> + * action is added to call drm_bridge_put() when @dev is removed. So the
-> + * caller does not have to put the returned bridge explicitly.
-> + *
-> + * RETURNS:
-> + * drm_bridge control struct on success, NULL on failure
-> + */
-
-I still think that, if we want to introduce it, we need to be very clear
-that it's not safe, and we need to add a TODO to remove it later on. But
-why should we introduce a helper, and convert dozens of drivers to it,
-for something that is neutral?
-
-If anything, I'd rather see them call of_drm_get_bridge(under the new
-name), and put back the reference in destroy.
-
-Maxime
-
---gsdrqopk6hwziqn7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaUAnbQAKCRAnX84Zoj2+
-dp5VAX9vgUBVKAQimc/xE5mx+OZGGMP2AAkyV8RQCAm07C/CeB4TANSmR+vX8fQm
-oJBQh0ABfiGrjZ9H25V8ZEx7mg3ywz982YYke557o8h2KLo5yCMDUxK0PVo9ZwYr
-bI9HAJ7y/g==
-=YBE0
------END PGP SIGNATURE-----
-
---gsdrqopk6hwziqn7--
-
-
---===============3660979803241878475==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3660979803241878475==--
-
+CuWcqCAyMDI1LzEyLzE1IDIxOjU4LCBOaWNvbGFzIER1ZnJlc25lIOWGmemBkzoKPiBMZSBsdW5k
+aSAxNSBkw6ljZW1icmUgMjAyNSDDoCAxMDoxNSArMDgwMCwgWmhlbnRhbyBHdW8gYSDDqWNyaXTC
+oDoKPj4g5ZyoIDIwMjUvMTIvMTIgMjE6NTEsIE5pY29sYXMgRHVmcmVzbmUg5YaZ6YGTOgo+Pj4g
+SGksCj4+Pgo+Pj4gTGUgdmVuZHJlZGkgMTIgZMOpY2VtYnJlIDIwMjUgw6AgMTI6MTEgKzA4MDAs
+IFpoZW50YW8gR3VvIGEgw6ljcml0wqA6Cj4+Pj4+IHN0cmNweSgpIHdvdWxkIGJlIHRoZSBwcmVm
+ZXJyZWQgaGVscGVyIGZvciB0aGlzLCBubyBuZWVkIHRvIGZpbGwgdGhlCj4+Pj4+IGxlYWRpbmcK
+Pj4+Pj4gemVybyBsaWVrIHRoaXMsIHNlZSBpbmNsdWRlL2xpbnV4L3N0cmluZy5oCj4+Pj4gT2ss
+IGl0IHNob3VsZCBiZSBtb3JlIHN1aXRhYmxlIHRvIHVzZSBzdHJjcHkuCj4+PiBJIGhhdmUgdG8g
+Y29ycmVjdCBteXNlbGYsIEkgbWVhbnQgdG8gc3VnZ2VzdCBzdHJzY3B5KGRzdCwgc3JjLCBzaXpl
+KS4KPj4+IFBhc3NpbmcKPj4+IHRoZSBzaXplIGZvciBzYWZldHkgc2VlbXMgaW1wb3J0YW50LCBh
+bmQgdW5saWtlIHN0cm5jcHkoKSBpdCB0YWtlcyBjYXJlIG9mCj4+PiB0aGUKPj4+IGxlYWRpbmcg
+emVyby4KPj4gWWVzLCB3ZSB1c2Ugc3Ryc2NweSgpIGZvciBjb3B5aW5nIGFsbCB0aGUgc3RyaW5n
+cy4KPiBJbmRlZWQsIEkgaGFkIG1pc3MtcmVhZCwgdGhlbiB5b3Ugc2ltcGx5IG5lZWQgdG8gcmVt
+b3ZlIHRoZSBjb2RlIHlvdSBhZGRlZCB0bwo+IGZvcmNlIHRoZSBsYXN0IGJ5dGUgdG8gYmUgMCwg
+dGhpcyBpcyBub3QgbmVlZGVkIHdpdGggdGhhdCBmdW5jdGlvbi4KWWVzLCBJIGNoZWNrZWQgdGhl
+IGZ1bmN0aW9uIHN0cnNjcHkgdG9vLiBJdCB3aWxsIGFkZCB0aGUgXDAgaWYgdGhlIApwYXJhbWV0
+ZXIgJ3NpemUnIGlzIHByb3Blci4gV2Ugd2lsbCByZW1vdmUgdGhpcyBzdGVwIGluIG91ciBjb2Rl
+Lgo+IE5pY29sYXMKPgo+Pj4gTmljb2xhcwo+PiBUaGFua3MKPj4KPj4gWmhlbnRhbwoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
+YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
+cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
