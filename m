@@ -4,52 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFBCCD609D8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 18:01:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4E2DD609D7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 18:01:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aNp9mY7XRDl5pjJqhaR9jxSL3tKfFl52zJrSyKXgh/Q=; b=qb2RGsfBPGcYJ1
-	BEWtlwbggTfVJmCdFyaRFbsuCM9pAbnPb6t7L18sWnLkzM8iy5J31qJ89faLvZZUoHWRt4wMRwiIt
-	IFgeQpj3DrxPlqy0G3AWSQNRnEvliPiTWbMsnAVb+VsmwxK9iOklqjij+xyMgdVNRSweJpFudhOpJ
-	ZYzGbm9VQeGVQbIbsheQkD8ZifTsOrpWQfAUmpVWB7w3IiD7507z/G1ECCrI8J7pT1C8L+YIwMcz8
-	2E5scJTZywTm5M2aFtS5Zea72bva+RhiAogtmNa0RfLp9v84wk4AVK95VwBqVl/hLu4XIckwX8Blu
-	f5r85EExfE7ArUwPl45Q==;
+	List-Owner; bh=i0r4sLn0UQD8AgpSJXaqB1qIYnx7wLr3sc4Nr9M1Y6s=; b=FVWdXzeWvmL9B0
+	jD/yp36gk4FGi7jIsBzOOCqKrW9nwf+DrtfFG1ml+yZDaaWtSqnjfeEEWNNdU52Ddp/06be1W9WD3
+	U7sxpygYx/g83xNXith65Z9Expa8acrGiMh0TSQc8SnQsM/oiimFnkQnT1xs/tyMc/5jPIUG3qH3P
+	uH4L9xhu+vQ6bBm65nhySXDWEV6vIQTLisBf8b+rf5hdQFpXu1iMkLjq3WE6QH403NDaELnPZWa+f
+	LSDe1DnV5Qs77/O/1dLsRicFElOfRsV9FwJtKhANxJBkSuP9U9qj3Pk8Qb75KBLPKB8DIs1ez2mVa
+	TpQgR8V7roDhl6c/XP3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVZM9-00000005fN9-2ds2;
-	Tue, 16 Dec 2025 18:01:05 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1vVZMA-00000005fO7-2E2C;
+	Tue, 16 Dec 2025 18:01:06 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVZM2-00000005fDf-3QjS
-	for linux-amlogic@lists.infradead.org;
-	Tue, 16 Dec 2025 18:01:00 +0000
+	id 1vVZM5-00000005fGq-2eIh;
+	Tue, 16 Dec 2025 18:01:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=p42FxQU8XqxcY65o1OnImzYH+JEKXNJxWyr+WpaPWLo=; b=oTpw6g8zoxq8gY4zrBZ6m6xv16
+	M9ULm8lPRrDdZwxo4k4OAjQ/dRShCArux+LhR7GvT6ih0ckdFEeLNuM5eCgtF2UCfIJ3Xy/otgr2y
+	AHEvEP29qyG4LKuCAz9mUfKaOMXHDVuN7zRT1XMHd0GgRgnlSpvLn5bMSiDESVmNZd7Q09kkgMvxn
+	xFzMo/iJrCHV+lHPhNh0UfRDuDQ57wBrXuc9GKjk4rg9ZiLJ8jRW6fYuFerotFUm0yjm/FF6+nc+C
+	qY8wTFTfbALMqUVSLF+pemR1Jk7w2SJtMsuqBOcqTwbI+XvFNOhzAdGwPE4ApQwPliSCKratDDIyq
+	86BMHeBA==;
+Received: from smtpout-03.galae.net ([185.246.85.4])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vVYUV-00000005JtW-0vbZ;
+	Tue, 16 Dec 2025 17:05:40 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 8D864C1A582;
-	Tue, 16 Dec 2025 18:00:32 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id BB3044E419EA;
+	Tue, 16 Dec 2025 18:00:53 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0CE706071C;
-	Tue, 16 Dec 2025 18:00:57 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 95A4B119A97F1;
-	Tue, 16 Dec 2025 19:00:52 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 89DC26071C;
+	Tue, 16 Dec 2025 18:00:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3F936119A980D;
+	Tue, 16 Dec 2025 19:00:48 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765908055; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1765908052; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=1h4T3/Lh3rCQeQ9eOfLIUP5TXiLulvJd3zq71FlR6xk=;
-	b=R9hNIcnlYCkXarhLF0X6W8am+BlVymbAKKatHVsaeqLo6QG6Twk6Svx94X4POW2l9CDr7D
-	qjFsVbU0S3k6qkXcXhRzhGcivnHKbgYulRPH3m3K4js8ywfuPZdr2Vqfes/d0IcWyVtFY9
-	re2W/DtlbKjS+UBsghvEg2XBKDsalAfyto8ArrDASui6c96myVwwmZ+ABDU79qL9n1MEn9
-	00PJ38qpHX28C62lv1IKa6YMiBxX2Wmwrl2FICXiC66GRmXQ0VvIodCx1zUKXeH5zhGinh
-	+gINwUZzEb1SxIZ0NlSfka+DAgYvNACRqJtD0sbCgq0RrBeFEFQEbKt35O/32A==
+	bh=p42FxQU8XqxcY65o1OnImzYH+JEKXNJxWyr+WpaPWLo=;
+	b=BXpy6V5ifmnqjhEvL2Dlo+mKFPGcFwkNcjDzXWr8/+InGvoya8cb03w6VBniXNPHPw0PTz
+	Nm/6aOLeDqbCuKklh0a23yEtPU/8ucfZfgydkx1tK1IvWqMqMSeJWPWoeUt3x/cYGHYL/c
+	VdryylHllkVQCy1XVhzdpQYH+kpg2Tc1/W31YrZncrBhRCmjUxec4dvSYAqPUxdSXQpvqr
+	2jLfdb4h9h7HvUv8zK9i3Iu8IoEcqr7LNcCAe0wlP636xfdXTrx0y+JtYIV+9LePz4FO+P
+	IdO5NuL3+vSTmZhr2x/JYv37IGs+wsMlDitzXgfT+LWPCghQorbVduONPsNGpg==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Tue, 16 Dec 2025 18:58:52 +0100
-Subject: [PATCH v3 19/22] drm/bridge: imx8qxp-pixel-link: simplify freeing
- of the remote device_node
+Date: Tue, 16 Dec 2025 18:58:51 +0100
+Subject: [PATCH v3 18/22] drm/bridge: imx8qxp-pixel-link: simplify logic to
+ find next bridge
 MIME-Version: 1.0
-Message-Id: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-19-b5165fab8058@bootlin.com>
+Message-Id: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-18-b5165fab8058@bootlin.com>
 References: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-0-b5165fab8058@bootlin.com>
 In-Reply-To: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-0-b5165fab8058@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -75,8 +88,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251216_100059_313167_5C9F9160 
-X-CRM114-Status: GOOD (  10.85  )
+X-CRM114-CacheID: sfid-20251216_170539_411797_A1687730 
+X-CRM114-Status: GOOD (  15.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,65 +106,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The main loop in imx8qxp_pixel_link_find_next_bridge() requires calling
-of_node_put() in multiple places, complicating code flow. Simplify it by
-using a cleanup action and making the 'remote' variable scope local to the
-loop.
+imx8qxp_pixel_link_find_next_bridge() uses a sophisticated logic to find
+the preferred next bridge, using an array with two supporting index
+variables. This is more sophisticated than required because we only ever
+need a pointer to the "current" bridge and to the "best so far" bridge.
+
+Additionally this logic is going to make the addition of proper refcounting
+quite complex.
+
+Rewrite the logic using two drm_bridge pointers, which is by itself
+slightly simpler and is a preparation step for introducing bridge
+refcounting in a later commit.
+
+Also reword a comment to make it clearer.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c | 23 +++++++++++------------
+ 1 file changed, 11 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c b/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
-index 53016f0d53a0..2ecc3c1051e5 100644
+index e5943506981d..53016f0d53a0 100644
 --- a/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
 +++ b/drivers/gpu/drm/bridge/imx/imx8qxp-pixel-link.c
-@@ -260,7 +260,7 @@ static struct drm_bridge *
- imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
+@@ -261,12 +261,10 @@ imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
  {
  	struct device_node *np = pl->dev->of_node;
--	struct device_node *port, *remote;
-+	struct device_node *port;
- 	struct drm_bridge *selected_bridge = NULL;
+ 	struct device_node *port, *remote;
+-	struct drm_bridge *next_bridge[PL_MAX_NEXT_BRIDGES];
++	struct drm_bridge *selected_bridge = NULL;
  	u32 port_id;
  	bool found_port = false;
-@@ -286,7 +286,8 @@ imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
- 	}
+-	int reg, ep_cnt = 0;
+-	/* select the first next bridge by default */
+-	int bridge_sel = 0;
++	int reg;
  
- 	for (reg = 0; reg < PL_MAX_NEXT_BRIDGES; reg++) {
--		remote = of_graph_get_remote_node(np, port_id, reg);
-+		struct device_node *remote __free(device_node) =
-+			of_graph_get_remote_node(np, port_id, reg);
- 		if (!remote)
- 			continue;
- 
-@@ -294,15 +295,12 @@ imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
- 			DRM_DEV_DEBUG(pl->dev,
- 				      "port%u endpoint%u remote parent is not available\n",
- 				      port_id, reg);
--			of_node_put(remote);
+ 	for (port_id = 1; port_id <= PL_MAX_MST_ADDR + 1; port_id++) {
+ 		port = of_graph_get_port_by_id(np, port_id);
+@@ -300,24 +298,25 @@ imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
  			continue;
  		}
  
- 		struct drm_bridge *next_bridge = of_drm_find_bridge(remote);
--		if (!next_bridge) {
--			of_node_put(remote);
-+		if (!next_bridge)
+-		next_bridge[ep_cnt] = of_drm_find_bridge(remote);
+-		if (!next_bridge[ep_cnt]) {
++		struct drm_bridge *next_bridge = of_drm_find_bridge(remote);
++		if (!next_bridge) {
+ 			of_node_put(remote);
  			return ERR_PTR(-EPROBE_DEFER);
--		}
+ 		}
  
- 		/*
- 		 * Select the next bridge with companion PXL2DPI if
-@@ -310,8 +308,6 @@ imx8qxp_pixel_link_find_next_bridge(struct imx8qxp_pixel_link *pl)
- 		 */
- 		if (!selected_bridge || of_property_present(remote, "fsl,companion-pxl2dpi"))
- 			selected_bridge = next_bridge;
+-		/* specially select the next bridge with companion PXL2DPI */
+-		if (of_property_present(remote, "fsl,companion-pxl2dpi"))
+-			bridge_sel = ep_cnt;
 -
--		of_node_put(remote);
+-		ep_cnt++;
++		/*
++		 * Select the next bridge with companion PXL2DPI if
++		 * present, otherwise default to the first bridge
++		 */
++		if (!selected_bridge || of_property_present(remote, "fsl,companion-pxl2dpi"))
++			selected_bridge = next_bridge;
+ 
+ 		of_node_put(remote);
  	}
  
  	pl->mst_addr = port_id - 1;
+ 
+-	return next_bridge[bridge_sel];
++	return selected_bridge;
+ }
+ 
+ static int imx8qxp_pixel_link_bridge_probe(struct platform_device *pdev)
 
 -- 
 2.52.0
