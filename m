@@ -4,67 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F8C5D5E13D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 18:01:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0065D609D7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Dec 2025 18:01:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1bsmIqfEg5qTBFX4z7pl6YZZ49PtxGhyGvbxD5bN9lk=; b=x1nL9KZ1u+QrKq
-	rhjQ6H5l7Se4e9gg24KL5/QyyI8sFjoG70VveOu0X0QETSrTeyiCd153eSES3JwTdHFg1NZlsjFlW
-	m4M28ViCyejFyVokxnSMFq6fQic9CJMTvXpmUeZ0OkJxeotECbCyYyeK0SyesQa4VKGlymUotyGJe
-	nxasJl5vJGGdCIoj3V4PM/O2jby4sObNvzyDolecyD9XyrU+CFU4L6GIlSO5hz/DxSVEY7Z68d6mS
-	DJ5ogiRMIfNyyLE6UhTiFBVmNpDNgmlLYNzXoo1NOohKG8SAMpIzVRdbrOuJoNUm5Fg0XLjOsobsv
-	0fJXOp7IeHCinGvDqE9A==;
+	List-Owner; bh=aj0Hbi+KfwMyQ5XN23JtTcCaHbA3ebn06dPrBL7d6O0=; b=IB/SsPyVVVDbt4
+	QaLajTW/7zopa97pc5GXzGJe0cWQkoNiUofwmAHTQf58PLN5LYBNpClBy3QBYfsTaFOpJrhyHNDW1
+	GDoiX+nMDRqnh/cz3LscBG0G/cHs9Kk3YabmaA/n4HkUr25FztK3Q42tOMk1tKMqUUF0K/JSjQH9R
+	aBM9jrVRsC+w2+9TkivTxM0yha/bOllGP6/ux/QgvGgjIaRaZCf52TRtxKqzO6bs5sxj/ZS/M4+vu
+	vADP+JzxBbxtGUcsYQpc4dHK1Aw9CwnT9wLVqof5D8kr0Z/0206m9VQht5Pa6/GMUMDKkQGwVVu1O
+	x64z0mWDE2ugKELXRrSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVZLz-00000005fBU-3t9W;
-	Tue, 16 Dec 2025 18:00:55 +0000
+	id 1vVZM4-00000005fGk-1ytx;
+	Tue, 16 Dec 2025 18:01:00 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVZLr-00000005f3I-2vZc
+	id 1vVZLx-00000005f7X-00nh
 	for linux-amlogic@bombadil.infradead.org;
-	Tue, 16 Dec 2025 18:00:49 +0000
+	Tue, 16 Dec 2025 18:00:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=NYJEE2opxHghuVaIu6hgRW6HhV8SDpecPQJMZReKags=; b=EvhdYYfNQ2TFsKUxuXX9aYrHlg
-	dRLqkPezXRHt/38QHeIRATdr7wzlebutKtavAydq6VfGoIsOxu6g58iLBe7CE/EEYR4oCCWx3fy3D
-	Ho+CZh8ijKY0xrUZGknBtlFp3Vw88khOxqzznXQMl2HgqeYHmsIc7UwpCvZTPwiL0RkrkNUAWKfCX
-	575hqTTSahG5ZQmnXnwqrI3RpJXjCZJ8JuvLCoqOYFosWdNxN+KV6JHnOyTRJg928kj59mP+Pa+9G
-	wx8opucqu9LYGb0IVH+L0M9GdrpYKHtrDGKZcBKgIU2Xle+tEqushMC9zReS04fuR7NZrge6cm6e6
-	EfzJs7ug==;
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	bh=E3venDDom+DGFVL2bgaoBeY8hl48k7Az+c/QW6Kq99o=; b=QsnNFc4zAnOnjDBx3Uoarol/jb
+	Fh4M812XXP6GBqo8YwmcdqWNZUTaOnQyqMp/f6WP1EbvilLL8gqA/563LlyM38FJpCpwscb79HhFO
+	hPuk2rSxiDx8ixVy3HlAiOxOYoJmv+RpmA1WTsGEMz7hSvtROEkVLq7oX2KSEZijmVWI80vAAYztq
+	Z1YDy7Y5+3ifPxEm1ij3xtzTBKxLpTlXTfz4Pdsux/nQFHCU/bs7OdCpzVFACQAYspRSxlWbDV7Wd
+	gHHunUM8dql5xt03rO3Kjp3VFLy9R5vigpwZlHnYxGH9+UzTcsSsDc5mcNKGYLs+CjuU9pjRnMZIw
+	nJZNgnmg==;
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVYUI-00000005JoC-3gbv
+	id 1vVYUQ-00000005Js1-3W0n
 	for linux-amlogic@lists.infradead.org;
-	Tue, 16 Dec 2025 17:05:31 +0000
+	Tue, 16 Dec 2025 17:05:36 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id DBA66C1A585;
-	Tue, 16 Dec 2025 18:00:16 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 4C24F1A2254;
+	Tue, 16 Dec 2025 18:00:49 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5B1616071C;
-	Tue, 16 Dec 2025 18:00:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B6613119A97D5;
-	Tue, 16 Dec 2025 19:00:36 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 10E286071C;
+	Tue, 16 Dec 2025 18:00:49 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7FECC119A97F1;
+	Tue, 16 Dec 2025 19:00:40 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765908040; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1765908044; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=NYJEE2opxHghuVaIu6hgRW6HhV8SDpecPQJMZReKags=;
-	b=D2bkKi7NoHC8TwpLYNq5yMx4usGX0uvHXODIrL/9+8JmdwSPajQgn/E7vPF5RS/thnq03V
-	qj2HkSYZb/93l2sCultbAcfT58vfNWKl0owNvXpZyKVhfcz4ayDQsq4G5DLU8+DuMUGuOa
-	KwsqVHY4bHAggDoNUIg/QjeSBDmIcNWtXBY8CieJUK827NCquljQkRuCW7rQ8NeC1/yVeq
-	+E8RJVZfrfrm53JS8LVCjR+25aw2ks463N64RZJ9/NMsGeH9dPCllo86xtIL8WpLMCw4AB
-	ilMgq6YwXcipvxchhqY5VGYZqI8O41TDlaNyR3VOndvt5Aa+8d/SIftUOY8VnQ==
+	bh=E3venDDom+DGFVL2bgaoBeY8hl48k7Az+c/QW6Kq99o=;
+	b=yR5sfELEKiDsl6homJx8wSE/k1REIQEFf5NXXHzizUBK3BAAa2Y0fcoFe6RQ7WxKJSXkDg
+	0Cy/3b46ZAqF6OmFmbHfe4CGoK7+ni1KnwlWwKmer5zc15o5unWt58yBwkhmgDyRVwxMMf
+	F+Tp/d/qlCVqWAwJqziid9YCm+rVJh07PMgZzGgJmFh0CnEGbc4Brp8POrKw6ZKuKH7XDT
+	gcYMAWBTcCtA7ZJFa1lgkMyOf2VI19Bv/w1bQHAf2jQqieWKxr6WNV4LPkd+xU6Zz4tPY9
+	zTb2K5wpbZ6He0CLEhK5/IXHbpoJhn3O4wTzbHurzwg+Xmz/1jyARlwuLNQTdQ==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Tue, 16 Dec 2025 18:58:49 +0100
-Subject: [PATCH v3 16/22] drm/bridge: imx8qxp-pxl2dpi: get/put the next
- bridge
+Date: Tue, 16 Dec 2025 18:58:50 +0100
+Subject: [PATCH v3 17/22] drm/bridge: imx8qxp-pxl2dpi: get/put the
+ companion bridge
 MIME-Version: 1.0
-Message-Id: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-16-b5165fab8058@bootlin.com>
+Message-Id: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-17-b5165fab8058@bootlin.com>
 References: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-0-b5165fab8058@bootlin.com>
 In-Reply-To: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-0-b5165fab8058@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -90,8 +90,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251216_170527_537148_F2F519A8 
-X-CRM114-Status: GOOD (  11.71  )
+X-CRM114-CacheID: sfid-20251216_170535_037567_4C3C57A8 
+X-CRM114-Status: GOOD (  10.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,57 +111,48 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 This driver obtains a bridge pointer from of_drm_find_bridge() in the probe
 function and stores it until driver removal. of_drm_find_bridge() is
 deprecated. Move to of_drm_find_and_get_bridge() for the bridge to be
-refcounted and use bridge->next_bridge to put the reference on
-deallocation.
+refcounted and use the destroy hook to put the reference on deallocation.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c b/drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c
-index 2e66b003386e..556aec3b3734 100644
+index 556aec3b3734..2c40ca86e319 100644
 --- a/drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c
 +++ b/drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c
-@@ -35,7 +35,6 @@
- struct imx8qxp_pxl2dpi {
- 	struct regmap *regmap;
- 	struct drm_bridge bridge;
--	struct drm_bridge *next_bridge;
- 	struct drm_bridge *companion;
- 	struct device *dev;
- 	struct imx_sc_ipc *ipc_handle;
-@@ -60,7 +59,7 @@ static int imx8qxp_pxl2dpi_bridge_attach(struct drm_bridge *bridge,
- 	}
- 
- 	return drm_bridge_attach(encoder,
--				 p2d->next_bridge, bridge,
-+				 p2d->bridge.next_bridge, bridge,
+@@ -63,6 +63,13 @@ static int imx8qxp_pxl2dpi_bridge_attach(struct drm_bridge *bridge,
  				 DRM_BRIDGE_ATTACH_NO_CONNECTOR);
  }
  
-@@ -271,8 +270,8 @@ static int imx8qxp_pxl2dpi_find_next_bridge(struct imx8qxp_pxl2dpi *p2d)
- 		return -ENODEV;
++static void imx8qxp_pxl2dpi_bridge_destroy(struct drm_bridge *bridge)
++{
++	struct imx8qxp_pxl2dpi *p2d = bridge->driver_private;
++
++	drm_bridge_put(p2d->companion);
++}
++
+ static int
+ imx8qxp_pxl2dpi_bridge_atomic_check(struct drm_bridge *bridge,
+ 				    struct drm_bridge_state *bridge_state,
+@@ -205,6 +212,7 @@ static const struct drm_bridge_funcs imx8qxp_pxl2dpi_bridge_funcs = {
+ 	.atomic_destroy_state	= drm_atomic_helper_bridge_destroy_state,
+ 	.atomic_reset		= drm_atomic_helper_bridge_reset,
+ 	.attach			= imx8qxp_pxl2dpi_bridge_attach,
++	.destroy		= imx8qxp_pxl2dpi_bridge_destroy,
+ 	.atomic_check		= imx8qxp_pxl2dpi_bridge_atomic_check,
+ 	.mode_set		= imx8qxp_pxl2dpi_bridge_mode_set,
+ 	.atomic_disable		= imx8qxp_pxl2dpi_bridge_atomic_disable,
+@@ -333,7 +341,7 @@ static int imx8qxp_pxl2dpi_parse_dt_companion(struct imx8qxp_pxl2dpi *p2d)
+ 		goto out;
  	}
  
--	p2d->next_bridge = of_drm_find_bridge(remote);
--	if (!p2d->next_bridge)
-+	p2d->bridge.next_bridge = of_drm_find_and_get_bridge(remote);
-+	if (!p2d->bridge.next_bridge)
- 		return -EPROBE_DEFER;
- 
- 	return 0;
-@@ -351,8 +350,8 @@ static int imx8qxp_pxl2dpi_parse_dt_companion(struct imx8qxp_pxl2dpi *p2d)
- 	 * the next bridges are connected to.  If they are marked as expecting
- 	 * even pixels and odd pixels than we need to use the companion PXL2DPI.
- 	 */
--	port1 = of_graph_get_port_by_id(p2d->next_bridge->of_node, 1);
--	port2 = of_graph_get_port_by_id(companion_p2d->next_bridge->of_node, 1);
-+	port1 = of_graph_get_port_by_id(p2d->bridge.next_bridge->of_node, 1);
-+	port2 = of_graph_get_port_by_id(companion_p2d->bridge.next_bridge->of_node, 1);
- 	dual_link = drm_of_lvds_get_dual_link_pixel_order(port1, port2);
- 	of_node_put(port1);
- 	of_node_put(port2);
+-	p2d->companion = of_drm_find_bridge(companion);
++	p2d->companion = of_drm_find_and_get_bridge(companion);
+ 	if (!p2d->companion) {
+ 		ret = -EPROBE_DEFER;
+ 		DRM_DEV_DEBUG_DRIVER(p2d->dev,
 
 -- 
 2.52.0
