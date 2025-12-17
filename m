@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA323D65530
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Dec 2025 10:18:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF81DD6552F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Dec 2025 10:18:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:References:In-Reply-To:
 	Subject:To:From:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=x5+HH3m8aBPGKagitWJSl57KXfCS7NijRVg/owSlNyk=; b=aZLYT2gtg3KbxO
-	w/KU/5//F6vYKaWQImoVrwx4Ljltv0bg8RO8lAYcrOQr0mBj+qu2vzFc/+J/8KgDOnendBbdY3tUj
-	R1lCJFzVM9Tlo0M+opJtqH+5wxWJGy8wirkd6Zfqby6Ua1hvdbpqqaKiSj5WHCjwkSNZtyPYm6Jxp
-	yuO0KTCeBWkb0YQClYGWIxmO21SzVt9ufYCngRoz4Pz1WNxxAcUueaTSOpzEuBnH2ajfiqQIAU41Z
-	subLVbapJiAazReqTGSmeHWr9iKmXz781MJICurJFGmlvU4Hxptk6p6auUrH+N6TxZVKoXlyg1gT8
-	2gOiLOzr3cxYL+9UiuIg==;
+	List-Owner; bh=zLAkWLS8kyMHrC9jJ7/FHdspExmtwlYubRc7W47v7kI=; b=QXqced3qga5yV6
+	Qlj1r7mO+i1yKw1sujXgXPtln5ZqIOZZZqeS4cnGZyE3JVIk3H2pVbjjN5ePSUbS0lEKHjMQwYm2O
+	dpglbXKMFppiAFqBzSv7R7c4SjNj0I3RDI7TsmGIOdIkqYLKgoi266gaUwmXIwvPKwR/+QxYqCPa4
+	rvedxO/mQ2dbCUQt67YYi9fqHyPhy6H9OyCQiTHTbUV7On+KXdcwUsKmBLsc5zbqdxYBlnpTcRiVn
+	e9bPSs2yogcJ/aA3F18CZEQIuMtUVrB06HgEayrMqTYiBy5FrV9mIig4oB2G3AISPa87/KD3I67/6
+	tF8pA6jPjw3XO8n1uQlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVobo-00000006ajJ-0pk5;
-	Wed, 17 Dec 2025 10:18:16 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1vVobw-00000006apd-47Kh;
+	Wed, 17 Dec 2025 10:18:24 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vVobl-00000006ahY-1w5L;
-	Wed, 17 Dec 2025 10:18:14 +0000
+	id 1vVobv-00000006aoF-328Y;
+	Wed, 17 Dec 2025 10:18:23 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 03C7840564;
-	Wed, 17 Dec 2025 10:18:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 564CCC4CEF5;
-	Wed, 17 Dec 2025 10:18:12 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 2954760557;
+	Wed, 17 Dec 2025 10:18:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52486C4CEF5;
+	Wed, 17 Dec 2025 10:18:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765966692;
-	bh=iEZOJAy/iSZbPBkaO8hjqOZSzfOPhXxkhPIsof5U75w=;
+	s=k20201202; t=1765966702;
+	bh=gGGu/6JNVBgNvuM6ZsKdOI4ON53xGWkWHM73FXbvNis=;
 	h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
-	b=Kb9tzUPfraLWCB6YRLZTzhDyRkjzd67uIhkKHgswPUTjEucZi1wx37fRmDY8nfsit
-	 VL5LNJsFuVexMy0GBdx+yWXqgjmN3YYYHKbOYsy5kqAcL+clVuquARoFkqgf1kRjDO
-	 KdzxVXXWOvMrcI6ThdGn4t4jQz06bCyvYgRm05Ue/MzUyTuylT+tvPVniahG/Eq3yS
-	 JdkPLNh3M10JgbWiNqR1Pi0lIfYqsXvPfG+p8NmzE4zcMYVMVrMphifTonD4o+Xw/0
-	 +9b8ssKCFLyfne0fNxpcfOw0OscH8FgukFU2B0wja7pS4FZ4rwwr2lGSVFTM7H3f7k
-	 0CnwXHtjYytiA==
-Message-ID: <035de7e7f585cedbe6cd28ce30ef5995@kernel.org>
-Date: Wed, 17 Dec 2025 10:18:10 +0000
+	b=o9TOZ5xbmIgqxSOK8HVTeLQOxHTGpU67pqx7lt/Gy9iAK1IOrXCBrOKaYEXM9Fw5Q
+	 NKRDYHrBWhLUhZOyNFDQuXbWwI2vArQELO850hGsATfwRpbngWW+8heC3qvmO+LLpp
+	 Ix0HZprfSAhrDLQTsG2u6mxCrkAPxADMVKtZSw4TiBPNf3R1GBbgH+Mb4rVsuVvQOA
+	 8DV+e6ydAj+0yqMkx8/kdd1kijBRC7KtfmJEBd7cUwlxjLrsRAEyo+bF19y4eV3+I1
+	 6fnobX50SZqrHlKYt7dWV2uYZ9vZMEI3DnZgzzN+mEL8EKDcI1b7E+D6XlptFXJlDz
+	 b7Y3QhgdQ+o9w==
+Message-ID: <7e16dd4d1eb87f96ab70ded4f16a04ef@kernel.org>
+Date: Wed, 17 Dec 2025 10:18:20 +0000
 From: "Maxime Ripard" <mripard@kernel.org>
 To: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH v3 11/22] drm/meson: encoder_dsi: get/put the next
+Subject: Re: [PATCH v3 12/22] drm/meson: encoder_hdmi: get/put the next
  bridge
-In-Reply-To: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-11-b5165fab8058@bootlin.com>
-References: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-11-b5165fab8058@bootlin.com>
+In-Reply-To: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-12-b5165fab8058@bootlin.com>
+References: <20251216-drm-bridge-alloc-getput-drm_of_find_bridge-v3-12-b5165fab8058@bootlin.com>
 Cc: dri-devel@lists.freedesktop.org, imx@lists.linux.dev, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, "Alexey
  Brodkin" <abrodkin@synopsys.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>, "David
  Airlie" <airlied@gmail.com>, "Fabio Estevam" <festevam@gmail.com>, "Hui Pu" <Hui.Pu@gehealthcare.com>, "Jernej
@@ -61,10 +61,6 @@ Cc: dri-devel@lists.freedesktop.org, imx@lists.linux.dev, linux-amlogic@lists.in
  LE" <ple@baylibre.com>, "Robert Foss" <rfoss@kernel.org>, "Sascha Hauer" <s.hauer@pengutronix.de>, "Shawn
  Guo" <shawnguo@kernel.org>, "Simona Vetter" <simona@ffwll.ch>, "Thomas
  Petazzoni" <thomas.petazzoni@bootlin.com>, "Thomas Zimmermann" <tzimmermann@suse.de>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251217_021813_527013_4054D2D1 
-X-CRM114-Status: UNSURE (   6.28  )
-X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,7 +78,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 16 Dec 2025 18:58:44 +0100, Luca Ceresoli wrote:
+On Tue, 16 Dec 2025 18:58:45 +0100, Luca Ceresoli wrote:
 > This driver obtains a bridge pointer from of_drm_find_bridge() in the probe
 > function and stores it until driver removal. of_drm_find_bridge() is
 > deprecated. Move to of_drm_find_and_get_bridge() for the bridge to be
