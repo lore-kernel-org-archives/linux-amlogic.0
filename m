@@ -4,95 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3BDAEE57C8
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Dec 2025 02:58:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3337AC2A07A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 09:14:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FvycsKfltuMtbroKeLddG8ve2NwEqdhcMPGj5C+JJUg=; b=2HLKdWBO96wqGP
-	N4tr3tcQrt9x2p6KEK5Hgh/UFIsFjLVoyQT2OacE0h5C4ybyHQlw4tFWJR6yu9VY6GL/iq1gB6OBO
-	RwOBeO2VN4vm26XKw7TlY01UeReq+c61yXhnpWVQYWVjNUbaL2RcTJ5y0yHEX6B7eC16/s+arFPeu
-	wDgpBxfCIIn/b56vuuB4kuHWG+tKg9JBTcj0ftdtNFykqMorVanEEVmPFB58MfC8r/twgYbvtomeC
-	72bFed7YcS+s0xqApxT/0Fq9p9Kr0jQrI6bpZRdsocvSTK9Rj3X0lQTbpJqc8/nGvnfZf4WYpt8ih
-	p277slAxsSjE45jzaMtA==;
+	List-Owner; bh=Vy7yRtHhhYxR7riK6TsOC8l4/qzmYcQXXP4dfoKjzYw=; b=I4viAJP1Qs/NuA
+	zSkSuTUhO/+XeDtBvqwITpMLD+Onvnh4Vxtbleaf3UDuADgk3XxAOQEFKqEN06/X2sgP4O626j9aH
+	2S6AtNnTAh6ME7bHTYsI0PKKnskyjvkQ24A1+3wHPIM3Mj452ozC+qEYcHNa42HsZ4g3dClkqaFK1
+	BOCuTl0IpagXPfthAAjpr2FI7cl6ZllM92mlyun5oBaIDFvgR/1lMOMFT7GH3//ZHvfK9QgfsX8oE
+	nBq8fUbB0gKulmTdW3nK+kF3jX75Lqd5hKfXpw70uIrm9IcOocKHDfj6Bq/rTnAa8H7RZSrvjwoj9
+	QcVFnAVh/DLRNQ3+IxEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vamQ3-00000005c0D-1mBx;
-	Wed, 31 Dec 2025 02:58:39 +0000
-Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
+	id 1vcgfg-0000000B3Cx-1DrE;
+	Mon, 05 Jan 2026 09:14:40 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vamQ1-00000005bzE-1gMS
+	id 1vcgfc-0000000B3C8-1opU
 	for linux-amlogic@lists.infradead.org;
-	Wed, 31 Dec 2025 02:58:38 +0000
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-b7a02592efaso1592718066b.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 30 Dec 2025 18:58:36 -0800 (PST)
+	Mon, 05 Jan 2026 09:14:38 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-47d59da3d81so6934635e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 Jan 2026 01:14:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pardini.net; s=google; t=1767149915; x=1767754715; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zUfeQsuPis8+vWGa7ve6iy4exkmxdmo6Yqgm4mr4Xz0=;
-        b=LlT6CWKClfTbZVMbCUtMWgC7EhoQ/Mq4/hgNC1SjIo1CcONWDeHlv38HBe2iUimiie
-         q0iVDIge7dzINg3UflSwzmBigXjjjaLqnZgdIP0VHGmxzFE7WaXjyF7gHDjoaNgc4r1T
-         ZFsaPQFHV8Lh6cjQERoQuyLRXVzui5Lxixl2xnggANp8hBOHk12neJg0eiOouwLxWXhn
-         mC9Z218iV4ibWd6+cVLa2ckV2OJ+Z55yzugNQlGJSYwIQo8GcZDawUNUhdt/OkxuueTV
-         CYVYLX/gIVPYz+oO8OtEiMV9a8NwbKvGtBgy/DSNK5+hoop244ZlbnGtkrgtkywkAzdL
-         BUlA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1767604474; x=1768209274; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=miCvpSGVqVVCNMF4tIx1RWrVqnyi6qhzDTvcjYnjzjQ=;
+        b=2bZHY2chWHb9R7o8s8kb3GAgXI8p/4L1Hin9f++ybe1DZptJJun0VsX5K+u75XzDaX
+         XEgxg8IWtqN+YYkdtjw8PtgLccdQKoYBTM/fJDbcxrxe0VAGzjDdGVV2OJHoW60lz3UC
+         Xl13sbSj8kv1//gGzw+hw8/0acBPE7A/fcbAJrZeunfJAXom9XLwZyKMk6c2RbviRPCF
+         wL86RlPVOtzOczapbhUwGG+g6izWMl6EFqeVJYn5zIzvtkgoquHktKyadA1PgnzXdsdh
+         EWpq2D8MZ7H9grb6PKSnlGEMbWRQcKiBhxF99accwGIYdZqTnic09N9sZStznSo2wffr
+         fZfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767149915; x=1767754715;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zUfeQsuPis8+vWGa7ve6iy4exkmxdmo6Yqgm4mr4Xz0=;
-        b=V26sSRDWc37ks/zLBuznhp0qMUwC6mzh4HkJel7n6cVWZ1+sbmv/c8ONU9ZkQCBMn9
-         HCN8tmEh0FjwgPsSUMq8EUT1ssyfaE6q9bzJsh1Z5GWW5r0DEQ4hdbzOKJ/7X8IVQ/gj
-         LMU0qhlZsebqYs2/X+4XY/e8G2OSNJ64voJLqOdb9+7O7qr4Tjh//i4r29uMtWoebTZ3
-         VKF8F/wW/bsuEg6gBJV2o5D8LdQjP6fUwyDOGViWuPSi8fPcp/x8hHh7zQWk0BHR7CfG
-         pWTvERix6WlnZpeOplepLJBdxPKiUMWug2tJ516jnLTQk+Q5y9yFijccaZFHhBQ7f0HY
-         M5rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXXzgLjsOFpmzabQhQ/LsOfY1z7osCHf8hB55K3ZhWtv+tfDsoHOl9gZDPZlUpBDbu9O6bGhNBnaDYCpmJl@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx8kWkMiaeCHJ0OWYhDMct8ud7SMbB5FDHY9qnjwp7N3hZk+ipE
-	pE7eY/ucawGJLmFPuAsuM7XEa1GfnEgNsdGMvgYW/A2QDaos7e96NKJ11t+G+gqgGg==
-X-Gm-Gg: AY/fxX5S8j3fFQt2DBdX1PAckItfx3sQU9kTPQBAHIcjtD/ItYYGfgRkDE+ovD3orvr
-	8Q+eB8BODT9FpofBZeXzaVQ7Ad67r1y9Uo0LKYnAIE72M84cpAHbvPCtgA5g3T9N+d31w7HZupL
-	zCchINlsOcJl81ys1hUem73fPlFPf83+49qAk1q3HCJCXBJRuvNxStirtDNMQOHZblg/Y5ASPKk
-	/5zdXRDUksBJHBPgKdiIz17J5y+4Vyde1/wac+96PFqB55kKIuOkR8WcqtqzD6kz7PK4woOCvr+
-	jJAU6Jis0rRAUIAoRUaV3Lyy8+V5qDxr550Edz/ln57eLtC6hQmGrANdgSZXCwI8QVMsGZXniQM
-	tvFzw4K1CyaPl77aHeoNX9Ga/jdhKMC4X7e+u3enFyaK48a53jmzzzIEGgTo8pIejCQ8I1o1KvH
-	Hm+8nwgW2hLdLboa1+qEAN2HViOjYorLVkS8TlECqhjzPeUsAK6guYl2UCsmtCxaHeNv7NheMlV
-	Ml90fTeGhKBEYsIdkeoIcHso/3PQFe1oUD+AhVv0ClTNsO5BfBMPP6kCQ==
-X-Google-Smtp-Source: AGHT+IGGCF0sHMt1+YYCpeAxQN9Ovdj+s2AiArjZinsNakQ8z+N2JPpr7xnF8T/yZnTmh07agmcy1w==
-X-Received: by 2002:a17:907:1b15:b0:b73:9792:918b with SMTP id a640c23a62f3a-b8036f5fcf3mr4070078066b.27.1767149915064;
-        Tue, 30 Dec 2025 18:58:35 -0800 (PST)
-Received: from ?IPV6:2a02:a466:4d7a:0:49c0:3675:3f69:8ee2? (2a02-a466-4d7a-0-49c0-3675-3f69-8ee2.fixed6.kpn.net. [2a02:a466:4d7a:0:49c0:3675:3f69:8ee2])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b83926533b7sm450609966b.20.2025.12.30.18.58.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Dec 2025 18:58:34 -0800 (PST)
-Message-ID: <f5322597-c6dd-494a-863b-2caf24363f2d@pardini.net>
-Date: Wed, 31 Dec 2025 03:58:33 +0100
+        d=1e100.net; s=20230601; t=1767604474; x=1768209274;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=miCvpSGVqVVCNMF4tIx1RWrVqnyi6qhzDTvcjYnjzjQ=;
+        b=aLjP2Epc4NGbhDDPCrrXOgz+fIKGxPY32G0kF8F9i1NgLhT5o5nsXTN5Eai4sAQzvk
+         kUGcQX9TzwYmvyspcZSMt0qDvkm18y5aoz4+M2xU05QuMnKyMWuDiwi+3u9A1PPNdQsK
+         MipG6F+53lV52MYWJ8RooMRHlXyQEps53VGEffl8NliNRyQsWtgv+fEsZkdu4OeYyEh4
+         WDrP8eR52cfHiUSJ83ODR432Tn6pubdDj+dwKZjZ5OQlX/jB8nD480IYcBlPCnvK/pXE
+         rXcAl7VZQIQWV8eYx2eXdl18pVI56rAQ1SSDr+vWkKgRI/TjwtnLwT6VfNihGDbhj0SR
+         8zwg==
+X-Forwarded-Encrypted: i=1; AJvYcCVQSFtgioltDER2O7w1nVvXd5Sf/XR2wsX84+SVuv3UAhQTLam5O5s2fy0BLVrOEOzsd/mKt2t414rlLmkj@lists.infradead.org
+X-Gm-Message-State: AOJu0YxM3PL0qlysZ8WTBujvlRIKIDr2g7SJBPEjfz01/ypsYuoBQ7L0
+	kIklS79ZMVbVhKfwvzm9JELUWcLFHuB+QFf+zW1aJ0/rGH2pOmSf6mljIgK/4MJC+KY=
+X-Gm-Gg: AY/fxX72BB9B8A/bcAdJ00nQMBMqPgDzuyLRaZkduWg6shV9L4Pt1lu72Ry0pCmmYpd
+	gsfqNaBrFojA45AYwJ1fxTacsGShO2fIDWFEyyyOl2mbBHRUqV+jQ0qs2xE5QqQeAxyovX33dxe
+	krQ3RCsq1YrIRGdFS24Sm4k+eAttMxfsa/LR6UixKtIy5P5f3XbyCPi5xR7B7r+L9bArZulpZ34
+	IufLtstP8A6LBUbxz0Bx0ATvOsWCYgkFKbqJYHDKncZs6rGtS/OE/hz4sM+gaFN4EPejw9tZNFp
+	OWVU8Sz9UUUSyYQ8ShKhlPHRSal2yCLuzIwtcC3a6SbvIK/HmylE/Tn+slLaLrQbPqXjUvpxW6O
+	YI2hKMjzDTfwDwYRlhEeZkAsk8XVB9IbUWZBgsmmCyCT70PCHbjPSaHl/bcySkZyjDnQyXASK7I
+	UKf+foNxvq
+X-Google-Smtp-Source: AGHT+IHg/Mv8ok8g3lfkv+f6Gs1iCHZthZ9+dvCaKIuCn41ycCh3KmnkNqkRkT2jAbCijygn0KRwvA==
+X-Received: by 2002:a05:600c:4704:b0:46f:a2ba:581f with SMTP id 5b1f17b1804b1-47d6ba8900dmr100501615e9.16.1767604474097;
+        Mon, 05 Jan 2026 01:14:34 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:b336:bcf:8603:f6e1])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-47d6d143f6asm147207955e9.6.2026.01.05.01.14.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jan 2026 01:14:33 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Chuan Liu <chuan.liu@amlogic.com>
+Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
+  Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
+  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  linux-kernel@vger.kernel.org,
+  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 5/8] clk: amlogic: Add A5 clock peripherals
+ controller driver
+In-Reply-To: <425ebeb4-8001-4493-882b-dfee87ed82c8@amlogic.com> (Chuan Liu's
+	message of "Tue, 23 Dec 2025 20:27:39 +0800")
+References: <20251028-a5-clk-v4-0-e62ca0aae243@amlogic.com>
+	<20251028-a5-clk-v4-5-e62ca0aae243@amlogic.com>
+	<1jpl857e2w.fsf@starbuckisacylon.baylibre.com>
+	<425ebeb4-8001-4493-882b-dfee87ed82c8@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Mon, 05 Jan 2026 10:14:31 +0100
+Message-ID: <1jldice808.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/2] PCI: Configure Root Port MPS during host probing
-To: Hans Zhang <18255117159@163.com>, lpieralisi@kernel.org,
- kwilczynski@kernel.org, bhelgaas@google.com, helgaas@kernel.org,
- heiko@sntech.de, mani@kernel.org, yue.wang@Amlogic.com
-Cc: pali@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
- jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, cassel@kernel.org,
- linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20251127170908.14850-1-18255117159@163.com>
-Content-Language: en-US
-From: Ricardo Pardini <ricardo@pardini.net>
-In-Reply-To: <20251127170908.14850-1-18255117159@163.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20251230_185837_501240_CC6C0AB1 
-X-CRM114-Status: GOOD (  11.23  )
+X-CRM114-CacheID: sfid-20260105_011436_495783_B6183D8E 
+X-CRM114-Status: UNSURE (   5.57  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,70 +108,19 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/11/2025 18:09, Hans Zhang wrote:
-> Current PCIe initialization exhibits a key optimization gap: Root Ports
-> may operate with non-optimal Maximum Payload Size (MPS) settings. While
-> downstream device configuration is handled during bus enumeration, Root
-> Port MPS values inherited from firmware or hardware defaults often fail
-> to utilize the full capabilities supported by controller hardware. This
-> results in suboptimal data transfer efficiency throughout the PCIe
-> hierarchy.
-> 
-> This patch series addresses this by:
-> 
-> 1. Core PCI enhancement (Patch 1):
-> - Proactively configures Root Port MPS during host controller probing
-> - Sets initial MPS to hardware maximum (128 << dev->pcie_mpss)
-> - Conditional on PCIe bus tuning being enabled (PCIE_BUS_TUNE_OFF unset)
->    and not in PCIE_BUS_PEER2PEER mode (which requires default 128 bytes)
-> - Maintains backward compatibility via PCIE_BUS_TUNE_OFF check
-> - Preserves standard MPS negotiation during downstream enumeration
-> 
-> 2. Driver cleanup (Patch 2):
-> - Removes redundant MPS configuration from Meson PCIe controller driver
-> - Functionality is now centralized in PCI core
-> - Simplifies driver maintenance long-term
-> 
-> ---
-> Changes in v7:
-> - Exclude PCIE_BUS_PEER2PEER mode from Root Port MPS configuration
-> - Remove redundant check for upstream bridge (Root Ports don't have one)
-> - Improve commit message and code comments as per Bjorn.
-Hi Hans,
-
-I've tested on an Odroid-HC4 with a SATA SSD (via an ASM1061) by 
-applying your v7 on v6.19-rc3 + Bjorn's 
-20251103221930.1831376-1-helgaas@kernel.org ("PCI: meson: Remove 
-meson_pcie_link_up() timeout, message, speed check" which is required to 
-get the meson PCIe to work at all since 6.18). With that setup I get:
-
-# hdparm --direct -t /dev/sda
-  Timing O_DIRECT disk reads: 832 MB in  3.00 seconds = 277.33 MB/sec
-
-I've an identical machine, with a similar disk (even slightly faster, on 
-paper), running plain 6.12.y and there I get:
-
-# hdparm --direct -t /dev/sda
-  Timing O_DIRECT disk reads: 764 MB in  3.00 seconds = 254.26 MB/sec
-
-I repeated those a few times, not very scientific, I know; but anyway:
-
-Tested-by: Ricardo Pardini <ricardo@pardini.net> # on Odroid-HC4
-
-I've also feedback from another user running with this series with 
-success on a different meson PCIe machine, will ask them to TB as well; 
-they had reported a significant drop in performance since v6.18 without 
-this.
-
-Thanks,
-Ricardo
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gbWFyLiAyMyBkw6ljLiAyMDI1IGF0IDIwOjI3LCBDaHVhbiBMaXUgPGNodWFuLmxpdUBhbWxv
+Z2ljLmNvbT4gd3JvdGU6Cgo+Pj4gKwo+Pj4gKyNkZWZpbmUgQTVfQ09NUF9TRUxfV0lUSF9UQUIo
+X25hbWUsIF9yZWcsIF9zaGlmdCwgX21hc2ssIF9wZGF0YSwgX3RhYmxlKSBcCj4+IE5vLCBhZGp1
+c3QgeW91ciBtYWluIG1hY3JvLgo+PiAKPgo+IERvIHlvdSBtZWFuIHRvIHVuaWZ5IHRoaXMgaW50
+byBhIHNpbmdsZSBtYWNybyBoZXJlPyBMaWtlIHRoaXM6Cj4KPiAjZGVmaW5lIEE1X0NPTVBfU0VM
+KF9uYW1lLCBfcmVnLCBfc2hpZnQsIF9tYXNrLCBfcGRhdGEsIF90YWJsZSkgXAo+ICAgIE1FU09O
+X0NPTVBfU0VMKGE1XywgX25hbWUsIF9yZWcsIF9zaGlmdCwgX21hc2ssIF9wZGF0YSwgX3RhYmxl
+LCAwLCAwKQo+CgpZZXMsIHBvc3NpYmx5CgotLSAKSmVyb21lCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAps
+aW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
