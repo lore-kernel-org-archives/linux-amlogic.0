@@ -4,86 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D929C79F92
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 13:48:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82C01C79F9F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 14:52:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
+	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=WSp8R2xPngstI6C6lQtb/0ySrOj5sOe6pPn4M1Tc2LY=; b=TjYI4GpGUaD4A7RjLIYN4+367W
-	ZIJo+JVoMofMSYCRns/dgIyCWA4kc91/6t6VOgyd+2DCkqmDNjjrqvZEOiOV2qU6tWYKAij+AcgKJ
-	dUNsEpbfE9dkdl/+8HuSxmJ2UshY2sFEtOcBXodx2AKxHDOZzDOhXy289JlpknJaYD1rLcW/Z0mUO
-	bvxElTtNDaHvX64jIJ27hz9CxDCCXWPRby7FzKgeipuW4BzZB3frPaYYXbNZesP16P/lE/+DQWS+7
-	dQpylhTxECoL+mvlm0XfAp4/6OonF/FNkrsTf17YEUHsetX7BCZBGskJSP8qxkYXLixYTn5Frr8gS
-	XS9qlBSg==;
+	bh=TfSdkMj63xOLEBc3dzKfLqEX//GUDkYVsdcNsUfnepg=; b=1renGfz2rPcUYgNYxhgTEjrayP
+	OEfUdDHYnFToybsUrEsiy1IUH8KY21MTVshBpuvDOfUeqohQ6GevvIzwBBM8/ewYQirBD5cDl12Bb
+	4Fw8Q4H8LRx5rxe3qsH2bXqgDnM7PDqqpVwuvKJz63pghxS2omh636DRCsVSAtn+sfQ9Z2oiCajqG
+	t4abIXLpts9/JPCk15aVRzGQEME/zfxKtxAx+6RA2L/3HTcVysLsVusXqljkIQummnb3dAP6Zk8M0
+	kU3hrpDP7TCAxgCFH+CdG6hrmhR1x+jagCGAVowwR73yYLHbS3kqBLFQqrmjaKKBNEYKMMze0WWSh
+	7y6ZfRNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vckwc-0000000BUmx-1dJX;
-	Mon, 05 Jan 2026 13:48:26 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1vclwR-0000000BZWg-0oSs;
+	Mon, 05 Jan 2026 14:52:19 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vckwZ-0000000BUmH-30Qp
+	id 1vclwN-0000000BZW1-1vo9
 	for linux-amlogic@lists.infradead.org;
-	Mon, 05 Jan 2026 13:48:24 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-42b3c5defb2so8418288f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 05 Jan 2026 05:48:22 -0800 (PST)
+	Mon, 05 Jan 2026 14:52:17 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-42fb0fc5aa4so11090678f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 Jan 2026 06:52:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767620901; x=1768225701; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1767624733; x=1768229533; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5pm61tHOxVIMRlo2kMdlbFtWUM1V4vVjtzMYxIxE1KY=;
-        b=Ii3MI0O5LvgZ5DeZzVe9Yy4+GcmZyNLOHekR7R8hmfjEcrfFNjs3tfUhyEtg/6eRgd
-         oRjHhwoi5KiAewdIkpQORNtnmfM2ZLmeKhlh6BiDCfXr3YV9qZUmJckXTXGc9rKEdMk7
-         P7MyI7Fku7P+BRUoOxHsIekToLm0Uimp3+H5prGUDrYUwdfNG4IX8rqIVBpUPMrZ8bXq
-         /3T2nkKx6p8GxmcDW1otim+9EBz611qQna5pM0Ssj7hrw5k/qKLQWZOh0DaYBN97/wEV
-         raBi8cNSl+id+OIwS5GLaPQIuuh4vgk0r1DMq79zf1b9Aaimk9BCGS6UD6sHP6Z883Be
-         N3Rw==
+        bh=o4f2DQ1WSbAm2u31CVo+GntDagSQYTjRfPhTR4DZPJI=;
+        b=XLxf4sPV+B2pkvl/2S0elsNl78DpKWXx+inzorUypPKFFCYaxSyxYxyfZkBjO5WXir
+         j/rDZSY7Nzb2e++tRJvpNagn04caMwxAdxt/Rz9zB/IpVDJ45VoiuqwfXR/Gk8Oq1wpM
+         X9Rw8+ZmtCINIYXNVK+HPOs/rMmrS7fwMAFCXCrQznpxMOjs9PwqIbWaOHYosI1Ektjo
+         ys2huWol2tWLQLM4huO3nJZToMjTH2vf1MYa0121xrlDFHvoZSucXlT9BMYIGVIBmAuw
+         YIPgDB8eGNTuvTdyVUOo9IsEfo5JWL809+FZ2BwD6Na5oHqw9IkQ0mKl7Ojk/Lm77NXV
+         pk7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767620901; x=1768225701;
+        d=1e100.net; s=20230601; t=1767624733; x=1768229533;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5pm61tHOxVIMRlo2kMdlbFtWUM1V4vVjtzMYxIxE1KY=;
-        b=Zn5GayZt/pD/uN3bD6XKLpK3C6FTNvGmZ05nZ0X0Td7JZ3bArYvgwX3IMNOWubnNoV
-         AFhpRs4f9MFhkZ72i8wnLx8BOSy3VdDORp+AeytS1Dj4VdT4kk8sPJZ06fh4OjS6u19b
-         9X7rhqSJqJwaXfeJCqGf9cXoQpYjhVGN/gXYq2S4ImJme7AUzoCC7LeUprXsS0pXwwhg
-         Aw7QPlkgWaB7UThVKeMKfP1hO2CLNt1cnebdQqOGX/rH1+DUtz8XjNf7hReIup0F85eg
-         9vhBOKauoy0MjSdW96cdVrvNqCjFT0XLFbYr8TTASJA7d8MlCPJXUA7k++eWPPudzddK
-         yC5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUFZNPxrtj1ELx6wuKowbjIoOsMACIU6WkCdnhrx5gEUMCxIlmPLyOtwvQwapIU5YjJIWT3wQt+g5K64EEJ@lists.infradead.org
-X-Gm-Message-State: AOJu0YysNBFpJqD075HCQN7zEUfzBmjyGtpEHRj9MoJmUW3RIW3ulcAa
-	w3QYGVlecvJUc35WbV9mIYYPCMAGFN2FzJ+nPA6HP/3qpDBKnZ2/kh6y24FNTjHvNa8=
-X-Gm-Gg: AY/fxX4WEgAUMzTRId2JSZqUQn3vaHhzUM1NXw7Akx0EHVsfJ5vLN4iOGu3CIfnkhlx
-	z3708aO1eB/CnDT0nG2G7OrNwKjR+Km6WiwBaajoRUTTq0KTDCY33CZKGmuWlHgbRYJlpgtr4KB
-	UOrhIlkY+gTr29tY4gNWDofu5DTsnJMYp1J4oywtAG3i5AN93TupXQmxDcsBYf9g/gfBAr99a2E
-	1OgMiDhkzSih7Ax6Tv7MMRAa+jKnKUVJ8pnJGalpXkoqT1Wj/sUx4Dm/Fk2niu49N00aq5pT7Qu
-	Oauq7K1LnH641rCTSiun/HbUdDkc5ct9VhcSQmqsGo2iNakqcu4TtLFHTJGObh+wgj3BiGV5q7P
-	3C1Wrc+IQaa+SKgDlKh2dnpwB3ZPFr9zu8h0GLzmAl0Cl0vbH1xaveP6dGWiQVMdjmnEYJhhRWe
-	UZsKQY936gphHVT5MmubX3lhYxTl8yi682R+nqoDwBaJ3dGkb2MarOCpEYizR22Xc=
-X-Google-Smtp-Source: AGHT+IFJH9vjvSt9a1g91foUnNhyxduRLS5b5HEkPDAICFvU5f47KylFUeGSvzLd5WqdKzRrR497ng==
-X-Received: by 2002:a05:6000:40dc:b0:432:5bac:3915 with SMTP id ffacd0b85a97d-4325bac3a19mr59539111f8f.39.1767620901179;
-        Mon, 05 Jan 2026 05:48:21 -0800 (PST)
+        bh=o4f2DQ1WSbAm2u31CVo+GntDagSQYTjRfPhTR4DZPJI=;
+        b=Vu5IQpaZHzjKlbdI1Tnp5wjjTXL3k1/s5yrUh4rj3dwGeGuSYv2RMXWQ95zTVhIElA
+         iwMzUOmVzU2fBbr4mSjJVdP3Zh9Fqhpl/KyFFeTiTd247H9A7KY5Fz/kEqJb81qBdUZZ
+         jlD2z/hQZaXCP/d6UvenLiT94IKa2WC7J2Esofbh7Liu4v6pWzGqdt3wGoDYSXAiVgUJ
+         +vuQWfRDH0/v8Yuu+ocPClw7V40JIPFq2eiFmsEOPbcd1j3zTDsPjCmDQ53rX7YBQQOB
+         rEDGJazLJCABVYZYXtMW1JptnD86DcYHsmUh+JCmRIIVXYJN/ZZqrY0SqnegXCKqLqDV
+         jbBw==
+X-Forwarded-Encrypted: i=1; AJvYcCU7DRXzHfFNwGQtN2d1mUs3k2rwn1TVvNUoYSe2dgQxH7OLSrPVwewmFg4igGASJu+vt8YNzLiQC2Ztb0+g@lists.infradead.org
+X-Gm-Message-State: AOJu0Yyuny+c029K9Q4MjVUf2ejjFQRomtL/C5g8xg1r0QQrlfroDs2R
+	1q0UlP6/YvBEil5JoMXfA4dvvytXuSq4qORJ5mqR0h+uT6SEhGjmJ+anoVAXapuZHDQ=
+X-Gm-Gg: AY/fxX6Lx5WdvgrJbqJ13lGcKO8P8iG80cLZyeewcb7oRDLQC5pnN10r4InnCuL+f+D
+	xMAHGr3rMZRgGs3omuzxN70SbWkyxmOPQDeZFqItlppEKh6I/Ojjr404/8kYQlWdBMcq/Do5WlO
+	BcnQV+wVsZ+Iilo5YXe+gqbSEon/Y9vKEwIeinUDw/kva5OzN3zhXVi8TX4acPHnTeT5cdVPMNr
+	us3bi2P4Y3LhhYUx0nr/VO3vrKrX/V0MW43oHUrqRwSrE50nwguC4/ldNwuz/JygpuW8Rhp9LI9
+	v2YE0JDhtdO0hibeQmyzewRA1FqYr4tgnYVg4SVgLLOMHLNe0mdgJNMF298mg8HQRKxziKHrMuy
+	cgW6zQDGle/9iX44SVIBOSm951pDjHCv6QzwxxHME7Mae0+jSwQQNA8IMsMAShf2Yb3nfrlhzX0
+	M0w3gv/Clk5eejTdN2KWhBOReOO4yetJiLFP9voFuPoO4tc2Izg3fPguit3SqkCj0=
+X-Google-Smtp-Source: AGHT+IF04xwY7BPXpJXoTEi+h7FZBuYpUNOJ0m3AYz1i2MW5UInfMvTq40PaR8bkTy9F4e2TmhOFXw==
+X-Received: by 2002:a05:6000:2c0f:b0:432:aa5a:3916 with SMTP id ffacd0b85a97d-432bc9eddbdmr31074f8f.40.1767624733256;
+        Mon, 05 Jan 2026 06:52:13 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:3d9:2080:d4c1:5589:eadb:1033? ([2a01:e0a:3d9:2080:d4c1:5589:eadb:1033])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324ea1b1b1sm100156855f8f.3.2026.01.05.05.48.20
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324eaa0908sm100780184f8f.31.2026.01.05.06.52.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jan 2026 05:48:20 -0800 (PST)
-Message-ID: <46d049cd-3307-4fbb-b33e-69ba05ded106@linaro.org>
-Date: Mon, 5 Jan 2026 14:48:20 +0100
+        Mon, 05 Jan 2026 06:52:12 -0800 (PST)
+Message-ID: <aac69070-d000-460f-a1fc-4ac5c097c7e5@linaro.org>
+Date: Mon, 5 Jan 2026 15:52:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
-Subject: Re: [PATCH] PCI: meson: Drop unused WAIT_LINKUP_TIMEOUT macro
+Subject: Re: [PATCH RFC v1] drm/meson: venc: add support for HDMI DMT modes up
+ to 3840x2160
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- bhelgaas@google.com, robh@kernel.org, mani@kernel.org,
- kwilczynski@kernel.org, lpieralisi@kernel.org, yue.wang@Amlogic.com
-References: <20260105125625.239497-1-martin.blumenstingl@googlemail.com>
+ linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20251108134236.1299630-1-martin.blumenstingl@googlemail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -110,10 +108,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260105125625.239497-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20251108134236.1299630-1-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260105_054823_793126_3EA049A1 
-X-CRM114-Status: GOOD (  12.14  )
+X-CRM114-CacheID: sfid-20260105_065215_560498_15EBB1AF 
+X-CRM114-Status: GOOD (  21.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,37 +124,64 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: maarten.lankhorst@linux.intel.com, linux-kernel@vger.kernel.org, mripard@kernel.org, tzimmermann@suse.de, tobetter@gmail.com, linux-arm-kernel@lists.infradead.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 1/5/26 13:56, Martin Blumenstingl wrote:
-> Commit 113d9712f63b ("PCI: meson: Report that link is up while in ASPM
-> L0s and L1 states") removed the waiting loop in meson_pcie_link_up()
-> making #define WAIT_LINKUP_TIMEOUT now unused.
+On 11/8/25 14:42, Martin Blumenstingl wrote:
+> Commit 5d0bfe448481 ("drm/meson: Add HDMI 1.4 4k modes") added support
+> for HDMI 1.4 4k modes, which is what TVs need. For computer monitors
+> the code is using the DMT code-path, which ends up in
+> meson_venc_hdmi_supported_mode(), which does not allow the 4k modes yet.
 > 
-> Drop the now unused variable to keep the driver code clean.
+> The datasheet for all supported SoCs mentions "4Kx2K@60". It's not
+> clear whether "4K" here means 3840 or 4096 pixels.
+> 
+> Allow resolutions up to 3840x2160 pixels (including middle steps, such
+> as WQHD at 2560x1440 pixels) so they can be used with computer monitors
+> (using the DMT code-path in the driver).
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->   drivers/pci/controller/dwc/pci-meson.c | 1 -
->   1 file changed, 1 deletion(-)
+> I'm sending this as RFC as I'm hoping to get some comments on the
+> "4Kx2K@60" note from the datasheets.
 > 
-> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> index a1c389216362..0694084f612b 100644
-> --- a/drivers/pci/controller/dwc/pci-meson.c
-> +++ b/drivers/pci/controller/dwc/pci-meson.c
-> @@ -37,7 +37,6 @@
->   #define PCIE_CFG_STATUS17		0x44
->   #define PM_CURRENT_STATE(x)		(((x) >> 7) & 0x1)
+> I have tested it myself on a GXL Le Potato board using a computer
+> monitor at 2560x1440 pixels.
+> 
+> This is the spiritual successor of a patch titled "drm/meson: add
+> support for 2560x1440 resolution output" from [0]
+> 
+> [0] https://lore.kernel.org/linux-amlogic/20250927130239.825060-1-christianshewitt@gmail.com/
+> 
+> 
+>   drivers/gpu/drm/meson/meson_venc.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+> index 3bf0d6e4fc30..4abd0c09b442 100644
+> --- a/drivers/gpu/drm/meson/meson_venc.c
+> +++ b/drivers/gpu/drm/meson/meson_venc.c
+> @@ -868,10 +868,10 @@ meson_venc_hdmi_supported_mode(const struct drm_display_mode *mode)
+>   			    DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC))
+>   		return MODE_BAD;
 >   
-> -#define WAIT_LINKUP_TIMEOUT		4000
->   #define PORT_CLK_RATE			100000000UL
->   #define MAX_PAYLOAD_SIZE		256
->   #define MAX_READ_REQ_SIZE		256
+> -	if (mode->hdisplay < 400 || mode->hdisplay > 1920)
+> +	if (mode->hdisplay < 400 || mode->hdisplay > 3840)
+>   		return MODE_BAD_HVALUE;
+>   
+> -	if (mode->vdisplay < 480 || mode->vdisplay > 1920)
+> +	if (mode->vdisplay < 480 || mode->vdisplay > 2160)
+>   		return MODE_BAD_VVALUE;
+>   
+>   	return MODE_OK;
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
