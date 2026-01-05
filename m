@@ -4,99 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3337AC2A07A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 09:14:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42531C79F8A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 12:28:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Vy7yRtHhhYxR7riK6TsOC8l4/qzmYcQXXP4dfoKjzYw=; b=I4viAJP1Qs/NuA
-	zSkSuTUhO/+XeDtBvqwITpMLD+Onvnh4Vxtbleaf3UDuADgk3XxAOQEFKqEN06/X2sgP4O626j9aH
-	2S6AtNnTAh6ME7bHTYsI0PKKnskyjvkQ24A1+3wHPIM3Mj452ozC+qEYcHNa42HsZ4g3dClkqaFK1
-	BOCuTl0IpagXPfthAAjpr2FI7cl6ZllM92mlyun5oBaIDFvgR/1lMOMFT7GH3//ZHvfK9QgfsX8oE
-	nBq8fUbB0gKulmTdW3nK+kF3jX75Lqd5hKfXpw70uIrm9IcOocKHDfj6Bq/rTnAa8H7RZSrvjwoj9
-	QcVFnAVh/DLRNQ3+IxEQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=3Kl5R6mG8IljRJfnNdtcUvjLjUnz1G9NZ9EEMffWvt4=; b=OvkxbLu82ht6mj
+	V5qBQo3OdPTe/Ax+eIq73q+Y324bioexY0p+dUa/8z2DY0vhOFdB9DHNLLYXhsF7fD7N0wnMI1GjV
+	l6psBMMORI2JV8buAwiC7rZOk1Gc+hln9eIem+JoPaV8KcXbYt9zavfqLoWb4jGMeTwi09Ka5rOeT
+	Yaz7oMUQtyN5nLFALOilbitRda7wTchuu6za9VVaVKe+VPpIcLFEyEWDJk3feGWUemDx5QVz+wB3u
+	01IaecnL50IcZq6HAXi16ZQLYSHnyIlkL/kY0bcvP2MbS+rAcAV51Wv8IOIgvxRYv7cTkqu4k0EY+
+	ijvP1ACPn8ofCYxug3Yg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vcgfg-0000000B3Cx-1DrE;
-	Mon, 05 Jan 2026 09:14:40 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1vcjh1-0000000BHGB-2R1O;
+	Mon, 05 Jan 2026 12:28:15 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vcgfc-0000000B3C8-1opU
+	id 1vcjgy-0000000BHEq-2M8E
 	for linux-amlogic@lists.infradead.org;
-	Mon, 05 Jan 2026 09:14:38 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-47d59da3d81so6934635e9.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 05 Jan 2026 01:14:35 -0800 (PST)
+	Mon, 05 Jan 2026 12:28:14 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60585FWv979470
+	for <linux-amlogic@lists.infradead.org>; Mon, 5 Jan 2026 12:28:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=FhnBgqCd894h4xDDyalypD
+	S1B5tbKhHsA76XEw2zZxU=; b=QPZyalOnblB4vaPsgrD/LCt8SvD882UV71zW0z
+	XdlhiHYZwBkV7qbOm/nIGDNyp1udmWPc/kfJhuFovga4cXZILGzTRMCrnd9sGi9G
+	cqpDsVGpjjO6wUbZIegEEwTOGky17bZME8R++zkstSucabaNjDewwvMyAcy5pSbl
+	vP8wXu4nQMBeTHu0GeVH9XN8MO07EqDd4LIN3BbaAnE57IAJE/AtaYt4W8e209IB
+	OI53NTZVNBTkoU8Yh6A/xWlqDS+Uu6GUT0AfohJ3Cnyv6jz/4hwF37US6bUh6l9y
+	qPFVFC2m5lpT/lmtabxI21tm+4/wuCPim44/h0NY6/1++Ifg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bg9ftgr33-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Mon, 05 Jan 2026 12:28:10 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a31087af17so315766935ad.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 Jan 2026 04:28:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1767604474; x=1768209274; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=miCvpSGVqVVCNMF4tIx1RWrVqnyi6qhzDTvcjYnjzjQ=;
-        b=2bZHY2chWHb9R7o8s8kb3GAgXI8p/4L1Hin9f++ybe1DZptJJun0VsX5K+u75XzDaX
-         XEgxg8IWtqN+YYkdtjw8PtgLccdQKoYBTM/fJDbcxrxe0VAGzjDdGVV2OJHoW60lz3UC
-         Xl13sbSj8kv1//gGzw+hw8/0acBPE7A/fcbAJrZeunfJAXom9XLwZyKMk6c2RbviRPCF
-         wL86RlPVOtzOczapbhUwGG+g6izWMl6EFqeVJYn5zIzvtkgoquHktKyadA1PgnzXdsdh
-         EWpq2D8MZ7H9grb6PKSnlGEMbWRQcKiBhxF99accwGIYdZqTnic09N9sZStznSo2wffr
-         fZfg==
+        d=oss.qualcomm.com; s=google; t=1767616090; x=1768220890; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FhnBgqCd894h4xDDyalypDS1B5tbKhHsA76XEw2zZxU=;
+        b=CgMkQ6PMxIiZDgNQyHLnNf1hopZND9MjzlSt39XwMe9dPHlyXjeS2t1FBt3i1g6NaH
+         UaPgqLVVxeN9MZK9rQ4zIxXRroBOK84Gyhkgu9qGnRpdagJva+MFJZn/enDYDRBhBC8c
+         5Op/lpP6f4XFD3czsH/v5ShLjVDuMmOq4p3W18GO0+eoYRcMneqpCXe7Rt6tEKhO4sC5
+         SUp9we0Wn3Rlfkr4MKIkKkrtzYfErJZ9LFt4z8mgNgX6ALEeC/nGadyuBJNgpY1Rz/ox
+         KgKhzRtlQYtuEuCU6PpuGrltcWOD1/33LQ5GRwQvAYiw7sGEpvHkbuPjAB2pJYXvk526
+         ZeNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767604474; x=1768209274;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=miCvpSGVqVVCNMF4tIx1RWrVqnyi6qhzDTvcjYnjzjQ=;
-        b=aLjP2Epc4NGbhDDPCrrXOgz+fIKGxPY32G0kF8F9i1NgLhT5o5nsXTN5Eai4sAQzvk
-         kUGcQX9TzwYmvyspcZSMt0qDvkm18y5aoz4+M2xU05QuMnKyMWuDiwi+3u9A1PPNdQsK
-         MipG6F+53lV52MYWJ8RooMRHlXyQEps53VGEffl8NliNRyQsWtgv+fEsZkdu4OeYyEh4
-         WDrP8eR52cfHiUSJ83ODR432Tn6pubdDj+dwKZjZ5OQlX/jB8nD480IYcBlPCnvK/pXE
-         rXcAl7VZQIQWV8eYx2eXdl18pVI56rAQ1SSDr+vWkKgRI/TjwtnLwT6VfNihGDbhj0SR
-         8zwg==
-X-Forwarded-Encrypted: i=1; AJvYcCVQSFtgioltDER2O7w1nVvXd5Sf/XR2wsX84+SVuv3UAhQTLam5O5s2fy0BLVrOEOzsd/mKt2t414rlLmkj@lists.infradead.org
-X-Gm-Message-State: AOJu0YxM3PL0qlysZ8WTBujvlRIKIDr2g7SJBPEjfz01/ypsYuoBQ7L0
-	kIklS79ZMVbVhKfwvzm9JELUWcLFHuB+QFf+zW1aJ0/rGH2pOmSf6mljIgK/4MJC+KY=
-X-Gm-Gg: AY/fxX72BB9B8A/bcAdJ00nQMBMqPgDzuyLRaZkduWg6shV9L4Pt1lu72Ry0pCmmYpd
-	gsfqNaBrFojA45AYwJ1fxTacsGShO2fIDWFEyyyOl2mbBHRUqV+jQ0qs2xE5QqQeAxyovX33dxe
-	krQ3RCsq1YrIRGdFS24Sm4k+eAttMxfsa/LR6UixKtIy5P5f3XbyCPi5xR7B7r+L9bArZulpZ34
-	IufLtstP8A6LBUbxz0Bx0ATvOsWCYgkFKbqJYHDKncZs6rGtS/OE/hz4sM+gaFN4EPejw9tZNFp
-	OWVU8Sz9UUUSyYQ8ShKhlPHRSal2yCLuzIwtcC3a6SbvIK/HmylE/Tn+slLaLrQbPqXjUvpxW6O
-	YI2hKMjzDTfwDwYRlhEeZkAsk8XVB9IbUWZBgsmmCyCT70PCHbjPSaHl/bcySkZyjDnQyXASK7I
-	UKf+foNxvq
-X-Google-Smtp-Source: AGHT+IHg/Mv8ok8g3lfkv+f6Gs1iCHZthZ9+dvCaKIuCn41ycCh3KmnkNqkRkT2jAbCijygn0KRwvA==
-X-Received: by 2002:a05:600c:4704:b0:46f:a2ba:581f with SMTP id 5b1f17b1804b1-47d6ba8900dmr100501615e9.16.1767604474097;
-        Mon, 05 Jan 2026 01:14:34 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:b336:bcf:8603:f6e1])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-47d6d143f6asm147207955e9.6.2026.01.05.01.14.33
+        d=1e100.net; s=20230601; t=1767616090; x=1768220890;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FhnBgqCd894h4xDDyalypDS1B5tbKhHsA76XEw2zZxU=;
+        b=QQrFmmaYZgBvCHXdyLnE23EWTNts4mvNLVgk99w5C1Bt/FJR8a03xzgTL0qBdT4NGV
+         6sZH2I6SXIYbWtRE3KaiBvOSbPRXlkJrnVheWOwM5hkbNy8+ga66ydd3DXAJFDdmT86l
+         UDZt46NpkoLXybLn60fm51idxZkSLOoYo0zpr/s8azVd9r1IzFxdu7XDhX3ZCA6n415X
+         s9cwMd5+DzqDWUqUR4YbRvDsJQDfgB7Zto23Sb1XiGLkRRqqUNxQ7gdmDSXShnKm+hnH
+         3NHhjO38QohYUzT/Jra6axwBorLr11r81KikaAWXykX39QscwwRqTQ5+AqF0izuecz8b
+         d69g==
+X-Forwarded-Encrypted: i=1; AJvYcCUyh7xJHUR/6Fhl151w74i3BDI3ZEojCN9RZ0PAfUjEtC9O7FYvYl0NH/Wjecqk+AVQDjS9jmpLitt2rcF5@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz0Uo679Myn/Wj079ZZp/wbG2k5MK+LwDV1shYFJ9UtIosRCGi4
+	nNowfIT9zUBnfsW4d4ufa6sF7ZAQNLePn3GBLkqiG9hzpHwv9SxHgEakYulaAAlv3qe7bBC56Zn
+	p34OiBoOlyFkzcKEQoMr7zn6C0s96zg4NIslQjVUNV1CKgXRlcfbvOAxskTuNDMbJyLtH4zMB2A
+	==
+X-Gm-Gg: AY/fxX4fYp307mn7bXbOhwkwL6CHCWb5cF99rDP8pCqDl2PJqgqbcLMRST9GkPZcFFc
+	aXMFrDATHG/AqSEn2eTSI+QnCUVbrA+f0A7NSDWlewhKZkZKlYyuRSiQgjMQTydf+xqqSDq5L+o
+	HAfeByJ9X/x02Gm5Sf/Rbffn16yqRrFaBfcA/YKoIpaVcT0pppRVl/PFMW7EXQYsRhLhlYm7MH6
+	GsKvJCRTpL+xaxh9R6PAP2QBzFKntaWctAyafp72WX8KmDbbI23K1/K7U/B9C8ytmbL78pp6Pk+
+	I3hIqQS2up9TPMmDviqnyXb38IejdXzHWh9rX2YdYfZ9bUy1OVVo7BGVUO2GATdj8/s6b9VUbUc
+	qAMWZN0gRNBZ9S9s7V54rZ4K3DwiiDDhG6mA=
+X-Received: by 2002:a17:902:e5ca:b0:29e:bf7b:7f36 with SMTP id d9443c01a7336-2a2f2a41a08mr391761005ad.58.1767616089411;
+        Mon, 05 Jan 2026 04:28:09 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IET+z4gvln2AUwlbFjFw+MzhBkeuBLY3bqxJej2pC+/8tWtSlxole94SJbnplA8xuBW7zdQcg==
+X-Received: by 2002:a17:902:e5ca:b0:29e:bf7b:7f36 with SMTP id d9443c01a7336-2a2f2a41a08mr391760755ad.58.1767616088758;
+        Mon, 05 Jan 2026 04:28:08 -0800 (PST)
+Received: from hu-sumk-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3c82a10sm448109275ad.26.2026.01.05.04.27.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 01:14:33 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
-  Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
-  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  linux-kernel@vger.kernel.org,
-  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 5/8] clk: amlogic: Add A5 clock peripherals
- controller driver
-In-Reply-To: <425ebeb4-8001-4493-882b-dfee87ed82c8@amlogic.com> (Chuan Liu's
-	message of "Tue, 23 Dec 2025 20:27:39 +0800")
-References: <20251028-a5-clk-v4-0-e62ca0aae243@amlogic.com>
-	<20251028-a5-clk-v4-5-e62ca0aae243@amlogic.com>
-	<1jpl857e2w.fsf@starbuckisacylon.baylibre.com>
-	<425ebeb4-8001-4493-882b-dfee87ed82c8@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Mon, 05 Jan 2026 10:14:31 +0100
-Message-ID: <1jldice808.fsf@starbuckisacylon.baylibre.com>
+        Mon, 05 Jan 2026 04:28:08 -0800 (PST)
+From: Sumit Kumar <sumit.kumar@oss.qualcomm.com>
+Subject: [PATCH 0/2] PCI: dwc: Add multi-port controller support
+Date: Mon, 05 Jan 2026 17:57:53 +0530
+Message-Id: <20260105-dt-parser-v1-0-b11c63cb5e2c@oss.qualcomm.com>
 MIME-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIAEmuW2kC/3WOy24DIQxFfyViXSJsMBm66n9UXQDjSZCaTArpq
+ FU0/15IF53msbF0LZ9zfRaFc+IinldnkXlKJY2HGuBpJeLOH7YsU1+zQIUECpTsT/Loc6Wk6wK
+ pyNANEUS9P2Ye0tfF9fpW8y6V05i/L+oJ2vbXAmAWlgmkkp1G6nUcYBP4ZSxl/fHp3+O436/ra
+ O4K2tqO12Ak6513JpAZbsH2xYR/zfhfgE1gbPSBSTOEBwK9FOilQFeB7gk1RUIi++j1Brpr0BA
+ RO2vYdfFO8zzPPxbKniedAQAA
+X-Change-ID: 20251010-dt-parser-98b50ce18fc1
+To: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@Amlogic.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Samuel Holland <samuel.holland@sifive.com>,
+        Chuanhua Lei <lchuanhua@maxlinear.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Pratyush Anand <pratyush.anand@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev,
+        linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Sumit Kumar <sumit.kumar@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767616078; l=1933;
+ i=sumit.kumar@oss.qualcomm.com; s=20250409; h=from:subject:message-id;
+ bh=oOdjw5Byp9hHCPO/ockAN81t86SXy2F/vEnb3wQ8Fiw=;
+ b=WU8lb1IRlgnKDoA9DoKTUmSQTgI6f7zeHzmNW0Tkt7aRJYhehUZTwlR+K5OXYgJ0gdfAFYhjX
+ qSneDuM7UF2AaUjsAqusdejjuvDVr2QpTc2oXVQufADAoi3I1PrM2Fo
+X-Developer-Key: i=sumit.kumar@oss.qualcomm.com; a=ed25519;
+ pk=3cys6srXqLACgA68n7n7KjDeM9JiMK1w6VxzMxr0dnM=
+X-Proofpoint-GUID: GY14101GWzPKe3IUEhHUZFovxyPNNcYW
+X-Authority-Analysis: v=2.4 cv=GboaXAXL c=1 sm=1 tr=0 ts=695bae5a cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=k2kXPNx1VYhKFT5-HLMA:9
+ a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: GY14101GWzPKe3IUEhHUZFovxyPNNcYW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA1MDEwOSBTYWx0ZWRfX9O4/AQqUPLpl
+ aKBnnPNz0B8kf3YGuciqEoti70bsYn00N1CqjQIR5LuXkEGroSt4CQafzvsNHSCnljn/777ZDTQ
+ 2O2yzD5m4ALrexhgAKcaisNh4C3rOlPEnu3rO9bTeu2817MoOmS7oIsb70IZeC7cL7DNlZ73xZR
+ H9Tl768jRNwouYFhPQq9+apUoCn4z3o7msW7/fdiaWiBvGTZxvRqIQ13/SHmV4ftzJPOuF/KEoo
+ +FhXB4N3tp1bJwL1uHwCAJZpu4t0inF+RoYbFfPcpzxJ40bJkmkKSCCcJft0iQPmV2SOeeJ6yX+
+ tjTRv/s6X+bH48RH6xvqEL8jSxiUs6eil7Ru6xI9Ijem4E2OB8yk7IoRGVHA5xNl6LZyl8AzVnT
+ iUvfqRbsaZnrSoUEGfckbdENpK54SKve9BLiPjp2MIaQlPl8+GGGqiEigOt3Azxy3f4sSy+N6Ae
+ grvLS4M9dABEy1olPRg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-05_01,2025-12-31_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 phishscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501
+ suspectscore=0 impostorscore=0 spamscore=0 malwarescore=0 clxscore=1011
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601050109
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260105_011436_495783_B6183D8E 
-X-CRM114-Status: UNSURE (   5.57  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260105_042812_713041_B50E0BB5 
+X-CRM114-Status: GOOD (  13.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,19 +177,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gbWFyLiAyMyBkw6ljLiAyMDI1IGF0IDIwOjI3LCBDaHVhbiBMaXUgPGNodWFuLmxpdUBhbWxv
-Z2ljLmNvbT4gd3JvdGU6Cgo+Pj4gKwo+Pj4gKyNkZWZpbmUgQTVfQ09NUF9TRUxfV0lUSF9UQUIo
-X25hbWUsIF9yZWcsIF9zaGlmdCwgX21hc2ssIF9wZGF0YSwgX3RhYmxlKSBcCj4+IE5vLCBhZGp1
-c3QgeW91ciBtYWluIG1hY3JvLgo+PiAKPgo+IERvIHlvdSBtZWFuIHRvIHVuaWZ5IHRoaXMgaW50
-byBhIHNpbmdsZSBtYWNybyBoZXJlPyBMaWtlIHRoaXM6Cj4KPiAjZGVmaW5lIEE1X0NPTVBfU0VM
-KF9uYW1lLCBfcmVnLCBfc2hpZnQsIF9tYXNrLCBfcGRhdGEsIF90YWJsZSkgXAo+ICAgIE1FU09O
-X0NPTVBfU0VMKGE1XywgX25hbWUsIF9yZWcsIF9zaGlmdCwgX21hc2ssIF9wZGF0YSwgX3RhYmxl
-LCAwLCAwKQo+CgpZZXMsIHBvc3NpYmx5CgotLSAKSmVyb21lCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAps
-aW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+This series adds support for multi-port PCIe controllers in the DesignWare
+driver. Currently, the driver only supports a single Root Port with
+controller-level properties, which doesn't work for multi-port controllers
+where each port may have different configurations.
+
+This series introduces a per-port structure and parsing API that allows 
+each Root Port to be configured independently via pcie@N child nodes in
+device tree, while maintaining backward compatibility with existing 
+single-port bindings.
+
+Signed-off-by: Sumit Kumar <sumit.kumar@oss.qualcomm.com>
+---
+Sumit Kumar (2):
+      PCI: API changes for multi-port controller support
+      PCI: dwc: Add multi-port controller support
+
+ drivers/pci/controller/dwc/pci-exynos.c           |   4 +-
+ drivers/pci/controller/dwc/pci-imx6.c             |  15 +-
+ drivers/pci/controller/dwc/pci-meson.c            |   1 -
+ drivers/pci/controller/dwc/pcie-designware-host.c | 168 ++++++++++++++++++----
+ drivers/pci/controller/dwc/pcie-designware.c      |  32 ++---
+ drivers/pci/controller/dwc/pcie-designware.h      |  17 ++-
+ drivers/pci/controller/dwc/pcie-fu740.c           |   6 +-
+ drivers/pci/controller/dwc/pcie-intel-gw.c        |  13 +-
+ drivers/pci/controller/dwc/pcie-qcom-common.c     |   5 +-
+ drivers/pci/controller/dwc/pcie-qcom-ep.c         |   4 +-
+ drivers/pci/controller/dwc/pcie-qcom.c            |   4 +-
+ drivers/pci/controller/dwc/pcie-rcar-gen4.c       |  13 +-
+ drivers/pci/controller/dwc/pcie-spear13xx.c       |   5 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c        |   4 +-
+ drivers/pci/of.c                                  |   6 +-
+ drivers/pci/pci.h                                 |   2 +
+ 16 files changed, 226 insertions(+), 73 deletions(-)
+---
+base-commit: 097a6c336d0080725c626fda118ecfec448acd0f
+change-id: 20251010-dt-parser-98b50ce18fc1
+
+Best regards,
+-- 
+Sumit Kumar <sumit.kumar@oss.qualcomm.com>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
