@@ -4,67 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0C08C79FA7
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 17:26:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 005B9C79FAF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 17:26:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
 	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=HNGwi7rMJUrWWv/fUoI5H5jSKNdboFl7uYiZBvpnxGE=; b=EmAD2FzuK6TzvW
-	1dRemIpXlGoX4hd8LgAcJPlx87ywYiY4yhrVgTzWcm3OclwVlXfU5d+5u6apqEDTwxZlXS+fKc1Cc
-	Vb673v1d8nn8+o6mAvvC+kzc+ZJ0FUOQh/M7o6DQ9DgpG5PQan2GupdN5pgEI0iHABfNciGMVVs33
-	yV8baS/HFbEnGy0N+U6xbHgZgi/mt+yF+clEX8k/CQUco29cF+aGBBeObs7FR9gHGuL2Rl3sPWEpy
-	SPwp00J748NCsHAGKa9s0AaGusCR9Lu/lbdUOtKisjIE/PJvo7TxzpoBVaIPqMBgkGSxA0LC/XdkI
-	YZ6lhJ6OckgZQwAOltZg==;
+	List-Owner; bh=n/W4kmyfNPXk5CUTo8m5XQxMJvpB/o22URb3uq60exo=; b=4NUQHAxz3or0yX
+	g7iYlM60mUh8OZfk5ZnBpM+dmhJ5IJYuOA/g7CQm9mcK9MH6UGz8UnLALPOOxeU4O9QFcHH33xHTz
+	98auyJq/MeGCqSGffvStDgeVkFsqjYfO6+VDz39ocacctaqShP/+B9zZZtznZMJ8S8cWZovQChMdG
+	lQ3iyOwTAHY3clNeBaom/7lm5QvIbMtxw/+ghQfwTWUpaBRIFnwI1lsHeJL7Qv30Qd6uC0jYbeXUV
+	Z43vfA0+i+qxbSVL83xyqhRn/dIQC36uJqmZAcRVxxFqprbh9stFX+YUmWXb7C516GfK7wBekDyBJ
+	lEA8JDwwwDlXEAIVx1Sg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vcoKz-0000000BpIi-2LZP;
-	Mon, 05 Jan 2026 17:25:49 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1vcoLS-0000000BpPe-0IB0;
+	Mon, 05 Jan 2026 17:26:18 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vcoKx-0000000BpI1-0Jjw;
-	Mon, 05 Jan 2026 17:25:48 +0000
+	id 1vcoLQ-0000000BpOe-0JoP;
+	Mon, 05 Jan 2026 17:26:17 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2C4D744110;
-	Mon,  5 Jan 2026 17:25:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E26B1C116D0;
-	Mon,  5 Jan 2026 17:25:44 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 857B143A4A;
+	Mon,  5 Jan 2026 17:26:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45EA3C116D0;
+	Mon,  5 Jan 2026 17:26:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767633945;
-	bh=yECq9Pg5qwIQCTGjYI+cgz+yczoMQEDsLhbkf0Ix9/g=;
+	s=k20201202; t=1767633974;
+	bh=QRhjmAuGgDI4aNSnURCOuJV5ccPObzRNDO3W9guQetA=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=AofVgm4INyuCrEfqjmcCQK+Rz+kAJlDEzMrErH+w9xwVYvVFiP/LJ3/EPtoo5xP2a
-	 WDvS81SE99+mRj/6WHQV8U7y3tB/BQGPzMiskZXg4OpEgI/WytPH28zCjDerp85LHW
-	 kXbpGYZo0lxcZDDJmZltcdjyvVxs2SFOAbeg/MZfNzFGfi9LrI4rnf5TzrsSSin8f8
-	 oQK0hySnBbGyGIGoWp74sItIIsI5ckyt4IzRRGTzQDf5fTo+JsyqkLK3fHo85NQSbj
-	 oqeA/GjJp4p32ReA4/rcJ7qf432O1OwnEVqfoeMfjkHFpbpgNX+v4w3PkVvKEXvgGX
-	 lShUYdwzpVzRA==
-Date: Mon, 5 Jan 2026 11:25:43 -0600
+	b=FKOtaPGUO2G25GOPhqyxd4OfRl7khmGTwHNfQB/l7GSxRtsRSiuBGdG73yMP4jLnI
+	 penFOUDTzfWGEB7LWAgYIGod3IsPAAT2jlFiJC/0s8XUOBQKLeDAKjHmo4SwlhCYuF
+	 TDuYxrk8+zUXE1afMIrSneo8Fsyv+5GsMefvxADfHuDN7FFIlZ96j/A7+4KWuAGZpJ
+	 HNFVhPTDiyEGJxGKGL66d6k93ioNkDpjmWcSlhdD4fTmkSatAEzA29tDjSv15TQ/mj
+	 4ZPNClHlJnXLZYWEF7BsCI7k/jUagh0KgX2SUmbpBadFFpVWzrk28rQjdDT40Z07Dm
+	 ku47N3Dd4Slgw==
+Date: Mon, 5 Jan 2026 11:26:13 -0600
 From: Bjorn Helgaas <helgaas@kernel.org>
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
-	Yue Wang <yue.wang@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Linnaea Lavia <linnaea-von-lavia@live.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-	stable@vger.kernel.org, Ricardo Pardini <ricardo@pardini.net>
-Subject: Re: [PATCH] PCI: meson: Remove meson_pcie_link_up() timeout,
- message, speed check
-Message-ID: <20260105172543.GA320987@bhelgaas>
+Cc: linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	bhelgaas@google.com, robh@kernel.org, mani@kernel.org,
+	kwilczynski@kernel.org, lpieralisi@kernel.org, yue.wang@amlogic.com
+Subject: Re: [PATCH] PCI: meson: Drop unused WAIT_LINKUP_TIMEOUT macro
+Message-ID: <20260105172613.GA322262@bhelgaas>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <CAFBinCAPpiq=M00ZQXAB4Pu2Myjo8gpXC7DByKkGN6Z_Ahqafg@mail.gmail.com>
+In-Reply-To: <20260105125625.239497-1-martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260105_092547_137927_59081AEA 
-X-CRM114-Status: GOOD (  18.67  )
+X-CRM114-CacheID: sfid-20260105_092616_137754_F523CF5A 
+X-CRM114-Status: GOOD (  15.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,47 +67,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBKYW4gMDUsIDIwMjYgYXQgMDU6NDk6MDBQTSArMDEwMCwgTWFydGluIEJsdW1lbnN0
-aW5nbCB3cm90ZToKPiBPbiBUaHUsIERlYyAxOCwgMjAyNSBhdCA3OjA24oCvQU0gTWFuaXZhbm5h
-biBTYWRoYXNpdmFtCj4gPG1hbml2YW5uYW4uc2FkaGFzaXZhbUBvc3MucXVhbGNvbW0uY29tPiB3
-cm90ZToKPiA+Cj4gPgo+ID4gT24gTW9uLCAwMyBOb3YgMjAyNSAxNjoxOToyNiAtMDYwMCwgQmpv
-cm4gSGVsZ2FhcyB3cm90ZToKPiA+ID4gUHJldmlvdXNseSBtZXNvbl9wY2llX2xpbmtfdXAoKSBv
-bmx5IHJldHVybmVkIHRydWUgaWYgdGhlIGxpbmsgd2FzIGluIHRoZQo+ID4gPiBMMCBzdGF0ZS4g
-IFRoaXMgd2FzIGluY29ycmVjdCBiZWNhdXNlIGhhcmR3YXJlIGF1dG9ub21vdXNseSBtYW5hZ2Vz
-Cj4gPiA+IHRyYW5zaXRpb25zIGJldHdlZW4gTDAsIEwwcywgYW5kIEwxIHdoaWxlIGJvdGggY29t
-cG9uZW50cyBvbiB0aGUgbGluayBzdGF5Cj4gPiA+IGluIEQwLiAgVGhvc2Ugc3RhdGVzIHNob3Vs
-ZCBhbGwgYmUgdHJlYXRlZCBhcyAibGluayBpcyBhY3RpdmUiLgo+ID4gPgo+ID4gPiBSZXR1cm5p
-bmcgZmFsc2Ugd2hlbiB0aGUgZGV2aWNlIHdhcyBpbiBMMHMgb3IgTDEgYnJva2UgY29uZmlnIGFj
-Y2Vzc2VzCj4gPiA+IGJlY2F1c2UgZHdfcGNpZV9vdGhlcl9jb25mX21hcF9idXMoKSBmYWlscyBp
-ZiB0aGUgbGluayBpcyBkb3duLCB3aGljaAo+ID4gPiBjYXVzZWQgZXJyb3JzIGxpa2UgdGhpczoK
-PiA+ID4KPiA+ID4gWy4uLl0KPiA+Cj4gPiBBcHBsaWVkLCB0aGFua3MhCj4gPgo+ID4gWzEvMV0g
-UENJOiBtZXNvbjogUmVtb3ZlIG1lc29uX3BjaWVfbGlua191cCgpIHRpbWVvdXQsIG1lc3NhZ2Us
-IHNwZWVkIGNoZWNrCj4gPiAgICAgICBjb21taXQ6IDExNjQ3ZmM3NzJlOTc3Yzk4MTI1OWE2M2M0
-YTJiN2UyYzMxMmVhMjIKPgo+IE15IHVuZGVyc3RhbmRpbmcgaXMgdGhhdCB0aGlzIGlzIHF1ZXVl
-ZCBmb3IgLW5leHQuCj4KPiBSaWNhcmRvIChDYydlZCkgcmVwb3J0ZWQgdGhhdCB0aGlzIHBhdGNo
-IGZpeGVzIFBDSSBsaW5rIHVwIG9uIGhpcwo+IE9kcm9pZC1IQzQuICBJcyB0aGVyZSBhIGNoYW5j
-ZSB0byBnZXQgdGhpcyBwYXRjaCBpbnRvIC1maXhlcywgc28gaXQKPiBjYW4gYmUgcHVsbGVkIGJ5
-IExpbnVzIGZvciBvbmUgb2YgdGhlIG5leHQgLXJjPwoKVGhlIEZpeGVzIHRhZyBpcyBmb3IgOWMw
-ZWY2ZDM0ZmRiICgiUENJOiBhbWxvZ2ljOiBBZGQgdGhlIEFtbG9naWMKTWVzb24gUENJZSBjb250
-cm9sbGVyIGRyaXZlciIpLCB3aGljaCBhcHBlYXJlZCBpbiB2NS4wIGluIDIwMTksIHNvIGl0Cndh
-cyBhIGxhdGVudCBpc3N1ZSBzaW5jZSB0aGVuLiAgdjUuMCBrZXJuZWxzIGJ1aWx0IHdpdGgKQ09O
-RklHX1BDSUVBU1BNX1BPV0VSU0FWRT15IG9yIENPTkZJR19QQ0lFQVNQTV9QT1dFUl9TVVBFUlNB
-VkU9eQpzaG91bGQgc2hvdyB0aGUgc2FtZSBwcm9ibGVtLgoKQnV0IEkgdGhpbmsgdGhhdCBsYXRl
-bnQgaXNzdWUgYmVjYW1lIG9idmlvdXMgd2hlbiB0aGUgZm9sbG93aW5nIHR3bwpjb21taXRzIGVz
-c2VudGlhbGx5IG1hZGUgQ09ORklHX1BDSUVBU1BNX1BPV0VSU0FWRSB0aGUgZGVmYXVsdCBmb3IK
-ZGV2aWNldHJlZSBwbGF0Zm9ybXM6CgogIGYzYWMyZmYxNDgzNCAoIlBDSS9BU1BNOiBFbmFibGUg
-YWxsIENsb2NrUE0gYW5kIEFTUE0gc3RhdGVzIGZvciBkZXZpY2V0cmVlIHBsYXRmb3JtcyIpCiAg
-ZGY1MTkyZDliYjBlICgiUENJL0FTUE06IEVuYWJsZSBvbmx5IEwwcyBhbmQgTDEgZm9yIGRldmlj
-ZXRyZWUgcGxhdGZvcm1zIikKClRob3NlIHR3byBjb21taXRzIGFwcGVhcmVkIGluIHY2LjE4LCBz
-byBJIHRoaW5rIHdlIGNhbiBtYWtlIGEgY2FzZQp0aGF0IGl0IGZpeGVzIGEgcmVjZW50IHByb2Js
-ZW0gYW5kIGlzIHRodXMgbWF0ZXJpYWwgZm9yIHRoZSBjdXJyZW50CnJlbGVhc2UuCgpNb3ZlZCB0
-byBmb3ItbGludXMgZm9yIHY2LjE5IGFuZCBzcXVhc2hlZCB5b3VyIHVudXNlZApXQUlUX0xJTktV
-UF9USU1FT1VUIGZpeC4gIFRoYW5rcyEKCkJqb3JuCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
-bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Mon, Jan 05, 2026 at 01:56:25PM +0100, Martin Blumenstingl wrote:
+> Commit 113d9712f63b ("PCI: meson: Report that link is up while in ASPM
+> L0s and L1 states") removed the waiting loop in meson_pcie_link_up()
+> making #define WAIT_LINKUP_TIMEOUT now unused.
+> 
+> Drop the now unused variable to keep the driver code clean.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+Squashed into 113d9712f63b (which is now on for-linus for v6.19),
+thanks!
+
+> ---
+>  drivers/pci/controller/dwc/pci-meson.c | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+> index a1c389216362..0694084f612b 100644
+> --- a/drivers/pci/controller/dwc/pci-meson.c
+> +++ b/drivers/pci/controller/dwc/pci-meson.c
+> @@ -37,7 +37,6 @@
+>  #define PCIE_CFG_STATUS17		0x44
+>  #define PM_CURRENT_STATE(x)		(((x) >> 7) & 0x1)
+>  
+> -#define WAIT_LINKUP_TIMEOUT		4000
+>  #define PORT_CLK_RATE			100000000UL
+>  #define MAX_PAYLOAD_SIZE		256
+>  #define MAX_READ_REQ_SIZE		256
+> -- 
+> 2.52.0
+> 
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
