@@ -4,72 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2AF4CD0401
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 20:47:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 641B5C98331
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 20:47:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3BaNA2K2s8jXlczHwMuQA+0VWopspFfUZvLlu8n4gns=; b=opM01oXAPiIMuO
-	Fg4vp+QtbiCJsT9cL8rBRmXFIFeJ8f2PtvfILKb18y+Lq/QWurY9bcKCtG1ndR6r9yXghBI0FhxM3
-	OAdJqNWtx3l1wsA54ICsaC3YByPCR9/Ub8jY2UyBV48mCU+NtTd1N0Oj16qftTUmim3AAsnVz9jru
-	br6sth9ringdQuVFuG+kaBdJvwtJP1yzSj0Kgd3VVCey4RERUrj9+SWjTWYa/uPPxRLADN0TJPdRh
-	Nh9AZq7zjviJ0TSWk97YyAtf9w61BJsdQzpTGAveBMLpyyJXGmhKwL9aUA2i0xy5fFH61piaRQks5
-	3AA19B/pKjJ8sCfPwHsA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=966+A1W7BAvNNn4QXlXUckPqIaSCTgsZqfEj9MLqor8=; b=4irrT/T+icYogi
+	lAvD/MCHr+WlxItWM/zXZb6jblVrhTxG8BMwYqP2m9DJyxbcaDZi+ssMNk4ih59HZEyB6cXVYVmeT
+	Pb7aur6GPG9OFSPsHaxc8ZmQ1I22rBTSIoOwpTlomg636tbSEz64yQGQ091tTPUb2wr4dkHJChQPq
+	UA1NqdMvZso7zd9s8Wa5UWJMl/V+VC7TtlDuXswteFJC0NeF4OprzuvR83bzFqhWI9yYcjzNYoBYv
+	mT/bVBb1qOMKPvSQwLCL/Pd2vt5/lp3YLz2M0wkvNhd4vYtjTikYZC6GPthnVvEAW75k7dMQ5D3U/
+	iT+AnW9jyILo19FI9UHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vcrUN-0000000C4Vr-1ni6;
-	Mon, 05 Jan 2026 20:47:43 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1vcrUH-0000000C4Q2-0Vmg;
+	Mon, 05 Jan 2026 20:47:37 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vcrUK-0000000C4Rm-3eEx
+	id 1vcrUE-0000000C4On-10GQ
 	for linux-amlogic@lists.infradead.org;
-	Mon, 05 Jan 2026 20:47:41 +0000
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-64b8123c333so447864a12.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 05 Jan 2026 12:47:40 -0800 (PST)
+	Mon, 05 Jan 2026 20:47:35 +0000
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-64dfb22c7e4so3654642a12.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 Jan 2026 12:47:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1767646059; x=1768250859; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=751CuOfDHWCSCZjhCuc+hswoKKu5SgRYZYXOY8EmB64=;
-        b=kexDJhvpGvuIdjL5nPB41W1qD4PaIO4tu88OlY8wwHcJIHmnDF6qL/43yP6emE1XAy
-         DT6zHWlbdeBku8ywCeRiPogoabaQ4KIjhFWMzcNo9ehkwW4EnLpoj3KeZPOP94uzgQnr
-         UPjiMpXR9YVX/KpCd/7EGCEAvy8TFBzhQ8jIwt9Hyuo8UccVj2rba/bpSoqHhhK7QUAz
-         NqOzOrzzoeveTtCNh+gKOadf/T8ovN8oS4rI4db/mC+ZSuipbXaVA/zYfCzDU+AATspE
-         FjqLvUIq5QjgUNGis26y4uXG075nItGUsRyXXzmFXuaYs7CDbKzDOW3wpnUgwFRVEgdK
-         VT9w==
+        d=googlemail.com; s=20230601; t=1767646052; x=1768250852; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GBZeQW3rLDeCb+Oyy+72B5gGlMwUgX2Swy873t0yAQ8=;
+        b=kHX93APjzFvnkMVKDTsuwIplw31vWbDjWAS4MLhgUVoxisnKEGOpGOZja7HSmGZBE5
+         PSZZjJdN3asyrHCc/8vl/IuoyNKSZrdiCRbRdnxeEUzEM9hRz2cc2g2WKtDzst9rABgk
+         nE6k5g4XCM/udy9ATdupuhNP6FsrkJ+w06lAcib0QqW8XN7vht/VZ65J5VMM69dusyx7
+         QKq5QDnuGL33aqpdimI1BUc5QUjJr6mp0wdoj2pI1bRUGYmqloGS8sfP0krd+5YKnkxh
+         Q1lwRTXnp9ImP2hJ9U52ap9eQ4Rf5s2Tt+OFHp/HaoVw0AzrSdiWgoQcvSUTTuOnXvlj
+         7wjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767646059; x=1768250859;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=751CuOfDHWCSCZjhCuc+hswoKKu5SgRYZYXOY8EmB64=;
-        b=qjq4KemkjDqXjcrCtefeKr34cSwGQo+0HCd4cz5Wc2Bose7aPp368oMURnZo5tCuLL
-         IGzlu6xV6GR0ePOZod/BROJ6w1uUhcx6bRrH+s371oN0k57nJwX9z9AGOTZGd6D7jrjk
-         Es+w42axN9u+qIGLXEUk9c6/V/m23vP8HheQQVo6oSEvS8Rz39jDWOf8u9jLFQV4tGyg
-         geCzetSCOQfDhMdTFOg2TXwJqmTbQgk33K7Z4CX2QI7k587Dg7BRTWqmx5B/yrOytQH4
-         cSEPdidUDQVtAGC0ASE6EInkQ9gzFJFmV6YNExbwsCljLJcRMVtaAN8spBhIil5GYs2Q
-         qx3A==
-X-Gm-Message-State: AOJu0YxkDtKZABJjr7PQcoiYvx4QMVMgHra9fFj9XccdB/4I3I8TPIDI
-	Ul9mZk1W0406gZK6epceBNG9L2OxCX5K+iBe9EKJ6WiGQMw9M0C7JBVDfLctuA==
-X-Gm-Gg: AY/fxX4mSqH0077tk0h+MqKgqEaKLb3Bk9bSe8P4i3TdCpUkTt9MCPYKo7eXIzWArtj
-	/MgHSRaq6O+VrTrLPDBhlzMjpGQzBJlr1gSUAbY+4Q+dmzifmaY23H5IE5xXfuCrAgwJ3beOu4X
-	YDPKUrGXxss7MtWzFTRr9iCGqgwyFuMQ14Nz4DjUVONaEddV3zi6YKmWXvQallteo4SQgus6rww
-	O0UKWW0Ht5nFelvQSv4Xw2GTN+Vl5fX0yTcSA1K8MHuRBlXazbaexigtpT6dCn1MvsG/3yc7qAh
-	xGv+PzgYNgJLP40/+ErKZZy2BYDKM6u7wspeJs1C2CWei8VjvrSj358eHj5LJT1+SguTwfigEy2
-	M7wScDR0bNr6MZhKjRJjmJ4kCbFh8ZYPRX1GP2Golv7yALZ+yuwEHSX1sSkDLRUxQ5PteTh39Rw
-	YZADcZsIXnQV1tZ16oa91pMslSoqt/UQjnBBmS4koK0WB/jkl4wNiOYF41E28+GUcD4b5nx/j6K
-	rC3x436lFkHYa/Tor3ugk4MufphNIKSZzIlwv1/OA==
-X-Google-Smtp-Source: AGHT+IHscVxlfHz208YtyaMmjqXOYh5awKkGUsfs0wVHVO6V3dthos7Mjn3E5Y2bxNVyJyfpmXuwsw==
-X-Received: by 2002:a17:907:2d8c:b0:b40:b54d:e687 with SMTP id a640c23a62f3a-b8426bf1761mr111212866b.47.1767646058523;
-        Mon, 05 Jan 2026 12:47:38 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767646052; x=1768250852;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GBZeQW3rLDeCb+Oyy+72B5gGlMwUgX2Swy873t0yAQ8=;
+        b=Hf7XFu8Tvkr/iXuv9OrVQDtRWbeXcGTSq2eSk5CknQR9iGCzqTsLa2GADtPpppoGMG
+         R083tZCjGpMm7lePylV61lwWQtmCHkgRB6qbCs2+6z+XLMlcrUG/nyxFZog2Qy+r7Leo
+         EtNrqNIxDhW2p+T+n/b/PxvKdFpa7hqzfTYe71eBDXdctpsFwTwngWZlC9pfpn03LrpV
+         dwO1d64qlcKnxq5ineireY4AoAwe25eqaKN5EfI0ZErbZ9FwhviCsSuqEBE7qQC0AFvz
+         2RJiRFzHGyfHXjB56YY2L97S9iLYP9hw/N3I3XYDKCs3rTO8fAc8Lgv3xbF5nqSO7MXU
+         sFNg==
+X-Gm-Message-State: AOJu0Yw8Y5e4oj6GCeeTQH/fTsVIl96f+pW6hfaJzgzW11L3Gyuwtgbt
+	pUNAtG4DWbXHsEefzKjvrDI9riIRg06MMrMd12nptj38ZvWZ7MrhNyaREVTAPQ==
+X-Gm-Gg: AY/fxX73DT9C7AkAJufKsvq3W8jEEKAjR3TmC04k9J+RhRz8ovl0uqd0V5J1zLmgVlw
+	cIdpcBebu11Nnm08dc5KGhFtukq2CO80BoZ3+XJshLASGFoltYmrCTUK7CU79jlJ8LDY0PVJhi+
+	xwA6UKVyf+y7EZCMgSrsMPImxdKXQpyWvXsvw7tZEsFEAEcecGjvpXRrkA8I6w7+HliMKQ+nhEx
+	YR4ur+WcFjoQWxSz2J44aOPYboiskgo0j/Vr9VG3PsBwHM/j4OOtVNcPg0hK9+kEcjX+wX/4JMY
+	fLUtUE0f/cxtLv9I4R9eIBv9pew8XirlHXjm06JefVIa/ata8JDHXkim/YcRAPICTUbsq/VS77g
+	3v5nc9Sm9nLmuoRYZXEcGEZTlq+dhVe+iGUJysZN1dUhzsdCQJQ+GGXLSqxrzNpS3M97KddRJZS
+	nXMqpRgJRPCY90THjn4IhppYIzfYS9HPDS87z+yLjmKHYgtjsbmBcpZWOCNayATQCt4za5vwC4d
+	CyMjz1poD+KXAi1ZMD/EjFpzJ0WKWD/50T3Mrr5vQ==
+X-Google-Smtp-Source: AGHT+IG983985xcXDR9yciOy4mjbs0yhKZ2yFQoVEgq36/qbmuPPSyYeCXHNkblnpNi806zQM2DtvA==
+X-Received: by 2002:a17:907:3f9c:b0:b80:3fc4:3762 with SMTP id a640c23a62f3a-b8429892021mr46330366b.1.1767646051708;
+        Mon, 05 Jan 2026 12:47:31 -0800 (PST)
 Received: from blackbox (dynamic-2a02-3100-a8ad-5500-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:a8ad:5500:1e86:bff:fe2f:57b7])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-b842a233ef3sm26240566b.1.2026.01.05.12.47.36
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-b842a233ef3sm26240566b.1.2026.01.05.12.47.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Jan 2026 12:47:38 -0800 (PST)
+        Mon, 05 Jan 2026 12:47:30 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org
 Cc: linux-clk@vger.kernel.org,
@@ -78,16 +77,15 @@ Cc: linux-clk@vger.kernel.org,
 	jian.hu@amlogic.com,
 	jbrunet@baylibre.com,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v1 3/3] clk: meson: gxbb: use the existing HHI_HDMI_PLL_CNTL3 macro
-Date: Mon,  5 Jan 2026 21:47:10 +0100
-Message-ID: <20260105204710.447779-4-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v1 0/3] clk: meson: small fixes for HDMI PLL OD
+Date: Mon,  5 Jan 2026 21:47:07 +0100
+Message-ID: <20260105204710.447779-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260105204710.447779-1-martin.blumenstingl@googlemail.com>
-References: <20260105204710.447779-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260105_124740_918839_D9D8BF38 
-X-CRM114-Status: GOOD (  12.81  )
+X-CRM114-CacheID: sfid-20260105_124734_285831_F6CE73FD 
+X-CRM114-Status: UNSURE (   8.85  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,47 +102,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There's no need to calculate HHI_HDMI_PLL_CNTL + 8 when we have a
-HHI_HDMI_PLL_CNTL3 macro that has the correct offset already. No
-functional changes, this makes it easier to compare the driver with the
-datasheets.
+Hi Jerome,
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/gxbb.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+this series contains two fixes for preventing HDMI PLL OD /8 on
+GXL/GXM and G12A/G12B/SM1, like the downstream driver does. See:
+- downstream GXBB code: [0]
+- downstream GXL/GXM code: [1]
+- downstream G12A/G12B/SM1 code: [2]
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 0788b9b1ed21..0900f4e44764 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -358,7 +358,7 @@ static const struct clk_div_table gxl_hdmi_pll_od_div_table[] = {
- 
- static struct clk_regmap gxl_hdmi_pll_od = {
- 	.data = &(struct clk_regmap_div_data){
--		.offset = HHI_HDMI_PLL_CNTL + 8,
-+		.offset = HHI_HDMI_PLL_CNTL3,
- 		.shift = 21,
- 		.width = 2,
- 		.table = gxl_hdmi_pll_od_div_table,
-@@ -376,7 +376,7 @@ static struct clk_regmap gxl_hdmi_pll_od = {
- 
- static struct clk_regmap gxl_hdmi_pll_od2 = {
- 	.data = &(struct clk_regmap_div_data){
--		.offset = HHI_HDMI_PLL_CNTL + 8,
-+		.offset = HHI_HDMI_PLL_CNTL3,
- 		.shift = 23,
- 		.width = 2,
- 		.table = gxl_hdmi_pll_od_div_table,
-@@ -394,7 +394,7 @@ static struct clk_regmap gxl_hdmi_pll_od2 = {
- 
- static struct clk_regmap gxl_hdmi_pll = {
- 	.data = &(struct clk_regmap_div_data){
--		.offset = HHI_HDMI_PLL_CNTL + 8,
-+		.offset = HHI_HDMI_PLL_CNTL3,
- 		.shift = 19,
- 		.width = 2,
- 		.table = gxl_hdmi_pll_od_div_table,
+I have verified this on GXL (Le Potato) by setting HDMI PLL OD1 to 0x3
+(which should result in divide-by-8). The resulting frequency reported
+by meson-clk-msr is double (meaning: only divide-by-4) compared to what
+CCF sees.
+
+These are not critical for now since the CCF code-path for the HDMI PLL
+is read-only (as drm/meson directly programs the registers).
+
+Additionally there's a cosmetic fix to use the HHI_HDMI_PLL_CNTL3 macro
+instead of calculating HHI_HDMI_PLL_CNTL + 8.
+
+
+[0] https://github.com/hardkernel/linux/blob/0e658067af67835a625e41e289effc4ee390d62f/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_clk.c#L505-L627
+[1] https://github.com/hardkernel/linux/blob/0e658067af67835a625e41e289effc4ee390d62f/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_gxl.c#L501-L553
+[2] https://github.com/hardkernel/linux/blob/0e658067af67835a625e41e289effc4ee390d62f/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_g12a.c#L671-L721
+
+
+Martin Blumenstingl (3):
+  clk: meson: gxbb: Limit the HDMI PLL OD to /4 on GXL/GXM SoCs
+  clk: meson: g12a: Limit the HDMI PLL OD to /4
+  clk: meson: gxbb: use the existing HHI_HDMI_PLL_CNTL3 macro
+
+ drivers/clk/meson/g12a.c | 13 ++++++++++---
+ drivers/clk/meson/gxbb.c | 19 +++++++++++++------
+ 2 files changed, 23 insertions(+), 9 deletions(-)
+
 -- 
 2.52.0
 
