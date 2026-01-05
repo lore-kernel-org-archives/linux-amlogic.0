@@ -4,86 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC80BC79FA3
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 16:19:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E2EEC79FA5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Jan 2026 16:49:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eoGa6M7xwLJRoV/c17zlGZb3pz6pPliNMNDS5cyiW+k=; b=grEnuvlusm+Ay4
-	DMQcVAqUHsNXHLjRn8uX8AEnoz4zT76VnI8XblzLC1afLbaiI5MwVNXVVNKDOkTXRJCLWYPFMindt
-	xoSOzXGydUZjdLrksSD1jvBL7xy9Hyw/U06gA6MRpmmVk0510Hx/gjy0g68I6Gwh4KhU4H58Z3jrp
-	5eTnmyI+AdQynW+NUiAcYv/ZnfWAVgQiaZzokpRRWu6ak/PolFjQ/WcXVgnh9LpjI4iISrPMq5r0e
-	mKbLLuRBMctKI7yTmvPOfDZvHCtZIWwzGq4p4K7VullWEwUsBykBHtH3t0snmBM0v9Rmv6Y3T0RfY
-	9yWB2DJqbkzS2jx9b0MA==;
+	List-Owner; bh=70zwI2U632f+O9l07DqtBzVvaE0zWlzELN/u14gXQ7Y=; b=ZunhfmX4GOdjPT
+	fmtFN+rSfCYCGSwaFmrnBzR/YCBrh3iyFev/SoXPBAUiztRzcAvgyUZ8vnCYyduPNCkCzuN2k6cbR
+	LQDw+x4jOt0LXfietweLdDBVsAI22n/UN8946lgqxbCVfASerHDO2JovgKzXomboocJJL2cm4Xsw/
+	ADs81pW6wgXZyLxwjZJ5Rt2CGK6XUJut8/24tUXEeXta+RmD4LF2gvJS19KdDyHP6k7B6jP3FYCt6
+	tzQw2lwah6uEg3m9Uv8E2w6Tc8bTQVjpYeps2AdIRh9jbl0IFvQezbhHYoUdklal/GFgHvHj5MvF5
+	FN21IbTkbgoadU8orvqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vcnJB-0000000Bigm-2haE;
-	Mon, 05 Jan 2026 16:19:53 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vcnld-0000000BlKb-1ucF;
+	Mon, 05 Jan 2026 16:49:17 +0000
+Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vcnJ9-0000000BigJ-3D58;
-	Mon, 05 Jan 2026 16:19:51 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 867A960147;
-	Mon,  5 Jan 2026 16:19:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE25AC116D0;
-	Mon,  5 Jan 2026 16:19:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767629990;
-	bh=AtN7od0JeLsN9YbMUfbbQk/4L1P9KKm0XcoR8cmj7CA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KhHlARlNAGXphZOOMOLPXXdYboH6rQGoEW00D0fi7fuAHJOXGzeRgKYG5X1gpaPFj
-	 uzXh4SM8KE4Na2K2V9fmxDxkWzBKNxqKopKgrNor3jKn7aZ4gRQLdsF3X5+jLkxh4U
-	 0SjmlPwW3RkL7OZV9qDHm54Wi5IR/Al4nYVxEV392JoniVlmeAEahNMfp1JOK7ns/o
-	 liXgqtNjg/fiLGTcysf30O4NzJSIrFMFIdeHpIqm/F1jF8Uc7Kjsgi/Ihe8FPPnrY3
-	 DDJqu93pjX4IWDHcObkDD4CagtAouZaUKOTXJ3tft846K9m7kLSRbZtQZs8CYaPD91
-	 0Xn6ZM8O1egOQ==
-Date: Mon, 5 Jan 2026 17:19:38 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Sumit Kumar <sumit.kumar@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Greentime Hu <greentime.hu@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Chuanhua Lei <lchuanhua@maxlinear.com>,
-	Marek Vasut <marek.vasut+renesas@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Pratyush Anand <pratyush.anand@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev,
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 2/2] PCI: dwc: Add multi-port controller support
-Message-ID: <aVvkmkd5mWPmxeiS@ryzen>
-References: <20260105-dt-parser-v1-0-b11c63cb5e2c@oss.qualcomm.com>
- <20260105-dt-parser-v1-2-b11c63cb5e2c@oss.qualcomm.com>
+	id 1vcnlZ-0000000BlJT-03Wz
+	for linux-amlogic@lists.infradead.org;
+	Mon, 05 Jan 2026 16:49:16 +0000
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-2a0bae9aca3so830625ad.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 Jan 2026 08:49:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1767631752; x=1768236552; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1p5G3xJb8go3voJ/ska7MmknNqjaKO20ee89C7s96SI=;
+        b=P+6sBBGM2bUKyVWfIaFmkegs9rnqx5G9Mo0vlPhBNEB+yHrkYP8DKI3wZz7pFCaheI
+         F6Q4vmmGda8UV6orVix+yHsnpDNAd/fN7IFOGNE12NrS2Ubg+Ssn4uqovHG6wIciGjS1
+         +V+vhS6XiVLulgjCeLFLYHKogaO3QHgmpeUVfD4F2fZBRUMvH5wKMxidaQ43oe+QUpic
+         LKoyMc4Tl0e7ZcaI+nzAalGBjl+DmTWRbivlWIkC/8HA2Z43/SWhKXxE+58OPtXUMwho
+         Xk0oMwSSUByrIEkaMaPAAXbKIoRe7n635i2mcPqe/V6PchTQY1E1MKnAjzMB4YXaJBM8
+         JEgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767631752; x=1768236552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=1p5G3xJb8go3voJ/ska7MmknNqjaKO20ee89C7s96SI=;
+        b=PdfLDNkrZT6WIPTQIRhcfWFxp1wN5JJWHy58gDrtBmBOnKvtP6pIOfbmC8mDsBsGVJ
+         AvxgJm9rRCYqzZIA+LRNGU/AOjEn3HT8ZXwEJ74CbGufrPPwDZA+JF34kbHeURKstk4v
+         Ik5KMVnTS39xnex/NfH/CNisyWTHs/uvWEGBjLb148lFJzxHMlYzu1nWA+hOO1qzz+sh
+         D19zjSkb+xYkdX4+oSS9KkX+TLXt0JB8GbpLgbPFomv38pwdTCmX3Jo8gRFfTfHZrD9n
+         UyUE5qPo8fcXJPd5F9mOFgoC1C6ndnI7Z9TpXVWrPN2acfHZup4crAMFP+q2gsP5LEvn
+         1ZNw==
+X-Forwarded-Encrypted: i=1; AJvYcCUIpPTZ0GjdgF9ZQZq1iBl+YsHXgd0sjZYITUW8WwrBckU5u4wPM6JtuSdSPHASV5xaAGSCxS1OtHQDWR9e@lists.infradead.org
+X-Gm-Message-State: AOJu0YxZxz7LkkFV443Vl/JLaSkr/Z58fiyeNHFI9vyShR/rlqd1dlUF
+	anryxHX6wYA7sSfz97+eeNO8AoEhOUCjRyeRrnOGbtryDCXDOIRaxaZiRfp4J4cE7WVhxNc88sh
+	+b9BTwnW4nq781n2KS+sZawQCwK2thWE=
+X-Gm-Gg: AY/fxX6UlfqPVqOvkDqARGcw8tVcfwq1xFx9fcBRXvh80o3Sn2hzkXhkEucuSRy754R
+	YI1grEUBYCnsod0ggubt/N/5CFtMji0FxVV/zH1KraeDylu2iUmLdn8qPhBVM53VVuLohZ21Dp+
+	6ygYfB2OsAEQ1+XWDlMUGDQ/3MoGeijN2pnEfXkKsZbE9eHQqEJ8pQfzCr8NCcFZIQ+pqy7aHRY
+	w0waEIn1Txi9Smsbkcr6OQVI2XKhG7OdvYbqkg93cCvqfj1iDqICIrCa/+0SI12x+25+k/PAQlX
+	QxYcEBFZ73nrUMdeyihma6+QeP/P
+X-Google-Smtp-Source: AGHT+IGDtOegmT/WubwoP9uhYGjEyI36HrbbD+HDLKKzlp50hnIAwbFpuvZJAMWfwWQ5Fu7mo4QOpgsR9wCZJW3kUe4=
+X-Received: by 2002:a17:903:28f:b0:29f:5f5:fa91 with SMTP id
+ d9443c01a7336-2a3e2cb39ffmr2973425ad.27.1767631752099; Mon, 05 Jan 2026
+ 08:49:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260105-dt-parser-v1-2-b11c63cb5e2c@oss.qualcomm.com>
+References: <20251103221930.1831376-1-helgaas@kernel.org> <176603796183.17581.9416209133990924154.b4-ty@kernel.org>
+In-Reply-To: <176603796183.17581.9416209133990924154.b4-ty@kernel.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 5 Jan 2026 17:49:00 +0100
+X-Gm-Features: AQt7F2rVWmf5Npt8HCJJTiZdHZlTavXt7hjPiasOfQo5l2lbIUvVpU46LHb_LE8
+Message-ID: <CAFBinCAPpiq=M00ZQXAB4Pu2Myjo8gpXC7DByKkGN6Z_Ahqafg@mail.gmail.com>
+Subject: Re: [PATCH] PCI: meson: Remove meson_pcie_link_up() timeout, message,
+ speed check
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: Yue Wang <yue.wang@amlogic.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Bjorn Helgaas <helgaas@kernel.org>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Linnaea Lavia <linnaea-von-lavia@live.com>, 
+	FUKAUMI Naoki <naoki@radxa.com>, 
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, stable@vger.kernel.org, 
+	Ricardo Pardini <ricardo@pardini.net>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260105_084914_562033_02587C7F 
+X-CRM114-Status: GOOD (  12.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,54 +98,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jan 05, 2026 at 05:57:55PM +0530, Sumit Kumar wrote:
-> The current DesignWare PCIe RC implementation supports only the controller
-> (Host Bridge) node for specifying the Root Port properties in an assumption
-> that the underlying platform only supports a single root Port per
-> controller instance. This limits support for multi-port controllers where
-> different ports may have different lane configurations and speed limits.
-> 
-> Introduce a separate dw_pcie_port structure to enable multi-port support.
-> Each Root Port can have independent lane count, speed limit through pcie@N
-> child nodes in device tree. Add dw_pcie_parse_root_ports()
-> API to parse these child nodes.
-> 
-> Equalization presets and link width detection currently use common DBI
-> space for all the root ports. Per-port DBI space assignment for these
-> features will be added in future.
-> 
-> Signed-off-by: Sumit Kumar <sumit.kumar@oss.qualcomm.com>
-
-Hello Sumit,
-
-Is there a reason why you represent this as a list of ports rather than a
-simple array?
-
-The number of ports is known by parsing the device tree, so it should be
-static, no?
-
-At least to me, this seem similar to e.g. how a gpio_device has multiple
-gpio_descriptors "struct gpio_desc *descs":
-https://github.com/torvalds/linux/blob/master/drivers/gpio/gpiolib.h#L68C1-L68C26
-
-A list is usually used for something that is dynamic.
-I don't think that the number of ports to a PCIe controller will be dynamic.
-
-I can see that struct qcom_pcie in pcie-qcom.c has struct list_head ports,
-but that does not necessarily mean that we need to have a list of ports in
-pcie-designware-host.c. (pcie-qcom could also be modified to have an array
-of ports if there is a desire for similar design pattern.)
-
-
-Kind regards,
-Niklas
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgTWFuaSwKCk9uIFRodSwgRGVjIDE4LCAyMDI1IGF0IDc6MDbigK9BTSBNYW5pdmFubmFuIFNh
+ZGhhc2l2YW0KPG1hbml2YW5uYW4uc2FkaGFzaXZhbUBvc3MucXVhbGNvbW0uY29tPiB3cm90ZToK
+Pgo+Cj4gT24gTW9uLCAwMyBOb3YgMjAyNSAxNjoxOToyNiAtMDYwMCwgQmpvcm4gSGVsZ2FhcyB3
+cm90ZToKPiA+IFByZXZpb3VzbHkgbWVzb25fcGNpZV9saW5rX3VwKCkgb25seSByZXR1cm5lZCB0
+cnVlIGlmIHRoZSBsaW5rIHdhcyBpbiB0aGUKPiA+IEwwIHN0YXRlLiAgVGhpcyB3YXMgaW5jb3Jy
+ZWN0IGJlY2F1c2UgaGFyZHdhcmUgYXV0b25vbW91c2x5IG1hbmFnZXMKPiA+IHRyYW5zaXRpb25z
+IGJldHdlZW4gTDAsIEwwcywgYW5kIEwxIHdoaWxlIGJvdGggY29tcG9uZW50cyBvbiB0aGUgbGlu
+ayBzdGF5Cj4gPiBpbiBEMC4gIFRob3NlIHN0YXRlcyBzaG91bGQgYWxsIGJlIHRyZWF0ZWQgYXMg
+ImxpbmsgaXMgYWN0aXZlIi4KPiA+Cj4gPiBSZXR1cm5pbmcgZmFsc2Ugd2hlbiB0aGUgZGV2aWNl
+IHdhcyBpbiBMMHMgb3IgTDEgYnJva2UgY29uZmlnIGFjY2Vzc2VzCj4gPiBiZWNhdXNlIGR3X3Bj
+aWVfb3RoZXJfY29uZl9tYXBfYnVzKCkgZmFpbHMgaWYgdGhlIGxpbmsgaXMgZG93biwgd2hpY2gK
+PiA+IGNhdXNlZCBlcnJvcnMgbGlrZSB0aGlzOgo+ID4KPiA+IFsuLi5dCj4KPiBBcHBsaWVkLCB0
+aGFua3MhCj4KPiBbMS8xXSBQQ0k6IG1lc29uOiBSZW1vdmUgbWVzb25fcGNpZV9saW5rX3VwKCkg
+dGltZW91dCwgbWVzc2FnZSwgc3BlZWQgY2hlY2sKPiAgICAgICBjb21taXQ6IDExNjQ3ZmM3NzJl
+OTc3Yzk4MTI1OWE2M2M0YTJiN2UyYzMxMmVhMjIKTXkgdW5kZXJzdGFuZGluZyBpcyB0aGF0IHRo
+aXMgaXMgcXVldWVkIGZvciAtbmV4dC4KUmljYXJkbyAoQ2MnZWQpIHJlcG9ydGVkIHRoYXQgdGhp
+cyBwYXRjaCBmaXhlcyBQQ0kgbGluayB1cCBvbiBoaXMgT2Ryb2lkLUhDNC4KSXMgdGhlcmUgYSBj
+aGFuY2UgdG8gZ2V0IHRoaXMgcGF0Y2ggaW50byAtZml4ZXMsIHNvIGl0IGNhbiBiZSBwdWxsZWQK
+YnkgTGludXMgZm9yIG9uZSBvZiB0aGUgbmV4dCAtcmM/CgoKQmVzdCByZWdhcmRzLApNYXJ0aW4K
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
+bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
+Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
