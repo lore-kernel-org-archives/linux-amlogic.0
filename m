@@ -4,71 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52A54C47BE3
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jan 2026 10:40:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 832DDC47BE2
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jan 2026 10:56:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hqlXlEAZ2twWbjHpI5pGEcNoLWf5+t69O0zJ2QSIFuM=; b=qNLqg9UqQG4njH
-	cwLOkolJEoQQ2/wBCaGD1h62GKV+NA5WL1H4IoVTJDDaOV1amR7Vis3FimfuCynyrQ2ZnNqY8uDN1
-	8vrXCsC9rt2vFTX+6XCN3YPUv2/14XT/DzMBKVyIjzguXrgZPPAYAnXoTSZ2OBG2g4SMbzoVyPm8G
-	JZT/g5i6Utr+3um9X6M6jia2lOZRcQSC//eUmUZVvrdDgT3do3+H9U9MaH7QmuWPCi8yo1AplCPOB
-	xrd5KeIUoJSfCfOzabkOLgRMZc0QyZ6E+/imr+2kO47TyjJkh3nuGkkIOGCNFG2ghGe5QI1k761g+
-	5EI+8H9xNm4XC6rN7Fow==;
+	List-Owner; bh=cDvhlzi4kFUkEXhPu3Jw2Y9thPpEDIph12rnJgEOE30=; b=bV1NHy+PvMyHze
+	a5b+X9xFSMKY/66Jusf4ZTvkpfY1vCNMXlhbzulkq9WEyNXED36kBKtEO1Itkdo62YrcXvJNkeolK
+	lqiYnwoqJmdadl/+YStAAgVpre2pNGTFBCvNgx4y21SbuWJd6esi4SZiv+WjnE4OIINe+8O9bWKJW
+	Gp1iyOgH8dq07P4zBhgORFitO2qNfGEeJQDjK8aEVUC1H2VQ3Hrgz1qgqzz5YG3SNZtjfxTZB5IYL
+	e8LSVoG8jsKBBoQXNKTHUUR82bj1lUvkXERcdGju4B1xpgJsiAaAFOFOW2du4X0dL7EfuAvagf0NK
+	gZO8e5EiFE01MbfiLgKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vd4Ua-0000000CoaR-0Gb0;
-	Tue, 06 Jan 2026 10:40:48 +0000
+	id 1vd4jM-0000000Cpkx-1PXB;
+	Tue, 06 Jan 2026 10:56:04 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vd4UY-0000000CoZq-0JeB
-	for linux-amlogic@lists.infradead.org;
-	Tue, 06 Jan 2026 10:40:46 +0000
+	id 1vd4jI-0000000Cpk7-3TU9;
+	Tue, 06 Jan 2026 10:56:02 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0EFEB60150
-	for <linux-amlogic@lists.infradead.org>; Tue,  6 Jan 2026 10:40:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6A29C2BC86
-	for <linux-amlogic@lists.infradead.org>; Tue,  6 Jan 2026 10:40:44 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id D975B6014A;
+	Tue,  6 Jan 2026 10:55:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98CD3C116C6;
+	Tue,  6 Jan 2026 10:55:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767696044;
-	bh=t4ddXhA7JhrJytwJ6SG59Nok1jm7v4ErHkDUWq3UJj0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=mSieI+pFor5cLkViqqo0XupaQknJKW4qXwhxNKsnkhZBXp0cZu8oWKcIyXbTMMSMk
-	 gwGxE0lWhvaYyl3XQ2fhPHVXLbTvOER30qdGQHHdh+iMU6JsL+GxtwgzfovULoc99F
-	 mXbWKynoFgcnB6G2pamlI14uuRo2at3NV73Lay6ERyiIqCocu687OMS37AGr0X1kLg
-	 Rd7aDSUBKEM6yFr0ceS/+75FpdrSVc6SLSGo84a3Ni38ciQVYaUWclKrEPBkvMx/MY
-	 lNrATBByqJQhebSfhOKinJ2eZz02PGnlKXrmJJAPvRdst4qc+lptjsHXsSh99WRVNb
-	 /8V3vfzwc31oA==
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-59b67388c9cso515991e87.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 06 Jan 2026 02:40:44 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWRjDBAIUd+HtwdvPmGDWJ71701ZwVS0yNRkMMFMpeNzqLCLADTKwxHEnkYfA81s6yTDgH/zo6XaYdC1rS3@lists.infradead.org
-X-Gm-Message-State: AOJu0YwIXmR2APBmj+N3kKBFQyInp5fB3T6dqgwRgDhFTlXJ5wWBSAb4
-	GtAqS5L7ArjQMo24OqufaSbuUdk+bmPJASOhhYHT7j6DjbqV4n6L5c5ScZ+OnDy9Vgvud12+Kff
-	V0BVs4wDxn8olBGYXjHn9ZJ1SH6B5NymJD19HAf2Brg==
-X-Google-Smtp-Source: AGHT+IGjEVOXW8CYG+0OH4S7sVxLtDmjVtqmU3wU1q5QsPBg5CO1iHEaU9Sc0XqZ9TEkG2QTbcPfX+ONV8l5hR9iWrc=
-X-Received: by 2002:a05:6512:3d18:b0:594:27dd:2700 with SMTP id
- 2adb3069b0e04-59b652e62e7mr943934e87.47.1767696043393; Tue, 06 Jan 2026
- 02:40:43 -0800 (PST)
+	s=k20201202; t=1767696959;
+	bh=ifuhjD9dVO9aJ7A0tSpgghkHXwetyJmijfctFIgwaSQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XcDKNXevXkZg8xqIKBNqcWVx14ybsmAEKhzw4HEBwmq1U1GERhcd9QTkvp0unu5XI
+	 4OtXMxpN3HDf2tPDnnCKq2y497yTXDIj9nwFNlSyK8XyAvBjNdCzBdhXb3UBfaJLYy
+	 bIxZvujpYBeIfSlkKvuvJ0h1jhRL7zX7mfeW2X1kp1T0EdPR4my3C0+VCKtM6gporu
+	 lCxKwiDrmNkz+dxHxkM3gRyY2kx49QXeLHIy/rjFwAN42buU38WLxvWwE2kP3GxLYG
+	 ORkDLiVIxrPfNjLrOHjr2dyBvLgqACPGBYm7yqDNsN2yVOJS+A/6eR7ejJBG6Ztgl+
+	 xoq8axTMuSkUA==
+Date: Tue, 6 Jan 2026 11:55:46 +0100
+From: Niklas Cassel <cassel@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Sumit Kumar <sumit.kumar@oss.qualcomm.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Greentime Hu <greentime.hu@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Chuanhua Lei <lchuanhua@maxlinear.com>,
+	Marek Vasut <marek.vasut+renesas@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Pratyush Anand <pratyush.anand@gmail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev,
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/2] PCI: dwc: Add multi-port controller support
+Message-ID: <aVzqMqTUWIuKhgmC@fedora>
+References: <20260105-dt-parser-v1-0-b11c63cb5e2c@oss.qualcomm.com>
+ <20260105-dt-parser-v1-2-b11c63cb5e2c@oss.qualcomm.com>
+ <aVvkmkd5mWPmxeiS@ryzen>
+ <m5ukeugo2lazipljqpubyvm7j3xk2j5o7i2xgdbkkhii57xmyk@lh32qdzjhe4n>
 MIME-Version: 1.0
-References: <20260106085253.20858-1-bartosz.golaszewski@oss.qualcomm.com>
- <10d5df9b-842c-45d3-8821-d4ca0c364e97@linaro.org> <7dc8a830-5863-412c-bcf3-498f47b35615@amlogic.com>
-In-Reply-To: <7dc8a830-5863-412c-bcf3-498f47b35615@amlogic.com>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Tue, 6 Jan 2026 11:40:30 +0100
-X-Gmail-Original-Message-ID: <CAMRc=Me+mgRZ4thXnYFUv42hQBV36hM5DUckM8U_VQa8chNehw@mail.gmail.com>
-X-Gm-Features: AQt7F2r1rD5CkKYlWA8KJJCMMCqY-jVpyYiin_uV38wrHGuoHuGV7M0VqD8OJdI
-Message-ID: <CAMRc=Me+mgRZ4thXnYFUv42hQBV36hM5DUckM8U_VQa8chNehw@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: meson: amlogic-a4: mark the GPIO controller as sleeping
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Linus Walleij <linusw@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-gpio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Disposition: inline
+In-Reply-To: <m5ukeugo2lazipljqpubyvm7j3xk2j5o7i2xgdbkkhii57xmyk@lh32qdzjhe4n>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,22 +98,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCBKYW4gNiwgMjAyNiBhdCAxMDozMuKAr0FNIFhpYW53ZWkgWmhhbyA8eGlhbndlaS56
-aGFvQGFtbG9naWMuY29tPiB3cm90ZToKPgo+IEhpIEJhcnRvc3osCj4gICAgIENvdWxkIHlvdSBl
-eHBsYWluIHRoZSByZXByb2R1Y3Rpb24gbWV0aG9kIGZvciB0aGlzIHByb2JsZW0gPwo+CgpQbGVh
-c2UgZG9uJ3QgdG9wLXBvc3Qgb24gdGhlIG1haWxpbmcgbGlzdC4KCklmIHlvdSBoYXZlIGEgcGlu
-IHNoYXJlZCBieSBtdWx0aXBsZSBkZXZpY2VzIGluIGRldmljZS10cmVlLCBpdCB3aWxsCm5vdyBn
-byB0aHJvdWdoIGEgZGVkaWNhdGVkIGdwaW8tc2hhcmVkLXByb3h5IGRyaXZlci4gSXQgd2lsbCB1
-c2UgYQpsb2NraW5nIG1lY2hhbmlzbSBkZXBlbmRpbmcgb24gdGhlIGNhbl9zbGVlcCBmbGFnIG9m
-IHRoZSBHUElPCmNvbnRyb2xsZXIgZGV2aWNlIC0gc3BpbmxvY2sgb3IgbXV0ZXguIElmIHRoZSBm
-bGFnIGlzIHdyb25nIC0gbGlrZSBpcwp0aGUgY2FzZSBoZXJlIC0gaXQgbWF5IGhhcHBlbiB0aGF0
-IHdlIHRha2UgYSBzcGlubG9jayBhbmQgdGhlbiBkZXNjZW5kCmludG8gcGluY3RybCB3aGVyZSBh
-IG11dGV4IGlzIHRha2VuIHJlc3VsdGluZyBpbiBhIGxvY2tkZXAgc3BsYXQuCgpCYXJ0CgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
-IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Tue, Jan 06, 2026 at 10:49:19AM +0530, Manivannan Sadhasivam wrote:
+> On Mon, Jan 05, 2026 at 05:19:38PM +0100, Niklas Cassel wrote:
+> > On Mon, Jan 05, 2026 at 05:57:55PM +0530, Sumit Kumar wrote:
+> > > The current DesignWare PCIe RC implementation supports only the controller
+> > > (Host Bridge) node for specifying the Root Port properties in an assumption
+> > > that the underlying platform only supports a single root Port per
+> > > controller instance. This limits support for multi-port controllers where
+> > > different ports may have different lane configurations and speed limits.
+> > > 
+> > > Introduce a separate dw_pcie_port structure to enable multi-port support.
+> > > Each Root Port can have independent lane count, speed limit through pcie@N
+> > > child nodes in device tree. Add dw_pcie_parse_root_ports()
+> > > API to parse these child nodes.
+> > > 
+> > > Equalization presets and link width detection currently use common DBI
+> > > space for all the root ports. Per-port DBI space assignment for these
+> > > features will be added in future.
+> > > 
+> > > Signed-off-by: Sumit Kumar <sumit.kumar@oss.qualcomm.com>
+> > 
+> > Hello Sumit,
+> > 
+> > Is there a reason why you represent this as a list of ports rather than a
+> > simple array?
+> > 
+> > The number of ports is known by parsing the device tree, so it should be
+> > static, no?
+> > 
+> > At least to me, this seem similar to e.g. how a gpio_device has multiple
+> > gpio_descriptors "struct gpio_desc *descs":
+> > https://github.com/torvalds/linux/blob/master/drivers/gpio/gpiolib.h#L68C1-L68C26
+> > 
+> > A list is usually used for something that is dynamic.
+> > I don't think that the number of ports to a PCIe controller will be dynamic.
+> > 
+> > I can see that struct qcom_pcie in pcie-qcom.c has struct list_head ports,
+> > but that does not necessarily mean that we need to have a list of ports in
+> > pcie-designware-host.c. (pcie-qcom could also be modified to have an array
+> > of ports if there is a desire for similar design pattern.)
+> > 
+> 
+> Only reason why I went with lists in pcie-qcom is flexibility. There are useful
+> helpers available for traversing the lists and they seem much more elegant to
+> use rather than manually traversing the array in C.
+> 
+> But to be frank, I don't really care which one is used as there is going to be
+> only a handful of ports at max anyway and there is not much overhead.
+
+Personally, when I see lists, I automatically think of something that is
+dynamic, so using lists for something static just looks a little bit out of
+place IMHO.
+
+Technically, the difference is speed. If we want a specific element, we
+will need to traverse the list. With an array, we can access the element
+directly. However, looking at the current patch, it seems like it never
+looks for a specific port, it always does an operation for all ports.
+So from a speed perspective, it doesn't matter, at least not for now.
+
+
+One advantage I can see, instead of doing:
+
++	struct dw_pcie_port *port = list_first_entry(&pci->pp.ports,
++						struct dw_pcie_port, list);
++	return dw_pcie_wait_for_link(pci, port);
+
+for drivers with only one port (most drivers), we could just instead do:
+
++	return dw_pcie_wait_for_link(pci, pci->pp.port);
+
+To simply get the first element in the array. No need to sprinkle
+list_first_entry() everywhere in all the drivers if they just have one port.
+
+
+For iterating, to avoid manually traversing the array, we could do like
+libata and create a simple macro, e.g. ata_qc_for_each():
+https://github.com/torvalds/linux/blob/v6.19-rc4/drivers/ata/libata-eh.c#L851-L854
+https://github.com/torvalds/linux/blob/v6.19-rc4/include/linux/libata.h#L1657-L1659
+
+And at least personally, I think my brain will parse dw_pcie_port_for_each() { }
+faster than it parses list_for_each_entry(port, &pcie->ports, list) { },
+since it is more unique, but perhaps I am the weird one here :)
+
+
+Kind regards,
+Niklas
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
