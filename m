@@ -4,120 +4,130 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 209C0C47BC5
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jan 2026 08:55:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0503BC47BC5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jan 2026 08:55:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=EinayBJ+MlJlFyrHHdmkmHtmK1km1uYLKQS9Q+6/TJw=; b=eeQXY/2etVLi9CED8Kxtpkw7Se
-	KBVt/NJsnnhKZrP3+Z0gdjtrYYt7zSYdBbKYgN5QQq7tzTsqsILxrteacuVwBzwHaH1E6zcmtruRT
-	88DKDRZ1ycm9ddTpdSrR4R3AgBStZmgN7QwadAxv/PGqDEuu9gczqjIwNgga0h7v9VbhraDxtQPJC
-	9vpx16HPMMjWtO4mHPQsOjxqxLteJ8LYWJWilW4yQwZFwGCN2u/YJEpa9wP+VFsucPgxynIYKONgT
-	SRSmj5olDXG3Mphd9rJvk7SPjPrD4ayyy0n8nUKqTLBWHoMiAW6No6gsu4x/ru2Vq2PGPMUMX0KG0
-	q641e0CQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=OIPZx/BmoKvd3BCl+J/3cuF87OtrFCcQb0d8upShlvQ=; b=zM34n25ru+FpTq
+	2wkpWQuXHCWcKA6VykRbrnVK7PosprE+DgNSR5ChQGH4mq3oQ4+v8tkHkCsiaDMuwRwuI1j4eIenP
+	6zB/qc+XeBmUDWwE6LmE4LsvuotXHj4kzuUP7DiPDrVwT/m3bXsqMQvhyBLlN38ZHRBNeyCrckv3W
+	q1KcptzMg+t0DMvDAnAiAWPPaUuDvpiFlKpaxocihi8EzI3kX1LvE58AQEv/5FDbeQiFgyknbDb8m
+	2eP/fAqGjRRL3tkJH6HZDq3szzjfl4/UzgxO4XV9F7SSqGw6NW8BPjfi7ALqC3FpraiFzdMBYWcAA
+	1ZdO4I/gpNJD9W6SXS9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vd2qP-0000000CeBe-1seY;
-	Tue, 06 Jan 2026 08:55:13 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1vd2qj-0000000CeH0-30Oj;
+	Tue, 06 Jan 2026 08:55:33 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vd2qL-0000000CeA6-23aq
+	id 1vd2qc-0000000CeEW-37hI
 	for linux-amlogic@lists.infradead.org;
-	Tue, 06 Jan 2026 08:55:11 +0000
-Received: by mail-wm1-x343.google.com with SMTP id 5b1f17b1804b1-477ba2c1ca2so7627405e9.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 06 Jan 2026 00:55:08 -0800 (PST)
+	Tue, 06 Jan 2026 08:55:32 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60649LaL2254441
+	for <linux-amlogic@lists.infradead.org>; Tue, 6 Jan 2026 08:55:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=OLntyfjjyt1SpCyW5jaihTrhxEUyaOdPS3O
+	BALP6sE0=; b=aLPHJ2W0uZ4N9+nMk7NvPxJI5VOBQbeKQwRcvxMwerWEA1ccgfz
+	jCNGrmI9y4C659750jq3jnsy5YNyypRPdaUjYJXkS5zgSS+AC1ksUf6ESK8w0X2S
+	5rIprL1jEu0IiNcliscZ9xeZSpltQw52nBQ3weHa7/3PBPRIlNTIZe5XC9BO1JSf
+	J3cUbUJLXw+Te4EaUM7cWg42XlKeprSlMtGCdiT3b8ucs3idG18ZxC6pWulPxWFz
+	OIkTPvnkKrl1IBTNARdvFee/E9H7oIWu55PN4o5ZiRsWCHCWffbcM8IEVkgty9Su
+	WuEnGZzoM+lkmn/T0q6YiL4j0qeWgcVOA/A==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bgu420sk5-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Tue, 06 Jan 2026 08:55:25 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ee0193a239so8854391cf.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 06 Jan 2026 00:55:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767689707; x=1768294507; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JmM3DMB5KBZ/rOor1NH+mo1W6M5Mtv1nt3BZBMfv1+M=;
-        b=U8kd911E66KcI824tehMem+Y63NRO5yHlQ4lPnR/Sx4nz5GzzOnyCcVkGAXqfWrFKq
-         osAccMkdGDn2io4s3xtIX3wE7CCm5N0WL2TDMUlotgHMM582A1xNCmzKrsp1m1iQLzMu
-         9Pf0uJndbPLmmXqJq9AIGEiZ5lnN21wtKQnCVGPYkK4VS9j6bLkT1whAYS5ir9ZQAJ1p
-         KKIs1pnLlePtjtB8QnsYaeqlvqeW2ZUnAORar0kOzVL/2i8S/t386CJmUrzWiia2/43h
-         5woRbRsOLwjwkQ+z+lE3UpUg/hgLm0YHZ66nQZhSnNvTKw8BAx5m8GNaZF5ELc3nBnFC
-         6uNA==
+        d=oss.qualcomm.com; s=google; t=1767689725; x=1768294525; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OLntyfjjyt1SpCyW5jaihTrhxEUyaOdPS3OBALP6sE0=;
+        b=igHzls1zYIsnJNNjCu/dxrldw6agwUsgxGMpzW00n4cwLQcBFc7ezuxeEXNLqdRfDe
+         83uTc3upTaWyR/e9zBwTMoMpYk0CWOobgLxU4hKdH9w4CrRsWhOcZAH8hBavbG3sUbcs
+         fJqDkCeIs2Dk0mFOEIdjD697UVgq+b9OCziTZ2xvkyJPncmEaamWfekmeUc3WKs2i9e0
+         iL0Ub8f/PLgOyLIDNSLRAq+6dl5il5EQ0C7It1KBldcLJulQUw89Y5sGZ1cftLDY2uMr
+         R21259dSRkidd2iA8mcKBGviMtwP7YOobLj3AbfnmsLMjcH2PUSDOXhGVBvAtMBUkChc
+         4nCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767689707; x=1768294507;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JmM3DMB5KBZ/rOor1NH+mo1W6M5Mtv1nt3BZBMfv1+M=;
-        b=LotNPF50DfYXw9xrUQkVN02KtvOfpeR0ENJf9IE4At2t6i/xji0aY/fXko0MyfhbQu
-         ODCN2nyPIO6ieRajzGNe3yZhZpmJ+6YAOCUohbxwwEkV+n3Rd5ZiRXy6JfIKv5zV/OfF
-         OmLnqp8ef/K+lruhGE/NqK41rcyHIPAcRtCgXCScuByBczSQpZdDF0Vl+VY/BqH0PmjB
-         7NEVrnz3mj+DCrzykQQukjUxlNjB5kFkhQpSVo5nsYKcSUe1RTrb2JrD3/wuOJnP76Pl
-         5ekW+BSBaSvwZ955rBDtpBv7tW90DCXE4NwFf5svLNeM1QYV+4rewqfk7wMTLUEPpkLN
-         D/5w==
-X-Forwarded-Encrypted: i=1; AJvYcCUXvJqAoUSfT4F+gbzTEOGsTUzwwXKsxUM6RzGHYA3ORwhhj+spupqfr061GtbqbnOXhS3QQgpcGvbBe0w+@lists.infradead.org
-X-Gm-Message-State: AOJu0YxEP0gV7uUX4iRDSATuEANBhX4Eo6F5Od/S+MOe3Wm3qCEeZIjO
-	VzEo7e1f9BeuJLqubTIdNTODZgwaTU8/OErNPnCGK9fCsEqmAMb4okuJTkR+yXTgLQc=
-X-Gm-Gg: AY/fxX6oV/pwRhaBBgECi2CtkUhiTI7j2sDnG0D8zuEIPBrToAqyjpelYcDmIfxO1/S
-	JByD4SqUAkiWjtJrGue4FP1rF48I0lClclrGWsFLXMuwuRgXHTiSvsi9f0aIHmkjM6JCMAxvXUU
-	VYDSuVBN1Il1a7g3Lk2UtDUjQ1mpbwogUlc7oDnDNIHv2+IVxf4TMUfxIU4k8bdfNjs5HCnWNE3
-	dZWc4o3dAMvOwDylZFJ0XI6DDBWbM93lH01m4Alsk1ML9+iwulVEXhonK+43jYwDHSUndlSX5TP
-	X0lSjI1fbcJd6PwisloiY2KWboWQ4ttuLR6Wc1pJ4WumNZlQ66moqKhJ2zTgt66JHEaIcidirL8
-	ZRXEMq/Q8GD9Oq62n/Wh1vnONVGMBJFjB1397c+IqkJEmza+gqrtkhcKnXZIDmZpgRrcxT5iTks
-	ulfQS0AIF9KfxcwAil00IcK+6dSk/rTjBFjD6nJqMKTA+Jbl2FSQZnSPSy16hcMG4=
-X-Google-Smtp-Source: AGHT+IFb9OptR/7Ov8dlKzvJEz8z8DSsQN/pBgI8GsGjv1cpt2h75dKypaad+D29pbLvT/bSO71hBg==
-X-Received: by 2002:a05:600c:1d1d:b0:479:1b0f:dfff with SMTP id 5b1f17b1804b1-47d7f073054mr24552195e9.10.1767689707266;
-        Tue, 06 Jan 2026 00:55:07 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080:d283:7a7e:4c57:678d? ([2a01:e0a:3d9:2080:d283:7a7e:4c57:678d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f7053f5sm30163085e9.14.2026.01.06.00.55.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Jan 2026 00:55:07 -0800 (PST)
-Message-ID: <10d5df9b-842c-45d3-8821-d4ca0c364e97@linaro.org>
-Date: Tue, 6 Jan 2026 09:55:06 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] pinctrl: meson: amlogic-a4: mark the GPIO controller as
- sleeping
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
- Linus Walleij <linusw@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@kernel.org>
+        d=1e100.net; s=20230601; t=1767689725; x=1768294525;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OLntyfjjyt1SpCyW5jaihTrhxEUyaOdPS3OBALP6sE0=;
+        b=mXRgbIguX27WLIFTDUDI39/OhzDGkM4afF1aWJwFRMJHNZonRIwWBSaG/kzRLm6v7j
+         YE0mxyhCietOGC08PbK+aQ/dvfaFIdlFGhrAijH6OlyU/2yvIVTZhbWuJ1Qz/62pRTGy
+         OYGw3b0eFIC/r6H7bcTm9lKfMb0CN6snuLC0XfYMt150/Fj5kNYsukN+uGLsZFjO+BBH
+         a0n/23YM4ZurtEH02ivOTo+/Rv6Wbn95aXm0UO9SScJXYKnASANaS3VW642IOjjn95jy
+         vbffwuFmRMyOj8l/fEQbF4oRx7b53wWa0lh8NuyDmc5wj500kSpIzxfFgw/bzLVcMaig
+         s37w==
+X-Forwarded-Encrypted: i=1; AJvYcCXGDULin5hgeySPkEV28Rhy2LCh3r4F8BfW4RmzVfKpNyQAoiMDfxEBPsSXsseERpHOE3dCiJs9XMrQphSP@lists.infradead.org
+X-Gm-Message-State: AOJu0YwSLnJtXEhHvSPYgCXhKIjbjpzlb3V8d1lalMsm0WkIGy+Strd3
+	b7BPMEqVUD1vyH+EJ7XgrU4cPZyqri+wfZ3hh48rsDb1NOI74e6GmfVlugLUOpGdoDyW2IGQU/d
+	8iKzq9rh5oTrI3c/sd7TO4/42snsIQd/Wh19qNsgG3Py1FJx4M1oJb3bDXtz5ey03EFduEOppMw
+	==
+X-Gm-Gg: AY/fxX5ioFhLadj2kUhM/A3y79Nk5Hinl32xtf6IIPxF2gsmdoQ3n36CMs7+SEJuLZ6
+	bCk6/BqBvuNM8kc/DvQ19dFvG92mDxLcuzNMi9gG3louUsx/QtrMBt+FGL5DRrdXs1Lir4PJ9yp
+	ATZVmsgEclfAdznfwEURoa+RlhjWmpOCK/3yVRXNVP0Wkj6LOPagVuNfyYdQ+5wwDUpYGPpfdHO
+	2534HR5HL2Oo3GVaq6zXw58sFfuEk3/PbLVM7wyczxlB73IsqmK3fxpYV6v4emUB59/ifneSUsw
+	D1LkCu0yRW4yd80alm9feJvOqtvf+VrdVXJHQ/hAXkcaouXnA7Soa7DASYnsVBtsE5pvC1KLrMs
+	XcM7RJU+B/Mfhs92ZkVGtNxmsExARxl3IWvepcho=
+X-Received: by 2002:ac8:5fce:0:b0:4ed:e064:1638 with SMTP id d75a77b69052e-4ffa77aa962mr28559771cf.40.1767689725072;
+        Tue, 06 Jan 2026 00:55:25 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGMU7QLas00J/5wXs1CjykWn9MmTc1yCeZJJVduAIoL1KbaKbhKziwT3E3DaYERxdSgROGv5A==
+X-Received: by 2002:ac8:5fce:0:b0:4ed:e064:1638 with SMTP id d75a77b69052e-4ffa77aa962mr28559581cf.40.1767689724599;
+        Tue, 06 Jan 2026 00:55:24 -0800 (PST)
+Received: from brgl-qcom.home ([2a01:cb1d:dc:7e00:a1e5:bc32:d004:3d67])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5df9afsm3326754f8f.24.2026.01.06.00.55.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jan 2026 00:55:24 -0800 (PST)
+From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+To: Linus Walleij <linusw@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Bartosz Golaszewski <brgl@kernel.org>
 Cc: linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-References: <20260106085253.20858-1-bartosz.golaszewski@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260106085253.20858-1-bartosz.golaszewski@oss.qualcomm.com>
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: [PATCH] pinctrl: meson: extend build coverage with COMPILE_TEST=y
+Date: Tue,  6 Jan 2026 09:55:20 +0100
+Message-ID: <20260106085520.21129-1-bartosz.golaszewski@oss.qualcomm.com>
+X-Mailer: git-send-email 2.47.3
+MIME-Version: 1.0
+X-Authority-Analysis: v=2.4 cv=dYuNHHXe c=1 sm=1 tr=0 ts=695ccdfd cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=vUbySO9Y5rIA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=kI-syGhB69xVGPkSyq8A:9 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-GUID: k2ZXFSaGeGw0Wawsf9rLiUX5JDWZPYa7
+X-Proofpoint-ORIG-GUID: k2ZXFSaGeGw0Wawsf9rLiUX5JDWZPYa7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA2MDA3NSBTYWx0ZWRfX82R+4P5F9Y+e
+ +JKJ68t6M082Q8Shdj4B+/3UfSrCcNwXucA+jyuoEto4ekIHchd+V5S/CMawIvCFKaU0ouiWq8R
+ bS74UQQMnrpzFXyFFUyIw/0HKmSlP4UuPfqAsNR3Fr/1jzMDdJguD18ImrCFAzpy2xBonOeE3is
+ HWN7yxo+dF9VZ1XTwtPCjieLBgJmS5ofoh5Jz8F1zXLL/bD6aLZe2nk4PirwjlWhOjhcVlsGkLA
+ mCzXWK8z3VpaC7FnH2sc1nnWVxKgaigSrToJFDQ6XyKWRCyussyvLkFbka8uqo06DuQoYrNZ1XH
+ xtiKSEx5JIUcqy4Jgy3tpStace2F58ZIZsxGa29Bb/9iS9D0WIoOqN031UWXizzQDE1e8DSbYmk
+ m5l9F2VSj//FfwEGt4+cVA8qTK5DzG33OUe1zKUF4a9uCd2E1jGzdhD2lERb7VGCBId+f1NG2RI
+ 0Ux1T5a5Tn8jn7ZdAbw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-05_02,2026-01-05_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 malwarescore=0 impostorscore=0 phishscore=0
+ clxscore=1015 spamscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601060075
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260106_005509_569744_93644C3B 
-X-CRM114-Status: GOOD (  15.23  )
+X-CRM114-CacheID: sfid-20260106_005530_440577_DFBB9304 
+X-CRM114-Status: GOOD (  14.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,45 +139,112 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 1/6/26 09:52, Bartosz Golaszewski wrote:
-> The GPIO controller is configured as non-sleeping but it uses generic
-> pinctrl helpers which use a mutex for synchronization. This will cause
-> lockdep splats when used together with shared GPIOs going through the
-> GPIO shared proxy driver.
-> 
-> Fixes: 6e9be3abb78c ("pinctrl: Add driver support for Amlogic SoCs")
-> Cc: stable@vger.kernel.org
-> Reported-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Closes: https://lore.kernel.org/all/CAFBinCAc7CO8gfNQakCu3LfkYXuyTd2iRpMRm8EKXSL0mwOnJw@mail.gmail.com/
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> ---
->   drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> index d9e3a8d5932a..ded7b218e2ec 100644
-> --- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> @@ -893,7 +893,7 @@ static const struct gpio_chip aml_gpio_template = {
->   	.direction_input	= aml_gpio_direction_input,
->   	.direction_output	= aml_gpio_direction_output,
->   	.get_direction		= aml_gpio_get_direction,
-> -	.can_sleep		= false,
-> +	.can_sleep		= true,
->   };
->   
->   static void init_bank_register_bit(struct aml_pinctrl *info,
+We currently only build these drivers on ARM but there's nothing that
+should stop us from building it with allmodconfig on other
+architectures. Extend the build coverage for all meson drivers.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+---
+ drivers/pinctrl/meson/Kconfig | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-Thanks,
-Neil
+diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+index 0315e224bce6..ce6aeec2fc79 100644
+--- a/drivers/pinctrl/meson/Kconfig
++++ b/drivers/pinctrl/meson/Kconfig
+@@ -15,25 +15,25 @@ if PINCTRL_MESON
+ 
+ config PINCTRL_MESON8
+ 	bool "Meson 8 SoC pinctrl driver"
+-	depends on ARM
++	depends on ARM || COMPILE_TEST
+ 	select PINCTRL_MESON8_PMX
+ 	default ARCH_MESON
+ 
+ config PINCTRL_MESON8B
+ 	bool "Meson 8b SoC pinctrl driver"
+-	depends on ARM
++	depends on ARM || COMPILE_TEST
+ 	select PINCTRL_MESON8_PMX
+ 	default ARCH_MESON
+ 
+ config PINCTRL_MESON_GXBB
+ 	tristate "Meson gxbb SoC pinctrl driver"
+-	depends on ARM64
++	depends on ARM64 || COMPILE_TEST
+ 	select PINCTRL_MESON8_PMX
+ 	default ARCH_MESON
+ 
+ config PINCTRL_MESON_GXL
+ 	tristate "Meson gxl SoC pinctrl driver"
+-	depends on ARM64
++	depends on ARM64 || COMPILE_TEST
+ 	select PINCTRL_MESON8_PMX
+ 	default ARCH_MESON
+ 
+@@ -42,7 +42,7 @@ config PINCTRL_MESON8_PMX
+ 
+ config PINCTRL_MESON_AXG
+ 	tristate "Meson axg Soc pinctrl driver"
+-	depends on ARM64
++	depends on ARM64 || COMPILE_TEST
+ 	select PINCTRL_MESON_AXG_PMX
+ 	default ARCH_MESON
+ 
+@@ -51,25 +51,25 @@ config PINCTRL_MESON_AXG_PMX
+ 
+ config PINCTRL_MESON_G12A
+ 	tristate "Meson g12a Soc pinctrl driver"
+-	depends on ARM64
++	depends on ARM64 || COMPILE_TEST
+ 	select PINCTRL_MESON_AXG_PMX
+ 	default ARCH_MESON
+ 
+ config PINCTRL_MESON_A1
+ 	tristate "Meson a1 Soc pinctrl driver"
+-	depends on ARM64
++	depends on ARM64 || COMPILE_TEST
+ 	select PINCTRL_MESON_AXG_PMX
+ 	default ARCH_MESON
+ 
+ config PINCTRL_MESON_S4
+ 	tristate "Meson s4 Soc pinctrl driver"
+-	depends on ARM64
++	depends on ARM64 || COMPILE_TEST
+ 	select PINCTRL_MESON_AXG_PMX
+ 	default ARCH_MESON
+ 
+ config PINCTRL_AMLOGIC_A4
+ 	bool "AMLOGIC pincontrol"
+-	depends on ARM64
++	depends on ARM64 || COMPILE_TEST
+ 	default ARCH_MESON
+ 	help
+ 	  This is the driver for the pin controller found on Amlogic SoCs.
+@@ -80,13 +80,13 @@ config PINCTRL_AMLOGIC_A4
+ 
+ config PINCTRL_AMLOGIC_C3
+ 	tristate "Amlogic C3 SoC pinctrl driver"
+-	depends on ARM64
++	depends on ARM64 || COMPILE_TEST
+ 	select PINCTRL_MESON_AXG_PMX
+ 	default ARCH_MESON
+ 
+ config PINCTRL_AMLOGIC_T7
+ 	tristate "Amlogic T7 SoC pinctrl driver"
+-	depends on ARM64
++	depends on ARM64 || COMPILE_TEST
+ 	select PINCTRL_MESON_AXG_PMX
+ 	default ARCH_MESON
+ 
+-- 
+2.47.3
+
 
 _______________________________________________
 linux-amlogic mailing list
