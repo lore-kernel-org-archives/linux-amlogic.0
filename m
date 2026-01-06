@@ -4,91 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0927CC47BF2
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jan 2026 14:18:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C3F5CEFD0C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Jan 2026 21:17:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ow66FSHLUq488ueJI/B12NXFANcbPD/Ga8bovFhyOQg=; b=sv0fKQGudQlILp
-	oLQKiemdaBFd6fYm3jMbQBDeuWyYY0C1L1nuXQWgSuaebWaiItfBQ/XTFKhaHkBSi/LV6DPiMLLu7
-	fcL5HszotlPcaoKXKpUEhNzNlKYa45z8Euhk3LORfdjF4BSZr2YByep/VFMlv1KRHubVoQSl6iso+
-	GInXxis6UfLbV+EP/a07V7EtC3npsohVMFEoaQiWuRZ2nXXuzqS2D2AKocnGhPiPEIMP/Qq1MqGQR
-	EVdmRvVoYoXtjejPNzObAiVvlM14qqLD5Y7TYqMSZwd3esNa+i+4uUHo7FVuBYUuajIvvSLXpEPN/
-	khKCjGkNkkjhokow66hA==;
+	List-Owner; bh=YgF6GhdGYEjbtYdElD3MCmkgKRkh6K14vTOpebbtNsA=; b=rBsm9dRl+5ADso
+	bEDl6zafVCJTIEIUNtisnU4mG9K6daFVclgxkhkWBB6/PYcDWMSypv56MLjSY5xibCk1cU6cDm4ID
+	EmFX5DxaSqb9MFTfCV3gxzbejT14Kvo5NV4F09sdn49F8RunR3BxWKm1Z8rjx5DO4UOb11NMNRb2A
+	TjnnN5EviDB3FwupVJalBU3R4QlwaTas+xUyg64NS/HSRrCkR9/NlGWLz21z/8DPZ5pnvGQsRWmY8
+	djaV9WJ/i+JlDN0nYmnJcKQ0RdQgGHYv2s5jEdem64h3efhX5QAftCMGs/zrt2crynfvR+52n/hOJ
+	QEEHVFNmeM3uT/hzZFbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vd7tX-0000000DGhq-1Ir9;
-	Tue, 06 Jan 2026 14:18:47 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1vdEQT-0000000Dr3e-3BqD;
+	Tue, 06 Jan 2026 21:17:13 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vd7tT-0000000DGgI-2UaM
-	for linux-amlogic@lists.infradead.org;
-	Tue, 06 Jan 2026 14:18:46 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso9642525e9.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 06 Jan 2026 06:18:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1767709120; x=1768313920; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PDyomPMwSX0nUznUeSpIGPTPKXqo/Pa069JTwjCcRpo=;
-        b=Is7VFiU++Zf3zYDfgqdwVVlkFZkNDf3SmgTn69oKBstcrsrQ8bLzBI4dfsqJCCTOR7
-         dUFFGajW9NVC2QNjnktM/kWbvt/iAhAUN9eNGr9zmlQ0lAOnaE3AhUCCrB+f3kvrv16a
-         +F8QCXl6MFmBPlxNrX+N7yp17UdOPh+54/pX5MGmO88CtQkQzz9HzE1slOaI7GdHma/E
-         DODiwt2SWKGGrkzJ02MvwqQtFn6xARZL4LaGDee/BcG1O5jLR9QcOpQYEE2cK1M8yyDK
-         +IwA7sSfOUrKHMXrvCFtsAH+eWZsYfMqkWlDjQYu7sQwPLSbxw7vIJI5ILD615ftz6bl
-         M8BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767709120; x=1768313920;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=PDyomPMwSX0nUznUeSpIGPTPKXqo/Pa069JTwjCcRpo=;
-        b=nBlggakktY6Iv4PdcCsp/5GWErrm3FXYCuJnfzNGAZH+uiIhdSnYF6hDlAYlmgeXSL
-         fLwbBEaT7lkjVJAbB4H4Rg7CXRcwDVzDfv6ZbrPfac0rhmSp/X3ige+/tLvee3xzzFJw
-         89QphDHxfNN4qdm8TQDRp21Ros4q2HbI5aDuJUtnTpOUJeuTlN3hF+UJjTuoKQBeRdDj
-         ag0dpCLbNNtdMSAEHv3Z5GqDY7cxnjrQUyG10BouXIxg3YpVmCCdcGKtQpfSRERUSH18
-         Bqz1eW7LKl9jO+jkXfgCtRsb5pjJv+ZkICBgQiwD5BjrT4hzPaZH1BsC/axgX426UsQi
-         +muw==
-X-Gm-Message-State: AOJu0YwX9jUMe4zw07a+r3wMD9TDK7TIXNtUXw5CDX5w/Gwwvoc7WUYg
-	/UpqIrn/hrswkjKj4Uv4q/Ro+NuTnIiPfgT8N0oFhgIqJDFCf1xVG/VxkIwa92/KMnLngzdowyF
-	WMdAW
-X-Gm-Gg: AY/fxX79iJ/HAeJZLmI6JxLQN1oEh+88JVbvfNYGvLFGodI4IK7P0XVUDWPS8HRz9U1
-	p8mNhTEWC19lg5KP5Qc88I7pH4cQubqqOHzDwBsefddNMUiKQPf0/1sx3AzjslXO+4HPSm5j9fo
-	kk5nm1P4xvfLydzOjrr2OvhsS1g63YtzPijxx36PyrWddQvPK/9ZJscMrwuTWUSspbr14cT8GIM
-	j1u4YlpT0GjRx5oirYMGOOWz4daGqFTwvQabf47dYhzpvkbTQJqJShdCrgvMNx+3rX91/op7m6r
-	Nqgef6UWctnqgdM91Fl7YtG5h/xVdzA09ZPBHnwx2KNNpKiQiNPXkLWOym9Kog+W/I9KYjUfaI/
-	IMRLDJBdGSuf7rd1aV+jfzxkciDuT56weOinnuH9da8AXBYHJIOVA9C1tylar5vEeOVfkpn3Olv
-	i4TIp/dn9n3sMX5Vqo4qkq
-X-Google-Smtp-Source: AGHT+IG4RoI4YqTRfLqMtHqERY+dKFavuI8R+zT2rhNFCJf6Ipd0EyH0ZjVfMEfxdwK/NE7/Y+RH/w==
-X-Received: by 2002:a05:600c:1d8c:b0:46e:4b79:551 with SMTP id 5b1f17b1804b1-47d7f0a324emr36773525e9.31.1767709120058;
-        Tue, 06 Jan 2026 06:18:40 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:e488:b673:7409:68d0])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-47d7f7035f2sm43558785e9.12.2026.01.06.06.18.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jan 2026 06:18:39 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: linux-amlogic@lists.infradead.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	jian.hu@amlogic.com
-Subject: Re: [PATCH v1 0/3] clk: meson: small fixes for HDMI PLL OD
-Date: Tue,  6 Jan 2026 15:18:23 +0100
-Message-ID: <176770907988.1004563.13571465521875416136.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260105204710.447779-1-martin.blumenstingl@googlemail.com>
-References: <20260105204710.447779-1-martin.blumenstingl@googlemail.com>
+	id 1vdEQR-0000000Dr3G-2e1H;
+	Tue, 06 Jan 2026 21:17:11 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id BD2406011E;
+	Tue,  6 Jan 2026 21:17:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 654D4C116C6;
+	Tue,  6 Jan 2026 21:16:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767734229;
+	bh=QLjWo0t79X6kihc/yxh2M5ASDv7kRQJ7SHHK2+hjnB8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VJ/EMUWx5xOJ6jpzJjm0a8IJNcQXZ0IMgt5F25rQqG1hlEHkjqG5BZPoexNzSRB8n
+	 ICw7PV+KEBh86ODxQ5AoDVhaagYgn4YkBkB7CinZ0kCJNIsvVJNgoQ24oai3nms+oY
+	 DGjicaEv3qk8rwdLUAR52lasyYpCOLODRpkmPpw8N9jw46UqQsJ4dN1c+wRHkh4w0w
+	 vAWV3JJqa5D5ZWBys99/vUGTlSTYxtlq91mFh/GizjZCkTWeLyK7i0hMO9WYJMcptw
+	 bYIqbO0v07rxEjX/JKZpJcj9Gb/MCwfYETeSB1I2AacmE+ZRsN55wlYVEi1ec6R8lK
+	 z4a5G4ksV4N9Q==
+Date: Tue, 6 Jan 2026 22:16:56 +0100
+From: Niklas Cassel <cassel@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Sumit Kumar <sumit.kumar@oss.qualcomm.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Greentime Hu <greentime.hu@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Chuanhua Lei <lchuanhua@maxlinear.com>,
+	Marek Vasut <marek.vasut+renesas@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Pratyush Anand <pratyush.anand@gmail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev,
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/2] PCI: dwc: Add multi-port controller support
+Message-ID: <aV17yIhuOFLGYi8r@fedora>
+References: <20260105-dt-parser-v1-0-b11c63cb5e2c@oss.qualcomm.com>
+ <20260105-dt-parser-v1-2-b11c63cb5e2c@oss.qualcomm.com>
+ <aVvkmkd5mWPmxeiS@ryzen>
+ <m5ukeugo2lazipljqpubyvm7j3xk2j5o7i2xgdbkkhii57xmyk@lh32qdzjhe4n>
+ <aVzqMqTUWIuKhgmC@fedora>
+ <5gne3bureusi45sy4zqr2zrfvt4ba4uxgnsfdnjeh2eno5zspe@ldvhq2nilsan>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260106_061843_882391_AF6549FF 
-X-CRM114-Status: UNSURE (   5.43  )
-X-CRM114-Notice: Please train this message.
+Content-Disposition: inline
+In-Reply-To: <5gne3bureusi45sy4zqr2zrfvt4ba4uxgnsfdnjeh2eno5zspe@ldvhq2nilsan>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,18 +105,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Applied to clk-meson (clk-meson-next), thanks!
+On Tue, Jan 06, 2026 at 06:41:09PM +0530, Manivannan Sadhasivam wrote:
+> > One advantage I can see, instead of doing:
+> > 
+> > +	struct dw_pcie_port *port = list_first_entry(&pci->pp.ports,
+> > +						struct dw_pcie_port, list);
+> > +	return dw_pcie_wait_for_link(pci, port);
+> > 
+> > for drivers with only one port (most drivers), we could just instead do:
+> > 
+> > +	return dw_pcie_wait_for_link(pci, pci->pp.port);
+> > 
+> > To simply get the first element in the array. No need to sprinkle
+> > list_first_entry() everywhere in all the drivers if they just have one port.
+> > 
+> > 
+> > For iterating, to avoid manually traversing the array, we could do like
+> > libata and create a simple macro, e.g. ata_qc_for_each():
+> > https://github.com/torvalds/linux/blob/v6.19-rc4/drivers/ata/libata-eh.c#L851-L854
+> > https://github.com/torvalds/linux/blob/v6.19-rc4/include/linux/libata.h#L1657-L1659
+> > 
+> 
+> I specifically do not want to introduce custom helpers. That's one of my primary
+> motivation for using lists :)
 
-[1/3] clk: meson: gxbb: Limit the HDMI PLL OD to /4 on GXL/GXM SoCs
-      https://github.com/BayLibre/clk-meson/commit/5b1a43950fd3
-[2/3] clk: meson: g12a: Limit the HDMI PLL OD to /4
-      https://github.com/BayLibre/clk-meson/commit/7aa6c24697ef
-[3/3] clk: meson: gxbb: use the existing HHI_HDMI_PLL_CNTL3 macro
-      https://github.com/BayLibre/clk-meson/commit/2fe1ef40b58c
+You are the maintainer.
 
-Best regards,
---
-Jerome
+IMO it would still be nice if we could avoid sprinkling:
+
++struct dw_pcie_port *port = list_first_entry(&pci->pp.ports,
++                                             struct dw_pcie_port, list);
+
+all over the glue drivers somehow, especially those that will only have a
+single port. Perhaps by introducing a macro?
+
+In case you don't like the idea of introducing a macro to get the first
+port...
+Since most glue drivers only seem to use the port when calling
+dw_pcie_wait_for_link(), perhaps we could introduce an alternate version
+of dw_pcie_wait_for_link(), that can be called by glue drivers that only
+have a single port.
+
+
+Kind regards,
+Niklas
 
 _______________________________________________
 linux-amlogic mailing list
