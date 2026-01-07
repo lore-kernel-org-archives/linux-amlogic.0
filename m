@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0223CFD65E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jan 2026 16:22:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B7D1CFD65A
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jan 2026 16:22:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Zb+9WJtILc5LWdM+lkfiScmOEyo1XY3VtYx+RzEO1YA=; b=J/mPRScG/rldWC
-	/GDTakMW1JIrkx0sW1bty0GDTbyK+wWBFKGVEm1MEfCKEJHyxLq/FiO7blIw0QZg/Hy81SMHoDPjZ
-	Mfi7vWYirJLqoMoEM6SaR42dArYjlf/PmOcG9za8BIXm+bEBtZTRham59ktbxd+rOx/3x7GNYcP+4
-	qmPSXeVEhMy+eCvA7wyeuaKI1PzNEmq4mG3iQ8EwnLG+ipUZYeSZMMEb8/HmkDtjKPVgz4i8HLxvV
-	GYHGbpJlV7/hpt8R5BoovsTcl2VhvViB8iqke4MfHXSf6CKbReeOucy7wyTqHPoXunxcMTT4ul/T+
-	rruTxBWFsdvoOxE88cQg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=E742jyv3OB2MLi+NHYDKB/+x3+wcEShuTdMHL9RvXZ8=; b=WKfO/KtYjelNpy
+	FpycV424T2IVIgFR37sZAxyCOyXDJeyhJUk9APyLf1nDkyXOlh8uNljk9bXU9i2v3MhB9Vqcy7m2S
+	ESv19+DKlnCQIH8/4Ov7NYigRFZSBaQUhJW22DJ7ryHV+i5p1VCpmAMprE9yzTGRKG6gvMU1mgkMF
+	SeV1nDCy4vuz4iCnu+fFtxFZVElm9C5cM8s/UvQEpgHAGdsImGJUNgYMH1n70t0ra8yMUmyARnCjp
+	M17dfD6q2Ah4hwf++VVjJ8P/h3nloHd3FQAectQCnzU0SfXe0kak3aMJhnXPDfyGlgGqlXjVeYW4a
+	qWbehP805UgjwNe7BznA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vdWIq-0000000FG8M-2L3O;
-	Wed, 07 Jan 2026 16:22:34 +0000
+	id 1vdWIu-0000000FGAl-1lJJ;
+	Wed, 07 Jan 2026 16:22:36 +0000
 Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vdWIh-0000000FG4o-17mi
-	for linux-amlogic@lists.infradead.org;
-	Wed, 07 Jan 2026 16:22:30 +0000
+	id 1vdWIp-0000000FG7C-3NeK;
+	Wed, 07 Jan 2026 16:22:35 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id CD1381A26DF;
-	Wed,  7 Jan 2026 16:22:19 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 083211A26E6;
+	Wed,  7 Jan 2026 16:22:30 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 96426606F8;
-	Wed,  7 Jan 2026 16:22:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 81AB8103C87CB;
-	Wed,  7 Jan 2026 17:22:06 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BDBE56072B;
+	Wed,  7 Jan 2026 16:22:29 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5DAA0103C87C7;
+	Wed,  7 Jan 2026 17:22:23 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767802937; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=JdLe8UY54Ycj4piloj+rsekA1/AGyqvm+QpBgA+1OYI=;
-	b=ZJ/XqDa0OSr4NYaLF8zcX+MPxD7NKgB+Hnw1y/rmL1ezS6TIK3DjMcoiPkOfBvWHC/bUOj
-	gT7MIWvzWZ9cM3gWVjHaA2EsfQ76m7OiPjoGL3hbQVVn3NsxrMTripI10GGBdeogG9daJw
-	pjLmjhL17iBrYq1psBENAaWnS46q7xyXsOR5hhAMD1mJPtXaT6gctPkjCKmQGYW/uUEIcs
-	NiJSg1LN9O1HqzipnBoPU+bH5wfTXsoNYms2T01h4vpLHHY+ZIdJfqR9+qQaWYQy1cNghr
-	zGzKHLAYHJCK7ubwgRrghHeOBIzLRAyrTK63Zl/Wm68beHX1TYgd1NG8KQHxrw==
+	t=1767802948; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=qkiR0P62QEUb1PCOEii1nVoSK2mCmCTz+ERz0qbz4sk=;
+	b=bzDLu4hog3Yzapu+FCJaa75iEPEgDSakBa2bewsdNrO75fp1ds4LOGxHwDe7EK4GeGSQhJ
+	l9ijvmCRCnj+9qfTD2679M1ipP3NBnXdgBMYGAud8sUuPBztTSS+Cs1CzC/w1APFIhguw8
+	V2WVK0uZU8nZ2/mgFTNxxwsnxzVPsYW7MrWu7TF42BAOtRrvqPMjwj8VDRGYA9H6hzDBMd
+	ORN05jWhnTBgKBmXhTqTHtMlUCsTzAKGn9EN/JdOOHv1Bcpu4h8PJJzxGuJOmMyswQZtLO
+	X3PdwDEEQe+ZgynJ6865m0cZAIlwFoPQYmii3B/XEmsWX+WIc301Hkj56NUGNg==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Subject: [PATCH 0/6] drm/bridge: convert users of of_drm_find_bridge(),
- part 3
-Date: Wed, 07 Jan 2026 17:21:58 +0100
-Message-Id: <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-0-ef48a517828e@bootlin.com>
+Date: Wed, 07 Jan 2026 17:22:00 +0100
+Subject: [PATCH 2/6] drm/meson/dw-hdmi: convert to
+ of_drm_find_and_get_bridge()
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIACeIXmkC/y2NUQrCMBAFr1L224W0iiFeRSTEZLcu1KRsWhFK7
- 24UP+cNzNugkgpVuHQbKL2kSskN+kMH8RHySCipMQxmOJveWEz6xLtKaiZMU4k40jKvy3f3hT1
- LTv7vj3hi5ywFG61jaMlZieX9u7ve9v0D/wtEBn4AAAA=
-X-Change-ID: 20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-4f997ea7c79f
+Message-Id: <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-2-ef48a517828e@bootlin.com>
+References: <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-0-ef48a517828e@bootlin.com>
+In-Reply-To: <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-0-ef48a517828e@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
@@ -87,8 +85,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260107_082225_052761_7D165778 
-X-CRM114-Status: GOOD (  11.89  )
+X-CRM114-CacheID: sfid-20260107_082231_977560_BC0C305A 
+X-CRM114-Status: GOOD (  13.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,89 +98,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhpcyBzZXJpZXMgY29udmVydHMgbWFueSBEUk0gZHJpdmVycyBmcm9tIHRoZSBub3cgZGVwcmVj
-YXRlZApvZl9kcm1fZmluZF9icmlkZ2UoKSB0byBpdHMgcmVwbGFjZW1lbnQgb2ZfZHJtX2ZpbmRf
-YW5kX2dldF9icmlkZ2UoKSB3aGljaAphbGxvd3MgY29ycmVjdCBicmlkZ2UgcmVmY291bnRpbmcu
-IFdoZXJlIGFwcGxpY2FibGUgaXQgYWxzbyBjb252ZXJ0cwpwZXItZHJpdmVyICJuZXh0X2JyaWRn
-ZSIgcG9pbnRlcnMgdG8gdGhlIHVuaWZpZWQgZHJtX2JyaWRnZTo6bmV4dF9icmlkZ2UKd2hpY2gg
-cHV0cyB0aGUgcmVmZXJlbmNlIGF1dG9tYXRpY2FsbHkgb24gYnJpZGdlIGRlYWxsb2NhdGlvbi4K
-ClRoaXMgaXMgcGFydCBvZiB0aGUgd29yayB0byBzdXBwb3J0IGhvdHBsdWcgb2YgRFJNIGJyaWRn
-ZXMuIFRoZSBncmFuZCBwbGFuCndhcyBkaXNjdXNzZWQgaW4gWzBdLgoKSGVyZSdzIHRoZSB3b3Jr
-IGJyZWFrZG93biAo4p6cIG1hcmtzIHRoZSBjdXJyZW50IHNlcmllcyk6CgogMS4g4p6cIGFkZCBy
-ZWZjb3VudGluZyB0byBEUk0gYnJpZGdlcyBzdHJ1Y3QgZHJtX2JyaWRnZSwKICAgICAgYmFzZWQg
-b24gZGV2bV9kcm1fYnJpZGdlX2FsbG9jKCkKICAgIEEuIOKclCBhZGQgbmV3IGFsbG9jIEFQSSBh
-bmQgcmVmY291bnRpbmcgKHY2LjE2KQogICAgQi4g4pyUIGNvbnZlcnQgYWxsIGJyaWRnZSBkcml2
-ZXJzIHRvIG5ldyBBUEkgKHY2LjE3KQogICAgQy4g4pyUIGt1bml0IHRlc3RzICh2Ni4xNykKICAg
-IEQuIOKclCBhZGQgZ2V0L3B1dCB0byBkcm1fYnJpZGdlX2FkZC9yZW1vdmUoKSArIGF0dGFjaC9k
-ZXRhY2goKQogICAgICAgICBhbmQgd2FybiBvbiBvbGQgYWxsb2NhdGlvbiBwYXR0ZXJuICh2Ni4x
-NykKICAgIEUuIOKenCBhZGQgZ2V0L3B1dCBvbiBkcm1fYnJpZGdlIGFjY2Vzc29ycwogICAgICAg
-MS4g4pyUIGRybV9icmlkZ2VfY2hhaW5fZ2V0X2ZpcnN0X2JyaWRnZSgpLCBhZGQgY2xlYW51cCBh
-Y3Rpb24gKHY2LjE4KQogICAgICAgMi4g4pyUIGRybV9icmlkZ2VfZ2V0X3ByZXZfYnJpZGdlKCkg
-KHY2LjE4KQogICAgICAgMy4g4pyUIGRybV9icmlkZ2VfZ2V0X25leHRfYnJpZGdlKCkgKHY2LjE5
-KQogICAgICAgNC4g4pyUIGRybV9mb3JfZWFjaF9icmlkZ2VfaW5fY2hhaW4oKSAodjYuMTkpCiAg
-ICAgICA1LiDinJQgZHJtX2JyaWRnZV9jb25uZWN0b3JfaW5pdCAodjYuMTkpCiAgICAgICA2LiDi
-gKYgcHJvdGVjdCBlbmNvZGVyIGJyaWRnZSBjaGFpbiB3aXRoIGEgbXV0ZXgKICAgICAgIDcuIOKe
-nCBvZl9kcm1fZmluZF9icmlkZ2UKICAgICAgICAgIGEuIOKclOKApiBhZGQgb2ZfZHJtX2dldF9i
-cmlkZ2UoKSwgY29udmVydCBiYXNpYyBkaXJlY3QgdXNlcnMKCSAgICAgICAgKHY2LjIwPywgb25l
-IGRyaXZlciBzdGlsbCBwZW5kaW5nKQoJICBiLiDigKYgY29udmVydCBkaXJlY3Qgb2ZfZHJtX2dl
-dF9icmlkZ2UoKSB1c2VycywgcGFydCAyCgkgIGMuIOKenCBjb252ZXJ0IGRpcmVjdCBvZl9kcm1f
-Z2V0X2JyaWRnZSgpIHVzZXJzLCBwYXJ0IDMKCSAgZC4gICBjb252ZXJ0IGRpcmVjdCBvZl9kcm1f
-Z2V0X2JyaWRnZSgpIHVzZXJzLCBwYXJ0IDQKCSAgZS4gICBjb252ZXJ0IGJyaWRnZS1vbmx5IGRy
-bV9vZl9maW5kX3BhbmVsX29yX2JyaWRnZSgpIHVzZXJzCiAgICAgICA4LiBkcm1fb2ZfZmluZF9w
-YW5lbF9vcl9icmlkZ2UsICpfb2ZfZ2V0X2JyaWRnZQogICAgICAgOS4g4pyUIGVuZm9yY2UgZHJt
-X2JyaWRnZV9hZGQgYmVmb3JlIGRybV9icmlkZ2VfYXR0YWNoICh2Ni4xOSkKICAgIEYuIOKclCBk
-ZWJ1Z2ZzIGltcHJvdmVtZW50cwogICAgICAgMS4g4pyUIGFkZCB0b3AtbGV2ZWwgJ2JyaWRnZXMn
-IGZpbGUgKHY2LjE2KQogICAgICAgMi4g4pyUIHNob3cgcmVmY291bnQgYW5kIGxpc3QgbGluZ2Vy
-aW5nIGJyaWRnZXMgKHY2LjE5KQogMi4g4oCmIGhhbmRsZSBncmFjZWZ1bGx5IGF0b21pYyB1cGRh
-dGVzIGR1cmluZyBicmlkZ2UgcmVtb3ZhbAogICAgQS4g4pyUIEFkZCBkcm1fZGV2X2VudGVyL2V4
-aXQoKSB0byBwcm90ZWN0IGRldmljZSByZXNvdXJjZXMgKHY2LjIwPykKICAgIEIuIOKApiBwcm90
-ZWN0IHByaXZhdGVfb2JqIHJlbW92YWwgZnJvbSBsaXN0CiAzLiDigKYgRFNJIGhvc3QtZGV2aWNl
-IGRyaXZlciBpbnRlcmFjdGlvbgogNC4g4pyUIHJlbW92aW5nIHRoZSBuZWVkIGZvciB0aGUgImFs
-d2F5cy1kaXNjb25uZWN0ZWQiIGNvbm5lY3RvcgogNS4gZmluaXNoIHRoZSBob3RwbHVnIGJyaWRn
-ZSB3b3JrLCBtb3ZpbmcgY29kZSB0byB0aGUgY29yZSBhbmQgcG90ZW50aWFsbHkKICAgIHJlbW92
-aW5nIHRoZSBob3RwbHVnLWJyaWRnZSBpdHNlbGYgKHRoaXMgbmVlZHMgdG8gYmUgY2xhcmlmaWVk
-IGFzCiAgICBwb2ludHMgMS0zIGFyZSBkZXZlbG9wZWQpCgpbMF0gaHR0cHM6Ly9sb3JlLmtlcm5l
-bC5vcmcvbGttbC8yMDI1MDIwNi1ob3RwbHVnLWRybS1icmlkZ2UtdjYtMC05ZDZmMmM5YzMwNThA
-Ym9vdGxpbi5jb20vI3QKClRoaXMgd29yayBpcyBhIGNvbnRpbnVhdGlvbiBvZiB0aGUgd29yayB0
-byBjb3JyZWN0bHkgaGFuZGxlIGJyaWRnZQpyZWZjb3VudGluZyBmb3IgZXhpc3Rpbmcgb2ZfZHJt
-X2ZpbmRfYnJpZGdlKCkuIFRoZSBncm91bmQgd29yayBpcyBpbjoKCiAtIGNvbW1pdCAyOTNhOGZk
-NzcyMWEgKCJkcm0vYnJpZGdlOiBhZGQgb2ZfZHJtX2ZpbmRfYW5kX2dldF9icmlkZ2UoKSIpCiAt
-IGNvbW1pdCA5ZGEwZTA2YWJkYTggKCJkcm0vYnJpZGdlOiBkZXByZWNhdGUgb2ZfZHJtX2ZpbmRf
-YnJpZGdlKCkiKQogLSBjb21taXQgM2ZkZWFlMTM0YmE5ICgiZHJtL2JyaWRnZTogYWRkIG5leHRf
-YnJpZGdlIHBvaW50ZXIgdG8gc3RydWN0IGRybV9icmlkZ2UiKQoKVGhlIHdob2xlIGNvbnZlcnNp
-b24gaXMgc3BsaXQgaW4gbXVsdGlwbGUgc2VyaWVzIHRvIG1ha2UgdGhlIHJldmlldyBwcm9jZXNz
-CmEgYml0IHNtb290aGVyOgoKIC0gUGFydCAyOiBtb3N0bHkgZHJpdmVycyBpbiBkcml2ZXJzL2dw
-dS9kcm0vYnJpZGdlIFsyXQogLSBQYXJ0IDM6IG90aGVyIGRyaXZlcnMsIGxvdy1tZWRpdW0gY29t
-cGxleGl0eSBbdGhpcyBzZXJpZXNdCiAtIFBhcnQgNDogb3RoZXIgZHJpdmVycywgY29tcGxleCAo
-bm90IHNlbnQgeWV0KQoKWzJdIGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI2MDEwNy1k
-cm0tYnJpZGdlLWFsbG9jLWdldHB1dC1kcm1fb2ZfZmluZF9icmlkZ2UtMi12MS0wLTI4M2Q3YmJh
-MDYxYUBib290bGluLmNvbS8KClNpZ25lZC1vZmYtYnk6IEx1Y2EgQ2VyZXNvbGkgPGx1Y2EuY2Vy
-ZXNvbGlAYm9vdGxpbi5jb20+Ci0tLQpMdWNhIENlcmVzb2xpICg2KToKICAgICAgZHJtL2JyaWRn
-ZTogZHctaGRtaTogY29udmVydCB0byBvZl9kcm1fZmluZF9hbmRfZ2V0X2JyaWRnZSgpCiAgICAg
-IGRybS9tZXNvbi9kdy1oZG1pOiBjb252ZXJ0IHRvIG9mX2RybV9maW5kX2FuZF9nZXRfYnJpZGdl
-KCkKICAgICAgZHJtL2lteC9kdy1oZG1pOiBjb252ZXJ0IHRvIG9mX2RybV9maW5kX2FuZF9nZXRf
-YnJpZGdlKCkKICAgICAgZHJtL21lZGlhdGVrOiBtdGtfaGRtaSo6IGNvbnZlcnQgdG8gb2ZfZHJt
-X2ZpbmRfYW5kX2dldF9icmlkZ2UoKQogICAgICBkcm0vZXh5bm9zOiBoZG1pOiBjb252ZXJ0IHRv
-IG9mX2RybV9maW5kX2FuZF9nZXRfYnJpZGdlKCkKICAgICAgZHJtOiByY2FyLWR1OiBsdmRzOiBj
-b252ZXJ0IHRvIG9mX2RybV9maW5kX2FuZF9nZXRfYnJpZGdlKCkKCiBkcml2ZXJzL2dwdS9kcm0v
-YnJpZGdlL3N5bm9wc3lzL2R3LWhkbWkuYyAgIHwgIDcgKysrLS0tLQogZHJpdmVycy9ncHUvZHJt
-L2V4eW5vcy9leHlub3NfaGRtaS5jICAgICAgICB8ICA0ICsrKy0KIGRyaXZlcnMvZ3B1L2RybS9p
-bXgvaXB1djMvZHdfaGRtaS1pbXguYyAgICAgfCAgMyArKy0KIGRyaXZlcnMvZ3B1L2RybS9tZWRp
-YXRlay9tdGtfaGRtaS5jICAgICAgICAgfCAgNCArKy0tCiBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0
-ZWsvbXRrX2hkbWlfY29tbW9uLmMgIHwgIDQgKystLQogZHJpdmVycy9ncHUvZHJtL21lZGlhdGVr
-L210a19oZG1pX2NvbW1vbi5oICB8ICAxIC0KIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtf
-aGRtaV92Mi5jICAgICAgfCAgNCArKy0tCiBkcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdf
-aGRtaS5jICAgICAgIHwgIDYgKysrKystCiBkcml2ZXJzL2dwdS9kcm0vcmVuZXNhcy9yY2FyLWR1
-L3JjYXJfbHZkcy5jIHwgMTAgKysrKysrKysrLQogOSBmaWxlcyBjaGFuZ2VkLCAyOCBpbnNlcnRp
-b25zKCspLCAxNSBkZWxldGlvbnMoLSkKLS0tCmJhc2UtY29tbWl0OiBmYWViNGZmNmQ2ZTQxYzQy
-NzQxZmQxZGY4ZTFkMGI4MGY5NDUyNDAzCmNoYW5nZS1pZDogMjAyNjAxMDctZHJtLWJyaWRnZS1h
-bGxvYy1nZXRwdXQtZHJtX29mX2ZpbmRfYnJpZGdlLTMtNGY5OTdlYTdjNzlmCgpCZXN0IHJlZ2Fy
-ZHMsCi0tIApMdWNhIENlcmVzb2xpIDxsdWNhLmNlcmVzb2xpQGJvb3RsaW4uY29tPgoKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
-bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
-dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+of_drm_find_bridge() is deprecated. Move to its replacement
+of_drm_find_and_get_bridge() which gets a bridge reference, and ensure it
+is put when done.
+
+dw_hdmi->bridge is used only in dw_hdmi_top_thread_irq(), so in order to
+avoid potential use-after-free ensure the irq is freed before putting the
+dw_hdmi->bridge reference.
+
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+---
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index 0d7c68b29dff..fef1702acb14 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -778,7 +778,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+ 	if (IS_ERR(meson_dw_hdmi->hdmi))
+ 		return PTR_ERR(meson_dw_hdmi->hdmi);
+ 
+-	meson_dw_hdmi->bridge = of_drm_find_bridge(pdev->dev.of_node);
++	meson_dw_hdmi->bridge = of_drm_find_and_get_bridge(pdev->dev.of_node);
+ 
+ 	DRM_DEBUG_DRIVER("HDMI controller initialized\n");
+ 
+@@ -789,8 +789,12 @@ static void meson_dw_hdmi_unbind(struct device *dev, struct device *master,
+ 				   void *data)
+ {
+ 	struct meson_dw_hdmi *meson_dw_hdmi = dev_get_drvdata(dev);
++	struct platform_device *pdev = to_platform_device(dev);
++	int irq = platform_get_irq(pdev, 0);
+ 
++	devm_free_irq(dev, irq, meson_dw_hdmi);
+ 	dw_hdmi_unbind(meson_dw_hdmi->hdmi);
++	drm_bridge_put(meson_dw_hdmi->bridge);
+ }
+ 
+ static const struct component_ops meson_dw_hdmi_ops = {
+
+-- 
+2.52.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
