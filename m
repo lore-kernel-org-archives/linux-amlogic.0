@@ -4,116 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3691D0D145
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Jan 2026 17:55:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B16F0D148A5
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jan 2026 06:08:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=CVqlOWljp93HT1pYOtmxt4yMN+ahZnbWJoysijJB1H8=; b=Xmih1u5amkjxzf8kYzrGZXmRBq
-	HgYuiNQV4C8rgnOozQ5FGOexlkWcALRyfhqDBXMoLmSdqND+Y1GXC3yf2zU0Y0mk8+h6bDsJ78p3e
-	yVV+e24ZqAvN3BtsEihv8sASSLaVFgbK7ROBtAMDpEQWHmMhMyIonTJq4pJA+LYO/HOcE/6tlbScq
-	mklDnpzhbF7UYMMzHS5+2HhT2TvFvWDjkJoEBqcnMeVuycrhB/jHp4DWp+bldcD85XvTmBBgdYMUx
-	sFQaXGO5ZmjFrh9VIX41FFKvj435n+8JM+coRBCVo7rXh9hXs2lOUzUbV3c5Pg8x0e/yUny61P7er
-	oDBRZmhQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=rnj6n+7kxedDonQp8mGTe4Yr5WNNmOxtAZcq3qgXfNc=; b=yMr3jwtfDaMtl7
+	Y0U/vLMaAecfZIO/+tku2+Mdfxs+mJKS8M3R1tb+3D4LxE19Fh9O9F5dhVPYNZx4C8hEr4jL1S/NV
+	/OL/mlDYshnLnz8h/4Oe/RKzsNrzomlqcAxppfFZW4txEA5t9n5YA6GMXZ8sRsx9VhbK5BT2ybQ/N
+	UnOG6hhSW+vWb43yaY8Oig6vAJdyDecaTCgn1QMzRp3sFjOtfNTba6fNAdYQz7PVSzh4jcSYIPWC1
+	QOAswbUCl+4Qu5zMN7gyGD2mnxrIULQPcKg3l9HBLCA2JN0kE+WEMPriiqWOhrxj8tLdXgkkY5p2p
+	pkzccalK0QgADa24KQ6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vdXkH-0000000FPLG-3Qvv;
-	Wed, 07 Jan 2026 17:54:57 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1vdjCB-0000000FynZ-3rEJ;
+	Thu, 08 Jan 2026 06:08:31 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vdXkE-0000000FPKD-0LlA
-	for linux-amlogic@lists.infradead.org;
-	Wed, 07 Jan 2026 17:54:55 +0000
-Received: by mail-wm1-x343.google.com with SMTP id 5b1f17b1804b1-47bdbc90dcaso17347695e9.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 07 Jan 2026 09:54:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767808492; x=1768413292; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2GueRq6A+0XT/095Pgg5aAl5CkvMBpac56LryOJY2ew=;
-        b=nhqc/NP3G5kWn4kdEqt7TktCJjJ/Amaw33NfyaA2grTuiFaLu0N5aM/UPaE1iMcS4C
-         dsOrttinGLUCl7FsTorXsbHXgeX7j4x/hMb6zFufbhgT0uuFzmmkq4+/h2r8RgZF1MYQ
-         1GQ38x0NAn9PLfOybXdQYtbnIFD74ka0KlGty4RNnU7BX0HJdYT9HCpFdcEiZ2GjHDBf
-         bE+zoqkxukr66mKtKUxPbYHNU2fjAMclrkmvnrxU9I7tOsix3Uufkd6bbiwTFovRbsn5
-         MwstTrjCmGxAyc8sQApTVlxA0iUHlYnwm1KTaftRG9KhapHI6uiHFI/WVLMptWCO3jKY
-         I3sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767808492; x=1768413292;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2GueRq6A+0XT/095Pgg5aAl5CkvMBpac56LryOJY2ew=;
-        b=skwlaYq9GIhmvvRN8cRNmtqQYKj4U/dKp+9x7n1NgI+wrF2NqESzAtxKoH6i4dXt3u
-         tBXxbgH7n7U/+w7yEtTt6GV53NJi8BX3yGiCzCQbedMDJ/1rUzUZbFSO5Yw6PJO5fjXl
-         euE7SWNjUQU1PYCNMbHpAP5hA6Pfh1hixNll49NfiojkMCAcdaXLosPxRtwgwa2iCjw3
-         wWy/tXchuWiS1z8I3NycC8B0P7cJX36ZphnYWxkD17m6JJ+1bMb/+jcSiF/OG9jM5AXZ
-         pl5cGkjEdEgZ4OhYGhDOzeAfmzpHwKl8Y2Zn4zsEblNmisYAE2ovkl7T+/j8HEAtTtQu
-         4wkA==
-X-Forwarded-Encrypted: i=1; AJvYcCU0C74m5OhSF1LWTKa430NNnbiAalXckDpj1FwXtzHciv9vTlALE2FKplGXHPEr0sJe8oH+q6Wpuo9JHQwo@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx7h0vbIUzdU4ImCMZDYtXNwm3a8yqVBBz0tiyYC5P4USoEdfSd
-	DlLJRwdK7zooWM2kXjB8m5VGP04MonE8omfVJoZBl6lyKyATut0bMFIGRnmvqJ4NRzg=
-X-Gm-Gg: AY/fxX45xgpULQCcTQYIbH7AWqEbn7EVJBH0PQzQqUzQXJNrPpqLtijLsPXDOJrDtKr
-	7P3jlTIOk5YpmYj6laTo7hA5lveb4/GrjrGhdVbYr+XRbtNOCV3/4JAAL/8NoT+au2njkDsz9HJ
-	AhSFjmfTQs2hXCKXb/znzbmLCbmQQNHdiXZQgLEUX8A/WMGMnXkjUeW1XyrBPFbIc0L8XfHlQP+
-	Kp1nFIt4HCYAvUMr8pFC0tlBYtQxCTpQtJjmJANJiMEQFogSsOHLNcPwj6jzZdzwL+bo5b8FkM1
-	P8GrVL+3gRpEpgcxqh+WFYT3ItOTamYmnwcWQOUuk6vT2BHRBk0YzKcaYeKwohXK/r3l42AXsW9
-	SXTIfew0ok12RVN3cLlUtxSwRJekbTaDDPX6uwhdFBXGmcTHWYBtwJCzSy04nG+nmYadicI1WjG
-	4pBF/K9tf+RK95amUgecQojcFCXVbaQSmqC5r7pOxcKOlsy2wAHUCaObNa5eloG6Q=
-X-Google-Smtp-Source: AGHT+IGN7NAqohdUCZLsi8strC8bNG4kKWgTa+HDUZIIgW3dfpMXR7ehEcG0e1Mccsqds3tAwYLwtg==
-X-Received: by 2002:a05:600c:3f05:b0:475:da1a:53f9 with SMTP id 5b1f17b1804b1-47d84b18731mr37134155e9.14.1767808491868;
-        Wed, 07 Jan 2026 09:54:51 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080:2542:a09c:d0d8:7a1f? ([2a01:e0a:3d9:2080:2542:a09c:d0d8:7a1f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f4184e1sm109090505e9.4.2026.01.07.09.54.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Jan 2026 09:54:51 -0800 (PST)
-Message-ID: <890f1ce6-60d2-47d4-8552-940f3abd7c1e@linaro.org>
-Date: Wed, 7 Jan 2026 18:54:50 +0100
+	id 1vdjC6-0000000Fyi4-3Tws;
+	Thu, 08 Jan 2026 06:08:29 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 224FC443D2;
+	Thu,  8 Jan 2026 06:08:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DF64CC19423;
+	Thu,  8 Jan 2026 06:08:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767852505;
+	bh=kj2bz78IILEIstewiqZHT9qts3FHFYfsPylDGJjB5eM=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=BiENFdwZp8m2RDrbVp1RlI4CRW0v9lxo7yUpugu2CyXxds6muI780yixEgvBKoPY2
+	 ahzsS2O+tAMMFPtM75te3BuhmUrPNkNtxjSV4j2RnHgxqSqXddD2P3M6mm2C869iY/
+	 D1IwsHDkOLPwYFoH1w0e2YJmG9W/hSyOvyr68NqLJF4X9E1FcadLQRz8MAwMwMUVqx
+	 fNhx4gVmTwlZ+2jgRnV52t2yVtcVS9ikEP1tF9IHIVQHqaom5W5G9E6mbU4aJRdIR6
+	 9Lz4XnpRfMiSCxr04v08cL6ubN6cAleLFekTJiZNLq3wMV+aqEVJ3HZdaMTbXICill
+	 hBFBLmC+FRJuA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D7FB3D148A3;
+	Thu,  8 Jan 2026 06:08:25 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Date: Thu, 08 Jan 2026 14:08:17 +0800
+Subject: [PATCH v5 3/8] dt-bindings: clock: Add Amlogic A5 peripherals
+ clock controller
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: amlogic: move CPU OPP table and clock
- assignment to SoC.dtsi
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20260106090624.518117-1-martin.blumenstingl@googlemail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260106090624.518117-1-martin.blumenstingl@googlemail.com>
+Message-Id: <20260108-a5-clk-v5-3-9a69fc1ef00a@amlogic.com>
+References: <20260108-a5-clk-v5-0-9a69fc1ef00a@amlogic.com>
+In-Reply-To: <20260108-a5-clk-v5-0-9a69fc1ef00a@amlogic.com>
+To: Chuan Liu <chuan.liu@amlogic.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767852503; l=9596;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=hHd35yALxxbdvq1KX85En5uKgtIsw1h8WtM1CzHm1rY=;
+ b=atN8iueNaSD1TaBRACfkI02U9D89XWdFhqLDU6s7qitXF5BqrM3jVSsOvHX/jpwjGL1mfv0yK
+ KGQUtPPcsNnBn/93LwJoechgCjr2tVds12mj+KhvYrpxyC9PWWY9AIr
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260107_095454_346579_0796011B 
-X-CRM114-Status: GOOD (  12.99  )
+X-CRM114-CacheID: sfid-20260107_220826_915161_9A66A84F 
+X-CRM114-Status: GOOD (  10.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,947 +90,309 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: chuan.liu@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 1/6/26 10:06, Martin Blumenstingl wrote:
-> Move the assignment of the CPU clocks and the CPU OPP table(s) from
-> board.dts to SoC.dtsi to reduce the code duplication.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->   .../boot/dts/amlogic/meson-g12a-fbx8am.dts    |  8 -------
->   .../dts/amlogic/meson-g12a-radxa-zero.dts     |  8 -------
->   .../boot/dts/amlogic/meson-g12a-sei510.dts    |  8 -------
->   .../boot/dts/amlogic/meson-g12a-u200.dts      |  8 -------
->   .../boot/dts/amlogic/meson-g12a-x96-max.dts   |  8 -------
->   arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |  8 +++++++
->   .../amlogic/meson-g12b-a311d-libretech-cc.dts | 13 ----------
->   .../boot/dts/amlogic/meson-g12b-a311d.dtsi    | 24 +++++++++++++++++++
->   .../dts/amlogic/meson-g12b-bananapi-cm4.dtsi  | 12 ----------
->   .../boot/dts/amlogic/meson-g12b-bananapi.dtsi | 12 ----------
->   .../dts/amlogic/meson-g12b-khadas-vim3.dtsi   | 12 ----------
->   .../amlogic/meson-g12b-odroid-go-ultra.dts    | 12 ----------
->   .../boot/dts/amlogic/meson-g12b-odroid.dtsi   | 12 ----------
->   .../dts/amlogic/meson-g12b-radxa-zero2.dts    | 12 ----------
->   .../boot/dts/amlogic/meson-g12b-s922x.dtsi    | 24 +++++++++++++++++++
->   .../boot/dts/amlogic/meson-g12b-w400.dtsi     | 12 ----------
->   arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  7 ++++++
->   .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     |  8 -------
->   .../boot/dts/amlogic/meson-sm1-bananapi.dtsi  |  8 -------
->   .../dts/amlogic/meson-sm1-khadas-vim3l.dts    |  8 -------
->   .../boot/dts/amlogic/meson-sm1-odroid.dtsi    |  8 -------
->   .../amlogic/meson-sm1-s905d3-libretech-cc.dts |  9 -------
->   .../boot/dts/amlogic/meson-sm1-sei610.dts     |  8 -------
->   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    |  8 +++++++
->   24 files changed, 71 insertions(+), 186 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
-> index d0a3b4b9229c..abf6b63ea0d7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
-> @@ -265,26 +265,18 @@ &clkc_audio {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &ethmac {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-> index 4353485c6f26..a85f383a1699 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
-> @@ -218,26 +218,18 @@ &clkc_audio {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cvbs_vdac_port {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> index f39fcabc763f..5b6716aeaae5 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> @@ -312,26 +312,18 @@ &clkc_audio {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cvbs_vdac_port {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-> index b5bf8ecc91e6..dd9da7a5ec5f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-> @@ -405,26 +405,18 @@ &clkc_audio {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &clkc_audio {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> index 5ab460a3e637..015e3c7e3a91 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> @@ -261,26 +261,18 @@ &clkc_audio {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cvbs_vdac_port {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> index 1321ad95923d..51317d11f263 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> @@ -25,6 +25,8 @@ cpu0: cpu@0 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2>;
->   			#cooling-cells = <2>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			clocks = <&clkc CLKID_CPU_CLK>;
->   		};
->   
->   		cpu1: cpu@1 {
-> @@ -40,6 +42,8 @@ cpu1: cpu@1 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2>;
->   			#cooling-cells = <2>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			clocks = <&clkc CLKID_CPU_CLK>;
->   		};
->   
->   		cpu2: cpu@2 {
-> @@ -55,6 +59,8 @@ cpu2: cpu@2 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2>;
->   			#cooling-cells = <2>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			clocks = <&clkc CLKID_CPU_CLK>;
->   		};
->   
->   		cpu3: cpu@3 {
-> @@ -70,6 +76,8 @@ cpu3: cpu@3 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2>;
->   			#cooling-cells = <2>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			clocks = <&clkc CLKID_CPU_CLK>;
->   		};
->   
->   		l2: l2-cache0 {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
-> index 82546b738977..5747acf8f337 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dts
-> @@ -6,7 +6,6 @@
->   
->   /dts-v1/;
->   
-> -#include <dt-bindings/clock/g12a-clkc.h>
->   #include "meson-g12b-a311d.dtsi"
->   #include "meson-libretech-cottonwood.dtsi"
->   
-> @@ -74,38 +73,26 @@ sound {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu100 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu101 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu102 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu103 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &pwm_ab {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
-> index 8ecb5bd125c1..f15baa708b36 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
-> @@ -109,3 +109,27 @@ opp-2208000000 {
->                   };
->   	};
->   };
-> +
-> +&cpu0 {
-> +	operating-points-v2 = <&cpu_opp_table_0>;
-> +};
-> +
-> +&cpu1 {
-> +	operating-points-v2 = <&cpu_opp_table_0>;
-> +};
-> +
-> +&cpu100 {
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +};
-> +
-> +&cpu101 {
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +};
-> +
-> +&cpu102 {
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +};
-> +
-> +&cpu103 {
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-> index 39011b645128..7a204d324dd4 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-> @@ -153,38 +153,26 @@ &cecb_AO {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu100 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu101 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu102 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu103 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &ext_mdio {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-> index 1b08303c4282..4321d08d11a6 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
-> @@ -261,38 +261,26 @@ &cecb_AO {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu100 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu101 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu102 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu103 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &ethmac {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
-> index fc737499f207..b16247e0df9f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
-> @@ -49,38 +49,26 @@ vddcpu_b: regulator-vddcpu-b {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu100 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu101 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu102 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu103 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &pwm_ab {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-> index d5938a4a6da3..c81d7fdbe2f5 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-> @@ -279,38 +279,26 @@ &arb {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu100 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu101 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu102 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu103 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   /* RK817 only supports 12.5mV steps, round up the values */
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi
-> index 3298d59833b6..88d995006f94 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid.dtsi
-> @@ -225,38 +225,26 @@ &clkc_audio {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu100 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu101 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu102 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu103 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu_thermal {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> index 1e5c6f984945..e95e193eaebc 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-> @@ -257,38 +257,26 @@ &clkc_audio {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu100 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu101 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu102 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu103 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu_thermal {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
-> index 19cad93a6889..eef98add05c6 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
-> @@ -99,3 +99,27 @@ opp-1908000000 {
->   		};
->   	};
->   };
-> +
-> +&cpu0 {
-> +	operating-points-v2 = <&cpu_opp_table_0>;
-> +};
-> +
-> +&cpu1 {
-> +	operating-points-v2 = <&cpu_opp_table_0>;
-> +};
-> +
-> +&cpu100 {
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +};
-> +
-> +&cpu101 {
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +};
-> +
-> +&cpu102 {
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +};
-> +
-> +&cpu103 {
-> +	operating-points-v2 = <&cpub_opp_table_1>;
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
-> index 9b6d780eada7..4834f418bef5 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi
-> @@ -211,38 +211,26 @@ &cecb_AO {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table_0>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu100 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu101 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu102 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cpu103 {
->   	cpu-supply = <&vddcpu_a>;
-> -	operating-points-v2 = <&cpub_opp_table_1>;
-> -	clocks = <&clkc CLKID_CPUB_CLK>;
->   };
->   
->   &cvbs_vdac_port {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> index 9d5e28cf5958..7aff554085e3 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> @@ -57,6 +57,7 @@ cpu0: cpu@0 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2_cache_b>;
->   			#cooling-cells = <2>;
-> +			clocks = <&clkc CLKID_CPU_CLK>;
->   		};
->   
->   		cpu1: cpu@1 {
-> @@ -73,6 +74,7 @@ cpu1: cpu@1 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2_cache_b>;
->   			#cooling-cells = <2>;
-> +			clocks = <&clkc CLKID_CPU_CLK>;
->   		};
->   
->   		cpu100: cpu@100 {
-> @@ -89,6 +91,7 @@ cpu100: cpu@100 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2_cache_b>;
->   			#cooling-cells = <2>;
-> +			clocks = <&clkc CLKID_CPUB_CLK>;
->   		};
->   
->   		cpu101: cpu@101 {
-> @@ -105,6 +108,7 @@ cpu101: cpu@101 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2_cache_b>;
->   			#cooling-cells = <2>;
-> +			clocks = <&clkc CLKID_CPUB_CLK>;
->   		};
->   
->   		cpu102: cpu@102 {
-> @@ -121,6 +125,7 @@ cpu102: cpu@102 {
->   			i-cache-sets = <64>;
->   			next-level-cache = <&l2_cache_b>;
->   			#cooling-cells = <2>;
-> +			clocks = <&clkc CLKID_CPUB_CLK>;
->   		};
->   
->   		cpu103: cpu@103 {
-> @@ -137,6 +142,8 @@ cpu103: cpu@103 {
->   			i-cache-sets = <64>;
->   			next-level-cache = <&l2_cache_b>;
->   			#cooling-cells = <2>;
-> +			operating-points-v2 = <&cpub_opp_table_1>;
-> +			clocks = <&clkc CLKID_CPUB_CLK>;
->   		};
->   
->   		l2_cache_l: l2-cache-cluster0 {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
-> index 9be3084b090d..661e454ca673 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
-> @@ -145,26 +145,18 @@ &cecb_AO {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU1_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU2_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU3_CLK>;
->   };
->   
->   &cvbs_vdac_port {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi
-> index 5e07f0f9538e..f0e4b168a411 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi.dtsi
-> @@ -183,26 +183,18 @@ &arb {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU1_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU2_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU3_CLK>;
->   };
->   
->   &ext_mdio {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-> index a3d9b66b6878..4e1e9a502666 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
-> @@ -49,26 +49,18 @@ sound {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU1_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU2_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU3_CLK>;
->   };
->   
->   &pwm_AO_cd {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> index c4524eb4f099..ad886d446e96 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> @@ -248,26 +248,18 @@ &clkc_audio {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU1_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU2_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU3_CLK>;
->   };
->   
->   &ext_mdio {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts
-> index 5daadfb170b4..2a16f54332df 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dts
-> @@ -6,7 +6,6 @@
->   
->   /dts-v1/;
->   
-> -#include <dt-bindings/clock/g12a-clkc.h>
->   #include "meson-sm1.dtsi"
->   #include "meson-libretech-cottonwood.dtsi"
->   
-> @@ -62,24 +61,16 @@ sound {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU1_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU2_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu_b>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU3_CLK>;
->   };
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> index 024d2eb8e6ee..e275b0f36b09 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> @@ -357,26 +357,18 @@ &clkc_audio {
->   
->   &cpu0 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU_CLK>;
->   };
->   
->   &cpu1 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU1_CLK>;
->   };
->   
->   &cpu2 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU2_CLK>;
->   };
->   
->   &cpu3 {
->   	cpu-supply = <&vddcpu>;
-> -	operating-points-v2 = <&cpu_opp_table>;
-> -	clocks = <&clkc CLKID_CPU3_CLK>;
->   };
->   
->   &ethmac {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> index e5db8ce94062..8f5b850b1774 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> @@ -63,6 +63,8 @@ cpu0: cpu@0 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2>;
->   			#cooling-cells = <2>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			clocks = <&clkc CLKID_CPU_CLK>;
->   		};
->   
->   		cpu1: cpu@1 {
-> @@ -78,6 +80,8 @@ cpu1: cpu@1 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2>;
->   			#cooling-cells = <2>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			clocks = <&clkc CLKID_CPU1_CLK>;
->   		};
->   
->   		cpu2: cpu@2 {
-> @@ -93,6 +97,8 @@ cpu2: cpu@2 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2>;
->   			#cooling-cells = <2>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			clocks = <&clkc CLKID_CPU2_CLK>;
->   		};
->   
->   		cpu3: cpu@3 {
-> @@ -108,6 +114,8 @@ cpu3: cpu@3 {
->   			i-cache-sets = <32>;
->   			next-level-cache = <&l2>;
->   			#cooling-cells = <2>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			clocks = <&clkc CLKID_CPU3_CLK>;
->   		};
->   
->   		l2: l2-cache0 {
+From: Chuan Liu <chuan.liu@amlogic.com>
 
-Tried to apply it on v6.19-rc1 but it fails to apply:
+Add the peripherals clock controller dt-bindings for the Amlogic A5
+SoC family.
 
-error: patch failed: arch/arm64/boot/dts/amlogic/meson-g12b.dtsi:57
-error: arch/arm64/boot/dts/amlogic/meson-g12b.dtsi: patch does not applyr
+Co-developed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../clock/amlogic,a5-peripherals-clkc.yaml         | 134 +++++++++++++++++++++
+ .../clock/amlogic,a5-peripherals-clkc.h            | 132 ++++++++++++++++++++
+ 2 files changed, 266 insertions(+)
 
-Neil
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a5-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a5-peripherals-clkc.yaml
+new file mode 100644
+index 000000000000..88d71d9a72ea
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,a5-peripherals-clkc.yaml
+@@ -0,0 +1,134 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2024 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,a5-peripherals-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic A5 series Peripheral Clock Controller
++
++maintainers:
++  - Xianwei Zhao <xianwei.zhao@amlogic.com>
++  - Chuan Liu <chuan.liu@amlogic.com>
++
++properties:
++  compatible:
++    const: amlogic,a5-peripherals-clkc
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    minItems: 18
++    items:
++      - description: input oscillator
++      - description: input oscillators multiplexer
++      - description: input fix pll
++      - description: input fclk div 2
++      - description: input fclk div 2p5
++      - description: input fclk div 3
++      - description: input fclk div 4
++      - description: input fclk div 5
++      - description: input fclk div 7
++      - description: input mpll2
++      - description: input mpll3
++      - description: input gp0 pll
++      - description: input gp1 pll
++      - description: input hifi pll
++      - description: input sys clk
++      - description: input axi clk
++      - description: input sys pll div 16
++      - description: input cpu clk div 16
++      - description: input pad clock for rtc clk (optional)
++      - description: input ddr pll (optional)
++      - description: input source from clk-measure (optional)
++      - description: input rtc pll (optional)
++
++  clock-names:
++    minItems: 18
++    items:
++      - const: xtal
++      - const: oscin
++      - const: fix
++      - const: fdiv2
++      - const: fdiv2p5
++      - const: fdiv3
++      - const: fdiv4
++      - const: fdiv5
++      - const: fdiv7
++      - const: mpll2
++      - const: mpll3
++      - const: gp0
++      - const: gp1
++      - const: hifi
++      - const: sysclk
++      - const: axiclk
++      - const: sysplldiv16
++      - const: cpudiv16
++      - const: pad_osc
++      - const: ddr
++      - const: clkmsr
++      - const: rtc
++
++  "#clock-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - "#clock-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/amlogic,a5-scmi-clkc.h>
++    #include <dt-bindings/clock/amlogic,a5-pll-clkc.h>
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clock-controller@0 {
++            compatible = "amlogic,a5-peripherals-clkc";
++            reg = <0x0 0x0 0x0 0x224>;
++            #clock-cells = <1>;
++            clocks = <&xtal>,
++                     <&scmi_clk CLKID_OSC>,
++                     <&scmi_clk CLKID_FIXED_PLL>,
++                     <&scmi_clk CLKID_FCLK_DIV2>,
++                     <&scmi_clk CLKID_FCLK_DIV2P5>,
++                     <&scmi_clk CLKID_FCLK_DIV3>,
++                     <&scmi_clk CLKID_FCLK_DIV4>,
++                     <&scmi_clk CLKID_FCLK_DIV5>,
++                     <&scmi_clk CLKID_FCLK_DIV7>,
++                     <&clkc_pll CLKID_MPLL2>,
++                     <&clkc_pll CLKID_MPLL3>,
++                     <&clkc_pll CLKID_GP0_PLL>,
++                     <&scmi_clk CLKID_GP1_PLL>,
++                     <&clkc_pll CLKID_HIFI_PLL>,
++                     <&scmi_clk CLKID_SYS_CLK>,
++                     <&scmi_clk CLKID_AXI_CLK>,
++                     <&scmi_clk CLKID_SYS_PLL_DIV16>,
++                     <&scmi_clk CLKID_CPU_CLK_DIV16>;
++            clock-names = "xtal",
++                          "oscin",
++                          "fix",
++                          "fdiv2",
++                          "fdiv2p5",
++                          "fdiv3",
++                          "fdiv4",
++                          "fdiv5",
++                          "fdiv7",
++                          "mpll2",
++                          "mpll3",
++                          "gp0",
++                          "gp1",
++                          "hifi",
++                          "sysclk",
++                          "axiclk",
++                          "sysplldiv16",
++                          "cpudiv16";
++        };
++    };
+diff --git a/include/dt-bindings/clock/amlogic,a5-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,a5-peripherals-clkc.h
+new file mode 100644
+index 000000000000..b8a68b7f29dc
+--- /dev/null
++++ b/include/dt-bindings/clock/amlogic,a5-peripherals-clkc.h
+@@ -0,0 +1,132 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
++ * Author: Chuan Liu <chuan.liu@amlogic.com>
++ */
++
++#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_A5_PERIPHERALS_CLKC_H
++#define _DT_BINDINGS_CLOCK_AMLOGIC_A5_PERIPHERALS_CLKC_H
++
++#define CLKID_RTC_DUALDIV_CLKIN			0
++#define CLKID_RTC_DUALDIV			1
++#define CLKID_RTC_DUALDIV_SEL			2
++#define CLKID_RTC_DUALDIV_CLKOUT		3
++#define CLKID_RTC_CLK				4
++#define CLKID_SYS_RESET_CTRL			5
++#define CLKID_SYS_PWR_CTRL			6
++#define CLKID_SYS_PAD_CTRL			7
++#define CLKID_SYS_CTRL				8
++#define CLKID_SYS_TS_PLL			9
++#define CLKID_SYS_DEV_ARB			10
++#define CLKID_SYS_MAILBOX			11
++#define CLKID_SYS_JTAG_CTRL			12
++#define CLKID_SYS_IR_CTRL			13
++#define CLKID_SYS_MSR_CLK			14
++#define CLKID_SYS_ROM				15
++#define CLKID_SYS_CPU_ARB			16
++#define CLKID_SYS_RSA				17
++#define CLKID_SYS_SARADC			18
++#define CLKID_SYS_STARTUP			19
++#define CLKID_SYS_SECURE			20
++#define CLKID_SYS_SPIFC				21
++#define CLKID_SYS_DSPA				22
++#define CLKID_SYS_NNA				23
++#define CLKID_SYS_ETH_MAC			24
++#define CLKID_SYS_RAMA				25
++#define CLKID_SYS_RAMB				26
++#define CLKID_SYS_AUDIO_TOP			27
++#define CLKID_SYS_AUDIO_VAD			28
++#define CLKID_SYS_USB				29
++#define CLKID_SYS_SD_EMMC_A			30
++#define CLKID_SYS_SD_EMMC_C			31
++#define CLKID_SYS_PWM_AB			32
++#define CLKID_SYS_PWM_CD			33
++#define CLKID_SYS_PWM_EF			34
++#define CLKID_SYS_PWM_GH			35
++#define CLKID_SYS_SPICC_1			36
++#define CLKID_SYS_SPICC_0			37
++#define CLKID_SYS_UART_A			38
++#define CLKID_SYS_UART_B			39
++#define CLKID_SYS_UART_C			40
++#define CLKID_SYS_UART_D			41
++#define CLKID_SYS_UART_E			42
++#define CLKID_SYS_I2C_M_A			43
++#define CLKID_SYS_I2C_M_B			44
++#define CLKID_SYS_I2C_M_C			45
++#define CLKID_SYS_I2C_M_D			46
++#define CLKID_SYS_RTC				47
++#define CLKID_AXI_AUDIO_VAD			48
++#define CLKID_AXI_AUDIO_TOP			49
++#define CLKID_AXI_RAMB				50
++#define CLKID_AXI_RAMA				51
++#define CLKID_AXI_NNA				52
++#define CLKID_AXI_DEV1_DMC			53
++#define CLKID_AXI_DEV0_DMC			54
++#define CLKID_AXI_DSP_DMC			55
++#define CLKID_12_24M_IN				56
++#define CLKID_12M_24M				57
++#define CLKID_FCLK_25M_DIV			58
++#define CLKID_FCLK_25M				59
++#define CLKID_GEN_SEL				60
++#define CLKID_GEN_DIV				61
++#define CLKID_GEN				62
++#define CLKID_SARADC_SEL			63
++#define CLKID_SARADC_DIV			64
++#define CLKID_SARADC				65
++#define CLKID_PWM_A_SEL				66
++#define CLKID_PWM_A_DIV				67
++#define CLKID_PWM_A				68
++#define CLKID_PWM_B_SEL				69
++#define CLKID_PWM_B_DIV				70
++#define CLKID_PWM_B				71
++#define CLKID_PWM_C_SEL				72
++#define CLKID_PWM_C_DIV				73
++#define CLKID_PWM_C				74
++#define CLKID_PWM_D_SEL				75
++#define CLKID_PWM_D_DIV				76
++#define CLKID_PWM_D				77
++#define CLKID_PWM_E_SEL				78
++#define CLKID_PWM_E_DIV				79
++#define CLKID_PWM_E				80
++#define CLKID_PWM_F_SEL				81
++#define CLKID_PWM_F_DIV				82
++#define CLKID_PWM_F				83
++#define CLKID_PWM_G_SEL				84
++#define CLKID_PWM_G_DIV				85
++#define CLKID_PWM_G				86
++#define CLKID_PWM_H_SEL				87
++#define CLKID_PWM_H_DIV				88
++#define CLKID_PWM_H				89
++#define CLKID_SPICC_0_SEL			90
++#define CLKID_SPICC_0_DIV			91
++#define CLKID_SPICC_0				92
++#define CLKID_SPICC_1_SEL			93
++#define CLKID_SPICC_1_DIV			94
++#define CLKID_SPICC_1				95
++#define CLKID_SD_EMMC_A_SEL			96
++#define CLKID_SD_EMMC_A_DIV			97
++#define CLKID_SD_EMMC_A				98
++#define CLKID_SD_EMMC_C_SEL			99
++#define CLKID_SD_EMMC_C_DIV			100
++#define CLKID_SD_EMMC_C				101
++#define CLKID_TS_DIV				102
++#define CLKID_TS				103
++#define CLKID_ETH_125M_DIV			104
++#define CLKID_ETH_125M				105
++#define CLKID_ETH_RMII_DIV			106
++#define CLKID_ETH_RMII				107
++#define CLKID_DSPA_0_SEL			108
++#define CLKID_DSPA_0_DIV			109
++#define CLKID_DSPA_0				110
++#define CLKID_DSPA_1_SEL			111
++#define CLKID_DSPA_1_DIV			112
++#define CLKID_DSPA_1				113
++#define CLKID_DSPA				114
++#define CLKID_NNA_CORE_SEL			115
++#define CLKID_NNA_CORE_DIV			116
++#define CLKID_NNA_CORE				117
++#define CLKID_NNA_AXI_SEL			118
++#define CLKID_NNA_AXI_DIV			119
++#define CLKID_NNA_AXI				120
++
++#endif  /* _DT_BINDINGS_CLOCK_AMLOGIC_A5_PERIPHERALS_CLKC_H */
+
+-- 
+2.42.0
+
+
 
 _______________________________________________
 linux-amlogic mailing list
