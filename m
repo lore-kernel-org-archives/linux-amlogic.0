@@ -4,95 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9627DCF6ABB
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jan 2026 09:51:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3792CF6ABD
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jan 2026 10:14:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:To:Cc:
+	Subject:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JgbIfw4N4HoPwDA4J0AGwma2iwyqJMxlgS1V9ptSnl8=; b=geHp+QvJ6iNnC6
-	fX8kfpcJxDW72rUXKHOTgvBOeawjR7Bd+lK2YyJcTmPZivckjh6VBjxd9WFpsF2JlVyueSFA+m3FE
-	SEUI1famIk6Y05SCxDsCrCgjFhDD6qZzm8DyrEQ2oIv7aB8I2SfIakfuHwwjhf8RPmKGYvm0RPNPl
-	h5wTE5NK70vOSpgwkXQxuX17b5MONpqtg5CnGian2eWTMnciQejmDgXNZTnmPtJ2G4ItBrLLljToF
-	U3XMQrFiEAeGx8IQQ0WK+UmVbOlwepSZ9UVgDp/Bxf3zGjM2lXD6Mwo1RHXZghUGJKZsn7X77aJUZ
-	WSd+JeylZ1Sxo1eMhAdw==;
+	List-Owner; bh=XRubgiiNtWT+ZLZPnpCA8liDGpDffoDgikb6McUK4B8=; b=o0cryMhuGZXazv
+	GA921o4W6eSCUuM4m89+VTlg9Qjd+3PFKR99ctBFumdanCXwXNAx/wV66FX49i/xigVL9XzIgbqnW
+	x0iZI2co9fcQI8p9JHg40e7GUokrb5h6I4zx0mbOf2041z0vvfoTgA+ZR99ErrLZNvPMnrctI45ik
+	8CpNI911OqknDYodE6EduJSFb6UIX8Q8ew2S0+0PMAtHGlOCrhf6COF5p7+uIWMZO8KbDchWZ2S0/
+	tbfPtli+S7zTWE9wbq2s6F+7J/LUkqxcSkY1RnTUde1QxjQC8p2EJCkN+WsuGNVNTw4GcoAqSqlPB
+	zjXGSaFMt8CDzen1r27Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vdmfw-0000000GWX3-2lA0;
-	Thu, 08 Jan 2026 09:51:28 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1vdn1h-0000000Ga9Z-0LyJ;
+	Thu, 08 Jan 2026 10:13:57 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vdmfr-0000000GWVK-2zOe;
-	Thu, 08 Jan 2026 09:51:26 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20260108095119euoutp012e7ad1462b8b6546e4cff164dba8ea55~IuKaJVawL1372713727euoutp01r;
-	Thu,  8 Jan 2026 09:51:19 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20260108095119euoutp012e7ad1462b8b6546e4cff164dba8ea55~IuKaJVawL1372713727euoutp01r
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1767865879;
-	bh=qIhgIeQrfxHoSwY6/8Qg78ZyXWur/EQhKlbMMeWRoFE=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=UTRxRKAkfvHrYXb9uuCmebd05iS7yvKrvvnJwRrRGhnYTQOLlD9QO1+EdwnMJ+ehI
-	 u+g5bCtH0fF1cWkIawNRR2L1XBWHErXWwnjERy/ax6OfO/jSXefKZQPQG4zziy4O0D
-	 g+iU8AvXlmt/VOaAS6kHTAjcr9t0XASl+sQYc+ow=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260108095118eucas1p1a2ae95ae60fa870c35c955b087ba4649~IuKZz7bdM1725517255eucas1p1B;
-	Thu,  8 Jan 2026 09:51:18 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20260108095116eusmtip22f2b99fa0f4ed0d118e1c4afbe18750f~IuKXrldR10240202402eusmtip2j;
-	Thu,  8 Jan 2026 09:51:16 +0000 (GMT)
-Message-ID: <af154ebb-53b9-40eb-8ff9-089ed8bc3f04@samsung.com>
-Date: Thu, 8 Jan 2026 10:51:15 +0100
-MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
+	id 1vdn1d-0000000Ga7i-0ipl;
+	Thu, 08 Jan 2026 10:13:55 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 8C9C3C1ECB2;
+	Thu,  8 Jan 2026 10:13:21 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 67284606B6;
+	Thu,  8 Jan 2026 10:13:47 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 67281103C880E;
+	Thu,  8 Jan 2026 11:13:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767867225; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=oktYwHpBxwEHcRdG+441TRw1haM/iQZSRwVoxeIKxoE=;
+	b=ZZyzgQ6MhWJyRaP/AtUlqfOLAs4SdmGpIbrTgke2e9hMzTVnklegqCUfH8QRCn5O6RABoj
+	16WnFZasjj07Z4qzlbvRLkvzc2VVEUrg/PHo/0hVGUvCveJoVMaKNXpF33qlmGO3FehhOf
+	k7pfb4T0ys97YT7G8i9diw0OFkt8LkWxEl7ROtseRInXV4+MdbzVUcQO+WCebz50Eut4hk
+	N211JQ6oSlZbRFWPNyySKeXJAaetMVLV8ifWRu/QK0qxRKoWEHucX05hpurrxyD91ZMn27
+	K3uokXirBg+StnQE60kwcRSzgmtPXJN8KxmDnZ6moWwxpHk0yjZsOiEyjdf8kA==
+Mime-Version: 1.0
+Date: Thu, 08 Jan 2026 11:13:33 +0100
+Message-Id: <DFJ4MHZJ1DTL.10AMTN5NW6VGS@bootlin.com>
 Subject: Re: [PATCH 5/6] drm/exynos: hdmi: convert to
  of_drm_find_and_get_bridge()
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>, Andrzej Hajda
-	<andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej
-	Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>, Jerome
-	Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Inki Dae <inki.dae@samsung.com>,
-	Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park
-	<kyungmin.park@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, Alim
-	Akhtar <alim.akhtar@samsung.com>, Laurent Pinchart
-	<laurent.pinchart+renesas@ideasonboard.com>, Tomi Valkeinen
-	<tomi.valkeinen+renesas@ideasonboard.com>, Kieran Bingham
-	<kieran.bingham+renesas@ideasonboard.com>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>
-Cc: Hui Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni
-	<thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	linux-mediatek@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-5-ef48a517828e@bootlin.com>
-X-CMS-MailID: 20260108095118eucas1p1a2ae95ae60fa870c35c955b087ba4649
-X-Msg-Generator: CA
-X-RootMTR: 20260107164213eucas1p21ed81372d4acebdf02a825b66b0e75de
-X-EPHeader: CA
-X-CMS-RootMailID: 20260107164213eucas1p21ed81372d4acebdf02a825b66b0e75de
-References: <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-0-ef48a517828e@bootlin.com>
-	<CGME20260107164213eucas1p21ed81372d4acebdf02a825b66b0e75de@eucas1p2.samsung.com>
-	<20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-5-ef48a517828e@bootlin.com>
+Cc: "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
+ <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
+ <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, "Thomas Zimmermann"
+ <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
+ <simona@ffwll.ch>, "Kevin Hilman" <khilman@baylibre.com>, "Jerome Brunet"
+ <jbrunet@baylibre.com>, "Martin Blumenstingl"
+ <martin.blumenstingl@googlemail.com>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, "Shawn Guo" <shawnguo@kernel.org>, "Sascha Hauer"
+ <s.hauer@pengutronix.de>, "Pengutronix Kernel Team"
+ <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>, "Chun-Kuang
+ Hu" <chunkuang.hu@kernel.org>, "Matthias Brugger" <matthias.bgg@gmail.com>,
+ "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
+ "Inki Dae" <inki.dae@samsung.com>, "Seung-Woo Kim"
+ <sw0312.kim@samsung.com>, "Kyungmin Park" <kyungmin.park@samsung.com>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>, "Alim Akhtar"
+ <alim.akhtar@samsung.com>, "Laurent Pinchart"
+ <laurent.pinchart+renesas@ideasonboard.com>, "Tomi Valkeinen"
+ <tomi.valkeinen+renesas@ideasonboard.com>, "Kieran Bingham"
+ <kieran.bingham+renesas@ideasonboard.com>, "Geert Uytterhoeven"
+ <geert+renesas@glider.be>, "Magnus Damm" <magnus.damm@gmail.com>, "Hui Pu"
+ <Hui.Pu@gehealthcare.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+ <linux-arm-kernel@lists.infradead.org>, <imx@lists.linux.dev>,
+ <linux-mediatek@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+ <linux-renesas-soc@vger.kernel.org>
+To: "Maxime Ripard" <mripard@kernel.org>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.20.1
+References: <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-0-ef48a517828e@bootlin.com> <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-5-ef48a517828e@bootlin.com> <20260108-acoustic-groovy-shark-1c6850@houat>
+In-Reply-To: <20260108-acoustic-groovy-shark-1c6850@houat>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260108_015124_356032_5E52A67D 
-X-CRM114-Status: GOOD (  16.98  )
+X-CRM114-CacheID: sfid-20260108_021353_483983_F4280DC5 
+X-CRM114-Status: GOOD (  15.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,47 +101,61 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 07.01.2026 17:22, Luca Ceresoli wrote:
-> of_drm_find_bridge() is deprecated. Move to its replacement
-> of_drm_find_and_get_bridge() which gets a bridge reference, and ensure it
-> is put when done.
->
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> ---
->   drivers/gpu/drm/exynos/exynos_hdmi.c | 4 +++-
+Hi Maxime,
 
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-
->   1 file changed, 3 insertions(+), 1 deletion(-)
+On Thu Jan 8, 2026 at 9:14 AM CET, Maxime Ripard wrote:
+> On Wed, Jan 07, 2026 at 05:22:03PM +0100, Luca Ceresoli wrote:
+>> of_drm_find_bridge() is deprecated. Move to its replacement
+>> of_drm_find_and_get_bridge() which gets a bridge reference, and ensure it
+>> is put when done.
+>>
+>> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 >
-> diff --git a/drivers/gpu/drm/exynos/exynos_hdmi.c b/drivers/gpu/drm/exynos/exynos_hdmi.c
-> index 01813e11e6c6..bfcf2fa62fe1 100644
-> --- a/drivers/gpu/drm/exynos/exynos_hdmi.c
-> +++ b/drivers/gpu/drm/exynos/exynos_hdmi.c
-> @@ -1779,7 +1779,7 @@ static int hdmi_bridge_init(struct hdmi_context *hdata)
->   		return -EINVAL;
->   	}
->   
-> -	hdata->bridge = of_drm_find_bridge(np);
-> +	hdata->bridge = of_drm_find_and_get_bridge(np);
->   	of_node_put(np);
->   
->   	if (!hdata->bridge)
-> @@ -2096,6 +2096,8 @@ static void hdmi_remove(struct platform_device *pdev)
->   
->   	put_device(&hdata->ddc_adpt->dev);
->   
-> +	drm_bridge_put(hdata->bridge);
-> +
->   	mutex_destroy(&hdata->mutex);
->   }
->   
->
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+> Why can't we use next_bridge for this one?
 
+Because this device is not a bridge, so we have no struct drm_bridge.
+
+>> ---
+>>  drivers/gpu/drm/exynos/exynos_hdmi.c | 4 +++-
+>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/exynos/exynos_hdmi.c b/drivers/gpu/drm/exynos/exynos_hdmi.c
+>> index 01813e11e6c6..bfcf2fa62fe1 100644
+>> --- a/drivers/gpu/drm/exynos/exynos_hdmi.c
+>> +++ b/drivers/gpu/drm/exynos/exynos_hdmi.c
+>> @@ -1779,7 +1779,7 @@ static int hdmi_bridge_init(struct hdmi_context *hdata)
+>>  		return -EINVAL;
+>>  	}
+>>
+>> -	hdata->bridge = of_drm_find_bridge(np);
+>> +	hdata->bridge = of_drm_find_and_get_bridge(np);
+>>  	of_node_put(np);
+>>
+>>  	if (!hdata->bridge)
+>> @@ -2096,6 +2096,8 @@ static void hdmi_remove(struct platform_device *pdev)
+>>
+>>  	put_device(&hdata->ddc_adpt->dev);
+>>
+>> +	drm_bridge_put(hdata->bridge);
+>> +
+>>  	mutex_destroy(&hdata->mutex);
+>>  }
+>
+> Same story than in your part 2 series, it should be dropped in destroy.
+
+hdata->bridge is only used for drm_bridge_attach(), it won't be referenced
+after that. So this is safe, unless I'm missing something.
+
+Also as we don't have a struct drm_bridge (as mentioned above) we have no
+bridge destroy. We have the encoder destroy, but that will never be called
+on bridge hotplug.
+
+Luca
+
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
