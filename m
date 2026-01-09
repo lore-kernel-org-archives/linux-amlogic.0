@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4257D167F3
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jan 2026 10:03:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AD7ED167FB
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jan 2026 10:03:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Sr/wiZldoKzNTQ0vFyvgio4f9n0w/qVgXQwRzalfWQo=; b=RGKTdxRglToiDQ
-	TwhBYGtz4R0N/n/eva+V4Ad+MQHnmYB+jNE1XsUUAPprqJImcSJbn5w7Q8mN7LLJwbOH6aF2RYFuZ
-	HsStOwpXM75hkgZZFFAjCUNWZWqO947wcbD6CwVsiAfLEIiZtKxW4YOVaPLkUPBwb9R3lSlQVgVeV
-	ufOYbu8pnbplRLEei65uAoFgg/glO+5Uj6VV19LlJd2KFX68GFID6+2glQTqRLJFkKuqvjP02L93d
-	2gqLa85M/7+ahYGF6A8rnIH1wHd1RIwHYz8E9iPwwYQbP/NbL5brTi6KTwY472ANJp/0rCrHtiIKe
-	kcUPqExjqqYUh2z+VUhw==;
+	List-Owner; bh=N0F153RPwfZrL/EIXmlcbEweYXfFiWYIOScq3erLnos=; b=3SMRU5cKovjyhp
+	QyTzrprgfZ8jjCWufpM7j2bi7CJNCJ+6O18Hrk8DqSxCmalPyxVhzACK5Dy8AbjRF5ebWNiZgaQDS
+	cTpbdAR6NhyfK0sM0Mp6i6QqZgIF5xe0AKMyFHH3v4qHnikjZehkj7pZS/6pgcb8XrDvyUdRCouqu
+	FAw9fV8gigb/4i1ke80bxQ0nlGd/1HcCChg2LezKLy4zSo8V8Zws6qTTiV4PHDRUQrwCL0aePLMPZ
+	1+E4kvwmyWgbSB6LeJ/uM1ZatD9Pl7xtO892oOmIWuZ+hAJSd5LZshhbr6ZbLqWc6HkdH6nrSJSNU
+	n9klXsb0kLrWxY0CpwAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ve9L8-000000025Nf-3RTp;
-	Fri, 09 Jan 2026 10:03:30 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1ve9LL-000000025X2-11D4;
+	Fri, 09 Jan 2026 10:03:43 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ve9L6-000000025Kx-0Bwr
+	id 1ve9LH-000000025Se-2wcy
 	for linux-amlogic@lists.infradead.org;
-	Fri, 09 Jan 2026 10:03:29 +0000
+	Fri, 09 Jan 2026 10:03:41 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 4BC86C1F6D3;
-	Fri,  9 Jan 2026 10:03:00 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 3FFC21A273E;
+	Fri,  9 Jan 2026 10:03:38 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8BD6D60734;
-	Fri,  9 Jan 2026 10:03:26 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4F74F103C88D1;
-	Fri,  9 Jan 2026 11:03:17 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 11C9560734;
+	Fri,  9 Jan 2026 10:03:38 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 83744103C88D2;
+	Fri,  9 Jan 2026 11:03:30 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767953003; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1767953015; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=ib1nz3VLzG2xhR1bhye/UhbvLr/fQIlc7RSiXX3o9Bw=;
-	b=SmyxDa9zAG9bif8RB++6AmduXnnWz7659efxtK4+GQljZ7+zSP7k5HnW9hgRBXkMWquTmT
-	Gubt8xZ8kpuFL1+ZDJgwiUyE/4kSiJSthdaRlcGKDft2Q+jMWXHZUEM0HFCVxxlrzYZwmR
-	MH//fmgQ9RZKJSsrzYS4KfFamGQ5sMD6XAGubE0Yr/NoVgHoPpq3FI92TyxDRYNp7/xywj
-	xx4TKfRgW/9R/ww8hC/mIZjXcS4OZVkCzfagCwRp7ZDfmUAngxGY7t2wzFcxGR1gClj6i/
-	/dGo7Nm+lnDOHYic2YOPxzRYDiCWMgIpuD66Gl5HBh2nYjiT6VWEttZgwmOg/Q==
+	bh=/SEnvILKis2K8TQc2e0J/EfZp0VkAsieLSYp0vPG558=;
+	b=QMd2Dhf8C7VDVY3winTShkqSbLELJJwFtbNxwjnPdCYsv8g1PpxVZh24c+Bq48qPKiXjVN
+	kSMcnUO28jl24PrPhnxMhrXlYUL/hSZvaikbjBD4V7SpAUWGNvApTykY97V3vh6kTOM/2/
+	b/o6NEpKo5enWj0jrpimRtal1LjRDf4V+075vvDB3FF+7JmNeXv2asPqmmpp/H9n5G+MHN
+	V7DkWGe7zaeGxohbnHgc1y/FtBrzWeOGidIdUinCMJKjHZyXOYu8LxNdhkQMDrZJ9Mygog
+	I3oOefYg2q/VCnl08Xa8KStJ+I4utKEc0cXNLT6gEf+A/hnsFuBVVSC5yc6PRQ==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Fri, 09 Jan 2026 11:02:51 +0100
-Subject: [PATCH v2 2/6] drm/meson/dw-hdmi: convert to
+Date: Fri, 09 Jan 2026 11:02:53 +0100
+Subject: [PATCH v2 4/6] drm/mediatek: mtk_hdmi*: convert to
  of_drm_find_and_get_bridge()
 MIME-Version: 1.0
-Message-Id: <20260109-drm-bridge-alloc-getput-drm_of_find_bridge-3-v2-2-8d7a3dbacdf4@bootlin.com>
+Message-Id: <20260109-drm-bridge-alloc-getput-drm_of_find_bridge-3-v2-4-8d7a3dbacdf4@bootlin.com>
 References: <20260109-drm-bridge-alloc-getput-drm_of_find_bridge-3-v2-0-8d7a3dbacdf4@bootlin.com>
 In-Reply-To: <20260109-drm-bridge-alloc-getput-drm_of_find_bridge-3-v2-0-8d7a3dbacdf4@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -87,8 +87,8 @@ Cc: Marek Szyprowski <m.szyprowski@samsung.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260109_020328_236481_D3E8FF85 
-X-CRM114-Status: GOOD (  12.64  )
+X-CRM114-CacheID: sfid-20260109_020339_883140_4DA01372 
+X-CRM114-Status: GOOD (  13.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,44 +107,74 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 of_drm_find_bridge() is deprecated. Move to its replacement
 of_drm_find_and_get_bridge() which gets a bridge reference, and ensure it
-is put when done.
-
-dw_hdmi->bridge is used only in dw_hdmi_top_thread_irq(), so in order to
-avoid potential use-after-free ensure the irq is freed before putting the
-dw_hdmi->bridge reference.
+is put when done by using the drm_bridge::next_bridge pointer.
 
 Acked-by: Maxime Ripard <mripard@kernel.org>
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/mediatek/mtk_hdmi.c        | 4 ++--
+ drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 4 ++--
+ drivers/gpu/drm/mediatek/mtk_hdmi_common.h | 1 -
+ drivers/gpu/drm/mediatek/mtk_hdmi_v2.c     | 4 ++--
+ 4 files changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 0d7c68b29dff..fef1702acb14 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -778,7 +778,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	if (IS_ERR(meson_dw_hdmi->hdmi))
- 		return PTR_ERR(meson_dw_hdmi->hdmi);
+diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+index 0face4dcaa36..1ea259854780 100644
+--- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
++++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+@@ -986,8 +986,8 @@ static int mtk_hdmi_bridge_attach(struct drm_bridge *bridge,
+ 		return -EINVAL;
+ 	}
  
--	meson_dw_hdmi->bridge = of_drm_find_bridge(pdev->dev.of_node);
-+	meson_dw_hdmi->bridge = of_drm_find_and_get_bridge(pdev->dev.of_node);
+-	if (hdmi->next_bridge) {
+-		ret = drm_bridge_attach(encoder, hdmi->next_bridge,
++	if (hdmi->bridge.next_bridge) {
++		ret = drm_bridge_attach(encoder, hdmi->bridge.next_bridge,
+ 					bridge, flags);
+ 		if (ret)
+ 			return ret;
+diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+index e78eb0876f16..40ded86dbea3 100644
+--- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
++++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+@@ -315,8 +315,8 @@ static int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi, struct platform_device
+ 		return -EINVAL;
  
- 	DRM_DEBUG_DRIVER("HDMI controller initialized\n");
+ 	if (!of_device_is_compatible(remote, "hdmi-connector")) {
+-		hdmi->next_bridge = of_drm_find_bridge(remote);
+-		if (!hdmi->next_bridge) {
++		hdmi->bridge.next_bridge = of_drm_find_and_get_bridge(remote);
++		if (!hdmi->bridge.next_bridge) {
+ 			dev_err(dev, "Waiting for external bridge\n");
+ 			of_node_put(remote);
+ 			return -EPROBE_DEFER;
+diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.h b/drivers/gpu/drm/mediatek/mtk_hdmi_common.h
+index de5e064585f8..cace3c5dc067 100644
+--- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.h
++++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.h
+@@ -150,7 +150,6 @@ struct mtk_hdmi_conf {
  
-@@ -789,8 +789,12 @@ static void meson_dw_hdmi_unbind(struct device *dev, struct device *master,
- 				   void *data)
- {
- 	struct meson_dw_hdmi *meson_dw_hdmi = dev_get_drvdata(dev);
-+	struct platform_device *pdev = to_platform_device(dev);
-+	int irq = platform_get_irq(pdev, 0);
- 
-+	devm_free_irq(dev, irq, meson_dw_hdmi);
- 	dw_hdmi_unbind(meson_dw_hdmi->hdmi);
-+	drm_bridge_put(meson_dw_hdmi->bridge);
- }
- 
- static const struct component_ops meson_dw_hdmi_ops = {
+ struct mtk_hdmi {
+ 	struct drm_bridge bridge;
+-	struct drm_bridge *next_bridge;
+ 	struct drm_connector *curr_conn;/* current connector (only valid when 'enabled') */
+ 	struct device *dev;
+ 	const struct mtk_hdmi_conf *conf;
+diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c b/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
+index c272e1e74b7d..2adeece499b6 100644
+--- a/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
++++ b/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
+@@ -940,8 +940,8 @@ static int mtk_hdmi_v2_bridge_attach(struct drm_bridge *bridge,
+ 		DRM_ERROR("The flag DRM_BRIDGE_ATTACH_NO_CONNECTOR must be supplied\n");
+ 		return -EINVAL;
+ 	}
+-	if (hdmi->next_bridge) {
+-		ret = drm_bridge_attach(encoder, hdmi->next_bridge, bridge, flags);
++	if (hdmi->bridge.next_bridge) {
++		ret = drm_bridge_attach(encoder, hdmi->bridge.next_bridge, bridge, flags);
+ 		if (ret)
+ 			return ret;
+ 	}
 
 -- 
 2.52.0
