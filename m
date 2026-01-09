@@ -4,87 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3792CF6ABD
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Jan 2026 10:14:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D454D232F4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jan 2026 08:38:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:To:Cc:
-	Subject:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XRubgiiNtWT+ZLZPnpCA8liDGpDffoDgikb6McUK4B8=; b=o0cryMhuGZXazv
-	GA921o4W6eSCUuM4m89+VTlg9Qjd+3PFKR99ctBFumdanCXwXNAx/wV66FX49i/xigVL9XzIgbqnW
-	x0iZI2co9fcQI8p9JHg40e7GUokrb5h6I4zx0mbOf2041z0vvfoTgA+ZR99ErrLZNvPMnrctI45ik
-	8CpNI911OqknDYodE6EduJSFb6UIX8Q8ew2S0+0PMAtHGlOCrhf6COF5p7+uIWMZO8KbDchWZ2S0/
-	tbfPtli+S7zTWE9wbq2s6F+7J/LUkqxcSkY1RnTUde1QxjQC8p2EJCkN+WsuGNVNTw4GcoAqSqlPB
-	zjXGSaFMt8CDzen1r27Q==;
+	List-Owner; bh=kSJKBIe3geFGyG89UiH9PLKc8lCan1vmLITlNPlSXxQ=; b=mh05E0OVpNgsXK
+	k7GolG2XMeCXgPNXA3RIE1uVVB6j7Ru/TTUoSwfPwEz0OeCmL7QBWZ+IrR4aTdP99sNfyljmlOkfO
+	isMzLMwq11Dd7RQ9RdwqefsAjySRs0foc/K7sg11TCzuvgR6pUk+/VYXCBEQdk/7Y+D8hd84ztw+j
+	tZCAkFVziCNolNuCLQPCoJFGC5mkTWZMnGmBi6Ram/zIqKHWuFFTydnq00DiWvoiso9Jyj0woJTgY
+	+hNYt6EUDpK5Z9GMCD67zFqWad0HHHnQ/xsCu+pRZKWoL/rJ5DnLGHuw3v8t25UyBF8cMxPESPk8Y
+	HWdYA3HJJCBy4QUgm4wA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vdn1h-0000000Ga9Z-0LyJ;
-	Thu, 08 Jan 2026 10:13:57 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1ve81B-00000001vBm-11DV;
+	Fri, 09 Jan 2026 08:38:49 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vdn1d-0000000Ga7i-0ipl;
-	Thu, 08 Jan 2026 10:13:55 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 8C9C3C1ECB2;
-	Thu,  8 Jan 2026 10:13:21 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 67284606B6;
-	Thu,  8 Jan 2026 10:13:47 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 67281103C880E;
-	Thu,  8 Jan 2026 11:13:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767867225; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=oktYwHpBxwEHcRdG+441TRw1haM/iQZSRwVoxeIKxoE=;
-	b=ZZyzgQ6MhWJyRaP/AtUlqfOLAs4SdmGpIbrTgke2e9hMzTVnklegqCUfH8QRCn5O6RABoj
-	16WnFZasjj07Z4qzlbvRLkvzc2VVEUrg/PHo/0hVGUvCveJoVMaKNXpF33qlmGO3FehhOf
-	k7pfb4T0ys97YT7G8i9diw0OFkt8LkWxEl7ROtseRInXV4+MdbzVUcQO+WCebz50Eut4hk
-	N211JQ6oSlZbRFWPNyySKeXJAaetMVLV8ifWRu/QK0qxRKoWEHucX05hpurrxyD91ZMn27
-	K3uokXirBg+StnQE60kwcRSzgmtPXJN8KxmDnZ6moWwxpHk0yjZsOiEyjdf8kA==
-Mime-Version: 1.0
-Date: Thu, 08 Jan 2026 11:13:33 +0100
-Message-Id: <DFJ4MHZJ1DTL.10AMTN5NW6VGS@bootlin.com>
-Subject: Re: [PATCH 5/6] drm/exynos: hdmi: convert to
- of_drm_find_and_get_bridge()
-Cc: "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
- Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
- <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>, "Thomas Zimmermann"
- <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
- <simona@ffwll.ch>, "Kevin Hilman" <khilman@baylibre.com>, "Jerome Brunet"
- <jbrunet@baylibre.com>, "Martin Blumenstingl"
- <martin.blumenstingl@googlemail.com>, "Philipp Zabel"
- <p.zabel@pengutronix.de>, "Shawn Guo" <shawnguo@kernel.org>, "Sascha Hauer"
- <s.hauer@pengutronix.de>, "Pengutronix Kernel Team"
- <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>, "Chun-Kuang
- Hu" <chunkuang.hu@kernel.org>, "Matthias Brugger" <matthias.bgg@gmail.com>,
- "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
- "Inki Dae" <inki.dae@samsung.com>, "Seung-Woo Kim"
- <sw0312.kim@samsung.com>, "Kyungmin Park" <kyungmin.park@samsung.com>,
- "Krzysztof Kozlowski" <krzk@kernel.org>, "Alim Akhtar"
- <alim.akhtar@samsung.com>, "Laurent Pinchart"
- <laurent.pinchart+renesas@ideasonboard.com>, "Tomi Valkeinen"
- <tomi.valkeinen+renesas@ideasonboard.com>, "Kieran Bingham"
- <kieran.bingham+renesas@ideasonboard.com>, "Geert Uytterhoeven"
- <geert+renesas@glider.be>, "Magnus Damm" <magnus.damm@gmail.com>, "Hui Pu"
- <Hui.Pu@gehealthcare.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
- <linux-arm-kernel@lists.infradead.org>, <imx@lists.linux.dev>,
- <linux-mediatek@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
- <linux-renesas-soc@vger.kernel.org>
-To: "Maxime Ripard" <mripard@kernel.org>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-0-ef48a517828e@bootlin.com> <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-5-ef48a517828e@bootlin.com> <20260108-acoustic-groovy-shark-1c6850@houat>
-In-Reply-To: <20260108-acoustic-groovy-shark-1c6850@houat>
-X-Last-TLS-Session-Version: TLSv1.3
+	id 1ve818-00000001vAw-2c6U;
+	Fri, 09 Jan 2026 08:38:47 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id ACC50443E2;
+	Fri,  9 Jan 2026 08:38:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B998C2BCB0;
+	Fri,  9 Jan 2026 08:38:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767947925;
+	bh=a98W+72H+QrvZTa+W7QmD1B9sIhKMP4/j8pKEcILt+U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AsCBqrk0vvLVhmih7qPc+AeKhH4Pu47oQfOdgYtmjO9go4kvStnPT8U3A8pvQHnNI
+	 j/2kTuMLpbzENN+/r4sdyNRrbMSiLsPU71fe7eBoMNvAgrKGKZLhzrjeuwruQMKK74
+	 wJ+PPJWdBrCml+yurM4+bZY6f7ptpb3sNGKBg7TAlvPCnZCfYLvW19QGbfJTO0W2YC
+	 hnVk5mUB7BbOWQBXqdlnjBBzil5KyFGzn9Z/Op3ivQM9ivLZ5W2d66JSiFwFqDgwMT
+	 ZqLE5NpDbCE/od6DnBMdYLvrcwA7gtQwDR96DDsVAghy/rf4TUUsZvH2HFWO2/rybu
+	 KFcL9DzNhOKTA==
+Date: Fri, 9 Jan 2026 09:38:38 +0100
+From: Niklas Cassel <cassel@kernel.org>
+To: Hans Zhang <18255117159@163.com>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
+	helgaas@kernel.org, heiko@sntech.de, mani@kernel.org,
+	yue.wang@amlogic.com, pali@kernel.org, neil.armstrong@linaro.org,
+	robh@kernel.org, jingoohan1@gmail.com, khilman@baylibre.com,
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v7 0/2] PCI: Configure Root Port MPS during host probing
+Message-ID: <aWC-jkgIR7Q4scxn@ryzen>
+References: <20251127170908.14850-1-18255117159@163.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20251127170908.14850-1-18255117159@163.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260108_021353_483983_F4280DC5 
-X-CRM114-Status: GOOD (  15.49  )
+X-CRM114-CacheID: sfid-20260109_003846_677757_29F7750E 
+X-CRM114-Status: UNSURE (   6.89  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,61 +79,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Maxime,
+On Fri, Nov 28, 2025 at 01:09:06AM +0800, Hans Zhang wrote:
+> Current PCIe initialization exhibits a key optimization gap: Root Ports
+> may operate with non-optimal Maximum Payload Size (MPS) settings. While
+> downstream device configuration is handled during bus enumeration, Root
+> Port MPS values inherited from firmware or hardware defaults often fail
+> to utilize the full capabilities supported by controller hardware. This
+> results in suboptimal data transfer efficiency throughout the PCIe
+> hierarchy.
 
-On Thu Jan 8, 2026 at 9:14 AM CET, Maxime Ripard wrote:
-> On Wed, Jan 07, 2026 at 05:22:03PM +0100, Luca Ceresoli wrote:
->> of_drm_find_bridge() is deprecated. Move to its replacement
->> of_drm_find_and_get_bridge() which gets a bridge reference, and ensure it
->> is put when done.
->>
->> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
->
-> Why can't we use next_bridge for this one?
+Hello PCI maintainers,
 
-Because this device is not a bridge, so we have no struct drm_bridge.
+any chance for this series to be applied?
 
->> ---
->>  drivers/gpu/drm/exynos/exynos_hdmi.c | 4 +++-
->>  1 file changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/exynos/exynos_hdmi.c b/drivers/gpu/drm/exynos/exynos_hdmi.c
->> index 01813e11e6c6..bfcf2fa62fe1 100644
->> --- a/drivers/gpu/drm/exynos/exynos_hdmi.c
->> +++ b/drivers/gpu/drm/exynos/exynos_hdmi.c
->> @@ -1779,7 +1779,7 @@ static int hdmi_bridge_init(struct hdmi_context *hdata)
->>  		return -EINVAL;
->>  	}
->>
->> -	hdata->bridge = of_drm_find_bridge(np);
->> +	hdata->bridge = of_drm_find_and_get_bridge(np);
->>  	of_node_put(np);
->>
->>  	if (!hdata->bridge)
->> @@ -2096,6 +2096,8 @@ static void hdmi_remove(struct platform_device *pdev)
->>
->>  	put_device(&hdata->ddc_adpt->dev);
->>
->> +	drm_bridge_put(hdata->bridge);
->> +
->>  	mutex_destroy(&hdata->mutex);
->>  }
->
-> Same story than in your part 2 series, it should be dropped in destroy.
 
-hdata->bridge is only used for drm_bridge_attach(), it won't be referenced
-after that. So this is safe, unless I'm missing something.
-
-Also as we don't have a struct drm_bridge (as mentioned above) we have no
-bridge destroy. We have the encoder destroy, but that will never be called
-on bridge hotplug.
-
-Luca
-
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Kind regards,
+Niklas
 
 _______________________________________________
 linux-amlogic mailing list
