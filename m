@@ -4,88 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DE19D25023
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Jan 2026 22:09:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00B43D25028
+	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Jan 2026 23:57:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=T1ob4RZKi5EEGsy/gKxuRuoP6NsiPd+Eoi+Hpv/juZ0=; b=Gy+8jvIqMr4TDD
-	bmuYEP9jSi7hd9glwvR5C2IYQcPK93SI5nmGzLOAhyZahR03UzH96aG9MKhqrRiQQJ5JHV44s8VQO
-	u8+WzCtLVOalWqL4YMzRUWmMJX0LScPot/O2WzO0b8HDvcR+9VnJnRqMK5vY3iVB4oW3ACx0XqGEA
-	tbLTCWvvqJKI5YzZs5eKZYQOMfGO6xjQ9Ec8wbZ4o9GF+fNSV6hnW2LWP6jHM2zXQUGMFI9ZnYghy
-	/jeD/XoRIMFNVQ//WXXgsy+AGcAKXnaO7lDqltsEiXU/4wAa0QCYYdcJ1uY8vw69AjFmEprwP9rYl
-	YufrwH0Z0vswftqAlxuQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=C4PYv0u2/KzH7jNMspGI0OccYzUP3SAoDB7CVoin1A4=; b=stqVHKhb17eLgA
+	h3aeU0BtBEZ6z/fiKWzeEKe1+vPTCXoGYevWex8O8kDE2jF8HzICgUMrfYmrJN0/PMJ4z8uOaHKlx
+	nnMPP2iRkUzviucXHcXj8IYBwBga7kqiVKzb/Mb/VPxgP83CJt0xv3FEUHqLwGUdDWKvU9hcZrLSn
+	UBGOXDwQl0sYX9QirpW89N7rilsIbKYnwlSbnstXh40WZQtShC5FQxRLTOLldugznKFbQoySbrR2M
+	W31Xyo55uU9yccD4MWFwCoJt4ivBymt6RLTZnQxWKJH8N/CJWr+tM9tBfWYgWmMa0tv07f27tY6uw
+	OKwkBZaDpobwtr/9MVtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1veh8y-00000003ikM-1BHD;
-	Sat, 10 Jan 2026 22:09:12 +0000
-Received: from mail-pl1-x631.google.com ([2607:f8b0:4864:20::631])
+	id 1veipi-00000003mPB-3Ror;
+	Sat, 10 Jan 2026 23:57:26 +0000
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1veh8v-00000003ijk-2fPI
+	id 1veipf-00000003mOV-2UbJ
 	for linux-amlogic@lists.infradead.org;
-	Sat, 10 Jan 2026 22:09:10 +0000
-Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-2a1388cdac3so37807545ad.0
-        for <linux-amlogic@lists.infradead.org>; Sat, 10 Jan 2026 14:09:08 -0800 (PST)
+	Sat, 10 Jan 2026 23:57:25 +0000
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-64b9dfc146fso4312250a12.0
+        for <linux-amlogic@lists.infradead.org>; Sat, 10 Jan 2026 15:57:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1768082948; x=1768687748; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pjgSj6a3kunrFN67IT5JMHaUrlt+PXfCgDXfeu5dl9k=;
-        b=MxZR7ihDGbmv4XtDsgIaseo7sz7tiYTcwO8sOMd49vl4i1KJ3bkOveEDvLXVr7PAk+
-         gIojrMuWDdy16TYDSFZgglOfEFRUoksnkj3xCNiSgSTgyUiIgl62LSs6EOOvwSo1YS6g
-         W+19I2oWKccpkkT/BsoHFVqFOo1OevZotsoVXqEeYbCjkRHnlKkjsZ14qvymx+q9EOu2
-         0NqhsoZmpFMaACpCs/t05+sVHHBVsoGMFq39rNoPOlsjZ7LdPzt5gVZaTJWQ2VWPO+f9
-         ILgtHHKxuKl4tr/EmvX4YrVkBTNOudqHDy0lqq86OzvdIoK0eL4TK6KKV5hWGm3b6MVc
-         nVXg==
+        d=googlemail.com; s=20230601; t=1768089441; x=1768694241; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gpJJOa9t1wBvlVJkNJ/5YNn0WHt1DhBf0e1N6PffLYI=;
+        b=YRvqRbuyRODe6TnrDVSK09DmTgJgam2ABy0zn0y+8xAPvnfbhGUUm6k9UZmc+0TjfY
+         XmMUThj/EQYDJ+Yxmg0eaJlH01ULxold7VYn2u5nXQuR12yWw5Fdn2j33SiwQ94cp1Gv
+         eVwmztAdcunbdjkcUtEkFb+FKeooRoCiYg69jcEC2gqlE9J60t/zcv9zluOis8VNm0gq
+         NWqUtZ+Lohvu3bMCZqR0ZW7Yxj2Hp4VeHRt6Px8YNObsZAsxqRXenYtcW+4j68i9xNha
+         HTy4Peek+hPwvAFs2ZTtivUrKy5slSF/iJbQCxP4wUJYwY5LHdTyNOikJQPD77FUAVkX
+         0T1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768082948; x=1768687748;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=pjgSj6a3kunrFN67IT5JMHaUrlt+PXfCgDXfeu5dl9k=;
-        b=dGtrkbXiEdjpbKnB3jcd3qdBs+zUI5S/gQEN6pXv1boP9w3bT6dRDn1Sij0jug17qI
-         iuBXAq6W9Sf6EVXBM+K9I1H4Iff9BeCOHKOcdYzSV2lxfGAJZPhkgSSsqdtDdj1etF3D
-         S66iutmSnu1v6S9+twok0FL29DVqng1cmegbZpXYT6NTY4+t4LJZjyUeGaWyi6ydaXdj
-         TZxFXj8SAZl+ujazDj00uSl9ioJj7VoXC5h35QWn0McAt/C4bzTDcn6JSkeRb4W3LT3D
-         A0+oiAVVCGLli8DGskaG/wLEtdFuj1W1+S/qYIBgbfyO9I3EwrXxcOjl7WjUMo+KsX2I
-         xohQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX3N76ncXZIMDrSLhOrvOe86QbeicWK2nUIcg8FBvAkMSdoxaxBOepwuWhvc2jdNddesXXaQ2Byica+hXLw@lists.infradead.org
-X-Gm-Message-State: AOJu0YyLdE+vw56Roomi4gUVsO3AHuTlvpvY9Ij/fjWJmxepkNI4Yd7M
-	y0i0FajnLU/WvkXKwYiPr8WpEpZkFLltoMtCYapB/mtW7VmoYCijDEXeedJTxN8FrkjXpgkbibd
-	5xWB4HSJkd2it5n6a2DlPZe5J7szkbh0=
-X-Gm-Gg: AY/fxX439j4kJeBAmQfPx3PrUX6qNZQ9cTr/CEV7IRjQVPzzlq/v2B+PD8xv1Jfm3/P
-	eArV4IrJneGu8KUHpYmjuvLoEtoidTK262NSyXDx2ynQpHLkavSuwUPLtE0x5VpB39WJQ8ayzw6
-	h3BODrhBr+1/79/wGe/Z7pzmkoB+8TcIdkTbZfrb/A1qRgynZS6VoY2ZrUuLHd5kXezXKkUd/iC
-	ZvV3zcuxAEGIxhJcXq3d9P1AU5ZNeX0if//MKXCTGgGlIiyHjB3NFBDUSjuWMzBxwLMJcbgHK2A
-	CAC9qJa3q2hZq1pvg97d8tznhCcplacoobXrSbE=
-X-Google-Smtp-Source: AGHT+IEAqhyKZ4Zb9mGUXaf4V+H313p3cDSNfGR8K+R50WWW/gF491i/LIbVtoG+64AdUYGn/0TAd6Uaqs+FGGXp2Yc=
-X-Received: by 2002:a17:902:e78b:b0:295:6122:5c42 with SMTP id
- d9443c01a7336-2a3ee43da5cmr117317715ad.24.1768082948085; Sat, 10 Jan 2026
- 14:09:08 -0800 (PST)
-MIME-Version: 1.0
-References: <20260108-a5-clk-v5-0-9a69fc1ef00a@amlogic.com> <20260108-a5-clk-v5-6-9a69fc1ef00a@amlogic.com>
-In-Reply-To: <20260108-a5-clk-v5-6-9a69fc1ef00a@amlogic.com>
+        d=1e100.net; s=20230601; t=1768089441; x=1768694241;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gpJJOa9t1wBvlVJkNJ/5YNn0WHt1DhBf0e1N6PffLYI=;
+        b=DgSyaVlJCx6Lj8xW7fLQ2u13rY+jdHMWZ5am5/OpoyITZwJgjI4JinnGohqzgXoFcY
+         sD86kFlg7zjASYd8wJhLch7hcEGzFgwbZwW527NnErM401nLZ4QZtD2d5O9wDvBm5HZV
+         bmjA5nker9rkYw+Xo8O2nXoLRAzM3ING6Zg4NAAiF62GaKj2UPR94JJ5lapN3Gq9CUiW
+         ZWzgHjDBq+ck3Fc6PGf5YieFQ5MsP31HxjerzS1StI/sxyzM8HP11cmiVJ8OefCEQ/yc
+         uH+vwwQO8pi5vL+FYol6jmbsq8Au0huo9c3cuzuZnEpjYmFsolBKEWZkd0yOVhu1yuk8
+         D+/w==
+X-Gm-Message-State: AOJu0Yyf2MBW6wYcxBNKeYWxTgIgd3MRQiNInzIZZldHhgNjt+B2DxRv
+	a7z4/1D6kuigbgVuZeeLtYqBAHXRZk96p7SzgsRl0ANeWqM74nCbIa/q
+X-Gm-Gg: AY/fxX6O7OuIJzFi6r6eH2pXbkkF8wDugcnAHaHxJyz+8dWDPsebImJk8deUMmBc4/O
+	Q46SOkHmPDmYJEdzrJsgGtBfNsKA0ZzcGKko9OGoFxNotvG0wnMfHtgfhoAQKLzBK3gNpZI9f9r
+	QFAq9aJBh8/Jy3wPu8jO8shhJrc46aMSkx5jTcrdRQUM8KUXWKrQQuFvMLOE9lKE8CYLkw30ncB
+	6nuqW95G/moT7k1RuObbYCic27qQozpgoRUdHzL666T7VH5P3sDnIfwu1wdzY0jI+tInyQ/Ma8n
+	AjEzKBXKzo3eR5a6PtEezi2QKSOCtil1scGhj+2L2u+WsfFHPNkH6d4bP2DJB8nCFF83GkoC9Ba
+	gJVyrvvJc0cofMb9MBTsBfTU6jlkaUadyxOn819OSlYdweuXB7XUkmd/Fu1qiLE1/UaPat60JXj
+	1a0CAX9V/bRTn3ZltVXrDlOobBMjd25H32R7iuTM9RNSHb4FISx7PcJQJ4ei0yIzO94zjpr3cCF
+	5IgBmZv7zcr2+LssVMwPG7+rlLOLFHAQkOmB6z3Jg==
+X-Google-Smtp-Source: AGHT+IHgGIkPHOw9/av7xXAs6nVP8o+aqKdZVjmSF3d9NRRkl/SPH1wJAmtrOHvxDrSGi5Wp7GJd3A==
+X-Received: by 2002:a05:6402:3551:b0:647:94e1:800f with SMTP id 4fb4d7f45d1cf-65097b99f05mr14840498a12.8.1768089440875;
+        Sat, 10 Jan 2026 15:57:20 -0800 (PST)
+Received: from blackbox (dynamic-2a02-3100-af95-6f00-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:af95:6f00:1e86:bff:fe2f:57b7])
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-6507bf6d5absm13701228a12.33.2026.01.10.15.57.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 Jan 2026 15:57:20 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 10 Jan 2026 23:08:57 +0100
-X-Gm-Features: AZwV_QhAKgfsFN9tGWs1QKxT7kBr72Z-TUCf9Thx-La55n8xXLTiY8eWe0kVLVk
-Message-ID: <CAFBinCCPsaywQuePJ_bxMby0MJeh2ohkXcduRy=yxr8EExJ9nw@mail.gmail.com>
-Subject: Re: [PATCH v5 6/8] arm64: dts: amlogic: A5: Add scmi-clk node
-To: chuan.liu@amlogic.com
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Xianwei Zhao <xianwei.zhao@amlogic.com>, Kevin Hilman <khilman@baylibre.com>, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
+To: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	pabeni@redhat.com,
+	kuba@kernel.org,
+	edumazet@google.com,
+	davem@davemloft.net,
+	andrew+netdev@lunn.ch,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH net-next v1] dt-bindings: net: Convert icplus-ip101ag to yaml format
+Date: Sun, 11 Jan 2026 00:55:44 +0100
+Message-ID: <20260110235544.1593197-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.52.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260110_140909_673619_C67C7D75 
-X-CRM114-Status: UNSURE (   7.65  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260110_155723_714006_03C2B359 
+X-CRM114-Status: GOOD (  14.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,20 +102,132 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgp0aGFua3MgZm9yIHlvdXIgcGF0Y2ghCgpPbiBUaHUsIEphbiA4LCAyMDI2IGF0IDc6MDji
-gK9BTSBDaHVhbiBMaXUgdmlhIEI0IFJlbGF5CjxkZXZudWxsK2NodWFuLmxpdS5hbWxvZ2ljLmNv
-bUBrZXJuZWwub3JnPiB3cm90ZToKWy4uLl0KPiArICAgICAgIGZpcm13YXJlIHsKPiArICAgICAg
-ICAgICAgICAgc2NtaSB7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJh
-cm0sc2NtaS1zbWMiOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIGFybSxzbWMtaWQgPSA8MHg4
-MjAwMDBDMT47Ckp1c3QgYmVmb3JlIHlvdXIgdjUgTmVpbCBtZXJnZWQgYSBwYXRjaCB0byB1c2Ug
-bG93ZXJjYXNlIGhleCBjb25zaXN0ZW50bHk6IFswXQpQbGVhc2UgdXBkYXRlIHRoaXMgaGVyZSBh
-cyB3ZWxsLgoKClRoYW5rIHlvdSEKTWFydGluCgoKWzBdIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcv
-YW1sb2dpYy9jLzdiY2JlZGQ2NGVjZjU2MjQ1ODMxNDBmYWViZmRiMGUyZTJmNmI0M2UKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMg
-bWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
-dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+This allows for better validation of .dts.
+
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ .../bindings/net/icplus,ip101ag.yaml          | 75 +++++++++++++++++++
+ .../bindings/net/icplus-ip101ag.txt           | 19 -----
+ 2 files changed, 75 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/icplus,ip101ag.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/icplus-ip101ag.txt
+
+diff --git a/Documentation/devicetree/bindings/net/icplus,ip101ag.yaml b/Documentation/devicetree/bindings/net/icplus,ip101ag.yaml
+new file mode 100644
+index 000000000000..f245516103b3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/icplus,ip101ag.yaml
+@@ -0,0 +1,75 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/icplus,ip101ag.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: IC Plus Corp. IP101A / IP101G Ethernet PHYs
++
++maintainers:
++  - Andrew Lunn <andrew@lunn.ch>
++  - Florian Fainelli <f.fainelli@gmail.com>
++  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
++
++description: |
++  Bindings for IC Plus Corp. IP101A / IP101G Ethernet MII/RMII PHYs
++
++  There are different models of the IP101G Ethernet PHY:
++  - IP101GR (32-pin QFN package)
++  - IP101G (die only, no package)
++  - IP101GA (48-pin LQFP package)
++
++  There are different models of the IP101A Ethernet PHY (which is the
++  predecessor of the IP101G):
++  - IP101A (48-pin LQFP package)
++  - IP101AH (48-pin LQFP package)
++
++  All of them share the same PHY ID.
++
++allOf:
++  - $ref: ethernet-phy.yaml#
++
++properties:
++  compatible:
++    contains:
++      enum:
++        - ethernet-phy-id0243.0c54
++
++  icplus,select-rx-error:
++    type: boolean
++    description: |
++      Pin 21 ("RXER/INTR_32") will output the receive error status.
++      Interrupts are not routed outside the PHY in this mode.
++
++      This is only supported for IP101GR (32-pin QFN package).
++
++  icplus,select-interrupt:
++    type: boolean
++    description: |
++      Pin 21 ("RXER/INTR_32") will output the interrupt signal.
++
++      This is only supported for IP101GR (32-pin QFN package).
++
++# RXER and INTR_32 functions are mutually exclusive
++dependentSchemas:
++  icplus,select-rx-error:
++    properties:
++      icplus,select-interrupt: false
++  icplus,select-interrupt:
++    properties:
++      icplus,select-rx-error: false
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    mdio {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ethphy1: ethernet-phy@1 {
++                compatible = "ethernet-phy-id0243.0c54";
++                reg = <1>;
++                icplus,select-interrupt;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/net/icplus-ip101ag.txt b/Documentation/devicetree/bindings/net/icplus-ip101ag.txt
+deleted file mode 100644
+index a784592bbb15..000000000000
+--- a/Documentation/devicetree/bindings/net/icplus-ip101ag.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-IC Plus Corp. IP101A / IP101G Ethernet PHYs
+-
+-There are different models of the IP101G Ethernet PHY:
+-- IP101GR (32-pin QFN package)
+-- IP101G (die only, no package)
+-- IP101GA (48-pin LQFP package)
+-
+-There are different models of the IP101A Ethernet PHY (which is the
+-predecessor of the IP101G):
+-- IP101A (48-pin LQFP package)
+-- IP101AH (48-pin LQFP package)
+-
+-Optional properties for the IP101GR (32-pin QFN package):
+-
+-- icplus,select-rx-error:
+-  pin 21 ("RXER/INTR_32") will output the receive error status.
+-  interrupts are not routed outside the PHY in this mode.
+-- icplus,select-interrupt:
+-  pin 21 ("RXER/INTR_32") will output the interrupt signal.
+-- 
+2.52.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
