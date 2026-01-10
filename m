@@ -4,83 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9421D26D99
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Jan 2026 21:03:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 187F0D25020
+	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Jan 2026 20:04:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uUE/WXCKQjcEbPgz8nLxFfuzdecPiJCgvH5IWtvP/X8=; b=OO2kxrZyPkTqyQ
-	T6g3p0WCtorMYcqnqMS3WVtwcPjcwH89jPZnguvPB6e2j1gfuQ83NyFrempmedCViQe8iE4QoE794
-	qKzpe6pl+MDS2FXHSxLaWbCq0jqaIXvQQdQv74kt5CLcoHCtfH1p+13ab5nyOJX+dKZYSyhW8S6FZ
-	nJC0o+S4HOwmWFfa3zqn9uTBbnHIUV8dH/Ul4AfkF1vIHc0NDlogqJ+afEnKbn+rTYfdbss47RyGW
-	pvzIfuI6eQku+Fs3S0VQfoTJ2T8iZeWlSbtvbzIBIyDVJ27AoEBDcZWwDOlHIxLZ2sI9LKuw6pMUO
-	HRwJdSCPFbh03ZrC/9aw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=qjDYdJ9j+sCpCaFeoMS6hXb2uy5c2GC1U00tfJt5T+M=; b=ryj4HooK1uHhHs
+	XixKCDKxmGya6zP2TjpBqt3N/EiwyqmStewDOpI8cB+sxt1/kf+Gq5hhrwmM8dBjhCi02KvGlIXeE
+	+QRnJz0/HTutQP60o/k6rgwrSrobsXF20ZCJpdW6WKCUKXpnubU0i7HTxIeap5UWR3z1gy4IV2k9W
+	omevD3/gmhXKVskQ18q1fz9ppos5HSsaaVy0eCxHvSFC1BmrSCIcq4ArmLYTWrUz+ffuWkkAchv+j
+	/+I4LZfN9NE96Z0z7qpf2bdNqrRcqDAbY7Rl7E/thMJh4OOfBkAQZ+ZbKFvWDDauCQatZTupdnWhz
+	BEbWC1sRyRAx3NmWRKaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1veJe4-000000031fY-3Z8d;
-	Fri, 09 Jan 2026 21:03:44 +0000
-Received: from mail-pg1-x52f.google.com ([2607:f8b0:4864:20::52f])
+	id 1vefCc-00000003ecD-13wm;
+	Sat, 10 Jan 2026 20:04:50 +0000
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1veJe1-000000031eh-1aJ1
+	id 1vefCY-00000003eai-2HFH
 	for linux-amlogic@lists.infradead.org;
-	Fri, 09 Jan 2026 21:03:43 +0000
-Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-bc2abdcfc6fso1856128a12.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 09 Jan 2026 13:03:41 -0800 (PST)
+	Sat, 10 Jan 2026 20:04:49 +0000
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-b804646c718so785962766b.2
+        for <linux-amlogic@lists.infradead.org>; Sat, 10 Jan 2026 12:04:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1767992620; x=1768597420; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xHsh6MGOwaIqqm+hN1oX7sSQ0wIT7SPKXS2wr/sjS7A=;
-        b=ZDNZQ2HXGfBCZ/az6FTsFnSEI2YO3fLmc4/Mg6FU92bJT1WriQlWh1EHWnaNl2ucQL
-         tvl4rpo70BP4sh6ChMT3U/oeKV4etYgwviZ54Q6ca0/bOOP2W5wZT7AK3/My/8ePCjvf
-         ifSI8VZ3126KpMiS4YE9B5fV/o/YdVpc8PVFDoDuv/pTMYx4yI0YzDHDjJ4XCDGtMXfc
-         7HHK1B037kgxJZNkZfNzhmAhYUyVKwTcTSKosXmISrulH/eResAop3iJApJcX9xWzzdE
-         Waio6HssN+QoxdNeqJ+vxpHzYLs04Rxb/ukH0nvdj5tcqVI508316NbStWBg9cM/nFkC
-         hO7w==
+        d=googlemail.com; s=20230601; t=1768075484; x=1768680284; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AXLLlxs4qW1+ZesmiLUyjALqG1DyG/LyhBi2azmiHI8=;
+        b=hDptILyUhAXjepyUZb5QuR5rGxfQ8N0UDwp6lmFL4AG8pTxXWvZ58OhXcrg/1gDBmb
+         tpPBKV5lh67xqywSeXKEoAUY86krrE8wDnveXNOk/K+Hjlt9SZV5zDge88P+9b6k9Grd
+         FsROyqcEFU4KM5NQfI86XlqTarlrTiWIeoAZH/9lrIfxBd3Mn0TML9Phy2VK6tJzx1f6
+         lp3oj6nCfdelrccdI3PIFjgTQjj2KRBkoRYGW/Ke/8PmJAePZ6XXobVg+aIN65NrMTDz
+         TraUrT+M79vt9Vl9HGMOGZv2w9ysqPv1YRqPiukXRnO1jyAFA5g5SkreORxLd/f5H/Oz
+         OSCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767992620; x=1768597420;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=xHsh6MGOwaIqqm+hN1oX7sSQ0wIT7SPKXS2wr/sjS7A=;
-        b=l4HK7aV4/hR5RUa3adIvuq5UQftUWgtRcqm/G65H800YltMaINMcsTOWi0eyGawBJC
-         UPjg/THx0OLNuajJDdN4Rpo52c9CS2KgFEQSOeqgVtrnomBjCfakDPtefe82N6flriTS
-         7kN1v8hKUVdvoQ7vSQit+XU5S8QdbqldSSWxwb0Q7J4uTCA3Pd0+NIZIluqF8obPBC6D
-         1H8Mhjj0NRL2U/tfD5mqdv8bZx6IG8kqQY+Drwy96nm8i2y3pk1nXUGNfJ73yZ65272S
-         tv8bqAAzJnVW2EOaDkKiwAqbbTNNgFNdhRe1WBkg3i0QWmjd/FnEB2f35gQsvcRpvFmQ
-         zXmA==
-X-Gm-Message-State: AOJu0YzYjWYAW5IBaIfrSof5mOz7HeoMyvcoaBRg6IRTwKGTNTzG2omY
-	yP1oUvKbDjdQ1GHjoMDPGro2Uh+pTuqz2IaWnhnOWqAXZBrVCUvufS+rwnCV4eAJJuxlTZ8U/HU
-	gXMlGNXbDLH/27j9U+aV7sdY/WmDEeUk=
-X-Gm-Gg: AY/fxX68suAWDTRkr8WAD3EURhDWSUq6VmzvyEKY4GDgImikuxOYqw3h4xUNlayZEhT
-	oW06WnLTpCDY7BbEiO5817Jb3FmiOT9kh6nwYHykiGimzSivqSEJLnU41DY+wQYtbFCrU28dMmR
-	J++ODlxmmR+Oh+IcHYm+Sf/YBaY6Bq8S7Jg+8LePN2Cs6JoDQCB7K/VF4HP+1ky2/5dPpd+GXET
-	+kxCL/i0vq/f2r8bhEz/ZwAQ0JwXxtILzDXx3ITGb5OG/QvbO4unyMpaWiltX4j3ooT3ukUrOqL
-	/nxOebuD1vCvtfAvBsHa+XkrEfee
-X-Google-Smtp-Source: AGHT+IE6xBMNDdxDFDu45mzdnkNgP8Xo2RHjKHEEi7OxCq3tsQhTwUbilionwt/MAUeqVtxj/vFWwNYWT27IOouoivA=
-X-Received: by 2002:a17:903:46cc:b0:295:96bc:868c with SMTP id
- d9443c01a7336-2a3ee41d111mr119743015ad.5.1767992620326; Fri, 09 Jan 2026
- 13:03:40 -0800 (PST)
-MIME-Version: 1.0
-References: <20260106090624.518117-1-martin.blumenstingl@googlemail.com> <890f1ce6-60d2-47d4-8552-940f3abd7c1e@linaro.org>
-In-Reply-To: <890f1ce6-60d2-47d4-8552-940f3abd7c1e@linaro.org>
+        d=1e100.net; s=20230601; t=1768075484; x=1768680284;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AXLLlxs4qW1+ZesmiLUyjALqG1DyG/LyhBi2azmiHI8=;
+        b=wrcBd2iWdA6QX2z/IT6Jo5wZ92T/sjTlXVRuC2g135CqF55z3lf9jUo3UTXkX26wno
+         xHoR4lEN6d+ViuqIvsvvGQzNLsdYR5UacjGz4dH0QdUk8DUBpBn0lFKqdn9qAVYzENpV
+         SOEfhrE813a5TGjFoXbiMdthZmAoJn1poe/NV9x9bBna1jJ2kkOULuirpMYq0tALX1MG
+         0m/O/QXysp0HmS7ajeFOLW23TCeyao4irGqVN0IcJKG9i/AgkrfV3OjCHhTrchKllpOs
+         y7Yg4xBrq+iFyhvW4QciawZiK37zX5PJVhezPJzpHR6v83968Vev0G6DydUR0T3azGow
+         3g/g==
+X-Gm-Message-State: AOJu0YxCDLU8KfZDX4h/8trTfm6x5n38SHo5iN5x7a+fOeUROx2Xo+4o
+	BIPP3ghe9vk0qLWOWyIdccsAdBHfgdAlHG7z6+yuxtMO877nI76wZKpatn/iPw==
+X-Gm-Gg: AY/fxX5OIeR+Sr6dmEFSv7N3VHnXyOTgdf/Kblt1UcVV4rXknb73RwWUwcyf9q6GOP6
+	05tiGCbvmORAA400CuHvl+jbFHX1TMbUVblvojaYUp427sGeFxFYAsV8CanWRQs4/Wzyr2vGjHi
+	v066yOZKcEMe891eLHlSNLbOmSmPK95B/HC0qkkq8Q/GRNxmW/tB6GlCeoXM+jbmGh7JO1mg7Vd
+	/jbKmIF3GJ2qQljQ/nn3nCi+QxxHC0Z7qZzy1YuxpULw6WdGlUtpxwY00Fmso62x10RJ0d46edY
+	QUzW16aIzxD2RtcYYn1fZLV7Lhc1QIR4WP4RmnaW6q5K6mPOFAPOBNTyILel0/mS0NMEP23nz/B
+	/GZ/3rvmeYgEO6Z4EVvTJkje7oSX1BP4bZYycvuo3ERk7IkmhOB+VYDOE4LWfyd3sfPrSBpX0iJ
+	8hZVbgWC2iWpDkUZrWgoG/qcjFSdbxpqcZi3BH038VyxxqBEPu2UY6wWv6OaDaU+WD90qpnx6LP
+	0/bfdPWv0apxHHidlfCdzLapd3YVWjXidqc0BC9z7Q=
+X-Google-Smtp-Source: AGHT+IFIiQoUtSeyn9mIBbOOpJhcZYBlr/ord7EW8wnXlRpW5UAw9sYZWgIe46tbc0kW+YaZ+jiBYA==
+X-Received: by 2002:a17:906:fe0b:b0:b73:6d56:f3ff with SMTP id a640c23a62f3a-b84451d416cmr1398267566b.20.1768075483987;
+        Sat, 10 Jan 2026 12:04:43 -0800 (PST)
+Received: from blackbox (dynamic-2a02-3100-af95-6f00-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:af95:6f00:1e86:bff:fe2f:57b7])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-b842a56c552sm1483591066b.68.2026.01.10.12.04.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 Jan 2026 12:04:42 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 9 Jan 2026 22:03:28 +0100
-X-Gm-Features: AZwV_QhnbrdFb8OdNAcoIBBeUA74zu08xfJnlk97QmF8Ut52hYzn5fWJkesO7g0
-Message-ID: <CAFBinCAdDVjvu-ZYMZo4cMzmDZVK7kf84txw1v_hh3b4NLdrpw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: amlogic: move CPU OPP table and clock
- assignment to SoC.dtsi
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+To: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	adrian.larumbe@collabora.com,
+	steven.price@arm.com,
+	boris.brezillon@collabora.com,
+	robh@kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH 0/3] Add Mali-G31 GPU to Amlogic Meson-S4
+Date: Sat, 10 Jan 2026 21:04:23 +0100
+Message-ID: <20260110200426.1461575-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.52.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260109_130341_418636_403AA5AE 
-X-CRM114-Status: UNSURE (   7.63  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260110_120446_579278_E040C854 
+X-CRM114-Status: GOOD (  11.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,20 +98,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTmVpbCwKT24gV2VkLCBKYW4gNywgMjAyNiBhdCA2OjU04oCvUE0gPG5laWwuYXJtc3Ryb25n
-QGxpbmFyby5vcmc+IHdyb3RlOgpbLi4uXQo+IFRyaWVkIHRvIGFwcGx5IGl0IG9uIHY2LjE5LXJj
-MSBidXQgaXQgZmFpbHMgdG8gYXBwbHk6Cj4KPiBlcnJvcjogcGF0Y2ggZmFpbGVkOiBhcmNoL2Fy
-bTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyYi5kdHNpOjU3Cj4gZXJyb3I6IGFyY2gvYXJt
-NjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLmR0c2k6IHBhdGNoIGRvZXMgbm90IGFwcGx5
-ClNvcnJ5LCB0aGF0J3MgbXkgZmF1bHQuIEkgaGFkIGEgdGVtcG9yYXJ5IGNoYW5nZSBhcyBhIHBh
-cmVudCB0byB0aGlzIG9uZS4KSSBqdXN0IHNlbnQgb3V0IHYyOiBbMF0KCgpbMF0gaHR0cHM6Ly9s
-b3JlLmtlcm5lbC5vcmcvbGludXgtYW1sb2dpYy8yMDI2MDEwOTIxMDIxNy44Mjg5NjEtMS1tYXJ0
-aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tL1QvI3UKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
-bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+This series add support for the Mali-G31 GPU on Amlogic Meson-S4 SoCs.
+Overall it's similar to Mali-G31 on G12A:
+- both are using two reset lines
+- both share the same OPP table
+- both require the same power override quirk
+
+The main difference is that Meson-S4 gained a second (bus) clock.
+
+This series updates the bifrost dt-bindings for the GPU on the Meson-S4
+SoC, wires up the quirk in the panfrost driver and shows how to wire up
+the GPU in meson-s4.dtsi.
+
+The .dtsi patch needs to go through the linux-amlogic tree. Would the
+dt-bindings patch go along with it (to prevent binding validation
+errors)? If so then only the panfrost patch would go through the
+panfrost (drm/misc) tree.
+
+
+Best regards,
+Martin
+
+
+Martin Blumenstingl (3):
+  dt-bindings: gpu: mali-bifrost: Add compatible for Amlogic Meson S4
+  drm/panfrost: Add Amlogic Meson S4 integration quirk
+  arm64: dts: amlogic: S4: Add the Mali-G31 GPU
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        | 20 ++++++++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 49 +++++++++++++++++++
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |  2 +
+ 3 files changed, 71 insertions(+)
+
+-- 
+2.52.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
