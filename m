@@ -4,117 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E638CD29FF5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Jan 2026 12:07:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2FF4D29FFE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Jan 2026 12:11:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qrceQs0Q0cJ9CCnPM6hDRychcQBqkWlN27vP5q1xRMo=; b=tyov489q9uJCxBiMBZf2x5/jIW
-	qhqW1s2z15CdCS3gkvamg46alC3ax/asT4OK5to1lfhqzpKSiG3L2HLOQ5/Fw5Z2XMhZ00oGod6AY
-	rXtvxk4kKgdl6KfAA30rqi4ygqSVwiSlt4p19W3QHbsuIdpgeXTDb/3Qyk4kR4Ws9sX19XxdU4ATh
-	7dArtVL+EjV5JqdQBexTaFdTLVfPJtYIqgbDm9fUaHpGL4Crkp7Ra+SmYvuROhzEYIpvvrybTFRHV
-	TfVKAJdjndcF1qiel9JAFpczm4fhQGZDhbLDsvu0mI19S4btTk+GnR7Jd6yVMDWpDrwOrBF3PfD9e
-	fqIkND5A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=isnKyH58Q1AjFiOuGYF2o8f8dj1tdRKiDXATXObZdRk=; b=F9Tay344BB+vEa
+	CfmlSubMJGmIVSvtQ5zkyRecY5XzKTUUEhLNAa2uFWDxtpH2NB8g/JOKWVkwwwHYGzxISl3bGjcZu
+	IgIXrrvSjr2zZaioIQubCUKsZhoETHlPZbp8VOIb7W1f0CthTHHDzUjp8wLA2WOkCQdOO4Gn9PNVR
+	BFZb6xbNI1wBFfHdsnsEc4J5p3hKpbDWpOhRWFXNruo47Jk4/dYw3RhSMqgoue+NSyk5H79oWlvLP
+	tddcHOnkJSwNGYjveEyLcCUBbl6fYENYKdq9BOv9lf4ADK0t1bPPxUAEIxraWUCJHtfBhRsPLxBUs
+	zekS6MWuVh91mJQgp14g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfzf7-0000000967V-2gt3;
-	Wed, 14 Jan 2026 12:07:51 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1vfzid-0000000976b-0EtG;
+	Wed, 14 Jan 2026 12:11:23 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfzf5-0000000964n-16BR
+	id 1vfziV-0000000971x-3U41
 	for linux-amlogic@lists.infradead.org;
-	Wed, 14 Jan 2026 12:07:44 +0000
-Received: by mail-wm1-x343.google.com with SMTP id 5b1f17b1804b1-47a95efd2ceso72661825e9.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 14 Jan 2026 04:07:42 -0800 (PST)
+	Wed, 14 Jan 2026 12:11:19 +0000
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-432da746749so2704088f8f.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 14 Jan 2026 04:11:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768392461; x=1768997261; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U3BIAKEVNAk9w++/Pw/AkpPOpkkgEFQigQGBuRd+nh0=;
-        b=J5HenwgRGYIc7KAdA3LglSlWBrijEEWhl3UTMh8RptsefbSUxY0uZ+L0cHEwdc0RhQ
-         r+JYNwTiGRGkbjJh3iBuCmhnzyfcVoV4bLXL/vE9VRWFFzXhGfTkzqfjIFeLNtdcNnmA
-         23OenM67myc2U4kYRio1FSb/fMiWo+RXM8DxLC/L165EvXvsceY98n6yJYVSEm3QCcg9
-         q2GZeSYfdJr/KlJ1rLaJzDhnsarFERxeYsDKXiKtrGTnuy9tPMHYNzqdXphn3X4iDg8Z
-         n6hKlqDtng15Dq5zC3OFdgoQSKctkI4HQaURrz14cOxQy30OWdmViThzAD7xL+g2vMrF
-         uj1Q==
+        d=linaro.org; s=google; t=1768392674; x=1768997474; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bvNQSaYKyUim5tFkK4HAPN4WA2RLqZuiV376Fz2XMpk=;
+        b=ePZkmR3z2tEkg+Jc6kK2ITd3pGTdXHl3wt35Rm9UYfddL6hCohS5vGej7oajDrw95x
+         R5EuQdCzyRP65A3iCpvNBYPl7SyDucCao8RBw6T6sECfrCJubSf3xXEYOEo6akg//VHE
+         itK+P5dNOu+7PY2BBUQNkHtClxhxFvACGvTjDVZ8dVqHPWNSLL+z/NyK5bVF+MI2l7v/
+         PSDv/Qiw4TnqvfTJJNdw29aZOffqrE0BcQWV9fLJChz0E8utPxdh5Ii5lqbUXWDY/7eb
+         WYNQUv3t6KdjS2hBSUlJcbEoHsH6Vu+bANJ1f7HOop48yjURSILf1ZjIAZlsv8HpofIi
+         8YhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768392461; x=1768997261;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U3BIAKEVNAk9w++/Pw/AkpPOpkkgEFQigQGBuRd+nh0=;
-        b=NJf2ickYtadC01ydWwjasmGsu/uS0MLVASBadfTV5ZFPPDzf4ncK927Nu5A9mO4/Jt
-         Vf2jaYfUV5fzhTHafhRLYlHnNXSQIL98elvDx9iXpa90nyeVPB0gO+6o5qCbmZhAUdiA
-         AmnlZkzXRpZqEa0dWASIAPMXIERQo8GaeAMz5WHeE2RH2jq3yu9dxJMyR9d9/QPgK06I
-         1XVZKZo2P8EPxbwNAvVxCZBDDMCpV5sh3C57FS2Vml7zfwYKxM1D0dlkpPYTc+TF50N3
-         KdI5WAvRfPr3gcXqVZ7Bq6zRxqlXFIdcIIDkah6yonrLFoC+j+XsbnlWttEgwzDkbTkk
-         ERJg==
-X-Forwarded-Encrypted: i=1; AJvYcCVKENwscMe28AlyxAiJukGE+eJEftAHoWTpsSKIXq6f7IxIqnPOOGRgzW0xVI1KT5zlGNi6L8uu9MZNM6wD@lists.infradead.org
-X-Gm-Message-State: AOJu0YzFpEcVOrL7sIwOrZvOxiPpah0gS+f+CT1b8nsfoIySJkWoxQqs
-	wqHfZPW36tG2olyHOUWSEskpIJBTHXTo/pv+8OCbqA54RhwdDQuxJqwM1gjm2v4ThQ0=
-X-Gm-Gg: AY/fxX6cv9JUOU7rRs01IU/IOhMTVt0jutgpLSd7QdOH6SJ9HzGlQ0QWIhJr2Oeqax/
-	WI2aVjjbCDGfRXa9iz+A9Ax4iGhRD3+NVOGCdgSvdyv8HHw2h68TAXdRNov3510OLFiPRzTA2CF
-	MNk401xouBkR0SphBV+cPE9gmAlyubeHhvo9NWd3c8/kR+Epc7C8gnTM2q9myPruyeaMVxFHqzg
-	pMmE4KSryC5hMrxY3mQndqzY/YOUQXj3dW8yolg0ptGoRBUTVnMr+Qo/s6Vv0t1iCW284R5wIzo
-	T1ErDH6pFF9OpCvDmLdCg1dbs1/H572ofPs/b9KDKNSz+K9zZoDP5avYtfw3N+DgHD8jygWU1zI
-	lsWpVf5KEqaDIGmmfYnGhom1JPX3GksAeajZxrnTb5QH+FqGotNT89sBcwOakcZSzwSRBM+PK05
-	jaUlLQgx8VdI6yCHU2pR8Gz+vqlLZVhtKWIQFKH5K6n29GmbKN0EWVHyWZPfDrCIs=
-X-Received: by 2002:a05:600c:c4a6:b0:47d:3690:7490 with SMTP id 5b1f17b1804b1-47ee47c8db0mr22733155e9.9.1768392461180;
-        Wed, 14 Jan 2026 04:07:41 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080:b357:7e03:65d5:1450? ([2a01:e0a:3d9:2080:b357:7e03:65d5:1450])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47ee54b8c9bsm24625715e9.3.2026.01.14.04.07.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jan 2026 04:07:40 -0800 (PST)
-Message-ID: <695594a6-9c7b-4c9c-8134-f42e8729b0cd@linaro.org>
-Date: Wed, 14 Jan 2026 13:07:40 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+        d=1e100.net; s=20230601; t=1768392674; x=1768997474;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=bvNQSaYKyUim5tFkK4HAPN4WA2RLqZuiV376Fz2XMpk=;
+        b=jbpa6lXtNOYLv59txAoAXrjqiR4BEpHES/BhRoBfZwGNQZb0SIbr6idJrCt6985jZ6
+         jQ6aDu86ZnV/yCkldRWvBUdxtDkE1PsFDAppCi8AuhSW0Z6oRoCkB49iYNDKT+TbI9MU
+         UjVwkAKM+ChhpgP/f5Uv0rtC8WaQBq24GHAbSKZ+MnLjTc3S67zkDivNqmdvidi44SDl
+         prqd7rjGu/6wLtwOb2tE/CbCpJwzaRBa88fZJOmDcLZPY5/57OwpW8AI4sVseQD1jmf0
+         7ZTa2YlPVa/tIJ7mWTdU/a8FdqIkscmmuwtxUO91CRjtGikxmteDw60k1i/Af/k0nhUP
+         dasg==
+X-Forwarded-Encrypted: i=1; AJvYcCW6pVg67VYVMETQkj3tMliXoCIyhvXYWNNJhsv6sTomfLC9NRhev/RNvjcvTCnZTxZpq311G7XYPl9WHBgj@lists.infradead.org
+X-Gm-Message-State: AOJu0YxzuCZX6d2lWvHJbxwSqyK775V8PkWnhRP7ZTcQmWSMikColcvJ
+	iGGs0LVF70tb18GQDbly2qlT5W+dJDFLl6AK05eXpI3g/+Fzr88K4dLcnu8O+zq0wDg=
+X-Gm-Gg: AY/fxX6qhSkMy/m9+UV/trWqrDJEoAR1HEYgRoiLbGHS3iIIjuwqYWj9M2f7RpCuMCp
+	X7CmiFUkJap9LRp7Z2JPAqUjRjKbjtOL5tRJm8ZWyrZONisPNMt9aup3EbZ+8GlzcAM7D7FAKDT
+	Vvu08GqMpgqat+CboOhjfLkx07myewsEinijEFqZpo/GNjK6f25FYy5IDxdlguXX+0tMDsNIUvh
+	Nj1/iHeeBIFpM67ezO4h7vSs5YYhi/IilotOO/qWz2UJk3qjAPsHSGaIgoV31mFv6mukauv9IG6
+	ZoSeJbkPGhYiwNyOWs0cgYqT7KMgyrFdTYBa4aJbxKsM/FSQHqqpKDv9Vs4ibtyu61UYzsahlFu
+	QurpQWZ3SP3ZMmETN88hP2S6MFZnaulcAOkqmwFSKCmSua4zjQEdwpBm+TfBHnxM164NtI6v0x9
+	Y2DXe7NamM32QRPqD1gdDNn/dDgGEqkwA=
+X-Received: by 2002:a05:600c:500d:b0:47d:3ffb:16c9 with SMTP id 5b1f17b1804b1-47ee33917d1mr23304285e9.23.1768392673795;
+        Wed, 14 Jan 2026 04:11:13 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5fe83bsm50158222f8f.38.2026.01.14.04.11.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 04:11:13 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 0/2] arm64: dts: amlogic: s4: mmc clock fixups
-To: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Nick Xie <nick@khadas.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, Nick Xie <nick@khadas.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260114-amlogic-s4-mmc-fixup-v3-0-a4d3e136b3f2@baylibre.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
 In-Reply-To: <20260114-amlogic-s4-mmc-fixup-v3-0-a4d3e136b3f2@baylibre.com>
+References: <20260114-amlogic-s4-mmc-fixup-v3-0-a4d3e136b3f2@baylibre.com>
+Subject: Re: [PATCH v3 0/2] arm64: dts: amlogic: s4: mmc clock fixups
+Message-Id: <176839267313.2837299.1195775819800428515.b4-ty@linaro.org>
+Date: Wed, 14 Jan 2026 13:11:13 +0100
+MIME-Version: 1.0
+X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260114_040743_336238_305B2EF9 
-X-CRM114-Status: GOOD (  13.91  )
+X-CRM114-CacheID: sfid-20260114_041116_471316_CCD7A44C 
+X-CRM114-Status: GOOD (  12.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,13 +98,14 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 1/14/26 11:43, Jerome Brunet wrote:
+Hi,
+
+On Wed, 14 Jan 2026 11:43:10 +0100, Jerome Brunet wrote:
 > The patchset aims to address the issue raised here [1] for MMC B.
 > 
 > While checking this issue, I've found that MMC A and C also appear to be
@@ -141,35 +114,39 @@ On 1/14/26 11:43, Jerome Brunet wrote:
 > To be on the safe side, the MMC clock should also be assigned on the other
 > SoCs. More changes will follow once things are sorted out for s4.
 > 
-> [1]: https://lore.kernel.org/linux-amlogic/20260113011931.40424-1-nick@khadas.com/
-> 
-> Changes in v3:
-> - Dropped useless assigned-clock-parents
-> - Link to v2: https://lore.kernel.org/r/20260114-amlogic-s4-mmc-fixup-v2-0-7e9ab5f12286@baylibre.com
-> 
-> Changes in v2:
-> - Collect Tested-by from Nick
-> - Fix some typos in the commit description
-> - Link to v1: https://lore.kernel.org/r/20260113-amlogic-s4-mmc-fixup-v1-0-1ab1fca0fb2f@baylibre.com
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
-> Jerome Brunet (2):
->        arm64: dts: amlogic: s4: assign mmc b clock to 24MHz
->        arm64: dts: amlogic: s4: fix mmc clock assignment
-> 
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 13 +++++++++++--
->   1 file changed, 11 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-> change-id: 20260113-amlogic-s4-mmc-fixup-92ad8b90b7be
-> 
-> Best regards,
+> [...]
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.20/arm64-dt)
 
-Thanks,
+[1/2] arm64: dts: amlogic: s4: assign mmc b clock to 24MHz
+      https://git.kernel.org/amlogic/c/86124a8becb43eed3103f2459399daee8af2c99d
+[2/2] arm64: dts: amlogic: s4: fix mmc clock assignment
+      https://git.kernel.org/amlogic/c/3a115d42922cffc91b303992eadf220111d66c31
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.20/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
 Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
