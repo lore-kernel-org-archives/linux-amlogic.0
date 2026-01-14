@@ -4,89 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78AF7D29FEF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Jan 2026 12:11:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB43BD37E59
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Jan 2026 15:51:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FRxDa0WtkjtRUXGgHm4UWAf1kfXjh66YIZRb0C3PsLs=; b=xV3SYRwLrvqHY0
-	LgbsnFH2KQZfcw2d1qvxL5RZ8pnLfrzpBfeQZZI2iUuXTc3BYsBnywOJxCq6l5EU3QObo4eCrVPk1
-	4nJEi3ogXPoQkAK4e3nsCX1yGB094vs3OsTpwvXrmU556o8fEcVnZLlS4on5ivYG8Tm/36y56hpFv
-	SqdRf5zZyM7WTWZk7QlRgBa0gasgNDCgngw9C7/sJbBPIQvyfM8GrFSu8AdHJpeafiNC4foL+hDys
-	5hkEcYn1qOLef+PeKt6MVRyq98o+59b0Jf6++qRX94iKgqTh9KrtHO+u1Z4FrD5EBVAVLkXyL6Bah
-	f9xygTp8K+WME6EArrMQ==;
+	List-Owner; bh=96Qzzhqz+JcJhxHHqDcLWz8ozbxwrBdfodmUf3eRN84=; b=cCdXrEo9064AT/
+	atAP2BJmnSEblX7/++q3mPmNhV2XHSySYzurLPAystP3ydooPjwTOzL5+D4Gg2TFzqw+Y2OWJezQo
+	rStfluWy/mJjBzyP1w/ZMFr/akF4KuLvGv4x/Ip+vYakVBY9IRIuQviDpLGdbNAGcDZCiOqAPmwxr
+	z9AiMXpE0tRxjNrCt/W5X9C+2nIefAAH6TJ/GSEtAR1Qeg/4P5EFe43vvGezbG7Y2mAf1NjaEjBum
+	kz4gRZMbihXbBsez5Q6uRnh3o1+1vQXZYb92eWuMWYV99esQlzxyPy6Ikovu/S+vGXAdJbNFnLdhM
+	tRtwBI0e04Eq0l2JOXwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfzif-0000000978V-43Ru;
-	Wed, 14 Jan 2026 12:11:25 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1vg39d-00000009mfL-3Ucn;
+	Wed, 14 Jan 2026 15:51:29 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfziU-0000000971W-0NkU
+	id 1vg39Z-00000009mdM-0eDp
 	for linux-amlogic@lists.infradead.org;
-	Wed, 14 Jan 2026 12:11:19 +0000
-Received: by mail-wm1-x343.google.com with SMTP id 5b1f17b1804b1-47edd6111b4so13931375e9.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 14 Jan 2026 04:11:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768392672; x=1768997472; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=luE4giNMbRl3MrVhKtHW9mq/sJHuHc9hfzaLz1OXmEk=;
-        b=wMJqcK3pEz72IHb9eWcNqP/qkUcgi8/QUlXxurU6mbioNhYYr1lzwr4GVzWZwr6/Ru
-         qHrImcioNxQJgZfgf3vz8AB8U4cp9f73Uy6RJjoOfVetVycbccfH/t8k6c/xYLRKJPEx
-         nlxqe+l7KxDAEGpUugrn65cC42iJsG8denuXc6l5+auxkhe+lX3clstx7HczzepCVoEd
-         RsudZ43CfQ3+rOCoLogTLAcllKfYfAHa2536bbHyPldkoRUYCnqn9rbyMMO0H557A4ow
-         tjyQ5csq0SN1OXKN1Ab2dihZQjOs4nwgta8Xub6K2VtgoKZ/5KT8u6Jn6KpmB3XLzeBI
-         lecw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768392672; x=1768997472;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=luE4giNMbRl3MrVhKtHW9mq/sJHuHc9hfzaLz1OXmEk=;
-        b=O5L4uJ0LXbg8Ci4sOR+hxMJaxbRkPJKujoAUeUj3T3yyekc/ImSJkslLI6TjzWVOLD
-         eMr9YB6vyjs0ro2ke+ekY0UPIZtnXTV+k8GfOO5aWgu+Jvpx9UEOzhawEpQB3W3mJq4i
-         exfx2xNf8L2BYYp1CSRm5grw+efTD0qWzWrL01folzTVo2/Zys8fqktcG9c2+jVKLf1N
-         Jh2wKz1JOGwrmhkqwgNmHXOyfkt5VhUiVZUkX22QMavJuxV9Xd9ZcYjzLcxpncfJRT4N
-         DRsUycGCMBP1K6aLSHwfG0sExE9pq7DuE2HRgRcdkyes9BozkmcIq5yRXN5/CG8Y4Hn3
-         Cgqg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVgtRnHgxnustuTySYh9njEtBARlfixY2Ykmt8eyPRz9JRy7ON08czsHmxxo+z75bVK6JqbOh0oLunQxt6@lists.infradead.org
-X-Gm-Message-State: AOJu0YwFLVYeIoS/83nPQ6ROdw3wT1cAF0SUF50fMIzmM7y+mW6MoBlR
-	RqhbhipgUWWoHTOwjTOfgvC8lcZ0fwE9hEdx5Dl0GbvKX+yd3iALrspZoO6lG+DqJyU=
-X-Gm-Gg: AY/fxX7gv6gYlY5u78yTLMzg7CnCIXxJ9REwmvrMnBkJ1fLGY469AYCNjvLekzoSBls
-	UZL8d/klpQX+ZAfotNHE4IbtEY5cVLqWpQXOE+zWWaFGADndVpbLiddj+eph9G8ej2BXe2hFgFx
-	ZAIlzN42gHJi7nBjHKDUo7tTeVyj+c8FSCHHEdUUSeElM0RfgJr8T0VuuWG7oj3FBpZNc5N/J0j
-	ws/Vnfthz387YMpvCk6y9Q5cNwlSWzv1m6SRwnRXiW4XsyV3x2C/40k0oqdLRGUJH11ZosFSABN
-	p3qHKHV/wJ2mEnN9UlRrozf5HKN5BTaT+PBxKwaf7r3sukKQuy70D/bvE1Y8pELoxMeTQGKHkpe
-	LQEHvfAbkG46q3GJVIjtJQRfRz/fpHKLY/d1NR1e7/Qj53mbqC/i9ThEotEZshe9NMXkg6mqFvL
-	vgE/kFkIVMGB4sQJ1by1uodrYPsYPvt0w=
-X-Received: by 2002:a05:600c:3b9f:b0:471:13fa:1b84 with SMTP id 5b1f17b1804b1-47ee47c9411mr21009765e9.12.1768392672151;
-        Wed, 14 Jan 2026 04:11:12 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5fe83bsm50158222f8f.38.2026.01.14.04.11.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 04:11:11 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Nick Xie <nick@khadas.com>, 
- Jerome Brunet <jbrunet@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260113-amlogic-s4-mmc-fixup-v1-0-1ab1fca0fb2f@baylibre.com>
-References: <20260113-amlogic-s4-mmc-fixup-v1-0-1ab1fca0fb2f@baylibre.com>
-Subject: Re: [PATCH 0/2] arm64: dts: amlogic: s4: mmc clock fixups
-Message-Id: <176839267143.2837299.3084525146366465270.b4-ty@linaro.org>
-Date: Wed, 14 Jan 2026 13:11:11 +0100
+	Wed, 14 Jan 2026 15:51:28 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id A48BB43AC8
+	for <linux-amlogic@lists.infradead.org>; Wed, 14 Jan 2026 15:51:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 894A3C2BC86
+	for <linux-amlogic@lists.infradead.org>; Wed, 14 Jan 2026 15:51:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768405884;
+	bh=o+OEjagxl3Dsp9tfzVfdkpH30i7BI82gz0LPNnSdpig=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=oV99po6TWGN66FZNu68+tXjcgzzqBQtGJvf2c8saHanKFdPhspHdN1GZhrIuKHsjA
+	 SSaK553cE8RqTE9v+zDUd5FQKz+/3T4i9cqDqTRHzBm3/BfwNeUg+rXwCFPNMv3lfP
+	 VpSxIlY+dw1Fw7wsW+/9LYbD+RutrbCzTA8Mylhfhov3GmNi+rucwYfFT/X3vZWGiA
+	 WILUNvyzJnrTxcvlnKleNtMnCmVjlMG583qwqABoqIIkKBYV1e3BEvsmgTI2szUAqe
+	 uW6qTnrSALTVmaXdGHVC8vuISvQJ799TukaeaRMWgtsFbsmto7ZcgaMc4ENjXC9NuD
+	 DG6xpGwrOmAuw==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-59b7882e605so8818844e87.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 14 Jan 2026 07:51:24 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVhlLTquCD+3v31rNGUDWuxPvgThI8agaIhj5T9gQShq6DYTAQ0GSMNHnagWWVyZYcDH5yZGR3k6PE3RAdH@lists.infradead.org
+X-Gm-Message-State: AOJu0YzRyr2bg0uAzLF0lpQpgYhmESR41sq8cqve2CN7xGqqzh54x/rO
+	pgPxA0rs1RFMViaGxsrUd+tFAcuIdz8JYkJwd7NP3pbV8ke95U/tG78Bd91Y2qJuNgczqPHKj/x
+	Q3TzvmjLqU6cGfnx89HQYebKgsh+2psdq3GS8iNpdlg==
+X-Received: by 2002:a05:6512:2316:b0:59b:8472:48ca with SMTP id
+ 2adb3069b0e04-59ba0f63088mr1131918e87.12.1768405882412; Wed, 14 Jan 2026
+ 07:51:22 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: b4 0.14.3
+References: <20260112-qcom-sa8255p-emac-v6-0-86a3d4b2ad83@oss.qualcomm.com>
+ <20260112-qcom-sa8255p-emac-v6-2-86a3d4b2ad83@oss.qualcomm.com>
+ <a2a610a3-aead-4e85-8a4c-7b83ccf276dc@lunn.ch> <CAMRc=Mf8TTTcU9A3gc_LQF3Ow6Ww0omVJH6x-DQEnOSPXfaUQw@mail.gmail.com>
+ <7865a1fb-91bb-4aec-ab3a-b53050d992e8@lunn.ch>
+In-Reply-To: <7865a1fb-91bb-4aec-ab3a-b53050d992e8@lunn.ch>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Wed, 14 Jan 2026 16:51:10 +0100
+X-Gmail-Original-Message-ID: <CAMRc=Md-z9+RdVPB9kKeVwWWJni7se7HfbhwGmvQ9Wd3CwJqeQ@mail.gmail.com>
+X-Gm-Features: AZwV_QiTx85beob9IcsRkXcH-FzLKf11MkfoXrcsCiRgQ4kLBhgc1kcRpkaBWZY
+Message-ID: <CAMRc=Md-z9+RdVPB9kKeVwWWJni7se7HfbhwGmvQ9Wd3CwJqeQ@mail.gmail.com>
+Subject: Re: [PATCH RESEND net-next v6 2/7] net: stmmac: qcom-ethqos: use
+ generic device properties
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Matthew Gerlach <matthew.gerlach@altera.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Keguang Zhang <keguang.zhang@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
+	Romain Gantois <romain.gantois@bootlin.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Minda Chen <minda.chen@starfivetech.com>, 
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Maxime Ripard <mripard@kernel.org>, Shuang Liang <liangshuang@eswincomputing.com>, 
+	Zhi Li <lizhi2@eswincomputing.com>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
+	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>, Clark Wang <xiaoning.wang@nxp.com>, 
+	Linux Team <linux-imx@nxp.com>, Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>, 
+	Samin Guo <samin.guo@starfivetech.com>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, Swathi K S <swathi.ks@samsung.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260114_041116_474435_F9BFEDBF 
-X-CRM114-Status: GOOD (  12.50  )
+X-CRM114-CacheID: sfid-20260114_075125_237740_94D09359 
+X-CRM114-Status: GOOD (  16.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,57 +116,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On Tue, 13 Jan 2026 11:39:51 +0100, Jerome Brunet wrote:
-> The patchset aims to address the issue raised here [1] for MMC B.
-> 
-> While checking this, I've found that MMC A and C also appear to be
-> improperly described in this platform's DT. The 2nd change fixes that.
-> 
-> I do not have an s4 platform available with me, so these changes have only
-> been compile tested but assigning the clock was actually tested on sm1.
-> 
-> [...]
-
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.20/arm64-dt)
-
-[1/2] arm64: dts: amlogic: s4: assign mmc b clock to 24MHz
-      https://git.kernel.org/amlogic/c/86124a8becb43eed3103f2459399daee8af2c99d
-[2/2] arm64: dts: amlogic: s4: fix mmc clock assignment
-      https://git.kernel.org/amlogic/c/3a115d42922cffc91b303992eadf220111d66c31
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.20/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCBKYW4gMTMsIDIwMjYgYXQgMTE6MDbigK9QTSBBbmRyZXcgTHVubiA8YW5kcmV3QGx1
+bm4uY2g+IHdyb3RlOgo+Cj4gT24gVHVlLCBKYW4gMTMsIDIwMjYgYXQgMDE6MzY6NTNQTSArMDEw
+MCwgQmFydG9zeiBHb2xhc3pld3NraSB3cm90ZToKPiA+IE9uIE1vbiwgSmFuIDEyLCAyMDI2IGF0
+IDI6NDXigK9QTSBBbmRyZXcgTHVubiA8YW5kcmV3QGx1bm4uY2g+IHdyb3RlOgo+ID4gPgo+ID4g
+PiBPbiBNb24sIEphbiAxMiwgMjAyNiBhdCAxMToxNTo0MUFNICswMTAwLCBCYXJ0b3N6IEdvbGFz
+emV3c2tpIHdyb3RlOgo+ID4gPiA+IEZyb206IEJhcnRvc3ogR29sYXN6ZXdza2kgPGJyZ2xAa2Vy
+bmVsLm9yZz4KPiA+ID4gPgo+ID4gPiA+IEluIG9yZGVyIHRvIGRyb3AgdGhlIGRlcGVuZGVuY3kg
+b24gQ09ORklHX09GLCBjb252ZXJ0IGFsbCBkZXZpY2UgcHJvcGVydHkKPiA+ID4gPiBnZXR0ZXJz
+IGZyb20gT0Ytc3BlY2lmaWMgdG8gZ2VuZXJpYyBkZXZpY2UgcHJvcGVydGllcyBhbmQgc3RvcCBw
+dWxsaW5nCj4gPiA+ID4gaW4gYW55IGxpbnV4L29mLmggc3ltYm9scy4KPiA+ID4KPiA+ID4gSXMg
+dGhlIGludGVudGlvbiB0byByZWFkIHRoZXNlIHByb3BlcnRpZXMgZnJvbSBBQ1BJIHRhYmxlcz8K
+PiA+ID4KPiA+Cj4gPiBOby4gT3RoZXIgdGhhbiBhIGNvdXBsZSBwcm9wZXJ0eSBnZXR0ZXJzIHdo
+aWNoIGNhbiB1c2UgdGhlIGZ3bm9kZQo+ID4gYWJzdHJhY3Rpb24sIHRoZXJlJ3Mgbm90aGluZyBo
+ZXJlIHRoYXQgcmVxdWlyZXMgdGhlIE9GIGRlcGVuZGVuY2UuCj4KPiBTbyB3aGF0IGlzIHRoZSBu
+ZWVkIGZvciBub3QgdXNpbmcgT0Y/IFdoeSBkbyB5b3Ugd2FudCB0aGlzIHBhdGNoPwo+CgpXZSd2
+ZSBoYWQgYSBoaWdoZXItbGV2ZWwgYWJzdHJhY3Rpb24gZm9yIE9GIG5vZGVzIGZvciB5ZWFycyBu
+b3cuIFNpbmNlCkknbSBhbHJlYWR5IHRvdWNoaW5nIHRoZSBkcml2ZXIsIGl0IG1ha2VzIHNlbnNl
+IHRvIHN3aXRjaCB0byB1c2luZyBpdCwKYXMgT0YtY2VudHJpYyBBUElzIGFyZSBub3QgcmVjb21t
+ZW5kZWQgaW4gbmV3IGNvZGUgZXZlbiBpZiBpdCdzIGFuCk9GLW9ubHkgZHJpdmVyLgoKQmFydG9z
+egoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
+YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
+dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
