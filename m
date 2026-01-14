@@ -4,108 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86B43D29FE7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Jan 2026 10:43:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A544DD29FED
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Jan 2026 10:58:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CrWSyL+FCsjv70x5Hq0cFkN7JqOAqRXEfAqdRie7cBo=; b=PXDheqn+RGHuR5
-	277EuWLV3Zt7fsPql2B0HjsjwNMVE79Dy/YB9jZXuvJxAuXRYU0h3tKBexpBkUshJv0N+XlPDOIOr
-	68I2QakRgv9YdpWKZcqSG8RYQUJ46vNqCD2viUlWezHxlAxSr5PYfBzRdmDzTsAw8XUq4BoGxGmt+
-	NXohztlD64pg9e5vy4h4D3hkpRhhK6Qm1nKs9nOd1gHMHR6BOc/jUyNmwxLCIBojTeC07JocZwT0M
-	jSe5O2HBtBOgm+NB+E6rPhlTTeArnSkno2xkSV4YKwPoWTAzx3sSFPkTZWobQGPBNbYqf0fqtDTHD
-	y3+gQVs40GqafKwOPE9A==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=WYyneQzXNqNOFKYnzpG6D/7LcbShMMuGTcvaSOarbQ0=; b=xPWPaBtk6pNOe1
+	bdg1GkZ7jbCFQrP5tsLuGmgSMwe68BOvNaJFvE/lLeJdzyJLgF7qjzQt6VUOjQK9Xn0UfGAsWgpr6
+	qxf1rV2Uqx4ogFwdJScI8iH0zdcErhTXKbgtN2MlNer285h3/yJJesB6bd6w+xWB1mPnq7Dk2Iup4
+	ZZkeT+1qtm1exTMy8KJ+vK6pRqjKx8q52moM2gfHQBjqkyys+9GgPmh1uV3BDAM9R/fJNjSDTOqHw
+	CIbhwDiMQhOvPWQT1z1aDZ/2gDL9E6v5lHEs33UmM5iKXq429lYqaJYFhU2EUaZfSCthy2H8zcOY3
+	qhp2RZgXLhgrQmZEJGfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfyLr-00000008qUC-3wmk;
-	Wed, 14 Jan 2026 10:43:47 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1vfyZc-00000008t1b-3drG;
+	Wed, 14 Jan 2026 10:58:00 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfyLo-00000008qQX-3UhJ
+	id 1vfyZY-00000008szy-3r2n
 	for linux-amlogic@lists.infradead.org;
-	Wed, 14 Jan 2026 10:43:45 +0000
-Received: by mail-wr1-x443.google.com with SMTP id ffacd0b85a97d-42fbbc3df8fso4632747f8f.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 14 Jan 2026 02:43:44 -0800 (PST)
+	Wed, 14 Jan 2026 10:57:59 +0000
+Received: by mail-wm1-x344.google.com with SMTP id 5b1f17b1804b1-47ee3da7447so3836515e9.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 14 Jan 2026 02:57:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768387423; x=1768992223; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4so0a8WT2CR2TaRPtxXWnlX+M8XXOTE+f9HZTDZHm2s=;
-        b=woZW7STTcBUvr3h/E2Izdhgl5j6fSKgJZV7sb+hVLgNOEWQNU19hjUwVANsOkBKgwa
-         CpATAmJSQNRRuY4zfBdKEfBJpKtJH4isAE2pX7NSo6aCCur3H34r+GG4WPeN5IYyCGno
-         MLor9yAqYlQ1U1fUEJZmbykKTbpxfLwfm7H/A3L9WwSMN9PqZzqvAAf0xf0ay2J79fko
-         KTJf/LXAnVUDpPhZSieQGbiZr2OU5+odyEdB2w9/N2rGxRH76baX6fV5mTf8h6YNWZso
-         7QfCEyMz/6GWegUwHjWZ/mXOIyMmJCyGvQyo524cirP/Vgqgiy8ekw2iSti9Nv08xMr9
-         VD5Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768388275; x=1768993075; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NTbxvXk9ZCcVK0Yjbx8jIbzwKRtMfnnLMgPkZEeFVrk=;
+        b=o+ytNL0QzHSVT1/Wr+CtSyaUkZ4MW4iWCg8FfFcVIsrXsILSEmHsGy7egEyqvZuANX
+         8ZWkuh2+swWjvYVkavdNAtrpMHv31FV7AXCHX/zYKgoba5vHa+rbZ1Fhxxr01L62JZYH
+         d+n1tHG+FicrRzY1reYo99vZOopVMI5HZFw4vQKa0BhKTXJ2akrFPxGvbwKYBj5zSnNt
+         adHZClV0iW0iVTMMKbCB4qMjcO5llLwZt3VNJAbMPWjoo9I+WNkgFB7+HckcaHNLUHtf
+         /pPcXKADkUxBoLmkIqbuv/G0NImX+u2pwseVLcZwa65BXm2tmxaIhNLwdPUbngnrG86d
+         iPzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768387423; x=1768992223;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4so0a8WT2CR2TaRPtxXWnlX+M8XXOTE+f9HZTDZHm2s=;
-        b=PKKAC7nn9gJ+I7l6K5Ka1S8yjh7qimM9pFfyV2ScuUvf4We5GvX9aInSIffMSeKpm/
-         XJkdkOT/2G0hhtvRBOUzCfJ4qZeWORU2MJbGhHKYVycJbgrQJBPNzySwadKheJllD2u2
-         MilDGrj1Z5V1axBef0IjT9yWO8PHJp/uLH7nttHL4b420LDK5VJ2sDKKsdE42hQ6NWUt
-         vFa3FLDaHFR301LWaH4omh3UCxWWhjgSVN9ebQUv6AtEsLAoMCubl2KsjZAg9HQhII8I
-         pdngvsOByww74XaMChzGlS6RJpFVFkCSVSX+/p1K284B6Wn6raQXzU34FpmJSE0T2jTy
-         8kqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUV2MDQQeBGGrvUYqgKCsI0WVT6XLj1SfdIIvQJuPTE8LP7+osNvX3tvZpNo8ombnj6GZuC3d8eZBU3aXQ2@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxw6uQALi+FShxjl3Hy3jbmh2F3smT2/s3tHK7WzXUflFn/CLfj
-	cmfUs/LarLnqESW7070noheApZqWoVn6GQzgGznLjPqM3O6rbjoONl/3VyDALD/6jpw1dwlNYUk
-	+N5FirqM=
-X-Gm-Gg: AY/fxX7y0bt3SrN/3dwyctsYbBNBVB0JvaR0UL0tg8rNsYhHHKsJ/TdCdtzh7HnN8u/
-	6cHjp/O8KGKSgc63e4HvjEyXPlzcWt8O+RRp1GwXY6h3TdH0zC6UcWkQjWGvLf9NAdAA+HGt/LK
-	nDbu1Hjx7cZTogDYd9RwgAgZy1/5SbyntkJhMz3uz0Tnf8vW7akFu+OUtsmk/B9er+/CYmH9avv
-	SkjUyhlMybjzEX2u9Sh7HSgy3rbEbPI4+LLaq74jun9N4cmFzxIeZ1Wyp6eZXpGSdnSC54uTtlN
-	q8tI0oDoFrUKAahJqUq41WcYnL5ZS3PqvYtYSHiU8d//2S6TBVCeX3w8dZd9y8JCGmFz8+vBEXs
-	FJDYoXl3MgiJKG4tZQ9bDlDl+K6VDwOHim03KxuPp2ya08lHnfBqCZggIjURTGoYZKiivQeT5pN
-	fEXQEGT4bJLiBb/NA2oH+H
-X-Received: by 2002:a5d:588d:0:b0:432:851d:35ef with SMTP id ffacd0b85a97d-4342c547dbamr2693184f8f.42.1768387422890;
-        Wed, 14 Jan 2026 02:43:42 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768388275; x=1768993075;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NTbxvXk9ZCcVK0Yjbx8jIbzwKRtMfnnLMgPkZEeFVrk=;
+        b=N9YUKo3Rc2zDeycLbb3FoZaEWlaG/mBXFoQmi3O+NrPIsvOv84O5gUfRM6KA1PXqVJ
+         XC0+WQ3kXznEKYh3ZXHEwA9eUEPO/HD/5I4Tl9Yc0GMdbmeHeUFnr2JcZbHqftG/o6uC
+         LwXMo9MpX/zFDZSCxll6AGYyyUccEVCb5kY0yCFVvOBVsnOBrp7N4IW5x0pNJeagHp03
+         oJA+VVVosZR85S1qCExrXbfC5rVnPF/wiPb+Drrj96qZTodwC/9coLCC54BD42e0Ji7e
+         hmU261tOflYqqXJdu66kU6h0x0+IrAq+4+0Ls0tp2Y1VNoOtKkN5lTE2GlKQmbMCBTss
+         ZoMA==
+X-Forwarded-Encrypted: i=1; AJvYcCUb5mPtcrrnvUM2nZVvkNIgNVd/2/MvGSux7EAsSlEer+wn5wOhwMZiurxvqEyKVf8MCC3v9p6u7cDjgid9@lists.infradead.org
+X-Gm-Message-State: AOJu0YyCbN4DsemDEET+PoHzPz6V46kHhVmR6eH49YlhvtPPIh6CCagR
+	Ng6Zz8KTM2VVrGjlpEHqF69u22ccYp7HVwOqbisAwgJX5Tx8NRT1QdSJ5Rycxla/Aao=
+X-Gm-Gg: AY/fxX4Ni34zy0lt7CtuNbBB37nO7lpTez8E1KfQGwz7+mONsLWHk1jE9VDdyEzS/YT
+	WxMaiLBpr9aLe3S247DjfL+Hhf7AUK3TUnnI1uf+xr3RIFTYgrclrFZ203RC+xvqiAeLGvdCc2A
+	xgHIjUnixPtZ+kmXhIPc5/VNWRXcQSwsGJJoat72VnIsWQFLSrMApNrJOhIJHA+cFaOK7Bgrxfc
+	XnLh0f3ONoQM3+0gO3Jer6uEhE7dAimDLJ3m4xdpquDbWCwi6TyAVeAdoHXn9wxTbwdc8Hgh7E0
+	Kx84qAvh1MgM/3lQjX45BZYFaMByzjL2dOa8F1WIHdL78/isM16PhOzJlbG8hrDkDuxiCBLGlQY
+	T3awB1kltL8ACPWUP9g8mKy9R21Es/69fsF6RBCFgEVIw3tJsd+/4mK+ICM6+LZQ8t+qCWFnd+8
+	mdOhk6wCRMPw==
+X-Received: by 2002:a05:600c:c4a6:b0:47d:3690:7490 with SMTP id 5b1f17b1804b1-47ee47c8db0mr19638695e9.9.1768388274920;
+        Wed, 14 Jan 2026 02:57:54 -0800 (PST)
 Received: from localhost ([2a01:e0a:3c5:5fb1:f2cc:bd72:2de3:86cd])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-432d286cdecsm35818726f8f.7.2026.01.14.02.43.42
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-47ee6f59cf4sm6412055e9.12.2026.01.14.02.57.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 02:43:42 -0800 (PST)
+        Wed, 14 Jan 2026 02:57:54 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Wed, 14 Jan 2026 11:43:12 +0100
-Subject: [PATCH v3 2/2] arm64: dts: amlogic: s4: fix mmc clock assignment
+Date: Wed, 14 Jan 2026 11:57:40 +0100
+Subject: [PATCH] arm64: dts: amlogic: drop useless assigned-clock-parents
 MIME-Version: 1.0
-Message-Id: <20260114-amlogic-s4-mmc-fixup-v3-2-a4d3e136b3f2@baylibre.com>
-References: <20260114-amlogic-s4-mmc-fixup-v3-0-a4d3e136b3f2@baylibre.com>
-In-Reply-To: <20260114-amlogic-s4-mmc-fixup-v3-0-a4d3e136b3f2@baylibre.com>
+Message-Id: <20260114-amlogic-parent-clock-cleanup-v1-1-31078b1e4a2c@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAKN2Z2kC/x3MwQqFIBBA0V+JWTegUgb9SrSQaaqhUtHeI4j+P
+ Wlz4WzuDZmTcIa+uiHxX7IEX6DrCmh1fmGUqRiMMlZp3aA79rAIYXSJ/Ym0B9pK2flfxHYmo6a
+ WbGc7KIuYeJbr2w/j87zbTJ2XbgAAAA==
+X-Change-ID: 20260114-amlogic-parent-clock-cleanup-5fc20d5c6767
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Nick Xie <nick@khadas.com>
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1920; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=4okCO5nn232mOuyf3EnlQ/xwKykNnPdvcOnvM4JNIi0=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBpZ3NYatEmmShZe3hPb4vYNDwK6REixcdUgkwbM
- 7DeSvwXB76JAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaWdzWAAKCRDm/A8cN/La
- heV3D/4kz6OAG4nqNZrPcYi/eDYNZS74ELTkhDDo4ERom0PQCUECsVyo5vn7l8IBKFvvqqsWQk+
- M5NzJb01Nz7F6xPZZYX/kfAEW/Ck8M5dnYntGlDw4Ql/wAYOvvXKH3VN8oyQhM85pyK4VNAYyGN
- /fQ9UjWakylCiuu8MFMpw9HT1NS8ZIiKPDEA/OKskz7BxDAz3B3IDW8Yqy8c0GVU9qJNaEflgSh
- uVjPN0P8Xfw7SYgs0oonjvPqIzI5GLPW22tVYGyPQ9alKBs/W1tJopHGRPGF0oYGKadvYm3IEJm
- 1ahCcoqEQprH+jIH5/0nyWLz55KwfZAgz9+0bD0OLmIkmKyFfC1mS9TCdHqokQTTJkzkPt3d7xX
- xgkArQtY626XXF7dw5GFHmNM0Mk+PWWsC0X1r1oHTexWL8xC8Peb0ZEvVXmIIq5evyDJsjdXWsG
- 0xyezinOjekluDa8T6AX2g6UvBcKz0YtPTcw9q2je9e2uQ4TinMGdMtwcSzRYxIZcT5R0l6lFSC
- vbXXBzqlh+sLWfWgHU31GERsUI+XGwC4IesAHUa3PuBtP78rjRc911BpPGB1mTB6Q9he0ktwgUA
- vckGo1SoVivU0dqGjprYsv0zOhdjwE5LvKgY0d7q0t1WOIFTVU2QaMz3py22fL4sC3NV2OObaV6
- boYyUgagUYVU18w==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=32381; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=W8u+gzsHZy6ebZql34frIrFbK3qpJg2S4BzsWFuq4nw=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBpZ3avCADO7t27VTMaJ0eSWe6JlNhXv13AY/cum
+ pFw1D65I4GJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaWd2rwAKCRDm/A8cN/La
+ hfmbEACItQDn5r+nJKBqhws6qAKhmstPhWWysdRKK+jqXfjV+5t/5ETIWnSUSToQukBlrH2fIYY
+ 95TdUhnBNy6Z6WURkPIHuylmr0dV9I+fd05mOhcF7tS5WTsH+vkJjpOBzOnTPNry5gzWQ6BpmIL
+ EKnwLI/5fbqir2NL631s5MagxEo/gADx42y2BLS4AWahAQrm89FbiN8dN76xrQv5udbqSiMfzNy
+ YCco9ng3h6vjAE1h6YCu420zsJV1+SmRXQo+SgOl17qY/lawZDXBt0sYr5vgY0H5eD+gdDvjWqA
+ YbxctTmgOx7zOcLrLVpFQGuvRfCf17ONG1fqYd0HQvSYnxZbwkn27ciJihq0l4Z4HxReEqXlTL2
+ /rcdm2kCbMPSOywpf6qz0vNFoWYgYGprDDwkpigHT+aBm+DA843eL2Be+e96m3/Eh/sv+Z48l/x
+ RXW8gXlkCmXQIanBJRQueoe7ctPO/3q7c3LXeKn3DuXNueshj/xoqaGlr7DxEqHfxZqqWQO6CZZ
+ KT30oka1iK+c/g7+X7/opOz7eZpb8J1Lowja17PYOm6hKwJhrQL3JAz4eoDPQo5h3eo549uQjri
+ l25DWy77dkYDlZZrVbCQ+Gesmoc8azG26DzBk0Q1Tu0HkgXRi0mar5SS7TSGfmGXNyDk2aWZ9ly
+ FCJ28X7DK2wVIVA==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260114_024344_913020_62594E86 
-X-CRM114-Status: UNSURE (   9.90  )
+X-CRM114-CacheID: sfid-20260114_025757_184715_7B066F86 
+X-CRM114-Status: UNSURE (   6.81  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -123,63 +122,684 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-MMC A and C are mis-represented as having their "clkin0" input connected to
-xtal while it is actually connected to the MMC clock, probably in an
-attempt to provide 24MHz to the device on this input.
+Amlogic sound card assigned-clock-parents only have <0> and are useless.
+Remove them.
 
-Fix this and assign the clock to 24MHz to actually provide the required
-rate.
-
-Fixes: 3ab9d54b5d84 ("arm64: dts: amlogic: enable some device nodes for S4")
-Tested-by: Nick Xie <nick@khadas.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts                      | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts                   | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts               | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts                   | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts                     | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts                  | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dts       | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi                | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi                | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts                 | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts               | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts                   | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts          | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi               | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts               | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts              | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts                | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi              | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi                 | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts                  | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts                | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts              | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts                 | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts                     | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts                     | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi                | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts                | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts              | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts        | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts                | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts      | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts          | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts     | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts        | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts                | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts              | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts               | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts                 | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts                  | 1 -
+ arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi                  | 1 -
+ arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi         | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts           | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts                | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts           | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts               | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts                   | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi                   | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts                    | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts              | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts                   | 1 -
+ 51 files changed, 51 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index f314f07062ab..dfc0a30a6e61 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -819,13 +819,16 @@ sdio: mmc@fe088000 {
- 			reg = <0x0 0xfe088000 0x0 0x800>;
- 			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clkc_periphs CLKID_SDEMMC_A>,
--				 <&xtal>,
-+				 <&clkc_periphs CLKID_SD_EMMC_A>,
- 				 <&clkc_pll CLKID_FCLK_DIV2>;
- 			clock-names = "core", "clkin0", "clkin1";
- 			resets = <&reset RESET_SD_EMMC_A>;
- 			cap-sdio-irq;
- 			keep-power-in-suspend;
- 			status = "disabled";
-+
-+			assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_A>;
-+			assigned-clock-rates = <24000000>;
- 		};
- 
- 		sd: mmc@fe08a000 {
-@@ -848,13 +851,16 @@ emmc: mmc@fe08c000 {
- 			reg = <0x0 0xfe08c000 0x0 0x800>;
- 			interrupts = <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>;
- 			clocks = <&clkc_periphs CLKID_NAND>,
--				 <&xtal>,
-+				 <&clkc_periphs CLKID_SD_EMMC_C>,
- 				 <&clkc_pll CLKID_FCLK_DIV2>;
- 			clock-names = "core", "clkin0", "clkin1";
- 			resets = <&reset RESET_NAND_EMMC>;
- 			no-sdio;
- 			no-sd;
- 			status = "disabled";
-+
-+			assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_C>;
-+			assigned-clock-rates = <24000000>;
- 		};
- 	};
- };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+index 9611775b81ee..285c6ac1dd61 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+@@ -275,7 +275,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_HIFI_PLL>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <589824000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
+index d0a3b4b9229c..ac6696e7e1df 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
+@@ -183,7 +183,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
+index 4353485c6f26..3d62c67ccc76 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
+@@ -145,7 +145,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+index f39fcabc763f..5bc4d7780f5a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+@@ -208,7 +208,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+index b5bf8ecc91e6..b1f012511d60 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+@@ -245,7 +245,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+index 5ab460a3e637..a8a57147475f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+@@ -165,7 +165,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dts
+index 2d74456e685d..cdb522f5365a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dts
+@@ -77,7 +77,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
+index 0f48c32bec97..2d4071c51f3d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dts
+@@ -86,7 +86,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 					<&clkc CLKID_MPLL0>,
+ 					<&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
+index 1b08303c4282..10f62f151902 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi
+@@ -201,7 +201,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
+index 8e3e3354ed67..a69d5531c540 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
+@@ -47,7 +47,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+index 369c5cf889b6..8758a68136ea 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
+@@ -55,7 +55,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
+index 654449afd3a4..a9478e2cce4d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts
+@@ -56,7 +56,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
+index e20311386745..a2ff5040eadf 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
+@@ -44,7 +44,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
+index d5938a4a6da3..c3e8083ba08c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
+@@ -241,7 +241,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 3bca8023638d..edb7ed6b0ec0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -102,7 +102,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts
+index 1b9097a30251..15795889cb53 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dts
+@@ -46,7 +46,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+index 1e5c6f984945..5e0abda613e4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+@@ -183,7 +183,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
+index 4c1a75b926ee..dbd72fe0f53f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
+@@ -39,7 +39,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
+index 2da49cfbde77..c2bf6f4cdfd2 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
+@@ -201,7 +201,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+index b4f88ed6273b..8d216a594d7b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+@@ -136,7 +136,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+index 073b47ce8c3c..ff3ba97872ec 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+@@ -52,7 +52,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+index 2ecc6ebd5a43..5d9ddb814164 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+@@ -142,7 +142,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+index c09da40ff7b0..ab8e06aa2b32 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+@@ -149,7 +149,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 12e26f99d4f0..5943bc810678 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -184,7 +184,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+index bfac00e76ba3..b5981c0b1494 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+@@ -75,7 +75,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
+index c10f66031ecd..602777702984 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
+@@ -24,7 +24,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+index 6ff567225fee..a4d354cc93a5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+@@ -115,7 +115,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
+index ec281a9e9e77..a22a8a435427 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
+@@ -23,7 +23,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
+index 924414861b72..6a1b65bf84da 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
+@@ -55,7 +55,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
+index c6132fb71dfc..3a9a801f33d4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts
+@@ -130,7 +130,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
+index ca7c4e8e7cac..75db2a5c96b3 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
+@@ -135,7 +135,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
+index cac15b89c573..9e571b96bde6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aquaman.dts
+@@ -125,7 +125,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+index 4e89d6f6bb57..0a6664275bcb 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+@@ -74,7 +74,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
+index 6cbdfde00e12..277fb34981c7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc-v2.dts
+@@ -167,7 +167,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+index 401064b0428d..fe1df108892c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+@@ -149,7 +149,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+index 8b41e340f919..9da495cca787 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+@@ -57,7 +57,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
+index a9c5881c9783..1e4d3fdd0b22 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-vero4k.dts
+@@ -98,7 +98,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+index 2a09b3d550e2..5b1aafe16d5c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+@@ -157,7 +157,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+index 773107cc47dd..81f5eb3da5dc 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+@@ -93,7 +93,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+index 9d5a481b309f..9626a2621a3d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+@@ -108,7 +108,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>,
+ 				  <&clkc CLKID_MPLL2>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+index 7daa9b122d5c..73aa6b5a5de7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+@@ -189,7 +189,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi b/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
+index ac9c4c2673b1..cb8b0f98beb4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-libretech-cottonwood.dtsi
+@@ -207,7 +207,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
+index 3c43d3490e14..7c67e459c602 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
+@@ -29,7 +29,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
+index 445c1671ede7..e841c44c69de 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
+@@ -29,7 +29,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts
+index eeaff22edade..8d12bd1702d3 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dts
+@@ -29,7 +29,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+index 697855fec476..0cd306569312 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+@@ -64,7 +64,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
+index 7b3a014d4cde..3c671676e453 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
+@@ -29,7 +29,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+index c4524eb4f099..5cd6a2c13eb1 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+@@ -181,7 +181,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+index 024d2eb8e6ee..64b4e4b209b8 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+@@ -246,7 +246,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
+index e4a3a2a8ad06..ecb6aa79302d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
+@@ -29,7 +29,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
+index fff92e0d6dd5..24a6a679b377 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
+@@ -29,7 +29,6 @@ sound {
+ 		assigned-clocks = <&clkc CLKID_MPLL2>,
+ 				  <&clkc CLKID_MPLL0>,
+ 				  <&clkc CLKID_MPLL1>;
+-		assigned-clock-parents = <0>, <0>, <0>;
+ 		assigned-clock-rates = <294912000>,
+ 				       <270950400>,
+ 				       <393216000>;
 
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20260114-amlogic-parent-clock-cleanup-5fc20d5c6767
+
+Best regards,
 -- 
-2.47.3
+Jerome
 
 
 _______________________________________________
