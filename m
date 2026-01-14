@@ -4,100 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA1FDD29FE5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Jan 2026 10:33:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4522D29FE6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Jan 2026 10:41:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MV3gYdrURciBK8hbOpG5miOWZQ+Q0qi0V4KpBDntFlI=; b=G4JQrNO4j1iFCT
-	kKvm+qiIawjNEQvJLdz8hfC7qYTKlIsrDNuo/YJDVMhmqJNwyuISwohM3gSYfFn1AFDMNl9pkEaKr
-	LRSRp3CkhQuTBRCgC5sYmceuHBPdVf7+9jbq6ZQ3oPyv3BeJo4gBsn8RzTycN8g1/qW6M+ENYeRoN
-	rHOzpWrf9FwFSnFcsWNwYoISsZmHZDZqo7F7pQrVogoz+NVf7daneHKSqGDcfxajK4Repg1MrcbMR
-	OgyuFM/XSu7qJPH86PhqgfQarkWSSc+8s4rivrAkRmrawltgR0fLlXb7BbTRoNPM1wmlFq/Ln1tzC
-	z1q1iszHOAzmwRACYxXg==;
+	List-Owner; bh=GKV8JYdbVjk11aCPsZIEW6SO6utZWBsTyPV87EY9yyY=; b=LWnmvedq+Wxqyw
+	WtpZVNMSR9wJcyLolr8Uvx6EEQXUtBNxIWB7qIIuReheA870HHcSCJ81isf7UXbxs4ygf/byur0di
+	tUIb0oOKoQp5kCV6WhI0pAv+wnmaR9yoVscHbzf8zqG/4QJMM9a+/cLn1l9Cr7YPpbEtF/yox4kUw
+	g08lbntpJSPuO7s1Mtfx+xPjwIi9p7Nci9cNvXeOtKFcXSHZPlAXnU2GZq5ViS5rGNbXKcj6ok3TG
+	RSXn3nkPvpmNkLO3lwlrOgiDahceSIjGoP1+/jk6UTUgURRFQ/Y07yn/nMYQpqenETbUm2xEyBjgX
+	iP+XOAr7ckMN5awLv2IQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfyC3-00000008o7M-1oxD;
-	Wed, 14 Jan 2026 10:33:39 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1vfyJN-00000008pps-3qZ4;
+	Wed, 14 Jan 2026 10:41:14 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfyBx-00000008o5J-1vVY;
-	Wed, 14 Jan 2026 10:33:33 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 81D5260123;
-	Wed, 14 Jan 2026 10:33:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FA1BC16AAE;
-	Wed, 14 Jan 2026 10:33:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768386812;
-	bh=2ZiLyAKqaZ48YVIn7VvFsZOXbZKEr36Pyd+9rE9cSlo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Vg6D8f7fpiwoLuuQYzYq0/07ebXpKlmOgJ6F5fs90/fxuaHUeYjNKDCnO0TIsufpD
-	 cRHbs5SjDbGgTpZx9F4KK47aJ/3wGYjYtQJ46OinicypOvqVBMH57d8Kp5eAPAm3Nl
-	 7UZOOwbFf7tqZKmlvUXvCoO2b3jyl0flRaY7CP0FqDQ0mndGF1LPPsDIH1h2yI9bW8
-	 6SXs6/IP3RtykcZmzCNl2hkGaKFxdHXYqsb7PPTrV0ZrM5rpAbS5f+bb3sQQEGUq18
-	 e7Jigg6TMJWIRTNIuZ1Thamt3Al4B4v9VRW0Rfat7ZwMQ7DMbJGiT6Tfrtjq22sfNR
-	 NzWaf/WVhhYMw==
-Message-ID: <39bb1820-6e4d-4f50-87e0-93844d779f6c@kernel.org>
-Date: Wed, 14 Jan 2026 11:33:26 +0100
+	id 1vfyJH-00000008pnW-1hfq
+	for linux-amlogic@lists.infradead.org;
+	Wed, 14 Jan 2026 10:41:12 +0000
+Received: by mail-wm1-x344.google.com with SMTP id 5b1f17b1804b1-47d182a8c6cso50061715e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 14 Jan 2026 02:41:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768387265; x=1768992065; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+NcxQNU+z+mjpVWzVO5zIslJ+Ha+xCleufzRRdU3nw0=;
+        b=Rs1VMoaGExrvIbqfJgrIObFoy8mvwJ6Hm4YcHlpedB5SoOlXvf5JydBnIA4R7azzHk
+         oIiiGV2paaljr2fXBRgug/Aj2ywMssyAQKoIeNAXikz04uBHXuCPC1ofNfN/Nu0I7enm
+         d+shSZ2qRK7eSw3ldOq0mu+Z0fyX/BPQWrddqG7/hru26Mt1b0tv9GdlvMz0bYcieY8l
+         n/1ocAxQnogi91rlNEDaYhaDGLyyHrmhsg3JvDCSYZLiUS71WvAJdkc6M0BYC5pLlxFB
+         cbeXJ0UKB8iN3GnyQgewwA0j0X8eBKh9PBIxc2d+gBYSempyoxe0D/fgU7y7hRBhMxds
+         Ac6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768387265; x=1768992065;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=+NcxQNU+z+mjpVWzVO5zIslJ+Ha+xCleufzRRdU3nw0=;
+        b=h6xPyygRaabIeUb1lTRXXlxXiv/k6CVOilFwKyxThcxz6S5DaV7B29CHy6zk+RrwXw
+         n5w6ifsiCpI7ycyEoC/1FW7iVWQoX8gTq+j+QnDpnmJVSpu4UGXyL0sA8KxgiWfKh/3+
+         NKvjkcsRUGqLNdEWShkTHw55LExaHB4YJzfCMfYBziHcY7kxDcNYJp/rTFS9J3eiF7Px
+         bvQ1Gy1MiGjIRuNVtjPXmATJ4QeTNidHyskLZCQtCaGm1gE1BlToy7TfFugr+SGnXq+H
+         K0CGq/W/G+rBoLKtceviO01CLyOd2l5alirC1qS86ZAxmxouMugQz6s4DNozgdB7/N3k
+         bViA==
+X-Forwarded-Encrypted: i=1; AJvYcCWxsZR8CuncKszUo9XD6lPTuWY8whQ1vDiKwgPmakfZNXQq4iwZARjUysi0Cs0+Glpv8DvdbdWswW6yRjLd@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx2hc08YSF2RNZuGQjnKCUf2b0G3Pi0KVsytBcZxwlUwhSSzQg8
+	pDoWegKoEq/cr4yetmnjywJLjOOxrRmz4XMyrC64+mCSI4Uwq23e/HCqLap/M9bubYc=
+X-Gm-Gg: AY/fxX5fq5PMLqOH8Z4gTnqbQ/oahSGsPohFMKWIxeWCHG/iuDpYhgu3gleoDZtma8H
+	VFKLtIDncJgUNk4KxqN92YWhandPcYi06W8Sp8FN9HmG0RcJpuQiOdQP1qKlMDhRMJbckiNCnNV
+	WEVC+ovPsR4TNy5EyNa2X6z9zaGsCi7+V9Qpc82E4L/BdFE+Q31mAyECnx+q/0cOsWMP64/guqS
+	+bbLz1+6T9jVgcGPExZcjQMM1QqHC2lk2UtxNfz/2lEfey3VgDBKNf6gbs034p+BcOO8pNZdc52
+	q3tvoyXpDLYXDZYcH/zQdoh6uw0FwuqXwD7yt3qEW4zHMEFumMx4gE7M3ox81Sd21XY2uNkbKtY
+	X8gby7Z0cGP6Zy/pMg7nHWB1BVKytC8bav/EiOnwDWIBod4+7qnvgdwkmL0HY5zD5k6pKIMN8Uf
+	G7LbkYChuJxA==
+X-Received: by 2002:a05:600c:5490:b0:47e:e20e:bba4 with SMTP id 5b1f17b1804b1-47ee3356e79mr22358195e9.18.1768387265370;
+        Wed, 14 Jan 2026 02:41:05 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:f2cc:bd72:2de3:86cd])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-47ee578d37esm21654835e9.1.2026.01.14.02.41.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 02:41:04 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Kevin Hilman
+ <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  Xianwei Zhao
+ <xianwei.zhao@amlogic.com>,  Nick Xie <nick@khadas.com>,
+  devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-amlogic@lists.infradead.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] arm64: dts: amlogic: s4: assign mmc b clock to
+ 24MHz
+In-Reply-To: <d55bd5c6-d5f8-45d8-9c6b-22e401f6a7ff@linaro.org> (Neil
+	Armstrong's message of "Wed, 14 Jan 2026 10:05:35 +0100")
+References: <20260114-amlogic-s4-mmc-fixup-v2-0-7e9ab5f12286@baylibre.com>
+	<20260114-amlogic-s4-mmc-fixup-v2-1-7e9ab5f12286@baylibre.com>
+	<d55bd5c6-d5f8-45d8-9c6b-22e401f6a7ff@linaro.org>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Wed, 14 Jan 2026 11:40:59 +0100
+Message-ID: <1jikd4xyro.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add Khadas VIM1S
- binding
-To: Nick Xie <xieqinick@gmail.com>
-References: <20260114062549.68954-1-nick@khadas.com>
- <20260114062549.68954-2-nick@khadas.com>
- <20260114-slick-passionate-mink-216a3a@quoll>
- <CAP4nuTXeC1-6ktwLpDt_1ZRHxPSiNAoDKTxLzqEYJUfcnVogcQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAP4nuTXeC1-6ktwLpDt_1ZRHxPSiNAoDKTxLzqEYJUfcnVogcQ@mail.gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260114_024108_012155_39C272E7 
+X-CRM114-Status: GOOD (  14.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,40 +102,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: neil.armstrong@linaro.org, conor+dt@kernel.org, devicetree@vger.kernel.org, martin.blumenstingl@googlemail.com, khilman@baylibre.com, linux-kernel@vger.kernel.org, xianwei.zhao@amlogic.com, nick@khadas.com, linux-amlogic@lists.infradead.org, krzk+dt@kernel.org, robh@kernel.org, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTQvMDEvMjAyNiAxMTowNywgTmljayBYaWUgd3JvdGU6Cj4gS3J6eXN6dG9mIEtvemxvd3Nr
-aSA8a3J6a0BrZXJuZWwub3JnPiDkuo4yMDI25bm0MeaciDE05pel5ZGo5LiJIDE2OjUx5YaZ6YGT
-77yaCj4+Cj4+IE9uIFdlZCwgSmFuIDE0LCAyMDI2IGF0IDAyOjI1OjQ4UE0gKzA4MDAsIE5pY2sg
-WGllIHdyb3RlOgo+Pj4gQWRkIGRldmljZXRyZWUgYmluZGluZyBmb3IgS2hhZGFzIFZJTTFTIGJv
-YXJkIGJhc2VkIG9uCj4+PiBBbWxvZ2ljIFM0IFM5MDVZNCBTb0MuCj4+Pgo+Pj4gU2lnbmVkLW9m
-Zi1ieTogTmljayBYaWUgPG5pY2tAa2hhZGFzLmNvbT4KPj4KPj4gWW91IHN0aWxsIGhhdmUgdGhl
-IHNhbWUgRnJvbS9Tb0IgbWlzbWF0Y2guCj4gCj4gT0ssICBJIHdpbGwgZml4IGl0IGluIG5leHQg
-dmVyc2lvbi4KPiAKPj4KPj4+IC0tLQo+Pj4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9hcm0vYW1sb2dpYy55YW1sIHwgNiArKysrKysKPj4+ICAxIGZpbGUgY2hhbmdlZCwgNiBp
-bnNlcnRpb25zKCspCj4+Pgo+Pj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9hcm0vYW1sb2dpYy55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL2FybS9hbWxvZ2ljLnlhbWwKPj4+IGluZGV4IDA4ZDk5NjNmZTkyNTkuLjU1NjYzZTBm
-N2Y5MTUgMTAwNjQ0Cj4+PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-YXJtL2FtbG9naWMueWFtbAo+Pj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL2FybS9hbWxvZ2ljLnlhbWwKPj4+IEBAIC0yNDcsNiArMjQ3LDEyIEBAIHByb3BlcnRpZXM6
-Cj4+PiAgICAgICAgICAgICAgICAtIGFtbG9naWMsYXEyMjIKPj4+ICAgICAgICAgICAgLSBjb25z
-dDogYW1sb2dpYyxzNAoKTG9vayBoZXJlCgo+Pj4KPj4+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBC
-b2FyZHMgd2l0aCB0aGUgQW1sb2dpYyBNZXNvbiBTNCBTOTA1WTQgU29DCj4+PiArICAgICAgICBp
-dGVtczoKPj4+ICsgICAgICAgICAgLSBlbnVtOgo+Pgo+PiBZb3B1IGFscmVhZHkgaGF2ZSBleGFj
-dGx5IHN1Y2ggZW51bSB3aXRoIHN1Y2ggZGVzY3JpcHRpb24sIHNvIHlvdXIKPj4gY29tcGF0aWJs
-ZSBnb2VzIHRoZXJlLiBMb29rIC0gaXQgaXMgY2FsbGVkICJCb2FyZHMiIC0gcGx1cmFsLgo+IAo+
-IFRoZSBleGlzdCBib2FyZCBhcTIyMiBpcyBiYXNlZCBvbiBTb0MgUzkwNVgyLCBidXQgdGhlIG5l
-dyBib2FyZCB2aW0xcwo+IGlzIGJhZWQgb24gUzkwNVk0LAo+IHRoZXkgYXJlIGRpZmZlcmVudCBT
-b0MsIHNvIHdlIG5lZWQgdG8gcHV0IFM5MDVZNCB1bmRlciBTODA1WDIgPwoKV2hhdCBpcyB0aGUg
-cG9pbnQgb2YgaGF2aW5nIHR3byBzZXBhcmF0ZSBsaXN0cyB3aXRoIGVudW1zIGVuZGluZyB0aGUK
-c2FtZSBTb0MgY29tcGF0aWJsZT8KCj4gCj4+Cj4+PiArICAgICAgICAgICAgICAtIGtoYWRhcyx2
-aW0xcwo+Pj4gKyAgICAgICAgICAtIGNvbnN0OiBhbWxvZ2ljLHM0CgpBbmQgaGVyZS4KCj4+Cj4+
-IEJlc3QgcmVnYXJkcywKPj4gS3J6eXN6dG9mCj4+CgoKQmVzdCByZWdhcmRzLApLcnp5c3p0b2YK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
-bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
-Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On mer. 14 janv. 2026 at 10:05, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+
+> On 1/14/26 09:56, Jerome Brunet wrote:
+>> The amlogic MMC driver operate with the assumption that MMC clock
+>> is configured to provide 24MHz. It uses this path for low
+>> rates such as 400kHz.
+>> This assumption did hold true until but it now, but it is apparently
+>> not the case with s4. The clock has been reported to provide 1GHz
+>> instead. This is most likely due to how the bootloader is using the MMC
+>> clock on this platform.
+>> Regardless of why the MMC clock rate is 1GHz, if the MMC driver expects
+>> 24MHz, the clock should be properly assigned, so assign it.
+>> Reported-by: Nick Xie <nick@khadas.com>
+>> Closes: https://lore.kernel.org/linux-amlogic/20260113011931.40424-1-nick@khadas.com/
+>> Fixes: 3ab9d54b5d84 ("arm64: dts: amlogic: enable some device nodes for S4")
+>> Tested-by: Nick Xie <nick@khadas.com>
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> ---
+>>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>> b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>> index 9d99ed2994df..62538fd9db6b 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>> @@ -838,6 +838,10 @@ sd: mmc@fe08a000 {
+>>   			clock-names = "core", "clkin0", "clkin1";
+>>   			resets = <&reset RESET_SD_EMMC_B>;
+>>   			status = "disabled";
+>> +
+>> +			assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_B>;
+>> +			assigned-clock-parents = <0>;
+>
+> In this case, assigned-clock-parents should be dropped.
+>
+
+Dunno why I thought that was always required. I'll fix it and the other
+instances
+
+> Neil
+>
+>> +			assigned-clock-rates = <24000000>;
+>>   		};
+>>     		emmc: mmc@fe08c000 {
+>> 
+
+-- 
+Jerome
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
