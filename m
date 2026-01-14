@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 368C5D3CC89
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Jan 2026 22:48:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AD03D3CC8B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Jan 2026 22:48:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iwDe+dgYS1f27L7V17snyA+AqSDsK6KoYaI4ZgY1NcQ=; b=qjpwsgO8py/rS/
-	94pvmc4OEc7/INNWg3gEAo6ylsLky2TypJfzpulok0kAGbeidCOBITtCBepzec9plVxow8hqhx9ek
-	VWvJpI6QCMt5oo2nu6lNGSBQ2VNEs/RwMsd+aqBxT7YBuWEOadsW9f1j5g/xgbNszhEAhfbiq/8Yd
-	+LQNZ+VWPwbBu8w0Zy15qNAhH8PKEz98qBqIUlaqLoGKAjR/Dk3pRg5HuXEOjJktAjjB++e47lY7k
-	bMn5NJskaIJYYWC2fdBkuBOL57rGoRgtEbFpIDSx8bSzi/81/URSkJdHnoAPcvqMa0OyEcaI0Y7TB
-	Yza041wyf52uqqlMdF4Q==;
+	List-Owner; bh=zRhDsYuVC8FI9ZUbDEt3mOunuKtMIq0RoeC1kyuXQaE=; b=lFChNbWB8U7loX
+	n44+QQCqisBFNYeRpYkAI0XVRlfwyvjNMaya3FYYqM4/9v7Ty4f5BzvHUymj0OlQq6AZBZflfKhYA
+	B4cY4A9dpvnQxjjdBHu0a/Y6HEyBqmfZKhY1BFjkztAGTqj7L6HPSmtllD9x43pkjRQsE62k5F14A
+	87ENU7rdxwGpcTgSkFSjEhRcxcLhd24XGEPxGyMka4PODYRAwyEXFSfiDF2r8Y/aiTOtTkQDq/u9k
+	MC6qSXjpKNQHEUnt0aleorSju+mNp0vKiDRmn9XC6Jtj/eZ8U4lBRVFQ6L0edQmmXZ4jzjPm7M5Eu
+	Rqt9eFRTgLjK8+O2LzcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vg9fS-0000000AylM-18dj;
-	Wed, 14 Jan 2026 22:48:46 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vg9fV-0000000Aymy-0hPF;
+	Wed, 14 Jan 2026 22:48:49 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vg9fQ-0000000Ayk4-3lI9;
+	id 1vg9fQ-0000000Ayk0-3DuK;
 	Wed, 14 Jan 2026 22:48:45 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id E6DED60051;
+	by sea.source.kernel.org (Postfix) with ESMTP id 9C48944107;
 	Wed, 14 Jan 2026 22:48:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 69E85C19424;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5E1C1C16AAE;
 	Wed, 14 Jan 2026 22:48:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1768430923;
-	bh=/0rQfB4ucKcut7HcVPFuwsC0bnDDeVLeKXyt6+LIA7M=;
+	bh=ByL/BpUhaSUXyfwxXMTfBTOdM+/wU89KWHVWit3IeZ4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=gJ7mZ42yRZ4Ib1aWo+rpCfUuRvrcYM5OlD63FFbO0HY73N/0R8D+o5les48ZKcMd8
-	 RanqcCANrn1eXF4WsyAEoeb1lnQd0k0DCuKIAHkJ1dVsJLqLjziV20rrfQSyVgLoI2
-	 KWwmNNgitv8aRFdltrCSvVZlXGOMvbTJQbhtiSp5d4fTBfBtmVehuwH8fukhr3MV7q
-	 +4pur04NXnVrWBbzlBhvJKta6NYMToB58C8oUMZJiqVK0+BFga1zDT3A2l/p08mnw0
-	 qRq7PkgNIqoVtMBhc6s6YjwtAcFr8FogiRACdQf265sPaq21uFD4IKBrjHxmP0US+E
-	 tiqSDcNuqr7Yw==
+	b=RJpqSSvQtjxgls4t1y1SVdTX+PkoJFOqW6xZzddKtUPymI7eooPuoprfPMhzZJMZG
+	 l6OhGrStfqvnORQMWD0KZjkPf+qMH5ywpeebiigHkB9f7H+2299Ub+6fUOTmKO4Cuj
+	 EiDrGVTI7i+dlfSa8j1aOsFEPSpS/G8hvZJ/AETKECd7KHdJBo864lKIZzR6YYIZcc
+	 q2/q10Cx7LNaKFPOJZghxm+JzuLFq79/p5yEJDvxIx6ZzJPwWaNjVLWS+K9J6swOLF
+	 28JuwvwVRFeeuokVi3cOUBSxEYtZszurU7NFiucIWcfm3LtTTL1jbHOndeEGeJ8GN8
+	 BVMJW3IktqiJQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E373D3CC87;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E64DD3CC82;
 	Wed, 14 Jan 2026 22:48:43 +0000 (UTC)
 From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
-Date: Wed, 14 Jan 2026 23:48:37 +0100
-Subject: [PATCH 2/2] arm64: dts: amlogic: add the type-c controller on
- Radxa Zero 2
+Date: Wed, 14 Jan 2026 23:48:36 +0100
+Subject: [PATCH 1/2] arm64: dts: amlogic: Enable the npu node on Radxa Zero
+ 2
 MIME-Version: 1.0
-Message-Id: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-2-8b5cdf328fde@pardini.net>
+Message-Id: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-1-8b5cdf328fde@pardini.net>
 References: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
 In-Reply-To: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -61,21 +61,25 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Ricardo Pardini <ricardo@pardini.net>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1485;
- i=ricardo@pardini.net; h=from:subject:message-id;
- bh=zb/OKKB6zV/hhBZYiZyJobFT3XGfSbU/eSwN+6koa1Y=;
- b=owEBbQGS/pANAwAIATteP+Oex+3pAcsmYgBpaB1KlEhHDQdS0hwR9gCrhbZI2IMpaGlg0cHJM
- GAsqkn+BQuJATMEAAEIAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCaWgdSgAKCRA7Xj/jnsft
- 6VpIB/48OQIO8h534tAeCE4rHGBpxfc6elGR0Nw/+vh6ua9H1f+NS6RtkgR/249vXrgzaPpq3DN
- O+POmf+VLSS+slNDVUmwVY1ev/2W4IqGR4jsKV6IzXycKBFm72uE8/93PRbfo/Bxavpl7SZAEQX
- 2dtba8pz5t7nmyldBFZ5hFXxP39+O9yUnNDGLdbMGfrL3rV7nhZzhlCj4SollYHCFPD9TBCwXwX
- 1QSTbbZWo7bh9+qLJRy03C9M8V4huPEMoun8KudEzPd3SKsxy3gSGBv2RPlPDcShaBzzGdVYD5a
- 3+y+BmQkwNnpgJIwCWoPrg1ytk3BRSvc8o2SCBo3KhPZ+5o3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=698; i=ricardo@pardini.net;
+ h=from:subject:message-id;
+ bh=eqdmMp6peidn3J71/h9AkydpMOUtj1mRqpWe52feB/s=;
+ b=owEBbQGS/pANAwAIATteP+Oex+3pAcsmYgBpaB1KmaU5bBjHFVtHlQhR+8JD0BxN6RL1k4sP5
+ pT7lMOYuIiJATMEAAEIAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCaWgdSgAKCRA7Xj/jnsft
+ 6T9zB/4sWp2MYpPyk50RQWXJ4TUCNsIX3h+AVX/rZKZ3m2cQtlN5RZLgg9WWc8KuRrxv+SwJxkf
+ IefNO+MBh3Kg5nwI7Qjd6cPhIPN19r7zMtpyxpnqA17SSsDvkX+Z2LazVfSnMqq44a5VbrBGLPG
+ NODCO/yFwkHSBEXLSeCtFl17WGxFJC7zZDQQrP2JkpeepmeayNSfSiYxhpa9LELUCMBYvV8nLyK
+ VCo+gr4BEh5DUXAblkt4ySzT6J5utQXzciKNt4oY071YZ+ga09PPZKgxWaisWAKKIOGH/JGII4n
+ GjvFSzc3xNPbcEaVMUomsn5wO19pKLCfEpBFL89p64xrwO5C
 X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
  fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
 X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
  auth_id=588
 X-Original-From: Ricardo Pardini <ricardo@pardini.net>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260114_144844_862504_404854E7 
+X-CRM114-Status: UNSURE (   8.43  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,63 +99,28 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Ricardo Pardini <ricardo@pardini.net>
 
-The Radxa Zero2 has an FUSB302 controller on i2c3 at address 0x22 and
-INT# wired to GPIOA-13.
+The Zero2 is also an A311D just like the VIM3, enable its npu.
 
 Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
 ---
- .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    | 32 ++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-index a37776d22b09e..125b064a15c1e 100644
+index 1e5c6f9849456..a37776d22b09e 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
 +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-@@ -364,12 +364,44 @@ hdmi_tx_tmds_out: endpoint {
- 	};
+@@ -394,6 +394,10 @@ &pwm_AO_cd {
+ 	status = "okay";
  };
  
-+/* Also exposed on the 40-pin header: SDA pin 3, SCL pin 5 */
-+&i2c3 {
-+	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-+	pinctrl-names = "default";
++&npu {
 +	status = "okay";
-+
-+	fusb302@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+
-+		pinctrl-0 = <&fusb302_irq_pins>;
-+		pinctrl-names = "default";
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vbus-supply = <&ao_5v>;
-+
-+		status = "okay";
-+	};
 +};
 +
- &ir {
- 	status = "disabled";
- 	pinctrl-0 = <&remote_input_ao_pins>;
- 	pinctrl-names = "default";
- };
- 
-+&periphs_pinctrl {
-+	fusb302_irq_pins: fusb302-irq {
-+		mux {
-+			groups = "GPIOA_13";
-+			function = "gpio_periphs";
-+			bias-pull-up;
-+			output-disable;
-+		};
-+	};
-+};
-+
- &pwm_ab {
- 	pinctrl-0 = <&pwm_a_e_pins>;
- 	pinctrl-names = "default";
+ &saradc {
+ 	status = "okay";
+ 	vref-supply = <&vddao_1v8>;
 
 -- 
 2.52.0
