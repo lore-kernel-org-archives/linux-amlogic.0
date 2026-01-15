@@ -4,108 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15AFBD44C56
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jan 2026 14:29:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B2B3D46607
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jan 2026 17:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BVCfwlFCvUcuwu+S9Mf8dstlXkBUkb6gePnJGGmQQco=; b=aWf0r5dUgDkV9l
-	Qsg+eokYxLDtGXoqErJiy4sh8vLqSlMzWv0XO5jFzhPaiRDpgEafJB9pNTQPr/VMWpQ0tEouceIqv
-	LugQxD8aMFvjCHPXFW2te/SCYXNuJitx+psYEE5u55wUPnfGqcSNPoJbhMubOQY6eMfDw+EnwEgWX
-	6aFnaE0NJVZWLX44dNAAB3CIuN5hkoKdmL6J3zRjIRiJcIS55PGTGiVZJPytlz/wSiYfpfCA0+QM5
-	qJqzxNCLd+mUboa0L5Zm8LjOGG27j8GlleynaGFrITUomOkus8QZlbSSnv9efMLuKLKStGLQXbWqv
-	o0KEyuSIOJ+MzmNyBO5Q==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=AJvtj/5ahZA+dQ7zdeJmGkz5qKkhGDLv7Xr4fZ2zMNI=; b=bqiBWAfd4QM3/S
+	agveulQaoDlBqF3hS3LEKcNmP7GDXpx3i6/trIU8PM3Pd8IrVsN3+LUUUQ4D7I+To9mYzCgSoa2lq
+	lOvBfnvU8ntbzjc48uvY7grcAWSYmEFBXHnHpEZc+yLkhjoa3xwTMjp94axBVY6SG+NCOV2CRl9nq
+	o0BOsrvr+OnhuNWuFSvsoVl/RLy9MvzqRo1FHXlWZbvivyE9OmaBr+agMcaNdijKHVY5S9/XxXh9M
+	WeHfGuA/Mf7adfRZJU16JKLV02M3+4DmNLsaviORpyh00keHhdF3pYfwTNu65Yp0ImLXBtqxgrv3s
+	88tCiy28xc7/R1iCuugw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgOM6-0000000CUAl-1lP9;
-	Thu, 15 Jan 2026 14:29:46 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1vgRWf-0000000CuWb-47M9;
+	Thu, 15 Jan 2026 17:52:53 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgOM2-0000000CUAC-3jZo;
-	Thu, 15 Jan 2026 14:29:44 +0000
+	id 1vgRWe-0000000CuWI-0mVv;
+	Thu, 15 Jan 2026 17:52:52 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 38C6A43A1E;
-	Thu, 15 Jan 2026 14:29:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82EE4C116D0;
-	Thu, 15 Jan 2026 14:29:39 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 8331D601BC;
+	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 37891C16AAE;
+	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768487382;
-	bh=Xur0cyYCZ25wTwK1FXIHS0UN48dWts+dNV0Tusb3wWQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RWEVuN2L6QjC3q3c24vQkRGTeM8U9yu4kFdVXhMSzS8HzKrGynJ3iIR92Ic5VkrDG
-	 3qyNa+bJN4WjRa85IdWfriuzqNdyJmrTkMEYwlOcTJYbN9trdMm8vzkYmby1qLsbLu
-	 3uw7bCoavipzdnEQoSmBDIi6eU9evxwK4bfYtKmpxrz041qdMW/GsKd61VXMNstcsW
-	 42YoNkQNYL96zTaSs+EFbII55RRJ/RAdbwMg/OVwaE6R3pubYqUw2ceHjc5mIXR37n
-	 yiQUW9o4xjmxdE7pbumNlU2haiEATgB4HqvOI2LDPu69T0Cb6haqP0VCJqPnD8IYGT
-	 dqTMU1Hkj93Nw==
-Message-ID: <c56da924-9b12-4ba4-8d47-7c572bf241fa@kernel.org>
-Date: Thu, 15 Jan 2026 15:29:37 +0100
+	s=k20201202; t=1768499571;
+	bh=SbiGDK7jyygOqLt6KSZkwL24dXZAECNwCnh0R9ahBI8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=c5mVqqOATHWZPi2fWp2GWMHCEMldRrSgIIQqgNRq3vzDIA6wObuWGHgSMXgeC2gTZ
+	 uCalfRXvdAuLZnaEcUxrempp6a4m8qkyA+FI1SZ+rdRJ4yzkf98pdJgaUt0EtVbe+z
+	 tisT0HP/7NQF/ZZpBGKdNfXbz16ewWGiusx0B247JVobd8DgCz/9C2DIhPOZWERLsU
+	 iwCKZjJ3mVUbYCKgkMStsh6etdFTc8EnOf+o1sOsLOD6fI3crICA/uTG3iKQGN/nDJ
+	 uFpmAwTUmLvEyQ/vNZ2aSbqv0df2q89P2qT70CANS9IhZVeVkR3rtSxWgwGPISpB8V
+	 DxWrjQLNsxpow==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 296CED46608;
+	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
+From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
+Date: Thu, 15 Jan 2026 18:52:46 +0100
+Subject: [PATCH v2] arm64: dts: amlogic: add the type-c controller on Radxa
+ Zero 2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: add the type-c controller on
- Radxa Zero 2
-To: ricardo@pardini.net, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+Message-Id: <20260115-arm64-dts-amlogic-radxa-zero2-additions-v2-1-948bb0479a45@pardini.net>
+X-B4-Tracking: v=1; b=H4sIAG0paWkC/5WNSw6DIBQAr9Kw7msAP9Gueo/GBfoe+pIKBoixN
+ d691Bt0ObOY2UWkwBTF/bKLQCtH9i6Dvl7EMBk3EjBmFlrqWipVgglzXQKmCGZ++ZEHCAY3Ax8
+ KXoNB5JQTEVpZVWVre8KCRK4tgSxv5+nZZZ44Jh/e53hVP/v/Y1UgoemrAW2hG4v0WExAdnxzl
+ ER3HMcX81QDj+AAAAA=
+X-Change-ID: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
- <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-2-8b5cdf328fde@pardini.net>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-2-8b5cdf328fde@pardini.net>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260115_062942_984471_97080D82 
-X-CRM114-Status: UNSURE (   8.45  )
-X-CRM114-Notice: Please train this message.
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Ricardo Pardini <ricardo@pardini.net>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3379;
+ i=ricardo@pardini.net; h=from:subject:message-id;
+ bh=o6AdblgGh5ZdlDwrmpT3OM+dmaO8Ys6WxijQzUk1YWc=;
+ b=owEBbQGS/pANAwAIATteP+Oex+3pAcsmYgBpaSlypZjIsZFbEWdFKZ7C9I9qk7XcIl/qzQUBa
+ S+t3dWpDrOJATMEAAEIAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCaWkpcgAKCRA7Xj/jnsft
+ 6ZGUCACHpy7luG8T/fuQ+ektuogyYcMdc9EJcgK8F2Yw6FKSqqUEOADHTiEY0VBQhhl5FXdmqEt
+ ME1F0D1GKoQ/XfjtKNGwSZi9t2pstp4LkLIiLEcjBWjRFAkUcjN17AYOVuZr69Wnjj9M4bdKjT5
+ rrkbFhXbzjIws3ayW2eZYVZxqSTRelFe3qdYDA4UBfbEn1w0XfRtG1WVKqmS81YzA4kPHvlTw6S
+ gJfRZjREETuGIRtZXmPoQK7qsyEy4ZEK6UJOeCFdApVUyJ2DrLAdfBit08qghdDpGKLVf9aPr+t
+ lIqJivTfrQGUU/klUmFoW820L0AWnNuNzE9MSzs0cBUeSgid
+X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
+ fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
+X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
+ auth_id=588
+X-Original-From: Ricardo Pardini <ricardo@pardini.net>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,46 +90,112 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: ricardo@pardini.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14/01/2026 23:48, Ricardo Pardini via B4 Relay wrote:
->  };
->  
-> +/* Also exposed on the 40-pin header: SDA pin 3, SCL pin 5 */
-> +&i2c3 {
-> +	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	fusb302@22 {
+From: Ricardo Pardini <ricardo@pardini.net>
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
+The Radxa Zero2 has an FUSB302 controller on i2c3 at address 0x22 and
+INT# wired to GPIOA-13; include a minimal connector.
 
-> +		compatible = "fcs,fusb302";
-> +		reg = <0x22>;
-> +
-> +		pinctrl-0 = <&fusb302_irq_pins>;
-> +		pinctrl-names = "default";
-> +		interrupt-parent = <&gpio_intc>;
-> +		interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		vbus-supply = <&ao_5v>;
-> +
-> +		status = "okay";
+Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
+---
+This series adds a few things missing from the Radxa Zero 2:
 
-Not needed or was it disabled anywhere?
+1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
+   (dropped as was already picked up in [1])
+2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22.
+   Describes it minimally, adding no functionality, but reserving the 0x22
+   address since i2c3 is also exposed on user-accessible 40-pin header.
 
+Krzysztof: v1 followed the node name I had found used in amlogic; I've
+           looked around more broadly and found 'fusb0: typec-portc@22'
+           to be quite popular, so went with this. Hope it is acceptable.
+
+Neil: I've fixed the interrupts pin, and described the required connector
+      even more minimally than you suggested, as to avoid including pd.h.
+      It is also done this way in a few other boards, hope it's correct.
+      I've rebased your/Christian's full-enablement patches on top of this,
+      tested with an r8152 which then works both ways, it's available at [2]
+
+[1] https://git.kernel.org/amlogic/c/29deec49146162d06b17739c627d062191e03814
+[2] https://github.com/rpardini/linux/tree/radxa-zero2-fusb302-minimal-plus-full-impl-rebase
+---
+Changes in v2:
+- npu: dropped NPU enablement patch as it was already picked up by Neil
+- fusb302: dropped 'status = "okay"'
+- fusb302: declare as 'fusb0: typec-portc@22' instead of 'fusb302@22'
+- fusb302: use correct pin (74 -> gpioA13) for interrupts
+- fusb302: add a (very minimal) connector so dtbs_check passes
+- Link to v1: https://lore.kernel.org/r/20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net
+---
+ .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    | 34 ++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+index 1e5c6f9849456..5d32c04de938e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+@@ -364,12 +364,46 @@ hdmi_tx_tmds_out: endpoint {
+ 	};
+ };
+ 
++/* Also exposed on the 40-pin header: SDA pin 3, SCL pin 5 */
++&i2c3 {
++	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	fusb0: typec-portc@22 {
++		compatible = "fcs,fusb302";
++		reg = <0x22>;
++
++		pinctrl-0 = <&fusb302_irq_pins>;
++		pinctrl-names = "default";
++		interrupt-parent = <&gpio_intc>;
++		interrupts = <74 IRQ_TYPE_LEVEL_LOW>;
++
++		vbus-supply = <&ao_5v>;
++
++		connector {
++			compatible = "usb-c-connector";
++		};
++	};
++};
++
+ &ir {
+ 	status = "disabled";
+ 	pinctrl-0 = <&remote_input_ao_pins>;
+ 	pinctrl-names = "default";
+ };
+ 
++&periphs_pinctrl {
++	fusb302_irq_pins: fusb302-irq {
++		mux {
++			groups = "GPIOA_13";
++			function = "gpio_periphs";
++			bias-pull-up;
++			output-disable;
++		};
++	};
++};
++
+ &pwm_ab {
+ 	pinctrl-0 = <&pwm_a_e_pins>;
+ 	pinctrl-names = "default";
+
+---
+base-commit: 0f61b1860cc3f52aef9036d7235ed1f017632193
+change-id: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
 
 Best regards,
-Krzysztof
+-- 
+Ricardo Pardini <ricardo@pardini.net>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
