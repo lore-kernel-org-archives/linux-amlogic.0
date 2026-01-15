@@ -4,88 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F6E6D29FFA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jan 2026 08:02:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABCDFD29FFA
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jan 2026 08:03:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/FT0VjU/uBJ3XmUiufN6iIg+rQeEsV9zgOnCg4Nt3Vc=; b=OoGgOo1U9YpN+Zi97/kBOhdxov
-	Wt3sv08GBwSkxwR+gi/6RzDxQ/UxOGZ+Yttwi/k3ElefBw+hD0OfN0IekDX0Dox9rqWh9X24aMblM
-	HhzDol40zvts2R+xHEajoNU1o8PFyNFloUfTF5libdFDpYLh+/fTKGsqCcYOADsZZTAwB3jzomlF2
-	IHzYbKqYd9t84WhA/sHnv3lvz7VRr33OPDC81Sn8NeTY1V27mC5YOs5snm4/U9YoZXhwWeJJDHFyQ
-	HQm2sY2TA2m40TywWg/DjfcJzsl6zzryVwF49+TgduDwGIsi0CVNYmWXjpaEyo45XZ09De+iHMGEr
-	NIFbbt5A==;
+	bh=u/SWCCIRavkMT1NdtXN+WzbG/Dail0x1aMIwr+HqRn0=; b=oaJNB8eOHtDvP4s8y8cpvrQJl8
+	3kOxwoGgXF6lkc7f271mHkzpBzUNCaEzFBWz94VMf7/z0zOUTj2/y+ai5vUzPwXgkhQs142U5c/gV
+	esRmat7uLwUSufqW7seFqgTUff5gESpIQ0aq4ixJl1DQohyIAtJkKk/5mCTRXzHitt+BONgLMDBf8
+	mHUN2dWrNv4vTEez/qsP+5w7/Yx5k8tSr11tbGEmC7DTsy+q+DxD6NXFA6QjsmUOegop+tMfnayPq
+	8gf/MNAGEtqvyiGiNkJ3K4oQOz5oDnZgjC0WW8AOqDRHEu0sv92k15jTmCtBrpLjZO/lsG6QgqRCf
+	XFbDxBeA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgIIy-0000000Bxe7-3GgL;
-	Thu, 15 Jan 2026 08:02:08 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1vgIJk-0000000BxmW-3hoW;
+	Thu, 15 Jan 2026 08:02:56 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgIIw-0000000BxdR-0vXi
+	id 1vgIJi-0000000Bxli-3a4x
 	for linux-amlogic@lists.infradead.org;
-	Thu, 15 Jan 2026 08:02:07 +0000
-Received: by mail-wr1-x443.google.com with SMTP id ffacd0b85a97d-42fb6ce71c7so505420f8f.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 15 Jan 2026 00:02:05 -0800 (PST)
+	Thu, 15 Jan 2026 08:02:55 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-47ee3a63300so5836865e9.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 15 Jan 2026 00:02:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768464124; x=1769068924; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1768464173; x=1769068973; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zYwWw8VV+pZ5kRe2p0etswhnBCYm9kWmCY4NPdnKmVQ=;
-        b=P9xPvjBNaz4KBNOb+RO+/DyeSkLSHIgQX39Dp/Wx99kVysLobGmA9xHwBu/FNg+o+U
-         +WKZ3iNt8f88GAS0jUP8+aaf0/LqnVFcQplyJpkcQ+dnAf95J2umARwVL1Jr4Bx86ddP
-         AEbmyTVPvJxbLwoaIE4NnAU648iyQQrxLzxU485Y6Cw+JHDeTCyswB0hCBNvDHQwrUBY
-         9VKuhSDsyCVjbnhnyx1IoA+A7d+VBg9h22B21+/obsrN0LD/sDpqMPzHKEQkcYobwCuA
-         NYv1DgZ+YqeXcu+SMD9rmhy+AXZEIYjhsG6X3lVfydLEgfB2W/9tENHcf8qeEZ3rK3be
-         BeDw==
+        bh=unoGdde8r2uBbMwP8uo2We6Q4bM16+cyYfsGEc7qFM8=;
+        b=GLpR944QQd9lJwiuF9a/D0H8v/aDIKbC1A5bJ6e5OF6gkK2S4wz4275q8HLMFtjwHj
+         YXjIVPw402DbmU1kbJWptArctH4+CQ+NGMudwwDpQOdFJoimYvRRv1DCM1dzl/ybnYXD
+         dB4E6uIcEQJmaLGR5VjILymN+af70kMiN+F3DCj7pBssZiVI1zp5qGdfHj6O96v7uaOE
+         f9wwHNHhQDKFHhO1oJzuWJHRg9izBO5vS5Ki0qcLJ9Ejfgw1+Ip2cdO2HqfGHl2mTIWJ
+         LJY1mUOhAfaHKCgrgt39/TIgnGz0pDscGFb1GLb+hq7gQKFIo1lLVyQ09Cxnar+oG16U
+         LiWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768464124; x=1769068924;
+        d=1e100.net; s=20230601; t=1768464173; x=1769068973;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zYwWw8VV+pZ5kRe2p0etswhnBCYm9kWmCY4NPdnKmVQ=;
-        b=mor/4KjmEOub6yQPwLQznwCqMiixG6hWsZKsajiFNHBqNqJVika6QJ4bwmtAmbH2aJ
-         mvz+BXD6sX1ObkagNWqI3r6XTZdtug5NktYF+Wi/6qbk+e1kx2U0G+5V5SOFyznoCrVH
-         I+XOaRBK72OkkJMFz0xG98PnW/HXgwJwvCUu2LrSVlSjQ0bDQ0JU/JWa2o+GBEeCKpHG
-         A7yzhgokcOTmvDVtY+adFxravIT0u0VmILA2Hio/7rsTlud3e7LhjWIVgZXA3H9h8fzL
-         iFRTFza4LGty7zEHD0xi7KJRCSy2BVO7VyD3IoY6gQsq7r6XTdkuq7C3Orh6DMUlavNC
-         UJMg==
-X-Forwarded-Encrypted: i=1; AJvYcCWBMvB08LdX5cXlljg/IgSD5K/pFa7QxUVB2rznOb8yNBgf63NB+Ohro1UiwHTi6t824gRcaC+IktR3crmb@lists.infradead.org
-X-Gm-Message-State: AOJu0YwvDRk5h4N94Cg4cj28krLZBQPyx8w40ygB969f3Y6pvWI+Rm4J
-	lhsD7s8GsqdgmrNZw9RtxZMv8duxR5joNj7T2VNByUjh7iQD7NvcO+PrNcilK2ocTBA=
-X-Gm-Gg: AY/fxX6zGn6lfxiJEgl+904geabSuazXYlW/+M9DC+n9eXSLnkMlqnkLuZA5Imx1w5i
-	GJNXox36MgYIYnWCfur4qrYPMU3oeRz3Km602+wCG5kEyYzafGrDLC/7jaBjGne3LBooXCTpKFP
-	jzFUIOD4SqeteC0e9CIBsgJslsekU1LulL58+GgwrqdRCdVqp70DPdnzHL7ivQfFQPHJY1fS51y
-	84FpCgQdcRVl1w/hSggZOWcQZ275m+BNZTsgddekp816Ykr4gFyK1nZGkyDLiC0UWMbZ2yIjq+h
-	+8zHujAnvictnctiYvL/Bm1ctxS5yhoeAWY2JMe0nYcmOGlzeqRy3gviV7DgvpHDKmwIXr3O5AR
-	Vdx4JCqk8iufe+Xo78ZDIBejDQcjLvCIR15+qYbWiQ87rRsCyOPfP8rK+szU+IhMQnHvG+jyWp7
-	1bd4YOm7Crlt8OZAq39mrmS6pKAnahHYFAKeWFhLsaBtg0k5bn/PcjzQghZ0/e6mo=
-X-Received: by 2002:a05:6000:1a87:b0:42b:396e:2817 with SMTP id ffacd0b85a97d-4342d5c3abemr6883834f8f.40.1768464123399;
-        Thu, 15 Jan 2026 00:02:03 -0800 (PST)
+        bh=unoGdde8r2uBbMwP8uo2We6Q4bM16+cyYfsGEc7qFM8=;
+        b=OmwY0BVvTNJfQXqYOScfhTEeVun9TjJDmq55E2E8u/46KkjglUl8SURPDmt/ppLN1R
+         ZXEDoY57PfnkbZshZBGqTvN6kvObZ5SGHCm2GX8gDTYSs70t1d8ZYcalPnutz5mV95gR
+         l2JsgGRoFLtMoWyAwTqSF1bTty/+fioUpJXtZA95jyzlsbgwDM1JS3+huxhAGyN74rhW
+         k58y92g+/Tf57/Dd1HuUVGgMokaYaH+D5DrzCYrVX68OC0tLkfr4TYjjUodI3nCHDQz3
+         Ui5a3cKQGrRB1M7R+Yv1geEuvoPOXPZ1TDbr5byjqL1YVlYEizqOZgX2sdYOyVuAad2A
+         7lRA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwV7UFdSiGvvfRt+LMZE0mZb6/F2IisHQ/zAZ80wtK1N1Zc/7uoTsTs7Ym86DoACRh6DA+f57EzqEwxuPQ@lists.infradead.org
+X-Gm-Message-State: AOJu0YwzcQc8Vq1NG/WDKHeNd3REWB5/Ec9sFqWdA8fL5jrtf/agKAcP
+	J0BGE1PSRv0bBD6NFDg2+6RLie02mBqZSxvH1wJv6cgk/4Gzf0UN5mk1vMWU8OPoEBs=
+X-Gm-Gg: AY/fxX5jYqJ8AmFyhu7SZGqf5e7buIwcKFFVZ1qTu8aCAWCgRoYRwrnL5VIxR7cco9R
+	LDj5HDSuqFcBkkV1O5PMTVn5YlDZ2C9LrvbhJFiY1Ldl4iSq+mP4mnBs/4p28XxoQ0AKXEdibov
+	hu0Ml9b0UE0NEWNXT1pdmjpK8/KGRpsKy5pHoSuxL/Iv5Mc1adWm/RoWPq8bv1LElEtCFeWhgul
+	xQILaV8j2M4gbyh51O9X5BMwVTMFUs+MZ4ZtP+kRlZ8IYTHQA/jIGwPe8fdmtp6rIbQd4nsY/En
+	efk6lM1+gJdOEOw+jFDaa490VYjRMfn51qCbkoygiYgcmKbs+hTmshzMznYE4Erde+XAEc/C3xv
+	J/1A0C1DXoAMqusQra4q/ppth43IF1wjTwHNJYQExoNsywGPncc3yd/aOiHb3AieUEBekCCap+N
+	hQ+Bket4PmvVDGq4M7YNGIXYcK1Rmyo82MmnI+hwBM2qqwspYdKNpSPZjNAlfsNW0=
+X-Received: by 2002:a05:600c:3555:b0:477:7c7d:d9b2 with SMTP id 5b1f17b1804b1-47ee338f01bmr68210915e9.32.1768464172816;
+        Thu, 15 Jan 2026 00:02:52 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:3d9:2080:d283:7a7e:4c57:678d? ([2a01:e0a:3d9:2080:d283:7a7e:4c57:678d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-434af64a650sm4300283f8f.4.2026.01.15.00.02.02
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801bc3e57fsm10397465e9.5.2026.01.15.00.02.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jan 2026 00:02:02 -0800 (PST)
-Message-ID: <00960678-8907-4e84-8b24-e5cbe18d39f5@linaro.org>
-Date: Thu, 15 Jan 2026 09:02:02 +0100
+        Thu, 15 Jan 2026 00:02:52 -0800 (PST)
+Message-ID: <dea5d665-2d5c-40ce-83d2-a2622b79e4b1@linaro.org>
+Date: Thu, 15 Jan 2026 09:02:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/6] arm64: dts: amlogic: assign the MMC signal clocks
-To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>,
- Yixun Lan <yixun.lan@amlogic.com>, Nan Li <nan.li@amlogic.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260114-amlogic-mmc-clocks-followup-v1-0-a999fafbe0aa@baylibre.com>
+Subject: Re: [PATCH 0/2] NPU and i2c3 + FUSB302 addition for Radxa Zero 2
+To: ricardo@pardini.net, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -112,10 +111,11 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260114-amlogic-mmc-clocks-followup-v1-0-a999fafbe0aa@baylibre.com>
+In-Reply-To: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260115_000206_308465_F615C4F9 
-X-CRM114-Status: GOOD (  11.15  )
+X-CRM114-CacheID: sfid-20260115_000254_912189_57B984CD 
+X-CRM114-Status: UNSURE (   9.87  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,36 +133,23 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 1/14/26 18:08, Jerome Brunet wrote:
-> The amlogic MMC driver operate with the assumption that MMC clock
-> is configured to provide 24MHz. It uses this path for low
-> rates such as 400kHz.
+On 1/14/26 23:48, Ricardo Pardini via B4 Relay wrote:
+> This series adds a few things missing from the Radxa Zero 2:
 > 
-> Assign the clocks to make sure they are properly configured
+> 1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
+> 2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22
 > 
-> This fix has been split into multiple changes to get the Fixes tag
-> right and help stable pick up the change.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
 > ---
-> Jerome Brunet (6):
->        arm64: dts: amlogic: c3: assign the MMC signal clocks
->        arm64: dts: amlogic: a1: align the mmc clock setup
->        arm64: dts: amlogic: axg: assign the MMC signal clocks
->        arm64: dts: amlogic: gx: assign the MMC signal clocks
->        arm64: dts: amlogic: g12: assign the MMC B and C signal clocks
->        arm64: dts: amlogic: g12: assign the MMC A signal clock
+> Ricardo Pardini (2):
+>        arm64: dts: amlogic: Enable the npu node on Radxa Zero 2
+>        arm64: dts: amlogic: add the type-c controller on Radxa Zero 2
 > 
->   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi       | 7 +++++++
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi         | 5 +++--
->   arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 6 ++++++
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 9 +++++++++
->   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi       | 9 +++++++++
->   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 9 +++++++++
->   6 files changed, 43 insertions(+), 2 deletions(-)
+>   .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    | 36 ++++++++++++++++++++++
+>   1 file changed, 36 insertions(+)
 > ---
-> base-commit: cd3b654a413c14648d0074ca160da62e4e29ac88
-> change-id: 20260114-amlogic-mmc-clocks-followup-a0733cc59283
+> base-commit: 0f61b1860cc3f52aef9036d7235ed1f017632193
+> change-id: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
 > 
 > Best regards,
 
