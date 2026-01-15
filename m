@@ -4,81 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B2B3D46607
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jan 2026 17:53:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B36B9D46606
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Jan 2026 18:42:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=AJvtj/5ahZA+dQ7zdeJmGkz5qKkhGDLv7Xr4fZ2zMNI=; b=bqiBWAfd4QM3/S
-	agveulQaoDlBqF3hS3LEKcNmP7GDXpx3i6/trIU8PM3Pd8IrVsN3+LUUUQ4D7I+To9mYzCgSoa2lq
-	lOvBfnvU8ntbzjc48uvY7grcAWSYmEFBXHnHpEZc+yLkhjoa3xwTMjp94axBVY6SG+NCOV2CRl9nq
-	o0BOsrvr+OnhuNWuFSvsoVl/RLy9MvzqRo1FHXlWZbvivyE9OmaBr+agMcaNdijKHVY5S9/XxXh9M
-	WeHfGuA/Mf7adfRZJU16JKLV02M3+4DmNLsaviORpyh00keHhdF3pYfwTNu65Yp0ImLXBtqxgrv3s
-	88tCiy28xc7/R1iCuugw==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:To:Cc:MIME-Version:Date:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=mv0dUvv9xsYrYppL2v4I8h3jgEmrQNO15bYBcO0cmMA=; b=EM7BIOMCc032RaP9VUmX40n9/Q
+	40G+bMpg4HMbJRVmjTBr6DRploSrEDCCZyk3e24tXtaWj35OjIEz+W6wiMSIfapPJnlPrBK/wLmOb
+	04ohjNYVQz6HHL6XLheem3aONWUGcUSqRT19dydkX1bK4V4qihEd1oKPEXv4dbsEbSzKGVqiWwEo2
+	EX9+kYGsSqRV402mJlyuUlwfgV8We/3nDduU0mr69lf0pRZrqKhJlYo7Q9o7z3SzHbFLaBX2Xv4TL
+	nq5PF9O2HES8swCB8QR3SrvRHwxvNi7mr+vqwetB6WAQRoEIOEF+3GVnmEYbC/MGpgIZt54kl3iZb
+	AiLWhOGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgRWf-0000000CuWb-47M9;
-	Thu, 15 Jan 2026 17:52:53 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1vgSIw-0000000CzUO-11Pk;
+	Thu, 15 Jan 2026 18:42:46 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgRWe-0000000CuWI-0mVv;
-	Thu, 15 Jan 2026 17:52:52 +0000
+	id 1vgSIt-0000000CzTs-02C7;
+	Thu, 15 Jan 2026 18:42:44 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8331D601BC;
-	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 37891C16AAE;
-	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 31EE543AE1;
+	Thu, 15 Jan 2026 18:42:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0808C116D0;
+	Thu, 15 Jan 2026 18:42:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768499571;
-	bh=SbiGDK7jyygOqLt6KSZkwL24dXZAECNwCnh0R9ahBI8=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=c5mVqqOATHWZPi2fWp2GWMHCEMldRrSgIIQqgNRq3vzDIA6wObuWGHgSMXgeC2gTZ
-	 uCalfRXvdAuLZnaEcUxrempp6a4m8qkyA+FI1SZ+rdRJ4yzkf98pdJgaUt0EtVbe+z
-	 tisT0HP/7NQF/ZZpBGKdNfXbz16ewWGiusx0B247JVobd8DgCz/9C2DIhPOZWERLsU
-	 iwCKZjJ3mVUbYCKgkMStsh6etdFTc8EnOf+o1sOsLOD6fI3crICA/uTG3iKQGN/nDJ
-	 uFpmAwTUmLvEyQ/vNZ2aSbqv0df2q89P2qT70CANS9IhZVeVkR3rtSxWgwGPISpB8V
-	 DxWrjQLNsxpow==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 296CED46608;
-	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
-From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
-Date: Thu, 15 Jan 2026 18:52:46 +0100
-Subject: [PATCH v2] arm64: dts: amlogic: add the type-c controller on Radxa
- Zero 2
+	s=k20201202; t=1768502562;
+	bh=k0lbEC8vrTHNjsPX5hPqfBo8B6pyhjIjvsVG82jVXzA=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=UEl2a6yqC6q7lsev4vTKZHuWH0Q3y5VlF18wJIHDOct4OyGNfEBaWrDGJ8tDGND9l
+	 M3WKYLlidKM0c6vX4kdPDDyk1Mgzjh20l9EwqEt4o5Ok0iNs0vRayo2i8jdrEkuddv
+	 /CmZhzqPVmGThrnLoMdZ+hOApL0Sx3M2PVdiBKKc1rObtP46BhO7rV9s/60KuhyTN+
+	 bGpUemP5VOS6PM0X1bvlFzqrxChr9ba10ZIwl3ZaiWTimiqTOC0v3VD10iJeUkiLmd
+	 6BcCZ+viIsiZQMXSN1Or6iEESf902tcvO6b3Xr0N0t7R6qXd4gccVJPGee8KxBDPc1
+	 EmGF3lIpdcXQg==
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 15 Jan 2026 12:42:40 -0600
 MIME-Version: 1.0
-Message-Id: <20260115-arm64-dts-amlogic-radxa-zero2-additions-v2-1-948bb0479a45@pardini.net>
-X-B4-Tracking: v=1; b=H4sIAG0paWkC/5WNSw6DIBQAr9Kw7msAP9Gueo/GBfoe+pIKBoixN
- d691Bt0ObOY2UWkwBTF/bKLQCtH9i6Dvl7EMBk3EjBmFlrqWipVgglzXQKmCGZ++ZEHCAY3Ax8
- KXoNB5JQTEVpZVWVre8KCRK4tgSxv5+nZZZ44Jh/e53hVP/v/Y1UgoemrAW2hG4v0WExAdnxzl
- ER3HMcX81QDj+AAAAA=
-X-Change-ID: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Ricardo Pardini <ricardo@pardini.net>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3379;
- i=ricardo@pardini.net; h=from:subject:message-id;
- bh=o6AdblgGh5ZdlDwrmpT3OM+dmaO8Ys6WxijQzUk1YWc=;
- b=owEBbQGS/pANAwAIATteP+Oex+3pAcsmYgBpaSlypZjIsZFbEWdFKZ7C9I9qk7XcIl/qzQUBa
- S+t3dWpDrOJATMEAAEIAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCaWkpcgAKCRA7Xj/jnsft
- 6ZGUCACHpy7luG8T/fuQ+ektuogyYcMdc9EJcgK8F2Yw6FKSqqUEOADHTiEY0VBQhhl5FXdmqEt
- ME1F0D1GKoQ/XfjtKNGwSZi9t2pstp4LkLIiLEcjBWjRFAkUcjN17AYOVuZr69Wnjj9M4bdKjT5
- rrkbFhXbzjIws3ayW2eZYVZxqSTRelFe3qdYDA4UBfbEn1w0XfRtG1WVKqmS81YzA4kPHvlTw6S
- gJfRZjREETuGIRtZXmPoQK7qsyEy4ZEK6UJOeCFdApVUyJ2DrLAdfBit08qghdDpGKLVf9aPr+t
- lIqJivTfrQGUU/klUmFoW820L0AWnNuNzE9MSzs0cBUeSgid
-X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
- fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
-X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
- auth_id=588
-X-Original-From: Ricardo Pardini <ricardo@pardini.net>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To: Ricardo Pardini <ricardo@pardini.net>
+In-Reply-To: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
+References: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
+Message-Id: <176849861782.929997.11384143044965902956.robh@kernel.org>
+Subject: Re: [PATCH 0/2] NPU and i2c3 + FUSB302 addition for Radxa Zero 2
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260115_104243_064859_66D42540 
+X-CRM114-Status: GOOD (  15.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,110 +71,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: ricardo@pardini.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ricardo Pardini <ricardo@pardini.net>
 
-The Radxa Zero2 has an FUSB302 controller on i2c3 at address 0x22 and
-INT# wired to GPIOA-13; include a minimal connector.
+On Wed, 14 Jan 2026 23:48:35 +0100, Ricardo Pardini wrote:
+> This series adds a few things missing from the Radxa Zero 2:
+> 
+> 1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
+> 2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22
+> 
+> Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
+> ---
+> Ricardo Pardini (2):
+>       arm64: dts: amlogic: Enable the npu node on Radxa Zero 2
+>       arm64: dts: amlogic: add the type-c controller on Radxa Zero 2
+> 
+>  .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    | 36 ++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+> ---
+> base-commit: 0f61b1860cc3f52aef9036d7235ed1f017632193
+> change-id: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
+> 
+> Best regards,
+> --
+> Ricardo Pardini <ricardo@pardini.net>
+> 
+> 
+> 
 
-Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
----
-This series adds a few things missing from the Radxa Zero 2:
 
-1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
-   (dropped as was already picked up in [1])
-2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22.
-   Describes it minimally, adding no functionality, but reserving the 0x22
-   address since i2c3 is also exposed on user-accessible 40-pin header.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Krzysztof: v1 followed the node name I had found used in amlogic; I've
-           looked around more broadly and found 'fusb0: typec-portc@22'
-           to be quite popular, so went with this. Hope it is acceptable.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Neil: I've fixed the interrupts pin, and described the required connector
-      even more minimally than you suggested, as to avoid including pd.h.
-      It is also done this way in a few other boards, hope it's correct.
-      I've rebased your/Christian's full-enablement patches on top of this,
-      tested with an r8152 which then works both ways, it's available at [2]
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-[1] https://git.kernel.org/amlogic/c/29deec49146162d06b17739c627d062191e03814
-[2] https://github.com/rpardini/linux/tree/radxa-zero2-fusb302-minimal-plus-full-impl-rebase
----
-Changes in v2:
-- npu: dropped NPU enablement patch as it was already picked up by Neil
-- fusb302: dropped 'status = "okay"'
-- fusb302: declare as 'fusb0: typec-portc@22' instead of 'fusb302@22'
-- fusb302: use correct pin (74 -> gpioA13) for interrupts
-- fusb302: add a (very minimal) connector so dtbs_check passes
-- Link to v1: https://lore.kernel.org/r/20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net
----
- .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    | 34 ++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+  pip3 install dtschema --upgrade
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-index 1e5c6f9849456..5d32c04de938e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-@@ -364,12 +364,46 @@ hdmi_tx_tmds_out: endpoint {
- 	};
- };
- 
-+/* Also exposed on the 40-pin header: SDA pin 3, SCL pin 5 */
-+&i2c3 {
-+	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	fusb0: typec-portc@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+
-+		pinctrl-0 = <&fusb302_irq_pins>;
-+		pinctrl-names = "default";
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <74 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vbus-supply = <&ao_5v>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+		};
-+	};
-+};
-+
- &ir {
- 	status = "disabled";
- 	pinctrl-0 = <&remote_input_ao_pins>;
- 	pinctrl-names = "default";
- };
- 
-+&periphs_pinctrl {
-+	fusb302_irq_pins: fusb302-irq {
-+		mux {
-+			groups = "GPIOA_13";
-+			function = "gpio_periphs";
-+			bias-pull-up;
-+			output-disable;
-+		};
-+	};
-+};
-+
- &pwm_ab {
- 	pinctrl-0 = <&pwm_a_e_pins>;
- 	pinctrl-names = "default";
 
----
-base-commit: 0f61b1860cc3f52aef9036d7235ed1f017632193
-change-id: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
+This patch series was applied (using b4) to base:
+ Base: 0f61b1860cc3f52aef9036d7235ed1f017632193 (use --merge-base to override)
 
-Best regards,
--- 
-Ricardo Pardini <ricardo@pardini.net>
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net:
+
+arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dtb: fusb302@22 (fcs,fusb302): 'connector' is a required property
+	from schema $id: http://devicetree.org/schemas/usb/fcs,fusb302.yaml
+
+
+
 
 
 
