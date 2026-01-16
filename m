@@ -4,150 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22F61D4A5EB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Jan 2026 02:39:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0119DC982DB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Jan 2026 16:57:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=k0rD1oRUDzBGunNqnIiTkTRjbUX5W+65bVjQU7aPUSU=; b=26//s1IJ1FtRj9
-	Y74l6OIX90DBMZaB79HIkfwydknAoO7+wnyydqPbDwQeyDOulhLvm7ilmt3ZPrw/dzrreMNCIa6nN
-	QeRxs3OU0K7DfugHrxRc5L7daAdW680m2nrvmD/Nq1ZN+bkRLxhyFzg3Al2KfcZJTE5UdHny8o2/s
-	gHFr0HSPa3umWH3GRNGFfLCDtFH666l3ptvIGgxg1l89qP2McIP+jXSONnKBJchEbzkLRkwkcF3H5
-	97x5MXbCF6JPkX0+XRO6yijJuSLzu1AG9oukm8zURT+dHLhn7HJKjIZbyISFzvbknH4eMpL9/1/S6
-	kixx+dJ52lUgovuzulgg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=6lUmYgMJRCDVj8CmFaj8udnTY3Cljrhs6mEOGvaFAig=; b=oooVyKCgWi0a6Q
+	nFEp0tt9dF4Usqm29yZoax8JN5j05y4euYYXJ+bLhy8DGiEf0egEM9eL4+YAwFAac+Ts3FgLrR5+l
+	eaiZL72qoM8Vjk48KmDdtJOtIF4XWFCbgzs104QBB8rZHUNsTt1bIMmaa9QkHqlB5AWMPoGS0jZoK
+	WTBNgCBEWRieoBZOTe0L4xbL9br+lQxL0CryNfgTNg5jaKQt3HwUUP08+Y/OwQlNBXk/n5CgGzVUY
+	yLVmmaoKd/JYU5KBHOw7rTRcckN4i4o1V2DPPnaLHF8Hxh1lzq2ANTh1+CEqdEUqA/uGPzxrfkO7s
+	2ZVXe11Mu8bdRhMC2RBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgZkD-0000000DTw6-2fFc;
-	Fri, 16 Jan 2026 02:39:25 +0000
-Received: from mail-japanwestazon11022134.outbound.protection.outlook.com ([40.107.75.134] helo=OS8PR02CU002.outbound.protection.outlook.com)
+	id 1vgn84-0000000EUvE-0XvB;
+	Fri, 16 Jan 2026 16:56:56 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgZkB-0000000DTvT-1wxw;
-	Fri, 16 Jan 2026 02:39:24 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oDiwt7WyrepK6BH06UrlYoYf6wFzPKtQyQsfl5SJLHGfNSqAI7lH1wLHl1MEFDDqxo//JfOlO1DKln5A9M9QkhAcGyJgp+ptHGKejvItbJspLZB4bnBgHUTWe+f3E2SX9Ai78febmaJ3ax4UVJ5OiO9zdylTpNEA5/Q7wuGSHrUzRVDiPM/IPkEzSKYHdZVFpPjteloIseVF+PQslR6Eb3bF60LwrRUbrVTCinBsnhMtKcr6CrrLiXPItfD5X2vtA8WHgYxbC/KzDGD78CEyXV/ApXl9Y7fdGKTxdm1XiceD16xzN3hpyFY58UihpjivSy4Yj5Oc7rMoFb27axvJsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8m9V0xIJ/LIwxUU1rjhYjoCxe+NVfPAs7E2ZCOp2ENg=;
- b=x8gzB8WUfELUWHZJTQ4hJ22av2ZnLQr0QEOacc4BlocNRmcIinkOi9wp88f4UqqVMpk+idc7U2qAG8ccTXA5BSEzKigWkDicT/rPjt25QAV1McDWfEHMh06sJgu8n3iw+Dh8m2kVbslpUjrkLeihU/Yd4cJt6L1KU+XkfOvzR0Vx+SCwHu0+Suk2Bb2T/SAg9J777MeMD26rG7v7up263FWgxyiAtpsOSwBK4o2UyFtEafbJqQYxwCbWx8zb+8P8aPtPxojo4wj+qXppu7cOmB9Xb/6x+XROvN6rM+Ngwytgq5zpR5YNvpLdP1GPyzqNBZieCyVq5U3YcF2KLW3sWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=khadas.com; dmarc=pass action=none header.from=khadas.com;
- dkim=pass header.d=khadas.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=khadas.com;
-Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com (2603:1096:308::2da)
- by KUZPR03MB9414.apcprd03.prod.outlook.com (2603:1096:d10:46::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Fri, 16 Jan
- 2026 02:39:16 +0000
-Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- ([fe80::af44:7e78:1133:adec]) by PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- ([fe80::af44:7e78:1133:adec%8]) with mapi id 15.20.9520.005; Fri, 16 Jan 2026
- 02:39:16 +0000
-From: Nick Xie <nick@khadas.com>
-To: neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Cc: krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	xieqinick@gmail.com,
-	Nick Xie <nick@khadas.com>
-Subject: [PATCH v1] arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: enable SDIO interface
-Date: Fri, 16 Jan 2026 10:39:00 +0800
-Message-Id: <20260116023900.2036657-1-nick@khadas.com>
-X-Mailer: git-send-email 2.34.1
-X-ClientProxiedBy: SI2PR01CA0054.apcprd01.prod.exchangelabs.com
- (2603:1096:4:193::22) To PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- (2603:1096:308::2da)
+	id 1vgn81-0000000EUuq-1vtS;
+	Fri, 16 Jan 2026 16:56:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id A84E0442C0;
+	Fri, 16 Jan 2026 16:56:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF145C116C6;
+	Fri, 16 Jan 2026 16:56:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768582611;
+	bh=T5Fbr7AYPGBTy7Ar/+mu/KuikytstoyPsFl1sQFKJXc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZBaxsw7F4CMztiX8K7me98H29yUlLl275y3T977qzvlzfNaZvcbvu2w60u8L5eXLz
+	 0VscokRuOvtgqZ+P7OcPdpokfSBHZQWtB9jyJqNoTmoNoJxJ9U3zVh9wKi1BS2t2kE
+	 k97cPr8uHLAk3ArzbzBfYxl18aN3QaYgPkWZhvt5dEgqMJk46obfSNigxxzPfJyuyA
+	 HmjkRMQ65P6tmLoFTfK7DtRclPY2aA1JtPtcdkfc6ggTnWQAKLKK4lvMpYYHLHOHxT
+	 1XwGN+nTCSuF/LyE8lBPJeRXOOHJMTqGki0eCrnH3FOn4ZqmbgonDDOL0TKqSX05JS
+	 L4LRSAoeJ3Y9Q==
+Message-ID: <bf433ef2-0705-4a21-b84b-321d9f68d805@kernel.org>
+Date: Fri, 16 Jan 2026 17:56:46 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PS1PPF62EEA9B1D:EE_|KUZPR03MB9414:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4508ed44-43f0-44c8-6b12-08de54a870f5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?535BW0j3LuCSoJ3LozgKcgEcVzaywnEgoLxjPXfGsbOftkRKrW2Laye3kDGt?=
- =?us-ascii?Q?iW8K6kfbB0NMrU+gUEJ2S9enQvnk1qsRvXhZauYkdmAXCL/Jj/eeqbVW2FnY?=
- =?us-ascii?Q?e8wjJILTvRhLaCqQQkMIK42FNNrPiPEuk/VUNcvad6LPKhO8dnBxaCrfxu7B?=
- =?us-ascii?Q?+f7+pz440zMfdxvroKXF+8zuIDRFgMVEZpkEh8YwGEI4hfW4KhAIgZ2nmytu?=
- =?us-ascii?Q?AefODxSHzYVxDcPEnMy25XAAGOZo5KNSgJPzh6fHG4dYmXBZ+Xgvxvz8tI+6?=
- =?us-ascii?Q?1JfZp3KYO2vBBJrNRoEuRtag0dnc5Dx0ggBauxSYtzx3JxDA9xzh2B4+KI/e?=
- =?us-ascii?Q?+gm7lb65zwMa8s5mjJbmT2OK4XU+sM/UmvVQ4EtTRkBbOtkvPS4Lj/okCRZU?=
- =?us-ascii?Q?7dQTkmS+E013fZTctl0QJqSorVfvA9zG4CDRaCdTWiku33JJBC9qvMEqfK7s?=
- =?us-ascii?Q?1+m/wBTTZtP8GAWUui0EY30Uw7xBp21yRCWMXrozp0DNHG5xhdi8cm2xq7wl?=
- =?us-ascii?Q?e7ndmgWnvNkdm0cHSxWeSqUR1hb3ziNJA13/SS44JH+2hYkbjxhzeB3c7eIQ?=
- =?us-ascii?Q?Zgt07wR9R04pn0bX5HKJEP1x6wXpIo0jBEah1f831Z+isd0KeaQFPuDngWYd?=
- =?us-ascii?Q?argEb6lzx8JJDcm76fue0vP27t2/CJoeYJTk78qnJzsiZfIoEm1cTYEBmmhJ?=
- =?us-ascii?Q?KZQCFer4MLa1WqkGdPP5UP+0BOjjONVCkANCud8CFjeHXsp2yqIQ4jvHZTF/?=
- =?us-ascii?Q?QAi7gI7QEK6YstwmrLRvNDjlnVrMygdwBbfUu23xb+RjiuRMBcuDV2sOJf1k?=
- =?us-ascii?Q?nfUcNC54i36DQkksyIJZzJpT2WXWgX3XrqYgioamKGAU7iG9UHFILj6WX3Z2?=
- =?us-ascii?Q?/IZFLMi+0b6VUvFMAvReGtYGGt0SRxt6/GRXAFoOPbKhEZFadzn9sP3+nSKl?=
- =?us-ascii?Q?CwiR4m/RbKejVoqVBGnbO5+Zf6OEErPOU0aAf5CDHrBn7g+J/3wLSs69QBAm?=
- =?us-ascii?Q?cL3TiysVqm6v+M4mgrCuyxR7hoSYy+NvPlXJiyTuOMP7on3+amWd3tda3c45?=
- =?us-ascii?Q?CWipgM4scY/sOEEUBAwRtfjlnovNAV98vT+g/UZ84RRWtozAO3S+KlkKkHZd?=
- =?us-ascii?Q?pVdb9H5Ei4QAqUBP2v8vvFUezM6VkmPifdNzRpVjW9plqGTqyFoWuFBxaDaO?=
- =?us-ascii?Q?moKw6JBa6xWm5hgaKwW13UQZGRHXbQEfvyjouomAhtHrdqlGUSJsXKO0g94Q?=
- =?us-ascii?Q?Kd/qo8+34ciNU6O13dypsEUQHiviS8lMWQQWjEqhdlV41pc1Uhx3msolerOT?=
- =?us-ascii?Q?uw4nX8fbZNZ00PRV74ATjUZNzTzQS4TRf3VkuJo5WiR98xXHp0mTtC5YfyTW?=
- =?us-ascii?Q?az373s7tMJ6LlwHJFxAAhdQaljVMARUKJdU7DblY8emgMsty3MrWIj1/lZi7?=
- =?us-ascii?Q?Ear1Fnma0nSb3RjeCpL8t6Mf0jbTiKSg2iW+Kuvjc2ndfY/rzN/L/jTFZXOz?=
- =?us-ascii?Q?VzfioS6s1J+HLPljXMpboPfU4Yo0pyCgau9sse1yJYIqj8bVaTDpas1GAF1q?=
- =?us-ascii?Q?pw2g8+fKxgJdM7wdibYxoj739pacKQ4dPF3ZJpdCvzvosT29+uf7FcruaCJG?=
- =?us-ascii?Q?q46IwK8Pr9wX7dFu4ti1xpc=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS1PPF62EEA9B1D.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(52116014)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aSQhjETmMoHivT66m8Xz6H/T7WvvqIlAyMwDUd3EhuSkbRc/LU8e3Us1oXrb?=
- =?us-ascii?Q?Eo55SGiZgjdnJ+SjpcQQXM9sfOaqmly5XmvJjnfjksALMI23fErado/INuxD?=
- =?us-ascii?Q?gnGe7484KasuYljPzhEjZCEuNnh9Fk3ZAzRNtScHeOydjdsehrYgmBSWfJCW?=
- =?us-ascii?Q?m67jdyCUV5NSbx4qVOZDUoCghUeqJQtJP/RrdW6iF9qu9kXZvIRouCKPk4MZ?=
- =?us-ascii?Q?QGYYouxDn0MwefK2S+Xcowv7fNfTnaSFfhYSF+cDtjJmsx2ReeKHnA1wphPQ?=
- =?us-ascii?Q?Bcheu9bqmmcFBJ7j+xGD2tmRC8JigrpWX4nT94rtvoZmfN/1Hp7KkgRjBhSN?=
- =?us-ascii?Q?xUSi26jOvmejFaoeyTMl1LKC5qvRe12YxkV6K4+aC6gnSfhfeVQz5Gh6TdB9?=
- =?us-ascii?Q?An2CGlCRhnGAQYchGSlBR5v6ktIkI8hlfenWjpZ56dfxx4sWXyTqff/MMHmG?=
- =?us-ascii?Q?7EkS1nhw8aza7tYHPdMO6AiTZSv7spVgR1oK4cj7E1Em1asFrfRFlu+gBwmw?=
- =?us-ascii?Q?sRjy0kv+KEOA7Cvw/JrELzmVAx61hn9ZLXS7sUzsf4aBNtekESkvL0dteoY3?=
- =?us-ascii?Q?Wuvny1qtkEZDdOoK7b77Swzb5llawQd8/GcXaiVSdfAv/6C8cgWOgK1SJi1E?=
- =?us-ascii?Q?BNVzAL/dCab+ZkW7dlkRZNSrN1pQTfzUoKHnsWa6rW49ISwz5i6MEXhYnFK9?=
- =?us-ascii?Q?lrlKxm6XhmWQICrdMnEwuP5S5pNAJmU8bFWUdXMb+uGMZGf60J80JV2PFUw0?=
- =?us-ascii?Q?JjW1qZ2moW/D37G/3oiNFtZa3vJnt898vBJmu4ZHNzfsh8fEDFSJHIzPDpeH?=
- =?us-ascii?Q?jp7mwq812HCrzSQsVQYsDMDHYXrM1lW01iSh72OqqUwlvLbI3MaB30LAH+Gf?=
- =?us-ascii?Q?FUXsfW6VlJ8akpEtgwbujkbCQkVbUvgUn8CGyXGli+AH1f+TZSU9Gx9n2oYx?=
- =?us-ascii?Q?+5KqrLyZcpQQjvsXOivq0nj1rPfc5VotN7hIV1d67/nSWYeNtdfZyw/TCh+X?=
- =?us-ascii?Q?xEVI9aG3R5fJxUC0wjDlNsSOAXOt9/g037VBGAtzPOtwHjXS5uqG+08tBjXc?=
- =?us-ascii?Q?HvBWl5QoHHW0pDiaaJOrC+AddP56wNNqPMQOpScNzqjg0E+ar0m9WZm8AdVE?=
- =?us-ascii?Q?0DTWaXb+gNZkUKYcap0lvoXzDfbSe+mJxgiqlSMiLuRicQrzBcgPKAr+AD8q?=
- =?us-ascii?Q?gNNQcg2kUXDJwEvS4Ddxx9jRDKxADzCodsihb6ML/A5yHignnqdHgEj8V3aG?=
- =?us-ascii?Q?K23GoJPgjjxIRZjIK7nVGoCkx2bPXlMIAP98jvN6pyzqhinaI5di5nXE2DtY?=
- =?us-ascii?Q?uESpnJgLv2qq6DBXzNhuUwnj/hhumYfPGKIwp4PIVUicNIALsz5i0hhNnyja?=
- =?us-ascii?Q?kvTPzaX5J2I1NVpKCV0Hwb607GvNtY4eBKFEeoEGpi9RkXe2Hg5J8EFJUOiZ?=
- =?us-ascii?Q?Sv2S5vlVCtYz4M8OhO/p5TjNZd75qNySHzyBiEjCEeEuye19TdUX1gNhk0wm?=
- =?us-ascii?Q?BajzpGf/eJe/pDwY/rQhB3x6E7rZXhIzHOqvemhA9afydKEPj2Tg/iNz47Kk?=
- =?us-ascii?Q?xt91woAGuOlcXNDd7XXTuye8+oJvLKh7wxfXpvK9ha8FjILOYw/43IJC0V0c?=
- =?us-ascii?Q?opXPxMw+PrVaXMtxQyJ1rpqbfaQbDyX2b0C26NwWR1DxLUp4HmvFXjFH20Op?=
- =?us-ascii?Q?UcaMv/aPDnegg7f/alrjxryz2qq8NPwYw3t6++O3d94qMaIf?=
-X-OriginatorOrg: khadas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4508ed44-43f0-44c8-6b12-08de54a870f5
-X-MS-Exchange-CrossTenant-AuthSource: PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 02:39:16.1445
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sTpLvEIianaoMKzfBKjUYGwxgPmQcjxEGENgncEOOjmqOVICY1C1ZlPbeNWJUcrp
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUZPR03MB9414
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] NPU and i2c3 + FUSB302 addition for Radxa Zero 2
+To: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ricardo Pardini <ricardo@pardini.net>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
+ <176846437964.1204537.11505642254935473121.b4-ty@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <176846437964.1204537.11505642254935473121.b4-ty@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260115_183923_508348_07E6A381 
-X-CRM114-Status: UNSURE (   7.58  )
+X-CRM114-CacheID: sfid-20260116_085653_546307_DB49EF3E 
+X-CRM114-Status: UNSURE (   9.90  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -165,57 +122,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable the SDIO controller interface connected to the on-board
-AP6256 WiFi/BT module.
+On 15/01/2026 09:06, Neil Armstrong wrote:
+> Hi,
+> 
+> On Wed, 14 Jan 2026 23:48:35 +0100, Ricardo Pardini wrote:
+>> This series adds a few things missing from the Radxa Zero 2:
+>>
+>> 1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
+>> 2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22
+>>
+>>
+> 
+> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.20/arm64-dt)
+> 
+> [1/2] arm64: dts: amlogic: Enable the npu node on Radxa Zero 2
+>       https://git.kernel.org/amlogic/c/29deec49146162d06b17739c627d062191e03814
+> [2/2] arm64: dts: amlogic: add the type-c controller on Radxa Zero 2
+>       https://git.kernel.org/amlogic/c/8f5aa8d444d1d200715c36a8f072054a49bfb410
 
-Signed-off-by: Nick Xie <nick@khadas.com>
----
- .../amlogic/meson-s4-s905y4-khadas-vim1s.dts  | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts
-index 4a66c1bec965e..74ef02c713207 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts
-@@ -220,6 +220,35 @@ &sd {
- 	vqmmc-supply = <&vddio_sd>;
- };
- 
-+&sdio {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	max-frequency = <50000000>;
-+	non-removable;
-+	disable-wp;
-+
-+	amlogic,dram-access-quirk;
-+
-+	no-sd;
-+	no-mmc;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_ao1v8>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
- &spicc0 {
- 	status = "okay";
- 	pinctrl-names = "default";
--- 
-2.34.1
+You went quite fast, but this has warnings. See also Rob's bot response.
 
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
