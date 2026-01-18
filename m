@@ -4,76 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BEB7C982C5
-	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Jan 2026 04:03:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2F98CA5FE1
+	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Jan 2026 13:28:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=+OYMppzXze9rTsO3/3ybtQ4yc+aLQ9ni9K84UY1TpNI=; b=TcBFa7i+TES1Q9
-	BHgT9KrtRT/+/ayNsqZIZgVkFh8h6CtJFsGHZ2jsycew7GKfE8wSlbXeO3O+/biljZcQoBUBp02bb
-	IHYgKpOcF+Mxg7+zIhiv8s+ARFgeNAkutFCwpe/JM2RYD3Af+/UNpEikkNChB72b5Oh29RXb276x+
-	uuiUFMqNJNRrYy9SvpIvXVtRLGBOoKiaRlIZeIF++sAoQTBqgY5p7NMuuLwIximX5pWECjYwkWUmv
-	tefQDCc7hulf67vuIIHLU2FQ1f5uKvMakteNQ/fKx5FIt+w79IjLNVQl1ITi9eWYGUQ4McUPAzWmJ
-	Oi9676xldIMU31Kw48xw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GLaC7I2ybqWKrQaxykLjOx9u0Oukb9W7JtyzO7vwqKs=; b=ux8ZLar1kvCUcx
+	O4uyap5nbq+k7WTmwAtth6ygu/Y6yW6OGVpG5V8huxI3fKoAhoJCQAIaMVCvNN5H0zAUH06zrR0Z3
+	QWwN0nfTVZm3vex1OhnHTFuU0pu2W4He6gXG/wNsUYesV7goYfd2kUi6BCRcuOHBxRIZ08Z0qW87E
+	8RXSBMki5EuWquTAEBijmxV6BXAViVuDYk1RBDm4qQZ9hZYSao+WKHlNQkP/FwZGs95V9zQmhivKH
+	TpdY5T7m0t5BimSW35oGCVY7kfb5pXieFAbXssxcluJDa+QbplP6SYXH4EKxXazEadTZsKwfdcz0y
+	M36tS7IJeUSoXO503Eww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgxWd-0000000FAl8-1Q8n;
-	Sat, 17 Jan 2026 04:02:59 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vhSov-000000006mz-3Swk;
+	Sun, 18 Jan 2026 13:27:57 +0000
+Received: from m16.mail.163.com ([117.135.210.2])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vgxWc-0000000FAky-04sI;
-	Sat, 17 Jan 2026 04:02:58 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0EAD860131;
-	Sat, 17 Jan 2026 04:02:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B207EC4CEF7;
-	Sat, 17 Jan 2026 04:02:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768622576;
-	bh=50TUX+3d5K0vnVqShqXZBJO+XBBciVmNK+6gK3etOaQ=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=aPf53Vx+dHa60p3bH0ImYYM5dOUMCHI5w4g3rIEzFiA/9M27/KlveqvQX3WYd6yT6
-	 /2H53PSK/+lMRGjHSiYtkGgBj1Tf4TXWAZy2jYHL0GeT/ft5SbfsOcC/Zgr62UX3dW
-	 gfZXQiCX/lohMdnS4nvf4YWZbk81oEsQNOj/XMod1wzV1HTmBtnNPagxsuFcziHqye
-	 5dwWjW+X8kWs31tmY6KfUeZrwwIX3/2EOqv84eVSD7BEokjjof2x0zC6St3F9F4RGj
-	 8yjt/53yVyZxNj8cjV1nKfqWS2jG9yhYiUCWrvVY0PYBOTOAdCAe6GVy3jzWVXtcUW
-	 VBGw34tLy48fA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E3A5C982C5;
-	Sat, 17 Jan 2026 04:02:56 +0000 (UTC)
-From: Eric Neulight via B4 Relay <devnull+Eric.Neulight.linuxdev.slmail.me@kernel.org>
-Date: Fri, 16 Jan 2026 23:02:20 -0500
-Subject: [PATCH] Eliminate Odroid HC4 power glitches during boot.
+	id 1vhSor-000000006k9-380Q;
+	Sun, 18 Jan 2026 13:27:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=j9NWfNLMXfGmHPrhiqbEiqJKeYZj3TN2WzPDL/gZWhI=;
+	b=YrYP8roGqofgIqAVcaNc940Qub9UHHLMiANIrDKfmbiUMqFshjCXo3/Medm7Td
+	y7kWOIYVzjIUkgfbE4gXUTVDFDaKEgFuitq+lyWf8YQkeWrznysDRaInK2paKuIH
+	D9XNUmIqDsXRkjNgOa2ZFFZsdmT5D4AL8e5dZmqCrwyl4=
+Received: from [IPV6:240e:b8f:927e:1000:e94b:3b22:e2ce:7986] (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id PigvCgDnuOCV32xpJgqjLw--.141S2;
+	Sun, 18 Jan 2026 21:26:48 +0800 (CST)
+Message-ID: <1ff0d069-14f0-439a-afca-4ecc1b569834@163.com>
+Date: Sun, 18 Jan 2026 21:26:45 +0800
 MIME-Version: 1.0
-Message-Id: <20260116-odroid-hc4-dts-v1-1-459b601cd5cf@linuxdev.slmail.me>
-X-B4-Tracking: v=1; b=H4sIAMsJa2kC/x3MMQqAMAxA0atIZgNtSUW8ijhIk2qWVloRQby7x
- fEN/z9QpahUmLoHilxaNacG23cQ9jVtgsrN4IwbjLUDZi5ZGfdAyGdFT5GcJx69J2jRUSTq/Q/
- n5X0/vDgxLGAAAAA=
-X-Change-ID: 20260116-odroid-hc4-dts-54f4254d8554
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Eric Neulight <Eric.Neulight@linuxdev.slmail.me>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4323;
- i=Eric.Neulight@linuxdev.slmail.me; h=from:subject:message-id;
- bh=D6GTcwhfX7GFqFVPwCE7THDsRVZibUMqyLB6SBdfMzo=;
- b=owGbwMvMwCX22yMi/F2X5g7G02pJDJnZnB8enpnGXpJYs7jxUr1Do5TgrreOtnuYrpx221HuN
- VXAb/HfjlIWBjEuBlkxRZaPK29Nn6k9Ta3o5frVMHNYmUCGMHBxCsBEMqcy/OHf9XHK1h/+L0r0
- b7JEbVJ8ffiJZs7ChQ5GLzak/j50r3IKw1/hswYaNlEiNcxbN0ibTuCw2i7Zl3JRq9XkRlZihHH
- gCx4A
-X-Developer-Key: i=Eric.Neulight@linuxdev.slmail.me; a=openpgp;
- fpr=F1A9DA97992B962672E9AFABFB485857EE8A29B8
-X-Endpoint-Received: by B4 Relay for
- Eric.Neulight@linuxdev.slmail.me/default with auth_id=606
-X-Original-From: Eric Neulight <Eric.Neulight@linuxdev.slmail.me>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 0/2] PCI: Configure Root Port MPS during host probing
+To: Ricardo Pardini <ricardo@pardini.net>, lpieralisi@kernel.org,
+ kwilczynski@kernel.org, bhelgaas@google.com, helgaas@kernel.org,
+ heiko@sntech.de, mani@kernel.org, yue.wang@Amlogic.com
+Cc: pali@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
+ jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, cassel@kernel.org,
+ linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20251127170908.14850-1-18255117159@163.com>
+ <f5322597-c6dd-494a-863b-2caf24363f2d@pardini.net>
+Content-Language: en-US
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <f5322597-c6dd-494a-863b-2caf24363f2d@pardini.net>
+X-CM-TRANSID: PigvCgDnuOCV32xpJgqjLw--.141S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZF1UAr48WFyktF4rtr13Jwb_yoW5Xr18pF
+	WYganIyFs3GFyfC34qqw4kCFW5Za4kKF43GryvqwnxJan8uF1DWFy8tws5twnFgrn3A3WS
+	vF1qg3WxZwn0vaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UxPEhUUUUU=
+X-Originating-IP: [240e:b8f:927e:1000:e94b:3b22:e2ce:7986]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbCwxiTN2ls35hqSAAA3f
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260118_052754_440160_A75C0691 
+X-CRM114-Status: GOOD (  14.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,115 +75,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Eric.Neulight@linuxdev.slmail.me
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Eric Neulight <Eric.Neulight@linuxdev.slmail.me>
-
-Fix issue with Odroid HC4 (and all meson-sm1-odroid) DTS that causes
-regulator power to momentarily glitch OFF-ON during boot.  Add
-regulator-boot-on to all regulator-fixed and regulator-gpio entries
-that (1) define a gpio AND (2) define regulator-always-on.
-
-U-boot powers on devices necessary for boot then hands off the DTB to
-the kernel.  During probe, linux drivers/regulator/fixed.c and
-gpio-regulator.c both first set the regulator control gpio (that U-boot
-already turned ON) to default OFF before then setting it to the defined
-(ON) state. This glitches the power to the affected devices, unless
-regulator-boot-on is specified with it.  In fact, U-boot has the same
-behavior.  So, during reboot, a power glitch can actually happen twice:
-once when U-boot reads the DTB and probes the gpio and again when the
-kernel reads the DTB and probes the gpio.
-
-Problem this fixes: On the Odroid HC4, power to the SATA ports glitches
-during boot and causes some HDDs to do emergency head retract, which
-should be avoided.  On the HC4, power glitches to the SD card, USB,
-SATA, and HDMI interfaces during boot.  These are all boot devices.
-A power glitch can potentially cause a problem for any sensitive devices
-during boot.
-
-NOTE: This is not limited to just the HC4, likely an issue with ALL DTS
-with regulator-fixed or regulator-gpio entries that (1) define a gpio
-AND (2) define regulator-always-on.  All such entries should also
-include regulator-boot-on in order to avoid potential power glitches.
-At worst, adding regulator-boot-on in such cases is harmless because of
-regulator-always-on, and, at best, it eliminates detrimental power
-glitches during boot.  So, this is best-practice.
-
-Fixes: 164147f094ec5d0fc2c2098a888f4b50cf3096a7 ("arm64: dts: meson-sm1-odroid-hc4: add regulators controlled by GPIOH_8")
-Fixes: 45d736ab17b44257e15e75e0dba364139fdb0983 ("arm64: dts: meson-sm1-odroid: add 5v regulator gpio")
-Fixes: 1f80a5cf74a60997b92d2cde772edec093bec4d9 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
-Fixes: 88d537bc92ca035e2a9920b0abc750dd62146520 ("arm64: dts: meson: convert meson-sm1-odroid-c4 to dtsi")
-
-Signed-off-by: Eric Neulight <Eric.Neulight@linuxdev.slmail.me>
----
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 2 ++
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi    | 3 +++
- 2 files changed, 5 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-index 0170139b8d32f4274ad991b0f3d9a0f6c67969ce..3ece30a0a1fff736c544cf89ed0a8cca0890f128 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-@@ -52,6 +52,7 @@ p12v_0: regulator-p12v-0 {
- 
- 		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
- 		enable-active-high;
-+		regulator-boot-on;
- 		regulator-always-on;
- 	};
- 
-@@ -65,6 +66,7 @@ p12v_1: regulator-p12v-1 {
- 
- 		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
- 		enable-active-high;
-+		regulator-boot-on;
- 		regulator-always-on;
- 	};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-index c4524eb4f0996dfbccec16ca5b936a5c3b2663a5..0bce4e8d965f2c83e6ba677fef2ede2726de6ed1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-@@ -37,6 +37,7 @@ tflash_vdd: regulator-tflash-vdd {
- 
- 		gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
- 		enable-active-high;
-+		regulator-boot-on;
- 		regulator-always-on;
- 	};
- 
-@@ -50,6 +51,7 @@ tf_io: gpio-regulator-tf-io {
- 
- 		enable-gpios = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
- 		enable-active-high;
-+		regulator-boot-on;
- 		regulator-always-on;
- 
- 		gpios = <&gpio_ao GPIOAO_6 GPIO_OPEN_SOURCE>;
-@@ -81,6 +83,7 @@ vcc_5v: regulator-vcc-5v {
- 		regulator-name = "5V";
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
-+		regulator-boot-on;
- 		regulator-always-on;
- 		vin-supply = <&main_12v>;
- 		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-
----
-base-commit: b71e635feefc852405b14620a7fc58c4c80c0f73
-change-id: 20260116-odroid-hc4-dts-54f4254d8554
-
-Best regards,
--- 
-Eric Neulight <Eric.Neulight@linuxdev.slmail.me>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAyMDI1LzEyLzMxIDEwOjU4LCBSaWNhcmRvIFBhcmRpbmkgd3JvdGU6Cj4gT24gMjcvMTEv
+MjAyNSAxODowOSwgSGFucyBaaGFuZyB3cm90ZToKPj4gQ3VycmVudCBQQ0llIGluaXRpYWxpemF0
+aW9uIGV4aGliaXRzIGEga2V5IG9wdGltaXphdGlvbiBnYXA6IFJvb3QgUG9ydHMKPj4gbWF5IG9w
+ZXJhdGUgd2l0aCBub24tb3B0aW1hbCBNYXhpbXVtIFBheWxvYWQgU2l6ZSAoTVBTKSBzZXR0aW5n
+cy4gV2hpbGUKPj4gZG93bnN0cmVhbSBkZXZpY2UgY29uZmlndXJhdGlvbiBpcyBoYW5kbGVkIGR1
+cmluZyBidXMgZW51bWVyYXRpb24sIFJvb3QKPj4gUG9ydCBNUFMgdmFsdWVzIGluaGVyaXRlZCBm
+cm9tIGZpcm13YXJlIG9yIGhhcmR3YXJlIGRlZmF1bHRzIG9mdGVuIGZhaWwKPj4gdG8gdXRpbGl6
+ZSB0aGUgZnVsbCBjYXBhYmlsaXRpZXMgc3VwcG9ydGVkIGJ5IGNvbnRyb2xsZXIgaGFyZHdhcmUu
+IFRoaXMKPj4gcmVzdWx0cyBpbiBzdWJvcHRpbWFsIGRhdGEgdHJhbnNmZXIgZWZmaWNpZW5jeSB0
+aHJvdWdob3V0IHRoZSBQQ0llCj4+IGhpZXJhcmNoeS4KPj4KPj4gVGhpcyBwYXRjaCBzZXJpZXMg
+YWRkcmVzc2VzIHRoaXMgYnk6Cj4+Cj4+IDEuIENvcmUgUENJIGVuaGFuY2VtZW50IChQYXRjaCAx
+KToKPj4gLSBQcm9hY3RpdmVseSBjb25maWd1cmVzIFJvb3QgUG9ydCBNUFMgZHVyaW5nIGhvc3Qg
+Y29udHJvbGxlciBwcm9iaW5nCj4+IC0gU2V0cyBpbml0aWFsIE1QUyB0byBoYXJkd2FyZSBtYXhp
+bXVtICgxMjggPDwgZGV2LT5wY2llX21wc3MpCj4+IC0gQ29uZGl0aW9uYWwgb24gUENJZSBidXMg
+dHVuaW5nIGJlaW5nIGVuYWJsZWQgKFBDSUVfQlVTX1RVTkVfT0ZGIHVuc2V0KQo+PiDCoMKgIGFu
+ZCBub3QgaW4gUENJRV9CVVNfUEVFUjJQRUVSIG1vZGUgKHdoaWNoIHJlcXVpcmVzIGRlZmF1bHQg
+MTI4IGJ5dGVzKQo+PiAtIE1haW50YWlucyBiYWNrd2FyZCBjb21wYXRpYmlsaXR5IHZpYSBQQ0lF
+X0JVU19UVU5FX09GRiBjaGVjawo+PiAtIFByZXNlcnZlcyBzdGFuZGFyZCBNUFMgbmVnb3RpYXRp
+b24gZHVyaW5nIGRvd25zdHJlYW0gZW51bWVyYXRpb24KPj4KPj4gMi4gRHJpdmVyIGNsZWFudXAg
+KFBhdGNoIDIpOgo+PiAtIFJlbW92ZXMgcmVkdW5kYW50IE1QUyBjb25maWd1cmF0aW9uIGZyb20g
+TWVzb24gUENJZSBjb250cm9sbGVyIGRyaXZlcgo+PiAtIEZ1bmN0aW9uYWxpdHkgaXMgbm93IGNl
+bnRyYWxpemVkIGluIFBDSSBjb3JlCj4+IC0gU2ltcGxpZmllcyBkcml2ZXIgbWFpbnRlbmFuY2Ug
+bG9uZy10ZXJtCj4+Cj4+IC0tLQo+PiBDaGFuZ2VzIGluIHY3Ogo+PiAtIEV4Y2x1ZGUgUENJRV9C
+VVNfUEVFUjJQRUVSIG1vZGUgZnJvbSBSb290IFBvcnQgTVBTIGNvbmZpZ3VyYXRpb24KPj4gLSBS
+ZW1vdmUgcmVkdW5kYW50IGNoZWNrIGZvciB1cHN0cmVhbSBicmlkZ2UgKFJvb3QgUG9ydHMgZG9u
+J3QgaGF2ZSBvbmUpCj4+IC0gSW1wcm92ZSBjb21taXQgbWVzc2FnZSBhbmQgY29kZSBjb21tZW50
+cyBhcyBwZXIgQmpvcm4uCj4gSGkgSGFucywKPiAKPiBJJ3ZlIHRlc3RlZCBvbiBhbiBPZHJvaWQt
+SEM0IHdpdGggYSBTQVRBIFNTRCAodmlhIGFuIEFTTTEwNjEpIGJ5IAo+IGFwcGx5aW5nIHlvdXIg
+djcgb24gdjYuMTktcmMzICsgQmpvcm4ncyAyMDI1MTEwMzIyMTkzMC4xODMxMzc2LTEtIAo+IGhl
+bGdhYXNAa2VybmVsLm9yZyAoIlBDSTogbWVzb246IFJlbW92ZSBtZXNvbl9wY2llX2xpbmtfdXAo
+KSB0aW1lb3V0LCAKPiBtZXNzYWdlLCBzcGVlZCBjaGVjayIgd2hpY2ggaXMgcmVxdWlyZWQgdG8g
+Z2V0IHRoZSBtZXNvbiBQQ0llIHRvIHdvcmsgYXQgCj4gYWxsIHNpbmNlIDYuMTgpLiBXaXRoIHRo
+YXQgc2V0dXAgSSBnZXQ6Cj4gCj4gIyBoZHBhcm0gLS1kaXJlY3QgLXQgL2Rldi9zZGEKPiAgwqBU
+aW1pbmcgT19ESVJFQ1QgZGlzayByZWFkczogODMyIE1CIGluwqAgMy4wMCBzZWNvbmRzID0gMjc3
+LjMzIE1CL3NlYwo+IAo+IEkndmUgYW4gaWRlbnRpY2FsIG1hY2hpbmUsIHdpdGggYSBzaW1pbGFy
+IGRpc2sgKGV2ZW4gc2xpZ2h0bHkgZmFzdGVyLCBvbiAKPiBwYXBlciksIHJ1bm5pbmcgcGxhaW4g
+Ni4xMi55IGFuZCB0aGVyZSBJIGdldDoKPiAKPiAjIGhkcGFybSAtLWRpcmVjdCAtdCAvZGV2L3Nk
+YQo+ICDCoFRpbWluZyBPX0RJUkVDVCBkaXNrIHJlYWRzOiA3NjQgTUIgaW7CoCAzLjAwIHNlY29u
+ZHMgPSAyNTQuMjYgTUIvc2VjCj4gCj4gSSByZXBlYXRlZCB0aG9zZSBhIGZldyB0aW1lcywgbm90
+IHZlcnkgc2NpZW50aWZpYywgSSBrbm93OyBidXQgYW55d2F5Ogo+IAo+IFRlc3RlZC1ieTogUmlj
+YXJkbyBQYXJkaW5pIDxyaWNhcmRvQHBhcmRpbmkubmV0PiAjIG9uIE9kcm9pZC1IQzQKPiAKPiBJ
+J3ZlIGFsc28gZmVlZGJhY2sgZnJvbSBhbm90aGVyIHVzZXIgcnVubmluZyB3aXRoIHRoaXMgc2Vy
+aWVzIHdpdGggCj4gc3VjY2VzcyBvbiBhIGRpZmZlcmVudCBtZXNvbiBQQ0llIG1hY2hpbmUsIHdp
+bGwgYXNrIHRoZW0gdG8gVEIgYXMgd2VsbDsgCj4gdGhleSBoYWQgcmVwb3J0ZWQgYSBzaWduaWZp
+Y2FudCBkcm9wIGluIHBlcmZvcm1hbmNlIHNpbmNlIHY2LjE4IHdpdGhvdXQgCj4gdGhpcy4KSGks
+CgpUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB5b3VyIHRlc3QuIExldCdzIHdhaXQgZm9yIEJqb3Ju
+J3MgcmVwbHkuCgpCZXN0IHJlZ2FyZHMsCkhhbnMKCj4gCj4gVGhhbmtzLAo+IFJpY2FyZG8KCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
+Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
+L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
