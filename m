@@ -4,66 +4,120 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2F98CA5FE1
-	for <linux-amlogic@archiver.kernel.org>; Sun, 18 Jan 2026 13:28:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AC96CCF2CF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Jan 2026 09:04:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GLaC7I2ybqWKrQaxykLjOx9u0Oukb9W7JtyzO7vwqKs=; b=ux8ZLar1kvCUcx
-	O4uyap5nbq+k7WTmwAtth6ygu/Y6yW6OGVpG5V8huxI3fKoAhoJCQAIaMVCvNN5H0zAUH06zrR0Z3
-	QWwN0nfTVZm3vex1OhnHTFuU0pu2W4He6gXG/wNsUYesV7goYfd2kUi6BCRcuOHBxRIZ08Z0qW87E
-	8RXSBMki5EuWquTAEBijmxV6BXAViVuDYk1RBDm4qQZ9hZYSao+WKHlNQkP/FwZGs95V9zQmhivKH
-	TpdY5T7m0t5BimSW35oGCVY7kfb5pXieFAbXssxcluJDa+QbplP6SYXH4EKxXazEadTZsKwfdcz0y
-	M36tS7IJeUSoXO503Eww==;
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=OMWcDrzFSku35+yvoPxN6Gwl9QJVv7nXQQo4r5iAm5E=; b=JuS+BTLRBih4X9uQtn6tqYpexn
+	IwVBuR/+9hAIxDVqS90o6rbVUBHDql2FKc/S5zfB0r6DxFbnyg2Y/CljTbNFOm+fwM5ddr1Qwc5iy
+	J+FhoGb8D7bLM9eVY148AnjhmAwxPcRmWhTB4A/zk7+s0H3ban7HCLOTHuCZGLGgIx5sHsfFj0gvB
+	qlk/Q+6mM3NdvQNpDsLQ/Odzb615vdRmwD94SDQxDZ8SbYxxXAkKZzGUXbm65WitKBBNCnEKT2/7z
+	l1Rb88A5M+dSChR/LsxAkpA/LncOx7Rh+blhzS+QCeUYG5lHQ+pIaaw4IN16fo6ygRaTIWLNLDEhv
+	zwzkJaQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vhSov-000000006mz-3Swk;
-	Sun, 18 Jan 2026 13:27:57 +0000
-Received: from m16.mail.163.com ([117.135.210.2])
+	id 1vhlBO-00000001bHT-36pl;
+	Mon, 19 Jan 2026 09:04:22 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vhSor-000000006k9-380Q;
-	Sun, 18 Jan 2026 13:27:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=j9NWfNLMXfGmHPrhiqbEiqJKeYZj3TN2WzPDL/gZWhI=;
-	b=YrYP8roGqofgIqAVcaNc940Qub9UHHLMiANIrDKfmbiUMqFshjCXo3/Medm7Td
-	y7kWOIYVzjIUkgfbE4gXUTVDFDaKEgFuitq+lyWf8YQkeWrznysDRaInK2paKuIH
-	D9XNUmIqDsXRkjNgOa2ZFFZsdmT5D4AL8e5dZmqCrwyl4=
-Received: from [IPV6:240e:b8f:927e:1000:e94b:3b22:e2ce:7986] (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id PigvCgDnuOCV32xpJgqjLw--.141S2;
-	Sun, 18 Jan 2026 21:26:48 +0800 (CST)
-Message-ID: <1ff0d069-14f0-439a-afca-4ecc1b569834@163.com>
-Date: Sun, 18 Jan 2026 21:26:45 +0800
+	id 1vhlBJ-00000001bGW-3u2N
+	for linux-amlogic@lists.infradead.org;
+	Mon, 19 Jan 2026 09:04:19 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-47ee4539adfso33430575e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 19 Jan 2026 01:04:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768813455; x=1769418255; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jpBoFpPJWze1XjHnD2RjmJmPMWanDN2B4sDltQKPLag=;
+        b=Hi1m1Z6UAwSwH5x+Lcg7FkpOn3SpwpcJLypHn8oHCogGixZVIVbAncnW1aMDNKhL6b
+         SyNGAAeG79lPgM/oQyGceVBZwNkatKz9rCpwWZSslaQu62FHXLx7OG2qrkfm9DCqRJiY
+         boXklZK4or38ycx2hcVcR7SQSaMxu+6042EurB/QwVni5ZEv4Zz7R1KUBX35aBjYJMas
+         lp8ndVYwbeHPmPIyTB30efZX2MQ8gglGTAi9RGIMLpAfyGVLZVuz1uN8U+Kaptii23Cd
+         4Khj0Z9WgCAwCURTa5aLIluVxIOyJ4ijRYgozCX4I1nmCe4gHnUBbUKulfO0czeD6FOa
+         pZuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768813455; x=1769418255;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jpBoFpPJWze1XjHnD2RjmJmPMWanDN2B4sDltQKPLag=;
+        b=YQcLMgtczyCJO8sbXo8o+6eiCYmoUkKrFz7MX0K21Xu9lSLQhlFxhaoHRzfjU+TQUA
+         +XiBPgN4uGmZJObhNSXDnb8wj3JCz3lkZnRIMYITj7IuwGug4bzl58S5zcJetfX44Z0S
+         U6kzH61mlpvir44YF9xd6l2RHTGMVb2gaCeBN0HTaZAMB1I1d0aKSjyJd6CEX68l4eBn
+         7+rpnpCqdFHYXIuDXCtqbcIQ7YNQOBewj3Wb15DWXFHqTZItsG7OPyAnJTj/91dx/cm9
+         xM7gFkLW9qs15bZspm2Uk6EKTAMuyhsAr5djVasl8aIJeqyUfLCkVQfaIPqTI7zAaUjr
+         iWgA==
+X-Forwarded-Encrypted: i=1; AJvYcCVlgjGGYFgLJfyUIGFBQYlhLJ0CLCxYhOa0zzPUawXCUctR5loLl8kDBcRXMVyvRAMNYCww9+4jjH/05pJb@lists.infradead.org
+X-Gm-Message-State: AOJu0YxpOXkiT0bsjisTGtUdMPr12snUAYBX+HXaCaD52TjeHv0v5CsJ
+	BfNwLHJf8vDoW+Wi4vXOdARzSke4vyU2zRHpa2qNsFiq/YU7g09WUXUNeQC5nhCxdyg=
+X-Gm-Gg: AY/fxX6ooTjm0qsaMjWKxnATx80j3fDkvqhCl3XZdTjhUYAXO2gCmE9Du1oyJxmOG9+
+	XDua5H6l5yP1XvObGR1OkslkEBefUjxjqNLp8qKjC8Xj22coZ7inlykkmIkcBCHD9RJROfGDOlx
+	0nF+L1ToGkHPttaqAGSpHZFJAy7hMXIxE7rAw14V77dm58gd91vFwPZ2VP+pmDlTtBmHDWLxjNW
+	MDW8lR02dUI49yOpEBBPEaOLF//nsK0dVjZimQhBN2eKyP6uKS1vtQ7VVZw3lCnIzerT81/RLQU
+	peNnjEMcL67PCvBijedwKQY3YkJATQGa1fMQy1Q86Pv5ah6B5/S/dGkuZY4LXihcS2KZt/4QvQv
+	W0GmZaib3eVxc2AC94Fd3ePTlqcBGLjnCwPdv+BOIPXuhe7ldqKpp72XVYIxE6uiqcW+TEwEjRN
+	wKiV8vZpGf6W4gHftPTAXfxqCRVpY9ejmAwRI4DFTIFGJjwRd61OLkVwYS2qFw39Y=
+X-Received: by 2002:a05:600c:138d:b0:475:e067:f23d with SMTP id 5b1f17b1804b1-4801e3432fbmr121695545e9.25.1768813455316;
+        Mon, 19 Jan 2026 01:04:15 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:3d9:2080:a458:3e86:7822:1c2c? ([2a01:e0a:3d9:2080:a458:3e86:7822:1c2c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e8d77besm186692035e9.14.2026.01.19.01.04.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jan 2026 01:04:14 -0800 (PST)
+Message-ID: <bde806a2-5c8e-48f9-aded-2a9d811b5627@linaro.org>
+Date: Mon, 19 Jan 2026 10:04:13 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/2] PCI: Configure Root Port MPS during host probing
-To: Ricardo Pardini <ricardo@pardini.net>, lpieralisi@kernel.org,
- kwilczynski@kernel.org, bhelgaas@google.com, helgaas@kernel.org,
- heiko@sntech.de, mani@kernel.org, yue.wang@Amlogic.com
-Cc: pali@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
- jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, cassel@kernel.org,
- linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20251127170908.14850-1-18255117159@163.com>
- <f5322597-c6dd-494a-863b-2caf24363f2d@pardini.net>
-Content-Language: en-US
-From: Hans Zhang <18255117159@163.com>
-In-Reply-To: <f5322597-c6dd-494a-863b-2caf24363f2d@pardini.net>
-X-CM-TRANSID: PigvCgDnuOCV32xpJgqjLw--.141S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZF1UAr48WFyktF4rtr13Jwb_yoW5Xr18pF
-	WYganIyFs3GFyfC34qqw4kCFW5Za4kKF43GryvqwnxJan8uF1DWFy8tws5twnFgrn3A3WS
-	vF1qg3WxZwn0vaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UxPEhUUUUU=
-X-Originating-IP: [240e:b8f:927e:1000:e94b:3b22:e2ce:7986]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbCwxiTN2ls35hqSAAA3f
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 0/2] NPU and i2c3 + FUSB302 addition for Radxa Zero 2
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ricardo Pardini <ricardo@pardini.net>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
+ <176846437964.1204537.11505642254935473121.b4-ty@linaro.org>
+ <bf433ef2-0705-4a21-b84b-321d9f68d805@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <bf433ef2-0705-4a21-b84b-321d9f68d805@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260118_052754_440160_A75C0691 
-X-CRM114-Status: GOOD (  14.02  )
+X-CRM114-CacheID: sfid-20260119_010417_998452_F29A3444 
+X-CRM114-Status: GOOD (  10.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,58 +129,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpPbiAyMDI1LzEyLzMxIDEwOjU4LCBSaWNhcmRvIFBhcmRpbmkgd3JvdGU6Cj4gT24gMjcvMTEv
-MjAyNSAxODowOSwgSGFucyBaaGFuZyB3cm90ZToKPj4gQ3VycmVudCBQQ0llIGluaXRpYWxpemF0
-aW9uIGV4aGliaXRzIGEga2V5IG9wdGltaXphdGlvbiBnYXA6IFJvb3QgUG9ydHMKPj4gbWF5IG9w
-ZXJhdGUgd2l0aCBub24tb3B0aW1hbCBNYXhpbXVtIFBheWxvYWQgU2l6ZSAoTVBTKSBzZXR0aW5n
-cy4gV2hpbGUKPj4gZG93bnN0cmVhbSBkZXZpY2UgY29uZmlndXJhdGlvbiBpcyBoYW5kbGVkIGR1
-cmluZyBidXMgZW51bWVyYXRpb24sIFJvb3QKPj4gUG9ydCBNUFMgdmFsdWVzIGluaGVyaXRlZCBm
-cm9tIGZpcm13YXJlIG9yIGhhcmR3YXJlIGRlZmF1bHRzIG9mdGVuIGZhaWwKPj4gdG8gdXRpbGl6
-ZSB0aGUgZnVsbCBjYXBhYmlsaXRpZXMgc3VwcG9ydGVkIGJ5IGNvbnRyb2xsZXIgaGFyZHdhcmUu
-IFRoaXMKPj4gcmVzdWx0cyBpbiBzdWJvcHRpbWFsIGRhdGEgdHJhbnNmZXIgZWZmaWNpZW5jeSB0
-aHJvdWdob3V0IHRoZSBQQ0llCj4+IGhpZXJhcmNoeS4KPj4KPj4gVGhpcyBwYXRjaCBzZXJpZXMg
-YWRkcmVzc2VzIHRoaXMgYnk6Cj4+Cj4+IDEuIENvcmUgUENJIGVuaGFuY2VtZW50IChQYXRjaCAx
-KToKPj4gLSBQcm9hY3RpdmVseSBjb25maWd1cmVzIFJvb3QgUG9ydCBNUFMgZHVyaW5nIGhvc3Qg
-Y29udHJvbGxlciBwcm9iaW5nCj4+IC0gU2V0cyBpbml0aWFsIE1QUyB0byBoYXJkd2FyZSBtYXhp
-bXVtICgxMjggPDwgZGV2LT5wY2llX21wc3MpCj4+IC0gQ29uZGl0aW9uYWwgb24gUENJZSBidXMg
-dHVuaW5nIGJlaW5nIGVuYWJsZWQgKFBDSUVfQlVTX1RVTkVfT0ZGIHVuc2V0KQo+PiDCoMKgIGFu
-ZCBub3QgaW4gUENJRV9CVVNfUEVFUjJQRUVSIG1vZGUgKHdoaWNoIHJlcXVpcmVzIGRlZmF1bHQg
-MTI4IGJ5dGVzKQo+PiAtIE1haW50YWlucyBiYWNrd2FyZCBjb21wYXRpYmlsaXR5IHZpYSBQQ0lF
-X0JVU19UVU5FX09GRiBjaGVjawo+PiAtIFByZXNlcnZlcyBzdGFuZGFyZCBNUFMgbmVnb3RpYXRp
-b24gZHVyaW5nIGRvd25zdHJlYW0gZW51bWVyYXRpb24KPj4KPj4gMi4gRHJpdmVyIGNsZWFudXAg
-KFBhdGNoIDIpOgo+PiAtIFJlbW92ZXMgcmVkdW5kYW50IE1QUyBjb25maWd1cmF0aW9uIGZyb20g
-TWVzb24gUENJZSBjb250cm9sbGVyIGRyaXZlcgo+PiAtIEZ1bmN0aW9uYWxpdHkgaXMgbm93IGNl
-bnRyYWxpemVkIGluIFBDSSBjb3JlCj4+IC0gU2ltcGxpZmllcyBkcml2ZXIgbWFpbnRlbmFuY2Ug
-bG9uZy10ZXJtCj4+Cj4+IC0tLQo+PiBDaGFuZ2VzIGluIHY3Ogo+PiAtIEV4Y2x1ZGUgUENJRV9C
-VVNfUEVFUjJQRUVSIG1vZGUgZnJvbSBSb290IFBvcnQgTVBTIGNvbmZpZ3VyYXRpb24KPj4gLSBS
-ZW1vdmUgcmVkdW5kYW50IGNoZWNrIGZvciB1cHN0cmVhbSBicmlkZ2UgKFJvb3QgUG9ydHMgZG9u
-J3QgaGF2ZSBvbmUpCj4+IC0gSW1wcm92ZSBjb21taXQgbWVzc2FnZSBhbmQgY29kZSBjb21tZW50
-cyBhcyBwZXIgQmpvcm4uCj4gSGkgSGFucywKPiAKPiBJJ3ZlIHRlc3RlZCBvbiBhbiBPZHJvaWQt
-SEM0IHdpdGggYSBTQVRBIFNTRCAodmlhIGFuIEFTTTEwNjEpIGJ5IAo+IGFwcGx5aW5nIHlvdXIg
-djcgb24gdjYuMTktcmMzICsgQmpvcm4ncyAyMDI1MTEwMzIyMTkzMC4xODMxMzc2LTEtIAo+IGhl
-bGdhYXNAa2VybmVsLm9yZyAoIlBDSTogbWVzb246IFJlbW92ZSBtZXNvbl9wY2llX2xpbmtfdXAo
-KSB0aW1lb3V0LCAKPiBtZXNzYWdlLCBzcGVlZCBjaGVjayIgd2hpY2ggaXMgcmVxdWlyZWQgdG8g
-Z2V0IHRoZSBtZXNvbiBQQ0llIHRvIHdvcmsgYXQgCj4gYWxsIHNpbmNlIDYuMTgpLiBXaXRoIHRo
-YXQgc2V0dXAgSSBnZXQ6Cj4gCj4gIyBoZHBhcm0gLS1kaXJlY3QgLXQgL2Rldi9zZGEKPiAgwqBU
-aW1pbmcgT19ESVJFQ1QgZGlzayByZWFkczogODMyIE1CIGluwqAgMy4wMCBzZWNvbmRzID0gMjc3
-LjMzIE1CL3NlYwo+IAo+IEkndmUgYW4gaWRlbnRpY2FsIG1hY2hpbmUsIHdpdGggYSBzaW1pbGFy
-IGRpc2sgKGV2ZW4gc2xpZ2h0bHkgZmFzdGVyLCBvbiAKPiBwYXBlciksIHJ1bm5pbmcgcGxhaW4g
-Ni4xMi55IGFuZCB0aGVyZSBJIGdldDoKPiAKPiAjIGhkcGFybSAtLWRpcmVjdCAtdCAvZGV2L3Nk
-YQo+ICDCoFRpbWluZyBPX0RJUkVDVCBkaXNrIHJlYWRzOiA3NjQgTUIgaW7CoCAzLjAwIHNlY29u
-ZHMgPSAyNTQuMjYgTUIvc2VjCj4gCj4gSSByZXBlYXRlZCB0aG9zZSBhIGZldyB0aW1lcywgbm90
-IHZlcnkgc2NpZW50aWZpYywgSSBrbm93OyBidXQgYW55d2F5Ogo+IAo+IFRlc3RlZC1ieTogUmlj
-YXJkbyBQYXJkaW5pIDxyaWNhcmRvQHBhcmRpbmkubmV0PiAjIG9uIE9kcm9pZC1IQzQKPiAKPiBJ
-J3ZlIGFsc28gZmVlZGJhY2sgZnJvbSBhbm90aGVyIHVzZXIgcnVubmluZyB3aXRoIHRoaXMgc2Vy
-aWVzIHdpdGggCj4gc3VjY2VzcyBvbiBhIGRpZmZlcmVudCBtZXNvbiBQQ0llIG1hY2hpbmUsIHdp
-bGwgYXNrIHRoZW0gdG8gVEIgYXMgd2VsbDsgCj4gdGhleSBoYWQgcmVwb3J0ZWQgYSBzaWduaWZp
-Y2FudCBkcm9wIGluIHBlcmZvcm1hbmNlIHNpbmNlIHY2LjE4IHdpdGhvdXQgCj4gdGhpcy4KSGks
-CgpUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB5b3VyIHRlc3QuIExldCdzIHdhaXQgZm9yIEJqb3Ju
-J3MgcmVwbHkuCgpCZXN0IHJlZ2FyZHMsCkhhbnMKCj4gCj4gVGhhbmtzLAo+IFJpY2FyZG8KCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
-Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
-L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On 1/16/26 17:56, Krzysztof Kozlowski wrote:
+> On 15/01/2026 09:06, Neil Armstrong wrote:
+>> Hi,
+>>
+>> On Wed, 14 Jan 2026 23:48:35 +0100, Ricardo Pardini wrote:
+>>> This series adds a few things missing from the Radxa Zero 2:
+>>>
+>>> 1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
+>>> 2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22
+>>>
+>>>
+>>
+>> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.20/arm64-dt)
+>>
+>> [1/2] arm64: dts: amlogic: Enable the npu node on Radxa Zero 2
+>>        https://git.kernel.org/amlogic/c/29deec49146162d06b17739c627d062191e03814
+>> [2/2] arm64: dts: amlogic: add the type-c controller on Radxa Zero 2
+>>        https://git.kernel.org/amlogic/c/8f5aa8d444d1d200715c36a8f072054a49bfb410
+> 
+> 
+> You went quite fast, but this has warnings. See also Rob's bot response.
+
+I dropped the patch almost immediately
+
+> 
+> Best regards,
+> Krzysztof
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
