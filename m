@@ -4,178 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16276C88E7F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jan 2026 09:35:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75A13CF65DD
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Jan 2026 11:04:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nYtRTZooxc//kbm0WmeVVrvdVFniEvqslN256jqPcSM=; b=q/lrZcddJXSE7A
-	4MdYGkyZRfpvp/Yl8adlcI7+9sf+6fEbEt3X2pQPhrtlhAMIjU3ndWOPPuVqrt59IrO9WqoBOS3/T
-	GFmJhs687tsbI9cELE8bxv4Bzgo9fCib59R1yroKHe3kvh2j2Cej+T+XyU9O5j57JJrmAW5YWYDBC
-	vA+QphsTnOMwv8CiTa/Qm7U5TN06P2fK2FZ/hxCGV8CUEvBztJA6lkaHGFgATE8KE/aevMY/a9poU
-	Tg/Q8auZxo6BZdTZHv0P7/rIf5nBeRSovW6RK+fD4Ds+vyOEG+AdHan+ySfSR3oUV9Gezh2DU58qD
-	zbigl0MRI/lxeHVduDRg==;
+	List-Owner; bh=KuuFPjpjAdOLHnhcmBdnGq8wTl5E7wnSQlVBD0dqXHU=; b=pztUEHjSowvprx
+	rFeH6G3NlDc/tjs/SvCAQCkZWcwddfV5oUfxuzOjHY+Qe/mBS/+BizyiraHKwCYpffZ2wofpxjEfb
+	Z7ZPKLNt2su9X4/GqrgvgLSFLfr+RStv6LcL9Dsruf0DgrwUD8jy1F0hnk1iSzZx76QxK5ZMQ7mrs
+	9Rw7thxpthhUaIqkKPKIQk2wclqsa0Y08M9Ho9Gt55hOGmgWX/T3uawXBqLD8qYjekBEN7ohHAd1C
+	nv7n46ykcGQ3o2w3cLugF3eGbRh4AJpBMmALZeb83NPIWQCq/nHHjnTLv9abmclTiKODwWq7rTHDF
+	xtVbwIsN9v/GC3rNj6yA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vkJ07-0000000CDPu-3jbS;
-	Mon, 26 Jan 2026 09:35:16 +0000
-Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1vkKOY-0000000CNlB-1y42;
+	Mon, 26 Jan 2026 11:04:36 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vkJ04-0000000CDPN-1KMY;
-	Mon, 26 Jan 2026 09:35:14 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AJGHUD1y98nvy9KsY2LwpEgUvooABSqY05UC0eaa/PTKxEGi2g/5rV9yqFfhfqG6moi+KevwT8ipOGHdBlxztC/yk8yLybcC11hSctMvfErOD9a93nfmnQVC6754dTfPVloUQcTBtKNnCoYsY90C4/K0yNhb8XgNg4r1qmDp9STKsa/AYPFmreX9I7UuhpgiqBMz0nfaZ6Sf7KZbmHvICLUcMOrDThk9JpkLdRyLHrcV7r6222LiOG9RcASrbw3xD1wEQBiPHbFY7ScDb2FRKxMAv4Kk3ApUGagwHwFERW33ZcdjcpmibWYflIv9THaMu70cSvH/acK/hxoekoGuhA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N0gEErMkGWNncg0xNMrU74vn2uvH0HTYDSKUOhY02ZE=;
- b=p5FHe56qFwmgG2v52N8z2KapyXPHelzoqIMcs0FaMCvggsr+Flor1PxtQyDDR178dck1rCFy+CZouLDs6nfVWeC7SVqEKXYQUt1Fkq2wNElau7Nf8JL3GabVzy5uVeB5URs46WkD7G0gfWnpyrP+mGTi3GwAH3C4nxRnBOBcsMkXpz94C5gXOZhbPX1LjhQZ5LcZ3Ke1EQrXkf3S7rJsurQFTxgpmgjnh2iBMOgfF9iotAYysSe1/g9Jt9nDi3XoppI0V9knoXkdFJshgIHiv4qpSK1C5tHKgWzzppwIbDGUGe1sZe8hQ8AWYTSGlzzDl5icCza6YUYaYHwpm/IOPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=khadas.com; dmarc=pass action=none header.from=khadas.com;
- dkim=pass header.d=khadas.com; arc=none
-Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com (2603:1096:308::2da)
- by SEZPR03MB8712.apcprd03.prod.outlook.com (2603:1096:101:229::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Mon, 26 Jan
- 2026 09:35:04 +0000
-Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- ([fe80::af44:7e78:1133:adec]) by PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- ([fe80::af44:7e78:1133:adec%8]) with mapi id 15.20.9542.010; Mon, 26 Jan 2026
- 09:35:04 +0000
-From: Nick Xie <nick@khadas.com>
-To: George Stark <gnstark@salutedevices.com>
-CC: "robh@kernel.org" <robh@kernel.org>, "khilman@baylibre.com"
-	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "kernel@salutedevices.com"
-	<kernel@salutedevices.com>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "xianwei.zhao@amlogic.com" <xianwei.zhao@amlogic.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"nick@xieqinick.com" <nick@xieqinick.com>
-Subject: =?gb2312?B?u9i4tDogW0RNQVJDIGVycm9yXSBbUEFUQ0ggdjMgMy8zXSBhcm02NDogZHRz?=
- =?gb2312?B?OiBtZXNvbi1zNC1zOTA1eTQta2hhZGFzLXZpbTFzOiBhZGQgaW5pdGlhbCBk?=
- =?gb2312?Q?evice_tree?=
-Thread-Topic: [DMARC error] [PATCH v3 3/3] arm64: dts:
- meson-s4-s905y4-khadas-vim1s: add initial device tree
-Thread-Index: AQHchcs85PtJgI/z6UGNTQ29KhbpNLVgRXIAgAPziDk=
-Date: Mon, 26 Jan 2026 09:35:04 +0000
-Message-ID: <PS1PPF62EEA9B1D287E26DFE619BB840508AE93A@PS1PPF62EEA9B1D.apcprd03.prod.outlook.com>
-References: <20260115030015.1334517-1-nick@khadas.com>
- <20260115030015.1334517-4-nick@khadas.com>
- <09df45e1-90b5-4618-9197-c724142bd83a@salutedevices.com>
-In-Reply-To: <09df45e1-90b5-4618-9197-c724142bd83a@salutedevices.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=khadas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PS1PPF62EEA9B1D:EE_|SEZPR03MB8712:EE_
-x-ms-office365-filtering-correlation-id: 355887da-2fc1-4969-079f-08de5cbe2fba
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700021;
-x-microsoft-antispam-message-info: =?gb2312?B?TDlsQ1JsaUMvMnByUENOSWRWYittUktzSExZWUwzMVQ4NFpHWklEd2FKalZB?=
- =?gb2312?B?VmhmQ1ZvWnQ4ak9QQ0N4bEdaeThDVU41U0cwQ2Z4QmlsWVYyTW9MOU1yZmdl?=
- =?gb2312?B?Y0dHMHJydHd4eEVLZ20zQk52dmVoWElVcDJnT2phN0IxWXdQNHBZSGcvbmhi?=
- =?gb2312?B?amVWdXNaLzh2a1ppSTZzaUN2aml5TWxmWjErM2J4UUhrZVhPajN0S2ZubFpZ?=
- =?gb2312?B?VjViWnZiMWwyaTZKdFJPUzVtblpJM0trZVIwU28rUU0zUCtVQ0h3RFNDV2hr?=
- =?gb2312?B?UjRJUjA0aTBWQzRCQXhyc1J3eVh3Wkw4eUgzaVMzSmZ6eURyQXVGbDhjRElS?=
- =?gb2312?B?ZkdlRmdBdWNyRkVvbHM4Q3Vnb2h1NDVuaG5WdldWeHNZWldWTHVyN204VDMv?=
- =?gb2312?B?dDM3QmhkN2h6WHQyNjFURUtHaGNLWEJUNUpvckJoalNvWGFBczRmMk9PS0lq?=
- =?gb2312?B?SGR1Um50alpxR0xid1BRNFhoOTRQd1R0RndwNkRVV3ZBUjhCSkZIajluTTBx?=
- =?gb2312?B?QXBUblFnRUxiZTBtK3ZGS0ZXQ3ZJeUl0TFowUyt2VWR4VlUrZ05wZ0h5RFdJ?=
- =?gb2312?B?eXRYRFB4bjlwZDlHVThXRXIwZGMvcTFBY2lNSHlCYUpubWhNOHhtK0VzN05w?=
- =?gb2312?B?MEowbWdaZHFveDNOd3NqeG9BVHQ0TmhsWGJSTG9CTmpXbTE4dnhBZTBwQUZk?=
- =?gb2312?B?dHhJUUJsNzhyRjNRV2czeUVVQ2FVTmxoNmhvTHBMV3lQL2ZwS0ZlbW1zOWdv?=
- =?gb2312?B?TmVPVzcvUUZKcWVLV1gvemNwNWpMaWtUQlorbkVtenlMenpuVmM0eENSTkpl?=
- =?gb2312?B?ZmF4YkhFcjBEM3ByazBBYS9RTXVjalVPdk54cXM0M1ZadDExQ1VlakpTS0N4?=
- =?gb2312?B?RnRZV0MvT3FBTGhDQktYOG04T3hEWWtjUmVBQy9OYmhONkFWUHVmKzBYeHZr?=
- =?gb2312?B?c09ib3A0U0lRa0xvRXpCZm1TcXZLTHlRUU5JQURGRXNTL3hSSE5jU0RpV1Fh?=
- =?gb2312?B?S1FoekVRWm5FOFVFVzh5YTZ3bmNldC81amw1M2ZDYS9lbEJvZ3JlM2VjcWJP?=
- =?gb2312?B?a0NYczhzRjh1RVdkcTFXMHpENFlMUzNPQ2FBalRpT1ZHZlZUNE9DZ3F3SGFh?=
- =?gb2312?B?SGpyTWZSSVFQSllwVGVEK3VhajVFREJPTVJDWFg3OEhudS8ySXdleXV1QWZE?=
- =?gb2312?B?eUhJSW9xSVFqYWt0eFM5NXdNb2JzUzVpVVNvejBTa2I2Q1plQlhxLzN3Y2M5?=
- =?gb2312?B?RlJoeEpqcWIrNUpoTnBWQ1BpU3NPcTVYeE9jTklubXIxRlZYWklIMm1mQnRK?=
- =?gb2312?B?RllVcHQyaTRCbHZRVkJXV2ZrMXRYeTIyTjBMOGsyT2w5L01WZklSaC9CUXlm?=
- =?gb2312?B?dklKTEd2ZlJUajhGd1FVMTgvbTZpN2xnazJiY3ZjMm9XZnI4U0FCKzY1SkRh?=
- =?gb2312?B?eXNIc3Evak1hVXFPKzYyb0pBck95Q0JLT1JNREVwb2ZDaUhFaDJXNkFPMXN5?=
- =?gb2312?B?cnRVVm5kVm9nL0owK0tzQ1UrOXgyMmdHdktCeEdMZ25rZkxTK0Z0aUI1V2FI?=
- =?gb2312?B?V2FvNHUzNU1leEpsQ0puTWp3dW1DWXYwWHdKUzBaWldpMThBZVNmV0J2c21u?=
- =?gb2312?B?Szh3a0VxTmdac3hiMkdkRE1pUzAvRFNIVFA3dHVTM1FwOXFQU0VSU0VVbW5Z?=
- =?gb2312?B?TkFKZjIxZGxBZENmSGR4dWc4QnNUR3N6bDdXOERjY0tMY3VnSU1TdzRiTStW?=
- =?gb2312?B?QkRoajczZVhvbVBkcDJMTlVOYml3cVhGYWYvL2NLR01aWWF6UFlCSW44ZzZY?=
- =?gb2312?B?TnJRNUFDbWdDOVBTNmhiOTlwbFNNNzgvb0llUGlrVkQ5bmJJdWVUWHZMWUJ1?=
- =?gb2312?B?QU1KUDZzK0NzSUEzWk9vRDBPeGxOTmhrQmw0QURaNFJrbW9hRTJ6bERjcUlR?=
- =?gb2312?B?VWJ3akk5cWpBKzZkR0o2Rm1EUGMvM1d5U2pEbDgzUGp6VUtoVjhaTGtoTm94?=
- =?gb2312?B?bFljU2oyVFVEelEzS0I3dnJiZ29LRkJMbW1QR1hhd2NvYkUycnpMckRJL096?=
- =?gb2312?B?djlqSXgrN3YyZ1VMaFRxMlN4aEdOYVpVK3JlbFZFOW10QStsbUROaWVZMUhF?=
- =?gb2312?Q?6Dq/+N0jtijiOTlVnATcZILL3?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS1PPF62EEA9B1D.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?gb2312?B?UVpkQUhCdUZsRVdESExMekVaVld2cnl3OVJ6SWYySnUzbkx6SmZUckQ0RGRm?=
- =?gb2312?B?TXpWbzd2amduTUZhNWdWM3lJek8xT05Mcm16UTdIY0ZIU0hjaEUyVnJtT285?=
- =?gb2312?B?UU5ScFc3dGNKU1J3aDBXSGhHZ2JVSnk0NVMrUkx0UTYxU3BJb3FPYmlvYjQ5?=
- =?gb2312?B?ZHpsMndrUGJMUXE1cDIrYllMaHRnV1E0SUNRbUM1bWNobGZHRzhmOHBRMlY5?=
- =?gb2312?B?UGdYU1RMWDIwVCtWRnp4MEg4SW4rTGw3ZzZQU0c2eWEvVWxwL2lhSC9wUGdF?=
- =?gb2312?B?YS9LQXpJa28wa3plenhnek5jWVVVaFBLQldaTTQyUGlTWmhmMFE3REZHa2t5?=
- =?gb2312?B?a1A4eVlHbDdCbmRES0swWVUyekZmenE2UXhWQ25BdXk5RzlodE9ORXo1VENK?=
- =?gb2312?B?bFVyS3cwSWdYWFdLYzlEYjgrNkF5bUJTQWxjejhsc05PSytBczBBb3MrKzhr?=
- =?gb2312?B?U09SNEcwVEtNQXU1cGxyTC80c3lhYmEzUERCdUlydVRBcDYyc25lcWkvYU9i?=
- =?gb2312?B?L3c3VGtyZWdVb2x3dW9tTkdkK2VxaEJjUWpKZ0hRaTNxSndCR0pzNitXQUtr?=
- =?gb2312?B?V2c4Ni9SRXU4R2lvZzlaTW9hYzBzY3kxT3lmQVF4TkxjNm1TekxlaDQrQnFj?=
- =?gb2312?B?b0dibTZRTG1WVkxjc1BzS2J6bjZSSlpENVFkcUFmK0YzSkI3ampVL0hXNjRZ?=
- =?gb2312?B?NVk1KzhLdWhCS2FmcDdvS0ZxdGU4L2VkdXdYNG5NeU5TT2dUbzlRZDVrS3ht?=
- =?gb2312?B?RGRremFIU3JWdTBNV1pheWlKbE42c01yQ21TbnI2Ry9yeE0vNzdGVzVBUGRV?=
- =?gb2312?B?NE9vTWdLNmtna2lvYWc4VDhDckt6THorbTJFdW1VSVJvTks2ckl1M3Zpakk5?=
- =?gb2312?B?eTZabmpLeWgvSVUyekFZbkRuOW0xM01vNWxaYmdqS0k3NDQzMlRTajNaV1E2?=
- =?gb2312?B?WXl2TUxkUDlRS0dMWkpscjVKK05US0NMVDNEbklSTUhKZzJEek9DeVpJNDN0?=
- =?gb2312?B?SWEyb1hIM2s0VTF4aEFRR3E2MVNBU1Y4RzZvUjlYQjR5czN2RFIybis2b3F1?=
- =?gb2312?B?RUVCdjVnamFabksyUHdXZG93dXIrSllqVnBpNnhSRzY0U2hQWGhhWHBkSDV6?=
- =?gb2312?B?cjFWZVBvYWVsUFo5REFsU29iS3JXd1lNSkVEWWF2Q0EyWVVrOVBxSHEyazhk?=
- =?gb2312?B?b0VWdFpnOWk3dVZNTTBCSUZvWnEzc2tNKzAvMUVOSzd3SEdWNzR0dWVPT0hx?=
- =?gb2312?B?TGYrWUhQeFAwcG9IN1hNSS9oeSsyUWFRaVE2djU5YW4xZkRORG9QUS9vQ2JR?=
- =?gb2312?B?RXNNRCt1YXJsSlZrZXlpRzNaU0Q5L3REejdhT1RXcTZLTXpYM2lmMjdLNVJU?=
- =?gb2312?B?ZDJqZVFlZ3NscjlvUnlQelVya2M4Rll5ZE9DeC9sZnA0SVZIT1B6WitSSVdr?=
- =?gb2312?B?VVMrL2RKQzdsbnZBaFRYczJlMVJXNDIyV0h0RnF5U29QMlRnMGkrNFRkK0U2?=
- =?gb2312?B?ZTBrSHQ4L0huS3Nqb1lhanVjM3U3OEdJdEhWNmtPR3d6NG90cDNWR2NBMk10?=
- =?gb2312?B?VnNmbDdnVzNBeDU1Z1FlcG4zZ3I1K3hiL0xlVUtGRk0rVW91Tk9QVGdKRTZx?=
- =?gb2312?B?NkV5di9mc25RcW41eUVhMVRCNytTTmN5ZEh4WklHbnowVWFpL0N5ZmVaQUpz?=
- =?gb2312?B?cnZQMHdYTSs0WlhsS2thVVEvN1hKcll5OWhyc09NMFNickVMN01XZ0loRUFU?=
- =?gb2312?B?WFIraW1EYUx1WU5SbTBZSFRPSnpNTmVjYUZyYTI2NXZpVm1ZSE5lYWNIMGQv?=
- =?gb2312?B?ajl2ZXphd2tCQkFBcjdsV1lNQTM0VVZoK2Q5VldsVldQbUswWk83QVpMYU5a?=
- =?gb2312?B?N0hrOThyRHlSOXNBUnFrOXg3Sm5EUXUvcVEyc1U0MTZOdmRSeHlXd0VaZnk3?=
- =?gb2312?B?bzlhaHI1SjA3bnNIZEd2dDVZUElyTmZuaFlHZ1RMMG5sdE8vTDIrOENsTlJV?=
- =?gb2312?B?U1dhV3pEdThBc25PdjlLNWNFRVBJMnM1cC9EcVZmOXFzb2xMaVdCeFFGRnFl?=
- =?gb2312?B?cDlHNjkzZGwvcDd0b0dwQ0x4dzdMRldRT2pqQzYzSDhTd2ZDRkJFYTArR1Zz?=
- =?gb2312?B?OFhhZFBXQmtXdUtNekVtZTFjNnNXZXRaYmVNLzBtRDExTTJPcE03VFgrcjJK?=
- =?gb2312?B?U0ZBWDlTSm1HcXMyY1BDWXdqK2t1cjFFRnM0TGFIeXNGSGRpQ203K1dhM280?=
- =?gb2312?B?dFJQdmFSSmU4cXpGSFJka2tWN3VFZGhtSVR5c2VJNmRhZjlraFE1c3VJUXVK?=
- =?gb2312?Q?K7RsNwlVnOMuQdSbsC?=
+	id 1vkKOU-0000000CNjD-1MBS
+	for linux-amlogic@lists.infradead.org;
+	Mon, 26 Jan 2026 11:04:32 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-4359a16a400so3984375f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 26 Jan 2026 03:04:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1769425468; x=1770030268; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oxxggqu7lY1Sckmv7ByHvQyZJWGtg/A0ImvB7PnxYRE=;
+        b=BWKtr7yK0p2gV0pxQ+SKyeMnbuixtzXtmEicz3xPr5kSBr8QiEdzBJNKFWKlITiaTE
+         GCjiH5mfX+9K5oQxFo9LlT0Jw8gzzDg9VnEQm6xP10t0etjNOAxIOEhMlbuanuVRsYHu
+         KX9C0oqneuUBMmLOA89yKWhzakqriFKyG6/eQdIytJKThxjcl2dXTRBDK0tYqKTXYDV5
+         cOO8kYya5avD7i/jdu69A0DY9KEZSWMeHacDrJ30ByHY/eZlg5j8THR7KwpjW4ie0nwt
+         9bQQci2ubqaPSTlNE+AHsQI57frdaXtSd+/IUpGWkGRa5MQqpgJS0NzaPiZDaSffFPhC
+         yCrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769425468; x=1770030268;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=oxxggqu7lY1Sckmv7ByHvQyZJWGtg/A0ImvB7PnxYRE=;
+        b=m9wTJWLdmSaI1Z+sqQKZdxVOOlLluje5dWesKzbky/zqj7v1h7Gnh/xTSQagm0VbRC
+         4xlH2AKcLK9OpupNvUvgU039f9ggpjVPoktzyKe1+sbKuvOMqAsExovZcjgcFNuYf6jS
+         zhyDm7wpSYP5Y85a7J6Y8yAGVEI4Sfjhi7RJPM3VTGM3QpF7r4EP8bJOPgn8YdCBc+P3
+         U/Rx8zdEm+DKLZFM1+ZyDWmcbHc9DQezdIY9B+8AM/KSKVoBd23QtZC0poxBKL+UfCop
+         utKNCuaAbPYgF3QuDcB+JXsXrXh+cNx7vRFXLn7hLfKUIC19gFC9dX49OfxXyD0ZjvRr
+         yArQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV80YkF4f9T1KV4ZyAZ/i+gZPk8BX+sWZG+n+n+S8piPtgqSH4FD8X4Zipu2lvIL5LanZVJubqtUMypiSli@lists.infradead.org
+X-Gm-Message-State: AOJu0YzMFIMsVuDZWt9IZ8bQhYyoI/mY3C2+CoRY9JvgUcKfMNe45ogO
+	v9ZNqVw7p5YIhbQfNVLAJhzzp0pGSUq7etlzDEk1nsgqbwXqBdvVusixg2CL+RNFLAQ=
+X-Gm-Gg: AZuq6aL5pmIYEd07qVDYcadTwytz4r12F6pySU6KGsfdLEZZRizYfKm+1wjw7SwKMkU
+	MleGIUkrtH5ZdyCqG+AOBz6DF4MI/4FwRUnjw65NWbePZNLReQE5Fkgr0BH9SKU8uB/llp4rkz2
+	nh2UWypNdQX2EDYiJEAvEzHjHWzYHmU/Fug0nHg2mRy2ERGdoiJV2Ki/CPclPGdclEWAp02iaXm
+	ywJz9IaKwZnzUebKxkvfmRWLc6f7BWraShfgu5U4WZEB3cFMM85Whgmlskn/GCWkWJL/8ij+zSA
+	60HI6K4eePwwMBac157/Au9OtEh0nRcFyFUf9dlXS1I4xITldL1BvMEo1X7eSRlrskoZbkuQxEb
+	DkSxuaigaHSlreoxI6bPkm4+VuAM7t0x71ZqkHm0PAghEqaEUz5j4oPhBJdGGHt2JtKNA7Unsk2
+	v8IIlRg66K2g==
+X-Received: by 2002:adf:e60c:0:b0:435:9bf5:b32c with SMTP id ffacd0b85a97d-435ca1ac8f5mr5355432f8f.29.1769425468113;
+        Mon, 26 Jan 2026 03:04:28 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:9d1d:ac62:8521:30a0])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-435b1c24a8asm29321914f8f.12.2026.01.26.03.04.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jan 2026 03:04:27 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jiebing Chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>,
+  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>,  Jaroslav Kysela <perex@perex.cz>,
+  Takashi Iwai <tiwai@suse.com>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,  Michael Turquette
+ <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,
+  jiebing.chen@amlogic.com,  linux-sound@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-amlogic@lists.infradead.org,
+  linux-clk@vger.kernel.org,  jian.xu@amlogic.com,  shuai.li@amlogic.com,
+  zhe.wang@amlogic.com
+Subject: Re: [PATCH v6 3/5] ASoC: meson: g12a-toacodec: Add S4 tocodec driver
+In-Reply-To: <20260126-audio_drvier-v6-3-99e350855bc2@amlogic.com> (Jiebing
+	Chen via's message of "Mon, 26 Jan 2026 06:01:44 +0000")
+References: <20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com>
+	<20260126-audio_drvier-v6-3-99e350855bc2@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Mon, 26 Jan 2026 12:04:26 +0100
+Message-ID: <1jikcohbyd.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-OriginatorOrg: khadas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 355887da-2fc1-4969-079f-08de5cbe2fba
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2026 09:35:04.6994
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EsfSMwnb8/c1L0LqwsN8ZLMNsVEDKkQT2yEuw9y7gxGCe449QYlx+CjH3opcu9eE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB8712
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260126_013512_381801_B7838CE4 
-X-CRM114-Status: GOOD (  15.77  )
+X-CRM114-CacheID: sfid-20260126_030430_521894_EB859C8A 
+X-CRM114-Status: GOOD (  18.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -192,39 +110,109 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> Thanks for the patch. Since you have khadas mail I'm pretty sure you've
-> had the possibility to test it on the real vim board and I just don't
-> get it how it works with the voltage table above. The problem is that
-> pwm is calculated incorrectly in the upstream pwm-meson driver. That
-> voltage table appeared to be used in early amlogic bl loader and
-> appropriate pwm is initialized from a table's record. Duty cycle value
-> is translated to pwm regs correctly. Later when kernel start running
-> pwm-regulator driver is probed. It reads the pwm regs, calculates back
-> duty-cyle and search it in the table. Since calculation algos are not
-> match and the table doesn't contain full range of 0-100% values
-> regulator driver doesn't find current voltage. In such case regulator
-> core sets the minimum voltage from the table [1] and the SoC may hang
-> (depending on board) due to minimum voltage may be too low for the
-> current frequency SoC uses.
+On lun. 26 janv. 2026 at 06:01, Jiebing Chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org> wrote:
 
-I'm not sure about the PWM issues, but I checked on the real S905Y4 hardware
-and  it works.
+> From: Jiebing Chen <jiebing.chen@amlogic.com>
+>
+> The S4 requires additional clock control bits to be turn on while enabled.
+> The S4 has 8 TDM lanes, instead of 4 on previous SoC.
+> Update the widget accordingly.
+>
+> Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
+> ---
+>  sound/soc/meson/g12a-toacodec.c | 36 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+>
+> diff --git a/sound/soc/meson/g12a-toacodec.c b/sound/soc/meson/g12a-toacodec.c
+> index a95375b53f0a..a7f9ac2d08f7 100644
+> --- a/sound/soc/meson/g12a-toacodec.c
+> +++ b/sound/soc/meson/g12a-toacodec.c
+> @@ -41,6 +41,9 @@
+>  #define  CTRL0_BCLK_SEL_LSB		4
+>  #define  CTRL0_MCLK_SEL			GENMASK(2, 0)
+>  
+> +#define CTRL0_BCLK_ENABLE_SHIFT		30
+> +#define CTRL0_MCLK_ENABLE_SHIFT		29
+> +
+>  #define TOACODEC_OUT_CHMAX		2
+>  
+>  struct g12a_toacodec {
+> @@ -141,6 +144,13 @@ static const struct snd_soc_dapm_widget sm1_toacodec_widgets[] = {
+>  			    &g12a_toacodec_out_enable),
+>  };
+>  
+> +static const struct snd_soc_dapm_widget s4_toacodec_widgets[] = {
+> +	SND_SOC_DAPM_MUX("SRC", TOACODEC_CTRL0, CTRL0_BCLK_ENABLE_SHIFT, 0,
+> +			 &sm1_toacodec_mux),
+> +	SND_SOC_DAPM_SWITCH("OUT EN", TOACODEC_CTRL0, CTRL0_MCLK_ENABLE_SHIFT, 0,
+> +			    &g12a_toacodec_out_enable),
 
-> Or I'm missing something?
+I guess that works but it is a bit hackish to hijack the output control
+to enable a something really clock related. A supply widget connect to
+this widget would be more approriate I think
 
+> +};
+> +
+>  static int g12a_toacodec_input_hw_params(struct snd_pcm_substream *substream,
+>  					 struct snd_pcm_hw_params *params,
+>  					 struct snd_soc_dai *dai)
+> @@ -234,6 +244,10 @@ static const struct snd_kcontrol_new sm1_toacodec_controls[] = {
+>  	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1, 3, 0),
+>  };
+>  
+> +static const struct snd_kcontrol_new s4_toacodec_controls[] = {
+> +	SOC_SINGLE("Lane Select", TOACODEC_CTRL0, CTRL0_LANE_SEL_SM1, 7, 0),
+> +};
+> +
+>  static const struct snd_soc_component_driver g12a_toacodec_component_drv = {
+>  	.probe			= g12a_toacodec_component_probe,
+>  	.controls		= g12a_toacodec_controls,
+> @@ -256,6 +270,17 @@ static const struct snd_soc_component_driver sm1_toacodec_component_drv = {
+>  	.endianness		= 1,
+>  };
+>  
+> +static const struct snd_soc_component_driver s4_toacodec_component_drv = {
+> +	.probe			= sm1_toacodec_component_probe,
+> +	.controls		= s4_toacodec_controls,
+> +	.num_controls		= ARRAY_SIZE(s4_toacodec_controls),
+> +	.dapm_widgets		= s4_toacodec_widgets,
+> +	.num_dapm_widgets	= ARRAY_SIZE(s4_toacodec_widgets),
+> +	.dapm_routes		= g12a_toacodec_routes,
+> +	.num_dapm_routes	= ARRAY_SIZE(g12a_toacodec_routes),
+> +	.endianness		= 1,
+> +};
+> +
+>  static const struct regmap_config g12a_toacodec_regmap_cfg = {
+>  	.reg_bits	= 32,
+>  	.val_bits	= 32,
+> @@ -276,6 +301,13 @@ static const struct g12a_toacodec_match_data sm1_toacodec_match_data = {
+>  	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, 4, 6),
+>  };
+>  
+> +static const struct g12a_toacodec_match_data s4_toacodec_match_data = {
+> +	.component_drv	= &s4_toacodec_component_drv,
+> +	.field_dat_sel	= REG_FIELD(TOACODEC_CTRL0, 19, 20),
+> +	.field_lrclk_sel = REG_FIELD(TOACODEC_CTRL0, 12, 14),
+> +	.field_bclk_sel	= REG_FIELD(TOACODEC_CTRL0, 4, 6),
+> +};
+> +
+>  static const struct of_device_id g12a_toacodec_of_match[] = {
+>  	{
+>  		.compatible = "amlogic,g12a-toacodec",
+> @@ -285,6 +317,10 @@ static const struct of_device_id g12a_toacodec_of_match[] = {
+>  		.compatible = "amlogic,sm1-toacodec",
+>  		.data = &sm1_toacodec_match_data,
+>  	},
+> +	{
+> +		.compatible = "amlogic,s4-toacodec",
+> +		.data = &s4_toacodec_match_data,
+> +	},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, g12a_toacodec_of_match);
 
-> There's not-yet-reviewed patch that fixes pwm algo [2]. There's
-> calculation example in the cover letter.
-> [1] https://elixir.bootlin.com/linux/v6.19-rc5/source/drivers/regulator/core.c#L1227
-> [2] https://lkml.iu.edu/2412.3/00826.html
-
-What's the status of such patches?
-
---
-
-Best regards
-
-George
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
