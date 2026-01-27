@@ -4,138 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97204D2F037
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Jan 2026 14:26:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5B39D34097
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Jan 2026 15:56:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Wj4cL5/L/R7qXc1TgUpsgJjCK6uVgtcGyMKf7UvvApU=; b=o6THBj8UVJbIrV
-	I+LtlAQRWafv/5RpoYg6AqbegzHebUbBrPve+xTqDJFgNjWG7u9EwAHIPx0+hZqNWG1KS18J6VOT+
-	WGaJB0Ie+OrKLF+T/r5PjNMKZfIKy2fVnwbCuozHXjaAhPIn7EWnrOY/dO+CWrQf7JYtDBCy21sJS
-	ZiNArGDPXKstEI9MgeH+Bfvb8P2BtMu6phSNsv+qZ+aXvZpc1zCtr3mrBkI2IRvCT8nUGqXOhsmBx
-	1gOpBx6EAeAs8e/1BsERLC1ojYZ0NBYR3hxF7/mKL47HxN9uR+9wIKldLRXGdvqAcUarMZKP5AEhC
-	88JOMTbtUKwx5PnqpBNw==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
+	In-Reply-To:To:Cc:MIME-Version:Date:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=SnvLX4fpW+is2a1GCgS5LFuyd1HVmJkuWFRQmyHVa6M=; b=v7boDo/F1K6Oyf8SkumEW9sWeT
+	OsNM1KM6gBrdXerYsi5U8hDySn2ZF8IMjc/zW3n3uAJrqrDQIISlrCSHCnLXKobfzkU/EL2cLz8d+
+	TtR0JvctHn+K3t60Ohi7kb55ecUE6HgNz4QdAxS4g0Hk2VNx+MTd5wJpz6K7ouX31eAIrBv9mT8xg
+	OEdaU2R+Bx+1xOKT43786nMtgVq7e1odk7dhH8B4JVeu+jMYYMFmdqCheieFsFg5vxNjsBrXzyMsK
+	ERl+xSRnVKfdSf5Lq/FXbFsCcvgd8UE3ohKoPbDU+HtTv2cO2JhaI629s2jLnGVaX/TwGCIbYMySJ
+	yGLM2s5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vkk19-0000000EO6M-42Fd;
-	Tue, 27 Jan 2026 14:26:07 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1vklQq-0000000EaSG-0k4H;
+	Tue, 27 Jan 2026 15:56:44 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vkk15-0000000EO4f-2wZm
-	for linux-amlogic@lists.infradead.org;
-	Tue, 27 Jan 2026 14:26:06 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60RAcNqh700191
-	for <linux-amlogic@lists.infradead.org>; Tue, 27 Jan 2026 14:26:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=LeBGXuVPBeSkZrySiP9d01PK
-	e2NSJk5/OBYu735H4lg=; b=D7eUaL8F/NQC5dIugNwP0PYoJJ8XMLVA/hWsVtxI
-	TzAG0cBfSO/OEVWj3LXovywqEr0h5KcKGsN1gbRNggn55uj5TJDlj0P5rz3fxiR5
-	uQTSTvRKsWKqq+4Cy0kPTyOMgUonpOpduLhMhALGfpBU071fhmEWYSFjNYvI+wJF
-	Qw+GJ64tAdNnxMco95gcqFEP8Cr1Tr4YCjwDaX9mFimeBof8Mz2WvS/HCLCk+o5V
-	NNWFIh0XXSbz7xwg/dg13RYXOfzzxDzHQr+sGFOaI8oTYjsA8wPvpEwmb+ChduZp
-	Y0HvDtg61ADlLO1qUzsxlcZnVGspsBhvv/VrlZEvFhPK1w==
-Received: from mail-vs1-f72.google.com (mail-vs1-f72.google.com [209.85.217.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bxew3u38r-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Tue, 27 Jan 2026 14:26:03 +0000 (GMT)
-Received: by mail-vs1-f72.google.com with SMTP id ada2fe7eead31-5f52597aca4so6221469137.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 27 Jan 2026 06:26:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1769523962; x=1770128762; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LeBGXuVPBeSkZrySiP9d01PKe2NSJk5/OBYu735H4lg=;
-        b=NZEChKekvwOp3yCEGoSYO+eHfEGTDd0fkyhl29hKeJEeupNPx5lUnYontCk52OHtAW
-         ZzGTlvK4SVyhtQAt1A+UkJCPIfD5wKl6Ck5eD7TroSZctOY+bOL7MhyApMDOgFwSEBPQ
-         IXGnCx1oUv0yCADDVun6SpO8eRRtxhPNNZ6etqia+ga1+ThQE2Ni1m9FFeyzRjjHHK1/
-         C0JgRKtY0wi+rpnuu3wTgRuPehYH7Zr8xRmH6z9c5uPhgSErjBjB7XmeHVV5lvgWrG37
-         LExjWuosQtrtCtaihZO4kJapJwH75Rt6uYbJ+lcxc+hTFg45DoHAK5IkpHb/QF7g5qu/
-         XC6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769523962; x=1770128762;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LeBGXuVPBeSkZrySiP9d01PKe2NSJk5/OBYu735H4lg=;
-        b=f9Z8vUS4C0av7YEQSxo1jc4kxLge7KFYfkmlHM8lB3HHfy3cEMviC+oDeHIA7+LLuk
-         ppxIfZx6LMnXTMbmwMI/eDwFdFmTKWmgiGUNE/6b5JSGCuf/kcq6l+SLTsYFsdrnW8M8
-         EDRlD2UXntcKQO1DuJphQg02gvK5ehsu1cMpyonhyYv4o6JboFxSF20N9T+jRoC3G+e4
-         MJlxyrif4iDLjzUj3hoq2WW5Rgbnj7584OfDLXE0MNtelnMFBSd33GuF6h5kHMu38iYs
-         MhiUI63YoB8muEZDc0o0yLxqxBBfP3HCzXhbsYZdgxO6oE2oNNJZlCd5gU0skMMbc2zA
-         fYNA==
-X-Forwarded-Encrypted: i=1; AJvYcCWkLagiWbW4gXcxdlzAMpp96E9aCFcD2KqHVZMjabN67HR6jiqvZr1Jo61QPFPHpV8YqUUERlnZ4Iy/dbgE@lists.infradead.org
-X-Gm-Message-State: AOJu0YwTc0P2rfe/C/XsJNHuf2+cqWiQfPxupCrsJTjpzvmAX61lgf6W
-	sC8YeVUk4wCgpCExaCq7kS4S/Ecz8OGh3jvIsJuBr5UcEbC2tBDelBiWNRokahOy8M8VMFn0G7f
-	uqH86lPzsEhdYuusQPC3+CY100DK6y8v7TfHs/ozYrKW5AbvXVZ5cEAtUA5FfGrcH2tGFReXYQw
-	==
-X-Gm-Gg: AZuq6aI1Iwre4tsp/IXe80MeMgC4dU4l5Jl2uH6SAh6xThqQuDKDZT0h3r+h84eHQoP
-	OzKQh7E67F8lMghgdPxCGwlIVx9/xzKrqEgWmcxfR3Z3yFahj5g7ZJqBIe/iUjNL/3MRw877VgY
-	a1GxnyPEt5g466HAjTSO2s6xWX2YLC5G+41uH7kck4kxuGPvfPN3kKtVj0hJfQQ5kPZUTyz0xOS
-	Pwa+q/niZbjEoIERhm+8q3cyeat7td9grFr28XGKv4bcH60XrpY/QG85Ko3dDbjtNMU6xpxchEd
-	W/gbkQipefhA6hKvoVd14tLxBwrEso+sfrHfjh5wL646b9g3Rj8kUzeLIuwVmVxcGXLJ5Dqg2Ei
-	kwOLaOBtVkHCmZwBX1tgtiSlCpWQ0rrlEEKHdI5RPibofJwltDjp5ZDmLZfWwTM6DLjEd1PzZml
-	msqJ7sXl54456cY10gmXPr00Q=
-X-Received: by 2002:a05:6102:4610:b0:5f7:24db:fdb8 with SMTP id ada2fe7eead31-5f724dc08c8mr478873137.25.1769523961055;
-        Tue, 27 Jan 2026 06:26:01 -0800 (PST)
-X-Received: by 2002:a05:6102:4610:b0:5f7:24db:fdb8 with SMTP id ada2fe7eead31-5f724dc08c8mr478854137.25.1769523960506;
-        Tue, 27 Jan 2026 06:26:00 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59de4918965sm3637789e87.55.2026.01.27.06.25.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jan 2026 06:25:59 -0800 (PST)
-Date: Tue, 27 Jan 2026 16:25:56 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
-        helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch,
-        lumag@kernel.org, robdclark@gmail.com, robin.clark@oss.qualcomm.com,
-        guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
-        valentine.burley@collabora.com, linux-mediatek@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
-        amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 6/7] drm/ci: uprev IGT
-Message-ID: <5vxrhiilcsaull2airasmc3pjqazvswrtojozz264i5vk3m6zl@pgkdwq46p4ho>
-References: <20260127104406.200505-1-vignesh.raman@collabora.com>
- <20260127104406.200505-7-vignesh.raman@collabora.com>
- <zi7frtnecrzyei4fl4nmwmth3icnsyycxxobbrcwovbqfsfq4z@eh25dyfrjkqz>
- <9949e82b-6ec2-4975-939b-d6a709ecf43f@collabora.com>
+	id 1vklQn-0000000EaRy-1o0e;
+	Tue, 27 Jan 2026 15:56:42 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 7DAB9600AD;
+	Tue, 27 Jan 2026 15:56:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CED1C116C6;
+	Tue, 27 Jan 2026 15:56:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769529400;
+	bh=pyesTGZkOMY1CDLH595pytnp+a/HTRbOucVfk8mO0ZE=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=ljxMjaQUO+xIXWR2kM5tAeDfxymnyk4/q4shrBM0f5GeTIT0DmYoM63aLv7+lQcCy
+	 Rk7IYQtD1bOoEL0oQEWsZBhaCCEXDj4NLcqQYJQxNV1sXXqEs/2rRpnRnRMR6KyYRo
+	 buTfxs1BbBY+zuVAYwZD0matwCs7Looq6cbtnepQqI7Eq0owiAxLkgGkHmulB4I+GP
+	 1ti7KFgGBbQspUdPV6iBN6kp/6PFtkyA3D252xhb5n0H5rVunUEgP++7niqXUr2eAd
+	 K60jcWQ3eZZbSf6vQT4KkJdCCletNodCaJzokJuwQN97yc0spPtBp6VjXxUASch5Tm
+	 sgmxNsvhOULWw==
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 27 Jan 2026 09:56:39 -0600
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9949e82b-6ec2-4975-939b-d6a709ecf43f@collabora.com>
-X-Proofpoint-ORIG-GUID: BmEI4e1X7PmpJxIXZmfV0hH8efC16b7p
-X-Proofpoint-GUID: BmEI4e1X7PmpJxIXZmfV0hH8efC16b7p
-X-Authority-Analysis: v=2.4 cv=J8CnLQnS c=1 sm=1 tr=0 ts=6978cafb cx=c_pps
- a=DUEm7b3gzWu7BqY5nP7+9g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=e5mUnYsNAAAA:8 a=QX4gbG5DAAAA:8 a=EUspDBNiAAAA:8 a=ocmXNzLk5YWpj9Dh6n0A:9
- a=CjuIK1q_8ugA:10 a=-aSRE8QhW-JAV6biHavz:22 a=Vxmtnl_E_bksehYqCbjh:22
- a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTI3MDExOCBTYWx0ZWRfX2TxVfye/QkEo
- Qb6xkNVym7UFL2JYKbQ2GeEuOnqCTSZGxvTrGttG1fGHE5W6I0AK6RJr9fqML7QmYOtKotoqOzr
- BKwQfk/AGMiQ5IM12wi5gukx3LoWkdO/B9W9VRK/720G8X6/ZzoHPStI/2EmuiUlR+CRFHgM0/X
- 66LdPDwNuHKnKB17mgtp9AjxUHvg84Jm9oGRcbb2w1O22o9eAgcJeL3YqNEQITwjooZFo8umui+
- f/jw7Jckq9jmktVXkI0Tw4e4fc1YCyul8GVUULVe+Xixry2oLB1yWAQWbM5wuDM5iT5Btadw9vK
- iUdQlzAdsgdrEriaLbNG2EL4X+O7YEfJW70zFn/n+BZv6IpJj/JNk7XcszPIhnd9JeeCi/mYsjS
- 32H42168ST+IMBvmDbFJvP2LIkIk7G8tzlapGwn+pEfhqGjee+5prG/o3MNDZfWEobCEcyKF4PM
- slmBA4LCKTJdUNGH6NQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-01-27_03,2026-01-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 bulkscore=0
- priorityscore=1501 adultscore=0 impostorscore=0 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601270118
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260127_062603_739839_7DC3DF8C 
-X-CRM114-Status: GOOD (  18.89  )
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, linux-amlogic@lists.infradead.org, 
+ Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
+ linux-clk@vger.kernel.org, shuai.li@amlogic.com, 
+ linux-arm-kernel@lists.infradead.org, 
+ Michael Turquette <mturquette@baylibre.com>, jian.xu@amlogic.com, 
+ linux-sound@vger.kernel.org, zhe.wang@amlogic.com, 
+ Takashi Iwai <tiwai@suse.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Mark Brown <broonie@kernel.org>
+To: Jiebing Chen <jiebing.chen@amlogic.com>
+In-Reply-To: <20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com>
+References: <20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com>
+Message-Id: <176952925847.1904460.11456869237043173749.robh@kernel.org>
+Subject: Re: [PATCH v6 0/5] Add support for S4 audio
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,36 +78,115 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jan 27, 2026 at 06:26:11PM +0530, Vignesh Raman wrote:
-> Hi Dmitry,
+
+On Mon, 26 Jan 2026 06:01:41 +0000, Jiebing Chen wrote:
+> This series completes the end-to-end audio support
+> for S4 SoC from hardware bindings to driver implementation
+> and system integration.
 > 
-> On 27/01/26 18:01, Dmitry Baryshkov wrote:
-> > On Tue, Jan 27, 2026 at 04:14:01PM +0530, Vignesh Raman wrote:
-> > > Recent IGT [1] seems to be broken on MSM hardware, with many tests
-> > > failing due to the old_primary->index != 0 assertion. Uprev IGT to
-> > > the last known good revision where the tests pass, and update the
-> > > expectation files accordingly.
-> > > 
-> > > [1] https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/a909ab05
-> > > 
-> > > Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > 
-> > It is not clear, which parts here are due to Mesa uprev (yes, there are
-> > some of those) and which are due to the IGT uprev. Please split into two
-> > commits and make sure that Mesa-uprev passes more or less clearly.
+> 1 Device Tree Bindings Updates
+> Added audio power domain and S4 audio clock support for S4 SoC.
+> Added S4 audio tocodec binding support.
 > 
-> The mesa uprev and the IGT uprev are already split into two separate
-> commits. The IGT uprev only updates the IGT version in gitlab-ci.yml and
-> xfails.
+> 2 Driver Implementation
+> Implemented S4 tocodec driver for G12A architecture.
+> Added S4 audio clock support in AXG audio clock
+> 
+> 3 Device Tree Integration
+> Add Amlogic S4 audio subsystem support in arm64 DTS.
+> 
+> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+> ---
+> Changes in v6:
+> - Fix the problem of string for Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> - Remove clock pad register, and it will be submitted as an independent patch.
+> - Redescribe sound/soc/meson/g12a-toacodec.c
+> - Link to v5: https://lore.kernel.org/r/20250710-audio_drvier-v5-0-d4155f1e7464@amlogic.com
+> 
+> Changes in v5:
+> - Fix warning Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yam when make dt_binding_check
+> - The audio reg is mounted below the APB bus in dts file.
+> - Deal with pad clock in a distinct controller.
+> - Fix warning for sound/soc/meson/g12a-toacodec.c
+> - Link to v4: https://lore.kernel.org/r/20250319-audio_drvier-v4-0-686867fad719@amlogic.com
+> 
+> Changes in v4:
+> - fix dtb check warning
+> - add maxItems of power domain for dt-bindings
+> - fixed audio clock pads regmap base and reg offset
+> - use dapm widget to control tocodec bclk and mclk enable
+> - Link to v3: https://lore.kernel.org/r/20250228-audio_drvier-v3-0-dbfd30507e4c@amlogic.com
+> 
+> Changes in v3:
+> - remove g12a tocodec switch event
+> - Modify the incorrect title for dt-bindings
+> - Link to v2: https://lore.kernel.org/r/20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com
+> 
+> Changes in v2:
+> - remove tdm pad control and change tocodec base on g12a
+> - change hifipll rate to support 24bit
+> - add s4 audio clock
+> - Link to v1: https://lore.kernel.org/r/20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com
+> 
+> ---
+> Jiebing Chen (5):
+>       dt-bindings: clock: meson: Add audio power domain for S4 soc
+>       dt-bindings: Asoc: axg-audio: Add S4 audio tocodec
+>       ASoC: meson: g12a-toacodec: Add S4 tocodec driver
+>       clk: meson: axg_audio: add S4 support
+>       arm64: dts: amlogic: Add Amlogic S4 Audio
+> 
+>  .../bindings/clock/amlogic,axg-audio-clkc.yaml     |  18 +-
+>  .../bindings/sound/amlogic,g12a-toacodec.yaml      |   1 +
+>  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 222 +++++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 361 +++++++++++++++++++++
+>  drivers/clk/meson/axg-audio.c                      | 165 ++++++++++
+>  sound/soc/meson/g12a-toacodec.c                    |  36 ++
+>  6 files changed, 801 insertions(+), 2 deletions(-)
+> ---
+> base-commit: a0c666c25aeefd16f4b088c6549a6fb6b65a8a1d
+> change-id: 20250110-audio_drvier-07a5381c494b
+> 
+> Best regards,
+> --
+> jiebing chen <jiebing.chen@amlogic.com>
+> 
+> 
+> 
 
-I think I was not clear enough: Mesa uprev also causes some of the
-xfails. Those needs to be a part of the Mesa uprev commit.
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
 
 
--- 
-With best wishes
-Dmitry
+This patch series was applied (using b4) to base:
+ Base: a0c666c25aeefd16f4b088c6549a6fb6b65a8a1d (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com:
+
+arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dtb: clock-controller@330000 (amlogic,s4-audio-clkc): reg: [[0, 3342336, 0, 216], [0, 3346048, 0, 16]] is too long
+	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: clock-controller@330000 (amlogic,s4-audio-clkc): reg: [[0, 3342336, 0, 216], [0, 3346048, 0, 16]] is too long
+	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml
+
+
+
+
+
 
 _______________________________________________
 linux-amlogic mailing list
