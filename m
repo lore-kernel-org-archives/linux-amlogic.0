@@ -4,64 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5B39D34097
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Jan 2026 15:56:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47247D2FED7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Jan 2026 18:23:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:Message-Id:References:
-	In-Reply-To:To:Cc:MIME-Version:Date:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=SnvLX4fpW+is2a1GCgS5LFuyd1HVmJkuWFRQmyHVa6M=; b=v7boDo/F1K6Oyf8SkumEW9sWeT
-	OsNM1KM6gBrdXerYsi5U8hDySn2ZF8IMjc/zW3n3uAJrqrDQIISlrCSHCnLXKobfzkU/EL2cLz8d+
-	TtR0JvctHn+K3t60Ohi7kb55ecUE6HgNz4QdAxS4g0Hk2VNx+MTd5wJpz6K7ouX31eAIrBv9mT8xg
-	OEdaU2R+Bx+1xOKT43786nMtgVq7e1odk7dhH8B4JVeu+jMYYMFmdqCheieFsFg5vxNjsBrXzyMsK
-	ERl+xSRnVKfdSf5Lq/FXbFsCcvgd8UE3ohKoPbDU+HtTv2cO2JhaI629s2jLnGVaX/TwGCIbYMySJ
-	yGLM2s5g==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=WXNJSMr7//ym7WODTQhrDeAh+1vWx3/GGn94I7YmB5U=; b=SLkkyGmS3zdWvR
+	4CVljGCUFu993mwKnuMV5Wy47IvajdArO9FIUA10QP7Z13LMtQlwosTOepVpHS2fkftB1kvohQ6R0
+	Q8AG3kYeLSv1wHbX/LcxnpwLTZz8zRD1LTSP2vGfY9jAleVOniJvLyzAgZnUvpMVP4P7gI/5+Qjkf
+	IVizA2KX4X2ymLm8T2Tjk7Fwd8atuCERIEdjGMC8eS1wa3iMauHvTPcApHJ0S87UXGxu0rROZQgbM
+	zfeB6Imogtg16yTmeEH9qMPBuWr+cxP0XOAFtm9luvGd5kNDKfcgGpLVbxE9un8IpTNpVSzyVZFA8
+	VslobMov9SBedn4V+mzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vklQq-0000000EaSG-0k4H;
-	Tue, 27 Jan 2026 15:56:44 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vknj5-0000000Eo3V-3EhH;
+	Tue, 27 Jan 2026 18:23:43 +0000
+Received: from mail-pl1-x636.google.com ([2607:f8b0:4864:20::636])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vklQn-0000000EaRy-1o0e;
-	Tue, 27 Jan 2026 15:56:42 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7DAB9600AD;
-	Tue, 27 Jan 2026 15:56:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CED1C116C6;
-	Tue, 27 Jan 2026 15:56:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769529400;
-	bh=pyesTGZkOMY1CDLH595pytnp+a/HTRbOucVfk8mO0ZE=;
-	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=ljxMjaQUO+xIXWR2kM5tAeDfxymnyk4/q4shrBM0f5GeTIT0DmYoM63aLv7+lQcCy
-	 Rk7IYQtD1bOoEL0oQEWsZBhaCCEXDj4NLcqQYJQxNV1sXXqEs/2rRpnRnRMR6KyYRo
-	 buTfxs1BbBY+zuVAYwZD0matwCs7Looq6cbtnepQqI7Eq0owiAxLkgGkHmulB4I+GP
-	 1ti7KFgGBbQspUdPV6iBN6kp/6PFtkyA3D252xhb5n0H5rVunUEgP++7niqXUr2eAd
-	 K60jcWQ3eZZbSf6vQT4KkJdCCletNodCaJzokJuwQN97yc0spPtBp6VjXxUASch5Tm
-	 sgmxNsvhOULWw==
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 27 Jan 2026 09:56:39 -0600
+	id 1vknj3-0000000Eo2l-3XQ3
+	for linux-amlogic@lists.infradead.org;
+	Tue, 27 Jan 2026 18:23:42 +0000
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-2a07fac8aa1so44288845ad.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 27 Jan 2026 10:23:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1769538220; x=1770143020; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cHYljc7F+EOphZrYZwqqhzIU0oWBEMS1jqV+v13KuA4=;
+        b=XBhV8FaM2FApmP5QfxX+7A7jdBT0IAx27ueIASoy0QHvX7pU5eBKNXIYmggM14bRuz
+         W3YgxzxIagmZKEvX6NuDQyg4r8J3l9Nsk1pce9p86TAchH6GuYNJe3RC10p9LdymHr1C
+         KQACzVPwUR/cLkmzAt76DY2Mb0iPknBxEtxOpNSgkn6OM3SxhVf9ek1V5xSCP76CX8n1
+         6ctWnNn6f9e6NEwh1j3OBdMR9tUPkEP1YgFzTkIx6vRqPoq91uFeNitoy2vUB6779gIw
+         a5rIF1OdS9EkobtjipndBozIlMmlDBSnjJfKdcutMuc/FvHA0PVkNhEbCOiNV3Ktb2oL
+         gZaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769538220; x=1770143020;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cHYljc7F+EOphZrYZwqqhzIU0oWBEMS1jqV+v13KuA4=;
+        b=vc1FodqVOGYAVq4xO+mEMt8dEFLdjHdQtLpYTjalhoSeHbHTDcWdDL9a2hoqD8Gyec
+         hBi6YTFKcpRobx4TyMzfmuuuzAmnUa2AhxCKuCqeWJIWhXnDRC/eMGS22Uy6tfh1440X
+         rfMDHNoiOd6fxvEdJ7seehpvGLzjTJySK+QL2R6RCbz4U69w3MSelJ0c//o7rrLtTXu+
+         hqfLRZnofw+NUj8G1vvt14GCViO0GSxUoFlYe7PtlI2pjYcehIqGOa9DGcI/mCmQCFqs
+         56Pej7aNQRdlC6iq8zOF9F2YSDBliXNPEZImjSHgs5xvxAQSfgbWUULe0Z9gWXoaBAe0
+         inwA==
+X-Gm-Message-State: AOJu0YzN6orJYLUcTDuO+5KWhkEZdnOOCvj024UiIUiHqKgPR+gbrVKx
+	6+VaLgno9YyRHAvtQnLsODMJS4TYzltFvv6Jon+Lhp3/T8DPDjB5v8T4
+X-Gm-Gg: AZuq6aKqDrzeHFoIJmtXm3Zhnrvz1fl5+/HjhL3AUbdFUhIBwDISz89VMieNu8MIGLH
+	1hEZKvmjWI2rNsjo6agLaF/ItEKb9XylPkc6dNjx+way61XQcfAU4qsP78hRK/qiFAIKY+GC6WA
+	QOUY0n6sOafZwqkzcCv+1KNqhSSQ/wGoszpunPXLddQ4e/z59xoTH4+y+/JJAUG6MeegbHfdYDv
+	M5jQA4hK/3pdbqTlFnlbo/n8z4/hBgVaxYILT8EJ5o0+UHRD3o/GltryTRkxlqsqYCmRzmm7qv+
+	c0ahhQgdAT5Xsubl4Q4RPioCFlg9rddo8gSlpfmxka5HWNmPzr9sO4KPCmjw6AknRE5EWhYlmBn
+	B4+ICtc2Fkjhn+8S7qRpB33YVe//1QjnXmk9dtxyT6RwqQR4W1iQntzKUOOGTI0YkPvLEbeFlmp
+	CsTugwvda0cpA5jYto8+kba5uj
+X-Received: by 2002:a17:903:350d:b0:2a0:34ee:3725 with SMTP id d9443c01a7336-2a870d5a11emr26284835ad.14.1769538220491;
+        Tue, 27 Jan 2026 10:23:40 -0800 (PST)
+Received: from junjungu-PC.localdomain ([188.253.124.92])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a88b413d16sm610135ad.25.2026.01.27.10.23.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jan 2026 10:23:39 -0800 (PST)
+From: Felix Gu <ustc.gu@gmail.com>
+Date: Wed, 28 Jan 2026 02:23:12 +0800
+Subject: [PATCH] pinctrl: meson: amlogic-a4: Fix device node reference leak
+ in bank helpers
 MIME-Version: 1.0
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, linux-amlogic@lists.infradead.org, 
- Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
- linux-clk@vger.kernel.org, shuai.li@amlogic.com, 
- linux-arm-kernel@lists.infradead.org, 
- Michael Turquette <mturquette@baylibre.com>, jian.xu@amlogic.com, 
- linux-sound@vger.kernel.org, zhe.wang@amlogic.com, 
- Takashi Iwai <tiwai@suse.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jaroslav Kysela <perex@perex.cz>, Mark Brown <broonie@kernel.org>
-To: Jiebing Chen <jiebing.chen@amlogic.com>
-In-Reply-To: <20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com>
-References: <20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com>
-Message-Id: <176952925847.1904460.11456869237043173749.robh@kernel.org>
-Subject: Re: [PATCH v6 0/5] Add support for S4 audio
+Message-Id: <20260128-amlogic-v1-1-c8aeb2953dcf@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAI8CeWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQyML3cTcnPz0zGRdgxQDi9Q0AwuzZIskJaDqgqLUtMwKsEnRsbW1AJ7
+ T6qZZAAAA
+X-Change-ID: 20260128-amlogic-0d08ef086c8b
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Linus Walleij <linusw@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Felix Gu <ustc.gu@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769538215; l=1586;
+ i=ustc.gu@gmail.com; h=from:subject:message-id;
+ bh=gzYCg7eQFUgU4V294MJ/J3tLEbmiBq4eX3ZoJFJXYAI=;
+ b=Q4t4AtxghLx54Bs7JL9WDYzt2BKTvug6RGwBm9/o2ji5s18HIKqk+SLQR+Uf5ULhZr/nMxqAW
+ rfdWaFvBwCODzsk8RoeQjtM7lb5ct9ZqvdGk9SaGcFLGksgu179QNIQ
+X-Developer-Key: i=ustc.gu@gmail.com; a=ed25519;
+ pk=fjUXwmjchVN7Ja6KGP55IXOzFeCl9edaHoQIEUA+/hw=
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260127_102341_914595_91CE294D 
+X-CRM114-Status: GOOD (  10.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,114 +112,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+of_parse_phandle_with_fixed_args() increments the reference count of the
+returned device node, so it must be explicitly released using
+of_node_put() after use.
 
-On Mon, 26 Jan 2026 06:01:41 +0000, Jiebing Chen wrote:
-> This series completes the end-to-end audio support
-> for S4 SoC from hardware bindings to driver implementation
-> and system integration.
-> 
-> 1 Device Tree Bindings Updates
-> Added audio power domain and S4 audio clock support for S4 SoC.
-> Added S4 audio tocodec binding support.
-> 
-> 2 Driver Implementation
-> Implemented S4 tocodec driver for G12A architecture.
-> Added S4 audio clock support in AXG audio clock
-> 
-> 3 Device Tree Integration
-> Add Amlogic S4 audio subsystem support in arm64 DTS.
-> 
-> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
-> ---
-> Changes in v6:
-> - Fix the problem of string for Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
-> - Remove clock pad register, and it will be submitted as an independent patch.
-> - Redescribe sound/soc/meson/g12a-toacodec.c
-> - Link to v5: https://lore.kernel.org/r/20250710-audio_drvier-v5-0-d4155f1e7464@amlogic.com
-> 
-> Changes in v5:
-> - Fix warning Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yam when make dt_binding_check
-> - The audio reg is mounted below the APB bus in dts file.
-> - Deal with pad clock in a distinct controller.
-> - Fix warning for sound/soc/meson/g12a-toacodec.c
-> - Link to v4: https://lore.kernel.org/r/20250319-audio_drvier-v4-0-686867fad719@amlogic.com
-> 
-> Changes in v4:
-> - fix dtb check warning
-> - add maxItems of power domain for dt-bindings
-> - fixed audio clock pads regmap base and reg offset
-> - use dapm widget to control tocodec bclk and mclk enable
-> - Link to v3: https://lore.kernel.org/r/20250228-audio_drvier-v3-0-dbfd30507e4c@amlogic.com
-> 
-> Changes in v3:
-> - remove g12a tocodec switch event
-> - Modify the incorrect title for dt-bindings
-> - Link to v2: https://lore.kernel.org/r/20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com
-> 
-> Changes in v2:
-> - remove tdm pad control and change tocodec base on g12a
-> - change hifipll rate to support 24bit
-> - add s4 audio clock
-> - Link to v1: https://lore.kernel.org/r/20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com
-> 
-> ---
-> Jiebing Chen (5):
->       dt-bindings: clock: meson: Add audio power domain for S4 soc
->       dt-bindings: Asoc: axg-audio: Add S4 audio tocodec
->       ASoC: meson: g12a-toacodec: Add S4 tocodec driver
->       clk: meson: axg_audio: add S4 support
->       arm64: dts: amlogic: Add Amlogic S4 Audio
-> 
->  .../bindings/clock/amlogic,axg-audio-clkc.yaml     |  18 +-
->  .../bindings/sound/amlogic,g12a-toacodec.yaml      |   1 +
->  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 222 +++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 361 +++++++++++++++++++++
->  drivers/clk/meson/axg-audio.c                      | 165 ++++++++++
->  sound/soc/meson/g12a-toacodec.c                    |  36 ++
->  6 files changed, 801 insertions(+), 2 deletions(-)
-> ---
-> base-commit: a0c666c25aeefd16f4b088c6549a6fb6b65a8a1d
-> change-id: 20250110-audio_drvier-07a5381c494b
-> 
-> Best regards,
-> --
-> jiebing chen <jiebing.chen@amlogic.com>
-> 
-> 
-> 
+Fix the reference leak in aml_bank_pins() and aml_bank_number() by
+adding the missing of_node_put() calls.
 
+Fixes: 6e9be3abb78c ("pinctrl: Add driver support for Amlogic SoCs")
+Signed-off-by: Felix Gu <ustc.gu@gmail.com>
+---
+ drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+index ded7b218e2ec..40542edd557e 100644
+--- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
++++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+@@ -725,8 +725,9 @@ static u32 aml_bank_pins(struct device_node *np)
+ 	if (of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3,
+ 					     0, &of_args))
+ 		return 0;
+-	else
+-		return of_args.args[2];
++
++	of_node_put(of_args.np);
++	return of_args.args[2];
+ }
+ 
+ static int aml_bank_number(struct device_node *np)
+@@ -736,8 +737,9 @@ static int aml_bank_number(struct device_node *np)
+ 	if (of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3,
+ 					     0, &of_args))
+ 		return -EINVAL;
+-	else
+-		return of_args.args[1] >> 8;
++
++	of_node_put(of_args.np);
++	return of_args.args[1] >> 8;
+ }
+ 
+ static unsigned int aml_count_pins(struct device_node *np)
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+---
+base-commit: 615aad0f61e0c7a898184a394dc895c610100d4f
+change-id: 20260128-amlogic-0d08ef086c8b
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: a0c666c25aeefd16f4b088c6549a6fb6b65a8a1d (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com:
-
-arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dtb: clock-controller@330000 (amlogic,s4-audio-clkc): reg: [[0, 3342336, 0, 216], [0, 3346048, 0, 16]] is too long
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: clock-controller@330000 (amlogic,s4-audio-clkc): reg: [[0, 3342336, 0, 216], [0, 3346048, 0, 16]] is too long
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml
-
-
-
-
+Best regards,
+-- 
+Felix Gu <ustc.gu@gmail.com>
 
 
 _______________________________________________
