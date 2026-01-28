@@ -4,68 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F22AED3569A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Jan 2026 09:56:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6B70D35693
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Jan 2026 10:10:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=g3D+RzjnUiRNRGZpIjfg25gncvkbC8Xxkf1Q1/dQMYY=; b=Vx0EEyq/32bLx2
-	vCvN5Rkc8K0HgoJe+4z5aV2g2YLazIQ5+WdlHWwAii7flIGm48NSVarC85eIvQryPupZVuCc2ei4d
-	8EVfLmH96ztEwjTJm3ujTHlFUhPQAN2CbgaAIG4RDgqiJ6wrpGHw4+R+lMJoUAgY+hjqOiEp/G9P5
-	f/SXUQ5fyVzYp3YfWBKfz2NQTyu0ouolIIHVpzEW2g5+kQLnQ69wLdOS6NUGI5OdzGwIp/mKCYfDy
-	37u6xRcBF17baDLNNMLUx5vRMERzXKNeKrcTS+InFUk5rb8i9p1GeT+qtjmEe14W58aC5haiqDdc5
-	MalB4sTGL0iRYA2u13Sw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Ou9uhUZ4GmevdsfuFYkeJ/EsuTQen9DGkPvKfglVk44=; b=Lh0VedJKzTfKO2
+	+5Bo77FtahpmIf7MVGecRry2dLB4BoaivGNcqAMwivBGktndVZowJ63ihIR7zkAjEcRgXXKNumSYf
+	qmsMMPUqjG2WJrYVV9zU5KH8XPFN04xoxr6Hw1jlZv9L/qkIjF6C0JEjcwkKfFwpFXUltrZtCQRop
+	0YvgZWItz86rxHRRErzJof3HZLNo49Fjan9YFYOR2XTxhacaOoC0tP1fPcVm6LA2J8jZWFDEmQBId
+	8ak0qaS8FSi9yHWmc60l3wPQX7iGhUFUGHIANIGHGU2aoUPbjUC4w5ECujh5PWB1HTaay9xSB4jdX
+	gikn5uWtgn9pVl/0nGOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vl2HP-0000000Fn9p-2Wot;
-	Wed, 28 Jan 2026 09:56:07 +0000
-Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
+	id 1vl2Ux-0000000FoLJ-26Qt;
+	Wed, 28 Jan 2026 10:10:07 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vl2HN-0000000Fn7F-27cE
-	for linux-amlogic@lists.infradead.org;
-	Wed, 28 Jan 2026 09:56:06 +0000
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1769594161;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SoKuQzz4G4oLOsx25HsiRvaTcp8ursPrum/xBovvjB0=;
-	b=j4+T0TQ8lW523WIn7s+fI9XJqr/CcU5uvc8oB7c9QV9aqJQXp6va3K3zVDFks9mO8q1nrD
-	IPneTxbqU3gGdZBGh4eA91PQTRILNFoPuUIE4hnfVn3IUcmyuuWejlMBKHLVsvn9KgKJTY
-	YatitFONlGl82CrOOLK7sM2N9WlzwPJ6wBSRBLj7kt5ISwspaX7YH3/zvI/fqEmgZoExpo
-	xsIYBxM+aV17p1OYBLOVryKrdaDvay4F+XOYBemcZoliLVUXnoFkfCkCnGVVEB9dk//pRc
-	meC90TO67we4DAuIq4OCz/XBDJT/34tKuwFUCgUJVaUt+TtrU/kxQG6Ia3hCKA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1769594161;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SoKuQzz4G4oLOsx25HsiRvaTcp8ursPrum/xBovvjB0=;
-	b=viqeemaInEUhQsuSncms6muvPmMDkjbulMK6W+g97Kd+7UqvoRvS/cvq+wzZ7ZUITxFPeO
-	taBAp1KyQMorzTDQ==
-To: linux-kernel@vger.kernel.org
-Cc: "Thomas Gleixner" <tglx@kernel.org>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Yiting Deng <yiting.deng@amlogic.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-rtc@vger.kernel.org
-Subject: [PATCH v2 12/20] rtc: amlogic-a4: Remove IRQF_ONESHOT
-Date: Wed, 28 Jan 2026 10:55:32 +0100
-Message-ID: <20260128095540.863589-13-bigeasy@linutronix.de>
-In-Reply-To: <20260128095540.863589-1-bigeasy@linutronix.de>
-References: <20260128095540.863589-1-bigeasy@linutronix.de>
+	id 1vl2Uw-0000000FoLA-3Wvf;
+	Wed, 28 Jan 2026 10:10:06 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id EB3416001A;
+	Wed, 28 Jan 2026 10:10:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 96013C4CEF1;
+	Wed, 28 Jan 2026 10:10:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769595005;
+	bh=X4SuxCleKrrzGAtIw6zL8YaUitgC/KQKVkQAuw87xNw=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=KWI/646ZWVuGRf5tFzDPJ4w9K3A7JCMYnuNMLF0llsEkzOuxNXHldoxH+a9wmKyNu
+	 Ndq+MUk86Qhm/AQUJn+zf0T/5u6EtDSfriLeVBPb1Ky2x5R7CszDRXOUuvsfHzEJwm
+	 OVVcf3GSmrbeDaJsDO09niZnqPN8zEp9JZLrSlVOlNwgftzUOei7jQd+2w2ugJd2ss
+	 ile1Yw4zptEv4pk7crN7rqCOWkHra54zWoKeIhkhuPXK7y5eGO8MPGk+J/NnGOrqKg
+	 8/HhN/fvuuJ1TfzX17SYIyLf/Ww+Y8YdYra632FFPYV74f9ybAMj18pbc1o3HY2Nz8
+	 Cbx1aJQKM1XGQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 835F6D35693;
+	Wed, 28 Jan 2026 10:10:05 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Wed, 28 Jan 2026 10:09:54 +0000
+Subject: [PATCH] arm64: dts: amlogic: a4: fix pinctrl node
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260128_015605_685726_F3E29452 
-X-CRM114-Status: GOOD (  10.18  )
+Message-Id: <20260128-fix-a4-pinctl-node-v1-1-617a1f539902@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAHHgeWkC/x2MWwqAIBAArxL73UJt0esq0YfpVguhohGBdPekz
+ 4GZSRA5CEeYigSBb4nibIa6LEAfyu6MYjIDVdRVNQ24yYOqRS9WXydaZxg702+jpnFtSEEOfeB
+ s/dN5ed8PqDHy92QAAAA=
+X-Change-ID: 20260128-fix-a4-pinctl-node-6d7f9c29b32a
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1769595003; l=1293;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=F6Np6Gg5OfDL8SOtdbBhRnTvyEqILZTAt6VZ6iphZjU=;
+ b=klaiKJo6ZXYdkMttvJFCkjmYPGO+ViMwibRH3IvVKYi1pOexAtu5Fpu0DiJT/zW6MPW+LQJC5
+ PWuoph2b+74A/QH2bae0AyNkycivBV6dCia29/RQ2iwwzlcxBF2gGuT
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,48 +83,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Passing IRQF_ONESHOT ensures that the interrupt source is masked until
-the secondary (threaded) handler is done. If only a primary handler is
-used then the flag makes no sense because the interrupt can not fire
-(again) while its handler is running.
-The flag also disallows force-threading of the primary handler and the
-irq-core will warn about this.
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Remove IRQF_ONESHOT from irqflags.
+Fix incorrect pinctrl device reference when adding GPIO to pinctrl device.
 
-Fixes: c89ac9182ee29 ("rtc: support for the Amlogic on-chip RTC")
-Reviewed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Fixes: e9bb91734871 ("arm64: dts: amlogic: a4: add pinctrl node")
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-Cc: Yiting Deng <yiting.deng@amlogic.com>
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-rtc@vger.kernel.org
+Fix A4 pinctrl node.
 ---
- drivers/rtc/rtc-amlogic-a4.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
-index 123fb372fc9fe..50938c35af36a 100644
---- a/drivers/rtc/rtc-amlogic-a4.c
-+++ b/drivers/rtc/rtc-amlogic-a4.c
-@@ -369,7 +369,7 @@ static int aml_rtc_probe(struct platform_device *pdev)
- 		return PTR_ERR(rtc->rtc_dev);
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+index fce45933fa28..6587e3578f8d 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+@@ -218,7 +218,7 @@ gpioao: gpio@4 {
+ 			reg-names = "gpio", "mux";
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+-			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
++			gpio-ranges = <&ao_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
+ 		};
  
- 	ret = devm_request_irq(dev, rtc->irq, aml_rtc_handler,
--			       IRQF_ONESHOT, "aml-rtc alarm", rtc);
-+			       0, "aml-rtc alarm", rtc);
- 	if (ret) {
- 		dev_err_probe(dev, ret, "IRQ%d request failed, ret = %d\n",
- 			      rtc->irq, ret);
+ 		test_n: gpio@44 {
+@@ -226,7 +226,7 @@ test_n: gpio@44 {
+ 			reg-names = "gpio";
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+-			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
++			gpio-ranges = <&ao_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
+ 		};
+ 	};
+ 
+
+---
+base-commit: e3194dfb772304a1b7ca3bcfccacefec3468b7bf
+change-id: 20260128-fix-a4-pinctl-node-6d7f9c29b32a
+
+Best regards,
 -- 
-2.51.0
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
 _______________________________________________
