@@ -4,95 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2356D6101A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jan 2026 14:48:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2736DD6B084
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jan 2026 16:07:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mnOOsQB5eX5HWbjjY3B5EL4Cg+EzzFjT2hm5NFuLUFc=; b=PdUhLlvw6iXCi0
-	toQev4HPxr/pBc91aE8+IE2fgRhvCFay6eiKC7ArEd2GNcL6q2DJWeIQka+kyfX3TQhAPzW+FIvUg
-	1S0WQr6d4vM+mJ6/2ByfQPuQHdergMqGno01SgOEuWY4oG3188nxqO7stDZVsGc+93yj9AmoHCyVl
-	MXdDsBE3SwX62/vylfU89VOkSZGMKC4SJiVlx8B9QZloiPpbDxEqcxolR0Vw8HX/te5dKhWZdtsko
-	/5Bg5crIL+FDD/0AjhyRv5mcvCZb3RAfG1fc/J+oDfw6CGYbyQUlQmfSmfm0NCXXtUzg7hsZyOJAJ
-	eFC3Qu/xwgFs1F7Wpuzg==;
+	List-Owner; bh=pHqw7Bd45Rwi8qqH1vO4PruP/r+syak9qetQsoCi1zM=; b=dXsPAoKIT8KGT8
+	128zAX/hrDKn+g3ETeqZ2TRp0mLPZ8A/S953KdNkdhDHSls4aG4M4C/DwbZPpIR883Em3FS9hOB/B
+	o/a6E2c+Jx5QrhsMX/oTib6rfJ68qowv+UcJ4mwaEdBp5xBLVxUGpDiiXsmsqeCok9zUXdQR0UtgA
+	L5Jj9Nfz04NvOqdz6J7Kf7tPZRwJlBl1p0f7UmP5su7BQrbo5GpuBGtcnSywhvfxbz9pekLA8ZMSZ
+	24ipVEGp6urH6M8OHE0rruIIsAu69xHc+MTz35o8bJ0QjV0Jw9QYHv6gWI9J7tYnfTRmpI1ghAdQH
+	F2YPtFijiTJoMrCx8l+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vlTK7-00000000FIZ-13ip;
-	Thu, 29 Jan 2026 14:48:43 +0000
-Received: from mx4.sberdevices.ru ([152.89.196.46])
+	id 1vlUXw-00000000Jmr-45bt;
+	Thu, 29 Jan 2026 16:07:04 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vlTK3-00000000FHr-0Q7T;
-	Thu, 29 Jan 2026 14:48:41 +0000
-Received: from p-antispam-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx4.sberdevices.ru (Postfix) with ESMTP id E25FC40004;
-	Thu, 29 Jan 2026 17:48:24 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx4.sberdevices.ru E25FC40004
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=post; t=1769698104;
-	bh=Kd3WI+TsllaYu1gglPGS5EzMwuvRBJh6elKjpwUOhxk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=Pt6TX/I6S/KAfgVZ4UOgS23HYPHXljmZSPPF5K4jRId2REk8jt8As3ghiv1pq2aIf
-	 lS7fiM/gO/1K/V8XldbWnExqf7ihZISM8VDOOwWPDFXNUZFf/cvuhAYlMZclad+Gun
-	 YRLSwzo7DgA6bSQKLVGmm6gTHhgp1inbWDmvu1vIZP+LmOSEvjUn7xwVfUrJxUHxDJ
-	 LRw79UQQuiOeF+ios8wVe+9bJ8eOeLKXsDv6I1H14igMG0OtIIwvieVHs6Cah6OZNG
-	 U3Qbk51w025y++zDXmK8vSo/6ObCc+Ge6VmeLxIZAh1vY1F9A94K373eOvrdK8tgWL
-	 MNS0VwNtCws0A==
-Received: from smtp.sberdevices.ru (p-exch-cas-s-m1.sberdevices.ru [172.16.210.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(Client CN "sberdevices.ru", Issuer "R12" (verified OK))
-	by mx4.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 29 Jan 2026 17:48:23 +0300 (MSK)
-Message-ID: <88a0395b-1ab3-4ef0-96c4-440b3a5c96f4@salutedevices.com>
-Date: Thu, 29 Jan 2026 17:48:17 +0300
+	id 1vlUXw-00000000Jmi-1uQ3;
+	Thu, 29 Jan 2026 16:07:04 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id B06A26001A;
+	Thu, 29 Jan 2026 16:07:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ECA5C4CEF7;
+	Thu, 29 Jan 2026 16:07:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769702823;
+	bh=tXLZf586UMlopidhDPd+PLHMkBbfoB3yGad7HOETBIQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ze3bCGG/Hi5NgiKNzxsqJo1h+thuZE83AJGM3VOwqqyq9zuyxXz1YYh0gYxoXT3b6
+	 5rY3/sq21LyoYekh9tWhU4sCw6G7n2xC7gZNRDPxvXWQDCMyvm4UA0YCBICNtKOyCf
+	 2zIHGuAMaurWjAoyxsWEqvNiePG3VPrRrqrXIpg/IokMcjzzxPcchNHetQ0D3AIOn4
+	 Py3Qk6YDAgnMyHZjYBqqv69Jhnjv6DRP7pNDHnM1PCmccf2Hel4JL8iqHSk3cFBkyb
+	 l5quNXdS50Oemjhyk8xvtBIFjfpzr7KLzowBh7dJm8pXRot48elOiivmf6Z/asjzic
+	 722agsrP7ELAg==
+Date: Thu, 29 Jan 2026 10:07:02 -0600
+From: Rob Herring <robh@kernel.org>
+To: Jiebing Chen <jiebing.chen@amlogic.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
+Subject: Re: [PATCH v6 1/5] dt-bindings: clock: meson: Add audio power domain
+ for S4 soc
+Message-ID: <20260129160702.GA1111873-robh@kernel.org>
+References: <20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com>
+ <20260126-audio_drvier-v6-1-99e350855bc2@amlogic.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW0RNQVJDIGVycm9yXSBbUEFUQ0ggdjMgMy8zXSBh?=
- =?UTF-8?Q?rm64=3A_dts=3A_meson-s4-s905y4-khadas-vim1s=3A_add_initial_device?=
- =?UTF-8?Q?_tree?=
-To: Nick Xie <nick@khadas.com>
-CC: "robh@kernel.org" <robh@kernel.org>, "khilman@baylibre.com"
-	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "kernel@salutedevices.com"
-	<kernel@salutedevices.com>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "xianwei.zhao@amlogic.com" <xianwei.zhao@amlogic.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20260115030015.1334517-1-nick@khadas.com>
- <20260115030015.1334517-4-nick@khadas.com>
- <09df45e1-90b5-4618-9197-c724142bd83a@salutedevices.com>
- <PS1PPF62EEA9B1D287E26DFE619BB840508AE93A@PS1PPF62EEA9B1D.apcprd03.prod.outlook.com>
-Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <PS1PPF62EEA9B1D287E26DFE619BB840508AE93A@PS1PPF62EEA9B1D.apcprd03.prod.outlook.com>
-X-Originating-IP: [172.28.2.68]
-X-ClientProxiedBy: p-exch-cas-a-m2.sberdevices.ru (172.24.201.210) To
- p-exch-cas-s-m1.sberdevices.ru (172.16.210.2)
-X-KSMG-AntiPhishing: NotDetected, bases: 2026/01/29 14:38:00
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Info: LuaCore: 86 0.3.86 47cb2a3d3f5c7e795bff2d0998e8c196722872ab, {Tracking_uf_ne_domains}, {Tracking_bl_eng_cat}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;elixir.bootlin.com:7.1.1;lkml.iu.edu:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1, {Track_Chinese_Simplified}, FromAlignment: s
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiSpam-Lua-Profiles: 199962 [Jan 29 2026]
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Version: 6.1.1.20
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.1.1.8310, bases: 2026/01/29 13:14:00 #28162110
-X-KSMG-AntiVirus-Status: NotDetected, skipped
-X-KSMG-KATA-Status: Not Scanned
-X-KSMG-LinksScanning: NotDetected, bases: 2026/01/29 14:38:00
-X-KSMG-Message-Action: skipped
-X-KSMG-Rule-ID: 5
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260129_064839_650070_CC1EE2BB 
-X-CRM114-Status: GOOD (  20.52  )
+Content-Disposition: inline
+In-Reply-To: <20260126-audio_drvier-v6-1-99e350855bc2@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,82 +78,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 1/26/26 12:35, Nick Xie wrote:
->> Thanks for the patch. Since you have khadas mail I'm pretty sure you've
->> had the possibility to test it on the real vim board and I just don't
->> get it how it works with the voltage table above. The problem is that
->> pwm is calculated incorrectly in the upstream pwm-meson driver. That
->> voltage table appeared to be used in early amlogic bl loader and
->> appropriate pwm is initialized from a table's record. Duty cycle value
->> is translated to pwm regs correctly. Later when kernel start running
->> pwm-regulator driver is probed. It reads the pwm regs, calculates back
->> duty-cyle and search it in the table. Since calculation algos are not
->> match and the table doesn't contain full range of 0-100% values
->> regulator driver doesn't find current voltage. In such case regulator
->> core sets the minimum voltage from the table [1] and the SoC may hang
->> (depending on board) due to minimum voltage may be too low for the
->> current frequency SoC uses.
+On Mon, Jan 26, 2026 at 06:01:42AM +0000, Jiebing Chen wrote:
+> The audio power domain has been found on S4 device.
+> It must be enabled prior to audio operations.
 > 
-> I'm not sure about the PWM issues, but I checked on the real S905Y4 hardware
-> and  it works.
-
-To prove my point: run the kernel with the next patch:
-
-diff --git a/drivers/regulator/pwm-regulator.c 
-b/drivers/regulator/pwm-regulator.c
-index 7434b6b22d32..14d2730b21e8 100644
---- a/drivers/regulator/pwm-regulator.c
-+++ b/drivers/regulator/pwm-regulator.c
-@@ -86,6 +86,9 @@ static int pwm_regulator_set_voltage_sel(struct 
-regulator_dev *rdev,
-         struct pwm_state pstate;
-         int ret;
-
-+       dev_info(&rdev->dev, "setting voltage from table: index: %u, uV: 
-%u\n",
-+               selector, drvdata->duty_cycle_table[selector].uV);
-+
-         pwm_init_state(drvdata->pwm, &pstate);
-         pwm_set_relative_duty_cycle(&pstate,
-                         drvdata->duty_cycle_table[selector].dutycycle, 
-100);
-
-In dmesg there must be a message like "setting voltage from table: 
-index: 36, uV: 689000"
-If to take a look at operation points table for s4 in vendor kernels the 
-lowest voltage is 0.769V for 100Mhz
-so setting 689000uV even temporary may lead to problems depending on 
-particular hardware.
-
->> Or I'm missing something?
+> Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
+> ---
+>  .../bindings/clock/amlogic,axg-audio-clkc.yaml         | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
 > 
-> 
->> There's not-yet-reviewed patch that fixes pwm algo [2]. There's
->> calculation example in the cover letter.
->> [1] https://elixir.bootlin.com/linux/v6.19-rc5/source/drivers/regulator/core.c#L1227
->> [2] https://lkml.iu.edu/2412.3/00826.html
-> 
-> What's the status of such patches?
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> index fd7982dd4cea..1cd9a99e5ff3 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+> @@ -20,6 +20,7 @@ properties:
+>      enum:
+>        - amlogic,axg-audio-clkc
+>        - amlogic,g12a-audio-clkc
+> +      - amlogic,s4-audio-clkc
+>        - amlogic,sm1-audio-clkc
+>  
+>    '#clock-cells':
+> @@ -99,7 +100,8 @@ properties:
+>  
+>    resets:
+>      description: internal reset line
+> -
+> +  power-domains:
+> +    maxItems: 1
 
-the patch is ready for review. It's seems like nobody is interested
+blank line
 
-> --
-> 
-> Best regards
-> 
-> George
-> 
-
--- 
-Best regards
-George
+Looks fine otherwise except for the DTB warning, so something here 
+doesn't match.
 
 _______________________________________________
 linux-amlogic mailing list
