@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2736DD6B084
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jan 2026 16:07:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 422CCD6B086
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Jan 2026 16:07:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pHqw7Bd45Rwi8qqH1vO4PruP/r+syak9qetQsoCi1zM=; b=dXsPAoKIT8KGT8
-	128zAX/hrDKn+g3ETeqZ2TRp0mLPZ8A/S953KdNkdhDHSls4aG4M4C/DwbZPpIR883Em3FS9hOB/B
-	o/a6E2c+Jx5QrhsMX/oTib6rfJ68qowv+UcJ4mwaEdBp5xBLVxUGpDiiXsmsqeCok9zUXdQR0UtgA
-	L5Jj9Nfz04NvOqdz6J7Kf7tPZRwJlBl1p0f7UmP5su7BQrbo5GpuBGtcnSywhvfxbz9pekLA8ZMSZ
-	24ipVEGp6urH6M8OHE0rruIIsAu69xHc+MTz35o8bJ0QjV0Jw9QYHv6gWI9J7tYnfTRmpI1ghAdQH
-	F2YPtFijiTJoMrCx8l+A==;
+	List-Owner; bh=CIJD9DqBDi7FEupZIOk6qHiD+2DRJW3JsA8GfbRCYlc=; b=N205cA+vGGRho3
+	KeZhofdMcmpId4OBduWmLxk3HSIpihC+3V7ETTj+w/bprjR6hZCGGjb60BVarqY1UrVxHJjqQixmJ
+	6Qq39xzz3ujurz0/yr9YQbc66wE71FZbixa+vkT4R4O9v0jH7Zn9ZjM49nDIPNI/Xj0NQgGHazw4o
+	KpCv5s7lgI9CSHWy07GXZE4AWC6PlI2smfqv7LdGfbkFM71QDK6U3NRiij6C2xqnMmfChh7AkdHz9
+	1+dFm6Ilodt68gYkH5lXgtOtT5aFh6dPz3SPrEf+adpwqWGcmvTs/Fx4TlCirhlaRq4lJMT4wxHG2
+	pzumZWaAI8QRIzsSJV2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vlUXw-00000000Jmr-45bt;
-	Thu, 29 Jan 2026 16:07:04 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vlUYg-00000000Jus-0AHa;
+	Thu, 29 Jan 2026 16:07:50 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vlUXw-00000000Jmi-1uQ3;
-	Thu, 29 Jan 2026 16:07:04 +0000
+	id 1vlUYd-00000000Ju7-3vmB;
+	Thu, 29 Jan 2026 16:07:48 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id B06A26001A;
-	Thu, 29 Jan 2026 16:07:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ECA5C4CEF7;
-	Thu, 29 Jan 2026 16:07:03 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 755164352E;
+	Thu, 29 Jan 2026 16:07:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EC0FC116D0;
+	Thu, 29 Jan 2026 16:07:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769702823;
-	bh=tXLZf586UMlopidhDPd+PLHMkBbfoB3yGad7HOETBIQ=;
+	s=k20201202; t=1769702864;
+	bh=edyDpWccp+SyzVe8nIG32V3ZrXLEdt5h0WZKlrcY6v8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ze3bCGG/Hi5NgiKNzxsqJo1h+thuZE83AJGM3VOwqqyq9zuyxXz1YYh0gYxoXT3b6
-	 5rY3/sq21LyoYekh9tWhU4sCw6G7n2xC7gZNRDPxvXWQDCMyvm4UA0YCBICNtKOyCf
-	 2zIHGuAMaurWjAoyxsWEqvNiePG3VPrRrqrXIpg/IokMcjzzxPcchNHetQ0D3AIOn4
-	 Py3Qk6YDAgnMyHZjYBqqv69Jhnjv6DRP7pNDHnM1PCmccf2Hel4JL8iqHSk3cFBkyb
-	 l5quNXdS50Oemjhyk8xvtBIFjfpzr7KLzowBh7dJm8pXRot48elOiivmf6Z/asjzic
-	 722agsrP7ELAg==
-Date: Thu, 29 Jan 2026 10:07:02 -0600
+	b=sCdN8CbR5l8R4WunQ7GAUxr3QMfkZwzToa26q1AFrGW7T76dNbIP3ei9J7Jk0i0jX
+	 /7CvviOfsV7Y5E8j+WTFE/pfHpIp8Zn0HLi57nliQwgxTxYDZK2hYcf+poBntKM56R
+	 dmTLBmGNNK80aA6AJdW+iTYFqnnA3s4kCEA3BnRFwVik5mN5yOxJ3PIdDK8WFd+6u6
+	 eNbZpzPwEI4tvpDeoLgZM9J/5QonjCfbBICBqz15g9LPR6t4b4PfQOKcJ0HNbhSyW7
+	 v4pS7V37P1NmH1q/8AsoJJ52KxoXidUECYyMBZghYuo8756OsSFMsVvXB9HX2ItOD7
+	 WdtBrRo/E8r3g==
+Date: Thu, 29 Jan 2026 10:07:43 -0600
 From: Rob Herring <robh@kernel.org>
 To: Jiebing Chen <jiebing.chen@amlogic.com>
 Cc: Jerome Brunet <jbrunet@baylibre.com>,
@@ -59,14 +59,17 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
 	jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
-Subject: Re: [PATCH v6 1/5] dt-bindings: clock: meson: Add audio power domain
- for S4 soc
-Message-ID: <20260129160702.GA1111873-robh@kernel.org>
+Subject: Re: [PATCH v6 2/5] dt-bindings: Asoc: axg-audio: Add S4 audio tocodec
+Message-ID: <20260129160743.GA1117034-robh@kernel.org>
 References: <20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com>
- <20260126-audio_drvier-v6-1-99e350855bc2@amlogic.com>
+ <20260126-audio_drvier-v6-2-99e350855bc2@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260126-audio_drvier-v6-1-99e350855bc2@amlogic.com>
+In-Reply-To: <20260126-audio_drvier-v6-2-99e350855bc2@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260129_080747_991099_31925EB6 
+X-CRM114-Status: UNSURE (   8.65  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,39 +86,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jan 26, 2026 at 06:01:42AM +0000, Jiebing Chen wrote:
-> The audio power domain has been found on S4 device.
-> It must be enabled prior to audio operations.
+On Mon, Jan 26, 2026 at 06:01:43AM +0000, Jiebing Chen wrote:
+> Add S4 SoC tocodec compatibility support.
 > 
 > Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
 > ---
->  .../bindings/clock/amlogic,axg-audio-clkc.yaml         | 18 ++++++++++++++++--
->  1 file changed, 16 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
-> index fd7982dd4cea..1cd9a99e5ff3 100644
-> --- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
-> @@ -20,6 +20,7 @@ properties:
->      enum:
->        - amlogic,axg-audio-clkc
->        - amlogic,g12a-audio-clkc
-> +      - amlogic,s4-audio-clkc
->        - amlogic,sm1-audio-clkc
->  
->    '#clock-cells':
-> @@ -99,7 +100,8 @@ properties:
->  
->    resets:
->      description: internal reset line
-> -
-> +  power-domains:
-> +    maxItems: 1
+>  Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-blank line
-
-Looks fine otherwise except for the DTB warning, so something here 
-doesn't match.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
