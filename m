@@ -4,174 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C179CE7314E
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Feb 2026 09:23:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA9EFE7DEFC
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Feb 2026 16:10:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=PV6xVFQOsofRRpPS8wbNMR7m+MoGSRAxHiYrBY1/9Nw=; b=fDyM7sINua39s4oOnLkCO4QQgN
-	uOVjn1aWmFtADegkeV+xzQDfhYZmUAq/goiwZ9ytHjGTseJRfcb7Owjtf7CeUIeOOyiCzVISSFc8m
-	LTXZlpH3S0B7y4x7w7kjXVI6/HOv48ak3MbZP8hAJJ/L1J9UlwSWvWOaSrXQlR1Oe+GJueFNRAUQt
-	OjVthW2HQPxBx43c54yM7+8+kH+MB8bVHW0A57BEeg4OPuOHIjy+3hgHjMQHmKIOpzPTQbOKFDTI0
-	w4T2bAKd48EaeUNUe+xZ+p11UK5CGzoX1XE2NFmwqKzru+Vh4Rxi0q5mjuAnQTlKbPyDxsdYxBxj+
-	xMKiwSLA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Qwz98B4GeJZbawkf3cTjdEYW94AxBX71Bl7H+sUvI4A=; b=FZA9odo8eNHNUc
+	paDurfeGujPHoLNkisikgXFKoDO0KHutSVy7iIAXt3TW6gXS1YdjqjGbYq8tiDnzfnmM3kDWJIPDn
+	iQrGrVrBfMQSeTt+KJuawNXUV5rZ2yPbDKBWiS9SDrhJavrKmip1q9v+Vq/pFyhu5CL6BM1QIwzIe
+	qBTEDWTGHYXQ2lOWilGQaXHnEs4pkPgMXku5SctvF6sLF5BbF2Mq2ro04sWPhLelI7mPerCXlt6SP
+	NMMw9jSK2Lj9pvQGkC/TqGqDa1pq9pRuMZ2ZT+6ce+DL9e0uolMTr3ZYQPac9r8RpYfascGwcRckF
+	NYY6R8ynu6PAEW/XA0pw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vmq9b-00000004hhG-0LBM;
-	Mon, 02 Feb 2026 09:23:31 +0000
-Received: from mail-japaneastazon11023098.outbound.protection.outlook.com ([52.101.127.98] helo=TYDPR03CU002.outbound.protection.outlook.com)
+	id 1vmwVQ-00000005H0d-0i0H;
+	Mon, 02 Feb 2026 16:10:28 +0000
+Received: from mail-westeuropeazon11011050.outbound.protection.outlook.com ([52.101.70.50] helo=AS8PR04CU009.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vmq9X-00000004hgr-1qaU
+	id 1vmwVN-00000005Gzc-0mzm
 	for linux-amlogic@lists.infradead.org;
-	Mon, 02 Feb 2026 09:23:29 +0000
+	Mon, 02 Feb 2026 16:10:26 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YdCNrROhoIkhR0+9Pw6U6SHa+pt1NjfxXypGYMe0WgmxEOADBq0yrAXwYGjw2FQiu3P2Z3VKc0hum2IzWjLQ16UyVgl93d7izTUpowfTXlcNV4ucw/9tMe3wmJo76e4gnBmZAaeDxvARfYdBn5Eyfj9w7mMxUVcq6aBNcNJk/nIxbhsfatAS541wMGPNdJqtKiB6rjg3icCNLkMxEoKvc4+U2Wr4/tl2pogTrDFwcP3HJTiLfaU4pKHlcBFF7hsZkfEQ2bS1Wi4hNCyqruR3oO8RSlSJbmKgirsYwMdZ4bI8hvS4w6buU4OE3Nmlb5wsiCgGj3m0sDS3+asDcH2Awg==
+ b=iagpljmivVVkFUOvewkyzJmoTf96LZoig4Bt2ZEFgdu2ttD6Fuo2uy685l2L+VXNLbID/Swao8YTg+hvkaPE89/q2yzLO4/br/cYpgXORgy54u+0nAAqkgBhBPDOcjZbkZ2WKRcepDPRn3RoMuZigsHYX4FnpH4ZxsBJKntzj4T8gPvKg/YOl3/gJv461gNPisavrYqPAOg1hulyr7WUQJHkALPolnJ0d7YRoPtO4X1FLuqn5ISe9gQk5ZsEt+avu8CBw/266ogoWEZ/nZGB5nLmPahiNGkEua4ghbZV1nNl0R9HIBtmQW5HoSU7tp5MX5k+ivEES2lXFwuzSm3qlA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6ope1xeHfdD9PHrPeXNnWUDHUbvm6pC9x10ggu1zH3s=;
- b=FkiI4XzhszlBMjU9If8qvy8n5zglaXUyGwGAam79qUx3eOh/7CcoqCc66+kSKe67weVE68cdUOvwW/bVqXZSBvsCkHCgPcTx73jaUgCLoty8jNfHRlJsNeVtNaBxiccMQUr3YnYeenU6vfTdE2cqK4shFiIg3Yd+7YWvfU4hCq1CryG2dro1v7oJzDroliFjlAm1dTusBRzjkdhhXDNomnHhr206AFAEHs7+ONyKk64PghNEF567JNOmt/Sir71AnpuoAAVfvgNz160rXxsb0R91t9KtgKWusolBxLc45aHd2UnqceYVctsfhxFCxPM1TLCZbQbHIKYvWvHfqHATfw==
+ bh=JU5PwbTH0SHXgbxJs/zbGHjTJXWwPM7IVM/LpiiAldY=;
+ b=J8rdOgG1sUM9v2vAleiYDhWT+GvQkJUb+PhoRlWZp0XaIximw4td1BhQcb8M6v3RyyW97rD8Zb398TplLFMO8pnZ2OtK6sSaURdleERyEm/r6PbhyfpoTPWbT7gzZvMfGJwuBapM7331rh128X5O6qRB3rhysZklTvg6sRgCTaChgeaTMcn/aTo/iU6l2AkNNaKxnKbhmtcPdKvckVwb75kknE6oZwavr5K0Ad/Gtgg4VGgkfxeGBYiJTIoM5aQkLGKRmcHBpbFkJRo8qmkY0bk67tb4z6PcTz2zGvXRToby+kQdejXTcaLc2GrWVs7ew55Hd/cPDHcIWwmbCGQAAg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6ope1xeHfdD9PHrPeXNnWUDHUbvm6pC9x10ggu1zH3s=;
- b=l7LDcOqCTCrKonDxwE5mu2F4vqdFI764oFiPrwQpDAW8jyHfSpy105+f6/rGYDY+TdLI8+aOTLCJnlGfMLRM9Wjbqcm7KDaimHXAPQaTz6OrCUKjsP2J8lRK9M79B9iSWCIc+TwydmTYYcGTAjKFG/kZ6cHBaflu4Nafx7LJy30SBiJnjQDYcjOfU8E8xMBXO+mOK5ORZlj+5KZPyqmeStzw9SmoYwWX+h0dB5FvrdgNevz//ihpSvG8FaAU9CH3zLrLJwhGVFx7c0fF2pdE6PgPnG1fCqSTnFkLCsNXeoYYtXLGbEckyWx5S5xyxynEXwc1pG0BUD2fHqre7Ox3AQ==
+ bh=JU5PwbTH0SHXgbxJs/zbGHjTJXWwPM7IVM/LpiiAldY=;
+ b=eMdQN85jqTbC6Z4dEtaM4tHZRKHmMn7ubdQWAA6BujcMAN/+mTipAzFwC5mCkf50OOikTd6ORzviKYD21xAGvqaZxqUo5zIAKp4YmchRosPs0DfDIc8K+Xp8ojbyxhxwrvq6PI4P8ZGOflKlxA3emfSpc6cEzV6sSXbXkneHrjdPiTOB/kjcppaLHP2Jz18rR8okyx8j8eptNI28aumHqUhswODLIIEJZmNAvfHqXurmZXSD3plEjM/6/0Y/sVeWHZtzFyTeFd/0TqtRDB2trObQGNCTeDoVK2sOFS6noTOjFUrntN+6dvMXpL58LABCs7YL8kFlcRUBDabGlVa+Nw==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SEYPR03MB9802.apcprd03.prod.outlook.com (2603:1096:101:304::8) with
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DB9PR04MB8314.eurprd04.prod.outlook.com (2603:10a6:10:249::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Mon, 2 Feb
- 2026 09:23:19 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::78d4:9dee:2e32:d1e4%4]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
- 09:23:19 +0000
-Message-ID: <260d0d7d-4324-4fd6-b12d-50ffeaa82114@amlogic.com>
-Date: Mon, 2 Feb 2026 17:23:13 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dma: amlogic: Add general DMA driver for A9
-Content-Language: en-US
-To: Frank Li <Frank.li@nxp.com>
+ 2026 16:10:19 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
+ 16:10:17 +0000
+Date: Mon, 2 Feb 2026 11:10:08 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
 Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dma: amlogic: Add general DMA driver for A9
+Message-ID: <aYDMYPwNM9WnTl2u@lizhi-Precision-Tower-5810>
 References: <20260127-amlogic-dma-v2-0-4525d327d74d@amlogic.com>
  <20260127-amlogic-dma-v2-2-4525d327d74d@amlogic.com>
  <aXuhOZICKEHNQ3GP@lizhi-Precision-Tower-5810>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <aXuhOZICKEHNQ3GP@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: SG2PR06CA0237.apcprd06.prod.outlook.com
- (2603:1096:4:ac::21) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+ <260d0d7d-4324-4fd6-b12d-50ffeaa82114@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <260d0d7d-4324-4fd6-b12d-50ffeaa82114@amlogic.com>
+X-ClientProxiedBy: PH7P223CA0006.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:510:338::27) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEYPR03MB9802:EE_
-X-MS-Office365-Filtering-Correlation-Id: e31c94fe-cdc2-4dee-0b14-08de623cb40b
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DB9PR04MB8314:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85c26ba2-c33b-406f-a559-08de62758d99
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VzZTSFVQbitHV0h4eW4yN3ZRbkVBRHFpbGdLbFVuazNiTTZ6eVQ1WnExYkFK?=
- =?utf-8?B?V3pQc0hCRmVhQjVwUUkzUlFndjNaTUZOeUxPZWxLVEdob2s1UG9QOS9UL2cy?=
- =?utf-8?B?OHFsdmk4dk1lTDlrWlhZUHdVZjh5cERYenNRanEzcEJ4bHorbG5qcXROZ3A4?=
- =?utf-8?B?VkpNaGpYVzBqS29xVFBoZzUvampIbHV5bGpsNmdNdlhKeXVaTGp6NVpkakll?=
- =?utf-8?B?YUt0YjRvRnJvN3luVTM4eWlCQ2xWdG5xOFNMUUR5VnYrbFJ2SmpBc2UzSk4r?=
- =?utf-8?B?VGtPM1hoRWdxelN1aVA2U0VxWExPdXdJd1Izclc0eGFRTGNTQTBxcXNCVXZz?=
- =?utf-8?B?ZWdjYVhyYzdyVnp5UldvQjRuRFI0dmlBYnRtWDRCZ2d1aEVTTDM0d1JQMTZC?=
- =?utf-8?B?UU13ODlKMlpsRUFMVDJjRG9aV1hFNkRjUE9IQjNKZWdHUlhPRmlkdXhWaUdu?=
- =?utf-8?B?UVAxS0l1amlMd0ZYSHNOdC92TVZvSk5RcGd6Ty82UjRWcWtLNXJmZEphWStv?=
- =?utf-8?B?QmxYTWRneWFjaDFnSyswU2pLT1BEaFh3Mis3QlV0ZDJrNkRjZVBVNUtKTWpS?=
- =?utf-8?B?cGsvTjQ2bGhmY0tWcVhWWk1MWlNlTlZDVTAxbUZRdVlXbEZYTkxIeEQrL2Rt?=
- =?utf-8?B?MzJKZjd2N25jNFFrR1pwdjdaUy90TUlRYTNncnFlb0ZZR0Vyc0VGTkFyOVhS?=
- =?utf-8?B?MmlGaDlUNHZPOS81UFVDNUJ2cUJVMHNsQkQyZyt0ZW9yOEJMTEZkR1h6ZVJa?=
- =?utf-8?B?WGErSHpEQVRlUTQ2WHAvc3ZnSjFmeXhvSHNsLy9vTGJWQkpIdE1sMndFSHFP?=
- =?utf-8?B?RmZqSEZFZHk5Zm9qZjR4K3oyTFFCdmdQanZIR1lJdW0rODBwSk5aazNUU3hR?=
- =?utf-8?B?RE9iU0JPVEhleVA2dEtUMkFxZmZjUjYwMVVnVmxmRTlFNGppTFJEZlZLK3NU?=
- =?utf-8?B?Z1NRODdRT0VlUlgzNnpJZ2JycnhwbnBkdVgzYVUzaXF6Rk1BRzhTMHd2OWQ1?=
- =?utf-8?B?YkhwZStwV0laQjJwOUdNL0l2Z25rY2FNd1JZTWNxSFFPcUxpbG9wZDVsSG9Y?=
- =?utf-8?B?VWJBR2tOMS85dDhVdXZLcFkwY3B6UHdaNnFGSG5IaVFtR0JacEI3WVVpb3lQ?=
- =?utf-8?B?TkpJTGFjaHd2ZjVTbmZQQUxCL0hpUHhIMTFNTklFcUlFRmZhZHcvY05xZjhH?=
- =?utf-8?B?RjR3eU1neHZEbVVjR1lXQ3FaUWZhbjFCVzBoa0JDdEl6bDFZNGI2NC9seUpF?=
- =?utf-8?B?RTArcDhHVk15ZHNyako0cC8reVFmVUNuWHJrVDFoM3E2d3RUM3lkQmp5L0t3?=
- =?utf-8?B?Q1E0WVIzUEVHczVCZGxaZFd3MXBmQXdML0ZaZFZtT3UzS0dFdEN4T2N0NU9q?=
- =?utf-8?B?S2RKcnJtN1hZSUROQ0RudlF2ajNGWVFQclJ2M1VYVU9TUERURkF3UWMvYUMv?=
- =?utf-8?B?MVdvRnFEUHNjYVpqTDNBRXdUbEt0Z1Bzc1ZVcmpnU0lYR0pzVUZqSFl5TWdV?=
- =?utf-8?B?azNTMXRtemJRSzg5akNPOTJiUk90aXJlVzR4RGpHNS9BSUxiSEZaeEZMaDIv?=
- =?utf-8?B?SXIraitXQmZqZDJuSWpHcmFRd2hMaXVzcWE2VmZMNmd2WHZQWmZxTk9XN0o1?=
- =?utf-8?B?RjV6Tk5lc2ZrWUkyYjQ0NlBGVU5GTjlHNWZXZnVzVXdEY253TThKU1BaNzRt?=
- =?utf-8?B?VFBkN3RYT1o5YUE2R3VDbDMxV2JONC9RWE1IU2hIcExucGpTb0x5eENZaDY4?=
- =?utf-8?B?WExFVXZ5cmtNMWltOExLR1g0eGxhbGRaa3ZJdEorSUNYcjdDRHRJRExNbkZp?=
- =?utf-8?B?dHhDZzFCSm9pWmZHaFBZNHdPVXNML3lhZUFSeGRnSFZOUVU5N2NXak1SWlFC?=
- =?utf-8?B?OGJmaE9DSUhOTlU5clc5TVBPUTBkVXlTZGZ6MnJkcW0weEFjdEFzYWtwVFd3?=
- =?utf-8?B?RVZ4dk91K01BU2NuNmd4eVAwV2FsZy85eHRraW1SMktqUmVNb0RKTFFtRXQr?=
- =?utf-8?B?c1NCUVRCdm5DY0N6V285TlJJdnBWY0tkUGZCbFlZYjJLMkxLZG1BcDErRlBm?=
- =?utf-8?B?czRDNWFMYyt6UWhZcnRqRHBLdFhoQnhyeFNQZ2ZEbUFEekhTSXcyaVdJd3M1?=
- =?utf-8?Q?InIU=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(7053199007);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|52116014|376014|19092799006|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?QaBYibaLtU0VrpR5Kzy3x7dZbuMwhDMJo91PZjNLvX4yXnmGC8DnemZBi67R?=
+ =?us-ascii?Q?qxWe28IFObW8zs7e0VH8JReYe5dyjLNcvW5hL+XzL0C95ofOHVXcVJUlHanv?=
+ =?us-ascii?Q?Ptel0D8Rg7TQkryc1QFh/rJc5f/jy7QNYYe3Xs36fOTgrwqJijmg3AIjDE8m?=
+ =?us-ascii?Q?jVB6HuM1HyPAVTEHO74GLH45SVROPUQtzD5yzSFdNQ8BQxjNjTdwAeHNL2sf?=
+ =?us-ascii?Q?K6TcW4SCjto23+0yk0UzSTsH6AHqnbYq/z5z7orAHZZomWgQyXkzTRDFG7wj?=
+ =?us-ascii?Q?vjnysvQzfHNMST2XA+3Ju4lr2NUdnuPbD+TQ8H/B/oiBmj6CKycZ5yrH84UC?=
+ =?us-ascii?Q?mVJgFeP2JKr0JQJ4kHiDUOea+MNHMnI+6FnM13zjL5IPK3hQv8TOmZDZTPT2?=
+ =?us-ascii?Q?UH3XWRgfaFENqD2/uNKRj4aAte0J6S8JN0BuUZ5h20cXardINSmz+clwSjLz?=
+ =?us-ascii?Q?1f8NrvsFKtcLpVQ9zywT5TBhmheZf7hsEqLe1vbGY5mL4KGeu+JTZtsUAzv4?=
+ =?us-ascii?Q?lXgJpPOiurTp/adLjzS529fnthhhw7mfSVEXL9e/OTQ4nNNQxoqxARN6ThRn?=
+ =?us-ascii?Q?mleZjVyHlVxfJ06JRO4xoyOhC45GfbIVxxJFTgoRHnP6MoHKlbyWz6i1gOKU?=
+ =?us-ascii?Q?OvT26nKh24Wdz/P8etgCZiC4ejUP4vGozfueKRf/HrGe5+HdhfxRC687/IDH?=
+ =?us-ascii?Q?OskVyN5E24K9Cox94ocjgxH7+r4sG1dc6Q7FuJzlDlWtyhOugoNjf7aKxXQh?=
+ =?us-ascii?Q?6ESircrzqYhkNAjm9V1H1Wkbj2snnerAZ6S5Qr9ghgGcKzvhWjrulKIp7hhh?=
+ =?us-ascii?Q?DzwyQK/WZMlPsqIViVs+f2rTVwCpaw+rYLTglEBkFnpmhHitWDBadwnTAOIO?=
+ =?us-ascii?Q?H2vf9jurB8uxltlUlazwhpGw/kWzu2BeVVmI+YtOOIJi1cQhZSF3sHLBMpgj?=
+ =?us-ascii?Q?K6QA9NHKHzjs+/IGd+PXjwwhrjwuHslEPQ9Ln1dtPotvRVY8lzMx43qT8syS?=
+ =?us-ascii?Q?Le6JMpMs3liQ1iXELkmyb6izOdI8xi9drmijzIKM7P91nUWXrZAs7MQD/ITf?=
+ =?us-ascii?Q?knGbK2SlEi1R3/LNSrId6P4XfBvNjkCxKxBWX3986PkojhYzq11Nn9dXMDfB?=
+ =?us-ascii?Q?RdRstc9XsGgd4WzAV3IBEfVVcCJQonBJSri3q9q25GY3YOpMsOOrie2AwEAx?=
+ =?us-ascii?Q?QxG27Knm5MKlkLauanTs6nxGvyj1Sc4VlAMngU3WV654WcYqKYUgS61gbI8F?=
+ =?us-ascii?Q?3XjpsU1jNPq98+YV5qrFkDD8qFVlmMGoTKQRwzXi1zzYeRlZi5u5SWnq1NOb?=
+ =?us-ascii?Q?x5iqah+AqYS+lCGXJTyn6UV9Ij0UXRjaegGJkw5vn4B40lgYZYav7+KFSulj?=
+ =?us-ascii?Q?Mp45euHGR6PausWaJsm/s94CkhLmF8UUR7NkV8EEDXb71wrZ5qnbRtnsyPiD?=
+ =?us-ascii?Q?09bu1of6jrU0bsEHl29ey0PTJt7nD4jSKumc07UK8qEeHnc4auYFhiYCV2NC?=
+ =?us-ascii?Q?zOWV0AaxO2wSMN3BMgDF/zmd7+8iSkkJXGt7hYvZn9/fmSnG+iPlHCfZXazf?=
+ =?us-ascii?Q?rUuH5F576VZacnU9twWwE7u9m6WRZzVb1XbkeQ19xRXo2dqRbkG7zg9J/9lz?=
+ =?us-ascii?Q?Ujcd1+JaMFcQseDW7uscSyI=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(19092799006)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N1pEY2k0K29TRDRqLzNycy80dDR1Sm1pQVZRTmJ6TElPZUxXSE9ScjAzazFW?=
- =?utf-8?B?cE91YmxybUIwRHUrZEVZYXREYnZ2dkw4M0swR2lhQThHakZobDRIbG5rLy8w?=
- =?utf-8?B?akV4Y2ZzZmZGTXZpMnBPY1VRK0hROVZsY3IwRDhNNmhIZkd4K0VxdnNzbU9E?=
- =?utf-8?B?R3pnREVsTDhSWFBlSnd5V3VYMS9WMW5tK21RYVdreHByclR1UTRRemJCTlpo?=
- =?utf-8?B?dmxlamVPQWFOSk9TR2RqdUEzRVc2Wmh3U2FKN2FYSENhb2MxUmpsRzN1UXVQ?=
- =?utf-8?B?dFJmeFJwTk51aitZUXdTeExTdHo2MTZVc0NPZzlYSlgvUGF1S3A0aCtqRUQ1?=
- =?utf-8?B?cC83T2NVZGtZZ0hzVFFxblpWM0I5MXYxbVRXQk1OaEhtV3RZZW8va1dUUk1w?=
- =?utf-8?B?U0hrS3lPRUlDZVZhM2dHUWxVQzNHZDQzTjl0NzJKMkVDaDdGZDJMdHN0QTZs?=
- =?utf-8?B?TmY5UkRMNHQvWTR3eDlxMU50S0FXWjNMOFFpcy9TRml2YlRuSnZkZUpRd25U?=
- =?utf-8?B?azB6a0F1MXNNc3NYYzNGMkxaeVJxS2ZVNm11RDVESlVsUGlVdFRkQWtTQktV?=
- =?utf-8?B?NXFvSkF6WTUvRzJxdFBOb1lVYXY5VWY2MXJaNStYVDZpNXBKYnM5LzNKeUZh?=
- =?utf-8?B?V1lZZ2c3OEFmUmpjQnZaZWRkc2h6NUdRUGZ2ODM1a2dKcnFia011NnF3WnFD?=
- =?utf-8?B?V0piT1NvWWlrK01Lc1BhUUptMmZmWUkwTjVBb3JTRDY2VGR6YkhsS1ZMVmtm?=
- =?utf-8?B?N21DTW1tbWE2R25SbTVPVTEreitrUzcyU0hVaVpyOFlTVEF5L0MycDgvcWQy?=
- =?utf-8?B?RlpxcS8zSlVKZ1lIR3hnN2dMSU1Ydm9zWThFaWZ6RG15VlhRa01EbHlOZSsy?=
- =?utf-8?B?bUl4N2dwcTQyL0VhR3RBdGVpb1RMeVlkSnhuMGV2TU5IUXNqYWRoUXNNMFpy?=
- =?utf-8?B?ZjA0RVpIcGhPVTBzUjBEd1ZwVFNJZk9hQ3kxdFRNSDZycktlT3RVSCtTYTNF?=
- =?utf-8?B?eFhjZGJRRzhJUm5DeXZmMXk0U3NUM1krNjE2U25icGtrM1dZaTNleklmQmNv?=
- =?utf-8?B?Mkw4MGdiZEo5U3VvVkZiY2RESXcyblQrTlpjQjljZEFUK2ZrQzY5cmYzc1ZM?=
- =?utf-8?B?dzY0cEpnWnBJWnRmWUZ5U1kxVkRlU2ZMZUdvVlI4K093M0lIODBMcUo3OXNU?=
- =?utf-8?B?OVJpY0tNM3Y2eE5UQ0FLanhQMmZ6ZndIUnVDMTE2SDN1SG55R2ZONGpiYTdO?=
- =?utf-8?B?ZEJMM1BuNGdhQWZTR21XSGcxWU1XKzJhNXdjc3lXK3BBSUpDWlJiNHI3Zmda?=
- =?utf-8?B?MExGcGdkdEJqZUt3c2UzbmZ3Y1laTGZzcm9YK1RUR0IzWWY3VGhheTZKTWpv?=
- =?utf-8?B?SkpzNWVHdE1kS0dmWEd1TFZBODlSLzQ0MHpMM2pteDd3VENjN1Jxd1JXVFJr?=
- =?utf-8?B?TGh6QWhaUDYwTUhPYitkakJzbEw0eFlBM0hTa3pVZlhvSGRXZEEwU0gzNnpn?=
- =?utf-8?B?dzFuTEQybTVVWWtHQjAvTnE2SHpRaHNnNWI5T2dVbUZOUUJFQzNJMTRpWUhD?=
- =?utf-8?B?OHdacDRHbk0vYXlLRDhlOXJLbk1zb042Y3UzSnVXS2p4eXRkUVVvencvNTdR?=
- =?utf-8?B?NE1xdUU4QWFod1lSZVN6TnEwV3ZqYjE3cUR1SVVLamwwQ3hMMTRNd2R0Z1Nr?=
- =?utf-8?B?T1BCUDV3RDRIWENVTVRDZDkzbkxQZXNvUWNYcXBQM1dGZ0VaREFzU2EwTEll?=
- =?utf-8?B?alBnMDZzbzVHQWt4YkJaUThNVnNvc252NEdDaVlLdzJUMnFiYW9IbTdhTzNE?=
- =?utf-8?B?dzVJNHREemdyVFovMVVzVUhuNzNjMnZ0OFlqNG5VM1N2M3BYdldaODQxU3FF?=
- =?utf-8?B?S0NrUmlRa3Q0bWJhYVNjMmJBTlNpN0pkWSt0aVBrRFBrNkVBeEZWRitOT055?=
- =?utf-8?B?SEhZNDkzOHNpUUs5T2o3dnNzdkoxUDVSZWdINkNLeDBtcy9CbzNoNXI5R3Ru?=
- =?utf-8?B?RXUxb3lqaVBtVjBtN1kxcXBhUHViOW4vdm5SZDg1YjZrOHZWN1R3WktJNlcv?=
- =?utf-8?B?RG9rdXh3YTN1d0U5aVU0dDJrd2xnSlJSM2tFelp2WnZZRGFtbWprVTJSRkNT?=
- =?utf-8?B?Y2xjcW8rTzNKREpBNTdiVkJzdC9qQlpRSENTZDAwOTI2UXdqUUV4WlBjUGg4?=
- =?utf-8?B?V0d2REh1NE9BUFhESWJyM1pGM0JsMi9XNEUrNzR3OThYMDI1UlYwN254Vnhw?=
- =?utf-8?B?cm4xK1BURDduaDAzaVptZ2o4OC85Wm9uVEloL2RqM0E5MGZPeis1OHVsWEpP?=
- =?utf-8?B?L2E1QlI3aFBmdmxPU1laTmJ6eWYvcEI5a3EzVkpVVDVZMDR0UkVQdz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e31c94fe-cdc2-4dee-0b14-08de623cb40b
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pintNMZS7bnZH9w7OoMhgaX2UwanLNYxz1O9/S81ozgjG8o7CJUinjjYqM3o?=
+ =?us-ascii?Q?/IJhbssveZRIdictiqMhhgIXcEKCWCGfB3aP5uFeR1EpKTu8RUinQe+DT8lP?=
+ =?us-ascii?Q?tySnOEN3+n+366p/eaIsjMzRD1G6teve5V7f1UnVQVqoudkrP8n55bNlWZF7?=
+ =?us-ascii?Q?fxf/JtKNhFgv4MPwoBXMQI6lnt/P993C82DY9SKc8hpqgM6WuphnaUXYa9Mh?=
+ =?us-ascii?Q?2mFvPJHLNftIouGuEnwQmzilT23QGaaLiWDZPpMz8P4xz0wUw8KtuEne1ih8?=
+ =?us-ascii?Q?qxv2hzdtRvnvvifU/YW3+BxuUDZt5bD4bBSnsVLCEV2jSy6d87ZgyHYZWQfC?=
+ =?us-ascii?Q?GeQhC4X721DaVrhqOF41TS/suBgy/RhtqSlYEJWbBUUk5HNPFw4rQB0ThhT+?=
+ =?us-ascii?Q?0vNedNUJK0WyizIr9G9v8mEfw6qLSN4HMT4AqRn/ciGQp5Lkjv+B3PgWP+kf?=
+ =?us-ascii?Q?bcsgr+kJWtltJpoykF65CHdE54xpxwDY+K2NJFl7eVzoTuUEr6DiR+Y8NoBI?=
+ =?us-ascii?Q?dprp08uf7EJSqtmcZUH7lFcMwSnCmfZsbwPqkL1eYDZ+4vguGvqep2IUCRAH?=
+ =?us-ascii?Q?As0GfeVrRDYZKK4bATgWcslMiFG7QGiRieFnq7da7AFVu4Z2PDdphxsYBs/r?=
+ =?us-ascii?Q?93FRIf3J9RWHSIoVt3dKLHEBvo+gbQFdy6W1U2tkcGJvNxH8f+ww9dxb7xi8?=
+ =?us-ascii?Q?Y0q9fKmseo4KpOXB0Gv4cldvoTKBK+G3GajAoDRNyk3FjFh9/QjoJUGiUndd?=
+ =?us-ascii?Q?/xLhaAy4eUWfXCWNxjm5micEBRcdLN2txexKmh9Uey8KmI5RXmvf/EWpCWkH?=
+ =?us-ascii?Q?hvYWoZFumROeWJCtc1UXhCbD8iJ02i25BE5VLmGFYr2XbgLHEWpEM7r417U2?=
+ =?us-ascii?Q?rZCUHDPLefKPH8HJquDnKHYGiqX7+t/nqo8lbGXyLN0zd6MSTe/S3bzK4XhQ?=
+ =?us-ascii?Q?tpjbVKUD7rcMCOdIJKazmpXD6KuklVLB0BhGzPwyDjzrKaQCoNzXxr8BLRWq?=
+ =?us-ascii?Q?QghZxnnrRw2I4jydUtd939pxhVouUVqUpc7RT3TLH+HZslBXdgsd/inqlumJ?=
+ =?us-ascii?Q?2YByZjGUD8J1FyHXQW78L2l597DLvAjKxapEjGNPvuml4XhNw+/sILi2Hu7e?=
+ =?us-ascii?Q?z1RPUxe99DozXVC/J4Uu2PzyCi6PZGO8iZuJr5gaXq00y+bjbZ4c/yneQ02O?=
+ =?us-ascii?Q?/Ff2w+LoLflyzSPG/29ySJQA+l/kOxhVCLUT+xd9btVwDfYaFnBK0QQpNvhC?=
+ =?us-ascii?Q?ka027FMLO1bAVHp4/I1BIWaRT2llC7CDg8GB4hCkXyr/V3vd3zxwdu7edwi9?=
+ =?us-ascii?Q?ti6gT5l2Y9TrwCX8uPyRWT0TEbJRUG+UFqU0CjAv2SM9/uKlAzshJBlem1ds?=
+ =?us-ascii?Q?UNglLprHhgPPBMMltRdQCeqzurLntVLG5xdQySWP0fzUM9HMI0sys0WUZJHm?=
+ =?us-ascii?Q?FETwtfamqzYYbuXE8v4eKlTjgj4Wru0+BCG+k7LlVaLUswDjWffdEFyh/NQs?=
+ =?us-ascii?Q?2Q3Q/9uB1RK9J19G7sTaiPCGs7o332YQ1WL3Lk4Xz3n14TTWx4+2z2WFNZYv?=
+ =?us-ascii?Q?zb/8vAP04AAZBsn0RSvkwuS3vMzjbNualoQIVwfa4o6rfx0IRIzbZrW7I37i?=
+ =?us-ascii?Q?T5YPg8HkMaJ0HSM2goBmIu+yBzcewNmpBHmFjWCUq3bcrax/Sf7cl6qX/bQI?=
+ =?us-ascii?Q?ZLDoXhV+QLjr6Z0B1SSxOS2H+dV3svRtwYEMZiBR4QfQSa/h?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85c26ba2-c33b-406f-a559-08de62758d99
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 09:23:19.3164
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 16:10:16.8770
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: okhp6u31ed/R0C1UWnVgHtBdU76J7V01VojoD5dLR0kqkd8a3zZSO5inNnnEwwLE7V6mc/TBah39qBjb2AOKc5F2IYXpYqTrO+V7NcuYrJ4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB9802
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1MzNWGnM7MNVS5JgPp3mRmVCSd0Wb8T8qD9FlDGjrR6AMvBcgNA14NVbGtTpMo2yTqidOzNUag2tgo1QPN5dhg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8314
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260202_012327_741703_0049BF8A 
-X-CRM114-Status: GOOD (  17.08  )
+X-CRM114-CacheID: sfid-20260202_081025_243817_E24B2C4C 
+X-CRM114-Status: GOOD (  28.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -183,696 +164,129 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Frank,
-    Thanks for your reply.
-
-On 2026/1/30 02:04, Frank Li wrote:
-> [You don't often get email from frank.li@nxp.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
-> 
-> [ EXTERNAL EMAIL ]
-> 
-> On Tue, Jan 27, 2026 at 03:27:53AM +0000, Xianwei Zhao wrote:
->> Amlogic A9 SoCs include a general-purpose DMA controller that can be used
->> by multiple peripherals, such as I2C PIO and I3C. Each peripheral group
->> is associated with a dedicated DMA channel in hardware.
->>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   drivers/dma/Kconfig       |   9 +
->>   drivers/dma/Makefile      |   1 +
->>   drivers/dma/amlogic-dma.c | 563 ++++++++++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 573 insertions(+)
->>
->> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
->> index 66cda7cc9f7a..8d4578513acf 100644
->> --- a/drivers/dma/Kconfig
->> +++ b/drivers/dma/Kconfig
->> @@ -85,6 +85,15 @@ config AMCC_PPC440SPE_ADMA
->>        help
->>          Enable support for the AMCC PPC440SPe RAID engines.
->>
->> +config AMLOGIC_DMA
->> +     tristate "Amlogic general DMA support"
->> +     depends on ARCH_MESON || COMPILE_TEST
->> +     select DMA_ENGINE
->> +     select REGMAP_MMIO
->> +     help
->> +       Enable support for the Amlogic general DMA engines. THis DMA
->> +       controller is used some Amlogic SoCs, such as A9.
->> +
->>   config APPLE_ADMAC
->>        tristate "Apple ADMAC support"
->>        depends on ARCH_APPLE || COMPILE_TEST
->> diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
->> index a54d7688392b..fc28dade5b69 100644
->> --- a/drivers/dma/Makefile
->> +++ b/drivers/dma/Makefile
->> @@ -16,6 +16,7 @@ obj-$(CONFIG_DMATEST) += dmatest.o
->>   obj-$(CONFIG_ALTERA_MSGDMA) += altera-msgdma.o
->>   obj-$(CONFIG_AMBA_PL08X) += amba-pl08x.o
->>   obj-$(CONFIG_AMCC_PPC440SPE_ADMA) += ppc4xx/
->> +obj-$(CONFIG_AMLOGIC_DMA) += amlogic-dma.o
->>   obj-$(CONFIG_APPLE_ADMAC) += apple-admac.o
->>   obj-$(CONFIG_ARM_DMA350) += arm-dma350.o
->>   obj-$(CONFIG_AT_HDMAC) += at_hdmac.o
->> diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
->> new file mode 100644
->> index 000000000000..dca938638474
->> --- /dev/null
->> +++ b/drivers/dma/amlogic-dma.c
->> @@ -0,0 +1,563 @@
->> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
->> +/*
->> + * Copyright (C) 2025 Amlogic, Inc. All rights reserved
->> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> + */
->> +
->> +#include <linux/init.h>
->> +#include <linux/bitfield.h>
->> +#include <linux/types.h>
->> +#include <linux/mm.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/clk.h>
->> +#include <linux/device.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/dma-mapping.h>
->> +#include <linux/slab.h>
->> +#include <linux/dmaengine.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_dma.h>
->> +#include <linux/list.h>
->> +#include <linux/regmap.h>
-> 
-> keep alphabet order
-> 
-
-Will do.
-
->> +#include <asm/irq.h>
-> 
-> Add space line between <> and ""
-> 
-
-Will do.
-
->> +#include "dmaengine.h"
->> +
->> +#define RCH_REG_BASE         0x0
->> +#define WCH_REG_BASE         0x2000
->> +/*
->> + * Each rch (read from memory) REG offset  Rch_offset 0x0 each channel total 0x40
->> + * rch addr = DMA_base + Rch_offset+ chan_id * 0x40 + reg_offset
->> + */
->> +#define RCH_READY            0x0
->> +#define RCH_STATUS           0x4
->> +#define RCH_CFG                      0x8
->> +#define CFG_CLEAR            BIT(25)
->> +#define CFG_PAUSE            BIT(26)
->> +#define CFG_ENABLE           BIT(27)
->> +#define CFG_DONE             BIT(28)
->> +#define RCH_ADDR             0xc
->> +#define RCH_LEN                      0x10
->> +#define RCH_RD_LEN           0x14
->> +#define RCH_PRT                      0x18
->> +#define RCH_SYCN_STAT                0x1c
->> +#define RCH_ADDR_LOW         0x20
->> +#define RCH_ADDR_HIGH                0x24
->> +/* if work on 64, it work with RCH_PRT */
->> +#define RCH_PTR_HIGH         0x28
->> +
->> +/*
->> + * Each wch (write to memory) REG offset  Wch_offset 0x2000 each channel total 0x40
->> + * wch addr = DMA_base + Wch_offset+ chan_id * 0x40 + reg_offset
->> + */
->> +#define WCH_READY            0x0
->> +#define WCH_TOTAL_LEN                0x4
->> +#define WCH_CFG                      0x8
->> +#define WCH_ADDR             0xc
->> +#define WCH_LEN                      0x10
->> +#define WCH_RD_LEN           0x14
->> +#define WCH_PRT                      0x18
->> +#define WCH_CMD_CNT          0x1c
->> +#define WCH_ADDR_LOW         0x20
->> +#define WCH_ADDR_HIGH                0x24
->> +/* if work on 64, it work with RCH_PRT */
->> +#define WCH_PTR_HIGH         0x28
->> +
->> +/* DMA controller reg */
->> +#define RCH_INT_MASK         0x1000
->> +#define WCH_INT_MASK         0x1004
->> +#define CLEAR_W_BATCH                0x1014
->> +#define CLEAR_RCH            0x1024
->> +#define CLEAR_WCH            0x1028
->> +#define RCH_ACTIVE           0x1038
->> +#define WCH_ACTIVE           0x103C
->> +#define RCH_DONE             0x104C
->> +#define WCH_DONE             0x1050
->> +#define RCH_ERR                      0x1060
->> +#define RCH_LEN_ERR          0x1064
->> +#define WCH_ERR                      0x1068
->> +#define DMA_BATCH_END                0x1078
->> +#define WCH_EOC_DONE         0x1088
->> +#define WDMA_RESP_ERR                0x1098
->> +#define UPT_PKT_SYNC         0x10A8
->> +#define RCHN_CFG             0x10AC
->> +#define WCHN_CFG             0x10B0
->> +#define MEM_PD_CFG           0x10B4
->> +#define MEM_BUS_CFG          0x10B8
->> +#define DMA_GMV_CFG          0x10BC
->> +#define DMA_GMR_CFG          0x10C0
-> 
-> Keep hexvalue consistent, low case or up case.
-> 
-
-Will do.
-
->> +
->> +#define AML_DMA_TYPE_TX              0
->> +#define AML_DMA_TYPE_RX              1
->> +#define DMA_MAX_LINK         8
->> +#define MAX_CHAN_ID          32
->> +#define SG_MAX_LEN           ((1 << 27) - 1)
-> 
-> use GEN_MASK
-> 
-
-Will do.
-
->> +
->> +struct aml_dma_sg_link {
->> +#define LINK_LEN             GENMASK(26, 0)
->> +#define LINK_IRQ             BIT(27)
->> +#define LINK_EOC             BIT(28)
->> +#define LINK_LOOP            BIT(29)
->> +#define LINK_ERR             BIT(30)
->> +#define LINK_OWNER           BIT(31)
->> +     u32 ctl;
->> +     u64 address;
->> +     u32 revered;
->> +} __packed;
->> +
->> +struct aml_dma_chan {
->> +     struct dma_chan                 chan;
->> +     struct dma_async_tx_descriptor  desc;
->> +     struct aml_dma_dev              *aml_dma;
->> +     struct aml_dma_sg_link          *sg_link;
->> +     dma_addr_t                      sg_link_phys;
->> +     int                             sg_link_cnt;
->> +     int                             data_len;
->> +     enum dma_status                 status;
->> +     enum dma_transfer_direction     direction;
->> +     int                             chan_id;
->> +     /* reg_base (direction + chan_id) */
->> +     int                             reg_offs;
->> +};
->> +
->> +struct aml_dma_dev {
->> +     struct dma_device               dma_device;
->> +     void __iomem                    *base;
->> +     struct regmap                   *regmap;
->> +     struct clk                      *clk;
->> +     int                             irq;
->> +     struct platform_device          *pdev;
->> +     struct aml_dma_chan             *aml_rch[MAX_CHAN_ID];
->> +     struct aml_dma_chan             *aml_wch[MAX_CHAN_ID];
->> +     unsigned int                    chan_nr;
->> +     unsigned int                    chan_used;
->> +     struct aml_dma_chan             aml_chans[]__counted_by(chan_nr);
->> +};
->> +
->> +static struct aml_dma_chan *to_aml_dma_chan(struct dma_chan *chan)
->> +{
->> +     return container_of(chan, struct aml_dma_chan, chan);
->> +}
->> +
->> +static dma_cookie_t aml_dma_tx_submit(struct dma_async_tx_descriptor *tx)
->> +{
->> +     return dma_cookie_assign(tx);
->> +}
->> +
->> +static int aml_dma_alloc_chan_resources(struct dma_chan *chan)
->> +{
->> +     struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
->> +     struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
->> +
->> +     aml_chan->sg_link = dma_alloc_coherent(aml_dma->dma_device.dev,
->> +                                            sizeof(struct aml_dma_sg_link) * DMA_MAX_LINK,
-> 
-> use size_mul()
+On Mon, Feb 02, 2026 at 05:23:13PM +0800, Xianwei Zhao wrote:
+> Hi Frank,
+>    Thanks for your reply.
+>
+> On 2026/1/30 02:04, Frank Li wrote:
+> > [You don't often get email from frank.li@nxp.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> >
+>
+> Will do.
 >
 
-Will do.
+Needn't this next time to save reader time. Just leave part, which need
+discussion.
 
->> +                                            &aml_chan->sg_link_phys, GFP_KERNEL);
->> +     if (!aml_chan->sg_link)
->> +             return  -ENOMEM;
->> +
->> +     /* offset is the same RCH_CFG and WCH_CFG */
->> +     regmap_update_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_CLEAR, CFG_CLEAR);
->> +     aml_chan->status = DMA_COMPLETE;
->> +     dma_async_tx_descriptor_init(&aml_chan->desc, chan);
->> +     aml_chan->desc.tx_submit = aml_dma_tx_submit;
->> +     regmap_update_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_CLEAR, 0);
->> +
->> +     return 0;
->> +}
->> +
->> +static void aml_dma_free_chan_resources(struct dma_chan *chan)
->> +{
->> +     struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
->> +     struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
->> +
->> +     aml_chan->status = DMA_COMPLETE;
->> +     dma_free_coherent(aml_dma->dma_device.dev,
->> +                       sizeof(struct aml_dma_sg_link) * DMA_MAX_LINK,
->> +                       aml_chan->sg_link, aml_chan->sg_link_phys);
->> +}
->> +
->> +/* DMA transfer state  update how many data reside it */
->> +static enum dma_status aml_dma_tx_status(struct dma_chan *chan,
->> +                                      dma_cookie_t cookie,
->> +                                      struct dma_tx_state *txstate)
->> +{
->> +     struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
->> +     struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
->> +     u32 residue, done;
->> +
->> +     regmap_read(aml_dma->regmap, aml_chan->reg_offs + RCH_RD_LEN, &done);
->> +     residue = aml_chan->data_len - done;
->> +     dma_set_tx_state(txstate, chan->completed_cookie, chan->cookie,
->> +                      residue);
->> +
->> +     return aml_chan->status;
->> +}
->> +
->> +static struct dma_async_tx_descriptor *aml_dma_prep_slave_sg
->> +             (struct dma_chan *chan, struct scatterlist *sgl,
->> +             unsigned int sg_len, enum dma_transfer_direction direction,
->> +             unsigned long flags, void *context)
->> +{
->> +     struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
->> +     struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
->> +     struct aml_dma_sg_link *sg_link;
->> +     struct scatterlist *sg;
->> +     int idx = 0;
->> +     u32 reg, chan_id;
->> +     u32 i;
->> +
->> +     if (aml_chan->direction != direction) {
->> +             dev_err(aml_dma->dma_device.dev, "direction not support\n");
->> +             return NULL;
->> +     }
->> +
->> +     switch (aml_chan->status) {
->> +     case DMA_IN_PROGRESS:
->> +             /* support multiple prep before pending */
->> +             idx = aml_chan->sg_link_cnt;
->> +
->> +             break;
->> +     case DMA_COMPLETE:
->> +             aml_chan->data_len = 0;
->> +             chan_id = aml_chan->chan_id;
->> +             reg = (direction == DMA_DEV_TO_MEM) ? WCH_INT_MASK : RCH_INT_MASK;
->> +             regmap_update_bits(aml_dma->regmap, reg, BIT(chan_id), BIT(chan_id));
->> +
->> +             break;
->> +     default:
->> +             dev_err(aml_dma->dma_device.dev, "status error\n");
->> +             return NULL;
->> +     }
->> +
->> +     if (sg_len + idx > DMA_MAX_LINK) {
->> +             dev_err(aml_dma->dma_device.dev,
->> +                     "maximum number of sg exceeded: %d > %d\n",
->> +                     sg_len, DMA_MAX_LINK);
->> +             aml_chan->status = DMA_ERROR;
->> +             return NULL;
->> +     }
->> +
->> +     aml_chan->status = DMA_IN_PROGRESS;
->> +
->> +     for_each_sg(sgl, sg, sg_len, i) {
->> +             if (sg_dma_len(sg) > SG_MAX_LEN) {
->> +                     dev_err(aml_dma->dma_device.dev,
->> +                             "maximum bytes exceeded: %d > %d\n",
->> +                             sg_dma_len(sg), SG_MAX_LEN);
->> +                     aml_chan->status = DMA_ERROR;
->> +                     return NULL;
->> +             }
->> +             sg_link = &aml_chan->sg_link[idx++];
->> +             /* set dma address and len  to sglink*/
->> +             sg_link->address = sg->dma_address;
->> +             sg_link->ctl = FIELD_PREP(LINK_LEN, sg_dma_len(sg));
->> +
->> +             aml_chan->data_len += sg_dma_len(sg);
->> +     }
->> +     aml_chan->sg_link_cnt = idx;
->> +
->> +     return &aml_chan->desc;
-> 
-> Here have problems, if caller
-> 
->          a = dmaengine_prep_slave_sg();
->          ...
->          b = dmaengine_prep_slave_sg();
-> 
->          submit(a); submit(b);
-> 
-> API don't limit that prep_slave_sg() must follow submit().
-> 
+> > > +
+...
+> > > +             /* set dma address and len  to sglink*/
+> > > +             sg_link->address = sg->dma_address;
+> > > +             sg_link->ctl = FIELD_PREP(LINK_LEN, sg_dma_len(sg));
+> > > +
+> > > +             aml_chan->data_len += sg_dma_len(sg);
+> > > +     }
+> > > +     aml_chan->sg_link_cnt = idx;
+> > > +
+> > > +     return &aml_chan->desc;
+> >
+> > Here have problems, if caller
+> >
+> >          a = dmaengine_prep_slave_sg();
+> >          ...
+> >          b = dmaengine_prep_slave_sg();
+> >
+> >          submit(a); submit(b);
+> >
+> > API don't limit that prep_slave_sg() must follow submit().
+> >
+>
+> Our DMA module uses a dedicated DMA channel per device and supports
+> scatter-gather mode.
+>
+> In function "prep_slave_sg" , data list has been placed in the hardware
+> executable queue,
+> and the "submit" do nothing but assign cookies to prevent function
+> dma_async_is_tx_complete called error.
 
-Our DMA module uses a dedicated DMA channel per device and supports 
-scatter-gather mode.
+Vnod can provide more comments. but according to my options, you should
+not have such assumption. If one driver use dma provider 1 work, some daysi
+later, switch to provider 2, it fail to work slience.
 
-In function "prep_slave_sg" , data list has been placed in the hardware 
-executable queue,
-and the "submit" do nothing but assign cookies to prevent function 
-dma_async_is_tx_complete called error.
+DMA doc already define API and hehavors, it'd better to follow it.
 
-When device_issue_pending is called, all data list will be processed.
+>
+> When device_issue_pending is called, all data list will be processed.
+>
+> > > +}
+> > > +
+...
+> > > +static void aml_dma_enable_chan(struct dma_chan *chan)
+> > > +{
+> > > +     struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
+> > > +     struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
+> > > +     struct aml_dma_sg_link *sg_link;
+> > > +     int chan_id = aml_chan->chan_id;
+> > > +     int idx = aml_chan->sg_link_cnt - 1;
+> > > +
+> > > +     /* the last sg set eoc flag */
+> > > +     sg_link = &aml_chan->sg_link[idx];
+> > > +     sg_link->ctl |= LINK_EOC;
+> > > +     dma_wmb();
+> >
+> > why need it? regmap_write() already have dma_wmb();
+> >
+>
+> regmap_write will call wmb() / iowmb(), not dma_wmb.
+> So I think it's best to keep it.
 
->> +}
->> +
->> +static int aml_dma_pause_chan(struct dma_chan *chan)
->> +{
->> +     struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
->> +     struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
->> +
->> +     regmap_update_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_PAUSE, CFG_PAUSE);
->> +     aml_chan->status = DMA_PAUSED;
->> +
->> +     return 0;
->> +}
->> +
->> +static int aml_dma_resume_chan(struct dma_chan *chan)
->> +{
->> +     struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
->> +     struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
->> +
->> +     regmap_update_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_PAUSE, 0);
->> +     aml_chan->status = DMA_IN_PROGRESS;
->> +
->> +     return 0;
->> +}
->> +
->> +static int aml_dma_terminate_all(struct dma_chan *chan)
->> +{
->> +     struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
->> +     struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
->> +     int chan_id = aml_chan->chan_id;
->> +
->> +     aml_dma_pause_chan(chan);
->> +     regmap_update_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_CLEAR, CFG_CLEAR);
->> +
->> +     if (aml_chan->direction == DMA_MEM_TO_DEV)
->> +             regmap_update_bits(aml_dma->regmap, RCH_INT_MASK, BIT(chan_id), BIT(chan_id));
->> +     else if (aml_chan->direction == DMA_DEV_TO_MEM)
->> +             regmap_update_bits(aml_dma->regmap, WCH_INT_MASK, BIT(chan_id), BIT(chan_id));
->> +
->> +     aml_chan->status = DMA_COMPLETE;
->> +
->> +     return 0;
->> +}
->> +
->> +static void aml_dma_enable_chan(struct dma_chan *chan)
->> +{
->> +     struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
->> +     struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
->> +     struct aml_dma_sg_link *sg_link;
->> +     int chan_id = aml_chan->chan_id;
->> +     int idx = aml_chan->sg_link_cnt - 1;
->> +
->> +     /* the last sg set eoc flag */
->> +     sg_link = &aml_chan->sg_link[idx];
->> +     sg_link->ctl |= LINK_EOC;
->> +     dma_wmb();
-> 
-> why need it? regmap_write() already have dma_wmb();
-> 
+It included dma_wmb() in iowmb(), some system use the same implemention for
+iowmb to dwm_wmb().
 
-regmap_write will call wmb() / iowmb(), not dma_wmb.
-So I think it's best to keep it.
+All memory barray require comments.  Redundant dwm will cause others
+confuse.
 
-> Frank
->> +     if (aml_chan->direction == DMA_MEM_TO_DEV) {
->> +             regmap_write(aml_dma->regmap, aml_chan->reg_offs + RCH_ADDR,
->> +                          aml_chan->sg_link_phys);
->> +             regmap_write(aml_dma->regmap, aml_chan->reg_offs + RCH_LEN, aml_chan->data_len);
->> +             regmap_update_bits(aml_dma->regmap, RCH_INT_MASK, BIT(chan_id), 0);
->> +             /* for rch (tx) need set cfg 0 to trigger start */
->> +             regmap_write(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, 0);
->> +     } else if (aml_chan->direction == DMA_DEV_TO_MEM) {
->> +             regmap_write(aml_dma->regmap, aml_chan->reg_offs + WCH_ADDR,
->> +                          aml_chan->sg_link_phys);
->> +             regmap_write(aml_dma->regmap, aml_chan->reg_offs + WCH_LEN, aml_chan->data_len);
->> +             regmap_update_bits(aml_dma->regmap, WCH_INT_MASK, BIT(chan_id), 0);
->> +     }
->> +}
->> +
->> +static irqreturn_t aml_dma_interrupt_handler(int irq, void *dev_id)
->> +{
->> +     struct aml_dma_dev *aml_dma = dev_id;
->> +     struct aml_dma_chan *aml_chan;
->> +     u32 done, eoc_done, err, err_l, end;
->> +     int i = 0;
->> +
->> +     /* deal with rch normal complete and error */
->> +     regmap_read(aml_dma->regmap, RCH_DONE, &done);
->> +     regmap_read(aml_dma->regmap, RCH_ERR, &err);
->> +     regmap_read(aml_dma->regmap, RCH_LEN_ERR, &err_l);
->> +     err = err | err_l;
->> +
->> +     done = done | err;
->> +
->> +     while (done) {
->> +             i = ffs(done) - 1;
->> +             aml_chan = aml_dma->aml_rch[i];
->> +             regmap_write(aml_dma->regmap, CLEAR_RCH, BIT(aml_chan->chan_id));
->> +             if (!aml_chan) {
->> +                     dev_err(aml_dma->dma_device.dev, "idx %d rch not initialized\n", i);
->> +                     done &= ~BIT(i);
->> +                     continue;
->> +             }
->> +             aml_chan->status = (err & (1 << i)) ? DMA_ERROR : DMA_COMPLETE;
->> +             /* Make sure to use this for initialization */
->> +             if (aml_chan->desc.cookie >= DMA_MIN_COOKIE)
->> +                     dma_cookie_complete(&aml_chan->desc);
->> +             dmaengine_desc_get_callback_invoke(&aml_chan->desc, NULL);
->> +             done &= ~BIT(i);
->> +     }
->> +
->> +     /* deal with wch normal complete and error */
->> +     regmap_read(aml_dma->regmap, DMA_BATCH_END, &end);
->> +     if (end)
->> +             regmap_write(aml_dma->regmap, CLEAR_W_BATCH, end);
->> +
->> +     regmap_read(aml_dma->regmap, WCH_DONE, &done);
->> +     regmap_read(aml_dma->regmap, WCH_EOC_DONE, &eoc_done);
->> +     done = done | eoc_done;
->> +
->> +     regmap_read(aml_dma->regmap, WCH_ERR, &err);
->> +     regmap_read(aml_dma->regmap, WDMA_RESP_ERR, &err_l);
->> +     err = err | err_l;
->> +
->> +     done = done | err;
->> +     i = 0;
->> +     while (done) {
->> +             i = ffs(done) - 1;
->> +             aml_chan = aml_dma->aml_wch[i];
->> +             regmap_write(aml_dma->regmap, CLEAR_WCH, BIT(aml_chan->chan_id));
->> +             if (!aml_chan) {
->> +                     dev_err(aml_dma->dma_device.dev, "idx %d wch not initialized\n", i);
->> +                     done &= ~BIT(i);
->> +                     continue;
->> +             }
->> +             aml_chan->status = (err & (1 << i)) ? DMA_ERROR : DMA_COMPLETE;
->> +             if (aml_chan->desc.cookie >= DMA_MIN_COOKIE)
->> +                     dma_cookie_complete(&aml_chan->desc);
->> +             dmaengine_desc_get_callback_invoke(&aml_chan->desc, NULL);
->> +             done &= ~BIT(i);
->> +     }
->> +
->> +     return IRQ_HANDLED;
->> +}
->> +
->> +static struct dma_chan *aml_of_dma_xlate(struct of_phandle_args *dma_spec, struct of_dma *ofdma)
->> +{
->> +     struct aml_dma_dev *aml_dma = (struct aml_dma_dev *)ofdma->of_dma_data;
->> +     struct aml_dma_chan *aml_chan = NULL;
->> +     u32 type;
->> +     u32 phy_chan_id;
->> +
->> +     if (dma_spec->args_count != 2)
->> +             return NULL;
->> +
->> +     type = dma_spec->args[0];
->> +     phy_chan_id = dma_spec->args[1];
->> +
->> +     if (phy_chan_id >= MAX_CHAN_ID)
->> +             return NULL;
->> +
->> +     if (type == AML_DMA_TYPE_TX) {
->> +             aml_chan = aml_dma->aml_rch[phy_chan_id];
->> +             if (!aml_chan) {
->> +                     if (aml_dma->chan_used >= aml_dma->chan_nr) {
->> +                             dev_err(aml_dma->dma_device.dev, "some dma clients err used\n");
->> +                             return NULL;
->> +                     }
->> +                     aml_chan = &aml_dma->aml_chans[aml_dma->chan_used];
->> +                     aml_dma->chan_used++;
->> +                     aml_chan->direction = DMA_MEM_TO_DEV;
->> +                     aml_chan->chan_id = phy_chan_id;
->> +                     aml_chan->reg_offs = RCH_REG_BASE + 0x40 * aml_chan->chan_id;
->> +                     aml_dma->aml_rch[phy_chan_id] = aml_chan;
->> +             }
->> +     } else if (type == AML_DMA_TYPE_RX) {
->> +             aml_chan = aml_dma->aml_wch[phy_chan_id];
->> +             if (!aml_chan) {
->> +                     if (aml_dma->chan_used >= aml_dma->chan_nr) {
->> +                             dev_err(aml_dma->dma_device.dev, "some dma clients err used\n");
->> +                             return NULL;
->> +                     }
->> +                     aml_chan = &aml_dma->aml_chans[aml_dma->chan_used];
->> +                     aml_dma->chan_used++;
->> +                     aml_chan->direction = DMA_DEV_TO_MEM;
->> +                     aml_chan->chan_id = phy_chan_id;
->> +                     aml_chan->reg_offs = WCH_REG_BASE + 0x40 * aml_chan->chan_id;
->> +                     aml_dma->aml_wch[phy_chan_id] = aml_chan;
->> +             }
->> +     } else {
->> +             dev_err(aml_dma->dma_device.dev, "type %d not supported\n", type);
->> +             return NULL;
->> +     }
->> +
->> +     return dma_get_slave_channel(&aml_chan->chan);
->> +}
->> +
->> +static int aml_dma_probe(struct platform_device *pdev)
->> +{
->> +     struct device_node *np = pdev->dev.of_node;
->> +     struct dma_device *dma_dev;
->> +     struct aml_dma_dev *aml_dma;
->> +     int ret, i, len;
->> +     u32 chan_nr;
->> +
->> +     const struct regmap_config aml_regmap_config = {
->> +             .reg_bits = 32,
->> +             .val_bits = 32,
->> +             .reg_stride = 4,
->> +             .max_register = 0x3000,
->> +     };
->> +
->> +     ret = of_property_read_u32(np, "dma-channels", &chan_nr);
->> +     if (ret)
->> +             return dev_err_probe(&pdev->dev, ret, "failed to read dma-channels\n");
->> +
->> +     len = sizeof(*aml_dma) + sizeof(struct aml_dma_chan) * chan_nr;
->> +     aml_dma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
->> +     if (!aml_dma)
->> +             return -ENOMEM;
->> +
->> +     aml_dma->chan_nr = chan_nr;
->> +
->> +     aml_dma->base = devm_platform_ioremap_resource(pdev, 0);
->> +     if (IS_ERR(aml_dma->base))
->> +             return PTR_ERR(aml_dma->base);
->> +
->> +     aml_dma->regmap = devm_regmap_init_mmio(&pdev->dev, aml_dma->base,
->> +                                             &aml_regmap_config);
->> +     if (IS_ERR_OR_NULL(aml_dma->regmap))
->> +             return PTR_ERR(aml_dma->regmap);
->> +
->> +     aml_dma->clk = devm_clk_get_enabled(&pdev->dev, NULL);
->> +     if (IS_ERR(aml_dma->clk))
->> +             return PTR_ERR(aml_dma->clk);
->> +
->> +     aml_dma->irq = platform_get_irq(pdev, 0);
->> +
->> +     aml_dma->pdev = pdev;
->> +     aml_dma->dma_device.dev = &pdev->dev;
->> +
->> +     dma_dev = &aml_dma->dma_device;
->> +     INIT_LIST_HEAD(&dma_dev->channels);
->> +
->> +     /* Initialize channel parameters */
->> +     for (i = 0; i < chan_nr; i++) {
->> +             struct aml_dma_chan *aml_chan = &aml_dma->aml_chans[i];
->> +
->> +             aml_chan->aml_dma = aml_dma;
->> +             aml_chan->chan.device = &aml_dma->dma_device;
->> +             dma_cookie_init(&aml_chan->chan);
->> +
->> +             /* Add the channel to aml_chan list */
->> +             list_add_tail(&aml_chan->chan.device_node,
->> +                           &aml_dma->dma_device.channels);
->> +     }
->> +     aml_dma->chan_used = 0;
->> +
->> +     dma_set_max_seg_size(dma_dev->dev, SG_MAX_LEN);
->> +
->> +     dma_cap_set(DMA_SLAVE, dma_dev->cap_mask);
->> +     dma_dev->device_alloc_chan_resources = aml_dma_alloc_chan_resources;
->> +     dma_dev->device_free_chan_resources = aml_dma_free_chan_resources;
->> +     dma_dev->device_tx_status = aml_dma_tx_status;
->> +     dma_dev->device_prep_slave_sg = aml_dma_prep_slave_sg;
->> +
->> +     dma_dev->device_pause = aml_dma_pause_chan;
->> +     dma_dev->device_resume = aml_dma_resume_chan;
->> +     dma_dev->device_terminate_all = aml_dma_terminate_all;
->> +     dma_dev->device_issue_pending = aml_dma_enable_chan;
->> +     /* PIO 4 bytes and I2C 1 byte */
->> +     dma_dev->dst_addr_widths = BIT(DMA_SLAVE_BUSWIDTH_4_BYTES | DMA_SLAVE_BUSWIDTH_1_BYTE);
->> +     dma_dev->directions = BIT(DMA_DEV_TO_MEM) | BIT(DMA_MEM_TO_DEV);
->> +     dma_dev->residue_granularity = DMA_RESIDUE_GRANULARITY_BURST;
->> +
->> +     ret = dmaenginem_async_device_register(dma_dev);
->> +     if (ret)
->> +             return dev_err_probe(&pdev->dev, ret, "failed to register dmaenginem\n");
->> +
->> +     ret = of_dma_controller_register(np, aml_of_dma_xlate, aml_dma);
->> +     if (ret)
->> +             return ret;
->> +
->> +     regmap_write(aml_dma->regmap, RCH_INT_MASK, 0xffffffff);
->> +     regmap_write(aml_dma->regmap, WCH_INT_MASK, 0xffffffff);
->> +
->> +     ret = devm_request_irq(&pdev->dev, aml_dma->irq, aml_dma_interrupt_handler,
->> +                            IRQF_SHARED, dev_name(&pdev->dev), aml_dma);
->> +     if (ret)
->> +             return dev_err_probe(&pdev->dev, ret, "failed to reqest_irq\n");
->> +
->> +     return 0;
->> +}
->> +
->> +static const struct of_device_id aml_dma_ids[] = {
->> +     { .compatible = "amlogic,a9-dma", },
->> +     {},
->> +};
->> +MODULE_DEVICE_TABLE(of, aml_dma_ids);
->> +
->> +static struct platform_driver aml_dma_driver = {
->> +     .probe = aml_dma_probe,
->> +     .driver         = {
->> +             .name   = "aml-dma",
->> +             .of_match_table = aml_dma_ids,
->> +     },
->> +};
->> +
->> +module_platform_driver(aml_dma_driver);
->> +
->> +MODULE_DESCRIPTION("GENERAL DMA driver for Amlogic");
->> +MODULE_AUTHOR("Xianwei Zhao <xianwei.zhao@amlogic.com>");
->> +MODULE_LICENSE("GPL");
->>
->> --
->> 2.52.0
->>
+If it doesn't work without dma_wmb(), your wmb() will have bigger problem
+in your system, which will be really hard to debug.
+
+Frank
+
+>
+> > Frank
+> > > +     if (aml_chan->direction == DMA_MEM_TO_DEV) {
+> > > +             regmap_write(aml_dma->regmap, aml_chan->reg_offs + RCH_ADDR,
+> > > +                          aml_chan->sg_link_phys);
+> > > +             regmap_write(aml_dma->regmap, aml_chan->reg_offs + RCH_LEN, aml_chan->data_len);
+> > > +             regmap_update_bits(aml_dma->regmap, RCH_INT_MASK, BIT(chan_id), 0);
+> > > +             /* for rch (tx) need set cfg 0 to trigger start */
+> > > +             regmap_write(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, 0);
+> > > +     } else if (aml_chan->direction == DMA_DEV_TO_MEM) {
+> > > +             regmap_write(aml_dma->regmap, aml_chan->reg_offs + WCH_ADDR,
+> > > +                          aml_chan->sg_link_phys);
+> > > +             regmap_write(aml_dma->regmap, aml_chan->reg_offs + WCH_LEN, aml_chan->data_len);
+> > > +             regmap_update_bits(aml_dma->regmap, WCH_INT_MASK, BIT(chan_id), 0);
+> > > +     }
+> > > +}
+...
+> > > +
+> > > +             .of_match_table = aml_dma_ids,
+> > > +     },
+> > > +};
+> > > +
+> > > +module_platform_driver(aml_dma_driver);
+> > > +
+> > > +MODULE_DESCRIPTION("GENERAL DMA driver for Amlogic");
+> > > +MODULE_AUTHOR("Xianwei Zhao <xianwei.zhao@amlogic.com>");
+> > > +MODULE_LICENSE("GPL");
+> > >
+> > > --
+> > > 2.52.0
+> > >
 
 _______________________________________________
 linux-amlogic mailing list
