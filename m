@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F889EC1EB9
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Feb 2026 13:48:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3399EC1EB2
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Feb 2026 13:48:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dTNmw4ouOAooTTjCEndbJ/OFJWFhCTVGxUPlQjhltew=; b=NOH1sxp0ow52jT
-	8tt0l1f8+ZoNUZqFKCx0T7zsQB3iXA63M8Xag0R2fIxTNh+Vi4PT4/I9onTVkjZpVQ8LUFsazoJGt
-	Ff31MWngqwkNV9O6WdPyHSh7PKrYAbHOAUSgA9YQODhLHf5CeGsZuYN+4pZ51fDTIc0eRGJn6JB4r
-	nlJCNHIoA390JicbbdO0ZgRtvJITqkPK9Y3GkwECjKjev/+5MaBMeW6pWTCQ//RFWySD/VgOb4aAo
-	B3HnyXvgqEnmrCyBt13XdSOH5z6QEmb96SV2dJnhrHMQHp60lRcJL6Jp+S+E0qdtPel3QdDicnGs9
-	dF/1ZZl11yg3muZarv1Q==;
+	List-Owner; bh=1AvP4DhhrOb7FycnZKnlIUN3xq3ujbRvPqF03FJsoHg=; b=DnjOHtUlEuiTxk
+	0ZFPIjMoFTdCxeZvXgNnzfrJvvdrUn9ZmYDhr1e/wwQxGd42fWxhDK/TWYH78BWDj5jnhi6b4PLvL
+	H+gKTw5gWTNFaj98JSNrPx5eQnRvPwNgL5K+rNEXuGQbMRwqNGuDJ2pVyQXyvRMutiu6oZ3j5ZqqO
+	5j+zYhd+6xfawPkYL8xfXQF5i7khiV0hk9gEywuh4gYAkv0XuITVcWOdf3VM6ONfb3pENm35uc/+Y
+	/sRrRlNYF4juBR01JqUwWJ6lUY+cFFUO6eaKkfGuIjALWAcaL9b0LcBuh+BLMXFtYXFhVsBtuxZ1L
+	i7n8ETf16eItabCYiwOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vnziS-00000009yWC-1RMf;
-	Thu, 05 Feb 2026 13:48:16 +0000
+	id 1vnzik-00000009ycq-3imQ;
+	Thu, 05 Feb 2026 13:48:34 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vnziP-00000009yVX-2dDN;
-	Thu, 05 Feb 2026 13:48:14 +0000
+	id 1vnzii-00000009ybk-24BV;
+	Thu, 05 Feb 2026 13:48:33 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id EB33E42DC9;
-	Thu,  5 Feb 2026 13:48:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 446D9C4CEF7;
-	Thu,  5 Feb 2026 13:48:12 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C7A8843B5C;
+	Thu,  5 Feb 2026 13:48:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49B2CC4CEF7;
+	Thu,  5 Feb 2026 13:48:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770299292;
-	bh=1wC56N7As0NIexxSGFO55ZSK9LgfEt1xFbSYfs02cRY=;
+	s=k20201202; t=1770299311;
+	bh=mpye6M0w12Zxd61wXX0YNHNqnAZ334IbwiSE40CJkjg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pi8S1yMLdcEKbNNY9SnG+1h6Kbwq9byZUFHW6n/CD9CYTV0kw46EfkKx9q41HStAs
-	 tzHRWBQPkub/Oq+YJA6na7mchjYKBupWIWvuylOZBi/IQKGJaJjfSpjKWmfMWwm3RK
-	 LuPvXyEwXKWf04TcMzv5dOI249QK3ZlM3VizBz6AZ3ijlbmrlZBaWwX41vZ/JaNCGZ
-	 1necQQ+mB90VdPc1YuNs4DpfOiZz2qfFq6PiPhe6LtKbX9y07Kri/wPtkUFE3USld5
-	 2gf8SRtKCM2EIkfeLPD/K/ww61PXu8rf2mIVURDUdFabGjF87qgGqUdVEosrhm+efl
-	 QewgdMY2XEMOQ==
-Date: Thu, 5 Feb 2026 14:48:10 +0100
+	b=nvwFF0ov+HW1nMUWej1i7pfISvaZGlqZea6z7zqtd8buzSZ20VFdT8Vt6uUJUkHtw
+	 2/XA28b0r0eXIFWzkUgf0gmCi7RDaiFG+Tkc8SxXleim18t0J13+PBHzfD09ekbcXw
+	 L5ELra2RYrSwrtqH/ONrDh6DcftxOR+bqBi8kUjDCa44Pst1fsw1huALGyngUmJ5Dd
+	 8VCWBdoUkHU6UfLTv0wGNdbOA6JePalz65i+SHVJfp35n5KG8Jw+j4W19Mcg6d5AGW
+	 PXIhESri7WeIQEoF7A/vsmTbWwGy5JydCnXI7uyE1198c14I6n3Y+8n0oeNH6FiLBm
+	 5Hi2qXSvjl17w==
+Date: Thu, 5 Feb 2026 14:48:29 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Xianwei Zhao <xianwei.zhao@amlogic.com>
 Cc: Rob Herring <robh@kernel.org>, 
@@ -51,17 +51,17 @@ Cc: Rob Herring <robh@kernel.org>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: arm: amlogic: add A311Y3 support
-Message-ID: <20260205-abstract-oriole-of-purring-316531@quoll>
+Subject: Re: [PATCH 2/3] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for A9
+Message-ID: <20260205-wooden-invaluable-wildcat-cf93c6@quoll>
 References: <20260205-a9-baisc-dts-v1-0-1212b46f95a7@amlogic.com>
- <20260205-a9-baisc-dts-v1-1-1212b46f95a7@amlogic.com>
+ <20260205-a9-baisc-dts-v1-2-1212b46f95a7@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260205-a9-baisc-dts-v1-1-1212b46f95a7@amlogic.com>
+In-Reply-To: <20260205-a9-baisc-dts-v1-2-1212b46f95a7@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260205_054813_711642_9E232DD4 
-X-CRM114-Status: UNSURE (   9.01  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260205_054832_590555_CC94F7AE 
+X-CRM114-Status: GOOD (  10.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,14 +78,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Feb 05, 2026 at 06:04:02AM +0000, Xianwei Zhao wrote:
-> Add bindings for the Amlogic BY401 board, using A311Y3 Soc from
-> Amlogic A9 family chip.
+On Thu, Feb 05, 2026 at 06:04:03AM +0000, Xianwei Zhao wrote:
+> Amlogic A9 SoCs uses the same UART controller as S4 SoCs.
+> There is no need for an extra compatible line in the driver,
+> but add A9 compatible line for documentation.
 > 
 > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
