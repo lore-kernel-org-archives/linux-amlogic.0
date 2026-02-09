@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B0D7E81BC1
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 13:18:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD3C9E81BBB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 13:18:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0wSNBlcRSQfcGBaM8j61uq84dCfw01IquGLAoczFJ8g=; b=h/Mg+mI7EkWLY6
-	d7h0ndaYVDv59eRD9Y4N9QFtfI0/Adq5j+Zuyk3ilyvcv4HWsMsEKzg+DUbOu6y5QB0OpHEirLpwt
-	NHFC/BtPeLCR3rhmlUZGre8ChvsscxZqY2YUvaB2kNtq6/sXqMjjBaCDmVXFJiQ5R6Hj0GVLDbErn
-	REwhTGpj/drm4ba5ClNANmdDBx89UIkXe5ABB9Lw78xkB9ODzWrp3JTzjCWqRKaqCTNv1sssh73or
-	TecNuwzRyPavdh8Bi6RlvTaMf1uw806BS4St7I43MyWaOCw26KjfArZuf70RhOjrSC5z08xLiUJ3Q
-	Bs6oAfMxBrDmryt39+lg==;
+	List-Owner; bh=F1l16liKSSl0XO7hFylRpQJLFw4F6PfUBzbjct3Lekw=; b=YOxLT4vQT1qRKg
+	t0/H2fpdXykDl/e0yLlfV4FeAV8PJRiLWm2JFaEHC7HFIIr5Yi2bM3XIxNUMXknJTGTB4+0egLHYA
+	Mlh0ppe2L8iPE0jDkncJFPoom/e2ML4lUChRHUi7+9YsicCJ1EhDljzDDqDLSudF0Yj2n04aVxIoP
+	h3FazPxkmGhDjoi6G0KbRPDNqOGlXHKAnxi/gQ2XelNxzrk1lCVzkbUNh8ERwByh5Lm65cZLRDjJB
+	IMsmpOzI7Hnv0ilJyaSeuZQ/1k8HdiBuntqcrf3F+61U4+ednGQ58lyge41HVwZrRYyAeeCQY8sZI
+	jlWCzrNh/DiGdciBPklg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpR9V-0000000FQE6-2pr7;
-	Mon, 09 Feb 2026 13:18:09 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1vpRA6-0000000FQLI-0Fs2;
+	Mon, 09 Feb 2026 13:18:46 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpR9U-0000000FQCg-2EWO
+	id 1vpRA3-0000000FQKI-0ctc
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Feb 2026 13:18:08 +0000
+	Mon, 09 Feb 2026 13:18:44 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 881A1600CB;
-	Mon,  9 Feb 2026 13:18:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93570C116C6;
-	Mon,  9 Feb 2026 13:18:04 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 346B94038A;
+	Mon,  9 Feb 2026 13:18:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B517C116C6;
+	Mon,  9 Feb 2026 13:18:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770643087;
-	bh=n2sx2kjs/GQnPUGJjQo/yI4rxUcrSFwT9I1XazZibjE=;
+	s=k20201202; t=1770643122;
+	bh=tspf+dZIq5x+tREgKHnBEYdV+MaRpD+POKR8lg9U9Bo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Xm1168WlX/wCNkH3YPL1x6qxwTC7PUq/sJwx0kCGnyG5dJg+uptoOjfWEkqtCOUKx
-	 u3ouSB23vyvqYKGAJlSnzGQbvzvOM5sYqLraL+ckFu8gAON0kpUcGf4FcRZy+ofz0d
-	 wFT4vGlVy2h/qfIDtRY3wfCdFk1tPp2gUd7h0MKFsQEmALc7yTFHa/ohMSc9nMNokP
-	 cC4fPqt0BEQj24ho6jyC9kFxS/4t2hl2Ps5/c68u1X3/829Bhnfk7JGr7Zfh/c4zWE
-	 fpWR1gPuSetpS+TncVWzu3eGZ+2rDAt74j7b6Swm3NkwW7qwD00PUiVQrSyygtPZ2M
-	 iw/HbzkBfrTQQ==
-Message-ID: <63b2b403-53ea-465c-832d-8ee6099239aa@kernel.org>
-Date: Mon, 9 Feb 2026 14:18:03 +0100
+	b=l6K6IDDspNacwVyrMLRrPneXwf2aEYg/lL96WezPv3Kz6bnLmZd3fjluf2Zk9JpcX
+	 uH43WpV5BHzaDuCWm609iU9e7ywyAB6P5oZgUHW9CZR6W2VDZ3SEtXWCldqRGO5Tf0
+	 XGxlBaERylkOz1Qlq7Hc87PulSfRnZjjb+gssuCDfL2D7aezDq5i1SZSDqu0F8St0h
+	 q7ufRFLHeqgxQHxOG7domHvDlDHXLczlNjYgF8QALUFNE7fjdVgKhAj8MET10Qexbn
+	 cV30hWaHVUQqSuh+xsl/45VdvF5uhlJYQPdwMimIPseOszwmFak12dbWZ+YXcK1bZL
+	 cQCCgjtbDYTXw==
+Message-ID: <b5922f14-55de-4e7a-ad94-f8045dcc770a@kernel.org>
+Date: Mon, 9 Feb 2026 14:18:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/13] clk: amlogic: Add composite clock driver
+Subject: Re: [PATCH 01/13] dt-bindings: clock: Add Amlogic A9 standardized
+ model clock control units
 To: chuan.liu@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -54,7 +55,7 @@ To: chuan.liu@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
- <20260209-a9_clock_driver-v1-5-a9198dc03d2a@amlogic.com>
+ <20260209-a9_clock_driver-v1-1-a9198dc03d2a@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -100,7 +101,11 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260209-a9_clock_driver-v1-5-a9198dc03d2a@amlogic.com>
+In-Reply-To: <20260209-a9_clock_driver-v1-1-a9198dc03d2a@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260209_051843_282413_E24220FA 
+X-CRM114-Status: UNSURE (   6.00  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,22 +123,19 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 09/02/2026 06:48, Chuan Liu via B4 Relay wrote:
-> From: Chuan Liu <chuan.liu@amlogic.com>
-> 
-> Implement clk_ops support for Amlogic composite clocks. Composite clocks
-> are commonly used clock control units in Amlogic SoCs that integrate
-> multiplexer, divider, and gate functionality into a single block.
-> 
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
->  drivers/clk/amlogic/Makefile        |   1 +
->  drivers/clk/amlogic/clk-composite.c | 280 ++++++++++++++++++++++++++++++++++++
->  drivers/clk/amlogic/clk-composite.h |  20 +++
->  drivers/clk/amlogic/clk.c           |   7 +
->  drivers/clk/amlogic/clk.h           |   1 +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clk_dummy: clock-dummy {
+> +        compatible = "fixed-clock";
+> +        #clock-cells = <0>;
+> +        clock-frequency = <0>;
+> +        clock-output-names = "dummy";
+> +        status = "disabled";
 
-Why did you duplicate the directory? It's already there under name
-meson. That's your vendor.
+Eee, nope. Please review this internally so you won't be making such
+trivial mistakes.
 
 Best regards,
 Krzysztof
