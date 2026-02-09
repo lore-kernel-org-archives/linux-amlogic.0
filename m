@@ -4,80 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94783EE6B5E
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Feb 2026 20:55:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBBF5EF06FF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EIb94Gr9Wla8u5yl718TqPoWTq3HOwPconR6IxIStOE=; b=rBAEwVmP2mYGbs
-	KrVfoE9BqbxV06uczhNytVV8vbRM8w3SMD9kUb2aIJqJetqzrSaLOdEgkwphNmVTwj8Hwocc2o37x
-	XKIBmtM9IZc9Ml2S0ThVRL4+jxIJttWu+I1XSvI9tNAUVP1kZUEZsHVVOoBl8z0qntXQV2EzZz/Xu
-	byJWfuN61hAwc0af+ABnqkcRAYRItPPTf6kcbb5+qO5ru2guXeSDGpXXTV/AalHYA2NOCJmjgTSE2
-	VbSubWL3gQlNolkunlFWAGXMOOe/QbYh6NOSb5UfFEflC3nFG8zXFtlgeYGAQoPslEX2AbbKJtXeQ
-	a71wODMj5v7gRPfOTvqw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=8uPl+9FOByRWnTELGgUSq9pylWnNpG1RwyxKSbvw7b8=; b=ZDx7EoO4GMvzWR
+	+No7w4egba2t9CA4x1C6XOobqq+HY6huKMyCycr8KFg32JLHGQPtdVAp5+uyMoSmGm4u0FWLCO3ps
+	Aw+2uj3rowSJiTRospvPSqMpcrwgZJofAWzbtHoAlUJlB9hFtExOWEY7erdHv+wQrDibE4mT659Zn
+	HNCtSek6FY7GEabee1emw9J91nrf7tScKyTKaEeUgGoIYvd6ZmlbNuU6ZtVLhZ8nIz6THXKwp7w8N
+	8qSoyTCWEY3HMTYNWNyt8twkW8Lo5c+eAI915sNQiSxgK9efLi8LHMaDR/rfNh/dyUCq0KwqYlxrr
+	fOZm5kU6x4wvg33MeY+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1voSrP-0000000BpGs-1Vxb;
-	Fri, 06 Feb 2026 20:55:27 +0000
-Received: from mgamail.intel.com ([192.198.163.17])
+	id 1vpK91-0000000ErfS-3yEO;
+	Mon, 09 Feb 2026 05:49:11 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1voSrM-0000000BpGV-15qw
+	id 1vpK8x-0000000ErbW-38je
 	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Feb 2026 20:55:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770411324; x=1801947324;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=X+eWBpV8ZAR9jabdyDhZG5ofyC+EhlTNpb50tOC/kxU=;
-  b=DWCNQUtVrqZ2XvuWjUxitTOjuUpX8ZfYWeWx6K6EClsjb7JyQ78bJGqs
-   WBC2+mXesMAL2cFH/wp+fldeOEm0HWx4fLZX8S8D1tD+llu/HNwA5wlMl
-   WGNxWPktyTwaGveriy1t17ivRHy3BLd/J9RoFAdtPPHNOLXGFdusZqpHP
-   vCe70vZMo/AK5Mwa5HzdmZWj7FkBkajeE2w/5QFS3st0C6YtVos7od0Rs
-   kJ3AL0ucQC56iQ0LpVrM9XTSKU7TaPeGNiYlesS2iA6vfD02SBslUmwSJ
-   fYC3pLjzhunbXn0fNlh/h+qooLmLTc3hWPSmKICG0CVsenZKWtAcjR3lS
-   g==;
-X-CSE-ConnectionGUID: T2DmJ2q5Q7Cj+GzlV916JQ==
-X-CSE-MsgGUID: i8vENWVWRtSgyvARHecH1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71515673"
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; 
-   d="scan'208";a="71515673"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2026 12:55:21 -0800
-X-CSE-ConnectionGUID: dPfe5RjfTYu2zLNp7Dcxyw==
-X-CSE-MsgGUID: Hj7hgcNFTDOtKSad59wzHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; 
-   d="scan'208";a="215945774"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 06 Feb 2026 12:55:17 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1voSrC-00000000l8a-3BHi;
-	Fri, 06 Feb 2026 20:55:14 +0000
-Date: Sat, 7 Feb 2026 04:54:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-amlogic@lists.infradead.org,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH v3 2/3] dma: amlogic: Add general DMA driver for A9
-Message-ID: <202602070410.F1U5kBFE-lkp@intel.com>
-References: <20260206-amlogic-dma-v3-2-56fb9f59ed22@amlogic.com>
+	Mon, 09 Feb 2026 05:49:09 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 6B67342A0E;
+	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3A218C19424;
+	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770616146;
+	bh=ebLbpj1aW+Kz/xR5J14ie4MaN19ZepOR5F1hDJBpNPo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=gySpQ9nnz39+fgc/D/7EzD0zxPRXwxnGokjoqSDL2jaMq32fa+1ks/6/HMNp/a2Oa
+	 KdIJKF/aXNzmGnDQxmvh0PXsMl3Er1LnJlV39q75Y9m7A+LdGuAM/pDZ5zLSwPcQFx
+	 /7HFm0BHah+S+AesUcH/pA2g3B8kMBaSb1NAzdU0LzjoRsCIfZykGuJP/FbYes1k0z
+	 SjL7nQNz4iSKlyfOMlpL7AtOHcbfkNwvvvTxWHAEDi7B1/TMFCi0Q4VZZzhLLvgod9
+	 lOn7AoPkf5roCgyenW9i6hL1pCG/fQoQMRKDNlSGNrYxDh/zllB6gAHKZUOnAaQrL3
+	 0IfcpMWpBhTng==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BD80EF06FF;
+	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Subject: [PATCH 00/13] clk: amlogic: Introduce A9 PLL and CCU driver
+ support
+Date: Mon, 09 Feb 2026 13:48:46 +0800
+Message-Id: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260206-amlogic-dma-v3-2-56fb9f59ed22@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAD51iWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQ2MD3UTL+OSc/OTs+JSizLLUIt2UlBRLA2NTcwsTi2QloK6CotS0zAq
+ widGxtbUA4Ft7hWEAAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616142; l=3749;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=ebLbpj1aW+Kz/xR5J14ie4MaN19ZepOR5F1hDJBpNPo=;
+ b=lzoDOte3b+xv8Lht85pzHNT4bc9SCKzSJHu3j0g+C54rxft4OKN9wVoNSGsq/aF0aeGhuWILt
+ HJSKa4eJLVkAudSDfO5EnhD0iLLehuVlS/aMg3Z+WdGdcWiSCsCcqap
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260206_125524_374984_C803B2CA 
-X-CRM114-Status: GOOD (  13.88  )
+X-CRM114-CacheID: sfid-20260208_214907_844842_F745ABE9 
+X-CRM114-Status: UNSURE (   9.68  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,70 +88,88 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: chuan.liu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Xianwei,
+This patch adds driver support for Phase-Locked Loop (PLL) controllers
+and Clock Control Units (CCUs) in A9 SoC family.
 
-kernel test robot noticed the following build errors:
+In the A9 SoC architecture, PLLs and clock control units are implemented
+as standardized hardware instances to reduce unnecessary differentiation
+across individual units.
 
-[auto build test ERROR on 3c8a86ed002ab8fb287ee4ec92f0fd6ac5b291d2]
+All A9 PLLs and CCUs are exposed as device tree nodes, providing an
+accurate representation of the SoC's internal clock hardware structure.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-dma-Add-Amlogic-A9-SoC-DMA/20260206-170903
-base:   3c8a86ed002ab8fb287ee4ec92f0fd6ac5b291d2
-patch link:    https://lore.kernel.org/r/20260206-amlogic-dma-v3-2-56fb9f59ed22%40amlogic.com
-patch subject: [PATCH v3 2/3] dma: amlogic: Add general DMA driver for A9
-config: mips-allyesconfig (https://download.01.org/0day-ci/archive/20260207/202602070410.F1U5kBFE-lkp@intel.com/config)
-compiler: mips-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260207/202602070410.F1U5kBFE-lkp@intel.com/reproduce)
+These drivers are designed for reuse in subsequent SoC generations,
+guaranteeing code inheritance and maximizing reusability.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602070410.F1U5kBFE-lkp@intel.com/
+Makefile rules compile A9 PLL and CCU drivers into clk-amlogic.o (see
+drivers/clk/amlogic/Makefile), simplifying deployment and enhancing load
+efficiency (single insmod for kernel module).
 
-All errors (new ones prefixed by >>):
+Since the foundational A9 DTS hasn't been upstreamed yet, I'm temporarily
+pushing the PLL/CCU DTS files to github for driver comprehension [1].
+These patches will be included in a later release after the base A9 DTS
+is merged.
 
-   In file included from include/linux/thread_info.h:60,
-                    from include/asm-generic/preempt.h:5,
-                    from ./arch/mips/include/generated/asm/preempt.h:1,
-                    from include/linux/preempt.h:79,
-                    from include/linux/smp.h:116,
-                    from arch/mips/include/asm/irq.h:13,
-                    from drivers/dma/amlogic-dma.c:7:
-   arch/mips/include/asm/irq.h: In function 'on_irq_stack':
->> arch/mips/include/asm/thread_info.h:98:22: error: 'PAGE_SIZE' undeclared (first use in this function); did you mean 'TASK_SIZE'?
-      98 | #define THREAD_SIZE (PAGE_SIZE << THREAD_SIZE_ORDER)
-         |                      ^~~~~~~~~
-   arch/mips/include/asm/irq.h:19:41: note: in expansion of macro 'THREAD_SIZE'
-      19 | #define IRQ_STACK_SIZE                  THREAD_SIZE
-         |                                         ^~~~~~~~~~~
-   arch/mips/include/asm/irq.h:41:36: note: in expansion of macro 'IRQ_STACK_SIZE'
-      41 |         unsigned long high = low + IRQ_STACK_SIZE;
-         |                                    ^~~~~~~~~~~~~~
-   arch/mips/include/asm/thread_info.h:98:22: note: each undeclared identifier is reported only once for each function it appears in
-      98 | #define THREAD_SIZE (PAGE_SIZE << THREAD_SIZE_ORDER)
-         |                      ^~~~~~~~~
-   arch/mips/include/asm/irq.h:19:41: note: in expansion of macro 'THREAD_SIZE'
-      19 | #define IRQ_STACK_SIZE                  THREAD_SIZE
-         |                                         ^~~~~~~~~~~
-   arch/mips/include/asm/irq.h:41:36: note: in expansion of macro 'IRQ_STACK_SIZE'
-      41 |         unsigned long high = low + IRQ_STACK_SIZE;
-         |                                    ^~~~~~~~~~~~~~
+[1] https://github.com/torvalds/linux/commit/d6a82e4cce675fa5146c5f638c2a926c1c8cb1d9
 
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+---
+Chuan Liu (13):
+      dt-bindings: clock: Add Amlogic A9 standardized model clock control units
+      dt-bindings: clock: Add Amlogic A9 PLL controllers
+      dt-bindings: clock: Add Amlogic A9 misc clock control units
+      clk: amlogic: Add basic clock driver
+      clk: amlogic: Add composite clock driver
+      clk: amlogic: Add noglitch clock driver
+      clk: amlogic: Add duandiv clock driver
+      clk: amlogic: Add PLL driver
+      clk: amlogic: Add DT-based clock registration functions
+      clk: amlogic: Add A9 standardized model clock control units driver
+      clk: amlogic: Add A9 PLL controllers driver
+      clk: amlogic: Add A9 misc clock control units driver
+      clk: amlogic: Add support for building as combined kernel module
 
-vim +98 arch/mips/include/asm/thread_info.h
+ .../bindings/clock/amlogic,a9-misc-ccu.yaml        | 523 +++++++++++
+ .../bindings/clock/amlogic,a9-model-ccu.yaml       | 435 +++++++++
+ .../devicetree/bindings/clock/amlogic,a9-pll.yaml  | 134 +++
+ drivers/clk/Kconfig                                |   1 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/amlogic/Kconfig                        |  52 ++
+ drivers/clk/amlogic/Makefile                       |  23 +
+ drivers/clk/amlogic/a9-misc-ccu.c                  | 970 +++++++++++++++++++++
+ drivers/clk/amlogic/a9-model-ccu.c                 | 475 ++++++++++
+ drivers/clk/amlogic/a9-pll.c                       | 156 ++++
+ drivers/clk/amlogic/clk-basic.c                    | 219 +++++
+ drivers/clk/amlogic/clk-basic.h                    |  39 +
+ drivers/clk/amlogic/clk-composite.c                | 280 ++++++
+ drivers/clk/amlogic/clk-composite.h                |  20 +
+ drivers/clk/amlogic/clk-dualdiv.c                  | 365 ++++++++
+ drivers/clk/amlogic/clk-dualdiv.h                  |  27 +
+ drivers/clk/amlogic/clk-module.c                   |  42 +
+ drivers/clk/amlogic/clk-module.h                   |  53 ++
+ drivers/clk/amlogic/clk-noglitch.c                 | 584 +++++++++++++
+ drivers/clk/amlogic/clk-noglitch.h                 |  29 +
+ drivers/clk/amlogic/clk-pll.c                      | 701 +++++++++++++++
+ drivers/clk/amlogic/clk-pll.h                      |  43 +
+ drivers/clk/amlogic/clk.c                          | 464 ++++++++++
+ drivers/clk/amlogic/clk.h                          |  56 ++
+ include/dt-bindings/clock/amlogic,a9-misc-ccu.h    |  53 ++
+ 25 files changed, 5745 insertions(+)
+---
+base-commit: 4d310797262f0ddf129e76c2aad2b950adaf1fda
+change-id: 20260130-a9_clock_driver-ddd90357848c
 
-^1da177e4c3f41 include/asm-mips/thread_info.h Linus Torvalds 2005-04-16   97  
-^1da177e4c3f41 include/asm-mips/thread_info.h Linus Torvalds 2005-04-16  @98  #define THREAD_SIZE (PAGE_SIZE << THREAD_SIZE_ORDER)
-^1da177e4c3f41 include/asm-mips/thread_info.h Linus Torvalds 2005-04-16   99  #define THREAD_MASK (THREAD_SIZE - 1UL)
-^1da177e4c3f41 include/asm-mips/thread_info.h Linus Torvalds 2005-04-16  100  
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Chuan Liu <chuan.liu@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
