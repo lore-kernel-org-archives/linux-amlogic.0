@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D98E2EF0714
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3F2AEF0713
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vECnljinHi90TxB3H1M0ouOOHkvMi66FbrG2EyFpziU=; b=wrwsb67a+juxWK
-	rhCWFHxHpdLyDnFU+sKn9/x7FLyxFBJKvHUtfUF7XEZa6gPhBkoSC6nQLOqXI0XC2GZG2oZAQHE4G
-	EEBHt+cgwE+W9OqmHQPn9x0YPprmoCWV37Rkokq1nMxjQ+GLU0Fnxty+en63bm9zVF1JeWiGuJCWa
-	o5MDalnGBeYuTforwhEegTOXo38FroNlfCWtXU5le9dq2I27De3/l+T9rM+fMeNq3r164bQLr4DMN
-	UZB80TeU1rB4a1VF3GbSwanA6JECmHzHAVkGbUKndjy2+BGhShWaC1UGSX6VEOlGPnM8PfjvCFIm7
-	2K81XjFn3UbM+klVnwyA==;
+	List-Owner; bh=PkFjBWGy5rWw2sS2JBbXRn9gUc+KgAVrf36dk2TT4rQ=; b=xeBw/iobdA65nX
+	rQOOA8/dXPmhbn01lW6xKVymvC8tLUWUTup3QUMc64cS/Cke8bRHXekwQ+iQJfT9rm/yAHdWGTDTB
+	4hzmHEVFVddqGGaONrX749JwbJcz8K91VePiBSkmv7kVEGUA7fKp4Zqa7VCa0dR4XjXHmigXh8wc4
+	5T3TItvHOAdrIjlTscG9Yy8rAZTejVM9cI1gx5lEv5R5gfzeIK3rgIouGCLPfCYrAuoT/4TrzQ8zA
+	1EXiVoG3G92WLZPOpv4zvD9scmqUsI9TrslMLwSf8LM/kx1ipyQuN1IgfVZRNvzYtLhCWtr4hnPnC
+	c/QztOFsH6DP5+uoJvQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpK94-0000000ErhN-0qwX;
-	Mon, 09 Feb 2026 05:49:14 +0000
+	id 1vpK92-0000000Erff-0tuO;
+	Mon, 09 Feb 2026 05:49:12 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpK90-0000000EreJ-2nFk
+	id 1vpK8x-0000000ErbY-2yqg
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Feb 2026 05:49:12 +0000
+	Mon, 09 Feb 2026 05:49:09 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id ADE3A44552;
-	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8F5A6C2BC9E;
-	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id A70C64454A;
+	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 60F97C2BCB0;
+	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770616147;
-	bh=61hKp++ahkS/bhSUpuH4qzDCjqJwbzAeZrWYOlewBz4=;
+	s=k20201202; t=1770616146;
+	bh=snI8j+VY41wHmT+na+qjUXxcX28YmAHQsRCDu04k2ao=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=uOP5AteVoiOQsHQWPUYjATE44etuwnaiASsuIfhJ1CKt4ti91MrT4JGWHsI+yseK3
-	 pWaVOOdKeWX4JHVaGm6rIOebwcZ5b6hAJkd/0sYtg7OX5UGxvSq6F077APtM1NrhzA
-	 qeUTx5ZeRjLOquiL9lIyT+GuluuFUVHmEtsawh9gM1GRPB03qJ1djtA/n16Puxyl/5
-	 AywUgQqmWrD8NFEYnoeH2iDgAIUAYs61cBJSIF8qCfxJWhnVIDls8j5Iq2sbeRio3B
-	 BZnuWRzbsol2q5aU9L47hv5s6IXuLz8PzCFxiy5d2lhDDXP/OUuo0ckpktalsP30yU
-	 soRJxjQ6BqzJg==
+	b=REh4dKtpO4SQsgRXh+dIHbn/YP1W+XlZjubxD//vuWojHfhTkxX+9PFsDUrmEmQZF
+	 PIC9gQUzZKVTf1utw7v8qWhyXXdRHC5QKTk2qBZv0TExqZo7IF88opPTqlR36f4aCl
+	 D8z6msu7mo9s8SSe6FhEHBzWoFVpaeBEfyR9W48ASE2aQyj3SRAqFxtR8WAXr4YVt1
+	 CHyr3OcIqMcOGmENHjoqHGHXZVr0N717z1uX5W3U1p6hK8YtT2fF7cjDHrltSznAg1
+	 a1IVzWsq/guMq/jhvqgx35ZjSXesF9vEqg7FNogYCggg1kRhCwCdt5X0wjR5XgXR17
+	 RfVH1dI8EMD6A==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 83DA6EF06FF;
-	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 53F9FEF070B;
+	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Mon, 09 Feb 2026 13:48:57 +0800
-Subject: [PATCH 11/13] clk: amlogic: Add A9 PLL controllers driver
+Date: Mon, 09 Feb 2026 13:48:48 +0800
+Subject: [PATCH 02/13] dt-bindings: clock: Add Amlogic A9 PLL controllers
 MIME-Version: 1.0
-Message-Id: <20260209-a9_clock_driver-v1-11-a9198dc03d2a@amlogic.com>
+Message-Id: <20260209-a9_clock_driver-v1-2-a9198dc03d2a@amlogic.com>
 References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 In-Reply-To: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,19 +61,19 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616143; l=5614;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616142; l=5717;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=HEJHyYkWOeBY3AEh9IomhZ/CgW0wq6tKl6L8+ZYrJkY=;
- b=YxZ2VKXTukTFNqFRgp2yd1g0kK4ojKAcyPYhRHq3251QQtz6MJw7UsWyfuGCAqJr/wb6ZtJ1U
- Bk6f4pdL3/PDjZc/jhiVU3RlnCb1BVOhQtIkaVshdBgmX+kXLGVgOH7
+ bh=LyZ6UBT9Q6k7Fn7bjq6bnz37qzqmph54nv7OuWBpCck=;
+ b=E1k8Q3OfqeBhGrzZfdznUd4MgKjLxFwgQJabHnnj2VIppvftGQ3dgu/guCoIoj6/G7cr+J5Dh
+ 7+ocHR9fbibAqs4W++QyVU3wQHBA/zfIMByCSAL2MooWJS8sllZozlK
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260208_214910_819865_5706B209 
-X-CRM114-Status: GOOD (  18.03  )
+X-CRM114-CacheID: sfid-20260208_214907_834339_9DB44886 
+X-CRM114-Status: GOOD (  14.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,205 +93,153 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-Add PLL controllers driver for the Amlogic A9 SoC family.
+Add dt-binding documentation for PLL controllers used in A9 SoC family.
 
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/clk/amlogic/Kconfig  |  10 +++
- drivers/clk/amlogic/Makefile |   4 ++
- drivers/clk/amlogic/a9-pll.c | 146 +++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 160 insertions(+)
+ .../devicetree/bindings/clock/amlogic,a9-pll.yaml  | 134 +++++++++++++++++++++
+ 1 file changed, 134 insertions(+)
 
-diff --git a/drivers/clk/amlogic/Kconfig b/drivers/clk/amlogic/Kconfig
-index 6e954c9388dc..3177a02ecbd5 100644
---- a/drivers/clk/amlogic/Kconfig
-+++ b/drivers/clk/amlogic/Kconfig
-@@ -21,11 +21,21 @@ config COMMON_CLK_AMLOGIC_MODEL
- 	  these models. Select Y if the current SoC contains these clock control
- 	  unit models.
- 
-+config COMMON_CLK_AMLOGIC_PLL
-+	tristate "Amlogic PLL Controller"
-+	depends on COMMON_CLK_AMLOGIC
-+	help
-+	  Supports PLL controller used in Amlogic SoCs. The PLL supports dynamic
-+	  configuration of output clock frequency, enabling flexible frequency
-+	  settings to provide clocks for other modules. Select Y if the current
-+	  SoC contains PLLs.
-+
- config COMMON_CLK_AMLOGIC_A9
- 	tristate "Amlogic A9 Family Clock Controller"
- 	depends on COMMON_CLK_AMLOGIC
- 	default COMMON_CLK_AMLOGIC
- 	select COMMON_CLK_AMLOGIC_MODEL
-+	select COMMON_CLK_AMLOGIC_PLL
- 	help
- 	  Support for the clock controller present on the Amlogic A9 family
- 	  SoCs. Select Y if A9 family SoC needs to support clock controller.
-diff --git a/drivers/clk/amlogic/Makefile b/drivers/clk/amlogic/Makefile
-index ef3fb57cae9f..74bf84dbd5a8 100644
---- a/drivers/clk/amlogic/Makefile
-+++ b/drivers/clk/amlogic/Makefile
-@@ -11,3 +11,7 @@ clk-amlogic-y += clk-pll.o
- ifneq ($(CONFIG_COMMON_CLK_AMLOGIC_MODEL),)
- clk-amlogic-y += a9-model-ccu.o
- endif
-+
-+ifneq ($(CONFIG_COMMON_CLK_AMLOGIC_PLL),)
-+clk-amlogic-y += a9-pll.o
-+endif
-diff --git a/drivers/clk/amlogic/a9-pll.c b/drivers/clk/amlogic/a9-pll.c
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a9-pll.yaml b/Documentation/devicetree/bindings/clock/amlogic,a9-pll.yaml
 new file mode 100644
-index 000000000000..c4c695caa8ed
+index 000000000000..26655716f040
 --- /dev/null
-+++ b/drivers/clk/amlogic/a9-pll.c
-@@ -0,0 +1,146 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved
-+ */
++++ b/Documentation/devicetree/bindings/clock/amlogic,a9-pll.yaml
+@@ -0,0 +1,134 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2026 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,a9-pll.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/err.h>
-+#include <linux/module.h>
++title: Amlogic A9 Family PLL Controllers
 +
-+#include "clk.h"
-+#include "clk-pll.h"
++maintainers:
++  - Chuan Liu <chuan.liu@amlogic.com>
 +
-+static const struct aml_pll_data a9_mclk_pll_data = {
-+	.range = {
-+		.min = 1400000000,
-+		.max = 2800000000,
-+	},
-+	.od_max = 4,
-+};
++description: |
++  PLLs generate high-frequency clocks by frequency multiplication, feeding them
++  into the clock tree where they can be configured as operational clocks for
++  various system modules.
 +
-+static const struct aml_pll_data a9_gp_pll_data = {
-+	.range = {
-+		.min = 1400000000,
-+		.max = 2800000000,
-+	},
-+	.frac_max = 131072, /* 2^17 */
-+	.od_max = 4,
-+	.flags = AML_PLL_M_EN0P5,
-+};
++  A diagram of the A9 PLL is as follows:
++         +------------------------------------------------------+
++         |      +-------+      +-----+                          |
++    osc-------->| div N |----->|     |   +-----+                |
++         |      +-------+      |     |   |     |                |
++         |                     |     |   | VCO |   +--------+   |
++         |                     |     |-->|  /  |-->| div OD |------>pll_out
++         |                     |     |   | DCO |   +--------+   |
++         |      +----------+   |     |   |     |                |
++         |  +-->| M & frac |-->|     |   +-----+                |
++         |  |   +----------+   +-----+      |                   |
++         |  |                               |                   |
++         |  +-------------------------------+                   |
++         +------------------------------------------------------+
 +
-+static const struct aml_pll_data a9_hifi_pll_data = {
-+	.range = {
-+		.min = 1400000000,
-+		.max = 2800000000,
-+	},
-+	/*
-+	 * NOTE: The frac_max value of hifi_pll is set to 100000 so that the
-+	 * output frequency step can be expressed as an integer value. For
-+	 * example, with a 24 MHz input clock, the resulting frequency step is
-+	 * 24 MHz / 100000 = 240 Hz.
-+	 *
-+	 * This design avoids the need for floating-point arithmetic in
-+	 * frequency calculations, which helps prevent precision loss in
-+	 * scenarios with strict frequency accuracy requirements, such as audio
-+	 * and video applications.
-+	 */
-+	.frac_max = 100000,
-+	.od_max = 4,
-+	.flags = AML_PLL_M_EN0P5,
-+};
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - const: amlogic,a9-int-pll
++        description: Integer multiplier PLL
++      - items:
++          - const: amlogic,a9-frac-pll
++        description: Fractional multiplier PLL
++      - items:
++          - const: amlogic,a9-frac-step-pll
++        description: Fractional PLL with integer step granularity
 +
-+static int of_aml_clk_pll_init_register(struct device *dev, struct aml_clk *pll)
-+{
-+	struct device_node *np = dev_of_node(dev);
-+	struct clk_init_data init;
-+	struct clk_parent_data pdata;
-+	u8 pnum;
-+	int ret;
++  reg:
++    maxItems: 1
 +
-+	init.name = of_aml_clk_get_name_index(np, 0);
-+	if (!init.name)
-+		return -EINVAL;
++  clocks:
++    maxItems: 1
++    description: input clock of pll
 +
-+	ret = of_aml_clk_get_parent_data(dev, NULL, 0, 0, &pdata, &pnum);
-+	if (ret)
-+		return ret;
++  clock-output-names:
++    maxItems: 1
 +
-+	init.ops = &aml_pll_ops;
-+	init.num_parents = pnum;
-+	init.parent_data = &pdata;
++  '#clock-cells':
++    const: 0
 +
-+	pll->hw.init = &init;
-+	ret = of_aml_clk_register(dev, &pll->hw, 0);
-+	if (ret)
-+		return ret;
++  amlogic,clock-max-frequency:
++    description: |
++      Each clock's maximum output frequency is constrained during hardware
++      design to ensure proper timing requirements for the clock network. If the
++      clock frequency configured exceeds this design limit, it can lead to
++      abnormal behavior in modules relying on that clock and may even cause
++      cross-talk that affects other modules.
 +
-+	return 0;
-+}
++      In the driver, this property is parsed, and interface functions from the
++      CCF are called to enforce the clock's maximum frequency, preventing
++      potential issues caused by excessive clock frequency configurations.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
 +
-+static int of_aml_clk_pll_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct regmap *regmap;
-+	struct aml_clk *pll;
-+	struct aml_pll_data *pll_data_tmp;
-+	int ret;
++  amlogic,clock-init-regs:
++    description:
++      Certain CCUs and PLLs require initialization through dedicated registers
++      before becoming operational. This initialization configures internal clock
++      drive characteristics, divider parameters, and PLL internal circuitry.
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    items:
++      items:
++        - description: The register offset address
++        - description: The value to be written to the register
++        - description: The delay after the register write (unit is us)
 +
-+	pll_data_tmp = (void *)of_device_get_match_data(dev);
-+	if (!pll_data_tmp)
-+		return -EFAULT;
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-output-names
++  - "#clock-cells"
 +
-+	pll = devm_kmalloc(dev, sizeof(*pll), GFP_KERNEL);
-+	if (!pll)
-+		return -ENOMEM;
++additionalProperties: false
 +
-+	pll->data = devm_kmemdup(dev, pll_data_tmp, sizeof(*pll_data_tmp),
-+				 GFP_KERNEL);
-+	if (!pll->data)
-+		return -ENOMEM;
++examples:
++  - |
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++        clock-mclk_pll@8330 {
++            compatible = "amlogic,a9-int-pll";
++            reg = <0x0 0x8330 0x0 0xc>;
++            #clock-cells = <0>;
++            amlogic,clock-init-regs = <0x4  0x00402000 0>,
++                                      <0x8  0x60000100 0>;
++            amlogic,clock-max-frequency = <2800000000>;
++            clock-output-names = "mclk_pll";
++            clocks = <&xtal_24m>;
++        };
 +
-+	regmap = aml_clk_regmap_init(pdev);
-+	if (IS_ERR_OR_NULL(regmap))
-+		return -EIO;
++        clock-gp0_pll@8200 {
++            compatible = "amlogic,a9-frac-pll";
++            reg = <0x0 0x8200 0x0 0x10>;
++            #clock-cells = <0>;
++            amlogic,clock-init-regs = <0x0  0x08010000 0>,
++                                      <0x4  0x11480000 0>,
++                                      <0x8  0x1219b010 0>,
++                                      <0xc  0x00008010 0>;
++            amlogic,clock-max-frequency = <2800000000>;
++            clock-output-names = "gp0_pll";
++            clocks = <&xtal_24m>;
++        };
 +
-+	pll->map = regmap;
-+	pll->type = AML_CLKTYPE_PLL;
-+	ret = of_aml_clk_regs_init(dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = of_aml_clk_pll_init_register(dev, pll);
-+	if (ret)
-+		return ret;
-+
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &pll->hw);
-+}
-+
-+static const struct of_device_id of_aml_clk_pll_match_table[] = {
-+	{
-+		.compatible = "amlogic,a9-int-pll",
-+		.data = &a9_mclk_pll_data,
-+	},
-+	{
-+		.compatible = "amlogic,a9-frac-pll",
-+		.data = &a9_gp_pll_data,
-+	},
-+	{
-+		.compatible = "amlogic,a9-frac-step-pll",
-+		.data = &a9_hifi_pll_data,
-+	},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_aml_clk_pll_match_table);
-+
-+static struct platform_driver of_aml_clk_pll_driver = {
-+	.probe		= of_aml_clk_pll_probe,
-+	.driver		= {
-+		.name	= "aml-pll",
-+		.of_match_table = of_aml_clk_pll_match_table,
-+	},
-+};
-+module_platform_driver(of_aml_clk_pll_driver);
-+
-+MODULE_DESCRIPTION("Amlogic A9 PLL Controllers Driver");
-+MODULE_AUTHOR("Chuan Liu <chuan.liu@amlogic.com>");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("CLK_AMLOGIC");
++        clock-hifi_pll@8280 {
++            compatible = "amlogic,a9-frac-step-pll";
++            reg = <0x0 0x8280 0x0 0x10>;
++            #clock-cells = <0>;
++            amlogic,clock-init-regs = <0x0  0x08010000 0>,
++                                      <0x4  0x11480000 0>,
++                                      <0x8  0x1219b010 0>,
++                                      <0xc  0x00008010 0>;
++            amlogic,clock-max-frequency = <2800000000>;
++            clock-output-names = "hifi_pll";
++            clocks = <&xtal_24m>;
++        };
++    };
 
 -- 
 2.42.0
