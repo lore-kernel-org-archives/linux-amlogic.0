@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D42AE81BBB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 13:17:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B0D7E81BC1
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 13:18:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KQJ7EBAGR/EoB0MIHg5axWUqdyRsWdSTCNpKXc5eBM8=; b=aq6QLNnZi3BV7J
-	sQLeooarBhRJchcJopem502aol23XwXXUaUeP6M+4V5wYWDQ8ooA+zLUlnyyl7J84R9KoYuRpUQmT
-	XEWcuabPBCp85swcMgjAiKskxjmQ4zBiIY4lR1sCnPisfP2T6ExVO/DZoK3sFiMWGItY7lYDnMmv6
-	tNslMoRYY/Yi7podYcCemCUoHD/Pnfq4J7pTdAlvTZHAI+lCkiZrya1ou2qWdo+M/J7MgQsGQUSMF
-	sHJtSnUnt8hMcsyfSxVCRUbctRNGLYUIQTnpttEj2Z8TIkglJ2RgZsl2A+LFaYBcTyE+lMqE/4OYj
-	OjAvg/fGqiGoXdTwkixA==;
+	List-Owner; bh=0wSNBlcRSQfcGBaM8j61uq84dCfw01IquGLAoczFJ8g=; b=h/Mg+mI7EkWLY6
+	d7h0ndaYVDv59eRD9Y4N9QFtfI0/Adq5j+Zuyk3ilyvcv4HWsMsEKzg+DUbOu6y5QB0OpHEirLpwt
+	NHFC/BtPeLCR3rhmlUZGre8ChvsscxZqY2YUvaB2kNtq6/sXqMjjBaCDmVXFJiQ5R6Hj0GVLDbErn
+	REwhTGpj/drm4ba5ClNANmdDBx89UIkXe5ABB9Lw78xkB9ODzWrp3JTzjCWqRKaqCTNv1sssh73or
+	TecNuwzRyPavdh8Bi6RlvTaMf1uw806BS4St7I43MyWaOCw26KjfArZuf70RhOjrSC5z08xLiUJ3Q
+	Bs6oAfMxBrDmryt39+lg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpR8d-0000000FQ12-1QBc;
-	Mon, 09 Feb 2026 13:17:15 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vpR9V-0000000FQE6-2pr7;
+	Mon, 09 Feb 2026 13:18:09 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpR8c-0000000FQ0w-1wCP
+	id 1vpR9U-0000000FQCg-2EWO
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Feb 2026 13:17:14 +0000
+	Mon, 09 Feb 2026 13:18:08 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id AC3C1600B0;
-	Mon,  9 Feb 2026 13:17:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1248C116C6;
-	Mon,  9 Feb 2026 13:17:10 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 881A1600CB;
+	Mon,  9 Feb 2026 13:18:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93570C116C6;
+	Mon,  9 Feb 2026 13:18:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770643033;
-	bh=E3YdeD/rTwCR4yxn83bzlx/otZ5fCYuWld30uE4Lcow=;
+	s=k20201202; t=1770643087;
+	bh=n2sx2kjs/GQnPUGJjQo/yI4rxUcrSFwT9I1XazZibjE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=W/8+DSp4TFnZs9qrwFXBuBC53pusSs3qc22C/u6aoBpbxP4dBE5kCVVKmeeoOS8es
-	 +p//f8zmdcbi2VDZ6MYRdcCgrEW2Xp4tnEeDpYEAmUBNLUC27xAdYf6j7nXmUqyWtA
-	 pXPT2c1LTlKTSOaz7LYYP0ox3XB4Jdjs9Ze4QJKzSsUpArGMyBfs1JFueav6GnUKHC
-	 5Oy4ZYVsbnfZ5S0yBEhu1RAjgD8aO8Pm1vYvVC2olmLSBgmbX5+BmSxTvk2522qSbJ
-	 bmVe6jpVuEpzNj+ok4DrP5Q4JQrADy9NdYLcwDnFzD2o0BhbhBpJ9DuXN2PHiJgt9H
-	 pdiF3Z89bSHww==
-Message-ID: <89cc0724-32a8-4da5-8070-c128cafcfc82@kernel.org>
-Date: Mon, 9 Feb 2026 14:17:08 +0100
+	b=Xm1168WlX/wCNkH3YPL1x6qxwTC7PUq/sJwx0kCGnyG5dJg+uptoOjfWEkqtCOUKx
+	 u3ouSB23vyvqYKGAJlSnzGQbvzvOM5sYqLraL+ckFu8gAON0kpUcGf4FcRZy+ofz0d
+	 wFT4vGlVy2h/qfIDtRY3wfCdFk1tPp2gUd7h0MKFsQEmALc7yTFHa/ohMSc9nMNokP
+	 cC4fPqt0BEQj24ho6jyC9kFxS/4t2hl2Ps5/c68u1X3/829Bhnfk7JGr7Zfh/c4zWE
+	 fpWR1gPuSetpS+TncVWzu3eGZ+2rDAt74j7b6Swm3NkwW7qwD00PUiVQrSyygtPZ2M
+	 iw/HbzkBfrTQQ==
+Message-ID: <63b2b403-53ea-465c-832d-8ee6099239aa@kernel.org>
+Date: Mon, 9 Feb 2026 14:18:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/13] clk: amlogic: Add basic clock driver
+Subject: Re: [PATCH 05/13] clk: amlogic: Add composite clock driver
 To: chuan.liu@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -54,7 +54,7 @@ To: chuan.liu@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
- <20260209-a9_clock_driver-v1-4-a9198dc03d2a@amlogic.com>
+ <20260209-a9_clock_driver-v1-5-a9198dc03d2a@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -100,7 +100,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260209-a9_clock_driver-v1-4-a9198dc03d2a@amlogic.com>
+In-Reply-To: <20260209-a9_clock_driver-v1-5-a9198dc03d2a@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,13 +120,20 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 09/02/2026 06:48, Chuan Liu via B4 Relay wrote:
 > From: Chuan Liu <chuan.liu@amlogic.com>
 > 
-> Implement core clock driver for Amlogic SoC platforms, supporting
+> Implement clk_ops support for Amlogic composite clocks. Composite clocks
+> are commonly used clock control units in Amlogic SoCs that integrate
+> multiplexer, divider, and gate functionality into a single block.
+> 
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> ---
+>  drivers/clk/amlogic/Makefile        |   1 +
+>  drivers/clk/amlogic/clk-composite.c | 280 ++++++++++++++++++++++++++++++++++++
+>  drivers/clk/amlogic/clk-composite.h |  20 +++
+>  drivers/clk/amlogic/clk.c           |   7 +
+>  drivers/clk/amlogic/clk.h           |   1 +
 
-So how did all existing Amlogic SoC platforms work so far without basic
-clock driver? Really, how?
-
-You are suppose to grow existing code, not add your completely new
-"basic" driver just because you have it that way in downstream.
+Why did you duplicate the directory? It's already there under name
+meson. That's your vendor.
 
 Best regards,
 Krzysztof
