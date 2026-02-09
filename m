@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1189FEF070F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78938EF0717
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Vnk2AtFVghpOLgpKKuJr/LgYOdrBmmJlTq+3n/S6JS8=; b=pE/nJSvFSirPIv
-	zc87rzN0lj/kRMn0GFPhCI6+TCvJHa1MZDFmwamHPyatZOOWp+VHVbx348Sz+cVQwSBp2fVdDu9KQ
-	GolvaMGSh6dt0XECEMzgiqpM0DOOHJt2fPsOdoTD+AQywlOrMdqzJOpSsM7kTXVK+AY1syHF0n1BH
-	1RmYP/QTStw8Zv34r5rro5l+Od99wSFe4GZ6OGVguKsh0W1J2ReJhNq0EaUnaDkHIf1v9uz0RshB1
-	+0/2eXnSAEIhymPI14jma/JFIt0nUWcWY+mMGQSh6BZagZO5x/PnmFfB9TwXf2nNxZYTTDyIRKfFX
-	kP/7hEy7juPRt6kzaKxA==;
+	List-Owner; bh=eBnwEi15wUpSm9on0CNySc9280k5iJqFA0cIb1k3TCQ=; b=EUU9s9dR9OuaEj
+	9Y9rcPCSFRHbvOeo4PHzxmutZ5lz4ZVlZGBozt4iXcgjoYyu22greLHNmJ7GVmEejuGA/u4UtL3gm
+	banSfImMaUFjKQMU6lbQPicUybjsYLxHHXGNsQwgys6flFUHqYya9S2KDM5h+znHUJSBLHr0A3G6B
+	+qhnx5++PcLrpZ/BG4y5f84F4/PMWVNQuCYbk9O8oSQzFIP4eNPk8vcJkzjhfcZJbkE7LKihLTnMf
+	r5Fr8SOtCLB6UHQAcxKqyIEGBDemfIqUxp39pR3yLBdlUmx9pTzQj1ubnjDqKloJyokCpvjBHom7I
+	cR4Rr6wexKSrVz9LKk2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpK8z-0000000Erdt-2P0c;
-	Mon, 09 Feb 2026 05:49:09 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1vpK93-0000000Erh5-3r6Z;
+	Mon, 09 Feb 2026 05:49:13 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpK8y-0000000ErcU-33Xm
+	id 1vpK8z-0000000Erd6-1lVk
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Feb 2026 05:49:08 +0000
+	Mon, 09 Feb 2026 05:49:11 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 09CF560129;
-	Mon,  9 Feb 2026 05:49:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B4448C116C6;
+	by sea.source.kernel.org (Postfix) with ESMTP id 235FA44573;
+	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 04D32C2BCAF;
 	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1770616147;
-	bh=QxViedLmynRp82O87N7D2qyntM/kr801ltrwPP9Llkg=;
+	bh=WxRLnNceQ3wbnXmtcgHYv7mMpQB9lXHKbgRuGKvkBFE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=NdK8tK44zwbBNKywOR4wJ/dOwYNDSnRgpKPGpBJRNKUzZPS4LQ1m/KqH2rxbwdFlA
-	 Nzd1hNxA00lzR+hNcGrmUvkV8Jheaaq2j/f5AAYQe7BXjaOqBfPGjpEvLwiY2UHZ6Y
-	 aS329ufS75+ymmg5BoI5q1a+Ns48+YUZ823bDvuDw4wPCOPg6FHX6a1ufdWlMP5Kh5
-	 pXebw7sWXx3WGYWRNhzEfy1ru/BBeD68tNhQTKQzxelEOxr6XORgUnVcKBB5Jm/bnA
-	 DfqZM4CQXmAETUJC7Cag8Dn6Qu5lhCsrG3Bg1Ja89+6uaegLHko/GpBO5+8HxMTLih
-	 FKnJzxdR/8emQ==
+	b=VBVaEPCgyHdjqYj2PuDB5KexwWq2sH2ScSNX+lBWXHB1V3VkYHKKeIWyq8i9htSdM
+	 tHuZwpfHOrSEiqNitdmiWuo16C9POjP0z1pi6CopobXQTe7cXnbhsKyLtKgOG8qEAf
+	 80i99ISbODmYXRG2TDCNjKxXbk8if9gWL50MFNhBp21x+4ZHlMRcB5o6qZpj15CPfK
+	 in63Gl2wgkQ2SMMg7xNppBMo519cn/KpRBKmwFHlUp9FiUUa65A0MhTIoU0/Fj0Bxp
+	 VjLqB51ekIGQIMpwET5BS1cq67/C320dXE27PUWGYWZxD3pUJ97xe/ESA5VkDpdsUj
+	 haOpg0puuD+cw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A846EEF06FF;
-	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EDB98EF070B;
+	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Mon, 09 Feb 2026 13:48:58 +0800
-Subject: [PATCH 12/13] clk: amlogic: Add A9 misc clock control units driver
+Date: Mon, 09 Feb 2026 13:48:53 +0800
+Subject: [PATCH 07/13] clk: amlogic: Add duandiv clock driver
 MIME-Version: 1.0
-Message-Id: <20260209-a9_clock_driver-v1-12-a9198dc03d2a@amlogic.com>
+Message-Id: <20260209-a9_clock_driver-v1-7-a9198dc03d2a@amlogic.com>
 References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 In-Reply-To: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,16 +61,19 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616143; l=28812;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616142; l=15230;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=LIyu9KL3MwJ2/G89sNwwVlFz7b01K2TvVo7VDEnv0sk=;
- b=exPV6T7eX9RsGLI/cLQJwlrSkP8NSV1/RcP2oFgjDTzRAGr3eZSt26V6E0L0YuqpYGjXP2ru8
- vSDGZjg4NukAFz41hnW7UUb4na5kd455Eyh7C7pJCqyDzpkWTWIjdsf
+ bh=lExIppsrGs3hG71peQNd4KEz/nuT8sZa6/ObaVooJnk=;
+ b=B3IIxMGqKTCKBnUJMP9hnaQefxTiQhEaz/vXaE3Gja/L1P9mrB8tqWDw/nijoc8hQHiAgYaj6
+ 93tMWtV6cioCtvGwL6ssxh4h6idEzcxNdZs4HaOwViWZeUPlsdLXdHI
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260208_214909_564558_259DA9BE 
+X-CRM114-Status: GOOD (  24.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,1040 +93,462 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-Add support for Amlogic miscellaneous clock control units on A9 SoC
-family. Certain peripheral clocks do not utilize the standardized models
-due to specific requirements. These specialized clock control units are
-handled in this driver, including:
-  - sc-ccu
-  - ts-ccu
-  - genout-ccu
-  - clk12_24m-ccu
-  - vapb_ge2d-ccu
-  - di-ccu
-  - eth-ccu
-  - dualdivmux-ccu
-  - mclk-ccu
+Implement clk_ops support for Amlogic dualdiv clocks. The dualdiv clock
+comprises two independent divider channels with counters. It achieves
+fractional division functionality by alternating between the two divided
+clocks.
 
-These clock control units contain multiple sub-clocks. The clock IDs
-for each sub-clock are defined in /bindings/clock/amlogic,a9-misc-ccu.h.
+Amlogic dualdiv clocks are used for modules requiring fractional
+division without concern for clock phase or duty cycle, commonly
+generating 32.768KHz from a 24MHz crystal input for RTC applications.
 
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/clk/amlogic/Kconfig       |  10 +
- drivers/clk/amlogic/Makefile      |   5 +
- drivers/clk/amlogic/a9-misc-ccu.c | 960 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 975 insertions(+)
+ drivers/clk/amlogic/Makefile      |   1 +
+ drivers/clk/amlogic/clk-dualdiv.c | 365 ++++++++++++++++++++++++++++++++++++++
+ drivers/clk/amlogic/clk-dualdiv.h |  27 +++
+ drivers/clk/amlogic/clk.c         |   1 +
+ drivers/clk/amlogic/clk.h         |   1 +
+ 5 files changed, 395 insertions(+)
 
-diff --git a/drivers/clk/amlogic/Kconfig b/drivers/clk/amlogic/Kconfig
-index 3177a02ecbd5..502aca5332bc 100644
---- a/drivers/clk/amlogic/Kconfig
-+++ b/drivers/clk/amlogic/Kconfig
-@@ -11,6 +11,15 @@ config COMMON_CLK_AMLOGIC
- 	  offering read and write interfaces for various clock control units.
- 	  Select Y if your target SoC needs clock driver support.
- 
-+config COMMON_CLK_AMLOGIC_MISC
-+	tristate "Amlogic Misc Clock Control Units"
-+	depends on COMMON_CLK_AMLOGIC
-+	help
-+	  Supports non-standard module clock control units in Amlogic SoC clock
-+	  trees, such as sc-ccu (for smart card controller) and ts-ccu (for
-+	  temperature sensor). Select Y if the current SoC contains these module
-+	  clock control units.
-+
- config COMMON_CLK_AMLOGIC_MODEL
- 	tristate "Amlogic Standardized Model Clock Control Units"
- 	depends on COMMON_CLK_AMLOGIC
-@@ -34,6 +43,7 @@ config COMMON_CLK_AMLOGIC_A9
- 	tristate "Amlogic A9 Family Clock Controller"
- 	depends on COMMON_CLK_AMLOGIC
- 	default COMMON_CLK_AMLOGIC
-+	select COMMON_CLK_AMLOGIC_MISC
- 	select COMMON_CLK_AMLOGIC_MODEL
- 	select COMMON_CLK_AMLOGIC_PLL
- 	help
 diff --git a/drivers/clk/amlogic/Makefile b/drivers/clk/amlogic/Makefile
-index 74bf84dbd5a8..b174dce61ae9 100644
+index 72cd2525e078..bc2b22b4d3c9 100644
 --- a/drivers/clk/amlogic/Makefile
 +++ b/drivers/clk/amlogic/Makefile
-@@ -8,6 +8,11 @@ clk-amlogic-y += clk-composite.o
- clk-amlogic-y += clk-dualdiv.o
+@@ -5,4 +5,5 @@ obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-amlogic.o
+ clk-amlogic-y += clk.o
+ clk-amlogic-y += clk-basic.o
+ clk-amlogic-y += clk-composite.o
++clk-amlogic-y += clk-dualdiv.o
  clk-amlogic-y += clk-noglitch.o
- clk-amlogic-y += clk-pll.o
-+
-+ifneq ($(CONFIG_COMMON_CLK_AMLOGIC_MISC),)
-+clk-amlogic-y += a9-misc-ccu.o
-+endif
-+
- ifneq ($(CONFIG_COMMON_CLK_AMLOGIC_MODEL),)
- clk-amlogic-y += a9-model-ccu.o
- endif
-diff --git a/drivers/clk/amlogic/a9-misc-ccu.c b/drivers/clk/amlogic/a9-misc-ccu.c
+diff --git a/drivers/clk/amlogic/clk-dualdiv.c b/drivers/clk/amlogic/clk-dualdiv.c
 new file mode 100644
-index 000000000000..db130d84ccdd
+index 000000000000..1752b89ec0f2
 --- /dev/null
-+++ b/drivers/clk/amlogic/a9-misc-ccu.c
-@@ -0,0 +1,960 @@
++++ b/drivers/clk/amlogic/clk-dualdiv.c
+@@ -0,0 +1,365 @@
 +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
 +/*
 + * Copyright (c) 2026 Amlogic, Inc. All rights reserved
 + */
 +
-+#include <linux/err.h>
 +#include <linux/module.h>
 +
 +#include "clk.h"
 +#include "clk-basic.h"
-+#include "clk-composite.h"
 +#include "clk-dualdiv.h"
-+#include "clk-noglitch.h"
-+#include "clk-pll.h"
-+
-+#include <dt-bindings/clock/amlogic,a9-misc-ccu.h>
-+
-+static struct aml_clk a9_sc_pre = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_composite_ops,
-+	},
-+	.type = AML_CLKTYPE_COMPOSITE,
-+	.data = &(struct aml_clk_composite_data) {
-+		.div_width = 8,
-+	},
-+};
-+
-+static struct aml_clk a9_sc = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_sc_pre.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+	.type = AML_CLKTYPE_DIV,
-+	.data = &(struct aml_clk_divider_data) {
-+		.shift = 16,
-+		.width = 4,
-+	},
-+};
-+
-+struct clk_hw_onecell_data a9_sc_clk_hw_data = {
-+	.hws = {
-+		[A9_CLK_SC_PRE]	= &a9_sc_pre.hw,
-+		[A9_CLK_SC]	= &a9_sc.hw,
-+	},
-+	.num = 2,
-+};
-+
-+static struct aml_clk a9_ts_div = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_divider_ops,
-+	},
-+	.type = AML_CLKTYPE_DIV,
-+	.data = &(struct aml_clk_divider_data) {
-+		.shift = 0,
-+		.width = 8,
-+	},
-+};
-+
-+static struct aml_clk a9_ts = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ts_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+	.type = AML_CLKTYPE_GATE,
-+	.data = &(struct aml_clk_gate_data) {
-+		.bit_idx = 8,
-+	},
-+};
-+
-+struct clk_hw_onecell_data a9_ts_clk_hw_data = {
-+	.hws = {
-+		[A9_CLK_TS_DIV]	= &a9_ts_div.hw,
-+		[A9_CLK_TS]	= &a9_ts.hw,
-+	},
-+	.num = 2,
-+};
-+
-+static struct aml_clk a9_genout_sel = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_mux_ops,
-+	},
-+	.type = AML_CLKTYPE_MUX,
-+	.data = &(struct aml_clk_mux_data) {
-+		.mask = 0x1f,
-+		.shift = 12,
-+	},
-+};
-+
-+static struct aml_clk a9_genout_div = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_genout_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+	.type = AML_CLKTYPE_DIV,
-+	.data = &(struct aml_clk_divider_data) {
-+		.shift = 0,
-+		.width = 11,
-+	},
-+};
-+
-+static struct aml_clk a9_genout = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_genout_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+	.type = AML_CLKTYPE_GATE,
-+	.data = &(struct aml_clk_gate_data) {
-+		.bit_idx = 11,
-+	},
-+};
-+
-+struct clk_hw_onecell_data a9_genout_clk_hw_data = {
-+	.hws = {
-+		[A9_CLK_GENOUT_SEL]	= &a9_genout_sel.hw,
-+		[A9_CLK_GENOUT_DIV]	= &a9_genout_div.hw,
-+		[A9_CLK_GENOUT]		= &a9_genout.hw,
-+	},
-+	.num = 3,
-+};
-+
-+static struct aml_clk a9_clk24m_in = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_gate_ops,
-+	},
-+	.type = AML_CLKTYPE_GATE,
-+	.data = &(struct aml_clk_gate_data) {
-+		.bit_idx = 11,
-+	},
-+};
-+
-+static struct aml_clk a9_clk12_24m = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_clk24m_in.hw
-+		},
-+		.num_parents = 1,
-+	},
-+	.type = AML_CLKTYPE_DIV,
-+	.data = &(struct aml_clk_divider_data) {
-+		.shift = 10,
-+		.width = 1,
-+	},
-+};
-+
-+struct clk_hw_onecell_data a9_clk12_24m_clk_hw_data = {
-+	.hws = {
-+		[A9_CLK_24M_IN]	= &a9_clk24m_in.hw,
-+		[A9_CLK_12_24M]	= &a9_clk12_24m.hw,
-+	},
-+	.num = 2,
-+};
-+
-+static struct aml_clk a9_vapb = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_noglitch_ops,
-+	},
-+	.type = AML_CLKTYPE_NOGLITCH,
-+	.data = &(struct aml_clk_composite_data) {
-+		.div_width = 7,
-+	},
-+};
-+
-+static struct aml_clk a9_ge2d = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_vapb.hw
-+		},
-+		.num_parents = 1,
-+	},
-+	.type = AML_CLKTYPE_GATE,
-+	.data = &(struct aml_clk_gate_data) {
-+		.bit_idx = 30,
-+	},
-+};
-+
-+struct clk_hw_onecell_data a9_vapbge2d_clk_hw_data = {
-+	.hws = {
-+		[A9_CLK_VAPB]	= &a9_vapb.hw,
-+		[A9_CLK_GE2D]	= &a9_ge2d.hw,
-+	},
-+	.num = 2,
-+};
-+
-+static struct aml_clk a9_vpu_clkb_temp = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_composite_ops,
-+	},
-+	.type = AML_CLKTYPE_COMPOSITE,
-+	.data = &(struct aml_clk_composite_data) {
-+		.bit_offset = 16,
-+		.div_width = 4,
-+	},
-+};
-+
-+static struct aml_clk a9_vpu_clkb_div = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_vpu_clkb_temp.hw
-+		},
-+		.num_parents = 1,
-+	},
-+	.type = AML_CLKTYPE_DIV,
-+	.data = &(struct aml_clk_divider_data) {
-+		.shift = 0,
-+		.width = 8,
-+	},
-+};
-+
-+static struct aml_clk a9_vpu_clkb = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_vpu_clkb_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+	.type = AML_CLKTYPE_GATE,
-+	.data = &(struct aml_clk_gate_data) {
-+		.bit_idx = 8,
-+	},
-+};
-+
-+struct clk_hw_onecell_data a9_di_clk_hw_data = {
-+	.hws = {
-+		[A9_CLK_VPU_CLKB_TEMP]	= &a9_vpu_clkb_temp.hw,
-+		[A9_CLK_VPU_CLKB_DIV]	= &a9_vpu_clkb_div.hw,
-+		[A9_CLK_VPU_CLKB]	= &a9_vpu_clkb.hw,
-+	},
-+	.num = 3,
-+};
-+
-+static int of_aml_clk_misc_set_parent_table(struct device *dev,
-+					    struct aml_clk *clk,
-+					    int start_index, int end_index)
-+{
-+	u32 *ptab = of_aml_clk_get_parent_table(dev, start_index, end_index);
-+	struct aml_clk_mux_data *mux_data;
-+	struct aml_clk_composite_data *comp_data;
-+	struct aml_clk_noglitch_data *noglitch_data;
-+
-+	if (IS_ERR(ptab))
-+		return PTR_ERR(ptab);
-+	else if (!ptab) /* parent clock indices are contiguous */
-+		return 0;
-+
-+	switch (clk->type) {
-+	case AML_CLKTYPE_MUX:
-+		mux_data = clk->data;
-+		mux_data->table = ptab;
-+		return 0;
-+
-+	case AML_CLKTYPE_COMPOSITE:
-+		comp_data = clk->data;
-+		comp_data->table = ptab;
-+		return 0;
-+
-+	case AML_CLKTYPE_NOGLITCH:
-+		noglitch_data = clk->data;
-+		noglitch_data->table = ptab;
-+		return 0;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
 +
 +/*
-+ * The default CCU block diagram is shown below:
-+ *            +---------------------------------+
-+ *            |  +-------+           +-------+  |
-+ *            |  |       |           |       |  |
-+ *   clkin0----->|   1   |           |   n   |  |
-+ *           ... | level |--> ... -->| level |------>clkout
-+ *           ... | clock |           | clock |  |
-+ *   clkinn----->|       |           |       |  |
-+ *            |  +-------+           +-------+  |
-+ *            +---------------------------------+
++ * Amlogic dualdiv clock module:
 + *
-+ * By default, the CCU has the following characteristics:
-+ *   - The clock specified by "clocks" uses the first-level clock (clkid = 0)
-+ *     as its parent.
-+ *   - The parent-child relationship among sub-clocks follows this order:
-+ *       - hw_data->hws[0] -> ... -> hw_data->hws[n].
-+ */
-+static int of_aml_clk_misc_init_register(struct device *dev,
-+					 struct clk_hw_onecell_data *hw_data)
-+{
-+	struct device_node *np = dev_of_node(dev);
-+	struct aml_clk *clk;
-+	struct clk_init_data init;
-+	struct clk_parent_data *pdata;
-+	u8 pnum;
-+	int ret, clkid;
-+
-+	if (hw_data->num != of_aml_clk_get_count(np))
-+		return -EINVAL;
-+
-+	ret = of_aml_clk_get_parent_num(dev, 0, -1);
-+	if (ret < 0)
-+		return ret;
-+
-+	pnum = (u8)ret;
-+	pdata = devm_kcalloc(dev, pnum, sizeof(*pdata), GFP_KERNEL);
-+	if (!pdata)
-+		return -ENOMEM;
-+
-+	for (clkid = 0; clkid < hw_data->num; clkid++) {
-+		/*
-+		 * By default, clocks specified in the DT clocks property act as
-+		 * the parent clocks for the first-level CCU clock (clkid == 0).
-+		 */
-+		if (clkid == 0) {
-+			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
-+							 0, -1, pdata, &pnum);
-+			if (ret)
-+				goto out;
-+
-+			clk = to_aml_clk(hw_data->hws[clkid]);
-+			ret = of_aml_clk_misc_set_parent_table(dev, clk, 0, -1);
-+			if (ret)
-+				goto out;
-+		} else {
-+			pnum = 1;
-+			/*
-+			 *The parent-child relationship among sub-clocks follows
-+			 * this order:
-+			 *  - hw_data->hws[0] -> ... -> hw_data->hws[n].
-+			 */
-+			pdata[0].hw = hw_data->hws[clkid - 1];
-+		}
-+
-+		memcpy(&init, hw_data->hws[clkid]->init, sizeof(init));
-+		init.name = of_aml_clk_get_name_index(np, clkid);
-+		if (!init.name) {
-+			ret = -EINVAL;
-+			goto out;
-+		}
-+
-+		init.num_parents = pnum;
-+		init.parent_data = pdata;
-+		hw_data->hws[clkid]->init = &init;
-+		ret = of_aml_clk_register(dev, hw_data->hws[clkid], clkid);
-+		if (ret)
-+			goto out;
-+	}
-+
-+out:
-+	devm_kfree(dev, pdata);
-+
-+	return ret;
-+}
-+
-+#define A9_ETH_CLK_NUM		2
-+
-+static struct aml_clk a9_eth_125m = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_gate_ops,
-+	},
-+	.type = AML_CLKTYPE_GATE,
-+	.data = &(struct aml_clk_gate_data) {
-+		.bit_idx = 7,
-+	},
-+};
-+
-+static struct aml_clk a9_eth_rmii = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_composite_ops,
-+	},
-+	.type = AML_CLKTYPE_COMPOSITE,
-+	.data = &(struct aml_clk_composite_data) {
-+		.div_width = 7,
-+	},
-+};
-+
-+struct clk_hw_onecell_data a9_eth_clk_hw_data = {
-+	.hws = {
-+		[A9_CLK_ETH_125M]	= &a9_eth_125m.hw,
-+		[A9_CLK_ETH_RMII]	= &a9_eth_rmii.hw,
-+	},
-+	.num = A9_ETH_CLK_NUM,
-+};
-+
-+/*
-+ * A diagram of the A9 eth-ccu is as follows:
-+ *         +------------------------------------------+
-+ *         |                             +------+     |
-+ * clk125m------------------------------>| gate |-------> eth_125m
-+ *         |                             +------+     |
-+ *         |     +---------------------------------+  |
-+ *         |     |  |\                             |  |
-+ * clkin0 --------->| |                            |  |
-+ *         |     |  | |      +-----+     +------+  |  |
-+ *         | ... |  | |----->| div |---->| gate |-------> eth_rmii
-+ *         |     |  | |      +-----+     +------+  |  |
-+ * clkin7 --------->| |                            |  |
-+ *         |     |  |/       composote-ccu         |  |
-+ *         |     +---------------------------------+  |
-+ *         +------------------------------------------+
-+ */
-+static int of_aml_clk_eth_init_register(struct device *dev,
-+					struct clk_hw_onecell_data *hw_data)
-+{
-+	struct device_node *np = dev_of_node(dev);
-+	struct aml_clk *clk;
-+	struct clk_parent_data pdata[9];
-+	u8 pnum;
-+	struct clk_init_data init;
-+	int ret, clkid;
-+
-+	if (of_aml_clk_get_count(np) != A9_ETH_CLK_NUM)
-+		return -EINVAL;
-+
-+	for (clkid = 0; clkid < A9_ETH_CLK_NUM; clkid++) {
-+		if (clkid == A9_CLK_ETH_125M) { /* eth_125m */
-+			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
-+							 0, 0, pdata, &pnum);
-+			if (ret)
-+				return ret;
-+		} else { /* eth_rmii */
-+			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
-+							 1, 8, pdata, &pnum);
-+			if (ret)
-+				return ret;
-+
-+			clk = to_aml_clk(hw_data->hws[clkid]);
-+			ret = of_aml_clk_misc_set_parent_table(dev, clk, 1, 8);
-+			if (ret)
-+				return ret;
-+		}
-+
-+		memcpy(&init, hw_data->hws[clkid]->init, sizeof(init));
-+		init.name = of_aml_clk_get_name_index(np, clkid);
-+		if (!init.name)
-+			return -EINVAL;
-+
-+		init.num_parents = pnum;
-+		init.parent_data = pdata;
-+		hw_data->hws[clkid]->init = &init;
-+		ret = of_aml_clk_register(dev, hw_data->hws[clkid], clkid);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+#define A9_DUALDIVMUX_CLK_NUM		2
-+
-+static struct aml_clk_dualdiv_param a9_dualdiv_table[] = {
-+	{ 1, 732, 7, 731, 10 }, /* 32.768k for rtc/cec */
-+};
-+
-+static struct aml_clk a9_dualdiv = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_dualdiv_ops,
-+	},
-+	.type = AML_CLKTYPE_DUALDIV,
-+	.data = &(struct aml_clk_dualdiv_data) {
-+		.reg_offset = 0,
-+		.table = a9_dualdiv_table,
-+		.table_count = ARRAY_SIZE(a9_dualdiv_table),
-+	},
-+};
-+
-+static struct aml_clk a9_dualdiv_sel = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_mux_ops,
-+		/*
-+		 * NOTE: To ensure output clock continuity, the mux can switch
-+		 * correctly only when both the current path and the target path
-+		 * have valid clock inputs. Otherwise, the mux cannot complete
-+		 * the switch.
-+		 */
-+		.flags = CLK_OPS_PARENT_ENABLE,
-+	},
-+	.type = AML_CLKTYPE_MUX,
-+	.data = &(struct aml_clk_mux_data) {
-+		.reg_offset = 4,
-+		.mask = 0x3,
-+		.shift = 30,
-+	},
-+};
-+
-+struct clk_hw_onecell_data a9_dualdiv_clk_hw_data = {
-+	.hws = {
-+		[A9_CLK_DUALDIV]	= &a9_dualdiv.hw,
-+		[A9_CLK_DUALDIV_SEL]	= &a9_dualdiv_sel.hw,
-+	},
-+	.num = A9_DUALDIVMUX_CLK_NUM,
-+};
-+
-+/*
-+ * A diagram of the A9 dualdivmux-ccu is as follows:
-+ *       +--------------------------------------+
-+ *       |  +---------+                         |
-+ *       |  |         |                         |
-+ * divin--->| dualdiv |--+                      |
-+ *       |  |         |  |                      |
-+ *       |  +---------+  |   +---+         |\   |
-+ *       |               +-->| ~ |--mux0-->| |  |
-+ * clk0--------------------->| ~ |--mux1-->| |------> out
-+ * clk1--------------------->| ~ |--mux2-->| |  |
-+ * clk2--------------------->| ~ |--mux3-->|/   |
-+ *       |                   +---+              |
-+ *       +--------------------------------------+
++ *                          n0         m0     div_mode    clkout_gate
++ *                          |          |        |              |
++ *          clkin_gate      |    n1    |    m1  | force_clkout |
++ *             |            |    |     |    |   |     |        |
++ *      +------|------------|----|-----|----|---|-----|--------|----+
++ *      |      |           \|/   |    \|/   |  \|/    |        |    |
++ *      |      |         +-----+ |  +-----+ |  |\     |        |    |
++ *      |      |     +-->| div |-o->| cnt |-o->| |   \|/       |    |
++ *      |     \|/    |   +-----+ |  +-----+ |  | |   |\        |    |
++ * clk  |  +------+  |           |          |  | |   | |       |    |
++ * in ---->| gate |--+      +----+     +----+  | |-->| |      \|/   |
++ *      |  +------+  |     \|/        \|/      | |   | |   +------+ |
++ *      |            |   +-----+    +-----+    | |   | |-->| gate |----> clk
++ *      |            +-->| div |--->| cnt |--->| |   | |   +------+ |    out
++ *      |            |   +-----+    +-----+    |/    | |            |
++ *      |            +------------------------------>| |            |
++ *      |                                            |/             |
++ *      |                                                           |
++ *      +-----------------------------------------------------------+
 + *
-+ * Its internal multiplexer selects from up to 4 parent clocks, one of which
-+ * must be 'dualdiv' output clock.
++ * The Amlogic dualdiv clock is used to implement fractional division (e.g., a
++ * 24 MHz input clock with a 32.768 KHz output for the RTC).
++ *
++ * The functional description of these parameters is described below as follows:
++ *   - clkin_gate: clock input gate
++ *   - n0: Divider value corresponding to channel 0
++ *   - n1: Divider value corresponding to channel 1
++ *   - m0: Number of output cycles per burst on channel 0 (switches to channel 1
++ *         after the cycles are output)
++ *   - m1: Number of output cycles per burst on channel 0 (switches to channel 0
++ *         after the cycles are output)
++ *   - div_mode: Division mode configuration:
++ *     - div_mode = 0: Normal division mode:
++ *         dualdiv_out = clk_in / n0;
++ *     - div_mode = 1: Dualdiv (fractional) division mode:
++ *         dualdiv_out = clk_in / ((n0 * m0 + n1 * m1) / (m0 + m1));
++ *   - force_clkout: force clock_out = clock_in
++ *   - clkout_gate: clock output gate
++ *
++ * The fractional division principle of dualdiv is to alternately switch via a
++ * mux between two integer-divided clocks, thereby achieving an effective
++ * fractional division.
++ *
++ * For example, when configuring a dualdiv ratio of 1.75, the clock waveform
++ * is illustrated below (n0 = 1, m0 = 1, n1 = 2, m1 = 3):
++ *
++ *             _   _   _   _   _   _   _   _   _   _   _   _
++ * clk in:    | |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_|
++ *             _   _   _   _   _   _   _   _   _   _   _   _
++ * channel0:  | |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_|
++ *             __    __    __    __    __    __    __    __
++ * channel1:  |  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|
++ *             _   __    __    __    _   __    __    __    _
++ * clk out:   | |_|  |__|  |__|  |__| |_|  |__|  |__|  |__| |_|
++ *            |<->|<--------------->|<->|<--------------->|<->|
++ *              m0          m1        m0         m1         m0
 + */
-+static int of_aml_clk_dualdiv_init_register(struct device *dev,
-+					    struct clk_hw_onecell_data *hw_data)
++
++#define AML_DUALDIV_REG0_OFFSET			(0)
++#define AML_DUALDIV_REG1_OFFSET			(4)
++
++struct aml_dualdiv_reg_parms {
++	union {
++		struct {
++			u32 n0			:12;  /* bit0 - bit11 */
++			u32 n1			:12;  /* bit12 - bit23 */
++			u32 reserved0		:4;  /* bit24 - bit27 */
++			u32 div_mode		:2;  /* bit28 - bit29 */
++			u32 clkout_gate		:1;  /* bit30 */
++			u32 clkin_gate		:1;  /* bit31 */
++		} bits;
++		u32 val;
++	} reg0;
++	union {
++		struct {
++			u32 m0			:12;  /* bit0 - bit11 */
++			u32 m1			:12;  /* bit12 - bit23 */
++			u32 force_clkout	:1;  /* bit24 */
++			u32 reserved0		:5;  /* bit25 - bit29 */
++			u32 out_mux		:2;  /* bit30 - bit31 */
++
++		} bits;
++		u32 val;
++	} reg1;
++};
++
++static inline unsigned int _get_div_mult(unsigned int val)
 +{
-+	struct device_node *np = dev_of_node(dev);
-+	struct aml_clk *clk;
-+	struct clk_parent_data pdata[5];
-+	u8 pnum;
-+	struct clk_init_data init;
-+	int ret, clkid;
-+
-+	if (of_aml_clk_get_count(np) != A9_DUALDIVMUX_CLK_NUM)
-+		return -EINVAL;
-+
-+	for (clkid = 0; clkid < A9_DUALDIVMUX_CLK_NUM; clkid++) {
-+		if (clkid == A9_CLK_DUALDIV) { /* dualdiv */
-+			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
-+							 0, 0, pdata, &pnum);
-+			if (ret)
-+				return ret;
-+		} else { /* dualdiv_sel */
-+			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
-+							 1, 4, pdata, &pnum);
-+			if (ret)
-+				return ret;
-+
-+			clk = to_aml_clk(hw_data->hws[clkid]);
-+			ret = of_aml_clk_misc_set_parent_table(dev, clk, 1, 4);
-+			if (ret)
-+				return ret;
-+		}
-+
-+		memcpy(&init, hw_data->hws[clkid]->init, sizeof(init));
-+		init.name = of_aml_clk_get_name_index(np, clkid);
-+		if (!init.name)
-+			return -EINVAL;
-+
-+		init.num_parents = pnum;
-+		init.parent_data = pdata;
-+		hw_data->hws[clkid]->init = &init;
-+		ret = of_aml_clk_register(dev, hw_data->hws[clkid], clkid);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
++	return val + 1;
 +}
 +
-+static struct aml_clk a9_mclk0_pre_div = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_divider_ops,
-+		.num_parents = 1,
-+	},
-+	.type = AML_CLKTYPE_DIV,
-+	.data = &(struct aml_clk_divider_data) {
-+		.reg_offset = 0xc,
-+		.shift = 3,
-+		.width = 5,
-+		.flags = CLK_DIVIDER_MAX_AT_ZERO,
-+	},
-+};
++static unsigned long
++aml_dualdiv_param_to_rate(unsigned long parent_rate,
++			  const struct aml_clk_dualdiv_param *p)
++{
++	unsigned int n0, n1, m0, m1;
 +
-+static struct aml_clk a9_mclk0_sel = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_mux_ops,
-+	},
-+	.type = AML_CLKTYPE_MUX,
-+	.data = &(struct aml_clk_mux_data) {
-+		.reg_offset = 0xc,
-+		.mask = 0x3,
-+		.shift = 12,
-+	},
-+};
++	n0 = _get_div_mult(p->n0);
++	if (!p->div_mode)
++		return DIV_ROUND_CLOSEST(parent_rate, n0);
 +
-+static struct aml_clk a9_mclk0_div = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_mclk0_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+	.type = AML_CLKTYPE_DIV,
-+	.data = &(struct aml_clk_divider_data) {
-+		.reg_offset = 0xc,
-+		.shift = 9,
-+		.width = 1,
-+	},
-+};
++	n1 = _get_div_mult(p->n1);
++	m0 = _get_div_mult(p->m0);
++	m1 = _get_div_mult(p->m1);
 +
-+static struct aml_clk a9_mclk0 = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_mclk0_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+	.type = AML_CLKTYPE_GATE,
-+	.data = &(struct aml_clk_gate_data) {
-+		.reg_offset = 0xc,
-+		.bit_idx = 8,
-+	},
-+};
++	return DIV_ROUND_CLOSEST(parent_rate * (m0 + m1), n0 * m0 + n1 * m1);
++}
 +
-+static struct aml_clk a9_mclk1_pre_div = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_divider_ops,
-+		.num_parents = 1,
-+	},
-+	.type = AML_CLKTYPE_DIV,
-+	.data = &(struct aml_clk_divider_data) {
-+		.reg_offset = 0xc,
-+		.shift = 19,
-+		.width = 5,
-+		.flags = CLK_DIVIDER_MAX_AT_ZERO,
-+	},
-+};
++static unsigned long aml_clk_dualdiv_recalc_rate(struct clk_hw *hw,
++						 unsigned long parent_rate)
++{
++	struct aml_clk *clk = to_aml_clk(hw);
++	struct aml_clk_dualdiv_data *dualdiv = clk->data;
++	struct aml_dualdiv_reg_parms reg;
++	struct aml_clk_dualdiv_param parm;
 +
-+static struct aml_clk a9_mclk1_sel = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_mux_ops,
-+	},
-+	.type = AML_CLKTYPE_MUX,
-+	.data = &(struct aml_clk_mux_data) {
-+		.reg_offset = 0xc,
-+		.mask = 0x3,
-+		.shift = 28,
-+	},
-+};
++	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG1_OFFSET,
++		    &reg.reg1.val);
++	if (reg.reg1.bits.force_clkout == 1)
++		return parent_rate;
 +
-+static struct aml_clk a9_mclk1_div = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_mclk1_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+	.type = AML_CLKTYPE_DIV,
-+	.data = &(struct aml_clk_divider_data) {
-+		.reg_offset = 0xc,
-+		.shift = 25,
-+		.width = 1,
-+	},
-+};
++	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
++		    &reg.reg0.val);
++	parm.div_mode = reg.reg0.bits.div_mode;
++	parm.n0 = reg.reg0.bits.n0;
++	parm.n1 = reg.reg0.bits.n1;
++	parm.m0 = reg.reg1.bits.m0;
++	parm.m1 = reg.reg1.bits.m1;
 +
-+static struct aml_clk a9_mclk1 = {
-+	.hw.init = &(const struct clk_init_data) {
-+		.ops = &aml_clk_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_mclk1_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+	.type = AML_CLKTYPE_GATE,
-+	.data = &(struct aml_clk_gate_data) {
-+		.reg_offset = 0xc,
-+		.bit_idx = 24,
-+	},
-+};
-+
-+#define A9_MCLK_CLK_NUM		8
-+
-+struct clk_hw_onecell_data a9_mclk_clk_hw_data = {
-+	.hws = {
-+		[A9_CLK_MCLK_0_PRE_DIV]	= &a9_mclk0_pre_div.hw,
-+		[A9_CLK_MCLK_0_SEL]	= &a9_mclk0_sel.hw,
-+		[A9_CLK_MCLK_0_DIV]	= &a9_mclk0_div.hw,
-+		[A9_CLK_MCLK_0]		= &a9_mclk0.hw,
-+		[A9_CLK_MCLK_1_PRE_DIV]	= &a9_mclk1_pre_div.hw,
-+		[A9_CLK_MCLK_1_SEL]	= &a9_mclk1_sel.hw,
-+		[A9_CLK_MCLK_1_DIV]	= &a9_mclk1_div.hw,
-+		[A9_CLK_MCLK_1]		= &a9_mclk1.hw,
-+	},
-+	.num = A9_MCLK_CLK_NUM,
-+};
++	return aml_dualdiv_param_to_rate(parent_rate, &parm);
++}
 +
 +/*
-+ * A diagram of the A9 mclk-ccu is as follows:
-+ *        +--------------------------------------------------+
-+ *        |              +-----+                             |
-+ * divin--------------+->| div |-->|\                        |
-+ *        |           |  +-----+   | |                       |
-+ * clk0 -----------+-------------->| |   +-----+   +------+  |
-+ *        |        |  |            | |-->| div |-->| gate |-----> mclk0
-+ * clk1 --------+----------------->| |   +-----+   +------+  |
-+ *        |     |  |  |            | |                       |
-+ * clk2 -----+-------------------->|/                        |
-+ *        |  |  |  |  |  +-----+                             |
-+ *        |  |  |  |  +->| div |-->|\                        |
-+ *        |  |  |  |     +-----+   | |                       |
-+ *        |  |  |  +-------------->| |   +-----+   +------+  |
-+ *        |  |  |                  | |-->| div |-->| gate |-----> mclk1
-+ *        |  |  +----------------->| |   +-----+   +------+  |
-+ *        |  |                     | |                       |
-+ *        |  +-------------------->|/                        |
-+ *        +--------------------------------------------------+
++ * NOTE: Dynamically calculating the divider parameters based on the target
++ * frequency has relatively high algorithmic complexity, and the number of
++ * frequency points that require dualdiv division in current use cases is
++ * limited.
 + *
-+ * The A9 mclk-ccu contains two identical mclk sub-modules. For each sub-module,
-+ * channel 0 of the mux (mclk0/1_sel) has an independent pre-divider in front
-+ * of it, while the clock sources for channels 1 to 3 are shared and identical.
++ * Therefore, only a table-based lookup method is supported to obtain the
++ * best-matched divider parameters at present.
 + */
-+static int of_aml_clk_mclk_init_register(struct device *dev,
-+					 struct clk_hw_onecell_data *hw_data)
++static const struct aml_clk_dualdiv_param *
++aml_clk_dualdiv_get_setting(unsigned long rate, unsigned long parent_rate,
++			    struct aml_clk_dualdiv_data *dualdiv)
 +{
-+	struct device_node *np = dev_of_node(dev);
-+	struct aml_clk *clk;
-+	struct clk_parent_data pdata[5];
-+	u8 pnum;
-+	struct clk_init_data init;
-+	int ret, clkid;
++	const struct aml_clk_dualdiv_param *table = dualdiv->table;
++	unsigned long best = 0, now = 0;
++	unsigned int i, best_i = 0;
 +
-+	if (of_aml_clk_get_count(np) != A9_MCLK_CLK_NUM)
-+		return -EINVAL;
++	if (!table)
++		return NULL;
 +
-+	for (clkid = 0; clkid < A9_MCLK_CLK_NUM; clkid++) {
-+		if (clkid == A9_CLK_MCLK_0_PRE_DIV ||
-+		    clkid == A9_CLK_MCLK_1_PRE_DIV) {
-+			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
-+							 0, 0, pdata, &pnum);
-+			if (ret)
-+				return ret;
-+		} else if (clkid == A9_CLK_MCLK_0_SEL ||
-+			   clkid == A9_CLK_MCLK_1_SEL) {
-+			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
-+							 1, 4, &pdata[1], &pnum);
-+			if (ret)
-+				return ret;
++	for (i = 0; i < dualdiv->table_count; i++) {
++		now = aml_dualdiv_param_to_rate(parent_rate, &table[i]);
 +
-+			/* Add the clock source for channel 0 of mclk0/1_sel */
-+			pdata[0].hw = hw_data->hws[clkid - 1];
-+			pnum += 1;
-+
-+			clk = to_aml_clk(hw_data->hws[clkid]);
-+			ret = of_aml_clk_misc_set_parent_table(dev, clk, 1, 4);
-+			if (ret)
-+				return ret;
-+		} else {
-+			pnum = 1;
-+			/*
-+			 *The parent-child relationship among sub-clocks follows
-+			 * this order:
-+			 *  - hw_data->hws[0] -> ... -> hw_data->hws[n].
-+			 */
-+			pdata[0].hw = hw_data->hws[clkid - 1];
++		/* If we get an exact match, don't bother any further */
++		if (now == rate) {
++			return &table[i];
++		} else if (abs(now - rate) < abs(best - rate)) {
++			best = now;
++			best_i = i;
 +		}
-+
-+		memcpy(&init, hw_data->hws[clkid]->init, sizeof(init));
-+		init.name = of_aml_clk_get_name_index(np, clkid);
-+		if (!init.name)
-+			return -EINVAL;
-+
-+		init.num_parents = pnum;
-+		init.parent_data = pdata;
-+		hw_data->hws[clkid]->init = &init;
-+		ret = of_aml_clk_register(dev, hw_data->hws[clkid], clkid);
-+		if (ret)
-+			return ret;
 +	}
 +
-+	return 0;
++	return (struct aml_clk_dualdiv_param *)&table[best_i];
 +}
 +
-+static int aml_clk_get_clk_data_size(enum aml_clk_type type)
++static int aml_clk_dualdiv_determine_rate(struct clk_hw *hw,
++					  struct clk_rate_request *req)
 +{
-+	switch (type) {
-+	case AML_CLKTYPE_MUX:
-+		return sizeof(struct aml_clk_mux_data);
++	struct aml_clk *clk = to_aml_clk(hw);
++	struct aml_clk_dualdiv_data *dualdiv = clk->data;
++	const struct aml_clk_dualdiv_param *setting;
 +
-+	case AML_CLKTYPE_DIV:
-+		return sizeof(struct aml_clk_divider_data);
++	/* Just need to set "force_clkout" = 1 */
++	if (req->rate == req->best_parent_rate) {
++		req->rate = req->best_parent_rate;
 +
-+	case AML_CLKTYPE_GATE:
-+		return sizeof(struct aml_clk_gate_data);
-+
-+	case AML_CLKTYPE_COMPOSITE:
-+		return sizeof(struct aml_clk_composite_data);
-+
-+	case AML_CLKTYPE_NOGLITCH:
-+		return sizeof(struct aml_clk_noglitch_data);
-+
-+	case AML_CLKTYPE_DUALDIV:
-+		return sizeof(struct aml_clk_dualdiv_data);
-+
-+	case AML_CLKTYPE_PLL:
-+		return sizeof(struct aml_pll_data);
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static struct clk_hw_onecell_data *
-+aml_clk_misc_alloc_hw_data(struct device *dev, struct regmap *regmap,
-+			   struct clk_hw_onecell_data *hw_data_tmp)
-+{
-+	struct device_node *np = dev_of_node(dev);
-+	int clk_num;
-+	int ret, clkid;
-+	struct clk_hw_onecell_data *hw_data;
-+	struct aml_clk *clk;
-+	struct aml_clk *clk_tmp;
-+
-+	clk_num = of_aml_clk_get_count(np);
-+	if (clk_num != hw_data_tmp->num)
-+		return ERR_PTR(-EINVAL);
-+
-+	hw_data = devm_kzalloc(dev, struct_size(hw_data, hws, clk_num),
-+			       GFP_KERNEL);
-+	if (!hw_data)
-+		return ERR_PTR(-ENOMEM);
-+
-+	hw_data->num = clk_num;
-+	for (clkid = 0; clkid < clk_num; clkid++) {
-+		clk_tmp = to_aml_clk(hw_data_tmp->hws[clkid]);
-+		clk = devm_kmemdup(dev, clk_tmp, sizeof(*clk), GFP_KERNEL);
-+		if (!clk)
-+			return ERR_PTR(-ENOMEM);
-+
-+		clk->map = regmap;
-+		hw_data->hws[clkid] = &clk->hw;
-+		ret = aml_clk_get_clk_data_size(clk_tmp->type);
-+		if (ret < 0)
-+			return ERR_PTR(ret);
-+
-+		clk->data = devm_kmemdup(dev, clk_tmp->data, ret, GFP_KERNEL);
-+		if (!clk->data)
-+			return ERR_PTR(-ENOMEM);
++		return 0;
 +	}
 +
-+	return hw_data;
-+}
-+
-+static int of_aml_clk_misc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct regmap *regmap;
-+	int ret;
-+	struct clk_hw_onecell_data *hw_data, *hw_data_tmp;
-+
-+	/*
-+	 * NOTE: Here, the pointer returned by of_device_get_match_data() points
-+	 * to non-const data, and the hw_data parameter passed to
-+	 * devm_of_clk_add_hw_provider() is also of type (void *).
-+	 */
-+	hw_data_tmp = (void *)of_device_get_match_data(dev);
-+	if (!hw_data_tmp)
-+		return -EFAULT;
-+
-+	regmap = aml_clk_regmap_init(pdev);
-+	if (IS_ERR_OR_NULL(regmap))
-+		return -EIO;
-+
-+	hw_data = aml_clk_misc_alloc_hw_data(dev, regmap, hw_data_tmp);
-+	if (IS_ERR(hw_data))
-+		return PTR_ERR(hw_data);
-+
-+	of_aml_clk_regs_init(dev);
-+	if (hw_data_tmp == &a9_eth_clk_hw_data)
-+		ret = of_aml_clk_eth_init_register(dev, hw_data);
-+	else if (hw_data_tmp == &a9_dualdiv_clk_hw_data)
-+		ret = of_aml_clk_dualdiv_init_register(dev, hw_data);
-+	else if (hw_data_tmp == &a9_mclk_clk_hw_data)
-+		ret = of_aml_clk_mclk_init_register(dev, hw_data);
++	setting = aml_clk_dualdiv_get_setting(req->rate, req->best_parent_rate,
++					      dualdiv);
++	if (setting)
++		req->rate = aml_dualdiv_param_to_rate(req->best_parent_rate,
++						      setting);
 +	else
-+		ret = of_aml_clk_misc_init_register(dev, hw_data);
-+	if (ret)
-+		return ret;
++		req->rate = aml_clk_dualdiv_recalc_rate(hw,
++							req->best_parent_rate);
 +
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-+					   hw_data);
++	return 0;
 +}
 +
-+static const struct of_device_id of_aml_clk_misc_match_table[] = {
-+	{
-+		.compatible = "amlogic,a9-sc-ccu",
-+		.data = &a9_sc_clk_hw_data,
-+	},
-+	{
-+		.compatible = "amlogic,a9-ts-ccu",
-+		.data = &a9_ts_clk_hw_data,
-+	},
-+	{
-+		.compatible = "amlogic,a9-genout-ccu",
-+		.data = &a9_genout_clk_hw_data,
-+	},
-+	{
-+		.compatible = "amlogic,a9-clk12_24m-ccu",
-+		.data = &a9_clk12_24m_clk_hw_data,
-+	},
-+	{
-+		.compatible = "amlogic,a9-vapb_ge2d-ccu",
-+		.data = &a9_vapbge2d_clk_hw_data,
-+	},
-+	{
-+		.compatible = "amlogic,a9-di-ccu",
-+		.data = &a9_di_clk_hw_data,
-+	},
-+	{
-+		.compatible = "amlogic,a9-eth-ccu",
-+		.data = &a9_eth_clk_hw_data,
-+	},
-+	{
-+		.compatible = "amlogic,a9-dualdivmux-ccu",
-+		.data = &a9_dualdiv_clk_hw_data,
-+	},
-+	{
-+		.compatible = "amlogic,a9-mclk-ccu",
-+		.data = &a9_mclk_clk_hw_data,
-+	},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_aml_clk_misc_match_table);
++static int aml_clk_dualdiv_set_rate(struct clk_hw *hw, unsigned long rate,
++				    unsigned long parent_rate)
++{
++	struct aml_clk *clk = to_aml_clk(hw);
++	struct aml_clk_dualdiv_data *dualdiv = clk->data;
++	struct aml_dualdiv_reg_parms reg;
++	const struct aml_clk_dualdiv_param *setting;
 +
-+static struct platform_driver of_aml_clk_misc_driver = {
-+	.probe		= of_aml_clk_misc_probe,
-+	.driver		= {
-+		.name	= "aml-misc-clk",
-+		.of_match_table = of_aml_clk_misc_match_table,
-+	},
-+};
-+module_platform_driver(of_aml_clk_misc_driver);
++	/* Just need to set "force_clkout" = 1 */
++	if (rate == parent_rate) {
++		regmap_read(clk->map,
++			    dualdiv->reg_offset + AML_DUALDIV_REG1_OFFSET,
++			    &reg.reg1.val);
++		reg.reg1.bits.force_clkout = 1;
++		regmap_write(clk->map,
++			     dualdiv->reg_offset + AML_DUALDIV_REG1_OFFSET,
++			     reg.reg1.val);
 +
-+MODULE_DESCRIPTION("Amlogic A9 Misc Clock Control Units Driver");
++		return 0;
++	}
++
++	setting = aml_clk_dualdiv_get_setting(rate, parent_rate, dualdiv);
++	if (!setting)
++		return -EINVAL;
++
++	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
++		    &reg.reg0.val);
++	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG1_OFFSET,
++		    &reg.reg1.val);
++	reg.reg1.bits.force_clkout = 0;
++
++	reg.reg0.bits.div_mode = setting->div_mode;
++	reg.reg0.bits.n0 = setting->n0;
++	reg.reg0.bits.n1 = setting->n1;
++	reg.reg1.bits.m0 = setting->m0;
++	reg.reg1.bits.m1 = setting->m1;
++
++	regmap_write(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
++		     reg.reg0.val);
++	regmap_write(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG1_OFFSET,
++		     reg.reg1.val);
++
++	return 0;
++}
++
++static int aml_clk_dualdiv_enable(struct clk_hw *hw)
++{
++	struct aml_clk *clk = to_aml_clk(hw);
++	struct aml_clk_dualdiv_data *dualdiv = clk->data;
++	struct aml_dualdiv_reg_parms reg;
++
++	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
++		    &reg.reg0.val);
++	reg.reg0.bits.clkin_gate = 1;
++	reg.reg0.bits.clkout_gate = 1;
++
++	regmap_write(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
++		     reg.reg0.val);
++
++	return 0;
++}
++
++static void aml_clk_dualdiv_disable(struct clk_hw *hw)
++{
++	struct aml_clk *clk = to_aml_clk(hw);
++	struct aml_clk_dualdiv_data *dualdiv = clk->data;
++	struct aml_dualdiv_reg_parms reg;
++
++	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
++		    &reg.reg0.val);
++	reg.reg0.bits.clkin_gate = 0;
++	reg.reg0.bits.clkout_gate = 0;
++
++	regmap_write(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
++		     reg.reg0.val);
++}
++
++static int aml_clk_dualdiv_is_enabled(struct clk_hw *hw)
++{
++	struct aml_clk *clk = to_aml_clk(hw);
++	struct aml_clk_dualdiv_data *dualdiv = clk->data;
++	struct aml_dualdiv_reg_parms reg;
++
++	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
++		    &reg.reg0.val);
++
++	if (reg.reg0.bits.clkin_gate && reg.reg0.bits.clkout_gate)
++		return 1;
++	else
++		return 0;
++}
++
++#ifdef CONFIG_DEBUG_FS
++#include <linux/debugfs.h>
++
++static int aml_clk_dualdiv_available_rates_show(struct seq_file *s, void *data)
++{
++	struct clk_hw *hw = s->private;
++	struct clk_hw *phw = clk_hw_get_parent(hw);
++	struct aml_clk *clk = to_aml_clk(hw);
++	struct aml_clk_dualdiv_data *dualdiv = clk->data;
++	unsigned long rate, prate;
++	unsigned long core_min_rate, core_max_rate;
++	int i;
++
++	if (!phw) {
++		pr_err("%s: can't get parent\n", clk_hw_get_name(hw));
++
++		return -ENOENT;
++	}
++
++	prate = clk_hw_get_rate(phw);
++	clk_hw_get_rate_range(hw, &core_min_rate, &core_max_rate);
++	if (dualdiv->table) {
++		for (i = 0; i < dualdiv->table_count; i++) {
++			rate = aml_dualdiv_param_to_rate(prate,
++							 &dualdiv->table[i]);
++			if (rate < core_min_rate || rate > core_max_rate)
++				continue;
++
++			seq_printf(s, "%ld\n", (unsigned long)rate);
++		}
++	} else {
++		seq_printf(s, "%ld\n", prate);
++	}
++
++	return 0;
++}
++DEFINE_SHOW_ATTRIBUTE(aml_clk_dualdiv_available_rates);
++
++static void aml_clk_dualdiv_debug_init(struct clk_hw *hw, struct dentry *dentry)
++{
++	struct aml_clk *clk = to_aml_clk(hw);
++
++	debugfs_create_file("clk_type", 0444, dentry, hw, &aml_clk_type_fops);
++	if (clk->type == AML_CLKTYPE_DUALDIV)
++		debugfs_create_file("clk_available_rates", 0444, dentry, hw,
++				    &aml_clk_dualdiv_available_rates_fops);
++}
++#endif /* CONFIG_DEBUG_FS */
++
++const struct clk_ops aml_clk_dualdiv_ops = {
++	.enable		= aml_clk_dualdiv_enable,
++	.disable	= aml_clk_dualdiv_disable,
++	.is_enabled	= aml_clk_dualdiv_is_enabled,
++	.recalc_rate	= aml_clk_dualdiv_recalc_rate,
++	.determine_rate	= aml_clk_dualdiv_determine_rate,
++	.set_rate	= aml_clk_dualdiv_set_rate,
++#ifdef CONFIG_DEBUG_FS
++	.debug_init	= aml_clk_dualdiv_debug_init,
++#endif /* CONFIG_DEBUG_FS */
++};
++EXPORT_SYMBOL_NS_GPL(aml_clk_dualdiv_ops, "CLK_AMLOGIC");
++
++MODULE_DESCRIPTION("Amlogic Dualdiv Driver");
 +MODULE_AUTHOR("Chuan Liu <chuan.liu@amlogic.com>");
 +MODULE_LICENSE("GPL");
 +MODULE_IMPORT_NS("CLK_AMLOGIC");
+diff --git a/drivers/clk/amlogic/clk-dualdiv.h b/drivers/clk/amlogic/clk-dualdiv.h
+new file mode 100644
+index 000000000000..fbbae6686afd
+--- /dev/null
++++ b/drivers/clk/amlogic/clk-dualdiv.h
+@@ -0,0 +1,27 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
++/*
++ * Copyright (c) 2026 Amlogic, Inc. All rights reserved
++ */
++
++#ifndef __AML_CLK_DUALDIV_H
++#define __AML_CLK_DUALDIV_H
++
++#include <linux/clk-provider.h>
++
++struct aml_clk_dualdiv_param {
++	unsigned int div_mode;
++	unsigned int n0;
++	unsigned int m0;
++	unsigned int n1;
++	unsigned int m1;
++};
++
++struct aml_clk_dualdiv_data {
++	unsigned int			reg_offset;
++	struct	aml_clk_dualdiv_param	*table;
++	unsigned int			table_count;
++};
++
++extern const struct clk_ops aml_clk_dualdiv_ops;
++
++#endif /* __AML_CLK_DUALDIV_MUX_H */
+diff --git a/drivers/clk/amlogic/clk.c b/drivers/clk/amlogic/clk.c
+index 12e9596668d2..5431aa320dfa 100644
+--- a/drivers/clk/amlogic/clk.c
++++ b/drivers/clk/amlogic/clk.c
+@@ -23,6 +23,7 @@ static const struct {
+ 	ENTRY(AML_CLKTYPE_GATE),
+ 	ENTRY(AML_CLKTYPE_COMPOSITE),
+ 	ENTRY(AML_CLKTYPE_NOGLITCH),
++	ENTRY(AML_CLKTYPE_DUALDIV),
+ #undef ENTRY
+ };
+ 
+diff --git a/drivers/clk/amlogic/clk.h b/drivers/clk/amlogic/clk.h
+index 14045fa109c0..c1d58a08e407 100644
+--- a/drivers/clk/amlogic/clk.h
++++ b/drivers/clk/amlogic/clk.h
+@@ -16,6 +16,7 @@ enum aml_clk_type {
+ 	AML_CLKTYPE_GATE	= 3,
+ 	AML_CLKTYPE_COMPOSITE	= 4,
+ 	AML_CLKTYPE_NOGLITCH	= 5,
++	AML_CLKTYPE_DUALDIV	= 6,
+ };
+ 
+ struct aml_clk {
 
 -- 
 2.42.0
