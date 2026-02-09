@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8932FEF06FF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D98E2EF0714
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yhiTf5MUfaFnfdwXdSnyFPvk1bS6YvJlgcqzGJP2mBY=; b=vVMKytoaL7UDbN
-	r/BuU1mpWmVbtCwCYtVdIaeempGNRmCNwd6WATdxN20tJiUXzWR3ehmzeG8Qu+AEYsoNQxFZI04mF
-	yEybbYe/ASBqCrRrzDbCukhLlAx4pa2QRDt4A4yNHXTa5LQg5gwXm3M6YV3FOHxmzS4SGqiOAfI9Y
-	KZqC5VmNkaeV+2qTYBwC8r7I/lSECYsw5b0dDWrNU04iG4VeHILzHVW9p3i66sRTFMQ00bUjFK41G
-	W8wUROJfFSlge6WXOeq6NYlgah2kAW8ZHzwsJxFWwsJ12Q+TSIzkTgmLgPGe8SJCUVegR8SKQo8yH
-	c6CrlMKluuaN6eQIJQNA==;
+	List-Owner; bh=vECnljinHi90TxB3H1M0ouOOHkvMi66FbrG2EyFpziU=; b=wrwsb67a+juxWK
+	rhCWFHxHpdLyDnFU+sKn9/x7FLyxFBJKvHUtfUF7XEZa6gPhBkoSC6nQLOqXI0XC2GZG2oZAQHE4G
+	EEBHt+cgwE+W9OqmHQPn9x0YPprmoCWV37Rkokq1nMxjQ+GLU0Fnxty+en63bm9zVF1JeWiGuJCWa
+	o5MDalnGBeYuTforwhEegTOXo38FroNlfCWtXU5le9dq2I27De3/l+T9rM+fMeNq3r164bQLr4DMN
+	UZB80TeU1rB4a1VF3GbSwanA6JECmHzHAVkGbUKndjy2+BGhShWaC1UGSX6VEOlGPnM8PfjvCFIm7
+	2K81XjFn3UbM+klVnwyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpK92-0000000Erg1-2isF;
-	Mon, 09 Feb 2026 05:49:12 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vpK94-0000000ErhN-0qwX;
+	Mon, 09 Feb 2026 05:49:14 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpK8y-0000000Erba-1Nm9
+	id 1vpK90-0000000EreJ-2nFk
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Feb 2026 05:49:10 +0000
+	Mon, 09 Feb 2026 05:49:12 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id C5EBD44558;
-	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9F480C2BCB2;
-	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id ADE3A44552;
+	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8F5A6C2BC9E;
+	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770616146;
-	bh=Hvn6SKSwPDWdPvPQKGOu4bbXweaL0W0SayKB/5WUpmg=;
+	s=k20201202; t=1770616147;
+	bh=61hKp++ahkS/bhSUpuH4qzDCjqJwbzAeZrWYOlewBz4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=MXFNZdppUl80U3M5Exi6H2scGIfu7aajaPRPa3rZrhXJQgpY64DstBz4+KNXhHg9i
-	 4cOym9KrhMJQCdGu+MfBB5WJm61u6h19PDp/fAxnqsBuMdXKc2uk6d8hqp+7eXoIpn
-	 UUBll1BQyQ6Y07NKhJPkS0SQXzRZ6t40RtPXaGB/SBKwQcSAuieqNzwyqTcVkAdYSE
-	 OrJXP3G10QiYfqxFUj7HuLM3awjtjxV7ryJDotOmQk0U4EULbb8jFlvpVgO8OYJyi8
-	 iqLrDbRS+CEim7AY26o8j25r8gOfxRIUkXb5ogCtxr4nGu+GjVGtN6uwexYC+z+7NC
-	 7ZT3uAAbLFT9g==
+	b=uOP5AteVoiOQsHQWPUYjATE44etuwnaiASsuIfhJ1CKt4ti91MrT4JGWHsI+yseK3
+	 pWaVOOdKeWX4JHVaGm6rIOebwcZ5b6hAJkd/0sYtg7OX5UGxvSq6F077APtM1NrhzA
+	 qeUTx5ZeRjLOquiL9lIyT+GuluuFUVHmEtsawh9gM1GRPB03qJ1djtA/n16Puxyl/5
+	 AywUgQqmWrD8NFEYnoeH2iDgAIUAYs61cBJSIF8qCfxJWhnVIDls8j5Iq2sbeRio3B
+	 BZnuWRzbsol2q5aU9L47hv5s6IXuLz8PzCFxiy5d2lhDDXP/OUuo0ckpktalsP30yU
+	 soRJxjQ6BqzJg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 91CA6EF070B;
-	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 83DA6EF06FF;
+	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Mon, 09 Feb 2026 13:48:50 +0800
-Subject: [PATCH 04/13] clk: amlogic: Add basic clock driver
+Date: Mon, 09 Feb 2026 13:48:57 +0800
+Subject: [PATCH 11/13] clk: amlogic: Add A9 PLL controllers driver
 MIME-Version: 1.0
-Message-Id: <20260209-a9_clock_driver-v1-4-a9198dc03d2a@amlogic.com>
+Message-Id: <20260209-a9_clock_driver-v1-11-a9198dc03d2a@amlogic.com>
 References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 In-Reply-To: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,19 +61,19 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616142; l=15565;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616143; l=5614;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=kmFP3lJrdEH0H25Aq+4LfHk+ypLv7d+G/FDfILS/pz8=;
- b=oEGZBOLzaZUMxMxvxbTFD+u0g2mgIFNwDgtYUeLFL1aan+7dtG3j5qkat9xV9GazeSxHDhYzD
- hV+IiYX3B8YCP/0vV/Whsnnndu9xVtfAxrcDIf3IMEXA/Tv0ZBwZMQL
+ bh=HEJHyYkWOeBY3AEh9IomhZ/CgW0wq6tKl6L8+ZYrJkY=;
+ b=YxZ2VKXTukTFNqFRgp2yd1g0kK4ojKAcyPYhRHq3251QQtz6MJw7UsWyfuGCAqJr/wb6ZtJ1U
+ Bk6f4pdL3/PDjZc/jhiVU3RlnCb1BVOhQtIkaVshdBgmX+kXLGVgOH7
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260208_214908_463603_1FAF8F74 
-X-CRM114-Status: GOOD (  21.21  )
+X-CRM114-CacheID: sfid-20260208_214910_819865_5706B209 
+X-CRM114-Status: GOOD (  18.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,89 +93,59 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-Implement core clock driver for Amlogic SoC platforms, supporting
-fundamental clock types: mux (multiplexer), div (divider), and gate. The
-Amlogic clock architecture heavily utilizes these basic building blocks
-throughout its clock tree.
-
-Features included:
-- clk_ops implementations for all basic clock types
-- Debugfs interface with two diagnostic nodes:
-    * clk_type: displays clock type identifier
-    * clk_available_rates: shows configurable frequency ranges
+Add PLL controllers driver for the Amlogic A9 SoC family.
 
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/clk/Kconfig             |   1 +
- drivers/clk/Makefile            |   1 +
- drivers/clk/amlogic/Kconfig     |  12 +++
- drivers/clk/amlogic/Makefile    |   6 ++
- drivers/clk/amlogic/clk-basic.c | 219 ++++++++++++++++++++++++++++++++++++++++
- drivers/clk/amlogic/clk-basic.h |  39 +++++++
- drivers/clk/amlogic/clk.c       | 142 ++++++++++++++++++++++++++
- drivers/clk/amlogic/clk.h       |  38 +++++++
- 8 files changed, 458 insertions(+)
+ drivers/clk/amlogic/Kconfig  |  10 +++
+ drivers/clk/amlogic/Makefile |   4 ++
+ drivers/clk/amlogic/a9-pll.c | 146 +++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 160 insertions(+)
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 3a1611008e48..57c13348e7a5 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -512,6 +512,7 @@ config COMMON_CLK_RPMI
- 	  the RISC-V platform management interface (RPMI) specification.
- 
- source "drivers/clk/actions/Kconfig"
-+source "drivers/clk/amlogic/Kconfig"
- source "drivers/clk/analogbits/Kconfig"
- source "drivers/clk/baikal-t1/Kconfig"
- source "drivers/clk/bcm/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 61ec08404442..c667f22aa414 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -113,6 +113,7 @@ obj-$(CONFIG_COMMON_CLK_XGENE)		+= clk-xgene.o
- 
- # please keep this section sorted lexicographically by directory path name
- obj-y					+= actions/
-+obj-$(CONFIG_ARCH_MESON)		+= amlogic/
- obj-y					+= analogbits/
- obj-$(CONFIG_COMMON_CLK_AT91)		+= at91/
- obj-$(CONFIG_ARCH_ARTPEC)		+= axis/
 diff --git a/drivers/clk/amlogic/Kconfig b/drivers/clk/amlogic/Kconfig
-new file mode 100644
-index 000000000000..216fe98a413b
---- /dev/null
+index 6e954c9388dc..3177a02ecbd5 100644
+--- a/drivers/clk/amlogic/Kconfig
 +++ b/drivers/clk/amlogic/Kconfig
-@@ -0,0 +1,12 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-+
-+config COMMON_CLK_AMLOGIC
-+	tristate "Amlogic Common Clock"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	depends on OF
-+	default ARCH_MESON
-+	select REGMAP
+@@ -21,11 +21,21 @@ config COMMON_CLK_AMLOGIC_MODEL
+ 	  these models. Select Y if the current SoC contains these clock control
+ 	  unit models.
+ 
++config COMMON_CLK_AMLOGIC_PLL
++	tristate "Amlogic PLL Controller"
++	depends on COMMON_CLK_AMLOGIC
 +	help
-+	  This driver provides the basic clock infrastructure for Amlogic SoCs,
-+	  offering read and write interfaces for various clock control units.
-+	  Select Y if your target SoC needs clock driver support.
++	  Supports PLL controller used in Amlogic SoCs. The PLL supports dynamic
++	  configuration of output clock frequency, enabling flexible frequency
++	  settings to provide clocks for other modules. Select Y if the current
++	  SoC contains PLLs.
++
+ config COMMON_CLK_AMLOGIC_A9
+ 	tristate "Amlogic A9 Family Clock Controller"
+ 	depends on COMMON_CLK_AMLOGIC
+ 	default COMMON_CLK_AMLOGIC
+ 	select COMMON_CLK_AMLOGIC_MODEL
++	select COMMON_CLK_AMLOGIC_PLL
+ 	help
+ 	  Support for the clock controller present on the Amlogic A9 family
+ 	  SoCs. Select Y if A9 family SoC needs to support clock controller.
 diff --git a/drivers/clk/amlogic/Makefile b/drivers/clk/amlogic/Makefile
-new file mode 100644
-index 000000000000..bd9dd5b78b23
---- /dev/null
+index ef3fb57cae9f..74bf84dbd5a8 100644
+--- a/drivers/clk/amlogic/Makefile
 +++ b/drivers/clk/amlogic/Makefile
-@@ -0,0 +1,6 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+@@ -11,3 +11,7 @@ clk-amlogic-y += clk-pll.o
+ ifneq ($(CONFIG_COMMON_CLK_AMLOGIC_MODEL),)
+ clk-amlogic-y += a9-model-ccu.o
+ endif
 +
-+obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-amlogic.o
-+
-+clk-amlogic-y += clk.o
-+clk-amlogic-y += clk-basic.o
-diff --git a/drivers/clk/amlogic/clk-basic.c b/drivers/clk/amlogic/clk-basic.c
++ifneq ($(CONFIG_COMMON_CLK_AMLOGIC_PLL),)
++clk-amlogic-y += a9-pll.o
++endif
+diff --git a/drivers/clk/amlogic/a9-pll.c b/drivers/clk/amlogic/a9-pll.c
 new file mode 100644
-index 000000000000..1d0d1bc7f24d
+index 000000000000..c4c695caa8ed
 --- /dev/null
-+++ b/drivers/clk/amlogic/clk-basic.c
-@@ -0,0 +1,219 @@
++++ b/drivers/clk/amlogic/a9-pll.c
+@@ -0,0 +1,146 @@
 +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
 +/*
 + * Copyright (c) 2026 Amlogic, Inc. All rights reserved
@@ -185,453 +155,143 @@ index 000000000000..1d0d1bc7f24d
 +#include <linux/module.h>
 +
 +#include "clk.h"
-+#include "clk-basic.h"
++#include "clk-pll.h"
 +
-+/*
-+ * This file implements the ops functions for basic Amlogic clock models
-+ * (mux/div/gate), based on clk-mux.c, clk-divider.c, and clk-gate.c in the CCF.
-+ */
-+
-+static int aml_clk_gate_endisable(struct clk_hw *hw, int enable)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_gate_data *gate = clk->data;
-+	int set = gate->flags & CLK_GATE_SET_TO_DISABLE ? 1 : 0;
-+
-+	set ^= enable;
-+
-+	return regmap_update_bits(clk->map, gate->reg_offset,
-+				  BIT(gate->bit_idx),
-+				  set ? BIT(gate->bit_idx) : 0);
-+}
-+
-+static int aml_clk_gate_enable(struct clk_hw *hw)
-+{
-+	return aml_clk_gate_endisable(hw, 1);
-+}
-+
-+static void aml_clk_gate_disable(struct clk_hw *hw)
-+{
-+	aml_clk_gate_endisable(hw, 0);
-+}
-+
-+static int aml_clk_gate_is_enabled(struct clk_hw *hw)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_gate_data *gate = clk->data;
-+	unsigned int val;
-+
-+	regmap_read(clk->map, gate->reg_offset, &val);
-+	if (gate->flags & CLK_GATE_SET_TO_DISABLE)
-+		val ^= BIT(gate->bit_idx);
-+
-+	val &= BIT(gate->bit_idx);
-+
-+	return val ? 1 : 0;
-+}
-+
-+#ifdef CONFIG_DEBUG_FS
-+#include <linux/debugfs.h>
-+
-+static void aml_clk_basic_debug_init(struct clk_hw *hw, struct dentry *dentry)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+
-+	debugfs_create_file("clk_type", 0444, dentry, hw, &aml_clk_type_fops);
-+	if (clk->type == AML_CLKTYPE_DIV)
-+		debugfs_create_file("clk_available_rates", 0444, dentry, hw,
-+				    &aml_clk_div_available_rates_fops);
-+}
-+#endif /* CONFIG_DEBUG_FS */
-+
-+const struct clk_ops aml_clk_gate_ops = {
-+	.enable = aml_clk_gate_enable,
-+	.disable = aml_clk_gate_disable,
-+	.is_enabled = aml_clk_gate_is_enabled,
-+#ifdef CONFIG_DEBUG_FS
-+	.debug_init = aml_clk_basic_debug_init,
-+#endif /* CONFIG_DEBUG_FS */
++static const struct aml_pll_data a9_mclk_pll_data = {
++	.range = {
++		.min = 1400000000,
++		.max = 2800000000,
++	},
++	.od_max = 4,
 +};
-+EXPORT_SYMBOL_NS_GPL(aml_clk_gate_ops, "CLK_AMLOGIC");
 +
-+static unsigned long aml_clk_div_recalc_rate(struct clk_hw *hw,
-+					     unsigned long prate)
++static const struct aml_pll_data a9_gp_pll_data = {
++	.range = {
++		.min = 1400000000,
++		.max = 2800000000,
++	},
++	.frac_max = 131072, /* 2^17 */
++	.od_max = 4,
++	.flags = AML_PLL_M_EN0P5,
++};
++
++static const struct aml_pll_data a9_hifi_pll_data = {
++	.range = {
++		.min = 1400000000,
++		.max = 2800000000,
++	},
++	/*
++	 * NOTE: The frac_max value of hifi_pll is set to 100000 so that the
++	 * output frequency step can be expressed as an integer value. For
++	 * example, with a 24 MHz input clock, the resulting frequency step is
++	 * 24 MHz / 100000 = 240 Hz.
++	 *
++	 * This design avoids the need for floating-point arithmetic in
++	 * frequency calculations, which helps prevent precision loss in
++	 * scenarios with strict frequency accuracy requirements, such as audio
++	 * and video applications.
++	 */
++	.frac_max = 100000,
++	.od_max = 4,
++	.flags = AML_PLL_M_EN0P5,
++};
++
++static int of_aml_clk_pll_init_register(struct device *dev, struct aml_clk *pll)
 +{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_divider_data *div = clk->data;
-+	unsigned int val;
++	struct device_node *np = dev_of_node(dev);
++	struct clk_init_data init;
++	struct clk_parent_data pdata;
++	u8 pnum;
 +	int ret;
 +
-+	ret = regmap_read(clk->map, div->reg_offset, &val);
-+	if (ret)
-+		/* Gives a hint that something is wrong */
-+		return 0;
-+
-+	val >>= div->shift;
-+	val &= clk_div_mask(div->width);
-+
-+	return divider_recalc_rate(hw, prate, val, div->table, div->flags,
-+				   div->width);
-+}
-+
-+static int aml_clk_div_determine_rate(struct clk_hw *hw,
-+				      struct clk_rate_request *req)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_divider_data *div = clk->data;
-+	unsigned int val;
-+	int ret;
-+
-+	/* if read only, just return current value */
-+	if (div->flags & CLK_DIVIDER_READ_ONLY) {
-+		ret = regmap_read(clk->map, div->reg_offset, &val);
-+		if (ret)
-+			return ret;
-+
-+		val >>= div->shift;
-+		val &= clk_div_mask(div->width);
-+
-+		return divider_ro_determine_rate(hw, req, div->table,
-+						 div->width, div->flags, val);
-+	}
-+
-+	return divider_determine_rate(hw, req, div->table, div->width,
-+				      div->flags);
-+}
-+
-+static int aml_clk_div_set_rate(struct clk_hw *hw, unsigned long rate,
-+				unsigned long parent_rate)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_divider_data *div = clk->data;
-+	unsigned int val;
-+	int ret;
-+
-+	ret = divider_get_val(rate, parent_rate, div->table, div->width,
-+			      div->flags);
-+	if (ret < 0)
-+		return ret;
-+
-+	val = (unsigned int)ret << div->shift;
-+
-+	return regmap_update_bits(clk->map, div->reg_offset,
-+				  clk_div_mask(div->width) << div->shift, val);
-+};
-+
-+const struct clk_ops aml_clk_divider_ops = {
-+	.recalc_rate = aml_clk_div_recalc_rate,
-+	.determine_rate = aml_clk_div_determine_rate,
-+	.set_rate = aml_clk_div_set_rate,
-+#ifdef CONFIG_DEBUG_FS
-+	.debug_init = aml_clk_basic_debug_init,
-+#endif /* CONFIG_DEBUG_FS */
-+};
-+EXPORT_SYMBOL_NS_GPL(aml_clk_divider_ops, "CLK_AMLOGIC");
-+
-+const struct clk_ops aml_clk_divider_ro_ops = {
-+	.recalc_rate = aml_clk_div_recalc_rate,
-+	.determine_rate = aml_clk_div_determine_rate,
-+#ifdef CONFIG_DEBUG_FS
-+	.debug_init = aml_clk_basic_debug_init,
-+#endif /* CONFIG_DEBUG_FS */
-+};
-+EXPORT_SYMBOL_NS_GPL(aml_clk_divider_ro_ops, "CLK_AMLOGIC");
-+
-+static u8 aml_clk_mux_get_parent(struct clk_hw *hw)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_mux_data *mux = clk->data;
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(clk->map, mux->reg_offset, &val);
-+	if (ret)
-+		return ret;
-+
-+	val >>= mux->shift;
-+	val &= mux->mask;
-+	return clk_mux_val_to_index(hw, mux->table, mux->flags, val);
-+}
-+
-+static int aml_clk_mux_set_parent(struct clk_hw *hw, u8 index)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_mux_data *mux = clk->data;
-+	unsigned int val = clk_mux_index_to_val(mux->table, mux->flags, index);
-+
-+	return regmap_update_bits(clk->map, mux->reg_offset,
-+				  mux->mask << mux->shift,
-+				  val << mux->shift);
-+}
-+
-+static int aml_clk_mux_determine_rate(struct clk_hw *hw,
-+				      struct clk_rate_request *req)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_mux_data *mux = clk->data;
-+
-+	return clk_mux_determine_rate_flags(hw, req, mux->flags);
-+}
-+
-+const struct clk_ops aml_clk_mux_ops = {
-+	.get_parent = aml_clk_mux_get_parent,
-+	.set_parent = aml_clk_mux_set_parent,
-+	.determine_rate = aml_clk_mux_determine_rate,
-+#ifdef CONFIG_DEBUG_FS
-+	.debug_init = aml_clk_basic_debug_init,
-+#endif /* CONFIG_DEBUG_FS */
-+};
-+EXPORT_SYMBOL_NS_GPL(aml_clk_mux_ops, "CLK_AMLOGIC");
-+
-+const struct clk_ops aml_clk_mux_ro_ops = {
-+	.get_parent = aml_clk_mux_get_parent,
-+#ifdef CONFIG_DEBUG_FS
-+	.debug_init = aml_clk_basic_debug_init,
-+#endif /* CONFIG_DEBUG_FS */
-+};
-+EXPORT_SYMBOL_NS_GPL(aml_clk_mux_ro_ops, "CLK_AMLOGIC");
-+
-+MODULE_DESCRIPTION("Amlogic Basic Clock Driver");
-+MODULE_AUTHOR("Chuan Liu <chuan.liu@amlogic.com>");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("CLK_AMLOGIC");
-diff --git a/drivers/clk/amlogic/clk-basic.h b/drivers/clk/amlogic/clk-basic.h
-new file mode 100644
-index 000000000000..fb2133fa239b
---- /dev/null
-+++ b/drivers/clk/amlogic/clk-basic.h
-@@ -0,0 +1,39 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved
-+ */
-+
-+#ifndef __AML_CLK_BASIC_H
-+#define __AML_CLK_BASIC_H
-+
-+#include <linux/clk-provider.h>
-+
-+struct aml_clk_mux_data {
-+	unsigned int	reg_offset;
-+	u32		*table;
-+	u32		mask;
-+	u8		shift;
-+	u8		flags;
-+};
-+
-+struct aml_clk_divider_data {
-+	unsigned int	reg_offset;
-+	u8		shift;
-+	u8		width;
-+	u16		flags;
-+	struct clk_div_table	*table;
-+};
-+
-+struct aml_clk_gate_data {
-+	unsigned int	reg_offset;
-+	u8		bit_idx;
-+	u8		flags;
-+};
-+
-+extern const struct clk_ops aml_clk_gate_ops;
-+extern const struct clk_ops aml_clk_divider_ops;
-+extern const struct clk_ops aml_clk_divider_ro_ops;
-+extern const struct clk_ops aml_clk_mux_ops;
-+extern const struct clk_ops aml_clk_mux_ro_ops;
-+
-+#endif /* __AML_CLK_BASIC_H */
-diff --git a/drivers/clk/amlogic/clk.c b/drivers/clk/amlogic/clk.c
-new file mode 100644
-index 000000000000..03ccfa78c511
---- /dev/null
-+++ b/drivers/clk/amlogic/clk.c
-@@ -0,0 +1,142 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved
-+ */
-+
-+#include <linux/module.h>
-+
-+#ifdef CONFIG_DEBUG_FS
-+#include <linux/err.h>
-+
-+#include "clk.h"
-+#include "clk-basic.h"
-+
-+static const struct {
-+	unsigned int type;
-+	const char *name;
-+} clk_types[] = {
-+#define ENTRY(f) { f, #f }
-+	ENTRY(AML_CLKTYPE_MUX),
-+	ENTRY(AML_CLKTYPE_DIV),
-+	ENTRY(AML_CLKTYPE_GATE),
-+#undef ENTRY
-+};
-+
-+static int aml_clk_type_show(struct seq_file *s, void *data)
-+{
-+	struct clk_hw *hw = s->private;
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(clk_types); i++) {
-+		if (clk_types[i].type == clk->type) {
-+			seq_printf(s, "%s\n", clk_types[i].name);
-+			return 0;
-+		}
-+	}
-+
-+	seq_puts(s, "UNKNOWN\n");
-+
-+	return -EINVAL;
-+}
-+
-+static int aml_clk_type_open(struct inode *inode, struct file *file)
-+{
-+	return single_open(file, aml_clk_type_show, inode->i_private);
-+}
-+
-+const struct file_operations aml_clk_type_fops = {
-+	.owner		= THIS_MODULE,
-+	.open		= aml_clk_type_open,
-+	.read		= seq_read,
-+	.llseek		= seq_lseek,
-+	.release	= single_release,
-+};
-+EXPORT_SYMBOL_NS_GPL(aml_clk_type_fops, "CLK_AMLOGIC");
-+
-+/*
-+ * SoC HW design constrains the maximum frequency for each clock network.
-+ * Configuring frequencies beyond these limits may cause module malfunction
-+ * or even crosstalk affecting other modules.
-+ *
-+ * This function synthesizes the HW-constrained frequency range and the
-+ * divider's capability to output the permissible frequency range for the
-+ * current clock.
-+ */
-+static int aml_clk_div_available_rates_show(struct seq_file *s, void *data)
-+{
-+	struct clk_hw *hw = s->private;
-+	struct clk_hw *phw = clk_hw_get_parent(hw);
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	unsigned long min, max, prate;
-+	unsigned long range_min, range_max;
-+	unsigned int div_val;
-+	unsigned long div_width, div_flags = 0;
-+	const struct clk_div_table *div_table = NULL;
-+
-+	if (!phw) {
-+		pr_err("%s: Can't get parent\n", clk_hw_get_name(hw));
-+
-+		return -ENOENT;
-+	}
-+
-+	prate = clk_hw_get_rate(phw);
-+	clk_hw_get_rate_range(hw, &range_min, &range_max);
-+	max = prate;
-+	if (clk->type == AML_CLKTYPE_DIV) {
-+		struct aml_clk_divider_data *div = clk->data;
-+
-+		if (div->flags & CLK_DIVIDER_READ_ONLY) {
-+			min = prate;
-+			goto out_printf;
-+		} else {
-+			div_val = (1 << div->width) - 1;
-+			div_table = div->table;
-+			div_flags = div->flags;
-+			div_width = div->width;
-+		}
-+	} else {
-+		pr_err("%s: Unsupported clock type\n", clk_hw_get_name(hw));
++	init.name = of_aml_clk_get_name_index(np, 0);
++	if (!init.name)
 +		return -EINVAL;
-+	}
 +
-+	min = divider_recalc_rate(hw, prate, div_val, div_table, div_flags,
-+				  div_width);
++	ret = of_aml_clk_get_parent_data(dev, NULL, 0, 0, &pdata, &pnum);
++	if (ret)
++		return ret;
 +
-+	clk_hw_get_rate_range(hw, &range_min, &range_max);
-+	if (range_min > min)
-+		min = range_min;
++	init.ops = &aml_pll_ops;
++	init.num_parents = pnum;
++	init.parent_data = &pdata;
 +
-+	if (range_max < max)
-+		max = range_max;
-+
-+	min = divider_round_rate(hw, min, &prate, NULL, div_width, 0);
-+	max = divider_round_rate(hw, max, &prate, NULL, div_width, 0);
-+
-+out_printf:
-+	seq_printf(s, "min_rate:%ld\n", min);
-+	seq_printf(s, "max_rate:%ld\n", max);
++	pll->hw.init = &init;
++	ret = of_aml_clk_register(dev, &pll->hw, 0);
++	if (ret)
++		return ret;
 +
 +	return 0;
 +}
 +
-+static int aml_clk_div_available_rates_open(struct inode *inode, struct file *file)
++static int of_aml_clk_pll_probe(struct platform_device *pdev)
 +{
-+	return single_open(file, aml_clk_div_available_rates_show,
-+			   inode->i_private);
++	struct device *dev = &pdev->dev;
++	struct regmap *regmap;
++	struct aml_clk *pll;
++	struct aml_pll_data *pll_data_tmp;
++	int ret;
++
++	pll_data_tmp = (void *)of_device_get_match_data(dev);
++	if (!pll_data_tmp)
++		return -EFAULT;
++
++	pll = devm_kmalloc(dev, sizeof(*pll), GFP_KERNEL);
++	if (!pll)
++		return -ENOMEM;
++
++	pll->data = devm_kmemdup(dev, pll_data_tmp, sizeof(*pll_data_tmp),
++				 GFP_KERNEL);
++	if (!pll->data)
++		return -ENOMEM;
++
++	regmap = aml_clk_regmap_init(pdev);
++	if (IS_ERR_OR_NULL(regmap))
++		return -EIO;
++
++	pll->map = regmap;
++	pll->type = AML_CLKTYPE_PLL;
++	ret = of_aml_clk_regs_init(dev);
++	if (ret)
++		return ret;
++
++	ret = of_aml_clk_pll_init_register(dev, pll);
++	if (ret)
++		return ret;
++
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &pll->hw);
 +}
 +
-+const struct file_operations aml_clk_div_available_rates_fops = {
-+	.owner		= THIS_MODULE,
-+	.open		= aml_clk_div_available_rates_open,
-+	.read		= seq_read,
-+	.llseek		= seq_lseek,
-+	.release	= single_release,
++static const struct of_device_id of_aml_clk_pll_match_table[] = {
++	{
++		.compatible = "amlogic,a9-int-pll",
++		.data = &a9_mclk_pll_data,
++	},
++	{
++		.compatible = "amlogic,a9-frac-pll",
++		.data = &a9_gp_pll_data,
++	},
++	{
++		.compatible = "amlogic,a9-frac-step-pll",
++		.data = &a9_hifi_pll_data,
++	},
++	{}
 +};
-+EXPORT_SYMBOL_NS_GPL(aml_clk_div_available_rates_fops, "CLK_AMLOGIC");
-+#endif /* CONFIG_DEBUG_FS */
++MODULE_DEVICE_TABLE(of, of_aml_clk_pll_match_table);
 +
-+MODULE_DESCRIPTION("Amlogic Common Clock Driver");
++static struct platform_driver of_aml_clk_pll_driver = {
++	.probe		= of_aml_clk_pll_probe,
++	.driver		= {
++		.name	= "aml-pll",
++		.of_match_table = of_aml_clk_pll_match_table,
++	},
++};
++module_platform_driver(of_aml_clk_pll_driver);
++
++MODULE_DESCRIPTION("Amlogic A9 PLL Controllers Driver");
 +MODULE_AUTHOR("Chuan Liu <chuan.liu@amlogic.com>");
 +MODULE_LICENSE("GPL");
 +MODULE_IMPORT_NS("CLK_AMLOGIC");
-diff --git a/drivers/clk/amlogic/clk.h b/drivers/clk/amlogic/clk.h
-new file mode 100644
-index 000000000000..ec0547c1354a
---- /dev/null
-+++ b/drivers/clk/amlogic/clk.h
-@@ -0,0 +1,38 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved
-+ */
-+
-+#ifndef __AML_CLK_H
-+#define __AML_CLK_H
-+
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+enum aml_clk_type {
-+	AML_CLKTYPE_MUX		= 1,
-+	AML_CLKTYPE_DIV		= 2,
-+	AML_CLKTYPE_GATE	= 3,
-+};
-+
-+struct aml_clk {
-+	struct clk_hw	hw;
-+	enum aml_clk_type type;
-+	struct regmap	*map;
-+	void		*data;
-+};
-+
-+#ifdef CONFIG_DEBUG_FS
-+#include <linux/debugfs.h>
-+
-+extern const struct file_operations aml_clk_type_fops;
-+extern const struct file_operations aml_clk_div_available_rates_fops;
-+#endif /* CONFIG_DEBUG_FS */
-+
-+static inline struct aml_clk *to_aml_clk(struct clk_hw *hw)
-+{
-+	return container_of(hw, struct aml_clk, hw);
-+}
-+
-+#endif /* __AML_CLK_H */
 
 -- 
 2.42.0
