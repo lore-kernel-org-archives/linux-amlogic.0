@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AD82E81BC0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 13:16:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D42AE81BBB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 13:17:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VKhDfhQp7EISBsY595lM1uqaQty8A94/XjYJoAk6NF0=; b=yC5a4OzKrymZO/
-	HTWfQwhOOS8IX6RyUgCDAVoNMbiQf+cgYlXGal53JqUmzgubwzvbi/cGDFk4etjiU7jlwCzyoLHUh
-	WAkynfaXtZc1zfa5Mnoz+qSp6hqylmmrccka1ycdPougJgibqlwSXFEL2dQM+sxRCEiZ1N04a57s1
-	6myWH1Tt82rviisBM6cV7DyWjXm1rmHikvlCHHdSDhH3GLV0Yt1FBUReoq68q22WiRdsEtOeQBc5t
-	8szJeUawMX0YqCkK8d0S03dADPBB7cKB7JBsrnqSq8fP7bG/atXHWcjdg8MWW+cL83vC9SKTGOiDf
-	nflse7gGEOqV/M0Xe9zg==;
+	List-Owner; bh=KQJ7EBAGR/EoB0MIHg5axWUqdyRsWdSTCNpKXc5eBM8=; b=aq6QLNnZi3BV7J
+	sQLeooarBhRJchcJopem502aol23XwXXUaUeP6M+4V5wYWDQ8ooA+zLUlnyyl7J84R9KoYuRpUQmT
+	XEWcuabPBCp85swcMgjAiKskxjmQ4zBiIY4lR1sCnPisfP2T6ExVO/DZoK3sFiMWGItY7lYDnMmv6
+	tNslMoRYY/Yi7podYcCemCUoHD/Pnfq4J7pTdAlvTZHAI+lCkiZrya1ou2qWdo+M/J7MgQsGQUSMF
+	sHJtSnUnt8hMcsyfSxVCRUbctRNGLYUIQTnpttEj2Z8TIkglJ2RgZsl2A+LFaYBcTyE+lMqE/4OYj
+	OjAvg/fGqiGoXdTwkixA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpR7R-0000000FPvz-2nxE;
-	Mon, 09 Feb 2026 13:16:01 +0000
+	id 1vpR8d-0000000FQ12-1QBc;
+	Mon, 09 Feb 2026 13:17:15 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpR7O-0000000FPvo-1WSK
+	id 1vpR8c-0000000FQ0w-1wCP
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Feb 2026 13:15:58 +0000
+	Mon, 09 Feb 2026 13:17:14 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id BDBD5600B0;
-	Mon,  9 Feb 2026 13:15:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C69D9C116C6;
-	Mon,  9 Feb 2026 13:15:54 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id AC3C1600B0;
+	Mon,  9 Feb 2026 13:17:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1248C116C6;
+	Mon,  9 Feb 2026 13:17:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770642957;
-	bh=Kg4jDGByr8veZSYV1NGN2EPKkJ0isZGa9w3htJFrkGw=;
+	s=k20201202; t=1770643033;
+	bh=E3YdeD/rTwCR4yxn83bzlx/otZ5fCYuWld30uE4Lcow=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qLYxf1460ZKJnF/c0sjx/DBBHB6YNhBIKNdqEonF6xUF5/foMYs/RkuyPBsqafOuJ
-	 iWYwEGhxlkqJGWb7/G1YraKrXWZdIoTMwjCMyuw0mlaXvA4zIn+Oev67m6MPhjiaZt
-	 +zK88Gxe8hOFZeDJh12s3RX90RCZFkDO3JeNaOFfynoZsOm+OZYL7hoI7opBLlp3Zn
-	 dXZe5lPOh+pIyR5pCqS6EF+z5Igt+azg4fuQeQjbnWhAmkZtEwzkfXwMbOtHE3DfSH
-	 B6T5aMyB8CRPAkg4+te9a7oFsJA1+rZKbm9XKcAeZIQ2UYTzFF4Cj/HFpNU87GZUuS
-	 iStnlKBhUbhKw==
-Message-ID: <dbaa1ebc-a0a2-4ca3-bb6d-0c8a07ca1b31@kernel.org>
-Date: Mon, 9 Feb 2026 14:15:53 +0100
+	b=W/8+DSp4TFnZs9qrwFXBuBC53pusSs3qc22C/u6aoBpbxP4dBE5kCVVKmeeoOS8es
+	 +p//f8zmdcbi2VDZ6MYRdcCgrEW2Xp4tnEeDpYEAmUBNLUC27xAdYf6j7nXmUqyWtA
+	 pXPT2c1LTlKTSOaz7LYYP0ox3XB4Jdjs9Ze4QJKzSsUpArGMyBfs1JFueav6GnUKHC
+	 5Oy4ZYVsbnfZ5S0yBEhu1RAjgD8aO8Pm1vYvVC2olmLSBgmbX5+BmSxTvk2522qSbJ
+	 bmVe6jpVuEpzNj+ok4DrP5Q4JQrADy9NdYLcwDnFzD2o0BhbhBpJ9DuXN2PHiJgt9H
+	 pdiF3Z89bSHww==
+Message-ID: <89cc0724-32a8-4da5-8070-c128cafcfc82@kernel.org>
+Date: Mon, 9 Feb 2026 14:17:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/13] dt-bindings: clock: Add Amlogic A9 misc clock
- control units
+Subject: Re: [PATCH 04/13] clk: amlogic: Add basic clock driver
 To: chuan.liu@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -55,7 +54,7 @@ To: chuan.liu@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
- <20260209-a9_clock_driver-v1-3-a9198dc03d2a@amlogic.com>
+ <20260209-a9_clock_driver-v1-4-a9198dc03d2a@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,7 +100,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260209-a9_clock_driver-v1-3-a9198dc03d2a@amlogic.com>
+In-Reply-To: <20260209-a9_clock_driver-v1-4-a9198dc03d2a@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,51 +118,15 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 09/02/2026 06:48, Chuan Liu via B4 Relay wrote:
-> +
-> +  '#clock-cells':
-> +    description:
-> +      The clock controller of a module may contain one or more child clock(s).
-> +      When a clock controller has multiple child clocks, an index is required
-> +      to specify a particular clock within the clock controller.
-> +    oneOf:
-> +      - const: 0
-> +        description: Single clock output, no specifier needed
-> +      - const: 1
-> +        description: Multiple clocks, index selects specific output
-> +
-> +  amlogic,clock-max-frequency:
+> From: Chuan Liu <chuan.liu@amlogic.com>
+> 
+> Implement core clock driver for Amlogic SoC platforms, supporting
 
-No
+So how did all existing Amlogic SoC platforms work so far without basic
+clock driver? Really, how?
 
-> +    description: |
-> +      Each clock's maximum output frequency is constrained during hardware
-> +      design to ensure proper timing requirements for the clock network. If the
-> +      clock frequency configured exceeds this design limit, it can lead to
-> +      abnormal behavior in modules relying on that clock and may even cause
-> +      cross-talk that affects other modules.
-> +
-> +      In the driver, this property is parsed, and interface functions from the
-> +      CCF are called to enforce the clock's maximum frequency, preventing
-> +      potential issues caused by excessive clock frequency configurations.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +  amlogic,clock-init-regs:
-
-NAK
-
-...
-
-> diff --git a/include/dt-bindings/clock/amlogic,a9-misc-ccu.h b/include/dt-bindings/clock/amlogic,a9-misc-ccu.h
-> new file mode 100644
-> index 000000000000..102aff8d68e4
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/amlogic,a9-misc-ccu.h
-> @@ -0,0 +1,53 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-
-Use the same license as in binding doc.
-
-
+You are suppose to grow existing code, not add your completely new
+"basic" driver just because you have it that way in downstream.
 
 Best regards,
 Krzysztof
