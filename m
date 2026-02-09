@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61E3BEF0715
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1189FEF070F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gEANtkLKahl096ymyCSmZ3weqMTgHUw6XdYdWJNdEc8=; b=gMDHUzgzS+qpvV
-	30WbzKymv9c/alKEaRqzBaLkIDyV2FYNsmwQLYeZWVGliDk/TtCmhGzqvEQD4qWfA7yem2B2U+DiP
-	/AhxE/yp8EkBzK1gX39yqdcJMOGGUgCfnt/OiHre0BuwQDyxYzVDjcYJKRcTWa+yE4OeHzVFWOEVy
-	7dKD6oeAEKXyOyZAClidIpaOXfrwGNTsMfM+hiexgUDCrfGr7rcywv2SUdeGHlpX9XTXGoAGb5ikl
-	mqbpH4r5iy7osEZSK+qlNebEL76oIclZXPIE8iHxWZzqStyC2VQh6WPXE2d+7539LmfxDD0OqRQNz
-	twQcGE0w0SIpvPx44djg==;
+	List-Owner; bh=Vnk2AtFVghpOLgpKKuJr/LgYOdrBmmJlTq+3n/S6JS8=; b=pE/nJSvFSirPIv
+	zc87rzN0lj/kRMn0GFPhCI6+TCvJHa1MZDFmwamHPyatZOOWp+VHVbx348Sz+cVQwSBp2fVdDu9KQ
+	GolvaMGSh6dt0XECEMzgiqpM0DOOHJt2fPsOdoTD+AQywlOrMdqzJOpSsM7kTXVK+AY1syHF0n1BH
+	1RmYP/QTStw8Zv34r5rro5l+Od99wSFe4GZ6OGVguKsh0W1J2ReJhNq0EaUnaDkHIf1v9uz0RshB1
+	+0/2eXnSAEIhymPI14jma/JFIt0nUWcWY+mMGQSh6BZagZO5x/PnmFfB9TwXf2nNxZYTTDyIRKfFX
+	kP/7hEy7juPRt6kzaKxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpK93-0000000ErgM-1OTd;
-	Mon, 09 Feb 2026 05:49:13 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vpK8z-0000000Erdt-2P0c;
+	Mon, 09 Feb 2026 05:49:09 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpK8z-0000000Erd0-1T9K
+	id 1vpK8y-0000000ErcU-33Xm
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Feb 2026 05:49:10 +0000
+	Mon, 09 Feb 2026 05:49:08 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id D2AB74455D;
-	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B54CCC19422;
-	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 09CF560129;
+	Mon,  9 Feb 2026 05:49:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B4448C116C6;
+	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770616146;
-	bh=cazKsEPbGzq2zpjP2uQ9/zaf5UiPV4wveeJOBPeV8iE=;
+	s=k20201202; t=1770616147;
+	bh=QxViedLmynRp82O87N7D2qyntM/kr801ltrwPP9Llkg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=lNY9tm45lmhVclNkhpd8EaygbnPRsKdKUwjhG8Uf62ZclYbXvlkViSm4YMvCoLEn6
-	 TXsXNRAK8dicE6c3Im9L7QjHycLgBb2GRFBOhlMBJsQEl+e/rZIf3dDTXjMwpzM9FH
-	 mDMzIvUxM2451sLQTnF2fIYpA3EtqvRYVSjXKmJQcX9RPE50xLhM3gY5wDSFYCkukb
-	 1LWOU9cvS0YgmZMOW81PRTUzXjOeABCOBZZMuWqRm9HjmeJXdING62cK9RPhA2gwzk
-	 3uk03th20BH0mvex89NQ4uif3ns770C8i7XtEqgjBpzWkLYanPe+hNIFzgtsT5bIDH
-	 /cwDBVfA+NRWw==
+	b=NdK8tK44zwbBNKywOR4wJ/dOwYNDSnRgpKPGpBJRNKUzZPS4LQ1m/KqH2rxbwdFlA
+	 Nzd1hNxA00lzR+hNcGrmUvkV8Jheaaq2j/f5AAYQe7BXjaOqBfPGjpEvLwiY2UHZ6Y
+	 aS329ufS75+ymmg5BoI5q1a+Ns48+YUZ823bDvuDw4wPCOPg6FHX6a1ufdWlMP5Kh5
+	 pXebw7sWXx3WGYWRNhzEfy1ru/BBeD68tNhQTKQzxelEOxr6XORgUnVcKBB5Jm/bnA
+	 DfqZM4CQXmAETUJC7Cag8Dn6Qu5lhCsrG3Bg1Ja89+6uaegLHko/GpBO5+8HxMTLih
+	 FKnJzxdR/8emQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AC750EF06E5;
-	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A846EEF06FF;
+	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Mon, 09 Feb 2026 13:48:51 +0800
-Subject: [PATCH 05/13] clk: amlogic: Add composite clock driver
+Date: Mon, 09 Feb 2026 13:48:58 +0800
+Subject: [PATCH 12/13] clk: amlogic: Add A9 misc clock control units driver
 MIME-Version: 1.0
-Message-Id: <20260209-a9_clock_driver-v1-5-a9198dc03d2a@amlogic.com>
+Message-Id: <20260209-a9_clock_driver-v1-12-a9198dc03d2a@amlogic.com>
 References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 In-Reply-To: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,19 +61,16 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616142; l=11745;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616143; l=28812;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=TWWc+aiQqxihQg4vOjeQkVQxeCur6RMBVynIc8iopYo=;
- b=LNPPiCONB2hgxdPaHHpq2DgNzZgblos66T+EqeLDCwcYk7iU89TnQ/okG4bo8eeSjsgxjf7NO
- nA0Jw0+vCd3AIY1zLhReQmvd6osJODjnvPgBLzTXkXgy3v6MJzAJEkr
+ bh=LIyu9KL3MwJ2/G89sNwwVlFz7b01K2TvVo7VDEnv0sk=;
+ b=exPV6T7eX9RsGLI/cLQJwlrSkP8NSV1/RcP2oFgjDTzRAGr3eZSt26V6E0L0YuqpYGjXP2ru8
+ vSDGZjg4NukAFz41hnW7UUb4na5kd455Eyh7C7pJCqyDzpkWTWIjdsf
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260208_214909_529601_00AC7976 
-X-CRM114-Status: GOOD (  21.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,34 +90,80 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-Implement clk_ops support for Amlogic composite clocks. Composite clocks
-are commonly used clock control units in Amlogic SoCs that integrate
-multiplexer, divider, and gate functionality into a single block.
+Add support for Amlogic miscellaneous clock control units on A9 SoC
+family. Certain peripheral clocks do not utilize the standardized models
+due to specific requirements. These specialized clock control units are
+handled in this driver, including:
+  - sc-ccu
+  - ts-ccu
+  - genout-ccu
+  - clk12_24m-ccu
+  - vapb_ge2d-ccu
+  - di-ccu
+  - eth-ccu
+  - dualdivmux-ccu
+  - mclk-ccu
+
+These clock control units contain multiple sub-clocks. The clock IDs
+for each sub-clock are defined in /bindings/clock/amlogic,a9-misc-ccu.h.
 
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/clk/amlogic/Makefile        |   1 +
- drivers/clk/amlogic/clk-composite.c | 280 ++++++++++++++++++++++++++++++++++++
- drivers/clk/amlogic/clk-composite.h |  20 +++
- drivers/clk/amlogic/clk.c           |   7 +
- drivers/clk/amlogic/clk.h           |   1 +
- 5 files changed, 309 insertions(+)
+ drivers/clk/amlogic/Kconfig       |  10 +
+ drivers/clk/amlogic/Makefile      |   5 +
+ drivers/clk/amlogic/a9-misc-ccu.c | 960 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 975 insertions(+)
 
+diff --git a/drivers/clk/amlogic/Kconfig b/drivers/clk/amlogic/Kconfig
+index 3177a02ecbd5..502aca5332bc 100644
+--- a/drivers/clk/amlogic/Kconfig
++++ b/drivers/clk/amlogic/Kconfig
+@@ -11,6 +11,15 @@ config COMMON_CLK_AMLOGIC
+ 	  offering read and write interfaces for various clock control units.
+ 	  Select Y if your target SoC needs clock driver support.
+ 
++config COMMON_CLK_AMLOGIC_MISC
++	tristate "Amlogic Misc Clock Control Units"
++	depends on COMMON_CLK_AMLOGIC
++	help
++	  Supports non-standard module clock control units in Amlogic SoC clock
++	  trees, such as sc-ccu (for smart card controller) and ts-ccu (for
++	  temperature sensor). Select Y if the current SoC contains these module
++	  clock control units.
++
+ config COMMON_CLK_AMLOGIC_MODEL
+ 	tristate "Amlogic Standardized Model Clock Control Units"
+ 	depends on COMMON_CLK_AMLOGIC
+@@ -34,6 +43,7 @@ config COMMON_CLK_AMLOGIC_A9
+ 	tristate "Amlogic A9 Family Clock Controller"
+ 	depends on COMMON_CLK_AMLOGIC
+ 	default COMMON_CLK_AMLOGIC
++	select COMMON_CLK_AMLOGIC_MISC
+ 	select COMMON_CLK_AMLOGIC_MODEL
+ 	select COMMON_CLK_AMLOGIC_PLL
+ 	help
 diff --git a/drivers/clk/amlogic/Makefile b/drivers/clk/amlogic/Makefile
-index bd9dd5b78b23..58a5e7bc8993 100644
+index 74bf84dbd5a8..b174dce61ae9 100644
 --- a/drivers/clk/amlogic/Makefile
 +++ b/drivers/clk/amlogic/Makefile
-@@ -4,3 +4,4 @@ obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-amlogic.o
- 
- clk-amlogic-y += clk.o
- clk-amlogic-y += clk-basic.o
-+clk-amlogic-y += clk-composite.o
-diff --git a/drivers/clk/amlogic/clk-composite.c b/drivers/clk/amlogic/clk-composite.c
+@@ -8,6 +8,11 @@ clk-amlogic-y += clk-composite.o
+ clk-amlogic-y += clk-dualdiv.o
+ clk-amlogic-y += clk-noglitch.o
+ clk-amlogic-y += clk-pll.o
++
++ifneq ($(CONFIG_COMMON_CLK_AMLOGIC_MISC),)
++clk-amlogic-y += a9-misc-ccu.o
++endif
++
+ ifneq ($(CONFIG_COMMON_CLK_AMLOGIC_MODEL),)
+ clk-amlogic-y += a9-model-ccu.o
+ endif
+diff --git a/drivers/clk/amlogic/a9-misc-ccu.c b/drivers/clk/amlogic/a9-misc-ccu.c
 new file mode 100644
-index 000000000000..9d34ed4a90b7
+index 000000000000..db130d84ccdd
 --- /dev/null
-+++ b/drivers/clk/amlogic/clk-composite.c
-@@ -0,0 +1,280 @@
++++ b/drivers/clk/amlogic/a9-misc-ccu.c
+@@ -0,0 +1,960 @@
 +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
 +/*
 + * Copyright (c) 2026 Amlogic, Inc. All rights reserved
@@ -130,347 +173,957 @@ index 000000000000..9d34ed4a90b7
 +#include <linux/module.h>
 +
 +#include "clk.h"
++#include "clk-basic.h"
 +#include "clk-composite.h"
++#include "clk-dualdiv.h"
++#include "clk-noglitch.h"
++#include "clk-pll.h"
++
++#include <dt-bindings/clock/amlogic,a9-misc-ccu.h>
++
++static struct aml_clk a9_sc_pre = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_composite_ops,
++	},
++	.type = AML_CLKTYPE_COMPOSITE,
++	.data = &(struct aml_clk_composite_data) {
++		.div_width = 8,
++	},
++};
++
++static struct aml_clk a9_sc = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_divider_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_sc_pre.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++	.type = AML_CLKTYPE_DIV,
++	.data = &(struct aml_clk_divider_data) {
++		.shift = 16,
++		.width = 4,
++	},
++};
++
++struct clk_hw_onecell_data a9_sc_clk_hw_data = {
++	.hws = {
++		[A9_CLK_SC_PRE]	= &a9_sc_pre.hw,
++		[A9_CLK_SC]	= &a9_sc.hw,
++	},
++	.num = 2,
++};
++
++static struct aml_clk a9_ts_div = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_divider_ops,
++	},
++	.type = AML_CLKTYPE_DIV,
++	.data = &(struct aml_clk_divider_data) {
++		.shift = 0,
++		.width = 8,
++	},
++};
++
++static struct aml_clk a9_ts = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_ts_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++	.type = AML_CLKTYPE_GATE,
++	.data = &(struct aml_clk_gate_data) {
++		.bit_idx = 8,
++	},
++};
++
++struct clk_hw_onecell_data a9_ts_clk_hw_data = {
++	.hws = {
++		[A9_CLK_TS_DIV]	= &a9_ts_div.hw,
++		[A9_CLK_TS]	= &a9_ts.hw,
++	},
++	.num = 2,
++};
++
++static struct aml_clk a9_genout_sel = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_mux_ops,
++	},
++	.type = AML_CLKTYPE_MUX,
++	.data = &(struct aml_clk_mux_data) {
++		.mask = 0x1f,
++		.shift = 12,
++	},
++};
++
++static struct aml_clk a9_genout_div = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_divider_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_genout_sel.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++	.type = AML_CLKTYPE_DIV,
++	.data = &(struct aml_clk_divider_data) {
++		.shift = 0,
++		.width = 11,
++	},
++};
++
++static struct aml_clk a9_genout = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_genout_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++	.type = AML_CLKTYPE_GATE,
++	.data = &(struct aml_clk_gate_data) {
++		.bit_idx = 11,
++	},
++};
++
++struct clk_hw_onecell_data a9_genout_clk_hw_data = {
++	.hws = {
++		[A9_CLK_GENOUT_SEL]	= &a9_genout_sel.hw,
++		[A9_CLK_GENOUT_DIV]	= &a9_genout_div.hw,
++		[A9_CLK_GENOUT]		= &a9_genout.hw,
++	},
++	.num = 3,
++};
++
++static struct aml_clk a9_clk24m_in = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_gate_ops,
++	},
++	.type = AML_CLKTYPE_GATE,
++	.data = &(struct aml_clk_gate_data) {
++		.bit_idx = 11,
++	},
++};
++
++static struct aml_clk a9_clk12_24m = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_divider_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_clk24m_in.hw
++		},
++		.num_parents = 1,
++	},
++	.type = AML_CLKTYPE_DIV,
++	.data = &(struct aml_clk_divider_data) {
++		.shift = 10,
++		.width = 1,
++	},
++};
++
++struct clk_hw_onecell_data a9_clk12_24m_clk_hw_data = {
++	.hws = {
++		[A9_CLK_24M_IN]	= &a9_clk24m_in.hw,
++		[A9_CLK_12_24M]	= &a9_clk12_24m.hw,
++	},
++	.num = 2,
++};
++
++static struct aml_clk a9_vapb = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_noglitch_ops,
++	},
++	.type = AML_CLKTYPE_NOGLITCH,
++	.data = &(struct aml_clk_composite_data) {
++		.div_width = 7,
++	},
++};
++
++static struct aml_clk a9_ge2d = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_vapb.hw
++		},
++		.num_parents = 1,
++	},
++	.type = AML_CLKTYPE_GATE,
++	.data = &(struct aml_clk_gate_data) {
++		.bit_idx = 30,
++	},
++};
++
++struct clk_hw_onecell_data a9_vapbge2d_clk_hw_data = {
++	.hws = {
++		[A9_CLK_VAPB]	= &a9_vapb.hw,
++		[A9_CLK_GE2D]	= &a9_ge2d.hw,
++	},
++	.num = 2,
++};
++
++static struct aml_clk a9_vpu_clkb_temp = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_composite_ops,
++	},
++	.type = AML_CLKTYPE_COMPOSITE,
++	.data = &(struct aml_clk_composite_data) {
++		.bit_offset = 16,
++		.div_width = 4,
++	},
++};
++
++static struct aml_clk a9_vpu_clkb_div = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_divider_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_vpu_clkb_temp.hw
++		},
++		.num_parents = 1,
++	},
++	.type = AML_CLKTYPE_DIV,
++	.data = &(struct aml_clk_divider_data) {
++		.shift = 0,
++		.width = 8,
++	},
++};
++
++static struct aml_clk a9_vpu_clkb = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_vpu_clkb_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++	.type = AML_CLKTYPE_GATE,
++	.data = &(struct aml_clk_gate_data) {
++		.bit_idx = 8,
++	},
++};
++
++struct clk_hw_onecell_data a9_di_clk_hw_data = {
++	.hws = {
++		[A9_CLK_VPU_CLKB_TEMP]	= &a9_vpu_clkb_temp.hw,
++		[A9_CLK_VPU_CLKB_DIV]	= &a9_vpu_clkb_div.hw,
++		[A9_CLK_VPU_CLKB]	= &a9_vpu_clkb.hw,
++	},
++	.num = 3,
++};
++
++static int of_aml_clk_misc_set_parent_table(struct device *dev,
++					    struct aml_clk *clk,
++					    int start_index, int end_index)
++{
++	u32 *ptab = of_aml_clk_get_parent_table(dev, start_index, end_index);
++	struct aml_clk_mux_data *mux_data;
++	struct aml_clk_composite_data *comp_data;
++	struct aml_clk_noglitch_data *noglitch_data;
++
++	if (IS_ERR(ptab))
++		return PTR_ERR(ptab);
++	else if (!ptab) /* parent clock indices are contiguous */
++		return 0;
++
++	switch (clk->type) {
++	case AML_CLKTYPE_MUX:
++		mux_data = clk->data;
++		mux_data->table = ptab;
++		return 0;
++
++	case AML_CLKTYPE_COMPOSITE:
++		comp_data = clk->data;
++		comp_data->table = ptab;
++		return 0;
++
++	case AML_CLKTYPE_NOGLITCH:
++		noglitch_data = clk->data;
++		noglitch_data->table = ptab;
++		return 0;
++
++	default:
++		return -EINVAL;
++	}
++}
 +
 +/*
-+ * Amlogic composite clock module:
++ * The default CCU block diagram is shown below:
++ *            +---------------------------------+
++ *            |  +-------+           +-------+  |
++ *            |  |       |           |       |  |
++ *   clkin0----->|   1   |           |   n   |  |
++ *           ... | level |--> ... -->| level |------>clkout
++ *           ... | clock |           | clock |  |
++ *   clkinn----->|       |           |       |  |
++ *            |  +-------+           +-------+  |
++ *            +---------------------------------+
 + *
-+ *             mux       div         gate
-+ *              |         |            |
-+ *         +----|---------|------------|------+
-+ *         |   \|/        |            |      |
-+ *         |   |\         |            |      |
-+ * clk0 ------>| |        |            |      |
-+ * clk1 ------>| |        |            |      |
-+ * clk2 ------>| |       \|/          \|/     |
-+ * clk3 ------>| |     +-----+     +------+   |
-+ *         |   | |---->| div |---->| gate |------> clk out
-+ * clk4 ------>| |     +-----+     +------+   |
-+ * clk5 ------>| |                            |
-+ * clk6 ------>| |                            |
-+ * clk7 ------>| |                            |
-+ *         |   |/                             |
-+ *         |                                  |
-+ *         +----------------------------------+
-+ *
-+ * Amlogic composite clocks support up to 8 clock sources, and the divider width
-+ * is configurable.
-+ *
-+ * The register bit-field allocation rules for mux, div, and gate are as
-+ * follows:
-+ * mux: bit[11:9] or bit[27:25]
-+ * div: bit[7:0] or bit[23:16]
-+ * gate: bit[8] or bit[24]
++ * By default, the CCU has the following characteristics:
++ *   - The clock specified by "clocks" uses the first-level clock (clkid = 0)
++ *     as its parent.
++ *   - The parent-child relationship among sub-clocks follows this order:
++ *       - hw_data->hws[0] -> ... -> hw_data->hws[n].
 + */
-+
-+#define CLK_COMPOSITE_MUX_SHIFT		9
-+#define CLK_COMPOSITE_MUX_MASK		0x7
-+
-+#define CLK_COMPOSITE_DIV_SHIFT		0
-+
-+#define CLK_COMPOSITE_GATE_SHIFT		8
-+
-+static u8 aml_clk_composite_get_parent(struct clk_hw *hw)
++static int of_aml_clk_misc_init_register(struct device *dev,
++					 struct clk_hw_onecell_data *hw_data)
 +{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_composite_data *composite = clk->data;
-+	unsigned int val;
-+	int ret;
++	struct device_node *np = dev_of_node(dev);
++	struct aml_clk *clk;
++	struct clk_init_data init;
++	struct clk_parent_data *pdata;
++	u8 pnum;
++	int ret, clkid;
 +
-+	ret = regmap_read(clk->map, composite->reg_offset, &val);
-+	if (ret)
-+		return ret;
++	if (hw_data->num != of_aml_clk_get_count(np))
++		return -EINVAL;
 +
-+	val >>=  CLK_COMPOSITE_MUX_SHIFT;
-+	val &= CLK_COMPOSITE_MUX_MASK;
-+
-+	return clk_mux_val_to_index(hw, composite->table, 0, val);
-+}
-+
-+static int aml_clk_composite_set_parent(struct clk_hw *hw, u8 index)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_composite_data *composite = clk->data;
-+	unsigned int val = clk_mux_index_to_val(composite->table, 0, index);
-+	int mux_shift = composite->bit_offset + CLK_COMPOSITE_MUX_SHIFT;
-+
-+	return regmap_update_bits(clk->map, composite->reg_offset,
-+				  CLK_COMPOSITE_MUX_MASK << mux_shift,
-+				  val << mux_shift);
-+}
-+
-+static unsigned long aml_clk_composite_recalc_rate(struct clk_hw *hw,
-+						   unsigned long parent_rate)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_composite_data *composite = clk->data;
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(clk->map, composite->reg_offset, &val);
-+	if (ret)
-+		/* Gives a hint that something is wrong */
-+		return 0;
-+
-+	val >>= composite->bit_offset + CLK_COMPOSITE_DIV_SHIFT;
-+	val &= clk_div_mask(composite->div_width);
-+
-+	return divider_recalc_rate(hw, parent_rate, val, NULL, 0,
-+				   composite->div_width);
-+}
-+
-+static int
-+aml_clk_composite_determine_rate_for_parent(struct clk_hw *rate_hw,
-+					    struct clk_rate_request *req,
-+					    struct clk_hw *parent_hw)
-+{
-+	struct aml_clk *clk = to_aml_clk(rate_hw);
-+	struct aml_clk_composite_data *composite = clk->data;
-+
-+	req->best_parent_hw = parent_hw;
-+	req->best_parent_rate = clk_hw_get_rate(parent_hw);
-+
-+	return divider_determine_rate(rate_hw, req, NULL,
-+				      composite->div_width, 0);
-+}
-+
-+static int aml_clk_composite_determine_rate(struct clk_hw *hw,
-+					    struct clk_rate_request *req)
-+{
-+	struct clk_hw *parent;
-+	struct clk_rate_request tmp_req;
-+	unsigned long rate_diff;
-+	unsigned long best_rate_diff = ULONG_MAX;
-+	unsigned long best_rate = 0;
-+	int i, ret;
-+
-+	req->best_parent_hw = NULL;
-+
-+	parent = clk_hw_get_parent(hw);
-+	clk_hw_forward_rate_request(hw, req, parent, &tmp_req, req->rate);
-+	ret = aml_clk_composite_determine_rate_for_parent(hw, &tmp_req,
-+							  parent);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Check if rate can be satisfied by current parent clock. Avoid parent
-+	 * switching when possible to reduce glitches.
-+	 */
-+	if (req->rate == tmp_req.rate ||
-+	    (clk_hw_get_flags(hw) & CLK_SET_RATE_NO_REPARENT)) {
-+		req->rate = tmp_req.rate;
-+		req->best_parent_hw = tmp_req.best_parent_hw;
-+		req->best_parent_rate = tmp_req.best_parent_rate;
-+
-+		return 0;
-+	}
-+
-+	for (i = 0; i < clk_hw_get_num_parents(hw); i++) {
-+		parent = clk_hw_get_parent_by_index(hw, i);
-+		if (!parent)
-+			continue;
-+
-+		clk_hw_forward_rate_request(hw, req, parent, &tmp_req,
-+					    req->rate);
-+		ret = aml_clk_composite_determine_rate_for_parent(hw, &tmp_req,
-+								  parent);
-+		if (ret)
-+			continue;
-+
-+		if (req->rate >= tmp_req.rate)
-+			rate_diff = req->rate - tmp_req.rate;
-+		else
-+			rate_diff = tmp_req.rate - req->rate;
-+
-+		if (!rate_diff || !req->best_parent_hw ||
-+		    best_rate_diff > rate_diff) {
-+			req->best_parent_hw = parent;
-+			req->best_parent_rate = tmp_req.best_parent_rate;
-+			best_rate_diff = rate_diff;
-+			best_rate = tmp_req.rate;
-+		}
-+
-+		if (!rate_diff)
-+			return 0;
-+	}
-+
-+	req->rate = best_rate;
-+	return 0;
-+}
-+
-+static int aml_clk_composite_set_rate(struct clk_hw *hw, unsigned long rate,
-+				      unsigned long parent_rate)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_composite_data *composite = clk->data;
-+	unsigned int val;
-+	int ret;
-+	int div_shift = composite->bit_offset + CLK_COMPOSITE_DIV_SHIFT;
-+
-+	ret = divider_get_val(rate, parent_rate, NULL, composite->div_width, 0);
++	ret = of_aml_clk_get_parent_num(dev, 0, -1);
 +	if (ret < 0)
 +		return ret;
 +
-+	val = (unsigned int)ret << div_shift;
-+	return regmap_update_bits(clk->map, composite->reg_offset,
-+				  clk_div_mask(composite->div_width) <<
-+				  div_shift, val);
++	pnum = (u8)ret;
++	pdata = devm_kcalloc(dev, pnum, sizeof(*pdata), GFP_KERNEL);
++	if (!pdata)
++		return -ENOMEM;
++
++	for (clkid = 0; clkid < hw_data->num; clkid++) {
++		/*
++		 * By default, clocks specified in the DT clocks property act as
++		 * the parent clocks for the first-level CCU clock (clkid == 0).
++		 */
++		if (clkid == 0) {
++			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
++							 0, -1, pdata, &pnum);
++			if (ret)
++				goto out;
++
++			clk = to_aml_clk(hw_data->hws[clkid]);
++			ret = of_aml_clk_misc_set_parent_table(dev, clk, 0, -1);
++			if (ret)
++				goto out;
++		} else {
++			pnum = 1;
++			/*
++			 *The parent-child relationship among sub-clocks follows
++			 * this order:
++			 *  - hw_data->hws[0] -> ... -> hw_data->hws[n].
++			 */
++			pdata[0].hw = hw_data->hws[clkid - 1];
++		}
++
++		memcpy(&init, hw_data->hws[clkid]->init, sizeof(init));
++		init.name = of_aml_clk_get_name_index(np, clkid);
++		if (!init.name) {
++			ret = -EINVAL;
++			goto out;
++		}
++
++		init.num_parents = pnum;
++		init.parent_data = pdata;
++		hw_data->hws[clkid]->init = &init;
++		ret = of_aml_clk_register(dev, hw_data->hws[clkid], clkid);
++		if (ret)
++			goto out;
++	}
++
++out:
++	devm_kfree(dev, pdata);
++
++	return ret;
 +}
 +
-+static int aml_clk_composite_set_rate_and_parent(struct clk_hw *hw,
-+						 unsigned long rate,
-+						 unsigned long parent_rate,
-+						 u8 index)
-+{
-+	unsigned long temp_rate;
++#define A9_ETH_CLK_NUM		2
 +
-+	temp_rate = aml_clk_composite_recalc_rate(hw, parent_rate);
-+	if (temp_rate > rate) {
-+		aml_clk_composite_set_rate(hw, rate, parent_rate);
-+		aml_clk_composite_set_parent(hw, index);
-+	} else {
-+		aml_clk_composite_set_parent(hw, index);
-+		aml_clk_composite_set_rate(hw, rate, parent_rate);
++static struct aml_clk a9_eth_125m = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_gate_ops,
++	},
++	.type = AML_CLKTYPE_GATE,
++	.data = &(struct aml_clk_gate_data) {
++		.bit_idx = 7,
++	},
++};
++
++static struct aml_clk a9_eth_rmii = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_composite_ops,
++	},
++	.type = AML_CLKTYPE_COMPOSITE,
++	.data = &(struct aml_clk_composite_data) {
++		.div_width = 7,
++	},
++};
++
++struct clk_hw_onecell_data a9_eth_clk_hw_data = {
++	.hws = {
++		[A9_CLK_ETH_125M]	= &a9_eth_125m.hw,
++		[A9_CLK_ETH_RMII]	= &a9_eth_rmii.hw,
++	},
++	.num = A9_ETH_CLK_NUM,
++};
++
++/*
++ * A diagram of the A9 eth-ccu is as follows:
++ *         +------------------------------------------+
++ *         |                             +------+     |
++ * clk125m------------------------------>| gate |-------> eth_125m
++ *         |                             +------+     |
++ *         |     +---------------------------------+  |
++ *         |     |  |\                             |  |
++ * clkin0 --------->| |                            |  |
++ *         |     |  | |      +-----+     +------+  |  |
++ *         | ... |  | |----->| div |---->| gate |-------> eth_rmii
++ *         |     |  | |      +-----+     +------+  |  |
++ * clkin7 --------->| |                            |  |
++ *         |     |  |/       composote-ccu         |  |
++ *         |     +---------------------------------+  |
++ *         +------------------------------------------+
++ */
++static int of_aml_clk_eth_init_register(struct device *dev,
++					struct clk_hw_onecell_data *hw_data)
++{
++	struct device_node *np = dev_of_node(dev);
++	struct aml_clk *clk;
++	struct clk_parent_data pdata[9];
++	u8 pnum;
++	struct clk_init_data init;
++	int ret, clkid;
++
++	if (of_aml_clk_get_count(np) != A9_ETH_CLK_NUM)
++		return -EINVAL;
++
++	for (clkid = 0; clkid < A9_ETH_CLK_NUM; clkid++) {
++		if (clkid == A9_CLK_ETH_125M) { /* eth_125m */
++			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
++							 0, 0, pdata, &pnum);
++			if (ret)
++				return ret;
++		} else { /* eth_rmii */
++			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
++							 1, 8, pdata, &pnum);
++			if (ret)
++				return ret;
++
++			clk = to_aml_clk(hw_data->hws[clkid]);
++			ret = of_aml_clk_misc_set_parent_table(dev, clk, 1, 8);
++			if (ret)
++				return ret;
++		}
++
++		memcpy(&init, hw_data->hws[clkid]->init, sizeof(init));
++		init.name = of_aml_clk_get_name_index(np, clkid);
++		if (!init.name)
++			return -EINVAL;
++
++		init.num_parents = pnum;
++		init.parent_data = pdata;
++		hw_data->hws[clkid]->init = &init;
++		ret = of_aml_clk_register(dev, hw_data->hws[clkid], clkid);
++		if (ret)
++			return ret;
 +	}
 +
 +	return 0;
 +}
 +
-+static int aml_clk_composite_is_enabled(struct clk_hw *hw)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_composite_data *composite = clk->data;
-+	unsigned int val;
++#define A9_DUALDIVMUX_CLK_NUM		2
 +
-+	regmap_read(clk->map, composite->reg_offset, &val);
-+	val &= BIT(composite->bit_offset + CLK_COMPOSITE_GATE_SHIFT);
-+
-+	return val ? 1 : 0;
-+}
-+
-+static int aml_clk_composite_enable(struct clk_hw *hw)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_composite_data *composite = clk->data;
-+	u8 bit_idx = composite->bit_offset + CLK_COMPOSITE_GATE_SHIFT;
-+
-+	return regmap_update_bits(clk->map, composite->reg_offset,
-+				  BIT(bit_idx), BIT(bit_idx));
-+}
-+
-+static void aml_clk_composite_disable(struct clk_hw *hw)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_composite_data *composite = clk->data;
-+	u8 bit_idx = composite->bit_offset + CLK_COMPOSITE_GATE_SHIFT;
-+
-+	regmap_update_bits(clk->map, composite->reg_offset,
-+			   BIT(bit_idx), 0);
-+}
-+
-+#ifdef CONFIG_DEBUG_FS
-+#include <linux/debugfs.h>
-+
-+static void aml_clk_composite_debug_init(struct clk_hw *hw,
-+					 struct dentry *dentry)
-+{
-+	debugfs_create_file("clk_type", 0444, dentry, hw, &aml_clk_type_fops);
-+	debugfs_create_file("clk_available_rates", 0444, dentry, hw,
-+			    &aml_clk_div_available_rates_fops);
-+}
-+#endif /* CONFIG_DEBUG_FS */
-+
-+const struct clk_ops aml_clk_composite_ops = {
-+	.get_parent = aml_clk_composite_get_parent,
-+	.set_parent = aml_clk_composite_set_parent,
-+	.determine_rate = aml_clk_composite_determine_rate,
-+	.recalc_rate = aml_clk_composite_recalc_rate,
-+	.set_rate = aml_clk_composite_set_rate,
-+	.set_rate_and_parent = aml_clk_composite_set_rate_and_parent,
-+	.enable = aml_clk_composite_enable,
-+	.disable = aml_clk_composite_disable,
-+	.is_enabled = aml_clk_composite_is_enabled,
-+#ifdef CONFIG_DEBUG_FS
-+	.debug_init = aml_clk_composite_debug_init,
-+#endif /* CONFIG_DEBUG_FS */
++static struct aml_clk_dualdiv_param a9_dualdiv_table[] = {
++	{ 1, 732, 7, 731, 10 }, /* 32.768k for rtc/cec */
 +};
-+EXPORT_SYMBOL_NS_GPL(aml_clk_composite_ops, "CLK_AMLOGIC");
 +
-+MODULE_DESCRIPTION("Amlogic Composite Clock Driver");
++static struct aml_clk a9_dualdiv = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_dualdiv_ops,
++	},
++	.type = AML_CLKTYPE_DUALDIV,
++	.data = &(struct aml_clk_dualdiv_data) {
++		.reg_offset = 0,
++		.table = a9_dualdiv_table,
++		.table_count = ARRAY_SIZE(a9_dualdiv_table),
++	},
++};
++
++static struct aml_clk a9_dualdiv_sel = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_mux_ops,
++		/*
++		 * NOTE: To ensure output clock continuity, the mux can switch
++		 * correctly only when both the current path and the target path
++		 * have valid clock inputs. Otherwise, the mux cannot complete
++		 * the switch.
++		 */
++		.flags = CLK_OPS_PARENT_ENABLE,
++	},
++	.type = AML_CLKTYPE_MUX,
++	.data = &(struct aml_clk_mux_data) {
++		.reg_offset = 4,
++		.mask = 0x3,
++		.shift = 30,
++	},
++};
++
++struct clk_hw_onecell_data a9_dualdiv_clk_hw_data = {
++	.hws = {
++		[A9_CLK_DUALDIV]	= &a9_dualdiv.hw,
++		[A9_CLK_DUALDIV_SEL]	= &a9_dualdiv_sel.hw,
++	},
++	.num = A9_DUALDIVMUX_CLK_NUM,
++};
++
++/*
++ * A diagram of the A9 dualdivmux-ccu is as follows:
++ *       +--------------------------------------+
++ *       |  +---------+                         |
++ *       |  |         |                         |
++ * divin--->| dualdiv |--+                      |
++ *       |  |         |  |                      |
++ *       |  +---------+  |   +---+         |\   |
++ *       |               +-->| ~ |--mux0-->| |  |
++ * clk0--------------------->| ~ |--mux1-->| |------> out
++ * clk1--------------------->| ~ |--mux2-->| |  |
++ * clk2--------------------->| ~ |--mux3-->|/   |
++ *       |                   +---+              |
++ *       +--------------------------------------+
++ *
++ * Its internal multiplexer selects from up to 4 parent clocks, one of which
++ * must be 'dualdiv' output clock.
++ */
++static int of_aml_clk_dualdiv_init_register(struct device *dev,
++					    struct clk_hw_onecell_data *hw_data)
++{
++	struct device_node *np = dev_of_node(dev);
++	struct aml_clk *clk;
++	struct clk_parent_data pdata[5];
++	u8 pnum;
++	struct clk_init_data init;
++	int ret, clkid;
++
++	if (of_aml_clk_get_count(np) != A9_DUALDIVMUX_CLK_NUM)
++		return -EINVAL;
++
++	for (clkid = 0; clkid < A9_DUALDIVMUX_CLK_NUM; clkid++) {
++		if (clkid == A9_CLK_DUALDIV) { /* dualdiv */
++			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
++							 0, 0, pdata, &pnum);
++			if (ret)
++				return ret;
++		} else { /* dualdiv_sel */
++			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
++							 1, 4, pdata, &pnum);
++			if (ret)
++				return ret;
++
++			clk = to_aml_clk(hw_data->hws[clkid]);
++			ret = of_aml_clk_misc_set_parent_table(dev, clk, 1, 4);
++			if (ret)
++				return ret;
++		}
++
++		memcpy(&init, hw_data->hws[clkid]->init, sizeof(init));
++		init.name = of_aml_clk_get_name_index(np, clkid);
++		if (!init.name)
++			return -EINVAL;
++
++		init.num_parents = pnum;
++		init.parent_data = pdata;
++		hw_data->hws[clkid]->init = &init;
++		ret = of_aml_clk_register(dev, hw_data->hws[clkid], clkid);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static struct aml_clk a9_mclk0_pre_div = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_divider_ops,
++		.num_parents = 1,
++	},
++	.type = AML_CLKTYPE_DIV,
++	.data = &(struct aml_clk_divider_data) {
++		.reg_offset = 0xc,
++		.shift = 3,
++		.width = 5,
++		.flags = CLK_DIVIDER_MAX_AT_ZERO,
++	},
++};
++
++static struct aml_clk a9_mclk0_sel = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_mux_ops,
++	},
++	.type = AML_CLKTYPE_MUX,
++	.data = &(struct aml_clk_mux_data) {
++		.reg_offset = 0xc,
++		.mask = 0x3,
++		.shift = 12,
++	},
++};
++
++static struct aml_clk a9_mclk0_div = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_divider_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_mclk0_sel.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++	.type = AML_CLKTYPE_DIV,
++	.data = &(struct aml_clk_divider_data) {
++		.reg_offset = 0xc,
++		.shift = 9,
++		.width = 1,
++	},
++};
++
++static struct aml_clk a9_mclk0 = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_mclk0_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++	.type = AML_CLKTYPE_GATE,
++	.data = &(struct aml_clk_gate_data) {
++		.reg_offset = 0xc,
++		.bit_idx = 8,
++	},
++};
++
++static struct aml_clk a9_mclk1_pre_div = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_divider_ops,
++		.num_parents = 1,
++	},
++	.type = AML_CLKTYPE_DIV,
++	.data = &(struct aml_clk_divider_data) {
++		.reg_offset = 0xc,
++		.shift = 19,
++		.width = 5,
++		.flags = CLK_DIVIDER_MAX_AT_ZERO,
++	},
++};
++
++static struct aml_clk a9_mclk1_sel = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_mux_ops,
++	},
++	.type = AML_CLKTYPE_MUX,
++	.data = &(struct aml_clk_mux_data) {
++		.reg_offset = 0xc,
++		.mask = 0x3,
++		.shift = 28,
++	},
++};
++
++static struct aml_clk a9_mclk1_div = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_divider_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_mclk1_sel.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++	.type = AML_CLKTYPE_DIV,
++	.data = &(struct aml_clk_divider_data) {
++		.reg_offset = 0xc,
++		.shift = 25,
++		.width = 1,
++	},
++};
++
++static struct aml_clk a9_mclk1 = {
++	.hw.init = &(const struct clk_init_data) {
++		.ops = &aml_clk_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&a9_mclk1_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++	.type = AML_CLKTYPE_GATE,
++	.data = &(struct aml_clk_gate_data) {
++		.reg_offset = 0xc,
++		.bit_idx = 24,
++	},
++};
++
++#define A9_MCLK_CLK_NUM		8
++
++struct clk_hw_onecell_data a9_mclk_clk_hw_data = {
++	.hws = {
++		[A9_CLK_MCLK_0_PRE_DIV]	= &a9_mclk0_pre_div.hw,
++		[A9_CLK_MCLK_0_SEL]	= &a9_mclk0_sel.hw,
++		[A9_CLK_MCLK_0_DIV]	= &a9_mclk0_div.hw,
++		[A9_CLK_MCLK_0]		= &a9_mclk0.hw,
++		[A9_CLK_MCLK_1_PRE_DIV]	= &a9_mclk1_pre_div.hw,
++		[A9_CLK_MCLK_1_SEL]	= &a9_mclk1_sel.hw,
++		[A9_CLK_MCLK_1_DIV]	= &a9_mclk1_div.hw,
++		[A9_CLK_MCLK_1]		= &a9_mclk1.hw,
++	},
++	.num = A9_MCLK_CLK_NUM,
++};
++
++/*
++ * A diagram of the A9 mclk-ccu is as follows:
++ *        +--------------------------------------------------+
++ *        |              +-----+                             |
++ * divin--------------+->| div |-->|\                        |
++ *        |           |  +-----+   | |                       |
++ * clk0 -----------+-------------->| |   +-----+   +------+  |
++ *        |        |  |            | |-->| div |-->| gate |-----> mclk0
++ * clk1 --------+----------------->| |   +-----+   +------+  |
++ *        |     |  |  |            | |                       |
++ * clk2 -----+-------------------->|/                        |
++ *        |  |  |  |  |  +-----+                             |
++ *        |  |  |  |  +->| div |-->|\                        |
++ *        |  |  |  |     +-----+   | |                       |
++ *        |  |  |  +-------------->| |   +-----+   +------+  |
++ *        |  |  |                  | |-->| div |-->| gate |-----> mclk1
++ *        |  |  +----------------->| |   +-----+   +------+  |
++ *        |  |                     | |                       |
++ *        |  +-------------------->|/                        |
++ *        +--------------------------------------------------+
++ *
++ * The A9 mclk-ccu contains two identical mclk sub-modules. For each sub-module,
++ * channel 0 of the mux (mclk0/1_sel) has an independent pre-divider in front
++ * of it, while the clock sources for channels 1 to 3 are shared and identical.
++ */
++static int of_aml_clk_mclk_init_register(struct device *dev,
++					 struct clk_hw_onecell_data *hw_data)
++{
++	struct device_node *np = dev_of_node(dev);
++	struct aml_clk *clk;
++	struct clk_parent_data pdata[5];
++	u8 pnum;
++	struct clk_init_data init;
++	int ret, clkid;
++
++	if (of_aml_clk_get_count(np) != A9_MCLK_CLK_NUM)
++		return -EINVAL;
++
++	for (clkid = 0; clkid < A9_MCLK_CLK_NUM; clkid++) {
++		if (clkid == A9_CLK_MCLK_0_PRE_DIV ||
++		    clkid == A9_CLK_MCLK_1_PRE_DIV) {
++			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
++							 0, 0, pdata, &pnum);
++			if (ret)
++				return ret;
++		} else if (clkid == A9_CLK_MCLK_0_SEL ||
++			   clkid == A9_CLK_MCLK_1_SEL) {
++			ret = of_aml_clk_get_parent_data(dev, hw_data->hws,
++							 1, 4, &pdata[1], &pnum);
++			if (ret)
++				return ret;
++
++			/* Add the clock source for channel 0 of mclk0/1_sel */
++			pdata[0].hw = hw_data->hws[clkid - 1];
++			pnum += 1;
++
++			clk = to_aml_clk(hw_data->hws[clkid]);
++			ret = of_aml_clk_misc_set_parent_table(dev, clk, 1, 4);
++			if (ret)
++				return ret;
++		} else {
++			pnum = 1;
++			/*
++			 *The parent-child relationship among sub-clocks follows
++			 * this order:
++			 *  - hw_data->hws[0] -> ... -> hw_data->hws[n].
++			 */
++			pdata[0].hw = hw_data->hws[clkid - 1];
++		}
++
++		memcpy(&init, hw_data->hws[clkid]->init, sizeof(init));
++		init.name = of_aml_clk_get_name_index(np, clkid);
++		if (!init.name)
++			return -EINVAL;
++
++		init.num_parents = pnum;
++		init.parent_data = pdata;
++		hw_data->hws[clkid]->init = &init;
++		ret = of_aml_clk_register(dev, hw_data->hws[clkid], clkid);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static int aml_clk_get_clk_data_size(enum aml_clk_type type)
++{
++	switch (type) {
++	case AML_CLKTYPE_MUX:
++		return sizeof(struct aml_clk_mux_data);
++
++	case AML_CLKTYPE_DIV:
++		return sizeof(struct aml_clk_divider_data);
++
++	case AML_CLKTYPE_GATE:
++		return sizeof(struct aml_clk_gate_data);
++
++	case AML_CLKTYPE_COMPOSITE:
++		return sizeof(struct aml_clk_composite_data);
++
++	case AML_CLKTYPE_NOGLITCH:
++		return sizeof(struct aml_clk_noglitch_data);
++
++	case AML_CLKTYPE_DUALDIV:
++		return sizeof(struct aml_clk_dualdiv_data);
++
++	case AML_CLKTYPE_PLL:
++		return sizeof(struct aml_pll_data);
++
++	default:
++		return -EINVAL;
++	}
++}
++
++static struct clk_hw_onecell_data *
++aml_clk_misc_alloc_hw_data(struct device *dev, struct regmap *regmap,
++			   struct clk_hw_onecell_data *hw_data_tmp)
++{
++	struct device_node *np = dev_of_node(dev);
++	int clk_num;
++	int ret, clkid;
++	struct clk_hw_onecell_data *hw_data;
++	struct aml_clk *clk;
++	struct aml_clk *clk_tmp;
++
++	clk_num = of_aml_clk_get_count(np);
++	if (clk_num != hw_data_tmp->num)
++		return ERR_PTR(-EINVAL);
++
++	hw_data = devm_kzalloc(dev, struct_size(hw_data, hws, clk_num),
++			       GFP_KERNEL);
++	if (!hw_data)
++		return ERR_PTR(-ENOMEM);
++
++	hw_data->num = clk_num;
++	for (clkid = 0; clkid < clk_num; clkid++) {
++		clk_tmp = to_aml_clk(hw_data_tmp->hws[clkid]);
++		clk = devm_kmemdup(dev, clk_tmp, sizeof(*clk), GFP_KERNEL);
++		if (!clk)
++			return ERR_PTR(-ENOMEM);
++
++		clk->map = regmap;
++		hw_data->hws[clkid] = &clk->hw;
++		ret = aml_clk_get_clk_data_size(clk_tmp->type);
++		if (ret < 0)
++			return ERR_PTR(ret);
++
++		clk->data = devm_kmemdup(dev, clk_tmp->data, ret, GFP_KERNEL);
++		if (!clk->data)
++			return ERR_PTR(-ENOMEM);
++	}
++
++	return hw_data;
++}
++
++static int of_aml_clk_misc_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct regmap *regmap;
++	int ret;
++	struct clk_hw_onecell_data *hw_data, *hw_data_tmp;
++
++	/*
++	 * NOTE: Here, the pointer returned by of_device_get_match_data() points
++	 * to non-const data, and the hw_data parameter passed to
++	 * devm_of_clk_add_hw_provider() is also of type (void *).
++	 */
++	hw_data_tmp = (void *)of_device_get_match_data(dev);
++	if (!hw_data_tmp)
++		return -EFAULT;
++
++	regmap = aml_clk_regmap_init(pdev);
++	if (IS_ERR_OR_NULL(regmap))
++		return -EIO;
++
++	hw_data = aml_clk_misc_alloc_hw_data(dev, regmap, hw_data_tmp);
++	if (IS_ERR(hw_data))
++		return PTR_ERR(hw_data);
++
++	of_aml_clk_regs_init(dev);
++	if (hw_data_tmp == &a9_eth_clk_hw_data)
++		ret = of_aml_clk_eth_init_register(dev, hw_data);
++	else if (hw_data_tmp == &a9_dualdiv_clk_hw_data)
++		ret = of_aml_clk_dualdiv_init_register(dev, hw_data);
++	else if (hw_data_tmp == &a9_mclk_clk_hw_data)
++		ret = of_aml_clk_mclk_init_register(dev, hw_data);
++	else
++		ret = of_aml_clk_misc_init_register(dev, hw_data);
++	if (ret)
++		return ret;
++
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++					   hw_data);
++}
++
++static const struct of_device_id of_aml_clk_misc_match_table[] = {
++	{
++		.compatible = "amlogic,a9-sc-ccu",
++		.data = &a9_sc_clk_hw_data,
++	},
++	{
++		.compatible = "amlogic,a9-ts-ccu",
++		.data = &a9_ts_clk_hw_data,
++	},
++	{
++		.compatible = "amlogic,a9-genout-ccu",
++		.data = &a9_genout_clk_hw_data,
++	},
++	{
++		.compatible = "amlogic,a9-clk12_24m-ccu",
++		.data = &a9_clk12_24m_clk_hw_data,
++	},
++	{
++		.compatible = "amlogic,a9-vapb_ge2d-ccu",
++		.data = &a9_vapbge2d_clk_hw_data,
++	},
++	{
++		.compatible = "amlogic,a9-di-ccu",
++		.data = &a9_di_clk_hw_data,
++	},
++	{
++		.compatible = "amlogic,a9-eth-ccu",
++		.data = &a9_eth_clk_hw_data,
++	},
++	{
++		.compatible = "amlogic,a9-dualdivmux-ccu",
++		.data = &a9_dualdiv_clk_hw_data,
++	},
++	{
++		.compatible = "amlogic,a9-mclk-ccu",
++		.data = &a9_mclk_clk_hw_data,
++	},
++	{}
++};
++MODULE_DEVICE_TABLE(of, of_aml_clk_misc_match_table);
++
++static struct platform_driver of_aml_clk_misc_driver = {
++	.probe		= of_aml_clk_misc_probe,
++	.driver		= {
++		.name	= "aml-misc-clk",
++		.of_match_table = of_aml_clk_misc_match_table,
++	},
++};
++module_platform_driver(of_aml_clk_misc_driver);
++
++MODULE_DESCRIPTION("Amlogic A9 Misc Clock Control Units Driver");
 +MODULE_AUTHOR("Chuan Liu <chuan.liu@amlogic.com>");
 +MODULE_LICENSE("GPL");
 +MODULE_IMPORT_NS("CLK_AMLOGIC");
-diff --git a/drivers/clk/amlogic/clk-composite.h b/drivers/clk/amlogic/clk-composite.h
-new file mode 100644
-index 000000000000..6a356d697b78
---- /dev/null
-+++ b/drivers/clk/amlogic/clk-composite.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved
-+ */
-+
-+#ifndef __AML_CLK_COMPOSITE_H
-+#define __AML_CLK_COMPOSITE_H
-+
-+#include <linux/clk-provider.h>
-+
-+struct aml_clk_composite_data {
-+	unsigned int	reg_offset;
-+	u8		bit_offset;
-+	u8		div_width;
-+	u32		*table;
-+};
-+
-+extern const struct clk_ops aml_clk_composite_ops;
-+
-+#endif /* __AML_CLK_COMPOSITE_H */
-diff --git a/drivers/clk/amlogic/clk.c b/drivers/clk/amlogic/clk.c
-index 03ccfa78c511..e71dcb6b46b7 100644
---- a/drivers/clk/amlogic/clk.c
-+++ b/drivers/clk/amlogic/clk.c
-@@ -10,6 +10,7 @@
- 
- #include "clk.h"
- #include "clk-basic.h"
-+#include "clk-composite.h"
- 
- static const struct {
- 	unsigned int type;
-@@ -19,6 +20,7 @@ static const struct {
- 	ENTRY(AML_CLKTYPE_MUX),
- 	ENTRY(AML_CLKTYPE_DIV),
- 	ENTRY(AML_CLKTYPE_GATE),
-+	ENTRY(AML_CLKTYPE_COMPOSITE),
- #undef ENTRY
- };
- 
-@@ -95,6 +97,11 @@ static int aml_clk_div_available_rates_show(struct seq_file *s, void *data)
- 			div_flags = div->flags;
- 			div_width = div->width;
- 		}
-+	} else if (clk->type == AML_CLKTYPE_COMPOSITE) {
-+		struct aml_clk_composite_data *composite = clk->data;
-+
-+		div_val = (1 << composite->div_width) - 1;
-+		div_width = composite->div_width;
- 	} else {
- 		pr_err("%s: Unsupported clock type\n", clk_hw_get_name(hw));
- 		return -EINVAL;
-diff --git a/drivers/clk/amlogic/clk.h b/drivers/clk/amlogic/clk.h
-index ec0547c1354a..e5fe85c2969f 100644
---- a/drivers/clk/amlogic/clk.h
-+++ b/drivers/clk/amlogic/clk.h
-@@ -14,6 +14,7 @@ enum aml_clk_type {
- 	AML_CLKTYPE_MUX		= 1,
- 	AML_CLKTYPE_DIV		= 2,
- 	AML_CLKTYPE_GATE	= 3,
-+	AML_CLKTYPE_COMPOSITE	= 4,
- };
- 
- struct aml_clk {
 
 -- 
 2.42.0
