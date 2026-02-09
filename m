@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78938EF0717
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD844EF06E5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Feb 2026 05:49:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eBnwEi15wUpSm9on0CNySc9280k5iJqFA0cIb1k3TCQ=; b=EUU9s9dR9OuaEj
-	9Y9rcPCSFRHbvOeo4PHzxmutZ5lz4ZVlZGBozt4iXcgjoYyu22greLHNmJ7GVmEejuGA/u4UtL3gm
-	banSfImMaUFjKQMU6lbQPicUybjsYLxHHXGNsQwgys6flFUHqYya9S2KDM5h+znHUJSBLHr0A3G6B
-	+qhnx5++PcLrpZ/BG4y5f84F4/PMWVNQuCYbk9O8oSQzFIP4eNPk8vcJkzjhfcZJbkE7LKihLTnMf
-	r5Fr8SOtCLB6UHQAcxKqyIEGBDemfIqUxp39pR3yLBdlUmx9pTzQj1ubnjDqKloJyokCpvjBHom7I
-	cR4Rr6wexKSrVz9LKk2A==;
+	List-Owner; bh=mvhc830K2GBs+eG78EC/GEuHI9M2AgFl8qeVoEVUIaU=; b=xEdIcRO9sQHzVg
+	eCEwoyQUZDmCGRqZFWTG5r6iV0WlK2me/XG8ai2XWk/HlxsLWlqwTamPQm8O5fkqZEmLhw9w9xvSS
+	QYHMlLvVyhgn2M3RcDHZDg9A4UH+EqZS1dAKId/b9IPGBXq1P+rOTWiyQgsGUVFPo/+H4T/S7oDbV
+	Dpt5YUrropjAOCYqW2iK0i5JbfpyNvnZAlVYMoHEWM9Y/ES0yAKGytjBJP09fmE1vN4E0dtqpLGu1
+	zi4rppaWSwwnMSYkW1HRVcGWIFLsXVxriHEUdW5JTFyFR1B//xOyTMkO67Pl734zKmUYOXnUH2vId
+	rHjB15uwoNa8Q/Ampdrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpK93-0000000Erh5-3r6Z;
-	Mon, 09 Feb 2026 05:49:13 +0000
+	id 1vpK96-0000000Erjq-1iHP;
+	Mon, 09 Feb 2026 05:49:16 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vpK8z-0000000Erd6-1lVk
+	id 1vpK8x-0000000ErbX-3Cdv
 	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Feb 2026 05:49:11 +0000
+	Mon, 09 Feb 2026 05:49:13 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 235FA44573;
-	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 04D32C2BCAF;
-	Mon,  9 Feb 2026 05:49:07 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 92BBD44540;
+	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 56ED3C4AF09;
+	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770616147;
-	bh=WxRLnNceQ3wbnXmtcgHYv7mMpQB9lXHKbgRuGKvkBFE=;
+	s=k20201202; t=1770616146;
+	bh=yOeClwznsdl7CGdcam/Szj8V4if7Hp60mh/Ckyb0HAI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=VBVaEPCgyHdjqYj2PuDB5KexwWq2sH2ScSNX+lBWXHB1V3VkYHKKeIWyq8i9htSdM
-	 tHuZwpfHOrSEiqNitdmiWuo16C9POjP0z1pi6CopobXQTe7cXnbhsKyLtKgOG8qEAf
-	 80i99ISbODmYXRG2TDCNjKxXbk8if9gWL50MFNhBp21x+4ZHlMRcB5o6qZpj15CPfK
-	 in63Gl2wgkQ2SMMg7xNppBMo519cn/KpRBKmwFHlUp9FiUUa65A0MhTIoU0/Fj0Bxp
-	 VjLqB51ekIGQIMpwET5BS1cq67/C320dXE27PUWGYWZxD3pUJ97xe/ESA5VkDpdsUj
-	 haOpg0puuD+cw==
+	b=N79vCWwcEjqYOIfAW4B/wJi81JrguR8ZVpqiMAtqDhDxAnDI/CHrjQ53PR2r8XuQG
+	 jLBaR+X/xA+KBW4jb7B7t8Xsi8bkhW3d315T4fB8sDHvWOXzfpdmsVPUU1JeHK5EBR
+	 i5klKc/kaxOhBxKC+xy/yaEoLUyDit2q+qSWtIgiifYSvvmVt2L9h8hAWON5P3dhdB
+	 FnkwoFUB47QXdO95canP8gGDtn9lt2XxpBGel1lJkgUYzpC5BOXHPJOrgs65zfiLTs
+	 aKU6MfLQ3C08AoHkuT6Mx2yV323ZlQ9SM7XQ27L3/RVk+fCyDcAGSg1FCB5GdKkujm
+	 gzPjFOFaKQ4qQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EDB98EF070B;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BAF0EF06E5;
 	Mon,  9 Feb 2026 05:49:06 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Mon, 09 Feb 2026 13:48:53 +0800
-Subject: [PATCH 07/13] clk: amlogic: Add duandiv clock driver
+Date: Mon, 09 Feb 2026 13:48:47 +0800
+Subject: [PATCH 01/13] dt-bindings: clock: Add Amlogic A9 standardized
+ model clock control units
 MIME-Version: 1.0
-Message-Id: <20260209-a9_clock_driver-v1-7-a9198dc03d2a@amlogic.com>
+Message-Id: <20260209-a9_clock_driver-v1-1-a9198dc03d2a@amlogic.com>
 References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 In-Reply-To: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,19 +62,19 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616142; l=15230;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1770616142; l=16188;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=lExIppsrGs3hG71peQNd4KEz/nuT8sZa6/ObaVooJnk=;
- b=B3IIxMGqKTCKBnUJMP9hnaQefxTiQhEaz/vXaE3Gja/L1P9mrB8tqWDw/nijoc8hQHiAgYaj6
- 93tMWtV6cioCtvGwL6ssxh4h6idEzcxNdZs4HaOwViWZeUPlsdLXdHI
+ bh=LGR7t5zw1CkYLkatuNOHLf45xN42LhF2iAUlxglSJEw=;
+ b=P8RRTNzfxAdNQaYHVPOQYUJftNvVqKauNV9azhek1IyBjv3EqHVBJbZm81g5dx731tDFkmUBZ
+ 0D0Bv7aLiQZCfrXokH658fUGnlSAAoysQjIbNmal+G5fyQwM/LVF+GC
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
  auth_id=203
 X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260208_214909_564558_259DA9BE 
-X-CRM114-Status: GOOD (  24.23  )
+X-CRM114-CacheID: sfid-20260208_214907_867777_6089F895 
+X-CRM114-Status: GOOD (  13.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,462 +94,455 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-Implement clk_ops support for Amlogic dualdiv clocks. The dualdiv clock
-comprises two independent divider channels with counters. It achieves
-fractional division functionality by alternating between the two divided
-clocks.
-
-Amlogic dualdiv clocks are used for modules requiring fractional
-division without concern for clock phase or duty cycle, commonly
-generating 32.768KHz from a 24MHz crystal input for RTC applications.
+Add dt-binding documentation for standardized model clock control units
+in A9 SoC family.
 
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/clk/amlogic/Makefile      |   1 +
- drivers/clk/amlogic/clk-dualdiv.c | 365 ++++++++++++++++++++++++++++++++++++++
- drivers/clk/amlogic/clk-dualdiv.h |  27 +++
- drivers/clk/amlogic/clk.c         |   1 +
- drivers/clk/amlogic/clk.h         |   1 +
- 5 files changed, 395 insertions(+)
+ .../bindings/clock/amlogic,a9-model-ccu.yaml       | 435 +++++++++++++++++++++
+ 1 file changed, 435 insertions(+)
 
-diff --git a/drivers/clk/amlogic/Makefile b/drivers/clk/amlogic/Makefile
-index 72cd2525e078..bc2b22b4d3c9 100644
---- a/drivers/clk/amlogic/Makefile
-+++ b/drivers/clk/amlogic/Makefile
-@@ -5,4 +5,5 @@ obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-amlogic.o
- clk-amlogic-y += clk.o
- clk-amlogic-y += clk-basic.o
- clk-amlogic-y += clk-composite.o
-+clk-amlogic-y += clk-dualdiv.o
- clk-amlogic-y += clk-noglitch.o
-diff --git a/drivers/clk/amlogic/clk-dualdiv.c b/drivers/clk/amlogic/clk-dualdiv.c
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a9-model-ccu.yaml b/Documentation/devicetree/bindings/clock/amlogic,a9-model-ccu.yaml
 new file mode 100644
-index 000000000000..1752b89ec0f2
+index 000000000000..56c5cbe1b246
 --- /dev/null
-+++ b/drivers/clk/amlogic/clk-dualdiv.c
-@@ -0,0 +1,365 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved
-+ */
++++ b/Documentation/devicetree/bindings/clock/amlogic,a9-model-ccu.yaml
+@@ -0,0 +1,435 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2026 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,a9-model-ccu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/module.h>
++title: Amlogic A9 Family Standardized Model Clock Control Unit
 +
-+#include "clk.h"
-+#include "clk-basic.h"
-+#include "clk-dualdiv.h"
++maintainers:
++  - Chuan Liu <chuan.liu@amlogic.com>
 +
-+/*
-+ * Amlogic dualdiv clock module:
-+ *
-+ *                          n0         m0     div_mode    clkout_gate
-+ *                          |          |        |              |
-+ *          clkin_gate      |    n1    |    m1  | force_clkout |
-+ *             |            |    |     |    |   |     |        |
-+ *      +------|------------|----|-----|----|---|-----|--------|----+
-+ *      |      |           \|/   |    \|/   |  \|/    |        |    |
-+ *      |      |         +-----+ |  +-----+ |  |\     |        |    |
-+ *      |      |     +-->| div |-o->| cnt |-o->| |   \|/       |    |
-+ *      |     \|/    |   +-----+ |  +-----+ |  | |   |\        |    |
-+ * clk  |  +------+  |           |          |  | |   | |       |    |
-+ * in ---->| gate |--+      +----+     +----+  | |-->| |      \|/   |
-+ *      |  +------+  |     \|/        \|/      | |   | |   +------+ |
-+ *      |            |   +-----+    +-----+    | |   | |-->| gate |----> clk
-+ *      |            +-->| div |--->| cnt |--->| |   | |   +------+ |    out
-+ *      |            |   +-----+    +-----+    |/    | |            |
-+ *      |            +------------------------------>| |            |
-+ *      |                                            |/             |
-+ *      |                                                           |
-+ *      +-----------------------------------------------------------+
-+ *
-+ * The Amlogic dualdiv clock is used to implement fractional division (e.g., a
-+ * 24 MHz input clock with a 32.768 KHz output for the RTC).
-+ *
-+ * The functional description of these parameters is described below as follows:
-+ *   - clkin_gate: clock input gate
-+ *   - n0: Divider value corresponding to channel 0
-+ *   - n1: Divider value corresponding to channel 1
-+ *   - m0: Number of output cycles per burst on channel 0 (switches to channel 1
-+ *         after the cycles are output)
-+ *   - m1: Number of output cycles per burst on channel 0 (switches to channel 0
-+ *         after the cycles are output)
-+ *   - div_mode: Division mode configuration:
-+ *     - div_mode = 0: Normal division mode:
-+ *         dualdiv_out = clk_in / n0;
-+ *     - div_mode = 1: Dualdiv (fractional) division mode:
-+ *         dualdiv_out = clk_in / ((n0 * m0 + n1 * m1) / (m0 + m1));
-+ *   - force_clkout: force clock_out = clock_in
-+ *   - clkout_gate: clock output gate
-+ *
-+ * The fractional division principle of dualdiv is to alternately switch via a
-+ * mux between two integer-divided clocks, thereby achieving an effective
-+ * fractional division.
-+ *
-+ * For example, when configuring a dualdiv ratio of 1.75, the clock waveform
-+ * is illustrated below (n0 = 1, m0 = 1, n1 = 2, m1 = 3):
-+ *
-+ *             _   _   _   _   _   _   _   _   _   _   _   _
-+ * clk in:    | |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_|
-+ *             _   _   _   _   _   _   _   _   _   _   _   _
-+ * channel0:  | |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_|
-+ *             __    __    __    __    __    __    __    __
-+ * channel1:  |  |__|  |__|  |__|  |__|  |__|  |__|  |__|  |__|
-+ *             _   __    __    __    _   __    __    __    _
-+ * clk out:   | |_|  |__|  |__|  |__| |_|  |__|  |__|  |__| |_|
-+ *            |<->|<--------------->|<->|<--------------->|<->|
-+ *              m0          m1        m0         m1         m0
-+ */
++description:
++  The clock tree within the A9 is composed of numerous instances of these
++  standardized model CCU (Clock Control Units).
 +
-+#define AML_DUALDIV_REG0_OFFSET			(0)
-+#define AML_DUALDIV_REG1_OFFSET			(4)
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - const: amlogic,a9-composite-ccu
++        description: Supports clock source selection, frequency division, and
++                     clock gating.
++      - items:
++          - const: amlogic,a9-composite-ccu-mult
++        description: Some modules have multiple input clocks and contain
++                     multiple composite-ccus internally.
++      - items:
++          - const: amlogic,a9-noglitch-ccu
++        description: Provides the same functionality as composite-ccu but
++                     includes glitch suppression during frequency transitions.
++      - items:
++          - const: amlogic,a9-noglitch-ccu-mult
++        description: Some modules have multiple input clocks and contain
++                     multiple noglitch-ccus internally.
++      - items:
++          - const: amlogic,a9-sysbus-ccu
++        description: Consists of multiple gating arrays, commonly used for
++                     Amlogic's sys_clk and axi_clk.
 +
-+struct aml_dualdiv_reg_parms {
-+	union {
-+		struct {
-+			u32 n0			:12;  /* bit0 - bit11 */
-+			u32 n1			:12;  /* bit12 - bit23 */
-+			u32 reserved0		:4;  /* bit24 - bit27 */
-+			u32 div_mode		:2;  /* bit28 - bit29 */
-+			u32 clkout_gate		:1;  /* bit30 */
-+			u32 clkin_gate		:1;  /* bit31 */
-+		} bits;
-+		u32 val;
-+	} reg0;
-+	union {
-+		struct {
-+			u32 m0			:12;  /* bit0 - bit11 */
-+			u32 m1			:12;  /* bit12 - bit23 */
-+			u32 force_clkout	:1;  /* bit24 */
-+			u32 reserved0		:5;  /* bit25 - bit29 */
-+			u32 out_mux		:2;  /* bit30 - bit31 */
++  reg:
++    maxItems: 1
 +
-+		} bits;
-+		u32 val;
-+	} reg1;
-+};
++  clocks:
++    minItems: 1
++    maxItems: 16
 +
-+static inline unsigned int _get_div_mult(unsigned int val)
-+{
-+	return val + 1;
-+}
++  clock-names:
++    minItems: 1
++    maxItems: 16
 +
-+static unsigned long
-+aml_dualdiv_param_to_rate(unsigned long parent_rate,
-+			  const struct aml_clk_dualdiv_param *p)
-+{
-+	unsigned int n0, n1, m0, m1;
++  clock-output-names:
++    minItems: 1
++    # The sysbus-ccu of A9 supports up to 128 gates
++    maxItems: 128
 +
-+	n0 = _get_div_mult(p->n0);
-+	if (!p->div_mode)
-+		return DIV_ROUND_CLOSEST(parent_rate, n0);
++  '#clock-cells':
++    description:
++      The clock controller of a module may contain one or more CCU(s). When a
++      clock controller has multiple CCUs, an index is required to specify a
++      particular CCU within the clock controller.
++    oneOf:
++      - const: 0
++        description: Single clock output, no specifier needed
++      - const: 1
++        description: Multiple clocks, index selects specific output
 +
-+	n1 = _get_div_mult(p->n1);
-+	m0 = _get_div_mult(p->m0);
-+	m1 = _get_div_mult(p->m1);
++  amlogic,clock-max-frequency:
++    description: |
++      Each clock's maximum output frequency is constrained during hardware
++      design to ensure proper timing requirements for the clock network. If the
++      clock frequency configured exceeds this design limit, it can lead to
++      abnormal behavior in modules relying on that clock and may even cause
++      cross-talk that affects other modules.
 +
-+	return DIV_ROUND_CLOSEST(parent_rate * (m0 + m1), n0 * m0 + n1 * m1);
-+}
++      In the driver, this property is parsed, and interface functions from the
++      CCF are called to enforce the clock's maximum frequency, preventing
++      potential issues caused by excessive clock frequency configurations.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
 +
-+static unsigned long aml_clk_dualdiv_recalc_rate(struct clk_hw *hw,
-+						 unsigned long parent_rate)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_dualdiv_data *dualdiv = clk->data;
-+	struct aml_dualdiv_reg_parms reg;
-+	struct aml_clk_dualdiv_param parm;
++  amlogic,reg-layout:
++    description:
++      These standardized model CCUs require register configuration for their
++      clock functions. This property node describes the register layout
++      parameters for each model's CCU.
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
 +
-+	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG1_OFFSET,
-+		    &reg.reg1.val);
-+	if (reg.reg1.bits.force_clkout == 1)
-+		return parent_rate;
++allOf:
++  - if:
++      properties:
++        compatible:
++          anyOf:
++            - contains:
++                const: amlogic,a9-composite-ccu
++            - contains:
++                const: amlogic,a9-noglitch-ccu
++    then:
++      properties:
++        '#clock-cells':
++          const: 0
++        clock-output-names:
++          minItems: 1
++          maxItems: 1
++    else:
++      properties:
++        '#clock-cells':
++          const: 1
++        clock-output-names:
++          minItems: 2
 +
-+	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
-+		    &reg.reg0.val);
-+	parm.div_mode = reg.reg0.bits.div_mode;
-+	parm.n0 = reg.reg0.bits.n0;
-+	parm.n1 = reg.reg0.bits.n1;
-+	parm.m0 = reg.reg1.bits.m0;
-+	parm.m1 = reg.reg1.bits.m1;
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amlogic,a9-composite-ccu
++    then:
++      properties:
++        clocks:
++          minItems: 1
++          items:
++            - description: input clock source 0
++            - description: input clock source 1 (optional)
++            - description: input clock source 2 (optional)
++            - description: input clock source 3 (optional)
++            - description: input clock source 4 (optional)
++            - description: input clock source 5 (optional)
++            - description: input clock source 6 (optional)
++            - description: input clock source 7 (optional)
++        clock-names:
++          minItems: 1
++          items:
++            - const: clkin0
++            - const: clkin1
++            - const: clkin2
++            - const: clkin3
++            - const: clkin4
++            - const: clkin5
++            - const: clkin6
++            - const: clkin7
++        amlogic,reg-layout:
++          description: |
++            composite-ccu contains three register layout parameters:
++              * register offset
++              * bit offset
++              * divider effective bit width
++      required:
++        - amlogic,reg-layout
++        - clock-names
 +
-+	return aml_dualdiv_param_to_rate(parent_rate, &parm);
-+}
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amlogic,a9-composite-ccu-mult
++    then:
++      properties:
++        clocks:
++          description:
++            Some clock controllers contain two composite-ccus (labeled
++            composite_a and composite_b). In certain controllers, composite_a
++            and composite_b share a common clock source, while in others they
++            have independent clock sources.
++          minItems: 1
++          items:
++            - description: composite_a/b's input clock source 0
++            - description: composite_a/b's input clock source 1 (optional)
++            - description: composite_a/b's input clock source 2 (optional)
++            - description: composite_a/b's input clock source 3 (optional)
++            - description: composite_a/b's input clock source 4 (optional)
++            - description: composite_a/b's input clock source 5 (optional)
++            - description: composite_a/b's input clock source 6 (optional)
++            - description: composite_a/b's input clock source 7 (optional)
++            - description: composite_b's input clock source 0 (optional)
++            - description: composite_b's input clock source 1 (optional)
++            - description: composite_b's input clock source 2 (optional)
++            - description: composite_b's input clock source 3 (optional)
++            - description: composite_b's input clock source 4 (optional)
++            - description: composite_b's input clock source 5 (optional)
++            - description: composite_b's input clock source 6 (optional)
++            - description: composite_b's input clock source 7 (optional)
++        clock-names:
++          minItems: 1
++          items:
++            - const: clkin0
++            - const: clkin1
++            - const: clkin2
++            - const: clkin3
++            - const: clkin4
++            - const: clkin5
++            - const: clkin6
++            - const: clkin7
++            - const: bclkin0
++            - const: bclkin1
++            - const: bclkin2
++            - const: bclkin3
++            - const: bclkin4
++            - const: bclkin5
++            - const: bclkin6
++            - const: bclkin7
++        amlogic,reg-layout:
++          description: |
++            composite-ccu contains three register layout parameters:
++              * register offset
++              * bit offset
++              * divider effective bit width
++      required:
++        - amlogic,reg-layout
++        - clock-names
 +
-+/*
-+ * NOTE: Dynamically calculating the divider parameters based on the target
-+ * frequency has relatively high algorithmic complexity, and the number of
-+ * frequency points that require dualdiv division in current use cases is
-+ * limited.
-+ *
-+ * Therefore, only a table-based lookup method is supported to obtain the
-+ * best-matched divider parameters at present.
-+ */
-+static const struct aml_clk_dualdiv_param *
-+aml_clk_dualdiv_get_setting(unsigned long rate, unsigned long parent_rate,
-+			    struct aml_clk_dualdiv_data *dualdiv)
-+{
-+	const struct aml_clk_dualdiv_param *table = dualdiv->table;
-+	unsigned long best = 0, now = 0;
-+	unsigned int i, best_i = 0;
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amlogic,a9-noglitch-ccu
++    then:
++      properties:
++        clocks:
++          minItems: 1
++          items:
++            - description: input clock source 0
++            - description: input clock source 1 (optional)
++            - description: input clock source 2 (optional)
++            - description: input clock source 3 (optional)
++            - description: input clock source 4 (optional)
++            - description: input clock source 5 (optional)
++            - description: input clock source 6 (optional)
++            - description: input clock source 7 (optional)
++        clock-names:
++          minItems: 1
++          items:
++            - const: clkin0
++            - const: clkin1
++            - const: clkin2
++            - const: clkin3
++            - const: clkin4
++            - const: clkin5
++            - const: clkin6
++            - const: clkin7
++      required:
++        - clock-names
 +
-+	if (!table)
-+		return NULL;
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amlogic,a9-noglitch-ccu-mult
++    then:
++      properties:
++        clocks:
++          minItems: 1
++          items:
++            - description: input clock source 0
++            - description: input clock source 1 (optional)
++            - description: input clock source 2 (optional)
++            - description: input clock source 3 (optional)
++            - description: input clock source 4 (optional)
++            - description: input clock source 5 (optional)
++            - description: input clock source 6 (optional)
++            - description: input clock source 7 (optional)
++        clock-names:
++          minItems: 1
++          items:
++            - const: clkin0
++            - const: clkin1
++            - const: clkin2
++            - const: clkin3
++            - const: clkin4
++            - const: clkin5
++            - const: clkin6
++            - const: clkin7
++        amlogic,reg-layout:
++          description: |
++            composite-ccu contains one register layout parameters:
++              * register offset
++      required:
++        - amlogic,reg-layout
++        - clock-names
 +
-+	for (i = 0; i < dualdiv->table_count; i++) {
-+		now = aml_dualdiv_param_to_rate(parent_rate, &table[i]);
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amlogic,a9-sysbus-ccu
++    then:
++      properties:
++        clocks:
++          maxItems: 1
++          description: input clock of sysbus-ccu
++        amlogic,reg-layout:
++          description: |
++            composite-ccu contains two register layout parameters:
++              * register offset
++              * bit offset
++      required:
++        - amlogic,reg-layout
 +
-+		/* If we get an exact match, don't bother any further */
-+		if (now == rate) {
-+			return &table[i];
-+		} else if (abs(now - rate) < abs(best - rate)) {
-+			best = now;
-+			best_i = i;
-+		}
-+	}
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-output-names
++  - "#clock-cells"
 +
-+	return (struct aml_clk_dualdiv_param *)&table[best_i];
-+}
++additionalProperties: false
 +
-+static int aml_clk_dualdiv_determine_rate(struct clk_hw *hw,
-+					  struct clk_rate_request *req)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_dualdiv_data *dualdiv = clk->data;
-+	const struct aml_clk_dualdiv_param *setting;
++examples:
++  - |
++    clk_dummy: clock-dummy {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <0>;
++        clock-output-names = "dummy";
++        status = "disabled";
++    };
 +
-+	/* Just need to set "force_clkout" = 1 */
-+	if (req->rate == req->best_parent_rate) {
-+		req->rate = req->best_parent_rate;
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++        clock-controller@350 {
++            compatible = "amlogic,a9-composite-ccu";
++            reg = <0x0 0x350 0x0 0x4>;
++            #clock-cells = <0>;
++            amlogic,clock-max-frequency = <50000000>;
++            amlogic,reg-layout = <0x0 0  7>;
++            clock-output-names = "sar_adc";
++            clocks = <&xtal_24m>,
++                     <&scmi_clk 17>;
++            clock-names = "clkin0", "clkin1";
++        };
 +
-+		return 0;
-+	}
++        clock-controller@290 {
++            compatible = "amlogic,a9-composite-ccu-mult";
++            reg = <0x0 0x290 0x0 0x8>;
++            #clock-cells = <1>;
++            amlogic,clock-max-frequency = <250000000>,
++                                          <250000000>,
++                                          <1200000000>;
++            amlogic,reg-layout = <0x0 0  7>,
++                                 <0x0 16 7>,
++                                 <0x4 0  7>;
++            clock-output-names = "sd_emmc_a",
++                                 "sd_emmc_b",
++                                 "sd_emmc_c";
++            clocks = <&xtal_24m>,
++                     <&scmi_clk 6>,
++                     <&scmi_clk 10>;
++            clock-names = "clkin0",
++                          "clkin1",
++                          "clkin2";
++        };
 +
-+	setting = aml_clk_dualdiv_get_setting(req->rate, req->best_parent_rate,
-+					      dualdiv);
-+	if (setting)
-+		req->rate = aml_dualdiv_param_to_rate(req->best_parent_rate,
-+						      setting);
-+	else
-+		req->rate = aml_clk_dualdiv_recalc_rate(hw,
-+							req->best_parent_rate);
++        clock-controller@378 {
++            compatible = "amlogic,a9-composite-ccu-mult";
++            reg = <0x0 0x378 0x0 0x4>;
++            #clock-cells = <1>;
++            amlogic,clock-max-frequency = <500000000>,
++                                          <667000000>;
++            amlogic,reg-layout = <0x0 0  7>,
++                                 <0x0 16 7>;
++            clock-output-names = "dptx_apb2",
++                                 "dptx_aud";
++            clocks = <&xtal_24m>,
++                     <&scmi_clk 17>,
++                     <&scmi_clk 12>,
++                     <&scmi_clk 14>,
++                     <&clk_dummy>,
++                     <&clk_dummy>,
++                     <&clk_dummy>,
++                     <&clk_dummy>,
++                     <&xtal_24m>, /* composite-ccu_b's clock source 0 */
++                     <&scmi_clk 17>, /* composite-ccu_b's clock source 1 */
++                     <&scmi_clk 10>, /* composite-ccu_b's clock source 2 */
++                     <&scmi_clk 12>; /* composite-ccu_b's clock source 3 */
++            clock-names = "clkin0",
++                          "clkin1",
++                          "clkin2",
++                          "clkin3",
++                          "clkin4",
++                          "clkin5",
++                          "clkin6",
++                          "clkin7",
++                          "bclkin0",
++                          "bclkin1",
++                          "bclkin2",
++                          "bclkin3";
++        };
 +
-+	return 0;
-+}
++        clock-controller@420 {
++            compatible = "amlogic,a9-noglitch-ccu";
++            reg = <0x0 0x420 0x0 0x4>;
++            #clock-cells = <0>;
++            amlogic,clock-max-frequency = <800000000>;
++            clock-output-names = "dspa";
++            clocks = <&xtal_24m>,
++                     <&scmi_clk 8>,
++                     <&scmi_clk 10>;
++            clock-names = "clkin0",
++                          "clkin1",
++                          "clkin2";
++        };
 +
-+static int aml_clk_dualdiv_set_rate(struct clk_hw *hw, unsigned long rate,
-+				    unsigned long parent_rate)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_dualdiv_data *dualdiv = clk->data;
-+	struct aml_dualdiv_reg_parms reg;
-+	const struct aml_clk_dualdiv_param *setting;
++        clock-controller@400 {
++            compatible = "amlogic,a9-noglitch-ccu-mult";
++            reg = <0x0 0x400 0x0 0x8>;
++            #clock-cells = <1>;
++            /*
++             * If only one maximum frequency is specified, it is shared by all
++             * clocks under the current device node.
++             */
++            amlogic,clock-max-frequency = <1000000000>;
++            amlogic,reg-layout = <0x0>,
++                                 <0x4>;
++            clock-output-names = "mali",
++                                 "mali_stack";
++            clocks = <&xtal_24m>,
++                     <&scmi_clk 23>,
++                     <&scmi_clk 6>;
++            clock-names = "clkin0",
++                          "clkin1",
++                          "clkin2";
++        };
 +
-+	/* Just need to set "force_clkout" = 1 */
-+	if (rate == parent_rate) {
-+		regmap_read(clk->map,
-+			    dualdiv->reg_offset + AML_DUALDIV_REG1_OFFSET,
-+			    &reg.reg1.val);
-+		reg.reg1.bits.force_clkout = 1;
-+		regmap_write(clk->map,
-+			     dualdiv->reg_offset + AML_DUALDIV_REG1_OFFSET,
-+			     reg.reg1.val);
-+
-+		return 0;
-+	}
-+
-+	setting = aml_clk_dualdiv_get_setting(rate, parent_rate, dualdiv);
-+	if (!setting)
-+		return -EINVAL;
-+
-+	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
-+		    &reg.reg0.val);
-+	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG1_OFFSET,
-+		    &reg.reg1.val);
-+	reg.reg1.bits.force_clkout = 0;
-+
-+	reg.reg0.bits.div_mode = setting->div_mode;
-+	reg.reg0.bits.n0 = setting->n0;
-+	reg.reg0.bits.n1 = setting->n1;
-+	reg.reg1.bits.m0 = setting->m0;
-+	reg.reg1.bits.m1 = setting->m1;
-+
-+	regmap_write(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
-+		     reg.reg0.val);
-+	regmap_write(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG1_OFFSET,
-+		     reg.reg1.val);
-+
-+	return 0;
-+}
-+
-+static int aml_clk_dualdiv_enable(struct clk_hw *hw)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_dualdiv_data *dualdiv = clk->data;
-+	struct aml_dualdiv_reg_parms reg;
-+
-+	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
-+		    &reg.reg0.val);
-+	reg.reg0.bits.clkin_gate = 1;
-+	reg.reg0.bits.clkout_gate = 1;
-+
-+	regmap_write(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
-+		     reg.reg0.val);
-+
-+	return 0;
-+}
-+
-+static void aml_clk_dualdiv_disable(struct clk_hw *hw)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_dualdiv_data *dualdiv = clk->data;
-+	struct aml_dualdiv_reg_parms reg;
-+
-+	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
-+		    &reg.reg0.val);
-+	reg.reg0.bits.clkin_gate = 0;
-+	reg.reg0.bits.clkout_gate = 0;
-+
-+	regmap_write(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
-+		     reg.reg0.val);
-+}
-+
-+static int aml_clk_dualdiv_is_enabled(struct clk_hw *hw)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_dualdiv_data *dualdiv = clk->data;
-+	struct aml_dualdiv_reg_parms reg;
-+
-+	regmap_read(clk->map, dualdiv->reg_offset + AML_DUALDIV_REG0_OFFSET,
-+		    &reg.reg0.val);
-+
-+	if (reg.reg0.bits.clkin_gate && reg.reg0.bits.clkout_gate)
-+		return 1;
-+	else
-+		return 0;
-+}
-+
-+#ifdef CONFIG_DEBUG_FS
-+#include <linux/debugfs.h>
-+
-+static int aml_clk_dualdiv_available_rates_show(struct seq_file *s, void *data)
-+{
-+	struct clk_hw *hw = s->private;
-+	struct clk_hw *phw = clk_hw_get_parent(hw);
-+	struct aml_clk *clk = to_aml_clk(hw);
-+	struct aml_clk_dualdiv_data *dualdiv = clk->data;
-+	unsigned long rate, prate;
-+	unsigned long core_min_rate, core_max_rate;
-+	int i;
-+
-+	if (!phw) {
-+		pr_err("%s: can't get parent\n", clk_hw_get_name(hw));
-+
-+		return -ENOENT;
-+	}
-+
-+	prate = clk_hw_get_rate(phw);
-+	clk_hw_get_rate_range(hw, &core_min_rate, &core_max_rate);
-+	if (dualdiv->table) {
-+		for (i = 0; i < dualdiv->table_count; i++) {
-+			rate = aml_dualdiv_param_to_rate(prate,
-+							 &dualdiv->table[i]);
-+			if (rate < core_min_rate || rate > core_max_rate)
-+				continue;
-+
-+			seq_printf(s, "%ld\n", (unsigned long)rate);
-+		}
-+	} else {
-+		seq_printf(s, "%ld\n", prate);
-+	}
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(aml_clk_dualdiv_available_rates);
-+
-+static void aml_clk_dualdiv_debug_init(struct clk_hw *hw, struct dentry *dentry)
-+{
-+	struct aml_clk *clk = to_aml_clk(hw);
-+
-+	debugfs_create_file("clk_type", 0444, dentry, hw, &aml_clk_type_fops);
-+	if (clk->type == AML_CLKTYPE_DUALDIV)
-+		debugfs_create_file("clk_available_rates", 0444, dentry, hw,
-+				    &aml_clk_dualdiv_available_rates_fops);
-+}
-+#endif /* CONFIG_DEBUG_FS */
-+
-+const struct clk_ops aml_clk_dualdiv_ops = {
-+	.enable		= aml_clk_dualdiv_enable,
-+	.disable	= aml_clk_dualdiv_disable,
-+	.is_enabled	= aml_clk_dualdiv_is_enabled,
-+	.recalc_rate	= aml_clk_dualdiv_recalc_rate,
-+	.determine_rate	= aml_clk_dualdiv_determine_rate,
-+	.set_rate	= aml_clk_dualdiv_set_rate,
-+#ifdef CONFIG_DEBUG_FS
-+	.debug_init	= aml_clk_dualdiv_debug_init,
-+#endif /* CONFIG_DEBUG_FS */
-+};
-+EXPORT_SYMBOL_NS_GPL(aml_clk_dualdiv_ops, "CLK_AMLOGIC");
-+
-+MODULE_DESCRIPTION("Amlogic Dualdiv Driver");
-+MODULE_AUTHOR("Chuan Liu <chuan.liu@amlogic.com>");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("CLK_AMLOGIC");
-diff --git a/drivers/clk/amlogic/clk-dualdiv.h b/drivers/clk/amlogic/clk-dualdiv.h
-new file mode 100644
-index 000000000000..fbbae6686afd
---- /dev/null
-+++ b/drivers/clk/amlogic/clk-dualdiv.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved
-+ */
-+
-+#ifndef __AML_CLK_DUALDIV_H
-+#define __AML_CLK_DUALDIV_H
-+
-+#include <linux/clk-provider.h>
-+
-+struct aml_clk_dualdiv_param {
-+	unsigned int div_mode;
-+	unsigned int n0;
-+	unsigned int m0;
-+	unsigned int n1;
-+	unsigned int m1;
-+};
-+
-+struct aml_clk_dualdiv_data {
-+	unsigned int			reg_offset;
-+	struct	aml_clk_dualdiv_param	*table;
-+	unsigned int			table_count;
-+};
-+
-+extern const struct clk_ops aml_clk_dualdiv_ops;
-+
-+#endif /* __AML_CLK_DUALDIV_MUX_H */
-diff --git a/drivers/clk/amlogic/clk.c b/drivers/clk/amlogic/clk.c
-index 12e9596668d2..5431aa320dfa 100644
---- a/drivers/clk/amlogic/clk.c
-+++ b/drivers/clk/amlogic/clk.c
-@@ -23,6 +23,7 @@ static const struct {
- 	ENTRY(AML_CLKTYPE_GATE),
- 	ENTRY(AML_CLKTYPE_COMPOSITE),
- 	ENTRY(AML_CLKTYPE_NOGLITCH),
-+	ENTRY(AML_CLKTYPE_DUALDIV),
- #undef ENTRY
- };
- 
-diff --git a/drivers/clk/amlogic/clk.h b/drivers/clk/amlogic/clk.h
-index 14045fa109c0..c1d58a08e407 100644
---- a/drivers/clk/amlogic/clk.h
-+++ b/drivers/clk/amlogic/clk.h
-@@ -16,6 +16,7 @@ enum aml_clk_type {
- 	AML_CLKTYPE_GATE	= 3,
- 	AML_CLKTYPE_COMPOSITE	= 4,
- 	AML_CLKTYPE_NOGLITCH	= 5,
-+	AML_CLKTYPE_DUALDIV	= 6,
- };
- 
- struct aml_clk {
++        clock-sysbus@230 {
++            compatible = "amlogic,a9-sysbus-ccu";
++            reg = <0x0 0x230 0x0 0x10>;
++            #clock-cells = <1>;
++            amlogic,reg-layout = <0 0>,
++                                 <0 1>,
++                                 <0 3>;
++            clock-output-names = "sys_am_axi",
++                                 "sys_dos",
++                                 "sys_mipi_dsi";
++            clocks = <&scmi_clk 17>;
++        };
++    };
 
 -- 
 2.42.0
