@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C68DDEF48DB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Feb 2026 07:33:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94272EF48DD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Feb 2026 07:36:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HVRbq2GY0E7dE6d4Az6rGxjJ6jkiqsqXFcCpe56C3kI=; b=Trj+NQKYAkqoxi
-	nSuauTGQgKfMu/VlWalfOE+jib/kdQ+QhdWaMSZCp/Q4LSC2uw2k5//xyTDc5cvTId6BWHRY35BxX
-	SRyBjCpKDpeHzvI8QJiHt5GwSlMpoVt9+Ig5ZAt1ipmLsbuRT9QCEOsvMt/eU4waGBQOOJZep9pZN
-	PUfeCxzEVS8DueyLbqroOVsmJbz/FM6EyTvp6qItMLBPDoxJjl22K1lo/n6e+ciGXdmjRD9ZnsTHe
-	jDhz69JxBOM9Jmyy21Rgkt4m4s9vcOSpSZZ8rr1H5yhTzIAYmCfiXoHwXvqoEYMcYbgL7OjHn4X0u
-	hqW8zzoZZrMJHlp5HnDA==;
+	List-Owner; bh=3354We0FK2/+fVcI/DFnz/QJaWSWVbOh1HB+wbbxnFs=; b=DavVuioOmjfzaK
+	O7U9H29Pz9JCRvvPgK5omZX6cD5RFQatPT67m8fiSMw4oh0Shj0BMtl338O3e42cw7JXPoGzRW4O+
+	QKhbF1FgTjWUHSBS0sszTkUQVSer4nBRsjleA+x4UAlC66sl9EGkH4rvkjGB+6Q/qlF0kVEoyTkN0
+	RU+f8zclLEHd24xEPZs2pOBVLLL+RsEsh+nO7hA1SPUTz3On9a+qOtgu02fEcxrmxwXxn7K6wRDCc
+	+mYzqVGOOKjba4mhwbDEkvm0Z24VMHFZSwGmyiKPr9BbIkkX31T7NOB9+oG5b71ya/iRcBD5jvTK4
+	SNEDuGDJNr+6N8FITfrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vqnfq-000000036g0-2cVh;
-	Fri, 13 Feb 2026 07:33:10 +0000
+	id 1vqnic-000000036tu-3zCF;
+	Fri, 13 Feb 2026 07:36:02 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vqnfq-000000036fr-0U2U;
-	Fri, 13 Feb 2026 07:33:10 +0000
+	id 1vqnic-000000036tk-0q7k;
+	Fri, 13 Feb 2026 07:36:02 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1400A6001A;
-	Fri, 13 Feb 2026 07:33:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD06CC116C6;
-	Fri, 13 Feb 2026 07:33:05 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 87D486001A;
+	Fri, 13 Feb 2026 07:36:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45FA7C116C6;
+	Fri, 13 Feb 2026 07:35:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770967988;
-	bh=siIazgaFNVp4xVXr//i59eVLTynu0yrQq7vbq7Q2myU=;
+	s=k20201202; t=1770968161;
+	bh=Zq8v0KZPL087RU5yis7BcIyIT899IFqdEXsWVpFwUkY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZZwls2Wim7UUzP9c9QRFee5N6Y7sc5uz+mOBqz4VjBpy2V8U3023tsVyAOfk485q1
-	 ERKbptcP7jm0u8VlXJCrKRbVBdS3GRVkLTUnR0dhu5TuyL/wZFvwZYjdmy33Hn1sTm
-	 QATSI0qlqSIAquO9TGWzCYgePlh2CEnj1RvZX/gwOGi8KqBaJsIt3o2kJu0QsHhVik
-	 dGeNLc2Owe45iYOoqIknA9Kqm++IYUva8ucv7i2DSU3YZI3konF/PBZkVBJmIJdtiZ
-	 E8HqhG+C/eV3puvokwiiLT/Ln5bXE201fJ28QYLRsfnROKlTGKl7SHLVnKWEmOl817
-	 8lZD4ewvW+hvA==
-Message-ID: <795e507a-b0b7-40a5-8a75-25b464ba6b37@kernel.org>
-Date: Fri, 13 Feb 2026 08:33:03 +0100
+	b=Hbon/kZ/qGkmYPGGPlRHIud30xx4WWwpf713XViIpd2ZedDywIsBKFWfGW5nk+mLr
+	 5vVP5MiuDKGlR7CiwTRjASi/aqaNMm3oZvhslSSuAP869evEWTCcr3pxkUg2N0FAwk
+	 aq/0xTIxTINLpU8abDmpVNqyeb4ZyBgKl3v62pZsxhGvzg02T/H7mL/PDdez/AOO9T
+	 Y4ZKsB8cHMBUsC+5EdXWhbkGhm4/ZsR5t6hoxguIaUKIJfb0sZ4JQkZ4gpFhA6VBK/
+	 lAzZrdn2tKUdchYRfntU1mmLkN/bIkoLeD0/r/I6zAj7wMBHFYSqRSafuH8sy3T+Tp
+	 fUUmf/VIQaILQ==
+Message-ID: <d96c689d-a5a3-453d-a1ab-56dc1bf01635@kernel.org>
+Date: Fri, 13 Feb 2026 08:35:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 4/4] arm64: defconfig: Enable VDEC driver for
- Amlogic SoCs
+Subject: Re: [PATCH RFC v4 1/4] media: dt-bindings: Add Amlogic V4L2 video
+ decoder
 To: zhentao.guo@amlogic.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
@@ -57,7 +57,7 @@ Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org
 References: <20260213-b4-s4-vdec-upstream-v4-0-c7112d00d662@amlogic.com>
- <20260213-b4-s4-vdec-upstream-v4-4-c7112d00d662@amlogic.com>
+ <20260213-b4-s4-vdec-upstream-v4-1-c7112d00d662@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,7 +103,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260213-b4-s4-vdec-upstream-v4-4-c7112d00d662@amlogic.com>
+In-Reply-To: <20260213-b4-s4-vdec-upstream-v4-1-c7112d00d662@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,9 +123,100 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 13/02/2026 06:12, Zhentao Guo via B4 Relay wrote:
 > From: Zhentao Guo <zhentao.guo@amlogic.com>
 > 
-> Enable the driver for Amlogic's stateless decoder.
+> Describe the initial support for the V4L2 stateless video decoder
+> driver used with the Amlogic S4 (S805X2) platform.
+> 
+> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+> ---
+>  .../bindings/media/amlogic,s4-vcodec-dec.yaml      | 96 ++++++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml
+> new file mode 100644
+> index 000000000000..88780514d06c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml
+> @@ -0,0 +1,96 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/amlogic,s4-vcodec-dec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Video Decode Accelerator
+> +
+> +maintainers:
+> +  - Zhentao Guo <zhentao.guo@amlogic.com>
+> +
+> +description:
+> +  The Video Decoder Accelerator present on Amlogic SOCs.
+> +  It supports stateless h264 decoding.
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,s4-vcodec-dec
 
-Why? Read other commits how this is supposed to look like.
+Why do you repeat "dec" twice? codec means decoder, so what is the last
+"dec" about?
+
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dos
+> +      - const: dmc
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +
+> +  clocks:
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: vdec
+> +      - const: clk_vdec_mux
+> +      - const: clk_hevcf_mux
+
+Name them based on their role/name in this device. Why this device would
+care that it receives a mux? Not a div? or not a gate?
+
+> +
+> +  power-domains:
+> +    maxItems: 2
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: vdec
+> +      - const: hevc
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  amlogic,canvas:
+> +    description: should point to a canvas provider node
+
+Why? What for?
+
+What is canvas provider?
+
+
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - power-domain-names
+> +
+
 
 
 Best regards,
