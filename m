@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73FC7EF48E6
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Feb 2026 08:17:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5404EF48E8
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Feb 2026 08:18:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+iisLHGDXJHahW7hpNbowWpBRCosqFgxcpHnO34oSCA=; b=e+kGvs15rVX22L
-	t5NIU1gQzuEYZjOR3K4LXK7P+7++CIBT39sucV5rMHPPSCoO2GG2FZUG+Rbd0QBVGLWgfNhvSz7/2
-	l1ubrFOyaS2hDGzs12qrUbkv3kOvosQXXfH34lA6JjsDunCaPYflq94P/ABWOERcomU5wm8Ehv/Yc
-	2z+P/PVlsE3hUZqNR4Pw/y0+rZxsaq1Yw3IKXxa9lmvl9b3yBhDq3uFmKMBXhrhjX0tbGl14SKd51
-	UbIgju2zmqPZOzyzHNoI+/7Ra4VNnbKUtSmAL9E+jBcMzYLQCS9OaYoOys8C47zLgxRLYc8AsNvfF
-	yaJQgBw9LEcLD4Bh/zWg==;
+	List-Owner; bh=iWBCcrV2gxzx7VJqu0zaIfP2imbHHmZt9S5JiZKSk0I=; b=IvelqBXVxq1EkT
+	IuxPmy2JRUftrUhyZ8s8wf1iGsnIHq59IdAXxgjYEinf8sHUQ3+eU4lSGVF7sn7zYSxYzDofsVpSH
+	YODLJRSLnYK6SoXEmh5DCpWPCvZa53McCV4mr10xOZ69j+4Njol+gkrrzuu033pEUFDY8UbRquQAD
+	Q8pRJ8geEu1xAoI7ZQsqpF51cIDKfNz5fO20OHGdW8eIv1hGv8psgwuGYK+b24v70PXo10omOmLZx
+	uFafFgeGhWAvDkj4riGmruzFHc8HT/m6hNRUrAVscxuPFgzKu0RmbAfCXO3idY3eMsJwl94IbIQOk
+	QEWVBnyKxf9Z2YDqCKVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vqoMn-000000039nN-3uqF;
-	Fri, 13 Feb 2026 08:17:34 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vqoNZ-00000003ADC-2n5j;
+	Fri, 13 Feb 2026 08:18:21 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vqoMl-000000039me-31OD;
-	Fri, 13 Feb 2026 08:17:32 +0000
+	id 1vqoNY-00000003ABF-1mjP;
+	Fri, 13 Feb 2026 08:18:20 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id DC864405C8;
-	Fri, 13 Feb 2026 08:17:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9DCBC116C6;
-	Fri, 13 Feb 2026 08:17:26 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 7716561334;
+	Fri, 13 Feb 2026 08:18:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D951EC2BC87;
+	Fri, 13 Feb 2026 08:18:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770970649;
-	bh=5IFVImr6FC2fCJmvhchlTJID5GokFgIO/taR4mmbo/8=;
+	s=k20201202; t=1770970699;
+	bh=nLK8MRzJXFvP4p/yF7HQAiipB4wPokOc/nqWm4aAYoQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gd57xqK3n0VeLdt58JNtLAZ5WhFhI3RPika/DqHA6aOnlgS+8jyCq+JHfAnaJkSvv
-	 4+AC4B/TmbQiboJj+9Hqx3J7WyGihPIqqRSbOojTOma/n7vbLjSAYZsn/fWkcFvRqQ
-	 7/gJ2wPydMgvUdmaAuvfjs7VZnhTK7qvVW3k3Kqjs3ejOEtYOxM57/WiP8p5HYbt2I
-	 DDUdEjoAWWa2Cz390YjObU+JT/bFBMV0TcwpT6e6NE0RwU7JZPmOsxlEJOGO/Zokbd
-	 6VHGDbaA3mRw5pGkTddLojItB/YkxOEnJksPiV6QgkroywxqotuTdDL54c+vzieC2f
-	 ChPS1BjEfPIdA==
-Message-ID: <5d3e8678-9319-4e0e-a83d-5676127fe8b8@kernel.org>
-Date: Fri, 13 Feb 2026 09:17:24 +0100
+	b=N1SMB6J5Gi988tVBca7FOWsb12Ig/nGgy9n1b9WJgslBSBVkqf2smEV0szN6rtDoN
+	 3qmtBfWEKRa4uL1sVeT6aIOk4Pox1QVT5o1EXDAjymeSRxtKxv6v9bt+iFk5req9af
+	 8elCLalDg/T7cQmj2/Xm6oQhsfOeW3rcAHcs6/zAD/IMlV+/hbCWvqqvRk9cLJZmHn
+	 Gu2HhgosUBryy6Ahwbb5FPuEzcaW7fnFkGCBL0s0sCaWroE6pLB1QEGCHlthPJe/fP
+	 wUI+xaQAxLHYA1HJ4wnYgccms4HcILiuar+aRE6056I4uyHQpZ5hOy8MLoPtRiAXDJ
+	 qfoBZtO69hnFQ==
+Message-ID: <d4c4afe2-c224-4d4b-a4ac-69928d33d445@kernel.org>
+Date: Fri, 13 Feb 2026 09:18:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 1/4] media: dt-bindings: Add Amlogic V4L2 video
- decoder
+Subject: Re: [PATCH RFC v4 4/4] arm64: defconfig: Enable VDEC driver for
+ Amlogic SoCs
 To: Zhentao Guo <zhentao.guo@amlogic.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -57,9 +57,9 @@ Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org
 References: <20260213-b4-s4-vdec-upstream-v4-0-c7112d00d662@amlogic.com>
- <20260213-b4-s4-vdec-upstream-v4-1-c7112d00d662@amlogic.com>
- <d96c689d-a5a3-453d-a1ab-56dc1bf01635@kernel.org>
- <fd56ede0-5d62-42ec-8d19-19552b246c7c@amlogic.com>
+ <20260213-b4-s4-vdec-upstream-v4-4-c7112d00d662@amlogic.com>
+ <795e507a-b0b7-40a5-8a75-25b464ba6b37@kernel.org>
+ <fe111988-69bf-4a56-ae7c-2f94d8c7f83d@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,11 +105,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <fd56ede0-5d62-42ec-8d19-19552b246c7c@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260213_001731_800096_4851D25E 
-X-CRM114-Status: UNSURE (   4.50  )
-X-CRM114-Notice: Please train this message.
+In-Reply-To: <fe111988-69bf-4a56-ae7c-2f94d8c7f83d@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,10 +122,17 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTMvMDIvMjAyNiAwOTowNCwgWmhlbnRhbyBHdW8gd3JvdGU6Cj4gCj4g5ZyoIDIwMjYvMi8x
-MyAxNTozNSwgS3J6eXN6dG9mIEtvemxvd3NraSDlhpnpgZM6Cj4+IFsgRVhURVJOQUwgRU1BSUwg
-XQo+PgoKRG8gbm90IHNlbmQgbWUgc3VjaCBlbWFpbHMgbW9yZSB0aGFuIG9uY2UuIEFsc28sIGRy
-b3AgdGhlICJFWFRFUk5BTApFTUFJTCIgbWFya2luZ3MuCgpCZXN0IHJlZ2FyZHMsCktyenlzenRv
-ZgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
-YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
-dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+T24gMTMvMDIvMjAyNiAwOTowNiwgWmhlbnRhbyBHdW8gd3JvdGU6Cj4gSGkKPiAKPiDlnKggMjAy
+Ni8yLzEzIDE1OjMzLCBLcnp5c3p0b2YgS296bG93c2tpIOWGmemBkzoKPj4gWyBFWFRFUk5BTCBF
+TUFJTCBdCj4+Cj4+IE9uIDEzLzAyLzIwMjYgMDY6MTIsIFpoZW50YW8gR3VvIHZpYSBCNCBSZWxh
+eSB3cm90ZToKPj4+IEZyb206IFpoZW50YW8gR3VvIDx6aGVudGFvLmd1b0BhbWxvZ2ljLmNvbT4K
+Pj4+Cj4+PiBFbmFibGUgdGhlIGRyaXZlciBmb3IgQW1sb2dpYydzIHN0YXRlbGVzcyBkZWNvZGVy
+Lgo+PiBXaHk/IFJlYWQgb3RoZXIgY29tbWl0cyBob3cgdGhpcyBpcyBzdXBwb3NlZCB0byBsb29r
+IGxpa2UuCj4gSSBleHBsYWluZWQgdGhlIHJlYXNvbiBpbiBwYXRjaCAxLzQuIEJ1dCBwbGVhc2Ug
+aW5mb3JtIG1lIGlmIHlvdSBoYXZlIAo+IG1vcmUgc3VnZ2VzdGlvbnMuIFRoYW5rcyBhIGxvdCEK
+CgpUaGVyZSBpcyBubyBzaW5nbGUgcmVhc29uIGluIDEvNCBhbmQgYW55d2F5IGl0IHdvdWxkIG5v
+dCBtYXR0ZXIuIEkKYWxyZWFkeSBpbmZvcm1lZCB5b3UgaG93IHlvdSBjYW4gaW1wcm92ZSB5b3Vy
+IGNvZGUuCgpOQUsKCkJlc3QgcmVnYXJkcywKS3J6eXN6dG9mCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAps
+aW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
