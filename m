@@ -4,117 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B1DEEDF155
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Feb 2026 11:31:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F08DE81A3B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Feb 2026 15:22:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S+TIWa/Ktp3QLXDr0AXO0vcHUZQb/mzkvQOx7PQTcWs=; b=281c0QusQvoMoM
-	ub/fsgChtqhQb2xTlGMEm6DJCICnJGPXlhOpINpWVmGC5w5KntQfCVuiERKKHJdqKHAaPmW0ydfnW
-	1Bmu8gvnbqcMz3DVuWTXwMCoCtQoMEvF/I5n0AjiOk6+PLarkEPMgkB/VSQOJbIrLpv3t84ALy2xm
-	oA9Fn+c4EU8Thq9SF/0RInr8LF/qyn5sM8pZcJJDZJ5a6wVn5X25Kflub+t/48398r44c7MlZOBmj
-	cIJgnH65v3ErYTIP5wSdjpxr1/q0/mnD09rBR/KsrfoqqA4p2+W7fj3bz4n9KRtYi5bezKIHBNKD5
-	i4aDEOPGN61OAX71gfRg==;
+	List-Owner; bh=MVz/Psy/6PjUmLikPsKt+qSN2LbBGsW7mD4BvozpJcM=; b=KZee/+Rxftqji5
+	SUo+sJ8PL3LGMcF9uHW1xCZwg5Bq+UcgjvEjwyxNqnRf2vicYWCS6MlGMKSoBgF40Ew29LCjGjSXE
+	gJ7wZACDTHkn3DStszeGQqnBv+BiXJPR6B3V3f8dqwFklKZSrTR2ScTOMF8piRoN5pfyiwAdB2mm/
+	iK38w4zH7Q0w1jZBkfJRjy32RH2dCDY3t5AqzFrL8qX5e/JkgUYc7Vn0pdE8hr1gpB98uuR4wCjXY
+	QIPNbjImkzHjXz5Bx6oE+kMgQ/q/SVb1HbYDG/j/AdIp6jX+HWiXRfE36xkzKqXzKJ8gHYld4DhIG
+	4eEy9zz+U9kJSq8l0mnA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vqrNx-00000003P5J-3Gt4;
-	Fri, 13 Feb 2026 11:30:57 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1vs0QT-00000006sfK-16w6;
+	Mon, 16 Feb 2026 15:22:17 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vqrNu-00000003P4w-3VNw;
-	Fri, 13 Feb 2026 11:30:56 +0000
+	id 1vs0QR-00000006sex-3rVk;
+	Mon, 16 Feb 2026 15:22:17 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0E70044109;
-	Fri, 13 Feb 2026 11:30:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFAEDC16AAE;
-	Fri, 13 Feb 2026 11:30:50 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 19E4043815;
+	Mon, 16 Feb 2026 15:22:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8B5FC116C6;
+	Mon, 16 Feb 2026 15:22:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770982253;
-	bh=hixAC+AobzuSMNvmaInhVVPwXDPHawk8Xpy+/sSA30Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SKp2xfqFV6BAsMTYNLlyaYvBxXlWGnHOSfiM58JHBMVeuw0YywETlnSenzSGUI/Ia
-	 cH0TvSCc4ioR8z5xWUczqqEugeDZ4aqukQ9yrOkOwPOH08k8/YGM7tQ4DRV7ZJDu4s
-	 ee1cW4XOXcbYE4rQhU0ULBjsA6wQ5SG4LA/Kwe3tQYveKf2JhpGNBsJwMlLxNZYMXD
-	 abPOo34qgR5XYw3BKVpMw8vOM8zjF/RRGQZ2gBrwCv5ZOzoGH9cguNlsOcXdaNcEX2
-	 1qj1Vhr9tVXVh9//jZb005oA5hw/eLVI6Gr4lWKe+Ih9c6zyZLPFYW7PGOevPo1yri
-	 XOCkVZz9DyUig==
-Message-ID: <14ee2088-032d-4cd4-8703-fd2f2d304b5b@kernel.org>
-Date: Fri, 13 Feb 2026 12:30:49 +0100
+	s=k20201202; t=1771255335;
+	bh=+AXEKgqENXU9fJ8gY4Qy3D4BbMROQCeB1cT+WULKFsE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bVke98TKQHCmPp7aYCSq+FzJJwd1N7cDuLhGNulVsi3kDISO5a7AJFBm3a7kNw1Zs
+	 5Iw5iKyil96Yjb2kaa996XtcP99USdiZnGFwboQyf93SxLti2oOp6RGusQa6tt0bF4
+	 0vFtMznN3MpwWhSDzdS8LxrL4xOzXYaj2wJ8GWUrAJQmsxB/Oz7vODRYewD2J5wMOt
+	 n/r6PbRevelbv2CgDMGB0hBJqf0/kttTTaqCaKmPDvRwbv46S7eNobKjhJZnoznYuD
+	 xBCbX73IzTj1XGCShRVaUjJ2yNu4RTgdTUiUhws1iLJYbGP9PhfuNu3gDI2EgmCiUz
+	 8W3J0k0Pz4V9A==
+Date: Mon, 16 Feb 2026 20:51:51 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Sumit Kumar <sumit.kumar@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Richard Zhu <hongxing.zhu@nxp.com>, 
+	Lucas Stach <l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@amlogic.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Greentime Hu <greentime.hu@sifive.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Chuanhua Lei <lchuanhua@maxlinear.com>, 
+	Marek Vasut <marek.vasut+renesas@gmail.com>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Pratyush Anand <pratyush.anand@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev, 
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 1/2] PCI: API changes for multi-port controller support
+Message-ID: <qoz2odrfe5w47ibjskg2fa3bkgtqd3ctkqqeua446sfjrc2e2m@tg4vynyonu3r>
+References: <20260105-dt-parser-v1-0-b11c63cb5e2c@oss.qualcomm.com>
+ <20260105-dt-parser-v1-1-b11c63cb5e2c@oss.qualcomm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 1/4] media: dt-bindings: Add Amlogic V4L2 video
- decoder
-To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc: Zhentao Guo <zhentao.guo@amlogic.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20260213-b4-s4-vdec-upstream-v4-0-c7112d00d662@amlogic.com>
- <20260213-b4-s4-vdec-upstream-v4-1-c7112d00d662@amlogic.com>
- <d96c689d-a5a3-453d-a1ab-56dc1bf01635@kernel.org>
- <75e55ceb-e6dd-47b5-a829-66f6fbb3e13e@amlogic.com>
- <2f68ee18-e9d9-4da6-900c-93a7663b3c9d@kernel.org>
- <598c161c-d157-40e5-992c-912540589d7e@amlogic.com>
- <58d57a6c-7c69-4f5b-a4c2-f34ef0238511@kernel.org>
- <D93350ED-72E3-43B5-BA4F-42E0FE491B2A@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <D93350ED-72E3-43B5-BA4F-42E0FE491B2A@gmail.com>
+Content-Disposition: inline
+In-Reply-To: <20260105-dt-parser-v1-1-b11c63cb5e2c@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260213_033055_234551_CFF317F2 
-X-CRM114-Status: UNSURE (   8.89  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260216_072215_995208_D4D71168 
+X-CRM114-Status: GOOD (  19.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,43 +83,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/02/2026 12:14, Piotr Oniszczuk wrote:
->>
->>>>> In short, canvas is a hardware IP inside the Amlogic SoC. The decoder IP
->>>>> needs to access DDR through canvas IP, so we need to reference the
->>>> Why decoder cannot access DDR directly?
->>> The internal topology of the S4 chip is designed this way, we don't know 
->>> why our VLSI colleauges designed like this. But similar designs have 
->>> been removed in subsequent chips, eliminating the need to rely on a 
->>> common hardware IP.
->>
->> Quite poor explanation. Based on this, this as well could be entry in
->> device reg lists.
->>
->> Anyway, I am done guessing, explain properly the hardware instead of
->> answering with half-baked responses just so I will go away.
->>
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Krzysztof,
-> 
-> May you pls explain me: what added value - to upstreaming aml video decoder - will be provided by giving NAK .... because canvas/DDR access details explanations are not enough detailed FOR YOU?
-
-NAK is a disagreement with this patch being merged, so there is no added
-value in it. What sort of added value do you expect from NAKs?
-
-Best regards,
-Krzysztof
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gTW9uLCBKYW4gMDUsIDIwMjYgYXQgMDU6NTc6NTRQTSArMDUzMCwgU3VtaXQgS3VtYXIgd3Jv
+dGU6Cj4gRm9yIG11bHRpLXBvcnQgY29udHJvbGxlcnMsIGVxdWFsaXphdGlvbiBwcmVzZXQgcHJv
+cGVydGllcyBzaG91bGQgYmUKPiBzcGVjaWZpZWQgaW4gaW5kaXZpZHVhbCByb290IHBvcnQgbm9k
+ZXMgcmF0aGVyIHRoYW4gdGhlIGNvbnRyb2xsZXIgbm9kZSwKCnMvcm9vdCBwb3J0L1Jvb3QgUG9y
+dAoKLSBNYW5pCgo+IGFsbG93aW5nIGVhY2ggcG9ydCB0byBoYXZlIGl0cyBvd24gY29uZmlndXJh
+dGlvbi4KPiAKPiBDaGFuZ2Ugb2ZfcGNpX2dldF9lcXVhbGl6YXRpb25fcHJlc2V0cygpIHRvIGFj
+Y2VwdCBhIGRldmljZV9ub2RlIHBvaW50ZXIuCj4gVGhpcyBhbGxvd3MgcGFyc2luZyBlcXVhbGl6
+YXRpb24gcHJlc2V0cyBmcm9tIGFueSBkZXZpY2UgdHJlZSBub2RlLAo+IHdoaWNoIGlzIG5lZWRl
+ZCBmb3IgbXVsdGktcG9ydCBQQ0llIGNvbnRyb2xsZXJzLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFN1
+bWl0IEt1bWFyIDxzdW1pdC5rdW1hckBvc3MucXVhbGNvbW0uY29tPgo+IC0tLQo+ICBkcml2ZXJz
+L3BjaS9vZi5jICB8IDYgKysrKy0tCj4gIGRyaXZlcnMvcGNpL3BjaS5oIHwgMiArKwo+ICAyIGZp
+bGVzIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9wY2kvb2YuYyBiL2RyaXZlcnMvcGNpL29mLmMKPiBpbmRleCAzNTc5MjY1
+ZjExOTg0NTYzN2UxNjNkOTA1MTQzN2M4OTY2Mjc2MmY4Li5kMDllZmY0MGI1MjNjOTIwYzljYTNl
+YWE2NGY3ODQ3NjViM2M1YmY4IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvcGNpL29mLmMKPiArKysg
+Yi9kcml2ZXJzL3BjaS9vZi5jCj4gQEAgLTk3MSw2ICs5NzEsNyBAQCBFWFBPUlRfU1lNQk9MX0dQ
+TChvZl9wY2lfZ2V0X3Nsb3RfcG93ZXJfbGltaXQpOwo+ICAgKiBvZl9wY2lfZ2V0X2VxdWFsaXph
+dGlvbl9wcmVzZXRzIC0gUGFyc2VzIHRoZSAiZXEtcHJlc2V0cy1OZ3RzIiBwcm9wZXJ0eS4KPiAg
+ICoKPiAgICogQGRldjogRGV2aWNlIGNvbnRhaW5pbmcgdGhlIHByb3BlcnRpZXMuCj4gKyAqIEBu
+b2RlOiBEZXZpY2UgdHJlZSBub2RlIGNvbnRhaW5pbmcgdGhlIHByb3BlcnRpZXMuCj4gICAqIEBw
+cmVzZXRzOiBQb2ludGVyIHRvIHN0b3JlIHRoZSBwYXJzZWQgZGF0YS4KPiAgICogQG51bV9sYW5l
+czogTWF4aW11bSBudW1iZXIgb2YgbGFuZXMgc3VwcG9ydGVkLgo+ICAgKgo+IEBAIC05ODEsNiAr
+OTgyLDcgQEAgRVhQT1JUX1NZTUJPTF9HUEwob2ZfcGNpX2dldF9zbG90X3Bvd2VyX2xpbWl0KTsK
+PiAgICogZXJybm8gb3RoZXJ3aXNlLgo+ICAgKi8KPiAgaW50IG9mX3BjaV9nZXRfZXF1YWxpemF0
+aW9uX3ByZXNldHMoc3RydWN0IGRldmljZSAqZGV2LAo+ICsJCQkJICAgIHN0cnVjdCBkZXZpY2Vf
+bm9kZSAqbm9kZSwKPiAgCQkJCSAgICBzdHJ1Y3QgcGNpX2VxX3ByZXNldHMgKnByZXNldHMsCj4g
+IAkJCQkgICAgaW50IG51bV9sYW5lcykKPiAgewo+IEBAIC05ODgsNyArOTkwLDcgQEAgaW50IG9m
+X3BjaV9nZXRfZXF1YWxpemF0aW9uX3ByZXNldHMoc3RydWN0IGRldmljZSAqZGV2LAo+ICAJaW50
+IHJldDsKPiAgCj4gIAlwcmVzZXRzLT5lcV9wcmVzZXRzXzhndHNbMF0gPSBQQ0lfRVFfUkVTVjsK
+PiAtCXJldCA9IG9mX3Byb3BlcnR5X3JlYWRfdTE2X2FycmF5KGRldi0+b2Zfbm9kZSwgImVxLXBy
+ZXNldHMtOGd0cyIsCj4gKwlyZXQgPSBvZl9wcm9wZXJ0eV9yZWFkX3UxNl9hcnJheShub2RlLCAi
+ZXEtcHJlc2V0cy04Z3RzIiwKPiAgCQkJCQkgcHJlc2V0cy0+ZXFfcHJlc2V0c184Z3RzLCBudW1f
+bGFuZXMpOwo+ICAJaWYgKHJldCAmJiByZXQgIT0gLUVJTlZBTCkgewo+ICAJCWRldl9lcnIoZGV2
+LCAiRXJyb3IgcmVhZGluZyBlcS1wcmVzZXRzLThndHM6ICVkXG4iLCByZXQpOwo+IEBAIC05OTgs
+NyArMTAwMCw3IEBAIGludCBvZl9wY2lfZ2V0X2VxdWFsaXphdGlvbl9wcmVzZXRzKHN0cnVjdCBk
+ZXZpY2UgKmRldiwKPiAgCWZvciAoaW50IGkgPSAwOyBpIDwgRVFfUFJFU0VUX1RZUEVfTUFYIC0g
+MTsgaSsrKSB7Cj4gIAkJcHJlc2V0cy0+ZXFfcHJlc2V0c19OZ3RzW2ldWzBdID0gUENJX0VRX1JF
+U1Y7Cj4gIAkJc25wcmludGYobmFtZSwgc2l6ZW9mKG5hbWUpLCAiZXEtcHJlc2V0cy0lZGd0cyIs
+IDggPDwgKGkgKyAxKSk7Cj4gLQkJcmV0ID0gb2ZfcHJvcGVydHlfcmVhZF91OF9hcnJheShkZXYt
+Pm9mX25vZGUsIG5hbWUsCj4gKwkJcmV0ID0gb2ZfcHJvcGVydHlfcmVhZF91OF9hcnJheShub2Rl
+LCBuYW1lLAo+ICAJCQkJCQlwcmVzZXRzLT5lcV9wcmVzZXRzX05ndHNbaV0sCj4gIAkJCQkJCW51
+bV9sYW5lcyk7Cj4gIAkJaWYgKHJldCAmJiByZXQgIT0gLUVJTlZBTCkgewo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL3BjaS9wY2kuaCBiL2RyaXZlcnMvcGNpL3BjaS5oCj4gaW5kZXggMzRmNjVkNjk2
+NjJlOWY2MWYwYzQ4OWVjNThkZTJjZTE3ZDIxYzBjNi4uNzJmYTZkYjk1YjhhNzVmNmU2OWI4MDE5
+ZDFlYjIyNjJiNmE0NmMxMyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL3BjaS9wY2kuaAo+ICsrKyBi
+L2RyaXZlcnMvcGNpL3BjaS5oCj4gQEAgLTk2NSw2ICs5NjUsNyBAQCB2b2lkIHBjaV9yZWxlYXNl
+X2J1c19vZl9ub2RlKHN0cnVjdCBwY2lfYnVzICpidXMpOwo+ICBpbnQgZGV2bV9vZl9wY2lfYnJp
+ZGdlX2luaXQoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgcGNpX2hvc3RfYnJpZGdlICpicmlk
+Z2UpOwo+ICBib29sIG9mX3BjaV9zdXBwbHlfcHJlc2VudChzdHJ1Y3QgZGV2aWNlX25vZGUgKm5w
+KTsKPiAgaW50IG9mX3BjaV9nZXRfZXF1YWxpemF0aW9uX3ByZXNldHMoc3RydWN0IGRldmljZSAq
+ZGV2LAo+ICsJCQkJICAgIHN0cnVjdCBkZXZpY2Vfbm9kZSAqbm9kZSwKPiAgCQkJCSAgICBzdHJ1
+Y3QgcGNpX2VxX3ByZXNldHMgKnByZXNldHMsCj4gIAkJCQkgICAgaW50IG51bV9sYW5lcyk7Cj4g
+ICNlbHNlCj4gQEAgLTEwMTMsNiArMTAxNCw3IEBAIHN0YXRpYyBpbmxpbmUgYm9vbCBvZl9wY2lf
+c3VwcGx5X3ByZXNlbnQoc3RydWN0IGRldmljZV9ub2RlICpucCkKPiAgfQo+ICAKPiAgc3RhdGlj
+IGlubGluZSBpbnQgb2ZfcGNpX2dldF9lcXVhbGl6YXRpb25fcHJlc2V0cyhzdHJ1Y3QgZGV2aWNl
+ICpkZXYsCj4gKwkJCQkJCSAgc3RydWN0IGRldmljZV9ub2RlICpub2RlLAo+ICAJCQkJCQkgIHN0
+cnVjdCBwY2lfZXFfcHJlc2V0cyAqcHJlc2V0cywKPiAgCQkJCQkJICBpbnQgbnVtX2xhbmVzKQo+
+ICB7Cj4gCj4gLS0gCj4gMi4zNC4xCj4gCgotLSAK4K6u4K6j4K6/4K614K6j4K+N4K6j4K6p4K+N
+IOCumuCupOCuvuCumuCuv+CuteCuruCvjQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
