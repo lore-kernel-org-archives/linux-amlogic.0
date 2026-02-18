@@ -4,62 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFDADE9A049
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Feb 2026 11:21:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35DE3E9A03B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Feb 2026 11:24:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p/7Roa9QD8M7gj7E4U9YFaPfPLWZbNiBfZddv5J+1+k=; b=Ac3taJobfojD7N
-	hoH233ijAX8rI+E4mgppfYJKu5yrdoW2aavVMQjXpGJ6+mXEyY7fuTcClvzNcMHLAlTU2lr3GFaLU
-	UBOXtTZNqPzYfSKXD6c0eYSp7tgYUlwHNnvJhwPMJum7um6koYQmCV5ku9Z0ZPX9Wr5IX2thD5uVH
-	RSSoJ/9Mv+zI02tiOOHRcERXcDlSJX3eXUn2IlgaoxE6kMkL5QOgbem4fazvPTWkJeZMjLT4pXLt9
-	TK+0Tb85tQE+CkQz1igXpUaKntqBWwvusPVp2aIpznL9ogU4XzbLRY51FZfWfdJSHQSQ2tLAvJrbL
-	8kOpTTNXjmcQVLPsAueA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:References:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=w4WJ6QCegMLIYpF9muOkx/FQvuQtXTHfF44deEaPB9s=; b=XeRKGx1MolSuxT9AY9kLyMgpvN
+	hxXVsT1aqvmNptRzFor0k0DS4p80jjDUL4Bos3rXcpNJ/UefmTDJKh1axH4MYpOPBBaDaOkCLOUE6
+	iJb0ZLcMn5qmEyd1mWUsbiarqS2G1Jze1NEXkQtzK/wMLqEWSmMuyxVLwxFzV/Hj+Bl0x6DofQJeM
+	pZ403fUlPJ/TJ8A7KTSU533DiqI1fDGvzDm2lGoTWZvqI/FNtZK4IIVA+tC+di7mEMEGWIEeYu1tW
+	6ypbqxdnKSxVsTI0dzq4+G+6e2SCGzjvyv9igre8LYZqFd33DOYl/jc0+pylm7yAc+ku6iTM8vl5m
+	aUWQFDtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vsfcC-00000009hvJ-0hri;
-	Wed, 18 Feb 2026 11:21:08 +0000
-Received: from pouet.aliel.fr ([65.21.61.41] helo=courrier.aliel.fr)
+	id 1vsffL-00000009iFF-3TEu;
+	Wed, 18 Feb 2026 11:24:23 +0000
+Received: from out-186.mta0.migadu.com ([2001:41d0:1004:224b::ba])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vsfc9-00000009huO-0z9u;
-	Wed, 18 Feb 2026 11:21:07 +0000
-Received: from localhost.localdomain (2a02-842b-8136-0001-b865-661D-5641-e7C6.rev.sfr.net [IPv6:2a02:842b:8136:1:b865:661d:5641:e7c6])
-	by courrier.aliel.fr (Postfix) with ESMTPSA id F3064426E9;
-	Wed, 18 Feb 2026 11:20:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1771413659;
-	bh=0wJJibka0/8mDDFVXqfczE5X4qxrHNZ8Hjp5LOpquQQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=YeX37P5Zu7vg/xDH4vHqSQ2lu96VG5wIN74Ghp/i36YkzRxK43eZ3+f3SCWgM3oSp
-	 5lNmsQXdDEfSt4VTfWeakMp5edk+ZduR7mRoCXN1L2wpLWuO0SDOKoQLZO5HVAE/K2
-	 xKExIwJgG0Moo13AtvAj00QjTe+rHyH0mUo6Sr5k=
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-To: linux-amlogic@lists.infradead.org
-Cc: Ronald Claveau <linux-kernel-dev@aliel.fr>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 6/7] arm64: dts: amlogic: Add clock and EMMC for T7
-Date: Wed, 18 Feb 2026 12:20:33 +0100
-Message-ID: <20260218112036.36905-1-linux-kernel-dev@aliel.fr>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260218101709.35450-1-linux-kernel-dev@aliel.fr>
-References: <20260218101709.35450-1-linux-kernel-dev@aliel.fr>
+	id 1vsffI-00000009iEt-2MM9
+	for linux-amlogic@lists.infradead.org;
+	Wed, 18 Feb 2026 11:24:22 +0000
+Date: Wed, 18 Feb 2026 11:10:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1771413854;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BEknqRay9cLst5+GJTiimtPKgqbaOAo4KgPgHKVMPt8=;
+	b=RaPraqdEBp6UPnaqoDyevHruMq95QSv53angpGggoOK+NLRbpW/jmUnTZ1bK91Uetwzwlv
+	8ZEgDt1wq7CPBSLFiujoBN5uhZcKE5+LMq9pw2Oul5AotTuv8vNh2c3GYNtEXWu01BuLuJ
+	osYkb6S0f+Cv/agd6nNDDdJda4KLgZ5YeJLJHOf6YeZHnvKyF4Kpr6dyx3FBaj3G19Y89f
+	gJPfywKJGtCujFS0TrBHv2L4FqSReG5k/Z647wGZvZiOFDpLmNRyM1XLPb1CNm4DQ+2BYh
+	Jn94sPZblRRGSdUYUNAPWPuKP3vZn5us5B0QqazGPL3mT+o53wnPDCff56QVyA==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ferass El Hafidi <funderscore@postmarketos.org>
+To: linux-amlogic@lists.infradead.org, Ronald Claveau <linux-kernel-dev@aliel.fr>
+Cc: Ronald Claveau <linux-kernel-dev@aliel.fr>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/7] dt-bindings: clk: meson: Add Amlogic T7 sys pll support
+References: <20260218101709.35450-1-linux-kernel-dev@aliel.fr> <20260218110127.36394-1-linux-kernel-dev@aliel.fr>
+In-Reply-To: <20260218110127.36394-1-linux-kernel-dev@aliel.fr>
+Message-ID: <tanjoa.3m1sr95zhvsal@postmarketos.org>
 MIME-Version: 1.0
+X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260218_032105_873199_ECD55F55 
-X-CRM114-Status: UNSURE (   8.93  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260218_032421_081001_3791AAE2 
+X-CRM114-Status: GOOD (  10.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,189 +64,75 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add fixed clock and EMMC support for Amlogic T7 SoC family dtsi.
+Hi,
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 129 ++++++++++++++++++++
- 1 file changed, 129 insertions(+)
+On Wed, 18 Feb 2026 11:01, Ronald Claveau <linux-kernel-dev@aliel.fr> wrote:
+>Add SYS PLL for the clock controller of the Amlogic T7 SoC family.
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 6510068bcff9..b84281e5cdd8 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -3,6 +3,8 @@
-  * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
-+#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/amlogic,t7-pwrc.h>
- #include "amlogic-t7-reset.h"
-@@ -224,6 +226,24 @@ apb4: bus@fe000000 {
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
- 
-+			clkc: clock-controller@0 {
-+				compatible = "amlogic,t7-peripherals-clkc";
-+				reg = <0x0 0x0 0x0 0x49c>;
-+				#clock-cells = <1>;
-+				clocks = <&xtal>,
-+						 <&fpll CLKID_FDIV2>,
-+						 <&fpll CLKID_FDIV2P5>,
-+						 <&fpll CLKID_FDIV3>,
-+						 <&fpll CLKID_FDIV4>,
-+						 <&fpll CLKID_FDIV5>,
-+						 <&hifi_pll CLKID_HIFI_PLL>,
-+						 <&mpll CLKID_MPLL2>,
-+						 <&mpll CLKID_MPLL3>,
-+						 <&gp0_pll CLKID_GP0_PLL>;
-+				clock-names = "xtal", "fdiv2", "fdiv2p5", "fdiv3", "fdiv4",
-+							  "fdiv5", "hifi", "mpll2", "mpll3", "gp0";
-+			};
-+
- 			reset: reset-controller@2000 {
- 				compatible = "amlogic,t7-reset";
- 				reg = <0x0 0x2000 0x0 0x98>;
-@@ -250,6 +270,68 @@ gpio: bank@4000 {
- 					#gpio-cells = <2>;
- 					gpio-ranges = <&periphs_pinctrl 0 0 157>;
- 				};
-+
-+				emmc_ctrl_pins: emmc-ctrl {
-+					mux-0 {
-+						groups = "emmc_cmd";
-+						function = "emmc";
-+						bias-pull-up;
-+						drive-strength-microamp = <4000>;
-+					};
-+
-+					mux-1 {
-+						groups = "emmc_clk";
-+						function = "emmc";
-+						bias-disable;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
-+				emmc_data_4b_pins: emmc-data-4b {
-+					mux-0 {
-+						groups = "emmc_nand_d0",
-+								 "emmc_nand_d1",
-+								 "emmc_nand_d2",
-+								 "emmc_nand_d3";
-+						function = "emmc";
-+						bias-pull-up;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
-+				emmc_data_8b_pins: emmc-data-8b {
-+					mux-0 {
-+						groups = "emmc_nand_d0",
-+								 "emmc_nand_d1",
-+								 "emmc_nand_d2",
-+								 "emmc_nand_d3",
-+								 "emmc_nand_d4",
-+								 "emmc_nand_d5",
-+								 "emmc_nand_d6",
-+								 "emmc_nand_d7";
-+						function = "emmc";
-+						bias-pull-up;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
-+				emmc_ds_pins: emmc-ds {
-+					mux {
-+						groups = "emmc_nand_ds";
-+						function = "emmc";
-+						bias-pull-down;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
-+				emmc_clk_gate_pins: emmc_clk_gate {
-+					mux {
-+						groups = "GPIOB_8";
-+						function = "gpio_periphs";
-+						bias-pull-down;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
- 			};
- 
- 			gpio_intc: interrupt-controller@4080 {
-@@ -262,6 +344,38 @@ gpio_intc: interrupt-controller@4080 {
- 					<10 11 12 13 14 15 16 17 18 19 20 21>;
- 			};
- 
-+			fpll: clock-controller@8040 {
-+				compatible = "amlogic,t7-fpll";
-+				reg = <0x0 0x8040 0x0 0x20>;
-+				#clock-cells = <1>;
-+				clocks = <&xtal>;
-+				clock-names = "xtal";
-+			};
-+
-+			gp0_pll: clock-controller@8080 {
-+				compatible = "amlogic,t7-gp0-pll";
-+				reg = <0x0 0x8080 0x0 0x20>;
-+				#clock-cells = <1>;
-+				clocks = <&xtal>;
-+				clock-names = "in0";
-+			};
-+
-+			hifi_pll: clock-controller@8100 {
-+				compatible = "amlogic,t7-hifi-pll";
-+				reg = <0x0 0x8100 0x0 0x20>;
-+				#clock-cells = <1>;
-+				clocks = <&xtal>;
-+				clock-names = "in0";
-+			};
-+
-+			mpll: clock-controller@8180 {
-+				compatible = "amlogic,t7-mpll";
-+				reg = <0x0 0x8180 0x0 0x20>;
-+				#clock-cells = <1>;
-+				clocks = <&fpll CLKID_FPLL_DCO>;
-+				clock-names = "in0";
-+			};
-+
- 			uart_a: serial@78000 {
- 				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
- 				reg = <0x0 0x78000 0x0 0x18>;
-@@ -276,6 +390,21 @@ sec_ao: ao-secure@10220 {
- 				reg = <0x0 0x10220 0x0 0x140>;
- 				amlogic,has-chip-id;
- 			};
-+
-+			sd_emmc_c: mmc@8c000{
-+				compatible = "amlogic,meson-axg-mmc";
-+				reg = <0x0 0x8c000 0x0 0x800>;
-+				interrupts = <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+				clocks = <&clkc CLKID_SYS_SD_EMMC_C>,
-+						 <&clkc CLKID_SD_EMMC_C>,
-+						 <&gp0_pll CLKID_GP0_PLL>;
-+				clock-names = "core", "clkin0", "clkin1";
-+				assigned-clocks = <&clkc CLKID_SD_EMMC_C_SEL>;
-+				assigned-clock-parents = <&xtal>;
-+				no-sdio;
-+				no-sd;
-+			};
- 		};
- 
- 	};
--- 
-2.49.0
+Your commit description is almost the same on every patch in the series.
+Probably having a more specific description per commit would be much more
+useful, for reviewers to better understand your commit.
 
+There are documentation pages on how to write informative commit messages
+at [1] and [2], but in summary, your description should talk about *what*
+is being done and (provided that makes sense), *why*.
+
+You also have multiple commits with the exact same commit message
+("dt-bindings: clk: meson: Add Amlogic T7 sys pll support"), did you
+mean to squash them all into one? (You can do so with `git rebase -i`.)
+
+It probably also would make sense to add a cover letter, which would describe
+overall what you goal is with this patch series, and on a high level
+(doesn't have to be too detailled, because you'd describe these in more
+detail in the respective commit messages themselves) what each patch does.
+This once again helps people reviewing your code to understand what problem
+you're trying to solve.
+
+[1]: https://docs.kernel.org/process/submitting-patches.html#explanation-body
+[2]: https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
+
+Best regards,
+Ferass
+
+[PS: sorry if this email was sent twice, my email client did something
+     strange]
+
+>
+>Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>---
+> include/dt-bindings/clock/amlogic,t7-peripherals-clkc.h | 7 +++++++
+> 1 file changed, 7 insertions(+)
+>
+>diff --git a/include/dt-bindings/clock/amlogic,t7-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,t7-peripherals-clkc.h
+>index 32c4b62037de..0cda8edfa7cd 100644
+>--- a/include/dt-bindings/clock/amlogic,t7-peripherals-clkc.h
+>+++ b/include/dt-bindings/clock/amlogic,t7-peripherals-clkc.h
+>@@ -224,5 +224,12 @@
+> #define CLKID_SYS_PWM_AO_CD		215
+> #define CLKID_SYS_PWM_AO_EF		216
+> #define CLKID_SYS_PWM_AO_GH		217
+>+#define CLKID_SYS_A_SEL			218
+>+#define CLKID_SYS_A_DIV			219
+>+#define CLKID_SYS_A			220
+>+#define CLKID_SYS_B_SEL			221
+>+#define CLKID_SYS_B_DIV			222
+>+#define CLKID_SYS_B			223
+>+#define CLKID_SYS			224
+> 
+> #endif /* __T7_PERIPHERALS_CLKC_H */
+>-- 
+>2.49.0
+>
+>
+>_______________________________________________
+>linux-amlogic mailing list
+>linux-amlogic@lists.infradead.org
+>http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 _______________________________________________
 linux-amlogic mailing list
