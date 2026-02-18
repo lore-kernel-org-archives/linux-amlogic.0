@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEBA5E9A02C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Feb 2026 19:18:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3A1CE9A04B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Feb 2026 19:18:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2MAoMicW+d/ylTRSwcFr5ZWfY7QnOAmMAZPEhGOR7MQ=; b=zpteqstlb7S4px
-	LzoRCQWdaPoJpXxHIWu2SMh5kLPjuFsSu0TaxlUhsTic3sNhCN3YW0pjqyn0vCO9tLUqJYRe4zdvm
-	u6fppsE9wLLyc4M01W8jcPhvgS16ekl+XLzB0LWogo+/nfHOtZA9DnyVYFGpb4vzcHzpGyNfzp/f9
-	caIpijisIhJgd+ASRtQnmzyfALiHnuh4PXrFaGXhAxcqYQTmYeIb4LyqfMhPDfGLH+MalK3bIVdoN
-	xNOQSyXU2Nm87qdWkXUEje5o0d0U5l3sk63/lFli21s1BH793aVxnl+rA0zDHr1ubILEu/46e9hF1
-	6j/IZ3XLDV5YWGPf3jhQ==;
+	List-Owner; bh=4jKL2++kxZ4PCOmAU4BTGMLxbFermlP3fuetVyJphPA=; b=WJdTZxXdYBjgzl
+	Zo44wgDnd3/KSqfeWY+yKb6ZNgjM1nKdDT57+JnfOQ4dsjeWBy5ALUKPZNxChPzdXxF02LkHSvrut
+	coaIPSc/OTXX6CPhZ+y4diJEmPp1XRj0rk4qSnyOgebP42nCoJpgID4ys5AqTSFKdXscZJ1sn3RUr
+	UVDC5pUyuBOmxMIQnYDLsg7YsJY+jsKlR3UIDqtBRBIXva1IWPIUNSE/G+MRwOPlr4xZ1y12pfqpW
+	P55qjRKvzCBWh5xEJtrm9+JbsyE9seVsAZ4jptqMGeYSwl/iUbEJZTzjAkYY787N/NZqfvS+CRbIx
+	sMeQeO9I7X6JWoqpfshA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vsn3h-0000000AIFv-1oVP;
-	Wed, 18 Feb 2026 19:18:01 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vsn4H-0000000AIMd-37kf;
+	Wed, 18 Feb 2026 19:18:37 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vsn3e-0000000AIE6-2WWC
+	id 1vsn4E-0000000AIKz-3aTu
 	for linux-amlogic@lists.infradead.org;
-	Wed, 18 Feb 2026 19:17:58 +0000
+	Wed, 18 Feb 2026 19:18:36 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 93911600AE;
-	Wed, 18 Feb 2026 19:17:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BF01C116D0;
-	Wed, 18 Feb 2026 19:17:54 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 9D882408A1;
+	Wed, 18 Feb 2026 19:18:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58539C116D0;
+	Wed, 18 Feb 2026 19:18:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771442277;
-	bh=a9xnkv8eKON2vAhTrVvPB76d/7ub/Brn7L3iNnp1vIU=;
+	s=k20201202; t=1771442313;
+	bh=2M6wZGG+9s9L094CSFI5DWX5f9oGZL7Xa8jIt97zaIY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ewlKHB97343qPi7IjJ7tCc//Kko777MRvQ/H4oF7piU9mkLYjG9lzq05uK6X9yYW7
-	 zHsh6XWDlgQR9l9xJ0etJNQ65Qfsqv50pGvF5rcfCUEhheloLbbn5W5HRwVByhgUGK
-	 IFI6GBgtWZOBf16OxNofjnH9j48ZiaM3arO/jNaYoHJ09+ZLEx0hiG63Fta4XbrRAY
-	 pn8HqmE4eKEJaroEcyUQKYWs56iiXWSzMg4XHBSxV3Yih6IM4yYcpTiueLF/5AbDVW
-	 QD0zX3jorMgIKKFdLtfWhsv1u7CxsbhNR/YTtgtucnLcWb3VvXVx4y7IhK5b1AqfGa
-	 VLIkS46ZERqlw==
-Message-ID: <594f4fcc-ad88-4969-b9e5-98061fd5b73c@kernel.org>
-Date: Wed, 18 Feb 2026 20:17:53 +0100
+	b=HYdaoq7JI6fyvUIcVyOe+uh4t3AYIysWf2kIxPaBaR9OAdhSvGyURV3WD6qd/XlqF
+	 zE2KA7dsHNQOqhNUdnTl/KcsK8lTbt27pUUNXpG8zm++iwov5KegI9pMMxRE/ycKAC
+	 rn4em59STUqg408yVPZrg9eNEgJmcmwJjUV5AePDBmVQzS52ZsMhsfvdR+YlMHzTRa
+	 TzdnBfy3DSlZ5cbDxk3ik00N+ARe7AupwqunNxAlcrmu38piXUdvguQIzceYNagune
+	 8jo73mbBtUi0EwUwioJwWO6N9heZLxKQqCTotX1XNuIhFomCNkjMiK6j9xxZcmvZ7w
+	 L4mvp7ZN9GwCg==
+Message-ID: <e7080f4b-eaff-45f8-8ce8-bdf501c915b1@kernel.org>
+Date: Wed, 18 Feb 2026 20:18:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: clk: meson: Add Amlogic T7 fix pll
+Subject: Re: [PATCH 5/7] dt-bindings: clk: meson: Add Amlogic T7 sys pll
  support
 To: Ronald Claveau <linux-kernel-dev@aliel.fr>,
  linux-amlogic@lists.infradead.org
@@ -56,7 +56,7 @@ Cc: Michael Turquette <mturquette@baylibre.com>,
  <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260218101709.35450-1-linux-kernel-dev@aliel.fr>
- <20260218105611.36216-1-linux-kernel-dev@aliel.fr>
+ <20260218110127.36394-1-linux-kernel-dev@aliel.fr>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,7 +102,11 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260218105611.36216-1-linux-kernel-dev@aliel.fr>
+In-Reply-To: <20260218110127.36394-1-linux-kernel-dev@aliel.fr>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260218_111834_966978_78E5A936 
+X-CRM114-Status: UNSURE (   4.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,17 +123,11 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18/02/2026 11:56, Ronald Claveau wrote:
-> Add PLL for the clock controller of the Amlogic T7 SoC family.
-> 
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> ---
->  include/dt-bindings/clock/amlogic,t7-pll-clkc.h | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+On 18/02/2026 12:01, Ronald Claveau wrote:
+> Add SYS PLL for the clock controller of the Amlogic T7 SoC family.
 
-So you ignored my comments?
 
-And that's v2, not v1. You sent v1 and GOT the comments.
+You already sent v1 and received feedback. Implement that one.
 
 Best regards,
 Krzysztof
