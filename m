@@ -4,104 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68339E9A03E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Feb 2026 10:21:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51D03E9A03E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Feb 2026 10:21:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eoM+EpSuM4eLIkMwJfzE/K34nq+ZlqeZomCvpJHsMao=; b=M3mCYjPuBoxeYN
-	t1CHJRyja2UwLERVbM+tydWgK2XteELByDE5v+7B6tILP+KZdalpbfTEnnRbXd2Ir1HJQNISOK8KZ
-	0A4dWk44qdNMS/sGTtUbAF/iJluo2D6HWuwOuEbFHSxg710Y/farPL2K0NDVpj4QP35f/HqgIduY6
-	7yJhUOoTg9Hu0mbm+5KbwSCCrh+DWt2ufbfwWgTo5S6sFgqztr2uF2w1S48b363uo8Pqh2+jj2r51
-	3Gr8ixLGh6sH8MGJsNvUEdAVSN/Qrf5WQ74pse/l0WvRLHeqipQWEHmEUpQOtafUeu0+FIDkPhzpm
-	GBj6K9HDkEqfil4VCS+g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=zURhvYrxRvdA++Ht8nz8qllZjtwgCcrx5E8ckQ+QKUQ=; b=YAVxQ0GHa05Agd
+	4uqpm65WynG+D5cN+FdW5TmaCz0G0JVeN4rVCilaxa6fDYx5JIB2UpB1bAE6XoF2u3T/49Xl8XCZ2
+	3UIjEzhkuaATpTavhq5N5UpdYoSFudGCOScf9+VEUvXX2DAQkbbKn06jLDpw2715SdcKv1UO/kzAn
+	vnVb601HPLqj240z7dYRzkyb3mMSRf7qndtIgO6OSj04kDnwjtqDwdl6JSa0Fs37wFsqfZVNYVGM1
+	KQFULaYUoYyQneq5FfEf+ffriRc5geNyu4psnprJvaJqCxqcsKG7ZOwEnlCu2WOiTFiab0+gh5+aI
+	nIGW5sWp27jAYD+U4TLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vsegJ-00000009dUQ-3Xfs;
-	Wed, 18 Feb 2026 10:21:19 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vsegR-00000009dXO-0PUT;
+	Wed, 18 Feb 2026 10:21:27 +0000
+Received: from [2a01:4f9:c011:1c83::1] (helo=courrier.aliel.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vsegI-00000009dU2-3Qvh
-	for linux-amlogic@lists.infradead.org;
-	Wed, 18 Feb 2026 10:21:18 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id D387161861;
-	Wed, 18 Feb 2026 10:21:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60667C19423;
-	Wed, 18 Feb 2026 10:21:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771410077;
-	bh=roSU2DvI93Z7X+1nucEHh5gV6chME7xKeGVIi9NYMDU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SAFH4p8oskiHizNzigshBS5jlmrYOPC/oZfNGVwUQbcz6ij1G2E7YeOBwZLEKJRpl
-	 w66NwlGRsFqDn9kAYV97TSiT1KENz57Im1/nhE1Nr8eW9tDPYCOZkFDhNYpp6D1HXU
-	 ZfVjlhf9ZKcIVaElODGuWdpkWqWu7uVQ89BIKOdge1LlKEeGX14BGfKU8ZGfq1WyON
-	 43wxTRMF3I1Tb7FtL7WOZNOhju0YM2qCDjRRUumAwuBXQDj6bfam9wBtL+ss+NTFd2
-	 lbnK9COyoZOW3NN1jww5tIwC982UIcQ9qb2GJs4AFFesvQZ+flyZzwX+5VA/bh8gTJ
-	 MKrdWF+NgYTzQ==
-Message-ID: <a848fa43-6a46-4fd6-86a4-96aaf82e2a02@kernel.org>
-Date: Wed, 18 Feb 2026 11:21:13 +0100
+	id 1vsegP-00000009dVz-0Ymq;
+	Wed, 18 Feb 2026 10:21:26 +0000
+Received: from localhost.localdomain (2A02-842b-8136-0001-B865-661d-5641-E7C6.rev.sfr.net [IPv6:2a02:842b:8136:1:b865:661d:5641:e7c6])
+	by courrier.aliel.fr (Postfix) with ESMTPSA id 1C72D4CB4C;
+	Wed, 18 Feb 2026 10:21:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1771410081;
+	bh=UeFlavmnt7uIyd9IWGgQdfb30RwEmhTPoe/K9fhYX3E=;
+	h=From:To:Cc:Subject:Date;
+	b=kWeLo4kxE5qZfuL+yXPrK5lfUUDDNuh9fAAYLLDbnaVq5xpiFBAw/iXYjaY3/l0ju
+	 gH43MmO1ZID4PxNN3C0NeoHJTzisdBfSkMn896+LS3jsWwjMmmM7ND2e9ecq65ukMI
+	 gDLdXjznjwbRlsxVX1PEuaR2s5G28DdbmB36YFtM=
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+To: linux-amlogic@lists.infradead.org
+Cc: Ronald Claveau <linux-kernel-dev@aliel.fr>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 6/7] arm64: dts: amlogic: Add clock and EMMC for T7
+Date: Wed, 18 Feb 2026 11:20:43 +0100
+Message-ID: <20260218102045.35633-1-linux-kernel-dev@aliel.fr>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: clk: meson: Add Amlogic T7 fix pll
- support
-To: Ronald Claveau <linux-kernel-dev@aliel.fr>,
- linux-amlogic@lists.infradead.org
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260218101728.35497-1-linux-kernel-dev@aliel.fr>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260218101728.35497-1-linux-kernel-dev@aliel.fr>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260218_022125_479225_3D3383F7 
+X-CRM114-Status: UNSURE (   9.69  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,17 +74,204 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18/02/2026 11:17, Ronald Claveau wrote:
-> Add PLL for the clock controller of the Amlogic T7 SoC family.
-> 
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> ---
+Add fixed clock and EMMC support for Amlogic T7 SoC family dtsi.
 
-This is not a separate patch, but belongs to the one adding this
-binding/compatible.
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 137 +++++++++++++++++++-
+ 1 file changed, 134 insertions(+), 3 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index 6510068bcff9..e5932eb3db2b 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -3,6 +3,8 @@
+  * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+  */
+ 
++#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
++#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/power/amlogic,t7-pwrc.h>
+ #include "amlogic-t7-reset.h"
+@@ -208,12 +210,14 @@ soc {
+ 		ranges;
+ 
+ 		gic: interrupt-controller@fff01000 {
+-			compatible = "arm,gic-400";
++			compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+ 			#interrupt-cells = <3>;
+ 			#address-cells = <0>;
+ 			interrupt-controller;
+ 			reg = <0x0 0xfff01000 0 0x1000>,
+-			      <0x0 0xfff02000 0 0x0100>;
++				  <0x0 0xfff02000 0 0x2000>,
++				  <0x0 0xfff04000 0 0x2000>,
++				  <0x0 0xfff06000 0 0x2000>;
+ 			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+ 		};
+ 
+@@ -224,6 +228,24 @@ apb4: bus@fe000000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+ 
++			clkc: clock-controller@0 {
++				compatible = "amlogic,t7-peripherals-clkc";
++				reg = <0x0 0x0 0x0 0x49c>;
++				#clock-cells = <1>;
++				clocks = <&xtal>,
++						 <&fpll CLKID_FDIV2>,
++						 <&fpll CLKID_FDIV2P5>,
++						 <&fpll CLKID_FDIV3>,
++						 <&fpll CLKID_FDIV4>,
++						 <&fpll CLKID_FDIV5>,
++						 <&hifi_pll CLKID_HIFI_PLL>,
++						 <&mpll CLKID_MPLL2>,
++						 <&mpll CLKID_MPLL3>,
++						 <&gp0_pll CLKID_GP0_PLL>;
++				clock-names = "xtal", "fdiv2", "fdiv2p5", "fdiv3", "fdiv4",
++							  "fdiv5", "hifi", "mpll2", "mpll3", "gp0";
++			};
++
+ 			reset: reset-controller@2000 {
+ 				compatible = "amlogic,t7-reset";
+ 				reg = <0x0 0x2000 0x0 0x98>;
+@@ -250,6 +272,68 @@ gpio: bank@4000 {
+ 					#gpio-cells = <2>;
+ 					gpio-ranges = <&periphs_pinctrl 0 0 157>;
+ 				};
++
++				emmc_ctrl_pins: emmc-ctrl {
++					mux-0 {
++						groups = "emmc_cmd";
++						function = "emmc";
++						bias-pull-up;
++						drive-strength-microamp = <4000>;
++					};
++
++					mux-1 {
++						groups = "emmc_clk";
++						function = "emmc";
++						bias-disable;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
++				emmc_data_4b_pins: emmc-data-4b {
++					mux-0 {
++						groups = "emmc_nand_d0",
++								 "emmc_nand_d1",
++								 "emmc_nand_d2",
++								 "emmc_nand_d3";
++						function = "emmc";
++						bias-pull-up;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
++				emmc_data_8b_pins: emmc-data-8b {
++					mux-0 {
++						groups = "emmc_nand_d0",
++								 "emmc_nand_d1",
++								 "emmc_nand_d2",
++								 "emmc_nand_d3",
++								 "emmc_nand_d4",
++								 "emmc_nand_d5",
++								 "emmc_nand_d6",
++								 "emmc_nand_d7";
++						function = "emmc";
++						bias-pull-up;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
++				emmc_ds_pins: emmc-ds {
++					mux {
++						groups = "emmc_nand_ds";
++						function = "emmc";
++						bias-pull-down;
++						drive-strength-microamp = <4000>;
++					};
++				};
++
++				emmc_clk_gate_pins: emmc_clk_gate {
++					mux {
++						groups = "GPIOB_8";
++						function = "gpio_periphs";
++						bias-pull-down;
++						drive-strength-microamp = <4000>;
++					};
++				};
+ 			};
+ 
+ 			gpio_intc: interrupt-controller@4080 {
+@@ -262,8 +346,40 @@ gpio_intc: interrupt-controller@4080 {
+ 					<10 11 12 13 14 15 16 17 18 19 20 21>;
+ 			};
+ 
++			fpll: clock-controller@8040 {
++				compatible = "amlogic,t7-fpll";
++				reg = <0x0 0x8040 0x0 0x20>;
++				#clock-cells = <1>;
++				clocks = <&xtal>;
++				clock-names = "xtal";
++			};
++
++			gp0_pll: clock-controller@8080 {
++				compatible = "amlogic,t7-gp0-pll";
++				reg = <0x0 0x8080 0x0 0x20>;
++				#clock-cells = <1>;
++				clocks = <&xtal>;
++				clock-names = "in0";
++			};
++
++			hifi_pll: clock-controller@8100 {
++				compatible = "amlogic,t7-hifi-pll";
++				reg = <0x0 0x8100 0x0 0x20>;
++				#clock-cells = <1>;
++				clocks = <&xtal>;
++				clock-names = "in0";
++			};
++
++			mpll: clock-controller@8180 {
++				compatible = "amlogic,t7-mpll";
++				reg = <0x0 0x8180 0x0 0x20>;
++				#clock-cells = <1>;
++				clocks = <&fpll CLKID_FPLL_DCO>;
++				clock-names = "in0";
++			};
++
+ 			uart_a: serial@78000 {
+-				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
++				compatible = "amlogic,meson-s4-uart";
+ 				reg = <0x0 0x78000 0x0 0x18>;
+ 				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+@@ -276,6 +392,21 @@ sec_ao: ao-secure@10220 {
+ 				reg = <0x0 0x10220 0x0 0x140>;
+ 				amlogic,has-chip-id;
+ 			};
++
++			sd_emmc_c: mmc@8c000{
++				compatible = "amlogic,meson-axg-mmc";
++				reg = <0x0 0x8c000 0x0 0x800>;
++				interrupts = <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&clkc CLKID_SYS_SD_EMMC_C>,
++						 <&clkc CLKID_SD_EMMC_C>,
++						 <&gp0_pll CLKID_GP0_PLL>;
++				clock-names = "core", "clkin0", "clkin1";
++				assigned-clocks = <&clkc CLKID_SD_EMMC_C_SEL>;
++				assigned-clock-parents = <&xtal>;
++				no-sdio;
++				no-sd;
++			};
+ 		};
+ 
+ 	};
+-- 
+2.49.0
+
 
 _______________________________________________
 linux-amlogic mailing list
