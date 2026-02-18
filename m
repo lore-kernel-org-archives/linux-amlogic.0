@@ -4,70 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F304FE83847
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Feb 2026 01:01:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C93DFE9A03B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Feb 2026 10:17:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=06DMwKwbbPYjD4BvnYOTsmlZs9Q3nA6s2yHrjo1stYM=; b=4QKM/gd5R2fawQ
-	KiE4U+eXwhC1CzLsp/+NRSDYYl3yV8dunluhv1RuX+PZV4OZLSiLoMHfCUy9v0ILCItvIu7myQQsB
-	x0EI7eeY1GM7ZWguOaAiVhaebU5caDnqur6EEtu1ogYLJdOHouTo0VShcVCFo7wStQ8o7JTXwIIgD
-	7N22bzLx5hXZSAAhFrEsWSJD4Dr0r8hzNXDAGY6kP6muQjci7kvoDuV6PCnJVTbL450Z97r+NvDE9
-	h8Rk1xVhmxnqy4yxi0MiZd/DpJAaNB711titU/v1LiIWNZUuS8/kNW564hkq0gwSKPZhtKQa5mg02
-	kZ6K+LJ6X2ty5QcaguHw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=BmwuC61vX0UHPuOPp6O2mEldKuf/YIEaj/GukygRIMc=; b=3r5YTUC4iES4I5
+	lmhzoZeo2ajOI0EdjznGUYB+T1JjfhqG5qtekDJKFHNw/24sVeQSPM6EDyfPyjryvE+B9enF+vTUt
+	0BWsfTVzFdj5JwxkWY8kKbifcjtaF7ISlzxGGFSOaZagprFfbxmgIu18QEkYccheR7cWqvTZs6l6K
+	axbIQP7brvRt8YJhLuSDHStWPQXhfbDXOVy2RVExz0H5Xmm96N+ERNQrWF4AFzsO/6CPXs6MbofhA
+	izX4QGDGFSApru1Vf76b6EfEiF6q73EQHpyYPIN/y6lsrSCuoSoFMZltLl7NFsBg6kjqPdLoX5sIN
+	0jahgQTsIE/esND8t5Dg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vs9T0-00000007SQG-1IVk;
-	Tue, 17 Feb 2026 01:01:30 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1vsect-00000009ch0-029A;
+	Wed, 18 Feb 2026 10:17:47 +0000
+Received: from pouet.aliel.fr ([65.21.61.41] helo=courrier.aliel.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vs9Sw-00000007SPr-46H7;
-	Tue, 17 Feb 2026 01:01:28 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 462994453B;
-	Tue, 17 Feb 2026 01:01:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D46A6C2BC87;
-	Tue, 17 Feb 2026 01:01:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771290085;
-	bh=3CQR8MNuLy3NsGjQSjNTddHYGKdbU4uYpOwzcupblxg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Bwp48MMihd4Al5ZmBb87Sv8KwQ+2c4ApUINj/56l4mXnIWAagnXfdVj8+oPOdmjWS
-	 XLhl0JT3dSeNtMHMaAk00BldL/EIAE1PF8Bf65ZpsIfzcBVPrO7jwoFoCI5HRi55ZX
-	 C6PSli29FLb3zNn1UB1C9nxQK9SYSMh3hFiJvXBednk4Ne7VeAUVznVgL0+O9izm1H
-	 DnsgSwjCacZ9HILf5+sfE8yyH0Y/pq+a7Ljwp/pzvT45Vr5tDzNZ+k2MC70J6rWoXB
-	 vKjdz2Gt3ZX83NxwnyvN/gRmVSlbCR0PytP/iAn6onlcBC/TAL+Zfk7x4EsNhayAaS
-	 CmzJLF9zcDSpw==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Chuan Liu <chuan.liu@amlogic.com>,
+	id 1vsecq-00000009cgT-18Jn;
+	Wed, 18 Feb 2026 10:17:45 +0000
+Received: from localhost.localdomain (2a02-842B-8136-0001-B865-661d-5641-e7C6.rev.sfr.net [IPv6:2a02:842b:8136:1:b865:661d:5641:e7c6])
+	by courrier.aliel.fr (Postfix) with ESMTPSA id 25F6340244;
+	Wed, 18 Feb 2026 10:17:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1771409845;
+	bh=UIj7l7+c+Oryy69k5j23cX4NqnuYzH9LjKdMAwbHPXU=;
+	h=From:To:Cc:Subject:Date;
+	b=KX9YCSzZMzK2IVeM4+7eF93Vv4Uk2sxtI1Qq7uhSYQ2mHQBEcMxkpmZHTQvy6AnSY
+	 TXSeJtQgOaNqPi/AKGORxFVD6BPlG3Z/fJFn3br8BV1W95vU3bMgDXn4qyyljvvQ3c
+	 cOHcXCKFjC8+0kNxflZgo6k0KSAM+BjaPj3Rnbe4=
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+To: linux-amlogic@lists.infradead.org
+Cc: Ronald Claveau <linux-kernel-dev@aliel.fr>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Jerome Brunet <jbrunet@baylibre.com>,
-	Sasha Levin <sashal@kernel.org>,
-	neil.armstrong@linaro.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	khilman@baylibre.com,
-	linux-amlogic@lists.infradead.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
 	linux-clk@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.19-6.18] clk: amlogic: remove potentially unsafe flags from S4 video clocks
-Date: Mon, 16 Feb 2026 20:01:15 -0500
-Message-ID: <20260217010118.3503621-4-sashal@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260217010118.3503621-1-sashal@kernel.org>
-References: <20260217010118.3503621-1-sashal@kernel.org>
+Subject: [PATCH 1/7] drivers: clk: meson: Add Amlogic T7 fix pll support
+Date: Wed, 18 Feb 2026 11:17:06 +0100
+Message-ID: <20260218101709.35450-1-linux-kernel-dev@aliel.fr>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.19.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260216_170127_091112_0F127292 
-X-CRM114-Status: GOOD (  18.94  )
+X-CRM114-CacheID: sfid-20260218_021744_608506_A91D5256 
+X-CRM114-Status: GOOD (  10.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,119 +67,305 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RnJvbTogQ2h1YW4gTGl1IDxjaHVhbi5saXVAYW1sb2dpYy5jb20+CgpbIFVwc3RyZWFtIGNvbW1p
-dCA0YWNhN2U5MjAyM2NhYzUwMThiNDA1M2JhZTMyNDQ1MGY4ODRjOTM3IF0KClRoZSB2aWRlbyBj
-bG9ja3MgZW5jaSwgZW5jcCwgdmRhYyBhbmQgaGRtaXR4IHNoYXJlIHRoZSBzYW1lIGNsb2NrCnNv
-dXJjZS4gQWRkaW5nIENMS19TRVRfUkFURV9QQVJFTlQgdG8gdGhlIG11eCBtYXkgdW5pbnRlbnRp
-b25hbGx5IGNoYW5nZQp0aGUgc2hhcmVkIHBhcmVudCBjbG9jaywgd2hpY2ggY291bGQgYWZmZWN0
-IG90aGVyIHZpZGVvIGNsb2Nrcy4KClNpZ25lZC1vZmYtYnk6IENodWFuIExpdSA8Y2h1YW4ubGl1
-QGFtbG9naWMuY29tPgpMaW5rOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9yLzIwMjUwOTE5LWFk
-ZF92aWRlb19jbGstdjYtMy1mZTIyMzE2MWZiM2ZAYW1sb2dpYy5jb20KU2lnbmVkLW9mZi1ieTog
-SmVyb21lIEJydW5ldCA8amJydW5ldEBiYXlsaWJyZS5jb20+ClNpZ25lZC1vZmYtYnk6IFNhc2hh
-IExldmluIDxzYXNoYWxAa2VybmVsLm9yZz4KLS0tCgpMTE0gR2VuZXJhdGVkIGV4cGxhbmF0aW9u
-cywgbWF5IGJlIGNvbXBsZXRlbHkgYm9ndXM6CgpXYWl0LCB0aGlzIGlzIHZlcnkgY29uZnVzaW5n
-LiBUaGUgbWFpbGluZyBsaXN0IHNheXMgcGF0Y2ggMiBhZGRzIG5ldwpjbG9ja3MsIGJ1dCBnaXQg
-YmxhbWUgc2hvd3MgdGhlc2UgdmlkZW8gY2xvY2sgbXV4ZXMgKGBjdHNfZW5jaV9zZWxgLApgY3Rz
-X2VuY3Bfc2VsYCwgZXRjLikgd2VyZSBhbHJlYWR5IGluIHRoZSBvcmlnaW5hbCBjb21taXQgZnJv
-bSAyMDIzLiBMZXQKbWUgcmUtcmVhZCB0aGUgZGlmZiBtb3JlIGNhcmVmdWxseS4KCkxvb2tpbmcg
-YXQgdGhlIGRpZmYgYWdhaW46IHRoZSBjb21taXQgcmVtb3ZlcyBgQ0xLX1NFVF9SQVRFX1BBUkVO
-VGAgZnJvbQpgczRfY3RzX2VuY2lfc2VsYCwgYHM0X2N0c19lbmNwX3NlbGAsIGBzNF9jdHNfdmRh
-Y19zZWxgLCBhbmQKYHM0X2hkbWlfdHhfc2VsYC4gR2l0IGJsYW1lIGNvbmZpcm1lZCB0aGVzZSBz
-dHJ1Y3R1cmVzIHdlcmUgYWRkZWQgaW4KYDU3YjU1Yzc2YWFmMWJgICgyMDIzLCB2Ni43KS4gVGhl
-IHBhdGNoIDIgb2YgdGhlIHNlcmllcyBhZGRzICoqbmV3KioKY2xvY2tzIChlbmNsLCBjZGFjLCBk
-ZW1vZCwgYWRjKSwgYnV0IHRoZSBvbmVzIGJlaW5nICoqZml4ZWQqKiBpbiBwYXRjaCAzCmFscmVh
-ZHkgZXhpc3RlZC4KClRoaXMgbWVhbnMgcGF0Y2ggMyAob3VyIGNvbW1pdCkgaXMgKipzZWxmLWNv
-bnRhaW5lZCoqIHdpdGggcmVzcGVjdCB0bwp0aGUgYnVnIGZpeCDigJQgaXQgcmVtb3ZlcyBmbGFn
-cyBmcm9tIGNsb2NrcyB0aGF0IGFscmVhZHkgZXhpc3QgaW4gc3RhYmxlCnRyZWVzLiBJdCBkb2Vz
-IE5PVCBkZXBlbmQgb24gcGF0Y2ggMi4KCiMjIEZpbmFsIEFuYWx5c2lzCgojIyMgUHJvYmxlbSBE
-ZXNjcmlwdGlvbgpUaGUgYENMS19TRVRfUkFURV9QQVJFTlRgIGZsYWcgb24gdGhlIHZpZGVvIGNs
-b2NrIG11eCBzZWxlY3RvcnMKKGBjdHNfZW5jaV9zZWxgLCBgY3RzX2VuY3Bfc2VsYCwgYGN0c192
-ZGFjX3NlbGAsIGBoZG1pX3R4X3NlbGApIGFsbG93cwpyYXRlIGNoYW5nZSByZXF1ZXN0cyB0byBw
-cm9wYWdhdGUgZnJvbSB0aGVzZSBtdXhlcyB1cCB0byB0aGVpciBzaGFyZWQKcGFyZW50IGNsb2Nr
-LiBTaW5jZSBhbGwgZm91ciBtdXhlcyBzaGFyZSB0aGUgc2FtZSBwYXJlbnQgY2xvY2sgc291cmNl
-cwoodmNsa19kaXYgYW5kIHZjbGsyX2RpdiBmYW1pbGllcyksIGFueSBvbmUgb2YgdGhlbSByZXF1
-ZXN0aW5nIGEgcmF0ZQpjaGFuZ2UgY291bGQgYWx0ZXIgdGhlIHBhcmVudCwgYnJlYWtpbmcgdGhl
-IG90aGVyIHZpZGVvIG91dHB1dHMuCgojIyMgSW1wYWN0IEFzc2Vzc21lbnQKLSAqKlJlYWwgYnVn
-Kio6IFllcyDigJQgd2hlbiBvbmUgdmlkZW8gb3V0cHV0IChlLmcuLCBIRE1JKSByZXF1ZXN0cyBh
-CiAgY2xvY2sgcmF0ZSBjaGFuZ2UsIGl0IGNhbiBtb2RpZnkgdGhlIHNoYXJlZCBwYXJlbnQgY2xv
-Y2ssIGNhdXNpbmcKICBvdGhlciB2aWRlbyBvdXRwdXRzIChDVkJTLCBlbmNvZGVyKSB0byB1c2Ug
-dGhlIHdyb25nIGNsb2NrIHJhdGUuIFRoaXMKICBjb3VsZCByZXN1bHQgaW4gZGlzcGxheSBjb3Jy
-dXB0aW9uIG9yIGxvc3Mgb2YgdmlkZW8gc2lnbmFsLgotICoqU2NvcGUqKjogQWZmZWN0cyBhbGwg
-QW1sb2dpYyBTNCBTb0MgdXNlcnMgd2l0aCBtdWx0aXBsZSBhY3RpdmUgdmlkZW8KICBvdXRwdXRz
-LCBzaW5jZSB2Ni43LgotICoqU2V2ZXJpdHkqKjogTWVkaXVtIOKAlCBkaXNwbGF5IGNvcnJ1cHRp
-b24vZmFpbHVyZSB3aGVuIG11bHRpcGxlIHZpZGVvCiAgb3V0cHV0cyBhcmUgYWN0aXZlIHNpbXVs
-dGFuZW91c2x5LgoKIyMjIFN0YWJsZSBLZXJuZWwgQ3JpdGVyaWEgQXNzZXNzbWVudAotICoqT2J2
-aW91c2x5IGNvcnJlY3QqKjogWWVzIOKAlCByZW1vdmluZyBgQ0xLX1NFVF9SQVRFX1BBUkVOVGAg
-ZnJvbQogIHNoYXJlZCBtdXggc2VsZWN0b3JzIGlzIGEgd2VsbC11bmRlcnN0b29kIHBhdHRlcm4g
-Zm9yIHByZXZlbnRpbmcKICB1bmludGVuZGVkIHBhcmVudCBjbG9jayBtb2RpZmljYXRpb25zLgot
-ICoqRml4ZXMgYSByZWFsIGJ1ZyoqOiBZZXMg4oCUIHByZXZlbnRzIHVuaW50ZW5kZWQgc2hhcmVk
-IHBhcmVudCBjbG9jawogIG1vZGlmaWNhdGlvbiBhZmZlY3Rpbmcgb3RoZXIgdmlkZW8gY2xvY2tz
-LgotICoqU21hbGwgYW5kIGNvbnRhaW5lZCoqOiBZZXMg4oCUIHJlbW92ZXMgNCBsaW5lcyAoZmxh
-ZyBkZWNsYXJhdGlvbnMpCiAgZnJvbSBhIHNpbmdsZSBmaWxlLgotICoqTm8gbmV3IGZlYXR1cmVz
-Kio6IENvcnJlY3Qg4oCUIHB1cmVseSBhIGJ1ZyBmaXguCi0gKipSaXNrKio6IFZlcnkgbG93IOKA
-lCByZW1vdmluZyBgQ0xLX1NFVF9SQVRFX1BBUkVOVGAgbWVhbnMgdGhlIG11eAogIHdvbid0IHBy
-b3BhZ2F0ZSByYXRlIGNoYW5nZXMgdXB3YXJkLCB3aGljaCBpcyB0aGUgZGVzaXJlZCBiZWhhdmlv
-ciBmb3IKICBzaGFyZWQgY2xvY2sgc291cmNlcy4gVGhlIGRvd25zdHJlYW0gZ2F0ZSBjbG9ja3Mg
-c3RpbGwgaGF2ZQogIGBDTEtfU0VUX1JBVEVfUEFSRU5UYCwgc28gcmF0ZSByZXF1ZXN0cyBzdGls
-bCBwcm9wYWdhdGUgZnJvbSB0aGUgZ2F0ZQogIHRvIHRoZSBtdXg7IHRoZXkganVzdCBzdG9wIHRo
-ZXJlIGluc3RlYWQgb2YgZ29pbmcgZnVydGhlciB1cC4KCiMjIyBDb25jZXJucwotICoqRGVwZW5k
-ZW5jeSBjaGVjayoqOiBUaGUgZml4IGlzIHNlbGYtY29udGFpbmVkLiBUaGUgYWZmZWN0ZWQgY2xv
-Y2sKICBzdHJ1Y3R1cmVzIGV4aXN0IHNpbmNlIHY2LjcgKGNvbW1pdCBgNTdiNTVjNzZhYWYxYmAp
-LiBObyBkZXBlbmRlbmN5IG9uCiAgb3RoZXIgcGF0Y2hlcyBpbiB0aGUgc2VyaWVzLgotICoqQmVo
-YXZpb3JhbCBjaGFuZ2UqKjogVXNlcnMgd2hvIHJlbGllZCBvbiBgQ0xLX1NFVF9SQVRFX1BBUkVO
-VGAKICBwcm9wYWdhdGlvbiB0aHJvdWdoIHRoZSBtdXggdG8gdGhlIHBhcmVudCBtaWdodCBzZWUg
-ZGlmZmVyZW50CiAgYmVoYXZpb3IsIGJ1dCB0aGlzICJyZWxpYW5jZSIgd2FzIGFsd2F5cyBpbmNv
-cnJlY3Qgc2luY2UgaXQgY291bGQKICBicmVhayBvdGhlciB2aWRlbyBvdXRwdXRzLgoKIyMgVmVy
-aWZpY2F0aW9uCgotICoqZ2l0IGJsYW1lKiogY29uZmlybWVkIGBzNF9jdHNfZW5jaV9zZWxgLCBg
-czRfY3RzX2VuY3Bfc2VsYCwKICBgczRfY3RzX3ZkYWNfc2VsYCwgYHM0X2hkbWlfdHhfc2VsYCB3
-aXRoIGBDTEtfU0VUX1JBVEVfUEFSRU5UYCB3ZXJlCiAgaW50cm9kdWNlZCBpbiBgNTdiNTVjNzZh
-YWYxYmAgKHY2LjcsIFNlcHRlbWJlciAyMDIzKS4KLSAqKmdpdCB0YWcgLS1jb250YWlucyA1N2I1
-NWM3NmFhZjFiKiogY29uZmlybWVkIHRoZSBidWdneSBjb2RlIGlzIGluCiAgdjYuNysgYW5kIHY2
-LjEyLnkgTFRTLgotICoqbG9yZS5rZXJuZWwub3JnKiogY29uZmlybWVkIHRoaXMgaXMgcGF0Y2gg
-My8zIG9mIHRoZSAiYWRkIHZpZGVvLQogIHJlbGF0ZWQgY2xvY2tzIGZvciBTNCBTb0MiIHNlcmll
-cywgYWNjZXB0ZWQgRGVjZW1iZXIgMjAyNSBieSBKZXJvbWUKICBCcnVuZXQuCi0gKipsb3JlLmtl
-cm5lbC5vcmcgcGF0Y2ggMioqIGNvbmZpcm1lZCBwYXRjaCAyIGFkZHMgKipkaWZmZXJlbnQqKgog
-IGNsb2NrcyAoZW5jbCwgY2RhYywgZGVtb2QsIGFkYyksIG5vdCB0aGUgb25lcyBiZWluZyBmaXhl
-ZCBoZXJlIOKAlCB0aGUKICBmaXggaXMgaW5kZXBlbmRlbnQuCi0gKipDb2RlIGluc3BlY3Rpb24q
-KiBjb25maXJtZWQgYHM0X2N0c19lbmNsX3NlbGAgYWxyZWFkeSBsYWNrZWQKICBgQ0xLX1NFVF9S
-QVRFX1BBUkVOVGAgKGNvbnNpc3RlbnQgYXJjaGl0ZWN0dXJlIOKAlCBlbmNsIHdhcyBhbHJlYWR5
-CiAgY29ycmVjdCkuCi0gKipDb2RlIGluc3BlY3Rpb24qKiBjb25maXJtZWQgZG93bnN0cmVhbSBn
-YXRlIGNsb2NrcyAoYHM0X2N0c19lbmNpYCwKICBgczRfY3RzX2VuY3BgKSByZXRhaW4gYENMS19T
-RVRfUkFURV9QQVJFTlRgLCBzbyByYXRlIHByb3BhZ2F0aW9uIHN0aWxsCiAgd29ya3MgZnJvbSBn
-YXRlIHRvIG11eCBidXQgc3RvcHMgYXQgdGhlIG11eCBsZXZlbC4KLSAqKkNvdWxkIE5PVCB2ZXJp
-ZnkqKiBhbnkgdXNlciByZXBvcnRzIG9mIGFjdHVhbCBkaXNwbGF5IGNvcnJ1cHRpb24KICBmcm9t
-IHRoaXMgYnVnICh1bnZlcmlmaWVkIOKAlCBidXQgdGhlIG1lY2hhbmlzbSBpcyBzb3VuZCBhbmQg
-dGhlIGZpeCBpcwogIG9idmlvdXMpLgoKVGhlIGZpeCBpcyBzbWFsbCwgc3VyZ2ljYWwsIHNlbGYt
-Y29udGFpbmVkLCBmaXhlcyBhIHJlYWwgY2xvY2stdHJlZQpjb3JyZWN0bmVzcyBpc3N1ZSBhZmZl
-Y3RpbmcgYWxsIEFtbG9naWMgUzQgdXNlcnMgc2luY2UgdjYuNywgYW5kIGNhcnJpZXMKZXh0cmVt
-ZWx5IGxvdyByZWdyZXNzaW9uIHJpc2suIEl0IG1lZXRzIGFsbCBzdGFibGUga2VybmVsIGNyaXRl
-cmlhLgoKKipZRVMqKgoKIGRyaXZlcnMvY2xrL21lc29uL3M0LXBlcmlwaGVyYWxzLmMgfCA0IC0t
-LS0KIDEgZmlsZSBjaGFuZ2VkLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Y2xrL21lc29uL3M0LXBlcmlwaGVyYWxzLmMgYi9kcml2ZXJzL2Nsay9tZXNvbi9zNC1wZXJpcGhl
-cmFscy5jCmluZGV4IDZkNjliMTMyZDFlMWYuLmJhYjRmNTcwMGRlNDcgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvY2xrL21lc29uL3M0LXBlcmlwaGVyYWxzLmMKKysrIGIvZHJpdmVycy9jbGsvbWVzb24v
-czQtcGVyaXBoZXJhbHMuYwpAQCAtMTEwNiw3ICsxMTA2LDYgQEAgc3RhdGljIHN0cnVjdCBjbGtf
-cmVnbWFwIHM0X2N0c19lbmNpX3NlbCA9IHsKIAkJLm9wcyA9ICZjbGtfcmVnbWFwX211eF9vcHMs
-CiAJCS5wYXJlbnRfaHdzID0gczRfY3RzX3BhcmVudHMsCiAJCS5udW1fcGFyZW50cyA9IEFSUkFZ
-X1NJWkUoczRfY3RzX3BhcmVudHMpLAotCQkuZmxhZ3MgPSBDTEtfU0VUX1JBVEVfUEFSRU5ULAog
-CX0sCiB9OwogCkBAIC0xMTIyLDcgKzExMjEsNiBAQCBzdGF0aWMgc3RydWN0IGNsa19yZWdtYXAg
-czRfY3RzX2VuY3Bfc2VsID0gewogCQkub3BzID0gJmNsa19yZWdtYXBfbXV4X29wcywKIAkJLnBh
-cmVudF9od3MgPSBzNF9jdHNfcGFyZW50cywKIAkJLm51bV9wYXJlbnRzID0gQVJSQVlfU0laRShz
-NF9jdHNfcGFyZW50cyksCi0JCS5mbGFncyA9IENMS19TRVRfUkFURV9QQVJFTlQsCiAJfSwKIH07
-CiAKQEAgLTExMzgsNyArMTEzNiw2IEBAIHN0YXRpYyBzdHJ1Y3QgY2xrX3JlZ21hcCBzNF9jdHNf
-dmRhY19zZWwgPSB7CiAJCS5vcHMgPSAmY2xrX3JlZ21hcF9tdXhfb3BzLAogCQkucGFyZW50X2h3
-cyA9IHM0X2N0c19wYXJlbnRzLAogCQkubnVtX3BhcmVudHMgPSBBUlJBWV9TSVpFKHM0X2N0c19w
-YXJlbnRzKSwKLQkJLmZsYWdzID0gQ0xLX1NFVF9SQVRFX1BBUkVOVCwKIAl9LAogfTsKIApAQCAt
-MTE2OSw3ICsxMTY2LDYgQEAgc3RhdGljIHN0cnVjdCBjbGtfcmVnbWFwIHM0X2hkbWlfdHhfc2Vs
-ID0gewogCQkub3BzID0gJmNsa19yZWdtYXBfbXV4X29wcywKIAkJLnBhcmVudF9od3MgPSBzNF9o
-ZG1pX3R4X3BhcmVudHMsCiAJCS5udW1fcGFyZW50cyA9IEFSUkFZX1NJWkUoczRfaGRtaV90eF9w
-YXJlbnRzKSwKLQkJLmZsYWdzID0gQ0xLX1NFVF9SQVRFX1BBUkVOVCwKIAl9LAogfTsKIAotLSAK
-Mi41MS4wCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
-b2dpYwo=
+Add PLL for the clock controller of the Amlogic T7 SoC family.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+ drivers/clk/meson/t7-pll.c | 257 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 257 insertions(+)
+
+diff --git a/drivers/clk/meson/t7-pll.c b/drivers/clk/meson/t7-pll.c
+index 0a622f45fa36..3dd3aca50b7c 100644
+--- a/drivers/clk/meson/t7-pll.c
++++ b/drivers/clk/meson/t7-pll.c
+@@ -71,6 +71,15 @@
+ #define MCLK_PLL_CNTL4		0x10
+ #define MCLK_PLL_STS		0x14
+ 
++#define FPLL_CTRL0		0x00
++#define FPLL_CTRL1		0x04
++#define FPLL_CTRL2		0x08
++#define FPLL_CTRL3		0x0c
++#define FPLL_CTRL4		0x10
++#define FPLL_CTRL5		0x14
++#define FPLL_CTRL6		0x18
++#define FPLL_STS		0x1c
++
+ static const struct pll_mult_range t7_media_pll_mult_range = {
+ 	.min = 125,
+ 	.max = 250,
+@@ -1047,6 +1056,253 @@ static const struct meson_clkc_data t7_mclk_data = {
+ 	},
+ };
+ 
++static struct clk_regmap t7_fpll_dco = {
++	.data = &(struct meson_clk_pll_data){
++		.en = {
++			.reg_off = FPLL_CTRL0,
++			.shift   = 28,
++			.width   = 1,
++		},
++		.m = {
++			.reg_off = FPLL_CTRL0,
++			.shift   = 0,
++			.width   = 8,
++		},
++		.n = {
++			.reg_off = FPLL_CTRL0,
++			.shift   = 10,
++			.width   = 5,
++		},
++		.frac = {
++			.reg_off = FPLL_CTRL1,
++			.shift   = 0,
++			.width   = 17,
++		},
++		.l = {
++			.reg_off = FPLL_CTRL0,
++			.shift   = 31,
++			.width   = 1,
++		},
++		.rst = {
++			.reg_off = FPLL_CTRL0,
++			.shift   = 29,
++			.width   = 1,
++		},
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "fpll_dco",
++		.ops = &meson_clk_pll_ro_ops,
++		.parent_data = &(const struct clk_parent_data) {
++			.fw_name = "xtal",
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap t7_fpll = {
++	.data = &(struct clk_regmap_div_data){
++		.offset = FPLL_CTRL0,
++		.shift = 16,
++		.width = 2,
++		.flags = CLK_DIVIDER_POWER_OF_TWO,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "fpll",
++		.ops = &clk_regmap_divider_ro_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&t7_fpll_dco.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_fixed_factor t7_fdiv2_div = {
++	.mult = 1,
++	.div = 2,
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv2_div",
++		.ops = &clk_fixed_factor_ops,
++		.parent_hws = (const struct clk_hw *[]) { &t7_fpll.hw },
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap t7_fdiv2 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = FPLL_CTRL1,
++		.bit_idx = 24,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv2",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&t7_fdiv2_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_IS_CRITICAL,
++	},
++};
++
++static struct clk_fixed_factor t7_fdiv2p5_div = {
++	.mult = 2,
++	.div = 5,
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv2p5_div",
++		.ops = &clk_fixed_factor_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&t7_fpll.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap t7_fdiv2p5 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = FPLL_CTRL1,
++		.bit_idx = 25,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv2p5",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&t7_fdiv2p5_div.hw
++		},
++		.num_parents = 1,
++	},
++};
++
++static struct clk_fixed_factor t7_fdiv3_div = {
++	.mult = 1,
++	.div = 3,
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv3_div",
++		.ops = &clk_fixed_factor_ops,
++		.parent_hws = (const struct clk_hw *[]) { &t7_fpll.hw },
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap t7_fdiv3 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = FPLL_CTRL1,
++		.bit_idx = 20,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv3",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&t7_fdiv3_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_IS_CRITICAL,
++	},
++};
++
++static struct clk_fixed_factor t7_fdiv4_div = {
++	.mult = 1,
++	.div = 4,
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv4_div",
++		.ops = &clk_fixed_factor_ops,
++		.parent_hws = (const struct clk_hw *[]) { &t7_fpll.hw },
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap t7_fdiv4 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = FPLL_CTRL1,
++		.bit_idx = 21,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv4",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&t7_fdiv4_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_IS_CRITICAL,
++	},
++};
++
++static struct clk_fixed_factor t7_fdiv5_div = {
++	.mult = 1,
++	.div = 5,
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv5_div",
++		.ops = &clk_fixed_factor_ops,
++		.parent_hws = (const struct clk_hw *[]) { &t7_fpll.hw },
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap t7_fdiv5 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = FPLL_CTRL1,
++		.bit_idx = 22,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv5",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&t7_fdiv5_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_IS_CRITICAL,
++	},
++};
++
++static struct clk_fixed_factor t7_fdiv7_div = {
++	.mult = 1,
++	.div = 7,
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv7_div",
++		.ops = &clk_fixed_factor_ops,
++		.parent_hws = (const struct clk_hw *[]) { &t7_fpll.hw },
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap t7_fdiv7 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = FPLL_CTRL1,
++		.bit_idx = 23,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "fdiv7",
++		.ops = &clk_regmap_gate_ops,
++		.parent_hws = (const struct clk_hw *[]) {
++			&t7_fdiv7_div.hw
++		},
++		.num_parents = 1,
++		.flags = CLK_IS_CRITICAL,
++	},
++};
++
++static struct clk_hw *t7_fpll_hw_clks[] = {
++	[CLKID_FPLL_DCO]	= &t7_fpll_dco.hw,
++	[CLKID_FPLL]		= &t7_fpll.hw,
++	[CLKID_FDIV2_DIV]	= &t7_fdiv2_div.hw,
++	[CLKID_FDIV2]		= &t7_fdiv2.hw,
++	[CLKID_FDIV2P5_DIV]	= &t7_fdiv2p5_div.hw,
++	[CLKID_FDIV2P5]		= &t7_fdiv2p5.hw,
++	[CLKID_FDIV3_DIV]	= &t7_fdiv3_div.hw,
++	[CLKID_FDIV3]		= &t7_fdiv3.hw,
++	[CLKID_FDIV4_DIV]	= &t7_fdiv4_div.hw,
++	[CLKID_FDIV4]		= &t7_fdiv4.hw,
++	[CLKID_FDIV5_DIV]	= &t7_fdiv5_div.hw,
++	[CLKID_FDIV5]		= &t7_fdiv5.hw,
++	[CLKID_FDIV7_DIV]	= &t7_fdiv7_div.hw,
++	[CLKID_FDIV7]		= &t7_fdiv7.hw,
++};
++
++static const struct meson_clkc_data t7_fpll_data = {
++	.hw_clks = {
++		.hws = t7_fpll_hw_clks,
++		.num = ARRAY_SIZE(t7_fpll_hw_clks),
++	},
++};
++
+ static const struct of_device_id t7_pll_clkc_match_table[] = {
+ 	{ .compatible = "amlogic,t7-gp0-pll",	.data = &t7_gp0_data, },
+ 	{ .compatible = "amlogic,t7-gp1-pll",	.data = &t7_gp1_data, },
+@@ -1055,6 +1311,7 @@ static const struct of_device_id t7_pll_clkc_match_table[] = {
+ 	{ .compatible = "amlogic,t7-mpll",	.data = &t7_mpll_data, },
+ 	{ .compatible = "amlogic,t7-hdmi-pll",	.data = &t7_hdmi_data, },
+ 	{ .compatible = "amlogic,t7-mclk-pll",	.data = &t7_mclk_data, },
++	{ .compatible = "amlogic,t7-fpll",	.data = &t7_fpll_data, },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, t7_pll_clkc_match_table);
+-- 
+2.49.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
