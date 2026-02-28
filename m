@@ -4,60 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A942DFEE4ED
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Feb 2026 11:19:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 070B1FEE4EB
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Feb 2026 11:20:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=naDhG69Eban/Q3soJxOP3NAdWFYa8KCJ6wc6JL7KNjc=; b=YkG41DUQUunqy0
-	py2482EgFW0ztA6VlADaW/WO4c9wGKY9Zh/ZjHj02gDvUo0dj9j5LHuaGeVX8zmUxwBcfLTT7BT62
-	Q85EuimwuUjA6IMhCyqK3Y50QqTzFDZxYY545mfe0nKeNchGICdk6jlDok5Jd3C6jDThGwRraV+5X
-	8heY2yjZYqbgBQKT9ZRuSs8mEphtr1m6FluxYXDdx0Nbyw4Cm7mu2gDP/95zU7fomfi5LbQOTWN42
-	gYSKQKg+lq46IIAJFUV4qKCbvhQOg+oBEk92S1ArI1vZQE1J/iwx4iXljbHkwVG18BMMs7Z/NylTK
-	0w0+75TOGn3kyen9QyYw==;
+	List-Owner; bh=pau7zxYas+OsT8A+BNvsn9cHxUbVbNjwKuVUsfXB9VY=; b=hnHFiauGekxjAD
+	tvlUjk+RphcWyYBpS7wH7YhyM27kcogD4KnBYjEph9ImQCPR2iH6wvCQoDECDMf0F8Ylpq1lCzp6X
+	2fPMqiuj56Aw3t7BaPpC6gW0a/zzT81PgXqd/Ojm1jN58NtxbXNLvb53d0POXwR34VSiJOGkxWBFA
+	0IPc3hqP2TZvYZg1KN0EIkUgHpVPjRqhk1Dt3wQJ66xcVA0eZLwbzKTlsFKNbvog9kI2hJo7o08tJ
+	q1Qw6azHrIuHk4kQf16gmhtg3HjO+efouZw0RzpojBWtoQe4uekgusV9oEY6QON2MLD2ifjh6UFXb
+	JA6UaBptFSce8wkh+1jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vwILa-00000009mYG-3jjF;
-	Sat, 28 Feb 2026 11:18:58 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vwINI-00000009mnQ-0ZqU;
+	Sat, 28 Feb 2026 11:20:44 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vwILZ-00000009mY2-3nv4;
-	Sat, 28 Feb 2026 11:18:57 +0000
+	id 1vwINF-00000009mmw-1OJE;
+	Sat, 28 Feb 2026 11:20:42 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 56E816001D;
-	Sat, 28 Feb 2026 11:18:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78FA0C116D0;
-	Sat, 28 Feb 2026 11:18:56 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id A400B43D45;
+	Sat, 28 Feb 2026 11:20:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5F12C116D0;
+	Sat, 28 Feb 2026 11:20:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772277537;
-	bh=9WvqtL0XRV/J/pFOTM/obGeTWs649hf3DIq3OlXX5TQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O8aOAgZdcBT0lhMCNjBtv4dov7hucHpzamAk3cZZDONjkSHwTTMu99ppcHbajMMlN
-	 qu15pRxP74PXrh+pgClDDR0SWY3MRbuswvqii29p3QHupChnjHJs3FYW1sZJbit7qP
-	 Szr4qGs2pBWJ3SKaP+WoszMEW8+B/ZX339Qh+ctDjRgk9WX/XQxtOdA9xXqYtcBrjc
-	 rbEsMU8o8qVs0WA71SlY8y6tDgYKTtYge2hrx0nARpgWTWD0d94RMTPyPhysmN9ovY
-	 Q7ZjQGSuQHV/mqk7wjLLeC5W4PnDb/p2sGwlxfNNmw7LG9heLuRcs3ur+JViltGbDS
-	 3z5ufnKh0lQ1w==
-Date: Sat, 28 Feb 2026 12:18:54 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nick Xie <nick@khadas.com>
-Cc: neil.armstrong@linaro.org, khilman@baylibre.com, 
-	martin.blumenstingl@googlemail.com, jbrunet@baylibre.com, krzk+dt@kernel.org, jic23@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, linux-iio@vger.kernel.org, 
-	robh@kernel.org, conor+dt@kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	xieqinick@gmail.com
+	s=k20201202; t=1772277640;
+	bh=PlhCan2/ci+nwTU3EIQVlLSWO2bYL60bYPkJb+CZeXU=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=TsYgz4T7x4KLfOXERRVlZO6DU6f4tCdRARRSd+yE3dIEyL6qUBv1ARvJnlgjTZ59w
+	 G1Gu5OTjITnEcZvbVvJ4Fk4QKxjVeM/8Xww+hJe6P6Kc73V3vnjkSZITLXPY+JwGch
+	 Usp3m6eIMIZfTllVV1JX9fFtMmJlZYw9qtOAzRtON4xTHnG8ErCBl4o+el9qrtIU8/
+	 TfkS6oq+sTCN5XSlLFLweAQprGggwDidZ2TuK6feEDuNuao4RmgLAlP1uMv2y5MD29
+	 sSNjBY4f0wMKLy/t1aVIZV3/V/uzkgO9drMq0hYLiJ6SsEA0/oiDeJJlNebm2geDaW
+	 dZTWweUA/fVQQ==
+Message-ID: <fcca7245-9b0a-4c9c-a7e1-588322fac567@kernel.org>
+Date: Sat, 28 Feb 2026 12:20:35 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v1 1/4] dt-bindings: iio: adc: amlogic,meson-saradc: add
  S4 compatible
-Message-ID: <20260228-quirky-lemon-reindeer-1045f6@quoll>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Nick Xie <nick@khadas.com>
+Cc: neil.armstrong@linaro.org, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com, jbrunet@baylibre.com,
+ krzk+dt@kernel.org, jic23@kernel.org, dlechner@baylibre.com,
+ nuno.sa@analog.com, andy@kernel.org, linux-iio@vger.kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, xieqinick@gmail.com
 References: <20260228065840.702651-1-nick@khadas.com>
  <20260228065840.702651-2-nick@khadas.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260228065840.702651-2-nick@khadas.com>
+ <20260228-quirky-lemon-reindeer-1045f6@quoll>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260228-quirky-lemon-reindeer-1045f6@quoll>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260228_032041_418513_FDF52DC5 
+X-CRM114-Status: GOOD (  12.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,39 +123,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Feb 28, 2026 at 02:58:37PM +0800, Nick Xie wrote:
-> Add the compatible string for the SARADC (Successive Approximation
-> Register ADC) IP block found in the Amlogic Meson S4 SoC.
-
-... which is fully compatible with g12a?
-
-Write proper explanations.
-
+On 28/02/2026 12:18, Krzysztof Kozlowski wrote:
+> On Sat, Feb 28, 2026 at 02:58:37PM +0800, Nick Xie wrote:
+>> Add the compatible string for the SARADC (Successive Approximation
+>> Register ADC) IP block found in the Amlogic Meson S4 SoC.
 > 
-> Signed-off-by: Nick Xie <nick@khadas.com>
-> ---
->  .../devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml        | 1 +
->  1 file changed, 1 insertion(+)
+> ... which is fully compatible with g12a?
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-> index bb9825e7346dd..5496a0dc714aa 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-> @@ -27,6 +27,7 @@ properties:
->                - amlogic,meson-gxm-saradc
->                - amlogic,meson-axg-saradc
->                - amlogic,meson-g12a-saradc
-> +              - amlogic,meson-s4-saradc
+> Write proper explanations.
+> 
+>>
+>> Signed-off-by: Nick Xie <nick@khadas.com>
+>> ---
+>>  .../devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml        | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+>> index bb9825e7346dd..5496a0dc714aa 100644
+>> --- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+>> @@ -27,6 +27,7 @@ properties:
+>>                - amlogic,meson-gxm-saradc
+>>                - amlogic,meson-axg-saradc
+>>                - amlogic,meson-g12a-saradc
+>> +              - amlogic,meson-s4-saradc
+> 
+> If this is compatible with other device, you need proper fallback.
+> 
+>>            - const: amlogic,meson-saradc
+> 
+> And this one is now kind of fake - how does this device use it?
 
-If this is compatible with other device, you need proper fallback.
-
->            - const: amlogic,meson-saradc
-
-And this one is now kind of fake - how does this device use it?
+I checked now - NOTHING uses it. This is completely useless fallback,
+don't write such schema. Add a comment that usage of this fallback is
+not allowed for new devices and instead create proper compatibility
+(look at your driver code).
 
 Best regards,
 Krzysztof
-
 
 _______________________________________________
 linux-amlogic mailing list
