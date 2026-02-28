@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F182FEE4D0
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Feb 2026 07:57:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC210FEE4CD
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Feb 2026 07:57:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=5STkA8mD0iVGcq+WuMuzwiDQv9nEhEuY4z4rFA+zCO4=; b=IwXdKLF0BNWCql
-	RM37Fz3OtRWbwSXfrWLUO5J2Ji5L1DJ6rRmk4nR/Cqrz5ptDMZHG/pbKYK0tLIV1eFgm+xVFapRBM
-	0dxVR+YyDIRdCb9fSlOBosIMvazts4qe1/PnbZTq59zA226VjzrSE7qnlIE9OB1JUZ7Of48r9DnUN
-	xyRbGl0l1nFaoLkCc45kTXs3IIdJ3suf2mlnhU0r63SFeUrONIkZF17/IiNZuNCRK0NRPSjJgvV28
-	iQ2Z6T++sYH8fyT/LqvK5ICS4taQvfjGMDrO5rL9eNYt/Ii3oHsCMlfbeHZ1rlRaWGjR5D4/zsAIA
-	+qFiCqcuaReftIRxc8uQ==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=BRACCWco8/WM7xbumFCho5SrBOPDVwGnytJWOeNOnTE=; b=KIQcziizLpqehR
+	umaKQzjfujYdc0WRG8z5S6TyVzvuz6CjQApTrZO1cIqkiGnVl4Hq82Ic6+F9v4yQNGoUP+lqARDA5
+	HVKTeNqUG+AKPH7Wh+ZxvR5I+fFcA9XvKK4HckAhxwpBR//MvaBE6yFmWjS0dPZNVcbYzdZHu4FOb
+	SsrcmctWu0fytyy3cyqINqW6XqxcMGdMW2n0ao4yzuW2/+47AySoMTkcKnrQbwwoGooIAHY8Bo0d5
+	uvcUAi+Rl1dCugo+mBKmIZgIGKmhzLia/0LA6GqX7IOJGdnvotxAuHLMsUMlM1nfCX+ZMYtkkppVG
+	8SPh3bBCrrmNMP2Q1WQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vwFC2-00000009dHk-2Ar3;
-	Sat, 28 Feb 2026 07:56:54 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vwFC3-00000009dI0-1vh4;
+	Sat, 28 Feb 2026 07:56:55 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vwFC0-00000009dGh-3aCQ;
-	Sat, 28 Feb 2026 07:56:52 +0000
+	id 1vwFC1-00000009dGi-0qWP;
+	Sat, 28 Feb 2026 07:56:54 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id C13ED6001D;
+	by sea.source.kernel.org (Postfix) with ESMTP id C9ADC445B2;
 	Sat, 28 Feb 2026 07:56:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 66F6FC116D0;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9B8F2C2BCB1;
 	Sat, 28 Feb 2026 07:56:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1772265411;
-	bh=OVzZ4dnEVWocRNtfND2tDhbl7RIBn27b3hByZQ/BmAw=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=rIfcP+q4k78lkohmaSrtESLBqm/EEuKHZhINLPjyN/U0bpfR8XfFSLJY14SIFbYB0
-	 bmssZxLBf2jiNzARa1Efp2tWweQ8s5MBagKC/jxxaAvLGJHp5ObVHrkyzeQ6CW3+pb
-	 5LXEeW1AQmGrm1v6ACksKjvyCF0srRciycqWHxN6/sATDgKNGtqvgvRqaAa2cCZsud
-	 NSofUhGu5UAOX653MuCQwCJ+Llu0CHCxvaarRO9FVaeMyT4uoTWASWjMwIMb36i1L+
-	 hdUwM88jvhJ9p1pTwvofklrfWN6/8LtN/xrsonSSVI01aiB1Yqibvu4zsEmfT3wjkR
-	 BHmvnT1C4RitQ==
+	bh=h40S+7vVYas5eS5klAqSYGKwyMJIOjQdWlgud+FPWnU=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=gcMoL2YOaHqplAhP+hHlyr/oa6m6zBhllYTEdP+ln+xquPWKk1bYdxUFhByzS0qNK
+	 lR5d7QbYfyLXvAIPWOzg7bCIFJSPaFIfgli+32qjv88n1yzrgk3CxmW7HNgoR3GvNi
+	 xw4LU5HRX9tdITYBFGctBwIerqKVDwgf0ZM8T1bQjaWQzgda+Lv90B9b9kdCDwTviZ
+	 AyMmt2rWh7f6ispUDNLCn8YefjQ+dDmp0Qii53bpDZ2xW6MduPkcj6c3h4MYS6BIp0
+	 T9xFx/ia7bJGCOr42kTUcKBnaWFFOlZhQA5TOrJ4ywTIlJwoTisDCgVjdtUM+l6Xdd
+	 fs957wbM0R9vQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F7D8FEE4CE;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9178DFEE4CF;
 	Sat, 28 Feb 2026 07:56:51 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Subject: [PATCH v2 0/3] basic devicetree support for Amlogic A9
-Date: Sat, 28 Feb 2026 07:56:13 +0000
-Message-Id: <20260228-a9-baisc-dts-v2-0-47489d5cc1a8@amlogic.com>
+Date: Sat, 28 Feb 2026 07:56:16 +0000
+Subject: [PATCH v2 3/3] arm64: dts: add support for A9 based Amlogic BY401
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAJ2fomkC/3XMQQ6CMBCF4auQWTumnQiKK+9hWLRlCpMIJS0hG
- tK7W9m7/F/yvh0SR+EE92qHyJskCXMJOlXgRjMPjNKXBlLUKFI1mhatkeSwXxM6ay0TK+1vCsp
- liezlfXDPrvQoaQ3xc+ib/q1/oE2jQk2a7KXxbW2uDzO9wiDu7MIEXc75C/aCAGGqAAAA
-X-Change-ID: 20260205-a9-baisc-dts-cbbbe2e01f80
+Message-Id: <20260228-a9-baisc-dts-v2-3-47489d5cc1a8@amlogic.com>
+References: <20260228-a9-baisc-dts-v2-0-47489d5cc1a8@amlogic.com>
+In-Reply-To: <20260228-a9-baisc-dts-v2-0-47489d5cc1a8@amlogic.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -62,19 +60,21 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Jiri Slaby <jirislaby@kernel.org>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+ linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772265409; l=1030;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772265409; l=5462;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=OVzZ4dnEVWocRNtfND2tDhbl7RIBn27b3hByZQ/BmAw=;
- b=LfbpQ1fdBBhJoJV0uW17gUrr4WPIh//xfGOnTRXHTvsk/AyKgS9It4f9KiyUA4g2mdNfhkwL+
- 0vq6Q+WUSJ8DPR+KgC0bP5bGvdXPEQt2jdehos09j0lQ8nh42iP5zI+
+ bh=KDU+0xilnLHLEud6QxE0VeFpH70rsOteNGxypE9pTdQ=;
+ b=ZbSTebYmeDoDL59Ur84DN0hwTOZfyfy2EN5OUpQg1QvW8f2NrLkJdhY55kfNj7rlBTgnBbCSu
+ X85Xqnd40Q7ASZCjZpDde2xRRHby7ikWBd5iig4afR+ZlgQmTfouFz4
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
  auth_id=578
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260227_235653_297884_FA09EF36 
+X-CRM114-Status: GOOD (  13.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,33 +92,215 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the new A9 SoC/board device tree and related bindings.
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+Add basic support for the A9 based Amlogic BY401 board, which describes
+the following components: CPU, GIC, IRQ, Timer and UART.
+These are capable of booting up into the serial console.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-Changes in v2:
-- Move default interrupt-parent into dtsi.
-- Link to v1: https://lore.kernel.org/r/20260205-a9-baisc-dts-v1-0-1212b46f95a7@amlogic.com
-
----
-Xianwei Zhao (3):
-      dt-bindings: arm: amlogic: add A311Y3 support
-      dt-bindings: serial: amlogic,meson-uart: Add compatible string for A9
-      arm64: dts: add support for A9 based Amlogic BY401
-
- Documentation/devicetree/bindings/arm/amlogic.yaml |   6 +
- .../bindings/serial/amlogic,meson-uart.yaml        |   1 +
  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
  .../boot/dts/amlogic/amlogic-a9-a311y3-by401.dts   |  40 +++++++
  arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi        | 129 +++++++++++++++++++++
- 5 files changed, 177 insertions(+)
----
-base-commit: e3194dfb772304a1b7ca3bcfccacefec3468b7bf
-change-id: 20260205-a9-baisc-dts-cbbbe2e01f80
+ 3 files changed, 170 insertions(+)
 
-Best regards,
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 15f9c817e502..57bc440fa55c 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
++dtb-$(CONFIG_ARCH_MESON) += amlogic-a9-a311y3-by401.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c308l-aw419.dtb
+ dtb-$(CONFIG_ARCH_MESON) += amlogic-s6-s905x5-bl209.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
+new file mode 100644
+index 000000000000..a6b380ca47a5
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
+@@ -0,0 +1,40 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2026 Amlogic, Inc. All rights reserved.
++ */
++
++/dts-v1/;
++
++#include "amlogic-a9.dtsi"
++/ {
++	model = "Amlogic A311DY3 BY401 Development Board";
++	compatible = "amlogic,by401", "amlogic,a9";
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		serial0 = &uart_b;
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		/* 35 MiB reserved for ARM Trusted Firmware */
++		secmon_reserved: secmon@5000000 {
++			compatible = "shared-dma-pool";
++			reg = <0x0 0x05000000 0x0 0x2300000>;
++			no-map;
++		};
++	};
++};
++
++&uart_b {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+new file mode 100644
+index 000000000000..7460e9fb3f0e
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+@@ -0,0 +1,129 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2026 Amlogic, Inc. All rights reserved.
++ */
++
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/gpio/gpio.h>
++
++/ {
++	interrupt-parent = <&gic>;
++
++	cpus {
++		#address-cells = <2>;
++		#size-cells = <0>;
++
++		cpu0: cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x0>;
++			enable-method = "psci";
++		};
++
++		cpu1: cpu@100 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x100>;
++			enable-method = "psci";
++		};
++
++		cpu2: cpu@200 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x200>;
++			enable-method = "psci";
++		};
++
++		cpu3: cpu@300 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x300>;
++			enable-method = "psci";
++		};
++
++		cpu4: cpu@400 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x400>;
++			enable-method = "psci";
++		};
++
++		cpu5: cpu@500 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x0 0x500>;
++			enable-method = "psci";
++		};
++
++		cpu6: cpu@600 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a78";
++			reg = <0x0 0x600>;
++			enable-method = "psci";
++		};
++
++		cpu7: cpu@700 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a78";
++			reg = <0x0 0x700>;
++			enable-method = "psci";
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++	};
++
++	psci {
++		compatible = "arm,psci-1.0";
++		method = "smc";
++	};
++
++	xtal: xtal-clk {
++		compatible = "fixed-clock";
++		clock-frequency = <24000000>;
++		clock-output-names = "xtal";
++		#clock-cells = <0>;
++	};
++
++	soc {
++		compatible = "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		gic: interrupt-controller@ff800000 {
++			compatible = "arm,gic-v3";
++			#interrupt-cells = <3>;
++			#address-cells = <0>;
++			interrupt-controller;
++			reg = <0x0 0xff800000 0 0x1000>,
++			      <0x0 0xff840000 0 0x8000>;
++			interrupts = <GIC_PPI 9 0xf04>;
++		};
++
++		aobus: bus@ffa00000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xffa00000 0x0 0x100000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xffa00000 0x0 0x100000>;
++
++			uart_b: serial@1e000 {
++				compatible = "amlogic,a9-uart",
++					     "amlogic,meson-s4-uart";
++				reg = <0x0 0x1e000 0x0 0x18>;
++				interrupts = <GIC_SPI 66 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&xtal>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
++		};
++	};
++};
++
+
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+2.52.0
 
 
 
