@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3150EFCE21
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 17:11:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BB0CEFCE24
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 17:11:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HUHeYgDTrOreofaJYmphuXUcLx7XSG5IKBZBAScen9o=; b=owLU9C2NuMQKbS
-	8cMOF+K1cdrLwQKJVtg2teWHie0XvGqBBcaBQvE2+Z8YGsP+XPJcIgJ/GDft2AwpxqT9Csj5W0Sp3
-	+9RuquehG9tAlR8VMHqGWzkT7Qlcn/vLSTX00u28iJM7tf7ByaeolgFoB1VFWjpyV3JeT1dTW/a+R
-	DrPe0WGB7SOnTPywZaVWOrth7luhHgaukc3eAcNqP1N/z4M497538OyqWMghhrVuvF5z1NJiJEVbq
-	sXHc3hzvPyjATxBy4JcdwfE6vngxqRnEtw03sktN9mNq9NAG/nJcx7AJO8TYs1IXd5uDOtGnH+C+z
-	Vf6PRBULvMKalC4GCRYQ==;
+	List-Owner; bh=BdR8QDbSFDNCFdkAgBWOFMVWMH8vFAZTmmJSPlsy76c=; b=hn2woPGAHKiN3L
+	AYkJv+ujeDU5nrIDSH4Tn6n9CfFjXhO0ih1JSbZjmUNkvpWI4lZ0axqe+aHWEHOAQj8Ayh+Ua8MKs
+	JayUsbGaC0K6xmrpZGmIujfyNIPLuJsjhMQH1gDamFgug7BYmNrcJjj0CMjJQiFoGMMmNNbZjbGpi
+	e2smciEpH+K2J+E6RF+P5vgn1mUqe7MSjPIjtRRFwJ6Spy1zxAyZ60BA6drmTe5NHhlrLH50nuIJ5
+	zf7oZdFRailhSnX70JGAFKgfjFJ99Xfrh483xkG8U9VNihKO8ZJ+FjCj7JFjK4vSj2ZE6d9D9ItT0
+	gNB9ibZ8yUUI2X4VJY2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxpkp-000000008jL-00RY;
-	Wed, 04 Mar 2026 17:11:23 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vxpkr-000000008ks-2TDJ;
+	Wed, 04 Mar 2026 17:11:25 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxpkn-000000008iq-3sR1;
-	Wed, 04 Mar 2026 17:11:21 +0000
+	id 1vxpkr-000000008kL-04ww;
+	Wed, 04 Mar 2026 17:11:25 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 51D12600AD;
+	by tor.source.kernel.org (Postfix) with ESMTP id 2B74860018;
+	Wed,  4 Mar 2026 17:11:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DF00C2BC9E;
 	Wed,  4 Mar 2026 17:11:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90D7DC19425;
-	Wed,  4 Mar 2026 17:11:14 +0000 (UTC)
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Marc Zyngier <marc.zyngier@arm.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -57,9 +57,9 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 1/7] arm64: dts: amlogic: s6: Drop CPU masks from GICv3 PPI interrupts
-Date: Wed,  4 Mar 2026 18:10:58 +0100
-Message-ID: <f9c6eddebebcd2e128edd2dbc51706e23589f9e8.1772643434.git.geert+renesas@glider.be>
+Subject: [PATCH 2/7] arm64: dts: exynos: gs101: Drop CPU masks from GICv3 PPI interrupts
+Date: Wed,  4 Mar 2026 18:10:59 +0100
+Message-ID: <385def2b0860479dd86cff003f2cececb82dc80f.1772643434.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1772643434.git.geert+renesas@glider.be>
 References: <cover.1772643434.git.geert+renesas@glider.be>
@@ -82,42 +82,31 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Unlike older GIC variants, the GICv3 DT bindings do not support
 specifying a CPU mask in PPI interrupt specifiers.  Drop the masks.
-While at it, replace the magic number for IRQ_TYPE_LEVEL_HIGH by its
-symbolic definition.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
-index 8ef6319390331fcf..ab3acef2b147e62c 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
-@@ -53,10 +53,10 @@ pwrc: power-controller {
- 
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+index d085f9fb0f62ac2f..2d372d667f79c9d1 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+@@ -1853,10 +1853,10 @@ apm_sram: sram@2039000 {
  	timer {
  		compatible = "arm,armv8-timer";
--		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupts =
+-		   <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
+-		   <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
+-		   <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
+-		   <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>;
++		   <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW 0>,
++		   <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW 0>,
++		   <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW 0>,
++		   <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>;
  	};
+ };
  
- 	psci {
-@@ -84,7 +84,7 @@ gic: interrupt-controller@ff200000 {
- 			interrupt-controller;
- 			reg = <0x0 0xff200000 0 0x10000>,
- 			      <0x0 0xff240000 0 0x80000>;
--			interrupts = <GIC_PPI 9 0xf04>;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
- 		apb: bus@fe000000 {
 -- 
 2.43.0
 
