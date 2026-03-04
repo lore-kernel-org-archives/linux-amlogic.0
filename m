@@ -4,77 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E709CEC048C
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Mar 2026 10:06:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB380EDEC04
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 04:17:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1YMUEDhzVUpKm7H8AeFmONogsR790e6WLoGLJfK24gk=; b=hhAMZyybZaYsbw
-	5O1Lpw6B7p7GtSa/ILZsP2h7SUO+X6B9AK/tmyCenP1IZvMDOEwdEfes0jDAf3DWaIV3AX2/3iHmV
-	6zbT4dOgGzkTkbuqMU2nEWWe4ScbnbGhUSIObJA04WyJzULFqN9/e6iWMSVGymVkmIn773xrkW5n7
-	s7rmy+X9jSTWLgEFJX0neEZCbpAACa1z/L+wMcemtKorz+4se5jRCkoa7zCNoQXdjp4LuA5sJQ6no
-	PjKgbPEaTAi3sidOlf5CifZvLR8EeaWqo1imVMwT7NumAUyfj70Vh+SSsYeFgPiBE6XdeGEWdZwYT
-	m/+X94NgYMp12y/sFx3w==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=NmTi9e7Fnzpzdm3mKceAX9ZhmIPK8+x/3IrvJwYRTs0=; b=J2DohC2vYwJnLU
+	Rw2u9pzmRYgRUPgtxafdq67qulYk98KYV5AepQS0E2JGvj8T9cxX5Vo9UO9MwVzPgLjB6rDIqBihx
+	nDOwhLcLvohbBOzdGrLY7joJ5UvkRA5CMRYCZnZg8xSWq9pp0mqHJAyjksd3+j2XOTRpK6KoUdnye
+	0TVfcvnjnj/lSuEqoHZ16WUipzTTU8acqKJXyiSzxMGD3KcqD6k+l1CbCec1HfSOzVzEHEjERa0/8
+	9DcgRlF8zbDPAf633ANM7920uX8+R88YbnIiVwQR+zG644ReCpEZfbQNafnpPBhJwd4mQXfZi/MLl
+	iVXClLp44m0WEzXyZfGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxMeA-0000000Evpi-0oH6;
-	Tue, 03 Mar 2026 10:06:34 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1vxdg5-0000000GQj8-17mR;
+	Wed, 04 Mar 2026 04:17:41 +0000
+Received: from mail-yw1-x1134.google.com ([2607:f8b0:4864:20::1134])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxMe5-0000000Evma-29T1;
-	Tue, 03 Mar 2026 10:06:31 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 37D8444388;
-	Tue,  3 Mar 2026 10:06:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 14F8AC2BCB2;
-	Tue,  3 Mar 2026 10:06:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772532389;
-	bh=eO9gr/Eb4XIsWl7Ozofk85fAxnL6mM1g0zjcZLACG1E=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QwvAnL8s3kUVS+Wkay3SZrBGweoFZp3/PWltmdmzr3P2yx+KYDH5vHkNUpFLOZGmN
-	 RfpyhKzW67qb+r0uHikBeRF2v+QsdIszX7XSGw4nUGTop1sOa8aDcTtv4V+WdUsEJF
-	 3sqW2SIV4epMyUuQuwCgyYBZRnMoLJkyoe0VvS6d8gLF1BjkAjLRKuLYz8+BS2xWHt
-	 kZTnuUm5itoZseg7Wu4jI7llZwLAKGFalxiDgK4rAI1uzaKaaqPyl6MyaQNsHfSkl5
-	 1xH+E9vi4cW9kmzyGxsljBYvqhtff2a8CIegC6M3kpmG4WGJNzZcUE+Issc0O6bBZS
-	 TvB6QzSky/JNg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 057C9EC048C;
-	Tue,  3 Mar 2026 10:06:29 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 03 Mar 2026 10:06:26 +0000
-Subject: [PATCH v3 2/2] arm64: dts: add support for A9 based Amlogic BY401
+	id 1vxdg2-0000000GQiT-3TRp
+	for linux-amlogic@lists.infradead.org;
+	Wed, 04 Mar 2026 04:17:39 +0000
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-78fc4425b6bso63158627b3.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 03 Mar 2026 20:17:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772597857; x=1773202657; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cj2evDlwnNkzABttd4YNchw6wVbpncuY/X8XS90rCSg=;
+        b=NbyJEpcyF/20i2pn4jUok7EwNsiP4JHsOZ6CJ2Znej9fO2YsCCX3lr23yWvyA5q7JC
+         zwvg7ISdrwdKyOS1Tzrc1+mx4Iqu5Hh2bgVdRMCJj8pEdJBUfHhB58vnll5XybnrV0NB
+         FQ0qEQWxJaQUTJJMdAAFstQU5xYgwsT/dXpMCrgfdEXymuL98IO5M7Naw/YD63NlL8oX
+         KM28qltba7czpzSXHOe7Q9xcm+/CtMBOgvq6Nu7dx9yM1CaH2vM1iO6G4fcBDb0EGcl1
+         5oXI4QTvN1EDj2OvGKF1gMyVydymtQJw2yiNM8jkm2VS5FxluIuJqtMxyEH22zt9gBCd
+         Up4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772597857; x=1773202657;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cj2evDlwnNkzABttd4YNchw6wVbpncuY/X8XS90rCSg=;
+        b=V2EhVAFn5KbYSAJxll6FbWE+jsaNHXnPNRCN4X76kz+1ebne+BkvGA1byOXDKhLlF7
+         r4xkLXyM8CDO6wo9AttnAD1xEn8V1vueK257NE3Rg3vAGnoJN3YA1KJWihnfNlMEL+B+
+         v2FK9Z08V5kgxM6QbGbsWzbSPjoLI5dM8ndGlbGFyRsa/JtavbByJVO3T1/V3gB/PyUt
+         qaKVLaxFFIyPJqDmyOZlc043o3pwZemKjqfkbVvMgECOTNHM7xfjb6+D5zfiFc0Wi3FM
+         2BzXOwZhgjv4YZXA4ww5VM4S0sH2wQ0LRmGyWBvoqHdpUNfRyjp0J7HrMEQDAo5RRLPw
+         s6IA==
+X-Forwarded-Encrypted: i=1; AJvYcCXSB1XUFk30kpOg2+6dOCxdFBI3xI0lyXPkQ0o7LWt9x5AyI8grjpUiHpJoWWxQFgA/sVHnwySe1TG8facU@lists.infradead.org
+X-Gm-Message-State: AOJu0YzQrchrtojWjVoyzzOBtZZcHrtGD1Nk88Ky8JmXDvgKTY/HYbzA
+	4L15149LRZvFQ8OvVSHV0WzKkaPaB8dkQiY5j6CHA0nMT7F0vJWgdIyX
+X-Gm-Gg: ATEYQzy4EPFjSvBv5ZFcTr9yyCeEl69ID5L1P2BOl6YVex0MBPC82rsH98OVpmr1syy
+	UOSEjDYZXvH05sMgYsfADOGxOHyrDfpvSSh9hgJYSqZ1w1C4TT0dyZtMGGXxJEww3uYeTqvEtIO
+	2l4t+l8GmwAz5GsWJJT2ze3pnoA2f44iGgtB6uiL2ljFR1M99y7iHyhT/VHJE1NYp/+g97ibaAx
+	VeQrdBzqELwwG6mr+j8XQLCxQBWEkJbgMhsLiu06IwFbt637uTJPLx+xM64lw/0AxTvA5GSpd48
+	QRNOp/dnTfwjRZKLoAU3RMiWTmXRiEefb9xTyyfxj4hoNgfRCeU8a+aVY5AZWgTo98FW8FaUSOK
+	ck9cEq4OWMbE6qbMmODlqzxhkOecGO62nCMQM6OqcZCQpRKOW5kuUZ7x+ihUI8+GU0YY6TDcBiE
+	CMjzftbdNLc5/8pyXtPG+3Rs30RLx/LKk/c35UYkKCMkn2zjlH/KfpyyNn8FOVa+JS
+X-Received: by 2002:a05:690c:6983:b0:796:371c:7afd with SMTP id 00721157ae682-798c6b8a015mr5803047b3.13.1772597857322;
+        Tue, 03 Mar 2026 20:17:37 -0800 (PST)
+Received: from ryzen ([2601:644:8000:56f5::8bd])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-79876ad9045sm69989297b3.16.2026.03.03.20.17.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2026 20:17:35 -0800 (PST)
+From: Rosen Penev <rosenp@gmail.com>
+To: linux-iio@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rosen Penev <rosenp@gmail.com>,
+	Xichao Zhao <zhao.xichao@vivo.com>,
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] iio: adc: meson: no devm for nvmem_cell_get
+Date: Tue,  3 Mar 2026 20:17:16 -0800
+Message-ID: <20260304041716.7631-1-rosenp@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Message-Id: <20260303-a9-baisc-dts-v3-2-4bf21001f05c@amlogic.com>
-References: <20260303-a9-baisc-dts-v3-0-4bf21001f05c@amlogic.com>
-In-Reply-To: <20260303-a9-baisc-dts-v3-0-4bf21001f05c@amlogic.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772532387; l=5530;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=ngLHAW867mRhs8VNuDyRiFbWtUBMBRBgKcYsKwXWGTI=;
- b=kq1gPymBgUjE80ZPXYiIBeePFG1tvPtkAA8t84W83cJvSsI3hfikZCueSKu36A9ph/RI/kl2Y
- Q0Nz3CBc3xFDXQNXy5ghHTlta4obN0SEoYDW4603aJu4AW+BdkKtEKv
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260303_020629_597564_FEAB295E 
-X-CRM114-Status: GOOD (  13.61  )
+X-CRM114-CacheID: sfid-20260303_201738_874072_C779AC3D 
+X-CRM114-Status: GOOD (  10.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,222 +102,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+There is no reason to extend the lifetime of this post removal of the
+driver when it's only needed in one spot.
 
-Add basic support for the A9 based Amlogic BY401 board, which describes
-the following components: CPU, GIC, IRQ, Timer and UART.
-These are capable of booting up into the serial console.
+Moved tsc_regmap assignment to avoid two nvmem_cell_put calls.
 
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Rosen Penev <rosenp@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../boot/dts/amlogic/amlogic-a9-a311y3-by401.dts   |  40 +++++++
- arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi        | 128 +++++++++++++++++++++
- 3 files changed, 169 insertions(+)
+ drivers/iio/adc/meson_saradc.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 15f9c817e502..57bc440fa55c 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += amlogic-a9-a311y3-by401.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c308l-aw419.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-s6-s905x5-bl209.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-new file mode 100644
-index 000000000000..a6b380ca47a5
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved.
-+ */
+diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+index 47cd350498a0..ed91edf0e391 100644
+--- a/drivers/iio/adc/meson_saradc.c
++++ b/drivers/iio/adc/meson_saradc.c
+@@ -792,7 +792,7 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
+ 	size_t read_len;
+ 	int ret;
+ 
+-	temperature_calib = devm_nvmem_cell_get(dev, "temperature_calib");
++	temperature_calib = nvmem_cell_get(dev, "temperature_calib");
+ 	if (IS_ERR(temperature_calib)) {
+ 		ret = PTR_ERR(temperature_calib);
+ 
+@@ -806,13 +806,9 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
+ 		return dev_err_probe(dev, ret, "failed to get temperature_calib cell\n");
+ 	}
+ 
+-	priv->tsc_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "amlogic,hhi-sysctrl");
+-	if (IS_ERR(priv->tsc_regmap))
+-		return dev_err_probe(dev, PTR_ERR(priv->tsc_regmap),
+-				     "failed to get amlogic,hhi-sysctrl regmap\n");
+-
+ 	read_len = MESON_SAR_ADC_EFUSE_BYTES;
+ 	buf = nvmem_cell_read(temperature_calib, &read_len);
++	nvmem_cell_put(temperature_calib);
+ 	if (IS_ERR(buf))
+ 		return dev_err_probe(dev, PTR_ERR(buf), "failed to read temperature_calib cell\n");
+ 	if (read_len != MESON_SAR_ADC_EFUSE_BYTES) {
+@@ -820,6 +816,11 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
+ 		return dev_err_probe(dev, -EINVAL, "invalid read size of temperature_calib cell\n");
+ 	}
+ 
++	priv->tsc_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "amlogic,hhi-sysctrl");
++	if (IS_ERR(priv->tsc_regmap))
++		return dev_err_probe(dev, PTR_ERR(priv->tsc_regmap),
++				     "failed to get amlogic,hhi-sysctrl regmap\n");
 +
-+/dts-v1/;
-+
-+#include "amlogic-a9.dtsi"
-+/ {
-+	model = "Amlogic A311DY3 BY401 Development Board";
-+	compatible = "amlogic,by401", "amlogic,a9";
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart_b;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* 35 MiB reserved for ARM Trusted Firmware */
-+		secmon_reserved: secmon@5000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x05000000 0x0 0x2300000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&uart_b {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-new file mode 100644
-index 000000000000..d957c8ad1d86
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-@@ -0,0 +1,128 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x100>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x200>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x300>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu4: cpu@400 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x400>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu5: cpu@500 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x500>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu6: cpu@600 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x0 0x600>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu7: cpu@700 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x0 0x700>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gic: interrupt-controller@ff800000 {
-+			compatible = "arm,gic-v3";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x0 0xff800000 0 0x1000>,
-+			      <0x0 0xff840000 0 0x8000>;
-+			interrupts = <GIC_PPI 9 0xf04>;
-+		};
-+
-+		aobus: bus@ffa00000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xffa00000 0x0 0x100000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xffa00000 0x0 0x100000>;
-+
-+			uart_b: serial@1e000 {
-+				compatible = "amlogic,a9-uart",
-+					     "amlogic,meson-s4-uart";
-+				reg = <0x0 0x1e000 0x0 0x18>;
-+				interrupts = <GIC_SPI 66 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+		};
-+	};
-+};
-
+ 	trimming_bits = priv->param->temperature_trimming_bits;
+ 	trimming_mask = BIT(trimming_bits) - 1;
+ 
 -- 
-2.52.0
-
+2.53.0
 
 
 _______________________________________________
