@@ -4,151 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B370BEF8FFA
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 15:54:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1516FEFCE20
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 17:11:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6a0MRh8vQo87Nv5JJ5yLS1Sub8ZZRR4yx+rpKqEOeIA=; b=ujbSm751cWmcQB
-	iYZmuDxRzj6Lx91jc1agHEqw9zHsGjftOh0SLMeNKoxiLbodGmS0mYT8lWmxLs3syK7vPljTxvmF9
-	M0JtOGXdSOkV876Epz8N8HtKQwipYbMiVoEOJOcFpynAmxCLcdk1BY/ADHS25rrJk5QEa2FRagm5H
-	M+sRQ0xKdr9J/8/Tgvsq1+hB5RXgB2RcfONBDIYCmdmvXVmAO1pSkvqY6x8mNfLMOE/2mczAXfxfQ
-	j+gC9/b7OG/oaWhdkl5hJ8X1C2xEw5Epoo+6VcFac5YK6cJLBTM8NLWnSMVF6eQoVLlcUWlkio1zo
-	Rl01nTDuPMf2761UEfaA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6MceuAf0wfpJ38MJnUhHkOlMn3MG9mlTIte9Z8wN170=; b=vHMLMy8gF666c2
+	/PoQSVQReGgKt8Zm/l1j4ESJGNgu9BBf0lksIgiU5Uo4BzOvLE6CjAIsa08xsvs2xtwK0dLzlP2YR
+	Bctm6irdeAPiaMYJ3NqKwHlYDhDJWk5W3+ew3eP9hYvHnHxgU5hxtd1vAglkbqucbvhmhx2ehr1NR
+	Lp00muq7+xjO43WRvo9sGJIOhRi8UCs7qUk1Ejk78Yk7sO5Bb7yRtfXgkKT9qR871H9sIOJSTZHp7
+	JMs630T7fgHPFDBOdoLyH0fRnxagfWMQHxEmKravFDGFJJmxx572+sTjzD5sLca88SVrdcevS3Cdl
+	DsMX56Oei9JW4L8DSrTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxoYi-000000001TD-0srm;
-	Wed, 04 Mar 2026 15:54:48 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1vxpkj-000000008hs-1kMe;
+	Wed, 04 Mar 2026 17:11:17 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxoYf-000000001Sm-3ICT;
-	Wed, 04 Mar 2026 15:54:46 +0000
+	id 1vxpkh-000000008hT-0XI1;
+	Wed, 04 Mar 2026 17:11:16 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2DCE343503;
-	Wed,  4 Mar 2026 15:54:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D8A3C4CEF7;
-	Wed,  4 Mar 2026 15:54:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772639685;
-	bh=QlsJuLHckh6Mhy8Ly+9BkzszlQ9anHptIAU1Q9z4D6Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MuLV5zDHB7PppDbRrIgiA6DqLtvPrce7Q/kz2ceveoK6H8VNlqrQSnVWx4PUY6x7G
-	 lF8PWqNnLHxmrtCGMH21sU1hTyWTcK1zQEH5n5mbASRAx/bxp+ybDJ28Aggyaql1fk
-	 frx5ib6PuHJ2XXJi+zlH5K7hS5Qcj3Z/DUdYsH2ugYb22BEtUIckOzLLVxvspqhPe5
-	 O0zIaXH4kNcewaC9ZZo+g+IekD3SXC32jFGTi3Rv+iMUZKMGS885FKF/WowxfN4+7k
-	 p0FLMAdibE34WhcmFFwxYrZ5UJvwQppkSNV7DyytsEJkVSGu/KE0PfNw/w95AZRQrr
-	 UDsFgJyGvAKgg==
-Message-ID: <e7f0c171-d5f1-4b3f-9155-a774511451c1@kernel.org>
-Date: Wed, 4 Mar 2026 16:54:31 +0100
+	by sea.source.kernel.org (Postfix) with ESMTP id 4915C40993;
+	Wed,  4 Mar 2026 17:11:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD879C4CEF7;
+	Wed,  4 Mar 2026 17:11:09 +0000 (UTC)
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Marc Zyngier <marc.zyngier@arm.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	=?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Thierry Reding <treding@nvidia.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/7] arm64: dts: Drop CPU masks from GICv3 PPI interrupts
+Date: Wed,  4 Mar 2026 18:10:57 +0100
+Message-ID: <cover.1772643434.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v1 08/18] PCI: fu740: Allow asynchronous probing for
- background link training
-To: Frank Li <Frank.Li@nxp.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Siddharth Vadapalli <s-vadapalli@ti.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Minghuan Lian
- <minghuan.Lian@nxp.com>, Mingkai Hu <mingkai.hu@nxp.com>,
- Roy Zang <roy.zang@nxp.com>, Yue Wang <yue.wang@Amlogic.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jonathan Chocron <jonnyc@amazon.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Jesper Nilsson <jesper.nilsson@axis.com>, Paul Walmsley <pjw@kernel.org>,
- Greentime Hu <greentime.hu@sifive.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Chuanhua Lei <lchuanhua@maxlinear.com>,
- Srikanth Thokala <srikanth.thokala@intel.com>,
- Xiaowei Song <songxiaowei@hisilicon.com>,
- Binghui Wang <wangbinghui@hisilicon.com>,
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
- Niklas Cassel <cassel@kernel.org>, Hans Zhang <18255117159@163.com>,
- "Jiri Slaby (SUSE)" <jirislaby@kernel.org>, Thomas Gleixner
- <tglx@kernel.org>, Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
- Sai Krishna Musham <sai.krishna.musham@amd.com>,
- Nagarjuna Kristam <nkristam@nvidia.com>, Vidya Sagar <vidyas@nvidia.com>,
- "open list:PCI DRIVER FOR TI DRA7XX/J721E" <linux-omap@vger.kernel.org>,
- "open list:PCI DRIVER FOR TI DRA7XX/J721E" <linux-pci@vger.kernel.org>,
- "moderated list:PCI DRIVER FOR TI DRA7XX/J721E"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:PCI DRIVER FOR SAMSUNG EXYNOS"
- <linux-samsung-soc@vger.kernel.org>,
- "open list:PCI DRIVER FOR FREESCALE LAYERSCAPE"
- <linuxppc-dev@lists.ozlabs.org>,
- "open list:PCI DRIVER FOR FREESCALE LAYERSCAPE" <imx@lists.linux.dev>,
- "open list:PCIE DRIVER FOR AMLOGIC MESON"
- <linux-amlogic@lists.infradead.org>,
- "open list:PCIE DRIVER FOR AXIS ARTPEC" <linux-arm-kernel@axis.com>,
- "open list:SOPHGO DEVICETREES and DRIVERS" <sophgo@lists.linux.dev>,
- "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>,
- "open list:SIFIVE DRIVERS:Keyword:fu [57] 40"
- <linux-riscv@lists.infradead.org>
-Cc: Anand Moon <linux.amoon@gmail.com>
-References: <20260304140329.7089-9-linux.amoon@gmail.com>
- <20260304145540.3331304-3-Frank.Li@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260304145540.3331304-3-Frank.Li@nxp.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260304_075445_868300_167F8319 
-X-CRM114-Status: UNSURE (   8.12  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260304_091115_209722_8354C73E 
+X-CRM114-Status: GOOD (  17.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -165,26 +81,82 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 04/03/2026 15:55, Frank Li wrote:
-> From: Frank Li (AI-BOT) <frank.li@nxp.com>
-> 
-> Commit message has a typo:
-> 
->> Fix the identation of the callback functions.
-> 
-> Should be "indentation" (two 'n's).
-> 
-> The code changes look good otherwise. The indentation fix aligns with kernel
-> style (8-char tabs), and adding PROBE_PREFER_ASYNCHRONOUS is a straightforward
-> addition that matches the stated intent.
-> 
-> AI bot review and may be useless.
+	Hi all,
 
-So don't send us useless reviews. Trim your reply list, so only you see
-them.
+Unlike older GIC variants, the GICv3 DT bindings do not support
+specifying a CPU mask in PPI interrupt specifiers.  Hence this patch
+series drop all such masks where they are still present.
 
-Best regards,
-Krzysztof
+This has been compile-tested only.  But note that all such masks were
+removed before from Renesas SoCs in commit 8b6a006c914aac17 ("arm64:
+dts: renesas: Drop specifying the GIC_CPU_MASK_SIMPLE() for GICv3
+systems")).
+
+A related question:
+The GICv3 DT bindings also support only edge-triggered and
+level-triggered PPI interrupts, without specifying polarity.
+Apparently, even the common gic_configure_irq() just ignores the
+polarity, also on pre-GICv3, so specifying IRQ_TYPE_LEVEL_LOW or
+IRQ_TYPE_LEVEL_HIGH doesn't matter at all?
+Actual SoC hardware docs (e.g. R-Car Gen4) does document that some
+PPI interrupts are active-high, while others are active-low.
+
+Thanks for your comments!
+
+Geert Uytterhoeven (7):
+  arm64: dts: amlogic: s6: Drop CPU masks from GICv3 PPI interrupts
+  arm64: dts: exynos: gs101: Drop CPU masks from GICv3 PPI interrupts
+  arm64: dts: fsl-ls1028a: Drop CPU masks from GICv3 PPI interrupts
+  arm64: dts: freescale: imx: Drop CPU masks from GICv3 PPI interrupts
+  arm64: dts: intel: agilex5: Drop CPU masks from GICv3 PPI interrupts
+  arm64: tegra: Drop CPU masks from GICv3 PPI interrupts
+  arm64: dts: qcom: Drop CPU masks from GICv3 PPI interrupts
+
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi       | 10 +++++-----
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi      |  8 ++++----
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi    | 15 +++++----------
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi         | 11 +++++------
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi         | 11 +++++------
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi         | 11 +++++------
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi        |  3 +--
+ .../arm64/boot/dts/freescale/imx91_93_common.dtsi | 10 +++++-----
+ arch/arm64/boot/dts/freescale/imx94.dtsi          | 10 +++++-----
+ arch/arm64/boot/dts/freescale/imx95.dtsi          | 10 +++++-----
+ arch/arm64/boot/dts/freescale/imx952.dtsi         | 10 +++++-----
+ arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi    |  8 ++++----
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi          | 10 +++++-----
+ arch/arm64/boot/dts/qcom/agatti.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/lemans.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/monaco.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi             | 10 +++++-----
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi            |  8 ++++----
+ arch/arm64/boot/dts/qcom/sdm630.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/sdx75.dtsi               |  8 ++++----
+ arch/arm64/boot/dts/qcom/sm4450.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/sm6115.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/sm6125.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/sm6350.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/sm6375.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/sm8250.dtsi              | 12 ++++--------
+ arch/arm64/boot/dts/qcom/sm8350.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/sm8450.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/sm8550.dtsi              |  8 ++++----
+ arch/arm64/boot/dts/qcom/talos.dtsi               |  8 ++++----
+ 30 files changed, 128 insertions(+), 141 deletions(-)
+
+-- 
+2.43.0
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
 _______________________________________________
 linux-amlogic mailing list
