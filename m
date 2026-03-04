@@ -4,93 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71973EB7EB5
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 10:06:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7688EB7EB8
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 11:23:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=vhAWKjXyinvMOu7ENja/s2GSUDXO9PK0FZuyz27wILc=; b=2tSDitHf4NhkvI
-	Pn+mFwy+jBE1zYuNkO0gdYYRU+63LIaEj4o3vYup+cPVglRpSEHtLtEkfSxtMO3+8ChJeqYtR9oZ0
-	QVbuVgOpV4wFzO4EcYAp3rJx96so6CmuL4lkvn4iolRFRdDIQWosqYYWjBgkchQznkJcHBHDEZNMG
-	V/ASttrF8QTHwjQzSKwZkpqbavPdiN4jpfpQH30AjDh2jkgfuRASKCOxb8wpauCzJE9w5XbTAhOcW
-	/Cnt5kdUQFFkv3YlDY3MIFjt/wsnE1sJOUBV7UFfL+6BZruE3PgwFHWPWsnXlTn7/ulc0favrs3Fu
-	YR4qZTQQn0WWY2lI1mRA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Q0z+GSkEYmmKruxuJsLuIQI32KXQdsulReqkYPYEZUw=; b=Co0cekU4jisifJvy9cns2MIsLU
+	x4sdjGb+YvaETRYKiVN6G6kVQhqdxRA1Lz5YkSETzMzlUqAlBcrUT/78xkGCZcxu6Gsl+lVm3lffi
+	AvzxpLOUaQoKwnCNJkwT2S3bUHFLVoC4FvwFkCS4iapeKVgjZqK721T5K7vogNNbNTG0GpE/lDgt6
+	DYRxfLOWhGSIKkQ9jfElUtB+rKSWsVe+xROEaUkcSrZ+l6ipaIqQC1I7VDCLGaAc13VplcEG0zUrV
+	YujuMztAhKUCGBwB60HU0BDMIB5rvvG6AxHr3swnpSMYpXI7F9Sk0vqT9O/U59HI4L50cXJ6cGutz
+	6k3thSUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxj7L-0000000Gx3i-1Id5;
-	Wed, 04 Mar 2026 10:06:11 +0000
-Received: from mail-pg1-x530.google.com ([2607:f8b0:4864:20::530])
+	id 1vxkKO-0000000H5Au-2Mlf;
+	Wed, 04 Mar 2026 11:23:44 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxj7I-0000000Gx2X-2sjr
-	for linux-amlogic@lists.infradead.org;
-	Wed, 04 Mar 2026 10:06:10 +0000
-Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-c6e1e748dc1so2161926a12.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 04 Mar 2026 02:06:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772618767; x=1773223567; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bsGz9NobNNMerVOOjKKJ0LgJD2SxFYXhHAVBSa0LnTg=;
-        b=SKWh/u3g0ZAGb1Q/4rsGg9Wnyt9uswTWiFBkXqDzH3mUQZemPdVDEyT4fPizSvIg3q
-         jXoeHGwP5V7xHf4G+4OFx8LLaFL6kaq6KcKgMKz1cuKHyEDjGhfJOkQI5AyDUjGe/AQg
-         9qn/xhMpT71OT86AqEAVsa7CGfNEidoHQ4GMFgAda2KtGTXFz/EHmh0stHPoVNa6x58R
-         at/WBfwNxnR+KDX1RdQnIP7Hcpusw06I/urUsDBTVDlmmMF9NuL6Ere03gAKz1ggPTY5
-         V7Ui3LL8qZL3a7aAA2xVR3z3iUFA7P/7oIXFUWKLuUPQ56lXPFD12/szsOLSZexv8LT/
-         +63w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772618767; x=1773223567;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bsGz9NobNNMerVOOjKKJ0LgJD2SxFYXhHAVBSa0LnTg=;
-        b=YEYc7f0RHG/aso920B9VnhYUOs/NMnGr/IrSdOItySg0XU/WO6IAzRNl41NWUow3Aq
-         QIPjo2KkNsdKShbqp7u0QW+MgBn5Tq03CQKIho/UF2caRi5c5e261f/Sf8VkNeTP9QgA
-         GrpxS1ckJM28Na67P4kvRnJOzn91gRHWA7yJ0VDmMx8SxxnPWnZG/aHp8TxRD4YYiKo7
-         5glGYlOsDvuiBKst5Nv9kdamnhTtXbaJg/APMxfmCENUTnKVPZoXaf2asMllAZRwZZad
-         F554u4llz6N/lYpHhr/gYAL7HAMox/nvuan+hdMd196GdOY8hDJC4qaDV4F0daOuolQZ
-         a5iw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOvKboTuXJF2btMzM0xtHkFX0AC6tf75LUuenKeGP6rDmHlkiDVSzcKqPF3N6fZmeml5OLkHtglAdz898g@lists.infradead.org
-X-Gm-Message-State: AOJu0YyqKivt00Vu6r+Q1DoUybxAEUHOWSbMHcyRHE3p2T0EcGnftnUZ
-	CTg8MsEZeUZZOOuNIIEQTCdQ94WTHDLc6jBk5XGHYlymuZEZc9e/6ERwo3ekfw==
-X-Gm-Gg: ATEYQzwmueteicwMty2F3yB1yNSy+9p94rzAYJOsHp14+VZxtm7OnjwTgvtcAFsSWiM
-	3GG9Ho09tpYpnZqUS2nkmWjZ19kolJRGNSlNb637WF8C8lEMOK27++WZ6lIsOof8vN5NeWMn062
-	BtJyICCRNjteKX3PrkCoovuGFwaTAqP2HdAj/FQ8FVo0IawgFfGKpAqrpOXeN8UBnA/M1GaUN2x
-	655uxVI1CSfRnkwJ1bkZW8iJiyKzgpk6+7POQDqypVfe13Ych8JFvlPEwkXAT3OIUND31WZSuzl
-	jATwHzUefQqxICIgTogqZU6S62FNuUWfhFY2erixFCmV8BlEGrhXD8uMNacOmTLjQxWTaNydBFe
-	+drIqmkwBID3D+YITrPvJvIxZrETrcQTB2DqmG5zUEWXW5j4iMDEi7ZCq/8s53a87unPuo4HACT
-	tcXwgzJuU33ogdcIRZ70XI
-X-Received: by 2002:a17:902:fc87:b0:2ad:da28:8c7a with SMTP id d9443c01a7336-2ae6ae0bfefmr15253245ad.8.1772618767233;
-        Wed, 04 Mar 2026 02:06:07 -0800 (PST)
-Received: from rockpi-5b ([45.112.0.200])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb5b48f4sm191220555ad.13.2026.03.04.02.06.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 02:06:06 -0800 (PST)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	id 1vxkKM-0000000H5A5-1CUD;
+	Wed, 04 Mar 2026 11:23:43 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7540B4423F;
+	Wed,  4 Mar 2026 11:23:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 458E1C19423;
+	Wed,  4 Mar 2026 11:23:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772623421;
+	bh=h9cK7pBF4PrYZeuQA4C5C9xLaF0GsLQIP8AyKutBfBQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qWQyvxcVOI9I/fIn34XDL82Wiv/j9A/0CO+HIzbod1hKepstSs1YL1ATVeJEuknoO
+	 G1E4RF2B/MFABg8S/0HhAy7IvbBvPtrGcibTxXxqkZQ7xBDxvBJC+yaoeOlcsC6Ee+
+	 ndfD62jjuB1WSwU9SVxtgMsERFivVEvg8KyfWfUpQ6HpK0FeTcVeHuK+vhjHF+mHdR
+	 7iIAPaFKpFinAHvRkXItep1op8e6chjhnFmk+4fHsAdkX3yQkRo/ZVscYgN2TuR0Cp
+	 cg3k1KseLgnQfcRh46WMlVr7dOefgQP+hRWN1QSYHzDduu6zyCnUwr/opYJn6h1XZx
+	 PclxjlJCDXevA==
+Date: Wed, 4 Mar 2026 11:23:29 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Alexey Brodkin <abrodkin@synopsys.com>,
+	Vineet Gupta <vgupta@kernel.org>, Scott Wood <oss@buserror.net>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Jourdan <mjourdan@baylibre.com>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	linux-media@vger.kernel.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
-	linux-amlogic@lists.infradead.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
-	linux-staging@lists.linux.dev (open list:STAGING SUBSYSTEM),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Cc: Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH v1] media: meson: vdec: Fix memory leak in error path of vdec_open
-Date: Wed,  4 Mar 2026 15:35:53 +0530
-Message-ID: <20260304100557.126488-1-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.50.1
+	Dvorkin Dmitry <dvorkin@tibbo.com>, Wells Lu <wellslutw@gmail.com>,
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-snps-arc@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+	netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, linux-leds@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH 05/14] regulator: drop unneeded dependencies on OF_GPIO
+Message-ID: <31c9910c-8157-40bb-9128-9db34704d637@sirena.org.uk>
+References: <20260304-gpio-of-kconfig-v1-0-d597916e79e7@oss.qualcomm.com>
+ <20260304-gpio-of-kconfig-v1-5-d597916e79e7@oss.qualcomm.com>
 MIME-Version: 1.0
+In-Reply-To: <20260304-gpio-of-kconfig-v1-5-d597916e79e7@oss.qualcomm.com>
+X-Cookie: Take it easy, we're in a hurry.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260304_020608_716421_E3414556 
-X-CRM114-Status: GOOD (  11.27  )
+X-CRM114-CacheID: sfid-20260304_032342_361886_ED140D66 
+X-CRM114-Status: GOOD (  15.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,74 +100,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============3138737827316162087=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-If vdec_init_ctrls(sess) fails, or any subsequent initialization step
-during vdec_open fails, the control handler allocated for the session
-is not released. This causes a memory leak of the v4l2_ctrl_handler
-and its associated control objects.
 
-Add a call to v4l2_ctrl_handler_free() in the err_m2m_release error
-path to ensure resources are properly reclaimed.
+--===============3138737827316162087==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="zVeDWCP0gn6RDW1P"
+Content-Disposition: inline
 
-unreferenced object 0xffff0000205d6878 (size 8):
-  comm "v4l_id", pid 5289, jiffies 4294938580
-  hex dump (first 8 bytes):
-    40 d2 49 18 00 00 ff ff                          @.I.....
-  backtrace (crc d3204599):
-    kmemleak_alloc+0xc8/0xf0
-    __kvmalloc_node_noprof+0x60c/0x850
-    v4l2_ctrl_handler_init_class+0x1b4/0x2e8 [videodev]
-    vdec_open+0x1f4/0x788 [meson_vdec]
-    v4l2_open+0x144/0x460 [videodev]
-    chrdev_open+0x1ac/0x500
-    do_dentry_open+0x3f0/0xfe8
-    vfs_open+0x68/0x320
-    do_open+0x2d8/0x9a8
-    path_openat+0x1d0/0x4f0
-    do_filp_open+0x190/0x380
-    do_sys_openat2+0xf8/0x1b0
-    __arm64_sys_openat+0x13c/0x1e8
-    invoke_syscall+0xdc/0x268
-    el0_svc_common.constprop.0+0x178/0x258
-    do_el0_svc+0x4c/0x70
 
-Fixes: 3e7f51bd9607 ("media: meson: add v4l2 m2m video decoder driver")
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- drivers/staging/media/meson/vdec/vdec.c | 2 ++
- 1 file changed, 2 insertions(+)
+--zVeDWCP0gn6RDW1P
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index 4b77ec1af5a7..a5ab0c2390f5 100644
---- a/drivers/staging/media/meson/vdec/vdec.c
-+++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -914,6 +914,7 @@ static int vdec_open(struct file *file)
- 	return 0;
- 
- err_m2m_release:
-+	v4l2_ctrl_handler_free(&sess->ctrl_handler);
- 	v4l2_m2m_release(sess->m2m_dev);
- err_free_sess:
- 	kfree(sess);
-@@ -926,6 +927,7 @@ static int vdec_close(struct file *file)
- 
- 	v4l2_m2m_ctx_release(sess->m2m_ctx);
- 	v4l2_m2m_release(sess->m2m_dev);
-+	v4l2_ctrl_handler_free(&sess->ctrl_handler);
- 	v4l2_fh_del(&sess->fh, file);
- 	v4l2_fh_exit(&sess->fh);
- 
+On Wed, Mar 04, 2026 at 10:02:26AM +0100, Bartosz Golaszewski wrote:
+> OF_GPIO is selected automatically on all OF systems. Any symbols it
+> controls also provide stubs so there's really no reason to select it
+> explicitly.
 
-base-commit: 0031c06807cfa8aa51a759ff8aa09e1aa48149af
--- 
-2.50.1
+> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> index d10b6f9243d51574a9ac662b93d4678cd7d94a4f..10e64e3ffb1f5f60e0b62b16ab513f002a42fa1f 100644
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -1232,7 +1232,6 @@ config REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY
+>  	depends on ARM || ARM64 || COMPILE_TEST
+>  	depends on BACKLIGHT_CLASS_DEVICE
+>  	depends on I2C
+> -	depends on OF_GPIO
+>  	select REGMAP_I2C
+>  	help
+>  	  This driver supports ATTINY regulator on the Raspberry Pi 7-inch
 
+This is a depends rather than a select, though it's fairly redundant
+with the arch:
+
+Acked-by: Mark Brown <broonie@kernel.org>
+
+--zVeDWCP0gn6RDW1P
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmoFjAACgkQJNaLcl1U
+h9CHUQf+OxkRqulw7IQRBWvsy5b7fUXsBVsAfKiGM5xDUpiNuKd4S1A6tLOnAn45
+3I8XeQGoX3PGjjNCIQsc3+Tsta1x1lKnTINxC1oxhPg4vuQF8O96ExfK5rw2SbNu
+wIgQOz00KrJnhI/QkBNPEUhw2mWXzQuqkwd4ljTlDlUXJCwgc0bWAcR6W7LWq9bW
+YeqQrGM7BM83jHyDJAFQsnVLeA6gQM+fV/LkZSTwcNYN3SMz3Csdy3wlcHOEpkbE
+Tl7qsVyLstyKIr9F6wUeYRPOH2hl9/Oi9cTvCYBRu1CK/zLsDPyczcWKF0yhfMaO
+Q+nIB9oU+/dYWlYxHma+RHEckx9A8A==
+=6Y+O
+-----END PGP SIGNATURE-----
+
+--zVeDWCP0gn6RDW1P--
+
+
+--===============3138737827316162087==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3138737827316162087==--
+
