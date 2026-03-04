@@ -4,58 +4,175 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 427DAEDEC1E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 07:33:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22D85EB7EB5
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 09:03:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WrhX8xuXD4DHKsuh/QCuL6WmpO1kPEmxF1rWsiUZXrY=; b=MBekqb7XG7Zz32
-	cJRKP1fnqpKW6fQF16mYRw6ntj9awTUNOnEJzqvbACTO0vIrLxTCsefrAKbRa/03MmUKqEU34HJ5E
-	WNnmV1YW22ORYTixwqBosriWMZsWl7NFNnkr9wCpNTh8hMRsCZPogbmmaMKjVb9XkmGMps8XgtwZn
-	2rS2ZXWkREX39K9fiumwI3AnrmgKNykA3xmcOwXAhkhV2pDu7NdD5MAJCL4RLoGa0CZlwo1bXzQRp
-	cmv1K4Mz/G68KzntSUdlN2gGjQfVKSoKktgwH3o2+8bG/7B5RT9Bns+2MHliudtDpfToONStn8mh7
-	DVHcELpI6QOVnysX8Gxw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=R1+rEoxORkEsyDctAV4iRUZt5arZw724BTjZ33vIpR4=; b=A8hKNJh+kTPk9/
+	J2SjBmCBdq+DTaLd7Gw/bvuVGuGjsoy9EYZzEpEUc42K7OfAnaFnatkkW29W4rj60uWcseoGybPXH
+	oizIVl6hrdwVoog3uNMv9PJyeAZBVL1+WEnH9ec1ItdPpVgmE1aGc/+6+Deq1baEUjnehG2iGiPMs
+	JGWR6AR0vf7eUfIZkNGSvsaCPhESjafV/ZaO2dUfZ5lYxTkudDKdJEweOc+1gzgpVUHu6OpuZE0zt
+	vTlBIUOP/g65krK1NSRt2a2Ys12XfNNm+3aBPs4QSVfH6NFtRNAlS60b8n8JYvlI64+x7jWTBIucO
+	eOtbQ5hW998QUZD4B+vQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxgjM-0000000GbNz-0Rf8;
-	Wed, 04 Mar 2026 07:33:16 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1vxi88-0000000Gnvg-02nk;
+	Wed, 04 Mar 2026 09:02:56 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxgjK-0000000GbNn-2wCO
+	id 1vxi84-0000000GnuF-3Ub9
 	for linux-amlogic@lists.infradead.org;
-	Wed, 04 Mar 2026 07:33:14 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2A23360097;
-	Wed,  4 Mar 2026 07:33:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4817EC19423;
-	Wed,  4 Mar 2026 07:33:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772609592;
-	bh=8l87FG3GfJ8GOGQId/6eYI/ACFLADMHOJZvD/ixFexk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HOMSWQIrUCrYfDhcT1LekIwNg0z7E1jHDc7bo6lVsZ2I8YneR/S/G/tKdCXEXGs0Q
-	 XfKKNVNqODC2qSDdytIoSSm98eG3ZlePGTPyNOYbIOZi42mHHw/CJqcmbZ28t6I+pG
-	 hajkmVxa969r5CkWKo0YNEKvY2b9xJTL+tAJzvv6WxiR+veQ3fKbn8nJwh74P2UEAK
-	 CWSSAjy1aFLISt7ZMQfQHcIRzEmLk9YaPDFtQC+DZPbgtM16IKeb7A6ZzmHpdD4AAZ
-	 yShTiebgwMWI753LCzzb/m3a+H7AzAIRrL33TzVFGW2sjxwcoBR97qWEeCTASw/AVW
-	 oRjZB4mbAQLLw==
-Date: Wed, 4 Mar 2026 08:33:10 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>, linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
-Message-ID: <20260304-uptight-rugged-badger-c40d0d@quoll>
-References: <20260304-amlogic-dma-v5-0-aa453d14fd43@amlogic.com>
- <20260304-amlogic-dma-v5-1-aa453d14fd43@amlogic.com>
+	Wed, 04 Mar 2026 09:02:53 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6245SQ3C152553
+	for <linux-amlogic@lists.infradead.org>; Wed, 4 Mar 2026 09:02:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=oemXeHFiAD8fwC6Dvlocm0
+	aqSqueWx/Mi2JGUCBaDkQ=; b=P11c3pKEW59ZBshwgxJxorRIb/Cvzay+2NGICC
+	TUIUByAaAlcJ4kZ2u+UQRh4xlir4oUZ+Q4bGcQlsbPpUNxvswgzYkQGeGnf14P6Z
+	cQyRSBvUq28fC5gx6GVvkfsI0fZSqw/uzBYgsGj4SDJoTSWaerzUDMO3bOVZa+GO
+	WHl188CFGvZ1icutpN8PmB1fhnMHjGSISUiSpwMVEYdAcjiiBfAlQiuod4toeHcj
+	O0r8mK1uDg9SCCe2nZPDDCy7UP7vKNiEqXPDGeazBlvFXHErYyAGTVHX6OMBYVqK
+	snkDYFGNPNyWf9q16AhJCZHo6WGOQbvwCO3SUEWD6ILYkaaw==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cp3tvjxtr-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Wed, 04 Mar 2026 09:02:52 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c71655aa11so6150285385a.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 04 Mar 2026 01:02:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772614971; x=1773219771; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oemXeHFiAD8fwC6Dvlocm0aqSqueWx/Mi2JGUCBaDkQ=;
+        b=UkMrHotm+FwR6VEnQMIoPYqQnzcrwgB6qdXBUu4rDDtjJ+bc4gLHoLaAqFxUtdW/lN
+         8/EF48ps8F+YZ2YaWVpb9srAUTolv4NowlyLrrQJAICbZSKQtIGZx6b2FaWIXgzgZaAY
+         a2jBpGK8Rpprso7cdh3/stbyIz8bHYLI7ckj6NG1oOcf0QWy+WxJvoGZ8GZ4LwtBHq3c
+         GKYXGCj2IIMFUO/MdT7/JzFnFHIIH0SksmZLd2kd3yXO3LnKfGxJ0IPZV0gVE7SGYyiy
+         YOO0a4d563CYbDyQAbKmqLQ2BBkRvEpSHcsb4/GQNzA+QezXPjYABOcXXEnoztlDLRDY
+         f8kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772614971; x=1773219771;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oemXeHFiAD8fwC6Dvlocm0aqSqueWx/Mi2JGUCBaDkQ=;
+        b=IGfxQq3Ua9pcPH9Un9NIQMbMyu/rMLBjiRmjgvZi3GjLYzkgbhBJezcE2/X9tyJdYH
+         a3cQv8A/IzVjs3nQ6FMTUDazn0TamkDIDK7valXsNagDny6abfYn2recU7WGy4AnBRHk
+         digja+EryLP9wAZs7ZV9jOmXBdDYA4HF7u7A5rejcTmMZUXfHyL6JBoRGSj6qFKsHGgQ
+         0CWDJdZdEu7Ezs71OvABKkzYqJlQIyQdEwrr8otpVOdvUm4ACuUxIZM4CqkWVlsCG0BP
+         e0L7iN3MNBlzNeHGZlrW1mMsmT/Dj6NAdM4bsDcal6dP8QM5u6g6vuLkP50FhoDwe1+m
+         woWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVEXNJd+HULN5z4wS4G5gcU9dQDcr2bYuFp+inzKxf0K8tgY3L7cEfL0oMioTbACJh3vzaQxpse0VpCTRxm@lists.infradead.org
+X-Gm-Message-State: AOJu0YwAFh4tV9h7tHxIKgWC5bpmACgY2MgNx5VlqSD0jlMATI2AdDni
+	/ycl0fxTWYp7pNPUXkcwtJ8EGJfDTCJPAWRokJdpbx8c7btop0CbTSzeEkVPJnx5iX5Q/YYGiTj
+	kIvQPWuvCn6R/q0LKlA+fYXi7hpawvgegMgn0jzfzlZzAuM4nfQcOX9GWAww7/V0Y4FqdeKrlVg
+	==
+X-Gm-Gg: ATEYQzwykUNMRrHKNtUukW7qP7XQSJFiiXhUymCcW2j6BHk3dLjvuqODxQYYaNHm16R
+	uVzY4CwJOkc9J7reUj5qWs+KYC6yQpjEZpy6rynKQ780voNFTC9IJntuApRpdg9kohs5SVA7BMS
+	4In48CCyZ1BSuHsc8W4xTJzN4+6ZmFBw/ZAhVH464AU53EaMajlyer9//7lb1aoPDFPLKU5gZO+
+	76tlR7eIKb03xEQ/mKnOLMMhrbp9fGqdcs0ZYaS+Sh9VdWwjdBBcOOSMShyB0y38R2kB9EoH6ny
+	vccListhVwIbkU8h/vtoQHyf5PYcOeHPuet4AWs46seyKLE6JjnxlGZh9NZbaX+zYVw5lZUX3+q
+	4SQiZcrQFLzXXKyXE0dsJw7aCzQACPgLpc4mNrPkeMNBK1DRZjvJU
+X-Received: by 2002:a05:620a:258d:b0:8b0:f2bd:4762 with SMTP id af79cd13be357-8cd5afd3c5fmr156641085a.75.1772614971119;
+        Wed, 04 Mar 2026 01:02:51 -0800 (PST)
+X-Received: by 2002:a05:620a:258d:b0:8b0:f2bd:4762 with SMTP id af79cd13be357-8cd5afd3c5fmr156638885a.75.1772614970677;
+        Wed, 04 Mar 2026 01:02:50 -0800 (PST)
+Received: from brgl-qcom.local ([2a01:cb1d:dc:7e00:edb0:af14:f4c7:c6ac])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4851ad02ffcsm3644895e9.20.2026.03.04.01.02.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2026 01:02:49 -0800 (PST)
+From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: [PATCH 00/14] gpio: remove uneeded Kconfig dependencies on OF_GPIO
+Date: Wed, 04 Mar 2026 10:02:21 +0100
+Message-Id: <20260304-gpio-of-kconfig-v1-0-d597916e79e7@oss.qualcomm.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260304-amlogic-dma-v5-1-aa453d14fd43@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAB31p2kC/x3MTQqAIBBA4avErBsw+6OuEi3ERhsCJxQiEO+et
+ PwW72VIFJkSrE2GSA8nllDRtQ3Y0wRPyEc1aKUn1asB/c2C4vCyEhx7JD3OZGa7GLVAre5Ijt/
+ /uO2lfCyoFdRhAAAA
+X-Change-ID: 20260304-gpio-of-kconfig-e257ea7c9a09
+To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        Vineet Gupta <vgupta@kernel.org>, Scott Wood <oss@buserror.net>,
+        Madhavan Srinivasan <maddy@linux.ibm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Dvorkin Dmitry <dvorkin@tibbo.com>, Wells Lu <wellslutw@gmail.com>,
+        Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sebastian Reichel <sre@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-snps-arc@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-leds@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+        linux-pm@vger.kernel.org, brgl@kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2687;
+ i=bartosz.golaszewski@oss.qualcomm.com; h=from:subject:message-id;
+ bh=vzKg2CmRZRz9tDx8jerfN1FNHIadNDJlHWQvRijQXa4=;
+ b=owEBbQKS/ZANAwAKAQWdLsv/NoTDAcsmYgBpp/UlV7KEbnku5SM6ln9ww7x/7ZvkbRgT9akwX
+ ZTKY7PzrYiJAjMEAAEKAB0WIQSR5RMt5bVGHXuiZfwFnS7L/zaEwwUCaaf1JQAKCRAFnS7L/zaE
+ w5VxD/sFAI2igPWylEwWYYIK15BDRKiW+6YYGAfBqLpYl9ZCdmVgeZD06r7JMW6noA5hFzEkv66
+ pvwjnkkl7u3DFOw8V3GJsnoNOOowaj6Scqektj5r5FiQwuHc5I8abfSLEsV+V4cO0v7ZKq29NWM
+ Slk6AkPOz4Dk9WvQW94bOEYC8bLWudd5dgScZ5sDtsXB2ZVkOU4Un4t2pkX+8AD230La5Ao4gHq
+ 2nfPT5kU2Ogk9EZLOE66LyX5r1zO/Vj5OAtjgB62Cm3oV01ZLErMP+entT0fo8yY5ScmRMaFpUo
+ 3lszEgJlDfA1/ZDe7YGcx1Iqfxnt3/YFva8swh9EU9K0fTllltoiemPhEcDsQa5L+CR683lH/5a
+ FVYvSL0skiru5EDCrTdHr9OUO3u/OD/twdunXvFtT4F/LzO3iDxvE4CEGqlnI+tyOOv2IzMGGGv
+ vbQtrKM8lRKn0N/IC77/tT7IX4aqycoE1lunxb24p/sgoxdJc7e5jEgkPRPmXIOB76VxKbGc0+n
+ 1F3iiZCY9qL3lsySV+j+61W3cjjIYoI/L5iDJbnwnolQDGAK7PEXv6yL4e4j8aGyXOwDd8Gq1aO
+ avM0vTJekP9BWzuxJMN/Y9MbMnlPvTbKHGY0BPgrchdO2JNNJztzOUyRDL4+1lGfij7PFp3V2kf
+ qVTMwUWNMgBvbzQ==
+X-Developer-Key: i=bartosz.golaszewski@oss.qualcomm.com; a=openpgp;
+ fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA0MDA2NyBTYWx0ZWRfXwnX1XcCVLOo0
+ DfVdne3ZT1wI2t6mdTqUkTvN2k7PbIxU/91BRHoJboJmVu3EjcR7RVHXvQvrworHd1Hk0JmdwHp
+ kziDIYjvQ2x0Xl7C+hB6Zq5Watv3IFsor6DtbGjTsEk6Gdy6oUCmVvAmwylEBAejeHjxPm7vHwq
+ sOnKbFHN0zaq1N5hfzAo93ezeAJgluv3YwIeeuwedz09HmH03MHA+5fheqw+po8WjWWyKe71mH0
+ RTSTYQW5QpxoXwIsx7X8f2adPOnkPkN44cavhQS6LuNkRGx6U58B6sBv7tAtbXNBnK7UuB9aGOx
+ YScqja+PwxCn3BeHAGiLuBibDeJB0n/SKOvryJbBe72EQEhkCUmrdDzS/CLoMilr+zrk0IDk9Nn
+ OmO2yW1S037l+1Vdl5JdnCRD3TV36hu5jqipdYduJwwDuRYdkuM/4zp3aw1CamktXwBlC8bPTfE
+ LRfo/2LmUs5f/XtN4EA==
+X-Authority-Analysis: v=2.4 cv=VYv6/Vp9 c=1 sm=1 tr=0 ts=69a7f53c cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22 a=EUspDBNiAAAA:8
+ a=RbMT-lXscSRh0E1VkaUA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: U7WB3BTJd4uk9OEDQ_PReT8AHmXB2sdy
+X-Proofpoint-ORIG-GUID: U7WB3BTJd4uk9OEDQ_PReT8AHmXB2sdy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-04_04,2026-03-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 suspectscore=0 bulkscore=0 adultscore=0
+ spamscore=0 phishscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603040067
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260304_010252_871124_D2C36559 
+X-CRM114-Status: GOOD (  16.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,20 +189,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Mar 04, 2026 at 06:14:12AM +0000, Xianwei Zhao wrote:
-> Add documentation describing the Amlogic A9 SoC DMA. And add
-> the properties specific values defines into a new include file.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  .../devicetree/bindings/dma/amlogic,a9-dma.yaml    | 65 ++++++++++++++++++++++
->  include/dt-bindings/dma/amlogic,a9-dma.h           |  8 +++
->  2 files changed, 73 insertions(+)
+NOTE: Each patch in this series can be picked up independently into
+maintainer trees.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+CONFIG_OF_GPIO is a switch that enables the compilation of the gpiolib-of
+module. The module itself handles GPIO lookup via the OF-node tree and
+is automatically enabled on all OF systems. It does not export any
+public symbols to drivers. There is no reason for them to select or
+depend on it in Kconfig.
+
+This series removes any such dependencies from Kconfig. If a given entry
+has no other dependencies than OF_GPIO - they are converted to OF to
+avoid new symbols popping up for everyone in make config.
+
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+---
+Bartosz Golaszewski (14):
+      arm64: Kconfig: drop unneeded dependency on OF_GPIO
+      arc: axs10x: drop unneeded dependency on OF_GPIO
+      powerpc: drop unneeded dependency on OF_GPIO
+      net: mdio: drop unneeded dependency on OF_GPIO
+      regulator: drop unneeded dependencies on OF_GPIO
+      gpio: drop unneeded Kconfig dependencies on OF_GPIO
+      pinctrl: Kconfig: drop unneeded dependencies on OF_GPIO
+      leds: Kconfig: drop unneeded dependency on OF_GPIO
+      hwmon: drop unneeded dependency on OF_GPIO
+      watchdog: convert the Kconfig dependency on OF_GPIO to OF
+      bus: drop unneeded dependency on OF_GPIO
+      staging: media: max96712: drop unneeded dependency on OF_GPIO
+      power: reset: drop unneeded dependencies on OF_GPIO
+      media: i2c: drop unneeded dependencies on OF_GPIO
+
+ arch/arc/plat-axs10x/Kconfig           |  1 -
+ arch/arm64/Kconfig.platforms           |  1 -
+ arch/powerpc/platforms/85xx/Kconfig    |  1 -
+ drivers/bus/Kconfig                    |  2 +-
+ drivers/gpio/Kconfig                   | 53 +++++++++++-----------------------
+ drivers/hwmon/Kconfig                  |  1 -
+ drivers/leds/Kconfig                   |  1 -
+ drivers/media/i2c/Kconfig              | 12 ++++----
+ drivers/net/mdio/Kconfig               |  2 +-
+ drivers/pinctrl/Kconfig                |  9 ------
+ drivers/pinctrl/bcm/Kconfig            |  4 +--
+ drivers/pinctrl/meson/Kconfig          |  1 -
+ drivers/pinctrl/starfive/Kconfig       |  2 --
+ drivers/pinctrl/sunplus/Kconfig        |  1 -
+ drivers/power/reset/Kconfig            |  8 ++---
+ drivers/regulator/Kconfig              |  2 --
+ drivers/staging/media/max96712/Kconfig |  1 -
+ drivers/watchdog/Kconfig               |  2 +-
+ 18 files changed, 31 insertions(+), 73 deletions(-)
+---
+base-commit: c025f6cf4209e1542ec2afebe49f42bbaf1a5c7b
+change-id: 20260304-gpio-of-kconfig-e257ea7c9a09
 
 Best regards,
-Krzysztof
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
 
 _______________________________________________
