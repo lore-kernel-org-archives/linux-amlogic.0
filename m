@@ -4,93 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB380EDEC04
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 04:17:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AFFDEDEC12
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 06:14:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=NmTi9e7Fnzpzdm3mKceAX9ZhmIPK8+x/3IrvJwYRTs0=; b=J2DohC2vYwJnLU
-	Rw2u9pzmRYgRUPgtxafdq67qulYk98KYV5AepQS0E2JGvj8T9cxX5Vo9UO9MwVzPgLjB6rDIqBihx
-	nDOwhLcLvohbBOzdGrLY7joJ5UvkRA5CMRYCZnZg8xSWq9pp0mqHJAyjksd3+j2XOTRpK6KoUdnye
-	0TVfcvnjnj/lSuEqoHZ16WUipzTTU8acqKJXyiSzxMGD3KcqD6k+l1CbCec1HfSOzVzEHEjERa0/8
-	9DcgRlF8zbDPAf633ANM7920uX8+R88YbnIiVwQR+zG644ReCpEZfbQNafnpPBhJwd4mQXfZi/MLl
-	iVXClLp44m0WEzXyZfGw==;
+	List-Owner; bh=AVm9wvAMGh9Wd/0CyZdfBbV3Yl2yKYpLYea2TaEmGTw=; b=2eEtCindwtF3Q+
+	fZ9WuL+fsD9eeB55sp3mRVonKQzIOTMQwhqdYcvMcKGuu6e30DskWc0Pj9CZMqB9n7fUnfKYx/qjY
+	c2Vj31eOxt8LBbNe6t+7zVeXBBO44jWH0CE9pBr9bif6gHbY8ZUjQK61oRhBwc2jXiZuxyT2PqUkl
+	pqOStK3inP+n9KJBOIKX2V/AgC/XG0PelaX5GdXuwjJToOfxnFEPgkx5hCyKga2xAANbFA/XuZ5R1
+	KIVBW+cJc5fQQ/IEEauxO54UDCFancenGPVeDe8NM6I8zKJE4Bb/xTpaR15pvtDAJFAWlLKfzOypC
+	b87wU6t9haUBpVpSFE0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxdg5-0000000GQj8-17mR;
-	Wed, 04 Mar 2026 04:17:41 +0000
-Received: from mail-yw1-x1134.google.com ([2607:f8b0:4864:20::1134])
+	id 1vxfUy-0000000GVuu-3EG3;
+	Wed, 04 Mar 2026 06:14:20 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxdg2-0000000GQiT-3TRp
+	id 1vxfUv-0000000GVtG-22QB
 	for linux-amlogic@lists.infradead.org;
-	Wed, 04 Mar 2026 04:17:39 +0000
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-78fc4425b6bso63158627b3.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 03 Mar 2026 20:17:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772597857; x=1773202657; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cj2evDlwnNkzABttd4YNchw6wVbpncuY/X8XS90rCSg=;
-        b=NbyJEpcyF/20i2pn4jUok7EwNsiP4JHsOZ6CJ2Znej9fO2YsCCX3lr23yWvyA5q7JC
-         zwvg7ISdrwdKyOS1Tzrc1+mx4Iqu5Hh2bgVdRMCJj8pEdJBUfHhB58vnll5XybnrV0NB
-         FQ0qEQWxJaQUTJJMdAAFstQU5xYgwsT/dXpMCrgfdEXymuL98IO5M7Naw/YD63NlL8oX
-         KM28qltba7czpzSXHOe7Q9xcm+/CtMBOgvq6Nu7dx9yM1CaH2vM1iO6G4fcBDb0EGcl1
-         5oXI4QTvN1EDj2OvGKF1gMyVydymtQJw2yiNM8jkm2VS5FxluIuJqtMxyEH22zt9gBCd
-         Up4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772597857; x=1773202657;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cj2evDlwnNkzABttd4YNchw6wVbpncuY/X8XS90rCSg=;
-        b=V2EhVAFn5KbYSAJxll6FbWE+jsaNHXnPNRCN4X76kz+1ebne+BkvGA1byOXDKhLlF7
-         r4xkLXyM8CDO6wo9AttnAD1xEn8V1vueK257NE3Rg3vAGnoJN3YA1KJWihnfNlMEL+B+
-         v2FK9Z08V5kgxM6QbGbsWzbSPjoLI5dM8ndGlbGFyRsa/JtavbByJVO3T1/V3gB/PyUt
-         qaKVLaxFFIyPJqDmyOZlc043o3pwZemKjqfkbVvMgECOTNHM7xfjb6+D5zfiFc0Wi3FM
-         2BzXOwZhgjv4YZXA4ww5VM4S0sH2wQ0LRmGyWBvoqHdpUNfRyjp0J7HrMEQDAo5RRLPw
-         s6IA==
-X-Forwarded-Encrypted: i=1; AJvYcCXSB1XUFk30kpOg2+6dOCxdFBI3xI0lyXPkQ0o7LWt9x5AyI8grjpUiHpJoWWxQFgA/sVHnwySe1TG8facU@lists.infradead.org
-X-Gm-Message-State: AOJu0YzQrchrtojWjVoyzzOBtZZcHrtGD1Nk88Ky8JmXDvgKTY/HYbzA
-	4L15149LRZvFQ8OvVSHV0WzKkaPaB8dkQiY5j6CHA0nMT7F0vJWgdIyX
-X-Gm-Gg: ATEYQzy4EPFjSvBv5ZFcTr9yyCeEl69ID5L1P2BOl6YVex0MBPC82rsH98OVpmr1syy
-	UOSEjDYZXvH05sMgYsfADOGxOHyrDfpvSSh9hgJYSqZ1w1C4TT0dyZtMGGXxJEww3uYeTqvEtIO
-	2l4t+l8GmwAz5GsWJJT2ze3pnoA2f44iGgtB6uiL2ljFR1M99y7iHyhT/VHJE1NYp/+g97ibaAx
-	VeQrdBzqELwwG6mr+j8XQLCxQBWEkJbgMhsLiu06IwFbt637uTJPLx+xM64lw/0AxTvA5GSpd48
-	QRNOp/dnTfwjRZKLoAU3RMiWTmXRiEefb9xTyyfxj4hoNgfRCeU8a+aVY5AZWgTo98FW8FaUSOK
-	ck9cEq4OWMbE6qbMmODlqzxhkOecGO62nCMQM6OqcZCQpRKOW5kuUZ7x+ihUI8+GU0YY6TDcBiE
-	CMjzftbdNLc5/8pyXtPG+3Rs30RLx/LKk/c35UYkKCMkn2zjlH/KfpyyNn8FOVa+JS
-X-Received: by 2002:a05:690c:6983:b0:796:371c:7afd with SMTP id 00721157ae682-798c6b8a015mr5803047b3.13.1772597857322;
-        Tue, 03 Mar 2026 20:17:37 -0800 (PST)
-Received: from ryzen ([2601:644:8000:56f5::8bd])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-79876ad9045sm69989297b3.16.2026.03.03.20.17.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 20:17:35 -0800 (PST)
-From: Rosen Penev <rosenp@gmail.com>
-To: linux-iio@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rosen Penev <rosenp@gmail.com>,
-	Xichao Zhao <zhao.xichao@vivo.com>,
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
-	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] iio: adc: meson: no devm for nvmem_cell_get
-Date: Tue,  3 Mar 2026 20:17:16 -0800
-Message-ID: <20260304041716.7631-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.53.0
+	Wed, 04 Mar 2026 06:14:19 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8C41040E22;
+	Wed,  4 Mar 2026 06:14:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 622BAC19423;
+	Wed,  4 Mar 2026 06:14:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772604856;
+	bh=ITg/ig7wrS1ZXLm9pbAOjF/U8W9JlHhbHX5MT6WlX0o=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=fKHlI7vo1WRqwM3r6iUYfH2eCl3o6uuf8ooLroJYoSX5D8+i16HONe+LOlWSmDEA/
+	 mqk7hrCz5mEVO5rfIH63sQjS2lkg63L5KAjDPORjOO5wdUJdMspfosnG1ui75SQ8vl
+	 IJijRTXhwc/mz5xrV50MyQbdKz3yLCnG4fINIlHnTOyZiFGRZxljIbT3neRuNOdhds
+	 GXuw6BntbiLRWCRaNtFcKeNsM7fDUZv1SwonUwPnDz03y8Zg32UyVlSOtwICKVsGMT
+	 gn6rtZPwy1W3oEcQhYgwG41WULqySM9/c7m4g7NUBecE2P7yyroZxNaxmMX/vHpoXV
+	 VT6rk6l3zxvTw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 490B5EDEBF7;
+	Wed,  4 Mar 2026 06:14:16 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v5 0/3] Add Amlogic general DMA
+Date: Wed, 04 Mar 2026 06:14:11 +0000
+Message-Id: <20260304-amlogic-dma-v5-0-aa453d14fd43@amlogic.com>
 MIME-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIALPNp2kC/2XOwQ6CMAwG4FchOzvDyro5T76H8QCswBJhBgzRE
+ N7dQSQKHP82398OrKPWUcfO0cBa6l3nfBMCHiKWV2lTEnc2ZAYxoACBPK3vvnQ5t3XKtZFaW8w
+ tKMmCeLRUuNfcdr2FXLnu6dv3XN6Labr0qFVPL3jMCU6GUJNRqb58t8fc12xq6mHRKhag1xqCl
+ ghoE9BWS7vXyU9DvLmdBI2qyEyBhizAXss/vb0tgy4ASSohyWSbz8dx/ACL32ScYgEAAA==
+X-Change-ID: 20251215-amlogic-dma-79477d5cd264
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772604853; l=2054;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=ITg/ig7wrS1ZXLm9pbAOjF/U8W9JlHhbHX5MT6WlX0o=;
+ b=fjpfIMWfqpeL8CRxzINA9C5cxUZwVJX06v1o7F7JQow0xOWuh2fpVIvPAHYGlMbwtr3l+1uCn
+ aoKAGr7CJO1BirRlQeYQnLP4NaWu+m1AD99kRobQCjxde8i/uaFBgtH
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260303_201738_874072_C779AC3D 
-X-CRM114-Status: GOOD (  10.52  )
+X-CRM114-CacheID: sfid-20260303_221417_572620_305DFA08 
+X-CRM114-Status: GOOD (  10.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,63 +87,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There is no reason to extend the lifetime of this post removal of the
-driver when it's only needed in one spot.
+Add DMA driver and bindigns for the Amlogic SoCs.
 
-Moved tsc_regmap assignment to avoid two nvmem_cell_put calls.
-
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- drivers/iio/adc/meson_saradc.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+Changes in v5:
+- Rename head file and rename macro definition.
+- Rename the subject in [2/3] from "dma" to "dmaengine".
+- Link to v4: https://lore.kernel.org/r/20260227-amlogic-dma-v4-0-f25e4614e9b7@amlogic.com
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 47cd350498a0..ed91edf0e391 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -792,7 +792,7 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
- 	size_t read_len;
- 	int ret;
- 
--	temperature_calib = devm_nvmem_cell_get(dev, "temperature_calib");
-+	temperature_calib = nvmem_cell_get(dev, "temperature_calib");
- 	if (IS_ERR(temperature_calib)) {
- 		ret = PTR_ERR(temperature_calib);
- 
-@@ -806,13 +806,9 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
- 		return dev_err_probe(dev, ret, "failed to get temperature_calib cell\n");
- 	}
- 
--	priv->tsc_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "amlogic,hhi-sysctrl");
--	if (IS_ERR(priv->tsc_regmap))
--		return dev_err_probe(dev, PTR_ERR(priv->tsc_regmap),
--				     "failed to get amlogic,hhi-sysctrl regmap\n");
--
- 	read_len = MESON_SAR_ADC_EFUSE_BYTES;
- 	buf = nvmem_cell_read(temperature_calib, &read_len);
-+	nvmem_cell_put(temperature_calib);
- 	if (IS_ERR(buf))
- 		return dev_err_probe(dev, PTR_ERR(buf), "failed to read temperature_calib cell\n");
- 	if (read_len != MESON_SAR_ADC_EFUSE_BYTES) {
-@@ -820,6 +816,11 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
- 		return dev_err_probe(dev, -EINVAL, "invalid read size of temperature_calib cell\n");
- 	}
- 
-+	priv->tsc_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "amlogic,hhi-sysctrl");
-+	if (IS_ERR(priv->tsc_regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->tsc_regmap),
-+				     "failed to get amlogic,hhi-sysctrl regmap\n");
-+
- 	trimming_bits = priv->param->temperature_trimming_bits;
- 	trimming_mask = BIT(trimming_bits) - 1;
- 
+Changes in v4:
+- Support split transfer when data len > MAX_LEN.
+- When a module fails or exits, perform de-initialization.
+- Some other minor modifications.
+- Link to v3: https://lore.kernel.org/r/20260206-amlogic-dma-v3-0-56fb9f59ed22@amlogic.com
+
+Changes in v3:
+- Adjust the format of binding according to Frank's suggestion.
+- Some code format modified according to Frank's suggestion.
+- Support one prep_sg and one submit, drop multi prep_sg and one submit.
+- Keep pre state when resume from pause status.
+- Link to v2: https://lore.kernel.org/r/20260127-amlogic-dma-v2-0-4525d327d74d@amlogic.com
+
+Changes in v2:
+- Introduce what the DMA is used for in the A9 SoC.
+- Some minor modifications were made according to Krzysztof's suggestions.
+- Some modifications were made according to Neil's suggestions.
+- Fix a build error.
+- Link to v1: https://lore.kernel.org/r/20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com
+
+---
+Xianwei Zhao (3):
+      dt-bindings: dma: Add Amlogic A9 SoC DMA
+      dmaengine: amlogic: Add general DMA driver for A9
+      MAINTAINERS: Add an entry for Amlogic DMA driver
+
+ .../devicetree/bindings/dma/amlogic,a9-dma.yaml    |  65 +++
+ MAINTAINERS                                        |   7 +
+ drivers/dma/Kconfig                                |   9 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/amlogic-dma.c                          | 585 +++++++++++++++++++++
+ include/dt-bindings/dma/amlogic,a9-dma.h           |   8 +
+ 6 files changed, 675 insertions(+)
+---
+base-commit: 3d2d1059cae3abab771576a7ee7f59d9627cfb8e
+change-id: 20251215-amlogic-dma-79477d5cd264
+
+Best regards,
 -- 
-2.53.0
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
 _______________________________________________
