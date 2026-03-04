@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48B0BEF8FE7
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 14:09:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D01EFEF8FE7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 14:10:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kt8MaxmR8cNQ6rJWrZmailLw8ziVy0/44tefNw1oMK4=; b=oD8Rnz0yRl4z2v
-	yiqDY3blwYblapwa/cAcEEcJ2hbzH+DCV8EHR9AikCrHljU+tn0be8mP44zUSWT9w6rP6hCuiK0m+
-	3MU3wYII5IWRgsRpuDH/pNkMOv0/vWv/FeI9vaEVT5mFffb59mx0B+rowbD/v8v8Wu42uE7buuQJT
-	qifQHAgHf64e29fCTd6ggYF3eOtnhDyCz7I/3iHMp7OCG2QubqWIKLN9ycvP1t3W4GBcowUfYk1Sx
-	+jYNHES9GZEZ0DVZZ9yhvYVSGccKk9o3KuPiKfbeRowybHYhU7HRATvw7KsKNACLRGCdt9Dk1dnpo
-	mg2dspDhSvdOCTJnutzg==;
+	List-Owner; bh=Kiai1RFjgJOeJXuO8vVM/LtU8LFN4oddY7CEH7g7KGM=; b=euYd0NbJfeYzJT
+	NUBBraAILJZUgKEri8QUJgp6en1m32WnyUGqjYrYjWY15CcM4hEXMX9WAMu78AbzL2aOmdQ/w59DN
+	LStknR0m7vxFO8eO3gFQRgK6aUwN7F9zvHxrb7hGUHjzYzPYGLDqjsCE/vKaUXi3x4kFU+xyMlkes
+	XeuZnLF3gZpPV3rAzGdaxkKEZK7vf49spCOxhfHzQHw3e2VP4NL4ddmbyW/8S2QSmSMKsN6N3SEsU
+	9+AgziQYWC+0ekgKprhFbXjPhmJkzMBFtLFWe2xmd4v5acO4bpiZwY9LDIpb0DRbZ09qmvahvhrjB
+	Y1sX0CEBkXvRgkxC0oqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxmuo-0000000HL2b-1KDr;
-	Wed, 04 Mar 2026 14:09:30 +0000
-Received: from mail-pf1-x435.google.com ([2607:f8b0:4864:20::435])
+	id 1vxmva-0000000HLFP-3kGN;
+	Wed, 04 Mar 2026 14:10:18 +0000
+Received: from mail-pj1-x1031.google.com ([2607:f8b0:4864:20::1031])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxmul-0000000HL1B-1uUy
+	id 1vxmvX-0000000HLDz-2zdQ
 	for linux-amlogic@lists.infradead.org;
-	Wed, 04 Mar 2026 14:09:28 +0000
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-82976220e97so326351b3a.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 04 Mar 2026 06:09:27 -0800 (PST)
+	Wed, 04 Mar 2026 14:10:16 +0000
+Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-358d80f60ccso3190413a91.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 04 Mar 2026 06:10:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772633366; x=1773238166; darn=lists.infradead.org;
+        d=gmail.com; s=20230601; t=1772633415; x=1773238215; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mrS7ZIa0rilgM/jlzfLJJeKLRZ0Q0OYSRBkIhGwwFqw=;
-        b=SbHzSA4YRJyv5cz6qKEkIUzxzXCvXPXupbMkPOsP/hb60gmQlrl75qSpt+OMEzVkqi
-         3FoU3yYThfoZ4u5JKSZd0HRlb7ZBdCR8OKwAeANxxTeCXu1tagVVc5isR5IKUIMtGtj9
-         dI8YtgKJRcx/e2H2bjADq+RIdUhHhqDLV6UiJktCzSjmNKHdeUu6sMoKbtgXP6Q/GMh/
-         dYNJBTgjZGeUtxtsn+VOcU+zqe5MZDP9B7MiqQ4wHTsUOyzkSo6Pyk4d5Vk1Nasqi/pb
-         QOg/7M5TFcJL0rp8I9SUIF2LG8dDpG8t01j911QLCI9RMHf5VGcNAuxQ1NJDdqZNsAi+
-         /qrw==
+        bh=X1R3QVXR/Ozn+9r0kdO5H35rDS/3I0+kFqEdmlZYJAU=;
+        b=VLHdHvzXUUII8ysdcztEeofm4Xa2m6308uQ+nXKJ3rFHCA+YJjv6u9ReQZOfg35RJp
+         Hxi0DdbJqhPvT05LBzF+212nBNi3vkCeM5ZjHm0orGcFQymp9t68kCxDUVWWDul25TcK
+         /vE/0o5SVKRgpf1gk9umQOD7PWLl25DUU3cwAkKnS7PsvmrjtIlhxDQ8uoo7eGw95R6n
+         QdNGT9hCG5n4yh+o9xVFVR2CaDW1lc1C65pvVgwQ58Oo/J2PPhiKZAwvfFqvldieRidK
+         z54HNFlem3juJpdh2qsM/SEgiwymqY9cFNU7t/bhnsHXopRI5p2LD6T795wtKMUiDcKY
+         AgdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772633366; x=1773238166;
+        d=1e100.net; s=20230601; t=1772633415; x=1773238215;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=mrS7ZIa0rilgM/jlzfLJJeKLRZ0Q0OYSRBkIhGwwFqw=;
-        b=nQw6IdEXfyXK4JKGi1gszDTRZag4vMtKFVtB6NkTN1J6QQb1d5ppuki57RSwfraj10
-         IeFbq+6AACtMrdoXAPyyP3wCfkW1EvFFLuGRSFQYda3VVHwJiIEQoUIUO8j4qHt4OM59
-         qyVoGCOf1fRrC8GKci2a3u6A+yNCDXDqbjHO0XzVx/vu3eW/prsHmEEEaU7ldoIX/lkl
-         uGUX5ddhkhyGhbcMraaZ/P9w3fmMS+O7Sxy6YrDzDqCXmMtZD/gbacfLMV5+EyCz0aUB
-         B+Mt5/QClf28me4zja3nokvThaLrFxn+yMsrOWocx3csdAxdaOfNNv3z9Kt/qFcrOW5Z
-         iI1A==
-X-Forwarded-Encrypted: i=1; AJvYcCXZcE/A1XpNNlwBdF+QQztA0Wz2qLTYSLYj+eW3NQnhy0MVqFYJm6YG5vTSGGTRTPfSesMkCPVVxOCOYald@lists.infradead.org
-X-Gm-Message-State: AOJu0YwaKmAplrKNO+UMlsiNHFZmSJfIkm9WmowM3Q8pjagKS8h3CTdl
-	PKibPmkwQ+U89uOPSYa4NiXgU3pwkGVNE2jUQiUntqLr7yfFu0r/gaYS
-X-Gm-Gg: ATEYQzyDttLdhk3FZ+w7TB8gNXtpZIfyKObJjAY3Zy0+b0ZiJj7lrlhGPug4QnDXmjn
-	Hmb3vz5u/wRPFK3HPXnLQfTmigZIqj2wup+utCVF1iOkH5dCgaUP/WuIh/Tg7cQamKJRrx/J8Kp
-	PnYLgo51z+owaUDkYePirCo/y4Xq69z17tDfCb8UYyuEx5/mWKXEp1H/pnSTpyL9qoL1DOdJvvV
-	4qh6cXFqlyXvhR45+yUej9XMhV898in11RyXFbwWmdECdS0SrsDPTYfB+9jLA6qIDIzKi/cIJVa
-	kfv0WJ7otuM5St6dw3gMHlUVpXlAd9vCxtayg1ksJjhwInQXouelpt3YlLhsdo6dNB0c5PyKTDy
-	uOk79nriTayfKBYcI2bk2Zd9nzaqJJMAn2UaYQ/KhSJGkS4gfKAWXR5mjTB5WkLNxWnKTkhIz7B
-	Z+6RS+4ZrBfvoWkD5qPr5/
-X-Received: by 2002:a17:90a:d00b:b0:34c:9cec:dd83 with SMTP id 98e67ed59e1d1-359a6a7a0a3mr1687183a91.27.1772633366451;
-        Wed, 04 Mar 2026 06:09:26 -0800 (PST)
+        bh=X1R3QVXR/Ozn+9r0kdO5H35rDS/3I0+kFqEdmlZYJAU=;
+        b=uFXtOrhZ5bcWQ9DdEiWcqz526Ag0TmXah+Xiro7PnuBOxP5ry9ywIB4TDM9fTcnp9y
+         GgffN5WuvwMynSUSiLd0AvURxkgDm9+TdPuMkjTEN3TzjO3JO8Y3I43AGHmEGigKgmgX
+         Gqt+hbmFodayFL31Jz3R6B9yocmVK+L7YbGs5wsbRWPl7wHQ9QavC4tS1FbQzYGz2h5x
+         9NYKWlLNtIFav89Lef19sWazC8ICXQLL2CASxNETSaw6K2qdjECQrShvKSDnMNE19+FS
+         J7fEbaWBVk9Y5LjL5Dkw4tdNjiprpr1C7XruL2K6L3M5iydhLeLwKHGg/r0+t1xc4ot2
+         6Ipg==
+X-Forwarded-Encrypted: i=1; AJvYcCXxpeLjWMpYhaGZjjI2fZ58Gr7vNbd5QLrUkQfQ2ceUB4nNh0SdUpWO7fKceGOAF5Y6nFJB5u3M/R+nNjaE@lists.infradead.org
+X-Gm-Message-State: AOJu0Yww4y6ZZAO+ToGBVVsJcqqkr83EFKPJPpGimwO66nl/tFn6IhKU
+	jbEMI5dMIsnBSBqnketjcgV4OiVPwKvY6N6otMePaPxxtipzBSwXgEii
+X-Gm-Gg: ATEYQzwwPMI36Zo47kVFRnjUrzQ7jh/hNtiF4/vIvnnSI1OKgUoEVEl51wvTA1HClJb
+	j1elHOFbDM2OSbddSt2YPBkZHFTaZbkxaP7/XXcBXQeublicIhx8s5v5NUbkWX15LoJaKiwI0UT
+	uBbeF3brdq9QSb0pATvv1lN02AeQgW5G+N+q6IkGxYtE7yt5ifWUR+NhzV+YOzms9a3FYwyIpCF
+	Uv+16luSq9NurCRuXfrdOX8UljByhZupWO9qs68ssdH1BPg67sbgYqWox2owXdtNV0yjl3QC0si
+	v1eMkcHT+sF/5gqrUfQoUdQtg1E59BNruDmK5ePoiORLnd/wi6FnW0TdxhsCPb/vu1/fAJGc9kB
+	RJLzgoSblVSSyim/+faCOnCh6GhLs0tD3K2HmMa0B0IqNx2ux9q6UXNa70bO6vaV0loGscZX/t1
+	viFqnJ3D0rqnS6Iv1uP0PP
+X-Received: by 2002:a17:90b:2e8c:b0:359:8c89:96e5 with SMTP id 98e67ed59e1d1-359a69caab4mr1729374a91.12.1772633414915;
+        Wed, 04 Mar 2026 06:10:14 -0800 (PST)
 Received: from rockpi-5b ([45.112.0.200])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3599c4c0f80sm6826545a91.16.2026.03.04.06.09.12
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3599c4c0f80sm6826545a91.16.2026.03.04.06.10.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 06:09:25 -0800 (PST)
+        Wed, 04 Mar 2026 06:10:14 -0800 (PST)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Vignesh Raghavendra <vigneshr@ti.com>,
 	Siddharth Vadapalli <s-vadapalli@ti.com>,
@@ -107,11 +107,9 @@ To: Vignesh Raghavendra <vigneshr@ti.com>,
 	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
 	Niklas Cassel <cassel@kernel.org>,
 	Hans Zhang <18255117159@163.com>,
-	Koichiro Den <den@valinux.co.jp>,
-	Qianfeng Rong <rongqianfeng@vivo.com>,
+	"Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
 	Thomas Gleixner <tglx@kernel.org>,
 	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
-	"Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
 	Sai Krishna Musham <sai.krishna.musham@amd.com>,
 	Nagarjuna Kristam <nkristam@nvidia.com>,
 	Vidya Sagar <vidyas@nvidia.com>,
@@ -128,16 +126,16 @@ To: Vignesh Raghavendra <vigneshr@ti.com>,
 	linux-tegra@vger.kernel.org (open list:TEGRA ARCHITECTURE SUPPORT),
 	linux-riscv@lists.infradead.org (open list:SIFIVE DRIVERS:Keyword:fu[57]40)
 Cc: Anand Moon <linux.amoon@gmail.com>
-Subject: [RFC v1 07/18] PCI: exynos: Allow asynchronous probing for background link training
-Date: Wed,  4 Mar 2026 19:21:50 +0530
-Message-ID: <20260304140329.7089-8-linux.amoon@gmail.com>
+Subject: [RFC v1 08/18] PCI: fu740: Allow asynchronous probing for background link training
+Date: Wed,  4 Mar 2026 19:21:51 +0530
+Message-ID: <20260304140329.7089-9-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260304140329.7089-1-linux.amoon@gmail.com>
 References: <20260304140329.7089-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260304_060927_493973_3CCAD7C7 
-X-CRM114-Status: GOOD (  11.17  )
+X-CRM114-CacheID: sfid-20260304_061015_746966_7EBB17D9 
+X-CRM114-Status: GOOD (  12.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,23 +156,31 @@ Establishing a PCIe link can take a while, allow asynchronous probing so
 that link establishment can happen in the background while other devices
 are being probed.
 
+Fix the identation of the callback functions.
+
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- drivers/pci/controller/dwc/pci-exynos.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/pci/controller/dwc/pcie-fu740.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
-index 0bb7d4f5d784..ee2423e16b58 100644
---- a/drivers/pci/controller/dwc/pci-exynos.c
-+++ b/drivers/pci/controller/dwc/pci-exynos.c
-@@ -388,6 +388,7 @@ static struct platform_driver exynos_pcie_driver = {
- 		.name	= "exynos-pcie",
- 		.of_match_table = exynos_pcie_of_match,
- 		.pm		= &exynos_pcie_pm_ops,
+diff --git a/drivers/pci/controller/dwc/pcie-fu740.c b/drivers/pci/controller/dwc/pcie-fu740.c
+index 66367252032b..aa6a15baf3fd 100644
+--- a/drivers/pci/controller/dwc/pcie-fu740.c
++++ b/drivers/pci/controller/dwc/pcie-fu740.c
+@@ -346,9 +346,10 @@ static const struct of_device_id fu740_pcie_of_match[] = {
+ 
+ static struct platform_driver fu740_pcie_driver = {
+ 	.driver = {
+-		   .name = "fu740-pcie",
+-		   .of_match_table = fu740_pcie_of_match,
+-		   .suppress_bind_attrs = true,
++		.name = "fu740-pcie",
++		.of_match_table = fu740_pcie_of_match,
++		.suppress_bind_attrs = true,
 +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
  	},
- };
- module_platform_driver(exynos_pcie_driver);
+ 	.probe = fu740_pcie_probe,
+ 	.shutdown = fu740_pcie_shutdown,
 -- 
 2.50.1
 
