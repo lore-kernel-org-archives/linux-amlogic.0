@@ -4,33 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2913EFCE21
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 17:22:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 292F9EFCE25
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 17:22:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DcCifHvgu/dk/0ioiDVP/Aa/JTjnKmDjAEoiDUhnh5A=; b=FjlrEkrFf9KJyk
-	QQzQ4n2EZqZjZn1oK63pNawhaLLbIppgxetCGCPwHuiDnpFjNmpo6IEsIaKhxL7YOu778woO8i77s
-	7n8Og93uCGr+lHviMgjyn/XEq58ToM2FlEl3TPG5hGDTp3aYvsGdRWoBx5cpSEJjthJ16yKMk2GBD
-	OUExaNj4tNPdJCg6uEpnc5M7Fk2DfhjAp1bVlGdd4IBGTATl85/RSWnpIVtxLuau0HCPpAEu+cfD8
-	h1XDqdM1IzI2vuFy8GspHCuSMKZB396J0Go07DiCXM6iC2+M+6tqUcLkL5iNeMfOe4bVugR7ZKbAe
-	LFTNYfVy55i3MVPJFsbw==;
+	List-Owner; bh=ZygJEUCRl3XefsN1biLd+T/eE5DX6eYqVPkuaYVrWx4=; b=smlQM6PK05HhYE
+	E3/yYntxk2deY85zqpnD7mZ5+Yhq1pae2VhRCHojOnU5OjYMrzm+MoQJIF5KWBBB2KkG2Gv9lY15J
+	fKOwu3R9ZJrZKR/i4TJifoAeTFu6Xmvfhq+mDJK2prOS0zW5jkDtFWZjF1MTiZ03TSPbLUdOndRJK
+	oh73B7ngUM2I/sdCxodOZKuRrtJJr2lSPnADeowphLOYKny7O9+3jKRjFpleUAFJEY7U5pmKjaa7Z
+	pSKCmRcQ2RfSu1TYkfPSF1YcxFcXGL3Uwbg60z5WXjtvw+PuVPRr94hBzU0Ynk27/rOQzTS+C/Ws0
+	kOnr8AIInf2s+f+XFoKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxpvV-00000000Ak3-2Z0a;
-	Wed, 04 Mar 2026 17:22:25 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1vxpvl-00000000Awq-1jS3;
+	Wed, 04 Mar 2026 17:22:41 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxpvU-00000000Aj3-2qbL;
-	Wed, 04 Mar 2026 17:22:24 +0000
+	id 1vxpvj-00000000Aur-3b0m;
+	Wed, 04 Mar 2026 17:22:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=esvSqKXShpQiZv737AB88d1vgxt9UO/1oYq1M1MxJA4=; b=d2tjJ2lV2jSHcwp+TacCI+bsij
+	61pTx25q/MTCzmQynQRZz+oEQl22XsDj+VmyvCkmvgfl/lPx0pzjoUnljVwfcPRy/dtnHRMcfUboW
+	sS2YeKsCNMX+xDbDqNtcFS4f8byTrPJOHJlXehlLW/nfq0bBTxOTplJQxebKttWHMLFiFUze8ZXmT
+	nNe6AF/qJBG7Wng2NSnXNT4EsrEIXlEzjlVUz/xtTbxfHCbdJe4sqOs32cwlKQXcn0Dqvd22ugrK4
+	6U2JIftglxiBgIIZCR4VOzdRX0UAwsV3MvAGcJ72ekBtMzkQz3PeHYhbU+/ZEJ5p8ErRHJGp5Jqke
+	/HuQe5HQ==;
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vxpvf-00000005DZm-26tq;
+	Wed, 04 Mar 2026 17:22:38 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0BACA600B0;
-	Wed,  4 Mar 2026 17:22:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1F7FC2BC9E;
-	Wed,  4 Mar 2026 17:22:16 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id D6C8E43A6D;
+	Wed,  4 Mar 2026 17:22:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09C00C4CEF7;
+	Wed,  4 Mar 2026 17:22:23 +0000 (UTC)
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Marc Zyngier <maz@kernel.org>,
 	Thomas Gleixner <tglx@kernel.org>,
@@ -70,13 +84,16 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	linux-tegra@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 2/4] genirq: Document interaction between <linux/irq.h> and DT binding defs
-Date: Wed,  4 Mar 2026 18:21:57 +0100
-Message-ID: <fbcc65dcee6c5437fab5ef18d21766bb4effb7cb.1772644406.git.geert+renesas@glider.be>
+Subject: [PATCH 3/4] irqchip/gic: Use GIC_* DT binding definitions
+Date: Wed,  4 Mar 2026 18:21:58 +0100
+Message-ID: <d22488d128d39fcd90359f59559fac637bb4b04c.1772644406.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1772644406.git.geert+renesas@glider.be>
 References: <cover.1772644406.git.geert+renesas@glider.be>
 MIME-Version: 1.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260304_172235_881542_0FB246EA 
+X-CRM114-Status: GOOD (  12.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,32 +110,96 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Document that the DT binding definitions in
-<dt-bindings/interrupt-controller/irq.h> shadow the first six IRQ_TYPE_*
-definitions in <linux/irq.h>.  The values must be the same anyway, so
-this is harmless (as long as the latter is included first when both are
-included), but it is good to document this explicitly.
+Replace magic numbers by symbolic DT binding definitions.  This improves
+readability, and makes it easier to find where the various GIC
+interrupts types are handled.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- include/linux/irq.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/irqchip/irq-gic-v3.c | 14 ++++++++------
+ drivers/irqchip/irq-gic.c    |  6 ++++--
+ 2 files changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/include/linux/irq.h b/include/linux/irq.h
-index 951acbdb9f8457de..efa514ee562fcf91 100644
---- a/include/linux/irq.h
-+++ b/include/linux/irq.h
-@@ -35,6 +35,10 @@ enum irqchip_irq_state;
-  *
-  * Bits 0-7 are the same as the IRQF_* bits in linux/interrupt.h
-  *
-+ * Note that the first 6 definitions are shadowed by C preprocessor definitions
-+ * in include/dt-bindings/interrupt-controller/irq.h.  This is not an issue, as
-+ * the actual values must be the same, due to being part of the stable DT ABI.
-+ *
-  * IRQ_TYPE_NONE		- default, unspecified type
-  * IRQ_TYPE_EDGE_RISING		- rising edge triggered
-  * IRQ_TYPE_EDGE_FALLING	- falling edge triggered
+diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
+index d75163e71bf22473..6ac103cb40097acc 100644
+--- a/drivers/irqchip/irq-gic-v3.c
++++ b/drivers/irqchip/irq-gic-v3.c
+@@ -35,6 +35,8 @@
+ #include <asm/smp_plat.h>
+ #include <asm/virt.h>
+ 
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++
+ #include "irq-gic-common.h"
+ 
+ static u8 dist_prio_irq __ro_after_init = GICV3_PRIO_IRQ;
+@@ -1602,25 +1604,25 @@ static int gic_irq_domain_translate(struct irq_domain *d,
+ 			return -EINVAL;
+ 
+ 		switch (fwspec->param[0]) {
+-		case 0:			/* SPI */
++		case GIC_SPI:
+ 			if (fwspec->param[1] > 987)
+ 				pr_warn_once("SPI %u out of range (use ESPI?)\n",
+ 					     fwspec->param[1]);
+ 			*hwirq = fwspec->param[1] + 32;
+ 			break;
+-		case 1:			/* PPI */
++		case GIC_PPI:
+ 			if (fwspec->param[1] > 16)
+ 				pr_warn_once("PPI %u out of range (use EPPI?)\n",
+ 					     fwspec->param[1]);
+ 			*hwirq = fwspec->param[1] + 16;
+ 			break;
+-		case 2:			/* ESPI */
++		case GIC_ESPI:
+ 			if (fwspec->param[1] > 1023)
+ 				pr_warn_once("ESPI %u out of range\n",
+ 					     fwspec->param[1]);
+ 			*hwirq = fwspec->param[1] + ESPI_BASE_INTID;
+ 			break;
+-		case 3:			/* EPPI */
++		case GIC_EPPI:
+ 			if (fwspec->param[1] > 63)
+ 				pr_warn_once("EPPI %u out of range\n",
+ 					     fwspec->param[1]);
+@@ -1738,8 +1740,8 @@ static int gic_irq_get_fwspec_info(struct irq_fwspec *fwspec, struct irq_fwspec_
+ 		struct fwnode_handle *fw;
+ 
+ 		switch (fwspec->param[0]) {
+-		case 1:			/* PPI */
+-		case 3:			/* EPPI */
++		case GIC_PPI:
++		case GIC_EPPI:
+ 			break;
+ 		default:
+ 			return 0;
+diff --git a/drivers/irqchip/irq-gic.c b/drivers/irqchip/irq-gic.c
+index ec70c84e9f91dd7b..a2225ca1efeb700d 100644
+--- a/drivers/irqchip/irq-gic.c
++++ b/drivers/irqchip/irq-gic.c
+@@ -47,6 +47,8 @@
+ #include <asm/smp_plat.h>
+ #include <asm/virt.h>
+ 
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++
+ #include "irq-gic-common.h"
+ 
+ #ifdef CONFIG_ARM64
+@@ -1094,10 +1096,10 @@ static int gic_irq_domain_translate(struct irq_domain *d,
+ 			return -EINVAL;
+ 
+ 		switch (fwspec->param[0]) {
+-		case 0:			/* SPI */
++		case GIC_SPI:
+ 			*hwirq = fwspec->param[1] + 32;
+ 			break;
+-		case 1:			/* PPI */
++		case GIC_PPI:
+ 			*hwirq = fwspec->param[1] + 16;
+ 			break;
+ 		default:
 -- 
 2.43.0
 
