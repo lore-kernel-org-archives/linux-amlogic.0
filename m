@@ -4,95 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD5A8EEF334
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Mar 2026 09:04:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 823F7F30924
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Mar 2026 09:33:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Sg25U/Bvl7uiHogQDZ7U3B4ex2PLL7Er3BYs5yvE4Es=; b=jBSSpgE/KJCHtl
-	+pkt5VU6rH/yvoZomub26oXlUYxHa/NAh75+hHUIdrZ9Ooc8QZibTeF4dtuuYITyZnqYvss5Podd7
-	+x9XL+LsKlGmYx9M9107Zg1ptyMA3XXrfZ2iUQ5h2cPdIt1giNN/clzdxDvuFnBu1KxzochmV4B46
-	UokJdnihBaQgZeMchG76HsR/4uQffvHXZqQmPUGiNuDN+rPep0pdgDCCNh40zrKD7EJ1wcrOKKvrw
-	RmXi0M/PEKt7Evtgx1uUk4P/3ViwfpfhpwC7Zj6Cn2M63/rvyTBuwv7dmHsOknoCnuutjG+8PI4gl
-	JFeaia/cL/d9ugdQpK7g==;
+	List-Owner; bh=gSKGGbq2TYUEepevgtQuuFv0IYnSdYz+Eb++RW0LH6I=; b=RgDxFAKml8Ow++
+	h3bae80pNcvhTzCS2+7i9qPh3iJL5A6fgVpnJDQV4xBATVGUFMhm1nmbHgEDKNF5Wz1ft2V33cfOH
+	73RvPL9W4ymSkciE2wpx6p4oHpa0M/m6QrHS4jloFW2sML2bNXhh5hXzTyJl9FcDGaKCW6kO7T5lh
+	R2VdxV+9ny+VQD54qlOAsS3slQMDnbpq5zkOJjOwr4fIfjP94gRRBEVRJ+icGHksmSjuOjdAZaowW
+	vbODAKDcXoohYHO3nrFf+MY/0K8vAIwUBjrBInXV4rjERk1mwWtDMAfN0eGEipETd4TI2kGc+y/9R
+	5hRQpU+i1GEnhlI7/VCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vy4dB-00000001H4u-1nDA;
-	Thu, 05 Mar 2026 09:04:29 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1vy55U-00000001Owp-399W;
+	Thu, 05 Mar 2026 09:33:44 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vy4d7-00000001H48-1KkX
+	id 1vy55R-00000001Ovz-2qPX
 	for linux-amlogic@lists.infradead.org;
-	Thu, 05 Mar 2026 09:04:28 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-439a90f194bso3931886f8f.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 05 Mar 2026 01:04:24 -0800 (PST)
+	Thu, 05 Mar 2026 09:33:42 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62597Y1V3473621
+	for <linux-amlogic@lists.infradead.org>; Thu, 5 Mar 2026 09:33:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	SDHdZ6o2rq8MSXktK3BRPGVCbkpy9MyaMTwLEiYLbeQ=; b=SzbctnVqNSZ+NFa5
+	KZNgrd87lqL1C4EWwyQX3KRCSqm4AR1CtRNPJmQQtSDMvdXfmaYnmP1uJ9mcoU39
+	x5oHt1CxUbWXIScr5LqJGXtUzjCR3EYOjo2JeJIVt2bcNqLBumFoF2xCHxj8HJ8p
+	3uVKCn8YTKDR50zX3M+04OETB2mKG0qWZNedQEdQDbDZb0bLJzOCAmlar5/bjaut
+	YMjVGHQb1+qtI0EAX15PuyQtZJgJfRzxhNIuefwEoIPI+6NkaOq+T0x/MsEecMhn
+	ShB8NHHzJIhEeKGVmnCBE1EO3Fsny1DEDi9Ymkt7u8i8x3T9dawWdfRZXVHjFv7c
+	+rn9/A==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cpj18458w-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Thu, 05 Mar 2026 09:33:40 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c70cb31bcdso579500385a.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 05 Mar 2026 01:33:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772701463; x=1773306263; darn=lists.infradead.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=x29TSbD/9Rjft5iIHHQCYlLvvZ+GvP60F94LjzSbanc=;
-        b=nsClsLEydHE0roOcBsoFaCVPZEunoSrxa6UimmWjpIECcLJtNvehA6sYmAtUDDq3fg
-         2A9BZkhKG7fmECda2ZaMkgU69sbTy0Pb9wjs6Wn3NXexrrCJl/rIlBShIAwOTREiUmw2
-         ZJOOQyR4SNbFSRaWzLc2B9m0QcF2F8q0Rs7vAN47f3TGj2t3w3kSkUQG6ZUQ+9ZpZknj
-         lGpSw/EcPdoOlqUwTNHQDUHqCzq38pKfM++MFpw1Gam8ziKQxzxB1mebDtrMh1PnMwDj
-         Gx9lEkuQtjHNhzC2aioRDV+erUuX2KwNdxJERunu6RRRvOshVUb3g9NW0Y1BsIXj1mQv
-         geNQ==
+        d=oss.qualcomm.com; s=google; t=1772703220; x=1773308020; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SDHdZ6o2rq8MSXktK3BRPGVCbkpy9MyaMTwLEiYLbeQ=;
+        b=BAeay3WAs7az61rcHsuTdtHPoCc7E4GT8hViJ2SpRUeAfUCGwn2bTu7OkJ5/Wbcsw+
+         H5DnPOT4bLCNxqiDqdOLvNJwKdpvAx1Xr1BmztW7yiLyow3fwjc9xWY2DfeOITrPGf6A
+         xA/DCJspsqde4/0wBVqH+YaYfdC8a2QcMKgKdAAe5CrMXzVCJ67zmZ43ABoU73wmdYZs
+         FXohNSdnw5xBZkG/eVFr1MGbJJgO+H+DuKnApgoykI8AcAR2rCmI3Kmsrsv0yVl2goFG
+         YiZ3yj0Q99qNwNVx60T2i/PyZYNndvvQHYEFnG4MnZhlW0J4B2pIYnjyeIsV/j7MLNwC
+         b4XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772701463; x=1773306263;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=x29TSbD/9Rjft5iIHHQCYlLvvZ+GvP60F94LjzSbanc=;
-        b=HvTU9FRYPpb0XJZdBU27FnZTrzgOEK4LQZBTKKyluIbUnnocp6kdyM8kwvG0pNVCFv
-         WXETtY5R8Gbl8QnA1NoIH1Kz4YvchPhVP30xzcRaj1t+TDN+QxWXN08E/xuQkvMZR8Fg
-         lgnxnlto0+bh2U9egwBAIqj6kGa6tcxCI6I0x2+j9Hsjh5ftbOdH46GiGhsGDWOTWQZE
-         qTdjQ50zLJXpD+mvyZRZChqlYpWjFN97SkSqDS21txsL1qgn8mFB/dI+J340TSwJ6xnN
-         4R0Qqyv+D6eedi5wvfbk5hme4eaSzMPxuVvjOW5SBtlp6twb9LjH5rm7ICTgJ1metkXe
-         POPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrNOMaU8xXJZUnLV8uaLn881NxxfSKP/mi2NF/1pH8PAV4ocRqldZJWpEU2MGHKJi62Vk4wG0AfsFMbNfa@lists.infradead.org
-X-Gm-Message-State: AOJu0YzSummOuRlHi4xtlBjng8msHGoxI5k5OJ2scKU1XaQR53MBcCD6
-	4qGonwVZiI1NQh0y6mgi7sPTsAlMmQIurcQ2pybLJC3cY3eXGHiI5eC0BTSZ6SaU9W8=
-X-Gm-Gg: ATEYQzzZQL+s9nem6oiFyOv2MTB430Yey7XFl5jA2860lC/WlFjY6f0igYw1qbloAOy
-	5JB89BoSTxzL6E00/O/0sFX3S9eLNbfIIMDMfbxcumKZG8hePPr9zmO7/U/AbKZcXwFS5Y+F2wv
-	gm4tppoo/sjXmbkcplUla7iz+jKwtib8B6x83E4UzvZf0Q/LEwcvkQROV5yfS4cm+2J7Y05yiKb
-	dMNv84TJcTkG4n8bx+wFcT4M2CjhwkSXgqma8LykL3lJVYQ14VXoKbF7HMWezC41DBCuEJIS3y2
-	VQIvWLBIsAof9LMhutUQ9ojD6GcnJ27R7MffPv0gnyY7f+XHKxlDpW0uH2+CQMT6bhKVF1jKi2h
-	HcAO/VTl3X2neFla178lIwQXsonzMUN7OgCtLnryhY/fUIZ5Xl1HLw4UBfT1xpKG0MoyonjcNcN
-	UyxKXnveuGQYdTcl9wiTlrKwNCHigjWjE=
-X-Received: by 2002:a5d:6409:0:b0:439:ca45:ae26 with SMTP id ffacd0b85a97d-439ca45af5cmr7015427f8f.18.1772701463400;
-        Thu, 05 Mar 2026 01:04:23 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:5595:8450:af3:bbe3])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-439c6129017sm13508505f8f.31.2026.03.05.01.04.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 01:04:22 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Kevin Hilman
- <khilman@baylibre.com>,  "Martin Blumenstingl"
- <martin.blumenstingl@googlemail.com>,  Stephen Boyd <sboyd@kernel.org>,
-  Michael Turquette <mturquette@baylibre.com>,  robh+dt
- <robh+dt@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  devicetree
- <devicetree@vger.kernel.org>,  linux-clk <linux-clk@vger.kernel.org>,
-  linux-amlogic <linux-amlogic@lists.infradead.org>,  linux-kernel
- <linux-kernel@vger.kernel.org>,  linux-arm-kernel
- <linux-arm-kernel@lists.infradead.org>,  Ronald Claveau
- <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH 3/3] arm64: dts: amlogic: t7: Add clock controller nodes
-In-Reply-To: <20260305074328.639993-4-jian.hu@amlogic.com> (Jian Hu's message
-	of "Thu, 5 Mar 2026 15:43:27 +0800")
-References: <20260305074328.639993-1-jian.hu@amlogic.com>
-	<20260305074328.639993-4-jian.hu@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Thu, 05 Mar 2026 10:04:21 +0100
-Message-ID: <1jy0k6abqi.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1772703220; x=1773308020;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SDHdZ6o2rq8MSXktK3BRPGVCbkpy9MyaMTwLEiYLbeQ=;
+        b=KnkukE0vzpAB8lkJUHknhDP2etNqqMb9a8E5PDhtQBP7LkuYqmB8r+92ux5IeN25EG
+         PkOz1FHDlFajvovEGqHT1H0zBTAZoFA9iml0CQ1tfBnkczvzr7zISp0Cgx1ErRMq9sWP
+         lMtcWzmEWcLaSTv1dIb9ZvSaG9FbR1MBoI9nT8fgeg+sz6vTN/P8ac0LD12vo7K+FUm/
+         G/Bxnp8w4i2G+CtuuxO+2xKV27e1GMOEBBQ5Fh0cvKR/61kVUpBOJMUggm63muZk+wR+
+         JudeB1cVsf4vKSfkUPxNK7vDcumHmQLra1Fx7/0NfW1oQa6nZWLQRgfmFs98jOIlvEK6
+         /Kgg==
+X-Forwarded-Encrypted: i=1; AJvYcCViHDI9H/Sjrg6Z0TkOfH0N3fvbEScLxOaXyXr7BY24/sylYleCcb5JPo+Jj3aAG6A7fSEGWm9jDauuszsk@lists.infradead.org
+X-Gm-Message-State: AOJu0YzciB0EjcWBYAkohQTePkBKlACXaJ1p7JylQ7XjFpzkn22Sosc1
+	x3WkAtw3bTiaPxNB19Lh7XlFbZj2BM74Dz5zdC45Co1TD2d0gZIuDXG86eI+tcOrupOMIZU5/Z4
+	FVQJyLmdWHIZRakgrUfLbHAO4FW16Hzjw7OeYZyLqC0q2PjxRuZEcIVsrw4UfttYy3ehBiyT5lg
+	==
+X-Gm-Gg: ATEYQzxGVLccAse7UqJ8/C3DlCEsxzJ873+o2tePzeRtNXWOGo0CW1gU32438YVq4xU
+	UDR1xdW3R+rj4EqAj2rVZ17d6FUx0NTV0rTckV56Oi8U22aBBChih7B7WqkPnX9a5VRQVjuz04E
+	TiNSyXxya04I4VtcT/QFscsy5svQA7WJ2H25Z9L01sDq2494VSu4KGeCOVPzYEET5VnJ2ZwvOPG
+	aHHOtYBZsSB5iJ6jy9wfq0Uv8naIsJrxQU1AUhRfil2dfK4uhZuVRYkGZeijWQTYB+3rg+r+3S7
+	f/YpJbi7iQ7QstnzzHSdKmDkbCjtbnMAwvz/uDtyGJFUig/x/2Koer5kgX7ofjz+ZFDJW8f4Dvw
+	+uafhFPaaM7OuGq591PqEh59NcHxDTGvBnB0f58SbjL4Beg73nOPwzMvlJ5sjpkmR/Ws/PnE9eJ
+	yue0g=
+X-Received: by 2002:a05:620a:c55:b0:8c9:fefa:89d5 with SMTP id af79cd13be357-8cd5afde9cemr462861985a.10.1772703220091;
+        Thu, 05 Mar 2026 01:33:40 -0800 (PST)
+X-Received: by 2002:a05:620a:c55:b0:8c9:fefa:89d5 with SMTP id af79cd13be357-8cd5afde9cemr462859985a.10.1772703219701;
+        Thu, 05 Mar 2026 01:33:39 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b935ae65662sm884380166b.41.2026.03.05.01.33.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Mar 2026 01:33:38 -0800 (PST)
+Message-ID: <ee2980af-e37c-4b4d-86c2-32467d2af454@oss.qualcomm.com>
+Date: Thu, 5 Mar 2026 10:33:35 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/7] arm64: dts: Drop CPU masks from GICv3 PPI interrupts
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Peter Griffin <peter.griffin@linaro.org>,
+        =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>, Frank Li <Frank.Li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Dinh Nguyen <dinguyen@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev,
+        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1772643434.git.geert+renesas@glider.be>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <cover.1772643434.git.geert+renesas@glider.be>
+X-Proofpoint-GUID: QgFBvnNktK8X3-kcnf0ldiAFUNQw7Pwx
+X-Proofpoint-ORIG-GUID: QgFBvnNktK8X3-kcnf0ldiAFUNQw7Pwx
+X-Authority-Analysis: v=2.4 cv=Ed7FgfmC c=1 sm=1 tr=0 ts=69a94df4 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=QiSWx1vRvZ7C5zKyDnUA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA1MDA3NiBTYWx0ZWRfX8H6dlhej2+0h
+ c5fJ9UsnsCtpHkHfwWy/ksm8coKAycKJ5CeCWtJKTq4m0XA9b/rBQ1CUKwDWsxliUMYMHcrpMAD
+ cK6elfWRaNQ2fG518SKMOY5Q53S20NrmnHxt/xEJF1HPaT4t6Yju8kiFiAWmlH8j1SEcrJS7/XU
+ JgEfCbZ4P4wJLoKVUNUlk4PnfKrvVQG+FTSk7fcUhIcgzfT+qF0R+LtR7AQjQFDu/RjyyuJL4MK
+ BNIt6bDej1pFa6nFnrfksbi+Gsh5kqiXb8NkaogRprlzOm+QeSuMpwrUHVR2wcqXZ18MaT9b7gm
+ PWMIbHobaM/sChF9i6UCXcycVr81HapAbnRbNxOvAgM9Btm6Jwe9yMnnVxAInU+6EbscitTQk4u
+ nWUNW7OIcgVVrOcxTfdEbb7+S9hkvb8yGzMgwcDebe4X5s0RGRO0vq7nbeZYXptA38KXEK0FPHp
+ Nvdugu+o0xJ4ipFXnCg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-05_02,2026-03-04_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 suspectscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
+ clxscore=1011 malwarescore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603050076
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260305_010425_377305_99B7ECBA 
-X-CRM114-Status: GOOD (  13.13  )
+X-CRM114-CacheID: sfid-20260305_013341_840777_B0890EAE 
+X-CRM114-Status: UNSURE (   9.06  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,188 +163,17 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On jeu. 05 mars 2026 at 15:43, Jian Hu <jian.hu@amlogic.com> wrote:
+On 3/4/26 6:10 PM, Geert Uytterhoeven wrote:
+> 	Hi all,
+> 
+> Unlike older GIC variants, the GICv3 DT bindings do not support
+> specifying a CPU mask in PPI interrupt specifiers.  Hence this patch
+> series drop all such masks where they are still present.
 
-> Add the required clock controller nodes for Amlogic T7 SoC family:
-> - SCMI clock controller
-> - PLL clock controller
-> - Peripheral clock controller
->
+I'm having trouble finding where that's used on pre-v3 even.. does
+that actually get processed on the older iterations?
 
-Again I think you should credit Ronald.
-
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 125 ++++++++++++++++++++
->  1 file changed, 125 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index 6510068bcff9..6ea1b583b13d 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -6,6 +6,9 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/power/amlogic,t7-pwrc.h>
->  #include "amlogic-t7-reset.h"
-> +#include <dt-bindings/clock/amlogic,t7-scmi.h>
-> +#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
-> +#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
->  
->  / {
->  	interrupt-parent = <&gic>;
-> @@ -201,6 +204,33 @@ pwrc: power-controller {
->  		};
->  	};
->  
-> +	sram@f7042000 {
-> +		compatible = "mmio-sram";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0 0x0 0xf7042000 0x100>;
-> +
-> +		scmi_shmem: sram@0 {
-> +			compatible = "arm,scmi-shmem";
-> +			reg = <0x0 0x100>;
-> +		};
-> +	};
-> +
-> +	firmware {
-> +		scmi: scmi {
-> +			compatible = "arm,scmi-smc";
-> +			arm,smc-id = <0x820000c1>;
-> +			shmem = <&scmi_shmem>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			scmi_clk: protocol@14 {
-> +				reg = <0x14>;
-> +				#clock-cells = <1>;
-> +			};
-> +		};
-> +	};
-> +
->  	soc {
->  		compatible = "simple-bus";
->  		#address-cells = <2>;
-> @@ -224,6 +254,42 @@ apb4: bus@fe000000 {
->  			#size-cells = <2>;
->  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->  
-> +			clkc_periphs:clock-controller@0 {
-> +				compatible = "amlogic,t7-peripherals-clkc";
-> +				reg = <0x0 0x0 0x0 0x1c8>;
-> +				#clock-cells = <1>;
-> +				clocks = <&xtal>,
-> +					 <&scmi_clk CLKID_SYS_CLK>,
-> +					 <&scmi_clk CLKID_FIXED_PLL>,
-> +					 <&scmi_clk CLKID_FCLK_DIV2>,
-> +					 <&scmi_clk CLKID_FCLK_DIV2P5>,
-> +					 <&scmi_clk CLKID_FCLK_DIV3>,
-> +					 <&scmi_clk CLKID_FCLK_DIV4>,
-> +					 <&scmi_clk CLKID_FCLK_DIV5>,
-> +					 <&scmi_clk CLKID_FCLK_DIV7>,
-> +					 <&hifi CLKID_HIFI_PLL>,
-> +					 <&gp0 CLKID_GP0_PLL>,
-> +					 <&gp1 CLKID_GP1_PLL>,
-> +					 <&mpll CLKID_MPLL1>,
-> +					 <&mpll CLKID_MPLL2>,
-> +					 <&mpll CLKID_MPLL3>;
-> +				clock-names = "xtal",
-> +					      "sys",
-> +					      "fix",
-> +					      "fdiv2",
-> +					      "fdiv2p5",
-> +					      "fdiv3",
-> +					      "fdiv4",
-> +					      "fdiv5",
-> +					      "fdiv7",
-> +					      "hifi",
-> +					      "gp0",
-> +					      "gp1",
-> +					      "mpll1",
-> +					      "mpll2",
-> +					      "mpll3";
-> +			};
-> +
->  			reset: reset-controller@2000 {
->  				compatible = "amlogic,t7-reset";
->  				reg = <0x0 0x2000 0x0 0x98>;
-> @@ -234,6 +300,7 @@ watchdog@2100 {
->  				compatible = "amlogic,t7-wdt";
->  				reg = <0x0 0x2100 0x0 0x10>;
->  				clocks = <&xtal>;
-> +
->  			};
->  
->  			periphs_pinctrl: pinctrl@4000 {
-> @@ -269,6 +336,64 @@ uart_a: serial@78000 {
->  				status = "disabled";
->  			};
->  
-> +			gp0:clock-controller@8080 {
-> +				compatible = "amlogic,t7-gp0-pll";
-> +				reg = <0x0 0x8080 0x0 0x20>;
-> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			gp1:clock-controller@80c0 {
-> +				compatible = "amlogic,t7-gp1-pll";
-> +				reg = <0x0 0x80c0 0x0 0x14>;
-> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			hifi:clock-controller@8100 {
-> +				compatible = "amlogic,t7-hifi-pll";
-> +				reg = <0x0 0x8100 0x0 0x20>;
-> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			pcie:clock-controller@8140 {
-> +				compatible = "amlogic,t7-pcie-pll";
-> +				reg = <0x0 0x8140 0x0 0x1c>;
-> +				clocks = <&scmi_clk CLKID_PCIE_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			mpll:clock-controller@8180 {
-> +				compatible = "amlogic,t7-mpll";
-> +				reg = <0x0 0x8180 0x0 0x28>;
-> +				clocks = <&scmi_clk CLKID_FIXED_PLL_DCO>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			hdmi:clock-controller@81c0 {
-> +				compatible = "amlogic,t7-hdmi-pll";
-> +				reg = <0x0 0x81c0 0x0 0x20>;
-> +				clocks = <&scmi_clk CLKID_HDMI_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			mclk:clock-controller@8300 {
-> +				compatible = "amlogic,t7-mclk-pll";
-> +				reg = <0x0 0x8300 0x0 0x18>;
-> +				clocks = <&scmi_clk CLKID_MCLK_PLL_OSC>,
-> +					 <&xtal>,
-> +					 <&scmi_clk CLKID_FCLK_50M>;
-> +				clock-names = "in0", "in1", "in2";
-> +				#clock-cells = <1>;
-> +			};
-> +
->  			sec_ao: ao-secure@10220 {
->  				compatible = "amlogic,t7-ao-secure",
->  					     "amlogic,meson-gx-ao-secure",
-
--- 
-Jerome
+Konrad
 
 _______________________________________________
 linux-amlogic mailing list
