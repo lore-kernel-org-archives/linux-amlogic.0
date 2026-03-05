@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A4E8EEF316
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Mar 2026 07:48:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E1A4EEF312
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Mar 2026 07:49:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=K0FI0i+ELX/LBJ/H20/nVdnSC5iZ/01UhTGpaInBL8Y=; b=oRUCj/93MIsPV8
-	bzUMc8xCCKYm1HhmbtJtANlHif5eLYGydwAN7uQV16eMwn9UcEcJ7dGc8Ku7xpx4w1n2OrVFgD9h1
-	MgyN1yFDQakk//4cnHZvKQPQ4TauTb+3WkiiTCNjV9VTB5YlqD+UUf6jhyPvB6v4fS9cQsNyqsd4A
-	7s2QwmLCBO+aQqKMb6gCjbxHXP61V5uH4k5t5cL6ti/a0PNICen76LaSytonTqLeawOeHqI6YGgdO
-	KLXW9giwQspUDwqH3/1e7u6UKn21lFYnBBXesyWK9jFjetVSTecaAludeg9g0OYMQ7HfeJ0WI1xSn
-	pC9yn7vGQ8qrHAUY82dQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=lzI+kid86xEWiFnltPFfeNW3nbkEIapIji25OwWAyUs=; b=4BRRnwntJvjv6A
+	BdLPS3781xsuRfhgfvkQWYWDT7Q/fNudBExwELJhdJ2KukTwUK+N0cC0yCT16djUBdA7r8rC/KEQ5
+	QPE6qUZcNPuQtnysAWu0VE5BOlhLMDDGGlxg9KgOnDiuCadIifP5jZoKSHircSc5npZIJlcVv0dw2
+	dP1i97pcN7gyxSqxbZ7Z3unFisz7/8VX5NOqnpnbu0panYS/sN6kt9tZj2I4f/+qGnc3vE/65H0Gc
+	9FiLwsxnWuttfe9I727xlRD5EiKGDafAngsG4VFSsKz7lZEJAOkCKPbNO4miCC6myhQqbmuUAI9Fe
+	lxvGk4I4dAlf2wn9VjZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vy3Rx-000000017Cz-1fwy;
-	Thu, 05 Mar 2026 07:48:49 +0000
+	id 1vy3S7-000000017K0-3Iq4;
+	Thu, 05 Mar 2026 07:48:59 +0000
 Received: from [64.106.246.77] (helo=mail-sc.amlogic.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vy3Rv-000000017CO-1ZE8;
-	Thu, 05 Mar 2026 07:48:48 +0000
+	id 1vy3S5-000000017Ii-45Fb;
+	Thu, 05 Mar 2026 07:48:58 +0000
 Received: from rd03-sz.software.amlogic (10.28.11.121) by mailsc.amlogic.com
  (10.8.11.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Wed, 4 Mar
- 2026 23:42:45 -0800
+ 2026 23:42:58 -0800
 From: Jian Hu <jian.hu@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
 	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, "Martin
@@ -43,17 +43,19 @@ CC: Jian Hu <jian.hu@amlogic.com>, devicetree <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, linux-arm-kernel
 	<linux-arm-kernel@lists.infradead.org>, Ronald Claveau
 	<linux-kernel-dev@aliel.fr>
-Subject: [PATCH 0/3] Add the missing mpll3 clock and clock controller nodes
-Date: Thu, 5 Mar 2026 15:43:24 +0800
-Message-ID: <20260305074328.639993-1-jian.hu@amlogic.com>
+Subject: [PATCH 3/3] arm64: dts: amlogic: t7: Add clock controller nodes
+Date: Thu, 5 Mar 2026 15:43:27 +0800
+Message-ID: <20260305074328.639993-4-jian.hu@amlogic.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20260305074328.639993-1-jian.hu@amlogic.com>
+References: <20260305074328.639993-1-jian.hu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.11.121]
 X-ClientProxiedBy: mailsh.amlogic.com (10.18.11.5) To mailsc.amlogic.com
  (10.8.11.35)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260304_234847_406395_CD7429D8 
-X-CRM114-Status: UNSURE (   6.36  )
+X-CRM114-CacheID: sfid-20260304_234858_007953_E0CD168D 
+X-CRM114-Status: UNSURE (   9.52  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -71,25 +73,180 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-- Fix a typo for gp1 pll
-- Add the missing mpll3 parent clock definition to t7-peripherals-clkc.yaml
-- Add Amlogic T7 SoC clock controller nodes
+Add the required clock controller nodes for Amlogic T7 SoC family:
+- SCMI clock controller
+- PLL clock controller
+- Peripheral clock controller
 
-I have discussed with Ronald and agreed that I will first submit the T7 clock DTS,
-and then he can proceed with his work.
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 125 ++++++++++++++++++++
+ 1 file changed, 125 insertions(+)
 
-Thanks to Ronald for pointing out the gp1 pll typo.
-
-Jian Hu (3):
-  dt-bindings: clock: amlogic: Fix a typo
-  dt-bindings: clock: amlogic: t7: Add missing mpll3 parent clock
-  arm64: dts: amlogic: t7: Add clock controller nodes
-
- .../clock/amlogic,t7-peripherals-clkc.yaml    |   8 +-
- .../bindings/clock/amlogic,t7-pll-clkc.yaml   |   2 +-
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 125 ++++++++++++++++++
- 3 files changed, 132 insertions(+), 3 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index 6510068bcff9..6ea1b583b13d 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -6,6 +6,9 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/power/amlogic,t7-pwrc.h>
+ #include "amlogic-t7-reset.h"
++#include <dt-bindings/clock/amlogic,t7-scmi.h>
++#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
++#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
+ 
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -201,6 +204,33 @@ pwrc: power-controller {
+ 		};
+ 	};
+ 
++	sram@f7042000 {
++		compatible = "mmio-sram";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0 0x0 0xf7042000 0x100>;
++
++		scmi_shmem: sram@0 {
++			compatible = "arm,scmi-shmem";
++			reg = <0x0 0x100>;
++		};
++	};
++
++	firmware {
++		scmi: scmi {
++			compatible = "arm,scmi-smc";
++			arm,smc-id = <0x820000c1>;
++			shmem = <&scmi_shmem>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			scmi_clk: protocol@14 {
++				reg = <0x14>;
++				#clock-cells = <1>;
++			};
++		};
++	};
++
+ 	soc {
+ 		compatible = "simple-bus";
+ 		#address-cells = <2>;
+@@ -224,6 +254,42 @@ apb4: bus@fe000000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+ 
++			clkc_periphs:clock-controller@0 {
++				compatible = "amlogic,t7-peripherals-clkc";
++				reg = <0x0 0x0 0x0 0x1c8>;
++				#clock-cells = <1>;
++				clocks = <&xtal>,
++					 <&scmi_clk CLKID_SYS_CLK>,
++					 <&scmi_clk CLKID_FIXED_PLL>,
++					 <&scmi_clk CLKID_FCLK_DIV2>,
++					 <&scmi_clk CLKID_FCLK_DIV2P5>,
++					 <&scmi_clk CLKID_FCLK_DIV3>,
++					 <&scmi_clk CLKID_FCLK_DIV4>,
++					 <&scmi_clk CLKID_FCLK_DIV5>,
++					 <&scmi_clk CLKID_FCLK_DIV7>,
++					 <&hifi CLKID_HIFI_PLL>,
++					 <&gp0 CLKID_GP0_PLL>,
++					 <&gp1 CLKID_GP1_PLL>,
++					 <&mpll CLKID_MPLL1>,
++					 <&mpll CLKID_MPLL2>,
++					 <&mpll CLKID_MPLL3>;
++				clock-names = "xtal",
++					      "sys",
++					      "fix",
++					      "fdiv2",
++					      "fdiv2p5",
++					      "fdiv3",
++					      "fdiv4",
++					      "fdiv5",
++					      "fdiv7",
++					      "hifi",
++					      "gp0",
++					      "gp1",
++					      "mpll1",
++					      "mpll2",
++					      "mpll3";
++			};
++
+ 			reset: reset-controller@2000 {
+ 				compatible = "amlogic,t7-reset";
+ 				reg = <0x0 0x2000 0x0 0x98>;
+@@ -234,6 +300,7 @@ watchdog@2100 {
+ 				compatible = "amlogic,t7-wdt";
+ 				reg = <0x0 0x2100 0x0 0x10>;
+ 				clocks = <&xtal>;
++
+ 			};
+ 
+ 			periphs_pinctrl: pinctrl@4000 {
+@@ -269,6 +336,64 @@ uart_a: serial@78000 {
+ 				status = "disabled";
+ 			};
+ 
++			gp0:clock-controller@8080 {
++				compatible = "amlogic,t7-gp0-pll";
++				reg = <0x0 0x8080 0x0 0x20>;
++				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
++				clock-names = "in0";
++				#clock-cells = <1>;
++			};
++
++			gp1:clock-controller@80c0 {
++				compatible = "amlogic,t7-gp1-pll";
++				reg = <0x0 0x80c0 0x0 0x14>;
++				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
++				clock-names = "in0";
++				#clock-cells = <1>;
++			};
++
++			hifi:clock-controller@8100 {
++				compatible = "amlogic,t7-hifi-pll";
++				reg = <0x0 0x8100 0x0 0x20>;
++				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
++				clock-names = "in0";
++				#clock-cells = <1>;
++			};
++
++			pcie:clock-controller@8140 {
++				compatible = "amlogic,t7-pcie-pll";
++				reg = <0x0 0x8140 0x0 0x1c>;
++				clocks = <&scmi_clk CLKID_PCIE_OSC>;
++				clock-names = "in0";
++				#clock-cells = <1>;
++			};
++
++			mpll:clock-controller@8180 {
++				compatible = "amlogic,t7-mpll";
++				reg = <0x0 0x8180 0x0 0x28>;
++				clocks = <&scmi_clk CLKID_FIXED_PLL_DCO>;
++				clock-names = "in0";
++				#clock-cells = <1>;
++			};
++
++			hdmi:clock-controller@81c0 {
++				compatible = "amlogic,t7-hdmi-pll";
++				reg = <0x0 0x81c0 0x0 0x20>;
++				clocks = <&scmi_clk CLKID_HDMI_PLL_OSC>;
++				clock-names = "in0";
++				#clock-cells = <1>;
++			};
++
++			mclk:clock-controller@8300 {
++				compatible = "amlogic,t7-mclk-pll";
++				reg = <0x0 0x8300 0x0 0x18>;
++				clocks = <&scmi_clk CLKID_MCLK_PLL_OSC>,
++					 <&xtal>,
++					 <&scmi_clk CLKID_FCLK_50M>;
++				clock-names = "in0", "in1", "in2";
++				#clock-cells = <1>;
++			};
++
+ 			sec_ao: ao-secure@10220 {
+ 				compatible = "amlogic,t7-ao-secure",
+ 					     "amlogic,meson-gx-ao-secure",
 -- 
 2.47.1
 
