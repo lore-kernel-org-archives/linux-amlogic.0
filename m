@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85469EEF331
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Mar 2026 08:57:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45594EEF334
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Mar 2026 09:03:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5ZsGRjoIqmYui+9rtzeTLfJ5HZVPE4NTb9mqLZzVC7w=; b=he9YJjsTi0epNE
-	U4dx3jktWySd9/v8plfilO/9FcRah7Rwk0zMEK+rF1TG6ru8j8ffv7PKmjf4MI9fcoYXOQjeAmSHd
-	Q/WKC91asV3RgyzSvvKEcdeCZjM+JKVI44YhFw+b07/XR8vTflsEXktW0EPV00n7XCXuM5s//KXbE
-	7cU1i/N3vLX92cKOjwL4dDBsFm68aRvwXQDCnt6QQuMbl/OYZoAwEgIqJnYmay4Gu6a+Yc5IwZfCJ
-	fjjgujNAE4vBJqgaiIEgXMffe6IK8GFhzPSZYQFZQvfcwg/A7VffJK90Jjj9EmA54gR3HQ9gjM80K
-	OlIbGAnZOJOyQDvjeNvw==;
+	List-Owner; bh=Ak0PTyM6YsFyfb2MSsyjoNyRBF4368SJuJp/7uoT1vw=; b=axsQX07X03ft6Y
+	YirqKtgn7+MiqL9CDSqr1tHGAEpA1N0no0yCOEmaVetOamtepC/vjRROy5UHtb/1vhWPU+X2za5uL
+	Q4CRNfDFwGNAoxtSmGdDN6+CROTcMKIjgcPZ9ck6O1bakXC5eOpaR+I08IX/ckb/ijlPl6POYHW3U
+	wVfisqmyqKPHSVFF6GJ2D8arlyxrYXFZHg2d8VZGWEsxSlDja554BuveqipgqPbsSTPkSHMn9AO6L
+	3F0xj0gMixqJyGBDpN2YMVUUegR+zEW+oQG5lrbvIQe6MN4+5zG/2u89Oo6YCUFi5ffvdsIuGAsX9
+	osqgePG1ybdUjz/25qbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vy4WA-00000001GK7-1gJF;
-	Thu, 05 Mar 2026 08:57:14 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1vy4cR-00000001Gya-0YRC;
+	Thu, 05 Mar 2026 09:03:43 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vy4W6-00000001GJD-2d6v
+	id 1vy4cL-00000001Gxn-0nSO
 	for linux-amlogic@lists.infradead.org;
-	Thu, 05 Mar 2026 08:57:12 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-439ac15f35fso4636866f8f.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 05 Mar 2026 00:57:09 -0800 (PST)
+	Thu, 05 Mar 2026 09:03:42 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-483a233819aso76534015e9.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 05 Mar 2026 01:03:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772701028; x=1773305828; darn=lists.infradead.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772701415; x=1773306215; darn=lists.infradead.org;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ocIav81eGlA8J7gguvP8abYVPg8GbAkn/vs4f2boCyo=;
-        b=UF7A+dJiafEd3sgzFJis3PYV/d9Hnn5RiJqB9KRchz3nXWV5yCEOoVJC0DyDUAbzda
-         wgEHZeEBmbananLd0u0egpJZGflOutjuMin2vNKe3hQFCsmiyFQmAwM/U7EVUWA6PZct
-         4sdO3IfMexP4LpsEb4O6F79wFPdz2HZVuHPLXYqyWwJRO0x7x4967zHU0Bk0uMphW+5N
-         +u0znUuoBg1S1UTmGpKK+hJuzsdUvl6E1xu7qwP3yylttMVCP0ie6RuGUezoK0Z1ikEu
-         crYDxGXx5tkAsjQzGuOZkaTovYbtnmt1Mk8YpMrc5jHeFvOiJfe+whwqCybsut9/iG3l
-         hk8A==
+        bh=WAQoJ+BsCX38jr9SNjCgtieBrTo3xV4mFgoDVHJVgRk=;
+        b=px+FeFRACG/gosituoEtcZqUmtKmL7KsRzrVYKIWoRIF1klSIh4yWtbQnm3xVMeBtW
+         MwoV31gLX2HdRao6Y52/38l8h/OyYspDJJMAbwTUuSPWkPwKGxdGxBc/s3LCW3+lyW+s
+         Ul+XH1Jmgsnn2wQSkJhehxZCfvsoiKIOhA2NhrX1m8D7k74/oQLFrm5jAhBdxCpnsl07
+         2RUX1xcj6CTiWUdi7v1gfHqLJeFWh3gqH4lPtOHhug6q2d0HLTkAeznkDcIfBFKWSyk/
+         daugJpSMJc06XhLWV5XYWdDb1ZEUAbLfbrNY7qEi0MsEtcBqScTwBPWGFdgvf/D6d3nX
+         ZX0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772701028; x=1773305828;
+        d=1e100.net; s=20230601; t=1772701415; x=1773306215;
         h=mime-version:message-id:date:user-agent:references:in-reply-to
          :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=ocIav81eGlA8J7gguvP8abYVPg8GbAkn/vs4f2boCyo=;
-        b=uYj0Gyoc2tWXWR71TPa+VLtokJTyB+VUNz+rCPbL1amCnldXmpU+dycMB4os7DiBNL
-         UPfOMFLpFEqzzlrdbraxUA7wtcZc0J4wZH8wPTXF3kYWCFeh1MwdYju/O7AmZDN9c+T2
-         9u/9SECINbJNgsUu6hjMrugwipaRJFdWCBp1HR3Cu2wPO1HvfupRD1Ox7ck4L2QxmxPc
-         XjIIN+pCaaxVuKROApbG5kIyS62Lj7GOTAWLVvKi5EnPjRf6jjveyRySoltWpjGwRp7L
-         t35L0Atbnka++6yOmsOSCWOZBfmZhfjpJyQAFifaSC+ORdkKaFy0G36WsbZGczZWVcSg
-         U90g==
-X-Forwarded-Encrypted: i=1; AJvYcCXKN5NuAzuNQSMEvX5rlxVYpmQI115xNiSysYH3+7dCVevc6u3IKIxqyQf97oAc3xYq+c+FVawwMlT9hg8b@lists.infradead.org
-X-Gm-Message-State: AOJu0YzjXtH+ebHY4gsYNRng1eXOvKQhv3lQAFTyiz00p9F15ducooHY
-	sMJwUJD1YjaLVoel7gqeu+A7Bg/t+1Jpvy2dQ0biFLbtKVi1xnCcJzYi9kcV3R/7wE8=
-X-Gm-Gg: ATEYQzwy4qoDxwApSbVkPVtOTcDjNgBTSa0aFaLagh6tuQeOBBBcbVljbXZXXZ6LZxx
-	JMMlqZInM9FRBsymym2/09M/LluA3WVrK2pHSMjDMhZczCGMIRekRVHIoWlGS2tGX85TVeZ6E8r
-	10SDu4HzJYW+ejq/3iz8bH0BmGziPYnyLyCRdDvNhWZJNne57smjeBX1aiBUaIMlTn9EsF8d23o
-	3+aK/s4VMp/jgvd7wcz3z9gK3cFiendTLD4mqPI9QWpi7jXxbBrsoq94embzsazHM72JA8PNxWe
-	OBmWWzDQRZsnJP6l2xQBZ7a8bX6KVEY7PC9dfEujYvTcByoKiultvcTa8ai0WMr2GYQ1AKSQqsP
-	vbtkMDUPLPdkWf6r+TSd5WamwVo45uAamkaoB/PXPjpuR//3FMj9laSZRiKfNaz/MFuqpBf21kA
-	WK3IQs7opP6uu8buNiMKZK
-X-Received: by 2002:a05:600c:1d0c:b0:482:df17:bbbc with SMTP id 5b1f17b1804b1-48519874e2amr76440305e9.20.1772701028139;
-        Thu, 05 Mar 2026 00:57:08 -0800 (PST)
+        bh=WAQoJ+BsCX38jr9SNjCgtieBrTo3xV4mFgoDVHJVgRk=;
+        b=lVQ6FSAqnBOUGvPiBaUdsUyu4xODl1KMh5W9D+j9rjX1JjcXD49YXIDbmSRKGp/SI0
+         xEG2toxhss3sWkAAkcMw4UqnRKGwo/KggHl4NwDGB473jkDfDOylvrIADjWeJwDAIBc0
+         nQHtGX4CMwy6Qz9BVIJ5AaJT5MRY/eZeywvUO3a9nLiVMUEKWGR5MadcwvwRYIKAblW0
+         FEQwk4/+lTVoQPdAdzYsP/0pZUIW24QtGIig0jg7OOcRBOpem45TV3Ggx4xQ2QhcduD+
+         I43xCfeIxVV0uAm/M5C4RuzBv0unoGEJEGOPjAJZ2U0M5Lvk/ruTHfHNWhWQ42frsnpE
+         GDbw==
+X-Forwarded-Encrypted: i=1; AJvYcCW7gbPe2Kk3yPS4RbOMp32pg6C0ITVbMzOG9lR1O5pdU3IzHhmqdifW/og9bnTqVMXWi3CYUu/4+a/JrF86@lists.infradead.org
+X-Gm-Message-State: AOJu0YyWEYcS/5DzffEVz4EhNlrcFt84KSqx3BFNUrZfCseyHq1K0szT
+	YYzyh9SCqxpzi4KBWLqnxNeMELZbN4y5AFphHV5tTgvvpDeMmmX/oyUa79xXte/cdfY=
+X-Gm-Gg: ATEYQzweMOn2g2zNLLUbjNLKBETzAUymIRlB9XIsAWsJ/0SMFV2GWhZKv62aMCHYvIG
+	+7yBC+dVecUfLhws1LkCO0SubUjYdH0F4LuAPDOEdEWutVwsYHXd1jKnFk0ek44V2QL0qId3cvt
+	bYFHcOpzR75bpTMVZ240upKkkOlz6thF+8VCJrs1HQ6Z5JJq4v2hW5RbD175rKwiJT6NimNCA7r
+	NvaoCPyBH4Y7edOBtbjpuKYfdQajEMz7Syz6eWbLVvifG5dOA3BoTNBVGzOrtpwJyzk4zniaRvj
+	NRGHHQ3ACFju0H+f3GtPwf4p+wvEQeS+3wieh9W9CKASCFYDxsPz6MW6njSxrzw1ueUolVmvJC2
+	eJpOWS6FDQ0oI1ewb9CYq8dXQ5vrlGY5iLAUQ3TrnEFac79Ge+CC8sNWFF1KojprwkDm/rNFh26
+	15U17GXJi18rojo1/DblxT
+X-Received: by 2002:a05:600c:1f85:b0:47e:e712:aa88 with SMTP id 5b1f17b1804b1-4851989f765mr93346545e9.31.1772701415004;
+        Thu, 05 Mar 2026 01:03:35 -0800 (PST)
 Received: from localhost ([2a01:e0a:3c5:5fb1:5595:8450:af3:bbe3])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-439b485a0b6sm32442608f8f.39.2026.03.05.00.57.07
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4851fad2812sm41178955e9.1.2026.03.05.01.03.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 00:57:07 -0800 (PST)
+        Thu, 05 Mar 2026 01:03:34 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Jian Hu <jian.hu@amlogic.com>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Kevin Hilman
@@ -81,18 +81,19 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Kevin Hilman
  <linux-kernel@vger.kernel.org>,  linux-arm-kernel
  <linux-arm-kernel@lists.infradead.org>,  Ronald Claveau
  <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: amlogic: Fix a typo
-In-Reply-To: <20260305074328.639993-2-jian.hu@amlogic.com> (Jian Hu's message
-	of "Thu, 5 Mar 2026 15:43:25 +0800")
+Subject: Re: [PATCH 2/3] dt-bindings: clock: amlogic: t7: Add missing mpll3
+ parent clock
+In-Reply-To: <20260305074328.639993-3-jian.hu@amlogic.com> (Jian Hu's message
+	of "Thu, 5 Mar 2026 15:43:26 +0800")
 References: <20260305074328.639993-1-jian.hu@amlogic.com>
-	<20260305074328.639993-2-jian.hu@amlogic.com>
+	<20260305074328.639993-3-jian.hu@amlogic.com>
 User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Thu, 05 Mar 2026 09:57:06 +0100
-Message-ID: <1ja4wmbqn1.fsf@starbuckisacylon.baylibre.com>
+Date: Thu, 05 Mar 2026 10:03:32 +0100
+Message-ID: <1j4imubqcb.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260305_005710_676105_6B5BAD6F 
-X-CRM114-Status: GOOD (  13.68  )
+X-CRM114-CacheID: sfid-20260305_010337_246618_C73F9AF5 
+X-CRM114-Status: GOOD (  17.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,33 +112,78 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On jeu. 05 mars 2026 at 15:43, Jian Hu <jian.hu@amlogic.com> wrote:
 
-> Fix a typo for T7 gp1 pll.
+> The mpll3 clock is a valid parent clock for sd_emmc and mipi_isp on
+> the Amlogic T7 SoC, but was missing from t7-peripherals-clkc.yaml.
+> Add it to enable proper clock parent configuration for these peripherals.
 
-Patch title is too vague
+... but this changes the index of the clocks after this mpll3, and those
+index are supposed to be stable if I'm not mistaken.
 
-Credit is due to Ronald for finding and reporting the issue initially.
-This can be viewed as a clean of his original patch so the change should
-have his Signed-off-by IMO.
+It is indeed more convenient to have the optional clocks at the end
+as it avoids writing multiple <0> in DT when we do not have them.
+
+At the very least, your commit description should say that this change
+will not break any existing DT because these bindings are not used yet.
+
+I leave it to the DT folks to say if the change is OK in such case.
 
 >
 > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
->  .../devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/clock/amlogic,t7-peripherals-clkc.yaml       | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
-> index 49c61f65deff..b488d92b7984 100644
-> --- a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
-> @@ -72,7 +72,7 @@ allOf:
->            contains:
->              enum:
->                - amlogic,t7-gp0-pll
-> -              - amlogic,t7-gp1--pll
-> +              - amlogic,t7-gp1-pll
->                - amlogic,t7-hifi-pll
->                - amlogic,t7-pcie-pll
->                - amlogic,t7-mpll
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
+> index 55bb73707d58..27cc1f331587 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
+> @@ -24,7 +24,7 @@ properties:
+>      const: 1
+>  
+>    clocks:
+> -    minItems: 14
+> +    minItems: 15
+>      items:
+>        - description: input oscillator
+>        - description: input sys clk
+> @@ -40,12 +40,13 @@ properties:
+>        - description: input gp1 pll
+>        - description: input mpll1
+>        - description: input mpll2
+> +      - description: input mpll3
+>        - description: external input rmii oscillator (optional)
+>        - description: input video pll0 (optional)
+>        - description: external pad input for rtc (optional)
+>  
+>    clock-names:
+> -    minItems: 14
+> +    minItems: 15
+>      items:
+>        - const: xtal
+>        - const: sys
+> @@ -61,6 +62,7 @@ properties:
+>        - const: gp1
+>        - const: mpll1
+>        - const: mpll2
+> +      - const: mpll3
+>        - const: ext_rmii
+>        - const: vid_pll0
+>        - const: ext_rtc
+> @@ -98,6 +100,7 @@ examples:
+>                       <&gp1 1>,
+>                       <&mpll 4>,
+>                       <&mpll 6>;
+> +                     <&mpll 8>;
+>              clock-names = "xtal",
+>                            "sys",
+>                            "fix",
+> @@ -112,5 +115,6 @@ examples:
+>                            "gp1",
+>                            "mpll1",
+>                            "mpll2";
+> +                          "mpll3";
+>          };
+>      };
 
 -- 
 Jerome
