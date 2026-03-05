@@ -4,93 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8AD5EF8FE4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Mar 2026 17:24:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6680F513E1
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Mar 2026 22:15:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
 	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ZtFkQEdnjh3dXarjwbORTBEr6lKtY756vy0+8xn7Ga8=; b=rvCTi9WInAXOM9
-	ImeZQiESMHRzOqz8TUZxxAGcqyzI1Ido7vLRBoSgfohrmyg5brJKS2XpS1akVlCfgy2mKZEVJmJ/T
-	ILw0OphCna6cmsu4pnUL9Eh3QOvU52jP8unUsx0KPln5LPKpLcF/TS7JmusNgk94N2Tgz9hZu34Wn
-	UbvkMbPorFmuxfEFRWlVhvNJfESVBMUMyPCMBFF83jC4+I/zt93xgwPA71zjsp3jNznG1l2ktPEfB
-	dSk8rlpV2swdfmzZomw7Tjom1iQTBOpjF/zaR//5ZNZb7p5ymDcH2Z9HsPHUldYn6/G8BXPq5nfJ5
-	CK6JXtZKU6u1cXljNfGw==;
+	List-Owner; bh=9tP1LrQ2eFQ3x9L/NdV6Si5tyQpSTpmunBjSdvPSrmE=; b=DIj4Iou4JbOiXg
+	9/b5416OMzpXcSD6iu6fVTqi0CKhjEUv/awhTQaxcJbQL8KCWAQ1YzO98ksx1Twp397M4UqBywR5I
+	ajxU1lscYrkZq1T8bT8duzz7QBlOibek3x1QlKxtBDx078wfq7np/g57IWKpfbhy39vOlIH5OiuOu
+	c+fqBICSueGWRTo7uFvUuf/nqHwEr6nRwPyNytdfdJHbCgDvPPIkeNbkEEz9w8d6zI7qZRmAPkekf
+	1e4u7p22ugquHtLt6tjgbIa90tyJiDOLG4aPRfO3ILucy7kuCSRoKU/MfcCUM09bkA5H29BUYPh2j
+	ndG6nt6ITMFkdgIs7d0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vyCRD-00000002I01-3Pda;
-	Thu, 05 Mar 2026 17:24:39 +0000
-Received: from mail-pl1-x630.google.com ([2607:f8b0:4864:20::630])
+	id 1vyGys-00000002deL-0R05;
+	Thu, 05 Mar 2026 22:15:42 +0000
+Received: from [2a01:4f9:c011:1c83::1] (helo=courrier.aliel.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vyCRB-00000002HzS-3BOC
-	for linux-amlogic@lists.infradead.org;
-	Thu, 05 Mar 2026 17:24:38 +0000
-Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-2ae50a33ff8so37485875ad.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 05 Mar 2026 09:24:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772731477; x=1773336277; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=JT0/L3hjO8bWyA1TdT+7Z0rwF+foYA9hR/6cSM0pLp8=;
-        b=bv7m9SWN74aP0+3fnflvXxJ9/wHErFETR/bhzNsW/oXjD8joiNBCTkOpnbA/EQNlos
-         YJ/JF+GaGxIWOyC4vyW6vTmeIkCylRaAowaG1Ftj2jvfs6cXm5eMhoTyp77HdIMqRkjj
-         qZRtnpdvCMX/31urqfAo9w1IongtObl/VKdliowK1hcuTn8nTPWKiEpxnJ+6t+eUMl/p
-         frL/9ln/lt+nUQ/LDCJg1qyLeGxbluIHfdqB/AZKOzgtzMCL7rvv7JvGNxas60zRxnzB
-         uN0G6/8LGwQmRplBnECFqhPBuqM4Y0MpvKpcNNbUrcLAOVvv2w1uhJFlY8w6TUw1d+jm
-         EIPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772731477; x=1773336277;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JT0/L3hjO8bWyA1TdT+7Z0rwF+foYA9hR/6cSM0pLp8=;
-        b=cn2wRTY1Znid8PcR07DzPJTpARWAxtDoLacUmdlUV0/2mL7rQCUqycPcpQUT/gh2+Q
-         vIopRns1NEyEcndT//Ty7rbTrbzizmDGr3h48pPJOawsevWRR7ywb0DGp6NsrFgMTQqq
-         m/VcphKPqOm5I5vARL3O8/In6nBd1U2LNPt0SRHLYTwV3z33gybMyZgmnGK8MFlScYmD
-         8qmcOQH6qT9INfcLuzQOmP0/D5cDN0HwL1JwqO8zw6PFw8JkgtbVchV+JBgBrskCe8yW
-         ti5aR2qE5AaXQWDjdFWsWGDVY6pVhP42PzFydNfqQ5bu5vkHybmAQ96b7iUL8MrSzIir
-         L/Ig==
-X-Gm-Message-State: AOJu0YwOOw89joGU9o2fzvLfC2klvNdUj4SVWJzNU5blZYwBOuqCp6pT
-	MLqjjfOT/g5afQymaTeD00JSnoHrXHbT/iibU7zZ6QsQ+gIhQRQXCJ8ikhAQRDTMqzo=
-X-Gm-Gg: ATEYQzx19vZQToNGFEH7yFbTGv4MJevsID/S7CIJWbVvzhChGV+iy0i+bznA2jsu2hC
-	D+N+fuxteguLElBFBxu94y9OQGv7lXZbQpUTl1dRFEkVLShXHT+6MWbU81voHKOquVf1lts8xPa
-	SBIQPJaXLBm5xc4mk1X6VOih82caVPJND3W7k9AEnUmP5NmPuJSRpSPYhj0NIuDIdmzc/scuDFi
-	7M+P8nMOBTrK3nmQJE88eMUHl6HpTNFt/OgFLpLVJpvRqJ9goTXr/HCRnxjDrnXONSfiIMmWLm9
-	nKNKIMntWIF5mdMqfVALyIhG1lc6DckFRHQXUgRRMNkFkrOJH5lRwPL/k96MogeOTT/mkJZc6Bc
-	ZkJ2z2PA91MHAe3dZ9fM/s1x95JpImD1vnCVE6RdW9ouaR5dpvMM1nDgjOakzbcGH7XukhvvTK/
-	mIE9xZVimUXhiHII/ATyIRjTetEbqp
-X-Received: by 2002:a17:902:ea04:b0:2ae:805d:e0b5 with SMTP id d9443c01a7336-2ae805de2famr2542615ad.56.1772731476543;
-        Thu, 05 Mar 2026 09:24:36 -0800 (PST)
-Received: from junjungu-PC.localdomain ([2408:820c:9009:3f2::3a87])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb5c183bsm237542815ad.24.2026.03.05.09.24.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 09:24:36 -0800 (PST)
-From: Felix Gu <ustc.gu@gmail.com>
-Date: Fri, 06 Mar 2026 01:24:32 +0800
-Subject: [PATCH] spi: amlogic: spifc-a4: Fix DMA mapping error handling
+	id 1vyGyo-00000002dbQ-2PK7;
+	Thu, 05 Mar 2026 22:15:40 +0000
+Received: from 34.1.168.192.in-addr.arpa (2A02-842b-8136-0001-1033-1579-E8Cc-83D5.rev.sfr.net [IPv6:2a02:842b:8136:1:1033:1579:e8cc:83d5])
+	by courrier.aliel.fr (Postfix) with ESMTPSA id BB5CF4A56F;
+	Thu, 05 Mar 2026 22:15:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1772748930;
+	bh=MDPDvWX54EIzBiBuHUn/Aek5yD+kq27hlEvXjqO8q9U=;
+	h=From:Date:Subject:To:Cc;
+	b=Juj1hjdaTS4gqtBfcUQrRis7u4eJ/vkB3H7heQkhR8aTp831SXwMbTVpheuwa5Es5
+	 fOZGbwPGN9fccgQRNJOZw7iPENvnY3dQstHJ6zmTwL5WJGboFM5/sXwscpGd6xHsNa
+	 EIDlBquD+vfKvdweTFgUt077tu65RRligBXbhK00=
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Date: Thu, 05 Mar 2026 23:11:25 +0100
+Subject: [PATCH] arm64: dts: amlogic: Fix GIC register ranges for Amlogic
+ T7
 MIME-Version: 1.0
-Message-Id: <20260306-spifc-a4-v1-1-f22c9965f64a@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAE+8qWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDYwMz3eKCzLRk3UQT3RQTgzQLE1MDsxSzRCWg8oKi1LTMCrBR0bG1tQB
- 9ctMmWgAAAA==
-X-Change-ID: 20260306-spifc-a4-d40f84506d6a
-To: Liang Yang <liang.yang@amlogic.com>, Feng Chen <feng.chen@amlogic.com>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Felix Gu <ustc.gu@gmail.com>
+Message-Id: <20260305-fix-amlt7-gic-dts-v1-1-5944415c74bf@aliel.fr>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MWwqAIBAAryL73YIPSOoq0UfoZgtloRKBdPekz
+ 4GZqZApMWUYRYVEN2c+YwPVCXDbEgMh+8agpe6lkQZXfnA59mIxsENfMlrv3GBImV5paN2VqEn
+ /c5rf9wMyw58RYwAAAA==
+X-Change-ID: 20260303-fix-amlt7-gic-dts-7dcc93e13612
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772731474; l=2039;
- i=ustc.gu@gmail.com; h=from:subject:message-id;
- bh=lomfZlVN07CiFEPEXh4wGx1EjgxUHi4bQLkDua2YS44=;
- b=S9kHCyJh41+jIjlilWGWaLPlUEG9e/sEjLAOxgkA0n5AD0EuxwfMPMZi1EaMxSNXIMWAHsQBz
- XiOqxcgGzLOBpmiqgyRAtLQI5uw0ExZAEVIEBMtoTyfHl6wV8GLDmfQ
-X-Developer-Key: i=ustc.gu@gmail.com; a=ed25519;
- pk=fjUXwmjchVN7Ja6KGP55IXOzFeCl9edaHoQIEUA+/hw=
+X-Developer-Signature: v=1; a=openssh-sha256; t=1772748929; l=2389;
+ i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
+ bh=MDPDvWX54EIzBiBuHUn/Aek5yD+kq27hlEvXjqO8q9U=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
+ BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QBlVSZU1SuoR80Cb0Pf7o9GsnKQNlDlTZVb8I9zS9pOyAJmcu0zAhwete0dfovrGxBWCmaGC44T
+ Y7HZa3INOTQc=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
+ fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260305_092437_803601_5FEF8202 
-X-CRM114-Status: UNSURE (   9.81  )
+X-CRM114-CacheID: sfid-20260305_141539_062406_3D18B804 
+X-CRM114-Status: UNSURE (   9.88  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,60 +84,89 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix three bugs in aml_sfc_dma_buffer_setup() error paths:
-1. Unnecessary goto: When the first DMA mapping (sfc->daddr) fails,
-   nothing needs cleanup. Use direct return instead of goto.
-2. Double-unmap bug: When info DMA mapping failed, the code would
-   unmap sfc->daddr inline, then fall through to out_map_data which
-   would unmap it again, causing a double-unmap.
-3. Wrong unmap size: The out_map_info label used datalen instead of
-   infolen when unmapping sfc->iaddr, which could lead to incorrect
-   DMA sync behavior.
+This patch aims to fix the GIC register ranges for Amlogic T7 SoC family.
 
-Fixes: 4670db6f32e9 ("spi: amlogic: add driver for Amlogic SPI Flash Controller")
-Signed-off-by: Felix Gu <ustc.gu@gmail.com>
+- Context
+Kernel log shows a warning about GIC
+[    0.000000] GIC: GICv2 detected, but range too small and irqchip.gicv2_force_probe not set
+
+Using cat /proc/interrupts command shows GIC as GIC-0
+
+Adding some peripherals sometimes causes hangs on interrupts.
+
+- According to the GIC-400 ARM doc, the memory map is like:
+0x1000-0x1FFF Distributor
+0x2000-0x3FFF CPU interfaces
+0x4000-0x5FFF Virtual interface control block
+0x6000-0x7FFF Virtual CPU interfaces
+
+- Identify GIC model from distributor register
+
+Offset | Name | Type | Reset
+0x008 | GICD_IIDR | RO | 0x0200143B
+
+kvim4# md.l 0xFFF01008 1
+fff01008: 0200143b
+
+- Identify CPU interface from CPU interface register
+
+Offset | Name | Type | Reset
+0x00FC | GICC_IIDR | RO | 0x0202143B
+
+kvim4# md.l 0xFFF020FC 1
+fff020fc: 0202143b
+
+- Virtual interface control register check
+
+Offset | Name | Type | Reset
+0x004 | GICH_VTR | RO | 0x90000003
+
+kvim4# md.l 0xFFF04004 1
+fff04004: 90000003
+
+- Virtual CPU interfaces check
+
+Offset | Name | Type | Reset
+0x00FC | GICV_IIDR | RO | 0x0202143B
+
+kvim4# md.l 0xFFF060FC 1
+fff060fc: 0202143b
+
+- After this patch there is no warning anymore.
+GICv2 is correctly identified.
+
+[    0.000000] GIC: Using split EOI/Deactivate mode
+
+Using cat /proc/interrupts command shows GIC as GICv2
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- drivers/spi/spi-amlogic-spifc-a4.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/spi/spi-amlogic-spifc-a4.c b/drivers/spi/spi-amlogic-spifc-a4.c
-index 2aef528cfc1b..3956869cfec1 100644
---- a/drivers/spi/spi-amlogic-spifc-a4.c
-+++ b/drivers/spi/spi-amlogic-spifc-a4.c
-@@ -411,7 +411,7 @@ static int aml_sfc_dma_buffer_setup(struct aml_sfc *sfc, void *databuf,
- 	ret = dma_mapping_error(sfc->dev, sfc->daddr);
- 	if (ret) {
- 		dev_err(sfc->dev, "DMA mapping error\n");
--		goto out_map_data;
-+		return ret;
- 	}
- 
- 	cmd = CMD_DATA_ADDRL(sfc->daddr);
-@@ -429,7 +429,6 @@ static int aml_sfc_dma_buffer_setup(struct aml_sfc *sfc, void *databuf,
- 		ret = dma_mapping_error(sfc->dev, sfc->iaddr);
- 		if (ret) {
- 			dev_err(sfc->dev, "DMA mapping error\n");
--			dma_unmap_single(sfc->dev, sfc->daddr, datalen, dir);
- 			goto out_map_data;
- 		}
- 
-@@ -448,7 +447,7 @@ static int aml_sfc_dma_buffer_setup(struct aml_sfc *sfc, void *databuf,
- 	return 0;
- 
- out_map_info:
--	dma_unmap_single(sfc->dev, sfc->iaddr, datalen, dir);
-+	dma_unmap_single(sfc->dev, sfc->iaddr, infolen, dir);
- out_map_data:
- 	dma_unmap_single(sfc->dev, sfc->daddr, datalen, dir);
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index 6510068bcff92..d523cbc0ed22a 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -213,7 +213,9 @@ gic: interrupt-controller@fff01000 {
+ 			#address-cells = <0>;
+ 			interrupt-controller;
+ 			reg = <0x0 0xfff01000 0 0x1000>,
+-			      <0x0 0xfff02000 0 0x0100>;
++			      <0x0 0xfff02000 0 0x2000>,
++			      <0x0 0xfff04000 0 0x2000>,
++			      <0x0 0xfff06000 0 0x2000>;
+ 			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+ 		};
  
 
 ---
-base-commit: 3f9cd19e764b782706dbaacc69e502099cb014ba
-change-id: 20260306-spifc-a4-d40f84506d6a
+base-commit: c025f6cf4209e1542ec2afebe49f42bbaf1a5c7b
+change-id: 20260303-fix-amlt7-gic-dts-7dcc93e13612
 
 Best regards,
 -- 
-Felix Gu <ustc.gu@gmail.com>
+Ronald Claveau <linux-kernel-dev@aliel.fr>
 
 
 _______________________________________________
