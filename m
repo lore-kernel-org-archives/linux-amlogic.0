@@ -4,118 +4,190 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88F8CEFCE4B
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Mar 2026 21:58:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1B5EEFCE22
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Mar 2026 00:28:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xCp0adOD37DeRPjNwId4REikBb1wWATX5tCy8v/MQVI=; b=YWK9s2Z2Gms9iN
-	mIFpyzhnK4lDywHolvgu26MapGt3bcms2yIIwzB8jTo1C9KG42/h3AD1Pqf79kfzXqUfk7jtpypr4
-	vQOfbvfK9Ly0QP8Scivol6nBEeoIm8Ez9F/Ypa+uxlZDGUHXyCNprdF6RT6gjVPSvy8Z3pPnBnEcT
-	dxyUfA2Tn3hhkvmdWxkcQxovfZx2KpVgF0U2SWpQpc2GL22/2q0K8mm0qAeTBwuNiN8PRJFzH9nVD
-	uV9czWCj4HDPZmp1Wlg/9u1JPwIS4rcvs36lt4H8wzPWj7WeDRTKvdPp4pCAYW5sfJnRtLmdmwAzu
-	mV5yd5eHl5b5ZZXUBObA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:To:Subject:
+	Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=aUS3oXKMFC8MLOi0vsluGJ2l0HX0V9jkl61Lr7Edifk=; b=IDDsWFHvLtQFX4na+YClHjSrrn
+	CPxvPiC/etZxhLU1Fqow7z4fmbFK58okD3anHn56N8tcEjiCodbaczIJxkLlKJPrvsRalGuzyqCzE
+	RoZ0aK/X1czhcy8A0R6qgqgG26JW2R0CcSGkkPtmMXIVRZ98EIwsjNAaBApPe61TJCq2pDROR1WDI
+	N5OUVfL9It1k2Nk8RknqnlqaN0vIP573l/U3udyoZt8isE1kdyFemkr03C9rLN9qYkzbLMa4xiWnR
+	KTFJuqgxpH7qnfPz8PeNTa0EULp40RQ9fOV4oU2fjfOXcOgSViPDU0zjrvmA4ZPrrfuJr5FgWADwH
+	ZBxU6x4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxuEn-00000000YH1-2NEq;
-	Wed, 04 Mar 2026 21:58:37 +0000
-Received: from mail-pf1-x42e.google.com ([2607:f8b0:4864:20::42e])
+	id 1vxwZG-00000000hVg-2eeY;
+	Thu, 05 Mar 2026 00:27:54 +0000
+Received: from mail-centralindiaazolkn190100000.outbound.protection.outlook.com ([2a01:111:f403:d409::] helo=PNYPR01CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vxuEk-00000000YFO-1q4g
-	for linux-amlogic@lists.infradead.org;
-	Wed, 04 Mar 2026 21:58:36 +0000
-Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-82985f42664so3634b3a.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 04 Mar 2026 13:58:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772661513; x=1773266313; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SDR4PsYkFmZIckUOryLH4IjXcqpjDOwt0KGqniQjbHs=;
-        b=OXgPhLEV5MmqjCJLZ7s2p7wuQWn8dJqRHO9wYvWbXwlZEQnfHYs+MwGVCvuKSfo0tj
-         /PVaOj7phOk7Hyaer6/2+uPYP/opqR0w0Db8Y7pOUr5ZlLWiBFHJFbIJCG2w0pvsoEps
-         oPEWRb/lDISYpNUyOg12NvWvFerTYldm5paa/a69RsCs2BQgEBKbn91CiX9vCqjhW5tR
-         OYxv2eMNsT2Oi1ofgn5sC8m274j7nCZb5HQFSslL7kB05NrgoODLdm4sMIijdAY0L/zd
-         oy11gcq2CaCyAjB8Vj5YvXjPmkqUlyV0dpzKr+tltizQ2s2/U45Vn2YkWP7VJOOwxSOM
-         58rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772661513; x=1773266313;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SDR4PsYkFmZIckUOryLH4IjXcqpjDOwt0KGqniQjbHs=;
-        b=JF+231IEBEzIcr8ckRM/RT9cThKJa397A3jUpv3IjP5fSMH4zdBTDjWW84MxPHiKKe
-         yvQwocYS57QSdohB3vk1ev+ZLDmtWblfunEdGI4O3W9g8lo5NQNqoSqa9MLUCpOAk/gY
-         7uPMI+vnjqKmKtAV96OP3bwXFfAeYwzBAmepd47yNjvDinS1VFYlgkmG1r0aOx5DaWC9
-         fZL5I2kNrX47JQ7owUpqkaWXcf5Mmb8PCQHVfMWkQOpF+oiilpmw3VFdn4AsFe0i/O70
-         bB8Bj3IdQ5PMlMnUzwibS9tMfYuFAluOHWSZj9lp7o+xJxFNEUQmvwHxRzsjkYvCCB5/
-         +Y7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWO9A/3JpSQDED/FDzEJptMtSUlcjWgKnoFsSc5SGOVQsn5ihnsFhIFvkydQmwRaZkrE7EnEx2YOqJvVbNP@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz7L6Apf7hCITL8v8OaGOeBnPQRyG6rgV74HXplcLeVxFnbJ6wX
-	6repb52XwDMBbM7e5q3XZOCuAfYIVDABXFk91UdkFAZytIQ/5Ngfh9xC
-X-Gm-Gg: ATEYQzwNrH0Wfk0S1/sWRO6d0ZqxKiRzSfuYtk+D+tWcB7YIiVIWMpSmK4fjh5OIgOE
-	phZReIptsu8p60cFPADx3+j6uokO/GiMXw7tuUvhwKuDVOg7VaOuv6iiVdqcq3A65gXI8/N7yqr
-	U1GNu0wJ5BtIiHGxf0dq15u0v+oumPOoED/ZVywemcbRFbZHLgOt6i0EI96jXZDcFSh52XS/gvt
-	ogc9DCuAwDKewO37GJ05gFY3ICgvonk6/WCLePeoCfBlcx1NxR0nMtotrKHtMM6VlWg2nf0UF0E
-	mrfC3//dO5MH5186hv5zICZhN1y21pWqtfPJdaHmczV9VYFq6qCanMnsgKTf7PwnJA/AqPlSohB
-	PZbPFxJsEQde4quVDcj6rgHW96aLgu/83l96yFY6ATNHDRWLK3VtI7emwLcXfZzOGjnvmXi0mLi
-	61UiZkFgul76/geViLtcD7RcC7xPzEmD/7kNGt
-X-Received: by 2002:a05:6a00:4288:b0:827:3321:7a23 with SMTP id d2e1a72fcca58-82972b63764mr2746760b3a.24.1772661513098;
-        Wed, 04 Mar 2026 13:58:33 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82984a01827sm110603b3a.43.2026.03.04.13.58.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 13:58:32 -0800 (PST)
-Date: Wed, 4 Mar 2026 13:58:31 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Alexey Brodkin <abrodkin@synopsys.com>,
-	Vineet Gupta <vgupta@kernel.org>, Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Dvorkin Dmitry <dvorkin@tibbo.com>, Wells Lu <wellslutw@gmail.com>,
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-snps-arc@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-leds@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-watchdog@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH 09/14] hwmon: drop unneeded dependency on OF_GPIO
-Message-ID: <a1ce9ab4-49cc-46f7-8524-1cbc0e6333fa@roeck-us.net>
-References: <20260304-gpio-of-kconfig-v1-0-d597916e79e7@oss.qualcomm.com>
- <20260304-gpio-of-kconfig-v1-9-d597916e79e7@oss.qualcomm.com>
+	id 1vxwZD-00000000hU6-1MDH;
+	Thu, 05 Mar 2026 00:27:52 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UHbvkvq/xN1U/13Qmsacw8iS+jR/n5Cpz+PFL1GQcQ/rS9YY88uI8j8lQ1i42PrgD0QykFGksk4gubjhQTPWiuB7cFKcTTzBqSt5M6jbQ1jB4ltGhbArgkZIM68C4OHZactcc17UEUaOYWyJtEGeR6eQpdlPpcbNwYuaB2aqNuEnOYiYP8RpUI7lZbBTjb8UZt8Z0sW+PSDiIdPLvHUkNco/5L6lKMuwvv7RH6y3P36339w2WPC9vVxcZhZDxLvEwamg/tN4MZ24hMJXjjZ+8er9UHxnXF9CbmnCi1nVF81nCFmZCo8/QNcNBaoLSmnb/HxkTwfDG0JQ78WojcWmtg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sdw/+VpM6iouSnsmX5ZjIJcyigPK/dF56hm7Xnv792U=;
+ b=zMntNX4w/51y+b8yeiuIeyEhGTsHNmZtsMBMjNLgepQ9iI0rY+hVROCIWwkyg5RCPfD/E4ceRWB2wu5cQi1gkq9OniYQ2o2EoU9xq9iYF4JN2yF/IYPaB5Udkaxt8NlZ/lfy4pwnkTSN84+lc5CJCiqIa8dRijyzJjMv+f6zNfnBQq58OtPrxXLI/oHMIgXZvIotgt/4OlyvrpTj9gTW8hTGe4SGrJ79iKq/7wVYjFHHcOZi3RKqiq4cjwWSKWitFja32dBNpmZLM+HGSGdWnScKf2S+XTZhrb0RFgMnJQFNRXAZGM8D8jkG+fzHACRpcF1+enzezMklmogI+af6LQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sdw/+VpM6iouSnsmX5ZjIJcyigPK/dF56hm7Xnv792U=;
+ b=sahOjNw8Z4HusYGsweaJ56M8GwyEK+F8kQRHQx80tRK/8/NCFiLKiHY48Iv2lcQ3N8cj+Y6PXW4Ndq5KexR61114CV9SWLsD9rg/rSUYpXQjMcR6CMJPWGAKXCTOrj2xlgTas8pYmX7Awej81y28FztFvQwNrcYFohPA5ZUQwRK1BvYSiEsb/wbvx8ztu5ChfFsf03BU9HrEpkupaUa+XaRtg9n8Tn+u3a8gTr7Yu8n6YORTxHqMY8rU9z3aJ8KHrytv8QzmruodNOl3T1kXkocrO2FMiQnpoMg4vxVhqSvnGmiSTuLUIVH6EAgc3oV/WIG7VzRys9uNasz20Jf7Bg==
+Received: from MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1e9::18) by PN3PR01MB9936.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:171::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
+ 2026 00:27:26 +0000
+Received: from MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8a6b:3853:1bc:67e4]) by MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8a6b:3853:1bc:67e4%6]) with mapi id 15.20.9678.017; Thu, 5 Mar 2026
+ 00:27:26 +0000
+Message-ID: <MA5PR01MB125008C876FC8461A80514DE8FE7DA@MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM>
+Date: Thu, 5 Mar 2026 08:27:12 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v1 00/18] PCI: Enable async probe by default
+To: Anand Moon <linux.amoon@gmail.com>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Siddharth Vadapalli <s-vadapalli@ti.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
+ <alim.akhtar@samsung.com>, Minghuan Lian <minghuan.Lian@nxp.com>,
+ Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
+ Yue Wang <yue.wang@Amlogic.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jonathan Chocron <jonnyc@amazon.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Jesper Nilsson <jesper.nilsson@axis.com>, Paul Walmsley <pjw@kernel.org>,
+ Greentime Hu <greentime.hu@sifive.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Chuanhua Lei <lchuanhua@maxlinear.com>,
+ Srikanth Thokala <srikanth.thokala@intel.com>,
+ Xiaowei Song <songxiaowei@hisilicon.com>,
+ Binghui Wang <wangbinghui@hisilicon.com>, Inochi Amaoto
+ <inochiama@gmail.com>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
+ Niklas Cassel <cassel@kernel.org>, "Jiri Slaby (SUSE)"
+ <jirislaby@kernel.org>, Qianfeng Rong <rongqianfeng@vivo.com>,
+ Koichiro Den <den@valinux.co.jp>, Hans Zhang <18255117159@163.com>,
+ Sai Krishna Musham <sai.krishna.musham@amd.com>,
+ Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+ Vidya Sagar <vidyas@nvidia.com>,
+ "open list:PCI DRIVER FOR TI DRA7XX/J721E" <linux-omap@vger.kernel.org>,
+ "open list:PCI DRIVER FOR TI DRA7XX/J721E" <linux-pci@vger.kernel.org>,
+ "moderated list:PCI DRIVER FOR TI DRA7XX/J721E"
+ <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:PCI DRIVER FOR SAMSUNG EXYNOS"
+ <linux-samsung-soc@vger.kernel.org>,
+ "open list:PCI DRIVER FOR FREESCALE LAYERSCAPE"
+ <linuxppc-dev@lists.ozlabs.org>,
+ "open list:PCI DRIVER FOR FREESCALE LAYERSCAPE" <imx@lists.linux.dev>,
+ "open list:PCIE DRIVER FOR AMLOGIC MESON"
+ <linux-amlogic@lists.infradead.org>,
+ "open list:PCIE DRIVER FOR AXIS ARTPEC" <linux-arm-kernel@axis.com>,
+ "open list:SOPHGO DEVICETREES and DRIVERS" <sophgo@lists.linux.dev>,
+ "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>,
+ "open list:SIFIVE DRIVERS:Keyword:fu [57] 40"
+ <linux-riscv@lists.infradead.org>
+References: <20260304140329.7089-1-linux.amoon@gmail.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20260304140329.7089-1-linux.amoon@gmail.com>
+X-ClientProxiedBy: TP0P295CA0019.TWNP295.PROD.OUTLOOK.COM
+ (2603:1096:910:5::13) To MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1e9::18)
+X-Microsoft-Original-Message-ID: <be3e4319-e9ec-46ea-bcd9-42d7707c3646@outlook.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260304-gpio-of-kconfig-v1-9-d597916e79e7@oss.qualcomm.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA5PR01MB12500:EE_|PN3PR01MB9936:EE_
+X-MS-Office365-Filtering-Correlation-Id: f9ad4c95-ffeb-430f-2457-08de7a4df9c6
+X-Microsoft-Antispam: BCL:0;ARA:14566002|39105399006|19110799012|5072599009|461199028|6090799003|23021999003|8060799015|15080799012|1602099012|40105399003|31055399003|3412199025|4302099013|440099028|10035399007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dzF4Q3NIZ3BualFaSDdld0w0RjU1aSswejZ2TFozTGhvOHhaRGtOd0tnZTA1?=
+ =?utf-8?B?NHl5OGhxb0IyRHpHS1R2TTloZ2dVQjRjRGtLU3FrK0UrUjhweUFvay9UVnh0?=
+ =?utf-8?B?bTNsZTh1NkFBTVNOREhWVEt0dlhDZVR2bVZlR2F4V3VxQXpPVFhDVFpMK1NO?=
+ =?utf-8?B?ekd5RytQanJhamVBZGRIZjF4ZS9TNTk1YVg2Q2w0YVRSNS9Hd09xNHQ2Mkpk?=
+ =?utf-8?B?emdCSFkraExIdlVvTE11bjl2alpTTnNGZUMxK281VWZOZWYzaWx6Sy9kNTl1?=
+ =?utf-8?B?V0NzWnAyWldWeHA1NjlUVGhvLy94V2tEK05mbFhXMGFGb0pneU9QMTdjNUlD?=
+ =?utf-8?B?KzZ2c28zQVNkSS9aTEdLdzR5Sk5xQzdaOGdyVkNra2JweG9qUUVZQkJaaW1v?=
+ =?utf-8?B?YUdIYnBlQjZMQjRHWkRPUWczK3FqSXRjeCttNWR1MDdLcnlOK0VrODUyN0E3?=
+ =?utf-8?B?YXlWcXo5RW5FRXZoNWtIUjZhZC9lZk1oVkc5dVFoeDMwakpuNjg1Yks2SGc4?=
+ =?utf-8?B?THJDVHEveFhaSmd5SkdUM01CdGVwNkJIV2gwcWxhdXdYUDBPd3pxd1lld0Rm?=
+ =?utf-8?B?RGtSUElvbTF0NzdqUU9jb3FGL1J6VGFGNlE5VVZMdHFtSDlabE5qZW1NMnYy?=
+ =?utf-8?B?ZmlEWm1uM0dESHBUdlo4WHVETlZiY20zLzVveDB3cVpsTGpBWWFWamhqVUR0?=
+ =?utf-8?B?Z2JyUFdFSXFYV3RpNGFRUytSL3lBdXVmZHA1cGVFWThxd25IdFJCU1ltdTZL?=
+ =?utf-8?B?TE9rSzFvQzlLSk1LY3V1aFFuM1Nra09paWoyd1JuNjBPMzlBVjBIK3dRV2xY?=
+ =?utf-8?B?SVRMSmZINXBrL2d1UFpReHVISTFXdTBTUHpMM0RuZ0FPSnZjanhHWksraEM4?=
+ =?utf-8?B?UDN6VXQ4ZHYxd1dVU1lSRGxvK0dvamIrQkFncUpMcS8wbjdVc2c0VFN3RmFH?=
+ =?utf-8?B?aGhIRUFVc0R6WTQ0MG9tQSt2ZVV5dXFVRjlIR0k0cThWYnVSOHBid1orUDFM?=
+ =?utf-8?B?Y0tDVWxwN0ppRkNxNkxOaHhjQXRUUk00YTVCcEE4T3p3cnM3UDg2TnFJL1ph?=
+ =?utf-8?B?Q25RZ2xLY21aUzRyWWYyR01SbU5RVWM1RXhmUHdLbncvWWJXZWVuYVBPZTFI?=
+ =?utf-8?B?S3hWK0FVUTRkWFdSTVE0bU8xaDk5Ry9laFBrNEliWFRqVDVXby9ZVjVubWdz?=
+ =?utf-8?B?NnJsM2h3LzgrZjYxNHZta1pqVDhOdUtaOFl1MGpPVzZycml3UWdNN2Y1NzNt?=
+ =?utf-8?B?cldxVEl2OHFQclNwVldTSmdHTHN2M01EaElwSkRJZWdzc21BVEYyTGpZZlJR?=
+ =?utf-8?B?Uk1Gc0lTRk9zV21hQWRHYjhvY24xcTAxQjdHSmlucHM1Ri9nTnYrREJQaGNn?=
+ =?utf-8?B?MlpaVkFNSkFWVHN5bWhWWElLR2Z4TlM5dnhHNCtCT3VyZWc3Q2JwUnArYndm?=
+ =?utf-8?B?Zm1XZm5KVVo2K2xuRkltK2dxK29oZ0ZUaGdta3ExT1hRSkZsYUFQU1dJVGgy?=
+ =?utf-8?Q?MrUkGw=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?djZJMmpDaDY3NG5aSDlzU05WU1RtWjhuak5RT29scE1yUk16UldvcGxvaHA1?=
+ =?utf-8?B?eHFsYnE3aThvMEozckpOcEVJa2R1T2w4VHJwUHRxU3Y0bzFvYVBkbWRLK2F4?=
+ =?utf-8?B?SERRZFJHUkZYQjB2OXgyT2RWQzJ0WmkzdzMwQkYvVDBudk9KOFNWYWw2MU1a?=
+ =?utf-8?B?MWhOdG4rWXBlR2xSVHE3aVVHZm51bkpnSklpZ3pVeHhmblpYVUFOMU4zVUxH?=
+ =?utf-8?B?RTU2djBzNWRpTWZ2aFZIa3UvMzhIb0ZKc2RKVUxMMjljWm0xSjFhVkg4Q0hS?=
+ =?utf-8?B?cGJiYzFRZEV1aml0QmkrbzJGeDFwd1BaQXFsRHNOcmNEK0ZIMDA4VVBYcmJj?=
+ =?utf-8?B?NFdGTUtMUGpVL2pmWVFSbmVYb2dYUUkxS0hUZ3VpdDhvU3pzZ2RBT3N1TmJB?=
+ =?utf-8?B?NzFEMUtzWDN3clNTNjYxbEs2T1ZtSmJQVmllNWhaUDg2aUJTOFFMbGJkWTNu?=
+ =?utf-8?B?RVpwZUlmbzN6b3FqSHA5TThwSkErMTdOQ1Rrd2lKM01KRGRmUXR4VHFjRnhz?=
+ =?utf-8?B?MlR6enV6YlR0bit4U09DdFhOV3hNWTEza2FmWU8vMDdVc2NERnZreHBsOEh2?=
+ =?utf-8?B?M3p0d3UrYlBncVVtYjBzaytMc3VJSGhiS1NWSGpOd3E5TVJOZHllVGVlT0Uy?=
+ =?utf-8?B?dWpzQk93aHc4K044eXRURkRJdUtWRGhrcUNvcHVFMno2N2pwclVyRnhCRWRO?=
+ =?utf-8?B?eGtOREVxcStvOURnRStUcytITEdhbEpmNjVQUzY3b2xSNnBnNENKVys4YWw4?=
+ =?utf-8?B?Y1d4WXJtbEwzWDQ4L1ZyUnZuVDVJRDE3K2JDWnE5VWhDS3BJcmw2Z3pKckVB?=
+ =?utf-8?B?NGFqZzh0NjVjT1R6d3o2eC9XMnpZc0RaRnZvcjREWFdvU04vd3FsakViTU9x?=
+ =?utf-8?B?ZkQ0Mjl3YUwxOEdEK3pEQzh1SnZQbXBlcWlhQ1BoYjcweEs3NGYwMWFteXNr?=
+ =?utf-8?B?RFRvUmUrUW55S0ZZM0ZkSFFPYWlSS2ZFV2s2WHVDd2RXTkJpZ3pmUjFSQW5M?=
+ =?utf-8?B?QUU4Mks1ZUpaZGxGNitZUEEzdmxpLzloUlVMWWVvdlpJWlpaNTBTUnFNM0Zp?=
+ =?utf-8?B?UWQvN0tPZDZXSVExeGF3WXBoS2tWcnhsbVJ2Y0l6dm9vNUdBcC9VdElYd3d2?=
+ =?utf-8?B?aG1ZVllGZXI4R1JMckNvRXVpUU0xKzJkRWV4d1BrbWw1V3hPcGduMHZwd01w?=
+ =?utf-8?B?c0ZEZHVWK3Z3UjRRUnlSeFdFRVZlMDhoT01JRFJ1TmhsNGlXdm9aSmhuS1Vt?=
+ =?utf-8?B?Y1ZOcWIxNVFNV0gxeGRNRVlOOW9hZVRkd3lvbml6VGw1Z3JtNVZtRisxNHBq?=
+ =?utf-8?B?ZmlMTmlna0k4b2M4aTFjemxYSXBhQWM1RzVYeGZPeFVmSFBkRUNTOHAzRVNo?=
+ =?utf-8?B?akNSbXVmcC9JalpjdnBCZThQS2xQd3g2Nk12SUZqbjhyby95M3NmejBoVzVq?=
+ =?utf-8?B?QWpLaTNHcFhnY2Yxd2FNQnAxcEZ2aHlXZTZiWDJMV2EyQ3RRdjRBaE43Q3BM?=
+ =?utf-8?B?end5em9yR2szV0dRTkU4L1Q3NzJmbE9uUldoWmtCejlEVFdwMEJBTk1wcjNs?=
+ =?utf-8?B?M1BsRlBwMnl0T0xFOXM3QjZvN290TEk2MUFNR2hQWXZWemQrSmxQYllJQzF6?=
+ =?utf-8?B?eUQ0SjZEd1BtM21LSDlvWjBkcWEvUFlkRm1oM3BRaS9wcVpYZitMRmtMdDZO?=
+ =?utf-8?B?WVB0SDZYSU9zcXdBM0VNQVJSbmxmTnc2RTVUekhQWVIrR3lrYlRITEZVRDBH?=
+ =?utf-8?B?ZElzcjUxK1RGUzYvMXl6WHdYRmtHMXAzQnJiZEE3SGNqZGlyZFNlb2Y4NC9s?=
+ =?utf-8?B?bWJiVHVSOFRFc0pTRUQxcEZ6cUEzNFRycHhiTWpqektDT0hTNUl1UU9qeStP?=
+ =?utf-8?B?V1E0YVJ4cjhwZ0dIQ0lnYi9sSU9peFoyWnQ5OHZEaUgwZDhtbCt2N3J4UHFu?=
+ =?utf-8?Q?SGbUydehJYyqyFtYUlf3lTxMWyKwWDx9?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9ad4c95-ffeb-430f-2457-08de7a4df9c6
+X-MS-Exchange-CrossTenant-AuthSource: MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 00:27:25.8239
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3PR01MB9936
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260304_135834_476776_B10811EF 
-X-CRM114-Status: UNSURE (   9.77  )
+X-CRM114-CacheID: sfid-20260304_162751_383350_88406B55 
+X-CRM114-Status: UNSURE (   8.37  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -128,22 +200,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Mar 04, 2026 at 10:02:30AM +0100, Bartosz Golaszewski wrote:
-> OF_GPIO is selected automatically on all OF systems. Any symbols it
-> controls also provide stubs so there's really no reason to select it
-> explicitly.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Hello Anand,
 
-Applied.
+On 3/4/2026 9:51 PM, Anand Moon wrote:
+> Following recent asynchronous probing updates to the Rockchip PCIe
+> controller, this change enables default async probe functionality for
+> all DesignWare Core (DWC) based controllers to optimize boot times [0].
+>
+> [0] https://lore.kernel.org/all/20260226101032.1042-1-linux.amoon@gmail.com/
+>
+> This PROBE_PREFER_ASYNCHRONOUS flag help to parallelize device initialization.
+>
+> Thanks
+> -Anand
+>
+> Anand Moon (18):
+>    PCI: al: Allow asynchronous probing for background link training
+>    PCI: amd-mdb: Allow asynchronous probing for background link training
+>    PCI: armada8x: Allow asynchronous probing for background link training
+>    PCI: artpec6: Allow asynchronous probing for background link training
+>    PCI: bt1: Allow asynchronous probing for background link training
+>    PCI: dra7xx: Allow asynchronous probing for background link training
+>    PCI: exynos: Allow asynchronous probing for background link training
+>    PCI: fu740: Allow asynchronous probing for background link training
+>    PCI: intel-gw: Allow asynchronous probing for background link training
+>    PCI: keystone: Allow asynchronous probing for background link training
+>    PCI: keembay: Allow asynchronous probing for background link training
+>    PCI: kirin: Allow asynchronous probing for background link training
+>    PCI: layerscape: Allow asynchronous probing for background link
+>      training
+>    PCI: meson: Allow asynchronous probing for background link training
+>    PCI: sophgo: Allow asynchronous probing for background link training
+>    PCI: tegra194: Allow asynchronous probing for background link training
+>    PCI: uniphier: Allow asynchronous probing for background link training
+>    PCI: visconti: Allow asynchronous probing for background link training
+>
+>   drivers/pci/controller/dwc/pci-dra7xx.c     | 1 +
+>   drivers/pci/controller/dwc/pci-exynos.c     | 1 +
+>   drivers/pci/controller/dwc/pci-keystone.c   | 1 +
+>   drivers/pci/controller/dwc/pci-layerscape.c | 1 +
+>   drivers/pci/controller/dwc/pci-meson.c      | 1 +
+>   drivers/pci/controller/dwc/pcie-al.c        | 1 +
+>   drivers/pci/controller/dwc/pcie-amd-mdb.c   | 1 +
+>   drivers/pci/controller/dwc/pcie-armada8k.c  | 1 +
+>   drivers/pci/controller/dwc/pcie-artpec6.c   | 1 +
+>   drivers/pci/controller/dwc/pcie-bt1.c       | 1 +
+>   drivers/pci/controller/dwc/pcie-fu740.c     | 7 ++++---
+>   drivers/pci/controller/dwc/pcie-intel-gw.c  | 1 +
+>   drivers/pci/controller/dwc/pcie-keembay.c   | 1 +
+>   drivers/pci/controller/dwc/pcie-kirin.c     | 1 +
+>   drivers/pci/controller/dwc/pcie-sophgo.c    | 1 +
+>   drivers/pci/controller/dwc/pcie-tegra194.c  | 1 +
+>   drivers/pci/controller/dwc/pcie-uniphier.c  | 1 +
+>   drivers/pci/controller/dwc/pcie-visconti.c  | 1 +
+>   18 files changed, 21 insertions(+), 3 deletions(-)
+>
+>
+> base-commit: 0031c06807cfa8aa51a759ff8aa09e1aa48149af
+
+Suggest you indicate in the title of the cover letter for the next patch 
+that this patchset is only related to dwc.
 
 Thanks,
-Guenter
+
+Chen
+
+
 
 _______________________________________________
 linux-amlogic mailing list
