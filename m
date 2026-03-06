@@ -4,70 +4,133 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6680F513E1
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Mar 2026 22:15:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12A60F513EB
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Mar 2026 01:42:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=9tP1LrQ2eFQ3x9L/NdV6Si5tyQpSTpmunBjSdvPSrmE=; b=DIj4Iou4JbOiXg
-	9/b5416OMzpXcSD6iu6fVTqi0CKhjEUv/awhTQaxcJbQL8KCWAQ1YzO98ksx1Twp397M4UqBywR5I
-	ajxU1lscYrkZq1T8bT8duzz7QBlOibek3x1QlKxtBDx078wfq7np/g57IWKpfbhy39vOlIH5OiuOu
-	c+fqBICSueGWRTo7uFvUuf/nqHwEr6nRwPyNytdfdJHbCgDvPPIkeNbkEEz9w8d6zI7qZRmAPkekf
-	1e4u7p22ugquHtLt6tjgbIa90tyJiDOLG4aPRfO3ILucy7kuCSRoKU/MfcCUM09bkA5H29BUYPh2j
-	ndG6nt6ITMFkdgIs7d0Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=/bBCD0emcRYGyX0opG8I94V7rGq/GCwG49t4FhNf4yA=; b=lf14V4JwRtpEpCh0JSgqgPTuFt
+	cYR5Ryu55v27NCKVSdFOidoauNHmc4e58nnzudG2Kf4ji9MdPkw+3NCwzk06cl5jUbXHGCUeWEzJ+
+	BlUzeNLNn3UUVqJancvNasstmr5z3hlqlgToh3ZPaBET5Krmo99iZNs/enxOJ+RT7E6/DQ45k4Hc1
+	x0XF0Tx+hNpZWMJMyoKZYcGIuUzFARHuP/izHv7Js42YzW5gHww3c7pgquQPFgpzDraWFfW2Rfx0w
+	5wssUccOEGrfgZPdaFm1w45TF5YYGItHp002HwqhSVIF7bGHeO918xWB8gzvGV7GDbcaXIXCAafFF
+	o48TdRbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vyGys-00000002deL-0R05;
-	Thu, 05 Mar 2026 22:15:42 +0000
-Received: from [2a01:4f9:c011:1c83::1] (helo=courrier.aliel.fr)
+	id 1vyKD2-00000002qfx-0hYL;
+	Fri, 06 Mar 2026 01:42:32 +0000
+Received: from mail-japanwestazon11022076.outbound.protection.outlook.com ([40.107.75.76] helo=OS8PR02CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vyGyo-00000002dbQ-2PK7;
-	Thu, 05 Mar 2026 22:15:40 +0000
-Received: from 34.1.168.192.in-addr.arpa (2A02-842b-8136-0001-1033-1579-E8Cc-83D5.rev.sfr.net [IPv6:2a02:842b:8136:1:1033:1579:e8cc:83d5])
-	by courrier.aliel.fr (Postfix) with ESMTPSA id BB5CF4A56F;
-	Thu, 05 Mar 2026 22:15:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1772748930;
-	bh=MDPDvWX54EIzBiBuHUn/Aek5yD+kq27hlEvXjqO8q9U=;
-	h=From:Date:Subject:To:Cc;
-	b=Juj1hjdaTS4gqtBfcUQrRis7u4eJ/vkB3H7heQkhR8aTp831SXwMbTVpheuwa5Es5
-	 fOZGbwPGN9fccgQRNJOZw7iPENvnY3dQstHJ6zmTwL5WJGboFM5/sXwscpGd6xHsNa
-	 EIDlBquD+vfKvdweTFgUt077tu65RRligBXbhK00=
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Date: Thu, 05 Mar 2026 23:11:25 +0100
-Subject: [PATCH] arm64: dts: amlogic: Fix GIC register ranges for Amlogic
- T7
+	id 1vyKCz-00000002qfb-3zQi
+	for linux-amlogic@lists.infradead.org;
+	Fri, 06 Mar 2026 01:42:31 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YjlyoSjbPUOtDy7TC7c2WnMW3K2L2jqGNraV5pE6u7O9U4FRsScNn+Y5DOJiS13wL5nbOssyZyRDPO9s7jkxn6/A9NgI8oUD1FRo8zLp2sUjyYFDJQCUUOc7lKOdg+Fjim1Efzbcc7bwls1aDSpH9vNwImQi5q7hoLnbaibE+/fwco+jvGSg+I5ChFD+gNew7fXBYSHNpO6IlipCDLQ5wYnBBddCt26Dj+7L6mCt3LFdSiaB27FwmWU5dAjnow+uoJMzSN15GU/p2Sir5EETCR/7cvHMrpNig6h87zQ25gN4T6nylSC7OsAWohJn8j+GpqZ9RbPiDGDdANSWENERCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TEjSKiT++8J61RdTu46itkiiKmOUPz5G8rjE0hMZY6w=;
+ b=v/hqnSfYUMNTCTmwnoYnMf5Yuc4kUmW/YW/FQLib0m/OB6kkUN/sgLJowPaPHPnZ9mmHfL9TKc4uisfkt2yU7nla+99WRwW09kc/HL50InziqKavslszPcpFuofIX2DuaMTgxoTnWqLQG9vivlRaUWSejYjMXE0Ui0HZpmDYsBiiYK+SZ7gjDC6KROdPcB3wXPBWKFO5Y2PPj829o3DCJaOmnan9K/ifi8SwKYw/VMdVACVlh6WtRMRmnmJMajeGJte3uUvDJwxc++XZnXselO8cdd6YepYVraGrHKX1Gt1wBMadt70XeSAAXc1afMwxB+NqHNAm5AayKpurvMnRfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TEjSKiT++8J61RdTu46itkiiKmOUPz5G8rjE0hMZY6w=;
+ b=tYpYZwkRKiKt8hxRYHEdnEMPbitX4rPWpwodR8v8L1ZUiAlFX2ASpLMBDcyWgzvvWz/gl0LgdvQq05+m1qOVlHHcC1ubSyXXRbDhlJ8TkTCjHiPCbCcRQ7ax7fKKitQAcpBFs92pIz+ycRazgw/s1AE+eFBvKDIBIH1c1jN65igw6I5cHBE2b4vR7xjoDIINun8Kw/m21J2vziI8KNgvJBojTz2suY3aD2aIpmGsTJqIti1y2j7VghSh+XSsI4VRBabXXRbezxBQR/iscq/nk6f6Ih60bzHxa84WVJx6JFXyuNjVh+hBAKxA4FMcd7dZdvZPrh40ahcKwu1c4uZo0g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by KL1PR03MB7223.apcprd03.prod.outlook.com (2603:1096:820:d6::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.19; Fri, 6 Mar
+ 2026 01:42:18 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4%6]) with mapi id 15.20.9678.017; Fri, 6 Mar 2026
+ 01:42:18 +0000
+Message-ID: <e26d90ba-043e-40c9-ba7b-7ccdb0a37606@amlogic.com>
+Date: Fri, 6 Mar 2026 09:42:15 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] spi: amlogic: spifc-a4: Fix DMA mapping error handling
+Content-Language: en-US
+To: Felix Gu <ustc.gu@gmail.com>, Liang Yang <liang.yang@amlogic.com>,
+ Feng Chen <feng.chen@amlogic.com>, Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260306-spifc-a4-v1-1-f22c9965f64a@gmail.com>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20260306-spifc-a4-v1-1-f22c9965f64a@gmail.com>
+X-ClientProxiedBy: TYCP286CA0012.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:26c::16) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 MIME-Version: 1.0
-Message-Id: <20260305-fix-amlt7-gic-dts-v1-1-5944415c74bf@aliel.fr>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MWwqAIBAAryL73YIPSOoq0UfoZgtloRKBdPekz
- 4GZqZApMWUYRYVEN2c+YwPVCXDbEgMh+8agpe6lkQZXfnA59mIxsENfMlrv3GBImV5paN2VqEn
- /c5rf9wMyw58RYwAAAA==
-X-Change-ID: 20260303-fix-amlt7-gic-dts-7dcc93e13612
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1772748929; l=2389;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=MDPDvWX54EIzBiBuHUn/Aek5yD+kq27hlEvXjqO8q9U=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QBlVSZU1SuoR80Cb0Pf7o9GsnKQNlDlTZVb8I9zS9pOyAJmcu0zAhwete0dfovrGxBWCmaGC44T
- Y7HZa3INOTQc=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|KL1PR03MB7223:EE_
+X-MS-Office365-Filtering-Correlation-Id: 80738ebb-2950-4d0d-2028-08de7b219a0f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7053199007;
+X-Microsoft-Antispam-Message-Info: LQymJKkyyiQmj99Hp+4tlgxdPXB8q4fkErCvA0EeoRO6LL4/Ae2OsKBsAd7O4jm40GRrx2wxRIu1DQJd3YcGfR7gO8WSz8Ej59nEnTvpgTXFwpZrJDKr/mB/c6e1yYfRyO2FmzQh7LTbjnop7J6PN0IutuNvBmwC6xOu4uG9oPgqy0pCYocY6gOG+Klq+/bI0FsXfjIxOhXJtSlrsBf+F0L/1agTZ0jl7Y4wGJIZAm4BMZkxjf5dq6Qbo8T1H7SxhrHOwmFde4oHKkRU1lutnHp3GKhxzsNgkDE6OXiKbgWtqYCdGxMhFoyooJgrPwB2Lb5bLNDwmRcQO/tRfywzJoReNCBBIdlFQawTzGvo2Y0qSefZqg+hrU7FFyMUpGXCC9sFnTlUAnqyPH5uBkC9vTEC3+t8oVolT5yBLlkeNqjoOppvWrh5RWxpuOjuoDT1nDw23ma+JPzyFA8dKFJ2M5DrTOAvMS9Bfb695I9xpDBDcs+4mBwdt1wTtj7aa2sqv3TG1J7BCVCRjfgxp9WDMEaw3i+2nyRBGPnCv/HH7Md2hYqoacKFNTxL9Yn9yMjHL7MylosyCiUCfdkVMpo1FqnpQUfoDC0L51E0gc7hHc3QO3frNvWbYPM5svVOsmxCQ8CF8sARW5/+EAd1u0ciy0mJdkEI2NIrMe9Zmp2Chrs4XNCuOlX2j32aqxuzlPvZt7gO2X0wnPR/e5QvdhH5v86tX7gcuoAKClqepcoVjJQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3Q3QVNXRHAramhpZ2UwZ3ZGYnEvTWpBNWJHRnMvVHovNFhwS1ZaUnY3U25v?=
+ =?utf-8?B?amNyTG1CQVpWZUQzOGNmbmJpUzVtK1RkbUFGdko4U1JWc2ZQcW5DcTU4aGRs?=
+ =?utf-8?B?Zng2bFBaOEVGT1YvM0k3c1MwZVRHTndvT05Qb3pPak5QZlA5cUFuS3IxK3Zn?=
+ =?utf-8?B?SjFwT0gzdHAwWE0va1Bmdm5TRnBySnA0OEErbHVhWTBlVnlmK3J6ejl3S0ty?=
+ =?utf-8?B?Z3pPWURsYmxueDhpUEd4SGJqSkpEWHZ1V3UvUXB0cCtKUENrYW5MbEtaTGRT?=
+ =?utf-8?B?YlVkQmVDVkcvaXZRdkNpeXYwOUYyNTRXaUw4d3p1RW9qTTBsZDJHa3Q4UjV0?=
+ =?utf-8?B?S1o5ZXJOWUs2K2FaTitRRzNONld6Um4wdFpXd0tZNVF4M3NRbE9odHcwQzdz?=
+ =?utf-8?B?YVIxdFRqL3JLSUpyZy9TNlNsZEVlbjFodjBuZURhMU8rQ1IxMFkreUhrbUN2?=
+ =?utf-8?B?dWUybGdadXJVWEgyckwzWjlKOGw0VUtqdWY1T2Y2LzRnYkpYa0xkMDFiOHlU?=
+ =?utf-8?B?bzJhMTcyMjJhckx1akN4b0tPR2RvNWR3Yzk4S01EbGY5bEo4RWUyTnUrTVFB?=
+ =?utf-8?B?K09jSy9ENzBSU3ExUXY0T01HeURyWm9ibjBNNnZuUm5BTndET21Kdm5KY3BM?=
+ =?utf-8?B?S3NYZnpnOE92ekwyd1BYVFc5dFlzTUZSak1PT3BHRzZ2b09QZmZSLzArOGd2?=
+ =?utf-8?B?TU84YTdpS3ZPN1lDY3dQY0VVT2R2QWphL2pmNWZGM2J3cVZTdHRtdmZxUXdI?=
+ =?utf-8?B?TDZUQ2NDc1hwNzRCeFA1YVdKZUNDcVJVVVRoSTRXelUzNUhWcjNGcm9BMHJE?=
+ =?utf-8?B?Q1A4TmJha1gyUm9WeUxqZEwyd2YzS2p3NUtMa1EzdzBKaU0wUDVsVUNRdDRt?=
+ =?utf-8?B?SFZSUmJvdFFFcFUrR0Q4ZUQ5MWlMQ0JGempGYytkVVR4bUdGeDd4ZVdOWEpT?=
+ =?utf-8?B?WDB3cFloR1hZMThOUEh2bUpDR1hGSEc5L3JraU9rNGVUcXYwcFBudlZ4TVJ6?=
+ =?utf-8?B?U3NnR0N3YTZVUERFbUJDQTMyYjRLUFlSdCtIcXdCOTVDejJWRGRqOFY0M2xO?=
+ =?utf-8?B?NnRtMnZ0b1MvMXVzbG1RbnY3OTIvakZQNk1hWGtyZ2RtaDgyVlB6aVQxWVZO?=
+ =?utf-8?B?YnZqRXQ5R1lkTWxWMnE0RzZwbTRHMkx5SmhleFkwWnNKM1B4cUREMXRtYW1J?=
+ =?utf-8?B?aDlqYVY1cWJuTEhEK2M2S2pLa0F4R0tDcnl3eDdwTkxzZGtmVitWaDNQN1I5?=
+ =?utf-8?B?ZWJOTHR4Y21ZalFidU9jc3czeWNEZXRWdEJidS9FbmptL0EyNHUzbFo5WDJy?=
+ =?utf-8?B?VDB5a1AwMHUxdVVIb2lRMmZSeW9Ud3ZaTkdBZTNaNFNVLzRwM0k4UHdRVnE2?=
+ =?utf-8?B?SithUmpodEozQ01OeVRxSnJqSU5meFBaNzRHb25NSFlVMFJZVTlqUm5TREJ4?=
+ =?utf-8?B?b1ZSV3dNTDVZV0l3M2dpcEM2NW1JdUt1a3ZEUjB4S005bmt0Z2Z4ODNjZk5X?=
+ =?utf-8?B?Ymp4cjBKYStBSTRLUHVURlI1ZktVU00vbUllNEY0cEpYd2IzaENITnFxRHV3?=
+ =?utf-8?B?V1ExenZ6dWMwR24vUkpCOGkyeFBUK0Q4akRxcW14b203RHA1amVPWlViNnYv?=
+ =?utf-8?B?TXlBeXkxWGEwQWcyTmhML2FwMTFTa2I4RVQyc2EvMUZXcGR2eGJSczliZEM4?=
+ =?utf-8?B?ZTJSRFI1aFFqTk1yMHNiUDNHU0xRSklqV3ZrWHo4R2dwNTlJeXBFMDdFY3BJ?=
+ =?utf-8?B?aHEwblBBYXdNZktnNXRESjdWT0F5bFQ1U2xDamtOT0M0L2Y0d1cvN2RTMllv?=
+ =?utf-8?B?YUlQNm1RWW01SjI2TTNkaFJRS3ZCVW1JeVBIcE5xdGZMWEh4L2I2V1A2SDJI?=
+ =?utf-8?B?dDFvMWZtUVM0MDJUTGxuNENCdGlkT21wQThMdG9oTE9JZER1d2o0TzNnUHlB?=
+ =?utf-8?B?Z3ZVbURHUU13Q3dIcGFkaGR2bUwrNm83SXRxd3JLcW5FSXk0WVVtMThZYTlM?=
+ =?utf-8?B?SitOZWpOczBZVlYzTVo3Y3NUOHV1dDJpejdZa0Q0ckJzSEwzYXRuZEk3eVVS?=
+ =?utf-8?B?R292Qkw4b1M0NjY3bUF3NzJxekZJTHQ0VHNOdVF3QnU3RG9HQjJRa09KWThY?=
+ =?utf-8?B?ZTh6NTJoZm1sVkxPNzRUQmh4SGE0SE9oSFZFeStlcDFRbXM5Ti9HWS9WTDVo?=
+ =?utf-8?B?Zit0dXFwUmxEYjg1aWtBZkdiOVdVblZLNExqYTZabTQvSEk1cWVjcDVpNEoy?=
+ =?utf-8?B?UGViUUJkREJJckpWdmpHWSsrM21uZW1qSlJvYWtzeWljR0FIdEFlS2RTQmFU?=
+ =?utf-8?B?bHJBWmhHb1pmSlVoZ3l3Q0hPYjM3QzNHTjFwajh0UVFqTzV2SGk4UT09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80738ebb-2950-4d0d-2028-08de7b219a0f
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 01:42:18.2916
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1dlpxPHcpiExuSAm7cHWyulN1K03aurcX7KfrfYfUJYMfDYCqVJKnOl+ujPk0IqrPGHT7fVLd3WML0xKIxATbDcXRe6YzOVX2ThXBLO3CmU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB7223
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260305_141539_062406_3D18B804 
-X-CRM114-Status: UNSURE (   9.88  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260305_174230_012059_FF45FA4F 
+X-CRM114-Status: GOOD (  15.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,95 +142,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch aims to fix the GIC register ranges for Amlogic T7 SoC family.
 
-- Context
-Kernel log shows a warning about GIC
-[    0.000000] GIC: GICv2 detected, but range too small and irqchip.gicv2_force_probe not set
 
-Using cat /proc/interrupts command shows GIC as GIC-0
+On 2026/3/6 01:24, Felix Gu wrote:
+> Fix three bugs in aml_sfc_dma_buffer_setup() error paths:
+> 1. Unnecessary goto: When the first DMA mapping (sfc->daddr) fails,
+>     nothing needs cleanup. Use direct return instead of goto.
+> 2. Double-unmap bug: When info DMA mapping failed, the code would
+>     unmap sfc->daddr inline, then fall through to out_map_data which
+>     would unmap it again, causing a double-unmap.
+> 3. Wrong unmap size: The out_map_info label used datalen instead of
+>     infolen when unmapping sfc->iaddr, which could lead to incorrect
+>     DMA sync behavior.
+> 
+> Fixes: 4670db6f32e9 ("spi: amlogic: add driver for Amlogic SPI Flash Controller")
+> Signed-off-by: Felix Gu<ustc.gu@gmail.com>
+> ---
+>   drivers/spi/spi-amlogic-spifc-a4.c | 5 ++---
+>   1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/spi/spi-amlogic-spifc-a4.c b/drivers/spi/spi-amlogic-spifc-a4.c
+> index 2aef528cfc1b..3956869cfec1 100644
+> --- a/drivers/spi/spi-amlogic-spifc-a4.c
+> +++ b/drivers/spi/spi-amlogic-spifc-a4.c
+> @@ -411,7 +411,7 @@ static int aml_sfc_dma_buffer_setup(struct aml_sfc *sfc, void *databuf,
+>          ret = dma_mapping_error(sfc->dev, sfc->daddr);
+>          if (ret) {
+>                  dev_err(sfc->dev, "DMA mapping error\n");
+> -               goto out_map_data;
+> +               return ret;
+>          }
+> 
+>          cmd = CMD_DATA_ADDRL(sfc->daddr);
+> @@ -429,7 +429,6 @@ static int aml_sfc_dma_buffer_setup(struct aml_sfc *sfc, void *databuf,
+>                  ret = dma_mapping_error(sfc->dev, sfc->iaddr);
+>                  if (ret) {
+>                          dev_err(sfc->dev, "DMA mapping error\n");
+> -                       dma_unmap_single(sfc->dev, sfc->daddr, datalen, dir);
+>                          goto out_map_data;
+>                  }
+> 
+> @@ -448,7 +447,7 @@ static int aml_sfc_dma_buffer_setup(struct aml_sfc *sfc, void *databuf,
+>          return 0;
+> 
+>   out_map_info:
+> -       dma_unmap_single(sfc->dev, sfc->iaddr, datalen, dir);
+> +       dma_unmap_single(sfc->dev, sfc->iaddr, infolen, dir);
+>   out_map_data:
+>          dma_unmap_single(sfc->dev, sfc->daddr, datalen, dir);
+> 
+> 
 
-Adding some peripherals sometimes causes hangs on interrupts.
+Reviewed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-- According to the GIC-400 ARM doc, the memory map is like:
-0x1000-0x1FFF Distributor
-0x2000-0x3FFF CPU interfaces
-0x4000-0x5FFF Virtual interface control block
-0x6000-0x7FFF Virtual CPU interfaces
-
-- Identify GIC model from distributor register
-
-Offset | Name | Type | Reset
-0x008 | GICD_IIDR | RO | 0x0200143B
-
-kvim4# md.l 0xFFF01008 1
-fff01008: 0200143b
-
-- Identify CPU interface from CPU interface register
-
-Offset | Name | Type | Reset
-0x00FC | GICC_IIDR | RO | 0x0202143B
-
-kvim4# md.l 0xFFF020FC 1
-fff020fc: 0202143b
-
-- Virtual interface control register check
-
-Offset | Name | Type | Reset
-0x004 | GICH_VTR | RO | 0x90000003
-
-kvim4# md.l 0xFFF04004 1
-fff04004: 90000003
-
-- Virtual CPU interfaces check
-
-Offset | Name | Type | Reset
-0x00FC | GICV_IIDR | RO | 0x0202143B
-
-kvim4# md.l 0xFFF060FC 1
-fff060fc: 0202143b
-
-- After this patch there is no warning anymore.
-GICv2 is correctly identified.
-
-[    0.000000] GIC: Using split EOI/Deactivate mode
-
-Using cat /proc/interrupts command shows GIC as GICv2
-
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 6510068bcff92..d523cbc0ed22a 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -213,7 +213,9 @@ gic: interrupt-controller@fff01000 {
- 			#address-cells = <0>;
- 			interrupt-controller;
- 			reg = <0x0 0xfff01000 0 0x1000>,
--			      <0x0 0xfff02000 0 0x0100>;
-+			      <0x0 0xfff02000 0 0x2000>,
-+			      <0x0 0xfff04000 0 0x2000>,
-+			      <0x0 0xfff06000 0 0x2000>;
- 			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
- 		};
- 
-
----
-base-commit: c025f6cf4209e1542ec2afebe49f42bbaf1a5c7b
-change-id: 20260303-fix-amlt7-gic-dts-7dcc93e13612
-
-Best regards,
--- 
-Ronald Claveau <linux-kernel-dev@aliel.fr>
-
+> ---
+> base-commit: 3f9cd19e764b782706dbaacc69e502099cb014ba
+> change-id: 20260306-spifc-a4-d40f84506d6a
+> 
+> Best regards,
+> --
+> Felix Gu<ustc.gu@gmail.com>
 
 _______________________________________________
 linux-amlogic mailing list
