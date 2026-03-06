@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94575FC9EC3
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Mar 2026 23:29:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7A17FC9EC4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Mar 2026 23:33:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=u/87IrptaqbM2ukpIOACaUd7N1pFNU8G7K1UVVLFT44=; b=vYd9hFgWS/fbdr
-	85emGpAanAtT5vf44Pg8vyE9vu71iroXEe9isoDwpcfyq9Pgpi1b9o5SpEFlPzY03GK/NNKh4uS3z
-	Ny9uhaFusFyg4DOByUzvRfHVIsD5GDedvni//VPYJqA7zFOesJVQWstZYe+GzObp5wHtZdgf6nkB4
-	wBqp12VZlFT5FI/7D1n9JdLw2EjoCjbxsA6F7udtwW2btfzu37vlgT/fs55/lRPFWDCAirLShhv38
-	Ighi68u2J64C2jOaWK09KUndJp1EQhK5+G3sAaqmNgUcMks70BdiNw60ZyfGsKyR9irIS1KTyDZSA
-	ZCnDUT6kRcvKVM6sS0AQ==;
+	List-Owner; bh=HOU8MYf02OON7YTw02tx3PwwNuNASGo27z/suJLXb6I=; b=QU8AGQjUMShr5L
+	pGQk/fj61Zj33RjqQMMjRh8jM/A3FuOXeOkll4CdmNkb+SaB1gfDAFRgNZmyIFoj1PEB1sDuqVzK0
+	o4OcaHTO/k8couSbtpkE8EKnouGjsikEmqaCsjF2FyypoVqViqNb/CuTZo9+fFmPX1iNTBlMN79gi
+	SIJe4ro2DI/oA+6dYlNF3jVloxcxWuhA205y2hTrpJQ0cD6UAUFQMKbbp8xCh89ddiLH0iqmKp8bF
+	BqeZ7GhAatmsL3B5W0Y1bzw1JkmcG1yAvImZIRO+B44Do9uZX8OIG/Fh4Ha1UGlEebC5Gw7MKiV/E
+	uisOnzHaYZokzhh63oxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vyebQ-00000004e35-2nPo;
-	Fri, 06 Mar 2026 23:29:04 +0000
-Received: from mail-pf1-x42d.google.com ([2607:f8b0:4864:20::42d])
+	id 1vyeft-00000004eKK-2Ghk;
+	Fri, 06 Mar 2026 23:33:41 +0000
+Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vyebO-00000004e1z-2lyA
+	id 1vyefq-00000004eJ4-3Cm5
 	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Mar 2026 23:29:03 +0000
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-823c56765fdso5042053b3a.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 06 Mar 2026 15:29:02 -0800 (PST)
+	Fri, 06 Mar 2026 23:33:39 +0000
+Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-3598df39444so3864217a91.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 06 Mar 2026 15:33:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772839741; x=1773444541; darn=lists.infradead.org;
+        d=gmail.com; s=20230601; t=1772840018; x=1773444818; darn=lists.infradead.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=jmuJidMV1Wwe0qpdw07DaES1yYrCFjR7mRIMJgUWNXw=;
-        b=M2FzWy0p09SavNkPi4e0vqlGtG+EXGFtAlxBEEggFreTKg2S5NFhYwtggB57tvroUv
-         brRdB33OQoVx4eZgzJn4kisDQfAmqWFOtwi3Wn6BIri5LDlX9f9xRkgIYtbk4M3atHWP
-         IBlBsHaWzQSBC4KNdolje7LV7jZLhCm8RSzR9Dz6+chRvEvSYUWVu3rilK8y7YxWjgCj
-         wqYobeBEAa/A4PM/5zYryij+f9Tg0ojzDhHGkHaWZL4qIBTcTjcHBwJZYfW5MMS43u8K
-         wK/E+xlitfFyxfi74/v0hLxhJS19W0DpR0BCbxcBnq/ERzi0WQwwEdUAzpUByJQRWKoG
-         zsqA==
+        bh=A3n1MjNRco+xhIuiD22YqqFeZmP/U2HpmvCL9DYQOmg=;
+        b=nXUq0Cfavs74wj2uvslg5l971BVwk6u/JROHsQnoAqPvT+/IlBiPxFTYaiyx0jM1Hy
+         GBQR0FzdVSyUGeCw7T9PZr+cm+BJsg0SqDY2rZ70fauFemT3pnFdwn3UO78ZtA7idkVv
+         FpCqr4swG4hmhEWRxQLp6j5VZroQQOzYg9Anci1FRwLaIUEkn4y/AVb0XRiIBPxKHUGh
+         TBByC+cD5kgn2MiAkpxwqEDmTmcyVFz1sUsNszToKtT0pwhITP4ZVobd0MMWcXbZL40q
+         kjrvakj6E8KbWTKtEGKLe+MsWs0vCW5vojJpvx1dGBvYXHSWqxkuPjAaYo+sb27Hv70t
+         OPVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772839741; x=1773444541;
+        d=1e100.net; s=20230601; t=1772840018; x=1773444818;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=jmuJidMV1Wwe0qpdw07DaES1yYrCFjR7mRIMJgUWNXw=;
-        b=xQD9uuGii+vr1Y7B1f94oWmgubbGrIWcK7sejckiOLlzB6P7YrI/lMAXzLuruajYvh
-         nXzZhC531jITekJ/bpGhY6lIRaaB53v97W2A2ZUrrQaAwTi8OQJSSX0FDpqE1i9UGnu0
-         77+yrPuoRrlSU47g56xk/VUBDqCIsjGAUrb6BJiA98TAjTMsEXAtAKC2SnfMFg209SPT
-         WmUn3qSUBRz3vUM4K1M9xYpI5OTRxJFM21r7HN1rn81bxtv5wVK0f2i4NmMkCOgRYm2E
-         Zw4m/Cy9QZIjfg2heSeXY2gHLt4Y3XYRylK5N2orE4ZXdG5EroDBe1N1YuS0oRZkV+Py
-         mU6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXI4P2GOsDZO5a486OCfWxQGmONjhlfQAaAlUG9yoqU7h3N3dYQ+hDUAZRGIYr78fwFVwZrUOszUnX4Ynsu@lists.infradead.org
-X-Gm-Message-State: AOJu0YyGrN+SvmZg6sHdry93uMovE4RJNfjejEgmZQII6Yx7TQzWdN5Q
-	uLNHP09ZQJcNLjO/soBAzbYS1cXoe8T2snhnHFJarqUfGygmHdKOh2fj
-X-Gm-Gg: ATEYQzyCXOuWUA4czAVnqz4LHF0hVK4rVcQd37dNh5o0qh51MBh7U4rkkrb12VfIaVj
-	ZvYuRufrc2HrDm7os+XuZqMIwreRcu1tjwsblRIUCDbCMwrKkRW1v1vv0lGoPKc4LhzPws/6ob2
-	DR5Tvce10ST8NJO6xpnIYKwyKu5trytsw6TBCGjUwoMQ9/B3WiWSib4B8yT/8GZQEqzCt9paovh
-	4DrQAbWQ3L4KwfRvvJaszDnottUCigdAhL3GtmoefTPL5bvmUdNMKXcBCxMZrxPLNMWQhkbPvFK
-	wTP5v5X/Te96KgfXyeG4zQIHgcfTCPAkSyWH13X/cJmK0AYAGDUwKN/jKa5ZXiOTqyMqU9Ms7yo
-	+qVF1AdMbMEP2c1jKIVpy2aUKYBS3lYX+l6SHjW42NYhabkiOtEYUArSF1ECmbdNit+XE2BQ7co
-	KU1WZBhYS/VbZ0lVPOH3GCs/wAUV2oiAzWtDf8
-X-Received: by 2002:a05:6a00:9510:b0:829:8942:2c93 with SMTP id d2e1a72fcca58-829a2d86b43mr3749707b3a.9.1772839741072;
-        Fri, 06 Mar 2026 15:29:01 -0800 (PST)
+        bh=A3n1MjNRco+xhIuiD22YqqFeZmP/U2HpmvCL9DYQOmg=;
+        b=XQYDf1ITC2wVRDdZTwWWyHi3IMLnXsNVAFhdX8DfW1szMSP0ZjFNjJBPQ3XNgLF6sv
+         VWnsqwDRkZfEyoUaqf+STxrgVbFXzNPj0zzxQE3XGZjF3Asy0deJGFwgaCeuMFBIilCv
+         VTKFMEMQlUdIqsmeNlA+SwUh9rIS8HJIydgvpAoNULWCCUb5fd6lbfj++L/9GJDmAoU6
+         VjKvLvZ3p4eI+Tcv8Zj5ESPMZqnTiVGjokfGHRezYEfSd6RZK3TP34JEZMTTB3WGOeNu
+         zKWYd1DeLXDQzsgmJ+lssmp9snuwBjW9aIy2E9Y7pfPe8rGHml4TVOPt+fgGY9zUmByB
+         esww==
+X-Forwarded-Encrypted: i=1; AJvYcCXzcLpiCySQ4qdmLJnMXUMou2m6hXwLUJ/mceajeSDutjzZqK0y9yKwLtc68bOqhMUXuXDs5gvJndij79G5@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx+HsZSiTBgYxXQsZXsg+20n8pnuvdzGdPXZ4pIu5tOKsx1n++Z
+	8tBayqqim9GWR8+fKMwKxJG47QIUdke/qJSSZrADdRQRT12IvOA56pqi
+X-Gm-Gg: ATEYQzxQ88qmBKMKC1Eo93lWqcp7wNZAkTZmweHHy0XtCJQKOMZps1kjrWjaNu1vMTj
+	INmehUYQf60cVKRNu30IUpDQ4nsTK8P4Dv0Q9Rb/CzppnKlRBb7U9t8u7QZCYdYDWXEftZnrnkY
+	WX0bkGx4CSpyt4q5HQLn5WIZjnLqavwPZVgIfhZwCNz3SuoK9R3gZdCq4tG7ozbWSIVcmMRvdrU
+	MR+fK+kni+W1lqYgfej+/LRVeG1wc+qoqzsGaiMZ9qM0kNEYY8z9x54R9bUTjaHQq5jBrtPM0jZ
+	P5CAV8BVB5cEYxRhUtTNliS0MT+6MV8epG4lH50pVXZ/5uVMGJOygkj3445luuVZE+IeXvcU9cv
+	VhN2yf3QB10z1RIp9NiPLEHIju98JFCMB0LIBSLQCKUoOO+NWRTPWb29emuBnyOEyPPrQjBSWdc
+	u8Ssb+i3jGbXoY5FvqCJyPPk1AezagOWO9roFN
+X-Received: by 2002:a17:90b:38c4:b0:32e:528c:60ee with SMTP id 98e67ed59e1d1-359be31746amr3476775a91.24.1772840017833;
+        Fri, 06 Mar 2026 15:33:37 -0800 (PST)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-829a48d3621sm3213092b3a.62.2026.03.06.15.29.00
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-359b2de79f6sm6579296a91.9.2026.03.06.15.33.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 15:29:00 -0800 (PST)
-Date: Fri, 6 Mar 2026 15:28:59 -0800
+        Fri, 06 Mar 2026 15:33:37 -0800 (PST)
+Date: Fri, 6 Mar 2026 15:33:36 -0800
 From: Guenter Roeck <linux@roeck-us.net>
 To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 Cc: Catalin Marinas <catalin.marinas@arm.com>,
@@ -108,15 +108,15 @@ Cc: Catalin Marinas <catalin.marinas@arm.com>,
 	linux-pm@vger.kernel.org
 Subject: Re: [PATCH 10/14] watchdog: convert the Kconfig dependency on
  OF_GPIO to OF
-Message-ID: <2c6ad0ca-fd72-4bf5-9180-f45c20e60d37@roeck-us.net>
+Message-ID: <07aa5d40-96b6-41a1-b8ce-22f2c2c94aed@roeck-us.net>
 References: <20260304-gpio-of-kconfig-v1-0-d597916e79e7@oss.qualcomm.com>
  <20260304-gpio-of-kconfig-v1-10-d597916e79e7@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Disposition: inline
 In-Reply-To: <20260304-gpio-of-kconfig-v1-10-d597916e79e7@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260306_152902_712854_188753AC 
-X-CRM114-Status: GOOD (  20.96  )
+X-CRM114-CacheID: sfid-20260306_153338_796958_E5939F31 
+X-CRM114-Status: GOOD (  18.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,6 +135,21 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Wed, Mar 04, 2026 at 10:02:31AM +0100, Bartosz Golaszewski wrote:
 > OF_GPIO is selected automatically on all OF systems. Any symbols it
+
+Actually, that isn't really true.
+
+if GPIOLIB
+...
+config OF_GPIO
+        def_bool y
+        depends on OF
+        depends on HAS_IOMEM
+
+OF_GPIO also depends on GPIOLIB and HAS_IOMEM. I don't know why it needs
+to depend on HAS_IOMEM, but the GPIOLIB dependency is real.
+
+Guenter
+
 > controls also provide stubs so there's really no reason to select it
 > explicitly. We could simply remove the dependency but in order to avoid
 > a new symbol popping up for everyone in make config - just convert it to
@@ -156,29 +171,6 @@ On Wed, Mar 04, 2026 at 10:02:31AM +0100, Bartosz Golaszewski wrote:
 >  	tristate "Watchdog device controlled through GPIO-line"
 > -	depends on OF_GPIO
 > +	depends on OF
-
-AI feedback:
-
-  Could this change inadvertently allow the driver to be selected when GPIOLIB
-  is disabled?
-
-  In drivers/gpio/Kconfig, OF_GPIO is defined inside the "if GPIOLIB" block,
-  so it implicitly depends on GPIOLIB. By changing the dependency directly to
-  OF, the GPIOLIB dependency is lost.
-
-  If GPIOLIB is disabled, the driver will still compile because of the stubs
-  in include/linux/gpio/consumer.h, but devm_gpiod_get() will unconditionally
-  return -ENOSYS, causing the probe to fail. Since the driver's sole purpose
-  is to control a watchdog via a GPIO line, should it be prevented from being
-  configured without GPIOLIB by using something like:
-
-	depends on OF && GPIOLIB
-
-It has a point. Please update.
-
-Thanks,
-Guenter
-
 >  	select WATCHDOG_CORE
 >  	help
 >  	  If you say yes here you get support for watchdog device
