@@ -4,89 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5672FC9EE4
-	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Mar 2026 10:26:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86084FC9EF9
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Mar 2026 13:14:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8NnKDEYoYdrBCttENEtg9GlNPPyHCjUbKBs/0t2daHU=; b=RP+yPsG55ac7ff
-	NHDAErTc827Y6W5+NRt9tR1z5Wn8LCXM9lmwzn7KcDKtYHLtegvKkyeOdNmtO5bOqtH8g7kVIeY3H
-	CFKyjFtWg0DXAqSsNt2QQWa/p7Y/Bb2LF4o4aDoCU+G9/mFe0JOjFkk0cCn125NWtwNCMFVScpmkO
-	NmuM5uimw1ttHnL4N4qMsAy5o7tIdrCpGvoWyBq9St/lVJq9vjmWlHWGTdwp9Qua1rcw3yoZdeL6u
-	LMcLte4nuAlX5t8yhU7KfCL0E09wf3x+PDJhdlg0kHcBUuYoze4SnuviAGAGChvkPVdCYtX05d6lu
-	VwcU4hU+pAIrMTGoUrWQ==;
+	List-Owner; bh=zCDi5PjQVSy2r1AEKom+fOY52Gq2DhCFGOQUUaumKJg=; b=oquAGP+rLFJxKn
+	qYM+Mj59Oe9nm0mIOaFepptEF/yn2nL7YFdzk08E/Vn0E7/qKEj771BrBPXzvW5ONv85Bzv9XdFL2
+	dHRdHLKid1RAKkbZREmZBrOhwPRjQDbUrhr/c8KIvLhPLsAEl+p60w3RBhPYqGoVShMluXwBS3orL
+	TOkSAFx9EL5mrHrlSaoHq1TvuJRWsahzOFJ6TuJQ6r4RNDueKhe6f0fubjaPzklkG081iMqx0ulfV
+	UmuhH5hS8X1yfZmx19S5mr9WTLNwoFNimcKYJABL3uNvqI0hjCDW2bLOKBF1PBQSbbcUaGQZcUiRA
+	EXdlnjVl5VUmAAc5znwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vyorA-000000055gM-3rl9;
-	Sat, 07 Mar 2026 10:26:00 +0000
+	id 1vyrTq-00000005DY6-0a7k;
+	Sat, 07 Mar 2026 13:14:06 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vyorA-000000055g9-1Uyu;
-	Sat, 07 Mar 2026 10:26:00 +0000
+	id 1vyrTp-00000005DXb-0fz9;
+	Sat, 07 Mar 2026 13:14:05 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id D9AEA60018;
-	Sat,  7 Mar 2026 10:25:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02DAFC19422;
-	Sat,  7 Mar 2026 10:25:58 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 22324600CB;
+	Sat,  7 Mar 2026 13:14:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1105DC2BC86;
+	Sat,  7 Mar 2026 13:13:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772879158;
-	bh=gK0pRUM/Slfh1oiPmyu3lYsDR18Y7TIzAYUu4D4ldj0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j0Cac6S7TyQb+E6Y2hSbXhG5N5uDfVrssvtttU324wBvcszTcCtHvLTTG6vhZAYq7
-	 wskyH5zr18JuTUiOMKGCzxZJNC30mVQa9uzgNH+81iLrwuTOS7AF+F1rg+Qcw90+J4
-	 Hup3d6KGjEoFHVj4LT2aRD+9kmz3xe5CPxlWzaTUcLe+k82X84Bj76ifbo8W1lksUv
-	 nSTMoq1tSEPXIuSTcFIfIHv5bK2Xol6mUMEI2LMojWPdFCTWxH27UDeFaF40KZilXu
-	 Et7B4BVoQTlXRPP6S6sInBPHaCZQhjZcsKbaAYTa3jYkRERSa3gTQIQbkmerjXe7ml
-	 UpoHRIhMOPjCw==
-Date: Sat, 7 Mar 2026 11:25:56 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Matthew Gerlach <matthew.gerlach@altera.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Keguang Zhang <keguang.zhang@gmail.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, Romain Gantois <romain.gantois@bootlin.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Minda Chen <minda.chen@starfivetech.com>, 
-	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
-	Shuang Liang <liangshuang@eswincomputing.com>, Zhi Li <lizhi2@eswincomputing.com>, 
-	Shangjuan Wei <weishangjuan@eswincomputing.com>, "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>, 
-	Clark Wang <xiaoning.wang@nxp.com>, Linux Team <linux-imx@nxp.com>, Frank Li <Frank.Li@nxp.com>, 
-	David Wu <david.wu@rock-chips.com>, Samin Guo <samin.guo@starfivetech.com>, 
-	Christophe Roullier <christophe.roullier@foss.st.com>, Swathi K S <swathi.ks@samsung.com>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
-	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org, 
-	imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH net-next v7 1/7] dt-bindings: net: qcom: document the
- ethqos device for SCMI-based systems
-Message-ID: <20260307-boisterous-tuscan-rat-1eb9bb@quoll>
-References: <20260306-qcom-sa8255p-emac-v7-0-d6a3013094b7@oss.qualcomm.com>
- <20260306-qcom-sa8255p-emac-v7-1-d6a3013094b7@oss.qualcomm.com>
+	s=k20201202; t=1772889243;
+	bh=XlMEEXzB+WjMvOB+Oy4SuOD48pHVsx3JOsZamGOtvwA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=P56EtmRSfaz3NuXB7SKevKkNm9qHV4u/7m9Y66Ng8pdfeFqD0HmRDY+Mxj1UUFIG7
+	 VKpWpbbwikK+8YJLtI/18IMvDhDhvXCr81YX2YqQbV74g1VQJj1435XZyP0fpWQm+9
+	 VMcxdj2/ViO8pvPNi+Lf+P4unxo5/Y7PtSlQ4d18A6AWNGFS2oIR6N9rUqUlMPAVCR
+	 wpZIVtmliRd10p4QcNRS30S6KpgKi/BvEhBuudTfRDTVX08Z5F92hTKfLc4IfYj0o0
+	 wUuGKbnfhaSFqgpB6He7oOumkr+08PywZ0IJf//iPOKRKCmjQrRNxerBGV+DyiDwsQ
+	 2njXV40/glG3Q==
+Date: Sat, 7 Mar 2026 13:13:54 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rosen Penev <rosenp@gmail.com>
+Cc: linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Xichao Zhao
+ <zhao.xichao@vivo.com>, linux-arm-kernel@lists.infradead.org (moderated
+ list:ARM/Amlogic Meson SoC support), linux-amlogic@lists.infradead.org
+ (open list:ARM/Amlogic Meson SoC support), linux-kernel@vger.kernel.org
+ (open list)
+Subject: Re: [PATCH] iio: adc: meson: no devm for nvmem_cell_get
+Message-ID: <20260307131354.1875ff4b@jic23-huawei>
+In-Reply-To: <20260304041716.7631-1-rosenp@gmail.com>
+References: <20260304041716.7631-1-rosenp@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260306-qcom-sa8255p-emac-v7-1-d6a3013094b7@oss.qualcomm.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,32 +75,16 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Mar 06, 2026 at 04:46:39PM +0100, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Tue,  3 Mar 2026 20:17:16 -0800
+Rosen Penev <rosenp@gmail.com> wrote:
+
+> There is no reason to extend the lifetime of this post removal of the
+> driver when it's only needed in one spot.
 > 
-> Describe the firmware-managed variant of the QCom DesignWare MAC. As the
-> properties here differ a lot from the HLOS-managed variant, lets put it
-> in a separate file. Since we need to update the maximum number of power
-> domains, let's update existing bindings referencing the top-level
-> snps,dwmac.yaml and limit their maxItems for power-domains to 1.
+> Moved tsc_regmap assignment to avoid two nvmem_cell_put calls.
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Reviewed-by: Romain Gantois <romain.gantois@bootlin.com> # For RZ/N1
-
-Can we drop half-baked reviews? Reviewing only that piece is not even
-possible, because it makes no sense outside of main change context. IOW,
-it's pointless review of nothing, if you do not actually review the main
-change impacting RZ/N1.
-
-Also submitting patches do not really allow to apply reviewer's
-statement of oversight to inly part of the patch.
-
-It's called Ack then. Use proper tags if one does not actually review
-the patch.
-
-Best regards,
-Krzysztof
-
+> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+Applied. Thanks,
 
 _______________________________________________
 linux-amlogic mailing list
