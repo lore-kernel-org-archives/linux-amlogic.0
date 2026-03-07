@@ -4,119 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7A17FC9EC4
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Mar 2026 23:33:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0C3DFC9EC0
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Mar 2026 03:43:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HOU8MYf02OON7YTw02tx3PwwNuNASGo27z/suJLXb6I=; b=QU8AGQjUMShr5L
-	pGQk/fj61Zj33RjqQMMjRh8jM/A3FuOXeOkll4CdmNkb+SaB1gfDAFRgNZmyIFoj1PEB1sDuqVzK0
-	o4OcaHTO/k8couSbtpkE8EKnouGjsikEmqaCsjF2FyypoVqViqNb/CuTZo9+fFmPX1iNTBlMN79gi
-	SIJe4ro2DI/oA+6dYlNF3jVloxcxWuhA205y2hTrpJQ0cD6UAUFQMKbbp8xCh89ddiLH0iqmKp8bF
-	BqeZ7GhAatmsL3B5W0Y1bzw1JkmcG1yAvImZIRO+B44Do9uZX8OIG/Fh4Ha1UGlEebC5Gw7MKiV/E
-	uisOnzHaYZokzhh63oxg==;
+	List-Owner; bh=jcXVcDJ8MYNmsKSyrPEpgTcqaiVahkaH3b1IqTAJnIY=; b=tWSpwRTDKRmIRN
+	oOOKo9X7HPjv0aZWbzwphJPmZR2VOkoWgjXueT8NP44neVShp9oRhLdzPxPn6Y2rjf9fkaY9Vbete
+	z7SuZaf4DiUzj2m9rHh+T+7RB7Yyxm5DkA12UzW1l/MyO1S2GFC9szTHff62Q8j+pEp49c+49gPf5
+	F3xF28KISrl8cORaEJ0LQvwKnoO/jWiqUVoC982m4LGJwaGDQ+bFOzmWjHvHIDXmDnf/s8sOnYPDY
+	zu/m8OARP/B4ZYJeUFN//tll08AAkRTFsHHwl9uLuCJcM5lCaBLQ8YP3vZOaLz51U3WKGUSacqtx4
+	q/JRTbCOO9RMs/H9UwLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vyeft-00000004eKK-2Ghk;
-	Fri, 06 Mar 2026 23:33:41 +0000
-Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
+	id 1vyiZk-00000004rSB-3Jfh;
+	Sat, 07 Mar 2026 03:43:36 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vyefq-00000004eJ4-3Cm5
-	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Mar 2026 23:33:39 +0000
-Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-3598df39444so3864217a91.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 06 Mar 2026 15:33:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772840018; x=1773444818; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A3n1MjNRco+xhIuiD22YqqFeZmP/U2HpmvCL9DYQOmg=;
-        b=nXUq0Cfavs74wj2uvslg5l971BVwk6u/JROHsQnoAqPvT+/IlBiPxFTYaiyx0jM1Hy
-         GBQR0FzdVSyUGeCw7T9PZr+cm+BJsg0SqDY2rZ70fauFemT3pnFdwn3UO78ZtA7idkVv
-         FpCqr4swG4hmhEWRxQLp6j5VZroQQOzYg9Anci1FRwLaIUEkn4y/AVb0XRiIBPxKHUGh
-         TBByC+cD5kgn2MiAkpxwqEDmTmcyVFz1sUsNszToKtT0pwhITP4ZVobd0MMWcXbZL40q
-         kjrvakj6E8KbWTKtEGKLe+MsWs0vCW5vojJpvx1dGBvYXHSWqxkuPjAaYo+sb27Hv70t
-         OPVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772840018; x=1773444818;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=A3n1MjNRco+xhIuiD22YqqFeZmP/U2HpmvCL9DYQOmg=;
-        b=XQYDf1ITC2wVRDdZTwWWyHi3IMLnXsNVAFhdX8DfW1szMSP0ZjFNjJBPQ3XNgLF6sv
-         VWnsqwDRkZfEyoUaqf+STxrgVbFXzNPj0zzxQE3XGZjF3Asy0deJGFwgaCeuMFBIilCv
-         VTKFMEMQlUdIqsmeNlA+SwUh9rIS8HJIydgvpAoNULWCCUb5fd6lbfj++L/9GJDmAoU6
-         VjKvLvZ3p4eI+Tcv8Zj5ESPMZqnTiVGjokfGHRezYEfSd6RZK3TP34JEZMTTB3WGOeNu
-         zKWYd1DeLXDQzsgmJ+lssmp9snuwBjW9aIy2E9Y7pfPe8rGHml4TVOPt+fgGY9zUmByB
-         esww==
-X-Forwarded-Encrypted: i=1; AJvYcCXzcLpiCySQ4qdmLJnMXUMou2m6hXwLUJ/mceajeSDutjzZqK0y9yKwLtc68bOqhMUXuXDs5gvJndij79G5@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx+HsZSiTBgYxXQsZXsg+20n8pnuvdzGdPXZ4pIu5tOKsx1n++Z
-	8tBayqqim9GWR8+fKMwKxJG47QIUdke/qJSSZrADdRQRT12IvOA56pqi
-X-Gm-Gg: ATEYQzxQ88qmBKMKC1Eo93lWqcp7wNZAkTZmweHHy0XtCJQKOMZps1kjrWjaNu1vMTj
-	INmehUYQf60cVKRNu30IUpDQ4nsTK8P4Dv0Q9Rb/CzppnKlRBb7U9t8u7QZCYdYDWXEftZnrnkY
-	WX0bkGx4CSpyt4q5HQLn5WIZjnLqavwPZVgIfhZwCNz3SuoK9R3gZdCq4tG7ozbWSIVcmMRvdrU
-	MR+fK+kni+W1lqYgfej+/LRVeG1wc+qoqzsGaiMZ9qM0kNEYY8z9x54R9bUTjaHQq5jBrtPM0jZ
-	P5CAV8BVB5cEYxRhUtTNliS0MT+6MV8epG4lH50pVXZ/5uVMGJOygkj3445luuVZE+IeXvcU9cv
-	VhN2yf3QB10z1RIp9NiPLEHIju98JFCMB0LIBSLQCKUoOO+NWRTPWb29emuBnyOEyPPrQjBSWdc
-	u8Ssb+i3jGbXoY5FvqCJyPPk1AezagOWO9roFN
-X-Received: by 2002:a17:90b:38c4:b0:32e:528c:60ee with SMTP id 98e67ed59e1d1-359be31746amr3476775a91.24.1772840017833;
-        Fri, 06 Mar 2026 15:33:37 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-359b2de79f6sm6579296a91.9.2026.03.06.15.33.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 15:33:37 -0800 (PST)
-Date: Fri, 6 Mar 2026 15:33:36 -0800
-From: Guenter Roeck <linux@roeck-us.net>
+	id 1vyiZh-00000004rRh-3pCn;
+	Sat, 07 Mar 2026 03:43:35 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 9A61C43C6A;
+	Sat,  7 Mar 2026 03:43:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B574C19422;
+	Sat,  7 Mar 2026 03:43:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772855012;
+	bh=Npi1ivSwi9obv8U3L34yLEE92R/UJPUFNgtE+UQvMxI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=eEu0t4KqV0RXFs7ptg/3zuFhP8YGOnn/jnZa56ETLQ7fgpNICTk8CQhJZpG4tICj5
+	 9RlrKYLlJyDOyDPNeBLR9i/IjqdNks26GRcxcCKRkytQCHcQ6FoDX/kaYfzkVD4I29
+	 VM9fiopVVkrFjgAsAsP4yJKaVHQNAk5h1pWtGezpWDjiDE/LERIK9Eu1Hdtj4vsLVN
+	 H0PIpltzVprS8RunFG2e2J+vtV+FW1P/lak0nG4JwecP2NkAj4/C1wWxjJb+/LP9AH
+	 GyW7ZvTZlWI7b0Tg++YRXjC6U4V+brYhXf+KEuvVmI7jGUkI3lB5LBJNCK9YPVYeb/
+	 PrBzkjLXUw4jA==
+Date: Fri, 6 Mar 2026 19:43:28 -0800
+From: Jakub Kicinski <kuba@kernel.org>
 To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Alexey Brodkin <abrodkin@synopsys.com>,
-	Vineet Gupta <vgupta@kernel.org>, Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Dvorkin Dmitry <dvorkin@tibbo.com>, Wells Lu <wellslutw@gmail.com>,
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-snps-arc@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-leds@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-watchdog@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH 10/14] watchdog: convert the Kconfig dependency on
- OF_GPIO to OF
-Message-ID: <07aa5d40-96b6-41a1-b8ce-22f2c2c94aed@roeck-us.net>
-References: <20260304-gpio-of-kconfig-v1-0-d597916e79e7@oss.qualcomm.com>
- <20260304-gpio-of-kconfig-v1-10-d597916e79e7@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Richard
+ Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Vinod Koul <vkoul@kernel.org>, Giuseppe
+ Cavallaro <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>,
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Matthew Gerlach
+ <matthew.gerlach@altera.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Keguang Zhang
+ <keguang.zhang@gmail.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>,
+ s32@nxp.com, Romain Gantois <romain.gantois@bootlin.com>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heiko Stuebner
+ <heiko@sntech.de>, Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
+ <inochiama@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>, Minda Chen
+ <minda.chen@starfivetech.com>, Drew Fustini <fustini@kernel.org>, Guo Ren
+ <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Nobuhiro Iwamatsu
+ <nobuhiro.iwamatsu.x90@mail.toshiba>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Maxime
+ Ripard <mripard@kernel.org>, Shuang Liang <liangshuang@eswincomputing.com>,
+ Zhi Li <lizhi2@eswincomputing.com>, Shangjuan Wei
+ <weishangjuan@eswincomputing.com>, "G. Jaya Kumaran"
+ <vineetha.g.jaya.kumaran@intel.com>, Clark Wang <xiaoning.wang@nxp.com>,
+ Linux Team <linux-imx@nxp.com>, Frank Li <Frank.Li@nxp.com>, David Wu
+ <david.wu@rock-chips.com>, Samin Guo <samin.guo@starfivetech.com>,
+ Christophe Roullier <christophe.roullier@foss.st.com>, Swathi K S
+ <swathi.ks@samsung.com>, Bartosz Golaszewski <brgl@kernel.org>, Mohd Ayaan
+ Anwar <mohd.anwar@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, Drew Fustini
+ <dfustini@tenstorrent.com>, linux-sunxi@lists.linux.dev,
+ linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+ imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
+ linux-riscv@lists.infradead.org, Bartosz Golaszewski
+ <bartosz.golaszewski@linaro.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@oss.qualcomm.com>, Konrad Dybcio
+ <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH net-next v7 0/7] net: stmmac: qcom-ethqos: add support
+ for SCMI power domains
+Message-ID: <20260306194328.238d89ff@kernel.org>
+In-Reply-To: <20260306-qcom-sa8255p-emac-v7-0-d6a3013094b7@oss.qualcomm.com>
+References: <20260306-qcom-sa8255p-emac-v7-0-d6a3013094b7@oss.qualcomm.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260304-gpio-of-kconfig-v1-10-d597916e79e7@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260306_153338_796958_E5939F31 
-X-CRM114-Status: GOOD (  18.61  )
+X-CRM114-CacheID: sfid-20260306_194334_006483_9A8F5AC0 
+X-CRM114-Status: GOOD (  13.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,47 +114,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Mar 04, 2026 at 10:02:31AM +0100, Bartosz Golaszewski wrote:
-> OF_GPIO is selected automatically on all OF systems. Any symbols it
-
-Actually, that isn't really true.
-
-if GPIOLIB
-...
-config OF_GPIO
-        def_bool y
-        depends on OF
-        depends on HAS_IOMEM
-
-OF_GPIO also depends on GPIOLIB and HAS_IOMEM. I don't know why it needs
-to depend on HAS_IOMEM, but the GPIOLIB dependency is real.
-
-Guenter
-
-> controls also provide stubs so there's really no reason to select it
-> explicitly. We could simply remove the dependency but in order to avoid
-> a new symbol popping up for everyone in make config - just convert it to
-> requiring CONFIG_OF.
+On Fri, 06 Mar 2026 16:46:38 +0100 Bartosz Golaszewski wrote:
+> Add support for the firmware-managed variant of the DesignWare MAC on
+> the sa8255p platform. This series contains new DT bindings and driver
+> changes required to support the MAC in the STMMAC driver.
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> ---
->  drivers/watchdog/Kconfig | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> It also reorganizes the ethqos code quite a bit to make the introduction
+> of power domains into the driver a bit easier on the eye.
 > 
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index dc78729ba2a5d6e035ed3cbe5c2b631d11b76b20..ef200339a22a6f9c51a46c9c0b8466add74313e2 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -250,7 +250,7 @@ config DA9062_WATCHDOG
->  
->  config GPIO_WATCHDOG
->  	tristate "Watchdog device controlled through GPIO-line"
-> -	depends on OF_GPIO
-> +	depends on OF
->  	select WATCHDOG_CORE
->  	help
->  	  If you say yes here you get support for watchdog device
+> The DTS changes will go in separately.
+
+Looks like it conflicts with patches merged last night, please rebase
+
+Applying: dt-bindings: net: qcom: document the ethqos device for SCMI-based systems
+Applying: net: stmmac: qcom-ethqos: use generic device properties
+Using index info to reconstruct a base tree...
+M	drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+CONFLICT (content): Merge conflict in drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+Recorded preimage for 'drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c'
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+hint: When you have resolved this problem, run "git am --continue".
+hint: If you prefer to skip this patch, run "git am --skip" instead.
+hint: To restore the original branch and stop patching, run "git am --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"
+Patch failed at 0002 net: stmmac: qcom-ethqos: use generic device properties
+
 
 _______________________________________________
 linux-amlogic mailing list
