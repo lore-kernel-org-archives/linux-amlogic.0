@@ -4,146 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA12CFD2D69
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Mar 2026 12:39:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30C27FD4F0C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Mar 2026 17:34:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:References:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3B/HgF4KfOUaiuteSH6b54TYsB7On1UomYt8yhMsPT0=; b=iqv0hTf7bvLlCDV9ZKRP6J1X0z
-	RcokfxIVZKyjWR36zhLIObaKnU0OFpBjgh3jpOOOC29pVl7x1ElVAPKadqbd2nYhQGBPd6Sll1YeS
-	p2QD+Qc/ZDR81ZQmQU/2liqzn6HycSex6SkTl57jZoSaB3QSp9JReEPwBwOMa/AB0obONWkevon1K
-	TX/yIXLZjxd/SLMzqmFntGMXZu0KjlTXiRY4FBr5KDx4iwX0Z5T064bY2UJ+4E75MnCIt9B0tYdAz
-	KXdC9F8XVGcHvnviDiX2AHJjyU7eR3WSYAmFkmx0l6KygxAXyCIxRSRGYkKleHnNZ2ezRNV/RXobs
-	e2SsnkDw==;
+	bh=NU9vYdCaES/9C94ttQ1bbTIHZAJpcQgSwCG0/VFRRCo=; b=ti1c9DeWqhk/NGVf/996b7QILZ
+	vP8uaw/Y382siDIZ4/4YV3/jzMwekv9359Zij7TwgxHIcxmiJcmii8Cz5oEWg2QAXNCe9rePm7b6V
+	GBsie/8aNY2ikyHTN+d48XcEH+4l2J4gm+M3c7hjPEonM/gCSKDY3VDcYJVfcwvADynG+mNIuj1M5
+	ZloV+bTL+hkRnGyM5c5nZ7psHmzadWbunXu5TfoOnEmri9dO3AHZrmz9IkF6QamWbMw3lUShE41nU
+	CcEF26X+u3PlOZAQ5DoMnvHSoVaGPOrq5j6SuBuckhKmMmfkHUPXa7DA6OIvRdGKUNdm2c7x3SDPx
+	EiuEgM5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vzwMS-00000009V9z-1a2v;
-	Tue, 10 Mar 2026 12:38:56 +0000
-Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
+	id 1w00yG-00000009zqq-2RBB;
+	Tue, 10 Mar 2026 17:34:16 +0000
+Received: from mta1.migadu.com ([2001:41d0:203:375::] helo=out-177.mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vzwMQ-00000009V9M-2YAU;
-	Tue, 10 Mar 2026 12:38:55 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yyIBh8KNrCqWaudbLWeibSzwVTWr/N0UFUT5vZHVG8EmijtGXJT8LH7qdQDg32hpagPfevT727z5XVrGobjc7gIrQ2uRssWrPEpfs0bsaJrzTTMw/SoFR+5VVvFwCyKkHzMalqIDXORY1HSKshW8mJH7yr8CWqsmhmWcvEaBUb+CbPTa+2G4fCxTqdloe37q3UQpn20ME+57JhZxBZYMCJQ37lht7H0ZX/KveFCjUv8QryeTWt2OT+H4XqnrBXOgbrybqdUr6QoTaMq2CncQxyzDlaGh7WRnLv1odo0yhJbrgJ3s346Sck/fVj65lLaWN9I+31wAekreLyEJMYB6hg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UY8ahe60e0FFBRxPqNGHIhj7j/k/iBMwB3YH/yJrxgA=;
- b=BCSWBuddVk5e7oQ60OGHuBvOfaAvu2uivlpzRgu8VUze3sqYcmaS396YU/LILMn1LFTuT6qEF/O8vi6jDW00geAnSC0441w0anI7sE6bVCQ84VALPgUxksjnQohQthy2tVjBU0IwPxioPS0oJyjaPKgUADRWELqRa9jNUb5BoGnuiom5TnUd/Ric/xcXsKqSs2tCwxCAqCpA3y+uxd4+QGJ9HkoibvIP5s0H76hHDZNWZCFG897IxrDk9eHd4GvOveHM3E9RMGxaweLV6cm7dhoWlZ6ftoMa7hOjWUTKKCMrdzw3LSxwfpF1RyMQFJVnkqtt99nzreZIg51Zs4/r5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UY8ahe60e0FFBRxPqNGHIhj7j/k/iBMwB3YH/yJrxgA=;
- b=PQdorFlp+v8bTquSZfk575DjiKUaJzTsmj7qxdw/xSBWOmJWKNon1ij8i6zsKRgrPf75lwPgiIXfGvKXvUzDFLBFjZAAiACFKh0O78x1aH2G0Rrb8mRwB0q7BozBxfCtWftu9FnjGVeyOIZ1FKeSjx534c82HJT+iKxYs40KS7sqHArWHJ2lP4VQEuZqOVOCp4GsrV9FzcgioSojmc9ovcKTjm+yncaPv2lvHVjwNbQ/i2L3nEtWXXxryS0H0zYAx7GDXXjM+ZsN5tTebjHo+xPKv6VxNMX5iNT3HQbLC4ldEs9VVRH/AZ+7ufYMdwqZdQ4ss+5AnmFB6h9ZvUxdkA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
- by SEYPR03MB6532.apcprd03.prod.outlook.com (2603:1096:101:89::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Tue, 10 Mar
- 2026 12:38:46 +0000
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506%5]) with mapi id 15.20.9678.024; Tue, 10 Mar 2026
- 12:38:46 +0000
-Message-ID: <5661aa0b-de22-4392-9080-969d01bf48b5@amlogic.com>
-Date: Tue, 10 Mar 2026 20:38:44 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: clock: amlogic: t7: Add missing mpll3
- parent clock
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Stephen Boyd <sboyd@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree <devicetree@vger.kernel.org>,
- linux-clk <linux-clk@vger.kernel.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-References: <20260305074328.639993-1-jian.hu@amlogic.com>
- <20260305074328.639993-3-jian.hu@amlogic.com>
- <20260306-monumental-nuthatch-from-avalon-bf108b@quoll>
- <fb47c7f7-9eb7-4895-8652-3b5329d23752@amlogic.com>
- <0f336f9c-455d-4438-8b65-442ba9501e92@kernel.org>
-From: Jian Hu <jian.hu@amlogic.com>
-In-Reply-To: <0f336f9c-455d-4438-8b65-442ba9501e92@kernel.org>
-X-ClientProxiedBy: SI2PR02CA0038.apcprd02.prod.outlook.com
- (2603:1096:4:196::22) To KL1PR03MB7149.apcprd03.prod.outlook.com
- (2603:1096:820:ca::7)
+	id 1w00yE-00000009zga-2nIt
+	for linux-amlogic@lists.infradead.org;
+	Tue, 10 Mar 2026 17:34:16 +0000
+Date: Tue, 10 Mar 2026 17:30:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1773164011;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pbRHkg6j9RRwu7gnA0/6n+CmNyUAf+QALaWx+a/gjiE=;
+	b=pIm114EZhCnFvihJDz6EkqgldikGB5peLN/GNoPVUM8SKl14CnwYJIOE4ErMAHwCKfGtB3
+	oiRo5WnSWNBtmG5SJUFTonIS3T48mLUDfhQRC8IJMHHuBXt0TisKqY/AYSO1npzSuETDi3
+	gAAWkmCY+2/Ycd8B74gOr8ijLiy49hUQu6zDCk1n8iGqvuQukdPenkomdX6v5eaYRIq1PE
+	IcCJb1wnZcWUm/PWHiyv4g4Fd4VasAJSTNWatypqr5ulUsI2qy0MSto4QGxM6/iPJ4stqb
+	qeF3jkwOIT70sGs5srpp0wqvq8EhAVDnxWciCRok0RGf1q67atuqob0kXOhQ5Q==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ferass El Hafidi <funderscore@postmarketos.org>
+To: linux-amlogic@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin  
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Jian Hu <jian.hu@amlogic.com>, devicetree <devicetree@vger.kernel.org>, linux-clk <linux-clk@vger.kernel.org>, linux-amlogic <linux-amlogic@lists.infradead.org>, linux-kernel <linux-kernel@vger.kernel.org>, linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH 3/3] arm64: dts: amlogic: t7: Add clock controller nodes
+References: <20260305074328.639993-1-jian.hu@amlogic.com> <20260305074328.639993-4-jian.hu@amlogic.com>
+In-Reply-To: <20260305074328.639993-4-jian.hu@amlogic.com>
+Message-ID: <tbp23s.3oymu5iyepvke@postmarketos.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|SEYPR03MB6532:EE_
-X-MS-Office365-Filtering-Correlation-Id: 02ae5e38-ee42-4ee2-7355-08de7ea1f8cd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014|22082099002;
-X-Microsoft-Antispam-Message-Info: Sq0eP1zFfvHoJh/NcW4QipfapXmVPQo5H75jDhDxfvn9b9Z4IfGrWQzztwm+4v9YPWssbIJgh4Ih7XvSq4Td7OhxjNp7dM6zZUB/3xoDV6/CxnIhWDH6kXbmxj/IAjTIfP4L8DMXOP0DWNIiGV+3IaycVWYhPPAD6a76TFhSDR+OlDYS95kISr0UjIRM+vX7c84CIvdrc//YwH73/CDDrOXEbHebZHTiwamdc0zZO+9CCW05tH1Hw/2+P4i779wZRerVSnwwfRQquFwaMAVWlj5FKuRVzHMwPSo2hCmate+B7T/c60bgtFlctNlXo1UrB9qctYAXsuNABS2SZKcxjCL06BBA+e3SoWVmsVFGNNQhZ+gB/+P9Yp4amr5A7DXr7/uy5f2E3hJ1uFs4sCPiVa5cRMoH6KtS5nozYaUNZ1Tn5DNtmLrPfT0AddYLThsmTOpk/CGcpjm+eg9kbHQKcigSwcH0DS7ejudevU1d7KXdp1ahXpTDdoObEDTSHP90jUnaDtGxUijGzJwtpjDP9gJyOF/VsuJLtQV2vWwoy15NTV27+RpPcPrSypCZFjvH81Bs8KsvScGNE6/DKH7wxSw5YDnkRZCbuE+NrBiC4EUcPtO3y1KIpTgASUR+iHvzNICOEcx7AZRSHEDNyQ2kNnt+EbtpicUVGrcVcMqoovHstBAgFjbTwk9e1yxjfAy6vo8zJb9OW+gMeWXkanZ252n1QU9WpM7yFuuxFyPWQ5g=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(22082099002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SHZBMjlLWEE5SlpHNkdSVStNdUxIQ3FzaDd3SldSOTZuVHFzYWlydktsT1pw?=
- =?utf-8?B?UWZ3aE1Da05KeENHWnVKVnZQamwwUWN6UE43d2RHTy9GS0szaCtkbWNPcUJP?=
- =?utf-8?B?c1JkWERPdG45aU5OOENjT2lDSFNZbkVEL25zUCtIajBrOUxwdUlIUzcvdmpT?=
- =?utf-8?B?dzl2RkJFMmpJMHMyUmk5NjF1aEp3ZkRybWhWdndlVmhJY3ZmTlBtc3U0TnM2?=
- =?utf-8?B?QitrSCtKZDArNmdoMUJwaTBueUY2THFEU1cwS3F4ZXJHb01vbTRqL2FhYktv?=
- =?utf-8?B?NFBIODV5NEdPbFVENld6VHRCNjh3aHhSUTgvVkNpOWxwak8xVlFlM0Q5cnAy?=
- =?utf-8?B?eDBRc055WW54ZGVUQ2ZCM3p5b0ZnUi9JZ2NPbCs5RDJ5YUxuUjhqbU1RRjND?=
- =?utf-8?B?alNPVFFCcjFxTWJqVlBub1V2dkM4TmNHNnVMUHN4b3hLMTcvZCtEOHpzYnRW?=
- =?utf-8?B?dGN5S0FERWZGZ0ZWakZIdHJQc3d6a1FkK1NJcTh6N2dvK2RxUCszNEVnSnpq?=
- =?utf-8?B?RkY1VHhHaldDWGN3blMxcitaN2ZpblBxN2ZzRUZ3OWc5V1o2ckhuUjdjVFVF?=
- =?utf-8?B?YzIwMjlTbGRiZUxWSmZZbnNieVg0R3FNQmtiNElhSERaT0l2dnBKeldKQ1BY?=
- =?utf-8?B?b3pBZU5XbnQ0d0Z2cFN1UFZNaUltTWVTNjdiSExubS9sSjZzS2p1Q0I4Sm8x?=
- =?utf-8?B?WmJKWjhxNWFuT1ExSFZUOXdTdkE5V0VNU3grbGxtR0wrajBwd0VaY2UrTENi?=
- =?utf-8?B?ajU4eGQvdmgrNW54SUtlVWt5bDdPMjVleHR1Q1BBOVNLcjJGL2k2VFNkY3Bi?=
- =?utf-8?B?NVBrcVR0NFVqelM0WHZRcDRUWTNiV0lpTldaMEU2aUhoaEtUZ1BXVTl3b2ZJ?=
- =?utf-8?B?cjVBMk5na3BQcWJFMEp4amUwTTdXR21CeWNveFVsdmpZYnhiRlAwNVh4NDBx?=
- =?utf-8?B?OXRkdmhiTkdXNTJqK1BsQVVUM0czVVdpVFBOcFYxeCtWb2FNd0dZeTJTaHpV?=
- =?utf-8?B?bkd4bXhVZUtVdHVML25NeE1iNkk0VHE3VGhUTCthR3pOMmlZVnpQMVk5WTB5?=
- =?utf-8?B?TDNJVTBvQ2NxNmxVeXZsc21zNnZtKzk1MEZEem8xZE9qN0RFbzVXdWhKak5E?=
- =?utf-8?B?a1JSNFZGM2pyMVV4TGxOT0hoTUdPaU1ZME5iQ203YU5hRUMvalVxNU9nSTVL?=
- =?utf-8?B?VEpCR2dSL0Nsa09MQXNHTjZVb21HdzczSEtvR0hUSFZXYmV3Szk3eXl5bE1M?=
- =?utf-8?B?SjNrZW1TWFdXY2o3RzF1V0YvTngvY2ErMjdvaGVYOGx3R0ZBa05uanVwRHRM?=
- =?utf-8?B?UnVwTDlZZG93Yi9aKzBVcGZNUGtPWDJCMDJKTVlNSG1lMlI4eFBWbmZFRVBC?=
- =?utf-8?B?WGRNSWdxak1jSyt5N3orZkxraldLOGxSbDVSVzZ5cHhkWTJTb2t3bmQyYXRF?=
- =?utf-8?B?ZVRUVEN2bUJwQ3V0U1M5aGc5akJ5eUlFVUI4djRFbEpubThiWmJwM0hmRlMy?=
- =?utf-8?B?M29zNjBtSXMrRmpZTXZ4UFZqUEFCNTdkWXdiZjZGZUtNdGljNVJFQkV2cHh4?=
- =?utf-8?B?ZFZjK0RZT3E0NmJHeU9ya0R1MmlhWUFabkdEZndoNE1Eb1BEbHRZNm9FemVh?=
- =?utf-8?B?ZG1KUEtZUVhXcWMwUy9SUXh1cDBsTHhpUm94L0MwdXd0QjU1ZFhacWEwNE9S?=
- =?utf-8?B?bm5LbW1JN1JZVTlzaFZOMWZ0L0ZrdUwxYUgxSkVjdW5LSVB0cFVlSkN0UnNH?=
- =?utf-8?B?U3RIZUZZSGU3eFZEQTduVHNUQkdlOFhLTTRuWWlGVHlDOWR2MEZHcHBwNnBu?=
- =?utf-8?B?UUFEQlpZRWdpaHZwRnFCM2gzZlVDMmpXeXVmRmRPVnB6a2hJTDJhU2wzRFdO?=
- =?utf-8?B?WmRXbW85WE1Nd1FxWVVtN3oxRmZoN0xJNFhraHZia1BwejBhaElTVFJ2L0Rp?=
- =?utf-8?B?S29sZFVFMDlJbFJhd3JDVkZIL0VVRnlRRFRsbWo2M0xmV0g4MXFvMWJWdnFK?=
- =?utf-8?B?U0Y2M0J6T0pKYTJiMFZ1Zks0SkY3YjVMV3lOc0I2bzFKRXduQjM0OGt6bFkx?=
- =?utf-8?B?WlJlUEMxdVdvaHgzdTA0TVEwU1lPOUVzQXNVSHMyRVd1blVDK0phZS9SeFRD?=
- =?utf-8?B?bStoK1hkck9RNTRFTzg4YVQxcXVvOVNwcktIVi8ydURmZTRxU1h6SzhDZmox?=
- =?utf-8?B?eXQrUXVyODZScTdJOUpUa3B5ZU15Vlk2cEQxWFEvR0c4aHhQYkdUTjhXU1pq?=
- =?utf-8?B?d3JpWS9rM2M3OC9nM2pTdXNmMjRVdzViZERkbmRNaXRYRXNHVnEyYVA2bzJJ?=
- =?utf-8?B?Znl6RmliTExFV0RuRkFGYnQ0c0xuTmY0UWdZQWllck1lTXVadWhKQT09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02ae5e38-ee42-4ee2-7355-08de7ea1f8cd
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 12:38:46.3774
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Qt1uI8U8kmiNJJmoCqTkNFt4tzgwKubmHiltNuUBBtNJA+OOVC9yXQzRx2lbQhRIDOeBI4H9hFiMVtAI3wOSOQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB6532
+X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260310_053854_665269_C6E8BB55 
-X-CRM114-Status: GOOD (  24.12  )
+X-CRM114-CacheID: sfid-20260310_103414_864043_7FFF1DE0 
+X-CRM114-Status: UNSURE (   8.06  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -160,100 +71,200 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On 3/10/2026 3:08 PM, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
+On Thu, 05 Mar 2026 07:43, Jian Hu <jian.hu@amlogic.com> wrote:
+>Add the required clock controller nodes for Amlogic T7 SoC family:
+>- SCMI clock controller
+>- PLL clock controller
+>- Peripheral clock controller
 >
-> On 10/03/2026 07:51, Jian Hu wrote:
->> On 3/6/2026 4:12 PM, Krzysztof Kozlowski wrote:
->>> [ EXTERNAL EMAIL ]
->>>
->>> On Thu, Mar 05, 2026 at 03:43:26PM +0800, Jian Hu wrote:
->>>> The mpll3 clock is a valid parent clock for sd_emmc and mipi_isp on
->>>> the Amlogic T7 SoC, but was missing from t7-peripherals-clkc.yaml.
->>>> Add it to enable proper clock parent configuration for these peripherals.
->>>>
->>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->>>> ---
->>>>    .../bindings/clock/amlogic,t7-peripherals-clkc.yaml       | 8 ++++++--
->>>>    1 file changed, 6 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
->>>> index 55bb73707d58..27cc1f331587 100644
->>>> --- a/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
->>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
->>>> @@ -24,7 +24,7 @@ properties:
->>>>        const: 1
->>>>
->>>>      clocks:
->>>> -    minItems: 14
->>>> +    minItems: 15
->>>>        items:
->>>>          - description: input oscillator
->>>>          - description: input sys clk
->>>> @@ -40,12 +40,13 @@ properties:
->>>>          - description: input gp1 pll
->>>>          - description: input mpll1
->>>>          - description: input mpll2
->>>> +      - description: input mpll3
->>> Nah, ABI break. You add it to the end of the list or provide arguments
->>> on ABI impact.
->> The third patch in this series enables the DT for the Amlogic T7 clock
->> controller.
->>
->> The clock controller node for amlogic,t7-peripherals-clkc has not been
->> merged upstream yet.
->> This change modifies the clock index order, but it will not break any
->> existing device tree since the
->> amlogic,t7-peripherals-clkc bindings are not used by any upstream or
->> downstream DT at this time.
->>
->> Therefore, it does NOT break the ABI.
-> It does. Clearly visible from the diff above, because the order is the ABI.
+>Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>---
+> arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 125 ++++++++++++++++++++
+> 1 file changed, 125 insertions(+)
+>
+>diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>index 6510068bcff9..6ea1b583b13d 100644
+>--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>@@ -6,6 +6,9 @@
+> #include <dt-bindings/interrupt-controller/arm-gic.h>
+> #include <dt-bindings/power/amlogic,t7-pwrc.h>
+> #include "amlogic-t7-reset.h"
+>+#include <dt-bindings/clock/amlogic,t7-scmi.h>
+>+#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
+>+#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
+> 
+> / {
+> 	interrupt-parent = <&gic>;
+>@@ -201,6 +204,33 @@ pwrc: power-controller {
+> 		};
+> 	};
+> 
+>+	sram@f7042000 {
+>+		compatible = "mmio-sram";
+>+		#address-cells = <1>;
+>+		#size-cells = <1>;
+>+		ranges = <0 0x0 0xf7042000 0x100>;
+>+
+>+		scmi_shmem: sram@0 {
+>+			compatible = "arm,scmi-shmem";
+>+			reg = <0x0 0x100>;
+>+		};
+>+	};
+>+
+>+	firmware {
+>+		scmi: scmi {
+>+			compatible = "arm,scmi-smc";
+>+			arm,smc-id = <0x820000c1>;
+>+			shmem = <&scmi_shmem>;
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+
+>+			scmi_clk: protocol@14 {
+>+				reg = <0x14>;
+>+				#clock-cells = <1>;
+>+			};
+>+		};
+>+	};
+>+
+> 	soc {
+> 		compatible = "simple-bus";
+> 		#address-cells = <2>;
+>@@ -224,6 +254,42 @@ apb4: bus@fe000000 {
+> 			#size-cells = <2>;
+> 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+> 
+>+			clkc_periphs:clock-controller@0 {
+>+				compatible = "amlogic,t7-peripherals-clkc";
+>+				reg = <0x0 0x0 0x0 0x1c8>;
+>+				#clock-cells = <1>;
+>+				clocks = <&xtal>,
+>+					 <&scmi_clk CLKID_SYS_CLK>,
+>+					 <&scmi_clk CLKID_FIXED_PLL>,
+>+					 <&scmi_clk CLKID_FCLK_DIV2>,
+>+					 <&scmi_clk CLKID_FCLK_DIV2P5>,
+>+					 <&scmi_clk CLKID_FCLK_DIV3>,
+>+					 <&scmi_clk CLKID_FCLK_DIV4>,
+>+					 <&scmi_clk CLKID_FCLK_DIV5>,
+>+					 <&scmi_clk CLKID_FCLK_DIV7>,
+>+					 <&hifi CLKID_HIFI_PLL>,
+>+					 <&gp0 CLKID_GP0_PLL>,
+>+					 <&gp1 CLKID_GP1_PLL>,
+>+					 <&mpll CLKID_MPLL1>,
+>+					 <&mpll CLKID_MPLL2>,
+>+					 <&mpll CLKID_MPLL3>;
+>+				clock-names = "xtal",
+>+					      "sys",
+>+					      "fix",
+>+					      "fdiv2",
+>+					      "fdiv2p5",
+>+					      "fdiv3",
+>+					      "fdiv4",
+>+					      "fdiv5",
+>+					      "fdiv7",
+>+					      "hifi",
+>+					      "gp0",
+>+					      "gp1",
+>+					      "mpll1",
+>+					      "mpll2",
+>+					      "mpll3";
+>+			};
+>+
+> 			reset: reset-controller@2000 {
+> 				compatible = "amlogic,t7-reset";
+> 				reg = <0x0 0x2000 0x0 0x98>;
+>@@ -234,6 +300,7 @@ watchdog@2100 {
+> 				compatible = "amlogic,t7-wdt";
+> 				reg = <0x0 0x2100 0x0 0x10>;
+> 				clocks = <&xtal>;
+>+
+> 			};
+> 
+> 			periphs_pinctrl: pinctrl@4000 {
+>@@ -269,6 +336,64 @@ uart_a: serial@78000 {
+> 				status = "disabled";
+> 			};
+> 
+>+			gp0:clock-controller@8080 {
+>+				compatible = "amlogic,t7-gp0-pll";
+>+				reg = <0x0 0x8080 0x0 0x20>;
+>+				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
 
+I would separate `gp0:` and `clock-controller@8080` with a space, like so:
 
-Got it, I understand your point that changing the order break the ABI 
-(since index order is part of the ABI).
+			gp0: clock-controller@8080 {
 
->> The last clock entry is an external pad input for RTC and it is optional.
->> For logical consistency, it is better to place the required mpll3 entry
->> before the optional entry.
->>
->> If this change does not break the ABI, could I keep it in its original
->> logical order right after mpll2?
-> Change breaks the ABI and commit must explain why and the impact.
+Same for the others below (and `clkc_periphs:clock-controller@0` above).
+
+>+
+>+			gp1:clock-controller@80c0 {
+>+				compatible = "amlogic,t7-gp1-pll";
+>+				reg = <0x0 0x80c0 0x0 0x14>;
+>+				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
+>+
+>+			hifi:clock-controller@8100 {
+>+				compatible = "amlogic,t7-hifi-pll";
+>+				reg = <0x0 0x8100 0x0 0x20>;
+>+				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
+>+
+>+			pcie:clock-controller@8140 {
+>+				compatible = "amlogic,t7-pcie-pll";
+>+				reg = <0x0 0x8140 0x0 0x1c>;
+>+				clocks = <&scmi_clk CLKID_PCIE_OSC>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
+>+
+>+			mpll:clock-controller@8180 {
+>+				compatible = "amlogic,t7-mpll";
+>+				reg = <0x0 0x8180 0x0 0x28>;
+>+				clocks = <&scmi_clk CLKID_FIXED_PLL_DCO>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
+>+
+>+			hdmi:clock-controller@81c0 {
+>+				compatible = "amlogic,t7-hdmi-pll";
+>+				reg = <0x0 0x81c0 0x0 0x20>;
+>+				clocks = <&scmi_clk CLKID_HDMI_PLL_OSC>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
+>+
+>+			mclk:clock-controller@8300 {
+>+				compatible = "amlogic,t7-mclk-pll";
+>+				reg = <0x0 0x8300 0x0 0x18>;
+>+				clocks = <&scmi_clk CLKID_MCLK_PLL_OSC>,
+>+					 <&xtal>,
+>+					 <&scmi_clk CLKID_FCLK_50M>;
+>+				clock-names = "in0", "in1", "in2";
+>+				#clock-cells = <1>;
+>+			};
+>+
+> 			sec_ao: ao-secure@10220 {
+> 				compatible = "amlogic,t7-ao-secure",
+> 					     "amlogic,meson-gx-ao-secure",
+>-- 
+>2.47.1
+>
 >
 
-It does break the ABI.
+Best regards,
+Ferass
 
-The mpll3 clock is one parent clock of sd_emmc and mipi_isp clock on
-the Amlogic T7 SoC, but was missing from t7-peripherals-clkc.yaml.
-Add the mpll3 clock source for the T7 peripherals clock controller.
-so that sd_emmc and mipi_isp can use mpll3. That's why this patch is added.
-
-While the amlogic,t7-peripherals-clkc bindings have been merged upstream,
-the corresponding device tree (DT) that uses these bindings has not been 
-merged yet.
-As a result, there are no real-world users or systems
-that would be broken by this change.
-
-So could I update the commit message like:
-
-The mpll3 clock is one parent clock of sd_emmc and mipi_isp clock on the 
-Amlogic T7 SoC,
-but was missing from t7-peripherals-clkc.yaml.
-Add the mpll3 clock source for the T7 peripherals clock controller.
-so that sd_emmc and mipi_isp can use it.
-
-For logical consistency, place the required mpll3 entry before the 
-optional entry.
-
-This change will break the ABI, but while the 
-amlogic,t7-peripherals-clkc bindings
-have been merged upstream, the corresponding DT has not been merged yet.
-Thus, no real users or systems are broken by this change.
-> Best regards,
-> Krzysztof
+>_______________________________________________
+>linux-amlogic mailing list
+>linux-amlogic@lists.infradead.org
+>http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 _______________________________________________
 linux-amlogic mailing list
