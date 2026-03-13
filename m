@@ -4,86 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10CFB106FD64
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Mar 2026 01:17:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CF7B106FD92
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Mar 2026 07:00:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FnPrAwGJG+7+bcL4lFRMUEzUbViJSjfsp/dWYyJp4Hg=; b=1j77tJ5X6Si9to
-	t6ln99SkX/Gwn7gbFi/ZzWQMAVXEFroe9VwKnM3sHebGd0fYCtHCaCktu4o/tp0orDg4EgV9jy1G8
-	8IeDYwyTkeMw8eeGxYu4lrh8kykiYTbSgknl1TIVpxavIjHlLFNRPvuPdg2afqA1y+YgR9RnSfK9V
-	4Osr14vNqAWRFVgCaMw1ppap6G0QEZ2d8nOVEr4fCLEmJFnvT1Fcc1GlgCslTJzHePW6opb+DPdYv
-	9ScAabvDtCiVOMh9ktD1K5DXv3wlJRTisAB77auvd9DYht3tlPiJXou5A0q8pT6hcCk8RLReIT9fe
-	QHWh631RZ2xYrr+C62BA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=AfwfGNYHB+OYcjO6UZdjrLSShfIcpES+DcK86uftOOs=; b=fotjvc1zzGBlW3
+	6XM5Te26iTpJbKrmUspprqVuJ5GdDeS5DgxApQzX7Inq+PCNJJJnvEU7ZZZMkzMYomxvy/jDpNZb7
+	ebBm31W6ta2Xlp7v3WizeWFS008PvfblxnApIVOIJoO6b9luBI7Dq2C3YLf/L1dovS5JO1Xs63cvM
+	JDxJhoKSxLSll/GgRyGKWeqDRuxIXFA/fX+D+pNomh1SxkDSrOb/cD3/XGQVIGDVQVXVPMIKTcTWN
+	i6XrWgCJHA+fylC/URuRLaGtQehiOIecCR5mI/tW+9O4iJ6PB/PE8con7iWuCRv3GEXMFWN6YW4NC
+	ZTf4JDoF86ZfvI0JtBOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w0r99-0000000G2zA-3i0u;
-	Fri, 13 Mar 2026 01:16:59 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1w0wVn-0000000GwE5-0zkJ;
+	Fri, 13 Mar 2026 07:00:43 +0000
+Received: from [64.106.246.77] (helo=mail-sc.amlogic.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w0r98-0000000G2wQ-23px;
-	Fri, 13 Mar 2026 01:16:59 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 32410418A1;
-	Fri, 13 Mar 2026 01:16:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF82BC4CEF7;
-	Fri, 13 Mar 2026 01:16:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773364617;
-	bh=zPEcR98I4xhUijv+qJNI6kaevc+I8oOwAq51hsyZIN4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=jFllOpLRMRE2IGfEDXUEY9ba4b3cNJWvEbGvGBw5ZGzoCW8DWdJj0BqcNiQ/Y8GUJ
-	 cRhG0Zmu/MtyrpDtIKMli5RfjyB/7DdinXkjUxwC3r2xHYzxZbVE1PbUsIBtNBGdXT
-	 zBg/De8hBSG2RiGNlB9aDCTKJRuiv+r9Rg4ZJ3giPiudOiLXMS1iDeGg6PQ7NkTCtQ
-	 CN1f3+8XC3U+KAwErIpoSpBRfdv6Z/+4x5hJTBdsFVOCyayhVGj6jeZHQfgm+zMlxj
-	 EQv4E9b4SZXOVU2lIIor9NApwk4IbuDYgD3C03BfACceOsz9wt5jUmHqlze9bYvBTs
-	 DJoY+01DWokAA==
-Date: Thu, 12 Mar 2026 18:16:54 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew
- Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Maxime
- Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Vinod Koul <vkoul@kernel.org>, Giuseppe
- Cavallaro <peppe.cavallaro@st.com>, Chen-Yu Tsai <wens@kernel.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Shawn Guo <shawnguo@kernel.org>, Fabio
- Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>,
- s32@nxp.com, Romain Gantois <romain.gantois@bootlin.com>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, Christophe
- Roullier <christophe.roullier@foss.st.com>, Bartosz Golaszewski
- <brgl@kernel.org>, Radu Rendec <rrendec@redhat.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, Drew Fustini
- <dfustini@tenstorrent.com>, linux-sunxi@lists.linux.dev,
- linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
- imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
- linux-riscv@lists.infradead.org, Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski@oss.qualcomm.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, Konrad Dybcio
- <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH net-next v8 0/6] net: stmmac: qcom-ethqos: add support
- for SCMI power domains
-Message-ID: <20260312181654.2d9ba69c@kernel.org>
-In-Reply-To: <20260311-qcom-sa8255p-emac-v8-0-58227bcf1018@oss.qualcomm.com>
-References: <20260311-qcom-sa8255p-emac-v8-0-58227bcf1018@oss.qualcomm.com>
+	id 1w0wVj-0000000GwCt-04qJ;
+	Fri, 13 Mar 2026 07:00:40 +0000
+Received: from rd03-sz.software.amlogic (10.28.11.121) by mailsc.amlogic.com
+ (10.8.11.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Thu, 12 Mar
+ 2026 23:59:36 -0700
+From: Jian Hu <jian.hu@amlogic.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>, Stephen Boyd
+	<sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, robh+dt
+	<robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Jian Hu <jian.hu@amlogic.com>, devicetree <devicetree@vger.kernel.org>,
+	linux-clk <linux-clk@vger.kernel.org>, linux-amlogic
+	<linux-amlogic@lists.infradead.org>, linux-kernel
+	<linux-kernel@vger.kernel.org>, linux-arm-kernel
+	<linux-arm-kernel@lists.infradead.org>, Ronald Claveau
+	<linux-kernel-dev@aliel.fr>, Ferass El Hafidi <funderscore@postmarketos.org>
+Subject: [PATCH v2 0/3] Add the missing mpll3 clock and clock controller nodes
+Date: Fri, 13 Mar 2026 15:00:19 +0800
+Message-ID: <20260313070022.700437-1-jian.hu@amlogic.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
+X-Originating-IP: [10.28.11.121]
+X-ClientProxiedBy: mailsh.amlogic.com (10.18.11.5) To mailsc.amlogic.com
+ (10.8.11.35)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260312_181658_563026_3C8FCAA7 
-X-CRM114-Status: GOOD (  11.34  )
+X-CRM114-CacheID: sfid-20260313_000039_072950_A7FD8F13 
+X-CRM114-Status: UNSURE (   8.93  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,17 +71,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 11 Mar 2026 18:03:35 +0100 Bartosz Golaszewski wrote:
-> Add support for the firmware-managed variant of the DesignWare MAC on
-> the sa8255p platform. This series contains new DT bindings and driver
-> changes required to support the MAC in the STMMAC driver.
-> 
-> It also reorganizes the ethqos code quite a bit to make the introduction
-> of power domains into the driver a bit easier on the eye.
+- Fix redundant hyphen in for gp1 pll
+- Add the missing mpll3 parent clock definition to t7-peripherals-clkc.yaml
+- Add Amlogic T7 SoC clock controller nodes
 
-Not entirely sure what the conclusion was in the sub-thread with Russell
-but FWIW this doesn't apply to net-next as posted so respin will be
-needed either way.
+Changes in v2 since v1 at [1]:
+
+- Add Ronald Claveau's Signed-off-by to the first and third patches
+- Fix compilation error for amlogic-peripherals-clkc.yaml
+- Update commit message for amlogic-peripherals-clkc.yaml
+- Add Fixes tag
+- Remove the blank line in the watchdog node of meson-t7.dtsi
+- Add 'reg' property to sram node
+- Add a space after the clock controller label
+
+[1]: https://lore.kernel.org/all/20260305074328.639993-1-jian.hu@amlogic.com
+
+Jian Hu (3):
+  dt-bindings: clock: amlogic: Fix redundant hyphen in
+    "amlogic,t7-gp1--pll" string.
+  dt-bindings: clock: amlogic: t7: Add missing mpll3 parent clock
+  arm64: dts: amlogic: t7: Add clock controller nodes
+
+ .../clock/amlogic,t7-peripherals-clkc.yaml    |  12 +-
+ .../bindings/clock/amlogic,t7-pll-clkc.yaml   |   2 +-
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 125 ++++++++++++++++++
+ 3 files changed, 134 insertions(+), 5 deletions(-)
+
+-- 
+2.47.1
+
 
 _______________________________________________
 linux-amlogic mailing list
