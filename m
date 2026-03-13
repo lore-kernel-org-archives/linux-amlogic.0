@@ -4,60 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05414106FD91
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Mar 2026 07:01:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5A8D106FD9B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Mar 2026 08:27:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=L7EjElu5hzGZi0tyKOL10ehagxtg/QRb67CgAD82xVU=; b=t3zBYaPm3sC/Cs
-	GVQIsndvKBwQ22nIBX9KE8Px8xqrfg4UkJxAQHoqnNcuwbvOpatIrQGUi10xD0+G10/iSIKMlr3Ha
-	ARaku/rbaFDfSXTx9F7vkwD6DB//5BLdumEPREE2wgtGL8qarOOi0SASui4A8NyslOM9WZ9WvrP8v
-	jeoTkp1+CxFPjepP3Eonob6zOrsl9+J0xZ0bTvNkfU+RUkQ9bvp6NHuckV+K7aa1FpkeL179RD87/
-	Dfb/5lf3XAlBCu4ft+/H+hmH32tZAgjAHUmzVEafaSvOkvCi0+h1fv/mpfKXMch13ZKbvAGiNCD4V
-	FGbm6DgIDd7C16mArt2A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=OSI4oYgOzXrg/xCY8CE556bi2mXdlxyDmbi/+DEr3os=; b=j/627lFQ5fVe/gHj/QEQ5fjmR+
+	YbUvd2sAyDrIq3f2WAtHVEsKB1PM+KpF0Sjv3uZe+WMUPMjWW8jvDXWoVIociplcMqUUenAjiEVBR
+	Pzt9L87N+esell00NAF3838Jbbjt0wMWd1KfjPbMa7tWbslH7vn6wt1Vy/jgVw7yeiZYm1+FWNSu5
+	9ggcjcGTKkmUWfQ7CzX+//KmWsggsKruYiwrBKSbnY95DV0XhoYYn/cE7eJc78t7bSZUlHYYHF0Qx
+	wOYcchecDG/4Cxy0lv9qPx48H4611NWlpiOpojJvEi9C9Fl6KlQ4HEQIyXNo22BX/a8FEOKUtc8E4
+	dnEst/bw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w0wVt-0000000GwJy-2bzB;
-	Fri, 13 Mar 2026 07:00:49 +0000
-Received: from [64.106.246.77] (helo=mail-sc.amlogic.com)
+	id 1w0xro-0000000HFSm-1T0d;
+	Fri, 13 Mar 2026 08:27:32 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w0wVr-0000000GwI5-1iOX;
-	Fri, 13 Mar 2026 07:00:48 +0000
-Received: from rd03-sz.software.amlogic (10.28.11.121) by mailsc.amlogic.com
- (10.8.11.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Thu, 12 Mar
- 2026 23:59:48 -0700
-From: Jian Hu <jian.hu@amlogic.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, "Martin
- Blumenstingl" <martin.blumenstingl@googlemail.com>, Stephen Boyd
-	<sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, robh+dt
-	<robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Jian Hu <jian.hu@amlogic.com>, Ronald Claveau <linux-kernel-dev@aliel.fr>,
-	devicetree <devicetree@vger.kernel.org>, linux-clk
-	<linux-clk@vger.kernel.org>, linux-amlogic
-	<linux-amlogic@lists.infradead.org>, linux-kernel
-	<linux-kernel@vger.kernel.org>, linux-arm-kernel
-	<linux-arm-kernel@lists.infradead.org>, Ferass El Hafidi
-	<funderscore@postmarketos.org>
-Subject: [PATCH v2 3/3] arm64: dts: amlogic: t7: Add clock controller nodes
-Date: Fri, 13 Mar 2026 15:00:22 +0800
-Message-ID: <20260313070022.700437-4-jian.hu@amlogic.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20260313070022.700437-1-jian.hu@amlogic.com>
-References: <20260313070022.700437-1-jian.hu@amlogic.com>
+	id 1w0xrn-0000000HFS0-27ht;
+	Fri, 13 Mar 2026 08:27:31 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id B75E660142;
+	Fri, 13 Mar 2026 08:27:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA7BEC19421;
+	Fri, 13 Mar 2026 08:27:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773390450;
+	bh=LjjmvM/vmaS4//USd0RW7tvsnLCWGGdQkTrz5/AWVp0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DPPni+lYDoaOn1Ag3kuyj0AQj8FTTurKfSI6YHa2F1wcx6tllEIeZERg44A1o40lL
+	 NBgrny4mrciTQTm+Braqu4OFRCMM3dcYEl1SHuJn4iDd9eRGqPxvL+UA852MIdW1xF
+	 SU4qi3rDQEUScohJtYI4mFVdAlGmyojMScYhw3bsrx29Ctigy+thqVIS/BMMK8vkJE
+	 GlSG9027eyW1Z6idxnfM4oYSyygA1YCYXWob/GSoDv3hKVvFXgmqIY+8tO+Vxxefc7
+	 nE/NQGUNBnxc/LXfIESoIQGzHbiVGdOD+0wOJNk7YzS0cgMAr083vwFOGNaBac56TH
+	 ZjMXgLfJ2F34g==
+Date: Fri, 13 Mar 2026 09:27:27 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Vinod Koul <vkoul@kernel.org>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+	Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, Romain Gantois <romain.gantois@bootlin.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Radu Rendec <rrendec@redhat.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org, 
+	imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH net-next v8 0/6] net: stmmac: qcom-ethqos: add support
+ for SCMI power domains
+Message-ID: <20260313-dexterous-lively-jaguarundi-72bfef@houat>
+References: <20260311-qcom-sa8255p-emac-v8-0-58227bcf1018@oss.qualcomm.com>
+ <20260312181654.2d9ba69c@kernel.org>
 MIME-Version: 1.0
-X-Originating-IP: [10.28.11.121]
-X-ClientProxiedBy: mailsh.amlogic.com (10.18.11.5) To mailsc.amlogic.com
- (10.8.11.35)
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260313_000047_458058_42928285 
-X-CRM114-Status: UNSURE (   9.43  )
-X-CRM114-Notice: Please train this message.
+In-Reply-To: <20260312181654.2d9ba69c@kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,184 +85,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4841286484096962958=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the required clock controller nodes for Amlogic T7 SoC family:
-- SCMI clock controller
-- PLL clock controller
-- Peripheral clock controller
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 125 ++++++++++++++++++++
- 1 file changed, 125 insertions(+)
+--===============4841286484096962958==
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="pxy5ukm7k3gyqla3"
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 6510068bcff9..a610f642953d 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -6,6 +6,9 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/amlogic,t7-pwrc.h>
- #include "amlogic-t7-reset.h"
-+#include <dt-bindings/clock/amlogic,t7-scmi.h>
-+#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
-+#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -201,6 +204,34 @@ pwrc: power-controller {
- 		};
- 	};
- 
-+	sram@f7042000 {
-+		compatible = "mmio-sram";
-+		reg = <0x0 0xf7042000 0x0 0x100>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0x0 0xf7042000 0x100>;
-+
-+		scmi_shmem: sram@0 {
-+			compatible = "arm,scmi-shmem";
-+			reg = <0x0 0x100>;
-+		};
-+	};
-+
-+	firmware {
-+		scmi: scmi {
-+			compatible = "arm,scmi-smc";
-+			arm,smc-id = <0x820000c1>;
-+			shmem = <&scmi_shmem>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			scmi_clk: protocol@14 {
-+				reg = <0x14>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
-@@ -224,6 +255,42 @@ apb4: bus@fe000000 {
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
- 
-+			clkc_periphs: clock-controller@0 {
-+				compatible = "amlogic,t7-peripherals-clkc";
-+				reg = <0x0 0x0 0x0 0x1c8>;
-+				#clock-cells = <1>;
-+				clocks = <&xtal>,
-+					 <&scmi_clk CLKID_SYS_CLK>,
-+					 <&scmi_clk CLKID_FIXED_PLL>,
-+					 <&scmi_clk CLKID_FCLK_DIV2>,
-+					 <&scmi_clk CLKID_FCLK_DIV2P5>,
-+					 <&scmi_clk CLKID_FCLK_DIV3>,
-+					 <&scmi_clk CLKID_FCLK_DIV4>,
-+					 <&scmi_clk CLKID_FCLK_DIV5>,
-+					 <&scmi_clk CLKID_FCLK_DIV7>,
-+					 <&hifi CLKID_HIFI_PLL>,
-+					 <&gp0 CLKID_GP0_PLL>,
-+					 <&gp1 CLKID_GP1_PLL>,
-+					 <&mpll CLKID_MPLL1>,
-+					 <&mpll CLKID_MPLL2>,
-+					 <&mpll CLKID_MPLL3>;
-+				clock-names = "xtal",
-+					      "sys",
-+					      "fix",
-+					      "fdiv2",
-+					      "fdiv2p5",
-+					      "fdiv3",
-+					      "fdiv4",
-+					      "fdiv5",
-+					      "fdiv7",
-+					      "hifi",
-+					      "gp0",
-+					      "gp1",
-+					      "mpll1",
-+					      "mpll2",
-+					      "mpll3";
-+			};
-+
- 			reset: reset-controller@2000 {
- 				compatible = "amlogic,t7-reset";
- 				reg = <0x0 0x2000 0x0 0x98>;
-@@ -269,6 +336,64 @@ uart_a: serial@78000 {
- 				status = "disabled";
- 			};
- 
-+			gp0: clock-controller@8080 {
-+				compatible = "amlogic,t7-gp0-pll";
-+				reg = <0x0 0x8080 0x0 0x20>;
-+				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-+				clock-names = "in0";
-+				#clock-cells = <1>;
-+			};
-+
-+			gp1: clock-controller@80c0 {
-+				compatible = "amlogic,t7-gp1-pll";
-+				reg = <0x0 0x80c0 0x0 0x14>;
-+				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-+				clock-names = "in0";
-+				#clock-cells = <1>;
-+			};
-+
-+			hifi: clock-controller@8100 {
-+				compatible = "amlogic,t7-hifi-pll";
-+				reg = <0x0 0x8100 0x0 0x20>;
-+				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-+				clock-names = "in0";
-+				#clock-cells = <1>;
-+			};
-+
-+			pcie: clock-controller@8140 {
-+				compatible = "amlogic,t7-pcie-pll";
-+				reg = <0x0 0x8140 0x0 0x1c>;
-+				clocks = <&scmi_clk CLKID_PCIE_OSC>;
-+				clock-names = "in0";
-+				#clock-cells = <1>;
-+			};
-+
-+			mpll: clock-controller@8180 {
-+				compatible = "amlogic,t7-mpll";
-+				reg = <0x0 0x8180 0x0 0x28>;
-+				clocks = <&scmi_clk CLKID_FIXED_PLL_DCO>;
-+				clock-names = "in0";
-+				#clock-cells = <1>;
-+			};
-+
-+			hdmi: clock-controller@81c0 {
-+				compatible = "amlogic,t7-hdmi-pll";
-+				reg = <0x0 0x81c0 0x0 0x20>;
-+				clocks = <&scmi_clk CLKID_HDMI_PLL_OSC>;
-+				clock-names = "in0";
-+				#clock-cells = <1>;
-+			};
-+
-+			mclk: clock-controller@8300 {
-+				compatible = "amlogic,t7-mclk-pll";
-+				reg = <0x0 0x8300 0x0 0x18>;
-+				clocks = <&scmi_clk CLKID_MCLK_PLL_OSC>,
-+					 <&xtal>,
-+					 <&scmi_clk CLKID_FCLK_50M>;
-+				clock-names = "in0", "in1", "in2";
-+				#clock-cells = <1>;
-+			};
-+
- 			sec_ao: ao-secure@10220 {
- 				compatible = "amlogic,t7-ao-secure",
- 					     "amlogic,meson-gx-ao-secure",
--- 
-2.47.1
 
+--pxy5ukm7k3gyqla3
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH net-next v8 0/6] net: stmmac: qcom-ethqos: add support
+ for SCMI power domains
+MIME-Version: 1.0
+
+Hi Jakub,
+
+On Thu, Mar 12, 2026 at 06:16:54PM -0700, Jakub Kicinski wrote:
+> On Wed, 11 Mar 2026 18:03:35 +0100 Bartosz Golaszewski wrote:
+> > Add support for the firmware-managed variant of the DesignWare MAC on
+> > the sa8255p platform. This series contains new DT bindings and driver
+> > changes required to support the MAC in the STMMAC driver.
+> >=20
+> > It also reorganizes the ethqos code quite a bit to make the introduction
+> > of power domains into the driver a bit easier on the eye.
+>=20
+> Not entirely sure what the conclusion was in the sub-thread with Russell
+> but FWIW this doesn't apply to net-next as posted so respin will be
+> needed either way.
+
+We'd really like for this series to go in, so fwiw I'd prefer that we
+don't create a dependency on a series that has never been posted for
+this to be merged.
+
+Maxime
+
+--pxy5ukm7k3gyqla3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCabPKagAKCRAnX84Zoj2+
+dq/cAX9HbQPDp+u+6RAvVqRXiVlUqq7qrs2GAioBq5qsajRY1mqIABlDjHVyOc8v
+8oDz3SwBfiJTavhwpPgjJQ9YAcH4JcHjnzxAs88eFjbDLDYSe2mAKK7fP8U02MfH
+qIGBmEr8gg==
+=zTCu
+-----END PGP SIGNATURE-----
+
+--pxy5ukm7k3gyqla3--
+
+
+--===============4841286484096962958==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4841286484096962958==--
+
