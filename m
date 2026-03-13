@@ -4,149 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E060FED2C4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Mar 2026 04:02:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10CFB106FD64
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Mar 2026 01:17:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JFjtC6bb8zDVTiADvZ8mgQDtZ64xTjjxWZmm/LxKVQ4=; b=nBc3uQEqrcozxp
-	FtK8r2lV+VlMW65ursuFv+P92sInePNadbL7TU0sTF/mWefVgePIsv68JPDKojBpVBK+sJbJ7ChQx
-	l0d+JKVCYHDl93JD+d/91k3V8yUrbylnuBUiuIjQG5rsQ2Vx54klKrLRAqYFcTFsf2dP7orpFCK1n
-	gMpqNhFEFxLLPWSNh0uIbQnIZV6a4fZS+RVvuuKj5NmX70GeSrVpLdUSVHvEWDu8xfGz9FFboyyqu
-	ylju29O3Z9315BaymUYrkmics8glwBSsJF988HPUtWC1uva/1qvgc8qhVPSvsfC6N1A6SNiplbFcd
-	D3mEcLDdXB67Hn4Ymx+Q==;
+	List-Owner; bh=FnPrAwGJG+7+bcL4lFRMUEzUbViJSjfsp/dWYyJp4Hg=; b=1j77tJ5X6Si9to
+	t6ln99SkX/Gwn7gbFi/ZzWQMAVXEFroe9VwKnM3sHebGd0fYCtHCaCktu4o/tp0orDg4EgV9jy1G8
+	8IeDYwyTkeMw8eeGxYu4lrh8kykiYTbSgknl1TIVpxavIjHlLFNRPvuPdg2afqA1y+YgR9RnSfK9V
+	4Osr14vNqAWRFVgCaMw1ppap6G0QEZ2d8nOVEr4fCLEmJFnvT1Fcc1GlgCslTJzHePW6opb+DPdYv
+	9ScAabvDtCiVOMh9ktD1K5DXv3wlJRTisAB77auvd9DYht3tlPiJXou5A0q8pT6hcCk8RLReIT9fe
+	QHWh631RZ2xYrr+C62BA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w0XFC-0000000DDCD-3Z1I;
-	Thu, 12 Mar 2026 04:01:54 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1w0r99-0000000G2zA-3i0u;
+	Fri, 13 Mar 2026 01:16:59 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w0XFA-0000000DDB3-00VT;
-	Thu, 12 Mar 2026 04:01:53 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oUymlzr7SsoWVr/X/75ItQsRSm7X7zXcm8pa5s3AvUI4jqXlay1u6wFnWWwbtlMdI8zMcI90AwrVTO7qTilpwPgV5g9aghkV/CFmWDC3WHTQWUeVwBHxDC6K3A+gtCipGt+Hai1WT1BJiSpgglxAjJBiRjDa3V81gKIqjqksUv2nDspzDU7mGtXQd7fIX7tdZFD6qh9/jYvwsI/6lzoQx6K+m4kUOEUvS24ifKJB/z7P2CvEt2If+xPlapjeS4DLU7FP2NwsPo4SEXH2eSAA0U5ikqhe+2Gu9km5xd1aXmnVLyH1qI5m9OgR/5Yj/wz3jqZ5yFrqraf0RWAVmwEY/A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m7tFaVnNkUuXKbnGGMR9Dwryl8VU2bdT7+4LDhUK2aU=;
- b=G6dKqsPibU2YDq3sH0sXcCcz5OmlLm5n5jyvXS1th4E5z95XMaeNxjncNdbaPIHL/F6PbhdPQxtciqS7v5x5L+lYsk0zokC9+gHKhDV4xV6VD5CQG2k2llCiIW5fujShivJVRNmsuNLPNi4c/CEZCfssXxf0VPdYybehT2WpNQ9+yNiC230oeE4ome4FQCHCZ/jJZOHyc5BwdwUYZ+2zys0+enQyaDzXKoJZCWJXflVq9K8UjrNcjkigXlTD6k5wV/FQDi2BPowInRF60QSrP+rwwnQJDL60g7rWcw2eHg0BydEz8b7BOpRY4U3L2ka3lnOoNpralM+ixo8tbIwwzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m7tFaVnNkUuXKbnGGMR9Dwryl8VU2bdT7+4LDhUK2aU=;
- b=S0/hi94OsfnPvlvkM/zmgGaHSE5PL1eSNxX1v6q3xbScoz1pvUXhZCyrFWyyzXTQj2dmVOe9PVZQw/+XDv23TjFSJDP/TMcP1MJpaHVVcmzPEk8DEnK4mkRVgxpoA/+HQ+PAlV/tdYBnTgVCvH+/vEOo7LGk4tinSpokN4Xh+EchgZ6/ERTShorpZdKRiPZbdGuZA6rFIY3mXBrCOaGc/sOB2byF13kM72uscfIwzv52Fst44ng1qO6cIx8LMj+wXeiY4C3CUMufiFZr2I4Kn9ec/vbH6iGWSFMUJjSXIc/3IWXtsJdmKKzIuOfNI7o1YyO6KnHrm8ZxlKPlVD+NRQ==
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by AS8PR04MB9208.eurprd04.prod.outlook.com
- (2603:10a6:20b:44f::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.12; Thu, 12 Mar
- 2026 04:01:45 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9700.010; Thu, 12 Mar 2026
- 04:01:46 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: Sumit Kumar <sumit.kumar@oss.qualcomm.com>, Bjorn Helgaas
-	<bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, Lorenzo Pieralisi
-	<lpieralisi@kernel.org>, =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?=
-	<kwilczynski@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Hongxing Zhu <hongxing.zhu@nxp.com>, Lucas Stach
-	<l.stach@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Yue Wang <yue.wang@Amlogic.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Greentime Hu <greentime.hu@sifive.com>, Samuel
- Holland <samuel.holland@sifive.com>, Chuanhua Lei <lchuanhua@maxlinear.com>,
-	Marek Vasut <marek.vasut+renesas@gmail.com>, Yoshihiro Shimoda
-	<yoshihiro.shimoda.uh@renesas.com>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Pratyush
- Anand <pratyush.anand@gmail.com>, Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>
-CC: "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-samsung-soc@vger.kernel.org"
-	<linux-samsung-soc@vger.kernel.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "linux-amlogic@lists.infradead.org"
-	<linux-amlogic@lists.infradead.org>, "linux-arm-msm@vger.kernel.org"
-	<linux-arm-msm@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, "linux-tegra@vger.kernel.org"
-	<linux-tegra@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH v2 0/2] PCI: dwc: Add multi-port controller support
-Thread-Topic: [PATCH v2 0/2] PCI: dwc: Add multi-port controller support
-Thread-Index: AQHcrGg90l4cssg9x0eKOTwnCAcKBbWqR/3w
-Date: Thu, 12 Mar 2026 04:01:46 +0000
-Message-ID: <VI0PR04MB12114053B5BE9CA48CE107D299244A@VI0PR04MB12114.eurprd04.prod.outlook.com>
-References: <20260305-dt-parser-v2-0-85836db8dc06@oss.qualcomm.com>
-In-Reply-To: <20260305-dt-parser-v2-0-85836db8dc06@oss.qualcomm.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|AS8PR04MB9208:EE_
-x-ms-office365-filtering-correlation-id: f1a0c84e-dd8b-44a3-0301-08de7fec144a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|19092799006|366016|1800799024|7416014|376014|38070700021|921020|56012099003|22082099003|18002099003;
-x-microsoft-antispam-message-info: dicHY/9wLM+qqVl7qlSBX3q5Oo/DflAXb91dDeTYUIJv2VlqAsUyT60S43GGLNt7GTxgDj7ieiYNE6mS+fGRGynsZOK7KIXxc78FC/N+7G5ucWeo4qDZP/ScVqysQxEHim4YpFMNuOjPafbe2OVRHIt4XHHhNuuFQtqOlYOHNeSBdW2qLbXZf3FmLwdZXtwRSf9sWSFTE4Q4uV1SCWnEehx799xvHD3HIx0fQL8AuVvVMinXZM5lnUo0Nh69BUE+BF0Z5LGHbqRvnf9zZX5alpdCdJqiPYIo3DI4urT1OCt7vfPOps+hndJyhcrvU2eZvb+OUwWw5AofylnE54GBD4ETe/EM6EUy/rrVzMZ+elZZHEa+CQlSor73Nac1FCXw85x9xJLN2b0cR2A3ZepIwiUB+GBohB5SX9i7BEFSus5mg5Ztyj4iqqwmGRO5sl1ZfN128cT84AZ6glhZLPbjZLxcvEJBVNUV1vI/SYOxgD5SRuxJitumtyGmpHCV/Q3ZJOhmFcmYUB8fakVbODEq9alh5FPwrLQHUTliXQu5peqYSPwBMDrpFMs55RyIyVCQYeGJyRA6eLjP+XbRZYcIz5q16fBCQHTkOG+F6mg/t96/+zJ0S5gIgtvSkfD/L5BrJVZpQb4IeB6Kr8LeTU0fuu2MuSjs/qYz3ikDNhx7h4yX05Pae3R4AJgpFixf8EDAMtI9f/9N1RbrZC3cfGGm/Iq6oqEvTale+G833DqFjyrbdrmlpz/aYxVhG46Kk9n3
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(7416014)(376014)(38070700021)(921020)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?n6ckqS7e+ZKurAbovmsWkW6Mn2A7i4EYAsT+XO7GIetUJtkECG9ZMJN/Ht?=
- =?iso-8859-2?Q?AVTD4cI+8CtkigXVKV7yA+IV4AIh9l38SHuVvCAUISAIdRpIZ/QmmALa8D?=
- =?iso-8859-2?Q?9cuIING0N8ED08d+2Et7SVBpUIRnoGXzV7oixTkBSu3jNiAPLZ+TP0HK/+?=
- =?iso-8859-2?Q?9bwgQo4Bku7ZR6DWhqrVIsl7EtH3q2/dv6SiOrODAug4y9HsqLqfx9SRhS?=
- =?iso-8859-2?Q?Ce9+Dre01qXwrQA/flZfAgfEM6LEP0SQrvKq0OYYVTg7kGcqV5goXv5rA2?=
- =?iso-8859-2?Q?QhcIv7HkbYFfUtwN0kJhe7bzuw6JHNIl+Ltf1wDcbtf2OKQm3hBhiJPUzc?=
- =?iso-8859-2?Q?Xx1JYY16ivA1gOGH88ez9B6XgkBbxn5Lu5kWZG1XUmFXUIXezpE0hwj4Vm?=
- =?iso-8859-2?Q?+1LX8JfO8431v4FExfxHF6X9+zBxYZe4lI6QA0JNLW4Ig6nT4ucwSVg6wf?=
- =?iso-8859-2?Q?RwMrIIIAlP5/RfX+oN5L0zYBxRhxILWOvF+jhz71YMcJq6vZKB8L+ao/3z?=
- =?iso-8859-2?Q?GkoH9ldkdT3IbV4flowfsSzkbDQZ/eKYh8+MBtavt7VAybQCR2lgD7/WeY?=
- =?iso-8859-2?Q?B/YDElxuLEWOKJVlsSklXM6fHsQ/Z4mLkDjZ2OyvomLsQytJkclyp0GTPk?=
- =?iso-8859-2?Q?Q4GXKeV0Z8Li53eaz5EApXTWSBQgWJ+wN7qTF4phiaYdLrhWMunUYSalJ2?=
- =?iso-8859-2?Q?xl1y6gjgszW6tcDq/bRaQscL748NJ8FuyuDlJFShPyc+ZCOJOJ+1sJ2DbC?=
- =?iso-8859-2?Q?NFXW8XWrvcPzjqZqVjEkodkAsY49hwWlgA98Tlv1oRmycFkp0Nkd0i/8y5?=
- =?iso-8859-2?Q?9V1xOF+EQ3CLqF7Z1ADE34kbcvej7+TXrsHCvv7f3W7bhn8+3TV8ztUXj3?=
- =?iso-8859-2?Q?8b1a8WG1awiGQP0QAWLAFrxnpDbYtlN4DNL3DmSvVwwyVeAQX0EpWyBYiS?=
- =?iso-8859-2?Q?1gsAU3/fXCJM/hEehFMGcq1jAzgA+gTeuFFLh17liaMr8ew0ZstA3WGT88?=
- =?iso-8859-2?Q?5nXXKkMesTkBIKvhfV/QBBtq6pHCzJVhQIPjLUDxrFozylKGZCY6nJdNDY?=
- =?iso-8859-2?Q?RlmsXHJBnUuNIU0MuRmhQBCJ5KS9SUrQK8PcqRV7n+34a+BiuhsUQPS8LH?=
- =?iso-8859-2?Q?MhPLcIwANEMYsceRqv6MrMOo9nuWIFbiF/wsRuFLhNw2LKsvJYBhsZXHJd?=
- =?iso-8859-2?Q?5LH21nYDQARjVn8vdUY+LRudby67xO/qgdsdSd6CSgJ5IGBSMotN7hUX8n?=
- =?iso-8859-2?Q?dbNzPeANTzeb8mJfreuAoVrA/aSuuVYAH8PSrNVNL9DdycK/+Od0PRxRqS?=
- =?iso-8859-2?Q?hEPjTBiYA96z3gq9awHqt5Ok4U28YTBv1n+iJwEoNSIxCJTkhRVdUpPs5F?=
- =?iso-8859-2?Q?Rasoy2cQ/Gd6gh6SKvHOVm9mYN5vVG+B9W2envnLreXcD4YH8C5jmTA1Rm?=
- =?iso-8859-2?Q?tWvDIaaodKxcAR1TD60wAymlqCju0C2hnBfzED5k/WS5SBdLOVWYcf8y1w?=
- =?iso-8859-2?Q?WzAOQh3TEzyxq+QyVflkj3YHFHn4SMai3iS0cDTwE2kXSfRHRk7XzZORxB?=
- =?iso-8859-2?Q?J9mq6rUlwfopWHgJ0ccu/zmIrR24f01fWmTiY/hp9o+SaGRd1fJ8v0gi4h?=
- =?iso-8859-2?Q?8PsZVdTEWtBXhLqte9E9fqKspAamjZSLsW32m1Tgh2JLnxd+sJLEBTB4Tj?=
- =?iso-8859-2?Q?d5aOQotK6AP/NTESSdCg3mrow0EEO4hl5uDZuBF4x/pGfqAa9DG/2CtPcD?=
- =?iso-8859-2?Q?aT6S9tSc4rwOA0S/nm9AjBssVdhgg1zCWHUEv9j5pIKQR4?=
+	id 1w0r98-0000000G2wQ-23px;
+	Fri, 13 Mar 2026 01:16:59 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 32410418A1;
+	Fri, 13 Mar 2026 01:16:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF82BC4CEF7;
+	Fri, 13 Mar 2026 01:16:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773364617;
+	bh=zPEcR98I4xhUijv+qJNI6kaevc+I8oOwAq51hsyZIN4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=jFllOpLRMRE2IGfEDXUEY9ba4b3cNJWvEbGvGBw5ZGzoCW8DWdJj0BqcNiQ/Y8GUJ
+	 cRhG0Zmu/MtyrpDtIKMli5RfjyB/7DdinXkjUxwC3r2xHYzxZbVE1PbUsIBtNBGdXT
+	 zBg/De8hBSG2RiGNlB9aDCTKJRuiv+r9Rg4ZJ3giPiudOiLXMS1iDeGg6PQ7NkTCtQ
+	 CN1f3+8XC3U+KAwErIpoSpBRfdv6Z/+4x5hJTBdsFVOCyayhVGj6jeZHQfgm+zMlxj
+	 EQv4E9b4SZXOVU2lIIor9NApwk4IbuDYgD3C03BfACceOsz9wt5jUmHqlze9bYvBTs
+	 DJoY+01DWokAA==
+Date: Thu, 12 Mar 2026 18:16:54 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew
+ Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Vinod Koul <vkoul@kernel.org>, Giuseppe
+ Cavallaro <peppe.cavallaro@st.com>, Chen-Yu Tsai <wens@kernel.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
+ Brunet <jbrunet@baylibre.com>, Shawn Guo <shawnguo@kernel.org>, Fabio
+ Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>,
+ s32@nxp.com, Romain Gantois <romain.gantois@bootlin.com>, Geert
+ Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
+ <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, Christophe
+ Roullier <christophe.roullier@foss.st.com>, Bartosz Golaszewski
+ <brgl@kernel.org>, Radu Rendec <rrendec@redhat.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, Drew Fustini
+ <dfustini@tenstorrent.com>, linux-sunxi@lists.linux.dev,
+ linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
+ imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
+ linux-riscv@lists.infradead.org, Bartosz Golaszewski
+ <bartosz.golaszewski@linaro.org>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@oss.qualcomm.com>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Konrad Dybcio
+ <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH net-next v8 0/6] net: stmmac: qcom-ethqos: add support
+ for SCMI power domains
+Message-ID: <20260312181654.2d9ba69c@kernel.org>
+In-Reply-To: <20260311-qcom-sa8255p-emac-v8-0-58227bcf1018@oss.qualcomm.com>
+References: <20260311-qcom-sa8255p-emac-v8-0-58227bcf1018@oss.qualcomm.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1a0c84e-dd8b-44a3-0301-08de7fec144a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2026 04:01:46.1998
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wePVQofRGfzUPqG9uOocbBrd+JXqul0LgOCZJUpDy5KZZf5RM7lIs6ynz7ME34hvDBQoaLp3PPlz8NtqnAgatg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9208
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260311_210152_607344_6F63D6F7 
-X-CRM114-Status: GOOD (  23.12  )
+X-CRM114-CacheID: sfid-20260312_181658_563026_3C8FCAA7 
+X-CRM114-Status: GOOD (  11.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -163,81 +100,17 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> Subject: [PATCH v2 0/2] PCI: dwc: Add multi-port controller support
->
-> This series adds support for multi-port PCIe controllers in the DesignWare driver.
-> Currently, the driver only supports a single Root Port with controller-level
-> properties, which doesn't work for multi-port controllers where each port may
-> have different configurations.
->
-> This series introduces a per-port structure and parsing API that allows each Root
-> Port to be configured independently via pcie@N child nodes in device tree, while
-> maintaining backward compatibility with existing single-port bindings.
+On Wed, 11 Mar 2026 18:03:35 +0100 Bartosz Golaszewski wrote:
+> Add support for the firmware-managed variant of the DesignWare MAC on
+> the sa8255p platform. This series contains new DT bindings and driver
+> changes required to support the MAC in the STMMAC driver.
+> 
+> It also reorganizes the ethqos code quite a bit to make the introduction
+> of power domains into the driver a bit easier on the eye.
 
-Hi  Sumit,
-
-Glad to see you've also added multi-root port support. A quick check shows this patch set seems somewhat similar to my recent patch set:
-https://lore.kernel.org/all/20260310015426.365675-3-sherry.sun@nxp.com/
-My patch set defines struct pci_host_port to hold common Root Port properties (currently only reset GPIO descriptor) and adds the pci_host_common_parse_ports() function to parse Root Port nodes from device tree.
-
-The main difference is that I added the list of "ports" to struct pci_host_bridge for better maintain parsed Root Port information, while you added it to the DWC layer structure struct dw_pcie_rp.
-Actually multi-porting isn't a DWC controller-specific feature and therefore should be added to the generic layer. Please correct me if I'm wrong.
-
-Best Regards
-Sherry
-
->
-> Signed-off-by: Sumit Kumar <sumit.kumar@oss.qualcomm.com>
-> ---
-> Changes in v2:
-> - Fix error code preservation in dw_pcie_resume_noirq() to return actual
->   error from dw_pcie_wait_for_link() instead of hardcoded -ETIMEDOUT (Mani).
-> - Initialize ret variable to -ENOENT in dw_pcie_parse_root_ports() (Mani).
-> - dw_pcie_host_init(): Remove -ENOENT error skipping to make parsing
->   failures fatal for now, add TODO comment about making properties
->   optional later (Mani).
-> - Link to v1:
-> https://lore.kernel/
-> .org%2Fr%2F20260105-dt-parser-v1-0-
-> b11c63cb5e2c%40oss.qualcomm.com&data=05%7C02%7Csherry.sun%40nxp.co
-> m%7C136fbdfd37184ddb530b08de7a7f5e19%7C686ea1d3bc2b4c6fa92cd99c5c
-> 301635%7C0%7C0%7C639082884622870739%7CUnknown%7CTWFpbGZsb3d8e
-> yJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiT
-> WFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=wE1pMUEgAKP9W7vqgSf
-> q7AprdJW2tJfnJ0rppFMtOIk%3D&reserved=0
->
-> ---
-> Sumit Kumar (2):
->       PCI: API changes for multi-port controller support
->       PCI: dwc: Add multi-port controller support
->
->  drivers/pci/controller/dwc/pci-exynos.c           |   4 +-
->  drivers/pci/controller/dwc/pci-imx6.c             |  15 +-
->  drivers/pci/controller/dwc/pci-meson.c            |   1 -
->  drivers/pci/controller/dwc/pcie-designware-host.c | 175 ++++++++++++++++++-
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c      |  32 ++--
->  drivers/pci/controller/dwc/pcie-designware.h      |  17 ++-
->  drivers/pci/controller/dwc/pcie-fu740.c           |   6 +-
->  drivers/pci/controller/dwc/pcie-intel-gw.c        |  13 +-
->  drivers/pci/controller/dwc/pcie-qcom-common.c     |   5 +-
->  drivers/pci/controller/dwc/pcie-qcom-ep.c         |   4 +-
->  drivers/pci/controller/dwc/pcie-qcom.c            |   4 +-
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c       |  13 +-
->  drivers/pci/controller/dwc/pcie-spear13xx.c       |   5 +-
->  drivers/pci/controller/dwc/pcie-tegra194.c        |   4 +-
->  drivers/pci/of.c                                  |   6 +-
->  drivers/pci/pci.h                                 |   2 +
->  16 files changed, 232 insertions(+), 74 deletions(-)
-> ---
-> base-commit: 097a6c336d0080725c626fda118ecfec448acd0f
-> change-id: 20251010-dt-parser-98b50ce18fc1
->
-> Best regards,
-> --
-> Sumit Kumar <sumit.kumar@oss.qualcomm.com>
->
-
+Not entirely sure what the conclusion was in the sub-thread with Russell
+but FWIW this doesn't apply to net-next as posted so respin will be
+needed either way.
 
 _______________________________________________
 linux-amlogic mailing list
