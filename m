@@ -4,61 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C3CBF53D82
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Mar 2026 17:53:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35881F53D7F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Mar 2026 17:53:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CKGAwM263YCgnWhAxwgY9HBxoXipHaws69hcu+4+XFU=; b=w7iMzZPYDtdJtx
-	iaVB3+gB/c+q/L/AVLcoNqbrYfX3BKMZPNNfr7UqqeGVVx7QboeA1uzfQJtXK9WdKGs3yfLAW5Pzb
-	Gun/iK/w/vIf7linJkiZNOggjE1A6N8TRwkHSX93cEjF8zERxdtdRkwqQnOuQ4Bo7G16M/8pjTGXJ
-	vqu6rl9HEkDZLSIlg8RfqOpcHf8gc2Sf6jks5fQfpDpcsNpfo899JB3bNo6HJITuA+VWxJULYPlul
-	/kb3eBrOz9F5/sofHK74nGuhsh7clyJN0hNbFceJXnei1jOa89p1wuyFCtxxeVBKdohK3zeCYV4H7
-	yrvFDA8rGnSU+AG/28zA==;
+	List-Owner; bh=DiX2QlqNUHNPyRNfJtVK9L8agqaW+AJ5f6OiPFfA9wM=; b=eOWgbkkNqSCgKF
+	gB9lM9wCbzi9Ox+8q5sFp+Tj1p8kQ/5cO4x1JClQfcOGq3fcg6Iduzz4tqCDgFaJfsffnB9hmsgxD
+	PGIgrKq4pC1QorP44XjrKMaOhoSlW5sDcta9KNPNcCfMOHivdrL8sY2M8zmUsE21iSdnu2tiL1m7A
+	snDHNFPww6UHSSRGwMTSRinZ860mLVu7I6XjrW/8/nqtVK0YlU4PCclm6dQyit4C56GPk5nsApRi8
+	SAX04flFRXDjqHidL/pby7PKV1nUv5oG2eyqWj34Xapu2PJZVmob3gwnBFluEyFXMdhSddkqZA4+H
+	ztQcc6pIHFeFUY8RAoEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w2C7d-00000004cND-0kZn;
-	Mon, 16 Mar 2026 17:52:57 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1w2C7i-00000004cPi-08x5;
+	Mon, 16 Mar 2026 17:53:02 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w2C7b-00000004cMP-1iqG
+	id 1w2C7g-00000004cOA-3cji
+	for linux-amlogic@bombadil.infradead.org;
+	Mon, 16 Mar 2026 17:53:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=8+NFNNfPKQpy5aedubp3IIdmi/1hneNF5uqPEJiejD0=; b=IjHLYDUSnLR20pwN1voFKIS5+T
+	dkrTBhUTAtggdlQBN5zuQgu9MHAY0kJEtFIBZNhHdv8Q8b3u5tXRCygPe6mUALfdk9BNDO2/6TGvj
+	0OlCe0nZC9RUcvxBeEpgH3/hCtrjalsmFqfD3C46asDiax3458yQY2e7LEo2TpYEVmvZ7FGMxgzwL
+	FF54B801KP1TL2Ze2+NsHuqG0J7ByUNYlj1VsGIZCVWzv5rUBdd1U0MESF13ye/3sxxjMdNjabWcZ
+	4DXkviVm/MA6az7KgFc171hcATGNVjlhmSIyPrZE9uP+nCePELJETtlPnLYpYiI8FTQ7ttEMB5lA9
+	svJM9vfw==;
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1w2C7d-00000007O8i-1ikV
 	for linux-amlogic@lists.infradead.org;
-	Mon, 16 Mar 2026 17:52:56 +0000
+	Mon, 16 Mar 2026 17:52:59 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id EE1294424E;
-	Mon, 16 Mar 2026 17:52:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACCE4C19421;
+	by sea.source.kernel.org (Postfix) with ESMTP id 593A443AEF;
 	Mon, 16 Mar 2026 17:52:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10D77C19421;
+	Mon, 16 Mar 2026 17:52:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773683574;
-	bh=RMMdwUBKrsM2fcZYyAiOm2zP3QvMKJ2MU0w5P34paeM=;
+	s=k20201202; t=1773683573;
+	bh=OEwG9/7Qz07DUhhGU75z8KJ/0FJEh4JIXFXDtPd/Vho=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=MGE836MAujJMtajPP1K5ZufO3peej0xs9cP9x4ui+8IU7IiI7nVnVcw8gAKS0w/IU
-	 XlSXngYbVwvCGq9Wrs37k7x96nheMn1D/+jdYx60BRrb46QT7aRUVQa8GeuPCHz5l5
-	 He/t6t2hDnoNWEoNjGDaSzBt9T1cdTVwQLcJ8eL95d2YUBYfwFO7ST+L44NofucdY1
-	 gei1KIRbs5ls9WnQk5rAKZ85tBuF/4oF6LApFNemKanQnDszs8ENz57/5A04Lo+GZc
-	 g6WHBLcHjjfefk5U1IDJqzhTUGcdBMpbJqFlSBmsPZeABLEjeWNxtE5BTgiuzAlhFd
-	 DeSMdLS0Vleog==
+	b=YfpeH4oJXAuDCb/CEbnrT5EwJC3+z5nA6nBgvGcMnSVIyoMig8cS/e+omu436gBg9
+	 KrdTXMau1nnEND386IT4Qtz2FW3GSeJ7rQrLF7ZqAOEe3Yx2iqprkM/qVVgXM4KLcU
+	 laDdiODnzjJiqootV4gQMANn2X0EQWlTjHtTOHyiZmB2HWE15jzc0A0EZ3TU1JpZ5y
+	 dam/mooAk7AvOR/6Jz6fvQzz0Uk0RkTQ3SpZHPvxEKwkNQ9D/at2gEFvgAxHUaxp2j
+	 wCPg/WLwPFEnd+VoyKwIH2U92U/FvxCrm6iC+JR/HZQtpZAnEg2L5DxkYmheUefgro
+	 TlaDHcUKbaeBw==
 From: Mark Brown <broonie@kernel.org>
 To: Sunny Luo <sunny.luo@amlogic.com>, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>, Felix Gu <ustc.gu@gmail.com>
 Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
  linux-kernel@vger.kernel.org
-In-Reply-To: <20260308-spisg-1-v1-1-4e209faf228d@gmail.com>
-References: <20260308-spisg-1-v1-1-4e209faf228d@gmail.com>
-Subject: Re: [PATCH] spi: amlogic-spisg: Use IS_ERR() instead of
- IS_ERR_OR_NULL()
-Message-Id: <177368357343.147197.2388005468869139656.b4-ty@kernel.org>
-Date: Mon, 16 Mar 2026 17:52:53 +0000
+In-Reply-To: <20260308-spisg-v1-1-2cace5cafc24@gmail.com>
+References: <20260308-spisg-v1-1-2cace5cafc24@gmail.com>
+Subject: Re: [PATCH] spi: amlogic-spisg: Fix memory leak in
+ aml_spisg_probe()
+Message-Id: <177368357179.147197.16355665844565795171.b4-ty@kernel.org>
+Date: Mon, 16 Mar 2026 17:52:51 +0000
 MIME-Version: 1.0
 X-Mailer: b4 0.15-dev-c239c
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260316_105255_476162_85761DA9 
-X-CRM114-Status: UNSURE (   8.05  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260316_175257_672302_729891E8 
+X-CRM114-Status: GOOD (  11.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,10 +89,17 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, 08 Mar 2026 14:59:50 +0800, Felix Gu wrote:
-> devm_clk_get_enabled() and devm_clk_hw_get_clk() return error pointers
-> on failure and never return NULL. So IS_ERR_OR_NULL() is unnecessary,
-> replace them with IS_ERR().
+On Sun, 08 Mar 2026 14:49:21 +0800, Felix Gu wrote:
+> In aml_spisg_probe(), ctlr is allocated by
+> spi_alloc_target()/spi_alloc_host(), but fails to call
+> spi_controller_put() in several error paths. This leads
+> to a memory leak whenever the driver fails to probe after
+> the initial allocation.
+> 
+> Convert to use devm_spi_alloc_host()/devm_spi_alloc_target()
+> to fix the memory leak.
+> 
+> [...]
 
 Applied to
 
@@ -86,8 +107,8 @@ Applied to
 
 Thanks!
 
-[1/1] spi: amlogic-spisg: Use IS_ERR() instead of IS_ERR_OR_NULL()
-      https://git.kernel.org/broonie/misc/c/8abf84f76a54
+[1/1] spi: amlogic-spisg: Fix memory leak in aml_spisg_probe()
+      https://git.kernel.org/broonie/misc/c/b8db95529979
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
