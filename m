@@ -4,131 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65DCFF53D7F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Mar 2026 17:29:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E2FAF53D7E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Mar 2026 17:53:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bDeXwH818AedrpNGsrKZrSkhm44sy3akmvzZCMAS5Ws=; b=moHVpSGPjI9Ug+
-	1vAm0c5j5/m7rQcRFe4pW9mG5vONTuzlEGzSHer07PP3qMTlFjNKWvi1S7SEf4GyFMBq3nLlJfqtb
-	L6yCm/Te4Pgw5fPzFmK4M1gn+UqUpUpfNicRt3d+wNqwVDrT+4bekYO4xwQyqERioyH8z7fmA/Yld
-	cxP2/RfFXdhM2Wmw5IxqCy7mH2qqpOF+zYAvyEewZySvl8D6iOqWDHz3piP/27DihEUz2DUnz7Lo6
-	BraS76DxVCUSYsMUdod1NXDDHqq+e8bhfpgVi7Hm53Xp/SF1IpVb2+A5KIFAjMsQJ5Exh2MWaI5Q6
-	9btPU1MYgCM9lohomq/Q==;
+	List-Owner; bh=8//27lQTjUXqRwZl7bR6EaRKykcg/9HpqczNX4wAGLI=; b=q34bW/LeggIOtW
+	GUrkdLOCnUhHUP39ni7vTrnnVS0dYZYxhXspqTfoawf3cPu62kw1kezMo2wP08dV+FudBpshYOHOu
+	TXP7XNl0yCXsi1ARxfTDNNvOq+t8lDOckE+QH9Os8iESVnXJXPfiwnIKPbRYR5hybBK9xG/PtPucc
+	8FCTilqnjQgx7JJq73YxAVNnZE1AkN8WW4UfbSG/bIUqqzIPlcrMgHU0JJyiW0ssrnl0xMpEDneRJ
+	4ZVVQlgdJSDp1U0IkZNorjR2+RLHOM4p62VlCdhM2IAC+rmWXwHUq8HxH4iEsQFKqTKG8rJAB2/oN
+	G+Go1gjQhFIYTmrF8hLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w2Bl7-00000004Z8k-2h2K;
-	Mon, 16 Mar 2026 17:29:41 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1w2C7f-00000004cNu-1xDI;
+	Mon, 16 Mar 2026 17:52:59 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w2Bl6-00000004Z8Q-0TQL;
-	Mon, 16 Mar 2026 17:29:40 +0000
+	id 1w2C7d-00000004cMy-0D6z
+	for linux-amlogic@lists.infradead.org;
+	Mon, 16 Mar 2026 17:52:58 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3B31E60018;
-	Mon, 16 Mar 2026 17:29:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5089EC2BC87;
-	Mon, 16 Mar 2026 17:29:29 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id BF76D44289;
+	Mon, 16 Mar 2026 17:52:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5536AC19421;
+	Mon, 16 Mar 2026 17:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773682178;
-	bh=Ysd3eBupfSljhrNmOpuGPKVMPzOcnIp/9ypCnnttjrY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SeG1bDmb2FosihW0Q0vHpHDd6Vq9zHI/km9LM9pVc+W9ySVDXWNuYswxphJ768iy+
-	 rRTo4LFSUsqxFYgG+8R5d0PCs94v7ggs1ZV94QtxtKZemNboI/SB6zraswF7lRv/V0
-	 4dRzPiYhaMGMP5SoiQOyyHwGQgu4ORDieCfhRvo7rhFoRx8WGR5BN5Zduj9HcYol5y
-	 xigRuamu6mn78C8lcPsh5eNPMZw4UmXPzfzEmZKk8UyxEMqKXHMUVbtQQdAJZBIRKO
-	 fqFw06ytMbWL1ifvXu8nl9a+xt365ou5fLzGd/1kCY837nZwvVw1ifY2Dp/xBaICkO
-	 C+r3Fk7Yn1mQQ==
-Message-ID: <846c077d-f1ca-45bc-b3d4-52ba71c34909@kernel.org>
-Date: Mon, 16 Mar 2026 18:29:27 +0100
+	s=k20201202; t=1773683576;
+	bh=QK9n0w9Nsd82E8ZRQPvx4wNiypPjvrWgPongLIvYxw8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=hWdcq7Gk0UpZSd2FAQ+mpJVmd/1+N20oRMgYfrvW5NO0DDtCuPdw+GdkpSIfKwd0U
+	 w4SM6KpZFB5ObAXtkSTmphSQTJ9Nwjv890HFx7fI6bGdTWUjs3bSrshHQS9FrTBNAj
+	 k+lb2HrnYG0wALwHZuj884GvCcpSarhqzDsSLMgMwlWQS4koAqqL3Tu5Khi3uY94bV
+	 6ODEjm3jtIyjmxHqW//8Kkk6bUyDQKYtR23PZ2edrOV1yNyXSMnpKHFcV16NNk000q
+	 6FmJ51deW7Qq9BQEYkQ6cWWE6IqUnYoD8GVs/U3HSuvjVGxtBSg/m2QvXgaQEC86Wh
+	 uB6Xj/02I/fLA==
+From: Mark Brown <broonie@kernel.org>
+To: Liang Yang <liang.yang@amlogic.com>, Feng Chen <feng.chen@amlogic.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, Felix Gu <ustc.gu@gmail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20260308-spifc-a4-1-v1-1-77e286c26832@gmail.com>
+References: <20260308-spifc-a4-1-v1-1-77e286c26832@gmail.com>
+Subject: Re: [PATCH] spi: amlogic: spifc-a4: Remove redundant clock cleanup
+Message-Id: <177368357508.147197.6859003613320300575.b4-ty@kernel.org>
+Date: Mon, 16 Mar 2026 17:52:55 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v9 1/6] dt-bindings: net: qcom: document the
- ethqos device for SCMI-based systems
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com,
- Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>,
- Romain Gantois <romain.gantois@bootlin.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- Christophe Roullier <christophe.roullier@foss.st.com>,
- Bartosz Golaszewski <brgl@kernel.org>, Radu Rendec <rrendec@redhat.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, Drew Fustini
- <dfustini@tenstorrent.com>, linux-sunxi@lists.linux.dev,
- linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
- imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
- linux-riscv@lists.infradead.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260316-qcom-sa8255p-emac-v9-0-c58934e76ff2@oss.qualcomm.com>
- <20260316-qcom-sa8255p-emac-v9-1-c58934e76ff2@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260316-qcom-sa8255p-emac-v9-1-c58934e76ff2@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-c239c
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260316_105257_112585_BBA91000 
+X-CRM114-Status: GOOD (  10.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,22 +73,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 16/03/2026 13:05, Bartosz Golaszewski wrote:
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    ethernet: ethernet@7a80000 {
+On Sun, 08 Mar 2026 21:34:55 +0800, Felix Gu wrote:
+> The driver uses devm_clk_get_enabled() which enables the clock and
+> registers a callback to automatically disable it when the device
+> is unbound.
+> 
+> Remove the redundant aml_sfc_disable_clk() call in the error paths
+> and remove callback.
+> 
+> [...]
 
-Wrong unit address.
+Applied to
 
-> +        compatible = "qcom,sa8255p-ethqos";
-> +        reg = <0x23040000 0x10000>,
-> +              <0x23056000 0x100>;
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
+Thanks!
 
-Best regards,
-Krzysztof
+[1/1] spi: amlogic: spifc-a4: Remove redundant clock cleanup
+      https://git.kernel.org/broonie/misc/c/a00da54d06f4
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
 _______________________________________________
 linux-amlogic mailing list
