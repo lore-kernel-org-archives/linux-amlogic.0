@@ -4,144 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC7F0108B8ED
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Mar 2026 10:42:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38DAD108B8FF
+	for <linux-amlogic@archiver.kernel.org>; Sat, 21 Mar 2026 06:54:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=xpjIdv9AYtf9dyTm+P0E/w64nnuYntV5m4g8CAjfW38=; b=gLRxcWpcW4v2fCZw1CHb0sN5lL
-	M1H0srMAjlOTa0QBKXX5EuQrQgPeOocrKQHiwpxaunaYDb+H94QDdKTrUwZxez9yZSb6ImcYOPS+Z
-	6vCUkf3nW7dn6gPXh41c/s5B0XXNO9WDHWW2MGJxznxqXaT/pLP8eist+0LkL96veq4+Jlth66k6W
-	PVZUsM455p40styU8a/bpb6Mm4/0d+lfj9hvnE6dHqoW8aCXoxvvMJ213CCqCheoSfu+QEy7Tw0o6
-	Iv7/6a0V+T0eBzV1BPJZjxGbRLKl3zN6xcfuNjNKkEDgR4MKaw1+A91Wb6pNjO8n/DD3OiTBZvlM/
-	uupFJi3A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=fLguTg/CwHLDO76/FtqbXbi6oUO08/VOnfftZ3rpAX0=; b=hauGy8eDM/wYRf
+	VO/1vHI41Obh1Uzlw4rl9dUa2cagdkVFO29nje6Jrw1HQG6wFO9Ql7MRqUsl1R8DO+ccKogZdgbq+
+	qAoTdghfGc50XDMb6oeceuYCuUPlvHzv1s85MBKUSLBUg24L5Ch7ftQtnKA4KCOiJgOQXiiyiEviV
+	3DrTuGY/1uQQqHwXU4rpNZ0zuzIy6+4bnS+TAMZCOYYJgTZKeivQbvvDlGwUAgj2F3ju6lVcUhU4q
+	sISb52MZiNp8/aa8fnIh2ptwmLcny0hctZk55hjiyiZA1SxXvOjdKgJ09syd1HsYSwM/f/Tc+xiLP
+	rnKeib2ASAv8RDYOqkTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w3XJL-0000000Cdkt-0EnT;
-	Fri, 20 Mar 2026 10:42:36 +0000
-Received: from mail-japaneastazon11022096.outbound.protection.outlook.com ([52.101.126.96] helo=TYPPR03CU001.outbound.protection.outlook.com)
+	id 1w3qE5-0000000EAh7-33fq;
+	Sat, 21 Mar 2026 06:54:26 +0000
+Received: from mail-pg1-x52a.google.com ([2607:f8b0:4864:20::52a])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w3XJI-0000000Cdia-1l9x;
-	Fri, 20 Mar 2026 10:42:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KVIyd4EgmgBTMPpKQ1IMftMSxxQd3p2MGxAhSFcuKoziSD/w2qa6fHru0C+ydMOB62rjTtsjpKa9+lLPqKv87a/GXB0+1nsxww2Yl1v2ifGKIXIPBUhxvJ1rGszmMkryVJTeNpJVh52SWK2+et8Bn0Cnk9jQw7JIvFBlIiYVzuZZkrBbllI2nYBCgXnKPsMOBDGDYuu/am5Ak7Vo8De2vL8JJwhpTDCJLkKHT9p3dwgkHhJN7NXTz5e+pOXZlmL5Wkc34Jnfqqvql7ThpuSjtDs+hbI2KRG0Lh1h+VYZ5PLd37WykaIqadXMZc1i2Y58CS9WEQMLiwvZc/qqWIP60A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z6XuWjcI3nmt56P4Z/OlHY2F06Tk6ESEFAsK10+/ZxY=;
- b=lFSPadsiba/YU2X2LTWRJfQPDOp8q7kLGb+cHhkSFQUzTLln0Bth10dKlA7ce0C6C9qZ/xsxwed+5l0Ogh4zRvlrPN/kE3K9aeMntSy7AcepHwpk6MUshS3fW3Kloi+hHQB4CUwmdsP/hK/sfk996EnLlnQ1/t2zJJQbzHOxh6hmOEobtx6Fd9SJLJbLpzrGB5yA4sUAxDuUVpd8CuuBGIxSxkXfzqcAqlJUX5BWnzZ0yeg8rXaYk4gOZvm2WW7XjbZcBmxjxalmWjRyn99X2+Kq5BwEr0nDhSd/qMmxYtQZapdFsL0/1HZjYdKetGN6Dg1UHghkfJeQGMfFS8tNyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z6XuWjcI3nmt56P4Z/OlHY2F06Tk6ESEFAsK10+/ZxY=;
- b=JWxHvtpvsd6pYnr/HIbBYcT51mtBSywvXNIsHsBL1XIXe/r7Mj4JBgqfVr+LPFFnG39B5Uv0zbcI99XRvGIaHyO0bXvIbRXo4YhGQbT6vlRTZ6UCE3jE+cwyfpEFmgyQ31Y0n6iuR5BJVeJKLkofK7gp6tJjRa/2BNaEhEJ4LgqaPARLgon3l3Ii2JQPK2PDc38XlgfVNZ5J2W8tMvqkGak2/0SJW7CsZGQfJVv+Cow9Q8ZLfIIPQKghNX2GHnj0esd9O2pOl1UK8eqB66uMWY9XVPfr8Lwkudb2o0P2nBAdKQ14M5sBrijXL/mPvGBpEvdPqE546jkqMBWOcgZu0w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
- by SEYPR03MB9756.apcprd03.prod.outlook.com (2603:1096:101:304::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Fri, 20 Mar
- 2026 10:42:19 +0000
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e]) by KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e%5]) with mapi id 15.20.9723.019; Fri, 20 Mar 2026
- 10:42:19 +0000
-Message-ID: <86e2c106-1e58-4e1d-bdc0-ab1252f70489@amlogic.com>
-Date: Fri, 20 Mar 2026 18:42:23 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/8] clk: amlogic: Add A5 clock peripherals controller
- driver
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Kevin Hilman
- <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260108-a5-clk-v5-0-9a69fc1ef00a@amlogic.com>
- <20260108-a5-clk-v5-5-9a69fc1ef00a@amlogic.com>
- <1jecnsr1eg.fsf@starbuckisacylon.baylibre.com>
- <ea7e209d-cd30-4d93-9deb-104aaf7c92eb@amlogic.com>
- <1jbjipviky.fsf@starbuckisacylon.baylibre.com>
-From: Chuan Liu <chuan.liu@amlogic.com>
-In-Reply-To: <1jbjipviky.fsf@starbuckisacylon.baylibre.com>
-X-ClientProxiedBy: SG2PR01CA0154.apcprd01.prod.exchangelabs.com
- (2603:1096:4:8f::34) To KL1PR03MB5778.apcprd03.prod.outlook.com
- (2603:1096:820:6d::13)
+	id 1w3qE0-0000000EAfB-3sIN
+	for linux-amlogic@lists.infradead.org;
+	Sat, 21 Mar 2026 06:54:22 +0000
+Received: by mail-pg1-x52a.google.com with SMTP id 41be03b00d2f7-c73a12af63cso868469a12.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 20 Mar 2026 23:54:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1774076059; x=1774680859; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kGQQXI1iMDOQW7zjWSA3/NeC4tENFjL25ABxgm3fCbk=;
+        b=bBQ/rwkyS7OCP1XfaKdOzfySUiHbYbcoIgAKRIdAZJzapRiP9p21Xkpp3+fvx2u2w3
+         m4ejgP3c6BMRP8mO2H+3PgXWm0J3iY/SwmqtE5v0ESfu83fOUTpmrfhtu01SRP4S3SoN
+         OulFs0yYsFEEQRaDpoDcsEJQpQdPgr7Nx56ieDeAo8hlhVl9txmOYzUgIaQ6dMoKqzCW
+         E4xi5P6Z7/HY8CZYYyNRbQONUj1Zyspmwz5SeIjog/nfcipBj6A7iQ30P41Iw4jRf54f
+         Fn+MNWV4asxTLah+OOfWtVtjUQHjGzoCHLmAn23YOs7dlxUKJMtUq4lmCOpGY34slShp
+         4dnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774076059; x=1774680859;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kGQQXI1iMDOQW7zjWSA3/NeC4tENFjL25ABxgm3fCbk=;
+        b=FIDs/F9IlNlU02f+CfWBwfc3hY/dAURIWQfVY0zRkUa8qIi4FVwxf8KIORrFgkafiM
+         vbbaaklcssQG5aOngAFWdlYIIIZUBjFKmPLYzcwG/PuAOmbiST6TkeQa9w7NeBhMJCjo
+         kJD8dMVPlJVGIX0KVUwRcMgUQillS3/pOBjuyRXIQtxTx93XJ/KlncRjO01GN1FZOeQQ
+         W5AfNHCNIAqYq7A5AvoPAULZ5zQnKeO2UmbaG0F+TAr6OY+sH/qHm6MMdeMRIgp8061w
+         yfi5Rh93qM1aOSA1VdvPW/gV4cGs1WiBo+c4lWodOKhoh5vyiEP4gbTXNnuHnJml3gf9
+         74Nw==
+X-Forwarded-Encrypted: i=1; AJvYcCXShank6gINAJHCg9z6ch0LCtg5vnpJkkcB5S1liQ7eTNATAYfLpMPULs6Ic/prVRC192T0RZYgouM/TcUz@lists.infradead.org
+X-Gm-Message-State: AOJu0Ywjw/yfaf2wOvtfZTljmlOMJgb9rcLz+RlXbyaquww7eV1hvwdf
+	//1FJKZFMc+58cjzcrSmiSuj3cyqmRwwnr9cF0pF/dEnnRY6Vf57oUZL
+X-Gm-Gg: ATEYQzzgeX/zluMVereGVRodhTCKITLw7m8oMEhmFIJlBgtJFMOKn6DADuTySO3x000
+	yKtvXemAw0Us0lrFRrqkjrcVyzUHTo3ElV7A58p7REMxLjOtUNUvs6L9dlJ2v7vi4QsIRx/0PCQ
+	kd4jVuWG3WyZBjZ9JSAgB77ioPbyzK1Cz2bwlqUyS5GBJJ3hp87dP3g1WrPSru0mLoh48t2DtnG
+	5ApnIZo5FD3Q0qukEUO5kI3r4DvuQth5kv341lij0Oc/Uoez0NJOWBf6j+dkiqEZoXk7akt4oO1
+	gy5jX9fynXU95DdudxQvSKf8zyi5TpicHUpRN3fcRZayE10PRsG23p36TalC6FAuD9UabEprcQ+
+	L31WlkFkbcs+qs+I8i8qNnUhEAeRZ9eIUq5X1rSp4W2WvdSF0rSTA49GWGZO4+fMIbpz31Yp3WC
+	R27Q2l2QECmwNhTYAGsbZ7
+X-Received: by 2002:a05:6a20:401d:b0:39b:e0f4:322e with SMTP id adf61e73a8af0-39be0f44141mr2372219637.62.1774076058629;
+        Fri, 20 Mar 2026 23:54:18 -0700 (PDT)
+Received: from rockpi-5b ([45.112.0.200])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c74456fbfb0sm3188114a12.29.2026.03.20.23.54.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Mar 2026 23:54:17 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Jourdan <mjourdan@baylibre.com>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	linux-media@vger.kernel.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
+	linux-amlogic@lists.infradead.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
+	linux-staging@lists.linux.dev (open list:STAGING SUBSYSTEM),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-kernel@vger.kernel.org (open list)
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	Nicolas Dufresne <nicolas@ndufresne.ca>
+Subject: [PATCH v2] media: meson: vdec: Fix memory leak in error path of vdec_open
+Date: Sat, 21 Mar 2026 12:24:06 +0530
+Message-ID: <20260321065408.209723-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|SEYPR03MB9756:EE_
-X-MS-Office365-Filtering-Correlation-Id: 20c4b0a4-7485-4b85-404c-08de866d5c6b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: p8mH9a8twS/csM4B/46hzPyfSnOsYao0NTrrqhRp+HAsXGIGqZ/YUmLeWyAPlAgJXNZFYAnwQz1uT+Ko0C1Yjf4nRF5LLkqTEn8PHOtoEltb7ClBiWpXw2zs8238qwpYqSU/XGShl6glWbvmnEAmu3sGuEGhqtsyoDQj2pfQ7IUUeOi3DRandOevdRO3LgSX1L0Lmtw5jIjflHrACd/Z/PY4drOP6MvO9cV4v+vqMNMeJcazeHD99+0kWw23Q6DOby8wfvbcNJQVP3I45D9TY5uKwhOPI4J5JOZensvwFtYh5gKzeZAHr5oPIJRxETNQuRB6whE2/F/2Q5Ktmj747LmcJncq8NEbmppMYyU0BmLKNH12PVpMSAj3e7gdYhjOLJtHEpSR2l934FH7imdZ6GfwJy+m7Cvu0dZdpJ/hhz9nEUg8d8DwBhGB36hkWD0klhIR1e0AkCo0x1QG98FAM7c+Y831TM3Nr5SsVvcvhE91cI96ohgM450uI9v1cJN3CF+Ojx3T0KRHDfBvGHWCywb0FeDrgGRqLdIGrqI5EbIvCsyXwsmyyVDT1/ak22K2wMHqsXoW+myGIWx2e++ScbKvHewhk2Kx7zL34+Va2rVS8j4voLjJD2l9sB/uoWvRxSIq0XklvVO2AcZXDYY+BOzr2AFAmch9aGnlrIhaIswQIOySTUUBQS804h0g0ZgEGEUJ/LC2h/g4xzMMKSCixa6aqQ2pmfJ8S/RmMPL6ZVkVerzZMqV3Tumjy1b1jHWf
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bmRsV2NNVXBETUE4RWpLcDFrNGIvci9oNUx5bmZvaG4yTkk2UzFVZUtNVUxU?=
- =?utf-8?B?eDIyZzhya1ZnUjJVOExBVnYyczVyaDN4bUVZVEVHZ3RiSUV3RXdLYUxQODJR?=
- =?utf-8?B?cjhFUWlEWVBkajlqV0NtWi90UDhmSEw5WlhVNzRLNXFDR2xsRnBxL2t0eHN3?=
- =?utf-8?B?TjdZZS9nOUdDSVVrcnVJYkwrMm45dHo5anQvWUVTTHFHUmJ0U2hzcnRFR0ls?=
- =?utf-8?B?eFFZWXIzUGx5S21mNnhtN1pUbzAxWDQremlid292SU54cE5WWGExODE4aXNU?=
- =?utf-8?B?U2dxaURteU9oSmMrSlJQL0JkVXMzc2VrWlY3RzF6Nno1bGpkOVl0dEtQN0ly?=
- =?utf-8?B?UE5JSEpsY2cvVytOT1QvclJGN2pLRjFFSmQyNWt6OWF1NFF4OFZFZEt2LzNp?=
- =?utf-8?B?Uk9GWGt4WWhrcGZ1dHhXc1RrQmlsaXBRWUlFaXVUWU1WNXFZcWNMd24vWDBN?=
- =?utf-8?B?T3dBUUw2c0krdXlNemdrMWNBdVdDNU9FZW1sakdlQ3k1azFWc2hNTkoyT3lX?=
- =?utf-8?B?aUVLcU9DZllHYVlFV1dIek9ERW9WWnBNZ2ZzWFBpL2o2ZWJ1NzYzZ004MklF?=
- =?utf-8?B?NGNQdFBTM2VaOXg2M0lwYWV1QkRXaGh6WGZwRFRadDBrcFRGUmVYV2hsK0Mr?=
- =?utf-8?B?VFdIK0lXNWx0MmxudTE0ZUpqMTAvSDlLU0RWRFlTS09LamREcTFBN3orejBq?=
- =?utf-8?B?LzQ0NUpMZ2laS2hIb0M3Njhuc21IWHZleHRxaWxlSmJIUjQwaXNjRVVVUVRD?=
- =?utf-8?B?ZjhqZGNqZU1kUFB6djQ2dk1JRzM3Y2tSKzBpbmYvRTZaT1BEMlhLeXgrN3M5?=
- =?utf-8?B?anVZMHJRKzN1ZENUSTdIVmZLUG5Oczk4Z2tvemlCVVpVQm5iRmJ6bHVyeUdW?=
- =?utf-8?B?UTdhSDlKd3d2OGt3WUNTREdyWFRUZW5yK1FyT1liUlVpYUV3K3gvOEFEeUxR?=
- =?utf-8?B?clhBYmV3YWNwbEtRV2VYN3ozWksvbUNyQ3JNOEp0VXd6Vk1LeXBqbFZMMUw0?=
- =?utf-8?B?Z2Y5TGNSODlYMVg0d2dKZ1pBTTdXS3BsV3pCN1JROERjTGxyWnJmdGlWM284?=
- =?utf-8?B?ZUZaOUVmUjRNQXdlY2hYT2o4elI3WFBqY1VPWGpyQUU3MDFvaktqdHZTWC9a?=
- =?utf-8?B?OWdrbklzYUxKY1NKUzFWUW9sSCtjYVl2VzJwZ3RNL1JVN1ZMNStGSmlqNGVG?=
- =?utf-8?B?WjQ4RUgyRUh6bDZwSnBTRFhXOEJ0djdPQytFV0UwOTNrQW9XZTNWMlBkakgz?=
- =?utf-8?B?Mm05dk5nQmJUMTEyeTN4dk1WYUZWSTd0NG0wd056UFNXN2FSQlptVXVEdDlz?=
- =?utf-8?B?ZjFzUW8zTHZ3aDltK1pRb0dIRTErNWc2K1RpUnkvRHlKN3hHM2R2c2NaRXNB?=
- =?utf-8?B?d3dlSHlPN0VBYkc1TitEcFNwZmRvQmVsVTdNTjZtZ0ZGU2QwQmdocWM5RlNt?=
- =?utf-8?B?VHBoa3dEM1lnd3gxSmJvMzROWGhjcnN3TWFKOEtTcEs5WWZpb051SzJaT3Fp?=
- =?utf-8?B?SGUvQlU2YlUzS0ZFd0VqdldZbEZTQVlSOG9YdHF1NUJwUlo5M080RkkzWlIv?=
- =?utf-8?B?L3A4aVJhcUIwODdLRC9kT2hrNVNSemF0QVRoYytDR3VnelRtc05DcGxHKzFq?=
- =?utf-8?B?enA0RE02Qm9QMFZza1FOcmMwdHJsaGlDMVdqUEVvaU5ia0V4ZGNjOTZzb2hm?=
- =?utf-8?B?Wk5Ta0VuZUZrelFLMTkxQkQ5SVIzalFVS3BNUGlPM2dSeXBWV0JraWEzZHRF?=
- =?utf-8?B?VEM0N1RCbUtNaEJGcGZqbElTMXY5V2tLK0JLRlRVREcvbzFUdHo5dlp1YitY?=
- =?utf-8?B?UTNUMFUrUnJINXZETlZoSWYySjVrYzVWeTBIckVibGE0cDRtcko3VVBxR3Y2?=
- =?utf-8?B?QUFETXd6akEvZWxYN0tXRGNjeFJIUGtPOTVsWXJTN01uZjdSK1VGQ2diN2tW?=
- =?utf-8?B?Y1RWRmFpQmxFSWYzZC84bjJoeCtWZjNpR0lobWNQTTFUZGVXV3h3eU5jMTZV?=
- =?utf-8?B?RW02SXdLYkgyY01HcWV0UE9QSnNBdjRET0FaYzNyOHI1eGVsVisrbVh1UTRQ?=
- =?utf-8?B?c1JsWmVFMVhEQkRtZ3d6MkNKdHpyL3dTT082RVdFb2pqNjNFSkFxY0V1cmlW?=
- =?utf-8?B?TXYzNk9GMHgxaEtHZkpNcEVJcmR2VmtqanFOQU9hMnM3MFBkeTlSeDJVeUMy?=
- =?utf-8?B?NWk0SDJSSkY4a1pKamQ4QXJjSUhEZTQxUnliZDV3aGpxM1dNYXhxWGNTNjdu?=
- =?utf-8?B?R3ZzK2ZkOGh6ZjBjV0hEVWZLZWJKRVBJWnJNaTE0bk1Ybk5seTdMcWRwWVF2?=
- =?utf-8?B?ZndNZklBbDVHNkFydkUxbzJtSW9pUlhIYndSbGp3YUdLYkxtcDg0QT09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20c4b0a4-7485-4b85-404c-08de866d5c6b
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 10:42:19.4588
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xkHo5XNznPg9+sFo2ILbA2/L7UyA8iCtW1iASQRAwctE8ccZnKLvtrbD0H1ejYlYw+W7k4JuTXvU+LHEvqo8DQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB9756
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260320_034232_477285_EF4C455F 
-X-CRM114-Status: GOOD (  14.11  )
+X-CRM114-CacheID: sfid-20260320_235421_127875_91F0C95A 
+X-CRM114-Status: GOOD (  13.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,59 +103,104 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+The vdec_open and vdec_close functions in the Meson VDEC driver failed
+to release several resources, leading to memory leaks and potential
+use-after-free scenarios.
 
+This patch addresses:
+- Missing v4l2_ctrl_handler_free() in both the close path and error
+  exit of the open path, preventing control memory leaks.
+- A leak of the M2M context if vdec_init_ctrls() failed.
 
->>>> +#define A5_COMP_SEL(_name, _reg, _shift, _mask, _pdata, _table) \
->>>> +     MESON_COMP_SEL(a5_, _name, _reg, _shift, _mask, _pdata, _table, 0, 0)
->>>> +
->>>> +#define A5_COMP_DIV(_name, _reg, _shift, _width) \
->>>> +     MESON_COMP_DIV(a5_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
->>>> +
->>>> +#define A5_COMP_GATE(_name, _reg, _bit, _iflags) \
->>>> +     MESON_COMP_GATE(a5_, _name, _reg, _bit, CLK_SET_RATE_PARENT | (_iflags))
->>>> +
->>> At the top. like C3 and T7
->>
->> Except for A5_COMP_SEL, which differs slightly from T7 due to the
->> additional "_table" parameter, the other macros are consistent with T7.
->>
->> I also asked for your feedback on this in V4 and received your
->> confirmation. Is there anything here that still needs to be updated?
-> 
-> Reviewing these long patches takes time. I tend to stop reviewing when I
-> noticed some feedback was ignored, especially when it is recurrent
-> problem. I've told you that already. It is up to you to make sure you are
-> not missing anything before re-submitting if you don't want to waste time.
-> 
+The error labels in vdec_open() have been reordered to ensure a proper
+Last-In-First-Out (LIFO) teardown of all initialized resources.
 
-It has been nearly two months since I sent out the V6 version [1], and I 
-haven't received your feedback. I'm not sure whether this is because you 
-still have concerns about this part of the change?
+This was identified via kmemleak:
+unreferenced object 0xffff0000205d6878 (size 8):
+  comm "v4l_id", pid 5289, jiffies 4294938580
+  hex dump (first 8 bytes):
+    40 d2 49 18 00 00 ff ff                          @.I.....
+  backtrace (crc d3204599):
+    kmemleak_alloc+0xc8/0xf0
+    __kvmalloc_node_noprof+0x60c/0x850
+    v4l2_ctrl_handler_init_class+0x1b4/0x2e8 [videodev]
+    vdec_open+0x1f4/0x788 [meson_vdec]
+    v4l2_open+0x144/0x460 [videodev]
+    chrdev_open+0x1ac/0x500
+    do_dentry_open+0x3f0/0xfe8
+    vfs_open+0x68/0x320
+    do_open+0x2d8/0x9a8
+    path_openat+0x1d0/0x4f0
+    do_filp_open+0x190/0x380
+    do_sys_openat2+0xf8/0x1b0
+    __arm64_sys_openat+0x13c/0x1e8
+    invoke_syscall+0xdc/0x268
+    el0_svc_common.constprop.0+0x178/0x258
+    do_el0_svc+0x4c/0x70
 
-This approach was already confirmed by you in V4 [2], and I also 
-explained it there. There has been no change to this part in V6 compared 
-to V5.
+Cc: Nicolas Dufresne <nicolas@ndufresne.ca>
+Fixes: 3e7f51bd9607 ("media: meson: add v4l2 m2m video decoder driver")
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+v1: https://lore.kernel.org/all/20260304100557.126488-1-linux.amoon@gmail.com/
+   tried to address the issue reported by Nicolas
+   improve the commit message.
+---
+ drivers/staging/media/meson/vdec/vdec.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-This email is not intended to rush you, but just to confirm. If there 
-are no objections, please feel free to ignore this message. If you do 
-have any concerns, please let me know.
+diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+index 4b77ec1af5a76..3a5e4ebe0b34c 100644
+--- a/drivers/staging/media/meson/vdec/vdec.c
++++ b/drivers/staging/media/meson/vdec/vdec.c
+@@ -877,7 +877,7 @@ static int vdec_open(struct file *file)
+ 	if (IS_ERR(sess->m2m_dev)) {
+ 		dev_err(dev, "Fail to v4l2_m2m_init\n");
+ 		ret = PTR_ERR(sess->m2m_dev);
+-		goto err_free_sess;
++		goto err_m2m_release;
+ 	}
+ 
+ 	sess->m2m_ctx = v4l2_m2m_ctx_init(sess->m2m_dev, sess, m2m_queue_init);
+@@ -889,7 +889,7 @@ static int vdec_open(struct file *file)
+ 
+ 	ret = vdec_init_ctrls(sess);
+ 	if (ret)
+-		goto err_m2m_release;
++		goto err_m2m_ctx_release;
+ 
+ 	sess->pixfmt_cap = formats[0].pixfmts_cap[0];
+ 	sess->fmt_out = &formats[0];
+@@ -913,9 +913,11 @@ static int vdec_open(struct file *file)
+ 
+ 	return 0;
+ 
++err_m2m_ctx_release:
++	v4l2_m2m_ctx_release(sess->m2m_ctx);
+ err_m2m_release:
+ 	v4l2_m2m_release(sess->m2m_dev);
+-err_free_sess:
++	v4l2_ctrl_handler_free(&sess->ctrl_handler);
+ 	kfree(sess);
+ 	return ret;
+ }
+@@ -926,6 +928,7 @@ static int vdec_close(struct file *file)
+ 
+ 	v4l2_m2m_ctx_release(sess->m2m_ctx);
+ 	v4l2_m2m_release(sess->m2m_dev);
++	v4l2_ctrl_handler_free(&sess->ctrl_handler);
+ 	v4l2_fh_del(&sess->fh, file);
+ 	v4l2_fh_exit(&sess->fh);
+ 
 
-[1] 
-https://lore.kernel.org/all/20260123-a5-clk-v6-0-6d3bbf0ec1ea@amlogic.com/
-[2] 
-https://lore.kernel.org/all/1jldice808.fsf@starbuckisacylon.baylibre.com/
-
->>
->> [...]
-> 
-> --
-> Jerome
+base-commit: a0c83177734ab98623795e1ba2cf4b72c23de5e7
+-- 
+2.50.1
 
 
 _______________________________________________
