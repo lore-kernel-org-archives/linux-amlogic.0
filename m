@@ -4,89 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72CA0FC72C2
-	for <linux-amlogic@archiver.kernel.org>; Sun, 22 Mar 2026 14:13:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E12DFC72C6
+	for <linux-amlogic@archiver.kernel.org>; Sun, 22 Mar 2026 14:29:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xzxVWPy4xPLyDqhfonD9h4WREwHvTL1C1Uf8y0IKokY=; b=oKsLhcxAMCSsdW
-	SahPef3Qg8pMy5kDoNqlzvUX/b5MjjLnc/qqIVrkefck7I9g7WiT/JEjgPOSLNoLL3YAn6oVF5PTe
-	8Q5pepdGhnRIExDr5VA1DBInE3UzZgJ900Ee6tPfRLVVKWHRn4xp9j6D7WOn08gaCGsgI26txIbZy
-	No/uUwSDP0Q0Hme/LxPQcwwsX5PiHFzQ9dSeB5MZghuWGW08uOGN1ptrSDlDlPvEltP2DEeFlNaW+
-	yL7t7tiBb1nVmjVmhPsyUKnC4TlhAV+FQmYXqPs8o/PECUGlTcRjhfyPwbfp56rZqUIFIfXWL3Pbg
-	Ln9mzhl6qjU9LTvVXhTg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ywiFt2XDOQeeQieUW7PXChaxovPcPX7DSKYtpYwVDMY=; b=tSiHoJmjrvDttk
+	3o82mD1v63ndJf3rnM3DmrtOednvWpa56GqvXpPmXSssGHb1s/bQHnBQQHJyEzHvX4hqaLaKYS/Tr
+	MTW6eeETTbvTmrbSQZJ6dYAzSyGWGtMDixau6hPBhdr+6TzOilScwj33I6sX6IUB27spUldMVLRAl
+	s3lP3394eI0HdfKnjX7H6HO1eZlDLDXk2Z0uDibMHyJEPBN27mWyOvnU3wlhJJ/Gxxhf8YhLypkSy
+	MI/kfJCmVLmYvQ0NWL5AvWtSsIcXP/hzNU4s3PKzRP0ytZ+YkaTZzFPpAe3v27nYM4GcJhglCTIsE
+	KiZGrQRTvT+m1SZq10Mw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w4JYX-0000000FOYy-28Qx;
-	Sun, 22 Mar 2026 14:13:29 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1w4JnT-0000000FPlo-3YUh;
+	Sun, 22 Mar 2026 14:28:55 +0000
+Received: from mail-pg1-x532.google.com ([2607:f8b0:4864:20::532])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w4JYU-0000000FOXj-3HJ1
+	id 1w4JnQ-0000000FPlR-3dqx
 	for linux-amlogic@lists.infradead.org;
-	Sun, 22 Mar 2026 14:13:28 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 57F96445ED
-	for <linux-amlogic@lists.infradead.org>; Sun, 22 Mar 2026 14:13:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C80EC2BCB2
-	for <linux-amlogic@lists.infradead.org>; Sun, 22 Mar 2026 14:13:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774188806;
-	bh=6WyenFkskQRviNgIdSNi6d7LvQNFj/WN1yDFKmE61aM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=m1JSvO3vBoAW11h+1jUFpD4M3o87pi5WVIS30EG+IpjrhSbVVm0n+a1tBuAfjEvBt
-	 DUqzvAtEE8KJ6CZfJtmKqQq9BVDuNmVeWZsoYGhGiqY+t+Q6RwWFQc5ZQdL1p/KZIY
-	 UFQwKK08jzzYTvqEXZ4Ac8G4DE5xsSYsUXc8IfhWTBw9DfA2DD2C6LLzRNU24IbyFb
-	 lrOIf3a8BJJBT9sBoXhMHNUMb8I5hhEpcoV0xfuwNuKiNcSCrIcGPuQKtmayUZ9HXR
-	 hFKtrSq+WjK11fCbeC076eyEPEXZo0kTu3ZozNAe6J8tQQi2tgc/U6j9xLH40yQ+qZ
-	 AsEOEj7QkGiCQ==
-Received: by mail-dl1-f45.google.com with SMTP id a92af1059eb24-127380532eeso1358907c88.1
-        for <linux-amlogic@lists.infradead.org>; Sun, 22 Mar 2026 07:13:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV+J39ObcexO40xJPgBGysrJXSk2NZH1E0ceYKkNu4sghEvLoPXR37soOLi1Syp4XFTb2kKu54fKBVND7en@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx7OYYymItTiP0IGcnVRIAoEEE/EqLylascEFgvGMJBcE+wGh8w
-	NQXxtGfr3sTm2jmVFfIDITC64lZ7+X+DsKANippa6bf/owRnOvJatI13XnU7n6G4Xn7shKAqQDu
-	eIXesFhl0vTaTR/ZRHKM3cB+KJ2k2hw==
-X-Received: by 2002:a05:7022:629f:b0:11b:9386:7ecd with SMTP id
- a92af1059eb24-12a726e3eadmr3908663c88.42.1774188804941; Sun, 22 Mar 2026
- 07:13:24 -0700 (PDT)
+	Sun, 22 Mar 2026 14:28:53 +0000
+Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-c742824e1d3so1086120a12.1
+        for <linux-amlogic@lists.infradead.org>; Sun, 22 Mar 2026 07:28:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1774189731; x=1774794531; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kva3CCELe9ArRSfLv8LT8G/ktzyF3jm4fohVcwRoSAI=;
+        b=KW46yZ2V9sb98P88rVBXWMkhQemeDlW/gM46CazW3U5CsnlXS+C+8qpLPKqSG5EMAK
+         YDonrrA1zO3W0it1KVHJ6y7JMUoxEH1cX2PGboMKIOoeGWBdkgAXXIixOVia6QUD4HbD
+         gB+ksVXuskKGcFy146YIxK1Z/PUJNoyfxXPfqRPgew/NnWUfp4+cx0hbLm+wwZEuCwDG
+         EtV0qSSf9yFGuQLq3c0gdJnTKV6GVPImPgv1xII94CzP7IY4ZMBWZPj4o5EJpWJe9ods
+         EeJED0++OnIaRKsTDGLw3zuzUvax+FxsyXy20dYqPwYTw44ecFf7SjlKoA160CEvQf6w
+         2hVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774189731; x=1774794531;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kva3CCELe9ArRSfLv8LT8G/ktzyF3jm4fohVcwRoSAI=;
+        b=VdhFqZppDH5jeru+qJ+ru+vh3ZMWOP4yEl27JwLJe31ChoNxHF7B5XhvDnAbkmLm7t
+         rZcbYy9Qmo9N0Xeo5VkI0f4uvaD0AscR66eT2TH4AsEOSZwiz87aPjEn1qTXRpPsGlzC
+         15eYx+P7i9Q5UR91c5j0yrxGBlFdULmRFTUOWaiqt6Q5TljrIC6TfoEPJjCvCTjUpnJ+
+         D4xCQ55vjjbX4Ei75il0P/Q5VuqTLMzpfns6hQ9/bzM8aseb/EL2Vnf/KRcOVrxwG1nI
+         FYvqPDRm3jJ224G7lqKoj+kgCNYvoHhq0A0MmD+RBA1mGjUN5lLiuKCxoI2H0d/2tgym
+         uYVQ==
+X-Gm-Message-State: AOJu0YwdgAO/aswe0ULqjUcqF9w20nIoRZ4YTBJKsmXVWROSboJi+4jk
+	yHcNqxRr0fP45tcLWFHTPdnQbqRuVNXebQK+JSXvCLrnJmzmeKbUCyVjZF9YxNHP7t8=
+X-Gm-Gg: ATEYQzxy8KFnfJMiRgolMiOZbYoFAZZuhu2IK+0zHtoAwuWB3HpJr7pcIz2rkKEDSOw
+	cgfUj8orkE+ibOlc5rokspp1Uu6Z+rorKQsZNSRIePgOHccYLEkzF455Djn9Cb9xho27zSbHPHo
+	G6Yz5pcKcaNA2qR45YkapdoDWaKwnrWoYydMIz86gAvRUeZU3v0R1vMWP6qrxSi5HyBcx6YghCG
+	zklxT0rWjP3BUUi/DUK2PrinxF2OAkjxYwTA+QfX4j/cQop13/Qnji7eu3JYtePuFlc/iyMDTjS
+	Ql9mOceTjVtv4la+XfrzCcTPs8GU3RPzbfI854lQAMLBr27/kSNeqO7Rjncc0akBZ5CiWlarxf1
+	V783we73WdZw0kplnqOrVS8kzQMc2SVkDwjbZJGY6z6erpxYwRUcxdm6Du5JCjIQgyOrqEDP5l2
+	aoY9PpOTLmGx6vFi7utEXeK11yInmgLJFcJzP8
+X-Received: by 2002:a17:902:e74b:b0:2ae:4555:479e with SMTP id d9443c01a7336-2b08275dfd2mr79474025ad.18.1774189731357;
+        Sun, 22 Mar 2026 07:28:51 -0700 (PDT)
+Received: from junjungu-PC.localdomain ([223.167.147.240])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b08352a17asm78621825ad.24.2026.03.22.07.28.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Mar 2026 07:28:51 -0700 (PDT)
+From: Felix Gu <ustc.gu@gmail.com>
+Date: Sun, 22 Mar 2026 22:28:45 +0800
+Subject: [PATCH] spi: amlogic: spifc-a4: unregister ECC engine on probe
+ failure and remove() callback
 MIME-Version: 1.0
-References: <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-0-ef48a517828e@bootlin.com>
- <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-4-ef48a517828e@bootlin.com>
-In-Reply-To: <20260107-drm-bridge-alloc-getput-drm_of_find_bridge-3-v1-4-ef48a517828e@bootlin.com>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Sun, 22 Mar 2026 14:13:12 +0000
-X-Gmail-Original-Message-ID: <CAAOTY_9PH4yV-mDFZ+mkNRT7R9qoZOtjQhhqmyWjx1LWSu=giw@mail.gmail.com>
-X-Gm-Features: AaiRm5108rX0H_CDRkg1jedFrdyn5bPiHycKlLMUICMJdSqU48gN54_ILYySwo8
-Message-ID: <CAAOTY_9PH4yV-mDFZ+mkNRT7R9qoZOtjQhhqmyWjx1LWSu=giw@mail.gmail.com>
-Subject: Re: [PATCH 4/6] drm/mediatek: mtk_hdmi*: convert to of_drm_find_and_get_bridge()
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Inki Dae <inki.dae@samsung.com>, 
-	Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Hui Pu <Hui.Pu@gehealthcare.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	imx@lists.linux.dev, linux-mediatek@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Message-Id: <20260322-spifc-a4-v1-1-2dc5ebcbe0a9@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAJz8v2kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDYyMj3eKCzLRk3UQT3RRD81RLU1PL5CRDUyWg8oKi1LTMCrBR0bG1tQC
+ E6zG5WgAAAA==
+X-Change-ID: 20260322-spifc-a4-d17e9559cb15
+To: Liang Yang <liang.yang@amlogic.com>, Feng Chen <feng.chen@amlogic.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Felix Gu <ustc.gu@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774189728; l=1775;
+ i=ustc.gu@gmail.com; h=from:subject:message-id;
+ bh=nlDpkeLXmC3IbASLOK+T58E+TXrmqad8q7Jcp4v8ME4=;
+ b=6PPv7Gwk4qHZTVUtPhWZUbWk3CG9V6WimJMR6ooi/C5l+BmRfIlDlvzSzM0K3W9eHE6uoqYpq
+ bEeMFhxkud6CY8aUF0J6b/hLclw4bxwZ6k9M725k25c+rmAoE6bJzla
+X-Developer-Key: i=ustc.gu@gmail.com; a=ed25519;
+ pk=fjUXwmjchVN7Ja6KGP55IXOzFeCl9edaHoQIEUA+/hw=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260322_071326_868956_F03F8BC4 
-X-CRM114-Status: UNSURE (   7.48  )
+X-CRM114-CacheID: sfid-20260322_072852_923978_449ED905 
+X-CRM114-Status: UNSURE (   9.59  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,19 +104,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-THVjYSBDZXJlc29saSA8bHVjYS5jZXJlc29saUBib290bGluLmNvbT4g5pa8IDIwMjblubQx5pyI
-N+aXpemAseS4iSDkuIvljYg0OjIy5a+r6YGT77yaCj4KPiBvZl9kcm1fZmluZF9icmlkZ2UoKSBp
-cyBkZXByZWNhdGVkLiBNb3ZlIHRvIGl0cyByZXBsYWNlbWVudAo+IG9mX2RybV9maW5kX2FuZF9n
-ZXRfYnJpZGdlKCkgd2hpY2ggZ2V0cyBhIGJyaWRnZSByZWZlcmVuY2UsIGFuZCBlbnN1cmUgaXQK
-PiBpcyBwdXQgd2hlbiBkb25lIGJ5IHVzaW5nIHRoZSBkcm1fYnJpZGdlOjpuZXh0X2JyaWRnZSBw
-b2ludGVyLgoKQWNrZWQtYnk6IENodW4tS3VhbmcgSHUgPGNodW5rdWFuZy5odUBrZXJuZWwub3Jn
-PgoKPgo+IFNpZ25lZC1vZmYtYnk6IEx1Y2EgQ2VyZXNvbGkgPGx1Y2EuY2VyZXNvbGlAYm9vdGxp
-bi5jb20+Cj4gLS0tCj4gMi41Mi4wCj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNA
-bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2xpbnV4LWFtbG9naWMK
+aml_sfc_probe() registers the on-host NAND ECC engine, but teardown was
+missing from both probe unwind and remove-time cleanup. Add a devm cleanup
+action after successful registration so
+nand_ecc_unregister_on_host_hw_engine() runs automatically on probe
+failures and during device removal.
+
+Fixes: 4670db6f32e9 ("spi: amlogic: add driver for Amlogic SPI Flash Controller")
+Signed-off-by: Felix Gu <ustc.gu@gmail.com>
+---
+ drivers/spi/spi-amlogic-spifc-a4.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/drivers/spi/spi-amlogic-spifc-a4.c b/drivers/spi/spi-amlogic-spifc-a4.c
+index 1aabafa36e48..16346f50c7d9 100644
+--- a/drivers/spi/spi-amlogic-spifc-a4.c
++++ b/drivers/spi/spi-amlogic-spifc-a4.c
+@@ -1066,6 +1066,13 @@ static const struct nand_ecc_engine_ops aml_sfc_ecc_engine_ops = {
+ 	.finish_io_req = aml_sfc_ecc_finish_io_req,
+ };
+ 
++static void aml_sfc_unregister_ecc_engine(void *data)
++{
++	struct nand_ecc_engine *eng = data;
++
++	nand_ecc_unregister_on_host_hw_engine(eng);
++}
++
+ static int aml_sfc_clk_init(struct aml_sfc *sfc)
+ {
+ 	sfc->gate_clk = devm_clk_get_enabled(sfc->dev, "gate");
+@@ -1149,6 +1156,11 @@ static int aml_sfc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return dev_err_probe(&pdev->dev, ret, "failed to register Aml host ecc engine.\n");
+ 
++	ret = devm_add_action_or_reset(dev, aml_sfc_unregister_ecc_engine,
++				       &sfc->ecc_eng);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to add ECC unregister action\n");
++
+ 	ret = of_property_read_u32(np, "amlogic,rx-adj", &val);
+ 	if (!ret)
+ 		sfc->rx_adj = val;
+
+---
+base-commit: 785f0eb2f85decbe7c1ef9ae922931f0194ffc2e
+change-id: 20260322-spifc-a4-d17e9559cb15
+
+Best regards,
+-- 
+Felix Gu <ustc.gu@gmail.com>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
