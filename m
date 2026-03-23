@@ -4,71 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51095FC72CB
-	for <linux-amlogic@archiver.kernel.org>; Sun, 22 Mar 2026 15:41:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDE8ED58CBD
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Mar 2026 01:35:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:Subject:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fBN7L6lJe2wtgENNTzwD+a6XEf7JQfkuYrtOoVIpUOg=; b=xblFU6eG0dtriV
-	whLnCURqWSWBeRkZCXDuAVF/j1bWOXKisvs7dK7+nUxffNp+N/dJHWbiuA4zcdSUDob5i0ojyDyiW
-	B+0f2lvrrchXEn6NBWhBjE1JYgt1UGriRhNbJq/7DyiJcKjKkN4FS+PgZE5bZk+2hly0M3vdWxKX8
-	x5DVRdK7Un8Fa0ATOVos1aRzv0PAteCuAHR9s/pWFFbGJ8tr/HI5kCKGVFEcl422sHb4vs7doP1WA
-	p9FvVi3IQBnwf+zXvQdj2ZQmF005HCigLC7JFeN6yYx/6GVTkw/G2HdUt0l7rG2swbfsxU452srBb
-	3yeHTg481k+bwC1ZUg8w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=0ioOO1xkchce0RQDZbARibzTlH4tC8dhRE48qYSufpI=; b=V37u5AFhgMf9A7
+	vKhK2iYgBdRdiAJGSWZfeUG2Fr0vMw4hrR8Tdck+2WraqVUvbjVQujPNdpzEb0hh367l3USR208kN
+	c0Ika800VEPy97KaiAw41PFmN+wO//1qhfIOqrIfvZ+2njc2qDC9rMgBndqd1aczzBErv2L/57rpT
+	4hn7zZSWLHsWzuZSeQqPVUHa5YB1W0jDr+j2uYXt7cDsMX1p2Vmmp/tiwahh8PKiXPaoSu4635/BB
+	GbO54ZF0+ZV1P9bvdTcU4Pj6LEmG4ajsRwo/rPys5cj/B6ZOlfnAXJJ4GF/dxjknjrUd9ruNq+6p4
+	+GPONELRc0+DYQf/KXCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w4KvR-0000000FStN-0Ly5;
-	Sun, 22 Mar 2026 15:41:13 +0000
-Received: from mout.web.de ([212.227.15.3])
+	id 1w4UCI-0000000FpnA-22el;
+	Mon, 23 Mar 2026 01:35:14 +0000
+Received: from mail-japanwestazon11022101.outbound.protection.outlook.com ([40.107.75.101] helo=OS8PR02CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w4KvL-0000000FSs3-0Avp;
-	Sun, 22 Mar 2026 15:41:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1774194064; x=1774798864; i=markus.elfring@web.de;
-	bh=OqfW9F16nML5CsGkJS5mkwUC4wRnRvNmIeLf4MWREbc=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=QmSp+aTEP2B2BSY0P97BWIzFRbtCu+/JclRqHING1eHiGQZizScFHj5wEMhLm9t4
-	 aGIlSmtSeiKGUfgN9NgAWScvL6xBSdSp3yC3qj2V1rPbibHoEtC/p4IDNhlvH8KyI
-	 qd8kyXlc/oR3m7+ZMLu30M87Z4lL0fPjldHlPo7V48L1oF9irUreURci4DOtSo/9R
-	 X8FD6vIVVQtognFPx7GOxiDbPnft5UDi0iy14XVg3VJYdPkZ+p7xjTfQMHLQqIVlQ
-	 wzydYY//lzVc3JI4hADA3gtLyDiseVCWzncFqXxSVHx4CHEoV0zkIDeTtl9xiZSq+
-	 jpnM+qVkuStU63rQvA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MY5fd-1w3cOY3gGD-00LWq9; Sun, 22
- Mar 2026 16:41:03 +0100
-Message-ID: <874c84df-a6eb-4024-b81a-149ff52707ea@web.de>
-Date: Sun, 22 Mar 2026 16:40:59 +0100
+	id 1w4UCF-0000000Fpmg-1lUS;
+	Mon, 23 Mar 2026 01:35:13 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=C9pd8ti7QK7urG7kIpKyAI9KeB2OtDzYXnqhNZUaB1hTugq8V2wmpW2VdInVR6PQ230vIAmg8dM7h/bQxpT7rOq4d/+ULgay10chCPioPAfFSR7XZDZf2fqZkcKYhTJ+AuXMEWPdUHax4ltPhcuB0VCBe/G7wxjtPGDdzJzAmqd3URGEvkQl6ia0/hL2Zy77XyZI894IMRUKYbW1MwHEBNF+Rr+tOb1NhSeOWL/b38FkymQTIY6kbsCMuJPUr8Xfvl3HPxpvNM2rXSBq0gdZ+fNFU2ZL79e2d9JhPws5ue9YnQXHGSAgi1KUi3C7RpcS9ejtiT6L7/53UPnuoYSoYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XxA8awaYMuMi3hKwi3/LkaxQnkuy7rB9WKY4Ll0JtTA=;
+ b=p4/fUGXv9uOn1BIXEd2A+8pExn1WIXRqe6W/KmKVuWZ48NsTBUTlQSmz7WUx4URyNMJR6HBpSoOf22g9LMG6EV4tl7cunzJ0oM2uPiXcAm3iTwbuzBGSXLffi5c+Rj3EQUygxn37DMcSsHsmmjVtxsUesKwSIfmBWxzbUKhuldItCp3zkc9y52IPw+8rSYPvfXmrc4E0DPhTsuOFj2v0JA1VjjE8nRkb+xBS0SbXL9KgjBakX1wfgTGFnVEqhGBaqLpogDbNuC6hUbEzTkgooB9Y868CGwpTVP3pZ+WYjhYGRXWWyAbDiqy7LzcOgOEuXanJMfHb5YcPHOxuWWTUVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=khadas.com; dmarc=pass action=none header.from=khadas.com;
+ dkim=pass header.d=khadas.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=khadas.com;
+Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com (2603:1096:308::2da)
+ by KL1PR03MB8142.apcprd03.prod.outlook.com (2603:1096:820:102::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.30; Mon, 23 Mar
+ 2026 01:34:52 +0000
+Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
+ ([fe80::20a2:a696:ac88:2549]) by PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
+ ([fe80::20a2:a696:ac88:2549%4]) with mapi id 15.20.9723.030; Mon, 23 Mar 2026
+ 01:34:52 +0000
+From: Nick Xie <nick@khadas.com>
+To: neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	jbrunet@baylibre.com,
+	jic23@kernel.org,
+	dlechner@baylibre.com,
+	andy@kernel.org
+Cc: krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Nick Xie <nick@khadas.com>
+Subject: [PATCH v2 0/4] iio: adc: meson-saradc: add support for Meson S4
+Date: Mon, 23 Mar 2026 09:34:04 +0800
+Message-Id: <20260323013408.429701-1-nick@khadas.com>
+X-Mailer: git-send-email 2.34.1
+X-ClientProxiedBy: TP0P295CA0047.TWNP295.PROD.OUTLOOK.COM
+ (2603:1096:910:3::13) To PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
+ (2603:1096:308::2da)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Felix Gu <ustc.gu@gmail.com>, linux-spi@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Dongliang Mu <mudongliangabcd@gmail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Mark Brown <broonie@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-References: <20260322-rockchip-v1-1-fac3f0c6dad8@gmail.com>
-Subject: Re: [PATCH] spi: meson-spicc: Fix double-put in remove path
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20260322-rockchip-v1-1-fac3f0c6dad8@gmail.com>
-X-Provags-ID: V03:K1:opnQCVWCscvbiOV5OwJ8v8ayG0MoaW1oTJS5TEpEXOmuIm6N95J
- Kp0YaEssnsAfpJZ/5Y0KWArfmRvAKJpzD7JxxPN5cUcelWKdaXtNT6aihBekXbyMaT3U5zE
- BQhsUms2TwZVspqpGHQcBn/1sYMM0A0qlr+bp+2BiGnunpIrwJDC0slCWXk0iKDdw+k0vaW
- kFqj2XsQklonU8ZzZP9QQ==
-UI-OutboundReport: notjunk:1;M01:P0:gzKSpq4TZgk=;CeKiKjC9n2jDaWjXY2lbs4GAfQ7 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
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PS1PPF62EEA9B1D:EE_|KL1PR03MB8142:EE_
+X-MS-Office365-Filtering-Correlation-Id: dfaf0386-6e12-41b8-adcd-08de887c6170
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|38350700014|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: IEKlHGAhc9assZAwda1ov9EUlbWL6qfsXzgeKqwwru52kAXSOapuloHIW+MChanlAN76pOb81sMWZXc7tOSKXVc4yXishVsT/uUZ79HuDX4LiNPXwxWZcRiuCPm8KJLWeV4SrrMeFAH34YTVUDm2hVEOzZrO15/W+ux6DBhXDJ4AWKHOL9lhYj3tRMO0hhn5MYzpeie0tx+yE7f9tHpgjPVdfwzS58UsiaY74NMniXo1vAfRlVBolrvI+S1euchqfeAO8ykrhAK2b4LtnaSeK7jQI6XrM8UF/atAAClTu7qdAPXn5grXfSSpW+6el7buXZ7eIs53DMOEbRK4zPv2Feg5W7AdGPE3rmYO9lxiu47IdCkHbQiXAi+aAiYchedGeNSXartHvWHJBou0ePlJTYXAB0fSbPy9GT4sIZ8iUjwSy3cM1BFFwzzmXFZ+L/fhKAaG6dLl+NmSgJusCAM4ppgQqSKMSIUU/kwKmHxZCqDSmqQ0qA9w8mGdrAkqGh5pwEujo9UjdP8ELHCkX0aWEbwFsSEsui1k06MAtRWvqQjai3dEJubOdhRFHfaWcroXI0C3e/EmwJEQX16pdJ6B+9Az6DKFLg3XYlGobu/eDKMn+0dUs+PvMq+zelXC4+xulMM6LLYzjz5F7U60lEtZHNh1keURmHPoRRlZ2BD1cU0CI9CAuFK7HqrQ8Pe6LEfT9IdbZQedkj113d+0fuCo6gEWvAAy/2VfiEFP25K4yqI7h2sJ0XiW+yayA6l2ZE408l5i63Fxtc8e1yLVCDojmEeaVnSGPT5Y5X4z8SKcHW0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS1PPF62EEA9B1D.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(38350700014)(18002099003)(56012099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IbCGD42aeP7UDdN8P+XSR4/lpr5AJX6LVzIyZriGXNYme7V4t5n3eRrQrozQ?=
+ =?us-ascii?Q?dQatKDSKFGFBucQlqpXAZII1+0jvQ3chakENHOAtrhxtpDHiptFBVKtN7t03?=
+ =?us-ascii?Q?dHc14/JtxFUfYH9Wy18LI0I/BTrPnnATlBOJhAa0j1Adf5qxKRo9mxhqehgv?=
+ =?us-ascii?Q?JsQsLvxS9geOUDdu4n/22chgGGRpnT79tZcVQIB2NtsxjZCj/1fX6CFRE206?=
+ =?us-ascii?Q?DkiSRrLMTO8cWXeXAaest8nNxFJXxG/gmKYuUtLeNPnVqiKwl1mPZBkxH1VM?=
+ =?us-ascii?Q?27VogBt13Yk/0bWHI4G/rXmjN2qATk3riRx2E09XyO15Jnrg6PuBsBaznyvN?=
+ =?us-ascii?Q?VntOVMl7POD7fxzoHCdM+FzXbvn623Dmkg19LjMicPVLeET2Li1U+lLfFjda?=
+ =?us-ascii?Q?F06dAa/R96jt9AwBtNJ3nCk3/4AEsNmZkHri2K30oIOvACQneGMEaMHs4w4S?=
+ =?us-ascii?Q?lc/gJcbz/LLeZ0C4ACD3Cy/qgC5Wa+2KWlIyyh38RCDqEwOx13HmthTz9zqp?=
+ =?us-ascii?Q?6LFWOP//+/Zuv7rmCDtdo+53Xew92eC+DG10AH//ViVMF5eQ+GkKshuAE6FK?=
+ =?us-ascii?Q?bovbw1rKaMwd9j+ZW2uWqcl6AF8n7UEU727stQ1WPHgY8eIRuXjhbRkyuxNT?=
+ =?us-ascii?Q?3SIFMKGKN/HalBlLtrqtjmyL9s5YTOtW+DLjxlLSlkr8RCki3/vEeDzljCzt?=
+ =?us-ascii?Q?bj45BaJ3F0eQWKE0ZtRaUsxWVGkEGrtC6WxkyZv+DqL6iv5qNsyb6XTHwHfR?=
+ =?us-ascii?Q?OWPEF/q6hgYc+xQUD8H1LuogxjGR510/XUUHIKIwue0UMnopo8zlOdil+vsM?=
+ =?us-ascii?Q?HNr/v1d7TfKWKE4o5V/+5YTT/MdqxZpYJTLamnlzJ2RTyUtgMsZJZv/eFWyS?=
+ =?us-ascii?Q?cigvNcExPdZMYraQpBHt1QST5E4FEkB3UZ5OXwVMmw1I60AJ9/ZwHGVLIvpD?=
+ =?us-ascii?Q?IqRM6XHMgWh5uku/rOaZSj6BaLHHouJ9GRjSdohmcEr7FLU5kTcUDWHmELPy?=
+ =?us-ascii?Q?YoYybXeOzK7yFIVfY+lFkwxe+iuY5PgH3mLCn6uG1dNHNbOFG0C4GUS1VSOn?=
+ =?us-ascii?Q?T598baXLXyYpe6lmX6bvp0OX8fg/R9hguI3D9R8U99QJrYIyL76JDPU4pq7x?=
+ =?us-ascii?Q?4jS6fjwAcldS+5MBMjuX4xt1YpT+8j51otTiQn7+MixZaKISBgUUTuIUdWa1?=
+ =?us-ascii?Q?kjCqNnyQ4r1tgYigBL3zNtB6b8CGnZxjgS1OJI8QW0AGtR9bmA0ozNsp2bEp?=
+ =?us-ascii?Q?yyuR3ycXTXgMqBXC8rwfBpUsTZFnQ1nyBj9/MCDLosjjtiAXioExeZNx9uPg?=
+ =?us-ascii?Q?M3mTZ7wZGDkiFsSuFWtJlpjobLOW2tFPokHdNhWPJKlraJWaowthzZjtpJm5?=
+ =?us-ascii?Q?yQ9nuqVBh+bDM0TVUDnNqxMFn8za31f2GBi0prDsziy0XcFqfrYVZalLA6V8?=
+ =?us-ascii?Q?bbRqYIfqDsFPw6vD2DqZtNISRvHLRL7nJcvuvI7s/y8xk8lnc+TVSxvW8jza?=
+ =?us-ascii?Q?zT6zPLdgs5dbIbLji5RALJS22XyFn87d4wwddU2xSrFLycRP6Z/wmLlOEEy9?=
+ =?us-ascii?Q?2l52d4/jawTfRhQOuKWIhFErDPNj96PyrwmyvUB6UDrfYMh6T8mGxoIjgjxV?=
+ =?us-ascii?Q?K5bvFf0U2/CLGAR0qjpsTFMgMlcwU6FHNhsnYAwdGqHsGwj6QVi0qUD3Ts6+?=
+ =?us-ascii?Q?jjA45RVeVuCMfHpuYYz6gB28tGyUqLogZT8FKZpNwYAQF2Wj?=
+X-OriginatorOrg: khadas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dfaf0386-6e12-41b8-adcd-08de887c6170
+X-MS-Exchange-CrossTenant-AuthSource: PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 01:34:52.6807
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Aly5l8jMi0YVIhWbOb3L57RF+Tckh317JWzbsJGOOz+vKoTg+o3Keo3IXrZw2Pz6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB8142
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260322_084107_872374_9A03B439 
-X-CRM114-Status: UNSURE (   4.30  )
+X-CRM114-CacheID: sfid-20260322_183511_465136_2FE85055 
+X-CRM114-Status: UNSURE (   8.95  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,21 +141,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> meson_spicc_probe() registers the controller with
-> devm_spi_register_controller(), so teardown already drops the
-> controller reference via devm cleanup.
+This series adds support for the SARADC IP block found in the Amlogic
+Meson S4 (S905Y4) SoC and enables it for the Khadas VIM1S board.
 
-Were any source code analysis tools involved here?
+Changes in v2:
+- Addressed feedback from Krzysztof Kozlowski:
+  - Updated dt-bindings commit message to explain the hardware compatibility.
+  - Separated the S4 compatible string in the YAML bindings to ensure it
+    correctly falls back to the specific "amlogic,meson-g12a-saradc" rather
+    than the generic "amlogic,meson-saradc".
+  - Updated the S4 SoC dtsi to use the correct G12A fallback.
+- Added Martin's Reviewed-by tags where appropriate.
+- Link to v1: https://lore.kernel.org/all/20260228065840.702651-1-nick@khadas.com/
 
+Nick Xie (4):
+  dt-bindings: iio: adc: amlogic,meson-saradc: add S4 compatible
+  iio: adc: meson-saradc: add support for Meson S4
+  arm64: dts: amlogic: meson-s4: add internal SARADC controller
+  arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: add Function key
+    support
 
-> Calling spi_controller_put() again in meson_spicc_remove()
-> causes a double-put.
+ .../iio/adc/amlogic,meson-saradc.yaml         |  4 ++++
+ .../amlogic/meson-s4-s905y4-khadas-vim1s.dts  | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 14 ++++++++++++++
+ drivers/iio/adc/meson_saradc.c                |  8 ++++++++
+ 4 files changed, 45 insertions(+)
 
-Do any contributors care more for another development requirement?
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?h=v7.0-rc4#n94
+-- 
+2.34.1
 
-Regards,
-Markus
 
 _______________________________________________
 linux-amlogic mailing list
