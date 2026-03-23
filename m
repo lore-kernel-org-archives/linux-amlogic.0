@@ -4,66 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BB77EC01B1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Mar 2026 09:59:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB80BEC01C9
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Mar 2026 10:55:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bDqDF6o7QJhJVyVNqF+7X5HeXxdN5pd1daBE3Hb2xjA=; b=FHPNG61dVHUe59
-	8sjfV3WPaw4M7YxwrSVkWZ0vU38YowrqPf8UOrixuaSHjXxMV5qcX+uah+sSwo2FyukPtBVsSVbhK
-	iFTM2LQArR84Zcc775fLE4rxSTt6x+oSrTUVbcYnaRAcQYTdAtnU+REInrjzIuLQbZiX+VJFDtNfd
-	9rGlPNta+jaS+7xeiguWdoRWTGZSLCq8P5EGFpiA768fS4P06/OH6tBSgIkFzTRKk0JWnjELbZafR
-	RnKwigsbkRkNmwqERypYb+VGtb3ud0cgr7yQ6Bzs0mBCAmE65jxIqs0BNVTuJLlpXv+VDl7T/41u9
-	kst5pcjK2kzgSPP4jvJg==;
+	List-Owner; bh=+nJKEAZslqTwCm6pK/tu2JW7ZL+JATzSitym8YDWyG4=; b=fo28JnjU7thLmC
+	v9dvzofqL9b8Gh7qopSzbaLlRdr7YsOlr89yytmWgSrmOU2ArWw6uUnegA7LfnpN8uMcGlEsteGck
+	tqPcij2ZqMI0hIt9hsas3jj/a4JlFeesVntR4B0zV8WKd80DAdNaW8n94vJxmf4/ytzpFUnAe/E6Z
+	kknZanlPNLJbwnf0Nyzhk2naSq7858dRSOjiTbWSClSPzPsTSVyYAXmhYv+me142he0mPXwF6f0sD
+	kHV6P0pA+2NyW+5V3V2VxC1sJtIM+PBeMDx6dJKrt3vulYli8zLt86uiRmHH+n1yRrAdu57viDxJP
+	esCdmbr5ue1SXrA3TANQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w4c3p-0000000GR3r-2O3w;
-	Mon, 23 Mar 2026 09:59:01 +0000
-Received: from [2a01:4f9:c011:1c83::1] (helo=courrier.aliel.fr)
+	id 1w4cwb-0000000GYBe-1Eog;
+	Mon, 23 Mar 2026 10:55:37 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w4c3K-0000000GQY5-0bF7;
-	Mon, 23 Mar 2026 09:58:32 +0000
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774259901;
-	bh=AO4tgBsQ5yd9Qo2dDaY+wcNu1us7EFs06fTrqRlHBYM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Jh2jvneyE74Am2thzy9WlW47Gi0DtfluNkcEjr7ZRHfcR5zVN/4audqf7fagm2pxO
-	 FsV+ySupdlB3PiRryb3FNbCKtX9bgfEE5kagpR0auZ9JbbGjMVMYz1ATDj6yY1n611
-	 4tp1es03xYgthWOnCQsMmdVRobzSMAH6yIb/EltE=
-Date: Mon, 23 Mar 2026 10:55:30 +0100
-Subject: [PATCH v3 5/9] arm64: dts: amlogic: t7: Add PWM controller nodes
+	id 1w4cwa-0000000GYBL-2ISl;
+	Mon, 23 Mar 2026 10:55:36 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 26685600AC;
+	Mon, 23 Mar 2026 10:55:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA31FC2BC9E;
+	Mon, 23 Mar 2026 10:55:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774263334;
+	bh=fIITDcaGNwe5JP28V/vDN52AYvBQ5hQKU+YhsH32KVM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b/PsizxYuPyh6p+66BxpCqyKvwMg0/n0RigMKooGpzRMCF4lzfCXQyW3dQsZ+5rXZ
+	 XjqstYEDmG0E8vAJiy9gQhC7NZ9hX8sCxg7l5D988q6XMD+SILzjhyGAU8q3dRAN78
+	 JNVtoTFgUuHHodeau+xR5peYZmjlDr0LbMwUe4A83DvMOd4wuYFoRkroDNcMrDxZWB
+	 Hs37S+U9xt3IKK/WhCXPklgEGRT2k15gX4lH6tQxbn44J31YcQfDOQCQ0rXEqkaipC
+	 nIeSNcnZxdQq+zPtvOdFGIWQi4c2sYryx+aEUt+VyE8U1UCOrISPvVJnPADHDb8w66
+	 aSFONyy70KK4A==
+Received: from johan by xi.lan with local (Exim 4.98.2)
+	(envelope-from <johan@kernel.org>)
+	id 1w4cwW-00000003XqX-1ggo;
+	Mon, 23 Mar 2026 11:55:32 +0100
+Date: Mon, 23 Mar 2026 11:55:32 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Felix Gu <ustc.gu@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Dongliang Mu <mudongliangabcd@gmail.com>, linux-spi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] spi: meson-spicc: Fix double-put in remove path
+Message-ID: <acEcJJgoaaOdBz70@hovoldconsulting.com>
+References: <20260322-rockchip-v1-1-fac3f0c6dad8@gmail.com>
 MIME-Version: 1.0
-Message-Id: <20260323-add-emmc-t7-vim4-v3-5-5159d90a984c@aliel.fr>
-References: <20260323-add-emmc-t7-vim4-v3-0-5159d90a984c@aliel.fr>
-In-Reply-To: <20260323-add-emmc-t7-vim4-v3-0-5159d90a984c@aliel.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
- Johannes Berg <johannes@sipsolutions.net>, van Spriel <arend@broadcom.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>, Nick Xie <nick@khadas.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774259895; l=2868;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=AO4tgBsQ5yd9Qo2dDaY+wcNu1us7EFs06fTrqRlHBYM=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QJZSR1SMHxPM+6QdLs5pPY8OawAIsaGLhfGtKLJB4Nlbb0tJsEL5bhXobDp4DjYkDd1IsmXRpDo
- CrkA2mHLA/A8=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260323_025830_484141_BCB877A1 
-X-CRM114-Status: UNSURE (   7.88  )
-X-CRM114-Notice: Please train this message.
+Content-Disposition: inline
+In-Reply-To: <20260322-rockchip-v1-1-fac3f0c6dad8@gmail.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,96 +78,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add device tree nodes for the seven PWM controllers available
-on the Amlogic T7 SoC, using amlogic,meson-s4-pwm as fallback compatible.
-All nodes are disabled by default and should be
-enabled in the board-specific DTS file.
+On Sun, Mar 22, 2026 at 09:29:56PM +0800, Felix Gu wrote:
+> meson_spicc_probe() registers the controller with
+> devm_spi_register_controller(), so teardown already drops the
+> controller reference via devm cleanup.
+> 
+> Calling spi_controller_put() again in meson_spicc_remove()
+> causes a double-put.
 
-Co-developed-by: Nick Xie <nick@khadas.com>
-Signed-off-by: Nick Xie <nick@khadas.com>
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 63 +++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+Indeed it does: 
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 6d41de6f895b4..a0261cd8eadfc 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -511,6 +511,69 @@ sec_ao: ao-secure@10220 {
- 				amlogic,has-chip-id;
- 			};
- 
-+			pwm_ao_ef: pwm@30000 {
-+				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x30000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_AO_E>,
-+					 <&clkc_periphs CLKID_PWM_AO_F>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ao_gh: pwm@32000 {
-+				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x32000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_AO_G>,
-+					 <&clkc_periphs CLKID_PWM_AO_H>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ab: pwm@58000 {
-+				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x58000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_A>,
-+					 <&clkc_periphs CLKID_PWM_B>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_cd: pwm@5a000 {
-+				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5a000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_C>,
-+					 <&clkc_periphs CLKID_PWM_D>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ef: pwm@5c000 {
-+				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5c000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_E>,
-+					 <&clkc_periphs CLKID_PWM_F>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ao_ab: pwm@5e000 {
-+				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x5e000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_AO_A>,
-+					 <&clkc_periphs CLKID_PWM_AO_B>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
-+			pwm_ao_cd: pwm@60000 {
-+				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
-+				reg = <0x0 0x60000 0x0 0x24>;
-+				clocks = <&clkc_periphs CLKID_PWM_AO_C>,
-+					 <&clkc_periphs CLKID_PWM_AO_D>;
-+				#pwm-cells = <3>;
-+				status = "disabled";
-+			};
-+
- 			sd_emmc_a: mmc@88000 {
- 				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
- 				reg = <0x0 0x88000 0x0 0x800>;
+Reviewed-by: Johan Hovold <johan@kernel.org>
 
--- 
-2.49.0
+> Fixes: 8311ee2164c5 ("spi: meson-spicc: fix memory leak in meson_spicc_remove")
 
+While only root can trigger this it should probably still go stable:
+
+Cc: stable@vger.kernel.org
+
+> Signed-off-by: Felix Gu <ustc.gu@gmail.com>
+
+How did you find this one? Are you using some kind of static analysis
+tool or LLM?
+
+Johan
 
 _______________________________________________
 linux-amlogic mailing list
