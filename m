@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D2A5EC01B6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Mar 2026 09:58:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DD00EC01BA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Mar 2026 09:58:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jMhaK30gx/DJ+nWHaDcUTorbC8lNdWTQ6T09eU2pU8M=; b=n2dhw+VBce8pZo
-	bf7hpoYeoslM0LJa7npXc692BgzvULSxyg6Z7s50jurg2sc+2IwH4ZViaH5ayIp6AxJF2Ed4Y+4Da
-	jRsXXh7U+sbxlcslgM+STN565CU5ldJiebEcGyr8Ko1L0zeef7q2C7WA1OofVrfx5+dEZbpJ/RrwU
-	FKgQ9LAf0zJj7OXo1RST714lQTzAAXTLRfBQGmH3Nf60Y+LqXgLZL80lCZBqQ8O0asqdXT5zAWv4F
-	8muvj0elVMljH4z3OqjKEokuKdet/IYHRcFWAXQF7bc+omrpdKqR9ibmW+T4DuTWlyMLHHl1ORczy
-	0plY4oKs2qyTrCnXX2qw==;
+	List-Owner; bh=mtHdh/TuQzfFmVHL6VAYNugEb/B85lq+YGxEPJ1E5Q8=; b=iCAzsBQ/QjiY80
+	n+n2T+Lz+PBzfNeTPVdSAq9rqI3HqM04gnyN3cOiczYBbVuT/+So4p9X0a2Xz8qdoFkvvNWIJP/1T
+	bi94wjQEW3rMC9UKvu5jyoMc6T7YDikINB9QAS4h4/TFEJmVyE1dw9UQJOLnwWBrhaZEZ27SVpEsn
+	pzp8c5krmMdvkxZeykRBnJplIF/Q74b/PgB/TPkjP/+W2ibE9j0FEn2lkmpo3ZE6KOJNfqYkEBjLi
+	N0033xlQffaEn+aonotq/rQivzp9QOdvOmfm+NalWM/kXdL50KDbdlkHJSf3wACEYUDx8ulzNNA05
+	f87ngX3PhXCLXiaZ6LOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w4c3K-0000000GQYf-0DvV;
-	Mon, 23 Mar 2026 09:58:30 +0000
-Received: from pouet.aliel.fr ([65.21.61.41] helo=courrier.aliel.fr)
+	id 1w4c3R-0000000GQgY-0Rh1;
+	Mon, 23 Mar 2026 09:58:37 +0000
+Received: from [2a01:4f9:c011:1c83::1] (helo=courrier.aliel.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w4c3F-0000000GQVs-3kx2;
-	Mon, 23 Mar 2026 09:58:28 +0000
+	id 1w4c3K-0000000GQY6-0bD8;
+	Mon, 23 Mar 2026 09:58:31 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774259899;
-	bh=nLzHsr5SRGXnJ4qXDllE27wn5dbe27jEjWThdkARNK4=;
+	s=courrier-s1; t=1774259905;
+	bh=Ywdd79SLlnG+5FuD1iPwguAxNCDzzkCuTsJrgYS9eQA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=bnx+U5Wvh/cA2SipleVXznvvZVQWW756NQ4xJmu3oUEWx1cwUj+J8T2Yh7+JIgeuQ
-	 w2znGpMOumy7zO8w4twzLcxCDKripDH1KFUkDXRghWRWxryKp/iBBhDL5Gb6E4Sf1D
-	 ATTw3BzKDRbzjDKXLATkhU4oFZIw3yjTIdRiFZRY=
-Date: Mon, 23 Mar 2026 10:55:28 +0100
-Subject: [PATCH v3 3/9] arm64: dts: amlogic: t7: Add MMC controller nodes
+	b=Bb5vBKKcHrQrCUXjhW2Cz4IuM0XNMePmeixn8P6uiZR8waRm6evd9CVlZrjJHRbyE
+	 0LbIbSka2GyYZZSOzRlmOnx/m+WdKAk3LQdNCrmS8Zv3itmdOZjYug0nU4B2ZupeGF
+	 n5mrsZDuQ6PZ6Kisc2yV091ZAQx9UnuqYgD0AJiI=
+Date: Mon, 23 Mar 2026 10:55:34 +0100
+Subject: [PATCH v3 9/9] arm64: dts: amlogic: t7: khadas-vim4: Add MMC nodes
 MIME-Version: 1.0
-Message-Id: <20260323-add-emmc-t7-vim4-v3-3-5159d90a984c@aliel.fr>
+Message-Id: <20260323-add-emmc-t7-vim4-v3-9-5159d90a984c@aliel.fr>
 References: <20260323-add-emmc-t7-vim4-v3-0-5159d90a984c@aliel.fr>
 In-Reply-To: <20260323-add-emmc-t7-vim4-v3-0-5159d90a984c@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -51,18 +51,18 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774259894; l=2309;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1774259896; l=2817;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=nLzHsr5SRGXnJ4qXDllE27wn5dbe27jEjWThdkARNK4=;
+ bh=Ywdd79SLlnG+5FuD1iPwguAxNCDzzkCuTsJrgYS9eQA=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QG9MimcCwQl3IDkrclTMocdwMakL26xqJ0ECX4klkPvSWc4HTeiBQxRZHQWAOyPrBYwPLHfbpf1
- eeQE/zuhbhwY=
+ QFYi+0Gd/+Zfbjizr+3GvRz83PiMYVaWwRvNHIFH0qMDvp4p00u17IJJSA3FSShpYkWVFarxAJD
+ yjScxsu/shAU=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260323_025826_091160_D9C11B98 
-X-CRM114-Status: UNSURE (   8.08  )
+X-CRM114-CacheID: sfid-20260323_025830_416407_928AEA76 
+X-CRM114-Status: UNSURE (   8.61  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,66 +80,124 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add device tree nodes for the three MMC controllers available
-on the Amlogic T7 SoC, using amlogic,meson-axg-mmc as fallback compatible.
-All nodes are disabled by default and should be
-enabled in the board-specific DTS file.
+Enable and configure the three MMC controllers for the Khadas VIM4 board:
+- sd_emmc_a: SDIO interface for the BCM43752 Wi-Fi module
+- sd_emmc_b: SD card slot
+- sd_emmc_c: eMMC storage
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 39 +++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 90 +++++++++++++++++++++-
+ 1 file changed, 89 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index ac8de8e9b8010..b3898669c9571 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -374,6 +374,45 @@ sec_ao: ao-secure@10220 {
- 				reg = <0x0 0x10220 0x0 0x140>;
- 				amlogic,has-chip-id;
- 			};
-+
-+			sd_emmc_a: mmc@88000 {
-+				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
-+				reg = <0x0 0x88000 0x0 0x800>;
-+				interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-+				status = "disabled";
-+				clocks = <&clkc_periphs CLKID_SYS_SD_EMMC_A>,
-+					 <&clkc_periphs CLKID_SD_EMMC_A>,
-+					 <&scmi_clk CLKID_FCLK_DIV2>;
-+				clock-names = "core", "clkin0", "clkin1";
-+				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_A_SEL>;
-+				assigned-clock-parents = <&xtal>;
-+			};
-+
-+			sd_emmc_b: mmc@8a000 {
-+				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
-+				reg = <0x0 0x8a000 0x0 0x800>;
-+				interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+				clocks = <&clkc_periphs CLKID_SYS_SD_EMMC_B>,
-+					 <&clkc_periphs CLKID_SD_EMMC_B>,
-+					 <&scmi_clk CLKID_FCLK_DIV2>;
-+				clock-names = "core", "clkin0", "clkin1";
-+				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_B_SEL>;
-+				assigned-clock-parents = <&xtal>;
-+			};
-+
-+			sd_emmc_c: mmc@8c000 {
-+				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
-+				reg = <0x0 0x8c000 0x0 0x800>;
-+				interrupts = <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+				clocks = <&clkc_periphs CLKID_SYS_SD_EMMC_C>,
-+					 <&clkc_periphs CLKID_SD_EMMC_C>,
-+					 <&scmi_clk CLKID_FCLK_DIV2>;
-+				clock-names = "core", "clkin0", "clkin1";
-+				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_C_SEL>;
-+				assigned-clock-parents = <&xtal>;
-+			};
- 		};
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+index 770f06b0b16c7..5a73ae081036c 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+@@ -14,7 +14,10 @@ / {
+ 	compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
  
+ 	aliases {
+-		serial0 = &uart_a;
++		serial0	= &uart_a;
++		mmc0	= &sd_emmc_c;
++		mmc1	= &sd_emmc_b;
++		mmc2	= &sd_emmc_a;
  	};
+ 
+ 	memory@0 {
+@@ -159,6 +162,91 @@ &pwm_ab {
+ 	pinctrl-names = "default";
+ };
+ 
++/* SDIO */
++&sd_emmc_a {
++	status = "okay";
++	pinctrl-0 = <&sdio_pins>;
++	pinctrl-1 = <&sdio_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	cap-sdio-irq;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++	no-mmc;
++	no-sd;
++
++	power-domains = <&pwrc PWRC_T7_SDIO_A_ID>;
++
++	keep-power-in-suspend;
++
++	mmc-pwrseq = <&sdio_pwrseq>;
++
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddao_1v8>;
++
++	brcmf: wifi@1 {
++		reg = <1>;
++		compatible = "brcm,bcm43752-fmac", "brcm,bcm4329-fmac";
++	};
++};
++
++/* SD card */
++&sd_emmc_b {
++	status = "okay";
++	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-1 = <&sdcard_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	max-frequency = <200000000>;
++	disable-wp;
++	no-sdio;
++	no-mmc;
++
++	power-domains = <&pwrc PWRC_T7_SDIO_B_ID>;
++
++	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
++	vmmc-supply = <&sd_3v3>;
++	vqmmc-supply = <&vddio_c>;
++};
++
++/* eMMC */
++&sd_emmc_c {
++	status = "okay";
++	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
++	pinctrl-1 = <&emmc_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <8>;
++	cap-mmc-highspeed;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++	max-frequency = <200000000>;
++	disable-wp;
++	non-removable;
++	no-sdio;
++	no-sd;
++
++	power-domains = <&pwrc PWRC_T7_EMMC_ID>;
++
++	vmmc-supply = <&vddio_3v3>;
++	vqmmc-supply = <&vddio_1v8>;
++};
++
+ &uart_a {
+ 	status = "okay";
+ 	clocks = <&xtal>, <&xtal>, <&xtal>;
 
 -- 
 2.49.0
