@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 730F1EC01B8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D2A5EC01B6
 	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Mar 2026 09:58:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,32 +12,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rTB4npra0YqHEePWdn3/f6OArJIJa87Z8IOft9vkyYY=; b=mSz5fvHau4CZez
-	mUp4umKXh8qztF9d/ofAG/7P8r/xtD07soMwS8TruxSg/uoMXTA+ooiV+iW/i2xEqDDuJHZw2lkmg
-	580q2x4PYXDJaxlGZmG55TftzLSa7uwXOiO1WPwBELxY83qmE3q7+pI/VTWPUIVymliJY2Js9tooO
-	ZxqvY/9yXNbok9fQhiR8gUWXByFj7xZwxHtQBy6P9+tq+DwFwuRlPo1IDsXnK722lnw4r8qAdjvPw
-	/BcddI7HlPcnbsgDK6krQ99OruVe1N5vAkomoqEinPz/Ge9GLFEWxH35pgxYoSup4a7KeNV1lvPUF
-	USVYDYZX6lDwQLl84cUQ==;
+	List-Owner; bh=jMhaK30gx/DJ+nWHaDcUTorbC8lNdWTQ6T09eU2pU8M=; b=n2dhw+VBce8pZo
+	bf7hpoYeoslM0LJa7npXc692BgzvULSxyg6Z7s50jurg2sc+2IwH4ZViaH5ayIp6AxJF2Ed4Y+4Da
+	jRsXXh7U+sbxlcslgM+STN565CU5ldJiebEcGyr8Ko1L0zeef7q2C7WA1OofVrfx5+dEZbpJ/RrwU
+	FKgQ9LAf0zJj7OXo1RST714lQTzAAXTLRfBQGmH3Nf60Y+LqXgLZL80lCZBqQ8O0asqdXT5zAWv4F
+	8muvj0elVMljH4z3OqjKEokuKdet/IYHRcFWAXQF7bc+omrpdKqR9ibmW+T4DuTWlyMLHHl1ORczy
+	0plY4oKs2qyTrCnXX2qw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w4c3J-0000000GQYX-2DV0;
-	Mon, 23 Mar 2026 09:58:29 +0000
-Received: from [2a01:4f9:c011:1c83::1] (helo=courrier.aliel.fr)
+	id 1w4c3K-0000000GQYf-0DvV;
+	Mon, 23 Mar 2026 09:58:30 +0000
+Received: from pouet.aliel.fr ([65.21.61.41] helo=courrier.aliel.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w4c3F-0000000GQVn-1Cfu;
-	Mon, 23 Mar 2026 09:58:27 +0000
+	id 1w4c3F-0000000GQVs-3kx2;
+	Mon, 23 Mar 2026 09:58:28 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774259900;
-	bh=pJsgY+KSWWLicmvVu+uNg6L7gVLTJaTUGgkV3XkKSJc=;
+	s=courrier-s1; t=1774259899;
+	bh=nLzHsr5SRGXnJ4qXDllE27wn5dbe27jEjWThdkARNK4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=l6CQeCcLdUN7XaS5IL++cjUxIj3IgL2VreeTAOdLUMUruVXh93IvgugBZwgCXN7vU
-	 0kEUmrnDY1NaxbelC06QJFO6ZeciSXD465lkbilg78kAVeg8S5vzlr56XixjfTaXYK
-	 C5oCfUBkBErz+FIV0g2jVN6NxVzOQN9Yr1n2sn5M=
-Date: Mon, 23 Mar 2026 10:55:29 +0100
-Subject: [PATCH v3 4/9] arm64: dts: amlogic: t7: Add PWM pinctrl nodes
+	b=bnx+U5Wvh/cA2SipleVXznvvZVQWW756NQ4xJmu3oUEWx1cwUj+J8T2Yh7+JIgeuQ
+	 w2znGpMOumy7zO8w4twzLcxCDKripDH1KFUkDXRghWRWxryKp/iBBhDL5Gb6E4Sf1D
+	 ATTw3BzKDRbzjDKXLATkhU4oFZIw3yjTIdRiFZRY=
+Date: Mon, 23 Mar 2026 10:55:28 +0100
+Subject: [PATCH v3 3/9] arm64: dts: amlogic: t7: Add MMC controller nodes
 MIME-Version: 1.0
-Message-Id: <20260323-add-emmc-t7-vim4-v3-4-5159d90a984c@aliel.fr>
+Message-Id: <20260323-add-emmc-t7-vim4-v3-3-5159d90a984c@aliel.fr>
 References: <20260323-add-emmc-t7-vim4-v3-0-5159d90a984c@aliel.fr>
 In-Reply-To: <20260323-add-emmc-t7-vim4-v3-0-5159d90a984c@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -51,18 +51,18 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774259895; l=3146;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1774259894; l=2309;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=pJsgY+KSWWLicmvVu+uNg6L7gVLTJaTUGgkV3XkKSJc=;
+ bh=nLzHsr5SRGXnJ4qXDllE27wn5dbe27jEjWThdkARNK4=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QAgJNqI6dHgYz2BYCWrAJelofszt6Z8Ktugb/OvW0PNquLU2R5UcRCc5/h3cgghQOUbSY8iYjIk
- CbLxUJSsxBws=
+ QG9MimcCwQl3IDkrclTMocdwMakL26xqJ0ECX4klkPvSWc4HTeiBQxRZHQWAOyPrBYwPLHfbpf1
+ eeQE/zuhbhwY=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260323_025825_658583_2AAE08A0 
-X-CRM114-Status: UNSURE (   7.06  )
+X-CRM114-CacheID: sfid-20260323_025826_091160_D9C11B98 
+X-CRM114-Status: UNSURE (   8.08  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,161 +80,66 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-These pinctrl nodes are required by the PWM drivers to configure
-pin muxing at runtime.
+Add device tree nodes for the three MMC controllers available
+on the Amlogic T7 SoC, using amlogic,meson-axg-mmc as fallback compatible.
+All nodes are disabled by default and should be
+enabled in the board-specific DTS file.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 136 ++++++++++++++++++++++++++++
- 1 file changed, 136 insertions(+)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 39 +++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index b3898669c9571..6d41de6f895b4 100644
+index ac8de8e9b8010..b3898669c9571 100644
 --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -307,6 +307,142 @@ mux {
- 					};
- 				};
+@@ -374,6 +374,45 @@ sec_ao: ao-secure@10220 {
+ 				reg = <0x0 0x10220 0x0 0x140>;
+ 				amlogic,has-chip-id;
+ 			};
++
++			sd_emmc_a: mmc@88000 {
++				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
++				reg = <0x0 0x88000 0x0 0x800>;
++				interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
++				status = "disabled";
++				clocks = <&clkc_periphs CLKID_SYS_SD_EMMC_A>,
++					 <&clkc_periphs CLKID_SD_EMMC_A>,
++					 <&scmi_clk CLKID_FCLK_DIV2>;
++				clock-names = "core", "clkin0", "clkin1";
++				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_A_SEL>;
++				assigned-clock-parents = <&xtal>;
++			};
++
++			sd_emmc_b: mmc@8a000 {
++				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
++				reg = <0x0 0x8a000 0x0 0x800>;
++				interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&clkc_periphs CLKID_SYS_SD_EMMC_B>,
++					 <&clkc_periphs CLKID_SD_EMMC_B>,
++					 <&scmi_clk CLKID_FCLK_DIV2>;
++				clock-names = "core", "clkin0", "clkin1";
++				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_B_SEL>;
++				assigned-clock-parents = <&xtal>;
++			};
++
++			sd_emmc_c: mmc@8c000 {
++				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
++				reg = <0x0 0x8c000 0x0 0x800>;
++				interrupts = <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&clkc_periphs CLKID_SYS_SD_EMMC_C>,
++					 <&clkc_periphs CLKID_SD_EMMC_C>,
++					 <&scmi_clk CLKID_FCLK_DIV2>;
++				clock-names = "core", "clkin0", "clkin1";
++				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_C_SEL>;
++				assigned-clock-parents = <&xtal>;
++			};
+ 		};
  
-+				pwm_a_pins: pwm-a {
-+					mux {
-+						groups = "pwm_a";
-+						function = "pwm_a";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_a_pins: pwm-ao-a {
-+					mux {
-+						groups = "pwm_ao_a";
-+						function = "pwm_ao_a";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_b_pins: pwm-ao-b {
-+					mux {
-+						groups = "pwm_ao_b";
-+						function = "pwm_ao_b";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_c_pins: pwm-ao-c {
-+					mux {
-+						groups = "pwm_ao_c";
-+						function = "pwm_ao_c";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_c_hiz_pins: pwm-ao-c-hiz {
-+					mux {
-+						groups = "pwm_ao_c_hiz";
-+						function = "pwm_ao_c_hiz";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_d_pins: pwm-ao-d {
-+					mux {
-+						groups = "pwm_ao_d";
-+						function = "pwm_ao_d";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_e_pins: pwm-ao-e {
-+					mux {
-+						groups = "pwm_ao_e";
-+						function = "pwm_ao_e";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_f_pins: pwm-ao-f {
-+					mux {
-+						groups = "pwm_ao_f";
-+						function = "pwm_ao_f";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_g_pins: pwm-ao-g {
-+					mux {
-+						groups = "pwm_ao_g";
-+						function = "pwm_ao_g";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_g_hiz_pins: pwm-ao-g-hiz {
-+					mux {
-+						groups = "pwm_ao_g_hiz";
-+						function = "pwm_ao_g_hiz";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_h_pins: pwm-ao-h {
-+					mux {
-+						groups = "pwm_ao_h";
-+						function = "pwm_ao_h";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_b_pins: pwm-b {
-+					mux {
-+						groups = "pwm_b";
-+						function = "pwm_b";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_c_pins: pwm-c {
-+					mux {
-+						groups = "pwm_c";
-+						function = "pwm_c";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_d_pins: pwm-d {
-+					mux {
-+						groups = "pwm_d";
-+						function = "pwm_d";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_e_pins: pwm-e {
-+					mux {
-+						groups = "pwm_e";
-+						function = "pwm_e";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_f_pins: pwm-f {
-+					mux {
-+						groups = "pwm_f";
-+						function = "pwm_f";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_vs_pins: pwm-vs {
-+					mux {
-+						groups = "pwm_vs";
-+						function = "pwm_vs";
-+						bias-disable;
-+					};
-+				};
-+
- 				sdcard_pins: sdcard {
- 					mux {
- 						groups = "sdcard_d0",
+ 	};
 
 -- 
 2.49.0
