@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE34DE9A776
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Mar 2026 11:48:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CCAEE9A776
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Mar 2026 11:48:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:From
-	:To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=njS/FYK4pw4j5Dr9O/x+qeMeSfdcVPjS96AEmrQ9Xpg=; b=279jr4ohgMVooY
-	hyzukXgaqI4SkIhIcmu9MerqhnYdexuSSueJY5A/l8pUzxr5T0urqZyhfWCiRCBDGyUqE98zKVQut
-	/EU0+F2ybXFyRS97rzhBrSHp3yQndHUjhiCNIKNf0M1Hog7tMvTVbNnjk5nRu1+MsQ6CTYnA4uUPW
-	iE69ucGEYBeqTzYmO8FmyELOvMhDIHA4+4Mc0h/xyxAf2Rp07RqPayIi4YDSQeaBAjiAkHYGEPald
-	dK+42wwnuU++s1eJ8pPYpLHGiYDo6jfPVUnfFNWNcFN3Ubl5mdzUhAlhIKN+4pTpd5kq7Qq/ei3RH
-	ocN15ZOzEXZvMGBkdSMQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:From:To:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=zZDi8aIyL66vDUGJvnCmzcXgB5oP2jsZUxiN9N87ZBo=; b=jsQCnA3tjDwbtU
+	1CLeAjSSvh3iAYLv5MX9NZyPX9bE+qNLWwpMIAARN8eZqIlbFkH3lefJPIC9HfgpJ8wgTmy6J3Jij
+	hT9iU4LTzPDzp1FQc/I5pX+pM8F1uGn8gcel2GmAnUeYRf0k8NtbTjz6QpTM3P3xvjHB+f0t6duLF
+	axoGtizOgJJXmnee+4LLN5TB7ONeVR0WUF/7Ws7Gt7mZ7oae3ljwTTM+rjwKqnVtiGn/UwG+zb2CG
+	cHFEV+2/49JoMQ8OLvQH1660tf1uGyzz8s5IsCfDlq1CLPCyZKYpgBdOXLVqDu6poE4JNtMJ+h8pz
+	w0wm07ZxgKyd6Disj2Gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w50F2-00000001IxI-2NiM;
-	Tue, 24 Mar 2026 11:48:12 +0000
-Received: from mail-10631.protonmail.ch ([79.135.106.31])
+	id 1w50FD-00000001J2E-3WWk;
+	Tue, 24 Mar 2026 11:48:23 +0000
+Received: from mail-4322.protonmail.ch ([185.70.43.22])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w50F0-00000001IvX-0PgP
-	for linux-amlogic@lists.infradead.org;
-	Tue, 24 Mar 2026 11:48:11 +0000
+	id 1w50FB-00000001J0L-2Wpi;
+	Tue, 24 Mar 2026 11:48:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1774352886; x=1774612086;
-	bh=Bd8puGPsyAqrkv3KsDLsSC/8GgPDmqGf8nZTwBgCbY8=;
-	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=EQc3mgI203+O6uIdKN1cbKBrJYYKtopOnFWgus+/77ru5URIvTFagSqZyHFir824s
-	 aE/ASlIDrv+C5NA2iIpVKVD8hSMJeGXMc4S7Oh63GOtdELyQRcyrLzf6+O1hzDWg+6
-	 TgdhAVimU3kpsmmMNZWFUiUUfDnCHZVIpCtFJ/PNaTgzc9VUOxSjLCUD82ciSw/jXL
-	 nW4ds3oUIlflSMLUvmx1lC+n+HghZvUSfsHdRocVFMmZCUA6+nLVKzOsYIs/N9qYrG
-	 cmVVQkJfdPSug0HAqBvF0es085DZddnU1Hr/JZxVsiyTtdCu5OxwFtJI2FFfrze+H9
-	 YNg72gCqc8p3w==
-Date: Tue, 24 Mar 2026 11:47:56 +0000
+	s=protonmail3; t=1774352897; x=1774612097;
+	bh=dD/BPKC5aT9eeNrRI4lDwbK6ytFidptagGuSLLMES4o=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=VSi97/XKzyknr6pKLMO8PCBs/Epej648nUMYbEv4763G4GWoh6ut/ZBaIFDoVAFnX
+	 jvrvY2SDqjUvmbC0MTkGFGs5PpvPdrI9yaOgy++nsyK7Ao0qTw4KP1Ngl6KBdxwb+n
+	 ZsJJne7rMRCxuudjzj5CeOd7Rj7pPNmgRxnlGNAYkMYAviQi29Xl9SczqV1PoYA1j4
+	 QyG/Y6rChOU7lkWwNltMNZRQetMC7TAnwxgnjTlCh7ytRQ2rRnVpO67M8VpflU2iLH
+	 kyn7nBWnYBJO9aD4o18xWY+winb6EB41R/YhTT3TLYb/DTdfbgd4RxYPQUnsh6TeGt
+	 lPASGEVSaxZjg==
+Date: Tue, 24 Mar 2026 11:48:09 +0000
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, Jeffrey Hugo <jeffrey.l.hugo@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 From: Alexander Koskovich <akoskovich@pm.me>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, Alexander Koskovich <akoskovich@pm.me>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v5 0/5] drm/msm: add RGB101010 pixel format
-Message-ID: <20260324-dsi-rgb101010-support-v5-0-ff6afc904115@pm.me>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, Alexander Koskovich <akoskovich@pm.me>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v5 1/5] drm/mipi-dsi: add RGB101010 pixel format
+Message-ID: <20260324-dsi-rgb101010-support-v5-1-ff6afc904115@pm.me>
+In-Reply-To: <20260324-dsi-rgb101010-support-v5-0-ff6afc904115@pm.me>
+References: <20260324-dsi-rgb101010-support-v5-0-ff6afc904115@pm.me>
 Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: 6b2dc60d395a13138b40b2adb8565c23b7c2566b
+X-Pm-Message-ID: 480ba65b63d0fe3f5e4b245ea6887b6232cd3b75
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260324_044810_297771_352FA06B 
-X-CRM114-Status: UNSURE (   8.44  )
+X-CRM114-CacheID: sfid-20260324_044821_782141_A5F5AB89 
+X-CRM114-Status: UNSURE (   5.85  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -67,60 +69,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series adds support for the RGB101010 (30bpp) pixel format used by some
-newer panels.
+Add MIPI_DSI_FMT_RGB101010 for 30 bit (10,10,10 RGB) pixel format,
+corresponding to the packed 30 bit pixel stream defined in MIPI DSI
+v1.3 Section 8.8.17.
 
-Tested on the BOE BF068MWM-TD0 panel (10 bit DSC) on the Nothing Phone (3a).
-
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
 ---
-Changes in v5:
-- Add comment & warning about RGB101010 support in compression_en && !wide_bus_en case
-- Move RGB101010 check further down so it has access to msm_dsi_host_is_wide_bus_enabled()
-- Use default case for meson_dw_mipi_dsi pixel format switchs
-- Link to v4: https://lore.kernel.org/r/20260321-dsi-rgb101010-support-v4-0-eb28ecebbfe8@pm.me
+ include/drm/drm_mipi_dsi.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Changes in v4:
-- Dropped dpu_encoder_phys_vid patch
-  - Needs further discussion and rest of these changes can be independent of that
-- Pick back up dropped drm_mipi_dsi.h patch (oops)
-- Fix meson driver warning from adding RGB101010 to drm_mipi_dsi.h
-- msm_dsi_host_version_ge -> msm_dsi_host_version_geq
-- Fix msm_dsi_host_version_geq to handle major > major
-- Link to v3: https://lore.kernel.org/r/20260319-dsi-rgb101010-support-v3-0-85b99df2d090@pm.me
+diff --git a/include/drm/drm_mipi_dsi.h b/include/drm/drm_mipi_dsi.h
+index 3aba7b380c8d..a822e9e876af 100644
+--- a/include/drm/drm_mipi_dsi.h
++++ b/include/drm/drm_mipi_dsi.h
+@@ -140,6 +140,7 @@ struct mipi_dsi_host *of_find_mipi_dsi_host_by_node(struct device_node *node);
+ #define MIPI_DSI_HS_PKT_END_ALIGNED	BIT(12)
+ 
+ enum mipi_dsi_pixel_format {
++	MIPI_DSI_FMT_RGB101010,
+ 	MIPI_DSI_FMT_RGB888,
+ 	MIPI_DSI_FMT_RGB666,
+ 	MIPI_DSI_FMT_RGB666_PACKED,
+@@ -235,6 +236,9 @@ extern const struct bus_type mipi_dsi_bus_type;
+ static inline int mipi_dsi_pixel_format_to_bpp(enum mipi_dsi_pixel_format fmt)
+ {
+ 	switch (fmt) {
++	case MIPI_DSI_FMT_RGB101010:
++		return 30;
++
+ 	case MIPI_DSI_FMT_RGB888:
+ 	case MIPI_DSI_FMT_RGB666:
+ 		return 24;
 
-Changes in v3:
-- Fix typo for MSM8998 DSI version name (V2_2 -> V_2_0)
-- Add msm_dsi_host_version_is_gt per Konrad and use for RGB101010 check
-- Fix up comment & commit message for video mode DSC INTF timing width change per Neil/Konrad
-- Link to v2: https://lore.kernel.org/r/20260318-dsi-rgb101010-support-v2-0-698b7612eaeb@pm.me
-
-Changes in v2:
-- Only allow RGB101010 if MSM_DSI_6G_VER >= V2.1.0
-- Link to v1: https://lore.kernel.org/r/20260318-dsi-rgb101010-support-v1-0-6021eb79e796@pm.me
-
----
-Alexander Koskovich (5):
-      drm/mipi-dsi: add RGB101010 pixel format
-      drm/meson: use default case for unsupported DSI pixel formats
-      drm/msm/dsi: rename MSM8998 DSI version from V2_2_0 to V2_0_0
-      drm/msm/dsi: add DSI version >= comparison helper
-      drm/msm/dsi: Add support for RGB101010 pixel format
-
- drivers/gpu/drm/meson/meson_dw_mipi_dsi.c     |  6 ++---
- drivers/gpu/drm/msm/dsi/dsi_cfg.c             |  4 ++--
- drivers/gpu/drm/msm/dsi/dsi_cfg.h             |  2 +-
- drivers/gpu/drm/msm/dsi/dsi_host.c            | 34 +++++++++++++++++++++++++--
- drivers/gpu/drm/msm/registers/display/dsi.xml |  5 +++-
- include/drm/drm_mipi_dsi.h                    |  4 ++++
- 6 files changed, 45 insertions(+), 10 deletions(-)
----
-base-commit: f338e77383789c0cae23ca3d48adcc5e9e137e3c
-change-id: 20260318-dsi-rgb101010-support-4956b1cd8657
-
-Best regards,
 -- 
-Alexander Koskovich <akoskovich@pm.me>
+2.53.0
 
 
 
