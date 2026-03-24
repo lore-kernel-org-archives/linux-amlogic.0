@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CCAEE9A776
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Mar 2026 11:48:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACB81E9A778
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Mar 2026 11:48:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:From:To:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zZDi8aIyL66vDUGJvnCmzcXgB5oP2jsZUxiN9N87ZBo=; b=jsQCnA3tjDwbtU
-	1CLeAjSSvh3iAYLv5MX9NZyPX9bE+qNLWwpMIAARN8eZqIlbFkH3lefJPIC9HfgpJ8wgTmy6J3Jij
-	hT9iU4LTzPDzp1FQc/I5pX+pM8F1uGn8gcel2GmAnUeYRf0k8NtbTjz6QpTM3P3xvjHB+f0t6duLF
-	axoGtizOgJJXmnee+4LLN5TB7ONeVR0WUF/7Ws7Gt7mZ7oae3ljwTTM+rjwKqnVtiGn/UwG+zb2CG
-	cHFEV+2/49JoMQ8OLvQH1660tf1uGyzz8s5IsCfDlq1CLPCyZKYpgBdOXLVqDu6poE4JNtMJ+h8pz
-	w0wm07ZxgKyd6Disj2Gg==;
+	List-Owner; bh=LeuSh/zhnURzIHZnJFkbMa36Y8N5DSDXTJrdxZbwjTY=; b=o8AcbXtCBuk1Of
+	WyZkRKwEKo1PYX9A9sxDGeu4GFGpmJ3zLrMIr3J+NU7Jo0V2YB6K8goqYOzcblnHydsJWzALuUvdr
+	qwJPmA4pt/MZx6TGqc1Sh17oNvgC1kf29ujNLwe0iRctsVV2r9R2HUpTwCE2zeY44oty1maNQMZR/
+	3hqxVKO3hZtHborbVg5rpdNWj3gHg2V1tSlewwZ+S9MWFmwZUYI7aNdby55fLmJ/vhL0rsdSBU4j4
+	6jITxvooWzvz39thIh9VzPvzpjnEWMSeWqJ0BHztK6eAPNzjAEOv++begmUBZkk3JWUtfC7r8u1dZ
+	DLEzAaDYnGeQoyqF1sxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w50FD-00000001J2E-3WWk;
-	Tue, 24 Mar 2026 11:48:23 +0000
-Received: from mail-4322.protonmail.ch ([185.70.43.22])
+	id 1w50FJ-00000001J6S-3FON;
+	Tue, 24 Mar 2026 11:48:29 +0000
+Received: from mail-106119.protonmail.ch ([79.135.106.119])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w50FB-00000001J0L-2Wpi;
-	Tue, 24 Mar 2026 11:48:22 +0000
+	id 1w50FF-00000001J2Y-33dd
+	for linux-amlogic@lists.infradead.org;
+	Tue, 24 Mar 2026 11:48:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1774352897; x=1774612097;
-	bh=dD/BPKC5aT9eeNrRI4lDwbK6ytFidptagGuSLLMES4o=;
+	s=protonmail3; t=1774352903; x=1774612103;
+	bh=VRl6+bQSrvvEcwcEsxNzNmjm4DwgoFEo/s2/NFGDH+Y=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
 	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
 	 Message-ID:BIMI-Selector;
-	b=VSi97/XKzyknr6pKLMO8PCBs/Epej648nUMYbEv4763G4GWoh6ut/ZBaIFDoVAFnX
-	 jvrvY2SDqjUvmbC0MTkGFGs5PpvPdrI9yaOgy++nsyK7Ao0qTw4KP1Ngl6KBdxwb+n
-	 ZsJJne7rMRCxuudjzj5CeOd7Rj7pPNmgRxnlGNAYkMYAviQi29Xl9SczqV1PoYA1j4
-	 QyG/Y6rChOU7lkWwNltMNZRQetMC7TAnwxgnjTlCh7ytRQ2rRnVpO67M8VpflU2iLH
-	 kyn7nBWnYBJO9aD4o18xWY+winb6EB41R/YhTT3TLYb/DTdfbgd4RxYPQUnsh6TeGt
-	 lPASGEVSaxZjg==
-Date: Tue, 24 Mar 2026 11:48:09 +0000
+	b=gglrElKfA4oKICZE9ZQA8V4KLVGciE1d5/9strNJ3CLEmQrS2r8PAi9z8o9ze0xtU
+	 dwrjABH1jlnjC+mkvY6CVOR+yTK2mU5amOwUmR0PHmrHRuPt2vLdtahMob6OmBZiIp
+	 QobebVRgQMeqh3rvG5DCoPBqfFVaPVkauG3GmYz00pAEi0EhGzb8TO+gm7hbEzGo7X
+	 +jlJNX5H4GPGj47+ehvwRDL9GXHTwT6fYi+uh1uIH/cA0Ubo/TX2IRTOtEgUIY2hUB
+	 nTihCRZKMhsGQtFMNt4gUoHj05GgUcD0gu9e47qzlHP1NpCJL6EgPgGkjdkIMrqabM
+	 EKsd0lhRCy8yw==
+Date: Tue, 24 Mar 2026 11:48:17 +0000
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, Jeffrey Hugo <jeffrey.l.hugo@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 From: Alexander Koskovich <akoskovich@pm.me>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, Alexander Koskovich <akoskovich@pm.me>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH v5 1/5] drm/mipi-dsi: add RGB101010 pixel format
-Message-ID: <20260324-dsi-rgb101010-support-v5-1-ff6afc904115@pm.me>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, Alexander Koskovich <akoskovich@pm.me>
+Subject: [PATCH v5 2/5] drm/meson: use default case for unsupported DSI pixel formats
+Message-ID: <20260324-dsi-rgb101010-support-v5-2-ff6afc904115@pm.me>
 In-Reply-To: <20260324-dsi-rgb101010-support-v5-0-ff6afc904115@pm.me>
 References: <20260324-dsi-rgb101010-support-v5-0-ff6afc904115@pm.me>
 Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: 480ba65b63d0fe3f5e4b245ea6887b6232cd3b75
+X-Pm-Message-ID: 8e6fb45145c770093500cd0a9292ca2a6ee94627
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260324_044821_782141_A5F5AB89 
-X-CRM114-Status: UNSURE (   5.85  )
+X-CRM114-CacheID: sfid-20260324_044825_946432_19E51688 
+X-CRM114-Status: UNSURE (   6.12  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -69,38 +70,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add MIPI_DSI_FMT_RGB101010 for 30 bit (10,10,10 RGB) pixel format,
-corresponding to the packed 30 bit pixel stream defined in MIPI DSI
-v1.3 Section 8.8.17.
+Use default instead of listing unsupported formats explicitly, so the
+switch statements don't need updating each time a new pixel format is
+added.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
 ---
- include/drm/drm_mipi_dsi.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/meson/meson_dw_mipi_dsi.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/include/drm/drm_mipi_dsi.h b/include/drm/drm_mipi_dsi.h
-index 3aba7b380c8d..a822e9e876af 100644
---- a/include/drm/drm_mipi_dsi.h
-+++ b/include/drm/drm_mipi_dsi.h
-@@ -140,6 +140,7 @@ struct mipi_dsi_host *of_find_mipi_dsi_host_by_node(struct device_node *node);
- #define MIPI_DSI_HS_PKT_END_ALIGNED	BIT(12)
+diff --git a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+index 66c73c512b0e..4412bd678108 100644
+--- a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
++++ b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+@@ -119,8 +119,7 @@ static int dw_mipi_dsi_phy_init(void *priv_data)
+ 		dpi_data_format = DPI_COLOR_18BIT_CFG_2;
+ 		venc_data_width = VENC_IN_COLOR_18B;
+ 		break;
+-	case MIPI_DSI_FMT_RGB666_PACKED:
+-	case MIPI_DSI_FMT_RGB565:
++	default:
+ 		return -EINVAL;
+ 	}
  
- enum mipi_dsi_pixel_format {
-+	MIPI_DSI_FMT_RGB101010,
- 	MIPI_DSI_FMT_RGB888,
- 	MIPI_DSI_FMT_RGB666,
- 	MIPI_DSI_FMT_RGB666_PACKED,
-@@ -235,6 +236,9 @@ extern const struct bus_type mipi_dsi_bus_type;
- static inline int mipi_dsi_pixel_format_to_bpp(enum mipi_dsi_pixel_format fmt)
- {
- 	switch (fmt) {
-+	case MIPI_DSI_FMT_RGB101010:
-+		return 30;
-+
- 	case MIPI_DSI_FMT_RGB888:
+@@ -232,8 +231,7 @@ static int meson_dw_mipi_dsi_host_attach(void *priv_data,
+ 		break;
  	case MIPI_DSI_FMT_RGB666:
- 		return 24;
+ 		break;
+-	case MIPI_DSI_FMT_RGB666_PACKED:
+-	case MIPI_DSI_FMT_RGB565:
++	default:
+ 		dev_err(mipi_dsi->dev, "invalid pixel format %d\n", device->format);
+ 		return -EINVAL;
+ 	}
 
 -- 
 2.53.0
