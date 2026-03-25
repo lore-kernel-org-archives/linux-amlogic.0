@@ -4,128 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B131FEA814
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2026 07:07:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D4AFFEA82E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2026 08:08:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AVyQo3EXZHTPHY3YgDuIyWUvG02WP07ckiyrENKVeT8=; b=mXsXL2NJ84zWN8
-	HbNkSk9WupqFtIyzJY9CwARDBniCq3AgOS1F/n9ujAnyDq8ClUef7nmz0zFkZLTehnJ4wLjQtfZg9
-	nERFrI9zbzMtlYhouKZ8iN3lPSY/hKh/k3aJPHTIMHombG+27aIm8ZEBC/t0zEvIcd/fIbYa5Cezo
-	7umi+Cj3vJJPNTlAXR7vnDacHjegS3L6wB6O0O/Ob0G4x7gAmBq9HaCAMr6Vw/hA2TOXZCZDh/cQd
-	1ekoT7FaML+tAvWNrUr1nfRhFUDBBPCL/NhcWZx50UVRWZkq9Wxdi9pX+hfr4B5KRvtd3QwqUDCdy
-	ikDIjlUzRvb4yvl4WBWQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=zOwUEu6I0LnxqQJCaig+NwyTI3S9Tluxl1nY8u442hU=; b=ONKoPCxOQoABOV30kBAPhuRviK
+	hFsbh1HGueiSqNUM/vOpFXyBpX7szv+RmaivOjmw8qQ2ZtMFG+mTTpjdMmUPL6QXrR8j7PJVMPZXv
+	RdXwPd67sfjEfFIh1TdL04LYlJ58Y5JVSJI8oeUa6Qq3s/7onKN3j3apH9zx9BuwBsIZXnXFbVyDn
+	134JAS2DIM7In1ok4j2BpMKo8y1wnpUpktkKymZgyGc5OP3jEXAI2Y59gxzoQkRF04/kXjg1l524R
+	vSqzaH5wiqft1Z/qfb3doWcAxXV7wGPbJ7kpHYIurX+bAwCPo7oNxeoifrbgv5tc9AaHGUfPk2kNF
+	mE/aQg0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5IKL-00000002oyQ-2OQa;
-	Wed, 25 Mar 2026 07:06:53 +0000
-Received: from mail-koreacentralazon11023114.outbound.protection.outlook.com ([40.107.44.114] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1w5JIF-00000002udL-1riR;
+	Wed, 25 Mar 2026 08:08:47 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5IKG-00000002op2-1dtx;
-	Wed, 25 Mar 2026 07:06:49 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wdhuVMDBTGreCekkCG+f4z1/vZUbVujLFFyPH1KoqS5KC5PnbG07mcoihcoHx0+MG0kG8DP4U/PgwSPCwLmNwwF9G9NvaYCTDAUVXYqHG1S60AIRIClGTX3amB1LT7fYzAFAHu73oT5fm6rf9vLW3906dZ+iB0M6Uw7hmwQNi8h7xqA9RVYmO6DmAz4MO4dSrHldZzteF6JN/llbenemfM6BnmvKA2WrHaRrwaKExVaWUbpzyawUmclhOTuFVLdDBI/UoBgvHCmCSILKCoUUWoCJPNAsTzrZZfi3xFH4g/JsABlxYa2RbV5+UAza6SXYQP3uQiEW1Fwvc/mIXTxd/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=puorEd6yf3aPkBxx7SMwWJteiTaI4jhoauNxekAkl7g=;
- b=WPMbJia1LijdGqBJw1LlF1QeVbu68d/q0Hi8s7MbQndr0fLQWqznNwovfQCQehEw1MbBJxeAXwlgk/8IUehnEGKrVUFdLL1p+aV6zMLkaHPuchpXVl85BbY8FgvjA2PUlvPyj4WJJB14yTFfGqY0muAOvrZvqGKiTEE9/8+CpvRkVYd+DgHo3I/FlHiFH7HnqkqEwacRCbLntaamdCG5fH1B8nLloOPsyMdNRh9yDkBobimTls5XQ5fVTiI26LPTcTjwKZV23jok6a5lucXY2zYYjRv5JO6hlRUf8G0/nL+cWBTUwy34F/fc/jh4R+Uli4Js34y4R/MhoncPbP7vAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=khadas.com; dmarc=pass action=none header.from=khadas.com;
- dkim=pass header.d=khadas.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=khadas.com;
-Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com (2603:1096:308::2da)
- by JH0PR03MB7343.apcprd03.prod.outlook.com (2603:1096:990:9::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Wed, 25 Mar
- 2026 07:06:38 +0000
-Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- ([fe80::20a2:a696:ac88:2549]) by PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- ([fe80::20a2:a696:ac88:2549%4]) with mapi id 15.20.9745.019; Wed, 25 Mar 2026
- 07:06:38 +0000
-From: Nick Xie <nick@khadas.com>
-To: neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	jbrunet@baylibre.com,
-	jic23@kernel.org,
-	dlechner@baylibre.com,
-	andy@kernel.org
-Cc: krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Nick Xie <nick@khadas.com>
-Subject: [PATCH v3 2/4] iio: adc: meson-saradc: add support for Meson S4
-Date: Wed, 25 Mar 2026 15:06:16 +0800
-Message-Id: <20260325070618.81955-3-nick@khadas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260325070618.81955-1-nick@khadas.com>
-References: <20260325070618.81955-1-nick@khadas.com>
-X-ClientProxiedBy: SI2PR02CA0034.apcprd02.prod.outlook.com
- (2603:1096:4:195::9) To PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- (2603:1096:308::2da)
+	id 1w5JID-00000002ucR-0i1q
+	for linux-amlogic@lists.infradead.org;
+	Wed, 25 Mar 2026 08:08:46 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-43b871dd06eso643728f8f.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 25 Mar 2026 01:08:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1774426122; x=1775030922; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aGtfZugx6qGzB9L9OH7bygfJL7iwyyf8p4sO411xjfg=;
+        b=uz9kmDSz4RQlrUKPwy0ZG+mI1Kd6fOk8L593o6MGKdpfKfIUmvbedRqfyUVGGWf6CC
+         CdJNeIqvN6VmVPKiV1XrifOYc9DIhYqSs2Lv2ZbefaTVehKfZuY94AFfpD9IkYNlvJbt
+         I1sgxgDnqcNVVU7LWQ5QJev0xuMkuhczrk3wEEQWERUdSiB0f/tcTbp858WqT5pfI5wV
+         DPw4NAPfm4TVc0n5rgG8JPzYnsoJWY8gseL2sieFYoG3hPfZT+k7ZTiQsCQEoFvUbkS3
+         5iGv+fXKKesE0ct2H+fUeEDjoo8DqATBYLy2MJK77CHdkaOrtjJl2DqzFaigs7mytJll
+         k+0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774426122; x=1775030922;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aGtfZugx6qGzB9L9OH7bygfJL7iwyyf8p4sO411xjfg=;
+        b=cVIJBxQjbSPIo4haZ4ljGj5yLE7chli81HC0B8AHw59NaUuXxi0E00WrgPt7zqjQjO
+         JDG7l4cZgK2qd76sKU9rCdQED2P8pZzvtWg54HY5i8BoLW56Fh3rNJbU5OYdIIDKZAmS
+         NDN1VRp3IfOp5mDmClMUDm/j1Kz0VyktNAs9eBJstfBMhOliH7k8CRT79O6SwJiRFXe5
+         BPWfQDXU4BTJTc/u+6hunmeargUM/j8hy51x7eS7goMM26iaz6g131OjkBLD3n5sFxGx
+         JU+iWnUIejykospgNe17r3xD/dpBJQcV0pSdqRmZ7CzSNyE4CxFkw5vp4OPZ6W6C8d+q
+         NNoA==
+X-Forwarded-Encrypted: i=1; AJvYcCU/sl9es/OAqD+fs3lH8OvcDTzdcxJOX/yVtgIeF9XHuS1WnNxkXOmFfzSBHE8VSxpCBYUXL9dTqkPLA/Vr@lists.infradead.org
+X-Gm-Message-State: AOJu0YwVH6ylWnrzfRYp1KJ00PBlloY5jwPaU7LVP1ctRnzfaz7lqcJ1
+	AZF7pd1Sqs1Z/JphtlGtDTomdHt/O2c9ycYPTP2NBi8RO1k0qqrt3ZvPYSf1oge+rC4=
+X-Gm-Gg: ATEYQzxrhOXrCv5PDdIE1pSuyHdB4yMffWv+xMYivYQXYl8vk2io+OZeiJjCy8L9Tcw
+	mlelpECwIFly0KnMZCWbdpZTU+9h0kK3Tzk0d8wEe+yVIhSYKbdSAYPmxylJynelMYzXa/sSuAq
+	aKOyawEIRZdf+UEHYOzYPyixB/T8K6n8iXbLa/NUZLIqSonGhWzCHyPRVVAXmXj0Su0beMOQSUU
+	7da0oCPBS7lfVfAR6J9JlQRPKnq4mfUEjxnarZCaMuBqAxn/7N309nuI7h71O6TtW/lmaHzT7ST
+	SHCmVcZ587lBcfF00+pAMoSdHbYJFgu+hZOwSPx0AziCJiicu7TYAWpojB2ZL5SLn2D1uDlmyEN
+	GyTc89s6G2sM/nEYFpYf+EaoafzVIE/d1gALDuB1ZzjNA1aWjz1avuxDG1xJsqKOWe8FM/4zDfF
+	EVyduskQYq05fL1yVdVlmtykbLVdmYpY6NBdjQSs4wbL2fn+goGyol0cnDlEB3cmlNa5Hc2F4WB
+	Ajt2wY=
+X-Received: by 2002:a05:6000:3112:b0:439:c1ca:82be with SMTP id ffacd0b85a97d-43b88a2171emr3257849f8f.28.1774426122254;
+        Wed, 25 Mar 2026 01:08:42 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:c160:8cc2:c60a:b843? ([2a01:e0a:106d:1080:c160:8cc2:c60a:b843])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b6cdfdfa9sm36075748f8f.9.2026.03.25.01.08.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Mar 2026 01:08:40 -0700 (PDT)
+Message-ID: <15674376-21c4-4403-8e0f-bcb80985743b@linaro.org>
+Date: Wed, 25 Mar 2026 09:08:38 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PS1PPF62EEA9B1D:EE_|JH0PR03MB7343:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3176913d-5e2e-4b97-25e2-08de8a3d0ee2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|52116014|366016|7416014|38350700014|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: AhFFlUFHZlj4l2SQZnnlKiVXqN1PSOf0mkUJJ+XIytTymRZgcjr1xHqc1NdthoqO3cbhdO2lVkuqnmvPzDzNGrBrmXD4YcqZLZInQeP+AvjXZ/DxSamMQUaN13duMGejqllu7d20A0WugrXLMWDMUr32J+wyP9zv3um001L1DQnX7KI4KokxIZm7BEfN0s5oUz4RzdzIQxwnjww72E3DuL6SfcJGde9OFGdA0zlssTKHmKxfCpnFnce4V8YwisT2wLQ3lkGPhgVQJH+xJEZnF2l4DWyKC9h4vmA29pW+hO3hd1pS6RoprSlj7gDk9RHUUwTit2SE2qxnkGbZSzKKhpf9EQrpVpvbo32IbmUcbyNL6s2K2g+7dt22zHVncHmk5NWrK/LQHMkJxpoAdmTawVRsQG+5TM7I8ha6GnvrCem1mFUFxZOY3sUZKaKYb47Miz8EPkZzrU+glqylbkmJvAE2tDD6qPPVOfH5r/DQUgvDyiByf4bue4QKOCINtyvWBDuLkcata39P8FXow04bRiWUaClCc2dLRrV5tqq8hOC31U1T2t0bjkb+lv4qCKC8yEHJNZhVLGRNEn22wRkKszFpjPIJYUvgGLZPNy5kpb8E1AkUDu50CqOvGEDpeFm2vjtICdD5gC9ycTEivfqjwmDCYIdW5B/CTm3lTOgUqa1sLBX3ykVRwXtD3k8qW32AxDwk6yo8CmIEhORROq2nl41j6fFsZgw52IbCasrPRw2cikj8SQ+pe4Wxv4shmxMTBHI29TUdbduBZ1j4h2Ey4aOJk3HOYHxnKaX+v5Hk9cU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS1PPF62EEA9B1D.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(52116014)(366016)(7416014)(38350700014)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DOCivgJdByL+8m1Rc80vwbYmK14ms+7UsB6AHz/iQ1vxwltwzzh9iwmphCf5?=
- =?us-ascii?Q?u96pq23ILzGtMUHvHWTzHcrZQ1Jg2lmEJALYd1kLXqY7dTxAFAOSErlLaLIa?=
- =?us-ascii?Q?3EJ7iPO/pCdwORBtUVXQ6503HZGEgONBlX+YGccD8igzzkAnuUIAMtPk+R1H?=
- =?us-ascii?Q?Ln2MpHQtHUzei6FV2pMuftNO+I2mi0tZ9+pZaU513wCvV2ionwjXFLILvOrY?=
- =?us-ascii?Q?aEW/ZKVQQjag0goKN+j1XiYDgFfETwsblOx6K25LqYeXG0uO+Y9OXAMRuWmC?=
- =?us-ascii?Q?lxsjdVW9Ketjpg+8ES8vy2ZyHGQr9M895V+3A63krxiZNKe3ls+3NYiUWUme?=
- =?us-ascii?Q?WzqDOnwa88aA6VuLFC/4OXIAKq2aQOjvtZkJdZUyrOrkaMxaAk5P3cB0dlKR?=
- =?us-ascii?Q?6CRrWXPFk9tmjLy1lvluvPBKQSvev8/8ec7UuWtsEtPTG0AvtKK7u1+TzuHq?=
- =?us-ascii?Q?jXXFAl+5GDw/TzRXlFpUCP9iQq66YJd+Vzzg8AfdGVIGAVUpmx+Ofiy/ST1X?=
- =?us-ascii?Q?c+gWRGn79ddz1NAL/s5o8kfLUptk5wVj1qB7PTONN4PcIWGoqAfd72jChjAq?=
- =?us-ascii?Q?ch2PegfW0LUvtjd5H20oLrwu8wqdmMxjVZyF/4WbV9PvwivuzPBrWFQnjswF?=
- =?us-ascii?Q?u+tZhdcexopF2RN5iqOrGAuLieh9CGbUreCpRuzJv+XBBk99Px4HoJV2e83Q?=
- =?us-ascii?Q?9p5UfSbjEANtQko/TIGhTqCzA8ZEcM5a7WIA514/Su2MGv3+lofqWTihJOX/?=
- =?us-ascii?Q?ahKGLEq6rcqvjZv/bOEFOfSoM1Ptg0ea3uoTdz6DRxd4ZxjacyVhiYkrZNSd?=
- =?us-ascii?Q?+OOnEd3Xnovpjn5Pwuh3CAApaGay9SPNZ/ynHO1I7mKL4PM6dKEkCDEl0FLI?=
- =?us-ascii?Q?ec51tIILuOcQqhmWOFFqRFfhdV+TamFk+nAOC/wbQdvN1arPsH+EOBR05piQ?=
- =?us-ascii?Q?FRpJfeICSMHuK7A9DTZpOcVHDhAApIpN1t6U+YvMHVedvX3eoSerP1aMqQoR?=
- =?us-ascii?Q?TCx4qgR1+1XfvKL9Ickt0gepIUImMcTLVaxwXVGLMnWdhcLxVoS7m//p3fy+?=
- =?us-ascii?Q?prhysO+Lbj2IAe0vfCy2rIiFTlTNzQWgFZhVcUiT0Zl76V5flIgYtu/7k0Z5?=
- =?us-ascii?Q?wPJ2S6x6/GJb6UTRTjiRfHFLueaukZY8nZzEBVF6tbWTdII/aOnJu643soHL?=
- =?us-ascii?Q?KnwWrAEC0XdA3eC+ov1DH+WIOoKNu6pGYWG0s+5SlhHxv4IUXNRZOYnCjpuo?=
- =?us-ascii?Q?gmeojq3/s5KD9V7Ge9R4ZOE2tKL5ycQWewfaAmG6ApkveM/MOY+S4Hnt9a1j?=
- =?us-ascii?Q?fsXe5eG3phy0bxBQOC73cZsftZXNjd0Wp9AHrZCeg+8HJFuf44HwMDbWlKs+?=
- =?us-ascii?Q?fhhqrLy0loRJQ+RhnXOqgbLBvHksgrgLoe01rfLBVvQPDAXrp2y2AzefEwNY?=
- =?us-ascii?Q?HUa0I7voxqNJnOoBYccoZCVEPuZTxPjCZMaFe/qQcT84NftZBpC2Zexg6SrR?=
- =?us-ascii?Q?yoykj0ihbq4MBNeLlDM27ejrmf2e1w5KWLdFH/NHFLbFQn1AEcb5yuT/qbng?=
- =?us-ascii?Q?9v3IJOZk2JXVSpddTgrzF1bWP9oqJB32CcX8VDCkXO9laz/x/Co7EBkRRtX8?=
- =?us-ascii?Q?FOIJTvf5sEPiyghoU6yygcBTx/D1WQ5r61pH4Wq5zfglZcV82V4o4jz34uSo?=
- =?us-ascii?Q?bq5C84G9WSYeh4sNTc9hrkRh9uGZNiPH/WSWBh1jW8dJHaVK?=
-X-OriginatorOrg: khadas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3176913d-5e2e-4b97-25e2-08de8a3d0ee2
-X-MS-Exchange-CrossTenant-AuthSource: PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 07:06:38.2110
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DGWEAteNvt85bwnTIkpi0Xa8Ea+ppESv3Ubaaq3ah+KYAAgaOBweYBJQtYhWwx/j
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7343
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v5 2/5] drm/meson: use default case for unsupported DSI
+ pixel formats
+To: Alexander Koskovich <akoskovich@pm.me>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+References: <20260324-dsi-rgb101010-support-v5-0-ff6afc904115@pm.me>
+ <20260324-dsi-rgb101010-support-v5-2-ff6afc904115@pm.me>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260324-dsi-rgb101010-support-v5-2-ff6afc904115@pm.me>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260325_000648_509369_1EB4D6C3 
-X-CRM114-Status: GOOD (  13.27  )
+X-CRM114-CacheID: sfid-20260325_010845_256513_E91E572B 
+X-CRM114-Status: GOOD (  12.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -137,58 +135,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for the SARADC found on the Amlogic Meson S4 SoC.
-According to the documentation and current testing, it is fully
-compatible with the G12A parameter set, so we reuse
-`meson_sar_adc_g12a_data` for this new compatible string.
+On 3/24/26 12:48, Alexander Koskovich wrote:
+> Use default instead of listing unsupported formats explicitly, so the
+> switch statements don't need updating each time a new pixel format is
+> added.
+> 
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+> ---
+>   drivers/gpu/drm/meson/meson_dw_mipi_dsi.c | 6 ++----
+>   1 file changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+> index 66c73c512b0e..4412bd678108 100644
+> --- a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+> +++ b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+> @@ -119,8 +119,7 @@ static int dw_mipi_dsi_phy_init(void *priv_data)
+>   		dpi_data_format = DPI_COLOR_18BIT_CFG_2;
+>   		venc_data_width = VENC_IN_COLOR_18B;
+>   		break;
+> -	case MIPI_DSI_FMT_RGB666_PACKED:
+> -	case MIPI_DSI_FMT_RGB565:
+> +	default:
+>   		return -EINVAL;
+>   	}
+>   
+> @@ -232,8 +231,7 @@ static int meson_dw_mipi_dsi_host_attach(void *priv_data,
+>   		break;
+>   	case MIPI_DSI_FMT_RGB666:
+>   		break;
+> -	case MIPI_DSI_FMT_RGB666_PACKED:
+> -	case MIPI_DSI_FMT_RGB565:
+> +	default:
+>   		dev_err(mipi_dsi->dev, "invalid pixel format %d\n", device->format);
+>   		return -EINVAL;
+>   	}
+> 
 
-Although the device tree fallback mechanism could handle the match,
-a dedicated entry is added to ensure the userspace ABI correctly
-reports the specific part name ("meson-s4-saradc"). This allows
-userspace to accurately identify the exact device and maintains
-consistency across different firmware types where automatic fallback
-parsing might be problematic.
+Feel free to merge it in msm-next or other drm branch:
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Nick Xie <nick@khadas.com>
----
- drivers/iio/adc/meson_saradc.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 47cd350498a0d..3ac48b7842c4f 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -1313,6 +1313,11 @@ static const struct meson_sar_adc_data meson_sar_adc_g12a_data = {
- 	.name = "meson-g12a-saradc",
- };
- 
-+static const struct meson_sar_adc_data meson_sar_adc_s4_data = {
-+	.param = &meson_sar_adc_g12a_param,
-+	.name = "meson-s4-saradc",
-+};
-+
- static const struct of_device_id meson_sar_adc_of_match[] = {
- 	{
- 		.compatible = "amlogic,meson8-saradc",
-@@ -1341,6 +1346,9 @@ static const struct of_device_id meson_sar_adc_of_match[] = {
- 	}, {
- 		.compatible = "amlogic,meson-g12a-saradc",
- 		.data = &meson_sar_adc_g12a_data,
-+	}, {
-+		.compatible = "amlogic,meson-s4-saradc",
-+		.data = &meson_sar_adc_s4_data,
- 	},
- 	{ }
- };
--- 
-2.34.1
-
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
