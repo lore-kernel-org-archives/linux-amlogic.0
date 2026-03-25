@@ -4,40 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33889FEA83D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2026 09:19:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B80AFEA835
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2026 09:19:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jqkyC6EW/d9IqaMbvmqtF4fSDJPq02gPvMrtUPqrhaA=; b=cD8BpZedaA/iLN
-	2zV05y8GvRQr02JOZEeirE1t0eGTVFbpXYu7JWsTM4fW4KZORiHDzaIwbeR9uHbWp6yd+EhBn9jpD
-	WFv55ed/YuxTvKzSiqgVBN+hRzmpBzue5x/fS9xXtW9Ly63xSeU0u4+bUFKP0bLraLT4juAUIH7Oi
-	65845hlUmGiM48pQW4pqgSv113aGK7JAu//q9XWdkVe3WOJ5L+G/CtZChaLr3w5NIE6Chao8xDigZ
-	dS3sIQ1gdiofLv97OMdYb1aNDdd2P9plZZ7qkoPJiIkq/s5g3j2HIKaK0Psb+V0y/KEHXrRdcHbgp
-	LWccR+FuwcmbKwGyRkvw==;
+	List-Owner; bh=rITmpzWUKXGZC7VbtB6CRx62qJ+BPYtpKHkNSD9Dat4=; b=BnI/DqvKVXu9sC
+	QFEAYcQSZuOk+Pn0fYk/BrD09t8j4Evl/fps3/Z5B4psSTBLxQ/NVw6w+5jBNAuc08/BzFPODyjs2
+	fnsqkFQxfF7TW2LyuKsBQkqMa5X/4ozmDPdTsQ1yaNDse5ER657j+qvmC6y6dSYY+0VsPi0WQyF29
+	L9bpugRn49oIfGnfYQOqwpkbfsQVZ2HJity9rSa5ztnipoReTl4V4Cb52b2Njwm/jiWpQlXUtbILF
+	IjQckhx5pgVEJ9+NC74NHOe+jjmQAiQ2ztTtsOVUHONDSxBp6OvzBzbvm0gwO6VoODtRd2oHos0TB
+	kSMBuHUoN7uNXsSBcN7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5KO6-000000031ma-3ozI;
-	Wed, 25 Mar 2026 09:18:54 +0000
+	id 1w5KOD-000000031uf-3j5M;
+	Wed, 25 Mar 2026 09:19:02 +0000
 Received: from [2a01:4f9:c011:1c83::1] (helo=courrier.aliel.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5KO3-000000031ir-49B1;
-	Wed, 25 Mar 2026 09:18:53 +0000
+	id 1w5KO6-000000031kl-0xLj;
+	Wed, 25 Mar 2026 09:18:55 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774430329;
-	bh=WZ2VWU8ZZjMvH1UNXGZZiw4ZemZ6mSet2kenghPyLf4=;
+	s=courrier-s1; t=1774430331;
+	bh=ZPh1Ffg46SESKBriWMqpzSn5XjrMVWuNy3WH4xfUZ5A=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=VGI/7v6S9Hp5hycjhI4RroFM6kUQRKcVK1DQks/Rqspe+jMfAqlRgvhBASsVFxq1M
-	 Z8kArI5/aIn3gzIKREvXyhuBR/EUuGtOk5A+sFXlH10OWc46jek4dFD0xrELqfaiDt
-	 hopK1ejgidDx2QVW1vVTI6JMGI9tf4DLnhw6jJ/4=
-Date: Wed, 25 Mar 2026 10:15:22 +0100
-Subject: [PATCH v4 4/9] arm64: dts: amlogic: t7: Add PWM pinctrl nodes
+	b=dzTVuTC5zPXMtasFswnQ4vNUnaENWVzMGRN4c3svrOmW8evsqu1aMapET4KHxqFfZ
+	 jS+1iXNvAdYdvqzvL+etp8TMp0Ov3HgrrtfgcHrsnJV0AUSo0+vS0Pzz9lDJVh0pZM
+	 pNTmUy4EOnZs+lwvqcexoYc0HO3W7KuQRRiI0ink=
+Date: Wed, 25 Mar 2026 10:15:24 +0100
+Subject: [PATCH v4 6/9] arm64: dts: amlogic: t7: khadas-vim4: Add power
+ regulators
 MIME-Version: 1.0
-Message-Id: <20260325-add-emmc-t7-vim4-v4-4-44c7b4a5e459@aliel.fr>
+Message-Id: <20260325-add-emmc-t7-vim4-v4-6-44c7b4a5e459@aliel.fr>
 References: <20260325-add-emmc-t7-vim4-v4-0-44c7b4a5e459@aliel.fr>
 In-Reply-To: <20260325-add-emmc-t7-vim4-v4-0-44c7b4a5e459@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -51,18 +52,18 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774430324; l=3146;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1774430324; l=3369;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=WZ2VWU8ZZjMvH1UNXGZZiw4ZemZ6mSet2kenghPyLf4=;
+ bh=ZPh1Ffg46SESKBriWMqpzSn5XjrMVWuNy3WH4xfUZ5A=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QAwFbBr3FjIvDay8rQ3kHJMHy2yIGRImTzSlbpZvuzYhFmM7E5MXFCZesofPIA331o6ZTxY/61W
- CXWUMnFQd5gA=
+ QG4mtFJreViV9hNdiyUs7lCXnJujgNvwx0kOc24yyIFMigIldRfQ1gsOzM0bOrXNpHc/do7dkTC
+ amnNwJn30DQ4=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260325_021852_181977_8D42EF4D 
-X-CRM114-Status: UNSURE (   7.28  )
+X-CRM114-CacheID: sfid-20260325_021854_425504_32C0B080 
+X-CRM114-Status: UNSURE (   7.73  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,161 +81,122 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-These pinctrl nodes are required by the PWM drivers to configure
-pin muxing at runtime.
+Add voltage regulator nodes describing the VIM4 power tree,
+required by peripheral nodes such as the SD card controller.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 136 ++++++++++++++++++++++++++++
- 1 file changed, 136 insertions(+)
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 90 ++++++++++++++++++++++
+ 1 file changed, 90 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 62c87d0ef7065..eb09a26bcd0e0 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -307,6 +307,142 @@ mux {
- 					};
- 				};
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+index fffdab96b12eb..2450084d37642 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+@@ -6,6 +6,8 @@
+ /dts-v1/;
  
-+				pwm_a_pins: pwm-a {
-+					mux {
-+						groups = "pwm_a";
-+						function = "pwm_a";
-+						bias-disable;
-+					};
-+				};
+ #include "amlogic-t7.dtsi"
++#include <dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h>
++#include <dt-bindings/gpio/gpio.h>
+ 
+ / {
+ 	model = "Khadas vim4";
+@@ -45,6 +47,94 @@ xtal: xtal-clk {
+ 		#clock-cells = <0>;
+ 	};
+ 
++	dc_in: regulator-dc-in {
++		compatible = "regulator-fixed";
++		regulator-name = "DC_IN";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++	};
 +
-+				pwm_ao_a_pins: pwm-ao-a {
-+					mux {
-+						groups = "pwm_ao_a";
-+						function = "pwm_ao_a";
-+						bias-disable;
-+					};
-+				};
++	sd_3v3: regulator-sdcard-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "SD_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vddao_3v3>;
++		gpio = <&gpio GPIOD_11 GPIO_ACTIVE_LOW>;
++		regulator-boot-on;
++		enable-active-low;
++		regulator-always-on;
++	};
 +
-+				pwm_ao_b_pins: pwm-ao-b {
-+					mux {
-+						groups = "pwm_ao_b";
-+						function = "pwm_ao_b";
-+						bias-disable;
-+					};
-+				};
++	vcc5v: regulator-vcc-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&dc_in>;
 +
-+				pwm_ao_c_pins: pwm-ao-c {
-+					mux {
-+						groups = "pwm_ao_c";
-+						function = "pwm_ao_c";
-+						bias-disable;
-+					};
-+				};
++		gpio = <&gpio GPIOH_4 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
 +
-+				pwm_ao_c_hiz_pins: pwm-ao-c-hiz {
-+					mux {
-+						groups = "pwm_ao_c_hiz";
-+						function = "pwm_ao_c_hiz";
-+						bias-disable;
-+					};
-+				};
++	vcc5v0_usb: regulator-vcc-usb {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC5V0_USB";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc5v>;
 +
-+				pwm_ao_d_pins: pwm-ao-d {
-+					mux {
-+						groups = "pwm_ao_d";
-+						function = "pwm_ao_d";
-+						bias-disable;
-+					};
-+				};
++		gpio = <&gpio GPIOY_5 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
 +
-+				pwm_ao_e_pins: pwm-ao-e {
-+					mux {
-+						groups = "pwm_ao_e";
-+						function = "pwm_ao_e";
-+						bias-disable;
-+					};
-+				};
++	vddao_1v8: regulator-vddao-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-always-on;
++	};
 +
-+				pwm_ao_f_pins: pwm-ao-f {
-+					mux {
-+						groups = "pwm_ao_f";
-+						function = "pwm_ao_f";
-+						bias-disable;
-+					};
-+				};
++	vddao_3v3: regulator-vddao-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&dc_in>;
++		regulator-always-on;
++	};
 +
-+				pwm_ao_g_pins: pwm-ao-g {
-+					mux {
-+						groups = "pwm_ao_g";
-+						function = "pwm_ao_g";
-+						bias-disable;
-+					};
-+				};
++	vddio_1v8: regulator-vddio-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vddio_3v3>;
++		regulator-always-on;
++	};
 +
-+				pwm_ao_g_hiz_pins: pwm-ao-g-hiz {
-+					mux {
-+						groups = "pwm_ao_g_hiz";
-+						function = "pwm_ao_g_hiz";
-+						bias-disable;
-+					};
-+				};
++	vddio_3v3: regulator-vddio-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-always-on;
++	};
 +
-+				pwm_ao_h_pins: pwm-ao-h {
-+					mux {
-+						groups = "pwm_ao_h";
-+						function = "pwm_ao_h";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_b_pins: pwm-b {
-+					mux {
-+						groups = "pwm_b";
-+						function = "pwm_b";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_c_pins: pwm-c {
-+					mux {
-+						groups = "pwm_c";
-+						function = "pwm_c";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_d_pins: pwm-d {
-+					mux {
-+						groups = "pwm_d";
-+						function = "pwm_d";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_e_pins: pwm-e {
-+					mux {
-+						groups = "pwm_e";
-+						function = "pwm_e";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_f_pins: pwm-f {
-+					mux {
-+						groups = "pwm_f";
-+						function = "pwm_f";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_vs_pins: pwm-vs {
-+					mux {
-+						groups = "pwm_vs";
-+						function = "pwm_vs";
-+						bias-disable;
-+					};
-+				};
-+
- 				sdcard_pins: sdcard {
- 					mux {
- 						groups = "sdcard_d0",
++	vddio_c: regulator-gpio-c {
++		compatible = "regulator-gpio";
++		regulator-name = "VDDIO_C";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vddio_3v3>;
++		gpios = <&gpio GPIOD_9 GPIO_ACTIVE_HIGH>;
++		states = <1800000 1
++			  3300000 0>;
++	};
+ };
+ 
+ &uart_a {
 
 -- 
 2.49.0
