@@ -4,136 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BE42FEA817
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2026 07:06:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1235FFEA819
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2026 07:06:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+RGKcQfoSm2l5yYVERRfEsrVorjqK61+R0f/5TwuaJI=; b=WjpL1d1CM5FDDH
-	GJLDWL6OMy2wNWk/QPLKB4opSIXk9UYtecYLRfzD5IqMKSXpKZ0KqIElrGf+NtX5fGpIA9PuX1iBg
-	+mB33fyWrkThOovxkcFHAhObNRnFkSw2WcW0IgpIF09Ymh4W6VosDE8YQUVPM0nlxY5fI/4tPc7iM
-	SVvMCaFQfU/meHJoDo2/BuFB14TsWYo/6qo0KAvavOMvHz54QM4lvH6IQzC4Kk5H0MRsUCJIsr+A8
-	915JApJP0Oxh0QEv3LyvenmajWRMWMtvgDjt8wf0Svvm9jeUANq+9WMtH1jPRoHsFlDPrt61d7HwT
-	ce2+RBar35XPiZR0wRqg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=g5bb9VWDxzlOdzsL6l4u9pevuNLh91fNcNg/XL5ehvk=; b=c9gtwVLf1+rVyx
+	F4a/T9Tkwk0OGX6I0oh9qo5+D1NOwyJ63vlzB24g4L0q07neXSqYoyehc5RvkK+NlfVtOL5eGISdL
+	iujmya5qEhDPPmAFLCTyjrFO66uJS3YUK9Hj/kiQbREEAP68XyUUnvOvL6d3aZtCPNu7LB7TwRKB1
+	YlcBkH6zMUNeOUtWax/u78LSFEJ0BGVmfwLOIAlG/SvzTukpIuBDpwwhgbHfA7Y761YzLrKSMhyAo
+	S7FYfWafRXgiAFXKIBDNMEmTgyzme0m34MP7jNAZ0QFSBbegDapDbyfsDei4J040A84b2w+3JtAGl
+	DnuGXXY+YCIDUy/AmfyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5IK9-00000002opf-0Fo9;
-	Wed, 25 Mar 2026 07:06:41 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1w5IKE-00000002otC-3MEU;
+	Wed, 25 Mar 2026 07:06:46 +0000
+Received: from mail-koreacentralazon11023114.outbound.protection.outlook.com ([40.107.44.114] helo=SEYPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5IK4-00000002ooE-2Rjj
-	for linux-amlogic@lists.infradead.org;
-	Wed, 25 Mar 2026 07:06:39 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62P5gaxk2973524
-	for <linux-amlogic@lists.infradead.org>; Wed, 25 Mar 2026 07:06:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=rQsKwSTJPFyNadQFvKFExVIv
-	rmCLGMcz0vINVo0Po1s=; b=L0m3F5brvM58NyDoxlUV5OVWo1Jmej53m0CksRk2
-	d7xYJYzAzCTsf6dALVssxvAmBjHQ58BM0efr51a4SfNSYzgt934DCxQN6bfSehkS
-	zINpH9s22Q12DVReWnso1p0P4pm9QZ1mgPuHg+cTIRsQ2TqHEYMVU2expcqGhNR6
-	YkQlfy6Wqy3rd7+uTLNpsW9CNqAKnq069HlEYoZSD8TTVvFpnwQfiToUSxk59VaM
-	oHufhv/vnZjJJcoqFhcPqzdMHeAv7cS12NIa+4MUdEL9j2yCCpm97X4wQ7QdRHqn
-	gwFqff4iulnucegoIQrymBFi4cTG8n4irD1sPINtVw/6KQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d40f4hxds-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Wed, 25 Mar 2026 07:06:35 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-50b4661881eso18237181cf.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 25 Mar 2026 00:06:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1774422394; x=1775027194; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rQsKwSTJPFyNadQFvKFExVIvrmCLGMcz0vINVo0Po1s=;
-        b=ezyhRzthlN+VzLwpPy6dOWaUH3Y+Y3zwxq8xmhaxmSvPFbhq/9Lmfu4WuUVrFO/Kda
-         03GwkkJ2lSMy7SmqV8Hj3xP6Ju3oe+ZRJhIauAcllExIwHeGxfG9YqK7RGahCbhp50IA
-         hvAmue0GwsuUfE9LnDpfqaUfQLymfN0Rsg8FBJ9X0Wh/LuFT0GM/YAzbh9RA3q5f3eY6
-         WJ4+VZHfPPvmxKnzGC1/7Ut+dmVFm99zkiG7cAI5PJuOp42CTZV4nMXmnRUEpGQMU3w1
-         3e7GDiEe7dEVAU90wD3jTDAeXphfGHKcw8c0ZX2sF3pHIzsT6GN8jG9kX3bmiWpNZag9
-         yr4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774422394; x=1775027194;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rQsKwSTJPFyNadQFvKFExVIvrmCLGMcz0vINVo0Po1s=;
-        b=GighW4WjkMOPSlqVZh8W0rKLlq7pl78xIqYx+y3e8IJIylwylIVkqx9WVsVbsj+bTJ
-         1CT+085l4k8Gg/rO/056+k+ZPettG8RZ71IudD1EH/85nv4EmlqIGA/DKTN1qXgPH0KI
-         gUmHLUSv81uqPq2wf68Vx2dr4EjTO4a8Khh1Q2Qzb5uJ0BHpQDKfAS4EP1D2CcI+yRpZ
-         GnuP0Gx1VbcOIX5Od5EJQHL0j5ERS/VTsaci6HHFvbFGrkIH53uQZS9pMrJn+twDX68t
-         1adYjAJ1qXtKFneDY7ebDJPR6+6UWWHQxjKky7Og0o4/rxAcSM+Wpfyj4qDGUZk688ml
-         qpww==
-X-Forwarded-Encrypted: i=1; AJvYcCXqZVVhtmIoLrIRDUR7pbumUco/g1mjRaJING19dAb1VBamUhMtsKKELhySU/5FtEqLppbgTDMIVsosXCWl@lists.infradead.org
-X-Gm-Message-State: AOJu0YwFsKrGaabSzTMq5bHvrnJuncZTggTuYbQaJ5hgPb0Miuu5D8pg
-	2czhK/O6DN0ruumDneFYc3H4SmjE5fHoXsrPqvE2eDIMwKnE/8MtrxXi2xZHyrsfkHtplACS5k+
-	h8P5jx48wCTwt9hlM+Vl9jpgKQnDXQa+unHSRs0QP8QvEGUZnxQbes9dEJIOVjnvGu2nD0MJfhg
-	==
-X-Gm-Gg: ATEYQzwTu/RKNBlpjQTD6PKwZ9+d0RZzvc13BSVOdEqDavCxjy2EkiZUPEdXETFw1u6
-	VPWG71Vw649cRT6s+qjYplcZOgZJ1Z1z+GLHBnDOjL6VsGWuQ/H2NYhaw7bCJtNU4tkLnBSvlO4
-	0+7avLQTwXPDHJK/CIltsoWP4FIvMyYU7FN3B+Ih6rf5LXCgWFLnPx//VDyBCV1/jVIvde0hJUa
-	vzuI6PFdlmnGKcvxh1VAqniihsDflvQuxZKbPBYYP0nMozDq4+qjaMDZeYbPc0NQsOOJ2WLxpgc
-	shCThncnl/waUvqm9Pjksqrx3+4des4QwpmvXc1Qr+BTiQ7i3mI0P5se7UPxLxzcyNALv1kT7JO
-	NJf1W+c3LLhRuQtdERV6ObYdOhcLvAZxHlwQS+3tICkd8ukyZmfp12K5gw7aTeJo9jRl6sdKwp1
-	8N3JpdI/ptEzy9M+ZnNmA9c/uaHn7oj73J/+Y=
-X-Received: by 2002:ac8:5cd0:0:b0:50b:3be7:b04 with SMTP id d75a77b69052e-50b80f01b6emr35059481cf.67.1774422394492;
-        Wed, 25 Mar 2026 00:06:34 -0700 (PDT)
-X-Received: by 2002:ac8:5cd0:0:b0:50b:3be7:b04 with SMTP id d75a77b69052e-50b80f01b6emr35059231cf.67.1774422393873;
-        Wed, 25 Mar 2026 00:06:33 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a2852071edsm3641505e87.49.2026.03.25.00.06.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Mar 2026 00:06:32 -0700 (PDT)
-Date: Wed, 25 Mar 2026 09:06:30 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
-        helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch,
-        lumag@kernel.org, robdclark@gmail.com, robin.clark@oss.qualcomm.com,
-        guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
-        valentine.burley@collabora.com, linux-mediatek@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
-        amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] drm/ci: add new jobs, uprev IGT and mesa
-Message-ID: <pqa5xua2shwqpkmwbu2jitz2ogpbmgcd4wizb4nt6qtxstubse@4ltbfdvfpqxj>
-References: <20260210071138.2256773-1-vignesh.raman@collabora.com>
+	id 1w5IK9-00000002op2-2yvK;
+	Wed, 25 Mar 2026 07:06:45 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tETagZpcgDZsniFA+aQsnMT9p6FHFTLaBSuh2WjzIf9Si2gjTNNQaveOkFNjmz9XiJuovu0e/0c1Wc7Ettxu8l/mO03FaDj3/EaCIWGX4DB6FBXW+FdmhkSaUW/j6fgkT/v+uicchr6sqH7E22pBg2UBg3UA2jntw6DJ0HxWKTp+htnfgZUEtp6Vw5r8+giIe2tIBEv6bxc89r+TFqnYFXtOvJj7lLwh3CmbWKTCcykyXJz4w2TqfT6xUV8jsD8SoT8VTlCE6bTD3D80XMBqB+IAGeRGw2iWKeO/0uMSjd+PoBKqfbk2lTudiV4eAJp9El93X5Y1eQ2hXwuBDa/vcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8sblz28NqA37G9gRLuwRnOFDmuhTtddWzYagJgSajb0=;
+ b=rOyNKm5qcZtkSIrpaypA1p7h7JDAGJLTOTalPxPj6CPLYn7b5Nqhntfk+ECvK3iRW2tGKMNl1CrDFrIvkUKKREUe5MXJ4iGSpD4S2fyIYIHTX8PlEZi8PbXSTUefI8cDzMJJjduYTTgezJWSqC2B3s8YqWX4EaHJCjaUY9fns8FVDRzHDz3NrFCw0V2q/VVkNQ8PJCvGiBhXB7USuexLYvr6SiZJvPkLhlJq2pTigwxJ1SClRj3KDec6Nh0wvX/zwaZWbzCXp152nnP/l7yLQiLwi2Zgdl5NFn++rViiZEyP4FEM2gRUXJVfa50DM2Dhgtc6t4+ylfSPP2InQeZ0Qg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=khadas.com; dmarc=pass action=none header.from=khadas.com;
+ dkim=pass header.d=khadas.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=khadas.com;
+Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com (2603:1096:308::2da)
+ by JH0PR03MB7343.apcprd03.prod.outlook.com (2603:1096:990:9::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Wed, 25 Mar
+ 2026 07:06:30 +0000
+Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
+ ([fe80::20a2:a696:ac88:2549]) by PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
+ ([fe80::20a2:a696:ac88:2549%4]) with mapi id 15.20.9745.019; Wed, 25 Mar 2026
+ 07:06:30 +0000
+From: Nick Xie <nick@khadas.com>
+To: neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	jbrunet@baylibre.com,
+	jic23@kernel.org,
+	dlechner@baylibre.com,
+	andy@kernel.org
+Cc: krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Nick Xie <nick@khadas.com>
+Subject: [PATCH v3 0/4] iio: adc: meson-saradc: add support for Meson S4
+Date: Wed, 25 Mar 2026 15:06:14 +0800
+Message-Id: <20260325070618.81955-1-nick@khadas.com>
+X-Mailer: git-send-email 2.34.1
+X-ClientProxiedBy: SI2PR02CA0034.apcprd02.prod.outlook.com
+ (2603:1096:4:195::9) To PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
+ (2603:1096:308::2da)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260210071138.2256773-1-vignesh.raman@collabora.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI1MDA0OSBTYWx0ZWRfXyre29NqMUB2o
- gt5uiI/jDIvjW1OonzvlPUmMyRdIc5/jw4+lpujnTM1W2k5gfCt850tbwL0u+rKz/WJY6P+NApt
- 66BibvwIScC0bFSn4H6bKrk2DSYuCni/3aYs7WkPCEDMnt5X4EDzaLjJpAiYsgFju/ZKUDMRW6Y
- VsAw/oy6DnDDsMv2cqOmR7RBDwsq6itzv24FLAZltAMhRq837LOyz1QxHLwVCq76hREOMpO7EhZ
- mrOVF9XSkppmt3/l83t1Kn20v7VeEVRYW3HMK72S20/fWKe909R4lTxiJE66Y51P6EjYFJ5Qz0W
- Jjut9ZTwF9PdfXbGHiJCbWItTW15M2NW/R/JM/NW0hOu4/GuPFp+dYPthxzf4rn4AxLMwZMElAq
- FqxN3zw9MyiB7h7Cv+zcEyOY5En3PQNlbf1Zr0Gm0DqdWTbuEtvrMc5woxNl1ErGYOt/IKea1mm
- vdSGRXInEAjXCNasLnQ==
-X-Proofpoint-ORIG-GUID: vxyRuIS5mIWxD4HhAF14tEn_e0UYl9p0
-X-Authority-Analysis: v=2.4 cv=Cd8FJbrl c=1 sm=1 tr=0 ts=69c3897b cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=e5mUnYsNAAAA:8
- a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=QX4gbG5DAAAA:8 a=LmRgrdqyE-cJMQzL5zkA:9
- a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=Vxmtnl_E_bksehYqCbjh:22
- a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-GUID: vxyRuIS5mIWxD4HhAF14tEn_e0UYl9p0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-25_02,2026-03-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 bulkscore=0 priorityscore=1501 clxscore=1015
- malwarescore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603250049
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PS1PPF62EEA9B1D:EE_|JH0PR03MB7343:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24512e9e-17c6-43a5-9046-08de8a3d0a32
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|52116014|366016|7416014|38350700014|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: oLzjnK2Rq287Xk9Nihy71LPOA9VhGOzk3dWlA84ClO9YJJieRzwc/SoDJuw0pBn7cNucsAFTOnbsfQ0pz64yi0DsDaZIYijoRcww0dC3gRAYdcb/npds3ovsZo0Eplm5b1uCzOqKeR4UUu9NB1VC/+fEo/D92T2krjGHm4zRq2orwZMRU9K36rK2AjjB/5CLj8ulvMvDq69lUmEssqkYwVsmG4IgHCTDUaJTcoNWAG2Lyvca/e+6g+FpcMOCGMArbKIaSjmzkvGEsWEAIVd7FtdZgdoQJmN/7SR5UHnK2rNae/dvM1TbmoicpBFAeyEltcfe6s53P+aajXFZGBzVxZo2z8GW5/VIFFrcMeSX0EBlZycgjSYmITu4ZEQhgluGdWWxhSOE+IHIVb4KNDVr4jcjKIEz602qJqKNAXTHKIIFNSo5bZmR/5FmBMbzynjgycWKqZ22Kzx16V/JJYAA6wZNMvBWjAvBUAkzcvbHv1vBuEadVYhesmvvQcMhTxY0bAbY7XTj2PaHW5WMttlGz+fDrBladCIKZXOcKBGfhQz28Dp2SVSuikGKEsOanIO41000JwAiLaRWYjuxC5pYmLQF42yWE3TqqPm0sncxlwN4Nb6WurAdc0Jnd+GdXB1ARiOwMGrFccj9wv50colSCbsgjK1HQ7+0j0sGQI6LQoLz/lob0GZgIXYe8ZadtinxPh/35yAeEWqfDIWaLELVPauBDBR4BGOuJwTRloHGEI1wAx6Kwq1Azbs05GE8a+XuDCsYz2Nd/M03tENSMqNIMEzUW77G0DPxcDaX6orTgeg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS1PPF62EEA9B1D.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(52116014)(366016)(7416014)(38350700014)(18002099003)(56012099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xp10hzy+EOo/Nf4xfPE0tb2GErVCbfAMfNzfFFd8+gI45fsur6Vy8+tpQoqG?=
+ =?us-ascii?Q?xbCCMl1TgJBHKYaOIrOS39ayPmWxcZDfEWnfbW12en4NdfjAtF8qZeTWX77B?=
+ =?us-ascii?Q?ohiGUJ+fiWBY4q2YEbKO4ZfsjfFls5dL8oIagw7ey6shKRobq+axva5ANIWy?=
+ =?us-ascii?Q?lNBLjRkCborejGAh2UlJvJvDeGjTeryu+j2mwwmPPGz0yHyZ3BhKHGIDXnsQ?=
+ =?us-ascii?Q?aS8q0zH1BpsPrTAmZWYoqmv1PrJ3xKW+t4Wpw4lk1Iy3HwYQDQt0w5UHbHRO?=
+ =?us-ascii?Q?Z8oE2Kzx6imj7Bs0CTOORYUnMmbu1aZUYx8hWVkfs1MqCHyfV3jw31ZaxsnW?=
+ =?us-ascii?Q?qeuOmm0nTaOhjUTWp7VbktYYSII7faqxLaBVMxSRN8fXfCMby7Ng7FXZUK1l?=
+ =?us-ascii?Q?isn9cEGWbH7M+MA0+agQBDgDdEMW0jDIUcZVJPoyMJA26+jZZAQAuzYh4El3?=
+ =?us-ascii?Q?wIf9AkfxK3Zvzlyj6Etb88gEYY7k3FGxdSnH8Hz/YQYLQOqyKdNIj4d/SzT2?=
+ =?us-ascii?Q?aaDAnT7QQj/HhOQ1z1kJLpFUSfy490FzR6PmZgJe89v2bK0sgE9w1DhjpCla?=
+ =?us-ascii?Q?9RHYmTfvsohXPXKsa8qAC8V7w6cj7kLWAEcGIxP1J0wumPEUtpCxKr8Onbtl?=
+ =?us-ascii?Q?AhNVo4h73pS02kTFIqQFEetpcyF+M/nUC+NkSpXUefglaxaOWaifErrecmoL?=
+ =?us-ascii?Q?ziot3c8lPc8+j8HG4dBUdZSpA8MYuhStla9v6rUMwzqQUrAhkfQfretd1mUn?=
+ =?us-ascii?Q?9lzX98QAydH+op5HsAkGoEKWFun1P7BTB2YzBMVv9ND6keUYJSMJKybzk344?=
+ =?us-ascii?Q?3mnldOyM6HKizSctKErk0BdkBFxNHq+XNT450mIddlyBfSCgHbODQay9OwTL?=
+ =?us-ascii?Q?Wau5MwqlbNCg7MhCD+yPfH4NK1x0KsCOIUc70DfyxbTI7WqfrJwFXjzIOYQB?=
+ =?us-ascii?Q?CYrj9qCT14V66qT7TN76HpczpCFUGumnI5suZqk4e2qushGEIAm8HCEuQ346?=
+ =?us-ascii?Q?g0jEe+esozSekys3RolMAETdjUvjLFLRBe9WKYlcCpE6h3kI9lLuzETH0VmN?=
+ =?us-ascii?Q?OYBaJD62a0pj2S6o058V7Sp+9ex39yq9UXmDU/lHS2J6CEHR4U540sZUQDyJ?=
+ =?us-ascii?Q?Od9aC9zdTjpvqyNfSgsh35vQMbB2bGJRzAw3TeXo+MmTxq1FiKl7L2SgIsjc?=
+ =?us-ascii?Q?T2nPt7qMrZJFntO9HlRZekKpC1LU61A8V1zPyiVu0hSyJiuqQ1+rXl26DTlb?=
+ =?us-ascii?Q?ZETwILPnvmPlhrooMnuVAdrjG7Zm9ac7jv80dxQZ2+KlAXqta2DWdPRMON3y?=
+ =?us-ascii?Q?JZmyINa2rb1p85/XhefDp7qNNrKeXpp9KXdwb1Nb3MRhmUeGd7DvfRs01mEX?=
+ =?us-ascii?Q?QexrQfCBkiyOa5AAxuyvyg72dhHXlT8E4bdeJARbXfk3QZK71aUqro9GMXr6?=
+ =?us-ascii?Q?ChzzMHfm08Vsj+92Rv8v2MQPbJnyDdjJokF/f2+yFyOJc52q7ucZlYC7rqX2?=
+ =?us-ascii?Q?+DbqwmnAJ+HPAwCDLwttiszZraWZNQUkfWORrnMEhYwL8j1cwdAaksLH1tPi?=
+ =?us-ascii?Q?s7t6gEjCMEt0Oa/gkenQimsvkGCdnwhaxVb+r2sKEv9PQnKb+/68TZNZdNZH?=
+ =?us-ascii?Q?0DqzjP25nPGzF+ell5nP7zTrRmhEGIGVUkFYTAOWhqHFtADA8xE+aeo/hUt3?=
+ =?us-ascii?Q?ded6RivouTrgd0kE8qRJfqTyQSIh9BoRQur/gD3wpnHqsY0X?=
+X-OriginatorOrg: khadas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24512e9e-17c6-43a5-9046-08de8a3d0a32
+X-MS-Exchange-CrossTenant-AuthSource: PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 07:06:30.4220
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZgHcPRxZlOlfzKoLnFJ8fYAGmBcpX7CfrkkLkZLScqYt4EogpUFQRvn0jfDr6qDO
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7343
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260325_000636_731516_7AC0CCC5 
-X-CRM114-Status: GOOD (  15.37  )
+X-CRM114-CacheID: sfid-20260325_000641_773169_0DE97D52 
+X-CRM114-Status: GOOD (  13.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,43 +140,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Feb 10, 2026 at 12:41:29PM +0530, Vignesh Raman wrote:
-> This series introduces new job to drm-ci for testing the following
-> devices:
-> - rk3588-rock-5b
-> 
-> Other updates include:
-> - Adapting to recent changes in Mesa CI, such as:
->    - LAVA overlay-based firmware handling
->    - Container/job rule separation
->    - Removal of the python-artifacts job
->    - Use lava-job-submitter container to submit jobs
->    - Use of the Alpine container for LAVA jobs
->    - Remove bare-metal jobs and disable apq8016 and apq8096 jobs,
->      as these have been migrated to the Collabora LAVA farm
->    - Fix issues with rebase with external fixes branch
->    - Update expectation files  
->    - Various other CI improvements
-> - Move bare-metal jobs for apq8016 and apq8096 to LAVA, as these devices
->   are migrated to Collabora LAVA farm.
-> - Updating the runner tag for i915: cml (switching from hatch to puff)
->   to improve device availability.
-> - Adjusting parallelism in jobs (sm8350-hdk, amly) to better utilize
->   test resources.
-> 
-> Pipeline: https://gitlab.freedesktop.org/vigneshraman/msm/-/pipelines/1601024
-> MR: https://gitlab.freedesktop.org/drm/msm/-/merge_requests/213
-> 
-> mediatek:mt8183 fails and it is reported upstream - https://lore.kernel.org/linux-mediatek/CAAq5pW9o3itC0G16LnJO7KMAQ_XoqXUpB=cuJ_7e3-H11zKd5Q@mail.gmail.com/#r
-> Few intel jobs fails, this will be investigated and a seperate patch to update xfails will be sent.
-> 
-> Link to v1: https://lore.kernel.org/dri-devel/20260127104406.200505-1-vignesh.raman@collabora.com/T/#t
+This series adds support for the SARADC IP block found in the Amlogic
+Meson S4 (S905Y4) SoC and enables it for the Khadas VIM1S board to
+support the onboard ADC 'Function' key.
 
-Picked it into msm-next, thank you!
+There are no known hardware differences between the SARADC on the S4
+and the previous G12A generation. The S4 bindings utilize a fallback
+to G12A, but a dedicated driver match entry is included to ensure the
+correct part name is exposed to the userspace ABI.
+
+Changes in v3:
+- Patch 1: Updated the commit message to explicitly explain why the
+  comment regarding the generic fallback was added.
+- Patch 2: Retained the driver patch and updated the commit message to
+  clarify that the dedicated match entry is kept specifically for
+  userspace ABI naming purposes.
+- Link to v2: https://lore.kernel.org/all/20260323013408.429701-1-nick@khadas.com/
+
+Changes in v2:
+- Addressed feedback from Krzysztof Kozlowski:
+  - Updated dt-bindings commit message to explain the hardware compatibility.
+  - Separated the S4 compatible string in the YAML bindings to ensure it
+    correctly falls back to the specific "amlogic,meson-g12a-saradc" rather
+    than the generic "amlogic,meson-saradc".
+  - Updated the S4 SoC dtsi to use the correct G12A fallback.
+- Added Martin's Reviewed-by tags where appropriate.
+- Link to v1: https://lore.kernel.org/all/20260228065840.702651-1-nick@khadas.com/
+
+
+Nick Xie (4):
+  dt-bindings: iio: adc: amlogic,meson-saradc: add S4 compatible
+  iio: adc: meson-saradc: add support for Meson S4
+  arm64: dts: amlogic: meson-s4: add internal SARADC controller
+  arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: add Function key
+    support
+
+ .../iio/adc/amlogic,meson-saradc.yaml         |  4 ++++
+ .../amlogic/meson-s4-s905y4-khadas-vim1s.dts  | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 14 ++++++++++++++
+ drivers/iio/adc/meson_saradc.c                |  8 ++++++++
+ 4 files changed, 45 insertions(+)
 
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
