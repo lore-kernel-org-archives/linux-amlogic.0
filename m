@@ -4,52 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B10B9106B504
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2026 21:15:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50912109E524
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2026 22:00:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=39FCeBNKN61Bw54u0ooVeR4syWh8dtvmtRVVZCVbJw0=; b=mcJPU22AqSxxXQ
-	1g7dj3OEhrhtsMseku6B0BYaMtch+BkmFjxyb4XqhAB+iT4oIXUzQ4znfwQyx5BplqimQbFu3fJ0x
-	xyKeqiJjIh3OzA5H4kFdInGyJcG5LcM6CARLrbXj/03OSolUdaHuqwoFifBcs2BoxEOLY8EWay2gX
-	WlwvHyLTqw1Dyn5Myq2YAZkpoaOJywiQO7fvZxriOwW4r+7abeAVvo0vTL52DFrY7nLE48TCzTkeL
-	UrLBEuk4guTJnXMRDlGf4eyBOTjX6VEVjhPV+KLCcaESdKvPEDeinUgOWGV/PTTnGgDBd85/gNeLG
-	EZIpUQ1IR6bi4mO4ving==;
+	List-Owner; bh=dMA7inHJejDwG6dfP42b/U0CmYdVKaUp4usU4GSdxbg=; b=zcr1YcTepMPGhj
+	VvxonjrMDsKUo9gz+8UXzcPviA0aOJfsqa7lyxqbuTu75tbX1+w4dZuhSX2hwvOBA5I2o2OHDpygU
+	xRIcmE+Zwecu0It61lrhD0TPU7YT0XTpoMTNI26YShOBxj7k/oaoZBhI7g2hntAmcQvPT2KSs/Yfd
+	108P9hMum7Hpfnk9bSoxKv9NW5vBQICmCqMP2Dp/sb/38pR166Qu8d9BFy/sMK0JQBBSV1JI1coR7
+	QJbdc4LKw5ivhiZ9wEcAOMPou72mzrQpt8zeuB2aFJKmkpAgar8K/rmyUdtI0ppXdpAiZtYtD/ctK
+	qtfRZ+a2MrFK7XRSoApA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5VZ7-00000004GpL-2Ys7;
-	Wed, 25 Mar 2026 21:15:01 +0000
-Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	id 1w5WGv-00000004JC1-0plH;
+	Wed, 25 Mar 2026 22:00:17 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5VZ3-00000004GkT-1xQQ;
-	Wed, 25 Mar 2026 21:15:00 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=9T4ILjzpSI8Km2SYP2+R54L0ASfcwMMayhnKu46qcs4=; b=wrp8frWYdflVifRHX74kmry/Q2
-	r/4/Pg35KjXCbZvWTgAj4EASo/gshPXzA5HWOrsZr9QyIMPzKmsOw0d8yr+g8Gl4HWfax7TOiXvKS
-	cjGemaSaFRDRSqeArT+DX9tYxZ95k89H+XEeM8Nwyy3h0NLcnAyp21hkkC7SvjdFVGtFq8gjI/mqK
-	QHWw0MzyFnDe38O26aNmCE/mxx6vg4TgBtU5/Yw3f5xiURVzP9s7HXJ9DDPV5ymuz9KL/HeZXpsI+
-	RreCpn5SAG+W/aNkLtWY1LUIFgfZROeJpLARzV/qAlzMt5R9arFb9osgBB34l9Xm1/+F6s0G5uRae
-	c7lA2VKQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40038)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1w5VYh-000000003wd-1uuC;
-	Wed, 25 Mar 2026 21:14:35 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1w5VYe-000000006NW-3R79;
-	Wed, 25 Mar 2026 21:14:32 +0000
-Date: Wed, 25 Mar 2026 21:14:32 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+	id 1w5WGs-00000004JB9-05cV;
+	Wed, 25 Mar 2026 22:00:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Xhr1D24nKivYP/3T0AfCxVIkR9YFjI1CmvRMS0ErUhs=; b=5tawHl3e+uz9eT1sXa8Trr9UO3
+	ROaHbvVci5+1x1gHnzDm2slDD0JaznmGKOrxGbVFDkZMzS+rmgkpFFIzI8uoZ8Vm3HM5sU74Lbgg9
+	/PopU1JjeSWjAX4u00eOPjCt0e4mbNvr581G0kAg+1PHB+QCwy6hnY76o/2fmt4nVWL0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1w5WGR-00DMmg-Oz; Wed, 25 Mar 2026 22:59:47 +0100
+Date: Wed, 25 Mar 2026 22:59:47 +0100
+From: Andrew Lunn <andrew@lunn.ch>
 To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 Cc: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -89,17 +78,18 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
 	linux-riscv@lists.infradead.org,
 	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH net-next v10 2/6] net: stmmac: qcom-ethqos: use generic
+Subject: Re: [PATCH net-next v9 2/6] net: stmmac: qcom-ethqos: use generic
  device properties
-Message-ID: <acRQOLJ2wWF3rIHb@shell.armlinux.org.uk>
-References: <20260323-qcom-sa8255p-emac-v10-0-79302b238a16@oss.qualcomm.com>
- <20260323-qcom-sa8255p-emac-v10-2-79302b238a16@oss.qualcomm.com>
+Message-ID: <ba85f84e-740d-47d6-a8a0-97823bf2c4d7@lunn.ch>
+References: <20260316-qcom-sa8255p-emac-v9-0-c58934e76ff2@oss.qualcomm.com>
+ <20260316-qcom-sa8255p-emac-v9-2-c58934e76ff2@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260323-qcom-sa8255p-emac-v10-2-79302b238a16@oss.qualcomm.com>
+In-Reply-To: <20260316-qcom-sa8255p-emac-v9-2-c58934e76ff2@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260325_141457_530935_7D9B6A68 
-X-CRM114-Status: GOOD (  21.26  )
+X-CRM114-CacheID: sfid-20260325_150014_082945_CCD11749 
+X-CRM114-Status: UNSURE (   7.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,91 +106,17 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The comments I just gave to v9 (which is incomplete as received) apply
-to v10 as well, although I have no idea what the differences are
-between v9 and v10 as I never received the cover message. I only
-seem to receive patches 2, 4, 5 and 6.
-
-On Mon, Mar 23, 2026 at 02:20:54PM +0100, Bartosz Golaszewski wrote:
+On Mon, Mar 16, 2026 at 01:05:07PM +0100, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
 > In order to drop the dependency on CONFIG_OF, convert all device property
 > getters from OF-specific to generic device properties and stop pulling
 > in any linux/of.h symbols.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/Kconfig             | 2 +-
->  drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 9 ++++-----
->  2 files changed, 5 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> index d3a6ab7383fc1e1b2e4b12c670b12a8ad1606e6c..4148805a82b106471a25f9496b60be5bb9ce5c00 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> @@ -135,7 +135,7 @@ config DWMAC_MESON
->  config DWMAC_QCOM_ETHQOS
->  	tristate "Qualcomm ETHQOS support"
->  	default ARCH_QCOM
-> -	depends on OF && (ARCH_QCOM || COMPILE_TEST)
-> +	depends on ARCH_QCOM || COMPILE_TEST
->  	help
->  	  Support for the Qualcomm ETHQOS core.
->  
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index 3ccf20fdf52a8ec4649b43ade8ee7b85d613e1c5..66fd2ed2c2c8428694c07d89220d0e1608546791 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -1,8 +1,8 @@
->  // SPDX-License-Identifier: GPL-2.0
->  // Copyright (c) 2018-19, Linaro Limited
->  
-> +#include <linux/mod_devicetable.h>
->  #include <linux/module.h>
-> -#include <linux/of.h>
->  #include <linux/of_net.h>
->  #include <linux/platform_device.h>
->  #include <linux/phy.h>
-> @@ -728,7 +728,6 @@ static void ethqos_ptp_clk_freq_config(struct stmmac_priv *priv)
->  
->  static int qcom_ethqos_probe(struct platform_device *pdev)
->  {
-> -	struct device_node *np = pdev->dev.of_node;
->  	const struct ethqos_emac_driver_data *data;
->  	struct plat_stmmacenet_data *plat_dat;
->  	struct stmmac_resources stmmac_res;
-> @@ -778,7 +777,7 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  		return dev_err_probe(dev, PTR_ERR(ethqos->rgmii_base),
->  				     "Failed to map rgmii resource\n");
->  
-> -	data = of_device_get_match_data(dev);
-> +	data = device_get_match_data(dev);
->  	ethqos->rgmii_por = data->rgmii_por;
->  	ethqos->num_rgmii_por = data->num_rgmii_por;
->  	ethqos->rgmii_config_loopback_en = data->rgmii_config_loopback_en;
-> @@ -818,9 +817,9 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  	if (ethqos->has_emac_ge_3)
->  		plat_dat->dwmac4_addrs = &data->dwmac4_addrs;
->  	plat_dat->pmt = true;
-> -	if (of_property_read_bool(np, "snps,tso"))
-> +	if (device_property_present(dev, "snps,tso"))
->  		plat_dat->flags |= STMMAC_FLAG_TSO_EN;
-> -	if (of_device_is_compatible(np, "qcom,qcs404-ethqos"))
-> +	if (device_is_compatible(dev, "qcom,qcs404-ethqos"))
->  		plat_dat->flags |= STMMAC_FLAG_RX_CLK_RUNS_IN_LPI;
->  	if (data->dma_addr_width)
->  		plat_dat->host_dma_width = data->dma_addr_width;
-> 
-> -- 
-> 2.47.3
-> 
-> 
-> 
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Adding to what Russell said, please document your new binding. e.g. in
+Documentation/firmware-guide/acpi/dsd.
+
+	Andrew
 
 _______________________________________________
 linux-amlogic mailing list
