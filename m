@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4629A109C05C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2026 20:52:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 578E91093168
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Mar 2026 21:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=F/SmbhMU/eO87m4EB1EhhfLaCOXKdhxOUFP3ICkXnUw=; b=rYCOYPYrOMC9mt
-	PJnu1pa3u5VbSXEjqbQqMW9siPHPeXpkITcA6c4mn8qnJZinf9iG52QRkJCHtQmY7c1QXnkGdGj/F
-	9ueh1dfjqNfcpIx5IOxYPz7lls09PVAAGgz6WfELRJbV1PLLEbeoFc3AmXM6IXoFXEPGfj5zLuLWW
-	7ojs/C/QdkXGqMeyV06HAe7+Aplc2xN5fRimVS3XmjkbfNpmOJJRp34pg39c2QG1s28MID0xt+aQS
-	V+J21FsjMIPsSlEKaRywjsc4/ucdp/ZUZKstTQkmHO6pXdVfxuZ1aOLIEYQ4skP9Lnu3BFfLuQhSf
-	hQApF63jV2c28raBuFTg==;
+	List-Owner; bh=eObyK9xmhPIsQK3dNJ8u2IB7QMQTBSpkIG0IloMAWlk=; b=Fkja5afY4Cvsc6
+	XGrg74qJy/NYPAXIQLd1GaJ1KaKjRNg65FDJKrPKuDdMwCdVXexhL/L6N5Plu3cqFGSE9kaC19ev/
+	qQew8wIIrpptajdu+gsN86gHAxRD+qAh2834SyNyyJ/QEa5qmbzzu0HnGs4l8rEn8ud5azWXFsbJH
+	2tIKTDFR4UvZnmryrEHEmWtXuJQscgPU+EQ+CReLdwwT4lOWO8gmVyVJgllqHFjA7bj/RCVs5ZsS+
+	qbKGN7F+c2Aw6nvCdcbBea0E39midmcqI+bIGAgd/nbvLBa3uN95njKnSDxm4mV9boq3QdsxQQU3R
+	BBGpbUxymigP9Eln2c8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5VDQ-00000004EgW-0fQQ;
-	Wed, 25 Mar 2026 20:52:36 +0000
+	id 1w5VUd-00000004FtM-0LW8;
+	Wed, 25 Mar 2026 21:10:23 +0000
 Received: from pandora.armlinux.org.uk ([2001:4d48:ad52:32c8:5054:ff:fe00:142])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5VDN-00000004Efw-35Hc;
-	Wed, 25 Mar 2026 20:52:34 +0000
+	id 1w5VUZ-00000004FsM-3Vw6;
+	Wed, 25 Mar 2026 21:10:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
 	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
 	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=5TaF136hS7gyiN2INSsjbTVG4M1m+RcQW4RSzUAK8mc=; b=bJgocfdzLBKes2wMXa50BQ/Sgw
-	2VNxUldZJFRFO1DH1e3sWYkf+HpUKst8qeo6mEmxzisIlT9F643+8G7mP8W0cEG97CX9EddaPFnAx
-	0auvwtk71mLu472gb4M/pgwwwT7auS75QFoEuI3Ulc0t8Td1yqPpRlQhMRL9Q0sVOXjuT1KRASHvT
-	KyQkPoRHlhfR1LscoVZHueKBsDdovNbEjbfAFOMWWjTHfKoz7+lVqv6Pq5sNuqrikvfHErcf50ZxE
-	dLM4luhf9tuxdUXNx8G4p2TIcbxgKN3UURxz0Ib/Wm84DDDPrXllvWnYoO6lVBmszS+dAvfAa4kcZ
-	Cij15muw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36514)
+	bh=/9QX/7zuW4PRdWvukdv95Pz7/SCg2+VZ38fqrKFSMfk=; b=MwzbQSsu1iD88gkB3IH1zeZiIR
+	KqZ0nyf0GKrdHH0VKi7UtAwIR8Lo/PcRwkIg9KR07u74bQOTES45rI9JMbopS+J2PF6wAoznrEGt6
+	cv+cD36+oFV4fnMEsbXqQ/fMekGhiWQW0TEGXE3IGmaU2FgBkQRhpbgPuOQObWEbHTKtb0PXZIOzm
+	Sfch0xoiZJ0LtuZesc8ncS0J3Oc9hwiwrx1y7+KGNpck0OxH0DfKS8HbczaRJFrgNCX255DaceQyA
+	Rv5kUxT3Tzv9fc1ZbUUgu2okVyMGDHfLxEf49X1a6px/CP6wELl7p/8VpXdP/TEcKp1mT7W8oNeDt
+	mj7p7fVA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:52710)
 	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <linux@armlinux.org.uk>)
-	id 1w5VD1-000000003uJ-1ODG;
-	Wed, 25 Mar 2026 20:52:11 +0000
+	id 1w5VU9-000000003vl-1BWv;
+	Wed, 25 Mar 2026 21:09:53 +0000
 Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
 	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1w5VCy-000000006MD-0rz1;
-	Wed, 25 Mar 2026 20:52:08 +0000
-Date: Wed, 25 Mar 2026 20:52:08 +0000
+	id 1w5VU4-000000006NG-0Nnm;
+	Wed, 25 Mar 2026 21:09:48 +0000
+Date: Wed, 25 Mar 2026 21:09:47 +0000
 From: "Russell King (Oracle)" <linux@armlinux.org.uk>
 To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 Cc: Bjorn Andersson <andersson@kernel.org>,
@@ -89,17 +89,17 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
 	linux-riscv@lists.infradead.org,
 	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH net-next v9 5/6] net: stmmac: qcom-ethqos: split power
- management context into a separate struct
-Message-ID: <acRK-F6TACsZqEhx@shell.armlinux.org.uk>
+Subject: Re: [PATCH net-next v9 6/6] net: stmmac: qcom-ethqos: add support
+ for sa8255p
+Message-ID: <acRPGxx_KbrvUh6t@shell.armlinux.org.uk>
 References: <20260316-qcom-sa8255p-emac-v9-0-c58934e76ff2@oss.qualcomm.com>
- <20260316-qcom-sa8255p-emac-v9-5-c58934e76ff2@oss.qualcomm.com>
+ <20260316-qcom-sa8255p-emac-v9-6-c58934e76ff2@oss.qualcomm.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260316-qcom-sa8255p-emac-v9-5-c58934e76ff2@oss.qualcomm.com>
+In-Reply-To: <20260316-qcom-sa8255p-emac-v9-6-c58934e76ff2@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260325_135233_776003_D9B595C7 
-X-CRM114-Status: GOOD (  11.40  )
+X-CRM114-CacheID: sfid-20260325_141019_880612_20D7BAFE 
+X-CRM114-Status: GOOD (  26.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,20 +116,105 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Mar 16, 2026 at 01:05:10PM +0100, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Mon, Mar 16, 2026 at 01:05:11PM +0100, Bartosz Golaszewski wrote:
+> Extend the driver to support a new model - sa8255p. Unlike the
+> previously supported variants, this one's power management is done in
+> the firmware using SCMI. This is modeled in linux using power domains so
+> add support for them.
 > 
-> With match data split into general and power-management sections, let's
-> now do the same with runtime device data.
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
-As I've already said, this conflicts with work that I have in progress,
-which will remove the serdes support from this driver _if_ we can get
-forward progress on the PCS bits from Mohd - that has become dependent
-on sorting out the MDIO bus clock which seems to have been totally
-broken in this driver for quite some time so that we can have confidence
-that any testing that is done is actually being done on a setup which is
-running within correct specification (and not running the MDIO bus at
-some insane speed that may lead to data corruption.)
+Shouldn't the SerDes driver be doing the power management rather than
+the ethernet driver?
+
+We already have the crappy situation with this driver that the stmmac
+clocks are not running when they need to be, which is now causing
+warnings with the VLAN code. The platform glue driver itself doesn't
+_actually_ have enough information on its own to know when it needs
+to ensure that the PCS and SerDes need to be operational which is what
+is leading to this problem.
+
+Also note that the core stmmac driver does runtime PM management which
+covers both the stmmac MDIO block and the core MAC as well. How does
+your implementation interact with those, when e.g. a MDIO bus on one
+stmmac instance could be used to access a PHY on a different instance.
+
+> +struct ethqos_emac_pd_ctx {
+> +	struct dev_pm_domain_list *pd_list;
+> +	int serdes_level;
+
+I don't think serdes_level is appropriate nor correct (see below.)
+
+> +static void ethqos_configure_sgmii_pd(struct qcom_ethqos *ethqos,
+> +				      phy_interface_t interface, int speed)
+> +{
+> +	switch (speed) {
+> +	case SPEED_2500:
+> +	case SPEED_1000:
+> +	case SPEED_100:
+> +	case SPEED_10:
+> +		ethqos->pd.serdes_level = speed;
+
+This is called at mac_link_up(), after mac_finish() has done its
+stuff...
+
+> +	}
+> +
+> +	ethqos_configure_sgmii(ethqos, interface, speed);
+> +}
+> +
+>  static void ethqos_configure(struct qcom_ethqos *ethqos,
+>  			     phy_interface_t interface, int speed)
+>  {
+> @@ -710,6 +785,45 @@ static int ethqos_mac_finish_serdes(struct net_device *ndev, void *priv,
+>  	return ret;
+>  }
+>  
+> +static int ethqos_mac_finish_serdes_pd(struct net_device *ndev, void *priv,
+> +				       unsigned int mode,
+> +				       phy_interface_t interface)
+> +{
+> +	struct qcom_ethqos *ethqos = priv;
+> +	struct device *dev = ethqos->pd.pd_list->pd_devs[ETHQOS_PD_SERDES];
+> +	int ret = 0;
+> +
+> +	qcom_ethqos_set_sgmii_loopback(ethqos, false);
+> +
+> +	if (interface == PHY_INTERFACE_MODE_SGMII ||
+> +	    interface == PHY_INTERFACE_MODE_2500BASEX)
+> +		ret = dev_pm_opp_set_level(dev, ethqos->pd.serdes_level);
+
+... which means this won't get called with anything but a stale speed
+from the _previous_ link up event.
+
+> +
+> +	return ret;
+> +}
+> +
+> +static int qcom_ethqos_pd_serdes_powerup(struct net_device *ndev, void *priv)
+> +{
+> +	struct qcom_ethqos *ethqos = priv;
+> +	struct device *dev = ethqos->pd.pd_list->pd_devs[ETHQOS_PD_SERDES];
+> +	int ret;
+> +
+> +	ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_SERDES);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return dev_pm_opp_set_level(dev, ethqos->pd.serdes_level);
+
+and same here.
+
+The fundamental question arises - why does the power domain need to know
+the _media_ speed (which is completely unrelated to the speed at which
+the SerDes link operates at) ?
+
+For example, with SGMII, the link operates at 1.25GBaud irrespective of
+whether it is operating at an underlying Ethernet data rate of 10M, 100M
+or 1G speeds.
+
+To me, the whole "serdes_level" stuff looks completely wrong.
 
 -- 
 RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
