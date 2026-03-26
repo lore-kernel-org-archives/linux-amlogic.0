@@ -4,40 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C305C106F30F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2026 10:02:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C72A1106F311
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2026 10:02:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tFCAoI3JaobyWyTkFefG6vPJvFCGSkR98V0oef+fadI=; b=r0TIsgh7UYiYJt
-	i/dcgRen1SlvMAsZbi0pOA1VUj2ZeQAdRxqA7TmLu/KjNrnqiileUE1Ij+yiS4mE9vyGx1USv9Xq1
-	Ax3UID1Cd42mCe5Idy4GnOIVFAOP3ZJmmRp6UuAKrQI5UBkyqdGTLQs3jRmp5ZLhOm+vIi998Y8Yg
-	uz7tppbj45sNS831fLsrY+4tYN6BrT39RYGNZNzFqvnSwxrQ/mAvk822jV2JGjzgn37Z4neeP1iVj
-	2ZpjBgnJwL5jtWSs2tDzBa0lTN2G8PNP4RfopoQy/Q86cRPqvRh5c1A4XmkleGY+ykL91er3D6eK0
-	9jQMpKxbIikKYUD3n+rQ==;
+	List-Owner; bh=Kc4z73Hr/U1gmXbdVEoaEhqV+33mrvUAMtP5oiGXogo=; b=lHizglqrHtFLgj
+	3Ca/IlLOOAkZtwS4RICHmJza5y5u75evZSl1tu+7uTxFJ2BEU4faEZZhlouTJScAQ2MG3wAru/c5E
+	4U97wSHUQEuz0EBasdrmVdLidweV+TRq1rolTl5ai2vebo05PrNvpzf6AWQyCeJGPB6poLfHgQD4a
+	AKMJY9fWQJI/+ch0jGjBpEHKmXXTk3MfA90rzYSjERrIiHvmSXA/39YAXQ3cUue19R9kaYW6gXcls
+	BvjF85LQs8FuDOdXpYobzM7nlMK37TwVw4iJ8mXq9lIpbwNO/RVx3CcyNrNs30ohDFOmlF+gjVyzW
+	A+LbGhTRvMs07B+1vUPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5hXc-00000005Czb-2hW9;
-	Thu, 26 Mar 2026 10:02:16 +0000
-Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
+	id 1w5hXR-00000005CsU-3mmw;
+	Thu, 26 Mar 2026 10:02:07 +0000
+Received: from pouet.aliel.fr ([65.21.61.41] helo=courrier.aliel.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5hXM-00000005Cq5-1ayX;
-	Thu, 26 Mar 2026 10:02:08 +0000
+	id 1w5hXL-00000005Cpv-1ncM;
+	Thu, 26 Mar 2026 10:02:04 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774519318;
-	bh=DBkxcqH8i/zndCGuudhfjwFmiLRr9uowI0ejXxxndhk=;
+	s=courrier-s1; t=1774519315;
+	bh=RupZOoDMCR6SObVEZPI0Eq5Js26fPVZMZYxmVA4XIOs=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=AKlO01B+ZurdfFkAk74Gujz1YFqPvnAyPJxR1a6frh11NsVrcmjPlFjvrTtZJjrYG
-	 IYt/lc0ji+0CiOLJyGhsxDAIKmQ9bSnaIL1LAsQS06ted3TLUaCoWhiTWFOdbJpC++
-	 acHNN0yAo02iUdr5KTuSGRflqpLVHTBIpBh2zHfg=
-Date: Thu, 26 Mar 2026 10:59:15 +0100
-Subject: [PATCH v5 4/9] arm64: dts: amlogic: t7: Add PWM pinctrl nodes
+	b=PDE1ZgtunEiEOEfdJLsHz5EPyOyghNFF3V2K8GhBXXGIP3NITlw88+WWAJCj16Ga7
+	 BOGk6Sc1Pydd7R+BRrrN3L/NSQGN6+YqqzYCM3426r9aYvK6uo/CDeI0CP25t6VX0b
+	 u5b/wL8TuYlRwY2g1FZXY6/T7RWn9GR9l/Y97uno=
+Date: Thu, 26 Mar 2026 10:59:12 +0100
+Subject: [PATCH v5 1/9] arm64: dts: amlogic: t7: Add eMMC, SD card and SDIO
+ pinctrl nodes
 MIME-Version: 1.0
-Message-Id: <20260326-add-emmc-t7-vim4-v5-4-d3f182b48e9d@aliel.fr>
+Message-Id: <20260326-add-emmc-t7-vim4-v5-1-d3f182b48e9d@aliel.fr>
 References: <20260326-add-emmc-t7-vim4-v5-0-d3f182b48e9d@aliel.fr>
 In-Reply-To: <20260326-add-emmc-t7-vim4-v5-0-d3f182b48e9d@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -51,18 +52,18 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774519312; l=3203;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1774519311; l=2886;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=DBkxcqH8i/zndCGuudhfjwFmiLRr9uowI0ejXxxndhk=;
+ bh=RupZOoDMCR6SObVEZPI0Eq5Js26fPVZMZYxmVA4XIOs=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QMN+pOUFbhr/CVtM6NNlwHSfhEHtqbR4WXmVkyo2v1uNUZmy84V6T5hHmKsKSCId6fG1CCQezrj
- o+F+2uH3ORw8=
+ QBpXnFRLn/mvVteQbuhX0RqNr/Pn0obF10eTGMO2LX4Ar7kVS0Hq1WxQHqb+n0a+ey1EpRwx86I
+ LQk3nxQzXSA4=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260326_030201_834203_839B5DF8 
-X-CRM114-Status: UNSURE (   6.71  )
+X-CRM114-CacheID: sfid-20260326_030201_818935_37674089 
+X-CRM114-Status: UNSURE (   6.68  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,162 +81,127 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-These pinctrl nodes are required by the PWM drivers to configure
-pin muxing at runtime.
+These pinctrl nodes are required by the eMMC, SD card and SDIO drivers
+to configure pin muxing at runtime.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+- eMMC: control, 4-bit/8-bit data, data strobe and clock gate pins
+- SD card: data, clock, command and clock gate pins
+- SDIO: data, clock, command and clock gate pins
+
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 136 ++++++++++++++++++++++++++++
- 1 file changed, 136 insertions(+)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 98 +++++++++++++++++++++++++++++
+ 1 file changed, 98 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index fe1ced0a58967..b66b3d10288f6 100644
+index 6510068bcff92..36d13371f56ba 100644
 --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -307,6 +307,142 @@ mux {
- 					};
+@@ -250,6 +250,104 @@ gpio: bank@4000 {
+ 					#gpio-cells = <2>;
+ 					gpio-ranges = <&periphs_pinctrl 0 0 157>;
  				};
++
++				emmc_ctrl_pins: emmc-ctrl {
++					mux-0 {
++						groups = "emmc_cmd";
++						function = "emmc";
++						bias-pull-up;
++					};
++
++					mux-1 {
++						groups = "emmc_clk";
++						function = "emmc";
++						bias-disable;
++					};
++				};
++
++				emmc_data_4b_pins: emmc-data-4b {
++					mux {
++						groups = "emmc_nand_d0",
++							 "emmc_nand_d1",
++							 "emmc_nand_d2",
++							 "emmc_nand_d3";
++						function = "emmc";
++						bias-pull-up;
++					};
++				};
++
++				emmc_data_8b_pins: emmc-data-8b {
++					mux {
++						groups = "emmc_nand_d0",
++							 "emmc_nand_d1",
++							 "emmc_nand_d2",
++							 "emmc_nand_d3",
++							 "emmc_nand_d4",
++							 "emmc_nand_d5",
++							 "emmc_nand_d6",
++							 "emmc_nand_d7";
++						function = "emmc";
++						bias-pull-up;
++					};
++				};
++
++				emmc_ds_pins: emmc-ds {
++					mux {
++						groups = "emmc_nand_ds";
++						function = "emmc";
++						bias-pull-down;
++					};
++				};
++
++				emmc_clk_gate_pins: emmc-clk-gate {
++					mux {
++						groups = "GPIOB_8";
++						function = "gpio_periphs";
++						bias-pull-down;
++					};
++				};
++
++				sdcard_pins: sdcard {
++					mux {
++						groups = "sdcard_d0",
++							 "sdcard_d1",
++							 "sdcard_d2",
++							 "sdcard_d3",
++							 "sdcard_clk",
++							 "sdcard_cmd";
++						function = "sdcard";
++						bias-pull-up;
++					};
++				};
++
++				sdcard_clk_gate_pins: sdcard-clk-gate {
++					mux {
++						groups = "GPIOC_4";
++						function = "gpio_periphs";
++						bias-pull-down;
++					};
++				};
++
++				sdio_pins: sdio {
++					mux {
++						groups = "sdio_d0",
++							 "sdio_d1",
++							 "sdio_d2",
++							 "sdio_d3",
++							 "sdio_clk",
++							 "sdio_cmd";
++						function = "sdio";
++						bias-pull-up;
++					};
++				};
++
++				sdio_clk_gate_pins: sdio-clk-gate {
++					mux {
++						groups = "GPIOX_4";
++						function = "gpio_periphs";
++						bias-pull-up;
++					};
++				};
+ 			};
  
-+				pwm_a_pins: pwm-a {
-+					mux {
-+						groups = "pwm_a";
-+						function = "pwm_a";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_a_pins: pwm-ao-a {
-+					mux {
-+						groups = "pwm_ao_a";
-+						function = "pwm_ao_a";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_b_pins: pwm-ao-b {
-+					mux {
-+						groups = "pwm_ao_b";
-+						function = "pwm_ao_b";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_c_pins: pwm-ao-c {
-+					mux {
-+						groups = "pwm_ao_c";
-+						function = "pwm_ao_c";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_c_hiz_pins: pwm-ao-c-hiz {
-+					mux {
-+						groups = "pwm_ao_c_hiz";
-+						function = "pwm_ao_c_hiz";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_d_pins: pwm-ao-d {
-+					mux {
-+						groups = "pwm_ao_d";
-+						function = "pwm_ao_d";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_e_pins: pwm-ao-e {
-+					mux {
-+						groups = "pwm_ao_e";
-+						function = "pwm_ao_e";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_f_pins: pwm-ao-f {
-+					mux {
-+						groups = "pwm_ao_f";
-+						function = "pwm_ao_f";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_g_pins: pwm-ao-g {
-+					mux {
-+						groups = "pwm_ao_g";
-+						function = "pwm_ao_g";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_g_hiz_pins: pwm-ao-g-hiz {
-+					mux {
-+						groups = "pwm_ao_g_hiz";
-+						function = "pwm_ao_g_hiz";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_ao_h_pins: pwm-ao-h {
-+					mux {
-+						groups = "pwm_ao_h";
-+						function = "pwm_ao_h";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_b_pins: pwm-b {
-+					mux {
-+						groups = "pwm_b";
-+						function = "pwm_b";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_c_pins: pwm-c {
-+					mux {
-+						groups = "pwm_c";
-+						function = "pwm_c";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_d_pins: pwm-d {
-+					mux {
-+						groups = "pwm_d";
-+						function = "pwm_d";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_e_pins: pwm-e {
-+					mux {
-+						groups = "pwm_e";
-+						function = "pwm_e";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_f_pins: pwm-f {
-+					mux {
-+						groups = "pwm_f";
-+						function = "pwm_f";
-+						bias-disable;
-+					};
-+				};
-+
-+				pwm_vs_pins: pwm-vs {
-+					mux {
-+						groups = "pwm_vs";
-+						function = "pwm_vs";
-+						bias-disable;
-+					};
-+				};
-+
- 				sdcard_pins: sdcard {
- 					mux {
- 						groups = "sdcard_d0",
+ 			gpio_intc: interrupt-controller@4080 {
 
 -- 
 2.49.0
