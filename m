@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45F3710A62C6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2026 12:53:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DA7810A62C4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2026 12:55:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=kboUL412A4u9UKDwzBxJZjUKZKsEgS5UhOSY8+PhIeo=; b=fpwdEBjzXcZdjW0TgH5sc3oTe3
-	uvYwkeVyOBf2sdXMMPP9Kfzv3tfVZom6UrSA265d+Obhy84BSgGSP9mqGEQL/5NIJYRLZg9ThAu1c
-	tFVNReolQfG8AP1hCQ4risofhMluClhDMilNEsyaZ4CkZrH708L8CNcWEkOtBsBb38yes/Rj9O5a9
-	i1BcyOGij5iz/VQdgp5w6SkJb3jrrssT5RflZstpay0WkQDH+69lcXeAG19YaSuZ8yYABEkzA0Frn
-	nhuipF4ylUJVu2Wm0A7j9aCX9l2lxy/OlkfLKWm5QhOERZgceJEYMBN+jAGgxA9WRt/WeWtiArvq/
-	cpL/bu+Q==;
+	bh=SnF+c0T+eyuBOHYXmJ9YGuG57rkOzFDeLMMTkZijunc=; b=PYOnz6j7ePAuKxGIvIUMVa2t1Q
+	6lSa6i4OAYrOIYJMwFaswyNznrFcieQhnHi9TbInTYOFn93uOhtTG0tVHOCvpAVpnAn40kwxot3x6
+	LOdZMsB4UEppGTME2shv/mhesELQV9MbY5OKcPfSs99F1PGYkmwrqGxwTsX4YSmye3hnPKwhb2XFl
+	OlY77SAp+9kc5DwTzfWm6WjWGZ244SANLpfklpje78uhR1b5t3UoGWfgK3fCciT4FOD7dzq4VzKLV
+	vCBrwzUWm7Ck7sAZfsEPfitKpTxyw/KbmyvLcxAyTcvejG2Rs57MsFfelHOUU/likldcx0bZowunQ
+	69y+5l4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5kDZ-00000005UjZ-3Fq9;
-	Thu, 26 Mar 2026 12:53:45 +0000
+	id 1w5kF5-00000005V0v-1LsV;
+	Thu, 26 Mar 2026 12:55:19 +0000
 Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5kDX-00000005Uiw-3iEf
+	id 1w5kF3-00000005V0D-0VkY
 	for linux-amlogic@lists.infradead.org;
-	Thu, 26 Mar 2026 12:53:45 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-486fb112c09so9539025e9.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 26 Mar 2026 05:53:43 -0700 (PDT)
+	Thu, 26 Mar 2026 12:55:18 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-487035181a7so5883515e9.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 26 Mar 2026 05:55:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1774529622; x=1775134422; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1774529715; x=1775134515; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ovqx3H1R8dcVYTy4TlcGAentVJA1WLMQBInCAVMEjmQ=;
-        b=EQT861QM+5Fb+oW4dE7Qax4A9+AoqUlqkMK+vOLaWLPKeVWpi4ZZB4ZpUF94Bc0s/V
-         evTlejZRpEFUuW2Nd8SS2lVMinmLVn2Exo6GZkXkINdlXxYmFyxpJWaw1+XMcsElf0pk
-         5uQA+uRF5Y/Qfi36rNhkdR3KnlWVL1n4rQJ2uctyN//P+TaN6J+RTwCAI6m9it5GiZby
-         WpVhSiLYs5KnVKDbuCsnqZ6ft58TnoNRXOx9mOL1LikEC+8U8kqoNdhseqBPIWlR+CIr
-         4FKMs/sWKUx87aQjFp874WJx0ofDT+jEP/uwfqir3UfAfdSV0iEnJOzP1Nz3Hth98xAO
-         JywQ==
+        bh=X67yw9hp70DJW5SbayvQBOmUIp03R92/bYFmSlkehKU=;
+        b=FyzHCFdBrFuYBcyXhJ7D8xXLdzC2a12/+1d3M/g4nBBET+nlujz4VPe84IAlhrKlQl
+         cqNc/cnNj8G6o0nwoU1o/kPFZxch3XcQfaDs1WWiZ0vGbtfp16SY5FuPuT6Ity5unXdh
+         DzfjyGMNUS+2YlRkqcxE4kDaES9ojEQegs1tXuWHvk/B8bOtTfp6wBQGbNUaDsmfmW/Z
+         eb1Xv+z7sCvFy02m9nq9mMpGWxUew5QJTF2U3B8fz29iL2YKIysf7B8/Uy1WJWaYWlIY
+         f4C4ASNVb1ZsNAXNkvd1lGbOcHo3csvSqJwya5WKoQPqMTmCIolWTIG9oCSBZISOSwDi
+         WNSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774529622; x=1775134422;
+        d=1e100.net; s=20251104; t=1774529715; x=1775134515;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ovqx3H1R8dcVYTy4TlcGAentVJA1WLMQBInCAVMEjmQ=;
-        b=QsYffA4FewNX2PfP7XXYbJem4CK1a6YSOlfCY11jXxrYmMEpWZaUqoGcD3v2eePMgZ
-         kF9f0tj6lnVaP0fH4o54/6Qxa0NHmDbPIUeRLJvaavY2On5Uzoy1UodoHie2OVdiSOfX
-         DZz/BgjtFsTpw2Z8F+nLOnxUd5o5T+BPsJDw1bIVLGNzxs79wep46SLaSpaL0/endU/V
-         CpKhcX4d0a1PDBDsHSEvp0jYl49U4sobm2Kx3eRsTQ3CQAVTMnUrL5MxPqoPRoz6GiZ/
-         8YQtbXCc4924o4L58iQPZZvNx5QMBCRltzaJNtnSmDlJb6mrjrHglcvPbZVa3Um0MLYu
-         YCow==
-X-Forwarded-Encrypted: i=1; AJvYcCV0gowB3M1Xuy0k6HQY/j+w/i8OsnZRcMjA+M9L0AErhPLz9y/ksVCe6vj7XKI54SD6JYve9YcXQ7mxlhGR@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxq+6AZ2LjdE1LfJsylwBxFUX2GxSovELv84rWyQ7YmybFJB/j9
-	FdncsRSWQksPaMbjkoHpW76R0tHlb71HK7YUdsLY3DwHmiMAUaE/7qaG4VKsB0jUi8U=
-X-Gm-Gg: ATEYQzzD0y4j9wBsZ9dSOLzDoWWh4kBQu29jXj1Tktr5HQAlPX0Uak9gI3kz8MIXPlZ
-	6EsFpL95QELDeNH8LHQAnhdpB4TySere7OucGx39NSks6/n6dphus/0/E1KYa0D+7VQW055AUaz
-	OR8ZDQLzvo8Ny3Ey4of+z2er89eohebpHshzLJ/W70dBO6KFpHF/8+Yf1a5Ib0WAJdtiSh4UWAW
-	+5vxjQT/roX2x9FJK0oKX1ir3RnbwELLN8XLy9EbWtOvXKUybGya8xNYZrIbpWT4gdQlPINppQ9
-	piaQssjXwAyMoYaZEXOe3WVzm30+TOdRj5vP6N4zgtjCEXJxqyLpw4IXtijHU+T0LUKRs+cz5GP
-	9Spd3fSyEVqvXcraDeu2QAYwMMjInYH9cqDYl6hWD/hoHzhAaA20gD0S+abQbqit85zMn8lMING
-	Hyxxdo6YbZTeg9BEknNzfWHTMGn9WTtlXy3mjtiXcbd3ELdpXzi63qCM330Vq2mHt7kde7fAUsO
-	iHYEzg=
-X-Received: by 2002:a05:600c:3b16:b0:485:45fb:3472 with SMTP id 5b1f17b1804b1-48715fc3a88mr110847475e9.7.1774529621762;
-        Thu, 26 Mar 2026 05:53:41 -0700 (PDT)
+        bh=X67yw9hp70DJW5SbayvQBOmUIp03R92/bYFmSlkehKU=;
+        b=Xubgt4BY6kYiAn3WVNDbKc1vUOwMN+p94oIvqKwRMVVCnXQht+sDLKvszRzqlKvO03
+         vWwo8F4VfACaTQmjZYMmL03KG6wPPL5XKfQyJVfAlh+fuQ6qHmL8/UI3OFnoS1Zg9m4s
+         jjf7NKc12J6u2at1Q64UN9JTIs3VTA/CtsZtpYHiHhzjwZOP9fWx8KdluAMiuoO2Lt2l
+         yQ6S5q48hyDNOyWySC/uFz1XnqfcQFqM9sOgPeAprP3r8kryd7aGTcMKf6RSJVSJ8tLI
+         9x199NVMYf2tqibKYamyfCwIuOLACdWewmcBRBNr1hyocJpm250VA8fJhoUu4ell5e1t
+         yHgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW5NNISBAYX0OpPvv4VbITrMKgBT+oiAIw4O1dyL53nXGMiAMAM6aYI42qK3g5lrF+UFX8Dzvp3K74IvdlI@lists.infradead.org
+X-Gm-Message-State: AOJu0YyVx+F+pWLe4kNtZG2gzgKCJtRhSbEjKvw4Os5i+BZYM078hRZA
+	j7DrqubtIHLBrQfapifs7SX5Bw0txAkpwL4czQ1z9HSDvUEzu5kQMb8/D4EkN2nQ1wo=
+X-Gm-Gg: ATEYQzxYgi/V/GtF89nkfbBz2SX2ehlN1BW9oNK/Z/JnqFr5llqf48gr+c5IWDOG0pE
+	ER/vVvkV4a/qGjA1snJuy0vS3ojVpdFhPD9Upu2bes6M+HXUjBAwWlybU9+JWV4xkuI06Ripwc6
+	dxncIHQq07us9jRrodc+iyGs5Wj0bUGDW4RbYLxCKFQjYHpTNN/aK04NhO63G9VUu7gMQz3mS9S
+	s6HDhcBm83SnypM51nN2kRJuIYTdQ9bn0BCgN69oLUxlLFVHwIDceYNGEWzDBQPxw7Pci8ygQyT
+	Rlc0N6GO1BScwGik8oOGHtxWWKP33VFIoW9lb3MIeVwsDlhmzyxUi9i2nLTfJ7PWJk5+MoEnJtB
+	uiA1wOTeztz7hOU3U3rFpPAPX7YWCb7HENoGa5rfUTpGsdPouL8YTK5IOkP7KmC7w8TcfciwBQZ
+	Wu99TSlK6TeemBf8mEjrWTnptHFkgY3RVIwL1MjeyIxI+JTaldBsWOocbLGEu0aBn/xI17Yz/Oa
+	4f9LgTHFt9PiLv1cA==
+X-Received: by 2002:a05:600c:1f12:b0:486:fdca:ea8d with SMTP id 5b1f17b1804b1-48716050758mr107584965e9.25.1774529715255;
+        Thu, 26 Mar 2026 05:55:15 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:8431:f88b:714d:f78d? ([2a01:e0a:106d:1080:8431:f88b:714d:f78d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48722c65dc4sm30763025e9.3.2026.03.26.05.53.40
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-487209378e2sm14061155e9.31.2026.03.26.05.55.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Mar 2026 05:53:41 -0700 (PDT)
-Message-ID: <c03db144-539e-4c39-94f8-14b112783077@linaro.org>
-Date: Thu, 26 Mar 2026 13:53:40 +0100
+        Thu, 26 Mar 2026 05:55:14 -0700 (PDT)
+Message-ID: <9bc23f1e-1cf3-43d1-935a-c4738d576c29@linaro.org>
+Date: Thu, 26 Mar 2026 13:55:13 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 1/9] arm64: dts: amlogic: t7: Add eMMC, SD card and
- SDIO pinctrl nodes
+Subject: Re: [PATCH v5 8/9] dt-bindings: net: wireless: brcm: Add compatible
+ for bcm43752
 To: Ronald Claveau <linux-kernel-dev@aliel.fr>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -87,9 +87,10 @@ To: Ronald Claveau <linux-kernel-dev@aliel.fr>,
  Johannes Berg <johannes@sipsolutions.net>, van Spriel <arend@broadcom.com>
 Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org
+ linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
 References: <20260326-add-emmc-t7-vim4-v5-0-d3f182b48e9d@aliel.fr>
- <20260326-add-emmc-t7-vim4-v5-1-d3f182b48e9d@aliel.fr>
+ <20260326-add-emmc-t7-vim4-v5-8-d3f182b48e9d@aliel.fr>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -116,10 +117,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260326-add-emmc-t7-vim4-v5-1-d3f182b48e9d@aliel.fr>
+In-Reply-To: <20260326-add-emmc-t7-vim4-v5-8-d3f182b48e9d@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260326_055343_941463_5A6CD3AF 
-X-CRM114-Status: GOOD (  11.87  )
+X-CRM114-CacheID: sfid-20260326_055517_213919_849FAD59 
+X-CRM114-Status: GOOD (  10.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,130 +139,29 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 3/26/26 10:59, Ronald Claveau wrote:
-> These pinctrl nodes are required by the eMMC, SD card and SDIO drivers
-> to configure pin muxing at runtime.
+> Add bcm43752 compatible with its bcm4329 compatible fallback.
 > 
-> - eMMC: control, 4-bit/8-bit data, data strobe and clock gate pins
-> - SD card: data, clock, command and clock gate pins
-> - SDIO: data, clock, command and clock gate pins
-> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > ---
->   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 98 +++++++++++++++++++++++++++++
->   1 file changed, 98 insertions(+)
+>   Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index 6510068bcff92..36d13371f56ba 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -250,6 +250,104 @@ gpio: bank@4000 {
->   					#gpio-cells = <2>;
->   					gpio-ranges = <&periphs_pinctrl 0 0 157>;
->   				};
-> +
-> +				emmc_ctrl_pins: emmc-ctrl {
-> +					mux-0 {
-> +						groups = "emmc_cmd";
-> +						function = "emmc";
-> +						bias-pull-up;
-> +					};
-> +
-> +					mux-1 {
-> +						groups = "emmc_clk";
-> +						function = "emmc";
-> +						bias-disable;
-> +					};
-> +				};
-> +
-> +				emmc_data_4b_pins: emmc-data-4b {
-> +					mux {
-> +						groups = "emmc_nand_d0",
-> +							 "emmc_nand_d1",
-> +							 "emmc_nand_d2",
-> +							 "emmc_nand_d3";
-> +						function = "emmc";
-> +						bias-pull-up;
-> +					};
-> +				};
-> +
-> +				emmc_data_8b_pins: emmc-data-8b {
-> +					mux {
-> +						groups = "emmc_nand_d0",
-> +							 "emmc_nand_d1",
-> +							 "emmc_nand_d2",
-> +							 "emmc_nand_d3",
-> +							 "emmc_nand_d4",
-> +							 "emmc_nand_d5",
-> +							 "emmc_nand_d6",
-> +							 "emmc_nand_d7";
-> +						function = "emmc";
-> +						bias-pull-up;
-> +					};
-> +				};
-> +
-> +				emmc_ds_pins: emmc-ds {
-> +					mux {
-> +						groups = "emmc_nand_ds";
-> +						function = "emmc";
-> +						bias-pull-down;
-> +					};
-> +				};
-> +
-> +				emmc_clk_gate_pins: emmc-clk-gate {
-> +					mux {
-> +						groups = "GPIOB_8";
-> +						function = "gpio_periphs";
-> +						bias-pull-down;
-> +					};
-> +				};
-> +
-> +				sdcard_pins: sdcard {
-> +					mux {
-> +						groups = "sdcard_d0",
-> +							 "sdcard_d1",
-> +							 "sdcard_d2",
-> +							 "sdcard_d3",
-> +							 "sdcard_clk",
-> +							 "sdcard_cmd";
-> +						function = "sdcard";
-> +						bias-pull-up;
-> +					};
-> +				};
-> +
-> +				sdcard_clk_gate_pins: sdcard-clk-gate {
-> +					mux {
-> +						groups = "GPIOC_4";
-> +						function = "gpio_periphs";
-> +						bias-pull-down;
-> +					};
-> +				};
-> +
-> +				sdio_pins: sdio {
-> +					mux {
-> +						groups = "sdio_d0",
-> +							 "sdio_d1",
-> +							 "sdio_d2",
-> +							 "sdio_d3",
-> +							 "sdio_clk",
-> +							 "sdio_cmd";
-> +						function = "sdio";
-> +						bias-pull-up;
-> +					};
-> +				};
-> +
-> +				sdio_clk_gate_pins: sdio-clk-gate {
-> +					mux {
-> +						groups = "GPIOX_4";
-> +						function = "gpio_periphs";
-> +						bias-pull-up;
-> +					};
-> +				};
->   			};
->   
->   			gpio_intc: interrupt-controller@4080 {
+> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> index 3be7576787644..81fd3e37452a6 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> @@ -42,6 +42,7 @@ properties:
+>                 - brcm,bcm4356-fmac
+>                 - brcm,bcm4359-fmac
+>                 - brcm,bcm4366-fmac
+> +              - brcm,bcm43752-fmac
+>                 - cypress,cyw4373-fmac
+>                 - cypress,cyw43012-fmac
+>                 - infineon,cyw43439-fmac
 > 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+I'll apply all the other DT patches, please send this one alone with the [PATCH net-next] prefix so it gets picked by the wireless/net people.
 
 Thanks,
 Neil
