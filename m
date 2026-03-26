@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3AA9106F31D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAE9F106F31C
 	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Mar 2026 10:02:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,33 +12,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CxWE1Ql2NTXwst2q2YQlvpOdXSBN8DxroI4GBNo+/nw=; b=yLaE3bfSWf9ajw
-	Tzr8YLRnfjsAjs1ijI1f1Hu5tIfmSLai/gMyilPhW1wFgJBEWB3K+n0zf0jOmhvC8iySJv7d+RE2q
-	q9xmEOquQzH/ob4LQ0mqApNYKpVsleZxkEukJc4BP7rdiTtyYBSsZDKuNAU6XBBa3urJ76qCdwsSb
-	PUvXnxqJXg+2ehoHOQIkb+nBOD1L+a/emttmrkdLJKPl+f42yyjDUynlQVv2Dd5Q906KevII0fSWK
-	m45uoo85SYgNYRs0REqnugrHzma5LkeFlz9NN879vQ6Vv+k4FOIFtsxxzVbDZxtic+7yyAjvTCa6Y
-	ByQ872D6oqUwpiJo3SaQ==;
+	List-Owner; bh=pGwRcQSQdgtJfRM4r78PuZML8BvdXAyUIegj8xyvln4=; b=MLYYkqWe9N0HSb
+	+QnSeQeqm6ohqg7YKS3sg9o+AofUMrHMrk3xNDH0iO85sWoVKDmabxc1oR7rAYQ1MPyRleIio8VS5
+	xsl/IKw41Z7gbY3G3rjEZ6dM7fFLPFm5csVM24/dffsu9YFEZDtVvOm0tcWid20eW1aTLp/UZIXFx
+	q0dRyNiEhthX5jv0O9//6/9GmoMGv4msvghz3p8qb2QkU0aqvwmeDluPIaBJiJY5H4yKWkG5pg2O2
+	LaMfgQ9/z9bCbT6ciGLcmiXDHxnYb0iZ+QLIKxWQnjHoNrCDith+BbaNrhNnGIqzhRgoKYQc6r9bq
+	JwCoheFIQVgTCbp/rxeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5hXa-00000005Cxa-01u5;
-	Thu, 26 Mar 2026 10:02:14 +0000
-Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
+	id 1w5hXd-00000005D1e-47wF;
+	Thu, 26 Mar 2026 10:02:17 +0000
+Received: from pouet.aliel.fr ([65.21.61.41] helo=courrier.aliel.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w5hXL-00000005Cpw-1etN;
-	Thu, 26 Mar 2026 10:02:07 +0000
+	id 1w5hXT-00000005CsS-04Hq;
+	Thu, 26 Mar 2026 10:02:11 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774519316;
-	bh=4WK30/mE0MGHHvTXMGsXTEKwE0mrHfTNI8g5HO+FiMg=;
+	s=courrier-s1; t=1774519320;
+	bh=8n5TwE56sNZirccftjx5WoMWbdvD7mohV25DyjYwnVw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=oGrkkFd1zOs3ySzdOwyRM9EVn7n8QnnMAkuq/Bh+hlp8R/GKlC79PjVCw/Wy+GGKC
-	 wy3l35Cg8swFuEQgw+tGIauuCUe+5n831a8UoaOO4JG+qqHSHyg/CQ1XmUSczc3QcP
-	 XX2wDr4aP382F+na6GGdbYdcFnEooZj2VEoOlxWA=
-Date: Thu, 26 Mar 2026 10:59:13 +0100
-Subject: [PATCH v5 2/9] dt-bindings: mmc: amlogic: Add compatible for T7
- mmc
+	b=O0M8KbzE+CvnQTJ22gO++kb14J8nq6JmK5HqxmcyWf0vmzpunuZ1CcQDHBB4UpeUU
+	 ECG98QylaCyUkORqk9ePSZ3dPOAaqKtGvuLFH4Ny3Aa97zWlbXWCOT6hYz/amy2FDg
+	 wfYXSnViPyhXDVVdqmNt9Kn0wq9iR9bZKZn9TwBU=
+Date: Thu, 26 Mar 2026 10:59:17 +0100
+Subject: [PATCH v5 6/9] arm64: dts: amlogic: t7: khadas-vim4: Add power
+ regulators
 MIME-Version: 1.0
-Message-Id: <20260326-add-emmc-t7-vim4-v5-2-d3f182b48e9d@aliel.fr>
+Message-Id: <20260326-add-emmc-t7-vim4-v5-6-d3f182b48e9d@aliel.fr>
 References: <20260326-add-emmc-t7-vim4-v5-0-d3f182b48e9d@aliel.fr>
 In-Reply-To: <20260326-add-emmc-t7-vim4-v5-0-d3f182b48e9d@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -50,22 +50,20 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-mmc@vger.kernel.org, linux-wireless@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>, 
- Conor Dooley <conor.dooley@microchip.com>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774519311; l=1102;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1774519313; l=3426;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=4WK30/mE0MGHHvTXMGsXTEKwE0mrHfTNI8g5HO+FiMg=;
+ bh=8n5TwE56sNZirccftjx5WoMWbdvD7mohV25DyjYwnVw=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QHjtzkCO+mbkgAitvZ1hKC/yMPbECLq55c68kPiBCAxtp5xAebFbUsp3xd3zSw1A9HKigUyGO8z
- qiIdWRfulZwg=
+ QNjVVaOd8jjc6hn3882SKWZmbPbJB+gzSoVpOaXQ/75twScdmZlXCj3fZKlFiInYcIhii5r4Qwe
+ kTF7grPi4XA4=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260326_030201_828420_68168121 
-X-CRM114-Status: UNSURE (   6.46  )
+X-CRM114-CacheID: sfid-20260326_030207_228126_3C8D9634 
+X-CRM114-Status: UNSURE (   7.05  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,32 +81,123 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add amlogic,t7-mmc compatible string, falling back to amlogic,meson-axg-mmc
-as the T7 MMC controller is compatible with the AXG implementation.
+Add voltage regulator nodes describing the VIM4 power tree,
+required by peripheral nodes such as the SD card controller.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 90 ++++++++++++++++++++++
+ 1 file changed, 90 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-index 57646575a13f8..976f36de2091c 100644
---- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-@@ -19,6 +19,10 @@ allOf:
- properties:
-   compatible:
-     oneOf:
-+      - items:
-+          - enum:
-+              - amlogic,t7-mmc
-+          - const: amlogic,meson-axg-mmc
-       - const: amlogic,meson-axg-mmc
-       - items:
-           - const: amlogic,meson-gx-mmc
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+index fffdab96b12eb..2450084d37642 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+@@ -6,6 +6,8 @@
+ /dts-v1/;
+ 
+ #include "amlogic-t7.dtsi"
++#include <dt-bindings/gpio/amlogic,t7-periphs-pinctrl.h>
++#include <dt-bindings/gpio/gpio.h>
+ 
+ / {
+ 	model = "Khadas vim4";
+@@ -45,6 +47,94 @@ xtal: xtal-clk {
+ 		#clock-cells = <0>;
+ 	};
+ 
++	dc_in: regulator-dc-in {
++		compatible = "regulator-fixed";
++		regulator-name = "DC_IN";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++	};
++
++	sd_3v3: regulator-sdcard-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "SD_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vddao_3v3>;
++		gpio = <&gpio GPIOD_11 GPIO_ACTIVE_LOW>;
++		regulator-boot-on;
++		enable-active-low;
++		regulator-always-on;
++	};
++
++	vcc5v: regulator-vcc-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&dc_in>;
++
++		gpio = <&gpio GPIOH_4 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	vcc5v0_usb: regulator-vcc-usb {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC5V0_USB";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc5v>;
++
++		gpio = <&gpio GPIOY_5 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	vddao_1v8: regulator-vddao-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-always-on;
++	};
++
++	vddao_3v3: regulator-vddao-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&dc_in>;
++		regulator-always-on;
++	};
++
++	vddio_1v8: regulator-vddio-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vddio_3v3>;
++		regulator-always-on;
++	};
++
++	vddio_3v3: regulator-vddio-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-always-on;
++	};
++
++	vddio_c: regulator-gpio-c {
++		compatible = "regulator-gpio";
++		regulator-name = "VDDIO_C";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vddio_3v3>;
++		gpios = <&gpio GPIOD_9 GPIO_ACTIVE_HIGH>;
++		states = <1800000 1
++			  3300000 0>;
++	};
+ };
+ 
+ &uart_a {
 
 -- 
 2.49.0
