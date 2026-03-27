@@ -4,63 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 244BF10BA432
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Mar 2026 07:23:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5C2310BA43D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Mar 2026 08:25:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=t9XePnfIX98hgagkcLmDNCqEzFy1sWwCVe9L+5Z1J2g=; b=Sa+pHr5ZS7CALk
-	eX26Vc1YqusZz+drkfyUL9IA9TUkIpoztGfIUA6ng3oShJU9yI4Smf+QxcCv3QuOCHpx+ngWXznGe
-	wLPMLnfDrS4Oy2U8AvMmOG9f6UpKVdY5ipc9vrpCUPGQVEl0JEOf1vOUM5weNx7+bwyssmsO/Jg3v
-	ww2hDP4QnyBiOgymgDttb+nj4ePbR7asF9WKmuJoBf7AokKKYLYKjTzPT04ARK2TnXlPpYE7v7IYQ
-	kUwiuzXPcdP8hIWWsPmPMU6Ndu+JxouhTUukQSMV4LYdtel9DXvX9YFVpsFsljquuz6y8SR2YADAB
-	O5A5S+ZJ2hFLQB9aTUaQ==;
+	List-Owner; bh=ouqJf25soZ/6Gwj7dXA5vs5CHApctdR1MEKMsBVBJkg=; b=sPIt9qZqQiVJwE
+	zEvJ+pKX7ZYDucofMnYstBt6HKCSW7q2lK2WMHLNdQe4F2/8om0YpNvDvhFbKS9gsmm1J4hznnfbv
+	4k2GiBQoZFf3SLElj4oYerkaNaQJ8e4If5++kPdePGqoWCMAphrgtYqsLys7YLWUyk58/zXoHOP7H
+	K+xRE802iUMopvxrxXIa9lo4t4G0IRrCkkLXGclkMTdmNjxS4Zw6sPvuhlkkdPufElxvryEveQQSr
+	b+a/sji3ZqrF15FXg7vcPChm6GfUe11f1oLGyToX0T001sGnuhkQSnqnChPo1aaHKog4VLJEXp8tK
+	4GPYp273MxOKU2xRrZ4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w61Xa-00000006sac-46ms;
-	Fri, 27 Mar 2026 07:23:34 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1w62VV-00000006xj9-2jf6;
+	Fri, 27 Mar 2026 08:25:29 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w61Xa-00000006saF-2t0S;
-	Fri, 27 Mar 2026 07:23:34 +0000
+	id 1w62VU-00000006xj0-0sCO;
+	Fri, 27 Mar 2026 08:25:28 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9148560133;
-	Fri, 27 Mar 2026 07:23:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9153C19423;
-	Fri, 27 Mar 2026 07:23:32 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 390C66132B;
+	Fri, 27 Mar 2026 08:25:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BEFDC19423;
+	Fri, 27 Mar 2026 08:25:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774596213;
-	bh=ja5349iSeyxrcoK4nJXfVc7CxqPLaewDf9iCFYSJO5Y=;
+	s=k20201202; t=1774599926;
+	bh=HFmd/yN0zDbunaZil2hF63355iXilUJ4h7GpPaZQYk0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BJnIR+zSXK0lGsOYpLSm72CuPXrG2OTH3SP0aF00TgqJLs4cloPSNql0l1feHQZNL
-	 a/wrPu4diJXCFDB2+kHfd64BPxh15TR1wt/hy1j2oHvLpR8MaHk/P1Ar6JEpyveATX
-	 WSuSiLAcbDPwwSr4J0w0U4mPRB9sGmQnhrMlrTjp72ASCUbeM8Avc5Z4yjPMdvb87N
-	 mtx1QvYBWBwv0HyBzcJtzJjZ9F/4kA37zJorbG0VebfTbp1fa17Lx/poQ01kXCnF52
-	 Z+tVC2VBK1TB4Kt30xiNQv5nBBtpnS6MvyrYD8chZPP2z7NglJQMIXgvFBS6zL4skF
-	 rL4EqEAr1Z2mQ==
-Date: Fri, 27 Mar 2026 08:23:30 +0100
+	b=iYbU4xPW0QmniiP7pbZ2rN5WhRhXZl3OHs06Um/vct+r0dI26c2lvARKJzAwNK1fW
+	 L22HxRlPr8pUt519LPW9Ge1QpOX5zfz4I1s2QPszCUrd1PB13gjuL06F3x82aS8fCE
+	 QGg8YO3/6RNnGhbG81KrSkCmBfFEaiM8shU/8RuCG42h5GcqGmlClvtrZ4Y6aV/mjS
+	 Q8Kl1/VLOdj/g8dirfcHT0w8Gl0cRPCa0CPo2IVjsCOyUDWFH0g/juNL0GL4Diib7S
+	 G26MGyL6C13drt6+H1StyHY9m0pMyjNGFfV2Ub94odhO45eEnvLa7PVsGoVsd4cNKi
+	 aDO14AE8Xs3Fg==
+Date: Fri, 27 Mar 2026 09:25:24 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
 	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ronald Claveau <linux-kernel-dev@aliel.fr>, devicetree <devicetree@vger.kernel.org>, 
-	linux-clk <linux-clk@vger.kernel.org>, linux-amlogic <linux-amlogic@lists.infradead.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	Ferass El Hafidi <funderscore@postmarketos.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: clock: amlogic: Fix redundant hyphen
- in "amlogic,t7-gp1--pll" string.
-Message-ID: <20260327-rough-spry-hyrax-8236de@quoll>
-References: <20260326092645.1053261-1-jian.hu@amlogic.com>
- <20260326092645.1053261-2-jian.hu@amlogic.com>
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	Junyi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: amlogic: Add new bindings for S6
+ S7 S7D
+Message-ID: <20260327-cormorant-of-strange-spirit-d8fdc5@quoll>
+References: <20260326-s6-s7-pwm-v1-0-67e2f72b98bc@amlogic.com>
+ <20260326-s6-s7-pwm-v1-1-67e2f72b98bc@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260326092645.1053261-2-jian.hu@amlogic.com>
+In-Reply-To: <20260326-s6-s7-pwm-v1-1-67e2f72b98bc@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,19 +76,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Mar 26, 2026 at 05:26:43PM +0800, Jian Hu wrote:
-> Fix redundant hyphen in "amlogic,t7-gp1--pll" string.
-> 
-> Fixes: 5437753728ac ("dt-bindings: clock: add Amlogic T7 PLL clock controller")
+On Thu, Mar 26, 2026 at 06:35:38AM +0000, Xianwei Zhao wrote:
+> +      - items:
+> +          - enum:
+> +              - amlogic,s6-pwm
+> +              - amlogic,s7d-pwm
+> +          - const: amlogic,s7-pwm
+>        - items:
+>            - enum:
+>                - amlogic,meson8b-pwm-v2
+> @@ -146,6 +152,20 @@ allOf:
+>          clock-names: false
+>        required:
+>          - clocks
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,s7-pwm
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: input clock of PWM
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+so simpler: "maxItems: 1"
 
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+
+> +        clock-names: false
+> +      required:
+> +        - clocks
+>  
+>    - if:
+>        properties:
+> @@ -182,3 +202,10 @@ examples:
+>        clocks = <&pwm_src_a>, <&pwm_src_b>;
+>        #pwm-cells = <3>;
+>      };
+> +  - |
+> +    pwm@1000 {
+> +      compatible = "amlogic,s7-pwm";
+
+You already have three examples, don't add more.
+
+With these changes:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
