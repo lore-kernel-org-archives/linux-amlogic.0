@@ -4,67 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1991BFB3CF8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2026 10:22:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D911DFB3D03
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2026 10:38:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Wd/kWU57lDjNzU8wonR4KWhXkyAnPPMRh13TwKQnLCI=; b=p9IUU7KQ+aqdM2
-	FBVaMoqacOhZHGHvmaXMm+9CkO/IluzmOGT3+qEf2yKkKT6IlaYp9Uu65grv/zQ8KaYaUcwXJYzc0
-	qpbsDqFWUBwacmd1s49/qmRNouFX++9nNDXeTSHaHftaTIeulGoZ9OS4TnJTwu5hIs9fdV5jGcahA
-	SB7nL0Vrpv/8YSb742xc5xW5wjbfVG8ajunWC189avHP6mhtbWSlCy1oVan3ZHzFnPxUZOwrI/J9U
-	mVlsUgBoTz/EnRFintkZ9ENsvcEABXnjgvyj1wLanc/8LC2jloxjTE7sQiOy4z2jdgc9zb4ZHpjqx
-	L8LpB+sYTqSm9JCHcVrA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0VOJ3tipjzBcFPduVi/QCliJN2c5EBM0MBpx7ii+XFA=; b=PmDWOoWa4y0oJ+
+	VBMR9jOZZ05yqd145JPC1i8OUKeTAWgLeOgYBiIda+hc+P+3MfduPl5DauXZ8nOvj/PkA+ru/StPj
+	MuwyD4GhpPvDk+lTumMVja7qNgNJRJ0O43PvXe0T0CPukqUhuz/kVGO5sZ+6qdJHFuIXX9DqrHXRF
+	0iNjKFxgNuEMGCQhZ/m3KkJqJ9mbLFRWPLS+XJ7Di/i6bFloZ5NfP6WAnQLl4Z2K+hiAsnKWsVXiB
+	4V8GahA8HGcyJ/qkbAg/M/HUZCGUGfpZIR9gnwCfaMQ1TEDoVbpRbxJ9w1g3vizNKwT9ZLp4yHXT4
+	p/OvPDa7JNbAB0vTYlyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w79lU-0000000B369-0ywp;
-	Mon, 30 Mar 2026 10:22:36 +0000
-Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
+	id 1w7A0w-0000000B4wc-2xwE;
+	Mon, 30 Mar 2026 10:38:34 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w79lR-0000000B358-1ZAr;
-	Mon, 30 Mar 2026 10:22:34 +0000
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774866149;
-	bh=cHxCL+kgZEYYDlNTSJUvvX2k7Txna5iYqayS3SfoOig=;
-	h=From:Date:Subject:To:Cc;
-	b=UAkIxsmHBUhDJTThHvm72YM6MyKL+0rWwYa/mOBka0JeZFkLXdFbC4QfxW3PFBfbx
-	 aAFRXkhJ+JSEnkFwMMF8x9fA4OQSOFw542w+j18ZUySXzMt3np5b0jmmCETAwOMFCB
-	 K+G7hu1skHHZaH24EZvNAoUyA6VYrtjWOVWAsTFs=
-Date: Mon, 30 Mar 2026 12:21:38 +0200
-Subject: [PATCH] arm64: dts: amlogic: t7: khadas-vim4: Remove invalid
- property
+	id 1w7A0u-0000000B4w7-0lks;
+	Mon, 30 Mar 2026 10:38:33 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 3E6C843D40;
+	Mon, 30 Mar 2026 10:38:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69165C4CEF7;
+	Mon, 30 Mar 2026 10:38:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774867111;
+	bh=pS2seSZ5ELxKTKE+BAk9JFfw8kute7d+kJeKyhN65tE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KdEcel9ZLrxBy6g7r+RYXeBJ8vty98SV+ekPMxQJnhgegv1boQC2S4m6VhwDiWN41
+	 WPPUHm3mAcOAFcGwoxa3GEMRnBldz2J/LLR0a/UDnJsK/NC5rULRHDk2CzbNiOac5a
+	 DWnD9V02M/zbJDCc1ubWPpcBo07nR4897G7IrwYt9WS8CksVxsZDQ3k9X8euDqzbE+
+	 rfihKgXlboIy60FzPF1xlD0yFQGrVzoO3oKpOOabuIayj6mWu5dR+B9YoFnhn8+FW9
+	 VH32kFKqCCYEkxG/yRBwi+sqDXAxvM5DgsSqOH1bm2GRgmZK71XCVZKJ7kRnyVBuaC
+	 pzwe8BvSdquUQ==
+Message-ID: <36822ad1-c73d-4903-bd39-091874558f10@kernel.org>
+Date: Mon, 30 Mar 2026 12:38:26 +0200
 MIME-Version: 1.0
-Message-Id: <20260330-fix-invalid-property-v1-1-e829c4d806cb@aliel.fr>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MSQqAMAwAv1JyNlBbF/Qr4kFt1IDUkooo4t8tH
- gdm5oFIwhShVQ8InRx59wnyTMG0Dn4hZJcYjDaVtlbjzBeyP4eNHQbZA8lx4zhSWbjG2rnOIaV
- BKHn/tuvf9wMinlkYZgAAAA==
-X-Change-ID: 20260330-fix-invalid-property-bbe54d933f71
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: amlogic: t7: khadas-vim4: Remove invalid
+ property
+To: Ronald Claveau <linux-kernel-dev@aliel.fr>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel test robot <lkp@intel.com>, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774866148; l=1261;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=cHxCL+kgZEYYDlNTSJUvvX2k7Txna5iYqayS3SfoOig=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QIq3EbCbzSFk16GagS7tZiZDzrUW8C9xkwkL4RQRuXb+XUI1pPI4dT8GmIlRE9C2b717YFqr5VQ
- Nc/hZ8T2OUwc=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel test robot <lkp@intel.com>
+References: <20260330-fix-invalid-property-v1-1-e829c4d806cb@aliel.fr>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260330-fix-invalid-property-v1-1-e829c4d806cb@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260330_032233_737891_05499C65 
-X-CRM114-Status: UNSURE (   7.00  )
+X-CRM114-CacheID: sfid-20260330_033832_265243_8ED20787 
+X-CRM114-Status: UNSURE (   5.12  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,38 +123,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix introduced invalid property for Khadas VIM4 sdcard regulator.
+On 30/03/2026 12:21, Ronald Claveau wrote:
+> Fix introduced invalid property for Khadas VIM4 sdcard regulator.
+> 
+> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dtb: regulator-sdcard-3v3 (regulator-fixed): Unevaluated properties are not allowed ('enable-active-low' was unexpected)
+> 
 
-arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dtb: regulator-sdcard-3v3 (regulator-fixed): Unevaluated properties are not allowed ('enable-active-low' was unexpected)
+Fixes commit?
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202603290828.5gt393t6-lkp@intel.com/
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 11bfbc99191b6..003b3bcdaf2bc 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -65,7 +65,6 @@ sd_3v3: regulator-sdcard-3v3 {
- 		vin-supply = <&vddao_3v3>;
- 		gpio = <&gpio GPIOD_11 GPIO_ACTIVE_LOW>;
- 		regulator-boot-on;
--		enable-active-low;
- 		regulator-always-on;
- 	};
- 
-
----
-base-commit: 3b058d1aeeeff27a7289529c4944291613b364e9
-change-id: 20260330-fix-invalid-property-bbe54d933f71
+Why there is no such change in recent next? Was it just merged?
 
 Best regards,
--- 
-Ronald Claveau <linux-kernel-dev@aliel.fr>
-
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
