@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1D8CFB3D17
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2026 10:48:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97B19FB3D00
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2026 10:54:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2jiNS2BfquNrujD3RpgOZIpnEiK4tQjREpvid+Llew8=; b=JiSuLLw/3SVQ3C
-	1dSQT3aHQIpBdjR0I3jdGgWonlx6YxAbiTRWKILmFaENzGVqNn1UsvNPyI1/GUet4MGnRsfJOAABX
-	bQ9QHy37PHZvWw1Y2E73uxxzG18u5rhF0zf7Ia3x6nnJhMO8uR96nwdrWGX0ePcVqURz5t0wXe13G
-	K8zVyg33SjoUcBvpvB0aLEZbnKINTfrdWe3jVpKc2vcEFAIAuDEsI0QNlXLwkLnsf76tiE++hbSM5
-	Al/1BTGI0sVBWELa6n/4Ytfvw7hJFPjxCLyiWcZj9BIs9oOJUw5+oLpzwo+O4kULkmUjGiEbKTZQi
-	qaHUy7txZ2wuorMuAZ4A==;
+	List-Owner; bh=XVRUJ2MandO/6gE1956bHxuEe4c68w1b2kvVhC4IySM=; b=27gymFkomeaVsl
+	BfuTCjBGOINlkcujJZ0wx3fN/f3VI7bV3pt4KylqoT10lTUhyBOang6ILG7KtJn9Zt/K5wubm9VAN
+	o2zxT8vC6kW9wzMkzA/cRy4EPQFF/szYWuMXkrMBXIkTljUJTE12dFDfmccWDRGIZc2TojHzE2j3m
+	i1tuMni2GEDfMH+F2X41uy1DDko38nedHiucGeOpdZ0Tpkk5Gf06nzRw7BTbV6kPLw2v1iplQQmy3
+	8BXWo+jqn2+/27zH0FiuIg7Ri4P1VpuOLH8o/0Q23s5p7DWRmB8Cs60CkBeyEUaX0S+xr7VXLN+98
+	6c/W55/NVFw+K6nMnYOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w7AAH-0000000B639-1pEN;
-	Mon, 30 Mar 2026 10:48:13 +0000
+	id 1w7AG0-0000000B6sR-1ndF;
+	Mon, 30 Mar 2026 10:54:08 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w7AAF-0000000B62O-1l4C;
-	Mon, 30 Mar 2026 10:48:12 +0000
+	id 1w7AFy-0000000B6rt-0JXW;
+	Mon, 30 Mar 2026 10:54:07 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id A33184416E;
-	Mon, 30 Mar 2026 10:48:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3EC5C4CEF7;
-	Mon, 30 Mar 2026 10:48:06 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 517504435E;
+	Mon, 30 Mar 2026 10:54:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B203C4CEF7;
+	Mon, 30 Mar 2026 10:54:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774867690;
-	bh=sgWDsMt9x5Efn1Ex6V5em36oaanjsO0EboetHfiLBjs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FNRfJBASnSsJrkC/hXamTCsjwkWj71Kn4XH9ezN/cXWfuq6hwv9X9oRQ8j9Q/15pR
-	 bZW+yaKY5Lfz0ydhdQJlzMZ92JhvyYTUNSDNIbE85IPoK6R8Exffg/MqAwAesQ0+rG
-	 lRIrzeoe9jE42ohvM48FDvvfga+XZheYXWaXfYdtbZuOTLrKYgsKBytxN+p+FARCJq
-	 FMxCg0/B4tpcUVhl++aPFhRYuyMjIePlZoYlR+f/qgRUtTIKfn6PQ+d/V3c5KcDUf+
-	 JWh9cq/iZ6icHeEfd9Fj7EoJPCLT6Y2RXH0/qg9HtqE6fgWIyGsCgFKG/wp2Ztv1Fl
-	 lse3/7aVARwbQ==
-Message-ID: <ebc6da60-d49f-4a44-9ecb-3ae70413a248@kernel.org>
-Date: Mon, 30 Mar 2026 12:48:05 +0200
+	s=k20201202; t=1774868045;
+	bh=MEE7gxYUNUvwMXzUPch6YApiPur4BpArrAJWoVhakJ4=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=I0Lq6/HxMNeCt+twC6dNapO2SuOUtCdaVbfHFaRyMJD7AMQ7LBaPTBQtNC8Nj6dkr
+	 1FOP0ZWdk4qCVdFaKsXLNncnXiQCyafcEzRrAyp3JR8fd9dY+dXD0TIEsa8mY3nIX6
+	 xFgwscJaQaBCxKFbnhCW72vpkf/RXIczdEAu8hfyCfahE0HY9bgmeG1TP0sD1LNy5f
+	 WliqCCy3oXWZnoQOAils5nWYgxiANN19GGynNyzze6Y35yUyx5WZUW69oYWM7ZTWpP
+	 8PKe0aK/lLZLqyCJA/IVgq03vVs7IS5G4Eu/PsoFYQ6k4EH4G6tL7RjBoQiOTC4w4S
+	 0WxYASLXD+crQ==
+Message-ID: <cf3490f1-149d-447a-bbec-de7ff8f517af@kernel.org>
+Date: Mon, 30 Mar 2026 12:53:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3 1/3] dt-bindings: clock: amlogic: Fix redundant hyphen
  in "amlogic,t7-gp1--pll" string.
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jian Hu <jian.hu@amlogic.com>
 Cc: Jerome Brunet <jbrunet@baylibre.com>,
  Neil Armstrong <neil.armstrong@linaro.org>,
@@ -67,7 +68,7 @@ References: <20260326092645.1053261-1-jian.hu@amlogic.com>
  <20260326092645.1053261-2-jian.hu@amlogic.com>
  <20260327-rough-spry-hyrax-8236de@quoll>
  <9830ff89-a145-41d1-98e9-1412f497d3f2@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <ebc6da60-d49f-4a44-9ecb-3ae70413a248@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -112,10 +113,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <9830ff89-a145-41d1-98e9-1412f497d3f2@amlogic.com>
+In-Reply-To: <ebc6da60-d49f-4a44-9ecb-3ae70413a248@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260330_034811_500303_DD11C789 
-X-CRM114-Status: GOOD (  16.09  )
+X-CRM114-CacheID: sfid-20260330_035406_161111_6D69900E 
+X-CRM114-Status: GOOD (  16.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,44 +133,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30/03/2026 12:44, Jian Hu wrote:
-> 
-> On 3/27/2026 3:23 PM, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
+On 30/03/2026 12:48, Krzysztof Kozlowski wrote:
+> On 30/03/2026 12:44, Jian Hu wrote:
 >>
->> On Thu, Mar 26, 2026 at 05:26:43PM +0800, Jian Hu wrote:
->>> Fix redundant hyphen in "amlogic,t7-gp1--pll" string.
+>> On 3/27/2026 3:23 PM, Krzysztof Kozlowski wrote:
+>>> [ EXTERNAL EMAIL ]
 >>>
->>> Fixes: 5437753728ac ("dt-bindings: clock: add Amlogic T7 PLL clock controller")
->> Please run scripts/checkpatch.pl on the patches and fix reported
->> warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
->> patches and (probably) fix more warnings. Some warnings can be ignored,
->> especially from --strict run, but the code here looks like it needs a
->> fix. Feel free to get in touch if the warning is not clear.
+>>> On Thu, Mar 26, 2026 at 05:26:43PM +0800, Jian Hu wrote:
+>>>> Fix redundant hyphen in "amlogic,t7-gp1--pll" string.
+>>>>
+>>>> Fixes: 5437753728ac ("dt-bindings: clock: add Amlogic T7 PLL clock controller")
+>>> Please run scripts/checkpatch.pl on the patches and fix reported
+>>> warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+>>> patches and (probably) fix more warnings. Some warnings can be ignored,
+>>> especially from --strict run, but the code here looks like it needs a
+>>> fix. Feel free to get in touch if the warning is not clear.
+>>
+>>
+>> Thanks for your review.
+>>
+>>
+>> This series is based on the clk-next branch (version v7.0-rc1).
+>>
+>>
+>> Here are the check results without --strict:
+>>
 > 
+> I checked before. Now I double checked:
 > 
-> Thanks for your review.
+> b4 shazam...
+> git format-patch -3
+> scripts/checkpatch.pl 0*
 > 
+> Clearly a warning, also on v7.0-rc1.
 > 
-> This series is based on the clk-next branch (version v7.0-rc1).
-> 
-> 
-> Here are the check results without --strict:
+> So maybe you don't do it on the kernel you are claiming or just doing it
+> on different code than you sent.
 > 
 
-I checked before. Now I double checked:
+It looks like it is b4 shazam problem which duplicates the Fixes tag. I
+don't quite get why the tag is duplicated. I don't see anything on the
+lists which would add wrong tag.
 
-b4 shazam...
-git format-patch -3
-scripts/checkpatch.pl 0*
+Well, that will be problem when applying, but nothing to be fixed here, so:
 
-Clearly a warning, also on v7.0-rc1.
-
-So maybe you don't do it on the kernel you are claiming or just doing it
-on different code than you sent.
-
-Especially the second case would be a waste of my time to investigate
-and read this patch.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
