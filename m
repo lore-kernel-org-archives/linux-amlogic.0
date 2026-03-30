@@ -4,119 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97B19FB3D00
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2026 10:54:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EBF6FB3D15
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2026 11:01:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XVRUJ2MandO/6gE1956bHxuEe4c68w1b2kvVhC4IySM=; b=27gymFkomeaVsl
-	BfuTCjBGOINlkcujJZ0wx3fN/f3VI7bV3pt4KylqoT10lTUhyBOang6ILG7KtJn9Zt/K5wubm9VAN
-	o2zxT8vC6kW9wzMkzA/cRy4EPQFF/szYWuMXkrMBXIkTljUJTE12dFDfmccWDRGIZc2TojHzE2j3m
-	i1tuMni2GEDfMH+F2X41uy1DDko38nedHiucGeOpdZ0Tpkk5Gf06nzRw7BTbV6kPLw2v1iplQQmy3
-	8BXWo+jqn2+/27zH0FiuIg7Ri4P1VpuOLH8o/0Q23s5p7DWRmB8Cs60CkBeyEUaX0S+xr7VXLN+98
-	6c/W55/NVFw+K6nMnYOA==;
+	List-Owner; bh=PETv4l9i16ZdEYV9nxAGanPlWdZMLTFtIk2cijl5RlU=; b=H87hyRCJ5chmp3
+	pNNZtWK/9zXCagXxED3/9/c8LSSrOI84FpqDuWcRHXaw1ArmmY4pSBWErsc9h9YM8CX8cB/bmE3eh
+	CNdwZ/gKaSRN/pv70DpdW/RLbxp6hA1SR2XRSXhelYQTmQS5eQbdu8sQ+EBjVKN66LvudQq+lWNQ5
+	MbwTTpyCzUA4pZvvTZgpG2i8w3DTm7eHwSJwjBbFxbpLGYcntKH4znMgRXq5J20faz/LIfHGU3iOD
+	IqZfvP93N2SYSEyo5+zkHdQx9cUI0mDmr8Ven4NhP2OqkyiBOzi2UQKRCtaQI589ajDyMkXclUswo
+	PubVE6Co9NfSMnPcyPyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w7AG0-0000000B6sR-1ndF;
-	Mon, 30 Mar 2026 10:54:08 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1w7AN6-0000000B7ok-3Ppc;
+	Mon, 30 Mar 2026 11:01:28 +0000
+Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w7AFy-0000000B6rt-0JXW;
-	Mon, 30 Mar 2026 10:54:07 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 517504435E;
-	Mon, 30 Mar 2026 10:54:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B203C4CEF7;
-	Mon, 30 Mar 2026 10:54:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774868045;
-	bh=MEE7gxYUNUvwMXzUPch6YApiPur4BpArrAJWoVhakJ4=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=I0Lq6/HxMNeCt+twC6dNapO2SuOUtCdaVbfHFaRyMJD7AMQ7LBaPTBQtNC8Nj6dkr
-	 1FOP0ZWdk4qCVdFaKsXLNncnXiQCyafcEzRrAyp3JR8fd9dY+dXD0TIEsa8mY3nIX6
-	 xFgwscJaQaBCxKFbnhCW72vpkf/RXIczdEAu8hfyCfahE0HY9bgmeG1TP0sD1LNy5f
-	 WliqCCy3oXWZnoQOAils5nWYgxiANN19GGynNyzze6Y35yUyx5WZUW69oYWM7ZTWpP
-	 8PKe0aK/lLZLqyCJA/IVgq03vVs7IS5G4Eu/PsoFYQ6k4EH4G6tL7RjBoQiOTC4w4S
-	 0WxYASLXD+crQ==
-Message-ID: <cf3490f1-149d-447a-bbec-de7ff8f517af@kernel.org>
-Date: Mon, 30 Mar 2026 12:53:59 +0200
+	id 1w7AN4-0000000B7nP-0f9g;
+	Mon, 30 Mar 2026 11:01:28 +0000
+Message-ID: <02927f87-fa91-457d-af2b-a7610ef481e8@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1774868480;
+	bh=gPOPxtR9dBImR4mZtM3pZ8L7sTxbCUXJst9ZTpej2H4=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=I3kEhhRbqYk2rPZmeCBhucqJlRJGW1f5ryoQGi6LsiJFIohGgdVQFL46R59CPh37J
+	 wgqLajLhrX5Lr+7+7TrIqpe7I1kaVanF5nxpUqDx5oU4vTsYy50JfFTL9RF5WWmNJ3
+	 Cz1hY2y1ivnZpewbI0vTBLB4WCPSkVk+sb/HYm00=
+Date: Mon, 30 Mar 2026 13:01:18 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: clock: amlogic: Fix redundant hyphen
- in "amlogic,t7-gp1--pll" string.
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
+User-Agent: Mozilla Thunderbird Beta
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH] arm64: dts: amlogic: t7: khadas-vim4: Remove invalid
+ property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel test robot <lkp@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Stephen Boyd <sboyd@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Ronald Claveau <linux-kernel-dev@aliel.fr>,
- devicetree <devicetree@vger.kernel.org>,
- linux-clk <linux-clk@vger.kernel.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Ferass El Hafidi <funderscore@postmarketos.org>
-References: <20260326092645.1053261-1-jian.hu@amlogic.com>
- <20260326092645.1053261-2-jian.hu@amlogic.com>
- <20260327-rough-spry-hyrax-8236de@quoll>
- <9830ff89-a145-41d1-98e9-1412f497d3f2@amlogic.com>
- <ebc6da60-d49f-4a44-9ecb-3ae70413a248@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>
+References: <20260330-fix-invalid-property-v1-1-e829c4d806cb@aliel.fr>
+ <36822ad1-c73d-4903-bd39-091874558f10@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <ebc6da60-d49f-4a44-9ecb-3ae70413a248@kernel.org>
+In-Reply-To: <36822ad1-c73d-4903-bd39-091874558f10@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260330_035406_161111_6D69900E 
-X-CRM114-Status: GOOD (  16.74  )
+X-CRM114-CacheID: sfid-20260330_040126_638721_F63D0E3A 
+X-CRM114-Status: UNSURE (   8.05  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,54 +73,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 30/03/2026 12:48, Krzysztof Kozlowski wrote:
-> On 30/03/2026 12:44, Jian Hu wrote:
+On 3/30/26 12:38 PM, Krzysztof Kozlowski wrote:
+> On 30/03/2026 12:21, Ronald Claveau wrote:
+>> Fix introduced invalid property for Khadas VIM4 sdcard regulator.
 >>
->> On 3/27/2026 3:23 PM, Krzysztof Kozlowski wrote:
->>> [ EXTERNAL EMAIL ]
->>>
->>> On Thu, Mar 26, 2026 at 05:26:43PM +0800, Jian Hu wrote:
->>>> Fix redundant hyphen in "amlogic,t7-gp1--pll" string.
->>>>
->>>> Fixes: 5437753728ac ("dt-bindings: clock: add Amlogic T7 PLL clock controller")
->>> Please run scripts/checkpatch.pl on the patches and fix reported
->>> warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
->>> patches and (probably) fix more warnings. Some warnings can be ignored,
->>> especially from --strict run, but the code here looks like it needs a
->>> fix. Feel free to get in touch if the warning is not clear.
->>
->>
->> Thanks for your review.
->>
->>
->> This series is based on the clk-next branch (version v7.0-rc1).
->>
->>
->> Here are the check results without --strict:
+>> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dtb: regulator-sdcard-3v3 (regulator-fixed): Unevaluated properties are not allowed ('enable-active-low' was unexpected)
 >>
 > 
-> I checked before. Now I double checked:
-> 
-> b4 shazam...
-> git format-patch -3
-> scripts/checkpatch.pl 0*
-> 
-> Clearly a warning, also on v7.0-rc1.
-> 
-> So maybe you don't do it on the kernel you are claiming or just doing it
-> on different code than you sent.
+> Fixes commit?
 > 
 
-It looks like it is b4 shazam problem which duplicates the Fixes tag. I
-don't quite get why the tag is duplicated. I don't see anything on the
-lists which would add wrong tag.
+Thanks for your review I will add a Fixes tag like that:
+Fixes: 60eff75ac67b ("arm64: dts: amlogic: t7: khadas-vim4: Add power
+regulators")
 
-Well, that will be problem when applying, but nothing to be fixed here, so:
+> Why there is no such change in recent next? Was it just merged?
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Yes it is in next-20260327
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts?h=next-20260327&id=60eff75ac67bbf5445bdbd2842b0109ac591441c
 
+> Best regards,
+> Krzysztof
+
+-- 
 Best regards,
-Krzysztof
+Ronald
 
 _______________________________________________
 linux-amlogic mailing list
