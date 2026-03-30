@@ -4,68 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4AD110D14AA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2026 12:15:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99E261061B07
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Mar 2026 14:53:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=QIapTqSLKgAd1uLbX7eUc23uPwpO5SXCvk5TyHg+mIA=; b=aMNZ3kINg05P0X
-	BUh7DQWXA0zmYQtz4imzS+Ejly+kw7GoGBEKjdlMxkPu0K1R9/kq+r47vt50jOjuwhzm42em7LRE3
-	5X1iTJx+1T2KRpsERS6rm5HsxBZjp81OBbCqMDSa66Qx649Ie+jjExWdHnruFrNqOSpLAEtRUFtaI
-	bz7pJOimD5KkXPP2khus9sJcKDooROE6htZ72w+515iY+5eEtI7OydgzykeLQoLuTA9S0k1ILtFde
-	r6jC0EnwAq3jhcsNVTciNVgbImKX1t188i3vPLBVoKvsI3L2TZha+Y+nSyCNTJU9F7cxECnvS84op
-	YgvE3kAvKSDKvrxjNAKw==;
+	List-Owner; bh=LfpB8KEunjzq0mqRiKnEzAmkx/Spo0AkB2GsMpRePG4=; b=zBx5pWvRgGk+Vn
+	Pz3mQzhnIo/X+p416uZh9kVG/cuC2fuISKdmqyPgpBvgh0eUxkszW/vTkp8E/4iIap84bjnF3PEni
+	XClJ9OCsL2hWlxkwBKvEXUaw/TO3ZyfOQe5hHYFCONMtkBXLmDJ2JwZsvcJaXbMtwUlckHs9YX0+s
+	hs9kV12CdteaxVinJ6hiI5ya1hntGULNIUy++esvpsSEYp+auJhnATutC/9BZlL3IpnrWjAPaVhus
+	QvmzFE+s5LEa87pQfCWN4KDxICdytdzbex1uWBRHRlLzgAgjlYr5y158ecdWp3MZePbx+Hd9CUdNX
+	bjQK0P1c/LCIgbLyew3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w7BX5-0000000BEBc-1vs3;
-	Mon, 30 Mar 2026 12:15:51 +0000
-Received: from pouet.aliel.fr ([65.21.61.41] helo=courrier.aliel.fr)
+	id 1w7Dzi-0000000BWBN-1bNN;
+	Mon, 30 Mar 2026 14:53:34 +0000
+Received: from mail-pj1-x1031.google.com ([2607:f8b0:4864:20::1031])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w7BX2-0000000BE8a-16pq;
-	Mon, 30 Mar 2026 12:15:50 +0000
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774872942;
-	bh=xVUcmfduypkog0Ts4OgYZx4Y4alW8vHomSxuHp689Vw=;
-	h=From:Date:Subject:To:Cc;
-	b=sLfjiDPlp3MMpmzVuy3aO04stshQ+TFaMkY+jL51L6hDoX2nVunINKeH3294yIxU6
-	 WQq+IroKiUqlcgpbuWeyGWIYD/x51qakxziLv6/3wMgOGiVBxY33tWQNZ3pAGLRAo3
-	 0W6U1fUvLBlx4ULqSLcdmGYqea6dDQzVwek8bAHg=
-Date: Mon, 30 Mar 2026 14:11:21 +0200
-Subject: [PATCH v2] arm64: dts: amlogic: t7: khadas-vim4: Remove invalid
- property
+	id 1w7Dze-0000000BWAP-35Aa
+	for linux-amlogic@lists.infradead.org;
+	Mon, 30 Mar 2026 14:53:32 +0000
+Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-3567e2b4159so3155333a91.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 30 Mar 2026 07:53:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774882409; x=1775487209; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ssYsLAnIx4oMr5cUDaN18URFoLsJRRuDZGGo0ofMqHI=;
+        b=QGuC8WKmEjGack4Do02Z5CywKtHXDsBn7MNeikPhjOSRcXU16wa6+6HuPIvDrSyC0N
+         EaWlLi+bTb1/G9L5pNLWjmX8VEkT+0XjdG+9ghstn/Tc2ay48TsseWt8MVnOnOJchFew
+         pYDCHdF8dRS0wyCL5mHKK4zZE/EihZ/bCGEN0H5SCTtYqJottoxsA6dgWoUuJ38JCkzn
+         Lnu6bOkhk3q7ZrRmz0mWddNe6lf94I57DN06Qv1gpCvQliv85Wq3oI0Hrx1eQ9AWg4H3
+         K6CnyG2sr/bm8sR6SGvjYh+LczJPQ5ZtQXwwPWsvxeXNg6fTfLmfHcskmZO+zekCqwEj
+         bh5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774882409; x=1775487209;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ssYsLAnIx4oMr5cUDaN18URFoLsJRRuDZGGo0ofMqHI=;
+        b=R/MauaHpu8Cu5wC+ywYKXylzAukn5txtxJ+hXOYDuPUgH3yevWwgx5LGqZ4qKvbmjz
+         H1AyaoPpMeRbbS1QpRcdbjFXESjM0ArwpiJVQ8FpEwERCLmJVgIDDl0uPoB4Uu3bzDyN
+         DKLW9B9roE7Un8fInAfFQqf9HUqP9U1ybdj6hU4bzdbf/MHQzO9S7AbX/Kio2F5az6UD
+         cmPeY5QeDXxYOp1ZbuBYRxwXmnLX3t8uf3t8aMTs+nIqXghZeX27qqZyIRi7nVxlvStd
+         zEV5hqyO4Y8vL65jxK0Oqf7wXC99JuaFxVf9s293Ub5FjXDkzZr7GAMDE97sKcZxwhO3
+         IOIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX4Pu9EBcV90NtonSkhJDK4Q5XNXNe9CXlfQFENDYFrTDfW99tQFA60+PuH6Fo+/T9kHKk+x5xfudVer7Pa@lists.infradead.org
+X-Gm-Message-State: AOJu0YwTHWKs+SsLLD0hc01fUbxpV1GhNxv5J+6VtFEEce93dR69pm7+
+	5G4titYqg4oQJ+NTYpy74o1UDIJ85QWdzSmm6+XG/PTgXJJMrnukfXSr
+X-Gm-Gg: ATEYQzwaKihj+3f21TVagtm+oRNCGjmBeAAEIFkgqIVK3dVBuO+nsbyI1dBmmGTn0Tz
+	xoyz+6EQoTyo59PQcNUAckDwjJeE0IZR5kAgOfxPjWvgBq3RMrYQo+uLxvQWUCgOugKAN27O6wD
+	vyUww721UqMC2lle3XdDwr3SSkEi5ATwCv94l6x0bZwGlYv2cKvjZuVpJlPHusVwEqEKvtHIycJ
+	LGrK6ZXO9sRDGNXexE95fkf414XnKgK9ybiEZWAVK/qAqzwJKqVfderJkXOTL9d/zPEVELk+QTB
+	k1whkSWVQ2x8m0y+JSzyJTcXQAR0c4J4lSsH0S1FhqH8bdsdeHQ+F2khDl4EHSI3wIG7RJ5UwTB
+	IKgD0gcsQFPcIfzOaGxlvy2ZTQTLZZfGutraOHeiKj+i8tJsxmWl3aHbC9d156olaD0Me97SDEW
+	cMvlbHadvJ3yCXJ1KGFMM4d56ThR1chVjbIA5Asmet3TlysJk5pqMirSKfYJRi6ctJ3jmqTTwxG
+	WUOs5jOUvIGoRjN9CA=
+X-Received: by 2002:a17:90b:4cc6:b0:34c:fe7e:84fe with SMTP id 98e67ed59e1d1-35c3011512cmr10970363a91.28.1774882409439;
+        Mon, 30 Mar 2026 07:53:29 -0700 (PDT)
+Received: from arch.localdomain (n058152025253.netvigator.com. [58.152.25.253])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35c22d8c92dsm13218247a91.9.2026.03.30.07.53.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Mar 2026 07:53:28 -0700 (PDT)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	Jun Yan <jerrysteve1101@gmail.com>
+Subject: [PATCH] arm64: dts: meson-gxl-p230: fix ethernet PHY interrupt number
+Date: Mon, 30 Mar 2026 22:51:11 +0800
+Message-ID: <20260330145111.115318-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Message-Id: <20260330-fix-invalid-property-v2-1-228c51c8de93@aliel.fr>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WNSw6CMBCGr0Jm7Zg+EMGV9zAsKJ3KJATIlDQSw
- t2tXMDl9z93iCRMER7FDkKJI89TBnMpoB+66U3IPjMYZSplrcLAH+QpdSN7XGReSNYNnaNb6Rt
- rw11Dri5COXfOvtrMA8d1lu18Sfqn/hlMGjVSbZq+9LWqevfMPo3XINAex/EFBk6IIbcAAAA=
-X-Change-ID: 20260330-fix-invalid-property-bbe54d933f71
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel test robot <lkp@intel.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774872941; l=1587;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=xVUcmfduypkog0Ts4OgYZx4Y4alW8vHomSxuHp689Vw=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QFe8HkgC5Tzzi505mPD+oo6xvu6CJSbvqSzoHf8z7fQX4YThiWYbKanG0BszCUiQodatWAkaYjr
- nqaW0+XUyGAc=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260330_051548_796565_1FD44197 
-X-CRM114-Status: UNSURE (   7.75  )
+X-CRM114-CacheID: sfid-20260330_075330_768948_02140183 
+X-CRM114-Status: UNSURE (   9.70  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,43 +107,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix introduced invalid property for Khadas VIM4 sdcard regulator.
+Correct the interrupt number assigned to the Realtek PHY in the p230
 
-arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dtb: regulator-sdcard-3v3 (regulator-fixed): Unevaluated properties are not allowed ('enable-active-low' was unexpected)
+following the same logic as commit 3106507e1004 ("ARM64: dts: meson-gxm:
+fix q200 interrupt number"),as reported in [PATCH 0/2] Ethernet PHY
+interrupt improvements [1].
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202603290828.5gt393t6-lkp@intel.com/
-Fixes: 60eff75ac67b ("arm64: dts: amlogic: t7: khadas-vim4: Add power regulators")
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+[1] https://lore.kernel.org/all/20171202214037.17017-1-martin.blumenstingl@googlemail.com/
+
+Fixes: b94d22d94ad2 ("ARM64: dts: meson-gx: add external PHY interrupt on some platforms")
+Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
 ---
-Changes in v2:
-- Add Fixes tag according to Krzysztof's review.
-- Link to v1: https://lore.kernel.org/r/20260330-fix-invalid-property-v1-1-e829c4d806cb@aliel.fr
----
- arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 11bfbc99191b6..003b3bcdaf2bc 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -65,7 +65,6 @@ sd_3v3: regulator-sdcard-3v3 {
- 		vin-supply = <&vddao_3v3>;
- 		gpio = <&gpio GPIOD_11 GPIO_ACTIVE_LOW>;
- 		regulator-boot-on;
--		enable-active-low;
- 		regulator-always-on;
- 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
+index 7dffeb5931c9..701de57ff0f3 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
+@@ -84,7 +84,8 @@ external_phy: ethernet-phy@0 {
+ 		reset-gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_LOW>;
  
-
----
-base-commit: 3b058d1aeeeff27a7289529c4944291613b364e9
-change-id: 20260330-fix-invalid-property-bbe54d933f71
-
-Best regards,
+ 		interrupt-parent = <&gpio_intc>;
+-		interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
++		/* MAC_INTR on GPIOZ_15 */
++		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
+ 		eee-broken-1000t;
+ 	};
+ };
 -- 
-Ronald Claveau <linux-kernel-dev@aliel.fr>
+2.53.0
 
 
 _______________________________________________
