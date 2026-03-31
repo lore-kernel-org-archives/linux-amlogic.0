@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 537B3109B479
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D84B109B47A
 	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Mar 2026 14:25:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,32 +12,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=t4KqwQCf3rADoIjyEYP2CzEOUu/NpOpi5OcuYmYtAhU=; b=xcoEJQ9uwmHzW1
-	YTer4f1tpIUhWeqrhfL012XWzqZMmyLcrGapw3SGJ419tfSNo5H86RlCip7rz1A2XfPs093DP2Y3O
-	gXizmFT1Yy8YoLyiHUPPlG0GCMoFYhl0Ry5nF+Y5Yl8odk0Z3sESIjDIDLdRalmK9pOdtYvWv4OK2
-	zGfygRDgbmAJ1kBWwl51qY3kNIacXQ5mKvXOfvQhODedIjAPM2FFrf1sukFWx86FsobmZaDqkS1ho
-	YJdhPwGEioUImZEpWd4SF0ffq9KiGb8z5nefDU8HzohsUxYns9sGWp6I7EAM166CS2QnKsk0xLohc
-	L6vzzb3rmCrWqOJ8MoUQ==;
+	List-Owner; bh=9Y++RMfVoqgLzQ//Bw+pQzWcEmeNAb8pHfbpKOoPBhM=; b=OAe5Ie2C1kJMc8
+	0qKY5sg/TMg4IwDMJNilCsYABNgklmg1jFNKoNt4khCfCBbNOBgAA5laE/NkF2gv2snly+5aPPZ23
+	A9uDYssB+vKAGWMiEjlcHuw1OlKavq1afu1enRoe6w5yUzhKlKNOTRf1kyHgoH7nOG4nStgYoqaL2
+	ioLA2neK8Jq27gRtg/HET81M8TBkGzFu2IiDNVIZzbzKFmG31CBKr3HgjXauDmwfstKBTEIueDsXb
+	cL9BvSL3Lx8fxQh+aYquevkwBkH9c4Vw6Y241sPtXBa+fmqJQJQEEtmaQs13VUIEVKSc/Bp+eVHq5
+	3N7eCdDQL86YJtg2zplg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w7a1g-0000000D5Jg-2Nma;
+	id 1w7a1g-0000000D5Jc-1MB2;
 	Tue, 31 Mar 2026 14:25:04 +0000
-Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
+Received: from courrier.aliel.fr ([65.21.61.41])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w7a1e-0000000D5Ia-01Zl;
+	id 1w7a1e-0000000D5Ib-1zIY;
 	Tue, 31 Mar 2026 14:25:03 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1774967094;
-	bh=GOlKayIfpiCQcbj9a8oH1jhKbUMrxZqheip0PnNf7HQ=;
+	s=courrier-s1; t=1774967095;
+	bh=qxFJoJrGjwGTRee41XbDZD3ZEy53tTIFlBC7/ii6Ca4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=DjyaRurNKDYmZ4fe9ZPUwOVIe3Uj91gDLzPeptrW5WRl4NFUP48AW17h8BGjfCk44
-	 8KgG+UCktBVpZSwYZvrd56LxcfgzxxEI6DVHgtZButLE0O1aOoJfuvTS2X2ryd6lbb
-	 0oFv/1yy+gse+inDss/V/VOoS+XM/KzAzI8kes6w=
-Date: Tue, 31 Mar 2026 16:24:04 +0200
-Subject: [PATCH 1/2] reset: amlogic: t7: Fix null reset ops
+	b=a0bZEJnpqeyKwOWOkSPeSi4pxe5mTrY6EpukajDGCWdWkauJy8OSI4v+YdYIXvEtQ
+	 feBpiHZPWWNP2FO6XJYZINfn99xKEa1dF3BRDut9OPHd2aOWarrujIP5UZZg9cplVx
+	 PLcUpscbF0nSC8MiFyR2DEGphqBmk8TUi1OZ0btU=
+Date: Tue, 31 Mar 2026 16:24:05 +0200
+Subject: [PATCH 2/2] arm64: dts: amlogic: t7: Fix missing required reset
+ property
 MIME-Version: 1.0
-Message-Id: <20260331-fix-aml-t7-null-reset-v1-1-eb95b625234c@aliel.fr>
+Message-Id: <20260331-fix-aml-t7-null-reset-v1-2-eb95b625234c@aliel.fr>
 References: <20260331-fix-aml-t7-null-reset-v1-0-eb95b625234c@aliel.fr>
 In-Reply-To: <20260331-fix-aml-t7-null-reset-v1-0-eb95b625234c@aliel.fr>
 To: Philipp Zabel <p.zabel@pengutronix.de>, 
@@ -50,18 +51,18 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1774967093; l=734;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1774967093; l=1561;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=GOlKayIfpiCQcbj9a8oH1jhKbUMrxZqheip0PnNf7HQ=;
+ bh=qxFJoJrGjwGTRee41XbDZD3ZEy53tTIFlBC7/ii6Ca4=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QP872jP+le9oZQM63fOc8yNc3HeX8VBIpWZXvK7i0uhJZYsCtqYHh2YKRmsDO/P+ussk4lRZSid
- T5aYFgmO2Wwo=
+ QCU4/Wz8ZteqVRTInB1DatMXwUnzpYxTf+Mh7GPkDkaMVHRrsViO/qJt3PtEoSYeXtPCurOZydp
+ xH1XiXwnXfAo=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260331_072502_490129_752621D5 
-X-CRM114-Status: UNSURE (   7.35  )
+X-CRM114-CacheID: sfid-20260331_072502_665391_62373995 
+X-CRM114-Status: UNSURE (   7.37  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -79,26 +80,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix missing reset ops causing kernel null pointer dereference.
-This SOC's reset is currently not used yet.
+CHECK_DTBS shows missing reset required property in T7 DTBS.
+A new CHECK_DTBS with this patch does not show this anymore.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- drivers/reset/amlogic/reset-meson.c | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/reset/amlogic/reset-meson.c b/drivers/reset/amlogic/reset-meson.c
-index 84610365a823c..c303e8590dd68 100644
---- a/drivers/reset/amlogic/reset-meson.c
-+++ b/drivers/reset/amlogic/reset-meson.c
-@@ -42,6 +42,7 @@ static const struct meson_reset_param meson_s4_param = {
- };
- 
- static const struct meson_reset_param t7_param = {
-+	.reset_ops	= &meson_reset_ops,
- 	.reset_num      = 224,
- 	.reset_offset	= 0x0,
- 	.level_offset   = 0x40,
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index 02a303d4ec39d..5069f29d2fbb7 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -582,6 +582,7 @@ sd_emmc_a: mmc@88000 {
+ 					 <&clkc_periphs CLKID_SD_EMMC_A>,
+ 					 <&scmi_clk CLKID_FCLK_DIV2>;
+ 				clock-names = "core", "clkin0", "clkin1";
++				resets = <&reset RESET_SD_EMMC_A>;
+ 				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_A_SEL>;
+ 				assigned-clock-parents = <&xtal>;
+ 				status = "disabled";
+@@ -595,6 +596,7 @@ sd_emmc_b: mmc@8a000 {
+ 					 <&clkc_periphs CLKID_SD_EMMC_B>,
+ 					 <&scmi_clk CLKID_FCLK_DIV2>;
+ 				clock-names = "core", "clkin0", "clkin1";
++				resets = <&reset RESET_SD_EMMC_B>;
+ 				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_B_SEL>;
+ 				assigned-clock-parents = <&xtal>;
+ 				status = "disabled";
+@@ -608,6 +610,7 @@ sd_emmc_c: mmc@8c000 {
+ 					 <&clkc_periphs CLKID_SD_EMMC_C>,
+ 					 <&scmi_clk CLKID_FCLK_DIV2>;
+ 				clock-names = "core", "clkin0", "clkin1";
++				resets = <&reset RESET_SD_EMMC_C>;
+ 				assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_C_SEL>;
+ 				assigned-clock-parents = <&xtal>;
+ 				status = "disabled";
 
 -- 
 2.49.0
