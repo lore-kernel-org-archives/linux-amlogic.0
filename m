@@ -4,55 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7C53E99069
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Apr 2026 10:04:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEAB5F459EF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Apr 2026 16:49:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OAAg6kn+TvnqcIQP3C0zQ7yDYknhvH9mcaYeCt2kArk=; b=oULt0QAbTnNbuk
-	pDJQNiLIfKJAfeFfBcikAM2Vtr2v366vmlToxDZpUDm0aDhP53EJ1ZqGXCuElYCz+F/F5bOmNFPrt
-	t2NVzi98wIHdAItOEaWq2dIyIKHvQEhwkvJYXq2EnG1amHCKE+0T0EC/K/wnOGJRL7q1K0QXscHfe
-	mCXB5ifMFBMBUHZsCOokWlfGbeHGNqB2NUMz3wwgtravYlDnbEM869/tuwtS/cCMut6Tu4199ewMP
-	6Og3Gi1aVTEuZH8fhmQmpbxYvwWKk75kWKRLvBDQBLTWg52UKOj5UAwvuo8s9DbJwibxy17W+jv0V
-	nvudyCFhGBkOvLdFMTpQ==;
+	List-Owner; bh=AeS7++q499mvu/4/2Ho8HvuB8peGy4jJyQ76AmeHBCA=; b=Y0EDF6xaOLIQfb
+	PEbmXUkO5cbo7FB+cGfYSoWK9BmHdsEOcC9hndv1NyO2gVO7C/QL+Ku0q1HwwmMi0kExEKkCqV86G
+	gEBtf8X/gs2SDLRqiyVRpePVVCXbyltW8mECHt/JHRpb2/057PcntJlSM9r/OGn1G+vr5MIpmeJ78
+	3UDlcbWa6IMG5ldh+4drrHxCytrIEJjBkvyujHnzTKakl/MwOhnc8p60bZRbH3ghWfVP8DacmMPtJ
+	16dT4p+j+FvDAVVbNjgUhsYwRdXjmcILrbC1KCYmOB0HtEnSje5zF9GeH5p0AZtYekJBCxD4C54NH
+	GEVq3SdmldEr7QsWfLTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wB8iT-0000000ByHC-3wPh;
-	Fri, 10 Apr 2026 10:03:57 +0000
-Received: from [64.106.246.77] (helo=mail-sc.amlogic.com)
+	id 1wBF2W-0000000CYmD-3tfj;
+	Fri, 10 Apr 2026 16:49:04 +0000
+Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wB8iR-0000000ByEy-3i5n;
-	Fri, 10 Apr 2026 10:03:56 +0000
-Received: from rd03-sz.software.amlogic (10.28.11.121) by mailsc.amlogic.com
- (10.8.11.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Fri, 10 Apr
- 2026 03:02:52 -0700
-From: Jian Hu <jian.hu@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
-	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, "Michael
- Turquette" <mturquette@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, robh+dt <robh+dt@kernel.org>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
-CC: Jian Hu <jian.hu@amlogic.com>, devicetree <devicetree@vger.kernel.org>,
-	linux-amlogic <linux-amlogic@lists.infradead.org>, linux-kernel
-	<linux-kernel@vger.kernel.org>, linux-arm-kernel
-	<linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH 4/4] arm64: dts: amlogic: t7: Add clk measure support
-Date: Fri, 10 Apr 2026 18:03:29 +0800
-Message-ID: <20260410100329.3167482-5-jian.hu@amlogic.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20260410100329.3167482-1-jian.hu@amlogic.com>
-References: <20260410100329.3167482-1-jian.hu@amlogic.com>
+	id 1wBF2T-0000000CYl2-3l5N;
+	Fri, 10 Apr 2026 16:49:03 +0000
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1775839735;
+	bh=gEByb17aWEuS+y3knfgxZufJ5uAM0e8FrkZagNP6esI=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=PGX2gsl1yyc+ElHo9FsLIsNLdz0wCQ4AqJ1oVIagtF+w/VRPb2fJUfeFwtApN/lLT
+	 KRzWyKBNiZNnqsfcaEB5V+x9VA08l0z3E8bxPZ/UT5jXnpu3KzWmW85Xqo0bzwuWBK
+	 9JUQsqnU8Y/8WR1RHhlWiSp/efZ8eULlcwPmZebc=
+Date: Fri, 10 Apr 2026 18:48:04 +0200
+Subject: [PATCH 3/8] firmware: meson: sm: Add thermal calibration SMC call
 MIME-Version: 1.0
-X-Originating-IP: [10.28.11.121]
-X-ClientProxiedBy: mailsh.amlogic.com (10.18.11.5) To mailsc.amlogic.com
- (10.8.11.35)
+Message-Id: <20260410-add-thermal-t7-vim4-v1-3-19f2b8da74d7@aliel.fr>
+References: <20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr>
+In-Reply-To: <20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr>
+To: Guillaume La Roque <glaroque@baylibre.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openssh-sha256; t=1775839730; l=1805;
+ i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
+ bh=gEByb17aWEuS+y3knfgxZufJ5uAM0e8FrkZagNP6esI=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
+ BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QCZXPWgNcIzEeEI7sgiKyGvolQvqu+W2iXUpuLgewQ+KT9tqCB33rJpAiFgCiRuOXeroJaJ+ZpJ
+ TlX2RqgZqmw4=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
+ fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260410_030355_925532_E644631E 
-X-CRM114-Status: UNSURE (   8.58  )
+X-CRM114-CacheID: sfid-20260410_094902_375256_18D26065 
+X-CRM114-Status: UNSURE (   8.51  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -70,31 +83,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the clock measure device to the T7 SoC family.
+Add SM_THERMAL_CALIB_READ at SMC ID 0x82000047 in the command
+table and implement meson_sm_get_thermal_calib(), which forwards the
+tsensor_id argument to the secure monitor and returns the calibration data.
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+Also realign the CMD() column to improve readability.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/firmware/meson/meson_sm.c | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 7fe72c94ed62..cec2ea74850d 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -701,6 +701,11 @@ pwm_ao_cd: pwm@60000 {
- 				status = "disabled";
- 			};
+diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+index 3ab67aaa9e5da..da0dbcd8a2ff2 100644
+--- a/drivers/firmware/meson/meson_sm.c
++++ b/drivers/firmware/meson/meson_sm.c
+@@ -41,12 +41,13 @@ static const struct meson_sm_chip gxbb_chip = {
+ 	.cmd_shmem_in_base	= 0x82000020,
+ 	.cmd_shmem_out_base	= 0x82000021,
+ 	.cmd = {
+-		CMD(SM_EFUSE_READ,	0x82000030),
+-		CMD(SM_EFUSE_WRITE,	0x82000031),
++		CMD(SM_EFUSE_READ,		0x82000030),
++		CMD(SM_EFUSE_WRITE,		0x82000031),
+ 		CMD(SM_EFUSE_USER_MAX,	0x82000033),
+-		CMD(SM_GET_CHIP_ID,	0x82000044),
+-		CMD(SM_A1_PWRC_SET,	0x82000093),
+-		CMD(SM_A1_PWRC_GET,	0x82000095),
++		CMD(SM_GET_CHIP_ID,		0x82000044),
++		CMD(SM_THERMAL_CALIB_READ,	0x82000047),
++		CMD(SM_A1_PWRC_SET,		0x82000093),
++		CMD(SM_A1_PWRC_GET,		0x82000095),
+ 		{ /* sentinel */ },
+ 	},
+ };
+@@ -245,6 +246,14 @@ struct meson_sm_firmware *meson_sm_get(struct device_node *sm_node)
+ }
+ EXPORT_SYMBOL_GPL(meson_sm_get);
  
-+			clock-measurer@48000 {
-+				compatible = "amlogic,t7-clk-measure";
-+				reg = <0x0 0x48000 0x0 0x1c>;
-+			};
++int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
++			       u32 tsensor_id)
++{
++	return meson_sm_call(fw, SM_THERMAL_CALIB_READ, trim_info, tsensor_id,
++			     0, 0, 0, 0);
++}
++EXPORT_SYMBOL_GPL(meson_sm_get_thermal_calib);
 +
- 			sd_emmc_a: mmc@88000 {
- 				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
- 				reg = <0x0 0x88000 0x0 0x800>;
+ #define SM_CHIP_ID_LENGTH	119
+ #define SM_CHIP_ID_OFFSET	4
+ #define SM_CHIP_ID_SIZE		12
+
 -- 
-2.47.1
+2.49.0
 
 
 _______________________________________________
