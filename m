@@ -4,40 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DF39F459FE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Apr 2026 16:49:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE425F459F7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Apr 2026 16:49:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QmtvMbIgAY9T79nnAN7eFsVNMPOjw1MAW3FSdIMk1kY=; b=ioVWZbtUR9OKph
-	WMMRPkVGozhj6Ubho/muDbsz2yxRoHEOYtAMzocaPLPxM32SDd0OwFYhbAle0KjWhcGrYBPU7FPlD
-	yTbdl/eD6aKKJkqCJUxXDKwG8yJwkBEbQ9g9iq3LPXMU36jZMkP6STpsmgNzdUgy1IEZbPA8DwUPN
-	GmSqtXncKf+KDB5LKGytbQes+p+mVKB93uZxs6xwbfjBEiryootzgRyBQsJKJzRp7eMPSAD1Dj+OV
-	tQr4opfeM+4kV5cOXdc1jcGk2C3SfRIHTZ5jE6rCJjOh/EK6SVj/p5f9KkizHV87Oe8fdonGaTWRz
-	JcI54jkOi+aGp3/iJDvA==;
+	List-Owner; bh=cWGS+udSeNUNoRi/VvQM6Rai6GsIqEDH8VHsOiFg91A=; b=piamteFS7IWWma
+	EYDFYS6BcNtCgBrgzERqS6GY3NOXIDMbH+frSjtFEh+8o+1XVypPONBnRwUlkdWBJMz4YIiFvb4Yi
+	K0ExyjTzhE0TltEtOBlLD57hoZGlwAC3HIUpibxboKM0ASD6LXbkdV2y/Zb50VInUvA2bm6XvRbKm
+	pkJDyEcF4fTJm4cATyZEXWLlepq24pz/SiQ0+pRfHBDSYnL+yk5VEoZZcRdZD64JMlSUSY4jegzRa
+	bgnGxejjdSdRswCYzjfGvNMz1zWz7uQfri/8x/yTtdy16VIBaJgZft6yVLnIVBcMR54hK1wcTNTWe
+	Ra18qn0Y7B2+qAavKShw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wBF2c-0000000CYsD-3FOf;
-	Fri, 10 Apr 2026 16:49:10 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
+	id 1wBF2d-0000000CYta-2a1b;
+	Fri, 10 Apr 2026 16:49:11 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wBF2Y-0000000CYm8-0wPS;
-	Fri, 10 Apr 2026 16:49:07 +0000
+	id 1wBF2c-0000000CYqM-0z0J;
+	Fri, 10 Apr 2026 16:49:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=QMBSJabN8FDbZhwftRSMScDETGjahqarsp16bMV3PT4=; b=DOyV7fJNWT4Trmg4wYnaRJmlwE
+	UUJSiw0Cv2m2xM6LYzGH3KNio9tKlxbrjfJ9rnjB3iarRxEXbLpwyeYUq0FcwRqJshM/UY/7aUFpY
+	V1GkJ7CTCZSOCcMZekceZkYJbO5DDbrZvVcGm9/UczM3NOA/Y77K/unLo2DdgVHgm3PG3EzjVe5lM
+	tcXvB0f8uJQY+XP9GBfpTsdB9DHXU1mWbKyuPtcIe0V8IpM0g6yM9m3MUeeccBuTwMkSrJ5CASDPd
+	amatruPz8VVvB/d8jzPoYvDHs5Wl9IdDszba3x17gKglxxBQ6AoWswyg6DKEwDw1TgQW0t6P8eLiE
+	zZKuxU9g==;
+Received: from courrier.aliel.fr ([65.21.61.41])
+	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1wBF2Z-0000000Dwcu-1KCU;
+	Fri, 10 Apr 2026 16:49:09 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1775839739;
-	bh=gXUyoHvrU7UAwF+TcmnCND7Xo2iI5Rna7hPHjxdZqpk=;
+	s=courrier-s1; t=1775839736;
+	bh=+OPiaJJPEI4198UFVptwbMsLl2t7li0yawHDEA3XDzo=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=MBkw5Upp5rKf6qQk4+vVxZYhAyQ5zLQoUG+V9+/EijahO6vcSiLRBA2F0IXo6q8VL
-	 JE+plDbQlersj5EJxE9PCIhYk1IuRSl+ften4yK9OkjAw2nVsXBmg+25zZRZnG85sY
-	 TSylu49SQETiH+XzHE6zZxQGnGssM+5k5/+CJvEU=
-Date: Fri, 10 Apr 2026 18:48:08 +0200
-Subject: [PATCH 7/8] arm64: dts: amlogic: t7: Add thermal zones
+	b=TRm0WdMxB3sDXX9YuDs3+oTabgIdG7SZSMOL0SPKw0gVFkG978R6FogbCivhCXjZQ
+	 IJm+v8Eu96tEpWD0feuDGZlHZbUWj/AgeSr+gLKpPJP79EbM9Shc/wPp0l14hCXanD
+	 v8yCNCMUM/TslLCVzL60UdsCCxSMebg9RI26VjJw=
+Date: Fri, 10 Apr 2026 18:48:05 +0200
+Subject: [PATCH 4/8] thermal: amlogic: Add support for secure monitor
+ calibration readout
 MIME-Version: 1.0
-Message-Id: <20260410-add-thermal-t7-vim4-v1-7-19f2b8da74d7@aliel.fr>
+Message-Id: <20260410-add-thermal-t7-vim4-v1-4-19f2b8da74d7@aliel.fr>
 References: <20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr>
 In-Reply-To: <20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr>
 To: Guillaume La Roque <glaroque@baylibre.com>, 
@@ -54,19 +69,18 @@ Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1775839731; l=5084;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1775839730; l=4382;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=gXUyoHvrU7UAwF+TcmnCND7Xo2iI5Rna7hPHjxdZqpk=;
+ bh=+OPiaJJPEI4198UFVptwbMsLl2t7li0yawHDEA3XDzo=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QO/fcrmlYllJKZ74Lg4OH7deq4Dt7Rw3UAKwqNH3GzSwx6hNlF8nY5t4gExBM93slTCc4FxUxkk
- 94A37KM69BAY=
+ QCUQjZI3bQPJw0xwSq0Z8zi5xgP7Wkj3xpHgfgq0YKKzdSjJUT1+2BSFH82TitvSjr2G8IM8CId
+ esCXPVjxMYQg=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260410_094906_589781_40D0C72C 
-X-CRM114-Status: UNSURE (   8.65  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260410_174907_585967_1C0D5B97 
+X-CRM114-Status: GOOD (  17.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,210 +97,136 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add thermal zones for all six sensors: a53, a73, gpu, nna, vpu, and hevc.
+Some SoCs (e.g. T7) expose thermal calibration data through the secure
+monitor rather than a directly accessible eFuse register. Add a use_sm
+flag to amlogic_thermal_data to select this path, and retrieve the
+firmware handle and tsensor_id from the "amlogic,secure-monitor" DT
+phandle with one fixed argument.
+
+Also introduce the amlogic,t7-thermal compatible using this new path.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 179 ++++++++++++++++++++++++++++
- 1 file changed, 179 insertions(+)
+ drivers/thermal/amlogic_thermal.c | 58 +++++++++++++++++++++++++++++++++++----
+ 1 file changed, 53 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 62f259b2b17d2..c6ea0f20a879f 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/clock/amlogic,t7-scmi.h>
- #include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
- #include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
-+#include <dt-bindings/thermal/thermal.h>
+diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
+index 5448d772db12a..11e3948cc0669 100644
+--- a/drivers/thermal/amlogic_thermal.c
++++ b/drivers/thermal/amlogic_thermal.c
+@@ -25,6 +25,7 @@
+ #include <linux/platform_device.h>
+ #include <linux/regmap.h>
+ #include <linux/thermal.h>
++#include <linux/firmware/meson/meson_sm.h>
  
- / {
- 	interrupt-parent = <&gic>;
-@@ -829,6 +830,184 @@ hevc_tsensor: temperature-sensor@9a000 {
- 				amlogic,secure-monitor = <&sm 5>;
- 			};
- 		};
-+	};
-+
-+	thermal-zones {
-+		a53_thermal: a53-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&a53_tsensor>;
-+
-+			trips {
-+				a53_passive: a53-passive {
-+					temperature = <85000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "passive";
-+				};
-+
-+				a53_hot: a53-hot {
-+					temperature = <95000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "hot";
-+				};
-+
-+				a53_critical: a53-critical {
-+					temperature = <110000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map-a53 {
-+					trip = <&a53_passive>;
-+					cooling-device =
-+						<&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu102 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu103 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+
-+		a73_thermal: a73-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&a73_tsensor>;
-+
-+			trips {
-+				a73_passive: a73-passive {
-+					temperature = <85000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "passive";
-+				};
-+
-+				a73_hot: a73-hot {
-+					temperature = <95000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "hot";
-+				};
-+
-+				a73_critical: a73-critical {
-+					temperature = <110000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map-a73 {
-+					trip = <&a73_passive>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+
-+		gpu_thermal: gpu-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&gpu_tsensor>;
-+
-+			trips {
-+				gpu_passive: gpu-passive {
-+					temperature = <95000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				gpu_hot: gpu-hot {
-+					temperature = <105000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
+ #include "thermal_hwmon.h"
  
-+				gpu_critical: gpu-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		hevc_thermal: hevc-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&hevc_tsensor>;
-+
-+			trips {
-+				hevc_passive: hevc-passive {
-+					temperature = <95000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				hevc_hot: hevc-hot {
-+					temperature = <105000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				hevc_critical: hevc-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		nna_thermal: nna-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&nna_tsensor>;
-+
-+			trips {
-+				nna_passive: nna-passive {
-+					temperature = <95000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				nna_hot: nna-hot {
-+					temperature = <105000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				nna_critical: nna-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		vpu_thermal: vpu-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&vpu_tsensor>;
-+
-+			trips {
-+				vpu_passive: vpu-passive {
-+					temperature = <95000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				vpu_hot: vpu-hot {
-+					temperature = <105000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				vpu_critical: vpu-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
- 	};
+@@ -84,12 +85,14 @@ struct amlogic_thermal_soc_calib_data {
+  * @u_efuse_off: register offset to read fused calibration value
+  * @calibration_parameters: calibration parameters structure pointer
+  * @regmap_config: regmap config for the device
++ * @use_sm: read data from secure monitor instead of efuse
+  * This structure is required for configuration of amlogic thermal driver.
+  */
+ struct amlogic_thermal_data {
+ 	int u_efuse_off;
+ 	const struct amlogic_thermal_soc_calib_data *calibration_parameters;
+ 	const struct regmap_config *regmap_config;
++	bool use_sm;
  };
+ 
+ struct amlogic_thermal {
+@@ -100,6 +103,8 @@ struct amlogic_thermal {
+ 	struct clk *clk;
+ 	struct thermal_zone_device *tzd;
+ 	u32 trim_info;
++	struct meson_sm_firmware *sm_fw;
++	u32 tsensor_id;
+ };
+ 
+ /*
+@@ -138,6 +143,12 @@ static int amlogic_thermal_initialize(struct amlogic_thermal *pdata)
+ 	int ret = 0;
+ 	int ver;
+ 
++	if (pdata->data->use_sm) {
++		return meson_sm_get_thermal_calib(pdata->sm_fw,
++						  &pdata->trim_info,
++						  pdata->tsensor_id);
++	}
++
+ 	regmap_read(pdata->sec_ao_map, pdata->data->u_efuse_off,
+ 		    &pdata->trim_info);
+ 
+@@ -226,6 +237,12 @@ static const struct amlogic_thermal_data amlogic_thermal_a1_cpu_param = {
+ 	.regmap_config = &amlogic_thermal_regmap_config_g12a,
+ };
+ 
++static const struct amlogic_thermal_data amlogic_thermal_t7_param = {
++	.use_sm			= true,
++	.calibration_parameters	= &amlogic_thermal_g12a,
++	.regmap_config		= &amlogic_thermal_regmap_config_g12a,
++};
++
+ static const struct of_device_id of_amlogic_thermal_match[] = {
+ 	{
+ 		.compatible = "amlogic,g12a-ddr-thermal",
+@@ -239,6 +256,10 @@ static const struct of_device_id of_amlogic_thermal_match[] = {
+ 		.compatible = "amlogic,a1-cpu-thermal",
+ 		.data = &amlogic_thermal_a1_cpu_param,
+ 	},
++	{
++		.compatible = "amlogic,t7-thermal",
++		.data = &amlogic_thermal_t7_param,
++	},
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, of_amlogic_thermal_match);
+@@ -271,11 +292,38 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
+ 	if (IS_ERR(pdata->clk))
+ 		return dev_err_probe(dev, PTR_ERR(pdata->clk), "failed to get clock\n");
+ 
+-	pdata->sec_ao_map = syscon_regmap_lookup_by_phandle
+-		(pdev->dev.of_node, "amlogic,ao-secure");
+-	if (IS_ERR(pdata->sec_ao_map)) {
+-		dev_err(dev, "syscon regmap lookup failed.\n");
+-		return PTR_ERR(pdata->sec_ao_map);
++	if (pdata->data->use_sm) {
++		struct device_node *sm_np;
++		struct of_phandle_args ph_args;
++
++		ret = of_parse_phandle_with_fixed_args(pdev->dev.of_node,
++						       "amlogic,secure-monitor",
++						       1, 0, &ph_args);
++		if (ret)
++			return ret;
++
++		sm_np = ph_args.np;
++		if (!sm_np) {
++			dev_err(dev,
++				"Failed to parse secure monitor phandle\n");
++			return -ENODEV;
++		}
++
++		pdata->sm_fw = meson_sm_get(sm_np);
++		of_node_put(sm_np);
++		if (!pdata->sm_fw) {
++			dev_err(dev, "Failed to get secure monitor firmware\n");
++			return -EPROBE_DEFER;
++		}
++
++		pdata->tsensor_id = ph_args.args[0];
++	} else {
++		pdata->sec_ao_map = syscon_regmap_lookup_by_phandle
++			(pdev->dev.of_node, "amlogic,ao-secure");
++		if (IS_ERR(pdata->sec_ao_map)) {
++			dev_err(dev, "syscon regmap lookup failed.\n");
++			return PTR_ERR(pdata->sec_ao_map);
++		}
+ 	}
+ 
+ 	pdata->tzd = devm_thermal_of_zone_register(&pdev->dev,
 
 -- 
 2.49.0
