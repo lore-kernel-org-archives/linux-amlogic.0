@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BE32F459F7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Apr 2026 16:59:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A824F44875
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2026 09:32:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6VwBzsYDDeTjt7xH55cP2ruHS+H4P27s4k2RgCB3d1Q=; b=AjChB+z240SE0d
-	O0Ss7rEWG4ZcSD14+8w8D3cQujXZRURZBlMmSqMe0dFab5kBHvJcv9F1goAhZujIqhKSxrsRC6WUr
-	hV2YPPFGVjiUiQvxUwfF0XfUzE+25fIXTgycV9Qo6XBPORNSRn37u8SqzVhtkfQj1ztB51yiDyu0e
-	RAnGry2NKYdPhOtqgbXxnMajrLxJtXWWei6alws7Ee96dXZNgNcsFE7vlLVWrkgb35EpFGGctncPy
-	ezAxT9SiFb1/M9+1w+nC2I4kBQBlpiKzzctNyXB1L3J3Jampy8V25E1EHWoiwPjtsRq6ns22avTRs
-	FY6lx7sM7PD2CbUBrqKQ==;
+	List-Owner; bh=SZJii2qESmbu1hVSVNStRal246QU1722ixaE1H4+gJQ=; b=Tmxe25vTWt7Bwz
+	LlEHz+DmA9CkE7XwSzIE/VT8nWY1H1avmhLRzFQF8tF9kvp2Qw9FvWjRcg3rnzFknlvJ2CTbM52mG
+	fu06F6PyLbuw43iYjQwoRnXQAU3AkbTDhShP2AnrWNVgqoDGuyqVDQMsjLQOBUGjSG71cbvCa1ZUA
+	VsRGbYHnuy4JeHCItJs2ddf2Tam9neUPPquoQzyVorE0Z+pZSImlV8RxHInrxKOnX9kuYJq0Jwj0F
+	CzNAL0uLy1jVRBVetgxbIQil2GtOruMof0NSU7cxh0tZ4CtHLl8lRX2M9fJkZuLvqJdHHw+51JcKp
+	WhKXS8UPnLM8eLlLRw6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wBFC9-0000000CaHF-0uee;
-	Fri, 10 Apr 2026 16:59:01 +0000
-Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
+	id 1wBUhb-0000000DJrh-3xZc;
+	Sat, 11 Apr 2026 09:32:31 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wBFC6-0000000CaGl-3QOy;
-	Fri, 10 Apr 2026 16:59:00 +0000
-Message-ID: <08af5c73-8558-454f-a829-4ff33b0a69c0@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1775840334;
-	bh=UmZRGZba5vQQqPdfM0FaDawLz7o5OzGOJk+BR1COVAs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=omrqlx+Xg6YOQIrtVlYAx7Z8vO59bI30r2+IsHyfPkI2VuOIXD7+HwY2p51MvljFd
-	 g1S8R5wyk6Y9wuRUmfbKjLQxZmQCB98CH6Q96oecNg5nXZymCVBXA/bSmWVKFHf+a/
-	 PBe6CYW+WssEawRAZ4ekbAjNf5kK1l4ZCEF8poxg=
-Date: Fri, 10 Apr 2026 18:58:53 +0200
+	id 1wBUha-0000000DJrY-2gMS;
+	Sat, 11 Apr 2026 09:32:30 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id A24AA60145;
+	Sat, 11 Apr 2026 09:32:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9A27C4CEF7;
+	Sat, 11 Apr 2026 09:32:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775899949;
+	bh=Bwnwhvav7SqaBcGFuZZ4+1wMWtuK1iYREbAFYllIJuc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HaXSsm1Sq4nXPSw6LEOW/k+FOhQYNeo0nXpITHwF+XkAZGvqtytXuqf0UvmMqAULG
+	 g7jE5JE8esTBkZgWclucm+z6bx/ua3ORDCWiHHyM4KPR5PhcbzBYIy20I5gsdmq1Ch
+	 XL8oyDoAhujzwdutvJXH4kcmchOYpZiaWh3iQ9WIO8xNCqWcZOWvd70kHIfG2UMJ5i
+	 Ng9+owznce4KPf5kxS4ZZfHG7BpWj4U0BwcNMqVCvzivWuatm3fFYctp2kCkh1n55p
+	 t4PtGRkdspC3qtuUhS22XXNIc04/mbaO8NiKlW0Ml8fcP/JtuupF2edZDgmV5KzDdm
+	 fDMjVip+1tg4w==
+Date: Sat, 11 Apr 2026 11:32:27 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: soc@kernel.org, arm@kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [GIT PULL] amlogic ARM64 DT updates for v7.1
+Message-ID: <20260411-spicy-apricot-newt-afa8a7@quoll>
+References: <2fde1b11-d2a4-4aa2-8c28-d20fbbb54f7f@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH 4/4] arm64: dts: amlogic: t7: Add clk measure support
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: devicetree <devicetree@vger.kernel.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- robh+dt <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-References: <20260410100329.3167482-1-jian.hu@amlogic.com>
- <20260410100329.3167482-5-jian.hu@amlogic.com>
-Content-Language: en-US
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-In-Reply-To: <20260410100329.3167482-5-jian.hu@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260410_095859_011203_00755C98 
-X-CRM114-Status: GOOD (  11.04  )
+Content-Disposition: inline
+In-Reply-To: <2fde1b11-d2a4-4aa2-8c28-d20fbbb54f7f@linaro.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,41 +68,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Jian,
-
-On 4/10/26 12:03 PM, Jian Hu wrote:
-> Add the clock measure device to the T7 SoC family.
+On Fri, Apr 10, 2026 at 10:50:58AM +0200, Neil Armstrong wrote:
+> Hi,
 > 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
+> Here's the Amlogic ARM64 DT changes for v7.1, including a bunch of fixes
+> and improvements for the Khadas VIM4 and VIM1s SBCs, plus some additions
+> for the Phicomm N1 and a couple of low priority fixes.
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index 7fe72c94ed62..cec2ea74850d 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -701,6 +701,11 @@ pwm_ao_cd: pwm@60000 {
->  				status = "disabled";
->  			};
->  
-> +			clock-measurer@48000 {
-> +				compatible = "amlogic,t7-clk-measure";
-> +				reg = <0x0 0x48000 0x0 0x1c>;
-> +			};
-> +
+> Thanks,
+> Neil
+> 
+> The following changes since commit 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f:
+> 
+>   Linux 7.0-rc1 (2026-02-22 13:18:59 -0800)
+> 
+> are available in the Git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-arm64-dt-for-v7.1
+> 
+> for you to fetch changes up to 401e5c73eedde8225e87bd11c794b8409248ff41:
+> 
+>   arm64: dts: meson-gxl-p230: fix ethernet PHY interrupt number (2026-04-08 14:27:20 +0200)
 
-Can you please order by reg, it should be between pwm_ao_gh and pwm_ab.
-Thank you.
+Days in linux-next:
+----------------------------------------
+ 1 | ++++++++ (8)
+ ...
 
->  			sd_emmc_a: mmc@88000 {
->  				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
->  				reg = <0x0 0x88000 0x0 0x800>;
+So a few things were just applied, unless this was rebased?
 
+I will wait with this. It might miss the merge window if v7.0 is
+released this weekend.
 
--- 
 Best regards,
-Ronald
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
