@@ -4,103 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DA60F3ED55
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2026 14:58:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B63C2F3ED5E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2026 20:30:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZB2SajsrAUCePzaI8CxH17wNXDhPsESDFBn9TUviDEA=; b=XSuFI9pc3u6cQC
-	YiSj1CwllzqG6h6g4I6WqlKl/OymkwMaRy/vropr+Nm6f9THKrX5DKWIRVSQ3IuVBI7wiaGB++lr+
-	9uaic1/SC3OH1M3s+wuWTkiWia1vS9vPrmt2J8XSwEWB7kZzYfPcsGB2Zb7S/QnIScwN3mjHXGOmP
-	AW7RpKGq/jI2fkBn03W8nUqQRZELp/mFs+5pBXfGB5SDoEbWzBP73HYndTmsklvuNX0TsKc9YCwQb
-	e7Vtv5d6/42ZjusFiocymd3p/AT0JnZzbCYccSiIUzT5kUEgBsHI0jqdjdXCNArRj51Ibz1xjAm8B
-	Qu3o5pMdYWakjDy50WsA==;
+	List-Owner; bh=njZXO9ZkJkzlP/7NnxS88C3CLlBJywnIQTDNO6y8jrc=; b=KKmNDER7DuE3Gg
+	EM64jUPlCC7vn+Eod7tp7/prkALvh/Cvaqrfatix5egGsJqzOKdNvrqZvfidVpresreGRxGaoIXzW
+	x5iMBE8/IH2fFzi9h9UHkYEJj85dcVCb5f3F/FvW78TA3blx9nid0ksWwAplgERX6Z64e8wVV4UKt
+	sIHV893K8wRpRB6a98CPmSggSupT1ZNiYDD9GU/roLfOvyTW/oDbx8T9ysuo/3vtVqlvpt1ZRZ2G1
+	p/MKHNyDhBYXX/cIwA7AFKdwQYLsbYtqjR5r/PpYmDcJU6E7GFpQYQnz81pV8I5wHulibkK6rI2wX
+	eA7aZ0SdU3jgaOqQd4dw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wBZmv-0000000DY00-0Wxm;
-	Sat, 11 Apr 2026 14:58:21 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1wBeyS-0000000DmIW-3Tca;
+	Sat, 11 Apr 2026 20:30:36 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wBZmo-0000000DXns-2KeG
+	id 1wBeyR-0000000DmIQ-3HM0
 	for linux-amlogic@lists.infradead.org;
-	Sat, 11 Apr 2026 14:58:15 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-488a041eae5so21103995e9.1
-        for <linux-amlogic@lists.infradead.org>; Sat, 11 Apr 2026 07:58:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1775919493; x=1776524293; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QPh0SQsOnsDniPo3dQ9nl1UbMYpXngLC6j6GE4dl7dE=;
-        b=FEa6MxNZlvM7gw26ho55rF0msZ5cK80mKPnwGMJdk0OduJ1yMCZuURphwBSr0pVH+x
-         cgH69k9pvbGpR0bt7oZvLBe+DqM7Ff9E6B3q1FlugF/wmYn1k5TPLH1FrTlj+HihQP+8
-         MmGYcktxgl71I6H1YJANIT+62LCHay3e3NysUiXawxOcnFn8u3e9csOE3EqYnRYirJyl
-         XpZSSefGVbFjodsVGIn/yq34U+CwP1ILtE22GSaj7pEOFClPu+SBvqM4+LPa4DIyTNra
-         W05oMuPABnWRwd5quf3ZlnNg+71DnBQXnPqIBsSL4A5j+/uh7gVaGrYHLlz5ubI26Z8X
-         wxHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775919493; x=1776524293;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QPh0SQsOnsDniPo3dQ9nl1UbMYpXngLC6j6GE4dl7dE=;
-        b=r48UHmjnWIzkodYOWVD8cytXLr+8glJVBKXyzM4x8u2UjrQeaRx+h9PyfBxyiBal1z
-         4r2STD8sTXKQWCggYW9cJQQOzjapejHKWiVh8bCGBuZXTn5Q+TPkkgdpCjkQYXcgs0va
-         10XPprMLuRCq4YYNlYYBMLdtMG+RdebG/EQ5+OFZWEF+40L8PdhYcjJfdxt0Wa67fwFA
-         6l9xUuE+aVHwFvEk0qDp9GmiWkTUk+J8ikop8XoMI3e+8AfAGhb1iloaHMhJDnPStqGL
-         VMPvw697uuyL2IO/9YdhNmF4jXTY2Wm6jrrOOO1k673cWr04PUNFZin1l0x7YFg4rAGy
-         Qahg==
-X-Forwarded-Encrypted: i=1; AJvYcCUQt1k4pS6C0Ly+OT4Pi1ya3W2aoG+XTF2OpqhWvDnJvYsECjbprdWqfRsRVqT6jTkCzT0ArDa3v4OnvL6r@lists.infradead.org
-X-Gm-Message-State: AOJu0YztpkSTpieH6JYD7M6xMxcDBW+ECHFMfU/CMk1Y4OhtSAQY5VKh
-	4ehWdT93CXeCKXMEIEVncnwqqCF5Oy1fWO0rmpc4WSLEEQnkYj2S1IQ4sCVYxbpwPgU=
-X-Gm-Gg: AeBDieu7Kir9C9qPnqw9Hpev72o/OeIbLp0laFfAteJv70npgG4PnSmMxyHHFNShzbv
-	x1XTn1h7k4aiOe5TEtxHehAQSCZSbjImkkiag+ZPZoFFu75dsfDf63mUTlDAZ/gvnY5x6SIPSYI
-	Q2oK0zEobrC0IEuXWktoc6wkHoNW0Rm56skp0sxo+WuNs6NSFnIRIkx7EMprqQsQb7e71tq3fSv
-	f91a1OqvGT6fRlr7E9b7BOQdeAv4PvO3KWO26JStSurSbUCSsKsFWCDB57gW2mV8CifwyHPDrGW
-	KF/j831BRZeCPv7YqUM4EW05uWmQLLj64dwG49Je05A8hboy6myVJcXDmGROm8B/iOvjOf2oRuv
-	BxHOT8mItv7knY0vOHjd3PeheXAx44JGDrRfFuHg0MrKuIi6VVriD3zPBtf0gQlFeg3NU0PCzgL
-	8PuffoJBMEhCJARsL1fjfo
-X-Received: by 2002:a05:600c:45cf:b0:483:8062:b2f with SMTP id 5b1f17b1804b1-488d67b8dddmr90911785e9.6.1775919492745;
-        Sat, 11 Apr 2026 07:58:12 -0700 (PDT)
-Received: from [127.0.1.1] ([151.61.248.52])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488d5dc7070sm48882375e9.10.2026.04.11.07.58.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Apr 2026 07:58:12 -0700 (PDT)
-From: Valerio Setti <vsetti@baylibre.com>
-Date: Sat, 11 Apr 2026 16:57:36 +0200
-Subject: [PATCH RFC v2 11/11] arm64: dts: amlogic: odroid-c2: add support
- for I2S audio input
+	Sat, 11 Apr 2026 20:30:35 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id B94546015B
+	for <linux-amlogic@lists.infradead.org>; Sat, 11 Apr 2026 20:30:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E239CC116C6;
+	Sat, 11 Apr 2026 20:30:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1775939434;
+	bh=3fAvu4DQfSq8fTPm4i3FvxAfOBa8iYFSLzogvfE1Kfg=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=puKedWQn98064akp2c36z9geboV62BSvIuBI+31T+y0JfCrAl0pc99QylKDoDy441
+	 jIqMGXRwo1jAQg1OEpXijeb8o5lYkXaBR017Cmf3BbduFeG2N9aLu+zVlcuZeZVcZA
+	 ZZQBCqD57iFoL35VNj5uY/royf7Tw7YOPf6LKCpjB6I4v2XET+80xtHN9DWDMsEGo2
+	 9N3galDD/EaOc08MFvt4+yN/manhNAWq5Qe/DU2nYMbuzSuCnVxMZfqUxnsO/dn1VD
+	 Jx8Oe85OOM/LbJVBuw3GJGZ9X2IqpgMrbqru30FBIYwQhy1Cqph8B5G3I8EHFPx07o
+	 zQ8aWtNgGvM8Q==
+Message-ID: <7d4ec08c-a67c-434c-a1cd-c3ef5b7e3336@kernel.org>
+Date: Sat, 11 Apr 2026 22:30:32 +0200
 MIME-Version: 1.0
-Message-Id: <20260411-audin-rfc-v2-11-4c8a6ec5fcab@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 05/11] ASoC: dt-bindings: amlogic: add schema for
+ audin-formatter and audin-toddr
+To: linux-amlogic@lists.infradead.org
 References: <20260411-audin-rfc-v2-0-4c8a6ec5fcab@baylibre.com>
-In-Reply-To: <20260411-audin-rfc-v2-0-4c8a6ec5fcab@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Valerio Setti <vsetti@baylibre.com>
-Cc: linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2057; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=G0Gm8t6IneiVYTkTeSCPBc6CjJqlMmdql/bqJBW4d+4=;
- b=owGbwMvMwCF2z3ty7kUrRgbG02pJDJm3EkvqxVwT5VamJ1TGemSZrpGo//vDKYVhXsDtaT9/n
- d2a1vCyo5SFQYyDQVZMkYVl+r3fBaVqD40TThbAzGFlAhnCwMUpABOZtYXhv3uboq/N4frukMUf
- t4nU8UmbXFJtuSO040y/Yqmh6CY3I4Z/mocXTZBzknidk319x109g85X2gJL3tnpVhtHXvs7SYC
- dDQA=
-X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
- fpr=0497DEFB707526E13360C970DE4B936DD13A0100
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260411_075814_650775_38F84D77 
-X-CRM114-Status: UNSURE (   9.48  )
-X-CRM114-Notice: Please train this message.
+ <20260411-audin-rfc-v2-5-4c8a6ec5fcab@baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260411-audin-rfc-v2-5-4c8a6ec5fcab@baylibre.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,84 +113,95 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-- Enable AUDIN I2S decoder and all FIFO components;
-- Add AUDIN I2S Decoder as AUX device to the GX sound card;
-- Add AUDIN Capture frontend DAIs in the GX sound card;
-- Add I2S input data routing to the GX sound card.
+On 11/04/2026 16:57, Valerio Setti wrote:
+> Add schema for "amlogic,meson-gx-audin-decoder-i2s" and
+> "amlogic,meson-gx-audin-fifo" modules which are used to
+> provide I2S audio input support to the Meson GX platform.
+> 
+> Signed-off-by: Valerio Setti <vsetti@baylibre.com>
+> ---
+>  .../sound/amlogic,meson-gx-audin-decoder-i2s.yaml  | 49 +++++++++++++++++
+>  .../sound/amlogic,meson-gx-audin-fifo.yaml         | 63 ++++++++++++++++++++++
+>  2 files changed, 112 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-decoder-i2s.yaml b/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-decoder-i2s.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..eaf57603e1ecf5944ffdcf7a1b6146d1a0295696
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-decoder-i2s.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/amlogic,meson-gx-audin-decoder-i2s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic GX AUDIN I2S Input Decoder
+> +
+> +maintainers:
+> +  - Valerio Setti <vsetti@baylibre.com>
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^audio-controller@.*"
 
-Note: in the routing part, usage of "AIU I2S Encoder Capture" as source
-for "AUDIN I2S Decoder IN" is fine (despite the Encoder/Decoder mismatch).
-This belong to the fact that the interface is implemented by "AIU I2S
-Encoder", which was already existing (and named) before the AUDIN addition.
+Drop
 
-Signed-off-by: Valerio Setti <vsetti@baylibre.com>
----
- .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 34 ++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - amlogic,meson-gxbb-audin-decoder-i2s
+> +      - const: amlogic,meson-gx-audin-decoder-i2s
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 5943bc810678edc81fe1a8e3eeae69786e27010c..54798e5b631fdc594cabc5876ab73a3a85944ab0 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -188,6 +188,12 @@ sound {
- 				       <270950400>,
- 				       <393216000>;
- 
-+		audio-aux-devs = <&audin_decoder_i2s>;
-+		audio-routing = "AUDIN I2S Decoder IN", "AIU I2S Encoder Capture",
-+				"AUDIN FIFO0 I2S IN", "AUDIN I2S Decoder OUT",
-+				"AUDIN FIFO1 I2S IN", "AUDIN I2S Decoder OUT",
-+				"AUDIN FIFO2 I2S IN", "AUDIN I2S Decoder OUT";
-+
- 		dai-link-0 {
- 			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
- 		};
-@@ -209,6 +215,18 @@ codec-0 {
- 				sound-dai = <&hdmi_tx>;
- 			};
- 		};
-+
-+		dai-link-3 {
-+			sound-dai = <&audin_fifo0>;
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&audin_fifo1>;
-+		};
-+
-+		dai-link-5 {
-+			sound-dai = <&audin_fifo2>;
-+		};
- 	};
- };
- 
-@@ -216,6 +234,22 @@ &aiu {
- 	status = "okay";
- };
- 
-+&audin_decoder_i2s {
-+	status = "okay";
-+};
-+
-+&audin_fifo0 {
-+	status = "okay";
-+};
-+
-+&audin_fifo1 {
-+	status = "okay";
-+};
-+
-+&audin_fifo2 {
-+	status = "okay";
-+};
-+
- &cec_AO {
- 	status = "okay";
- 	pinctrl-0 = <&ao_cec_pins>;
+Compatible is always the first property.
 
--- 
-2.39.5
+> +
+> +  reg:
+> +    maxItems: 1
 
+Reg follows. Please look at DTS coding style or other bindings.
+
+> +
+> +  sound-name-prefix: true
+
+Drop
+
+> +
+> +required:
+> +  - "#sound-dai-cells"
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+
+unevaluatedProperties
+
+> +
+> +examples:
+> +  - |
+> +    audio-controller@a040 {
+> +      compatible = "amlogic,meson-gxbb-audin-decoder-i2s",
+> +                   "amlogic,meson-gx-audin-decoder-i2s";
+> +      #sound-dai-cells = <0>;
+> +      sound-name-prefix = "AUDIN I2S Decoder";
+> +      reg = <0xa040 0x4>;
+
+One register-wide block? I have doubts this is a separate device
+
+> +      status = "disabled";
+
+Drop, examples must not be disabled.
+
+
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
