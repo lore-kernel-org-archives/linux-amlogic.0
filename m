@@ -4,53 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B63C2F3ED5E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 Apr 2026 20:30:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36BABF4487A
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Apr 2026 09:55:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=njZXO9ZkJkzlP/7NnxS88C3CLlBJywnIQTDNO6y8jrc=; b=KKmNDER7DuE3Gg
-	EM64jUPlCC7vn+Eod7tp7/prkALvh/Cvaqrfatix5egGsJqzOKdNvrqZvfidVpresreGRxGaoIXzW
-	x5iMBE8/IH2fFzi9h9UHkYEJj85dcVCb5f3F/FvW78TA3blx9nid0ksWwAplgERX6Z64e8wVV4UKt
-	sIHV893K8wRpRB6a98CPmSggSupT1ZNiYDD9GU/roLfOvyTW/oDbx8T9ysuo/3vtVqlvpt1ZRZ2G1
-	p/MKHNyDhBYXX/cIwA7AFKdwQYLsbYtqjR5r/PpYmDcJU6E7GFpQYQnz81pV8I5wHulibkK6rI2wX
-	eA7aZ0SdU3jgaOqQd4dw==;
+	List-Owner; bh=A7GUDmCHq1cI44M4ST6Hn3z2v6LcDW7J5dUXaH/Fnm0=; b=qrkoyeebsIQpH2
+	CkopJR1dtl2aGBX32L8NFpedJ4hWys7OX5gOAX3MpRWhYklr7dhrSGvjsCDgwKwFDZRqQYnQMeP6k
+	js5sNnMGS3WgSAN2OESTw+9TrToHOLSNfAHiSSKksRyH+dT42uvI3lW3LEtbIs+BslNRJA6aP3+38
+	lIEPFh7RUhreEJoI5N915CkrP4Wy9CgHyyqe9WiejnuQ+Il14xxsUkUC7u09cTkvg0YcFYIv+xrYv
+	8DFZWDlv+dZuWeXu0R/Z+E5lUteLBwZ/rhIoPvrx0WVwD7e2EAyZ7J5iK5HApQOm/ipHHU6z9idlU
+	qIOgYtiFyF1VzwtBplJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wBeyS-0000000DmIW-3Tca;
-	Sat, 11 Apr 2026 20:30:36 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wBrXX-0000000EDn3-17a8;
+	Sun, 12 Apr 2026 09:55:39 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wBeyR-0000000DmIQ-3HM0
-	for linux-amlogic@lists.infradead.org;
-	Sat, 11 Apr 2026 20:30:35 +0000
+	id 1wBrXU-0000000EDmc-07H3;
+	Sun, 12 Apr 2026 09:55:37 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id B94546015B
-	for <linux-amlogic@lists.infradead.org>; Sat, 11 Apr 2026 20:30:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E239CC116C6;
-	Sat, 11 Apr 2026 20:30:33 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 1E61C40765;
+	Sun, 12 Apr 2026 09:55:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B027C19424;
+	Sun, 12 Apr 2026 09:55:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775939434;
-	bh=3fAvu4DQfSq8fTPm4i3FvxAfOBa8iYFSLzogvfE1Kfg=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=puKedWQn98064akp2c36z9geboV62BSvIuBI+31T+y0JfCrAl0pc99QylKDoDy441
-	 jIqMGXRwo1jAQg1OEpXijeb8o5lYkXaBR017Cmf3BbduFeG2N9aLu+zVlcuZeZVcZA
-	 ZZQBCqD57iFoL35VNj5uY/royf7Tw7YOPf6LKCpjB6I4v2XET+80xtHN9DWDMsEGo2
-	 9N3galDD/EaOc08MFvt4+yN/manhNAWq5Qe/DU2nYMbuzSuCnVxMZfqUxnsO/dn1VD
-	 Jx8Oe85OOM/LbJVBuw3GJGZ9X2IqpgMrbqru30FBIYwQhy1Cqph8B5G3I8EHFPx07o
-	 zQ8aWtNgGvM8Q==
-Message-ID: <7d4ec08c-a67c-434c-a1cd-c3ef5b7e3336@kernel.org>
-Date: Sat, 11 Apr 2026 22:30:32 +0200
+	s=k20201202; t=1775987735;
+	bh=Jy/ehqt0DfwlsLPX46NJEmjRWPWkCPwiCn1VTpbPT8k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nGSshU1Q+ZSNsrr6DUWhjnWjH5GDLq7PxpDWTFBWcoizuZKB/+eZGN5+b4VkFIHFE
+	 5SK0KWNaabiAuC0qGauhTuo82EsKP4buNStEMhkqAqzVQ1RHgvNI8sQAnMSypP1i5V
+	 1MJQ8SBpy8ZrDCvsEpvCGCGhRt08RBkTTAtasw/HTRTQjhW4UsOFoVJ5edw0cHDPSv
+	 J2wFus2pzPDfN0zLMPzr/jCxoTuglpV2YldC6dxe+0Gq8ADdfMoOeT251cEs41Q06E
+	 H/iMYuLBwLSTi02pvmZuYCPRarRFKHOch92jLIsgQ2iVAKhoCR/VYfh3dUhb1YfOYW
+	 58a0WKqNd1JRA==
+Message-ID: <9a4f69e7-838a-4992-af1d-46324e14eb48@kernel.org>
+Date: Sun, 12 Apr 2026 11:55:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 05/11] ASoC: dt-bindings: amlogic: add schema for
- audin-formatter and audin-toddr
-To: linux-amlogic@lists.infradead.org
-References: <20260411-audin-rfc-v2-0-4c8a6ec5fcab@baylibre.com>
- <20260411-audin-rfc-v2-5-4c8a6ec5fcab@baylibre.com>
+Subject: Re: [PATCH 2/4] soc: amlogic: clk-measure: Add A1 and T7 support
+To: Jian Hu <jian.hu@amlogic.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ robh+dt <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: devicetree <devicetree@vger.kernel.org>,
+ linux-amlogic <linux-amlogic@lists.infradead.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20260410100329.3167482-1-jian.hu@amlogic.com>
+ <20260410100329.3167482-3-jian.hu@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -96,7 +103,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260411-audin-rfc-v2-5-4c8a6ec5fcab@baylibre.com>
+In-Reply-To: <20260410100329.3167482-3-jian.hu@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260412_025536_112769_99668D5D 
+X-CRM114-Status: GOOD (  11.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,92 +123,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/04/2026 16:57, Valerio Setti wrote:
-> Add schema for "amlogic,meson-gx-audin-decoder-i2s" and
-> "amlogic,meson-gx-audin-fifo" modules which are used to
-> provide I2S audio input support to the Meson GX platform.
+On 10/04/2026 12:03, Jian Hu wrote:
+> Add support for the A1 and T7 SoC family in amlogic clk measure.
 > 
-> Signed-off-by: Valerio Setti <vsetti@baylibre.com>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
->  .../sound/amlogic,meson-gx-audin-decoder-i2s.yaml  | 49 +++++++++++++++++
->  .../sound/amlogic,meson-gx-audin-fifo.yaml         | 63 ++++++++++++++++++++++
->  2 files changed, 112 insertions(+)
+>  drivers/soc/amlogic/meson-clk-measure.c | 272 ++++++++++++++++++++++++
+>  1 file changed, 272 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-decoder-i2s.yaml b/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-decoder-i2s.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..eaf57603e1ecf5944ffdcf7a1b6146d1a0295696
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-decoder-i2s.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/amlogic,meson-gx-audin-decoder-i2s.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic GX AUDIN I2S Input Decoder
-> +
-> +maintainers:
-> +  - Valerio Setti <vsetti@baylibre.com>
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^audio-controller@.*"
+> diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
+> index d862e30a244e..083524671b76 100644
+> --- a/drivers/soc/amlogic/meson-clk-measure.c
+> +++ b/drivers/soc/amlogic/meson-clk-measure.c
+> @@ -787,6 +787,258 @@ static const struct meson_msr_id clk_msr_s4[] = {
+>  
+>  };
+>  
+> +static struct meson_msr_id clk_msr_a1[] = {
 
-Drop
-
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - amlogic,meson-gxbb-audin-decoder-i2s
-> +      - const: amlogic,meson-gx-audin-decoder-i2s
-
-Compatible is always the first property.
-
-> +
-> +  reg:
-> +    maxItems: 1
-
-Reg follows. Please look at DTS coding style or other bindings.
-
-> +
-> +  sound-name-prefix: true
-
-Drop
-
-> +
-> +required:
-> +  - "#sound-dai-cells"
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-
-unevaluatedProperties
-
-> +
-> +examples:
-> +  - |
-> +    audio-controller@a040 {
-> +      compatible = "amlogic,meson-gxbb-audin-decoder-i2s",
-> +                   "amlogic,meson-gx-audin-decoder-i2s";
-> +      #sound-dai-cells = <0>;
-> +      sound-name-prefix = "AUDIN I2S Decoder";
-> +      reg = <0xa040 0x4>;
-
-One register-wide block? I have doubts this is a separate device
-
-> +      status = "disabled";
-
-Drop, examples must not be disabled.
-
+And existing code uses what sort of array? Seems you send us obsolete or
+downstream code.
 
 Best regards,
 Krzysztof
