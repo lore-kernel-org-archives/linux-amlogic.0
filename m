@@ -4,50 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C71D2EBFD3B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Apr 2026 10:56:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1608EBFD3E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Apr 2026 10:56:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=T3Sd6E9rpOnBb72QQZkkkl3CELAr9mB5WzhCXBEo+g4=; b=hb2nCel69FjzVw
-	8Z5glEXtFOFuHgBZZbANNIn2uM9qMM/WJSz0v+yIce6FBCY6DmD82u0EflkyC7XC1nuWvXS5mQeD+
-	BPbe6Q8A827tFrJcq3OyXWyCG2a2dGELvKtfUrreTitLH7HnYbnKFB6wb5uCMTo4hIiVYJTC2kqCG
-	v9hI6qtlF3qdWGK3yB224/f1M8DNwCzMJOSCBl+fhn3xJw5DU9dgALcVLeLSx73gqX3Zzyibd8W6m
-	ElNL+fXNiqQv27Hs7Pv1xLkipCamYMOFvKSXgogaWJHN/QPCntQned19yIFm2KdvtWtTBk1JCqhBP
-	mO19DraFCE+MGXNDsQKA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=aCCFAfBb05FEBWrODXi4vZWsADhED6h1R+2JnBFA1os=; b=LrIAMHNhwogzV/
+	XBEfd1w1aqvy8Gny9y36kEU/AHY0ztYGNVbhfgV81412m/4G4rCecyPkIifCDJzcq8LNnmjlo0KPN
+	I9z5KVRMbtf0qd8LXhqcHj2UUmZ4BCmxYj5am9h8T4HNzYdmnDnMpLTiysdVz0ZRJKzfTpdsFziha
+	RaYlT8d5kdJlc92Mb5iyexgeY6Lyxq5hYkDNMhxWzozVOeZJfenbgkrHVoKVfEVA1tx75u64MvcF1
+	sMwamvcfh37JXtZA7Volt46SISjIuOgjrHe1PT7fkKu1t1V7qNycvR0qGnnYX+ddTqScUMQmm8beE
+	vLXcytiCJD9OVXw48FTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wCEy9-0000000FWIe-1ZUt;
-	Mon, 13 Apr 2026 10:56:41 +0000
+	id 1wCEyB-0000000FWKx-09Kw;
+	Mon, 13 Apr 2026 10:56:43 +0000
 Received: from courrier.aliel.fr ([65.21.61.41])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wCEy5-0000000FWGR-1Vsc;
-	Mon, 13 Apr 2026 10:56:39 +0000
+	id 1wCEy5-0000000FWGS-1Vlw;
+	Mon, 13 Apr 2026 10:56:40 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
 	s=courrier-s1; t=1776077792;
-	bh=VH/voXByB5HtcB/2r/SxeBGsrj4jRhHLjfwo5awLI+E=;
-	h=From:Subject:Date:To:Cc;
-	b=LuQrh8R0ELHCVZfe5/zqqS1C9CUwyY2Jrs0tsOXwuK0C1VXq+A8QovHHIQs5jbyt/
-	 fJ54lrzLcAnluI4bijG4C5j3PJPMJEsfzQZZMSC9ol8hQ/X7rhksUUrm2PAZCEiKFC
-	 QvtU/oJGzYmhovPzZ/Piz7bbtwOCgTg9VrJXjdSo=
-Subject: [PATCH v2 0/8] arm64: amlogic: T7 thermal support
-Date: Mon, 13 Apr 2026 12:52:41 +0200
-Message-Id: <20260413-add-thermal-t7-vim4-v2-0-1002d90a0602@aliel.fr>
+	bh=4rF5v0oH3zHajGhcO+pdY8F+zBXF1taTiSXYiRiU680=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=rDAM+h6CxOhKLlZm3w/dr9qoS6MCuu9J9cdybhcgUfXwU+OCXOfS3OhKRofo4Sb9Q
+	 8DZ3mKdIKEj0kG/lQsgFEYe71Vbw1YHCyMyq+sNao6fB1LJckmjT8ufTIMegl7JnLH
+	 /WWYf3b+zwFsU4N4kgnuWgRyP9heDoMVyN7dqKbQ=
+Date: Mon, 13 Apr 2026 12:52:42 +0200
+Subject: [PATCH v2 1/8] dt-bindings: thermal: amlogic: Add support for T7
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/31Sy27bMBD8FUPn0uCbolEU+Y8gh13uMmIjyY4kC
- wkC/3tp2YcaDXrgYQnMDObx1cw8FZ6bw+6rmXgtczmO9dA/dk3qYHxlUajejZbaS6ukACKxdDw
- N0IsliLUMVkjJLigESkk1FXmaOJePjfX55XZP/H6u5Mvtsxl4nmEjP+x+btymvqi9dXslXT2UU
- OJ3gXHfnZ9g6I+vJe3Tcfi18cOSug3rHTgKPmfCFNEAoDGtQ/QuodRBSpuM5MCPKG2C9rGVqtW
- eyACFjMozWgrkyTKgk1aH9hHlAkeULUTfAlN21pAhSc6nrBJYQi1Rg/LN39lVsbu7LTlMgzXBa
- VGtVOaCPQuursHmEIOBw6ofRTEYmR1bjayojaSiYW+gcjobXSLMOgUK+K2okaL2IMq4Ql9InKb
- jiaflUyCysxSNyUHdFf/Fqg1bo7/WPJ77Xkw88yI0etky5khgD6v6Dmyl3twO6SwyjOKtA4L5t
- hVIKlV5Z2pfd22Ema+BDGU57Eb+qBq3zEJzXU9X5uU4fW4TrXrX+fx3jasSUqiYNbYEoXb6VN1
- zv89T83K5XP4APzABivMCAAA=
-X-Change-ID: 20260410-add-thermal-t7-vim4-00e571badcc1
+Message-Id: <20260413-add-thermal-t7-vim4-v2-1-1002d90a0602@aliel.fr>
+References: <20260413-add-thermal-t7-vim4-v2-0-1002d90a0602@aliel.fr>
+In-Reply-To: <20260413-add-thermal-t7-vim4-v2-0-1002d90a0602@aliel.fr>
 To: Guillaume La Roque <glaroque@baylibre.com>, 
  "Rafael J. Wysocki" <rafael@kernel.org>, 
  Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
@@ -62,18 +54,18 @@ Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776077788; l=5536;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776077789; l=2935;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=VH/voXByB5HtcB/2r/SxeBGsrj4jRhHLjfwo5awLI+E=;
+ bh=4rF5v0oH3zHajGhcO+pdY8F+zBXF1taTiSXYiRiU680=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QI9Kcp7fysQlVZVvMcg6K6TWQFUp6iYfci2zxdto5lYVPWlnkIdx+Z32YaDSz5jiGLl8XIVpg7P
- eWihqS7SvlQA=
+ QEE005bjIEBZUsZ5Fz2BGTRjbXUvqOu0vjSYpQ+sNaSLQOz0OIfmWamV47fF3NnfGQ438XoFROk
+ z20K2YX+Rmwo=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260413_035637_844565_B36C8E7C 
-X-CRM114-Status: GOOD (  10.10  )
+X-CRM114-CacheID: sfid-20260413_035637_848179_26ED180A 
+X-CRM114-Status: GOOD (  10.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,107 +77,107 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhpcyBzZXJpZXMgYWRkcyB0aGVybWFsIG1vbml0b3Jpbmcgc3VwcG9ydCBmb3IgdGhlIEFtbG9n
-aWMgVDcgU29DLAp1c2VkIG9uIHRoZSBLaGFkYXMgVklNNCBib2FyZC4KClRoZSBUNyBleHBvc2Vz
-IHNpeCB0aGVybWFsIHNlbnNvcnMgKGE1MywgYTczLCBncHUsIG5uYSwgdnB1LCBoZXZjKSwKZWFj
-aCBhY2Nlc3NpYmxlIHRocm91Z2ggdGhlIHNlY3VyZSBtb25pdG9yIGZpcm13YXJlIGludGVyZmFj
-ZSByYXRoZXIKdGhhbiBhIGRpcmVjdGx5IG1hcHBlZCBlRnVzZSByZWdpc3RlciBhcyBvbiBvbGRl
-ciBTb0NzLgoKVGhlIHNlcmllcyBpcyBvcmdhbml6ZWQgYXMgZm9sbG93czoKCi0gUGF0Y2ggMSBl
-eHRlbmRzIHRoZSBhbWxvZ2ljLHQ3LXRoZXJtYWwgRFQgYmluZGluZyB0byBkZXNjcmliZSB0aGUK
-ICBuZXcgYW1sb2dpYyxzZWN1cmUtbW9uaXRvciBwcm9wZXJ0eS4KLSBQYXRjaGVzIDItMyBleHRl
-bmQgdGhlIE1lc29uIHNlY3VyZSBtb25pdG9yIGRyaXZlciB0byBleHBvc2UgYQogIHRoZXJtYWwg
-Y2FsaWJyYXRpb24gcmVhZCBjb21tYW5kIChTTUMgSUQgMHg4MjAwMDA0NykuCi0gUGF0Y2ggNCBh
-ZGRzIHRoZSBzZWN1cmUgbW9uaXRvciByZWFkb3V0IHBhdGggdG8gdGhlIGFtbG9naWMgdGhlcm1h
-bAogIGRyaXZlciBhbmQgaW50cm9kdWNlcyB0aGUgYW1sb2dpYyx0Ny10aGVybWFsIGNvbXBhdGli
-bGUuCi0gUGF0Y2hlcyA1LTcgd2lyZSB1cCB0aGUgVDcgRFRTSSB3aXRoIENQVSBjb29saW5nIGNl
-bGxzLCBzZW5zb3IKICBub2RlcywgYW5kIHRoZXJtYWwgem9uZXMuCi0gUGF0Y2ggOCBleHRlbmRz
-IHRoZSBLaGFkYXMgVklNNCBEVFMgdG8gbWFwIGFsbCB0aGVybWFsIHpvbmVzIHRvIHRoZQogIG9u
-LWJvYXJkIE1DVSBmYW4gY29udHJvbGxlciAoc3RhdGVzIDMw4oCTMTAwLCBjb3JyZXNwb25kaW5n
-IHRvIHRoZQogIEZBTl9DVFJMIHJlZ2lzdGVyIHJhbmdlIDB4MUXigJMweDY0KS4KClNpZ25lZC1v
-ZmYtYnk6IFJvbmFsZCBDbGF2ZWF1IDxsaW51eC1rZXJuZWwtZGV2QGFsaWVsLmZyPgotLS0KQ2hh
-bmdlcyBpbiB2MjoKLSBQQVRDSCAxOiBjaGFuZ2UgdHdvIGNvbnN0IGVudHJpZXMgdG8gZW51bSwg
-ZXhwbGFpbiB3aHkgc2Vuc29yIGluZGV4IGlzIG5lZWRlZAogIHJlb3JkZXIgY29uZGl0aW9uYWwg
-Y29tcGF0aWJsZSBmb3IgcmVxdWlyZWQsIGFuZCBmYWxsYmFjayBvbmx5IGFjY29yZGluZyB0bwog
-IEtyenlzenRvZidzIGZlZWRiYWNrLgotIFBBVENIIDM6IEFkZCBrZXJuZWxkb2MgZm9yIG1lc29u
-X3NtX2dldF90aGVybWFsX2NhbGliIGV4cG9ydGVkIGZ1bmN0aW9uCiAgYWNjb3JkaW5nIHRvIEty
-enlzenRvZidzIGZlZWRiYWNrLgotIExpbmsgdG8gdjE6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3Jn
-L3IvMjAyNjA0MTAtYWRkLXRoZXJtYWwtdDctdmltNC12MS0wLTE5ZjJiOGRhNzRkN0BhbGllbC5m
-cgoKLS0tClJvbmFsZCBDbGF2ZWF1ICg4KToKICAgICAgZHQtYmluZGluZ3M6IHRoZXJtYWw6IGFt
-bG9naWM6IEFkZCBzdXBwb3J0IGZvciBUNwogICAgICBmaXJtd2FyZTogbWVzb246IHNtOiBUaGVy
-bWFsIGNhbGlicmF0aW9uIHJlYWQgdmlhIHNlY3VyZSBtb25pdG9yCiAgICAgIGZpcm13YXJlOiBt
-ZXNvbjogc206IEFkZCB0aGVybWFsIGNhbGlicmF0aW9uIFNNQyBjYWxsCiAgICAgIHRoZXJtYWw6
-IGFtbG9naWM6IEFkZCBzdXBwb3J0IGZvciBzZWN1cmUgbW9uaXRvciBjYWxpYnJhdGlvbiByZWFk
-b3V0CiAgICAgIGFybTY0OiBkdHM6IGFtbG9naWM6IHQ3OiBBZGQgY29vbGluZyBjZWxscyB0byBh
-bGwgQ1BVcwogICAgICBhcm02NDogZHRzOiBhbWxvZ2ljOiB0NzogQWRkIHRoZXJtYWwgc2Vuc29y
-IG5vZGVzCiAgICAgIGFybTY0OiBkdHM6IGFtbG9naWM6IHQ3OiBBZGQgdGhlcm1hbCB6b25lcwog
-ICAgICBhcm02NDogZHRzOiBhbWxvZ2ljOiB0Nzoga2hhZGFzLXZpbTQ6IEFkZCBmYW4gY29vbGlu
-ZyB0byB0aGVybWFsIHpvbmVzCgogLi4uL2JpbmRpbmdzL3RoZXJtYWwvYW1sb2dpYyx0aGVybWFs
-LnlhbWwgICAgICAgICAgfCAgNDIgKysrLQogLi4uL2R0cy9hbWxvZ2ljL2FtbG9naWMtdDctYTMx
-MWQyLWtoYWRhcy12aW00LmR0cyAgfCAxMDIgKysrKysrKysrCiBhcmNoL2FybTY0L2Jvb3QvZHRz
-L2FtbG9naWMvYW1sb2dpYy10Ny5kdHNpICAgICAgICB8IDI0NSArKysrKysrKysrKysrKysrKysr
-KysKIGRyaXZlcnMvZmlybXdhcmUvbWVzb24vbWVzb25fc20uYyAgICAgICAgICAgICAgICAgIHwg
-IDI5ICsrLQogZHJpdmVycy90aGVybWFsL2FtbG9naWNfdGhlcm1hbC5jICAgICAgICAgICAgICAg
-ICAgfCAgNTggKysrKy0KIGluY2x1ZGUvbGludXgvZmlybXdhcmUvbWVzb24vbWVzb25fc20uaCAg
-ICAgICAgICAgIHwgICAzICsKIDYgZmlsZXMgY2hhbmdlZCwgNDY3IGluc2VydGlvbnMoKyksIDEy
-IGRlbGV0aW9ucygtKQotLS0KYmFzZS1jb21taXQ6IGY3YjY0ZWQ5NDg3MTgyOTAyMDkwNzRhNTBi
-YjBkZjE3ZTU5NDQ4NzMKY2hhbmdlLWlkOiAyMDI2MDQxMC1hZGQtdGhlcm1hbC10Ny12aW00LTAw
-ZTU3MWJhZGNjMQpwcmVyZXF1aXNpdGUtbWVzc2FnZS1pZDogPDIwMjYwMzI2MDkyNjQ1LjEwNTMy
-NjEtMS1qaWFuLmh1QGFtbG9naWMuY29tPgpwcmVyZXF1aXNpdGUtcGF0Y2gtaWQ6IGYwM2EwODZi
-NDEzNzE1ODQxMmIyZDQ3YjNkZTc5M2I4NThkZThkZGUKcHJlcmVxdWlzaXRlLXBhdGNoLWlkOiAx
-MjM5NzBjOWIyOWMyMDkwNDQwZjJmZDcxYzg1ZDNjNmZkOGUzNmRlCnByZXJlcXVpc2l0ZS1wYXRj
-aC1pZDogM2UyZTU2YjA5MjZiYTMyN2I1MjBmOTM1ZGY0Y2VkNTA4OWJiZTUwMwpwcmVyZXF1aXNp
-dGUtcGF0Y2gtaWQ6IDY1YTVkNzZmZmRiYzliM2FhYjMzODViYjY1Y2IwMjcwMDRjMzBlN2UKcHJl
-cmVxdWlzaXRlLXBhdGNoLWlkOiAyMzcyNjk4MDE4MjZkZDNhZDdmYjE2ZWI0ZDdkNmQ0ZWFiNTA0
-Mjc4CnByZXJlcXVpc2l0ZS1wYXRjaC1pZDogNTdlOWIwOGE5NjhhZWRmNTQzZDNkMGQ1NmNmMWNh
-NGRiMjBiMmExNgpwcmVyZXF1aXNpdGUtY2hhbmdlLWlkOiAyMDI2MDMyNi1hZGQtYmNtNDM3NTIt
-Y29tcGF0aWJsZS1lMjY0YTRmNzk3M2E6djIKcHJlcmVxdWlzaXRlLXBhdGNoLWlkOiBjZDk4Yjc0
-ZmE1NmFmNzJhZjI1NTNmMzkxYzQwMDk4MWQ4M2NkNGY0CnByZXJlcXVpc2l0ZS1wYXRjaC1pZDog
-YjczMGY1ZTQyYmUxZDg5ZDE5M2U2M2EwMjY1NDk1Y2RiZjJjN2Q3YgpwcmVyZXF1aXNpdGUtY2hh
-bmdlLWlkOiAyMDI2MDMzMC1maXgtaW52YWxpZC1wcm9wZXJ0eS1iYmU1NGQ5MzNmNzE6djIKcHJl
-cmVxdWlzaXRlLXBhdGNoLWlkOiA4ZDY3NWU3YTIzOTk4NWM3NjI4NDM1MTViMjQxZjBhMmY0NWY5
-YzkyCnByZXJlcXVpc2l0ZS1jaGFuZ2UtaWQ6IDIwMjYwMzMxLWZpeC1hbWwtdDctbnVsbC1yZXNl
-dC0yYjYwOGViZjlkYTQ6djEKcHJlcmVxdWlzaXRlLXBhdGNoLWlkOiA1YjVkZTc3YWYxMTc0N2Nl
-OTY0NDA0ZmI4MjdkMmVlMmJmZjQ3ZWE1CnByZXJlcXVpc2l0ZS1wYXRjaC1pZDogMWUzN2ZjNzVm
-ZWQxZTUzM2FkZWUwZjNlN2U2ZWFkMWY4ZmYzYzU1YwpwcmVyZXF1aXNpdGUtcGF0Y2gtaWQ6IDY1
-YTVkNzZmZmRiYzliM2FhYjMzODViYjY1Y2IwMjcwMDRjMzBlN2UKcHJlcmVxdWlzaXRlLXBhdGNo
-LWlkOiAyZGFmNTgzZmI1ZTc0NDlhMDJiZDIxN2Q4YWNhMzMwMTcxYjU5OGFhCnByZXJlcXVpc2l0
-ZS1wYXRjaC1pZDogMjM3MjY5ODAxODI2ZGQzYWQ3ZmIxNmViNGQ3ZDZkNGVhYjUwNDI3OApwcmVy
-ZXF1aXNpdGUtcGF0Y2gtaWQ6IGQxZGRmOWI3NzEwZTkxZjgwNjJkZTgzYmQ3YmE1NWFmYjJjNGMx
-MTIKcHJlcmVxdWlzaXRlLXBhdGNoLWlkOiA1N2U5YjA4YTk2OGFlZGY1NDNkM2QwZDU2Y2YxY2E0
-ZGIyMGIyYTE2CnByZXJlcXVpc2l0ZS1wYXRjaC1pZDogY2Q5OGI3NGZhNTZhZjcyYWYyNTUzZjM5
-MWM0MDA5ODFkODNjZDRmNApwcmVyZXF1aXNpdGUtcGF0Y2gtaWQ6IGI3MzBmNWU0MmJlMWQ4OWQx
-OTNlNjNhMDI2NTQ5NWNkYmYyYzdkN2IKcHJlcmVxdWlzaXRlLXBhdGNoLWlkOiA5ZGViZDg4ZmE2
-MGZlYmVkOWNkNzIwOGY4NjYwM2I0YzJkMjcwNTIwCnByZXJlcXVpc2l0ZS1wYXRjaC1pZDogMzE0
-ZWY5ZmYwYzRkMWQxNWRhYjFkZWE5ZDkyYWEwNjVmMWVhYzNlOQpwcmVyZXF1aXNpdGUtY2hhbmdl
-LWlkOiAyMDI2MDQwMi1hZGQtbWN1LWZhbi1raGFkYXMtdmltNC1hYzFjYmU1NTNjOWI6djIKcHJl
-cmVxdWlzaXRlLXBhdGNoLWlkOiBmMDNhMDg2YjQxMzcxNTg0MTJiMmQ0N2IzZGU3OTNiODU4ZGU4
-ZGRlCnByZXJlcXVpc2l0ZS1wYXRjaC1pZDogMTIzOTcwYzliMjljMjA5MDQ0MGYyZmQ3MWM4NWQz
-YzZmZDhlMzZkZQpwcmVyZXF1aXNpdGUtcGF0Y2gtaWQ6IDNlMmU1NmIwOTI2YmEzMjdiNTIwZjkz
-NWRmNGNlZDUwODliYmU1MDMKcHJlcmVxdWlzaXRlLXBhdGNoLWlkOiA2NWE1ZDc2ZmZkYmM5YjNh
-YWIzMzg1YmI2NWNiMDI3MDA0YzMwZTdlCnByZXJlcXVpc2l0ZS1wYXRjaC1pZDogMjM3MjY5ODAx
-ODI2ZGQzYWQ3ZmIxNmViNGQ3ZDZkNGVhYjUwNDI3OApwcmVyZXF1aXNpdGUtcGF0Y2gtaWQ6IDU3
-ZTliMDhhOTY4YWVkZjU0M2QzZDBkNTZjZjFjYTRkYjIwYjJhMTYKcHJlcmVxdWlzaXRlLXBhdGNo
-LWlkOiBjZDk4Yjc0ZmE1NmFmNzJhZjI1NTNmMzkxYzQwMDk4MWQ4M2NkNGY0CnByZXJlcXVpc2l0
-ZS1wYXRjaC1pZDogYjczMGY1ZTQyYmUxZDg5ZDE5M2U2M2EwMjY1NDk1Y2RiZjJjN2Q3YgpwcmVy
-ZXF1aXNpdGUtcGF0Y2gtaWQ6IDhkNjc1ZTdhMjM5OTg1Yzc2Mjg0MzUxNWIyNDFmMGEyZjQ1Zjlj
-OTIKcHJlcmVxdWlzaXRlLXBhdGNoLWlkOiA5ZGViZDg4ZmE2MGZlYmVkOWNkNzIwOGY4NjYwM2I0
-YzJkMjcwNTIwCnByZXJlcXVpc2l0ZS1wYXRjaC1pZDogMzE0ZWY5ZmYwYzRkMWQxNWRhYjFkZWE5
-ZDkyYWEwNjVmMWVhYzNlOQpwcmVyZXF1aXNpdGUtcGF0Y2gtaWQ6IDM0YTJiYmZlM2NlMzBjNTMw
-ZTY5YWY1MDgzYWEyNjUzNGIyYzI1NjAKcHJlcmVxdWlzaXRlLXBhdGNoLWlkOiA0MDZmODhkN2Rh
-YmQzYTg3MGIzNThmYjUzYzIxNjg2ZjI5ZWIzMmI3CnByZXJlcXVpc2l0ZS1wYXRjaC1pZDogZDdh
-NzVhZTNiZTBmNTRlMGE3ZTgxY2NiMDA0M2EyZjA1NDIzYzlkMApwcmVyZXF1aXNpdGUtcGF0Y2gt
-aWQ6IDVlMTlkYzVhY2UxMmI1MzIyODQyNDZmNWMyZmYzZjIxNGQ4YTljNGYKcHJlcmVxdWlzaXRl
-LXBhdGNoLWlkOiBkNmE4N2ViY2Y1MjQ2ZWI2N2I5NGNhMDkwOGFmYTNkZjlmOTM4M2ZlCnByZXJl
-cXVpc2l0ZS1wYXRjaC1pZDogNDgwOWJiZWRmNzlmNTllMWFiYzUyYzE3Y2ZmYzBiMWJiYjQzZDM2
-NQpwcmVyZXF1aXNpdGUtcGF0Y2gtaWQ6IGMwNTBlOGJhYzRiNTQ5MWY2YzcwMDhhNWNjYjI2ZjIw
-ZmFkMzhiNDYKcHJlcmVxdWlzaXRlLXBhdGNoLWlkOiAzMDY3N2RiOGZjNTcyNzA3ODcyNDUxMDNj
-MGQ1YWNmODc5MTMwN2IwCgpCZXN0IHJlZ2FyZHMsCi0tIApSb25hbGQgQ2xhdmVhdSA8bGludXgt
-a2VybmVsLWRldkBhbGllbC5mcj4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
-c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9saW51eC1hbWxvZ2ljCg==
+Add the amlogic,t7-thermal compatible for the Amlogic T7 thermal sensor.
+
+Unlike existing variants which use a phandle to the ao-secure syscon,
+the T7 relies on a secure monitor interface described by a phandle and
+a sensor index argument.
+
+The T7 integrates multiple thermal sensors, all accessed through the
+same SMC call. The sensor index argument is required to identify which
+sensor's calibration data the secure monitor should return, as a single
+SM_THERMAL_CALIB_READ command serves all of them.
+
+Introduce the amlogic,secure-monitor property as a phandle-array and
+make amlogic,ao-secure or amlogic,secure-monitor conditionally required
+depending on the compatible.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+ .../bindings/thermal/amlogic,thermal.yaml          | 42 ++++++++++++++++++++--
+ 1 file changed, 40 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+index 70b273271754b..1c096116b2dda 100644
+--- a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+@@ -21,7 +21,9 @@ properties:
+               - amlogic,g12a-cpu-thermal
+               - amlogic,g12a-ddr-thermal
+           - const: amlogic,g12a-thermal
+-      - const: amlogic,a1-cpu-thermal
++      - enum:
++          - amlogic,a1-cpu-thermal
++          - amlogic,t7-thermal
+ 
+   reg:
+     maxItems: 1
+@@ -42,12 +44,39 @@ properties:
+   '#thermal-sensor-cells':
+     const: 0
+ 
++  amlogic,secure-monitor:
++    description: phandle to the secure monitor
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to the secure monitor
++          - description: sensor index to get specific calibration data
++
+ required:
+   - compatible
+   - reg
+   - interrupts
+   - clocks
+-  - amlogic,ao-secure
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,a1-cpu-thermal
++              - amlogic,g12a-thermal
++    then:
++      required:
++        - amlogic,ao-secure
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amlogic,t7-thermal
++    then:
++      required:
++        - amlogic,secure-monitor
+ 
+ unevaluatedProperties: false
+ 
+@@ -62,4 +91,13 @@ examples:
+         #thermal-sensor-cells = <0>;
+         amlogic,ao-secure = <&sec_AO>;
+     };
++  - |
++    a73_tsensor: temperature-sensor@20000 {
++        compatible = "amlogic,t7-thermal";
++        reg = <0x0 0x20000 0x0 0x50>;
++        interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clkc_periphs CLKID_TS>;
++        #thermal-sensor-cells = <0>;
++        amlogic,secure-monitor = <&sm 1>;
++    };
+ ...
+
+-- 
+2.49.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
