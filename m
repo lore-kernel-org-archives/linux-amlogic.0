@@ -4,61 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8794EBFD30
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Apr 2026 10:40:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AAF7EBFD3A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Apr 2026 10:56:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DcHQZ2aDzNxco9zpz9UiRLVJUH7x85E9251oMGhrT2s=; b=CcLdm2K5rbcI/s
-	53THTTC9wHHqjn0/Nh2LkpQkv3WRz9DgEH9HzjiZ8tGZTyWsOJsGNrBCE+tr5yEgW8pE7GTQUHeBg
-	zEE3H1oQ7HMWfcRHNNB/jhdmJ+epZpFSLk3o3M00g6uf4hpJ6Lz0oNB7BaJiSqtN7IpDEXAB/y5ff
-	JuJaONVFYlEniyGETjHYarg1SLz9taSrPaT17tWoWuiI24B6rt5KfblyMLlyvSBksvrd0A8NMzOrz
-	XEtxLxLfp57muqCj7IjltTmoawVEt38i1oGkon9Yc9gV+rXaARBX83qSDPTAf0+pO+R9hH8fQwWfY
-	wXKMHjDOMPk0CJ/90fJQ==;
+	List-Owner; bh=0WVPRS1doJQLxtTNd4k/hoqXH84U2aWwXCMRHc9giR4=; b=d0NiWMCqSwiC26
+	lesSbIc8bO1PX0JAKW3GyHGWBC6/GV8czRqHx/AFHw1PeJgndxiXgRxWsQ2hNLF4Tgz8zywA0ILNz
+	NR2MLUm1Gtdu3ixZXozsnyzwCDjeKnj9HPNuFJO3/CItafy9SyeiM54VuCjMwtJM+RqhEtnhgWGvK
+	vEsWoEqgN9bAaylrwPnQ3P6jEg3AkgSzFQ4uQFzKqQAySP7Fhl7YsJR7W4d5rsIX2iQbPLgroFHpU
+	/k4pfXgY6ER4g38sHhl+Bx5lsJTBp1bBAGhrFxfLVldyTxGwSLckWkCTKvBSfMjXa6GOuc8jf8J8V
+	mNlYGRNzl6AUavO0t2Qw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wCEhv-0000000FVF9-3THb;
-	Mon, 13 Apr 2026 10:39:55 +0000
-Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
+	id 1wCEyA-0000000FWKA-2IMC;
+	Mon, 13 Apr 2026 10:56:42 +0000
+Received: from courrier.aliel.fr ([65.21.61.41])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wCEhr-0000000FVEF-335i;
-	Mon, 13 Apr 2026 10:39:53 +0000
-Message-ID: <6a204eb0-ab08-462b-8dad-8f0990dc500d@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776076785;
-	bh=duq9L31NUVCD1nJNJYBo8ZhlfesdFiU++70jz5ELPL8=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=i7A3JI9g79SdnCtohMFvDOCVny58Mep5/hD+vBGfIvZxClV7vztMISAsgPZLMkgIO
-	 30bpiC+t/4hyPb/dwf+/m7AZyU2Co4ynqeNbB9TjjsVCf6y6M/HaaqcJdSQAyOkMLb
-	 eQVwAcjNlP/nvQ7YyVrNCOtlLK42yte8REpDGrgw=
-Date: Mon, 13 Apr 2026 12:39:43 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
+	id 1wCEy5-0000000FWGV-1Wgq;
+	Mon, 13 Apr 2026 10:56:40 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH 1/8] dt-bindings: thermal: amlogic: Add support for T7
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Guillaume La Roque <glaroque@baylibre.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260410-add-thermal-t7-vim4-v1-0-19f2b8da74d7@aliel.fr>
- <20260410-add-thermal-t7-vim4-v1-1-19f2b8da74d7@aliel.fr>
- <20260412-abiding-silver-turkey-1623cc@quoll>
-Content-Language: en-US
-In-Reply-To: <20260412-abiding-silver-turkey-1623cc@quoll>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1776077794;
+	bh=QVwXg2rjCHDLPb10isf9/q6yv3hIqKAxTDlkEXCyDmk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=u8yTL67utuyQLS3U5UcVQwP1sKX0xLSrF5yd4Nfbuxk53y+NTo8LDR3yzyrHwe6S/
+	 MsoYzSoQCv60/wbDVl5EYkw+zeXm3ga9PzXzNN71kROZ8mmTXU2a6zBEhZdPdo5dAp
+	 gKrl3l/TvZ12L5Jqbt2HNuDdVL1uQZTmuFR6VJaM=
+Date: Mon, 13 Apr 2026 12:52:44 +0200
+Subject: [PATCH v2 3/8] firmware: meson: sm: Add thermal calibration SMC
+ call
+MIME-Version: 1.0
+Message-Id: <20260413-add-thermal-t7-vim4-v2-3-1002d90a0602@aliel.fr>
+References: <20260413-add-thermal-t7-vim4-v2-0-1002d90a0602@aliel.fr>
+In-Reply-To: <20260413-add-thermal-t7-vim4-v2-0-1002d90a0602@aliel.fr>
+To: Guillaume La Roque <glaroque@baylibre.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776077789; l=2173;
+ i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
+ bh=QVwXg2rjCHDLPb10isf9/q6yv3hIqKAxTDlkEXCyDmk=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
+ BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QKc3Dv3NQvo00Ez9bA6kTFpyqiaQcWU9CIiooPqjwi56UOpWaaxXYMSxUTTXBjHiNEgOwfWQnIp
+ FkahTXaeuSAQ=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
+ fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260413_033952_088195_0069413F 
-X-CRM114-Status: GOOD (  21.33  )
+X-CRM114-CacheID: sfid-20260413_035637_849498_2FFBB554 
+X-CRM114-Status: UNSURE (   9.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,109 +84,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Krzysztof, thank you for this feedback.
+Add SM_THERMAL_CALIB_READ at SMC ID 0x82000047 in the command
+table and implement meson_sm_get_thermal_calib(), which forwards the
+tsensor_id argument to the secure monitor and returns the calibration data.
 
-On 4/12/26 11:58 AM, Krzysztof Kozlowski wrote:
-> On Fri, Apr 10, 2026 at 06:48:02PM +0200, Ronald Claveau wrote:
->> Add the amlogic,t7-thermal compatible for the Amlogic T7 thermal sensor.
->>
->> Unlike existing variants which use a phandle to the ao-secure syscon,
->> the T7 relies on a secure monitor interface described by a phandle and
->> a sensor index argument.
->>
->> Introduce the amlogic,secure-monitor property as a phandle-array and
->> make amlogic,ao-secure or amlogic,secure-monitor conditionally required
->> depending on the compatible.
->>
->> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
->> ---
->>  .../bindings/thermal/amlogic,thermal.yaml          | 40 +++++++++++++++++++++-
->>  1 file changed, 39 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
->> index 70b273271754b..85ee73c6e1161 100644
->> --- a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
->> +++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
->> @@ -22,6 +22,7 @@ properties:
->>                - amlogic,g12a-ddr-thermal
->>            - const: amlogic,g12a-thermal
->>        - const: amlogic,a1-cpu-thermal
->> +      - const: amlogic,t7-thermal
-> 
-> So these two entries are enum.
-> 
+Also realign the CMD() column to improve readability.
 
-I will change to enum.
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+ drivers/firmware/meson/meson_sm.c | 29 ++++++++++++++++++++++++-----
+ 1 file changed, 24 insertions(+), 5 deletions(-)
 
->>  
->>    reg:
->>      maxItems: 1
->> @@ -42,12 +43,40 @@ properties:
->>    '#thermal-sensor-cells':
->>      const: 0
->>  
->> +  amlogic,secure-monitor:
->> +    description: phandle to the secure monitor
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    items:
->> +      - items:
->> +          - description: phandle to the secure monitor
->> +          - description: sensor index
-> 
-> For what exactly this sensor index is needed? commit msg explained me
-> nothing, instead repeated what you did. That's pointless, explain why
-> you did it.
-> 
-
-Thanks I will add the explanation in the commit message and in the
-description here.
-
->> +
->>  required:
->>    - compatible
->>    - reg
->>    - interrupts
->>    - clocks
->> -  - amlogic,ao-secure
->> +
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - amlogic,g12a-cpu-thermal
->> +              - amlogic,g12a-ddr-thermal
-> 
-> Drop both, you need only fallback.
-> 
-
-I hesitated between the two methods. I will change to fallback only.
-
->> +              - amlogic,a1-cpu-thermal
-> 
-> And list is sorted alphabetically.
-> 
-
-Thanks for the reminder.
-
->> +    then:
->> +      required:
->> +        - amlogic,ao-secure
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
+diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+index 3ab67aaa9e5da..4e57986724212 100644
+--- a/drivers/firmware/meson/meson_sm.c
++++ b/drivers/firmware/meson/meson_sm.c
+@@ -41,12 +41,13 @@ static const struct meson_sm_chip gxbb_chip = {
+ 	.cmd_shmem_in_base	= 0x82000020,
+ 	.cmd_shmem_out_base	= 0x82000021,
+ 	.cmd = {
+-		CMD(SM_EFUSE_READ,	0x82000030),
+-		CMD(SM_EFUSE_WRITE,	0x82000031),
++		CMD(SM_EFUSE_READ,		0x82000030),
++		CMD(SM_EFUSE_WRITE,		0x82000031),
+ 		CMD(SM_EFUSE_USER_MAX,	0x82000033),
+-		CMD(SM_GET_CHIP_ID,	0x82000044),
+-		CMD(SM_A1_PWRC_SET,	0x82000093),
+-		CMD(SM_A1_PWRC_GET,	0x82000095),
++		CMD(SM_GET_CHIP_ID,		0x82000044),
++		CMD(SM_THERMAL_CALIB_READ,	0x82000047),
++		CMD(SM_A1_PWRC_SET,		0x82000093),
++		CMD(SM_A1_PWRC_GET,		0x82000095),
+ 		{ /* sentinel */ },
+ 	},
+ };
+@@ -245,6 +246,24 @@ struct meson_sm_firmware *meson_sm_get(struct device_node *sm_node)
+ }
+ EXPORT_SYMBOL_GPL(meson_sm_get);
+ 
++/**
++ *
++ * meson_sm_get_thermal_calib - Read thermal sensor calibration data.
++ * @fw:		Pointer to secure-monitor firmware.
++ * @trim_info:	Pointer to store the returned calibration data.
++ * @tsensor_id:	Sensor index to identify which sensor's calibration data
++ *		to retrieve
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
++			       u32 tsensor_id)
++{
++	return meson_sm_call(fw, SM_THERMAL_CALIB_READ, trim_info, tsensor_id,
++			     0, 0, 0, 0);
++}
++EXPORT_SYMBOL_GPL(meson_sm_get_thermal_calib);
++
+ #define SM_CHIP_ID_LENGTH	119
+ #define SM_CHIP_ID_OFFSET	4
+ #define SM_CHIP_ID_SIZE		12
 
 -- 
-Best regards,
-Ronald
+2.49.0
+
 
 _______________________________________________
 linux-amlogic mailing list
