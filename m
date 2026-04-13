@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AAF7EBFD3A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Apr 2026 10:56:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C89AFEBFD3C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Apr 2026 10:56:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0WVPRS1doJQLxtTNd4k/hoqXH84U2aWwXCMRHc9giR4=; b=d0NiWMCqSwiC26
-	lesSbIc8bO1PX0JAKW3GyHGWBC6/GV8czRqHx/AFHw1PeJgndxiXgRxWsQ2hNLF4Tgz8zywA0ILNz
-	NR2MLUm1Gtdu3ixZXozsnyzwCDjeKnj9HPNuFJO3/CItafy9SyeiM54VuCjMwtJM+RqhEtnhgWGvK
-	vEsWoEqgN9bAaylrwPnQ3P6jEg3AkgSzFQ4uQFzKqQAySP7Fhl7YsJR7W4d5rsIX2iQbPLgroFHpU
-	/k4pfXgY6ER4g38sHhl+Bx5lsJTBp1bBAGhrFxfLVldyTxGwSLckWkCTKvBSfMjXa6GOuc8jf8J8V
-	mNlYGRNzl6AUavO0t2Qw==;
+	List-Owner; bh=P9tPmoorDEsBDwGZH0uWDdQ5WNImifYPHfuxqZWRMVE=; b=2Q6zWDzhb4pqUc
+	4fpf/S4gfXS5FQ78HasZb402lqaXjlOCLTlR+OucqWt0Y7AiNSfNI0jPjxVIfLRoZgFC+5ueKit3w
+	Gs+iRBszNXksziBY1+Ez6B6y6/KHjJl+2RnIz1cDdLtvSgnJ7EIa5v8oyFavdCqqFoD8S55gf2vnk
+	Pamo0pBwh0EZTVobicyXm62YtjWcgbBsY8mGMPxhoUBG1+M2ow4VxehhNmk8XDg+rAiOeThlgYia9
+	DbX3MW5c82IsaF1C7FLQnXWbEvlSdRNFyLvFELIWBGekmquYMmorE+NqGLbqUWOg/t23AJJL+H67D
+	dX3/G8qLcTVh9k0dW3kQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wCEyA-0000000FWKA-2IMC;
-	Mon, 13 Apr 2026 10:56:42 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
-	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wCEy5-0000000FWGV-1Wgq;
+	id 1wCEy8-0000000FWIN-3QKt;
 	Mon, 13 Apr 2026 10:56:40 +0000
+Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
+	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1wCEy5-0000000FWGT-1MlV;
+	Mon, 13 Apr 2026 10:56:39 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776077794;
-	bh=QVwXg2rjCHDLPb10isf9/q6yv3hIqKAxTDlkEXCyDmk=;
+	s=courrier-s1; t=1776077793;
+	bh=z46M+rsMVvol/Iu/vuO1m+rAUYrJ82iMmifq0EnDoU0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=u8yTL67utuyQLS3U5UcVQwP1sKX0xLSrF5yd4Nfbuxk53y+NTo8LDR3yzyrHwe6S/
-	 MsoYzSoQCv60/wbDVl5EYkw+zeXm3ga9PzXzNN71kROZ8mmTXU2a6zBEhZdPdo5dAp
-	 gKrl3l/TvZ12L5Jqbt2HNuDdVL1uQZTmuFR6VJaM=
-Date: Mon, 13 Apr 2026 12:52:44 +0200
-Subject: [PATCH v2 3/8] firmware: meson: sm: Add thermal calibration SMC
- call
+	b=e+Z9NdUlLEKiVA77zXZwO+wgQSPnuIsp3IYC8goGITIA31L6RnZMAnOGJctpVNUsC
+	 skp+yMoLhFgAySxCzMe07cYDCZtTbZrcFQFC9HHQipfKVRk3hAdp76EAFwaAMfWBKa
+	 xFgTNtCVoQ+eKvwnEbLeUyTuQV2M08wbkK49NWBU=
+Date: Mon, 13 Apr 2026 12:52:43 +0200
+Subject: [PATCH v2 2/8] firmware: meson: sm: Thermal calibration read via
+ secure monitor
 MIME-Version: 1.0
-Message-Id: <20260413-add-thermal-t7-vim4-v2-3-1002d90a0602@aliel.fr>
+Message-Id: <20260413-add-thermal-t7-vim4-v2-2-1002d90a0602@aliel.fr>
 References: <20260413-add-thermal-t7-vim4-v2-0-1002d90a0602@aliel.fr>
 In-Reply-To: <20260413-add-thermal-t7-vim4-v2-0-1002d90a0602@aliel.fr>
 To: Guillaume La Roque <glaroque@baylibre.com>, 
@@ -55,18 +55,18 @@ Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776077789; l=2173;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776077789; l=1177;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=QVwXg2rjCHDLPb10isf9/q6yv3hIqKAxTDlkEXCyDmk=;
+ bh=z46M+rsMVvol/Iu/vuO1m+rAUYrJ82iMmifq0EnDoU0=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QKc3Dv3NQvo00Ez9bA6kTFpyqiaQcWU9CIiooPqjwi56UOpWaaxXYMSxUTTXBjHiNEgOwfWQnIp
- FkahTXaeuSAQ=
+ QKl5/Y9C/Phu9TCob/n7ZmcksWMwabTGAuBR/3xovrcEefhi9EiIfhZyxJsTG92CRShfvX6bYao
+ OXJKmyJ+cigU=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260413_035637_849498_2FFBB554 
-X-CRM114-Status: UNSURE (   9.88  )
+X-CRM114-CacheID: sfid-20260413_035637_838190_01E7943E 
+X-CRM114-Status: UNSURE (   7.43  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,65 +84,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add SM_THERMAL_CALIB_READ at SMC ID 0x82000047 in the command
-table and implement meson_sm_get_thermal_calib(), which forwards the
-tsensor_id argument to the secure monitor and returns the calibration data.
-
-Also realign the CMD() column to improve readability.
+Add SM_THERMAL_CALIB_READ to the secure monitor command enum and
+introduce meson_sm_get_thermal_calib() to allow drivers to retrieve
+thermal sensor calibration data through the firmware interface.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- drivers/firmware/meson/meson_sm.c | 29 ++++++++++++++++++++++++-----
- 1 file changed, 24 insertions(+), 5 deletions(-)
+ include/linux/firmware/meson/meson_sm.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
-index 3ab67aaa9e5da..4e57986724212 100644
---- a/drivers/firmware/meson/meson_sm.c
-+++ b/drivers/firmware/meson/meson_sm.c
-@@ -41,12 +41,13 @@ static const struct meson_sm_chip gxbb_chip = {
- 	.cmd_shmem_in_base	= 0x82000020,
- 	.cmd_shmem_out_base	= 0x82000021,
- 	.cmd = {
--		CMD(SM_EFUSE_READ,	0x82000030),
--		CMD(SM_EFUSE_WRITE,	0x82000031),
-+		CMD(SM_EFUSE_READ,		0x82000030),
-+		CMD(SM_EFUSE_WRITE,		0x82000031),
- 		CMD(SM_EFUSE_USER_MAX,	0x82000033),
--		CMD(SM_GET_CHIP_ID,	0x82000044),
--		CMD(SM_A1_PWRC_SET,	0x82000093),
--		CMD(SM_A1_PWRC_GET,	0x82000095),
-+		CMD(SM_GET_CHIP_ID,		0x82000044),
-+		CMD(SM_THERMAL_CALIB_READ,	0x82000047),
-+		CMD(SM_A1_PWRC_SET,		0x82000093),
-+		CMD(SM_A1_PWRC_GET,		0x82000095),
- 		{ /* sentinel */ },
- 	},
+diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
+index 8eaf8922ab020..3ebc2bd9a9760 100644
+--- a/include/linux/firmware/meson/meson_sm.h
++++ b/include/linux/firmware/meson/meson_sm.h
+@@ -12,6 +12,7 @@ enum {
+ 	SM_EFUSE_WRITE,
+ 	SM_EFUSE_USER_MAX,
+ 	SM_GET_CHIP_ID,
++	SM_THERMAL_CALIB_READ,
+ 	SM_A1_PWRC_SET,
+ 	SM_A1_PWRC_GET,
  };
-@@ -245,6 +246,24 @@ struct meson_sm_firmware *meson_sm_get(struct device_node *sm_node)
- }
- EXPORT_SYMBOL_GPL(meson_sm_get);
- 
-+/**
-+ *
-+ * meson_sm_get_thermal_calib - Read thermal sensor calibration data.
-+ * @fw:		Pointer to secure-monitor firmware.
-+ * @trim_info:	Pointer to store the returned calibration data.
-+ * @tsensor_id:	Sensor index to identify which sensor's calibration data
-+ *		to retrieve
-+ *
-+ * Return: 0 on success, negative error code on failure.
-+ */
+@@ -27,5 +28,7 @@ int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
+ 		       unsigned int bsize, unsigned int cmd_index, u32 arg0,
+ 		       u32 arg1, u32 arg2, u32 arg3, u32 arg4);
+ struct meson_sm_firmware *meson_sm_get(struct device_node *firmware_node);
 +int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
-+			       u32 tsensor_id)
-+{
-+	return meson_sm_call(fw, SM_THERMAL_CALIB_READ, trim_info, tsensor_id,
-+			     0, 0, 0, 0);
-+}
-+EXPORT_SYMBOL_GPL(meson_sm_get_thermal_calib);
-+
- #define SM_CHIP_ID_LENGTH	119
- #define SM_CHIP_ID_OFFSET	4
- #define SM_CHIP_ID_SIZE		12
++			       u32 tsensor_id);
+ 
+ #endif /* _MESON_SM_FW_H_ */
 
 -- 
 2.49.0
