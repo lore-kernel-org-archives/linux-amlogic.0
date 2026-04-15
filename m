@@ -4,112 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C1E5F419A0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2026 12:58:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46EDCF419BA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2026 13:45:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8SYhZzBv0b/oQNosvKLklF5NB1xObbx9ETTlcUwx6YQ=; b=01Bj8tC9yzfRMz
-	NGtok+gK1W5F7+oA4ZgHd4EQ3eSBPQpfUTEvcYmAflYN2Wl4K2CacscXpwa5YUzNDBafvcyRbJRSu
-	vNolOvRyVgQ2GICIgZ2eloUNTYzJA4dtnjfbH5fG7nSpzkMeiGx2GkOW1AFn4ifv8uO57qyjN3BNh
-	vUUI/iwhJuK4k8rnQp7xvGMpc+Azq5yVpLQI1cU5Ui3Ue9sFPRwq9vDbC1Ogbv4cpMnAJhQulOh+O
-	gvWzBdFWininKY2/7uof/GHCF0Xp30IM/EZ+4dE/TNxI8+HTgwnwUsuHb7MxFASViIS6nxhhy6yOs
-	O7aXD/OglA1/e6bUxV1A==;
+	List-Owner; bh=CLBDQm2VUZwmQWeghm6dE1OsB+1U/2MZTbjtbZGENSI=; b=Iu13DCyoE0h6Q/
+	t9EBj2V6g8qEYV6FgwlWO9iH5825Ia+RdOY1W+aTXM1C3+mFJw/NEn36saFSAeiYv1aS76s55KYKs
+	myOlIvCWjYthnBcSSzuoFF8x1JVOPLsMdw5D5+tNgk7YMtBJJtZ8VNScFozF3aMzKKNGUYUJN7XEx
+	VQP2H7j9s9JepJQrMIsAhpzsmVatcGCK3S8ZEW4p4x/EokSNpMpkuncAl23i4Bg/Dj+vQEZBuRSbV
+	mAWK+L0Vf8JLRSrQ/ra8KJidYX6ajUPip1fPR2HoSJkkWEN77DE6LtOxzT4FoW8/fLpDgQsmf0nDd
+	lc7kLi5acmXN24ybGOtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wCzor-000000019mf-11u9;
-	Wed, 15 Apr 2026 12:58:13 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wD0YI-00000001CW3-0oLc;
+	Wed, 15 Apr 2026 13:45:10 +0000
+Received: from 8.mo511.mail-out.ovh.net ([46.105.79.208])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wCzop-000000019m6-1alL
-	for linux-amlogic@lists.infradead.org;
-	Wed, 15 Apr 2026 12:58:12 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9B626401D7;
-	Wed, 15 Apr 2026 12:58:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBF82C19424;
-	Wed, 15 Apr 2026 12:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776257890;
-	bh=r14QBh9Iuj4Kh39NLSY61SiRgxPRKjKK6mGI5O1EFFU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XatoVGpmHPvvXXMoesamkliG8v2W9BF0yXn9BsbBHsMZ5asUu53+5IKimW+I33BYl
-	 IH7jp6ck3VyuChCnOvx+1rgoyKu7wcC0E08lccPyXe/cHC2Ct+GxfnSH6+YUZsBglg
-	 2U1MDIJYE05WY8R0FW4w4RApEqj5+VTPuyNwnPfgTGkq+fdDiyApuhWJBeDzu0PY6t
-	 TaFhaUgE+7B+d/NG35FfzXehmJEnHlQSRV+JwsmAw/M2QZz4M2LzElunM13ZAEC89L
-	 KPEc3fQMY8lr1E6IiPyu7Q5kN+2RTUsFNR7NV+7wg67vECmkuSdMRUgTCNfH4O2+Bl
-	 6Eo779567KFeA==
-Message-ID: <56a723b3-82fa-49c2-ba4b-433b7de98451@kernel.org>
-Date: Wed, 15 Apr 2026 14:58:06 +0200
+	id 1wD0YD-00000001CVH-1rJc;
+	Wed, 15 Apr 2026 13:45:08 +0000
+Received: from ex.mail.ovh.net (unknown [10.111.174.125])
+	by mo511.mail-out.ovh.net (Postfix) with SMTP id 4fwj7Y1kr5z9snQ;
+	Wed, 15 Apr 2026 13:44:57 +0000 (UTC)
+Message-ID: <451d2cc8-d15e-47f6-be4e-515f9be62f9b@aliel.fr>
+Date: Wed, 15 Apr 2026 15:44:55 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/13] clk: amlogic: Add basic clock driver
-To: Chuan Liu <chuan.liu@amlogic.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20260209-a9_clock_driver-v1-0-a9198dc03d2a@amlogic.com>
- <20260209-a9_clock_driver-v1-4-a9198dc03d2a@amlogic.com>
- <89cc0724-32a8-4da5-8070-c128cafcfc82@kernel.org>
- <76ef272c-e09a-400e-b381-82d7f29760ca@amlogic.com>
- <b97c2e64-8a43-498b-a447-6a5b67c525e5@kernel.org>
- <366ea762-b228-4d6e-872d-2a7f9dc8b1d9@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Mozilla Thunderbird Beta
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH 1/3] arm64: dts: amlogic: t7: Add uart_c pinctrl pins
+ group
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+CC: <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+References: <20260415-add-bluetooth-t7-vim4-v1-0-0ba0746cc1d6@aliel.fr>
+ <20260415-add-bluetooth-t7-vim4-v1-1-0ba0746cc1d6@aliel.fr>
+ <956625df-0a80-4d0e-9bb7-8071d5797748@amlogic.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <366ea762-b228-4d6e-872d-2a7f9dc8b1d9@amlogic.com>
+In-Reply-To: <956625df-0a80-4d0e-9bb7-8071d5797748@amlogic.com>
+X-Originating-IP: [92.91.227.71]
+X-ClientProxiedBy: CAS12.indiv.local (172.16.1.12) To DAG11EX2.indiv.local
+ (172.16.2.112)
+DKIM-Signature: v=1; a=rsa-sha256; d=aliel.fr; s=ovhex24454-selector1;
+ c=relaxed/relaxed; t=1776260697; h=from:to:subject:date;
+ bh=nXLEFR5ld0gmkhDZoJbppfO88OloAWVZCcUgrZTTpMs=;
+ b=na+26WtfbGcCpipes2h38G9UemzYZH1/SVn5Lmb6XQwN5o2uB1iJAOUX8iU1R5V23jtCoGb91ZX1JqSgsNWadzZGAllXPnO0rwDjt0Z85MUnbObnQZpEU9u+e/nDtBlXeOJz09YqNqGbvKN3Li2mVOqxfhe88O8o9Mg9FuCQmtBPI+C1f8TK7wrZzS0lcVSAg7eEd6odXrIX0FFx43UfyCfPo+ITag4keLPX49NVRvJWqr/MpOl6nQJkKRKQ0+mcxbeF4miBrL7f2g93xYkxIe9ZHuT7/n4azyhU+UleABqsH/pDSFzwKlmspzWkXKDiYz5Gyztzun8w2cCYgYvRTw==
+x-ovh-tracer-id: 10833971856656240110
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: dmFkZTF18bDFAC26Re3D/Quk/G2rv+fn1qEiTVJFd9A+lSh7lBclNoacWW6YyCzDY45eYv9KdsbYaW5wjpUkUFKkwhYtTDxn6xhgwPBnj8brLw3zfxZQkGokQuuvRgPYIy76QikIcN4cX0Ky2Ovmw80U7tpMOqpfGAulivI09vMONPaFTUIoRFDGWDzk6JdoeKmkOru6dRFXxpxj6cov/ntGBKVkn24Vws8jLuECq0+TbR2BjsfnNHwGyV0xxcuxOn7OlJSyZhmMJvxzAzOh+pQhNShyGh9nzQcM1NZEzJC/YxHn8Itu9fLdeF5h2eM9XQWuZyVLrPIitzsmwEbSMF3V4VkKLnXRHEWlQWl3F9bE0AVfBKH8VJPFv1It67F0Gwmt3Oe4TooOEbsu8bO9WJtrHEQXNPaW6gOiIH3Dhqu81Nb8RmYtgINQacbnfyYaYNoWLUJXV8EQoSepmREUHqVobR43XWLyrCpr8cVLh4PPfoZhO01nu2LTPlOVgzJ58+57CzQmsvM+ysKMKyBvBzAJrdr03QK7eQKDJNyoTFTOJ0ouAXVm6MaMvdeP64F73otWmiS9h2+c/N7St+4QCCuIq8LONTx26ibK8xqY4gzkhbTHTBgLDIUDza1kaCanMXK3ievGYHIM3ntiMYQYyQgwNKaUT7Hsc360I6cQCXOABh8cPQ
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260415_055811_461903_6BC7E44C 
-X-CRM114-Status: GOOD (  12.39  )
+X-CRM114-CacheID: sfid-20260415_064505_808166_C21524BA 
+X-CRM114-Status: UNSURE (   7.60  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,74 +75,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/04/2026 13:40, Chuan Liu wrote:
-> Hi Krzysztof,
-> 
-> 
-> On 4/9/2026 2:12 PM, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On 08/04/2026 16:32, Chuan Liu wrote:
->>> Hi Krzysztof (& ALL),
->>> Thanks for review.
->>>
->>> On 2/9/2026 9:17 PM, Krzysztof Kozlowski wrote:
->>>> [ EXTERNAL EMAIL ]
->>>>
->>>> On 09/02/2026 06:48, Chuan Liu via B4 Relay wrote:
->>>>> From: Chuan Liu <chuan.liu@amlogic.com>
->>>>>
->>>>> Implement core clock driver for Amlogic SoC platforms, supporting
->>>>
->>>> So how did all existing Amlogic SoC platforms work so far without basic
->>>> clock driver? Really, how?
->>>>
->>>> You are suppose to grow existing code, not add your completely new
->>>> "basic" driver just because you have it that way in downstream.
->>>>
->>>
->>> Firstly, apologies for the delayed response. I had intended to
->>> consolidate the V1 review feedback and come back with a clearer plan for
->>> V2 changes. In the meantime, Martin has provided many detailed and
->>> valuable suggestions - much appreciated.
->>>
->>> The original goal of optimizing the HW based on A9 and introducing a new
->>> clock driver is to reduce unnecessary complexity in the driver. On A9,
->>
->> Nah, you just don't care about upstream and it is easier for you to
->> duplicate new code.
-> 
-> Regarding the "duplicate new code": the ops implemented in clk-basic.c 
-> are indeed based on the CCF components (clk-mux, clk-divider, clk-gate), 
-> with the following enhancements:
->    - Register access via regmap (meson clock driver looks like this)
->    - Additional debug nodes to support Amlogic clock automated test 
-> tools (in conjunction with clk-measure to verify hardware functionality 
-> of each clock)
->    - Clock context save/restore support for STD/STR
-
-
-Add all of these to existing drivers and stop pushing your downstream
-approach. You received feedback already more than once from more than
-one person. No means no. You are waiting one week with a reply and then
-again pushing against feedback with ridiculous arguments of "objective
-design" or "optimizing".
-
-That pushing after receiving clear "no" means you value downstream or
-vendor or corporate rules more than what community wants and that's
-short way to get permanently PLONK-ed on all your submissions.
-
-NAK
-
-Best regards,
-Krzysztof
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8gWGlhbndlaSwKCk9uIDQvMTUvMjYgMToyOCBQTSwgWGlhbndlaSBaaGFvIHdyb3RlOgo+
+IAo+IAo+IE9uIDIwMjYvNC8xNSAxOToxNiwgUm9uYWxkIENsYXZlYXUgd3JvdGU6Cj4+IEFkZCB0
+aGUgcGluIG11bHRpcGxleGluZyBjb25maWd1cmF0aW9uIGZvciBVQVJUIEMgKFRYLCBSWCwgQ1RT
+LCBSVFMpCj4+IGluIHRoZSBUNyBTb0MgcGluY3RybCBub2RlLCByZXF1aXJlZCB0byByb3V0ZSB0
+aGUgVUFSVCBDIHNpZ25hbHMKPj4gdGhyb3VnaCB0aGUgY29ycmVjdCBwYWRzIGJlZm9yZSBlbmFi
+bGluZyB0aGUgY29udHJvbGxlci4KPj4KPj4gU2lnbmVkLW9mZi1ieTogUm9uYWxkIENsYXZlYXU8
+bGludXgta2VybmVsLWRldkBhbGllbC5mcj4KPj4gLS0tCj4+IMKgIGFyY2gvYXJtNjQvYm9vdC9k
+dHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LmR0c2kgfCAxMiArKysrKysrKysrKysKPj4gwqAgMSBmaWxl
+IGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKykKPj4KPj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQv
+Ym9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LmR0c2kgYi9hcmNoL2FybTY0Lwo+PiBib290L2R0
+cy9hbWxvZ2ljL2FtbG9naWMtdDcuZHRzaQo+PiBpbmRleCA3ZmU3MmM5NGVkNjIzLi41MzE5MzFj
+YzE0MzdjIDEwMDY0NAo+PiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvYW1sb2dp
+Yy10Ny5kdHNpCj4+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3
+LmR0c2kKPj4gQEAgLTU1Myw2ICs1NTMsMTggQEAgbXV4IHsKPj4gwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGJpYXMtcHVsbC11cDsKPj4gwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgfTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+PiArCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdWFydF9jX3BpbnM6IHVhcnRfYyB7
+Cj4gbm9kZSBuYW1lwqAgdWFydC1jCgpJIHdpbGwgY2hhbmdlIHRoaXMsIHRoYW5rIHlvdSBmb3Ig
+cmVtaW5kaW5nIG1lLgoKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbXV4IHsKPj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdyb3VwcyA9ICJ1YXJ0X2NfdHgiLAo+PiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgInVhcnRf
+Y19yeCIsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCAidWFydF9jX2N0cyIsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAidWFydF9jX3J0cyI7Cj4+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBiaWFzLXB1bGwtdXA7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCBvdXRwdXQtaGlnaDsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIGZ1bmN0aW9uID0gInVhcnRfYyI7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IH07Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgfTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIH07Cj4+Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBncGlvX2ludGM6IGludGVycnVwdC1jb250cm9sbGVyQDQwODAgewoKCi0tIApC
+ZXN0IHJlZ2FyZHMsClJvbmFsZAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0
+cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbGludXgtYW1sb2dpYwo=
