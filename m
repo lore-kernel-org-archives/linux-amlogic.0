@@ -4,64 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E084F43841
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2026 15:11:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 245D1F4384E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Apr 2026 15:54:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=v31Aw3xnmB3fqbD8VDy85HuJOpJLzvoToktzM0s4E5k=; b=L23P2PikQdeAy80KAVgQSCQW9r
-	Lvt/oISUEfYp5nrOkobsSdw7nx5y/ca4kxzgoR08rcrmbT96Z9GFNieEFIlNvk6rdCSAPYaI0nTxL
-	gmR3imiakp72PlQfqXdc/n4O5xtdW2KbXEMy0Vw+SnpJjJnmMF9qefJ4Fw2U8iG1AuaIkfJV8EWvd
-	MDNMNp5MPNSXzRm2pkffntUGEXZMtuAeOSnYAbhIFsZkU9svixUidk494cg+ato41vTaPEQYI+59f
-	7jV9lFJ7sX03Q8+0FdbRzB3irJYUaF/Orz4Ir3LimYAnChP9quITEMAF2Vse+X2gDX/HXOrMMjQQD
-	bBq7XbUg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=e24I8aKDEgrAwptHscNFPf1Mk4D8hKciBxt4XF7Zi9g=; b=u9Sz5tmfXkgGzU
+	i0e+hFcM7/QcsLf5UjcdW/ebrQWITBnYmZzso7mNDbAGW8Go7O/XXagaJFQi8YyfUS3LFhPXnJZSt
+	+EgHB6SXHyl6VAFx/QU+p76v8bq6CS7h506XT85JCxGDs/9uHSBQzNhSgV4kc8889LsX5wjcG0RI7
+	A31E+wqGgxWMC62L9kRncIGsNr+Gsvyri4YkekJ1RrKpcfuCndQzTTYdLFfFhLDcrC59IlAiwct7K
+	8jyBU21S00rk9aeSH7lTWsNW8BV3TqdYF30j74gevxLlKWrD2g195LfcjtOBkBVsuSxKkdhPN4CDC
+	4wEiNU01MwzwsZ8epvtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wD1tS-00000001I4X-2b8R;
-	Wed, 15 Apr 2026 15:11:06 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wD2Yt-00000001Lcz-1MIf;
+	Wed, 15 Apr 2026 15:53:55 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wD1tQ-00000001I47-3kPX;
-	Wed, 15 Apr 2026 15:11:05 +0000
+	id 1wD2Ys-00000001Lcp-0EDG;
+	Wed, 15 Apr 2026 15:53:54 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id B6262408A2;
-	Wed, 15 Apr 2026 15:11:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 506AEC19424;
-	Wed, 15 Apr 2026 15:11:01 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 2BEF5600AE;
+	Wed, 15 Apr 2026 15:53:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C8E2C19424;
+	Wed, 15 Apr 2026 15:53:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776265863;
-	bh=+oW66S9iTPf+DjWP4/3R62ZAPXefkeA/w7M50i/1pCw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DAEkVqHWfZJO/HGwHZI8JT6iF29PV9+Ol8j6ILWF/U2h4+77GUgsJHHX4dpgw1KKb
-	 wdXI3YROj3dA7OvFI9dRIQOSkgb1BzQ7vqumiY+/ms0a3405vOULDU9khzIPmRzB2t
-	 2GCtac8RMMIRn09eW7k8wgh1wKiorozpYxwRultaEcUC0FBvkxkhknSHR7rP5uoFr/
-	 ZjCWd5roEDrNm5+woZweYER1dLjdzVeV2l+QIu/1Es1nd46xXg+wvskjXkU6vjdzgN
-	 YdzZgVJM2a4vd3slRaSmV5VI6jsNHwAAIsleablQBVcE9ccw68XffwhJAmmCNoXKTS
-	 TmBFrdpcKoY9w==
-Date: Wed, 15 Apr 2026 16:10:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: jian.hu@amlogic.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: amlogic: clk-measure: Add A1
- and T7 compatible
-Message-ID: <20260415-clerk-juggle-986fc332451a@spud>
-References: <20260415-clkmsr_a1_t7-v2-0-02b6314427e6@amlogic.com>
- <20260415-clkmsr_a1_t7-v2-1-02b6314427e6@amlogic.com>
+	s=k20201202; t=1776268432;
+	bh=Us7yUv36VR/pQ2jT+9Hva+0cXXCK2Pqu3CcrJ7SAPWg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DjIbpc+tT05ZnG96Uo1tahGpZmjWGE7DLk7/a5R1L8t3v7L3KqoiPNxQbrTzSaCaw
+	 +Re1HIH2Qfrf5UBHmdjAU1mLML0jBk1wkXG3hfTFTFfdDOk5/BMNOTxKZd+/oyX1t2
+	 VOeNhfWtSRO7NkPCesaWVvvzpMJiPW3Gvt0LAItU1sHufnLVsTXxgD4Pgzti6syvQb
+	 BM+EpmgUnCgmWTIwgYuDCsGqDadn10dYeJLkglEpErZ2V6BJszkcSHm3uncIi/kSbk
+	 bINYh5yegwd2Z6VtM0cksuVApTB7ascyWp0CvIsXaqBmzzYse43zE93a8ah/rP4VLr
+	 PSPxGkI8/gZbg==
+Message-ID: <a055a390-2818-449d-9a10-fda0237cd16e@kernel.org>
+Date: Wed, 15 Apr 2026 17:53:47 +0200
 MIME-Version: 1.0
-In-Reply-To: <20260415-clkmsr_a1_t7-v2-1-02b6314427e6@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260415_081104_972054_1AC200D1 
-X-CRM114-Status: GOOD (  13.91  )
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 00/11] Add support for AUDIN driver in Amlogic GXBB
+To: Jerome Brunet <jbrunet@baylibre.com>, Valerio Setti <vsetti@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+References: <20260411-audin-rfc-v2-0-4c8a6ec5fcab@baylibre.com>
+ <1jh5pcs2gw.fsf@starbuckisacylon.baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <1jh5pcs2gw.fsf@starbuckisacylon.baylibre.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,85 +115,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7309294251606903439=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 15/04/2026 16:49, Jerome Brunet wrote:
+> On sam. 11 avril 2026 at 16:57, Valerio Setti <vsetti@baylibre.com> wrote:
+> 
+>> This series adds support for I2S audio input (AUDIN) on the Amlogic GXBB
+>> platform.
+>>
+>> It has been largely reshaped compared to what proposed in v1. Instead of
+>> adding an HACK commit to allow AIU to export its clock so that also
+>> AUDIN can control it, now the design closely follows what was implemented
+>> in the Meson AXG platform. "aiu-encoder-i2s" becomes the shared interface
+>> for playback/capture and it controls pins and clocks; data formatting
+>> is implemented in formatters which are named "aiu-formatter-i2s" and
+>> "audin-decoder-i2s" [1].
+>> Formatters are DAPM widgets which are dynamically attached/detached to
+>> the streams when the latters starts/stop, respectively.
+>>
+>> As of now only I2S input is supported, because it's the only one
+>> I could physically test in my setup, but other input sources (ex: SPDIF)
+>> are also allowed according to the SOC's manual and can be added in the
+>> future.
+>> This series was tested on an OdroidC2 board (Amlogic S905 SOC) with an
+>> NXP SGTL5000 codec connected to its I2S input port.
+>>
+>> Since this work brings GX platform very close to the AXG one, once this
+>> series is accepted, follow up work will be done in order to unify
+>> GX and AXG formatters so as to minimize the number of implementations.
+>>
+>> The series a bit long and it includes changes to drivers, dt-bindings and
+>> device-tree. Of course this only happens because this is an RFC and I
+>> wanted to give a full overview of what will be the final design. If no
+>> objection is raised, this patch series will be split into 3: one for
+>> reshaping AIU and introducing formatters, one to add AUDIN driver and its
+>> dt-bindings, one for the device-tree changes.
+>>
+>> [1]: Different naming for the aiu part is related to the fact that
+>> "aiu-encoder-i2s" is already used for the interface and the goal
+>> of this series was to introduce the minimum amount of changes that allow
+>> I2S capture to work. Renaming can be implemented in the future as follow up
+>> activity.
+> 
+> Thanks a lot for this awesome work Valerio. I know this was a lot of
+> effort. With Mark and Krzysztof comments addressed
+> 
 
---===============7309294251606903439==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="S2RzMzVYXQiNue92"
-Content-Disposition: inline
+My comments are still unanswered. One of the devices looks like
+artificially split from some other, because one word register is not a
+device.
 
-
---S2RzMzVYXQiNue92
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Apr 15, 2026 at 04:33:41PM +0800, Jian Hu via B4 Relay wrote:
-> From: Jian Hu <jian.hu@amlogic.com>
->=20
-> Add the Amlogic A1 and T7 compatible for the clk-measurer IP.
->=20
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-
-In the future, please note why fallback compatibles are not suitable in
-patches like this.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
-> ---
->  .../devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml   =
-| 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-=
-gx-clk-measure.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic=
-,meson-gx-clk-measure.yaml
-> index 39d4637c2d08..b1200e6940ac 100644
-> --- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-=
-measure.yaml
-> +++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-=
-measure.yaml
-> @@ -24,6 +24,8 @@ properties:
->        - amlogic,meson-sm1-clk-measure
->        - amlogic,c3-clk-measure
->        - amlogic,s4-clk-measure
-> +      - amlogic,a1-clk-measure
-> +      - amlogic,t7-clk-measure
-> =20
->    reg:
->      maxItems: 1
->=20
-> --=20
-> 2.47.1
->=20
->=20
-
---S2RzMzVYXQiNue92
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCad+qggAKCRB4tDGHoIJi
-0rm9AQDRmlygY1FIas9dunBFzqaN1S0RjyEx3WgzWgAJHA+UQAD/RuOZzIqvbtOj
-rv/4/XvbxNUIPH2QkKG9Sy+ZPQwHKwo=
-=n0nL
------END PGP SIGNATURE-----
-
---S2RzMzVYXQiNue92--
-
-
---===============7309294251606903439==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7309294251606903439==--
-
