@@ -4,81 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77CBCF8A140
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2026 08:10:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66C7BF8A140
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Apr 2026 08:25:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Zyr14oYXkv85CRy2+WfF8Uvwrvs+xutxmhTdQBRL0UY=; b=uXyC322o8Vc3Hm
-	4bz+9T/xpuNQ5IiGenvScCe9k/smn13/pENDhRPoqgQPt9pvQpr7c1LzSQYb965+6fifliAsmamjd
-	hLVYI1PY0YbWBFTkEP2blDP/TUkp2PogCCgKf7Jg1WoqU15y5Fsv4ORAYjaEdmGVuFfWscNi0T3mH
-	PqLLLyUlcBcqQdQxvtcTQJQMW/yKoFHy4eY3Qsp1PtTHhXGD/HRdle91lx8Lf/bWe698YtUeBQER6
-	yogwB53Kw55LgtEUiF0gikht1ljlOnBFsfmm0yEnGQsKhuAUY+Q3YDRfBKaSoNmYgKEjrnVR0+bil
-	TtURN1ChaYWEZ2kjc53g==;
+	List-Owner; bh=EEAJLDMZI/aP6BK15VCO2oQl2Z7pv9skF2U4VXDbM2M=; b=KyvlF8PPasznsi
+	3b3Xq75A3Wk9+C1QL0YlMLcqOvcnTG8je5lWGhO1wRzv2mYsuv+LzQDo5UI3o8gGy1sFEFEgNqLER
+	hiLFjJ3Pd85MGyMnGyUPBq84OY+nC+K5YLV8mHClTnpSyFXxqPPfOpN2QogXwQbW0wr53qlxhU7Hq
+	dxxTALN7lJ6Chgq4DRqDtQAbN5/jgD2obcqk3wLmeD1MTre3IFusH0A+tiEcjYIerrzazUw0+W9Ch
+	KkSd7rbn0wJ67LaKIBn+LHtKnUWTYyDPTgiw4mDl+D5+ygzARrSsbC5+MHfsFgD0Bpi5ETrM7D0QF
+	0TuyRZyoBQiV3bUnOyrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wDHnm-000000029t6-0lvh;
-	Thu, 16 Apr 2026 08:10:18 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1wDI2U-00000002AvK-1nbq;
+	Thu, 16 Apr 2026 08:25:30 +0000
+Received: from 2.mo546.mail-out.ovh.net ([178.33.110.155])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wDHni-000000029sX-3RuP;
-	Thu, 16 Apr 2026 08:10:16 +0000
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 14C9DC6C;
-	Thu, 16 Apr 2026 10:08:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1776326915;
-	bh=g7f/Flf2ul/YLdxmLv00ymzR+4jdIi46fIJJ0uhUQ7Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pWjsSEEGtmYTjmh1L3vxjLjJOdT9c2tbeZUNXWjczBqPbKqdjpZMp4rqczxJP58Jf
-	 zLFaAukADLLma/Vw4PR1ekKd/GJOEikDsklce9HMwHIqA6dJSLu3TaWUZStlGcDAtB
-	 up2qmcbfrGPR9jIeuRwjWAgLZdc7PMji46McCOyU=
-Message-ID: <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
-Date: Thu, 16 Apr 2026 11:10:03 +0300
+	id 1wDI2R-00000002AuQ-1CGg
+	for linux-amlogic@lists.infradead.org;
+	Thu, 16 Apr 2026 08:25:30 +0000
+Received: from ex.mail.ovh.net (unknown [10.111.174.41])
+	by mo546.mail-out.ovh.net (Postfix) with SMTP id 4fxB0K1fYFz658n;
+	Thu, 16 Apr 2026 08:25:21 +0000 (UTC)
+Message-ID: <6fc8ddeb-d54d-473d-94d2-49dc78a07154@aliel.fr>
+Date: Thu, 16 Apr 2026 10:25:19 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
- drm_connector_oob_hotplug_event()
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
- Nikita Travkin <nikita@trvn.ru>, Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
- <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird Beta
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH v2 1/8] dt-bindings: mfd: khadas: Add new compatible for
+ Khadas VIM4 MCU
+To: Rob Herring <robh@kernel.org>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Beniamino Galvani
+	<b.galvani@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel
+ Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz
+ Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-i2c@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-pm@vger.kernel.org>
+References: <20260403-add-mcu-fan-khadas-vim4-v2-0-70536b22439a@aliel.fr>
+ <20260403-add-mcu-fan-khadas-vim4-v2-1-70536b22439a@aliel.fr>
+ <20260415214815.GA602572-robh@kernel.org>
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
+In-Reply-To: <20260415214815.GA602572-robh@kernel.org>
+X-Originating-IP: [92.91.227.71]
+X-ClientProxiedBy: CAS6.indiv.local (172.16.1.6) To DAG11EX2.indiv.local
+ (172.16.2.112)
+DKIM-Signature: v=1; a=rsa-sha256; d=aliel.fr; s=ovhex24454-selector1;
+ c=relaxed/relaxed; t=1776327921; h=from:to:subject:date;
+ bh=pFOmuggUuSRoz8cJkPKGP7DvDQuCHyf5KhKmxv5ivoA=;
+ b=WJj2u3Sw9klNHCmqWBIBwUAd6tng48dLg+QKWHtKreX2JXQ67wigXe0TQP09NrQdmjUdwYsVTIyNXg4WsMawW2PmYK7jooYwzgx8we3T9RfQx1UZQXMpaipb4jkwQp18llokPWqyMOVBtBgrQPBrHmwTjeESar/AykfbQnBZNwp/pjzaIaW2WNcDq+ayKr+VpdIATbkHVjJTpB8++FJGaLn7Ol1tFFkyi1AGSgG98ENB42Y/mEsn2aeqTPV3QhE3SaopbBg7OcaxLDOhjq5VrsoBVb3M/ZQ9d/J23gPci+pOIg9idifu9W/UraOS+CQDDiVvyayR3TcF4gkqOf5YNw==
+x-ovh-tracer-id: 11309101614479183212
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: dmFkZTGn1Zxn7wlgRAk3Ls9HCSQIM4J7NsCvDBxD4MAUEzQ319Tl8D+J9DRCSxDWfnhZBirHrMBroybDTW/ifa7s/TX61Cq1qD7Plv4j4gqth9jElM8m8lL5uZaot7/CIcLhbmDQcxKVaGwJGKieR33WAaBijrVQPO30sMw94oTcS2ML8nPtfAsVfoiIzbsyHLnkFodLJa+IaEAujtZ7TULWFAR2dvLjd+30CuJOFupt+NPg60/KJvm8NS0WNT7b27RGiIs28KQWG7dLvMPlvP203CJnbo58FK18k6MC9luvcwxFxMp7VK/Kyynji+k+emjUreeA7ZNLd0jKJE7AShi72O9EK/Py+Qj7pqHOcFu0v99QnkqMJB32b0PzsZz78C1xa5o+Td1459KqjlMRtaidgNCiyUnIa8snrN6JAZTHZBdOpyJ1t0Qdgod0GBU+oll1AWzKYOB8WMck4/vqyf366h54XV3csqSAvMGnXmVieYrkzkzjxFkOilGcLN4Do2dalN99LVDjx3GW1UyV3b11o665Rqt4Kk8izf+4QDtdFIv/38vVISb7nnEqxHw+xQnEDwhZSW1Sh81XUad8bUy2pNAHeasPX5qPHxqLlVDYlmDV/weFzND9AK0qthn2R1CijJ4b9zO59gyCXlabD/w6m9y4Z7iNMp9G3Oyn1f7Ntu5iJA
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260416_011015_036358_92C6BC83 
-X-CRM114-Status: GOOD (  21.40  )
+X-CRM114-CacheID: sfid-20260416_012528_443637_650EBA62 
+X-CRM114-Status: GOOD (  12.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,64 +80,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 16/04/2026 02:22, Dmitry Baryshkov wrote:
-> The DisplayPort standard defines a special kind of events called IRQ.
-> These events are used to notify DP Source about the events on the Sink
-> side. It is extremely important for DP MST handling, where the MST
-> events are reported through this IRQ.
+On 4/15/26 11:48 PM, Rob Herring wrote:
+> On Fri, Apr 03, 2026 at 06:08:34PM +0200, Ronald Claveau wrote:
+>> The Khadas VIM4 MCU register is slightly different
+>> from previous boards' MCU.
+>> This board also features a switchable power source for its fan.
+>>
+>> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>> ---
+>>  Documentation/devicetree/bindings/mfd/khadas,mcu.yaml | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+>> index 084960fd5a1fd..67769ef5d58b1 100644
+>> --- a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+>> @@ -18,6 +18,7 @@ properties:
+>>    compatible:
+>>      enum:
+>>        - khadas,mcu # MCU revision is discoverable
 > 
-> In case of the USB-C DP AltMode there is no actual HPD pulse, but the
-> events are ported through the bits in the AltMode VDOs.
+> The revision is no longer discoverable as was claimed?
 > 
-> Extend the drm_connector_oob_hotplug_event() interface and report IRQ
-> events to the DisplayPort Sink drivers.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->   drivers/gpu/drm/drm_connector.c          |  4 +++-
->   drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
->   include/drm/drm_connector.h              |  3 ++-
->   3 files changed, 13 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index 47dc53c4a738..5fdacbd84bd7 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
->    * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
->    * @connector_fwnode: fwnode_handle to report the event on
->    * @status: hot plug detect logical state
-> + * @irq_hpd: HPD pulse detected
->    *
->    * On some hardware a hotplug event notification may come from outside the display
->    * driver / device. An example of this is some USB Type-C setups where the hardware
-> @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
->    * a drm_connector reference through calling drm_connector_find_by_fwnode().
->    */
->   void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
-> -				     enum drm_connector_status status)
-> +				     enum drm_connector_status status,
-> +				     bool irq_hpd)
-I find the "IRQ HPD" naming always confusing, even if I'm somewhat 
-familiar with DP, but if someone has mainly worked on HDMI, I'm sure 
-it's even worse.
 
-Can we define this a bit more precisely? Is 'irq_hpd' only for 
-displayport?  If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I 
-might even call it 'dp_hpd_pulse', but maybe that's not good as the spec 
-talks about HPD pulse for both short and long ones (although in the 
-kernel doc you just write "HPD pulse")... The kernel doc could be 
-expanded a bit to make it clear what this flag indicates.
+The firmware revision is still discoverable, and via the same register,
+but the VIM4 MCU has a different register layout (eg: no DEVICE_NO
+register). The new compatible is needed to describe a different MCU
+variant, not a different revision of the same MCU.
+I will remove the comment as it is confusing with new boards.
 
-  Tomi
+>> +      - khadas,vim4-mcu
+>>  
+>>    "#cooling-cells": # Only needed for boards having FAN control feature
+>>      const: 2
+>> @@ -25,6 +26,10 @@ properties:
+>>    reg:
+>>      maxItems: 1
+>>  
+>> +  fan-supply:
+>> +    description: Phandle to the regulator that powers the fan.
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>>
+>> -- 
+>> 2.49.0
+>>
 
+
+-- 
+Best regards,
+Ronald
 
 _______________________________________________
 linux-amlogic mailing list
