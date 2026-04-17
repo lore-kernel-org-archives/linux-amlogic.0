@@ -4,40 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E86EDF436BB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Apr 2026 16:37:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9285F436BF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Apr 2026 16:37:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iGlqziXNiqj/hiRv6wscTfZHc6AJdGT3YavHPlNYwEI=; b=HcC7A0cQm+sEfd
-	ET3/iOG46TJUd+6m4hPC47/Xltz6xuC5MLUPf19xJSSWUVUw52X0NNeX0pjJ53BWJyW+acIJSV5jL
-	blufWPHyrLUq1haHKR+q0CS53jTe/017kQMr5mCEB5yBeVgIXjoQh8PBrFQ+OnvIICFE7yEWSZOHR
-	+XqZemyRRRi0gjm57wqHWPwgRdB9niBuyIUHE+YDjw5Gm7ARJ1fTGiYVVsDtj2DrgXh/k2bWdmfTS
-	uyWm8aaU0eb9U8gGJtdLDHe6Gm1R9yk0vPWvJCqUAxeohS/OeWpSjRfcwAbNEOLO/FsYACxYYanHB
-	DfKEuifLnkQakAoUZ18A==;
+	List-Owner; bh=FDb87nyCsCiJ5RDMNPnAFgMexSaTI6d72xIeuQg5Oek=; b=CepAZeWfO0jgBR
+	3UQcf/zY1Cy0Loc+3UHftD9GoyPTlwtojIkbpskKHB3OpU3j01+i1wQXaqswVniZ2F/RKbUxcJR+Z
+	GBHhEFxcTpmbB++taepbf3ABwbKzNYee7cjFpnRFcIXg1IG2oA199xh/qYKZed6g6c5K86mH2EG3M
+	+cEnuR27THR+rtWSad0Ztk9poeAznbAi1zlLJTNyrkhErCzCYy4urrqOEk9kAzFr9E79Nwq3IncuJ
+	dD/4eZP6k9mOO2ZOoTALQ6V+n4aXi+4Xu7aWhuBPPddXp13q+auFbOmqJCOXjwrkCQV/nTlsmvVj0
+	z9dCvFjz2aiMkcC5udnQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wDmBx-00000004Gyv-1d67;
-	Fri, 17 Apr 2026 16:37:17 +0000
+	id 1wDmBw-00000004Gxl-2n4o;
+	Fri, 17 Apr 2026 16:37:16 +0000
 Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wDmBp-00000004GqZ-40MW;
-	Fri, 17 Apr 2026 16:37:11 +0000
+	id 1wDmBn-00000004Gp1-0UYT;
+	Fri, 17 Apr 2026 16:37:08 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776443827;
-	bh=seZTIBpCrIa88Q5I5ls9lWfgh7ETpuTsfLV3IO6SlWs=;
+	s=courrier-s1; t=1776443821;
+	bh=dSGVBP6Kwid380fHwj/yvIcbmVkBngDKwALA0QzKSyw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Q4EjezfpuPTt9AVSnimRTljN5XnpxjUdRWp5/ul5S6uN1ZrDwr12dzgJ5RHwrIbm/
-	 i+J33okaC8SEmDMIxcTHAUJxGOzkqk9hstG9mYm9l0KyibNLpJfKBg4fntgj/O1hYz
-	 Bdu8HojLnJ+VXlsRBr0u11fZ15RvrZZMih5aMStY=
-Date: Fri, 17 Apr 2026 18:27:23 +0200
-Subject: [PATCH v3 7/8] arm64: dts: amlogic: t7: Add i2c controller node
+	b=sOC+/nc95HwQ3If8FUGI/tkBtJLHsXdQnLbO7PiFt9lj0UA2hMwm3RZQ6KJKdCUqp
+	 ysXkOG4oYCUPTjrF4sDoS2oWo3kaA7rdITvI5XHCLsjSs+zSt2huR5idMSgkqrwGpr
+	 SaxJYKLQCoL5JYVRChH4SBObGEjI0TD/2aMKiN8U=
+Date: Fri, 17 Apr 2026 18:27:18 +0200
+Subject: [PATCH v3 2/8] dt-bindings: i2c: amlogic: Add compatible for T7
+ SOC
 MIME-Version: 1.0
-Message-Id: <20260417-add-mcu-fan-khadas-vim4-v3-7-a6a7f570b11b@aliel.fr>
+Message-Id: <20260417-add-mcu-fan-khadas-vim4-v3-2-a6a7f570b11b@aliel.fr>
 References: <20260417-add-mcu-fan-khadas-vim4-v3-0-a6a7f570b11b@aliel.fr>
 In-Reply-To: <20260417-add-mcu-fan-khadas-vim4-v3-0-a6a7f570b11b@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
@@ -55,18 +56,18 @@ Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776443818; l=1096;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776443816; l=1268;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=seZTIBpCrIa88Q5I5ls9lWfgh7ETpuTsfLV3IO6SlWs=;
+ bh=dSGVBP6Kwid380fHwj/yvIcbmVkBngDKwALA0QzKSyw=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QOUY/VGuHfeWgAUgMlf5mVaLJeEDis5NNiVBuNAj+P7K604hwBDgLiRSiplNKbZ7X6ukeksqDUG
- iau9Z9CulzQw=
+ QIJzFTKW3rJkbI8G4HNHwG/SaKlPKhhf1BMkq9mNhnjhgPsdVTXoHB5c3luaopWfZXt2ICwrk5L
+ wQkituZfWtAU=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260417_093710_237924_5CD4CA8B 
-X-CRM114-Status: UNSURE (   7.09  )
+X-CRM114-CacheID: sfid-20260417_093707_373189_0A5BBEC8 
+X-CRM114-Status: UNSURE (   6.76  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,37 +85,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the T7 i2c controller node used by the Khadas VIM4
-for MCU communication.
+Add the T7 SOC compatible which fallback to AXG compatible.
 
-Use amlogic,meson-axg-i2c as fallback compatible.
-
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../devicetree/bindings/i2c/amlogic,meson6-i2c.yaml         | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index e96fe10b251a0..560c9dce35266 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -711,6 +711,16 @@ pwm_ao_cd: pwm@60000 {
- 				status = "disabled";
- 			};
+diff --git a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+index c4cc8af182807..7b59b60b62e5b 100644
+--- a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+@@ -16,10 +16,15 @@ allOf:
  
-+			i2c_m_ao_a: i2c@76000 {
-+				compatible = "amlogic,t7-i2c", "amlogic,meson-axg-i2c";
-+				reg = <0x0 0x76000 0x0 0x48>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&clkc_periphs CLKID_SYS_I2C_AO_A>;
-+				status = "disabled";
-+			};
-+
- 			sd_emmc_a: mmc@88000 {
- 				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
- 				reg = <0x0 0x88000 0x0 0x800>;
+ properties:
+   compatible:
+-    enum:
+-      - amlogic,meson6-i2c # Meson6, Meson8 and compatible SoCs
+-      - amlogic,meson-gxbb-i2c # GXBB and compatible SoCs
+-      - amlogic,meson-axg-i2c # AXG and compatible SoCs
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,t7-i2c
++          - const: amlogic,meson-axg-i2c
++      - enum:
++          - amlogic,meson6-i2c # Meson6, Meson8 and compatible SoCs
++          - amlogic,meson-gxbb-i2c # GXBB and compatible SoCs
++          - amlogic,meson-axg-i2c # AXG and compatible SoCs
+ 
+   reg:
+     maxItems: 1
 
 -- 
 2.49.0
