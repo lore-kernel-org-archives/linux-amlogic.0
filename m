@@ -4,40 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8B4EF588D2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2026 13:54:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AD9BF588D2
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2026 13:54:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fX4BwB0vhZj2vDtyF73PxcVKtg4m2gCdrIaniGFt3ls=; b=tB13QdRpjy3wlj
-	cum6SpSW5rt1hp3sIqGDb7VmNUCnrMy2ZTld0p0FkJTFSrREN85iHL/qbpRVEKRI8l6YnNBKLfAGk
-	bDlkRgeUlKjgFef1DT1kgOjRzoWt1YgYN0qX72nHsu9pjqhsnKf/VoctF/MnLt+WS4lIG9A48xBeG
-	6bCxddRiarnqAuQ/Hg9ZKUEXae9vH7rnJva9oco7VkRdMdwej51nk7lPztOdDTKARNQKeWzSGibKH
-	CycIyCvDzciN9k36S1+SqzNoiCHiz7ejTdX6hD9JiwSW1cVUHYPjiH82wQOeptlMva0JYbCgDj2M9
-	6lOqlY6Th7cxPIIo9PtA==;
+	List-Owner; bh=AruLApLcBKWDKGh4EeDoMCsk9IpiEQL9Zy9wDXr15+Q=; b=g1i1aB9vwmm3vc
+	PavMqNzr2bqFtt4MjgzVy6uNGdBvX0UTCDcK3A4TjfGKro+vMf2d8TAvqaMkOW7SflpRc+Rb2tyHP
+	i2XR1oPojPQI7ZfS9WXCkbeuZbWfNmSDPKfyVSCkwX0Q+oY86StTD+6nBbxjKTbSAMU3QNY3onKK1
+	EskaZb3IiFs0BDasrEci+xtkG4Kid+ASTfxl926BJLorsdLQFvHUxYwMQytzSveWyKeOj+E9ih2KM
+	l+RsFHHCGbiKYwaoZWOhhdloCP+wCM06f9oI1GnjacAkEBHbgP4xWm+AyFs+jWam970gy4eZCZwoX
+	AhXwdj0jpv7MMhs+vOFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wEp59-000000076pw-3HBn;
-	Mon, 20 Apr 2026 13:54:35 +0000
-Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
+	id 1wEp5C-000000076tK-1CiM;
+	Mon, 20 Apr 2026 13:54:38 +0000
+Received: from courrier.aliel.fr ([65.21.61.41])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wEp52-000000076iD-2un8;
+	id 1wEp54-000000076jm-0ZXJ;
 	Mon, 20 Apr 2026 13:54:32 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776693263;
-	bh=n3WSYCLG98U4QY/QGJ/s1AzIwGndCctZjh3l/sS6VWg=;
+	s=courrier-s1; t=1776693264;
+	bh=RBIiK8CES8R9gJcjoYTCoKw0do5/miRgk0+ffcE8qDk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=JEamL4jrS3hEkksbxfDh4pbl3D19ODNZHL6tsQb+Yq16vZ/NB/6u45zUeEcTJH2v+
-	 AB1qaMP85qkVr8oMjidWU3U0h+apr/Tdi4gMEJvMihkYzJ7Tjjp8og/Xpq+A6Tw/RS
-	 j03Sp7+/R8bq9dnH5n2B2onzJSe2dwezrAMaNGls=
-Date: Mon, 20 Apr 2026 15:54:03 +0200
-Subject: [PATCH v4 2/4] arm64: dts: amlogic: t7: Add UART controllers nodes
+	b=Bqk3LylI8jz9spsXo5qoAODLjNruZyLazz96UrsETlsfWkAfRPY6utJ/xRL5Q2dWO
+	 5lX4rvRX8iZ+HSMfU9tLrdY/moYUwmcxLKcnLDKUDrqW2hAguHUxWcqKidVvLYd4UX
+	 evoWZkGKxMiAgegVqwcDAebS27djyLVe9XgXDQEQ=
+Date: Mon, 20 Apr 2026 15:54:05 +0200
+Subject: [PATCH v4 4/4] arm64: dts: amlogic: t7: khadas-vim4: Enable
+ Bluetooth
 MIME-Version: 1.0
-Message-Id: <20260420-add-bluetooth-t7-vim4-v4-2-9505df0e7016@aliel.fr>
+Message-Id: <20260420-add-bluetooth-t7-vim4-v4-4-9505df0e7016@aliel.fr>
 References: <20260420-add-bluetooth-t7-vim4-v4-0-9505df0e7016@aliel.fr>
 In-Reply-To: <20260420-add-bluetooth-t7-vim4-v4-0-9505df0e7016@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -49,18 +50,18 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776693261; l=3707;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776693261; l=1452;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=n3WSYCLG98U4QY/QGJ/s1AzIwGndCctZjh3l/sS6VWg=;
+ bh=RBIiK8CES8R9gJcjoYTCoKw0do5/miRgk0+ffcE8qDk=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QJVZjrLsTC7ivdNRFaEyrVVrbc1Q3Tgttw/0wNxdmjyfZt/H9cKlmRaOj6h2KwKLYSsvxLAKpRV
- OXnav8Zrj1AI=
+ QJpxuZIRj3W4tnr+l9B6tbn37Ka+/vmOZd3e8M2idNXYnjh4fSQSDtqZDilNf0yv6u2Td8L37uq
+ uitqUOdsCHwg=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260420_065429_215891_FA0C2146 
-X-CRM114-Status: UNSURE (   7.50  )
+X-CRM114-CacheID: sfid-20260420_065430_670878_098D0B33 
+X-CRM114-Status: UNSURE (   6.98  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,102 +79,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add device tree nodes for UART B through F (serial@7a000 to
-serial@82000), completing the UART controller description for the T7
-SoC. Each node includes the peripheral clock.
+Enable UART C on the Khadas VIM4 board and attach the BCM43438
+ compatible Bluetooth controller to it. The node configures the RTS/CTS
+hardware flow control, the associated pinmux, the power supplies (vddao_3v3
+and vddao_1v8), the 32 kHz LPO clock shared with the wifi32k fixed
+clock, and the GPIO lines used for host wakeup, device wakeup and
+shutdown.
 
-While at it, move the uart_a node to its correct position in the
-bus address order (0x78000) to comply with the DT requirement that
-nodes be sorted by their reg address. Complete the
-uart_a node with its peripheral clock (CLKID_SYS_UART_A) and the
-associated clock-names, matching the vendor default clock assignment,
-consistent with the other UART nodes.
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 61 +++++++++++++++++++++++++----
- 1 file changed, 54 insertions(+), 7 deletions(-)
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts     | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 4a55d9641bc9b..81c26b1e3e7a4 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -577,13 +577,6 @@ gpio_intc: interrupt-controller@4080 {
- 					<10 11 12 13 14 15 16 17 18 19 20 21>;
- 			};
- 
--			uart_a: serial@78000 {
--				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
--				reg = <0x0 0x78000 0x0 0x18>;
--				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
--				status = "disabled";
--			};
--
- 			gp0: clock-controller@8080 {
- 				compatible = "amlogic,t7-gp0-pll";
- 				reg = <0x0 0x8080 0x0 0x20>;
-@@ -713,6 +706,60 @@ pwm_ao_cd: pwm@60000 {
- 				status = "disabled";
- 			};
- 
-+			uart_a: serial@78000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x78000 0x0 0x18>;
-+				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_A>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+index 3227ab27de107..8ea7ae609fbd5 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+@@ -251,3 +251,22 @@ &sd_emmc_c {
+ &uart_a {
+ 	status = "okay";
+ };
 +
-+			uart_b: serial@7a000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x7a000 0x0 0x18>;
-+				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_B>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
++&uart_c {
++	status = "okay";
++	pinctrl-0 = <&uart_c_pins>;
++	pinctrl-names = "default";
++	uart-has-rtscts;
 +
-+			uart_c: serial@7c000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x7c000 0x0 0x18>;
-+				interrupts = <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_C>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+
-+			uart_d: serial@7e000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x7e000 0x0 0x18>;
-+				interrupts = <GIC_SPI 171 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_D>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+
-+			uart_e: serial@80000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x80000 0x0 0x18>;
-+				interrupts = <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_E>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+
-+			uart_f: serial@82000 {
-+				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
-+				reg = <0x0 0x82000 0x0 0x18>;
-+				interrupts = <GIC_SPI 173 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_F>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+
- 			sd_emmc_a: mmc@88000 {
- 				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
- 				reg = <0x0 0x88000 0x0 0x800>;
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
++		host-wakeup-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
++		device-wakeup-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
++		max-speed = <3000000>;
++		clocks = <&wifi32k>;
++		clock-names = "lpo";
++		vbat-supply = <&vddao_3v3>;
++		vddio-supply = <&vddao_1v8>;
++	};
++};
 
 -- 
 2.49.0
