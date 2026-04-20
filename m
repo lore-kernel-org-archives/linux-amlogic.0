@@ -4,85 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA074F5580C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2026 11:02:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFF4AF5581D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2026 11:29:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9lg7rJS3GIhEWZXXrgvdOrGC65dK2nxaYscN1dCa0Ro=; b=WLnHLgdQx7zYF4
-	URXysYknPsiok359DG9BCc8IPja6IQPni268T1iNfb1fW/qx7/Qp360oqSvZ3Cn9CHqIrbsOFqa9O
-	vLL8JuILW8IQ2x7mgu0vXhxEt5SFYDQvIM+Ic3jdBPqv+nDMypCl9q512hA1T+E7dPwPvc1ZvnyT8
-	gBcrsfEecNABNJmKbzMb7MIvxEWUSFQ8oCZiEC9YrOZGiF5t2JXVIwSZwoyEZs/KHP385HdAd0abH
-	zOyv7PJd0iZdWE1Glgkq3zxZBFho091tQRWcsFqX2nYJBwa5Z3cqzMrYfE71Ua/hG5heEXJXalU9l
-	QwlLypUIqT2ag9hQjcZg==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:References:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=R6Ti3t+00M16l/gSHOwDpd2fqu4o17QqYJlSvg2ryTg=; b=rAhwRbL+sQN3XdkpD8C8gHBxQy
+	8Fj0YqXjo3fRV2PgAV9ipU1W49QhVsfb1krKA3jszRyQ/FAm3UycXDL6EvDHx2kWs9DDJlwqpoxUi
+	Oya/uJ0F7OHByVaKGb9HO4JNKLmvltg2WatCZJv0hbLGqZoKJsd2l42Fy5M1FFFPXsChE0ZkzBIb+
+	y5E6e1TLIhLmNc0Myc1mzHMyxVHQk7nAzdwrZPjj7xqUEEWDyJaOu5ZlNOW3syyOGiZCRCsEfwzfn
+	NxK1wqeI0jXsUDA4jNZXCXqz/Ua1GZDi7Q7xuo9kyEWTjFIeeYrs/YBiN31iQAMl9HfyJoupDRkRQ
+	pg+Ew6cw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wEmOG-00000006lQg-2kce;
-	Mon, 20 Apr 2026 11:02:08 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1wEmol-00000006nf1-2vBO;
+	Mon, 20 Apr 2026 11:29:31 +0000
+Received: from out-173.mta1.migadu.com ([95.215.58.173])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wEmOD-00000006lPU-47rT;
-	Mon, 20 Apr 2026 11:02:07 +0000
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 61711E45;
-	Mon, 20 Apr 2026 13:00:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1776682826;
-	bh=3GoDVjcVfcMdyNd/4s5GQU45wo7ysjQ0yDXPdAnGTVg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=wZRLo91Yw4q2iLo7Jpebvtoz34atXay7MgSGlDzNv5NZVZHMvk/k71YVcMfV3/ohH
-	 2QZCeKuMvVhNlNgoEBaLNUG1SEYNKvpF9tLlomfvYAxYy2+RkkHymazLhbC6O8mkYf
-	 SSaJvybVWgwoS54+ar342tLiLzBET4kE7euo+MqA=
-Message-ID: <f74ecd0a-3ff3-45b4-935e-44b89cd0c92d@ideasonboard.com>
-Date: Mon, 20 Apr 2026 14:01:57 +0300
+	id 1wEmoj-00000006neM-3QGT
+	for linux-amlogic@lists.infradead.org;
+	Mon, 20 Apr 2026 11:29:31 +0000
+Date: Mon, 20 Apr 2026 10:43:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1776684557;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ywrf5g5AerKkuHm35hzEfe78NXKD4YVHkcI057XoQG0=;
+	b=I6Au+DjnXkzfExnJXo+ncHa1T67RHXf9FtxP2OSIp3sTkLyn5NBMC0RDw8l3pTL8fHgaYs
+	Jp/p4/fLY+XFX+0tSBoR21NgBxbGcCC/CKC5zMZpPppynK134S2GS3iwrFvefOnwnp8tuX
+	WSwgQIJZhmJX0vWPkBZ5RAMuwfdsB3tZ43OrQoV4XLTw17htJv8y3HaIqJn2DeMrVL/Vds
+	8/QZ+eSm7ZwwMNxldTBpO6EKbuADPDEkaQNyg2n5pjcPJdu4O/DRCX2iHoX3Amia9Frem6
+	RFt7FAus3L5Ge2kPhZq0McW+6tfFZc5LpcBxO0sBLXcjBTexd76PjJDhBv3wtA==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ferass El Hafidi <funderscore@postmarketos.org>
+To: linux-amlogic@lists.infradead.org, christian.koever-draxl@student.uibk.ac.at, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, khilman@baylibre.com
+Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, funderscore@postmarketos.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, christian.koever-draxl@student.uibk.ac.at
+Subject: Re: [PATCH v2 2/2] arm64: dts: amlogic: add support for X98Q
+References: <20260420061854.5421-1-christian.koever-draxl@student.uibk.ac.at> <20260420061854.5421-3-christian.koever-draxl@student.uibk.ac.at>
+In-Reply-To: <20260420061854.5421-3-christian.koever-draxl@student.uibk.ac.at>
+Message-ID: <tdsikb.3afuzjop9p14v@postmarketos.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
- drm_connector_oob_hotplug_event()
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
- Nikita Travkin <nikita@trvn.ru>, Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
- <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
- <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
- <6z572fdjkvjqvedifwvotgdy4lcrifiqvkjpnutousjqc6764r@zepfzkqy2kbu>
- <a2e60e74-a1be-469d-8f4d-ecce1f30b517@ideasonboard.com>
- <3vrqk67oivkgo26xdc3r774rvj3jn3t6sfydhlytyrfiftubhg@cipain7xxcjz>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <3vrqk67oivkgo26xdc3r774rvj3jn3t6sfydhlytyrfiftubhg@cipain7xxcjz>
+X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260420_040206_172388_5A2057D6 
-X-CRM114-Status: GOOD (  34.86  )
+X-CRM114-CacheID: sfid-20260420_042930_000695_84A29E2C 
+X-CRM114-Status: UNSURE (   8.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,141 +65,137 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 20/04/2026 12:50, Dmitry Baryshkov wrote:
-> On Mon, Apr 20, 2026 at 07:50:46AM +0300, Tomi Valkeinen wrote:
->> Hi,
->>
->> On 18/04/2026 01:32, Dmitry Baryshkov wrote:
->>> On Thu, Apr 16, 2026 at 11:10:03AM +0300, Tomi Valkeinen wrote:
->>>> Hi,
->>>>
->>>> On 16/04/2026 02:22, Dmitry Baryshkov wrote:
->>>>> The DisplayPort standard defines a special kind of events called IRQ.
->>>>> These events are used to notify DP Source about the events on the Sink
->>>>> side. It is extremely important for DP MST handling, where the MST
->>>>> events are reported through this IRQ.
->>>>>
->>>>> In case of the USB-C DP AltMode there is no actual HPD pulse, but the
->>>>> events are ported through the bits in the AltMode VDOs.
->>>>>
->>>>> Extend the drm_connector_oob_hotplug_event() interface and report IRQ
->>>>> events to the DisplayPort Sink drivers.
->>>>>
->>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>>>> ---
->>>>>     drivers/gpu/drm/drm_connector.c          |  4 +++-
->>>>>     drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
->>>>>     include/drm/drm_connector.h              |  3 ++-
->>>>>     3 files changed, 13 insertions(+), 6 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
->>>>> index 47dc53c4a738..5fdacbd84bd7 100644
->>>>> --- a/drivers/gpu/drm/drm_connector.c
->>>>> +++ b/drivers/gpu/drm/drm_connector.c
->>>>> @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
->>>>>      * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
->>>>>      * @connector_fwnode: fwnode_handle to report the event on
->>>>>      * @status: hot plug detect logical state
->>>>> + * @irq_hpd: HPD pulse detected
->>>>>      *
->>>>>      * On some hardware a hotplug event notification may come from outside the display
->>>>>      * driver / device. An example of this is some USB Type-C setups where the hardware
->>>>> @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
->>>>>      * a drm_connector reference through calling drm_connector_find_by_fwnode().
->>>>>      */
->>>>>     void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
->>>>> -				     enum drm_connector_status status)
->>>>> +				     enum drm_connector_status status,
->>>>> +				     bool irq_hpd)
->>>> I find the "IRQ HPD" naming always confusing, even if I'm somewhat familiar
->>>> with DP, but if someone has mainly worked on HDMI, I'm sure it's even worse.
->>>>
->>>> Can we define this a bit more precisely? Is 'irq_hpd' only for displayport?
->>>> If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I might even call it
->>>> 'dp_hpd_pulse', but maybe that's not good as the spec talks about HPD pulse
->>>> for both short and long ones (although in the kernel doc you just write "HPD
->>>> pulse")... The kernel doc could be expanded a bit to make it clear what this
->>>> flag indicates.
->>>
->>> I attempted to stay away from defining a DP-specific flag, keeping it
->>> generic enough. HDMI is pretty close (IMO) to requiring separate flag in
->>
->> If it's not specifically the DP IRQ HPD, then we need to define what it
->> means. I tried to think what it would mean with HDMI, but I didn't come up
->> with anything.
-> 
-> I might be mistaken, but I had someting like HEAC HPD / EDID status
-> changes in mind (or HDCP-triggered HPD status changes). But here I
-> admit, I hadn't checked if it is actually applicable or not.
-
-Possibly, I'm not familiar with those.
-
-> Anyway, for e.g. DVI or VGA that means nothing. But, my point really is
-> to abstain from defining someting as DP-only in the top-level API.
-
-I'm fine with that, but then it really has to be defined =).
-
->>> Linux. Likewise I'd rather not use "pulse". The DP AltMode defines a bit
->>> in the VDO rather than a pulse.
->>>
->>> Anyway, if irq_hpd doesn't sound precise enough, what about "bool
->>> extra_irq"? This would convey that this is the extra hpd-related IRQ,
->>> but it would also be obvious that it's not related to the HPD pin
->>> itself.
->> We'd still need to define what exactly it means. I think it might be better
->> to just define it as the DP IRQ HPD, as then the meaning is clear.
->>
->> Also, would an enum flags parameter be better than a bool parameter?
-> 
-> Maybe not enum, but u32 param. Then it can become:
-> 
-> @extra_status: additional type-specific information provided by the sink
-> without changing the HPD state
-> 
-> void drm_connector_oob_hotplug_event(..., u32 extra_status);
-> 
-> /* DP short HPD pulse or corresponding AltMode flag */
-> #define DRM_CONNECTOR_OOB_DP_IRQ_HPD BIT(0)
-> /* DP long HPD pulse, debounced XXX: do we need this? */
-> #define DRM_CONNECTOR_OOB_DP_REPLUG BIT(1)
-
-Why is u32 better than enum? So that we could e.g. pass short values 
-inside the extra_status?
-
-> For HDMI we might want to define:
-> 
-> /* HDMI 1.4b 8.5, HPD pulse */
-> #define DRM_CONNECTOR_OOB_HDMI_REPLUG BIT(0)
-> 
-> Or might not, 100ms is long enough for all debouncers.
-
-As I read the spec, there's no usable HPD pulse in HDMI as such. It just 
-means that if HPD is low less than 100ms, it should be ignored, and if 
-it's low more than 100ms, it should be handled. In other words, from 
-spec perspective there's no difference between HPD being low 105ms or 
-five days, there's no upper limit for the "pulse".
-
-Still, we probably want to handle the case where the HPD is low only for 
-a short period, so that we don't do a full disable/enable-cycle. We can 
-interpret it as the same monitor still being connected, we just need to 
-check the EDID again.
-
-But isn't that just a drm_connector_hotplug_event with 
-drm_connector_status staying connected? The callee can see that the 
-connector was connected before, it's connected now, but we got an event, 
-so let's read the EDID again.
-
-  Tomi
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gTW9uLCAyMCBBcHIgMjAyNiAwNjoxOCwgY2hyaXN0aWFuLmtvZXZlci1kcmF4bEBzdHVkZW50
+LnVpYmsuYWMuYXQgd3JvdGU6Cj5Gcm9tOiBDaHJpc3RpYW4gU3RlZmFuIEvDtnbDqXItRHJheGwg
+PGNocmlzdGlhbi5rb2V2ZXItZHJheGxAc3R1ZGVudC51aWJrLmFjLmF0Pgo+Cj5TaWduZWQtb2Zm
+LWJ5OiBDaHJpc3RpYW4gU3RlZmFuIEvDtnbDqXItRHJheGwgPGNocmlzdGlhbi5rb2V2ZXItZHJh
+eGxAc3R1ZGVudC51aWJrLmFjLmF0Pgo+LS0tCj4gYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2lj
+L01ha2VmaWxlICAgICAgICAgIHwgICAxICsKPiAuLi4vYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1z
+NC1zOTA1dzIteDk4cS5kdHMgfCAyNTAgKysrKysrKysrKysrKysrKysrCj4gMiBmaWxlcyBjaGFu
+Z2VkLCAyNTEgaW5zZXJ0aW9ucygrKQo+IGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybTY0L2Jv
+b3QvZHRzL2FtbG9naWMvbWVzb24tczQtczkwNXcyLXg5OHEuZHRzCj4KPmRpZmYgLS1naXQgYS9h
+cmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvTWFrZWZpbGUgYi9hcmNoL2FybTY0L2Jvb3QvZHRz
+L2FtbG9naWMvTWFrZWZpbGUKPmluZGV4IDE1ZjljODE3ZTUwMi4uYzc3NTI2ODRkZWE2IDEwMDY0
+NAo+LS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL01ha2VmaWxlCj4rKysgYi9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvTWFrZWZpbGUKPkBAIC04NSw2ICs4NSw3IEBAIGR0Yi0k
+KENPTkZJR19BUkNIX01FU09OKSArPSBtZXNvbi1neG0tdWdvb3MtYW0zLmR0Ygo+IGR0Yi0kKENP
+TkZJR19BUkNIX01FU09OKSArPSBtZXNvbi1neG0tdmVnYS1zOTYuZHRiCj4gZHRiLSQoQ09ORklH
+X0FSQ0hfTUVTT04pICs9IG1lc29uLWd4bS13ZXRlay1jb3JlMi5kdGIKPiBkdGItJChDT05GSUdf
+QVJDSF9NRVNPTikgKz0gbWVzb24tczQtczgwNXgyLWFxMjIyLmR0Ygo+K2R0Yi0kKENPTkZJR19B
+UkNIX01FU09OKSArPSBtZXNvbi1zNC1zOTA1dzIteDk4cS5kdGIKPiBkdGItJChDT05GSUdfQVJD
+SF9NRVNPTikgKz0gbWVzb24tczQtczkwNXk0LWtoYWRhcy12aW0xcy5kdGIKPiBkdGItJChDT05G
+SUdfQVJDSF9NRVNPTikgKz0gbWVzb24tc20xLWE5NXhmMy1haXItZ2JpdC5kdGIKPiBkdGItJChD
+T05GSUdfQVJDSF9NRVNPTikgKz0gbWVzb24tc20xLWE5NXhmMy1haXIuZHRiCj5kaWZmIC0tZ2l0
+IGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLXM0LXM5MDV3Mi14OThxLmR0cyBi
+L2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zNC1zOTA1dzIteDk4cS5kdHMKPm5l
+dyBmaWxlIG1vZGUgMTAwNjQ0Cj5pbmRleCAwMDAwMDAwMDAwMDAuLjI2YzYwYTRjMmE0Mwo+LS0t
+IC9kZXYvbnVsbAo+KysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLXM0LXM5
+MDV3Mi14OThxLmR0cwo+QEAgLTAsMCArMSwyNTAgQEAKPisKCm5pdDogVHJhaWxpbmcgbmV3bGlu
+ZQoKPisvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjArIE9SIE1JVCkKPisvKgo+
+KyAqIENvcHlyaWdodCAoYykgMjAyNiBDaHJpc3RpYW4gU3RlZmFuIEvDtnZlci1EcmF4bAo+KyAq
+IEJhc2VkIG9uIG1lc29uLXM0LXM5MDV5NC1raGFkYXMtdmltMXMuZHRzOgo+KyAqICAtIENvcHly
+aWdodCAoYykgMjAyNiBLaGFkYXMgVGVjaG5vbG9neSBDby4sIEx0ZC4KPisgKi8KPisKPisvZHRz
+LXYxLzsKPisKPisjaW5jbHVkZSAibWVzb24tczQuZHRzaSIKPisKPisvIHsKPisJbW9kZWwgPSAi
+U2hlbnpoZW4gQW1lZGlhdGVjaCBUZWNobm9sb2d5IENvLiwgTHRkIFg5OFEiOwo+Kwljb21wYXRp
+YmxlID0gImFtZWRpYXRlY2gseDk4cSIsICJhbWxvZ2ljLHM5MDV3MiIsICJhbWxvZ2ljLHM0IjsK
+PisJaW50ZXJydXB0LXBhcmVudCA9IDwmZ2ljPjsKPisJI2FkZHJlc3MtY2VsbHMgPSA8Mj47Cj4r
+CSNzaXplLWNlbGxzID0gPDI+Owo+Kwo+KwlhbGlhc2VzIHsKPisJCW1tYzAgPSAmZW1tYzsgLyog
+ZU1NQyAqLwo+KwkJbW1jMSA9ICZzZDsgLyogU0QgY2FyZCAqLwo+KwkJbW1jMiA9ICZzZGlvOyAv
+KiBTRElPICovCj4rCQlzZXJpYWwwID0gJnVhcnRfYjsKPisJfTsKPisKPisJbWVtb3J5QDAgewo+
+KwkJZGV2aWNlX3R5cGUgPSAibWVtb3J5IjsKPisJCXJlZyA9IDwweDAgMHgwIDB4MCAweDQwMDAw
+MDAwPjsKPisJfTsKPisKPisJcmVzZXJ2ZWQtbWVtb3J5IHsKPisJCSNhZGRyZXNzLWNlbGxzID0g
+PDI+Owo+KwkJI3NpemUtY2VsbHMgPSA8Mj47Cj4rCQlyYW5nZXM7Cj4rCj4rCQkvKiA1MiBNaUIg
+cmVzZXJ2ZWQgZm9yIEFSTSBUcnVzdGVkIEZpcm13YXJlICovCj4rCQlzZWNtb25fcmVzZXJ2ZWQ6
+IHNlY21vbkA1MDAwMDAwIHsKPisJCQlyZWcgPSA8MHgwIDB4MDUwMDAwMDAgMHgwIDB4MzQwMDAw
+MD47Cj4rCQkJbm8tbWFwOwo+KwkJfTsKPisJfTsKPisKPisJZW1tY19wd3JzZXE6IGVtbWMtcHdy
+c2VxIHsKPisJCWNvbXBhdGlibGUgPSAibW1jLXB3cnNlcS1lbW1jIjsKPisJCXJlc2V0LWdwaW9z
+ID0gPCZncGlvIEdQSU9CXzkgR1BJT19BQ1RJVkVfTE9XPjsKPisJfTsKPisKPisJc2Rpb18zMms6
+IHNkaW8tMzJrIHsKPisJCWNvbXBhdGlibGUgPSAicHdtLWNsb2NrIjsKPisJCSNjbG9jay1jZWxs
+cyA9IDwwPjsKPisJCWNsb2NrLWZyZXF1ZW5jeSA9IDwzMjc2OD47Cj4rCQlwd21zID0gPCZwd21f
+ZWYgMCAzMDUxOCAwPjsgLyogUFdNX0UgYXQgMzIuNzY4S0h6ICovCj4rCX07Cj4rCj4rCXNkaW9f
+cHdyc2VxOiBzZGlvLXB3cnNlcSB7Cj4rCQljb21wYXRpYmxlID0gIm1tYy1wd3JzZXEtc2ltcGxl
+IjsKPisJCXJlc2V0LWdwaW9zID0gPCZncGlvIEdQSU9YXzYgR1BJT19BQ1RJVkVfTE9XPjsKPisJ
+CWNsb2NrcyA9IDwmc2Rpb18zMms+Owo+KwkJY2xvY2stbmFtZXMgPSAiZXh0X2Nsb2NrIjsKPisJ
+fTsKPisKPisJbWFpbl81djogcmVndWxhdG9yLW1haW4tNXYgewo+KwkJY29tcGF0aWJsZSA9ICJy
+ZWd1bGF0b3ItZml4ZWQiOwo+KwkJcmVndWxhdG9yLW5hbWUgPSAiNVYiOwo+KwkJcmVndWxhdG9y
+LW1pbi1taWNyb3ZvbHQgPSA8NTAwMDAwMD47Cj4rCQlyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9
+IDw1MDAwMDAwPjsKPisJCXJlZ3VsYXRvci1hbHdheXMtb247Cj4rCX07Cj4rCj4rCXNkXzN2Mzog
+cmVndWxhdG9yLXNkLTN2MyB7Cj4rCQljb21wYXRpYmxlID0gInJlZ3VsYXRvci1maXhlZCI7Cj4r
+CQlyZWd1bGF0b3ItbmFtZSA9ICJTRF8zVjMiOwo+KwkJcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQg
+PSA8MzMwMDAwMD47Cj4rCQlyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwzMzAwMDAwPjsKPisJ
+CWdwaW8gPSA8JmdwaW8gR1BJT0RfNCBHUElPX0FDVElWRV9MT1c+Owo+KwkJcmVndWxhdG9yLWFs
+d2F5cy1vbjsKPisJfTsKPisKPisJdmRkaW9fc2Q6IHJlZ3VsYXRvci12ZGRpby1zZCB7Cj4rCQlj
+b21wYXRpYmxlID0gInJlZ3VsYXRvci1ncGlvIjsKPisJCXJlZ3VsYXRvci1uYW1lID0gIlZERElP
+X1NEIjsKPisJCXJlZ3VsYXRvci1taW4tbWljcm92b2x0ID0gPDE4MDAwMDA+Owo+KwkJcmVndWxh
+dG9yLW1heC1taWNyb3ZvbHQgPSA8MzMwMDAwMD47Cj4rCQlncGlvcyA9IDwmZ3BpbyBHUElPRF85
+IEdQSU9fQUNUSVZFX0hJR0g+Owo+KwkJZ3Bpb3Mtc3RhdGVzID0gPDE+Owo+KwkJc3RhdGVzID0g
+PDE4MDAwMDAgMSAzMzAwMDAwIDA+Owo+Kwl9Owo+Kwo+Kwl2ZGRhb18zdjM6IHJlZ3VsYXRvci12
+ZGRhby0zdjMgewo+KwkJY29tcGF0aWJsZSA9ICJyZWd1bGF0b3ItZml4ZWQiOwo+KwkJcmVndWxh
+dG9yLW5hbWUgPSAiVkREQU9fM1YzIjsKPisJCXJlZ3VsYXRvci1taW4tbWljcm92b2x0ID0gPDMz
+MDAwMDA+Owo+KwkJcmVndWxhdG9yLW1heC1taWNyb3ZvbHQgPSA8MzMwMDAwMD47Cj4rCQl2aW4t
+c3VwcGx5ID0gPCZtYWluXzV2PjsKPisJCXJlZ3VsYXRvci1hbHdheXMtb247Cj4rCX07Cj4rCj4r
+CXZkZGlvX2FvMXY4OiByZWd1bGF0b3ItdmRkaW8tYW8xdjggewo+KwkJY29tcGF0aWJsZSA9ICJy
+ZWd1bGF0b3ItZml4ZWQiOwo+KwkJcmVndWxhdG9yLW5hbWUgPSAiVkRESU9fQU8xVjgiOwo+KwkJ
+cmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8MTgwMDAwMD47Cj4rCQlyZWd1bGF0b3ItbWF4LW1p
+Y3Jvdm9sdCA9IDwxODAwMDAwPjsKPisJCXZpbi1zdXBwbHkgPSA8JnZkZGFvXzN2Mz47Cj4rCQly
+ZWd1bGF0b3ItYWx3YXlzLW9uOwo+Kwl9Owo+Kwo+KwkvKiBTWTgxMjBCMUFCQyBEQy9EQyBSZWd1
+bGF0b3IuICovCj4rCXZkZGNwdTogcmVndWxhdG9yLXZkZGNwdSB7Cj4rCQljb21wYXRpYmxlID0g
+InB3bS1yZWd1bGF0b3IiOwo+Kwo+KwkJcmVndWxhdG9yLW5hbWUgPSAiVkREQ1BVIjsKPisJCXJl
+Z3VsYXRvci1taW4tbWljcm92b2x0ID0gPDY4OTAwMD47Cj4rCQlyZWd1bGF0b3ItbWF4LW1pY3Jv
+dm9sdCA9IDwxMDQ5MDAwPjsKPisKPisJCXZpbi1zdXBwbHkgPSA8Jm1haW5fNXY+Owo+Kwo+KwkJ
+cHdtcyA9IDwmcHdtX2lqIDEgMTUwMCAwPjsKPisJCXB3bS1kdXR5Y3ljbGUtcmFuZ2UgPSA8MTAw
+IDA+Owo+Kwo+KwkJcmVndWxhdG9yLWJvb3Qtb247Cj4rCQlyZWd1bGF0b3ItYWx3YXlzLW9uOwo+
+KwkJLyogVm9sdGFnZSBEdXR5LUN5Y2xlICovCj4rCQl2b2x0YWdlLXRhYmxlID0gPDEwNDkwMDAg
+MD4sCj4rCQkJCTwxMDM5MDAwIDM+LAo+KwkJCQk8MTAyOTAwMCA2PiwKPisJCQkJPDEwMTkwMDAg
+OT4sCj4rCQkJCTwxMDA5MDAwIDEyPiwKPisJCQkJPDk5OTAwMCAxND4sCj4rCQkJCTw5ODkwMDAg
+MTc+LAo+KwkJCQk8OTc5MDAwIDIwPiwKPisJCQkJPDk2OTAwMCAyMz4sCj4rCQkJCTw5NTkwMDAg
+MjY+LAo+KwkJCQk8OTQ5MDAwIDI5PiwKPisJCQkJPDkzOTAwMCAzMT4sCj4rCQkJCTw5MjkwMDAg
+MzQ+LAo+KwkJCQk8OTE5MDAwIDM3PiwKPisJCQkJPDkwOTAwMCA0MD4sCj4rCQkJCTw4OTkwMDAg
+NDM+LAo+KwkJCQk8ODg5MDAwIDQ1PiwKPisJCQkJPDg3OTAwMCA0OD4sCj4rCQkJCTw4NjkwMDAg
+NTE+LAo+KwkJCQk8ODU5MDAwIDU0PiwKPisJCQkJPDg0OTAwMCA1Nj4sCj4rCQkJCTw4MzkwMDAg
+NTk+LAo+KwkJCQk8ODI5MDAwIDYyPiwKPisJCQkJPDgxOTAwMCA2NT4sCj4rCQkJCTw4MDkwMDAg
+Njg+LAo+KwkJCQk8Nzk5MDAwIDcwPiwKPisJCQkJPDc4OTAwMCA3Mz4sCj4rCQkJCTw3NzkwMDAg
+NzY+LAo+KwkJCQk8NzY5MDAwIDc5PiwKPisJCQkJPDc1OTAwMCA4MT4sCj4rCQkJCTw3NDkwMDAg
+ODQ+LAo+KwkJCQk8NzM5MDAwIDg3PiwKPisJCQkJPDcyOTAwMCA4OT4sCj4rCQkJCTw3MTkwMDAg
+OTI+LAo+KwkJCQk8NzA5MDAwIDk1PiwKPisJCQkJPDY5OTAwMCA5OD4sCj4rCQkJCTw2ODkwMDAg
+MTAwPjsKPisJfTsKPit9Owo+Kwo+KyZlbW1jIHsKPisJc3RhdHVzID0gIm9rYXkiOwo+KwlwaW5j
+dHJsLTAgPSA8JmVtbWNfcGlucz4sIDwmZW1tY19kc19waW5zPjsKPisJcGluY3RybC0xID0gPCZl
+bW1jX2Nsa19nYXRlX3BpbnM+Owo+KwlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiLCAiY2xrLWdh
+dGUiOwo+Kwo+KwlidXMtd2lkdGggPSA8OD47Cj4rCWNhcC1tbWMtaGlnaHNwZWVkOwo+KwltbWMt
+ZGRyLTFfOHY7Cj4rCW1tYy1oczIwMC0xXzh2Owo+KwltYXgtZnJlcXVlbmN5ID0gPDIwMDAwMDAw
+MD47Cj4rCW5vbi1yZW1vdmFibGU7Cj4rCWRpc2FibGUtd3A7Cj4rCj4rCW1tYy1wd3JzZXEgPSA8
+JmVtbWNfcHdyc2VxPjsKPisJdm1tYy1zdXBwbHkgPSA8JnZkZGFvXzN2Mz47Cj4rCXZxbW1jLXN1
+cHBseSA9IDwmdmRkaW9fYW8xdjg+Owo+K307Cj4rCj4rJmV0aG1hYyB7Cj4rCXN0YXR1cyA9ICJv
+a2F5IjsKPisJcGh5LWhhbmRsZSA9IDwmaW50ZXJuYWxfZXBoeT47Cj4rCXBoeS1tb2RlID0gInJt
+aWkiOwo+K307Cj4rCj4rJmlyIHsKPisJc3RhdHVzID0gIm9rYXkiOwo+KwlwaW5jdHJsLTAgPSA8
+JnJlbW90ZV9waW5zPjsKPisJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPit9Owo+Kwo+KyZw
+d21fZWYgewo+KwlzdGF0dXMgPSAib2theSI7Cj4rCXBpbmN0cmwtMCA9IDwmcHdtX2VfcGluczE+
+Owo+KwlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+K307Cj4rCj4rJnB3bV9paiB7Cj4rCXN0
+YXR1cyA9ICJva2F5IjsKPit9Owo+Kwo+KyZzZCB7Cj4rCXN0YXR1cyA9ICJva2F5IjsKPisJcGlu
+Y3RybC0wID0gPCZzZGNhcmRfcGlucz47Cj4rCXBpbmN0cmwtMSA9IDwmc2RjYXJkX2Nsa19nYXRl
+X3BpbnM+Owo+KwlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiLCAiY2xrLWdhdGUiOwo+KwlidXMt
+d2lkdGggPSA8ND47Cj4rCWNhcC1zZC1oaWdoc3BlZWQ7Cj4rCW1heC1mcmVxdWVuY3kgPSA8NTAw
+MDAwMDA+Owo+KwlkaXNhYmxlLXdwOwo+Kwo+KwljZC1ncGlvcyA9IDwmZ3BpbyBHUElPQ182IEdQ
+SU9fQUNUSVZFX0xPVz47Cj4rCj4rCXZtbWMtc3VwcGx5ID0gPCZ2ZGRhb18zdjM+Owo+Kwl2cW1t
+Yy1zdXBwbHkgPSA8JnZkZGFvXzN2Mz47Cj4rfTsKPisKPisvKgo+KyogV2lyZWxlc3MgU0RJTyBN
+b2R1bGUgKEFtbG9naWMgVzE1MFMxKQo+KyogTm90ZTogVGhlcmUgaXMgbm8gZHJpdmVyIGZvciB0
+aGlzIGF0IHRoZSBtb21lbnQuCj4rKi8KCkFsaWduIGxpa2UgdGhpczoKCgkvKgoJICogV2lyZWxl
+c3MgU0RJTyBNb2R1bGUgKEFtbG9naWMgVzE1MFMxKQoJICogTm90ZTogVGhlcmUgaXMgbm8gZHJp
+dmVyIGZvciB0aGlzIGF0IHRoZSBtb21lbnQuCgkgKi8KCj4rCj4rJnNkaW8gewo+KwlzdGF0dXMg
+PSAib2theSI7Cj4rCXBpbmN0cmwtMCA9IDwmc2Rpb19waW5zPjsKPisJcGluY3RybC0xID0gPCZz
+ZGlvX2Nsa19nYXRlX3BpbnM+Owo+KwlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiLCAiY2xrLWdh
+dGUiOwo+KwkjYWRkcmVzcy1jZWxscyA9IDwxPjsKPisJI3NpemUtY2VsbHMgPSA8MD47Cj4rCWJ1
+cy13aWR0aCA9IDw0PjsKPisJY2FwLXNkLWhpZ2hzcGVlZDsKPisJc2QtdWhzLXNkcjUwOwo+Kwlz
+ZC11aHMtc2RyMTA0Owo+KwltYXgtZnJlcXVlbmN5ID0gPDIwMDAwMDAwMD47Cj4rCW5vbi1yZW1v
+dmFibGU7Cj4rCWRpc2FibGUtd3A7Cj4rCj4rCW5vLXNkOwo+Kwluby1tbWM7Cj4rCW1tYy1wd3Jz
+ZXEgPSA8JnNkaW9fcHdyc2VxPjsKPisJdm1tYy1zdXBwbHkgPSA8JnZkZGFvXzN2Mz47Cj4rCXZx
+bW1jLXN1cHBseSA9IDwmdmRkaW9fYW8xdjg+Owo+K307Cj4rCj4rJnVhcnRfYiB7Cj4rCXN0YXR1
+cyA9ICJva2F5IjsKPit9Owo+LS0gCj4yLjUzLjAKCi0tCkJlc3QgcmVnYXJkcywKRmVyYXNzCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
+Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
+L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
