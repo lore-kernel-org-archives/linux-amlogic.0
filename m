@@ -4,65 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AD9BF588D2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2026 13:54:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BEF0F588E3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Apr 2026 15:26:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AruLApLcBKWDKGh4EeDoMCsk9IpiEQL9Zy9wDXr15+Q=; b=g1i1aB9vwmm3vc
-	PavMqNzr2bqFtt4MjgzVy6uNGdBvX0UTCDcK3A4TjfGKro+vMf2d8TAvqaMkOW7SflpRc+Rb2tyHP
-	i2XR1oPojPQI7ZfS9WXCkbeuZbWfNmSDPKfyVSCkwX0Q+oY86StTD+6nBbxjKTbSAMU3QNY3onKK1
-	EskaZb3IiFs0BDasrEci+xtkG4Kid+ASTfxl926BJLorsdLQFvHUxYwMQytzSveWyKeOj+E9ih2KM
-	l+RsFHHCGbiKYwaoZWOhhdloCP+wCM06f9oI1GnjacAkEBHbgP4xWm+AyFs+jWam970gy4eZCZwoX
-	AhXwdj0jpv7MMhs+vOFA==;
+	List-Archive:List-Unsubscribe:List-Id:Subject:References:In-Reply-To:
+	Message-Id:Cc:To:From:Date:MIME-Version:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=PwDBI1Chm2y+DicrhBPmtlSlzb4SZ/Ap3o/F8J4+IoI=; b=4p9w/mef+wVrNMdJV+ccR1PeDf
+	XFQdi33p6D+t3F6UfLYAPuUQEeyetjmD2yHmZ0ucXCxjPfyvRceMy7rYLvTv2XMRakdzSj3oeI24c
+	JpZo2epMMC0R5YNvbezMhh6yg7MaGlQ8AwfaZ6lb+eKs4w+MZ0hCZTRayzqXRMfRBGArfkUxkGkC4
+	XMQ2yxakbCtZMEOh3GAG6RBCejDmrx23zcaexiFbg92CLCndARXWOIEu06gJToFmhe5wSxRxcwV6U
+	9y+dciFXU6QWFa6kNfsDi2dBLlK6/PVlQPGIMDxepYGSFtvQZhEg1bMXiea30PRqCBigbhsj3IIoo
+	8lseFleA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wEp5C-000000076tK-1CiM;
-	Mon, 20 Apr 2026 13:54:38 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
+	id 1wEqW0-00000007HKT-1b6W;
+	Mon, 20 Apr 2026 15:26:24 +0000
+Received: from fhigh-b3-smtp.messagingengine.com ([202.12.124.154])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wEp54-000000076jm-0ZXJ;
-	Mon, 20 Apr 2026 13:54:32 +0000
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776693264;
-	bh=RBIiK8CES8R9gJcjoYTCoKw0do5/miRgk0+ffcE8qDk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Bqk3LylI8jz9spsXo5qoAODLjNruZyLazz96UrsETlsfWkAfRPY6utJ/xRL5Q2dWO
-	 5lX4rvRX8iZ+HSMfU9tLrdY/moYUwmcxLKcnLDKUDrqW2hAguHUxWcqKidVvLYd4UX
-	 evoWZkGKxMiAgegVqwcDAebS27djyLVe9XgXDQEQ=
-Date: Mon, 20 Apr 2026 15:54:05 +0200
-Subject: [PATCH v4 4/4] arm64: dts: amlogic: t7: khadas-vim4: Enable
- Bluetooth
+	id 1wEqVx-00000007HJp-3Nju;
+	Mon, 20 Apr 2026 15:26:23 +0000
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 342427A01E5;
+	Mon, 20 Apr 2026 11:26:18 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-04.internal (MEProxy); Mon, 20 Apr 2026 11:26:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1776698777;
+	 x=1776785177; bh=WG64U7O4YHnHzzDsRKT6WiX+Di0okWd+p5FmNql78I0=; b=
+	LHjUKDh/6YwZF3oR9vdJzD7M+fPjphxXhkKb85uaGq3pWD8ExNg8B1luJVGGMOI2
+	7WI6xGWIHq9OQ8cGfQqqBcmEv/yf4lecltsC2rNl/f0zmkV6c9PEgELfois8hZ99
+	BtXqQGEWdnESMSHmrgZmP3hMC5OLByiGc4diR83Y86kF8HsKK7k29GSTgmXiiX53
+	jhT0uiG0hxWiKMFb3VnigvbVbqAhNvzLTWtfimzZq7c2p4szelmaK6F62XUJ1ErZ
+	KYjtUXmKZQatOkab2UOeIsbpxTPvMPRfnNHz+FWphXbz8LpMHly/RX4j8eYWKjZI
+	cRLNuHpPzd5xzq29/PG2gQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1776698777; x=
+	1776785177; bh=WG64U7O4YHnHzzDsRKT6WiX+Di0okWd+p5FmNql78I0=; b=K
+	smxS2RbBcLv7q2JTz1AAVmSmISofcDDnT2njoy5/HEfYyKUMZ9GuWxmibJ3ip6b9
+	eSqN6nH+XkFJzCGvezLULhI3DPpDV88lh2u+iAfJslBZ6NysYyxYGftIHi86Chdz
+	ixADTgAMPEA+fuTnAfo8rpWXmytfIihFq5EczfxSdn6PFENT49T9vu9aMckKvo9y
+	eCvoCl8ZSG8EUjW6Pf7MNNhhVIaclsr0ATq1LSpjJxq8+R7U250Ov6GZQcyeKRvK
+	KcvvcH++NVriD+IHKgDx79h8Nyd9m8UihPJJ18/euZcFMHg15iP1BHXEtYQBb0Ss
+	3BHqqW9K3dNcSZWodghnA==
+X-ME-Sender: <xms:mUXmaSFUTEo7pwNymPfKyfYUBF1BAWM0CH3SWYJo4ixhNhfXKKFNbw>
+    <xme:mUXmaeJLED6ij-xV1uBjXY46d8TOtWdW44evD9TXpezhIv-nF2CBUF5tf5MHCO9gC
+    2oubllKoxyZ_lRemwbtAvCCghSi5C6C1CcVNSH0-64sEN_b2Azpqw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgdehkeekkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeeipdhmohguvgepshhmthhpohhuthdp
+    rhgtphhtthhopegrrhhmsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikheskh
+    gvrhhnvghlrdhorhhgpdhrtghpthhtohepshhotgeskhgvrhhnvghlrdhorhhgpdhrtghp
+    thhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtth
+    hopehlihhnuhigqdgrmhhlohhgihgtsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
+    pdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrh
+    gruggvrggurdhorhhg
+X-ME-Proxy: <xmx:mUXmaYlrZISYGLMpg2tCTD4mcOvQ63FQ1yFF-qMIGpMjIMnHITiHbw>
+    <xmx:mUXmaSz-2hYVnXVwMWREH-DEkqCUjYIARuANc7cjkca_vtPzHgwX4g>
+    <xmx:mUXmaVo3MgJmfQ_qgQ9FDgNgTQQjc1mcFA1jjUFFU7QKnBoq8aPyzA>
+    <xmx:mUXmaZ5x4h698xrBFcGfH96fEkUJ-FrLGqwwhn7GDoSDEMziPrqObA>
+    <xmx:mUXmaTyiqtym4SNWIFGkCfNlIjwal5buTf_nRL7lnleVoYpdAKyESemw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id C2391700065; Mon, 20 Apr 2026 11:26:17 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-Message-Id: <20260420-add-bluetooth-t7-vim4-v4-4-9505df0e7016@aliel.fr>
-References: <20260420-add-bluetooth-t7-vim4-v4-0-9505df0e7016@aliel.fr>
-In-Reply-To: <20260420-add-bluetooth-t7-vim4-v4-0-9505df0e7016@aliel.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776693261; l=1452;
- i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=RBIiK8CES8R9gJcjoYTCoKw0do5/miRgk0+ffcE8qDk=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
- BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QJpxuZIRj3W4tnr+l9B6tbn37Ka+/vmOZd3e8M2idNXYnjh4fSQSDtqZDilNf0yv6u2Td8L37uq
- uitqUOdsCHwg=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
- fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
+X-ThreadId: AvG_jmLX_3YV
+Date: Mon, 20 Apr 2026 17:25:49 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>,
+ "Neil Armstrong" <neil.armstrong@linaro.org>
+Cc: soc@kernel.org, arm <arm@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Message-Id: <43ae9d05-5cc9-4f68-933a-99eb744756b7@app.fastmail.com>
+In-Reply-To: <4b2a319e-3292-4576-b5b9-4e7db8aebe87@kernel.org>
+References: <2fde1b11-d2a4-4aa2-8c28-d20fbbb54f7f@linaro.org>
+ <20260411-spicy-apricot-newt-afa8a7@quoll>
+ <5af5dfdb-001a-4b63-8a43-5cfcf28d821c@linaro.org>
+ <fe782180-99ec-404f-96c5-8949a8732186@kernel.org>
+ <4b2a319e-3292-4576-b5b9-4e7db8aebe87@kernel.org>
+Subject: Re: [GIT PULL] amlogic ARM64 DT updates for v7.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260420_065430_670878_098D0B33 
-X-CRM114-Status: UNSURE (   6.98  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260420_082622_261202_5EC5105E 
+X-CRM114-Status: GOOD (  21.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,49 +117,67 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable UART C on the Khadas VIM4 board and attach the BCM43438
- compatible Bluetooth controller to it. The node configures the RTS/CTS
-hardware flow control, the associated pinmux, the power supplies (vddao_3v3
-and vddao_1v8), the 32 kHz LPO clock shared with the wifi32k fixed
-clock, and the GPIO lines used for host wakeup, device wakeup and
-shutdown.
+On Mon, Apr 13, 2026, at 09:30, Krzysztof Kozlowski wrote:
+> On 13/04/2026 09:17, Krzysztof Kozlowski wrote:
+>> On 13/04/2026 09:10, Neil Armstrong wrote:
+>>>>
+>>>> I will wait with this. It might miss the merge window if v7.0 is
+>>>> released this weekend.
+>>>
+>>> Ok wow, just like that... I mean the amlogic DT is stable, all patches
+>>> patches bindings checks and none is critical since it mainly touches
+>> 
+>> You sent your pull very late, just before v7.1, and skipping late
+>> posting is not a new rule. It was always going late pulls, which might
+>> make it or might not make it.
+>> 
+>>> new platforms and the incriminated commit is a low priority fix for
+>>> 10y old development boards...
+>> 
+>> I did not check which commit was not in next. You can provide feedback
+>> to my reply with actual argument, because such explanation was missing
+>> in tag. Instead you decided to be surprised that patches needs to be in
+>> next...
+>>
+>
+> And to clarify, I did not say that pull will not make it. Considering
+> the timeline:
+> 1. You sent the pull on 10th April, Friday
+> 2. v7.1 is released on 13th April, Sunday
+>
+> and that people are allowed to take weekends off, then there is simply
+> almost no way that pull can be merged before v7.1 is released, so by
+> definition it is a *late pull*. The policy for late pulls, like that,
+> did not change.
+>
+> Lack of exposure of a few commits to linux-next is only the explanation
+> why I did not pull it while doing last round of pulls.
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts     | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+I'm looking through the backlog for any missing fixes that should
+still make it into -rc1 or -rc2. Just a few more points to add
+from my end:
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 3227ab27de107..8ea7ae609fbd5 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -251,3 +251,22 @@ &sd_emmc_c {
- &uart_a {
- 	status = "okay";
- };
-+
-+&uart_c {
-+	status = "okay";
-+	pinctrl-0 = <&uart_c_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
-+		device-wakeup-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
-+		max-speed = <3000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+		vbat-supply = <&vddao_3v3>;
-+		vddio-supply = <&vddao_1v8>;
-+	};
-+};
+- I had in the past always trusted platform maintainers to only
+  send pull requests when they felt the contents had spent enough
+  time in linux-next already, but I did not have any scripting
+  to ensure this was done correctly.
 
--- 
-2.49.0
+- I see that only a few of the patches in the branch got applied
+  during the fineal days before the merge window, while the rest
+  had been part of next-20260330 or earlier. Aside from just
+  sending the bulk of the contents earlier, I think the best
+  solution on Neil's side would have been to send two separate
+  pull requests, for the earlier and the later contents
+  respectively, even if sending them on the same day
 
+- I see that some of the late commits are clear bugfixes that
+  we should still merge as soon as possible. Neil, can you go
+  through the branch and send another PR for anything that
+  qualifies as a bugfix? While by now it's clearly too late
+  for any of the new features, there is no need to delay those
+  any further.
+
+      Arnd
 
 _______________________________________________
 linux-amlogic mailing list
