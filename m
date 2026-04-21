@@ -4,64 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6DA1F327D0
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 09:45:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 183F9F327BD
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 09:51:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WFmfTlxl2I70GzWEo7vddIOri4oXC3PmUgpM4BmqzhU=; b=wZRyL55Owa3hly
-	Gl3LPTuK2F2OoXJ+gst5l2T/XG0xZei1TCI2hPo8WQPWJldaWVXzaPmBBdzUmS7cf8kXxPsZaG13n
-	wOHO7sk/5NBDTnU2u28u9T7se8rRFLRz5I2nXohVyD1Xzp7gNuDv/j52WBVe6yKHWRf2d6L9NLndU
-	OmQ6lxqcclwzHMTCN/+jiyznQVU+vYKeokcMEA90ur3nGJUfpvFP1Ud2PpcVoKg3L69DucrBNsiq6
-	AZCR5YKLGlTXygNyF7qfzGckSaRxME1Ypr9ZOnhmP9D6Yfhi2exXsVzBU++6ZUJwLDGep4kKmV3M6
-	EtAjyZ1wMb7RbmfbNi0g==;
+	List-Owner; bh=caOyU7zS76c6yERfN1vOCpg/cs3I8Da9OAAlOwIZQME=; b=lwsUnf0hDKZRE0
+	FadfEmI3ULnRGKaL2ocwypuAiPsF5ACaSJlbrrGjgx5+5jerzI79AwkDBV6D0j5BVr+gIpn6A7zwA
+	GJwjyXxSOIYJMgZikUCL8JqTlKis3dfiApijcaoU5kI+Do1aCT0dRZP/Amuq4J5tMsVhaFgRxVW4a
+	eUYVsCqn7njUY0Vl0u51g75bvjLSTqbK9tszYPfLsvRO/IRUXmF57BzF6jVO6tGgsKVSUkQ05iSXs
+	0y8PgvD0niBeyXh1RzUeERHrXzLoRz2jaTPYS7DZ4bUp7Rwgv1dIREcH/DncO6d6eyKSqR5m51rIh
+	wUA7zbc8r+bvEc7F1NPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wF7fd-00000008M1m-3JN1;
-	Tue, 21 Apr 2026 09:45:29 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
+	id 1wF7lE-00000008N2v-4BYZ;
+	Tue, 21 Apr 2026 09:51:17 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wF7fa-00000008Lxr-3LxZ;
-	Tue, 21 Apr 2026 09:45:28 +0000
-Message-ID: <ff92f28b-8ffa-4ba1-ae7b-a825e4d15fc2@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776764715;
-	bh=+pWxADjbyAE/GMK2ZySAS6xYdGVF6YeiaKrsK83rTTA=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=iQmmBRGaq5waN8O2LVDi0CcM0VTSK51R0OKI1Ib0sy8pkN8F9eb9++2ERvr5CIIPu
-	 iBPR37EhhrZ9A0CWJc8nE4TkVU93cDwAWESd9TIensXbcEOotRQW4kvCwLFan2dkEM
-	 oMPFdQL6jlayPuV93MbhCCKqvDX95/9lb8ScWH9o=
-Date: Tue, 21 Apr 2026 11:45:13 +0200
+	id 1wF7lC-00000008N1w-1jRn
+	for linux-amlogic@lists.infradead.org;
+	Tue, 21 Apr 2026 09:51:15 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63L6eTQO3574225
+	for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2026 09:51:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tNz2hyaIKunso93P6B5FzOeK7zMcpTMCwZPp1Ux4pv8=; b=df7tAtBNSOEWW4QV
+	PYh+L9tHKd2hG80sD0WCzKbTf+PwkzNyMtQM+WUZnIb0bFLacmUhKm6B2Feg/owB
+	zYAsr9IYG/aIzInS5zplrETdOCy4LmVtvnF8d9eho42WfPY0yoWjdY/S5eT9FZ9d
+	PgwH4os3tew/ZaDiDZPe0hnMPXAXfKpNrG21DbT/lqS49asRON35kJKr1yLcVKqt
+	BUcdXmgVeqNsc3g6lQn0vzl1boWOn3kG1CawRExKwexBL3XO8DniH0pMLIbYJNk4
+	NQlY1Kg4KGs6NlJmdrH1KE28Tom4U/l3EZWmME3jkIkiaYw9kDeELJMnwiFpwRSA
+	aBWquQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dp465gqk0-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2026 09:51:13 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8eec753a7bdso8608185a.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2026 02:51:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1776765073; x=1777369873; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tNz2hyaIKunso93P6B5FzOeK7zMcpTMCwZPp1Ux4pv8=;
+        b=Zqj+kPXDoXBo42jAirzc6VStnFtOUSTam+TDtKW0bEvi9hHWekms8JXU+hkvwktJUk
+         m190wzC+o4yd4BZeyel5H+Ya5FqJd0v4qM6ersqUlRJG9nt9TFcaFgHPpFwJfx8ly+vD
+         wBpAXx58vHMDMOy0Ds2/vm6elpBzHhin2s/box9EKVH/83OvNDcLD9dJfBwUuMYQIXDy
+         cyX066rP+S7HIAs4yTBUchk5KOKbH3g3j6MEI/Dz3B3iv6cjFkVoetMzemudqWtUA3cP
+         UIM1XMjz7TfVjdfbHJfsz+fhhYaaek1ZJdgeU1cv6feOPnGp8vvkDjYUU0ONRRGO0Jts
+         lWnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776765073; x=1777369873;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tNz2hyaIKunso93P6B5FzOeK7zMcpTMCwZPp1Ux4pv8=;
+        b=Io9EEGtVJUv1/KFORu7BxtvMvSRHPyJZlqu5S6OxNspLDytwTRcHqEIWk5iR+wsCje
+         fyi1PyXkyVxN1+l/kPapORB/AAauK+yP/vG4aA9wzT++8zljZdbbh8FRSC+SkP6SxAZb
+         isesAnOX7jdL8/bFO+YkL23y37n/G8s/793K4OvtwXxT/rjqtsVf4WwSR41kSSePJVqr
+         5sBc8V0PeKxH8mbH2kCJlIPgpdWrvBMEVPDd8AcoHlpcLIFhzCXMeXmsPpDiR/YUQvtX
+         1wpJ0g2qr481Pt7igoVmL7vypUjZoufF9okJsYSISVmjBbvYwtuDpQApgW2xOrtEtzDv
+         FOwA==
+X-Forwarded-Encrypted: i=1; AFNElJ/dcqKELn3IW6saVYTLoHLrQ+Urq3raS+Vzb0B6gE6AS/rLyENkKu19JLrc0pgIIWs2tgCoKR7YgecJxl9Y@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy83kSLnSbMqfYF58rKog4fg1M20oXRCq/s4sjgFaRJDWheME2f
+	E5uXBTTWjS7FBp6ebanWL0x1vM+uXQjFY/tkLCpl5e3CkYfEbE8sbhCc0il4txrTiKmxLy49qby
+	gG6JJgJT6mmzAKz+0yXvXpBorf4Gz6jAbKaBLmUjG30ALFcbA8BtHbdgs5+lkBgVGTgvjrsomKw
+	==
+X-Gm-Gg: AeBDieudlzeNLZCLJgOW9f2LvNjbEuU99rkPyIzr6pJWTc+3VHVUCKCWOQeZI9c3Uvz
+	wB0mjUv2sZl37fFzI2NGdKewoVSqOAKvEzDHN9z3h9gSoHps6tRQenIEDzAo2HftX5Skp8SquGq
+	qiZ2DjMyRPgxSW6Mwtky0uh/P6LjaZ0oWHgw09r846AS/AAJonPFBglsysDblFXexp80BKqwkCJ
+	D15CVjg6vV2t9I8/+rFjj39U94lHPI7dme/oMGZ/cOU4Eo1KKG8ibgE9mEeKz9CguBUYHXuQEF4
+	/5ESS4BsrsBaGya07iWYkWCrjGR5Xcd12qfOiLSDU/SIAaATLS1qsIzhotinxNJxD+zRUUTmXDM
+	XysTt+muEGDjNMIUUswHkeMOKYeSTCxJkaThtS7IpKp62eNjm3CC2+WOYSlJ3HwpzChkcGVoH8p
+	m8vnkSjZV8xdidlw==
+X-Received: by 2002:a05:620a:2ae8:b0:8ea:c7a8:5065 with SMTP id af79cd13be357-8eac7a856ecmr572411885a.2.1776765072678;
+        Tue, 21 Apr 2026 02:51:12 -0700 (PDT)
+X-Received: by 2002:a05:620a:2ae8:b0:8ea:c7a8:5065 with SMTP id af79cd13be357-8eac7a856ecmr572407185a.2.1776765072156;
+        Tue, 21 Apr 2026 02:51:12 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-672c480e22asm2692461a12.9.2026.04.21.02.51.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Apr 2026 02:51:10 -0700 (PDT)
+Message-ID: <b340dec3-8c4b-49f6-89bd-61a8233bda2c@oss.qualcomm.com>
+Date: Tue, 21 Apr 2026 11:51:04 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH v3 1/8] dt-bindings: mfd: khadas: Add new compatible for
- Khadas VIM4 MCU
-To: Conor Dooley <conor@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Beniamino Galvani <b.galvani@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pm@vger.kernel.org
-References: <20260417-add-mcu-fan-khadas-vim4-v3-0-a6a7f570b11b@aliel.fr>
- <20260417-add-mcu-fan-khadas-vim4-v3-1-a6a7f570b11b@aliel.fr>
- <20260420-viable-plot-862e0c545837@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/6] soc: qcom: pmic-glink-altmode: pass down HPD_IRQ
+ events
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Adrien Grassein <adrien.grassein@gmail.com>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Tvrtko Ursulin <tursulin@ursulin.net>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov
+ <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>,
+        Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+        intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org
+References: <20260421-hpd-irq-events-v3-0-44d2bf40dfc2@oss.qualcomm.com>
+ <20260421-hpd-irq-events-v3-5-44d2bf40dfc2@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20260420-viable-plot-862e0c545837@spud>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260421-hpd-irq-events-v3-5-44d2bf40dfc2@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDA5NSBTYWx0ZWRfXy9sh1xUo+ddE
+ nZCY6+fzqxh1eAzRCIkjZBRh3i3IFqXM3wvs2VLxcUZY3iHlg3GkLEFTx/KR4f6U6S4HeoVZDN1
+ Q/4fDQM67x+7euVBqfHx0em2dzpzslNJa4mdEhVFfLMEO9U3hz1lV8AH6NLwUrpDi2YCrJKzkN7
+ hlF4DqxuxdfF/WvMug+LpaR2B6N5KK2+ie9YXn2FOIdIpsdTsbprjw6k2qKN1+zaTv2zl6L6lQE
+ YPlS4ym+ClxfMQPBI8gdwnsoAbG6hHBz3j+gYtI1ToDBjFqFnl/GJ31hgcE+tILk2iGeDlZ/OG8
+ y/aw64AByTzg7CupCYiILw5Gz1BH86T32wgLUk97ChwSMRM71IAP5fAvPtxUAuEjtrjXpGy6Fp2
+ lXbD+IcWFVJWbiRs87vTZ/ZR8XhKsqYZr8ZwUn421SxEpuOeWA4k63NMpPQHVoCm8JwJoZwUn0z
+ h6yNDsEK63l6nOBbbFQ==
+X-Proofpoint-ORIG-GUID: tDRyu6WbObDHyZagVZeV-IkkuDxAysVT
+X-Authority-Analysis: v=2.4 cv=YOSvDxGx c=1 sm=1 tr=0 ts=69e74891 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=EUspDBNiAAAA:8 a=KAErmEmBofBSjU3YeWYA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-GUID: tDRyu6WbObDHyZagVZeV-IkkuDxAysVT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-21_02,2026-04-20_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 adultscore=0 clxscore=1015
+ spamscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604210095
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260421_024527_294324_8901EBE7 
-X-CRM114-Status: GOOD (  12.15  )
+X-CRM114-CacheID: sfid-20260421_025114_471261_16E2E31A 
+X-CRM114-Status: GOOD (  10.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,56 +182,16 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 4/20/26 6:22 PM, Conor Dooley wrote:
-> On Fri, Apr 17, 2026 at 06:27:17PM +0200, Ronald Claveau wrote:
->> The Khadas VIM4 MCU register is slightly different
->> from previous boards' MCU.
->> This board also features a switchable power source for its fan.
->>
->> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
->> ---
->>  Documentation/devicetree/bindings/mfd/khadas,mcu.yaml | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
->> index 084960fd5a1fd..a80718f7595ce 100644
->> --- a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
->> @@ -18,6 +18,7 @@ properties:
->>    compatible:
->>      enum:
->>        - khadas,mcu # MCU revision is discoverable
->> +      - khadas,vim4-mcu # Different MCU variant, not discoverable
->>  
->>    "#cooling-cells": # Only needed for boards having FAN control feature
->>      const: 2
->> @@ -25,6 +26,10 @@ properties:
->>    reg:
->>      maxItems: 1
->>  
->> +  fan-supply:
->> +    description: Phandle to the regulator that powers the fan.
->> +    $ref: /schemas/types.yaml#/definitions/phandle
+On 4/21/26 1:33 AM, Dmitry Baryshkov wrote:
+> Pass IRQ_HPD events to the HPD bridge, letting those to be delivered to
+> the DisplayPort driver.
 > 
-> Can you limit this by compatible please?
-> pw-bot: changes-requested
-> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
 
-Thanks for your feedback, I will add that.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
->> +
->>  required:
->>    - compatible
->>    - reg
->>
->> -- 
->> 2.49.0
->>
-
-
--- 
-Best regards,
-Ronald
+Konrad
 
 _______________________________________________
 linux-amlogic mailing list
