@@ -4,56 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3A83F8FA90
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 16:38:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 425F1F8FA9B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 16:43:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:References:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=K1bBn4bwfk2bngEAkEFYciSCAvXHmzaREjH6cINyPA0=; b=oQ76M94dcrtAr5fQBtCEyd6i7S
-	h7bizyReL/msPPvEUzFH3NKogZLxxWsc1JUBU8RSpU3eWlsYaH9F+J8eo/AND94y1bsRW/oYQTJka
-	XYNjiBgVc8Qjx5QlKOXrhWGSGKngZD3TtQotjarbeabzNPJkONgcMq62zVWrcuOUPfM07bnlpJpT+
-	ENgPO8CYGiq6kjBS56lKpa/JKzXProScyhvT5/C6P1rcWguI3CVTL5xVqmncSy7ZC2yQFoS2GBQMm
-	LzCQraKX43udopacaKtMOrUKiOmGKfNIdoLy3JVaiBj3kWjJms4FTdXtOgw9/mUN5NyP0zuNPQ5z1
-	a0jkDM6A==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=jvsJxzfbNS86+6DFcm5uFSdj1PB0jbYxBLpSEN/1JK8=; b=T36b0iulp/P8rVUnLO2I6iJ3KM
+	ny3o1ES2rhJf+0ouAREc/WpAiuCF2mBToo98pkqtpb7sezFy4HctbMwTz5U7vnLqo7+Azg8s8JwWW
+	QQPXNH4L/bscRi0kSC/XvhxQ6kww8Ht8ffIe2s4Kv0TCLQ+XcUxw+pPjk0iofCcxH8KpMbi0KE48T
+	ugfYwZe3MydtmNus1bQ/EMewZE8EEOGvV4S3c7S80d+rLHmDx1iGhwvyeYgrCqxLUV4JtVnvb4/Rl
+	mBAbJVaqn1OD4FWtafJ/8iq/58MtCKKQ9fbiZm/QlBBjdUk7Cmb9tGQwM0qzk4TApjs3hYqMiSbBA
+	LAMXC8Lg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFE7S-00000008v9a-43uh;
-	Tue, 21 Apr 2026 16:38:38 +0000
-Received: from out-173.mta1.migadu.com ([95.215.58.173])
+	id 1wFEC7-00000008vcU-2Bau;
+	Tue, 21 Apr 2026 16:43:27 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFE7P-00000008v8D-27zT
-	for linux-amlogic@lists.infradead.org;
-	Tue, 21 Apr 2026 16:38:37 +0000
-Date: Tue, 21 Apr 2026 16:37:56 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1776789512;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tYNRr78Bk7kKy8q5PZ8wAhWa1XHOZpv8D1mw9I7KD98=;
-	b=RSg0wuXin0pVrh27qZrwL8SFBe6CUFcCoX5mUHmHSVFNgDcpusGKhUDQqcoSnZc8rwLAvx
-	WXsEuOz92oH8jypRR5oA6XeD6sqtjH96SMgOVnm9c/z/mNfrQQVJczEj78YcfYMdhiEu7o
-	7OC2crjL0ZftcPXXU+i+jGH+xJ+iayi35yjsUenWjQgxfa6H9FX96wLZotJDf9/qqrJ6XS
-	rqXg0GrSZMWwWEQt6FO9LXXRi71EKCd3A+ZX0uSuTdAL3gQwObeJY3WlnazDeThfGWvAvD
-	cKE3ZI+Jzg7Yp1TamJ3rokhAi7u8MolP3Q0Yzav9VDfNGEgv75TV0LgPakcgtg==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Ferass El Hafidi <funderscore@postmarketos.org>
-To: linux-amlogic@lists.infradead.org, christian.koever-draxl@student.uibk.ac.at, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, khilman@baylibre.com
-Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Christian Stefan K=?UTF-8?B?w7Y=?=v=?UTF-8?B?w6k=?=r-Draxl <christian.koever-draxl@student.uibk.ac.at>
-Subject: Re: [PATCH v3 0/2] Add support for Amediatech X98Q (Amlogic S905W2)
-References: <20260421155328.26359-1-christian.koever-draxl@student.uibk.ac.at>
-In-Reply-To: <20260421155328.26359-1-christian.koever-draxl@student.uibk.ac.at>
-Message-ID: <tdurk1.2nkwjyfysqjik@postmarketos.org>
+	id 1wFEC6-00000008vc4-0IMF;
+	Tue, 21 Apr 2026 16:43:27 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2C1174457B;
+	Tue, 21 Apr 2026 16:43:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDCE3C2BCB0;
+	Tue, 21 Apr 2026 16:43:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776789805;
+	bh=4DpCwv4bQ34CzEvMEIPOxMEDG8nKZt4dIwwtd1eT0TA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XYcmQyTctxxAQnBqas4fS5OXWdt3+cIYFVzOS6LqRhwJchFIcfOqEevthO/u/zoP5
+	 J58Yip/BuYyrclfkwD/xsE5GgnlnZoJRP/IdqmkjtAqHOon27ksyVBXIN63HeyPcXg
+	 oRTw/9oYL3Rkjzv2qkECkyVkFVo7eea32DbeoZwEvoL5Z2nI7TLp88P0JO6l4kq9On
+	 Sth+bFQ49EAdchOLov4D12SS8iMuHZKmjpV9I6F8h7lLwnJ7g7h/MmyqOBP/yeHuSC
+	 aqHaeMuCpmGPnzOMDrGd5TlLnCB5ixbStsg5iBYxUo/vKmuDB/KAdWFHyjWZkX9ZKo
+	 1EA12sjsPDBTQ==
+Date: Tue, 21 Apr 2026 17:43:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: linux-kernel-dev@aliel.fr
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Beniamino Galvani <b.galvani@gmail.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 1/8] dt-bindings: mfd: khadas: Add new compatible for
+ Khadas VIM4 MCU
+Message-ID: <20260421-mayflower-scratch-c861c20ecc11@spud>
+References: <20260421-add-mcu-fan-khadas-vim4-v4-0-447114a28f2d@aliel.fr>
+ <20260421-add-mcu-fan-khadas-vim4-v4-1-447114a28f2d@aliel.fr>
 MIME-Version: 1.0
-X-Migadu-Flow: FLOW_OUT
+In-Reply-To: <20260421-add-mcu-fan-khadas-vim4-v4-1-447114a28f2d@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260421_093835_693054_B18772D7 
-X-CRM114-Status: UNSURE (   9.32  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260421_094326_130402_C5F63AB5 
+X-CRM114-Status: GOOD (  10.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,31 +82,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============2525862222079463325=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCAyMSBBcHIgMjAyNiAxNTo1MywgY2hyaXN0aWFuLmtvZXZlci1kcmF4bEBzdHVkZW50
-LnVpYmsuYWMuYXQgd3JvdGU6Cj5Gcm9tOiBDaHJpc3RpYW4gU3RlZmFuIEvDtnbDqXItRHJheGwg
-PGNocmlzdGlhbi5rb2V2ZXItZHJheGxAc3R1ZGVudC51aWJrLmFjLmF0Pgo+Cj5DaGFuZ2VzIGlu
-IHYzOgo+LSBDaGFuZ2UgcG9zaXRpb24gb2YgdGhlIGVudHJ5IGluIHRoZSBhbWxvZ2ljLnlhbWwu
-Cj4tIENoYW5nZSBmb3JtYXR0aW5nIG9mIHRoZSBBbWxvZ2ljIFcxNTBTMSBXaS1GaSBtb2R1bGUg
-Y29tbWVudC4KPi0gRml4IHNldmVyYWwgZm9ybWF0dGluZyBpc3N1ZXMuCj4KPkNoYW5nZXMgaW4g
-djI6Cj4tIFNwbGl0IGR0LWJpbmRpbmdzIGFuZCBkdHMgY2hhbmdlcyBpbnRvIHNlcGFyYXRlIHBh
-dGNoZXMuCj4tIFVwZGF0ZWQgbW9kZWwgc3RyaW5nIHRvIG1hdGNoIGRvY3VtZW50ZWQgdmVuZG9y
-IHByZWZpeC4KPi0gUHV0IHZkZGlvX3NkIHN0YXRlcyBhcnJheSBpbiBhIHNpbmdsZSBsaW5lLgo+
-LSBBZGRlZCBhIGNvbW1lbnQgZm9yIHRoZSB1bnN1cHBvcnRlZCBBbWxvZ2ljIFcxNTBTMSBXaS1G
-aSBtb2R1bGUuCj4KCldoZXJlIGRpZCB0aGUgcmVzdCBvZiB0aGUgY292ZXIgbGV0dGVyIGdvPwoK
-PkNocmlzdGlhbiBTdGVmYW4gS8O2dsOpci1EcmF4bCAoMik6Cj4gIGR0LWJpbmRpbmdzOiBhcm06
-IGFtbG9naWM6IGFkZCBzdXBwb3J0IGZvciBBbWVkaWF0ZWNoIFg5OFEKPiAgYXJtNjQ6IGR0czog
-YW1sb2dpYzogYWRkIHN1cHBvcnQgZm9yIFg5OFEKPgo+IC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L2FybS9hbWxvZ2ljLnlhbWwgICAgICB8ICAgNyArCj4gYXJjaC9hcm02NC9ib290L2R0cy9hbWxv
-Z2ljL01ha2VmaWxlICAgICAgICAgIHwgICAxICsKPiAuLi4vYm9vdC9kdHMvYW1sb2dpYy9tZXNv
-bi1zNC1zOTA1dzIteDk4cS5kdHMgfCAyNDkgKysrKysrKysrKysrKysrKysrCj4gMyBmaWxlcyBj
-aGFuZ2VkLCAyNTcgaW5zZXJ0aW9ucygrKQo+IGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybTY0
-L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tczQtczkwNXcyLXg5OHEuZHRzCj4KPi0tIAo+Mi41My4w
-CgotLQpCZXN0IHJlZ2FyZHMsCkZlcmFzcwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
-Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
-bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+--===============2525862222079463325==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vF6WveZDFwhhwK8a"
+Content-Disposition: inline
+
+
+--vF6WveZDFwhhwK8a
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Apr 21, 2026 at 01:49:18PM +0200, Ronald Claveau via B4 Relay wrote:
+> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>=20
+> The Khadas VIM4 MCU register is slightly different
+> from previous boards' MCU.
+> This board also features a switchable power source for its fan.
+>=20
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
+
+--vF6WveZDFwhhwK8a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaeepIwAKCRB4tDGHoIJi
+0m+GAQDP6Yhk+Ye2KmmQ30PRruDFLVUcEar4ReZCG96CAq3ZqgD/UXwYeykc1wq3
+5TfXvdpglW+/eDOGF8e5A5zNvpB7JgM=
+=SG9m
+-----END PGP SIGNATURE-----
+
+--vF6WveZDFwhhwK8a--
+
+
+--===============2525862222079463325==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2525862222079463325==--
+
