@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9110CF327B6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7A0AF327B5
 	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 07:20:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,33 +12,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=P9tPmoorDEsBDwGZH0uWDdQ5WNImifYPHfuxqZWRMVE=; b=u0ZTL+gAXEJJzo
-	0Vq7reXyDv5aPr96O0b+d1hMBc45MdKdvnjXKK5LtbUkIH1hYCr/uPRYpxSEyG0Oj1O0LkjfZLbKq
-	IP9hRq1TOKut668hH9P/eFkJM0d2GRNqY4RPGgfzby1gXd6FksEq0NXqRMVC+xaVscjZ49/pwGzFZ
-	gAJ5TDx+hPtNpfnn3T+LB9iNKlq9/EvSIKByIMWwbQ896fZSg+71f+IXbkTm+hgIBqVyTuI0SWdV5
-	wtxffikhO47WtHl0MgXdNyiF1RTQ+BUlSUYvrE/AMlUKqUpsnfCDc3G8TbI2HP1r4cxtj9pJZPSxV
-	RDJkLSUi4kHVxcpACOpw==;
+	List-Owner; bh=cWGS+udSeNUNoRi/VvQM6Rai6GsIqEDH8VHsOiFg91A=; b=blWNfeYmd4518r
+	nBtycMg8PbeExCJv8f6cih8lvgPGPAyzRQVUoHa3viaWlJ65Blu51Hcu2ooZXFFqMEjh3Q3G6oZKB
+	2ApHXzVqWbcGL9fvXzwAqzBRgNNrMy5sg/ls0gR2iyq7qNCvumWSUIIPvV1EHZy6pslCBfa2zh4wj
+	cZrrZr9qY6tzHAimMFHgYwp3Qvu8y1ex3YZ3uPst1tcxaiA1z/64C6doRrc78uyS0YbwWvTV5mUB+
+	1zop2i0FZb2aUdkG2edNeyn7Xk5tz/v3yZNwa8LDtGMfDOs0Rr5yYJTqndZjB9CZJsA9EnG/N0lME
+	mqSxf537/4Lj2whJsJhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wF5PO-00000008A4l-3VM4;
-	Tue, 21 Apr 2026 07:20:34 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
+	id 1wF5PS-00000008A8p-2TOe;
+	Tue, 21 Apr 2026 07:20:38 +0000
+Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wF5PL-00000008A2k-27O6;
-	Tue, 21 Apr 2026 07:20:33 +0000
+	id 1wF5PM-00000008A2m-0sbR;
+	Tue, 21 Apr 2026 07:20:34 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776756027;
-	bh=z46M+rsMVvol/Iu/vuO1m+rAUYrJ82iMmifq0EnDoU0=;
+	s=courrier-s1; t=1776756028;
+	bh=+OPiaJJPEI4198UFVptwbMsLl2t7li0yawHDEA3XDzo=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=t8AHtK2EX9i/gzkqXxw7p+QJzt8P7+yqCZ44d1i+mxpXkXTSmbAKfURFl3/Em9qbf
-	 a/9mk0HzM/cOxYFs1kO6xOYx6WqV/U15h7/6y3C0OaFaAFvFPcLEGldOicvJTf+8sl
-	 udiOfxhVQbCLOeaADLkH8ztmxYOh6bOg6cvnZtUw=
-Date: Tue, 21 Apr 2026 09:19:44 +0200
-Subject: [PATCH v3 2/8] firmware: meson: sm: Thermal calibration read via
- secure monitor
+	b=BUiA4cyLV5JH+ZcTO4oMpVxRc//ZqQlaBE6oxfrBC6QrhqIgXGvZnB6kHYg4qFli9
+	 yiNC6/ZNvwAwIhC7bH0Ks3ZoNqgmdkrqVk6fXxU2WuH1+Ee0S4OmCTKLqK3A+drHsA
+	 +ILwwV/mKvS8iVeW+/hNtIhNRtFVw5tPQsb3k96I=
+Date: Tue, 21 Apr 2026 09:19:46 +0200
+Subject: [PATCH v3 4/8] thermal: amlogic: Add support for secure monitor
+ calibration readout
 MIME-Version: 1.0
-Message-Id: <20260421-add-thermal-t7-vim4-v3-2-a2e7215ed003@aliel.fr>
+Message-Id: <20260421-add-thermal-t7-vim4-v3-4-a2e7215ed003@aliel.fr>
 References: <20260421-add-thermal-t7-vim4-v3-0-a2e7215ed003@aliel.fr>
 In-Reply-To: <20260421-add-thermal-t7-vim4-v3-0-a2e7215ed003@aliel.fr>
 To: Guillaume La Roque <glaroque@baylibre.com>, 
@@ -55,19 +55,18 @@ Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776756022; l=1177;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776756023; l=4382;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=z46M+rsMVvol/Iu/vuO1m+rAUYrJ82iMmifq0EnDoU0=;
+ bh=+OPiaJJPEI4198UFVptwbMsLl2t7li0yawHDEA3XDzo=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QJKNx7kRUJdcW4jCyJRZPCiAu14rzIQw/X9FaYOtCVn/CYs+zGp/yhA5iWu9agts209keDEPtKF
- DxHswTIu0qwE=
+ QNoBMoSWvVWsCyLCd1eEWvZ1jgQJpmPRJy+mxKgaG9hWR67FeO2pV71cL+j8+JVS+T5l+dDXtU2
+ 2R84MvXh0cAA=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260421_002032_078912_E832DFA8 
-X-CRM114-Status: UNSURE (   7.82  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260421_002032_571941_0E8F69B8 
+X-CRM114-Status: GOOD (  18.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,35 +83,136 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add SM_THERMAL_CALIB_READ to the secure monitor command enum and
-introduce meson_sm_get_thermal_calib() to allow drivers to retrieve
-thermal sensor calibration data through the firmware interface.
+Some SoCs (e.g. T7) expose thermal calibration data through the secure
+monitor rather than a directly accessible eFuse register. Add a use_sm
+flag to amlogic_thermal_data to select this path, and retrieve the
+firmware handle and tsensor_id from the "amlogic,secure-monitor" DT
+phandle with one fixed argument.
+
+Also introduce the amlogic,t7-thermal compatible using this new path.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- include/linux/firmware/meson/meson_sm.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/thermal/amlogic_thermal.c | 58 +++++++++++++++++++++++++++++++++++----
+ 1 file changed, 53 insertions(+), 5 deletions(-)
 
-diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
-index 8eaf8922ab020..3ebc2bd9a9760 100644
---- a/include/linux/firmware/meson/meson_sm.h
-+++ b/include/linux/firmware/meson/meson_sm.h
-@@ -12,6 +12,7 @@ enum {
- 	SM_EFUSE_WRITE,
- 	SM_EFUSE_USER_MAX,
- 	SM_GET_CHIP_ID,
-+	SM_THERMAL_CALIB_READ,
- 	SM_A1_PWRC_SET,
- 	SM_A1_PWRC_GET,
- };
-@@ -27,5 +28,7 @@ int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
- 		       unsigned int bsize, unsigned int cmd_index, u32 arg0,
- 		       u32 arg1, u32 arg2, u32 arg3, u32 arg4);
- struct meson_sm_firmware *meson_sm_get(struct device_node *firmware_node);
-+int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
-+			       u32 tsensor_id);
+diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
+index 5448d772db12a..11e3948cc0669 100644
+--- a/drivers/thermal/amlogic_thermal.c
++++ b/drivers/thermal/amlogic_thermal.c
+@@ -25,6 +25,7 @@
+ #include <linux/platform_device.h>
+ #include <linux/regmap.h>
+ #include <linux/thermal.h>
++#include <linux/firmware/meson/meson_sm.h>
  
- #endif /* _MESON_SM_FW_H_ */
+ #include "thermal_hwmon.h"
+ 
+@@ -84,12 +85,14 @@ struct amlogic_thermal_soc_calib_data {
+  * @u_efuse_off: register offset to read fused calibration value
+  * @calibration_parameters: calibration parameters structure pointer
+  * @regmap_config: regmap config for the device
++ * @use_sm: read data from secure monitor instead of efuse
+  * This structure is required for configuration of amlogic thermal driver.
+  */
+ struct amlogic_thermal_data {
+ 	int u_efuse_off;
+ 	const struct amlogic_thermal_soc_calib_data *calibration_parameters;
+ 	const struct regmap_config *regmap_config;
++	bool use_sm;
+ };
+ 
+ struct amlogic_thermal {
+@@ -100,6 +103,8 @@ struct amlogic_thermal {
+ 	struct clk *clk;
+ 	struct thermal_zone_device *tzd;
+ 	u32 trim_info;
++	struct meson_sm_firmware *sm_fw;
++	u32 tsensor_id;
+ };
+ 
+ /*
+@@ -138,6 +143,12 @@ static int amlogic_thermal_initialize(struct amlogic_thermal *pdata)
+ 	int ret = 0;
+ 	int ver;
+ 
++	if (pdata->data->use_sm) {
++		return meson_sm_get_thermal_calib(pdata->sm_fw,
++						  &pdata->trim_info,
++						  pdata->tsensor_id);
++	}
++
+ 	regmap_read(pdata->sec_ao_map, pdata->data->u_efuse_off,
+ 		    &pdata->trim_info);
+ 
+@@ -226,6 +237,12 @@ static const struct amlogic_thermal_data amlogic_thermal_a1_cpu_param = {
+ 	.regmap_config = &amlogic_thermal_regmap_config_g12a,
+ };
+ 
++static const struct amlogic_thermal_data amlogic_thermal_t7_param = {
++	.use_sm			= true,
++	.calibration_parameters	= &amlogic_thermal_g12a,
++	.regmap_config		= &amlogic_thermal_regmap_config_g12a,
++};
++
+ static const struct of_device_id of_amlogic_thermal_match[] = {
+ 	{
+ 		.compatible = "amlogic,g12a-ddr-thermal",
+@@ -239,6 +256,10 @@ static const struct of_device_id of_amlogic_thermal_match[] = {
+ 		.compatible = "amlogic,a1-cpu-thermal",
+ 		.data = &amlogic_thermal_a1_cpu_param,
+ 	},
++	{
++		.compatible = "amlogic,t7-thermal",
++		.data = &amlogic_thermal_t7_param,
++	},
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, of_amlogic_thermal_match);
+@@ -271,11 +292,38 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
+ 	if (IS_ERR(pdata->clk))
+ 		return dev_err_probe(dev, PTR_ERR(pdata->clk), "failed to get clock\n");
+ 
+-	pdata->sec_ao_map = syscon_regmap_lookup_by_phandle
+-		(pdev->dev.of_node, "amlogic,ao-secure");
+-	if (IS_ERR(pdata->sec_ao_map)) {
+-		dev_err(dev, "syscon regmap lookup failed.\n");
+-		return PTR_ERR(pdata->sec_ao_map);
++	if (pdata->data->use_sm) {
++		struct device_node *sm_np;
++		struct of_phandle_args ph_args;
++
++		ret = of_parse_phandle_with_fixed_args(pdev->dev.of_node,
++						       "amlogic,secure-monitor",
++						       1, 0, &ph_args);
++		if (ret)
++			return ret;
++
++		sm_np = ph_args.np;
++		if (!sm_np) {
++			dev_err(dev,
++				"Failed to parse secure monitor phandle\n");
++			return -ENODEV;
++		}
++
++		pdata->sm_fw = meson_sm_get(sm_np);
++		of_node_put(sm_np);
++		if (!pdata->sm_fw) {
++			dev_err(dev, "Failed to get secure monitor firmware\n");
++			return -EPROBE_DEFER;
++		}
++
++		pdata->tsensor_id = ph_args.args[0];
++	} else {
++		pdata->sec_ao_map = syscon_regmap_lookup_by_phandle
++			(pdev->dev.of_node, "amlogic,ao-secure");
++		if (IS_ERR(pdata->sec_ao_map)) {
++			dev_err(dev, "syscon regmap lookup failed.\n");
++			return PTR_ERR(pdata->sec_ao_map);
++		}
+ 	}
+ 
+ 	pdata->tzd = devm_thermal_of_zone_register(&pdev->dev,
 
 -- 
 2.49.0
