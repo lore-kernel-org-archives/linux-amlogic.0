@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEE14F327C5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 08:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A021F327C1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 08:18:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=swaHXkbNW+DH18BOs9qc/YDGkGSqUooBbWpjrz4J7dY=; b=06GGYR+MW1YZZ5
-	JISaq91YVEDnKI/t7cYjlKJ0hdQ/cvYB2s8ieQTN3opdBC5WJfNKnSkwttlxOURpX/KadqwPk0ZLW
-	QQ2X74TaTks9YZLUC+mWLfQ+oxHwWExfrf34yObu/wLbHOYnBioSTt8FmKS2QqZOsUryiqnGlMMMH
-	YEl1rtEpB20ycG3iCMFdftJyD/lBQOHC3LP2yvgjlaxMBEuSG+HXCImg+ktDJcMvMrXWjSrrvGXmb
-	957uXw7YPE94v6s8lF0Fg7wUM1f09TrGujSm29jzBea0m13KBqSIA7cYK/U3iSdvHSQ48kKHNc8fP
-	2ka8G5PmwYBaFahlv9yA==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3J7yM7Sqe9cE3eMhzb3IJkGxepUnPMr3FaYzJB+ePhk=; b=rdT3nIIov8I0ZI
+	RMqUujBNmPCzbktchxuXTr01PYTlEGABv3eRCczlA50aAf7w+gZBDXqRuKJqsQ6DCTTat7F/RYayM
+	HoZnJRDlnAAdOOr/uNjZmsUpePksh3FHu6u+zspYRYkwfhmjufIoYu/Fsz/YEkBCgApD6HWJ782Yn
+	cOKpm5W7NJbPn3pcMDjwYgNfo4ladd7mAB/+cAv0fvj849FlKOfsdIoFcPcKd2tb1Hdg8d31DiZw+
+	mqe2qc0rgSdBj5FErmZ8nVY5Xi3AvGzroGDxYYg4OzlzkFIf9YVuQPPrOQbXSeKlqhMqXN/EtXLu+
+	aV1MSl04RWjbefk/TvHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wF6Jl-00000008FD0-1oYg;
-	Tue, 21 Apr 2026 08:18:49 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wF6Jd-00000008F9E-30mF;
+	Tue, 21 Apr 2026 08:18:41 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wF6Jd-00000008F8G-1o6f;
-	Tue, 21 Apr 2026 08:18:42 +0000
+	id 1wF6Jd-00000008F8I-13oU;
+	Tue, 21 Apr 2026 08:18:41 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2C9074456B;
+	by tor.source.kernel.org (Postfix) with ESMTP id 695FE6001A;
 	Tue, 21 Apr 2026 08:18:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id F1F6CC2BCB0;
-	Tue, 21 Apr 2026 08:18:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 16AE9C2BCB5;
+	Tue, 21 Apr 2026 08:18:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1776759520;
-	bh=Kz+3pMMySerYI/J54KnH+TrQYs1a5xtXn+eQ4dPN+Sc=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=HbDfS2sz/GEqyOWvWu0tVs4//pfHUfkVGOhRjoB8dyL0Vu8cSEypyhK6EOLNaVos4
-	 b44YbFhG78K2fFInuoVLv43Ny1LVOdrdX5hLkn0kmHnqvg2Z30x3Jxpp8ugog0hWer
-	 wb2+n0Dt4J/DuiYzWKhO7kSromRIOksl8JI0OUDAXklpNcbH08aO5c17G8foGScP94
-	 O4b+qAVsHrrnyI0lnnPk7CZbn+D4n0PkXloNMPFcEXeFEIjvWOwPXmI+o0kHf7KTvf
-	 lXN0gaUosglh0CE3QvNLp2Mj0gIMgQ5Lt/vywR3uGVx0qnX1anHSNGFYynVpTtx283
-	 0SHJRpAGVqRVg==
+	bh=7pJbh/uj8XfFDrgStpBaGjvS/bBJlfmlOagSr2mFtPQ=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=W2jD8vZh5T2oEI8hMBBE68lk/WCB9G5Zl9mehC+4mAvLF2ft3wRQjWSJlIAYOUEx6
+	 eJUenzjwKBl+0uS+v9Lig4Z7JI2vNbiNi0GFbQE7x1qjE9gkjFbXpT1ox4xjSSUUkr
+	 ZzFnxhKcMP4hiZRgfUrEE7hLv/GtiTJxELZJaJGjWQdTXAse4il/Zek629zQJ5p5Wr
+	 k0V40LPXjRxBfWSMGtdtdm0pP/0eSvuaHtRxVMaoEDpkDPCWbSuqi4GrE833xPl3cy
+	 xwU8UIR4V6H2unJ/iYcu0b5RtbQ+LiiKKrg8txA+uSqcxUoGXd1r7FzjnLIfpJYt85
+	 ByKRcxYtFcUgA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6EBEF327B0;
-	Tue, 21 Apr 2026 08:18:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 07D3BF327BD;
+	Tue, 21 Apr 2026 08:18:40 +0000 (UTC)
 From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Subject: [PATCH v3 0/4] soc: amlogic: clk-measure: add A1 and T7 support
-Date: Tue, 21 Apr 2026 16:17:40 +0800
-Message-Id: <20260421-clkmsr_a1_t7-v3-0-efc00b0f9e6b@amlogic.com>
+Date: Tue, 21 Apr 2026 16:17:41 +0800
+Subject: [PATCH v3 1/4] dt-bindings: soc: amlogic: clk-measure: Add A1 and
+ T7 compatible
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAKUy52kC/3XMQQ6DIBCF4auYWZcGRoraVe/RGEMRdVKRBoxpY
- 7h7qfsu/5e8b4doA9kI12KHYDeK5Jcc5akAM+lltIz63IAcFZfiwsz8dDF0WnRrxZoaeVPLnut
- BQL68gh3ofXD3NvdEcfXhc+gb/tY/0IaMM44PVQopsbLqpt3sRzJn4x20KaUvP46grqoAAAA=
-X-Change-ID: 20260415-clkmsr_a1_t7-9820984d0af1
+Message-Id: <20260421-clkmsr_a1_t7-v3-1-efc00b0f9e6b@amlogic.com>
+References: <20260421-clkmsr_a1_t7-v3-0-efc00b0f9e6b@amlogic.com>
+In-Reply-To: <20260421-clkmsr_a1_t7-v3-0-efc00b0f9e6b@amlogic.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -62,20 +61,16 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Jian Hu <jian.hu@amlogic.com>, Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776759517; l=1276;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776759517; l=925;
  i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
- bh=Kz+3pMMySerYI/J54KnH+TrQYs1a5xtXn+eQ4dPN+Sc=;
- b=87Uj5tJYBxyT81mPVwhTw3g+vaPd1voTESeTuQlrUEWiUyQumNsXr74S/xP5tUaFeLczeJt/x
- FMyEr/5af2bDMGm7SXh++dvdWb7sGxhSTIGZ2t+KJ6syTecpUqhbSjH
+ bh=CgTT3MEiWBM2xyukC2as1xW5lCFjTJ74JkjsBhvGt3g=;
+ b=feaATb50ETYIaEoFr1FWFcpa+a9f5SmprtuXNV8oZFl6Ut6k8o5at2vR/q0GwP7GGPOJcrzyD
+ W5w//PdCZQYBdTUkMEGzPoBI2YD8xNshIcpKbmLmPlRbX7+2G+xWeH6
 X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
  pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
 X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
  auth_id=735
 X-Original-From: Jian Hu <jian.hu@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260421_011841_517169_DAFCC2CC 
-X-CRM114-Status: UNSURE (   8.57  )
-X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,39 +88,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series adds Amlogic clock measurement support for A1 and T7 SoCs,
-including binding updates, driver additions, and device tree enablement.
+From: Jian Hu <jian.hu@amlogic.com>
 
+Add the Amlogic A1 and T7 compatible for the clk-measurer IP.
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 ---
-Changes in v3:
-- Place the clock-measure node after pwm_ao_gh node for t7.
-- Link to v2: https://lore.kernel.org/r/20260415-clkmsr_a1_t7-v2-0-02b6314427e6@amlogic.com
+ .../devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml   | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes in v2:
-- Add const for a1 and t7 clock measure table.
-- Use b4 to send this series.
-- Link to v1: https://lore.kernel.org/all/20260410100329.3167482-1-jian.hu@amlogic.com
+diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
+index 39d4637c2d08..b1200e6940ac 100644
+--- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
++++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
+@@ -24,6 +24,8 @@ properties:
+       - amlogic,meson-sm1-clk-measure
+       - amlogic,c3-clk-measure
+       - amlogic,s4-clk-measure
++      - amlogic,a1-clk-measure
++      - amlogic,t7-clk-measure
+ 
+   reg:
+     maxItems: 1
 
----
-Jian Hu (4):
-      dt-bindings: soc: amlogic: clk-measure: Add A1 and T7 compatible
-      soc: amlogic: clk-measure: Add A1 and T7 support
-      arm64: dts: meson: a1: Add clk measure support
-      arm64: dts: amlogic: t7: Add clk measure support
-
- .../soc/amlogic/amlogic,meson-gx-clk-measure.yaml  |   2 +
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |   5 +
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |   5 +
- drivers/soc/amlogic/meson-clk-measure.c            | 272 +++++++++++++++++++++
- 4 files changed, 284 insertions(+)
----
-base-commit: 401e5c73eedde8225e87bd11c794b8409248ff41
-change-id: 20260415-clkmsr_a1_t7-9820984d0af1
-
-Best regards,
 -- 
-Jian Hu <jian.hu@amlogic.com>
+2.47.1
 
 
 
