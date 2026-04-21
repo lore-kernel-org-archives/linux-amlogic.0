@@ -4,41 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96295F327B5
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 07:20:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57F66F327B4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 07:20:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qmwXsfYQICB41S6OuJwqBm5TO759M5ZUp6EZyeAB9JE=; b=HtatjHbMDu8mYu
-	vFjugtj+sMEAwHMxhEnPHV2L5vyMVm5zALb6n7Fmw0CZS6ec49f2Zuyh/vFkhIhG1KeChyQngVzdK
-	ea2FqYwAzuCuxiPnZ9zG9NOcilwEiF/DuuNoeU9bGuxT3aDzVwp/rC7+ZuQY+Vzk9ikGZOGKrsHJD
-	Yct9RHpde/3Ul2+DmZAdVk+KgFtXcHBGa+qXjDQb9tfMqnrmhz3XZOBAqUaRGe8dpkd/qdhnvuzQn
-	yotCJMIyuJNIBZtmFAiljPrRgGsdGAvtcz/d74aUgnW6oS0McR3LnUISWz8Ih+Exi9n2eSCakm+EM
-	PtshFC3r3iSadvN3OZfQ==;
+	List-Owner; bh=QmtvMbIgAY9T79nnAN7eFsVNMPOjw1MAW3FSdIMk1kY=; b=uuWK9ohiXjQ9vt
+	cErpIShU9w9QIMdEfT0PuGosR87oIfTVWvm1KG6O4TqXzGlVLnI/35vaKoVk2N445G4xHCUjSDBXo
+	efkSh8wnPudTsin4FT9mgAxyW3IdW/6tTAn4otGdUcNQUm5yVqp7f16VM/3w6ZdJhFljdg3TJ+4YW
+	9/0IRQCVpD5bXxFFxNxwFpfRFEx7WoHJ9YOQKgoZ5k7Zjn8nGRvZNnq3dLH9X3GvxRpN3Dmf9q3xv
+	18UEHmRayYzmpGObl2wzBCeUMgWfb8INHFgv/V1xAsohtAZiKSPUe+BtmHEa2nLgD/iTE4UVgcJYX
+	dZWWshZe/n4l6WyikQdQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wF5Pa-00000008AF2-0PZN;
-	Tue, 21 Apr 2026 07:20:46 +0000
+	id 1wF5Pb-00000008AI7-2Rgm;
+	Tue, 21 Apr 2026 07:20:47 +0000
 Received: from courrier.aliel.fr ([65.21.61.41])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wF5PQ-00000008A4k-0aGu;
-	Tue, 21 Apr 2026 07:20:37 +0000
+	id 1wF5PR-00000008A5g-1kOW;
+	Tue, 21 Apr 2026 07:20:38 +0000
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1776756032;
-	bh=zbgRfmKb31HDgkan9Fy8S+p1BOUmWfaoe9tmTB9hGac=;
+	s=courrier-s1; t=1776756031;
+	bh=gXUyoHvrU7UAwF+TcmnCND7Xo2iI5Rna7hPHjxdZqpk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=uygkk2EtdmfhzVT3+789ag2/JVQq1lEmx5yBezGZSWxLc36V4YN+iiqMnZyFBd6mp
-	 8P5O5qBW5dkj8+CwyW07evLebn0+Qd9KHFkYAKQA/dC4aLjDtn/pYqEQK9PTq9d3XA
-	 cCfUzpp3E8w3HA7/00wIQlxrBgXJjGmAQrD6L0GM=
-Date: Tue, 21 Apr 2026 09:19:50 +0200
-Subject: [PATCH v3 8/8] arm64: dts: amlogic: t7: khadas-vim4: Add fan
- cooling to thermal zones
+	b=Nbbn12k63JNruu171FiGS4O/qBDQQFtUML9O/LrY57h2kLForQkUCFHLthzemD1VQ
+	 lAbmuLTp/T613ZBW/r1sfVbWzPSNzc2eCMoGN96IZMiJVvNTscvgQ51Bf9VrQGoy+x
+	 s4k3VFDCPMwjHwzcvdtL2Fline2DZG6XYPJWb3GU=
+Date: Tue, 21 Apr 2026 09:19:49 +0200
+Subject: [PATCH v3 7/8] arm64: dts: amlogic: t7: Add thermal zones
 MIME-Version: 1.0
-Message-Id: <20260421-add-thermal-t7-vim4-v3-8-a2e7215ed003@aliel.fr>
+Message-Id: <20260421-add-thermal-t7-vim4-v3-7-a2e7215ed003@aliel.fr>
 References: <20260421-add-thermal-t7-vim4-v3-0-a2e7215ed003@aliel.fr>
 In-Reply-To: <20260421-add-thermal-t7-vim4-v3-0-a2e7215ed003@aliel.fr>
 To: Guillaume La Roque <glaroque@baylibre.com>, 
@@ -55,18 +54,18 @@ Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openssh-sha256; t=1776756024; l=2874;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1776756024; l=5084;
  i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
- bh=zbgRfmKb31HDgkan9Fy8S+p1BOUmWfaoe9tmTB9hGac=;
+ bh=gXUyoHvrU7UAwF+TcmnCND7Xo2iI5Rna7hPHjxdZqpk=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
  BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QN4/E0s7WbZdPSpM0peJA+qrRW42bBl7baU+STKvFE8bJDm+AXaM6vUs8u8XnD43UqI8Q7hvTj1
- RzKDl0Dfz8gY=
+ QM47v1wszwrAAIsSPK5uCnDc545PQSmNexZZEQD9de+D3eGv6BswyU1IRrpHNX+7ipotgG+ekm/
+ O89vLZH9ZUwA=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
  fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260421_002036_331787_62CD70E5 
-X-CRM114-Status: UNSURE (   8.55  )
+X-CRM114-CacheID: sfid-20260421_002037_833040_B740FC63 
+X-CRM114-Status: UNSURE (   8.80  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -79,60 +78,221 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-QWRkIGFuIGFjdGl2ZSB0cmlwIGF0IDUwwrBDIHRvIGFsbCBzaXggdGhlcm1hbCB6b25lcyBhbmQg
-bWFwIGl0IHRvIHRoZQpraGFkYXNfbWN1IGZhbiBjb250cm9sbGVyLCB1c2luZyBjb29saW5nIHN0
-YXRlcyAzMCB0byAxMDAuCgpTaWduZWQtb2ZmLWJ5OiBSb25hbGQgQ2xhdmVhdSA8bGludXgta2Vy
-bmVsLWRldkBhbGllbC5mcj4KLS0tCiAuLi4vZHRzL2FtbG9naWMvYW1sb2dpYy10Ny1hMzExZDIt
-a2hhZGFzLXZpbTQuZHRzICB8IDEwMiArKysrKysrKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFu
-Z2VkLCAxMDIgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMv
-YW1sb2dpYy9hbWxvZ2ljLXQ3LWEzMTFkMi1raGFkYXMtdmltNC5kdHMgYi9hcmNoL2FybTY0L2Jv
-b3QvZHRzL2FtbG9naWMvYW1sb2dpYy10Ny1hMzExZDIta2hhZGFzLXZpbTQuZHRzCmluZGV4IDVk
-N2Y1MzkwZjNhNjYuLmJhOTIxOTA3M2RkMGEgMTAwNjQ0Ci0tLSBhL2FyY2gvYXJtNjQvYm9vdC9k
-dHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LWEzMTFkMi1raGFkYXMtdmltNC5kdHMKKysrIGIvYXJjaC9h
-cm02NC9ib290L2R0cy9hbWxvZ2ljL2FtbG9naWMtdDctYTMxMWQyLWtoYWRhcy12aW00LmR0cwpA
-QCAtMTU3LDYgKzE1Nyw3NCBAQCB3aWZpMzJrOiB3aWZpMzJrIHsKIAl9OwogfTsKIAorJmE1M190
-aGVybWFsIHsKKwl0cmlwcyB7CisJCWE1M19hY3RpdmU6IGE1My1hY3RpdmUgeworCQkJdGVtcGVy
-YXR1cmUgPSA8NTAwMDA+OyAvKiBtaWxsaWNlbHNpdXMgKi8KKwkJCWh5c3RlcmVzaXMgPSA8MjAw
-MD47IC8qIG1pbGxpY2Vsc2l1cyAqLworCQkJdHlwZSA9ICJhY3RpdmUiOworCQl9OworCX07CisK
-Kwljb29saW5nLW1hcHMgeworCQltYXAgeworCQkJdHJpcCA9IDwmYTUzX2FjdGl2ZT47CisJCQlj
-b29saW5nLWRldmljZSA9IDwma2hhZGFzX21jdSAzMCAxMDA+OworCQl9OworCX07Cit9OworCism
-YTczX3RoZXJtYWwgeworCXRyaXBzIHsKKwkJYTczX2FjdGl2ZTogYTczLWFjdGl2ZSB7CisJCQl0
-ZW1wZXJhdHVyZSA9IDw1MDAwMD47IC8qIG1pbGxpY2Vsc2l1cyAqLworCQkJaHlzdGVyZXNpcyA9
-IDwyMDAwPjsgLyogbWlsbGljZWxzaXVzICovCisJCQl0eXBlID0gImFjdGl2ZSI7CisJCX07CisJ
-fTsKKworCWNvb2xpbmctbWFwcyB7CisJCW1hcCB7CisJCQl0cmlwID0gPCZhNzNfYWN0aXZlPjsK
-KwkJCWNvb2xpbmctZGV2aWNlID0gPCZraGFkYXNfbWN1IDMwIDEwMD47CisJCX07CisJfTsKK307
-CisKKyZncHVfdGhlcm1hbCB7CisJdHJpcHMgeworCQlncHVfYWN0aXZlOiBncHUtYWN0aXZlIHsK
-KwkJCXRlbXBlcmF0dXJlID0gPDUwMDAwPjsgLyogbWlsbGljZWxzaXVzICovCisJCQloeXN0ZXJl
-c2lzID0gPDIwMDA+OyAvKiBtaWxsaWNlbHNpdXMgKi8KKwkJCXR5cGUgPSAiYWN0aXZlIjsKKwkJ
-fTsKKwl9OworCisJY29vbGluZy1tYXBzIHsKKwkJbWFwIHsKKwkJCXRyaXAgPSA8JmdwdV9hY3Rp
-dmU+OworCQkJY29vbGluZy1kZXZpY2UgPSA8JmtoYWRhc19tY3UgMzAgMTAwPjsKKwkJfTsKKwl9
-OworfTsKKworJmhldmNfdGhlcm1hbCB7CisJdHJpcHMgeworCQloZXZjX2FjdGl2ZTogaGV2Yy1h
-Y3RpdmUgeworCQkJdGVtcGVyYXR1cmUgPSA8NTAwMDA+OyAvKiBtaWxsaWNlbHNpdXMgKi8KKwkJ
-CWh5c3RlcmVzaXMgPSA8MjAwMD47IC8qIG1pbGxpY2Vsc2l1cyAqLworCQkJdHlwZSA9ICJhY3Rp
-dmUiOworCQl9OworCX07CisKKwljb29saW5nLW1hcHMgeworCQltYXAgeworCQkJdHJpcCA9IDwm
-aGV2Y19hY3RpdmU+OworCQkJY29vbGluZy1kZXZpY2UgPSA8JmtoYWRhc19tY3UgMzAgMTAwPjsK
-KwkJfTsKKwl9OworfTsKKwogJmkyY19tX2FvX2EgewogCXN0YXR1cyA9ICJva2F5IjsKIAlwaW5j
-dHJsLTAgPSA8JmkyYzBfYW9fZF9waW5zPjsKQEAgLTE3MCw2ICsyMzgsMjMgQEAga2hhZGFzX21j
-dTogc3lzdGVtLWNvbnRyb2xsZXJAMTggewogCX07CiB9OwogCismbm5hX3RoZXJtYWwgeworCXRy
-aXBzIHsKKwkJbm5hX2FjdGl2ZTogbm5hLWFjdGl2ZSB7CisJCQl0ZW1wZXJhdHVyZSA9IDw1MDAw
-MD47IC8qIG1pbGxpY2Vsc2l1cyAqLworCQkJaHlzdGVyZXNpcyA9IDwyMDAwPjsgLyogbWlsbGlj
-ZWxzaXVzICovCisJCQl0eXBlID0gImFjdGl2ZSI7CisJCX07CisJfTsKKworCWNvb2xpbmctbWFw
-cyB7CisJCW1hcCB7CisJCQl0cmlwID0gPCZubmFfYWN0aXZlPjsKKwkJCWNvb2xpbmctZGV2aWNl
-ID0gPCZraGFkYXNfbWN1IDMwIDEwMD47CisJCX07CisJfTsKK307CisKICZwd21fYWIgewogCXN0
-YXR1cyA9ICJva2F5IjsKIAlwaW5jdHJsLTAgPSA8JnB3bV9hX3BpbnM+OwpAQCAtMjY2LDMgKzM1
-MSwyMCBAQCAmdWFydF9hIHsKIAljbG9ja3MgPSA8Jnh0YWw+LCA8Jnh0YWw+LCA8Jnh0YWw+Owog
-CWNsb2NrLW5hbWVzID0gInh0YWwiLCAicGNsayIsICJiYXVkIjsKIH07CisKKyZ2cHVfdGhlcm1h
-bCB7CisJdHJpcHMgeworCQl2cHVfYWN0aXZlOiB2cHUtYWN0aXZlIHsKKwkJCXRlbXBlcmF0dXJl
-ID0gPDUwMDAwPjsgLyogbWlsbGljZWxzaXVzICovCisJCQloeXN0ZXJlc2lzID0gPDIwMDA+OyAv
-KiBtaWxsaWNlbHNpdXMgKi8KKwkJCXR5cGUgPSAiYWN0aXZlIjsKKwkJfTsKKwl9OworCisJY29v
-bGluZy1tYXBzIHsKKwkJbWFwIHsKKwkJCXRyaXAgPSA8JnZwdV9hY3RpdmU+OworCQkJY29vbGlu
-Zy1kZXZpY2UgPSA8JmtoYWRhc19tY3UgMzAgMTAwPjsKKwkJfTsKKwl9OworfTsKCi0tIAoyLjQ5
-LjAKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51
-eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcK
-aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2lj
-Cg==
+Add thermal zones for all six sensors: a53, a73, gpu, nna, vpu, and hevc.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 179 ++++++++++++++++++++++++++++
+ 1 file changed, 179 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index 62f259b2b17d2..c6ea0f20a879f 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -9,6 +9,7 @@
+ #include <dt-bindings/clock/amlogic,t7-scmi.h>
+ #include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
+ #include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
++#include <dt-bindings/thermal/thermal.h>
+ 
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -829,6 +830,184 @@ hevc_tsensor: temperature-sensor@9a000 {
+ 				amlogic,secure-monitor = <&sm 5>;
+ 			};
+ 		};
++	};
++
++	thermal-zones {
++		a53_thermal: a53-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&a53_tsensor>;
++
++			trips {
++				a53_passive: a53-passive {
++					temperature = <85000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "passive";
++				};
++
++				a53_hot: a53-hot {
++					temperature = <95000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "hot";
++				};
++
++				a53_critical: a53-critical {
++					temperature = <110000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map-a53 {
++					trip = <&a53_passive>;
++					cooling-device =
++						<&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu102 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu103 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		a73_thermal: a73-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&a73_tsensor>;
++
++			trips {
++				a73_passive: a73-passive {
++					temperature = <85000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "passive";
++				};
++
++				a73_hot: a73-hot {
++					temperature = <95000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "hot";
++				};
++
++				a73_critical: a73-critical {
++					temperature = <110000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map-a73 {
++					trip = <&a73_passive>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		gpu_thermal: gpu-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&gpu_tsensor>;
++
++			trips {
++				gpu_passive: gpu-passive {
++					temperature = <95000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				gpu_hot: gpu-hot {
++					temperature = <105000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
+ 
++				gpu_critical: gpu-critical {
++					temperature = <115000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		hevc_thermal: hevc-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&hevc_tsensor>;
++
++			trips {
++				hevc_passive: hevc-passive {
++					temperature = <95000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				hevc_hot: hevc-hot {
++					temperature = <105000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				hevc_critical: hevc-critical {
++					temperature = <115000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		nna_thermal: nna-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&nna_tsensor>;
++
++			trips {
++				nna_passive: nna-passive {
++					temperature = <95000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				nna_hot: nna-hot {
++					temperature = <105000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				nna_critical: nna-critical {
++					temperature = <115000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		vpu_thermal: vpu-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&vpu_tsensor>;
++
++			trips {
++				vpu_passive: vpu-passive {
++					temperature = <95000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				vpu_hot: vpu-hot {
++					temperature = <105000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				vpu_critical: vpu-critical {
++					temperature = <115000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
+ 	};
+ };
+
+-- 
+2.49.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
