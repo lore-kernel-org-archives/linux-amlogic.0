@@ -4,84 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DDF2F8FA72
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 11:50:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4303F8FA7B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Apr 2026 13:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DXPd6bBkG6C8fxDQPpU0AoJ7c18Mjv7q9ZAZyr/Hczo=; b=Pec9Lyu50krFi9
-	KbYrfg3WwUH1mvYjk+ofLQa4idk82QIpkktfMFB+8tQwp4YUCtaiQRkglmVzBleFz/ixZfwmWGpJ2
-	qj8pI0OfpKbHj2egnNO15HsZwgeK6hbIATr7hMh2y14jKh3hhwa5izGVpQw4gt4xeFLN5S+0rFAX4
-	0dZch7OEXoGPA5DzyQ9vOA8HuXsutPLEFWhN1I7x+uVDNXH6m6xxl93qBiaOk6Ltl8+OFm73kmr3H
-	iadaiBXa2qffIa61LQC5N8+g9z+14nAoiPf0k/YJEYSMcGUnILM3hIePdnvYGqqJbL4wNEacmUw7g
-	/LB/DSQxXXCYvMMibWQw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
+	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=YqKsUTK4XpUGHR7Vj16bLRtDjE7hxC/XiFkDVt1ki4A=; b=u44rZ/ZZTs/6Vp
+	xRY4KLUMmAUIEb+xCiB9A81KwIqKpysUMM69r2HejEMuGMMT2sVZUgyuJL4IN5b81gmASisD2YRI2
+	YQ04EDBKCnBmm9nEeeStmt/ewuvPKjKwUg67qrp1dplPFG/E0qFihzM2v2F0xE0BFC40wAA4SGWqG
+	Kmw698YZSodM+BroRkK0fRh/HQbOqYp3OVfM7vh/2b1Ogml+jkOryPBnkBQ2hsW1m5+vaiMTeTw7B
+	bvXvZBnIbL0BcctqIoX7OHF3mnu0MwlYCZYHZi3QR+sks2T3gDmEL4Uc5aYnGHhlB8hcxqQpEskqz
+	x+LOBYLLT4PGVk2VW9eQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wF9cg-00000008XcD-2cqk;
-	Tue, 21 Apr 2026 11:50:34 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wFBWO-00000008hFk-3c9o;
+	Tue, 21 Apr 2026 13:52:12 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wF9cY-00000008XPb-39bJ;
-	Tue, 21 Apr 2026 11:50:28 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id BAA8B44725;
-	Tue, 21 Apr 2026 11:50:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 871F4C2BCC4;
-	Tue, 21 Apr 2026 11:50:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776772222;
-	bh=XddkVT31/XC/ioaRn+/smsT9FYSpgPK0znWOqQA+3iY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=YouC8vXnbDTY+xLHUTOMD8zwUrLiitR7oeYhpXmrbm1HF2qQoy4s9TjbjF3e1RraS
-	 sItfNGX4O3QGO4/BG6kVUXF5T/nlNIZvNqlswKkcu/7FH52rA2ehgXuRdDHYbCNDBf
-	 VyGGZDVYeAynZvIQvadaAb9Yy0DAP8GgTHijZx1lN3+E2sOPxLTTL/7dIZkpnsD7bP
-	 QZC1qyn/DVdAMXed4KUyZXChauY0J6Ywpb3HwxQwztcFxmXZiQimwtc2jQiilpQFZr
-	 dgpr4hfWlQ0/2AySIxfCsePMral4ZXGsX74YF+WsbybUf0fetq2kmXXrs93eUEJ5Pd
-	 /Yn+9O7Fc+W9w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E5B2F8FA66;
-	Tue, 21 Apr 2026 11:50:22 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Tue, 21 Apr 2026 13:49:25 +0200
-Subject: [PATCH v4 8/8] arm64: dts: amlogic: t7: khadas-vim4: Add i2c MCU
- fan node
+	id 1wFBWL-00000008hEF-3K4d
+	for linux-amlogic@lists.infradead.org;
+	Tue, 21 Apr 2026 13:52:11 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4896c22fcbaso17522015e9.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 21 Apr 2026 06:52:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1776779527; x=1777384327; darn=lists.infradead.org;
+        h=content-transfer-encoding:organization:autocrypt:content-language
+         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jZ1Sn0x9mZvYh8gn/3N1aTOHuBkEI82dIz+RlHb/0fE=;
+        b=Qw6WzRJD5HpxEfEeEbMq5MdCMK1C328Zlg9VpRKl1iy1FyM0QQLiJnE1/URanUz6Q+
+         cmYWiu1RpYdWkI1o0uUtwF9ZbHDdoymB7OK9eUOHXL6LR/d5yqLD3azCBwpl+ur5TQbC
+         xCj4pGWAXmxp4Iv8XwHGb2FPSCbS0MJ0BkfleAYgIC/BZOBUEHpvNx4L5HKeD1WI8auy
+         W88w+nMsbfu3uSyVM7O3pWp9L4SqgXQ/s0j489J6ZnhUZXw+XcH8AWLOjwcVVHaayNqO
+         DsR7ITvLVUk8/LzCxTTl+6zGr0malJJRmb7LENcEMGN+XZG8guaS808GSEQm6S0I2u4n
+         2pFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776779527; x=1777384327;
+        h=content-transfer-encoding:organization:autocrypt:content-language
+         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jZ1Sn0x9mZvYh8gn/3N1aTOHuBkEI82dIz+RlHb/0fE=;
+        b=mUTgADn9tOnZ1/yJHa5dJFkXsdWRykk6Sxg9uw9Xv6sj8x01WnkhQQlExD7SeHz7uh
+         wmNFUA+75IJEwxnigAToDqN3CqszlDgpU50xs7hoq0QRYGCqfSeDaGAt6UA6M4UtTeZd
+         RjLP2LiKezNJgMmuPVTySJML63FoDdMk47LmhEEalukhSnMrRFHILcpRS/B6IoxGbcLu
+         ImdYUzqRmyJIf/UiGeAJ9UHXhhpvJHxfndInnai7elbs8UGXGkJ1vfrC5vVu+22LF+15
+         ELdTvpW8A3I7lAmgqpUsKzCkxk2M37AgwTAZzTfgFuCdkk2WE1NZA7e3Hgxa0S5ZGT2N
+         LBXQ==
+X-Gm-Message-State: AOJu0YwOr9XHOZdzhv1P5WCx3eArmK7UgAh6jY4OEhSIHd3xaGiTeXEM
+	GJN9TlkkAyvIdCmPPe+2d+Q4Qb+xd9IEmQTP5l7xpabUi2w/eN4oZPSRYviUkRFs/Yk=
+X-Gm-Gg: AeBDiespBMsrBeGtGlgHZlCoujsLbCBHVwtirhhyFR2sVn7SWFZQz+P+pJwzH+FJIGq
+	Xmrva/BT0o2DfF6yz5RntvC5NquzD+1UlISSUA6MQYB0KyonGlgPEGqbnrnjOoNPKZA36oQ51rz
+	SiaQnFaCdBlLYU8/MHQGLbyudEcdcld9Fh+2i/LC+5dKIbvoBOcsaY3TaX0AyGneUpYiut+E4YK
+	6p9XTuYir1xwhnp22Bgyb+orC00zvZ1rTab+Vd5sXIClFFWG8Fxy80oUVd92oABRPtrQJJX7n4H
+	KdNgg68jDPP4wvaBTMy8BawzpW2mbyHjR1Afg8DZax3vx0V0uExu4doeg1G/U0cwzY6Xfb3CAgS
+	u4Cl9kwqQYVBTCbivBqnQ5pDQZjsN894nLvtQlDZQjpDANwl5+yILJAFi+GqxvN8/WdbJUVUxnJ
+	IK88v6wFap9Qv0hDUOIKWmtYWfjisjMpEouKhYr1AU4ZQ+FYE9BFpspg8rir4EWVcmn+j3cHfrh
+	/lJK6RliqexDzX9mw==
+X-Received: by 2002:a05:600c:b90:b0:488:b99b:4177 with SMTP id 5b1f17b1804b1-488fb78ee4emr249304235e9.25.1776779527194;
+        Tue, 21 Apr 2026 06:52:07 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:4d7c:c818:d959:1c48? ([2a01:e0a:106d:1080:4d7c:c818:d959:1c48])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488ffc558f2sm235882855e9.1.2026.04.21.06.52.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Apr 2026 06:52:06 -0700 (PDT)
+Message-ID: <536207a3-64bd-488f-a8cc-d61560b82ad6@linaro.org>
+Date: Tue, 21 Apr 2026 15:52:06 +0200
 MIME-Version: 1.0
-Message-Id: <20260421-add-mcu-fan-khadas-vim4-v4-8-447114a28f2d@aliel.fr>
-References: <20260421-add-mcu-fan-khadas-vim4-v4-0-447114a28f2d@aliel.fr>
-In-Reply-To: <20260421-add-mcu-fan-khadas-vim4-v4-0-447114a28f2d@aliel.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Beniamino Galvani <b.galvani@gmail.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=969;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=tWFcpje6b/UPuUaynpp5o+HzSsytJcZL6uVNyAgG8qQ=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ+bzlGrOqQsFRScd93G08Hmn2V+TM9X8gF2q1/WNHh/U/
- zhYWO/sKGVhEONikBVTZOmfa3ni3eWjZ77uUU+BmcPKBDKEgYtTACbiO43hr0jjMc8dC2ud/ldu
- OMr4Oa160uf0hDs74paIntq3WMKq6yEjwyQNsfC1PP23Fr0RNhNfqLwz57blNbsfzfl9MY/Xycq
- tZgcA
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [GIT PULL] amlogic ARM64 DT fixes for v7.1-rc
+To: soc@kernel.org, arm@kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260421_045026_882544_8974E641 
-X-CRM114-Status: UNSURE (   8.84  )
+X-CRM114-CacheID: sfid-20260421_065209_844015_5897478D 
+X-CRM114-Status: UNSURE (   7.10  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,50 +119,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: linux-kernel-dev@aliel.fr
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Hi,
 
-Enable and configure i2c MCU node to get fan working on Khadas VIM4.
+Here's the Amlogic ARM64 DT fixes for v7.1-rc, including a bunch of fixes
+for the Khadas VIM4 and a couple of low priority fixes.
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- .../boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts      | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Thanks,
+Neil
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 69d6118ba57e7..5d7f5390f3a66 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -157,6 +157,19 @@ wifi32k: wifi32k {
- 	};
- };
- 
-+&i2c_m_ao_a {
-+	status = "okay";
-+	pinctrl-0 = <&i2c0_ao_d_pins>;
-+	pinctrl-names = "default";
-+
-+	khadas_mcu: system-controller@18 {
-+		compatible = "khadas,vim4-mcu";
-+		reg = <0x18>;
-+		fan-supply = <&vcc5v>;
-+		#cooling-cells = <2>;
-+	};
-+};
-+
- &pwm_ab {
- 	status = "okay";
- 	pinctrl-0 = <&pwm_a_pins>;
+The following changes since commit 028ef9c96e96197026887c0f092424679298aae8:
 
--- 
-2.49.0
+   Linux 7.0 (2026-04-12 13:48:06 -0700)
 
+are available in the Git repository at:
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git tags/amlogic-fixes-v7.1-rc
+
+for you to fetch changes up to 174a0ef3b33434f475c87e66f37980e39b73805a:
+
+   arm64: dts: meson-gxl-p230: fix ethernet PHY interrupt number (2026-04-21 15:46:29 +0200)
+
+----------------------------------------------------------------
+Amlogic DT Fixes for v7.1:
+- Fix ethernet PHY interrupt number for P230 reference board
+- Add missing cache information to cpu0 for Amlogic AXG
+- Fix Khadas VIM4 board model name
+- Fix GIC register ranges for Amlogic T7
+- Fix Khadas VIM4 memory layout for 8GB RAM
+- Drop CPU masks from GICv3 PPI interrupts for Amlogic S6
+
+----------------------------------------------------------------
+Anand Moon (1):
+       arm64: dts: amlogic: meson-axg: Add missing cache information to cpu0
+
+Geert Uytterhoeven (1):
+       arm64: dts: amlogic: s6: Drop CPU masks from GICv3 PPI interrupts
+
+Jun Yan (1):
+       arm64: dts: meson-gxl-p230: fix ethernet PHY interrupt number
+
+Nick Xie (2):
+       arm64: dts: amlogic: t7: khadas-vim4: fix memory layout for 8GB RAM
+       arm64: dts: amlogic: t7: khadas-vim4: fix board model name
+
+Ronald Claveau (1):
+       arm64: dts: amlogic: Fix GIC register ranges for Amlogic T7
+
+  arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi                   | 10 +++++-----
+  arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts |  6 ++++--
+  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi                   |  4 +++-
+  arch/arm64/boot/dts/amlogic/meson-axg.dtsi                    |  6 ++++++
+  arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts          |  3 ++-
+  5 files changed, 20 insertions(+), 9 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
