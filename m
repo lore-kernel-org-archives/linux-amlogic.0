@@ -4,130 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C02FF99344
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 09:21:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06571F99344
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 09:21:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sTn2PfLDdqc/aCHHgY9nh64t/aS+H8kChhoYl6J6WbM=; b=Zme/kn8d/ZRPBe
-	Gbjv04MrjzGJqmzb7UzqGheGMeFmF+/l7BbyS8+sLuoeZOi4oETsICCPvzN710qKUcgasFNS7cGIp
-	4AnE3yLUT6Y55Bl1CbmFT2ioHexZwzRzGtnW7l5kHPE74WoVID02DDChy4qxQW4FZOTolkOodQIfO
-	Gl7poGVOsgQwUdsys8INeFUQbZctcT+HfnyI3eYGe4XAJPekE45blBraP/ALtipDhxfBrrD1wgxzM
-	olpCUzGw1KE1I2sk+NxamHmFNlo6zTf3FZDX9iuS6SX7q8EjukyVZJhjU22c2iwGpzFId7N/wbPqe
-	VjN3mgI7C+sfUlTsJKUw==;
+	List-Owner; bh=eewfO0J2BP3jCguUOMLjGLv8yrFKfgM40Vik4fT+m6Q=; b=KM0JaMhdAq5X0R
+	0UEMWTNdesG5eZ7idbjx/ccipQAHYRHmUZJI2g3cfav1J6RoKM7T2O5zP+8k5E4EVcUFQZf5cdK2j
+	ArMfTwcKfbWwLlYlok/zyml084A+fQs5h1xtidx2bDZ9FLcYVXYxxGK57DkR3WnLl1P8LJQdzl+S+
+	eN219uMwzUEBOWRkB7/D2ZeBzyrY8VMhQLcfqLnZ1595D3iKHBO0igNX0l/djTejVi6zDMqw/xvs7
+	wMit5WWoWn+EGKwpcPpxv153fVI/y1yirvKWgjdHCYcEpw75zaa5jSrLsgaaNGi4ZPu2T7Uz/TXnt
+	KbVjodjfFXjgFKYaPieg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFqF3-0000000BLbG-1fO7;
-	Thu, 23 Apr 2026 09:21:01 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1wFqF9-0000000BLgT-3VaA;
+	Thu, 23 Apr 2026 09:21:07 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFqF2-0000000BLaR-10fM
-	for linux-amlogic@bombadil.infradead.org;
-	Thu, 23 Apr 2026 09:21:00 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=7n2hnfk2knhAh3lJLB5HeXL+mNq4pGZm108kblJJRW0=; b=Qotrh85L2F0FSePe7XaPWGdhva
-	7h1WB9MVzJSjxWHb35ebvSBnPpSOuLYWqPs9s4DxsTiLOrMZ8XSTSEE2UYiwlqSsARyfYOSTiUa+k
-	c/5nyBdulZrcp2Mujx259O8Tqq4awgUn+Wh92sGg8mxmi7P+6OXgphBuR7jv79vt+dKkdHOh0/bDh
-	YF2yHUcZiwKCDdSJYxwZDWTJ0B8b90C677x9KWKkyhd4Kots87MC5NM0PB0y1my0FGsZvj4LPSUxW
-	qvMQwGVYofopme40tKWImqHnV/zOjqNIjdAGeNLHTorqE+UNZB2cTpfo3ogczRHnq6DcJzRIIqSm5
-	DRhrmr7w==;
-Received: from smtpout-02.galae.net ([185.246.84.56])
-	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFqEy-0000000CilD-3XOX
-	for linux-amlogic@lists.infradead.org;
-	Thu, 23 Apr 2026 09:20:58 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id CE1D91A33BC;
-	Thu, 23 Apr 2026 09:20:48 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9D68160495;
-	Thu, 23 Apr 2026 09:20:48 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C4AC210460A92;
-	Thu, 23 Apr 2026 11:20:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1776936044; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=7n2hnfk2knhAh3lJLB5HeXL+mNq4pGZm108kblJJRW0=;
-	b=HxnuSulk/WqoOVliI+rGtUpzFQ8GcNFyxW3x5TKuL1YPHCIovFGOiMMCFXFJz+SzNqmK6Z
-	kTKV9AUUIzhCBzOiz0qO/n5Ox8c/2hwfyLnS46k5WhPns9qtUSvmJs/rGjWmjIWQPwXVqm
-	xDREje9482vzV84ZD/pIEl4hmaQRu15ZeuJxn0oIebO24kyQOC0ht6+nMYzCt42c0N1Uli
-	2XgY3FTn/NNor7O8x6MWzM1a6Y9IqsWsy9BDt6CE3QB3avJr7MwpkWw09/3Cm59xZvyrAv
-	XImd9y5xUXZ2t9WTrURIWKM/jJbjeuukS+i+ufJ/Es9exUz9TJryjhmKe3yueA==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Thu, 23 Apr 2026 11:17:05 +0200
-Subject: [PATCH v2 11/41] drm/kmb/dsi: remove now-redundant call to
- drm_connector_attach_encoder()
+	id 1wFqF7-0000000BLe7-2qdx;
+	Thu, 23 Apr 2026 09:21:06 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8C26C44404;
+	Thu, 23 Apr 2026 09:21:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6111AC2BCB2;
+	Thu, 23 Apr 2026 09:21:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776936064;
+	bh=dmYhvJWltKPlnfSCZp2xF0fuBjC8r/ExyToKNbYqzIg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=nLQClddprkUVMKpVt9a2wE3m6hEOaiGh+oudHhAd4ZR6GYADl6LhrqOqLSJmen+o5
+	 iYOlkt2iFzhnHDlYKjUsPvtuhP7MbsL2dM88SABoV2k468zhRYL3uXEZvNrrMzrdQu
+	 8zVKVsdRrY2W+zr4V/Rmze91hnMB4CbQoC2Os8071td1/uNk5vdqw8QzICBIGRqlp0
+	 Q6E3hSlv+o3WZXBOf8NYVlQBG+2IiiQTZ3pygxFbbvuxujfM4QI4JlAQ1x/xUQ8VWi
+	 qVwWKy2hIRQFg4BPWWBPHUB7aOMrxEAh3xx5iklQNpBR2uk/vpJnBXB+y1IDqZty9b
+	 LpZiUc99xuIBw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E1DDF99344;
+	Thu, 23 Apr 2026 09:21:04 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Thu, 23 Apr 2026 09:20:54 +0000
+Subject: [PATCH v4 1/2] dt-bindings: arm: amlogic: add A311Y3 support
 MIME-Version: 1.0
-Message-Id: <20260423-drm-bridge-connector-attach_encoder-v2-11-2ae6ca69b390@bootlin.com>
-References: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
-In-Reply-To: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Sasha Finkelstein <fnkl.kernel@gmail.com>, Janne Grunau <j@jannau.net>, 
- Liu Ying <victor.liu@nxp.com>, Douglas Anderson <dianders@chromium.org>, 
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
- Lucas Stach <l.stach@pengutronix.de>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Paul Cercueil <paul@crapouillou.net>, 
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+Message-Id: <20260423-a9-baisc-dts-v4-1-c26b480a068c@amlogic.com>
+References: <20260423-a9-baisc-dts-v4-0-c26b480a068c@amlogic.com>
+In-Reply-To: <20260423-a9-baisc-dts-v4-0-c26b480a068c@amlogic.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Clark <robin.clark@oss.qualcomm.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, 
- Abhinav Kumar <abhinav.kumar@linux.dev>, 
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Mikko Perttunen <mperttunen@nvidia.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, 
- Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jingoo Han <jingoohan1@gmail.com>, 
- Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
- Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>, 
- Jyri Sarha <jyri.sarha@iki.fi>, Michal Simek <michal.simek@amd.com>
-Cc: Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, asahi@lists.linux.dev, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-mips@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
- freedreno@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
- linux-tegra@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org
-X-Mailer: b4 0.15.2
-X-Last-TLS-Session-Version: TLSv1.3
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776936062; l=1053;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=SsR9Sz9BWoMX3UnJeit5aTZNxRC651zrkqb0PjHBQcE=;
+ b=2xZ4O+8hT57J5j91NjRw5Dlj2y5ZaxGMnY2QTx6MK38mhBHKj/hHbfWLmCzkrake3HYZa2jyB
+ 7MdBkibXn76B+MtEWX1MY8XNwaT0I6BERkjTEKukkzIOjde/TBgzu0f
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_102057_154388_1E707B41 
-X-CRM114-Status: UNSURE (   9.47  )
+X-CRM114-CacheID: sfid-20260423_022105_750335_83C67573 
+X-CRM114-Status: UNSURE (   7.33  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -140,35 +88,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-drm_connector_attach_encoder() is now called by
-drm_bridge_connector_init().
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Add bindings for the Amlogic BY401 board, using A311Y3 Soc from
+Amlogic A9 family chip.
+
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- drivers/gpu/drm/kmb/kmb_dsi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/kmb/kmb_dsi.c b/drivers/gpu/drm/kmb/kmb_dsi.c
-index febca939bd01..df84b5a79a6c 100644
---- a/drivers/gpu/drm/kmb/kmb_dsi.c
-+++ b/drivers/gpu/drm/kmb/kmb_dsi.c
-@@ -1457,7 +1457,7 @@ int kmb_dsi_encoder_init(struct drm_device *dev, struct kmb_dsi *kmb_dsi)
- 		drm_encoder_cleanup(encoder);
- 		return PTR_ERR(connector);
- 	}
--	drm_connector_attach_encoder(connector, encoder);
-+
- 	return 0;
- }
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index a885278bc4e2..9f73a0054fb2 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -234,6 +234,12 @@ properties:
+               - amlogic,av400
+           - const: amlogic,a5
  
++      - description: Boards with the Amlogic A9 A311Y3 SoC
++        items:
++          - enum:
++              - amlogic,by401
++          - const: amlogic,a9
++
+       - description: Boards with the Amlogic C3 C302X/C308L SoC
+         items:
+           - enum:
 
 -- 
-2.53.0
+2.52.0
+
 
 
 _______________________________________________
