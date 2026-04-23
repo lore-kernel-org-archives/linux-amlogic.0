@@ -4,203 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A55FFF589B0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 12:45:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A70EF589D0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 13:17:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5eGp73T9qcXhVCtzdx74UGpneKL78m+rtD27pTJdYts=; b=eoFt398In1/vqs
-	1Qlze6evXSVxetys0E9NXhkfRplZwkTDD1emrqgyk14320el10k2BR3u5PJOCYrOsx/lImXkmUD8D
-	ARUsKuH6lPrCxj+9o0NnceykfSxepqAkXJVTv26+KexiVeiYxr3Zdq8LE0eSHJ8nnRPB/dmOPigBc
-	fCELcBUJV4rAwGzsKZta4nLEsgCf6z28+sU0ECrz2qGO+vSCxCnAmre5cPTz+ucRVvsymGveLb3W6
-	QvtcpG/aIBWsDhp8KQLkjZRXigsmTHZHCMACM0Ud/jY2zxx7Z7tQzw5LDaj0QOEYavffdeWOwOqGf
-	BkXZF9S+FKWiT5JJFmFA==;
+	List-Owner; bh=sUQYa+LxNdkwYXs4CJvMFOzPGgpx4wwQdpb5WLlTqWs=; b=fzQKYzg80gn3/i
+	kfFwseo6ZznkRXUPLoxG0e2uTAuE5S7+EEJzbPXRiIH4C4YXyDEX+Q3da/yBuNFEU9YBtvghfvb3n
+	IiTNz5PfTJpmbv06SR9r7Fe+BSiGtMGwcILcLsJPteWDwnAMdm32M7TiDmK08GMzEZZXfgMJZLZBA
+	JcMX4sPc92Dkec6UE1mkPFl9Cv6TunzqvkzAQTd9//LDhzesdRohs8dZDY3aw7O0f71onncJcFubX
+	tdmI2cJdP3P2ZJR8Q/pbiSZzcHOB7kwGrCeZSbI7r9EjG+iCHOBPQqA4yPBYBvzMP47tRS8QUxbUz
+	KUns+6MLsOU53iHUGNNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFtQz-0000000Bg03-2KQP;
-	Thu, 23 Apr 2026 12:45:33 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1wFtvu-0000000Bjjk-0tx7;
+	Thu, 23 Apr 2026 13:17:30 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFtQx-0000000Bfy8-3CIx
-	for linux-amlogic@bombadil.infradead.org;
-	Thu, 23 Apr 2026 12:45:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=dRf9flM23evHV+dCjZ11/3wAeY0NjlVmUaCb2MHl7Rc=; b=fkf3K1d4ydUvYdlRVQBy5S9r+V
-	IowSEzbHMucbR6KdVJ9FmXvwqOap5nnQUYlrB4cHY4+Hmp3OJSifdioTNXx3dkuFzQ6FIV1xKHVYd
-	f7D7SdECyxbRDyrVbZYVzN+Wmtk+Fe+X0BPJKqZYdh+SGutnyRq/NDi2O7NPgWDi4Kg7YuFXXc3+U
-	FKQOi3ksXP0PgYpGEQwLjwhkEFfgMQkV5J17vTYg22cq4cu6gjL1YE6w88l1gTIq2gdZSEsW8wVIn
-	fVMbghvQfaxqbKZvkJWzAKLz40h7QpEpZKDzqBNIFWyJtYU2FEeTpoycqdmmnMDEVv5On/ySdFNcE
-	d+DB5Kvw==;
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
-	by desiato.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFtQm-0000000D3f9-1X7b
+	id 1wFtvl-0000000BjjJ-3kig
 	for linux-amlogic@lists.infradead.org;
-	Thu, 23 Apr 2026 12:45:30 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63N8toWf179234
-	for <linux-amlogic@lists.infradead.org>; Thu, 23 Apr 2026 12:45:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=dRf9flM23evHV+dCjZ11/3wA
-	eY0NjlVmUaCb2MHl7Rc=; b=f4KeQ6v7smM+6vkjRyPOX9wXEYAtm4U3Svh9O4LA
-	F+Ut9ODMjODxPNbgXzx8vYsDdabudfLWLc0zHnFv+oEKiz89nUOO2sQPOHS/+ZM3
-	zQT6oMIVkCq5Wp4R3VTgnkYwX6xePFRT1MC0rIMz32csoNRax4q/mT6Yr/+zL+9C
-	7OuvYNvRF7g+TmXzCH7lNo60EkNeNnDFHwVPY44uYX+2fEK1axSGxBuE/TKbVwb/
-	fm24A7Rzdi8ERqvvgbrmTj90vCgNjVgjSS7A0elPrw1hQn9gGEzfn8Ty8iz4A8An
-	nqvE0T5Xjg8h9sNYtk4IJbU+TIpW+LIBNd98FbPRTRXSOQ==
-Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com [209.85.217.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dqe62hgcr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Thu, 23 Apr 2026 12:45:18 +0000 (GMT)
-Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-605e5d95cccso5320276137.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 23 Apr 2026 05:45:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1776948317; x=1777553117; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dRf9flM23evHV+dCjZ11/3wAeY0NjlVmUaCb2MHl7Rc=;
-        b=BkFNMR3ZF1oscSg6Lh8HDxjO/tOgFLs3NArYG2QJZJKEUm6VjhIqacWDYeQMzhPAAV
-         bVhSFZxJCbWLE381Edj1C1Mc053MoT0cqAxO+aPoZ/VRKEZGGtGpNaf4IswctwTJFFt5
-         LfFU8lRaNpcl1Xq1oXMsWoxJzD2CPl0DMXhQRYtvD+0qQTxloJEUc0Siybi2evNVZJoc
-         XoghhoJxzb+uYJ8O8nYz4Akk5S/Z0IeWkG5ARywQu5Mhjyvg4K+x02LFC3UDH9HrY6JI
-         HPffqn96XlJ7Fm2EWP2/8KVIrMmIwkyHLXm8FhWIulPs/DNL8hTR0mBhMUmVurb1mOhC
-         XMhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776948317; x=1777553117;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dRf9flM23evHV+dCjZ11/3wAeY0NjlVmUaCb2MHl7Rc=;
-        b=kNITm+cL1wIgndMrYr/2kVAsr/EbDQalpl4bewPip5SoPxWgoU+Oev3fFLC/NygM4Y
-         +qm5Q1y85t/HK+3+i+efwHlKsKUMNqOZQZAJzDjQ/B/TItY01JN5pEemkbvxiV2R+EUG
-         MgtMNVcwSPyvLGsNTrYeUgg26NTWT0U6sbEhpFrWzIflLP0E99xuse5sHcKKbCP3SWU5
-         B5Ig5vxlbBcgYmeGEV/xqtOVAI1svcWcxarg+FSjJN4W7HtFRJtmTMU7Ji1hmE+lI0NL
-         oKZAthVYtJakTmFoxpOlGfO6X2A326EXX01pdc10xoLJXcamtG6izeYl8Z4kD7frLb5q
-         0a/w==
-X-Forwarded-Encrypted: i=1; AFNElJ+MDDy4qdjxIP764IiwhqZh3GbBkUUHNkzc/CiMfLrsTPtHUJDqGfbYM0u4E7os44aPpJsGbuFXqDpSinSw@lists.infradead.org
-X-Gm-Message-State: AOJu0YzZ7uspf2iHgb819uqTSQpGJ9gBJ5l5DEoe7633L56Jm6CqNoKq
-	Rv/h3ZuXT1wqEy4HJSnONGWom+lQdXCxnVAbM8BJXjpLbUMJ+O5ebawEAn/seV9LKUp5nr3eEb8
-	KnrgRBBncNcJKkuBc1+UouPesVOj7oaJxNnrgVlJJK9JMIb860geGsS6fskWo61hlZ4cVDmVlKg
-	==
-X-Gm-Gg: AeBDievGixBPJ3AKgf/13gQBuBUrJmy8rWbeaeWELPW5z7/3Fuubbki0Yu/tpGoM70f
-	D8ap6JL/hQEuSYo/KMQpevRT0D3yRrXSQ8owsRp1IRXEor4HMAI3bMFXzdRUtM165Q1wrhwVv/0
-	lUTwEMb2fEl72feq0xed4XDV4w6AHNh6JOtqQo3SJIt6oCu04LUOWWlaCeo7B8CYRKa2H4hEJjI
-	pP/AIAINNOxZ62IqzXB6inm459kmbFay8DB1/drOqwC0pKyHFnijYzq3ehz15O5iSV1HYMBRBBb
-	6pKdO0PPRUnfOIKmmgA89PDbNaFgHZL3yevNknOhxZgZf04jsMF65+bDDhr8UTgL3en9pjTRTVa
-	Pv+sV0b4HVBz0uMvouBEqEX9L5mND3dFQHGHvLuKnFr3vuOFHnxPre6agDiN0mRs99K2y18EHo1
-	I4FNlPTm5oJ/aV5OcB65iDpvSqCfv3QaE1pjUpG2foklZE1w==
-X-Received: by 2002:a05:6102:3e0f:b0:605:19ce:9ccf with SMTP id ada2fe7eead31-616f58af7d9mr13838581137.13.1776948317056;
-        Thu, 23 Apr 2026 05:45:17 -0700 (PDT)
-X-Received: by 2002:a05:6102:3e0f:b0:605:19ce:9ccf with SMTP id ada2fe7eead31-616f58af7d9mr13838537137.13.1776948316554;
-        Thu, 23 Apr 2026 05:45:16 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38ecb75b033sm41855241fa.39.2026.04.23.05.45.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Apr 2026 05:45:15 -0700 (PDT)
-Date: Thu, 23 Apr 2026 15:45:12 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Sasha Finkelstein <fnkl.kernel@gmail.com>, Janne Grunau <j@jannau.net>,
-        Liu Ying <victor.liu@nxp.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>, Frank Li <Frank.Li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Icenowy Zheng <zhengxingda@iscas.ac.cn>,
-        Jingoo Han <jingoohan1@gmail.com>, Inki Dae <inki.dae@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>, Marek Vasut <marex@denx.de>,
-        Stefan Agner <stefan@agner.ch>, Jyri Sarha <jyri.sarha@iki.fi>,
-        Michal Simek <michal.simek@amd.com>, Hui Pu <Hui.Pu@gehealthcare.com>,
-        Ian Ray <ian.ray@gehealthcare.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        asahi@lists.linux.dev, imx@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 00/41] drm/display: bridge-connector: attach encoder
- to the connector
-Message-ID: <wanzalswb3lez6kyklprqojcnidab5fkxgu57lfka45w2rt4ic@xdatq5o7yiub>
-References: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
+	Thu, 23 Apr 2026 13:17:28 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 31E1C43A06;
+	Thu, 23 Apr 2026 13:17:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 119AAC2BCAF;
+	Thu, 23 Apr 2026 13:17:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1776950241;
+	bh=iNZ4PbIxvUZ/oSjh71Go6tPZU+Gb5Joz8IXxiFO/8Mw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=u3RRNSrPqGOxEmrzssmiM0jzmX1H6GX4+ka/3/9fvSEL9fMYLVQQukQ47ipjMOpTx
+	 4j6HWc5X7Kj95QA2dMVev8tfp26tYgLuhIAl+fVKJZt1cvHa2NWbyAs+QfhbRv4BR4
+	 HzrJ5p0zUExfWdL5gnc4TB8qeXpYVL0+NTL2h+as/3pSuGcxcw7Sh5StfqLj++1zuR
+	 cc7629zTc4jx54WGcoYIqzGY/t0qMAFbncs7IKa7ai/tH6HtsKS041mUSbBql3P+xT
+	 TqzYWh3tQ7y5nu9LCoIP0ZInyDP+Sr/2vvsh2FWTpfb1iO1aieocJzY4FUl+l0ZcWp
+	 +YilNpkNWh8JQ==
+Message-ID: <b556ad94-373d-4a1c-83e6-055cfd3d9557@kernel.org>
+Date: Thu, 23 Apr 2026 15:17:18 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
-X-Proofpoint-GUID: NW1vwLsdlrtmeF9_wekNJqS6DBS_Qsdk
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIzMDEyNyBTYWx0ZWRfX82ffCoE4xwY4
- s5IJlhJ12fe/5zrfdyrV5G7/J5Iowscftb8OCqqs0XwSJxW4V40VFKR1t8lVdL2Jv+YyseWxE7S
- u/uPilnFokKROtGSadC0x7ipeGWkOHI3q9xS5C9VGC7DlGgk+yvbXZojl5QgabJ9443YpnOVbHN
- Mc8pk99TsbcxvAosJYsTgH9u4xWO/ke4PLPfOlZR2nS/LlMt3qbSHaHGVyvn9U0vo+fbf5AfymF
- 9yfXIAThMYUeOrU4nxBOZ9bK8/5Yci0UaiSismAyCsLGf7r/r825GzQ+9EgOa0dtNpJ0wMMT8dC
- oSviLvHK7RGW1qfPO4TvI/YQj8VfOsgf1M1pR+7qnvlF9sgVoWXexAdKGJshfnFrTqvFo1iIimG
- VAuTh720wHYlbLpDGYcgPUAOAti0xT7D6hA431c1ElQJ0TTWZ/5YVBwWh0/5AKpG0tPKnRWjdDi
- GiDXJCu/pn3LcTtuHCA==
-X-Proofpoint-ORIG-GUID: NW1vwLsdlrtmeF9_wekNJqS6DBS_Qsdk
-X-Authority-Analysis: v=2.4 cv=Nv7htcdJ c=1 sm=1 tr=0 ts=69ea145e cx=c_pps
- a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=EUspDBNiAAAA:8
- a=SkVVgs_SJVxU13IceqMA:9 a=CjuIK1q_8ugA:10 a=crWF4MFLhNY0qMRaF8an:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-23_03,2026-04-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
- clxscore=1015 bulkscore=0 impostorscore=0 lowpriorityscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604230127
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 05/11] ASoC: dt-bindings: amlogic: add schema for
+ audin-formatter and audin-toddr
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Valerio Setti <vsetti@baylibre.com>, linux-amlogic@lists.infradead.org
+References: <20260411-audin-rfc-v2-0-4c8a6ec5fcab@baylibre.com>
+ <20260411-audin-rfc-v2-5-4c8a6ec5fcab@baylibre.com>
+ <7d4ec08c-a67c-434c-a1cd-c3ef5b7e3336@kernel.org>
+ <71d2d8ab-21e2-4800-ad54-ba40ef2e136a@baylibre.com>
+ <57fedac6-cf3a-4a93-a4a9-9746dcbeaeb4@kernel.org>
+ <1j8qaerldi.fsf@starbuckisacylon.baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <1j8qaerldi.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_134520_900653_54FCA571 
-X-CRM114-Status: GOOD (  16.05  )
+X-CRM114-CacheID: sfid-20260423_061721_998622_F1D7722D 
+X-CRM114-Status: GOOD (  13.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -217,30 +121,48 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Apr 23, 2026 at 11:16:54AM +0200, Luca Ceresoli wrote:
-> This series simplifies using the bridge-connector by removing the need to
-> attach the newly created connector to the encoder.
+On 23/04/2026 13:01, Jerome Brunet wrote:
 > 
-> == Series description
+>>
+>>>
+>>> Then the question might be: why not merging this together with 
+>>> audin-fifo? Becuase these are 3 indipendent instances from the interface 
+>>> and each of which can receive data from the interface. Each of them has 
+>>> its own registers range (and optionally also an interrupt - which is not 
+>>
+>> 4 bytes is not "registers range". It is one register of someone else's
+>> range.
 > 
-> Currently all users of the bridge-connector must call
-> drm_connector_attach_encoder() immediately after a successful
-> drm_bridge_connector_init().
+> Yes, exactly like the AXG family which had an "audio bus" with reg and
+> ranges property of length 0x2000, like you are describing, and a
+> collection of smaller devices with very specific and targeted functions,
+> using the range in question.
 > 
-> This is an unnecessary burden for users. Move the call to the end of
-> drm_bridge_connector_init() so all callers can be simplified.
+> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/arm64/boot/dts/amlogic/meson-axg.dtsi?h=v6.8#n1317
 > 
+> The registers length of devices in this examples are in then 0x10 to
+> 0x40 length. I honestly do not see the fundamental difference between 1
+> and 10 regs to define what is a device and what is not.
 
-I don't know which one is more correct in this situation, but let it be
-R-B for the series:
+And that example above is probably also not right if you only looked at
+register range, but the difference is that you have distinctive other
+resource - clocks.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+And just to remind the old antipattern - each clock is also a "separate"
+device and there is even old SoC architecture which did it. One clock
+per device node. Since some years this is not allowed.
 
-Feel free to take the msm patches through drm-misc-next (A-b).
+This device has no other distinctive resources. Only 4 bytes wide IO
+range. So let me a bit clarify my previous statements:
 
--- 
-With best wishes
-Dmitry
+A device having only one resource - four bytes MMIO range - and nothing
+else, and being tightly coupled with other devices, almost certainly is
+not separate enough to be called a separate device node.
+
+Just like individual clocks are not separate device nodes.
+
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
