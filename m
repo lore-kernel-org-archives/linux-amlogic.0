@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF586F9937D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 11:54:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84DE3F9937E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 11:56:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2ds4XQDLMJfR4INgueI1t+pPC/W4KvMTHybmQ13Vvp4=; b=p/kfDgFFPzcxFc
-	+l2Rv0xCcmNVJ7Vjx+0ptBVwiVrJ3RY8riqYPb8ElRptNV+uL2q+nn2EQObVyntheaP80qOoDcya0
-	Ryx+LQEt+pWlXoU4aKrOYyYKEOYk/hrCvAirEb+KwGPuPX1vUHBNhrDqNTQSvjZwS0baA3f+uRn9a
-	1b7uflOoLr9AFoRDhXAHQa/SeuUo2JlUd5gqwIMg3udwmjFA765pKbzlnfdn8MSQX1cAB6EneOi5n
-	MElmB1XeonkKAGTcYgxO3VMyC/wQmd5iG5GhVYR54D9mkntEGZH3B1n6krNYbqhfHLVcJqotBw5S0
-	taQOPN7zn6m3qRL44k5g==;
+	List-Owner; bh=2ds4XQDLMJfR4INgueI1t+pPC/W4KvMTHybmQ13Vvp4=; b=kwAE8gvLoryZBJ
+	qAEdp9C/dOWGVZfQoUVSUuvR15kb0vI2dCXYsw8u1+qs2pJyMiOZ3+bDx+WnCoL85LiVfaz9EBzIw
+	iKJBABpHQ7dROVgq+Bz8LKH6npVV4pwQQ7MUgA8PGlv3dQRqRx9Owp5SYIPDHWi0aIa3HmWDjVS5F
+	l48Bcs4jjl26t/8LgN8LYlBCFXp1c2eccxuyIUFLQQ7iDVtEgOAQiqRbsiN4bI2zumgFhKn1XDuGw
+	QpiR4Ola5EPr/YzGTIVbEViGZwCWIi9lmdwuOnTqWPqkotoUX1ZvIxB9J16DLqQ78cx0lQlCocbPS
+	+XnbdkxKhbiA3DkRpLMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFsdR-0000000BYva-3xXW;
-	Thu, 23 Apr 2026 11:54:21 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1wFsfd-0000000BZ7P-30sI;
+	Thu, 23 Apr 2026 11:56:37 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFsdN-0000000BYuS-3Afg;
-	Thu, 23 Apr 2026 11:54:19 +0000
+	id 1wFsfa-0000000BZ65-2XGe
+	for linux-amlogic@lists.infradead.org;
+	Thu, 23 Apr 2026 11:56:36 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 931BFC5EF0E;
-	Thu, 23 Apr 2026 11:54:55 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 08D454E42AC9;
+	Thu, 23 Apr 2026 11:56:32 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 482D060495;
-	Thu, 23 Apr 2026 11:54:14 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C221D10460B5E;
-	Thu, 23 Apr 2026 13:53:46 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C774C60495;
+	Thu, 23 Apr 2026 11:56:31 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B504010460B5E;
+	Thu, 23 Apr 2026 13:56:12 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1776945250; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1776945388; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
 	bh=rdtm2Mh4NvOrdzs2o8Fw+gJ72Ofe3PZvxoUNrnpIO1Y=;
-	b=u04KJPJeSXFBhQCKkt2ZyvRWThFfZidRsxnYGqo6R+dyYSKJlvDD+mxl7yYbATWE5qRZfL
-	9R31Y8myN7D+SZ1mCmdZy3tVPAzk0CiJrQAb+lgVVn/2vGSsDiFwPHVXskGnhgZ6/eRAGO
-	tkfzQVeB88kRem3WOyssXTKj+qB/I/0ZkXzEcx4iMxMJGWlQQe8sE3MLORu9fEudmg5I/r
-	Fxtqtu9AqBMej3vNwWDkPYz7j9CXkRVuyYJ7wSOjM2GhjabZBAbKOflBREmZyU7rXTQ7XM
-	WIwwcE+nzmlILk0x4XpbRihQclnu2kfXZk/DoFJHeRPEevHJUFvmdwz+8bBxEA==
+	b=mjqLdQVI1Dc8aftGHQVv+VhIMXpBs21PQkP+S5UPz2nov+JL8kUvexa9RS9WZs1wb1xTac
+	BHw41yuxZLY3aFGe9t8eAMtgiV5a2Bu7hwJnOg3fDSN1VaofZBGicll679ZrmKpDvbhFyC
+	9sU1xF4fWXHO5bAMiCDeQ0rGjou3iGmYZlbKU37153HaOyuA/B7IyMR8psXISTcT+ES4iw
+	zbdVTMl2i5ZsqkVF+la3VxUllzn7e9TA3BhAJlHx5CFz6PaR3wNnyemgQxc4EAme59maCh
+	y4l0dDGqLufnPsAOcb/fNwvqenyLG1UlTEI8qhU6AdHBxQtcNxeFcNpp/vB72w==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -122,17 +123,17 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 	linux-samsung-soc@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>
-Subject: [PATCH 35/41] drm/rockchip: lvds: remove now-redundant call to drm_connector_attach_encoder()
-Date: Thu, 23 Apr 2026 13:53:28 +0200
-Message-ID: <20260423115334.444750-1-luca.ceresoli@bootlin.com>
+Subject: [PATCH v2 35/41] drm/rockchip: lvds: remove now-redundant call to drm_connector_attach_encoder()
+Date: Thu, 23 Apr 2026 13:55:44 +0200
+Message-ID: <20260423115550.444930-1-luca.ceresoli@bootlin.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 References: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 MIME-Version: 1.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_045418_094192_2C20A969 
-X-CRM114-Status: UNSURE (   8.82  )
+X-CRM114-CacheID: sfid-20260423_045634_767660_CC4C22D6 
+X-CRM114-Status: UNSURE (   8.88  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
