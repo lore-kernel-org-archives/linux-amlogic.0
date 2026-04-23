@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30C92F9937E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 11:58:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B9C2F9937F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 11:58:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0DdvIFyYReLqVThiINRjt6pRq6lEejt4M3ztWhFpQIA=; b=F5xy2NSviSlTQv
-	2YfmPSX62kVD6/7KAuTG47Q0qQsS3EHqTpXVKgWDgiMTl6BhWQzljatsdXaboZV7iwQDQzDWXIMDi
-	PYguHxg+mnWm54O9d5ywFJMGWjXTB5+DS2+ffq20YskQmKemvgjJiUmoUGLkp4PoGr7WtkvrHrljJ
-	RYjK4INvj5rKC7k8izPdwvhNFz+VQgfjIdhn4rjif8gCDjroGK0fR1doRjA/r/EFbR6F8O/u08Qi0
-	oFmKKC4J0ERTxSEV5zKccc4ClYPXSHuwKyyNrNHf8NmoQV/rIKxIKN5IwuTFWmkibc/wNhWETWfm/
-	hrW45cIhYT8iM5fzwbPg==;
+	List-Owner; bh=Gm1t2iPIr+vKgppLgmTQV+x1Ms0rPUzCrOR4ue/1IDs=; b=Hxh2RPtSb3GOSY
+	2oo2hl1xi7e20GyTL6z7Yg+4wWjNyvMLzC41Wbjc5gJnjsAp+agMrKnLDPo30VYsK3XADAtEvgaKT
+	9fkVO2g3yoNFgeNzgHuakVWGD8p/QA/nBgQYLfXiwD7d/0MGIS5w2xKO3i8GOdnthufsEVnbN/t52
+	akiTE8UXimG+PCjiBVuGu5mRgOsyvj22x/lskIW5A1sqqSSR3HV4fv17mf5A1v1H38uG5ynkkcmHZ
+	ULu10CCLdEHo5xhreNM21xkGANdfjpKwNjG+g3iLFDKtWtR7u6H/A2nRIFkLesMBkwtcb2RZDRo2T
+	HT/r94Gipjk5H+C590HA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFsgw-0000000BZFj-1W6D;
-	Thu, 23 Apr 2026 11:57:58 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1wFshQ-0000000BZLX-2Xqz;
+	Thu, 23 Apr 2026 11:58:28 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFsgs-0000000BZEq-181g
+	id 1wFshO-0000000BZKd-15f8
 	for linux-amlogic@lists.infradead.org;
-	Thu, 23 Apr 2026 11:57:55 +0000
+	Thu, 23 Apr 2026 11:58:27 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 7F104C5EF0F;
-	Thu, 23 Apr 2026 11:58:33 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id CAAC14E42AC9;
+	Thu, 23 Apr 2026 11:58:24 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 37646604EB;
-	Thu, 23 Apr 2026 11:57:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BE3F410460B5E;
-	Thu, 23 Apr 2026 13:57:32 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 9A96160495;
+	Thu, 23 Apr 2026 11:58:24 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6A18A10460BE8;
+	Thu, 23 Apr 2026 13:58:06 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1776945468; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1776945501; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=spuptGyV229bp7Qtkgr1ixwBRfqXgocmfypIw6kmo+c=;
-	b=AXAb/y2Bu2/h1zVZusCyq2Ei4v6S+jsdxsaOItC/9pWvFe5z5ZNY8NkXDZrV7nuv8YXKCD
-	cYGs2bhNNlxLYr4qLpRRLOROvawFRmrk1sEiotgNJXJA15Y0dIqBeHJ/7QAdmkPedDc/Qm
-	AgEsfqtMkoS+GsycOpgdhUiPhFaM9eEuNy698KJqsv1X/CcGzwn03eoO6a0ruvPbJLUIPi
-	zepLlm7m1ekb/+2YJ3idxzIpxDeyOBq5v4PLAfhsDN/ZONV0GpRhZY9hN/8vSJP+rwj0ju
-	mTKEAiXevn2ItoM4AsiD580raKJ9GtU8u8Kl/xuZ7gVjZwAEIQdJ8hkQOuT0zA==
+	bh=XPgIAKheDibi6OOpUj2lNCISZmQ44hWLz5vldwp5A5I=;
+	b=Ox6n/1GqUYcsxlno8MN/hHd7EenMQLTeJSas68RiULYNHVpcGzfqTW3W7oY/tBy9bLZezI
+	oDuTIY1CdoUJ/IxRc92dhHgwGYJC/e+Jyk+pi572pkrgmi4AR3+AkLB1jfJHe4pCgb4MbU
+	yJUs2K/iZTSNGDUM9JhJi8+Cp3K9gPa0UUzuwPaUTvFqSonWATTDpB4OP0vkWXM/J1AOVc
+	CCBnMSrL3G8hSPd3DM35liuInJYbAO82MB8jCpOEyB2oJwXYD1TaxQI+N+SB/YKkRPbO7n
+	3OYPE/V8dtPuWF7GcsNRgRTCSPcNp4ojJMj8afL0AMaZ1s3zZDtm4hJt3M3s+Q==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -123,17 +123,17 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>,
 	linux-samsung-soc@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>
-Subject: [PATCH v2 36/41] drm/tidss: remove now-redundant call to drm_connector_attach_encoder()
-Date: Thu, 23 Apr 2026 13:55:45 +0200
-Message-ID: <20260423115550.444930-2-luca.ceresoli@bootlin.com>
+Subject: [PATCH v2 37/41] drm/tilcdc: remove now-redundant call to drm_connector_attach_encoder()
+Date: Thu, 23 Apr 2026 13:55:46 +0200
+Message-ID: <20260423115550.444930-3-luca.ceresoli@bootlin.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 References: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 MIME-Version: 1.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_045754_619603_84933420 
-X-CRM114-Status: UNSURE (   7.65  )
+X-CRM114-CacheID: sfid-20260423_045826_458674_DD858DE7 
+X-CRM114-Status: UNSURE (   7.69  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -156,26 +156,26 @@ drm_bridge_connector_init().
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/tidss/tidss_encoder.c | 6 ------
+ drivers/gpu/drm/tilcdc/tilcdc_encoder.c | 6 ------
  1 file changed, 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/tidss/tidss_encoder.c b/drivers/gpu/drm/tidss/tidss_encoder.c
-index db467bbcdb77..34db8d2a3792 100644
---- a/drivers/gpu/drm/tidss/tidss_encoder.c
-+++ b/drivers/gpu/drm/tidss/tidss_encoder.c
-@@ -123,12 +123,6 @@ int tidss_encoder_create(struct tidss_device *tidss,
+diff --git a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
+index 680a2ac6ab59..ac4b5beb2dd5 100644
+--- a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
++++ b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
+@@ -35,12 +35,6 @@ int tilcdc_attach_bridge(struct drm_device *ddev, struct drm_bridge *bridge)
  		return PTR_ERR(connector);
  	}
  
--	ret = drm_connector_attach_encoder(connector, enc);
+-	ret = drm_connector_attach_encoder(connector, &priv->encoder->base);
 -	if (ret) {
--		dev_err(tidss->dev, "attaching encoder to connector failed\n");
+-		drm_err(ddev, "attaching encoder to connector failed\n");
 -		return ret;
 -	}
 -
- 	t_enc->connector = connector;
- 
- 	dev_dbg(tidss->dev, "Encoder create done\n");
+ 	priv->connector = connector;
+ 	return 0;
+ }
 -- 
 2.53.0
 
