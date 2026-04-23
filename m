@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCD81FC0379
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 16:08:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8135FC0360
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 16:08:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ls5sAJ3JckVugeeCd6SlwYZ5cHr9YWI38kiHfazTQok=; b=X9BNFj2B99cQ/c
-	E7NngimVLPjmR50SWDI4xI+UOBY6Wa6VTTC1MQsJMtUmkU/6xk3a06cfTScE+xqY3okmZj4v5Kso+
-	mHU3qO79CQtd4oMvPaAoB8dRAvEQy3Y+iXbS+YECsa1fsE3kcky1ky7Kg4imb448kkYWOKTZ8K9S9
-	tsuRhKpycJR0BMKJOoyMzxiU+/PQ62w01aPLkojevlJG8N+Sqt5Wg9Rg9d9ho8XIyJAZq0KkQIA8g
-	C2uHwJVyFXXd6w6ploMZA2DUgAW7J48448DgZVa6QTR7e39UbjbxiigooqS9N0rSRv4aO58fs+9kG
-	VxUZlhedBrkRJqGCsssQ==;
+	List-Owner; bh=venNma+y3Hm/AvkeV9VhEyGuhqWqCvBsbRbYN7bB8rk=; b=AHziyMKXh+bSfx
+	aqZZuMFWuLbdimWJpOIGpX9ixpsq5zDKN24v6A0c3W/DOrLGZ1rG6QSzw9wrMsa1g7RZrVwXCuPXS
+	Y2/uNOJAZ+lx6iuex/ltAuMkGx651subnQqoSikg8MF6L4nfRl0CTmjsL8rBiDtcqxj+um/4pKeZq
+	BWLlBFWZhZJJ4WJeAe7WAOrA2JtsfLErWVu0hv+8BMkcO+N4iE6to8hdI4bbMaQW2wZfoXOlY1Nca
+	nZtjN+UwYJLHDcM5WSMpCilqoLHvpdrMvdVICq7uRUIetDnvwARJiETAdT25CCHQu1u6CXubEXRba
+	ra/A+a0m9efrhbTPMsAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFwbF-0000000BvaM-2EQZ;
-	Thu, 23 Apr 2026 16:08:21 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wFwb7-0000000BvVw-2A5w;
+	Thu, 23 Apr 2026 16:08:13 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFwb6-0000000BvUb-38kH;
-	Thu, 23 Apr 2026 16:08:16 +0000
+	id 1wFwb6-0000000BvUZ-1N6g;
+	Thu, 23 Apr 2026 16:08:12 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6636044716;
+	by tor.source.kernel.org (Postfix) with ESMTP id 57E8C60181;
 	Thu, 23 Apr 2026 16:08:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 31700C2BCC4;
-	Thu, 23 Apr 2026 16:08:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DD790C2BCB4;
+	Thu, 23 Apr 2026 16:08:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776960491;
-	bh=ppNpmKpIg/LkrchRD2fchGkO1iZ6NOOF+2pVJoyViMc=;
+	s=k20201202; t=1776960490;
+	bh=wXjL0/ZjPWYklzHHsG/fnHIawjJ0r03LA6jLikwVGTc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=YzhjQhTfs4Fuk8ceWHI/AJlwj/SS49f4PBUt8nYNb0l13qHafiDTFAvybKBga+hR3
-	 HswKi4Q12OAzsF9cgQ/nMAp2u2kkay9ioKr3Sp87BA0pvhMPj3l5sSvQi6K7EQjT77
-	 3f2WTTOK71zeD33qrwiiSG8w+s5YUO0SVGhe/xyuhejG+UVYAY6dH8Fy82v/q08kso
-	 0OzxUc5ElJ0y8Fja3IyR3WocmFJfh076FAT1kuPISWY9d0fkrzMwfHaZUUK5rVWlYj
-	 5x/7HY2lwHcgQKnsMY2GapZtXiBC9xLKel0gil5Gr+6BtCl4zZ3r3mBG/FgFViftLg
-	 v/SKrxpa4O8uQ==
+	b=lBbau/8JGaGZrZ70Dg6tqGCO2fPy08Hyc/EKUc7+dqaadWU/UjzV21H//95ovUI5p
+	 w9tbFg9Ll9KLRwsRkD6wNEQ4OG0G7RKOSyzyUd5/W+KmgmSSZR29tXdBSmJJUpCZKM
+	 0BDzu6pbsmMcgKedernpAgH6we1YkEBeTngcDRv6X05vBP0ywwhwkeufmXvhKC4h6r
+	 pfUl1HVsWwMpOohiBauqGQDbtbWQ7pkVizkoW2cRbK0umNKdBEUsa28wUfOUT5+VVl
+	 gsHKQFiXggeKVbewT073vP4A7dSUoXsYYDtyz5muKFWKLJoTc2rMQFI9u5T8hc8vVd
+	 ND3ftKfj3IxCg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 287D3FAD3FB;
-	Thu, 23 Apr 2026 16:08:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CB144FC0360;
+	Thu, 23 Apr 2026 16:08:10 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Thu, 23 Apr 2026 18:07:21 +0200
-Subject: [PATCH v4 6/8] arm64: dts: amlogic: t7: Add thermal sensor nodes
+Date: Thu, 23 Apr 2026 18:07:16 +0200
+Subject: [PATCH v4 1/8] dt-bindings: thermal: amlogic: Add support for T7
 MIME-Version: 1.0
-Message-Id: <20260423-add-thermal-t7-vim4-v4-6-d4c1528d5044@aliel.fr>
+Message-Id: <20260423-add-thermal-t7-vim4-v4-1-d4c1528d5044@aliel.fr>
 References: <20260423-add-thermal-t7-vim4-v4-0-d4c1528d5044@aliel.fr>
 In-Reply-To: <20260423-add-thermal-t7-vim4-v4-0-d4c1528d5044@aliel.fr>
 To: Guillaume La Roque <glaroque@baylibre.com>, 
@@ -63,24 +63,21 @@ To: Guillaume La Roque <glaroque@baylibre.com>,
 Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
+ Ronald Claveau <linux-kernel-dev@aliel.fr>, 
+ Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3074;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2861;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=qZ6yxPYtU0rtSpNUw/qC8lVKNvJcNRQzOAUadiZgg5o=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ+Yr56cbU0+GrzIKaHC71Rf/pzM2VcW5anFvVsXBis5lZ
- oxRPBM6SlkYxLgYZMUUWfrnWp54d/noma971FNg5rAygQxh4OIUgIkwOTEyPExNsjYUfJlu4P/W
- u8qTda2pi7VU/1fTi5cO9NucZLtdx/BX8Ou5H1Orpk20mF/yYavEEy9T9vDrduwVbsZid7uz6jK
- 4AQ==
+ bh=42FjYfnK8gHAQIf5ZxFekEMwi0ysWDknaNuX/++vGok=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ+Yr5/vzP+b9+GgtcciWXWbJXJbJL69L3k19eftz+rG2/
+ /4H6xIXdZSyMIhxMciKKbL0z7U88e7y0TNf96inwMxhZQIZwsDFKQATEV3AyHAka+k6gdXRidnJ
+ /l63ij6ITDL9OFWN15v598fA/b+nLLVm+O/1Wmirw717DW8Nbiru+8x9YX+gasTH5kndy/k5WSs
+ Nb/MDAA==
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
  auth_id=744
 X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_090812_837539_8F4273C1 
-X-CRM114-Status: UNSURE (   7.05  )
-X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,92 +97,92 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-Add six temperature sensor nodes using the amlogic,t7-thermal compatible:
-a73, a53, gpu, nna, vpu, and hevc. Each sensor retrieves its calibration
-data from the secure monitor via the amlogic,secure-monitor phandle with
-the corresponding tsensor_id argument.
+Add the amlogic,t7-thermal compatible for the Amlogic T7 thermal sensor.
 
+Unlike existing variants which use a phandle to the ao-secure syscon,
+the T7 relies on a secure monitor interface described by a phandle and
+a sensor index argument.
+
+The T7 integrates multiple thermal sensors, all accessed through the
+same SMC call. The sensor index argument is required to identify which
+sensor's calibration data the secure monitor should return, as a single
+SM_THERMAL_CALIB_READ command serves all of them.
+
+Introduce the amlogic,secure-monitor property as a phandle-array and
+make amlogic,ao-secure or amlogic,secure-monitor conditionally required
+depending on the compatible.
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 58 +++++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+ .../bindings/thermal/amlogic,thermal.yaml          | 37 ++++++++++++++++++++--
+ 1 file changed, 35 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 7aec65f036a9c..62f259b2b17d2 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -656,6 +656,24 @@ sec_ao: ao-secure@10220 {
- 				amlogic,has-chip-id;
- 			};
+diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+index 70b273271754b..e28612510d679 100644
+--- a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+@@ -21,7 +21,9 @@ properties:
+               - amlogic,g12a-cpu-thermal
+               - amlogic,g12a-ddr-thermal
+           - const: amlogic,g12a-thermal
+-      - const: amlogic,a1-cpu-thermal
++      - enum:
++          - amlogic,a1-cpu-thermal
++          - amlogic,t7-thermal
  
-+			a73_tsensor: temperature-sensor@20000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x20000 0x0 0x50>;
-+				interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_TS>;
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 1>;
-+			};
-+
-+			a53_tsensor: temperature-sensor@22000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x22000 0x0 0x50>;
-+				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_TS>;
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 2>;
-+			};
-+
- 			pwm_ao_ef: pwm@30000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x30000 0x0 0x24>;
-@@ -770,6 +788,46 @@ sd_emmc_c: mmc@8c000 {
- 				assigned-clock-parents = <&xtal>;
- 				status = "disabled";
- 			};
-+
-+			gpu_tsensor: temperature-sensor@94000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x94000 0x0 0x50>;
-+				interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_TS>;
-+				power-domains = <&pwrc PWRC_T7_MALI_TOP_ID>;
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 3>;
-+			};
-+
-+			nna_tsensor: temperature-sensor@96000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x96000 0x0 0x50>;
-+				interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_TS>;
-+				power-domains = <&pwrc PWRC_T7_NNA_TOP_ID>;
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 4>;
-+			};
-+
-+			vpu_tsensor: temperature-sensor@98000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x98000 0x0 0x50>;
-+				interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_TS>;
-+				power-domains = <&pwrc PWRC_T7_VPU_HDMI_ID>;
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 6>;
-+			};
-+
-+			hevc_tsensor: temperature-sensor@9a000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x9a000 0x0 0x50>;
-+				interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_TS>;
-+				power-domains = <&pwrc PWRC_T7_DOS_HEVC_ID>;
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 5>;
-+			};
- 		};
+   reg:
+     maxItems: 1
+@@ -42,12 +44,34 @@ properties:
+   '#thermal-sensor-cells':
+     const: 0
  
- 	};
++  amlogic,secure-monitor:
++    description: phandle to the secure monitor
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to the secure monitor
++          - description: sensor index to get specific calibration data
++
+ required:
+   - compatible
+   - reg
+   - interrupts
+   - clocks
+-  - amlogic,ao-secure
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,a1-cpu-thermal
++              - amlogic,g12a-thermal
++    then:
++      required:
++        - amlogic,ao-secure
++    else:
++      required:
++        - amlogic,secure-monitor
+ 
+ unevaluatedProperties: false
+ 
+@@ -62,4 +86,13 @@ examples:
+         #thermal-sensor-cells = <0>;
+         amlogic,ao-secure = <&sec_AO>;
+     };
++  - |
++    temperature-sensor@20000 {
++        compatible = "amlogic,t7-thermal";
++        reg = <0x0 0x20000 0x0 0x50>;
++        interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clkc_periphs CLKID_TS>;
++        #thermal-sensor-cells = <0>;
++        amlogic,secure-monitor = <&sm 1>;
++    };
+ ...
 
 -- 
 2.49.0
