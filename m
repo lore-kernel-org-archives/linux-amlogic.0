@@ -4,168 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F3A5FA1FDA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Apr 2026 17:43:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06E8DF99344
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 09:18:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=33MXMlK4xwq0nKJYG7NZ0CnyUE0LLkheKB/nUUVLyFI=; b=4BQ+IcJ1w5fokD
-	7jxdjz5VxVcuOqzq3Wb5D2Vqi4krMfcSTyopq1kmRcUmcwA04zH1oKgXKHJJN4zdjNlCw4yxrY00C
-	miVzovQfOpXDLuQcFM/Dp1vhUHodtULiyyahPQ9/qX3RYQLfxv8z/V6zTrHkCfapfNXVlBtEZLaEI
-	XJC5LXCRVlwj8FvAZ5/gukMha1uZXhvEzA5qxXKtw8W21M8YMAemDoQyyYvkctb2x9QKuzL664Kis
-	eNWzIJBgOVbmbT1QY3zb2G47VTYgx6DjTRqNsXk5cHRPmUxlqWkO+u9tG+Y7PyNcIKz0ZaRCvfHJH
-	nCOrdKD9v4g1GiVKvyig==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=DCGYkmRLH44vC7+UIl1Ub3bSGiPKXC8nDU3GZNln/5M=; b=1QWz/5ncCKchJB
+	ALcn96NExmjDTPNPKBqeIHd/nNJxVOcPu9EFqdxsbF2L5kx7Ud6ZSdmHDb5+jIiMP4tKMrLC0JWbW
+	ihRKwMrF4KaZyoqFgZJPrVfQO3PNuT0fryMC1KbCyoyhDLxgq/WhIvh56jdxq1EaTtaqr6H8lAb7s
+	9fwun8NbkSAe7ANObvlMy0/oaYSsF8B+SU5SqYhY0xoiqpRF/QJkAx9hrXB2jPLTOwoHy0YRZVULQ
+	j8sNeWdaCfbwQ+h4Bs6+PGK3mBa4XuCgC+VmnJyB5e+C8JSOzGplUKt/45bvFpC85Vc9SRcc5hQAm
+	Ke8276O9a3HfVdyqb73g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFbbw-0000000AaV7-1X9s;
-	Wed, 22 Apr 2026 17:43:40 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1wFqC2-0000000BKBK-3bn0;
+	Thu, 23 Apr 2026 09:17:54 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFbbu-0000000AaUJ-0Eyx
-	for linux-amlogic@lists.infradead.org;
-	Wed, 22 Apr 2026 17:43:39 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63MG3k5O1230241
-	for <linux-amlogic@lists.infradead.org>; Wed, 22 Apr 2026 17:43:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=9NaipcfK+U5
-	vCs+9GzkqYBawAZE4g4xw2/lsPt8l0yA=; b=WCLqvnQhHRE/A3ymgh9SwvoGTwp
-	9Rp6TJoWSyOfKbLHy1QF+3nV0knEePgih8rSzbWDN68N9US4k9VYStrVtxrSS7m8
-	Ir3pi7T30enBmiBOAvFnBHADhT1ptyOkFJjoi5tlpgTewM+CclM7j9isSWOjju9L
-	mPyhlbQh1j8Tql3ButuxulyqjOMVHCmg+SrIMCWkVhvN9esGPFRIuhzqSRqjfbEi
-	AtYOA+T3e+Uved5YIdcdLj0l9wFoiCybauJjT8Je4eI94c2W5GtfM+0ZT02mYrSB
-	2zcZAn9PhYcCmHz3/vwL6pBJ4e0mkIzzCv7QKi8nwP+5nIF111u3WoTgHNQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dq1h68bu0-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Wed, 22 Apr 2026 17:43:37 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-50d58bed44aso105960221cf.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 22 Apr 2026 10:43:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1776879816; x=1777484616; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9NaipcfK+U5vCs+9GzkqYBawAZE4g4xw2/lsPt8l0yA=;
-        b=FTu3lX9mW0F+rI+auPUT5ekQImLEMYAV7C6+RYybVApMqySrL3TT21OyaDIE1S7T7q
-         k+2onzhofMrOZ1vT0HpDdLYBsKuoZkuZ63gCJpN6YJlfTm3YvFCOmZ79OA0QyjnAFxY3
-         GALNlA+pMEOzoJO8GrnygW90VDDXN78b+BNBz06glxVqTvDSj9ATBTJx8s9jfP8MyYga
-         Y57+PPcEtFRmrIJ7CmHYZMgqPaIlZFnUK+XgEGvrlVEIDGOKwucNrvntGemAOm3xbwh8
-         imtAHzQg2+W+gR41oouOgmFv9tiJaAH3FSRW2z/u4ipm8gf6EjR5z9zBNaP625cVkLWA
-         wzOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776879816; x=1777484616;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=9NaipcfK+U5vCs+9GzkqYBawAZE4g4xw2/lsPt8l0yA=;
-        b=TSRkdwDgSpwNh05sbERrgU4iHoAXdy9OCb5YudF0CX4kfE+DCs/HVXshynau9TUJiF
-         rmpCpFjrRtcYN4M0qhDt+uJdg0HDPaQZT/LHPjCrNBmZmDJBuJA8nhNa8cMKVnSCx3iN
-         CwZF6jVLBMgDPiJN7S+z2EgTwjYXYbykwJ6zJbxAHy6DlQCdNHm183AfXm/7JCFlwrDE
-         mNPK8zyrHGYQWtu3fmib5wP0Zd4zxj9ldUiwht5N2xO3782/xwgfHdnX79diQFhh3Rjg
-         KjtxPdF/8C04OiQtiIl8q69Fl4pwuG1pkjn65oiAqANCRIgbEyewwyKDPu3FqdL8vBm7
-         pBlg==
-X-Forwarded-Encrypted: i=1; AFNElJ98xNyrmq+qZStLentzlQEgNNmWcPNDfTj7q68tvpt0BMqsXV4V9mdbRqJvY20hu/bdcTs2asGlVBuSV6/Y@lists.infradead.org
-X-Gm-Message-State: AOJu0YxA6TcCczv5rPFbp9HMEgqeAImYm89lki0xwgswybb/aVSoxVz9
-	UXYNckP9bweQmvQPrzA+u+PAmd667tGg5AAXU+LNNpr0fDRKhRvHDiWmiAaYz/7gEVNRamUzlWm
-	rVp1xm/dpgF5OnuEXedVo2/VUZVmUoho+hf2meQYBZPLFAI55fM4ZP7s8bgkc3njI9qy3vg2QGA
-	==
-X-Gm-Gg: AeBDieuZ/X5YBmtVa5+XNa4ieyWBDHJGM4906J2jMc3+BUp6HghZJInxiCOvnTsKlch
-	O21LX83Y9KGmeObt8BonbfXK4gAUBzLzKZBQbUKs1R5IQdyLzYwyWy99cxN9Y/Jo7s7nkRbO2Ac
-	42ehcn04DuJybDKCm76IDCsX6e8mPQnr+MEHtfvvzxMKt0y0LC4hygLbeZ0rQfK6r+JVxcrpZbJ
-	gJUK77/W4U33WqZgzQ506GJnJHTsL3pFhxR/FXio/zybYZwD4zfVkKoZRXzQTBseLAgYtvpsXkk
-	DHQjkOKFSTo+9LIONtd9ZPp/vNBWZv51IOYA1SSWylrcf+xIsrR1Qst7uf4afTLL6leNm6K9O+0
-	sU9S1mYIC81HZfzI+kJeS7boF4dmuP89926ZGYhGSUGPuc6chP5/mDYIuPj+S
-X-Received: by 2002:ac8:7dc5:0:b0:50e:6054:ba with SMTP id d75a77b69052e-50e60540c69mr173172341cf.9.1776879816005;
-        Wed, 22 Apr 2026 10:43:36 -0700 (PDT)
-X-Received: by 2002:ac8:7dc5:0:b0:50e:6054:ba with SMTP id d75a77b69052e-50e60540c69mr173171461cf.9.1776879815403;
-        Wed, 22 Apr 2026 10:43:35 -0700 (PDT)
-Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:ae20:597c:99b8:d161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fb7a051dsm142511965e9.18.2026.04.22.10.43.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Apr 2026 10:43:34 -0700 (PDT)
-From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-To: rafael@kernel.org, daniel.lezcano@kernel.org
-Cc: gaurav.kohli@oss.qualcomm.com, Zhang Rui <rui.zhang@intel.com>,
-        Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Guenter Roeck <linux@roeck-us.net>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@codeconstruct.com.au>,
-        =?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
-        Benson Leung <bleung@chromium.org>,
-        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>, Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
-        Bill Wendling <morbo@google.com>,
-        Justin Stitt <justinstitt@google.com>,
-        Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@kernel.org>,
-        "Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/ASPEED MACHINE SUPPORT),
-        linux-aspeed@lists.ozlabs.org (moderated list:ARM/ASPEED MACHINE SUPPORT),
-        openbmc@lists.ozlabs.org (moderated list:ARM/NUVOTON NPCM ARCHITECTURE),
-        linux-tegra@vger.kernel.org (open list:TEGRA ARCHITECTURE SUPPORT),
-        linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM MAILING LIST),
-        linux-amlogic@lists.infradead.org (open list:KHADAS MCU MFD DRIVER),
-        llvm@lists.linux.dev (open list:CLANG/LLVM BUILD SUPPORT)
-Subject: [PATCH v2 08/12] thermal/of: Rename the devm_thermal_of_cooling_device_register() function
-Date: Wed, 22 Apr 2026 19:42:57 +0200
-Message-ID: <20260422174305.2899095-9-daniel.lezcano@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260422174305.2899095-1-daniel.lezcano@oss.qualcomm.com>
-References: <20260422174305.2899095-1-daniel.lezcano@oss.qualcomm.com>
+	id 1wFqBz-0000000BKA9-3shF;
+	Thu, 23 Apr 2026 09:17:53 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 00C88C5EF0B;
+	Thu, 23 Apr 2026 09:18:29 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B05A060495;
+	Thu, 23 Apr 2026 09:17:47 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8ED6210460A92;
+	Thu, 23 Apr 2026 11:17:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1776935862; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=fg+cfL7RFhXRqyxQ+5IEhbipfMHZKY0UpIKJXrJ9fFQ=;
+	b=q5bujtbykq4zXmP/ViiTPdoLiG5rI0IaZoAA1hMcWIsLUIjEVEl28d937PxTSzkcMAo/iZ
+	FfPwWtnuuqp+IknsHgvp3qm2VGtVpuHNGfMwGTXr2NkdUJOEtPHMV4UHRqdwWxLZYY/52V
+	TZjndhPSGi4MLc5sduluxvM9nY9F6d73IxJ7XGYOWbGdcr5LPkjFcaZUqMHKClI3ggDkmt
+	vv2RfEgf0BziLtsSNwVeni3K0HcfWG0FFpxhXmTS2A0O9EMNfYm5uB4MovAIlAdrmlJuqv
+	x5G5QDqMA5j0QJvF0aKhDcR51xqodoTterNKBN6akBGsCUESvx0TKhaoHu4wbA==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Subject: [PATCH v2 00/41] drm/display: bridge-connector: attach encoder to
+ the connector
+Date: Thu, 23 Apr 2026 11:16:54 +0200
+Message-Id: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 MIME-Version: 1.0
-X-Authority-Analysis: v=2.4 cv=f4Z4wuyM c=1 sm=1 tr=0 ts=69e908c9 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=A5OVakUREuEA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=yOCtJkima9RkubShWh1s:22 a=EUspDBNiAAAA:8 a=YYchOvpREA9nlnY3_CYA:9
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIyMDE3MSBTYWx0ZWRfXzEP8NP+7DqrE
- bQoL5kLEU3maHmtQuxqL4OYi7c2omBKp0GYc2QhRuHBM84fv/ZDYekEawhKHcxXHhfi87/kasOM
- qWedTqZ5G3xG+L4z6E5TIwEwQGbQCcv4/z0wlUpNToaUdiQsVETDNEFkLvRVe8KFx+jw2Ym9HHQ
- 5rtTgLhZHsr4i+m7mK19HvEQVVZZAT+Gj0IXlFmH6CM2X/sp6X+amrnpF54Xuz5m9WpG4J6ydRW
- 2RsK9+t5VIKkjUne8rxbmX9S+XcOiitIwj3psJY3e39JZPAtXvVWvBQArMbt082m+rtuk2qsHhy
- IEqLhQnQTwrfeeJH6zWarEOwGwcoKxkb4ojvhc/8t/izHYtN5ZExwqc+lMmHgvwaAeFsBS7CK2W
- uTyBm5h7AalpDUvSLSDL6cVMa9aF5qswOGvX198hTPxZxd3L5pDstrIEZuEp+Bn67Wvtu2UqKhD
- t0RV0JeS9qzdK0HiruQ==
-X-Proofpoint-GUID: f8oVRYoL0IJpwRoDbARkg0GBXCerjEPm
-X-Proofpoint-ORIG-GUID: f8oVRYoL0IJpwRoDbARkg0GBXCerjEPm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-22_02,2026-04-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 bulkscore=0 malwarescore=0 clxscore=1015
- spamscore=0 suspectscore=0 adultscore=0 priorityscore=1501 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604220171
+X-B4-Tracking: v=1; b=H4sIAIbj6WkC/42OQQ7CIBBFr9KwFkOJhcaV9zCNgWFqx1gwgI2m6
+ d2lNe5dvsz/78/MEkbCxI7VzCJOlCj4AnJXMRiMvyInV5hJIZU41Iq7OHIbyZULBO8Rcojc5Gx
+ guKCH4DByUE1tQDRaND0rpkfEnl7byrn7cnraW+mu6jUxUCqe9/bGVK+536L+a3GqueBK29a2v
+ W21NCcbQr6T30MYWbcsywfd2mBG6gAAAA==
+X-Change-ID: 20260416-drm-bridge-connector-attach_encoder-c651ac05705f
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Sasha Finkelstein <fnkl.kernel@gmail.com>, Janne Grunau <j@jannau.net>, 
+ Liu Ying <victor.liu@nxp.com>, Douglas Anderson <dianders@chromium.org>, 
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
+ Lucas Stach <l.stach@pengutronix.de>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Cercueil <paul@crapouillou.net>, 
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Clark <robin.clark@oss.qualcomm.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Mikko Perttunen <mperttunen@nvidia.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jingoo Han <jingoohan1@gmail.com>, 
+ Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+ Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>, 
+ Jyri Sarha <jyri.sarha@iki.fi>, Michal Simek <michal.simek@amd.com>
+Cc: Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, asahi@lists.linux.dev, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-mips@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
+ linux-tegra@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260422_104338_109458_05C77A57 
-X-CRM114-Status: GOOD (  20.15  )
+X-CRM114-CacheID: sfid-20260423_021752_245798_F60964B0 
+X-CRM114-Status: GOOD (  19.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -177,351 +125,264 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The cooling devices can be composed with a cooling device controller
-and a set of cooling devices attached to it. Until now, the DT
-bindings were described using a node for the cooling device controller
-and child nodes for all the cooling devices.
-
-Recently, a new set of cooling devices were proposed with the same
-bindings. Those were rejected because DT maintainers do not want this
-format anymore. In place, a cooling device will be created with an
-id. Whatever its meaning, the thermal OF will bind a thermal zone and
-a cooling device by checking the device node pointer + the id are
-matching the cooling map with the cooling device.
-
-Actually this approach is consistent with the thermal which are also
-registered with a device and an id.
-
-In order to do a distinction between the old binding with child nodes
-and the incoming new binding, let's rename the registering function
-with a self-explanatory name.
-
-Rename the functions:
-	devm_thermal_of_cooling_device_register() -> devm_thermal_of_child_cooling_device_register()
-
-Used the command:
-
-     	 find . -type f -name '*.[ch]' -exec \
-	 sed -i 's/devm_thermal_of_cooling_device_register/\
-	 devm_thermal_of_child_cooling_device_register/g' {} \;
-
-Did not used clang-format-diff because it does not indent correctly
-and checkpatch complained. Manually reindented to make checkpatch
-happy
-
-Signed-off-by: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
----
- drivers/hwmon/amc6821.c                  |  2 +-
- drivers/hwmon/aspeed-pwm-tacho.c         |  5 +++--
- drivers/hwmon/emc2305.c                  |  6 +++---
- drivers/hwmon/gpio-fan.c                 |  6 ++++--
- drivers/hwmon/max6650.c                  |  6 +++---
- drivers/hwmon/npcm750-pwm-fan.c          |  6 ++++--
- drivers/hwmon/pwm-fan.c                  |  5 +++--
- drivers/hwmon/qnap-mcu-hwmon.c           |  6 +++---
- drivers/hwmon/tc654.c                    |  5 +++--
- drivers/memory/tegra/tegra210-emc-core.c |  4 ++--
- drivers/soc/qcom/qcom_aoss.c             |  2 +-
- drivers/thermal/khadas_mcu_fan.c         |  7 ++++---
- drivers/thermal/tegra/soctherm.c         |  6 +++---
- drivers/thermal/thermal_of.c             | 15 +++++++++------
- include/linux/thermal.h                  | 16 ++++++++--------
- 15 files changed, 54 insertions(+), 43 deletions(-)
-
-diff --git a/drivers/hwmon/amc6821.c b/drivers/hwmon/amc6821.c
-index d5f864b360b0..8e5926b06070 100644
---- a/drivers/hwmon/amc6821.c
-+++ b/drivers/hwmon/amc6821.c
-@@ -1076,7 +1076,7 @@ static int amc6821_probe(struct i2c_client *client)
- 				     "Failed to initialize hwmon\n");
- 
- 	if (IS_ENABLED(CONFIG_THERMAL) && fan_np && data->fan_cooling_levels)
--		return PTR_ERR_OR_ZERO(devm_thermal_of_cooling_device_register(dev,
-+		return PTR_ERR_OR_ZERO(devm_thermal_of_child_cooling_device_register(dev,
- 			fan_np, client->name, data, &amc6821_cooling_ops));
- 
- 	return 0;
-diff --git a/drivers/hwmon/aspeed-pwm-tacho.c b/drivers/hwmon/aspeed-pwm-tacho.c
-index aa159bf158a3..1c5945d4ba37 100644
---- a/drivers/hwmon/aspeed-pwm-tacho.c
-+++ b/drivers/hwmon/aspeed-pwm-tacho.c
-@@ -841,8 +841,9 @@ static int aspeed_create_pwm_cooling(struct device *dev,
- 	}
- 	snprintf(cdev->name, MAX_CDEV_NAME_LEN, "%pOFn%d", child, pwm_port);
- 
--	cdev->tcdev = devm_thermal_of_cooling_device_register(dev, child,
--					cdev->name, cdev, &aspeed_pwm_cool_ops);
-+	cdev->tcdev = devm_thermal_of_child_cooling_device_register(dev, child,
-+								    cdev->name, cdev,
-+								    &aspeed_pwm_cool_ops);
- 	if (IS_ERR(cdev->tcdev))
- 		return PTR_ERR(cdev->tcdev);
- 
-diff --git a/drivers/hwmon/emc2305.c b/drivers/hwmon/emc2305.c
-index 64b213e1451e..2505e9fac499 100644
---- a/drivers/hwmon/emc2305.c
-+++ b/drivers/hwmon/emc2305.c
-@@ -309,9 +309,9 @@ static int emc2305_set_single_tz(struct device *dev, struct device_node *fan_nod
- 	pwm = data->pwm_min[cdev_idx];
- 
- 	data->cdev_data[cdev_idx].cdev =
--		devm_thermal_of_cooling_device_register(dev, fan_node,
--							emc2305_fan_name[idx], data,
--							&emc2305_cooling_ops);
-+		devm_thermal_of_child_cooling_device_register(dev, fan_node,
-+							      emc2305_fan_name[idx], data,
-+							      &emc2305_cooling_ops);
- 
- 	if (IS_ERR(data->cdev_data[cdev_idx].cdev)) {
- 		dev_err(dev, "Failed to register cooling device %s\n", emc2305_fan_name[idx]);
-diff --git a/drivers/hwmon/gpio-fan.c b/drivers/hwmon/gpio-fan.c
-index a8892ced1e54..084828e1e281 100644
---- a/drivers/hwmon/gpio-fan.c
-+++ b/drivers/hwmon/gpio-fan.c
-@@ -592,8 +592,10 @@ static int gpio_fan_probe(struct platform_device *pdev)
- 	}
- 
- 	/* Optional cooling device register for Device tree platforms */
--	fan_data->cdev = devm_thermal_of_cooling_device_register(dev, np,
--				"gpio-fan", fan_data, &gpio_fan_cool_ops);
-+	fan_data->cdev = devm_thermal_of_child_cooling_device_register(dev, np,
-+								       "gpio-fan",
-+								       fan_data,
-+								       &gpio_fan_cool_ops);
- 
- 	dev_info(dev, "GPIO fan initialized\n");
- 
-diff --git a/drivers/hwmon/max6650.c b/drivers/hwmon/max6650.c
-index 9649c6611d5f..a50b1b0f1f48 100644
---- a/drivers/hwmon/max6650.c
-+++ b/drivers/hwmon/max6650.c
-@@ -793,9 +793,9 @@ static int max6650_probe(struct i2c_client *client)
- 		return err;
- 
- 	if (IS_ENABLED(CONFIG_THERMAL)) {
--		cooling_dev = devm_thermal_of_cooling_device_register(dev,
--						dev->of_node, client->name,
--						data, &max6650_cooling_ops);
-+		cooling_dev = devm_thermal_of_child_cooling_device_register(dev, dev->of_node,
-+									    client->name, data,
-+									    &max6650_cooling_ops);
- 		if (IS_ERR(cooling_dev)) {
- 			dev_warn(dev, "thermal cooling device register failed: %ld\n",
- 				 PTR_ERR(cooling_dev));
-diff --git a/drivers/hwmon/npcm750-pwm-fan.c b/drivers/hwmon/npcm750-pwm-fan.c
-index c8f5e695fb6d..aea0b8659f5f 100644
---- a/drivers/hwmon/npcm750-pwm-fan.c
-+++ b/drivers/hwmon/npcm750-pwm-fan.c
-@@ -857,8 +857,10 @@ static int npcm7xx_create_pwm_cooling(struct device *dev,
- 	snprintf(cdev->name, THERMAL_NAME_LENGTH, "%pOFn%d", child,
- 		 pwm_port);
- 
--	cdev->tcdev = devm_thermal_of_cooling_device_register(dev, child,
--				cdev->name, cdev, &npcm7xx_pwm_cool_ops);
-+	cdev->tcdev = devm_thermal_of_child_cooling_device_register(dev, child,
-+								    cdev->name,
-+								    cdev,
-+								    &npcm7xx_pwm_cool_ops);
- 	if (IS_ERR(cdev->tcdev))
- 		return PTR_ERR(cdev->tcdev);
- 
-diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c
-index 37269db2de84..e6a567d58579 100644
---- a/drivers/hwmon/pwm-fan.c
-+++ b/drivers/hwmon/pwm-fan.c
-@@ -685,8 +685,9 @@ static int pwm_fan_probe(struct platform_device *pdev)
- 
- 	ctx->pwm_fan_state = ctx->pwm_fan_max_state;
- 	if (IS_ENABLED(CONFIG_THERMAL)) {
--		cdev = devm_thermal_of_cooling_device_register(dev,
--			dev->of_node, "pwm-fan", ctx, &pwm_fan_cooling_ops);
-+		cdev = devm_thermal_of_child_cooling_device_register(dev, dev->of_node,
-+								     "pwm-fan", ctx,
-+								     &pwm_fan_cooling_ops);
- 		if (IS_ERR(cdev)) {
- 			ret = PTR_ERR(cdev);
- 			dev_err(dev,
-diff --git a/drivers/hwmon/qnap-mcu-hwmon.c b/drivers/hwmon/qnap-mcu-hwmon.c
-index e86e64c4d391..c1c1e9d6f340 100644
---- a/drivers/hwmon/qnap-mcu-hwmon.c
-+++ b/drivers/hwmon/qnap-mcu-hwmon.c
-@@ -337,9 +337,9 @@ static int qnap_mcu_hwmon_probe(struct platform_device *pdev)
- 	 * levels and only succeed with either no or correct cooling levels.
- 	 */
- 	if (IS_ENABLED(CONFIG_THERMAL) && hwm->fan_cooling_levels) {
--		cdev = devm_thermal_of_cooling_device_register(dev,
--					to_of_node(hwm->fan_node), "qnap-mcu-hwmon",
--					hwm, &qnap_mcu_hwmon_cooling_ops);
-+		cdev = devm_thermal_of_child_cooling_device_register(dev, to_of_node(hwm->fan_node),
-+								     "qnap-mcu-hwmon", hwm,
-+								     &qnap_mcu_hwmon_cooling_ops);
- 		if (IS_ERR(cdev))
- 			return dev_err_probe(dev, PTR_ERR(cdev),
- 				"Failed to register qnap-mcu-hwmon as cooling device\n");
-diff --git a/drivers/hwmon/tc654.c b/drivers/hwmon/tc654.c
-index 39fe5836f237..ba18b442b81e 100644
---- a/drivers/hwmon/tc654.c
-+++ b/drivers/hwmon/tc654.c
-@@ -541,8 +541,9 @@ static int tc654_probe(struct i2c_client *client)
- 	if (IS_ENABLED(CONFIG_THERMAL)) {
- 		struct thermal_cooling_device *cdev;
- 
--		cdev = devm_thermal_of_cooling_device_register(dev, dev->of_node, client->name,
--							       hwmon_dev, &tc654_fan_cool_ops);
-+		cdev = devm_thermal_of_child_cooling_device_register(dev, dev->of_node,
-+								     client->name, hwmon_dev,
-+								     &tc654_fan_cool_ops);
- 		return PTR_ERR_OR_ZERO(cdev);
- 	}
- 
-diff --git a/drivers/memory/tegra/tegra210-emc-core.c b/drivers/memory/tegra/tegra210-emc-core.c
-index e96ca4157d48..065ae8bc2830 100644
---- a/drivers/memory/tegra/tegra210-emc-core.c
-+++ b/drivers/memory/tegra/tegra210-emc-core.c
-@@ -1966,8 +1966,8 @@ static int tegra210_emc_probe(struct platform_device *pdev)
- 
- 	tegra210_emc_debugfs_init(emc);
- 
--	cd = devm_thermal_of_cooling_device_register(emc->dev, np, "emc", emc,
--						     &tegra210_emc_cd_ops);
-+	cd = devm_thermal_of_child_cooling_device_register(emc->dev, np, "emc", emc,
-+							   &tegra210_emc_cd_ops);
- 	if (IS_ERR(cd)) {
- 		err = PTR_ERR(cd);
- 		dev_err(emc->dev, "failed to register cooling device: %d\n",
-diff --git a/drivers/soc/qcom/qcom_aoss.c b/drivers/soc/qcom/qcom_aoss.c
-index a543ab9bee6c..742f571200fa 100644
---- a/drivers/soc/qcom/qcom_aoss.c
-+++ b/drivers/soc/qcom/qcom_aoss.c
-@@ -381,7 +381,7 @@ static int qmp_cooling_device_add(struct qmp *qmp,
- 	qmp_cdev->qmp = qmp;
- 	qmp_cdev->state = !qmp_cdev_max_state;
- 	qmp_cdev->name = cdev_name;
--	qmp_cdev->cdev = devm_thermal_of_cooling_device_register
-+	qmp_cdev->cdev = devm_thermal_of_child_cooling_device_register
- 				(qmp->dev, node,
- 				cdev_name,
- 				qmp_cdev, &qmp_cooling_device_ops);
-diff --git a/drivers/thermal/khadas_mcu_fan.c b/drivers/thermal/khadas_mcu_fan.c
-index d35e5313bea4..21b3d0a71bd0 100644
---- a/drivers/thermal/khadas_mcu_fan.c
-+++ b/drivers/thermal/khadas_mcu_fan.c
-@@ -90,9 +90,10 @@ static int khadas_mcu_fan_probe(struct platform_device *pdev)
- 	ctx->mcu = mcu;
- 	platform_set_drvdata(pdev, ctx);
- 
--	cdev = devm_thermal_of_cooling_device_register(dev->parent,
--			dev->parent->of_node, "khadas-mcu-fan", ctx,
--			&khadas_mcu_fan_cooling_ops);
-+	cdev = devm_thermal_of_child_cooling_device_register(dev->parent,
-+							     dev->parent->of_node,
-+							     "khadas-mcu-fan", ctx,
-+							     &khadas_mcu_fan_cooling_ops);
- 	if (IS_ERR(cdev)) {
- 		ret = PTR_ERR(cdev);
- 		dev_err(dev, "Failed to register khadas-mcu-fan as cooling device: %d\n",
-diff --git a/drivers/thermal/tegra/soctherm.c b/drivers/thermal/tegra/soctherm.c
-index 790c4c96a9b5..f58430ed8f11 100644
---- a/drivers/thermal/tegra/soctherm.c
-+++ b/drivers/thermal/tegra/soctherm.c
-@@ -1700,9 +1700,9 @@ static void soctherm_init_hw_throt_cdev(struct platform_device *pdev)
- 			stc->init = true;
- 		} else {
- 
--			tcd = devm_thermal_of_cooling_device_register(dev, np_stcc,
--								      (char *)name, ts,
--								      &throt_cooling_ops);
-+			tcd = devm_thermal_of_child_cooling_device_register(dev, np_stcc,
-+									    (char *)name, ts,
-+									    &throt_cooling_ops);
- 			if (IS_ERR_OR_NULL(tcd)) {
- 				dev_err(dev,
- 					"throttle-cfg: %s: failed to register cooling device\n",
-diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.c
-index ee9776d0e5be..d06487bb5e67 100644
---- a/drivers/thermal/thermal_of.c
-+++ b/drivers/thermal/thermal_of.c
-@@ -550,7 +550,7 @@ static void thermal_cooling_device_release(struct device *dev, void *res)
- }
- 
- /**
-- * devm_thermal_of_cooling_device_register() - register an OF thermal cooling
-+ * devm_thermal_of_child_cooling_device_register() - register an OF thermal cooling
-  *					       device
-  * @dev:	a valid struct device pointer of a sensor device.
-  * @np:		a pointer to a device tree node.
-@@ -563,14 +563,17 @@ static void thermal_cooling_device_release(struct device *dev, void *res)
-  * to /sys/class/thermal/ folder as cooling_device[0-*]. It tries to bind itself
-  * to all the thermal zone devices registered at the same time.
-  *
-+ * This function should be used when a cooling controller has child
-+ * nodes which are referenced in the thermal zone cooling map.
-+ *
-  * Return: a pointer to the created struct thermal_cooling_device or an
-  * ERR_PTR. Caller must check return value with IS_ERR*() helpers.
-  */
- struct thermal_cooling_device *
--devm_thermal_of_cooling_device_register(struct device *dev,
--					struct device_node *np,
--					const char *type, void *devdata,
--					const struct thermal_cooling_device_ops *ops)
-+devm_thermal_of_child_cooling_device_register(struct device *dev,
-+					      struct device_node *np,
-+					      const char *type, void *devdata,
-+					      const struct thermal_cooling_device_ops *ops)
- {
- 	struct thermal_cooling_device **ptr, *tcd;
- 
-@@ -592,4 +595,4 @@ devm_thermal_of_cooling_device_register(struct device *dev,
- 
- 	return tcd;
- }
--EXPORT_SYMBOL_GPL(devm_thermal_of_cooling_device_register);
-+EXPORT_SYMBOL_GPL(devm_thermal_of_child_cooling_device_register);
-diff --git a/include/linux/thermal.h b/include/linux/thermal.h
-index 0a95cfeffa74..b3c448f7d919 100644
---- a/include/linux/thermal.h
-+++ b/include/linux/thermal.h
-@@ -205,10 +205,10 @@ thermal_of_cooling_device_register(struct device_node *np, const char *type, voi
- 				   const struct thermal_cooling_device_ops *ops);
- 
- struct thermal_cooling_device *
--devm_thermal_of_cooling_device_register(struct device *dev,
--					struct device_node *np,
--					const char *type, void *devdata,
--					const struct thermal_cooling_device_ops *ops);
-+devm_thermal_of_child_cooling_device_register(struct device *dev,
-+					      struct device_node *np,
-+					      const char *type, void *devdata,
-+					      const struct thermal_cooling_device_ops *ops);
- #else
- 
- static inline
-@@ -232,10 +232,10 @@ thermal_of_cooling_device_register(struct device_node *np,
- }
- 
- static inline struct thermal_cooling_device *
--devm_thermal_of_cooling_device_register(struct device *dev,
--					struct device_node *np,
--					const char *type, void *devdata,
--					const struct thermal_cooling_device_ops *ops)
-+devm_thermal_of_child_cooling_device_register(struct device *dev,
-+					      struct device_node *np,
-+					      const char *type, void *devdata,
-+					      const struct thermal_cooling_device_ops *ops)
- {
- 	return ERR_PTR(-ENODEV);
- }
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhpcyBzZXJpZXMgc2ltcGxpZmllcyB1c2luZyB0aGUgYnJpZGdlLWNvbm5lY3RvciBieSByZW1v
+dmluZyB0aGUgbmVlZCB0bwphdHRhY2ggdGhlIG5ld2x5IGNyZWF0ZWQgY29ubmVjdG9yIHRvIHRo
+ZSBlbmNvZGVyLgoKPT0gU2VyaWVzIGRlc2NyaXB0aW9uCgpDdXJyZW50bHkgYWxsIHVzZXJzIG9m
+IHRoZSBicmlkZ2UtY29ubmVjdG9yIG11c3QgY2FsbApkcm1fY29ubmVjdG9yX2F0dGFjaF9lbmNv
+ZGVyKCkgaW1tZWRpYXRlbHkgYWZ0ZXIgYSBzdWNjZXNzZnVsCmRybV9icmlkZ2VfY29ubmVjdG9y
+X2luaXQoKS4KClRoaXMgaXMgYW4gdW5uZWNlc3NhcnkgYnVyZGVuIGZvciB1c2Vycy4gTW92ZSB0
+aGUgY2FsbCB0byB0aGUgZW5kIG9mCmRybV9icmlkZ2VfY29ubmVjdG9yX2luaXQoKSBzbyBhbGwg
+Y2FsbGVycyBjYW4gYmUgc2ltcGxpZmllZC4KCiAqIFBhdGNoIDEgYWRkcyBhIGRybV9jb25uZWN0
+b3JfYXR0YWNoX2VuY29kZXIoKSBjYWxsIGF0IHRoZSBlbmQgb2YKICAgZHJtX2JyaWRnZV9jb25u
+ZWN0b3JfaW5pdCgpCiAqIFRoZSBvdGhlciBwYXRjaGVzIHJlbW92ZSBkcm1fY29ubmVjdG9yX2F0
+dGFjaF9lbmNvZGVyKCkgYWZ0ZXIgYWxsCiAgIGRybV9icmlkZ2VfY29ubmVjdG9yX2luaXQoKSBj
+YWxscywgb3JkZXJlZCBmcm9tIHRoZSBzaW1wbGVzdCBvbmVzCiAgIChvbmx5IHRoZSBsYXN0IG9u
+ZSBpcyBzb21ld2hhdCBub24tb2J2aW91cykKClRoZSBDYyBsaXN0IGlzIGh1Z2UgZHVlIHRvIHRo
+ZSBtYW55IGRyaXZlcnMgdG91Y2hlZC4gSSBzZW50IHYxIHRvIGEgcmVkdWNlZApDYyBsaXN0IHRv
+IGVuc3VyZSB0aGVyZSBpcyBhbiBhZ3JlZW1lbnQgYWJvdXQgdGhlIG92ZXJhbGwgaWRlYS4gVGhh
+dCBzZWVtcwp0byBiZSB0aGUgY2FzZSwgc28gbm93IGl0J3MgdGltZSB0byBjb3B5IGFsbCBkcml2
+ZXJzIG1haW50YWluZXJzLgoKSXQgd291bGQgYmUgbmljZSB0byBhcHBseSBhbGwgb2YgdGhpcyBz
+ZXJpZXMgYXQgb25jZSB0byBhdm9pZCBkdXBsaWNhdGVkCmNhbGxzIHRvIGRybV9jb25uZWN0b3Jf
+YXR0YWNoX2VuY29kZXIoKSBpbiB0aGUgaW50ZXJpbS4gVGhhdCB3b3VsZCBiZQpoYXJtbGVzcyBi
+ZWFjdXNlIGRybV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKSBpcyBpZGVtcG90ZW50LCBidXQK
+dW5wbGVhc2FudC4KCj09IEFkZGl0aW9uYWwgcmF0aW9uYWxlIChmb3IgdGhlIGN1cmlvdXMpCgpC
+ZXNpZGVzIG1ha2luZyB0aGUgdXNhZ2Ugb2YgdGhlIGJyaWRnZS1jb25uZWN0b3IgYSBiaXQgc2lt
+cGxlciwgdGhpcyBzZXJpZXMKaXMgaW4gcHJlcGFyYXRpb24gZm9yIERSTSBicmlkZ2UgaG90cGx1
+Zy4gSGVyZSdzIHdoeSwgZmVlbCBmcmVlIHRvIHNraXAgaWYKeW91IGRvbid0IGNhcmUuCgpUaGUg
+b2xkIGJyaWRnZSBob3RwbHVnIHByb3Bvc2FscyBJIGhhdmUgc2VudCBpbiB0aGUgcGFzdCBbMV0g
+d2VyZSBiYXNlZCBvbgphIGhvdHBsdWctYnJpZGdlIGRyaXZlciB0byBzaXQgYmV0d2VlbiB0aGUg
+bGFzdCBmaXhlZCBicmlkZ2UgYW5kIHRoZSBmaXJzdApob3RwbHVnZ2VkIGJyaWRnZS4gRGlzY3Vz
+c2lvbiB3aXRoIHRoZSBjb21tdW5pdHkgbGVkIHRvIHRoZSBuZWVkIG9mCnJlbW92aW5nIHRoZSBo
+b3RwbHVnLWJyaWRnZSBhbmQgbGV0IGNvbW1vbiBEUk0gY29kZSBoYW5kbGUgaG90cGx1Zy4gVGhl
+CmNvbW1vbiBwbGFjZSBvZiBjb2RlIHRoYXQgYXBwZWFycyB0aGUgbW9zdCBzdWl0YWJsZSBmb3Ig
+aG90cGx1ZyBoYW5kbGluZyBpcwp0aGUgYnJpZGdlLWNvbm5lY3Rvciwgd2hpY2ggaXMgYnkgbm93
+IHRoZSByZWNvbW1lbmRlZCB3YXkgdG8gaGFuZGxlCmNvbm5lY3RvciBpbnN0YW50aWF0aW9uIGFm
+dGVyIGEgYnJpZGdlIGNoYWluLgoKU28gSSdtIGluIHRoZSBwcm9jZXNzIG9mIGV4dGVuZGluZyB0
+aGUgYnJpZGdlLWNvbm5lY3RvciB0byBiZSB0aGUgY2VudHJhbApwb2ludCB0byBoYW5kbGUgYnJp
+ZGdlIGhvdHBsdWcuIFR1cm5zIG91dCB0aGUgbmVlZCB0byBjYWxsCmRybV9jb25uZWN0b3JfYXR0
+YWNoX2VuY29kZXIoKSBhZnRlciBkcm1fYnJpZGdlX2Nvbm5lY3Rvcl9pbml0KCkgaGFzCnJldHVy
+bmVkIGlzIGFkZGluZyBiaWcgaGVhZGFjaGVzIHRvIHN1Y2ggd29yay4gU28gSSdtIHNlbmQgdGhp
+cyBsb25nIGJ1dApzaW1wbGUgc2VyaWVzIHRvIGJvdGggc2ltcGxpZnkgYnJpZGdlLWNvbm5lY3Rv
+ciB1c2FnZSBhbmQgcmVtb3ZlIG9uZQpvYnN0YWNsZSBmcm9tIHRoZSBicmlkZ2UgaG90cGx1ZyB3
+b3JrLiBUaGlzIHNlcmllcyBpcyByZWxldmFudCBieSBpdHNlbGYKYW55d2F5LgoKWzFdIGh0dHBz
+Oi8vbG9yZS5rZXJuZWwub3JnL2xrbWwvMjAyNTAyMDYtaG90cGx1Zy1kcm0tYnJpZGdlLXY2LTI2
+LTlkNmYyYzljMzA1OEBib290bGluLmNvbS8KCj09IEdyYW5kIHBsYW4KClRoaXMgaXMgcGFydCBv
+ZiB0aGUgd29yayB0byBzdXBwb3J0IGhvdHBsdWcgb2YgRFJNIGJyaWRnZXMuIFRoZSBncmFuZCBw
+bGFuCndhcyBkaXNjdXNzZWQgaW4gWzBdLgoKSGVyZSdzIHRoZSB3b3JrIGJyZWFrZG93biAo4p6c
+IG1hcmtzIHRoZSBjdXJyZW50IHNlcmllcyk6CgogMS4g4oCmIGFkZCByZWZjb3VudGluZyB0byBE
+Uk0gYnJpZGdlcyBzdHJ1Y3QgZHJtX2JyaWRnZSwKICAgICAgYmFzZWQgb24gZGV2bV9kcm1fYnJp
+ZGdlX2FsbG9jKCkKICAgIEEuIOKclCBhZGQgbmV3IGFsbG9jIEFQSSBhbmQgcmVmY291bnRpbmcg
+KHY2LjE2KQogICAgQi4g4pyUIGNvbnZlcnQgYWxsIGJyaWRnZSBkcml2ZXJzIHRvIG5ldyBBUEkg
+KHY2LjE3KQogICAgQy4g4pyUIGt1bml0IHRlc3RzICh2Ni4xNykKICAgIEQuIOKclCBhZGQgZ2V0
+L3B1dCB0byBkcm1fYnJpZGdlX2FkZC9yZW1vdmUoKSArIGF0dGFjaC9kZXRhY2goKQogICAgICAg
+ICBhbmQgd2FybiBvbiBvbGQgYWxsb2NhdGlvbiBwYXR0ZXJuICh2Ni4xNykKICAgIEUuIOKApiBh
+ZGQgZ2V0L3B1dCBvbiBkcm1fYnJpZGdlIGFjY2Vzc29ycwogICAgICAgMS4g4pyUIGRybV9icmlk
+Z2VfY2hhaW5fZ2V0X2ZpcnN0X2JyaWRnZSgpLCBhZGQgY2xlYW51cCBhY3Rpb24gKHY2LjE4KQog
+ICAgICAgMi4g4pyUIGRybV9icmlkZ2VfZ2V0X3ByZXZfYnJpZGdlKCkgKHY2LjE4KQogICAgICAg
+My4g4pyUIGRybV9icmlkZ2VfZ2V0X25leHRfYnJpZGdlKCkgKHY2LjE5KQogICAgICAgNC4g4pyU
+IGRybV9mb3JfZWFjaF9icmlkZ2VfaW5fY2hhaW4oKSAodjYuMTkpCiAgICAgICA1LiDinJQgZHJt
+X2JyaWRnZV9jb25uZWN0b3JfaW5pdCAodjYuMTkpCiAgICAgICA2LiDinJQgcHJvdGVjdCBlbmNv
+ZGVyIGJyaWRnZSBjaGFpbiB3aXRoIGEgbXV0ZXggKHY3LjIpCiAgICAgICA3LiDigKYgb2ZfZHJt
+X2ZpbmRfYnJpZGdlCiAgICAgICAgICBhLiDinJQgYWRkIG9mX2RybV9nZXRfYnJpZGdlKCkgKHY3
+LjApLAoJICAgICAgIGNvbnZlcnQgYmFzaWMgZGlyZWN0IHVzZXJzICh2Ny4wLXY3LjEpCgkgIGIu
+IOKclCBjb252ZXJ0IGRpcmVjdCBvZl9kcm1fZ2V0X2JyaWRnZSgpIHVzZXJzLCBwYXJ0IDIgKHY3
+LjApCgkgIGMuIOKclCBjb252ZXJ0IGRpcmVjdCBvZl9kcm1fZ2V0X2JyaWRnZSgpIHVzZXJzLCBw
+YXJ0IDMgKHY3LjApCgkgIGQuIOKclCBjb252ZXJ0IGRpcmVjdCBvZl9kcm1fZ2V0X2JyaWRnZSgp
+IHVzZXJzLCBwYXJ0IDQgKHY3LjEtdjcuMikKCSAgZS4g4oCmIGNvbnZlcnQgYnJpZGdlLW9ubHkg
+ZHJtX29mX2ZpbmRfcGFuZWxfb3JfYnJpZGdlKCkgdXNlcnMKICAgICAgIDguIGRybV9vZl9maW5k
+X3BhbmVsX29yX2JyaWRnZSwgKl9vZl9nZXRfYnJpZGdlCiAgICAgICA5LiDinJQgZW5mb3JjZSBk
+cm1fYnJpZGdlX2FkZCBiZWZvcmUgZHJtX2JyaWRnZV9hdHRhY2ggKHY2LjE5KQogICAgRi4g4pyU
+IGRlYnVnZnMgaW1wcm92ZW1lbnRzCiAgICAgICAxLiDinJQgYWRkIHRvcC1sZXZlbCAnYnJpZGdl
+cycgZmlsZSAodjYuMTYpCiAgICAgICAyLiDinJQgc2hvdyByZWZjb3VudCBhbmQgbGlzdCBsaW5n
+ZXJpbmcgYnJpZGdlcyAodjYuMTkpCiAyLiDigKYgaGFuZGxlIGdyYWNlZnVsbHkgYXRvbWljIHVw
+ZGF0ZXMgZHVyaW5nIGJyaWRnZSByZW1vdmFsCiAgICBBLiDinJQgQWRkIGRybV9icmlkZ2VfZW50
+ZXIvZXhpdCgpIHRvIHByb3RlY3QgZGV2aWNlIHJlc291cmNlcyAodjcuMCkKICAgIEIuIOKApiBw
+cm90ZWN0IHByaXZhdGVfb2JqIHJlbW92YWwgZnJvbSBsaXN0CiAgICBDLiDinJQgQWRkIGRybV9i
+cmlkZ2VfY2xlYXJfYW5kX3B1dCgpICh2Ny4xKQogMy4g4oCmIERTSSBob3N0LWRldmljZSBkcml2
+ZXIgaW50ZXJhY3Rpb24KIDQuIOKclCByZW1vdmluZyB0aGUgbmVlZCBmb3IgdGhlICJhbHdheXMt
+ZGlzY29ubmVjdGVkIiBjb25uZWN0b3IKIDUuIOKclCBNaWdyYXRlIGkuTVggTENESUYgZHJpdmVy
+IHRvIGJyaWRnZS1jb25uZWN0b3IgKHY3LjIpCiA2LiDinpwgRFJNIGJyaWRnZSBob3RwbHVnCiAg
+ICBBLiDinpwgQnJpZGdlIGhvdHBsdWcgbWFuYWdlbWVudCBpbiB0aGUgRFJNIGNvcmUKICAgICAg
+IDEuIOKenCBicmlkZ2UtY29ubmVjdG9yOiBhdHRhY2ggZW5jb2RlciB0byB0aGUgY29ubmVjdG9y
+CiAgICBCLiAgIERldmljZSB0cmVlIGRlc2NyaXB0aW9uCgpbMF0gaHR0cHM6Ly9sb3JlLmtlcm5l
+bC5vcmcvbGttbC8yMDI1MDIwNi1ob3RwbHVnLWRybS1icmlkZ2UtdjYtMC05ZDZmMmM5YzMwNThA
+Ym9vdGxpbi5jb20vI3QKClNpZ25lZC1vZmYtYnk6IEx1Y2EgQ2VyZXNvbGkgPGx1Y2EuY2VyZXNv
+bGlAYm9vdGxpbi5jb20+Ci0tLQpDaGFuZ2VzIGluIHYyOgotIHBhdGNoIDE6IHVwZGF0ZSBrZG9j
+Ci0gcGF0Y2ggNDE6IGZpeCBieSByZXdyaXRpbmcgaXQgZnVsbHkKLSB1cGRhdGUgY292ZXIgbGV0
+dGVyCi0gTGluayB0byB2MTogaHR0cHM6Ly9wYXRjaC5tc2dpZC5saW5rLzIwMjYwNDE3LWRybS1i
+cmlkZ2UtY29ubmVjdG9yLWF0dGFjaF9lbmNvZGVyLXYxLTAtNjdiOGI4ZmI4NzJhQGJvb3RsaW4u
+Y29tCgpUbzogQW5kcnplaiBIYWpkYSA8YW5kcnplai5oYWpkYUBpbnRlbC5jb20+ClRvOiBOZWls
+IEFybXN0cm9uZyA8bmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZz4KVG86IFJvYmVydCBGb3NzIDxy
+Zm9zc0BrZXJuZWwub3JnPgpUbzogTGF1cmVudCBQaW5jaGFydCA8TGF1cmVudC5waW5jaGFydEBp
+ZGVhc29uYm9hcmQuY29tPgpUbzogSm9uYXMgS2FybG1hbiA8am9uYXNAa3dpYm9vLnNlPgpUbzog
+SmVybmVqIFNrcmFiZWMgPGplcm5lai5za3JhYmVjQGdtYWlsLmNvbT4KVG86IE1hYXJ0ZW4gTGFu
+a2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+ClRvOiBNYXhpbWUgUmlw
+YXJkIDxtcmlwYXJkQGtlcm5lbC5vcmc+ClRvOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1h
+bm5Ac3VzZS5kZT4KVG86IERhdmlkIEFpcmxpZSA8YWlybGllZEBnbWFpbC5jb20+ClRvOiBTaW1v
+bmEgVmV0dGVyIDxzaW1vbmFAZmZ3bGwuY2g+ClRvOiBTYXNoYSBGaW5rZWxzdGVpbiA8Zm5rbC5r
+ZXJuZWxAZ21haWwuY29tPgpUbzogSmFubmUgR3J1bmF1IDxqQGphbm5hdS5uZXQ+ClRvOiBMaXUg
+WWluZyA8dmljdG9yLmxpdUBueHAuY29tPgpUbzogRG91Z2xhcyBBbmRlcnNvbiA8ZGlhbmRlcnNA
+Y2hyb21pdW0ub3JnPgpUbzogTGF1cmVudGl1IFBhbGN1IDxsYXVyZW50aXUucGFsY3VAb3NzLm54
+cC5jb20+ClRvOiBMdWNhcyBTdGFjaCA8bC5zdGFjaEBwZW5ndXRyb25peC5kZT4KVG86IEZyYW5r
+IExpIDxGcmFuay5MaUBueHAuY29tPgpUbzogU2FzY2hhIEhhdWVyIDxzLmhhdWVyQHBlbmd1dHJv
+bml4LmRlPgpUbzogUGVuZ3V0cm9uaXggS2VybmVsIFRlYW0gPGtlcm5lbEBwZW5ndXRyb25peC5k
+ZT4KVG86IEZhYmlvIEVzdGV2YW0gPGZlc3RldmFtQGdtYWlsLmNvbT4KVG86IFBoaWxpcHAgWmFi
+ZWwgPHAuemFiZWxAcGVuZ3V0cm9uaXguZGU+ClRvOiBQYXVsIENlcmN1ZWlsIDxwYXVsQGNyYXBv
+dWlsbG91Lm5ldD4KVG86IEFuaXRoYSBDaHJpc2FudGh1cyA8YW5pdGhhLmNocmlzYW50aHVzQGlu
+dGVsLmNvbT4KVG86IENodW4tS3VhbmcgSHUgPGNodW5rdWFuZy5odUBrZXJuZWwub3JnPgpUbzog
+TWF0dGhpYXMgQnJ1Z2dlciA8bWF0dGhpYXMuYmdnQGdtYWlsLmNvbT4KVG86IEFuZ2Vsb0dpb2Fj
+Y2hpbm8gRGVsIFJlZ25vIDxhbmdlbG9naW9hY2NoaW5vLmRlbHJlZ25vQGNvbGxhYm9yYS5jb20+
+ClRvOiBLZXZpbiBIaWxtYW4gPGtoaWxtYW5AYmF5bGlicmUuY29tPgpUbzogSmVyb21lIEJydW5l
+dCA8amJydW5ldEBiYXlsaWJyZS5jb20+ClRvOiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4u
+Ymx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgpUbzogUm9iIENsYXJrIDxyb2Jpbi5jbGFya0Bv
+c3MucXVhbGNvbW0uY29tPgpUbzogRG1pdHJ5IEJhcnlzaGtvdiA8bHVtYWdAa2VybmVsLm9yZz4K
+VG86IEFiaGluYXYgS3VtYXIgPGFiaGluYXYua3VtYXJAbGludXguZGV2PgpUbzogSmVzc2ljYSBa
+aGFuZyA8amVzc3poYW4wMDI0QGdtYWlsLmNvbT4KVG86IFNlYW4gUGF1bCA8c2VhbkBwb29ybHku
+cnVuPgpUbzogTWFyaWpuIFN1aWp0ZW4gPG1hcmlqbi5zdWlqdGVuQHNvbWFpbmxpbmUub3JnPgpU
+bzogVG9taSBWYWxrZWluZW4gPHRvbWkudmFsa2VpbmVuQGlkZWFzb25ib2FyZC5jb20+ClRvOiBT
+YW5keSBIdWFuZyA8aGpjQHJvY2stY2hpcHMuY29tPgpUbzogSGVpa28gU3TDvGJuZXIgPGhlaWtv
+QHNudGVjaC5kZT4KVG86IEFuZHkgWWFuIDxhbmR5LnlhbkByb2NrLWNoaXBzLmNvbT4KVG86IFRo
+aWVycnkgUmVkaW5nIDx0aGllcnJ5LnJlZGluZ0BnbWFpbC5jb20+ClRvOiBNaWtrbyBQZXJ0dHVu
+ZW4gPG1wZXJ0dHVuZW5AbnZpZGlhLmNvbT4KVG86IEpvbmF0aGFuIEh1bnRlciA8am9uYXRoYW5o
+QG52aWRpYS5jb20+ClRvOiBJY2Vub3d5IFpoZW5nIDx6aGVuZ3hpbmdkYUBpc2Nhcy5hYy5jbj4K
+VG86IEppbmdvbyBIYW4gPGppbmdvb2hhbjFAZ21haWwuY29tPgpUbzogSW5raSBEYWUgPGlua2ku
+ZGFlQHNhbXN1bmcuY29tPgpUbzogU2V1bmctV29vIEtpbSA8c3cwMzEyLmtpbUBzYW1zdW5nLmNv
+bT4KVG86IEt5dW5nbWluIFBhcmsgPGt5dW5nbWluLnBhcmtAc2Ftc3VuZy5jb20+ClRvOiBLcnp5
+c3p0b2YgS296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+ClRvOiBBbGltIEFraHRhciA8YWxpbS5h
+a2h0YXJAc2Ftc3VuZy5jb20+ClRvOiBMYXVyZW50IFBpbmNoYXJ0IDxsYXVyZW50LnBpbmNoYXJ0
+K3JlbmVzYXNAaWRlYXNvbmJvYXJkLmNvbT4KVG86IFRvbWkgVmFsa2VpbmVuIDx0b21pLnZhbGtl
+aW5lbityZW5lc2FzQGlkZWFzb25ib2FyZC5jb20+ClRvOiBLaWVyYW4gQmluZ2hhbSA8a2llcmFu
+LmJpbmdoYW0rcmVuZXNhc0BpZGVhc29uYm9hcmQuY29tPgpUbzogR2VlcnQgVXl0dGVyaG9ldmVu
+IDxnZWVydCtyZW5lc2FzQGdsaWRlci5iZT4KVG86IE1hZ251cyBEYW1tIDxtYWdudXMuZGFtbUBn
+bWFpbC5jb20+ClRvOiBCaWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+ClRvOiBN
+YXJlayBWYXN1dCA8bWFyZXhAZGVueC5kZT4KVG86IFN0ZWZhbiBBZ25lciA8c3RlZmFuQGFnbmVy
+LmNoPgpUbzogSnlyaSBTYXJoYSA8anlyaS5zYXJoYUBpa2kuZmk+ClRvOiBNaWNoYWwgU2ltZWsg
+PG1pY2hhbC5zaW1la0BhbWQuY29tPgpDYzogSHVpIFB1IDxIdWkuUHVAZ2VoZWFsdGhjYXJlLmNv
+bT4KQ2M6IElhbiBSYXkgPGlhbi5yYXlAZ2VoZWFsdGhjYXJlLmNvbT4KQ2M6IFRob21hcyBQZXRh
+enpvbmkgPHRob21hcy5wZXRhenpvbmlAYm9vdGxpbi5jb20+CkNjOiBkcmktZGV2ZWxAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCkNjOiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnCkNjOiBhc2Fo
+aUBsaXN0cy5saW51eC5kZXYKQ2M6IGlteEBsaXN0cy5saW51eC5kZXYKQ2M6IGxpbnV4LWFybS1r
+ZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZwpDYzogbGludXgtbWlwc0B2Z2VyLmtlcm5lbC5vcmcK
+Q2M6IGxpbnV4LW1lZGlhdGVrQGxpc3RzLmluZnJhZGVhZC5vcmcKQ2M6IGxpbnV4LWFtbG9naWNA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpDYzogbGludXgtYXJtLW1zbUB2Z2VyLmtlcm5lbC5vcmcKQ2M6
+IGZyZWVkcmVub0BsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IGxpbnV4LXJvY2tjaGlwQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKQ2M6IGxpbnV4LXRlZ3JhQHZnZXIua2VybmVsLm9yZwpDYzogbGludXgt
+c2Ftc3VuZy1zb2NAdmdlci5rZXJuZWwub3JnCkNjOiBsaW51eC1yZW5lc2FzLXNvY0B2Z2VyLmtl
+cm5lbC5vcmcKCi0tLQpMdWNhIENlcmVzb2xpICg0MSk6CiAgICAgIGRybS9kaXNwbGF5OiBicmlk
+Z2UtY29ubmVjdG9yOiBhdHRhY2ggdGhlIGVuY29kZXIgdG8gdGhlIGNyZWF0ZWQgY29ubmVjdG9y
+CiAgICAgIGRybTogYWRwOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0
+b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vYnJpZGdlOiBhZHY3NTExOiByZW1vdmUgbm93
+LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBk
+cm0vYnJpZGdlOiBpdGUtaXQ2MjYzOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9j
+b25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vYnJpZGdlOiB0aS1zbjY1ZHNpODY6
+IHJlbW92ZSBub3ctcmVkdW5kYW50IGNhbGwgdG8gZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfZW5jb2Rl
+cigpCiAgICAgIGRybS9pbXgvZGNzczogcmVtb3ZlIG5vdy1yZWR1bmRhbnQgY2FsbCB0byBkcm1f
+Y29ubmVjdG9yX2F0dGFjaF9lbmNvZGVyKCkKICAgICAgZHJtL2lteDogbGRiOiByZW1vdmUgbm93
+LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBk
+cm0vaW14OiBwYXJhbGxlbC1kaXNwbGF5OiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRy
+bV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vaW14L2xjZGM6IHJlbW92ZSBu
+b3ctcmVkdW5kYW50IGNhbGwgdG8gZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfZW5jb2RlcigpCiAgICAg
+IGRybS9pbmdlbmljOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3Jf
+YXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0va21iL2RzaTogcmVtb3ZlIG5vdy1yZWR1bmRhbnQg
+Y2FsbCB0byBkcm1fY29ubmVjdG9yX2F0dGFjaF9lbmNvZGVyKCkKICAgICAgZHJtL21lZGlhdGVr
+OiBtdGtfZHBpOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3JfYXR0
+YWNoX2VuY29kZXIoKQogICAgICBkcm0vbWVkaWF0ZWs6IG10a19kc2k6IHJlbW92ZSBub3ctcmVk
+dW5kYW50IGNhbGwgdG8gZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfZW5jb2RlcigpCiAgICAgIGRybS9t
+ZXNvbjogZW5jb2Rlcl9jdmJzOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25u
+ZWN0b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vbWVzb246IGVuY29kZXJfaGRtaTogcmVt
+b3ZlIG5vdy1yZWR1bmRhbnQgY2FsbCB0byBkcm1fY29ubmVjdG9yX2F0dGFjaF9lbmNvZGVyKCkK
+ICAgICAgZHJtL21zbS9kcDogcmVtb3ZlIG5vdy1yZWR1bmRhbnQgY2FsbCB0byBkcm1fY29ubmVj
+dG9yX2F0dGFjaF9lbmNvZGVyKCkKICAgICAgZHJtL21zbS9oZG1pOiByZW1vdmUgbm93LXJlZHVu
+ZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vb21h
+cGRybTogcmVtb3ZlIG5vdy1yZWR1bmRhbnQgY2FsbCB0byBkcm1fY29ubmVjdG9yX2F0dGFjaF9l
+bmNvZGVyKCkKICAgICAgcm0vcm9ja2NoaXA6IGNkbi1kcDogcmVtb3ZlIG5vdy1yZWR1bmRhbnQg
+Y2FsbCB0byBkcm1fY29ubmVjdG9yX2F0dGFjaF9lbmNvZGVyKCkKICAgICAgZHJtL3JvY2tjaGlw
+OiByazMwNjZfaGRtaTogcmVtb3ZlIG5vdy1yZWR1bmRhbnQgY2FsbCB0byBkcm1fY29ubmVjdG9y
+X2F0dGFjaF9lbmNvZGVyKCkKICAgICAgZHJtL3RlZ3JhOiBoZG1pOiByZW1vdmUgbm93LXJlZHVu
+ZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vdGVn
+cmE6IHJnYjogcmVtb3ZlIG5vdy1yZWR1bmRhbnQgY2FsbCB0byBkcm1fY29ubmVjdG9yX2F0dGFj
+aF9lbmNvZGVyKCkKICAgICAgZHJtL3Rlc3RzOiBicmlkZ2U6IHJlbW92ZSBub3ctcmVkdW5kYW50
+IGNhbGwgdG8gZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfZW5jb2RlcigpCiAgICAgIGRybTogdmVyaXNp
+bGljb246IHJlbW92ZSBub3ctcmVkdW5kYW50IGNhbGwgdG8gZHJtX2Nvbm5lY3Rvcl9hdHRhY2hf
+ZW5jb2RlcigpCiAgICAgIGRybS9leHlub3M6IGV4eW5vc19kcDogcmVtb3ZlIG5vdy1yZWR1bmRh
+bnQgY2FsbCB0byBkcm1fY29ubmVjdG9yX2F0dGFjaF9lbmNvZGVyKCkKICAgICAgZHJtOiByY2Fy
+LWR1OiBlbmNvZGVyOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3Jf
+YXR0YWNoX2VuY29kZXIoKQogICAgICBkcm06IHJlbmVzYXM6IHJ6LWR1OiByemcybF9kdV9lbmNv
+ZGVyOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3JfYXR0YWNoX2Vu
+Y29kZXIoKQogICAgICBkcm0vcm9ja2NoaXA6IGFuYWxvZ2l4X2RwOiByZW1vdmUgbm93LXJlZHVu
+ZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vcm9j
+a2NoaXA6IGR3X2RwOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3Jf
+YXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vcm9ja2NoaXA6IGR3X2hkbWlfcXA6IHJlbW92ZSBu
+b3ctcmVkdW5kYW50IGNhbGwgdG8gZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfZW5jb2RlcigpCiAgICAg
+IGRybS9yb2NrY2hpcDogaW5uby1oZG1pOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRy
+bV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vbXNtL21kcDQ6IHJlbW92ZSBu
+b3ctcmVkdW5kYW50IGNhbGwgdG8gZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfZW5jb2RlcigpCiAgICAg
+IGRybS9tc20vZHNpOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3Jf
+YXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vbXhzZmIvbGNkaWY6IHJlbW92ZSBub3ctcmVkdW5k
+YW50IGNhbGwgdG8gZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfZW5jb2RlcigpCiAgICAgIGRybS9yb2Nr
+Y2hpcDogbHZkczogcmVtb3ZlIG5vdy1yZWR1bmRhbnQgY2FsbCB0byBkcm1fY29ubmVjdG9yX2F0
+dGFjaF9lbmNvZGVyKCkKICAgICAgZHJtL3RpZHNzOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxs
+IHRvIGRybV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQogICAgICBkcm0vdGlsY2RjOiByZW1v
+dmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQog
+ICAgICBkcm06IHp5bnFtcF9rbXM6IHJlbW92ZSBub3ctcmVkdW5kYW50IGNhbGwgdG8gZHJtX2Nv
+bm5lY3Rvcl9hdHRhY2hfZW5jb2RlcigpCiAgICAgIGRybS9pbXg6IHJlbW92ZSBub3ctcmVkdW5k
+YW50IGNhbGwgdG8gZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfZW5jb2RlcigpCiAgICAgIGRybS9yb2Nr
+Y2hpcDogcmdiOiByZW1vdmUgbm93LXJlZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3JfYXR0
+YWNoX2VuY29kZXIoKQogICAgICBkcm06IHJlbmVzYXM6IHNobW9iaWxlOiByZW1vdmUgbm93LXJl
+ZHVuZGFudCBjYWxsIHRvIGRybV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoKQoKIGRyaXZlcnMv
+Z3B1L2RybS9hZHAvYWRwX2Rydi5jICAgICAgICAgICAgICAgICAgICAgfCAgMiAtLQogZHJpdmVy
+cy9ncHUvZHJtL2JyaWRnZS9hZHY3NTExL2Fkdjc1MTFfZHJ2LmMgICAgICB8ICAyIC0tCiBkcml2
+ZXJzL2dwdS9kcm0vYnJpZGdlL2l0ZS1pdDYyNjMuYyAgICAgICAgICAgICAgIHwgIDIgLS0KIGRy
+aXZlcnMvZ3B1L2RybS9icmlkZ2UvdGktc242NWRzaTg2LmMgICAgICAgICAgICAgfCAgMiAtLQog
+ZHJpdmVycy9ncHUvZHJtL2Rpc3BsYXkvZHJtX2JyaWRnZV9jb25uZWN0b3IuYyAgICB8IDExICsr
+KysrKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0vZXh5bm9zL2V4eW5vc19kcC5jICAgICAgICAgICAg
+ICAgIHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9pbXgvZGMvZGMta21zLmMgICAgICAgICAgICAg
+ICAgICAgfCAgOCArLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2lteC9kY3NzL2Rjc3Mta21zLmMg
+ICAgICAgICAgICAgICB8ICAyIC0tCiBkcml2ZXJzL2dwdS9kcm0vaW14L2lwdXYzL2lteC1sZGIu
+YyAgICAgICAgICAgICAgIHwgIDIgLS0KIGRyaXZlcnMvZ3B1L2RybS9pbXgvaXB1djMvcGFyYWxs
+ZWwtZGlzcGxheS5jICAgICAgfCAgMiAtLQogZHJpdmVycy9ncHUvZHJtL2lteC9sY2RjL2lteC1s
+Y2RjLmMgICAgICAgICAgICAgICB8ICAyIC0tCiBkcml2ZXJzL2dwdS9kcm0vaW5nZW5pYy9pbmdl
+bmljLWRybS1kcnYuYyAgICAgICAgIHwgIDIgLS0KIGRyaXZlcnMvZ3B1L2RybS9rbWIva21iX2Rz
+aS5jICAgICAgICAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL21lZGlhdGVr
+L210a19kcGkuYyAgICAgICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRl
+ay9tdGtfZHNpLmMgICAgICAgICAgICAgICAgfCAgMSAtCiBkcml2ZXJzL2dwdS9kcm0vbWVzb24v
+bWVzb25fZW5jb2Rlcl9jdmJzLmMgICAgICAgIHwgIDIgLS0KIGRyaXZlcnMvZ3B1L2RybS9tZXNv
+bi9tZXNvbl9lbmNvZGVyX2hkbWkuYyAgICAgICAgfCAgMiAtLQogZHJpdmVycy9ncHUvZHJtL21z
+bS9kaXNwL21kcDQvbWRwNF9rbXMuYyAgICAgICAgICB8ICA3IC0tLS0tLS0KIGRyaXZlcnMvZ3B1
+L2RybS9tc20vZHAvZHBfZHJtLmMgICAgICAgICAgICAgICAgICAgfCAgMiAtLQogZHJpdmVycy9n
+cHUvZHJtL21zbS9kc2kvZHNpX21hbmFnZXIuYyAgICAgICAgICAgICB8ICA0IC0tLS0KIGRyaXZl
+cnMvZ3B1L2RybS9tc20vaGRtaS9oZG1pLmMgICAgICAgICAgICAgICAgICAgfCAgMiAtLQogZHJp
+dmVycy9ncHUvZHJtL214c2ZiL2xjZGlmX2Rydi5jICAgICAgICAgICAgICAgICB8ICA2IC0tLS0t
+LQogZHJpdmVycy9ncHUvZHJtL29tYXBkcm0vb21hcF9kcnYuYyAgICAgICAgICAgICAgICB8ICAy
+IC0tCiBkcml2ZXJzL2dwdS9kcm0vcmVuZXNhcy9yY2FyLWR1L3JjYXJfZHVfZW5jb2Rlci5jIHwg
+IDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9yZW5lc2FzL3J6LWR1L3J6ZzJsX2R1X2VuY29kZXIuYyAg
+fCAgMiArLQogZHJpdmVycy9ncHUvZHJtL3JlbmVzYXMvc2htb2JpbGUvc2htb2JfZHJtX2NydGMu
+YyB8IDE2ICsrKysrKystLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9hbmFsb2dp
+eF9kcC1yb2NrY2hpcC5jICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL2Nkbi1k
+cC1jb3JlLmMgICAgICAgICAgICB8ICAyIC0tCiBkcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvZHdf
+ZHAtcm9ja2NoaXAuYyAgICAgICAgIHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9k
+d19oZG1pX3FwLXJvY2tjaGlwLmMgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlw
+L2lubm9faGRtaS1yb2NrY2hpcC5jICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vcm9ja2No
+aXAvcmszMDY2X2hkbWkuYyAgICAgICAgICAgIHwgIDIgLS0KIGRyaXZlcnMvZ3B1L2RybS9yb2Nr
+Y2hpcC9yb2NrY2hpcF9sdmRzLmMgICAgICAgICAgfCAgNiAtLS0tLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9yb2NrY2hpcC9yb2NrY2hpcF9yZ2IuYyAgICAgICAgICAgfCAgOSAtLS0tLS0tLS0KIGRyaXZl
+cnMvZ3B1L2RybS90ZWdyYS9oZG1pLmMgICAgICAgICAgICAgICAgICAgICAgfCAgMiAtLQogZHJp
+dmVycy9ncHUvZHJtL3RlZ3JhL3JnYi5jICAgICAgICAgICAgICAgICAgICAgICB8ICAyIC0tCiBk
+cml2ZXJzL2dwdS9kcm0vdGVzdHMvZHJtX2JyaWRnZV90ZXN0LmMgICAgICAgICAgIHwgIDIgLS0K
+IGRyaXZlcnMvZ3B1L2RybS90aWRzcy90aWRzc19lbmNvZGVyLmMgICAgICAgICAgICAgfCAgNiAt
+LS0tLS0KIGRyaXZlcnMvZ3B1L2RybS90aWxjZGMvdGlsY2RjX2VuY29kZXIuYyAgICAgICAgICAg
+fCAgNiAtLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS92ZXJpc2lsaWNvbi92c19icmlkZ2UuYyAgICAg
+ICAgICAgfCAgMSAtCiBkcml2ZXJzL2dwdS9kcm0veGxueC96eW5xbXBfa21zLmMgICAgICAgICAg
+ICAgICAgIHwgIDYgLS0tLS0tCiA0MSBmaWxlcyBjaGFuZ2VkLCAyNSBpbnNlcnRpb25zKCspLCAx
+MTcgZGVsZXRpb25zKC0pCi0tLQpiYXNlLWNvbW1pdDogNzdmZWMzN2M4OTVmY2JkZWZiY2VjOTdj
+ZWZkNmQxZjVjZmRmMWUzYQpjaGFuZ2UtaWQ6IDIwMjYwNDE2LWRybS1icmlkZ2UtY29ubmVjdG9y
+LWF0dGFjaF9lbmNvZGVyLWM2NTFhYzA1NzA1ZgoKQmVzdCByZWdhcmRzLAotLSAgCkx1Y2EgQ2Vy
+ZXNvbGkgPGx1Y2EuY2VyZXNvbGlAYm9vdGxpbi5jb20+CgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
+dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
