@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EECBBF9935C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 09:26:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CF61F99344
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 09:26:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5S/2wTkrjiFIPa0XeVQO7vp4HscjsfS12YeU3uODEcw=; b=qqVpQI+pxuA43h
-	EhmCqHt3YHwa6uKZYERTnVMCxwe4MplWOETYLQVO7TrdVBG+3yhsLOTiFUUkjGTSP0Nq+hh3YGEom
-	hqRYHs9C85tYb//IIZ8oQB/KJL7RyDeSPEihjYUxAuJA8S6/QJ48pUOWnT72sGCs3FSMCdouVmHrj
-	l3eN3eDIqbM5irUeqVn906/9qgjHoJ87CYlK0UBHVFGaLb6Fr22i7r8UGD3ymznlZhBKOYiTYpyjB
-	16z6eRTZiJXuPNCMq/bCrflsTybntJ9RdYDKnCu51diJA0w0ONyXOSRz6xiI0cSpy/bF88sYinn9y
-	Eeg+GIlHircSyaWeDhUw==;
+	List-Owner; bh=8yGQhuH8bwi4aiq4Okt9vEfmYJciKyP/jckeaBB5TUI=; b=fg4eWeOXByI29J
+	xXDZKCsF40ha6oP4AQGrB8c8Tp+lXQH03QX7E52frirQbDeNWH8rgdtZZdOrq7qxAT5k63PiFB+YS
+	mh151SnbGBLR+8Cn7IDZLK9RxM+CqUQFSZalO/xa6FqNThzcZ9I8SqMefYaA6haBnM6QJ/NCdN6pa
+	2WtRd/QiZM94mpnUM7fc+3bDRQt6D4w+T/xQ8sxNCP7eT5R5orIl19DM4KrhXKemcM0y6//5yqX9T
+	XuHE8pkJQLdjtMaXJF+9zngQWULVNZdUlN6JUtGYhymyt4N0s7/tgeFUFSwwjFoLD5XncsKj3SI+L
+	Ud7aHoQgqk9tZcdscVyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFqKM-0000000BOE8-0ky4;
-	Thu, 23 Apr 2026 09:26:30 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1wFqKb-0000000BOMP-10Bl;
+	Thu, 23 Apr 2026 09:26:45 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFqKJ-0000000BOBd-0tCv
+	id 1wFqKX-0000000BOK0-2za6
 	for linux-amlogic@lists.infradead.org;
-	Thu, 23 Apr 2026 09:26:29 +0000
+	Thu, 23 Apr 2026 09:26:43 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id B625D4E42AC1;
-	Thu, 23 Apr 2026 09:26:25 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 4DACA1A33BF;
+	Thu, 23 Apr 2026 09:26:40 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8748F604EB;
-	Thu, 23 Apr 2026 09:26:25 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 62CAF10460B12;
-	Thu, 23 Apr 2026 11:26:07 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 13CBB60495;
+	Thu, 23 Apr 2026 09:26:40 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0C98910460B45;
+	Thu, 23 Apr 2026 11:26:22 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1776936381; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1776936396; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=GIM+dcxS8lu18rSAReKvcdwXLUTzXndT5z9nh1cB178=;
-	b=IQvytSRzpsEOLxllhrLM7XVBKE6Q6FqujYN+9FSRtCOKYpPEhe60imY7rMaEAaYPEpQsk3
-	rtL6n93qEz03CyzsIK0TiatLnIN4tJpVNC3KiW2ShXeCPKtSHQPjyPn9z5hm1KUF5c807y
-	+lHubBshNWPsXZAsJa/0WJHC8n/bNBJH/oplJzQKD0dGXtH/FxY46YNwqrAFRnFPhdzOeU
-	T9TUrXroqHDRPS1CzdcOJCVnnu2++ZX/0MpqzvMaPnJ/zuEWGZm1+Zrkiq6qzLzH5pMhiR
-	opv78w6nhZ1h0Kut8qn2uDYNGWuHfgV+9I06O2l0VF2L009wTE4KuXH+obJJbA==
+	bh=Vg4xk0BL9Vx4AIBY/T0FrCStojWIiXvnfyD7V05c31A=;
+	b=MbRwzF1RKivDu9bPqrlwuig+QvzBShR5Qm4bzeer4rlUTd/VkEfPYVkgQt0dIFHTYVIxBL
+	7uy8hIGh0JcidF9EBhClpBsWLfPaSNz2P5H+pUiiSsrRrUKKls8FCitgNNTqFNxwdjuFmI
+	E8G/b5YW0whkI92QeVxeOn1CYBh+G5ryE97MzM5ozIh+dckbWCx7SO+OPydyWLQBZ87bFY
+	4rz7gtomP33u4jmQr3TfNqKG7l/WZhuUz9GPxB5TPq6H02YR0ja6XdAxWFvDWACfXL3eRV
+	HrLFE75DsWEEKPqSsr5w32y5ECCP7JRX5NuIxNTPm5AyZikOYqSJ7uAn3r7bYg==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Thu, 23 Apr 2026 11:17:27 +0200
-Subject: [PATCH v2 33/41] drm/msm/dsi: remove now-redundant call to
+Date: Thu, 23 Apr 2026 11:17:28 +0200
+Subject: [PATCH v2 34/41] drm/mxsfb/lcdif: remove now-redundant call to
  drm_connector_attach_encoder()
 MIME-Version: 1.0
-Message-Id: <20260423-drm-bridge-connector-attach_encoder-v2-33-2ae6ca69b390@bootlin.com>
+Message-Id: <20260423-drm-bridge-connector-attach_encoder-v2-34-2ae6ca69b390@bootlin.com>
 References: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 In-Reply-To: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
@@ -111,8 +111,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
 X-Mailer: b4 0.15.2
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_022627_430349_EA242B37 
-X-CRM114-Status: UNSURE (   8.35  )
+X-CRM114-CacheID: sfid-20260423_022642_234905_C425EE27 
+X-CRM114-Status: UNSURE (   7.58  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -135,24 +135,26 @@ drm_bridge_connector_init().
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/msm/dsi/dsi_manager.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/mxsfb/lcdif_drv.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_manager.c b/drivers/gpu/drm/msm/dsi/dsi_manager.c
-index ca400924d4ee..46faeaae9d94 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_manager.c
-+++ b/drivers/gpu/drm/msm/dsi/dsi_manager.c
-@@ -485,10 +485,6 @@ int msm_dsi_manager_connector_init(struct msm_dsi *msm_dsi,
- 		return PTR_ERR(connector);
+diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lcdif_drv.c
+index 7f07ae24e0dc..f5bb59cd5028 100644
+--- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
++++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
+@@ -99,12 +99,6 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+ 			return dev_err_probe(dev, PTR_ERR(connector),
+ 					     "Failed to init bridge_connector for endpoint%u\n",
+ 					     of_ep.id);
+-
+-		ret = drm_connector_attach_encoder(connector, encoder);
+-		if (ret)
+-			return dev_err_probe(dev, ret,
+-					     "Failed to attach connector for endpoint%u\n",
+-					     of_ep.id);
  	}
  
--	ret = drm_connector_attach_encoder(connector, encoder);
--	if (ret < 0)
--		return ret;
--
  	return 0;
- }
- 
 
 -- 
 2.53.0
