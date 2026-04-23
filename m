@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C7A4F99344
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 09:20:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AF17F9935C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 09:20:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ka/wFc1yPWmeuLkjrpKa6Nn8clEDVQSJLLl/ap66/rQ=; b=fJiM1dZlU4Yk93
-	Ec2XXBlabhIUsHphslswvbAswqIdJ3PR2YcFNlDkaE53gHhLuiigDF+9VMhMApyrXimA7FiB1amp/
-	ilKtcmNZzznCa109AI/08VUvHEbQnKFyJm+uxJhEwo4ZqxH6/spWCNruosKh8Z3PDqbcrpps8RV5q
-	8mSJLGb8/3i0Pie0L4VHOZUnseJt36oqTNyj4NNoykCTWZJnB0J7yfpWQRMcU5SPh1KsLmvzbND4M
-	ikb0gTXOQfxZDfjkNfxBkgYMP5eeuM+BlxxQCpTVvLxbxEuJmg08X9CGXL39Vpb0XD9YZbiCBJnip
-	vTRgsb99B9hv5Kh4aCFw==;
+	List-Owner; bh=Zw2fU+d1eC1aBdBijbFho7RJ+JXwqVbBWcha/hCn2kE=; b=ESNuEWQSMiDlnO
+	EfSihUI4owAjuRrpBDvHdrRRBfEkDOiqNpqQepgwH9Ps9gGHvR+Qt8VzalLPInexleHol3rPJZkA7
+	SnJTKnT/At2KCbr5Ef/Z/PxuqTrDwVXYHYnpKy7YCJx3sTRrDK//RUXmlzMaKW6+ntCeSiSwP7G+o
+	ExHI7x5CDOw4z7SB9D+jotyTU78cdBd5NzD3RSR+Lu56EPWEhKBXzxnqC96Od3YDzi289Aybgafjx
+	uJ1XK39xLmJdTCjNKyFFBsQ/ri03PLYLY8UqRNQAmm5eGSWE0BbsbNPALhuVaxJoYgT4UAjFwoMDx
+	TtFHijT+rHGgrrYxtmMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFqEC-0000000BLDk-3Vhv;
-	Thu, 23 Apr 2026 09:20:08 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1wFqER-0000000BLKm-2LY3;
+	Thu, 23 Apr 2026 09:20:23 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFqE8-0000000BLBF-2n8P;
-	Thu, 23 Apr 2026 09:20:07 +0000
+	id 1wFqEN-0000000BLIB-4AC5
+	for linux-amlogic@lists.infradead.org;
+	Thu, 23 Apr 2026 09:20:21 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id DE7681A33BC;
-	Thu, 23 Apr 2026 09:20:02 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 4FE03C5EF0B;
+	Thu, 23 Apr 2026 09:20:59 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B0E8F60495;
-	Thu, 23 Apr 2026 09:20:02 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 176CA10460B45;
-	Thu, 23 Apr 2026 11:19:42 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 17BBD60495;
+	Thu, 23 Apr 2026 09:20:18 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9E5CE10460A92;
+	Thu, 23 Apr 2026 11:19:59 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1776935998; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1776936013; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=ASEN5iSe+7KTh/SjT1+17CeS94d84Fgv4bTew10HK+Q=;
-	b=FiIaBuEJaDhAl+DzNbMlwjNi0Vz+rthytpomLSBrB1ubfQOmTNhrkgIANbSIy7CMifeYC7
-	nGKrgNtcFVxAJotRI8VdFF3OzrxMasRYyuDQlAgQSK6OlqLDdLeJxu8J1WfM9SLNgI+RaT
-	/+/LQjwR/+k2bYlXcKrFCNeNiu38ewQmHGxOblAYdcuJr4xBDB2TLxVT5n1myV0Hp21WlT
-	K5IeTaPu0H5aTsCqObm3tEAVESkoK9yA8O3vZY5hX72XKSP2Y1DHD/3IwNEOmoE9OO0Q8Q
-	g0bULMKIo2B+FAwZlHRi8sELtXFkcIdepUcdlEd6BaQ0cjMBkKpvIAuOGvYyhA==
+	bh=IFVArrlXrrxF7g/F6G1Kw88L/K71a7sbxxyWgR6JGI4=;
+	b=O2BiBwr4reDjDzNdG2zPrbfsPJkJETylnnMxGXJ2EKICCzH+6YNtf5rKRcOPGDALvmQLlQ
+	IWnHj/d26SVZRgDkyqAJxR+piAX969voOcBJJKEvf0sopJUxSBixuMxdkesgxEIsjkQ5W9
+	vy/4+yjhQTWoxcPXqLnlf6XVii+t3We8QfDzKDxtlwaQpzxroOBPzlkTPkXCyU4NIDWWZo
+	JVjbypAQ3saokUUdjRjFMn+hCoRkbz+QdRlW7Se6obybDghMytPV0LlokYNO/4MMcz4bK0
+	vYL5OHE7RtvKU1y4HvTClU7F2/CedfXNZNVeA2f2NWAeIPb/eQpFpXS59HaCNg==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Thu, 23 Apr 2026 11:17:02 +0200
-Subject: [PATCH v2 08/41] drm/imx: parallel-display: remove now-redundant
- call to drm_connector_attach_encoder()
+Date: Thu, 23 Apr 2026 11:17:03 +0200
+Subject: [PATCH v2 09/41] drm/imx/lcdc: remove now-redundant call to
+ drm_connector_attach_encoder()
 MIME-Version: 1.0
-Message-Id: <20260423-drm-bridge-connector-attach_encoder-v2-8-2ae6ca69b390@bootlin.com>
+Message-Id: <20260423-drm-bridge-connector-attach_encoder-v2-9-2ae6ca69b390@bootlin.com>
 References: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 In-Reply-To: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
@@ -110,8 +111,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
 X-Mailer: b4 0.15.2
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_022004_847148_E1E64BA1 
-X-CRM114-Status: UNSURE (   8.82  )
+X-CRM114-CacheID: sfid-20260423_022020_335363_C1EAF074 
+X-CRM114-Status: UNSURE (   8.97  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -134,22 +135,22 @@ drm_bridge_connector_init().
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/imx/ipuv3/parallel-display.c | 2 --
+ drivers/gpu/drm/imx/lcdc/imx-lcdc.c | 2 --
  1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/imx/ipuv3/parallel-display.c b/drivers/gpu/drm/imx/ipuv3/parallel-display.c
-index 6c505becb31d..0f06db95f00f 100644
---- a/drivers/gpu/drm/imx/ipuv3/parallel-display.c
-+++ b/drivers/gpu/drm/imx/ipuv3/parallel-display.c
-@@ -216,8 +216,6 @@ static int imx_pd_bind(struct device *dev, struct device *master, void *data)
- 	if (IS_ERR(connector))
- 		return PTR_ERR(connector);
+diff --git a/drivers/gpu/drm/imx/lcdc/imx-lcdc.c b/drivers/gpu/drm/imx/lcdc/imx-lcdc.c
+index e200b40f30fe..f52832b43aca 100644
+--- a/drivers/gpu/drm/imx/lcdc/imx-lcdc.c
++++ b/drivers/gpu/drm/imx/lcdc/imx-lcdc.c
+@@ -448,8 +448,6 @@ static int imx_lcdc_probe(struct platform_device *pdev)
+ 	if (IS_ERR(lcdc->connector))
+ 		return dev_err_probe(drm->dev, PTR_ERR(lcdc->connector), "Cannot init bridge connector\n");
  
--	drm_connector_attach_encoder(connector, encoder);
+-	drm_connector_attach_encoder(lcdc->connector, &lcdc->pipe.encoder);
 -
- 	return 0;
- }
- 
+ 	/*
+ 	 * The LCDC controller does not have an enable bit. The
+ 	 * controller starts directly when the clocks are enabled.
 
 -- 
 2.53.0
