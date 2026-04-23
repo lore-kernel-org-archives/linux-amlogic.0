@@ -4,83 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A306BFDEE2A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 16:08:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81E5BFDEE27
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 16:34:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=m0HBl1kAtAPjzhTDBuGkUTQHBNt4oAfXWRId3blyD9g=; b=WVNmQp97GaI2ZR
-	BpAxhOt/OjLA7k1YmHnocUFXl0N7cJ54C8a/b8fNS8tnZfioD7l7WvqXGnfdWA7ux0HUxXZRB0h9q
-	S5y2gTBJM4eAt+l8TqdLzFUZnLO3YjBitYLHTSQpOJosL8yU1YpTdh9Mc97kiNO5Bv0n6/vAQ8DDT
-	Y/9iUBl35GHawLGX6LAd9+c0EFqL4iXDcuWEFQHsDkTRnJKVj5aNyzGqDBiFqVPtxHNQXRIYhIdkR
-	NbRMJxiwS0NiIKYh85hPihfR725KQAdK8N4YBmhdchDBJaxBI5SK0wUXVi053h21wYVDykoMkpidR
-	MWMaKIUpijhZja0CaWuQ==;
+	List-Owner; bh=8a5WAIYz0tVhHprHQDVu13HhVerqQqjel1wj/B8HXRE=; b=Hc8H/2xgKJDvPh
+	VotsZEXxpdlz/BZPK+5Z5yE8jUJGXSOIZYdwYhuJHha3bWz300QnulQ79Qz4obWdkofYTjSQ5k8jo
+	8bc9Mpf9+0/IDhgW17eHEZ8VQFpsjWc+njxuJehGUREodyYR4x+aKjUSL+zPLVFyn2kucGLyuAyCP
+	CSjEYHNu8lLQ/F1rzYL9MgvHxBjyUaF8CSboCZGpY3yZUqhF3LWnRzjWFtjexPSa1V/etFLXPF1+w
+	e+RdmsPWaX+0U5RNwzz7HWmSn2ZsRFmLHXTzZ2Oz4t8UaSVpOtu44Eq2KtLMGm//tL6H/tOMHMDPm
+	X5Mb2pCaz4VDJO0jaeDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFwbJ-0000000BvgH-11TH;
-	Thu, 23 Apr 2026 16:08:28 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wFx0M-0000000ByLB-43s8;
+	Thu, 23 Apr 2026 16:34:18 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFwb6-0000000BvUY-3Kzj;
-	Thu, 23 Apr 2026 16:08:20 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4FAFF446AF;
-	Thu, 23 Apr 2026 16:08:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1228FC2BCC7;
-	Thu, 23 Apr 2026 16:08:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776960491;
-	bh=Jnu26GqpRqta4b0VDzfrrRbzqQcMNeNztp6nUK+SEd4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Uhsizbp4E6opDbgCHWJ0iO04aDpIrZyLKdmrzI/vftt19r+V6vXeVFnavDdGC5I3N
-	 VIgOmn0TZURLA+Zt2WNckJ6rBM7oZRjTSFdsVJOgs40oo28d7Nx54msPbuy2FHPMbm
-	 gLju7UB9VUgwL05Yw6uVS3T/tyUi2RLtjrzgJpGqmo1uD3CBL4R52AcHKlvIzOo1za
-	 503JQ+HA3TgdltmSRo63RZ/6QwIck3qRBkRwqfCs5CHVcm1Vo39K+OmZw/2y7ijUbj
-	 dVz/uHGoDaO1pPfTgjdckJCLuLFJ5W0UCDFl4z+BcFBWFzy1XWmr585jKrlNAkmwu9
-	 Hv01XdOCfui0g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 07D8DFC037F;
-	Thu, 23 Apr 2026 16:08:11 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Thu, 23 Apr 2026 18:07:19 +0200
-Subject: [PATCH v4 4/8] thermal: amlogic: Add support for secure monitor
- calibration readout
+	id 1wFx0J-0000000ByKF-1WbZ
+	for linux-amlogic@lists.infradead.org;
+	Thu, 23 Apr 2026 16:34:17 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4891e5b9c1fso49704755e9.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 23 Apr 2026 09:34:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1776962053; x=1777566853; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hCxF1tnHPF+l0IJcYbvi9JKm3Wp/kM6jg4D7Flri0tM=;
+        b=I+ajsO14YztlWC1SoWS2IC3qkC3NJGk8gPOXWx3crVNx3Nlu9OXd6FPcMOacQ8SWla
+         sAhavjg503+v8e5l+fLyQ00MrQrXzp+JJjlcDDzpUmbFxIucQrRF/F8JyZMKk5n+Z4Mz
+         mHboCkfMtOeGI+BbOSy8VGkKCh0kLmTqzTo81T4XJfvOl3fJonbhpZg2EyXgQXsfWtoe
+         wXrtB6eZlb4eyQKF9fnQPccjyemaK0tLlWK99Oc6LwbhVId4qU2oRSdU0Oe+DKo5ZDrf
+         1tQCT4odZCcfZSCDMQMNE0w+QZSrRhcGSTLteqB+jxa6+0F2RLtOIfIekL2/UZymGCGP
+         jX7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776962053; x=1777566853;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hCxF1tnHPF+l0IJcYbvi9JKm3Wp/kM6jg4D7Flri0tM=;
+        b=fuo3EtOISLx8H+RfSQibPbEGANDpUmpPjgnMivoCk2IiVlme6mRMJ3o0Eet3Ggtwzf
+         DmiIIbg25FyjMrV1LNEptrVrKsZp+vC2628M2fI04lzW+cjoOqNJ0YJB2nNLqXFtxYSj
+         6SjwrHyA0fDyhPI24HcHQz5p5eFCEJBCrqDiDdo6v0mJIYZ6AuAM7JrAtyjycFW6qdKq
+         YQOPXKhHSjw+FCK0qMZToFv1lTht0rzwTYU1mAF3UzfIyiFr59fHX6rpXw4zYe1L4vf7
+         /Al36fc9Vz/lEsvTnGX4JcHYWLgxwlBUsRz+5d0ZPDcNUOAS/vJyWr9sxryuOhjC/byY
+         I2mg==
+X-Gm-Message-State: AOJu0YyFL0PANl3+v3qS40zAqryok1pwTfX+DHcmVcGEUN9Tp1EHYlNZ
+	HIJB2rcHfko8RKP7Nxpp8le6UFxJRQJQy8MmgdJrkDphbLKtWIfPZC8BSnlcKpjjXLISgfbymkV
+	AO22y
+X-Gm-Gg: AeBDiev8z7Es/eHnZJYKoE5Z7f5XdyO8g4z8PASpmgcykYd7vvCgPXc3KhTKMIKf/lJ
+	fYQzIE8rzLe6+xdq1eOvOOawkAlKYAVZGGhtonGm7i5usUnsYFoI+M8kOGc+zF/ZJfe+Sj2DVP5
+	JnAnn2/xZE9lxv+1ExhH2C4n/xxCM59UqzaFsBJUUha8NBB0v7DjhyrKzPdJcwChRXmfJV1Juxr
+	jeoBjSoQAuBGv7/B4/TqUgnKFmD6kJciLy4CIkb4JBvA69vZk3xIH2Y2XGZw4L9SUUg8Bxb+/jT
+	PlMFRa/Mj+77Bos9PnCm/4LWwAqw6h9/4xMY8XN8S46KP2Mybq4YB2N8KfpmWBl9mFQ9LvFx2VE
+	mkrpbgAPb6awg1A0JHvj2Tw88x+SdrmwmkJnb3P8c9FAdRVw1x80p8lcOSxCj/F67cXAOiJ5hdn
+	yx11qF6+Lgy9pC81woUWkVLeyJexcihvy/wJ3d
+X-Received: by 2002:a05:600c:a30a:b0:48a:581c:ead with SMTP id 5b1f17b1804b1-48a581c113cmr122795605e9.10.1776962052713;
+        Thu, 23 Apr 2026 09:34:12 -0700 (PDT)
+Received: from [192.168.3.100] ([151.41.223.93])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a55dc9f58sm465548275e9.6.2026.04.23.09.34.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Apr 2026 09:34:12 -0700 (PDT)
+Message-ID: <7fd88ec7-2ac0-454c-868b-cd1eca1fbe99@baylibre.com>
+Date: Thu, 23 Apr 2026 18:34:11 +0200
 MIME-Version: 1.0
-Message-Id: <20260423-add-thermal-t7-vim4-v4-4-d4c1528d5044@aliel.fr>
-References: <20260423-add-thermal-t7-vim4-v4-0-d4c1528d5044@aliel.fr>
-In-Reply-To: <20260423-add-thermal-t7-vim4-v4-0-d4c1528d5044@aliel.fr>
-To: Guillaume La Roque <glaroque@baylibre.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6338;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=qeq7CmoCVHNHWCj/bIX1HdhJMGDCbtiJ3F/tbHGtGxA=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ+Yr58fCL61b5Y//D5Q+U7nD0+y/3PkrtUfzur/klB7Nj
- G5nevqqo5SFQYyLQVZMkaV/ruWJd5ePnvm6Rz0FZg4rE8gQBi5OAZjI7weMDL1Ne058ip09K8Rg
- 5rtFfSsu6W7m7TqxLrtu0bt7RtkrTnEzMvydrHy981h08kfxpEkZqzfqyQrpr2JsEWNbo3HjZ8Y
- RT24A
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 05/11] ASoC: dt-bindings: amlogic: add schema for
+ audin-formatter and audin-toddr
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+References: <20260411-audin-rfc-v2-0-4c8a6ec5fcab@baylibre.com>
+ <20260411-audin-rfc-v2-5-4c8a6ec5fcab@baylibre.com>
+ <7d4ec08c-a67c-434c-a1cd-c3ef5b7e3336@kernel.org>
+ <71d2d8ab-21e2-4800-ad54-ba40ef2e136a@baylibre.com>
+ <57fedac6-cf3a-4a93-a4a9-9746dcbeaeb4@kernel.org>
+ <1j8qaerldi.fsf@starbuckisacylon.baylibre.com>
+ <b556ad94-373d-4a1c-83e6-055cfd3d9557@kernel.org>
+From: Valerio Setti <vsetti@baylibre.com>
+In-Reply-To: <b556ad94-373d-4a1c-83e6-055cfd3d9557@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_090812_894686_0E08B941 
-X-CRM114-Status: GOOD (  19.98  )
+X-CRM114-CacheID: sfid-20260423_093415_674126_71D8685C 
+X-CRM114-Status: GOOD (  19.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,224 +102,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: linux-kernel-dev@aliel.fr
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+On 4/23/26 15:17, Krzysztof Kozlowski wrote:
 
-Some SoCs (e.g. T7) expose thermal calibration data through the secure
-monitor rather than a directly accessible eFuse register. Add a use_sm
-flag to amlogic_thermal_data to select this path, and retrieve the
-firmware handle and tsensor_id from the "amlogic,secure-monitor" DT
-phandle with one fixed argument.
+>>>> Then the question might be: why not merging this together with
+>>>> audin-fifo? Becuase these are 3 indipendent instances from the interface
+>>>> and each of which can receive data from the interface. Each of them has
+>>>> its own registers range (and optionally also an interrupt - which is not
+>>>
+>>> 4 bytes is not "registers range". It is one register of someone else's
+>>> range.
+>>
+>> Yes, exactly like the AXG family which had an "audio bus" with reg and
+>> ranges property of length 0x2000, like you are describing, and a
+>> collection of smaller devices with very specific and targeted functions,
+>> using the range in question.
+>>
+>> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/arm64/boot/dts/amlogic/meson-axg.dtsi?h=v6.8#n1317
+>>
+>> The registers length of devices in this examples are in then 0x10 to
+>> 0x40 length. I honestly do not see the fundamental difference between 1
+>> and 10 regs to define what is a device and what is not.
+> 
+> And that example above is probably also not right if you only looked at
+> register range, but the difference is that you have distinctive other
+> resource - clocks.
+> 
+> And just to remind the old antipattern - each clock is also a "separate"
+> device and there is even old SoC architecture which did it. One clock
+> per device node. Since some years this is not allowed.
+> 
+> This device has no other distinctive resources. Only 4 bytes wide IO
+> range. So let me a bit clarify my previous statements:
+>
+> A device having only one resource - four bytes MMIO range - and nothing
+> else, and being tightly coupled with other devices, almost certainly is
+> not separate enough to be called a separate device node.
 
-Also introduce the amlogic,t7-thermal compatible using this new path.
-
-While refactoring, fix a pre-existing bug where
-amlogic_thermal_initialize() was called after
-devm_thermal_of_zone_register(), causing the thermal framework to
-read an uninitialized trim_info on zone registration.
-
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- drivers/thermal/amlogic_thermal.c | 115 ++++++++++++++++++++++++++++----------
- 1 file changed, 85 insertions(+), 30 deletions(-)
-
-diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
-index 5448d772db12a..0d0c01e57b85e 100644
---- a/drivers/thermal/amlogic_thermal.c
-+++ b/drivers/thermal/amlogic_thermal.c
-@@ -25,6 +25,7 @@
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
- #include <linux/thermal.h>
-+#include <linux/firmware/meson/meson_sm.h>
- 
- #include "thermal_hwmon.h"
- 
-@@ -84,12 +85,14 @@ struct amlogic_thermal_soc_calib_data {
-  * @u_efuse_off: register offset to read fused calibration value
-  * @calibration_parameters: calibration parameters structure pointer
-  * @regmap_config: regmap config for the device
-+ * @use_sm: read data from secure monitor instead of efuse
-  * This structure is required for configuration of amlogic thermal driver.
-  */
- struct amlogic_thermal_data {
- 	int u_efuse_off;
- 	const struct amlogic_thermal_soc_calib_data *calibration_parameters;
- 	const struct regmap_config *regmap_config;
-+	bool use_sm;
- };
- 
- struct amlogic_thermal {
-@@ -100,6 +103,8 @@ struct amlogic_thermal {
- 	struct clk *clk;
- 	struct thermal_zone_device *tzd;
- 	u32 trim_info;
-+	struct meson_sm_firmware *sm_fw;
-+	u32 tsensor_id;
- };
- 
- /*
-@@ -133,26 +138,6 @@ static int amlogic_thermal_code_to_millicelsius(struct amlogic_thermal *pdata,
- 	return temp;
- }
- 
--static int amlogic_thermal_initialize(struct amlogic_thermal *pdata)
--{
--	int ret = 0;
--	int ver;
--
--	regmap_read(pdata->sec_ao_map, pdata->data->u_efuse_off,
--		    &pdata->trim_info);
--
--	ver = TSENSOR_TRIM_VERSION(pdata->trim_info);
--
--	if ((ver & TSENSOR_TRIM_CALIB_VALID_MASK) == 0) {
--		ret = -EINVAL;
--		dev_err(&pdata->pdev->dev,
--			"tsensor thermal calibration not supported: 0x%x!\n",
--			ver);
--	}
--
--	return ret;
--}
--
- static int amlogic_thermal_enable(struct amlogic_thermal *data)
- {
- 	int ret;
-@@ -190,6 +175,70 @@ static int amlogic_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
- 	return 0;
- }
- 
-+static int amlogic_thermal_probe_sm(struct platform_device *pdev,
-+				    struct amlogic_thermal *pdata)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *sm_np;
-+	struct of_phandle_args ph_args;
-+	int ret;
-+
-+	ret = of_parse_phandle_with_fixed_args(pdev->dev.of_node,
-+					       "amlogic,secure-monitor",
-+					       1, 0, &ph_args);
-+	if (ret)
-+		return ret;
-+
-+	sm_np = ph_args.np;
-+	if (!sm_np) {
-+		dev_err(dev,
-+			"Failed to parse secure monitor phandle\n");
-+		return -ENODEV;
-+	}
-+
-+	pdata->sm_fw = meson_sm_get(sm_np);
-+	of_node_put(sm_np);
-+	if (!pdata->sm_fw) {
-+		dev_err(dev, "Failed to get secure monitor firmware\n");
-+		return -EPROBE_DEFER;
-+	}
-+
-+	pdata->tsensor_id = ph_args.args[0];
-+
-+	return meson_sm_get_thermal_calib(pdata->sm_fw,
-+					  &pdata->trim_info,
-+					  pdata->tsensor_id);
-+}
-+
-+static int amlogic_thermal_probe_syscon(struct platform_device *pdev,
-+					struct amlogic_thermal *pdata)
-+{
-+	struct device *dev = &pdev->dev;
-+	int ret = 0;
-+	int ver;
-+
-+	pdata->sec_ao_map = syscon_regmap_lookup_by_phandle
-+		(pdev->dev.of_node, "amlogic,ao-secure");
-+	if (IS_ERR(pdata->sec_ao_map)) {
-+		dev_err(dev, "syscon regmap lookup failed.\n");
-+		return PTR_ERR(pdata->sec_ao_map);
-+	}
-+
-+	regmap_read(pdata->sec_ao_map, pdata->data->u_efuse_off,
-+		    &pdata->trim_info);
-+
-+	ver = TSENSOR_TRIM_VERSION(pdata->trim_info);
-+
-+	if ((ver & TSENSOR_TRIM_CALIB_VALID_MASK) == 0) {
-+		ret = -EINVAL;
-+		dev_err(&pdata->pdev->dev,
-+			"tsensor thermal calibration not supported: 0x%x!\n",
-+			ver);
-+	}
-+
-+	return ret;
-+}
-+
- static const struct thermal_zone_device_ops amlogic_thermal_ops = {
- 	.get_temp	= amlogic_thermal_get_temp,
- };
-@@ -226,6 +275,12 @@ static const struct amlogic_thermal_data amlogic_thermal_a1_cpu_param = {
- 	.regmap_config = &amlogic_thermal_regmap_config_g12a,
- };
- 
-+static const struct amlogic_thermal_data amlogic_thermal_t7_param = {
-+	.use_sm			= true,
-+	.calibration_parameters	= &amlogic_thermal_g12a,
-+	.regmap_config		= &amlogic_thermal_regmap_config_g12a,
-+};
-+
- static const struct of_device_id of_amlogic_thermal_match[] = {
- 	{
- 		.compatible = "amlogic,g12a-ddr-thermal",
-@@ -239,6 +294,10 @@ static const struct of_device_id of_amlogic_thermal_match[] = {
- 		.compatible = "amlogic,a1-cpu-thermal",
- 		.data = &amlogic_thermal_a1_cpu_param,
- 	},
-+	{
-+		.compatible = "amlogic,t7-thermal",
-+		.data = &amlogic_thermal_t7_param,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, of_amlogic_thermal_match);
-@@ -271,12 +330,12 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
- 	if (IS_ERR(pdata->clk))
- 		return dev_err_probe(dev, PTR_ERR(pdata->clk), "failed to get clock\n");
- 
--	pdata->sec_ao_map = syscon_regmap_lookup_by_phandle
--		(pdev->dev.of_node, "amlogic,ao-secure");
--	if (IS_ERR(pdata->sec_ao_map)) {
--		dev_err(dev, "syscon regmap lookup failed.\n");
--		return PTR_ERR(pdata->sec_ao_map);
--	}
-+	if (pdata->data->use_sm)
-+		ret = amlogic_thermal_probe_sm(pdev, pdata);
-+	else
-+		ret = amlogic_thermal_probe_syscon(pdev, pdata);
-+	if (ret)
-+		return ret;
- 
- 	pdata->tzd = devm_thermal_of_zone_register(&pdev->dev,
- 						   0,
-@@ -290,10 +349,6 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
- 
- 	devm_thermal_add_hwmon_sysfs(&pdev->dev, pdata->tzd);
- 
--	ret = amlogic_thermal_initialize(pdata);
--	if (ret)
--		return ret;
--
- 	ret = amlogic_thermal_enable(pdata);
- 
- 	return ret;
+Wait, I re-checked the manual of this SoC and I realized that I missed a 
+reset line for this formatter device. Sorry for that.
+Also I was probably too conservative for the MMIO range because I 
+limited it to cover only the features that I'm using in the driver. 
+However I can extend it further to cover all formatting related 
+registers: they are not used for now in the driver but they might be in 
+the future.
+This should overcome the above mentioned limitations and qualify the 
+formatter as a standalone device, right?
 
 -- 
-2.49.0
-
+Valerio
 
 
 _______________________________________________
