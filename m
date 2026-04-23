@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F40A8FDEE21
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 16:08:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8C53FDEE23
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 16:08:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZyYH3rlFX6/oXMfYc/sx3uCwe/LT/bBbVzbXo3rk1mg=; b=i5TdSunEV0/htG
-	zKUbZubBLA4PrwpHF9wE7M+kkol/FrGrFjeT3Z5hNo6yStetP2os8otZZl8yT9+h6xULJjRIAn78o
-	vdUrmpApkfE6X2+1qhpStqqh7JQ49lRbx9TAgDqWC15RZetN/zdUy6Hq18+fzNb6abyAGMUWzgSvp
-	5WV3S3urASqYP66uodwT5jr3toFodB6CHcMaFVwZfJraI8U3PLD+T37DcEAI/8v1zKy196gBBu5RR
-	rB8skMqt6ph3BA+ovXC+jDND9ArMuac+iPon2SF83gp8Gm9lWzZeX3MRGGS+6Zrl/ioTCqLkgE1yv
-	Z47a3XBenNOUHweCN2MQ==;
+	List-Owner; bh=OnG8LH1QJYMP7uJtMRNNvBO5hlJGsE2KFsM3cWbRWlM=; b=yfWyYhClSkTyZ8
+	TdkPoY4ha6DUUJDN2WbSpNICh3ZtfAbMtdLqGhRPMH/AVwYedk4AzFYLBM7+haIlPmiu4gKUSv4EA
+	YM+y7H693L8oy8wUGM301qzANXGNtzGhg9EauCxDlLDIgTkCsniKhipLwZTBacwm9XOfdOA9qczXO
+	k0wW/soAHaBplfFEZFZLw/5Gszw0CEiflWhRxfTNEZ8xNaxEuJ4V04pUiuuzkfF8oTApuaDGk9qLn
+	fabwIyYsn3ztOCPIJb/adpX05HmW2fCqsiE7D7q/jZV/9AHgtqpInF4fJhJRx95j/Fl4uWAAiIMNh
+	BBeb4BWhbkmRnxKsKkgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFwbG-0000000Bvc0-3Ctp;
+	id 1wFwbG-0000000BvbB-0bLt;
 	Thu, 23 Apr 2026 16:08:22 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFwbA-0000000BvWc-01An;
-	Thu, 23 Apr 2026 16:08:18 +0000
+	id 1wFwb6-0000000BvUX-38yV;
+	Thu, 23 Apr 2026 16:08:17 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6DD4E44722;
+	by sea.source.kernel.org (Postfix) with ESMTP id 38B0844575;
 	Thu, 23 Apr 2026 16:08:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 43838C2BCFA;
-	Thu, 23 Apr 2026 16:08:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 023FAC2BCB9;
+	Thu, 23 Apr 2026 16:08:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1776960491;
-	bh=/rHcPdtLifVRpQWA0pD4xaKz0Tudx/zEU/4kl8CAidc=;
+	bh=BEGT7QGuXKZN1/TyxTNzOGeUptM2L1qa4oyYW8iXDC0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=jPuBgajNFmUoYAdkjp2wzHuug93jYq+h9eTse5LkT2QHWGvHLbFZY5OgDJuSgXMHy
-	 ojis91xAcS61rH+e8FNYYHHmMLpISEBnJbvD12FpDu7pCwdsDXZf55UAdhusDSxBq1
-	 aCdQazBdp8YLzZxZf4R5PpIuycEfVEa9oFc6EJcj1Ca2y2oOtmer+59r6o2H+1NAL7
-	 dfiAw4fQ27PS/oDjJjLPfM0xnku76zHdgXye8g1NwFFMLzkf6i9pNlyBFZKF43ndf6
-	 h4EGRwgrK0rOenQGZSZKH/5MlczExXXNbKgUnqaRaA/kGlTVjc2lOQuhunQxDArbak
-	 e/8DKtm1uz5Rg==
+	b=rjbhVxhmHgVZZjoPWaU7066lR5LruzPiO+4IPp/2qwmj+prtPplgKKJj8YiCmSX2a
+	 3OL1fYxmDrvDKxIyZn44A7GqsViQnnLWRFzeHBazFEFnqwWNkOQTdElPSdJWo1zH10
+	 mRcJC4n1fQfo7+LuqV1gE5RiJQtqNWqQSL/KuAaBo8WPbBr2W8327lvWcBPGWNyUul
+	 p1YXulFSoJ2WtzJBuOdcJHaw1INr3nNlA1KvbBz+mWViCPNhMj1Nt4O/IXOmZpu2wO
+	 3lffSGrIIUeLRl2MNfJxA2y/Wy5PkF1a3dAGQSlppD///f+ysgtXGRaLwUfEW8IV3A
+	 2BKz4i6tu/BFQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3AAC6FC0379;
-	Thu, 23 Apr 2026 16:08:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EA1E7FC0379;
+	Thu, 23 Apr 2026 16:08:10 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Thu, 23 Apr 2026 18:07:22 +0200
-Subject: [PATCH v4 7/8] arm64: dts: amlogic: t7: Add thermal zones
+Date: Thu, 23 Apr 2026 18:07:18 +0200
+Subject: [PATCH v4 3/8] firmware: meson: sm: Add thermal calibration SMC
+ call
 MIME-Version: 1.0
-Message-Id: <20260423-add-thermal-t7-vim4-v4-7-d4c1528d5044@aliel.fr>
+Message-Id: <20260423-add-thermal-t7-vim4-v4-3-d4c1528d5044@aliel.fr>
 References: <20260423-add-thermal-t7-vim4-v4-0-d4c1528d5044@aliel.fr>
 In-Reply-To: <20260423-add-thermal-t7-vim4-v4-0-d4c1528d5044@aliel.fr>
 To: Guillaume La Roque <glaroque@baylibre.com>, 
@@ -65,22 +66,21 @@ Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5084;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2173;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=gXUyoHvrU7UAwF+TcmnCND7Xo2iI5Rna7hPHjxdZqpk=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ+Yr5+fPo3JjFqxavf/0qda0Oee+S3LHTF659dfdzHcW1
- xxWPTnN1FHKwiDGxSArpsjSP9fyxLvLR8983aOeAjOHlQlkCAMXpwBMZJ0GI8MUZrUvCkFHnl/m
- CMnlEiu5IyJh8iQ+kknpYDe3V3rKlCUM/1TUd9bfm31r3onz++97aqwteeHGeKGgjHXpdvOXjhO
- sf/MBAA==
+ bh=QVwXg2rjCHDLPb10isf9/q6yv3hIqKAxTDlkEXCyDmk=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ+Yr50ez3ocqrml4N/nmpWX9Kounm235ZJE1W8R/g/yVz
+ 9+qbrM96yhlYRDjYpAVU2Tpn2t54t3lo2e+7lFPgZnDygQyhIGLUwAmwveT4Q/fab/4TS2sBd8s
+ NJ/oL+ifJtSyX/VCksC0MoFnaSFn5r1iZDht8M7A+sa09S/LE3WnX2Ndpp8o1merKZ+XeMSy5YJ
+ aITcA
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
  auth_id=744
 X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_090816_150741_FDD069C5 
-X-CRM114-Status: UNSURE (   9.23  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260423_090812_839242_A6F69309 
+X-CRM114-Status: GOOD (  10.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,210 +100,65 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-Add thermal zones for all six sensors: a53, a73, gpu, nna, vpu, and hevc.
+Add SM_THERMAL_CALIB_READ at SMC ID 0x82000047 in the command
+table and implement meson_sm_get_thermal_calib(), which forwards the
+tsensor_id argument to the secure monitor and returns the calibration data.
+
+Also realign the CMD() column to improve readability.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 179 ++++++++++++++++++++++++++++
- 1 file changed, 179 insertions(+)
+ drivers/firmware/meson/meson_sm.c | 29 ++++++++++++++++++++++++-----
+ 1 file changed, 24 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 62f259b2b17d2..c6ea0f20a879f 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/clock/amlogic,t7-scmi.h>
- #include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
- #include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -829,6 +830,184 @@ hevc_tsensor: temperature-sensor@9a000 {
- 				amlogic,secure-monitor = <&sm 5>;
- 			};
- 		};
-+	};
-+
-+	thermal-zones {
-+		a53_thermal: a53-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&a53_tsensor>;
-+
-+			trips {
-+				a53_passive: a53-passive {
-+					temperature = <85000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "passive";
-+				};
-+
-+				a53_hot: a53-hot {
-+					temperature = <95000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "hot";
-+				};
-+
-+				a53_critical: a53-critical {
-+					temperature = <110000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map-a53 {
-+					trip = <&a53_passive>;
-+					cooling-device =
-+						<&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu102 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu103 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+
-+		a73_thermal: a73-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&a73_tsensor>;
-+
-+			trips {
-+				a73_passive: a73-passive {
-+					temperature = <85000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "passive";
-+				};
-+
-+				a73_hot: a73-hot {
-+					temperature = <95000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "hot";
-+				};
-+
-+				a73_critical: a73-critical {
-+					temperature = <110000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map-a73 {
-+					trip = <&a73_passive>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+
-+		gpu_thermal: gpu-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&gpu_tsensor>;
-+
-+			trips {
-+				gpu_passive: gpu-passive {
-+					temperature = <95000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				gpu_hot: gpu-hot {
-+					temperature = <105000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
- 
-+				gpu_critical: gpu-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		hevc_thermal: hevc-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&hevc_tsensor>;
-+
-+			trips {
-+				hevc_passive: hevc-passive {
-+					temperature = <95000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				hevc_hot: hevc-hot {
-+					temperature = <105000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				hevc_critical: hevc-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		nna_thermal: nna-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&nna_tsensor>;
-+
-+			trips {
-+				nna_passive: nna-passive {
-+					temperature = <95000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				nna_hot: nna-hot {
-+					temperature = <105000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				nna_critical: nna-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		vpu_thermal: vpu-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&vpu_tsensor>;
-+
-+			trips {
-+				vpu_passive: vpu-passive {
-+					temperature = <95000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				vpu_hot: vpu-hot {
-+					temperature = <105000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				vpu_critical: vpu-critical {
-+					temperature = <115000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
- 	};
+diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+index 3ab67aaa9e5da..4e57986724212 100644
+--- a/drivers/firmware/meson/meson_sm.c
++++ b/drivers/firmware/meson/meson_sm.c
+@@ -41,12 +41,13 @@ static const struct meson_sm_chip gxbb_chip = {
+ 	.cmd_shmem_in_base	= 0x82000020,
+ 	.cmd_shmem_out_base	= 0x82000021,
+ 	.cmd = {
+-		CMD(SM_EFUSE_READ,	0x82000030),
+-		CMD(SM_EFUSE_WRITE,	0x82000031),
++		CMD(SM_EFUSE_READ,		0x82000030),
++		CMD(SM_EFUSE_WRITE,		0x82000031),
+ 		CMD(SM_EFUSE_USER_MAX,	0x82000033),
+-		CMD(SM_GET_CHIP_ID,	0x82000044),
+-		CMD(SM_A1_PWRC_SET,	0x82000093),
+-		CMD(SM_A1_PWRC_GET,	0x82000095),
++		CMD(SM_GET_CHIP_ID,		0x82000044),
++		CMD(SM_THERMAL_CALIB_READ,	0x82000047),
++		CMD(SM_A1_PWRC_SET,		0x82000093),
++		CMD(SM_A1_PWRC_GET,		0x82000095),
+ 		{ /* sentinel */ },
+ 	},
  };
+@@ -245,6 +246,24 @@ struct meson_sm_firmware *meson_sm_get(struct device_node *sm_node)
+ }
+ EXPORT_SYMBOL_GPL(meson_sm_get);
+ 
++/**
++ *
++ * meson_sm_get_thermal_calib - Read thermal sensor calibration data.
++ * @fw:		Pointer to secure-monitor firmware.
++ * @trim_info:	Pointer to store the returned calibration data.
++ * @tsensor_id:	Sensor index to identify which sensor's calibration data
++ *		to retrieve
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
++			       u32 tsensor_id)
++{
++	return meson_sm_call(fw, SM_THERMAL_CALIB_READ, trim_info, tsensor_id,
++			     0, 0, 0, 0);
++}
++EXPORT_SYMBOL_GPL(meson_sm_get_thermal_calib);
++
+ #define SM_CHIP_ID_LENGTH	119
+ #define SM_CHIP_ID_OFFSET	4
+ #define SM_CHIP_ID_SIZE		12
 
 -- 
 2.49.0
