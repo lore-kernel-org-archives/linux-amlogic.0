@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ED5DF9935C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 09:18:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFE68F9935C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 Apr 2026 09:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=re0JoNeyKepXM45oW2T9nUU1Br9E3mrqR0KqS6hp2TA=; b=Qmn6Zl0+yPdMy/
-	bQcrK2WGgTFIdYtLW9sx+KrYFx0e+EFMtYSz6eyxUU5XbPy8esOgzuzGtD41YrOytqF184hcBxefn
-	J63SBqB5PRkDhkANDiKU1BGEryDgn2D35buuSXvBu/mldxrSvvhIGeNktCgwcCegI2JG0TD5GtrRb
-	vzKhCtjOno/HLCBNCoDjzEKKgVWyVJzsq1pMeQnMfi38djLPFr+yMIl59C5AAvdUNEjcWc7GHKgGo
-	rGtTolFtlmx6YLItK8+3dXygmn0o+5u5BG19OW+elF/S+/2N550i6ddn9FOBlrGOUAxKPigx8Thj7
-	zSmgw4CTGM4NYB9wrMcQ==;
+	List-Owner; bh=ZFrbl1M9qU9hQmdpO7avdQwX7sGyqCvKV5Gd3RF2Beo=; b=lbZnkNvq3gKMFX
+	7Z7o8HiCckuZXCeFUpDHubGRnAjE/HUvNdM7I05uk8Pz1y8K0tUFpfLZzMcoIrbfQvYcOropsDCxy
+	wcWSx/bIru/8GawbTs2hpXNnkABd9xXpYrqWfRdVhDQI06HSRcT8zgI8Bd460p4InfdjIASft7taO
+	H1McpsT59TineAet+mKR74Faikd8oG5gkeVrBXOtXWz2kbnFfD6ICoku3UNW5Dd8moIyIKXRv7C9/
+	6vPIC+LG+iO0b95Pxnh+hN0NbyDCc8ycxvPT27DtSujbPWT3gFLtxW48rGYlcMtysv8t4Cc/BSqK/
+	TusX5FszcmCX/nfieCOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFqCZ-0000000BKSb-2pxV;
-	Thu, 23 Apr 2026 09:18:27 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1wFqCq-0000000BKbo-1Wne;
+	Thu, 23 Apr 2026 09:18:44 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wFqCV-0000000BKO9-3G85;
-	Thu, 23 Apr 2026 09:18:25 +0000
+	id 1wFqCl-0000000BKYT-489A
+	for linux-amlogic@lists.infradead.org;
+	Thu, 23 Apr 2026 09:18:42 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 19EB64E42AC4;
-	Thu, 23 Apr 2026 09:18:22 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 7CFCF1A33BD;
+	Thu, 23 Apr 2026 09:18:38 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id CE520604EB;
-	Thu, 23 Apr 2026 09:18:21 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D01D510460BF2;
-	Thu, 23 Apr 2026 11:18:00 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 4B84360495;
+	Thu, 23 Apr 2026 09:18:38 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 979C910460BE5;
+	Thu, 23 Apr 2026 11:18:17 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1776935896; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1776935913; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=aHaNwGRsoUdIwFjwTHJYKxtK/qocJVFaiYxjNfS379g=;
-	b=U6lBAuEmyZoHG3q1xl3CbQJPPneyiYCEs2YwZYqICXGZKWZxlXouP2n3L1ivPvaUSnPKXU
-	fhpVUTKQKxjk2kpBfupJ6TM1i3mBVsi1Jv5srkhYO9d57SlD+VDBRu4diJki5VAfCCyjWX
-	zOvF6Wkn0EEczft1Zh0BsxePmCOYutw+8BjK4xrWrAHmQWJO0cqHkIWolSA1xTr5VTFNVF
-	oqmowl1dchpbhH4fKl/7c8KUccb+TXEoY4UBq1LB4upmeVqbRkSVlaikFzRxlvokl807WL
-	TMnvZd2SrhELR2OIgjWw5NdXHMStrd5O2kHYN0EBRHJsnzIcXLxZYHO22bffrg==
+	bh=eYx7IOqgBWH75sp8rtfzDgWlREeGLJn8efXikvG6Twg=;
+	b=ijf/QDDmejsA8obTGAcFBsmkzdv1bKBCJOz5zmo1XDRUz1lqc6ESgd+djioKFpTKOc/8n/
+	4qe4eSSeM1e5Rw2oYe5LTYDyrorqZbLrKNvSbt8nY29ohkdrWi2TtWFSmWBhC6uu4MO3XJ
+	Gc2JG7Otef/6fUFo1atn1D40DJR2xETu9HA5CJy/5NJN27gX5CIUDZDt4jG20+gSP7TB7N
+	54TwNsY2NKeHJHDEFAE6Ck4wcXs8TG0UTTN3voBtYpkKWYqhH7luaCRx8+Sv0bGwVidMco
+	npeuNlBeKo0VAMAMPb1GPJZi7Qxgnkavfltu4oHI7eBi61iA+qT66WEjBEJJPg==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Thu, 23 Apr 2026 11:16:56 +0200
-Subject: [PATCH v2 02/41] drm: adp: remove now-redundant call to
+Date: Thu, 23 Apr 2026 11:16:57 +0200
+Subject: [PATCH v2 03/41] drm/bridge: adv7511: remove now-redundant call to
  drm_connector_attach_encoder()
 MIME-Version: 1.0
-Message-Id: <20260423-drm-bridge-connector-attach_encoder-v2-2-2ae6ca69b390@bootlin.com>
+Message-Id: <20260423-drm-bridge-connector-attach_encoder-v2-3-2ae6ca69b390@bootlin.com>
 References: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 In-Reply-To: <20260423-drm-bridge-connector-attach_encoder-v2-0-2ae6ca69b390@bootlin.com>
 To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
@@ -110,8 +111,8 @@ Cc: Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
 X-Mailer: b4 0.15.2
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260423_021823_954708_51BAFD88 
-X-CRM114-Status: UNSURE (   9.02  )
+X-CRM114-CacheID: sfid-20260423_021840_291300_AF87ECD7 
+X-CRM114-Status: UNSURE (   7.96  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -132,24 +133,25 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 drm_connector_attach_encoder() is now called by
 drm_bridge_connector_init().
 
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/gpu/drm/adp/adp_drv.c | 2 --
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c | 2 --
  1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/adp/adp_drv.c b/drivers/gpu/drm/adp/adp_drv.c
-index 4554cf75565e..0a11820d5b8a 100644
---- a/drivers/gpu/drm/adp/adp_drv.c
-+++ b/drivers/gpu/drm/adp/adp_drv.c
-@@ -444,8 +444,6 @@ static int adp_setup_mode_config(struct adp_drv_private *adp)
- 	if (IS_ERR(adp->connector))
- 		return PTR_ERR(adp->connector);
+diff --git a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+index 6bd76c1fb007..f318080f1139 100644
+--- a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
++++ b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+@@ -768,8 +768,6 @@ static int adv7511_connector_init(struct adv7511 *adv)
+ 		return PTR_ERR(connector);
+ 	}
  
--	drm_connector_attach_encoder(adp->connector, adp->encoder);
+-	drm_connector_attach_encoder(connector, bridge->encoder);
 -
- 	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
- 	if (ret < 0) {
- 		drm_err(drm, "failed to initialize vblank");
+ 	return 0;
+ }
+ 
 
 -- 
 2.53.0
