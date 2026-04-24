@@ -4,83 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A538FE51FB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2026 09:55:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F052FE51F3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2026 09:55:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=IgR9qD5fKstZnx9MiXrBrMl3GdSo3qPaeBFClUpcwsw=; b=K2L184dIHyINWwmXdlZxlge30L
-	QVxint8uPm0jeqTHMd2OBmiF7XZzIGVB7dUI21Q3FNH1jqdWUTR7ajt/onTTK7x2EexFtKoYRpn6B
-	FDLcRD32QiXx2OMbdRxvxhltb9j/CWCO6vgCFZpHUXIY4Tj7TfMF1HKeyuydyYpoxePTZYM0J0Zj3
-	ZuBoCzpRbeYj5ey7HWSbk5p2cwveZFQIZKHaOPU2rLX56Z1d2sujpoBgmpGidCjR02Iah4b6J3sbB
-	zHaQktWoAgASXLvvt5bLuvLKVd/CnyKVBKeTepEOc4MPUxE3n7kTpXdj0HDqJL6pEtA9a0vY1b2gF
-	dpzEUVSg==;
+	bh=AMlLr5IZPSGtMO/nLPA6gJmhMCcTMvdsI3Ps4JLgy7k=; b=Y5CeFVbbmqhCaFtXfYq5EcWWN9
+	XipC37vxrHhzAOWVt3ihhTfdy1VojC5SQvFwAHCAscnHT+oi1ycR7XWqBG6bObo53x/UETqctHL7z
+	bLiWdvQOEQFZA68oaA80Hv/hfWpPrrkyjpZh0D7aOxnauyJox0cTxJau0qiRUtQBepQpo57VPfYGt
+	eb1C4+up/9+4Ok1Acqg6iii8/oIP0XZ5o8jSX00BGtRGCX09KuGFBX3TAfoDR15goOOTPwgUZ72ut
+	l/WtXWZHMp0M6dfRruDUx4tbK/mezFttb93uEkL5+cGmvT7KxhQgEV96P1W9o0E3T7mJQzHnRkJJi
+	mvZ5AGAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wGDFQ-0000000CyIh-0EoC;
-	Fri, 24 Apr 2026 09:54:56 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1wGDFo-0000000CyMQ-2lQz;
+	Fri, 24 Apr 2026 09:55:20 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wGDFN-0000000CyHs-1fbB
+	id 1wGDFl-0000000CyLW-3NC2
 	for linux-amlogic@lists.infradead.org;
-	Fri, 24 Apr 2026 09:54:54 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-488ab2db91aso104432695e9.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 24 Apr 2026 02:54:52 -0700 (PDT)
+	Fri, 24 Apr 2026 09:55:19 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-48a563e4ef7so41497115e9.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 24 Apr 2026 02:55:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1777024491; x=1777629291; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1777024516; x=1777629316; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zThJ7xka7GAiMGXQLkoAOIUMVtbjQJo7uYiMR3WUXDc=;
-        b=PXnECEHEF51N2+Uki9OuxqGX33ciFTTiXQZmu6g3LCjdKRqNjmHhuZBSCQCl/X88XU
-         NOxgvvr5vqtwajovr2yc6HwO7bebwYp/RB0BUDI+24tIb0grtg5MDMF6AqzoUV/kOiYo
-         kmRdLbUh0coiKuK4gl22bmxND5+TnbfKZKL7SXigN4xnw/GRcJYhme0jt56H6ttXMDJh
-         kUghADhjOlNHRcoQXskxYUAqQcuMkqdWEI33kZBXW/IwJgFENHH3xcpoN0/NjrkzPe9Y
-         yrV9gRRjCM1jH+QClg3R/nWMgGuf1j6EGJHiDrkSzN+/81Saj7dQGjuYXtNM1EwB2D60
-         ZURg==
+        bh=e+of0FE0tSbmaf7cezfG/Dp70p8BpOoi594bsa5N30Y=;
+        b=f0Qz9nkDBfH/EjzvTw1hOBYVRPgrE1tl8jAuhTA/z4a4Wb31fpPqyz98qnWzhQTTRJ
+         Q2rdZ43UC9iopxUiI4Y1vFMu5ljo4YhDH3RUvaFArrLVSDAPS7qrTmyshKR6w2nCVFBE
+         k1X/LcNNAFZRKJDLQ2oLr9QLGon4JWXRE+Iub/QoGO10Muzym2/pclJhtEbHfWTnPwuc
+         Jdti/bYDNPD7zfK+MEOjeKrxuMvVlG/FavZD+CNBgefK59nbmakFW47zQe5SFwW3KU1z
+         aGmC88l+3jywS6CAFSNi4CxbXekwlMY1R3ECCL606oCtNcsIP5mDaUjA4FxMk3bEIgLv
+         DhIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777024491; x=1777629291;
+        d=1e100.net; s=20251104; t=1777024516; x=1777629316;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zThJ7xka7GAiMGXQLkoAOIUMVtbjQJo7uYiMR3WUXDc=;
-        b=Jtqj5Qj2/wNZ85eaCLUXXy32isHVWUEDOVKoRcbcXDtqpPncuu3GoQFNe7bRYx/6ue
-         SVpqf+gL8FA7QsCKhI+dzAcdNXsOQrd2IM4ThY/WFtqfAfDEem0efUqV6+rKUJOoHqIj
-         2rbD7hQT+MISv8XvS2vW7bbN4a9j33cR2F3BGpULyzBcHg4hlNkd4uwhtDQrqzW1y+um
-         8YUUFPbAYQP6xI6fh3HCLKKEsnW7z0nj1l9BKyCDv6XVO1tzfsfV8AfPUaaHVyLFzWyp
-         hhUE9PoNJOUd5Q4nY7nV6LVkq4F1GldYWEl7QgGHaLJgHSNZHcY2cwITINOMWkUNX/vu
-         Ehyg==
-X-Gm-Message-State: AOJu0YwzRaRz9jFOXsv7SjCr++UKdLdti+NSBiDwk7Rnrrp5iCR7fw21
-	acJxpSmLLzgT7dl5oCEKCByMXQOtpPK6xa3bvxFAnXwzSF5KF1HjHwjDJ5PLdWj3fyBvO0tGtjM
-	usrEHCO0=
-X-Gm-Gg: AeBDievWrZ16UcFybHRqSfCuR0EqFWOBuujriIavOicgpKe7KCmF/xNOONDSpFmQCnf
-	OBmAil/liQbOPek9v/AUn2iX60O0ycCJz47MQ0Wb/1CWYLwQg/qpW++hG7b2//+j5WLJHFOWyIO
-	vfSEkXorCh+mTIXpkfr1E4ZRiEmoN/e0uiU1A33Sbur27sMjGgW4cgxWbHjft9M/J6EplmdEARR
-	3BNGn2iC4l2X4yOCfuNlH7q8dOkasH7UE6CwU/msqS+POwaL+4jo1FBmJ0iLRHMHYaj7uRdBCAq
-	TepjTd+H66Nml0uyHLUXQH/OMRod9hBKJCE4NbjefGvcAto0LaY811ChmzuW1SaqclrKYzfBhZa
-	IWH21lT19d9ri2zztPcyhz/Sx/DUptrnUSWfQ0ieWjiAdZilp2zB54bLpQOu4S9J7zTwEyZ4GLh
-	NwS5q0wE3T5BtahUgtNCjQ12fSeEqKLv2hoXhyAedaL2/PxE2zoNp7ZJEk04bnCWCuKX/G8PxOe
-	JxRkRXqIN1Yk+EOmQ==
-X-Received: by 2002:a05:600c:3412:b0:489:284:44ab with SMTP id 5b1f17b1804b1-489028446fbmr209624225e9.12.1777024491461;
-        Fri, 24 Apr 2026 02:54:51 -0700 (PDT)
+        bh=e+of0FE0tSbmaf7cezfG/Dp70p8BpOoi594bsa5N30Y=;
+        b=RcUjxP0K2keRVXDqgai/2AYuHOlFFwqxXmUDUk55KC00oI+NiErpfFinDUuBeS/7Y0
+         Q93yVGgEuutygYgq08tUtW/pkWaqZaHoT1389FOAmwVVuQPsXXEZSO1AgAK3sIcIHwib
+         kBrfndD2Js4GvJDnEtIPZimiPa+abMf52Du8EwYsZ7EB89/4L4ihlHC2+3VQb6t02uLI
+         R8bhvWpz3tFF3qlBq288smThKfxS41PmSTxCnqiIYMN9/cuBfchGYd1pTfEfaB9EEV/c
+         gKe9uI1+87DR4eyHFg7grjJCWoQkolDFQ/+567I3ej7G2PpmFi7WvDx+bd+KU9ZVxGAG
+         4S7w==
+X-Gm-Message-State: AOJu0YwsXxeYs2XRp5OlvOEtlbgcVNQY4p+l0ULInWELdI/rCi4L1BxQ
+	/wZqaqI9XT9G4/PsRI0ed6sQovmQz7TqAMLv5DjmapbsAOGNOXm2tJ/G//vOk+gl42M=
+X-Gm-Gg: AeBDieswFHan3S6Hk8dbwdY0hroa0/t0zJ0Qm6oNhDzFxLmVW6s8vFJGtE4PS9a9l8u
+	rDgXYXPumxyc6Bdl9HKr/NZRzlNkNm8tSzeCL38b3V3Hbdkc58pkC1dBHVBsKnQiJ23hzO/L5Ty
+	1V8A3AMS2GepXEIfLq4bS3W44cxeDeK0+6rtjkhk4gZ4Vm7hiqtBswjFPwa/tFdLOswLJGqRYxZ
+	iJSyP9FgS9JNncMGCJEunPFAYsHaYiLQvCWoL8yKssB3YsEuR5q7bF0OigvfcN1GJPkhnGhkPPG
+	w3Dv+Wbp4mT9Os0sxbwbdAu/pph+ScS87gPGSta0Yx5+KpBbXhKSXkc7PPATZONcbqLv/X39Rhr
+	DL92jWNaNNmmiEaD0o0PWwgnrY4DW0sT+3WCBnRZ8nKDolyEfe8YRbBmaGSpoiOeHPhu2hHZ0JJ
+	dmuN6Jb4MOlaOLevMB/Ue2wm0MgQyFR5lwKgZ8IYMSJ9uBl1qXFyJBoOIvHC7b5Rs610k7lbjF8
+	ZzHHxUVAY3h0iSkHg==
+X-Received: by 2002:a05:600c:888b:b0:488:c40b:c8bf with SMTP id 5b1f17b1804b1-488fb73d234mr372911565e9.2.1777024515945;
+        Fri, 24 Apr 2026 02:55:15 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:79e1:f56b:445c:ca9c? ([2a01:e0a:106d:1080:79e1:f56b:445c:ca9c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fb77b001sm276714125e9.3.2026.04.24.02.54.50
-        for <linux-amlogic@lists.infradead.org>
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fc18bccfsm526904435e9.8.2026.04.24.02.55.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Apr 2026 02:54:51 -0700 (PDT)
-Message-ID: <bab0f4be-31e1-4fe7-8e90-5131b1ae44b2@linaro.org>
-Date: Fri, 24 Apr 2026 11:54:50 +0200
+        Fri, 24 Apr 2026 02:55:15 -0700 (PDT)
+Message-ID: <afd6b8b9-06b5-41e1-9b3e-e4a896d77f8c@linaro.org>
+Date: Fri, 24 Apr 2026 11:55:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] pinctrl: meson: amlogic-a4: fix deadlock issue
-To: linux-amlogic@lists.infradead.org
-References: <20260422-fix-pinconf-v1-1-abb4d2e0da55@amlogic.com>
+Subject: Re: [PATCH v4 3/8] mfd: khadas-mcu: Add per-variant configuration
+ infrastructure and VIM4 support
+To: linux-kernel-dev@aliel.fr, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Beniamino Galvani <b.galvani@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+References: <20260421-add-mcu-fan-khadas-vim4-v4-0-447114a28f2d@aliel.fr>
+ <20260421-add-mcu-fan-khadas-vim4-v4-3-447114a28f2d@aliel.fr>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -107,10 +119,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260422-fix-pinconf-v1-1-abb4d2e0da55@amlogic.com>
+In-Reply-To: <20260421-add-mcu-fan-khadas-vim4-v4-3-447114a28f2d@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260424_025453_472617_8CCE15B6 
-X-CRM114-Status: GOOD (  14.44  )
+X-CRM114-CacheID: sfid-20260424_025517_898242_CF3C3E6F 
+X-CRM114-Status: GOOD (  16.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,62 +140,82 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 4/22/26 13:44, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 4/21/26 13:49, Ronald Claveau via B4 Relay wrote:
+> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > 
-> Accessing the pinconf-pins sysfs node may deadlock.
+> Introduce a per-variant configuration structure (khadas_mcu_data)
+> holding the regmap config and MFD cells,
+> selected at probe time via the of_device_id match data.
+> This makes adding other variants straightforward.
 > 
-> pinconf_pins_show() holds pctldev->mutex, and the platform driver
-> calls pinctrl_find_gpio_range_from_pin(), which tries to acquire
-> the same mutex again, leading to a deadlock.
+> Also introduce khadas_mcu_fan_pdata to pass fan register address and
+> maximum level to the fan sub-driver, removing the hardcoded constants.
 > 
-> Use pinctrl_find_gpio_range_from_pin_nolock() to fix this issue.
-> 
-> Fixes: 6e9be3abb78c ("pinctrl: Add driver support for Amlogic SoCs")
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > ---
-> Fix deadlock issue.
-> ---
->   drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
+>   include/linux/mfd/khadas-mcu.h | 39 +++++++++++++++++++++++++++++++++++++--
+>   1 file changed, 37 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> index e2293a872dcb..35d27626a336 100644
-> --- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> @@ -292,7 +292,7 @@ static int aml_calc_reg_and_bit(struct pinctrl_gpio_range *range,
->   static int aml_pinconf_get_pull(struct aml_pinctrl *info, unsigned int pin)
->   {
->   	struct pinctrl_gpio_range *range =
-> -			 pinctrl_find_gpio_range_from_pin(info->pctl, pin);
-> +			 pinctrl_find_gpio_range_from_pin_nolock(info->pctl, pin);
->   	struct aml_gpio_bank *bank = gpio_chip_to_bank(range->gc);
->   	unsigned int reg, bit, val;
->   	int ret, conf;
-> @@ -326,7 +326,7 @@ static int aml_pinconf_get_drive_strength(struct aml_pinctrl *info,
->   					  u16 *drive_strength_ua)
->   {
->   	struct pinctrl_gpio_range *range =
-> -			 pinctrl_find_gpio_range_from_pin(info->pctl, pin);
-> +			 pinctrl_find_gpio_range_from_pin_nolock(info->pctl, pin);
->   	struct aml_gpio_bank *bank = gpio_chip_to_bank(range->gc);
->   	unsigned int reg, bit;
->   	unsigned int val;
-> @@ -365,7 +365,7 @@ static int aml_pinconf_get_gpio_bit(struct aml_pinctrl *info,
->   				    unsigned int reg_type)
->   {
->   	struct pinctrl_gpio_range *range =
-> -			 pinctrl_find_gpio_range_from_pin(info->pctl, pin);
-> +			 pinctrl_find_gpio_range_from_pin_nolock(info->pctl, pin);
->   	struct aml_gpio_bank *bank = gpio_chip_to_bank(range->gc);
->   	unsigned int reg, bit, val;
->   	int ret;
+> diff --git a/include/linux/mfd/khadas-mcu.h b/include/linux/mfd/khadas-mcu.h
+> index a99ba2ed0e4e0..75e275d3fa8d9 100644
+> --- a/include/linux/mfd/khadas-mcu.h
+> +++ b/include/linux/mfd/khadas-mcu.h
+> @@ -70,6 +70,13 @@
+>   #define KHADAS_MCU_WOL_INIT_START_REG		0x87 /* WO */
+>   #define KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG	0x88 /* WO */
+>   
+> +/* VIM4 specific registers */
+> +#define KHADAS_MCU_VIM4_REST_CONF_REG		0x2c /* WO - reset EEPROM */
+> +#define KHADAS_MCU_VIM4_LED_ON_RAM_REG		0x89 /* WO - LED volatile */
+> +#define KHADAS_MCU_VIM4_FAN_CTRL_REG		0x8a /* WO */
+> +#define KHADAS_MCU_VIM4_WDT_EN_REG		0x8b /* WO */
+> +#define KHADAS_MCU_VIM4_SYS_RST_REG		0x91 /* WO */
+> +
+>   enum {
+>   	KHADAS_BOARD_VIM1 = 0x1,
+>   	KHADAS_BOARD_VIM2,
+> @@ -82,10 +89,38 @@ enum {
+>    * struct khadas_mcu - Khadas MCU structure
+>    * @device:		device reference used for logs
+>    * @regmap:		register map
+> + * @data:		pointer to variant-specific config
+>    */
+>   struct khadas_mcu {
+> -	struct device *dev;
+> -	struct regmap *regmap;
+> +	struct device			*dev;
+> +	struct regmap			*regmap;
+> +	const struct khadas_mcu_data	*data;
+> +};
+> +
+> +/**
+> + * struct khadas_mcu_data - per-variant configuration
+> + * @regmap_config:	regmap configuration
+> + * @cells:		MFD sub-devices
+> + * @ncells:		number of sub-devices
+> + * @fan_cells:		MFD fan sub-devices
+> + * @nfan_cells:		number of fan sub-devices
+> + */
+> +struct khadas_mcu_data {
+> +	const struct regmap_config	*regmap_config;
+> +	const struct mfd_cell		*cells;
+> +	int				ncells;
+> +	const struct mfd_cell		*fan_cells;
+> +	int				nfan_cells;
+> +};
+> +
+> +/**
+> + * struct khadas_mcu_fan_pdata - fan sub-driver configuration
+> + * @fan_reg: register address to write the fan level
+> + * @max_level: maximum fan level
+> + */
+> +struct khadas_mcu_fan_pdata {
+> +	unsigned int fan_reg;
+> +	unsigned int max_level;
+>   };
+>   
+>   #endif /* MFD_KHADAS_MCU_H */
 > 
-> ---
-> base-commit: bd7fd288490c64835a74c05e631c102ce056d5e1
-> change-id: 20260422-fix-pinconf-42be1cc2f5af
-> 
-> Best regards,
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
