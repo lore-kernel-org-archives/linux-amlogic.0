@@ -4,80 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A2B8FE51F7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2026 10:01:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBE93FE51F7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2026 10:01:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=8Li1OV/clBWnLOXCKGMVsERR1hAHQkzJ+tAouu+rcg8=; b=vG335l3x6NBAbGnpXo+R3fIoV6
-	W8hDdV4I6CSZFKKH3MYKbs5zG/wuB6sAyJrlDdkCpYP6n8Es6ei6mV+pcfizzKSi5Gu1kbXnmXXp6
-	v2N1G+Wfh1V+pGqjA84Gqb4U+jzUqXMWxsspfH6TiNUK5nEzxJc95SIxF686RXLu6dag4CWdb7yKa
-	l/DOlxd1zuBELOiKO5cnzSzIOQiUDnVRnn5CzEtPuC7zbvSiqhyTbUxx4fWZ/tPYJKxlIkJZZNzLX
-	zDDSpgQsmXGkvPEX7+J8vgwNqUMitbqBJx4JC/Umz7F5DZGWyVpA6kYmh589oR8lj9i4CCphvNXG6
-	PnY4wnMA==;
+	bh=sQ4UWjQhmmKGy963ug6pX0vX0RO7KCtgKWO1a6aO2VI=; b=uQjnLn9oKRLTXFhTzWXKcpjTHz
+	P/ctUtnPXHND2WXidoHggGYhmYOVvgKxefYGEvwIy8I/GnAG04EaLANIWcNJMCl+mF+mOk4wzl5LJ
+	2rjnfUvmSnuhiJxIAGLRCcsF6QACldcUlMFYAYpjoh4WSeHbhPHG0j1muOdqcEmUfsjDJoZj4FkG9
+	bNLFxPzxDFAWWfOPHanzhdynJGzf0Xg507FWhHdnVklbkEnG9b2ADQOEaWMziPpZT2olfOtmKqN5Q
+	Ps5ntbzXBMqcVp+aPIrXhZaTC3JD8BodsvE2mX4KuMAMuFCLEpjyXlu7aZzmy8xaBON8A1FtxhwNl
+	P1AIUsFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wGDLA-0000000Cypb-20Va;
-	Fri, 24 Apr 2026 10:00:52 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1wGDLK-0000000CyuS-3d8s;
+	Fri, 24 Apr 2026 10:01:02 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wGDL7-0000000Cyow-30uL
+	id 1wGDLF-0000000CyrQ-2UAP
 	for linux-amlogic@lists.infradead.org;
-	Fri, 24 Apr 2026 10:00:50 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4891f625344so62885475e9.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 24 Apr 2026 03:00:49 -0700 (PDT)
+	Fri, 24 Apr 2026 10:01:01 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4838c15e3cbso71476675e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 24 Apr 2026 03:00:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1777024848; x=1777629648; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1777024856; x=1777629656; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9cwRtmDAbT4Y+He6JfFqenlNmTZcScEAW3BnQ0sfKIA=;
-        b=TOLh01tPXelqQouGs8k/4ZCzoKmx5DX/uB/MJXRKLaNdtkj5lSqNx1uD/osmyb60PB
-         Y3cmu3nrNr5T5Qu/huACskq2xEjbfINsoLIacFop3dBtlnqcx3arFhFPLIzE/woAzFMi
-         9gPl2Qg+/ZRBOIB5Wn3/5nmuXgZDnuLwyR+JR5WZNW3PvUaR3jh1NqF1A25D3Cd4p7Gm
-         Twlk2OBYrHSm+fZVUdF3JyxAKvjXU538UhRQJN0rO6Xt/o0CTASyz5uSceJtgwYH273e
-         cqsivncNb/m2iYZyeLw2DgSFK6pw1wsgTn8TNLkK6OUYPs6U7xYNen795ArV62eAUDpc
-         zSLw==
+        bh=Xq07QUD8xIc4JRSL4PxKVMWxBFYSl0vshdBEVj4c9kM=;
+        b=ZhiWgtYDglV+VnPo8+8lw2ZRLYbhasobfAHSHWyernX7kctLuE2y449Uh2HJJz3bNh
+         eC4LZjcshBCArPJSLPaOw0i+Wfa/+1sWGd+k1w0yiZyizxUjp40guufy2dRtHWoi95wE
+         cNTH7zcvX0ArH7JkZ3RjaZteWE96KaJ9eBf0PSgRA+MMh0lQtJaHSYItAOVa9t7gVCv3
+         Vnzt81pv8n8JaO6fgSM3wi5GsHSgL9FSsKj2yn/IZxXA0nVYKkCovjrKQ34wfmBnGygA
+         w6CR0FP7kMbCwwk9C19TSPfdH6UZP/UbsM9hOOV2PIwJxizEbg2mxS/RVN1O9R/nRTGr
+         6JiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777024848; x=1777629648;
+        d=1e100.net; s=20251104; t=1777024856; x=1777629656;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9cwRtmDAbT4Y+He6JfFqenlNmTZcScEAW3BnQ0sfKIA=;
-        b=o5gTK/nEkwjmMdLzKwwQxpq2Gyf2wDURSOazkLQC9Ve7W5/FgtVDTc6tYpJsmNgctn
-         d3EAKMcTEg/Eq3yjI44RN3RHSrdnH456RvQkQD4X/KcSRqbp2320zNJBiAcbqde0Ja35
-         W2dVv/MpKlxc30yp/SdZskS5jfGxqFy6pC1q5uWioqQ4VX22qR2N8I8q+M5lXvrhTCEy
-         2aQ9jfAAk9KSYlhqk6hhcgQryamKvQyyykt+z0cAgKWVAucPz3cU7ZeWsX+KTs1ZD1nK
-         /aJ0woJRq2EJeoChZezO0M0kBIqBHl/np4Mj4WmX17bJ1v0gZRoJiRBzQCGKfwkgSCNT
-         z8dA==
-X-Gm-Message-State: AOJu0Yw2Ckkcx3EZXEUt0IZMyR3oUTfaQ96FyJUrs/4tEvE+djOlT448
-	7ngEOjJnGRNUZlV2HjWRwERE6Wga/ZjbouQch+67XrQIFWGQxGG+J8pYnwQF/6S0AO8=
-X-Gm-Gg: AeBDieux053KVtw4Ii24Kmxw016+rsx3SMUxd9h52jfnN2/UhIkNalxBkvGjnBhkL5P
-	JuoNsnHIr5N7rLwHZ0nFoATkAJyuuqvgOlt6CGcrs1oidZUgfpwe/Kjv/1qAdqunC2JVgTNr7ni
-	yIauSQRvt7b55fI8jvogfnPGMfTZnl51y4Tv4y0+A+r1mwTZn7GHOevkMA4jnESPk7uXchyrEyE
-	UhVV7ruWdKKH6JkZrXjGqN5WYhLYfWvMLKv82yc7R5dlFkeEacCeGITif22ACpr83ZWij5qGPbq
-	BfmuCLe3wUZGYkhfjJcScKCpfOitFhVdjmdI9jXnxjDce9ra//HVmLCL+VmMjtCRRbPsZfWZRtg
-	6m7FedFgALN1mEA0YNxy8HHib9kXa74gonsOdcc4kVYWQzQ/pRIu0XDCPlkEeJj/045mOHtbMub
-	I4HG4/iWLTVxmEI9kaoaJ7UdqOY8U9OSBgDW9ulW/FQck7rIIYQBSyV/TCPjN463Bo+IyGQxHE/
-	/2ytT6d01r+HDTUt+g9mZsUOsqx
-X-Received: by 2002:a05:600c:1d05:b0:489:1baf:8c03 with SMTP id 5b1f17b1804b1-4891baf8d2cmr288416295e9.11.1777024847607;
-        Fri, 24 Apr 2026 03:00:47 -0700 (PDT)
+        bh=Xq07QUD8xIc4JRSL4PxKVMWxBFYSl0vshdBEVj4c9kM=;
+        b=G2p1NFIkVeu9sep+98lHVkLCXiegM0TsOh3ReHCjWiknuOorbmlfljLStC0BVGgy/L
+         /nbUDXexzI66jQ23hYbzPvU0arc0E8W7f5wV7Mqa9kqxyHsmzSb89zd4EiLaxcbTNOf4
+         3tkWsIlHJuYy0fENIm/S0qrSJnr9Y1J22mqQJ4MnpACxcoMm+L/khW0WnxleNd9LJlox
+         o5dSwb4R6gwTuwX597KZqZBnW3SkwutYo7g7g36wCRrkATPZN3eBU2X/rg7WbzNOgXBo
+         riBAYGMsqSs0uyDX04qbE2hjY7q/30lHyin1sTQkGChDwXUH09k8bZm9fsGSE7RWpt1o
+         sqXg==
+X-Gm-Message-State: AOJu0Yxb9qLJiMoGEMFvk3Hqrdc40n/Trgz3Qrto41EdbX+vfjmaFYVa
+	FQzaqOmyotDSsKf7v5EEkHol/DwUIoDQLbwrWOkcWDyHNNDstcd6gxfxv0/Jp7ch7GM=
+X-Gm-Gg: AeBDievy6Ptx6GOiMJwbFOPJYDY8dBNJLWJAszmcOMGBlgrGDLJcQN0Hwx7iLFb7DJE
+	h8/gyu8VJr2D2soED+u3ut9nQoOJKlEBzDGD2kEcswyV6lYGdR9szBJCn1ZmKJDZherrCyLv/p+
+	wKcVB8fcyMXQ/rfxd7cfoe9utiDtTQxzuvRbp9ZHtXfjp03djAqLSyWg9uXXWoDD52c0Q93HNxy
+	MKvNBnHDPOnqn5qsZOP4rwRnSjIiWG/3aPPZ+j2RmpbRPX3PJAxJX7xVtxvLnM3y+EvszmHGBcs
+	Qgmj2MOGGHH0IkamzHuQ0LocoxEv8Xws2R44QGQT0ZvbAhwdaRQaUGVtaCCubGoKbnxqE4qnZLG
+	jbfygNJqKaKSOeEtiEiskFe+ougS2wVGKZ9yyrYbe/yn58UgXS+LzC/BGjUZoep7Df95hRxZNS1
+	OGYdarjMDTi3aPyLgZIgFp0kFVeZ1laEZW3263dI9EwHQWl+PeaQ+rQvUMQXdzgG8my9DaIMQBw
+	a2KzihWd0lcHgacyg==
+X-Received: by 2002:a05:600c:b90:b0:488:b99b:4177 with SMTP id 5b1f17b1804b1-488fb78ee4emr429943265e9.25.1777024854110;
+        Fri, 24 Apr 2026 03:00:54 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:79e1:f56b:445c:ca9c? ([2a01:e0a:106d:1080:79e1:f56b:445c:ca9c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fb7a0b60sm169961765e9.17.2026.04.24.03.00.46
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fb7a0b60sm169961765e9.17.2026.04.24.03.00.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Apr 2026 03:00:47 -0700 (PDT)
-Message-ID: <f057dbd9-5fa7-414f-98f4-1bbb691e2fc7@linaro.org>
-Date: Fri, 24 Apr 2026 12:00:44 +0200
+        Fri, 24 Apr 2026 03:00:53 -0700 (PDT)
+Message-ID: <e65c3933-996a-4ab8-8431-3f6ae18e44bc@linaro.org>
+Date: Fri, 24 Apr 2026 12:00:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 5/8] thermal: khadas-mcu-fan: Add fan config from
- platform data Add regulator support
+Subject: Re: [PATCH v4 6/8] arm64: dts: amlogic: t7: Add i2c pinctrl node
 To: linux-kernel-dev@aliel.fr, Lee Jones <lee@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
@@ -92,7 +91,7 @@ Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
 References: <20260421-add-mcu-fan-khadas-vim4-v4-0-447114a28f2d@aliel.fr>
- <20260421-add-mcu-fan-khadas-vim4-v4-5-447114a28f2d@aliel.fr>
+ <20260421-add-mcu-fan-khadas-vim4-v4-6-447114a28f2d@aliel.fr>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -119,10 +118,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260421-add-mcu-fan-khadas-vim4-v4-5-447114a28f2d@aliel.fr>
+In-Reply-To: <20260421-add-mcu-fan-khadas-vim4-v4-6-447114a28f2d@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260424_030049_807172_F386E5A2 
-X-CRM114-Status: GOOD (  21.17  )
+X-CRM114-CacheID: sfid-20260424_030057_639925_35F1DFE5 
+X-CRM114-Status: GOOD (  10.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,143 +142,37 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 4/21/26 13:49, Ronald Claveau via B4 Relay wrote:
 > From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > 
-> Replace the hardcoded MAX_LEVEL constant and fan register
-> with values read from platform_data (fan_reg, max_level),
-> as new MCUs need different values.
-> 
-> Optionally acquire and enable a "fan" regulator supply
-> at probe time and on resume,
-> so boards that gate fan power through a regulator are handled.
+> Add the T7 pinctrl used by the Khadas VIM4 for MCU communication.
 > 
 > Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > ---
->   drivers/thermal/khadas_mcu_fan.c | 49 +++++++++++++++++++++++++++++++++++-----
->   1 file changed, 43 insertions(+), 6 deletions(-)
+>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
 > 
-> diff --git a/drivers/thermal/khadas_mcu_fan.c b/drivers/thermal/khadas_mcu_fan.c
-> index d35e5313bea41..24559bf65de46 100644
-> --- a/drivers/thermal/khadas_mcu_fan.c
-> +++ b/drivers/thermal/khadas_mcu_fan.c
-> @@ -13,13 +13,15 @@
->   #include <linux/regmap.h>
->   #include <linux/sysfs.h>
->   #include <linux/thermal.h>
-> -
-> -#define MAX_LEVEL 3
-> +#include <linux/regulator/consumer.h>
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> index 7fe72c94ed623..e96fe10b251a0 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> @@ -376,6 +376,16 @@ mux {
+>   					};
+>   				};
 >   
->   struct khadas_mcu_fan_ctx {
->   	struct khadas_mcu *mcu;
-> +	unsigned int fan_reg;
->   	unsigned int level;
-> +	unsigned int max_level;
->   	struct thermal_cooling_device *cdev;
-> +	struct regulator *power;
->   };
->   
->   static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
-> @@ -27,8 +29,7 @@ static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
->   {
->   	int ret;
->   
-> -	ret = regmap_write(ctx->mcu->regmap, KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
-> -			   level);
-> +	ret = regmap_write(ctx->mcu->regmap, ctx->fan_reg, level);
->   	if (ret)
->   		return ret;
->   
-> @@ -40,7 +41,9 @@ static int khadas_mcu_fan_set_level(struct khadas_mcu_fan_ctx *ctx,
->   static int khadas_mcu_fan_get_max_state(struct thermal_cooling_device *cdev,
->   					unsigned long *state)
->   {
-> -	*state = MAX_LEVEL;
-> +	struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
+> +				i2c0_ao_d_pins: i2c0-ao-d {
+> +					mux {
+> +						groups = "i2c0_ao_sck_d",
+> +							 "i2c0_ao_sda_d";
+> +						function = "i2c0_ao";
+> +						bias-disable;
+> +						drive-strength-microamp = <3000>;
+> +					};
+> +				};
 > +
-> +	*state = ctx->max_level;
->   
->   	return 0;
->   }
-> @@ -61,7 +64,7 @@ khadas_mcu_fan_set_cur_state(struct thermal_cooling_device *cdev,
->   {
->   	struct khadas_mcu_fan_ctx *ctx = cdev->devdata;
->   
-> -	if (state > MAX_LEVEL)
-> +	if (state > ctx->max_level)
->   		return -EINVAL;
->   
->   	if (state == ctx->level)
-> @@ -83,11 +86,32 @@ static int khadas_mcu_fan_probe(struct platform_device *pdev)
->   	struct device *dev = &pdev->dev;
->   	struct khadas_mcu_fan_ctx *ctx;
->   	int ret;
-> +	const struct khadas_mcu_fan_pdata *pdata = dev_get_platdata(&pdev->dev);
-
-Move this on top to respect reverse christmas ordering.
-
->   
->   	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
->   	if (!ctx)
->   		return -ENOMEM;
-> +
->   	ctx->mcu = mcu;
-> +	ctx->fan_reg   = pdata->fan_reg;
-> +	ctx->max_level = pdata->max_level;
-> +
-> +	ctx->power = devm_regulator_get_optional(dev->parent, "fan");
-> +	if (IS_ERR(ctx->power)) {
-> +		if (PTR_ERR(ctx->power) == -ENODEV)
-> +			ctx->power = NULL;
-> +		else
-> +			return PTR_ERR(ctx->power);
-> +	}
-> +
-> +	if (ctx->power) {
-> +		ret = regulator_enable(ctx->power);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to enable fan power supply: %d\n", ret);
-> +			return ret; 
-> +		}
-> +	}
-
-Or you can request with devm_regulator_get(dev->parent, "fan"); which will
-return a dummy regulator, and then you can just call regulator_enable & disable
-and remove all those checks.
-
-> +
->   	platform_set_drvdata(pdev, ctx);
->   
->   	cdev = devm_thermal_of_cooling_device_register(dev->parent,
-> @@ -124,12 +148,25 @@ static int khadas_mcu_fan_suspend(struct device *dev)
->   
->   	ctx->level = level_save;
->   
-> +	if (ctx->power) {
-> +		ret = regulator_disable(ctx->power);
-> +		if (ret)
-> +			return ret;
-> +	}
-
-if (ctx->power)
-	return regulator_disable(ctx->power);
-
-> +
->   	return 0;
->   }
->   
->   static int khadas_mcu_fan_resume(struct device *dev)
->   {
->   	struct khadas_mcu_fan_ctx *ctx = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	if (ctx->power) {
-> +		ret = regulator_enable(ctx->power);
-> +		if (ret)
-> +			return ret;
-> +	}
->   
->   	return khadas_mcu_fan_set_level(ctx, ctx->level);
->   }
+>   				pwm_a_pins: pwm-a {
+>   					mux {
+>   						groups = "pwm_a";
 > 
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 Thanks,
 Neil
