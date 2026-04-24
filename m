@@ -4,80 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25FABFE51F3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2026 09:52:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C927AFE51F3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2026 09:53:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=/JAL/qMftDEDvkeGzuyKVGAuzfndI3cJ1XzoPhSwjrU=; b=GqXmjlVBR6xuSUH4mDmCrnBp4T
-	Yg1caOPoHSjkBtYbiAi1EEw3mKDb62Ch3LqRr4Tylq16KTK7gYThk4f3/OLL5UyvPgwjfZomMep1n
-	yoqnHGAyvBVhkvqDoO6KKI+XHuLLRTJvfqJM2AkgyDV4x25ixlJGD4+Jta1hg5IuTg2Oj+qDXXUrE
-	VTLK0j2YhpcwIv6eiwdAMj3RlARNLLSNmanAFngJBpvyDVOgQce8kVpSuPvxkDVX/8LwJtFvR1tcl
-	1wWKCoi19/v+1VTPeUQWpNEWfnuTKhMMUOt8FhotEmfFQ9YBmZwtoqiGEczR9JKmOsnJsQHgcEWam
-	uuKFHayQ==;
+	bh=NpSjC0I2T3X2+ncMFo99laZdymw8UNpbwX+hcX95bgM=; b=l4l7Lfpm0tQAHj+Sf7Gy1qoQjq
+	2DF0M6j7Ww6XuKp5h6Ec98mFt7w7hKoaVxzPdIHMWCbk6A7OfOTbaXjEZQ0lU/jFlcckLMI4wJ+6D
+	JUKwt1PbLtIfnKXd4LY46O7aAYHa4QRfPrkLnw5GFmycWg6GvIb40huPyVbS5HAlifQJDiaFFEP1O
+	wu0SFFa9PAEuyKKwH7YNQujkhGvvDX8iACLVynrPR4W+Z5CyARSWCjiu8+gxRc/8/zGA7iwnDQb8U
+	A3NYtI4hZ2DeVbu2Mvnt7vw6cVkpz0iJv2bjYb+hM+C99xoG+LPsbbZk6oa0UEWdeG1Pdzf6wPoNV
+	i/bYEK4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wGDDO-0000000CxpT-0t8R;
-	Fri, 24 Apr 2026 09:52:50 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1wGDDt-0000000CxxP-2DCP;
+	Fri, 24 Apr 2026 09:53:21 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wGDDK-0000000Cxnc-21iH
+	id 1wGDDq-0000000Cxw3-0KBE
 	for linux-amlogic@lists.infradead.org;
-	Fri, 24 Apr 2026 09:52:48 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso79013145e9.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 24 Apr 2026 02:52:46 -0700 (PDT)
+	Fri, 24 Apr 2026 09:53:19 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4893940bb5eso35645505e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 24 Apr 2026 02:53:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1777024365; x=1777629165; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1777024396; x=1777629196; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=EsX8mB8kXzV2ktDRmOdWBbgr/FAAsBVBHTUYMUDzRZI=;
-        b=iYXtPIGesYdqlTs6bqLCDdPTFr6MV7fNTelXwqd/8X3kONhcUtNiY8a9uaTZklCQD/
-         7rrRZf3GXFZp6W7xJUZGS5H9x9cHze+0QgV5ZwvuXw2d4VOl7Y1J5qEqnW51nnTDaKcE
-         2iGLSwtK2mgC9CPr/X6knIH4D/IkDQdlRqihspWSQfpY0JplLjpd6KyHYuA8csw+OWWb
-         AiYPuFlFzvqynrPu8LU5qL0vXVsKd5DWauS7GIdXQYpiYXnvreyAaL/Tv1Gilh5ZPyF6
-         /t8rjdDoI+iYsm+EYNSGnyrz32iYVhIkofwfPxXa31h9ES/YbrnHaQzazvxlBcnB8ahA
-         NZYw==
+        bh=SBpa+OY6Vx3uYT0JNDbcMHz2F1hz9Z/Yh2ubTX1Ek2I=;
+        b=Sv2INVYfvz2uHHWTI3WRobz29iT5sQ1eEewFH3PTNuUOGNxFXE3qk374UetAAH0hpX
+         /yeM/EnVV7r4aJmav8qtOq1ODrAAITAhw4ssM0NDAdGioLkMgVEGoMLvpJf6V3Q2PvjV
+         9K4y51cK4Rw/aEoE6raeIvXgDQnJ6H+vIJ4MlhgEFg0lF+RUM/4PV0bZD8OqUFLfI4Vw
+         u41IVhhcMjP5a0kaS/mWmA5SCPxMF6fs+aoBVXw5uSNraxI01tIxsmAZxo0uJqcQuMLp
+         9D/tGzwIlTPYFbTNezF3TC/HhF3618stxX1OQEr+MV+OOKz6hxeZ8nGg9HnEF5oX2O9W
+         FEKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777024365; x=1777629165;
+        d=1e100.net; s=20251104; t=1777024396; x=1777629196;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EsX8mB8kXzV2ktDRmOdWBbgr/FAAsBVBHTUYMUDzRZI=;
-        b=L2vcfjb7xcd8k5kcU2KE2dC4x6UNFNBDocqpExo3k2sQYMA9eZDjBB6VdH1gmKkw/q
-         kNkPFhmyTCf5lBt4Wc0n3NNZ8TsXIfyiwvgCzTwUXbf/bUefrjyJ9B200+yp47Us9UWt
-         e15DonYGBfKMEYbjyF08i9fW2zoNHwhqV/nH7t8tM6DCne7Na4WCf+3bTzZ3uWLzi7Gm
-         1WnfFIn+2tgHBEWHjxC7fmWQOywoTLR/78dv+3q9FL+dJtIQXGqo8TG83oinATRrgG0s
-         UDmGhjbGt9SDNLk4g6JL+vdHDQH2GuR0j6hDMAMHBAvWQ7ZSFt7zMrOFre3UWjySEgNC
-         j1LA==
-X-Forwarded-Encrypted: i=1; AFNElJ8SP07btA9ZPEyJfgKQT5+1E5o5MKDt1dJDDwzHJT1PTO+argFsuwJIQZOdqkrnZtpeFAC1Zg8h3Aac/5pi@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw5BOsD+0s2khGZMHp6X+U5z5MdDS/tresZuauo2mDBDzyW44uX
-	KA7OO/58vay/jHaJcagJQYNyMi7Z4/Bw7PPkeegN6dBaqFDlKgBrM+7nreA+Bhu9oeY=
-X-Gm-Gg: AeBDiesSgKEyk2+wSrGvOGsoNfi5+Pz/N0yt0B1CszkaNhE91VF120p1aspIkJfy3i4
-	MATUyg5JrAQdcsXiJQlo7sCTbv989vRnZmt8eIx7DXm0Ci56ybHZ7eUtT8rp6TZ4tsGpS5lje2B
-	rwyzPZm7cGSFZ20e2aL0GqCQTuBaBz/3o1DOCkjYS9bqKYyuIls47qKljfeBtrxp4bYayMWvCxs
-	XnxOdSYn0Lan2smQVAl3gEQipV/G+mHbOIHDfwDSWD3O+tD/sUrHdRHh43MC2ACc6BQmFXD4Y8V
-	Ur4/PI55mam2m6WMyJrScCoiW3FjK4D0X2KjNhxM+TxZPcb8qS9ALPrJiPmhU3OnS0AFS+G3PNJ
-	ybGFBM0rHH2lVi06x4PlRbyyC97rSX4pcf9r5L/NiwnD0dKV329OYBPCWUVmsnZld4XQehTqn33
-	Gm6pjtvx4CYY8p/gEUjea1M5zfPJWaGHQquKIW7jzVaR3feuXCidvoHdECtM0WKhrQ9pzwobJeV
-	GK/9CPx3Oz+jrkTng==
-X-Received: by 2002:a05:600c:a108:b0:480:69b6:dfed with SMTP id 5b1f17b1804b1-488fb78ba6fmr374022025e9.24.1777024364611;
-        Fri, 24 Apr 2026 02:52:44 -0700 (PDT)
+        bh=SBpa+OY6Vx3uYT0JNDbcMHz2F1hz9Z/Yh2ubTX1Ek2I=;
+        b=gRnBs9wK/xKK18NI6hMfoiSxYef5Ujt4WN/Kyu1EUMNbAH1sQpcDElS4rzoelxyDpR
+         hkO95ARibB7mJ3GIRistr8H0+Sl1C1ER/OfeQ0VyaLz0euB3mauh7wH+H7XJnmZTHA5l
+         5MT4UTre6KN/JooJYyH7zmU2WcH0FuB7Ygac2TVdIMLGCfnneH9RpQzdI8beuZFpT74D
+         YVPMxn/Sq+j10Ux580T8Wjkmj9rxy/BCxJSXd1PFDHzyT6B+CrVXf2IR8i/qexGahb7v
+         bBSSWzCmFxF94Cu5V6G5RsnIl3Ax7xBaNchNaUMYVNkGgjdmwVjNPzbOLzj7Hi2k4g7M
+         Uz2Q==
+X-Forwarded-Encrypted: i=1; AFNElJ+ev4vHH3gth3nbDiXr6y29KWNYwIdhvv09XIjocqgN8fnSFnpDheWF7Wfr2mU8/yUkFtk3bi+/QMdVLR1N@lists.infradead.org
+X-Gm-Message-State: AOJu0YztXyRl8E+gNv7v5bZP0Sj1AA4VPctDl7Va/eiosf6uJgpyoe6e
+	B0Cq6GQrLu+jvJxTgLXo5EqsZrHbYwx1FWzVbiAOd8XDyqye0DX04N2wiRG8FAF02AY=
+X-Gm-Gg: AeBDievhXfnsUMASJJCDRu77yiTIDra282PNcNO4uFPaFZ7xl2yOt+nEbiI3cqxslTM
+	MaT54f7CrRpE+YoMl0v9mEcuVGn/siPQnn8a/2Xa2jutnE54P4/DsPC8O2mcErqqRagKosWmr/J
+	5jDIHwHaGia0pvN+7U3XFKMhv4hV+BjB9rKgzG6pQwqk73ZAWve1aUIRCTVOGcMWLOAcVYWOvho
+	7PAi73iySPcRp4HgiBqCCvyvWaZB/PIuHhGW6emCu6z5XO0/kRSYwj5ooCmeuVU8IjeIQGpwG21
+	WRM+/N0Cg2I8yeSyB4w5yDG9Sli3sdf6UgqwlfHRbgLcgNDuJ7KDTDSIWwsLtxXrWSoxMjrbRmP
+	KF7VKNzTGtdERM90I1973bBI57ew/1wci58B4aOVS8n6n37LQvEHsln/9ipjA6P+VPKJzRQKCZ6
+	5p6zQOjJBaiweFWGZkDDniOVvEp/u5eGlsY+V3ukUwGQpgolnpZbB+DABG1qj6Qx54KO3NrDOEv
+	hnNLtdbDkgtllotGw==
+X-Received: by 2002:a05:600c:34c3:b0:485:41c4:e2e4 with SMTP id 5b1f17b1804b1-488fb792dd0mr421536775e9.23.1777024395930;
+        Fri, 24 Apr 2026 02:53:15 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:79e1:f56b:445c:ca9c? ([2a01:e0a:106d:1080:79e1:f56b:445c:ca9c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4891cc84a1bsm141108575e9.0.2026.04.24.02.52.43
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4891f98728dsm106060925e9.23.2026.04.24.02.53.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Apr 2026 02:52:44 -0700 (PDT)
-Message-ID: <80f93779-17fd-4fab-a887-b5f88e82b2d7@linaro.org>
-Date: Fri, 24 Apr 2026 11:52:43 +0200
+        Fri, 24 Apr 2026 02:53:14 -0700 (PDT)
+Message-ID: <3768fc2a-ae1b-4e58-a1a5-1b49d0f0c90c@linaro.org>
+Date: Fri, 24 Apr 2026 11:53:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 6/8] arm64: dts: amlogic: t7: Add thermal sensor nodes
+Subject: Re: [PATCH v4 7/8] arm64: dts: amlogic: t7: Add thermal zones
 To: linux-kernel-dev@aliel.fr, Guillaume La Roque <glaroque@baylibre.com>,
  "Rafael J. Wysocki" <rafael@kernel.org>,
  Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
@@ -90,7 +90,7 @@ Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20260423-add-thermal-t7-vim4-v4-0-d4c1528d5044@aliel.fr>
- <20260423-add-thermal-t7-vim4-v4-6-d4c1528d5044@aliel.fr>
+ <20260423-add-thermal-t7-vim4-v4-7-d4c1528d5044@aliel.fr>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -117,10 +117,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260423-add-thermal-t7-vim4-v4-6-d4c1528d5044@aliel.fr>
+In-Reply-To: <20260423-add-thermal-t7-vim4-v4-7-d4c1528d5044@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260424_025246_546140_F694EC22 
-X-CRM114-Status: GOOD (  10.59  )
+X-CRM114-CacheID: sfid-20260424_025318_151699_5E746A01 
+X-CRM114-Status: GOOD (  11.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -141,92 +141,210 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 4/23/26 18:07, Ronald Claveau via B4 Relay wrote:
 > From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > 
-> Add six temperature sensor nodes using the amlogic,t7-thermal compatible:
-> a73, a53, gpu, nna, vpu, and hevc. Each sensor retrieves its calibration
-> data from the secure monitor via the amlogic,secure-monitor phandle with
-> the corresponding tsensor_id argument.
+> Add thermal zones for all six sensors: a53, a73, gpu, nna, vpu, and hevc.
 > 
 > Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > ---
->   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 58 +++++++++++++++++++++++++++++
->   1 file changed, 58 insertions(+)
+>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 179 ++++++++++++++++++++++++++++
+>   1 file changed, 179 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index 7aec65f036a9c..62f259b2b17d2 100644
+> index 62f259b2b17d2..c6ea0f20a879f 100644
 > --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
 > +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -656,6 +656,24 @@ sec_ao: ao-secure@10220 {
->   				amlogic,has-chip-id;
->   			};
+> @@ -9,6 +9,7 @@
+>   #include <dt-bindings/clock/amlogic,t7-scmi.h>
+>   #include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
+>   #include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
+> +#include <dt-bindings/thermal/thermal.h>
 >   
-> +			a73_tsensor: temperature-sensor@20000 {
-> +				compatible = "amlogic,t7-thermal";
-> +				reg = <0x0 0x20000 0x0 0x50>;
-> +				interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clkc_periphs CLKID_TS>;
-> +				#thermal-sensor-cells = <0>;
-> +				amlogic,secure-monitor = <&sm 1>;
-> +			};
-> +
-> +			a53_tsensor: temperature-sensor@22000 {
-> +				compatible = "amlogic,t7-thermal";
-> +				reg = <0x0 0x22000 0x0 0x50>;
-> +				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clkc_periphs CLKID_TS>;
-> +				#thermal-sensor-cells = <0>;
-> +				amlogic,secure-monitor = <&sm 2>;
-> +			};
-> +
->   			pwm_ao_ef: pwm@30000 {
->   				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
->   				reg = <0x0 0x30000 0x0 0x24>;
-> @@ -770,6 +788,46 @@ sd_emmc_c: mmc@8c000 {
->   				assigned-clock-parents = <&xtal>;
->   				status = "disabled";
+>   / {
+>   	interrupt-parent = <&gic>;
+> @@ -829,6 +830,184 @@ hevc_tsensor: temperature-sensor@9a000 {
+>   				amlogic,secure-monitor = <&sm 5>;
 >   			};
-> +
-> +			gpu_tsensor: temperature-sensor@94000 {
-> +				compatible = "amlogic,t7-thermal";
-> +				reg = <0x0 0x94000 0x0 0x50>;
-> +				interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clkc_periphs CLKID_TS>;
-> +				power-domains = <&pwrc PWRC_T7_MALI_TOP_ID>;
-> +				#thermal-sensor-cells = <0>;
-> +				amlogic,secure-monitor = <&sm 3>;
-> +			};
-> +
-> +			nna_tsensor: temperature-sensor@96000 {
-> +				compatible = "amlogic,t7-thermal";
-> +				reg = <0x0 0x96000 0x0 0x50>;
-> +				interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clkc_periphs CLKID_TS>;
-> +				power-domains = <&pwrc PWRC_T7_NNA_TOP_ID>;
-> +				#thermal-sensor-cells = <0>;
-> +				amlogic,secure-monitor = <&sm 4>;
-> +			};
-> +
-> +			vpu_tsensor: temperature-sensor@98000 {
-> +				compatible = "amlogic,t7-thermal";
-> +				reg = <0x0 0x98000 0x0 0x50>;
-> +				interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clkc_periphs CLKID_TS>;
-> +				power-domains = <&pwrc PWRC_T7_VPU_HDMI_ID>;
-> +				#thermal-sensor-cells = <0>;
-> +				amlogic,secure-monitor = <&sm 6>;
-> +			};
-> +
-> +			hevc_tsensor: temperature-sensor@9a000 {
-> +				compatible = "amlogic,t7-thermal";
-> +				reg = <0x0 0x9a000 0x0 0x50>;
-> +				interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clkc_periphs CLKID_TS>;
-> +				power-domains = <&pwrc PWRC_T7_DOS_HEVC_ID>;
-> +				#thermal-sensor-cells = <0>;
-> +				amlogic,secure-monitor = <&sm 5>;
-> +			};
 >   		};
+> +	};
+> +
+> +	thermal-zones {
+> +		a53_thermal: a53-thermal {
+> +			polling-delay = <1000>;
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&a53_tsensor>;
+> +
+> +			trips {
+> +				a53_passive: a53-passive {
+> +					temperature = <85000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "passive";
+> +				};
+> +
+> +				a53_hot: a53-hot {
+> +					temperature = <95000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "hot";
+> +				};
+> +
+> +				a53_critical: a53-critical {
+> +					temperature = <110000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map-a53 {
+> +					trip = <&a53_passive>;
+> +					cooling-device =
+> +						<&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu102 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu103 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		a73_thermal: a73-thermal {
+> +			polling-delay = <1000>;
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&a73_tsensor>;
+> +
+> +			trips {
+> +				a73_passive: a73-passive {
+> +					temperature = <85000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "passive";
+> +				};
+> +
+> +				a73_hot: a73-hot {
+> +					temperature = <95000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "hot";
+> +				};
+> +
+> +				a73_critical: a73-critical {
+> +					temperature = <110000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map-a73 {
+> +					trip = <&a73_passive>;
+> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		gpu_thermal: gpu-thermal {
+> +			polling-delay = <1000>;
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&gpu_tsensor>;
+> +
+> +			trips {
+> +				gpu_passive: gpu-passive {
+> +					temperature = <95000>;
+> +					hysteresis = <5000>;
+> +					type = "passive";
+> +				};
+> +
+> +				gpu_hot: gpu-hot {
+> +					temperature = <105000>;
+> +					hysteresis = <5000>;
+> +					type = "passive";
+> +				};
 >   
+> +				gpu_critical: gpu-critical {
+> +					temperature = <115000>;
+> +					hysteresis = <1000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		hevc_thermal: hevc-thermal {
+> +			polling-delay = <1000>;
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&hevc_tsensor>;
+> +
+> +			trips {
+> +				hevc_passive: hevc-passive {
+> +					temperature = <95000>;
+> +					hysteresis = <5000>;
+> +					type = "passive";
+> +				};
+> +
+> +				hevc_hot: hevc-hot {
+> +					temperature = <105000>;
+> +					hysteresis = <5000>;
+> +					type = "passive";
+> +				};
+> +
+> +				hevc_critical: hevc-critical {
+> +					temperature = <115000>;
+> +					hysteresis = <1000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		nna_thermal: nna-thermal {
+> +			polling-delay = <1000>;
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&nna_tsensor>;
+> +
+> +			trips {
+> +				nna_passive: nna-passive {
+> +					temperature = <95000>;
+> +					hysteresis = <5000>;
+> +					type = "passive";
+> +				};
+> +
+> +				nna_hot: nna-hot {
+> +					temperature = <105000>;
+> +					hysteresis = <5000>;
+> +					type = "passive";
+> +				};
+> +
+> +				nna_critical: nna-critical {
+> +					temperature = <115000>;
+> +					hysteresis = <1000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		vpu_thermal: vpu-thermal {
+> +			polling-delay = <1000>;
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&vpu_tsensor>;
+> +
+> +			trips {
+> +				vpu_passive: vpu-passive {
+> +					temperature = <95000>;
+> +					hysteresis = <5000>;
+> +					type = "passive";
+> +				};
+> +
+> +				vpu_hot: vpu-hot {
+> +					temperature = <105000>;
+> +					hysteresis = <5000>;
+> +					type = "passive";
+> +				};
+> +
+> +				vpu_critical: vpu-critical {
+> +					temperature = <115000>;
+> +					hysteresis = <1000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
 >   	};
+>   };
 > 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
