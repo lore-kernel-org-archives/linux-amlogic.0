@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 013EDFE51F3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2026 09:47:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1960CFE51FA
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Apr 2026 09:47:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gkX+xVM2PG7hnoFS2VtNa21FHn/EP28txICGyy1XgtU=; b=3oi1L3fAicDwM1dRrUTT/e/gxa
-	zgLTIbJQxlyvYrjLgqMUXRj6+P7CfeSgQ5/adJeiJd2iP8gbpdVQSOO5BXoSclVb5aSBT2Awk4EbQ
-	H4QGGY1tDVjMJo0BGSalVmmMgF0vcr6afrKrSR03sHISy9i7Q/HpXreosePW/eLvCFy/DLnwHObVr
-	PD8glQ7g2eYtR2dS9dw9yiVf6s3gSgMaBkCKBrZMcKijTvLjSCeZIvgbi1JT4IJbcp9HxQnV+xSD/
-	x50aHbLIRz6Xj0i/e65J0E67CbdvPe/Cv1eh8t2RZd/EFAIKUXDIngsC8LlhAVimblKleAWYbj1MA
-	tixQPBYQ==;
+	bh=zC3na0u9liKndcQbGTnYe38DUwtxuEYFiq0vQp7bhws=; b=ht1KFo3ru8VuWvLtfda600G2xY
+	ixr0mHFKqz/Zrb6xtYEahrwZSL7Wid9yAbfJWNXte0IiHAR0gVqNLUIyqGK9lV0lPL6F7wAjIf8lr
+	EFrgcfoEJSbfMdKQkNKWDqEoHsHON705M9uRKF2aJhO9YZGaMO3gDGN6thbyOcbYq+lRjgJN9zx2j
+	anP/XCg5Z9gtrWsRAr84X3GwHQL/mRYGkwm2EXPqUeIAU1B/Oyp0CaotqlPiE9vrGngJXEShoLYu0
+	FBEnXET2CpWlYMX8Ls2KV9hloM6eYqk5anvESExPDO10lRKITXcORXixfQnSDHQdOTAjDlfPo/+oi
+	wdnKplkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wGD8H-0000000CxFh-3Ryt;
-	Fri, 24 Apr 2026 09:47:33 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1wGD8c-0000000CxKz-1fMh;
+	Fri, 24 Apr 2026 09:47:54 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wGD8F-0000000CxF1-188l
+	id 1wGD8a-0000000CxK0-3hRm
 	for linux-amlogic@lists.infradead.org;
-	Fri, 24 Apr 2026 09:47:32 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-43cfbd17589so6084939f8f.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 24 Apr 2026 02:47:30 -0700 (PDT)
+	Fri, 24 Apr 2026 09:47:54 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4838c15e3cbso71339405e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 24 Apr 2026 02:47:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1777024049; x=1777628849; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1777024071; x=1777628871; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1cXOyeqVZTuYmkbP/VNEswETXiZyV/j1DeIymNd6Gck=;
-        b=JSSQfFL8DrvmdY09FBLydBTN6+VZ+kvvaamqwiIEv6X/o5BpPh5ZMpOIBLG1z5OBgB
-         MlO97bLV4jp6XI0m/8bXqOgP1nnYy0YNYGgBBP7bQ6baZhVmAxqnHonBfB6IJfKd8CUJ
-         NdnMv2cv4U8gppc9JT1OvqNrcemoWj3A84P5HvZ9vBuG8z6Wfnafho+2N9U6qz/z3nuj
-         yoW2A4cXTTclVJkUNei7X5jImj44igaHbCQVZIAVOGzp2z3D+Cxy8gUwtnoeH/QuiGxB
-         DnQ7+OsNHm5JmCbtyNu8M7LxqQkfRLPctzZbbfXxVrQCXIqlwP0wM8qeuiu0C4KPyw3C
-         0j3w==
+        bh=zyyE/r/iA1MwYNHXAS7P+Cj4G1v9/C9w7YzUp4f7iBc=;
+        b=maTCA5TUp8xzhVshCkccW3aTMn6hawPk9SRweNWfcKDWAjlEiRh6p9KJ43Pw2yIsLo
+         WcTsPgvUf1A7LOF3j9RRYTJ9z3QWhoXjbNoeq1DP7Y15LVvUR+Gk+qQLPYVi/goLXrwq
+         HXefUIA1u7HqmhTPc4+mKmuzEPkqT68PMzuWVQEIjb+d4JiE7kgyJd/Rqj1wknEDvq0R
+         Yf8G2ZXas2pFimnwNMlQiL0lszaW7Nr7EtYvJlIHTshq5DUr/hlNF1tCbgsiyOnwSs2F
+         I7Ua4DwRQB888/xwdFJ2yX9I2VO3rghk5bcyS1TX1RkyR0D5rciDGaEY4uj/mCRNZyNN
+         MQKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777024049; x=1777628849;
+        d=1e100.net; s=20251104; t=1777024071; x=1777628871;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1cXOyeqVZTuYmkbP/VNEswETXiZyV/j1DeIymNd6Gck=;
-        b=j+DohZn64NrKZ6F/2rFGEGFBndkp8N8XVTExGWtBT8FRKHIz4+/9j6V6fPmJESBDis
-         SR6JeoDEBUNSqGsvhq+4L4pF/9WEAEwFn+4bT8naFkzID6Ccae4pX6snfIo8qOqFq6bi
-         23zzm3T4NcGEB1Mf2+DBzq2rCallIOyrYWjBua3sXwLHRbNTUZI+1nXVIl4nMwYrSDhP
-         dURH3ope5HKd0TO7VcaDHzVtzt8CU43xYHdvXyHM10+peReTtJ3SrFgNUmsnzDd6nx5B
-         V08WFU4tTkFQs/sbvZVtGvyyUT2ud5tEn/VLn8jZbftS5YHacF11VL88tOGPsiu0AMqz
-         +6xQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9nuoa9+atMDwB4RVlneU1RqsE3T3izo43J2z15m1YYsOPf/n383D848sJ4kjFT7Y6ge+wEfzixC5zeNvS0@lists.infradead.org
-X-Gm-Message-State: AOJu0Yy48FQHouHqw4nWqjL13X8KVRkJiWLNkXeSCXmkqiInD4ZNoLEQ
-	e/O4uf8G02LqXQrypjk3PvLrEJ0oPgW+RD7vknz/GszqJUvR+X2AhffFx1l66ZqhMBM=
-X-Gm-Gg: AeBDievxikQe0/m8DLZ+kKxCNYztbH6WANY9Rpuu7rhpdg7tKz+GpMpUupJ4TB4mUne
-	Tp512a5BDRWO/2MkjMx2xLu2VtdQ3DTRLEsHAbGbD53IbE/jSYNJH0zY/NZOPTycmqd9CVJ6xAD
-	7A4Xb+f33tZu4mLeL15VRWD5712nZSZCzmYBH/DK4jFkSwNJZZHC6lfO1ldDYe2mW278CBkh9j2
-	O3+0U+IjK3irdRTU62/vFMRBYAqXSuDn1LwsdhPYUwg7ONqs8w26P0VKD+swTa4c216Pukg0WVO
-	ul0xV+pabPJj0bp9YAY7LLchw4KuG7NgrZtkzP8yeXkPvl6rFw9qSKkE05sS/NHnYUK/dUsKwRm
-	jP/T2ZgT+TcqQrDcu1oYYVtNgi5RZ9bPPCel7JtdC5JEIaznyn7Qd1H7ITxhLTtLSSl+5iZ1Vmt
-	kQx1+DWEX7CFp9kfBWsOvevjWI1ef6plxvzVkmdSg05hF48UrgBPfHd9YUQQr2uFdDpz9AjXXXG
-	KbeJ49ihEU1m59iMXlCC4K2Shpi
-X-Received: by 2002:a05:6000:288c:b0:43e:a69b:d804 with SMTP id ffacd0b85a97d-43fe3df26b1mr48732901f8f.29.1777024048585;
-        Fri, 24 Apr 2026 02:47:28 -0700 (PDT)
+        bh=zyyE/r/iA1MwYNHXAS7P+Cj4G1v9/C9w7YzUp4f7iBc=;
+        b=Pzgi0VNGlUYcpkwxdmZIIUbZHOy29QYWZoein9b3ZZcI7UNzyxs2RSrPlCn2dyaaAe
+         +kQfUqfzmJ7ySXwhXDu/W/L1JfItgfwLbcIb7UG+uifHI9jYPVb7kU8LsTfTYgyMeQKn
+         9azKGMfrtAoAvZxuespzoQWZH57eb/TrBlFuJ8Kw2zXtp10MXIa6AmsfPXAmVNEJomyI
+         c36lvXBf4ygxIOEs1+vvUjDFVrOqKMNSnOLwKrg2cO/fBysBTW2/qp0rQ9c/7FMpjbdO
+         Pey+5qsovKpan8Wg3fYEtZP40f1GVFc/t6c3dZ+7UCj0SI1iV6tmscZrBX6xacBw2fZt
+         eIfQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/UmSGQSHyRAKFJgGsOZS5CnaVtYlCpQuW4ejMYIDIPS7VNKp83htX4zdO1ySt60X9CIA8lkIbLQPnLPmgO@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy4/stbWSZpK4lOlFhvHn/61sfZbfIqTbCgFgAQkf7d4T+RW3RY
+	RiX7ShXhUHNfjjXBkglM+7s9iIYxWH2RFeZHMENBx3Ojw9trtgvVSeZxel2It1+jpuo=
+X-Gm-Gg: AeBDieun157TUD9JBTiKir/e5Jv1r31TId1m8MoHRyKlYtKOaNOF7Kne3m1X6KzeqC8
+	/oDwCy5IXyEKOHr3SAjOpNvGK16pGect8dMY9iCBDkIRrHRDQMKY4aNQl6T0yG68AHIJliTHTP1
+	KHVqjTXjhIzmudFwdEJ+zy0yESVNzG5vjyeHTMqI/LFfgiug+hc8HkIOm7pNIjN0i9PJGiwtWnY
+	AEs65ByRhQ72su5AxmjqavW9Y/KZEz/PmWIsepUrvVDbdNn2kzLCkCnWoQ//oqL9ZCzmeMoL4/X
+	oy/e4+Hc7sNkTHX6WZLC0hFcUfTj3A6mqXqhas46uEhfwBMLUCmicYiLoEpDWr7OGJ9JYYFrb4I
+	uJE38D8i/6Y9Yp7+5uY3CW+eeE+cFI6MZhuok+ppczBLSbJoi0iwXPSXbgSal84BqUfN+sWaKno
+	ZviNT5SdSn71P8tQdPDMAMKeejUc81uY/yPUTldNnXdzmIkDS27oLy2HEfVxWFIN2tcWM2Xqa7H
+	0x9xkfJ9t2+4n+RAw==
+X-Received: by 2002:a05:600c:c4a2:b0:488:c078:bfda with SMTP id 5b1f17b1804b1-488fb78eebdmr426779015e9.26.1777024070744;
+        Fri, 24 Apr 2026 02:47:50 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:79e1:f56b:445c:ca9c? ([2a01:e0a:106d:1080:79e1:f56b:445c:ca9c])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43fe4cb1176sm60412901f8f.3.2026.04.24.02.47.27
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-488fb75ab25sm179552435e9.11.2026.04.24.02.47.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Apr 2026 02:47:28 -0700 (PDT)
-Message-ID: <86adec56-2234-44c0-b165-71fa91b17e96@linaro.org>
-Date: Fri, 24 Apr 2026 11:47:27 +0200
+        Fri, 24 Apr 2026 02:47:50 -0700 (PDT)
+Message-ID: <fe284566-5a71-4b9e-940b-a36c58cb94a5@linaro.org>
+Date: Fri, 24 Apr 2026 11:47:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 2/8] firmware: meson: sm: Thermal calibration read via
- secure monitor
+Subject: Re: [PATCH v4 3/8] firmware: meson: sm: Add thermal calibration SMC
+ call
 To: linux-kernel-dev@aliel.fr, Guillaume La Roque <glaroque@baylibre.com>,
  "Rafael J. Wysocki" <rafael@kernel.org>,
  Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
@@ -91,7 +91,7 @@ Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20260423-add-thermal-t7-vim4-v4-0-d4c1528d5044@aliel.fr>
- <20260423-add-thermal-t7-vim4-v4-2-d4c1528d5044@aliel.fr>
+ <20260423-add-thermal-t7-vim4-v4-3-d4c1528d5044@aliel.fr>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -118,10 +118,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260423-add-thermal-t7-vim4-v4-2-d4c1528d5044@aliel.fr>
+In-Reply-To: <20260423-add-thermal-t7-vim4-v4-3-d4c1528d5044@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260424_024731_340275_4353876F 
-X-CRM114-Status: GOOD (  11.47  )
+X-CRM114-CacheID: sfid-20260424_024752_952426_059AFF9C 
+X-CRM114-Status: GOOD (  15.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,35 +142,65 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 4/23/26 18:07, Ronald Claveau via B4 Relay wrote:
 > From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > 
-> Add SM_THERMAL_CALIB_READ to the secure monitor command enum and
-> introduce meson_sm_get_thermal_calib() to allow drivers to retrieve
-> thermal sensor calibration data through the firmware interface.
+> Add SM_THERMAL_CALIB_READ at SMC ID 0x82000047 in the command
+> table and implement meson_sm_get_thermal_calib(), which forwards the
+> tsensor_id argument to the secure monitor and returns the calibration data.
+> 
+> Also realign the CMD() column to improve readability.
 > 
 > Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > ---
->   include/linux/firmware/meson/meson_sm.h | 3 +++
->   1 file changed, 3 insertions(+)
+>   drivers/firmware/meson/meson_sm.c | 29 ++++++++++++++++++++++++-----
+>   1 file changed, 24 insertions(+), 5 deletions(-)
 > 
-> diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
-> index 8eaf8922ab020..3ebc2bd9a9760 100644
-> --- a/include/linux/firmware/meson/meson_sm.h
-> +++ b/include/linux/firmware/meson/meson_sm.h
-> @@ -12,6 +12,7 @@ enum {
->   	SM_EFUSE_WRITE,
->   	SM_EFUSE_USER_MAX,
->   	SM_GET_CHIP_ID,
-> +	SM_THERMAL_CALIB_READ,
->   	SM_A1_PWRC_SET,
->   	SM_A1_PWRC_GET,
+> diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+> index 3ab67aaa9e5da..4e57986724212 100644
+> --- a/drivers/firmware/meson/meson_sm.c
+> +++ b/drivers/firmware/meson/meson_sm.c
+> @@ -41,12 +41,13 @@ static const struct meson_sm_chip gxbb_chip = {
+>   	.cmd_shmem_in_base	= 0x82000020,
+>   	.cmd_shmem_out_base	= 0x82000021,
+>   	.cmd = {
+> -		CMD(SM_EFUSE_READ,	0x82000030),
+> -		CMD(SM_EFUSE_WRITE,	0x82000031),
+> +		CMD(SM_EFUSE_READ,		0x82000030),
+> +		CMD(SM_EFUSE_WRITE,		0x82000031),
+>   		CMD(SM_EFUSE_USER_MAX,	0x82000033),
+> -		CMD(SM_GET_CHIP_ID,	0x82000044),
+> -		CMD(SM_A1_PWRC_SET,	0x82000093),
+> -		CMD(SM_A1_PWRC_GET,	0x82000095),
+> +		CMD(SM_GET_CHIP_ID,		0x82000044),
+> +		CMD(SM_THERMAL_CALIB_READ,	0x82000047),
+> +		CMD(SM_A1_PWRC_SET,		0x82000093),
+> +		CMD(SM_A1_PWRC_GET,		0x82000095),
+>   		{ /* sentinel */ },
+>   	},
 >   };
-> @@ -27,5 +28,7 @@ int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
->   		       unsigned int bsize, unsigned int cmd_index, u32 arg0,
->   		       u32 arg1, u32 arg2, u32 arg3, u32 arg4);
->   struct meson_sm_firmware *meson_sm_get(struct device_node *firmware_node);
-> +int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
-> +			       u32 tsensor_id);
+> @@ -245,6 +246,24 @@ struct meson_sm_firmware *meson_sm_get(struct device_node *sm_node)
+>   }
+>   EXPORT_SYMBOL_GPL(meson_sm_get);
 >   
->   #endif /* _MESON_SM_FW_H_ */
+> +/**
+> + *
+> + * meson_sm_get_thermal_calib - Read thermal sensor calibration data.
+> + * @fw:		Pointer to secure-monitor firmware.
+> + * @trim_info:	Pointer to store the returned calibration data.
+> + * @tsensor_id:	Sensor index to identify which sensor's calibration data
+> + *		to retrieve
+> + *
+> + * Return: 0 on success, negative error code on failure.
+> + */
+> +int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
+> +			       u32 tsensor_id)
+> +{
+> +	return meson_sm_call(fw, SM_THERMAL_CALIB_READ, trim_info, tsensor_id,
+> +			     0, 0, 0, 0);
+> +}
+> +EXPORT_SYMBOL_GPL(meson_sm_get_thermal_calib);
+> +
+>   #define SM_CHIP_ID_LENGTH	119
+>   #define SM_CHIP_ID_OFFSET	4
+>   #define SM_CHIP_ID_SIZE		12
 > 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
