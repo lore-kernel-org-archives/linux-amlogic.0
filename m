@@ -4,68 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62E6BFF8867
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2026 03:37:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B684FF886D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Apr 2026 08:23:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EZG6kHJz+HX66qyo3B+B9716msWBkmCSgKUjS7NyfPc=; b=SxqMa7/S7CoPh+
-	0Is5CbTrRnDb1wWLY4jmeAqoviRbmP2a+GigsfyhG4pwQPQ9bsrB0jHCIuSJZLBN54exiWDCUahPI
-	gxPhQljEZxpQ8ulA73FLb/solMdCb1hd5f4Mj1KauPZurdKtq/q6RvFdZamvr0rrQOSVJEBHSrQnA
-	qZjYPZ+JMfr6QdWISYGZ964/jgTcndKz3MxKqlUacFzuDf8ETMdQ9emGzwd0JbN6rubI1Tg8gdFlz
-	TrgqpfaDl+ElG951omvJ9a7Bjpv8acsM5jovmSaYBsfCH0sJTW/ztkRX45Wg/c4QagiGSBYC0itox
-	SWu/zyXkOhkUabURmXDg==;
+	List-Owner; bh=xK043VWLm97iRLsTawyyZv+DVfCBPDYfB9/lNap/6zw=; b=D+G62YWtft/xEY
+	78khlu0wAkp0kvE+N+Ovic08oFTcJg2WUJVd30BKq7RjzU8cGRKZk39YCylCyXDUpMWQ7snkku8Yx
+	t2n5Q00zoP/9YsqNmPxcWOEYfDmyQXkX4gkzPZMPK9uz0WH89pE2dSA14JaFsi4Y4BAJTzv10kc/C
+	fLskditg/+aHP6PsLkGOyj6dJtAtRPutzzY4Eqr2sAmPsIx1H60CBculyXwSvd6RqVNmRbPxHA0Pl
+	BIeNAOHE+WNWAkFMOu5pJo3KXobzBXfnWtBes9K8I7S4kMmyzGGKakGmU7ajtwvTzkyy7CMfzJfNA
+	1SPyVG8/TLl3P54r2C4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wHZGS-00000000VQn-3N5j;
-	Tue, 28 Apr 2026 03:37:36 +0000
+	id 1wHdib-00000000sUj-1fDa;
+	Tue, 28 Apr 2026 08:22:57 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wHZGR-00000000VQf-02td
-	for linux-amlogic@lists.infradead.org;
-	Tue, 28 Apr 2026 03:37:35 +0000
+	id 1wHdia-00000000sUP-1PR3;
+	Tue, 28 Apr 2026 08:22:56 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1E21260121;
-	Tue, 28 Apr 2026 03:37:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEF11C2BCAF;
-	Tue, 28 Apr 2026 03:37:32 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id B026961119;
+	Tue, 28 Apr 2026 08:22:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D6BD5C2BCC6;
+	Tue, 28 Apr 2026 08:22:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777347453;
-	bh=5T1Y+3ixBP4MWH0kDoYr/M9lHLniulXzZSW89qNFyCc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=c44JFtfr6aWnbrcsCiw4Nr7FwtC65zZXIYAQ4STp89PfMQIId9RwdJuvdQ1gHyhib
-	 poVBA4imyZeunKXNnuKcw9XWSWUiEm5H5KFKXR+FzdgCcwCEELzzlBl8dckkmbKrcI
-	 rnUGmuUukw+cKEyy6kfJnAyQpyA+GzjOnbg81Hmc0zDm6d3mPPBINcdRIGjCRkp75G
-	 xUWZtZO2v9QAdRtw7zRT0YMD5FkLpKPN/sp6qgxusTiTXVfzNi7C5to5fOLoDPtblt
-	 2nWQdFf1noH7NNG9FHLq7Odj4waR05mMsFEy8mut2ToqiM7G9HK8RGYEmM4n6+W56e
-	 tycw0NRTe7HMw==
-From: Mark Brown <broonie@kernel.org>
-To: Sunny Luo <sunny.luo@amlogic.com>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Felix Gu <ustc.gu@gmail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20260428-amlogic-spisg-v1-1-8eecc3b446d6@gmail.com>
-References: <20260428-amlogic-spisg-v1-1-8eecc3b446d6@gmail.com>
-Subject: Re: [PATCH] spi: amlogic-spisg: initialize completion before
- requesting IRQ
-Message-Id: <177733784146.324244.3020070967543229096.b4-ty@b4>
-Date: Tue, 28 Apr 2026 09:57:21 +0900
+	s=k20201202; t=1777364574;
+	bh=2Vjr+gzdqEzGNWSWn0Sk/xakPdleF096MbPBDXVAhts=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=LtcJzwb7l6BMOm96R2uPwtpJ0bQyC2w4jY3pr9lruO+qBdYkC0GKfuxDx7kI0RWlx
+	 rzm2DqXTQAayJLAsjdu/3f1KrU0wC1ODVoeYoYNJkvvX2cRksFBhyy6l7/PpNxBVH3
+	 ThsmgLnUxQcj3dhYRYX75aNymwfvPMY0l1sdIVYfriDgSs3uaDR/pXS+xg334oda+r
+	 iUJULUWKFqRVp13GGFAvdMrJgtsCwWu8pX2PzqCFgJK1PTmDzk0woWIDqmqtmAFPBD
+	 qnD1LXxqrlJLVbhfrwR4JsXJ2guk8iMQ9R+yLlQbWXKALJSiIxnE3rOzz//V8smiOV
+	 6Z5RseE1rSKjg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5D4EFF885D;
+	Tue, 28 Apr 2026 08:22:54 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Tue, 28 Apr 2026 08:22:48 +0000
+Subject: [PATCH 1/2] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
+ compatible string for A9
 MIME-Version: 1.0
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1136; i=broonie@kernel.org;
- h=from:subject:message-id; bh=5T1Y+3ixBP4MWH0kDoYr/M9lHLniulXzZSW89qNFyCc=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp8Ct7Y00fBSSxGtMIo2f6hSBpox9AkbyHBmpEf
- lNMp+TJH4qJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCafArewAKCRAk1otyXVSH
- 0OPBB/97cab0SZgYSGSRAZqFAqPrBZG/DX0QTLPjd4shAFlkHIVdJyCGCrSgQwe62NJQgTUPzkH
- nziaEWkix8gTQna+f9gmoBOxDgs2WU5kQjdkyatlitcJcw59nsa3lfmqY+bEC0iekgYodBIYpQc
- KxXS8cuprYo1AiPE0OKfnQI/VGhaYBHH/KtkMYTmiXts2BZOWTvEsv48cOnHFjoy7SI2xjSNCXH
- wZnXqhjGqDtLdkHdROXTrt3AwI1XDRsjXD2oQ/AnIw7TcZUbALNgav2p64I8+0rQ4qeSQ9I86G4
- kpMQx0N7RWnnpWI/scbMthpBlBYDAGHmJe9kzGIMl4PWc81D
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Message-Id: <20260428-a9-pinctrl-v1-1-cd611bb5f52d@amlogic.com>
+References: <20260428-a9-pinctrl-v1-0-cd611bb5f52d@amlogic.com>
+In-Reply-To: <20260428-a9-pinctrl-v1-0-cd611bb5f52d@amlogic.com>
+To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777364572; l=786;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=ZCQ9AXusiocY4m+0VEcyvhrnI6BCr+BT62vN2ubdhfE=;
+ b=xjCHxc9DgI/cq+g0Uw7BwWKjy/UVmfIvgt2iNeeY93ziednAQAhkzXWGcDmkq8pnrle7LI4pW
+ LlOPIaqIjtVAAPz6riUk3JbQz2ujPhAGPzn4COaKfZDnryewWevr14o
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,41 +84,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 28 Apr 2026 01:42:00 +0800, Felix Gu wrote:
-> spi: amlogic-spisg: initialize completion before requesting IRQ
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Applied to
+Update dt-binding document for pinctrl of Amlogic A9.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.1
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks!
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
+index 6ba66c2033b4..b69db1b95345 100644
+--- a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
+@@ -17,6 +17,7 @@ properties:
+     oneOf:
+       - enum:
+           - amlogic,pinctrl-a4
++          - amlogic,pinctrl-a9
+           - amlogic,pinctrl-s6
+           - amlogic,pinctrl-s7
+       - items:
 
-[1/1] spi: amlogic-spisg: initialize completion before requesting IRQ
-      https://git.kernel.org/broonie/spi/c/8d0189c1ea98
+-- 
+2.52.0
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 
 _______________________________________________
