@@ -4,37 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 384F5CD13DF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Apr 2026 15:56:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7369DFF8873
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Apr 2026 15:56:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FwMjul1gT0gfLyp8gyO/D8v5CI306o8TbE/nqj4iBJA=; b=IoLunKx06qY5hg
-	42sulqyJ1RTdaEdgIObXB4BU+Ne/eszfWcmeYkDwIvUfOqRgTvKVY9chOt41yaQ3jERKdTXilWuqb
-	9cZFYqcPdlKOYbJZHjd7HnTVchpPHmgIwGraTn6ljkTBw7CfUUSLg26vPQDpOd6WswBfE4noN2UdO
-	NKq9ywJpcnEmOv07VfgyO20PDnpaaeUNHX1goRa+8DVYY8dZd7rX0p49TW5e0q3Yif7BuXUBTeG+X
-	2dWafq5m1NsEZE6YK01r3uBW8oHMLW9N0+vi+zblWkUU5qjriYM90p8pmYdA9E0dTNX5P5IjSnp6N
-	I5nMOAuNh3h7Af5qMEVQ==;
+	List-Owner; bh=HM+gQ61ZJCvMbGGM5EeudA042y/FJeZArtSHOUE+IXY=; b=y/a0KiaxonrATU
+	0xh+TxNTdhk2xkW3+40rxd1DIFDn1T4VCZps4hmx09dH/BCAe2F8y5jyNf2KVcLtOb+gVwZw93o6m
+	hLxJcupDTqoV7kbuxUMDt4Xys/ELR79CPn6e0NuxmSLEC0hzZQE6i6kwccf3ou8baGU8qM7swPG7X
+	haNAhDT4/fCcAY+/PF964SnaYVm3tWbdn7g560JMysm/lgPBLi9wBdfwFksTSuzmJ5hGsyqV8LurS
+	c+lmyVbK6HndaCAqxoNRdMeHmy6ypZ70QUGGmTIkVt4WS5LNDlKJS28SagQNh3X6ouku3tS+YIcoa
+	CzPt4xjCSUVLmuP9iSJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wITkD-00000005gIQ-36cz;
-	Thu, 30 Apr 2026 15:56:05 +0000
-Received: from m16.mail.163.com ([220.197.31.4])
+	id 1wITkE-00000005gJ1-08Oy;
+	Thu, 30 Apr 2026 15:56:06 +0000
+Received: from m16.mail.163.com ([117.135.210.2])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wITk0-00000005g9z-3N8G;
+	id 1wITk0-00000005g9y-1fQ9;
 	Thu, 30 Apr 2026 15:55:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=AS
-	93n7u+mL1S7OPp/PoO5Pi701E6fS59BvUwhYSShuE=; b=XlMGYU/qi9Z9z5RAyA
-	E8DfyMJQU7Opp9AdAjrKlYYcAUb+esPSxKKAB4/6GvcFG1iIY6ADtLCwhG4rpbKt
-	gKagWqTZUSAK0R0/FFwXRq0OtcMN+qiJIXCJ/iujOlDnYc016qBSpF2kks+wUIMX
-	ll9lkzrcEYlut1ljJU3R0Uu9c=
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=iC
+	fiPQKy7ydNIZx9BuCZLKIgIDMxYJ5OZgWqt3I9gXo=; b=aTp0iwLMbQ8BW0a3fa
+	5ijjRQ2+ANinIhkuERPsyFJ7wb9M0GHuDlAm+TqB5gvTASOB1VeTQ01lGdMnTY0u
+	8Tclt/2qSSXkucmph7jZ6d+gNrIfJ567rOQBoAffA++zFvjEaGZn2XyIPWqJXaGF
+	BbqJS0EklPLKkxIhxgBkqjzck=
 Received: from zhb.. (unknown [])
-	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wAXyu5Se_NpHedTCg--.49548S3;
-	Thu, 30 Apr 2026 23:55:01 +0800 (CST)
+	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wAXyu5Se_NpHedTCg--.49548S11;
+	Thu, 30 Apr 2026 23:55:10 +0800 (CST)
 From: Hans Zhang <18255117159@163.com>
 To: broonie@kernel.org,
 	sunny.luo@amlogic.com,
@@ -57,23 +57,23 @@ Cc: linux-spi@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-stm32@st-md-mailman.stormreply.com,
 	Hans Zhang <18255117159@163.com>
-Subject: [PATCH 01/10] spi: amlogic-spifc-a1: Use FIELD_MODIFY()
-Date: Thu, 30 Apr 2026 23:54:47 +0800
-Message-Id: <20260430155456.36998-2-18255117159@163.com>
+Subject: [PATCH 09/10] spi: sunplus-sp7021: Use FIELD_MODIFY()
+Date: Thu, 30 Apr 2026 23:54:55 +0800
+Message-Id: <20260430155456.36998-10-18255117159@163.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260430155456.36998-1-18255117159@163.com>
 References: <20260430155456.36998-1-18255117159@163.com>
 MIME-Version: 1.0
-X-CM-TRANSID: _____wAXyu5Se_NpHedTCg--.49548S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrur17tw4kur1DKF47Zry7Jrb_yoWkGwc_CF
-	ykuw4kJF1jgrsrGF4fJryxur90gwn0ga10gF1FqFyYy3s8ta15Zw4qvr1DGryUAa1DCwsY
-	9rnxZrykZrW3CjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRNMKZJUUUUU==
+X-CM-TRANSID: _____wAXyu5Se_NpHedTCg--.49548S11
+X-Coremail-Antispam: 1Uf129KBjvdXoWrur17tw4kXF48WrykWFy7Awb_yoWfCrg_Cr
+	48Gr42yr4qkrZFyF4rKryfAryq9a95ur109FnFvrWfJrWDCr13Wrs7Ary5ZF15Aw45AF4a
+	grZrJ347Zr9xCjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRNa9atUUUUU==
 X-Originating-IP: [240e:b8f:927e:5900:c497:d540:b00d:97f4]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC6xVL7mnze1VOMQAA3Q
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbCxB5N8Gnze15lHwAA3i
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260430_085553_160193_5094A506 
-X-CRM114-Status: UNSURE (   7.79  )
+X-CRM114-CacheID: sfid-20260430_085552_900577_D3080E4E 
+X-CRM114-Status: UNSURE (   7.86  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,26 +96,23 @@ No functional change intended.
 
 Signed-off-by: Hans Zhang <18255117159@163.com>
 ---
- drivers/spi/spi-amlogic-spifc-a1.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/spi/spi-sunplus-sp7021.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/spi/spi-amlogic-spifc-a1.c b/drivers/spi/spi-amlogic-spifc-a1.c
-index 7ee4c92e6e09..77a2c11bec5e 100644
---- a/drivers/spi/spi-amlogic-spifc-a1.c
-+++ b/drivers/spi/spi-amlogic-spifc-a1.c
-@@ -206,10 +206,9 @@ static int amlogic_spifc_a1_read(struct amlogic_spifc_a1 *spifc, void *buf,
- 	u32 val = readl(spifc->base + SPIFC_A1_USER_CTRL3_REG);
- 	int ret;
+diff --git a/drivers/spi/spi-sunplus-sp7021.c b/drivers/spi/spi-sunplus-sp7021.c
+index 35601212fb78..c1870322d976 100644
+--- a/drivers/spi/spi-sunplus-sp7021.c
++++ b/drivers/spi/spi-sunplus-sp7021.c
+@@ -290,8 +290,7 @@ static void sp7021_spi_setup_clk(struct spi_controller *ctlr, struct spi_transfe
+ 	div = max(2U, clk_rate / xfer->speed_hz);
  
--	val &= ~(SPIFC_A1_USER_DIN_MODE | SPIFC_A1_USER_DIN_BYTES);
- 	val |= SPIFC_A1_USER_DIN_ENABLE;
--	val |= FIELD_PREP(SPIFC_A1_USER_DIN_MODE, mode);
--	val |= FIELD_PREP(SPIFC_A1_USER_DIN_BYTES, size);
-+	FIELD_MODIFY(SPIFC_A1_USER_DIN_MODE, &val, mode);
-+	FIELD_MODIFY(SPIFC_A1_USER_DIN_BYTES, &val, size);
- 	writel(val, spifc->base + SPIFC_A1_USER_CTRL3_REG);
+ 	clk_sel = (div / 2) - 1;
+-	pspim->xfer_conf &= ~SP7021_CLK_MASK;
+-	pspim->xfer_conf |= FIELD_PREP(SP7021_CLK_MASK, clk_sel);
++	FIELD_MODIFY(SP7021_CLK_MASK, &pspim->xfer_conf, clk_sel);
+ 	writel(pspim->xfer_conf, pspim->m_base + SP7021_SPI_CONFIG_REG);
+ }
  
- 	ret = amlogic_spifc_a1_request(spifc, true);
 -- 
 2.34.1
 
