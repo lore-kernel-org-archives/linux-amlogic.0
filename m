@@ -4,75 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9046CCD13DA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 30 Apr 2026 15:56:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FA7EFF886F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 May 2026 00:53:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=TNsiAyJvBsTPejYhJr1BxtwCTuyD1pfcGn8F1S2X7LM=; b=kK97t8Jg2FQgBP
-	Od/YGFf4Hwr5sutumzAjSRVtnocAWLi5X99noOe9ABhqhthRUyJLRbqA5C71hUAXaQGF58VmwQ5Js
-	dEWNpWLwzMJRkC15NCZ/KikFuuwAAUox8HAzpG7GQWDb9D3OXwEJGWjMziKkLXZWo3A41s/QnFtMF
-	xiLmy666uFHfA40GBa8YLaKuIi08Vz2akM1/vNGf+2mfVjZD/yf/vk+BUSwGIXGnDKnE87K8mC79B
-	eBOqEki9QH0xHyrmtbWNkaWJc/mq1BfYuI3XGlSTTztJt41lWQJXxGNiBEsemCO+4eh2rgmeNh7ZZ
-	+SAIpFIpIj8OPLZxWwOw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=RGaoDWE6hGLMe+S6hOjlc6ArVZZdtmyLigr11zsZ2io=; b=RqnKHKC3pZ2oXmTuwAlZLwYF/A
+	hMO5mbpzokLy98A/Rq9nu4wTan9TxJMzQB2HyAzqhKl9QPMsUBPn8OjpWnKGahDl0LBsgpuMxvicn
+	8/dscdT7iZVcQV/P73k6FphdMcp/1gFP2/EmarZnIY4EZaLPo5M04agomzieCJQbj0aByeLMMdfRZ
+	Z7R/jcsNoidNZGm274vuRc1Qmcd4YxuC2oob1dkha9394ItiDbQAp/oJXThKm4M/8ZeiSxZVVxJjc
+	ySysOrWtTcQumb8uQCPdD8pBnAPdtqEIvIEn3ejNq3a7s9bOlDlHMoGnwD6v/EicrGJtefyBeyU89
+	o9g3Bs3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wITkM-00000005gUv-2fdx;
-	Thu, 30 Apr 2026 15:56:14 +0000
-Received: from m16.mail.163.com ([220.197.31.3])
+	id 1wIc7f-00000006C3n-02Ru;
+	Fri, 01 May 2026 00:52:51 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wITk7-00000005gDN-0Oxy;
-	Thu, 30 Apr 2026 15:56:00 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=o8
-	u8w2UWcyZeZiwf05Vd1PKU6i5IHTCnVEoz7yLvk1c=; b=fnEcgzN2VFnVE3cMIH
-	9ZUq5Q4C0+a+IlpYW+iGSTDe56JVGkJLGxSXC3uPO2+P+5p5N6L6UibBwGRUG3v1
-	PV843Fz76Y+g8t8cRBuYMH6XK7KNltgmjSRbGADxjZrcUIcAM/DFDizXvFLFpxdP
-	YGE/Q2KsUhdvyJLJ3YRE0mxfU=
-Received: from zhb.. (unknown [])
-	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wAXyu5Se_NpHedTCg--.49548S2;
-	Thu, 30 Apr 2026 23:54:59 +0800 (CST)
-From: Hans Zhang <18255117159@163.com>
-To: broonie@kernel.org,
-	sunny.luo@amlogic.com,
-	xianwei.zhao@amlogic.com,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	han.xu@nxp.com,
-	haibo.chen@nxp.com,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	lhjeff911@gmail.com,
-	hayashi.kunihiko@socionext.com,
-	mhiramat@kernel.org,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com
-Cc: linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	id 1wIc7c-00000006C3F-1BsE;
+	Fri, 01 May 2026 00:52:49 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id C3D3760142;
+	Fri,  1 May 2026 00:52:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54D5CC2BCB3;
+	Fri,  1 May 2026 00:52:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777596765;
+	bh=EOOhMWkdwXNe+cgIqAYVnr7cBZIq3XZI0KMFnUqE0CQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ib244CtwJUUvN8KWPb5lMj+V3cAt3pp8wwvKUMag+XKg5JDHMOtEYwLvQIdp6xLw/
+	 SuAEUvevA4tChXEj+76ZFA/OYARODzVt5oLc08jwP7CWYVINfkFlfn/5fQF1dXOICq
+	 XH3ZGXBE5C1EzeAAbLsIqR6XNrOdIiqTiYDHBPynlH4tO5XIsERzAYehSDAckiWfyH
+	 Mc1EvcAPlvHoibwjKqQ5VSbMK5PyhZS9FjazSC5rqaUXH9aIm4X+O31INX1YSot854
+	 hUO/IAoikN02Dv1EcKbWhUZ0WyGsG4SDiLRwIjHIpSkBbLLWtyDxab80brTW95TtSG
+	 mOibVax7L7wlA==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id 1290F1AC5860; Fri, 01 May 2026 01:52:43 +0100 (BST)
+Date: Fri, 1 May 2026 09:52:42 +0900
+From: Mark Brown <broonie@kernel.org>
+To: Hans Zhang <18255117159@163.com>
+Cc: sunny.luo@amlogic.com, xianwei.zhao@amlogic.com,
+	neil.armstrong@linaro.org, khilman@baylibre.com, han.xu@nxp.com,
+	haibo.chen@nxp.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, lhjeff911@gmail.com,
+	hayashi.kunihiko@socionext.com, mhiramat@kernel.org,
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Hans Zhang <18255117159@163.com>
-Subject: [PATCH 00/10] spi: Use FIELD_MODIFY() for bitfield operations
-Date: Thu, 30 Apr 2026 23:54:46 +0800
-Message-Id: <20260430155456.36998-1-18255117159@163.com>
-X-Mailer: git-send-email 2.34.1
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 03/10] spi: cadence-xspi: Use FIELD_MODIFY()
+Message-ID: <afP5Wlzt-dTvnzii@sirena.co.uk>
+References: <20260430155456.36998-1-18255117159@163.com>
+ <20260430155456.36998-4-18255117159@163.com>
 MIME-Version: 1.0
-X-CM-TRANSID: _____wAXyu5Se_NpHedTCg--.49548S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7tw43GF18GryUWryrGryrXrb_yoW8Jw1DpF
-	4fGFyxZw4xJ3yYyF43CrWYkFyaga93WFWqg3W7twn3ZanYyFyUXrWDK3WrJrW7JF97GFWx
-	KFWjkrZ8CFs2vrUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pi1SodUUUUU=
-X-Originating-IP: [240e:b8f:927e:5900:c497:d540:b00d:97f4]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC7BRL7mnze1RXzAAA3z
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260430_085559_458648_F046977D 
-X-CRM114-Status: UNSURE (   4.80  )
-X-CRM114-Notice: Please train this message.
+In-Reply-To: <20260430155456.36998-4-18255117159@163.com>
+X-Cookie: 667:
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,49 +74,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============5012884440131984987=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Replace open-coded bitfield modifications with the standard FIELD_MODIFY()
-macro across multiple SPI controller drivers. This improves readability and
-adds compile-time checking without functional changes.
 
-Each patch modifies a single driver, allowing independent review and
-application.
-
-Hans Zhang (10):
-  spi: amlogic-spifc-a1: Use FIELD_MODIFY()
-  spi: amlogic-spisg: Use FIELD_MODIFY()
-  spi: cadence-xspi: Use FIELD_MODIFY()
-  spi: meson-spicc: Use FIELD_MODIFY()
-  spi: nxp-xspi: Use FIELD_MODIFY()
-  spi: sn-f-ospi: Use FIELD_MODIFY()
-  spi: stm32-ospi: Use FIELD_MODIFY()
-  spi: stm32-qspi: Use FIELD_MODIFY()
-  spi: sunplus-sp7021: Use FIELD_MODIFY()
-  spi: uniphier: Use FIELD_MODIFY()
-
- drivers/spi/spi-amlogic-spifc-a1.c |  5 ++---
- drivers/spi/spi-amlogic-spisg.c    | 13 +++++--------
- drivers/spi/spi-cadence-xspi.c     |  3 +--
- drivers/spi/spi-meson-spicc.c      |  5 ++---
- drivers/spi/spi-nxp-xspi.c         | 12 ++++--------
- drivers/spi/spi-sn-f-ospi.c        |  5 ++---
- drivers/spi/spi-stm32-ospi.c       |  7 +++----
- drivers/spi/spi-stm32-qspi.c       |  5 ++---
- drivers/spi/spi-sunplus-sp7021.c   |  3 +--
- drivers/spi/spi-uniphier.c         | 13 +++++--------
- 10 files changed, 27 insertions(+), 44 deletions(-)
+--===============5012884440131984987==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="JFs5EhvgRVT+vvgO"
+Content-Disposition: inline
 
 
-base-commit: 3b3bea6d4b9c162f9e555905d96b8c1da67ecd5b
--- 
-2.34.1
+--JFs5EhvgRVT+vvgO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Thu, Apr 30, 2026 at 11:54:49PM +0800, Hans Zhang wrote:
+>  		writel(clk_reg,
+>  		       cdns_xspi->auxbase + MRVL_XSPI_CLK_CTRL_AUX_REG);
+>  		clk_reg = FIELD_PREP(MRVL_XSPI_CLK_DIV, i);
+> -		clk_reg &= ~MRVL_XSPI_CLK_DIV;
+> -		clk_reg |= FIELD_PREP(MRVL_XSPI_CLK_DIV, i);
+> +		FIELD_MODIFY(MRVL_XSPI_CLK_DIV, &clk_reg, i);
+>  		clk_reg |= MRVL_XSPI_CLK_ENABLE;
+>  		clk_reg |= MRVL_XSPI_IRQ_ENABLE;
+>  		update_clk = true;
+
+The existing code is a bit weird here, we could just delete the
+modification entirely AFAICT.
+
+--JFs5EhvgRVT+vvgO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnz+VoACgkQJNaLcl1U
+h9DEnQf/VAnw03Dnq8NVXT8eelt6wkRf2zJKsMEPrCCYPKzeWXivCbUy9eykDun+
+0JMG0iLP/LpWGz4qpUWkbR2Kz8aA0BehHcrEQ56Du8lygGmGeFUNtTcr3KL8API3
+DEQrtR2rOyvQ5gxfbyX9NN12jKoVi+SQ6E/W2FFwRY9o2Akuj+NK2rRSYcSmiIBO
+b5oZbhABu4P6LiXAtHZ1LK+Yf7NhvgSiFch1chrm/dk225txoJfTFn5BSn14cC+8
+FWtjbKtDpupiD1C94wsXHfoUDT2hOtJqxnQLE63hNAKIMqkU3raORVOemHKqcB+M
+0qK9zAkxfGtf5GZdQ3rD7/lt2v0bCg==
+=Ca6l
+-----END PGP SIGNATURE-----
+
+--JFs5EhvgRVT+vvgO--
+
+
+--===============5012884440131984987==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============5012884440131984987==--
+
