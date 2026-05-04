@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3F54FF885A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 May 2026 19:11:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BA34CD342F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 May 2026 19:11:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=q5g615ZSRiFC/7kjArWomaJp4CJ+LgUq7Ln5zAWYjp0=; b=MIsLWiiq8meM4z
-	E1+MYX8i2aeDfmqSDFzmaQ99iOWLx+tkzWNXQUNuwXPiSHxqoYUkbHVXAMRXjtFQG4qDko+nGETzx
-	7xppaTjQRSMxYiCFMuiWgnheEnROEqEIcU+sRuWoKlkP3cwH+0DnpS0NYnp58jUsC7fIFNB7niw0d
-	UtGkTxCPUV+7RiQBP3yrkg4M/Lr0zC33WpEivU6YpMVoe5XsVUN4EezVkifZ+y+MSLfwe3S2mejaZ
-	0K2V2L4UVBF02jbqW/cN54N21MjorGykAL77VNkIRTRz2/mYa8E67oyL7EwlqAqmwES8tmKXQOBA4
-	RooTUHKUfBttrQjpAstA==;
+	List-Owner; bh=kHe4vbIVKOi6PZspm4/jKGXFwdhtSE0ZQS3Z+iGawHg=; b=n8IUk1umgUP+AQ
+	9EKO9QB8cDUu9dlqzuACuZGub1dfF6e++DjXAmoFZTq2EnSkFGREvz6Pwa3aVTPFbr5AxWv2ZRBtk
+	EzAfQc2QL08Mfj5W/ahmXVrk+5UZ8TF33oLr4jh5gzeOQMxqwd8dlIo0txEGZyj2LtxXStN22IcXM
+	qdvipyWV7ofY7slWtrYW3RGYulUb49+Lc4Jo9VwvOggOfpWKhFB8glU4oxhxdo1uHhkBuJ0mDIXgZ
+	+99oONRSI/kzDx7leSgRA14wHw88HPrL2ZbH0YrjTvGwpvUvctqBQCyMMNPcIYAciGyPEL/1AV1vD
+	IZnQQTKWZ88s73m/RCGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wJyhY-0000000E4xq-2Xzt;
-	Mon, 04 May 2026 19:11:32 +0000
-Received: from smtp.forwardemail.net ([121.127.44.66])
+	id 1wJyhd-0000000E54l-2rjj;
+	Mon, 04 May 2026 19:11:37 +0000
+Received: from smtp.forwardemail.net ([149.28.215.223])
 	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wJyhT-0000000E4t7-1Qir
+	id 1wJyhY-0000000E4xr-2jLG
 	for linux-amlogic@lists.infradead.org;
-	Mon, 04 May 2026 19:11:30 +0000
+	Mon, 04 May 2026 19:11:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1777921885; bh=ztwyFtJ+PIzunu61Ma2kZpnK7+L5uIsvetgCX3r3Ivg=;
- b=scQSYhBVPqD04tbvLG48gyg6sBfnHB4e4QauUOyuW9c+oSXOzpeMRHT9jOUT3TVqn4eUSxVUZ
- SmztJEDwekl1+8V2FOHsYCcqgwX4nLcS7MP6Fsh/MixFrnJWz3kNQJ+OaDt6cr/2KcyI2+DkU34
- 3nHAz8uvdtbKSec0UnW5elcdI3Z1UiAd+kwm2gXzWjxf/q731SSK2c1YXg4Gmcm36wqcQ0wcpd6
- WLMHJ8bwZWtz58T/BtzGj6urIrcce3eCud9MUkrflJlsDaODdvtqXoX/PtugnOa450YD4e9LXjw
- kF37avbrEh+hITgzvB0ZPGhbPOIE69IzsrYBW8OGGQRg==
-X-Forward-Email-ID: 69f8ef5a04bb1dff846bb86f
+ t=1777921892; bh=Eqz0r9NoxUG15d+SsM6xXmv6FO2TpWy1OfhCgUezkIo=;
+ b=hphaL4CEje0bc2ROR0q94Sje8OkaGjrL213cRet1dA6ZgXFJldvF6HmUMK8VPCTEf+aNBmYiw
+ 08pUjoFX1zH2isGTp1rwARxz01JuxtHGI0+UCL11K2QTpIc3bDsoGps0w2fXDOkkWHAYSDKPxE3
+ 63Qd30KqiSJ5XOd+LQZcVV0rwzp3+TEW+3UDqqVDRg7nYIVm0jVLiky/+PaNEI+8mt4BGZDK3uz
+ bpvbBb32xHKYZnXLcoSnhMFV/09eGIRg+etIIBzlEe3Yx6jcB0GeXkugTzR9PCNeuqzCpmQAyLR
+ uBCpuMsxDVJp1en2kKgTDCbDSe9MCQ7UYNFcLbxBDIHQ==
+X-Forward-Email-ID: 69f8ef5204bb1dff846bb816
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.66
+ 149.28.215.223
 X-Forward-Email-Version: 2.7.7
 X-Forward-Email-Website: https://forwardemail.net
 X-Complaints-To: abuse@forwardemail.net
@@ -56,17 +56,18 @@ To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH v4 04/17] drm: bridge: dw_hdmi: Use passed mode instead of stored previous_mode
-Date: Mon,  4 May 2026 19:10:41 +0000
-Message-ID: <20260504191059.275928-5-jonas@kwiboo.se>
+	Simona Vetter <simona@ffwll.ch>,
+	Lucas Stach <l.stach@pengutronix.de>
+Subject: [PATCH v4 02/17] drm: bridge: dw_hdmi: Only notify connected status on HPD interrupt
+Date: Mon,  4 May 2026 19:10:39 +0000
+Message-ID: <20260504191059.275928-3-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260504191059.275928-1-jonas@kwiboo.se>
 References: <20260504191059.275928-1-jonas@kwiboo.se>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260504_121127_491921_2C5E3C77 
-X-CRM114-Status: GOOD (  10.00  )
+X-CRM114-CacheID: sfid-20260504_121133_004292_8E2F0711 
+X-CRM114-Status: GOOD (  14.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,50 +85,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use the passed mode instead of mixing use of passed mode and the stored
-previous_mode in dw_hdmi_setup(). The passed mode is currenly always the
-previous_mode.
+drm_helper_hpd_irq_event() and drm_bridge_hpd_notify() may incorrectly
+be called with a connected status when HPD is high and RX sense is
+changed. This typically happens when the HDMI cable is unplugged,
+shortly before the HPD is changed to low.
 
-Also fix a small typo and add a variable to help shorten a code line.
+The original intent of commit da09daf88108 ("drm: bridge: dw_hdmi: only
+trigger hotplug event on link change") was to signal hotplug event at
+correct interrupt states.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Based on the commit message the intent was to trigger hotplug event:
+- when HPD goes high (plugin)
+- when both HPD and RX sense has gone low (plugout)
+
+However, following interrupt state changes can typically be observed
+when the HDMI cable is unplugged:
+- RX interrupt:  HPD=high RX=low  -> triggers a connected event
+- HPD interrupt: HPD=low  RX=low  -> triggers a disconnected event
+
+Fix this by only notify connected status on the HPD interrupt when HPD
+is going high, not on the RX sense interrupt when RX sense is changed.
+
+After this a connected event should be triggered when HPD=high at HPD
+interrupt, and a disconnected event should be triggered when both
+HPD=low and RX=low at either HPD or RX interrupt.
+
+Fixes: da09daf88108 ("drm: bridge: dw_hdmi: only trigger hotplug event on link change")
+Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
-v4: No change
-v3: Collect r-b tag
-v2: Update commit message, s/type/typo/
+v4: Collect r-b tag
+v3: Update commit message
+v2: New patch
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 4ecad0d2eeaa..f028a4b71aad 100644
+index 248454c45d6b..0647ec6632d8 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -2258,6 +2258,7 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
- 			 const struct drm_connector *connector,
- 			 const struct drm_display_mode *mode)
- {
-+	const struct drm_display_info *display = &connector->display_info;
- 	int ret;
+@@ -3157,7 +3157,8 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
+ 			mutex_unlock(&hdmi->cec_notifier_mutex);
+ 		}
  
- 	hdmi_disable_overflow_interrupts(hdmi);
-@@ -2303,12 +2304,10 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
- 	hdmi->hdmi_data.video_mode.mdataenablepolarity = true;
+-		if (phy_stat & HDMI_PHY_HPD)
++		if ((intr_stat & HDMI_IH_PHY_STAT0_HPD) &&
++		    (phy_stat & HDMI_PHY_HPD))
+ 			status = connector_status_connected;
  
- 	/* HDMI Initialization Step B.1 */
--	hdmi_av_composer(hdmi, &connector->display_info, mode);
-+	hdmi_av_composer(hdmi, display, mode);
- 
--	/* HDMI Initializateion Step B.2 */
--	ret = hdmi->phy.ops->init(hdmi, hdmi->phy.data,
--				  &connector->display_info,
--				  &hdmi->previous_mode);
-+	/* HDMI Initialization Step B.2 */
-+	ret = hdmi->phy.ops->init(hdmi, hdmi->phy.data, display, mode);
- 	if (ret)
- 		return ret;
- 	hdmi->phy.enabled = true;
+ 		if (!(phy_stat & (HDMI_PHY_HPD | HDMI_PHY_RX_SENSE)))
 -- 
 2.54.0
 
