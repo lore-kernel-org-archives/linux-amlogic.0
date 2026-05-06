@@ -4,129 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 420BECD3427
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 May 2026 15:40:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C68E3CD3427
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 May 2026 03:00:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=q7WhtCzNsGYfoGGxleaSpS34//FbPK4It9ctzgGu8s0=; b=RcledFKTZL8iza
-	D7vwpRWWkH9qeOKKf8B2wb+VL0+4dBQ7l7ZBgRp4SqEbMUYwk2noWktMoJtjR6FaGJdTdw+bzCkQe
-	Yy0hAgULfCyufTzWP0q3TVYTqZtpeNrxf+iYjUlA9XfSyqHU39m90WfZiFPMLn5jUWcSOHgIhhuTI
-	UBxNBRla34RnXqYk+9eSo8L49e4kFWOZZtVwmKWLr+aBVsCx5JTO6eUY/Qk5l1d2iduS88ng5m2vm
-	o5nABbscvNrRAfa8aR1i1RvvMf7xN9ruuT3emP1QkyI6F5ItC5nUUhW7zT4p+bopPTvwXnaxC0Tk4
-	xwvy5ao0yvHZCVFn9o6Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=ThP90cjvo32DLfOX6VlOVRjG1C3y6/SNkrm1Kge1ajg=; b=gE9IVv/i/I0S11IUKZjoVGnMPF
+	xEWQ5NyCtpK1pkb5u9xw84yyXZ82b9h8FpEd4wilJawKr0RyxJtiAL8pXe5keZ/C35R9tL2dfhpB/
+	IswOvab6tfuwCV+Lb6B7VWbvOH4IxGvwDFMKInvuh3t7vgm1rRD0CsFrMGmC9t8ezwUqB/KAMA3FR
+	+dr8GqQ5ef6vRr1cNSICGpTrF39G2KqHM4A38B9t1Ok+exC9tD+RngR008CLXt22+pceMjGjUaAQt
+	B2sBr0OXeMRxnNkc3WJkIjEEGoNRhQB0uKkHx7ZycFhOQGsQdt1zu0rn9sgt7KmEqt4LKZCLWnj5i
+	q9mracww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
-	by bombadil.infradead.org with esmtp (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wKHsY-0000000Ggi2-1iIa;
-	Tue, 05 May 2026 15:40:10 +0000
-Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1wKHsT-0000000GggE-3M2C;
-	Tue, 05 May 2026 15:40:08 +0000
+	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wKSV7-00000000ZWC-3ohj;
+	Wed, 06 May 2026 03:00:41 +0000
+Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wKSV2-00000000ZVB-3wQf;
+	Wed, 06 May 2026 03:00:38 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Wam5s7lqYHD76PxqKlAQtGi4NhJhZYowsO8huoYK2w8pl2a75U2RjgaWtJBE4pQ4r/a7QqNZvLN/ij35WF//VNPBCTnwS+AZol4CcOrYwgwri+rUTkScSBjD5qAoldWohzCNKYbzQ8I5btqT2B5DxmxaJUMqcjtmuytJa9zMozmKEHQX6BehrooqEEv7BCyI/gi+GcVp+xAMm9qQoQ1ysjEr/PxAq+Bd+lt0bqOXLSY9amZHwvSpJbsIgtjJKO/d42Daq/ESRKzd9kopS5huV2tBfalQuqjljNkt73BBWRyKB3cXGlrMoRSPEoGiWAdHSaygTg4hbnsNsFeVuo0BjA==
+ b=VSDvaa0gEQw4Jwamh0/358n7K2+PTs118QkexC9NgPyes8S6bDTh1eq0PlohdoTCJmpK/S/BnH0BlcQ370izdo2gXp24o62oegHeCQabewIPbfG+HPGqgN2aD9u3Aiy+1WjFwdUyHB3Qz6V60Gh6+p3eQmHPcTQLWanFAKiyQ4fXWmsL28h2Q56Kgu1KIziIacV6eex7imBzQb/iUIlbks2lVheJdlYNG6CmOjWDLevb9DJ35oKuVcWVnnHGiyiP+OF29dOTn+SsixnKGtSGMG43KtHOD4l7FhCLENo85IxO+7WgZgBxPRtIsZ5NIMyoEmnsVcArH3l+J2UiqDVOYA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8IE/CrCxj5AIf4hfnkjgG0AIJbFdqjG49akaTCAKyUI=;
- b=mluJC14B7TP31/5eL1qF0svAIv0A/hAJiLVCZr17lq3zqiwHB6yGJN+bbvzJt1ltOfGLnwjVtAYobWeCQDaiZUp2sYW57Ell8i0HgZs6Nqh/v8rDGJGGodPQB6fR/ySXxtNPjRc4W+8rTxY3xOHTsSfdD1JU1DtFldMv4pG6r9+1wSywm8THGXLs5vQc0QCae+AdmhCifIn9/qzUBYKAbPGI10ERhlM5PgzV1IYRUZ+CvzkHcMU5V7BlVEjg/Q/R/qXoG7z4MUEPLDP/u4TpwpxF71pdwmAinmfm27yrryNuRRNb8D0qjtkjPXKF6DQK0/p1HFHMFBK2Qa6irkibpg==
+ bh=dxPRS4Ci/VlOJYrV9W8AOwAzbKcHcyph1XDoOS4jmsE=;
+ b=Vf57Yn1WGJZQE6G0kn0yKU8iyn3AIQNQJ1X+P0FPh7O5EVtFOzp4+yB0dgv3sGMxJhNKUD5vyHhdBEzYn8JQ0eV5V8UbDB65tGEZiu/8eZP9H0UbT5F5iAGuP8uye71xVPGjXwZzy1YCcd7sAOTkvP0Rk9GWwSIFXmZ8+XKB/ftTFKEXbKyaAlQ+KeJqDKLyK3AsGe6qn1+nEfWE+GvkshvO7QkVY1H/jAF1kdgsWjWI+WUBkvOjTCFUKrfHvQz4QS6JPIpR2OkXsqk8vPHvA2qgMTyfs9pcEk7Uao8uzwhqiZ4ArxK1zYBxJZ4PKX+EVMmvdorYeus0gtzO2zBImg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8IE/CrCxj5AIf4hfnkjgG0AIJbFdqjG49akaTCAKyUI=;
- b=oBpxsb5d0/Yloa/qRh+W4VYBKDAPKfBUTNAiiaiugWe21DPUP6+53fChbnHFP5ver1Q3YltKTCecsnTiRZERh+zQbZpFfJrsjcVyhpW599FGvfBMuPSlDbtxXT+M1AR0k1qK8nmP6OTspDe0DOabihB4R9PRy6wcrTztvYxvUmMDlrllqGnIsF8zlyTwkEtxfbPIusiECKcXQaaLtR/d6Hyuhq099zhks2P/AoJCw11x/z4mi5/DaOXwkr+f6vxqfxXjMaXyYJftbTqzIciJEWHU8/y4LJaIPr8J0ZlSZBh4r+czCx0G7EeXqVLLvh9irj2W5t8oWzEz9QMpOn54SA==
+ bh=dxPRS4Ci/VlOJYrV9W8AOwAzbKcHcyph1XDoOS4jmsE=;
+ b=gL7jkrvAeBDitt8ILu/H54VwBX45NKRgGMgw/NrorPSJtabuuTaIikyxsW8W5ddJN3bGivUmiKrGZLO1A+/1YwOPjrTnrWvSnOqj+7fmq5mZbJ3h5UfDQ8nvEHx3fUr6d5vTXtKuO2XXitoJ/gNReukB9X+iQEU9RplOsoB76j7k0u2gXBIJPXTWS+4wINd260Qh0PXFNshxl08odeFacdRmwwcJrnI6Vbh69R0MrdlAEGXZaXP50OqELnIlRfmmFP1DInlMUmQ5oV/Z3s5IjI/da09R8+VQNzh8XmCQV7gR5j+W/ggQHXyiYmFnyTXPC7qdJ7QQGB/G7Uful/115A==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by AM0PR04MB7026.eurprd04.prod.outlook.com (2603:10a6:208:192::11) with
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by SEZPR03MB8156.apcprd03.prod.outlook.com (2603:1096:101:18c::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Tue, 5 May
- 2026 15:40:01 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9870.023; Tue, 5 May 2026
- 15:40:00 +0000
-Date: Tue, 5 May 2026 11:39:52 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Hans Zhang <18255117159@163.com>
-Cc: broonie@kernel.org, sunny.luo@amlogic.com, xianwei.zhao@amlogic.com,
-	neil.armstrong@linaro.org, khilman@baylibre.com, han.xu@nxp.com,
-	haibo.chen@nxp.com, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, lhjeff911@gmail.com,
-	hayashi.kunihiko@socionext.com, mhiramat@kernel.org,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 05/10] spi: nxp-xspi: Use FIELD_MODIFY()
-Message-ID: <afoPSF5g3WVHJk0L@lizhi-Precision-Tower-5810>
-References: <20260430155456.36998-1-18255117159@163.com>
- <20260430155456.36998-6-18255117159@163.com>
-Content-Disposition: inline
-In-Reply-To: <20260430155456.36998-6-18255117159@163.com>
-X-ClientProxiedBy: SN7PR04CA0004.namprd04.prod.outlook.com
- (2603:10b6:806:f2::9) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.15; Wed, 6 May
+ 2026 03:00:01 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4%3]) with mapi id 15.20.9891.008; Wed, 6 May 2026
+ 03:00:00 +0000
+Message-ID: <659fea60-6b65-4f70-96b3-780b53740e22@amlogic.com>
+Date: Wed, 6 May 2026 10:59:56 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
+ compatible string for A9
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260428-a9-pinctrl-v1-0-cd611bb5f52d@amlogic.com>
+ <20260428-a9-pinctrl-v1-1-cd611bb5f52d@amlogic.com>
+ <20260430-notorious-cat-of-wonder-a6dacf@quoll>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20260430-notorious-cat-of-wonder-a6dacf@quoll>
+X-ClientProxiedBy: TP0P295CA0046.TWNP295.PROD.OUTLOOK.COM (2603:1096:910:3::9)
+ To TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM0PR04MB7026:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4789953b-0c6f-4b53-d264-08deaabc919b
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEZPR03MB8156:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2907ecd2-d8af-4abb-a6fa-08deab1b9040
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|19092799006|7416014|52116014|376014|366016|38350700014|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 6zTvDhTXKR6DFj2e1/ZZ+YKDzKDPv2X56hSgQMQpkDnxPcUDNsyeFxJwdn7wKwF/PxSonefd7JPVt6Qk0rS+tUmXw866nAGLejysAnwKPvLs2vwMVhWMptJZ1zDv4F3kFUfouChPhohhvD0nRTR75zCcihE6d0YjaGM7xG6SV3VXoNqTYSg6+LABGM6hld7Nhumtf/AgR9NJeIJZWbodiCwv3Fj1/vjzY1VJ8hL7HnQZ4vICmiDegDtYG1z9RI6DFh9wa5TnKswOAcoKy8ejt4rfvYL8p8SHWVM0WcIV2ezGcnqFjQYVm3WmOfgPs6b4mELU+SoDjcK4OzIznd88jK3+TE6wHz+nMxUTPtTHyLIqun03q7Vfyud2SBnIMmXLytk+F01KIr2/BPLrbvCBCTFRt0BaA6Pg6ID+BaM2wm7UbfuvjZapTtQEvS8JHBVRdXW5Orjf7hmx8U85RHfm15hoVZx/R+oXqNT1y8glnZuDUmv7T1uqjplBFwqHJRcZ8Q3pdx4bkHr+7zXCGV17x6KWhqVD+HkLO0etByoh/MWwEeENpmxkV/WNrKLY2j43HJN1/VDd9TAPooju1uMHiVWgoS/c7tOiOwArqk9PNlcB2FvgWYzjczROiemwIMJgwdMeStpeRaZ1ZAG8t98B2Y5yftrDV84BCHx7N+B2MHjspYIcWGfbkPmi0IpKeIwEtXP9ihUFqjPzEGA/AH6p6LnOyNZjjAemSM8kDCUuQVa/iLCuxT46/GbbydNkofaz
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(7416014)(52116014)(376014)(366016)(38350700014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7416014|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: t+2/J2IlIN65Jyep3mGBlzbgIa2PYqkQ7NzglLl39u8mRBxw0JdGI/IjSbAtHxaJyG29ruxEiu21fsTgYSlu+GTkYi8995EoGqulNnAUVXKRpa225eKCSdLNrlz/oHGDajZs+AWu2XfG03hSomVwjndoYVqibB9Ez9PZAfy2AzGDd2FhijYM6SJ2u2uFZbcwPu33jlJWrCvX1xT4ugOzkaNB9jBhIoMdv3HLACINKv+cAKS2hFhMnMOD5M6ufzOvVp8d4aB5A+9UaRAHRIB+xDp0jEocTSy5wo/K4lk58aJPIccAmnOStDzttSaFZjunJnG3Dy4wRCo78LzvlKbSlgQaRjSSAryPZ8ZQUJShSRJdRNT6PzbZoT7ABQG6x1LwZ4U5F+wE014uC1iDEYqj5qes5OkSe1/Chdpl9Tj4YQ6b0NIQ1jArPEmWzW77imRAO1OSV3V/0F8zR0V0FZr31+us1FhQnNrQxcAzFz+I+BdmFs18e70LffWImu6OkHATEu5JCXqQsOUERdDDlmR581s7LdXRdxtRAZxCCJVByne+h3P0wAl1z3r5T1LoWRz74oVMXNs96K131tK0YYQfcs/MjhEAY9kN7yPHbXmYELWUALcnzMuSLOJFxNIvMyzdyDqrrzOXNW+96mWf1gJbLPOWdQjHo2K7xmptNx1mJtyrYshI0ILNPx1KWtYKEdNa
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?V6dmm7vUvyJIyS3nf56hzYhitL6ZDpMByXzO2MBl0FMD2ErJ34SXqRb3TPDP?=
- =?us-ascii?Q?4XNmaIQ0QqwtyR08eWdVxQYn3Bm5k0T50jft2CrRifxekpCbbec+O78lCXkX?=
- =?us-ascii?Q?TREa5uj6xAkpmVYVcf0ZCoPkbPCmtybq2WLVU9lZ2JiNilYilUznhWYhnFig?=
- =?us-ascii?Q?n47j0F/9sA4OzDN0jsS6dUERWo5dwRVJ5JqsPjj/9PNkh3gmVKEfTEzOBDtc?=
- =?us-ascii?Q?UfF1TmhvtJ4591Z7eRqbduE6HVg+IMkzLpOX0j1ytf1nwvkzIU/7JO3gOcxC?=
- =?us-ascii?Q?yxf4IW81kp03b/qMnf048G/AAD9vYmMtEIrwKrrztG1SrBhNIIaQwUZxH1Ph?=
- =?us-ascii?Q?1mRVrYSr1T6l7FKxYH/b0jz6+X+8BnZ1pOYLDA+IntsnYHfQ/imwdE/LLzGZ?=
- =?us-ascii?Q?jgFRCCtDVsHHXb1uM4ylySHADWjJezne8Sm22YU20iM6odSTBKEz7Y8cAwXG?=
- =?us-ascii?Q?fKhbYOZXhd747x5gMA6BGUPv38RklFCPs4Adjv0+Wa5BoG1ksp6B6YaVmnp3?=
- =?us-ascii?Q?mgLdfm03b+tbOhvdz7nWJkRQhTxZPutNUHMH30CwWHskxgcpFFe5h4oOC1w3?=
- =?us-ascii?Q?P7dg8uxxEZ4vLRJ1E+JVjlNIk9Jq1fr0sijKtgckY4hR38U83g2y6tE13Bye?=
- =?us-ascii?Q?1MfeU2T9gykmPt5iIdtE6uxCC1l1weVXMpshFcrxWi5I0GSaC6FOajAvhKXc?=
- =?us-ascii?Q?7PyplOmrQJr7qYU2W3+iI3g0LsPzSBpsKmgx5P9MHUo56Cjmp44w1ZVSR2fG?=
- =?us-ascii?Q?o/OUKF95v5/BVg5oPkqyxxGCpEPFwzwSYxhxKyCujkCMTOeLKT/DiUTEG0tZ?=
- =?us-ascii?Q?ON+mSiHiS2rUWGmkfSttkmn/OFjQH4ef5bXjlBh9eNBISASHmFFNQtgj9zcN?=
- =?us-ascii?Q?Paeg8NIfngkjz64FLRs0cXpF3i/chYmsnjIB6SS1bFTui7/oNu967wNlYO34?=
- =?us-ascii?Q?4eGPMK5npO0TWPk+//ArgAbI3qXs1B84FQaA4VbqbADJB92NLF71fXa4ODGZ?=
- =?us-ascii?Q?pciiKpbTFO8x/blDXyEchNKsamhULV+OGDDsmari0sgzTcWG72SIyHKArovP?=
- =?us-ascii?Q?IT1jTJGz17MOa5eFXVUoFBrWv7ok+FJbZUgGH4v+9AhKwL7vYk2JONW/RJrw?=
- =?us-ascii?Q?wwEYIewiwctU7kxJ0Vo8Vgra1wZBApFh5Y9QedkCHKDP+uCCrvS6mhKpuydQ?=
- =?us-ascii?Q?cGmvK1za0IwmUial4+kd26M5i53JZfhab8GvX3dfIqfIliXzCjzh3LUto2Nc?=
- =?us-ascii?Q?VC30sVCvwcIxkd680mMJyr44i/gqwJM+IV/B/H4i6hwp8qY9IioKLxm9TbJP?=
- =?us-ascii?Q?b4SHsj1T5r4WBPlsEHWUjcjuuJnrxbbj4hge4y+wGgHh4FO4dKC1k4X5pqQA?=
- =?us-ascii?Q?FfZtsNjexcvHr7dLmyKI0I2uSJvW43XhgF/GbIBWs4djW0uqpr/MMSdPExCj?=
- =?us-ascii?Q?/2jV9uFu40eChYbrO10UjBIoDznbuV0XYTOk3SGXX4zSqbjFSfTjlviW8/ps?=
- =?us-ascii?Q?UePz5jVG/R3LZfB5AV2ECOWOE+yU0DWs7h2qcKlMSp0wvaZhB8V/PECGIArJ?=
- =?us-ascii?Q?4cGilqTxwsn8Excg5Z+uwrBP216htqhYQV4wG4Z8PJ+nmEC0htWaV1azVqO3?=
- =?us-ascii?Q?u4AIQjYcHxEgNEn4SdVkUt8GhFM8ZdX4TM3QhumIo3ap5fEK1P5nPmYmegUs?=
- =?us-ascii?Q?y+lKltz9S7ga6xiORYLX57yrwdtXe0HiH6rdHEPcQsvJWEWkqkIoCG+WEZvP?=
- =?us-ascii?Q?Cg8YOBV/Uw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4789953b-0c6f-4b53-d264-08deaabc919b
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UmpwZWkvYUtlaHJabTF1OTBWWXdodkpnWkxWWHM1WC9LQktPQ0gyc3FocGtn?=
+ =?utf-8?B?ME9BaXgvMnpJall2dXRiMy82MDNIWTZxK2ROb0xtSjdPWWZSN2lEU3FuK1Yx?=
+ =?utf-8?B?UWg4eXpsR0QwMHpUdkRCNGk4M1VsNjdJdHNoRXFDeUYzdFp0QTdBdkFuT3Zi?=
+ =?utf-8?B?MnBqZ1ZZcDdzajArVnVUVy9HWlhoNXpnWm9mTFdPUkRiVWprWkdjYzc1dG95?=
+ =?utf-8?B?YTVhT1FTdlErK2Z1dWdTWUFaaVB1OHAwWGUvSDNmWjNBVER1WHhFQlMxUnpQ?=
+ =?utf-8?B?cmE1ZCtrZEswTTMvcHA5cS9Xd01OakpzUGxtQ0FpYnN3WmFwd3ZoZXhxVG5i?=
+ =?utf-8?B?bXY2eFpqYmw5R0JiSkdVaWdDWnhOMWdEd1o2QmtVUXlaUWxlN0VKcTRlaDZh?=
+ =?utf-8?B?SkdWQmZ6amsrR1VnckdhZjhBWHg3L0dnS202V0t0b2NwTTJRODkvNGIvbE5I?=
+ =?utf-8?B?bmE4cFB4TTgwWXV2c2Y2Q05nYTFFSFFLZWJneE0vekhuVUNDdEdhL2VSRmt5?=
+ =?utf-8?B?MUxuaUpsdklGTGU2TTZLSWNZUnhJMFBJa0FPVDBEd0ZBVUZlZ1FkQVlJVzhh?=
+ =?utf-8?B?dDF5aGZjVzBhYWZxajYxeWF5dmJpMDNhTGFWc0ZHVElaN0xSdUdWNi9MUFMx?=
+ =?utf-8?B?eTRWSjJWWEp6Z08yMXd1cTU2WjZrdXhUNncyeU1QbTA5UW5LUURhUVRlU1Qw?=
+ =?utf-8?B?VHVtanozanJjOHhtMDFZaTI3NFBzS2s1elBUNGNxblo5Mk96aHFKV1ZHbkpx?=
+ =?utf-8?B?VVdUYWhIV3daakFyY05WZzNmZXZ0QUlKV2djU3B6SWFjRjExWmZqQzI3Rm81?=
+ =?utf-8?B?c0dOZkMvZWhrUm5QcjJPZFQ3aVBQK0x1bEhzS3JBNFJGRVRzazF6S04ya3Mx?=
+ =?utf-8?B?ZnZVV3lqQUY1dUhza3gvTXdQRE9VS0pWcEphS2ROMlN6S09zdTZNeUhzN3do?=
+ =?utf-8?B?VEJCcjA1djZOenljNXFTUG1WcHJaUlpNK3ZZVVdxYUVabzQ3SG15aTdYUlV6?=
+ =?utf-8?B?cEdhVVpnSUFDdzZGYkRoZVBSdUR2NWc5VC9aTFhDTnovdjZneTRQWlE0K3Yr?=
+ =?utf-8?B?c3JJeTFWMFRHZXpKcFQwMzFFcXZGS0xSU0wwQWN5VFZuLzhGNTN0dlU4QUtC?=
+ =?utf-8?B?MUN3VURmMTJvRUxOME5HTk80Qmt4QlBDZHViaWtpajJhdzVJSndXTlB6OHZV?=
+ =?utf-8?B?OUtjK2wvVThZTVRDNlBDY3ZUSjQwa09KSEV3dUZPOUZvT1hEbUFJMUpoM1FY?=
+ =?utf-8?B?OFowN2dyRjVVRWxxZlA1YTBVUWRPOHpWamJvWnZGRzFodDlYL0QwZU5XWldG?=
+ =?utf-8?B?cHgzU3lDQzdwYXZTMFljRVFiRVNFUUFEckh3SzNzayt0cDg4UmNZU1dERGI4?=
+ =?utf-8?B?cnVodDhhZFRYcHhaeEtPWU5HMUo5djcvVW5vVEhuL25MNnovK1d4MlhIQ1hz?=
+ =?utf-8?B?alk3ZW82UEJhQUk5TWY1cUY5UlBVeVhCWEdXSDVjK2hUZGJkNHBMYVpjamtC?=
+ =?utf-8?B?WlQ5ZGs5anhMVk5idmM0cHdoZTZ4TjVKVDd0dnhhVlJwWUdkRDVkYjdDdEgw?=
+ =?utf-8?B?T05aS2FTdldodDJoUUVpMXB3eDY2NmhHZndUZkQ4NzRLYVgxd3ZQVzdxbEtH?=
+ =?utf-8?B?MlNxUkI1NGlHWVNoQXdnTWpVQUpDbXpQNVhJeWo1OTN4WGg5M3ZGdllGYTJC?=
+ =?utf-8?B?U2dTWmovVVFrc2FaNHJoWTJneHllemJDek9LdDRLWm1IZ0wrMkllMmRpK3NB?=
+ =?utf-8?B?NHZaRXZ0SUoxVDVoTFVQdm42b0E3Ty93UlNCWW5ZbEZvVW51MWpKbXJzYnc2?=
+ =?utf-8?B?cVZCVk8xL1paTGpBTWVsczdZSHIxOW11alhMVi9UUVY5M05LUGx1bkVCSnBv?=
+ =?utf-8?B?NjNnZmNYWEJBM1NkcnhTdWo3aEhQZjRrRFRUNE5KeGhvMURzMkYxb3d1MEZG?=
+ =?utf-8?B?azlJM1lkZVFaaGZHQ05HVEY1aWk5ekgzcmVvWHM0VXdXUlBZRHpWNGpkTjZ3?=
+ =?utf-8?B?N1VLZnQ2SGZxYlU3b3p2bi9aYVVSajFwSzJkNDJVVWZ4TXZqOUgxbEg3MnZO?=
+ =?utf-8?B?UmZjNjhKOHBlZkszdUFFTUo3b3d6ZDZBaysxb0Vja2JWTUlNOXRQKy9UWHZQ?=
+ =?utf-8?B?a0RiVmpWN2NacGIxTHNIbk5OVEo2WDAxcmZnSVFLZGhEeTRoT2daR215TFZ0?=
+ =?utf-8?B?Skh4VHg3eEwrNkdJejcxN0ZzWjBmazBmRlh4ZjJ6LzZzT3creUlkRDIrTDBo?=
+ =?utf-8?B?UkE3MGZ3WmNwZlZTck9ZQzM3NzI1VUlEZ0xZSm1xRmdyWk1oMkRVK1pzbkZX?=
+ =?utf-8?B?YS9KWnhSNjBoR3FmZTlZRXR4L2swbEhzcW8zaStrRW80RitGZEpvdz09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2907ecd2-d8af-4abb-a6fa-08deab1b9040
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 15:40:00.8381
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2026 03:00:00.7393
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SsHaNS20+x6Yj/x/Psw73/Kznz0dZGuXRzfYok5cbUka8lPp+Jb+l/MF6SPWqki3OfCuijz2C8p9xPzcKaPgtQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7026
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260505_084005_844032_57B63ED9 
-X-CRM114-Status: GOOD (  14.52  )
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2Aa2Tkj46uEb6LAVrqMKgMo1g24efr6ROrx8LmRrHnnWXopaqnUTJG6rOULq5RXNrAqmnZ/VFwgj6aym6/MAWd903BE5Ks+SwEYvmd7aMn8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB8156
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260505_200037_035311_A6F4FFD4 
+X-CRM114-Status: GOOD (  10.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,69 +148,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Apr 30, 2026 at 11:54:51PM +0800, Hans Zhang wrote:
-> Use FIELD_MODIFY() to remove open-coded bit manipulation.
-> No functional change intended.
->
-> Signed-off-by: Hans Zhang <18255117159@163.com>
-> ---
+Hi Krzysztof,
+    Thanks for your advice.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+On 2026/4/30 17:36, Krzysztof Kozlowski wrote:
+> On Tue, Apr 28, 2026 at 08:22:48AM +0000, Xianwei Zhao wrote:
+>> Update dt-binding document for pinctrl of Amlogic A9.
+> And why it is not compatible with a4 or a5? You have entire commit msg
+> for this.
+> 
 
->  drivers/spi/spi-nxp-xspi.c | 12 ++++--------
->  1 file changed, 4 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/spi/spi-nxp-xspi.c b/drivers/spi/spi-nxp-xspi.c
-> index 385302a6e62f..037eac24e6fd 100644
-> --- a/drivers/spi/spi-nxp-xspi.c
-> +++ b/drivers/spi/spi-nxp-xspi.c
-> @@ -493,9 +493,8 @@ static void nxp_xspi_disable_ddr(struct nxp_xspi *xspi)
->  	writel(reg, base + XSPI_MCR);
->
->  	reg &= ~XSPI_MCR_DDR_EN;
-> -	reg &= ~XSPI_MCR_DQS_FA_SEL_MASK;
->  	/* Use dummy pad loopback mode to sample data */
-> -	reg |= FIELD_PREP(XSPI_MCR_DQS_FA_SEL_MASK, 0x01);
-> +	FIELD_MODIFY(XSPI_MCR_DQS_FA_SEL_MASK, &reg, 0x01);
->  	writel(reg, base + XSPI_MCR);
->  	xspi->support_max_rate = 133000000;
->
-> @@ -524,15 +523,13 @@ static void nxp_xspi_enable_ddr(struct nxp_xspi *xspi)
->  	writel(reg, base + XSPI_MCR);
->
->  	reg |= XSPI_MCR_DDR_EN;
-> -	reg &= ~XSPI_MCR_DQS_FA_SEL_MASK;
->  	/* Use external dqs to sample data */
-> -	reg |= FIELD_PREP(XSPI_MCR_DQS_FA_SEL_MASK, 0x03);
-> +	FIELD_MODIFY(XSPI_MCR_DQS_FA_SEL_MASK, &reg, 0x03);
->  	writel(reg, base + XSPI_MCR);
->  	xspi->support_max_rate = 200000000;
->
->  	reg = readl(base + XSPI_FLSHCR);
-> -	reg &= ~XSPI_FLSHCR_TDH_MASK;
-> -	reg |= FIELD_PREP(XSPI_FLSHCR_TDH_MASK, 0x01);
-> +	FIELD_MODIFY(XSPI_FLSHCR_TDH_MASK, &reg, 0x01);
->  	writel(reg, base + XSPI_FLSHCR);
->
->  	reg = FIELD_PREP(XSPI_SMPR_DLLFSMPFA_MASK, 0x04);
-> @@ -1096,8 +1093,7 @@ static int nxp_xspi_default_setup(struct nxp_xspi *xspi)
->
->  	/* Give read/write access right to EENV0 */
->  	reg = readl(base + XSPI_FRAD0_WORD2);
-> -	reg &= ~XSPI_FRAD0_WORD2_MD0ACP_MASK;
-> -	reg |= FIELD_PREP(XSPI_FRAD0_WORD2_MD0ACP_MASK, 0x03);
-> +	FIELD_MODIFY(XSPI_FRAD0_WORD2_MD0ACP_MASK, &reg, 0x03);
->  	writel(reg, base + XSPI_FRAD0_WORD2);
->
->  	/* Enable the FRAD check for EENV0 */
-> --
-> 2.34.1
->
+Will add a commit message explaining why it is not compatible with 
+previous SoCs.
+
+>> Signed-off-by: Xianwei Zhao<xianwei.zhao@amlogic.com>
+>> ---
+>>   Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+> Best regards,
+> Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
