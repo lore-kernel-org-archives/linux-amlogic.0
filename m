@@ -4,67 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 557E7CD343B
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 May 2026 14:42:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 017FFCD3442
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 May 2026 17:24:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2/ojS0+9HHjiB0lRloTNL/N3CuiQ/+zxbwEpwT9r0Mc=; b=fSQqK7SbGpTvt9
-	qdpAj6PqmVtIZ2r+by/yJivjUOIsUKLWSYjSiAI3djLwsHQS4MLZ9Hr3Zonnn/kyRoThafVdNl7hq
-	mTmDpK9wSu9H28uIIrgDg0o63IMjtSEU6UugyOPZQ64aoY3E2Qik+XBSgn6bmw0+JAPQsEZnoPMXz
-	sozuxBokiVVqRFqF95QKoJvo4Ul5h0+KITuIwUi/ZwZxahk17dw6YA7MefWhwGgcRYXv83HqfOOsX
-	8lMiByDP83W5oogY0qdlUZbFbESSZ/9EP+Qa1bBXwfPW3L53XHYrNa32ch+hAJAVQv6GlJhOHVTY4
-	PnzEM+cL8Iie6ekxgSOg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=aWjaM1I9FobO19knIii2OapQq08OS+DEGFH1Jnap8Ss=; b=wHdNqBArXUK9/COxHhBULI0BJc
+	U4vWtQW7EkyioCb8SwVWjgY/9LPQ2ih4l5cShOXnyEEw3VbK6ikHGvV+d7VeOh+5Y1aqKLFJtrPA+
+	BbkvPnQaXcqLWCChnU1Ew9NjX8K2L4xD1RtYbxPBXL89yL0z1dHmbb7qb0yDI91b6D1aQFxOjxt/8
+	B3dhOq07CRk25YGVlTNrxlPtjcWVPtBYweo3rKPcZ0NQ2q8Bw4zSh9rxCN3R/IX+u+9e9YtJOm74F
+	mZOH0Z28sp4QFWjHU0SFWcJL5wSX1VoLkdfOM2yJnBJoQ0Nr2XchAnp4N+w5WZP8dbP5RFhnjbWSf
+	f8v8acnQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wKzvx-000000045W9-3WMN;
-	Thu, 07 May 2026 14:42:37 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wL2Ss-00000004TT7-2AvI;
+	Thu, 07 May 2026 17:24:46 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wKzvx-000000045Vx-0yN3
-	for linux-amlogic@lists.infradead.org;
-	Thu, 07 May 2026 14:42:37 +0000
+	id 1wL2Sq-00000004TRA-3E57;
+	Thu, 07 May 2026 17:24:44 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id E0DDB60181;
-	Thu,  7 May 2026 14:42:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D9B7C2BCB2;
-	Thu,  7 May 2026 14:42:34 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 373E06024D;
+	Thu,  7 May 2026 17:24:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F400C2BCB2;
+	Thu,  7 May 2026 17:24:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778164955;
-	bh=KCX3N2x1ol+I49/DTQ1+oZRTrXDmnXU69S4wRqEshBY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Lgex9zLPFUXvGoh3Fd8qSnVoRYLjxpJmChkOW8Do9qhjrmdqCsIUSq7uFM6E/K0bF
-	 UO1kyz/4EJS/Gar4wnYK5y0czE3T/hP1bj0zqIzLWYzKQ/ZNBkYme7ySdcXeYkOgu+
-	 SrAskf1jAZ9vhNW4X7WdNoR9oHaTq74RJDw2jsyWhk6KVC4+flC+ZhOdSrCC98M7Em
-	 6Nicsp7Z+mNM8cPig7puQptrJtSK4WoW6tmDCHvV9GylGCCj6DefWDDMwLHmMgGW6J
-	 wijoKbSFe1X1FJenol0a1VnVx2ZNbE+JfpIs6DHaPnwfVNqmEEqeZZhjltlFqPVRLY
-	 q7Crk+K48S8NA==
-From: Mark Brown <broonie@kernel.org>
-To: sunny.luo@amlogic.com, Stepan Ionichev <sozdayvek@gmail.com>
-Cc: xianwei.zhao@amlogic.com, linux-amlogic@lists.infradead.org, 
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260506183513.482-1-sozdayvek@gmail.com>
-References: <20260506183513.482-1-sozdayvek@gmail.com>
-Subject: Re: [PATCH] spi: amlogic-spisg: drop misleading NULL check on
- exdesc
-Message-Id: <177814235817.749715.9876596107513114221.b4-ty@b4>
-Date: Thu, 07 May 2026 17:25:58 +0900
+	s=k20201202; t=1778174683;
+	bh=P2uFCtkUNsia+m6fpAEh1XqkuX3NtaugGNibOKloo4o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CpwAj9kc8UHoERSQHR0XSVqory3ohRb6FqTA8C81qrIvv/U+4tAaRBmUd5plpauW6
+	 O2+JfcJ/rrfXrnYcdDnCt4nXNbQ7v8EyO5n7h3FzT2LaOIxaF7axtWgiCEMU+q6X3A
+	 S+SXGhN92RGwwBvB1L4ZrstRVtXNn95gG9/V78z9EnqRy/Bkbjcn9Fbb7RhN/K1eUs
+	 LPu0e+wfwM7aZMG9k9BAxL/mgkZkFnHfloGEYsd48Oj1b3Pct2pPAN9xwN8aMIBJbH
+	 ZAIPpiwJixuexPRRoCx0FKTdHCo8iikc2sMAFS8fY6VLthtXyBd5rRsqg/1CTTB/sd
+	 TsYOru+1Mv6yw==
+Date: Thu, 7 May 2026 18:24:39 +0100
+From: Conor Dooley <conor@kernel.org>
+To: xianwei.zhao@amlogic.com
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
+ compatible string for A9
+Message-ID: <20260507-juice-helpless-b04e31e10778@spud>
+References: <20260507-a9-pinctrl-v2-0-49774feff2ef@amlogic.com>
+ <20260507-a9-pinctrl-v2-1-49774feff2ef@amlogic.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1129; i=broonie@kernel.org;
- h=from:subject:message-id; bh=KCX3N2x1ol+I49/DTQ1+oZRTrXDmnXU69S4wRqEshBY=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp/KTZvdxWwUlXuiOEDiIKk8B9yMKA4zhQvM3ak
- W4npfMS+oSJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCafyk2QAKCRAk1otyXVSH
- 0FVfB/40AuY8Cg0XYUtbrUCfRo3oYFbHVIA6foa6QyeMJEKVRDSHgUOKBYHTjYvl0H5kzvLHqgJ
- AC3TVs7hQ0zTWSo3jOd0iLeGd2izDXyc7GgSUsZOb3G2m69YECBK5QIVPo7cgMmj9peq9cQR8nT
- psRPH/A1PH8oFIrf0+6eluvqIOKxQBWUwYGlbJMQVwmOUdka0OGKwpEveGwlOdobVS3G7SgIane
- wtqwQCmJdGySNpkxtNDFiaIKlhzWOWrMfGAXCgHn5s3TTf2lu3b4cD1DM4MMToskfOB5iCEAqdF
- lGN5KRuQ74qduuUbnjZn6Q5p8r3JPdHsKTq+QV0tMN9y2V/M
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+In-Reply-To: <20260507-a9-pinctrl-v2-1-49774feff2ef@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,44 +72,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============7014333791645555260=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 06 May 2026 23:35:12 +0500, Stepan Ionichev wrote:
-> spi: amlogic-spisg: drop misleading NULL check on exdesc
 
-Applied to
+--===============7014333791645555260==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hcasBY/b5pRydqvZ"
+Content-Disposition: inline
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.2
 
-Thanks!
+--hcasBY/b5pRydqvZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[1/1] spi: amlogic-spisg: drop misleading NULL check on exdesc
-      https://git.kernel.org/broonie/spi/c/54725e3049e1
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+--hcasBY/b5pRydqvZ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+-----BEGIN PGP SIGNATURE-----
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+iHQEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafzK1wAKCRB4tDGHoIJi
+0lmTAPj2IuWZOzkdHyd1WG3b7KQWEm0yZDOhSvUgbOssnp7HAQCGYO2izgbTLuuW
+g6S0C7Z2i/91Jf5RCru9LETDYWvfCw==
+=CbFS
+-----END PGP SIGNATURE-----
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+--hcasBY/b5pRydqvZ--
 
-Thanks,
-Mark
 
+--===============7014333791645555260==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7014333791645555260==--
+
